@@ -1,0 +1,883 @@
+\MSubsection{Exponentialfunktionen}
+\MLabel{M06_Abschnitt6}\label{exponential}
+
+\begin{MIntro}
+Im Abschnitt \MRef{M06_Abschnitt5} haben wir Potenzfunktionen, also Funktionen mit rationalen Exponenten, behandelt.
+Jetzt wollen wir diesen Rahmen in zweierlei Hinsicht erweitern bzw. sogar sprengen: Zum einen werden im Folgenden nicht nur
+Ausdrücke mit rationalen, sondern auch solche mit \textbf{reellen} Exponenten auftreten. Das heißt, wir müssen in einem
+vorbereitenden ersten Schritt verstehen lernen, was z.B.
+$$2^\pi \mbox{ oder } 11^{\sqrt{2}} \mbox { oder } 10^{(1 + \sqrt[3]{5})}$$
+bedeuten sollen, Ausdrücke, bei denen irrationale Zahlen als Exponenten vorkommen.
+
+Zum anderen stellt bei den \MEntry{Exponentialfunktionen}{Exponentialfunktion} - im Gegensatz zu den Potenzfunktionen -
+nicht die \textbf{Basis} des Exponentialausdrucks die Veränderliche dar, sondern es ist der \textbf{Exponent}, der
+die variable Größe bildet; dementsprechend werden wir Zuordnungsvorschriften betrachten wie z.B.:
+$$x \longmapsto 2^x \mbox{ oder } x \longmapsto 10^x$$
+\end{MIntro}
+
+\begin{MXContent}{Reelle Exponenten}{Reelle Exponenten}{STD}
+\MLabel{M06_reelle_exponenten}
+In Ergänzung zu den Überlegungen in Modul \MRef{VBKM01}, insbesondere Abschnitt \MRef{M01_Potenzenwurzeln}, wollen wir uns
+kurz Potenzen mit reellen Exponenten anschauen. Die Fälle ganzzahliger und rationaler Exponenten werden in dem erwähnten
+Modul bereits ausführlich abgehandelt, sodass wir uns hier auf Exponentialausdrücke mit irrationalen Zahlen als Exponenten
+konzentrieren können. Als Beispiel soll $2^\pi$ genauer unter die Lupe genommen werden:
+
+Die \textbf{Kreiszahl} $\pi = 3,14159 \dots$ lässt sich sehr einfach durch eine sogenannte \textbf{Folge} rationaler Zahlen
+annähern; dabei verstehen wir hier unter eine Folge schlicht eine nummerierte Auflistung von Zahlen.\\
+Als Nummer~$1$ in der angesprochenen Folge wählen wir die Zahl $3$, als Nummer~$2$ die Zahl $3,1$, als Nummer~$3$ die Zahl
+$3,14$, als Nummer~$4$ die Zahl $3,141$ usw., d.h. wir nehmen für das nächste Folgenglied stets eine weitere Nachkommastelle
+der Zahl $\pi$ hinzu und kommen so ihrem tatsächlichen Wert immer näher. Außerdem stellen wir fest, dass unsere Folge nur aus
+Elementen von $\Q$, den rationalen Zahlen, gebildet ist und monoton anwächst. Z.B. lässt sich $3,14$ folgendermaßen als
+Bruch schreiben: $3,14 = \Mtfrac{314}{100} = \Mtfrac{167}{50}$.
+
+Für all diese Folgenglieder - oder doch zumindest für die ersten - berechnen wir nun $2$ hoch das jeweilige Folgenglied;
+die Tabelle zeigt das Ergebnis unserer Berechnungen ($2^q$ auf $5$ Stellen genau):
+\begin{center}
+\begin{tabular}{c|l|l|l|l|l|l|l}
+ Exponent $q$ & 3 & 3,1 & 3,14 & 3,141 & 3,1415 & 3,14159 & \dots \\ \hline
+ $2^q$ & 8 & 8,57419 & 8,81524 & 8,82135 & 8,82441 & 8,82496 & \dots \\ \hline
+ Differenz zum Vorergebnis & & 0,57419 & 0,24105 & 0,00611 & 0,00306 & 0,00055 & \dots
+\end{tabular}
+\end{center}
+In der letzten Zeile haben wir die Differenz zwischen den Ergebnissen für $2^q$, einmal für den aktuellen Wert von $q$ und für
+den vorangegangenen Wert für $q$, aufgeführt. Aus dieser Zeile kann man sehr schön ersehen, dass -
+mit der Annäherung von $q$ an $\pi$ -
+das Ergebnis der Berechnung von $2^q$ ebenfalls auf einen festen Zahlenwert zuläuft. Als Resultat der Rechenvorschrift $2^\pi$
+wird genau dieser feste Zahlenwert genommen; er ist auf 5 Stellen genau durch
+$$2^\pi = 8,82497 \dots$$
+gegeben.
+
+Für andere (positive) Werte der Basis und andere irrationale Zahlen als Exponent verfährt man in vollkommen analoger Weise: Jede
+irrationale Zahl lässt sich durch eine Folge rationaler Zahlen annähern. Je weiter man in der Folge fortschreitet, desto besser
+wird die Approximation. Mit dieser ersten Folge erhält man zugleich eine zweite, gebildet aus den Zahlen \glqq Basis hoch
+Folgenglied{\grqq}; diese zweite Folge läuft auf eine feste Zahl, das gesuchte Ergebnis, zu.
+
+Damit wissen wir jetzt, wie wir beliebige Exponenten zu verstehen haben.
+\end{MXContent}
+
+\begin{MXContent}{Allgemeine Exponentialfunktionen}{Allgemeine Exponentialfunktionen}{STD}
+\MLabel{M06_allgem_exp_fkt}
+Exponentialfunktionen spielen in vielen unterschiedlichen Bereichen eine wichtige Rolle, so etwa bei der Beschreibung biologischer
+Wachstumsprozesse - diverse Modelle zur Bevölkerungsentwicklung eingeschlossen -, bei Prozessen des radioaktiven Zerfalls
+oder bei einer bestimmten Form der Zinseszinsberechnung. Betrachten wir ein Beispiel:
+\begin{MExample}
+\MLabel{M06_bsp_bak_pop}
+Eine Bakterienkultur enthält zu Versuchsbeginn $500$ Bakterien und verdoppelt ihre Population alle $13$ Minuten. Wir möchten gerne
+wissen, wieviele Bakterien nach $1$ Stunde und $15$ Minuten (also nach $75$ Minuten) in der Kultur vorhanden sind?
+
+In einem ersten Anlauf können wir eine einfache Wertetabelle erstellen, die uns die Bakterienpopulation zu Beginn ($t = 0$ min),
+nach $t = 13$ min, nach $t = 26$ min usw., also zu Vielfachen der $13$-Minuten-Verdopplungszeitspanne, angibt:
+\begin{center}
+ \begin{tabular}{c|r|r|r|r|r|r|r|r|c}
+ Zeit $t$ in min & 0 & 13 & 26 & 39 & 52 & 65 & 78 & 91 & \dots \\ \hline
+ Anzahl Bakterien & 500 & 1000 & 2000 & 4000 & 8000 & 16000 & 32000 & 64000 & \dots
+ \end{tabular}
+\end{center}
+Aus der Tabelle können wir abschätzen, dass die Antwort auf unsere Frage zwischen
+$16000$ und $32000$, wahrscheinlich näher bei $32000$, liegen wird. Doch wie sieht es mit einer präzis(er)en Antwort aus?
+
+Dazu müssen wir den \textbf{funktionalen Zusammenhang} zwischen allgemeinen $t$-Werten und Bakterienanzahl kennen. In der
+unten stehenden Abbildung ist auch der Graph einer Funktion $p$ wiedergegeben; dieser Funktionsgraph füllt sozusagen die
+Lücken zwischen den isolierten Punkten, die den Wertepaaren aus der Tabelle entsprechen und die ebenfalls eingezeichnet
+sind. Die zugehörige Abbildungsvorschrift ordnet jedem reellen Zeitpunkt eine Populationsgröße zu. Wie wir sehen werden,
+handelt es sich bei der Funktion um eine \textbf{Exponentialfunktion}.
+\begin{center}
+\MUGraphicsSolo{bak_pop.png}{scale=1}{}
+\end{center}
+Aus der graphischen Darstellung können wir die gesuchte Anzahl an Bakterien schon etwas genauer ablesen. Aber für die
+exakte Angabe benötigen wir die Abbildungsvorschrift, die hinter dem Graphen aus der Abbildung steht und die wir hier
+zunächst nur angeben:
+$$p: \R^+_0 \longrightarrow \R^+ \mbox{ mit } t \longmapsto p(t) = 500 \cdot 2^{(t/13)}$$
+(In Aufgabe \MRef{M06_bsp_bak_pop_exercise} werden wir diesen funktionalen Zusammenhang begründen.)\\
+Damit erhalten wir für $t = 75$ (gemessen in Minuten) den Funktionswert
+$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot 54,539545 \approx 27270$$
+Also leben nach $75$ Minuten $27270$ Bakterien in der fraglichen Population.
+\end{MExample}
+Im vorangegangen Beispiel tritt also eine \textbf{Exponentialfunktion} zur Basis $a = 2$ auf, die Veränderliche - im
+Beispiel $t$ - erscheint im Exponenten. Wir wollen nun die allgemeine Abbildungvorschrift für Exponentialfunktionen
+zu einer beliebigen Basis $a$ angeben; dabei setzen wir allerdings $a > 0$ voraus:
+$$\begin{array}{rrcl}
+ f: & \R & \longrightarrow & \R^+ \\ & x & \longmapsto & f(x) = f_0 \cdot a^{\lambda x}
+\end{array}$$
+Dabei bezeichnen $f_0$ und $\lambda$ sogenannte Parameter der Exponentialfunktion, auf die wir weiter
+unten eingehen werden.
+
+Der Definitionsbereich aller Exponentialfunktionen wird von allen reellen Zahlen gebildet, $D_f = \R$, wohingegen
+der Wertebereich nur aus den \textbf{positiven} reellen Zahlen besteht ($W_f = \R^+$), da jedwede Potenz einer
+postiven Zahl nur positiv sein kann.
+\begin{MExercise}
+ Warum setzt man bei den Exponentialfunktionen voraus, dass die Basis $a$ größer Null sein soll?
+ \begin{MSolution}
+  Eine Exponentialfunktion soll nicht nur für ausgewählte, spezielle oder isolierte Werte der Veränderlichen $x$
+  definiert sein, sondern, wenn möglich, für alle reellen Zahlen. Würde man negative Basiswerte $a < 0$ zulassen, so
+  würden sofort Probleme beim Wurzelziehen - siehe $a^{(1/2)} = \sqrt{x}, a^{1/4}, a^{1/12}$ etc. - auftreten.
+  Z.B. sind Quadratwurzeln aus negativen Zahlen nicht definiert, vergleiche auch Abschnitt \MRef{M06_Abschnitt5}.
+ \end{MSolution}
+\end{MExercise}
+Bevor wir uns der Bedeutung der Parameter $f_0$ und $\lambda$ zuwenden, wollen wir unsere Betrachtungen zunächst
+noch ein wenig einfacher halten und sowohl $f_0$ als auch $\lambda$ gleich $1$ setzen. Auch so können wir schon
+einige generelle Eigenschaften von Exponentialfunktionen erkennen, wie das folgende Bild zeigt, in dem
+Exponentialfunktionen $g: \R \rightarrow \R^+$, $x \mapsto g(x) = a^x$ für verschiedene Werte von $a$ gegenübergestellt
+sind:
+\begin{center}
+\MUGraphicsSolo{expo_vgl.png}{scale=1}{}
+\end{center}
+\begin{itemize}
+ \item Alle diese Exponentialfunktionen gehen durch den Punkt $(x = 0, y = 1)$: Dies ist sehr leicht zu verstehen,
+ da $g(x = 0) = a^0$ und $a^0 = 1$ für jede Zahl $a$.
+ \item Ist $a > 1$, so steigt der Graph von $g$ von links nach rechts (also für wachsende $x$-Werte) an;
+ man sagt auch, dass die Funktion $g$ \textbf{streng monoton wachsend} ist. Je größer der Wert für $a$ ist, desto
+ schneller wächst $g$ für \textbf{positive} $x$-Werte. Geht
+ man von rechts nach links (also zu immer größeren negativen $x$-Werten), so schmiegen sich die Graphen zunehmend
+ an die negative $x$-Achse an.
+ \item Ist $a < 1$, so fällt der Graph von $g$ von links nach rechts (also für wachsende $x$-Werte) ab;
+ man sagt auch, dass die Funktion $g$ \textbf{streng monoton fallend} ist. Je größer der Wert für $a$ ist, desto
+ langsamer fällt $g$ für \textbf{negative} $x$-Werte. Geht
+ man von links nach rechts (also zu immer größeren positiven $x$-Werten), so schmiegen sich die Graphen zunehmend
+ an die positive $x$-Achse an.
+\end{itemize}
+Und was hat es nun noch mit den Parametern $f_0$ und $\lambda$ auf sich? Nun, der Parameter $f_0$ ist schnell
+erklärt: Setzt man den Wert $x = 0$ für die Veränderliche in die allgemeinen Exponentialfunktionen $f$ ein,
+$$f(x = 0) = f_0 \cdot a^{\lambda \cdot 0} = f_0 \cdot a^0 = f_0 \cdot 1 = f_0 \; \; \; ,$$
+so erkennt man sofort, dass $f_0$ eine Art \textbf{Start- oder Anfangswert} darstellt
+(zumindest falls man die Veränderliche $x$ zeitlich interpretiert); der exponentielle Verlauf $a^{\lambda x}$
+wird generell mit dem Faktor $f_0$ multipliziert und dementsprechend gewichtet, d.h. gestreckt (für $|f_0| > 1$)
+bzw. gestaucht (für $|f_0| < 1$).
+
+Der Parameter $\lambda$ im Exponenten heißt \MEntry{Wachstumsrate}{Wachstumsrate}; er bestimmt, wie stark
+die Exponentialfunktion - bei gleichbleibender Basis - wächst (für $\lambda > 0$) oder fällt (für
+$\lambda < 0$). Je größer der Wert von $|\lambda|$ ist, desto größer ist das (positive bzw. negative)
+Wachstum, wie auch das folgende Bild exemplarisch zeigt, das dem vorangegangenen Bild für die
+Exponentialfunktionen $g: x \mapsto a^x$ stark ähnelt:
+\begin{center}
+\MUGraphicsSolo{expo_vgl_2.png}{scale=1}{}
+\end{center}
+Die starke Ähnlichkeit der beiden Schaubilder ist nicht weiter verwunderlich: So kann ja z.B. $2^{2 x}$ mit Hilfe
+der Potenzgesetze gemäß $2^{2 x} = (2^2)^x = 4^x$ umgeformt werden, und die Exponentialfunktion $x \mapsto 2^{2 x}$
+mit Basis $2$ und zusätzlichem Faktor $2$ im Exponenten schreibt sich äquivalent als Exponentialfunktion
+$x \mapsto 4^x$ mit Basis $4$ und ohne zusätzlichen Faktor im Exponenten.
+
+\begin{MExercise}
+ \MLabel{M06_bsp_bak_pop_exercise}
+ Begründen Sie die Form der Exponentialfunktion $f(t) = 500 \cdot 2^{(t/13)}$, die im Beispiel
+ \MRef{M06_bsp_bak_pop} auftritt!
+ \begin{MSolution}
+  In jeder Verdopplungszeitspanne von $13$ Minuten verdoppelt sich - wie der Name schon sagt - die Bakterienpopulation.
+  Jeweils bezogen auf den Ausgangswert ($500$ Bakterien) hat sich also die Anzahl an Bakterien nach einer Zeitspanne von $13$
+  Minuten verdoppelt, nach zwei solchen Zeitspannen vervierfacht, nach $3 \cdot 13$ Minuten verachtfacht (immer - wie erwähnt -
+  im Vergleich zum Anfangswert) usw. Daran erkennen wir, dass bei dem Wachstumsprozess $2$er-Potenzen involviert sind;
+  dementsprechend wählen wir als Basis für den funktionalen Zusammenhang $a = 2$.
+  
+  Diese Überlegung legt auch den Exponenten der gesuchten Exponentialfunktion fest: Unsere Zeitmessung muss sich auf die
+  $13$-Minuten-Zeitspanne beziehen, der Exponent ist daher $\Mtfrac{t}{13}$. Nach $13$ Minuten ergibt sich somit für den 
+  Exponenten $\Mtfrac{13}{13} = 1$, nach zwei Zeitspannen (gleich $26$ Minuten) ist der Exponent $\Mtfrac{26}{13} = 2$ 
+  und damit der Wachstumsfaktor insgesamt $2^{(26/13)} = 2^2 = 4$ usw.
+  
+  Schließlich müssen wir $2^{(t/13)}$ noch mit dem richtigen Anfangswert ($500$ Bakterien) gewichten;
+  dies geschieht mit Hilfe des Faktors $500$.
+ \end{MSolution}
+\end{MExercise}
+\end{MXContent}
+
+\begin{MXContent}{Die $e$-Funktion}{Die $e$-Funktion}{STD}
+ \MLabel{M06_e_fkt}
+ Es gibt eine ganz \textbf{besondere Exponentialfunktion}, manchmal auch als \textbf{die} Exponentialfunktion bezeichnet, um die
+ wir uns jetzt kümmern wollen. In der Tat lassen sich, wie wir sehen werden, alle anderen Exponentialfunktionen auf diese
+ besondere Exponentialfunktion zurückführen. Sie besitzt als Basis die \MEntry{eulersche Zahl}{eulersche Zahl} $e$.
+ 
+ Die \MEntry{eulersche Zahl}{eulersche Zahl} $e$ ist benannt nach dem Mathematiker und Physiker Leonhard Euler
+ (1707 - 1783) und wie die Kreiszahl $\pi$ eine irrationale Zahl, d.h. nicht als Bruch realisierbar. Ihr (ungefährer) Wert beträgt
+ $$e = 2,718281828459045235 \dots \; \; \; .$$
+ Eine ähnlich einfache Veranschaulichung wie im Fall der Kreiszahl $\pi$ (als Umfang (in Meter) eines Kreises mit
+ Durchmesser $1$ Meter) gibt es für die \textbf{eulersche Zahl} $e$ leider nicht; nichtsdestotrotz ist sie eine der
+ fundamentalen Zahlen in Mathematik und Physik. (Nach dem Mathematiker Jakob Steiner (1796 - 1863) kann $e$ als diejenige
+ Zahl charakterisiert werden, die beim Wurzelziehen mit sich selbst unter allen positiven reellen Zahlen das größte Ergebnis liefert.
+ Dabei bedeutet der Ausdruck Wurzelziehen mit sich selbst, dass man z.B. für die Zahl $11$ den Ausdruck $\sqrt[11]{11}$ betrachten
+ soll oder für $\Mtfrac{23}{17}$ entsprechend $\sqrt[23]{(\Mtfrac{23}{17})^{17}}$.)
+ 
+ Betrachten wir also - zunächst ohne irgendwelche zusätzlichen Parameter - den Graphen \textbf{der} Exponentialfunktion,
+ $$\begin{array}{rrcl}
+ g: & \R & \longrightarrow & \R^+ \\ & x & \longmapsto & g(x) = e^x \; \; \; ,
+ \end{array}$$
+ wegen der Basis $e$ auch \MEntry{$e$-Funktion}{$e$-Funktion} oder \MEntry{natürliche Exponentialfunktion}{$e$-Funktion}
+ genannt:
+ \begin{center}
+ \MUGraphicsSolo{e_fkt.png}{scale=1}{}
+ \end{center}
+ Wenig überraschend zeigt auch die $e$-Funktion das bereits in \MRef{M06_allgem_exp_fkt}
+ diskutierte Verhalten der Exponentialfunktionen $x \mapsto a^x$ $(a > 1)$;
+ schließlich haben wir für die Basis ja auch nur einen speziellen Wert, nämlich $a = e$, gewählt.
+ Insbesondere halten wir nochmals fest, dass die $e$-Funktion \textbf{streng monoton wachsend} ist, \textbf{sich} für große
+ negative $x$-Werte \textbf{an die negative $x$-Achse anschmiegt} und \textbf{für $x = 0$} den \textbf{Wert $1$} annimmt.
+ \begin{MExercise}
+  \MLabel{M06_aufg_e_fkt_2}
+  Wie sieht der Graph der Funktion $h: \R \rightarrow \R^+$, $x \mapsto h(x) = e^{- x}$ aus, und welche generellen
+  Eigenschaften besitzt diese Funktion?
+  \begin{MSolution}
+   \begin{center}
+    \begin{tabular}{ccc}
+     \MUGraphicsSolo{e_fkt_2.png}{scale=1}{} &
+     \hspace*{1.5cm} &
+     \begin{minipage}[b]{6cm}
+      Die Funktion $h$ ist monoton fallend, für große positive $x$-Werte schmiegt sich der Graph von $h$ an die
+      positive $x$-Achse an und für $x = 0$ nimmt $h$ den Wert $h(x = 0) = 1$ an.
+     \end{minipage}
+    \end{tabular}
+   \end{center}
+  \end{MSolution}
+ \end{MExercise}
+ Das wirklich Besondere der $e$-Funktion können wir an dieser Stelle leider nur andeuten bzw. referieren;
+ es wird im Modul \MRef{VBKM07}, insbesondere im Abschnitt \MRef{M07_Abschnitt4}, hoffentlich klarer werden.\\
+ Wir wollen uns folgende Frage stellen:
+ Gibt es eine Funktion $g$, deren Funktionswert $g(x)$ an jeder Stelle $x$ des Definitionsbereiches $D_g = \R$ gleich
+ der Steigung (der Ableitung) der Funktion $g$ an dieser Stelle $x$ ist? Die Antwort auf diese Frage lautet \textbf{ja};
+ verlangen wir noch, dass die Funktion $g$ für $x = 0$ den Wert $g(x = 0) = 1$ annehmen soll, so ist die Antwort sogar
+ eindeutig, und wir erhalten gerade $g(x) = e^x$.
+ \begin{MInfo}
+  Der Wert der Ableitung (der Steigung) der $e$-Funktion $g: \R \rightarrow \R^+$, $x \mapsto e^x$ ist an jeder
+  Stelle des Definitionsbereiches gleich dem Funktionswert.
+ \end{MInfo}
+ Eingangs dieses Unterabschnitts haben wir behauptet, dass sich die weiter oben besprochenen Exponentialfunktionen
+ auf die $e$-Funktion zurückführen lassen. Dies gelingt mit Hilfe der Identität
+ $$a^x = e^{x \mbox{ ln } a} \; \; \; ,$$
+ die für beliebige reelle $a > 0$ und beliebige reelle $x$ gilt. Dabei bezeichnet $\mbox{ln}$ den
+ \MEntry{natürlichen Logarithmus}{natürlichen Logarithmus}, der uns in Funktionsgestalt im folgenden Abschnitt
+ \MRef{M06_Abschnitt7} noch ausgiebig beschäftigen wird. Der \textbf{natürliche Logarithmus} stellt die \textbf{Umkehrung}
+ zur Operation \textit{$e$ hoch} dar (bzw. - wenn man von Funktionen spricht - die \textbf{Umkehrfunktion} zur
+ $e$-Funktion): Fragt man z.B., welche Zahl $x$ der natürliche Logarithmus von $5$ ergibt, so fragt man also danach,
+ welche Zahl $x$ man als Exponent von \textit{$e$ hoch} einsetzen muss, um $5$ zu erhalten:
+ $$\mbox{ln } 5 = x \Leftrightarrow e^x = 5 \hspace*{.5cm}
+ (\mbox{bzw. allgemein für } y > 0: \mbox{ln } y = x \Leftrightarrow e^x = y)$$
+ \begin{MExercise}
+  Begründen Sie die Identität $a^x = e^{x \mbox{ ln } a}$.
+  \begin{MSolution}
+   Nach dem Potenzgesetz $(b^r)^s = b^{r \cdot s}$ kann die rechte Seite der in Frage stehenden Identität als
+   $e^{x \mbox{ ln } a} = (e^{\mbox{ln } a})^x$ umgeschrieben werden. Da $\mbox{ln}$ die Umkehrung zu \textit{$e$ hoch}
+   ist, ist $e^{\mbox{ln } a} = a$. Damit folgt $(e^{\mbox{ln } a})^x = a^x$, was in der Tat die linke Seite der Identität darstellt.
+  \end{MSolution}
+ \end{MExercise}
+ Mit der obigen Identität können die Exponentialfunktionen $g: \R \rightarrow \R^+$, $x \mapsto g(x) = a^x$ mit
+ allgemeiner Basis $a > 0$ (siehe Unterabschnitt \MRef{M06_allgem_exp_fkt}) äquivalent als
+ $$g: \R \longrightarrow \R^+ \; \mbox { mit } \; x \longmapsto g(x) = e^{x \mbox{ ln } a}$$
+ geschrieben werden; die Basis ist jetzt die eulersche Zahl $e$, dafür enthält der Exponent den neuen zusätzlichen
+ Faktor $\mbox{ln } a$.
+ 
+ \textbf{Allgemeine $e$-Funktionen} enthalten die bereits in Unterabschnitt \MRef{M06_allgem_exp_fkt} eingeführten
+ Parameter $f_0$ und $\lambda$; ihre funktionale Gestalt sieht also folgendermaßen aus:
+ $$\begin{array}{rrcl}
+  f: & \R & \longrightarrow & \R^+ \\ & x & \longmapsto & f(x) = f_0 \cdot e^{\lambda x} \; \; \; ,
+ \end{array}$$
+ Wiederum repräsentiert $f_0$ die Möglichkeit von $1$ verschiedener Start- oder Anfangswerte, und der Faktor
+ $\lambda$ im Exponenten gestattet unterschiedliche starke (positive oder negative) Wachstumsraten. Wir wollen
+ dies abschließend an einem Beispiel verdeutlichen:
+ \begin{MExample}
+  Bei einer Versuchsreihe mit radioaktiven Jodatomen ($^{131}I$) ergeben sich im Mittel folgende Daten:
+  \begin{center}
+   \begin{tabular}{c|r|r|r|r|r}
+    Anzahl Jodatome & 10000 & 5000 & 2500 & 1250 & \dots \\ \hline
+    Anzahl Tage seit Beginn & 0 & 8,04 & 16,08 & 24,12 & \dots
+   \end{tabular}
+  \end{center}
+  Mit anderen Worten: Alle $8,04$ Tage halbiert sich die Anzahl der Jodatome aufgrund radioaktiven Zerfalls; man
+  spricht daher in diesem Zusammenhang davon, dass die \textbf{Halbwertszeit} $h$ von Jod-$131$ $h = 8,04$ Tage beträgt.
+  
+  Der radioaktive Zerfall folgt einem \textbf{Exponentialgesetz}:
+  $$N(t) = N_0 \cdot e^{\lambda t}$$
+  Unsere \textbf{Exponentialfunktion} heißt hier $N$; sie gibt die Anzahl der noch vorhandenen Jodatome an. $N_0$
+  steht dementsprechend für die Anzahl der Jodatome zu Beginn, also $N_0 = 10000$. Die Veränderliche im vorliegenden
+  Beispiel ist die Zeit $t$ (gemessen in Tagen). Von dem Parameter $\lambda$ erwarten wir, dass er negativ ist,
+  da es um die Beschreibung eines Zerfallsprozesses, also eines Prozesses mit negativem Wachstum, geht. Wir wollen
+  $\lambda$ in der Folge aus den Messdaten bestimmen:
+  
+  Nach $h = 8,04$ Tagen sind nur noch $5000$ Jodatome vorhanden, d.h. $N(t = 8,04) = 5000 = \Mtfrac{N_0}{2}$.
+  Verwenden wir das Exponentialgesetz für den radioaktiven Zerfall, so erhalten wir:
+  $$\Mdfrac{N_0}{2} = N_0 \cdot e^{\lambda \cdot h}$$
+  Wir können $N_0$ auf beiden Seiten der Gleichung kürzen und anschließend logarithmieren (siehe Abschnitt
+  \MRef{M06_Abschnitt7}):
+  $$\mbox{ln} \left( \Mdfrac12 \right ) = \mbox{ln } e^{\lambda \cdot h}$$
+  Die linke Seite formen wir gemäß den Rechenregeln für den Logarithmus um (siehe Abschnitt \MRef{M06_Abschnitt7}),
+  $\mbox{ln } (1/2) = \mbox{ln } 1 - \mbox{ln } 2 = 0 - \mbox{ln } 2 = - \mbox{ln } 2$, für die rechte Seite beachten
+  wir, dass Logarithmieren die Umkehrung zum Exponentieren darstellt, $\mbox{ln } (e^{\lambda \cdot h}) = \lambda \cdot h$;
+  damit:
+  $$\begin{array}{crcl} & - \mbox{ln } 2 & = & \lambda \cdot h \\[.5ex]
+  \Leftrightarrow & \lambda & = & - \Mdfrac{\mbox{ln } 2}{h} \end{array}$$
+  Mit $h = 8,04$ Tagen für Jod-$131$ folgt für den Parameter $\lambda$ im vorliegenden Fall
+  $$\lambda \approx - 0,0862 \; \Mdfrac{1}{\mbox{Tage}} \; \; \; .$$
+  
+  Andere radioaktive Substanzen besitzen andere Halbwertszeiten - Plutonium-239 z.B. weist eine Halbwertszeit
+  von ungefähr $24000$ Jahren auf - und führen folglich auf andere Werte für den Parameter $\lambda$ im
+  Exponentialgesetz für den radioaktiven Zerfall.
+ \end{MExample}
+\end{MXContent}
+
+
+
+\MSubsection{Logarithmusfunktionen}
+\MLabel{M06_Abschnitt7}\label{logarithmus}
+
+\begin{MIntro}
+ Die Klasse von Funktionen, die jetzt im Fokus stehen soll, hängt sehr eng mit der Funktionenklasse des vorigen
+ Abschnitts \MRef{M06_Abschnitt6} zusammen: Die \textbf{Logarithmusfunktionen} sind gerade die
+ \MEntry{Umkehrfunktionen}{Umkehrfunktion} zu den \textbf{Exponentialfunktionen}. Im Grunde müssen wir also
+ nur unsere Kenntnisse aus dem letzten Unterabschnitt in \MRef{M06_Abschnitt1}, in dem wir \textbf{Umkehrfunktionen}
+ ganz allgemein behandelt haben, mit unserem Wissen über Exponentialfunktionen zusammenbringen, um uns das Feld der
+ Logarithmusfunktionen zu erschließen.
+ 
+ So wie es Exponentialfunktionen zu beliebigen Basen $a > 0$ gibt, werden wir auch auf Logarithmusfunktionen
+ zu allgemeinen Basen $a > 0$ treffen. Dieses Mal beginnen wir jedoch mit der Basis $a = e$, d.h. mit der
+ \textbf{eulerschen Zahl als Basis} und daher mit der \textbf{natürlichen Logarithmusfunktion} als Umkehrfunktion
+ zur $e$-Funktion.
+\end{MIntro}
+
+\begin{MXContent}{Die natürliche Logarithmusfunktion}{Die natürliche Logarithmusfunktion}{STD}
+ \MLabel{M06_nat_log}
+ In \MRef{M06_e_fkt} haben wir beim Studium der $e$-Funktion,
+ $$\begin{array}{rrcl} g : & \R & \longrightarrow & \R^+ \\
+ & x & \longmapsto & g(x) = e^x  \; \; \; ,
+ \end{array}$$
+ insbesondere auf eine sehr wichtige Eigenschaft der natürlichen Exponentialfunktion hingewiesen, nämlich dass diese
+ Funktion \textbf{streng monoton wachsend} ist. Nach den allgemeinen Überlegungen zu Umkehrfunktionen in
+ \MRef{M06_Abschnitt1} (siehe insbesondere TODO) erlaubt die strenge Monotonie - und damit die \textbf{Eineindeutigkeit} -
+ der $e$-Funktion die Bildung der Umkehrfunktion.
+ 
+ Allgemein wird die Umkehrfunktion zu einer Funktion $g$ mit $g^{- 1}$ bezeichnet, wobei wir nochmals betonen möchten,
+ dass die Hochzahl $(- 1)$ in diesem Fall nichts mit einer negativen Potenz zu tun hat, sondern allein auf den
+ Charakter als Umkehrfunktion abhebt. Aufgrund ihrer ausgesprochenen Bedeutung verleiht man der Umkehrfunktion
+ zur $e$-Funktion einen eigenen Namen - man spricht von der \MEntry{natürlichen Logarithmusfunktion}{natürliche
+  Logarithmusfunktion} - und versieht sie mit einem eigenen Symbol, nämlich $\mbox{ln}$:
+ $$\begin{array}{rrcl} (g^{- 1} \equiv) \mbox{ ln} : & \R^+ & \longrightarrow & \R \\
+ & x & \longmapsto & \mbox{ln } x \mbox{ } (\equiv g^{- 1} (x)) \end{array}$$
+ Entsprechend den allgemeinen Regeln für den Übergang von Funktion zu Umkehrfunktion vertauschen Definitions- und
+ Wertebereich ihre Rollen: Der Definitionsbereich der (natürlichen) Logarithmusfunktion wird von den positiven
+ reellen Zahlen gebildet, $D_{\mbox{ln}} = \R^+$; \textbf{für negative reelle Zahlen ist der Logarithmus nicht definiert}.
+ Der Wertebereich von $\mbox{ln}$ ist dagegen ganz $\R$, $W_{\mbox{ln}} = \R$. Dies erkennt man auch aus dem
+ folgenden Bild, das unter anderem den Graphen der natürlichen Logarithmusfunktion wiedergibt:
+ \begin{center}
+ \MUGraphicsSolo{ln_fkt.png}{scale=1}{}
+ \end{center}
+ Zudem enthält unser Schaubild den Graphen der $e$-Funktion (gepunktet) sowie die Winkelhalbierende des ersten und
+ dritten Quadranten (gestrichelt). Auf diese Weise können wir uns nochmals den Zusammenhang zwischen Funktion und
+ Umkehrfunktion geometrisch verdeutlichen: Sie gehen durch Spiegelung an der genannten Winkelhalbierenden
+ auseinander hervor.
+ 
+ Außerdem fallen uns weitere Eigenschaften der natürlichen Logarithmusfunktion auf:
+ \begin{itemize}
+  \item Die Funktion $\mbox{ln}$ ist \textbf{streng monoton wachsend} - auch dies ist in Übereinstimmung mit allgemeinen
+  Aussagen zu Umkehrfunktionen (siehe TODO).
+  \item Nähert man sich von rechts auf der $x$-Achse dem Nullpunkt, so nimmt $\mbox{ln } x$ immer größere negative
+  Werte an: Wir halten fest, dass sich der Graph von $\mbox{ln}$ an die negative Hochachse ($y$-Achse) anschmiegt.
+  \item An der Stelle $x = 1$ besitzt die natürliche Logarithmusfunktion den Wert $0$, $\mbox{ln } 1 = 0$;
+  dies entspricht gerade $e^0 = 1$.
+ \end{itemize}
+ \begin{MExercise}
+  Überlegen Sie, ob die Exponentialfunktion $h: \R \rightarrow \R^+$, $x \mapsto h(x) = e^{- x}$ eine Umkehrfunktion
+  besitzt und falls ja, geben Sie diese an!
+  \begin{MSolution}
+   Die Exponentialfunktion $h$ ist ebenfalls \textbf{streng monoton}, diesmal \textbf{streng monoton
+   fallend}, siehe Aufgabe \MRef{M06_aufg_e_fkt_2}. Daher kann die Umkehrfunktion $h^{- 1}$ gebildet werden. In
+   der Tat kann man $h^{- 1}$ auf die natürliche Logarithmusfunktion zurückführen; wir gehen dazu wie in TODO
+   vor und lösen $h(x) = y \Leftrightarrow e^{- x} = y$ nach $x$ auf. Da der Logarithmus die Umkehrung zum
+   Exponentieren ist, wollen wir die letzte Gleichung - wie man sagt - logarithmieren, d.h. von beiden Seiten
+   den natürlichen Logarithmus nehmen, und erhalten so:
+   $$\mbox{ln} \left( e^{- x} \right) = \mbox{ln } y \Leftrightarrow - x = \mbox{ln } y \Leftrightarrow x = - \mbox{ln } y$$
+   Damit haben wir $h^{- 1} : \R^+ \rightarrow \R$, $y \mapsto - \mbox{ln } y$ oder - durch einfache Umbenennung der
+   Veränderlichen $y$ zurück zu $x$ -:
+   $$\begin{array}{rrcl} h^{- 1} : & \R^+ & \longrightarrow & \R \\
+   & x & \longmapsto & - \mbox{ln } x \end{array}$$
+   Es ergibt sich folgendes Schaubild:
+   \begin{center}
+   \MUGraphicsSolo{aufg_ln_fkt_2.png}{scale=1}{}
+   \end{center}
+  \end{MSolution}
+ \end{MExercise}
+\end{MXContent}
+
+\begin{MXContent}{Die allgemeinen Logarithmusfunktionen}{Die allgemeinen Logarithmusfunktionen}{STD}
+ Ist die Basis der Exponentialfunktion nicht die eulersche Zahl $e$, sondern generell eine \textbf{positive}
+ reelle Zahl $a$,
+ $$\begin{array}{rrcl} g : & \R & \longrightarrow & \R^+ \\
+ & x & \longmapsto & g(x) = a^x \; \; \; (a > 0) \; \; \; ,
+ \end{array}$$
+ so bleibt die Aussage, dass diese Exponentialfunktion $g$ \textbf{streng monoton wachsend} verläuft, dennoch
+ richtig, siehe \MRef{M06_allgem_exp_fkt}. Somit gibt es auch in diesem Fall eine Umkehrfunktion $g^{- 1}$,
+ die den Namen \textbf{Logarithmus(funktion) zur Basis $a$} erhält und mit $\mbox{log}_a$ bezeichnet wird. Die
+ wichtigsten dieser Logarithmusfunktionen sind - neben dem natürlichen Logarithmus (Basis $e$) - diejenigen
+ zu den Basen $2$ und $10$, also $\mbox{log}_2$ und $\mbox{log}_{10}$, deren graphische Verläufe wir hier wiedergeben:
+ \begin{center}
+  \MUGraphicsSolo{allgem_ln_fkt.png}{scale=1}{}
+ \end{center}
+ Wir erkennen die schon bekannten, in \MRef{M06_nat_log} diskutierten Eigenschaften wieder: Logarithmusfunktionen
+ besitzen den Definitionsbereich $D_{\mbox{log}} = \R^+$ und den Wertebereich $W_{\mbox{log}} = \R$, sie sind streng
+ monoton wachsend, die Funktionswerte an der Stelle $x = 1$ betragen stets $0$ und die Graphen schmiegen sich
+ an die negative Hochachse ($y$-Achse) an, sofern man sich auf der Querachse, von rechts kommend, auf $0$ zubewegt.
+ 
+ Im Vergleich der drei Graphen fällt außerdem auf, dass das Anwachsen der Logarithmusfunktionen für Werte der
+ Veränderlichen $x > 1$ um so schneller stattfindet, je kleiner die Basis $a$ ist; generell kennt dieses Anwachsen
+ keine Schranken. Auf der anderen Seite (d.h. für Werte $x$, die gegen $0$ streben) schmiegen sich die
+ Funktionsgraphen um so \glqq enger{\grqq} an die negative Hochachse an, je größer $a$ ist.
+ \begin{MExercise}
+  \MLabel{M06_aufg_allgem_ln_fkt}
+  In \MRef{M06_allgem_exp_fkt} sind wir der allgemeinen Form der Exponentialfunktion (mit Parametern $f_0$ und 
+  $\lambda$) begegnet, $f: \R \rightarrow \R^+$, $x \mapsto f(x) = f_0 \cdot a^{\lambda x} \; (a > 0)$.
+  Prüfen Sie, ob diese allgemeinen Exponentialfunktionen Umkehrfunktionen besitzen und falls ja, bestimmen Sie diese!
+  \begin{MSolution}
+   Die Funktionen $f$ sind alle \textbf{streng monoton}, sofern wir $f_0 \neq 0$ und $\lambda \neq 0$ voraussetzen,
+   was im Folgenden geschehen soll. Aufgrund der strengen Monotonie sind dann die Funktionen $f$ umkehrbar.
+   (Für $f_0 = 0$ oder $\lambda = 0$ ist $f$ eine konstante Funktion ($0$ oder $1$); konstante Funktionen sind aber
+   nicht eineindeutig und daher nicht umkehrbar.)
+   
+   Für die Bestimmung der Umkehrfunktionen $f^{- 1}$ verfahren wir wieder wie in TODO und lösen $f(x) = y
+   \Leftrightarrow f_0 \cdot a^{\lambda x} = y$ nach $x$ auf. Dazu dividieren wir zunächst durch $f_0$ ($\neq 0$)
+   und logarithmieren anschließend die Gleichung, diesmal mit Hilfe des Logarithmus zur Basis $a$:
+   $$\mbox{log}_a \left( a^{\lambda x} \right) = \mbox{log}_a \Mtfrac{y}{f_0} \Leftrightarrow
+   \lambda x = \mbox{log}_a \Mtfrac{y}{f_0} \Leftrightarrow x = \Mtfrac{1}{\lambda} \, \mbox{log}_a \, \Mtfrac{y}{f_0}$$
+   Die letzte Umformumg ist erlaubt, da wir $\lambda \neq 0$ vorausgesetzt haben.
+   Im letzten Schritt benennen wir die Veränderliche noch um, und zwar von $y$ zurück auf $x$, sodass
+   $$f^{- 1} (x) = \Mtfrac{1}{\lambda} \, \mbox{log}_a \, \Mtfrac{x}{f_0}$$
+   ist.
+  \end{MSolution}
+ \end{MExercise}
+ Logarithmusfunktionen besitzen vielfältige Anwendungen in Mathematik, Physik und Technik. Exemplarisch greifen
+ wir eine davon heraus, die im Zusammenhang mit \textbf{Höhenmessern} von Bedeutung ist:
+ \begin{MExample}
+  Die \textbf{barometrische Höhenformel} beschreibt, wie sich der Luftdruck $p$ in Abhängigkeit von der Höhe $h$ (über
+  dem Meeresspiegel) verändert. In einer gewissen Näherung kann der funktionale Zusammenhang zwischen $p$ und
+  $h$ wie folgt angegeben werden:
+  $$\begin{array}{rrcl} p : & \R^+_0 & \longrightarrow & \R^+ \\
+  & h & \longmapsto & p(h) = p_0 \mbox{ } e^{c \cdot h} \end{array}$$
+  Dabei ist $p_0$ der Luftdruck am Referenzpunkt (z.B. auf Meereshöhe), und $c$ bezeichnet eine Konstante, die ungefähr durch $c = 0,00012516
+  \Mtfrac{1}{m}$ gegeben ist. Weil negative Höhen (Höhen unter Meeresniveau) im vorliegenden Kontext keinen Sinn ergeben,
+  wurde der Definitionsbereich von $p$ auf $\R^+_0$ eingeschränkt.
+  
+  Einige Höhenmesser, wie sie z.B. beim Bergsteigen zum Einsatz kommen, basieren auf Luftdruckmessungen. Intern wird
+  der gemessene Luftdruck dann in eine Höhe \glqq umgerechnet{\grqq}. Dazu muss das Gerät \glqq Kenntnis{\grqq} davon
+  haben, wie die Höhe (über Meeresniveau) vom Luftdruck abhängt. Mit anderen Worten und in unsere Sprache übersetzt,
+  es wird die Umkehrfunktion zur Exponentialfunktion in der barometrischen Höhenformel benötigt.
+  
+  Diese Umkehrfunktion lässt sich genau wie in Aufgabe \MRef{M06_aufg_allgem_ln_fkt} bestimmen; wir verzichten hier
+  auf die erneute Durchführung der Rechnung. Das Ergebnis lautet:
+  $$h(p) = \Mtfrac{1}{c} \mbox{ ln } \Mtfrac{p}{p_0} \approx 7990 \mbox{ ln} \left( \Mtfrac{p}{p_0} \right) m$$
+  Der Zusammenhang wird durch eine (natürliche) Logarithmusfunktion beschrieben. Da die Konstante $c$ - und damit $\Mtfrac{1}{c}
+  \approx 7990 \; m$ - vorgegeben ist, muss man also nur den Druck $p_0$ (auf Meereshöhe) einstellen, damit das
+  Gerät korrekt arbeiten kann.
+ \end{MExample}
+\end{MXContent}
+
+\begin{MXContent}{Die Logarithmusgesetze}{Die Logarithmusgesetze}{STD}
+ Für das Rechnen mit Logarithmen gelten gewisse Gesetze, die auf engste mit den Potenzgesetzen verbunden sind und die
+ wir hier noch kurz vorstellen möchten. In Modul \MRef{VBKM01}, insbesondere in Abschnitt \MRef{M01_Potenzenwurzeln},
+ werden die Potenzgesetze diskutiert, dort für Exponenten aus $\Q$, den rationalen Zahlen. Auch für reelle Exponenten
+ (siehe \MRef{M06_reelle_exponenten}) behalten sie unverändert ihre Gültigkeit.
+ 
+ Ein erstes \textbf{Logarithmusgesetz} stellt eine Beziehung zwischen dem Logarithmus eines Produktes von zwei positiven
+ reellen Zahlen, nennen wir sie $u$ und $v$, und der Summe der einzelnen Logarithmen von $u$ bzw. $v$ her:
+ $$\mbox{log}_a \, (u \cdot v) = \mbox{log}_a \, u + \mbox{log}_a \, v$$
+ Von der Richtigkeit der voranstehenden Gleichung können wir uns folgendermaßen überzeugen: Wir bezeichnen das Ergebnis
+ des Logarithmierens von $u$ mit $x$, dasjenige des Logarithmierens von $v$ mit $y$,
+ $$\begin{array}{rclcrcl}
+  x & = & \mbox{log}_a \, u & \mbox{ , also } & a^x & = & u \\
+  y & = & \mbox{log}_a \, v & \mbox{ , also } & a^y & = & v \; \; \; .
+ \end{array}$$
+ Für die Gleichungen rechts von \textit{also} benutzen wir, dass Logarithmus- und Exponentialfunktion Umkehrfunktionen
+ zueinander sind. Jetzt betrachten wir das Produkt $u \cdot v$,
+ $$u \cdot v = a^x \cdot a^y = a^{x + y} \; \; \; ,$$
+ wobei das letzte Gleichheitszeichen aufgrund eines Potenzgesetzes gilt. Logarithmieren der Gleichung $u \cdot v =
+ a^{x + y}$ liefert dann gewünschte Aussage:
+ $$\mbox{log}_a \left( u \cdot v \right) = \mbox{log}_a \, a^{x + y} = x + y = \mbox{log}_a \, u + \mbox{log}_a \, v$$ 
+ \begin{MInfo}
+  \MLabel{M06_log_ges}
+  Die folgenden Rechenregeln fallen unter den Begriff \MEntry{Logarithmusgesetze}{Logarithmusgesetze}:
+  $$\begin{array}{rcll}
+   \mbox{log}_a \, (u \cdot v) & = & \mbox{log}_a \, u + \mbox{log}_a \, v & (u, v \in \R^+) \\[.5ex]
+   \mbox{log}_a \left( \Mdfrac{u}{v} \right) & = & \mbox{log}_a \, u - \mbox{log}_a \, v & (u, v \in \R^+) \\[.5ex]
+   \mbox{log}_a \, u^x & = & x \cdot \mbox{ log}_a \, u & (u \in \R^+, x \in \R)
+  \end{array}$$
+ \end{MInfo}
+ Die erste Gleichung in \MRef{M06_log_ges} haben wir oben bereits nachvollzogen; die Gültigkeit der beiden anderen
+ ergibt sich auf ganz analoge Art und Weise.
+ 
+ So wie eine Exponentialfunktion zur Basis $a$ auf die $e$-Funktion zurückgeführt werden kann (siehe
+ \MRef{M06_e_fkt}), besteht auch zwischen der Logarithmusfunktion $\mbox{log}_a$ zur Basis $a$ und der natürlichen
+ Logarithmusfunktion $\mbox{ln}$ (bzw. allgemeiner zwischen $\mbox{log}_a$ und $\mbox{log}_b$) eine einfache Beziehung:
+ \begin{MInfo}
+  \MLabel{M06_bez_zw_logs}
+  \centerline{$\mbox{log}_a \, x = \Mdfrac{\mbox{ln } x}{\mbox{ln } a} \; \; \; \mbox{ bzw. allgemeiner } \; \; \;
+   \mbox{log}_a \, x = \Mdfrac{\mbox{log}_b \, x}{\mbox{log}_b \, a}$}
+ \end{MInfo}
+ Diese Beziehungen besagen, dass sich die Logarithmusfunktionen zu verschiedenen Basen nur um einen konstanten Faktor
+ unterscheiden. Das ist unter anderem der Grund dafür, warum in mathematischen Tabellenwerken meist nur die
+ Wertetabelle für \textbf{eine} Logarithmusfunktion (zu \textbf{einer} Basis) aufgeführt ist. Die Umrechnung auf
+ andere Basen kann dann in einfacher Weise mit Hilfe der obigen Formel erfolgen.
+ \begin{MExercise}
+  \MLabel{M06_aufg_bez_zw_logs}
+  Überzeugen Sie sich von der Richtigkeit der Beziehungen in \MRef{M06_bez_zw_logs}!
+  \begin{MSolution}
+   Es ist völlig ausreichend, die zweite Gleichung in \MRef{M06_bez_zw_logs} nachzuprüfen; denn für die erste
+   Gleichung können wir anschließend einfach $b = e$ setzen und beachten, dass $\mbox{log}_e \, x = \mbox{ln} \, x$ ist.
+   
+   Wir starten mit $y = \mbox{log}_a \, x$. Umkehren dieser Gleichung liefert $x = a^y$. Logarithmieren mit der
+   Logarithmusfunktion zur Basis $b$ führt sodann auf $\mbox{log}_b x = \mbox{log}_b \left( a^y \right) =
+   y \cdot \mbox{log}_b \, a$, wobei wir für das letzte Gleichheitszeichen ein Logarithmusgesetz verwenden.
+   Jetzt muss man nur noch $y = \mbox{log}_a \, x$ einsetzen und entsprechend auflösen.
+  \end{MSolution}
+ \end{MExercise}
+\end{MXContent}
+
+
+
+\MSubsection{Trigonometrische Funktionen}
+\MLabel{M06_Abschnitt8}\label{triogonometrisch}
+
+\begin{MIntro}
+ Die \MEntry{Trigonometrie}{Trigonometrie} ist der griechischen Wortherkunft nach die \textbf{Maßlehre der Dreiecke},
+ ihre Aufgabe besteht zunächst darin, aus gewissen Kenngrößen eines gegebenen Dreiecks (wie z.B. Seitenlängen oder Winkel)
+ andere Maßzahlen dieses Dreiecks zu berechnen. Eine zentrale Rolle nehmen dabei die sogenannten \MEntry{trigonometrischen
+ Funktionen}{trigonometrische Funktionen}, wie \textbf{Sinus-}, \textbf{Kosinus-} und \textbf{Tangensfunktion}, ein, denen
+ wir nun unsere Aufmerksamkeit widmen wollen.
+ 
+ Das Anwendungsfeld von \textbf{Sinus}, \textbf{Kosinus}, \textbf{Tangens \& Co.} ist jedoch beileibe nicht auf
+ \glqq simple{\grqq} Dreiecksberechnungen beschränkt. Vielmehr entfalten die \textbf{trigonometrischen Funktionen}
+ ihr eigentliches Potenzial erst so richtig in den mannigfachen Anwendungsbereichen, deren wichtigste vielleicht
+ in der \textbf{Beschreibung von Wellenvorgängen durch trigonometrische Funktionen} in Physik und Technik und
+ in der sogenannten \textbf{klassischen harmonischen Analyse} in der Mathematik liegen. Aber auch in vielen anderen
+ Gebieten, der \textbf{Landvermessung} etwa oder der \textbf{Astronomie}, kommen sie zum Tragen.
+ 
+ Rufen wir uns kurz die grundlegeden Definitionen von \textbf{Sinus}, \textbf{Kosinus} und \textbf{Tangens} im
+ rechtwinkligen Dreieck in Erinnerung:
+ \begin{center}
+  \MUGraphicsSolo{rechtw_dreieck.png}{scale=1}{}
+ \end{center}
+ Im Bild befindet sich der \textbf{rechte Winkel} (d.h. der $90^\circ$-Winkel) bei der Ecke $C$; ein solcher rechter
+ Winkel wird durch einen Viertelkreisbogen, der einen Punkt enthält, gekennzeichnet. Die dem rechten Winkel gegenüberliegende
+ Dreiecksseite heißt \MEntry{Hypothenuse}{Hypothenuse} (im Bild Strecke $\overline{AB}$, Länge $c$);
+ die am rechten Winkel anliegenden Seiten
+ nennt man - vis-\`a-vis dem Winkel $\alpha$ - \MEntry{Gegenkathede}{Gegenkathede} (Strecke $\overline{BC}$, Länge $a$) und
+ \MEntry{Ankathede}{Ankathede} (Strecke $\overline{AC}$, Länge $b$). Mit diesen Bezeichnungen können wir nun angeben, was
+ der Sinus (sin) bzw. Kosinuns (cos) bzw. Tangens (tan) des Winkels $\alpha$ ist:
+ $$\begin{array}{rcccccl}
+  \mbox{sin} \, \alpha & = & \Mdfrac{\mbox{Gegenkathede}}{\mbox{Hypothenuse}} & = & \Mdfrac{a}{c} & & \\[2ex]
+  \mbox{cos} \, \alpha & = & \Mdfrac{\mbox{Ankathede}}{\mbox{Hypothenuse}} & = & \Mdfrac{b}{c} & & \\[2ex]
+  \mbox{tan} \, \alpha & = & \Mdfrac{\mbox{Gegenkathede}}{\mbox{Ankathede}} & = & \Mdfrac{a}{b} & = &
+  \Mdfrac{\mbox{sin} \, \alpha}{\mbox{cos} \, \alpha}
+ \end{array}$$
+
+\end{MIntro}
+
+\begin{MXContent}{Die Sinusfunktion}{Die Sinusfunktion}{STD}
+ \MLabel{M06_Sinusfkt}
+ Ausgehend von der obigen Definition von $\mbox{sin} \, \alpha$ gelangen wir zur Sinus\textbf{funktion}, indem wir den
+ Winkel $\alpha$ variieren lassen, also zur Veränderlichen einer Funktion mit Namen $\mbox{sin}$ machen. Wir wollen
+ uns dies an Hand einer Familie von rechtwinkligen Dreiecken $ABC$ verdeutlichen, die dem \textbf{Einheitskreis}, das ist ein
+ Kreis mit Radius $r = 1$, auf bestimmte Art und Weise einbeschrieben sind:
+ \begin{center}
+  \MUGraphicsSolo{sin_fkt_im_kreis.png}{scale=0.83}{}
+ \end{center}
+ Wenn wir den Punkt $B$ \textbf{entlang des Kreises} bewegen und dabei darauf achten, dass die Dreiecksseite
+ $\overline{BC}$ stets senkrecht auf der Querachse ($x$-Achse) steht, so bleiben die resultierenden Dreiecke dem
+ Einheitskreis auf die gleiche Art und Weise einbeschrieben und rechtwinklig (siehe z.B. Dreieck $AB'C'$),
+ wandeln aber ansonsten ihre Gestalt - insbesondere ändert sich der Winkel $\alpha$. Da die Längen der Hypothenusen
+ in diesen Dreiecken alle gleich $1$ (dem Radius des Einheitskreises) sind, geben die Längen der Strecken $\overline{BC}$
+ gerade die jeweiligen Werte von $\mbox{sin} \, \alpha$ an.
+ 
+ Beginnen wir mit dem Winkel $\alpha = 0^\circ$, also einem zur Strecke entarteten Dreieck, so ist die Länge der
+ Strecke $\overline{BC}$ - und damit $\mbox{sin} \, 0^\circ$ - gleich $0$. Lassen wir nun den Punkt $B$ \textbf{entgegen
+ dem Uhrzeigersinn} um den Kreis wandern, so wächst $\alpha$ - und auch $\mbox{sin} \, \alpha$ - zunächst an, bis
+ für $\alpha = 90^\circ$ ein \textbf{maximaler Wert} ($\mbox{sin} \, 90^\circ = 1$) erreicht wird, bevor $\alpha$ weiter zu-,
+ aber $\mbox{sin} \, \alpha$ wieder abnimmt. Für $\alpha = 180^\circ$ ist das Dreieck $ABC$ wieder zur Strecke
+ degeneriert, und $\mbox{sin} \, 180^\circ = 0$. Wird $\alpha$
+ noch größer, \glqq klappt{\grqq} das Dreieck \glqq nach unten{\grqq}, die Stecke $\overline{BC}$ ist parallel zur
+ negativen Hochachse ($y$-Achse) ausgerichtet, ihre Länge daher \textbf{negativ}. Für $\alpha = 270^\circ$ tritt der
+ \textbf{maximal negative Wert} auf, bevor er sich wieder $0$ nähert. Bei $\alpha = 360^\circ$ beginnt das Spiel von neuem.
+ \begin{center}
+  \MUGraphicsSolo{sin_fkt.png}{scale=1}{}
+ \end{center}
+ Das voranstehende Schaubild gibt den Graphen der Sinusfunktion,
+ $$\begin{array}{rrcl}
+  \mbox{sin} : & \R & \longrightarrow & [- 1, + 1] \\ & \alpha & \longmapsto & \mbox{sin} \, \alpha \; \; \; ,
+ \end{array}$$
+ wieder. Allerdings haben wir auf der Querachse ($\alpha$-Achse) den Winkel $\alpha$ nicht - wie in der bisherigen
+ Diskussion - im \MEntry{Gradmaß}{Gradmaß} aufgetragen, sondern wir haben das in diesem Zusammenhang üblichere
+ sogenannte \MEntry{Bogenmaß}{Bogenmaß} verwendet.
+ \begin{MInfo}
+  \MLabel{M06_Bogenmass}
+  Das \textbf{Bogenmaß} ist - wie das Gradmaß - ein \textbf{Winkelmaß}. Im \textbf{Bogenmaß} ist die Größe eines
+  Winkels $\alpha$ durch die \textbf{Länge des Kreisbogens} gegeben, den dieser Winkel \textbf{im Einheitskreis}
+  festlegt. (Im ersten Schaubild dieses Unterabschnitts definiert der eingezeichnete Winkel $\alpha$ den Kreisbogen
+  vom Schnittpunkt des Kreises mit der positiven Querachse bis zum Punkt $B$.)
+  
+  Allgemein ergibt sich der Umfang eines Kreises mit Radius $r$ zu $2 \pi r$; der Umfang des Einheitskreises ist
+  daher $2 \pi$. Somit entspricht ein Winkel von $360^\circ$ gerade $2 \pi$, ein Winkel von $180^\circ$ $\pi$,
+  ein Winkel von $45^\circ$ $\pi/4$. Generell muss man bei der Umrechnung eines im Gradmaß vorliegenden Winkels ins
+  Bogenmaß mit dem Faktor $(2 \pi)/360^\circ$ multiplizieren.
+  
+  Ein Winkel im Bogenmaß besitzt keine wirkliche Einheit, er ist - wie man auch sagt - \textbf{dimensionslos}.
+  Um eine Winkelangabe im Bogenmaß als solche zu kennzeichnen, wird oftmals an den Zahlenwert eine künstliche Einheit
+  (eine Hilfseinheit), nämlich der \MEntry{Radiant}{Radiant} - abgekürzt \textbf{rad} -, angehängt.
+ \end{MInfo}
+ \begin{MExercise}
+  Geben Sie die folgenden Winkel im Bogenmaß als rationale Vielfache von $\pi$ an: $30^\circ$, $200^\circ$, $270^\circ$
+  \begin{MSolution}
+   Wie in \MRef{M06_Bogenmass} ausgeführt, müssen wir für die Umrechnung von Grad- auf Bogenmaß die Winkelangaben
+   in Grad mit $(2 \pi)/(360^\circ)$ multiplizieren. Damit folgt:
+   $$\begin{array}{rrclcl}
+   30^\circ \mbox{ entspricht: } & 30^\circ \cdot \Mdfrac{2 \pi}{360^{\circ}} \mbox{ rad} & = &
+   \Mdfrac{60}{360} \pi \mbox{ rad} & = & \Mdfrac{\pi}{6} \mbox{ rad} \\[2ex]
+   200^\circ \mbox{ entspricht: } & 200^\circ \cdot \Mdfrac{2 \pi}{360^{\circ}} \mbox{ rad} & = &
+   \Mdfrac{400}{360} \pi \mbox{ rad} & = & \Mdfrac{10 \pi}{9} \mbox{ rad} \\[2ex]
+   270^\circ \mbox{ entspricht: } & 270^\circ \cdot \Mdfrac{2 \pi}{360^{\circ}} \mbox{ rad} & = &
+   \Mdfrac{540}{360} \pi \mbox{ rad} & = & \Mdfrac{3 \pi}{2} \mbox{ rad}
+  \end{array}$$
+  \end{MSolution}
+ \end{MExercise}
+ Halten wir - nach diesem kurzen Intermezzo zum Bogenmaß - nochmals einige der wichtigsten Eigenschaften der Sinusfunktion
+ fest:
+ \begin{itemize}
+  \item{Die Sinusfunktion ist auf ganz $\R$ definiert, $D_{\mbox{sin}} = \R$; der Wertebereich besteht dagegen nur aus dem
+   Intervall von $- 1$ bis $+ 1$, diese beiden Endpunkte eingeschlossen: $W_{\mbox{sin}} = [- 1, + 1]$}
+  \item{Nach gewissen Abständen wiederholt der Graph der Sinusfunktion exakt sein Aussehen; man spricht in diesem Zusammenhang
+   von der \textbf{Periodizität} der Sinusfunktion. Die \textbf{Periode} beträgt $360^\circ$ bzw. $2 \pi$.
+   Formelmäßig kann man diesen Sachverhalt als
+   $$\mbox{sin} \, \alpha = \mbox{sin} (\alpha + 2 \pi)$$
+   ausdrücken.}
+  \item{Die Sinusfunktion ist weit davon entfernt, eineindeutig zu sein: In der Tat gibt es (wegen der Periodizität) zu jedem
+   Wert $y_0$ des Wertebereichs \textbf{unendlich viele} Werte des Definitionsbereichs, die unter der Sinusfunktion auf $y_0$
+   abgebildet werden. Zur Konstruktion einer Umkehrfunktion (siehe Unterabschnitt \MRef{M06_umkehr_sinus}) muss daher der
+   Definitionsbereich stark und geeignet eingeschränkt werden.}
+ \end{itemize}
+ 
+ Schon die Betrachtung des Graphen der einfachen Sinusfunktion legt die Verwendung dieser Funktion für die Beschreibung von
+ Wellenvorgängen nahe. Um jedoch die gesamte Leistungsfähigkeit der Sinusfunktion etwa in dieser Hinsicht ausschöpfen zu
+ können, werden zuvor noch einige zusätzliche Parameter - ähnlich wie bei Exponential- und Logarithmusfunktion - eingeführt.
+ So können die \glqq Ausschläge{\grqq} der Sinusfunktion mit einem sogenannten \textbf{Amplitudenfaktor} $A$ verstärkt
+ oder abgemildert, die \glqq Schnelligkeit{\grqq} oder \glqq Dichte{\grqq} der Auf- und Abbewegungen durch einen
+ \textbf{frequenzartigen} Faktor $a$ beeinflusst und überhaupt der gesamte Verlauf des Graphen vermöge einer \textbf{Verschiebekonstanten}
+ $b$ nach rechts oder links verrückt werden. Die \textbf{allgemeine Sinusfunktion} besitzt daher folgende Gestalt:
+ $$\begin{array}{rrcl}
+  f : & \R & \longrightarrow & [- A, + A] \\
+  & x & \longmapsto & f(x) = A \, \mbox{sin} (a x + b)  
+ \end{array}$$
+ \begin{MExample}
+  \MLabel{M06_Fadenpendel}
+  Beim Fadenpendel schwingt eine kleine schwere Masse im Gravitationsfeld der Erde an einem langen dünnen Faden, der z.B. fest
+  an der Decke eines (hohen) Raumes verankert ist. Unter gewissen idealisierenden Annahmen und für kleine Werte des Auslenkwinkels
+  $\varphi$ aus der \textbf{Ruhelage} (der \textbf{Lotrechten}) hängt $\varphi$ von der Veränderlichen $t$, der Zeit, über
+  eine allgemeine Sinusfunktion ab:
+  $$\varphi (t) = A \, \mbox{sin} (\Mdfrac{2 \pi}{T} t + b)$$
+  Dabei bezeichnet $T$ die sogenannte \textbf{Schwingungsdauer} des Pendels, also diejenige Zeitspanne, die für eine
+  vollständige Schwingung vom Pendel benötigt wird.
+  
+  Zur Zeit $t = 0$ wird das Pendel bei einer Auslenkung von $30^\circ$ losgelassen. Die Schwingungsdauer beträgt $\pi$
+  Sekunden. Wir wollen die Parameter der allgemeinen Sinusfunktion (möglichst weitgehend) so anpassen, dass die gegebene Schwingung
+  korrekt beschrieben wird und eine Skizze des Schwingungsverlaufs anfertigen.
+  
+  Zunächst einmal entsprechen $30^\circ$ im Bogenmaß (siehe \MRef{M06_Bogenmass})
+  $$30^\circ \Mdfrac{2 \pi}{360^\circ} \mbox{ rad} = \Mdfrac{60}{360} \pi \mbox{ rad} = \Mdfrac{\pi}{6} \mbox{ rad} \; \; \; .$$
+  Wir setzen $t = 0$ im der allgemeinen Sinusfunktion $\varphi (t)$ und verwenden $\varphi (t = 0) = \pi/6$:
+  $$\Mdfrac{\pi}{6} = \varphi(t = 0) = A \, \mbox{sin} (\Mdfrac{2 \pi}{T} \cdot 0 + b) = A \, \mbox{sin} \, b$$
+  Keiner der beiden Faktoren $A$ oder $\mbox{sin} \, b$ darf $0$ sein, da ansonsten ein Widerspruch auftritt; also können wir
+  nach $A$ auflösen, $A = \pi/(6 \, \mbox{sin} \, b)$. Damit und mit $T = \pi$ (in Sekunden) folgt:
+  $$\varphi (t) = \Mdfrac{\pi}{6 \, \mbox{sin} \, b} \mbox{sin} (2 t + b)$$
+  Diese Gleichung enthält noch die unbekannte Verschiebekonstante $b$.
+  
+  Allerdings versteckt sich in der obigen Situationsbeschreibung noch ein weiterer Hinweis, dessen Umsetzung aber mit
+  unserem derzeitigen Kenntnisstand etwas schwierig ist. Nichtsdestotrotz wollen wir es versuchen: Zum Zeitpunkt $t = 0$
+  wird das Pendel losgelassen, erst dann nimmt es seine Bewegung auf. Mit anderen Worten, für $t = 0$ ruht das Pendel
+  gerade noch. Für die Funktion $\varphi (t)$ bedeutet dies, dass sie für $t = 0$ eine waagerechte Tangente aufweisen
+  muss. (Eine waagerechte Tangente bedeutet keine Steigung; die Steigung der Tangente an den Graphen von $\varphi (t)$ in einem Punkt
+  wiederum ist ein Maß für die Geschwindigkeit des Pendels an dieser Stelle.) Mit der Wahl $b = \pi/2$ wird das genau erreicht.
+  Die vorliegende Schwingung des Pendels wird also (wegen $\mbox{sin} \, (\pi/2) = 1$) durch
+  $$\varphi (t) = \Mdfrac{\pi}{6} \, \mbox{sin} \, (2 t + \Mdfrac{\pi}{2})$$
+  beschrieben und sieht folgendermaßen aus:
+  \begin{center}
+   \MUGraphicsSolo{sin_fkt_2.png}{scale=1}{}
+  \end{center}
+ \end{MExample}
+\end{MXContent}
+
+\begin{MXContent}{Kosinus, Tangens und Kotangens}{Kosinus, Tangens und Kotangens}{STD}
+ Im Grunde genommen müssen wir für \textbf{Kosinus-} und \textbf{Tangensfunktion} die zur Sinusfunktion analogen Überlegungen
+ angehen, die wir aus dem vorigen Unterabschnitt \MRef{M06_Sinusfkt} kennen. Da wir schon etwas Übung besitzen, können wir die
+ Diskussion etwas straffen. Beginnen wir mit der \textbf{Kosinusfunktion} und betrachten erneut unsere dem Einheitskreis
+ einbeschriebenen Dreiecke:
+ \begin{center}
+  \MUGraphicsSolo{cos_fkt_im_kreis.png}{scale=1}{}
+ \end{center}
+ Wiederum besitzen alle Hypothenusen dieser so konstruierten rechtwinkligen Dreiecke die Länge $1$, sodass die Kosinus
+ der Winkel $\alpha$ im Bild als Längen der Strecken $\overline{AC}$ auftreten. Bewegen wir wie früher den Punkt $B$ 
+ \textbf{im Gegenuhrzeigersinn} gleichmäßig um den Kreis und variieren so den Winkel $\alpha$, erhalten wir letztlich die
+ \textbf{Kosinusfunktion}:
+ $$\begin{array}{rrcl}
+  \mbox{cos} : & \R & \longrightarrow & [- 1, + 1] \\ & \alpha & \longmapsto & \mbox{cos} \, \alpha
+ \end{array}$$
+ \begin{center}
+  \MUGraphicsSolo{cos_fkt.png}{scale=1}{}
+ \end{center}
+ Das Schaubild gibt neben dem Graphen der Kosinus- (durchgezogene Linie) nochmals denjenigen der Sinusfunktion (gepunktete Linie)
+ zu Vergleichszwecken wieder; wir erkennen eine sehr enge Verwandtschaft, die wir sogleich noch thematisieren werden.
+ 
+ Welche wichtigen Eigenschaften besitzt die Kosinusfunktion? Hier sind einige:
+ \begin{itemize}
+  \item Die \textbf{Kosinusfunktion} ist ebenfalls eine \textbf{periodische Funktion}. Die \textbf{Periode} ist wieder $2 \pi$ bzw. $360^\circ$.
+  \item Der Definitionsbereich der Kosinusfunktion ist ganz $\R$, $D_{\mbox{cos}} = \R$, der Wertebereich das Intervall von $- 1$ bis
+  $+ 1$, die Endpunkte inbegriffen, $W_{\mbox{cos}} = [- 1, + 1]$.
+  \item Die Kosinusfunktion ist nicht eineindeutig, also muss man Vorsicht bei der Konstruktion einer Umkehrfunktion walten lassen.
+  \item Aus dem obigen Bild der Graphen von $\mbox{cos} \, \alpha$ und $\mbox{sin} \, \alpha$ ergibt sich unmittelbar, dass
+  $$\mbox{cos} \, \alpha = \mbox{sin} \left( \alpha + \Mdfrac{\pi}{2} \right)$$
+  für alle reellen Werte von $\alpha$ gilt. Ebenso richtig, aber etwas schwieriger einzusehen, ist
+  $$\mbox{cos} \, \alpha = - \mbox{ sin} \left( \alpha - \Mdfrac{\pi}{2} \right) \; \; \; .$$
+ \end{itemize}
+ \begin{MExercise}
+  \MLabel{M06_cos_diskussion}
+  An welchen Stellen nimmt die Kosinusfunktion ihren maximalen Wert $1$ an, wo ihren maximal negativen Wert $- 1$? An welchen
+  Punkten besitzt sie Nullstellen (d.h. wo ist der Funktionswert gleich $0$)?
+  \begin{MSolution}
+   Es ist $\mbox{cos} \, 0 = 1$; aufgrund der Periodizität mit Periode $2 \pi$ trifft dies auch für $\pm 2 \pi, \pm 2 \cdot 2 \pi,
+   \pm 3 \cdot 2 \pi, \dots$ zu. Also nimmt die Kosinusfunktion den maximalen Wert $1$ für alle ganzzahligen Vielfachen von $2 \pi$
+   (bzw. für alle geradzahligen Vielfachen von $\pi$) an; man kann dies auch so schreiben:
+   $$\mbox{cos} \, \alpha = 1 \Leftrightarrow \alpha \in \{ 2 k \cdot \pi; k \in \Z \} $$
+   Den Wert $- 1$ erreicht die Kosinusfunktion an den Stellen $\dots, - 3 \pi, - \pi, \pi, 3 \pi, 5 \pi, \dots$, also für
+   ungeradzahlige Vielfache von $\pi$:
+   $$\mbox{cos} \, \alpha = - 1 \Leftrightarrow \alpha \in \{ (2 k + 1) \cdot \pi; k \in \Z \}$$
+   Nullstellen treten für $\dots, - \Mtfrac{3}{2} \pi, - \Mtfrac{1}{2} \pi, \Mtfrac{1}{2} \pi, \Mtfrac32 \pi, \dots$, d.h. für
+   halbganzzahlige Vielfache von $\pi$ auf:
+   $$\mbox{cos} \, \alpha = 0 \Leftrightarrow \alpha \in \{ \Mtfrac{k}{2} \cdot \pi; k \in \Z \}$$
+  \end{MSolution}
+ \end{MExercise}
+ Wie im Falle des Sinus gibt es auch für den Kosinus eine \textbf{allgemeine Kosinusfunktion}, in deren Definition
+ zusätzliche Freiheiten in Form von Parametern auftauchen (\textbf{Amplitudenfaktor} $B$, \textbf{Frequenzfaktor} $c$ sowie
+ \textbf{Verschiebekonstante} $d$); auf diese Art und Weise eröffnet sich wiederum die Möglichkeit, den Funktionsverlauf an
+ unterschiedliche Situationen (in Anwendungsbeispielen) anzupassen:
+ $$\begin{array}{rrcl}
+  g : & \R & \longrightarrow & [- A, + A] \\
+  & x & \longmapsto & g(x) = B \, \mbox{cos} (c x + d)  
+ \end{array}$$
+ \begin{MExercise}
+  In Beispiel \MRef{M06_Fadenpendel} haben wir das Fadenpendel andiskutiert; insbesondere haben wir den zeitlichen Verlauf
+  der Pendelauslenkung $\varphi$ unter den Voraussetzungen bestimmt, dass die Schwingungsdauer $T$ gerade $\pi$ Sekunden beträgt,
+  und dass zum Zeitpunkt $t = 0$ das Pendel bei einer Auslenkung von $30^\circ$ losgelassen wird:
+  $$\varphi (t) = \Mdfrac{\pi}{6} \, \mbox{sin} \, (2 t + \Mdfrac{\pi}{2})$$
+  Kann man diese Situation auch mit Hilfe der (allgemeinen) Kosinusfunktion (anstelle der Sinusfunktion) beschreiben,
+  und wenn ja, wie sieht dann $\varphi (t)$ aus?
+  \begin{MSolution}
+   Die Antwort auf die erste Frage lautet: Ja, es ist möglich, die Kosinusfunktion zur Beschreibung des vorliegenden Sachverhaltes
+   heranzuziehen (wie wir sogleich sehen werden).
+   
+   Im Prinzip könnten wir mit der oben wiedergegebenen allgemeinen Kosinusfunktion $g$ starten und mit Überlegungen, die analog
+   zu denjenigen in Beispiel \MRef{M06_Fadenpendel} verlaufen, die Parameter $B$, $c$ und $d$ im vorliegenden Fall bestimmen.
+   Einfacher ist es jedoch, sich auf den Zusammenhang $\mbox{cos} \, \alpha = \mbox{sin} (\alpha + \Mdfrac{\pi}{2})$
+   zwischen Kosinus- und Sinusfunktion zu besinnen. Denn dann folgt sofort
+   $$\mbox{sin} \, (2 t + \Mdfrac{\pi}{2}) = \mbox{cos} \, (2 t) \; \; \; ,$$
+   und damit:
+   $$\varphi (t) = \Mdfrac{\pi}{6} \, \mbox{cos} \, (2 t)$$
+   Der Graph des Schwingungsverlaufs ist natürlich derselbe wie in Beispiel \MRef{M06_Fadenpendel}.
+  \end{MSolution}
+ \end{MExercise}
+ 
+ Der \textbf{Tangens} ist gegeben als das Verhältnis von Sinus zu Kosinus. Damit ist sofort klar, dass die \textbf{Tangensfunktion}
+ nicht auf allen reellen Zahlen definiert sein kann, denn schließlich besitzt die Kosinusfunktion unendliche viele
+ Nullstellen, wie wir z.B. in Aufgabe \MRef{M06_cos_diskussion} gesehen haben, und Division durch $0$ ist nicht erklärt.
+ In Aufgabe \MRef{M06_cos_diskussion} wird auch die Lage der Nullstellen von $\mbox{cos}$ bestimmt ($\mbox{cos} \, \alpha = 0
+ \Leftrightarrow \alpha \in \{ \Mtfrac{k}{2} \cdot \pi; k \in \Z \}$); demzufolge ist der Definitionsbereich der
+ Tangensfunktion $D_{\mbox{tan}} = \R \setminus \{ \Mtfrac{k}{2} \cdot \pi; k \in \Z \}$.
+ 
+ Und wie sieht es mit dem Wertebereich aus? Nun, für eine Abschätzung von $W_{\mbox{tan}}$ hilft ein nochmaliger Blick
+ auf die Graphen von Sinus und Kosinus (siehe zweites Schaubild im vorliegenden Unterabschnitt): In der Nähe der
+ $\mbox{cos}$-Nullstellen (also für (sehr) kleine Werte des Nenners in $\mbox{sin}/\mbox{cos}$ nimmt die Sinusfunktion
+ entweder Werte wenig kleiner $1$ bzw. wenig größer $- 1$ an; dort wird die Tangensfunktion daher gegen positiv bzw.
+ negativ unendliche Werte streben und \textbf{Polstellen} haben.\\
+ Zwischen den $\mbox{cos}$-Nullstellen liegen die $\mbox{sin}$-Nullstellen; an diesen Stellen wird der Zähler von
+ $\mbox{sin}/\mbox{cos}$ Null, wohingegen die Kosinusfunktion endlich bleibt. Mit anderen Worten, zwischen den
+ Polstellen der Tangensfunktion liegen deren Nullstellen.\\
+ Dazwischen sind alle reellen Werte möglich, daher ist $W_{\mbox{tan}} = \R$. Insgesamt ergibt sich für den Graphen
+ der \textbf{Tangensfunktion}
+ $$\begin{array}{rrcl}
+  \mbox{tan} : & \R \setminus \{ \Mtfrac{k}{2} \cdot \pi; k \in \Z \} & \longrightarrow & \R \\
+  & \alpha & \longmapsto & \mbox{tan} \, \alpha  
+ \end{array}$$
+ folgendes Bild:
+ \begin{center}
+  \MUGraphicsSolo{tan_fkt.png}{scale=1}{}
+ \end{center}
+ Wir halten fest, dass auch die \textbf{Tangensfunktion} nicht eineindeutig ist und periodisch verläuft, allerdings - im
+ Gegensatz zu Sinus und Kosinus - mit der Periode $\pi$ bzw. $180^\circ$.
+ 
+ Natürlich lässt sich auch die \textbf{Tangensfunktion} - wie die übrigen trigonometrischen Funktionen - durch Parameter
+ modifizieren; so kann z.B. die Periode mit Hilfe eines entsprechenden Faktors gestreckt oder gestaucht werden.
+ 
+ Im Prinzip hätten wir die Diskussion der Tangensfunktion ebenfalls mit der Betrachtung von Dreiecken beginnen können,
+ die dem Einheitskreis in bestimmter Art und Weise einbeschrieben sind:
+ \begin{center}
+  \begin{tabular}{ll}
+   \MUGraphicsSolo{tan_fkt_im_kreis.png}{scale=1}{} &
+   \begin{minipage}[b]{7cm}
+    Mit den Bezeichnungen aus dem Bild ist $\mbox{tan} \, \alpha = \Mdfrac{|\overline{BC}|}{|\overline{AC}|}$, wobei z.B.
+    $|\overline{BC}|$ die Länge der Strecke $\overline{BC}$ meint. Dann benötigt man nur noch einen der \textbf{Strahlensätze} sowie
+    $|\overline{AP}| = 1$, um einzusehen, dass $\mbox{tan} \, \alpha$ durch die Länge der Strecke $\overline{PS}$ gegeben ist.
+    Anschließend bewegt man wieder $B$ im Gegenuhrzeigersinn um den Kreis, um $\alpha$ zu variieren.
+   \end{minipage}
+  \end{tabular}
+ \end{center}
+ 
+ Schließlich sollten wir den \textbf{Kotangens} (Abkürzung \textbf{cot}) der Vollständigkeit halber noch kurz erwähnen:
+ $\mbox{cot} \, \alpha = 1/\mbox{tan} \, \alpha$. Mit Hilfe von Sinus und Kosinus ausgedrückt, ergibt sich also
+ $$\mbox{cot} \, \alpha = \Mdfrac{\mbox{cos} \, \alpha}{\mbox{sin} \, \alpha} \; \; \; .$$
+ Offensichtlich ist auch der Kotangens nicht für alle reelle Zahlen definiert.
+ \begin{MExercise}
+  Geben Sie Definitions- und Wertebereich der Kotangensfunktion an!
+  \begin{MSolution}
+   Die Polstellen des Kotangens liegen dort, wo der Sinus $0$ wird, und das ist genau dann der Fall, wenn $\alpha$ ein ganzzahliges Vielfaches
+   von $\pi$ ist. Daher müssen wir bei der Definition der Kotangensfunktion genau diese Punkte ausschließen:
+   $$D_{\mbox{cot}} = \R \setminus \{ k \cdot \pi ; k \in \Z \}$$
+   Zur Bestimmung des Wertebereichs können Betrachtungen durchgeführt werden, die denjenigen beim Tangens stark ähneln; man findet
+   $W_{\mbox{cot}} = \R$.
+   \begin{center}
+    \MUGraphicsSolo{cot_fkt.png}{scale=1}{}
+   \end{center}
+  \end{MSolution}
+ \end{MExercise}
+\end{MXContent}
+
+\begin{MXContent}{Umkehrfunktionen zu Sinus \& Co.}{Umkehrfunktionen zu Sinus \& Co.}{STD}
+ \MLabel{M06_umkehr_sinus}
+ Im vorigen Unterabschnitt haben wir immer wieder die Nicht-Eineindeutigkeit der trigonometrischen Funktionen betont und auf die
+ damit verbundene Problematik bei der Konstruktion von zugehörigen Umkehrfunktionen hingewiesen. Eine solche Konstruktion ist
+ gemäß den Erläuterungen im letzten Unterabschnitt in \MRef{M06_Abschnitt1} nur durchführbar, falls der Definitionsbereich der
+ trigonometrischen Funktionen zuvor geeignet eingeschränkt wird. Wir wollen diesen Sachverhalt jetzt zumindest für die Sinusfunktion
+ etwas genauer unter die Lupe nehmen.
+ 
+ Generell vertauschen beim Übergang von Funktion zu Umkehrfunktion Definitions- und Wertebereich ihre Rollen. Die Umkehrfunktion
+ zur (eingeschränkten) Sinusfunktion - ihrer Bedeutung wegen mit einem eigenen Namen, nämlich \MEntry{Arkussinus}{Arkussinus}
+ bzw. \MEntry{Arkussinusfunktion}{Arkussinus} (Abkürzung generell \textbf{arcsin}), versehen - wird daher auf dem Intervall
+ $[- 1, + 1]$ definiert sein.
+ 
+ Unsere vordringliche Aufgabe besteht nun darin, den Definitionsbereich der Sinusfunktion so zu beschneiden, dass die Sinusfunktion,
+ eingeschränkt auf diesem kleineren Bereich, jeden Wert aus dem Intervall $[- 1, + 1]$ nur genau einmal liefert, also auf diesem
+ kleineren Bereich eineindeutig wird. Aus dem Graphen der Sinusfunktion können wir leicht ablesen, dass eine Einschränkung auf
+ das Intervall $[- \pi/2, + \pi/2]$ das Gewünschte leistet; auf diesem Intervall wächst die Sinusfunktion \textbf{streng monoton} (von $- 1$
+ auf $+ 1$). Jetzt kann die Umkehrfunktion nach der üblichen Vorgehensweise, z.B. geometrisch durch Spiegelung an der
+ Winkelhalbierenden des 1. und 3. Quadranten, bestimmt werden:
+ $$\begin{array}{rrcl}
+  \mbox{arcsin} : & [- 1, + 1] & \longrightarrow & [- \pi/2, + \pi/2] \\
+  & \alpha & \longmapsto & \mbox{arcsin} \, \alpha  
+ \end{array}$$
+ Es ergibt sich folgendes Bild:
+ \begin{center}
+  \MUGraphicsSolo{arcsin_fkt.png}{scale=1}{}
+ \end{center}
+ \begin{MExercise}
+  Wie müssen wir die Kosinusfunktion einschränken, um eine Umkehrfunktion bilden zu können?
+  \begin{MSolution}
+   Die Kosinusfunktion ist auf dem Intervall $[0, \pi]$ \textbf{streng monoton fallend}, sodass wir im Zuge der Bildung der Umkehrfunktion
+   auf dieses Intervall einschränken. Damit ist der \textbf{Arkuskosinus} wir folgt definiert:
+   $$\begin{array}{rrcl}
+    \mbox{arccos} : & [- 1, + 1] & \longrightarrow & [0, \pi ] \\
+    & \alpha & \longmapsto & \mbox{arccos} \, \alpha  
+   \end{array}$$
+   \begin{center}
+  \MUGraphicsSolo{arccos_fkt.png}{scale=1}{}
+ \end{center}
+  \end{MSolution}
+ \end{MExercise}
+ Die übrigen \MEntry{Arkusfunktionen}{Arkusfunktionen}, das sind die übrigen Umkehrfunktionen zu den trigonometrischen Funktionen,
+ kommen aufgrund analoger Überlegungen zustande. Wir verzichten hier auf die Wiedergabe weiterer Details.
+\end{MXContent}

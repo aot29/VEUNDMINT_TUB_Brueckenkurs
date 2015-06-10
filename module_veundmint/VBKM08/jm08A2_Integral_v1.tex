@@ -1,0 +1,460 @@
+%LaTeX-2e-File, Liedtke, 20140828.
+%Inhalt: Einf"uhrung des bestimmten Integrals.
+%zuletzt bearbeitet: 20140929.
+
+\MPragma{MathSkip}
+
+
+%Inhalt zum Abschnitt: Integral
+\begin{MXContent}{Integral}{Integral}{STD}
+
+%Hier wird die Idee zu einer {\glqq}globalen Kenngr"o"se{\grqq} in der 
+%Form des nach Riemann benannten Integrals vorgestellt.
+
+%Das nach Riemann benannte Integral ordnet einer Funktion eine Zahl zu, die 
+%Das Integral einer Funktion ist eine Zahl, die sich aus einer Summenbildung
+%von gewichteten Funktionswerten ergibt. 
+%F"ur das nach Riemann benannte Integral wird die Gewichtung "uber die 
+%L"ange des Definitionsbereichs vorgenommen. 
+Das Integral einer Funktion kann als "`Fläche unter der Kurve"' interpretiert werden.
+In dem nach Riemann benannten Integral wird der Funktionsverlauf durch eine 
+Treppenfunktion angen"ahert, und die Funktionswerte werden, gewichtet 
+mit der jeweiligen Intervalll"ange bzw. "`Breite einer Treppenstufe"', aufsummiert.
+Dies ist in der unten gezeigten Abbildung dargestellt.
+
+\MUGraphics{\MPfadBilder/BildIntegralObersumme.png}{scale=0.75}%
+{Zur Definition des Integrals: Funktion angenähert durch eine Treppenfunktion, unterteilt in acht 
+Teilintervalle.}{}
+
+Wir erkennen, dass die Fläche unter der Kurve zunächst durch Rechtecke
+angenähert wird, deren eine (horizontale) Seitenlänge durch ein Intervall auf der $x$-Achse bestimmt wird,
+während die Länge der zweiten (vertikalen) Seite durch den Funktionswert am linken Rand des dazu gehörenden
+$x$-Intervalls beschrieben wird. Wir bestimmen nun die Flächen dieser Rechtecke und summieren diese Teilflächen auf.
+Je kleiner die Intervalle auf der $x$-Achse werden, umso mehr nähert sich die so berechnete Summe dem "`wahren"'
+Wert der Fläche unter der Kurve, also dem Integral der Funktion, an.
+
+Formal heißt das, dass wir eine Summe $S_n$ der Form
+%
+\begin{equation}
+S_n := \sum_{k=0}^{n-1} f(x_k) \cdot \Delta(x_k) \qquad \text{mit } \Delta(x_k) := x_{k+1} - x_{k} %%
+\end{equation}
+%
+bestimmen. In unserem Beispiel teilen wir das Intervall $[0, 8]$ in ácht gleich große Teile ein. Dabei sind $x_0 = 0$, $x_1 = 1$, $x_2 = 2$, $x_3 = 3$, $x_4 = 4$, $x_5 = 5$, $x_6 = 6$, $x_7 = 7$ und $x_8 = 8$. Wenden wir darauf diese Summenformel an, erhalten wir
+%
+\begin{eqnarray*}
+S_8 &=& f(x_0) \cdot (x_1-x_0) + f(x_1) \cdot (x_2-x_1) + f(x_2) \cdot (x_3-x_2) + f(x_3) \cdot (x_4-x_3)\\
+    & & + f(x_4) \cdot (x_5-x_4) + f(x_5) \cdot (x_6-x_5) + f(x_6) \cdot (x_7-x_6) + f(x_7) \cdot (x_8-x_7)\\
+    &=& f(x_0) \cdot (1-0) + f(x_1) \cdot (2-1) + f(x_2) \cdot (3-2) + f(x_3) \cdot (4-3)\\
+    & & + f(x_4) \cdot (5-4) + f(x_5) \cdot (6-5) + f(x_6) \cdot (7-6) + f(x_7) \cdot (8-7)\\
+    &=& f(x_0) \cdot 1 + f(x_1) \cdot 1 + f(x_2) \cdot 1 + f(x_3) \cdot 1 + f(x_4) \cdot 1 + f(x_5) \cdot 1 + f(x_6) \cdot 1 + f(x_7) \cdot 1
+\end{eqnarray*}
+%
+Leider ist dieser Vorgang nicht immer so einfach wie in unserem Beispiel und die Intervalllänge nicht immer $1$. Die Intervalllänge soll schließlich gegen Null gehen, um einen möglichst genauen Wert der Fläche zu berechnen.
+%
+\begin{MXInfo}{Integral}
+Gegeben ist eine Funktion $f: [a, b] \rightarrow \R$ auf einem reellen Intervall $[a, b]$. Dann nennen wir
+%
+\begin{equation}
+\int_a^b f(x) \jMD x = \lim_{n \rightarrow \infty} S_n %%
+\end{equation}
+%
+das \MEntry{bestimmte Integral}{Integral!bestimmtes} von $f$ mit der Untergrenze $a$ und der Obergrenze $b$.
+\end{MXInfo}
+%
+%\begin{MXInfo}{Integral}
+%Gegeben ist eine Funktion $f: [a, b] \rightarrow \R$ auf einem reellen Intervall
+%$[a, b]$. 
+%Das \MEntry{bestimmte Integral}{Integral!bestimmtes} von $f$ ist der Grenzwert der Summe
+%
+%\begin{equation}
+%S_n := \sum_{k=0}^{n-1} f(x_k) \cdot \Delta(x_k) \qquad \text{mit } \Delta(x_k) := x_{k+1} - x_{k} %%
+%\end{equation}
+%
+%f"ur $n$ gegen unendlich, wenn $\max_{1 \leq k \leq n} \Delta(x_k)$ gegen null 
+%strebt.
+%Dabei ist $a = x_0 < x_1 < x_2 < \ldots < x_n = b$ und $z_k$ eine Zahl 
+%zwischen $x_{k-1}$ und $x_k$ f"ur $k \in \N$ mit $1 \leq k \leq n$. 
+%Die Summen $S_n$ werden auch Riemannsummen zur Zerlegung $(x_0, \ldots, x_n)$ 
+%und den Zwischenstellen $z_k$ genannt.
+
+%Wenn dieser Grenzwert, das Integral, existiert, wird daf"ur
+%\begin{equation}
+%\int_a^b f(x) \jMD x = \lim_{n \rightarrow \infty} S_n %%
+%\end{equation}
+%geschrieben. Es hei"st $a$ Untergrenze, $b$ Obergrenze des Integrals "uber dem
+%Integranden $f(x)$ mit der Integrationsvariablen $x$.
+%\end{MXInfo}
+
+Als Beispiel wird das Integral von $f: [0, 1] \rightarrow \R,\, x \mapsto x$ 
+berechnet, wobei die Berechnung des Grenzwertes im Vordergrund steht.
+
+\begin{MExample}
+Wir wollen das Integral von $f: [0, 1] \rightarrow \R,\, x \mapsto x$ berechnen.
+Dazu teilen wir das Intervall $[0, 1]$ in Teilintervalle $[x_{k}, x_{k+1}]$ mit 
+$x_0 := 0$ und $x_k := x_{k-1} + \frac{1}{n}$ ein. Die Intervalllänge ist also
+$\Delta(x_k) = x_{k+1} - x_{k} = \frac{1}{n}$.
+
+Untersuchen wir die Intervalllänge auf ihr Verhalten für $n$ gegen unendlich, dann
+sehen wir, dass $\Delta(x_k)$ immer kleiner wird und gegen Null strebt. Die Voraussetzung
+für die Berechnung eines bestimmten Integrals ist also gegeben.
+
+Für die Werte $x_k$ finden wir unter Zuhilfenahme der Intervallänge außerdem $x_k = \frac{k}{n}$ und damit auch $f(x_k) = x_k = \frac{k}{n}$
+
+Setzen wir diese Ergebnisse in die Summenformel ein, dann erhalten wir unter der Verwendung von $\sum_{k=1}^{n-1} k = \frac{1}{2}\,n(n-1)$ ("`kleiner Gauß"')
+%
+\begin{eqnarray*}
+S_n &=& \sum_{k=0}^{n-1} f(x_k)\cdot\Delta(x_k) = \sum_{k=0}^{n-1} x_k \cdot \frac{1}{n} = \sum_{k=0}^{n-1} \frac{k}{n} \cdot \frac{1}{n} = \frac{1}{n^2} \cdot \sum_{k=0}^{n-1} k = \frac{1}{n^2} \cdot \sum_{k=1}^{n-1} k\\
+ &=& \frac{1}{n^2} \frac{n (n-1)}{2} = \frac{1}{2} \cdot \frac{n-1}{n} = \frac{1}{2} \cdot \left(1 - \frac{1}{n}\right) %
+\end{eqnarray*}
+%
+Und mit $\displaystyle\lim_{n \rightarrow \infty} \frac{1}{n} = 0$ ergibt sich f"ur 
+das Integral
+\[
+\int_0^1 x \jMD x = \lim_{n \rightarrow \infty} S_n =  \frac{1}{2}. %%
+\]
+\end{MExample}
+
+Eine große Klasse von Funktionen ist integrierbar: alle Polynome,
+rationale Funktionen, trigonometrische und Exponential- und Logarithmusfunktionen
+sowie deren Verkn"upfungen.
+
+%==========================
+% Anfang Hauptsatz
+
+Um Rechnungen möglichst unkompliziert durchführen zu können, sind möglichst einfache
+Regeln zur Integration von Funktionen nötig. Ein wichtiges Ergebnis liefert uns der
+sogenannte \MEntry{Hauptsatz der Differential- und Integralrechnung}{Differentialrechnung!Hauptsatz}.
+Der \MEntry{Hauptsatz der Differential- und Integralrechnung}{Integralrechnung!Hauptsatz}
+beschreibt einen Zusammenhang zwischen den Stammfunktionen einer Funktion und 
+deren Integral.
+
+\begin{MXInfo}{Hauptsatz der Differential- und Integralrechnung}
+\MLabel{HSDDIR}
+Gegeben ist eine Funktion $f: [a, b] \rightarrow \R$ auf einem reellen 
+Intervall $[a, b]$. Besitzt $f$ eine Stammfunktion, dann gilt f"ur jede Stammfunktion $F$ von $f$
+\[
+\int_{a}^{b} f(x) \jMD x = F(b) - F(a). %% 
+\]
+\end{MXInfo}
+
+Als einfaches Beispiel berechnen wir das bestimmte Integral der Funktion $f$ mit 
+$f(x) = x^2$ zwischen $a = 1$ und $b = 2$. Mit den Regeln für die Bestimmung von
+Stammfunktionen und dem Hauptsatz der Differential- und Integralrechnung können
+wir diese Aufgabe sehr leicht lösen.
+
+\begin{MExample}
+Die Funktion $f: [a, b] \rightarrow \R$ mit $f(x) := x^2$ hat nach der Tabelle
+aus dem ersten Abschnitt eine Stammfunktion $F$ mit $F(x) = \frac{1}{3} x^{3}$.
+Damit ist
+\[
+\int_1^2 x^2 \jMD x = \left[\frac{1}{3} x^{3}\,+\,C\right]_1^2 %
+ = \left(\frac{1}{3}\, 2^{3}\,+\,C\right) - \left(\frac{1}{3}\, 1^{3}\,+\,C\right) = \frac{7}{3}. %%
+\]
+Wie wir sehen, fällt die Konstante nach dem Einsetzen der Grenzen weg, sodass wir sie in der Praxis bei der Berechnung von bestimmten Integralen bereits bei der Bilduns der Stammfunktion "`unterschlagen"' können.
+%Beispielsweise ist f"ur $n = 1$, also $f(x) = x$ dann
+%$F$ mit $F(x) = \frac{1}{2} x^2$ eine Stammfunktion, sodass
+%\[
+%\int_a^b x \jMD x = \left[\frac{1}{2} x^2\right]_a^b %
+% = \frac{1}{2} b^2 - \frac{1}{2} a^2 %%
+%\]
+%gilt.
+\end{MExample}
+
+%In der Situation des Hauptsatzes ist f"ur jede Zahl $z$ zwischen $a$ und $b$ dann
+%\[
+%\int_{a}^{z} f(x) \MD x = F(z) - F(a). %% 
+%\]
+%Folglich ergibt sich $F(z)$ gem"a"s
+%\begin{equation}
+%F(z) = F(a) + \int_{a}^{z} f(x) \jMD x = F(a) + \int_{a}^{z} F'(x) \jMD x. %% 
+%\end{equation}
+%aus dem Funktionswert und dem Integral "uber die Ableitung. Das hei"st, dass 
+%die Funktion aus der Integration "uber die Ableitung, also die "Anderungsrate
+%wiedergewonnen werden kann.
+
+%Dies ist f"ur viele Anwendungen ein bemerkenswertes Hilfsmittel aus der 
+%Mathematik. Beispielsweise werden in naturwissenschaftlichen oder technischen 
+%Vorg"angen oft Ver"anderungen wie die Geschwindigkeit gemessen. Die Bewegung 
+%kann dann daraus mittels Integration rekonstruiert werden.
+
+% Ende Hauptsatz
+%==========================
+
+%Eine Absch"atzung des Integrals ergibt sich, wenn man einerseits Riemannsummen 
+%$U_n$ mit {\glqq}Zwischenstellen{\grqq} $z_k$ berechnet, f"ur die $f(z_k)$ ein
+%minimaler Wert der Funktion $f$ auf $[x_{k-1}, x_k]$ ist, und andererseits 
+%solche Riemannsummen $O_n$ betrachtet, f"ur die $f(z_k)$ einen maximalen Wert 
+%hat. (Sofern das Minimum bzw. Maximum nicht existiert, betrachtet man das 
+%Infimum bzw. das Supremum.)
+
+%Aufgrund dieser Konstruktion ist $U_n \leq O_n$. 
+%Dementsprechend hei"sen die Riemannsummen $U_n$ Untersummen und $O_n$ Obersummen. 
+%Wenn die Grenzwerte f"ur aller Unterteilungen 
+%existieren und gleich sind, wenn also das Integral existiert, dann gilt die 
+%Ungleichung
+%\begin{equation}
+%U_n \leq \int_a^b f(x) \jMD x \leq O_n
+%\end{equation}
+%Eine solche Ungleichung wird auch Absch"atzung genannt, da ein gesuchter Wert 
+%mit einem anderen, m"oglichst einfach zu berechnenden Wert verglichen wird, 
+%der zudem m"oglichst {\glqq}nahe{\grqq} am gesuchten Wert liegt.
+
+%\begin{MExample}
+%Im vorherigen Beispiel wurde zu $f(x) = x$ f"ur jedes $n \in \N$ und 
+%$x_k = \frac{b \cdot k}{n}$, also 
+%$\Delta(x_k) = x_k - x_{k-1} = \frac{b}{n}$ 
+%eine Obersumme
+%\[
+%O_n = \sum_{k=1}^n \sup_{[x_{k-1}, x_k]} f(x) \cdot \Delta(x_k) %
+% = \sum_{k=1}^n \frac{b \cdot k}{n} \cdot \Delta(x_k) %%
+%\]
+%konstruiert.
+
+%Eine Untersumme $U_n$ ist f"ur diese Einteilung durch
+%\[
+%U_n = \sum_{k=1}^n \inf_{[x_{k-1}, x_k]} f(x) \cdot \Delta(x_k) %
+% = \sum_{k=1}^n \frac{b \cdot (k-1)}{n} \cdot \Delta(x_k) %%
+%\]
+%gegeben.
+%\end{MExample}
+
+\end{MXContent}
+
+
+%\begin{MXContent}{Rechenregeln f"ur Integrale}{Rechenregeln f"ur Integrale}{STD}
+\begin{MXContent}{Rechenregeln}{Rechenregeln}{STD}
+
+\begin{MXInfo}{Zerlegung eines Integrals}
+Sei $f: [a, b] \rightarrow \R$ eine integrierbare Funktion. Dann gilt für jede Zahl $z$ zwischen $a$ und $b$
+%
+\begin{equation}
+\int_a^b f(x) \jMD x = \int_a^z f(x) \jMD x + \int_z^b f(x) \jMD x %%
+\end{equation}
+\end{MXInfo}
+
+Mit der Regeln, dass
+%
+\begin{equation}
+\int_d^c f(x) \jMD x := -\int_c^d f(x) \jMD x %%
+\end{equation}
+%
+gilt die obige Regel f"ur alle reellen Zahlen $z$, f"ur die die beiden rechts stehenden Integrale existieren, auch wenn $z$ nicht zwischen $a$ und $b$ liegt.
+
+Die Rechenregel ist praktisch, um Funktionen mit Betr"agen oder andere 
+abschnittsweise definierte Funktionen zu integrieren.
+
+\begin{MExample}
+Das Integral der Funktion $f: [-4, 6] \rightarrow \R, x \mapsto |x|$ ist
+\begin{eqnarray*}
+\int_{-4}^{6} |x| \jMD x % 
+ & = & \int_{-4}^{0} (-x) \jMD x + \int_{0}^{6} x \jMD x \\
+ & = & \left[-\frac{1}{2} x^2\right]_{-4}^{0} + \left[\frac{1}{2} x^2\right]_{0}^{6} \\
+ & = & (0 - (-8)) + (18 - 0) \\
+ & = & 26
+\end{eqnarray*}
+\end{MExample}
+
+Die Integration "uber die Summe zweier Funktionen kann ebenfalls in zwei 
+Integrale zerlegt werden: 
+
+\begin{MXInfo}{Summen- und Faktorregel}
+Seien $f$ und $g$ auf $[a, b]$ integrierbare Funktionen und $r$ eine reelle Zahl. Dann gilt
+\begin{equation}
+\int_a^b (f(x) + g(x)) \jMD x = \int_a^b f(x) \jMD x + \int_a^b g(x) \jMD x %%
+\end{equation}
+
+F"ur Vielfache einer Funktion gilt
+\begin{equation}
+\int_a^b r \cdot f(x) \jMD x = r \cdot \int_a^b f(x) \jMD x %%
+\end{equation}
+\end{MXInfo}
+
+Auch für die Berechnung eines Produktes zweier Funktionen gibt es eine Rechenregel.
+
+\begin{MXInfo}{Partielle Integration}
+Sei $f'$ eine auf $[a, b]$ integrierbare Funktion und $g$ eine auf $[a, b]$ differenzierbare Funktion, dann gilt
+%
+\begin{equation}
+\int_a^b f'(x) \cdot g(x) \jMD x = \left[f(x)\cdot g(x)\right]_a^b - \int_a^b f(x)\cdot g'(x) \jMD x, %%
+\end{equation}
+%
+wobei $f$ die Stammfuktion von $f'$ ist und $g'$ die Ableitung der Funktion $g$. Diese Rechenregel ist als \MEntry{partielle Integration}{Integration!partiell} bekannt.
+
+\end{MXInfo}
+
+Sehen wir uns auch zu dieser Regel ein Beispiel an:
+
+\begin{MExample}
+Wir berechnen das Integral
+%
+\begin{eqnarray*}
+\int_{0}^{\pi} x\sin x \jMD x
+\end{eqnarray*}
+%
+unter Verwendung der partiellen Integration. Dazu wählen wir die Funktionen
+%
+\begin{eqnarray*}
+f'(x) = \sin x \quad\text{und}\quad g(x) = x
+\end{eqnarray*}
+%
+und erhalten die für die partielle Integration nötigen Funktionen
+%
+\begin{eqnarray*}
+f(x) = -\cos x \quad\text{und}\quad g'(x) = 1.
+\end{eqnarray*}
+%
+So können wir das gesuchte Integral berechnen:
+%
+\begin{eqnarray*}
+\int_{0}^{\pi} x\sin x \jMD x &=& \left[(-\cos x)\cdot x\right]_0^\pi - \int_{0}^{\pi} (-\cos x)\cdot 1 \jMD x \\
+&=& (-\cos\pi)\cdot\pi - 0 + \int_{0}^{\pi} \cos x \jMD x \\
+&=& -(-1)\cdot\pi + \left[\sin x\right]_0^\pi = \pi
+\end{eqnarray*}
+%
+Die Zuordnung der Funktionen $f'$ und $g$ muss zielführend erfolgen. Probieren Sie, dieses Beispiel zu lösen, indem Sie $f'$ und $g$ anders herum wählen!
+\end{MExample}
+
+\end{MXContent}
+
+
+\begin{MXContent}{Eigenschaften des Integrals}{Eigenschaften des Integrals}{STD}
+
+F"ur ungerade Funktionen $f: [-c, c] \rightarrow \R$ ist das Integral Null.
+Sehen wir uns dies am Beispiel der Funktion $f$ auf $[-2; 2]$ mit $f(x) = x^3$ an:
+\MUGraphics{\MPfadBilder/BildFlaechePolynomxdrei.png}{scale=0.4}%
+{Ungerade Funktion $f(x) = x^3$ auf einem Intervall $[-2, 2]$.}{}
+
+Teilen wir den Graphen von $f$ in zwei Teile zwischen $-2$ und $0$ bzw. $0$ und $2$ ein und untersuchen die Teilflächen,
+die der Graph in beiden Bereichen mit der $x$-Achse einschließt. Wir können die beiden Teilflächen durch eine Punktspiegelung
+ineinander überführen. Beide Teilflächen sind gleich groß. Bilden wir jeweils die Riemann-Summen, dann stellen wir fest, dass Flächen,
+die unterhalb der $x$-Achse liegen, im Integral einen negativen Wert annehmen. Wenn wir also die beiden hier abgebildeten Teilflächen addieren,
+um das Integral über den gesamten Bereich von $-2$ bis $2$ zu berechnen, erhält die Fläche über der positiven $x$-Achse einen positiven
+Wert, während die Flache unterhalb der negativen $x$-Achse gleich groß ist, aber einen negativen Wert annimmt. Die Summe der Beiden Teilflächen
+ist also Null. Für ungerade Funktionen $f$ gilt die Regel:
+
+\begin{equation}
+\int_{-c}^c f(x) \jMD x = 0 %%
+\end{equation}
+
+Im Fall einer geraden Funktion $g: [-c, c] \rightarrow \R$ ist der Graph 
+symmetrisch bez"uglich der $y$-Achse. Die Fl"ache zwischen dem Graphen von $g$ und der 
+$x$-Achse ist hier symmetrisch bez"uglich der $y$-Achse. Die Teilfl"ache links 
+davon ist also das Spiegelbild der rechts liegenden Fl"ache. Beide zusammen 
+ergeben die Gesamtfl"ache.
+
+\begin{equation}
+\int_{-c}^c g(x) \jMD x = 2 \cdot \int_{0}^c g(x) \jMD x %%
+\end{equation}
+
+%Vergleiche von Funktionen "ubertragen sich auf deren Integral:
+%Wenn $f(x) \leq g(x)$ f"ur alle $x$-Werte ist, gilt 
+
+%\begin{equation}
+%\int_a^b f(x) \jMD x \leq \int_a^b f(x) \jMD x %%
+%\end{equation}
+
+%Insbesondere ist
+%\begin{equation}
+%\left|\int_a^b f(x) \jMD x\right| \leq \int_a^b |f(x)| \jMD x %%
+%\end{equation}
+
+%Weiter gilt f"ur eine stetige Funktion $f$ dann
+%\begin{equation}
+%(b-a) \cdot \min f \leq \int_a^b f(x) \jMD x \leq (b-a) \cdot \max f %%
+%\end{equation}
+%wenn das Minimum $\min f$ und das Maximum $\max f$ existiert (andernfalls 
+%muss das Infimum bzw. das Supremum der beschr"ankten Funktion $f$ betrachtet
+%werden).
+
+\end{MXContent}
+
+\begin{MXContent}{Elementare Umformungen}{Elementare Umformungen}{STD}
+
+In sehr vielen Situationen wird die Berechung eines Integrals einfacher, wenn wir den Integranden vor der Integration in eine bekannte Form bringen. Diese Umformungen wollen wir uns im Folgenden an einigen Beispielen ansehen.
+
+Im ersten Beispiel untersuchen wir Potzenfunktionen.
+
+\begin{MExample}
+Versuchen wir, das Integral
+\[
+\int_{1}^{4} (x - 2) \cdot \sqrt{x} \jMD x %%
+\]
+zu berechnen. Um die Rechnung zu vereinfachen, formen wir den Integranden um:
+\[
+ (x - 2) \cdot \sqrt{x} = x \sqrt{x} - 2 \sqrt{x} %
+ = x^{\frac{3}{2}} - 2 x^{\frac{1}{2}} %%
+\]
+Damit können wir das Integral einfacher lösen:
+\begin{eqnarray*}
+\int_{1}^{4} (x - 2) \cdot \sqrt{x} \jMD x %%
+& = &
+\int_{1}^{4} \left(x^{\frac{3}{2}} - 2 x^{\frac{1}{2}}\right) \jMD x %%
+  =  
+\left[\frac{2}{5} x^{\frac{5}{2}} - \frac{4}{3} x^{\frac{3}{2}}\right]_{1}^{4} \\
+& = &
+\left(\frac{2}{5} \left(\sqrt{4}\right)^5 - \frac{4}{3} \left(\sqrt{4}\right)^3 \right) %
+ - \left(\frac{2}{5} \cdot 1 - \frac{4}{3} \cdot 1 \right) \\
+& = &
+\left(\frac{64}{5} - \frac{32}{3}\right) - \left(\frac{2}{5} - \frac{4}{3}\right) \\
+& = & \frac{62}{5} - \frac{28}{3} \\
+& = & 3 + \frac{1}{15} %%
+\end{eqnarray*}
+\end{MExample}
+
+Am n"achsten Beispiel führen wir die Umformung eines Integranden mit trigonometrischen Funktionen durch.
+
+\begin{MExample}
+Wir bestimmen das Integral
+\[
+\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{\sin(x)}{\tan(x)} \jMD x, %%
+\]
+indem wir die Definition der Tangensfunktion ausnutzen. Damit erhalten wir die Umformung
+\[
+\frac{\sin(x)}{\tan(x)} %
+= \frac{\sin(x)}{\frac{\sin(x)}{\cos(x)}} %
+= \cos(x), %%
+\]
+sodass wir das Integral schließlich auf sehr einfache Art und Weise lösen können:
+\[
+\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{\sin(x)}{\tan(x)} \jMD x %%
+= 
+\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos(x) \jMD x %%
+= 
+\left[\sin(x)\right]_{-\frac{\pi}{2}}^{\frac{\pi}{2}} %%
+= 
+1 - (-1) = 2. %%
+\]
+\end{MExample}
+
+Ist bei einer rationalen Funktion der Grad des Zählerpolynoms größer oder gleich dem Grad des Nennerpolynoms,
+führen wir zunächst eine Polynomdivision (siehe Modul \MRef{VBKM06}) durch. Je nach Situation können sich auch noch weitere Umformungen (z.B. Partialbruchzerlegung)
+anbieten, die wir in weiterführender Literatur und Formelsammlungen finden können. Im folgenden Beispiel führen wir eine
+Polynomdivision durch, um eine rationale Funktion zu integrieren.
+
+\begin{MExample}
+Wir berechnen das Integral
+\[
+\int_{-1}^{1} \frac{4 x^2 - x + 4}{x^2 + 1} \jMD x. %%
+\]
+Dazu formen wir zun"achst den Integranden mittels Polynomdivision zu
+\[
+\frac{4 x^2 - x + 4}{x^2 + 1} = 4 - \frac{x}{x^2 + 1} %%
+\]
+um. Damit ist dann
+\begin{eqnarray*}
+\int_{-1}^{1} \frac{4 x^2 - x + 4}{x^2 + 1} \jMD x %%
+& = & 
+\int_{-1}^{1} \left(4 - \frac{x}{x^2 + 1}\right) \jMD x \\
+& = & 
+\int_{-1}^{1} 4 \jMD x - \int_{-1}^{1} \frac{x}{x^2 + 1} \jMD x %%
+= \left[4 x\right]_{-1}^{1} - 0 %
+= 8.
+\end{eqnarray*}
+Denn der Integrand des zweiten Integrals ist eine ungerade Funktion und im Integrationsintervall $[-1, 1]$ punktsymmetrisch, sodass der Wert
+des zweiten Integrals Null ist.
+\end{MExample}
+
+\end{MXContent}
+
+%Dateiende.
+

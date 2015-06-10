@@ -1,0 +1,186 @@
+\input{mintmod.tex}
+\MPragma{MathSkip}
+\Mtikzexternalize
+
+\begin{document}
+
+\MSection{Grundlagen der anschaulichen Vektorgeometrie}
+\MLabel{VBKM10}
+\MSetSectionID{VBKM10} % wird fuer tikz-Dateien verwendet
+
+\begin{MSectionStart}
+\MDeclareSiteUXID{VBKM10_START}
+Dieses Modul besteht im Moment nur aus dem \MSRef{VBKM10_Abschlusstest}{Abschlusstest}, die Modulinhalte folgen in den nächsten Tagen.
+
+% \begin{itemize}
+% \item{dem Abschnitt \MSRef{M10_Vektoren}{Vektoren im Raum},}
+% \item{dem Abschnitt \MSRef{M10_Schnittmengen}{Schnittmengen finden},}
+% \item{dem Abschnitt \MSRef{M10_Beschreibungen}{Beschreibungen dreidimensionaler Objekte}.}
+% \item{dem \MSRef{VBKM10_Abschlusstest}{Abschlusstest}.}
+% \end{itemize}
+
+\end{MSectionStart}
+
+
+% \MSubsection{Vektoren im Raum}
+% \MLabel{M10_Vektoren}
+% 
+% \begin{MIntro}
+% \MDeclareSiteUXID{VBKM10_Raumvektoren_Intro}
+% 
+% \end{MIntro}
+% 
+% \MSubsection{Schnittmengen finden}
+% \MLabel{M10_Schnittmengen}
+% 
+% \begin{MIntro}
+% \MDeclareSiteUXID{VBKM10_Schnittmengen_Intro}
+% 
+% \end{MIntro}
+% 
+% \MSubsection{Beschreibungen dreidimensionaler Objekte}
+% \MLabel{M10_Beschreibungen}
+% 
+% \begin{MIntro}
+% \MDeclareSiteUXID{VBKM10_DreiD_Intro}
+% 
+% \end{MIntro}
+
+\MSubsection{Abschlusstest}
+
+\begin{MTest}{Abschlusstest Kapitel \arabic{section}}
+\MLabel{VBKM10_Abschlusstest}
+\MDeclareSiteUXID{VBKM10_Abschlusstest}
+
+\begin{MExercise}
+Geben Sie die im Diagramm dargestellten Pfeilklassen als Vektoren an: 
+
+\MUGraphics{vektoren1.png}{width=0.5\linewidth}{Pfeile in der Ebene}{width:400px}
+
+Beachten Sie die Beschriftung der Achsen (vertikale Achse gehört
+zur ersten Komponente der Vektoren), 
+beispielsweise gehört zum roten Pfeil der Vektor $\MVector{1\\2}$.
+
+\begin{MExerciseItems}
+\item{Gelber Vektor: \MLFunctionQuestion{15}{(-1,2)}{5}{x}{5}{OR20}.} 
+\item{Blauer Vektor: \MLFunctionQuestion{15}{(2,2)}{5}{x}{5}{OR21}.} 
+\item{Grüner Vektor: \MLFunctionQuestion{15}{(1,1)}{5}{x}{5}{OR22}.} 
+\item{Schwarzer Vektor: \MLFunctionQuestion{15}{(1,1)}{5}{x}{5}{OR23}.\\
+\MInputHint{Vektoren können in der Form \texttt{(a;b)} eingegeben werden, zum Beispiel \texttt{(1;2)} für den roten Vektor.}} 
+\end{MExerciseItems}
+\begin{MHint}{Lösung}
+Der rote Pfeil bewegt um eine Einheit nach rechts und um zwei Einheiten nach oben, er wird also durch $\MVector{1\\2}$ beschrieben.
+Alternativ kann man auch Startpunkte der Pfeile von den Endpunkten abziehen, um den Vektor zu bestimmen. Dabei ist dann die Beschriftung
+der Achsen zu beachten:
+$$
+\MVector{-2\\1}-\MVector{-3\\-1} \;=\; \MVector{-2-(-3)\\1-(-1)} \;=\; \MVector{1\\2}\: .
+$$
+Ebenso erhält man $\MVector{-1\\2}$ für den gelben Vektor, $\MVector{2\\2}$ für den blauen und $\MVector{1\\1}$ für den grünen sowie den schwarzen Vektor.
+Dass die Pfeile im Diagramm verschiedene Start- und Endpunkte haben spielt keine Rolle, als Vektoren (Pfeilklassen) sind beide gleich.
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+% Modifizierte  COSH-Frage
+Ein Sportflugzeug würde bei Windstille mit einer Geschwindigkeit von
+150 Kilometer pro Stunde genau nach Süden fliegen. Es wird jedoch von einem Wind,
+der mit der Geschwindigkeit 30 Kilometer pro Stunde aus Richtung Westen bläst,
+abgetrieben. Stellen Sie die Geschwindigkeit des Flugzeugs als Summe von zwei Vektoren in der Ebene dar, wobei
+die zweite Komponente zur Nord-Süd-Achse (positive Werte für Norden) und die erste Komponente
+zur Ost-West-Achse gehört (positive Werte für Osten). Lassen Sie die Einheit (Kilometer pro Stunde)
+in der Rechnung weg:
+\begin{MExerciseItems}
+\item{Bei Windstille ist die Geschwindigkeit $\MVector{0\\-150}$.}
+\item{Der Wind verursacht eine zusätzliche Geschwindigkeit von \MLFunctionQuestion{15}{(30,0)}{5}{x}{5}{OR3}.\\
+\MInputHint{Vektoren können in der Form \texttt{(a;b)} eingegeben werden, die Geschwindigkeit bei Windstille wäre
+zum Beispiel \texttt{(0;-150)}.}
+}
+\item{Das abgetriebene Flugzeug hat insgesamt den Geschwindigkeitsvektor \MLFunctionQuestion{15}{(30,-150)}{5}{x}{5}{OR1}.}
+\item{Die Länge dieses Vektors (der Betrag der Geschwindigkeit) ist \MLParsedQuestion{15}{sqrt(30*30+150*150)}{5}{OR2}.\\
+\MInputHint{Wurzelausdrücke müssen Sie nicht auswerten.}}
+\end{MExerciseItems}
+
+\ \\
+\begin{MHint}{Lösung}
+Der Wind verursacht eine zusätzliche Geschwindigkeit von $\MVector{30\\0}$, damit ergibt sich die Geschwindigkeitsvektor
+$$
+\MVector{0\\-150}+\MVector{30\\0} \;=\; \MVector{30\\-150}
+$$
+durch komponentenweises Addieren der Vektoren.
+Die Länge dieses Vektors ist
+$$
+\sqrt{30^2+(-150)^2} \;=\; \sqrt{23400}\: .
+$$
+Als Zahlenwert ist das gerundet $152.9706$.
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Gegeben sind die Punkte $P=(3|4)$, $Q=(1|0)$ und $R=(-2|1)$ in der Ebene. Berechnen Sie die folgenden Vektoren:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\MDVec{P Q}$}{\MLFunctionQuestion{15}{(-2,-4)}{5}{x}{5}{OR4}}.}
+\end{MExerciseItems}
+\begin{MHint}{Lösung}
+Die Richtungsvektoren ergeben sich aus der Differenz zwischen End- und Startkoordinaten der Punkte:
+\begin{eqnarray*}
+\MDVec{P Q} &=& \MVector{1\\0}-\MVector{3\\4} \;=\; \MVector{-2\\-4}\: ,\ \\
+\end{eqnarray*}
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Es seien die Vektoren
+$$
+\MVec{x} \;=\; \MVector{1\\2}\;\; , \;\;
+\MVec{y} \;=\; \MVector{0\\-4}\;\; , \;\;
+\MVec{z} \;=\; \MVector{2\\2}
+$$
+gegeben. Berechnen Sie daraus die folgenden Vektoren:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\MVec{x}+\MVec{y}-\MVec{z}$}{\MLFunctionQuestion{15}{(-1,-4)}{5}{x}{5}{OR8}}.}
+\item{\MEquationItem{$2\MVec{x}-\frac12\MVec{y}$}{\MLFunctionQuestion{15}{(2,6)}{5}{x}{5}{OR9}}.}
+\item{\MEquationItem{$2(\MVec{x}-\MVec{y})+3\MVec{z}$}{\MLFunctionQuestion{15}{(7,18)}{5}{x}{5}{OR10}}.}
+\end{MExerciseItems}
+\begin{MHint}{Lösung}
+Komponentenweises Ausrechnen ergibt
+\begin{eqnarray*}
+\MVec{x}+\MVec{y}-\MVec{z} & =& \MVector{-1\\-4}\: , \ \\
+2\MVec{x}-\frac12\MVec{y} & = & \MVector{2\\6}\:, \ \\
+2(\MVec{x}-\MVec{y})+3\MVec{z} &=& \MVector{7\\18}\: .
+\end{eqnarray*}
+Dabei sind die üblichen Regeln (Punkt-vor-Strich und Klammerauswertung) wie für normale Zahlen gültig.
+\end{MHint}
+\end{MExercise}
+
+
+
+\begin{MExercise}
+Gegeben sind die Punkte $P=(1|2|3)$, $Q=(3|0|0)$ und $R=(-1|2|2)$ im Raum. Berechnen Sie die folgenden Vektoren:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\MDVec{P Q}$}{\MFunctionQuestion{15}{(-2,-2,-3)}{5}{x}{5}}.}
+\item{\MEquationItem{$\MDVec{R Q}$}{\MFunctionQuestion{15}{(4,-2,-2)}{5}{x}{5}}.}
+\end{MExerciseItems}
+
+Bestimmen Sie den Mittelpunkt dieser Vektoren: \MEquationItem{$\MVec{m}$}{\MFunctionQuestion{15}{(1,1,1)}{5}{x}{5}}.
+% LOESUNG STIMMT NOCH NICHT XXX !!
+\end{MExercise}
+
+\begin{MExercise}
+Finden Sie den Schnittpunkt der beiden in Punkt-Richtungsform gegebenen Geraden
+$$
+\MVec{x} \;=\; \MVector{1\\1\\2}+\alpha\cdot \MVector{1\\1\\1}\;\; \text{und}\;\;
+\MVec{x} \;=\; \MVector{0\\1\\-2}+\beta\cdot \MVector{-2\\-4\\4}\: .
+$$
+\begin{MExerciseItems}
+\item{Der Schnittpunkt (als Vektor) ist \MFunctionQuestion{15}{(-1,-1,0)}{5}{x}{5}.}
+\item{Man erh\"alt ihn als Punkt der ersten Geraden f\"ur den Parameter \MEquationItem{$\alpha$}{\MParsedQuestion{7}{-2}{3}}.}
+\item{Man erh\"alt ihn als Punkt der zweiten Geraden f\"ur den Parameter \MEquationItem{$\beta$}{\MParsedQuestion{7}{1/2}{3}}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+\end{MTest}
+
+\newpage
+\MPrintIndex
+
+\end{document}

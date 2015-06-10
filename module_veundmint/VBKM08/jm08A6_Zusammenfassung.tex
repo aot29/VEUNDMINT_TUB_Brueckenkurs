@@ -1,0 +1,115 @@
+%LaTeX-2e-File, Liedtke, 20140828.
+%Inhalt: Einf"uhrung in die Integralrechnung: Abschnitt Zusammenfassung.
+%zuletzt bearbeitet: 20140929.
+
+\MPragma{MathSkip}
+
+%\MSubsubsection{Stammfunktionen}
+\begin{MXContent}{Stammfunktionen}{Stammfunktionen}{STD}
+Gegeben ist eine Funktion $f: D \rightarrow \R$. 
+Wenn eine Funktion $F: D  \rightarrow \R$ differenzierbar ist und $F'(x) = f(x)$ 
+f"ur alle $x \in D$ gilt, dann hei"st $F$ eine Stammfunktion von $f$.
+\end{MXContent}
+
+
+%\MSubsubsection{Integral}
+\begin{MXContent}{Integral}{Integral}{STD}
+Das bestimmte Integral einer beschr"ankten Funktion $f: [a, b] \rightarrow \R$ 
+ist Grenzwert der Summen
+\[
+\sum_{k=1}^n f(z_k) \cdot \Delta(x_k) %%
+\]
+f"ur $n$ gegen unendlich, wenn $\max_{1 \leq k \leq n} \Delta(x_k)$ gegen null 
+strebt.
+
+Das Integral hat folgende Eigenschaften:
+\begin{enumerate}
+\item Summen und Vielfache von Funktionen: 
+Wenn $u$ und $v$ integrierbar sind und $r \in \R$ ist, gilt
+\[
+\int_{a}^b \left( u(x) + v(x) \right) \MD x %
+= \int_a^b u(x) \MD x + \int_a^b v(x) \jMD x %% 
+\]
+und
+\[
+\int_{a}^b r \cdot u(x) \jMD x %
+= r \cdot \int_a^b u(x) \jMD x %% 
+\]
+%
+\item Absch"atzung:
+\[
+\left|\int_{a}^b f(x) \MD x\right| \leq \int_a^b |f(x)| \MD x %% 
+\]
+und f"ur $f(x) \leq g(x)$ gilt
+\[
+\int_{a}^b f(x) \jMD x \leq \int_a^b g(x) \jMD x %% 
+\]
+\end{enumerate}
+\end{MXContent}
+
+
+%\MSubsubsection{Hauptsatz}
+\begin{MXContent}{Hauptsatz}{Hauptsatz}{STD}
+Gegeben ist eine stetige Funktion $f: [a, b] \rightarrow \R$ auf einem 
+reellen Intervall $[a, b]$. 
+Dann besitzt $f$ eine Stammfunktion, und f"ur jede Stammfunktion $F$ von $f$ 
+gilt
+\[
+\int_{a}^b f(x) \jMD x = F(b) - F(a). %% 
+\]
+\end{MXContent}
+
+
+%\MSubsubsection{Rechenregeln und Integrationsmethoden}
+\begin{MXContent}{Integrationsmethoden}{Integrationsmethoden}{STD}
+
+\begin{enumerate}
+
+\item Umformung des Integranden:
+%
+Je nach Integrand kann dieser in eine bekannte Form des Integranden 
+zur"uckgef"uhrt werden: F"ur rationale Funktionen ist eine Polynomdivision
+ein erster Schritt zur Integration. F"ur trigonometrische Funktionen k"onnen 
+hier die Additionstheoreme hilfreich sein. F"ur Wurzelfunktionen sind die 
+Potenzgesetze und f"ur Exponential- und Logarithmusfunktionen deren
+Rechenregeln zu nennen. Insbesondere ist $b^x = \MEU^{x \cdot \ln(b)}$ 
+f"ur $b > 0$.
+
+\item Integration von Verkettungen mit linearen Funktionen:
+Wenn die Verkettung von $f$ und $u(x) = m x + b$ existiert und 
+integrierbar ist, gilt:
+\[
+\int_{a}^{b} f(u(x)) \cdot g'(x) \jMD x %
+= \int_{a}^{b} f(m x + b) \cdot g'(x) \jMD x %
+= \int_{a}^{b} f(m x + b) \cdot m \jMD x %
+= \int_{u(a)}^{u(b)} f(x) \MD x. %% 
+\]
+%\item Partielle Integration:
+%Wenn $u$ und die Ableitung $v'$ stetig sind, gilt
+%\[
+%\int_{a}^b u(x) \cdot v'(x) \MD x %
+%= \left[u(x) \cdot v(x)\right]_a^b - \int_a^b u'(x) \cdot v(x) \MD x. %% 
+%\]
+\end{enumerate}
+\end{MXContent}
+
+
+%\MSubsubsection{Anwendung der Integralrechnung}
+\begin{MXContent}{Anwendung}{Anwendung}{STD}
+Gegeben sind stetige reelle Funktionen $f$ und $g$ auf einem Intervall $[a, b]$. 
+Weiter seien $x_1$ bis $x_m$ alle Nullstellen von $f - g$ mit 
+$x_1 < x_2 < \ldots < x_m$. 
+Es wird $x_0 = a$ und $x_{m+1} = b$ gesetzt.
+
+Dann ist der Fl"acheninhalt zwischen dem Graphen der stetigen Funktionen $f$ 
+und $g$ gleich
+\[
+\int_{a}^b |f(x) - g(x)| \jMD x %
+= \sum_{k=0}^{m} \left|\int_{x_k}^{x_{k+1}} f(x) - g(x) \jMD x\right|. %% 
+\]
+Die Berechnung des Fl"acheninhalts zwischen dem Graphen von $f$ und der 
+$x$-Achse ergibt sich, indem $g(x) = 0$ gew"ahlt wird.
+\end{MXContent}
+
+%Dateiende.
+

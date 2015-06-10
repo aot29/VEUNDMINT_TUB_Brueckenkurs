@@ -1,0 +1,577 @@
+\input{mintmod.tex}
+\MPragma{MathSkip}
+
+\Mtikzexternalize
+
+\begin{document}
+
+\MSection{Ungleichungen in einer Unbekannten}
+\MSetSectionID{ungl}
+\MLabel{VBKM03}
+
+\begin{MSectionStart}
+\MDeclareSiteUXID{VBKM03_START}
+
+Ungleichungen entstehen, indem man Terme mit den Vergleichssymbolen $\leq$, $<$, $\geq$ oder $>$ vergleicht. 
+Einfache Ungleichungen haben meist Intervalle als Lösungsmengen, aber das 
+Auflösen von Ungleichungen gestaltet sich oft schwieriger als für Gleichungen, daher werden besondere Formen von Ungleichungen vertieft erklärt.
+
+Dieses Modul gliedert sich in folgende Abschnitte:
+
+\begin{itemize}
+\item{\MSRef{M03_Ungleichungen}{Ungleichungen und ihre Lösungsmengen}}
+\item{\MSRef{M03_Umformen}{Umformen von Ungleichungen}}
+\item{\MSRef{M03_Betragsungleichungen}{Betragsungleichungen und quadratische Ungleichungen}}
+\item{dem \MSRef{M03_Abschlusstest}{Abschlusstest} für Modul \MNRef{VBKM03}.}
+\end{itemize}
+
+\end{MSectionStart}
+
+\MSubsection{Ungleichungen und ihre Lösungsmengen}
+\MLabel{M03_Ungleichungen}
+
+\begin{MIntro}
+
+\begin{MInfo}
+\MDeclareSiteUXID{VBKM03_UngleichungenIntro}
+Verbindet man zwei Zahlen durch eines der \MEntry{Vergleichssymbole}{Vergleichssymbole} $\leq$, $<$, $\geq$ oder $>$, so entsteht eine Aussage, die in Abhängigkeit von
+den Zahlen wahr oder falsch ist:
+\begin{itemize}
+\item{$a<b$ (gesprochen: $a$ ist echt kleiner als $b$ oder einfach nur $a$ kleiner $b$) ist wahr, wenn die Zahl $a$ kleiner und nicht gleich $b$ ist.}
+\item{$a \leq b$ (gesprochen: $a$ ist kleiner gleich $b$) ist wahr, wenn die Zahl $a$ kleiner oder gleich $b$ ist.}
+\item{$a>b$ (gesprochen: $a$ ist echt größer als $b$ oder einfach nur $a$ größer $b$) ist wahr, wenn die Zahl $a$ größer und nicht gleich $b$ ist.}
+\item{$a \geq b$ (gesprochen: $a$ ist größer gleich $b$) ist wahr, wenn die Zahl $a$ größer oder gleich $b$ ist.}
+\end{itemize}
+\end{MInfo}
+
+Die Vergleichszeichen drücken auf dem Zahlenstrahl aus, wie die gegebenen Werte zueinander liegen: $a<b$ bedeutet, dass $a$ links von $b$ auf dem Zahlenstrahl liegt.
+
+\begin{MExample}
+Die Aussagen $2<4$, $-12\leq 2$, $4>1$ und $3\geq 3$ sind richtig, dagegen sind $2<\sqrt2$ und $3>3$ falsch.
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Enden:
+\draw [fill = blue] (2,0) circle (1.5pt);
+\draw [fill = blue] (4,0) circle (1.5pt);
+\end{tikzpicture}
+}%
+Auf dem Zahlenstrahl liegt die Zahl $2$ links von der $4$, also ist $2<4$.
+\end{center}
+
+\end{MExample}
+
+Dabei ist $a<b$ gleichbedeutend mit $b>a$, ebenso ist $a\leq b$ gleichbedeutend mit $b\geq a$. Dabei ist aber zu beachten, dass das Gegenteil von $a<b$ die Aussage $a\geq b$ und nicht $a>b$ ist.
+Treten Terme mit Unbestimmten in einer Ungleichung auf, so besteht die Aufgabe darin, den Zahlenbereich für die Unbestimmte zu ermitteln, so dass die Ungleichung wahr ist.
+\end{MIntro}
+
+\begin{MXContent}{Auflösen einfacher Ungleichungen}{Auflösen}{STD}
+\MDeclareSiteUXID{VBKM03_EinfacheUngleichungen}
+
+Ist die Unbestimmte in einer Ungleichung isoliert, so ist die Lösungsmenge ein Intervall:
+
+\begin{MInfo}
+\MLabel{M03_Aufloesungen}
+Die \MEntry{aufgelösten Ungleichungen}{Ungleichungen (aufgelöst)} haben folgende \MEntry{Intervalle}{Intervall} als Lösungsmenge:
+\begin{itemize}
+\item{$x< a$ besitzt die Lösungsmenge $(-\infty;a)$, alle $x$, die kleiner als $a$ sind.}
+\item{$x\leq a$ besitzt die Lösungsmenge $(-\infty;a]$, alle $x$, die kleiner oder gleich $a$ sind.}
+\item{$x> a$ besitzt die Lösungsmenge $(a;\infty)$, alle $x$, die größer als $a$ sind.}
+\item{$x\geq a$ besitzt die Lösungsmenge $[a;\infty)$, alle $x$, die größer oder gleich $a$ sind.}
+\end{itemize}
+Dabei ist $x$ die Unbestimmte und $a$ ein konkreter Zahlenwert. Tritt die Unbestimmte in der Ungleichung nicht mehr auf, so ist die Lösungsmenge
+entweder $\R=(-\infty;\infty)$, falls die Ungleichung erfüllt ist, oder die leere Menge $\lbrace \rbrace$, falls die Ungleichung nicht erfüllt ist.
+\end{MInfo}
+
+Das Zeichen $\infty$ bedeutet dabei \MEntry{unendlich}{Unendlich}. Ein endliches Intervall hat die Form $(a;b)$, was \glqq alle Zahlen zwischen $a$ und $b$\grqq\ bedeutet. Möchte man
+die Zahlenmenge nur auf einer Seite begrenzen, so kann man für die andere Seite die Symbole $\infty$ (rechts) oder $-\infty$ (links) einsetzen.
+
+Wie schon bei den Gleichungen versucht man durch Umformungen, welche die Lösungsmenge nicht verändern, eine aufgelöste Ungleichung zu erhalten, aus der man die Lösungsmenge einfach ablesen kann:
+
+\begin{MInfo}
+\MLabel{VBKM03_AequivalenzumformungenUngleichungen}
+Um aus einer gegebenen Ungleichung eine aufgelöste Ungleichung zu erhalten,
+sind folgende \MEntry{Äquivalenzumformungen}{Äquivalenzumformung (Ungleichung)} erlaubt:
+\begin{itemize}
+\item{Addition einer Konstanten auf beiden Seiten der Ungleichung: $a<b$ ist äquivalent zu $a+c<b+c$.}
+\item{Multiplikation mit einer positiven Konstanten auf beiden Seiten der Ungleichung: $a<b$ ist äquivalent zu $a\cdot c<b\cdot c$, falls $c>0$ ist.}
+\item{Multiplikation mit einer negativen Konstanten auf beiden Seiten der Ungleichung und Umdrehung des Vergleichssymbols: $a<b$ ist äquivalent zu $a\cdot c>b\cdot c$,
+falls $c<0$ ist.}
+\end{itemize}
+\end{MInfo}
+
+\begin{MExample}
+Die Ungleichung $-\frac34x-\frac12<2$ löst man schrittweise mit den obigen Umformungen auf:
+\begin{eqnarray*}
+&&-\frac34x-\frac12 < 2 \;\; \MSep +\frac12\ \\
+&\Leftrightarrow&-\frac34x < 2+\frac12 \;\; \MSep \cdot\left({-\frac43}\right)\ \\
+&\Leftrightarrow&x > -\frac43\left({2+\frac12}\right) \;\; \MSep \;\text{Vereinfachen}\\
+&\Leftrightarrow&x >  -\frac{20}{6} \;=\; -\frac{10}{3}\: .
+\end{eqnarray*}
+Damit besitzt die ursprüngliche Ungleichung die Lösungsmenge $(-\frac{10}{3},\infty)$. Wichtig ist bei den Umformungen, dass die Multiplikation mit der negativen Zahl $-\frac43$ das Vergleichssymbol umdreht.
+\end{MExample}
+
+\begin{MExercise}
+Sind diese Ungleichungen richtig oder falsch?
+\begin{MQuestionGroup}
+\begin{MExerciseItems}
+\item{\MCheckbox{0}{UG1} $\frac12>1-\frac13$.}
+\item{\MCheckbox{1}{UG2} $a^2\geq 2a b-b^2$ (wobei $a$ und $b$ unbekannte Zahlen sind).}
+\item{\MCheckbox{1}{UG3} $\frac12<\frac23<\frac34$.}
+\item{\MCheckbox{0}{UG4} Angenommen $a<b$, dann ist immer auch $a^2<b^2$.}
+\end{MExerciseItems}
+\end{MQuestionGroup}
+\MGroupButton{Eingabe überprüfen}
+
+\begin{MHint}{Lösung}
+Die erste Ungleichung vereinfacht sich zu $\frac12>\frac23$, was nach Multiplikation mit $6$ äquivalent ist zu $3>4$, dies ist eine falsche Aussage.
+Die zweite Ungleichung kann man durch Übertragen aller Zahlenwerte auf die linke Seite
+vereinfachen zu $a^2-2a b+b^2\geq 0$, dies ist eine wegen $a^2-2a b+b^2=(a-b)^2$ für alle Zahlen $a$ und $b$ wahre Aussage.
+Multiplikation der dritten Ungleichungskette mit dem Hauptnenner $12$ ergibt die Kette $6<8<9$, die erfüllt ist.
+Die letzte Aussage ist dagegen falsch, beispielsweise für $a=-1$ und $b=1$ ist $a^2=1$ nicht kleiner als $b^2=1$. Quadrieren von Termen ist keine Äquivalenzumformung.
+\end{MHint}
+\end{MExercise}
+
+
+\begin{MExercise}
+Welche Lösungsmengen besitzen die folgenden Ungleichungen?
+\begin{MExerciseItems}
+\item{$2x+1> 3x-1$ besitzt das Lösungsintervall \MEquationItem{$\ML$}{\MLIntervalQuestion{30}{(-infty,2)}{5}{TXH1}}.}
+\item{$-3x-\frac12\leq x+\frac12$ besitzt das Lösungsintervall \MEquationItem{$\ML$}{\MLIntervalQuestion{30}{[-1/4,infty)}{5}{TXH2}}.}
+\item{$x-\frac12\leq x+\frac12$ besitzt das Lösungsintervall \MEquationItem{$\ML$}{\MLIntervalQuestion{30}{(-infty,infty)}{5}{TXH3}}.}
+\end{MExerciseItems}
+\MInputHint{Geben Sie Intervalle in der Form \texttt{(a;b)} ein, für die Intervallgrenzen dürfen auch
+Brüche oder \texttt{unendlich} bzw. negativ \texttt{-unendlich} eingesetzt werden. Achten Sie darauf, ob die Randpunkte enthalten sind.}
+
+\begin{MHint}{Lösung}
+Umformen der ersten Ungleichung ergibt
+\begin{eqnarray*}
+&& 2x+1 > 3x-1\;\; \MSep+1\ \\
+&\Leftrightarrow& 2x+2 > 3x\;\; \MSep-2x\ \\
+&\Leftrightarrow&2 > x
+\end{eqnarray*}
+und damit das Lösungsintervall $\ML=(-\infty;2)$. Umformen der zweiten Ungleichung ergibt
+\begin{eqnarray*}
+&&-3x-\frac12\leq x+\frac12 \;\; \MSep +3x-\frac12\ \\
+&\Leftrightarrow&-1\leq 4x \;\; \MSep \cdot \frac14\ \\
+&\Leftrightarrow&-\frac14\leq  x
+\end{eqnarray*}
+und damit $\ML=[-\frac14;\infty)$. Umformen der dritten Ungleichung ergibt
+\begin{eqnarray*}
+&&x-\frac12\leq x+\frac12\;\; \MSep-x\ \\
+&\Leftrightarrow&-\frac12\leq \frac12\: .
+\end{eqnarray*}
+Diese Aussage ist unabhängig von $x\in\R$ immer erfüllt, also ist $\ML=\R=(-\infty;\infty)$ die Lösungsmenge.
+\end{MHint}
+\end{MExercise}
+
+\begin{MInfo}
+Eine Ungleichung in der Unbestimmten $x$ ist \MEntry{linear}{Ungleichung (linear)}, falls auf beiden Seiten der Ungleichung nur Vielfache von $x$ und Konstanten vorkommen.
+Jede lineare Ungleichung lässt sich durch Äquivalenzumformungen zu einer der aufgelösten Gleichungen aus \MRef{M03_Aufloesungen} umformen.
+\end{MInfo}
+
+\end{MXContent}
+
+\begin{MXContent}{Spezielle Umformungen}{Spezielle Umformungen}{STD}
+\MDeclareSiteUXID{VBKM03_SpezielleUmformungen}
+Die folgenden Äquivalenzumformungen sind nützlich, wenn die Unbestimmte im Nenner eines Ausdrucks auftritt. Sie dürfen aber nur unter bestimmten Voraussetzungen eingesetzt werden:
+
+\begin{MInfo}
+Unter der Vorbedingung, dass keiner der beteiligten Nenner den Wert Null annimmt (diese Fälle sind prinzipiell keine Lösungen)
+und dass beide Brüche das gleiche Vorzeichen haben,
+darf man auf beiden Seiten der Ungleichung den Kehrwert nehmen und dabei das Vergleichssymbol umdrehen.
+\end{MInfo}
+
+\begin{MExample}
+Beispielsweise ist die Ungleichung $\frac1{2x}\leq \frac1{3x}$ äquivalent zu $2x\geq 3x$ (Vergleichssymbol wurde gedreht) sofern $x\not=0$ ist. Die neue Ungleichung hat die Lösungsmenge $(-\infty;0]$, aber da
+der Fall $x=0$ ausgeschlossen wurde (und er auch nicht zum Definitionsbereich der ursprünglichen Ungleichung gehört) ist $L=(-\infty;0)$ die Lösungsmenge von $\frac1{2x}\leq \frac1{3x}$.
+\end{MExample}
+
+\begin{MExercise}
+Wie lauten die Lösungsintervalle dieser Ungleichungen?
+\begin{MExerciseItems}
+\item{$\frac1x\geq\frac13$ besitzt die Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(0;3]}{3}{KKL1}}.}
+\item{$\frac1x<\frac1{\sqrt{x}}$ besitzt die Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(1;infty)}{3}{KKL2}}.}
+\end{MExerciseItems}
+
+\begin{MHint}{Lösung}
+Bei der ersten Ungleichung ist $x=0$ nicht im Definitionsbereich, wir schließen diesen Wert daher aus. Ist $x>0$, so ist das Bilden der Kehrwerte und Umdrehen der Ungleichung
+erlaubt und ergibt $x\leq 3$. Zusammen mit der Vorbedingung erhalten wir das Lösungsintervall $\ML=(0;3]$. Für die $x<0$ darf man die
+Kehrwertregel nicht anwenden. Man sieht hier aber auch ohne Regel, dass kein $x<0$ eine Lösung sein kann, da dann auch $\frac1x$
+negativ und nicht größer oder gleich $\frac13$ ist.
+\ \\ \ \\
+Der Definitionsbereich der zweiten Ungleichung ist $(0,\infty)$, da nur für diese $x$ sowohl die Wurzel wie auch die Nenner zulässig sind.
+Das Bilden der Kehrwerte und Umdrehen der Ungleichung ist auf dem Definitionsbereich erlaubt und ergibt $x>\sqrt{x}$. Da $\sqrt{x}>0$ ist dürfen wir die gesamte
+Ungleichung durch $\sqrt{x}$ teilen und erhalten $\sqrt{x}>1$. Diese Ungleichung besitzt die Lösungsmenge $\ML=(1;\infty)$, die auch im Definitionsbereich enthalten ist.
+\end{MHint}
+
+\end{MExercise}
+
+Beim letzten Aufgabenteil ist zu beachten:
+
+\begin{MInfo}
+Das Quadrieren einer Ungleichung auf beiden Seiten ist keine Äquivalenzumformung und verändert unter Umständen die Lösungsmenge.
+\end{MInfo}
+
+Beispielsweise ist $x=-2$ keine Lösung von $x>\sqrt{x}$, aber sehr wohl von $x^2>x$. Diese Umformung darf man dennoch einsetzen, wenn man eine richtig formulierte Fallunterscheidung für die Umformung ansetzt und
+den Definitionsbereich der ursprünglichen Ungleichung beachtet. Diese Technik betrachten wir im nächsten Abschnitt genauer.
+
+\end{MXContent}
+
+\MSubsection{Umformen von Ungleichungen}
+\MLabel{M03_Umformen}
+
+\begin{MXContent}{Umformungen mit Fallunterscheidungen}{Fallunterscheidungen}{STD}
+\MDeclareSiteUXID{VBKM03_UmformungenFallunterscheidungen}
+Die einfachen linearen Umformungen aus dem vorangehenden Abschnitt sind Äquivalenzumformungen, sie verändern die Lösungsmenge der betrachteten Ungleichung nicht.
+Ist die Ungleichung jedoch nicht linear, so werden weitergehende Techniken zum Auflösen benötigt. Diese benötigen meist eine Fallunterscheidung in Abhängigkeit eines Vorzeichens,
+da sich im Gegensatz zu den Gleichungen aus Modul \MNRef{VBKM02} nun auch die Richtung der Ungleichung beim Umformen ändern kann.
+ 
+\begin{MInfo}
+Multipliziert man eine Ungleichung mit einem Term, der eine Unbestimmte $x$ enthält, so ist eine Fallunterscheidung zu führen und die Umformung für jeden Fall separat zu betrachten:
+\begin{itemize}
+\item{Für diejenigen $x$, für die der multiplizierte Term positiv ist, bleibt die Richtung der Ungleichung erhalten.}
+\item{Für diejenigen $x$, für die der multiplizierte Term negativ ist, wird das Vergleichssymbol umgedreht.}
+\item{Den Fall, dass der multiplizierte Term den Wert Null annimmt, muss bei der Umformung ausgeschlossen und ggf. separat betrachtet werden.}
+\end{itemize}
+\ \\ \ \\
+Die in den einzelnen Fällen gefundenen Lösungsmengen müssen wie bei der Auflösung von \MSRef{VBKM02_FallBetrag}{Betragsgleichungen} auf Verträglichkeit mit der Fallbedingung untersucht werden.
+\end{MInfo}
+
+Die Addition von Termen, welche die Unbestimmte enthalten, erfordert dagegen keine Fallunterscheidung.
+Umformungen mit Fallunterscheidungen sind meist notwendig, wenn die Unbestimmte im Nenner oder in zusammengesetzten Termen auftritt:
+
+\begin{MExample}
+Die Ungleichung $\frac1{2x}\leq 1$ kann vereinfacht werden, indem beide Seiten der Ungleichung mit dem Term $2x$ multipliziert werden:
+\begin{itemize}
+\item{Unter der Bedingung $x>0$ erhalten wir die neue Ungleichung $1\leq 2x$, sie hat die Lösungsmenge $\ML_1=[\frac12;\infty)$. Die Bedingung $x>0$ ist für alle Elemente der Lösungsmenge erfüllt.}
+\item{Unter der Bedingung $x<0$ erhalten wir die neue Ungleichung $1\geq 2x$, sie hat die Lösungsmenge $(-\infty;\frac12]$. Wegen der zusätzlichen Bedingung $x<0$ sind in diesem Fall aber nur die Elemente von $L_2=(-\infty,0)$ Lösungen.}
+\item{Der Einzelfall $x=0$ ist keine Lösung, da er nicht zum Definitionsbereich der Ungleichung gehört. In diesem Fall darf die Multiplikation mit $x$ nicht durchgeführt werden.}
+\end{itemize}
+Insgesamt erhalten wir also die Vereinigungsmenge $L=L_1\cup L_2=\R\backslash[0;\frac12)$ als Lösungsmenge:
+\ \\ \ \\
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Enden:
+\draw [line width=2.0pt,color=blue] (-1,0.0)-- (0,0.0);
+\draw [line width=2.0pt,color=blue] (0.5,0.0)-- (5,0.0);
+\draw [fill = blue] (0.5,0) circle (1.5pt);
+\draw [fill = white] (0,0) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+\end{MExample}
+
+Dabei gilt wie im Modul \MNRef{VBKM02} für die Bildung der Lösungsmenge:
+
+\begin{MInfo}
+Für jeden Fall ist die erhaltene Lösungsmenge auf die Teilmenge zu reduzieren, die der Fallbedingung genügt. Die Vereinigung dieser reduzierten Teilmengen ist die Lösungsmenge der ursprünglichen Ungleichung.
+Die Fälle müssen so eingeteilt werden, dass alle Elemente des Definitionsbereichs der Ungleichung abgedeckt sind.
+\end{MInfo}
+
+\end{MXContent}
+
+\begin{MExercises}
+\MDeclareSiteUXID{VBKM03_Fallunterscheidungen_Exercises}
+Wird mit zusammengesetzten Termen multipliziert, so ist genauer zu untersuchen, für welche $x$ die Fallunterscheidung vorgenommen werden muss:
+
+\begin{MExercise}
+Untersucht werden soll die Ungleichung $\frac1{4-2x}<3$. Zunächst besitzt sie den Definitionsbereich $D=\R\backslash \lbrace 2\rbrace$, da nur für diese $x$ der Nenner zulässig ist.
+Für die Multiplikation mit dem Term $4-2x$ gibt es drei Fälle. Füllen Sie den Lückentext dazu passend aus:
+\begin{MExerciseItems}
+\item{Auf dem Intervall \MLIntervalQuestion{15}{(-infty,2)}{4}{GOM1} ist der Term positiv, das Vergleichssymbol bleibt erhalten und die neue Ungleichung lautet $1\:<\:$\MSimplifyQuestion{15}{3*(4-2*x)}{5}{x}{5}{0}.
+Lineares Umformen ergibt die Lösungsmenge \MEquationItem{$\ML_1$}{\MLIntervalQuestion{20}{(-infty,11/6)}{3}{MIXGOM}}. Die Elemente der Menge erfüllen die Vorbedingung.}
+\item{Auf dem Intervall \MLIntervalQuestion{15}{(2,infty)}{4}{GOM2} ist der Term negativ, das Vergleichssymbol wird gedreht. Die neue Ungleichung hat zunächst die Lösungsmenge \MIntervalQuestion{20}{(11/6,infty)}{4},
+wegen der Vorbedingung ist aber nur die Teilmenge \MEquationItem{$\ML_2$}{\MLIntervalQuestion{20}{(2,infty)}{4}{GOM3}} davon zulässig.}
+\item{Der Einzelwert $x=2$ ist keine Lösung der ursprünglichen Ungleichung, da er nicht zum \MLQuestion{25}{Definitionsbereich}{UGX} gehört.}
+\end{MExerciseItems}
+\ \\
+Skizzieren Sie die Lösungsmenge der Ungleichung und markieren Sie die Randpunkte.
+\ \\ \ \\
+\begin{MHint}{Lösung}
+Auf dem Intervall $(-\infty;2)$ ist der Term positiv mit Lösungsmenge $(-\infty;\frac{11}{6})$.
+Auf dem Intervall $(2;\infty)$  ist der Term dagegen negativ, das Vergleichssymbol wird gedreht. Die neue Ungleichung hat zunächst die Lösungsmenge $(\frac{11}{6};\infty)$,
+wegen der Vorbedingung $x>2$ ist aber nur die Teilmenge $\ML_2=(2;\infty)$ davon zulässig.
+Insgesamt ist die Vereinigungsmenge $\ML=\ML_1\cup\ML_2=\R\backslash [\frac{11}6;2]$ die Lösungsmenge der ursprünglichen Ungleichung, die Randpunkte gehören nicht dazu:
+\ \\
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Enden:
+\draw [line width=2.0pt,color=blue] (-1,0.0)-- (1.83,0.0);
+\draw [line width=2.0pt,color=blue] (2,0.0)-- (5,0.0);
+\draw [fill = white] (1.83,0) circle (1.5pt);
+\draw [fill = white] (2,0) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Die Lösungsmenge der Ungleichung $\frac{x-1}{x-2}\leq 1$ ist \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(-infty,2)}{4}{IGU1}}.
+\ \\ \ \\
+\begin{MHint}{Lösung}
+Der Definitionsbereich der Ungleichung ist $D=\R\backslash\lbrace 2\rbrace$.
+\begin{itemize}
+\item{Im Fall $x>2$ multiplizieren wir mit $x-2$ und erhalten $x-1\leq x-2$, was äquivalent zur falschen Aussage $-1\leq -2$ ist. Der erste Fall trägt nichts zur Lösungsmenge bei.}
+\item{Im Fall $x<2$ multiplizieren wir mit $x-2$ und erhalten $x-1\geq x-2$, was äquivalent zur wahren Aussage $-1\geq -2$ ist. Wegen der Vorbedingung ist das Lösungsintervall für diesen Fall aber nur $\ML_2=(-\infty;2)$.}
+\item{Der Einzelwert $x=2$ ist keine Lösung.}
+\end{itemize}
+Die Lösungsmenge ist also insgesamt $\ML=(-\infty;2)$ ohne die Randpunkte (auch wenn die Ursprungsungleichung mit $\leq$ aufgebaut war).
+\end{MHint}
+\end{MExercise}
+
+
+\begin{MExercise}
+Die Lösungsmenge der Ungleichung $\frac1{1-\sqrt{x}}<1+\sqrt{x}$ ist \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(1,infty)}{4}{IGU2}}.
+\ \\ \ \\
+\begin{MHint}{Lösung}
+Der Definitionsbereich der Ungleichung ist $D=[0;\infty)\backslash \lbrace 1\rbrace$,
+da nur für diese $x$ die Wurzeln und der Nenner zulässig sind.
+\begin{itemize}
+\item{Im Fall $0\leq x<1$ multiplizieren wir mit $1-\sqrt{x}$ und erhalten $1<(1+\sqrt{x})(1-\sqrt{x})$, was äquivalent zur Aussage $1<1-x$ ist. Diese ist für $x<0$ efüllt, aber diese $x$ verletzen die Fallbedingung und kommen daher nicht in die Lösungsmenge.}
+\item{Im Fall $x>1$ multiplizieren wir mit $1-\sqrt{x}$ und erhalten $1>1-x$, was äquivalent zu $x>0$ ist. Aber nur die $x$ aus $(1;\infty)$ erfüllen auch die Fallbedingung, also ist $\ML=(1;\infty)$ das einzige Lösungsintervall für die ursprüngliche Ungleichung.}
+\item{Der Einzelwert $x=1$ ist keine Lösung.}
+\end{itemize}
+\end{MHint}
+\end{MExercise}
+
+
+\end{MExercises}
+
+\MSubsection{Betragsungleichungen und quadratische Ungleichungen}
+\MLabel{M03_Betragsungleichungen}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM03_Betragsungleichungen_Intro}
+Analog zum Vorgehen in Modul \MNRef{VBKM02} und dem vorangehenden Abschnitt löst man \MEntry{Beträge}{Ungleichungen (Beträge)} in Ungleichungen durch eine Fallunterscheidung auf:
+
+\begin{MInfo}
+Eine Ungleichung mit einem Betragsausdruck wird in zwei Fälle unterteilt:
+\begin{itemize}
+\item{Für diejenigen $x$, für die der Term im Betrag nicht negatv ist, kann der Betrag weggelassen bzw. durch einfache Klammern ersetzt werden.}
+\item{Für diejenigen $x$, für die der Term im Betrag negativ ist, wird der Term in Klammern gesetzt und negiert.}
+\end{itemize}
+\ \\
+Die Lösungsmengen aus den Fällen werden wie im \MSRef{VBKM02_FallBetrag}{vorangehenden Modul} eingeschränkt und zur Lösungsmenge für die ursprüngliche Ungleichung vereinigt.
+\end{MInfo}
+
+\begin{MExample}
+Die Betragsungleichung $|4x-2|<1$ teilt man in zwei Fälle auf:
+\begin{itemize}
+\item{Für $x\geq \frac12$ ist der Term im Betrag nicht negativ: In diesem Fall ist die Ungleichung äquivalent zu $(4x-2)<1$ bzw. zu $x<\frac34$. Wegen der Bedingung ist nur $\ML_1=[\frac12;\frac34)$ Lösungsmenge für diesen Fall.}
+\item{Für $x<\frac12$ ist der Term im Betrag negativ: In diesem Fall ist die Ungleichung äquivalent zu $-(4x-2)<1$ bzw. zu $x>\frac14$. Nur die Teilmenge $\ML_2=(\frac14;\frac12)$ erfüllt die Bedingung und ist Lösung.}
+\end{itemize}
+Vereinigen der beiden Lösungsintervalle ergibt die Lösungsmenge $\ML=(\frac14;\frac34)$ für die ursprüngliche Betragsungleichung:
+\ \\ \ \\
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Enden:
+\draw [line width=2.0pt,color=blue] (0.25,0.0)-- (0.75,0.0);
+\draw [fill = white] (0.25,0) circle (1.5pt);
+\draw [fill = white] (0.75,0) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+\end{MExample}
+
+\begin{MExercise}
+Die Betragsungleichung $|x-1|<2|x-1|+x$ teilt man in zwei Fälle auf:
+\begin{MExerciseItems}
+\item{Auf dem Intervall \MLIntervalQuestion{20}{[1,infty)}{3}{UGL1} sind beide Terme in den Beträgen nicht negativ. Die Lösungsmenge der Ungleichung ist in diesem Fall \MEquationItem{$\ML_1$}{\MLIntervalQuestion{20}{[1,infty)}{3}{UGL2}}.}
+\item{Auf dem Intervall \MLIntervalQuestion{20}{(-infty,1)}{3}{UGL3} sind beide Terme in den Beträgen negativ.  Die Lösungsmenge der Ungleichung ist in diesem Fall \MEquationItem{$\ML_2$}{\MLIntervalQuestion{20}{(-infty,1)}{3}{UGL4}}.}
+\end{MExerciseItems}
+Zusammensetzen der beiden Intervalle ergibt das Lösungsintervall \MEquationItem{$\ML$}{\MLIntervalQuestion{25}{(-infty,infty)}{4}{UGL5}}.
+\ \\ \ \\
+\begin{MHint}{Lösung}
+Für $x\in [1;\infty)$ sind beide Terme in den Beträgen nicht negativ, wir erhalten die Ungleichung $x-1<2(x-1)+x$, welche äquivalent zu $x>\frac12$ ist. Wegen der Fallbedingung erhalten wir $\ML_1=[1;\infty)$ als Lösungsmenge.
+Für $x\in(-\infty;1)$ sind beide Terme in den Beträgen negativ und wir erhalten $-(x-1)<-2(x-1)+x$. Diese Ungleichung ist äquivalent zur immer richtigen Ungleichung $x-1<x$. Damit ist $\ML_2=(-\infty;1)$ die Lösungsmenge des zweiten Falls.
+\ \\ \ \\
+Wegen $\ML=\ML_1\cup \ML_2=\R=(-\infty;\infty)$ ist die Ungleichung immer erfüllt.
+\end{MHint}
+\end{MExercise}
+
+\end{MIntro}
+
+\begin{MXContent}{Quadratische Ungleichungen}{Quadratische Ungleichungen}{STD}
+\MDeclareSiteUXID{VBKM03_QuadratischeUngleichungen}
+\begin{MInfo}
+Eine Ungleichung heißt \MEntry{quadratisch}{Ungleichung (quadratisch)} in $x$, falls sie sich zu $x^2 + p x + q < 0$ (oder mit anderen Vergleichssymbolen) umformen lässt.
+\end{MInfo}
+\ \\ \ \\
+Quadratische Ungleichungen kann man daher auf zwei Weisen lösen: durch Untersuchung von Nullstellen und Öffnungsverhalten des Polynoms, sowie durch quadratische Ergänzung.
+Die quadratische Ergänzung ist meist einfacher:
+
+\begin{MInfo}
+Bei der \MEntry{quadratischen Ergänzung}{Quadratische Ergänzung (Ungleichungen)} wird versucht, die Ungleichung auf die Form $(x+a)^2<b$ zu bringen. Ziehen der Wurzel führt dann auf die Betragsgleichung
+$|x+a|<\sqrt{b}$ mit der Lösungsmenge $(-a-\sqrt{b};-a+\sqrt{b})$ falls $b\geq 0$ ist, ansonsten ist die Gleichung unlösbar.
+\ \\ \ \\
+Bei umgekehrter Richtung der Ungleichung besitzt $|x+a|>\sqrt{b}$ die Lösungsmenge $(-\infty;-a-\sqrt{b})\cup (-a+\sqrt{b};\infty)$. Für $\leq$ und $\geq$ sind die Randpunkte entsprechend mit aufzunehmen.
+\end{MInfo}
+
+Dabei ist die Rechenregel $\sqrt{x^2}=|x|$ aus Modul \MNRef{VBKM01} zu beachten.
+
+\begin{MExample}
+Zu lösen sei die Ungleichung $2x^2\geq 4x+2$. Sortieren der Terme auf die linke Seite und Division durch $2$ ergibt $x^2-2x-1\geq0$. Quadratische Ergänzung zur zweiten binomischen Formel auf der linken Seite ergibt
+die äquivalente Ungleichung $x^2-2x+1\geq 2$, bzw. $(x-1)^2\geq 2$.
+Ziehen der Wurzel ergibt die Betragsungleichung $|x-1|\geq\sqrt{2}$ mit Lösungsmenge $\ML=(-\infty;1-\sqrt{2}]\cup [1+\sqrt{2};\infty)$.
+\end{MExample}
+
+Andererseits kann man die Ungleichung $x^2-2x-1\geq0$ auch wie folgt untersuchen: Die linke Seite beschreibt eine nach oben geöffnete Parabel, deren Nullstellen $x_{1,2}=1\pm \sqrt2$ man mit
+der $p q$-Formel erhält:
+\begin{center}
+\MUGraphicsSolo{parabelu.png}{width=0.4\linewidth}{width:400px}
+\end{center}
+Die Ungleichung $x^2-2x-1\geq0$ wird wegen der Öffnung nach oben von den Parabelästen links und rechts von den Nullstellen erfüllt, also von der Menge $\ML=(-\infty;1-\sqrt{2}]\cup [1+\sqrt{2};\infty)$.
+
+\begin{MInfo}
+\MLabel{M03_InfoFormen}
+Die quadratische Ungleichung $x^2 +p x +q <0$ (oder andere Vergleichssymbole) besitzt in Abhängigkeit der Nullstellen von $x^2+ p x + q$, der Öffnung der Parabel sowie der Richtung der Ungleichung eine der folgenden Lösungsmengen:
+\begin{itemize}
+\item{die reellen Zahlen $\R$,}
+\item{zwei Äste $(-\infty;x_1)\cup (x_2;\infty)$ (ggf. mit beiden Randpunkten enthalten bei $\leq$ und $\geq$),}
+\item{ein Intervall $(x_1;x_2)$ (ggf. mit beiden Randpunkten enthalten bei $\leq$ und $\geq$),}
+\item{einen Einzelpunkt $x_1$,}
+\item{die punktierte Menge $\R\backslash\lbrace x_1\rbrace$,}
+\item{die leere Lösungsmenge $\lbrace\rbrace$.}
+\end{itemize}
+\end{MInfo}
+
+Der folgende Lückentext beschreibt die Lösung einer quadratischen Ungleichung über die Untersuchung der Parabel:
+
+\begin{MExercise}
+Zu lösen sei $x^2+6x< -5$. Umformen ergibt die Ungleichung \MLSimplifyQuestion{15}{x^2+6*x+5}{5}{x}{5}{1}{OBXP1}$<0$.
+Mit der $p q$-Formel finden wir die Nullstellenmenge
+\MLParsedQuestion{9}{-1,-5}{3}{PXL}. Die linke Seite beschreibt eine nach \MLQuestion{10}{oben}{ObenX} geöffnete Parabel.
+Sie gehört zu einer Ungleichung mit dem Vergleichssymbol $<$, also ist die
+Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{15}{(-5,-1)}{5}{INVX}}.
+\ \\ \ \\
+\begin{MHint}{Lösung}
+Umformen ergibt $x^2+6x+5<0$. Mit der $p q$-Formel finden wir die Nullstelle $x_{1}=-3\pm\sqrt{9-5}$, also $x_1=-1$ und $x_2=-5$.
+Die linke Seite beschreibt eine nach oben geöffnete Parabel,
+sie erfüllt die Ungleichung mit $<$, also nur auf dem Intervall $(-5;-1)$ ohne die Randpunkte.
+\end{MHint}
+\end{MExercise}
+
+\end{MXContent}
+
+\begin{MXContent}{Weitere Ungleichungstypen}{Weitere Ungleichungstypen}{STD}
+\MDeclareSiteUXID{VBKM03_WeitereUngleichungstypen}
+Viele weitere Typen von Ungleichungen lassen sich in quadratische Ungleichungen umformen,
+dabei sind jedoch manchmal Fallunterscheidungen sowie ausgeschlossene Werte im Definitionsbereich zu beachten:
+
+\begin{MInfo}
+Eine Ungleichung mit \MEntry{Brüchen}{Ungleichung (Brüche)}, bei der $x$ im Nenner zusammangesetzter Ausdrücke vorkommt, kann durch Multiplikation mit dem Hauptnenner
+in eine bruchfreie Form gebracht werden. Dabei müssen die Nullstellen der Nenner aber aus dem Definitionsbereich der neuen
+Ungleichung ausgeschlossen werden.
+\ \\ \ \\
+Zudem entstehen bei der Multiplikation mit Termen Fallunterscheidungen in Abhängigkeit von ihrem Vorzeichen.
+\end{MInfo}
+
+\begin{MExample}
+Die Ungleichung $2-\frac1x\leq x$ kann man durch Multiplikation mit $x$ umformen, dabei sind drei Fälle zu unterscheiden:
+\begin{itemize}
+\item{Fall $x>0$, dann bleibt die Richtung der Ungleichung erhalten. Die neue Ungleichung lautet $2x-1\leq x^2$ und ist äquivalent zu $x^2-2x+1\geq 0$ bzw. $(x-1)^2\geq 0$. Diese Ungleichung ist immer erfüllt.
+Wegen der Fallbedingung erhalten wir die Lösungsmenge $\ML_1=(0;\infty)$.}
+\item{Fall $x<0$, dann kehrt sich die Richtung der Ungleichung um. Die neue Ungleichung lautet $2x-1\geq x^2$ und ist äquivalent zu $x^2-2x+1\leq 0$ bzw. $(x-1)^2\leq 0$. Diese Ungleichung ist nur für $x=1$ erfüllt.}
+\item{Der Einzelwert $x=0$ ist nicht Teil des Definitionsbereichs der ursprünglichen Ungleichung und damit keine Lösung.}
+\end{itemize}
+Insgesamt erhalten wir die Vereinigungsmenge $\ML=(0;\infty)$ als Lösungsmenge der ursprünglichen Ungleichung.
+\end{MExample}
+
+Über gemischte Bruch- und Wurzelterme definierte Ungleichungen haben oft Lösungsmengen, die nicht mehr die Formen aus Info \MRef{M03_InfoFormen} besitzen:
+
+\begin{MExample}
+Zu lösen sei die Ungleichung $\sqrt{x}+\frac1{\sqrt{x}}>2$. Der Definitionsbereich der Ungleichung ist $(0;\infty)$.
+Multiplikation mit $\sqrt{x}$ ergibt die Ungleichung $x+1>2\sqrt x$. Hier ist keine Fallunterscheidung notwendig, da $\sqrt{x}>0$ auf dem Definitionsbereich ist.
+Umformen ergibt $x-2\sqrt{x}+1>0$ bzw. $(\sqrt{x}-1)^2>0$, was für alle $x\not=1$ aus dem Definitionsbereich erfüllt ist.
+Also ist die Lösungsmenge der ursprünglichen Ungleichung $\ML=(0;\infty)\backslash\lbrace 1\rbrace$:
+\ \\ \ \\
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Enden:
+\draw [line width=2.0pt,color=blue] (0,0.0)-- (1,0.0);
+\draw [line width=2.0pt,color=blue] (1,0.0)-- (5,0.0);
+\draw [fill = white] (0,0) circle (1.5pt);
+\draw [fill = white] (1,0) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+
+\end{MExample}
+
+\end{MXContent}
+
+
+\MSubsection{Abschlusstest}
+
+\begin{MTest}{Abschlusstest Modul 3}
+\MLabel{M03_Abschlusstest}
+\MDeclareSiteUXID{VBKM03_Abschlusstest}
+
+\begin{MExercise}
+Bestimmen Sie den Parameter $\alpha$, so dass die Ungleichung $2x^2\leq x-\alpha$ genau eine Lösung hat:
+\begin{MExerciseItems}
+\item{Dafür ist \MEquationItem{$\alpha$}{\MLParsedQuestion{10}{1/8}{3}{PMA1}} einzusetzen.}
+\item{In diesem Fall ist \MEquationItem{$x$}{\MLParsedQuestion{10}{1/4}{3}{PMA2}} die einzige Lösung der Ungleichung.}
+\end{MExerciseItems}
+\end{MExercise}
+
+
+\begin{MExercise}
+Finden Sie eine m\"oglichst einfache Funktion $g(x)$ mit einem Betragsterm, die folgenden Funktionsgraph besitzt:
+\MUGraphics{abs3.png}{width=0.5\linewidth}{Funktionsgraph von $g(x)$.}{width:300px}
+Versuchen Sie, eine Darstellung der Form $g(x)=|x+a|+b x+c$ zu finden. Am Knick im Graph k\"onnen Sie erkennen, wie der Term innerhalb des Betrags aussieht.
+
+\begin{MExerciseItems}
+\item{Bestimmen Sie anhand des Graphen die Lösungsmenge der Ungleichung $g(x)\leq x$.\\Es ist \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(-infty;1]}{5}{AUX1}}.}
+\item{\MEquationItem{$g(x)$}{\MSimplifyQuestion{20}{abs(x-1)+2*x-1}{10}{x}{10}{0}}. \\\MInputHint{Beträge können in der Form \texttt{betrag(x-a)} oder \texttt{abs(x-a)} eingegeben werden.}}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Für welche positiven reellen Zahlen $x$ sind die folgenden Ungleichungen erfüllt?
+\begin{MExerciseItems}
+\item{$|3x-6|\leq x+2$ hat die Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{16}{[1,4]}{4}{COSH1}} (als Intervall geschrieben).}
+\item{$\frac{x+1}{x-1}\leq 2$ hat die Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{16}{[4,infty)}{4}{COSH2}} (als Intervall geschrieben).}
+\end{MExerciseItems}
+\MInputHint{Offene Intervalle können in der Form $(3;5)$, geschlossene Intervalle in der Form $[3;5]$ eingegeben werden. Unendlich kann man als Wort oder kurz als \texttt{infty} schreiben.
+Verwenden Sie nicht die Schreibweise $]a;b[$ für offene Intervalle. Mengen können in aufzählender Form $\lbrace 1;2;3\rbrace$ eingegeben werden. Die Mengenklammer erhalten Sie mit AltGr+7 bzw. AltGr+0.}
+\end{MExercise}
+
+\end{MTest}
+
+\newpage
+\MPrintIndex
+
+\end{document}

@@ -1,0 +1,660 @@
+\input{mintmod.tex}
+\MPragma{MathSkip}
+
+
+%Einkommentieren um automatisiert pngs zu exportieren
+%\tikzexternalize
+
+\begin{document}
+
+\MSection{Onlinetests zum Präsenzvorkurs am KIT}
+\MSetSectionID{testkit}
+
+\begin{MSectionStart}
+
+\textbf{Autorenversion, nicht zur Veröffentlichung vorgesehen}\\
+Die Tests sollen an folgenden Terminen gestellt werden:
+\begin{itemize}
+\item{\MSRef{L_TEST01}{Test 1} (Onlinemodule 1,2,3: Elementares Rechnen, Gleichungen, Ungleichungen inklusive Potenzen und Wurzeln aber ohne Funktionsbegriff) am 12. September \textit{nach} dem letzten Tutorium der ersten Woche,}
+\item{\MSRef{L_TEST02}{Test 2} (Onlinemodul 5: Elementare Geometrie) am 17.09.2024,}
+\item{\MSRef{L_TEST03}{Test 3} (Onlinemodul 6: Elementare Funktionen) am 19.09.2014,}
+\item{\MSRef{L_TEST04}{Test 4} (Onlinemodul 7: Differentialrechnung) am 23. September passend zum Onlinemodul an diesem Termin,}
+\item{\MSRef{L_TEST05}{Test 5} (Onlinemodul 8: Integralrechnung) inklusive Zusatzaufgaben zu partieller Integration und Substitution am 25.09.2014,}
+\item{\MSRef{L_TEST06}{Test 6} (Onlinemodul 4: Lineare Gleichungssysteme) am 26.09.2014.}
+% \item{\MSRef{L_TEST07}{Test 7} (Onlinemodul 9: Vektorgeometrie) am 30. September passend zum Onlinemodul an diesem Termin.}
+\end{itemize}
+Die Onlinemodule 5 (Elementare Geometrie) und 10 (Orientierung im 3D-Koordinatensystem) werden nicht separat geprüft, einzelne Fragen daraus tauchen in Test 6 auf.
+\ \\ \ \\
+Jeder Test besteht aus einem offenen Teil (Eingabefelder melden während der Eingabe ob es richtig ist oder nicht) sowie einem geschlossenen Teil (Student kann Test nur als ganzes einreichen
+und bekommt eine Punktzahl die abgespeichert wird). In den späteren öffentlichen Onlinemodulen ab 2015 ist der offene Teil der Eingangstest, der geschlossene Teil ist der Ausgangstest.
+\end{MSectionStart}
+
+% Test 1 ausgelagert
+
+\MSubsection{Test 2}\MLabel{L_TEST02}
+\begin{MXContent}{Test 2 offen}{Test 2 offen}{exclam}
+
+\begin{MExercise}
+In der folgenden Tabelle sind Winkel in Grad- und Bogenmaß gegeben, teilweise mit allgemeinen Termen. Füllen Sie die fehlenden Felder aus:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Gradmaß & Bogenmaß \\ \hline
+$120^\circ$ & $\frac23\pi$  \ \\
+$10^\circ$ & \MParsedQuestion{25}{1/(18)*pi}{5} \\
+\MParsedQuestion{25}{((50)/(2*pi))*360}{10}$^\circ$ & $50$ \\
+$60^\circ+\alpha$ & \MSimplifyQuestion{25}{1/3*pi+pi/(180)*alpha}{5}{alpha}{5}{0} \\
+\MSimplifyQuestion{25}{180/pi*beta-90}{5}{beta}{5}{0}$^\circ$ & $\beta-\frac12\pi$ \\
+\hline
+\end{tabular}
+\end{center}
+\ \\
+\MInputHint{Vergessen Sie nicht, Terme in Zähler und Nenner zu Klammern, beispielsweise tippt man $\frac{11}{12}\pi$ als \texttt{11/12*pi} aber $\frac{2\pi}{5}$ tippt man als \texttt{(2*pi)/5} ein.
+Griechische Buchstaben kann man einfach als Wort eintippen, z.B. \texttt{omega} für $\omega$.}
+\end{MExercise}
+
+\begin{MExercise}
+In der folgenden Tabelle sind für ein rechtwinkliges Dreieck einige Größen gegeben, berechnen Sie die übrigen Größen. Verwenden Sie für die Winkel stets das Bogenmaß:\\
+\MInputHint{Geben Sie Kreiszahl einfach als Text ein, zum Beispiel tippen Sie $\frac23\pi$ ein als \texttt{2/3*pi}.}
+\ \\
+\MUGraphics{dreieck_einfach.png}{width=0.4\linewidth}{Winkel erhalten die griechischen Buchstaben zu den gegenüberliegenden Seiten\MCopyrightLabel{VBKM05_Abbildung_dreieck_einfach}}{width:400px}
+\MCopyrightNotice{\MCCLicense}{http://commons.wikimedia.org/wiki/File:Dreieck.svg#mediaviewer/Datei:Dreieck.svg}{http://de.wikipedia.org/wiki/Benutzer:Thire}{Modifiziert mit GIMP}{VBKM05_Abbildung_dreieck_einfach}
+%\MCopyrightHTML{CC BY-SA 5.0}{http://commons.wikimedia.org/wiki/File:Dreieck.svg#mediaviewer/Datei:Dreieck.svg}{http://de.wikipedia.org/wiki/Benutzer:Thire}
+
+\ \\ \ \\
+{\color{red}Zur Erinnerung: Bei dieser Aufgabe ist die geometrische Definition eines Winkels im rechtwinkligen Dreieck als $\Mdfrac{\text{Gegenkathete}}{\text{Hypothenuse}}$ einzusetzen.}
+\ifttm
+\def\VBKMFUENFWIDTHDREIECKE{10}
+\else
+\def\VBKMFUENFWIDTHDREIECKE{5}
+\fi
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+$a$ & $b$ & $c$ & $\alpha$ & $\beta$ & $\gamma$& $\sin(\alpha)$ & $\sin(\beta)$ & $\sin(\gamma)$ \\ \hline
+$1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
+$1$ & $1$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(2)}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5} & $\frac12\pi$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5}   \\ 
+$3$ & $4$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{5}{5} & $*$ & $*$ & $\frac12\pi$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{4/5}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{3/5}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5} \\
+\MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(15)}{5} & $\sqrt7$ & $\sqrt8$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/2}{5} & $*$ & $*$ & $1$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(8/15)}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(7/15)}{5} \\
+\MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{9/sqrt(3)}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{9/sqrt(3)}{5} & $9$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/6}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/6}{5}& \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{2/3*pi}{5}& $\frac12$ & $\frac12$ & $*$\\
+\hline
+\end{tabular}
+\end{center}
+\ \\
+\MInputHint{Sie können Wurzeln in den Lösungen stehen lassen (z.B. \texttt{sqrt(2/3)} für $\sqrt{\frac23}$), aber Sinusausdrücke müssen Sie auswerten.}
+\ \\ \ \\
+Die mit $*$ gekennzeichneten Felder müssen nicht ausgefüllt werden.
+
+% \begin{MSolution}
+% Die ausgefüllte Tabelle lautet wie folgt:
+% \begin{center}
+% \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+% \hline
+% $a$ & $b$ & $c$ & $\alpha$ & $\beta$ & $\gamma$& $\sin(\alpha)$ & $\sin(\beta)$ & $\sin(\gamma)$ \\ \hline
+% $1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
+% $1$ & $1$ & $\sqrt2$ & $\frac14\pi$ & $\frac14\pi$ & $\frac12\pi$ & $\frac1{\sqrt2}$ & $\frac1{\sqrt2}$ & $1$   \\ 
+% $3$ & $4$ & $5$ & $*$ & $*$ & $\frac12\pi$ & $\frac45$ & $\frac35$ & $1$ \\
+% $\sqrt{15}$ & $\sqrt7$ & $\sqrt8$ & $\frac12\pi$ & $*$ & $*$ & $1$ & $\sqrt{8/15}$ & $\sqrt{7/15}$ \\
+% $\frac{9}{\sqrt3}$ & $\frac{9}{\sqrt3}$ & $9$ & $\frac16\pi$ &$\frac16\pi$ & $\frac23\pi$ & $\frac12$ & $\frac12$ & $*$\\
+% \hline
+% \end{tabular}
+% \end{center}
+% In der dritten Zeile benutzt man den rechten Winkel $\gamma=\frac12\pi$, der über den Satz von Pythagoras auf $c=\sqrt{a^2+b^2}=\sqrt2$ führt.
+% Das Dreieck ist gleichschenklig, also auch $\alpha=\beta$. Da die Winkelsumme
+% im Dreieck $\pi$ beträgt, muss $\alpha=\beta=\frac14\pi$ sein. In den beiden letzten Lösungsfeldern ist dann $\sin(\frac14\pi)=\frac{\text{Gegenkathete}}{\text{Hypothenuse}}=\frac1{\sqrt2}$.
+% \ \\ \ \\
+% In der vierten Zeile ist das Dreieck rechtwinklig bei $\gamma=\pi$ und der Satz des Pythagoras führt auf $c=\sqrt{a^2+b^2}=5$. Aus den Seiten kann man die Sinuswerte der Winkel bestimmen: $\sin(\alpha)=\frac45$, $\sin(\beta)=\frac35$ und $\sin(\gamma)=1$.
+% \ \\ \ \\
+% In der fünften Zeile ist das Dreieck wieder rechtwinklig, diesmal aber bei $\alpha=\pi$, daher spielen die Seiten nun andere Rollen: $a$ ist die Länge der Hypothenuse.
+% Der Satz des Pythagoras in dieser Situation liefert $a=\sqrt{b^2+c^2}=\sqrt{15}$. Da alle Seiten vorliegen, können wir wieder die Winkel bestimmen (jetzt mit $a$ als Hypothenuse): $\sin(\alpha)=1$, $\sin(\beta)=\sqrt{\frac{8}{15}}$ und $\sin(\gamma)=\sqrt{\frac{}{15}}$.
+% \ \\ \ \\
+% In der letzten Zeile rechnet man aus $\sin(\alpha)=\sin(\beta)=\frac12$ die Winkel $\alpha=\beta=\frac16\pi$ aus. Wegen der Winkelsumme $\alpha+\beta+\gamma=\pi$ folgt $\gamma=\pi-\frac13\pi=\frac23\pi$.
+% Dieses Dreieck ist gleichschenklig, aber nicht rechtwinklig, wir dürfen die trigonometrischen Funktionen daher nicht direkt an den Seiten ansetzen. Als Hilfmittel kann man die Höhe auf der Seite $c$
+% benutzen, die das Dreieck in zwei rechtwinklige Dreiecke einteilt:
+% 
+% \MUGraphics{dreieck_haelfte.png}{width=0.2\linewidth}{Einteilung eines gleichschenkligen Dreiecks in zwei rechtwinklige Dreiecke.}{width:150px}
+% %\MCopyrightHTML{Wikipedia verändert}{<a href="http://commons.wikimedia.org/wiki/File:Isosceles-triangle-tikz.svg#mediaviewer/Datei:Isosceles-triangle-tikz.svg">Isosceles-triangle-tikz</a> von <a href="//commons.wikimedia.org/wiki/User:MartinThoma" title="User:MartinThoma">MartinThoma</a> - <span class="int-own-work">Eigenes Werk</span>. Lizenziert unter <a title="Creative Commons Attribution 3.0" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> über <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>}
+% 
+% Im linken Teildreieck gibt es einen rechten Winkel, dort ist nun $b$ die Hypothenuse und Ankathete von $\alpha$ besitzt die bekannte Länge $\frac{9}{2}$. Wir wissen auch $\cos(\frac16\pi)=\frac12\sqrt3$, damit kann man
+% nach $b$ auflösen:
+% $$
+% \frac12\sqrt3 \;=\; \cos(\frac16\pi) \;=\; \frac{\text{Ankathete im Teildreieck}}{\text{Hypothenuse im Teildreieck}} \;=\; \frac{\frac92}{b} \;\; \Rightarrow\;\;
+% b \;=\; \frac{9}{\sqrt3}\: .
+% $$
+% und weil das ursprüngliche Dreieck gleichschenklig ist gilt auch $a=\frac{9}{\sqrt3}$.
+% \end{MSolution}
+
+\end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie die Verkettung $h=f\circ g\colon\R\to\R$ (Erläuterung: $h(x)=(f\circ g)(x)=f(g(x))$) der Funktionen
+\[
+ \function{f}{\R}{\R}{x}{C\cdot\sin(x)}
+\]
+und
+\[
+ \function{g}{\R}{\R}{x}{B\cdot x+\pi.}
+\]
+Antwort: $h(x)$ = \MSimplifyQuestion{20}{C*sin(B*x+pi)}{10}{x,B,C}{4}{0}
+\ \\ \ \\
+Bestimmen Sie nun die beiden Parameter $B,C\in\R$, so dass die durch $h$ beschriebene Sinusschwingung diesen Graph besitzt:
+ \begin{center}
+ \MUGraphics{sinusfrage.png}{width=0.4\linewidth}{Eine Sinusschwingung.\MCopyrightLabel{VBKM06_Abbildung_Sinusfrage}}{width:300px}
+ \MCopyrightNotice{\MCCLicense}{NONE}{MINT}{Funktionsplot erstellt und exportiert mit Maple15}{VBKM06_Abbildung_Sinusfrage}
+ \end{center}
+\ \\ \ \\
+Antwort: $h(x)$ = \MSimplifyQuestion{20}{3*sin(1/2*pi*x+pi)}{10}{x}{4}{0}.
+\end{MExercise}
+
+\end{MXContent}
+
+\MSubsection{Test 3}\MLabel{L_TEST03}
+
+\begin{MXContent}{Test 3 offen}{Test 3 offen}{exclam}
+\begin{MExercise}
+Bestimme für die beiden Funktionen
+\[
+ \function{f}{D_f}{\R}{x}{\frac{9x^2-\sin(x)+42}{x^2-2}}
+\]
+und
+\[
+ \function{g}{D_g}{\R}{y}{\frac{\ln(y)}{y^2+1}}
+\]
+jeweils den größtmöglichen Definitionsbereich.
+\ \\ \ \\
+Antwort: $D_f$ = $\R\backslash$\MParsedQuestion{30}{sqrt(2),-sqrt(2)}{10} bzw. $D_g$ = \MIntervalQuestion{30}{(0,infty)}{10}.
+\ \\
+\MInputHint{Hier können Sie Mengen sowohl in Intervallschreibweise wie auch in Aufzählungsweise eingeben.}
+\end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie für die Funktion
+\[
+ \function{i}{\R}{\R}{x}{x^2-4x+4+\pi}
+\]
+die Wertemenge $W_i$ = \MIntervalQuestion{10}{[pi,infty)}{10}.
+\ \\
+\MInputHint{Geben Sie alle Mengen in Intervallschreibweise an.}
+\end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie in der Exponentialfunktion
+\[
+ \function{c}{\R}{\R}{x}{A\cdot e^{\lambda x}-1}
+\]
+die Parameter $A,\lambda\in\R$, so dass $c(0)=1$ und $c(4)=0$ gilt.
+\ \\ \ \\
+Antwort: $A$=\MParsedQuestion{10}{2}{3}, $B$=\MParsedQuestion{10}{-ln(2)}{3}.
+\ \\
+\MInputHint{Geben Sie alle Mengen in Intervallschreibweise an.}
+\end{MExercise}
+
+% Im Geometrietest
+% \begin{MExercise}
+% Bestimme die Verkettung $h=f\circ g\colon\R\to\R$ (Erläuterung: $h(x)=(f\circ g)(x)=f(g(x))$) der Funktionen
+% \[
+%  \function{f}{\R}{\R}{x}{C\cdot\sin(x)}
+% \]
+% und
+% \[
+%  \function{g}{\R}{\R}{x}{B\cdot x+\pi.}
+% \]
+% Antwort: $h(x)$=\MSimplifyQuestion{20}{C*sin(B*x+pi)}{10}{x,B,C}{4}{0}
+% \ \\ \ \\
+% Bestimme sodann die beiden Parameter, so dass die durch $h$ beschriebene Sinusschwingung diesen Graph besitzt:
+%  \begin{center}
+%  \MUGraphics{sinusfrage.png}{width=0.4\linewidth}{Eine Sinusschwingung.\MCopyrightLabel{VBKM06_Abbildung_Sinusfrage}}{width:300px}
+%  \MCopyrightNotice{\MCCLicense}{NONE}{MINT}{Funktionsplot erstellt und exportiert mit Maple15}{VBKM06_Abbildung_Sinusfrage}
+%  \end{center}
+% \ \\ \ \\
+% Antwort: $h(x)$=\MSimplifyQuestion{20}{3*sin(1/2*pi*x+pi)}{10}{x}{4}{0}.
+% \end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie die Umkehrfunktion $u^{-1}$ von
+\[
+ \function{u}{(0,\infty)}{\R}{y}{-\log_2(y).}
+\]
+Antwort: Die Funktion $u^{-1}$ hat den Definitionsbereich $D$ = \MIntervalQuestion{20}{(-infty,infty)}{10},
+die Funktionsvorschrift $u^{-1}(y)$ = \MSimplifyQuestion{13}{2^(-y)}{5}{y}{4}{0} und den Wertebereich $W$ = \MIntervalQuestion{10}{(0,infty)}{10}.
+\ \\
+\MInputHint{Geben Sie alle Mengen in Intervallschreibweise an.}
+\end{MExercise}
+
+\begin{MExercise}
+Ordnen Sie den folgenden Graphen die richtigen Abbildungsvorschriften der zugehörigen Funktionen zu:
+\begin{itemize}
+
+\item[A)] 
+\begin{center}
+%GRAPH: A
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm,y=0.8cm] 
+%Koordinatensystem
+\node (xMAX) at (3.8,0){};
+\node (yMAX) at (0,2.5){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+%\foreach \x in {1}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\foreach \y in {-1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: 
+\draw[smooth,samples=50,domain=0.15:3,color=red] plot(\x,{1/(2*\x)-1});
+\draw[smooth,samples=50,domain=-3:-0.2,color=red] plot(\x,{1/(2*\x)-1});
+\end{tikzpicture} 
+}%
+\end{center}
+ 
+\item[B)] 
+\begin{center}
+%GRAPH: A
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm,y=0.8cm] 
+%Koordinatensystem
+\node (xMAX) at (3.8,0){};
+\node (yMAX) at (0,2.5){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+%\foreach \x in {1}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\foreach \y in {-1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: 
+\draw[smooth,samples=50,domain=-3.5:3.5,color=red] plot(\x,{0.5*\x-1});
+\end{tikzpicture} 
+}%
+\end{center}
+ 
+\item[C)] 
+\begin{center}
+%GRAPH: C
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm,y=0.8cm] 
+%Koordinatensystem
+\node (xMAX) at (1.8,0){};
+\node (yMAX) at (0,3.5){};
+\draw[->,color=black] (-2.1,0) -- (xMAX);
+%\foreach \x in {1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: 
+\draw[smooth,samples=100,domain=-2.1:1.2,color=red] plot(\x,{exp(\x)});
+\end{tikzpicture} 
+}%
+\end{center}
+
+\item[D)] 
+\begin{center}
+%GRAPH: D
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm,y=0.8cm] 
+%Koordinatensystem
+\node (xMAX) at (4.8,0){};
+\node (yMAX) at (0,2.5){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: 
+\draw[smooth,samples=100,domain=0:4,color=red] plot(\x,{sqrt(\x)});
+\end{tikzpicture} 
+}%
+\end{center}
+
+\item[E)] 
+\begin{center}
+%GRAPH: E
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm,y=0.8cm] 
+%Koordinatensystem
+\node (xMAX) at (4.8,0){};
+\node (yMAX) at (0,2.5){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (yMAX);
+%\foreach \y in {1}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: 
+\draw[smooth,samples=100,domain=0.1:4,color=red] plot(\x,{ln(\x)});
+\end{tikzpicture}
+}%
+\end{center}
+
+\end{itemize}
+
+\begin{itemize}
+ \item[1)] $f(x)=e^x$ gehört zur Abbildung \MQuestion{3}{C} (nur der Großbuchstabe),
+ \item[2)] $f(x)=\sqrt{x}$ gehört zur Abbildung \MQuestion{3}{D},
+ \item[3)] $f(x)=\ln(x)$ gehört zur Abbildung \MQuestion{3}{E},
+ \item[4)] $f(x)=\frac{1}{2x}-1$ gehört zur Abbildung \MQuestion{3}{A},
+ \item[5)] $f(x)=\frac{1}{2}x-1$ gehört zur Abbildung \MQuestion{3}{B}.
+\end{itemize}
+
+Geben Sie zudem die Asymptote der Funktion mit der Abbildungsvorschrift 4) an: $\displaystyle \lim_{x\rightarrow \infty} f(x)$ = \MParsedQuestion{10}{-1}{10}.
+\end{MExercise}
+
+\begin{MExercise}
+Kreuzen Sie an, ob die folgenden Aussagen wahr oder falsch sind:
+\ \\ \ \\
+Die Funktion
+\[
+ \function{f}{[0,3)}{\R}{x}{2x+1}
+\]
+\begin{MQuestionGroup}
+\begin{MExerciseItems}
+ \item \MCheckbox{0} kann man kürzer auch als $f(x)=2x+1$ schreiben. 
+ \item \MCheckbox{1} ist eine linear-affine Funktion.
+ \item \MCheckbox{0} hat die Wertemenge $\R$.
+ \item \MCheckbox{1} hat die Steigung $2$.
+ \item \MCheckbox{1} kann nur Werte größer oder gleich $1$ und kleiner $7$ annehmen.
+ \item \MCheckbox{1} hat als Graph ein Stück einer Geraden.
+ \item \MCheckbox{1} hat bei $x=0$ den Wert $1$.
+ \item \MCheckbox{0} hat die Definitionsmenge $\R$.
+ \item \MCheckbox{1} besitzt eine Umkehrfunktion.
+\end{MExerciseItems}
+\end{MQuestionGroup}
+\MGroupButton{Eingabe prüfen}
+\end{MExercise}
+
+\end{MXContent}
+
+\MSubsection{Test 4}\MLabel{L_TEST04}
+
+\begin{MXContent}{Test 4 offen}{Test 4 offen}{exclam}
+\begin{MExercise} %"Anderungsraten und Ableitung
+Ein Lieferwagen, dessen Kilometerz"ahler $20$ km anzeigt, startet seine Tour 
+um sechs Uhr. Er erreicht sein Ziel vier Stunden sp"ater. Der Kilometerz"ahler
+zeigt jetzt $280$ km.
+Berechnen Sie die mittlere Geschwindigkeit $v$ , also die mittlere "Anderungsrate 
+zwischen Start- und Zielort. Setzten Sie dazu die fehlenden Zahlen und 
+mathematischen Symbole in die folgende Rechnung ein:
+\begin{center}
+$v\;\;:=\;\;(280\: $\MQuestion{3}{-}$\: 20)\,$\MQuestion{3}{/}$\,($\MParsedQuestion{3}{10}{3}$\:-\:6)\;\; =\;\;$\MParsedQuestion{5}{65}{5}.
+\end{center}
+\MInputHint{An manchen Stellen sind Rechenoperationen, an anderen Stellen Werte einzutragen.}
+\end{MExercise}
+
+\begin{MExercise} %"Anderungsraten und Ableitung
+Gegeben ist die Funktion $f: [-3; 4] \to \R$, deren Graph hier gezeichnet ist:
+
+\begin{center}
+\MTikzAuto{\input{jb07A0_ETest_AgAbleitung.tex}}
+\end{center}
+\begin{MQuestionGroup}
+\begin{MExerciseItems}
+\item In $x_1 = 4$ ist die Ableitung\\
+\MCheckbox{0} gleich $0$,\\
+\MCheckbox{1} nicht definiert,\\
+\MCheckbox{0} unendlich.\\
+\item In $x_2 = 0$ ist die Ableitung
+\MCheckbox{1} positiv,\\
+\MCheckbox{0} gleich $0$,\\
+\MCheckbox{0} negativ.\\
+\end{MExerciseItems}
+\end{MQuestionGroup}
+\MGroupButton{Eingabe prüfen}
+\end{MExercise}
+
+\begin{MExercise}
+Die Ableitung von $f(x)=e^x\cdot (a+b x+c x^2)$ ist von der Form $f'(x)=e^x\cdot q(x)$ für\\
+das Polynom $q(x)$ = \MSimplifyQuestion{25}{c*x^2+b*x+2*c*x+a+b}{a,b,c}{10}{5}{0}.
+\ \\
+\MInputHint{Geben Sie $q(x)$ in Summenform an.}
+\ \\ \ \\
+Ist $p(x)$ ein beliebiges Polynom, so ist die Ableitung von $e^x\cdot p(x)$ gegeben durch:\ \\
+\begin{MQuestionGroup}
+\begin{tabular}{rrr}
+$e^x\cdot p'(x)$ \MCheckbox{0} & $(e^x)'\cdot p'(x)$ \MCheckbox{0} &  $(e^x)'\cdot p(x)+e^x\cdot p'(x)$ \MCheckbox{1} \\
+$(e^x+(e^x)')\cdot p(x)$ \MCheckbox{0}& $e^x(p(x)+p'(x))$ \MCheckbox{1} & $\frac{e^x}{p'(x)}$ \MCheckbox{0} \\
+\end{tabular}
+\end{MQuestionGroup}
+\ \\
+\MGroupButton{Eingabe prüfen}
+\end{MExercise}
+
+\begin{MExercise}
+Berechnen Sie die erste und zweite Ableitung der Funktion $f: \R \to \R, x \mapsto \frac{6 x + 2}{2 x^2 + 4}$,
+und geben Sie Ihr Resultat gek"urzt und zusammengefasst an:
+\begin{MExerciseItems}
+\item{Erste Ableitung $f'(x)$ = \MSimplifyQuestion{40}{(-3*x^2-2*x+6)/((x^2 + 2)^2)}{8}{x}{5}{0}.}
+\item{Zweite Ableitung ${f'}'(x)$  = \MSimplifyQuestion{40}{((6*x^3+6*x^2-36*x-4)/((x^2+2)^3)}{8}{x}{5}{0}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise} %Eigenschaften
+In welchen Bereichen ist die Funktion $f$ mit $f(x) := \frac{\ln x}{x}$ f"ur
+$x \neq 0$ monoton fallend beziehungsweise monoton wachsend?
+\ \\ \ \\
+Antwort: Auf dem Intervall \MIntervalQuestion{20}{(0,e)}{10} ist sie monoton fallend, auf dem Intervall \MIntervalQuestion{20}{(e,infty)}{10} ist sie steigend.\\
+\MInputHint{Benutzen Sie offene Intervalle ohne Randpunkte.}
+\end{MExercise}
+
+% \begin{MExercise} %Anwendungen
+% Berechnen Sie alle lokalen und globalen Extremstellen und Wendestellen der 
+% Funktion $f: \R \to \R, x \mapsto x^4 - 4 x^3 - 2 x^2 + 12 x - 7$.
+% %Ableitungen
+% %$f'(x) = 4 (x^3 - 3 x^2 - x + 3) = 4 (x - 1) (x - 3) (x + 1)$
+% %${f'}'(x) = 4 (3 x^2 - 6 x - 1) %
+% % = 12 \left(x - 1 + \frac{2}{3}\sqrt{3}\right) %
+% % \cdot \left(x - 1 - \frac{2}{3}\sqrt{3}\right)$.
+% \end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie sämtliche Extremstellen (ohne Angabe des Typs):
+\begin{MExerciseItems}
+\item{$p:\: \R\rightarrow \R$, $p(x)=x^3-6x$ besitzt die Extremstellenmenge \MParsedQuestion{30}{-sqrt(2),sqrt(2)}{10}.}
+\item{$f:\: (0,\infty)\rightarrow \R$, $f(x)=\ln(x)^2-2x$ besitzt die Extremstellenmenge \MParsedQuestion{30}{}{10}.}
+\item{$g:\: [-2\pi,2\pi]\rightarrow \R$, $g(x)=\sin(x)^2$ besitzt die Extremstellenmenge \MParsedQuestion{30}{pi/2,3/2*pi,-pi/2,-3/2*pi}{10}.}
+\end{MExerciseItems}
+\begin{MHint}{Hinweis für Teil 2}
+Skizzieren Sie die Graphen von $x$ und $\ln(x)$ maßstabgetreu im gleichen Koordinatensystem.
+\end{MHint}
+\end{MExercise}
+
+\end{MXContent}
+
+
+\MSubsection{Test 5}\MLabel{L_TEST05}
+
+\begin{MXContent}{Test 5 offen}{Test 5 offen}{exclam}
+\begin{MExercise} %Stammfunktionen:
+Bestimmen Sie wie in der Vorgabe jeweils eine Stammfunktion:
+\begin{MExerciseItems}
+\item $\displaystyle\int (x+1)^2 \MD x$ = $\frac13(x+1)^3$, aber auch $\displaystyle\int (x+1)^2 \MD x = \int (x^2+2x+1) \MD x = \frac13x^3+x^2+x$ wäre richtig.
+\item $\displaystyle\int \left(5x^4 + 8 x\right) \MD x = $ \MSimplifyQuestion{20}{x^5 + 4*x^2}{5}{x}{5}{32}.
+\item $\displaystyle\int 6 \sin(2 x) \MD x = $ \MSimplifyQuestion{20}{-3*cos(2*x)}{5}{x}{5}{32}.
+\end{MExerciseItems}
+\MInputHint{In Ihrer Antwort dürfen keine Integralzeichen mehr auftreten, Vereinfachung ist dagegen nicht notwendig.}
+\end{MExercise}
+
+% \begin{MExercise} %Hauptsatz
+% Geben Sie den Hauptsatz der Differential- und Integralrechnung an für eine auf $[a,b]$ stetige Funktion $f:\:[a,b]\rightarrow \R$. Schreiben Sie links den Integralausdruck und rechts
+% die Stammfunktionen:
+% \ \\ \ \\
+% \MSimplifyQuestion{30}{int_a^b f(x) dx}{5}{a,b}{5}{f=cos} \ \ \ \ $=$ \ \ \ \ \MSimplifyQuestion{30}{F(b)-F(a)}{5}{a,b,F=sin}{5}{F=sin}.
+% \ \\
+% \MInputHint{Probieren Sie mit dem Eingabefeld herum, bis der dargestellte Ausdruck den Bestandteilen des Hauptsatzes entspricht.}
+% \end{MExercise}
+
+\begin{MExercise} %Berechnung bestimmter Integrale
+Berechnen Sie die Integrale:
+\begin{MExerciseItems}
+\item $\displaystyle\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}  \left(x^3 + \cos(x)\right) \MD x$ = \MParsedQuestion{25}{2}{15}.
+\item $\displaystyle\int_{\ln(2)}^{\ln(3)} x \cdot \MEU^x \MD x$ = \MParsedQuestion{25}{3*ln(3)-2*ln(2)-1}{10}.
+\end{MExerciseItems}
+\MInputHint{Die Aufgaben sind richtig beantwortet, wenn das Integral aufgelöst ist. Die entstehenden Terme brauchen nicht vereinfacht werden.}
+\end{MExercise}
+
+\begin{MExercise} %Eigenschaften
+Füllen Sie den Lückentext wie in der Vorgabe:
+\begin{MExerciseItems}
+\item{Das Integral $\int_1^2 x^{10} \MD x$ über die auf dem Integrationsbereich \textit{positive} Funktion $x^{10}$ ist \textit{positiv}.}
+\item{Das Integral $\displaystyle \int_{-1}^{-2} e^x dx$ über die auf dem Integrationsbereich \MQuestion{9}{positive} Funktion $e^x$ ist \MQuestion{9}{negativ}.}
+\item{Das Integral $\displaystyle \int_{\frac13}^{\frac12} \ln(x) dx$ über die auf dem Integrationsbereich \MQuestion{9}{negative} Funktion $\ln(x)$ ist \MQuestion{9}{negativ}.}
+\item{Setzt man in das Integral eine Summe von Funktionen ein, so kommt die \MQuestion{20}{Summe}\ \\der Integral\MQuestion{10}{werte} der Funktionen heraus.}
+\item{Es ist $\int_{-5}^{5} x \cdot \cos(4 x) \MD x = 0$, da das Integrationsintervall
+\MQuestion{30}{symmetrisch} bez"uglich $0$ ist und der Integrand eine 
+\MQuestion{30}{ungerade} Funktion ist.}
+\end{MExerciseItems}
+\MInputHint{Bei textuellen Eingaben wird Groß- und Kleinschreibung unterschieden, \textit{positiv} ist von \textit{positive} verschieden.}
+\end{MExercise}
+
+\begin{MExercise}
+Wenden Sie jeweils eine Substitution an, um den Integralausdruck zu vereinfachen (ohne ihn explizit auszurechnen):
+\begin{MExerciseItems}
+\item{$\int_{0}^{1} (x+1)^{8} dx$ = \MSimplifyQuestion{30}{int_1^2 x^8 dx}{5}{a,b}{5}{1}.}
+\item{$\int_{2+d}^{6+d} (x-d)^{2}$ = \MSimplifyQuestion{30}{8*int_1^3 x^2 dx}{5}{a,b,d}{5}{1}.}
+\end{MExerciseItems}
+\MInputHint{Bei dieser Aufgabe dürfen keine geklammerten Grenzen oder Potenzen eingetippt werden, dadurch sind Sie gezwungen, das Integral maximal zu vereinfachen. Lassen Sie Leerzeichen zwischen
+dem Integralausdruck, dem Integranden und \texttt{dx}.}
+\end{MExercise}
+
+\begin{MExercise} %Anwendung: Fl"achenberechnung
+Der Graph der Funktion $f: [-5, 1] \to \R$ mit $f(x) := x^3 + 5x^2 - x -5$ 
+f"ur $-5 \leq x \leq 1$ und die $x$-Achse schlie"sen eine Fl"ache $A$ ein.
+Berechnen Sie die Schnittpunkte des Graphen von $f$ und der $x$-Achse, und
+bestimmen Sie den Fl"acheninhalt von $A$.
+\ \\ \ \\
+Die Menge der Schnittpunkte ist \MParsedQuestion{20}{1,-5,-1}{20}.
+\ \\ \ \\
+Eine Stammfunktion von $f(x)$ ist $F(x)$ = \MSimplifyQuestion{30}{1/4*x^4+5/3*x^3-1/2*x^2-5*x}{10}{x}{10}{33}.
+\ \\ \ \\
+Das die gefragte Fläche ist $A$ = \MSimplifyQuestion{10}{int_(-5)^1 abs(x^3 + 5*x^2 - x -5) dx}{1}{y}{10}{1}.\\
+% \ \\ \ \\
+%Nutzen Sie die Stammfunktion $F(x)$ um den Flächeninhalt zu berechnen: $A$ = \MSimplifyQuestion{20}{F(-1)-F(-5)-F(1)+F(-1)}{20}{x}{5}{F=sin}.
+\end{MExercise}
+\end{MXContent}
+
+
+\MSubsection{Test 6}\MLabel{L_TEST06}
+
+\begin{MXContent}{Test 6 offen}{Test 6 offen}{exclam}
+
+\begin{MExercise}
+Bestimmen Sie die Lösungsmenge für folgendes Lineares Gleichungssystem:
+\begin{eqnarray*}
+- x + 2 y & = & - 5 \\ 3 x + y & = & 1
+\end{eqnarray*}
+Die Lösungsmenge
+\begin{MQuestionGroup}
+\begin{tabular}[t]{ll}
+\MCheckbox{0} & ist leer,\\
+\MCheckbox{1} & enthält genau eine Lösung: $x =$ \MParsedQuestion{5}{1}{5} , $y =$ \MParsedQuestion{5}{-2}{5} ,\\
+\MCheckbox{0} & enthält unendlich viele Lösungspaare $(x, y)$.
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Eingabe prüfen}
+\end{MExercise}
+
+\begin{MExercise}
+Geben Sie diejenige zweistellige Zahl an, die bei Vertauschen von Einer- und Zehnerziffer auf eine um 18 kleinere Zahl
+führt und deren Quersumme 6 ist.
+
+Antwort: \MParsedQuestion{5}{42}{5}
+\end{MExercise}
+
+\begin{MExercise}
+Für welchen Wert des reellen Parameters $\alpha$ besitzt das Lineare Gleichungssystem
+\begin{eqnarray*}
+2 x + y & = & 3 \\ 4 x + 2 y & = & \alpha
+\end{eqnarray*}
+unendlich viele Lösungen?
+
+Antwort: $\alpha = $ \MParsedQuestion{5}{6}{5}
+\end{MExercise}
+
+\begin{MExercise}
+Die Abbildung zeigt zwei Geraden im 2-dimensionalen Raum.
+\begin{center}
+\MUGraphicsSolo{LGS_schneidende_Geraden.png}{width=0.5\linewidth}{width:600px}
+\end{center}
+Stellen Sie die beiden Geradengleichungen auf:
+
+Gerade 1: $y = $ \MSimplifyQuestion{15}{-1 + x}{12}{x}{5}{0}
+
+Gerade 2: $y = $ \MSimplifyQuestion{15}{2 - 2*x}{12}{x}{5}{0}
+
+Wieviele Lösungen besitzt das zugehörige Lineare Gleichungssystem?
+
+Es besitzt
+\begin{MQuestionGroup}
+\begin{tabular}[t]{ll}
+\MCheckbox{0} & keine Lösung,\\
+\MCheckbox{1} & genau eine Lösung oder\\
+\MCheckbox{0} & unendlich viele Lösungen.
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Eingabe prüfen}
+\end{MExercise}
+
+\begin{MExercise}
+Geben Sie die Lösungsmenge für folgendes Lineare Gleichungssystem, bestehend aus drei Gleichungen mit drei Unbekannten, an:
+\begin{eqnarray*}
+x + 2 z & = & 3 \\ - x + y + z & = & 1 \\ 2 y + 3 z & = & 5
+\end{eqnarray*}
+Die Lösungsmenge
+\begin{MQuestionGroup}
+\begin{tabular}[t]{ll}
+\MCheckbox{0} & ist leer,\\
+\MCheckbox{1} & enthält genau eine Lösung: $x =$ \MParsedQuestion{5}{1}{5} , $y =$ \MParsedQuestion{5}{1}{5}, $z = $ \MParsedQuestion{5}{1}{5} ,\\
+\MCheckbox{0} & enthält unendlich viele Lösungen $(x, y, z)$.
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Eingabe prüfen}
+\end{MExercise}
+
+\begin{MExercise}
+Lösen Sie das lineare Gleichungssystem
+\begin{eqnarray*}
+a  +  2b  +  3c  & = & 1 \\
+  -b  -  2c  +  d & = & 0 \\
+   3b  + 6c  & = & 1 \\
+\end{eqnarray*}
+indem Sie erst Umformen und dann durch Rückeinsetzen die Lösung aufstellen.
+\ \\ \ \\
+Dieses System besitzt unendlich viele Lösungen $(a,b,c,d)$. Formen Sie so um, dass Sie sukzessive die Unbestimmten entweder festlegen oder durch vorhergehende Unbestimmte ausdrücken können.
+Sorgen Sie dafür, dass die Ausdrücke möglichst einfach sind und von möglichst wenigen anderen Unbestimmten abhängen:
+\ \\ \ \\
+Zeile III des umgeformten Systems ergibt, dass die Unbestimmte $d$ festgelegt ist auf \MParsedQuestion{10}{1/3}{3}.
+\ \\ \ \\
+Zeile II ergibt, dass die Unbestimmte $c$ beliebige Werte annehmen kann und man $b$ = \MSimplifyQuestion{10}{2*c-1/3}{5}{a,b,c,d}{4}{0} einsetzen kann.
+\ \\ \ \\
+Zeile I ergibt, dass die letzte Unbestimmte den Wert $a$ = \MSimplifyQuestion{10}{-7*c-1/3}{5}{a,b,c,d}{4}{0} in Abhängigkeit von $c$ besitzt.\\
+\MInputHint{Sämtliche Eingaben sind rationale Zahlen oder lineare Terme in den Unbestimmten $a,b,c,d$.}
+\ \\ \ \\
+Dieses Gleichungssystem beschreibt eine vierdimensionale \MQuestion{20}{Gerade}.
+\end{MExercise}
+\end{MXContent}
+
+
+\newpage
+\MPrintIndex
+
+\end{document}

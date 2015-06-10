@@ -1,0 +1,39 @@
+%LaTeX-File, Liedtke, 20140825.
+%VBKM-Modul 7 Differentialrechnung: Bild Funktionsgraph zum Eingangstest
+%Bildname: jb07A0_ETest_AgAbleitung.tex.
+%Erstellt: 20140825, Liedtke.
+%Bearbeitet: 20140829, Liedtke (Dateiname angepasst).
+%Bearbeitet: 20140901, Liedtke (Dateiname ohne Endung erfasst).
+
+%\tikzsetnextfilename{jb07A0_ETest_AgAbleitung}
+\begin{small}
+\begin{tikzpicture}[line width=1.5pt,scale=\jTikZScale, %
+declare function={
+  fkt(\x) = \x/2 * sqrt((\x + 3)*(4 - \x));
+}
+] %[every node/.style={fill=white}] 
+%Koordinatenachsen:
+\draw[->] (-3.6, 0) -- (5, 0) node[below left]{$x$}; %x-Achse
+\draw[->] (0, -3) -- (0, 4) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+\foreach \x in {-3, -2, -1} \draw (\x, 0) -- ++(0, 0.1) %
+ node[above] {$\x$}; 
+\foreach \x in {1, 2, 3, 4} \draw (\x, 0) -- ++(0, -0.1) %
+ node[below] {$\x$}; 
+\foreach \y in {-2, -1} \draw (0, \y) -- ++(0.1, 0) %
+ node[right] {$\y$};
+\foreach \y in {1, 2, 3} \draw (0, \y) -- ++(-0.1, 0) %
+ node[left] {$\y$};
+%\node[below left] at (0, 0) {$0$};
+%Funktion:
+\draw[domain=-3:4,samples=120,color=\jccolorfkt] %
+ plot (\x, {fkt(\x)});
+%Punkte
+\filldraw[color=black,fill=black] (0, 0) circle (1pt);
+%\node[below left] at (0, 0) {$x_2 = 0$};
+\filldraw[color=black,fill=black] (4, 0) circle (1pt);
+%\node[left] at (4, -0.1) {$x_1 = 4$};
+\end{tikzpicture}
+\end{small}
+
+%end of file

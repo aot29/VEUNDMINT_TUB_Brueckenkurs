@@ -1,0 +1,132 @@
+%LaTeX-2e-File, Liedtke, 20140731.
+%Inhalt: Einf"uhrung der Ableitung, Abschnitt 6: Zusammenfassung.
+%zuletzt bearbeitet: 20140930.
+
+%\MSubsection{Zusammenfassung}
+
+%\MSubsubsection{Ableitung}
+\begin{MXContent}{Ableitung}{Ableitung}{STD}
+Es ist $f: [a, b] \rightarrow \R$ in $x_0 \in (a, b)$ differenzierbar, wenn
+\[
+m = \lim_{h \rightarrow 0} \frac{f(x_0 + h) - f(x_0)}{h} %%
+\]
+existiert. Dann hei"st $m$ die Ableitung von $f$ an der Stelle $x_0$,
+und wird mit $\frac{\MD f(x_0)}{\MD x} := f'(x) := m$ bezeichnet.
+
+Im Folgenden werden die wichtigsten Rechenregeln und Aussagen zusammengefasst.
+\end{MXContent}
+ 
+%\MSubsubsection{Standardableitungen}
+\begin{MXContent}{Standardableitungen}{Standardableitungen}{STD}
+\begin{tabular}{lp{55mm}l}
+Konstante Funktion & $f(x) := a$ & 
+ $f'(x) = 0$ \\
+Monom & $f(x) := x^n$ f"ur $n \in \Z$ und $n \neq 0$ & 
+ $f'(x) = n \cdot x^{n-1}$ \\
+Wurzel & $f(x) := x^{\frac{1}{n}}$ f"ur $x \geq 0$ und 
+ f"ur $n \in \Z$ und $n \neq 0$ & 
+ $f'(x) = n \cdot x^{n-1}$ f"ur $x > 0$ \\
+Sinusfunktion & $f(x) := \sin(x)$ & $f'(x) = \cos(x)$ \\
+Kosinusfunktion & $f(x) := \cos(x)$ & $f'(x) = -\sin(x)$ \\
+Tangensfunktion & $f(x) := \tan(x)$ f"ur $x \neq \frac{\pi}{2} + k \pi$ %
+ & $f'(x) = 1 + (\tan(x))^2 = \frac{1}{\cos^2(x)}$ \\
+Exponentialfunktion & $f(x) := \exp(x)$ & $f'(x) = \exp(x)$ \\
+Logarithmusfunktion & $f(x) := \ln(x)$ f"ur $x > 0$ & $f'(x) = \frac{1}{x}$ %%
+\end{tabular}
+\end{MXContent}
+
+%\MSubsubsection{Rechenregeln}
+\begin{MXContent}{Rechenregeln}{Rechenregeln}{STD}
+Die Funktionen $g$, $h$, $u$ und $v$ seien differenzierbar. Dann ist 
+auch die nachstehend definierte Funktion $f$ differenzierbar, und 
+die Ableitung von $f$ kann wie angegeben berechnet werden:
+\begin{description}
+\item[Vielfache] F"ur $f(x) := r \cdot g(x)$ ist
+ $f'(x) = r \cdot g'(x)$
+\item[Summe] F"ur $f(x) := g(x) + h(x)$ ist
+  $f'(x) = g'(x) + h'(x)$
+\item[Produktregel] F"ur $f(x) := u(x) \cdot v(x)$ ist 
+ $f'(x) = u'(x) \cdot v(x) + u(x) \cdot v'(x)$
+\item[Quotientenregel] F"ur $f(x) := \frac{u(x)}{v(x)}$ ist 
+ $f'(x) = \frac{u'(x) \cdot v(x) - u(x) \cdot v'(x)}{(v(x))^2}$
+\item[Kettenregel] F"ur $f(x) := (g \circ u)(x) = g(u(x))$ ist
+ $f'(x) = g'(u(x)) \cdot u'(x)$
+\end{description}
+\end{MXContent}
+
+%\MSubsubsection{Eigenschaften}
+\begin{MXContent}{Eigenschaften}{Eigenschaften}{STD}
+Eine differenzierbare Funktion $f: [a, b] \rightarrow \R$ ist stetig, und es gilt:
+\begin{itemize}
+\item Wenn $f'(x) \geq 0$ f"ur alle $x \in (a, b)$ gilt, dann ist $f$ monoton 
+wachsend.
+\item Wenn $f'(x) \leq 0$ f"ur alle $x \in (a, b)$ gilt, dann ist $f$ monoton 
+fallend.
+\end{itemize}
+Wenn $f$ zweimal differenzierbar ist, gilt zudem (wobei die zweite Ableitung
+mit $f^{(2)}$ bezeichnet wird):
+\begin{itemize}
+\item Wenn $f^{(2)}(x) \geq 0$ f"ur alle $x \in (a, b)$ gilt, dann ist $f$ konvex 
+(linksgekr"ummt). 
+\item Wenn $f^{(2)}(x) \leq 0$ f"ur alle $x \in (a, b)$ gilt, dann ist $f$ konkav 
+(rechtsgekr"ummt). 
+\end{itemize}
+
+\begin{MXInfo}{Extremstellen}
+Wenn $x_0$ eine Extremstellen in $(a, b)$ ist, dann gilt $f'(x_0) = 0$. Somit 
+k"onnen nur solche Stellen der differenzierbaren Funktion $f$ auf $(a, b)$ 
+Extremstellen sein.
+
+Wenn $f'(x_0) = 0$ ist und zudem ein Vorzeichenwechsel der Ableitung in $x_0$ 
+vorliegt oder die zweite Ableitung ungleich null ist, dann ist $x_0$ eine 
+Extremstellen. Au"serdem kann dann festgesetllt werden, ob es sich um eine 
+Minimalstelle oder eine Maximalstelle von $f$ handelt:
+Wenn $f'(x_0) = 0$ ist, und
+\begin{itemize}
+\item $f'(x) < 0$ f"ur $x < x_0$ und $f'(x) > 0$ f"ur $x > x_0$ gilt, 
+ dann ist $x_0$ eine Minimalstelle von $f$.
+\item $f'(x) > 0$ f"ur $x < x_0$ und $f'(x) < 0$ f"ur $x > <_0$ gilt,
+ dann ist $x_0$ eine Maximalstelle von $f$.
+\end{itemize}
+
+Oder wenn $f'(x_0) = 0$ ist, die zweite Ableitung in $x_0$ existiert und
+\begin{itemize}
+\item $f^{(2)}(x_0) > 0$ gilt, dann ist $x_0$ eine Minimalstelle von $f$.
+\item $f^{(2)}(x_0) < 0$ gilt, dann ist $x_0$ eine Maximalstelle von $f$.
+\end{itemize}
+\end{MXInfo}
+
+\begin{MXInfo}{Wendestellen}
+Wenn $w_0$ eine Wendestellen in $(a, b)$ ist und $f$ zweimal differenzierbar 
+ist, muss $f^{(2)}(w_0) = 0$ gelten. Somit gen"ugt es, diese Stellen weiter
+zu untersuchen.
+
+Es ist $w_0$ eine Wendestelle in $(a, b)$, wenn  $f^{(2)}(w_0) = 0$ ist und 
+eine der folgenden weiteren Eigenschaften gelten:
+\begin{itemize}
+\item In $w_0$ liegt ein Vorzeichenwechsel der zweiten Ableitung vor (das hei"st,
+f"ur kleinere Werte $x < w_0$ ist $f^{(2)}(x) < 0$ und f"ur gr"o"sere Werte 
+$x > w_0$ ist $f^{(2)}(x) > 0$ oder umgekehrt).
+%
+\item Oder es gilt $f^{(3)}(w_0) \neq 0$.
+\end{itemize}
+Das letzte Kriterium erfordert neben der Bedingung $f^{(2)}(w_0)$ nat"urlich, 
+dass die dritte Ableitung existiert und in der Praxis dann erst mal berechnet 
+werden muss.
+%Hinreichend f"ur eine Wendestelle $w_0$ ist, dass $f^{(2)}(w_0) = 0$ und 
+% $f^{(3)}(w_0) \neq 0$ gilt.
+\end{MXInfo}
+\end{MXContent}
+
+%\MSubsubsection{Anwendungen}
+\begin{MXContent}{Anwendungen}{Anwendungen}{STD}
+F"ur differenzierbare Funktionen wurden folgende Anwendungen vorgestellt:
+\begin{itemize}
+%\item Regel von de l'Hospital
+\item Kurvendiskussion
+\item Optimierungsaufgabe
+\end{itemize}
+\end{MXContent}
+
+%end of file.
+

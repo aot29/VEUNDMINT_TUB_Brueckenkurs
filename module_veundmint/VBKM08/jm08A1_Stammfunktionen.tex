@@ -1,0 +1,224 @@
+%LaTeX-2e-File, Liedtke, 20140828.
+%Inhalt: Einf"uhrung von Stammfunktionen.
+%zuletzt bearbeitet: 20140929.
+
+\MPragma{MathSkip}
+
+
+%Inhalt zum Abschnitt: Stammfunktionen
+\begin{MContent}
+%\begin{MXContent}{Stammfunktionen}{Stammfunktionen}{STD}
+
+\begin{MXInfo}{Stammfunktion} 
+Gegeben ist eine Teilmenge $D \subseteq \R$ und eine Funktion $f: D \rightarrow \R$. 
+Wenn es eine differenzierbare Funktion $F: D  \rightarrow \R$ gibt, deren 
+Ableitung gleich $f$ ist, f"ur die also $F'(x) = f(x)$ f"ur alle $x \in D$ gilt, 
+dann hei"st $F$ eine \MEntry{Stammfunktion}{Stammfunktion} von $f$.
+\end{MXInfo}
+
+Eine Stammfunktion wird auch 
+\MEntry{unbestimmtes Integral}{Integral!unbestimmtes} genannt und in der Form 
+\begin{equation}
+\int f(x) \jMD x := F %%
+\end{equation}
+notiert. Die Sprechweise ist hier: "`$F$ ist das Integral über $f$."' Der Zusammenhang zum Integral wird in der Infobox \MRef{HSDDIR} 
+zum Hauptsatz der Differential- und Integralrechnung beschrieben.
+
+Sehen wir uns zun"achst einige Beispiele an.
+\begin{MExample}
+Die Funktion $F(x) = -\cos(x)$ hat die Ableitung $F'(x) = -(-\sin(x)) = \sin(x)$. 
+Somit ist 
+\[
+\int \sin(x) \jMD x = -\cos(x) %%
+\]
+eine Stammfunktion von $f(x) = \sin(x)$.
+\end{MExample}
+
+\begin{MExample}
+Die Funktion $G(x) = \MEU^{3x + 7}$ hat die Ableitung 
+$G'(x) = 3 \cdot \MEU^{3 x + 7}$.
+Deshalb ist
+\[
+\int 3 \cdot \MEU^{3 x + 7} \jMD x = \MEU^{3 x + 7} %%
+\]
+eine Stammfunktion von $f(x) = 3 \MEU^{3 x + 7}$.
+\end{MExample}
+
+%\begin{MExample}
+%F"ur negative Zahlen $x$ ist $-x$ positiv. Damit ist $f(x) := \ln(-x)$ f"ur alle $x < 0$ definiert und auch differenzierbar. Mit der Kettenregel folgt $H'(x) = \frac{1}{-x} \cdot (-1) = \frac{1}{x}$. %Somit ist
+%\[
+%\int \frac{1}{x} \jMD x = \ln(-x) = \ln|x|, %%
+%\]
+%wenn $x < 0$ gilt (hier ist $|x| = -x$).
+%\end{MExample}
+
+Notieren wir die Beziehung zwischen Ableitung $f=F'$ und Stammfunktion $F$ in der eben besprochenen umgekehrten Sichtweise f"ur die bisher betrachteten Funktionsklassen, ergibt sich die folgende Tabelle:
+
+\ifttm
+\begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen}
+\[
+\begin{array}{ll}
+\mbox{Funktion \ } f & \mbox{Eine Stammfunktion \ } F \mbox{\ dazu ist:} \\
+\hline
+f(x) = 0                                   & F(x) = C \quad\mbox{\ f"ur eine Zahl \ } C \in \R \\
+f(x) = x^n                                 & F(x) = \frac{1}{n+1} \cdot x^{n+1}\;\; , \;\; n\not=-1 \\
+f(x) = \sin(x)                             & F(x) = -\cos(x) \\
+f(x) = \sin(k x)                           & F(x) = -\frac{1}{k}\,\cos(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R \\
+f(x) = \cos(x)                             & F(x) = \sin(x) \\
+f(x) = \cos(k x)                           & F(x) = \frac{1}{k}\,\sin(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R \\
+f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)} & F(x) = \tan(x) \\
+f(x) = \MEU^x                              & F(x) = \MEU^x \\
+f(x) = \MEU^{k x}                          & F(x) = \frac{1}{k}\,\MEU^{k x} \quad\mbox{\ f"ur eine Zahl \ } k \in \R \\
+f(x) = \frac{1}{x}                         & F(x) = \ln|x|
+%f(x) = \frac{1}{1 + x^2} & F(x) = \arctan(x) %
+\end{array}
+\]
+\end{MXInfo}
+\else
+\begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen}
+\[
+\begin{array}{ll}
+\text{Funktion $f$} & \text{Eine Stammfunktion $F$ dazu ist:} \\
+\hline
+f(x) = 0                                   & F(x) = C \quad\text{ f"ur eine Zahl } C \in \R \\
+f(x) = x^n                                 & F(x) = \frac{1}{n+1} \cdot x^{n+1} \\
+f(x) = \sin(x)                             & F(x) = -\cos(x) \\
+f(x) = \sin(k x)                           & F(x) = -\frac{1}{k}\,\cos(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R \\
+f(x) = \cos(x)                             & F(x) = \sin(x) \\
+f(x) = \cos(k x)                           & F(x) = \frac{1}{k}\,\sin(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R \\
+f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)} & F(x) = \tan(x) \\
+f(x) = \MEU^x                              & F(x) = \MEU^x \\
+f(x) = \MEU^{k x}                          & F(x) = \frac{1}{k}\,\MEU^{k x} \quad\mbox{\ f"ur eine Zahl \ } k \in \R \\
+f(x) = \frac{1}{x}                         & F(x) = \ln|x|
+%f(x) = \frac{1}{1 + x^2} & F(x) = \arctan(x) %
+\end{array}
+\]
+\end{MXInfo}
+\fi
+
+In der ersten Zeile in obiger Tabelle steht, dass $F(x) = C$ eine Stammfunktion 
+zu $f(x) = 0$ ist. Klar, denn die Ableitung einer konstanten Funktion ist die Nullfunktion.
+Aber woher kennen wir den Wert dieser Konstanten $C$? Schließlich ist die Ableitung jeder beliebigen
+konstanten Funktion die Null. So gilt z.B. für $F(x) = 3$ und für $G(x) = 5$, dass $F' = G' = 0$ ist.
+Ist nur nach einer Stammfunktion von $f(x) = 0$ gefragt, ohne dass weitere Forderungen getroffen werden,
+ist die Stammfunktion eine ganz beliebige Konstante $C$. Andere M"oglichkeiten, als dass es sich um
+irgendeine \emph{konstante} Funktion handelt, gibt es nicht.
+
+Haben die Funktionen $F$ und $G$ dieselbe Ableitung $f = F' = G'$, dann ist $G'(x) - F'(x) = 0$. Bilden wir nun
+auf beiden Seiten der Gleichung die Stammfunktion, dann erhalten wir den Zusammenhang $G(x) - F(x) = C$. Somit
+ist $G(x) = F(x) + C$. Haben wir also mit $F(x)$ eine Stammfunktion von $f(x)$ gefunden, dann ist auch $G(x) = F(x) + C$
+eine Stammfunktion von $f(x)$.
+
+\begin{MXInfo}{Aussage "uber Stammfunktionen}
+Wenn $F$ und $G$ Stammfunktionen von $f: D \rightarrow \R$ sind, dann gibt es 
+eine Zahl $C$, sodass
+\begin{equation}
+F(x) = G(x) + C %
+\qquad \text{f"ur alle } x \in D %%
+\end{equation}
+gilt.
+Hierf"ur schreibt man auch
+\[
+\int f(x) \jMD x = F(x) + C, %%
+\]
+um auszudr"ucken, wie s"amtliche Stammfunktionen von $f$ aussehen.
+\end{MXInfo}
+
+\begin{MExample}
+Die Funktion $F(x) = 5 x^2 - 6 x$ hat die Ableitung $F'(x) = 10 x - 6$. 
+Somit wird durch 
+\[
+\int (10 x - 6) = 5 x^2 - 6 x + C
+\]
+die Gesamtheit der Stammfunktionen von $f(x) = 10 x - 6$ beschrieben,
+wobei $C$ f"ur eine beliebige reelle Zahl steht.
+
+%Beispielsweise sind $F_0(x) = 5 x^2 - 6 x$ und $F_{-7}(x) := 5 x^2 - 6 x - 7$ 
+%jeweils Stammfunktionen von $f$.
+
+Beispielsweise ist auch $G(x) := 5 x^2 - 6 x - 7$ eine Stammfunktion 
+von $f(x) = 10 x - 6$, denn es ist $G'(x) = 5 \cdot 2 x - 6 = f(x)$.
+\end{MExample}
+
+\ifttm\relax\else\vspace{-4ex}\fi
+
+Aus der obigen Tabelle zu Stammfunktionen ergibt sich die Gesamtheit aller 
+L"osungen dann jeweils durch die Addition einer Konstanten:
+
+\ifttm\relax\else\vspace{-4ex}\fi
+
+\ifttm
+\begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen -- zweite Version}
+\[
+\begin{array}{ll}
+\mbox{Funktion} & \mbox{Stammfunktionen} \\
+\hline
+f(x) = 0                                      & F(x) = \int 0 \jMD x = C \\
+f(x) = x^n                                    & F(x) = \int x^n \jMD x = \frac{1}{n+1} \cdot x^{n+1} + C \\
+f(x) = \sin(x)                                & F(x) = \int \sin(x) \jMD x = -\cos(x) + C \\
+f(x) = \sin(k x)                              & F(x) = -\frac{1}{k}\,\cos(k x) + C \\
+f(x) = \cos(x)                                & F(x) = \int \cos(x) \jMD x = \sin(x) + C \\
+f(x) = \cos(k x)                              & F(x) = \frac{1}{k}\,\sin(k x) + C \\
+f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}    & F(x) = \int (1 + \tan^2(x) \jMD x = \tan(x) + C \\
+f(x) = \MEU^x                                 & F(x) = \int \MEU^x \jMD x = \MEU^x + C \\
+f(x) = \MEU^{k x}                             & F(x) = \frac{1}{k}\,\MEU^{k x} + C \\
+f(x) = \frac{1}{x}                            & F(x) = \int \frac{1}{x} \jMD x = \ln|x| + C
+%f(x) = \frac{1}{1 + x^2} & F(x) = \int \frac{1}{1 + x^2} \jMD x = \arctan(x) + C %
+\end{array}
+\]
+Hier bezeichnen $k$ und $C$ beliebige reelle Zahlen.
+\end{MXInfo}
+\else
+\begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen -- zweite Version}
+\[
+\begin{array}{ll}
+\text{Funktion} & \text{Stammfunktionen} \\
+\hline
+f(x) = 0                                        & F(x) = \int 0 \jMD x = C \\
+f(x) = x^n                                      & F(x) = \int x^n \jMD x = \frac{1}{n+1} \cdot x^{n+1} + C \\
+f(x) = \sin(x)                                  & F(x) = \int \sin(x) \jMD x = -\cos(x) + C \\
+f(x) = \sin(k x)                                & F(x) = -\frac{1}{k}\,\cos(k x) + C \\
+f(x) = \cos(x)                                  & F(x) = \int \cos(x) \jMD x = \sin(x) + C \\
+f(x) = \cos(k x)                                & F(x) = \frac{1}{k}\,\sin(k x) + C \\
+f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}      & F(x) = \int (1 + \tan^2(x) \jMD x = \tan(x) + C \\
+f(x) = \MEU^x                                   & F(x) = \int \MEU^x \jMD x = \MEU^x + C \\
+f(x) = \MEU^{k x}                               & F(x) = \frac{1}{k}\,\MEU^{k x} + C \\
+f(x) = \frac{1}{x}                              & F(x) = \int \frac{1}{x} \jMD x = \ln|x| + C
+%f(x) = \frac{1}{1 + x^2} & F(x) = \int \frac{1}{1 + x^2} \jMD x = \arctan(x) + C %
+\end{array}
+\]
+Hier bezeichnen $k$ und $C$ beliebige reelle Zahlen.
+\end{MXInfo}
+\fi
+
+In Tabellenwerken wird auf die Angaben der Konstanten oft verzichtet. In 
+einer Rechnung ist es allerdings wichtig, anzugeben, dass es mehrere 
+L"osungen geben kann. Bei der Lösung anwendungsbezogener Probleme wird die
+Integrationskonstante $C$ häufig durch die Angabe weiterer Bedingungen festgelegt.
+
+%\begin{MExample}
+%Die Funktion $F(x) = 5 x^2 - 6 x$ hat die Ableitung $F'(x) = 10 x - 6$. 
+%Somit ist 
+%\[
+%\int (10 x - 6) = 5 x^2 - 6 x
+%\]
+%eine Stammfunktion von $f(x) = 10 x - 6$.
+%
+%Die Ableitung der Funktion $G(x) = 5 x^2 - 6 x + 3$ ist 
+%$G'(x) = 10 x - 6 = F'(x)$, also dieselbe wie von $F$. Damit ist auch $G$ eine 
+%Stammfunktion von $f(x) = 10 x - 6$.
+%\end{MExample}
+%\end{MXContent}
+
+%Die Bestimmung einer Stammfunktion ist nicht immer einfach, mitunter eine 
+%Kunst. Eine Kontrolle lohnt sich also und ergibt sich definitionsgem"a"s 
+%einfach dadurch, dass die Ableitung berechnet und mit der gegebenen Funktion
+%verglichen wird, in der Praxis meistens eine Anwendung der Rechentechnik der 
+%Ableitungsregeln.
+
+\begin{MXInfo}{Ein praktischer Hinweis}
+Die Überprüfung, ob wir die Stammfunktion einer vorgegebenen Funktion $f$ richtig gebildet haben, ist sehr einfach. Wir bestimmen die Ableitung unserer gefundenen Stammfunktion und vergleichen diese mit der ursprünglich vorgegebenen Funktion $f$. Stimmen beide überein, war unsere Rechnung richtig. Stimmt das Ergebnis der Probe nicht mit der Funktion $f$ überein, müssen wir unsere Stammfunktion noch einmal überprüfen.
+\end{MXInfo}
+\end{MContent}
+
+%Dateiende.

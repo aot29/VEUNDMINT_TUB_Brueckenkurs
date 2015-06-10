@@ -1,0 +1,194 @@
+%LaTeX-2e-File, Liedtke, 20140731.
+%Inhalt: Einf"uhrung in die Differentialrechnung, Abschnitt 4.
+%zuletzt bearbeitet: 20140922.
+
+%Abschnitt 4: Eigenschaften
+\begin{MContent} 
+
+\MSubsubsection{Stetigkeit differenzierbarer Funktionen}
+%\begin{MXContent}{Stetigkeit differenzierbarer Funktionen}{Stetigkeit}{STD}
+ 
+%\begin{MXInfo}{Stetigkeit differenzierbarer Funktionen}
+Wenn eine Funktion $f$ an der Stelle $x_0$ differenzierbar ist, dann ist $f$ an 
+der Stelle $x_0$ auch stetig.
+%\end{MXInfo}
+
+Folglich ist eine ("uberall) differenzierbare Funktion ("uberall) stetig.
+Insbesondere hat eine auf einem Intervall definierte differenzierbare Funktion
+keine Sprungstellen.
+
+Andererseits zeigt das Beispiel der stetigen Funktion $f: \R \to \R$ mit 
+$f(x) := |x|$ f"ur $x \in \R$, dass aus der Stetigkeit allein nicht folgt, dass
+$f$ auch differenzierbar ist. Denn $f$ in an der Stelle $x_0 = 0$ nicht 
+differenzierbar.
+%\end{MXContent}
+
+\MSubsubsection{Monotonie}
+%\begin{MXContent}{Monotonie}
+
+Mit der Ableitung kann das lokale Wachstumsverhalten untersucht werden, das 
+hei"st ob f"ur gr"o"ser werdende $x$-Werte die Funktionswerte gr"o"ser oder 
+kleiner werden.
+Dazu wird eine Funktion $f: D \to \R$ betrachtet, die auf $(a, b) \subseteq D$ 
+differenzierbar ist.
+%Bild:
+\begin{center}
+\ifttm
+\MGraphicsSolo{\MPfadBilder/jb07A4_Monotonie.png}{scale=0.5}
+%\MGraphicsSolo{jb07A4_Monotonie.png}{scale=1}
+\else
+\renewcommand{\jTikZScale}{1.0}
+%Bild: {\MPfadBilder/jb07A4_Monotonie.tex}
+
+%LaTeX-File, Liedtke, 20140829.
+%VBKM-Modul 7 Differentialrechnung: Bild zur Monotonie.
+%Bildname: jb07A4_Monotonie.tex.
+%Erstellt: 20140829, Liedtke.
+%Bearbeitet: 20140901, Liedtke (Dateiname ohne Endung erfasst).
+
+\begin{small}
+\tikzsetnextfilename{jb07A4_Monotonie}
+\begin{tikzpicture}[line width=1.5pt,scale=\jTikZScale, %
+declare function={
+  x1 = 2;
+  x0 = 4;
+  fkt(\x) = 1/4*(\x - 3)*(\x - 3) + 0.75;
+  TangenteAblplus(\x) = 1 + 1/2*(\x - x0); % $f(x_0) = f(4) = 1$.
+  TangenteAblminus(\x) = 1 - 1/2*(\x - x1); % $f(x_1) = f(2) = 1$.
+}
+] %[every node/.style={fill=white}] 
+%,every node/.style={fill=white}] 
+%Koordinatenachsen:
+\draw[->] (-0.6, 0) -- (6, 0) node[below left]{$x$}; %x-Achse
+\draw[->] (0, -0.6) -- (0, 3) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+\foreach \x in {1, 2, 3, 4, 5} \draw (\x, 0) -- ++(0, -0.1); %
+% node[below] {$\x$}; 
+\foreach \y in {1, 2} \draw (0, \y) -- ++(-0.1, 0); %
+% node[below left] {$\y$};
+%\node[below left] at (0, 0) {$0$};
+%Hilfslinien:
+\draw[color=black!50!white] (x0, {fkt(x0)}) -- ({x0+1}, {fkt(x0)});
+\draw[->,color=black!50!white] %
+ ({x0+1}, {fkt(x0)}) -- ({x0+1}, {TangenteAblplus(x0+1)});
+%
+\draw[color=black!50!white] (x1, {fkt(x1)}) -- ({x1-1}, {fkt(x1)});
+\draw[->,color=black!50!white] %
+ ({x1-1}, {TangenteAblminus(x1-1)}) -- ({x1-1}, {fkt(x1)});
+%Funktion:
+\draw[domain=0.8:5.2,samples=120,color=\jccolorfkt] %
+ plot (\x, {fkt(\x)});
+%Tangenten:
+\draw[domain={x1-1.2}:{x1+0.8},samples=120,color=blue!50!black] %
+ plot (\x, {TangenteAblminus(\x)});
+\filldraw[color=blue!50!black] (x0, {fkt(x0)}) circle (1pt); % Ber"uhrpunkt.
+%
+\draw[domain={x0-0.8}:{x0+1.2},samples=120,color=blue!50!black] %
+ plot (\x, {TangenteAblplus(\x)});
+\filldraw[color=blue!50!black] (x1, {fkt(x1)}) circle (1pt); % Ber"uhrpunkt.
+%Beschriftung:
+\node[right] at (5.1, 1.25) {$f'(x_0) = m_0 > 0$};
+\node[style={fill=white},left] at (0.9, 1.25) {$f'(x_1) = m_1 < 0$};
+\end{tikzpicture}
+\end{small}
+%end of file
+\fi
+\end{center}
+%Bildende.
+
+%\begin{MXInfo}{Monotonie}
+Wenn $f'(x) \leq 0$ f"ur alle $x$ zwischen $c$ und $d$ gilt, dann ist $f$ 
+auf dem Intervall $(c; d)$ monoton fallend.
+
+Wenn $f'(x) \geq 0$ f"ur alle $x$ zwischen $c$ und $d$ gilt, dann ist $f$ 
+auf dem Intervall $(c; d)$ monoton wachsend.
+%\end{MXInfo}
+
+Somit gen"ugt es, das Vorzeichen der Ableitung $f'$ zu bestimmen, um zu 
+erkennen, ob eine Funktion monoton wachsend oder monoton fallend ist.
+%\end{MXContent}
+
+\begin{MExample}
+Die Funktion $f: \R \to \R, x \mapsto x^3$ ist differenzierbar mit 
+$f(x) = 3 x^2$. Da $x^2 \geq 0$ f"ur alle $x \in \R$ gilt, ist 
+$f'(x) \geq 0$ und damit $f$ monoton wachsend.
+
+F"ur $g: \R \to \R$ mit $g(x) = 2 x^3 + 6 x^2 - 18 x + 10$ hat die Ableitung
+$g'(x) = 6 x^2 + 12 x - 18 = 6 (x + 3) (x - 1)$ die Nullstellen $x_1 = -3$ 
+und $x_2 = 1$.
+Mit Hilfe folgender Tabelle wird bestimmt, in welchen Bereichen die Ableitung 
+von $g$ positiv bzw. negativ ist, woraus sich dann die Monotoniebereiche von 
+$g$ ergeben. Der Eintrag $+$ besagt, dass der betrachtete Term im angegebenen
+Intervall positiv ist. Wenn er negativ ist, wird $-$ eingetragen.
+\[
+\begin{array}{cccc}
+x & x < -3 & -3 < x < 1 & 1 < x \\
+\hline
+x + 3 & - & + & + \\
+x - 1 & - & - & + \\
+g'(x) & - & - & + \\
+g \text{ monoton} & \text{wachsend} & \text{fallend} & \text{wachsend} \\
+\end{array}
+\]
+Die Funktion $h: \R \setminus \{ 0 \} \to \R$ mit $h(x) = \frac{1}{x}$
+hat die Ableitung $h'(x) = - \frac{1}{x^2}$. Hier gilt 
+$h'(x) < 0$ f"ur alle $x \neq 0$.
+
+Dennoch ist $h$ nicht monoton fallend, da beispielsweise 
+$h(-2) = -\frac{1}{2} < 1 = h(1)$ gilt. Der Grund f"ur dieses "uberraschende 
+Ergebnis ist, dass der Definitionsbereich von $h$ kein Intervall ist. Die 
+Funktion $h$ ist auf $(-\infty; 0)$ monoton fallend, das hei"st, die 
+Einschr"ankung von $h$ auf dieses Intervall ist monoton fallend. Zudem ist 
+$h$ f"ur alle $x > 0$ monoton fallend.
+\end{MExample}
+
+\MSubsubsection{Kr"ummungseigenschaften}
+%\begin{MXContent}{Kr"ummungseigenschaften}
+
+Gegeben ist eine Funktion $f: D \to \R$, die auf $(a; b) \subseteq D$ 
+zweimal differenzierbar ist.
+
+%\begin{MXInfo}{Kr"ummungseigenschaften}
+Wenn ${f'}'(x) \geq 0$ f"ur alle $x$ zwischen $c$ und $d$ gilt, dann ist $f$ 
+auf dem Intervall $(c; d)$ konvex.
+
+Wenn ${f'}'(x) \leq 0$ f"ur alle $x$ zwischen $c$ und $d$ gilt, dann ist $f$ 
+auf dem Intervall $(c; d)$ konkav.
+%\end{MXInfo}
+
+Somit gen"ugt es, das Vorzeichen der zweiten Ableitung ${f'}'$ zu bestimmen, 
+um zu erkennen, ob eine Funktion konvex (linksgekr"ummt) oder konkav 
+(rechtsgekr"ummt) ist.
+%\end{MXContent}
+
+\begin{MXInfo}{Anmerkung zur Notation}
+Die zweite und weitere {\glqq}h"ohere{\grqq} Ableitungen oft mit nat"urlichen 
+Zahlen in runden Klammern gekennzeichnet: Die $k$-te Ableitung wird dann mit
+$f^{(k)}$ bezeichnet. Diese Bezeichnung wird besonders in Formeln auch f"ur 
+die (erste) Ableitung f"ur $k=1$ und f"ur die Funktion $f$ selbst f"ur $k=0$
+verwendet.
+
+Damit bezeichnet 
+\begin{itemize}
+\item $f^{(0)} = f$ die Funktion $f$, 
+\item $f^{(1)} = f'$ die (erste) Ableitung,
+\item $f^{(2)} = {f'}'$ die zweite Ableitung,
+\item $f^{(3)}$ die dritte Ableitung von $f$, etc. (sofern diese existieren).
+\end{itemize}
+\end{MXInfo} 
+
+Das folgende Beispiel zeigt, dass eine monoton wachsende Funktion in einem 
+Bereich konvex und in einem anderen konkav sein kann.
+
+\begin{MExample}
+Die Funktion $f: \R \to \R, x \mapsto x^3$ ist zweimal differenzierbar. Wegen
+$f'(x) = 3 x^2 \geq 0$ ist $f$ monoton wachsend.
+
+Weiter ist $f^{(2)}(x) = 6 x$. Somit ist f"ur $x < 0$ auch $f^{(2)} < 0$
+und damit $f$ hier konkav (nach rechts gekr"ummt), und f"ur $x > 0$ ist
+$f^{(2)}(x) > 0$, sodass $f$ f"ur $x > 0$ konvex (nach links gekr"ummt) ist.
+\end{MExample}
+\end{MContent}
+
+%end of file.
+

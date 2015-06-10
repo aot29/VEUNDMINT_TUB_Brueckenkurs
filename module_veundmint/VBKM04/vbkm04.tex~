@@ -1,0 +1,1189 @@
+\input{mintmod}
+\MPragma{MathSkip}
+\MSetSubject{\MINTMathematics}
+
+\begin{document}
+
+\MSection{Lineare Gleichungssysteme}
+\MLabel{VBKM04}
+\MSetSectionID{lgs}
+
+\begin{MSectionStart}
+\MDeclareSiteUXID{VBKM04_START}
+
+Dieses Modul führt in die Lösungsverfahren für lineare Gleichungssysteme ein und
+besteht aus
+\begin{itemize}
+\item{dem Abschnitt \MSRef{M04_LGS}{Was sind Lineare Gleichungssysteme?},}
+\item{dem Abschnitt \MSRef{M04_2_Unbekannte}{Lineare Gleichungen mit zwei Unbekannten},}
+\item{dem Abschnitt \MSRef{M04_3_Unbekannte}{Lineare Gleichungen mit drei Unbekannten},}
+\item{dem Abschnitt \MSRef{M04_freier_Parameter}{Lineare Gleichungssysteme mit freiem Parameter und nicht-quadratische Systeme},}
+\item{dem \MSRef{M04_Ausgangstest}{Abschlusstest}.}
+\end{itemize}
+\end{MSectionStart}
+
+
+
+
+\MSubsection{Was sind Lineare Gleichungssysteme?}
+\MLabel{M04_LGS}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM04_LGSIntro}
+Ein Problem mit mehreren Unbekannten gleichzeitig!? Und eine ganze Reihe von Gleichungen dazu!? Problemstellungen dieser Art kommen nicht nur im naturwissenschaftlich-technischen Bereich vor, sondern auch in anderen wissenschaftlichen Disziplinen und im Alltag! Und sie müssen gelöst werden!
+
+Zur Beruhigung vorneweg: Schwierig wird es nicht! Dagegen stimmt es, dass sich in den unterschiedlichsten
+Gebieten häufig Situationen und Aufgaben finden, die in der mathematischen Modellierung auf mehrere Gleichungen
+in mehreren Unbekannten führen. Betrachten wir hierzu ein erstes einfaches Beispiel:
+\begin{MExample}
+\MLabel{M04_einfuehrendes_Bsp}
+Eine junge Artistengruppe möchte ihre halsbrecherische Radnummer zusätzlich aufmotzen, indem sie für ihre Ein- und Zweiräder
+neue Felgen mit grellbunten Lichteffekten zukauft. Für die insgesamt $10$ Räder benötigt sie $13$ Felgen.
+Wieviele Ein- und wieviele Zweiräder besitzt die Gruppe?
+
+In einem ersten Schritt gilt es, die in der Aufgabenstellung enthaltenen Informationen, wenn möglich, in mathematische
+Gleichungen zu übersetzen. Bezeichnen wir die gesuchte Anzahl der Einräder mit $x$, diejenige der Zweiräder mit $y$,
+so können wir als erste Information aus der Problembeschreibung herauslesen, dass
+\begin{eqnarray*}
+\mbox{Gleichung } (1) & : & x + y = 10
+\end{eqnarray*}
+gelten muss, da die Gruppe insgesamt $10$ Räder ihr Eigentum nennt. Außerdem hat ein Einrad eine Felge, ein Zweirad dagegen
+zwei Felgen. Weil alles in allem $13$ Felgen angeschafft werden sollen, wissen wir auch, dass
+\begin{eqnarray*}
+\mbox{Gleichung } (2) & : & x + 2 y = 13
+\end{eqnarray*}
+ist. Aus der vorliegenden Problemstellung ergeben sich also zwei Gleichungen, die die zwei unbekannten Größen
+$x$ (Anzahl der Einräder) und $y$ (Anzahl der Zweiräder) in Beziehung setzen.
+\end{MExample}
+Früher oder später wollen wir natürlich wissen, über wieviele Ein- bzw. Zweiräder die Artistengruppe tatsächlich verfügt. Im
+gegebenen Beispiel kann man die Werte für $x$ und $y$ durch ein wenig Probieren erraten. Aber
+eigentlich interessieren wir uns für \textbf{systematische Methoden}, um Fragestellungen wie die obige
+gezielt zu beantworten.
+
+\end{MIntro}
+
+\begin{MContent}
+\MDeclareSiteUXID{VBKM04_LGSContent}
+Bevor wir richtig loslegen können, müssen wir unseren Sprachgebrauch noch ein bisschen schärfen.
+\begin{MInfo}
+Mehrere Gleichungen, die auf eine bestimmte Anzahl Unbekannter \textbf{gleichzeitig} zutreffen, bilden ein sogenanntes
+\MEntry{Gleichungssystem}{Gleichungssystem}. Kommen in jeder einzelnen Gleichung eines solchen Systems die Unbekannten
+in jedem Term nur linear, d.h. höchstens zur Potenz $1$ und ausschließlich multipliziert mit (konstanten)
+Zahlen, vor, so spricht man von einem \MEntry{Linearen Gleichungssystem}{Gleichungssystem (linear)}, oder kurz \MEntry{LGS}{LGS}.
+\end{MInfo}
+Die beiden Gleichungen aus dem einführenden Beispiel \MRef{M04_einfuehrendes_Bsp} stellen ein Lineares Gleichungssystem
+für zwei Unbekannte $x$ und $y$ dar. Dagegen bilden die drei Gleichungen
+$$x + y + z = 3\;\mbox{und}\;x + y - z = 1\;\mbox{und}\; x \cdot y + z = 2$$
+in den Unbekannten $x, y$ und $z$ zwar ein Gleichungssystem, jedoch \textbf{kein} lineares, da in der dritten Gleichung
+der Term $x \cdot y$ auftritt, der \textbf{bilinear} in $x$ und $y$ ist und daher der Bedingung der \textbf{Linearität}
+widerspricht.\\
+Übrigens muss bei einem Gleichungssystem die Anzahl der Gleichungen nicht gleich
+der Anzahl der Unbekannten sein; darauf werden wir später noch zurückkommen.
+\begin{MInfo}
+Ist die Anzahl der Gleichungen in einem Gleichungssystem gleich der Anzahl der Unbekannten,
+so bezeichnet man das Gleichungssystem als \MEntry{quadratisch}{Gleichungssystem (quadratisch)}.
+\end{MInfo}
+\begin{MExercise}
+Bei welchen der folgenden Gleichungssysteme handelt es sich um Lineare Gleichungssysteme?
+
+\begin{MQuestionGroup}
+\begin{tabular}[t]{ll}
+\MCheckbox{1}{M04C10} & $x + y - 3 z = 0$ und $2 x - 3 = y$ und $1,5 x - z = 22 + y$ \\
+\MCheckbox{0}{M04C11} & $\sin(x) + \cos(y) = 1$ und $x - y = 0$ \\
+\MCheckbox{0}{M04C12} & $2 z - 3 y + 4 x = 5$ und $z + y - x^2 = 25$
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Eingabe kontrollieren}
+\end{MExercise}
+Lineares Gleichungssysteme zeichnen sich gegenüber allgemeinen Gleichungssystemen
+durch eine meist deutlich größere Einfachheit aus. Nichtsdestotrotz spielen sie in mannigfachen Bereichen
+eine zentral wichtige Rolle, so in der Medizin z.B. im Zusammenhang mit der Computertomographie, in der Technik etwa
+bei der Beschreibung, wie sich Schall in komplex gestalteten Räumen ausbreitet, oder in der Physik beispielsweise bei der
+Frage, welche Wellenlängen angeregte Atome aussenden können. Daher ist es zweifelsohne lohnenswert, sich intensiv
+mit linearen Gleichungssystemen auseinanderzusetzen.
+
+Im Vordergrund steht bei Gleichungssystemen generell die Frage,
+welche Zahlenwerte man für die Unbekannten wählen muss,
+damit alle Gleichungen des Systems simultan erfüllt sind. Ein solcher Satz von Zahlenwerten für die Unbekannten
+wird uns auf den Begriff der \MEntry{Lösung eines Gleichungssystems}{Lösung eines Gleichungssystems} führen.
+
+Zuvor sollte jedoch eine Feinheit beachtet werden: Abhängig von der Problemstellung ist es unter Umständen nicht sinnvoll,
+alle möglichen Zahlenwerte für die Unbekannten zuzulassen. Im Eingangsbeipiel \MRef{M04_einfuehrendes_Bsp} repräsentieren
+die Unbekannten $x$ und $y$ die Stückzahlen der Ein- bzw. Zweiräder im Besitz der Artistengruppe. Solche Stückzahlen
+können nur ganze nichtnegative Zahlen, also Elemente von $\N_0$, sein. Daher muss man in diesem Fall die Menge der Zahlen,
+aus denen die Lösungen stammen können, von vornherein auf $\N_0$ einschränken (und zwar sowohl für $x$ als auch $y$).
+\begin{MInfo}
+Diejenige Zahlenmenge, aus der die Lösungen eines Gleichungssystems überhaupt nur stammen können, nennt man
+die \MEntry{Grundmenge}{Grundmenge}. Die \MEntry{Definitionsmenge}{Definitionsmenge} ist diejenige Teilmenge
+der Grundmenge, für die alle Terme in den Gleichungen des Systems \textbf{definiert} sind.
+Für Lineare Gleichungssysteme fallen Grundmenge und Definitionsmenge zusammen. Als \MEntry{Lösungsmenge}{Lösungsmenge}
+schließlich bezeichnet man diejenige Teilmenge der Definitionsmenge, die die \textbf{Lösungen} des Systems zusammenfasst.
+Diese Lösungsmenge wird mit $\ML$ bezeichnet.
+\end{MInfo}
+Ist keine weitere Aussage über die  Grundmenge getroffen - und lässt sich auch keine
+Aussage aus der Problembeschreibung ableiten -, so wird stillschweigend davon ausgegangen,
+dass die Grundmenge gleich $\R$, also gleich der Menge der reellen Zahlen, ist.
+\end{MContent}
+
+
+
+\MSubsection{LGS mit zwei Unbekannten}
+\MLabel{M04_2_Unbekannte}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM04_ZweiUnbekannte}
+Wir beschränken uns zunächst auf lineare Gleichungssysteme in \textbf{zwei}
+Unbekannten.
+\begin{MInfo}
+\MLabel{M04_2x2_system}
+Allgemein hat ein lineares Gleichungssystem (LGS), bestehend aus zwei
+Gleichungen in den Unbekannten $x$ und $y$, folgende Gestalt:
+\begin{eqnarray*}
+a_{11} \cdot x + a_{12} \cdot y = b_{1} \\ a_{21} \cdot x + a_{22} \cdot y = b_2
+\end{eqnarray*}
+Dabei sind $a_{11}, a_{12}, a_{21}$ und $a_{22}$ die sogenannten Koeffizienten des
+linearen Gleichungssystems,
+die ebenso wie die rechten Seiten $b_1$ und $b_2$ der Gleichungen meist aus den reellen Zahlen stammen und
+aufgrund der Problemstellung (weitgehend) vorgegeben sind.
+
+Sind die rechten Seiten $b_1$ und $b_2$ beide gleich $0$ ($b_1 = 0 = b_2$), so spricht man von einem
+\textbf{homogenen}, andernfalls von einem \textbf{inhomogenen} Linearen Gleichungssystem.
+
+\end{MInfo}
+
+Aufgrund der Linearität kann jede der beiden Gleichungen des Systems in Infobox \MRef{M04_2x2_system} für sich als Gleichung
+einer Geraden in der $x$-$y$-Ebene interpretiert werden: Lösen wir z.B. die erste Gleichung nach $y$ auf,
+$$y = - \Mdfrac{a_{11}}{a_{12}} x + \Mdfrac{b_1}{a_{12}} \; \; \; ,$$
+so können wir aus dieser expliziten Form direkt ablesen, dass eine Gerade mit der Steigung $m = - a_{11}/a_{12}$
+und dem $y$-Achsenabschnitt $y_0 = b_1/a_{12}$ beschrieben wird.
+
+Am Rande halten wir fest, dass das eben erwähnte Freistellen nach $y$ natürlich
+nur funktioniert, falls $a_{12} \neq 0$ ist. Ist $a_{12} = 0$,
+so lautet die erste Gleichung $a_{11} \cdot x = b_1$; diese ist für $a_{11} \neq 0$ äquivalent zu
+$x = (b_1/a_{11})$, was bedeutet, dass $x$ einen konstanten Wert annimmt; dies stellt ebenfalls eine Gerade dar,
+nämlich eine Gerade parallel zur $y$-Achse im Abstand $(b_1/a_{11})$.\\
+Und was, wenn sowohl $a_{12} = 0$ als auch
+$a_{11} = 0$ gilt? Nun, dann muss ebenfalls $b_1 = 0$ sein, da ansonsten die erste Gleichung von vornherein
+einen Widerspruch ergeben würde. Für $a_{11} = a_{12} = b_1 = 0$ ist aber die erste Gleichung (für alle
+Werte von $x$ und $y$) immer identisch erfüllt ($0 = 0$) und somit wertlos.
+
+Im Fall der zweiten Gleichung in Infobox \MRef{M04_2x2_system} gehen wir ganz entsprechend vor:
+$$y = - \Mdfrac{a_{21}}{a_{22}} x + \Mdfrac{b_2}{a_{22}} \; \; \; .$$
+Insgesamt erhalten wir zwei Geraden als Repräsentanten der beiden linearen Gleichungen und die Frage nach Lösbarkeit und Lösung
+des linearen Gleichungssystems, also die \textbf{Frage nach der
+gleichzeitigen Gültigkeit beider Gleichungen}, liest sich als \textbf{Frage nach Existenz und 
+Lage des Schnittpunkts der beiden Geraden}. Schauen wir uns dazu ein konkretes Beispiel an:
+
+\begin{MExample}
+Das lineare Gleichungssystem aus dem einführenden Beipiel \MRef{M04_einfuehrendes_Bsp} lautet:
+$$\left. \begin{array}{rcl} x + y & = & 10 \\[.5ex] x + 2 y & = & 13 \end{array} \right\} \Leftrightarrow
+\left\{ \begin{array}{rcl} y & = & - x + 10 \\[.5ex] y & = & - \Mtfrac12 x + \Mtfrac{13}{2} \end{array} \right. $$
+(Hier nehmen die allgemeinen Koeffizienten und rechten Seiten des Systems \MRef{M04_2x2_system} somit die
+Werte $a_{11} = 1, a_{12} = 1, a_{21} = 1, a_{22} = 2, b_1 = 10$ und $b_2 = 13$ an.)\\
+Es werden zwei Geraden mit den Steigungen $m_{1} = - 1$ bzw. $m_{2} = - \Mtfrac12$ und den $y$-Achsenabschnitten
+$y_{0,1} = 10$ bzw. $y_{0,2} = \Mtfrac{13}{2}$ beschrieben:
+\begin{center}
+\MUGraphicsSolo{eindeutige_lsg.png}{scale=1}{width:450px}
+\end{center}
+Wir erkennen aus dem Schaubild, dass sich die beiden Geraden in der Tat schneiden und lesen
+die Koordinaten des Schnittpunktes zu $(x = 7, y = 3)$ ab. Dementsprechend besitzt
+das hier betrachtete Lineare Gleichungssystem eine eindeutige Lösung; die
+Lösungsmenge $\ML$ enthält genau ein Zahlenpaar, ${\ML} = \{ (x = 7, y = 3) \}$.
+\end{MExample}
+Diese anschauliche Betrachtungsweise eignet sich hervorragend, alle Fälle zu
+diskutieren, die überhaupt nur auftreten können: Denn entweder schneiden sich zwei Geraden in der $x$-$y$-Ebene -
+und dann ist der Schnittpunkt zwangsläufig \textbf{eindeutig} -, oder aber zwei solche Geraden verlaufen parallel -
+und besitzen somit keinen Schnittpunkt -, oder aber die beiden Geraden sind deckungsgleich -
+und schneiden sich daher sozusagen in unendlich vielen Punkten. Andere Möglichkeiten sind nicht denkbar.
+Demzufolge können wir im Hinblick auf die Mächtigkeit der Lösungsmenge des
+zugehörigen linearen Gleichungssystems Folgendes festhalten:
+\begin{MInfo}
+Ein \MEntry{inhomogenes Lineares Gleichungssystem}{Lineares Gleichungssystem (inhomogen)} besitzt entweder eine
+eindeutige Lösung oder aber keine Lösung oder
+aber unendlich viele Lösungen.
+
+Ein \MEntry{homogenes Lineares Gleichungssystem}{Lineares Gleichungssystem (homogen)} weist \textbf{immer
+eine Lösung} auf, nämlich die sogenannte \MEntry{triviale Lösung}{Triviale Lösung (LGS)} $x = 0$ und $y = 0$.
+Darüberhinaus \textbf{kann} ein solches homogenes System auch \textbf{unendlich viele Lösungen} besitzen.
+\end{MInfo}
+Verdeutlichen wir das Gesagte an zwei weiteren Beispielen, bei denen wir direkt mit den Linearen
+Gleichungssystemen starten:
+\begin{MExample}
+\MLabel{M04_2x2_nicht_eindeutige_lsg}
+In beiden Fällen wählen wir als \textbf{Grundmenge} die Menge der reellen Zahlen $\R$.
+\begin{center}
+\begin{tabular}{l|l}
+\begin{minipage}{7.5cm}
+$$\left. \begin{array}{rcl} x + y & = & 2 \\[.5ex] 2 x + 2 y & = & 1 \end{array} \right\} \Leftrightarrow
+\left\{ \begin{array}{rcl} y & = & - x + 2 \\[.5ex] y & = & - x + \Mtfrac12 \end{array} \right. $$
+\end{minipage} &
+\begin{minipage}{7.5cm}
+$$\left. \begin{array}{rcl} x + y & = & 2 \\[.5ex] 2 x + 2 y & = & 4 \end{array} \right\} \Leftrightarrow
+\left\{ \begin{array}{rcl} y & = & - x + 2 \\[.5ex] y & = & - x + 2 \end{array} \right. $$
+\end{minipage} \\[1cm]
+\MUGraphicsSolo{keine_lsg.png}{scale=1}{width:350px} & \MUGraphicsSolo{unendl_lsg.png}{scale=1}{width:350px} \\[.5cm]
+\begin{minipage}[t]{7.5cm}
+Die beiden Geraden besitzen dieselbe Steigung $m = - 1$, aber verschiedene $y$-Achsenabschnitte ($y_0 = 2$
+bzw. $y_0 = 1/2$); sie verlaufen parallel; das Lineare Gleichungssystem besitzt \textbf{keine}
+Lösung: $${\ML} = \MEmptyset$$
+\end{minipage} &
+\begin{minipage}[t]{7.5cm}
+Die beiden Geraden besitzen sowohl dieselbe Steigung $m = - 1$ als auch denselben
+$y$-Achsenabschnitt $y_0 = 2$; sie sind deckungsgleich; das Lineare Gleichungssystem besitzt
+unendlich viele Lösungen, die z.B. wie folgt angegeben werden können:
+$${\ML} = \{ (t, - t + 2); t \in \R \}$$
+\end{minipage}
+\end{tabular}
+\end{center}
+\end{MExample}
+Im Falle des Beispiels in der rechten Spalte sind andere Parametrisierungen der Lösungsmenge möglich und
+erlaubt. Es kommt im Grunde nur darauf an, die Punkte der (deckungsgleichen) Geraden geeignet zu beschreiben.
+Bei der obigen Angabe von $\ML$ haben wir einfach die Geradengleichung selbst verwendet und die
+Laufvariable $t$ statt $x$ genannt.
+
+Und was hat es mit den oben erwähnten möglichen Einschränkungen wegen der Grundmenge auf sich? Auch hierzu ein Beispiel:
+\begin{MExample}
+Auf einem Volksfest verspricht ein besonders pfiffiger Standbesitzer geradezu traumhafte Preise und das gegen einen
+lächerlich geringen Spieleinsatz, wenn, ja wenn einer der Passanten ihm nur folgendes kleine Rätsel löst:
+{\it Ich habe mit einem Würfel zweimal gewürfelt. Ziehe ich vom Sechsfachen der zweiten Augenzahl das
+Zweifache der ersten ab, so erhalte ich die Zahl $3$. Addiere ich andererseits zum Vierfachen der ersten
+Augenzahl die Zahl $6$, so bekomme ich das Zwölffache der zweiten Augenzahl. Welche beiden Zahlen habe ich gewürfelt?}
+
+Bezeichnen wir die Augenzahl des ersten Würfelwurfs mit $x$, diejenige des zweiten mit $y$, so können wir die
+Aussagen des Standbesitzers sehr schnell in Gleichungen übersetzen:
+$$\left. \begin{array}{rcl} 6 y - 2 x & = & 3 \\[.5ex] 4 x + 6 & = & 12 y \end{array} \right\} \Leftrightarrow
+\left\{ \begin{array}{rcl} y & = & \Mtfrac13 x + \Mtfrac12 \\[.5ex]
+y & = & \Mtfrac13 x + \Mtfrac12 \end{array} \right. $$
+Wir stellen fest, dass das entstehende Lineare Gleichungssystem - anschaulich interpretiert - auf zwei
+deckungsgleiche Geraden führt. Vordergründig scheint es daher unendlich viele Lösungen zu geben.
+
+Hier kommt jetzt allerdings die Grundmenge ins Spiel: Da sowohl $x$ als auch $y$ Augenzahlen
+eines Würfels repräsentieren, können beide Unbekannte jeweils nur einen Wert aus der Menge $\{ 1, 2, 3, 4, 5, 6 \}$
+annehmen. Betrachtet man die Gerade $y = \Mtfrac13 x + \Mtfrac12$ in der $x$-$y$-Ebene,
+\begin{center}
+\MUGraphicsSolo{betrueger.png}{scale=1}{width:450px}
+\end{center}
+so erkennt man, dass
+kein mögliches Augenzahlpaar auf dieser Geraden liegt; daher ist die Lösungsmenge hier tatsächlich leer,
+${\ML} = \MEmptyset$.
+\end{MExample}
+\end{MIntro}
+
+\begin{MXContent}{Die Einsetzmethode und die Gleichsetzmethode}{Einsetz- und Gleichsetzmethode}{STD}
+\MDeclareSiteUXID{VBKM04_Einsetzmethode}
+\MLabel{M04_einsetz_gleichsetz}
+Bisher haben wir uns mit Fragen der \MEntry{Lösbarkeit}{Lösbarkeit} und der \textbf{graphischen Lösung} von
+Linearen Gleichungssystemen der Gestalt \MRef{M04_2x2_system} beschäftigt.
+Eine rechnerische Behandlung solcher Systeme steht noch aus, was wir jetzt nachholen wollen.
+Wenden wir uns dazu einem weiteren Beispiel zu:
+\begin{MExample}
+Familie Müller hat für die Renovierung ihres Hauses zwei Kredite in einer Gesamthöhe von $50000$ Euro
+aufnehmen müssen, für die sie pro Jahr zusammen $3700$ Euro allein an Zinsen zu bezahlen hat. Für den
+einen Kreditvertrag fallen $5\%$, für den anderen $8\%$ jährliche Zinsen an. Über welche Beträge
+laufen die einzelnen Kredite?
+
+Wir bezeichnen die gesuchten Kredithöhen der beiden Verträge mit $x$ und $y$. Die
+Summe dieser beiden Beträge beläuft sich laut Aufgabentext auf $50000$ Euro, also lautet unsere erste Gleichung:
+\begin{eqnarray*}
+\mbox{Gleichung } (1) & : & x + y = 50000 \; \; \; \mbox{(in Euro )}
+\end{eqnarray*}
+Die Zinslast aus dem mit $5\%$ verzinsten Vertrag beträgt $0,05 \cdot x$, die aus dem anderen Vertrag  mit $8\%$ Zinsen
+$0,08 \cdot y$. Beide Lasten summieren sich gemäß Aufgabetext auf $3700$ Euro; dies liefert uns eine zweite Gleichung:
+\begin{eqnarray*}
+\mbox{Gleichung } (2) & : & 0,05 x + 0,08 y = 3700 \; \; \; \mbox{(in Euro )}
+\end{eqnarray*}
+Wiederum landen wir bei einem Linearen Gleichungssystem vom Typ \MRef{M04_2x2_system}.
+
+Für die rechnerische Lösung stellen wir Gleichung~$(1)$ nach $y$ frei; es entsteht eine zu $(1)$ äquivalente Gleichung~$(1')$:
+\begin{eqnarray*}
+\mbox{Gleichung } (1') & : & y = 50000 - x
+\end{eqnarray*}
+Diesen Ausdruck für $y$ können wir nun in Gleichung~$(2)$ für $y$ \textbf{einsetzen}, sodass die resultierende Gleichung nur noch
+$x$ als Unbekannte enthält und dementsprechend aufgelöst werden kann:
+\begin{eqnarray*}
+& & 0,05 x + 0,08 (50000 - x) = 3700 \\
+\Leftrightarrow & & 0,05 x + 4000 - 0,08 x = 3700 \\
+\Leftrightarrow & & 0,03 x = 300 \\
+\Leftrightarrow & & x = 10000
+\end{eqnarray*}
+Setzt man dieses Ergebnis für $x$ in Gleichung~$(1')$ ein, so folgt:
+\begin{eqnarray*}
+& & y = 50000 - 10000 \\
+\Leftrightarrow & & y = 40000
+\end{eqnarray*}
+Die gesuchten Kreditvolumina betragen daher $10000$ Euro (Vertrag mit $5\%$ Verzinsung) und $40000$ Euro
+(Vertrag mit $8\%$ Verzinsung).
+\end{MExample}
+Das voranstehende Beispiel demonstriert auf charakteristische Art und Weise das Vorgehen bei der sogenannten
+\textbf{Einsetzmethode}:
+\begin{MInfo}
+\MLabel{M04_einsetzmethode}
+Bei der \MEntry{Einsetzmethode}{Einsetzmethode} wird eine der beiden linearen Gleichungen in einem ersten Schritt
+nach einer der Unbekannten - oder nach einem Vielfachen einer der Unbekannten - freigestellt; dieses Ergebnis wird im
+zweiten Schritt in die andere lineare Gleichung \textbf{eingesetzt}. Es können nun drei Fälle auftreten:
+\begin{itemize}
+\item[(i)]{Die resultierende Gleichung enthält (nach dem Zusammenfassen gleichartiger Terme)
+noch die andere der beiden Unbekannten. Das Auflösen der resultierenden
+Gleichung nach dieser anderen Unbekannten liefert den ersten Teil des Ergebnisses; den zweiten Teil erhält man zum Beispiel,
+indem man das erste Teilergebnis in die Gleichung aus dem ersten Schritt einsetzt. Die Lösung ist eindeutig. (Gehört
+diese Lösung allerdings nicht zur Grundmenge, so muss sie ausgeschlossen werden.)}
+\item[(ii)]{Die resultierende Gleichung enthält die andere der beiden Unbekannten nicht mehr und stellt einen Widerspruch
+in sich dar. Dann besitzt das Lineare Gleichungssystem keine Lösung.}
+\item[(iii)]{Die resultierende Gleichung enthält die andere der beiden Unbekannten nicht mehr und ist automatisch immer
+gültig. Dann besitzt das Lineare Gleichungssystem unendlich viele Lösungen (wenn nicht Überlegungen zur
+Grundmenge Einschränkungen diktieren).}
+\end{itemize}
+\end{MInfo}
+Bei dieser Vorgehensweise bestehen gewisse Freiheiten. Es ist nicht festgelegt, welche der linearen Gleichungen
+des Systems nach welcher Unbekannten - oder Vielfachen davon - aufgelöst werden soll; solange es sich generell
+um Äquivalenzumformungen handelt, führt jeder der möglichen Wege zum selben Resultat. Die Bevorzugung eines
+bestimmten Lösungsweges ist zum Teil eine Frage des Geschmacks und zum Teil eine Frage der Geschicklichkeit:
+Einige Zwischenrechnungen können sich vereinfachen, wenn eine clevere Wahl getroffen wird.
+
+Wir wollen die oben angesprochenen Fälle (ii) und (iii) im Zusammenhang mit der \textbf{Einsetzmethode} noch an
+den Linearen Gleichungssystemen aus Beipiel \MRef{M04_2x2_nicht_eindeutige_lsg} illustrieren:
+\begin{MExample}
+Als Grundmenge bei beiden Linearen Gleichungssystemen legen wir wiederum $\R$ fest.
+\begin{center}
+\begin{tabular}{c|c}
+\begin{minipage}[t]{7.5cm}
+$$\begin{array}{rcrcl} \mbox{Gleichung } (1): & & x + y & = & 2 \\[.5ex]
+\mbox{Gleichung } (2): & & 2 x + 2 y & = & 1 \end{array}$$
+Freistellen der Gleichung $(1)$ nach $x$ liefert $x = 2 - y$.
+Dies in Gleichung $(2)$ eingesetzt ergibt:
+\begin{eqnarray*}
+& & 2 (2 - y) + 2y = 1 \\
+& \Leftrightarrow & 4 - 2y + 2y = 1 \\
+& \Leftrightarrow & 4 = 1
+\end{eqnarray*}
+Dies ist ein Widerspruch; das LGS besitzt \textbf{keine} Lösung.
+\end{minipage} &
+\begin{minipage}[t]{7.5cm}
+$$\begin{array}{rcrcl} \mbox{Gleichung } (1): & & x + y & = & 2 \\[.5ex]
+\mbox{Gleichung } (2): & & 2 x + 2 y & = & 4 \end{array}$$
+Freistellen der Gleichung $(1)$ nach $y$ liefert $y = 2 - x$.
+Dies in Gleichung $(2)$ eingesetzt ergibt:
+\begin{eqnarray*}
+& & 2x + 2 (2 - x) = 4 \\
+& \Leftrightarrow & 2x + 4 - 2x = 4 \\
+& \Leftrightarrow & 4 = 4
+\end{eqnarray*}
+Dies ist immer wahr; das LGS besitzt \textbf{unendlich viele} Lösungen.
+\end{minipage}
+\end{tabular}
+\end{center}
+\end{MExample}
+Die Einsetzmethode ist nicht das einzige Verfahren, um Lineare Gleichungssysteme
+rechnerisch zu lösen. Wir kommen nun zu einer weiteren Methode, die sehr eng mit der graphischen Lösung eines LGS ist.
+\begin{MInfo}
+\MLabel{M04_gleichsetzmethode}
+Bei der \MEntry{Gleichsetzmethode}{Gleichsetzmethode} werden \textbf{beide} linearen Gleichungen in einem ersten
+Schritt nach einer der Unbekannten - oder nach einem Vielfachen einer der Unbekannten - freigestellt. Die beiden
+resultierenden neuen Gleichungen werden dann im zweiten Schritt \textbf{gleichgesetzt}.
+In der Folge können dann die drei im Zusammenhang mit der Einsetzmethode diskutierten Fälle auftreten.
+\end{MInfo}
+Auch dieses Verfahren beinhaltet gewisse Freiheiten; so ist zum Beispiel nicht vorgeschrieben, nach welcher Unbekannten
+die linearen Gleichungen freigestellt werden sollen.
+
+Zur Demonstration lösen wir nochmals das Eingangsbeispiel, jetzt mit Hilfe der Gleichsetzmethode:
+\begin{MExample}
+Das Lineare Gleichungssystem unseres einführenden Beispiels lautet:
+\begin{eqnarray*}
+x + y & = & 10 \\ x + 2 y & = & 13
+\end{eqnarray*}
+Wir lösen beide Gleichungen nach $x$ auf,
+\begin{eqnarray*}
+x & = & 10 - y \\ x & = & 13 - 2y \; \; \; ,
+\end{eqnarray*}
+und setzen die rechten Seiten der beiden Gleichungen gleich,
+$$10 - y = 13 - 2y \; \; \; ,$$
+was auf $y = 3$ führt. Dieses Ergebnis können wir in eine der beiden nach $x$ aufgelösten Gleichungen einsetzen,
+um $x = 7$ zu erhalten.
+\end{MExample}
+\begin{MExercise}
+Bestimmen Sie die Lösungsmenge für das Lineare Gleichungssystem
+\begin{eqnarray*}
+7 x + 2 y &= & 14 \\ 3 x - 5 y & = & 6
+\end{eqnarray*}
+mit Hilfe der Gleichsetzmethode.
+\ \\
+\begin{MHint}{Lösung}
+Wir lösen beispielsweise beide Gleichungen nach $x$ auf: dazu multiplizieren wir die erste Gleichung mit
+$(1/7)$ und stellen nach $x$ frei,
+$$x = \Mtfrac{14}{7} - \Mtfrac27 y \Leftrightarrow x = 2 - \Mtfrac27 y \; : \mbox{ Gleichung } (1') \; \; \; ;$$
+die zweite Gleichung multiplizieren wir dagegen mit $\Mtfrac13$, bevor wir nach $x$ freistellen,
+$$x = \Mtfrac63 + \Mtfrac53 y \Leftrightarrow x = 2 + \Mtfrac53 y \; : \mbox{ Gleichung } (2') \; \; \; .$$
+Gleichsetzen der beiden rechten Seiten der Gleichungen~$(1')$ und $(2')$ liefert:
+$$2 - \Mtfrac27 y = 2 + \Mtfrac53 y \Leftrightarrow 0 = (\Mtfrac27 + \Mtfrac53) y \Leftrightarrow y = 0$$
+Mit diesem Ergebnis für $y$ ergibt z.B. die erste Gleichung:
+$$7 x + 2 \cdot 0 = 14 \Leftrightarrow 7 x = 14 \Leftrightarrow x = 2$$
+Also ist das gegebene Lineare Gleichungssystem eindeutig lösbar und ${\ML} = \{ (x = 2, y = 0) \}$.
+
+Alternativ hätten wir die beiden Gleichungen vor dem Gleichsetzen auch nach $y$ auflösen können (oder nach einem
+Vielfachen von $x$ oder nach einem Vielfachen von $y$). Das Endresultat ist jedesmal das selbe.
+\end{MHint}
+\end{MExercise}
+\end{MXContent}
+
+\begin{MXContent}{Die Additionsmethode}{Additionsmethode}{STD}
+\MLabel{M04_addition}
+\MDeclareSiteUXID{VBKM04_Additionsmethode}
+Wir wollen noch ein weiteres, drittes, Verfahren zur rechnerischen Lösung von Linearen Gleichungssystemen
+vorstellen, das sein eigentliches Potenzial aber erst bei größeren Systemen, d.h. vielen linearen Gleichungen in
+vielen Unbekannten entwickeln wird, da es sich sehr gut systematisieren lässt. Hier soll es um die prinzipielle
+Vorgehensweise gehen. Beginnen wir mit einem Beispiel:
+\begin{MExample}
+Wir suchen die Lösungsmenge des Linearen Gleichungssystems
+$$\begin{array}{rcrcl} \mbox{Gleichung } (1): & & 2 x + y & = & 9 \\
+\mbox{Gleichung } (2): & & 3 x - 11 y & = & 1 \; \; \; , \end{array}$$
+wobei wir als Grundmenge die Menge der reellen Zahlen $\R$ wählen.
+
+Diesmal wollen wir zur Lösung folgenden Weg einschlagen: Wie multiplizieren Gleichung~$(1)$ mit dem Faktor $11$ durch und
+erhalten eine zu Gleichung~$(1)$ äquivalente Gleichung:
+$$\begin{array}{crclcl} & (2 x + y) \cdot 11 & = & 9 \cdot 11 & & \\
+\Leftrightarrow & 22 x + 11 y & = & 99 & & : \mbox{ Gleichung } (1') \end{array}$$
+Anschließend \textbf{addieren} wir die neue Gleichung $(1')$ zu Gleichung $(2)$ hinzu, d.h. wir setzen die
+\textbf{Summe} der linken Seiten von $(1')$ und $(2)$ gleich der \textbf{Summe} der rechten Seiten
+von $(1')$ und $(2)$. Dabei fällt die Unbekannte~$y$
+heraus; dies ist übrigens der Grund für die Wahl des Faktors $11$ im vorherigen Schritt:
+$$3 x - 11 y + 22 x + 11 y = 1 + 99 \Leftrightarrow 25 x = 100 \Leftrightarrow x = 4$$
+Um den Lösungswert für $y$ zu bekommen, können wir das gerade erzielte Resultat für $x$ z.B. in Gleichung~$(1)$
+einsetzen:
+$$2 \cdot 4 + y = 9 \Leftrightarrow 8 + y = 9 \Leftrightarrow y = 1$$
+Das Lineare Gleichungssystem des vorliegenden Beispiels besitzt also eine eindeutige Lösung, ${\ML} =
+\{ (x = 4, y = 1) \}$.
+\end{MExample}
+Auch bei diesem Verfahren liegt das Vorgehen nicht eindeutig fest: So hätten wir z.B. auch Gleichung~$(1)$ mit $3$
+und Gleichung~$(2)$ mit $(- 2)$ durchmultiplizieren können,
+$$\begin{array}{rclcrclcl} (2x + y) \cdot 3 & = & 9 \cdot 3 & \Leftrightarrow & 6 x + 3 y & = & 27
+& & : \mbox{ Gleichung } ({1'}') \\ 
+(3 x - 11 y) \cdot (- 2) & = & 1 \cdot (- 2) & \Leftrightarrow & - 6 x + 22 y & = & - 2
+& & : \mbox{ Gleichung } ({2'}') \; \; \; , \end{array}$$
+um bei der anschließenden \textbf{Addition} der Gleichungen~$({1'}')$ und $({2'}')$ die Variable $x$ zu eliminieren:
+$$6 x + 3 y - 6 x + 22 y = 27 - 2 \Leftrightarrow 25 y = 25 \Leftrightarrow y = 1$$
+Das Ergebnis für $y$ hätten wir dann z.B. in Gleichung~$(2)$ einsetzen können, um $x$ zu bestimmen:
+$$3 x - 11 \cdot 1 = 1 \Leftrightarrow 3 x = 12 \Leftrightarrow x = 4$$
+\begin{MInfo}
+Bei der Additionsmethode wird eine der linearen Gleichungen durch geschickte Multiplikation
+mit einem geeigneten Faktor so umgeformt, dass bei der anschließenden \textbf{Addition} der anderen Gleichung (zumindest)
+eine Unbekannte herausfällt. (Manchmal ist es einfacher, \textbf{beide} Gleichungen vor der \textbf{Addition} mit
+passend gewählten Faktoren zu multiplizieren.) Wie im Fall der Einsetzmethode
+\MRef{M04_einsetzmethode} (oder der \MRef{M04_gleichsetzmethode}) können
+in der Folge drei Fälle auftreten, die auf eine Lösungsmenge $\ML$ mit genau einem Element, keinem Element oder
+unendlich vielen Elementen führen.
+\end{MInfo}
+\end{MXContent}
+
+\begin{MExercises}
+\MDeclareSiteUXID{VBKM04_Additionsmethode_Exercises}
+\begin{MExercise}
+Lösen Sie die folgenden Linearen Gleichungssysteme mit Hilfe der Einsetzmethode:
+\begin{MExerciseItems}
+\item{$3 x + y = 4$ und $- x + 2 y = 1$}
+\item{$- x + 4 y = 5$ und $2 x - 8 y = - 10$}
+\end{MExerciseItems}
+
+\begin{MHint}{Lösung}
+\begin{MExerciseItems}
+\item{Auflösen z.B. der 1.~Gleichung ($3 x + y = 4$) nach $y$ liefert $y = 4 - 3 x$. Dies kann man dann in die 2.~Gleichung
+($- x + 2 y = 1$) einsetzen: $- x + 2 (4 - 3 x) = 1 \Leftrightarrow - x + 8 - 6 x = 1 \Leftrightarrow - 7 x = - 7
+\Leftrightarrow x = 1$. Mit diesem Ergebnis für $x$ liefert in der Folge z.B. die 1.~Gleichung $3 \cdot 1 + y = 4
+\Leftrightarrow y = 1$. Die Lösungsmenge $\ML$ lautet hier also ${\ML} = \{ (1, 1) \}$.
+
+Selbstverständlich könnte man auch anders beginnen: Man könnte z.B. die 1.~Gleichung nach $x$ auflösen und
+das Ergebnis für $x$ dann in die 2.~Gleichung einsetzen, um $y$ zu bestimmen; oder man könnte generell mit
+der 2.~Gleichung beginnen und diese im 1.~Schritt nach $x$ oder nach $y$ auflösen.
+Es bestehen also einige Freiheiten in der Vorgehensweise.}
+\item{Auflösen z.B. der 1.~Gleichung ($- x + 4 y = 5$) nach $x$ liefert $x = 4 y - 5$. Dies kann man dann in die 2.~Gleichung
+($2 x - 8 y = - 10$) einsetzen: $2 ( 4 y - 5) - 8 y = - 10 \Leftrightarrow 8 y - 10 - 8y = - 10 \Leftrightarrow 0 = 0$.
+Es entsteht also keine neue Aussage; mit anderen Worten: Die 2.~Gleichung enthält keine neue Information. Damit enthält
+die Lösungsmenge $\ML$ in diesem Fall unendlich viele Lösungspaare $(x, y)$, die sich durch eine reelle Zahl $t$
+parametrisieren lassen. Wählt man z.B. $y = t$, so lautet die Lösungsmenge ${\ML} = \{ (4 t - 5, t); t \in \R \}$.
+Diese Lösungsmenge lässt sich als Gerade im zweidimensionalen Raum veranschaulichen:
+\begin{center}
+\MUGraphicsSolo{unendl_Lsgsm_Aufg_1b.png}{scale=1}{width:450px}
+\end{center}
+Dementsprechend sind andere Parametrisierungen der Lösungsmenge möglich, z.B. indem man als freien Parameter $x \in \R$
+wählt und die obige Gerade mit Hilfe ihrer Steigung und ihres $y$-Achsenabschnittes charakterisiert, also
+${\ML} = \{ (x, \Mtfrac14 x + \Mtfrac54 ), x \in \R \}$.}
+\end{MExerciseItems}
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Lösen Sie die folgenden Linearen Gleichungssysteme mit Hilfe der Additionsmethode:
+\begin{MExerciseItems}
+\item{$2 x + 4 y = 1$ und $x + 2 y = 3$}
+\item{$- 7 x + 11 y = 40$ und $2 x + 5 y = 13$}
+\end{MExerciseItems}
+
+\begin{MHint}{Lösung}
+\begin{MExerciseItems}
+\item{Multipliziert man z.B. die 2.~Gleichung ($x + 2 y = 3$) mit $(- 2)$, so entsteht die Gleichung $(2')$:
+$- 2 x - 4 y = - 6$. Die letzte Gleichung addiert man dann zur 1.~Gleichung ($2 x + 4 y = 1$):
+$2 x + 4 y - 2 x - 4 y = 1 - 6 \Leftrightarrow 0 = - 5$. Dies ist ein Widerspruch! Somit ist die Lösungsmenge
+$\ML$ für dieses Lineare Gleichungssystem leer: ${\ML} = \MEmptyset$.}
+\item{Multiplikation der 1.~Gleichung ($- 7 x + 11 y = 40$) mit $2$ führt auf die Gleichung $(1')$:
+$- 14 x + 22 y = 80$; Multiplikation der 2.~Gleichung mit $7$ auf die Gleichung $(2')$:
+$14 x + 35 y = 91$. Anschließende Addition der Gleichungen $(1')$ und $(2')$ liefert:
+$- 14 x + 22 y + 14 x + 35 y = 80 + 91 \Leftrightarrow 57 y = 171 \Leftrightarrow y = 3$. Setzt man dieses
+Ergebnis für $y$ z.B. in die 2.~Gleichung ein, so entsteht: $2 x + 5 \cdot 3 = 13 \Leftrightarrow
+2 x = 13 - 15 \Leftrightarrow 2 x = - 2 \Leftrightarrow x = - 1$. Damit lautet die Lösungsmenge $\ML$ hier:
+${\ML} = \{ (- 1, 3) \}$.}
+\end{MExerciseItems}
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Lösen Sie das folgende Lineare Gleichungssystem graphisch: $2 x = 2$ und $x + 3 y = 4$.
+
+\begin{MHint}{Lösung}
+Die 1.~Gleichung ($2 x = 2$) ist äquivalent zu $x = 1$: Diese Gleichung beschreibt eine Gerade parallel zur
+$y$-Achse durch den Punkt $(1, 0)$ auf der $x$-Achse. Die 2.~Gleichung ($x + 3 y = 4$) kann umgeformt werden zu
+$y = - \Mtfrac{1}{3} x + \Mtfrac{4}{3}$; dies beschreibt ebenfalls eine Gerade, diesmal mit der Steigung $- \Mtfrac{1}{3}$ und 
+dem $y$-Achsenabschnitt $\Mtfrac{4}{3}$. Es egibt sich also folgendes Bild:
+\begin{center}
+\MUGraphicsSolo{Aufgabe_Schnittpunkt_Geraden_1.png}{scale=1}{width:450px}
+\end{center}
+Aus diesem Bild liest man die Koordinaten des Schnittpunktes zu $(x = 1, y = 1)$ ab; daher: ${\ML} = \{ (1, 1) \}$
+\end{MHint}
+\end{MExercise}
+
+\end{MExercises}
+
+
+\MSubsection{LGS mit drei Unbekannten}
+\MLabel{M04_3_Unbekannte}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM04_DreiUnbekannte_Intro}
+Wir steigern in der Folge den Schwierigkeitsgrad ein wenig und gehen zur Behandlung etwas komplizierterer
+Systeme über:
+\begin{MExample}
+\MLabel{M04_einfuehrendes_Bsp_2}
+Drei Kinder finden beim Spielen ein Portemonnaie mit $30$ Euro. Da meint das erste Kind: \glqq Wenn ich
+das Geld für mich alleine behalte, so besitze ich doppelt so viel wie ihr beide zusammen!{\grqq} Woraufhin das
+zweite Kind mit vor Stolz geschwellter Brust prahlt: \glqq Und wenn ich das gefundene Geld einfach einstecke, habe
+ich dreimal so viel wie ihr beide!{\grqq} Das dritte Kind kann da nur überlegen schmunzeln: \glqq Und wenn ich's
+nehme, so bin ich fünfmal so reich wie ihr beiden Gauner!{\grqq} Wieviel Geld besitzen die Kinder vor dem Fund?
+
+Bezeichnen wir die Geldsummen (in Euro) des ersten, zweiten bzw. dritten Kindes vor dem Portemonnaiefund
+mit $x$, $y$ bzw. $z$, so können wir die Aussage des ersten Kindes wie folgt in eine mathematische Gleichung
+übersetzen:
+$$x + 30 = 2 (y + z) \Leftrightarrow x - 2 y - 2 z = - 30 \; : \mbox{ Gleichung } (1)$$
+Analog wird die Aussage des zweiten Kindes übertragen,
+$$y + 30 = 3 (x + z) \Leftrightarrow - 3 x + y - 3 z = - 30 \; : \mbox{ Gleichung } (2) \; \; \; ,$$
+und schließlich diejenige des dritten Kindes:
+$$z + 30 = 5 (x + y) \Leftrightarrow - 5 x - 5 y + z = - 30 \; : \mbox{ Gleichung } (3)$$
+Es entsteht also ein System aus drei linearen Gleichungen in drei Unbekannten, die hier $x, y$ und $z$ heißen.
+\end{MExample}
+Wen die Lösung dieses kleinen Rätsels interessiert, der wird sie weiter unten sowohl im Rahmen der
+\textbf{Einsetzmethode} (siehe \MRef{M04_einf_Bsp_2_rech}) als auch im Rahmen der Additionsmethode
+(siehe \MRef{M04_einf_Bsp_2_rech_2}) ausführlich vorgerechnet finden.
+\begin{MInfo}
+\MLabel{M04_3x3_system}
+Eine  lineares Gleichungssystem, bestehend aus drei Gleichungen in den drei
+Unbekannten $x, y$ und $z$, besitzt folgende allgemeine Gestalt:
+\begin{eqnarray*}
+a_{11} \cdot x + a_{12} \cdot y + a_{13} \cdot z & = & b_1 \\
+a_{21} \cdot x + a_{22} \cdot y + a_{23} \cdot z & = & b_2 \\
+a_{31} \cdot x + a_{32} \cdot y + a_{33} \cdot z & = & b_3
+\end{eqnarray*}
+Dabei bezeichnen $a_{11}, a_{12}, a_{13}, a_{21}, a_{22}, a_{23}, a_{31}, a_{32}$ und $a_{33}$ die
+\textbf{Koeffizienten} sowie $b_1, b_2$ und $b_3$ die rechten Seiten des \textbf{Linearen Gleichungssystems}.
+
+Wiederum nennt man das \textbf{Lineare Gleichungssystem} \textbf{homogen}, falls die rechten Seiten $b_1, b_2$
+und $b_3$ verschwinden ($b_1 = 0$, $b_2 = 0$, $b_3 = 0$). Anderfalls heißt das System \textbf{inhomogen}.
+\end{MInfo}
+\end{MIntro}
+
+\begin{MXContent}{Lösbarkeit und Gleichsetzmethode, Graphische Interpretation}{Lösbarkeit}{STD}
+\MDeclareSiteUXID{VBKM04_LoesbarkeitUndLoesungen3}
+Im Falle von Systemen aus zwei linearen Gleichungen in zwei Unbekannten kann man - wie wir in \MRef{M04_2_Unbekannte}
+gesehen haben - die Frage nach Lösbarkeit und Lösung des Systems sehr schön anschaulich in die Frage nach Existenz
+und Lage des Schnittpunkts zweier Geraden übersetzen. Und natürlich sollten wir uns überlegen, ob für Systeme aus
+drei linearen Gleichungen in drei Unbekannten eine ähnlich bildhafte Interpretation gegeben werden kann?
+
+Erweitern wir den bisherigen Raum ($x$ und $y$) um eine weitere Dimension oder Variable, nämlich $z$, dann können wir mit einer linearen Gleichung dieser drei Variablen
+$$a_{11} \cdot x + a_{12} \cdot y + a_{13} \cdot z = b_1$$
+eine \MEntry{Ebene}{Ebenengleichung} \textbf{in Koordinatenform} darstellen, ganz analog zu den Geradengleichungen, die wir bisher untersucht haben. Für $a_{13} \neq 0$ kann diese
+Gleichung nach $z$ aufgelöst werden,
+$$z = b_ 1 - \Mtfrac{a_{11}}{a_{13}} \cdot x - \Mtfrac{a_{12}}{a_{13}} \cdot y \; \; \; ,$$
+sodass die \textbf{explizite Form} der Gleichung ebenjener Ebene resultiert. Die letzte Gleichung besagt, dass jedem Paar
+$(x, y)$, also jedem Punkt der $x$-$y$-Koordinatenebene, gemäß der Vorschrift der rechten Seite ein Wert $z$, also
+gewissermaßen ein Höhe, zugeordnet wird; dadurch ensteht eine Fläche über der $x$-$y$-Ebene, die aufgrund der Linearität
+der Gleichung selbst eine Ebene ist.
+
+Nun muss aber nicht nur die erste Gleichung im System \MRef{M04_3x3_system} gelten, sondern es müssen \textbf{gleichzeitig}
+auch die zweite und die dritte Gleichung erfüllt sein, die bildlich ebenfalls als Ebenen interpretiert werden können. Wonach
+wir also bei der Suche nach Lösungen eines Systems aus drei linearen Gleichungen in drei Unbekannten fahnden, ist - in der
+anschaulichen Sprache - das \textbf{Schnittverhalten} dreier Ebenen. Betrachten wir hierzu zunächst ein Beispiel:
+\begin{MExample}
+\MLabel{M04_3x3_bsp_gleichsetz}
+Wir suchen nach der Lösungsmenge des Linearen Gleichungssystems
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x + y - z & = & 0 \\
+\mbox{Gleichung } (2): & & x + y + z & = & 6 \\
+\mbox{Gleichung } (3): & & 2 x - y + z & = & 4 \; \; \; ; \end{array}$$
+als Grundmenge wählen wir die Menge der reellen Zahlen $\R$.
+
+Jede der drei linearen Gleichungen lässt sich problemlos nach $z$ freistellen:
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1'): & & z & = & x + y\\
+\mbox{Gleichung } (2'): & & z & = & 6 - x - y\\
+\mbox{Gleichung } (3'): & & z & = & 4 - 2 x + y \end{array}$$
+\textbf{Setzen} wir jetzt die rechten Seiten der Gleichungen~$(1')$ und $(2')$ \textbf{gleich}, so bedeutet dies -
+anschaulich gesprochen -, dass wir die \MEntry{Schnittgerade}{Schnittgerade} der beiden durch diese Gleichungen
+beschriebenen Ebenen bestimmen:
+$$x + y = 6 - x - y \Leftrightarrow 2 x + 2 y = 6 \Leftrightarrow y = 3 - x \; : \mbox{ Gleichung } (A)$$
+Die vollkommen analoge Aussage gilt, falls wir die rechten Seiten von Gleichung~$(2')$ und $(3')$ \textbf{gleichsetzen};
+wir erhalten dann die \textbf{Schnittgerade} der Ebenen~$(2)$ und $(3)$:
+$$6 - x - y = 4 - 2 x + y \Leftrightarrow x - 2 y = - 2 \Leftrightarrow y = 1 + \Mtfrac12 x \; :
+\mbox{ Gleichung } (B)$$
+Da im Ausgangssystem alle drei Gleichungen simultan gelten sollen, müssen auch die zwei gerade hergeleiteten Geradengleichungen
+gleichzeitig erfüllt sein. Im bildlichen Kontext suchen wir daher den Schnittpunkt dieser beiden Geraden;
+diesen Schnittpunkt bekommen wir, indem wir die rechten Seiten der Gleichungen~$(A)$ und $(B)$ \textbf{gleichsetzen}:
+$$3 - x = 1 + \Mtfrac12 x \Leftrightarrow \Mtfrac32 x = 2 \Leftrightarrow x = \Mtfrac43$$
+Den Lösungswert für $y$ können wir durch Einsetzen des Ergebnisses für $x$ z.B. in Gleichung~$(A)$ berechnen:
+$$y = 3 - \Mtfrac43 \Leftrightarrow y = \Mtfrac53$$
+Der Wert für $z$ schließlich resultiert, indem man die Werte für $x$ und $y$ z.B. in Gleichung~$(1')$ einsetzt:
+$$z = \Mtfrac43 + \Mtfrac53 \Leftrightarrow z = \Mtfrac93 \Leftrightarrow z = 3$$
+Das gegebene Lineare Gleichungssystem ist also eindeutig lösbar; für die Lösungsmenge erhalten wir
+${\ML} = \{ (x = \Mtfrac43, y = \Mtfrac53, z = 3) \}$.
+\end{MExample}
+Verweilen wir noch für einen Moment in der bildhaften Welt, um die Frage der Lösbarkeit eines Systems aus drei linearen
+Gleichungen in drei Unbekannten allgemeiner und etwas genauer unter die Lupe zu nehmen:
+\begin{itemize}
+\item{Liegen (mindestens) \textbf{zwei} der drei \textbf{Ebenen parallel} zueinander (ohne deckungsgleich zu sein),
+so besitzt das System \textbf{keine Lösung}: Parallele (nicht deckungsgleiche) Ebenen schneiden sich nicht;
+daher ist es unmöglich, die zu den Ebenen gehörenden Gleichungen simultan zu erfüllen.}
+\item{Sind \textbf{zwei} der drei \textbf{Ebenen deckungsgleich}, so wird die Schnittmenge mit der dritten (nicht
+parallelen und nicht deckungsgleichen) Ebene durch eine \textbf{Schnittgerade} gebildet; alle Punkte dieser
+Schnittgeraden repräsentieren Lösungen des Systems, die \textbf{Lösungsmenge} ist daher \textbf{unendlich mächtig}.}
+\item{Sind alle \textbf{drei Ebenen deckungsgleich}, so sind alle Punkte der (deckungsgleichen) Ebene(n) Lösungen des Systems;
+wiederum ist die \textbf{Lösungsmenge unendlich mächtig}.}
+\item{Eine eindeutige Lösung kann höchstens in diesem letzten Fall eintreten: Die drei (nicht parallelen und nicht
+deckungsgleichen) Ebenen führen auf \textbf{drei Schnittgeraden} (Ebene~$(1)$ mit Ebene~$(2)$, Ebene~$(2)$ mit Ebene~$(3)$,
+Ebene~$(1)$ mit Ebene~$(3)$):
+\begin{itemize}
+\item{Liegen \textbf{zwei Schnittgeraden parallel} zueinander, so besitzt das System \textbf{keine Lösung}.}
+\item{Sind \textbf{zwei Schnittgeraden deckungsgleich}, so weist das System \textbf{unendlich viele Lö\-sun\-gen} auf.}
+\item{\textbf{Schneiden sich die Schnittgeraden in einem Punkt}, so ist die \textbf{Lösung eindeutig}
+und die \textbf{Lösungsmenge} besteht \textbf{aus genau einem Element}.}
+\end{itemize}}
+\end{itemize}
+Wir sehen, dass trotz der anschaulichen Interpretation das genaue Auseinanderdividieren der einzelnen Fälle doch einigermaßen
+kompliziert ist. Um so wichtiger wird es sein, gerade wenn die Systeme noch größer werden und die Anschauung schwieriger
+bzw. unmöglich wird, rechnerische Methoden an der Hand zu haben, um die Lösbarkeit Linearer Gleichungssysteme zu
+untersuchen und deren Lösungsmengen zu bestimmen. Das \MEntry{Additionsverfahren}{Additionsverfahren}, dessen
+Diskussion wir weiter unten erneut aufgreifen, wird ein solch geeignetes Verfahren sein.
+
+Übrigens ist es im obigen Beispiel \MRef{M04_3x3_bsp_gleichsetz} nicht nötig, die dritte Schnittgerade zu bestimmen und
+zu überprüfen, dass diese dritte Schnittgerade die beiden anderen Geraden in deren Schnittpunkt schneidet: Dies ist
+automatisch gewährleistet, da durch das Gleichsetzen der rechten Seite von Gleichung~$(1')$ mit derjenigen von
+Gleichung~$(2')$ (erste Schnittgerade / Gleichung~$(A)$) und durch das Gleichsetzen der rechten Seite von
+Gleichung~$(2')$ mit derjenigen von Gleichung~$(3')$ (zweite Schnittgerade / Gleichung~$(B)$) die Gültigkeit der
+Gleichung für die dritte Schnittgerade (rechte Seite von $(1')$ = rechte Seite von $(3')$),
+$$x + y = 4 - 2 x + y \Leftrightarrow 3 x = 4 \; : \mbox{ Gleichung } (C) \; \; \; ,$$
+garantiert ist.
+
+Im Beispiel haben wir als rechnerisches Verfahren die \MSRef{M04_gleichsetzmethode}{Gleichsetzmethode} verwendet, da sie
+sehr eng mit der anschaulich geometrischen Interpretation zusammenhängt. Durch das \textbf{Gleichsetzen} expliziter
+Ebenen- bzw. Geradengleichungen werden ja genau die Schnittgeraden bzw. -punkte bestimmt.
+\begin{MInfo}
+Bei der Gleichsetzmethode werden die drei linearen Gleichungen in einem ersten
+Schritt nach einer der Unbekannten - oder nach einem Vielfachen einer der Unbekannten - freigestellt. Die
+resultierenden neuen Gleichungen werden dann im zweiten Schritt paarweise \textbf{gleichgesetzt}, wobei es genügt,
+dies für zwei Paare durchzuführen. Insgesamt entsteht ein \textbf{Lineares
+Gleichungssystem}, das nur noch aus \textbf{zwei} Gleichungen in (den verbliebenen) \textbf{zwei} Unbekannten
+aufgebaut ist und das anschließend mit den Methoden des Abschnitts \MRef{M04_2_Unbekannte} bearbeitet werden kann.
+\end{MInfo}
+
+\begin{MExercise}
+Bestimmen Sie die Lösungsmenge des Linearen Gleichungssystems
+\begin{eqnarray*}
+- x + z & = & 2 \\ - x + y + 2 z & = & 1 \\ y + z & = & 11
+\end{eqnarray*}
+Verwenden Sie die Gleichsetzmethode und gehen Sie geschickt vor!
+
+\begin{MHint}{Lösung}
+Die erste Gleichung hängt von vornherein nicht von der Unbekannten $y$ ab; daher bietet es sich an, aus der
+zweiten und dritten Gleichung zunächst ebenfalls $y$ zu eliminieren. Wir lösen dazu die zweite und die dritte
+Gleichung jeweils nach $y$ auf,
+$$y = 1 + x - 2 z \; \mbox{ und } \; y = 11 - z \; \; \; ,$$
+und setzen anschließend die rechten Seiten gleich:
+$$1 + x - 2 z = 11 - z \Leftrightarrow - x + z = - 10$$
+Als nächstes müssen wir diese letzte Gleichung und die erste Gleichung des ursprünglichen Systems
+weiterverarbeiten. Beim Betrachten dieser beiden Gleichungen fällt auf, dass die linken Seiten (die
+Kombination $- x + z$ der Unbekannten $x$ und $z$) identisch sind, wohingegen die rechten Seiten
+(die Zahlenwerte $2$ und $-10$) offensichtsichtlich nicht übereinstimmen. Daher stoßen wir auf einen
+Widerspruch und das gegebene Lineare Gleichungssystem besitzt keine Lösung, ${\ML} = \MEmptyset$.\\
+Andere, ebenso geschickte, Lösungswege sind möglich.
+\end{MHint}
+\end{MExercise}
+\end{MXContent}
+
+\begin{MXContent}{Die Einsetzmethode}{Einsetzmethode}{STD}
+\MDeclareSiteUXID{VBKM04_Einsetzmethode3}
+Die \textbf{Einsetzmethode} haben wir bereits im Rahmen von Systemen, bestehend aus zwei Gleichungen
+in zwei Unbekannten, kennengelernt, siehe \MRef{M04_einsetz_gleichsetz}. Auch im vorliegenden Fall eines
+Systems vom Typ \MRef{M04_3x3_system} ändert sich an der Vorgehensweise nichts Prinzipielles:
+\begin{MExample}
+\MLabel{M04_einf_Bsp_2_rech}
+Wir greifen das einleitende Beispiel \MRef{M04_einfuehrendes_Bsp_2} dieses Abschnitts wieder auf; das Lineare
+Gleichungssystem im Falle des Rätsels um unsere drei in Versuchung geführten Kinder lautet:
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \\
+\mbox{Gleichung } (2): & & - 3 x + y - 3 z & = & - 30 \\
+\mbox{Gleichung } (3): & & - 5 x - 5 y + z & = & - 30 \end{array}$$
+Wir können mit der Lösung z.B. so beginnen, dass wir Gleichung~$(1)$ nach $x$ freistellen,
+$$x = 2 y + 2 z - 30 \; : \mbox{ Gleichung } (1') \; \; \; .$$
+\textbf{Setzen} wir diese Gleichung in die Gleichungen~$(2)$ und $(3)$ ein, so wird aus den
+letztgenannten Gleichungen die Unbekannte $x$ eliminiert:
+$$- 3 (2 y + 2 z - 30) + y - 3 z = - 30 \Leftrightarrow - 5 y - 9 z = - 120 \; : \mbox{ Gleichung } (2')$$
+$$- 5 (2 y + 2 z - 30) - 5 y + z = - 30 \Leftrightarrow - 15 y - 9 z = - 180 \; : \mbox{ Gleichung } (3')$$
+Wir erhalten also in diesem Zwischenschritt ein System aus \textbf{zwei} linearen Gleichungen in den \textbf{zwei}
+Unbekannten $y$ und $z$, das mit den Methoden des vorigen Abschnitts \MRef{M04_2_Unbekannte} weiterbehandelt wird.\\
+So können wir z.B. Gleichung~$(2')$ nach $y$ auflösen,
+$$y = 24 - \Mtfrac95 z \; \; \; ,$$
+und diesen Ausdruck in Gleichung~$(3')$ \text{einsetzen}:
+$$- 15 (24 - \Mtfrac95 z) - 9 z = - 180 \Leftrightarrow 360 - 27 z + 9 z = 180 \Leftrightarrow 18 z = 180
+\Leftrightarrow z = 10$$
+Damit ergibt sich $y$ zu
+$$y = 24 - \Mtfrac95 \cdot 10 = 24 - 9 \cdot 2 = 6 \; \; \; ,$$
+und schließlich $x$ (mit Hilfe von beispielsweise Gleichung~$(1')$):
+$$x = 2 \cdot 6 + 2 \cdot 10 - 30 = 12 + 20 - 30 = 2$$
+Das Lineare Gleichungssystem besitzt daher eine eindeutige Lösung; die Lösungsmenge $\ML$ enthält genau
+ein Element, ${\ML} = \{ (x = 2, y = 6, z = 10) \}$.
+\end{MExample}
+Vielleicht fragt sich der eine oder andere im Zusammenhang mir dem voranstehenden Beispiel, ob es in Anbetracht
+der identischen rechten Seiten - alle gleich $- 30$ - nicht praktischer wäre, einfach die linken Seiten paarweise
+gleichzusetzen und mit den resultierenden Gleichungen weiterzuarbeiten?
+
+Ein solches Vorgehen ist allerdings nicht
+zielführend und - wenn man nicht genau aufpasst, was man tut - unter Umständen sogar falsch. Jedenfalls würde es
+keine Reduktion in der Anzahl der Unbekannten nach sich ziehen. Und das ist ja gerade die Intention, die sowohl
+hinter der Einsetz- als auch hinter der Gleichsetzmethode steckt: In beiden Verfahren (und
+auch in der Additionsmethode) geht es darum, in einem ersten und zweiten Schritt eine der Unbekannten
+zu eliminieren, sodass nur noch ein System aus zwei linearen Gleichungen in zwei Unbekannten (und damit ein
+einfacheres Problem) verbleibt.
+
+Übrigens, wie man dann dieses reduzierte Problem löst, das kann unabhängig von der Art und Weise,
+wie man begonnen hat, gewählt werden.
+Mit anderen Worten, es ist durchaus zulässig und - vom rechentechnischen Standpunkt aus gesehen - eventuell
+sogar clever, beim Lösen eines Linearen Gleichungssystems
+mit drei Gleichungen in drei Unbekannten mit einer Methode, z.B. der Einsetzmethode, zu beginnen,
+um die Problemstellung auf ein
+System aus zwei Gleichungen in zwei Unbekannten sozusagen \glqq herunterzukochen{\grqq},
+und dieses einfachere System dann mit einer anderen Methode, z.B. der
+Gleichsetzmethode, weiterzubehandeln. In diesem Sinne können die Verfahren also gemischt werden.
+\begin{MInfo}
+Bei der Einsetzmethode wird eine der drei linearen Gleichungen in einem ersten Schritt
+nach einer der Unbekannten - oder nach einem Vielfachen einer der Unbekannten - freigestellt; dieses Ergebnis wird im
+zweiten Schritt in die beiden anderen lineare Gleichung \textbf{eingesetzt}. Es entsteht ein \textbf{Lineares
+Gleichungssystem}, das nur noch aus \textbf{zwei} Gleichungen in (den verbliebenen) \textbf{zwei} Unbekannten
+aufgebaut ist und das anschließend mit den Methoden des Abschnitts \MRef{M04_2_Unbekannte} bearbeitet werden kann.
+\end{MInfo}
+\end{MXContent}
+
+\begin{MXContent}{Die Additionsmethode}{Additionsmethode}{STD}
+\MLabel{M04_3x3_addition}
+\MDeclareSiteUXID{VBKM04_Additionsmethode3}
+Der Grundgedanke der Additionsmethode, den wir auch schon früher andiskutiert haben (siehe \MRef{M04_addition}),
+besteht darin, Gleichungen des Systems so zu \textbf{addieren}, dass in der resultierenden Gleichung
+nur noch eine reduzierte Anzahl an Unbekannten auftritt. Dazu ist es meist erforderlich, vor der \textbf{Addition}
+eine der Gleichungen mit einem geschickt gewählten Faktor zu multiplizieren.
+
+Wir wollen die Additionsmethode für Systeme aus drei Gleichungen in drei Unbekannten
+gleich in einer Form vorstellen, die sich leicht auf größere Systeme übertragen lässt. Bedienen wir uns zur
+Illustration der Vorgehensweise noch einmal des einführenden Beispiels \MRef{M04_einfuehrendes_Bsp_2}, also
+des Beispiels der möglicherweise diebischen Kinder:
+\begin{MExample}
+\MLabel{M04_einf_Bsp_2_rech_2}
+Das uns zu einer erneuten Lösung auffordernde System linearer Gleichungen lautet also:
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \\
+\mbox{Gleichung } (2): & & - 3 x + y - 3 z & = & - 30 \\
+\mbox{Gleichung } (3): & & - 5 x - 5 y + z & = & - 30 \end{array}$$
+Gleichung~$(1)$ werden wir im folgenden unverändert beibehalten. Gleichung~$(2)$ jedoch wollen wir durch eine
+neue Gleichung ersetzen, die wir durch \textbf{Addition} von Gleichung~$(2)$ mit der mit dem Faktor $3$
+durchmultiplizierten Gleichung~$(1)$ - kurz notiert als $(2) + 3 \cdot (1)$ - gewinnen:
+$$(-3 x + y - 3 z) + 3 \cdot (x - 2 y - 2 z) = - 30 + 3 \cdot (- 30) \Leftrightarrow
+- 5 y - 9 z = - 120 \; : \mbox{ Gleichung } (2')$$
+Ähnlich gehen wir mit Gleichung~$(3)$ vor: Wir ersetzen sie durch $(3) + 5 \cdot (1)$, also durch die
+\textbf{Summe} aus Gleichung~$(3)$ und der mit dem Faktor $5$ durchmultiplizierten Gleichung~$(1)$:
+$$(- 5 x - 5 y + z) + 5 \cdot (x - 2 y - 2 z) = - 30 + 5 \cdot (- 30) \Leftrightarrow
+-15 y - 9 z = - 180 \; : \mbox{ Gleichung } (3')$$
+Unser System sieht jetzt folgendermaßen aus:
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \\
+\mbox{Gleichung } (2'): & & - 5 y - 9 z & = & - 120 \\
+\mbox{Gleichung } (3'): & & - 15 y - 9 z & = & - 180 \end{array}$$
+Aus den Gleichungen~$(2')$ und $(3')$ ist die Abhängigkeit von der Unbekannten $x$ verschwunden - das war das
+Ziel und der Grund für die Faktoren $3$ bzw. $5$ bei den obigen Summationen.
+
+Wir könnten nun das Untersystem, bestehend aus den zwei Gleichungen~$(2')$ und $(3')$ in den zwei Unbekannten
+$y$ und $z$ mit einer anderen Methode, z.B. der Einsetzmethode, weiterbehandeln. Doch wollen wir lieber vollständig
+innerhalb der Additionsmethode arbeiten: Dazu nehmen wir in der Folge Gleichung~$(2')$ - ebenso wie Gleichung~$(1)$ -
+von Änderungen aus; Gleichung~$(3')$ soll aber nochmals ersetzt werden und zwar durch die Summe
+$(3') + (- 3) \cdot (2')$:
+$$(- 15 y - 9 z) + (- 3) \cdot (- 5 y - 9 z) = - 180 + (- 3) \cdot (- 120) \Leftrightarrow
+18 z = 180 \; : \mbox{ Gleichung } ({3'}')$$
+Unser System hat ein weiteres Mal sein Aussehen gewandelt,
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \\
+\mbox{Gleichung } (2'): & & - 5 y - 9 z & = & - 120 \\
+\mbox{Gleichung } ({3'}'): & & 18 z & = &  180 \; \; \; , \end{array}$$
+und besitzt nun - zumindest was die linken Seiten anbelangt - so eine Art \textbf{Dreiecksform}.
+
+Die Bestimmung der Unbekannten ist nun äußerst einfach: Die unterste Gleichung (Gleichung~$({3'}')$) hängt nur noch
+von einer einzigen Unbekannten, nämlich $z$, ab und kann daher sofort aufgelöst werden, $z = 10$.\\
+Mit diesem Resultat für $z$ gehen wir in die darüber stehende Gleichung (Gleichung~$(2')$), die dann unmittelbar
+das Ergebnis für die nächste Unbekannte, hier $y$, liefert: $- 5 y - 9 \cdot 10 = - 120 \Leftrightarrow - 5 y =
+- 30 \Leftrightarrow y = 6$.\\
+Schließlich ergeben $y$ und $z$ in die oberste Gleichung (Gleichung~$(1)$) eingesetzt sofort die Lösung
+für die verbleibende Unbekannte, in vorliegenden Beispiel $x$: $x - 2 \cdot 6 - 2 \cdot 10 = - 30 \Leftrightarrow
+x = 2$.
+\end{MExample}
+Die aufmerksame Leserin, der aufmerksame Leser mag sich beim Studium des obigen Beispiels unter Umständen die Frage
+vorlegen, ob - und wenn ja, warum - es zulässig ist, in einem System eine Gleichung durch eine andere zu ersetzen?
+Im Beispiel geschieht dies an drei Punkten, etwa wenn an die Stelle der Gleichung~$(2)$ die Kombination Gleichung~$(2)$
+plus $3$ mal Gleichung~$(1)$, also Gleichung~$(2')$, tritt.
+
+Wenn wir nach der Lösung eines Gleichungssystems forschen, verlangen wir die \textbf{gleichzeitige Gültigkeit}
+aller Gleichungen des Systems. Damit insistieren wir - um im Beispiel \MRef{M04_einf_Bsp_2_rech_2} zu sprechen - mit
+der Forderung, dass Gleichung~$(1)$ \textbf{und} Gleichung~$(2)$ gelten sollen, klarerweise auch auf der Gültigkeit von
+$$\mbox{Gleichung } (1) + 3 \cdot \mbox{ Gleichung } (2) \Leftrightarrow \mbox{ Gleichung } (2') \; \; \; .$$
+Also dürfen wir im System Gleichung~$(2)$ durch Gleichung~$(2')$ ersetzen.
+
+Zugleich erkennen wir hier einen weiteren wichtigen Punkt: Würden wir die \textbf{eine} Gleichung~$(2')$ an die
+Stelle der \textbf{beiden} Gleichungen - Gleichung~$(1)$ und Gleichung~$(2)$ - treten lassen, so würden wir an
+Information einbüßen und sogar einen Fehler begehen. (Die Forderung von \textbf{nur} $(2')$ statt $(1)$ \textbf{und}
+$(2)$ ist eine wesentlich schwächere.) Dies ist der Grund dafür, warum wir in die \glqq neuen{\grqq} Systeme einige
+Gleichungen ungeändert übernehmen: Gleichung~$(1)$ \textbf{und} Gleichung~$(2)$ sind in den jeweiligen Systemen äquivalent
+zu Gleichung~$(1)$ und Gleichung~$(2')$. Analoges trifft natürlich auch auf die anderen Ersetzungen in obigem
+Beispiel zu - und allgemeiner bei derartigen Umformungen Linearer Gleichungssysteme innerhalb der Additionsmethode.
+\begin{MInfo}
+Bei der \MEntry{Additionsmethode}{Additionsmethode} werden Paare linearer Gleichungen des Systems - gegebenenfalls
+nach der Multiplikation (mindestens) einer der beiden Gleichungen mit einem geschickt gewählten Faktor (bzw. mit
+geschickt gewählten Faktoren) - mit dem Ziel addiert, dass in den resultierenden Gleichungen (zumindest) eine Unbekannte
+herausfällt. Dabei ist darauf zu achten, dass bei der fortschreitenden Lösungsfindung keine Information verlorengeht,
+sprich, dass die Anzahl der (informationsrelevanten) Gleichungen stets erhalten bleibt. Am geschicktesten bringt man
+in diesem Zuge das Gleichungssystem auf eine \textbf{Dreicksform}. Dann ist das anschließende Auffinden der Lösung
+besonders einfach.
+\end{MInfo}
+%\begin{MInfo}
+%Die systematische Verallgemeinerung der vorstehend beschriebenen Vorgehensweise bei der Additionsmethode auf Systeme
+%aus $n$ linearen Gleichungen - wobei $n$ eine natürliche Zahl bezeichnet ($n \in \N$) - führt auf das sogenannte
+%\MEntry{Gaußsche Eliminationsverfahren}{Gaußsches Eliminationsverfahren}. Dieses \textbf{Gaußsche Eliminationsverfahren}
+%stellt also einen Algorithmus zur Lösung beliebig großer Linearer Gleichungssysteme dar.
+%\end{MInfo}
+\end{MXContent}
+
+\begin{MExercises}
+\MDeclareSiteUXID{VBKM04_Additionsmethode3_Exercises}
+\begin{MExercise}
+Geben Sie die Lösungsmenge für das Lineare Gleichungssystem
+\begin{eqnarray*}
+2 x - y + 5 z & = & 1 \\ 11 x + 8 z & = & 2 \\ - 4 x + y - 3 z & = & - 1
+\end{eqnarray*}
+an. Verwenden Sie zum Lösen
+\begin{MExerciseItems}
+\item{die Einsetzmethode,}
+\item{die Additionsmethode.}
+\end{MExerciseItems}
+
+\begin{MHint}{Lösung}
+\begin{MExerciseItems}
+\item{Wir stellen z.B. die erste Gleichung ($2 x - y + 5 z = 1$) nach $y$ frei, $y = 2 x + 5 z - 1$,
+und setzen dieses Ergebnis in die dritte Gleichung ($- 4 x + y - 3 z = - 1$) ein:
+$$- 4 x + (2 x + 5 z - 1) - 3 z = - 1 \Leftrightarrow - 2 x + 2 z = 0 \Leftrightarrow z = x$$
+Das letzte Ergebnis, das wir schon nach der Unbekannten $z$ aufgelöst haben, setzen wir in die zweite
+Gleichung ein ($11 x + 8 z = 2$), die von vornherein unabhängig von $y$ ist:
+$$11 x + 8 x = 2 \Leftrightarrow 19 x = 2 \Leftrightarrow x = \Mtfrac{2}{19}$$
+Damit gilt auch
+$$z = \Mtfrac{2}{19} \; \; \; ,$$
+und für $y$ erhalten wir - gemäß der Gleichung aus der ersten Umformung -:
+$$y = 2 \cdot \Mtfrac{2}{19} + 5 \cdot \Mtfrac{2}{19} - 1 = \Mtfrac{4 + 10 - 19}{19} = \Mtfrac{-5}{19}$$
+Also ist das Lineare Gleichungssystem eindeutig lösbar mit ${\ML} = \{ (x = \Mtfrac{2}{19},
+y = - \Mtfrac{5}{19}, z = \Mtfrac{2}{19} \}$.\\
+Alternative Lösungswege sind ebenso gut möglich.}
+\item{Addition der ersten und der dritten Gleichung eliminiert die Unbekannte $y$:
+$$(2 x - y + 5 z) + (- 4 x + y - 3 z) = 1 + (- 1) \Leftrightarrow - 2 x + 2 z = 0$$
+Multiplizieren wir die letzte Gleichung mit $(- 4)$, so entsteht
+$$8 x - 8 z = 0 \; \; \; ,$$
+und die anschließende Addition der zweiten Gleichung ($11 x  + 8 z = 2$) sorgt dafür, dass die Abhängigkeit
+von $z$ herausfällt:
+$$(8 x - 8 z) + (11 x + 8 z) = 0 + 2 \Leftrightarrow 19 x = 2 \Leftrightarrow x = \Mtfrac{2}{19}$$
+Wir im ersten Aufgabenteil können in der Folge $z$ und $y$ bestimmt werden; natürlich bekommen wir
+dasselbe Ergebnis ${\ML} = \{ (x = \Mtfrac{2}{19}, y = - \Mtfrac{5}{19}, z = \Mtfrac{2}{19} \}$.\\
+Alternative Lösungswege sind ebenso gut möglich.}
+\end{MExerciseItems}
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Wir wollen folgende einfache Schaltung betrachten:
+\begin{center}
+\MUGraphicsSolo{schaltung.png}{scale=1.1}{width:450px}
+\end{center}
+Sie ist aus einer Spannungsquelle, die eine Spannung $U = 5,5~\text{V}$ liefern soll, sowie aus drei Widerständen
+$R_1 = 1~\Omega$, $R_2 = 2~\Omega$ und $R_3 = 3~\Omega$ aufgebaut. Gefragt ist nach den in den einzelnen
+Zweigen fließenden Strömen $I_1$, $I_2$ und $I_3$.\\
+\textbf{Hinweise:} Die Zusammenhänge zwischen den interessierenden Größen, sprich den Spannungen, den 
+Widerständen und den Stromstärken, werden für solche Schaltungen von den sogenannten \textbf{Kirchhoffschen Regeln}
+geliefert, die im vorliegenden Beispiel drei Gleichungen bereitstellen:
+\begin{eqnarray*}
+I_1 - I_2 - I_3 & = & 0\quad:\quad\text{Gleichung (1)} \\ R_1 I_1 + R_2 I_2 & = & U\quad:\quad\text{Gleichung (2)} \\ R_2 I_2 - R_3 I_3 & = & 0\quad:\quad\text{Gleichung (3)}
+\end{eqnarray*}
+Außerdem wird die Beziehung zwischen den physikalischen Einheiten Volt (V) (für die Spannung),
+Amp\`ere (A) (für die Stromstärke) und Ohm ($\Omega$) (für den Widerstand) benötigt: $1 \Omega = (1~\text{V}) / (1\text{A})$
+
+\begin{MHint}{Lösung}
+Wir lösen z.B. die erste Gleichung nach $I_1$ auf,
+$$I_1 = I_2 + I_3 \; \; \; ,$$
+und setzen das Ergebnis in die zweite Gleichung ein:
+$$R_1 (I_2 + I_3) + R_2 I_2 = U \Leftrightarrow (R_1 + R_2) I_2 + R_1 I_3 = U \; : \mbox{ Gleichung } (2')$$
+Die letzte Gleichung und die dritte Gleichung im ursprünglichen System hängen nur noch von den Unbekannten
+$I_2$ und $I_3$ ab. Sie bilden ein System aus zwei linearen Gleichungen in zwei Unbekannten, das wir jetzt
+weiter lösen: Dazu stellen wir z.B. die dritte Gleichung des ursprünglichen Systems nach $I_3$ frei,
+$$I_3 = \Mdfrac{R_2}{R_3} I_2 \; : \mbox{ Gleichung } (3') \; \; \; ,$$
+und setzen das Resultat in Gleichung~$(2')$ ein:
+\begin{eqnarray*}
+& & (R_1 + R_2) I_2 + R_1 \cdot \Mdfrac{R_2}{R_3} I_2 = U \\[.5ex]
+& \Leftrightarrow & \left( R_1 + R_2 + R_1 \cdot \Mdfrac{R_2}{R_3} \right) I_2 = U \\[.5ex]
+& \Leftrightarrow & \left( \Mdfrac{R_1 R_3}{R_3} + \Mdfrac{R_2 R_3}{R_3} + \Mdfrac{R_1 R_2}{R_3} \right) I_2 = U \\[.5ex]
+& \Leftrightarrow & \Mdfrac{R_1 R_2 + R_1 R_3 + R_2 R_3}{R_3} I_2 = U \\[.5ex]
+& \Leftrightarrow & I_2 = \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} U
+\end{eqnarray*}
+Damit folgt für $I_3$ wegen Gleichung~$(3')$
+$$I_3 = \Mdfrac{R_2}{R_3} \cdot \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} U = \Mdfrac{R_2}{R_1 R_2 + R_1 R_3 + R_2 R_3} U$$
+und für $I_1$ schließlich:
+$$I_1 = I_2 + I_3 = \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U + \Mdfrac{R_2}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U
+= \Mdfrac{R_2 + R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U$$
+Nun können wir die in der Aufgabenstellung vorgegebenen Werte für die Widerstände
+($R_1 = 1~\Omega$, $R_2 = 2~\Omega$ und $R_3 = 3~\Omega$)
+und die Spannung ($U = 5,5~\text{V}$) einsetzen; für $I_1$ erhalten wir unter Verwendung von $1~\text{V} = 1~\Omega \cdot 1~\text{A}$:
+$$I_1 = \Mdfrac{(2 + 3) \Omega}{(1 \cdot 2 + 1 \cdot 3 + 2 \cdot 3) \Omega^2} \cdot 5,5 \cdot \Omega \cdot \text{A}
+= 2,5~\text{A}$$
+Analog finden wir für $I_2$ und $I_3$: $I_2 = 1,5~\text{A}$ und $I_3 = 1~\text{A}$\\
+Alternative Lösungswege sind ebenso gut möglich.
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Lösen Sie das folgende Lineare Gleichungssystem mit Hilfe der Additionsmethode:
+\begin{eqnarray*}
+x + 2 z & = & 5 \\ 3 x + y - 2 z & = & - 1 \\ - x - 2 y + 4 z & = & 7
+\end{eqnarray*}
+
+\begin{MHint}{Lösung}
+Da die erste Gleichung ($x + 2 z = 5$) von vornherein nicht von der Unbekannten $y$ abhängt, bietet es sich
+an, aus der zweiten und dritten Gleichung $y$ ebenfalls zu eliminieren. Dazu multiplizieren wir die zweite
+Gleichung ($3 x + y - 2 z = - 1$) mit $2$ und addieren die resultierende Gleichung zur dritten Gleichung
+($- x - 2 y + 4 z = 7$) hinzu:
+\begin{eqnarray*}
+& & (- x - 2 y + 4 z) + 2 \cdot (3 x + y - 2 z) = 7 + 2 \cdot (- 1) \\
+& \Leftrightarrow & - x - 2 y + 4 z + 6 x + 2 y - 4 z = 7 - 2 \\
+& \Leftrightarrow & 5 x = 5 \\
+& \Leftrightarrow & x = 1 
+\end{eqnarray*}
+Zufälligerweise fällt gleichzeitig auch die Unbekannte $z$ heraus.
+Mit dem Ergebnis für $x$ liefert die erste Gleichung
+$$1 + 2 z = 5 \Leftrightarrow 2 z = 4 \Leftrightarrow z = 2 \; \; \; .$$
+Den Wert für $y$ erhalten wir sodann, indem wir z.B. die zweite Gleichung verwenden:
+$$3 \cdot 1 + y - 2 \cdot 2 = - 1 \Leftrightarrow 3 + y - 4 = - 1 \Leftrightarrow y = 0$$
+Also lautet die Lösungsmenge ${\ML} = \{ (x = 1, y = 0, z = 2) \}$.
+\end{MHint}
+\end{MExercise}
+\end{MExercises}
+
+
+
+\MSubsection{Allgemeinere Systeme}
+\MLabel{M04_freier_Parameter}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM04_AllgemeineLGS_Intro}
+Zu Systemen linearer Gleichungen könnte man noch eine ganze Menge mehr sagen. Um aber die Fülle an
+Informationen nicht allzu übermächtig werden zu lassen, wollen wir uns zum Abschluss dieses Moduls
+auf zwei weitere, kleinere Punkte beschränken.
+
+Zum einen können Gleichungssysteme sogenannte freie Parameter enthalten, das sind variable
+Größen - oder mit anderen Worten eine Art Stellschrauben -, die das Verhalten der Systeme und insbesondere
+der Lösungsmengen unter Umständen stark beeinflussen. Manchmal ist es von Vorteil, nicht alle Koeffizienten und nicht
+alle rechten Seiten der Gleichungen als feste, konkrete Zahlenwerte vorzugeben, sondern sie variabel
+zu lassen, um zu studieren, was in verschiedenen Situationen passieren kann; manchmal kennt man auch nicht
+alle Koeffizienten oder rechten Seiten aufgrund der Aufgaben- oder Problemstellung.
+
+Zum anderen ist es möglich, dass entweder die Anzahl der linearen Gleichungen oder
+aber die Anzahl der Unbekannten in einem Gleichungssystem dominiert.
+\end{MIntro}
+
+\begin{MXContent}{Systeme mit freiem Parameter}{Systeme mit freiem Parameter}{STD}
+\MDeclareSiteUXID{VBKM04_FreieParameter}
+Beginnen wir sofort mit einem Beispiel, das zugegebenermaßen sehr einfach ist, aber dennoch auf einen,
+wenn nicht \textbf{den}, entscheidenden Punkt im Zusammenhang mit freien Parametern in Systemen
+linearer Gleichungen hinführen wird:
+\begin{MExample}
+Wir wollen nach der Lösungsmenge für das Lineare Gleichungssystem
+$$\begin{array}{rcrcl} \mbox{Gleichung } (1) : & & x - 2 y & = & 3 \\
+\mbox{ Gleichung } (2) : & & - 2 x + 4 y & = & \alpha \end{array}$$
+in Abhängigkeit von dem Parameter $\alpha$ suchen.
+
+Dazu multiplizieren wir Gleichung~$(1)$ mit dem Faktor $2$ durch und addieren Gleichung~$(2)$:
+$$2 \cdot (x - 2 y) + (- 2 x + 4 y) = 2 \cdot 3 + \alpha \Leftrightarrow 2 x - 4 y - 2 x + 4 y = 6 + \alpha
+\Leftrightarrow 0 = 6 + \alpha$$
+
+Nun müssen wir zwei Fälle unterscheiden:
+
+\textbf{Fall A}: $\alpha \neq - 6$: Ist der vorgegebene freie Parameter $\alpha$ ungleich $- 6$, so stoßen wir
+auf einen Widerspruch. In diesem Fall besitzt das Lineare Gleichungssystem \textbf{keine Lösung}, ${\ML}
+= \MEmptyset$.
+
+\textbf{Fall B}: $\alpha = - 6$: Ist der vorgegebene freie Parameter $\alpha$ gleich $-6$, so ist die Gleichung
+identisch erfüllt ($0 = 0$). In der Tat sind in diesem Fall die beiden Ausgangsgleichungen gerade Vielfache
+voneinander, sodass nur eine von ihnen tatsächlich Information trägt. Dementsprechend ist jetzt die
+\textbf{Lösungsmenge unendlich mächtig} und kann beispielsweise folgendermaßen angegeben werden: ${\ML}
+= \{ (x = 3 + 2 t, y = t) ; t \in \R \}$
+\end{MExample}
+Das Beispiel zeigt, dass das Aussehen der Lösungsmenge sehr stark von der Wahl des freien Parameters abhängen kann.
+
+Ein solcher freier Parameter kann aber nicht nur auf einer der rechten Seiten des Linearen Gleichungssystems
+auftreten, sondern auch auf den linken Seiten, ja er kann auch mehrfach, in funktionalen Abwandlungen, sowohl
+links als auch rechts usw. vorkommen. Auch mehrere freie Parameter sind denkbar. Betrachten wir ein etwas
+komplizierteres Beispiel:
+\begin{MExample}
+Im Folgenden wollen wir die Lösungsmenge des Linearen Gleichungssystems
+\begin{eqnarray*}
+x + y + \alpha z & = & 1 \\ x + \alpha y + z & = & 1 \\ \alpha x + y + z & = & 1
+\end{eqnarray*}
+studieren und zwar in Abhängigkeit von dem Wert des Parameters $\alpha$.
+
+Dazu lösen wir beispielsweise die erste Gleichung nach der Unbekannten $x$ auf,
+$$x = 1 - y - \alpha z \; : \mbox{ Gleichung } (1') \; \; \; ,$$
+und \textbf{setzen} das Ergebnis für $x$ in die zweite und in die dritte Gleichung \textbf{ein}:
+$$\begin{array}{rclcrclcl} (1 - y - \alpha z) + \alpha y + z & = & 1 & \Leftrightarrow &
+-(1 - \alpha) y + (1 - \alpha) z & = & 0 & & : \mbox{ Gleichung } (2') \\
+\alpha (1 - y - \alpha z) + y + z & = & 1 & \Leftrightarrow &
+(1 - \alpha) y + (1 - \alpha^2) z & = & 1 - \alpha & & : \mbox{ Gleichung } (3') \end{array}$$
+Es entsteht ein System aus \textbf{zwei} linearen Gleichungen in den \textbf{zwei} Unbekannten $y$ und $z$.
+Diesem System sieht man sofort an, dass für den Wert $\alpha = 1$ etwas Besonderes passiert.
+Wir führen daher eine Fallunterscheidung durch:
+
+\textbf{Fall 1:} $\alpha = 1$: In diesem Fall sind die beiden Gleichungen~$(2')$ und $(3')$ identisch
+erfüllt ($0 = 0$) und liefern keine weiteren Informationen; als einzige Beziehung zwischen
+den Unbekannten $x, y$ und $z$ verbleibt Gleichung~$(1')$ bzw. Gleichung~$(1)$, die für $\alpha = 1$
+$$x + y + z = 1 \; : \mbox{ Gleichung } (\hat{1})$$
+lautet. Daher besitzt die Lösungsmenge hier unendlich viele Elemente. Sie kann mit Hilfe \textbf{zweier freier
+Parameter} angegeben werden, z.B.
+$${\ML} = \{ (s, t, 1 - s- t); s, t \in \R \} \; \; \; .$$
+Anschaulich gesprochen entspricht die Lösungsmenge gerade der durch Gleichung~$(\hat{1})$ beschriebenen Ebene.
+
+\textbf{Fall 2:} $\alpha \neq 1$: In diesem Fall können wir sowohl Gleichung~$(2')$ als auch Gleichung~$(3')$
+durch $(1 - \alpha)$ dividieren; wir erhalten unter Verwendung der 3.~Binomischen Formel ($(1 - \alpha^2)
+= (1 - \alpha)(1 + \alpha)$):
+$$\begin{array}{rclcl} - y + z & = & 0 & & : \mbox{ Gleichung } ({2'}') \\
+y + (1 + \alpha) z & = & 1 & & : \mbox{ Gleichung } ({3'}') \end{array}$$
+Gleichung~$({2'}')$ besagt, dass $y = z$ gilt; dies setzen wir in Gleichung~$({3'}')$ ein:
+$$z + (1 + \alpha) z = 1 \Leftrightarrow (2 + \alpha) z = 1 \; : \mbox{ Gleichung } (\star)$$
+Jetzt müssen wir nochmals vorsichtig sein und eine weitere Fallunterscheidung durchführen, da $\alpha = - 2$
+und $\alpha \neq - 2$ unterschiedliche Konsequenzen nach sich ziehen:
+
+\textbf{Fall 2a:} $\alpha = - 2$: In diesem (Unter-)Fall lautet Gleichung $(\star)$: $0 = 1$. Somit tritt ein
+Widerspruch auf und das Lineare Gleichungssystem, von dem wir ausgegangen sind, hat keine Lösung, ${\ML}
+= \MEmptyset$.
+
+\textbf{Fall 2b:} $\alpha \neq - 2$: In diesem (Unter-)Fall können wir die letzte Gleichung
+problemlos nach $z$ auflösen,
+$$z = \Mdfrac{1}{2 + \alpha} \; \; \; .$$
+
+Damit liegen auch $y$ ($y = z$) und $x$ ($x = 1 - y - \alpha z$) fest; das ursprüngliche Lineare Gleichungssystem
+besitzt eine eindeutige Lösung, ${\ML} = \{ (x = \Mtfrac{1}{2 + \alpha}, y = \Mtfrac{1}{2 + \alpha},
+z = \Mtfrac{1}{2 + \alpha} ) \}$.
+\end{MExample}
+Wir haben im Vorhergehenden das Beispiel auch deshalb so ausführlich ausbuchstabiert, um eindringlich auf die
+Wichtigkeit einer sauberen und genauen Fallunterscheidung hinzuweisen. Je nachdem, ob $\alpha = 1$, $\alpha = - 2$
+oder $\alpha \in \R \setminus \{- 2, 1 \}$ gilt, sieht die Lösungsmenge völlig verschieden aus! Im ersten Fall
+ist sie unendlich mächtig, im zweiten leer und im dritten besteht sie aus genau einem Element!
+
+Übrigens hätten wir die Besonderheit des Falles $\alpha = 1$ auch direkt an dem ursprünglichen System ablesen
+können: Für $\alpha = 1$ tritt dreimal dieselbe Gleichung, nämlich $x + y + z = 1$, auf; d.h. zwei der drei Gleichungen
+im Ausgangssystem enthalten keinerlei neue Information und sind daher überflüssig; nur die Ebenengleichung
+$x + y + z = 1$ stellt für $\alpha = 1$ eine Beziehung zwischen den drei Unbekannten her.
+\end{MXContent}
+
+
+
+\MSubsection{Abschlusstest}
+
+\begin{MTest}{Abschlusstest Modul \arabic{section}}
+\MLabel{M04_Ausgangstest}
+\MDeclareSiteUXID{VBKM04_Abschlusstest}
+
+\begin{MExercise}
+Bestimmen Sie die Lösungsmenge für folgendes Lineares Gleichungssystem:
+\begin{eqnarray*}
+- x + 2 y & = & - 5 \\ 3 x + y & = & 1
+\end{eqnarray*}
+Die Lösungsmenge
+\begin{tabular}[t]{ll}
+\MCheckbox{0}{M04C13} & ist leer,\\
+\MCheckbox{1}{M04C14} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{ATXY1} , $y =$ \MLParsedQuestion{5}{-2}{5}{ATXY2} ,\\
+\MCheckbox{0}{M04C15} & enthält unendlich viele Lösungspaare $(x, y)$.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Geben Sie diejenige zweistellige Zahl an, die bei Vertauschen von Einer- und Zehnerziffer auf eine um 18 kleinere Zahl
+führt und deren Quersumme 6 ist.
+% 
+Antwort: \MLParsedQuestion{5}{42}{5}{ATX42}
+\end{MExercise}
+
+\begin{MExercise}
+Für welchen Wert des reellen Parameters $\alpha$ besitzt das Lineare Gleichungssystem
+\begin{eqnarray*}
+2 x + y & = & 3 \\ 4 x + 2 y & = & \alpha
+\end{eqnarray*}
+unendlich viele Lösungen?
+
+Antwort: $\alpha = $ \MLParsedQuestion{5}{6}{5}{ATX}
+\end{MExercise}
+
+\begin{MExercise}
+Die Abbildung zeigt zwei Geraden im zweidimensionalen Raum.
+\begin{center}
+\MUGraphicsSolo{LGS_schneidende_Geraden.png}{width=0.5\linewidth}{width:450px}
+\end{center}
+Stellen Sie die beiden Geradengleichungen auf:
+
+Gerade 1: $y = $ \MLFunctionQuestion{15}{-1+x}{2}{x}{5}{XAFG1}
+
+Gerade 2: $y = $ \MLFunctionQuestion{15}{2-2*x}{2}{x}{5}{XAFG2}
+
+Wieviele Lösungen besitzt das zugehörige Lineare Gleichungssystem?
+
+Es besitzt
+\begin{tabular}[t]{ll}
+\MCheckbox{0}{M04C16} & keine Lösung,\\
+\MCheckbox{1}{M04C17} & genau eine Lösung oder\\
+\MCheckbox{0}{M04C18} & unendlich viele Lösungen.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Geben Sie die Lösungsmenge für folgendes Lineare Gleichungssystem, bestehend aus drei Gleichungen mit drei Unbekannten, an:
+\begin{eqnarray*}
+x + 2 z & = & 3 \\ - x + y + z & = & 1 \\ 2 y + 3 z & = & 5
+\end{eqnarray*}
+Die Lösungsmenge
+\begin{tabular}[t]{ll}
+\MCheckbox{0}{M04C19} & ist leer,\\
+\MCheckbox{1}{M04C20} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{ATXY4} , $y =$ \MLParsedQuestion{5}{1}{5}{ATXY5}
+, $z = $ \MLParsedQuestion{5}{1}{5}{ATXY6} ,\\
+\MCheckbox{0}{M04C21} & enthält unendlich viele Lösungen $(x, y, z)$.
+\end{tabular}
+\end{MExercise}
+
+\end{MTest}
+
+
+\newpage
+\MPrintIndex
+
+\end{document}

@@ -1,0 +1,326 @@
+%LaTeX-2e-File, Liedtke, 20140828.
+%Inhalt: Anwendung der Integralrechnung.
+%zuletzt bearbeitet: 20141002.
+
+%Inhalt zum Abschnitt: Anwendung der Integralrechnung.
+%\MSubsection{Anwendung zur Fl"achenberechnung}
+%\begin{MContent}
+
+%\begin{MXContent}{Geometrische Anwendung in der Fl"achenberechnung}%
+%{Geometrische Anwendung in der Fl"achenberechnung}{STD}
+
+
+\MPragma{MathSkip}
+
+\begin{MXContent}{Fl"achenberechnung}{Fl"achenberechnung}{STD}
+Eine erste Anwendung der Integrationsrechnung ist die Berechnung von Flächeninhalten, deren Ränder von mathematischen Funktionen beschrieben werden können.
+Zur Veranschaulichung ist in der folgenden Abbildung (linkes Bild) die Funktion $f(x) = \frac{1}{2} x^3$ auf dem Intervall $[-2,2]$ dargestellt. Unser Ziel ist
+die Berechnung des Flächeninhalts, der vom Graphen der Funktion und der $x$-Achse eingeschlossen wird. Unsere bisherigen Untersuchungen ergeben, dass das
+Integral über diese ungerade Funktion in den Grenzen von -2 bis 2 genau Null ergeben wird, da die linke und rechte Teilfläche gleich groß sind, aber bei
+der Integration unterschiedliche Vorzeichen erhalten. Das Integral entspricht hier also nicht dem Wert des Flächeninhalts.
+Spiegeln wir jedoch die "`negative"' Fläche an der $x$-Achse, geben der Funktion also ein positives Vorzeichen (rechtes Bild), dann können wir den Flächeninhalt
+richtig bestimmen. Mathematisch bedeutet das, dass wir nicht das Integral der Funktion $f$ berechnen, sondern das Integral des Betrags $\left|f\right|$.
+
+\ifttm
+%\MUGraphics{\MPfadBilder/BildFlaechePolynomBetragxdrei.png}{scale=0.3}{Zur Berechnung von Fl"achen}{}
+\MUGraphics{\MPfadBilder/jb08A5_Flaechenberechnung.png}{scale=0.3}{Zur Berechnung von Fl"achen}{}
+\else
+%LaTeX-File, Liedtke, 20141002.
+%Bild Integral der Funktion $x^3/2$ von $-a$ bis $a$.
+%Quelle: BildFlaechePolynomxdrei.tex (Modul Integrationstechniken, Liedtke)
+\begin{center}
+\begin{small}
+\renewcommand{\jTikZScale}{0.8}
+\tikzsetnextfilename{jb08A5_Flaechenberechnung}
+\begin{tikzpicture}[scale=\jTikZScale,line width=1.5pt]
+\begin{scope}[xshift=-8.5cm]
+%\clip(-3.7,-4.7) rectangle (3.7, 4.7);
+%Koordinatenachsen:
+\draw[->] (-3.6, 0) -- (3.8, 0) node[below left]{$x$}; %x-Achse
+\draw[->] (0, -4.6) -- (0, 4.8) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+\foreach \x in {1, 2, 3} \draw (\x, 0) -- ++(0, -0.1) node[below] {$\x$}; 
+\foreach \x in {1, 2, 3} \draw (-\x, 0) -- ++(0, 0.1) node[above] {$-\x$}; 
+\foreach \y in {1, 2, 3, 4} \draw (0, \y) -- ++(-0.1, 0) node[left] {$\y$};
+\foreach \y in {1, 2, 3, 4} \draw (0, -\y) -- ++(-0.1, 0) node[left] {$-\y$};
+\node[below left] at (0, 0) {$0$};
+%Funktionsgraph:
+\draw[domain=-2:2,samples=120,color=\jccolorfkt, fill=\jccolorfktarea] %
+  plot (\x, {1/2*pow(\x,3)}) -- (2, 4) -- (2, 0) -- (-2, 0) -- (-2, -4); 
+%Beschriftung:
+\draw[color=\jccolorfkt] (1.4, 0.7) -- +(0.4, 0);
+\draw[color=\jccolorfkt] (1.6, 0.5) -- +(0, 0.4);
+\draw[color=\jccolorfkt] (-1.4, -0.7) -- +(-0.4, 0);
+\end{scope}
+\begin{scope}{xshift=8.5cm}
+%Quelle: BildFlaechePolynomBetragxdrei.tex (Modul Integrationstechniken, Liedtke)
+%\clip(-3.7,-4.7) rectangle (3.7, 4.7);
+%Koordinatenachsen:
+\draw[->] (-3.6, 0) -- (3.8, 0) node[below left]{$x$}; %x-Achse
+\draw[->] (0, -4.6) -- (0, 4.8) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+\foreach \x in {1, 2, 3} \draw (\x, 0) -- ++(0, -0.1) node[below] {$\x$}; 
+\foreach \x in {1, 2, 3} \draw (-\x, 0) -- ++(0, -0.1);
+\node[below] at (-3, -0.1) {$-3$};
+%\draw (-1, 0) -- ++(0, -0.1) node[below,fill=white] {$-1$}; 
+\foreach \y in {1, 2, 3, 4} \draw (0, \y) -- ++(-0.1, 0) node[left] {$\y$};
+\foreach \y in {1, 2, 3, 4} \draw (0, -\y) -- ++(-0.1, 0) node[left] {$-\y$};
+\node[below left] at (0, 0) {$0$};
+%Funktionsgraph:
+\draw[domain=-2:2,samples=200,color=\jccolorfkt, fill=\jccolorfktarea] %
+  plot (\x, {1/2*abs(pow(\x,3))}) -- (2, 4) -- (2, 0) -- (-2, 0) -- (-2, 4); 
+\draw[domain=-2:0,samples=120,color=green!50!black,dashed,fill=\jccolorfktareahell] %
+ (-2, 0) -- (-2, -4) -- plot (\x, {1/2*pow(\x,3)}) ; 
+%Beschriftung:
+\draw[color=\jccolorfkt] (1.4, 0.7) -- +(0.4, 0);
+\draw[color=\jccolorfkt] (1.6, 0.5) -- +(0, 0.4);
+\draw[color=\jccolorfkt] (-1.4, 0.7) -- +(-0.4, 0);
+\draw[color=\jccolorfkt] (-1.6, 0.5) -- +(0, 0.4);
+\draw[color=green!75!white] (-1.4, -0.7) -- +(-0.4, 0);
+\end{scope}
+\end{tikzpicture}
+\end{small}
+\end{center}
+\fi
+
+Durch die Bildung des Betrags der Funktion benötigen wir eine Aufteilung des Integrals in die Bereiche mit positivem und negativem Vorzeichen.
+F"ur die Berechnung heißt dies, dass wir das Integrationsintervall in Abschnitte zu unterteilen, in denen die Funktionswerte dasselbe Vorzeichen haben.
+
+\begin{MXInfo}{Fl"achenberechnung} 
+Gegeben ist eine Funktionen $f: [a, b] \rightarrow \R$ auf einem 
+Intervall $[a, b]$. 
+Weiter seien $x_1$ bis $x_m$ die Nullstellen von $f$ mit 
+$x_1 < x_2 < \ldots < x_m$. 
+Es werden $x_0 := a$ und $x_{m+1} := b$ gesetzt.
+
+Dann
+ist der Fl"acheninhalt zwischen dem Graphen von $f$ und der $x$-Achse gleich
+\[
+\int_{a}^{b} |f(x)| \jMD x %
+= \sum_{k=0}^{m} \left|\int_{x_k}^{x_{k+1}} f(x) \jMD x\right|. %% 
+\]
+\end{MXInfo}
+
+Sehen wir uns dies am oben dargestellten Beispiel etwas genauer an.
+
+\begin{MExample}
+Wir berechnen den Flächeninhalt $A$, den die Funktion $f(x) = \frac{1}{2} x^3$ im Bereich $[-2,2]$ mit der $x$-Ache einschließt. Die einzige Nullstelle der gegebenen Funktion finden wir bei $x_0 = 0$. Wir teilen den Integrationsbereich also in die beiden Teilintervalle $[-2,0]$ und $[0,2]$ auf und berechnen mit
+%
+\begin{eqnarray*}
+A &=& \int_{-2}^{2} \left|\frac{1}{2} x^3\right| \jMD x = \left|\int_{-2}^{0} \frac{1}{2} x^3 \jMD x\right| + \left|\int_{0}^{2} \frac{1}{2} x^3 \jMD x\right| \\
+  &=& \left|\left[\frac{1}{8} x^4\right]_{-2}^{0}\right| + \left|\left[\frac{1}{8} x^4\right]_{0}^{2}\right| \\
+  &=& \left|0 - 2\right| + \left|2 - 0\right| \\
+  &=& 4
+\end{eqnarray*}
+%
+den Flächeninhalt zwischen Kurve und $x$-Achse zu $A = 4$.
+\end{MExample}
+
+Wir können nicht nur Flächeninhalte zwischen einer Kurve und der $x$-Achse bestimmen, sondern auch den Inhalt einer Fläche, die von zwei Kurven eingeschlossen wird, wie in der folgenden Abildung veranschaulicht.
+
+\ifttm
+%\MUGraphics{\MPfadBilder/BildFlaechePolynomBetragxdrei.png}{scale=0.3}{Zur Berechnung von Fl"achen}{}
+\MUGraphics{\MPfadBilder/jb08A5_FlaecheZwischenGraphen.png}{scale=0.3}%
+%{Zur Berechnung von Fl"achen}{}
+{Beispiel einer Fl"ache zwischen dem gr"un gezeichneten Graphen 
+von $f$ und dem rot gezeichneten Graphen von $g$: Zur Berechnung des 
+Fl"acheninhalts wird die Differenz der Funktionen $f - g$ betrachtet.}{0.5}
+%\begin{center}
+%\MUGraphicsSolo{\MPfadBilder/BildFlaecheB1.png}{scale=0.5}{}
+%\MUGraphicsSolo{\MPfadBilder/BildFlaecheB2.png}{scale=0.5}{}
+%\MUGraphicsSolo{\MPfadBilder/BildFlaecheB3.png}{scale=0.5}{}
+%
+%Beispiel einer Fl"ache zwischen dem gr"un gezeichneten Graphen 
+%von $f$ und dem rot gezeichneten Graphen von $g$: Zur Berechnung des 
+%Fl"acheninhalts wird die Differenz der Funktionen $f - g$ betrachtet.
+%\end{center}
+\else
+%Quelle: BildFlaecheB1, MatheBildIntABspFlaecheB1.tex (Liedtke).
+%Quelle: BildFlaecheB2, MatheBildIntABspFlaecheB2.tex (Liedtke).
+%Quelle: BildFlaecheB3, MatheBildIntABspFlaecheB3.tex (Liedtke).
+\begin{center}
+\begin{small}
+\renewcommand{\jTikZScale}{0.6}
+\tikzsetnextfilename{jm08A5_FlaecheZwischenGraphen}
+\begin{tikzpicture}[scale=\jTikZScale,line width=1.5pt,
+ declare function={
+  Fktf(\x) = -1/2 * (\x - 4) * (\x - 4) + 7/2; 
+%  Fktg(\x) = 1/2 * (\x - 5) + 3; %  Fktg(\x) = 1/2 * \x + 1/2;
+  Fktg(\x) = 1/2 * (\x + 1);
+}
+] 
+\begin{scope}[xshift=-8.5cm]
+%\clip(-0.7,-0.7) rectangle (6.2, 4.4);
+%Koordinatenachsen:
+\draw[->] (-0.6, 0) -- (6.1, 0) node[below left]{$x$}; %x-Achse
+\draw[->] (0, -0.6) -- (0, 5.1) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+\foreach \x in {1, 2, 3, 4, 5} \draw (\x, 0) -- ++(0, -0.1)%
+ node[below] {$\x$}; 
+\foreach \y in {1, 2, 3, 4} \draw (0, \y) -- ++(-0.1, 0) node[left] {$\y$};
+\node[below left] at (0, 0) {$0$};
+%Fl"ache unter $f$:
+\draw[domain=2:5,samples=200,color=\jccolorfkt,fill=\jccolorfktarea] %
+ plot (\x, {Fktf(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
+%Fl"ache unter $g$:
+%\draw[domain=2:5,samples=2,color=red!50!black,fill=red!50!white] %
+% plot (\x, {Fktg(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
+%Funktionsgraphen:
+\draw[domain=2:5,samples=200,color=\jccolorfkt] %
+ plot (\x, {Fktf(\x)}); 
+\draw[domain=2:5,samples=2,color=red!50!black] %
+ plot (\x, {Fktg(\x)}); 
+%Schnittpunkte:
+\draw[color=black] (2.0, 1.5) circle[radius=1pt];
+\draw[color=black] (5.0, 3.0) circle[radius=1pt];
+\end{scope}
+%
+\begin{scope}[xshift=0cm]
+%\clip(-0.7,-0.7) rectangle (6.2, 4.4);
+%Koordinatenachsen:
+\draw[->] (-0.6, 0) -- (6.1, 0) node[below left]{$x$}; %x-Achse
+\draw[->] (0, -0.6) -- (0, 5.1) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+\foreach \x in {1, 2, 3, 4, 5} \draw (\x, 0) -- ++(0, -0.1)%
+ node[below] {$\x$}; 
+\foreach \y in {1, 2, 3, 4} \draw (0, \y) -- ++(-0.1, 0) node[left] {$\y$};
+\node[below left] at (0, 0) {$0$};
+%Fl"ache unter $f$:
+%\draw[domain=2:5,samples=200,color=green!50!black,fill=green!50!white] %
+% plot (\x, {Fktf(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
+%Fl"ache unter $g$:
+\draw[domain=2:5,samples=2,color=red!50!black,fill=red!50!white] %
+ plot (\x, {Fktg(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
+%Funktionsgraphen:
+\draw[domain=2:5,samples=200,color=\jccolorfkt] %
+ plot (\x, {Fktf(\x)}); 
+\draw[domain=2:5,samples=2,color=red!50!black] %
+ plot (\x, {Fktg(\x)}); 
+%Schnittpunkte:
+\draw[color=black] (2.0, 1.5) circle[radius=1pt];
+\draw[color=black] (5.0, 3.0) circle[radius=1pt];
+\end{scope}
+%
+\begin{scope}[xshift=8.5cm]
+%\clip(-0.7,-0.7) rectangle (6.2, 4.4);
+%Koordinatenachsen:
+\draw[->] (-0.6, 0) -- (6.1, 0) node[below left]{$x$}; %x-Achse
+\draw[->] (0, -0.6) -- (0, 5.1) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+\foreach \x in {1, 2, 3, 4, 5} \draw (\x, 0) -- ++(0, -0.1)%
+ node[below] {$\x$}; 
+\foreach \y in {1, 2, 3, 4} \draw (0, \y) -- ++(-0.1, 0) node[left] {$\y$};
+\node[below left] at (0, 0) {$0$};
+%Fl"ache zwischen $f$ und $g$:
+\draw[domain=2:5,samples=200,color=\jccolorfkt,fill=\jccolorfktarea] %
+ plot (\x, {Fktf(\x)}) -- (5, {Fktg(5)}) -- (2, {Fktg(2)}); 
+%Fl"ache unter $g$:
+%\draw[domain=2:5,samples=2,color=red!50!black,fill=green!25!white]%
+% plot (\x, {Fktg(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
+\draw[domain=2:5,samples=2,color=red!50!black,dashed,% dotted,%
+pattern color=red!50!black,pattern=crosshatch dots] %
+ plot (\x, {Fktg(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
+%Funktionsgraphen:
+\draw[domain=2:5,samples=200,color=\jccolorfkt] %
+ plot (\x, {Fktf(\x)}); 
+\draw[domain=2:5,samples=2,color=red!50!black] %
+ plot (\x, {Fktg(\x)}); 
+%Schnittpunkte:
+\draw[color=black] (2.0, 1.5) circle[radius=1pt];
+\draw[color=black] (5.0, 3.0) circle[radius=1pt];
+\end{scope}
+\end{tikzpicture}
+\end{small}
+\end{center}
+\fi
+
+Dieses Prizip wollen wir uns ebenfalls zuerst formal und danach an einem Beispiel ansehen.
+
+\begin{MXInfo}{Fl"achenberechnung zwischen den Graphen zweier Funktionen} 
+Gegeben sind zwei Funktionen $f, g: [a, b] \rightarrow \R$ auf einem 
+Intervall $[a, b]$. Weiter seien $x_1$ bis $x_m$ die Nullstellen von $f-g$ mit 
+$x_1 < x_2 < \ldots < x_m$. Es werden $x_0 := a$ und $x_{m+1} := b$ gesetzt.
+
+Dann kann der Fl"acheninhalt zwischen dem Graphen von $f$ und dem von $g$ durch
+%
+\[
+\int_{a}^{b} |f(x) - g(x)| \jMD x %
+= \sum_{k=0}^{m} \left|\int_{x_k}^{x_{k+1}} (f(x) - g(x)) \jMD x\right|. %% 
+\]
+%
+berechnet werden.
+\end{MXInfo}
+
+Sehen wir uns dies an einem Beispiel an.
+
+\begin{MExample}
+Wir berechnen den Inhalt $I_A$ der Fl"ache zwischen den Graphen von 
+$f(x) = x^2$ und $g(x) := 8 - \frac{1}{4} x^4$ f"ur $x \in [-2, 2]$.
+Zun"achst untersuchen wir die Differenz $f - g$ der Funktionen auf
+ihre Nullstellen hat. Mit
+%
+\begin{eqnarray*}
+f(x) - g(x) & = & \frac{1}{4} x^4 + x^2 - 8 \\
+ & = & \frac{1}{4} \left( x^4 + 4 x^2 - 32 \right) \\
+ & = & \frac{1}{4} \left( x^4 + 4 x^2 + 2^2 - 2^2 - 32 \right) \\
+ & = & \frac{1}{4} \left( \left( x^2 + 2 \right)^2 - 36 \right) \\
+\end{eqnarray*}
+%
+können wir die reellen Nullstellen von $f-g$ berechnen:
+\begin{eqnarray*}
+& \left( x^2 + 2 \right)^2 - 36 = 0 \\
+\Leftrightarrow & \left( x^2 + 2 \right)^2 = 36 \\
+\Leftrightarrow & x^2 + 2 = 6 \\
+\Leftrightarrow & x^2 = 4 \\
+\Leftrightarrow & x = \pm 2 \\
+\end{eqnarray*}
+
+In unserer Rechnung haben nach dem Ziehen der ersten Wurzel auf eine nähere Betrachtung des Falls $x^2 + 2 = -6$ verzichtet, da wir
+aus der daraus folgenden Gleichung $x^2 = -8$ keine reellen Nullstellen erhalten. Die reellen Nullstellen von $f-g$ sind $-2$ und $2$.
+Dies sind gleichzeitig auch die Randstellen des Intervalls $[-2, 2]$. Eine Aufteilung des Integrals in verschiedene Bereiche ist also
+nicht nötig. Damit erhalten wir den Fl"acheninhalt $I_A$ zu
+%
+\begin{eqnarray*}
+I_A = \int_{-2}^{2} \left|f(x) - g(x)\right| \jMD x %
+ & = & \left|\int_{-2}^{2} \left(x^2 - \left(8 - \frac{1}{4} x^4\right)\right) \MD x\right| \\
+% & = & 2 \left|\int_{0}^{2} \left(x^2 - \left(8 - \frac{1}{4} x^4\right)\right) \MD x\right| \\
+ & = & 2 \left|\left[\frac{1}{20} x^5 + \frac{1}{3} x^3 - 8 x\right]_{0}^{2}\right| \\
+% & = & 2 \left|\left(\frac{32}{20} + \frac{8}{3} - 16\right) - 0\right| \\
+% & = & \left|2 \cdot 8 \frac{3 + 5}{15} - 32\right| \\
+ & = & 23 + \frac{7}{15} \\
+ & = & \frac{352}{15}. %%
+\end{eqnarray*}
+%
+\end{MExample}
+
+\end{MXContent}
+
+
+\begin{MXContent}{Physikalische Anwendungen}{Physikalische Anwendungen}{STD}
+
+Die Geschwindigkeit $v$ beschreibt die momentane "Anderungsrate des Ortes 
+zur Zeit $t$. Es gilt also $v = \frac{\text{d}s}{\text{d}t}$, wenn wir $v = v(t)$ und $s = s(t)$
+als Fuktionen der Zeit auffassen.
+Der aktuelle Aufenthaltsort $s(T)$ ergibt sich durch die Umkehrung der Ableitung, also durch die Integration der
+Geschwindigkeit über die Zeit. Mit dem Anfangswert $s(t = 0) = s_0$ zur Zeit $t = 0$ erhalten wir damit
+%
+\begin{eqnarray*}
+\int_{0}^{T}\frac{\text{d}s}{\text{d}t} \jMD t &=& \int_{0}^{T} v \jMD t \\
+\left[s(t)\right]_{0}^{T} &=& \int_{0}^{T} v \jMD t \\
+s(T) - s(0) &=& \int_{0}^{T} v \jMD t \\
+s(T) &=& s_0 + \int_0^T v(t) \jMD t.
+\end{eqnarray*}
+%
+Ein weiteres Beispiel aus der Physik, das Ihnen bekannt sein könnte, ist die Bestimmung der Arbeit als Produkt aus Kraft und Weg: $W = F \cdot s$. Ist die Kraft jedoch wegabhängig, gilt dieses Gesetz nicht mehr in seiner einfachen Form. Um die Arbeit, die z.B. beim Verschieben eines massiven Körpers entlang eines Weges verrichtet wird, zu bestimmen, müssen wir die aufgewendete Kraft dann entlang des Weges vom Anfangspunkt $s_1$ bis zum Endpunkt $s_2$ integrieren:
+
+%
+\begin{eqnarray*}
+W = \int_{s_1}^{s_2}F(s) \jMD s.
+\end{eqnarray*}
+%
+Dies sollen nur zwei Beispiele aus dem physikalisch-technischen Bereich sein. Sie werden im Verlauf Ihres Studiums einer ganzen Reihe weiterer Anwendungen der Integration begegnen.
+\end{MXContent}
+
+%\end{MContent}
+
+%Dateiende.

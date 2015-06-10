@@ -1,0 +1,817 @@
+\input{mintmod.tex}
+\MPragma{MathSkip}
+\Mtikzexternalize
+
+\begin{document}
+
+\MSection{Orientierung im zweidimensionalen Koordinatensystem}
+\MLabel{VBKM09}
+\MSetSectionID{VBKM09} % wird fuer tikz-Dateien verwendet
+
+\begin{MSectionStart}
+\MDeclareSiteUXID{VBKM09_START}
+Dieses Modul besteht aus
+\begin{itemize}
+\item{dem Abschnitt \MSRef{M09_PGE}{Punkte und Geraden in der Ebene},}
+\item{dem Abschnitt \MSRef{M09_Kreise}{Kreise in der Ebene},}
+\item{dem \MSRef{VBKM09_Abschlusstest}{Abschlusstest}.}
+\end{itemize}
+
+\end{MSectionStart}
+
+\MSubsection{Punkte und Geraden in der Ebene}
+\MLabel{M09_PGE}
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM09_ObjekteEbene_Intro}
+
+\begin{MInfo}
+\MLabel{VBKM09_PunktInEbene}
+Einen \MEntry{Punkt}{Punkt} in der Ebene beschreiben wir durch $P=(x;y)$, dabei ist $P$ das Symbol für den Punkt
+und $x$ bzw. $y$ sind seine \MEntry{Koordinaten}{Koordinaten} in der Ebene: $x$ ist der Abstand von $P$ zur vertikalen Achse, $y$ ist der Abstand zur horizontalen Achse:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4,0) -- (3.9,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,4.7);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4,0) node[anchor=north west] {$x$};
+\draw (-1,5.2) node[anchor=north west] {$y$};
+%Ausgewählte Elemente des Definitionsbereiches:
+\foreach \x in {-1,2}{
+        \fill [color = cyan](\x,0.0) circle (1.5pt);
+        % f(x):
+        \fill [color = orange] (0, \x*\x) circle (1.5pt);
+        %Punktepaare
+        \draw [fill=green] (\x,\x*\x) circle (1.5pt);
+        %kreuzlinien
+        \draw [dashed, color = cyan] (\x,0)--(\x, \x*\x);
+        \draw [dashed, color = orange] (0,\x*\x)--(\x, \x*\x);
+}
+% Beschriftung:
+%\begin{scriptsize}
+        \draw (2,4) node[anchor = west]{$P=(2;4)$};
+        \draw (-1,1) node[anchor = east]{$Q=(-1;1)$};
+%\end{scriptsize}
+\end{tikzpicture}
+}
+\end{center}
+Im Bild sind die beiden Punkte $P=(2;4)$ und $Q=(-1;1)$ abgebildet.
+Der Punkt $P$ besitzt beispielsweise die Koordinaten $x=2$ (zwei Längeneinheiten Abstand zur vertikalen Achse)
+und $y=4$ (vier Längeneinheiten Abstand zur horizontalen Achse).
+\ \\ \ \\
+\end{MInfo}
+
+Bei der Beschreibung von Punkten lassen wir physikalische Einheiten stets weg. Für das Rechnen mit den geometrischen Objekten ist es unerheblich, ob es sich um Millimeter,
+Meter oder andere Längeneinheiten handelt. Nur die Zahlenwerte werden verwendet. Dagegen ist es wie im Beispiel durchaus möglich, dass Koordinaten durch Brüche, Dezimalzahlen
+oder andere auswertbare Ausdrücke gegeben sind.
+
+Für Punkte gibt es verschiedene Notationen, in der Schule wird oft $P(x|y)$ statt $P=(x;y)$ geschrieben, oft statt dem Semikolon ein Trennstrich oder ein Komma
+als Trennzeichen zwischen den Koordinaten benutzt. Im Kurs verwenden wir durchgehend die Bezeichnung $P=(x;y)$ wobei das Symbol $P$ den gleichen Punkt bezeichnet wie
+das Koordinatenpaar $(x;y)$. 
+
+\begin{MInfo}
+In der Notation $P=(x;y)$ schreibt man die Koordinaten in einer Zeile auf. Dies wird schwerer lesbar, sobald mehr als zwei Koordinaten auftreten und
+die Punkte in Gleichungen auftauchen.
+Bei der \MEntry{Vektorschreibweise}{Vektorschreibweise} werden daher Koordinaten zu einem Vektor zusammengefasst und untereinander geschrieben:
+$$
+\MVec{v} \;=\; \MVector{2\\-4}
+$$
+Hier beispielsweise der Vektor $\MVec{v}$ mit den Koordinaten $2$ und $-4$.
+Diese Schreibweise ist angenehmer, sobald mehr als zwei Komponenten vorhanden sind und Gleichungen mit den Vektoren aufgestellt werden.
+\end{MInfo}
+
+\begin{MExercise}
+Geben Sie die im Koordinatensystem eingetragenen Punkte in Zeilenschreibweise ein:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4,0) -- (3.9,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,4.7);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4,0) node[anchor=north west] {$x$};
+\draw (-1,4.2) node[anchor=north west] {$y$};
+%Punktepaare
+\draw [fill=green] (-2,1) circle (1.5pt);
+\draw [fill=green] (1,0) circle (1.5pt);
+\draw [fill=green] (-2,2.5) circle (1.5pt);
+% Beschriftung:
+%\begin{scriptsize}
+        \draw (-2,1) node[anchor = east]{$P$};
+        \draw (1,0) node[anchor = west]{$Q$};
+        \draw (-2,2.5) node[anchor = east]{$R$};
+%\end{scriptsize}
+\end{tikzpicture}
+}
+\end{center}
+\begin{MExerciseItems}
+\item{\MEquationItem{$P$}{\MLFunctionQuestion{15}{(-2,1)}{5}{x}{5}{VEB1}}.}
+\item{\MEquationItem{$Q$}{\MLFunctionQuestion{15}{(1,0)}{5}{x}{5}{VEB2}}.}
+\item{\MEquationItem{$R$}{\MLFunctionQuestion{15}{(-2,5/2)}{5}{x}{5}{VEB3}}.}
+\end{MExerciseItems}
+\MInputHint{Geben Sie Punkte in der Form $(x;y)$ ein, beispielsweise \texttt{(12;-4)} für den Punkt mit Koordinaten $x=12$ und $y=-4$. Im Kontrollfenster werden die Punkte
+in Vektorschreibweise dargestellt.}
+
+\begin{MHint}{Lösung}
+Die gefragten Punkte (in Zeilen- wie auch Vektorschreibweise) lauten
+$$
+P \;=\; (-2;1)\;\; , \;\;
+Q \;=\; (1;0)\;\; , \;\;
+R \;=\; (-2;\frac52) \;=\; (-2;2,5)\: .
+$$
+In Vektorschreibweise lauten die Punkte
+$$
+\MVector{-2\\1}\;\; , \;\;\MVector{1\\0}\;\; , \;\; \MVector{-2\\\frac52}\: .
+$$
+\end{MHint}
+\end{MExercise}
+
+Geometrische Figuren in der Ebene wie Geraden und Kreise bestehen aus Punkten. Dabei ist es aber nicht sinnvoll, die unendlich vielen Punkte einfach aufzuzählen.
+Verschiedene Techniken zur Beschreibung dieser Objekte werden in den nächsten Abschnitten vorgestellt. Die einfachste Figur ist die Gerade:
+
+\begin{MInfo}
+Eine \MEntry{Gerade}{Gerade} ist eine durchgezogene Linie in der Ebene. Eine Gerade kann beschrieben werden
+\begin{itemize}
+\item{durch eine Funktionsgleichung $y=m \cdot x+b$ mit Steigung $m$ und Achsenabschnitt $b$,}
+\item{durch Angabe von zwei verschiedenen Punkten $P$ und $Q$, dann ist $\overline{P Q}$ die Gerade durch die beiden Punkte,}
+\item{durch eine allgemeine Gleichung der Form $p x+q y=c$.}
+\end{itemize}
+\end{MInfo}
+
+Diese Beschreibungsmöglichkeiten werden in den folgenden Abschnitten vorgestellt.
+\end{MIntro}
+
+\begin{MXContent}{Funktionsgleichung}{Funktionsgleichung}{STD}
+\MLabel{VBKM09_Funktionsgleichung}
+\MDeclareSiteUXID{VBKM09_Funktionsgleichung}
+
+Die einfachste Möglichkeit zur Beschreibung einer Geraden ist eine Funktionsgleichung. Dabei benutzt man, dass \MSRef{VBKM06_sec:linear-affin}{linear-affine Funktionen}
+eine Gerade als Graph besitzen und schreibt einfach die Funktionsgleichung auf.
+
+\begin{MInfo}
+Die \MEntry{Funktionsgleichung}{Funktionsgleichung (Gerade)} einer Geraden in der Ebene lautet
+$$
+y \;=\; f(x) \;=\; m\cdot x+b
+$$
+mit
+\begin{itemize}
+\item{der \MEntry{Steigung}{Steigung} $m$,}
+\item{dem \MEntry{Achsenabschnitt}{Achsenabschnitt} $b$,}
+\item{und den Koordinaten $x$ und $y$ der Geraden.}
+\end{itemize}
+\end{MInfo}
+
+Bei dieser Schreibweise beschreibt man die Gerade durch den funktionalen Zusammenhang zwischen den beiden Koordinaten: Ist der Wert für $x$ bekannt,
+so kann man über die Gleichung den Wert von $y$ ausrechnen.
+Über die Funktionsgleichung kann man beispielsweise Schnittpunkte ausrechnen, indem man die entsprechenden Gleichungen gleichsetzt.
+Funktionsgleichungen für Geraden sind \MSRef{VBKM02_LineareGleichungenLoesen}{linear}, daher treten
+wie in Modul \MNRef{VBKM02} die drei möglichen Lösungstypen auf:
+
+\begin{MInfo}
+Zwei durch Funktionsgleichungen $f(x)=a x + b$ und $g(x)=c x + d$ gegebene Geraden haben
+\begin{itemize}
+\item{keinen Schnittpunkt, falls die lineare Gleichung $f(x)=g(x)$ keine Lösung für $x$ besitzt,}
+\item{genau einen Schnittpunkt, falls die lineare Gleichung genau eine Lösung $x$ besitzt. Dann ist der Schnittpunkt gegeben durch $P=(x;f(x))$ oder $P=(x;g(x))$,}
+\item{unendlich viele Schnittpunkte, falls $f(x)=g(x)$ alle reellen Zahlen $x$ als Lösung besitzt. In diesem Fall sind die beiden Geraden gleich.}
+\end{itemize}
+\end{MInfo}
+
+Auflösen nach $x$ geschieht wie in Modul \MNRef{VBKM02} durch Isolierung der Unbestimmten $x$:
+
+
+\begin{MExample}
+Gesucht sei der Schnittpunkt der Geraden $f(x)=2x+1$ und $g(x)=-x-2$. Gleichsetzen und Isolieren von $x$ ergibt
+\begin{eqnarray*}
+& \text{Start:} & 2x+1\;=\; -x-2  \ \\ \ \\
+& \Leftrightarrow & 3x\;=\;-3 \ \\ \ \\
+& \Leftrightarrow & x\;=\; -1\:.
+\end{eqnarray*}
+Die Lösungsmenge der Gleichung ist also $\ML=\lbrace -1\rbrace$. Einsetzen der gefundenen Koordinate in eine der beiden Funktionsgleichungen ergibt
+$y=f(-1)=g(-1)=-1$. Also ist der gesuchte Schnittpunkt $P=(-1;-1)$:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (-2,-3)--(1,3);
+\draw[color=red] (1,3) node[anchor=west] {$G_f$};
+\draw[color=blue] (-2,0)--(1,-3);
+\draw[color=blue] (1,-3) node[anchor=west] {$G_g$};
+\draw [fill=green] (-1,-1) circle (1.5pt);
+\draw (-1,-1) node[anchor = south]{$P$};
+\end{tikzpicture}       
+}%
+\end{center}
+Dabei ist der Graph $G_f$ der Funktion $f(x)=2x+1$ die Gerade. Im Folgenden trennen wir beide Objekte aber nicht mehr voneinander.
+\end{MExample}
+
+Dabei treten die drei Lösungstypen in den folgenden Fällen auf:
+\begin{itemize}
+\item{Falls zwei durch Funktionsgleichungen gegebene Geraden verschiedene Steigungen besitzen, so gibt es genau einen Schnittpunkt.}
+\item{Falls zwei Geraden gleiche Steigungen und gleiche Achsenabschnitte besitzen, so handelt es sich um die gleiche Gerade.}
+\item{Falls die Steigungen gleich und die Achsenabschnitte aber verschieden sind, so gibt es keinen Schnittpunkt.}
+\end{itemize}
+
+\begin{MExercise}
+Entscheiden Sie jeweils durch Rechnung, wie die gegebenen Geraden sich schneiden. Kreuzen Sie entsprechend an und tragen Sie die beiden vorhandenen Schnittpunkte der vier Aufgabenteile ein.
+Skizzieren Sie die Geradenpaare grob.
+\begin{MQuestionGroup}
+\begin{MExerciseItems}
+\item{$f(x)=x-2$ und $g(x)=2-x$:\\\MCheckbox{0}{VEBC11} Keinen Schnittpunkt, \MCheckbox{0}{VEBC12} gleiche Geraden, \MCheckbox{1}{VEBC13} einen Schnittpunkt.}
+\item{$f(x)=1-x$ und $g(x)=4\cdot(3x+1)-x-3$:\\\MCheckbox{0}{VEBC21} Keinen Schnittpunkt, \MCheckbox{0}{VEBC22} gleiche Geraden, \MCheckbox{1}{VEBC23} einen Schnittpunkt.}
+\item{$f(x)=4(x+1)-x-1$ und $g(x)=3x-3$:\\\MCheckbox{1}{VEBC31} Keinen Schnittpunkt, \MCheckbox{0}{VEBC32} gleiche Geraden, \MCheckbox{0}{VEBC33} einen Schnittpunkt.}
+\item{$f(x)=5x-2$ und $g(x)=(2x+1)+(3x-3)$:\\\MCheckbox{0}{VEBC41} Keinen Schnittpunkt, \MCheckbox{1}{VEBC42} gleiche Geraden, \MCheckbox{0}{VEBC43} einen Schnittpunkt.}
+\end{MExerciseItems}
+Der erste Schnittpunkt ist \MLFunctionQuestion{10}{(2,0)}{5}{x}{5}{VEBC14}, der zweite Schnittpunkt ist \MLFunctionQuestion{10}{(2,0)}{5}{x}{5}{VEBC14b}.
+\end{MQuestionGroup}
+
+\MGroupButton{Eingaben kontrollieren}
+
+\begin{MHint}{Lösung}
+Gleichsetzen der beiden Funktionsgleichungen ergibt:
+\begin{MExerciseItems}
+\item{Einen Schnittpunkt über
+$$
+x-2 \;=\; 2-x \;\; \Leftrightarrow\;\; 2x\;=\; 4 \;\; \Leftrightarrow\;\; x \;=\; 2
+$$
+mit $P=(2;f(2))=(2;0)$.}
+\item{Einen Schnittpunkt über
+$$
+1-x \;=\; 4(3x+1)-x-3 \;\; \Leftrightarrow\;\; 12x\;=\; 0 \;\; \Leftrightarrow\;\; x \;=\; 0
+$$
+mit $P=(0;f(0))=(0;1)$.}
+\item{Diese Geraden besitzen keinen Schnittpunkt, da die Gleichung
+$$
+4(x+1)-x-1 \;=\; 3x-3\;\; \Leftrightarrow\;\; 0\;=\; -6 
+$$
+unslösbar ist.}
+\item{Diese Geraden stimmen überein, da $(2x+1)+(3x-3)=5x-2$ ist.}
+\end{MExerciseItems}
+\end{MHint}
+
+\begin{MHint}{Skizze 1}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (-2,-4)--(3,1);
+\draw[color=red] (3,1) node[anchor=west] {$G_f$};
+\draw[color=blue] (-2,4)--(3,-1);
+\draw[color=blue] (3,-1) node[anchor=west] {$G_g$};
+\draw [fill=green] (2,0) circle (1.5pt);
+\end{tikzpicture}       
+}%
+\end{center}
+\end{MHint}
+\begin{MHint}{Skizze 2}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (-2,3)--(3,-2);
+\draw[color=red] (3,-2) node[anchor=west] {$G_f$};
+\draw[color=blue] (-0.3636,-3)--(0.1818,3);
+\draw[color=blue] (0.1818,3) node[anchor=west] {$G_g$};
+\draw [fill=green] (0,1) circle (1.5pt);
+\end{tikzpicture}       
+}%
+\end{center}
+\end{MHint}
+\begin{MHint}{Skizze 3}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (-2,-3)--(0,3);
+\draw[color=red] (0,3) node[anchor=west] {$G_f$};
+\draw[color=blue] (0,-3)--(2,3);
+\draw[color=blue] (2,3) node[anchor=west] {$G_g$};
+\end{tikzpicture}       
+}%
+\end{center}
+\end{MHint}
+\begin{MHint}{Skizze 4}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (-0.2,-3)--(1,3);
+\draw[color=red] (1,3) node[anchor=west] {$G_f=G_g$};
+\end{tikzpicture}       
+}%
+\end{center}
+\end{MHint}
+\end{MExercise}
+\end{MXContent}
+
+\begin{MXContent}{Zwei-Punkte-Form}{Zwei-Punkte-Form}{STD}
+\MLabel{VBKM09_ZweiPunkteForm}
+\MDeclareSiteUXID{VBKM09_ZweiPunkteForm}
+
+Geraden mit Funktionsgleichungen zu beschreiben hat den Vorteil, dass rechnerische Aufgaben wie das Finden von Schnittpunkten
+damit einfach zu lösen sind, da man die gegebenen Terme für die anzusetzende Gleichungen sofort einsetzen kann.
+Allerdings lässt sich nicht jede Gerade durch eine Funktionsgleichung beschreiben.
+Eine Funktionsgleichung drückt aus, dass man allen möglichen $x$-Werten jeweils einen $y$-Wert (und damit einen Punkt auf der Geraden) zuordnen kann.
+Vertikale Geraden sind keine Graphen von linear-affinen Funktionen, hier kann man nicht jedem $x$-Wert einen Punkt zuordnen.
+Für solche Geraden benötigt man andere Beschreibungstechniken, eine davon ist die \MEntry{Zwei-Punkte-Form}{Zwei-Punkte-Form}:
+
+\begin{MInfo}
+Eine Gerade ist eindeutig beschrieben durch Angabe von zwei verschiedenen Punkten auf der Geraden. Sind $P$ und $Q$ die beiden Punkte,
+so notiert man die durch diese beiden Punkte verlaufende Gerade durch $\overline{P Q}$.
+\end{MInfo}
+
+Beispielsweise kann man die durch die Funktionsgleichung $f(x)=2x+1$ gegebene Gerade auch durch die beiden Punkte $P=(0;1)$ und $Q=(2;5)$ beschreiben.
+Dagegen kann man die vertikale Gerade durch die Punkte $R=(2;0)$ und $S=(2;1)$ nicht durch eine Funktionsgleichung beschreiben.
+Mit der Zwei-Punkte-Form kann man jede mögliche Gerade beschreiben, allerdings eignet sie sich nicht zur Berechnung von Schnittpunkten.
+Um Schnittpunkte auszurechnen, muss man die Geraden daher erst in Funktionsform beschreiben:
+
+\begin{MInfo}
+Ist eine nicht vertikale Gerade $\overline{P Q}$ durch die beiden Punkte $P=(x_1;y_1)$ und $Q=(x_2;y_2)$ gegeben, so besitzt sie die Steigung
+$$
+m \;=\; \frac{y_2-y_1}{x_2-x_1}
+$$
+Den Achsenabschnitt $b$ findet man dann durch Einsetzen eines Punktes in die Gleichung $y=m x+b$.
+\end{MInfo}
+
+\begin{MExample}
+Ist die Gerade $\overline{P Q}$ gegeben mit $P=(1;2)$ und $Q=(5;3)$, so besitzt sie die Steigung $m=\frac{3-2}{5-1}=\frac14$.
+Einsetzen des Punkts $P$ in die Funktionsgleichung $y=\frac14x+b$ ergibt die Gleichung $2=\frac14\cdot 1+b$. Auflösen nach $b$ ergibt
+$b=2-\frac14=\frac74$. Also ist
+$$
+y \;=\; \frac14\cdot x +\frac74
+$$
+die Funktionsgleichung für die Gerade $\overline{P Q}$.
+\end{MExample}
+
+Die vertikale Gerade durch die Punkte $P=(3;2)$ und $Q=(3;1)$ lässt sich nicht durch eine Funktionsgleichung beschreiben,
+Einsetzen der Koordinaten ergibt eine Null im Nenner. Horizontale Geraden erhalten dagegen eine Null im Zähler und haben die Steigung Null.
+
+\begin{MExercise}
+Drücken Sie die Gerade $\overline{P Q}$ jeweils durch eine Funktionsgleichung $y=f(x)=m x+b$ aus:
+\begin{MExerciseItems}
+\item{Für $P=(2;1)$ und $Q=(1;2)$ ergibt sich \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{3-x}{5}{x}{5}{1}{VEBD1}}.}
+\item{Für $P=(3;0)$ und $Q=(1;\alpha)$ ergibt sich \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{-1/2*alpha*x+1+3/2*alpha}{5}{x,alpha}{5}{1}{VEBD2}}.}
+\end{MExerciseItems}
+Beim zweiten Aufgabenteil ist $\alpha$ eine unbekannte Konstante, die in der Funktionsgleichung als \MInputHint{\texttt{alpha}} eingegeben werden kann.
+
+\begin{MHint}{Lösung}
+Einsetzen der Koordinaten aus den Punkten in die Gleichung für die Steigung ergibt für die erste Gerade
+$$
+m \;=\; \frac{y_2-y_1}{x_2-x_1} \;=\; \frac{1-2}{2-1} \;=\; -1\: .
+$$
+Die Gerade besitzt also die Funktionsgleichung $f(x)=-x+b$ mit Achsenabschnitt $b$. Einsetzen von $P$ in die Gleichung ergibt $1=f(2)=-2+b$ und somit $b=3$. Die gesuchte Gleichung ist also $f(x)=-x+3=3-x$.
+\ \\ \ \\
+Bei der zweiten Geraden erhalten wir die Steigung
+$$
+m \;=\; \frac{\alpha-0}{1-3} \;=\; -\frac12\alpha\: .
+$$
+Die Gerade besitzt also die Funktionsgleichung $f(x)=-\frac12\alpha x +b$ mit unbekanntem $\alpha$ (nach dessen Wert aber auch nicht gefragt ist).
+Einsetzen von $P$ in die Gleichung ergibt $1=f(3)=-\frac32\alpha +b$. Auflösen nach $b$ ergibt $b=1+\frac32\alpha$. Damit ist $f(x)=-\frac12\alpha x+1+\frac32\alpha$ die Funktionsgleichung der Geraden.
+\end{MHint}
+\end{MExercise}
+
+\end{MXContent}
+
+\begin{MXContent}{Allgemeine Form}{Allgemeine Form}{STD}
+\MLabel{VBKM09_AllgemeineForm}
+\MDeclareSiteUXID{VBKM09_AllgemeineForm}
+
+Die Zwei-Punkte-Form kann zwar jede mögliche Gerade beschreiben, ist zum praktischen Rechnen (beispielsweise zum Finden von Schnittpunkten) ungeeignet.
+Das Problem entsteht jedoch nur bei vertikalen Geraden, die nicht als Graph einer Funktion der $x$-Koordinate geschrieben werden können.
+Diese Geraden kann man auch durch Gleichungen beschreiben, wenn man auf den funktionalen Zusammenhang zwischen $x$ und $y$ verzichtet. Dieser wird
+dadurch hergestellt, dass $y$ auf einer Seite der Funktionsgleichung isoliert ist. Diese Forderung lässt man daher oft fallen:
+
+\begin{MInfo}
+\MLabel{VBKM09_AllgemeineGleichung}
+Jede Gerade kann durch eine \MEntry{allgemeine Geradengleichung}{Allgemeine Geradengleichung} der Form
+$$
+p x+ q y \;=\; c
+$$
+beschrieben werden, wobei $p$ und $q$ reelle Konstanten sind, die nicht beide Null sein dürfen.
+Die Gerade besteht dann aus allen Punkten $P=(x;y)$, deren Koordinaten die Gleichung erfüllen.
+\end{MInfo}
+
+Mit einer Gleichung dieser Form lassen sich sämtliche Geraden beschreiben, dabei gibt es die folgenden Spezialfälle:
+
+\begin{itemize}
+\item{Ist $p=0$, so kann man durch $q$ teilen und eine Gleichung der Form $y=c$ bekommen. Sie beschreibt die horizontale Gerade mit Steigung Null und Achsenabschnitt $c$.}
+\item{Ist $q=0$, so kann man durch $p$ teilen und eine Gleichung der Form $x=c$ bekommen. Sie drückt aus, dass die $y$-Koordinate beliebig aus $\R$ und die $x$-Koordinate fest gleich Null ist.
+Dadurch wird eine vertikale Gerade beschrieben, welche die $x$-Achse bei $c$ schneidet.}
+\item{Sind $p$ und $q$ verschieden von Null, so ist die Gerade nicht parallel zu einer der beiden Koordinatenachsen.}
+\end{itemize}
+
+\begin{MInfo}
+Mit Ausnahme der vertikalen Geraden kann eine allgemeine Gleichung stets in eine Funktionsgleichung umgewandelt werden, indem man durch $q$ teilt und nach $y$ auflöst. Umgekehrt
+kann eine Funktionsgleichung in eine allgemeine Form gebracht werden, indem der Achsenabschnitt auf einer Seite isoliert wird.
+
+Eine Zwei-Punkte-Form erhält man, indem man Werte für $x$ und $y$ errät, welche die Gleichung erfüllen. Dabei kann man versuchen, eine der Koordinaten auf Null zu setzen und nach der anderen Koordinate aufzulösen.
+\end{MInfo}
+
+\begin{MExample}
+Die durch die Funktionsgleichung $y=5x+1$ gegebene Gerade kann man auch durch die allgemeine Form $y-5x=1$ ausdrücken. Umgekehrt kann man die vertikale Gerade $x=3$ nicht durch eine Funktionsgleichung der Form
+$y=f(x)$ ausdrücken.
+\end{MExample}
+
+\begin{MExample}
+Die durch die allgemeine Gleichung $6x+12y=3$ gegebene Gerade soll durch eine Funktionsgleichung beschrieben werden. Auflösen nach $y$ ergibt
+\begin{eqnarray*}
+& \text{Start:} & 6x+12y\;=\;3  \ \\ \ \\
+& \Leftrightarrow & 12y\;=\;-6x+3 \ \\ \ \\
+& \Leftrightarrow & y\;=\;-\frac1{2}x+\frac14\: .
+\end{eqnarray*}
+\end{MExample}
+
+
+Eine allgemeine Geradengleichung ist nicht eindeutig, die gleiche Gerade kann durch mehrere verschiedene Gleichungen beschrieben werden.
+Beispielsweise beschreibt $2x+4y=1$ die gleiche Gerade wie $6x+12y=3$.
+
+Die drei durchgenommenen Beschreibungstechniken eigenen sich jeweils für spezielle Fragestellungen:
+
+\begin{itemize}
+\item{Die Funktionsform $y=m x+b$ eignet sich um mit der Geraden zu rechnen, d.h. Schnittpunkte zu bestimmen oder Punkte auf der Geraden zu produzieren (indem man irgendwelche Werte für $x$ einsetzt).}
+\item{Die Zwei-Punkte-Form eignet sich, wenn die Punkte auf der Geraden schon bekannt sind. Meist startet eine Aufgabe mit dieser Form und muss für weitere Rechnungen erst in eine andere Form umgewandelt werden.}
+\item{Die allgemeine Geradengleichung ist eine Testgleichung: Mit ihr kann man für gegebene Punkte leicht entscheiden, ob die Punkte auf der Geraden liegen oder nicht.
+Für praktische Rechnung kann sie recht einfach in Funktionsform umgewandelt werden.}
+\end{itemize}
+
+\begin{MExercise}
+Berechnen Sie den Schnittpunkt der Geraden $\overline{P Q}$ für $P=(3;1)$ und $Q=(1;0)$ mit der durch die allgemeine Gleichung $2x+2y=-4$ beschriebenen Geraden, indem Sie
+beide Geraden zunächst in Funktionsform bringen:
+\begin{MExerciseItems}
+\item{Die Funktionsform für die erste Gerade ist \MEquationItem{$f(x)$}{\MLSimplifyQuestion{20}{1/2*x-1/2}{5}{x}{5}{1}{VEBE1}}.}
+\item{Die Funktionsform für die zweite Gerade ist \MEquationItem{$g(x)$}{\MLSimplifyQuestion{20}{-x-2}{5}{x}{5}{1}{VEBE2}}.}
+\item{Gleichsetzen der beiden Terme ergibt die Lösungskoordinate \MEquationItem{$x$}{\MLParsedQuestion{5}{-1}{4}{VEBE3}} und den Schnittpunkt \MEquationItem{$P$}{\MLFunctionQuestion{10}{(-1,-1)}{5}{x}{5}{VEBE4}}.}
+\end{MExerciseItems}
+Skizzieren Sie beide Geraden sowie die gegebenen Punkte.
+
+\begin{MHint}{Lösung}
+Für die erste Gerade ergibt sich die Steigung
+$$
+m \;=\; \frac{y_2-y_1}{x_2-x_1} \;=\; \frac{0-1}{1-3} \;=\; \frac12\: .
+$$
+Einsetzen von $P=(3:1)$ in die Gleichung $y=f(x)=\frac12x+b$ ergibt $b=-\frac12$ und somit $f(x)=\frac12x-\frac12$. Bei der zweiten Geraden ergibt Auflösung nach $y$ die Funktionsform $y=g(x)=-x-2$.
+
+Gleichsetzen beider Funktionsterme ergibt
+\begin{eqnarray*}
+& \text{Start:} & f(x) \;=\; g(x) \ \\ \ \\
+& \Leftrightarrow & \frac12x-\frac12\;=\; -x-2 \ \\ \ \\
+& \Leftrightarrow & \frac32x \;=\;-\frac32\ \\ \ \\
+& \Leftrightarrow & x \;=\;-1\: .
+\end{eqnarray*}
+Damit ist $S=(-1;f(-1))=(-1;-1)$ der gesuchte Schnittpunkt.
+\end{MHint}
+\begin{MHint}{Skizze}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (-3,-2)--(3.5,1.25);
+\draw[color=red] (3.5,1.25) node[anchor=west] {$G_f$};
+\draw[color=blue] (-3,1)--(1.5,-3.5);
+\draw[color=blue] (1.5,-3.5) node[anchor=west] {$G_g$};
+\draw [fill=green] (-1,-1) circle (1.5pt);
+\draw [fill=red] (3,1) circle (1.5pt);
+\draw [fill=red] (1,0) circle (1.5pt);
+\draw (3,1) node[anchor = south]{$P$};
+\draw (1,0) node[anchor = south]{$Q$};
+\draw (-1,-1) node[anchor = north]{$S$};
+\end{tikzpicture}       
+}%
+\end{center}
+\end{MHint}
+\end{MExercise}
+
+\end{MXContent}
+
+\MSubsection{Kreise}
+\MLabel{M09_Kreise}
+
+\begin{MIntro}
+\MLabel{VBKM09_Kreise_Intro}
+\MDeclareSiteUXID{VBKM09_Kreise_Intro}
+
+\begin{MInfo}
+Ein \MEntry{Kreis}{Kreis} ist die Menge aller Punkte, die einen festen Abstand zu einem gemeinsamen Mittelpunkt besitzen. Diesen Abstand nennt man \MEntry{Radius}{Radius} und notiert ihn
+mit einem kleinen $r$. Die Angabe des Radius $r>0$ und des Mittelpunkts $P=(x_0;y_0)$ legt einen Kreis eindeutig fest.
+\end{MInfo}
+
+Der geometrische Abstand zwischen zwei Punkten ist die Länge der Verbindungsstrecke zwischen den Punkten. Fasst man diese als Eckpunkte eines rechtwinkligen Dreiecks auf,
+so ergibt Auflösung des \MSRef{VBKM05_Pythagoras}{Satzes des Pythagoras} nach der Länge $c$ diese Formel für den Abstand:
+
+\begin{MInfo}
+\MLabel{VBKM09_Abstand}
+Der geometrische \MEntry{Abstand}{Abstand} zwischen zwei Punkten $P=(x_0;y_0)$ und $Q=(x_1;y_1)$ wird durch den Ausdruck
+$$
+\sqrt{(x_1-x_0)^2+(y_1-y_0)^2}
+$$
+gegeben.
+\end{MInfo}
+
+Wie bei Koordinaten verwenden wir keine Längeneinheit für den Abstand, er ist eine absolute Zahl. Zwei Punkte haben den Abstand Null genau dann, wenn sie gleich sind.
+
+\begin{MExample}
+Die Punkte $P=(1;2)$ und $Q=(3;3)$ haben den Abstand
+$$
+\sqrt{(3-1)^2+(3-2)^2} \;=\; \sqrt{5} \; \approx\; 2,236\: .
+$$
+\end{MExample}
+
+\begin{MExample}
+Der Kreis mit Mittelpunkt $P=(2;1)$ und Radius $r=2$ besteht aus allen Punkten, deren Verbindungslinie zu $P$ die Länge $2$ besitzt. Beispielsweise ist $Q=(0;1)$ ein Punkt auf dem Kreis:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+%\draw (xMAX) node[anchor=north east] {$x$};
+%\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw (2,1) circle (2);
+\draw [fill=red] (2,1) circle (1.5pt);
+\draw [fill=green] (0,1) circle (1.5pt);
+\draw[color=red] (2,1)--(4,1);
+\draw (2,1) node[anchor = north]{$P$};
+\draw (0,1) node[anchor = west]{$Q$};
+\draw (3,1) node[anchor = north]{$r$};
+\end{tikzpicture}
+}%
+\end{center}
+Dagegen ist beispielsweise $R=(5;2)$ kein Punkt auf dem Kreis, denn er besitzt den Abstand
+$$
+\sqrt{(5-2)^2+(2-1)^2} \;=\; \sqrt{10} \; \not=\; 2
+$$
+vom Mittelpunkt.
+\end{MExample}
+
+\begin{MExercise}
+Prüfen Sie durch eine Abstandsberechnung, ob der Punkt $(5;6)$ auf dem Kreis um den Mittelpunkt $P=(2;2)$ mit Radius $r=5$ liegt.
+
+\begin{MHint}{Lösung}
+Der Abstand der beiden Punkte ist
+$$
+\sqrt{(5-2)^2+(6-2)^2} \;=\; \sqrt{9+16} \;=\; \sqrt{25} \;=\; 5
+$$
+womit $(5;6)$ tatsächlich auf dem Kreis mit Radius $5$ um $P$ liegt.
+\end{MHint}
+\end{MExercise}
+
+Wie bei der Zwei-Punkte-Form für Geraden ist die Beschreibung eines Kreises durch Mittelpunkt und Radius erstmal nicht geeignet, um direkte Rechnungen mit dem Kreis auszuführen.
+
+\end{MIntro}
+
+
+\begin{MXContent}{Allgemeine Form}{Allgemeine Form}{STD}
+\MLabel{VBKM09_Kreise_Allgemein}
+\MDeclareSiteUXID{VBKM09_Kreise_Allgemein}
+
+Genau wie bei Geraden sind Kreise letztlich Mengen von unendlich vielen Punkten, die in einer geeigneten Form beschrieben werden müssen, damit man mit ihnen rechnen kann.
+In Modul \MNRef{VBKM05} haben wir schon mit dem Einheitskreis gearbeitet, um die \MSRef{VBKM05_Trigonometrie_Einheitskreis}{trigonometrischen Funktionen} zu veranschaulichen.
+Er kann durch eine quadratische Gleichung beschrieben werden, die als Grundlage für beliebige Kreise dient:
+
+\begin{MInfo}
+Der Einheitskreis wird durch die \MEntry{Kreisgleichung}{Kreisgleichung}
+$$
+x^2+y^2 \;=\; 1
+$$
+erfüllt. Diese Gleichung drückt aus, dass die Punkte auf dem Kreis den Abstand $1$ zum Ursprung besitzen.
+\end{MInfo}
+
+Ein beliebiger Kreis mit Radius $1$ kann nun dadurch beschrieben werden, dass man den Einheitskreis zum neuen Mittelpunkt verschiebt.
+Dabei wird jede Koordinate separat verschoben und man erhält die Kreisgleichung
+$$
+(x-x_0)^2+(y-y_0)^2 \;=\; 1
+$$
+für den Kreis um den Mittelpunkt $P=(x_0;y_0)$ mit Radius $1$.
+Um nun noch den Radius anzupassen und damit beliebige Kreise ausdrücken zu können verändert man die Konstante auf der rechten Seite der Gleichung. Da in der \MSRef{VBKM09_Abstand}{Abstandsgleichung}
+die Wurzel aus den Quadraten auftritt, muss in der Kreisgleichung nun das Quadrat des Radius eingesetzt werden:
+
+\begin{MInfo}
+Die \MEntry{allgemeine Kreisgleichung}{Allgemeine Kreisgleichung} für den Kreis mit Mittelpunkt $(x_0;y_0)$ und Radius $r>0$ lautet
+$$
+(x-x_0)^2+(y-y_0)^2 \;=\; r^2\: .
+$$
+\end{MInfo}
+
+\begin{MExample}
+Liegt der Punkt $(2;2)$ auf dem Kreis um den Mittelpunkt $(3;4)$ mit Radius $2$?
+Dazu stellen wir die allgemeine Kreisgleichung auf und prüfen, ob der Punkt $(2;2)$ sie erfüllt.
+Einsetzen der Verschiebung auf den neuen Mittelpunkt und das Quadrat des Radius ergibt die Kreisgleichung
+$$
+(x-3)^2+(y-4)^2 \;=\; 4\: .
+$$
+Einsetzen von $x=2$ und $y=2$ ergibt
+$$
+(2-3)^2+(2-4)^2 \;=\; 5 \; \not=\; 4
+$$
+womit $(2;2)$ nicht auf dem Kreis liegt.
+\end{MExample}
+
+
+
+
+\end{MXContent}
+
+
+\MSubsection{Abschlusstest}
+
+
+\begin{MTest}{Abschlusstest Kapitel \arabic{section}}
+\MLabel{VBKM09_Abschlusstest}
+\MDeclareSiteUXID{VBKM09_Abschlusstest}
+
+
+\begin{MExercise}
+\MSetPoints{8}
+Wie lautet die Funktionsgleichung für die Gerade $\overline{P Q}$, welche durch die beiden Punkte $P=(1;3)$ und $Q=(-1;7)$ verläuft?
+\ \\ \ \\
+Antwort: \MEquationItem{$y$}{\MLSimplifyQuestion{20}{-2*x+5}{5}{x}{5}{1}{VBNT1}}.
+\end{MExercise}
+
+\begin{MExercise}
+Gegeben sei eine Gerade durch die allgemeine Gleichung $6x+2y=4$.
+
+\begin{MExerciseItems}
+\MSetPoints{8}
+\item{Die Funktionsgleichung dieser Geraden lautet \MEquationItem{$y$}{\MLSimplifyQuestion{20}{2-3*x}{5}{x}{5}{1}{VBNT2}}.}
+\item{Wie liegt diese Gerade im Verhältnis zu der durch die Funktionsgleichung $y=3x-2$ beschriebenen Geraden?\\
+\begin{itemize}
+\MSetPoints{2}
+\item{\MCheckbox{0}{VBNT3} Es gibt keinen Schnittpunkt.}
+\item{\MCheckbox{1}{VBNT4} Es gibt genau einen Schnittpunkt.}
+\item{\MCheckbox{0}{VBNT5} Die Geraden sind gleich.}
+\end{itemize}}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie den Schnittpunkt der durch die Funktionsgleichung $y=2x+2$ beschriebenen Geraden mit der durch die allgemeine Gleichung $2x+0y=6$ beschriebenen Geraden.
+\ \\ \ \\
+Antwort: Der Schnittpunkt ist \MLFunctionQuestion{15}{(3,8)}{5}{x}{5}{VBNT6}.\\
+\MInputHint{Geben Sie Punkte in der Form \texttt{(a;b)} ein.}
+\ \\ \ \\
+Kreuzen Sie mögliche Gründe an, warum die zweite Gerade nicht als eine Funktionsgleichung in $x$ geschrieben werden kann (mehrere Aussagen können richtig sein):
+\MSetPoints{1}
+\begin{MExerciseItems}
+\item{\MCheckbox{0}{VBNT7} Die allgemeine Gleichung kann nicht nach $x$ aufgelöst werden.}
+\item{\MCheckbox{1}{VBNT8} Die allgemeine Gleichung kann nicht nach $y$ aufgelöst werden.}
+\item{\MCheckbox{0}{VBNT9} Die allgemeine Gleichung ist noch nicht gekürzt.}
+\item{\MCheckbox{0}{VBNT10} Die Gerade ist parallel zur $x$-Achse.}
+\item{\MCheckbox{1}{VBNT11} Die Gerade ist parallel zur $y$-Achse.}
+\item{\MCheckbox{1}{VBNT12} Die Gerade besitzt keine endliche Steigung.}
+\item{\MCheckbox{0}{VBNT13} Die Gerade schneidet die $x$-Achse nicht.}
+\item{\MCheckbox{0}{VBNT14} Die Gleichung beschreibt keine Gerade.}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Entscheiden Sie, welche der folgenden Punkte auf dem Rand des Kreises mit Mittelpunkt $P=(3;-1)$ und Radius $r=\sqrt{10}$ liegen:
+\MSetPoints{2}
+\begin{MExerciseItems}
+\item{\MCheckbox{1}{VBNT15} Der Ursprung.}
+\item{\MCheckbox{0}{VBNT17} $(2;3)$.}
+\item{\MCheckbox{1}{VBNT16} $(4;2)$.}
+\item{\MCheckbox{0}{VBNT18} $(3;2)$.}
+\item{\MCheckbox{0}{VBNT19} $(0;\sqrt{10})$.}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Ein Kreis habe die allgemeine Kreisgleichung
+$$
+(x-2)^2+(y+3)^2 \;=\; 9\: .
+$$
+Welche Eigenschaften besitzt dieser Kreis?
+\MSetPoints{2}
+\begin{MExerciseItems}
+\item{Sein Radius ist \MEquationItem{$r$}{\MLParsedQuestion{5}{3}{4}{VBNT20}}.}
+\item{Sein Mittelpunkt ist \MEquationItem{$P$}{\MLFunctionQuestion{15}{(2,-3)}{5}{x}{5}{VBNT21}}.}\\
+\MInputHint{Geben Sie Punkte in der Form \texttt{(a;b)} ein.}
+\item{Er schneidet die durch $P$ und einen unbekannten weiteren Punkt $Q$ verlaufende Gerade\\
+\MSetPoints{1}
+\begin{itemize}
+\item{\MCheckbox{0}{VBNT22} in einem Punkt,}
+\item{\MCheckbox{1}{VBNT23} in zwei Punkten,}
+\item{\MCheckbox{0}{VBNT24} in drei Punkten,}
+\item{\MCheckbox{0}{VBNT25} überhaupt nicht.}
+\end{itemize}
+}
+\end{MExerciseItems}
+\end{MExercise}
+
+
+\end{MTest}
+
+
+\newpage
+\MPrintIndex
+
+\end{document}
