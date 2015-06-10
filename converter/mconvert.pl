@@ -14,8 +14,7 @@ use File::Path;
 
 my $helptext = "Aufruf: mconvert.pl -treepdf hauptdatei baumverzeichnis ausgabeverzeichnis   [Mit PDF]\noder    mconvert.pl -tree hauptdatei baumverzeichnis ausgabeverzeichnis      [Ohne PDF]\noder    mconvert.pl -treetikz hauptdatei baumverzeichnis ausgabeverzeichnis     [HTML/Tikz]\noder    mconvert.pl -zip hauptdatei baumverzeichnis zipdatei      [Ohne PDF]\noder    mconvert.pl -zippdf hauptdatei baumverzeichnis zipdatei      [Mit PDF]\n\nAufruf ohne Argument wird als -modulepdf interpretiert [funktionsweise wie in Version <2.5]\n\nAchtung: Das Ausgabeverzeichnis wird komplett geleert und neu angelegt!\n\n";
 
-# Hier das Verzeichnis eintragen, in dem "converter" enthalten ist, im Verzeichnis muss Lesen und Ausfuehren moeglich sein
-our $basis = "~/Repositories/mintkolleg_converter";
+our $basis = ""; # wird auf aktuelles Verzeichnis gesetzt
 # use lib "/home/daniel/BWSYNC/PreTU9Konverter/converter";
 # use courseconfig;
 
@@ -426,6 +425,7 @@ my $absexedir = Cwd::cwd();
 
 
 print("Absolutes Ausfuehrungsverzeichnis: " . $absexedir . "\n");
+$basis = $absexedir;
 print("   Hauptdatei: " . $rfilename . "\n");
 print("   Hauptdateipfad: " . $modul . "\n");
 print("   Eingabeverzeichnis: " . $source . "\n");
