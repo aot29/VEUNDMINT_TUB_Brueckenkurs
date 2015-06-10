@@ -1,0 +1,148 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Feedbacktool VEUNDMINT showstatistics</title>
+</head>
+<body>
+
+    <script src="jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="es5-sham.min.js" type="text/javascript"></script>
+    <script src="json2.js" type="text/javascript"></script>
+
+    <h1>Feedbacktool</h1>
+
+    content-String-Kürzel: <input name='N_kuerzel' id='I_kuerzel' type='text' size='50' maxlength='50' /> 
+    <br /><br />
+    Admin-Passwort: <input name='N_pw' id='I_pw' type='text' size='12' maxlength='12' /> 
+    <br /><br />
+    <button name="N_compute" id="I_compute" type="button" onclick="compute(1);">Einträge suchen</button>
+    <br /><br />
+    <button name="N_compute2" id="I_compute2" type="button" onclick="compute(2);">Erstanmeldungen listen</button>
+    <br /><br />
+    <br /><br />
+    <textarea name="N_output" id="I_output" rows="50" cols="150" style="background-color:#E0EAEA"></textarea>
+
+
+    <script language="javascript" type="text/javascript">
+        var server_name = "http://mintlx3.scc.kit.edu";
+        var call_name = "/dbtest/showdata.php";
+        var callurl = server_name + call_name;
+    
+        var results = "";
+    
+        var comp_mode = 1;
+        var beforetime = +new Date();
+        var aftertime = +new Date();
+        var jetzt = new Date();
+        var heute = jetzt.getDate() + "." + (jetzt.getMonth()+1) + "." + jetzt.getFullYear() + "+" + jetzt.getHours() + ":" + jetzt.getMinutes() + ":" + jetzt.getSeconds();
+        // document.getElementById("I_LogLevel").value = "10";
+        document.getElementById("I_kuerzel").value = "OPENSITE";
+        document.getElementById("I_output").readOnly = true;
+
+        function parse(s) {
+          
+          result = s;
+          
+          
+          if (comp_mode == 2) {
+            var tob = new Array();
+            var rex = /id: (\d+), timestamp: (\d\d\d\d-\d\d-\d\d) \d\d:\d\d:\d\d, content: INTERSITEFIRST/g ;
+            var u;
+            result = "";
+            var i = 0;
+            while ( (u = rex.exec(s)) != null) {
+              var found = false;
+              for (i = 0; ((i < tob.length) & (found == false)); i++) {
+                if (tob[i].date == u[2]) { tob[i].count++; found = true; }
+              }
+              if (found == false) {
+                i = tob.length;
+                tob[i] = {};
+                tob[i].key = u[2];
+                tob[i].count = 1;
+              }
+            }
+            
+            for (i = 0; i < tob.length; i++) {
+              result += "date: " + tob[i].key + ", count = " + tob[i].count + "\n";
+            }
+            
+          }
+          
+          replaceUsers();          
+        }
+        
+        
+        function replaceUsers() {
+          result = result.replace(/172.22.191.10/g,"[ARBEITSPLATZ DANIEL]");
+          result = result.replace(/94.217.52.117/g,"[HEIMPLATZ DANIEL]");
+          result = result.replace(/172.22.191./g,"MINTKOLLEGKIT.");
+          result = result.replace(/129.143.71./g,"CARL-ENGLER-SCHULE.");
+          }
+        
+        function compute(n) {
+          comp_mode = n;
+
+            function OnSuccess(reply) {
+                aftertime = +new Date();
+                var o = document.getElementById("I_output");
+                o.value = " - Berechnung wird ausgewertet - ";
+                var duration = aftertime - beforetime;
+                var ot = "Bearbeitungsdauer: " + duration + "ms (" + (duration / 1000) + " Sekunden)\n";
+                parse(reply);
+                ot = ot + result + "\n\n";        
+                ot = ot + "\n\nRoh-Ausgabe vom Server " + server_name + call_name + ":\n";
+                o.value = ot;
+                ot = ot + reply + "\n\n";
+                o.value = ot;
+            }
+
+            function OnError(httpRequest, textStatus, errorThrown ) {
+                console.log("Error callback: " + textStatus + ", thrown: " + errorThrown);
+                aftertime = +new Date();
+                var o = document.getElementById("I_output");
+                o.value = " - Berechnung wird ausgewertet - ";
+                var duration = aftertime - beforetime;
+                var ot = "Bearbeitungsdauer: " + duration + "ms (" + (duration / 1000) + " Sekunden)\n";
+                ot = ot + "Fehler-Handler aufgerufen vom Server " + server_name + ": " + textStatus + ", thrown: " + errorThrown + "\n";
+                o.value = ot;
+            }
+
+            document.getElementById("I_output").value = " - Berechnung läuft -";
+
+            
+            
+            var like = document.getElementById("I_kuerzel").value;
+            var pw = document.getElementById("I_pw").value;
+
+            
+            if (comp_mode == 2) {
+              like = "%INTERSITEFIRST%";
+            }
+
+           
+            jQuery.support.cors = true;
+
+            beforetime = +new Date();
+
+            $.ajax( callurl, {
+                type: "GET",
+                cache: false,
+                contentType: 'application/x-www-form-urlencoded',
+                crossDomain: true,
+                data: {likestring: like, password: pw},
+                //dataType: 'html', //Erwarteter Datentyp der Antwort
+                success: OnSuccess,
+                error: OnError
+            });
+
+
+        }
+
+
+    </script> 
+
+    
+
+</body>
+</html>

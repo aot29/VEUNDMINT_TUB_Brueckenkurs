@@ -1,0 +1,195 @@
+//client side module for accessing the user management API on the server
+
+//define this here until it is defined elsewhere, this should be removed later
+if (typeof dataserver !== 'string') {
+    dataserver = 'http://mintlx3.scc.kit.edu/dbtest';
+}
+logMessage(DEBUGINFO, "Benutzer dataserver = " + dataserver);
+
+var userdata = (function (baseURL) {
+    var exports = {};
+
+    var url = baseURL + '/userdata.php';
+
+    /**
+     * PRIVATE FUNCTION
+     * Create a success callback for jquery's ajax requests.
+     *
+     * success: Callback from the user that's called
+     *  when the request was successful and the api call was
+     *  sucessful
+     *      success(data);
+     * error: Callback from the user that's called when
+     *  the request failed or if the api call wasn't successful
+     *      error(errorMessage, data/exception);
+     **/
+    function createSuccessCallback(success, error) {
+        return function (data, status) {
+            if (typeof(data) == "string") {
+                data = JSON.parse(data);
+            } else {
+                if (typeof(data) == "object") {
+                    logMessage(DEBUGINFO, "createSuccessCallback: data is already an object (NOT OK)");
+                } else {
+                    logMessage(DEBUGINFO, "createSuccessCallback: data is not a valid type (NOT OK)");
+                    data = { status: false, error: "invalid data object" };
+                }
+            }
+            
+            if (data.status === true) { //API call was successful --> call success callback
+                return success(data);
+            }
+            return error(data.error, data); //API call failed --> call error callback
+        };
+    }
+
+    /**
+     * PRIVATE FUNCTION
+     * Create an error callback for jquery's ajax requests
+     *
+     * error: Callback from the user that's called when
+     *  the request failed or if the api call wasn't successful
+     *      error(errorMessage, data/exception);
+     **/
+    function createErrorCallback(error) {
+        return function (jqXHR, errorMessage, exception) {
+            return error(errorMessage, exception);
+        };
+    }
+
+    /**
+     * PRIVATE FUNCTION
+     * Sends a CORS request to a server
+     *
+     * type: type of the request (GET, POST)
+     * data: object containing the data that should be sent
+     * successCallback
+     * errorCallback
+     **/
+    function sendRequest(type, data, successCallback, errorCallback) {
+        $.ajax( url, {
+            type: type,
+            async: true,
+            cache: false,
+            contentType: 'application/x-www-form-urlencoded',
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            data: data,
+            error: errorCallback,
+            success: successCallback,
+        });
+    }
+
+    /**
+     * Check if a given user exists
+     **/
+    exports.checkUser = function (username, success, error) {
+        sendRequest('GET', {action: 'check_user', username: username},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    /**
+     * Add user
+     *
+     * The third argument is optional ( can be undefined )
+     **/
+    exports.addUser = function (username, password, role, success, error) {
+        role = (role == '') ? undefined : role; //use undefined if role is an empty string
+        sendRequest('POST', {action: 'add_user', username: username, password: password, role: role},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+    
+    /**
+     * Log in
+     **/
+    exports.login = function (username, password, success, error) {
+        sendRequest('POST', {action: 'login', username: username, password: password},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    /**
+     * Log out
+     **/
+    exports.logout = function (success, error) {
+        sendRequest('POST', {action: 'logout'},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    /**
+     * Write data
+     *
+     * The first argument is optional ( can be undefined )
+     **/
+    exports.writeData = function (username, data, success, error) {
+        sendRequest('POST', {action: 'write_data', username: username, data: data},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    /**
+     * Get the name of the currently logged in user
+     **/
+    exports.getUsername = function (success, error) {
+        sendRequest('GET', {action: 'get_username'},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    /**
+     * Get the role of the currently logged in user
+     *
+     * The first argument is optional ( can be undefined )
+     **/
+    exports.getRole = function (username, success, error) {
+        sendRequest('GET', {action: 'get_role', username: username},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    /**
+     * Get the data of the current user
+     *
+     * The first argument is optional ( can be undefined )
+     **/
+    exports.getData = function (username, success, error) {
+        sendRequest('GET', {action: 'get_data', username: username},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    /**
+     * Get login data for a user
+     **/
+    exports.getLoginData = function (username, success, error) {
+        sendRequest('GET', {action: 'get_login_data', username: username},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    /**
+     * Delete a user
+     **/
+    exports.delUser = function (username, success, error) {
+        sendRequest('POST', {action: 'del_user', username: username},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    /**
+     * Change the password of a user
+     **/
+    exports.changePwd = function (username, oldPassword, newPassword, success, error) {
+        sendRequest('POST', {action: 'change_pwd', username: username, old_password: oldPassword, password: newPassword},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    /**
+     * Change the role of a user
+     **/
+    exports.changeRole = function (username, role, success, error) {
+        sendRequest('POST', {action: 'change_role', username: username, role: role},
+                createSuccessCallback(success, error), createErrorCallback(error));
+    };
+
+    exports.setURL = function (baseURL) {
+        url = baseURL + '/userdata.php';
+    };
+
+    return exports;
+})(dataserver);

@@ -1,0 +1,95 @@
+TtM README file.
+________________
+
+This package contains the C source distribution of TtM, a TeX to
+(HTML and) MathML translator.
+
+TtM is based on the highly successful TtH TeX to HTML translator. But
+instead of using HTML tables for rendering mathematics, TtM uses
+MathML presentation tags, embedded inside the <math> .... </math>
+construct.
+
+License
+_______
+
+TtM is copyright (c) Ian Hutchinson, 1999-2002 (hutch@psfc.mit.edu).
+
+Purchase of this package entitles you to install and use TtM subject
+to the conditions of the type of license governing the purchase as follows:
+
+1) Personal License: TtM may be installed and executed on any computer
+used primarily by the individual licensee, but not on servers or
+specifically multiuser systems, or computers primarily used by others.
+
+2) Site License: TtM may be installed and executed on any computer
+located within the bounds of a facility or campus operated by a single
+company or institute whose total extent is no greater than 3 km.
+
+3) Academic Licenses: A personal academic license is valid for use by
+an individual for applications whose purposes are predominantly
+educational. An academic site license is valid for a site whose
+purposes are predominantly educational.
+
+The TtM code may not be redistributed in any form.
+
+No warranty of fitness for any purpose whatever is given, intended, or
+implied.
+
+You use this software entirely at your own risk.  If you choose to use
+TtM, by your actions you acknowledge that any direct or consequential
+damage whatever is your responsibility, and not the copyright holder's.
+
+
+Installation
+____________
+
+When you have the package downloaded on to your own disk,
+extract the archive by executing 
+	tar xzf ttmC.tar.gz
+from the command line.
+
+Enter the directory constructed, where you will find the extracted files
+	cd ttmC
+
+If you are on a Linux or other UNIX system, install the program
+executables by executing from the command line
+	make
+and as root
+	make install
+This will copy files to appropriate directories. The directory
+/usr/local/bin should be on users' path.
+
+Alternatively, the steps carried out by ttminstall can be done by
+hand: compile the program by something like
+	cc -o ttm ttm.c
+and copy ttm to somewhere on your path.
+
+Running TtM
+___________
+
+Run TtM translation in the following ways; 
+
+either from the command line type the command line:
+	ttm >outputfile.html <inputfile.tex [switches]
+
+or from the command line type 
+	ttm inputfile [switches]
+
+In the first case you can call the output file anything you want.  In
+the last two cases an HTML file with the extension .html will be
+created.
+
+Icons are provided for installation under popular graphical user interfaces.
+
+Remember, MathML is not supported by any of the versions of the
+popular browsers up to (NS 4.7 or IE 5.1). Therefore they will not
+render the results of your translations. 
+
+As a courtesy to our customers we include a script file ps2gif.  It
+will be called automatically by TtM when given the -e1 or -e2
+switches. However, ps2gif depends on your having a number of other
+utilities on your computer. Most standard linux installations have
+these utilities. Therefore, although we can take no responsibility
+whatsoever for the utility of ps2gif, it will usually work. Similarly 
+the script latex2gif which depends on ps2gif and LaTeX will usually work
+but again we cannot take responsibility for it.
