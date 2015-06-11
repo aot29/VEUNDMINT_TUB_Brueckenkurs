@@ -12,22 +12,22 @@ use warnings;
 use Cwd;
 use File::Path;
 
-my $helptext = "Aufruf: mconvert.pl -treepdf hauptdatei baumverzeichnis ausgabeverzeichnis   [Mit PDF]\noder    mconvert.pl -tree hauptdatei baumverzeichnis ausgabeverzeichnis      [Ohne PDF]\noder    mconvert.pl -treetikz hauptdatei baumverzeichnis ausgabeverzeichnis     [HTML/Tikz]\noder    mconvert.pl -zip hauptdatei baumverzeichnis zipdatei      [Ohne PDF]\noder    mconvert.pl -zippdf hauptdatei baumverzeichnis zipdatei      [Mit PDF]\n\nAufruf ohne Argument wird als -modulepdf interpretiert [funktionsweise wie in Version <2.5]\n\nAchtung: Das Ausgabeverzeichnis wird komplett geleert und neu angelegt!\n\n";
+my $helptext = "Usage: mconvert.pl <configuration.pl>\n\n";
 
-our $basis = ""; # wird auf aktuelles Verzeichnis gesetzt
 # use lib "/home/daniel/BWSYNC/PreTU9Konverter/converter";
 # use courseconfig;
 
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
-our %config = ();
-our $mconfigfile = ""; # Wird in Abhaenigkeit vom Zielverzeichnis gefuellt, $configfile ist von Menuebau
+our %config = ();       
+our $mconfigfile = "";       # Konfigurationsdatei (mit Pfad relativ vom Aufruf aus)
+our $basis = "";             # Das Verzeichnis, in dem converter liegt (wird momentan auf aktuelles Verzeichnis gesetzt)
+our $rfilename = "";         # Filename of main tex file including path relative to execution directory
+our $zip = "";               # Filename of zip file (if neccessary)
 
-# ------------------------------- Diese Einstellungen werden ueber Kommandozeilenparameter gesteuert ----------
-
-my $dopdf = 0;       # =0: Erstelle nur das HTML, keine Einbindung von Downloadbuttons und keine PDF-Files, =1: Erstelle PDFs und die Downloadbuttons dazu
-my $dozip = 0;       # =0: Erstelle den Baum im angegebenen Verzeichnis, =1: Erstelle den Baum, zippe ihn und loesche den Baum -> zip-File ist geeignet zum Upload in ein ILIAS-HTML-Lernmodul
-my $dotikz = 0;      # =0: Erstelle den Baum im angegebenen Verzeichnis, =1: Vor Erstellung des Baums wird in den Modulordnern tikzexternalize ausgefuehrt, es wird nur HTML erstellt
+our @IncludeStorage = ();
+our @PDFDeclare = ();
+our @DirectHTML = ();
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -38,10 +38,6 @@ my @tominify = ("mintscripts.js", "servicescripts.js", "intersite.js", "convinfo
 my $breakoff = 0;
 my $i;
 my $ndir = ""; # wird am Programmstart gefuellt
-
-my @IncludeStorage; # Format jedes Eintrags: [ $module, $filename, $content ]
-my @PDFDeclare;     # Format jedes Eintrags: [ $filename ], Datei muss im gleichen Verzeichnis wie oberste tree-Datei liegen, Angabe ohne Endung .tex
-my @DirectHTML;     # Jeder Eintrag muss ein String sein
 
 my $copyrightcollection = "";
 
@@ -57,8 +53,6 @@ our $favofile = "";
 our $locationfile = "";
 our $stestfile = "";
 our $betafile = "";
-
-
 
 # ----------------------------- Funktionen -----------------------------------------------------------------------
 
@@ -212,6 +206,46 @@ sub borkifyHTML {
 }
 
 
+# Prueft, ob die zum Konvertieren notwendigen Systembestandteile vorhanden sind
+sub checkSystem {
+  # Pruefe ob dia installiert ist KANN AUSKOMMENTIERT WERDEN WENN DIA NICHT BENUTZT WERDEN SOLL
+  my $reply = `dia --version 2>&1`;
+  if ($reply =~ m/0\.97\.2/i ) {
+    # dia erfolgreich getestet
+  } else {
+    print("Program dia (version 0.97.2) not found, dia-compilation will not work");
+  }
+
+  # Pruefe ob perl installiert ist
+  $reply = `perl -v  2>&1`;
+  if ($reply =~ m/This is perl 5, version (.*?), subversion/i ) {
+    if ($1 ge 10) {
+      # Alles ok
+  }   else
+    {
+      die("FATAL: perl version 5.10 is required, but found perl 5" . $1);
+    }
+  } else {
+    die("FATAL: perl (at least version 5.10) is required");
+  }
+
+  # Pruefe ob ein JDK installiert ist
+  $reply = `javac -version 2>&1`;
+  if ($reply =~ m/javac (.+)/i ) {
+    print "JDK found, using javac from version $1\n";
+  } else {
+    die("FATAL: JDK not found");
+  }
+  
+  # Pruefe ob php installiert ist
+  $reply = `php --help 2>&1`;
+  if ($reply =~ m/HTML/i ) {
+    # php erfolgreich getestet
+  } else {
+    die("PHP (Version 5 inklusive PHP-curl) ist offenbar nicht installiert!\n");
+  }
+}
+
 
 # Parameter: filename, redirect-url
 sub createRedirect {
@@ -344,193 +378,106 @@ ENDE
   print "HTML-Baum wird als SCORM-Lernmodul Version 2004v4 eingerichtet\n";
 }
 
+# Checks if options are consistent, quits with a fatal error otherwise
+sub checkOptions {
+  open(F,$basis . "/converter/conv.pl") or die ("FATAL: conv.pl not found in $basis/converter");
+  close(F);
+
+  open(F,$config{source}) or die("FATAL: Cannot open source directory " . $config{source});
+  close(F);
+
+  if ($config{docollections} eq 1) {
+    if (($config{nosols} eq 1) or ($config{qautoexport} eq 1) or ($config{cleanup} eq 1)) {
+      die("FATAL: Option docollections is inconsistent with nosols, qautoexport and cleanup, deactivate one of them");
+    }
+  }
+
+  if ($config{dorelease} eq 1) {
+    if (($config{cleanup} eq 0) or ($config{docollections} eq 1) or ($config{doverbose} eq 1)) {
+      die("FATAL: Option dorelease is inconsistent with cleanup=0, docollections=1 and doverbose=1, deactivate dorelease");
+    }
+  }
+
+  $zip = ""; # Pfad+Name der zipdatei
+  if ($config{dozip} eq 1) {
+    if ($config{output} =~ m/(.+)\.zip/i) {
+      $zip = $config{output};
+      $config{output} = $1 . "DIRECTORY";
+    } else {
+      die("FATAL: zip-filename " . $config{output} . " not of type name.zip");
+    }
+  }
+}
+
 
 # ----------------------------- Start Hauptprogramm --------------------------------------------------------------
 
 # my $IncludeTags = ""; # Sammelt die Makros fuer predefinierte Tagmakros, diese werden an mintmod.tex angehaengt
 
-# Pruefe ob php installiert ist
-# my $reply = `php --help 2>&1`;
-# if ($reply =~ m/HTML/i ) {
-#   # php erfolgreich getestet
-# } else {
-#   die("PHP (Version 5 inklusive PHP-curl) ist offenbar nicht installiert!\n");
-# }
 
-# Pruefe ob dia installiert ist KANN AUSKOMMENTIERT WERDEN WENN DIA NICHT BENUTZT WERDEN SOLL
-my $reply = `dia --version 2>&1`;
-if ($reply =~ m/0\.97\.2/i ) {
-  # dia erfolgreich getestet
-} else {
-  print("Das Programm dia (exakt Version 0.97.2) ist offenbar nicht installiert, output war: $reply\n");
-}
 
-# Pruefe ob perl installiert ist
-$reply = `perl -v  2>&1`;
-if ($reply =~ m/This is perl 5, version (.*?), subversion/i ) {
-  if ($1 ge 10) {
-    # Alles ok
-  } else
-  {
-    die("Das Programm perl (mindestens Version 5.10) ist offenbar nicht installiert, nur Version 5.$1 gefunden!\n");
-  }
-} else {
-  die("Das Programm perl (mindestens Version 5.XX) ist offenbar nicht installiert!\n");
-}
-
-# Pruefe ob ein JDK installiert ist
-$reply = `javac -version 2>&1`;
-if ($reply =~ m/javac (.+)/i ) {
-  print "JDK gefunden, verwende javac in der Version $1\n";
-} else {
-  die("Es ist kein JDK installiert!\n");
-}
-
-my $parameter;  # Der Parameter wie oben gelistet
-my $modul;      # Die texdatei (mit Pfad relativ vom Aufruf aus)
-my $source;     # Das Quellverzeichnis
-my $output;     # Das Ausgabeverzeichnis
-my $rfilename;   # Dateiname ohne Pfad aber mit .tex
+checkSystem();
 
 if ($#ARGV eq 0) {
-  # Nur ein Parameter: vereinfachter Aufruf der einfach ein Modul produziert
-    $parameter = "-treepdf";
-    $modul = $ARGV[0];
-    if ($modul =~ m/(.+)\/(.+?).tex/ ) {
-      $rfilename = "$2.tex";
-      $source = $1;
-    } else {
-      if ($modul =~ m/(.+).tex/ ) {
-        die("Breche ab: tex-Datei liegt im Aufrufverzeichnis (Aufruf muss von einem uebergeordneten Ordner aus stattfinden).\n");
-      } else {
-        die("Hauptdatei muss in der Form PFAD/DATEI.tex angegeben werden!\n");
+  # Nur ein Parameter: Gibt Konfigurationsdatei relativ zum Aufruf an
+    $mconfigfile = $ARGV[0];
+    if ($mconfigfile =~ m/(.+).pl/ ) {
+      if ($mconfigfile =~ m/\// ) { die("FATAL: Configuration file must be in calling directory"); }
+      print("  Configuration file: " . $mconfigfile . "\n");
+      unless (%config = do $mconfigfile) {
+        warn "Couldn't parse $mconfigfile: $@" if $@;
+        warn "Couldn't run $mconfigfile" unless %config;
       }
+    } else {
+      die("FATAL: Configuration file must be of type name.pl");
     }
-    $output = "outputhtml";
+    
+    print("   Configuration used: " . $config{description} . "\n");
+
 } else {
-  if ($#ARGV eq 3) {
-    $parameter = $ARGV[0];
-    $modul = $ARGV[1];
-    $source = $ARGV[2];
-    $output = $ARGV[3];
-    $modul =~ m/(.+)\/(.+?).tex/ ;
-    $rfilename = "$2.tex";
-  } else {
-    die("Aufruf muss diese Form haben: mconvert.pl <Kommando> <Hauptdatei> <Verzeichnis> <Ausgabe>\n");
-  }
+    die($helptext);
 }
 
 my $absexedir = Cwd::cwd(); 
-
-
-
-print("Absolutes Ausfuehrungsverzeichnis: " . $absexedir . "\n");
 $basis = $absexedir;
-print("   Hauptdatei: " . $rfilename . "\n");
-print("   Hauptdateipfad: " . $modul . "\n");
-print("   Eingabeverzeichnis: " . $source . "\n");
-print("   Ausgabeverzeichnis: " . $output . "\n");
 
-$mconfigfile = $source . "/config.pl";
-print("  Konfigurationsdatei: " . $mconfigfile. "\n");
+checkOptions();
 
-# Testen ob es da ist
-unless (%config = do $mconfigfile) {
-  warn "Couldn't parse config.pl: $@" if $@;
-  warn "Couldn't run config.pl" unless %config;
-}
+$rfilename = $config{source} . "/" . $config{module}; # sollte durch PERL-Join ersetzt werden
 
-print("        Konfiguration: " . $config{description} . "\n");
-
-# Pruefe ob Optionen sinnvoll
-if ($config{docollections} eq 1) {
-  if (($config{nosols} eq 1) or ($config{qautoexport} eq 1) or ($config{cleanup} eq 1)) { die("Option docollections ist inkompatibel zu Optionen nosols, qautoexport und cleanup, deaktivieren Sie eine der Optionen."); }
-}
-
-if ($config{dorelease} eq 1) {
-  if (($config{cleanup} eq 0) or ($config{docollections} eq 1) or ($config{doverbose} eq 1)) { die("Option dorelease ist inkompatibel zu Optionen cleanup=0, docollections und doverbose, deaktivieren Sie eine der Optionen."); }
-}
-
-
-
-@IncludeStorage = ();
-@PDFDeclare = ();
-@DirectHTML = ();
-
-my $zip = ""; # Pfad+Name der zipdatei
-
-if ($parameter eq "-zip") {
-  $parameter = "-tree";
-  $dozip = 1;
-  if ($output =~ m/(.+)\.zip/i) {
-    $zip = $output;
-    $output = $1 . "DIRECTORY";
-  } else {
-    die("ZIP-Dateiname $output hat nicht das Format name.zip, breche ab.");
-  }
-}
-
-if ($parameter eq "-zippdf") {
-  $parameter = "-treepdf";
-  $dozip = 1;
-  if ($output =~ m/(.+)\.zip/i) {
-    $zip = $output;
-    $output = $1 . "DIRECTORY";
-  } else {
-    die("ZIP-Dateiname $output hat nicht das Format name.zip, breche ab.");
-  }
-}
-
-if ($parameter eq "-modulepdf") {
-  die("Der Erstellungsmodus \"Modul\" wird nicht mehr unterstuetzt, nur ganze Modulgruppen koennen erstellt werden.");
-}
-
-if ($parameter eq "-treetikz") {
-  print("tikz-Grafiken werden externalisiert und neu erzeugt!\n");
-  $parameter = "-tree";
-  $dopdf = 0;
-  $dotikz = 1;
-}
-
-if ($parameter eq "-treepdf") {
-  $parameter = "-tree";
-  $dopdf = 1;
-}
-
-if ($parameter eq "-module") {
-  die("Der Erstellungsmodus \"Modul\" wird nicht mehr unterstuetzt, nur ganze Modulgruppen koennen erstellt werden.");
-} else {
-    if ($parameter eq "-tree") {
-      print("Erstelle kompletten Baum wie in Datei " . $modul . " gelistet\n");
-    } else {
-        print($helptext);
-        exit();
-    }
-}
+print(" Absolute directory: " . $absexedir . "\n");
+print("Converter directory: " . $basis . "\n");
+print("   Source directory: " . $config{source} . "\n");
+print("   Output directory: " . $config{output} . "\n");
+print("   Main module file: " . $rfilename . "\n");
+print("Generating HTML tree as described in " . $rfilename . "\n");
 
 if ($config{doscorm} eq 1) {
-  print("Erstelle SCORM-Paket\n");
+  print("...tree will be SCORM-compatible (version 2004v4)\n");
 } else {
-  print("Erstelle Standalone-Paket\n");
+  print("...no SCORM support\n");
 }
 
-if ($dopdf eq 1) {
-  print("Erstelle HTML+PDF\n");
+if ($config{dopdf} eq 1) {
+  print("...generating PDF files\n");
 } else {
-  print("Erstelle nur HTML\n");
+  print("...no PDF files\n");
 }
 
 if ($config{qautoexport} eq 1) {
-  print("Fragen werden auch als Exportpakete generiert\n");
+  print("...exercise autoexport activated\n");
 }
 
-# Check ob texdatei vorhanden ist
-open(F,$modul) or die("Konnte Datei " . $modul . " nicht oeffnen!\n\n");
+if ($config{dotikz} eq 1) {
+  print("...TikZ externalization activated\n");
+}
+
+open(F,$rfilename) or die("FATAL: Cannot open main tex file $rfilename");
 close(F);
 
-# Preprocessing der Wurzeldatei fuer den Baum
+# Preprocessing of main file
 my $roottex = "";
-my $tex_open = open(MINTS, "< $modul") or die "ERROR: Fehler beim Oeffnen von $modul\n";
+my $tex_open = open(MINTS, "< $rfilename") or die("FATAL: Cannot read main tex file $rfilename");
 my $texzeile = "";
 while(defined($texzeile = <MINTS>)) {
   # Wegen direkter HTML-Zeilen darf man %-Kommentare nicht streichen
@@ -547,28 +494,23 @@ my $colorfile = "";
 
 if ($roottex =~ s/\\MColorFile{(.+?)}// ) {
   $colorfile = $1; # Dateiname Relativ zu converter/precss
-  print("Farbendatei deklariert: " . $colorfile . "\n");
+  print("Colorfile declared: " . $colorfile . "\n");
 } else {
   $colorfile = "farben_bare.ini";
-  print("Keine Farbendatei deklariert, nehme " . $colorfile . "\n");
+  print("No colorfile given, using standard " . $colorfile . "\n");
 }
 
 
-# Check ob bildverzeichnis vorhanden ist
-open(F,$source) or die("Konnte Quellverzeichnis " . $source . " nicht oeffnen!\n\n");
-close(F);
-
-# Den converter-Baum aufbauen
-print("Schreibe in das Ausgabeverzeichnis " . $output . "\n");
-system("rm -fr $output");
-system("mkdir $output");
-system("cp -R $basis/converter $output/.");
-system("cp -R $source/* $output/converter/tex/.");
+print("Settup up output directory " . $config{output} . "\n");
+system("rm -fr " . $config{output});
+system("mkdir " . $config{output});
+system("cp -R $basis/converter " . $config{output} . "/.");
+system("cp -R " . $config{source} . "/* " . $config{output} . "/converter/tex/.");
 
 # Preprocessing aller tex-Files
 my $filecount = 0;
 my $globalposdirecthtml = 0; # Fuer DirectHTML-Array, ist unique fuer alle Teildateien
-my $call = "find -P $output/converter/tex/. -name \\*.tex";
+my $call = "find -P " . $config{output} . "/converter/tex/. -name \\*.tex";
 print "Executing: $call\n";
 my $texlist = `$call`; # Finde alle tex-Files, auch in den Unterverzeichnissen
 my @texs = split("\n",$texlist);
@@ -580,7 +522,7 @@ my $dotikzfile = 0;
 for ($ka = 0; $ka < $nt; $ka++) {
 
   if (($texs[$ka] =~ /mintmod/ ) or ($texs[$ka] =~ /tree(.)\.tex/ ) or ($texs[$ka] =~ /tree\.tex/ )) {
-    print "Preprocessing ignoriert $texs[$ka]\n";
+    print "Preprocessing ignores $texs[$ka]\n";
   } else {
     # -------------------------------- Start Preprocessing per texfile -------------------------------------------------------
     my $textex = "";
@@ -590,7 +532,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
     my $pdirname = $1;
     my $pfilename = $2 . ".tex";
     # print "...using directory $pdirname\n";
-    $tex_open = open(MINTS, "< $pcompletename") or die "ERROR: Fehler beim Oeffnen von $texs[$ka]\n";
+    $tex_open = open(MINTS, "< $pcompletename") or die "FATAL: Could not open $texs[$ka]\n";
     while(defined($texzeile = <MINTS>)) {
       # Wegen direkter HTML-Zeilen darf man %-Kommentare nicht streichen
       # $texzeile =~ s/\%(.*)//g ;
@@ -609,13 +551,13 @@ for ($ka = 0; $ka < $nt; $ka++) {
       $prx = $2;
       $pfname = $3;
     } else {
-      die("ERROR: Konnte Dateinamen $texs[$ka] nicht decodieren");
+      die("FATAL: Could not decode $texs[$ka]");
     }
     $prx =~ s/.\///g;
     if ($modulname ne "") {
-      print "Tree-preprocess fuer Modul $modulname im Verzeichnis $prx\n";
+      print "Tree-preprocess on module $modulname in directory $prx\n";
     } else {
-      print "Tree-preprocess fuer Datei $pfname (keine Moduldatei) im Verzeichnis $prx\n";
+      print "Tree-preprocess on bare file $pfname in directory $prx\n";
     }
     
     $filecount++;
@@ -642,29 +584,29 @@ for ($ka = 0; $ka < $nt; $ka++) {
     
     
     my $vc = $#verbc + 1;
-    if ($vc > 0) { print " $vc verschiedene verb-Sonderzeichen in tex-Datei gefunden\n"; }
+    if ($vc > 0) { print " $vc different verb-escape chars found in tex-file\n"; }
       
     for ($vi = 0; $vi < $vc; $vi++ ) {
       my $c = $verbc[$vi];
-      print " verb-Sonderzeichen $c\n";
+      print " verb-char $c\n";
       if ($c eq "\%") {
         # Es gibt wirklich Autoren die in einem LaTeX-Dokument das % als Begrenzer fuer \verb einsetzen, das macht es tricky
-	while ($textex =~ s/\\verb$c([^$c]*?)$c/\\verb\\PERCTAG$1\\PERCTAG/ ) { print "  Delimiter in \%-verb-line umgangen\n"; }
+	while ($textex =~ s/\\verb$c([^$c]*?)$c/\\verb\\PERCTAG$1\\PERCTAG/ ) { print "  Delimiter in \%-verb-line escaped\n"; }
       } else {
-	while ($textex =~ s/\\verb$c([^$c]*?)\%([^$c]*?)$c/\\verb$c$1\\PERCTAG$2$c/ ) { print "  \% in verb-line umgangen (Sonderzeichen $c)\n"; }
+	while ($textex =~ s/\\verb$c([^$c]*?)\%([^$c]*?)$c/\\verb$c$1\\PERCTAG$2$c/ ) { print "  \% in verb-line escaped (special char $c)\n"; }
       }
     }
     
     while ($textex =~ s/(?<!\\)\%([^\n]+?)\n/\%\n/s ) { $coms++; }
-    if ($coms != 0) { print "  $coms LaTeX-Kommentarzeilen aus Datei entfernt\n"; }
+    if ($coms != 0) { print "  $coms LaTeX-commentlines removed from file\n"; }
 
-    while ($textex =~ s/\\PERCTAG/\%/ ) { print "  \% in verb-line zurück\n"; }
+    while ($textex =~ s/\\PERCTAG/\%/ ) { print "  \% in verb-line reinstated\n"; }
 
     
     $dotikzfile = 0;
     if ($textex =~ s/\\Mtikzexternalize//gs ) {
-      print "  tikzexternalize erfolgreich gekapselt\n";
-      if ($dotikz eq 1) { $dotikzfile = 1; }
+      print "  tikzexternalize activated\n";
+      if ($config{dotikz} eq 1) { $dotikzfile = 1; }
     }
 
     
@@ -725,7 +667,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
     }
 
     if ($textex =~ s/\\tikzexternalize//gs ) {
-      print "  ROHES tikzexternalize gefunden und entfernt\n";
+      print "  found BARE tikzexternalize and removed it (please use macro from mintmod.tex instead)\n";
     }
 
     
@@ -733,12 +675,12 @@ for ($ka = 0; $ka < $nt; $ka++) {
 
     if ($textex =~ m/\\MPragma{SolutionSelect}/ ) {
       if ($config{nosols} eq 0) {
-        print "  Pragma SolutionSelect: Ignoriert da vollstaendige Uebersetzung verlangt\n";
+        print "  Pragma SolutionSelect: Ignored due to nosols==0\n";
       } else {
-        print "  Pragma SolutionSelect: MSolution-Umgebungen werden entfernt: ";
+        print "  Pragma SolutionSelect: MSolution-environments will be removed: ";
 	while ($textex =~ s/\\begin{MSolution}(.+?)\\end{MSolution}/\\relax/s ) { print "."; }
 	print "\n";
-        print "                         MHint{Lösung}-Umgebungen werden entfernt: ";
+        print "                         MHint{Lösung}-environments will be removed: ";
 	while ($textex =~ s/\\begin{MHint}{Lösung}(.+?)\\end{MHint}/\\relax/s ) { print "."; }
 	while ($textex =~ s/\\begin{MHint}{L"osung}(.+?)\\end{MHint}/\\relax/s ) { print "."; }
 	while ($textex =~ s/\\begin{MHint}{L\\"osung}(.+?)\\end{MHint}/\\relax/s ) { print "."; }
@@ -749,7 +691,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
     # PYTHONPARSING --------------------------------------
     
     if ($textex =~ m/\\MPragma{MathSkip}/ ) {
-      print "  Pragma MathSkip: Skips ueber den Matheumgebungen werden eingefuegt\n";
+      print "  Pragma MathSkip: Skips starting math-environments inserted\n";
       $textex =~ s/(?<!\\)\\\[/\\MSkip\\\[/g;
       $textex =~ s/(?<!\\)\$\$/\\MSkip\$\$/g;
       $textex =~ s/(?<!\\)\\begin{eqnarray/\\MSkip\\begin{eqnarray/g;
@@ -767,18 +709,18 @@ for ($ka = 0; $ka < $nt; $ka++) {
     my $incfound;
     while ($textex =~ s/\\MPreambleInclude{(.*)}/\\MPragma{Nothing}/ ) {
       my $prename = $1;
-      print "  Lokale Preamble eingebunden: $prename\n";
+      print "  Local preamble included: $prename\n";
       # Nicht doppelt einbinden, Liste geht ueber ALLE tex-files!
       $incfound = 0;
       for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
         if ($IncludeStorage[$i][1] eq $prename) {
-          print "    Doppelte Preamble gefunden: " . $prename . " (wird ignoriert, Preamble aus Modul " . $IncludeStorage[$i][0] . " wird schon verwendet)\n";
+          print "    Preamble found again: " . $prename . " (will be ignored, preamble from file " . $IncludeStorage[$i][0] . " is in use)\n";
           $incfound = 1;
         }
       }
       if ($incfound eq 0) {
         my $inccontent = "";
-        my $tex_inc_open = open(MINTI, "< $pdirname\/".$prename) or die "ERROR: Fehler beim Oeffnen von Preamble $pdirname\/$prename\n";
+        my $tex_inc_open = open(MINTI, "< $pdirname\/".$prename) or die "FATAL: Could not read preamble $pdirname\/$prename";
         while(defined($texzeile = <MINTI>)) {
           $inccontent .= $texzeile;
         }
@@ -808,7 +750,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
     my $suffixpdf = "mintpdf";
     my $suffixhtml = "minthtml";
     while (($textex =~ m/\\MDia\{(.+?)\}/g ) and ($config{diaok} == 1)) {
-      my $dprx = "$output/converter/tex/$prx/$1";
+      my $dprx = $config{output} . "/converter/tex/$prx/$1";
       #print "DEBUG Verarbeite dia-Diagramm $dprx\n";
       # system "dia --export $dprx.png --filter=cairo-alpha-png $dprx.dia";
       
@@ -822,20 +764,20 @@ for ($ka = 0; $ka < $nt; $ka++) {
       
       if ($rt != 0) {
         $config{diaok} = 0;
-        print "ERROR dia/conv-Kette unterbrochen mit Rückgabewert $rt\n";
+        print "ERROR dia/conv-chain failed with return value $rt\n";
       }
     } 
 
-    if (($config{diaok} == 0) and ($breakoff == 0)) { $breakoff = 1; print "ERROR dia/conv-Kette wird nicht mehr ausgeführt\n"; }
+    if (($config{diaok} == 0) and ($breakoff == 0)) { $breakoff = 1; print "ERROR dia/conv-chain aborted\n"; }
     
     # Eindimensionale pmatrix-Umgebungen als eindimensionale Arrays umsetzen
     if ($textex =~ s/\\begin{pmatrix}([^&]*?)\\end{pmatrix}/\\ifttm\\left({\\begin{array}{c}$1\\end{array}}\\right)\\else\\begin{pmatrix}$1\\end{pmatrix}\\fi/sg ) {
-      print "  Eindimensionale pmatrix-Umgebungen ersetzt\n";
+      print "  pmatrix-environment of dimension 1 substituted\n";
     }
     
     # flushleft-Umgebungen im html ignorieren
     if ($textex =~ s/\\begin{flushleft}(.*?)\\end{flushleft}/\\ifttm{$1}\\else\\begin{flushleft}$1\\end{flushleft}\\fi/sg ) {
-      print "  flushleft-Umgebungen aus html gestrichen\n";
+      print "  flushleft-environment removed (no counterpart in html available right now)\n";
     }
 
     # vdots und hdots ersetzen
@@ -843,10 +785,10 @@ for ($ka = 0; $ka < $nt; $ka++) {
     $textex =~ s/\\vdots/\\MVDots/g ;
     
     
-    if ($textex =~ m/\\begin{pmatrix}/s ) { print "  Es gibt mehrdimensionale pmatrix-Umgebungen, diese koennen NICHT umgesetzt werden!\n"; }
+    if ($textex =~ m/\\begin{pmatrix}/s ) { print "  Multidimensional pmatrix-environments found, cannot be processed!\n"; }
     
     # \relax auf \MRelax umbiegen, da \relax nicht von ttm unterstuetzt
-    if ($textex =~ s/\\relax/\\MRelax/g ) { print "  Kommando \\relax umgesetzt\n"; }
+    if ($textex =~ s/\\relax/\\MRelax/g ) { print "  Command \\relax replaced\n"; }
     
     # newpage und co aus html-Konversion ausschliessen
     $textex =~ s/\\newpage/\\ifttm\\else\\newpage\\fi/g ;
@@ -1016,7 +958,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
         }
 
         if ($cl != 0) {
-          print "ERROR: Konnte intertext nicht parsen (cl=$cl) in:\n$rep\n\n";
+          print "ERROR: could not parse intertext (cl=$cl) in:\n$rep\n\n";
           $bail = 1;
         } else
         {
@@ -1090,7 +1032,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
         my $rl = $its[$k][1];
         $rl =~ s/\\intertext//g ;
         if (!($rep =~ s/<!-- xitext;;$nom; \/\/-->/$rl/ )) {
-          print "ERROR: Konnte intertext $nom nicht replatzieren, content war $rl\n";
+          print "ERROR: Could not relocate intertext $nom , content is $rl\n";
         }
       }
 
@@ -1132,14 +1074,14 @@ for ($ka = 0; $ka < $nt; $ka++) {
       print "  Starte pdflatex mit shellescape: $mca\n";
       my $rtt = system($mca);
       if ($rtt != 0) {
-        print "  pdflatex mit tikzexternalize gescheitert!\n";
+        print "  pdflatex with tikzexternalize failed!\n";
       } else {
-        print "  pdflatex mit tikzexternalize erfolgreich\n";
+        print "  pdflatex with tikzexternalize ok\n";
       }
     }
     chdir($absexedir);
 
-    $tex_open = open(MINTS, "> $texs[$ka]") or die "ERROR: Fehler beim Schreiben von $texs[$ka]\n";
+    $tex_open = open(MINTS, "> $texs[$ka]") or die "FATAL: Could not write $texs[$ka]\n";
     print MINTS $textex;
     close(MINTS);
 
@@ -1147,21 +1089,24 @@ for ($ka = 0; $ka < $nt; $ka++) {
   }
 }
 
-print "Preparsing von $filecount texfiles abgeschlossen\n";
-print "  $globalposdirecthtml direkte HTML-Eintraege gefunden\n";
+print "Preparsing of $filecount texfiles finished\n";
+print "  $globalposdirecthtml blocks for DirectHTML found\n";
 
 $copyrightcollection = "\\begin{tabular}{llll}\%\n$copyrightcollection\\end{tabular}\n";
 
-# Kopiere Konfigurationsdatei in converter-Baum
-system("cp $source/config.pl $output/converter/config.pl");
+# Kopiere Konfigurationsdatei in Ausgabe-converter-Baum
+system("cp " . $mconfigfile . " " . $config{output} . "/converter/config.pl");
 
-# Erstelle Datei mit Copyright-Texten
-my $mints_open = open(MINTS, "> $output/converter/tex/copyrightcollection.tex") or die "Fehler beim Erstellen der CopyrightCollection-Datei.\n";
+# Create copyright text file
+my $copyrightfile = $config{output} . "/converter/tex/copyrightcollection.tex";
+my $mints_open = open(MINTS, "> $copyrightfile") or die "FATAL: Could not create copyright file";
 print MINTS "\%---------- Von mconvert.pl generierte Datei ------------\n$copyrightcollection";
 close(MINTS);
 
 # Erstelle Datei mit DirectHTML-Texten
-$mints_open = open(MINTS, "> $output/converter/directhtml.txt") or die "Fehler beim Erstellen der DirectHTML-Datei.\n";
+my $directhtmlfile = $config{output} . "/converter/directhtml.txt";
+$mints_open = open(MINTS, "> $directhtmlfile") or die "FATAL: Could not create file for DirectHTML.";
+print MINTS "<!-- file directhtml.txt is autogenerated, do not modify //-->\n";
 for ($i=0; $i <= $#DirectHTML; $i++ ) {
   print MINTS "<!-- startfilehtml;$i; //-->";
   print MINTS $DirectHTML[$i]."\n";
@@ -1170,14 +1115,14 @@ for ($i=0; $i <= $#DirectHTML; $i++ ) {
 close(MINTS);
 
 # Erstelle Datei mit DirectHTML-Texten
-$mints_open = open(MINTS, "> $output/converter/directexercises.tex") or die "Fehler beim Erstellen der Exercises-Datei.\n";
+my $directexercisesfile = $config{output} . "/converter/directexercises.tex";
+$mints_open = open(MINTS, "> $directexercisesfile") or die "FATAL: Could not create file for DirectExercises";
 print MINTS $globalexstring;
 close(MINTS);
 
-
-
-# Erstelle Hauptdatei fuer den Konverter
-$mints_open = open(MINTS, "> $output/converter/tex/vorkursxml.tex") or die "Fehler beim Erstellen der HTML-Baumdatei.\n";
+# Create main file for converter build
+my $ttminputfile = $config{output} . "/converter/tex/vorkursxml.tex";
+$mints_open = open(MINTS, "> $ttminputfile") or die "FATAL: Could not create converter input file";
 print MINTS "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
 print MINTS "\\documentclass{book}\n";
 print MINTS "\\input{mintmod.tex}\n";
@@ -1186,12 +1131,13 @@ print MINTS "\\author{MINT-Kolleg Baden-W\"urttemberg}\n";
 print MINTS "\\newcounter{MChaptersGiven}\n";
 print MINTS "\\setcounter{MChaptersGiven}{1}\n";
 print MINTS "\\begin{document}\n";
-print MINTS "\\input{$rfilename}\n";
+print MINTS "\\input{" . $config{module} . "}\n";
 print MINTS "\\end{document}\n";
 close(MINTS);
 
-# Erstelle Hauptdatei fuer die PDF-Erzeugung
-$mints_open = open(MINTS, "> $output/converter/tex/vorkurspdf.tex") or die "Fehler beim Erstellen der PDF-Baumdatei.\n";
+# Create main file for PDF build
+my $pdfinputfile = $config{output} . "/converter/tex/vorkurspdf.tex";
+$mints_open = open(MINTS, "> $pdfinputfile") or die "FATAL: Could not create PDF input file";
 print MINTS "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
 print MINTS "\\newcounter{MChaptersGiven}\n";
 print MINTS "\\setcounter{MChaptersGiven}{1}\n";
@@ -1199,16 +1145,19 @@ print MINTS "\\input{mintmod.tex}\n";
 print MINTS "\\title{MINT-Module}\n";
 print MINTS "\\author{MINT-Kolleg Baden-W\"urttemberg}\n";
 print MINTS "\\begin{document}\n";
-print MINTS "\\input{$rfilename}\n";
+print MINTS "\\input{" . $config{module} . "}\n";
 print MINTS "\\end{document}\n";
 close(MINTS);
 
 # Icons konvertieren
-my @orgicons = <$output/converter/buttons_org/*>;
+my $iconselector = $config{output} . "/converter/buttons_org/*";
+print "Iconselector is $iconselector\n";
+my @orgicons = <$iconselector>;
 my $file = "";
 my $f = "";
-# print "Konvertiere Icons:\n";
-my $ics = open(MINTS, "> $output/converter/files/css/dynicons.css") or die "Fehler beim Erstellen der dynamischen CSS-Datei.\n";
+print "Converting icons:\n";
+my $icondynfile = $config{output} . "/converter/files/css/dynicons.css";
+my $ics = open(MINTS, "> $icondynfile") or die "FATAL: Could not create CSS style file";
 print MINTS "\/* This file was automatically generated by mconvert.pl, do not modify it! *\/\n\n";
 foreach $file (@orgicons) {
    # Normaler Button
@@ -1329,20 +1278,18 @@ close(MINTS);
 # system("javac *.java");
 # system("cp *.class ../files/.");
 
-
-
-print "Erzeuge Stylesheets\n";
-chdir("$output/converter/precss");
+print "Creating stylesheets\n";
+chdir($config{output} . "/converter/precss");
 system("php -n grundlagen.php >grundlagen.pcss");
 
 # Ersetze Farben im Stylesheet mit den Vorgaben
 
-my $cccs = open(CSS, "< grundlagen.pcss") or die "Fehler beim Oeffnen der pcss-Datei.\n";
-my $cccs2 = open(OCSS, "> grundlagen.css") or die "Fehler beim Erstellen der css-Datei.\n";
+my $cccs = open(CSS, "< grundlagen.pcss") or die "FATAL: Could not open pcss-file";
+my $cccs2 = open(OCSS, "> grundlagen.css") or die "FATAL: Could not create css-file";
 my @mycss = <CSS>;
 close(CSS);
 
-my $fcs = open(FARBEN, "< $colorfile") or die "Fehler beim Oeffnen der Farben-Datei $colorfile im Ordner precss.\n";
+my $fcs = open(FARBEN, "< $colorfile") or die "FATAL: Could not open color file $colorfile in directory precss";
 my @farben = <FARBEN>;
 close(FARBEN);
 
@@ -1371,9 +1318,9 @@ system("cp grundlagen.css ../files/css/.");
 # mintmod.tex so veraendern, dass lokale Preamblen und Tagmakros eingebunden werden
 chdir("../tex");
 # MUSS APPEND SEIN
-my $ipf = open(MINTP, ">> mintmod.tex") or die "Fehler beim Anfuegen der lokalen Preamblen.\n";
+my $ipf = open(MINTP, ">> mintmod.tex") or die "FATAL: Could not append local preamles to mintmod.tex";
 print MINTP "\n% ---------- Automatisch eingebundene Preamblen aus mconvert.pl heraus ---------------\n";
-print "Eingebundene Preamblen:\n";
+print "Included preambles:\n";
 for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
   print " module=$IncludeStorage[$i][0], filename=$IncludeStorage[$i][1]\n";
   print MINTP "% Automatische Einbindung der Preamble " . $IncludeStorage[$i][1] . ":\n";
@@ -1388,38 +1335,37 @@ close(MINTP);
 chdir("../..");
 $ndir = getcwd; # = $output in voller expansion
 chdir("$ndir/converter");
-print("Gehe in Verzeichnis $ndir/converter\n");
-print("Starte Konverter:\n");
-my $vopt = "";
-if ($dopdf eq 0) { $vopt = "-nopdf"; }
-system("./conv.pl " . $vopt);
+print("Changing to directory $ndir/converter\n");
+print("Starting conv.pl:\n");
+my $rt1 = system("./conv.pl");
+if ($rt1 != 0) { die("FATAL exit from conv.pl"); }
 chdir("tex");
 my $pdfok = 1;
-if ($dopdf eq 1) {
+if ($config{dopdf} eq 1) {
     # Ganzer Baum wird erstellt: Die Fachbereiche separat texen
     my $doct = "";
     for ( $i=0; ($i <= $#PDFDeclare) and ($pdfok == 1); $i++ ) {
       $doct = $PDFDeclare[$i][0];
-      print "======= Erstelle Baum-PDF $doct.tex ========================================\n";
+      print "======= Generating PDF file $doct.tex ========================================\n";
 
-      my $rt1 = system("pdflatex $doct.tex");
+      $rt1 = system("pdflatex $doct.tex");
       if ($rt1 != 0) {
-        print("RETURNVALUE $rt1 von pdflatex, breche ab\n");
+        print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
 	$pdfok = 0;
       } else {      
 	$rt1 = system("pdflatex $doct.tex");
 	if ($rt1 != 0) {
-          print("RETURNVALUE $rt1 von pdflatex, breche ab\n");
+          print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
 	  $pdfok = 0;
 	} else {      
 	  $rt1 = system("makeindex $doct");
 	  if ($rt1 != 0) {
-	    print("RETURNVALUE $rt1 von makeindex, breche ab\n");
+            print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
 	    $pdfok = 0;
 	  } else {      
 	    $rt1 = system("pdflatex $doct.tex");
 	    if ($rt1 != 0) {
-              print("RETURNVALUE $rt1 von pdflatex, breche ab\n");
+              print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
 	      $pdfok = 0;
 	    }
 	  }
@@ -1427,23 +1373,23 @@ if ($dopdf eq 1) {
       }
   }
   if ($pdfok == 1) {
-    print("======= PDF-Erstellung erfolgreich =======================================\n");
+    print("======= PDF files build successfully =======================================\n");
   } else {
-    print("======= PDF-Erstellung wurde abgebrochen =================================\n");
+    print("======= PDF files have not been build =================================\n");
   }
 }
 
 
-print("Gehe zurueck in Verzeichnis $ndir\n");
+print("Changing back to directory $ndir\n");
 chdir("$ndir");
 
 # Loesche das build-Verzeichnis und berichtige den Baum
-if ($dopdf eq 1) {
+if ($config{dopdf} eq 1) {
   if ($pdfok == 1) {
     system("cp $ndir/converter/tex/*.pdf $ndir/.");
-    print("PDFs erzeugt\n");
+    print("PDFs generated\n");
   } else {
-    print("Keine PDFs erzeugt wegen Fehler\n");
+    print("No PDFs generated due to errors\n");
   }
 }
 
@@ -1451,7 +1397,7 @@ if ($config{doscorm} eq 1) { system("cp -R $ndir/converter/SCORM2004v4/* $ndir/.
 
 
 if ($config{localjax} eq 1) {
-  print "MathJax 2.4 (Komplettversion) wird lokal angelegt\n";
+  print "MathJax 2.4 (full package) is added locally\n";
   #print "MathJax wird nicht lokal angelegt, sondern ueber Web bezogen\n";
   system("mkdir $ndir/MathJax");
   system("tar -xzf $ndir/converter/mathjax24complete.tgz --directory=$ndir/MathJax/.");
@@ -1459,16 +1405,15 @@ if ($config{localjax} eq 1) {
   #print "Nutze reduzierte Version von MathJax ohne ImageFonts (benoetigt IE6+, Chrome, Safari 3.1+, Firefox 3.5+, oder Opera 10+)\n";
 }
 
-print "Verzeichnisse werden aufgeräumt\n";
+system("mv $ndir/converter/" . $config{outtmp} . "/* $ndir/.");
+system("rmdir $ndir/converter/" . $config{outtmp});
+
 if ($config{cleanup} == 0) {
-  print "DEBUG converter-Verzeichnis wird nicht geloescht!\n";
+  print "DEBUG converter-subdirectory is NOT removed\n";
 } else {
   system("rm -fr $ndir/converter");
-  print "converter-Verzeichnis wird geloescht\n";
+  print "converter-directory cleaned up\n";
 }
-system("mv $ndir/out/tmp/* $ndir/.");
-system("rmdir $ndir/out/tmp");
-system("rmdir $ndir/out");
 
 # Globales Starttag suchen und Baum dazu anpassen
 
@@ -1481,51 +1426,51 @@ my $starts = 0;
 for ($ka = 0; $ka < $nt; $ka++) {
     my $content = "";
     my $hfilename = $htmls[$ka];
-    my $html_open = open(MINTS, "< $hfilename") or die "ERROR: Fehler beim Oeffnen von $htmls[$ka]\n";
+    my $html_open = open(MINTS, "< $hfilename") or die "FATAL:: Could not open $htmls[$ka]\n";
     while(defined($htmlzeile = <MINTS>)) {
       if ($htmlzeile =~ m/<!-- mglobalstarttag -->/ ) {
         $starts++;
-        print "--- Starttag gefunden in Datei $hfilename\n";
+        print "--- Starttag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $startfile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalchaptertag -->/ ) {
-        print "--- Chaptertag gefunden in Datei $hfilename\n";
+        print "--- Chaptertag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $chapterfile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalconftag -->/ ) {
-        print "--- Configtag gefunden in Datei $hfilename\n";
+        print "--- Configtag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $configfile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobaldatatag -->/ ) {
-        print "--- Datatag gefunden in Datei $hfilename\n";
+        print "--- Datatag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $datafile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalfavotag -->/ ) {
-        print "--- Favotag gefunden in Datei $hfilename\n";
+        print "--- Favotag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $favofile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mgloballocationtag -->/ ) {
-        print "--- Locationtag gefunden in Datei $hfilename\n";
+        print "--- Locationtag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $locationfile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalsearchtag -->/ ) {
-        print "--- Searchtag gefunden in Datei $hfilename\n";
+        print "--- Searchtag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $searchfile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalstesttag -->/ ) {
-        print "--- STesttag gefunden in Datei $hfilename\n";
+        print "--- STesttag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $stestfile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalbetatag -->/ ) {
-        print "--- Betatag gefunden in Datei $hfilename\n";
+        print "--- Betatag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $betafile = "mpl/" . $2 . ".html";
       }
@@ -1534,16 +1479,16 @@ for ($ka = 0; $ka < $nt; $ka++) {
 }
 
 if ($starts eq 0 ) {
-  die("Kein globales Starttag vorhanden, breche ab!");
+  die("FATAL: Global start tag not found, HTML tree is disfunctional");
 } else {
   if ($starts ne 1) {
-    print "ERROR: Mehrfache Starttags vorhanden, verwende letztes gefundenes Tag!\n";
+    print "ERROR: Multiple start tags found, using last one\n";
   }
 }
 
 createRedirect("index.html", $startfile);
-if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile); } else { print "Keine Chapter-Datei definiert!\n"; }
-if ($configfile ne "") { createRedirect("config.html", $configfile); } else { print "Keine Config-Datei definiert!\n"; }
+if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile); } else { print "No Chapter-file defined!\n"; }
+if ($configfile ne "") { createRedirect("config.html", $configfile); } else { print "No Config-file defined!\n"; }
 if ($datafile ne "") { createRedirect("cdata.html", $datafile); } else { print "Keine Data-Datei definiert!\n"; }
 if ($searchfile ne "") { createRedirect("search.html", $searchfile); } else { print "Keine Search-Datei definiert!\n"; }
 if ($favofile ne "") { createRedirect("favor.html", $favofile); } else { print "Keine Favoriten-Datei definiert!\n"; }
@@ -1564,16 +1509,18 @@ chdir($ndir);
 
 system("rm -fr *.js~");
 
-if ($dozip eq 0) {
-  print("\nHTML-Modul" . ((($dopdf eq 1) and ($pdfok eq 1)) ? " und PDF " : " ") . "wurde erstellt. Die Startdatei ist $ndir/$startfile.\n\n");
+if ($config{dozip} eq 0) {
+  print("\nHTML module " . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "have been created. Start file is $ndir/$startfile.\n\n");
 } else {
   system("chmod -R 777 *");
   system("zip -r $zip *");
   system("cp $zip ../.");
   chdir("..");
   system("rm -fr $ndir");
-  print("\nHTML-Modul" . ((($dopdf eq 1) and ($pdfok eq 1)) ? " und PDF " : " ") . "wurde erstellt. Die zip-Datei ist $zip, Die Startdatei darin ist $startfile.\n\n");
+  print("\nHTML module" . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "have been created and zipped to $zip. Start file in this zip tree is $startfile.\n\n");
 }
+
+print "mconvert.pl finished successfully\n\n";
 
 exit;
 
