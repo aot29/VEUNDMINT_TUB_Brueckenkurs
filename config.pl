@@ -17,5 +17,5 @@ dozip           =>      0       , # =1 -> html-Baum wird als zip-Datei geliefert
 output          =>      "testhtml",         # Zielverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
 source          =>      "module_veundmint", # Quellverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
 module          =>      "tree_kit.tex",     # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!)
-outtmp          =>      "tmp",             # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse
+outtmp          =>      "tmp",              # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
 description     =>      "VEundMINT TESTVERSION"
