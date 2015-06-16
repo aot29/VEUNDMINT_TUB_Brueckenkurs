@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>mparser-Testeingaben</title>
+		<script src="../math.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        //Global variables
+        var isRelease = 0;
+        var isVerbose = 1;
+        </script>
+		<script src="../dlog.js" type="text/javascript"></script>
+		<script src="../mparser.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+		<script type="text/javascript">
+
+			/*
+			 * Liste aller Testeingaben und der erwarteten Ergebnisse
+			 * input: Testeingabe
+			 * mathjs: Erwarteter mathjs-String
+			 * latex: Erwarteter LaTeX-String
+			 * */
+			var testEingaben = [
+				//manuelle Tests
+				{ input: "", mathjs: "", latex: "" },
+				{ input: "(a*b)+(c*d)", mathjs: "(a*b)+(c*d)", latex: "\\left(a {\\cdot} b\\right)+\\left(c {\\cdot} d\\right)", mathjsTex: "{{a} \\, {b}}+{{c} \\, {d}}" },
+				{ input: "int^(int^2_1 x dx)_4 y dy + int_0^1 u du", mathjs: "konstrukt(int,y,4,konstrukt(int,x,1,2,(stuetzvariable_x),100),(stuetzvariable_y),100)+konstrukt(int,u,0,1,(stuetzvariable_u),100)", latex: "{\\int ^{\\int ^{2} _{1} x {d{x}} } _{4} y {d{y}} } + {\\int _{0}^{1} u {d{u}} }" },
+				{ input: "summe^(produkt_(i=1/(2*4))^pi (i^2))_(j=1)2*j", mathjs: "konstrukt(sum,j,1,konstrukt(prod,i,1/(2*4),pi,((stuetzvariable_i)^(2))),2*(stuetzvariable_j))", latex: "{\\sum ^{\\prod _{i={\\frac{1}{\\left(2 {\\cdot} 4\\right)}}}^{\\pi} \\left({i^{2}}\\right)} _{j=1}2 {\\cdot} j}" },
+				{ input: "alpha+-beta*gamma+delta + 4-zeta+-eta", mathjs: "alpha+-beta*gamma+delta+4-zeta+-eta", latex: "\\\alpha+{-\\beta} {\\cdot} \\gamma+\\delta + 4-\\zeta+{-\\eta}", mathjsTex: "{{{{{\\alpha}+{\\left({-\\beta}\\right) \\, {\\gamma}}}+{\\delta}}+{4}}-{\\zeta}}+{-\\eta}"},
+				{ input: "iota/kappa+lambda/nu/xi/omicron", mathjs: "iota/kappa+lambda/nu/xi/omicron", latex: "{\\frac{\\iota}{\\kappa}}+{\\frac{{\\frac{{\\frac{\\lambda}{\\nu}}}{\\xi}}}{\\omicron}}", mathjsTex: "{\\frac{\\iota}{\\kappa}}+{\\frac{\\frac{\\frac{\\lambda}{\\nu}}{\\xi}}{\\omicron}}" },
+				{ input: "pi^sigma/tau^upsilon-chi/psi+omega-epsilon+theta*mu+rho+phi", mathjs: "pi^(sigma)/tau^(upsilon)-chi/psi+omega-epsilon+theta*mu+rho+phi", latex: "{\\frac{{\\pi^{\\sigma}}}{{\\tau^{\\upsilon}}}}-{\\frac{\\chi}{\\psi}}+\\omega-\\varepsilon+\\vartheta {\\cdot} \\mu+\\varrho+\\varphi", mathjsTex: "{{{{{{\\frac{\\pi^{\\sigma}}{\\tau^{\\upsilon}}}-{\\frac{\\chi}{\\psi}}}+{\\omega}}-{\\epsilon}}+{{\\theta} \\, {\\mu}}}+{\\rho}}+{\\phi}" },
+				{ input: "Alpha+-Beta*Gamma+Delta + 4-Zeta+-Eta", mathjs: "Alpha+-Beta*Gamma+Delta+4-Zeta+-Eta", latex: "A+{-B} {\\cdot} \\Gamma+\\Delta + 4-Z+{-H}", mathjsTex: "{{{{{A}+{\\left({-B}\\right) \\, {\\Gamma}}}+{\\Delta}}+{4}}-{Z}}+{-H}" },
+				{ input: "Iota/Kappa+Lambda/Nu/Xi/Omicron", mathjs: "Iota/Kappa+Lambda/Nu/Xi/Omicron", latex: "{\\frac{I}{K}}+{\\frac{{\\frac{{\\frac{\\Lambda}{N}}}{\\Xi}}}{O}}", mathjsTex: "{\\frac{I}{K}}+{\\frac{\\frac{\\frac{\\Lambda}{N}}{\\Xi}}{O}}" },
+				{ input: "Pi^Sigma/Tau^Upsilon-Chi/Psi+Omega-Epsilon+Theta*Mu+Rho+Phi", mathjs: "Pi^(Sigma)/Tau^(Upsilon)-Chi/Psi+Omega-Epsilon+Theta*Mu+Rho+Phi", latex: "{\\frac{{\\Pi^{\\Sigma}}}{{T^{\\Upsilon}}}}-{\\frac{X}{\\Psi}}+\\Omega-E+\\Theta {\\cdot} M+P+\\Phi", mathjsTex: "{{{{{{\\frac{\\Pi^{\\Sigma}}{T^{\\Upsilon}}}-{\\frac{X}{\\Psi}}}+{\\Omega}}-{E}}+{{\\Theta} \\, {M}}}+{P}}+{\\Phi}" },
+				{ input: "a/b/c/d/e", mathjs: "a/b/c/d/e", latex: "{\\frac{{\\frac{{\\frac{{\\frac{a}{b}}}{c}}}{d}}}{e}}", mathjsTex: "\\frac{\\frac{\\frac{\\frac{a}{b}}{c}}{d}}{e}" },
+				{ input: "a^(b/c)/d^e", mathjs: "a^(b/c)/d^(e)", latex: "{\\frac{{a^{{\\frac{b}{c}}}}}{{d^{e}}}}", mathjsTex: "\\frac{a^{\\frac{b}{c}}}{d^{e}}" },
+				{ input: "infty+infinity+unendlich", mathjs: "infty+infty+infty", latex: "\\infty+\\infty+\\infty" },
+				{ input: "prod_(i=1)^4(i)+ produkt^(2^3)_(i=2^2)i^2", mathjs: "konstrukt(prod,i,1,4,((stuetzvariable_i)))+konstrukt(prod,i,2^(2),2^(3),(stuetzvariable_i)^(2))", latex: "{\\prod _{i=1} ^{4}\\left(i\\right)+ {\\prod^{{2^{3}}} _{i={2^{2}}}{i^{2}}}}" },
+				{ input: "sum_(i=1)^4(i) + summe^(2^3)_(i=2^2)i^2", mathjs: "konstrukt(sum,i,1,4,((stuetzvariable_i)))+konstrukt(sum,i,2^(2),2^(3),(stuetzvariable_i)^(2))", latex: "{\\sum _{i=1} ^{4}\\left(i\\right) + {\\sum^{{2^{3}}} _{i={2^{2}}}{i^{2}}}}" },
+				{ input: "int_1^4x dx +  integral^(2^3)_(2^2)y^2dy", mathjs: "konstrukt(int,x,1,4,(stuetzvariable_x),100)+konstrukt(int,y,2^(2),2^(3),(stuetzvariable_y)^(2),100)", latex: "{\\int _{1} ^{4}x {d{x}} } + {\\int^{{2^{3}}} _{{2^{2}}}{y^{2}}{d{y}} }" },
+				{ input: "a^-b", mathjs: "a^(-b)", latex: "{a^{-b}}", mathjsTex: "a^{-b}" },
+				{ input: "1¹+2²+3³", mathjs: "1^(1)+2^(2)+3^(3)", latex: "{1^{1}}+{2^{2}}+{3^{3}}", mathjsTex: "{{{1}^{1}}+{{2}^{2}}}+{{3}^{3}}" },
+				{ input: "4°", mathjs: "4°", latex: "{4^{\\circ}}" },
+				{ input: "a>=b<=c", mathjs: "a>=b<=c", latex: "a{\\geq}b{\\leq}c", mathjsTex: "{{a}\\geq{b}}\\leq{c}" },
+				{ input: "fakultät(34)+factorial(2^3)+2^fakultaet(4)", mathjs: "(fakultaet(34))+(fakultaet(2^(3)))+2^(fakultaet(4))", latex: "{34!}+{\\left({2^{3}}\\right)!}+{2^{4!}}" },
+				{ input: "-2/-3+4.6/-5.4", mathjs: "-2/-3+4.6/-5.4", latex: "{\\frac{{-2}}{{-3}}}+{\\frac{4.6}{{-5.4}}}", mathjsTex: "{\\frac{-2}{-3}}+{\\frac{4.6}{-5.4}}" },
+				{ input: "1/-pi-a/-b", mathjs: "1/-pi-a/-b", latex: "{\\frac{1}{{-\\pi}}}-{\\frac{a}{{-b}}}", mathjsTex: "{\\frac{1}{-\\pi}}-{\\frac{a}{-b}}" },
+				{ input: "sin(pi)+cos(pi)-tan(2.5)*cot(-3.4)/arcsin(-pi)+arccos(2/-pi)-arctan(3)", mathjs: "(sin(pi))+(cos(pi))-(tan(2.5))*(cot(-3.4))/(arcsin(-pi))+(arccos(2/-pi))-(arctan(3))", latex: "\\sin\\left(\\pi\\right)+\\cos\\left(\\pi\\right)-\\tan\\left(2.5\\right) {\\cdot} {\\frac{\\cot\\left(-3.4\\right)}{\\arcsin\\left(-\\pi\\right)}}+\\arccos\\left({\\frac{2}{{-\\pi}}}\\right)-\\arctan\\left(3\\right)", mathjsTex: "{{{{\\sin\\left({{\\pi}}\\right)}+{\\cos\\left({{\\pi}}\\right)}}-{\\frac{{\\tan\\left({{2.5}}\\right)} \\, {\\cot\\left({{-3.4}}\\right)}}{\\sin^{-1}\\left({{-\\pi}}\\right)}}}+{\\cos^{-1}\\left({{\\frac{2}{-\\pi}}}\\right)}}-{\\tan^{-1}\\left({{3}}\\right)}" },
+				{ input: "sinh(3.5)-cosh(2)/tanh(pi)+coth(3+3)*exp(e)-ln(e)", mathjs: "(sinh(3.5))-(cosh(2))/(tanh(pi))+(coth(3+3))*(exp(e))-(ln(e))", latex: "\\sinh\\left(3.5\\right)-{\\frac{\\cosh\\left(2\\right)}{\\tanh\\left(\\pi\\right)}}+\\coth\\left(3+3\\right) {\\cdot} \\exp\\left(e\\right)-\\ln\\left(e\\right)", mathjsTex: "{{{\\sinh\\left({{3.5}}\\right)}-{\\frac{\\cosh\\left({{2}}\\right)}{\\tanh\\left({{\\pi}}\\right)}}}+{{\\coth\\left({{{3}+{3}}}\\right)} \\, {e^{e}}}}-{\\ln\\left({{e}}\\right)}" },
+				{ input: "log(4)+asin(0.4)-acos(1)*atan(x)-acot(3)+arccot(3)+asinh(x)+arcsinh(alpha)", mathjs: "(log(4))+(asin(0.4))-(acos(1))*(atan(x))-(acot(3))+(acot(3))+(asinh(x))+(asinh(alpha))", latex: "\\log\\left(4\\right)+\\arcsin\\left(0.4\\right)-\\arccos\\left(1\\right) {\\cdot} \\arctan\\left(x\\right)-\\cot^{-1}\\left(3\\right)+\\cot^{-1}\\left(3\\right)+\\sinh^{-1}\\left(x\\right)+\\sinh^{-1}\\left(\\alpha\\right)" },
+				{ input: "acosh(x)-arccosh(y)+atanh(test)-arctanh(bla)+acoth(x)-arccoth(b)", mathjs: "(acosh(x))-(acosh(y))+(atanh(test))-(atanh(bla))+(acoth(x))-(acoth(b))", latex: "\\cosh^{-1}\\left(x\\right)-\\cosh^{-1}\\left(y\\right)+\\tanh^{-1}\\left(test\\right)-\\tanh^{-1}\\left(bla\\right)+\\coth^{-1}\\left(x\\right)-\\coth^{-1}\\left(b\\right)" },
+				{ input: "sqrt(2)+sqrt(2,2)", mathjs: "(sqrt(2))+(2)^(1/(2))", latex: "\\sqrt{2}+\\sqrt[2]{2}", mathjsTex: "{\\sqrt{2}}+{{2}^{\\frac{1}{2}}}" },
+				{ input: "wurzel(2)+wurzel(2,2)", mathjs: "(sqrt(2))+(2)^(1/(2))", latex: "\\sqrt{2}+\\sqrt[2]{2}", mathjsTex: "{\\sqrt{2}}+{{2}^{\\frac{1}{2}}}" },
+				{ input: "Wurzel(2)+Wurzel(2,2)", mathjs: "(sqrt(2))+(2)^(1/(2))", latex: "\\sqrt{2}+\\sqrt[2]{2}", mathjsTex: "{\\sqrt{2}}+{{2}^{\\frac{1}{2}}}" },
+				{ input: "abs(4-abs(sin(x)))", mathjs: "(abs(4-(abs(sin(x)))))", latex: "\\left|4-\\left|\\sin\\left(x\\right)\\right|\\right|", mathjsTex: "\\left|{{{4}-{\\left|{{\\sin\\left({{x}}\\right)}}\\right|}}}\\right|" },
+				{ input: "betrag(4-Betrag(sin(x)))", mathjs: "(abs(4-(abs(sin(x)))))", latex: "\\left|4-\\left|\\sin\\left(x\\right)\\right|\\right|", mathjsTex: "\\left|{{{4}-{\\left|{{\\sin\\left({{x}}\\right)}}\\right|}}}\\right|" },
+				{ input: "binomial(a,b)+binomialkoeff(c,d)+binomialkoeffizient(abs(-3),3)", mathjs: "(binomial(a,b))+(binomial(c,d))+(binomial(abs(-3),3))", latex: "{\\binom{a}{b}}+{\\binom{c}{d}}+{\\binom{\\left|-3\\right|}{3}}" },
+				{ input: "falls(a>b,4,abs(-3))-if(x>=0,1,-1)", mathjs: "((a>b)?(4):(abs(-3)))-((x>=0)?(1):(-1))", latex: "{\\left\\lbrace\\begin{matrix}{4}&{\\mbox{falls}\\;{a>b}}\\\\{\\left|-3\\right|}&\\mbox{sonst}\\end{matrix}\\right.}-{\\left\\lbrace\\begin{matrix}{1}&{\\mbox{falls}\\;{x{\\geq}0}}\\\\{-1}&\\mbox{sonst}\\end{matrix}\\right.}" },
+				{ input: "(a,b,c,abs(d))", mathjs: "[a,b,c,(abs(d))]", latex: "{\\left(\\begin{matrix}{a}\\\\{b}\\\\{c}\\\\{\\left|d\\right|}\\end{matrix}\\right)}" },
+				{ input: "sum_(x=falls(a>=b,a,b))^10(x)", mathjs: "konstrukt(sum,x,((a>=b)?(a):(b)),10,((stuetzvariable_x)))", latex: "{\\sum _{x={\\left\\lbrace\\begin{matrix}{a}&{\\mbox{falls}\\;{a{\\geq}b}}\\\\{b}&\\mbox{sonst}\\end{matrix}\\right.}}^{10}\\left(x\\right)}" },
+				{ input: "sum(n=1,100,n)", mathjs: "konstrukt(sum,n,1,100,((stuetzvariable_n)))", latex: "{\\sum_{n=1}^{100}\\left(n\\right)}" },
+				{ input: "-(1+2)-(3+4)-(5-6)+-(7-8)", mathjs: "-(1+2)-(3+4)-(5-6)+-(7-8)", latex: "-\\left(1+2\\right)-\\left(3+4\\right)-\\left(5-6\\right)+-\\left(7-8\\right)", mathjsTex: "{{{-\\left({{1}+{2}}\\right)}-\\left({{3}+{4}}\\right)}-\\left({{5}-{6}}\\right)}+{-\\left({{7}-{8}}\\right)}" },
+				{ input: 'int_-1.3^-0.49 x dx', mathjs: 'konstrukt(int,x,-1.3,-0.49,(stuetzvariable_x),100)', latex: '{\\int _{-1.3}^{-0.49} x {d{x}} }', mathjsTex: ''},
+				{ input: 'abs(x)', mathjs: '(abs(x))', latex: '\\left|x\\right|'},
+				{ input: '(a,b)', mathjs: '[a,b]', latex: '{\\left(\\begin{matrix}{a}\\\\{b}\\end{matrix}\\right)}' },
+				{ input: 'abs([a,b])', mathjs: '(abs([a,b]))', latex: '\\left|{\\left(\\begin{matrix}{a}\\\\{b}\\end{matrix}\\right)}\\right|' },
+				//TODO: weitere Testcases
+
+				//existierende Aufgaben
+				{ input: "20-2*t", mathjs: "20-2*t", latex: "20-2 {\\cdot} t", mathjsTex: "{20}-{{2} \\, {t}}" },
+				{ input: "14+11*(-15*t+11)", mathjs: "14+11*(-15*t+11)", latex: "14+11 {\\cdot} \\left(-15 {\\cdot} t+11\\right)", mathjsTex: "{14}+{{11} \\cdot \\left({{\\left({-15}\\right) \\, {t}}+{11}}\\right)}" },
+				{ input: "0.5", mathjs: "0.5", latex: "0.5", mathjsTex: "0.5" },
+				{ input: "7.8653", mathjs: "7.8653", latex: "7.8653", mathjsTex: "7.8653" },
+				{ input: "-(a-(b+c-(5-(a+3))))", mathjs: "-(a-(b+c-(5-(a+3))))", latex: "-\\left(a-\\left(b+c-\\left(5-\\left(a+3\\right)\\right)\\right)\\right)", mathjsTex: "-\\left({{a}-\\left({{{b}+{c}}-\\left({{5}-\\left({{a}+{3}}\\right)}\\right)}\\right)}\\right)" },
+				{ input: "3*a*b-(b*(a-2)+4*b)", mathjs: "3*a*b-(b*(a-2)+4*b)", latex: "3 {\\cdot} a {\\cdot} b-\\left(b {\\cdot} \\left(a-2\\right)+4 {\\cdot} b\\right)", mathjsTex: "{{{3} \\, {a}} \\, {b}}-\\left({{{b} \\, \\left({{a}-{2}}\\right)}+{{4} \\, {b}}}\\right)" },
+				{ input: "(4-4*t+t^2)/(4-t*t)", mathjs: "(4-4*t+t^(2))/(4-t*t)", latex: "{\\frac{\\left(4-4 {\\cdot} t+{t^{2}}\\right)}{\\left(4-t {\\cdot} t\\right)}}", mathjsTex: "\\frac{{{4}-{{4} \\, {t}}}+{t^{2}}}{{4}-{{t} \\, {t}}}" },
+				{ input: "(b^2)/(9*x^2)-(2*x)/(3*b^2)+(x^4)/(b^6)", mathjs: "(b^(2))/(9*x^(2))-(2*x)/(3*b^(2))+(x^(4))/(b^(6))", latex: "{\\frac{\\left({b^{2}}\\right)}{\\left(9 {\\cdot} {x^{2}}\\right)}}-{\\frac{\\left(2 {\\cdot} x\\right)}{\\left(3 {\\cdot} {b^{2}}\\right)}}+{\\frac{\\left({x^{4}}\\right)}{\\left({b^{6}}\\right)}}", mathjsTex: "{{\\frac{b^{2}}{{9} \\cdot {x^{2}}}}-{\\frac{{2} \\, {x}}{{3} \\cdot {b^{2}}}}}+{\\frac{x^{4}}{b^{6}}}" },
+				{ input: "I*t", mathjs: "I*t", latex: "I {\\cdot} t", mathjsTex: "{I} \\, {t}" },
+				{ input: "0.02*I*t", mathjs: "0.02*I*t", latex: "0.02 {\\cdot} I {\\cdot} t", mathjsTex: "{{0.02} \\, {I}} \\, {t}" },
+				{ input: "12", mathjs: "12", latex: "12", mathjsTex: "12" },
+				{ input: "0.2", mathjs: "0.2", latex: "0.2", mathjsTex: "0.2" },
+				{ input: "135*pi/180", mathjs: "135*pi/180", latex: "135 {\\cdot} {\\frac{\\pi}{180}}", mathjsTex: "\\frac{{135} \\, {\\pi}}{180}" },
+				{ input: "19.7*pi/180", mathjs: "19.7*pi/180", latex: "19.7 {\\cdot} {\\frac{\\pi}{180}}", mathjsTex: "\\frac{{19.7} \\, {\\pi}}{180}" },
+				{ input: "0.6*180", mathjs: "0.6*180", latex: "0.6 {\\cdot} 180", mathjsTex: "{0.6} \\cdot {180}" },
+				{ input: "2.7*180/pi", mathjs: "2.7*180/pi", latex: "2.7 {\\cdot} {\\frac{180}{\\pi}}", mathjsTex: "\\frac{{2.7} \\cdot {180}}{\\pi}" },
+				{ input: "(S*T)/(S+T)", mathjs: "(S*T)/(S+T)", latex: "{\\frac{\\left(S {\\cdot} T\\right)}{\\left(S+T\\right)}}", mathjsTex: "\\frac{{S} \\, {T}}{{S}+{T}}" },
+				{ input: "a*(x-2)*(x-3) + b*(x-3) + c*(x-2)^2", mathjs: "a*(x-2)*(x-3)+b*(x-3)+c*(x-2)^(2)", latex: "a {\\cdot} \\left(x-2\\right) {\\cdot} \\left(x-3\\right) + b {\\cdot} \\left(x-3\\right) + c {\\cdot} {\\left(x-2\\right)^{2}}", mathjsTex: "{{{{a} \\, \\left({{x}-{2}}\\right)} \\cdot \\left({{x}-{3}}\\right)}+{{b} \\, \\left({{x}-{3}}\\right)}}+{{c} \\, {\\left({{x}-{2}}\\right)^{2}}}" },
+				{ input: "x*x", mathjs: "x*x", latex: "x {\\cdot} x", mathjsTex: "{x} \\, {x}" },
+				{ input: "(a^2*c^5)/(b^5*d)", mathjs: "(a^(2)*c^(5))/(b^(5)*d)", latex: "{\\frac{\\left({a^{2}} {\\cdot} {c^{5}}\\right)}{\\left({b^{5}} {\\cdot} d\\right)}}", mathjsTex: "\\frac{{a^{2}} \\cdot {c^{5}}}{{b^{5}} \\, {d}}"},
+				{ input: "1/(1+R*omega*c)", mathjs: "1/(1+R*omega*c)", latex: "{\\frac{1}{\\left(1+R {\\cdot} \\omega {\\cdot} c\\right)}}", mathjsTex: "\\frac{1}{{1}+{{{R} \\, {\\omega}} \\, {c}}}" },
+				{ input: "0.725", mathjs: "0.725", latex: "0.725", mathjsTex: "0.725" },
+				{ input: "108", mathjs: "108", latex: "108", mathjsTex: "108" },
+				{ input: "108*pi/180", mathjs: "108*pi/180", latex: "108 {\\cdot} {\\frac{\\pi}{180}}", mathjsTex: "\\frac{{108} \\, {\\pi}}{180}" },
+				{ input: "4", mathjs: "4", latex: "4", mathjsTex: "4" },
+				{ input: "3*x^6 +1", mathjs: "3*x^(6)+1", latex: "3 {\\cdot} {x^{6}} +1", mathjsTex: "{{3} \\cdot {x^{6}}}+{1}" },
+				{ input: "x", mathjs: "x", latex: "x", mathjsTex: "x" },
+				{ input: "(y+1)/(y-1)", mathjs: "(y+1)/(y-1)", latex: "{\\frac{\\left(y+1\\right)}{\\left(y-1\\right)}}", mathjsTex: "\\frac{{y}+{1}}{{y}-{1}}" },
+				{ input: "1", mathjs: "1", latex: "1", mathjsTex: "1" },
+				{ input: "-4", mathjs: "-4", latex: "{-4}", mathjsTex: "-4" },
+				{ input: "(v/u)^(2/5)", mathjs: "(v/u)^(2/5)", latex: "{\\left({\\frac{v}{u}}\\right)^{{\\frac{2}{5}}}}", mathjsTex: "\\left({\\frac{v}{u}}\\right)^{\\frac{2}{5}}" },
+				{ input: "(t*t/y)^(4/13)", mathjs: "(t*t/y)^(4/13)", latex: "{\\left(t {\\cdot} {\\frac{t}{y}}\\right)^{{\\frac{4}{13}}}}", mathjsTex: "\\left({\\frac{{t} \\, {t}}{y}}\\right)^{\\frac{4}{13}}" },
+				{ input: "sqrt(p/k)", mathjs: "(sqrt(p/k))", latex: "\\sqrt{{\\frac{p}{k}}}", mathjsTex: "\\sqrt{\\frac{p}{k}}" },
+				{ input: "-sqrt(p/k)", mathjs: "-(sqrt(p/k))", latex: "-\\sqrt{{\\frac{p}{k}}}", mathjsTex: "-\\sqrt{\\frac{p}{k}}" },
+				{ input: "1+2*x^(1/2)+x", mathjs: "1+2*x^(1/2)+x", latex: "1+2 {\\cdot} {x^{{\\frac{1}{2}}}}+x", mathjsTex: "{{1}+{{2} \\cdot {x^{\\frac{1}{2}}}}}+{x}" },
+				{ input: "sqrt(x*x+1)", mathjs: "(sqrt(x*x+1))", latex: "\\sqrt{x {\\cdot} x+1}", mathjsTex: "\\sqrt{{{x} \\, {x}}+{1}}" },
+				{ input: "(1+sqrt(x))^2", mathjs: "(1+(sqrt(x)))^(2)", latex: "{\\left(1+\\sqrt{x}\\right)^{2}}", mathjsTex: "\\left({{1}+{\\sqrt{x}}}\\right)^{2}" },
+				{ input: "7^x", mathjs: "7^(x)", latex: "{7^{x}}", mathjsTex: "{7}^{x}" },
+				{ input: "infty", mathjs: "infty", latex: "\\infty" },
+				{ input: "-infty", mathjs: "-infty", latex: "{-\\infty}" },
+				{ input: "-2", mathjs: "-2", latex: "{-2}", mathjsTex: "-2" }
+			];
+			function teste() {
+				var container = document.getElementById("container");
+				var ergebnisTabelle = 
+						"<table border=1>"
+					+	"	<tr>"
+					+	"		<td><b>Eingabe</b></td>"
+					+	"		<td><b>MathJS-Ergebnis</b></td>"
+					+	"		<td><b>MathJS-Erwartung</b></td>"
+					+	"		<td><b>LaTeX-Ergebnis</b></td>"
+					+	"		<td><b>MathJax</b></td>"
+					+	"		<td><b>LaTeX-Erwartung</b></td>"
+					+	"		<td><b>MathJS toTex (LaTeX)</b></td>"
+					+	"		<td><b>MathJS toTex</b></td>"
+					+	"	</tr>";
+				//Gehe alle Testdaten durch
+				testEingaben.forEach( 
+						function (value) {
+							ergebnisObjekt = mparser.convertMathInput( value.input, 100 );
+
+							var mathjsColor = "red";
+							//Teste mathjs-String auf Übereinstimmung
+							if( value.mathjs == ergebnisObjekt.mathjs ) {
+								mathjsColor = "lightgreen";
+							} else if( (typeof value.mathjs === "undefined") || (value.mathjs == "")) {
+								mathjsColor = "orange";
+							}
+
+							var latexColor = "red";
+							//Teste LaTeX-String auf Übereinstimmung
+							if( value.latex == ergebnisObjekt.latex ) {
+								latexColor = "lightgreen";
+							} else if( (typeof value.latex === "undefined") || (value.latex == "") ) {
+								latexColor = "orange";
+							}
+
+							var mathjsTex;
+							try {
+								mathjsTex = mathJS.parse( ergebnisObjekt.mathjs ).toTex();
+							} catch( e ) {
+								mathjsTex = e.toString();
+								console.log( e );
+							}
+
+							var mathjsTexColor = "red";
+							//Teste MathJS.toTex-String auf Übereinstimmung
+							if( typeof value.mathjsTex === "undefined" ) {
+								mathjsTexColor = "orange";
+							} else if( value.mathjsTex == mathjsTex ) {
+								mathjsTexColor = "lightgreen";
+							}
+
+
+							ergebnisTabelle +=
+									"<tr>"
+								+	"	<td>" + value.input + "</td>"
+								+	"	<td style='background-color:" + mathjsColor + ";'>" + ergebnisObjekt.mathjs + "</td>"
+								+	"	<td>" + value.mathjs + "</td>"
+								+	"	<td style='background-color:" + latexColor + ";'>" + ergebnisObjekt.latex + "</td>"
+								+	"	<td>$$" + ergebnisObjekt.latex + "$$</td>"
+								+	"	<td>" + value.latex + "</td>"
+								+	"	<td>$$" + mathjsTex + "$$</td>"
+								+	"	<td style='background-color:" + mathjsTexColor + "'>" + mathjsTex + "</td>"
+								+	"</tr>";
+						});
+
+				ergebnisTabelle += "</table>";
+				container.innerHTML = ergebnisTabelle;
+			}
+
+			function manual_test() {
+				var input = document.getElementById("input").value;
+				var manual_container = document.getElementById("manual_container");
+
+				if( input != "" ) {
+					var result = mparser.convertMathInput( input );
+
+					var table = 
+						"<table border=1>" +
+						"	<tr>" +
+						"		<td><b>Eingabe</b></td>" +
+						"		<td><b>MathJS-Ergebnis</b></td>" +
+						"		<td><b>LaTeX-Ergebnis</b></td>" +
+						"		<td><b>MathJax</b></td>" +
+						"	</tr>" +
+						"	<tr>" +
+						"		<td>" + input + "</td>" +
+						"		<td>" + result.mathjs + "</td>" +
+						"		<td>" + result.latex + "</td>" +
+						"		<td>$$" + result.latex + "$$</td>" +
+						"	</tr>" +
+						"</table>";
+					manual_container.innerHTML = table;
+					MathJax.Hub.Typeset();
+				} else {
+					manual_container.innerHTML = "";
+				}
+
+			}
+		</script>
+	</head>
+	<body onload="teste();">
+		<h1>Tests:</h1>
+		<ul>
+			<li><b style="background-color:lightgreen;">Grün:</b> Ergebnis korrekt</li>
+			<li><b style="background-color:red;">Rot:</b> Ergebnis inkorrekt</li>
+			<li><b style="background-color:orange;">Orange:</b> Korrektes Ergebnis noch nicht festgelegt</li>
+		</ul>
+		<b>Manueller Test:</b>
+		<input type="text" id="input" onkeydown="if(event.keyCode == 13) manual_test();">
+		<input type="button" value="testen" onclick="manual_test();">
+		<div id="manual_container"></div>
+		<div id="container">
+			Es ist ein Fehler aufgetreten!
+		</div>
+	</body>
+</html>

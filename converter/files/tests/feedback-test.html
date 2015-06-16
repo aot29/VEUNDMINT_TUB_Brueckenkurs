@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<script type="text/javascript">
+            //Global variables
+			var feedbackserver = "test";
+            var isRelease = 0;
+            var isVerbose = 1;
+		</script>
+		<script src="../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+		<script src="../dlog.js" type="text/javascript"></script>
+		<script src="../intersite.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			function start() {
+				feedbackserver = $('#url').val();
+				var feedback = $('#feedback').val();
+				var statistics = $('#statistics').val();
+				sendeFeedback( {feedback: feedback, statistics: statistics} );
+			}
+		</script>
+	</head>
+	<body>
+		<p>
+		<b>Feedback:</b>
+		<textarea id="feedback" rows=10 cols=100>Hier ein Feedback-String!</textarea>
+		</p>
+		<p>
+		<b>Statistik:</b>
+		<textarea id="statistics" rows=10 cols=100>Hier ein Statistik-String!</textarea>
+		</p>
+		<b>Feedback-Server:</b>
+		<input id="url" type="text" size=100 value="http://mintlx3.scc.kit.edu/dbtest/feedback.php" onkeydown="if(event.keyCode == 13 ) start();">
+		<input type="button" onclick="start();" value="Feedback absenden">
+	</body>
+</html>
