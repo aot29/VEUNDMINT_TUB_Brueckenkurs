@@ -166,6 +166,37 @@ var mathJSFunctions = (function( mathjsInstance ) {
 		}
 	};
 
+	/*
+	 * Berechnen von Ausdrücken der Form sqrt[2^k](n)
+	 *
+	 * @param {Number} exponent
+	 * @param {Number} radikand
+	 */
+	functions.broot = function (exponent, radikand) {
+		function isNonNegativeInteger (number) {
+			return (number % 1 === 0) && (number >= 0);
+		}
+
+		if (exponent == 0) {
+			return radikand;
+		}
+		else if (radikand == 0) {
+			return 0;
+		}
+		else if (!isNonNegativeInteger(exponent)) {
+			return new TypeError('broot: Der Exponent muss eine natürliche Zahl sein.');
+		}
+		else if (radikand < 0) {
+			return new TypeError('broot: Der Radikand muss eine positive Zahl sein.');
+		}
+
+		for (; exponent > 0; exponent--) {
+			radikand = mathJS.sqrt(radikand);
+		}
+
+		return radikand;
+	};
+
 	//Referenzen auf Funktionen hinzufügen
 	functions.arcsin = mathjsInstance.asin;
 	functions.arccos = mathjsInstance.acos;
