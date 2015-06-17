@@ -787,7 +787,7 @@ var mparser = (function() {
 				},
 				"mathjs": {
 					1: "sqrt($1)",
-					2: "($2)^(1/($1))"
+					2: "nthRoot($2,$1)"
 				}
 			}
 		},
