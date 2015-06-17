@@ -169,28 +169,28 @@ var mathJSFunctions = (function( mathjsInstance ) {
 	/*
 	 * Berechnen von Ausdrücken der Form sqrt[2^k](n)
 	 *
-	 * @param {Number} exponent
+	 * @param {Number} zweierexponent
 	 * @param {Number} radikand
 	 */
-	functions.broot = function (exponent, radikand) {
+	functions.broot = function (zweierexponent, radikand) {
 		function isNonNegativeInteger (number) {
 			return (number % 1 === 0) && (number >= 0);
 		}
 
-		if (exponent == 0) {
+		if (zweierexponent == 0) {
 			return radikand;
 		}
 		else if (radikand == 0) {
 			return 0;
 		}
-		else if (!isNonNegativeInteger(exponent)) {
-			return new TypeError('broot: Der Exponent muss eine natürliche Zahl sein.');
+		else if (!isNonNegativeInteger(zweierexponent)) {
+			return new TypeError('broot: Der Zweierexponent muss eine natürliche Zahl sein.');
 		}
 		else if (radikand < 0) {
 			return new TypeError('broot: Der Radikand muss eine positive Zahl sein.');
 		}
 
-		for (; exponent > 0; exponent--) {
+		for (; zweierexponent > 0; zweierexponent--) {
 			radikand = mathJS.sqrt(radikand);
 		}
 
