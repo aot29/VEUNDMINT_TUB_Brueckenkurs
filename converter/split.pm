@@ -1414,12 +1414,12 @@ sub printpages {
 	      
 
 		#Postprocessing
-  	        $text = postprocess($p,$text,"$outputfolder$link");
+  	        $text = postprocess($p,$text,"$outputfolder/$link");
 
                 my $dname = $p->{DOCNAME};
   	        my $extension = "html";
   	        my $docname = "$link.$extension";
-                my $fullpath = "$outputfolder$docname";
+                my $fullpath = "$outputfolder/$docname";
   	        
 
                 # Nummer des gerade aktuellen Fachbereichs (chapters) und Folgenummern ermitteln
@@ -1460,7 +1460,7 @@ sub printpages {
 		# if ($fc != 0) { print "Generiere $fc zusaetzliche Exportdateien\n"; }
   	        for ($i=0; $i < $fc; $i++ ) {
   	          my $fname = ${$p->{EXPORTS}}[$i][0];
-  	          writefile("$outputfolder$link$fname", ${$p->{EXPORTS}}[$i][1]);
+  	          writefile("$outputfolder/$link$fname", ${$p->{EXPORTS}}[$i][1]);
   	       }
   	       
 		
