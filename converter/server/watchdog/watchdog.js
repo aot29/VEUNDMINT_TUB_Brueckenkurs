@@ -27,7 +27,40 @@ function getUrlInfo(url) {
   }
 }
 
-console.log(config);
-console.log('feedback', getUrlInfo(config.URL.feedback));
-console.log('userdata', getUrlInfo(config.URL.userdata));
-console.log('course', getUrlInfo(config.URL.course));
+//timeout that get's called by 
+function timeout(result) {
+  console.log(result);
+}
+
+function pingCallback(state, result, path) {
+  result[path] = result[path] ? result[path] : {};
+  result[path]['ping'] = state;
+}
+
+
+//this function get's called in regular intervals
+function watch() {
+  var result = {};
+  console.log('\n\n\n\nwatching\n');
+  ping.promise.probe(getUrlInfo(config.URL.feedback).host).then(
+    function (state) {
+      pingCallback(state, result, 'feedback');
+    }
+  );
+
+  ping.promise.probe(getUrlInfo(config.URL.userdata).host).then(
+    function (state) {
+      pingCallback(state, result, 'userdata');
+    }
+  );
+
+  ping.promise.probe(getUrlInfo(config.URL.course).host).then(
+    function (state) {
+      pingCallback(state, result, 'course');
+    }
+  );
+
+  result.timeout = setTimeout(timeout, 1000, result);
+}
+
+var watcher = setInterval(watch, config.interval /* * 60 */ * 1000);

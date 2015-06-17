@@ -6,5 +6,7 @@ module.exports = {
     course: 'http://localhost/mint/testhtml'
   },
   //timeout in seconds
-  timeout: 10
+  timeout: 10,
+  //watchdog interval in minutes
+  interval: 5
 };
