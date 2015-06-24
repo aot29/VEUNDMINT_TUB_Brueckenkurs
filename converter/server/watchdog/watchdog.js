@@ -1,5 +1,6 @@
 #!/usr/bin/node
 
+
 var ping = require('ping'); //load ping module
 var config = require('./config');
 
@@ -29,19 +30,20 @@ function getUrlInfo(url) {
 
 //timeout that get's called by 
 function timeout(result) {
-  console.log(result);
+  result.timestamp = Date.now() / 1000; //Unix Timestamp
+  console.log(JSON.stringify(result));
 }
 
 function pingCallback(state, result, path) {
   result[path] = result[path] ? result[path] : {};
-  result[path]['ping'] = state;
+  result[path]['ping'] = state.alive;
 }
 
 
 //this function get's called in regular intervals
 function watch() {
   var result = {};
-  console.log('\n\n\n\nwatching\n');
+
   ping.promise.probe(getUrlInfo(config.URL.feedback).host).then(
     function (state) {
       pingCallback(state, result, 'feedback');
@@ -60,7 +62,7 @@ function watch() {
     }
   );
 
-  result.timeout = setTimeout(timeout, 1000, result);
+  setTimeout(timeout, 1000, result); //TODO: use the timeout from the configuration
 }
 
-var watcher = setInterval(watch, config.interval /* * 60 */ * 1000);
+var watcher = setInterval(watch, config.interval /* * 60 */ * 1000); //TODO: Use minutes instead of seconds
