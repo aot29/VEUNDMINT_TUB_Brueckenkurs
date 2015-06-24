@@ -59,12 +59,19 @@ function watch() {
       //make requests
       service.requests.forEach(
         function (req, reqIndex) {
+          //default values for this request
           result[service.name]['requests'] = result[service.name]['requests'] 
             ? result[service.name]['requests'] 
             : {};
           result[service.name]['requests'][req.name] = {response: false, success: false};
+
+          result[service.name]['requests'][req.name].startTime = Date.now();
           request[req.method.toLowerCase()](
             service.url, {form: req.data}, function (error, response, body) {
+              var stopTime = Date.now();
+              var startTime = result[service.name]['requests'][req.name].startTime;
+              delete result[service.name]['requests'][req.name].startTime;
+              result[service.name]['requests'][req.name].time = stopTime - startTime;
               if (!error) {
                 result[service.name]['requests'][req.name].response = true;
                 result[service.name]['requests'][req.name].success = req.regex.test(body);
