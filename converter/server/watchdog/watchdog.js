@@ -1,7 +1,8 @@
 #!/usr/bin/node
+'use strict'
 
-
-var ping = require('ping'); //load ping module
+var ping = require('ping');
+var jquery = require('jquery');
 var config = require('./config');
 
 //get information from a given URL
@@ -30,7 +31,6 @@ function getUrlInfo(url) {
 
 //timeout that get's called by 
 function timeout(result) {
-  result.timestamp = Date.now() / 1000; //Unix Timestamp
   console.log(JSON.stringify(result));
 }
 
@@ -44,21 +44,16 @@ function pingCallback(state, result, path) {
 function watch() {
   var result = {};
 
-  ping.promise.probe(getUrlInfo(config.URL.feedback).host).then(
-    function (state) {
-      pingCallback(state, result, 'feedback');
-    }
-  );
+  result.timestamp = Date.now() / 1000; //Unix Timestamp
 
-  ping.promise.probe(getUrlInfo(config.URL.userdata).host).then(
-    function (state) {
-      pingCallback(state, result, 'userdata');
-    }
-  );
-
-  ping.promise.probe(getUrlInfo(config.URL.course).host).then(
-    function (state) {
-      pingCallback(state, result, 'course');
+  config.services.forEach(
+    function (service, index) {
+      var urlInfo = getUrlInfo(service.url); //extract information from the URL
+      ping.promise.probe(urlInfo.host).then(
+        function (state) {
+          pingCallback(state, result, service.name);
+        }
+      );
     }
   );
 

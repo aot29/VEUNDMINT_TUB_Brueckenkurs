@@ -1,10 +1,10 @@
 //config file for watchdog
 module.exports = {
-  URL: {
-    feedback: 'http://localhost/mint/converter/server/feedback.php',
-    userdata: 'http://localhost/mint/converter/server/userdata.php',
-    course: 'http://localhost/mint/testhtml'
-  },
+  services: [
+    {name: 'feedback', url: 'http://localhost/mint/converter/server/feedback.php'},
+    {name: 'userdata', url: 'http://localhost/mint/converter/server/userdata.php'},
+    {name: 'course', url: 'http://localhost/mint/testhtml'}
+  ],
   //timeout in seconds
   timeout: 10,
   //watchdog interval in minutes
