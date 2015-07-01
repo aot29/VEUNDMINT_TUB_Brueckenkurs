@@ -90,7 +90,7 @@ function watch() {
               if (!error) {
                 result.services[service.name]['requests'][req.name].response = true;
                 try {
-                  result.services[service.name]['requests'][req.name].success = req.test(body);
+                  result.services[service.name]['requests'][req.name].success = req.test(body, response);
                 } catch (error) {
                 }
               }
