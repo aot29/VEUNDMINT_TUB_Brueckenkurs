@@ -28,7 +28,7 @@ module.exports = {
     }
   ],
   //timeout in seconds
-  timeout: 10,
+  timeout: 1,
   //watchdog interval in minutes
-  interval: 5
+  interval: 5/60
 };

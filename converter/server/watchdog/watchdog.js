@@ -81,7 +81,7 @@ function watch() {
     }
   );
 
-  setTimeout(timeout, 1000, result); //TODO: use the timeout from the configuration
+  setTimeout(timeout, config.timeout * 1000, result);
 }
 
-var watcher = setInterval(watch, config.interval /* * 60 */ * 1000); //TODO: Use minutes instead of seconds
+var watcher = setInterval(watch, config.interval * 60 * 1000);
