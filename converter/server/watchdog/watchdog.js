@@ -66,7 +66,7 @@ function watch() {
 
           result.services[service.name]['requests'][req.name].startTime = Date.now(); //time before the request
           requestFunction(
-            {url: url.format(requestUrl), form: req.data}, function (error, response, body) {
+            {url: url.format(requestUrl), form: req.data, timeout: (config.timeout + 1) * 1000}, function (error, response, body) {
               var stopTime = Date.now(); //time after the answer to the request came back
               var startTime = result.services[service.name]['requests'][req.name].startTime;
               delete result.services[service.name]['requests'][req.name].startTime;
