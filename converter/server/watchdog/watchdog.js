@@ -10,6 +10,22 @@ var merge = require('object-merge');
 
 //timeout that get's called by 
 function timeout(result) {
+  //cleanup
+  Object.keys(result.services).forEach(
+    function (service) {
+      if (!result.services[service].requests) {
+        return
+      }
+      Object.keys(result.services[service].requests).forEach(
+        function (req) {
+          if (result.services[service].requests[req].response == false) {
+            delete result.services[service].requests[req].startTime;
+          }
+        }
+      );
+    }
+  );
+
   console.log(JSON.stringify(result));
 }
 
@@ -46,7 +62,7 @@ function watch() {
           result.services[service.name]['requests'] = result.services[service.name]['requests'] 
             ? result.services[service.name]['requests'] 
             : {};
-          result.services[service.name]['requests'][req.name] = {response: false, success: false};
+          result.services[service.name]['requests'][req.name] = {response: false, success: false, time: null};
 
           var requestFunction = function () { //this function is to be overwritten in the following switch-case
             throw new Error('No request function, this shouldn\'t happen');
