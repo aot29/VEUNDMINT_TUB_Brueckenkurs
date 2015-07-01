@@ -4,6 +4,7 @@ module.exports = {
     {
       name: 'feedback',
       url: 'http://localhost/mint/converter/server/dbtest/feedback.php',
+      ping: true,
       requests: [
         {name: '1', method: 'POST', data: {feedback: 'watchdog'},
           test: function (response) {
@@ -14,6 +15,7 @@ module.exports = {
     {
       name: 'userdata',
       url: 'http://localhost/mint/converter/server/dbtest/userdata.php',
+      ping: false,
       requests: [
         {name: 'check_user', method: 'GET', data: {action: 'check_user'},
           test: function (response) {
@@ -23,6 +25,7 @@ module.exports = {
     },
     {
       name: 'course',
+      ping: true,
       url: 'http://localhost/mint/testhtml',
       requests: []
     }

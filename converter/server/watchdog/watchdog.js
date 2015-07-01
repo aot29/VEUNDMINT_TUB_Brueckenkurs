@@ -23,17 +23,20 @@ function watch() {
     function (service, index) {
       var urlObj = url.parse(service.url);
 
-      //defaut value 'false' for ping
       result[service.name] = result[service.name] ? result[service.name] : {};
-      result[service.name]['ping'] = false;
 
-      //ping the host
-      ping.promise.probe(urlObj.hostname).then(
-        function (state) {
-          result[service.name] = result[service.name] ? result[service.name] : {};
-          result[service.name]['ping'] = state.alive;
-        }
-      );
+      if (service.ping) {
+        //default value 'false' for ping
+        result[service.name]['ping'] = false;
+
+        //ping the host
+        ping.promise.probe(urlObj.hostname).then(
+          function (state) {
+            result[service.name] = result[service.name] ? result[service.name] : {};
+            result[service.name]['ping'] = state.alive;
+          }
+        );
+      }
 
       //make requests
       service.requests.forEach(
