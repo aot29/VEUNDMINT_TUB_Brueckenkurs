@@ -17,7 +17,6 @@ module.exports = {
       requests: [
         {name: 'check_user', method: 'GET', data: {action: 'check_user'},
           test: function (response) {
-            console.log(response);
             return JSON.parse(response).status === true;
           }}
       ]
