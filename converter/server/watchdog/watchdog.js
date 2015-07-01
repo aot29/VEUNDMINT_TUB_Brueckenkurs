@@ -18,22 +18,23 @@ function watch() {
   var result = {};
 
   result.timestamp = Date.now() / 1000; //Unix Timestamp
+  result.services = {};
 
   config.services.forEach(
     function (service, index) {
       var urlObj = url.parse(service.url);
 
-      result[service.name] = result[service.name] ? result[service.name] : {};
+      result.services[service.name] = result.services[service.name] ? result.services[service.name] : {};
 
       if (service.ping) {
         //default value 'false' for ping
-        result[service.name]['ping'] = false;
+        result.services[service.name]['ping'] = false;
 
         //ping the host
         ping.promise.probe(urlObj.hostname).then(
           function (state) {
-            result[service.name] = result[service.name] ? result[service.name] : {};
-            result[service.name]['ping'] = state.alive;
+            result.services[service.name] = result.services[service.name] ? result.services[service.name] : {};
+            result.services[service.name]['ping'] = state.alive;
           }
         );
       }
@@ -42,10 +43,10 @@ function watch() {
       service.requests.forEach(
         function (req, reqIndex) {
           //default values for this request
-          result[service.name]['requests'] = result[service.name]['requests'] 
-            ? result[service.name]['requests'] 
+          result.services[service.name]['requests'] = result.services[service.name]['requests'] 
+            ? result.services[service.name]['requests'] 
             : {};
-          result[service.name]['requests'][req.name] = {response: false, success: false};
+          result.services[service.name]['requests'][req.name] = {response: false, success: false};
 
           var requestFunction = function () { //this function is to be overwritten in the following switch-case
             throw new Error('No request function, this shouldn\'t happen');
@@ -63,17 +64,17 @@ function watch() {
               requestFunction = request[req.method.toLowerCase()];
           }
 
-          result[service.name]['requests'][req.name].startTime = Date.now(); //time before the request
+          result.services[service.name]['requests'][req.name].startTime = Date.now(); //time before the request
           requestFunction(
             {url: url.format(requestUrl), form: req.data}, function (error, response, body) {
               var stopTime = Date.now(); //time after the answer to the request came back
-              var startTime = result[service.name]['requests'][req.name].startTime;
-              delete result[service.name]['requests'][req.name].startTime;
-              result[service.name]['requests'][req.name].time = stopTime - startTime;
+              var startTime = result.services[service.name]['requests'][req.name].startTime;
+              delete result.services[service.name]['requests'][req.name].startTime;
+              result.services[service.name]['requests'][req.name].time = stopTime - startTime;
               if (!error) {
-                result[service.name]['requests'][req.name].response = true;
+                result.services[service.name]['requests'][req.name].response = true;
                 try {
-                  result[service.name]['requests'][req.name].success = req.test(body);
+                  result.services[service.name]['requests'][req.name].success = req.test(body);
                 } catch (error) {
                 }
               }
