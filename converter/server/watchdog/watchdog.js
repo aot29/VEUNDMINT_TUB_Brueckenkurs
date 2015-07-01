@@ -5,6 +5,8 @@ var ping = require('ping');
 var request = require('request');
 var config = require('./config');
 var url = require('url');
+var querystring = require('querystring');
+var merge = require('object-merge');
 
 //timeout that get's called by 
 function timeout(result) {
@@ -42,10 +44,26 @@ function watch() {
             : {};
           result[service.name]['requests'][req.name] = {response: false, success: false};
 
-          result[service.name]['requests'][req.name].startTime = Date.now();
-          request[req.method.toLowerCase()](
-            service.url, {form: req.data}, function (error, response, body) {
-              var stopTime = Date.now();
+          var requestFunction = function () { //this function is to be overwritten in the following switch-case
+            throw new Error('No request function, this shouldn\'t happen');
+          };
+          var requestUrl = url.parse(service.url);
+          switch (req.method.toUpperCase()) {
+            case 'GET':
+              requestFunction = request.get;
+              //construct the GET-Request by hand because the 'request' module doesn't seem
+              //to work with GET requests.
+              var requestQuery = merge(querystring.parse(requestUrl.search), req.data);
+              requestUrl.search = querystring.stringify(requestQuery);
+              break;
+            default:
+              requestFunction = request[req.method.toLowerCase()];
+          }
+
+          result[service.name]['requests'][req.name].startTime = Date.now(); //time before the request
+          requestFunction(
+            {url: url.format(requestUrl), form: req.data}, function (error, response, body) {
+              var stopTime = Date.now(); //time after the answer to the request came back
               var startTime = result[service.name]['requests'][req.name].startTime;
               delete result[service.name]['requests'][req.name].startTime;
               result[service.name]['requests'][req.name].time = stopTime - startTime;
