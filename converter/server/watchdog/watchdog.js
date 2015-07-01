@@ -4,30 +4,7 @@
 var ping = require('ping');
 var request = require('request');
 var config = require('./config');
-
-//get information from a given URL
-//
-//returns an object of the form:
-//  {
-//      url: url,
-//      host: hostname,
-//      path: path,
-//      protocol: protocol
-//  }
-function getUrlInfo(url) {
-  var regex = new RegExp('(http(?:s|))://([a-z0-9_\\.]+)/(.*)$', 'gi');
-  var match = regex.exec(url);
-  if (match === null) {
-    throw new SyntaxError('"' + url + '" is not a valid URL.');
-  }
-
-  return {
-    url: url,
-    protocol: match[1],
-    host: match[2],
-    path: match[3]
-  }
-}
+var url = require('url');
 
 //timeout that get's called by 
 function timeout(result) {
@@ -42,14 +19,14 @@ function watch() {
 
   config.services.forEach(
     function (service, index) {
-      var urlInfo = getUrlInfo(service.url); //extract information from the URL
+      var urlObj = url.parse(service.url);
 
       //defaut value 'false' for ping
       result[service.name] = result[service.name] ? result[service.name] : {};
       result[service.name]['ping'] = false;
 
       //ping the host
-      ping.promise.probe(urlInfo.host).then(
+      ping.promise.probe(urlObj.hostname).then(
         function (state) {
           result[service.name] = result[service.name] ? result[service.name] : {};
           result[service.name]['ping'] = state.alive;
