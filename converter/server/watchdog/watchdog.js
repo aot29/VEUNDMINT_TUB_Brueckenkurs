@@ -69,7 +69,10 @@ function watch() {
               result[service.name]['requests'][req.name].time = stopTime - startTime;
               if (!error) {
                 result[service.name]['requests'][req.name].response = true;
-                result[service.name]['requests'][req.name].success = req.test(body);
+                try {
+                  result[service.name]['requests'][req.name].success = req.test(body);
+                } catch (error) {
+                }
               }
             }
           );
