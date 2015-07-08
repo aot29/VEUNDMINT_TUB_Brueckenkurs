@@ -61,5 +61,10 @@ module.exports = {
   //timeout in seconds
   timeout: 3,
   //watchdog interval in minutes
-  interval: 5/60
+  interval: 5/60,
+  email: {
+    from: "Foo Bar <foo@bar.baz",
+    to: "someone@somewhere.tld",
+    subject: "Watchdog"
+  }
 };

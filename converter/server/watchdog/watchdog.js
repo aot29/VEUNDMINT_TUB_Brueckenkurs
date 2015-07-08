@@ -26,11 +26,21 @@ var url = require('url');
 var querystring = require('querystring');
 var merge = require('merge');
 var clone = require('clone');
+var nodemailer = require('nodemailer');
+var sendmailTransport = require('nodemailer-sendmail-transport');
+
+var mailTransporter = nodemailer.createTransport(sendmailTransport());
 
 //send an email
 function sendMail(content) {
-  //place holder
-  process.stderr.write(content + '\n');
+  var email = clone(config.email);
+  email.text = content;
+
+  mailTransporter.sendMail(email, function (error, info) {
+    if (error) {
+      return process.stderr.write(error + '\n');
+    }
+  });
 }
 
 //timeout that get's called by 
