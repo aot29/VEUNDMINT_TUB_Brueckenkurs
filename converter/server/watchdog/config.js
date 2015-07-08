@@ -5,10 +5,14 @@ module.exports = {
       name: 'feedback',
       url: 'http://localhost/mint/converter/server/dbtest/feedback.php',
       ping: true,
+      notify: true,
       requests: [
         {name: '1', method: 'POST', data: {feedback: 'watchdog'},
-          test: function (response) {
-            return (new RegExp('^success')).test(response);}
+          test: function (response, reqObject) {
+            return (new RegExp('^success')).test(response);
+          },
+          //threshold in ms (if threshold is reached, there will be a notification)
+          threshold: 1000
         }
       ]
     },
@@ -16,11 +20,14 @@ module.exports = {
       name: 'userdata',
       url: 'http://localhost/mint/converter/server/dbtest/userdata.php',
       ping: false,
+      notify: true,
       requests: [
         {name: 'check_user', method: 'GET', data: {action: 'check_user'},
-          test: function (response) {
+          test: function (response, reqObject) {
             return JSON.parse(response).status === true;
-          }}
+          },
+          threshold: 1000
+        }
       ]
     },
     {
@@ -38,6 +45,7 @@ module.exports = {
     {
       name: 'timeout',
       ping: false,
+      notify: true,
       url: 'http://localhost/sleep.php',
       requests: [
         {name: '1', method: 'GET', data: {},

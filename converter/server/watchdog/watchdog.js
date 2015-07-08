@@ -28,14 +28,15 @@ var merge = require('merge');
 
 //timeout that get's called by 
 function timeout(result) {
-  //cleanup
+  //Go through all of the results
   Object.keys(result.services).forEach(
     function (service) {
       if (!result.services[service].requests) {
-        return
+        return;
       }
       Object.keys(result.services[service].requests).forEach(
         function (req) {
+          //cleanup
           if (result.services[service].requests[req].response == false) {
             delete result.services[service].requests[req].startTime;
           }
@@ -60,6 +61,9 @@ function watch() {
 
       result.services[service.name] = result.services[service.name] ? result.services[service.name] : {};
 
+      //store if a notification should be sent for this service
+      result.services[service.name]['notify'] = service.notify ? service.notify : false;
+
       if (service.ping) {
         //default value 'false' for ping
         result.services[service.name]['ping'] = false;
@@ -81,6 +85,9 @@ function watch() {
             ? result.services[service.name]['requests'] 
             : {};
           result.services[service.name]['requests'][req.name] = {response: false, success: false, time: null};
+          if (req.threshold) {
+            result.services[service.name]['requests'].threshold_reached = 'true';
+          }
 
           var requestFunction = function () { //this function is to be overwritten in the following switch-case
             throw new Error('No request function, this shouldn\'t happen');
@@ -103,8 +110,16 @@ function watch() {
             {url: url.format(requestUrl), form: req.data, timeout: (config.timeout + 1) * 1000}, function (error, response, body) {
               var stopTime = Date.now(); //time after the answer to the request came back
               var startTime = result.services[service.name]['requests'][req.name].startTime;
-              delete result.services[service.name]['requests'][req.name].startTime;
               result.services[service.name]['requests'][req.name].time = stopTime - startTime;
+
+              //check if the threshold was reached
+              if (req.threshold && ((stopTime - startTime) < req.threshold)) {
+                result.services[service.name]['requests'].threshold_reached = 'false';
+              } else {
+                result.services[service.name]['requests'].threshold_reached = 'true';
+              }
+
+              delete result.services[service.name]['requests'][req.name].startTime;
               if (!error) {
                 result.services[service.name]['requests'][req.name].response = true;
                 try {
