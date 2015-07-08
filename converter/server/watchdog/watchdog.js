@@ -85,7 +85,7 @@ function timeout(passedResult) {
     }
   );
 
-  if (email != "") {
+  if ((typeof config.email === "object") && email != "") {
     sendMail(email);
   }
 
