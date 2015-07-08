@@ -6,7 +6,7 @@ var request = require('request');
 var config = require('./config');
 var url = require('url');
 var querystring = require('querystring');
-var merge = require('object-merge');
+var merge = require('merge');
 
 //timeout that get's called by 
 function timeout(result) {
