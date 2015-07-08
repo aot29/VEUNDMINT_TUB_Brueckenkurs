@@ -63,7 +63,7 @@ module.exports = {
   //watchdog interval in minutes
   interval: 5/60,
   email: {
-    from: "Foo Bar <foo@bar.baz",
+    from: "Foo Bar <foo@bar.baz>",
     to: "someone@somewhere.tld",
     subject: "Watchdog"
   }
