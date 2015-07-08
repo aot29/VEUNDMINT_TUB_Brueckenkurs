@@ -44,7 +44,7 @@ function timeout(result) {
     }
   );
 
-  console.log(JSON.stringify(result));
+  process.stdout.write(JSON.stringify(result) + '\n');
 }
 
 //this function get's called in regular intervals
