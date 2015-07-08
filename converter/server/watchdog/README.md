@@ -47,3 +47,57 @@ Watchdog checks the services specified in `config.js` in regular intervals and p
 ```
 
 **Note:** Every line of output is a JSON-String of itself, not the entire output.
+
+Configuration
+-------------
+Here is an example configuration that should explain how this works:
+```js
+//config file for watchdog. Note that this is a javascript file that gets loaded as a module by
+//watchdog, so you can write any javascript you want in this file.
+module.exports = {
+  services: [ //use this array to define the services you want to watch
+    {
+      name: 'service_one',
+      url: 'http://somewhere.else/service_one.php',
+      ping: true,
+      notify: true,
+      requests: [ //use this array to define the requests you want to make to this service
+                  //if you don't want to send any requests, use an empty array
+        {
+          name: 'get-request',
+          method: 'GET',
+          data: {id: '1234'},
+          test: function (response, reqObj) { //callback to determine if the request was successful
+            if (response = 'Hello world!') {
+              return true;
+            }
+            return false;
+          },
+          //the threshold is optional
+          threshold: 1000 //if the request isn't faster then the threshold, a notification is sent
+        },
+        {
+          name: 'post-request',
+          method: 'POST',
+          data: {file: 'SGVsbG8gd29ybGQhCg=='},
+          test: function (response, reqObj) {
+            if (response == 'sucess') {
+              return true;
+            }
+            return false;
+          }
+        }
+      ]
+    }
+  ],
+  //timeout in seconds
+  timeout: 10,
+  //watchdog interval in minutes
+  interval: 5.5,
+  email: {
+    from: "Foo Bar <foo@bar.baz>",
+    to: "someone@somewhere.tld",
+    subject: "watchdog notification"
+  }
+};
+```
