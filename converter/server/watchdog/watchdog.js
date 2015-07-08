@@ -27,26 +27,57 @@ var querystring = require('querystring');
 var merge = require('merge');
 var clone = require('clone');
 
+//send an email
+function sendMail(content) {
+  //place holder
+  process.stderr.write(content + '\n');
+}
+
 //timeout that get's called by 
 function timeout(passedResult) {
   var result = clone(passedResult); //clone to prevent race conditions
+  var email = ""; //email to send
 
   //Go through all of the results
   Object.keys(result.services).forEach(
     function (service) {
-      if (!result.services[service].requests) {
-        return;
+
+      if (result.services[service].notify && (result.services[service].ping === false)) {
+        email += "Service '" + service + "' not available.\n"
       }
-      Object.keys(result.services[service].requests).forEach(
-        function (req) {
-          //cleanup
-          if (result.services[service].requests[req].response == false) {
-            delete result.services[service].requests[req].startTime;
+
+      if (result.services[service].requests) {
+        Object.keys(result.services[service].requests).forEach(
+          function (req) {
+            //Send notifications
+            if (result.services[service].notify) {
+              if (!result.services[service].requests[req].response) {
+                email += "Service '" + service + "': Request '" + req + "' didn't respond.\n";
+              }
+              else if (!result.services[service].requests[req].success) {
+                email += "Service '" + service + "': Request '" + req + "' responded incorrectly.\n";
+              }
+
+              if (result.services[service].requests[req].threshold_reached) {
+                email += "Service '" + service + "': Request '" + req + "' reached it's threshold. It took " + result.services[service].requests[req].time + "ms.\n";
+              }
+            }
+
+            //cleanup
+            if (result.services[service].requests[req].response == false) {
+              delete result.services[service].requests[req].startTime;
+            }
           }
-        }
-      );
+        );
+      }
+
+      delete result.services[service].notify;
     }
   );
+
+  if (email != "") {
+    sendMail(email);
+  }
 
   process.stdout.write(JSON.stringify(result) + '\n');
 }
@@ -89,7 +120,7 @@ function watch() {
             : {};
           result.services[service.name]['requests'][req.name] = {response: false, success: false, time: null};
           if (req.threshold) {
-            result.services[service.name]['requests'].threshold_reached = 'true';
+            result.services[service.name]['requests'][req.name].threshold_reached = true;
           }
 
           var requestFunction = function () { //this function is to be overwritten in the following switch-case
@@ -117,9 +148,9 @@ function watch() {
 
               //check if the threshold was reached
               if (req.threshold && ((stopTime - startTime) < req.threshold)) {
-                result.services[service.name]['requests'].threshold_reached = 'false';
+                result.services[service.name]['requests'][req.name].threshold_reached = false;
               } else {
-                result.services[service.name]['requests'].threshold_reached = 'true';
+                result.services[service.name]['requests'][req.name].threshold_reached = true;
               }
 
               delete result.services[service.name]['requests'][req.name].startTime;

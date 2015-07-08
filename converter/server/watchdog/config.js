@@ -39,6 +39,7 @@ module.exports = {
     {
       name: 'unknown_host',
       ping: true,
+      notify: true,
       url: 'http://i-hope-this-domain-doesnt-exist.org',
       requests: []
     },
@@ -51,7 +52,8 @@ module.exports = {
         {name: '1', method: 'GET', data: {},
           test: function (response) {
             return response === 'Hallo Welt!';
-          }
+          },
+          threshold: 1000
         }
       ]
     }
