@@ -25,9 +25,12 @@ var config = require('./config');
 var url = require('url');
 var querystring = require('querystring');
 var merge = require('merge');
+var clone = require('clone');
 
 //timeout that get's called by 
-function timeout(result) {
+function timeout(passedResult) {
+  var result = clone(passedResult); //clone to prevent race conditions
+
   //Go through all of the results
   Object.keys(result.services).forEach(
     function (service) {
