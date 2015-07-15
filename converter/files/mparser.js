@@ -1,24 +1,21 @@
-/* 
- * Zusaetzliche Funktionen zum LaTeX- und Matheparsing
+/*
+ * Additional functions for parsing LaTeX and maths
  * Max Bruckner 2014-2015
  *
- * Diese Datei ist dafür zuständig einen String ( der z.B. in einem Textfeld
- * eingegeben wurde ) in einen von math.js parsebaren und einen von mathjax
- * renderbaren LaTeX-String umzuwandeln. Dies übernimmt die Funktion
- * convertMathInput()
+ * The purpose of this file is to convert a string (which has been entered
+ * into a textfield for example) into a LaTeX string that can be displayed
+ * by MathJax and a string that can be parsed and evaluated by math.js. This
+ * is done by the function convertMathInput()
  *
- * Weiterhin kann ein mathjs-String mit einer Reihe an Werten ausgerechnet werden,
- * dies macht man mit der Funktion evalMathJS().
- *
- * Außer diesen beiden Funktionen sollte von außerhalb keine Funktion verwendet werden.
- *
+ * With the function evalMathJS() it is possible to evaluate a math.js
+ * compatible string with an array of values.
  * */
 
-//MathJS initialisieren
+//initialise mathjs
 var mathJS = math;
-//Zusaetzliche Funktionen fuer MathJS
+//additional functions for the scope of mathjs
 var mathJSFunctions = (function( mathjsInstance ) {
-	const epsilonAbstand = 0.0001;    //Abstand, bei dem eine Fließkommazahl noch als Ganzzahl behandelt wird
+	const epsilonAbstand = 0.0001;    //delta for which a floating point value should still be treated as integer
 
 	var functions = {};
 
@@ -27,17 +24,17 @@ var mathJSFunctions = (function( mathjsInstance ) {
 	};
 
 	/*
-	 * Wertet Integrale, Summen und Produkte aus
+	 * evaluates integrals, sums and products
 	 *
-	 * typ: "int", "sum" oder "prod"
-	 * variable: Name der Stuetzvariable
-	 * unten: Untere Grenze
-	 * oben: obere Grenze
-	 * inhalt: inhalt des Konstrukts
-	 * schritte: Anzahl der Rechenschritte ( nur für Integrale relevant )
+	 * typ: "int", "sum" or "prod"
+	 * variable: variable of integration/summation/multiplication
+	 * unten: lower bound
+	 * oben: upper bound
+	 * inhalt: content of the construct
+	 * schritte: number of calculation steps (only relevant for integrals)
 	 * */
 	functions.konstrukt = function( args, mathjsInstance, scope  ) {
-		//Argumente holen
+		//get parameters
 		var typ = args[0].toString();
 		var variable = args[1].toString();
 		var unten = mathjsInstance.eval( args[2].toString(), scope );
@@ -46,14 +43,14 @@ var mathJSFunctions = (function( mathjsInstance ) {
 		var schritte = typeof args[5] !== 'undefined' ? mathjsInstance.eval( args[5].toString(), scope ) : 1000;
 
 		var code = mathjsInstance.compile( inhalt );
-		var calculate = 
+		var calculate =
 			function( value ) {
 				scope['stuetzvariable_'+variable] = value;
 				return code.eval( scope );
 			};
 
 		var faktor = 1;
-		//Für Integrale obere und untere Grenze gegebenenfalls vertauschen
+		//if integral, swap bounds if necessary
 		if( (unten > oben) && ( typ == "int" ) ) {
 			var swap = oben;
 			oben = unten;
@@ -61,13 +58,13 @@ var mathJSFunctions = (function( mathjsInstance ) {
 			faktor = -1;
 		}
 
-		var intervallbreite;    //Schrittgröße beim Berechnen des Konstrukts
-		var operation;  //Rechenoperation, die jeweils pro Schritt ausgeführt wird ( operation( total, current, next, intervallbreite ) )
+		var intervallbreite;    //size of the calculation steps
+		var operation;  //operation that gets calculated in every step ( operation( total, current, next, intervallbreite ) )
 		var wert;       //Anfangswert
-		//Definiere Operation und Intervallbreite für jeweiligen Typ
+		//define operation and step size for respective types
 		switch( typ ) {
 			case "sum":
-				operation = 
+				operation =
 					function( total, current, next, intervallbreite ) {
 						return mathjsInstance.add(total, current);
 					}
@@ -76,7 +73,7 @@ var mathJSFunctions = (function( mathjsInstance ) {
 				schritte = mathjsInstance.add( mathjsInstance.subtract( oben, unten ), 1 );
 				break;
 			case "prod":
-				operation = 
+				operation =
 					function( total, current, next, intervallbreite ) {
 						return mathjsInstance.multiply( total, current );
 					}
@@ -85,9 +82,9 @@ var mathJSFunctions = (function( mathjsInstance ) {
 				schritte = mathjsInstance.add( mathjsInstance.subtract( oben, unten ), 1 );
 				break;
 			case "int":
-				operation = 
+				operation =
 				function( total, current, next, intervallbreite ) {
-					return mathjsInstance.add( total, mathjsInstance.multiply( mathjsInstance.divide( mathjsInstance.add(current, next), 2 ), intervallbreite ) ); //Mittelsumme
+					return mathjsInstance.add( total, mathjsInstance.multiply( mathjsInstance.divide( mathjsInstance.add(current, next), 2 ), intervallbreite ) ); //middle sum
 				}
 				intervallbreite = mathjsInstance.divide( mathjsInstance.subtract(oben, unten), schritte );
 				wert = 0;
@@ -96,12 +93,12 @@ var mathJSFunctions = (function( mathjsInstance ) {
 				return  0;
 		}
 
-		//Abbrechen, wenn Intervallbreite 0
+		//abort if when step size if 0
 		if( intervallbreite == 0 ) {
 			return 0;
 		}
 
-		//Berechne das Konstrukt
+		//evaluate the construct
 		var current = calculate( unten );
 		var next;
 		for( var i = 0; i < schritte; i++ ) {
@@ -112,11 +109,12 @@ var mathJSFunctions = (function( mathjsInstance ) {
 		return mathjsInstance.multiply( faktor, wert );
 	};
 
-	/* 
-	 * Berechnen der Fakultät.
+	/*
+	 * calculate the factorial of a number
 	 *
-	 * Besonderheit hierbei: Weicht der Wert um "epsilonAbstand"
-	 * von einer natürlichen Zahl ab, wird diese Gerundet
+	 * special feature: if the value differs from an integer
+	 * only by 'epsilonAbstand', then it get's rounded to the
+	 * respective integer
 	 * */
 	functions.fakultaet = function( zahl ) {
 		if( mathjsInstance.subtract( zahl, mathjsInstance.round( zahl ) ) <= epsilonAbstand ) {
@@ -128,21 +126,22 @@ var mathJSFunctions = (function( mathjsInstance ) {
 
 	/*
 	 * Berechnen des Binomialkoeffizienten n über k.
+	 * calculate the binomial n over k
 	 *
-	 * Wie auch bei der Fakultät wird "epsilonAbstand" berücksichtigt.A
+	 * As with factorial, this respects 'epsilonAbstand'.
 	 *
-	 * Es handelt sich hierbei um eine Abwandlung des Algorithmus
-	 * auf "https://de.wikipedia.org/wiki/Binomialkoeffizient"
+	 * This is a modified version of the algorithm used here:
+	 * https://de.wikipedia.org/wiki/Binomialkoeffizient
 	 * */
 	functions.binomial = function( n, k ) {
-		//Negative k sind nicht erlaubt
+		//negative values for k aren't valid
 		if( k < 0 ) {
 			throw "FEHLER: Negatives k bei Binomialkoeffizient";
 		} else if( k > n ) {
 			throw "FEHLER: Im Binomialkoeffizient darf k nicht groesser als n sein.";
 		}
 
-		//Zahlen zu Ganzzahlen wandeln ( wenn sie um höchstens epsilonAbstand davon abweichen )
+		//convert values to integers (if they differ maximally by 'epsilonAbstand')
 		if( mathjsInstance.subtract( n, mathjsInstance.round( n ) ) <= epsilonAbstand ) {
 			n = mathjsInstance.round( n );
 		}
@@ -150,7 +149,7 @@ var mathJSFunctions = (function( mathjsInstance ) {
 			k = mathjsInstance.round( k );
 		}
 
-		//Berechnung
+		//calculation
 		if( mathjsInstance.multiply( 2, k ) > n ) {
 			k = mathjsInstance.subtract( n, k ); //k = n-k
 		}
@@ -167,7 +166,7 @@ var mathJSFunctions = (function( mathjsInstance ) {
 	};
 
 	/*
-	 * Berechnen von Ausdrücken der Form sqrt[2^k](n)
+	 * calculate expressions of the form sqrt[2^k](n)
 	 *
 	 * @param {Number} zweierexponent
 	 * @param {Number} radikand
@@ -197,7 +196,7 @@ var mathJSFunctions = (function( mathjsInstance ) {
 		return radikand;
 	};
 
-	//Referenzen auf Funktionen hinzufügen
+	//add references to functions
 	functions.arcsin = mathjsInstance.asin;
 	functions.arccos = mathjsInstance.acos;
 	functions.arctan = mathjsInstance.atan;
@@ -206,34 +205,27 @@ var mathJSFunctions = (function( mathjsInstance ) {
 	functions.arccosh = mathjsInstance.acosh;
 	functions.arctanh = mathjsInstance.atanh;
 	functions.arccoth = mathjsInstance.acoth;
-	functions.konstrukt.rawArgs = true;	//Enable custom argument parsing
+	functions.konstrukt.rawArgs = true;	//enable custom argument parsing
 
-	/*
-	*	An dieser Stelle meinen herzlichsten Dank an Jos de Jong, dafür dass er die tolle 
-	*	Bibliothek MathJS geschrieben hat und dass er innerhalb von zwei Wochen
-	*	das custom argument parsing in MathJS eingebaut hat, nachdem ich ihm einen
-	*	entsprechenden Feature-Request geschrieben hatte. ( Max Bruckner)
-	* */
-
-	//Dieses Return-Objekt definiert das öffentliche Interface
+	//this return object defines the public interface
 	return functions;
-})( mathJS ); //hier wird mathJS als mathjsInstance übergeben
+})( mathJS ); //mathJS gets passed as mathjsInstance
 
-//Importieren der Funktionen in den mathJS namespace
+//import the functions into the namespace of mathjs
 mathJS.import( mathJSFunctions );
 
 
 
 //-------------------------------------------------------------------------------------------------------------------
 /*
- * closure um das mparser-modul zu definieren und Funktionen zu kapseln, die von außen nicht sichtbar sein sollen.
+ * closure that defines the mparser module. This encapsules all of the functions that shouldn't be publicly visible.
  **/
 var mparser = (function() {
 	var mparser = {};
 	/*
-	* Gibt den Key zu einem gegebenen Wert in einem Assoziativen Array zurück.
-	* Dies funktioniert nur dann richtig, wenn dieser Wert nur genau einmal vorkommt.
-	* */
+	 * returns the key to a given value in an associative array.
+	 * This only works correclty if the the value is only used once.
+	 * */
 	function getArrayKey( array, value ) {
 		for( var key in array ) {
 			if( array[key] == value ) {
@@ -244,27 +236,26 @@ var mparser = (function() {
 	}
 
 	/*
-	* Ersetzt von start bis ende im Quellstring durch den Ersetzungsstring.
-	* Das ganze funktioniert wie String.prototype.slice, also exklusive dem Zeichen
-	* an der Endposition
-	* */
+	 * Replaces everything from 'start' to 'ende' in 'input' by 'replace'.
+	 * This works like String.prototype.slice (excluding the character at 'ende')
+	 * */
 	function replaceByPos( input, anfang, ende, replace ) {
 		var rumpf = input.slice( 0, anfang );
 		var rest = input.slice( ende );
 		return rumpf + replace + rest;
 	}
 
-	//Escapen von Strings für Regular Expressions:
+	//escape strings for use in regular expressions
 	function regexEscape( input ) {
 		return input.replace( /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&" );
 	}
 
 	/*
-	 * Wiederholtes Ersetzen einer Regex, bis nichts mehr gematcht wird.
-	 * Dies ist notwendig, wenn sich matches überschneiden.
+	 * Repeatedly replace all matches of 'regex' until no matches are found.
+	 * This is necessary if matches overlap.
 	 *
-	 * regex: RegExp-Objekt
-	 * ACHTUNG, hiermit kann man leicht eine Endlosschleife produzieren
+	 * regex: RegExp object
+	 * WARNING: It's easy to run into an infinite loop when using this function
 	 **/
 	function replaceAllMatches( input, regex, replaceString ) {
 		var lastInput;
@@ -276,11 +267,10 @@ var mparser = (function() {
 	}
 
 	/*
-	*	Ersetzt jedes Vorkommen eines Wortes in einem String
-	*
-	*	Ein Trefffer ist nur dann ein Treffer, wenn vor und nach dem Such-
-	*	begriff keine Buchstaben oder "\" sind.
-	* */
+	 * Replace every occurence of 'word' in 'input'
+	 *
+	 * A word is only then matched, if is preceded or followed by letters or '\'
+	 * */
 	function replaceWord( input, word, replacement ) {
 		var lastChar = " ";
 		var letter = RegExp( "[a-zA-Z\\\\]", "" );
@@ -288,7 +278,7 @@ var mparser = (function() {
 			if( (! letter.test( lastChar ) ) && ( input[pos] == word[0] ) ) {
 				var suchPos;
 				for( suchPos = 0; (suchPos < word.length) && (word[suchPos] == input[pos+suchPos]); suchPos++ ) {}
-				//Gefunden
+				//found
 				if( (suchPos == word.length ) && ( (input.length <= pos + suchPos) || (!letter.test(input[pos+suchPos])) ) ) {
 					input = replaceByPos( input, pos, pos + suchPos, replacement );
 					pos += replacement.length;
@@ -302,29 +292,29 @@ var mparser = (function() {
 	}
 
 	/*
-	* Globale Variablen mit Ersetzungen etc
-	* -------------------------------------
-	* */
+	 * Global lists of replacements etc.
+	 * -------------------------------------
+	 * */
 
 
-	/*
-	* Globale Map mit eindeutigen IDs
-	* 
-	* - Hinzufügen von Objekten im globalMap.add( objekt ), gibt die id als Wert zurück.
-	* - Löschen von Objekten mit globalMap.remove( id )
-	* - Lesen von Objekten mit globalMap.get( id )
-	* - Schreiben von Objekten mit globalMap.set( id, objekt ), wirklich nur diese Methode verwenden
-	* */
+	/* TODO: remove this in favor of a single object that gets passed through the functions instead of an error id
+	 * global map with unique ids
+	 *
+	 * - add objects with globalMap.add(object), returns an id.
+	 * - delete objects with globalMap.remove(id)
+	 * - get objects with globalMap.get(id)
+	 * - ovwerwrite objects with globalMap.set(id, object)
+	 * */
 	var globalMap = {
 		lastID: 0,
 		add: function( objekt ) {
 			var id = this.lastID + 1;
-			//Genau dann eine Endlosschleife, wenn die Map 9007199254740992 Einträge hat ( sollte nicht passieren )
-			//Diese Schleife sorgt dafür, dass nach einem Überlauf der ID keine IDs doppelt genutzt werden.
-			for(; typeof this[id] != "undefined"; id++ ) {  
+			//this is an infinite loop if the map has 9007199254740992 entries (shouldn't happen)
+			//this loop ensures that even after an overflow of the counter, no id gets used twice
+			for(; typeof this[id] != "undefined"; id++ ) {
 			}
 			if( typeof objekt === "undefined" ) {
-				//Ersetze undefined durch null, um leere von nichtexistenten Objekten unterscheiden zu können
+				//replace 'undefined' by 'null' to be able to distinguish empty from nonexistent objects
 				objekt = null;
 			}
 			this[id] = objekt;
@@ -349,7 +339,7 @@ var mparser = (function() {
 					throw "FEHLER: globalMap: Es existiert kein Objekt mit der ID " + id + "!";
 				}
 				if( typeof objekt === "undefined" ) {
-					//Ersetze undefined durch null, um leere von nichtexistenten Objekten unterscheiden zu können
+					//replace 'undefined' by 'null' to be able to distinguish empty from nonexistent objects
 					objekt = null;
 				}
 				this[id] = objekt;
@@ -357,7 +347,7 @@ var mparser = (function() {
 	};
 
 	/*
-	*  Fügt eine Fehlermeldung zur Liste der Fehler hinzu
+	*  add an error message to the list of errors
 	* */
 	function addFehler( fehlerListenID, fehler ) {
 		var fehlerListe = globalMap.get( fehlerListenID );
@@ -366,17 +356,17 @@ var mparser = (function() {
 	}
 
 	/*
-	*	Zu ersetzende Ausdrücke ( ohne Klammern )
-	*
-	* Array von Objekten der Form:
-	*
-	*	{	ausdruck: [ "a", "b" ], 	//Array von Ausdrücken
-	*		replace: {
-	*			"latex": "LaTeXString",
-	*			"mathjs": "Parserstring"
-	*			//Hierbei wird "$0" durch den Ausdruck ersetzt
-	*		},
-	*		word: true	//Soll der Ausdruck nur als Wort ersetzt werden ( keine Buchstaben oder "\" vor/nach dem gefundenen Ausdruck oder aber überall [ wichtige Unterscheidung da manche Ausdrücke Teil von anderen Ausdrücken sind ] )
+	 * expressions to be replaced (without brackets)
+	 *
+	 * array of objects of the form:
+	 *
+	 *	{	ausdruck: [ "a", "b" ], 	//Array of expressions
+	 *		replace: {
+	 *			"latex": "LaTeXString",
+	 *			"mathjs": "Parserstring"
+	 *			//replaces "$0" by the expression
+	 *		},
+	 *		word: true	//should the expression be replaced as entire word only (no letters or '\' before/after the expression [important distinction because some expressions are subsets of others] )
 	*	}
 	* */
 	var toReplace = [
@@ -575,7 +565,7 @@ var mparser = (function() {
 		{
 			ausdruck: [ "¹" ],
 			replace: {
-				"latex": " ^{1}",	//HINWEIS: Das Leerzeichen ist wichtig
+				"latex": " ^{1}",	//NOTE: the space is important
 				"mathjs": "^1"
 			},
 			word: false
@@ -583,7 +573,7 @@ var mparser = (function() {
 		{
 			ausdruck: [ "²" ],
 			replace: {
-				"latex": " ^{2}",	//HINWEIS: Das Leerzeichen ist wichtig
+				"latex": " ^{2}",	//NOTE: the space is important
 				"mathjs": "^2"
 			},
 			word: false
@@ -591,7 +581,7 @@ var mparser = (function() {
 		{
 			ausdruck: [ "³" ],
 			replace: {
-				"latex": " ^{3}",	//HINWEIS: Das Leerzeichen ist wichtig
+				"latex": " ^{3}",	//NOTE: the space is important
 				"mathjs": "^3"
 			},
 			word: false
@@ -605,7 +595,7 @@ var mparser = (function() {
 			word: false
 		},
 		{
-			ausdruck: [ "_", "^" ],	//Wichtig für Klammersetzung
+			ausdruck: [ "_", "^" ],	//important for parenthesis
 			replace: {
 				"latex": " $0",
 				"mathjs": "$0"
@@ -634,13 +624,13 @@ var mparser = (function() {
 		"(": ")",
 		"{": "}",
 		"[": "]",
-		"|": "|"   //Nur fuer Ersetzung, nicht fuer Suchen gedacht
+		"|": "|"   //'|' only useful for replacing, not searching (because opening and closing characters are identical)
 	};
 
-	//Folgende Strings werden mit vorangesetztdem 'd' als Differential interpretiert
+	//the following strings get treated as differentials if preceded by a 'd'
 	var differentiale = [ "x", "y", "z", "t", "u" ];
 
-	//erstelle Character-Klassen für öffnende und schließende Klammern
+	//construct character classes for opening and closing parentheses
 	var characterClassAuf = "";
 	var characterClassZu = "";
 	Object.keys( klammernPaare ).forEach(
@@ -650,28 +640,28 @@ var mparser = (function() {
 		}
 	);
 
-	//Ausdrücke, die in LaTeX andere Klammern erfordern
-	// { 
-	//     ausdruck: "zu suchender Ausdruck",
+	//expressions that need other parentheses when used in LaTeX
+	// {
+	//     ausdruck: "expression to search for",
 	//     replace: {
-	//        0: "Ersetzung für beliebige Anzahl an Argumenten, dies ist ein Speziallfall",
-	//        1: "Ersetzung für Ausdruck mit einem Argument",
-	//        2: "Ersetzung für Ausdruck mit zwei Argumenten"
-	//        //Hierbei wird $1 durch den ersten Wert, $2 durch den zweiten Wert ... ersetzt.
-	//        //$0 wird durch den gefundenen Ausdruck ersetzt
+	//        0: "replacement for an arbitrary number of parameters",
+	//        1: "replacement for expression with one parameter",
+	//        2: "replacement for expression with two parameters"
+	//        //$1 gets replaced by the first parameter, $2 by te second ...
+	//        //$0 gets replaced by the expression itself
 	//        },
-	//     klammern: "String aller klammern für die die Ersetzung gilt"
+	//     klammern: "all of the brackets for which the expression applies"
 	//
 	// }
 	//
-	// Im falle von 0, also einer beliebigen Anzahl von Argumenten sieht das Objekt folgendermaßen aus:
+	// In case of 0 (meaning an arbitrary number of parameters) the object looks like the following:
 	// 0: {
-	// 	anfang: "Anfang des neuen Ausdrucks"
-	// 	argument: "Wodurch das Argument ersetzt wird"
-	// 	trenner: "Trenner zwischen Argumenten"
-	// 	ende: "Ende des neuen Ausdrucks"
+	// 	anfang: "beginning of the resulting expression",
+	// 	argument: "what the argument gets replaced by",
+	// 	trenner: "Trenner zwischen Argumenten",
+	// 	ende: "ending of the resulting expression"
 	// }
-	// Im falle von beliebig vielen Argumenten wird $i durch das entsprechende Argument ersetzt
+	// In case of an arbitrary number of parameters, $i gets replaced by the respective parameter
 	var toReplaceKlammern =  [
 		{
 			//Trigonometrische und andere Funktionen in normaler notation ohne Ersetzung des Wortes
@@ -787,7 +777,7 @@ var mparser = (function() {
 				}
 			}
 		},
-		{ 
+		{
 			ausdruck: [ "^" ],
 			replace: {
 				"latex": {
@@ -798,7 +788,7 @@ var mparser = (function() {
 				}
 			}
 		},
-		{ 
+		{
 			ausdruck: [ "_" ],
 			replace: {
 				"latex": {
@@ -809,10 +799,10 @@ var mparser = (function() {
 				}
 			}
 		},
-		{ 
+		{
 			ausdruck: [ "sqrt", "wurzel", "Wurzel" ],
 			replace: {
-				"latex": { 
+				"latex": {
 					1: "\\sqrt{$1}",
 					2: "\\sqrt[$1]{$2}"
 				},
@@ -822,7 +812,7 @@ var mparser = (function() {
 				}
 			}
 		},
-		{ 
+		{
 			ausdruck: [ "sum", "Sum", "summe", "Summe", "\\sum" ],
 			replace: {
 				"latex": {
@@ -833,7 +823,7 @@ var mparser = (function() {
 				}
 			}
 		},
-		{ 
+		{
 			ausdruck: [ "int", "Int", "integral", "Integral", "\\int" ],
 			replace: {
 				"latex": {
@@ -844,7 +834,7 @@ var mparser = (function() {
 				}
 			}
 		},
-		{ 
+		{
 			ausdruck: [ "prod", "Prod", "produkt", "Produkt", "\\prod" ],
 			replace: {
 				"latex": {
@@ -1236,11 +1226,11 @@ var mparser = (function() {
 					if( (obereGrenzeStart >= 0) && (anfang[obereGrenzeStart] == "^")) {
 						var obereGrenze = anfang.slice( obereGrenzeStart + 2, obereGrenzeEnde );
 						var anfangRumpf = anfang.slice( 0, obereGrenzeStart );
-						return anfangRumpf + "_(" 
+						return anfangRumpf + "_("
 							+ swapBoundaries( untereGrenze, fehlerListenID )
-							+ ")" + "^(" 
-							+ swapBoundaries( obereGrenze, fehlerListenID ) 
-							+ ")" 
+							+ ")" + "^("
+							+ swapBoundaries( obereGrenze, fehlerListenID )
+							+ ")"
 							+ swapBoundaries( ende, fehlerListenID );
 					} else {
 						addFehler( fehlerListenID, {
@@ -1274,7 +1264,7 @@ var mparser = (function() {
 		var klammerZu = klammernPaare[klammerTyp];
 		//erstellen der Regex für einfache Differentiale ( dx, dy ... )
 		var regexString = "(";      //Ziel: (x|y.....)
-		differentiale.forEach( 
+		differentiale.forEach(
 			function( differential ) {
 				regexString += differential + "|";
 			}
@@ -1282,7 +1272,7 @@ var mparser = (function() {
 		regexString = regexString.slice( 0, -1);      //entferne letztes '|'
 		regexString += ')';
 
-		var rex = RegExp( "(^|[^a-zA-Z])d" + regexString + "($|[^a-zA-Z])", 'g' ); 
+		var rex = RegExp( "(^|[^a-zA-Z])d" + regexString + "($|[^a-zA-Z])", 'g' );
 		input = replaceAllMatches( input, rex, "$1" + klammerAuf + "d" + klammerAuf + "$2" + klammerZu + klammerZu + " $3" );
 		return input;
 	}
@@ -1359,14 +1349,14 @@ var mparser = (function() {
 				rest = input.slice( dZu + 2 );
 			} else {    //Kein Integral
 				//Bestimmen der Laufvariable durch Aufsplitten
-				var untenSplit = unten.split( '=' ); 
+				var untenSplit = unten.split( '=' );
 				variable = untenSplit.shift();	//Erstes element von untenSplit löschen und in variable speichern
 				unten = untenSplit.join('=');	//Rest von untenSplit wieder zusammenfügen (wichtig damit Verschachtelung funktioniert)
 
 				//Inhalt bestimmen
 				if( input[inhaltStart] == "(" ) {   //Inhalt in Klammern?
 					inhaltEnde = sucheKlammern( input, inhaltStart );
-				} else {    //Ansonsten Inhalt bis "," (in Vektor) oder Ende des Strings 
+				} else {    //Ansonsten Inhalt bis "," (in Vektor) oder Ende des Strings
 					inhaltEnde = findeAufKlammerEbene( input, ",", 0, inhaltStart );
 					if( inhaltEnde < 0 ) {	//Wenn kein Komma, nehme Ende des Strings
 						inhaltEnde = input.length - 1;
@@ -1384,7 +1374,7 @@ var mparser = (function() {
 
 			var inhalt = input.slice( inhaltStart, inhaltEnde + 1 );
 
-			//Variable durch Schlüsselwort ersetzen 
+			//Variable durch Schlüsselwort ersetzen
 			//( "(stuetzvariable_$variable)", wobei $variable durch den eigentlich Wert ersetzt wird )
 			var variableEscaped = regexEscape( variable );  //Sonderzeichen für Regex escapen
 			if( variableEscaped.length <= 0 ) { //leere variable Abfangen um Endlosschleife zu verhindern
@@ -1404,13 +1394,13 @@ var mparser = (function() {
 			var restObjekt = replaceConstructs( rest, integrationsSchritte, fehlerListenID );
 
 			//Rückgabeobjekt zusammensetzen
-			result.mathjs = rumpf + 
-			'konstrukt(' 
+			result.mathjs = rumpf +
+			'konstrukt('
 				+ typ + ','
 				+ variable + ','
 				+ untenObjekt.mathjs + ','
 				+ obenObjekt.mathjs + ','
-				+ inhaltObjekt.mathjs 
+				+ inhaltObjekt.mathjs
 				+ (typ === "int"?',' + integrationsSchritte:"")
 				+ ')'
 				+ restObjekt.mathjs;
@@ -1693,7 +1683,7 @@ var mparser = (function() {
 			} while( (treffer != null) && /.(sum\(|int\(|prod\()/.test( input ) );
 			if( treffer == null ) {
 				break;
-			} 
+			}
 
 			var klammerAufPos = treffer.index + treffer[1].length + treffer[2].length;
 			var klammerZuPos = sucheKlammern( input, klammerAufPos );
@@ -1728,13 +1718,13 @@ var mparser = (function() {
 			if (getArrayKey(klammernPaare, input[i]) !== undefined) {
 				//passt die klammer auf dem Stack nicht zu der schließenden?
 				if (stack.pop() != getArrayKey(klammernPaare, input[i])) {
-					return false;	
+					return false;
 				}
 			} else if (klammernPaare.hasOwnProperty(input[i])) { //öffnende Klammer
 				stack.push(input[i]);
 			}
 		}
-		
+
 		if ((stack.length == 0) && (abs % 2 == 0)) {
 			return true;
 		}
@@ -1747,7 +1737,7 @@ var mparser = (function() {
 	*  einem Parserstring und einem MathJS-String ( letzteres ist momentan nur eine
 	*  Kopie des Parserstrings ).
 	*
-	*  Hierzu werden schritt für Schritt Teile der Eingabe ersetzt, bis das Endergebnis 
+	*  Hierzu werden schritt für Schritt Teile der Eingabe ersetzt, bis das Endergebnis
 	*  erreicht ist.
 	*
 	*  integrationsSchritte: Anzahl der Schritte beim Integrieren
@@ -1781,7 +1771,7 @@ var mparser = (function() {
 		*      debug:   "Interne Fehlermeldung für Debug-Zwecke"
 		*  }
 		* */
-		var fehlerListenID = globalMap.add( new Array() ); 
+		var fehlerListenID = globalMap.add( new Array() );
 
 
 		//Einfache Ersetzungen durchführen (ohne Klammerausdrücke)
@@ -1791,7 +1781,7 @@ var mparser = (function() {
 		//Klammerausdrücke bearbeiten
 		result.latex = bracketReplace( result.latex, "latex", fehlerListenID );
 		result.mathjs = bracketReplace( result.mathjs, "mathjs", fehlerListenID );
-		
+
 		//Funktionsaufrufe umklammern
 		result.latex = encloseFunctions( result.latex, "{", fehlerListenID );
 		result.mathjs = encloseFunctions( result.mathjs, "(", fehlerListenID );
@@ -1899,7 +1889,7 @@ var mparser = (function() {
 		for( var i = 0; i < anzahl; i++ ) {
 			var scope = {};
 			//Füge alle Variablen mit entsprechenden Werten zu Scope hinzu ( Schleife über alle Variablen )
-			jQuery.each( variables, 
+			jQuery.each( variables,
 				function ( property, value ) {
 					scope[property] = value[i]; //i-ten Wert für Variable in Scope einfügen
 				}
@@ -1909,9 +1899,9 @@ var mparser = (function() {
 		}
 		return ergebnisse;
 	};
-	
+
 	/*
-	 * Erhält ein Lineares Gleichungssystem in form einer Koeffizientenmatrix, 
+	 * Erhält ein Lineares Gleichungssystem in form einer Koeffizientenmatrix,
 	 * einen Vektor der rechten Seite des Gleichungssystems und eine Eingabe vom Nutzer,
 	 * die auf eine Richtige Lösung überprüft wird.
 	 *
@@ -1970,7 +1960,7 @@ var mparser = (function() {
 		//Berechnen der Differenz
 		try {
 			var mathjsDelta = mathJS.subtract( mathjsUserRightHandSide, mathjsRightHandSide );
-			mathjsDelta.forEach( 
+			mathjsDelta.forEach(
 					function( value ) {
 						if( mathJS.abs( extround(value, accuracy) ) > mathJS.pow(10,(accuracy+2)*(-1)) ) {
 							throw false;
@@ -1986,6 +1976,6 @@ var mparser = (function() {
 	};
 
 	//Dieses Return-Objekt definiert das öffentliche Interface
-	return mparser; 
+	return mparser;
 })(); //ENDE der Closure
 
