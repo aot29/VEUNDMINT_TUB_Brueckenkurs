@@ -7,11 +7,19 @@ Watchdog is a program to watch web services for their availability and automatic
 
 Usage
 -----
-Before you run this, make sure you have *nodejs* and *npm* installed. Then install the dependencies with: `npm install`. If you want to send email notifications, you need to also have *sendmail* installed.
+Before you run this, make sure you have *nodejs* and *npm* installed. Then install the dependencies with `npm install`. If you want to send email notifications, you need to also have *sendmail* installed.
 
 You can run it directly with `./watchdog.js` or via `node watchdog.js` (might be `nodejs watchdog.js` on some GNU/Linux distributions).
 
 If you want to save the output to a log file, use shell redirection: `./watchdog.js 1>> logfile`
+
+Features
+--------
+Watchdog performs checks on the availability of services in regular intervals. It can check the following:
+* ping the host
+* make an HTTP request (GET, POST etc.) and check the validity of the response
+* send email notifications via sendmail
+* check if a request takes too long
 
 Output
 ------
@@ -50,6 +58,11 @@ Watchdog checks the services specified in `config.js` in regular intervals and p
 
 Configuration
 -------------
+Watchdog uses the concept of services. Each service has one URL. You can do the following with a service:
+* ping the host
+* send HTTP requests to the URL and manually check the result (via a javascript callback)
+* set a threshold for the response time to send a notification email
+
 Here is an example configuration that should explain how this works:
 ```js
 //config file for watchdog. Note that this is a javascript file that gets loaded as a module by
