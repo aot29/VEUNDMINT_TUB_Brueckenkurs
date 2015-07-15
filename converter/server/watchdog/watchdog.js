@@ -71,7 +71,7 @@ function sendMail(content) {
   });
 }
 
-//timeout that get's called by 
+//timeout that collects all the results
 function timeout(passedResult) {
   var result = clone(passedResult); //clone to prevent race conditions
   var email = ""; //email to send
@@ -122,11 +122,13 @@ function timeout(passedResult) {
 
 //this function get's called in regular intervals
 function watch() {
+  //object where the results of the requests are collect
   var result = {};
 
   result.timestamp = Date.now() / 1000; //Unix Timestamp
   result.services = {};
 
+  //go through all of the services
   config.services.forEach(
     function (service, index) {
       var urlObj = url.parse(service.url);
@@ -136,6 +138,7 @@ function watch() {
       //store if a notification should be sent for this service
       result.services[service.name]['notify'] = service.notify ? service.notify : false;
 
+      //ping a service's host
       if (service.ping) {
         //default value 'false' for ping
         result.services[service.name]['ping'] = false;
@@ -162,7 +165,8 @@ function watch() {
           }
 
           var requestFunction = function () { //this function is to be overwritten in the following switch-case
-            throw new Error('No request function, this shouldn\'t happen');
+            errorLog("No request function, this shouldn't happen!");
+            throw new Error('No request function, this shouldn\'t happen!');
           };
           var requestUrl = url.parse(service.url);
           switch (req.method.toUpperCase()) {
@@ -174,13 +178,16 @@ function watch() {
               requestUrl.search = querystring.stringify(requestQuery);
               break;
             default:
+              //set the request function (eg. post(...) for POST requests)
               requestFunction = request[req.method.toLowerCase()];
           }
 
-          result.services[service.name]['requests'][req.name].startTime = Date.now(); //time before the request
+          result.services[service.name]['requests'][req.name].startTime = Date.now(); //save current time before the request
+          //now make the actual request
           requestFunction(
-            {url: url.format(requestUrl), form: req.data, timeout: (config.timeout + 1) * 1000}, function (error, response, body) {
-              var stopTime = Date.now(); //time after the answer to the request came back
+            {url: url.format(requestUrl), form: req.data, timeout: (config.timeout + 1) * 1000}, //configuration
+            function (error, response, body) { //request callback
+              var stopTime = Date.now(); //current time after the answer to the request came back
               var startTime = result.services[service.name]['requests'][req.name].startTime;
               result.services[service.name]['requests'][req.name].time = stopTime - startTime;
 
@@ -206,7 +213,24 @@ function watch() {
     }
   );
 
+  //now that all the requests are dispatched set a timeout that collects the results
   setTimeout(timeout, config.timeout * 1000, result);
 }
 
+/*
+ * How the asynchronous logic of this program works:
+ *
+ * Every config.interval minutes, the watch function get's called. It creates
+ * a new 'result' object to store the results of the current 'watch' (not a clock).
+ * 'watch' then makes all of the requests specified in the configuration and passes
+ * the result object along to them (so no global result object is used, if two
+ * 'watch' functions would run at the same time, both of them would have different
+ * result objects).
+ *
+ * After dispatching all of the requests, a timeout is started. The requests that
+ * arrive before the timeout will add their results to the 'result' object. Once
+ * triggered, the timeout 'collects' the 'result' object, processes it and prints
+ * it out. All requests that arrive after the timeout has been called won't be 
+ * included in the 'collection' and therefore are handled like they didn't arrive at all.
+ */
 var watcher = setInterval(watch, config.interval * 60 * 1000);
