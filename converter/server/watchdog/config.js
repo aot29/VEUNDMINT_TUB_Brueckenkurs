@@ -58,6 +58,8 @@ module.exports = {
       ]
     }
   ],
+  logfile: 'log',
+  errorlog: 'errors.log',
   //timeout in seconds
   timeout: 3,
   //watchdog interval in minutes

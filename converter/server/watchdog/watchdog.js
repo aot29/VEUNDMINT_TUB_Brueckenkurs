@@ -28,8 +28,36 @@ var merge = require('merge');
 var clone = require('clone');
 var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
+var fs = require('fs');
 
 var mailTransporter = nodemailer.createTransport(sendmailTransport());
+
+//log to logfile
+function log(message) {
+  if (config.logfile && (typeof config.logfile === 'string')) {
+    fs.appendFile(config.logfile, message + '\n', function (err) {
+      if (err) {
+        errorLog("ERROR: Couldn't write to logfile'" + config.logfile + "'.");
+      }
+    });
+  }
+
+  process.stdout.write(message + '\n');
+}
+
+//log an error
+function errorLog(message) {
+  if (config.errorlog && (typeof config.errorlog === 'string')) {
+    fs.appendFile(config.errorlog, message + '\n', function (err) {
+      if (err) {
+        process.stderr.write("ERROR: Couldn't write to errorlog '" + config.errorlog + "'");
+      }
+    });
+  }
+
+  process.stderr.write(message + '\n');
+}
+
 
 //send an email
 function sendMail(content) {
@@ -38,7 +66,7 @@ function sendMail(content) {
 
   mailTransporter.sendMail(email, function (error, info) {
     if (error) {
-      return process.stderr.write(error + '\n');
+      return errorLog(error);
     }
   });
 }
@@ -89,7 +117,7 @@ function timeout(passedResult) {
     sendMail(email);
   }
 
-  process.stdout.write(JSON.stringify(result) + '\n');
+  log(JSON.stringify(result));
 }
 
 //this function get's called in regular intervals
