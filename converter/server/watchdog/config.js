@@ -58,8 +58,8 @@ module.exports = {
       ]
     }
   ],
-  logfile: 'log',
-  errorlog: 'errors.log',
+  logfile: '/opt/watchdog/log',
+  errorlog: '/opt/watchdog/errorlog',
   //timeout in seconds
   timeout: 3,
   //watchdog interval in minutes

@@ -105,8 +105,8 @@ module.exports = {
   ],
   //file to append the output to (additional to stdout)
   //this doesn't log error messages
-  logfile: 'log', //optional
-  errorlog: 'errors.log', //optional
+  logfile: '/opt/watchdog/log', //optional
+  errorlog: '/opt/watchdog/errorlog', //optional
   //timeout in seconds
   timeout: 10,
   //watchdog interval in minutes

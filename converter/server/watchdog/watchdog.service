@@ -1,0 +1,15 @@
+[Unit]
+Description=Watchdog for HTTP services.
+After=network.target
+
+[Service]
+User=watchdog
+Group=watchdog
+ExecStart=/usr/bin/nodejs /opt/watchdog/watchdog.js
+Type=simple
+
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
