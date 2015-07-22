@@ -664,8 +664,7 @@ var mparser = (function() {
 	// In case of an arbitrary number of parameters, $i gets replaced by the respective parameter
 	var toReplaceKlammern =  [
 		{
-			//Trigonometrische und andere Funktionen in normaler notation ohne Ersetzung des Wortes
-			// ( 1 zu 1 in LaTeX konvertierbar durch voranstellen von "\\")
+			//trigonometric and other functions that can be converted to latex by adding '\\' at the beginning of the string
 			ausdruck: [ "sin", "cos", "tan", "cot", "arcsin", "arccos", "arctan", "sinh", "cosh", "tanh", "coth", "exp", "ln" ],
 			replace: {
 				"latex": {
@@ -889,20 +888,19 @@ var mparser = (function() {
 				}
 			}
 		},
-		{ //Differentiale
+		{ //differentials
 			ausdruck: [ "d" ],
 			replace: {
 				"latex": {
-					1: " {~d{$1}} "	//HINWEIS: Die Leerzeichen sind wichtig
+					1: " {~d{$1}} "	//NOTE: The spaces are important
 				},
 				"mathjs": {
 					1: "(d($1))"
 				}
 			}
 		},
-		//WICHTIG: Der Eintrag für Vektoren muss immer am Ende stehen,
-		//da der leere String immer gematcht wird und die folgenden Einträge nicht mehr
-		//berücksichtigt würden!
+		//IMPORTANT: The entry for vectors has to be the last one because the empty
+		//string will always be matched --> subsequent entries will be ignored!
 		{	//Vektoren und Klammern
 			ausdruck: [ "" ],
 			replace: {
@@ -930,23 +928,23 @@ var mparser = (function() {
 	];
 
 	/*
-	*	Ersetzt eingaben anhand des Objektes toReplace
-	*
-	* 	input: Zu verarbeitender String
-	*  mode: welche Art von Ersetzung soll durchgeführt werden ( "latex", "mathjs" )
-	* */
+	 * Replace expressions in in 'input' using the patterns defined in 'toReplace'
+	 *
+	 * input: string to be processed
+	 * mode: which kind of replacement should be performed ("latex", "mathjs")
+	 * */
 	function simpleReplace( input, mode, fehlerListenID ) {
-		//Ersetzungen durchgehen
+		//step through replacement patterns
 		toReplace.forEach(
 			function( element ) {
-				//Durchgehen aller "namen" dieses ausdrucks ( z.B. asin, arcsin für den Arkussinus )
+				//step through 'names' of this expression ("ausdruck") (e.g. asin, arcsin for the arcus sine)
 				element.ausdruck.forEach(
 					function( ausdruck ) {
 						var ersetzung = element.replace[mode];
-						ersetzung = ersetzung.replace( RegExp( "\\$0", "g" ), ausdruck ); //$0 durch den gefundenen Ausdruck ersetzen
-						if( element.word ) { //sollen nur ganze Wörter ersetzt werden ( bei ausdruck = "sin" würde nur "sin" aber nicht z.B. "arcsin" ersetzt werden )
+						ersetzung = ersetzung.replace( RegExp( "\\$0", "g" ), ausdruck ); //replace $0 by the matched expression
+						if( element.word ) { //replace only complete words? ("sin" would only match "sin" but not "arcsin" )
 							input = replaceWord( input, ausdruck, ersetzung );
-						} else {	//Ersetzung ohne Wortgrenzen
+						} else {
 							input = input.replace( RegExp( regexEscape( ausdruck ), "g" ), ersetzung  );
 						}
 					}
@@ -958,35 +956,32 @@ var mparser = (function() {
 
 
 	/*
-	* Kümmert sich um die rekursive Abarbeitung von Klammerausdrücken
-	* Bekommt einen String und liefert einen String mit verarbeiteten Klammerausdrücken
-	* zurück.
-	*
-	* Klammerausdrücke sind hierbei Ausdrücke in Form eines Wortes gefolgt von Klammern
-	* mit beliebig vielen, per Komma getrennten, Argumenten.
-	*
-	* Beispiel:
-	* 	gamma+log(alpha,beta)+epsilon
-	*   ---------^----- ----^--------
-	*    ^       |   ^   ^  |     ^
-	*    |  anfang   |   |  ende  |
-	*    rumpf       |   |        rest
-	*       inhalte[0]   inhalte[1]
-	*
-	* Die Ersetzung erfolgt anhand des Inhaltes von toReplaceKlammern.
-	*
-	* Parameter:
-	*  input: Zu verarbeitender String
-	*  mode: welche Art von Ersetzung soll durchgeführt werden ( "latex", "mathjs" )
-	* */
+	 * Recursively replaces expressions with parentheses (like functions).
+	 * A word followed by parentheses that contain one or multiple comma
+	 * separated expressions.
+	 *
+	 * Example (including variable names):
+	 * 	gamma+log(alpha,beta)+epsilon
+	 *   ---------^----- ----^--------
+	 *    ^       |   ^   ^  |     ^
+	 *    |  anfang   |   |  ende  |
+	 *    rumpf       |   |        rest
+	 *       inhalte[0]   inhalte[1]
+	 *
+	 * The patterns in 'toReplaceKlammern' are used.
+	 *
+	 * Parameters:
+	 *  input: input string
+	 *  mode: which kind of replacement should be performed ("latex", "mathjs")
+	 * */
 	function bracketReplace( input, mode, fehlerListenID ) {
-		//Finde öffnende Klammer
-		var rex = RegExp( "[" + characterClassAuf + "]", "" );	//Öffnende Klammern
+		//find an opening bracket
+		var rex = RegExp( "[" + characterClassAuf + "]", "" );	//opening bracket
 		var treffer = rex.exec( input );
 		if( treffer != null ) {
 			var klammerAuf = treffer[0];
-			var anfang = treffer.index;	//Position der öffnenden Klammer
-			var ende = sucheKlammern( input, anfang );	//schließende Klammer
+			var anfang = treffer.index;	//position of the opening bracket
+			var ende = sucheKlammern( input, anfang );	//closing bracket
 			if( ende < 0 ) {
 				addFehler( fehlerListenID, {
 					nutzer: "Fehlende schließende Klammer!",
@@ -995,8 +990,8 @@ var mparser = (function() {
 				return input;
 			}
 
-			var inhalte = [];	//Array der Argumente innerhalb der Klammern
-			//Inhalt der Klammer anhand von Kommata zerlegen
+			var inhalte = [];	//array of arguments contained by the brackets
+			//split content of the brackets using comma
 			for( var pos = anfang + 1; (pos > 0) && (pos < ende); pos = nextKomma + 1 ) {
 				var nextKomma = findeAufKlammerEbene( input, ",", 0, pos );
 				if( (nextKomma == -1 ) || (nextKomma > ende) ) {
@@ -1005,35 +1000,35 @@ var mparser = (function() {
 				inhalte.push( bracketReplace( input.slice( pos, nextKomma ), mode, fehlerListenID ) );
 			}
 
-			//Strings vor und nach der Klammer
+			//strings in front of and afther the expression
 			var rumpf = input.slice( 0, anfang );
 			var rest = input.slice( ende + 1 );
 
-			//String in den der neue Inhalt gescpeichert wird
+			//string to put the new content of the brackets into
 			var inhalt = "";
 
-			//Durchgehen der Ersetzungen
+			//step through replacements
 			var i;
 			treffer = null;
 			for( i = 0; (i < toReplaceKlammern.length) && (treffer == null); i++ ) {
-				// Überspringen wenn Klammern nicht in Liste
+				// skip if the type of parentheses isn't in the list
 				var klammern = toReplaceKlammern[i].klammern;
 				if( (typeof klammern == "undefined") || (klammern.search( regexEscape(klammerAuf) ) != -1 ) ) {
-					//Durchgehen der zu findenden Ausdrücke
+					//step through the patterns to search for
 					for( j in toReplaceKlammern[i].ausdruck ) {
 						var ausdruck = toReplaceKlammern[i].ausdruck[j];
-						//Ausdruck am Ende des Rumpfes suchen
+						//search for the expression at the end of 'rumpf'
 						rex = RegExp( "(^|[^a-zA-Z\\\\])(" + regexEscape( ausdruck ) + ")$", "" );
 						treffer = rex.exec( rumpf );
 						if( treffer != null ) {
-							rumpf = rumpf.replace( rex, "$1" );	//ausdruck aus Rumpf entfernen
-							//Existiert eine Ersetzung mit gegebener Kommazahl?
+							rumpf = rumpf.replace( rex, "$1" );	//remove expression from 'rumpf'
+							//is a replacement with the given number of commas defined?
 							if( (typeof toReplaceKlammern[i].replace[mode][inhalte.length]) != "undefined" ) {
 								inhalt = toReplaceKlammern[i].replace[mode][inhalte.length];
-							} else if( (typeof toReplaceKlammern[i].replace[mode][0]) != "undefined" ) {	//Ersetzung für beliebige Zahl von Argumenten?
+							} else if( (typeof toReplaceKlammern[i].replace[mode][0]) != "undefined" ) {	//is there a replacement for an arbitrary number of parameters?
 								var replaceObject = toReplaceKlammern[i].replace[mode][0];
 
-								//Zusammensetzen des Strings
+								//concatenate replacement string
 								inhalt = replaceObject.anfang;
 								for( var k = 1; k < inhalte.length; k++ ) {
 								inhalt += replaceObject.argument.replace( "$i", "$" + k )
@@ -1051,23 +1046,23 @@ var mparser = (function() {
 								return input;
 							}
 
-							//Ersetze alle $-Ausdrücke im String inhalt
-							//"$0" durch ausdruck ersetzen
+							//replace all '$' expressions in 'inhalt'
+							//replace "$0" with "ausdruck"
 							rex = RegExp( "\\$0", "g" );
 							inhalt = inhalt.replace( rex, ausdruck );
-							//Restliche Argumente ersetzen ( $1, $2, ... )
-							for( var j = inhalte.length; j > 0; j-- ) {	//von oben nach unten Zählen, damit z.B. $11 vor $1 ersetzt wird
+							//replace remaining arguments ($1, $2, ... )
+							for( var j = inhalte.length; j > 0; j-- ) {	//count down to e.g. replace $11 before $1
 								rex = RegExp( "\\$" + j, "g" );
 								inhalt = inhalt.replace( rex, inhalte[j-1] );
 							}
 
-							break;	//Schleife stoppen da passender Ausdruck bereits gefunden
+							break;	//break out of loop because the matching expression has already been found
 						}
 					}
 				}
 			}
 
-			//Wenn kein Treffer, erstelle inhalt aus inhalte, sonst funktioniert {\cdot} beispielsweise nicht!
+			//if no match, create "inhalt" by concatenating "inhalte" (otherwise stuff like '{\cdot}' wouldn't work
 			if( (i == toReplaceKlammern.length) && (treffer == null)   ) {
 				inhalt = klammerAuf + inhalte.join( ',' ) + klammernPaare[klammerAuf];
 			}
@@ -1078,28 +1073,28 @@ var mparser = (function() {
 	}
 
 	/*
-	* Diese Funktion sucht das Gegenstück zu einer gegebenen Klammer
-	*  Returnwert ist die Position der gefundenen Klammer oder -1 im
-	*  Fehlerfall
+	 * search for the matching bracket to a given bracket.
+	 *
+	 * returns the position of the bracket or -1 if not found.
 	**/
 	function sucheKlammern( input, klammerPos ) {
-		//Klammertypen, können auch umgekehrt sein ( klammerAuf enthält z.B.
-		// eine schließende Klammer, wenn nach links gesucht wird )
+		//klammerAuf doesn't have to be an opening bracket, it can also be a closing one
+		//in which case function would search from right to left
 		var klammerAuf = input[klammerPos];
 		var klammerZu = '';
-		var delta;  //Richtung ( -1: nach links, +1: nach rechts )
+		var delta;  //search direction ( -1: left, +1: right )
 		//bestimme Suchrichtung und setze Klammernpaare
-		if( klammernPaare[klammerAuf] != undefined ) { //klammerAuf ist öffnende Klammer
+		if( klammernPaare[klammerAuf] != undefined ) { //'klammerAuf' is opening bracket
 			klammerZu = klammernPaare[klammerAuf];
-			delta = 1;  //Nach rechts suchen
-		} else if( getArrayKey( klammernPaare, klammerAuf ) ) { //Prüfe, ob klammerAuf schließende Klammer ist
+			delta = 1;  //search right
+		} else if( getArrayKey( klammernPaare, klammerAuf ) ) { //check if 'klammerAuf' is a closing bracket
 			klammerZu = getArrayKey( klammernPaare, klammerAuf );
-			delta = -1; //Nach links suchen
+			delta = -1; //search left
 		} else {
 			return -1;
 		}
 
-		//Jetzt wird endlich nach der eigentlichen Klammer gesucht
+		//now do the actual search
 		var klammerZuPos;
 		var zaehler = 1;
 		for( klammerZuPos = klammerPos + delta; (zaehler > 0) && (klammerZuPos >= 0) && (klammerZuPos < input.length); klammerZuPos += delta ) {
@@ -1109,9 +1104,9 @@ var mparser = (function() {
 				zaehler++;
 			}
 		}
-		klammerZuPos -= delta;  //letztes "+= delta" aus Schleife korrigieren
+		klammerZuPos -= delta;  //compensate for the last "+= delta" in the loop
 
-		//passende Klammer gefunden?
+		//matching bracket found?
 		if( zaehler == 0 ) {
 			return klammerZuPos;
 		} else {
@@ -1120,44 +1115,43 @@ var mparser = (function() {
 	}
 
 	/*
-	*	Diese Funktion sucht in einem String nach einer Zeichenfolge, liefert
-	*	aber nur einen Treffer auf der angegebenen Klammerebene ( Klammerebene
-	*	0, wenn nichts angegeben, startPos 0 wenn nichts angegeben ). Rückgabewert ist
-	*	die Position des Treffers oder -1 wenn nichts gefunden wurde.
-	*
-	*	HINWEIS: Im suchString werden verschiedene Klammertypen nicht voneinander
-	*	unterschieden
-	*	TODO: Ebenjene Unterscheidung ermöglichen
-	* */
+	 * Searches for a string but only matches on a given level of brackets.
+	 * ( "klammerebene" 0 by default, "startPos" 0 by default).
+	 *
+	 * Returns the position of the match or -1 if no match is found.
+	 *
+	 * NOTICE: Treat's all bracket's equally. It doesn't check if they actually match
+	 * TODO: Make this distinction possible
+	 * */
 	function findeAufKlammerEbene( input, suchString, klammerEbene, startPos ) {
-		//Gegebenenfalls Standardwert setzen
+		//set default value if undefined
 		klammerEbene = (typeof klammerEbene != 'undefined') ? klammerEbene : 0;
 		startPos = (typeof startPos != 'undefined') ? startPos : 0;
 
-		//Bei leerem Suchstring abbrechen
+		//abort if "suchString" is empty
 		if( suchString.length < 1 ) {
 			return -1;
 		}
 
-		//Alle Klammern durch runde Klammern ersetzen:
+		//replace all parentheses by round brackets:
 		input = input.replace( RegExp( "[" + characterClassAuf + "]", "g"), "(" );
 		input = input.replace( RegExp( "[" + characterClassZu + "]", "g"), ")" );
 		suchString = suchString.replace( RegExp( "[" + characterClassAuf + "]", "g"), "(" );
 		suchString = suchString.replace( RegExp( "[" + characterClassZu + "]", "g"), ")" );
 
 		var aktuelleEbene = 0;
-		var pos;			//Position im Input
-		//Suche nach String
+		var pos;			//position in the input
+		//search for "suchString"
 		for( pos = startPos; (pos < input.length); pos++ ) {
 			if( (aktuelleEbene == klammerEbene) && (input[pos] == suchString[0]) ) {
 				var suchPos;
 				for( suchPos = 0; (suchPos < suchString.length) && (suchString[suchPos] == input[pos+suchPos]); suchPos++ ) {}
-				if( suchPos == suchString.length ) {	//gefunden
+				if( suchPos == suchString.length ) {	//found
 					return pos;
 				}
 			}
 
-			//Klammern zählen
+			//count brackets
 			if( input[pos] == '(' ) {
 				aktuelleEbene++;
 			} else if( input[pos] == ')' ) {
@@ -1169,58 +1163,58 @@ var mparser = (function() {
 	}
 
 	/*
-	* Tauscht abfolgen von ^(...) _(...) aus durch _(...)^(...).
-	*
-	* Die Vertauschung erfolgt ausschließlich im Parserstring
-	*
-	* HINWEIS: Es werden keine Grenzen innerhalb von Grenzen unterstützt
-	*  ( sowas wie "int_{int_{a}^{b}}^{c}")
-	*                       --------
-	*
-	* */
+	 * swaps '^(...) _(...)' --> '_(...)^(...)'
+	 *
+	 * This only works in the mathjs string, not the latex string
+	 *
+	 * NOTICE: bounds inside of bounds aren't supported
+	 * ( like "int_{int_{a}^{b}}^{c}" )
+	 *                 --------
+	 * */
 	function swapBoundaries( input, fehlerListenID ) {
-		//entfernen von Leerzeichen
+		//remove whitespaces
 		input = input.replace( /\s+/g, '' );
 
-		var untereGrenzeStart = findeAufKlammerEbene( input, "_(", 0 ); // Anfang->_(...)
+		var untereGrenzeStart = findeAufKlammerEbene( input, "_(", 0 ); // "anfang"->_(...)
 		if( untereGrenzeStart != -1 ) { //Wenn "_(" gefunden
-			var untereGrenzeEnde = sucheKlammern( input, untereGrenzeStart + 1 ); //_(...)<-Ende
+			var untereGrenzeEnde = sucheKlammern( input, untereGrenzeStart + 1 ); //_(...)<-"ende"
 			if( untereGrenzeEnde < 0 ) {
 				addFehler( fehlerListenID, {
-					nutzer: "Untere grenze endet nicht",    //TODO: evtl. besseren Namen finden, da untere Grenze nur bei Integralen passt.
+					nutzer: "Untere grenze endet nicht",    //TODO: find better name because "Grenze" only fits with integrals
 					debug: "swapBoundaries: untere Grenze endet nicht" } );
 				return input;
 			}
 
-			//Strings vor und Nach _(...)
+			//strings in front of and after '_(...)'
 			var anfang = input.slice( 0, untereGrenzeStart );
 			var ende = input.slice( untereGrenzeEnde + 1 );
 
 			var untereGrenze = input.slice( untereGrenzeStart + 2, untereGrenzeEnde );
 
-			//Positionsangaben für obere Grenze, diese beziehen sich nicht auf input,
-			//  sondern entweder anfang oder ende, je nachdem, wo sich die obere Grenze befindet
+			//the position of the upper bound isn't relative to 'input', but 'anfang'
+			//or 'ende', depending on where the upper bound is
 			var obereGrenzeStart;
 			var obereGrenzeEnde;
 
-			//Suche nach ^(..) hinter _(..)
+			//search for '^(..)' after '_(..)'
 			var obereGrenzeStart = findeAufKlammerEbene( ende, "^(", 0 );
-			if( obereGrenzeStart == 0 ) { // "^(" am Anfang des Strings ende
+			if( obereGrenzeStart == 0 ) { // "^(" at the beginning of  'ende'
 				obereGrenzeEnde = sucheKlammern( ende, 1 );
 				if( obereGrenzeEnde >= 0 ) {
 					var obereGrenze = ende.slice( obereGrenzeStart + 2, obereGrenzeEnde );
-					var endeRest = ende.slice( obereGrenzeEnde + 1 );   //Restlicher Teil von ende, der nicht zur oberen Grenze gehört
-					//Rückgabe des Strings, keine Vertauschung
+					var endeRest = ende.slice( obereGrenzeEnde + 1 );   //remaining part of 'ende' that doesn't belong to the upper bound
+					//return the string without swapping
 					return anfang + "_(" + untereGrenze + ")" + "^(" +  obereGrenze + ")" + swapBoundaries( endeRest, fehlerListenID );
 				} else {
 					addFehler( fehlerListenID, {
-						nutzer: "Obere grenze endet nicht",    //TODO: evtl. besseren Namen finden, da obere Grenze nur bei Integralen passt.
+						nutzer: "Obere grenze endet nicht",    //TODO: find better name because "Grenze" only fits with integrals
+evtl. besseren Namen finden, da obere Grenze nur bei Integralen passt.
 						debug: "swapBoundaries: obere Grenze endet nicht" } );
 					return input;
 				}
 			} else {
-				//Suche nach ^(...) vor _(...)
-				if( anfang[anfang.length - 1] == ')' ) {	//Endet Anfang mit ")"?
+				//search for '^(...)' in front of '_(...)'
+				if( anfang[anfang.length - 1] == ')' ) {	//does 'anfang' end with ')'?
 					obereGrenzeEnde = anfang.length - 1;
 					obereGrenzeStart = sucheKlammern( anfang, obereGrenzeEnde ) - 1;
 					if( (obereGrenzeStart >= 0) && (anfang[obereGrenzeStart] == "^")) {
@@ -1247,29 +1241,30 @@ var mparser = (function() {
 			}
 		}
 
-		return input;   //Die Ausführung sollte hier eigentlich gar nicht ankommen
+		return input;   //this line should never be reached
 	}
 
 	/*
-	* Verarbeitet Differentiale, sodass sie die Form (d(x)) annehmen
-	* ( sowohl für LaTeX-String als auch Parser-String )
-	*  input: Eingabestring
-	*  klammerTyp: Öffnende Klammer des Typs, der für das Differential verwendet werden soll
-	*              ( hauptsächlich '(' für Parser-String und '{' für LaTeX-String )
-	*
-	* Differentiale der Form d(...) werden mithilfe von toReplaceKlammern verarbeitet
-	* */
+	 * process differentials to be of the form '(d(x))'
+	 * (both LaTeX and mathjs strings)
+	 *  input: input string
+	 *  klammerTyp: opening bracket of the type to be used in the replacement
+	 *              ( mainly '(' for the mathjs string and '{' for the LaTeX string )
+	 *
+	 * differentials of the form 'd(...)' are processed via 'toReplaceKlammern'
+	 * */
 	function preprocessDifferentials( input, klammerTyp, fehlerListenID ) {
 		var klammerAuf = klammerTyp;
 		var klammerZu = klammernPaare[klammerTyp];
 		//erstellen der Regex für einfache Differentiale ( dx, dy ... )
-		var regexString = "(";      //Ziel: (x|y.....)
-		differentiale.forEach(
+		//create regular expression for simple differentials
+		var regexString = "(";      //goal: '(x|y.....)'
+		differentiale.forEach( //TODO: use Array.prototype.join ?
 			function( differential ) {
 				regexString += differential + "|";
 			}
 		);
-		regexString = regexString.slice( 0, -1);      //entferne letztes '|'
+		regexString = regexString.slice( 0, -1);      //remove last '|'
 		regexString += ')';
 
 		var rex = RegExp( "(^|[^a-zA-Z])d" + regexString + "($|[^a-zA-Z])", 'g' );
@@ -1278,15 +1273,15 @@ var mparser = (function() {
 	}
 
 	/*
-	* Bestimmt den Inhalt von Integralen und deren Differentiale und formatiert sie:
-	*
-	*   Parserstring: int_(...)^(...)(...)(d(x))
-	*                                ^   ^
-	*                           anfang   ende
-	*
-	*   Rückgabe ist ein Objekt, mit den Elementen "mathjs" und "mathjs".
-	*
-	* */
+	 * Determines the content of a construct and it's differential (for integrals) and formats it:
+	 *
+	 *
+	 *   mathjs-string: int_(...)^(...)(...)(d(x))
+	 *                                ^   ^
+	 *                          'anfang' 'ende'
+	 *
+	 * Returns an object with the elements 'mathjs' and 'mathjs' TODO: WTF?
+	 * */
 	function replaceConstructs( input, integrationsSchritte, fehlerListenID ) {
 		var result = {
 			mathjs: input,
@@ -1295,18 +1290,18 @@ var mparser = (function() {
 		var rex = new RegExp( "(int|sum|prod)_\\(" );
 		var treffer = rex.exec( input );
 		if( treffer != null ) {
-			var typ = treffer[1];   //Typ ( sum, int, prod )
+			var typ = treffer[1];   //type ( sum, int, prod )
 
-			//Grenzen ( bzw. wie auch immer das bei nicht-Integralen heißt ) und Inhalt
+			//bounds and content
 			var untenStart = treffer.index + typ.length + 1; // "int_" = typ.length + 1
 			var obenStart = sucheKlammern( input, untenStart ) + 2; // ")^" = 2
-			if( obenStart < 2 ) {	//0 (von sucheKlammern) + 2 = 2
+			if( obenStart < 2 ) {	//0 (length of sucheKlammern) + 2 = 2
 				addFehler( fehlerListenID, {
 					nutzer: "fehlende schließende Klammer",
 					debug: "replaceConstructs: fehlende schließende Klammer"} );
 				return input;
 			}
-			var unten = input.slice( untenStart + 1, obenStart - 2 );   //String der unteren Grenze
+			var unten = input.slice( untenStart + 1, obenStart - 2 );   //lower bound
 			var inhaltStart = sucheKlammern( input, obenStart ) + 1; // ")" = 1
 			if( inhaltStart < 1 ) {	//0 + 1 = 1
 				addFehler( fehlerListenID, {
@@ -1314,17 +1309,17 @@ var mparser = (function() {
 					debug: "replaceConstructs: fehlende schließende Klammer"} );
 				return input;
 			}
-			var oben = input.slice( obenStart + 1, inhaltStart - 1 );   //String der oberen Grenze
-			var inhaltEnde = inhaltStart;   //Wird erst noch bestimmt
+			var oben = input.slice( obenStart + 1, inhaltStart - 1 );   //upper bound
+			var inhaltEnde = inhaltStart;   //isn't determined yet
 
-			var rumpf = input.slice( 0, treffer.index );	//Alles vor dem gefundenen Konstrukt
-			var variable = "";  //Laufvariable, bei Integralen ist es das Differential ( ohne "(d(" und ")" )
-			var rest = "";     //Rest des Eingabestrings ( nach inhalt ), enthält bei Integralen auch das Differential
+			var rumpf = input.slice( 0, treffer.index );	//everything in front of the construct
+			var variable = "";  //control variable, differential for integrals ( without "(d(" and ")" )
+			var rest = "";     //remaining part of the input string (after 'inhalt', including the differential (for integrals)
 
-			if( typ == "int" ) {    //Integral
-				var dAuf,dZu;   //Positionen der Klammern des Differentials
+			if( typ == "int" ) {    //integral
+				var dAuf,dZu;   //position of the brackets around the differential
 
-				dAuf = findeAufKlammerEbene( input, "(d(", 0, inhaltStart );	//Anfang des Differentials
+				dAuf = findeAufKlammerEbene( input, "(d(", 0, inhaltStart );	//beginning of the differential
 
 				inhaltEnde = dAuf - 1;
 
@@ -1335,7 +1330,7 @@ var mparser = (function() {
 					return input;
 				}
 
-				dZu = sucheKlammern( input, dAuf + 2 );	//erste schließende Klammer des Differentials "(d(...)<---"
+				dZu = sucheKlammern( input, dAuf + 2 );	//first closing bracket of the differential "(d(...)<---"
 				if( dZu < 0 ) {
 					addFehler( fehlerListenID, {
 						nutzer: "Differential hat kein Ende",
@@ -1343,18 +1338,18 @@ var mparser = (function() {
 					return input;
 				}
 
-				//Bestimmen der Variable ( des Differentials )
+				//get the variable ( of the differential )
 				variable = input.slice( dAuf + 3, dZu );
 
 				rest = input.slice( dZu + 2 );
-			} else {    //Kein Integral
-				//Bestimmen der Laufvariable durch Aufsplitten
+			} else {    //no integral
+				//get the control variable by splitting the lower bound
 				var untenSplit = unten.split( '=' );
-				variable = untenSplit.shift();	//Erstes element von untenSplit löschen und in variable speichern
-				unten = untenSplit.join('=');	//Rest von untenSplit wieder zusammenfügen (wichtig damit Verschachtelung funktioniert)
+				variable = untenSplit.shift();	//remove first element of 'untenSplit' and store it inside 'variable'
+				unten = untenSplit.join('=');	//put the remaining part of 'untenSplit' back together (important for nested constructs)
 
-				//Inhalt bestimmen
-				if( input[inhaltStart] == "(" ) {   //Inhalt in Klammern?
+				//get content
+				if( input[inhaltStart] == "(" ) {   //content enclosed in parenthesest?
 					inhaltEnde = sucheKlammern( input, inhaltStart );
 				} else {    //Ansonsten Inhalt bis "," (in Vektor) oder Ende des Strings
 					inhaltEnde = findeAufKlammerEbene( input, ",", 0, inhaltStart );
