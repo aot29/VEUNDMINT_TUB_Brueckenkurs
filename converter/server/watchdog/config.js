@@ -3,11 +3,12 @@ module.exports = {
   services: [
     {
       name: 'feedback',
-      url: 'http://localhost/mint/converter/server/dbtest/feedback.php',
+      url: 'http://mintlx3.scc.kit.edu/dbtest/feedback.php',
       ping: true,
       notify: true,
       requests: [
-        {name: '1', method: 'POST', data: {feedback: 'watchdog'},
+        {
+          name: '1', method: 'POST', data: {feedback: 'WATCHDOG'},
           test: function (response, reqObject) {
             return (new RegExp('^success')).test(response);
           },
@@ -18,11 +19,12 @@ module.exports = {
     },
     {
       name: 'userdata',
-      url: 'http://localhost/mint/converter/server/dbtest/userdata.php',
-      ping: false,
+      url: 'http://mintlx3.scc.kit.edu/dbtest/userdata.php',
+      ping: true,
       notify: true,
       requests: [
-        {name: 'check_user', method: 'GET', data: {action: 'check_user'},
+        {
+          name: 'check_user', method: 'GET', data: {action: 'check_user'},
           test: function (response, reqObject) {
             return JSON.parse(response).status === true;
           },
@@ -33,25 +35,11 @@ module.exports = {
     {
       name: 'course',
       ping: true,
-      url: 'http://localhost/mint/testhtml',
-      requests: []
-    },
-    {
-      name: 'unknown_host',
-      ping: true,
-      notify: true,
-      url: 'http://i-hope-this-domain-doesnt-exist.org',
-      requests: []
-    },
-    {
-      name: 'timeout',
-      ping: false,
-      notify: true,
-      url: 'http://localhost/sleep.php',
+      url: 'http://mintlx3.scc.kit.edu/veundmint_kit/mpl/3.1.html',
       requests: [
-        {name: '1', method: 'GET', data: {},
-          test: function (response) {
-            return response === 'Hallo Welt!';
+        {
+          name: '1', method: 'GET', data: {}, test: function (response, reqObject) {
+            return true;
           },
           threshold: 1000
         }
@@ -61,9 +49,9 @@ module.exports = {
   logfile: '/opt/watchdog/log',
   errorlog: '/opt/watchdog/errorlog',
   //timeout in seconds
-  timeout: 3,
+  timeout: 20,
   //watchdog interval in minutes
-  interval: 5/60,
+  interval: 5,
   email: {
     from: "Foo Bar <foo@bar.baz>",
     to: "someone@somewhere.tld",
