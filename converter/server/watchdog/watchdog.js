@@ -120,9 +120,9 @@ function timeout(passedResult) {
   log(JSON.stringify(result));
 }
 
-//this function get's called in regular intervals
+//this function gets called in regular intervals
 function watch() {
-  //object where the results of the requests are collect
+  //object where the results of the requests are collected
   var result = {};
 
   result.timestamp = Date.now() / 1000; //Unix Timestamp
@@ -156,8 +156,8 @@ function watch() {
       service.requests.forEach(
         function (req, reqIndex) {
           //default values for this request
-          result.services[service.name]['requests'] = result.services[service.name]['requests'] 
-            ? result.services[service.name]['requests'] 
+          result.services[service.name]['requests'] = result.services[service.name]['requests']
+            ? result.services[service.name]['requests']
             : {};
           result.services[service.name]['requests'][req.name] = {response: false, success: false, time: null};
           if (req.threshold) {
@@ -230,7 +230,7 @@ function watch() {
  * After dispatching all of the requests, a timeout is started. The requests that
  * arrive before the timeout will add their results to the 'result' object. Once
  * triggered, the timeout 'collects' the 'result' object, processes it and prints
- * it out. All requests that arrive after the timeout has been called won't be 
+ * it out. All requests that arrive after the timeout has been called won't be
  * included in the 'collection' and therefore are handled like they didn't arrive at all.
  */
 var watcher = setInterval(watch, config.interval * 60 * 1000);
