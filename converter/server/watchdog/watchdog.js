@@ -146,7 +146,6 @@ function watch() {
         //ping the host
         ping.promise.probe(urlObj.hostname).then(
           function (state) {
-            result.services[service.name] = result.services[service.name] ? result.services[service.name] : {};
             result.services[service.name]['ping'] = state.alive;
           }
         );
@@ -204,6 +203,7 @@ function watch() {
                 try {
                   result.services[service.name]['requests'][req.name].success = req.test(body, response);
                 } catch (error) {
+                  errorlog("ERROR: Exception in the callback from config.js: " + error);
                 }
               }
             }
