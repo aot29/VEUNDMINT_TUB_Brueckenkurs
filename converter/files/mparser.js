@@ -296,65 +296,6 @@ var mparser = (function() {
 	 * -------------------------------------
 	 * */
 
-
-	/* TODO: remove this in favor of a single object that gets passed through the functions instead of an error id
-	 * global map with unique ids
-	 *
-	 * - add objects with globalMap.add(object), returns an id.
-	 * - delete objects with globalMap.remove(id)
-	 * - get objects with globalMap.get(id)
-	 * - ovwerwrite objects with globalMap.set(id, object)
-	 * */
-	var globalMap = {
-		lastID: 0,
-		add: function( objekt ) {
-			var id = this.lastID + 1;
-			//this is an infinite loop if the map has 9007199254740992 entries (shouldn't happen)
-			//this loop ensures that even after an overflow of the counter, no id gets used twice
-			for(; typeof this[id] != "undefined"; id++ ) {
-			}
-			if( typeof objekt === "undefined" ) {
-				//replace 'undefined' by 'null' to be able to distinguish empty from nonexistent objects
-				objekt = null;
-			}
-			this[id] = objekt;
-			this.lastID = id;
-			return id;
-		},
-		remove: function( id ) {
-			if( typeof this[id] === "undefined" ) {
-				throw "FEHLER: globalMap: Es existiert kein Objekt mit der ID " + id + "!" ;
-				return false;
-			}
-			return delete this[id];
-		},
-		get: function( id ) {
-			if( typeof this[id] === "undefined" ) {
-				throw "FEHLER: globalMap: Es existiert kein Objekt mit der ID " + id + "!";
-			}
-			return this[id];
-		},
-		set: function( id, objekt ) {
-				if( typeof this[id] === "undefined" ) {
-					throw "FEHLER: globalMap: Es existiert kein Objekt mit der ID " + id + "!";
-				}
-				if( typeof objekt === "undefined" ) {
-					//replace 'undefined' by 'null' to be able to distinguish empty from nonexistent objects
-					objekt = null;
-				}
-				this[id] = objekt;
-			}
-	};
-
-	/*
-	*  add an error message to the list of errors
-	* */
-	function addFehler( fehlerListenID, fehler ) {
-		var fehlerListe = globalMap.get( fehlerListenID );
-		fehlerListe.push( fehler );
-		globalMap.set( fehlerListenID, fehlerListe );
-	}
-
 	/*
 	 * expressions to be replaced (without brackets)
 	 *
@@ -933,7 +874,7 @@ var mparser = (function() {
 	 * input: string to be processed
 	 * mode: which kind of replacement should be performed ("latex", "mathjs")
 	 * */
-	function simpleReplace( input, mode, fehlerListenID ) {
+	function simpleReplace( input, mode, errorMessageObject ) {
 		//step through replacement patterns
 		toReplace.forEach(
 			function( element ) {
@@ -974,7 +915,7 @@ var mparser = (function() {
 	 *  input: input string
 	 *  mode: which kind of replacement should be performed ("latex", "mathjs")
 	 * */
-	function bracketReplace( input, mode, fehlerListenID ) {
+	function bracketReplace( input, mode, errorMessageObject ) {
 		//find an opening bracket
 		var rex = RegExp( "[" + characterClassAuf + "]", "" );	//opening bracket
 		var treffer = rex.exec( input );
@@ -983,7 +924,7 @@ var mparser = (function() {
 			var anfang = treffer.index;	//position of the opening bracket
 			var ende = sucheKlammern( input, anfang );	//closing bracket
 			if( ende < 0 ) {
-				addFehler( fehlerListenID, {
+				errorMessageObject.push({
 					nutzer: "Fehlende schließende Klammer!",
 					debug: "bracketReplace: fehlende schließende Klammer" }
 				);
@@ -997,7 +938,7 @@ var mparser = (function() {
 				if( (nextKomma == -1 ) || (nextKomma > ende) ) {
 					nextKomma = ende;
 				}
-				inhalte.push( bracketReplace( input.slice( pos, nextKomma ), mode, fehlerListenID ) );
+				inhalte.push( bracketReplace( input.slice( pos, nextKomma ), mode, errorMessageObject ) );
 			}
 
 			//strings in front of and afther the expression
@@ -1038,7 +979,7 @@ var mparser = (function() {
 								+ replaceObject.ende;
 
 							} else {
-								addFehler( fehlerListenID, {
+								errorMessageObject.push({
 									nutzer: "Fehlerhafte Klammersetzung oder anzahl an Kommata",
 									debug: "bracketReplace: es existiert keine Ersetzung für gegebenen Input"
 								}
@@ -1067,7 +1008,7 @@ var mparser = (function() {
 				inhalt = klammerAuf + inhalte.join( ',' ) + klammernPaare[klammerAuf];
 			}
 
-			return rumpf + inhalt + bracketReplace( rest, mode, fehlerListenID );
+			return rumpf + inhalt + bracketReplace( rest, mode, errorMessageObject );
 		}
 		return input;
 	}
@@ -1171,7 +1112,7 @@ var mparser = (function() {
 	 * ( like "int_{int_{a}^{b}}^{c}" )
 	 *                 --------
 	 * */
-	function swapBoundaries( input, fehlerListenID ) {
+	function swapBoundaries( input, errorMessageObject ) {
 		//remove whitespaces
 		input = input.replace( /\s+/g, '' );
 
@@ -1179,7 +1120,7 @@ var mparser = (function() {
 		if( untereGrenzeStart != -1 ) { //Wenn "_(" gefunden
 			var untereGrenzeEnde = sucheKlammern( input, untereGrenzeStart + 1 ); //_(...)<-"ende"
 			if( untereGrenzeEnde < 0 ) {
-				addFehler( fehlerListenID, {
+				errorMessageObject.push({
 					nutzer: "Untere grenze endet nicht",    //TODO: find better name because "Grenze" only fits with integrals
 					debug: "swapBoundaries: untere Grenze endet nicht" } );
 				return input;
@@ -1204,9 +1145,9 @@ var mparser = (function() {
 					var obereGrenze = ende.slice( obereGrenzeStart + 2, obereGrenzeEnde );
 					var endeRest = ende.slice( obereGrenzeEnde + 1 );   //remaining part of 'ende' that doesn't belong to the upper bound
 					//return the string without swapping
-					return anfang + "_(" + untereGrenze + ")" + "^(" +  obereGrenze + ")" + swapBoundaries( endeRest, fehlerListenID );
+					return anfang + "_(" + untereGrenze + ")" + "^(" +  obereGrenze + ")" + swapBoundaries( endeRest, errorMessageObject );
 				} else {
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Obere grenze endet nicht",    //TODO: find better name because "Grenze" only fits with integrals
 						debug: "swapBoundaries: obere Grenze endet nicht" } );
 					return input;
@@ -1220,19 +1161,19 @@ var mparser = (function() {
 						var obereGrenze = anfang.slice( obereGrenzeStart + 2, obereGrenzeEnde );
 						var anfangRumpf = anfang.slice( 0, obereGrenzeStart );
 						return anfangRumpf + "_("
-							+ swapBoundaries( untereGrenze, fehlerListenID )
+							+ swapBoundaries( untereGrenze, errorMessageObject )
 							+ ")" + "^("
-							+ swapBoundaries( obereGrenze, fehlerListenID )
+							+ swapBoundaries( obereGrenze, errorMessageObject )
 							+ ")"
-							+ swapBoundaries( ende, fehlerListenID );
+							+ swapBoundaries( ende, errorMessageObject );
 					} else {
-						addFehler( fehlerListenID, {
+						errorMessageObject.push({
 							nutzer: "Obere grenze fehlt!",
 							debug: "swapBoundaries: obere Grenze existiert nicht." } );
 						return input;
 					}
 				} else {
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Obere grenze fehlt!",
 						debug: "swapBoundaries: obere Grenze existiert nicht." } );
 					return input;
@@ -1252,7 +1193,7 @@ var mparser = (function() {
 	 *
 	 * differentials of the form 'd(...)' are processed via 'toReplaceKlammern'
 	 * */
-	function preprocessDifferentials( input, klammerTyp, fehlerListenID ) {
+	function preprocessDifferentials( input, klammerTyp, errorMessageObject ) {
 		var klammerAuf = klammerTyp;
 		var klammerZu = klammernPaare[klammerTyp];
 		//erstellen der Regex für einfache Differentiale ( dx, dy ... )
@@ -1281,7 +1222,7 @@ var mparser = (function() {
 	 *
 	 * Returns an object with the elements 'mathjs' and 'mathjs' TODO: WTF?
 	 * */
-	function replaceConstructs( input, integrationsSchritte, fehlerListenID ) {
+	function replaceConstructs( input, integrationsSchritte, errorMessageObject ) {
 		var result = {
 			mathjs: input,
 			mathjs: input
@@ -1295,7 +1236,7 @@ var mparser = (function() {
 			var untenStart = treffer.index + typ.length + 1; // "int_" = typ.length + 1
 			var obenStart = sucheKlammern( input, untenStart ) + 2; // ")^" = 2
 			if( obenStart < 2 ) {	//0 (length of sucheKlammern) + 2 = 2
-				addFehler( fehlerListenID, {
+				errorMessageObject.push({
 					nutzer: "fehlende schließende Klammer",
 					debug: "replaceConstructs: fehlende schließende Klammer"} );
 				return input;
@@ -1303,7 +1244,7 @@ var mparser = (function() {
 			var unten = input.slice( untenStart + 1, obenStart - 2 );   //lower bound
 			var inhaltStart = sucheKlammern( input, obenStart ) + 1; // ")" = 1
 			if( inhaltStart < 1 ) {	//0 + 1 = 1
-				addFehler( fehlerListenID, {
+				errorMessageObject.push({
 					nutzer: "fehlende schließende Klammer",
 					debug: "replaceConstructs: fehlende schließende Klammer"} );
 				return input;
@@ -1323,7 +1264,7 @@ var mparser = (function() {
 				inhaltEnde = dAuf - 1;
 
 				if( ( dAuf >= input.length ) || ( dAuf < 0 ) ) {
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Differential fehlt",
 						debug: "replaceConstructs: kein Differential" } );
 					return input;
@@ -1331,7 +1272,7 @@ var mparser = (function() {
 
 				dZu = sucheKlammern( input, dAuf + 2 );	//first closing bracket of the differential "(d(...)<---"
 				if( dZu < 0 ) {
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Differential hat kein Ende",
 						debug: "replaceConstructs: Differential hat kein Ende" } );
 					return input;
@@ -1358,7 +1299,7 @@ var mparser = (function() {
 				}
 
 				if( inhaltEnde < 0 ) {  //error handling
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Fehlerhafte Klammersetzung",
 						debug: "replaceConstructs: Konstrukt wird nicht beendet" } );
 					return input;
@@ -1372,7 +1313,7 @@ var mparser = (function() {
 			//( "(stuetzvariable_$variable)" ( replace $variable by the actual name of the variable )
 			var variableEscaped = regexEscape( variable );  //escape special characters (for proper regex syntax)
 			if( variableEscaped.length <= 0 ) { //check for empty variable to prevent infinite loop
-				addFehler( fehlerListenID, {
+				errorMessageObject.push({
 					nutzer: "",
 					debug: "replaceConstructs: Leere Variable" } );
 				return input;
@@ -1382,10 +1323,10 @@ var mparser = (function() {
 			inhalt = replaceAllMatches( inhalt, rex, "$1(stuetzvariable_" + variableEscaped + ")$2" );
 
 			//recursive call to process nested constructs
-			var untenObjekt = replaceConstructs( unten, integrationsSchritte, fehlerListenID );
-			var obenObjekt = replaceConstructs( oben, integrationsSchritte, fehlerListenID );
-			var inhaltObjekt = replaceConstructs( inhalt, integrationsSchritte, fehlerListenID );
-			var restObjekt = replaceConstructs( rest, integrationsSchritte, fehlerListenID );
+			var untenObjekt = replaceConstructs( unten, integrationsSchritte, errorMessageObject );
+			var obenObjekt = replaceConstructs( oben, integrationsSchritte, errorMessageObject );
+			var inhaltObjekt = replaceConstructs( inhalt, integrationsSchritte, errorMessageObject );
+			var restObjekt = replaceConstructs( rest, integrationsSchritte, errorMessageObject );
 
 			//create result object
 			result.mathjs = rumpf +
@@ -1406,7 +1347,7 @@ var mparser = (function() {
 	/*
 	 * encloses constructs in the LaTeX string with curly braces to make subsequent parsing easier
 	* */
-	function encloseLatexConstructs( input, fehlerListenID ) {
+	function encloseLatexConstructs( input, errorMessageObject ) {
 		//regex for finding the beginning of constructs that aren't in curly braces yet
 		var rex = RegExp( "(^|[^" + characterClassAuf + "]\\s*)\\\\(int|prod|sum)\\s*(\\^|_)", "" );
 
@@ -1423,7 +1364,7 @@ var mparser = (function() {
 				var rest = input.slice( startPos );
 				ende = findeAufKlammerEbene( rest, "{d{", 0 );
 				if( ende < 0 ) {  //error handling
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Differential fehlt",
 						debug: "encloseLatexConstructs: {d{ nicht gefunden" } );
 					return input;
@@ -1431,7 +1372,7 @@ var mparser = (function() {
 
 				ende = sucheKlammern( rest, ende ) + 1;
 				if( ende < 1 ) { //0 + 1 = 1
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Fehlerhafte Klammersetzung",
 						debug: "encloseLatexConstructs: fehlende Klammer" } );
 					return input;
@@ -1450,7 +1391,7 @@ var mparser = (function() {
 				pos = findeAufKlammerEbene( input, "{", 0, pos + 1 );
 				pos = sucheKlammern( input, pos );
 				if( pos < 0 ) {
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Fehlerhafte Klammersetzung",
 						debug: "encloseLatexConstructs: fehlende Klammer" } );
 				}
@@ -1481,7 +1422,7 @@ var mparser = (function() {
 	 * the important part is the distinction between '^' as exponentiation operator
 	 * and '^' as beginning of an upper bound
 	 * */
-	function encloseLatexPower( input, fehlerListenID ) {
+	function encloseLatexPower( input, errorMessageObject ) {
 		//TODO: less copy and paste
 		//replace any number of whitespaces by only one whitespace (e.g "  " -> " ")
 		input = input.replace( /\s+/g, " " );
@@ -1509,7 +1450,7 @@ var mparser = (function() {
 				klammerPos = treffer.index;
 				klammerPos = sucheKlammern( anfang, klammerPos );	//jump to opening bracket
 				if( klammerPos < 0 ) {
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Fehlende öffnende Klammer",
 						debug: "encloseLatexPower: fehlende öffnende Klammer" } );
 					return input;
@@ -1527,7 +1468,7 @@ var mparser = (function() {
 
 				basisAnfang = klammerPos;
 			} else {
-				addFehler( fehlerListenID, {
+				errorMessageObject.push({
 					nutzer: "Ungültige Basis in Potenz",
 					debug: "encloseLatexPower: ungültige Basis in Potenz" } );
 				return input;
@@ -1541,7 +1482,7 @@ var mparser = (function() {
 				exponentEnde = ende.search( RegExp( "[" + characterClassAuf + "]" ), "" );
 				exponentEnde = sucheKlammern( ende, exponentEnde );
 				if( exponentEnde < 0 ) {
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Fehlende schließende Klammer",
 						debug: "encloseLatexPower: fehlende schließende Klammer"} );
 					return input;
@@ -1559,7 +1500,7 @@ var mparser = (function() {
 					break;
 				}
 			} else {
-				addFehler( fehlerListenID, {
+				errorMessageObject.push({
 					nutzer: "Ungültiger Exponent",
 					debug: "encloseLatexPower: ungültiger Exponent" } );
 				return input;
@@ -1587,7 +1528,7 @@ var mparser = (function() {
 	 * Transform fractions in the input into LaTeX fractions
 	 * of the form "\frac{..}{..}"
 	 * */
-	function latexFractions( input, fehlerListenID ) {
+	function latexFractions( input, errorMessageObject ) {
 		//process all '/' in the input
 		for( var slashPos = input.search( "/" ); slashPos != -1; slashPos = input.search( "/" ) ) {
 			var anfang = input.slice( 0, slashPos );
@@ -1603,7 +1544,7 @@ var mparser = (function() {
 				var klammerZuPos = treffer.index;
 				var pos = sucheKlammern( anfang, klammerZuPos );
 				if( pos < 0 ) {
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Fehlende öffnende Klammer",
 						debug: "latexFractions: fehlende öffnende Klammer"} );
 					return input;
@@ -1618,7 +1559,7 @@ var mparser = (function() {
 				var zaehler = anfang.slice( pos );
 				anfang = replaceByPos( anfang, pos, anfang.length, "{\\frac{" + zaehler + "}" );
 			} else {
-				addFehler( fehlerListenID, {
+				errorMessageObject.push({
 					nutzer: "Ungültiger Dividend",
 					debug: "latexFractions: ungültiger Dividend" } );
 				return input;
@@ -1631,7 +1572,7 @@ var mparser = (function() {
 				var pos = ende.search( RegExp( "[" + characterClassAuf + "]", "" ) );
 				pos = sucheKlammern( ende, pos );
 				if( pos < 0 ) {
-					addFehler( fehlerListenID, {
+					errorMessageObject.push({
 						nutzer: "Fehlende schließende Klammer",
 						debug: "latexFractions: fehlende schließende Klammer"} );
 					return input;
@@ -1645,7 +1586,7 @@ var mparser = (function() {
 			} else if( rexWert.test( ende ) ) {    //number or variable at the beginning of the string
 				ende = ende.replace( rexWert, "{$&}}" );
 			} else {
-				addFehler( fehlerListenID, {
+				errorMessageObject.push({
 					nutzer: "Ungültiger Divisor",
 					debug: "latexFractions: ungültiger Divisor" } );
 				return input;
@@ -1661,7 +1602,7 @@ var mparser = (function() {
 	 * enclose functions in brackets
 	 *
 	 **/
-	function encloseFunctions( input, klammer, fehlerListenID ) {
+	function encloseFunctions( input, klammer, errorMessageObject ) {
 		var rex = RegExp( "([^" + characterClassAuf + "\\\\a-z]|^)([a-z]+)\\([^\\(]", "i" );
 
 		var lastInput;
@@ -1678,7 +1619,7 @@ var mparser = (function() {
 			var klammerAufPos = treffer.index + treffer[1].length + treffer[2].length;
 			var klammerZuPos = sucheKlammern( input, klammerAufPos );
 			if( klammerZuPos == -1 ) {
-				addFehler( fehlerListenID,
+				errorMessageObject.push(
 						{ nutzer: "Fehlende schließende Klammer",
 						debug: "encloseFunctions: fehlende schließende Klammer" } );
 				break;
@@ -1760,20 +1701,20 @@ var mparser = (function() {
 		*      debug:   "Debugging message"
 		*  }
 		* */
-		var fehlerListenID = globalMap.add( new Array() );
+		var errorMessageObject = [];
 
 
 		//perform simple replacementes (without bracket expressions)
-		result.latex = simpleReplace( result.latex, "latex", fehlerListenID );
-		result.mathjs = simpleReplace( result.mathjs, "mathjs", fehlerListenID );
+		result.latex = simpleReplace( result.latex, "latex", errorMessageObject );
+		result.mathjs = simpleReplace( result.mathjs, "mathjs", errorMessageObject );
 
 		//process bracket epxressions
-		result.latex = bracketReplace( result.latex, "latex", fehlerListenID );
-		result.mathjs = bracketReplace( result.mathjs, "mathjs", fehlerListenID );
+		result.latex = bracketReplace( result.latex, "latex", errorMessageObject );
+		result.mathjs = bracketReplace( result.mathjs, "mathjs", errorMessageObject );
 
 		//enclose functions with curly braces
-		result.latex = encloseFunctions( result.latex, "{", fehlerListenID );
-		result.mathjs = encloseFunctions( result.mathjs, "(", fehlerListenID );
+		result.latex = encloseFunctions( result.latex, "{", errorMessageObject );
+		result.mathjs = encloseFunctions( result.mathjs, "(", errorMessageObject );
 
 		//enclose bounds/exponents in brackets
 		//_74.3 -> _{74.3}, ^\alpha -> ^{\alpha} ...
@@ -1786,13 +1727,13 @@ var mparser = (function() {
 		result.latex = replaceAllMatches( result.latex, rex, "$1{$2}$3" );
 
 		//replace differentials in the LaTeX string with '{d{..}}'
-		result.latex = preprocessDifferentials( result.latex, '{', fehlerListenID )
+		result.latex = preprocessDifferentials( result.latex, '{', errorMessageObject )
 		//enclose constucts in brackets to prepare for fractions
-		result.latex = encloseLatexConstructs( result.latex, fehlerListenID );
+		result.latex = encloseLatexConstructs( result.latex, errorMessageObject );
 		//enclose exponentiation in brackets to prepare for fractions
-		result.latex = encloseLatexPower( result.latex, fehlerListenID );
+		result.latex = encloseLatexPower( result.latex, errorMessageObject );
 		//create LaTeX fractions
-		result.latex = latexFractions( result.latex, fehlerListenID );
+		result.latex = latexFractions( result.latex, errorMessageObject );
 
 		//'(value)!' -> 'value!' in LaTeX
 		rex = RegExp( "(\\()(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)(\\))!", "gi" );    //numbers or variables in brackest with factorial
@@ -1805,15 +1746,15 @@ var mparser = (function() {
 		rex = RegExp( "[}]", "g" );  //closing brackets
 		result.mathjs = result.mathjs.replace( rex, ")" );
 		//replace differentials (IMPORTANT: This needs to be done after replacing brackets and before removing whitespaces)
-		result.mathjs = preprocessDifferentials( result.mathjs, '(', fehlerListenID );
+		result.mathjs = preprocessDifferentials( result.mathjs, '(', errorMessageObject );
 		rex = RegExp( "\\s+", "g" );      //whitespaces
 		result.mathjs = result.mathjs.replace( rex, "" );
 
 		//swap upper and lower bounds if necessary
-		result.mathjs = swapBoundaries( result.mathjs, fehlerListenID );
+		result.mathjs = swapBoundaries( result.mathjs, errorMessageObject );
 
 		//process constructs ( prod, int, sum )
-		var temp = replaceConstructs( result.mathjs, integrationsSchritte, fehlerListenID );
+		var temp = replaceConstructs( result.mathjs, integrationsSchritte, errorMessageObject );
 		result.mathjs = temp.mathjs;
 
 		//replace brackets in the LaTeX string with '\left' and '\right'
@@ -1824,9 +1765,8 @@ var mparser = (function() {
 		result.latex = result.latex.replace( /\(/g, "\\left(" );
 		result.latex = result.latex.replace( /\)/g, "\\right)" );
 
-		//add fehlerListe to the return object and remove from globalMap TODO: replace global map by passing an object from the local scope
-		result.fehlerListe = globalMap.get( fehlerListenID );
-		globalMap.remove( fehlerListenID );
+		//add errorMessageObject to the output
+		result.fehlerListe = errorMessageObject;
 
 		//remove '\left' and '\richt' from the LaTeX string
 		//if the brackets aren't complete (necessary for the preview)
