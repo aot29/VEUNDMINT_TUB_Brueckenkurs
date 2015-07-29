@@ -1198,14 +1198,7 @@ var mparser = (function() {
 		var klammerZu = klammernPaare[klammerTyp];
 		//erstellen der Regex für einfache Differentiale ( dx, dy ... )
 		//create regular expression for simple differentials
-		var regexString = "(";      //goal: '(x|y.....)'
-		differentiale.forEach( //TODO: use Array.prototype.join ?
-			function( differential ) {
-				regexString += differential + "|";
-			}
-		);
-		regexString = regexString.slice( 0, -1);      //remove last '|'
-		regexString += ')';
+		var regexString = '(' + differentiale.join('|') + ')';
 
 		var rex = RegExp( "(^|[^a-zA-Z])d" + regexString + "($|[^a-zA-Z])", 'g' );
 		input = replaceAllMatches( input, rex, "$1" + klammerAuf + "d" + klammerAuf + "$2" + klammerZu + klammerZu + " $3" );
@@ -1847,18 +1840,16 @@ var mparser = (function() {
 		accuracy = typeof accuracy !== 'undefined' ? accuracy : 3;
 
 		//create coefficient matrix from it's columns
-		var matrix = "["; //coefficient matrix in mathjs notation as a string TODO: use Array.prototype.join for this
-		coefficientMatrix.forEach(
-			function( input ) {
-				var returnObject = mparser.convertMathInput( input );
+		coefficientMatrix = coefficientMatrix.map(
+			function (value) {
+				var returnObject = mparser.convertMathInput( value );
 				if( returnObject.fehlerListe.length != 0 ) {
 					throw "FEHLER: Parsen der Koeffizientenmatrix fehlgeschlagen";
 				}
-				matrix += returnObject.mathjs + ',';	//add column to matrix
+				return returnObject.mathjs;
 			}
 		);
-		//replace last comma with a closing bracket TODO: this is unnecessary when using Array.prototype.join
-		matrix = matrix.replace( /,$/, "]" );
+		var matrix = '[' + coefficientMatrix.join(',') + ']';
 
 		//process proposed solution by the user
 		var returnObject = mparser.convertMathInput( userSolution );
