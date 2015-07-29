@@ -14,13 +14,13 @@
 //initialise mathjs
 var mathJS = math;
 //additional functions for the scope of mathjs
-var mathJSFunctions = (function( mathjsInstance ) {
+var mathJSFunctions = (function (mathjsInstance) {
 	const epsilonAbstand = 0.0001;    //delta for which a floating point value should still be treated as integer
 
 	var functions = {};
 
-	functions.ln = function( x ) {
-		return mathjsInstance.log( x );
+	functions.ln = function (x) {
+		return mathjsInstance.log(x);
 	};
 
 	/*
@@ -33,25 +33,25 @@ var mathJSFunctions = (function( mathjsInstance ) {
 	 * inhalt: content of the construct
 	 * schritte: number of calculation steps (only relevant for integrals)
 	 * */
-	functions.konstrukt = function( args, mathjsInstance, scope  ) {
+	functions.konstrukt = function (args, mathjsInstance, scope) {
 		//get parameters
 		var typ = args[0].toString();
 		var variable = args[1].toString();
-		var unten = mathjsInstance.eval( args[2].toString(), scope );
-		var oben = mathjsInstance.eval( args[3].toString(), scope );
+		var unten = mathjsInstance.eval(args[2].toString(), scope);
+		var oben = mathjsInstance.eval(args[3].toString(), scope);
 		var inhalt = args[4].toString();
-		var schritte = typeof args[5] !== 'undefined' ? mathjsInstance.eval( args[5].toString(), scope ) : 1000;
+		var schritte = typeof args[5] !== 'undefined' ? mathjsInstance.eval(args[5].toString(), scope) : 1000;
 
-		var code = mathjsInstance.compile( inhalt );
+		var code = mathjsInstance.compile(inhalt);
 		var calculate =
-			function( value ) {
+			function(value) {
 				scope['stuetzvariable_'+variable] = value;
-				return code.eval( scope );
+				return code.eval(scope);
 			};
 
 		var faktor = 1;
 		//if integral, swap bounds if necessary
-		if( (unten > oben) && ( typ == "int" ) ) {
+		if ((unten > oben) && (typ == "int")) {
 			var swap = oben;
 			oben = unten;
 			unten = swap;
@@ -62,31 +62,30 @@ var mathJSFunctions = (function( mathjsInstance ) {
 		var operation;  //operation that gets calculated in every step ( operation( total, current, next, intervallbreite ) )
 		var wert;       //Anfangswert
 		//define operation and step size for respective types
-		switch( typ ) {
+		switch (typ) {
 			case "sum":
 				operation =
-					function( total, current, next, intervallbreite ) {
+					function (total, current, next, intervallbreite) {
 						return mathjsInstance.add(total, current);
 					}
 				intervallbreite = 1;
 				wert = 0;
-				schritte = mathjsInstance.add( mathjsInstance.subtract( oben, unten ), 1 );
+				schritte = mathjsInstance.add(mathjsInstance.subtract(oben, unten), 1 );
 				break;
 			case "prod":
 				operation =
-					function( total, current, next, intervallbreite ) {
-						return mathjsInstance.multiply( total, current );
+					function (total, current, next, intervallbreite) {
+						return mathjsInstance.multiply(total, current);
 					}
 				intervallbreite = 1;
 				wert = 1;
-				schritte = mathjsInstance.add( mathjsInstance.subtract( oben, unten ), 1 );
+				schritte = mathjsInstance.add(mathjsInstance.subtract(oben, unten), 1);
 				break;
 			case "int":
-				operation =
-				function( total, current, next, intervallbreite ) {
-					return mathjsInstance.add( total, mathjsInstance.multiply( mathjsInstance.divide( mathjsInstance.add(current, next), 2 ), intervallbreite ) ); //middle sum
+				operation = function (total, current, next, intervallbreite) {
+					return mathjsInstance.add( total, mathjsInstance.multiply(mathjsInstance.divide(mathjsInstance.add(current, next), 2), intervallbreite)); //middle sum
 				}
-				intervallbreite = mathjsInstance.divide( mathjsInstance.subtract(oben, unten), schritte );
+				intervallbreite = mathjsInstance.divide(mathjsInstance.subtract(oben, unten), schritte);
 				wert = 0;
 				break;
 			default:
@@ -94,19 +93,19 @@ var mathJSFunctions = (function( mathjsInstance ) {
 		}
 
 		//abort if when step size if 0
-		if( intervallbreite == 0 ) {
+		if(intervallbreite == 0) {
 			return 0;
 		}
 
 		//evaluate the construct
-		var current = calculate( unten );
+		var current = calculate(unten);
 		var next;
-		for( var i = 0; i < schritte; i++ ) {
-			next = calculate( mathjsInstance.add( unten, mathjsInstance.multiply( mathjsInstance.add(i, 1), intervallbreite ) ) );
-			wert = operation( wert, current, next, intervallbreite );
+		for (var i = 0; i < schritte; i++) {
+			next = calculate(mathjsInstance.add(unten, mathjsInstance.multiply(mathjsInstance.add(i, 1), intervallbreite)));
+			wert = operation(wert, current, next, intervallbreite);
 			current = next;
 		}
-		return mathjsInstance.multiply( faktor, wert );
+		return mathjsInstance.multiply(faktor, wert);
 	};
 
 	/*
@@ -116,8 +115,8 @@ var mathJSFunctions = (function( mathjsInstance ) {
 	 * only by 'epsilonAbstand', then it get's rounded to the
 	 * respective integer
 	 * */
-	functions.fakultaet = function( zahl ) {
-		if( mathjsInstance.subtract( zahl, mathjsInstance.round( zahl ) ) <= epsilonAbstand ) {
+	functions.fakultaet = function (zahl) {
+		if (mathjsInstance.subtract(zahl, mathjsInstance.round(zahl)) <= epsilonAbstand) {
 			return mathjsInstance.factorial( mathjsInstance.round(zahl) );
 		}
 
@@ -133,33 +132,33 @@ var mathJSFunctions = (function( mathjsInstance ) {
 	 * This is a modified version of the algorithm used here:
 	 * https://de.wikipedia.org/wiki/Binomialkoeffizient
 	 * */
-	functions.binomial = function( n, k ) {
+	functions.binomial = function (n, k) {
 		//negative values for k aren't valid
-		if( k < 0 ) {
+		if (k < 0) {
 			throw "FEHLER: Negatives k bei Binomialkoeffizient";
-		} else if( k > n ) {
+		} else if (k > n) {
 			throw "FEHLER: Im Binomialkoeffizient darf k nicht groesser als n sein.";
 		}
 
 		//convert values to integers (if they differ maximally by 'epsilonAbstand')
-		if( mathjsInstance.subtract( n, mathjsInstance.round( n ) ) <= epsilonAbstand ) {
-			n = mathjsInstance.round( n );
+		if (mathjsInstance.subtract(n, mathjsInstance.round(n)) <= epsilonAbstand) {
+			n = mathjsInstance.round(n);
 		}
-		if( mathjsInstance.subtract( k, mathjsInstance.round( k ) ) <= epsilonAbstand ) {
-			k = mathjsInstance.round( k );
+		if (mathjsInstance.subtract(k, mathjsInstance.round(k)) <= epsilonAbstand) {
+			k = mathjsInstance.round(k);
 		}
 
 		//calculation
-		if( mathjsInstance.multiply( 2, k ) > n ) {
-			k = mathjsInstance.subtract( n, k ); //k = n-k
+		if (mathjsInstance.multiply(2, k) > n) {
+			k = mathjsInstance.subtract(n, k); //k = n-k
 		}
 
-		if( k == 0 ) {
+		if (k == 0) {
 			return 1;
 		} else {
-			var ergebnis = mathjsInstance.add( mathjsInstance.subtract( n, k ), 1 ); //ergebnis = n-k + 1
-			for( var i = 2; i <= k; i = mathjsInstance.add( i, 1 ) ) {
-				ergebnis = mathjsInstance.divide( mathjsInstance.multiply( ergebnis, mathjsInstance.add( mathjsInstance.subtract( n, k ), i ) ), i ); //ergebnis *= (n - k + i)/i
+			var ergebnis = mathjsInstance.add(mathjsInstance.subtract(n, k), 1); //ergebnis = n-k + 1
+			for (var i = 2; i <= k; i = mathjsInstance.add(i, 1)) {
+				ergebnis = mathjsInstance.divide(mathjsInstance.multiply(ergebnis, mathjsInstance.add(mathjsInstance.subtract(n, k), i)), i); //ergebnis *= (n - k + i)/i
 			}
 			return ergebnis;
 		}
@@ -220,15 +219,15 @@ mathJS.import( mathJSFunctions );
 /*
  * closure that defines the mparser module. This encapsules all of the functions that shouldn't be publicly visible.
  **/
-var mparser = (function() {
+var mparser = (function () {
 	var mparser = {};
 	/*
 	 * returns the key to a given value in an associative array.
 	 * This only works correclty if the the value is only used once.
 	 * */
-	function getArrayKey( array, value ) {
-		for( var key in array ) {
-			if( array[key] == value ) {
+	function getArrayKey(array, value) {
+		for (var key in array) {
+			if (array[key] == value) {
 				return key;
 			}
 		}
@@ -239,15 +238,15 @@ var mparser = (function() {
 	 * Replaces everything from 'start' to 'ende' in 'input' by 'replace'.
 	 * This works like String.prototype.slice (excluding the character at 'ende')
 	 * */
-	function replaceByPos( input, anfang, ende, replace ) {
-		var rumpf = input.slice( 0, anfang );
-		var rest = input.slice( ende );
+	function replaceByPos(input, anfang, ende, replace) {
+		var rumpf = input.slice(0, anfang);
+		var rest = input.slice(ende);
 		return rumpf + replace + rest;
 	}
 
 	//escape strings for use in regular expressions
-	function regexEscape( input ) {
-		return input.replace( /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&" );
+	function regexEscape(input) {
+		return input.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 	}
 
 	/*
@@ -257,12 +256,12 @@ var mparser = (function() {
 	 * regex: RegExp object
 	 * WARNING: It's easy to run into an infinite loop when using this function
 	 **/
-	function replaceAllMatches( input, regex, replaceString ) {
+	function replaceAllMatches(input, regex, replaceString) {
 		var lastInput;
 		do {
 			lastInput = input;
-			input = input.replace( regex, replaceString );
-		} while( lastInput != input )
+			input = input.replace(regex, replaceString);
+		} while (lastInput != input)
 		return input;
 	}
 
@@ -271,16 +270,16 @@ var mparser = (function() {
 	 *
 	 * A word is only then matched, if is preceded or followed by letters or '\'
 	 * */
-	function replaceWord( input, word, replacement ) {
+	function replaceWord(input, word, replacement) {
 		var lastChar = " ";
 		var letter = RegExp( "[a-zA-Z\\\\]", "" );
-		for( var pos = 0; pos < input.length; pos++ ) {
-			if( (! letter.test( lastChar ) ) && ( input[pos] == word[0] ) ) {
+		for (var pos = 0; pos < input.length; pos++) {
+			if ((!letter.test(lastChar)) && (input[pos] == word[0])) {
 				var suchPos;
-				for( suchPos = 0; (suchPos < word.length) && (word[suchPos] == input[pos+suchPos]); suchPos++ ) {}
+				for (suchPos = 0; (suchPos < word.length) && (word[suchPos] == input[pos+suchPos]); suchPos++) {}
 				//found
-				if( (suchPos == word.length ) && ( (input.length <= pos + suchPos) || (!letter.test(input[pos+suchPos])) ) ) {
-					input = replaceByPos( input, pos, pos + suchPos, replacement );
+				if ((suchPos == word.length ) && ((input.length <= pos + suchPos) || (!letter.test(input[pos+suchPos])))) {
+					input = replaceByPos(input, pos, pos + suchPos, replacement);
 					pos += replacement.length;
 				}
 			}
@@ -312,7 +311,7 @@ var mparser = (function() {
 	* */
 	var toReplace = [
 		{
-			ausdruck: [ "alpha", "beta", "gamma", "Gamma", "delta", "Delta", "zeta", "eta", "Theta", "iota", "kappa", "lambda", "Lambda", "nu", "xi", "Xi", "omicron", "pi", "Pi", "sigma", "Sigma", "tau", "upsilon", "Upsilon", "Phi", "chi", "psi", "Psi", "omega", "Omega" ],
+			ausdruck: ["alpha", "beta", "gamma", "Gamma", "delta", "Delta", "zeta", "eta", "Theta", "iota", "kappa", "lambda", "Lambda", "nu", "xi", "Xi", "omicron", "pi", "Pi", "sigma", "Sigma", "tau", "upsilon", "Upsilon", "Phi", "chi", "psi", "Psi", "omega", "Omega"],
 			replace: {
 				"latex": "\\$0",
 				"mathjs": "$0"
@@ -320,7 +319,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Alpha" ],
+			ausdruck: ["Alpha"],
 			replace: {
 				"latex": "A",
 				"mathjs": "$0"
@@ -328,7 +327,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Beta" ],
+			ausdruck: ["Beta"],
 			replace: {
 				"latex": "B",
 				"mathjs": "$0"
@@ -336,7 +335,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Epsilon" ],
+			ausdruck: ["Epsilon"],
 			replace: {
 				"latex": "E",
 				"mathjs": "$0"
@@ -344,7 +343,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Zeta" ],
+			ausdruck: ["Zeta"],
 			replace: {
 				"latex": "Z",
 				"mathjs": "$0"
@@ -352,7 +351,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Eta" ],
+			ausdruck: ["Eta"],
 			replace: {
 				"latex": "H",
 				"mathjs": "$0"
@@ -360,7 +359,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Iota" ],
+			ausdruck: ["Iota"],
 			replace: {
 				"latex": "I",
 				"mathjs": "$0"
@@ -368,7 +367,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Kappa" ],
+			ausdruck: ["Kappa"],
 			replace: {
 				"latex": "K",
 				"mathjs": "$0"
@@ -376,7 +375,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Mu" ],
+			ausdruck: ["Mu"],
 			replace: {
 				"latex": "M",
 				"mathjs": "$0"
@@ -384,7 +383,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Nu" ],
+			ausdruck: ["Nu"],
 			replace: {
 				"latex": "N",
 				"mathjs": "$0"
@@ -392,7 +391,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Omicron" ],
+			ausdruck: ["Omicron"],
 			replace: {
 				"latex": "O",
 				"mathjs": "$0"
@@ -400,7 +399,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Rho" ],
+			ausdruck: ["Rho"],
 			replace: {
 				"latex": "P",
 				"mathjs": "$0"
@@ -408,7 +407,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Tau" ],
+			ausdruck: ["Tau"],
 			replace: {
 				"latex": "T",
 				"mathjs": "$0"
@@ -416,7 +415,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "Chi" ],
+			ausdruck: ["Chi"],
 			replace: {
 				"latex": "X",
 				"mathjs": "$0"
@@ -424,7 +423,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "epsilon", "varepsilon" ],
+			ausdruck: ["epsilon", "varepsilon"],
 			replace: {
 				"latex": "\\varepsilon",
 				"mathjs": "epsilon"
@@ -432,7 +431,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "theta", "vartheta" ],
+			ausdruck: ["theta", "vartheta"],
 			replace: {
 				"latex": "\\vartheta",
 				"mathjs": "theta"
@@ -440,7 +439,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "µ", "mu" ],
+			ausdruck: ["µ", "mu"],
 			replace: {
 				"latex": "\\mu",
 				"mathjs": "mu"
@@ -448,7 +447,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "rho", "varrho" ],
+			ausdruck: ["rho", "varrho"],
 			replace: {
 				"latex": "\\varrho",
 				"mathjs": "rho"
@@ -456,7 +455,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "phi", "varphi" ],
+			ausdruck: ["phi", "varphi"],
 			replace: {
 				"latex": "\\varphi",
 				"mathjs": "phi"
@@ -464,7 +463,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "infty", "Infty", "infinity", "Infinity", "unendlich", "Unendlich" ],
+			ausdruck: ["infty", "Infty", "infinity", "Infinity", "unendlich", "Unendlich"],
 			replace: {
 				"latex": "\\infty",
 				"mathjs": "infty"
@@ -472,7 +471,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "prod", "produkt" ],
+			ausdruck: ["prod", "produkt"],
 			replace: {
 				"latex": "\\prod",
 				"mathjs": "prod"
@@ -480,7 +479,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "sum", "summe" ],
+			ausdruck: ["sum", "summe"],
 			replace: {
 				"latex": "\\sum",
 				"mathjs": "sum"
@@ -488,7 +487,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "int", "integral" ],
+			ausdruck: ["int", "integral"],
 			replace: {
 				"latex": "\\int",
 				"mathjs": "int"
@@ -496,7 +495,7 @@ var mparser = (function() {
 			word: true
 		},
 		{
-			ausdruck: [ "°" ],
+			ausdruck: ["°"],
 			replace: {
 				"latex": "^{\\circ}",
 				"mathjs": "°"
@@ -504,7 +503,7 @@ var mparser = (function() {
 			word: false
 		},
 		{
-			ausdruck: [ "¹" ],
+			ausdruck: ["¹"],
 			replace: {
 				"latex": " ^{1}",	//NOTE: the space is important
 				"mathjs": "^1"
@@ -512,7 +511,7 @@ var mparser = (function() {
 			word: false
 		},
 		{
-			ausdruck: [ "²" ],
+			ausdruck: ["²"],
 			replace: {
 				"latex": " ^{2}",	//NOTE: the space is important
 				"mathjs": "^2"
@@ -520,7 +519,7 @@ var mparser = (function() {
 			word: false
 		},
 		{
-			ausdruck: [ "³" ],
+			ausdruck: ["³"],
 			replace: {
 				"latex": " ^{3}",	//NOTE: the space is important
 				"mathjs": "^3"
@@ -528,7 +527,7 @@ var mparser = (function() {
 			word: false
 		},
 		{
-			ausdruck: [ "*" ],
+			ausdruck: ["*"],
 			replace: {
 				"latex": " {\\cdot} ",
 				"mathjs": "*"
@@ -536,7 +535,7 @@ var mparser = (function() {
 			word: false
 		},
 		{
-			ausdruck: [ "_", "^" ],	//important for parenthesis
+			ausdruck: ["_", "^"],	//important for parenthesis
 			replace: {
 				"latex": " $0",
 				"mathjs": "$0"
@@ -544,7 +543,7 @@ var mparser = (function() {
 			word: false
 		},
 		{
-			ausdruck: [ ">=" ],
+			ausdruck: [">="],
 			replace: {
 				"latex": "{\\geq}",
 				"mathjs": ">="
@@ -552,7 +551,7 @@ var mparser = (function() {
 			word: false
 		},
 		{
-			ausdruck: [ "<=" ],
+			ausdruck: ["<="],
 			replace: {
 				"latex": "{\\leq}",
 				"mathjs": "<="
@@ -569,15 +568,15 @@ var mparser = (function() {
 	};
 
 	//the following strings get treated as differentials if preceded by a 'd'
-	var differentiale = [ "x", "y", "z", "t", "u" ];
+	var differentiale = ["x", "y", "z", "t", "u"];
 
 	//construct character classes for opening and closing parentheses
 	var characterClassAuf = "";
 	var characterClassZu = "";
-	Object.keys( klammernPaare ).forEach(
-		function( key ) {
-			characterClassAuf += regexEscape( key );
-			characterClassZu += regexEscape( klammernPaare[key] );
+	Object.keys(klammernPaare).forEach(
+		function (key) {
+			characterClassAuf += regexEscape(key);
+			characterClassZu += regexEscape(klammernPaare[key]);
 		}
 	);
 
@@ -606,7 +605,7 @@ var mparser = (function() {
 	var toReplaceKlammern =  [
 		{
 			//trigonometric and other functions that can be converted to latex by adding '\\' at the beginning of the string
-			ausdruck: [ "sin", "cos", "tan", "cot", "arcsin", "arccos", "arctan", "sinh", "cosh", "tanh", "coth", "exp", "ln" ],
+			ausdruck: ["sin", "cos", "tan", "cot", "arcsin", "arccos", "arctan", "sinh", "cosh", "tanh", "coth", "exp", "ln"],
 			replace: {
 				"latex": {
 					1: "\\$0($1)"
@@ -617,7 +616,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "log" ],
+			ausdruck: ["log"],
 			replace: {
 				"latex": {
 					1: "\\log($1)",
@@ -630,7 +629,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "asin" ],
+			ausdruck: ["asin"],
 			replace: {
 				"latex": {
 					1: "\\arcsin($1)"
@@ -641,7 +640,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "acos" ],
+			ausdruck: ["acos"],
 			replace: {
 				"latex": {
 					1: "\\arccos($1)"
@@ -652,7 +651,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "atan" ],
+			ausdruck: ["atan"],
 			replace: {
 				"latex": {
 					1: "\\arctan($1)"
@@ -663,7 +662,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "acot", "arccot" ],
+			ausdruck: ["acot", "arccot"],
 			replace: {
 				"latex": {
 					1: "\\cot^{-1}($1)"
@@ -674,7 +673,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "asinh", "arcsinh" ],
+			ausdruck: ["asinh", "arcsinh"],
 			replace: {
 				"latex": {
 					1: "\\sinh^{-1}($1)"
@@ -685,7 +684,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "acosh", "arccosh" ],
+			ausdruck: ["acosh", "arccosh"],
 			replace: {
 				"latex": {
 					1: "\\cosh^{-1}($1)"
@@ -696,7 +695,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "atanh", "arctanh" ],
+			ausdruck: ["atanh", "arctanh"],
 			replace: {
 				"latex": {
 					1: "\\tanh^{-1}($1)"
@@ -707,7 +706,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "acoth", "arccoth" ],
+			ausdruck: ["acoth", "arccoth"],
 			replace: {
 				"latex": {
 					1: "\\coth^{-1}($1)"
@@ -718,7 +717,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "^" ],
+			ausdruck: ["^"],
 			replace: {
 				"latex": {
 					1: "^{$1}"
@@ -729,7 +728,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "_" ],
+			ausdruck: ["_"],
 			replace: {
 				"latex": {
 					1: "_{$1}"
@@ -740,7 +739,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "sqrt", "wurzel", "Wurzel" ],
+			ausdruck: ["sqrt", "wurzel", "Wurzel"],
 			replace: {
 				"latex": {
 					1: "\\sqrt{$1}",
@@ -753,7 +752,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "sum", "Sum", "summe", "Summe", "\\sum" ],
+			ausdruck: ["sum", "Sum", "summe", "Summe", "\\sum"],
 			replace: {
 				"latex": {
 					3: "\\sum_{$1}^{$2}($3)"
@@ -764,7 +763,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "int", "Int", "integral", "Integral", "\\int" ],
+			ausdruck: ["int", "Int", "integral", "Integral", "\\int"],
 			replace: {
 				"latex": {
 					3: "\\int_{$1}^{$2}{$3}"
@@ -775,7 +774,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "prod", "Prod", "produkt", "Produkt", "\\prod" ],
+			ausdruck: ["prod", "Prod", "produkt", "Produkt", "\\prod"],
 			replace: {
 				"latex": {
 					3: "\\prod_{$1}^{$2}($3)"
@@ -786,7 +785,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "abs", "betrag", "Betrag" ],
+			ausdruck: ["abs", "betrag", "Betrag"],
 			replace: {
 				"latex": {
 					1: "\\left|$1\\right|"
@@ -797,7 +796,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "factorial", "Factorial", "fakultaet", "Fakultaet", "fakultät", "Fakultät" ],
+			ausdruck: ["factorial", "Factorial", "fakultaet", "Fakultaet", "fakultät", "Fakultät"],
 			replace: {
 				"latex": {
 					1: "{($1)!}"
@@ -808,7 +807,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "binomial", "Binomial", "binomialkoeff", "Binomialkoeff", "binomialkoeffizient", "Binomialkoeffizient" ],
+			ausdruck: ["binomial", "Binomial", "binomialkoeff", "Binomialkoeff", "binomialkoeffizient", "Binomialkoeffizient"],
 			replace: {
 				"latex": {
 					2: "{\\binom{$1}{$2}}"
@@ -819,7 +818,7 @@ var mparser = (function() {
 			}
 		},
 		{
-			ausdruck: [ "falls", "Falls", "if", "If" ],
+			ausdruck: ["falls", "Falls", "if", "If"],
 			replace: {
 				"latex": {
 					3: "{\\left\\lbrace\\begin{matrix}{$2}&{\\mbox{falls}\\;{$1}}\\\\{$3}&\\mbox{sonst}\\end{matrix}\\right.}"
@@ -830,7 +829,7 @@ var mparser = (function() {
 			}
 		},
 		{ //differentials
-			ausdruck: [ "d" ],
+			ausdruck: ["d"],
 			replace: {
 				"latex": {
 					1: " {~d{$1}} "	//NOTE: The spaces are important
@@ -842,8 +841,8 @@ var mparser = (function() {
 		},
 		//IMPORTANT: The entry for vectors has to be the last one because the empty
 		//string will always be matched --> subsequent entries will be ignored!
-		{	//Vektoren und Klammern
-			ausdruck: [ "" ],
+		{	//vectors and brackets
+			ausdruck: [""],
 			replace: {
 				"latex": {
 					0: {
@@ -874,19 +873,19 @@ var mparser = (function() {
 	 * input: string to be processed
 	 * mode: which kind of replacement should be performed ("latex", "mathjs")
 	 * */
-	function simpleReplace( input, mode, errorMessageObject ) {
+	function simpleReplace(input, mode, errorMessageObject) {
 		//step through replacement patterns
 		toReplace.forEach(
-			function( element ) {
+			function (element) {
 				//step through 'names' of this expression ("ausdruck") (e.g. asin, arcsin for the arcus sine)
 				element.ausdruck.forEach(
-					function( ausdruck ) {
+					function (ausdruck) {
 						var ersetzung = element.replace[mode];
-						ersetzung = ersetzung.replace( RegExp( "\\$0", "g" ), ausdruck ); //replace $0 by the matched expression
-						if( element.word ) { //replace only complete words? ("sin" would only match "sin" but not "arcsin" )
-							input = replaceWord( input, ausdruck, ersetzung );
+						ersetzung = ersetzung.replace(RegExp("\\$0", "g"), ausdruck); //replace $0 by the matched expression
+						if (element.word) { //replace only complete words? ("sin" would only match "sin" but not "arcsin" )
+							input = replaceWord(input, ausdruck, ersetzung);
 						} else {
-							input = input.replace( RegExp( regexEscape( ausdruck ), "g" ), ersetzung  );
+							input = input.replace(RegExp(regexEscape(ausdruck), "g"), ersetzung);
 						}
 					}
 				);
@@ -915,15 +914,15 @@ var mparser = (function() {
 	 *  input: input string
 	 *  mode: which kind of replacement should be performed ("latex", "mathjs")
 	 * */
-	function bracketReplace( input, mode, errorMessageObject ) {
+	function bracketReplace(input, mode, errorMessageObject) {
 		//find an opening bracket
-		var rex = RegExp( "[" + characterClassAuf + "]", "" );	//opening bracket
-		var treffer = rex.exec( input );
-		if( treffer != null ) {
+		var rex = RegExp("[" + characterClassAuf + "]", "");	//opening bracket
+		var treffer = rex.exec(input);
+		if (treffer != null) {
 			var klammerAuf = treffer[0];
 			var anfang = treffer.index;	//position of the opening bracket
-			var ende = sucheKlammern( input, anfang );	//closing bracket
-			if( ende < 0 ) {
+			var ende = sucheKlammern(input, anfang);	//closing bracket
+			if (ende < 0) {
 				errorMessageObject.push({
 					nutzer: "Fehlende schließende Klammer!",
 					debug: "bracketReplace: fehlende schließende Klammer" }
@@ -933,17 +932,17 @@ var mparser = (function() {
 
 			var inhalte = [];	//array of arguments contained by the brackets
 			//split content of the brackets using comma
-			for( var pos = anfang + 1; (pos > 0) && (pos < ende); pos = nextKomma + 1 ) {
-				var nextKomma = findeAufKlammerEbene( input, ",", 0, pos );
-				if( (nextKomma == -1 ) || (nextKomma > ende) ) {
+			for (var pos = anfang + 1; (pos > 0) && (pos < ende); pos = nextKomma + 1) {
+				var nextKomma = findeAufKlammerEbene(input, ",", 0, pos);
+				if ((nextKomma == -1 ) || (nextKomma > ende)) {
 					nextKomma = ende;
 				}
-				inhalte.push( bracketReplace( input.slice( pos, nextKomma ), mode, errorMessageObject ) );
+				inhalte.push(bracketReplace(input.slice(pos, nextKomma), mode, errorMessageObject));
 			}
 
 			//strings in front of and afther the expression
-			var rumpf = input.slice( 0, anfang );
-			var rest = input.slice( ende + 1 );
+			var rumpf = input.slice(0, anfang);
+			var rest = input.slice(ende + 1);
 
 			//string to put the new content of the brackets into
 			var inhalt = "";
@@ -951,31 +950,31 @@ var mparser = (function() {
 			//step through replacements
 			var i;
 			treffer = null;
-			for( i = 0; (i < toReplaceKlammern.length) && (treffer == null); i++ ) {
+			for (i = 0; (i < toReplaceKlammern.length) && (treffer == null); i++) {
 				// skip if the type of parentheses isn't in the list
 				var klammern = toReplaceKlammern[i].klammern;
-				if( (typeof klammern == "undefined") || (klammern.search( regexEscape(klammerAuf) ) != -1 ) ) {
+				if ((typeof klammern == "undefined") || (klammern.search(regexEscape(klammerAuf)) != -1 )) {
 					//step through the patterns to search for
-					for( j in toReplaceKlammern[i].ausdruck ) {
+					for (j in toReplaceKlammern[i].ausdruck) {
 						var ausdruck = toReplaceKlammern[i].ausdruck[j];
 						//search for the expression at the end of 'rumpf'
-						rex = RegExp( "(^|[^a-zA-Z\\\\])(" + regexEscape( ausdruck ) + ")$", "" );
-						treffer = rex.exec( rumpf );
-						if( treffer != null ) {
-							rumpf = rumpf.replace( rex, "$1" );	//remove expression from 'rumpf'
+						rex = RegExp("(^|[^a-zA-Z\\\\])(" + regexEscape(ausdruck) + ")$", "");
+						treffer = rex.exec(rumpf);
+						if (treffer != null) {
+							rumpf = rumpf.replace(rex, "$1");	//remove expression from 'rumpf'
 							//is a replacement with the given number of commas defined?
-							if( (typeof toReplaceKlammern[i].replace[mode][inhalte.length]) != "undefined" ) {
+							if ((typeof toReplaceKlammern[i].replace[mode][inhalte.length]) != "undefined") {
 								inhalt = toReplaceKlammern[i].replace[mode][inhalte.length];
-							} else if( (typeof toReplaceKlammern[i].replace[mode][0]) != "undefined" ) {	//is there a replacement for an arbitrary number of parameters?
+							} else if ((typeof toReplaceKlammern[i].replace[mode][0]) != "undefined") {	//is there a replacement for an arbitrary number of parameters?
 								var replaceObject = toReplaceKlammern[i].replace[mode][0];
 
 								//concatenate replacement string
 								inhalt = replaceObject.anfang;
-								for( var k = 1; k < inhalte.length; k++ ) {
-								inhalt += replaceObject.argument.replace( "$i", "$" + k )
+								for (var k = 1; k < inhalte.length; k++) {
+								inhalt += replaceObject.argument.replace("$i", "$" + k)
 								+ replaceObject.trenner;
 								}
-								inhalt += replaceObject.argument.replace( "$i", "$" + inhalte.length )
+								inhalt += replaceObject.argument.replace("$i", "$" + inhalte.length)
 								+ replaceObject.ende;
 
 							} else {
@@ -989,12 +988,12 @@ var mparser = (function() {
 
 							//replace all '$' expressions in 'inhalt'
 							//replace "$0" with "ausdruck"
-							rex = RegExp( "\\$0", "g" );
-							inhalt = inhalt.replace( rex, ausdruck );
+							rex = RegExp("\\$0", "g");
+							inhalt = inhalt.replace(rex, ausdruck);
 							//replace remaining arguments ($1, $2, ... )
-							for( var j = inhalte.length; j > 0; j-- ) {	//count down to e.g. replace $11 before $1
-								rex = RegExp( "\\$" + j, "g" );
-								inhalt = inhalt.replace( rex, inhalte[j-1] );
+							for (var j = inhalte.length; j > 0; j--) {	//count down to e.g. replace $11 before $1
+								rex = RegExp("\\$" + j, "g");
+								inhalt = inhalt.replace(rex, inhalte[j-1]);
 							}
 
 							break;	//break out of loop because the matching expression has already been found
@@ -1004,11 +1003,11 @@ var mparser = (function() {
 			}
 
 			//if no match, create "inhalt" by concatenating "inhalte" (otherwise stuff like '{\cdot}' wouldn't work
-			if( (i == toReplaceKlammern.length) && (treffer == null)   ) {
-				inhalt = klammerAuf + inhalte.join( ',' ) + klammernPaare[klammerAuf];
+			if ((i == toReplaceKlammern.length) && (treffer == null)) {
+				inhalt = klammerAuf + inhalte.join(',') + klammernPaare[klammerAuf];
 			}
 
-			return rumpf + inhalt + bracketReplace( rest, mode, errorMessageObject );
+			return rumpf + inhalt + bracketReplace(rest, mode, errorMessageObject);
 		}
 		return input;
 	}
@@ -1018,18 +1017,18 @@ var mparser = (function() {
 	 *
 	 * returns the position of the bracket or -1 if not found.
 	**/
-	function sucheKlammern( input, klammerPos ) {
+	function sucheKlammern(input, klammerPos) {
 		//klammerAuf doesn't have to be an opening bracket, it can also be a closing one
 		//in which case function would search from right to left
 		var klammerAuf = input[klammerPos];
 		var klammerZu = '';
 		var delta;  //search direction ( -1: left, +1: right )
 		//bestimme Suchrichtung und setze Klammernpaare
-		if( klammernPaare[klammerAuf] != undefined ) { //'klammerAuf' is opening bracket
+		if (klammernPaare[klammerAuf] != undefined) { //'klammerAuf' is opening bracket
 			klammerZu = klammernPaare[klammerAuf];
 			delta = 1;  //search right
-		} else if( getArrayKey( klammernPaare, klammerAuf ) ) { //check if 'klammerAuf' is a closing bracket
-			klammerZu = getArrayKey( klammernPaare, klammerAuf );
+		} else if (getArrayKey(klammernPaare, klammerAuf)) { //check if 'klammerAuf' is a closing bracket
+			klammerZu = getArrayKey(klammernPaare, klammerAuf);
 			delta = -1; //search left
 		} else {
 			return -1;
@@ -1038,17 +1037,17 @@ var mparser = (function() {
 		//now do the actual search
 		var klammerZuPos;
 		var zaehler = 1;
-		for( klammerZuPos = klammerPos + delta; (zaehler > 0) && (klammerZuPos >= 0) && (klammerZuPos < input.length); klammerZuPos += delta ) {
-			if( input[klammerZuPos] == klammerZu ) {
+		for (klammerZuPos = klammerPos + delta; (zaehler > 0) && (klammerZuPos >= 0) && (klammerZuPos < input.length); klammerZuPos += delta) {
+			if (input[klammerZuPos] == klammerZu) {
 				zaehler--;
-			} else if( input[klammerZuPos] ==  klammerAuf ) {
+			} else if (input[klammerZuPos] ==  klammerAuf) {
 				zaehler++;
 			}
 		}
 		klammerZuPos -= delta;  //compensate for the last "+= delta" in the loop
 
 		//matching bracket found?
-		if( zaehler == 0 ) {
+		if (zaehler == 0) {
 			return klammerZuPos;
 		} else {
 			return -1;
@@ -1064,38 +1063,38 @@ var mparser = (function() {
 	 * NOTICE: Treat's all bracket's equally. It doesn't check if they actually match
 	 * TODO: Make this distinction possible
 	 * */
-	function findeAufKlammerEbene( input, suchString, klammerEbene, startPos ) {
+	function findeAufKlammerEbene(input, suchString, klammerEbene, startPos) {
 		//set default value if undefined
 		klammerEbene = (typeof klammerEbene != 'undefined') ? klammerEbene : 0;
 		startPos = (typeof startPos != 'undefined') ? startPos : 0;
 
 		//abort if "suchString" is empty
-		if( suchString.length < 1 ) {
+		if (suchString.length < 1) {
 			return -1;
 		}
 
 		//replace all parentheses by round brackets:
-		input = input.replace( RegExp( "[" + characterClassAuf + "]", "g"), "(" );
-		input = input.replace( RegExp( "[" + characterClassZu + "]", "g"), ")" );
-		suchString = suchString.replace( RegExp( "[" + characterClassAuf + "]", "g"), "(" );
-		suchString = suchString.replace( RegExp( "[" + characterClassZu + "]", "g"), ")" );
+		input = input.replace(RegExp("[" + characterClassAuf + "]", "g"), "(");
+		input = input.replace(RegExp("[" + characterClassZu + "]", "g"), ")");
+		suchString = suchString.replace(RegExp("[" + characterClassAuf + "]", "g"), "(");
+		suchString = suchString.replace(RegExp("[" + characterClassZu + "]", "g"), ")");
 
 		var aktuelleEbene = 0;
 		var pos;			//position in the input
 		//search for "suchString"
-		for( pos = startPos; (pos < input.length); pos++ ) {
-			if( (aktuelleEbene == klammerEbene) && (input[pos] == suchString[0]) ) {
+		for (pos = startPos; (pos < input.length); pos++) {
+			if ((aktuelleEbene == klammerEbene) && (input[pos] == suchString[0])) {
 				var suchPos;
-				for( suchPos = 0; (suchPos < suchString.length) && (suchString[suchPos] == input[pos+suchPos]); suchPos++ ) {}
-				if( suchPos == suchString.length ) {	//found
+				for (suchPos = 0; (suchPos < suchString.length) && (suchString[suchPos] == input[pos+suchPos]); suchPos++) {}
+				if (suchPos == suchString.length) {	//found
 					return pos;
 				}
 			}
 
 			//count brackets
-			if( input[pos] == '(' ) {
+			if (input[pos] == '(') {
 				aktuelleEbene++;
-			} else if( input[pos] == ')' ) {
+			} else if (input[pos] == ')') {
 				aktuelleEbene--;
 			}
 		}
@@ -1112,14 +1111,14 @@ var mparser = (function() {
 	 * ( like "int_{int_{a}^{b}}^{c}" )
 	 *                 --------
 	 * */
-	function swapBoundaries( input, errorMessageObject ) {
+	function swapBoundaries(input, errorMessageObject) {
 		//remove whitespaces
-		input = input.replace( /\s+/g, '' );
+		input = input.replace(/\s+/g, '');
 
-		var untereGrenzeStart = findeAufKlammerEbene( input, "_(", 0 ); // "anfang"->_(...)
-		if( untereGrenzeStart != -1 ) { //Wenn "_(" gefunden
-			var untereGrenzeEnde = sucheKlammern( input, untereGrenzeStart + 1 ); //_(...)<-"ende"
-			if( untereGrenzeEnde < 0 ) {
+		var untereGrenzeStart = findeAufKlammerEbene(input, "_(", 0); // "anfang"->_(...)
+		if (untereGrenzeStart != -1) { //Wenn "_(" gefunden
+			var untereGrenzeEnde = sucheKlammern(input, untereGrenzeStart + 1); //_(...)<-"ende"
+			if (untereGrenzeEnde < 0) {
 				errorMessageObject.push({
 					nutzer: "Untere grenze endet nicht",    //TODO: find better name because "Grenze" only fits with integrals
 					debug: "swapBoundaries: untere Grenze endet nicht" } );
@@ -1127,10 +1126,10 @@ var mparser = (function() {
 			}
 
 			//strings in front of and after '_(...)'
-			var anfang = input.slice( 0, untereGrenzeStart );
-			var ende = input.slice( untereGrenzeEnde + 1 );
+			var anfang = input.slice(0, untereGrenzeStart);
+			var ende = input.slice(untereGrenzeEnde + 1);
 
-			var untereGrenze = input.slice( untereGrenzeStart + 2, untereGrenzeEnde );
+			var untereGrenze = input.slice(untereGrenzeStart + 2, untereGrenzeEnde);
 
 			//the position of the upper bound isn't relative to 'input', but 'anfang'
 			//or 'ende', depending on where the upper bound is
@@ -1138,14 +1137,14 @@ var mparser = (function() {
 			var obereGrenzeEnde;
 
 			//search for '^(..)' after '_(..)'
-			var obereGrenzeStart = findeAufKlammerEbene( ende, "^(", 0 );
-			if( obereGrenzeStart == 0 ) { // "^(" at the beginning of  'ende'
-				obereGrenzeEnde = sucheKlammern( ende, 1 );
-				if( obereGrenzeEnde >= 0 ) {
-					var obereGrenze = ende.slice( obereGrenzeStart + 2, obereGrenzeEnde );
-					var endeRest = ende.slice( obereGrenzeEnde + 1 );   //remaining part of 'ende' that doesn't belong to the upper bound
+			var obereGrenzeStart = findeAufKlammerEbene(ende, "^(", 0);
+			if (obereGrenzeStart == 0) { // "^(" at the beginning of  'ende'
+				obereGrenzeEnde = sucheKlammern(ende, 1);
+				if (obereGrenzeEnde >= 0) {
+					var obereGrenze = ende.slice(obereGrenzeStart + 2, obereGrenzeEnde);
+					var endeRest = ende.slice(obereGrenzeEnde + 1);   //remaining part of 'ende' that doesn't belong to the upper bound
 					//return the string without swapping
-					return anfang + "_(" + untereGrenze + ")" + "^(" +  obereGrenze + ")" + swapBoundaries( endeRest, errorMessageObject );
+					return anfang + "_(" + untereGrenze + ")" + "^(" +  obereGrenze + ")" + swapBoundaries(endeRest, errorMessageObject);
 				} else {
 					errorMessageObject.push({
 						nutzer: "Obere grenze endet nicht",    //TODO: find better name because "Grenze" only fits with integrals
@@ -1154,18 +1153,18 @@ var mparser = (function() {
 				}
 			} else {
 				//search for '^(...)' in front of '_(...)'
-				if( anfang[anfang.length - 1] == ')' ) {	//does 'anfang' end with ')'?
+				if (anfang[anfang.length - 1] == ')') {	//does 'anfang' end with ')'?
 					obereGrenzeEnde = anfang.length - 1;
-					obereGrenzeStart = sucheKlammern( anfang, obereGrenzeEnde ) - 1;
-					if( (obereGrenzeStart >= 0) && (anfang[obereGrenzeStart] == "^")) {
-						var obereGrenze = anfang.slice( obereGrenzeStart + 2, obereGrenzeEnde );
-						var anfangRumpf = anfang.slice( 0, obereGrenzeStart );
+					obereGrenzeStart = sucheKlammern(anfang, obereGrenzeEnde) - 1;
+					if ((obereGrenzeStart >= 0) && (anfang[obereGrenzeStart] == "^")) {
+						var obereGrenze = anfang.slice(obereGrenzeStart + 2, obereGrenzeEnde);
+						var anfangRumpf = anfang.slice(0, obereGrenzeStart);
 						return anfangRumpf + "_("
-							+ swapBoundaries( untereGrenze, errorMessageObject )
+							+ swapBoundaries(untereGrenze, errorMessageObject)
 							+ ")" + "^("
-							+ swapBoundaries( obereGrenze, errorMessageObject )
+							+ swapBoundaries(obereGrenze, errorMessageObject)
 							+ ")"
-							+ swapBoundaries( ende, errorMessageObject );
+							+ swapBoundaries(ende, errorMessageObject);
 					} else {
 						errorMessageObject.push({
 							nutzer: "Obere grenze fehlt!",
@@ -1193,15 +1192,15 @@ var mparser = (function() {
 	 *
 	 * differentials of the form 'd(...)' are processed via 'toReplaceKlammern'
 	 * */
-	function preprocessDifferentials( input, klammerTyp, errorMessageObject ) {
+	function preprocessDifferentials(input, klammerTyp, errorMessageObject) {
 		var klammerAuf = klammerTyp;
 		var klammerZu = klammernPaare[klammerTyp];
 		//erstellen der Regex für einfache Differentiale ( dx, dy ... )
 		//create regular expression for simple differentials
 		var regexString = '(' + differentiale.join('|') + ')';
 
-		var rex = RegExp( "(^|[^a-zA-Z])d" + regexString + "($|[^a-zA-Z])", 'g' );
-		input = replaceAllMatches( input, rex, "$1" + klammerAuf + "d" + klammerAuf + "$2" + klammerZu + klammerZu + " $3" );
+		var rex = RegExp("(^|[^a-zA-Z])d" + regexString + "($|[^a-zA-Z])", 'g');
+		input = replaceAllMatches(input, rex, "$1" + klammerAuf + "d" + klammerAuf + "$2" + klammerZu + klammerZu + " $3");
 		return input;
 	}
 
@@ -1215,20 +1214,20 @@ var mparser = (function() {
 	 *
 	 * Returns an object with the elements 'mathjs' and 'mathjs' TODO: WTF?
 	 * */
-	function replaceConstructs( input, integrationsSchritte, errorMessageObject ) {
+	function replaceConstructs(input, integrationsSchritte, errorMessageObject) {
 		var result = {
 			mathjs: input,
 			mathjs: input
 		};
-		var rex = new RegExp( "(int|sum|prod)_\\(" );
-		var treffer = rex.exec( input );
-		if( treffer != null ) {
+		var rex = new RegExp("(int|sum|prod)_\\(");
+		var treffer = rex.exec(input);
+		if (treffer != null) {
 			var typ = treffer[1];   //type ( sum, int, prod )
 
 			//bounds and content
 			var untenStart = treffer.index + typ.length + 1; // "int_" = typ.length + 1
-			var obenStart = sucheKlammern( input, untenStart ) + 2; // ")^" = 2
-			if( obenStart < 2 ) {	//0 (length of sucheKlammern) + 2 = 2
+			var obenStart = sucheKlammern(input, untenStart) + 2; // ")^" = 2
+			if (obenStart < 2) {	//0 (length of sucheKlammern) + 2 = 2
 				errorMessageObject.push({
 					nutzer: "fehlende schließende Klammer",
 					debug: "replaceConstructs: fehlende schließende Klammer"} );
