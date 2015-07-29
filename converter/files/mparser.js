@@ -1208,7 +1208,6 @@ var mparser = (function() {
 				} else {
 					addFehler( fehlerListenID, {
 						nutzer: "Obere grenze endet nicht",    //TODO: find better name because "Grenze" only fits with integrals
-evtl. besseren Namen finden, da obere Grenze nur bei Integralen passt.
 						debug: "swapBoundaries: obere Grenze endet nicht" } );
 					return input;
 				}
