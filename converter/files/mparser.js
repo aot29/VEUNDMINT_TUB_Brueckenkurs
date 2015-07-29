@@ -1350,14 +1350,14 @@ var mparser = (function() {
 				//get content
 				if( input[inhaltStart] == "(" ) {   //content enclosed in parenthesest?
 					inhaltEnde = sucheKlammern( input, inhaltStart );
-				} else {    //Ansonsten Inhalt bis "," (in Vektor) oder Ende des Strings
+				} else {    //else content up to either "," (in vectors) or the end of the string
 					inhaltEnde = findeAufKlammerEbene( input, ",", 0, inhaltStart );
-					if( inhaltEnde < 0 ) {	//Wenn kein Komma, nehme Ende des Strings
+					if( inhaltEnde < 0 ) {	//no comma found -> end of string
 						inhaltEnde = input.length - 1;
 					}
 				}
 
-				if( inhaltEnde < 0 ) {  //Fehlerbehandlung
+				if( inhaltEnde < 0 ) {  //error handling
 					addFehler( fehlerListenID, {
 						nutzer: "Fehlerhafte Klammersetzung",
 						debug: "replaceConstructs: Konstrukt wird nicht beendet" } );
@@ -1368,10 +1368,10 @@ var mparser = (function() {
 
 			var inhalt = input.slice( inhaltStart, inhaltEnde + 1 );
 
-			//Variable durch Schlüsselwort ersetzen
-			//( "(stuetzvariable_$variable)", wobei $variable durch den eigentlich Wert ersetzt wird )
-			var variableEscaped = regexEscape( variable );  //Sonderzeichen für Regex escapen
-			if( variableEscaped.length <= 0 ) { //leere variable Abfangen um Endlosschleife zu verhindern
+			//replace the variable by a keyword
+			//( "(stuetzvariable_$variable)" ( replace $variable by the actual name of the variable )
+			var variableEscaped = regexEscape( variable );  //escape special characters (for proper regex syntax)
+			if( variableEscaped.length <= 0 ) { //check for empty variable to prevent infinite loop
 				addFehler( fehlerListenID, {
 					nutzer: "",
 					debug: "replaceConstructs: Leere Variable" } );
@@ -1381,13 +1381,13 @@ var mparser = (function() {
 			var lastInhalt;
 			inhalt = replaceAllMatches( inhalt, rex, "$1(stuetzvariable_" + variableEscaped + ")$2" );
 
-			//Rekursiver Selbstaufruf zum bearbeiten von verschachtelten Konstrukten.
+			//recursive call to process nested constructs
 			var untenObjekt = replaceConstructs( unten, integrationsSchritte, fehlerListenID );
 			var obenObjekt = replaceConstructs( oben, integrationsSchritte, fehlerListenID );
 			var inhaltObjekt = replaceConstructs( inhalt, integrationsSchritte, fehlerListenID );
 			var restObjekt = replaceConstructs( rest, integrationsSchritte, fehlerListenID );
 
-			//Rückgabeobjekt zusammensetzen
+			//create result object
 			result.mathjs = rumpf +
 			'konstrukt('
 				+ typ + ','
@@ -1404,26 +1404,25 @@ var mparser = (function() {
 	}
 
 	/*
-	* Umhüllt Konstrukte im LaTeX-String mit geschweiften Klammern,
-	* um die Weiterverarbeitung zu erleichtern
+	 * encloses constructs in the LaTeX string with curly braces to make subsequent parsing easier
 	* */
 	function encloseLatexConstructs( input, fehlerListenID ) {
-		//Regex zum finden des Anfangs von Konstrukten, die noch nicht eingeklammert sind
+		//regex for finding the beginning of constructs that aren't in curly braces yet
 		var rex = RegExp( "(^|[^" + characterClassAuf + "]\\s*)\\\\(int|prod|sum)\\s*(\\^|_)", "" );
 
-		//Verarbeite alle Konstrukte
+		//process all constructs
 		var treffer = rex.exec( input );
 		while( treffer != null ) {
-			var typ = treffer[2]; //Typ aus zweitem Regex-Submatch ( int, prod oder sum )
-			var startPos = treffer.index + treffer[1].length; //Position des '\' vor typ
+			var typ = treffer[2]; //extract type from the second regex submatch (int, prod or sum)
+			var startPos = treffer.index + treffer[1].length; //position of the '\' in front of typ
 
-			//Suche nach dem Ende
+			//search end of the construct
 			var ende = startPos
-			if( typ == "int" ) {        //Integral?
-				//Suche nach Differential
-				var rest = input.slice( startPos );	//Input-String ab startPos
+			if( typ == "int" ) {        //integral?
+				//search for the differential
+				var rest = input.slice( startPos );
 				ende = findeAufKlammerEbene( rest, "{d{", 0 );
-				if( ende < 0 ) {  //Fehler abfangen
+				if( ende < 0 ) {  //error handling
 					addFehler( fehlerListenID, {
 						nutzer: "Differential fehlt",
 						debug: "encloseLatexConstructs: {d{ nicht gefunden" } );
@@ -1438,16 +1437,16 @@ var mparser = (function() {
 					return input;
 				}
 
-				ende += startPos;	//Mache ende zu Postion in input statt rest
+				ende += startPos;	//Mache ende zu Postion in input statt rest TODO: ??????
 			} else {
-				//Suche nach ende der dritten Klammer, Komma oder Ende des Strings
-				// "...\prod_{..}^{..}{...}..." bzw. "...\prod_{..}^{..}....."
+				//search for the end of the third curly brace, comma or end of the string
+				// "...\prod_{..}^{..}{...}..." or "...\prod_{..}^{..}....."
 				//                        ^                                 ^
 
-				//An Ende von unterer Grenze gehen
+				//go to end of the lower bound
 				var pos = findeAufKlammerEbene( input, "{", 0, startPos );
 				pos = sucheKlammern( input, pos );
-				//An Ende von oberer Grenze gehen ( bzw. Anfang des Inhalts )
+				//go to end of the upper bound ( beginning of content )
 				pos = findeAufKlammerEbene( input, "{", 0, pos + 1 );
 				pos = sucheKlammern( input, pos );
 				if( pos < 0 ) {
@@ -1466,8 +1465,8 @@ var mparser = (function() {
 				}
 			}
 
-			var konstrukt = input.slice( startPos, ende + 1 );  //Gesamtes Konstrukt
-			input = replaceByPos( input, startPos, ende + 1, "{" + konstrukt + "}" );   //Konstrukt in Klammern umhüllen
+			var konstrukt = input.slice( startPos, ende + 1 );  //entire construct
+			input = replaceByPos( input, startPos, ende + 1, "{" + konstrukt + "}" );   //enclose construct in curly braces
 
 			treffer = rex.exec( input );
 		}
@@ -1475,41 +1474,40 @@ var mparser = (function() {
 	}
 
 	/*
-	* Sucht Potenzen im LaTeX-String und umklammert sie mit
-	* geschweiften Klammern, um die Bruchdarstellung zu ver-
-	* einfachen.
-	*
-	* Wichtig hierbei ist vor allem die Unterscheidung von "^"
-	* als Potenz und "^" als Anfang einer oberen Grenze.
-	* */
+	 * search for exponentiation in the LaTeX string and enclose
+	 * them with curly braces to make it easier to display fractions
+	 * later.
+	 *
+	 * the important part is the distinction between '^' as exponentiation operator
+	 * and '^' as beginning of an upper bound
+	 * */
 	function encloseLatexPower( input, fehlerListenID ) {
-		//TODO: weniger Copy & Paste
-		//Ersetzen aller Leerstellen durch ein Leerzeichen ( z.B. "   " -> " " )
+		//TODO: less copy and paste
+		//replace any number of whitespaces by only one whitespace (e.g "  " -> " ")
 		input = input.replace( /\s+/g, " " );
 
-		//Verarbeiten aller " ^" im Input
-		//WICHTIG: In der Schleife müssen alle " ^" durch "^" (ohne Leerzeichen)
-		// ersetzt werden, sonst ist das eine Endlosschleife
-		for( var hochPos = input.lastIndexOf( " ^" ); hochPos != -1; hochPos = input.lastIndexOf( " ^" ) ) {	//Durchgehen aller " ^" von hinten nach vorne
+		//process all " ^" in the input
+		//IMPORTANT: All " ^" have to be replaced by "^" otherwise this is an infinite loop
+		for( var hochPos = input.lastIndexOf( " ^" ); hochPos != -1; hochPos = input.lastIndexOf( " ^" ) ) {	//go through all " ^" from end to start
 			var anfang = input.slice( 0, hochPos );
 			var ende = input.slice( hochPos + 2 ); //" ^".length == 2
 
-			//Linke Seite untersuchen
-			var rexWert = RegExp( "(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)!*$", "i" );   //Zahl oder Variable ( inklusive "!" bei Fakultät )
-			var rexKlammer = RegExp( "[" + characterClassZu + "](!*)$", "" ); //schließende Klammer am Ende ( inklusive "!" bei Fakultät )
+			//examine lefthand side
+			var rexWert = RegExp( "(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)!*$", "i" );   //number or variable (including '!' in case of factorial)
+			var rexKlammer = RegExp( "[" + characterClassZu + "](!*)$", "" ); //closing bracket the the end (including '!' in case of factorial)
 			var wertPos = anfang.search( rexWert );
 			var klammerPos = anfang.search( rexKlammer );
-			var basisAnfang;	//Position des Anfangs der Basis der Potenz
-			if( wertPos != -1 ) {	//Einfacher Ausdruch vor " ^"
-				if( ( wertPos > 0 ) && ( anfang[wertPos - 1 ] == "_" ) ) {	//Untere Grenze davor ( ==> keine Potenz )
+			var basisAnfang;	//position of the beginning of the base of the exponentiation
+			if( wertPos != -1 ) {	//simple expression in front of " ^"
+				if( ( wertPos > 0 ) && ( anfang[wertPos - 1 ] == "_" ) ) {	//lower bound in front ( ==> no exponentiation )
 					input = anfang + "^" + ende;
 					break;
 				}
 				basisAnfang = wertPos;
-			} else if( klammerPos != -1 ) {	//Klammerausdruck vor " ^"
+			} else if( klammerPos != -1 ) {	//bracket expression in front of " ^"
 				var treffer = rexKlammer.exec( anfang );
 				klammerPos = treffer.index;
-				klammerPos = sucheKlammern( anfang, klammerPos );	//Zu öffnender Klammer springen
+				klammerPos = sucheKlammern( anfang, klammerPos );	//jump to opening bracket
 				if( klammerPos < 0 ) {
 					addFehler( fehlerListenID, {
 						nutzer: "Fehlende öffnende Klammer",
@@ -1517,15 +1515,15 @@ var mparser = (function() {
 					return input;
 				}
 
-				//Weiter nach links, bis Anfang einer eventuellen vorhergehenden Funktion:
+				//go on left up to the beginning of a function if there is any
 				// ...5+\arcsin(.....)
 				//      ^<----^
 				for( klammerPos--; ( klammerPos >= 0 ) && /[a-z\\]/i.test( anfang[klammerPos] ); klammerPos-- ) {}
-				if( (klammerPos >= 0) && (anfang[klammerPos] == "_") ) {	//Untere Grenze davor ( ==> keine Potenz )
+				if( (klammerPos >= 0) && (anfang[klammerPos] == "_") ) {	//lower bound in front ( ==> no exponentiation )
 					input = anfang + "^" + ende;
 					break;
 				}
-				klammerPos++;  //Korrigiere letztes "--" der For-Schleife
+				klammerPos++;  //compensate last '--' of the loop
 
 				basisAnfang = klammerPos;
 			} else {
@@ -1535,11 +1533,11 @@ var mparser = (function() {
 				return input;
 			}
 
-			//Rechte Seite bearbeiten
-			rexWert = RegExp( "^(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)", "i" );   //Zahl oder Variable ( ohne Fakultät, gemäß Priorität der Operatoren
-			rexKlammer = RegExp( "^(\\\\?[a-z]+)?([" + characterClassAuf + "])", "i" ); //öffnende Klammer oder Funktion am Anfang
+			//process righthand side
+			rexWert = RegExp( "^(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)", "i" );   //number or variable (without factorial)
+			rexKlammer = RegExp( "^(\\\\?[a-z]+)?([" + characterClassAuf + "])", "i" ); //opening bracket or function
 			var exponentEnde;
-			if( rexKlammer.test( ende ) ) {	//Klammerausdruck oder Funktion im Exponenten
+			if( rexKlammer.test( ende ) ) {	//bracket expression or function in the exponent
 				exponentEnde = ende.search( RegExp( "[" + characterClassAuf + "]" ), "" );
 				exponentEnde = sucheKlammern( ende, exponentEnde );
 				if( exponentEnde < 0 ) {
@@ -1549,14 +1547,14 @@ var mparser = (function() {
 					return input;
 				}
 
-				if( ( ende.length > exponentEnde + 2 ) && ( ende[exponentEnde + 2] == "_" ) ) {	//Untere Grenze dahinter ( ==> keine Potenz )
+				if( ( ende.length > exponentEnde + 2 ) && ( ende[exponentEnde + 2] == "_" ) ) {	//lower bound following ( ==> no exponentiation )
 					input = anfang + "^" + ende;
 					break;
 				}
-			} else if( rexWert.test( ende ) ) { //Zahl oder Variable am Anfang
+			} else if( rexWert.test( ende ) ) { //number or variable at the beginning
 				var treffer = rexWert.exec( ende );
 				exponentEnde = treffer[0].length;
-				if( ( ende.length > exponentEnde + 2 ) && ( ende[exponentEnde + 2] == "_" ) ) { //Untere Grenze dahinter ( ==> keine Potenz )
+				if( ( ende.length > exponentEnde + 2 ) && ( ende[exponentEnde + 2] == "_" ) ) { //lower bound following ( ==> no exponentiation )
 					input = anfang + "^" + ende;
 					break;
 				}
@@ -1567,17 +1565,17 @@ var mparser = (function() {
 				return input;
 			}
 
-			//Wenn hier angekommen, dann handelt es sich tatsächlich
-			// um eine Potenz und nicht um Grenzen eines Konstruktes
-			// ==> Einklammern des gesamten Ausdrucks
+			//at this point it's clear that it really is an exponentiation
+			//and not the bounds of a construct
+			// ==> enclose entire expression in brackets
 
-			//Eingabe weiter zerlegen
+			//split input further
 			var basis = anfang.slice( basisAnfang );
 			var rumpf = anfang.slice( 0, basisAnfang );
 			var exponent = ende.slice( 0, exponentEnde );
 			var rest = ende.slice( exponentEnde );
 
-			//Wieder zusammensetzen
+			//put together againt
 			input = rumpf + "{" + basis + "^" + exponent + "}" + rest;
 
 		}
@@ -1586,21 +1584,21 @@ var mparser = (function() {
 	}
 
 	/*
-	*  Wandelt Brüche im Input um in LaTeX-Brüche
-	*  der Form "\frac{..}{..}"
-	* */
+	 * Transform fractions in the input into LaTeX fractions
+	 * of the form "\frac{..}{..}"
+	 * */
 	function latexFractions( input, fehlerListenID ) {
-		//Verarbeite alle "/" im input
+		//process all '/' in the input
 		for( var slashPos = input.search( "/" ); slashPos != -1; slashPos = input.search( "/" ) ) {
 			var anfang = input.slice( 0, slashPos );
 			var ende = input.slice( slashPos + 1 );
 
-			//Linke Seite bearbeiten
-			var rexWert = RegExp( "(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)!*$", "i" );   //Zahl oder Variable ( inklusive "!" bei Fakultät )
-			var rexKlammer = RegExp( "[" + characterClassZu + "](!*)$", "" ); //schließende Klammer am Ende ( inklusive "!" bei Fakultät )
-			if( rexWert.test( anfang ) )  {  //Zahl oder Variable am Ende des Strings
+			//process lefthand side
+			var rexWert = RegExp( "(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)!*$", "i" );   //number or variable ( including "!" in case of factorial )
+			var rexKlammer = RegExp( "[" + characterClassZu + "](!*)$", "" ); //closing bracket at the end ( including "!" in case of factorial )
+			if( rexWert.test( anfang ) )  {  //number or variable at the end of the string
 				anfang = anfang.replace( rexWert, "{\\frac{$&}" );
-			} else if( rexKlammer.test( anfang ) ) { //Klammerausdruck im Zähler
+			} else if( rexKlammer.test( anfang ) ) { //bracket expression in the numerator
 				var treffer = rexKlammer.exec( anfang );
 				var klammerZuPos = treffer.index;
 				var pos = sucheKlammern( anfang, klammerZuPos );
@@ -1611,11 +1609,11 @@ var mparser = (function() {
 					return input;
 				}
 
-				//Weiter nach links, bis Anfang einer eventuellen vorhergehenden Funktion:
+				//continue going left up to the beginning of a function in front (if there is any)
 				// ...5+\arcsin(.....)
 				//      ^<----^
 				for( pos--; ( pos >= 0 ) && /[a-z\\]/i.test( anfang[pos] ); pos-- ) {}
-				pos++;  //Korrigiere letztes "--" der For-Schleife
+				pos++;  //compensate last '--' of the loop
 
 				var zaehler = anfang.slice( pos );
 				anfang = replaceByPos( anfang, pos, anfang.length, "{\\frac{" + zaehler + "}" );
@@ -1626,10 +1624,10 @@ var mparser = (function() {
 				return input;
 			}
 
-			//Rechte Seite bearbeiten
-			rexWert = RegExp( "^(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)!*", "i" );   //Zahl oder Variable ( inklusive "!" bei Fakultät )
-			rexKlammer = RegExp( "^(\\\\?[a-z]+)?([" + characterClassAuf + "])", "i" ); //öffnende Klammer oder Funktion am Anfang
-			if( rexKlammer.test( ende ) ) { //Klammerausdruck oder Funktion im Nenner
+			//process right hand side
+			rexWert = RegExp( "^(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)!*", "i" );   //number or variable ( including "!" in case of factorial )
+			rexKlammer = RegExp( "^(\\\\?[a-z]+)?([" + characterClassAuf + "])", "i" ); //opening bracket or function at the beginning
+			if( rexKlammer.test( ende ) ) { //bracket expression or function in the denominator
 				var pos = ende.search( RegExp( "[" + characterClassAuf + "]", "" ) );
 				pos = sucheKlammern( ende, pos );
 				if( pos < 0 ) {
@@ -1639,12 +1637,12 @@ var mparser = (function() {
 					return input;
 				}
 
-				//Folgende "!" mit berücksichtigen
+				//take following '!' into account
 				for(; ( ende.length > pos + 1 ) && ( ende[pos+1] == '!' ); pos++ ) {}
 
 				var nenner = ende.slice( 0,  pos + 1 );
 				ende = replaceByPos( ende, 0, pos + 1, "{" + nenner + "}}" );
-			} else if( rexWert.test( ende ) ) {    //Zahl oder Variable am Anfang des Strings
+			} else if( rexWert.test( ende ) ) {    //number or variable at the beginning of the string
 				ende = ende.replace( rexWert, "{$&}}" );
 			} else {
 				addFehler( fehlerListenID, {
@@ -1660,10 +1658,8 @@ var mparser = (function() {
 	}
 
 	/*
-	 * Setzt Klammern um Funktionsaufrufe.
+	 * enclose functions in brackets
 	 *
-	 * input: String, in dem die Funktionen umklammert werden sollen.
-	 * klammer: Klammer, mit der umklammert werden soll.
 	 **/
 	function encloseFunctions( input, klammer, fehlerListenID ) {
 		var rex = RegExp( "([^" + characterClassAuf + "\\\\a-z]|^)([a-z]+)\\([^\\(]", "i" );
@@ -1672,7 +1668,7 @@ var mparser = (function() {
 		do {
 			lastInput = input;
 			var treffer;
-			do { //Überspringe konstrukte, da diese sonst nicht mehr geparsed werden können
+			do { //skip constructs so that they still can be parsed TODO: this might be obsolete, not quite sure
 				treffer = rex.exec( input );
 			} while( (treffer != null) && /.(sum\(|int\(|prod\()/.test( input ) );
 			if( treffer == null ) {
@@ -1694,9 +1690,10 @@ var mparser = (function() {
 		return input;
 	}
 
-	/**
-	 * Prüft einen String auf nicht geschlossenen Klammern.
-	 * Gibt entweder true oder False zurück.
+	/*
+	 * check a string for missing closing brackets.
+	 *
+	 * returns true or false
 	 **/
 	function checkBrackets (input) {
 		var stack = new Array();
@@ -1704,17 +1701,17 @@ var mparser = (function() {
 
 		for (var i = 0; i < input.length; i++) {
 			if (input[i] === '|') {
-				//überspringen von Betragszeichen
+				//skip '|' (absolute value function)
 				abs++;
 				continue;
 			}
-			//Ist es eine schließende Klammer
+			//closing bracket?
 			if (getArrayKey(klammernPaare, input[i]) !== undefined) {
-				//passt die klammer auf dem Stack nicht zu der schließenden?
+				//does the closing bracket fit the opening bracket on top of the stack?
 				if (stack.pop() != getArrayKey(klammernPaare, input[i])) {
 					return false;
 				}
-			} else if (klammernPaare.hasOwnProperty(input[i])) { //öffnende Klammer
+			} else if (klammernPaare.hasOwnProperty(input[i])) { //opening bracket
 				stack.push(input[i]);
 			}
 		}
@@ -1727,114 +1724,112 @@ var mparser = (function() {
 	}
 
 	/*
-	*  Nimmt die eingabe des Nutzers und verarbeitet Sie zu einem LaTeX-String,
-	*  einem Parserstring und einem MathJS-String ( letzteres ist momentan nur eine
-	*  Kopie des Parserstrings ).
-	*
-	*  Hierzu werden schritt für Schritt Teile der Eingabe ersetzt, bis das Endergebnis
-	*  erreicht ist.
-	*
-	*  integrationsSchritte: Anzahl der Schritte beim Integrieren
-	*
-	*  Der Rückgabewert ist ein Objekt der folgenden Form:
-	*  {
-	*     latex: "{\sum_{i=1}^{10}i}",
-	*     mathjs: "konstrukt(sum,i,1,10,(stuetzvariable_i),100)"
-	*     fehlerListe: Array mit aufgetretetenen Fehlern. Wenn dieser nicht leer
-	*     				ist, sollte das Ergebnis nicht weiterverwendet werden.
-	*  }
-	*  Bei einer Beispieleingabe von "sum_(i=0)^(10)i"
-	* */
+	 * Takes the input from the user and transforms it into a LaTeX string
+	 * and a string that can be parsed by mathjs.
+	 *
+	 * This is achieved by going through the entire string mutliple times an replacing
+	 * parts of it until the endresult ist complete.
+	 *
+	 * integrationsSchritte: number of steps when integrating
+	 *
+	 * This returns an object of the following form:
+	 *  {
+	 *     latex: "{\sum_{i=1}^{10}i}",
+	 *     mathjs: "konstrukt(sum,i,1,10,(stuetzvariable_i),100)"
+	 *     fehlerListe: array containing every error that occured. If it isn't empty, the output shouldn't be used.
+	 *  }
+	 *  example: "sum_(i=0)^(10)i"
+	 * */
 	mparser.convertMathInput = function(input, integrationsSchritte ) {
-		//Standardwert für integrationsSchritte
+		//default value for integrationsSchritte
 		integrationsSchritte = typeof integrationsSchritte !== 'undefined' ? integrationsSchritte : 1000;
 
-		//"\" aus input entfernen
+		//remove "\" from input
 		input = input.replace( RegExp( "\\\\", "g" ), "" );
 
-		// Erstelle Objekt fuer Rueckgabewert
+		//create object with return values
 		var result = {
-			latex: input,   //String zur Anzeige
-			mathjs: input   //String fuer MathJS
+			latex: input,   //latex string for displaying with mathjax
+			mathjs: input   //string for parsing with mathjs
 		};
 
 		/*
-		* Ein Array aus Einträgen der Form
+		* An array with entries of the form:
 		*  {
-		*      nutzer: "Fehlermeldung an Benutzer",
-		*      debug:   "Interne Fehlermeldung für Debug-Zwecke"
+		*      nutzer: "Error message to display to the user",
+		*      debug:   "Debugging message"
 		*  }
 		* */
 		var fehlerListenID = globalMap.add( new Array() );
 
 
-		//Einfache Ersetzungen durchführen (ohne Klammerausdrücke)
+		//perform simple replacementes (without bracket expressions)
 		result.latex = simpleReplace( result.latex, "latex", fehlerListenID );
 		result.mathjs = simpleReplace( result.mathjs, "mathjs", fehlerListenID );
 
-		//Klammerausdrücke bearbeiten
+		//process bracket epxressions
 		result.latex = bracketReplace( result.latex, "latex", fehlerListenID );
 		result.mathjs = bracketReplace( result.mathjs, "mathjs", fehlerListenID );
 
-		//Funktionsaufrufe umklammern
+		//enclose functions with curly braces
 		result.latex = encloseFunctions( result.latex, "{", fehlerListenID );
 		result.mathjs = encloseFunctions( result.mathjs, "(", fehlerListenID );
 
-		//Klammersetzung für Grenzen/Exponenten, die einzeln vorkommen
+		//enclose bounds/exponents in brackets
 		//_74.3 -> _{74.3}, ^\alpha -> ^{\alpha} ...
 		var rex = RegExp( "(_|\\^)(-?\\\\?[a-z]+|-?[0-9]+(?:\\.[0-9]+)?)", "gi" );
 		result.latex = result.latex.replace( rex, " $1{$2}" );
 		result.mathjs = result.mathjs.replace( rex, "$1($2)" );
 
-		//Negative Zahlen in Klammern setzen, um parsen zu vereinfachen
+		//enclose negative numbers in brackets to ease parsing
 		rex = RegExp( "([+\\-*/]|^)(-\\\\?[a-z]+|-[0-9]+(?:\\.[0-9]+)?)([^a-z" + regexEscape( characterClassAuf ) +  "]|$)", "gi" );
 		result.latex = replaceAllMatches( result.latex, rex, "$1{$2}$3" );
 
-		//Differentiale in LaTeX-String ersetzen durch {d{..}}
+		//replace differentials in the LaTeX string with '{d{..}}'
 		result.latex = preprocessDifferentials( result.latex, '{', fehlerListenID )
-		//Klammern um Konstrukte in LaTeX-String als vorbereitung für Bruchdarstellung
+		//enclose constucts in brackets to prepare for fractions
 		result.latex = encloseLatexConstructs( result.latex, fehlerListenID );
-		//Klammern um Potenzen in LaTeX-String als Vorbereitung für Bruchdarstellung
+		//enclose exponentiation in brackets to prepare for fractions
 		result.latex = encloseLatexPower( result.latex, fehlerListenID );
-		//Bruchdarstellung in LaTeX umsetzen
+		//create LaTeX fractions
 		result.latex = latexFractions( result.latex, fehlerListenID );
 
-		//(wert)! -> wert! in LaTeX
-		rex = RegExp( "(\\()(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)(\\))!", "gi" );    //Zahlen oder Variablen in Klammern mit Fakultät
+		//'(value)!' -> 'value!' in LaTeX
+		rex = RegExp( "(\\()(\\\\?[a-z]+|[0-9]+(\\.[0-9]+)?)(\\))!", "gi" );    //numbers or variables in brackest with factorial
 		result.latex = result.latex.replace( rex, "$2!" );
 
 
-		//MathJSstring nachbearbeiten
-		rex = RegExp( "[{]", "g" );  //Oeffnende Klammern
+		//postprocess mathjs string
+		rex = RegExp( "[{]", "g" );  //opening bracktes
 		result.mathjs = result.mathjs.replace( rex, "(" );
-		rex = RegExp( "[}]", "g" );  //Schliessende Klammern
+		rex = RegExp( "[}]", "g" );  //closing brackets
 		result.mathjs = result.mathjs.replace( rex, ")" );
-		//Differentiale ersetzen (wichtig: vor dem entfernen von Leerzeichen und nach dem Ersetzen von Klammern )
+		//replace differentials (IMPORTANT: This needs to be done after replacing brackets and before removing whitespaces)
 		result.mathjs = preprocessDifferentials( result.mathjs, '(', fehlerListenID );
-		rex = RegExp( "\\s+", "g" );      //Leerzeichen
+		rex = RegExp( "\\s+", "g" );      //whitespaces
 		result.mathjs = result.mathjs.replace( rex, "" );
 
-		//obere und untere Grenzen von Konstrukten gegebenenfalls vertauschen
+		//swap upper and lower bounds if necessary
 		result.mathjs = swapBoundaries( result.mathjs, fehlerListenID );
 
-		//Konstrukte ( prod, int, sum ) verarbeiten
+		//process constructs ( prod, int, sum )
 		var temp = replaceConstructs( result.mathjs, integrationsSchritte, fehlerListenID );
 		result.mathjs = temp.mathjs;
 
-		//Klammern in LaTeX durch "\left(" bzw. "\right)" ersetzen
-		//Hierbei werden ersteinmal alle \left und \right entfernt,
-		//weil ich keine einfache Regex gefunden habe, um das in einem Schritt zu machen.
+		//replace brackets in the LaTeX string with '\left' and '\right'
+		//in the first step every '\left' and '\right' get removed
+		//because I couldn't find a simple regex that does this in one step
 		rex = RegExp( "(\\\\left|\\\\right)(\\(|\\))", "g");
 		result.latex = result.latex.replace( rex, "$2");
 		result.latex = result.latex.replace( /\(/g, "\\left(" );
 		result.latex = result.latex.replace( /\)/g, "\\right)" );
 
-		//Fehlerliste zu Rückgabewert hinzufügen und auf globalMap löschen
+		//add fehlerListe to the return object and remove from globalMap TODO: replace global map by passing an object from the local scope
 		result.fehlerListe = globalMap.get( fehlerListenID );
 		globalMap.remove( fehlerListenID );
 
-		//left und right aus LaTeX entfernen, wenn
-		//die Klammern noch nicht vollständig sind
+		//remove '\left' and '\richt' from the LaTeX string
+		//if the brackets aren't complete (necessary for the preview)
 		if (!checkBrackets(result.latex)) {
 			result.latex = result.latex.replace(/\\left\(/g, '(');
 			result.latex = result.latex.replace(/\\right\)/g, ')');
@@ -1846,101 +1841,100 @@ var mparser = (function() {
 	};
 
 	/*
-	* Auswerten eines Ausdrucks mit gegebenen Werten für Variablen.
-	* Gibt einen Array aus Ergebnissen zurück.
-	*
-	* expression: Auszuwertender Ausdruck ( String )
-	*
-	* variables: Objekt, das den Variablennamen einen Array aus Werten zuweist:
-	*  z.B.:
-	*  var variables = {
-	*      x: [ 1, 2, 3, 4 ],
-	*      y: [ 5, 6, 7, 8 ]
-	*  };
-	*
-	*  Ist variables nicht vorhanden, so wird ohne Variablenwerte ausgewertet!
-	*
-	*  !Hinweis: Die Funktion benutzt die Anzahl der Werte irgendeiner beliebigen
-	*  Variable im Scope um die Anzahl der Werte zu bestimmen. Dies kann zu
-	*  Fehlverhalten führen, wenn für verschiedene Variablen verschieden
-	*  viele Werte angegeben wurden.
-	* */
+	 * Evaluate an expression with a set of different values for given variables.
+	 * Returns an array of results.
+	 *
+	 * expression: expresion to evaluate (string)
+	 *
+	 * variables: object mapping variable names to values
+	 *  e.g.:
+	 *  var variables = {
+	 *      x: [ 1, 2, 3, 4 ],
+	 *      y: [ 5, 6, 7, 8 ]
+	 *  };
+	 *
+	 * I there is no 'variables' array then the expression get's evaluated without them!
+	 *
+	 * !Notice: this function uses the number of values of an arbitratry variable
+	 * to determine the number of values. This can lead to undefined behaviour if
+	 * different variables have a different number of values.
+	 * */
 	mparser.evalMathJS = function( expression, variables ) {
-		//Parsen und Kompilieren des Ausdrucks
+		//parse and compile the expression
 		var code = mathJS.compile( expression );
 
-		//Wenn "variables" nicht gesetzt, direkt auswerten
+		//if 'variables' isn't set, evaluate as is
 		if( (typeof variables) == "undefined" ) {
 			return code.eval();
 		}
 
-		//Bestimmen der Anzahl an Variablenwerten
-		var anzahl = variables[Object.keys(variables)[0]].length;   //Länge des ersten Arrays in variables
+		//determine number of values
+		var anzahl = variables[Object.keys(variables)[0]].length;   //length of the first array in 'variables'
 
-		var ergebnisse = []; //Array für die Rechenergebnisse
+		var results = []; //array to put the results of the evaluation into
 
-		//Werte Ausdruck für alle Variablenwerte aus
+		//evaluate the expression for every value
 		for( var i = 0; i < anzahl; i++ ) {
 			var scope = {};
-			//Füge alle Variablen mit entsprechenden Werten zu Scope hinzu ( Schleife über alle Variablen )
+			//add all variables to the scope
 			jQuery.each( variables,
 				function ( property, value ) {
-					scope[property] = value[i]; //i-ten Wert für Variable in Scope einfügen
+					scope[property] = value[i]; //add i-th value of the variable to the scope
 				}
 			);
 
-			ergebnisse[i] = code.eval( scope );
+			results[i] = code.eval( scope );
 		}
-		return ergebnisse;
+		return results;
 	};
 
 	/*
-	 * Erhält ein Lineares Gleichungssystem in form einer Koeffizientenmatrix,
-	 * einen Vektor der rechten Seite des Gleichungssystems und eine Eingabe vom Nutzer,
-	 * die auf eine Richtige Lösung überprüft wird.
+	 * Gets a set of linear equations in form of a coefficient matrix, a vector of the
+	 * right side of the set of equations and an input from the user which will
+	 * be checked if it solves the set of equations.
 	 *
-	 * Parameter:
-	 * coefficientMatrix: Array von Strings, die die Spalten der Koeffizientenmatrix enthalten
-	 * 			["(1,2,3)", "(4,5,6)", "(7,8,9)"]
-	 * rightHandSide: String mit dem Vektor der rechten Seit des Gleichungssystems
-	 * userSolution: String mit dem Array der vom Nutzer angegebenen Lösung
-	 * accuracy: Mindestens diese Anzahl von Stellen müssen übereinstimmen
+	 * parameters:
+	 * coefficientMatrix: array of strings that contain the columns of the coefficient matrix
+	 *          ["(1,2,3)", "(4,5,6)", "(7,8,9)"]
+	 * rightHandSide: string containing the vector of the right side of the set of equations
+	 * userSolution: string with an array of the proposed solution by the user
+	 * accuracy: at least this number of digits has to match
 	 *
-	 * Rückgabewert ist true, falls die Lösung richtig ist und false, falls nicht.
+	 * return value is true in case of a correct solution, false otherwise.
 	 * */
 	mparser.checkSetOfLinearEquations = function( coefficientMatrix, rightHandSide, userSolution, accuracy ) {
-		//Standardwert für accuracy
+		//default value for accuracy
 		accuracy = typeof accuracy !== 'undefined' ? accuracy : 3;
 
-		//Baue Koeffizientenmatrix zusammen
-		var matrix = "["; //Koeffizientenmatrix in mathjs-Notation als String
+		//create coefficient matrix from it's columns
+		var matrix = "["; //coefficient matrix in mathjs notation as a string TODO: use Array.prototype.join for this
 		coefficientMatrix.forEach(
 			function( input ) {
 				var returnObject = mparser.convertMathInput( input );
 				if( returnObject.fehlerListe.length != 0 ) {
 					throw "FEHLER: Parsen der Koeffizientenmatrix fehlgeschlagen";
 				}
-				matrix += returnObject.mathjs + ',';	//Spalte zu Matrix hinzufügen
+				matrix += returnObject.mathjs + ',';	//add column to matrix
 			}
 		);
-		//Letztes Komma durch eine schließende Klammer ersetzen
+		//replace last comma with a closing bracket TODO: this is unnecessary when using Array.prototype.join
 		matrix = matrix.replace( /,$/, "]" );
 
-		//Vom Nutzer eingegebene "Lösung" vorverarbeiten
+		//process proposed solution by the user
 		var returnObject = mparser.convertMathInput( userSolution );
 		if( returnObject.fehlerListe.length != 0 ) {
 			throw "FEHLER: Parsen der vom Nutzer eingegebenen Lösung fehlgeschlagen";
 		}
 		userSolution = returnObject.mathjs;
 
-		//rechte Seite des Gleichungssystems vorverarbeiten
+		//prepare righthand side of the set of equations
 		var returnObject = mparser.convertMathInput( rightHandSide );
 		if( returnObject.fehlerListe.length != 0 ) {
 			throw "FEHLER: Parsen der rechten Seite des Gleichungssystems fehlgeschlagen";
 		}
 		rightHandSide = returnObject.mathjs;
 
-		//Umwandeln in mathjs-Datentypen
+		//convert to mathjs datatypes
 		var mathjsKoeffMatrix;
 		var mathjsRightHandSide;
 		var mathjsUserSolution;
@@ -1948,10 +1942,10 @@ var mparser = (function() {
 		mathjsRightHandSide = mathJS.matrix(  mathJS.eval( rightHandSide ) );
 		mathjsUserSolution = mathJS.matrix( mathJS.eval( userSolution ) );
 
-		//Einsetzen der "Lösung" des Nutzers
+		//apply proposed solution of the user
 		var mathjsUserRightHandSide = mathJS.multiply( mathjsKoeffMatrix, mathjsUserSolution );
 
-		//Berechnen der Differenz
+		//calculate the difference
 		try {
 			var mathjsDelta = mathJS.subtract( mathjsUserRightHandSide, mathjsRightHandSide );
 			mathjsDelta.forEach(
@@ -1969,7 +1963,7 @@ var mparser = (function() {
 		return true;
 	};
 
-	//Dieses Return-Objekt definiert das öffentliche Interface
+	//this return object defines the public interface
 	return mparser;
-})(); //ENDE der Closure
+})(); //end of the closure
 
