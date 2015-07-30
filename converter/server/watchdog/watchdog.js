@@ -30,7 +30,7 @@ var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
 var fs = require('fs');
 
-var mailTransporter = nodemailer.createTransport(sendmailTransport());
+var mailTransporter = nodemailer.createTransport(config.mailoptions);
 
 //log to logfile
 function log(message) {

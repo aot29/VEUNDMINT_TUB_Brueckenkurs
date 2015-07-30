@@ -44,8 +44,33 @@ module.exports = {
           threshold: 1000
         }
       ]
-    }
-  ],
+    },
+    {
+      name: 'mintlx1_ilias_login',
+      ping: true,
+      url: 'http://mintlx1.scc.kit.edu/ilias/login.php',
+      requests: [
+        {
+          name: '1', method: 'GET', data: {}, test: function (response, reqObject) {
+            return true;
+          },
+          threshold: 1000
+        }
+      ]
+    },
+    {
+      name: 'tester_dh',
+      ping: true,
+      url: 'http://mintlx3.scc.kit.edu/test_mintlx3_alive.html',
+      requests: [
+        {
+          name: '1', method: 'GET', data: {}, test: function (response, reqObject) {
+            return true;
+          },
+          threshold: 1000
+        }
+      ]
+    } ],
   logfile: '/opt/watchdog/log',
   errorlog: '/opt/watchdog/errorlog',
   //timeout in seconds
@@ -53,8 +78,15 @@ module.exports = {
   //watchdog interval in minutes
   interval: 5,
   email: {
-    from: "Foo Bar <foo@bar.baz>",
-    to: "someone@somewhere.tld",
-    subject: "Watchdog"
+    from: "VE&MINT INFO <info@ve-und-mint.de>",
+    to: "info@ve-und-mint.de", // sender and recipient are the same on purpose
+    subject: "VE&MINT watchdog alert"
+  },
+  mailoptions: {
+    port: 587, // used by TLS connection
+    host: "smtp.something.org",
+    secure: true,
+    auth: { user: "USERNAME", pass: "PASSWORD" },
+    ignoreTLS: false // true -> port should be 25
   }
 };
