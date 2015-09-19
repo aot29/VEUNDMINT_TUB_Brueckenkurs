@@ -8,33 +8,29 @@
 \begin{html}
 <h1 class="start" >Onlinekurs Mathematik</h1>
 
-<p>
-<script>
-rouletteExercise("Grundrechenarten");
-</script>
-</p>
 
-
-<div class="loginbox">
-<p>
-Dies ist die Korrektorenversion des Kurses, bitte registrieren Sie sich (falls noch nicht geschehen)
-zur Korrektur auf der Einstellungsseite. In der Korrekturversion werden die Nutzerdaten nur im Browser auf diesem
-Rechner gespeichert und es wird kein Passwort eingetragen. Falls Sie von einem anderen Rechner zugreifen, müssen Sie
-die Nutzerdaten neu eingeben.
-<br /><br />
-Korrekturhinweise zu einem Objekt werden
-durch Klick auf den Meldungsbutton jeweils unter dem Objekt verschickt, zudem gibt es am Ende jeder Seite
-einen allgemeinen Meldungsbutton zur gesamten Seite. Bei Problemen wenden Sie sich bitte
-an <a href="mailto:daniel.haase@kit.edu">daniel.haase@kit.edu</a> oder benutzen Sie den allgemeinen
-Feedbackbutton auf der linken Seite.
-<br />
-<br />
-Die Meldungsbuttons verziehen insbesondere bei eingebetteten Grafiken den Layout
-in der Korrekturversion, bitte melden Sie daher keine Layoutfehler die durch diese Buttons
-oder durch folgende Zeilenwechsel verursacht werden.
-<br /><br />
+<div class="xreply">
+<p id="LOGINFIELD">
+Kann nicht auf Browserdaten zugreifen!
 </p>
+<div id="USERNAMEFIELD">
+Wählen Sie einen Loginnamen für die Kursbearbeitung:<br />
+Loginname: <input id="USER_UNAME" type="text" size="18" oninput="usercheck();" onkeyup="usercheck();" onpaste="usercheck();" onpropertychange="usercheck();"></input><img id="checkuserimg" src="images/questionmark.gif">
+<br />
+<div class="usercreatereply"><p id="ulreply_p"> </p></div>
+<br /><br />
+Freiwillige Angaben:
+<table>
+  <tr><td align=left>Vorname:</td><td align=left><input id="USER_VNAME" type="text" size="40"></input></td></tr>
+  <tr><td align=left>Nachname:</td><td align=left><input id="USER_SNAME" type="text" size="40"></input></td></tr>
+  <tr><td align=left>eMail:</td><td align=left><input id="USER_EMAIL" type="text" size="40"></input></td></tr>
+</table>
+<button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="usercreatelocal_click(1);">Obige Benutzerdaten im Browser registrieren</button><br />
 </div>
+
+<button type="button" id="RESETBUTTON" style="height:60px;width:250px;background:#FFD0C0" onclick="userreset_click();">Alle Benutzerdaten löschen</button>
+</div>
+
 
 Willkommen zum Onlinevorkurs des VE&MINT-Projekts. Dieser Vorkurs dient der Auffrischung des Schulstoffs Mathematik
 zur Vorbereitung auf ein Studium. 

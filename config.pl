@@ -1,6 +1,7 @@
 # Globale Einstellungen fuer mconvert.pl und conv.pl (sowie die darin eingebundenen modules)
 
 
+scormlogin      =>      0       , # =1 -> Alle Anmeldesysteme werden deaktiviert, und Teilnehmer ueber SCORM identifiziert
 nosols          =>      0       , # =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
 doscorm         =>      0       , # =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden, dann muss auch entsprechendes Flag in conv.pl gesetzt werden
 qautoexport     =>      0       , # =1 Alle MExercise-Umgebungen werden auch als Export verpackt

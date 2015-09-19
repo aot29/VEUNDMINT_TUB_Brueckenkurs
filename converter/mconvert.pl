@@ -398,6 +398,12 @@ sub checkOptions {
     }
   }
 
+  if ($config{scormlogin} eq 1) {
+    if ($config{doscorm} eq 0) {
+      die("FATAL: Option scormlogin is inconsistent with doscorm=0, activate doscorm");
+    }
+  }
+
   $zip = ""; # Pfad+Name der zipdatei
   if ($config{dozip} eq 1) {
     if ($config{output} =~ m/(.+)\.zip/i) {

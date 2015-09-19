@@ -15,7 +15,7 @@ function getObjName() {
 // Typ  1: Personalisiert local:
 //        - Strings in login-Teilobjekt sind mit Nutzerdaten gefuellt, aber Passwort ist leer
 //        - intersiteobj wird in Abhaengigkeit der Flags in LocalStorage abgelegt
-// Typ  2: Personalisiert server sync:
+// Typ  2: Personalisiert server sync:    (diese beiden Typen sind die einzig moeglichen falls scormLogin==true)
 //        - Strings in login-Teilobjekt sind mit Nutzerdaten gefuellt und Paar (username,password) ist vom Server akzeptiert
 //        - Daten in intersiteobj sind mit Serverdaten identisch und muessen nicht gepusht werden
 // Typ  3: Personalisiert server async:
@@ -48,9 +48,23 @@ function objClone(obj) {
     return temp;
 }
 
-// Initialisiert das Intersite-Objekt, falls update==true werden vorhandene Daten ueberschrieben
+// Initialisiert das Intersite-Objekt, falls update==true werden vorhandene Daten ueberschrieben, falls scormLogin==true wird Benutzerkennung nicht aus localStorage sondern SCORM geholt (schliesst update aus)
 function SetupIntersite(clearuser) {
   logMessage(VERBOSEINFO,"SetupIntersite START");
+  
+  if (scormLogin == true ) {
+    logMessage(VERBOSEINFO, "SCORM-Login forciert");
+
+    var psres = pipwerks.SCORM.init();
+    logMessage(VERBOSEINFO, "SCORM init = " + psres);
+    psres = pipwerks.SCORM.get("cmi.learner_id");
+    logMessage(VERBOSEINFO, "SCORM learner id = " + psres);
+    psres = pipwerks.SCORM.get("cmi.learner_name");
+    logMessage(VERBOSEINFO, "SCORM learner name = " + psres);
+    psres = pipwerks.SCORM.save();
+    logMessage(DEBUGINFO, "SCORM save = " + psres);
+  }
+  
   if (typeof(localStorage) !== "undefined") {
     localStoragePresent = true;
     logMessage(VERBOSEINFO, "localStorage found");
