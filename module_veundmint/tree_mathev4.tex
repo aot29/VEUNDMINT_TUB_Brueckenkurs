@@ -1,0 +1,29 @@
+% Hauptdatei zur Erstellung des gesamten Modulbaums
+%
+% Daniel Haase 2015
+
+\MSignature{OBM_tbetarelease_kit}{09943beta}{mintkolleg_kit}
+
+
+\MDeclareDataServer{http://mintlx3.scc.kit.edu/dbtest}
+\MDeclareExerciseServer{http://mintlx3.scc.kit.edu/dbtest}
+\MDeclareFeedbackServer{http://mintlx3.scc.kit.edu/dbtest/feedback.php}{Betaphasenserver 3 (KIT)}
+\MHeaders{Version 0.995 (Beta)}{Onlinevorkurs Mathematik V4}{www.mint-kolleg.de}{--- Onlinephase bis 5. Oktober 2015 ---}{Lizenz: CC BY-SA 3}{}
+\MReplyAdress{daniel.haase@kit.edu}
+\MMainLogo{mintlogo.png}
+\MColorFile{farben_mathev4.ini}
+
+\MPragma{PDFTEXDeclare;tree1} % Dieses Kommando gibt an, aus welchen tex-Dateien die PDF-Dokumente erzeugt werden sollen (hier nur eines fuer alle Module)
+\MSetSubject{\MINTMathematics} % Setzt gewisse Regeln fuer Nummerierung und Benennung von Info-Boxen
+
+\MDoFeedback{0}
+\MDoExport{0}
+\MSubject{Onlinekurs Mathematik V4}%
+
+\input{tree1_include_mathev4.tex}
+
+\input{helpsite_mathev4.tex}
+\input{miscsite_mathev4.tex}
+
+% \MLocationSite{location_common.png}{Karlsruher Institut für Technologie}{Das KIT}
+% \input{locationsite_kit.tex}
