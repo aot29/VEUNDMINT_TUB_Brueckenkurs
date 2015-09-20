@@ -34,7 +34,7 @@ function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
   logMessage(VERBOSEINFO,"New IntersiteObj for scormlogin created");
   var obj = createIntersiteObj();
   obj.login.type = 2;
-  obj.login.vname = "?";
+  obj.login.vname = "";
   obj.login.sname = s_name;
   obj.login.username = s_login;
   obj.login.password = s_pw;
