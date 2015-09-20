@@ -1157,6 +1157,7 @@ close(MINTS);
 
 # Icons konvertieren
 my $iconselector = $config{output} . "/converter/buttons_org/*";
+print "CWD is " . cwd() . "\n";
 print "Iconselector is $iconselector\n";
 my @orgicons = <$iconselector>;
 my $file = "";
