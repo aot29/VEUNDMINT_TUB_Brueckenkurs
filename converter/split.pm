@@ -1530,14 +1530,14 @@ sub updatelinks {
 		# Erstmal tex-Makro MMaterial expandieren falls es direkt im HTML eingegeben wurde
 		$text =~ s/\\MMaterial/:localmaterial:/g;
 
-    $text =~ s/(src|href)=("|')(?!(\#|http:\/\/|ftp:\/\/|mailto:|:localmaterial:|:directmaterial:))/$1=$2$prepend/g;
+    $text =~ s/(src|href)=("|')(?!(\#|https:\/\/|http:\/\/|ftp:\/\/|mailto:|:localmaterial:|:directmaterial:))/$1=$2$prepend/g;
 
 
-		$text =~ s/<param name=("|')movie("|') value=(\"|\')(?!(http|ftp))/$&$prepend/g;
+		$text =~ s/<param name=("|')movie("|') value=(\"|\')(?!(https|http|ftp))/$&$prepend/g;
  		$prepend =~ s/\//\\\//g;
 
     # $text =~ s/,("|')(?!(\#|'|"|http:\/\/|ftp:\/\/|mailto:|:localmaterial:|:directmaterial:))/,$1$prepend/g;
-    if ($text =~ /,("|')(?!(\#|'|"|http:\/\/|ftp:\/\/|mailto:|:localmaterial:|:directmaterial:))/ ) {
+    if ($text =~ /,("|')(?!(\#|'|"|https:\/\/|http:\/\/|ftp:\/\/|mailto:|:localmaterial:|:directmaterial:))/ ) {
       # print "DEBUG: Kombination ,$1 im Dokument gefunden, Kontext ist \n$text\n\n";
     }
 
@@ -1929,7 +1929,7 @@ sub loadtemplates_netservice {
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{TITLE}</title>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   config: [":directmaterial:TeX-AMS-MML_HTMLorMML.js"],
