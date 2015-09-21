@@ -67,6 +67,23 @@ var userdata = (function (baseURL) {
      * errorCallback
      **/
     function sendRequest(type, data, successCallback, errorCallback) {
+	$.ajax( url, {
+		type: type,
+		async: true,
+		cache: false,
+		contentType: 'application/x-www-form-urlencoded',
+		crossDomain: true,
+		data: data,
+		//dataType: 'html', //Erwarteter Datentyp der Antwort
+		error: errorCallback,
+		success: successCallback
+		//statusCode: {}, //Liste von Handlern fuer verschiedene HTTP status codes
+		//timout: 1000,	//Timeout in ms
+	});
+
+	
+	// Der folgende Code generiert SHA1-Warnungen sowie Crossover-policy violations trotz SSL und AllowOrigin = * von apache2
+	/*
         $.ajax( url, {
             type: type,
             async: true,
@@ -75,11 +92,13 @@ var userdata = (function (baseURL) {
             xhrFields: {
                 withCredentials: true
             },
+            headers: { 'Access-Control-Allow-Origin': '*' },
             crossDomain: true,
             data: data,
             error: errorCallback,
             success: successCallback,
         });
+        */
     }
 
     /**

@@ -73,7 +73,7 @@ function authenticate ($database_handler, $username, $password, $mysql_users_tab
     //this might only cause an exception
 	if(!user_exists($database_handler, $username, $mysql_users_table)) {
 		exit(json_encode(array('action' => 'login',
-			'error' => "user doesn't exists",
+			'error' => "user doesn't exist",
 		   	'status' => false)));
 	}
 

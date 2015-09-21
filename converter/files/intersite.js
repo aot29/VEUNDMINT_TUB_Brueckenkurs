@@ -40,7 +40,7 @@ function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
   obj.login.password = s_pw;
   obj.login.email = "";
 
-  // userdata.check_user(obj.login.username, check_user_scorm_success, check_user_scorm_error); // function continues in callbacks!
+  userdata.checkUser(obj.login.username, check_user_scorm_success, check_user_scorm_error); // function continues in callbacks!
 
 
   return obj;
@@ -580,6 +580,7 @@ function LoadSiteData() {
  * error: Callback, der im Fehlerfall ausgefuehrt wird, eine Funktion der Form:
  * 		function( errorMessage ) {}
  * */
+// Sollte mit Funktion aus userdata.js gemergt werden!
 function sendCorsRequest( url, data, success, error,async ) {
 	$.ajax( url, {
 		type: 'POST',
