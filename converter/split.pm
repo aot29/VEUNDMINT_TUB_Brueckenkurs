@@ -49,6 +49,8 @@ sub postprocess {
   if ($text =~ m/<!-- pullsite \/\/-->/s ) {
     $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/SITE_PULL = 1;\n\/\/ <JSCRIPTPRELOADTAG>/s ;
     print "User-Pull on Site: " . $orgpage->{TITLE} . "\n";
+  } else {
+    $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/SITE_PULL = 0;\n\/\/ <JSCRIPTPRELOADTAG>/s ;
   }
   
   # br-Tags entfernen, die nebeneinander gestellte tabulars zerreissen

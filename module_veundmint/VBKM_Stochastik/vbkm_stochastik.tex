@@ -11,20 +11,164 @@
 \begin{MSectionStart}
 \MDeclareSiteUXID{VBKM_STOCHASTIK_START}
 
-In diesem Modul werden einige Grundbegriffe der Stochastik und der beschreibenden Statistik eingeführt.
-
+In diese Modul werden auf der Grundlage der Einheiten die elementaren mengentheoretischen Grundlagen für den späteren Aufbau des
+wahrscheinlichkeitstheoretischen Modells behandelt. Die Begriffe \glqq Wahrscheinlichkeit\grqq, \glqq Wahrscheinlichkeitsmaß\grqq, \glqq Wahrscheinlichkeitsfunktion\grqq\ werden
+nicht behandelt. Das wahrscheinlichkeitstheoretische Modell wird erst in den Vorlesungen Statistik 1 und Statistik 2 vorgestellt. Das Modul besteht
+aus zwei Teilen:
+\begin{itemize}
+\item{Im \MSRef{L_STOCH_1}{ersten Teil} werden die wichtigsten Grundlagen der deskriptiven (beschreibenden) Statistik behandelt. Alle Inhalte sollten aus der
+Schule bekannt sein. Insbesondere werden den Themen Rundung und Prozentrechnung (diese sind eigentlich keine Themen der deskriptiven Statistik,
+werden dort aber gebraucht) relativ viel Raum eingeräumt. Vor allem ist der sichere Umgang mit der Prozentrechnung in den Wirtschaftswissenschaften
+unverzichtbar. Die Erfahrung lehrt, dass diese elementaren Dinge, die schon in der Mittelstufe des Gymnasiums unterrichtet werden, sehr oft auf die leichte
+Schulter genommen werden. Ein Test hat z.B. ergeben, dass die Hälfte der Studienanfänger nicht in der Lage sind, aus dem Stegreif heraus von einer
+Bruttorechnung die Mehrwertsteuer auszuweisen.}
+\item{Im \MSRef{L_STOCH_2}{zweiten Teil} wird die Sprechweise der Mengenlehre und der Abbildungen übersetzt in die Sprechweise der Statistik.
+In der Stochastik, dies ist der Oberbegriff für die Begriffe Wahrscheinlichkeitstheorie und Statistik, hat sich eine eigene Sprechweise für die
+Grundbegriffe der Mengenlehre etabliert. Diese neuen Sprechweisen, die sich aus den Gegebenheiten des Faches herleiten, werden ausführlich behandelt
+und an Beispielen erläutert. Im Gegensatz zum ersten Teil reicht der zweite Teil schon etwas über einen Vorbereitungskurs hinaus und führt schon mehr
+in den Vorlesungsstoff des Grundstudiums. Der zweite Teil soll vor allem dazu dienen, schon am Anfang des Studiums den Einsatz mathematischer
+Grundbegriffe in anderen Teilen des Fachstudiums kennenzulernen.}
+\end{itemize}
 \end{MSectionStart}
 
-\MSubsection{Mittelwerte}
-\MLabel{MSTOCH_Mittelwerte}
+
+\MSubsection{Grundgesamtheit und Stichproben}
+\MLabel{L_STOCH_1}
 
 \begin{MIntro}
-\MDeclareSiteUXID{VBKMSTOCH_Mittelwerte}
-bla
+\MDeclareSiteUXID{VBKM_STOCHASTIK_1}
 
+Bei statistischen Untersuchungen (Erhebungen) werden an geeignet ausgewählten Untersuchungseinheiten (Beobachtungseinheiten, Versuchseinheiten) jeweils die Werte eines oder mehrerer Merkmale festgestellt. Dabei ist ein Merkmal eine zu untersuchende Größe der Beobachtungseinheit.
+Begriffe und Sprechweisen:
+\begin{itemize}
+\item{Die \MEntry{Untersuchungseinheit}{Untersuchungseinheit} (auch: \MEntry{Beobachtungseinheit}{Beobachtungseinheit} oder \MEntry{Merkmalträger}{Merkmalträger})
+ist die kleinste Einheit, an der Beobachtungen durchgeführt werden.}
+\item{Das \MEntry{Merkmal}{Merkmal} ist die zu untersuchende Größe der Untersuchungseinheit. Merkmale werden meist mit großen lateinischen Buchstaben ($X, Y, Z, \ldots$)
+bezeichnet.}
+\item{\MEntry{Merkmalsausprägungen}{Merkmalsausprägungen} oder \MEntry{Merkmalswerte}{Merkmalswerte} sind die Werte, die von Merkmalen angenommen werden können.
+Merkmalswerte werden meist mit kleinen, lateinischen Buchstaben ($a, b,\ldots, x, y, z, a_1, a_2,\ldots$) bezeichnet.}
+\item{Die Menge der Untersuchungseinheiten, über die hinsichtlich eines interessierenden Merkmals eine Aussage gemacht werden soll,
+heißt \MEntry{Grundgesamtheit}{Grundgesamtheit} oder auch \MEntry{Population}{Population}. Sie ist die Menge aller denkbaren Untersuchungseinheiten einer Untersuchung.}
+\item{Eine \MEntry{Stichprobe}{Stichprobe} ist eine \glqq zufällig gewonnene\grqq\ endliche Teilmenge aus einer bestimmten,
+interessierenden Grundgesamtheit. Hat diese Teilmenge $n$ Elemente, so spricht man von einer \glqq Stichprobe vom Umfang $n$\grqq.}
+\item{\MEntry{Daten}{Daten} sind die beobachteten Werte (Ausprägungen) eines oder mehrerer Merkmale einer Stichprobe von Untersuchungseinheiten einer bestimmten Grundgesamtheit.}
+\item{Die \MEntry{Urliste}{Urliste} ist das Protokoll, auf dem die Daten einer Untersuchung in der beobachteten Reihenfolge stehen.
+Die Urliste ist also ein $n$-Tupel (bzw. Vektor, hier meist als Zeile statt Spalte geschrieben):
+$$
+x \;=\; (x_1,\ldots,x_n)\: .
+$$
+aus Daten. Oft nennt man auch dieses $n$-Tupel eine \glqq Stichprobe vom Umfang $n$\grqq.}
+\end{itemize}
+
+\begin{MExample}
+Bei einer Tagesproduktion von Werkstücken werden $n=20$ Proben zu je $15$ Teilen entnommen und jeweils die Anzahl defekter Teile festgestellt.
+Dabei sei $x_i$ die Anzahl der defekten Teile in der $i$-ten Probe, $i=1,\ldots,20$. Die Urliste (Stichprobe vom Umfang $n=20$) sei
+$$
+x\; =\; (0,4,2,1,1,0,0,2,3,1,0,5,3,1,1,2,0,0,1,0)\: .
+$$
+In der zweiten Probe wurden z.B. $x_2=4$ defekte Teile gefunden. Die Grundgesamtheit in diesem Beispiel wäre also die Menge aller
+$15$-elementigen Teilmengen der Tagesproduktion. Das interessierende Merkmal ist
+$$
+X\;=\; \text{Anzahl der defekten Werkstücke in einer Probe mit $15$ Elementen.}
+$$
+\end{MExample}
 \end{MIntro}
 
+\begin{MXContent}{Merkmale}{Merkmale}{STD}
+\MDeclareSiteUXID{VBKM_STOCHASTIK_2}
+\begin{MInfo}
+Die bei einer statistischen Untersuchung beobachtbaren Größen heißen \MEntry{Merkmale}{Merkmal}.
+Werte, die von Merkmalen angenommen werden können, heißen \MEntry{Merkmalsausprägungen}{Merkmalsausprägung} oder \MEntry{Merkmalswerte}{Merkmalswert}.
+\end{MInfo}
 
+Bei Merkmalen wird grob zwischen qualitativen (artmäßig erfassbaren) und quantitativen (in natürlicher Weise zahlenmäßig erfassbaren) Merkmalen unterschieden:
+\begin{itemize}
+\item{\MEntry{Qualitative Merkmale}{Merkmal!qualitativ}:\begin{itemize}
+  \item{\MEntry{Nominale Merkmale}{Nominale Merkmale}: Die Klassifizierung der Merkmalsausprägungen erfolgt nach rein qualitativen Gesichtspunkten.
+        Beispiele: Hautfarbe, Nationalität, Blutgruppe.}
+  \item{\MEntry{Ordinale Merkmale}{Merkmal!ordinal}: Eine natürliche Rangfolge der Merkmalsausprägungen ist vorhanden, man kann die Werte anordnen bzw. sortieren.
+        Beispiele: Schulnote, Dienstgrade, Nachnamen.}
+  \end{itemize}
+  }
+\item{\MEntry{Quantitative Merkmale}{Merkmal!quantitativ}:\begin{itemize}
+  \item{\MEntry{Diskrete Merkmale}{Merkmal!diskret}: Die Merkmalsausprägungen sind isolierte Zahlwerte.
+        Beispiele: Anzahlen, Jahreszahlen, Alter in Jahren.}
+  \item{\MEntry{Stetige Merkmale}{Merkmal!stetig}: Die Merkmalsausprägungen können (zumindestens prinzipiell) jeden Wert in einem Intervall annehmen.
+        Beispiele: Größe, Gewicht, Länge.}
+  \end{itemize}
+}
+\end{itemize}
+
+Der Übergang zwischen stetigen und diskreten Merkmalen ist durch Rundungsmöglichkeiten zum Teil fließend.
+
+\end{MXContent}
+
+
+\begin{MXContent}{Rundung}{Rundung}{STD}
+Das \MEntry{Runden}{Rundung} von Messergebnissen ist ein alltäglicher Vorgang.
+
+\begin{MInfo}
+Für Rundungsvorgänge gibt es prinzipiell drei Möglichkeiten:
+\begin{itemize}
+\item{Das (Ab)Runden mit Hilfe der \textsf{floor}-Funktion $\lfloor x\rfloor$,}
+\item{das (Auf)Runden mit Hilfe der \textsf{ceil}-Funktion $\lceil x\rceil$,}
+\item{das Runden mit Hilfe der \textsf{round}-Funktion, manchmal auch als \textsf{rnd}-Funktion bezeichnet.}
+\end{itemize}
+\end{MInfo}
+
+Die \MEntry{\textsf{floor}-Funktion}{floor-Funktion} (engl. floor = Fußboden, Diele) ist definiert durch
+$$
+\textsf{floor}:\; \R\longrightarrow\R\;\; , \;\;
+x\;\longmapsto\; \textsf{floor}(x)\;=\; \lfloor x\rfloor\;=\; \max\lbrace k\in\Z\: :\: k\leq x\rbrace\: .
+$$
+Ist $x\in\R$ eine reelle Zahl, so ist $\textsf{floor}(x)=\lfloor x\rfloor$ die größte ganze Zahl, die kleiner oder gleich x ist.
+Sie entsteht durch Abrundung von $x$. Schreibt man eine positive reelle Zahl $x$ als Dezimalbruch, so ist $\lfloor x\rfloor$ die ganze Zahl vor dem
+Dezimalkomma: Die Abrundung schneidet die Nachkommastellen ab. Beispielsweise ist $\lfloor 3,142\rfloor=3$, aber $\lfloor -2,124\rfloor=-3$.
+Die Floor-Funktion ist eine Treppenfunktion mit Sprungstellen in allen Punkten $x\in \Z$ der Sprunghöhe $1$.
+Die Funktionswerte in den Sprungstellen liegen immer oben. Dies ist in dem folgenden Schaubild des Graphen angedeutet durch eingezeichnete Punkte:
+
+\begin{center}
+\MUGraphicsSolo{floor_400_0.png}{}{width:700px}\ \\
+Graph der \textsf{floor}-Funktion.
+\end{center}
+
+Gegeben sei eine reelle Zahl $a\geq 0$, dargestellt als \MSRef{Mathematik_Grundlagen_UDB}{Dezimalbruch}
+$$
+a \;=\; g_n\, g_{n-1}\, \ldots\, g_1\, g_0\: .\: a_1\,a_2\, a_3\, \ldots
+$$
+Will man mit Hilfe der \textsf{floor}-Funktion die Zahl $a$ auf $r$ Stellen nach dem Komma runden, so bildet man
+$$
+\tilde a \;=\; \frac1{10^r}\cdot \lfloor 10^r\cdot a\rfloor\: .
+$$
+Dieser Rundungsvorgang ist die Rundung durch Abschneiden nach der r-ten Nachkommastelle. Beim Rundungsverfahren mit Hilfe der
+\textsf{floor}-Funktion wird also grundsätzlich abgerundet.
+
+\begin{MExample}
+$a_1=2,3727$ wird mit Hilfe der \textsf{floor}-Funktion gerundet auf 2 Nachkommastellen zu
+$$
+\tilde a_1 \;=\; \frac1{10^2}\cdot \lfloor10^2\cdot2,3727\rfloor\; =\; \frac1{10^2}\cdot \lfloor 237,27\rfloor \;=\; \frac1{10^2}\cdot 237\;=\; =2,37\: .
+$$
+oder einfach durch Abschneiden aller Nachkommastellen nach der zweiten Stelle (das geht aber nur, wenn die Zahl schon als Dezimalbruch vorliegt, was beispielsweise
+in einem Computerprogramm oft nicht der Fall ist).
+Die Zahl $a_2=\sqrt{2}=1,414213562\ldots$ wird mit Hilfe der \textsf{floor}-Funktion gerundet auf 4 Nachkommastellen zu
+$$
+\tilde a_2 \;=\; \frac1{10^4}\cdot \lfloor 10^4\cdot \sqrt2\rfloor \;=\; \frac1{10^4}\cdot \lfloor 14142,135\ldots\rfloor\;=\; \frac1{10^4}\cdot 14142 \;=\; 1.4142\: .
+$$
+Die Kreiszahl
+$$
+a_3 \;=\; \pi \;=\; 3,141592654\ldots
+$$
+wird mit Hilfe der \textsf{floor}-Funktion gerundet auf 2 Stellen nach dem Komma zu
+$$
+\tilde a_3 \;=\; \frac1{10^2}\cdot \lfloor 10^2\cdot\pi\rfloor\;=\; \frac1{10^2}\cdot \lfloor 314,159\ldots\rfloor \;=\; \frac1{10^2}\cdot 314 \;=\; 3,14\: .
+$$
+\end{MExample}
+
+Das Rundungsverfahren mit Hilfe der \textsf{floor}-Funktion findet oft Anwendung bei der Bestimmung von Gesamtnoten in Zeugnissen (\glqq akademische Rundung\grqq).
+Hat ein Studierender im Fach Mathematik z.B. die Einzelnoten
+
+
+\end{MXContent}
 
 % \MSubsection{Vektoren im Raum}
 % \MLabel{M10_Vektoren}
