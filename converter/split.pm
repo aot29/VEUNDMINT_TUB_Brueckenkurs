@@ -45,6 +45,12 @@ sub postprocess {
     $outputfolder = $outputfile;
   }
 
+  # Pull-Seiten aktivieren, JS-Variablen anpassen (geschieht normalerweise in conv.pl bei xcontents, aber HELPSITE-Sectionstart ist keiner?)
+  if ($text =~ m/<!-- pullsite \/\/-->/s ) {
+    $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/SITE_PULL = 1;\n\/\/ <JSCRIPTPRELOADTAG>/s ;
+    print "User-Pull on Site: " . $orgpage->{TITLE} . "\n";
+  }
+  
   # br-Tags entfernen, die nebeneinander gestellte tabulars zerreissen
   # Das ist unsauber, weil nicht klar ist, warum ttm diese Tags prinzipiell zwischen Tabellen setzt
   # Erkennungsmerkmal ist die Tagkombination <!--hbox--><br clear="all" /> und danach direkt ein table-Tag

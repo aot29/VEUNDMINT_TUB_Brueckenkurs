@@ -241,6 +241,13 @@
 \newcommand{\MGlobalStart}{}
 \fi
 
+% Makro, um bei scormlogin ein pullen des Benutzers bei Aufruf der Seite zu erzwingen (typischerweise auf der Einstiegsseite)
+\ifttm
+\newcommand{\MPullSite}{\special{html:<!-- pullsite //-->}}
+\else
+\newcommand{\MPullSite}{}
+\fi
+
 % Makro, um in der HTML-Ausgabe die Kapiteluebersicht zu kennzeichnen
 \ifttm
 \newcommand{\MGlobalChapterTag}{\special{html:<!-- mglobalchaptertag -->}}

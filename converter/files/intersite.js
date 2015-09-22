@@ -33,18 +33,17 @@ function createIntersiteObj() {
 function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
   logMessage(VERBOSEINFO,"New IntersiteObj for scormlogin created");
   var obj = createIntersiteObj();
-  obj.login.type = 2;
+  obj.login.type = 3;
   obj.login.vname = "";
   obj.login.sname = s_name;
   obj.login.username = s_login;
   obj.login.password = s_pw;
   obj.login.email = "";
-
-  userdata.checkUser(obj.login.username, check_user_scorm_success, check_user_scorm_error); // function continues in callbacks!
-
-
+  intersiteobj.startertitle = document.title;
+  intersiteobj.configuration.CF_LOCAL = "1";
+  intersiteobj.configuration.CF_USAGE = "1";
+  intersiteobj.configuration.CF_TESTS = "1";
   return obj;
-  
 }
 
 // Callbacks fuer createIntersiteObjFormSCORM
@@ -75,7 +74,8 @@ function objClone(obj) {
 }
 
 // Initialisiert das Intersite-Objekt, falls update==true werden vorhandene Daten ueberschrieben, falls scormLogin==true wird Benutzerkennung nicht aus localStorage sondern SCORM geholt (schliesst clearuser aus)
-function SetupIntersite(clearuser) {
+// pulledstr = JSON-String aus db fuer user-obj, oder "" falls nicht gepullt werden soll
+function SetupIntersite(clearuser, pulledstr) {
   logMessage(VERBOSEINFO,"SetupIntersite START");
   var s_login = "";
   
@@ -99,34 +99,45 @@ function SetupIntersite(clearuser) {
     }
     intersitelinks = true;
   }
-
-  if (scormLogin == 1 ) {
-    // SCORM: Uebergehe LocalStorage und hole Daten direkt vom DB-Server falls moeglich, sonst neuer Benutzer mit SCORM-ID und CID als login
-    logMessage(VERBOSEINFO, "SCORM-Login forciert");
+  
+  if ((scormLogin == 1) && (SITE_PULL == 1)) {
+    // SCORM-pull: Uebergehe LocalStorage und hole Daten direkt vom DB-Server falls moeglich, sonst neuer Benutzer mit SCORM-ID und CID als login
+    logMessage(VERBOSEINFO, "SCORM-pull forciert");
 
     var psres = pipwerks.SCORM.init();
     logMessage(VERBOSEINFO, "SCORM init = " + psres);
-    psres = pipwerks.SCORM.get("cmi.learner_id");
-    var s_id = psres;
-    logMessage(VERBOSEINFO, "SCORM learner id = " + psres);
-    psres = pipwerks.SCORM.get("cmi.learner_name");
-    var s_name = psres;
-    logMessage(VERBOSEINFO, "SCORM learner name = " + psres);
-    psres = pipwerks.SCORM.save();
-    logMessage(DEBUGINFO, "SCORM save = " + psres);
-    
+    if (psres == false) {
+      // no SCORM present, refuse to set up user
+      alert("Kommunikation der Lernplattform fehlgeschlagen, Kurs kann nur anonym bearbeitet werden!");
+      intersiteobj = createIntersiteObj();
+      intersiteobj.active = true;
+      intersiteobj.startertitle = document.title;
+      intersiteobj.configuration.CF_LOCAL = "0";
+      intersiteobj.configuration.CF_USAGE = "0";
+      intersiteobj.configuration.CF_TESTS = "0";
+      intersiteactive = true;
+      logMessage(CLIENTERROR,"Intersite setup WITHOUT STORAGE AND WITHOUT SCORM from scratch from " + intersiteobj.startertitle);
+    } else {
+      psres = pipwerks.SCORM.get("cmi.learner_id");
+      var s_id = psres;
+      logMessage(VERBOSEINFO, "SCORM learner id = " + psres);
+      psres = pipwerks.SCORM.get("cmi.learner_name");
+      var s_name = psres;
+      logMessage(VERBOSEINFO, "SCORM learner name = " + psres);
+      psres = pipwerks.SCORM.save();
+      logMessage(DEBUGINFO, "SCORM save = " + psres);
+      
 
-    s_login = signature_CID + "_SCORM_" + s_id;
-    logMessage(DEBUGINFO, "Assigned login name = " + s_login);
+      s_login = signature_CID + "_SCORM_" + s_id;
+      logMessage(DEBUGINFO, "Assigned login name = " + s_login);
     
-    intersiteobj = createIntersiteObjFromSCORM(s_login, s_name, "scpw" + s_id);
-    if (intersiteobj != null) {
+      intersiteobj = createIntersiteObjFromSCORM(s_login, s_name, "scpw" + s_id);
       intersiteobj.active = true;
       intersiteactive = true;
       logMessage(VERBOSEINFO,"Intersite setup from SCORM: " + s_login);
-    } else {
-      intersiteactive = false;
-      logMessage(VERBOSEINFO,"Intersite setup from SCORM failed: " + s_login);
+      logMessage(VERBOSEINFO,"Emitting pull request for this user!");
+      userdata.checkUser(intersiteobj.login.username, check_user_scorm_success, check_user_scorm_error); // function emits in callbacks!
+      logMessage(VERBOSEINFO,"Pull request send");
     }
   } else {
     // Kein SCORM: Verwende LocalStorage falls verfuegbar

@@ -1375,12 +1375,12 @@ function globalunloadHandler()
     
 }
 
-function globalloadHandler()
+function globalloadHandler(pulluser)
 {
-  // Wird aufgerufen, wenn die Seite komplett geladen ist (NACH globalready)
+  // Wird aufgerufen, wenn die Seite komplett geladen ist (NACH globalready) ODER durch pull-emit-callback wenn intersiteobj aktualisiert werden muss
   // Fragefelder initialisieren und einfaerben
-  logMessage(DEBUGINFO, "globalLoadHandler start");
-  SetupIntersite(false); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
+  logMessage(DEBUGINFO, "globalLoadHandler start, pulluser = " + pulluser);
+  SetupIntersite(false, ""); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
   InitResults(false);
   setupBOperations();
   
@@ -1400,6 +1400,7 @@ function globalloadHandler()
 //         var psres = pipwerks.SCORM.init();
 //     }
 //   }
+
 
   logMessage(DEBUGINFO, "globalLoadHandler finish");
  

@@ -159,11 +159,12 @@ var intersitelinks = false;
 var localStoragePresent = false;
 var SITE_ID = "(unknown)";
 var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
 
 // <JSCRIPTPRELOADTAG>
 
 function loadHandler() {
-  globalloadHandler();
+  globalloadHandler(false);
 }
 
 function unloadHandler() {
