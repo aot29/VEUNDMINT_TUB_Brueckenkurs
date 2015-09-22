@@ -82,7 +82,8 @@ var userdata = (function (baseURL) {
 	});
 
 	
-	// Der folgende Code generiert SHA1-Warnungen sowie Crossover-policy violations trotz SSL und AllowOrigin = * von apache2
+	// Der folgende Code generiert SHA1-Warnungen sowie Crossover-policy violations trotz SSL und AllowOrigin = * von apache2,
+	// ersetzt durch credential-free call, der aber die Session verliert, was zu dirty quickfix in authentication.php fuehrt (nur get/write)
 	/*
         $.ajax( url, {
             type: type,

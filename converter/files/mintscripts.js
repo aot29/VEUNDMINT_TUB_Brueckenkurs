@@ -1266,14 +1266,14 @@ function finish_button(name) {
         psres = pipwerks.SCORM.save();
         logMessage(DEBUGINFO, "SCORM save = " + psres);
         if (psres==true) f.innerHTML += "Die Punktzahl wurde zur statistischen Auswertung übertragen\n";
-      } else {
-        if ((intersiteactive==true) && (intersiteobj.configuration.CF_TESTS=="1")) {
+      }
+      
+      if ((intersiteactive==true) && (intersiteobj.configuration.CF_TESTS=="1")) {
 	  pushISO();
 	  var timestamp = +new Date();
 	  var cm = "TESTFINISH: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", testname:" + name + ", nPoints:" + nPoints + ", maxPoints:" + nMaxPoints + ", ratio:" + (nPoints/nMaxPoints) + ", nMinPoints:" + nMinPoints;
           sendeFeedback({statistics: cm }, false);
           logMessage(VERBOSEINFO, "Testfinish gesendet");
-        }
       }
       
   }
@@ -1375,12 +1375,12 @@ function globalunloadHandler()
     
 }
 
-function globalloadHandler(pulluser)
+function globalloadHandler(pulluserstr)
 {
   // Wird aufgerufen, wenn die Seite komplett geladen ist (NACH globalready) ODER durch pull-emit-callback wenn intersiteobj aktualisiert werden muss
   // Fragefelder initialisieren und einfaerben
-  logMessage(DEBUGINFO, "globalLoadHandler start, pulluser = " + pulluser);
-  SetupIntersite(false, ""); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
+  logMessage(DEBUGINFO, "globalLoadHandler start, pulluser = " + ((pulluserstr == "") ? ("\"\"") : ("userdata")));
+  SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
   InitResults(false);
   setupBOperations();
   

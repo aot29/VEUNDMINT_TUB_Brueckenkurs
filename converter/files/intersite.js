@@ -31,29 +31,81 @@ function createIntersiteObj() {
 }
 
 function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
+  
+  s_login = "TESTDH_52";
+  
   logMessage(VERBOSEINFO,"New IntersiteObj for scormlogin created");
   var obj = createIntersiteObj();
-  obj.login.type = 3;
+  obj.login.type = 1; // starting locally
   obj.login.vname = "";
   obj.login.sname = s_name;
   obj.login.username = s_login;
   obj.login.password = s_pw;
   obj.login.email = "";
-  intersiteobj.startertitle = document.title;
-  intersiteobj.configuration.CF_LOCAL = "1";
-  intersiteobj.configuration.CF_USAGE = "1";
-  intersiteobj.configuration.CF_TESTS = "1";
+  obj.startertitle = document.title;
+  obj.configuration.CF_LOCAL = "1";
+  obj.configuration.CF_USAGE = "1";
+  obj.configuration.CF_TESTS = "1";
   return obj;
 }
 
 // Callbacks fuer createIntersiteObjFormSCORM
 function check_user_scorm_success(data) {
   logMessage(VERBOSEINFO, "checkuser_scorm success: data = " + JSON.stringify(data));
+  
+  if (data.user_exists == false) {
+    logMessage(VERBOSEINFO, "User does not exist, adding user to database with initial data push");
+    userdata.addUser(intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
+    intersiteobj.type = 3;
+    // Weiter mit register-Callbacks
+  } else {
+    logMessage(VERBOSEINFO, "User is present in database, emitting data pull request");
+    userdata.login(intersiteobj.login.username, intersiteobj.login.password, scormlogin_success, scormlogin_error);
+    // Weiter mit login-Callbacks
+  }
 }
 
 function check_user_scorm_error(message, data) {
-  logMessage(VERBOSEINFO, "checkuser_scorm error:" + message + ", data = " + JSON.stringify(data));
+  logMessage(CLIENTERROR, "checkuser_scorm error:" + message + ", data = " + JSON.stringify(data) + ", trying backup from LocalStorage...");
+
+  // Retrieve old userdata from LocalStorage, if not present continue to use newly created intersiteobj from first pull start
+  // ...
 }
+
+function scormlogin_error(message, data) {
+  logMessage(CLIENTERROR, "Konnte user nicht am Server einloggen: " + message + ", data = " + JSON.stringify(data));
+  logMessage(CLIENTONLY, "Server nicht erreichbar, speichere Daten im Browser und aktualisiere Server sobald Verbindung wieder hergestellt ist");
+  setIntersiteType(1); // Erstmal nur lokal weiterarbeiten, damit nicht aktuellere Daten in DB zerstoert werden
+  
+  // Retrieve old userdata from LocalStorage, if not present continue to use newly created intersiteobj from first pull start
+  // ...
+}
+
+function scormlogin_success(data) {
+    logMessage(VERBOSEINFO, "login success, data = " + JSON.stringify(data));
+    if (data.status == false) { scormlogin_error("Login gescheitert", null); return; }
+    logMessage(VERBOSEINFO, "Login ok, role = " + data.role);
+    
+    // Daten holen, weiter mit scormdbread-callbacks
+    logMessage(VERBOSEINFO, "i-name = " + intersiteobj.login.username);
+    userdata.getData(intersiteobj.login.username, scormdbread_success, scormdbread_error);
+}
+
+function scormdbread_error(message, data) {
+  logMessage(CLIENTERROR, "Konnte user-Daten nicht vom Server abfragen: " + message + ", data = " + JSON.stringify(data));
+  logMessage(CLIENTONLY, "Server nicht erreichbar, speichere Daten im Browser und aktualisiere Server sobald Verbindung wieder hergestellt ist");
+  setIntersiteType(1); // Erstmal nur lokal weiterarbeiten, damit nicht aktuellere Daten in DB zerstoert werden
+  
+  // Retrieve old userdata from LocalStorage, if not present continue to use newly created intersiteobj from first pull start
+  // ...
+}
+
+function scormdbread_success(data) {
+    logMessage(VERBOSEINFO, "data get success");
+    if (data.status == false) { scormdbread_error("Data get gescheitert", null); return; }
+    globalloadHandler(data.data);
+}
+
 
 
 // Hilfsfunktion zum rekursiven Klonen von einfachen Objekten in JS
@@ -79,6 +131,13 @@ function SetupIntersite(clearuser, pulledstr) {
   logMessage(VERBOSEINFO,"SetupIntersite START");
   var s_login = "";
   
+  if (pulledstr != "") {
+    intersiteobj = JSON.parse(pulledstr);
+    logMessage(VERBOSEINFO,"iso von pull geparsed, logintype = " + intersiteobj.login.type + ", username = " + intersiteobj.login.username);
+    logMessage(VERBOSEINFO,"Got an intersite object from " + intersiteobj.startertitle);
+    intersiteactive = true;
+  } else {
+  
   // LocalStorage nur anfragen, wenn loginscorm == 0
   if (typeof(localStorage) !== "undefined") {
     localStoragePresent = true;
@@ -102,7 +161,7 @@ function SetupIntersite(clearuser, pulledstr) {
   
   if ((scormLogin == 1) && (SITE_PULL == 1)) {
     // SCORM-pull: Uebergehe LocalStorage und hole Daten direkt vom DB-Server falls moeglich, sonst neuer Benutzer mit SCORM-ID und CID als login
-    logMessage(VERBOSEINFO, "SCORM-pull forciert");
+    logMessage(VERBOSEINFO, "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + ")");
 
     var psres = pipwerks.SCORM.init();
     logMessage(VERBOSEINFO, "SCORM init = " + psres);
@@ -135,6 +194,11 @@ function SetupIntersite(clearuser, pulledstr) {
       intersiteobj.active = true;
       intersiteactive = true;
       logMessage(VERBOSEINFO,"Intersite setup from SCORM: " + s_login);
+
+      var timestamp = +new Date();
+      var cm = "SCORMLOGIN_PULL: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
+      // sendeFeedback( { statistics: cm },true );
+
       logMessage(VERBOSEINFO,"Emitting pull request for this user!");
       userdata.checkUser(intersiteobj.login.username, check_user_scorm_success, check_user_scorm_error); // function emits in callbacks!
       logMessage(VERBOSEINFO,"Pull request send");
@@ -186,6 +250,7 @@ function SetupIntersite(clearuser, pulledstr) {
       }
     }
   }
+  } // pulledstr-test
   
   if (intersiteactive == true) {
     LoadSiteData();
@@ -195,7 +260,7 @@ function SetupIntersite(clearuser, pulledstr) {
     alert("Ihre Benutzerdaten konnten nicht vom Server geladen werden, eine automatische eMail an den Administrator wurde verschickt. Sie können den Kurs trotzdem anonym bearbeiten, eingetragene Lösungen werden jedoch nicht gespeichert!");
     var timestamp = +new Date();
     var us = "(unknown)";
-    if (scormlogin == 1) us = s_login;
+    if (scormLogin == 1) us = s_login;
     var cm = "LOGINERROR: " + "CID:" + signature_CID + ", user:" + us + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
     sendeFeedback( { statistics: cm }, true );
     intersiteobj = createIntersiteObj();
@@ -508,7 +573,7 @@ function pushlogin_success(data) {
     
     // Daten ablegen
     var datastring = JSON.stringify(intersiteobj);
-    userdata.writeData(undefined, datastring, pushwrite_success, pushwrite_error); // logout wird von den write-Callbacks ausgefuehrt
+    userdata.writeData(intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout wird von den write-Callbacks ausgefuehrt
 }
 
 function pushlogin_error(message, data) {
@@ -900,15 +965,17 @@ function usercreatelocal_click(type) {
 // Callbacks fuer Erstregistrierung
 function register_success(data) {
   logMessage(VERBOSEINFO, "Register success, data = " + JSON.stringify(data));
+  var na;
+  na = (scormLogin == 1) ? (intersiteobj.login.sname) : (intersiteobj.login.username);
   if (data.status == true) {
       setIntersiteType(3);
       pushISO();
       if (intersiteobj.configuration.CF_USAGE == "1") {
-        var timestamp = +new Date(); zertifizieren
+        var timestamp = +new Date();
         var cm = "USERREGISTER: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
         sendeFeedback( { statistics: cm },true );
       }
-      alert("Benutzer " + intersiteobj.login.username + " wurde erfolgreich angelegt\n(" + feedbackdesc + ")");
+      // alert("Benutzer " + na + " wurde erfolgreich angelegt\n(" + feedbackdesc + ")");
   } else {
       if (intersiteobj.configuration.CF_USAGE == "1") {
         var timestamp = +new Date();
@@ -917,9 +984,9 @@ function register_success(data) {
       }
       setIntersiteType(1);
       if (data.error == "user already exists") {
-          alert("Benutzer " + intersiteobj.login.username + " existiert schon auf dem Server, bitte geben Sie einen neuen Benutzernamen ein.");
+          alert("Benutzer " + na + " existiert schon auf dem Server, bitte geben Sie einen neuen Benutzernamen ein.");
       } else {
-          alert("Benutzer " + intersiteobj.login.username + " konnte nicht angelegt werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
+          alert("Benutzer " + na + " konnte nicht angelegt werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
       }
   }
 }
@@ -927,7 +994,9 @@ function register_success(data) {
 
 function register_error(message, data) {
   logMessage(VERBOSEINFO, "Register error: " + message + ", data = " + JSON.stringify(data));
-  alert("Benutzer " + intersiteobj.login.username + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
+  var na;
+  na = (scormLogin == 1) ? (intersiteobj.login.sname) : (intersiteobj.login.username);
+  alert("Benutzer " + na + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
   setIntersiteType(1);
 }
 
