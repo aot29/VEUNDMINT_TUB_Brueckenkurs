@@ -67,24 +67,24 @@ var userdata = (function (baseURL) {
      * errorCallback
      **/
     function sendRequest(type, data, successCallback, errorCallback) {
-	$.ajax( url, {
-		type: type,
-		async: true,
-		cache: false,
-		contentType: 'application/x-www-form-urlencoded',
-		crossDomain: true,
-		data: data,
-		//dataType: 'html', //Erwarteter Datentyp der Antwort
-		error: errorCallback,
-		success: successCallback
-		//statusCode: {}, //Liste von Handlern fuer verschiedene HTTP status codes
-		//timout: 1000,	//Timeout in ms
-	});
+// vereinfachte Version ohne credentials
+// 	$.ajax( url, {
+// 		type: type,
+// 		async: true,
+// 		cache: false,
+// 		contentType: 'application/x-www-form-urlencoded',
+// 		crossDomain: true,
+// 		data: data,
+// 		//dataType: 'html', //Erwarteter Datentyp der Antwort
+// 		error: errorCallback,
+// 		success: successCallback
+// 		//statusCode: {}, //Liste von Handlern fuer verschiedene HTTP status codes
+// 		//timout: 1000,	//Timeout in ms
+// 	});
 
 	
 	// Der folgende Code generiert SHA1-Warnungen sowie Crossover-policy violations trotz SSL und AllowOrigin = * von apache2,
 	// ersetzt durch credential-free call, der aber die Session verliert, was zu dirty quickfix in authentication.php fuehrt (nur get/write)
-	/*
         $.ajax( url, {
             type: type,
             async: true,
@@ -99,7 +99,6 @@ var userdata = (function (baseURL) {
             error: errorCallback,
             success: successCallback,
         });
-        */
     }
 
     /**

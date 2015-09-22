@@ -1,0 +1,88 @@
+\input{mintmod.tex}
+\MPragma{MathSkip}
+\Mtikzexternalize
+
+\begin{document}
+
+\MSection{Sprechweisen der Stochastik}
+\MLabel{VBKM_STOCH}
+\MSetSectionID{VBKM_STOCHASTIK} % wird fuer tikz-Dateien verwendet
+
+\begin{MSectionStart}
+\MDeclareSiteUXID{VBKM_STOCHASTIK_START}
+
+In diesem Modul werden einige Grundbegriffe der Stochastik und der beschreibenden Statistik eingeführt.
+
+\end{MSectionStart}
+
+\MSubsection{Mittelwerte}
+\MLabel{MSTOCH_Mittelwerte}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKMSTOCH_Mittelwerte}
+bla
+
+\end{MIntro}
+
+
+
+% \MSubsection{Vektoren im Raum}
+% \MLabel{M10_Vektoren}
+% 
+% \begin{MIntro}
+% \MDeclareSiteUXID{VBKM10_Raumvektoren_Intro}
+% 
+% \end{MIntro}
+% 
+% \MSubsection{Schnittmengen finden}
+% \MLabel{M10_Schnittmengen}
+% 
+% \begin{MIntro}
+% \MDeclareSiteUXID{VBKM10_Schnittmengen_Intro}
+% 
+% \end{MIntro}
+% 
+% \MSubsection{Beschreibungen dreidimensionaler Objekte}
+% \MLabel{M10_Beschreibungen}
+% 
+% \begin{MIntro}
+% \MDeclareSiteUXID{VBKM10_DreiD_Intro}
+% 
+% \end{MIntro}
+
+\MSubsection{Abschlusstest}
+
+\begin{MTest}{Abschlusstest Kapitel \arabic{section}}
+\MLabel{VBKM10_Abschlusstest}
+\MDeclareSiteUXID{VBKM10_Abschlusstest}
+
+\begin{MExercise}
+Gegeben sind die Punkte $P=(1|2|3)$, $Q=(3|0|0)$ und $R=(-1|2|2)$ im Raum. Berechnen Sie die folgenden Vektoren:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\MDVec{P Q}$}{\MFunctionQuestion{15}{(-2,-2,-3)}{5}{x}{5}}.}
+\item{\MEquationItem{$\MDVec{R Q}$}{\MFunctionQuestion{15}{(4,-2,-2)}{5}{x}{5}}.}
+\end{MExerciseItems}
+
+Bestimmen Sie den Mittelpunkt dieser Vektoren: \MEquationItem{$\MVec{m}$}{\MFunctionQuestion{15}{(1,1,1)}{5}{x}{5}}.
+% LOESUNG STIMMT NOCH NICHT XXX !!
+\end{MExercise}
+
+\begin{MExercise}
+Finden Sie den Schnittpunkt der beiden in Punkt-Richtungsform gegebenen Geraden
+$$
+\MVec{x} \;=\; \MVector{1\\1\\2}+\alpha\cdot \MVector{1\\1\\1}\;\; \text{und}\;\;
+\MVec{x} \;=\; \MVector{0\\1\\-2}+\beta\cdot \MVector{-2\\-4\\4}\: .
+$$
+\begin{MExerciseItems}
+\item{Der Schnittpunkt (als Vektor) ist \MFunctionQuestion{15}{(-1,-1,0)}{5}{x}{5}.}
+\item{Man erh\"alt ihn als Punkt der ersten Geraden f\"ur den Parameter \MEquationItem{$\alpha$}{\MParsedQuestion{7}{-2}{3}}.}
+\item{Man erh\"alt ihn als Punkt der zweiten Geraden f\"ur den Parameter \MEquationItem{$\beta$}{\MParsedQuestion{7}{1/2}{3}}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+\end{MTest}
+
+\newpage
+\MPrintIndex
+
+\end{document}

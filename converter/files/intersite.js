@@ -32,13 +32,24 @@ function createIntersiteObj() {
 
 function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
   
-  s_login = "TESTDH_52";
+  s_login = "TESTDH_53";
+  
+  
+  
   
   logMessage(VERBOSEINFO,"New IntersiteObj for scormlogin created");
   var obj = createIntersiteObj();
   obj.login.type = 1; // starting locally
+
   obj.login.vname = "";
-  obj.login.sname = s_name;
+  var sp = s_name.split(" ");
+  for (var e = 0; e < (sp.length - 1); e++) {
+    if (e != 0) obj.login.vname += " ";
+    obj.login.vname += sp[e];
+  }
+  obj.login.sname = sp[sp.length - 1];
+  logMessage(VERBOSEINFO,"Decomposed name " + s_name + " into vname=\"" + obj.login.vname + "\", sname = \"" + obj.login.sname + "\"");
+  
   obj.login.username = s_login;
   obj.login.password = s_pw;
   obj.login.email = "";
