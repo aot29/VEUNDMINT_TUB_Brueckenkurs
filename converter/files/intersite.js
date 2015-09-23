@@ -31,12 +31,7 @@ function createIntersiteObj() {
 }
 
 function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
-  
-  s_login = "TESTDH_53";
-  
-  
-  
-  
+ 
   logMessage(VERBOSEINFO,"New IntersiteObj for scormlogin created");
   var obj = createIntersiteObj();
   obj.login.type = 1; // starting locally
@@ -388,6 +383,7 @@ function updateLoginfield() {
       }
       e.disabled = dis;
   }
+  
   var e = document.getElementById("LOGINFIELD");
   if (e != null) {
     var s = "";
@@ -402,6 +398,13 @@ function updateLoginfield() {
             var t = intersiteobj.login.type;
             var cr = document.getElementById("CREATEBUTTON");
             var unf = document.getElementById("USERNAMEFIELD");
+	    var prefixs;
+	    if (scormLogin == 0) {
+	      prefixs = "Benutzername: " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ")";
+	    } else {
+	      // Benutzername ist id-Kombination in SCORM-Login-Modulen
+	      prefixs = "Benutzer: " + intersiteobj.login.vname + " " + intersiteobj.login.sname;
+	    }
             switch (t) {
                 case 0: {
                     s = "Noch keine Benutzerdaten vorhanden, Kurs wird anonym bearbeitet,<br />" + sb;
@@ -411,16 +414,14 @@ function updateLoginfield() {
                 }
 
                 case 1: {
-                    s = "Benutzername: " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "),<br />" + sb;
+                    s = prefixs + ",<br />" + sb;
                     cr.disabled = true;
                     unf.style.display = "none";
                     break;
                 }
 
                 case 2: {
-                    s = "Benutzername: " + intersiteobj.login.username + 
-                        " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname +
-                        "),<br />Datenspeicherung in diesem Browser und auf Server ";
+                    s = prefixs + ",<br />Datenspeicherung in diesem Browser und auf Server ";
                     cr.disabled = true;
                     unf.style.display = "none";
                     break;
@@ -428,9 +429,7 @@ function updateLoginfield() {
 
                 case 3: {
                     // Dass es nicht aktuell ist wird hier nicht angezeigt
-                    s = "Benutzername: " + intersiteobj.login.username + 
-                        " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname +
-                        "),<br />Datenspeicherung in diesem Browser und auf Server ";
+                    s = prefixs + ",<br />Datenspeicherung in diesem Browser und auf Server ";
                     cr.disabled = true;
                     unf.style.display = "none";
                     break;
