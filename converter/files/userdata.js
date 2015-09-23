@@ -66,12 +66,12 @@ var userdata = (function (baseURL) {
      * successCallback
      * errorCallback
      **/
-    function sendRequest(type, data, successCallback, errorCallback) {
+    function sendRequest(async, type, data, successCallback, errorCallback) {
 // vereinfachte Version ohne credentials
-        logMessage(VERBOSEINFO, "userdata.sendRequest called, type = " + type + ", data = " + JSON.stringify(data));
+        logMessage(VERBOSEINFO, "userdata.sendRequest called, url = " + url + ", type = " + type + ", data = " + JSON.stringify(data));
         $.ajax( url, {
 		type: type,
-		async: true,
+		async: async,
 		cache: false,
 		contentType: 'application/x-www-form-urlencoded',
 		crossDomain: true,
@@ -105,8 +105,8 @@ var userdata = (function (baseURL) {
     /**
      * Check if a given user exists
      **/
-    exports.checkUser = function (username, success, error) {
-        sendRequest('GET', {action: 'check_user', username: username},
+    exports.checkUser = function (async, username, success, error) {
+        sendRequest(async, 'GET', {action: 'check_user', username: username},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
@@ -115,25 +115,25 @@ var userdata = (function (baseURL) {
      *
      * The third argument is optional ( can be undefined )
      **/
-    exports.addUser = function (username, password, role, success, error) {
+    exports.addUser = function (async, username, password, role, success, error) {
         role = (role == '') ? undefined : role; //use undefined if role is an empty string
-        sendRequest('POST', {action: 'add_user', username: username, password: password, role: role},
+        sendRequest(async, 'POST', {action: 'add_user', username: username, password: password, role: role},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
     
     /**
      * Log in
      **/
-    exports.login = function (username, password, success, error) {
-        sendRequest('POST', {action: 'login', username: username, password: password},
+    exports.login = function (async, username, password, success, error) {
+        sendRequest(async, 'POST', {action: 'login', username: username, password: password},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
     /**
      * Log out
      **/
-    exports.logout = function (success, error) {
-        sendRequest('POST', {action: 'logout'},
+    exports.logout = function (async, success, error) {
+        sendRequest(async, 'POST', {action: 'logout'},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
@@ -142,16 +142,16 @@ var userdata = (function (baseURL) {
      *
      * The first argument is optional ( can be undefined )
      **/
-    exports.writeData = function (username, data, success, error) {
-        sendRequest('POST', {action: 'write_data', username: username, data: data},
+    exports.writeData = function (async, username, data, success, error) {
+        sendRequest(async, 'POST', {action: 'write_data', username: username, data: data},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
     /**
      * Get the name of the currently logged in user
      **/
-    exports.getUsername = function (success, error) {
-        sendRequest('GET', {action: 'get_username'},
+    exports.getUsername = function (async, success, error) {
+        sendRequest(async, 'GET', {action: 'get_username'},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
@@ -160,8 +160,8 @@ var userdata = (function (baseURL) {
      *
      * The first argument is optional ( can be undefined )
      **/
-    exports.getRole = function (username, success, error) {
-        sendRequest('GET', {action: 'get_role', username: username},
+    exports.getRole = function (async, username, success, error) {
+        sendRequest(async, 'GET', {action: 'get_role', username: username},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
@@ -170,40 +170,40 @@ var userdata = (function (baseURL) {
      *
      * The first argument is optional ( can be undefined )
      **/
-    exports.getData = function (username, success, error) {
-        sendRequest('GET', {action: 'get_data', username: username},
+    exports.getData = function (async, username, success, error) {
+        sendRequest(async, 'GET', {action: 'get_data', username: username},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
     /**
      * Get login data for a user
      **/
-    exports.getLoginData = function (username, success, error) {
-        sendRequest('GET', {action: 'get_login_data', username: username},
+    exports.getLoginData = function (async, username, success, error) {
+        sendRequest(async, 'GET', {action: 'get_login_data', username: username},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
     /**
      * Delete a user
      **/
-    exports.delUser = function (username, success, error) {
-        sendRequest('POST', {action: 'del_user', username: username},
+    exports.delUser = function (async, username, success, error) {
+        sendRequest(async, 'POST', {action: 'del_user', username: username},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
     /**
      * Change the password of a user
      **/
-    exports.changePwd = function (username, oldPassword, newPassword, success, error) {
-        sendRequest('POST', {action: 'change_pwd', username: username, old_password: oldPassword, password: newPassword},
+    exports.changePwd = function (async, username, oldPassword, newPassword, success, error) {
+        sendRequest(async, 'POST', {action: 'change_pwd', username: username, old_password: oldPassword, password: newPassword},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
     /**
      * Change the role of a user
      **/
-    exports.changeRole = function (username, role, success, error) {
-        sendRequest('POST', {action: 'change_role', username: username, role: role},
+    exports.changeRole = function (async, username, role, success, error) {
+        sendRequest(async, 'POST', {action: 'change_role', username: username, role: role},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 

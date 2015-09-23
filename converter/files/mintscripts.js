@@ -1269,10 +1269,10 @@ function finish_button(name) {
       }
       
       if ((intersiteactive==true) && (intersiteobj.configuration.CF_TESTS=="1")) {
-	  pushISO();
+	  pushISO(false);
 	  var timestamp = +new Date();
 	  var cm = "TESTFINISH: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", testname:" + name + ", nPoints:" + nPoints + ", maxPoints:" + nMaxPoints + ", ratio:" + (nPoints/nMaxPoints) + ", nMinPoints:" + nMinPoints;
-          sendeFeedback({statistics: cm }, false);
+          sendeFeedback({statistics: cm }, true);
           logMessage(VERBOSEINFO, "Testfinish gesendet");
       }
       
@@ -1354,12 +1354,15 @@ function notifyPoints(i, points, correct) {
 
 function globalunloadHandler()
 {
-  pushISO();
+  pushISO(true); // nur synchrone ajax-calls erlauben, da wir im unload-Handler sind und die callbacks sonst verschwinden bevor Aufruf beantwortet wird
  
   // VERALTET
   if (pipwerks.scormdata.connection.isActive == true)
   {
+    logMessage(VERBOSEINFO, "pipwerks.scormdata.connection.isActive == true in globalunloadHandler");
     pipwerks.SCORM.save();
+  } else {
+    logMessage(VERBOSEINFO, "pipwerks.scormdata.connection.isActive == false in globalunloadHandler");
   }
 
   

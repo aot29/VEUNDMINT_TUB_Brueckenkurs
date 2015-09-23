@@ -32,7 +32,7 @@ function createIntersiteObj() {
 
 function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
  
-  s_login = "TESTDH_71";
+  s_login = "TESTDH_74";
     
   logMessage(VERBOSEINFO,"New IntersiteObj for scormlogin created");
   var obj = createIntersiteObj();
@@ -63,12 +63,12 @@ function check_user_scorm_success(data) {
   
   if (data.user_exists == false) {
     logMessage(VERBOSEINFO, "User does not exist, adding user to database with initial data push");
-    userdata.addUser(intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
+    userdata.addUser(true, intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
     intersiteobj.type = 3;
     // Weiter mit register-Callbacks
   } else {
     logMessage(VERBOSEINFO, "User is present in database, emitting data pull request");
-    userdata.login(intersiteobj.login.username, intersiteobj.login.password, scormlogin_success, scormlogin_error);
+    userdata.login(true, intersiteobj.login.username, intersiteobj.login.password, scormlogin_success, scormlogin_error);
     // Weiter mit login-Callbacks
   }
 }
@@ -96,13 +96,18 @@ function scormlogin_success(data) {
     
     // Daten holen, weiter mit scormdbread-callbacks
     logMessage(VERBOSEINFO, "i-name = " + intersiteobj.login.username);
-    userdata.getData(intersiteobj.login.username, scormdbread_success, scormdbread_error);
+    userdata.getData(true, intersiteobj.login.username, scormdbread_success, scormdbread_error);
 }
 
 function scormdbread_error(message, data) {
   logMessage(CLIENTERROR, "Konnte user-Daten nicht vom Server abfragen: " + message + ", data = " + JSON.stringify(data));
   logMessage(CLIENTONLY, "Server nicht erreichbar, speichere Daten im Browser und aktualisiere Server sobald Verbindung wieder hergestellt ist");
   setIntersiteType(1); // Erstmal nur lokal weiterarbeiten, damit nicht aktuellere Daten in DB zerstoert werden
+  
+  // Benutzer hier informieren?
+  
+  userdata.logout(true, scormlogout_success, scormlogout_error);
+  
   
   // Retrieve old userdata from LocalStorage, if not present continue to use newly created intersiteobj from first pull start
   // ...
@@ -111,9 +116,17 @@ function scormdbread_error(message, data) {
 function scormdbread_success(data) {
     logMessage(VERBOSEINFO, "data get success");
     if (data.status == false) { scormdbread_error("Data get gescheitert", null); return; }
+    userdata.logout(true, scormlogout_success, scormlogout_error);
     globalloadHandler(data.data);
 }
 
+function scormlogout_success(data) {
+    logMessage(VERBOSEINFO, "logout success, data = " + JSON.stringify(data));
+}
+
+function scormlogout_error(message, data) {
+    logMessage(CLIENTERROR, "SCORM-Pull-Logout unmoeglich: " + message + ", data = " + JSON.stringify(data));
+}
 
 
 // Hilfsfunktion zum rekursiven Klonen von einfachen Objekten in JS
@@ -172,8 +185,9 @@ function SetupIntersite(clearuser, pulledstr) {
     logMessage(VERBOSEINFO, "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + ")");
 
     var psres = pipwerks.SCORM.init();
-    logMessage(VERBOSEINFO, "SCORM init = " + psres);
-    if (psres == false) {
+    logMessage(VERBOSEINFO, "SCORM init = " + psres + " (remember duplicate SCORM inits return false but do not hurt)");
+    psres = pipwerks.SCORM.get("cmi.learner_id");
+    if (psres == "null") {
       // no SCORM present, refuse to set up user
       alert("Kommunikation der Lernplattform fehlgeschlagen, Kurs kann nur anonym bearbeitet werden!");
       intersiteobj = createIntersiteObj();
@@ -185,7 +199,6 @@ function SetupIntersite(clearuser, pulledstr) {
       intersiteactive = true;
       logMessage(CLIENTERROR,"Intersite setup WITHOUT STORAGE AND WITHOUT SCORM from scratch from " + intersiteobj.startertitle);
     } else {
-      psres = pipwerks.SCORM.get("cmi.learner_id");
       var s_id = psres;
       logMessage(VERBOSEINFO, "SCORM learner id = " + psres);
       psres = pipwerks.SCORM.get("cmi.learner_name");
@@ -208,7 +221,7 @@ function SetupIntersite(clearuser, pulledstr) {
       // sendeFeedback( { statistics: cm },true );
 
       logMessage(VERBOSEINFO,"Emitting pull request for this user!");
-      userdata.checkUser(intersiteobj.login.username, check_user_scorm_success, check_user_scorm_error); // function emits in callbacks!
+      userdata.checkUser(true, intersiteobj.login.username, check_user_scorm_success, check_user_scorm_error); // function emits in callbacks!
       logMessage(VERBOSEINFO,"Pull request send");
     }
   } else {
@@ -315,7 +328,7 @@ function SetupIntersite(clearuser, pulledstr) {
   confHandlerISOLoad()
   updateLoginfield();
   if (clearuser == true) {
-      pushISO();
+      pushISO(false);
       ulreply_set(false,"");
   }
 }
@@ -585,7 +598,7 @@ function pushlogin_success(data) {
     
     // Daten ablegen
     var datastring = JSON.stringify(intersiteobj);
-    userdata.writeData(intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout wird von den write-Callbacks ausgefuehrt
+    userdata.writeData(true, intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout wird von den write-Callbacks ausgefuehrt
 }
 
 function pushlogin_error(message, data) {
@@ -605,25 +618,26 @@ function pushlogout_error(message, data) {
 function pushwrite_success(data) {
   logMessage(VERBOSEINFO,"pushwrite success, data = " + JSON.stringify(data));
   setIntersiteType(2); // Server ist jetzt aktuell
-  userdata.logout(pushlogout_success, pushlogout_error);
+  userdata.logout(true, pushlogout_success, pushlogout_error);
 }
 
 function pushwrite_error(message, data) {
   logMessage(VERBOSEINFO,"pushwrite error: " + message + ", data = " + JSON.stringify(data) + ", versuche logout...");
-  userdata.logout(pushlogout_success, pushlogout_error);
+  userdata.logout(true, pushlogout_success, pushlogout_error);
 }
 
 // Schreibt alle vorhandenen Daten in die Storage
-function pushISO() {
-  logMessage(VERBOSEINFO,"pushISO start");
+// synced == true => nur synchrone ajax-calls absetzen (notwendig beispielsweise bei Aufruf aus unload-Handler weil sonst die callback-seite weg ist wenn der Aufruf beantwortet wird)
+function pushISO(synced) {
+  logMessage(VERBOSEINFO,"pushISO start (synced = " + synced + ")");
   intersiteobj.pipwerksscorm = objClone(pipwerks.scormdata);
   var s = JSON.stringify(intersiteobj);
   if (localStoragePresent == true) {
     localStorage.setItem(getObjName(), s);
     if ((intersiteobj.login.type == 2) || (intersiteobj.login.type == 3)) {
         // Eintrag in Serverdatenbank aktualisieren
-        logMessage(VERBOSEINFO,"Aktualisiere Server");
-        userdata.login(intersiteobj.login.username, intersiteobj.login.password, pushlogin_success, pushlogin_error);
+        logMessage(VERBOSEINFO,"Aktualisiere DB-Server (synced = " + synced + ")");
+        userdata.login(!synced, intersiteobj.login.username, intersiteobj.login.password, pushlogin_success, pushlogin_error);
     }
   }
   updateLoginfield();
@@ -753,7 +767,7 @@ function confHandlerChange(id) {
       }
     }
     
-    pushISO();
+    pushISO(false);
     UpdateSpecials();
     updateLoginfield();
   }
@@ -799,7 +813,7 @@ function userlogin_click() {
   logMessage(VERBOSEINFO, "Starte Login " + user_login);
   
   // Versuche den Login am Server
-  userdata.login(user_login, user_pw, userlogin_success, userlogin_error);
+  userdata.login(true, user_login, user_pw, userlogin_success, userlogin_error);
   // Weiter mit den Callbacks
 }
 
@@ -807,7 +821,7 @@ function userlogin_success(data) {
     logMessage(VERBOSEINFO, "userlogin success");
     if (data.status == false) { userlogin_error("Login gescheitert", null); return; }
     logMessage(VERBOSEINFO, "Login ok, username = " + data.username + ", role = " + data.role);
-    userdata.getData(undefined, loginread_success, loginread_error); // logout wird von den write-Callbacks ausgefuehrt
+    userdata.getData(true, undefined, loginread_success, loginread_error); // logout wird von den write-Callbacks ausgefuehrt
   // Weiter mit den Callbacks
 }
 
@@ -839,13 +853,13 @@ function loginread_success(data) {
   setIntersiteType(2); // sind jetzt synchron
  
   // Erstmal gleich wieder ausloggen
-  userdata.logout(pushlogout_success, pushlogout_error);
+  userdata.logout(true, pushlogout_success, pushlogout_error);
 }
 
 function loginread_error(message, data) {
   logMessage(CLIENTERROR, "loginread error: " + message + ", data = " + JSON.stringify(data) + ", trying logout...");
   logMessage(CLIENTONLY, "Konnte Benutzerdaten nicht von Server uebertragen!");
-  userdata.logout(pushlogout_success, pushlogout_error);
+  userdata.logout(true, pushlogout_success, pushlogout_error);
 }
 
 
@@ -973,7 +987,7 @@ function usercreatelocal_click(type) {
     
     if (type == 2) {
         logMessage(CLIENTINFO, "Benutzer wird auf Typ 2 erweitert");
-        userdata.addUser(intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
+        userdata.addUser(true, intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
     }
 }
 
@@ -984,7 +998,7 @@ function register_success(data) {
   na = (scormLogin == 1) ? (intersiteobj.login.sname) : (intersiteobj.login.username);
   if (data.status == true) {
       setIntersiteType(3);
-      pushISO();
+      pushISO(false);
       if (intersiteobj.configuration.CF_USAGE == "1") {
         var timestamp = +new Date();
         var cm = "USERREGISTER: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
@@ -1086,7 +1100,7 @@ function usercheck() {
         return;
     }
 
-    userdata.checkUser(una, check_user_success, check_user_error);
+    userdata.checkUser(true, una, check_user_success, check_user_error);
 }
 
 function setIntersiteType(t) {
