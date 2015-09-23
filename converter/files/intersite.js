@@ -32,6 +32,8 @@ function createIntersiteObj() {
 
 function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
  
+  s_login = "TESTDH_71";
+    
   logMessage(VERBOSEINFO,"New IntersiteObj for scormlogin created");
   var obj = createIntersiteObj();
   obj.login.type = 1; // starting locally
@@ -228,7 +230,7 @@ function SetupIntersite(clearuser, pulledstr) {
 	    if (intersiteobj.configuration.CF_USAGE == "1") {
 	      var timestamp = +new Date();
 	      var cm = "USERRESET: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp;
-	      sendeFeedback( { statistics: cm },true );
+	      sendeFeedback( { statistics: cm }, true );
 	    }
 	  }
 	  iso = null;
@@ -246,7 +248,7 @@ function SetupIntersite(clearuser, pulledstr) {
 	if ((intersiteobj.configuration.CF_USAGE == "1") && (clearuser == false)) {
 	    var timestamp = +new Date();
 	    var cm = "INTERSITEFIRST: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
-	    sendeFeedback( { statistics: cm },true );
+	    sendeFeedback( { statistics: cm }, true );
 	}
       } else {
 	intersiteobj = JSON.parse(iso);
@@ -408,30 +410,30 @@ function updateLoginfield() {
             switch (t) {
                 case 0: {
                     s = "Noch keine Benutzerdaten vorhanden, Kurs wird anonym bearbeitet,<br />" + sb;
-                    cr.disabled = false;
-                    unf.style.display = "inline";
+                    if (cr != null) cr.disabled = false;
+                    if (unf != null) unf.style.display = "inline";
                     break;
                 }
 
                 case 1: {
                     s = prefixs + ",<br />" + sb;
-                    cr.disabled = true;
-                    unf.style.display = "none";
+                    if (cr != null) cr.disabled = true;
+                    if (unf != null) unf.style.display = "none";
                     break;
                 }
 
                 case 2: {
                     s = prefixs + ",<br />Datenspeicherung in diesem Browser und auf Server ";
-                    cr.disabled = true;
-                    unf.style.display = "none";
+                    if (cr != null) cr.disabled = true;
+                    if (unf != null) unf.style.display = "none";
                     break;
                 }
 
                 case 3: {
                     // Dass es nicht aktuell ist wird hier nicht angezeigt
                     s = prefixs + ",<br />Datenspeicherung in diesem Browser und auf Server ";
-                    cr.disabled = true;
-                    unf.style.display = "none";
+                    if (cr != null) cr.disabled = true;
+                    if (unf != null) unf.style.display = "none";
                     break;
                 }
                     
@@ -641,7 +643,7 @@ function opensite(localurl) {
         
       var timestamp = +new Date();
       var cm = "OPENSITE: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", SITEUXID:" + SITE_UXID + ", localurl:" + localurl;
-      sendeFeedback( { statistics: cm },false ); // synced, sonst ist Seite mit Callbacks weg wenn Auftrag fertig
+      sendeFeedback( { statistics: cm }, false ); // synced, sonst ist Seite mit Callbacks weg wenn Auftrag fertig
     }
   }
   
@@ -668,6 +670,7 @@ function LoadSiteData() {
  * */
 // Sollte mit Funktion aus userdata.js gemergt werden!
 function sendCorsRequest( url, data, success, error,async ) {
+        logMessage(VERBOSEINFO, "intersite.sendCorsRequest called, type = POST, url = " + url + ", async = " + async + ", data = " + JSON.stringify(data));
 	$.ajax( url, {
 		type: 'POST',
 		async: async,
@@ -727,6 +730,8 @@ function sendeFeedback( content,async ) {
 	}
 }
 
+            
+     
 // ---------------------------------------------- Konfigurationsroutinen ------------------------------------------------
 
 function confHandlerChange(id) {
@@ -963,7 +968,7 @@ function usercreatelocal_click(type) {
     if (intersiteobj.configuration.CF_USAGE == "1") {
           var timestamp = +new Date();
           var cm = "USERCREATE: " + "CID:" + signature_CID + ", user:" + una + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
-          sendeFeedback( { statistics: cm },true );
+          sendeFeedback( { statistics: cm }, true );
     }
     
     if (type == 2) {
@@ -983,14 +988,14 @@ function register_success(data) {
       if (intersiteobj.configuration.CF_USAGE == "1") {
         var timestamp = +new Date();
         var cm = "USERREGISTER: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
-        sendeFeedback( { statistics: cm },true );
+        sendeFeedback( { statistics: cm }, true );
       }
       // alert("Benutzer " + na + " wurde erfolgreich angelegt\n(" + feedbackdesc + ")");
   } else {
       if (intersiteobj.configuration.CF_USAGE == "1") {
         var timestamp = +new Date();
         var cm = "USERREGISTERERROR: " + "CID:" + signature_CID + ", user:" + una + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent + ", data=" + JSON.stringify(data);
-        sendeFeedback( { statistics: cm },true );
+        sendeFeedback( { statistics: cm }, true );
       }
       setIntersiteType(1);
       if (data.error == "user already exists") {

@@ -1215,7 +1215,7 @@ function finish_button(name) {
   if (isTest == true) {
       testFinished = true;
       
-      if (doScorm==1) {
+      if (doScorm == 1) {
 
         var psres = pipwerks.SCORM.init();
         logMessage(VERBOSEINFO, "SCORM init = " + psres);

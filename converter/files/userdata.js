@@ -68,7 +68,8 @@ var userdata = (function (baseURL) {
      **/
     function sendRequest(type, data, successCallback, errorCallback) {
 // vereinfachte Version ohne credentials
-	$.ajax( url, {
+        logMessage(VERBOSEINFO, "userdata.sendRequest called, type = " + type + ", data = " + JSON.stringify(data));
+        $.ajax( url, {
 		type: type,
 		async: true,
 		cache: false,
