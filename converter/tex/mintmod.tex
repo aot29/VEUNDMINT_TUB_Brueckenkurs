@@ -1486,7 +1486,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 </div>
 <br />
 \end{html}%
-\special{html:</div><!-- mfeedbackbutton;Abbildung;}\arabic{MGraphicsCounter}\special{html:;}\arabic{section}.\arabic{subsection}.\arabic{MGraphicsCounter}\special{html:; //-->}%
+\special{html:<!-- mfeedbackbutton;Abbildung;}\arabic{MGraphicsCounter}\special{html:;}\arabic{section}.\arabic{subsection}.\arabic{MGraphicsCounter}\special{html:; //-->}%
 }
 
 % MVideo bindet ein Video als Einzeldatei ein:
@@ -1570,7 +1570,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \end{figure}%
 \addtocounter{MGraphicsCounter}{1}\setcounter{MLastIndex}{\value{MGraphicsCounter}}\setcounter{MLastType}{8}\ %
 %\ \\Abbildung \ifnum\value{MSepNumbers}=0\else\arabic{chapter}.\arabic{section}.\fi\arabic{MGraphicsCounter}: #3%
-\special{html:</div><!-- mfeedbackbutton;Abbildung;}\arabic{MGraphicsCounter}\special{html:;}\arabic{section}.\arabic{subsection}.\arabic{MGraphicsCounter}\special{html:; //-->}%
 }
 
 \newcommand{\MUGraphics}[4]{\MGraphics{#1}{#2}{#3}}
@@ -1594,7 +1593,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\MUGraphicsSolo}[3]{\MRegisterFile{#1}\begin{html}
 <img src="\end{html}\MMaterial/\MLastFile\begin{html}" style="#3" alt="\end{html}\MMaterial/\MLastFile\begin{html}"/>
 \end{html}%
-\special{html:</div><!-- mfeedbackbutton;Abbildung;}#1\special{html:;}\MMaterial/\MLastFile\special{html:; //-->}%
+\special{html:<!-- mfeedbackbutton;Abbildung;}#1\special{html:;}\MMaterial/\MLastFile\special{html:; //-->}%
 }
 \else
 \newcommand{\MUGraphicsSolo}[3]{\MRegisterFile{#1}\includegraphics[#2]{\MDPrefix/#1}}
