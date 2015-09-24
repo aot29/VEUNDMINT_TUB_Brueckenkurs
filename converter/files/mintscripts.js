@@ -1196,7 +1196,7 @@ function finish_button(name) {
     } else {
       f.innerHTML += "Test ist eingereicht, kann aber weiter bearbeitet und erneut abgeschickt werden.<br />";
     }
-    if (name == "Eingangstest für den Onlinekurs") {
+    if (name == "Eingangstest") {
     ratio = Math.round(ratio * 100) / 100;
     f.innerHTML += "Es wurden " + ratio + "% der Punkte erreicht.<br /><br />";
     if (ratio < 50) {
@@ -1215,8 +1215,22 @@ function finish_button(name) {
   if (isTest == true) {
       testFinished = true;
       
-      if (doScorm == 1) {
+      if ((intersiteactive==true) && (intersiteobj.configuration.CF_TESTS=="1")) {
+          pushISO(false);
+          var timestamp = +new Date();
+          var cm = "TESTFINISH: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", testname:" + name + ", nPoints:" + nPoints + ", maxPoints:" + nMaxPoints + ", ratio:" + (nPoints/nMaxPoints) + ", nMinPoints:" + nMinPoints;
+          sendeFeedback({statistics: cm }, true);
+          logMessage(VERBOSEINFO, "Testfinish gesendet");
+      }
 
+      if (doScorm == 1) {
+        // MatheV4: Gesamtpunktzahl ueber alle ABSCHLUSSTESTS mitteln und Prozentwert an SCORM uebertragen
+        
+        var mx = 0;
+        var mi = 0;
+        var av = 0;
+        // iterate through questions with test flag outside preparation test
+        
         var psres = pipwerks.SCORM.init();
         logMessage(VERBOSEINFO, "SCORM init = " + psres);
         psres = pipwerks.SCORM.get("cmi.learner_id");
@@ -1226,9 +1240,9 @@ function finish_button(name) {
         psres = pipwerks.SCORM.set("cmi.interactions.0.id","TEST");
         logMessage(VERBOSEINFO, "SCORM set interact_id = " + psres);
         psres = pipwerks.SCORM.set("cmi.interactions.0.learner_response",nPoints);
-        logMessage(VERBOSEINFO, "SCORM set interact_lr = " + psres);
+        logMessage(VERBOSEINFO, "SCORM set interact_lr = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.interactions.0.result",true);
-        logMessage(VERBOSEINFO, "SCORM set interact_res = " + psres);
+        logMessage(VERBOSEINFO, "SCORM set interact_res = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.score.raw",nPoints);
         logMessage(VERBOSEINFO, "SCORM set rawpoints = " + psres);
         psres = pipwerks.SCORM.set("cmi.score.min",nMinPoints);
@@ -1238,23 +1252,23 @@ function finish_button(name) {
         psres = pipwerks.SCORM.set("cmi.score.scaled",(nPoints/nMaxPoints));
         logMessage(VERBOSEINFO, "SCORM set scaled points = " + psres);
 
-        psres = pipwerks.SCORM.set("cmi.objectives.0.id","TEST");
-        logMessage(VERBOSEINFO, "SCORM set obrawpoints = " + psres);
+        psres = pipwerks.SCORM.set("cmi.objectives.0.id","Abschlusstests");
+        logMessage(VERBOSEINFO, "SCORM set objectives = " + psres);
         psres = pipwerks.SCORM.set("cmi.objectives.0.raw",nPoints);
-        logMessage(VERBOSEINFO, "SCORM set obrawpoints = " + psres);
+        logMessage(VERBOSEINFO, "SCORM set obrawpoints = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.objectives.0.min",nMinPoints);
-        logMessage(VERBOSEINFO, "SCORM set obminpoints = " + psres);
+        logMessage(VERBOSEINFO, "SCORM set obminpoints = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.objectives.0.max",nMaxPoints);
-        logMessage(VERBOSEINFO, "SCORM set obmaxpoints = " + psres);
+        logMessage(VERBOSEINFO, "SCORM set obmaxpoints = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.objectives.0.scaled",(nPoints/nMaxPoints));
-        logMessage(VERBOSEINFO, "SCORM set obscaled = " + psres);
+        logMessage(VERBOSEINFO, "SCORM set obscaled = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.objectives.0.completion_status", (nPoints>=nMinPoints) ? ("completed") : ("incomplete") );
         logMessage(VERBOSEINFO, "SCORM set obcompletion " + psres);
 
         psres = pipwerks.SCORM.set("cmi.scaled_passed_score", nMinPoints/nMaxPoints);
-        logMessage(VERBOSEINFO, "SCORM set obscossc " + psres);
+        logMessage(VERBOSEINFO, "SCORM set obscossc " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.score", nPoints/nMaxPoints );
-        logMessage(VERBOSEINFO, "SCORM set obscore " + psres);
+        logMessage(VERBOSEINFO, "SCORM set obscore " + psres); // false im KIT-ILIAS
 
 
         psres = pipwerks.SCORM.set("cmi.progress_measure",(nPoints/nMaxPoints));
@@ -1268,13 +1282,6 @@ function finish_button(name) {
         if (psres==true) f.innerHTML += "Die Punktzahl wurde zur statistischen Auswertung übertragen\n";
       }
       
-      if ((intersiteactive==true) && (intersiteobj.configuration.CF_TESTS=="1")) {
-	  pushISO(false);
-	  var timestamp = +new Date();
-	  var cm = "TESTFINISH: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", testname:" + name + ", nPoints:" + nPoints + ", maxPoints:" + nMaxPoints + ", ratio:" + (nPoints/nMaxPoints) + ", nMinPoints:" + nMinPoints;
-          sendeFeedback({statistics: cm }, true);
-          logMessage(VERBOSEINFO, "Testfinish gesendet");
-      }
       
   }
 }

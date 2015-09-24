@@ -983,6 +983,7 @@ x\; =\; (x_{1},x_{2},\ldots ,x_{n})\: .
 $$
 
 \begin{MInfo}
+\MLabel{L_Mittelwert}
 Das \MEntry{arithmetische Mittel}{Mittelwert (arithmetisch)} $\overline{x}$, auch Stichprobenmittel genannt, von $x_{1},x_{2},\ldots ,x_{n}$ ist definiert durch
 $$
 \overline{x}\; =\; \frac{1}{n}\cdot \sum\limits_{k=1} ^{n} x_{k}\;=\;\frac{x_{1}+x_{2}+\ldots +x_{n}}{n}\: .
@@ -1095,6 +1096,7 @@ $$
 \end{MExample}
 
 \begin{MInfo}
+\MLabel{L_Median}
 Der (empirische) \MEntry{Median}{Median} $\tilde{x}$, auch Zentralwert genannt, von $x_{1},x_{2},\ldots ,x_{n}$ ist durch
 $$
 \tilde{x}\;=\;\left\lbrace{\begin{array}{lll}x_{\left(\frac{n+1}{2}\right)} & \text{falls} & n\;\text{ ungerade bzw.}\\
@@ -1203,6 +1205,7 @@ unabhängig von ihrer absoluten Lage. Vorgegeben sei eine Stichprobe vom Umfang $
 Die Urliste sei $x=(x_{1},x_{2},\ldots ,x_{n})\in \mathbb{R}^{n}$.
 
 \begin{MInfo}
+\MLabel{L_Varianz}
 Die \MEntry{Stichprobenvarianz}{Stichprobenvarianz} zur Urliste ist
 $$
 s_{x}^{2}\;=\; \frac{1}{n-1}\cdot \sum\limits_{k=1}^{n}(x_{k}-\overline{x})^{2}\; =\; \frac{(x_{1}-\overline{x})^{2}+ \ldots +(x_{n}-\overline{x})^{2}}{n-1}\: .
@@ -1232,6 +1235,28 @@ Hinzufügen von weiteren Nullen zur Datenreihe verändert das Lagemaß $\overline{x
 Dagegen verändert das Verschieben aller Datenwerte um eine Konstante die Varianz nicht, beispielsweise besitzt auch die Datenreihe $(-5,-4,-3)$ die Varianz $1$.
 \end{MExample}
 
+\begin{MExercise}
+Eine Datenreihe (mit einer unbekannten Anzahl $n$ von Werten habe die Maßzahlen $\overline{x}=4$, $s^2_x=10$ und den Median $\tilde x=3$.
+Angenommen eine zweite Datenreihe erfüllt die Gleichung $y_k = (-2)\cdot x_k$ für jedes $k$, wie lauten dann ihre Maßzahlen?
+\ \\ \ \\
+Antwort: Die Maßzahlen sind \MEquationItem{$\overline{y}$}{\MLParsedQuestion{7}{-8}{3}{STOCHVAR1}}, \MEquationItem{$s_y^2$}{\MLParsedQuestion{7}{40}{3}{STOCHVAR2}}
+und \MEquationItem{$\tilde y$}{\MLParsedQuestion{7}{-6}{3}{STOCHVAR3}}.
+\ \\ \ \\
+Hinweis: Untersuchen Sie in den Definitionen des \MSRef{L_Mittelwert}{Mittelwerts}, der \MSRef{L_Varianz}{Stichprobenvarianz} und des
+\MSRef{L_Median}{Medians}, wie sich die Multiplikation aller $x$-Werte mit $(-2)$ auf den gesamten Term auswirkt.
+\ \\ \ \\
+\begin{MHint}{Lösung}
+Einsetzen der Veränderung in die $x$-Werte ergibt
+\begin{eqnarray*}
+\overline{y} &=& \frac1n\sum_{k=1}^n y_k \;=\;\frac1n\sum_{k=1}^n (-2)\cdot x_k \;=\; (-2)\cdot \frac1n\sum_{k=1}^n y_k \;=\; (-2)\cdot \overline{x} \;=\; -8\:,\\
+s^2_y &=& \frac1{n-1}\sum_{k=1}^n \left({y_k-\overline{y}}\right)^2 \;=\;\frac1{n-1}\sum_{k=1}^n \left({(-2)x_k-(-2)\overline{x}}\right)^2\ \\
+&=& \frac{(-2)^2}{n-1}\sum_{k=1}^n \left({x_k-\overline{x}}\right)^2 \;=\; (-2)^2\cdot s_x^2 \;=\;40\: ,\ \\
+\tilde{y} \;=\; (-2)\tilde{x} \;=\; -6\: .
+\end{eqnarray*}
+Beim Umrechnen des Medians wird benutzt, dass die Multiplikation mit $(-2)$ die Sortierreihenfolge der geordneten Urliste umkehrt,
+aber der Wert an der mittleren Position (bei ungerader Anzahl) bzw. die Werte an den beiden mittleren Positionen (bei gerader Anzahl) an diesen
+Positionen bleiben und jeweils mit $(-2)$ multipliziert werden.
+\end{MHint}
 \end{MXContent}
 
 
@@ -1271,6 +1296,18 @@ Runden Sie das Ergebnis mit Hilfe des Rundungsverfahrens mit der \textsf{ceil}-F
 % \end{MExerciseItems}
 % Hinweis: Geben Sie den Effektivzinssatz mathematisch gerundet auf 2 Nachkommastellen an. Runden Sie erst \textit{nachdem} Sie den Effektivzins als Produkt ausgerechnet haben.
 % \end{MExercise}
+
+\begin{MExercise}
+Die Werte eines quantitativen Merkmals einer Stichprobe seien in drei Klassen eingeteilt. Auswerten der Häufigkeiten ergibt das folgende schematische Histogramm:
+???
+Welche der folgenden Aussagen sind für diese Stichprobe richtig?
+\ \\
+\begin{itemize}
+\item{\MCheckbox{0}{STOCHCB1} Klasse 1 hat die kleinste Häufigkeit.}
+\end{itemize}
+
+\end{MExercise}
+
 
 \begin{MExercise}
 Die Messung des Gewichtes von $n=11$ Wassermelonen (in Kilogramm) ergab die folgenden Ergebnisse:
