@@ -1396,14 +1396,6 @@ function globalloadHandler(pulluserstr)
   alert("p");
   */
 
-  
-//   if (doScorm == 1) {
-//     var uname = pipwerks.SCORM.get("cmi.learner_name");
-//     if (uname == "null") {
-//         var psres = pipwerks.SCORM.init();
-//     }
-//   }
-
 
   logMessage(DEBUGINFO, "globalLoadHandler finish");
  

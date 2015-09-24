@@ -43,8 +43,10 @@ my $copyrightcollection = "";
 
 my $globalexstring = "";
 
+our $entryfile = ""; # Die erste und nur einmal pro Session aktivierte Datei, startet in der Regel $startfile
+
 # Redirects passend zu den Buttons
-our $startfile = ""; # Wird vor Aufruf von createSCORM gesetzt
+our $startfile = ""; # Wird vor Aufruf der Funktion createSCORM gesetzt durch StartTag, entryfile ebenso
 our $chapterfile = "";
 our $configfile = "";
 our $datafile = "";
@@ -247,19 +249,31 @@ sub checkSystem {
 }
 
 
-# Parameter: filename, redirect-url
+# Parameter: filename, redirect-url, scormclear
 sub createRedirect {
   my $filename = $_[0];
   my $rurl = $_[1];
+  my $scormclear = $_[2];
 
-  my $indexhtml = <<ENDE;
+  my $indexhtmlscorm = <<ENDE;
 <!DOCTYPE HTML>
 <html lang="de-DE">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="refresh" content="1;url=$rurl">
         <script type="text/javascript">
-             window.location.href = "$rurl"
+
+        if (typeof(localStorage) !== "undefined") {
+            localStorage.setItem("LOCALSCORM", "CLEARED");
+        } else {
+          localStoragePresent = false;
+          var stor = window.localStorage;
+          if (typeof(stor) !== "undefined") {
+            logMessage(CLIENTERROR,"window.localStorage as stor found!");
+            window.localStorage.setItem("LOCALSCORM", "CLEARED");
+          }
+        }
+        window.location.href = "$rurl";
         </script>
         <title>Weiterleitung auf Hauptseite der Onlinemodule</title>
     </head>
@@ -269,15 +283,36 @@ sub createRedirect {
 </html>
 ENDE
   
+  my $indexhtml = <<ENDE;
+<!DOCTYPE HTML>
+<html lang="de-DE">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="1;url=$rurl">
+        <script type="text/javascript">
+        window.location.href = "$rurl";
+        </script>
+        <title>Weiterleitung auf Hauptseite der Onlinemodule</title>
+    </head>
+    <body>
+        Klicken Sie <a class="MINTERLINK" href="$rurl">hier</a>, falls Sie nicht automatisch weitergeleitet werden.
+    </body>
+</html>
+ENDE
+
   my $tempfile = open(MINTS, ">$ndir/$filename");
-  print MINTS $indexhtml;
+  if ($scormclear == 0) {
+    print MINTS $indexhtml;
+  } else {
+    print MINTS $indexhtmlscorm;
+  }
   close(MINTS);
   print "Redirect auf $rurl in $filename erstellt\n";
 }
 
 sub createSCORM {
   # Stelle Dateireferenzen fuer Manifestdatei zusammen, iteriere dazu jede einzelne Datei im Baum
-  print "Sammle Dateireferenzen fuer SCORM-Manifest, Startdatei ist $startfile\n";
+  print "Sammle Dateireferenzen fuer SCORM-Manifest, Startdatei ist $entryfile\n";
   my $mfiles = `find . -type f -exec echo \"      <file href=\\\"\"{}\"\\\" />\"  \\;`;
 
   my $mani2004rest = <<ENDE;
@@ -298,8 +333,8 @@ ENDE
   
   my $manifest_id = "Onlinemodule";
   my $manifest_version = "1.0";
-  my $manifest_title = "Onlinemodule 1";
-  my $manifest_comment = "Manifest template fuer MINT-Onlinemodule nach Spezifikation SCORM 2004 4th Edition bzw. 1.2, diese Datei wurde automatisch generiert, www.mint-kolleg.de";
+  my $manifest_title = $config{description};
+  my $manifest_comment = "Manifest template fuer VE&MINT-Onlinemodule (www.ve-und-mint.de) nach Spezifikation SCORM 2004 4th Edition bzw. 1.2, diese Datei wurde automatisch generiert.";
 
   
   my $manifest = <<ENDE;
@@ -353,7 +388,7 @@ $manifest_comment
     </organization>
   </organizations>
   <resources>
-    <resource identifier="r1" type="webcontent" adlcp:scormType="sco" href="$startfile"> 
+    <resource identifier="r1" type="webcontent" adlcp:scormType="sco" href="$entryfile"> 
     
 $mfiles
     
@@ -1441,6 +1476,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
         print "--- Starttag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $startfile = "mpl/" . $2 . ".html";
+        $entryfile = "entry_" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalchaptertag -->/ ) {
         print "--- Chaptertag found in file $hfilename\n";
@@ -1494,7 +1530,10 @@ if ($starts eq 0 ) {
   }
 }
 
-createRedirect("index.html", $startfile);
+createRedirect("index.html", $startfile, 0);
+if ($config{doscorm} == 1) {
+  createRedirect($entryfile, $startfile, 1);
+}
 if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile); } else { print "No Chapter-file defined!\n"; }
 if ($configfile ne "") { createRedirect("config.html", $configfile); } else { print "No Config-file defined!\n"; }
 if ($datafile ne "") { createRedirect("cdata.html", $datafile); } else { print "Keine Data-Datei definiert!\n"; }
@@ -1518,14 +1557,20 @@ chdir($ndir);
 system("rm -fr *.js~");
 
 if ($config{dozip} eq 0) {
-  print("\nHTML module " . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "have been created. Start file is $ndir/$startfile.\n\n");
+  print("\nHTML module " . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "have been created.\n\n");
 } else {
   system("chmod -R 777 *");
   system("zip -r $zip *");
   system("cp $zip ../.");
   chdir("..");
   system("rm -fr $ndir");
-  print("\nHTML module" . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "have been created and zipped to $zip. Start file in this zip tree is $startfile.\n\n");
+  print("\nHTML module" . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "have been created and zipped to $zip.\n\n");
+}
+
+print "Tree entry chain:\n";
+print "  $ndir/index.html -> $ndir/$startfile.\n";
+if ($config{doscorm} == 1) {
+  print "  SCORM -> $ndir/$entryfile -> $ndir/$startfile.\n";
 }
 
 print "mconvert.pl finished successfully\n\n";

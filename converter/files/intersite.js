@@ -32,7 +32,7 @@ function createIntersiteObj() {
 
 function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
  
-  s_login = "TESTDH_74";
+  s_login = "TESTDH_78";
     
   logMessage(VERBOSEINFO,"New IntersiteObj for scormlogin created");
   var obj = createIntersiteObj();
@@ -159,10 +159,14 @@ function SetupIntersite(clearuser, pulledstr) {
     intersiteactive = true;
   } else {
   
+  var ls = ""; // local SCORM data if present
   // LocalStorage nur anfragen, wenn loginscorm == 0
   if (typeof(localStorage) !== "undefined") {
     localStoragePresent = true;
     logMessage(VERBOSEINFO, "localStorage found");
+    if (doScorm == 1) {
+      ls = localStorage.getItem("LOCALSCORM");
+    }
   } else {
     localStoragePresent = false;
     logMessage(CLIENTERROR,"localStorage NOT found");
@@ -179,6 +183,23 @@ function SetupIntersite(clearuser, pulledstr) {
     }
     intersitelinks = true;
   }
+
+  if (doScorm == 1) {
+    if ((ls == "") || (ls == "CLEARED")) {
+      // SCORM neu initialisieren
+      logMessage(VERBOSEINFO, "pipwerks.SCORM start");
+    } else {
+      // SCORM ist schon aktiv, pipwerks-Objektzustand uebernehmen
+      var sobj = JSON.parse(ls);
+      if (sobj != null) {
+        pipwerks.scormdata = sobj;
+        logMessage(VERBOSEINFO, "pipwerks.SCORM continuation");
+      } else {
+        logMessage(VERBOSEINFO, "pipwerks.SCORM-Uebertragungsobjekt beschaedigt");
+      }
+    }
+  }
+  
   
   if ((scormLogin == 1) && (SITE_PULL == 1)) {
     // SCORM-pull: Uebergehe LocalStorage und hole Daten direkt vom DB-Server falls moeglich, sonst neuer Benutzer mit SCORM-ID und CID als login
@@ -274,7 +295,6 @@ function SetupIntersite(clearuser, pulledstr) {
   } // pulledstr-test
   
   if (intersiteactive == true) {
-    LoadSiteData();
     // Falls Benutzer vernetzt, Passwort erfragen, einloggen und Daten von Server beziehen
     if ((intersiteobj.login.type == 2) || (intersiteobj.login.type == 3)) logMessage(VERBOSEINFO,"Type=2,3, serverget missing");
   } else {
@@ -590,11 +610,24 @@ function UpdateSpecials() {
 
 
 // Callbacks fuer pushlogin
+
+function pushlogin_s_success(data) {
+// hotfix: parallel code in pushlogin_success !!!
+    logMessage(VERBOSEINFO, "login success, data = " + JSON.stringify(data));
+    if (data.status == false) { pushlogin_error("Login gescheitert", null); return; }
+    logMessage(VERBOSEINFO, "Login ok, role = " + data.role);
+   
+    
+    // Daten ablegen
+    var datastring = JSON.stringify(intersiteobj);
+    userdata.writeData(false, intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout wird von den write-Callbacks ausgefuehrt
+}
+
 function pushlogin_success(data) {
     logMessage(VERBOSEINFO, "login success, data = " + JSON.stringify(data));
     if (data.status == false) { pushlogin_error("Login gescheitert", null); return; }
     logMessage(VERBOSEINFO, "Login ok, role = " + data.role);
-    
+   
     
     // Daten ablegen
     var datastring = JSON.stringify(intersiteobj);
@@ -618,26 +651,33 @@ function pushlogout_error(message, data) {
 function pushwrite_success(data) {
   logMessage(VERBOSEINFO,"pushwrite success, data = " + JSON.stringify(data));
   setIntersiteType(2); // Server ist jetzt aktuell
-  userdata.logout(true, pushlogout_success, pushlogout_error);
+  userdata.logout(false, pushlogout_success, pushlogout_error);
 }
 
 function pushwrite_error(message, data) {
   logMessage(VERBOSEINFO,"pushwrite error: " + message + ", data = " + JSON.stringify(data) + ", versuche logout...");
-  userdata.logout(true, pushlogout_success, pushlogout_error);
+  userdata.logout(false, pushlogout_success, pushlogout_error);
 }
 
 // Schreibt alle vorhandenen Daten in die Storage
 // synced == true => nur synchrone ajax-calls absetzen (notwendig beispielsweise bei Aufruf aus unload-Handler weil sonst die callback-seite weg ist wenn der Aufruf beantwortet wird)
 function pushISO(synced) {
   logMessage(VERBOSEINFO,"pushISO start (synced = " + synced + ")");
-  intersiteobj.pipwerksscorm = objClone(pipwerks.scormdata);
   var s = JSON.stringify(intersiteobj);
   if (localStoragePresent == true) {
+    if (doScorm == 1) {
+      localStorage.setItem("LOCALSCORM", JSON.stringify(pipwerks.scormdata));
+      logMessage(VERBOSEINFO,"Aktualisiere SCORM Uebertragungsobjekt");
+    }
     localStorage.setItem(getObjName(), s);
     if ((intersiteobj.login.type == 2) || (intersiteobj.login.type == 3)) {
         // Eintrag in Serverdatenbank aktualisieren
         logMessage(VERBOSEINFO,"Aktualisiere DB-Server (synced = " + synced + ")");
-        userdata.login(!synced, intersiteobj.login.username, intersiteobj.login.password, pushlogin_success, pushlogin_error);
+        if (synced) {
+	  userdata.login(false, intersiteobj.login.username, intersiteobj.login.password, pushlogin_s_success, pushlogin_error); // sync-version of the success callbacks
+	} else {
+	  userdata.login(true, intersiteobj.login.username, intersiteobj.login.password, pushlogin_success, pushlogin_error);
+	}
     }
   }
   updateLoginfield();
@@ -662,14 +702,6 @@ function opensite(localurl) {
   }
   
   window.open(localurl,"_self");
-}
-
-function LoadSiteData() {
-  if ((typeof intersiteobj.pipwerksscorm) != "undefined") {
-      pipwerks.scormdata = objClone(intersiteobj.pipwerksscorm);
-      //pipwerks = obj.Clone(intersiteobj.pipwerksscormx);
-      logMessage(VERBOSEINFO,"SCORMData from intersite loaded");
-  }
 }
 
 /*
