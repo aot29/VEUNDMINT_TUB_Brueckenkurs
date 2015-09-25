@@ -11,11 +11,11 @@ borkify         =>      0       , # =1 html und js-Dateien werden borkifiziert
 dorelease       =>      0       , # In Release-Versionen werden z.B. bestimmte Logmeldungen unterdrueckt
 doverbose       =>      1       , # Schaltet alle Debugmeldungen auf der Browserkonsole an
 docollections   =>      0       , # Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
-dopdf           =>      1       , # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
+dopdf           =>      0       , # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
 dotikz          =>      0       , # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
 dozip           =>      0       , # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
 output          =>      "mathev4test",      # Zielverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
 source          =>      "module_veundmint", # Quellverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
 module          =>      "tree_mathev4.tex", # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!)
 outtmp          =>      "tmp",              # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
-description     =>      "KIT Onlinevorkurs Mathematik V4 WS 2015/2016"
+description     =>      "Onlinemdule Mathematik V4 WS 2015/2016"

@@ -32,8 +32,6 @@ function createIntersiteObj() {
 
 function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
  
-  s_login = "TESTDH_80";
-    
   logMessage(VERBOSEINFO,"New IntersiteObj for scormlogin created");
   var obj = createIntersiteObj();
   obj.login.type = 1; // starting locally

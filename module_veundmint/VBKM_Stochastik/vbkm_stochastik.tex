@@ -4,38 +4,35 @@
 
 \begin{document}
 
-\MSection{Sprechweisen der Stochastik}
+\MSection{Sprechweisen der Statistik}
 \MLabel{VBKM_STOCH}
 \MSetSectionID{VBKM_STOCHASTIK} % wird fuer tikz-Dateien verwendet
 
 \begin{MSectionStart}
 \MDeclareSiteUXID{VBKM_STOCHASTIK_START}
 
-In diese Modul werden auf der Grundlage der Einheiten die elementaren mengentheoretischen Grundlagen für den späteren Aufbau des
-wahrscheinlichkeitstheoretischen Modells behandelt. Die Begriffe \glqq Wahrscheinlichkeit\grqq, \glqq Wahrscheinlichkeitsmaß\grqq, \glqq Wahrscheinlichkeitsfunktion\grqq\ werden
-nicht behandelt. Das wahrscheinlichkeitstheoretische Modell wird erst in den Vorlesungen Statistik 1 und Statistik 2 vorgestellt. Das Modul besteht
-aus zwei Teilen:
-\begin{itemize}
-\item{Im \MSRef{L_STOCH_1}{ersten Teil} werden die wichtigsten Grundlagen der deskriptiven (beschreibenden) Statistik behandelt. Alle Inhalte sollten aus der
-Schule bekannt sein. Insbesondere werden den Themen Rundung und Prozentrechnung (diese sind eigentlich keine Themen der deskriptiven Statistik,
+In diesem Modul werden die wichtigsten Grundlagen der deskriptiven (beschreibenden) Statistik behandelt.
+Dabei werden den Themen Rundung und Prozentrechnung (diese sind eigentlich keine Themen der deskriptiven Statistik,
 werden dort aber gebraucht) relativ viel Raum eingeräumt. Vor allem ist der sichere Umgang mit der Prozentrechnung in den Wirtschaftswissenschaften
 unverzichtbar. Die Erfahrung lehrt, dass diese elementaren Dinge, die schon in der Mittelstufe des Gymnasiums unterrichtet werden, sehr oft auf die leichte
 Schulter genommen werden. Ein Test hat z.B. ergeben, dass die Hälfte der Studienanfänger nicht in der Lage sind, aus dem Stegreif heraus von einer
-Bruttorechnung die Mehrwertsteuer auszuweisen.}
-\item{Im \MSRef{L_STOCH_2}{zweiten Teil} wird die Sprechweise der Mengenlehre und der Abbildungen übersetzt in die Sprechweise der Statistik.
-In der Stochastik, dies ist der Oberbegriff für die Begriffe Wahrscheinlichkeitstheorie und Statistik, hat sich eine eigene Sprechweise für die
-Grundbegriffe der Mengenlehre etabliert. Diese neuen Sprechweisen, die sich aus den Gegebenheiten des Faches herleiten, werden ausführlich behandelt
-und an Beispielen erläutert. Im Gegensatz zum ersten Teil reicht der zweite Teil schon etwas über einen Vorbereitungskurs hinaus und führt schon mehr
-in den Vorlesungsstoff des Grundstudiums. Der zweite Teil soll vor allem dazu dienen, schon am Anfang des Studiums den Einsatz mathematischer
-Grundbegriffe in anderen Teilen des Fachstudiums kennenzulernen.}
+Bruttorechnung die Mehrwertsteuer auszuweisen. Das Modul besteht aus
+
+\begin{itemize}
+\item{dem Abschnitt \MSRef{VBKM_STOCH_1_1}{Begriffe und Sprechweisen}, in dem die statistischen Grundbegriffe eingeführt und die verschiedenen Verfahren zur Rundung von Werten erklärt werden,}
+\item{dem Abschnitt \MSRef{VBKM_STOCH_2_1}{Häufigkeitsverteilungen und Prozentrechnung}, in dem der Häufigkeitsbegriff eingeführt und die damit verbundene
+Prozentrechnung sowie die Darstellung der gefundenen Werte mit Hilfe typischer Diagrammtypen erklärt wird,}
+\item{dem Abschnitt \MSRef{VBKM_STOCH_3_1}{Statistische Maßzahlen}, in dem die wichtigsten Maßzahlen der beschreibenden Statistik wie Mittelwerte und Stichprobenvarianz erklärt werden,}
+\item{dem \MSRef{VBKM_STOCH_Abschlusstest}{Abschlusstest}.}
 \end{itemize}
+
 \end{MSectionStart}
 
 
 \MSubsection{Begriffe und Sprechweisen}
-\MLabel{L_STOCH_1}
 
 \begin{MIntro}
+\MLabel{VBKM_STOCH_1_1}
 \MDeclareSiteUXID{VBKM_STOCHASTIK_1_1}
 
 Bei statistischen Untersuchungen (Erhebungen) werden an geeignet ausgewählten Untersuchungseinheiten (Beobachtungseinheiten, Versuchseinheiten) jeweils die Werte eines oder mehrerer Merkmale festgestellt. Dabei ist ein Merkmal eine zu untersuchende Größe der Beobachtungseinheit.
@@ -80,17 +77,17 @@ Werte, die von Merkmalen angenommen werden können, heißen \MEntry{Merkmalsausprä
 
 Bei Merkmalen wird grob zwischen qualitativen (artmäßig erfassbaren) und quantitativen (in natürlicher Weise zahlenmäßig erfassbaren) Merkmalen unterschieden:
 \begin{itemize}
-\item{\MEntry{Qualitative Merkmale}{Merkmal!qualitativ}:\begin{itemize}
-  \item{\MEntry{Nominale Merkmale}{Nominale Merkmale}: Die Klassifizierung der Merkmalsausprägungen erfolgt nach rein qualitativen Gesichtspunkten.
+\item{\MEntry{Qualitative Merkmale}{Merkmal (qualitativ)}:\begin{itemize}
+  \item{Nominale Merkmale: Die Klassifizierung der Merkmalsausprägungen erfolgt nach rein qualitativen Gesichtspunkten.
         Beispiele: Hautfarbe, Nationalität, Blutgruppe.}
-  \item{\MEntry{Ordinale Merkmale}{Merkmal!ordinal}: Eine natürliche Rangfolge der Merkmalsausprägungen ist vorhanden, man kann die Werte anordnen bzw. sortieren.
+  \item{Ordinale Merkmale: Eine natürliche Rangfolge der Merkmalsausprägungen ist vorhanden, man kann die Werte anordnen bzw. sortieren.
         Beispiele: Schulnote, Dienstgrade, Nachnamen.}
   \end{itemize}
   }
-\item{\MEntry{Quantitative Merkmale}{Merkmal!quantitativ}:\begin{itemize}
-  \item{\MEntry{Diskrete Merkmale}{Merkmal!diskret}: Die Merkmalsausprägungen sind isolierte Zahlwerte.
+\item{\MEntry{Quantitative Merkmale}{Merkmal (quantitativ)}:\begin{itemize}
+  \item{Diskrete Merkmale: Die Merkmalsausprägungen sind isolierte Zahlwerte.
         Beispiele: Anzahlen, Jahreszahlen, Alter in Jahren.}
-  \item{\MEntry{Stetige Merkmale}{Merkmal!stetig}: Die Merkmalsausprägungen können (zumindestens prinzipiell) jeden Wert in einem Intervall annehmen.
+  \item{Stetige Merkmale: Die Merkmalsausprägungen können (zumindestens prinzipiell) jeden Wert in einem Intervall annehmen.
         Beispiele: Größe, Gewicht, Länge.}
   \end{itemize}
 }
@@ -398,6 +395,7 @@ Dies bedeutet für die Praxis, dass man grundsätzlich mit mindestens der doppelte
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM_STOCHASTIK_2_1}
+\MLabel{VBKM_STOCH_2_1}
 Vorgegeben sei ein Merkmal $X$. Aufgrund einer Stichprobe vom Umfang $n$ ergab sich die Urliste (Stichprobe)
 $$
 x \;=\; (x_{1},x_{2},\ldots ,x_{n})\: .
@@ -409,7 +407,7 @@ Ist $a$ ein möglicher Merkmalswert, so heißt
 $$
 H_{x}(a)\; =\; \text{Anzahl der}\;x_{j}\;\text{ in der Urliste}\;x\;\text{mit}\;x_{j}=a
 $$
-die \MEntry{absolute Häufigkeit}{Häufigkeit!absolut} des Merkmalwertes $a$ in der Urliste $x=(x_{1},x_{2},\ldots ,x_{n})$.
+die \MEntry{absolute Häufigkeit}{Häufigkeit (absolut)} des Merkmalwertes $a$ in der Urliste $x=(x_{1},x_{2},\ldots ,x_{n})$.
 \end{MInfo}
 
 Sind $a_{1}, a_{2},\ldots a_{k}$ die möglichen Merkmalswerte in der Urliste $x=(x_{1},x_{2},\ldots ,x_{n})$, so gilt
@@ -419,7 +417,7 @@ $$
 oder umgangssprachlich ausgedrückt: Jeder der $n$ Werte wird von genau einer der Häufigkeiten gezählt.
 
 \begin{MInfo}
-Die \MEntry{relative Häufigkeit}{Häufigkeit!relativ} für den Merkmalswert $a$ in der Urliste $x=(x_{1},x_{2},\ldots ,x_{n})$ ist definiert durch
+Die \MEntry{relative Häufigkeit}{Häufigkeit (relativ)} für den Merkmalswert $a$ in der Urliste $x=(x_{1},x_{2},\ldots ,x_{n})$ ist definiert durch
 $$
 h_{x}(a)\; =\;\frac{1}{n}\cdot H_{x}(a)\: .
 $$
@@ -433,7 +431,7 @@ Relative Häufigkeiten liegen stets im Intervall $[0;1]$ und werden oft in Prozen
 
 \begin{MInfo}
 Durch Zusammenfassung der absoluten bzw. relativen Häufigkeiten aller auftretenden (bzw. möglichen) Ergebnisse in der
-Urliste (Stichprobe) $x=(x_{1},x_{2},\ldots ,x_{n})$ in einer Tabelle erhält man die \MEntry{empirische Häufigkeitsverteilung}{Häufigkeitsverteilung!empirisch}.
+Urliste (Stichprobe) $x=(x_{1},x_{2},\ldots ,x_{n})$ in einer Tabelle erhält man die \MEntry{empirische Häufigkeitsverteilung}{Häufigkeitsverteilung}.
 \end{MInfo}
 
 \begin{MExample}
@@ -485,7 +483,7 @@ Grundwert (Hundert) ins Verhältnis gesetzt werden.
 
 \begin{MInfo}
 Ist $a\geq 0$ eine reelle Zahl, so ist $a\,\% = \frac{a}{100}$, man kann das Symbol $\%$ also \glqq dividiere durch $100$\grqq\ interpretieren (ebenso wie im Modul \MNRef{VBKM05} das Gradsymbol
-$\circ$ für Winkel als \glqq multipliziere mit $\frac{\pi}{180}$\grqq\ interpretiert wurde).
+$\circ$ für Winkel als Multiplikation mit $\frac{\pi}{180}$ interpretiert wurde).
 \end{MInfo}
 
 
@@ -558,8 +556,8 @@ $$
 \end{MHint}
 \end{MExercise}
 
-Während bei der einfachen Verzinsung die \MEntry{Zinsen}{Zinsen!einfach} ausgezahlt werden, verzinst man diese bei der Zinseszinsrechnung in der folgenden Zinsperiode mit,
-d.h. die Zinsen werden dem Kapital zugeschlagen bzw. kapitalisiert.
+Während bei der einfachen Verzinsung die \MEntry{Zinsen}{Zinsen (einfach)} ausgezahlt werden, verzinst man diese bei der Zinseszinsrechnung in der folgenden Zinsperiode mit,
+d.h. die Zinsen werden dem Kapital zugeschlagen bzw. \MEntry{kapitalisiert}{Zinsen (kapitalisiert)}:
 
 \begin{MExample}
 Auf einem Bankkonto werde ein Guthaben von $1000$ Euro zu $8\%$ Zinsen am Ende des Anlagejahres angelegt. Nach einem Jahr beträgt das Guthaben auf dem Konto (in EUR)
@@ -669,7 +667,7 @@ Die Schuld wird, solange keine Zinsen zwischenzeitlich abgezahlt werden, mit ein
 Aus diesem Grund spricht man vom effektiven jährlichen Zinssatz. Im Beispiel beträgt der effektive jährliche Zinssatz $9,4\%$.
 
 \begin{MInfo}
-Wenn die Zinsen $n$-mal im Jahr zum Zinssatz $\frac{r}{n}$ pro Periode gutgeschrieben werden, so ist der \MEntry{effektive jährliche Zinssatz}{Zinssatz!effektiv} $R$ definiert durch
+Wenn die Zinsen $n$-mal im Jahr zum Zinssatz $\frac{r}{n}$ pro Periode gutgeschrieben werden, so ist der \MEntry{effektive jährliche Zinssatz}{Zinsen (effektiv)} $R$ definiert durch
 $$
 R\; =\;\left({ 1+\frac{r}{n}}\right)^{n}-1\: .
 $$
@@ -746,7 +744,7 @@ $$
 Bei wachsendem $n\in \N$ werden die Zinsen immer häufiger gutgeschrieben:
 
 \begin{MInfo}
-Den Grenzfall nennt man den Fall \MEntry{stetiger Verzinsung}{Zinsen!stetig}.
+Den Grenzfall nennt man den Fall \MEntry{stetiger Verzinsung}{Zinsen (stetig)}.
 Die Formel
 $$
 s(t)\; =\; S_{0}\cdot e^{r\cdot t}
@@ -1042,18 +1040,19 @@ definiert.
 Es wird eine Population beobachtet, die zum Zeitpunkt $t_{0}$ aus 50 Tieren besteht. Alle zwei Jahre wird die Zahl der Tiere neu beobachtet.
 
 \begin{center}
-\begin{tabular}{lllll}
-Jahr & & Anzahl der Tiere & & Wachstumsrate \\
-$t_{0}$ & & 50 \\
-$t_{0}+2$ & & 100 & & verdoppelt ($x_{1}=2$)\\
-$t_{0}+4$ & & 400 & & vervierfacht ($x_{2}=4$)\\
-$t_{0}+6$ & & 1200 & & verdreifacht ($x_{3}=3$)\\
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Jahr & & Anzahl der Tiere & & Wachstumsrate \\ \hline
+$t_{0}$ & & 50 \\ \hline
+$t_{0}+2$ & & 100 & & verdoppelt ($x_{1}=2$)\\ \hline
+$t_{0}+4$ & & 400 & & vervierfacht ($x_{2}=4$)\\ \hline
+$t_{0}+6$ & & 1200 & & verdreifacht ($x_{3}=3$)\\ \hline
 \end{tabular}
 \end{center}
 
 Die (geometrische) mittlere Wachtumsrate beträgt dann
 $$
-q\; =\; \sqrt[3]{2\cdot 4\cdot 3}\; =\; \sqrt[3]{24}\; \approx\; 2,8845\: .
+\overline{x}_G\; =\; \sqrt[3]{2\cdot 4\cdot 3}\; =\; \sqrt[3]{24}\; \approx\; 2,8845\: .
 $$
 \end{MExample}
 
@@ -1063,6 +1062,28 @@ $$
 $$
 aber eine theoretische Verdreifachung der Population alle zwei Jahre würde bedeuten, dass sie nach sechs Jahren $1350$ Tiere umfassen müsste, was ersichtlich falsch ist.
 Bei einer durchschnittlichen Wachstumsrate von $2,8845$ erhält man das richtige Ergebnis: $50\cdot (2,8845)^{3}\approx 1200$.
+
+\begin{MExercise}
+Eine Kapitalanlage verzeichne die folgenden Wachstumsraten pro Jahr:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Jahr           & 2011 & 2012 & 2013 & 2014 & 2015 \\ \hline
+Wachstumsrate  & $0,5\%$ & $1,1\%$ & $0,8\%$ & $1,2\%$ &  $0,7\%$ \\ \hline
+\end{tabular}
+\end{center}
+Bestimmen Sie die mittlere Wachstumsrate über die fünf Jahre in Prozent: \MEquationItem{$\overline{x}_G$}{\MLParsedQuestion{10}{0.82}{7}{STOCHGEOMM}} $\%$ mathematisch gerundet auf zwei Stellen hinter dem Komma.
+\ \\ \ \\
+Bei dieser Aufgabe dürfen Sie einen Taschenrechner für die Berechnungen verwenden.
+\ \\ \ \\
+\begin{MHint}{Lösung}
+Bildung des geometrischen Mittels ergibt
+$$
+\overline{x}_G\; =\; \sqrt[5]{0,5\cdot 1,1\cdot 0,8\cdot 1,2\cdot 0,7}\; =\; \sqrt[5]{0,3696}\; =\; 0,819495159191\ldots
+$$
+was auf den mathematisch gerundeten Wert $0,82$ führt.
+\end{MHint}
+\end{MExercise}
 
 \end{MIntro}
 
@@ -1251,12 +1272,13 @@ Einsetzen der Veränderung in die $x$-Werte ergibt
 \overline{y} &=& \frac1n\sum_{k=1}^n y_k \;=\;\frac1n\sum_{k=1}^n (-2)\cdot x_k \;=\; (-2)\cdot \frac1n\sum_{k=1}^n y_k \;=\; (-2)\cdot \overline{x} \;=\; -8\:,\\
 s^2_y &=& \frac1{n-1}\sum_{k=1}^n \left({y_k-\overline{y}}\right)^2 \;=\;\frac1{n-1}\sum_{k=1}^n \left({(-2)x_k-(-2)\overline{x}}\right)^2\ \\
 &=& \frac{(-2)^2}{n-1}\sum_{k=1}^n \left({x_k-\overline{x}}\right)^2 \;=\; (-2)^2\cdot s_x^2 \;=\;40\: ,\ \\
-\tilde{y} \;=\; (-2)\tilde{x} \;=\; -6\: .
+\tilde{y} &=& (-2)\tilde{x} \;=\; -6\: .
 \end{eqnarray*}
 Beim Umrechnen des Medians wird benutzt, dass die Multiplikation mit $(-2)$ die Sortierreihenfolge der geordneten Urliste umkehrt,
 aber der Wert an der mittleren Position (bei ungerader Anzahl) bzw. die Werte an den beiden mittleren Positionen (bei gerader Anzahl) an diesen
 Positionen bleiben und jeweils mit $(-2)$ multipliziert werden.
 \end{MHint}
+\end{MExercise}
 \end{MXContent}
 
 
@@ -1280,11 +1302,11 @@ Ein Kunde/eine Kundin erwirbt Anleihen im Nennwert von $K=10000$ EUR mit einem A
 
 \begin{MExercise}
 Ein Betrag von $K=25000$ EUR soll bei jährlicher Verzinsung solange angelegt werden, bis der Wert der Anlage sich verdoppelt hat. Der Zinssatz betrage $p=3,5\%$ p. a.
-Wie viele Jahre muss das Geld bei Verzinsung fest angelegt und die Zinsen kapitalisiert werden?
+Wie viele Jahre muss das Geld bei kapitalisierten Zinsen angelegt werden?
 \ \\ \ \\
 Antwort: Der notwendige Anlagezeitraum beträgt \MEquationItem{$t$}{\MLParsedQuestion{10}{21}{5}{STOCHPRO11}} Jahre.
 \ \\ \ \\
-Runden Sie das Ergebnis mit Hilfe des Rundungsverfahrens mit der \textsf{ceil}-Funktion auf eine natürliche Zahl.
+Runden Sie das Ergebnis nach oben auf eine natürliche Zahl.
 \end{MExercise}
 
 % \begin{MExercise}
@@ -1298,13 +1320,28 @@ Runden Sie das Ergebnis mit Hilfe des Rundungsverfahrens mit der \textsf{ceil}-F
 % \end{MExercise}
 
 \begin{MExercise}
-Die Werte eines quantitativen Merkmals einer Stichprobe seien in drei Klassen eingeteilt. Auswerten der Häufigkeiten ergibt das folgende schematische Histogramm:
-???
-Welche der folgenden Aussagen sind für diese Stichprobe richtig?
+Lesen Sie aus dem folgende Histogramm ab, welche Eigenschaften die beschriebene Stichprobe aufweist:
+\begin{center}
+\MUGraphicsSolo{Histo2.png}{width=0.3\linewidth}{width:466px}
+% CC BY-SA 3.0, Quelle: Histo.png aus der Wikipedia (Seite "Histogramm") von Benutzer https://de.wikipedia.org/wiki/Benutzer:Philipendula
 \ \\
-\begin{itemize}
-\item{\MCheckbox{0}{STOCHCB1} Klasse 1 hat die kleinste Häufigkeit.}
-\end{itemize}
+Histogramm der Stichprobe $x=(x_1,\ldots,x_n)$.
+\end{center}
+
+Bestimmen Sie aus diesen Daten die Intervallgrenzen für die fünf eingeteilten Klassen sowie die relativen Häufigkeiten. Füllen Sie die Häufigkeitstabelle aus. Bestimmen Sie dazu die Flächeninhalte
+der Balken im Diagramm im Verhältnis zum Gesamtflächeninhalt:
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Klasse & Werteintervall & rel. Klassenhäufigkeiten $h_{j}$ \\ \hline
+Klasse 1 & $[0;200)$ & $0,16$ \\ \hline
+Klasse 2 & \MLIntervalQuestion{12}{[200,300)}{5}{STOCHIT1} & \MLParsedQuestion{8}{0.19}{5}{STOCHIT5} \\ \hline
+Klasse 3 & \MLIntervalQuestion{12}{[300,400)}{5}{STOCHIT2} & \MLParsedQuestion{8}{0.19}{5}{STOCHIT6} \\ \hline
+Klasse 4 & \MLIntervalQuestion{12}{[400,500)}{5}{STOCHIT3} & \MLParsedQuestion{8}{0.28}{5}{STOCHIT7} \\ \hline
+Klasse 5 & \MLIntervalQuestion{12}{[500,700)}{5}{STOCHIT4} & \MLParsedQuestion{8}{0.19}{5}{STOCHIT8} \\ \hline
+\hline
+\end{tabular}
+\end{center}
 
 \end{MExercise}
 
@@ -1316,14 +1353,14 @@ Die Messung des Gewichtes von $n=11$ Wassermelonen (in Kilogramm) ergab die folg
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 Nummer der Melone $j$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $11$ \\ \hline
-Gewicht $x_j$ in Kilogramm & $6,2$ &  $5,5$ & $7,3$ & $6,8$ & $6,3$ & $5,5$ & $5,5$ & $6,5$ & $7,3$ & $5,7$ & $5,6$\\ \hline
+Gewicht $x_j$ in Kilogramm & $6,2$ &  $5,5$ & $7,3$ & $6,8$ & $6,3$ & $5,5$ & $4,5$ & $6,5$ & $7,3$ & $5,7$ & $5,6$\\ \hline
 \end{tabular}
 \end{center}
 
 \begin{MExerciseItems}
-\item{Bestimmen Sie das arithmetische Mittel der $11$ Stichprobenwerte: \MEquationItem{$\overline{x}$}{\MLParsedQuestion{10}{(6.2+5.5+7.3+6.8+6.3+5.5+5.5+6.5+7.3+5.7+5.6)/11}{6}{STOCHVAR1}}.}
-\item{Bestimmen Sie den Median der $11$ Stichprobenwerte: \MEquationItem{$\tilde{x}$}{\MLParsedQuestion{10}{6.2}{6}{STOCHVAR2}}.}
-%\item{Bestimmen Sie die Stichprobenvarianz der $11$ Stichprobenwerte: \MEquationItem{$s^2_x$}{\MLParsedQuestion{10}{???}{6}{STOCHVAR3}}.}
+\item{Bestimmen Sie das arithmetische Mittel der $11$ Stichprobenwerte: \MEquationItem{$\overline{x}$}{\MLParsedQuestion{10}{(6.2+5.5+7.3+6.8+6.3+5.5+4.5+6.5+7.3+5.7+5.6)/11}{6}{STOCHVAR4}}.}
+\item{Bestimmen Sie den Median der $11$ Stichprobenwerte: \MEquationItem{$\tilde{x}$}{\MLParsedQuestion{10}{6.2}{6}{STOCHVAR5}}.}
+%\item{Bestimmen Sie die Stichprobenvarianz der $11$ Stichprobenwerte: \MEquationItem{$s^2_x$}{\MLParsedQuestion{10}{???}{6}{STOCHVAR6}}.}
 \end{MExerciseItems}
 Tragen Sie das Ergebnis gerundet auf zwei Nachkommastellen ein. Benutzen Sie keinen Taschenrechner, sondern versuchen Sie, die Zahlenwerte per Hand zu ermitteln.
 \end{MExercise}

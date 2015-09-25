@@ -1196,19 +1196,15 @@ function finish_button(name) {
     } else {
       f.innerHTML += "Test ist eingereicht, kann aber weiter bearbeitet und erneut abgeschickt werden.<br />";
     }
-    if (name == "Eingangstest") {
-    ratio = Math.round(ratio * 100) / 100;
-    f.innerHTML += "Es wurden " + ratio + "% der Punkte erreicht.<br /><br />";
-    if (ratio < 50) {
-      f.innerHTML += "Empfehlung: Versuchen Sie, zunächst die ersten drei Module des Kurses erfolgreich zu bearbeiten und die Abschlusstests zu l&#246;sen. Bei anhaltenden Schwierigkeiten in der Schulmathematik empfiehlt sich der Besuch eines <a href='../../location.html'>Präsenzangebots</a> anstelle eines Onlinekurses.<br />";
-    } else {
-        if (ratio < 80) {
-          f.innerHTML += "Empfehlung: Bearbeiten Sie die <a href='../../chapters.html'>Module</a> des Kurses in der vorgegebenen Reihenfolge und versuchen Sie anschließend, die Abschlusstests zu l&#246;sen.<br />";
-        } else {
-          f.innerHTML += "Empfehlung: Bei nur punktuellen Schwierigkeiten genügt es, die Abschlusstests der <a href='../../chapters.html'>Module</a> im Kurs zu l&#246;sen und nur bei Bedarf Stoff in den Modulen nachzuarbeiten.<br />";
-        }
-       
-    }
+    if (SITE_UXID == "VBKMT_AbgebeTest") {
+      ratio = Math.round(ratio * 100) / 100;
+      f.innerHTML += "<emph>Es wurden " + ratio + "% der Punkte erreicht:</emph><br /><br />";
+      f.innerHTML += "Empfehlung bei <50%: Lesen Sie die <a href='../../chapters.html'>Module</a> des Kurses in der vorgegebenen Reihenfolge, bearbeiten Sie die Aufgaben in den Modulen und versuchen Sie anschließend, die Abschlusstests zu l&#246;sen.<br /><br />";
+      f.innerHTML += "Empfehlung bei <80%: Versuchen Sie, direkt die Abschlusstests der einzelnen Module zu bearbeiten. Bearbeiten Sie intensiv nur die <a href='../../chapters.html'>Module</a> des Kurses, bei denen Sie Schwierigkeiten haben, die Abschlusstests zu l&#246;sen.<br /><br />";
+      f.innerHTML += "Empfehlung ab 80%: Versuchen Sie, direkt die Abschlusstests der einzelnen Module zu bearbeiten. Schlagen Sie in der <a href='../../search.html'>Stichwortliste</a> die Begriffe nach, bei denen Sie Probleme in den Tests haben.<br /><br />";
+      f.innerHTML += "Dies ist nur eine unverbindliche Empfehlung, Sie k&#246;nnen selbst entscheiden, wie Sie weiter im Kurs vorgehen. Beachten Sie, dass eine niedrige Prozentzahl auch " +
+                      "sprachliche Gründe oder technische Ursachen (falsches Eingabeformat) haben kann. Sie k&#246;nnen im Zweifelsfall eine Beratung zu Ihrem Testergebnis in Anspruch nehmen, " +
+                     "schreiben Sie dazu eine formlose Mail an <a href='mailto:daniel.haase@kit.edu'>daniel.haase@kit.edu</a>.";
     }
     
   }
@@ -1223,10 +1219,11 @@ function finish_button(name) {
           logMessage(VERBOSEINFO, "Testfinish gesendet");
       }
 
-      if (doScorm == 1) {
+      if ((doScorm == 1) && (SITE_UXID == "VBKMT_AbgebeTest")) {
         // MatheV4: Gesamtpunktzahl ueber alle ABSCHLUSSTESTS mitteln und Prozentwert an SCORM uebertragen
         
-        var mx = 0;
+	logMessage(VERBOSEINFO, "ENTRYTEST geht an SCORM");	
+	var mx = 0;
         var mi = 0;
         var av = 0;
         // iterate through questions with test flag outside preparation test
