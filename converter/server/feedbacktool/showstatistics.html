@@ -19,6 +19,8 @@
     <br /><br />
     <button name="N_compute2" id="I_compute2" type="button" onclick="compute(2);">Erstanmeldungen listen</button>
     <br /><br />
+    <button name="N_compute3" id="I_compute2" type="button" onclick="compute(3);">Auswertung MatheV4_WS20152016</button>
+    <br /><br />
     <br /><br />
     <textarea name="N_output" id="I_output" rows="50" cols="150" style="background-color:#E0EAEA"></textarea>
 
@@ -68,6 +70,84 @@
             }
             
           }
+		  
+		  if (comp_mode == 3) {
+			// Vorlage: id: 201052, timestamp: 2015-10-05 00:17:08, content: TESTFINISH: CID:(MATHEV4YSCORM_ybeta_kit;;1002beta;;mintkolleg_kit), user:(MATHEV4YSCORM_ybeta_kit;;1002beta;;mintkolleg_kit)_SCORM_640912,
+			// timestamp:1443997028764, testname:Abschlusstest Modul 5, nPoints:40, maxPoints:92, ratio:0.43478260869565216, nMinPoints:1 FROM 95.113.209.43
+			
+			var tid = new Array();
+			var gid = new Array();
+            var rex = /id: \d+, timestamp: \d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d, content: TESTFINISH: CID:\(MATHEV4YSCORM_ybeta_kit;;1002beta;;mintkolleg_kit\), user:\(MATHEV4YSCORM_ybeta_kit;;1002beta;;mintkolleg_kit\)_SCORM_(\d+), timestamp:\d+, testname:([^,]+), nPoints:(\d+), maxPoints:(\d+), ratio:[^,]+, nMinPoints:\d+ FROM/g ;
+            result = "";
+            var i = 0;
+			var tu;
+            while ( (u = rex.exec(s)) != null) {
+				var found = false;
+				for (i = 0; ((i < gid.length) & (found == false)); i++) {
+					if (gid[i].testid == u[2]) {
+						found = true;
+						tu = i;
+					}
+				}
+              
+				if (found == false) {
+					i = gid.length;
+					gid[i] = {};
+					gid[i].testid = u[2];
+					gid[i].count = 0;
+					gid[i].max = u[4];
+					gid[i].ratio = 0;
+					tu = i;
+				}
+
+
+				found = false;
+				for (i = 0; ((i < tid.length) & (found == false)); i++) {
+					if ((tid[i].userid == u[1]) && (tid[i].testid == u[2])) {
+						tid[i].points = (tid[i].points > u[3]) ? tid[i].points : u[3];
+						tid[i].count++;
+						found = true;
+					}
+				}
+				if (found == false) {
+					i = tid.length;
+					tid[i] = {};
+					tid[i].userid = u[1];
+					tid[i].testid = u[2];
+					tid[i].count = 1;
+					tid[i].points = u[3];
+					tid[i].max = u[4];
+					tid[i].tu = tu;
+				}
+
+
+			}
+			
+			var j;
+			// compute relative point ratio frequencies
+			for (i = 0; i < tid.length; i++) {
+				gid[tid[i].tu].ratio += ((1.0*tid[i].points) / tid[i].max);
+				gid[tid[i].tu].count++;
+			}
+			
+			for (j = 0; j < gid.length; j++) {
+				gid[j].ratio /= gid[j].count;
+                result += "test-id: " + gid[j].testid + ", max " + gid[j].max + ", count = " + gid[j].count + ", ratio = " + gid[j].ratio + "\n";
+			}
+
+            /*
+			for (i = 0; i < uid.length; i++) {
+              result += "userid: " + uid[i].key + ", count = " + uid[i].count + "\n";
+            }
+			*/
+
+			for (i = 0; i < tid.length; i++) {
+              result += "user/test-id: " + tid[i].userid + ", " + tid[i].testid + ", points = " + tid[i].points + ", of " + tid[i].max + ", tries = " + tid[i].count + "\n";
+			}
+			
+			result += tid.length + " user/tests found\n";
+
+		  }
           
           replaceUsers();          
         }
@@ -120,7 +200,11 @@
               like = "%INTERSITEFIRST%";
             }
 
-           
+            if (comp_mode == 3) {
+			  like = "%MATHEV4YSCORM_ybeta_kit%";
+			}
+		   
+		   
             jQuery.support.cors = true;
 
             beforetime = +new Date();
