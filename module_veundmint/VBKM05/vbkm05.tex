@@ -1659,17 +1659,22 @@ Die mit $*$ gekennzeichneten Felder müssen nicht ausgefüllt werden.
 Ein Quadrat mit Seitenlänge $a$ sei gegeben. Geben Sie Formeln an für Flächeninhalt und Umfang des größtmöglichen Kreises innerhalb des Quadrats, sowie für
 den kleinstmöglichen Kreis, der das Quadrat enthält:
 \begin{MExerciseItems}
-\item{Umfang des Kreises im Quadrat in Abhängigkeit von der Seitenlänge $a$: \MSimplifyQuestion{12}{pi*a}{10}{a}{4}{1}}
-\item{Flächeninhalt des Kreises im Quadrat in Abhängigkeit von der Seitenlänge $a$: \MSimplifyQuestion{12}{(1/4)*pi*a*a}{10}{a}{4}{1}}
-\item{Umfang des Kreises um das Quadrat in Abhängigkeit von der Seitenlänge $a$: \MSimplifyQuestion{12}{2*sqrt(2)*pi*a}{10}{a}{4}{1}}
-\item{Flächeninhalt des Kreises um das Quadrat in Abhängigkeit von der Seitenlänge $a$: \MSimplifyQuestion{12}{2*pi*a*a}{10}{a}{4}{1}}
+\item{Umfang des Kreises im Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{pi*a}{14}{a}{4}{1}{NGEOM1}}
+\item{Flächeninhalt des Kreises im Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{(1/4)*pi*a*a}{14}{a}{4}{1}{NGEOM2}}
+\item{Umfang des Kreises um das Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{sqrt(2)*pi*a}{14}{a}{4}{1}{NGEOM3}}
+\item{Flächeninhalt des Kreises um das Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{NGEOM4}}
 \end{MExerciseItems}
+\ \\ \ \\
+In den Antwortfeldern dürfen keine Klammern oder Wurzelausdrücke auftauchen, schreiben Sie beispielsweise $2^{0.5}$ statt $\sqrt{2}$ um die Wurzel zu vermeiden.
+\ \\ \ \\
 \begin{MSolution}
 Der mittig im Quadrat liegende Kreis besitzt den Radius $r=\frac12a$, die halbe Seitenlänge des Quadrats. Folglich besitzt er den Umfang $2\pi r =2\pi \cdot \frac12a = \pi a$ und den Flächeninhalt
 $\pi r^2=\pi \cdot \frac14a^2 =\frac14\pi a^2$.\\
 \ \\
 Befindet sich das Quadrat dagegen mittig innerhalb des Kreises, so ist sein Radius die Hälfte der Länge der Diagonalen vom Quadrat. Diese besitzt
-die Länge $d=\sqrt2\cdot a$. Dies folgt aus dem Satz von Pythagoras, da die halbe Quadratdiagonale ein rechtwinkliges Dreieck bildet mit Seitenlänge $d$ der Hypothenuse und den beiden Katheten mit Längen $\frac12a$: Also ist der Umfang $2\pi r=2\pi\cdot \sqrt2 a=2\sqrt2 \pi a$, der Flächeninhalt ist $\pi r^2=\pi \cdot 2a^2=2\pi a^2$. 
+die Länge $d=\sqrt2\cdot a$. Dies folgt aus dem Satz von Pythagoras, da die halbe Quadratdiagonale ein rechtwinkliges Dreieck bildet
+mit Seitenlänge $d$ der Hypothenuse und den beiden Katheten mit Längen $\frac12a$: Also ist der Umfang $2\pi r=2\pi\cdot \sqrt2 \cdot\frac12 a=\sqrt2\cdot \pi \cdot a$,
+der Flächeninhalt ist $\pi r^2=\pi \cdot (\sqrt2\cdot \frac12\cdot a)^2=\pi \cdot\frac12 a^2$.
 \end{MSolution}
 \end{MExercise}
 
