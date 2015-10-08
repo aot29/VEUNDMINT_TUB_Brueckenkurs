@@ -8,8 +8,8 @@ function notationParser_IN(s) {
     s = s.replace(/\;/g,",");
 
     // Am Ende haengende Verketter ^ und _ nicht an Parser weitergeben
-    if (s.lastIndexOf("^") == (s.length-1)) s = s.slice(0,s.length-1);
-    if (s.lastIndexOf("_") == (s.length-1)) s = s.slice(0,s.length-1);
+    if (s.lastIndexOf("^") == (s.length - 1)) s = s.slice(0,s.length-1);
+    if (s.lastIndexOf("_") == (s.length - 1)) s = s.slice(0,s.length-1);
     
     // Ueber HTML-CopyPaste erhaltene Tags ersetzen
     s.replace(/&nbsp;/g," ");
@@ -56,7 +56,15 @@ function CreateQuestionObj(uxid,c,solution,id,type,option,pnts,intest,section) {
   ob.id = id;
   
   if (type == 2) {
-    ob.imgid = option;
+    if (solution.indexOf("::smc") != -1) {
+        var sm = solution.substr(solution.indexOf("::smc") + 5, solution.length - solution.indexOf("::smc") - 5);
+        solution = solution.substr(0, solution.indexOf("::smc"));
+        ob.smc = sm.split(",");
+        ob.imgid = null; // SMC-Boxen erhalten keine Loesungsfelder
+    } else {
+        ob.smc = new Array(); // Leeres Array aus auszuschliessenden Checkboxen
+        ob.imgid = option; // Einzelboxen erhalten Loesungsfelder
+    }
   } else {
     ob.imgid = "QM" + ob.id;
   }
@@ -320,6 +328,12 @@ function handlerBlur(id) {
 // id = Index in Felderarray
 // nocontentcheck == 1 -> Feld soll jetzt nicht kontrolliert werden (Feld gehoert z.B. zu Aufgabengruppe)
 function handlerChange(id, nocontentcheck) {
+    
+  // override: checkboxen mit ausschliessenden Boxen werden immer dargestellt
+  if (FVAR[id].type == 2) {
+    if (FVAR[id].smc.length > 0) nocontentcheck = 0;
+  }
+    
   var formula = 0; // Stellt der Feldinhalt eine Formel dar?
   if (FVAR[id].type == 4) formula = 1; // Eingabefeld fuer mathematische Ausdruecke? Rohe Zahlen oder Intervalle werden nicht gehintet
   if (formula == 1) {
@@ -409,7 +423,7 @@ function rawParse(eingabe) {
 
 // Uebernimmt die Inhalte der DOM-Elemente von Question-Feldern und faerbt sie entsprechend ein (auch Checkboxen!)
 function check_group(input_from, input_to) {
-
+ 
     var d = document;
     var i;
     var s;
@@ -478,7 +492,25 @@ function check_group(input_from, input_to) {
                 // Checkbox
                 var v;
 		// Uebersetzen der checked-values in die eigenen values ("0" = noch nicht angeclickt, "1" = angewaehlt, "2" = abgewaehlt)
-                if (e.checked==true) v = "1"; else v = "2";
+                if (e.checked == true) {
+                    // dirty: Eigentlich sollte der neue Wert auch durch checkgroup getestet werden, aber das fuehrt auf eine Rekursion...
+                    v = "1";
+                    var j;
+                    for (j = 0; j < FVAR[i].smc.length; j++) {
+                        logMessage(VERBOSEINFO, "smc kill = " + FVAR[i].smc[j]);
+                        var k;
+                        for (k = 0; k < FVAR.length; k++) {
+                          if (FVAR[k].uxid == FVAR[i].smc[j]) {
+                              FVAR[k].value = "2";
+                              FVAR[k].rawinput = "2";
+                              var f = d.getElementById(FVAR[k].id);
+                              if (f != null) f.checked = false;
+                          }
+                        }
+                    }
+                } else {
+                    v = "2";
+                }
 		FVAR[i].value = v;
                 FVAR[i].rawinput = v;
                 if (v == FVAR[i].solution) {
@@ -955,6 +987,23 @@ function check_group(input_from, input_to) {
                     break;
                   }
 
+
+              case "inputstring2": {
+                // Zur Datenerfassung: Strings mit genau 2 Zeichen (ohne trim) werden akzeptiert
+                if (b.length == 2) ok = 1;
+                break;    
+              }
+
+              case "inputnumber2": {
+                // Zur Datenerfassung: Strings mit genau 2 ZIFFERN (ohne trim) werden akzeptiert
+                if (b.length == 2) {
+                    if (isNaN(parseInt(b)) == false) {
+                      ok = 1;
+                    }
+                }
+                break;    
+              }
+                  
                   default: {
 		    logMessage(CLIENTERROR, "STYP " + styp + " nicht bekannt (MSpecialQuestion)");
 		    ok = 0;
@@ -978,7 +1027,6 @@ function check_group(input_from, input_to) {
 		
 		break;
               }
-
               
               // default: { alert("Unbekannter Typ: " + FIELD_TYPE[i]); }
             }
@@ -1102,7 +1150,7 @@ function InitResults(empty)
                 break;
               }
 
-              case 2: {
+              case 8: {
                 // Checkbox, v ist "1" oder "0"
                 if ((v == "0") || (v == "")) { e.checked = false; FVAR[i].clear(); }
                 if (v == "1") { e.checked = true; check_group(i,i); }
@@ -1198,13 +1246,7 @@ function finish_button(name) {
     }
     if (SITE_UXID == "VBKMT_AbgebeTest") {
       ratio = Math.round(ratio * 100) / 100;
-      f.innerHTML += "<emph>Es wurden " + ratio + "% der Punkte erreicht:</emph><br /><br />";
-      f.innerHTML += "Empfehlung bei <50%: Lesen Sie die <a href='../../chapters.html'>Module</a> des Kurses in der vorgegebenen Reihenfolge, bearbeiten Sie die Aufgaben in den Modulen und versuchen Sie anschließend, die Abschlusstests zu l&#246;sen.<br /><br />";
-      f.innerHTML += "Empfehlung bei <80%: Versuchen Sie, direkt die Abschlusstests der einzelnen Module zu bearbeiten. Bearbeiten Sie intensiv nur die <a href='../../chapters.html'>Module</a> des Kurses, bei denen Sie Schwierigkeiten haben, die Abschlusstests zu l&#246;sen.<br /><br />";
-      f.innerHTML += "Empfehlung ab 80%: Versuchen Sie, direkt die Abschlusstests der einzelnen Module zu bearbeiten. Schlagen Sie in der <a href='../../search.html'>Stichwortliste</a> die Begriffe nach, bei denen Sie Probleme in den Tests haben.<br /><br />";
-      f.innerHTML += "Dies ist nur eine unverbindliche Empfehlung, Sie k&#246;nnen selbst entscheiden, wie Sie weiter im Kurs vorgehen. Beachten Sie, dass eine niedrige Prozentzahl auch " +
-                      "sprachliche Gründe oder technische Ursachen (falsches Eingabeformat) haben kann. Sie k&#246;nnen im Zweifelsfall eine Beratung zu Ihrem Testergebnis in Anspruch nehmen, " +
-                     "schreiben Sie dazu eine formlose Mail an <a href='mailto:daniel.haase@kit.edu'>daniel.haase@kit.edu</a>.";
+      f.innerHTML += "<emph>Es wurden " + ratio + "% der Punkte erreicht!</emph><br /><br />";
     }
     
   }

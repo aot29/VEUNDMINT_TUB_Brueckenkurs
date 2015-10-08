@@ -13,8 +13,8 @@
 
 \begin{MSectionStart}
 \MGlobalSTestTag
-\MLabel{L_TEST01START}
-\MDeclareSiteUXID{VBKMT_START}
+\MLabel{L_TESTHN01START}
+\MDeclareSiteUXID{HNT_START}
 % \textbf{Autorenversion, nicht zur Veröffentlichung vorgesehen}\\
 % Die Tests sollen an folgenden Terminen gestellt werden:
 % \begin{itemize}
@@ -29,29 +29,272 @@
 % Die Onlinemodule 5 (Elementare Geometrie) und 10 (Orientierung im 3D-Koordinatensystem) werden nicht separat geprüft, einzelne Fragen daraus tauchen in Test 6 auf.
 % \ \\ \ \\
 
-Beachten Sie bitte:
+Beachten Sie bitte, dass der Test aus drei Teilen besteht (zwischen diesen können Sie mit den Zurück- und Weiterbuttons oben in der Leiste jederzeit wechseln):
 
 \begin{itemize}
-\item{Der einführende Teil des Tests dient dazu, den Umgang mit den Fragefeldern zu erlernen.}
-\item{Eingaben im einführenden Teil des Tests werden nicht gewertet.}
-\item{Während des Tests kann Literatur oder ein Aufschrieb vom Kurs benutzt werden, er soll jedoch ohne technische Hilfsmittel (insb. Taschenrechner) ausgeführt werden.}
+\item{Der allgemeine Teil des Tests enthält Fragen zu Ihren Studienvoraussetzungen, diese gehen nicht in die Bewertung ein.}
+\item{Der Probeteil des Tests dient dazu, den Umgang mit den Fragefeldern zu erlernen und geht ebenfalls nicht in die Bewertung ein.}
+\item{Eingaben im letzten (einzureichenden) Teil des Tests werden verrechnet und eine Gesamtpunktzahl ermittelt. Der Test kann mehrfach bearbeitet und korrigiert werden.}
+\item{Während des Tests kann Literatur oder ein Aufschrieb benutzt werden, er soll jedoch ohne technische Hilfsmittel (insb. Taschenrechner) ausgeführt werden.}
 \end{itemize}
 
+
 \ \\ \ \\
-Zum einführenden Test geht es \MSRef{L_TEST01}{hier}.
-Direkt zum gewerteten Eingangstest geht es \MSRef{L_TEST02}{hier}.
+Starten Sie die Bearbeitung \MSRef{L_TEST01}{hier} mit den allgemeinen Fragen. 
 
 \end{MSectionStart}
 
-\MSubsection{Test 1 Einführender Teil}
+\MSubsection{Einführender Teil}
 
-\begin{MXContent}{Neustart}{Neustart}{exclam}
+\begin{MXContent}{Allgemeine Fragen}{Allgemeine Fragen}{info}
 \MLabel{L_TEST01}
-\MDeclareSiteUXID{VBKMT_OffenerTest}
+\MDeclareSiteUXID{HNT_AllgemeinTest}
 
-Lesen Sie die \MSRef{L_TEST01START}{Hinweise zum Testablauf}.
+Der allgemeine Teil des Tests ist frei ausfüllbar und geht nicht in die Endpunktzahl ein. Die erhobenen Informationen werden
+nicht personenbezogen, sondern anonym und rein statistisch ausgewertet.
+
+\begin{MExercise}
+\textbf{Ihr persönlicher Testcode}\ \\
+Dieser persönliche Code dient der Zuordnung der Ergebnisse von eventuellen Vor- und Nachtests und zu Befragungen.
+Bitte legen Sie sich diesen persönlichen Code an. Auf diese Weise werden die Daten anonymisiert und ein Rückschluss auf Einzelpersonen verhindert. \\ 
+\begin{enumerate}
+\item{Die ersten zwei Buchstaben des Vornamens Ihrer Mutter: \MLSpecialQuestion{2}{}{5}{}{3}{inputstring2}{ET_CODE1}\ \\
+(z.B. \underline{So}nja Braun $\rightarrow$ \textbf{so})}
+\item{Die letzten zwei Ziffern des Geburtsjahres Ihrer Mutter:  \MLSpecialQuestion{2}{}{5}{}{3}{inputnumber2}{ET_CODE2}\ \\
+(z.B. 14.05.1956 $\rightarrow$ \textbf{56})}
+\item{Die ersten zwei Buchstaben des Vornamens Ihres Vaters:   \MLSpecialQuestion{2}{}{5}{}{3}{inputstring2}{ET_CODE3}\ \\
+(z.B. z.B. \underline{Ad}am Braun $\rightarrow$ \textbf{ad})}
+\item{Die letzten zwei Ziffern des Geburtsjahres Ihrers Vaters:   \MLSpecialQuestion{2}{}{5}{}{3}{inputnumber2}{ET_CODE4}\ \\
+(z.B. z.B. 14.05.1958 $\rightarrow$ \textbf{58})}
+\ \\
+Geben Sie nur kleine Buchstaben ein!
+\end{enumerate}
+\end{MExercise}
+
+\begin{MExercise}
+Geschlecht:
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_1_FEMALE,ET_1_GMISC}{ET_1_MALE} & männlich\\
+\MCheckbox{1::smcET_1_MALE,ET_1_GMISC}{ET_1_FEMALE} & weiblich\\
+\MCheckbox{1::smcET_1_MALE,ET_1_FEMALE}{ET_1_GMISC} & Sonstiges
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+In welchem Studiengang sind Sie eingeschrieben?\\
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_2_2,ET_2_3,ET_2_4,ET_2_5,ET_2_6,ET_2_M}{ET_2_1} & Fächerübergreifender Bachelor \\
+\MCheckbox{1::smcET_2_1,ET_2_3,ET_2_4,ET_2_5,ET_2_6,ET_2_M}{ET_2_2} & Fächerübergreifender Bachelor mit Schwerpunkt Lehramt\\
+\MCheckbox{1::smcET_2_1,ET_2_2,ET_2_4,ET_2_5,ET_2_6,ET_2_M}{ET_2_3} & Mathematik (B.Sc.) \\
+\MCheckbox{1::smcET_2_1,ET_2_2,ET_2_3,ET_2_5,ET_2_6,ET_2_M}{ET_2_4} & Meteorologie (B.Sc) \\
+\MCheckbox{1::smcET_2_1,ET_2_2,ET_2_3,ET_2_4,ET_2_6,ET_2_M}{ET_2_5} & Physik (B.Sc.) \\
+\MCheckbox{1::smcET_2_1,ET_2_2,ET_2_3,ET_2_4,ET_2_5,ET_2_M}{ET_2_6} & Juniorstudium \\
+\MCheckbox{1::smcET_2_1,ET_2_2,ET_2_3,ET_2_4,ET_2_5,ET_2_6}{ET_2_M} & Sonstiges
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+In welchem Semester sind Sie immatrikuliert?\\
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_3_2,ET_3_3,ET_3_4,ET_3_5,ET_3_6,ET_3_M}{ET_3_1} & 1 \\
+\MCheckbox{1::smcET_3_1,ET_3_3,ET_3_4,ET_3_5,ET_3_6,ET_3_M}{ET_3_2} & 2 \\
+\MCheckbox{1::smcET_3_1,ET_3_2,ET_3_4,ET_3_5,ET_3_6,ET_3_M}{ET_3_3} & 3 \\
+\MCheckbox{1::smcET_3_1,ET_3_2,ET_3_3,ET_3_5,ET_3_6,ET_3_M}{ET_3_4} & 4 \\
+\MCheckbox{1::smcET_3_1,ET_3_2,ET_3_3,ET_3_4,ET_3_6,ET_3_M}{ET_3_5} & 5 \\
+\MCheckbox{1::smcET_3_1,ET_3_2,ET_3_3,ET_3_4,ET_3_5,ET_3_M}{ET_3_6} & 6 \\
+\MCheckbox{1::smcET_3_1,ET_3_2,ET_3_3,ET_3_4,ET_3_5,ET_3_6}{ET_3_M} & Sonstiges
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Haben Sie einen Vorkurs besucht?\\
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_4_NEIN}{ET_4_JA} & Ja\\
+\MCheckbox{1::smcET_4_JA}{ET_4_NEIN} & Nein\\
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Besuchen Sie parallel die Lehrveranstaltung \textit{Einführung in die Mathematikdidaktik?}\\
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_5_NEIN}{ET_5_JA} & Ja\\
+\MCheckbox{1::smcET_5_JA}{ET_5_NEIN} & Nein\\
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Was war ihr letzter schulischer Mathematikkurs?\\
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_6_2,ET_6_3,ET_6_4,ET_6_5,ET_6_6,ET_6_M}{ET_6_1} & Gymnasialer GK (G8) \\
+\MCheckbox{1::smcET_6_1,ET_6_3,ET_6_4,ET_6_5,ET_6_6,ET_6_M}{ET_6_2} & Gymnasialer GK (G9) \\
+\MCheckbox{1::smcET_6_1,ET_6_2,ET_6_4,ET_6_5,ET_6_6,ET_6_M}{ET_6_3} & Gymnasialer LK (G8) \\
+\MCheckbox{1::smcET_6_1,ET_6_2,ET_6_3,ET_6_5,ET_6_6,ET_6_M}{ET_6_4} & Gymnasialer LK (G9) \\
+\MCheckbox{1::smcET_6_1,ET_6_2,ET_6_3,ET_6_4,ET_6_6,ET_6_M}{ET_6_5} & Fachoberschule mit technischem Schwerpunkt \\
+\MCheckbox{1::smcET_6_1,ET_6_2,ET_6_3,ET_6_4,ET_6_5,ET_6_M}{ET_6_6} & Fachoberschule mit nicht-technischem Schwerpunkt \\
+\MCheckbox{1::smcET_6_1,ET_6_2,ET_6_3,ET_6_4,ET_6_5,ET_6_6}{ET_6_M} & Sonstiges
+\end{tabular}
+\ \\
+Hinweis: GK = Grundkurs, LK = Leistungskurs. Kreuzen Sie GK an, falls in Ihrem Bundesland keine Unterteilung in GK/LK stattfindet.
+\end{MExercise}
+
+\begin{MExercise}
+In welchem Jahr haben Sie die Hochschulzugangsberechtigung erworben?\\
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_7_2,ET_7_3,ET_7_4,ET_7_5,ET_7_6,ET_7_M}{ET_7_1} & 2015\\
+\MCheckbox{1::smcET_7_1,ET_7_3,ET_7_4,ET_7_5,ET_7_6,ET_7_M}{ET_7_2} & 2014\\
+\MCheckbox{1::smcET_7_1,ET_7_2,ET_7_4,ET_7_5,ET_7_6,ET_7_M}{ET_7_3} & 2013\\
+\MCheckbox{1::smcET_7_1,ET_7_2,ET_7_3,ET_7_5,ET_7_6,ET_7_M}{ET_7_4} & 2010 - 2012\\
+\MCheckbox{1::smcET_7_1,ET_7_2,ET_7_3,ET_7_4,ET_7_6,ET_7_M}{ET_7_5} & 2007 - 2009\\
+\MCheckbox{1::smcET_7_1,ET_7_2,ET_7_3,ET_7_4,ET_7_5,ET_7_M}{ET_7_6} & 2004 - 2006\\
+\MCheckbox{1::smcET_7_1,ET_7_2,ET_7_3,ET_7_4,ET_7_5,ET_7_6}{ET_7_M} & Sonstiges
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+In welchem Bundesland (oder Ausland) wurde die Hochschulzugangsberechtigung erworben?\\
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_1} & Ausland\\
+\MCheckbox{1::smcET_8_1,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_2} & Baden-Württemberg\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_3} & Bayern\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_4} & Berlin\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_5} & Brandenburg\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_6} & Bremen\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_7} & Hamburg\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_8} & Hessen\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_9} & Mecklenburg-Vorpommern\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_10} & Niedersachsen\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_11} & Nordrhein-Westfalen\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_13,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_12} & Rheinland-Pfalz\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_14,ET_8_15,ET_8_16,ET_8_17}{ET_8_13} & Saarland\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_15,ET_8_16,ET_8_17}{ET_8_14} & Sachsen\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_16,ET_8_17}{ET_8_15} & Sachsen-Anhalt\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_17}{ET_8_16} & Schleswig-Holstein\\
+\MCheckbox{1::smcET_8_1,ET_8_2,ET_8_3,ET_8_4,ET_8_5,ET_8_6,ET_8_7,ET_8_8,ET_8_9,ET_8_10,ET_8_11,ET_8_12,ET_8_13,ET_8_14,ET_8_15,ET_8_16}{ET_8_17} & Thüringen
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Welche Durchschnittsnote hatten Sie auf Ihrem Abschlusszeugnis für die Hochschulzugangsberechtigung (Noten: 1-6)?\\
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_9_2,ET_9_3,ET_9_4,ET_9_5,ET_9_6}{ET_9_1} & 1\\
+\MCheckbox{1::smcET_9_1,ET_9_3,ET_9_4,ET_9_5,ET_9_6}{ET_9_2} & 2\\
+\MCheckbox{1::smcET_9_1,ET_9_2,ET_9_4,ET_9_5,ET_9_6}{ET_9_3} & 3\\
+\MCheckbox{1::smcET_9_1,ET_9_2,ET_9_3,ET_9_5,ET_9_6}{ET_9_4} & 4\\
+\MCheckbox{1::smcET_9_1,ET_9_2,ET_9_3,ET_9_4,ET_9_6}{ET_9_5} & 5\\
+\MCheckbox{1::smcET_9_1,ET_9_2,ET_9_3,ET_9_4,ET_9_5}{ET_9_6} & 6
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Welche Note  hatten Sie in Mathematik in Ihrem Abschlusszeugnis für die Hochschulzugangsberechtigung (Noten: 1-6)?\\
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_10_2,ET_10_3,ET_10_4,ET_10_5,ET_10_6}{ET_10_1} & 1\\
+\MCheckbox{1::smcET_10_1,ET_10_3,ET_10_4,ET_10_5,ET_10_6}{ET_10_2} & 2\\
+\MCheckbox{1::smcET_10_1,ET_10_2,ET_10_4,ET_10_5,ET_10_6}{ET_10_3} & 3\\
+\MCheckbox{1::smcET_10_1,ET_10_2,ET_10_3,ET_10_5,ET_10_6}{ET_10_4} & 4\\
+\MCheckbox{1::smcET_10_1,ET_10_2,ET_10_3,ET_10_4,ET_10_6}{ET_10_5} & 5\\
+\MCheckbox{1::smcET_10_1,ET_10_2,ET_10_3,ET_10_4,ET_10_5}{ET_10_6} & 6
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Welcher Taschenrechnertyp wurde in Ihrem Mathematikunterricht (in der Oberstufe) benutzt?\\\textit{(Ein graphikfähiger Taschenrechner (GTR) unterscheidet
+sich von einem wissenschaftlichen Taschenrechner dadurch, dass er Funktionskurven zeichnen kann. Ein Computer-Algebra-System (CAS) kann zusätzlich u.a.
+auch Ableitungsfunktionen bilden.)}\\
+\begin{tabular}{ll}
+\MCheckbox{1::smcET_11_2,ET_11_3,ET_11_4}{ET_11_1} & \glqq einfacher\grqq  (wissenschaftlicher) Taschenrechner\\
+\MCheckbox{1::smcET_11_1,ET_11_3,ET_11_4}{ET_11_2} & graphikfähiger Taschenrechner (GTR)\\
+\MCheckbox{1::smcET_11_1,ET_11_2,ET_11_4}{ET_11_3} & Computer-Algebra-System (CAS)\\
+\MCheckbox{1::smcET_11_1,ET_11_2,ET_11_3}{ET_11_4} & kein Taschenrechner
+\end{tabular}
+\end{MExercise}
+
+\textit{Folgende Fragen richten sich speziell an Studierende des Fächerübergreifenden Bachelor mit Schwerpunkt Lehramt.}\\
+
+\begin{MExercise}
+Wie gut schätzen Sie Ihre Mathematikkenntnisse im Hinblick auf die Anforderungen in Ihrem gewählten Studiengang ein?\\
+\ \\
+\ \ \ sehr schlecht \ 
+\MCheckbox{1::smcET_12_2,ET_12_3,ET_12_4,ET_12_5,ET_12_6}{ET_12_1} \ \ 
+\MCheckbox{1::smcET_12_1,ET_12_3,ET_12_4,ET_12_5,ET_12_6}{ET_12_2} \ \ 
+\MCheckbox{1::smcET_12_1,ET_12_2,ET_12_4,ET_12_5,ET_12_6}{ET_12_3} \ \ 
+\MCheckbox{1::smcET_12_1,ET_12_2,ET_12_3,ET_12_5,ET_12_6}{ET_12_4} \ \ 
+\MCheckbox{1::smcET_12_1,ET_12_2,ET_12_3,ET_12_4,ET_12_6}{ET_12_5} \ \ 
+\MCheckbox{1::smcET_12_1,ET_12_2,ET_12_3,ET_12_4,ET_12_5}{ET_12_6} \ sehr gut
+\end{MExercise}
+
+\begin{MExercise}
+Wie viel Neues erwarten Sie in dieser Lehrveranstaltung kennen zu lernen?\\
+\ \\
+\ \ \ sehr wenig \ 
+\MCheckbox{1::smcET_13_2,ET_13_3,ET_13_4,ET_13_5,ET_13_6}{ET_13_1} \ \ 
+\MCheckbox{1::smcET_13_1,ET_13_3,ET_13_4,ET_13_5,ET_13_6}{ET_13_2} \ \ 
+\MCheckbox{1::smcET_13_1,ET_13_2,ET_13_4,ET_13_5,ET_13_6}{ET_13_3} \ \ 
+\MCheckbox{1::smcET_13_1,ET_13_2,ET_13_3,ET_13_5,ET_13_6}{ET_13_4} \ \ 
+\MCheckbox{1::smcET_13_1,ET_13_2,ET_13_3,ET_13_4,ET_13_6}{ET_13_5} \ \ 
+\MCheckbox{1::smcET_13_1,ET_13_2,ET_13_3,ET_13_4,ET_13_5}{ET_13_6} \ sehr viel
+\end{MExercise}
+
+\begin{MExercise}
+Wie gut fühlen Sie sich durch Ihre bisherigen Mathematikkenntnisse bereits auf die fachlichen Anforderungen des Lehrerberufs vorbereitet?\\
+\ \\
+\ \ \ sehr schlecht \ 
+\MCheckbox{1::smcET_14_2,ET_14_3,ET_14_4,ET_14_5,ET_14_6}{ET_14_1} \ \ 
+\MCheckbox{1::smcET_14_1,ET_14_3,ET_14_4,ET_14_5,ET_14_6}{ET_14_2} \ \ 
+\MCheckbox{1::smcET_14_1,ET_14_2,ET_14_4,ET_14_5,ET_14_6}{ET_14_3} \ \ 
+\MCheckbox{1::smcET_14_1,ET_14_2,ET_14_3,ET_14_5,ET_14_6}{ET_14_4} \ \ 
+\MCheckbox{1::smcET_14_1,ET_14_2,ET_14_3,ET_14_4,ET_14_6}{ET_14_5} \ \ 
+\MCheckbox{1::smcET_14_1,ET_14_2,ET_14_3,ET_14_4,ET_14_5}{ET_14_6} \ sehr gut
+\end{MExercise}
+
+\begin{MExercise}
+Wie hoch schätzen Sie die Relevanz dieser Lehrveranstaltung mit Blick auf die späteren fachlichen Anforderungen im Beruf ein?\\
+\ \\
+\ \ \ sehr gering \ 
+\MCheckbox{1::smcET_15_2,ET_15_3,ET_15_4,ET_15_5,ET_15_6}{ET_15_1} \ \ 
+\MCheckbox{1::smcET_15_1,ET_15_3,ET_15_4,ET_15_5,ET_15_6}{ET_15_2} \ \ 
+\MCheckbox{1::smcET_15_1,ET_15_2,ET_15_4,ET_15_5,ET_15_6}{ET_15_3} \ \ 
+\MCheckbox{1::smcET_15_1,ET_15_2,ET_15_3,ET_15_5,ET_15_6}{ET_15_4} \ \ 
+\MCheckbox{1::smcET_15_1,ET_15_2,ET_15_3,ET_15_4,ET_15_6}{ET_15_5} \ \ 
+\MCheckbox{1::smcET_15_1,ET_15_2,ET_15_3,ET_15_4,ET_15_5}{ET_15_6} \ sehr hoch
+\end{MExercise}
+
+\begin{MExercise}
+Erwarten Sie in dieser Lehrveranstaltung explizite Bezüge zur Schulmathematik?\\
+\ \\
+\ \ \ keine \ 
+\MCheckbox{1::smcET_16_2,ET_16_3,ET_16_4,ET_16_5,ET_16_6}{ET_16_1} \ \ 
+\MCheckbox{1::smcET_16_1,ET_16_3,ET_16_4,ET_16_5,ET_16_6}{ET_16_2} \ \ 
+\MCheckbox{1::smcET_16_1,ET_16_2,ET_16_4,ET_16_5,ET_16_6}{ET_16_3} \ \ 
+\MCheckbox{1::smcET_16_1,ET_16_2,ET_16_3,ET_16_5,ET_16_6}{ET_16_4} \ \ 
+\MCheckbox{1::smcET_16_1,ET_16_2,ET_16_3,ET_16_4,ET_16_6}{ET_16_5} \ \ 
+\MCheckbox{1::smcET_16_1,ET_16_2,ET_16_3,ET_16_4,ET_16_5}{ET_16_6} \ sehr viele
+\end{MExercise}
+
+\begin{MExercise}
+Erwarten Sie in dieser Lehrveranstaltung Bezüge zur Fachdidaktik Mathematik?\\
+\ \\
+\ \ \ keine \ 
+\MCheckbox{1::smcET_17_2,ET_17_3,ET_17_4,ET_17_5,ET_17_6}{ET_17_1} \ \ 
+\MCheckbox{1::smcET_17_1,ET_17_3,ET_17_4,ET_17_5,ET_17_6}{ET_17_2} \ \ 
+\MCheckbox{1::smcET_17_1,ET_17_2,ET_17_4,ET_17_5,ET_17_6}{ET_17_3} \ \ 
+\MCheckbox{1::smcET_17_1,ET_17_2,ET_17_3,ET_17_5,ET_17_6}{ET_17_4} \ \ 
+\MCheckbox{1::smcET_17_1,ET_17_2,ET_17_3,ET_17_4,ET_17_6}{ET_17_5} \ \ 
+\MCheckbox{1::smcET_17_1,ET_17_2,ET_17_3,ET_17_4,ET_17_5}{ET_17_6} \ sehr viele
+\end{MExercise}
+
 \ \\ \ \\
-Der einführende Teil des Tests ist frei ausfüllbar und wird nicht gewertet. Er dient dazu, den Umgang mit den Eingabefeldern zu erlernen.
+Setzen Sie die Bearbeitung \MSRef{L_TEST02}{hier} mit den Probefragen fort.
+
+\end{MXContent}
+
+\MSubsection{Probeaufgaben}
+
+\begin{MXContent}{Probeaufgaben}{Probeaufgaben}{STD}
+\MLabel{L_TEST02}
+\MDeclareSiteUXID{HNT_ProbeTest}
+
+Der Probeteil des Tests ist frei ausfüllbar und wird nicht gewertet. Er dient dazu, den Umgang mit den Eingabefeldern zu erlernen.
 \ \\ \ \\
 Wichtig: Die Aufgaben sollen auf einem Blatt Papier ohne Taschenrechner gelöst werden. Die Eingabefelder dienen der Überprüfung Ihrer Lösung.
 Sobald Sie sich sicher im Umgang mit den Eingabefeldern fühlen können Sie oben rechts auf \glqq Weiter \grqq\ klicken und den gewerteten Test bearbeiten.
@@ -60,6 +303,30 @@ Sobald Sie sich sicher im Umgang mit den Eingabefeldern fühlen können Sie oben r
 \MInputHint{Unter vielen Aufgaben finden sich blaue Infotexte die Tipps zum Umgang mit den interaktiven Eingabefeldern geben. Bei komplexeren Termen erscheint während der Eingabe
 ein blaues Infofenster, in dem der mathematische Term aufgebaut wird während Sie eintippen. Schließen Sie die Eingabe erst ab, wenn im Fenster die von Ihnen gewünschte Lösung
 dargestellt wird.}
+
+
+
+\begin{MExercise}
+\MSetPoints{1}
+Kreuzen Sie an, ob diese mathematischen Ausdrücke jeweils Gleichungen, Ungleichungen, Terme oder Zahlen darstellen (Mehrfachnennung ist möglich):
+\ \\
+\begin{MQuestionGroup}
+\begin{tabular}{|l|c|c|c|c|}% Fast gleich mit Eingangstest M01
+  \hline
+  Mathematischer Ausdruck   & Gleichung & Ungleichung & Term & Zahl \\ \hline
+  $\sqrt{3+\Mtfrac12}$      & \MCheckbox{0}{VX11} & \MCheckbox{0}{VX12} &\MCheckbox{1}{VX13} &\MCheckbox{1}{VX14} \\ \hline
+  $5x-1$                    & \MCheckbox{0}{VX21} & \MCheckbox{0}{VX22} &\MCheckbox{1}{VX23} &\MCheckbox{0}{VX24} \\ \hline
+  $32x^2 = \Mtfrac1y$       & \MCheckbox{1}{VX31} & \MCheckbox{0}{VX32} &\MCheckbox{0}{VX33} &\MCheckbox{0}{VX34} \\ \hline
+  $32> 2^x$                 & \MCheckbox{0}{VX41} & \MCheckbox{1}{VX42} &\MCheckbox{0}{VX43} &\MCheckbox{0}{VX44} \\ \hline
+  $x\in \lbrace1;2;3\rbrace$& \MCheckbox{0}{VX51} & \MCheckbox{0}{VX52} &\MCheckbox{0}{VX53} &\MCheckbox{0}{VX54} \\ \hline
+  $b^2-4a c\geq 0$          & \MCheckbox{0}{VX61} & \MCheckbox{1}{VX62} &\MCheckbox{0}{VX63} &\MCheckbox{0}{VX64} \\ \hline
+\end{tabular}
+\end{MQuestionGroup}
+\ \\
+\MInputHint{Dies ist ein Beispiel für eine Auswahlaufgabe, die Kästchen können jeweils angekreuzt oder nicht angekreuzt sein.}
+\ \\ \ \\
+\MGroupButton{Die Kästchen kontrollieren}
+\end{MExercise}
 
 \begin{MExercise}
 Vereinfachen Sie diese Mehrfachbrüche, so dass höchstens ein einfacher Bruch übrig bleibt:
@@ -220,31 +487,17 @@ Antwort: Der Mittelwert ist \MEquationItem{$\bar x$}{\MLParsedQuestion{7}{1/5}{3
 % ein als \texttt{int\_(-2)\^2 x^2 dx}, vergessen Sie nicht negative Integralgrenzen einzuklammern.}
 % \end{MExercise}
 
-Sobald Sie sich sicher im Umgang mit den Eingabefeldern fühlen, können Sie oben rechts auf Weiter klicken und den \MSRef{L_TEST02}{gewerteten Test} bearbeiten.
+\ \\ \ \\
+
+Sobald Sie sich sicher im Umgang mit den Eingabefeldern fühlen, können Sie oben rechts auf Weiter klicken und den \MSRef{L_TEST03}{gewerteten Test} bearbeiten.
 
 \end{MXContent}
 
-\MSubsection{Test 1: Abzugebender Teil}
+\MSubsection{Abzugebender Teil}
 
-\begin{MTest}{Eingangstest für den Onlinekurs}
-\MLabel{L_TEST02}
+\begin{MTest}{Einzureichender Test}
+\MLabel{L_TEST03}
 \MDeclareSiteUXID{VBKMT_AbgebeTest}
-
-\begin{MExercise}
-\MSetPoints{1}
-Kreuzen Sie an, ob diese mathematischen Ausdrücke jeweils Gleichungen, Ungleichungen, Terme oder Zahlen darstellen (Mehrfachnennung ist möglich):
-\ \\
-\begin{tabular}{|l|c|c|c|c|}% Fast gleich mit Eingangstest M01
-  \hline
-  Mathematischer Ausdruck   & Gleichung & Ungleichung & Term & Zahl \\ \hline
-  $\sqrt{3+\Mtfrac12}$      & \MCheckbox{0}{VX11} & \MCheckbox{0}{VX12} &\MCheckbox{1}{VX13} &\MCheckbox{1}{VX14} \\ \hline
-  $5x-1$                    & \MCheckbox{0}{VX21} & \MCheckbox{0}{VX22} &\MCheckbox{1}{VX23} &\MCheckbox{0}{VX24} \\ \hline
-  $32x^2 = \Mtfrac1y$       & \MCheckbox{1}{VX31} & \MCheckbox{0}{VX32} &\MCheckbox{0}{VX33} &\MCheckbox{0}{VX34} \\ \hline
-  $32> 2^x$                 & \MCheckbox{0}{VX41} & \MCheckbox{1}{VX42} &\MCheckbox{0}{VX43} &\MCheckbox{0}{VX44} \\ \hline
-  $x\in \lbrace1;2;3\rbrace$& \MCheckbox{0}{VX51} & \MCheckbox{0}{VX52} &\MCheckbox{0}{VX53} &\MCheckbox{0}{VX54} \\ \hline
-  $b^2-4a c\geq 0$          & \MCheckbox{0}{VX61} & \MCheckbox{1}{VX62} &\MCheckbox{0}{VX63} &\MCheckbox{0}{VX64} \\ \hline
-\end{tabular}
-\end{MExercise}
 
 \begin{MExercise}
 \MSetPoints{4}
@@ -763,38 +1016,23 @@ Welche Eigenschaften besitzt dieser Kreis?
 \end{MExercise}
 
 
-% \begin{MExercise}
-% Es seien die Vektoren
-% $$
-% \MVec{x} \;=\; \MVector{1\\2}\;\; , \;\;
-% \MVec{y} \;=\; \MVector{0\\-4}\;\; , \;\;
-% \MVec{z} \;=\; \MVector{2\\2}
-% $$
-% gegeben. Berechnen Sie daraus die folgenden Vektoren:
-% \begin{MExerciseItems}
-% \item{\MEquationItem{$\MVec{x}+\MVec{y}-\MVec{z}$}{\MLFunctionQuestion{15}{(-1,-4)}{5}{x}{5}{OR8}}.}
-% \item{\MEquationItem{$2\MVec{x}-\frac12\MVec{y}$}{\MLFunctionQuestion{15}{(2,6)}{5}{x}{5}{OR9}}.}
-% \item{\MEquationItem{$2(\MVec{x}-\MVec{y})+3\MVec{z}$}{\MLFunctionQuestion{15}{(8,18)}{5}{x}{5}{OR10}}.}
-% \end{MExerciseItems}
-% \end{MExercise}
-
 \begin{MExercise}
-\MSetPoints{2}
-Bei einer Klausur, in der bis zu 18 Punkte erreichbar waren, wurden folgende Noten vergeben:
-\begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline
-Note & Punktezahl & Anzahl Studierende & Relative Häufigkeit\\ \hline
-1 & 17 - 18 & 22  & \MLParsedQuestion{5}{11}{4}{STOCHTE1}\ \% \\ \hline
-2 & 13 - 16 & 78 & \MLParsedQuestion{5}{39}{4}{STOCHTE2}\ \% \\ \hline
-3 & 9 - 12 & 50 & \MLParsedQuestion{5}{25}{4}{STOCHTE3}\ \% \\ \hline
-4 & 5 - 8 & 32 & \MLParsedQuestion{5}{16}{4}{STOCHTE4}\ \% \\ \hline
->4 & 0 - 4 & 18 & \MLParsedQuestion{5}{9}{4}{STOCHTE5}\ \% \\ \hline
-Total &   & \MLParsedQuestion{5}{200}{4}{STOCHTE6} & 100\ \% \\ \hline
-\end{tabular}
-\end{center}
-Berechnen Sie die relativen Häufigkeiten der Noten in Prozent.
+Es seien die Vektoren
+$$
+\MVec{x} \;=\; \MVector{1\\2}\;\; , \;\;
+\MVec{y} \;=\; \MVector{0\\-4}\;\; , \;\;
+\MVec{z} \;=\; \MVector{2\\2}
+$$
+gegeben. Berechnen Sie daraus die folgenden Vektoren:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\MVec{x}+\MVec{y}-\MVec{z}$}{\MLFunctionQuestion{15}{(-1,-4)}{5}{x}{5}{OR8}}.}
+\item{\MEquationItem{$2\MVec{x}-\frac12\MVec{y}$}{\MLFunctionQuestion{15}{(2,6)}{5}{x}{5}{OR9}}.}
+\item{\MEquationItem{$2(\MVec{x}-\MVec{y})+3\MVec{z}$}{\MLFunctionQuestion{15}{(8,18)}{5}{x}{5}{OR10}}.}
+\end{MExerciseItems}
+\ \\
+\MInputHint{Geben Sie Vektoren in der Form \texttt{(a;b)} mit einem Semikolon als Trennzeichen ein.}
 \end{MExercise}
+
 
 \ifttm
 \begin{html}

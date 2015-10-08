@@ -1006,7 +1006,7 @@
 
 % ACHTUNG: Die langen Zeilen bitte so lassen, Zeilenumbrueche im tex werden in div's umgesetzt
 % QuestionCheckbox macht ausserhalb einer QuestionGroup keinen Sinn!
-% #1 = solution (1 oder 0), #2 = id, #3 = points, #4 = uxid
+% #1 = solution (1 oder 0), ggf. mit ::smc abgetrennt auszuschliessende single-choice-boxen (UXIDs durch , getrennt), #2 = id, #3 = points, #4 = uxid
 \newcommand{\MQuestionCheckbox}[4]{
 \ifttm
 \special{html:<!-- mdeclareuxid;;}UX#4\special{html:;;}\arabic{section}\special{html:;;}#2\special{html:;; //-->}%
@@ -1024,7 +1024,7 @@
 
 \def\MGenerateID{QFELD_\arabic{section}.\arabic{subsection}.\arabic{MSiteCounter}.QF\arabic{MFieldCounter}}
 
-% #1 = 0/1, #2 = uxid ohne UX
+% #1 = 0/1 ggf. mit ::smc abgetrennt auszuschliessende single-choice-boxen (UXIDs durch , getrennt ohne UX), #2 = uxid ohne UX
 \newcommand{\MCheckbox}[2]{
 \MQuestionCheckbox{#1}{\MGenerateID}{\MStdPoints}{#2}
 \addtocounter{MFieldCounter}{1}
