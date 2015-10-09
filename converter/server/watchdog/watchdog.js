@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/node --use_strict
 /* Copyright (C) 2015 KIT (www.kit.edu), Author: Max Bruckner (FSMaxB)
  *
  *     This file is part of the VE&MINT program compilation
