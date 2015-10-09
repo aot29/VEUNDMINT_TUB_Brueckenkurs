@@ -497,7 +497,7 @@ function check_group(input_from, input_to) {
                     v = "1";
                     var j;
                     for (j = 0; j < FVAR[i].smc.length; j++) {
-                        logMessage(VERBOSEINFO, "smc kill = " + FVAR[i].smc[j]);
+                        logMessage(VERBOSEINFO, "smc exclude = " + FVAR[i].smc[j]);
                         var k;
                         for (k = 0; k < FVAR.length; k++) {
                           if (FVAR[k].uxid == FVAR[i].smc[j]) {
@@ -505,6 +505,7 @@ function check_group(input_from, input_to) {
                               FVAR[k].rawinput = "2";
                               var f = d.getElementById(FVAR[k].id);
                               if (f != null) f.checked = false;
+                              notifyPoints(k, 1, SOLUTION_TRUE);
                           }
                         }
                     }
@@ -1150,7 +1151,7 @@ function InitResults(empty)
                 break;
               }
 
-              case 8: {
+              case 2: {
                 // Checkbox, v ist "1" oder "0"
                 if ((v == "0") || (v == "")) { e.checked = false; FVAR[i].clear(); }
                 if (v == "1") { e.checked = true; check_group(i,i); }
@@ -1319,6 +1320,23 @@ function finish_button(name) {
         psres = pipwerks.SCORM.save();
         logMessage(DEBUGINFO, "SCORM save = " + psres);
         if (psres==true) f.innerHTML += "Die Punktzahl wurde zur statistischen Auswertung übertragen\n";
+                  
+        // HANNOVER workaround: ET_*_ Felder komprimieren und senden
+        var t;
+        var comps = "[[[";
+        for (t = 0; t < intersiteobj.scores.length; t++) {
+            if (intersiteobj.scores[t].uxid.indexOf("ET_") == 0) {
+                if ((intersiteobj.scores[t].rawinput != "") && (intersiteobj.scores[t].rawinput != "2")) {
+                    comps += ";;" + intersiteobj.scores[t].uxid + ";;" + intersiteobj.scores[t].rawinput;
+                }
+            }
+                
+        }
+        comps += "]]]";
+        
+        var cm = "HN_ETEST1_COMPLETED: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", testname:" + name + ", cmps = " + comps + ", RATIO=" + ratio;
+        sendeFeedback({statistics: cm }, true);
+
       }
       
       
@@ -1353,7 +1371,7 @@ function notifyPoints(i, points, correct) {
                   intersiteobj.scores[j].intest = FVAR[i].intest;
                   intersiteobj.scores[j].rawinput = FVAR[i].rawinput;
                   intersiteobj.scores[j].value = FVAR[i].value;
-                  logMessage(VERBOSEINFO, "Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized");
+                  logMessage(VERBOSEINFO, "Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersiteobj.scores[j].rawinput);
               }
           }
           if (f == false) {

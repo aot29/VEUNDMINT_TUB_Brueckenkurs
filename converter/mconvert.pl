@@ -1534,14 +1534,14 @@ createRedirect("index.html", $startfile, 0);
 if ($config{doscorm} == 1) {
   createRedirect($entryfile, $startfile, 1);
 }
-if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile); } else { print "No Chapter-file defined!\n"; }
-if ($configfile ne "") { createRedirect("config.html", $configfile); } else { print "No Config-file defined!\n"; }
-if ($datafile ne "") { createRedirect("cdata.html", $datafile); } else { print "Keine Data-Datei definiert!\n"; }
-if ($searchfile ne "") { createRedirect("search.html", $searchfile); } else { print "Keine Search-Datei definiert!\n"; }
-if ($favofile ne "") { createRedirect("favor.html", $favofile); } else { print "Keine Favoriten-Datei definiert!\n"; }
-if ($locationfile ne "") { createRedirect("location.html", $locationfile); } else { print "Keine Location-Datei definiert!\n"; }
-if ($stestfile ne "") { createRedirect("stest.html", $stestfile); } else { print "Keine Starttest-Datei definiert!\n"; }
-if ($betafile ne "") { createRedirect("betasite.html", $betafile); } else { print "Keine Beta-Datei definiert!\n"; }
+if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile,0); } else { print "No Chapter-file defined!\n"; }
+if ($configfile ne "") { createRedirect("config.html", $configfile,0); } else { print "No Config-file defined!\n"; }
+if ($datafile ne "") { createRedirect("cdata.html", $datafile,0); } else { print "Keine Data-Datei definiert!\n"; }
+if ($searchfile ne "") { createRedirect("search.html", $searchfile,0); } else { print "Keine Search-Datei definiert!\n"; }
+if ($favofile ne "") { createRedirect("favor.html", $favofile,0); } else { print "Keine Favoriten-Datei definiert!\n"; }
+if ($locationfile ne "") { createRedirect("location.html", $locationfile,0); } else { print "Keine Location-Datei definiert!\n"; }
+if ($stestfile ne "") { createRedirect("stest.html", $stestfile,0); } else { print "Keine Starttest-Datei definiert!\n"; }
+if ($betafile ne "") { createRedirect("betasite.html", $betafile,0); } else { print "Keine Beta-Datei definiert!\n"; }
 
 if ($config{doscorm} eq 1) { createSCORM(); }
 

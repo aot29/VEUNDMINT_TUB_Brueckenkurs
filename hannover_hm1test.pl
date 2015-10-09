@@ -1,8 +1,9 @@
 # Globale Einstellungen fuer mconvert.pl und conv.pl (sowie die darin eingebundenen modules)
 
-scormlogin      =>      0       , # =1 -> Alle Anmeldesysteme werden deaktiviert, und Teilnehmer ueber SCORM identifiziert
+testonly        =>      1       , # =1 -> Zahlreiche Funktionen (z.B. Einstellungen) werden deaktiviert
+scormlogin      =>      1       , # =1 -> Alle Anmeldesysteme werden deaktiviert, und Teilnehmer ueber SCORM identifiziert
 nosols          =>      0       , # =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
-doscorm         =>      0       , # =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden, dann muss auch entsprechendes Flag in conv.pl gesetzt werden
+doscorm         =>      1       , # =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden, dann muss auch entsprechendes Flag in conv.pl gesetzt werden
 qautoexport     =>      0       , # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
 diaok           =>      0       , # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
 cleanup         =>      1       , # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
