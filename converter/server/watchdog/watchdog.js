@@ -48,9 +48,10 @@ function log(message) {
 //log an error
 function errorLog(message) {
   if (config.errorlog && (typeof config.errorlog === 'string')) {
+    process.stderr.write(message + '\n');
     fs.appendFile(config.errorlog, message + '\n', function (err) {
       if (err) {
-        process.stderr.write("ERROR: Couldn't write to errorlog '" + config.errorlog + "'");
+        process.stderr.write("ERROR: Couldn't write to errorlog '" + config.errorlog + "'\n");
       }
     });
   }
@@ -66,7 +67,7 @@ function sendMail(content) {
 
   mailTransporter.sendMail(email, function (error, info) {
     if (error) {
-      return errorLog(error);
+      return errorLog('ERROR: ' + error);
     }
   });
 }
@@ -164,7 +165,7 @@ function watch() {
           }
 
           var requestFunction = function () { //this function is to be overwritten in the following switch-case
-            errorLog("No request function, this shouldn't happen!");
+            errorLog("ERROR: No request function, this shouldn't happen!");
             throw new Error('No request function, this shouldn\'t happen!');
           };
           var requestUrl = url.parse(service.url);
