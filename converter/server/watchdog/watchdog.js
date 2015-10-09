@@ -29,6 +29,7 @@ var clone = require('clone');
 var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
 var fs = require('fs');
+var freespace = require('freespace-nix');
 
 var mailTransporter = nodemailer.createTransport(config.mailoptions);
 
@@ -69,6 +70,34 @@ function sendMail(content) {
     if (error) {
       return errorLog('ERROR: ' + error);
     }
+  });
+}
+
+/*
+ * Check the disk usage for every directory
+ * specified in 'diskusage' in the config file.
+ */
+function checkDiskUsage(result) {
+  result.diskusage = {};
+
+  //go through all the directories to check
+  config.diskusage.forEach(function (value) {
+    freespace.df(value.path, function (error, data) {
+      result.diskusage[value.path] = {success: false, percent_used: data.percent_used};
+      if ((error !== undefined) && (error !== "")) {
+        result.diskusage[value.path].success = false;
+        errorLog('ERROR: Failed to get disk usage.');
+        result.email += 'ERROR: Failed to get disk usage.\n';
+        return;
+      }
+
+      if (data.percent_used > value.notify_percentage) {
+        result.email += 'Disk usage limit exceeded for "' + value.path + '" (' + data.percent_used + '%)\n';
+        return;
+      }
+
+      result.diskusage[value.path].success = true;
+    })
   });
 }
 
@@ -128,6 +157,11 @@ function watch() {
   result.timestamp = Date.now() / 1000; //Unix Timestamp
   result.services = {};
   result.email = "";
+
+  //check the disk usage if configuration for it exists
+  if (Array.isArray(config.diskusage)) {
+    checkDiskUsage(result);
+  }
 
   //go through all of the services
   config.services.forEach(

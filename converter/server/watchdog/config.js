@@ -71,6 +71,9 @@ module.exports = {
         }
       ]
     } ],
+  diskusage: [
+    {path: './', notify_percentage: 80}
+  ],
   logfile: '/opt/watchdog/log',
   errorlog: '/opt/watchdog/errorlog',
   //timeout in seconds
