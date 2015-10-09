@@ -75,14 +75,13 @@ function sendMail(content) {
 //timeout that collects all the results
 function timeout(passedResult) {
   var result = clone(passedResult); //clone to prevent race conditions
-  var email = ""; //email to send
 
   //Go through all of the results
   Object.keys(result.services).forEach(
     function (service) {
 
       if (result.services[service].notify && (result.services[service].ping === false)) {
-        email += "Service '" + service + "' not available.\n"
+        result.email += "Service '" + service + "' not available.\n"
       }
 
       if (result.services[service].requests) {
@@ -91,14 +90,14 @@ function timeout(passedResult) {
             //Send notifications
             if (result.services[service].notify) {
               if (!result.services[service].requests[req].response) {
-                email += "Service '" + service + "': Request '" + req + "' didn't respond.\n";
+                result.email += "Service '" + service + "': Request '" + req + "' didn't respond.\n";
               }
               else if (!result.services[service].requests[req].success) {
-                email += "Service '" + service + "': Request '" + req + "' responded incorrectly.\n";
+                result.email += "Service '" + service + "': Request '" + req + "' responded incorrectly.\n";
               }
 
               if (result.services[service].requests[req].threshold_reached) {
-                email += "Service '" + service + "': Request '" + req + "' reached it's threshold. It took " + result.services[service].requests[req].time + "ms.\n";
+                result.email += "Service '" + service + "': Request '" + req + "' reached it's threshold. It took " + result.services[service].requests[req].time + "ms.\n";
               }
             }
 
@@ -114,8 +113,8 @@ function timeout(passedResult) {
     }
   );
 
-  if ((typeof config.email === "object") && email != "") {
-    sendMail(email);
+  if ((typeof config.email === "object") && (result.email != "")) {
+    sendMail(result.email);
   }
 
   log(JSON.stringify(result));
@@ -128,6 +127,7 @@ function watch() {
 
   result.timestamp = Date.now() / 1000; //Unix Timestamp
   result.services = {};
+  result.email = "";
 
   //go through all of the services
   config.services.forEach(
