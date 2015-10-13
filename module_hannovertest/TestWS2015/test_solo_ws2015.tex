@@ -8,7 +8,7 @@
 
 \begin{document}
 
-\MSection{Eingangstest} %  aus KIT-Vorkurs
+\MSection{Drei Testtypen}
 \MSetSectionID{testkit1}
 
 \begin{MSectionStart}
@@ -248,9 +248,9 @@ Sobald Sie sich sicher im Umgang mit den Eingabefeldern fühlen, können Sie oben 
 
 \end{MXContent}
 
-\MSubsection{Abzugebender Teil}
+\MSubsection{Eingangstest}
 
-\begin{MTest}{Einzureichender Test}
+\begin{MTest}{Einzureichender Eingangstest}
 \MLabel{L_TEST03}
 \MDeclareSiteUXID{VBKMT_AbgebeTest}
 
@@ -798,6 +798,791 @@ SITE_UXID = "VBKMT_AbgebeTest";
 \fi
 
 \end{MTest}
+
+\MSubsection{Ausgangstest}
+
+\begin{MXContent}{Ausgangstest}{Fragen aus den 10 Ausgangstests}{STD}
+\MLabel{L_TEST04}
+\MDeclareSiteUXID{L_TESTAUS}
+
+Wichtig: Die Aufgaben sollen auf einem Blatt Papier ohne Taschenrechner gelöst werden. Die Eingabefelder dienen der Überprüfung Ihrer Lösung.
+Sobald Sie sich sicher im Umgang mit den Eingabefeldern fühlen können Sie oben rechts auf \glqq Weiter \grqq\ klicken und den gewerteten Test bearbeiten.
+\ \\ \ \\
+
+\MInputHint{Unter vielen Aufgaben finden sich blaue Infotexte die Tipps zum Umgang mit den interaktiven Eingabefeldern geben. Bei komplexeren Termen erscheint während der Eingabe
+ein blaues Infofenster, in dem der mathematische Term aufgebaut wird während Sie eintippen. Schließen Sie die Eingabe erst ab, wenn im Fenster die von Ihnen gewünschte Lösung
+dargestellt wird.}
+
+{\color{red}------------------------------------ Ausgangstestfragen Modul 01 ------------------------------------}
+\ \\
+
+\begin{MExercise}
+\MSetPoints{1}
+Kreuzen Sie an, ob diese mathematischen Ausdrücke jeweils Gleichungen, Ungleichungen, Terme oder Zahlen darstellen (Mehrfachnennung ist möglich):
+\ \\
+\begin{tabular}{|l|c|c|c|c|}
+  \hline
+  Mathematischer Ausdruck  & Gleichung & Ungleichung & Term & Zahl \\ \hline
+  $1+\frac12-3(3-\frac12)$ & \MCheckbox{0}{TX11} & \MCheckbox{0}{TX12} &\MCheckbox{1}{TX13} &\MCheckbox{1}{TX14} \\ \hline
+  $5^x-x^5$                & \MCheckbox{0}{TX21} & \MCheckbox{0}{TX22} &\MCheckbox{1}{TX23} &\MCheckbox{0}{TX24} \\ \hline
+  $x^2<\sqrt{x}$           & \MCheckbox{0}{TX41} & \MCheckbox{1}{TX42} &\MCheckbox{0}{TX43} &\MCheckbox{0}{TX44} \\ \hline
+  $x y z-1$                  & \MCheckbox{0}{TX31} & \MCheckbox{0}{TX32} &\MCheckbox{1}{TX33} &\MCheckbox{0}{TX34} \\ \hline
+  $b^2=4a c$               & \MCheckbox{1}{TX51} & \MCheckbox{0}{TX52} &\MCheckbox{0}{TX53} &\MCheckbox{0}{TX54} \\ \hline
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Vereinfachen Sie den Doppelbruch $\Mdfrac{3+\Mtfrac32}{\Mtfrac1{12}+\Mtfrac14}$ zu einem gekürzten Einfachbruch: \MLParsedQuestion{5}{27/2}{5}{ER6}
+\MInputHint{Tippen Sie beispielsweise $\Mdfrac{11}{12}$ als \texttt{11/12} ein.}
+\end{MExercise}
+
+\begin{MExercise}
+Multiplizieren Sie diesen Term vollständig aus und fassen Sie zusammen:
+
+$(x-1)(x+1)(x-2)$ = \MSimplifyQuestion{40}{(x-1)*(x+1)*(x-2)}{10}{x}{5}{1}.
+
+\MInputHint{Beispielsweise tippen Sie $(x+1)(x+2)$ = \texttt{x^2+3*x+2} oder auch \texttt{x*x+3*x+2}.}
+\end{MExercise}
+
+\begin{MExercise}
+Wenden Sie jeweils eine binomische Formel an, um den Term umzuformen:
+\begin{MExerciseItems}
+\item{$(x-3)(x+3)$ = \MLSimplifyQuestion{14}{(x-3)*(x+3)}{10}{x}{5}{1}{VBK1}.}
+\item{$(x-1)^2$ = \MLSimplifyQuestion{14}{(x-1)*(x-1)}{10}{x}{5}{1}{VBK2}.}
+\item{$(2x+4)^2$ = \MLSimplifyQuestion{14}{(2*x+4)*(2*x+4)}{10}{x}{5}{1}{VBK3}.}
+\end{MExerciseItems}
+\MInputHint{Beispielsweise tippen Sie $(x+1)^2$ = \texttt{x^2+2*x+1} oder auch \texttt{x*x+2*x+1}.}
+\end{MExercise}
+
+\begin{MExercise}
+Schreiben Sie diesen Potenz- und Wurzelausdruck als einfache Potenz mit einem rationalen Exponenten:
+\ \\ \ \\
+\MEquationItem{$\Mdfrac{x^3}{\left({\sqrt{x}}\right)^3}$}{\MLSimplifyQuestion{10}{x^(3/2)}{10}{x}{5}{576}{VBK4}}.\\
+\MInputHint{Beispielsweise tippen Sie $\sqrt{x}\cdot x^2$ = \texttt{x^(5/2)} oder auch \texttt{x^(2.5)},\\vergessen Sie die Klammern um den Bruch nicht.}
+\end{MExercise}
+
+{\color{red}------------------------------------ Ausgangstestfragen Modul 02 ------------------------------------}
+\ \\
+
+\begin{MExercise}
+Finden Sie einen m\"oglichst einfachen Term mit einer Betragsfunktion, der folgenden Funktionsgraph beschreibt:
+\MUGraphics{abs2.png}{width=0.5\linewidth}{Funktionsgraph von $f(x)$.}{width:300px}
+
+Antwort: $f(x)=$ \MLSimplifyQuestion{20}{2*abs(x-3)-2}{5}{x}{5}{0}{KA0}\: .
+\end{MExercise}
+
+\begin{MExercise}
+Lösen Sie diese Gleichungen:
+\begin{MExerciseItems}
+\item{$|2x-3|=8$ hat die Lösungsmenge \MLParsedQuestion{16}{11/2,-5/2}{5}{KA1}.}
+\item{$|x-2|\cdot x=0$ hat die Lösungsmenge  \MLParsedQuestion{16}{0,2}{5}{KA2}.} 
+\end{MExerciseItems}
+\MInputHint{Mengen können in der Form \texttt{$\lbrace$ a;b;c;$\ldots\rbrace$} eingegeben werden. Die leere Menge kann als $\lbrace\rbrace$ eingegeben werden.}
+\end{MExercise}
+
+\begin{MExercise}
+Eine Kamera hat eine Auflösung von $6$ Megapixel, also - der Einfachheit halber - von 6 Millionen Pixel, und produziert Bilder im Kleinbildformat $3:2$.
+Wie groß ist ein quadratisches Pixel auf einem Ausdruck im Format $(60$ cm$) \times (40$ cm$)$? Gesucht ist die Kantenlänge eines Pixels in Millimeter.
+\ \\
+Antwort: \MLParsedQuestion{10}{0.2}{5}{VPIXQ}\ \ \ \ (ohne die Einheit mm).
+\end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie Lösungsmenge der gemischten Gleichung $|x-1|\cdot (x+1)=3$.\\
+Antwort: \MEquationItem{$\ML$}{\MLParsedQuestion{15}{2,2}{5}{KAX4}}.
+\end{MExercise}
+
+{\color{red}------------------------------------ Ausgangstestfragen Modul 03 ------------------------------------}
+\ \\
+
+\begin{MExercise}
+Bestimmen Sie den Parameter $\alpha$, so dass die Ungleichung $2x^2\leq x-\alpha$ genau eine Lösung hat:
+\begin{MExerciseItems}
+\item{Dafür ist \MEquationItem{$\alpha$}{\MLParsedQuestion{10}{1/8}{3}{PMA1}} einzusetzen.}
+\item{In diesem Fall ist \MEquationItem{$x$}{\MLParsedQuestion{10}{1/4}{3}{PMA2}} die einzige Lösung der Ungleichung.}
+\end{MExerciseItems}
+\end{MExercise}
+
+
+\begin{MExercise}
+Finden Sie eine m\"oglichst einfache Funktion $g(x)$ mit einem Betragsterm, die folgenden Funktionsgraph besitzt:
+\MUGraphics{abs3.png}{width=0.5\linewidth}{Funktionsgraph von $g(x)$.}{width:300px}
+Versuchen Sie, eine Darstellung der Form $g(x)=|x+a|+b x+c$ zu finden. Am Knick im Graph k\"onnen Sie erkennen, wie der Term innerhalb des Betrags aussieht.
+
+\begin{MExerciseItems}
+\item{Bestimmen Sie anhand des Graphen die Lösungsmenge der Ungleichung $g(x)\leq x$.\\Es ist \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(-infty;1]}{5}{AUX1}}.}
+\item{\MEquationItem{$g(x)$}{\MSimplifyQuestion{20}{abs(x-1)+2*x-1}{10}{x}{10}{0}}. \\\MInputHint{Beträge können in der Form \texttt{betrag(x-a)} oder \texttt{abs(x-a)} eingegeben werden.}}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Für welche positiven reellen Zahlen $x$ sind die folgenden Ungleichungen erfüllt?
+\begin{MExerciseItems}
+\item{$|3x-6|\leq x+2$ hat die Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{16}{[1,4]}{4}{COSH1}} (als Intervall geschrieben).}
+\item{$\frac{x+1}{x-1}\leq 2$ hat die Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{16}{[4,infty)}{4}{COSH2}} (als Intervall geschrieben).}
+\end{MExerciseItems}
+\MInputHint{Offene Intervalle können in der Form $(3;5)$, geschlossene Intervalle in der Form $[3;5]$ eingegeben werden. Unendlich kann man als Wort oder kurz als \texttt{infty} schreiben.
+Verwenden Sie nicht die Schreibweise $]a;b[$ für offene Intervalle. Mengen können in aufzählender Form $\lbrace 1;2;3\rbrace$ eingegeben werden. Die Mengenklammer erhalten Sie mit AltGr+7 bzw. AltGr+0.}
+\end{MExercise}
+
+{\color{red}------------------------------------ Ausgangstestfragen Modul 04 ------------------------------------}
+\ \\
+
+\begin{MExercise}
+Bestimmen Sie die Lösungsmenge für folgendes Lineares Gleichungssystem:
+\begin{eqnarray*}
+- x + 2 y & = & - 5 \\ 3 x + y & = & 1
+\end{eqnarray*}
+Die Lösungsmenge
+\begin{tabular}[t]{ll}
+\MCheckbox{0}{M04C13} & ist leer,\\
+\MCheckbox{1}{M04C14} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{ATXY1} , $y =$ \MLParsedQuestion{5}{-2}{5}{ATXY2} ,\\
+\MCheckbox{0}{M04C15} & enthält unendlich viele Lösungspaare $(x, y)$.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Geben Sie diejenige zweistellige Zahl an, die bei Vertauschen von Einer- und Zehnerziffer auf eine um 18 kleinere Zahl
+führt und deren Quersumme 6 ist.
+% 
+Antwort: \MLParsedQuestion{5}{42}{5}{ATX42}
+\end{MExercise}
+
+\begin{MExercise}
+Für welchen Wert des reellen Parameters $\alpha$ besitzt das Lineare Gleichungssystem
+\begin{eqnarray*}
+2 x + y & = & 3 \\ 4 x + 2 y & = & \alpha
+\end{eqnarray*}
+unendlich viele Lösungen?
+
+Antwort: $\alpha = $ \MLParsedQuestion{5}{6}{5}{ATX}
+\end{MExercise}
+
+\begin{MExercise}
+Die Abbildung zeigt zwei Geraden im zweidimensionalen Raum.
+\begin{center}
+\MUGraphicsSolo{LGS_schneidende_Geraden.png}{width=0.5\linewidth}{width:450px}
+\end{center}
+Stellen Sie die beiden Geradengleichungen auf:
+
+Gerade 1: $y = $ \MLFunctionQuestion{15}{-1+x}{2}{x}{5}{XAFG1}
+
+Gerade 2: $y = $ \MLFunctionQuestion{15}{2-2*x}{2}{x}{5}{XAFG2}
+
+Wieviele Lösungen besitzt das zugehörige Lineare Gleichungssystem?
+
+Es besitzt
+\begin{tabular}[t]{ll}
+\MCheckbox{0}{M04C16} & keine Lösung,\\
+\MCheckbox{1}{M04C17} & genau eine Lösung oder\\
+\MCheckbox{0}{M04C18} & unendlich viele Lösungen.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Geben Sie die Lösungsmenge für folgendes Lineare Gleichungssystem, bestehend aus drei Gleichungen mit drei Unbekannten, an:
+\begin{eqnarray*}
+x + 2 z & = & 3 \\ - x + y + z & = & 1 \\ 2 y + 3 z & = & 5
+\end{eqnarray*}
+Die Lösungsmenge
+\begin{tabular}[t]{ll}
+\MCheckbox{0}{M04C19} & ist leer,\\
+\MCheckbox{1}{M04C20} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{ATXY4} , $y =$ \MLParsedQuestion{5}{1}{5}{ATXY5}
+, $z = $ \MLParsedQuestion{5}{1}{5}{ATXY6} ,\\
+\MCheckbox{0}{M04C21} & enthält unendlich viele Lösungen $(x, y, z)$.
+\end{tabular}
+\end{MExercise}
+
+{\color{red}------------------------------------ Ausgangstestfragen Modul 05 ------------------------------------}
+\ \\
+
+\begin{MExercise}
+In der folgenden Tabelle sind für ein rechtwinkliges Dreieck einige Größen gegeben, berechnen Sie die übrigen Größen. Verwenden Sie für die Winkel stets das Bogenmaß:\\
+\MInputHint{Geben Sie Kreiszahl einfach als Text ein, zum Beispiel tippen Sie $\frac23\pi$ ein als \texttt{2/3*pi}.}
+\ \\
+\MUGraphics{dreieck_einfach.png}{width=0.4\linewidth}{Winkel erhalten die griechischen Buchstaben zu den gegenüberliegenden Seiten\MCopyrightLabel{VBKM05_Abbildung_dreieck_einfach}}{width:400px}
+\MCopyrightNotice{\MCCLicense}{http://commons.wikimedia.org/wiki/File:Dreieck.svg#mediaviewer/Datei:Dreieck.svg}{http://de.wikipedia.org/wiki/Benutzer:Thire}{Modifiziert mit GIMP}{VBKM05_Abbildung_dreieck_einfach}
+%\MCopyrightHTML{CC BY-SA 5.0}{http://commons.wikimedia.org/wiki/File:Dreieck.svg#mediaviewer/Datei:Dreieck.svg}{http://de.wikipedia.org/wiki/Benutzer:Thire}
+
+\ifttm
+\def\VBKMFUENFWIDTHDREIECKE{9}
+\else
+\def\VBKMFUENFWIDTHDREIECKE{5}
+\fi
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+$a$ & $b$ & $c$ & $\alpha$ & $\beta$ & $\gamma$& $\sin(\alpha)$ & $\sin(\beta)$ & $\sin(\gamma)$ \\ \hline
+$1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
+$1$ & $1$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(2)}{5}{WR1} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5}{WR21} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5}{WR8} & $\frac12\pi$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5}{WR13} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5}{WR17}   \\ 
+$3$ & $4$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{5}{5}{WR2} & $*$ & $*$ & $\frac12\pi$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{4/5}{5}{WR7} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{3/5}{5} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5}{WR12} \\
+\MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(15)}{5}{WR3} & $\sqrt7$ & $\sqrt8$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/2}{5}{WR6} & $*$ & $*$ & $1$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(8/15)}{5}{WR11} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(7/15)}{5}{WR14} \\
+\MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{9/sqrt(3)}{5}{WR4} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{9/sqrt(3)}{5}{WR5} & $9$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/6}{5}{WR9} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/6}{5}{WR10}& \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{2/3*pi}{5}{WR15}& $\frac12$ & $\frac12$ & $*$\\
+\hline
+\end{tabular}
+\end{center}
+Die mit $*$ gekennzeichneten Felder müssen nicht ausgefüllt werden.
+
+% \begin{MSolution}
+% Die ausgefüllte Tabelle lautet wie folgt:
+% \begin{center}
+% \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+% \hline
+% $a$ & $b$ & $c$ & $\alpha$ & $\beta$ & $\gamma$& $\sin(\alpha)$ & $\sin(\beta)$ & $\sin(\gamma)$ \\ \hline
+% $1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
+% $1$ & $1$ & $\sqrt2$ & $\frac14\pi$ & $\frac14\pi$ & $\frac12\pi$ & $\frac1{\sqrt2}$ & $\frac1{\sqrt2}$ & $1$   \\ 
+% $3$ & $4$ & $5$ & $*$ & $*$ & $\frac12\pi$ & $\frac45$ & $\frac35$ & $1$ \\
+% $\sqrt{15}$ & $\sqrt7$ & $\sqrt8$ & $\frac12\pi$ & $*$ & $*$ & $1$ & $\sqrt{8/15}$ & $\sqrt{7/15}$ \\
+% $\frac{9}{\sqrt3}$ & $\frac{9}{\sqrt3}$ & $9$ & $\frac16\pi$ &$\frac16\pi$ & $\frac23\pi$ & $\frac12$ & $\frac12$ & $*$\\
+% \hline
+% \end{tabular}
+% \end{center}
+% In der dritten Zeile benutzt man den rechten Winkel $\gamma=\frac12\pi$, der über den Satz von Pythagoras auf $c=\sqrt{a^2+b^2}=\sqrt2$ führt.
+% Das Dreieck ist gleichschenklig, also auch $\alpha=\beta$. Da die Winkelsumme
+% im Dreieck $\pi$ beträgt, muss $\alpha=\beta=\frac14\pi$ sein. In den beiden letzten Lösungsfeldern ist dann $\sin(\frac14\pi)=\frac{\text{Gegenkathete}}{\text{Hypothenuse}}=\frac1{\sqrt2}$.
+% \ \\ \ \\
+% In der vierten Zeile ist das Dreieck rechtwinklig bei $\gamma=\pi$ und der Satz des Pythagoras führt auf $c=\sqrt{a^2+b^2}=5$. Aus den Seiten kann man die Sinuswerte der Winkel bestimmen: $\sin(\alpha)=\frac45$, $\sin(\beta)=\frac35$ und $\sin(\gamma)=1$.
+% \ \\ \ \\
+% In der fünften Zeile ist das Dreieck wieder rechtwinklig, diesmal aber bei $\alpha=\pi$, daher spielen die Seiten nun andere Rollen: $a$ ist die Länge der Hypothenuse.
+% Der Satz des Pythagoras in dieser Situation liefert $a=\sqrt{b^2+c^2}=\sqrt{15}$. Da alle Seiten vorliegen, können wir wieder die Winkel bestimmen (jetzt mit $a$ als Hypothenuse): $\sin(\alpha)=1$, $\sin(\beta)=\sqrt{\frac{8}{15}}$ und $\sin(\gamma)=\sqrt{\frac{}{15}}$.
+% \ \\ \ \\
+% In der letzten Zeile rechnet man aus $\sin(\alpha)=\sin(\beta)=\frac12$ die Winkel $\alpha=\beta=\frac16\pi$ aus. Wegen der Winkelsumme $\alpha+\beta+\gamma=\pi$ folgt $\gamma=\pi-\frac13\pi=\frac23\pi$.
+% Dieses Dreieck ist gleichschenklig, aber nicht rechtwinklig, wir dürfen die trigonometrischen Funktionen daher nicht direkt an den Seiten ansetzen. Als Hilfmittel kann man die Höhe auf der Seite $c$
+% benutzen, die das Dreieck in zwei rechtwinklige Dreiecke einteilt:
+% 
+% \MUGraphics{dreieck_haelfte.png}{width=0.2\linewidth}{Einteilung eines gleichschenkligen Dreiecks in zwei rechtwinklige Dreiecke.}{width:150px}
+% %\MCopyrightHTML{Wikipedia verändert}{<a href="http://commons.wikimedia.org/wiki/File:Isosceles-triangle-tikz.svg#mediaviewer/Datei:Isosceles-triangle-tikz.svg">Isosceles-triangle-tikz</a> von <a href="//commons.wikimedia.org/wiki/User:MartinThoma" title="User:MartinThoma">MartinThoma</a> - <span class="int-own-work">Eigenes Werk</span>. Lizenziert unter <a title="Creative Commons Attribution 3.0" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> über <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>}
+% 
+% Im linken Teildreieck gibt es einen rechten Winkel, dort ist nun $b$ die Hypothenuse und Ankathete von $\alpha$ besitzt die bekannte Länge $\frac{9}{2}$. Wir wissen auch $\cos(\frac16\pi)=\frac12\sqrt3$, damit kann man
+% nach $b$ auflösen:
+% $$
+% \frac12\sqrt3 \;=\; \cos(\frac16\pi) \;=\; \frac{\text{Ankathete im Teildreieck}}{\text{Hypothenuse im Teildreieck}} \;=\; \frac{\frac92}{b} \;\; \Rightarrow\;\;
+% b \;=\; \frac{9}{\sqrt3}\: .
+% $$
+% und weil das ursprüngliche Dreieck gleichschenklig ist gilt auch $a=\frac{9}{\sqrt3}$.
+% \end{MSolution}
+
+\end{MExercise}
+
+
+
+\begin{MExercise}
+\MLabel{VBKM05_A_Quadratkreise}
+Ein Quadrat mit Seitenlänge $a$ sei gegeben. Geben Sie Formeln an für Flächeninhalt und Umfang des größtmöglichen Kreises innerhalb des Quadrats, sowie für
+den kleinstmöglichen Kreis, der das Quadrat enthält:
+\begin{MExerciseItems}
+\item{Umfang des Kreises im Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{pi*a}{14}{a}{4}{1}{NGEOM1}}
+\item{Flächeninhalt des Kreises im Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{(1/4)*pi*a*a}{14}{a}{4}{1}{NGEOM2}}
+\item{Umfang des Kreises um das Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{sqrt(2)*pi*a}{14}{a}{4}{1}{NGEOM3}}
+\item{Flächeninhalt des Kreises um das Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{NGEOM4}}
+\end{MExerciseItems}
+\ \\ \ \\
+In den Antwortfeldern dürfen keine Klammern oder Wurzelausdrücke auftauchen, schreiben Sie beispielsweise $2^{0.5}$ statt $\sqrt{2}$ um die Wurzel zu vermeiden.
+\end{MExercise}
+
+{\color{red}------------------------------------ Ausgangstestfragen Modul 06 ------------------------------------}
+\ \\
+
+\begin{MExercise}
+Bestimmen Sie für die beiden Funktionen
+\[
+ \function{f}{D_f}{\R}{x}{\frac{9x^2-\sin(x)+42}{x^2-2}}
+\]
+und
+\[
+ \function{g}{D_g}{\R}{y}{\frac{\ln(y)}{y^2+1}}
+\]
+jeweils den größtmöglichen Definitionsbereich $D_f$ bzw.~$D_g$.
+% Intervallquestion
+\end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie für die Funktion
+\[
+ \function{i}{\R}{\R}{x}{x^2-4x+4+\pi}
+\]
+die Wertemenge $W_i$.
+\end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie in der Exponentialfunktion
+\[
+ \function{c}{\R}{\R}{x}{A\cdot e^{\lambda x}-1}
+\]
+die Parameter $A,\lambda\in\R$, so dass $c(0)=1$ und $c(4)=0$ gilt.
+\ \\ \ \\
+Antwort: \MEquationItem{$A$}{\MLParsedQuestion{10}{2}{3}{EL1}}, \MEquationItem{$\lambda$}{\MLParsedQuestion{15}{-ln(2)/4}{3}{EL2}}.
+\ \\
+\MInputHint{Einfache Logarithmen können Sie stehen lassen, z.B. kann $\ln(100)$ als \texttt{ln(100)} eingegeben werden auch wenn der exakte Wert von $ln(100)$ nicht bekannt ist.}
+\end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie die Verkettung $h=f\circ g\colon\R\to\R$ (Erläuterung: $h(x)=(f\circ g)(x)=f(g(x))$) der Funktionen
+\[
+ \function{f}{\R}{\R}{x}{C\cdot\sin(x)}
+\]
+und
+\[
+ \function{g}{\R}{\R}{x}{B\cdot x+\pi.}
+\]
+Antwort: \MEquationItem{$h(x)$}{\MLFunctionQuestion{20}{C*sin(B*x+pi)}{10}{x,B,C}{4}{EL3}}.
+\ \\ \ \\
+Bestimmem Sie die Parameter, so dass die durch $h$ beschriebene Sinusschwingung diesen Graph besitzt:
+ \begin{center}
+ \MUGraphics{sinusfrage.png}{width=0.4\linewidth}{Eine Sinusschwingung.\MCopyrightLabel{VBKM06_Abbildung_Sinusfrage}}{width:300px}
+ \MCopyrightNotice{\MCCLicense}{NONE}{MINT}{Funktionsplot erstellt und exportiert mit Maple15}{VBKM06_Abbildung_Sinusfrage}
+ \end{center}
+\ \\ \ \\
+Antwort: \MEquationItem{$h(x)$}{\MLFunctionQuestion{20}{3*sin(1/2*pi*x+pi)}{10}{x}{4}{EL4}}.
+\end{MExercise}
+
+
+\begin{MExercise}
+Bestimmen Sie die Umkehrfunktion $f=u^{-1}$ von
+\[
+ \function{u}{(0;\infty)}{\R}{y}{-\log_2(y).}
+\]
+Die Funktion $f=u^{-1}$ besitzt:
+\begin{MExerciseItems}
+\item{Den Definitionsbereich \MEquationItem{$D_f$}{\MLIntervalQuestion{20}{(-infty,infty)}{3}{TEID1}}.}
+\item{Den Wertebereich \MEquationItem{$W_f$}{\MLIntervalQuestion{20}{(0,infty)}{3}{TEID2}}.}
+\item{Die Funktionsvorschrift \MEquationItem{$f(y)=u^{-1}(y)$}{\MLSimplifyQuestion{13}{2^(-y)}{5}{y}{5}{512}{TEID3}}.}
+\end{MExerciseItems}
+\MInputHint{Geben Sie die Bereiche als Intervalle in der Form \texttt{(a;b)} an, auch \texttt{unendlich} ist als Grenze möglich.}
+\end{MExercise}
+
+\begin{MExercise}
+Kreuzen Sie an, ob die Aussagen wahr oder falsch sind:
+\ \\ \ \\
+
+Die Funktion
+\[
+ \function{f}{[0,3)}{\R}{x}{2x+1}
+\]
+
+% Safari kann Checkboxes in lists nicht anzeigen
+\begin{tabular}{lll}
+\MCheckbox{0}{EF1} & \ \ & ... kann man kürzer auch als $f(x)=2x+1$ schreiben.\\
+\MCheckbox{1}{EF2} & \ \ & ... ist eine linear-affine Funktion.\\
+\MCheckbox{0}{EF3} & \ \ & ... hat die Wertemenge $\R$.\\
+\MCheckbox{1}{EF4} & \ \ & ... hat die Steigung $2$.\\
+\MCheckbox{1}{EF5} & \ \ & ... kann nur Werte größer oder gleich $1$ und kleiner $7$ annehmen.\\
+\MCheckbox{1}{EF6} & \ \ & ... hat als Graph ein Stück einer Gerade.\\
+\MCheckbox{1}{EF7} & \ \ & ... hat bei $x=0$ den Wert $1$.\\
+\MCheckbox{0}{EF8} & \ \ & ... hat die Definitionsmenge $\R$.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie diese Logarithmen:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\ln(e^5\cdot\frac1{\sqrt{e}})$}{\MLSimplifyQuestion{10}{9/2}{5}{}{5}{1}{TLG0}}.}
+\item{\MEquationItem{$\log_{10}(0,01)$}{\MLSimplifyQuestion{10}{-2}{5}{}{5}{1}{TLG1}}.}
+\item{\MEquationItem{$\log_2(\sqrt{2\cdot 4\cdot 16\cdot 256\cdot 1024})$}{\MLSimplifyQuestion{10}{25/2}{5}{}{5}{1}{TLG2}}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+{\color{red}------------------------------------ Ausgangstestfragen Modul 07 ------------------------------------}
+\ \\
+
+\begin{MExercise}
+In einem Beh"ahlter wird um $9$ Uhr eine Temperatur von $-10^{\circ}{\mathrm{C}}$ 
+gemessen. Um $15$ Uhr betr"agt die Temperatur $-58^{\circ}{\mathrm{C}}$.
+Nach weiteren vierzehn Stunden ist die Temperatur auf 
+$-140^{\circ}{\mathrm{C}}$ gefallen. 
+\begin{MExerciseItems}
+\item Wie gro"s ist die mittlere "Anderungsrate der Temperatur aufgrund der 
+ersten und zweiten Messung?
+
+Antwort: \MLParsedQuestion{5}{-8}{3}{DYG12}
+%Ergebnis: $(-58 - (-10)) / (15 - 9) = -48 / 6 = -8$.
+%
+%\item Wodurch dr"uckt sich in der (mittleren) "Anderungsrate aus, dass die 
+%Temperatur f"allt?
+%
+\item In der (mittleren) "Anderungsrate dr"uckt sich die Eigenschaft, dass die
+Temperatur f"allt, dadurch aus, dass die "Anderungsrate
+{\MLQuestion{20}{negativ}{DFA10}} ist.
+\begin{MHint}{Hinweis}
+Geben Sie ein Adjektiv an.
+\end{MHint}
+%{\MQuestion{20}{kleiner null bzw. negativ}} ist.
+%
+\item Berechnen Sie die mittlere "Anderungsrate der Temperatur der gesamten
+Messdauer, die sich anhand der ersten und letzten Messung ergibt.
+
+Antwort: \MLParsedQuestion{5}{-6.5}{3}{DXG12}
+%Ergebnis: $(-140 - (-10)) / (29 - 9) = -130 / 20 = -6.5$.
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Zu einer Funktion $f: [-3,2] \rightarrow \R$ geh"ort die Ableitung $f'$, deren 
+Graph hier gezeichnet ist:
+
+\begin{center}
+\MTikzAuto{%
+\begin{small}
+\begin{tikzpicture}[line width=1.5pt,scale=0.6, %
+declare function={
+  fkt(\x) = (\x + abs(\x) + 2)/2;
+}
+] %[every node/.style={fill=white}] 
+%Koordinatenachsen:
+\draw[->] (-3.6, 0) -- (3, 0) node[below left]{$x$}; %x-Achse
+\draw[->] (0, -0.6) -- (0, 3) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+\foreach \x in {-3, -2, -1, 1, 2} \draw (\x, 0) -- ++(0, -0.1) %
+ node[below] {$\x$}; 
+\foreach \y in {1, 2} \draw (0, \y) -- ++(0.2, 0) %
+ node[right] {$\y$};
+%\node[below left] at (0, 0) {$0$};
+%Funktion:
+\draw[domain=-3:2,samples=120,color=\jccolorfkt] %
+ plot (\x, {fkt(\x)});
+\end{tikzpicture}
+\end{small}
+}
+\end{center}
+
+Die Funktionswerte von $f$ zwischen $-3$ und $0$\\
+\begin{tabular}{lll}
+\MCheckbox{0}{JCC1} & \ \ & sind konstant,\\
+\MCheckbox{1}{JCC2} & \ \ & nehmen um $3$ zu,\\
+\MCheckbox{0}{JCC3} & \ \ & nehmen ab.
+\end{tabular}
+\ \\
+
+Die Funktion $f$ hat an der Stelle $0$\\
+\begin{tabular}{lll}
+\MCheckbox{0}{JCC4} & \ \ & eine Sprungstelle,\\
+\MCheckbox{0}{JCC5} & \ \ & keine Ableitung,\\
+\MCheckbox{1}{JCC6} & \ \ & die Ableitung $1$.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise} %Rechenregeln
+Berechnen Sie f"ur
+\begin{MExerciseItems}
+\item $f(x) := \ln\left(x^3 + x^2\right)$ f"ur $x > 0$ die Ableitung
+$f'(x) = $\MSimplifyQuestion{30}{(3 x + 2)/(x^2 + x)}{1}{x}{20}{0}
+\item $g(x) := x \cdot \MEU^{-x}$ die zweite Ableitung
+${g'}'(x) = $\MSimplifyQuestion{30}{(x - 2) * exp(-x)}{10}{x}{4}{0}
+\end{MExerciseItems}
+\MInputHint{Klammern Sie die Terme, um Missverständnisse zu vermeiden, z.B. schreiben Sie $\frac{x+1}{(x+2)^2}$ als \texttt{(x+1)/((x+2)^2)}.} 
+\end{MExercise}
+
+\begin{MExercise} %Eigenschaften
+In welchen Bereichen ist $f: (0, \infty) \rightarrow \R$ monoton fallend, 
+in welchen konkav, wenn $f'(x) = x \cdot \ln x$ gilt?
+%
+Geben Sie als Bereiche m"oglichst gro"se offene Intervalle $(c, d)$ an:
+\begin{MExerciseItems}
+\item $f$ ist auf \MIntervalQuestion{12}{(0, 1)}{4} monoton fallend,
+\item $f$ ist auf \MIntervalQuestion{12}{(0, 1/e)}{4} konkav.
+\end{MExerciseItems}
+\MInputHint{Offene Intervalle können in der Form $(a;b)$ eingetippt werden, geschlossene Intervalle als $[a;b]$, $a$ und $b$ dürfen
+beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notation $]a;b[$ für offene Intervalle. Schreiben Sie \texttt{infty} oder
+\texttt{unendlich} f"ur $\infty$ in Ihrer Antwort.}
+\end{MExercise}
+
+%TODO Eingabe und Loesung fehlt
+\begin{MExercise} %Anwendungen
+Berechnen Sie alle lokalen und globalen Extremstellen und Wendestellen der 
+Funktion $f: \R \rightarrow \R$ mit $f(x) := (x^2 - 3 x) \cdot e^{2 x}$ f"ur 
+$x \in \R$.
+\end{MExercise}
+
+{\color{red}------------------------------------ Ausgangstestfragen Modul 08 ------------------------------------}
+\ \\
+
+\begin{MExercise} %Stammfunktionen:
+Bestimmen Sie jeweils eine Stammfunktion:
+\begin{MExerciseItems}
+\item $\displaystyle\int 3 \sqrt{x} \MD x = $%
+\MSimplifyQuestion{26}{2*x^(3/2)}{1}{x}{4}{32}
+%\item $\displaystyle\int \left(2 x - \frac{1}{x+\pi}\right) \MD x = $%
+%\MSimplifyQuestion{26}{x^2-ln(x+pi)}{1}{x}{20}{32}
+\item $\displaystyle\int \left(2 x - \MEU^{x+\pi}\right) \MD x = $%
+\MSimplifyQuestion{26}{x^2-exp(x+pi)}{10}{x}{4}{32}
+\end{MExerciseItems}
+\jHTMLHinweisEingabeFunktionenExp
+\end{MExercise}
+
+\begin{MExercise} %Integralbegriff und Eigenschaften
+Die Funktion $f(x) := \frac{1}{x+1}$ ist f"ur $x \geq 0$ 
+streng monoton \MLQuestion{20}{fallend}{IG3}. Somit gilt
+\ifttm
+
+\begin{center}
+$\;\displaystyle\sum_{k=0}^7 \frac{1}{k+1} \cdot (k+1 - k) \;$%
+\MLQuestion{5}{>=}{IG5}%
+$\;\displaystyle\int_0^8 \frac{1}{x+1} \MD x.$
+\end{enter}
+
+\else
+\[
+\sum_{k=0}^7 \frac{1}{k+1} \cdot (k+1 - k) \;\; \MLQuestion{5}{>=}{IG6} \;\; %
+\int_0^8 \frac{1}{x+1} \MD x. %%
+\]
+\fi
+\MInputHint{Erg"anzen Sie den Text zu einer richtigen Aussage. Vergleiche 
+werden mit \texttt{=}, \texttt{<=} oder \texttt{>=} geschrieben.}
+\end{MExercise}
+
+
+\begin{MExercise} %Berechnung bestimmter Integrale
+Berechnen Sie die Integrale:
+\ifttm
+
+\begin{center}
+$\displaystyle\int_{0}^{3} x \cdot \sqrt{x+1} \MD x = $%
+\MLParsedQuestion{10}{116/15}{4}{IG37} und 
+$\displaystyle\int_{\pi}^{\frac{3\pi}{4}} 5 \sin(4 x - 3 \pi) \MD x = $%
+\MLParsedQuestion{10}{-5/2}{4}{IG38}
+\end{center}
+
+\else
+\[
+\int_{0}^{3} x \cdot \sqrt{x+1} \MD x = %
+\MLParsedQuestion{10}{116/15}{4}{IG39}
+\qquad \text{und} \qquad
+\int_{\pi}^{\frac{3\pi}{4}} 5 \sin(3 \pi - 4 x) \MD x = %
+\MLParsedQuestion{10}{5/2}{4}{IG40}
+\]
+\fi
+\end{MExercise}
+
+
+\begin{MExercise} %Eigenschaften
+Es gilt:
+\ifttm
+
+\begin{center}
+$\displaystyle 2 \int_{a}^{4} |x^3| \MD x %
+ = \int_{-4}^{4} |x^3| \MD x \;$\MLQuestion{5}{>=}{IG9}%
+$\;\left| \int_{-4}^{4} x^3 \MD x \right|$ %%
+\end{center}
+f"ur $a = $\MLParsedQuestion{5}{0}{4}{IG10}.
+
+\else
+\[
+2 \int_{\MLParsedQuestion{4}{0}{4}{IG44}}^{4} |x^3| \MD x %
+%\MQuestion{5}{=}%
+ = \int_{-4}^{4} |x^3| \MD x %
+\;\; \MLQuestion{5}{>=}{IG11} \;\; %
+\left| \int_{-4}^{4} x^3 \MD x \right| %%
+\]
+%\qquad \text{und} \qquad
+%\[
+%\int_{-a}^{a} \tan(x) \MD x = \MParsedQuestion{5}{0}{5} %%
+%\] 
+\fi
+\MInputHint{Erg"anzen Sie den Text zu einer richtigen Aussage. Vergleiche 
+werden mit \texttt{=}, \texttt{<=} oder \texttt{>=} geschrieben.}
+\end{MExercise}
+
+
+\begin{MExercise} %Anwendung: Fl"achenberechung
+Berechnen sie den Inhalt $I_A$ der Fl"ache $A$, die durch die Graphen der 
+beiden Funktionen
+%$f: [-3; 2] \rightarrow \R, x \mapsto x^2$ und 
+%$g: [-3; 2] \rightarrow \R, x \mapsto 6 - x$ eingeschlossen wird.
+$f$ und $g$ auf $[-3; 2]$ mit $f(x) = x^2$ und $g(x) = 6 - x$ 
+eingeschlossen wird.
+
+Antwort: $I_A = $\MLParsedQuestion{10}{125/6}{4}{IG45}
+\end{MExercise}
+
+{\color{red}------------------------------------ Ausgangstestfragen Modul 09 ------------------------------------}
+\ \\
+
+\begin{MExercise}
+\MSetPoints{8}
+Wie lautet die Funktionsgleichung für die Gerade $\overline{P Q}$, welche durch die beiden Punkte $P=(1;3)$ und $Q=(-1;7)$ verläuft?
+\ \\ \ \\
+Antwort: \MEquationItem{$y$}{\MLSimplifyQuestion{20}{-2*x+5}{5}{x}{5}{1}{VBNT1}}.
+\end{MExercise}
+
+\begin{MExercise}
+Gegeben sei eine Gerade durch die allgemeine Gleichung $6x+2y=4$.
+
+\begin{MExerciseItems}
+\MSetPoints{8}
+\item{Die Funktionsgleichung dieser Geraden lautet \MEquationItem{$y$}{\MLSimplifyQuestion{20}{2-3*x}{5}{x}{5}{1}{VBNT2}}.}
+\item{Wie liegt diese Gerade im Verhältnis zu der durch die Funktionsgleichung $y=3x-2$ beschriebenen Geraden?\\
+\MSetPoints{2}
+\begin{tabular}{lll}
+\MCheckbox{0}{VBNT3} & \ \ & Es gibt keinen Schnittpunkt.\\
+\MCheckbox{1}{VBNT4} & \ \ & Es gibt genau einen Schnittpunkt.\\
+\MCheckbox{0}{VBNT5} & \ \ & Die Geraden sind gleich.
+\end{tabular}}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Bestimmen Sie den Schnittpunkt der durch die Funktionsgleichung $y=2x+2$ beschriebenen Geraden mit der durch die allgemeine Gleichung $2x+0y=6$ beschriebenen Geraden.
+\ \\ \ \\
+Antwort: Der Schnittpunkt ist \MLFunctionQuestion{15}{(3,8)}{5}{x}{5}{VBNT6}.\\
+\MInputHint{Geben Sie Punkte in der Form \texttt{(a;b)} ein.}
+\ \\ \ \\
+Kreuzen Sie mögliche Gründe an, warum die zweite Gerade nicht als eine Funktionsgleichung in $x$ geschrieben werden kann (mehrere Aussagen können richtig sein):\\
+\MSetPoints{1}
+\begin{tabular}{lll}
+\MCheckbox{0}{VBNT7} & \ \ & Die allgemeine Gleichung kann nicht nach $x$ aufgelöst werden.\\
+\MCheckbox{1}{VBNT8} & \ \ & Die allgemeine Gleichung kann nicht nach $y$ aufgelöst werden.\\
+\MCheckbox{0}{VBNT9} & \ \ & Die allgemeine Gleichung ist noch nicht gekürzt.\\
+\MCheckbox{0}{VBNT10} & \ \ & Die Gerade ist parallel zur $x$-Achse.\\
+\MCheckbox{1}{VBNT11} & \ \ & Die Gerade ist parallel zur $y$-Achse.\\
+\MCheckbox{1}{VBNT12} & \ \ & Die Gerade besitzt keine endliche Steigung.\\
+\MCheckbox{0}{VBNT13} & \ \ &  Die Gerade schneidet die $x$-Achse nicht.\\
+\MCheckbox{0}{VBNT14} & \ \ &  Die Gleichung beschreibt keine Gerade.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Entscheiden Sie, welche der folgenden Punkte auf dem Rand des Kreises mit Mittelpunkt $P=(3;-1)$ und Radius $r=\sqrt{10}$ liegen:\\
+\MSetPoints{2}
+\begin{tabular}{lll}
+\MCheckbox{1}{VBNT15} & \ \ & Der Ursprung.\\
+\MCheckbox{0}{VBNT17} & \ \ & $(2;3)$.\\
+\MCheckbox{1}{VBNT16} & \ \ & $(4;2)$.\\
+\MCheckbox{0}{VBNT18} & \ \ & $(3;2)$.\\
+\MCheckbox{0}{VBNT19} & \ \ & $(0;\sqrt{10})$.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Ein Kreis habe die allgemeine Kreisgleichung
+$$
+(x-2)^2+(y+3)^2 \;=\; 9\: .
+$$
+Welche Eigenschaften besitzt dieser Kreis?
+\MSetPoints{2}
+\begin{MExerciseItems}
+\item{Sein Radius ist \MEquationItem{$r$}{\MLParsedQuestion{5}{3}{4}{VBNT20}}.}
+\item{Sein Mittelpunkt ist \MEquationItem{$P$}{\MLFunctionQuestion{15}{(2,-3)}{5}{x}{5}{VBNT21}}.}\\
+\MInputHint{Geben Sie Punkte in der Form \texttt{(a;b)} ein.}
+\item{Er schneidet die durch $P$ und einen unbekannten weiteren Punkt $Q$ verlaufende Gerade\\
+\MSetPoints{1}
+\begin{tabular}{lll}
+\MCheckbox{0}{VBNT22} & \ \ & in einem Punkt,\\
+\MCheckbox{1}{VBNT23} & \ \ & in zwei Punkten,\\
+\MCheckbox{0}{VBNT24} & \ \ & in drei Punkten,\\
+\MCheckbox{0}{VBNT25} & \ \ & überhaupt nicht.
+\end{tabular}
+}
+\end{MExerciseItems}
+\end{MExercise}
+
+{\color{red}------------------------------------ Ausgangstestfragen Modul 10 ------------------------------------}
+\ \\
+
+\begin{MExercise}
+Geben Sie die im Diagramm dargestellten Pfeilklassen als Vektoren an: 
+
+\MUGraphics{vektoren1.png}{width=0.5\linewidth}{Pfeile in der Ebene}{width:400px}
+
+Beachten Sie die Beschriftung der Achsen (vertikale Achse gehört
+zur ersten Komponente der Vektoren), 
+beispielsweise gehört zum roten Pfeil der Vektor $\MVector{1\\2}$.
+
+\begin{MExerciseItems}
+\item{Gelber Vektor: \MLFunctionQuestion{15}{(-1,2)}{5}{x}{5}{OR20}.} 
+\item{Blauer Vektor: \MLFunctionQuestion{15}{(2,2)}{5}{x}{5}{OR21}.} 
+\item{Grüner Vektor: \MLFunctionQuestion{15}{(1,1)}{5}{x}{5}{OR22}.} 
+\item{Schwarzer Vektor: \MLFunctionQuestion{15}{(1,1)}{5}{x}{5}{OR23}.\\
+\MInputHint{Vektoren können in der Form \texttt{(a;b)} eingegeben werden, zum Beispiel \texttt{(1;2)} für den roten Vektor.}} 
+\end{MExerciseItems}
+\begin{MHint}{Lösung}
+Der rote Pfeil bewegt um eine Einheit nach rechts und um zwei Einheiten nach oben, er wird also durch $\MVector{1\\2}$ beschrieben.
+Alternativ kann man auch Startpunkte der Pfeile von den Endpunkten abziehen, um den Vektor zu bestimmen. Dabei ist dann die Beschriftung
+der Achsen zu beachten:
+$$
+\MVector{-2\\1}-\MVector{-3\\-1} \;=\; \MVector{-2-(-3)\\1-(-1)} \;=\; \MVector{1\\2}\: .
+$$
+Ebenso erhält man $\MVector{-1\\2}$ für den gelben Vektor, $\MVector{2\\2}$ für den blauen und $\MVector{1\\1}$ für den grünen sowie den schwarzen Vektor.
+Dass die Pfeile im Diagramm verschiedene Start- und Endpunkte haben spielt keine Rolle, als Vektoren (Pfeilklassen) sind beide gleich.
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+% Modifizierte  COSH-Frage
+Ein Sportflugzeug würde bei Windstille mit einer Geschwindigkeit von
+150 Kilometer pro Stunde genau nach Süden fliegen. Es wird jedoch von einem Wind,
+der mit der Geschwindigkeit 30 Kilometer pro Stunde aus Richtung Westen bläst,
+abgetrieben. Stellen Sie die Geschwindigkeit des Flugzeugs als Summe von zwei Vektoren in der Ebene dar, wobei
+die zweite Komponente zur Nord-Süd-Achse (positive Werte für Norden) und die erste Komponente
+zur Ost-West-Achse gehört (positive Werte für Osten). Lassen Sie die Einheit (Kilometer pro Stunde)
+in der Rechnung weg:
+\begin{MExerciseItems}
+\item{Bei Windstille ist die Geschwindigkeit $\MVector{0\\-150}$.}
+\item{Der Wind verursacht eine zusätzliche Geschwindigkeit von \MLFunctionQuestion{15}{(30,0)}{5}{x}{5}{OR3}.\\
+\MInputHint{Vektoren können in der Form \texttt{(a;b)} eingegeben werden, die Geschwindigkeit bei Windstille wäre
+zum Beispiel \texttt{(0;-150)}.}
+}
+\item{Das abgetriebene Flugzeug hat insgesamt den Geschwindigkeitsvektor \MLFunctionQuestion{15}{(30,-150)}{5}{x}{5}{OR1}.}
+\item{Die Länge dieses Vektors (der Betrag der Geschwindigkeit) ist \MLParsedQuestion{15}{sqrt(30*30+150*150)}{5}{OR2}.\\
+\MInputHint{Wurzelausdrücke müssen Sie nicht auswerten.}}
+\end{MExerciseItems}
+
+\ \\
+\begin{MHint}{Lösung}
+Der Wind verursacht eine zusätzliche Geschwindigkeit von $\MVector{30\\0}$, damit ergibt sich die Geschwindigkeitsvektor
+$$
+\MVector{0\\-150}+\MVector{30\\0} \;=\; \MVector{30\\-150}
+$$
+durch komponentenweises Addieren der Vektoren.
+Die Länge dieses Vektors ist
+$$
+\sqrt{30^2+(-150)^2} \;=\; \sqrt{23400}\: .
+$$
+Als Zahlenwert ist das gerundet $152.9706$.
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Gegeben sind die Punkte $P=(3|4)$, $Q=(1|0)$ und $R=(-2|1)$ in der Ebene. Berechnen Sie die folgenden Vektoren:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\MDVec{P Q}$}{\MLFunctionQuestion{15}{(-2,-4)}{5}{x}{5}{OR4}}.}
+\end{MExerciseItems}
+\begin{MHint}{Lösung}
+Die Richtungsvektoren ergeben sich aus der Differenz zwischen End- und Startkoordinaten der Punkte:
+\begin{eqnarray*}
+\MDVec{P Q} &=& \MVector{1\\0}-\MVector{3\\4} \;=\; \MVector{-2\\-4}\: ,\ \\
+\end{eqnarray*}
+\end{MHint}
+\end{MExercise}
+
+
+\begin{MExercise}
+Gegeben sind die Punkte $P=(1|2|3)$, $Q=(3|0|0)$ und $R=(-1|2|2)$ im Raum. Berechnen Sie die folgenden Vektoren:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\MDVec{P Q}$}{\MFunctionQuestion{15}{(-2,-2,-3)}{5}{x}{5}}.}
+\item{\MEquationItem{$\MDVec{R Q}$}{\MFunctionQuestion{15}{(4,-2,-2)}{5}{x}{5}}.}
+\end{MExerciseItems}
+
+Bestimmen Sie den Mittelpunkt dieser Vektoren: \MEquationItem{$\MVec{m}$}{\MFunctionQuestion{15}{(1,1,1)}{5}{x}{5}}.
+% LOESUNG STIMMT NOCH NICHT XXX !!
+\end{MExercise}
+
+\begin{MExercise}
+Finden Sie den Schnittpunkt der beiden in Punkt-Richtungsform gegebenen Geraden
+$$
+\MVec{x} \;=\; \MVector{1\\1\\2}+\alpha\cdot \MVector{1\\1\\1}\;\; \text{und}\;\;
+\MVec{x} \;=\; \MVector{0\\1\\-2}+\beta\cdot \MVector{-2\\-4\\4}\: .
+$$
+\begin{MExerciseItems}
+\item{Der Schnittpunkt (als Vektor) ist \MFunctionQuestion{15}{(-1,-1,0)}{5}{x}{5}.}
+\item{Man erh\"alt ihn als Punkt der ersten Geraden f\"ur den Parameter \MEquationItem{$\alpha$}{\MParsedQuestion{7}{-2}{3}}.}
+\item{Man erh\"alt ihn als Punkt der zweiten Geraden f\"ur den Parameter \MEquationItem{$\beta$}{\MParsedQuestion{7}{1/2}{3}}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+
+\end{MXContent}
+
 
 \newpage
 \MPrintIndex
