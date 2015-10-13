@@ -1,0 +1,26 @@
+% Hauptdatei zur Erstellung des gesamten Modulbaums
+%
+% Daniel Haase 2015
+
+\MSignature{AUSTAUSCHTEST_WORKING_A}{release001}{mintkolleg_kit}
+
+
+\MDeclareDataServer{https://mintlx3.scc.kit.edu/dbtest}
+\MDeclareExerciseServer{https://mintlx3.scc.kit.edu/dbtest}
+\MDeclareFeedbackServer{https://mintlx3.scc.kit.edu/dbtest/feedback.php}{(Keine Datenspeicherung vorgesehen)}
+\MHeaders{Version 1}{Beispieltest zur Auswahl der Austauschfragen}{www.ve-und-mint.de}{Voting auf https://dudle.inf.tu-dresden.de/privacy/tu9aufgaben}{}{daniel.haase@kit.edu}
+
+\MMainLogo{veundmintlogo2.png}
+\MColorFile{farben_bare.ini}
+
+\MPragma{PDFTEXDeclare;tree1_austauschtest} % Dieses Kommando gibt an, aus welchen tex-Dateien die PDF-Dokumente erzeugt werden sollen (hier nur eines fuer alle Module)
+\MSetSubject{\MINTMathematics} % Setzt gewisse Regeln fuer Nummerierung und Benennung von Info-Boxen
+
+\MDoFeedback{0}
+\MDoExport{0}
+\MSubject{Austauschfragen Beispieltest}%
+
+\input{tree1_include_austauschtest.tex}
+
+\input{helpsite_austauschtest.tex}
+
