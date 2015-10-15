@@ -19,7 +19,9 @@
     <br /><br />
     <button name="N_compute2" id="I_compute2" type="button" onclick="compute(2);">Erstanmeldungen listen</button>
     <br /><br />
-    <button name="N_compute3" id="I_compute2" type="button" onclick="compute(3);">Auswertung MatheV4_WS20152016</button>
+    <button name="N_compute3" id="I_compute3" type="button" onclick="compute(3);">Auswertung MatheV4_WS20152016</button>
+    <br /><br />
+    <button name="N_compute10" id="I_compute10" type="button" onclick="compute(10);">Auswertung HM1-Eingangstest Hannover</button>
     <br /><br />
     <br /><br />
     <textarea name="N_output" id="I_output" rows="50" cols="150" style="background-color:#E0EAEA"></textarea>
@@ -27,8 +29,10 @@
 
     <script language="javascript" type="text/javascript">
         var server_name = "http://mintlx3.scc.kit.edu";
-        var call_name = "/dbtest/showdata.php";
-        var callurl = server_name + call_name;
+        var call_name1 = "/dbtest/showdata.php";
+        var call_name2 = "/dbtest/showuser.php";
+        var callurl1 = server_name + call_name1;
+        var callurl2 = server_name + call_name2;
     
         var results = "";
     
@@ -171,7 +175,7 @@
                 var ot = "Bearbeitungsdauer: " + duration + "ms (" + (duration / 1000) + " Sekunden)\n";
                 parse(reply);
                 ot = ot + result + "\n\n";        
-                ot = ot + "\n\nRoh-Ausgabe vom Server " + server_name + call_name + ":\n";
+                ot = ot + "\n\nRoh-Ausgabe vom Server " + server_name + ":\n";
                 o.value = ot;
                 ot = ot + reply + "\n\n";
                 o.value = ot;
@@ -209,16 +213,29 @@
 
             beforetime = +new Date();
 
-            $.ajax( callurl, {
-                type: "GET",
-                cache: false,
-                contentType: 'application/x-www-form-urlencoded',
-                crossDomain: true,
-                data: {likestring: like, password: pw},
-                //dataType: 'html', //Erwarteter Datentyp der Antwort
-                success: OnSuccess,
-                error: OnError
-            });
+            if (comp_mode < 10) {
+                $.ajax( callurl1, {
+                    type: "GET",
+                    cache: false,
+                    contentType: 'application/x-www-form-urlencoded',
+                    crossDomain: true,
+                    data: {likestring: like, password: pw},
+                    //dataType: 'html', //Erwarteter Datentyp der Antwort
+                    success: OnSuccess,
+                    error: OnError
+                });
+            } else {
+                $.ajax( callurl2, {
+                    type: "GET",
+                    cache: false,
+                    contentType: 'application/x-www-form-urlencoded',
+                    crossDomain: true,
+                    data: {likestring: like, password: pw},
+                    //dataType: 'html', //Erwarteter Datentyp der Antwort
+                    success: OnSuccess,
+                    error: OnError
+                });
+}
 
 
         }
