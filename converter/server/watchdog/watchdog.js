@@ -33,6 +33,12 @@ var freespace = require('freespace-nix');
 
 var mailTransporter = nodemailer.createTransport(config.mailoptions);
 
+/*
+ * global mail queue of the form:
+ * { "timestamp": "Mail text here" }
+ */
+var mailqueue = {};
+
 //log to logfile
 function log(message) {
   if (config.logfile && (typeof config.logfile === 'string')) {
@@ -60,17 +66,23 @@ function errorLog(message) {
   process.stderr.write(message + '\n');
 }
 
-
 //send an email
-function sendMail(content) {
+function sendMails() {
   var email = clone(config.email);
-  email.text = content;
 
-  mailTransporter.sendMail(email, function (error, info) {
-    if (error) {
-      return errorLog('ERROR: ' + error);
-    }
-  });
+  for (var key in mailqueue) {
+    var date = new Date(1000 * key); //key is the timestamp
+    email.text = date.toTimeString() + ' ' + date.toDateString() + '\n';
+    email.text += mailqueue[key];
+    mailTransporter.sendMail(email, function (error, info) {
+      if (error) {
+        return errorLog('ERROR: ' + error);
+      } else {
+        //remove mail from queue
+        delete mailqueue[key];
+      }
+    });
+  }
 }
 
 /*
@@ -143,8 +155,10 @@ function timeout(passedResult) {
   );
 
   if ((typeof config.email === "object") && (result.email != "")) {
-    sendMail(result.email);
+    mailqueue[result.timestamp] = result.email;
   }
+
+  sendMails();
 
   log(JSON.stringify(result));
 }
