@@ -76,7 +76,7 @@ module.exports = {
       name: 'course',
       ping: true,
       notify: true,
-      url: 'http://mintlx3.scc.kit.edu/veundmint_kit/mpl/3.1.html',
+      url: 'http://mintlx3.scc.kit.edu/veundmintkurs/mpl/3.1.html',
       requests: [
         {
           name: '1', method: 'GET', data: {}, test: function (response, reqObject) {
@@ -104,7 +104,7 @@ module.exports = {
       name: 'test_mintlx3_online.html',
       ping: true,
       notify: true,
-      url: 'http://mintlx3.scc.kit.edu/test_mintlx3_alive.html',
+      url: 'http://mintlx3.scc.kit.edu/test_mintlx3_online.html',
       requests: [
         {
           name: '1', method: 'GET', data: {}, test: function (response, reqObject) {
