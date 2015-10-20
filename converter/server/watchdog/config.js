@@ -129,7 +129,7 @@ module.exports = {
     to: "info@ve-und-mint.de", // sender and recipient are the same on purpose
     subject: "VE&MINT watchdog alert"
   },
-  mailoptions: {
+  mailoptions: { //see https://github.com/andris9/nodemailer-smtp-transport#usage
     port: 587, // used by TLS connection
     host: "smtp.something.org",
     secure: true,
