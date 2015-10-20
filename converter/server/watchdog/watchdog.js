@@ -39,6 +39,13 @@ var mailTransporter = nodemailer.createTransport(config.mailoptions);
  */
 var mailqueue = {};
 
+//read in the mailqueue from a file
+try {
+  mailqueue = JSON.parse(fs.readFileSync(config.mailqueue, 'utf8'));
+} catch(e) {
+  mailqueue = {};
+}
+
 //log to logfile
 function log(message) {
   if (config.logfile && (typeof config.logfile === 'string')) {
@@ -68,6 +75,13 @@ function errorLog(message) {
 
 //send an email
 function sendMails() {
+  //write a backup of the mailqueue to a file
+  fs.writeFile(config.mailqueue, JSON.stringify(mailqueue), function (error) {
+    if (error) {
+      errorLog("ERROR: Failed to save mailqueue to '" + config.mailqueue + "'");
+    }
+  });
+
   var email = clone(config.email);
 
   for (var key in mailqueue) {
