@@ -38,6 +38,8 @@
         var callurl2 = server_name + call_name2;
 
         
+        var dosingle = false; // Aktiviert: Einzelaufgabenteile listen
+        
         var fielddef_hannover_hm1_meta = ["ET_C1", "ET_C2", "ET_C3", "ET_C4",
             "ET_1_M", "ET_1_F", "ET_1_S",
             "ET_2_1", "ET_2_2", "ET_2_3", "ET_2_4", "ET_2_5", "ET_2_6", "ET_2_M",
@@ -58,11 +60,22 @@
             "ET_17_1", "ET_17_2", "ET_17_3", "ET_17_4", "ET_17_5", "ET_17_6"
             ];
         
-        var fielddef_hannover_hm1_points = ["TTXT13", "TTXT14", "TTXT15", "TTXT16", "TTXT17", "TTXT18", "TTXT19", "TTXT20", "TTXT21", "TTXT22", "MINIFUENF",
-            "LGSLGS1", "LGSLGS2", "LGSLGS3", "LGSLGS4", "SPECIALIN", "FINA1", "FINA2",
+        var fielddef_hannover_hm1_points = [
+            "TTXT13", "TTXT14",
+            "TTXT15",
+            "TTXT16", "TTXT17",
+            "TTXT18", "TTXT19",
+            "TTXT20", "TTXT21", "TTXT22",
+            "MINIFUENF",
+            "LGSLGS1", "LGSLGS2", "LGSLGS3", // Eine Aufgabe
+            "LGSLGS4", // Eine Aufgabe
+            "SPECIALIN", // Eine Aufgabe
+            "FINA1", "FINA2", // Eine Aufgabe
             "M04C1", "M04C2", "M04C3", "LGSMU1", "LGSMU2", // Eine Aufgabe, Ankreuz und LGS-Loesungen
-            "ALGS42", "ALGS0", "TXF1", "TXF2", "TXF3", "TXF4", "TXF5", "TEP1",
-            "ALGSK1A", "ALGSK2A", "M04C4", "M04C5", "M04C6",
+            "ALGS42", // Eine Aufgabe
+            "ALGS0", // Eine Aufgabe
+            "TXF1", "TXF2", "TXF3", "TXF4", "TXF5", "TEP1", // Eine Aufgabe
+            "ALGSK1A", "ALGSK2A", "M04C4", "M04C5", "M04C6", // Eine Aufgabe
             "M04C7", "M04C8", "M04C9", "ALGS1", "ALGS2", "ALGS3", // Eine Aufgabe, Ankreuz und LGS-Loesungen
             "MINUS1", "DG1", "DFA3", "DG4", "DG2", // Eine Aufgabe
             "JC1", "JC2", "JC2x", "JC3", "JC4", "JC5", // Eine Aufgabe
@@ -77,6 +90,36 @@
             "OR8", "OR9", "OR10" // Eine Aufgabe
             ];
 
+        var groupdef_hannover_hm1 = [
+            ["TTXT13", "TTXT14"],
+            ["TTXT15"],
+            ["TTXT16", "TTXT17"],
+            ["TTXT18", "TTXT19"],
+            ["TTXT20", "TTXT21", "TTXT22"],
+            ["MINIFUENF"],
+            ["LGSLGS1", "LGSLGS2", "LGSLGS3"],
+            ["LGSLGS4"],
+            ["SPECIALIN"],
+            ["FINA1", "FINA2"],
+            ["M04C1", "M04C2", "M04C3", "LGSMU1", "LGSMU2"],
+            ["ALGS42"],
+            ["ALGS0"],
+            ["TXF1", "TXF2", "TXF3", "TXF4", "TXF5", "TEP1"],
+            ["ALGSK1A", "ALGSK2A", "M04C4", "M04C5", "M04C6"],
+            ["M04C7", "M04C8", "M04C9", "ALGS1", "ALGS2", "ALGS3"],
+            ["MINUS1", "DG1", "DFA3", "DG4", "DG2"],
+            ["JC1", "JC2", "JC2x", "JC3", "JC4", "JC5"],
+            ["TTXT24", "TTXT25"],
+            ["DXG14", "DXG15", "DG9"],
+            ["TTXT26", "TTXT27"],
+            ["IG16", "TTXT2"],
+            ["IG1", "IG2"],
+            ["IG20"],
+            ["TESTGR1"],
+            ["VBNT20x", "VBNT21x", "VBNT22x", "VBNT23x", "VBNT24x", "VBNT25x", "VBNT26x"],
+            ["OR8", "OR9", "OR10"]
+        ];
+            
         var results = "";
     
         var comp_mode = 1;
@@ -137,18 +180,34 @@
                 var maxp = 0;
                 var curp = 0;
                 for (i = 0; i < fielddef_hannover_hm1_points.length; i++) {
-                    if (i > 0) row += ";";
                     var j;
                     var f = false;
                     for (j = 0; ((j < iso.scores.length) && (!f)); j++) {
                         if (iso.scores[j].uxid == fielddef_hannover_hm1_points[i]) {
-                            row += iso.scores[j].points;
+                            if (dosingle == true) row += ";" + iso.scores[j].points;
                             maxp += iso.scores[j].maxpoints;
                             curp += iso.scores[j].points;
                             f = true;
                         }
                     }
                 }
+                
+                for (i = 0; i < groupdef_hannover_hm1.length; i++) {
+                    var ps = 0;
+                    var mp = 0;
+                    var j,k;
+                    for (j = 0; j < iso.scores.length; j++) {
+                        for (k = 0; k < groupdef_hannover_hm1[i].length; k++) {
+                            if (iso.scores[j].uxid == groupdef_hannover_hm1[i][k]) {
+                                ps += iso.scores[j].points;
+                                mp += iso.scores[j].maxpoints;
+                            }
+                        }
+                    }
+                    row += ";" + ps + ";" + mp;
+                }
+                
+                
                 
                 row += ";" + curp + ";" + maxp;
                 
@@ -316,6 +375,7 @@
           if (comp_mode == 10) {
             comp_mode = 11;
             // HM1-Auswertung Hannover: userids extrahieren und Datensaetze jeweils separat holen
+            // Anordnung: Metateile, Meta, Aufgabenteile (falls single==true), Aufgaben, Gesamt, Bemerkung
             var ud = new Array();
             var rex = /user_id: (\d+), timestamp: (\d\d\d\d-\d\d-\d\d) \d\d:\d\d:\d\d, user/g ;
             var u;
@@ -326,15 +386,21 @@
                 if (u > 0) us += ";";
                 us += fielddef_hannover_hm1_meta[u];
             }
-            for (u = 0; u < fielddef_hannover_hm1_points.length; u++) {
-                us += ";";
-                us += "Punkte " + fielddef_hannover_hm1_points[u];
+            if (dosingle == true) {
+                for (u = 0; u < fielddef_hannover_hm1_points.length; u++) {
+                    us += ";";
+                    us += "Punkte " + fielddef_hannover_hm1_points[u];
+                }
             }
-            us += ";Bemerkung";
-            result += us;
+            for (i = 0; i < groupdef_hannover_hm1.length; i++) {
+                var mp = 0;
+                us += ";" + "Punkte 1.3." + (i + 1);
+                us += ";Erreichbar 1.3." + (i + 1);
+            }
+            us += ";Punkte GESAMT;Punkte ERREICHBAR;Bemerkung\n";
+            result += us + "\n";
             var co = document.getElementById("I_output_csv");
             co.value = us;
-            result += ";Punkte GESAMT;Punkte ERREICHBAR\n";
             while ( (u = rex.exec(result)) != null) {
               result += u[1] + " ";
               var like = document.getElementById("I_kuerzel").value;
