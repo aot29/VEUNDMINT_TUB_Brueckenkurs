@@ -203,18 +203,23 @@
                         }
                     }
                 } else {
-                    for (i = 3; i < groupdef_hannover_hm1_meta.length; i++) { // 4 Codefragen vorher
+                    for (i = 4; i < groupdef_hannover_hm1_meta.length; i++) { // 4 Codefragen vorher
                         var selection = "";
                         for (k = 0; k < groupdef_hannover_hm1_meta[i].length; k++) {
                             var f = false;
                             for (j = 0; ((j < iso.scores.length) && (!f)); j++) {
-                                if (iso.scores[j].uxid == fielddef_hannover_hm1_meta[i][k]) {
-                                    if (iso.scores[j].rawinput == "1") selection = fielddef_hannover_hm1_meta[i][k];
+                                if (iso.scores[j].uxid == groupdef_hannover_hm1_meta[i][k]) {
+                                    if (iso.scores[j].value == "1") selection = groupdef_hannover_hm1_meta[i][k];
                                     f = true;
                                 }
                             }
-                            row += selection + ";";
                         }
+                        
+                        var rex = /ET_\d+_(\w+)/g ;
+                        var u;
+                        if ((u = rex.exec(selection)) != null) { selection = u[1]; } else { selection = "?"; }
+                        
+                        row += selection + ";";
                     }
                 }
                 
@@ -224,7 +229,7 @@
                     var f = false;
                     for (j = 0; ((j < iso.scores.length) && (!f)); j++) {
                         if (iso.scores[j].uxid == fielddef_hannover_hm1_points[i]) {
-                            if (dosingle == true) row += ";" + iso.scores[j].points;
+                            if (dosingle == true) row += iso.scores[j].points + ";";
                             maxp += iso.scores[j].maxpoints;
                             curp += iso.scores[j].points;
                             f = true;
@@ -243,12 +248,12 @@
                             }
                         }
                     }
-                    row += ";" + ps + ";" + mp;
+                    row += ps + ";" + mp + ";";
                 }
                 
                 
                 
-                row += ";" + curp + ";" + maxp;
+                row += curp + ";" + maxp + ";";
                 
                 /*  
                   intersiteobj.scores[j].maxpoints = FVAR[i].maxpoints;
@@ -265,7 +270,7 @@
                 if (maxp == 0) { bem += ", Teilnehmer hat nichts abgeschickt"; }
                 
                 // Bemerkungsfeld fuellen
-                if (bem != "") row += ";" + bem;
+                if (bem != "") row += bem + ";";
                 
                 
                 co.value += "\n" + row;
@@ -418,7 +423,7 @@
             var ud = new Array();
             var rex = /user_id: (\d+), timestamp: (\d\d\d\d-\d\d-\d\d) \d\d:\d\d:\d\d, user/g ;
             var u;
-            var us = "CODE1;CODE2;CODE3;CODE4;";
+            var us = "8xCODE;";
             result += "\nUserIDs: ";
             result += "\nAuswertung im CSV-Format, Kopfzeile ist\n" + us;
             
@@ -434,16 +439,15 @@
             }
             if (dosingle == true) {
                 for (u = 0; u < fielddef_hannover_hm1_points.length; u++) {
-                    us += ";";
-                    us += "Punkte " + fielddef_hannover_hm1_points[u];
+                    us += "Punkte " + fielddef_hannover_hm1_points[u] + ";";
                 }
             }
             for (i = 0; i < groupdef_hannover_hm1.length; i++) {
                 var mp = 0;
-                us += ";" + "Punkte 1.3." + (i + 1);
-                us += ";Erreichbar 1.3." + (i + 1);
+                us += "Punkte 1.3." + (i + 1) + ";";
+                us += "Erreichbar 1.3." + (i + 1) + ";";
             }
-            us += ";Punkte GESAMT;Punkte ERREICHBAR;Bemerkung\n";
+            us += "Punkte GESAMT;Punkte ERREICHBAR;Bemerkung\n";
             result += us + "\n";
             var co = document.getElementById("I_output_csv");
             co.value = us;
