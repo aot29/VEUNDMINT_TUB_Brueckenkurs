@@ -79,6 +79,10 @@ Watchdog checks the services specified in `config.js` in regular intervals and p
     another_service: {
       ping: false
     }
+  },
+  email: '', //email text that was sent (if any)
+  diskusage: {
+    path: {success: false, percent_used: 100} //success is also false if the disk usage couldn't be determined
   }
 }
 ```
@@ -132,6 +136,10 @@ module.exports = {
       ]
     }
   ],
+  //directories for which to check the disk usage.
+  diskusage: [
+    {path: "./", notify_percentage: 99}
+  ]
   //file to append the output to (additional to stdout)
   //this doesn't log error messages
   logfile: '/opt/watchdog/log', //optional
