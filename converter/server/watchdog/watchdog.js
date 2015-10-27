@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/node --use_strict
 /* Copyright (C) 2015 KIT (www.kit.edu), Author: Max Bruckner (FSMaxB)
  *
  *     This file is part of the VE&MINT program compilation
@@ -29,8 +29,22 @@ var clone = require('clone');
 var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
 var fs = require('fs');
+var freespace = require('freespace-nix');
 
 var mailTransporter = nodemailer.createTransport(config.mailoptions);
+
+/*
+ * global mail queue of the form:
+ * { "timestamp": "Mail text here" }
+ */
+var mailqueue = {};
+
+//read in the mailqueue from a file
+try {
+  mailqueue = JSON.parse(fs.readFileSync(config.mailqueue, 'utf8'));
+} catch(e) {
+  mailqueue = {};
+}
 
 //log to logfile
 function log(message) {
@@ -48,9 +62,10 @@ function log(message) {
 //log an error
 function errorLog(message) {
   if (config.errorlog && (typeof config.errorlog === 'string')) {
+    process.stderr.write(message + '\n');
     fs.appendFile(config.errorlog, message + '\n', function (err) {
       if (err) {
-        process.stderr.write("ERROR: Couldn't write to errorlog '" + config.errorlog + "'");
+        process.stderr.write("ERROR: Couldn't write to errorlog '" + config.errorlog + "'\n");
       }
     });
   }
@@ -58,30 +73,70 @@ function errorLog(message) {
   process.stderr.write(message + '\n');
 }
 
-
 //send an email
-function sendMail(content) {
-  var email = clone(config.email);
-  email.text = content;
-
-  mailTransporter.sendMail(email, function (error, info) {
+function sendMails() {
+  //write a backup of the mailqueue to a file
+  fs.writeFile(config.mailqueue, JSON.stringify(mailqueue), function (error) {
     if (error) {
-      return errorLog(error);
+      errorLog("ERROR: Failed to save mailqueue to '" + config.mailqueue + "'");
     }
+  });
+
+  var email = clone(config.email);
+
+  for (var key in mailqueue) {
+    var date = new Date(1000 * key); //key is the timestamp
+    email.text = date.toTimeString() + ' ' + date.toDateString() + '\n';
+    email.text += mailqueue[key];
+    mailTransporter.sendMail(email, function (error, info) {
+      if (error) {
+        return errorLog('ERROR: ' + error);
+      } else {
+        //remove mail from queue
+        delete mailqueue[key];
+      }
+    });
+  }
+}
+
+/*
+ * Check the disk usage for every directory
+ * specified in 'diskusage' in the config file.
+ */
+function checkDiskUsage(result) {
+  result.diskusage = {};
+
+  //go through all the directories to check
+  config.diskusage.forEach(function (value) {
+    freespace.df(value.path, function (error, data) {
+      result.diskusage[value.path] = {success: false, percent_used: data.percent_used};
+      if ((error !== undefined) && (error !== "")) {
+        result.diskusage[value.path].success = false;
+        errorLog('ERROR: Failed to get disk usage.');
+        result.email += 'ERROR: Failed to get disk usage.\n';
+        return;
+      }
+
+      if (data.percent_used > value.notify_percentage) {
+        result.email += 'Disk usage limit exceeded for "' + value.path + '" (' + data.percent_used + '%)\n';
+        return;
+      }
+
+      result.diskusage[value.path].success = true;
+    })
   });
 }
 
 //timeout that collects all the results
 function timeout(passedResult) {
   var result = clone(passedResult); //clone to prevent race conditions
-  var email = ""; //email to send
 
   //Go through all of the results
   Object.keys(result.services).forEach(
     function (service) {
 
       if (result.services[service].notify && (result.services[service].ping === false)) {
-        email += "Service '" + service + "' not available.\n"
+        result.email += "Service '" + service + "' not available.\n"
       }
 
       if (result.services[service].requests) {
@@ -90,14 +145,14 @@ function timeout(passedResult) {
             //Send notifications
             if (result.services[service].notify) {
               if (!result.services[service].requests[req].response) {
-                email += "Service '" + service + "': Request '" + req + "' didn't respond.\n";
+                result.email += "Service '" + service + "': Request '" + req + "' didn't respond.\n";
               }
               else if (!result.services[service].requests[req].success) {
-                email += "Service '" + service + "': Request '" + req + "' responded incorrectly.\n";
+                result.email += "Service '" + service + "': Request '" + req + "' responded incorrectly.\n";
               }
 
               if (result.services[service].requests[req].threshold_reached) {
-                email += "Service '" + service + "': Request '" + req + "' reached it's threshold. It took " + result.services[service].requests[req].time + "ms.\n";
+                result.email += "Service '" + service + "': Request '" + req + "' reached it's threshold. It took " + result.services[service].requests[req].time + "ms.\n";
               }
             }
 
@@ -113,9 +168,11 @@ function timeout(passedResult) {
     }
   );
 
-  if ((typeof config.email === "object") && email != "") {
-    sendMail(email);
+  if ((typeof config.email === "object") && (result.email != "")) {
+    mailqueue[result.timestamp] = result.email;
   }
+
+  sendMails();
 
   log(JSON.stringify(result));
 }
@@ -127,6 +184,12 @@ function watch() {
 
   result.timestamp = Date.now() / 1000; //Unix Timestamp
   result.services = {};
+  result.email = "";
+
+  //check the disk usage if configuration for it exists
+  if (Array.isArray(config.diskusage)) {
+    checkDiskUsage(result);
+  }
 
   //go through all of the services
   config.services.forEach(
@@ -164,7 +227,7 @@ function watch() {
           }
 
           var requestFunction = function () { //this function is to be overwritten in the following switch-case
-            errorLog("No request function, this shouldn't happen!");
+            errorLog("ERROR: No request function, this shouldn't happen!");
             throw new Error('No request function, this shouldn\'t happen!');
           };
           var requestUrl = url.parse(service.url);
