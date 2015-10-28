@@ -132,8 +132,9 @@ module.exports = {
   mailoptions: { //see https://github.com/andris9/nodemailer-smtp-transport#usage
     port: 587, // used by TLS connection
     host: "smtp.something.org",
-    secure: true,
+    secure: false, //has to be false when using STARTTLS, see https://github.com/andris9/Nodemailer/issues/440
     auth: { user: "USERNAME", pass: "PASSWORD" },
+    authMethod: "LOGIN",
     ignoreTLS: false // true -> port should be 25
   }
 };
