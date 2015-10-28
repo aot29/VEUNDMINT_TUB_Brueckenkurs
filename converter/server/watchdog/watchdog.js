@@ -93,9 +93,9 @@ function sendMails() {
         return errorLog('ERROR: ' + error);
       } else {
         //remove mail from queue
-        delete mailqueue[key];
+        delete mailqueue[this.key];
       }
-    });
+    }.bind({key: key})); //bind makes sure that the current value of key is accessible from the callback, not only the last value
   }
 }
 
@@ -182,7 +182,7 @@ function watch() {
   //object where the results of the requests are collected
   var result = {};
 
-  result.timestamp = Date.now() / 1000; //Unix Timestamp
+  result.timestamp = Math.round(Date.now() / 1000); //Unix Timestamp
   result.services = {};
   result.email = "";
 
