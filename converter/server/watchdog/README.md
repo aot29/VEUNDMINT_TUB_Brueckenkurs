@@ -144,6 +144,7 @@ module.exports = {
   //this doesn't log error messages
   logfile: '/opt/watchdog/log', //optional
   errorlog: '/opt/watchdog/errorlog', //optional
+  mailqueue: 'mailqueue.json', //list of mails that remain to be sent
   //timeout in seconds
   timeout: 10,
   //watchdog interval in minutes
