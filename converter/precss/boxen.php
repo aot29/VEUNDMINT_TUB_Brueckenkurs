@@ -1,5 +1,6 @@
 .info,
 .hint,
+.hintc,
 .exmp,
 .expe
 .xreply
@@ -15,6 +16,13 @@
   margin-top: 0px;
   background-color: [-HINTBACKGROUND-];
 	border: thin solid [-HINTLINE-];
+}
+
+.hintc
+{
+  margin-top: 0px;
+  background-color: [-HINTBACKGROUNDC-];
+        border: thin solid [-HINTLINE-];
 }
 
 .expe

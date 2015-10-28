@@ -548,10 +548,16 @@
 \ifttm%
 
   \newenvironment{MSolution}{\special{html:<!-- loesung -->}}{\special{html:<!-- endloesung -->}}
+
   \newenvironment{MHint}[1]{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" id="MHintButton}\arabic{MHintCounter}\special{html:" %
   type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}#1\special{html:</button>}
   \special{html:<div class="hint" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
 
+  \newenvironment{MCOSHZusatz}{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" id="MHintButton}\arabic{MHintCounter}\special{html:" %
+  type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}Weiterführende Inhalte\special{html:</button>}
+  \special{html:<div class="hintc" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
+
+  
   \newenvironment{MDefinition}{\begin{definition}\setcounter{MLastIndex}{\value{definition}}\ \\}{\end{definition}}
 
   
@@ -705,6 +711,7 @@
   \newenvironment{MExercise}{\begin{exrc}\renewcommand{\MStdPoints}{1}\MTB}{\end{exrc}}
   \newenvironment{MSolution}{\ \\ \underline{L\"osung:}\\}{}
   \newenvironment{MHint}[1]{\ \\ \underline{#1:}\\}{}
+  \newenvironment{MCOSHZusatz}{\ \\ \underline{Weiterführende Inhalte:}\\}{}
   \newenvironment{MDefinition}{\ifnum\value{MInfoNumbers}=0\begin{defnc}\else\begin{defn}\fi\MTB}{\ifnum\value{MInfoNumbers}=0\end{defnc}\else\end{defn}\fi}
 %  \newenvironment{MExample}{\begin{exmp}}{\ \linebreak[1] \ \ \ \ $\phantom{a}$ \ \hfill $\blacklozenge$\end{exmp}}
   \newenvironment{MExample}{
