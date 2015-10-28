@@ -267,7 +267,11 @@
                   intersiteobj.scores[j].value = FVAR[i].value;
                 */
 
-                if (maxp == 0) { bem += ", Teilnehmer hat nichts abgeschickt"; }
+                if (maxp == 0) { 
+                    bem += ", Teilnehmer hat nichts abgeschickt";
+                } else {
+                    bem = iso.login.sname + "," + iso.login.vname;
+                }
                 
                 // Bemerkungsfeld fuellen
                 if (bem != "") row += bem + ";";
