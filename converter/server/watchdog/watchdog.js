@@ -90,7 +90,7 @@ function sendMails() {
     email.text += mailqueue[key];
     mailTransporter.sendMail(email, function (error, info) {
       if (error) {
-        return errorLog('ERROR: ' + error);
+        return errorLog('ERROR: ' + JSON.stringify(error));
       } else {
         //remove mail from queue
         delete mailqueue[this.key];
