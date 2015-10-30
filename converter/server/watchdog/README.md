@@ -44,7 +44,7 @@ Watchdog will now automatically start at every boot.
 
 Installing nodejs manually
 --------------------------
-If your distribution doesn't have nodejs available as a package or it is too old, you can compile your own version of it. This requires gcc, make, python2 and openssl.
+If your distribution doesn't have nodejs available as a package or it is too old, you can compile your own version of it. This requires gcc, make, python2, openssl and git.
 
 Now follow the following steps (for up to date instructions you might want to take a look into the official installation instructions provided by NodeJS):
 
