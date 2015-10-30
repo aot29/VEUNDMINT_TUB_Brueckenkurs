@@ -42,13 +42,51 @@ You can make sure that watchdog is actually running with `systemctl status watch
 
 Watchdog will now automatically start at every boot.
 
+Installing nodejs manually
+--------------------------
+If your distribution doesn't have nodejs available as a package or it is too old, you can compile your own version of it. This requires gcc, make, python2 and openssl.
+
+Now follow the following steps (for up to date instructions you might want to take a look into the official installation instructions provided by NodeJS):
+
+(this works under the assumption that you want to install NodeJS to /opt/watchdog/node)
+
+```
+# su - watchdog
+$ cd /opt/watchdog
+$ git clone https://github.com/nodejs/node node-src
+$ cd node-src
+```
+
+Now run `git tag | sort -V` and then `git checkout vX.X.X` where `vX.X.X` is the latest version. On older versions of Debian (squeeze, wheezy) you have to use the latest version of `v0.10` because newer versions don't seem to work.
+
+Then do the following (on Debian add `--openssl-libpath=/usr/lib/ssl` to `./configure`).
+
+```
+$ ./configure --prefix=/opt/watchdog/node
+$ make
+$ make install
+```
+
+`npm` will now be available under `/opt/watchdog/node/bin/npm` and `node` at `/opt/watchdog/node/bin/node`
+
+Starting the watchdog manually
+------------------------------
+To run the watchdog manually as user watchdog (without systemd or Sys-V init), run the following command:
+
+```
+nohup su -c 'node /opt/watchdog/watchdog.js -- watchdog' &
+```
+Don't forget to replace `node` with `/opt/watchdog/node/bin/node` if necessary.
+
 Features
 --------
 Watchdog performs checks on the availability of services in regular intervals. It can check the following:
 * ping the host
 * make an HTTP request (GET, POST etc.) and check the validity of the response
-* send email notifications via sendmail
+* send email notifications via sendmail or smtp
+ - if sending an email fails, it will be queued so that it can be tried again later
 * check if a request takes too long
+* notify when disk usage exceeds a given amount
 
 Output
 ------
