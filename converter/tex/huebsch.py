@@ -3,7 +3,7 @@
 import re
 import os
 
-#TEX-Umlaute weg - fuer tex-Verzeichnis
+#TEX-Umlaute weg , alte VEMINT Version - fuer tex-Verzeichnis
 dir=os.listdir(".")
 tex_dir=list()
 
