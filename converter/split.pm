@@ -949,7 +949,7 @@ sub gettoccaption_menustyle {
   
   
   $c .= "<tocnav><ul>";
-  $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/chab.png\" style=\"border: none\"> Onlinetests</a>";
+  $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/chab.png\" style=\"border: none\"> Kursinhalt</a>";
   $c .= "<div><ul>\n";
   
   my $i1=0; # eigentlich for-schleife, aber hier nur Kursinhalt
@@ -1007,25 +1007,41 @@ sub gettoccaption_menustyle {
   
   $c .= "</ul></tocnav>"; # level1-ul
 
-  $c .= "<br /><br /><tocnav><ul>";
+  $c .= "<br /><br />";
   
-  if ($main::startsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::startsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/startsiteb.png\" style=\"border: none\"> Einführung</a></li>"; }
-  if ($main::datasite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::datasite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/datab.png\" style=\"border: none\"> Mein Kurs</a></li>"; }
-  if ($main::confsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::confsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/confb.png\" style=\"border: none\"> Einstellungen</a></li>"; }
-  if ($main::stestsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::stestsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/stestsiteb.png\" style=\"border: none\"> Eingangstest</a></li>"; }
-  if ($main::searchsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::searchsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/searchb.png\" style=\"border: none\"> Suche</a></li>"; }
-  if ($main::favorsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::favorsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/favoriteb.png\" style=\"border: none\"> Lesezeichen</a></li>"; }
-  if ($main::locationsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::locationsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/$main::locationicon\" style=\"border: none\">$main::locationshort</a></li>"; }
-  $c .= "</ul></tocnav>";
+  if (1 eq 1) {
+    $c .= "<tocnavsymb><ul>";
+    if ($main::startsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::startsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/startsiteb.png\" style=\"border: none\"></a></li>"; }
+    if ($main::datasite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::datasite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/datab.png\" style=\"border: none\"></a></li>"; }
+    if ($main::confsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::confsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/confb.png\" style=\"border: none\"></a></li>"; }
+    if ($main::stestsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::stestsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/stestsiteb.png\" style=\"border: none\"></a></li>"; }
+    if ($main::searchsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::searchsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/searchb.png\" style=\"border: none\"></a></li>"; }
+    if ($main::favorsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::favorsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/favoriteb.png\" style=\"border: none\"></a></li>"; }
+    if ($main::locationsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::locationsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/$main::locationicon\" style=\"border: none\"></a></li>"; }
+    if ($main::replyadress ne "") {
+      $c .= "<li><a href=\"mailto:" . $main::replyadress . "\"><img src=\"" . $site->linkpath() . "../images/mailb.png\" style=\"border: none\"></a></li>"; 
+    }
+    $c .= "</ul></tocnavsymb>";
+  } else {
+    $c .= "<tocnav><ul>";
+    if ($main::startsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::startsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/startsiteb.png\" style=\"border: none\"> Einführung</a></li>"; }
+    if ($main::datasite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::datasite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/datab.png\" style=\"border: none\"> Mein Kurs</a></li>"; }
+    if ($main::confsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::confsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/confb.png\" style=\"border: none\"> Einstellungen</a></li>"; }
+    if ($main::stestsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::stestsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/stestsiteb.png\" style=\"border: none\"> Eingangstest</a></li>"; }
+    if ($main::searchsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::searchsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/searchb.png\" style=\"border: none\"> Suche</a></li>"; }
+    if ($main::favorsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::favorsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/favoriteb.png\" style=\"border: none\"> Lesezeichen</a></li>"; }
+    if ($main::locationsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::locationsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/$main::locationicon\" style=\"border: none\">$main::locationshort</a></li>"; }
+    if ($main::replyadress ne "") {
+      $c .= "<li><a href=\"mailto:" . $main::replyadress . "\"><img src=\"" . $site->linkpath() . "../images/mailb.png\" style=\"border: none\"> Feedback</a></li>"; 
+    }
+    $c .= "</ul></tocnav>";
+  }
   
   # PDF zum Fachbereich anbieten falls PDFs aktiviert sind und wir nicht im Hilfebereich sind
   if (($main::dopdf eq 1) and ($site->{HELPSITE} eq 0)) {
      $c .= "<br /><tocnav><ul><li><a href=\"" . $site->linkpath() . "../tree$ff.pdf\"><img src=\"" . $site->linkpath() . "../images/docpdf.png\" style=\"border: none\"> Download</a></li></ul></tocnav>";
   }
 
-  if ($main::replyadress ne "") {
-    $c .= "<br /><tocnav><ul><li><a href=\"mailto:" . $main::replyadress . "\"><img src=\"" . $site->linkpath() . "../images/mailb.png\" style=\"border: none\"> Feedback</a></li></ul></tocnav>"; 
-  }
   
   if ($main::isBeta eq 1) {
     $c .= "<br /><tocnav><ul><li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::betasite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/betab.png\" style=\"border: none\"> Beta-Version</a></li></ul></tocnav>";

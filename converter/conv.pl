@@ -41,7 +41,7 @@ our $datasite = "cdata.html";
 our $searchsite = "search.html";
 our $chaptersite = "chapters.html";
 our $startsite = "index.html";
-our $favorsite = ""; # "favor.html";   # Platzgruende
+our $favorsite = "favor.html";
 our $stestsite = "stest.html";
 our $betasite = "betasite.html";
 

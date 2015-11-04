@@ -89,6 +89,8 @@
   color: [-TOCB-];
 }
 
+/* ---------------------------- CSS toc navigation (old row style) ------------------------------------------------- */
+
 tocnav {
   background-color: [-TOCFIRSTMENUBACKGROUND-];
   border: 1px solid [-TOCMENUBORDER-];
@@ -223,3 +225,149 @@ tocnav {
               tocnav > ul > li > div ul > li:hover > a {
                 background-color: [-TOCHOVER-];
               }
+              
+              
+/* ---------------------------- CSS toc navigation (symbolized) ------------------------------------------------- */
+
+tocnavsymb {
+  background-color: [-TOCFIRSTMENUBACKGROUND-];
+  border: 2px solid [-TOCMENUBORDER-];
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+  color: [-TOC-];
+  display: block;
+  margin: 8px 12px 8px 12px;
+  overflow: hidden;
+  width: 92%; 
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  
+}
+
+  tocnavsymb ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: disc;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    list-style-position: inside;
+  }
+
+    tocnavsymb ul li {
+      display: inline-block;
+      list-style-type: none;
+  
+  
+  
+      -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        transition: all 0.2s; 
+    }
+      
+      tocnavsymb > ul > li > a > .caret,
+          tocnavsymb > ul > li > div ul > li > a > .caret {
+        border-top: 4px solid #aaa;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+        content: "";
+        display: inline-block;
+        height: 0;
+        width: 0;
+        horizontal-align: middle;
+        vertical-align: middle;
+  
+        -webkit-transition: color 0.1s linear;
+          -moz-transition: color 0.1s linear;
+        -o-transition: color 0.1s linear;
+          transition: color 0.1s linear; 
+      }
+          
+                tocnavsymb > ul > li > div ul > li > a > .caret {
+                        border-bottom: 4px solid transparent;
+                        border-top: 4px solid transparent;
+                        border-right: 4px solid transparent;
+                        border-left: 4px solid #f2f2f2;
+                        margin: 0 0 0 8px;
+                }
+
+      tocnavsymb > ul > li > a {
+        color: [-TOC-];
+        display: block;
+        line-height: 42px;
+        padding: 0 12px;
+        text-decoration: none;
+        /* width: 165px; */
+      }
+
+        tocnavsymb > ul > li:hover {
+          background-color: [-TOCHOVER-];
+        }
+
+        tocnavsymb > ul > li:hover > a {
+          color: [-TOC-];
+        }
+
+        tocnavsymb > ul > li:hover > a > .caret {
+          border-top-color: [-TOCHOVER-];
+        }
+                
+                tocnavsymb > ul > li > div ul > li:hover > a > .caret {
+                        border-left-color: [-TOCHOVER-];
+                }
+      
+      tocnavsymb > ul > li > div,
+          tocnavsymb > ul > li > div ul > li > div {
+        background-color: [-TOCMENUBACKGROUND-];
+        border: 1px solid [-TOCMENUBORDER-];
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+        display: none;
+        margin: 0;
+        opacity: 0;
+        position: absolute;
+        width: 300px;
+        visibility: hidden;
+  
+        -webkit-transiton: opacity 0.2s;
+        -moz-transition: opacity 0.2s;
+        -ms-transition: opacity 0.2s;
+        -o-transition: opacity 0.2s;
+        -transition: opacity 0.2s;
+      }
+          
+                tocnavsymb > ul > li > div ul > li > div {
+                        background-color: [-TOCMENUBACKGROUND-];
+                        border-radius: 0 4px 4px 4px;
+                        box-shadow: inset 2px 0 5px rgba(0,0,0,.15);
+                        margin-top: -42px;
+                        right: -300px;
+                }
+
+        tocnavsymb > ul > li:hover > div,
+                tocnavsymb > ul > li > div ul > li:hover > div {
+          display: block;
+          opacity: 1;
+          visibility: visible;
+        }
+
+          tocnavsymb > ul > li > div ul > li,
+                  tocnavsymb > ul > li > div ul > li > div ul > li {
+            display: block;
+                        position: relative;
+          }
+
+            tocnavsymb > ul > li > div ul > li > a,
+                        tocnavsymb > ul > li > div ul > li > div ul > li > a {
+              color: [-TOC-];
+              display: block;
+              padding: 12px 24px;
+              text-decoration: none;
+            }
+
+              tocnavsymb > ul > li > div ul > li:hover > a {
+                background-color: [-TOCHOVER-];
+              }
+              
