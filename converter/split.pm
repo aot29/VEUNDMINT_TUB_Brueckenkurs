@@ -563,10 +563,10 @@ sub generatecollectionmark {
 }
 
 
-# sub getstyleimporttags_new()
+# sub getstyleimporttags()
 # Erzeugt die tags zur Einbindung der Stylesheets
 # Parameter: $lp:   Der Linkpath
-sub getstyleimporttags_new {
+sub getstyleimporttags {
    my ($lp) = @_;
    my @c = split(/ /,$main::paramstylesheets);
   
@@ -590,14 +590,19 @@ sub getstyleimporttags_new {
 
 # sub getheader()
 # Erzeugt das head-div fuer die html-Seiten
-sub getheader_new {
-  my $header = "<div class=\"headleft\">" . $main::headertext_left . "</div><div class=\"headright\">" . $main::headertext_right . "</div><div class=\"headmiddle\">" . $main::headertext_middle . "</div>\n";
-  return $header;
+sub getheader {
+  if ($main::config{layout} eq "tu9_thin") {
+    # Duenner Layout mit nur einem Element
+    return "<div class=\"headmiddle\">" . $main::headertext_middle . "</div>\n";    
+  } else {
+    # Alter layout mit drei Kopfelementen
+    return "<div class=\"headleft\">" . $main::headertext_left . "</div><div class=\"headright\">" . $main::headertext_right . "</div><div class=\"headmiddle\">" . $main::headertext_middle . "</div>\n";
+  }
 }
 
 # sub getfooter()
 # Erzeugt das footer-div fuer die html-Seiten
-sub getfooter_new {
+sub getfooter {
   my $footer = "<div id=\"footerleft\">" . $main::footertext_left . "</div><div id=\"footerright\">" . $main::footertext_right . "</div><div id=\"footermiddle\">" . $main::footertext_middle . "</div>\n";
   return $footer;
 }
@@ -622,7 +627,7 @@ sub translateoldicons {
 
 # Erzeugt das navigations-div fuer die html-Seiten
 # Parameter: Das Seitenobjekt
-sub getnavi_new {
+sub getnavi {
   ($site) = @_;
 
   my $p;
@@ -773,7 +778,7 @@ sub getinputfield {
 
 # Erzeugt das toccaption-div fuer die html-Seiten
 # Parameter: Das Seitenobjekt
-sub gettoccaption_new {
+sub gettoccaption {
   ($p) = @_;
   my $c = "";
 
@@ -1009,18 +1014,19 @@ sub gettoccaption_menustyle {
 
   $c .= "<br /><br />";
   
-  if (1 eq 1) {
+  if ($main::config{layout} eq "tu9_thin") {
     $c .= "<tocnavsymb><ul>";
-    if ($main::startsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::startsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/startsiteb.png\" style=\"border: none\"></a></li>"; }
-    if ($main::datasite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::datasite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/datab.png\" style=\"border: none\"></a></li>"; }
-    if ($main::confsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::confsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/confb.png\" style=\"border: none\"></a></li>"; }
-    if ($main::stestsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::stestsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/stestsiteb.png\" style=\"border: none\"></a></li>"; }
-    if ($main::searchsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::searchsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/searchb.png\" style=\"border: none\"></a></li>"; }
-    if ($main::favorsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::favorsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/favoriteb.png\" style=\"border: none\"></a></li>"; }
-    if ($main::locationsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::locationsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/$main::locationicon\" style=\"border: none\"></a></li>"; }
-    if ($main::replyadress ne "") {
-      $c .= "<li><a href=\"mailto:" . $main::replyadress . "\"><img src=\"" . $site->linkpath() . "../images/mailb.png\" style=\"border: none\"></a></li>"; 
-    }
+    # if ($main::startsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::startsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/startsiteb.png\" style=\"border: none\"></a></li>"; }
+    # data/conf werden von intersite.js gesetzt
+    # if ($main::datasite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::datasite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/datab.png\" style=\"border: none\"></a></li>"; }
+    # if ($main::confsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::confsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/confb.png\" style=\"border: none\"></a></li>"; }
+    # if ($main::stestsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::stestsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/stestsiteb.png\" style=\"border: none\"></a></li>"; }
+    # if ($main::searchsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::searchsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/searchb.png\" style=\"border: none\"></a></li>"; }
+    # if ($main::favorsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::favorsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/favoriteb.png\" style=\"border: none\"></a></li>"; }
+    # if ($main::locationsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::locationsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/$main::locationicon\" style=\"border: none\"></a></li>"; }
+    #     if ($main::replyadress ne "") {
+    #       $c .= "<li><a href=\"mailto:" . $main::replyadress . "\"><img src=\"" . $site->linkpath() . "../images/mailb.png\" style=\"border: none\"></a></li>"; 
+    #     }
     $c .= "</ul></tocnavsymb>";
   } else {
     $c .= "<tocnav><ul>";
@@ -1065,7 +1071,7 @@ sub gettc_nw {
 
 # Erzeugt das content-div fuer die html-Seiten
 # Parameter: Das Seitenobjekt
-sub getcontent_new {
+sub getcontent {
   ($p) = @_;
   my $content = "";
   $content .= "<hr />\n{CONTENT}";
@@ -1168,13 +1174,13 @@ sub printpages {
 		$link = "mpl/" . $p->link();
 		
 
-		my $divhead = updatelinks(getheader_new(),$linkpath);
-		my $divfooter = updatelinks(getfooter_new(),$linkpath);
+		my $divhead = updatelinks(getheader(),$linkpath);
+		my $divfooter = updatelinks(getfooter(),$linkpath);
 		# Kein update erforderlich da $p verwendet wird:
-		my $divnavi = getnavi_new($p); 
-		#my $divtoccaption = gettoccaption_new($p);
+		my $divnavi = getnavi($p); 
+		#my $divtoccaption = gettoccaption($p);
 		my $divtoccaption = gettoccaption_menustyle($p);
-		my $divcontent = getcontent_new($p);
+		my $divcontent = getcontent($p);
 
 		# Makro {XSECTIONPREFIX} expandieren
 		$secprefix = "";
@@ -1398,7 +1404,7 @@ sub printpages {
 		my $text = updatelinks($main::templatempl, $linkpath);
 
 		#Stylesheet einsetzen
-		my $tags = getstyleimporttags_new($linkpath);
+		my $tags = getstyleimporttags($linkpath);
 		$text =~ s/<\/head/$tags<\/head/;
 
    
@@ -1475,6 +1481,7 @@ sub printpages {
                 $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/var docName = \"$dname\";\n\/\/ <JSCRIPTPRELOADTAG>/s ;
                 $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/var fullName = \"$docname\";\n\/\/ <JSCRIPTPRELOADTAG>/s ;
                 $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/var fullNamePath = \"$fullpath\";\n\/\/ <JSCRIPTPRELOADTAG>/s ;
+                $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/var linkPath = \"$linkpath\";\n\/\/ <JSCRIPTPRELOADTAG>/s ;
 
 		#Ausgabe
 		writefile($fullpath, $text);

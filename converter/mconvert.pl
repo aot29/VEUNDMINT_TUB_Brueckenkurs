@@ -491,6 +491,7 @@ print("Converter directory: " . $basis . "\n");
 print("   Source directory: " . $config{source} . "\n");
 print("   Output directory: " . $config{output} . "\n");
 print("   Main module file: " . $rfilename . "\n");
+print("             Layout: " . $config{layout} . "\n");
 print("Generating HTML tree as described in " . $rfilename . "\n");
 
 if ($config{doscorm} eq 1) {

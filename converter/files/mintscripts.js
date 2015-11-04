@@ -1252,7 +1252,7 @@ function finish_button(name) {
   check_all();
   var f = document.getElementById("TESTEVAL"); // Element vom Typ textarea
   var nMinPoints = 1;
- var ratio = 100*nPoints/nMaxPoints;
+ var ratio = 100 * nPoints / nMaxPoints;
   if (f != null) {
     f.innerHTML = "";
     f.innerHTML += "<strong>" + name + " wurde abgeschlossen:</strong><br />";

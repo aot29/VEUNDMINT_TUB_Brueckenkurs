@@ -38,6 +38,8 @@
   text-align: left;
   direction: ltr;
   margin-left: 15px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-size: 16px;
 }
 
 .headright,
@@ -47,12 +49,21 @@
   text-align: right;
   direction: rtl;
   margin-right: 15px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-size: 16px;
 }
 
-.headmiddle,
-#footermiddle
+.headmiddle
 {
   text-align: center;
-  font-size: 120%;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-size: 16px;
+  display: flex;
+}
+
+.footermiddle
+{
+  text-align: center;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-size: 16px;
 }

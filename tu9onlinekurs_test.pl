@@ -1,5 +1,6 @@
 # Globale Einstellungen fuer mconvert.pl und conv.pl (sowie die darin eingebundenen modules)
 
+layout          =>      "tu9_thin",
 testonly        =>      0       , # =1 -> Zahlreiche Funktionen (z.B. Einstellungen) werden deaktiviert
 scormlogin      =>      0       , # =1 -> Alle Anmeldesysteme werden deaktiviert, und Teilnehmer ueber SCORM identifiziert
 nosols          =>      0       , # =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist

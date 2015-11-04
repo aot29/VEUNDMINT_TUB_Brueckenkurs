@@ -227,11 +227,11 @@ tocnav {
               }
               
               
-/* ---------------------------- CSS toc navigation (symbolized) ------------------------------------------------- */
+/* ---------------------------- CSS toc navigation (symbolized, for layout tu9_thin) ------------------------------------------------- */
 
 tocnavsymb {
   background-color: [-TOCFIRSTMENUBACKGROUND-];
-  border: 2px solid [-TOCMENUBORDER-];
+  border: 1px solid [-TOCMENUBORDER-];
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
   color: [-TOC-];
   display: block;
@@ -268,7 +268,7 @@ tocnavsymb {
     }
       
       tocnavsymb > ul > li > a > .caret,
-          tocnavsymb > ul > li > div ul > li > a > .caret {
+      tocnavsymb > ul > li > div ul > li > a > .caret {
         border-top: 4px solid #aaa;
         border-right: 4px solid transparent;
         border-left: 4px solid transparent;
@@ -285,19 +285,20 @@ tocnavsymb {
           transition: color 0.1s linear; 
       }
           
-                tocnavsymb > ul > li > div ul > li > a > .caret {
-                        border-bottom: 4px solid transparent;
-                        border-top: 4px solid transparent;
-                        border-right: 4px solid transparent;
-                        border-left: 4px solid #f2f2f2;
-                        margin: 0 0 0 8px;
-                }
+      tocnavsymb > ul > li > div ul > li > a > .caret {
+        border-bottom: 4px solid transparent;
+        border-top: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-left: 4px solid #f2f2f2;
+        margin: 0 0 0 0px;
+      }
 
       tocnavsymb > ul > li > a {
         color: [-TOC-];
         display: block;
-        line-height: 42px;
-        padding: 0 12px;
+        line-height: 40px;
+        linw-width: 40px;
+        padding: 9px 10px 0px;
         text-decoration: none;
         /* width: 165px; */
       }
@@ -314,9 +315,9 @@ tocnavsymb {
           border-top-color: [-TOCHOVER-];
         }
                 
-                tocnavsymb > ul > li > div ul > li:hover > a > .caret {
-                        border-left-color: [-TOCHOVER-];
-                }
+        tocnavsymb > ul > li > div ul > li:hover > a > .caret {
+          border-left-color: [-TOCHOVER-];
+        }
       
       tocnavsymb > ul > li > div,
           tocnavsymb > ul > li > div ul > li > div {
@@ -338,13 +339,13 @@ tocnavsymb {
         -transition: opacity 0.2s;
       }
           
-                tocnavsymb > ul > li > div ul > li > div {
-                        background-color: [-TOCMENUBACKGROUND-];
-                        border-radius: 0 4px 4px 4px;
-                        box-shadow: inset 2px 0 5px rgba(0,0,0,.15);
-                        margin-top: -42px;
-                        right: -300px;
-                }
+      tocnavsymb > ul > li > div ul > li > div {
+        background-color: [-TOCMENUBACKGROUND-];
+        border-radius: 0 4px 4px 4px;
+        box-shadow: inset 2px 0 5px rgba(0,0,0,.15);
+        margin-top: -42px;
+        right: -300px;
+      }
 
         tocnavsymb > ul > li:hover > div,
                 tocnavsymb > ul > li > div ul > li:hover > div {
@@ -370,4 +371,3 @@ tocnavsymb {
               tocnavsymb > ul > li > div ul > li:hover > a {
                 background-color: [-TOCHOVER-];
               }
-              

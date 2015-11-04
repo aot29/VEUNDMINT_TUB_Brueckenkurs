@@ -193,14 +193,6 @@ function SetupIntersite(clearuser, pulledstr) {
     }
   }
   
-  if (intersitelinks != true) {
-    var links = document.getElementsByClassName("MINTERLINK");
-    for (i=0; i<links.length; i++) {
-      links[i].onclick = function() { opensite(this.href); return false;}
-    }
-    intersitelinks = true;
-  }
-
   if (doScorm == 1) {
     if ((ls == "") || (ls == "CLEARED")) {
       // SCORM neu initialisieren
@@ -364,6 +356,17 @@ function SetupIntersite(clearuser, pulledstr) {
   UpdateSpecials();
   confHandlerISOLoad()
   updateLoginfield();
+  
+  // Muss nach UpdateSpecials aufgerufen werden, da dort hrefs erzeugt werden
+  if (intersitelinks != true) {
+    var links = document.getElementsByClassName("MINTERLINK");
+    for (i=0; i<links.length; i++) {
+      links[i].onclick = function() { opensite(this.href); return false;}
+    }
+    intersitelinks = true;
+  }
+
+  
   if (clearuser == true) {
       pushISO(false);
       ulreply_set(false,"");
@@ -371,42 +374,72 @@ function SetupIntersite(clearuser, pulledstr) {
 }
 
 function updateLoginfield() {
+
+  var s = "";         
+  if (intersiteactive == true) {
+    switch (intersiteobj.login.type) {
+      case 0: {
+        s = "Kein Benutzer angemeldet.";
+        break;
+      }
+      case 1: {
+        s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet.";
+        break;
+      }
+      case 2: {
+        s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet.";
+        break;
+      }
+      case 3: {
+        s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet.";
+        break;
+      }
+      default: {
+        logMessage(CLIENTERROR, "updateLoginfield, wrongtype=" + intersiteobj.login.type);
+        s = "Keine Anmeldung möglich!";
+        break;
+      }
+    }
+  }
+
+  
+  // Kopfzeileninfo eintragen falls im TU9-Layout
+  if (globalLayout == "tu9_thin") {
+    var head = "<a href=\"" + linkPath + "config.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Einstellungen</div></a>" +
+               "<a href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Meine Kursdaten</div></a> ";
+    
+        
+    head += "<div style=\"display:inline-block;flex-grow:100;text-align:center\">" + s + "</div>";
+
+    head += "<a href=\"" + linkPath + "search.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Stichwortliste</div></a>";
+    head += "<a href=\"" + linkPath + "index.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Startseite</div></a>";
+    
+    
+    $('div.headmiddle').html(head);  
+    
+    $('#footerleft').html("<a href=\"mailto:info@ve-und-mint.de\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
+    
+    $('div.headmiddle').css("background-color","rgb(20,210,255)");
+    $('div.headmiddle').css("font-weight","normal");
+    $('div.headmiddle').css("font-size","100%");
+    $('div.headmiddle').css("text-align","left");
+    
+    $('div.tocminbutton').css("background-color","rgb(110,230,255)");
+    $('div.tocminbutton').css("padding","0px 5px 0px");
+    $('div.tocminbutton').css("border","1px solid rgb(5,180,220)");
+
+    $('div.tocminbutton').hover(function() { $(this).css("background-color", "rgb(150,243,255)"); }, function() { $(this).css("background-color", "rgb(110,230,255)"); });
+    
+    
+  }
   
   // Nur-Loginfelder aufbauen falls auf Seite vorhanden
-  var e = document.getElementById("ONLYLOGINFIELD");
+  e = document.getElementById("ONLYLOGINFIELD");
   if (e != null) {
       logMessage(VERBOSEINFO, "Einlogfeld gefunden");
       
       if (intersiteactive == true) {
 
-          var s = "";         
-          switch (intersiteobj.login.type) {
-                case 0: {
-                    s = "Kein Benutzer angemeldet.";
-                    break;
-                }
-
-                case 1: {
-                    s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet.";
-                    break;
-                }
-
-                case 2: {
-                    s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet.";
-                    break;
-                }
-
-                case 3: {
-                    s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet.";
-                    break;
-                }
-                    
-                default: {
-                    logMessage(CLIENTERROR, "updateLoginfield, wrongtype=" + intersiteobj.login.type);
-                    s = "Keine Anmeldung möglich!";
-                    break;
-                }
-          }
         e.innerHTML = s + "<br /><br />";
         e.innerHTML += "<table> <tr><td align=left>Benutzername:</td><td align=left><input id=\"OUSER_LOGIN\" type=\"text\" size=\"18\"></input></td></tr><tr><td align=left>Passwort:</td><td align=left><input id=\"OUSER_PW\" type=\"password\" size=\"18\"></input></td></tr></table><br /><button type =\"button\" onclick=\"userlogin_click();\">Benutzer anmelden</button>";
         e = document.getElementById("OUSER_LOGIN");
@@ -596,7 +629,7 @@ function UpdateSpecials() {
           }
             
           for (j = 0; j < intersiteobj.sites.length; j++) {
-            if ((intersiteobj.sites[j].section == (k+1)) && (intersiteobj.scores[j].siteuxid.slice(0,6) != "VBKMT_")) { 
+            if (intersiteobj.sites[j].section == (k+1)) { 
                 si[k] += intersiteobj.sites[j].points; 
             }
           }
