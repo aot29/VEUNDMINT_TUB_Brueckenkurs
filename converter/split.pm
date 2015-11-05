@@ -953,81 +953,138 @@ sub gettoccaption_menustyle {
 # 
   
   
-  $c .= "<tocnav><ul>";
-  $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/chab.png\" style=\"border: none\"> Kursinhalt</a>";
-  $c .= "<div><ul>\n";
-  
-  my $i1=0; # eigentlich for-schleife, aber hier nur Kursinhalt
+  if ($main::config{layout} eq "tu9_thin") {
+    # Duenner TU9-Layout mit einzelnen Aufklappunterpunkten
+    $c .= "<tocnavsymb><ul>";
+    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/chab.png\" style=\"border: none\"> Kursinhalt</a>";
+    $c .= "<div><ul>\n";
+   
+    my $i1 = 0; # eigentlich for-schleife, aber hier nur Kursinhalt
     $p1 = $pages1[$i1];
     if ($p1->{ID}==$site->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
     $attr = "";
     $ff = $i1 + 1;
 
-      # Fachbereiche ohne Nummern anzeigen
-      $ti = $p1->{TITLE};
-      $ti =~ s/([12345] )(.*)/$2/ ;
-      # $c .= "<li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p1->link() . ".{EXT}\">" . $ti . "</a>\n";
+    # Fachbereiche ohne Nummern anzeigen
+    $ti = $p1->{TITLE};
+    $ti =~ s/([12345] )(.*)/$2/ ;
+    # $c .= "<li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p1->link() . ".{EXT}\">" . $ti . "</a>\n"; 
 
-      my @pages2 = @{$p1->{SUBPAGES}};
-      my $i2;
-      my $n2 = $#pages2 + 1;
-      # print "TOC:   lvl2 hat $n2 Eintraege\n";
-      if ($n2 > 0) {
-	# $c .= "  <div><ul>\n";
-	for ( $i2=0; $i2 < $n2; $i2++ ) {
-	  my $p2 = $pages2[$i2];
-	  $ti = $p2->{TITLE};
-	  $ti =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/$2\.$3/ ;
-	  if ($p2->{ID}==$site->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
-	  $attr = "";
-	  $c .= "  <li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p2->link() . ".{EXT}\">" . $ti . "</a>\n";
-	  if ($fsubi ne -1) {
-	    { # Untereintraege immer einfuegen im neuen Stil
-	    # if ($fsubi == $p2->{ID}) {
-	      my @pages3 = @{$p2->{SUBPAGES}};
-	      my $i3;
-	      my $n3 = $#pages3 + 1;
-	      # print "TOC:     lvl3 hat $n3 Eintraege\n";
-	      if ($n3 > 0) {
-		$c .= "    <div><ul>\n";
-		for ( $i3=0; $i3 < $n3; $i3++ ) {
-		  my $p3 = $pages3[$i3];
-		  if (($site->{LEVEL}==$main::contentlevel) and ($p3->{ID}==$site->{PARENT}->{ID})) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
-		  $attr = "";
-		  $c .= "    <li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p3->link() . ".{EXT}\">" . $p3->{NR}.$p3->{TITLE} . "</a></li>\n";
-		}
-		$c .= "    </ul></div>\n"; # level3-ul
-	      }
-	    } # if subsection id ist aktuell
-	  } # if subsection notwendig
-	  $c .= "  </li>\n";
-	}
-	# $c .= "  </ul></div>\n"; # level2-ul
+    my @pages2 = @{$p1->{SUBPAGES}};
+    my $i2;
+    my $n2 = $#pages2 + 1;
+    if ($n2 > 0) {
+      # $c .= "  <div><ul>\n";
+      for ( $i2=0; $i2 < $n2; $i2++ ) {
+        my $p2 = $pages2[$i2];
+        # $ti = $p2->{TITLE};
+        # $ti =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/$2\.$3/ ;
+        $ti = $i2;
+        my $selected = 0;
+        # pruefen ob Knoten oder oberknoten der aktuell auszugeben Seite ($site) das $p2 ist
+        my $test = $site;
+        while ($test->{PARENT} != 0) {
+          if ($p2->{ID} == $test->{ID}) { $selected = 1; }
+          $test = $test->{PARENT};
+        }
+        # Stil der tocminbuttons wird in intersite.js gesetzt
+        $c .= "  <li><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p2->link() . ".{EXT}\"><div class =\"tocminbutton\">" . "Kapitel " . ($ti + 1) . "</div></a>\n";
+        if ($fsubi ne -1) {
+          # Untereintraege immer einfuegen im neuen Stil
+          # if ($fsubi == $p2->{ID}) {
+          my @pages3 = @{$p2->{SUBPAGES}};
+          my $i3;
+          my $n3 = $#pages3 + 1;
+          # print "TOC:     lvl3 hat $n3 Eintraege\n";
+          if ($n3 > 0) {
+            $c .= "    <div><ul>\n";
+            for ( $i3 = 0; $i3 < $n3; $i3++ ) {
+              my $p3 = $pages3[$i3];
+              if ($selected == 1) {
+                my $tsec = $p3->{NR}.$p3->{TITLE};
+                $tsec =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/&nbsp;$1\.$2: / ;
+                
+                my @pages4 = @{$p3->{SUBPAGES}};
+                my $a;
+                for ($a = 0; $a <= $#pages4; $a++) {
+                  my $p4 = $pages4[$a];
+                  $tsec .= "<li><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p4->link() . ".{EXT}\"><div style=\"\" class=\"xcontentsymb\">" . "A" . "</div></a></li>\n";
+                }
+                
+                
+                $c .= "    <li><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p3->link() . ".{EXT}\">" . $tsec . "</a></li>\n";
+              }
+            }
+            $c .= "    </ul></div>\n"; # level3-ul
+          }
+        } # if subsection notwendig
+        $c .= "  </li>\n";
       }
-      $c .= "\n";
-      # $c .= "<br clear='all'/>"; 
+    }
+    $c .= "\n";
+    $c .= "</ul></div>";
+    $c .= "</li>";
+    $c .= "</ul></tocnavsymb>"; # level1-ul
+  } else {
+    # Alter Layout mit aufklapp-Unterpunkten auf oberster Ebene  
+    $c .= "<tocnav><ul>";
+    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/chab.png\" style=\"border: none\"> Kursinhalt</a>";
+    $c .= "<div><ul>\n";
+   
+    my $i1=0; # eigentlich for-schleife, aber hier nur Kursinhalt
+    $p1 = $pages1[$i1];
+    if ($p1->{ID}==$site->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
+    $attr = "";
+    $ff = $i1 + 1;
 
-  $c .= "</ul></div>";
-  $c .= "</li>";
-  
-  $c .= "</ul></tocnav>"; # level1-ul
+    # Fachbereiche ohne Nummern anzeigen
+    $ti = $p1->{TITLE};
+    $ti =~ s/([12345] )(.*)/$2/ ;
+    # $c .= "<li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p1->link() . ".{EXT}\">" . $ti . "</a>\n"; 
 
+    my @pages2 = @{$p1->{SUBPAGES}};
+    my $i2;
+    my $n2 = $#pages2 + 1;
+    if ($n2 > 0) {
+      # $c .= "  <div><ul>\n";
+      for ( $i2=0; $i2 < $n2; $i2++ ) {
+        my $p2 = $pages2[$i2];
+        $ti = $p2->{TITLE};
+        $ti =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/$2\.$3/ ;
+        if ($p2->{ID}==$site->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
+        $attr = "";
+        $c .= "  <li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p2->link() . ".{EXT}\">" . $ti . "</a>\n";
+        if ($fsubi ne -1) {
+          # Untereintraege immer einfuegen im neuen Stil
+          # if ($fsubi == $p2->{ID}) {
+          my @pages3 = @{$p2->{SUBPAGES}};
+          my $i3;
+          my $n3 = $#pages3 + 1;
+          # print "TOC:     lvl3 hat $n3 Eintraege\n";
+          if ($n3 > 0) {
+            $c .= "    <div><ul>\n";
+            for ( $i3=0; $i3 < $n3; $i3++ ) {
+              my $p3 = $pages3[$i3];
+              if (($site->{LEVEL}==$main::contentlevel) and ($p3->{ID}==$site->{PARENT}->{ID})) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
+              $attr = "";
+              $c .= "    <li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p3->link() . ".{EXT}\">" . $p3->{NR}.$p3->{TITLE} . "</a></li>\n";
+            }
+            $c .= "    </ul></div>\n"; # level3-ul
+          }
+        } # if subsection notwendig
+        $c .= "  </li>\n";
+      }
+    }
+    $c .= "\n";
+    $c .= "</ul></div>";
+    $c .= "</li>";
+    $c .= "</ul></tocnav>"; # level1-ul
+  }
+    
   $c .= "<br /><br />";
   
   if ($main::config{layout} eq "tu9_thin") {
-    $c .= "<tocnavsymb><ul>";
-    # if ($main::startsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::startsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/startsiteb.png\" style=\"border: none\"></a></li>"; }
-    # data/conf werden von intersite.js gesetzt
-    # if ($main::datasite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::datasite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/datab.png\" style=\"border: none\"></a></li>"; }
-    # if ($main::confsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::confsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/confb.png\" style=\"border: none\"></a></li>"; }
-    # if ($main::stestsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::stestsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/stestsiteb.png\" style=\"border: none\"></a></li>"; }
-    # if ($main::searchsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::searchsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/searchb.png\" style=\"border: none\"></a></li>"; }
-    # if ($main::favorsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::favorsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/favoriteb.png\" style=\"border: none\"></a></li>"; }
-    # if ($main::locationsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::locationsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/$main::locationicon\" style=\"border: none\"></a></li>"; }
-    #     if ($main::replyadress ne "") {
-    #       $c .= "<li><a href=\"mailto:" . $main::replyadress . "\"><img src=\"" . $site->linkpath() . "../images/mailb.png\" style=\"border: none\"></a></li>"; 
-    #     }
-    $c .= "</ul></tocnavsymb>";
+    # Symbole komplett in Kopfleiste und von intersite.js erzeugt
   } else {
     $c .= "<tocnav><ul>";
     if ($main::startsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::startsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/startsiteb.png\" style=\"border: none\"> Einführung</a></li>"; }

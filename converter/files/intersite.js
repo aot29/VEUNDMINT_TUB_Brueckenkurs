@@ -375,23 +375,24 @@ function SetupIntersite(clearuser, pulledstr) {
 
 function updateLoginfield() {
 
-  var s = "";         
+  var s = "";
+  
   if (intersiteactive == true) {
     switch (intersiteobj.login.type) {
       case 0: {
-        s = "Kein Benutzer angemeldet.";
+        s = "Kein Benutzer angemeldet";
         break;
       }
       case 1: {
-        s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet.";
+        s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet";
         break;
       }
       case 2: {
-        s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet.";
+        s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         break;
       }
       case 3: {
-        s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet.";
+        s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         break;
       }
       default: {

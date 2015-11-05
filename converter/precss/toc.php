@@ -230,7 +230,7 @@ tocnav {
 /* ---------------------------- CSS toc navigation (symbolized, for layout tu9_thin) ------------------------------------------------- */
 
 tocnavsymb {
-  background-color: [-TOCFIRSTMENUBACKGROUND-];
+  background-color: rgb(20,210,255);
   border: 1px solid [-TOCMENUBORDER-];
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
   color: [-TOC-];
@@ -248,15 +248,17 @@ tocnavsymb {
     margin: 0;
     padding: 0;
     list-style-type: disc;
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
     list-style-position: inside;
   }
 
     tocnavsymb ul li {
       display: inline-block;
       list-style-type: none;
+      color: #000000;
+      width: 100%; 
   
   
   
@@ -266,7 +268,23 @@ tocnavsymb {
         -o-transition: all 0.2s;
         transition: all 0.2s; 
     }
-      
+
+    tocnavsymb ul li ul li {
+      display: inline-block;
+      list-style-type: none;
+      color: #FFFFFF;
+  
+  
+      -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        transition: all 0.2s; 
+    }
+    
+
+    
+    /*
       tocnavsymb > ul > li > a > .caret,
       tocnavsymb > ul > li > div ul > li > a > .caret {
         border-top: 4px solid #aaa;
@@ -300,7 +318,6 @@ tocnavsymb {
         linw-width: 40px;
         padding: 9px 10px 0px;
         text-decoration: none;
-        /* width: 165px; */
       }
 
         tocnavsymb > ul > li:hover {
@@ -354,6 +371,12 @@ tocnavsymb {
           visibility: visible;
         }
 
+        tocnavsymb > ul > li > div ul {
+            columns: 2;
+            -webkit-columns: 2;
+            -moz-columns: 2;
+        }
+        
           tocnavsymb > ul > li > div ul > li,
                   tocnavsymb > ul > li > div ul > li > div ul > li {
             display: block;
@@ -371,3 +394,4 @@ tocnavsymb {
               tocnavsymb > ul > li > div ul > li:hover > a {
                 background-color: [-TOCHOVER-];
               }
+*/

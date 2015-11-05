@@ -45,9 +45,9 @@ Diese wird gelesen als ``$\R$ ohne $0$''. Eine weitere Schreibweise für diese Me
 \]
 Genauso kann man aus beliebigen anderen Mengen einzelne Zahlen entfernen. So beinhaltet etwa die Menge
 \[
- [1,3)\setminus\{2\},
+ [1;3)\setminus\{2\},
 \]
-alle Zahlen aus dem halboffenen Intervall $[1,3)$ außer der Zahl $2$:
+alle Zahlen aus dem halboffenen Intervall $[1;3)$ außer der Zahl $2$:
 
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -2552,7 +2552,9 @@ handelt es sich bei der Funktion um eine \modstextbf{Exponentialfunktion}.
 Aus der graphischen Darstellung können wir die gesuchte Anzahl an Bakterien schon etwas genauer ablesen. Aber für die
 exakte Angabe benötigen wir die Abbildungsvorschrift, die hinter dem Graphen aus der Abbildung steht und die wir hier
 zunächst nur angeben:
-$$p: [0;\infty) \longrightarrow (0;\infty) \;\text{mit}\; t \longmapsto p(t) = 500 \cdot 2^{(t/13)}$$
+$$
+p: [0;\infty) \longrightarrow (0;\infty) \;\text{mit}\; t \longmapsto p(t) = 500 \cdot 2^{(t/13)}
+$$
 (In Aufgabe \MRef{M06_bsp_bak_pop_exercise} werden wir diesen funktionalen Zusammenhang begründen.)\\
 Damit erhalten wir für $t = 75$ (gemessen in Minuten) den Funktionswert
 $$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot 54,539545 \approx 27270$$
@@ -2568,9 +2570,11 @@ Also leben nach $75$ Minuten $27270$ Bakterien in der fraglichen Population.
 Im vorangegangen \MSRef{M06_bsp_bak_pop}{Beispiel} tritt eine \modstextbf{Exponentialfunktion} zur Basis $a = 2$ auf, die Veränderliche - im
 Beispiel $t$ - erscheint im Exponenten. Wir wollen nun die allgemeine Abbildungvorschrift für Exponentialfunktionen
 zu einer beliebigen Basis $a$ angeben; dabei setzen wir allerdings $a > 0$ voraus:
-$$\begin{array}{rrcl}
+$$
+\begin{array}{rrcl}
  f: & \R & \longrightarrow & \R^+ \\ & x & \longmapsto & f(x) = f_0 \cdot a^{\lambda x}
-\end{array}$$
+\end{array}
+$$
 Dabei bezeichnen $f_0$ und $\lambda$ sogenannte Parameter der Exponentialfunktion, auf die wir weiter
 unten eingehen werden.
 
@@ -2648,9 +2652,11 @@ $\lambda < 0$).
  
  
  Betrachten wir also - zunächst ohne irgendwelche zusätzlichen Parameter - den Graphen \modstextbf{der} Exponentialfunktion,
- $$\begin{array}{rrcl}
+ $$
+ \begin{array}{rrcl}
  g: & \R & \longrightarrow & \R^+ \\ & x & \longmapsto & g(x) = e^x \; \; \; ,
- \end{array}$$
+ \end{array}
+ $$
  wegen der Basis $e$ auch \MEntry{$e$-Funktion}{e-Funktion} oder \MEntry{natürliche Exponentialfunktion}{Exponentialfunktion (natürlich)} genannt:
  \begin{center}
  \MUGraphicsSolo{e_fkt.png}{scale=1}{width:400px}
@@ -2697,9 +2703,11 @@ $\lambda < 0$).
  
  \modstextbf{Allgemeine $e$-Funktionen} enthalten die bereits in Unterabschnitt \MRef{M06_allgem_exp_fkt} eingeführten
  Parameter $f_0$ und $\lambda$; ihre funktionale Gestalt sieht also folgendermaßen aus:
- $$\begin{array}{rrcl}
+ $$
+ \begin{array}{rrcl}
   f: & \R & \longrightarrow & \R^+ \\ & x & \longmapsto & f(x) = f_0 \cdot e^{\lambda x} \; \; \; ,
- \end{array}$$
+ \end{array}
+ $$
  Wiederum repräsentiert $f_0$ die Möglichkeit von $1$ verschiedener Start- oder Anfangswerte, und der Faktor
  $\lambda$ im Exponenten gestattet unterschiedlich starke (positive oder negative) Wachstumsraten. Wir wollen
  dies abschließend an einem Beispiel verdeutlichen:
@@ -2751,9 +2759,11 @@ $\lambda < 0$).
 \MDeclareSiteUXID{VBKM06_Logarithmusfunktion}
 
 In Abschnitt \MRef{M06_e_fkt} haben wir beim Studium der $e$-Funktion,
- $$\begin{array}{rrcl} g : & \R & \longrightarrow & \R^+ \\
+ $$
+ \begin{array}{rrcl} g : & \R & \longrightarrow & \R^+ \\
  & x & \longmapsto & g(x) = e^x  \; \; \; ,
- \end{array}$$
+ \end{array}
+ $$
  insbesondere auf eine sehr wichtige Eigenschaft der natürlichen Exponentialfunktion hingewiesen, nämlich dass diese
  Funktion streng monoton wachsend ist. Spiegelt man den Graph der Funktion an der Winkelhalbierenden zwischen dem ersten und dritten Quadranten,
  so erhält man den Graphen der natürlichen Logarithmusfunktion - und versieht sie mit einem eigenen Symbol, nämlich $\ln$:
@@ -2922,9 +2932,11 @@ $$\begin{array}{rcccccl}
   \MUGraphicsSolo{sin_fkt.png}{scale=1}{width:400px}
  \end{center}
  Das voranstehende Schaubild gibt den Graphen der Sinusfunktion,
- $$\begin{array}{rrcl}
-  \sin : & \R & \longrightarrow & [- 1, + 1] \\ & \alpha & \longmapsto & \sin(\alpha) \; \; \; ,
- \end{array}$$
+ $$
+ \begin{array}{rrcl}
+  \sin : & \R & \longrightarrow & [- 1; + 1] \\ & \alpha & \longmapsto & \sin(\alpha) \; \; \; ,
+ \end{array}
+ $$
  wieder. Allerdings haben wir auf der Querachse ($\alpha$-Achse) den Winkel $\alpha$ nicht - wie in der bisherigen
  Diskussion - im Gradmaß aufgetragen, sondern wir haben das in diesem Zusammenhang üblichere
  \MSRef{VBKM05_Bogenmass}{Bogenmaß} verwendet.
@@ -2947,10 +2959,12 @@ $$\begin{array}{rcccccl}
  oder abgemildert, die \glqq Schnelligkeit{\grqq} oder \glqq Dichte{\grqq} der Auf- und Abbewegungen durch einen
  \modstextbf{frequenzartigen} Faktor $a$ beeinflusst und der gesamte Verlauf des Graphen kann mit einer \modstextbf{Verschiebekonstanten}
  $b$ nach rechts oder links verrückt werden. Die \modstextbf{allgemeine Sinusfunktion} besitzt daher folgende Gestalt:
- $$\begin{array}{rrcl}
-  f : & \R & \longrightarrow & [- A, + A] \\
+ $$
+ \begin{array}{rrcl}
+  f : & \R & \longrightarrow & [- A; + A] \\
   & x & \longmapsto & f(x) = A \, \sin (a x + b)  
- \end{array}$$
+ \end{array}
+ $$
  \begin{MExample}
   \MLabel{M06_Fadenpendel}
   Beim Fadenpendel schwingt eine kleine schwere Masse im Gravitationsfeld der Erde an einem langen dünnen Faden, der z.B. fest
@@ -2978,9 +2992,11 @@ $$\begin{array}{rcccccl}
  der Winkel $\alpha$ im Bild als Längen der Strecken $\overline{A C}$ auftreten. Bewegen wir wie zuvor den Punkt $B$ 
  \modstextbf{im Gegenuhrzeigersinn} gleichmäßig um den Kreis und variieren so den Winkel $\alpha$, erhalten wir letztlich die
  \modstextbf{Kosinusfunktion}:
- $$\begin{array}{rrcl}
-  \cos : & \R & \longrightarrow & [- 1, + 1] \\ & \alpha & \longmapsto & \cos(\alpha)
- \end{array}$$
+ $$
+ \begin{array}{rrcl}
+  \cos : & \R & \longrightarrow & [- 1; + 1] \\ & \alpha & \longmapsto & \cos(\alpha)
+ \end{array}
+ $$
  \begin{center}
   \MUGraphicsSolo{cos_fkt.png}{scale=1}{width:400px}
  \end{center}
@@ -3018,10 +3034,12 @@ $$\begin{array}{rcccccl}
  zusätzliche Freiheiten in Form von Parametern auftauchen (\modstextbf{Amplitudenfaktor} $B$, \modstextbf{Frequenzfaktor} $c$ sowie
  \modstextbf{Verschiebekonstante} $d$); auf diese Art und Weise eröffnet sich wiederum die Möglichkeit, den Funktionsverlauf an
  unterschiedliche Situationen (in Anwendungsbeispielen) anzupassen:
- $$\begin{array}{rrcl}
-  g : & \R & \longrightarrow & [- A, + A] \\
+ $$
+ \begin{array}{rrcl}
+  g : & \R & \longrightarrow & [- A; + A] \\
   & x & \longmapsto & g(x) = B \, \cos (c x + d)  
- \end{array}$$
+ \end{array}
+ $$
  \begin{MExercise}
   In Beispiel \MRef{M06_Fadenpendel} haben wir das Fadenpendel andiskutiert. Insbesondere kann man den zeitlichen Verlauf
   der Pendelauslenkung $\varphi$ unter den Voraussetzungen bestimmen, dass die Schwingungsdauer $T$ gerade $\pi$ Sekunden beträgt,
@@ -3056,10 +3074,12 @@ $$\begin{array}{rcccccl}
  $\sin/\cos$ Null. 
  Dazwischen sind alle reellen Werte möglich, daher ist $W_{\tan} = \R$. Insgesamt ergibt sich für den Graphen
  der Tangensfunktion
- $$\begin{array}{rrcl}
+ $$
+ \begin{array}{rrcl}
   \tan : & \R \setminus \{ \Mtfrac{k}{2} \cdot \pi; k \in \Z \} & \longrightarrow & \R \\
   & \alpha & \longmapsto & \tan(\alpha)
- \end{array}$$
+ \end{array}
+ $$
  folgendes Bild:
  \begin{center}
   \MUGraphicsSolo{tan_fkt.png}{scale=1}{width:400px}

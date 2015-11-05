@@ -7,7 +7,7 @@
 # SUBPAGES		array, Liste der subsections
 # LEVEL			integer, Nummer der Ebene
 # ISCHAPTER		boolean, Kapitel oder Section
-# PARENT		obj, Referenz auf übergeordnetes Objekt
+# PARENT		obj, Referenz auf übergeordnetes Objekt, 0 falls Wurzel
 # ROOT			obj, Referenz auf oberstes Objekt
 # NEXT			obj, Referenz auf naechtes Objekt
 # PREV			obj, Referenz auf vorheriges Objekt
