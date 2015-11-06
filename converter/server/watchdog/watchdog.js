@@ -33,38 +33,6 @@ var freespace = require('freespace-nix');
 var stream = require('stream');
 var base64 = require('js-base64').Base64;
 
-// initialize log rotation
-var logrotateStream = require('logrotate-stream');
-if (config.logfile && (typeof config.logfile == 'object')) {
-  //create readable stream, then pipe it to a logrotated stream
-  var logStream = new stream.PassThrough;
-  var logPipe = logrotateStream(config.logfile);
-  logStream.pipe(logPipe);
-
-  //register error handlers
-  function logWriteFailed(error) {
-    errorLog("ERROR: Failed writing to log file'" + config.logfile.file + "': " + error);
-  }
-  logPipe.on('error', logWriteFailed);
-  logStream.on('error', logWriteFailed);
-}
-if (config.errorlog && (typeof config.errorlog == 'object')) {
-  //create readable stream, then pipe it to a logrotated stream
-  var errorlogStream = new stream.PassThrough;
-  var errorlogPipe = logrotateStream(config.errorlog);
-  errorlogStream.pipe(errorlogPipe);
-
-  //register error handlers
-  function errorlogWriteFailed(error) {
-    errorLog("ERROR: Failed writing to log file'" + config.errorlog.file + "': " + error);
-  }
-  errorlogStream.on('error', errorlogWriteFailed);
-  errorlogPipe.on('error', errorlogWriteFailed);
-}
-
-
-
-
 /*
  * Deobfuscate mailer password and username
  */
@@ -89,6 +57,40 @@ try {
   mailqueue = {};
 }
 
+
+// initialize log rotation
+var logrotateStream = require('logrotate-stream');
+if (config.logfile && (typeof config.logfile == 'object')) {
+  //create readable stream, then pipe it to a logrotated stream
+  var logStream = new stream.PassThrough;
+  var logPipe = logrotateStream(config.logfile);
+  logStream.pipe(logPipe);
+
+  //register error handlers
+  function logWriteFailed(error) {
+    var errorMessage = "ERROR: Failed writing to log file'" + config.logfile.file + "': " + error;
+    errorLog(errorMessage);
+    queueMail(0, errorMessage);
+  }
+  logPipe.on('error', logWriteFailed);
+  logStream.on('error', logWriteFailed);
+}
+if (config.errorlog && (typeof config.errorlog == 'object')) {
+  //create readable stream, then pipe it to a logrotated stream
+  var errorlogStream = new stream.PassThrough;
+  var errorlogPipe = logrotateStream(config.errorlog);
+  errorlogStream.pipe(errorlogPipe);
+
+  //register error handlers
+  function errorlogWriteFailed(error) {
+    var errorMessage = "ERROR: Failed writing to log file'" + config.errorlog.file + "': " + error;
+    errorLog(errorMessage);
+    queueMail(0, errorMessage);
+  }
+  errorlogStream.on('error', errorlogWriteFailed);
+  errorlogPipe.on('error', errorlogWriteFailed);
+}
+
 //log to logfile
 function log(message) {
   process.stdout.write(message + '\n');
@@ -107,6 +109,23 @@ function errorLog(message) {
   if (errorlogStream instanceof stream.PassThrough) {
     errorlogStream.write(message + '\n');
   }
+}
+
+//add a message to the mail queue, if timestamp is 0, the current time is used
+function queueMail(timestamp, message) {
+  if (message == "") {
+    return;
+  }
+  timestamp = (timestamp == 0) ? Math.round(Date.now() / 1000) : timestamp;
+
+  if (typeof config.email === 'object') {
+    if (mailqueue[timestamp]) { //if a mail with this timestamp is already queued, append to it
+      mailqueue[timestamp] += '\n' + message;
+    } else {
+      mailqueue[timestamp] = message;
+    }
+  }
+  sendMails();
 }
 
 //send emails
@@ -204,11 +223,7 @@ function timeout(passedResult) {
     }
   );
 
-  if ((typeof config.email === "object") && (result.email != "")) {
-    mailqueue[result.timestamp] = result.email;
-  }
-
-  sendMails();
+  queueMail(result.timestamp, result.email);
 
   log(JSON.stringify(result));
 }
