@@ -117,8 +117,18 @@ module.exports = {
   diskusage: [
     {path: './', notify_percentage: 80}
   ],
-  logfile: '/opt/watchdog/log',
-  errorlog: '/opt/watchdog/errorlog',
+  logfile: {
+    file: '/opt/watchdog/log',
+    size: '1M',
+    keep: 3,
+    compress: true
+  },
+  errorlog: {
+    file: '/opt/watchdog/errorlog',
+    size: '1M',
+    keep: 3,
+    compress: true
+  },
   mailqueue: '/opt/watchdog/mailqueue.json', //list of mails that remain to be sent
   //timeout in seconds
   timeout: 20,

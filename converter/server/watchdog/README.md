@@ -87,6 +87,7 @@ Watchdog performs checks on the availability of services in regular intervals. I
  - if sending an email fails, it will be queued so that it can be tried again later
 * check if a request takes too long
 * notify when disk usage exceeds a given amount
+* logfile rotation
 
 Output
 ------
@@ -180,8 +181,18 @@ module.exports = {
   ]
   //file to append the output to (additional to stdout)
   //this doesn't log error messages
-  logfile: '/opt/watchdog/log', //optional
-  errorlog: '/opt/watchdog/errorlog', //optional
+  logfile: {
+    file: '/opt/watchdog/log', //optional
+    size: '1M', //rotate log file when this size is reached
+    keep: '3', //keep 3 rotations
+    compress: true //gzip compression
+  },
+  errorlog: {
+    file: '/opt/watchdog/errorlog', //optional
+    size: '1M',
+    keep: 3,
+    compress: true
+  },
   mailqueue: 'mailqueue.json', //list of mails that remain to be sent
   //timeout in seconds
   timeout: 10,

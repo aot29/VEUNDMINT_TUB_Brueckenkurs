@@ -30,6 +30,36 @@ var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
 var fs = require('fs');
 var freespace = require('freespace-nix');
+var stream = require('stream');
+
+// initialize log rotation
+var logrotateStream = require('logrotate-stream');
+if (config.logfile && (typeof config.logfile == 'object')) {
+  //create readable stream, then pipe it to a logrotated stream
+  var logStream = new stream.PassThrough;
+  var logPipe = logrotateStream(config.logfile);
+  logStream.pipe(logPipe);
+
+  //register error handlers
+  function logWriteFailed(error) {
+    errorLog("ERROR: Failed writing to log file'" + config.logfile.file + "': " + error);
+  }
+  logPipe.on('error', logWriteFailed);
+  logStream.on('error', logWriteFailed);
+}
+if (config.errorlog && (typeof config.errorlog == 'object')) {
+  //create readable stream, then pipe it to a logrotated stream
+  var errorlogStream = new stream.PassThrough;
+  var errorlogPipe = logrotateStream(config.errorlog);
+  errorlogStream.pipe(errorlogPipe);
+
+  //register error handlers
+  function errorlogWriteFailed(error) {
+    errorLog("ERROR: Failed writing to log file'" + config.errorlog.file + "': " + error);
+  }
+  errorlogStream.on('error', errorlogWriteFailed);
+  errorlogPipe.on('error', errorlogWriteFailed);
+}
 
 
 
@@ -58,32 +88,25 @@ try {
 
 //log to logfile
 function log(message) {
-  if (config.logfile && (typeof config.logfile === 'string')) {
-    fs.appendFile(config.logfile, message + '\n', function (err) {
-      if (err) {
-        errorLog("ERROR: Couldn't write to logfile'" + config.logfile + "'.");
-      }
-    });
-  }
-
   process.stdout.write(message + '\n');
+
+  //write to log file
+  if (logStream instanceof stream.PassThrough) {
+    logStream.write(message + '\n');
+  }
 }
 
 //log an error
 function errorLog(message) {
-  if (config.errorlog && (typeof config.errorlog === 'string')) {
-    process.stderr.write(message + '\n');
-    fs.appendFile(config.errorlog, message + '\n', function (err) {
-      if (err) {
-        process.stderr.write("ERROR: Couldn't write to errorlog '" + config.errorlog + "'\n");
-      }
-    });
-  }
-
   process.stderr.write(message + '\n');
+
+  //write to errorlog file
+  if (errorlogStream instanceof stream.PassThrough) {
+    errorlogStream.write(message + '\n');
+  }
 }
 
-//send an email
+//send emails
 function sendMails() {
   //write a backup of the mailqueue to a file
   fs.writeFile(config.mailqueue, JSON.stringify(mailqueue), function (error) {
