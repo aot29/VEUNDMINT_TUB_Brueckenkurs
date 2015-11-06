@@ -117,8 +117,18 @@ module.exports = {
   diskusage: [
     {path: './', notify_percentage: 80}
   ],
-  logfile: '/opt/watchdog/log',
-  errorlog: '/opt/watchdog/errorlog',
+  logfile: {
+    file: '/opt/watchdog/log',
+    size: '1M',
+    keep: 3,
+    compress: true
+  },
+  errorlog: {
+    file: '/opt/watchdog/errorlog',
+    size: '1M',
+    keep: 3,
+    compress: true
+  },
   mailqueue: '/opt/watchdog/mailqueue.json', //list of mails that remain to be sent
   //timeout in seconds
   timeout: 20,
@@ -131,9 +141,13 @@ module.exports = {
   },
   mailoptions: { //see https://github.com/andris9/nodemailer-smtp-transport#usage
     port: 587, // used by TLS connection
-    host: "smtp.something.org",
+    host: "smtp.kit.edu",
     secure: false, //has to be false when using STARTTLS, see https://github.com/andris9/Nodemailer/issues/440
-    auth: { user: "USERNAME", pass: "PASSWORD" },
+    auth: {
+      base64: true, //enable base 64 encoded username and password (for obfuscation)
+      user: "VVNFUk5BTUU=",
+      pass: "UEFTU1dPUkQ="
+    },
     authMethod: "LOGIN",
     ignoreTLS: false // true -> port should be 25
   }

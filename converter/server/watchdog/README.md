@@ -87,6 +87,22 @@ Watchdog performs checks on the availability of services in regular intervals. I
  - if sending an email fails, it will be queued so that it can be tried again later
 * check if a request takes too long
 * notify when disk usage exceeds a given amount
+* logfile rotation
+* support for obfuscated mail login data (base64 encoded to prevent shoulder surfers from seeing the plain text) **WARNING: THIS IS NO ENCRYPTION!**
+
+Obfuscate password and username
+-------------------------------
+ **WARNING: THIS IS NO ENCRYPTION!**
+
+If you're editing your configuration file and one of your coworkers happens to look on the screen at that time, they might see your plaintext smtp credentials. To prevent this you can use base64 encoded smtp passwords and user names.
+
+To encode the password/username:
+```
+$ echo -n 'password' | base64
+```
+Don't forget to clear your bash history afterwards.
+
+Then just paste the base64 into your configuration file and enable base64.
 
 Output
 ------
@@ -180,8 +196,18 @@ module.exports = {
   ]
   //file to append the output to (additional to stdout)
   //this doesn't log error messages
-  logfile: '/opt/watchdog/log', //optional
-  errorlog: '/opt/watchdog/errorlog', //optional
+  logfile: {
+    file: '/opt/watchdog/log', //optional
+    size: '1M', //rotate log file when this size is reached
+    keep: '3', //keep 3 rotations
+    compress: true //gzip compression
+  },
+  errorlog: {
+    file: '/opt/watchdog/errorlog', //optional
+    size: '1M',
+    keep: 3,
+    compress: true
+  },
   mailqueue: 'mailqueue.json', //list of mails that remain to be sent
   //timeout in seconds
   timeout: 10,
@@ -191,6 +217,18 @@ module.exports = {
     from: "Foo Bar <foo@bar.baz>",
     to: "someone@somewhere.tld",
     subject: "watchdog notification"
+  },
+  mailoptions: { //see https://github.com/andris9/nodemailer-smtp-transport#usage
+    port: 587, // used by TLS connection
+    host: "smtp.somewhere.com",
+    secure: false, //has to be false when using STARTTLS, see https://github.com/andris9/Nodemailer/issues/440
+    auth: {
+      base64: true, //enable base 64 encoded username and password (for obfuscation)
+      user: "VVNFUk5BTUU=",
+      pass: "UEFTU1dPUkQ="
+    },
+    authMethod: "LOGIN",
+    ignoreTLS: false // true -> port should be 25
   }
 };
 ```

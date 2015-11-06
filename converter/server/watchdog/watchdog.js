@@ -30,18 +30,19 @@ var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
 var fs = require('fs');
 var freespace = require('freespace-nix');
-
-
-
+var stream = require('stream');
+var base64 = require('js-base64').Base64;
 
 /*
- * Decrypt mailer password and username
+ * Deobfuscate mailer password and username
  */
-config.mailoptions.auth.user = decrypt(config.mailoptions.auth.user);
-config.mailoptions.auth.pass = decrypt(config.mailoptions.auth.pass);
-  
+if (config.mailoptions.auth.base64 === true) {
+  config.mailoptions.auth.user = base64.decode(config.mailoptions.auth.user);
+  config.mailoptions.auth.pass = base64.decode(config.mailoptions.auth.pass);
+}
+
 var mailTransporter = nodemailer.createTransport(config.mailoptions);
-  
+
 
 /*
  * global mail queue of the form:
@@ -56,34 +57,78 @@ try {
   mailqueue = {};
 }
 
+
+// initialize log rotation
+var logrotateStream = require('logrotate-stream');
+if (config.logfile && (typeof config.logfile == 'object')) {
+  //create readable stream, then pipe it to a logrotated stream
+  var logStream = new stream.PassThrough;
+  var logPipe = logrotateStream(config.logfile);
+  logStream.pipe(logPipe);
+
+  //register error handlers
+  function logWriteFailed(error) {
+    var errorMessage = "ERROR: Failed writing to log file'" + config.logfile.file + "': " + error;
+    errorLog(errorMessage);
+    queueMail(0, errorMessage);
+  }
+  logPipe.on('error', logWriteFailed);
+  logStream.on('error', logWriteFailed);
+}
+if (config.errorlog && (typeof config.errorlog == 'object')) {
+  //create readable stream, then pipe it to a logrotated stream
+  var errorlogStream = new stream.PassThrough;
+  var errorlogPipe = logrotateStream(config.errorlog);
+  errorlogStream.pipe(errorlogPipe);
+
+  //register error handlers
+  function errorlogWriteFailed(error) {
+    var errorMessage = "ERROR: Failed writing to log file'" + config.errorlog.file + "': " + error;
+    errorLog(errorMessage);
+    queueMail(0, errorMessage);
+  }
+  errorlogStream.on('error', errorlogWriteFailed);
+  errorlogPipe.on('error', errorlogWriteFailed);
+}
+
 //log to logfile
 function log(message) {
-  if (config.logfile && (typeof config.logfile === 'string')) {
-    fs.appendFile(config.logfile, message + '\n', function (err) {
-      if (err) {
-        errorLog("ERROR: Couldn't write to logfile'" + config.logfile + "'.");
-      }
-    });
-  }
-
   process.stdout.write(message + '\n');
+
+  //write to log file
+  if (logStream instanceof stream.PassThrough) {
+    logStream.write(message + '\n');
+  }
 }
 
 //log an error
 function errorLog(message) {
-  if (config.errorlog && (typeof config.errorlog === 'string')) {
-    process.stderr.write(message + '\n');
-    fs.appendFile(config.errorlog, message + '\n', function (err) {
-      if (err) {
-        process.stderr.write("ERROR: Couldn't write to errorlog '" + config.errorlog + "'\n");
-      }
-    });
-  }
-
   process.stderr.write(message + '\n');
+
+  //write to errorlog file
+  if (errorlogStream instanceof stream.PassThrough) {
+    errorlogStream.write(message + '\n');
+  }
 }
 
-//send an email
+//add a message to the mail queue, if timestamp is 0, the current time is used
+function queueMail(timestamp, message) {
+  if (message == "") {
+    return;
+  }
+  timestamp = (timestamp == 0) ? Math.round(Date.now() / 1000) : timestamp;
+
+  if (typeof config.email === 'object') {
+    if (mailqueue[timestamp]) { //if a mail with this timestamp is already queued, append to it
+      mailqueue[timestamp] += '\n' + message;
+    } else {
+      mailqueue[timestamp] = message;
+    }
+  }
+  sendMails();
+}
+
+//send emails
 function sendMails() {
   //write a backup of the mailqueue to a file
   fs.writeFile(config.mailqueue, JSON.stringify(mailqueue), function (error) {
@@ -178,11 +223,7 @@ function timeout(passedResult) {
     }
   );
 
-  if ((typeof config.email === "object") && (result.email != "")) {
-    mailqueue[result.timestamp] = result.email;
-  }
-
-  sendMails();
+  queueMail(result.timestamp, result.email);
 
   log(JSON.stringify(result));
 }
@@ -307,19 +348,3 @@ function watch() {
  * included in the 'collection' and therefore are handled like they didn't arrive at all.
  */
 var watcher = setInterval(watch, config.interval * 60 * 1000);
-
-// decryption of text strings
-function decrypt(s) {
-  var c, i;
-  var d = "";
-  for (i = 0; i < s.length; i++) {
-    c = s.charCodeAt(i);
-    if ((c <= 127) && (c >= 32)) {
-      c -= 32;
-      c = (c * 41) % 96;
-      c += 32;
-    }
-    d += String.fromCharCode(c);
-  }
-  return d;
-}
