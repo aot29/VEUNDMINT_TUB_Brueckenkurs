@@ -283,6 +283,13 @@ tocnavsymb {
     }
     
 
+    xsymb {
+      display: inline-block;
+      list-style-type: none;
+      color: #FFFFFF;
+      background-color: #000000;
+      
+    }
     
     /*
       tocnavsymb > ul > li > a > .caret,
