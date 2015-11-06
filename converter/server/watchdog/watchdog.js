@@ -31,6 +31,7 @@ var sendmailTransport = require('nodemailer-sendmail-transport');
 var fs = require('fs');
 var freespace = require('freespace-nix');
 var stream = require('stream');
+var base64 = require('js-base64').Base64;
 
 // initialize log rotation
 var logrotateStream = require('logrotate-stream');
@@ -65,13 +66,15 @@ if (config.errorlog && (typeof config.errorlog == 'object')) {
 
 
 /*
- * Decrypt mailer password and username
+ * Deobfuscate mailer password and username
  */
-config.mailoptions.auth.user = decrypt(config.mailoptions.auth.user);
-config.mailoptions.auth.pass = decrypt(config.mailoptions.auth.pass);
-  
+if (config.mailoptions.auth.base64 === true) {
+  config.mailoptions.auth.user = base64.decode(config.mailoptions.auth.user);
+  config.mailoptions.auth.pass = base64.decode(config.mailoptions.auth.pass);
+}
+
 var mailTransporter = nodemailer.createTransport(config.mailoptions);
-  
+
 
 /*
  * global mail queue of the form:
@@ -330,19 +333,3 @@ function watch() {
  * included in the 'collection' and therefore are handled like they didn't arrive at all.
  */
 var watcher = setInterval(watch, config.interval * 60 * 1000);
-
-// decryption of text strings
-function decrypt(s) {
-  var c, i;
-  var d = "";
-  for (i = 0; i < s.length; i++) {
-    c = s.charCodeAt(i);
-    if ((c <= 127) && (c >= 32)) {
-      c -= 32;
-      c = (c * 41) % 96;
-      c += 32;
-    }
-    d += String.fromCharCode(c);
-  }
-  return d;
-}

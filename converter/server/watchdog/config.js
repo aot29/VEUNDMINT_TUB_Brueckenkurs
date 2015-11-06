@@ -141,9 +141,13 @@ module.exports = {
   },
   mailoptions: { //see https://github.com/andris9/nodemailer-smtp-transport#usage
     port: 587, // used by TLS connection
-    host: "smtp.something.org",
+    host: "smtp.kit.edu",
     secure: false, //has to be false when using STARTTLS, see https://github.com/andris9/Nodemailer/issues/440
-    auth: { user: "USERNAME", pass: "PASSWORD" },
+    auth: {
+      base64: true, //enable base 64 encoded username and password (for obfuscation)
+      user: "VVNFUk5BTUU=",
+      pass: "UEFTU1dPUkQ="
+    },
     authMethod: "LOGIN",
     ignoreTLS: false // true -> port should be 25
   }
