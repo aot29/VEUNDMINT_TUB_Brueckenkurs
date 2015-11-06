@@ -377,22 +377,27 @@ function updateLoginfield() {
 
   var s = "";
   
+  var cl = "#FFFFFF";
   if (intersiteactive == true) {
     switch (intersiteobj.login.type) {
       case 0: {
         s = "Kein Benutzer angemeldet";
+        cl = "#E01010";
         break;
       }
       case 1: {
         s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet";
+        cl = "#FFFF10";
         break;
       }
       case 2: {
         s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
+        cl = "#FFFFFF";
         break;
       }
       case 3: {
         s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
+        cl = "#FFFFFF";
         break;
       }
       default: {
@@ -410,34 +415,17 @@ function updateLoginfield() {
                "<a href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Meine Kursdaten</div></a> ";
     
         
-    head += "<div style=\"display:inline-block;flex-grow:100;text-align:center\">" + s + "</div>";
+    head += "<div style=\"color:" + cl + ";display:inline-block;flex-grow:100;text-align:center\">" + s + "</div>";
 
     head += "<a href=\"" + linkPath + "search.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Stichwortliste</div></a>";
     head += "<a href=\"" + linkPath + "index.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Startseite</div></a>";
     
     
-    $('div.headmiddle').html(head);  
-    
+    $('div.headmiddle').html(head);
     $('#footerleft').html("<a href=\"mailto:info@ve-und-mint.de\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
-    
-    $('div.headmiddle').css("background-color","rgb(20,210,255)");
-    $('div.headmiddle').css("font-weight","normal");
-    $('div.headmiddle').css("font-size","100%");
-    $('div.headmiddle').css("text-align","left");
-    
-    $('div.tocminbutton').css("background-color","rgb(110,230,255)");
-    $('div.tocminbutton').css("padding","0px 5px 0px");
-    $('div.tocminbutton').css("border","1px solid rgb(5,180,220)");
     $('div.tocminbutton').hover(function() { $(this).css("background-color", "rgb(150,243,255)"); }, function() { $(this).css("background-color", "rgb(110,230,255)"); });
-    
-    $('div.xsymb').css("background-color","rgb(180,205,255)");
-    $('div.xsymb').css("padding","0px 5px 0px");
-    $('div.xsymb').css("border","1px solid rgb(55,180,220)");
-    $('div.xsymb').css("display","inline-block");
     $('div.xsymb').hover(function() { $(this).css("background-color", "rgb(250,243,255)"); }, function() { $(this).css("background-color", "rgb(180,205,255)"); });
         
-    
-    
   }
   
   // Nur-Loginfelder aufbauen falls auf Seite vorhanden

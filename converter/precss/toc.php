@@ -229,6 +229,19 @@ tocnav {
               
 /* ---------------------------- CSS toc navigation (symbolized, for layout tu9_thin) ------------------------------------------------- */
 
+.xsymb {
+  background-color: rgb(180,205,255);
+  padding: 0px 5px 0px;
+  border: 1px solid rgb(55,180,220);
+  display: inline-block;
+}
+
+.tocminbutton {
+  background-color: rgb(110,230,255);
+  padding: 0px 5px 0px;
+  border: 1px solid rgb(5,180,220);
+}
+
 tocnavsymb {
   background-color: rgb(20,210,255);
   border: 1px solid [-TOCMENUBORDER-];

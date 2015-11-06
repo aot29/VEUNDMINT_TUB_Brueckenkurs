@@ -57,8 +57,11 @@
 {
   text-align: center;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
-  font-size: 16px;
   display: flex;
+  background-color: rgb(20,210,255);
+  font-weight: normal;
+  font-size: 100%;
+  text-align: left;
 }
 
 .footermiddle
@@ -67,3 +70,4 @@
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
   font-size: 16px;
 }
+
