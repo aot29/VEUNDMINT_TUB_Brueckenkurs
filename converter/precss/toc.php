@@ -269,6 +269,8 @@ tocnavsymb {
         transition: all 0.2s; 
     }
 
+    
+    
     tocnavsymb ul li ul li {
       display: inline-block;
       list-style-type: none;
@@ -280,15 +282,6 @@ tocnavsymb {
         -ms-transition: all 0.2s;
         -o-transition: all 0.2s;
         transition: all 0.2s; 
-    }
-    
-
-    xsymb {
-      display: inline-block;
-      list-style-type: none;
-      color: #FFFFFF;
-      background-color: #000000;
-      
     }
     
     /*

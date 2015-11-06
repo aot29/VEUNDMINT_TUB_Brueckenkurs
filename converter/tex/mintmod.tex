@@ -1293,7 +1293,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 \newenvironment{MIntro}{\begin{MUContent}{Einf\"uhrung}{Einf\"uhrung}{genetisch}}{\end{MUContent}}
 \newenvironment{MContent}{\begin{MUContent}{Inhalt}{Inhalt}{beweis}}{\end{MUContent}}
-\newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MUContent}{Aufgaben}{Aufgaben}{aufgb}}{\end{MUContent}}
+\newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MUContent}{Aufgaben}{Aufgaben}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MUContent}}
 
 % #1 = Lesbare Testbezeichnung
 \newenvironment{MTest}[1]{%
@@ -1301,6 +1301,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \ifttm\else\clearpage\fi%
 \addtocounter{MTestSite}{1}%
 \begin{MUContent}{#1}{#1}{STD} % {aufgb}%
+\special{html:<!-- declaretestsymb //-->}
 \begin{MQuestionGroup}%
 \MInTestHeader
 }%

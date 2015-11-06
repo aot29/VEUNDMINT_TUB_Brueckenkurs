@@ -428,8 +428,14 @@ function updateLoginfield() {
     $('div.tocminbutton').css("background-color","rgb(110,230,255)");
     $('div.tocminbutton').css("padding","0px 5px 0px");
     $('div.tocminbutton').css("border","1px solid rgb(5,180,220)");
-
     $('div.tocminbutton').hover(function() { $(this).css("background-color", "rgb(150,243,255)"); }, function() { $(this).css("background-color", "rgb(110,230,255)"); });
+    
+    $('div.xsymb').css("background-color","rgb(120,235,255)");
+    $('div.xsymb').css("padding","0px 5px 0px");
+    $('div.xsymb').css("border","1px solid rgb(5,180,220)");
+    $('div.xsymb').css("display","inline-block");
+    $('div.xsymb').hover(function() { $(this).css("background-color", "rgb(150,243,255)"); }, function() { $(this).css("background-color", "rgb(110,230,255)"); });
+        
     
     
   }

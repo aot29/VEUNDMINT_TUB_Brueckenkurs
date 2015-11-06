@@ -24,7 +24,8 @@
 # DH 2011:
 # MODULID		integer, index in das Feld der Modulid's in vorkurs.pl bzw. direkter Strings
 # DOCNAME		string, Dateiname des zu produzierenden Dokuments ohne Pfad und ohne Endung (z.B. "xcontent3")
-# ICON 			string, Bezeichner des Icons das in der Navigation verwendet wird. Falls "STD" steht wird das Icon nach der ModulID gewaehlt, bei NONE erscheint der Abschnitt nicht in der Navigation
+# ICON                  string, Bezeichner des Icons das in der Navigation verwendet wird. Falls "STD" steht wird das Icon nach der ModulID gewaehlt, bei NONE erscheint der Abschnitt nicht in der Navigation
+# TOCSYMB               string, HTML-Content der im minitoc fuer die section angezeigt wird
 # ID   			integer, eindeutige ID für jedes einzelne Page-Objekt
 # XCONTENT		integer, gibt den content-typ an: 2 = SCONTENT, 1 = XCONTENT, 0 = Unbekannt
 # XPREV			obj, Referenz auf vorhergehende xcontent-subsubsection (nur falls XCONTENT = 1)
@@ -93,6 +94,7 @@ sub new {
 		NR 	  => "1",
 		POS       => "0",
 		ICON      => "STD",   
+		TOCSYMB   => "?",
 		TITLE     => "",
 		TEXT      => "",
 		LINK      => "",

@@ -895,16 +895,6 @@ sub gettoccaption {
   return $c;
 }
 
-# Erzeugt ein Klicksymbol (als HTML-String) fuer ein xcontent-Seitenobjekt
-# Parameter: Das Seitenobjekt
-sub getxsymb {
-  ($p) = @_;
-
-  return "<div class=\"xsymb\">X</div>";
-  
-}
-
-
 # Erzeugt das toccaption-div fuer die html-Seiten im Menu-Style
 # Parameter: Das Seitenobjekt
 sub gettoccaption_menustyle {
@@ -1018,7 +1008,7 @@ sub gettoccaption_menustyle {
                 my $a;
                 for ($a = 0; $a <= $#pages4; $a++) {
                   my $p4 = $pages4[$a];
-                  $tsec .= "<li><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p4->link() . ".{EXT}\">" . getxsymb($site) . "</a></li>\n";
+                  $tsec .= "<a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p4->link() . ".{EXT}\">" . $p4->{TOCSYMB} . "</a>\n";
                 }
                 
                 

@@ -729,6 +729,15 @@ sub langswitch {
                                     $p->{ICON} = $3;
 				    $p->{XCONTENT} = 1;
 
+				    $p->{TOCSYMB} = "I";
+                                    if ($tpcontent =~ m/<!-- declaretestsymb \/\/-->/s ) {
+                                        $p->{TOCSYMB} = "T";
+                                    }
+                                    
+                                    if ($tpcontent =~ m/<!-- declareexcsymb \/\/-->/s ) {
+                                        $p->{TOCSYMB} = "A";
+                                    }
+
 				    # Erzeuge Dokumentweite XVerlinkung der xcontents
 				    $p->{XPREV} = $XIDObj;
 				    if ($XIDObj != -1) {
@@ -841,6 +850,14 @@ sub langswitch {
                                     }
                                     $p->{ICON} = $3;
 				    $p->{XCONTENT} = 2;
+                                    $p->{TOCSYMB} = "I";
+                                    if ($tpcontent =~ m/<!-- declaretestsymb \/\/-->/s ) {
+                                        $p->{TOCSYMB} = "T";
+                                    }
+                                    
+                                    if ($tpcontent =~ m/<!-- declareexcsymb \/\/-->/s ) {
+                                        $p->{TOCSYMB} = "A";
+                                    }
 
                                     $p->{TEXT} = $tpcontent;
 
