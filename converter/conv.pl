@@ -731,13 +731,16 @@ sub langswitch {
 
 				    $p->{TOCSYMB} = "I";
                                     if ($tpcontent =~ m/<!-- declaretestsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "T";
+                                        $p->{TOCSYMB} = "Test";
                                     }
                                     
                                     if ($tpcontent =~ m/<!-- declareexcsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "A";
+                                        $p->{TOCSYMB} = "T";
                                     }
-
+                                    
+                                    $p->{TOCSYMB} = "<div class=\"xsymb\"><tt>" . $p->{TOCSYMB} . "</tt></div>";
+                                    
+                                    
 				    # Erzeuge Dokumentweite XVerlinkung der xcontents
 				    $p->{XPREV} = $XIDObj;
 				    if ($XIDObj != -1) {
@@ -850,14 +853,17 @@ sub langswitch {
                                     }
                                     $p->{ICON} = $3;
 				    $p->{XCONTENT} = 2;
+
                                     $p->{TOCSYMB} = "I";
                                     if ($tpcontent =~ m/<!-- declaretestsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "T";
+                                        $p->{TOCSYMB} = "Test";
                                     }
                                     
                                     if ($tpcontent =~ m/<!-- declareexcsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "A";
+                                        $p->{TOCSYMB} = "T";
                                     }
+                                    
+                                    $p->{TOCSYMB} = "<div class=\"xsymb\"><tt>" . $p->{TOCSYMB} . "</tt></div>";
 
                                     $p->{TEXT} = $tpcontent;
 

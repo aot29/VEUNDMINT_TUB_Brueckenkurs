@@ -1002,7 +1002,9 @@ sub gettoccaption_menustyle {
               my $p3 = $pages3[$i3];
               if ($selected == 1) {
                 my $tsec = $p3->{NR}.$p3->{TITLE};
-                $tsec =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/&nbsp;$1\.$2: / ;
+                $tsec =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/&nbsp;<div class=\"xsymb\">$1\.$2<\/div>&nbsp;&nbsp;/ ;
+                
+                
                 
                 my @pages4 = @{$p3->{SUBPAGES}};
                 my $a;
