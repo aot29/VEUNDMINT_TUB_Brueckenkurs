@@ -422,9 +422,18 @@ function updateLoginfield() {
     
     
     $('div.headmiddle').html(head);
-    $('#footerleft').html("<a href=\"mailto:info@ve-und-mint.de\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
-    $('div.tocminbutton').hover(function() { $(this).css("background-color", "rgb(150,243,255)"); }, function() { $(this).css("background-color", "rgb(110,230,255)"); });
-    $('div.xsymb').hover(function() { $(this).css("background-color", "rgb(250,243,255)"); }, function() { $(this).css("background-color", "rgb(180,205,255)"); });
+    $('#footerleft').html("<a href=\"mailto:admin@ve-und-mint.de\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
+    $('div.tocminbutton').hover(function() { $(this).css("background-color", TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", TOCMINBUTTON); });
+    
+    
+    $('div.xsymb').hover(function() { $(this).css("background-color", XSYMBHOVER); }, function() { $(this).css("background-color", XSYMB); });
+    
+    
+
+    $('.navi > ul > li').each(function(i) {
+      $(this).hover(function() { $(this).css("background-color", TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", TOCMINBUTTON); });
+    });
+
         
   }
   

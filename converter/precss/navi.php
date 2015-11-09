@@ -25,12 +25,14 @@
 .xnprevg,
 .xnnextg
 {
+  background-color: [-TOCMINBUTTON-];
   display: inline-block;
   background-repeat: no-repeat;
   background-position: center top;
-  margin: 5px;
+  margin: 0px;
   min-width: 35px;
   padding-top: 35px;
+  border: 1px solid [-TOCMENUBORDER-];
 }
 
 .navi a

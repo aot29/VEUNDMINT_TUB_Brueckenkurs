@@ -714,18 +714,19 @@ sub getnavi {
 	$icon = $p->{ICON};
 	if ($icon eq "STD") { $icon = "book"; }
 	$icon = translateoldicons($icon);
+	$cap = "&nbsp;" . $p->{CAPTION} . "&nbsp;";
 	if ($icon ne "NONE") {
 	  $icon = "button_" . $icon;
 	  if (($p->{DISPLAY}) and ($site->{LEVEL}==$main::contentlevel)) {
 	    # Knopf fuer Seite normal darstellen
-	    $navi .= "  <li class=\"" . "i$attr$icon" . "\"><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p->link() . ".{EXT}\">" . $p->{CAPTION} . "</a></li>\n";
+	    $navi .= "  <li class=\"" . "i$attr$icon" . "\"><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p->link() . ".{EXT}\">" . $cap . "</a></li>\n";
 	  } else {
 	    if ($site->{LEVEL}!=$main::contentlevel) {
 	      # Keine Navigationsbuttons wenn auf oberer Ebene
 	    } else
 	    {
 	      # Knopf fuer gesperrte Seite ausgrauen und nicht verlinken
-	      $navi .= "  <li class=\"" . "igrey$icon" . "\">" . $p->{CAPTION} . "</li>\n";
+	      $navi .= "  <li class=\"" . "igrey$icon" . "\">" . $cap . "</li>\n";
 	    }
 	  }
 	}
@@ -1137,6 +1138,7 @@ sub getcontent {
   $content .= "<hr />\n"; # </div> entfernt !
   $contentx = $p->gettext();
   $content =~ s/{CONTENT}/$contentx/;
+  
   return $content;	
 }
 

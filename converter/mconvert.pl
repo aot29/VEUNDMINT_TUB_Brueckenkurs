@@ -1330,6 +1330,7 @@ system("php -n grundlagen.php >grundlagen.pcss");
 
 my $cccs = open(CSS, "< grundlagen.pcss") or die "FATAL: Could not open pcss-file";
 my $cccs2 = open(OCSS, "> grundlagen.css") or die "FATAL: Could not create css-file";
+my $cccsJ = open(JCSS, "> colors.js") or die "FATAL: Could not create colors.js-file";
 my @mycss = <CSS>;
 close(CSS);
 
@@ -1337,8 +1338,26 @@ my $fcs = open(FARBEN, "< $colorfile") or die "FATAL: Could not open color file 
 my @farben = <FARBEN>;
 close(FARBEN);
 
-my $row;
+# Farben fuer color.js parsen
+my $jrow = "";
 my $fz;
+foreach $fz (@farben) {
+  if (($fz =~ /=/ ) and (!($fz =~ /#/ ))) {
+    my $pre = "";
+    my $post = "";
+    ($pre,$post) = split(/=/,$fz);
+    $pre =~ s/ //g;
+    $post =~ s/ //g;
+    $post =~ s/\n//g;
+    $post = "\#" . $post;
+    $jrow = "var $pre = \"$post\";\n";
+    print JCSS $jrow;
+  }
+}
+close(JCSS);
+
+# Farben in CSS-Dateien ersetzen
+my $row;
 foreach $row (@mycss) {
   foreach $fz (@farben) {
     if (($fz =~ /=/ ) and (!($fz =~ /#/ )))
@@ -1351,6 +1370,7 @@ foreach $row (@mycss) {
       $post =~ s/\n//g;
       $post = "\#" . $post;
       $row =~ s/\[-$pre-\]/$post/g ;
+      $jrow .= "var $pre = \"\#$post\";\n";
     }
   }
   print OCSS $row;
@@ -1358,6 +1378,7 @@ foreach $row (@mycss) {
 close(OCSS);
 
 system("cp grundlagen.css ../files/css/.");
+system("cp colors.js ../files/.");
 
 # mintmod.tex so veraendern, dass lokale Preamblen und Tagmakros eingebunden werden
 chdir("../tex");
