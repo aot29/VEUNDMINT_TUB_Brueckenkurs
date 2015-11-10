@@ -32,6 +32,8 @@
   margin: 0px;
   min-width: 35px;
   padding-top: 35px;
+  padding-left: 12px;
+  padding-right: 10px;
   border: 1px solid [-TOCMENUBORDER-];
 }
 

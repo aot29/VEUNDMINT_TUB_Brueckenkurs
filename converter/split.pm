@@ -626,6 +626,14 @@ sub translateoldicons {
 
 
 # Erzeugt das navigations-div fuer die html-Seiten
+# Parameter: icon (Klassenname) und Anker (HTML-String der a-Tag enthalten sollte)
+sub createTocButton {
+  ($icon, $anchor) = @_;
+  
+  return "<div class=\"$icon\">" . $anchor . "</div>\n";
+}
+
+# Erzeugt das navigations-div fuer die html-Seiten
 # Parameter: Das Seitenobjekt
 sub getnavi {
   ($site) = @_;
@@ -680,7 +688,7 @@ sub getnavi {
     $icon = $icon . "g";
     $anchor = $ac;
   }
-  $navi .= "<div class=\"$icon\">" . $anchor . "</div>\n";
+  $navi .= createTocButton($icon, $anchor);
 
   # Links auf die subsubsections im gleichen Teilbaum
   $navi .= "<ul>\n";
@@ -714,7 +722,7 @@ sub getnavi {
 	$icon = $p->{ICON};
 	if ($icon eq "STD") { $icon = "book"; }
 	$icon = translateoldicons($icon);
-	$cap = "&nbsp;" . $p->{CAPTION} . "&nbsp;";
+	$cap = $p->{CAPTION};
 	if ($icon ne "NONE") {
 	  $icon = "button_" . $icon;
 	  if (($p->{DISPLAY}) and ($site->{LEVEL}==$main::contentlevel)) {
