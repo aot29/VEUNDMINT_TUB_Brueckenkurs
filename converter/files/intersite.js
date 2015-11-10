@@ -422,7 +422,7 @@ function updateLoginfield() {
 
     head += "<a href=\"" + linkPath + "search.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Stichwortliste</div></a>";
     head += "<a href=\"" + linkPath + "index.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Startseite</div></a>";
-    head += "<button id=\"menubutton\" type=\"button\" onclick=\"toggleNavigation();\"><img style=\"height:" + headheight + "px\" src=\"" + linkPath + "images/ic_menu_black_48px.svg\"></button>";
+    head += "<button id=\"menubutton\" type=\"button\" onclick=\"toggleNavigation();\"><img style=\"width:16px;height:16px\" src=\"" + linkPath + "images/ic_menu_black_48px.svg\"></button>";
     
     $('div.headmiddle').html(head);
     $('#footerleft').html("<a href=\"mailto:admin@ve-und-mint.de\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");

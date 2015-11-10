@@ -215,7 +215,7 @@ sub checkSystem {
   if ($reply =~ m/0\.97\.2/i ) {
     # dia erfolgreich getestet
   } else {
-    print("Program dia (version 0.97.2) not found, dia-compilation will not work");
+    print("Program dia (version 0.97.2) not found, dia-compilation will not work\n");
   }
 
   # Pruefe ob perl installiert ist

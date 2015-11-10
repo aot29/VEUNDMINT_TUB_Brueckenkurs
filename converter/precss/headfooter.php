@@ -4,6 +4,8 @@
   background-repeat: no-repeat;
   background-color: [-TOCMINBUTTON-];
   border: 1px solid [-TOCMINBORDER-];
+  width: 26px;
+  height: 26px;
 }
 #menubutton:hover
 {
