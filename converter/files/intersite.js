@@ -411,15 +411,18 @@ function updateLoginfield() {
   
   // Kopfzeileninfo eintragen falls im TU9-Layout
   if (globalLayout == "tu9_thin") {
+
+    var headheight = $('div.headmiddle').height();
+      
     var head = "<a href=\"" + linkPath + "config.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Einstellungen</div></a>" +
-               "<a href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Meine Kursdaten</div></a> ";
+               "<a href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
     
         
     head += "<div style=\"color:" + cl + ";display:inline-block;flex-grow:100;text-align:center\">" + s + "</div>";
 
     head += "<a href=\"" + linkPath + "search.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Stichwortliste</div></a>";
     head += "<a href=\"" + linkPath + "index.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Startseite</div></a>";
-    
+    head += "<button id=\"menubutton\" type=\"button\" onclick=\"toggleNavigation();\"><img style=\"height:" + headheight + "px\" src=\"" + linkPath + "images/ic_menu_black_48px.svg\"></button>";
     
     $('div.headmiddle').html(head);
     $('#footerleft').html("<a href=\"mailto:admin@ve-und-mint.de\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
@@ -1198,3 +1201,20 @@ function setIntersiteType(t) {
   }
 }
 
+// ---------------------- Funktionen fuer Seitenverhalten/Frames -------------------------------------------
+
+function hideNavigation() {
+  $('div.navi').fadeOut("fast");
+  $('div.toc').fadeOut("fast");
+  $('#content').css("margin-left","0px");
+}
+
+function showNavigation() {
+  $('#content').css("margin-left","220px");
+  $('div.navi').fadeIn("fast");
+  $('div.toc').fadeIn("fast");
+}
+
+function toggleNavigation() {
+    if ($('div.navi').is(":visible")) hideNavigation(); else showNavigation();
+}

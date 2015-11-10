@@ -2,7 +2,7 @@
 
 body
 {
-  max-width: 1000px;
+  /* max-width: 1000px; */
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
   font-size: 16px;
   padding: 0px;
@@ -38,7 +38,7 @@ hr
 {
   position: relative;
   width: 100%;
-  max-width: 1000px;
+  /* max-width: 1000px; */
 }
 
 #fixed

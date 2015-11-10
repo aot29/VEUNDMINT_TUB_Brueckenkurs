@@ -239,7 +239,7 @@ tocnav {
 .tocminbutton {
   background-color: [-TOCMINBUTTON-];
   padding: 0px 5px 0px;
-  border: 1px solid rgb(5,180,220);
+  border: 1px solid [-TOCMINBORDER-];
 }
 
 tocnavsymb {

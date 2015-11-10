@@ -1,3 +1,16 @@
+#menubutton
+{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: [-TOCMINBUTTON-];
+  border: 1px solid [-TOCMINBORDER-];
+}
+#menubutton:hover
+{
+  background-color: [-TOCMINBUTTONHOVER-];
+}
+
+
 .head
 {
   background-color: [-HEADBACKGROUND-];
@@ -15,7 +28,7 @@
   text-align: center;
   width: 100%;
   font-size: 10px;
-  max-width: 1000px;
+  /* max-width: 1000px; */
   color: [-FOOT-];
   background-color: [-FOOTBACKGROUND-];
   padding: 0.2em 0px;
