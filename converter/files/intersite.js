@@ -45,7 +45,7 @@ function getObjName() {
 
 function createIntersiteObj() {
   logMessage(VERBOSEINFO,"New IntersiteObj created");
-  var obj = { active: false, configuration: {}, scores: [], sites: [], login: { type: 0, vname: "", sname: "", username: "", password: "", email: "" } };
+  var obj = { active: false, configuration: {}, syshints: [], scores: [], sites: [], login: { type: 0, vname: "", sname: "", username: "", password: "", email: "" } };
   return obj;
 }
 
@@ -422,22 +422,20 @@ function updateLoginfield() {
 
     head += "<a href=\"" + linkPath + "search.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Stichwortliste</div></a>";
     head += "<a href=\"" + linkPath + "index.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Startseite</div></a>";
-    head += "<button id=\"menubutton\" type=\"button\" onclick=\"toggleNavigation();\"><img style=\"width:16px;height:16px\" src=\"" + linkPath + "images/ic_menu_black_48px.svg\"></button>";
+    head += "<button id=\"menubutton\" type=\"button\" onclick=\"toggleNavigation();\"><img style=\"width:16px;height:20px\" src=\"" + linkPath + "images/ic_menu_black_48px.svg\"></button>";
     
     $('div.headmiddle').html(head);
     $('#footerleft').html("<a href=\"mailto:admin@ve-und-mint.de\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
-    $('div.tocminbutton').hover(function() { $(this).css("background-color", TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", TOCMINBUTTON); });
-    
-    
-    $('div.xsymb').hover(function() { $(this).css("background-color", XSYMBHOVER); }, function() { $(this).css("background-color", XSYMB); });
-    
     
 
     $('.navi > ul > li').each(function(i) {
       $(this).hover(function() { $(this).css("background-color", TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", TOCMINBUTTON); });
     });
 
-        
+
+    showHint($('#menubutton'), "Hier klicken um Navigationsleisten ein- oder auszublenden", "hint-menu");
+
+    
   }
   
   // Nur-Loginfelder aufbauen falls auf Seite vorhanden
@@ -1217,4 +1215,38 @@ function showNavigation() {
 
 function toggleNavigation() {
     if ($('div.navi').is(":visible")) hideNavigation(); else showNavigation();
+}
+
+// Zeigt einmalig einen Hinweis fuer ein Bedienelement an und merkt sich im intersiteobj dass der hint gezeigt wurde
+// Hinweis wird bei laengerem Hover wieder eingeblendet
+function showHint(element, hinttext, hintid) {
+//   if (intersiteactive == true) {
+//       if (typeof intersiteobj.hints != "object") intersiteobj.hints = new Array();
+//       var i;
+//       for (i = 0; i < intersiteobj.hints.length; i++) {
+//         if (intersiteobj.hints[i] == hintid) return;
+//       }
+//       
+//       intersiteobj.hints[intersiteobj.hints.length] = hintid;
+//   }
+  
+  hinttext = "<div style=\"font-size:16px\">" + hinttext + "</div>";
+  
+  element.qtip({
+             content: { text: hinttext },
+             show: { delay: 500 },
+             hide: { delay: 0 },
+             position: {
+               my: 'top right',
+               at: 'bottom left',
+               target: element
+            },
+            style: {
+               classes: 'qtip-green'
+            }
+      });
+  
+  element.qtip("toggle","true");
+  
+
 }

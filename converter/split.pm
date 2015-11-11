@@ -1989,7 +1989,8 @@ MathJax.Hub.Config({
       minScaleAdjust: 80,
       mtextFontInherit: true,
       styles: {},
-      noReflows: true
+      noReflows: true,
+      linebreaks: { automatic: false }
    },
   MMLorHTML: {
    prefer: {

@@ -6,6 +6,7 @@
   margin-bottom: 20px;
   color: [-CONTENT-];
   background-color: [-CONTENTBACKGROUND-];
+  min-width: 800px;
 }
 
 

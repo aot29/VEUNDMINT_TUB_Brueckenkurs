@@ -1,7 +1,7 @@
 .navi
 {
   margin:           0px;
-  color:            [-NAVI-];
+  color: [-XSYMBCOLOR-];
   background-color: [-NAVIBACKGROUND-];
   margin-left:      220px;
 }
@@ -35,6 +35,7 @@
   padding-left: 12px;
   padding-right: 10px;
   border: 1px solid [-TOCMENUBORDER-];
+  color: [-XSYMBCOLOR-];
 }
 
 .navi a

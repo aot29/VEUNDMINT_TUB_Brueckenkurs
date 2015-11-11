@@ -234,12 +234,22 @@ tocnav {
   padding: 0px 5px 0px;
   border: 1px solid rgb(55,180,220);
   display: inline-block;
+  color: [-XSYMBCOLOR-];
+}
+
+.xsymb:hover {
+  background-color: [-XSYMBHOVER-];
 }
 
 .tocminbutton {
   background-color: [-TOCMINBUTTON-];
+  color: [-TOCMINBUTTONCOLOR-];
   padding: 0px 5px 0px;
   border: 1px solid [-TOCMINBORDER-];
+}
+
+.tocminbutton:hover {
+  background-color: [-TOCMINBUTTONHOVER-];
 }
 
 tocnavsymb {
