@@ -58,11 +58,16 @@ try {
 }
 
 var run = true; //run the watchdog?
-//if the commandline parameter 'sendMails' is provided, send mails and exit
-process.argv.forEach(function (argument) {
-  if (argument === 'sendMails') {
+//if the commandline parameter '--send-mails' is provided, send mails and exit
+process.argv.forEach(function (argument, index) {
+  if (argument === '--send-mails') {
     run = false;
-    sendMails();
+    if (process.argv[index + 1] && (process.argv[index + 1] != "")) {
+      //send the text of the following parameter as email
+      queueMail(0, process.argv[index + 1]);
+    } else {
+      sendMails();
+    }
   }
 });
 
@@ -101,7 +106,7 @@ if (config.errorlog && (typeof config.errorlog == 'object')) {
 }
 
 //send email when starting
-if (config.mailOnStart === true) {
+if (run && (config.mailOnStart === true)) {
   queueMail(0, "Watchdog started.");
 }
 
@@ -142,14 +147,19 @@ function queueMail(timestamp, message) {
   sendMails();
 }
 
-//send emails
-function sendMails() {
+//write a backup of the mailqueue to a file
+function writeMailQueue() {
   //write a backup of the mailqueue to a file
   fs.writeFile(config.mailqueue, JSON.stringify(mailqueue), function (error) {
     if (error) {
       errorLog("ERROR: Failed to save mailqueue to '" + config.mailqueue + "'");
     }
   });
+}
+
+//send emails, optionally runs a callback when finished
+function sendMails(callback) {
+  writeMailQueue();
 
   var email = clone(config.email);
 
@@ -163,6 +173,7 @@ function sendMails() {
       } else {
         //remove mail from queue
         delete mailqueue[this.key];
+        writeMailQueue();
       }
     }.bind({key: key})); //bind makes sure that the current value of key is accessible from the callback, not only the last value
   }
