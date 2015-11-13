@@ -32,6 +32,7 @@ var fs = require('fs');
 var freespace = require('freespace-nix');
 var stream = require('stream');
 var base64 = require('js-base64').Base64;
+var child_process = require('child_process');
 
 /*
  * Deobfuscate mailer password and username
@@ -109,6 +110,25 @@ if (config.errorlog && (typeof config.errorlog == 'object')) {
 if (run && (config.mailOnStart === true)) {
   queueMail(0, "Watchdog started.");
 }
+
+//callback function to run when a signal is received (like kill, ctrl-c ...)
+function onSignal() {
+  if (config.mailOnStop === true) {
+    //run a child process that sends the remaining mails
+    var args = clone(process.argv);
+    var command = args.shift(); //get the command from the list of arguments and shift it
+    args.push("--send-mails"); //add 'sendMails' command line parameter
+    args.push('Watchdog stopped.');
+    child_process.spawn(command, args);
+  }
+
+  process.exit();
+}
+
+//register exit handlers (triggered by kill signals sent from the system)
+process.on('SIGTERM', onSignal);
+process.on('SIGINT', onSignal);
+process.on('SIGHUP', onSignal);
 
 //log to logfile
 function log(message) {

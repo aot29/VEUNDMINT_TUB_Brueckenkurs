@@ -214,6 +214,7 @@ module.exports = {
   //watchdog interval in minutes
   interval: 5.5,
   mailOnStart: true, //send an email when watchdog is started
+  mailOnStop: true, //send an email when watchdog is stopped
   email: {
     from: "Foo Bar <foo@bar.baz>",
     to: "someone@somewhere.tld",
