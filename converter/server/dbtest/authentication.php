@@ -21,8 +21,8 @@
 //list of all roles
 const ROLES = array(
 	'ADMIN' => 'admin',
-    'PROOFREADER' => 'proofreader',
-    'EVALUATION' => 'evaluation',   //has access to loginData of every user
+	'PROOFREADER' => 'proofreader',
+	'EVALUATION' => 'evaluation',   //has access to loginData of every user
 	'USER' => 'user',
 	'ANONYMOUS' => 'anonymous');
 
@@ -58,23 +58,23 @@ function get_user_column($database_handler, $username, $mysql_users_table) {
 
 //authenticate a given user
 function authenticate ($database_handler, $username, $password, $mysql_users_table) {
-    $_SESSION['role'] = ROLES['ANONYMOUS'];
-    $_SESSION['authenticated'] = true;
-    unset($_SESSION['username']); //IMPORTANT FOR SECURITY
-    unset($_SESSION['user_id']);
+	$_SESSION['role'] = ROLES['ANONYMOUS'];
+	$_SESSION['authenticated'] = true;
+	unset($_SESSION['username']); //IMPORTANT FOR SECURITY
+	unset($_SESSION['user_id']);
 	if ($username == '') { // == is used on purpose rather than === because it has to also match 'undefined'
 		return;
 	}
 
-    //NOTICE this is prone to race conditions
-    //It could happen that a user is deleted in the time between
-    //checking if the user exists and the time the user info get's
-    //read from the database. This isn't a security risk though,
-    //this might only cause an exception
+	//NOTICE this is prone to race conditions
+	//It could happen that a user is deleted in the time between
+	//checking if the user exists and the time the user info get's
+	//read from the database. This isn't a security risk though,
+	//this might only cause an exception
 	if(!user_exists($database_handler, $username, $mysql_users_table)) {
 		exit(json_encode(array('action' => 'login',
 			'error' => "user doesn't exist",
-		   	'status' => false)));
+			'status' => false)));
 	}
 
 	//get user information from database
@@ -103,7 +103,7 @@ function adduser ($database_handler, $username, $password, $role, $mysql_users_t
 	//checke if the role exists
 	if (!in_array($role, ROLES)) {
 		exit(json_encode(array('action' => 'add_user',
-		   	'error' => 'invalid role', 'status' => false)));
+			'error' => 'invalid role', 'status' => false)));
 	}
 
 	//IMPORTANT SECURITY CHECK
@@ -131,11 +131,11 @@ function adduser ($database_handler, $username, $password, $role, $mysql_users_t
 	$statement->bindValue(':username', $username, PDO::PARAM_STR);
 	$statement->bindValue(':hash', $hash, PDO::PARAM_STR);
 	$statement->bindValue(':role', $role, PDO::PARAM_INT);
-    $status = $statement->execute();
+	$status = $statement->execute();
 
-    if ($statement->rowCount() == 0) { //If nothing happened, the user already exists
+	if ($statement->rowCount() == 0) { //If nothing happened, the user already exists
 		exit(json_encode(array('action' => 'add_user', 'error' => 'user already exists', 'status' => false)));
-    }
+	}
 
 	if (!$status) {
 		exit(json_encode(array('action' => 'add_user', 'error' => 'couldn\'t creat user', 'status' => false)));
@@ -212,7 +212,7 @@ function change_pwd($database_handler, $username, $old_password, $password, $mys
 	}
 
 	$hash = password_hash($password, PASSWORD_DEFAULT);
-	
+
 	//now actually change the password
 	$statement = $database_handler->prepare("UPDATE $mysql_users_table SET password = :hash WHERE user_id = :user_id");
 	$statement->bindValue(':hash', $hash, PDO::PARAM_STR);
@@ -232,7 +232,7 @@ function change_pwd($database_handler, $username, $old_password, $password, $mys
 function change_role($database_handler, $username, $new_role, $mysql_users_table) {
 	if (!in_array($new_role, ROLES)) {
 		exit(json_encode(array('action' => 'change_role',
-		   	'error' => 'invalid role', 'status' => false)));
+			'error' => 'invalid role', 'status' => false)));
 	}
 
 	if (($_SESSION['role'] !== ROLES['ADMIN'])) {
@@ -242,14 +242,14 @@ function change_role($database_handler, $username, $new_role, $mysql_users_table
 	}
 
 	//get the info about the user which will be changed
-    $user_column = get_user_column($database_handler, $username, $mysql_users_table);
+	$user_column = get_user_column($database_handler, $username, $mysql_users_table);
 
-    //check if the user id matches
-    if (($_SESSION['role'] !== ROLES['ADMIN']) && ($_SESSION['user_id'] !== $user_column['user_id'])) {
-        exit(json_encode(array('action' => 'change_role',
-            'error' => 'user id doesn\'t match',
-            'status' => false)));
-    }
+	//check if the user id matches
+	if (($_SESSION['role'] !== ROLES['ADMIN']) && ($_SESSION['user_id'] !== $user_column['user_id'])) {
+		exit(json_encode(array('action' => 'change_role',
+			'error' => 'user id doesn\'t match',
+			'status' => false)));
+	}
 
 	//now actually change the role
 	$statement = $database_handler->prepare("UPDATE $mysql_users_table SET role = :role WHERE user_id = :user_id");
@@ -275,40 +275,39 @@ function write_data($database_handler, $data, $username, $mysql_users_table, $my
 		  $user_id = $user_column['user_id'];
 		  $quickfix = "YES";
 	} else {
-
-	if ($username !== $_SESSION['username'] ) {
-		if ($_SESSION['role'] !== ROLES['ADMIN']) {
-			exit(json_encode(array('action' => 'write_data',
-				'error' => 'only admins can write another user\'s data',
-			   	'status' => false)));
+		if ($username !== $_SESSION['username'] ) {
+			if ($_SESSION['role'] !== ROLES['ADMIN']) {
+				exit(json_encode(array('action' => 'write_data',
+					'error' => 'only admins can write another user\'s data',
+					'status' => false)));
+			}
+			$user_column = get_user_column($database_handler, $username, $mysql_users_table);
+			$user_id = $user_column['user_id'];
+			if (($_SESSION['role'] !== ROLES['ADMIN']) && ($user_id !== $_SESSION['user_id'])) {
+				exit(json_encode(array('action' => 'write_data',
+					'error' => 'user id doesn\'t match',
+					'status' => false)));
+			}
+		} else {
+			$user_id = $_SESSION['user_id'];
 		}
-        $user_column = get_user_column($database_handler, $username, $mysql_users_table);
-        $user_id = $user_column['user_id'];
-        if (($_SESSION['role'] !== ROLES['ADMIN']) && ($user_id !== $_SESSION['user_id'])) {
-            exit(json_encode(array('action' => 'write_data',
-                'error' => 'user id doesn\'t match',
-                'status' => false)));
-        }
-	} else {
-		$user_id = $_SESSION['user_id'];
-	}
 	}
 
 	//write data to the database
 	$callstr = "REPLACE INTO $mysql_data_table (user_id, data) VALUES (:user_id, :data)";
-    $statement = $database_handler->prepare($callstr);
-    $statement->bindValue(':user_id', $user_id, PDO::PARAM_STR);
-    $statement->bindValue(':data', $data, PDO::PARAM_STR);
-    $status = $statement->execute();
+	$statement = $database_handler->prepare($callstr);
+	$statement->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+	$statement->bindValue(':data', $data, PDO::PARAM_STR);
+	$status = $statement->execute();
 
 	if (!$status) {
 		exit(json_encode(array('action' => 'write_data',
-		        'quickfix' => $quickfix,
+			'quickfix' => $quickfix,
 			'error' => 'couldn\'t write data',
 			'status' => false)));
 	}
 	exit(json_encode(array('action' => 'write_data',
-	        'quickfix' => $quickfix,
+		'quickfix' => $quickfix,
 		'status' => true)));
 }
 
@@ -317,32 +316,29 @@ function get_data($database_handler, $username, $mysql_users_table, $mysql_data_
 	// REALLY DIRTY QUICKFIX for CORS-handling problem (which somehow looses the session username between login and get/write)
 	$quickfix = "NO";
 	if ((null == $_SESSION['username']) && ($_SESSION['role'] == ROLES['ANONYMOUS'])) {
-		  $user_column = get_user_column($database_handler, $username, $mysql_users_table);
-		  $user_id = $user_column['user_id'];
-		  $quickfix = "YES";
-	} else {
-	
-	
-	if ($username !== $_SESSION['username']) {
-		if ($_SESSION['role'] !== ROLES['ADMIN']) {
-			exit(json_encode(array('action' => 'get_data',
-			        'session_user' => $_SESSION['username'],
-			        'session_role' => $_SESSION['role'],
-			        'attempted_user' => $username,
-				'error' => 'only admins can read another user\'s data',
-				'status' => false)));
-		}
 		$user_column = get_user_column($database_handler, $username, $mysql_users_table);
 		$user_id = $user_column['user_id'];
-        if (($_SESSION['role'] !== ROLES['ADMIN']) && ($user_id !== $_SESSION['user_id'])) {
-            exit(json_encode(array('action' => 'get_data',
-                'error' => 'user id doesn\'t match',
-                'status' => false)));
-        }
+		$quickfix = "YES";
 	} else {
-		$user_id = $_SESSION['user_id'];
-	}
-	
+		if ($username !== $_SESSION['username']) {
+			if ($_SESSION['role'] !== ROLES['ADMIN']) {
+				exit(json_encode(array('action' => 'get_data',
+					'session_user' => $_SESSION['username'],
+					'session_role' => $_SESSION['role'],
+					'attempted_user' => $username,
+					'error' => 'only admins can read another user\'s data',
+					'status' => false)));
+			}
+			$user_column = get_user_column($database_handler, $username, $mysql_users_table);
+			$user_id = $user_column['user_id'];
+			if (($_SESSION['role'] !== ROLES['ADMIN']) && ($user_id !== $_SESSION['user_id'])) {
+				exit(json_encode(array('action' => 'get_data',
+					'error' => 'user id doesn\'t match',
+					'status' => false)));
+			}
+		} else {
+			$user_id = $_SESSION['user_id'];
+		}
 	}
 
 	//get data from the database
@@ -358,49 +354,49 @@ function get_data($database_handler, $username, $mysql_users_table, $mysql_data_
 
 //get login field from the JSON data of a user
 function get_login_data($database_handler, $username, $mysql_users_table, $mysql_data_table) {
-    if (($_SESSION['role'] !== ROLES['ADMIN']) && ($_SESSION['role'] !== ROLES['EVALUATION'])) {
-        exit(json_encode(array('action' => 'get_login_data',
-            'error' => 'only admins and evaluation have access to login data',
-            'status' => false)));
-    }
-    $user_column = get_user_column($database_handler, $username, $mysql_users_table);
+	if (($_SESSION['role'] !== ROLES['ADMIN']) && ($_SESSION['role'] !== ROLES['EVALUATION'])) {
+		exit(json_encode(array('action' => 'get_login_data',
+			'error' => 'only admins and evaluation have access to login data',
+			'status' => false)));
+	}
+	$user_column = get_user_column($database_handler, $username, $mysql_users_table);
 
-    //get data from the database
-    $statement = $database_handler->prepare("SELECT * FROM $mysql_data_table WHERE user_id = :user_id");
-    $statement->bindValue(':user_id', $user_column['user_id'], PDO::PARAM_STR);
-    $statement->execute();
-    $data_column = $statement->fetch();
-    $data_object = json_decode($data_column['data'], true/*decode into array*/);
-    if (isset($data_object['login'])) {
-        exit(json_encode(array('action' => 'get_login_data',
-            'data' => $data_object['login'],
-            'status' => true)));
-    }
-    exit(json_encode(array('action' => 'get_login_data',
-        'error' => 'login data doesn\'t exist',
-        'status' => false)));
+	//get data from the database
+	$statement = $database_handler->prepare("SELECT * FROM $mysql_data_table WHERE user_id = :user_id");
+	$statement->bindValue(':user_id', $user_column['user_id'], PDO::PARAM_STR);
+	$statement->execute();
+	$data_column = $statement->fetch();
+	$data_object = json_decode($data_column['data'], true/*decode into array*/);
+	if (isset($data_object['login'])) {
+		exit(json_encode(array('action' => 'get_login_data',
+			'data' => $data_object['login'],
+			'status' => true)));
+	}
+	exit(json_encode(array('action' => 'get_login_data',
+		'error' => 'login data doesn\'t exist',
+		'status' => false)));
 }
 
 //get role of a specified user
 function get_role($database_handler, $username, $mysql_users_table) {
-    if (($username === $_SESSION['username']) || ($username == '')) {
-        exit(json_encode(array('action' => 'get_role',
-            'status' => true,
-            'username' => $_SESSION['username'],
-            'role' => $_SESSION['role'])));
-    }
+	if (($username === $_SESSION['username']) || ($username == '')) {
+		exit(json_encode(array('action' => 'get_role',
+			'status' => true,
+			'username' => $_SESSION['username'],
+			'role' => $_SESSION['role'])));
+	}
 
-    if ($_SESSION['role'] !== ROLES['ADMIN']) {
-        exit(json_encode(array('action' => 'get_role',
-            'error' => 'only admins can get the role of other users',
-            'status' => false)));
-    }
+	if ($_SESSION['role'] !== ROLES['ADMIN']) {
+		exit(json_encode(array('action' => 'get_role',
+			'error' => 'only admins can get the role of other users',
+			'status' => false)));
+	}
 
-    $user_column = get_user_column($database_handler, $username, $mysql_users_table);
-    exit(json_encode(array('action' => 'get_role',
-        'username' => $username,
-        'role' => $user_column['role'],
-        'status' => true)));
+	$user_column = get_user_column($database_handler, $username, $mysql_users_table);
+	exit(json_encode(array('action' => 'get_role',
+		'username' => $username,
+		'role' => $user_column['role'],
+		'status' => true)));
 }
 
 function logout() {
