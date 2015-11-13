@@ -134,6 +134,7 @@ module.exports = {
   timeout: 20,
   //watchdog interval in minutes
   interval: 5,
+  mailOnStart: true,
   email: {
     from: "VE&MINT INFO <info@ve-und-mint.de>",
     to: "info@ve-und-mint.de", // sender and recipient are the same on purpose

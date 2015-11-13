@@ -91,6 +91,11 @@ if (config.errorlog && (typeof config.errorlog == 'object')) {
   errorlogPipe.on('error', errorlogWriteFailed);
 }
 
+//send email when starting
+if (config.mailOnStart === true) {
+  queueMail(0, "Watchdog started.");
+}
+
 //log to logfile
 function log(message) {
   process.stdout.write(message + '\n');
