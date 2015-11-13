@@ -1,9 +1,9 @@
 .navi
 {
-  margin:           0px;
+  margin: 0px;
   color: [-XSYMBCOLOR-];
   background-color: [-NAVIBACKGROUND-];
-  margin-left:      220px;
+  margin-left: 155px;
 }
 
 .navi ul

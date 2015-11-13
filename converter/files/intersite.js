@@ -1208,7 +1208,7 @@ function hideNavigation() {
 }
 
 function showNavigation() {
-  $('#content').css("margin-left","220px");
+  $('#content').css("margin-left","155px");
   $('div.navi').fadeIn("fast");
   $('div.toc').fadeIn("fast");
 }
@@ -1220,33 +1220,36 @@ function toggleNavigation() {
 // Zeigt einmalig einen Hinweis fuer ein Bedienelement an und merkt sich im intersiteobj dass der hint gezeigt wurde
 // Hinweis wird bei laengerem Hover wieder eingeblendet
 function showHint(element, hinttext, hintid) {
-//   if (intersiteactive == true) {
-//       if (typeof intersiteobj.hints != "object") intersiteobj.hints = new Array();
-//       var i;
-//       for (i = 0; i < intersiteobj.hints.length; i++) {
-//         if (intersiteobj.hints[i] == hintid) return;
-//       }
-//       
-//       intersiteobj.hints[intersiteobj.hints.length] = hintid;
-//   }
-  
-  hinttext = "<div style=\"font-size:16px\">" + hinttext + "</div>";
-  
-  element.qtip({
-             content: { text: hinttext },
-             show: { delay: 500 },
-             hide: { delay: 0 },
-             position: {
-               my: 'top right',
-               at: 'bottom left',
-               target: element
-            },
-            style: {
-               classes: 'qtip-green'
-            }
-      });
+
+  hinttext = "<div style=\"font-size:16px;line-height:100%\">" + hinttext + "</div>";
+
+  // Check if qtip is already attached to the element
+  if(typeof element.data('qtip') === 'object') {
+    element.qtip('option', 'content.text', hinttext);
+  } else {
+    element.qtip({
+       content: { text: hinttext },
+       show: { delay: 750 },
+       hide: { delay: 0 },
+       position: {
+           my: 'top right',
+           at: 'bottom left',
+           target: element
+       },
+       style: { classes: 'qtip-yellow'}
+    });
+  }
+
+  // check if hint has been displayed before
+  if (intersiteactive == true) {
+      if (typeof intersiteobj.hints != "object") intersiteobj.hints = new Array();
+      var i;
+      for (i = 0; i < intersiteobj.hints.length; i++) {
+        if (intersiteobj.hints[i] == hintid) return;
+      }
+      
+      intersiteobj.hints[intersiteobj.hints.length] = hintid;
+  }
   
   element.qtip("toggle","true");
-  
-
 }

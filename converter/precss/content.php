@@ -1,6 +1,6 @@
 #content
 {
-  margin-left: 220px;
+  margin-left: 155px;
   padding: 10px;
   z-index: 10;
   margin-bottom: 20px;
@@ -12,7 +12,7 @@
 
 #start
 {
-  margin-left: 220px;
+  margin-left: 155px;
   padding: 10px;
   z-index: 10;
   margin-bottom: 20px;

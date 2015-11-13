@@ -262,8 +262,7 @@ tocnavsymb {
   overflow: hidden;
   width: 92%; 
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   
 }
 

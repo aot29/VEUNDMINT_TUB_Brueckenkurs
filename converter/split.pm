@@ -965,7 +965,7 @@ sub gettoccaption_menustyle {
   if ($main::config{layout} eq "tu9_thin") {
     # Duenner TU9-Layout mit einzelnen Aufklappunterpunkten
     $c .= "<tocnavsymb><ul>";
-    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/chab.png\" style=\"border: none\"> Kursinhalt</a>";
+    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/chab.png\" style=\"border: none\">Kursinhalt</a>";
     $c .= "<div><ul>\n";
    
     my $i1 = 0; # eigentlich for-schleife, aber hier nur Kursinhalt
