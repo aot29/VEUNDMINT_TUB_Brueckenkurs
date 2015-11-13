@@ -1351,37 +1351,57 @@ foreach $fz (@farben) {
   if (($fz =~ /=/ ) and (!($fz =~ /#/ ))) {
     my $pre = "";
     my $post = "";
-    ($pre,$post) = split(/=/,$fz);
-    $pre =~ s/ //g;
-    $post =~ s/ //g;
-    $post =~ s/\n//g;
-    $post = "\#" . $post;
-    $jrow = "var $pre = \"$post\";\n";
-    print JCSS $jrow;
-  }
-}
-close(JCSS);
-
-# Farben in CSS-Dateien ersetzen
-my $row;
-foreach $row (@mycss) {
-  foreach $fz (@farben) {
-    if (($fz =~ /=/ ) and (!($fz =~ /#/ )))
-    {
-      my $pre = "";
-      my $post = "";
+    if ($fz =~ m/(.+?)=(.+?)px/ ) {
+      $pre = $1;
+      $post = $2;
+      $pre =~ s/ //g;
+      $post =~ s/ //g;
+      $post =~ s/\n//g;
+      $jrow = "var $pre = $post;\n";
+    } else {
       ($pre,$post) = split(/=/,$fz);
       $pre =~ s/ //g;
       $post =~ s/ //g;
       $post =~ s/\n//g;
       $post = "\#" . $post;
-      $row =~ s/\[-$pre-\]/$post/g ;
-      $jrow .= "var $pre = \"\#$post\";\n";
+      $jrow = "var $pre = \"$post\";\n";
+    }
+    print JCSS $jrow;
+  }
+}
+close(JCSS);
+
+# Farben und Fonts in CSS-Dateien ersetzen
+my $row;
+foreach $row (@mycss) {
+  foreach $fz (@farben) {
+    if (($fz =~ /=/ ) and (!($fz =~ /#/ ))) {
+      my $pre = "";
+      my $post = "";
+      
+      if ($fz =~ m/(.+?)=(.+?)px/ ) {
+        $pre = $1;
+        $post = $2;
+        $pre =~ s/ //g;
+        $post =~ s/ //g;
+        $post =~ s/\n//g;
+        $post = $post . "px";
+        $row =~ s/\[-$pre-\]/$post/g ;
+      } else {
+        ($pre,$post) = split(/=/,$fz);
+        $pre =~ s/ //g;
+        $post =~ s/ //g;
+        $post =~ s/\n//g;
+        $post = "\#" . $post;
+        $row =~ s/\[-$pre-\]/$post/g ;
+      }
     }
   }
   print OCSS $row;
 }
+
 close(OCSS);
+
 
 system("cp grundlagen.css ../files/css/.");
 system("cp colors.js ../files/.");

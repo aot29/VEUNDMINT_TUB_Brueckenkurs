@@ -759,20 +759,11 @@ sub getlogolink {
   if ($main::logofile eq "") {
     if ($main::mainsiteline eq 1) { $r = "<a class=\"MINTERLINK\" href=\"" . $p->linkpath() . "../index.html\">Hauptseite</a>"; }
   } else {
-    $r = "<img alt=\"MINT-Logo\" style=\"width:205px\" src=\"" . $p->linkpath() . "../images/$main::logofile\"><br /><br />";
+    $r = "<img style=\"\" src=\"" . $p->linkpath() . "../images/$main::logofile\"><br /><br />";
     if ($main::mainsiteline eq 1) {  $r .= "<a class=\"MINTERLINK\" href=\"" . $p->linkpath() . "../index.html\">Hauptseite</a>"; }
   }
 
   return $r;
-}
-
-# Liefert das Benutzerdatenfeld als HTML-String
-# Parameter: Das Seitenobjekt
-sub getuserfield {
-  ($p) = @_;
-
-  my $s = "<textarea name=\"NUSERFIELD\" id=\"UFID\" rows=\"4\" style=\"background-color:\#CFDFDF; width:200px; overflow:auto; resize:none\"></textarea><br /><br />";
-  return $s;
 }
 
 # Liefert das Eingabecheckfeld als HTML-String
@@ -807,15 +798,7 @@ sub gettoccaption {
   my @pages1 = @{$root->{SUBPAGES}};
   my $n1 = $#pages1 + 1;
 
-  my $logoplace = "";
-  if ($site->{TESTSITE} eq 0) {
-    #$logoplace = getinputfield($p);
-    $logoplace = getlogolink($p);
-  } else {
-    $logoplace = getlogolink($p);
-    # $logoplace = getuserfield($p); veraltet weil jetzt separate textarea im content, TESTSITE entscheidet aber noch ob nPoints und nMaxPoints angelegt werden und die SCORM-Aktivitäten
-  }
-  $c .= "<div class=\"toccaption\">" .  $logoplace . "</div>\n";
+  $c .= "<div class=\"toccaption\">" .  getlogolink($p) . "</div>\n";
 
   # Einleitende Liste mit den Fachbereichen ohne Teile, aber NUR falls es mehr als einen gibt
   if ($n1 > 1) {
@@ -926,15 +909,8 @@ sub gettoccaption_menustyle {
   my @pages1 = @{$root->{SUBPAGES}};
   my $n1 = $#pages1 + 1;
 
-  my $logoplace = "";
-  if ($site->{TESTSITE} eq 0) {
-    #$logoplace = getinputfield($p);
-    $logoplace = getlogolink($p);
-  } else {
-    $logoplace = getlogolink($p);
-    # $logoplace = getuserfield($p); veraltet weil jetzt separate textarea im content, TESTSITE entscheidet aber noch ob nPoints und nMaxPoints angelegt werden und die SCORM-Aktivitäten
-  }
-  $c .= "<div class=\"toccaption\">" .  $logoplace . "</div>\n";
+  # $c .= "<div class=\"toccaption\">" .  getlogolink($p) . "</div>\n"; # Alte Version mit Logo
+  $c .= "<div class=\"toccaption\"></div>\n"; # Neue Version ohne Logo
 
 
   # FACHBEREICHE (chapters) -> MODULE (sections) -> subsections, level der ul ist identisch mit {LEVEL} der Page-Objekts
@@ -965,7 +941,7 @@ sub gettoccaption_menustyle {
   if ($main::config{layout} eq "tu9_thin") {
     # Duenner TU9-Layout mit einzelnen Aufklappunterpunkten
     $c .= "<tocnavsymb><ul>";
-    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/chab.png\" style=\"border: none\">Kursinhalt</a>";
+    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><div class=\"tocmintitle\">Kursinhalt</div></a>";
     $c .= "<div><ul>\n";
    
     my $i1 = 0; # eigentlich for-schleife, aber hier nur Kursinhalt
@@ -1011,7 +987,7 @@ sub gettoccaption_menustyle {
               my $p3 = $pages3[$i3];
               if ($selected == 1) {
                 my $tsec = $p3->{NR}.$p3->{TITLE};
-                $tsec =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/&nbsp;<div class=\"xsymb\">$1\.$2<\/div>&nbsp;&nbsp;/ ;
+                $tsec =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/<div class=\"xsymb\">$1\.$2<\/div>&nbsp;/ ;
                 
                 
                 

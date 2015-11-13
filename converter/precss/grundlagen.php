@@ -4,7 +4,7 @@ body
 {
   /* max-width: 1000px; */
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
-  font-size: 16px;
+  font-size: [-BASICFONTSIZE-];
   padding: 0px;
   margin: 0px;
   height: 100%;  
@@ -13,19 +13,19 @@ body
 input
 {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
-  font-size: 16px;
+  font-size: [-BASICFONTSIZE-];
   height: 100%;  
 }
 
 button
 {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
-  font-size: 16px;
+  font-size: [-BASICFONTSIZE-];
   height: 100%;  
 }
 
 td {
-  font-size: 16px;
+  font-size: [-BASICFONTSIZE-];
 }
 
 hr
@@ -125,7 +125,7 @@ progress[aria-valuenow]:before {
 
 
 .searchtable {
-     font-size: 14px;
+     font-size: [-SMALLFONTSIZE-];
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
     -moz-column-count: 2; /* Firefox */
     column-count: 2;

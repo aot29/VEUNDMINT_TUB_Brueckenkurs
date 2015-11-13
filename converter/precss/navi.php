@@ -3,7 +3,8 @@
   margin: 0px;
   color: [-XSYMBCOLOR-];
   background-color: [-NAVIBACKGROUND-];
-  margin-left: 155px;
+  margin-left: 185px;
+  border-bottom: 1px solid [-GENERALBORDER-];
 }
 
 .navi ul

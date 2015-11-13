@@ -1,14 +1,12 @@
-#menubutton
+.symbolbutton
 {
   background-position: center;
   background-repeat: no-repeat;
   background-color: [-TOCMINBUTTON-];
   border: 1px solid [-TOCMINBORDER-];
-  width: 24px;
-  height: 24px;
 }
 
-#menubutton:hover
+.symbolbutton:hover
 {
   background-color: [-TOCMINBUTTONHOVER-];
 }
@@ -17,11 +15,11 @@
 .head
 {
   background-color: [-HEADBACKGROUND-];
-	color: [-HEAD-];
-	width: 100%;
-	font-weight: bold;
-	padding: 0.2em 0px;
-	border-bottom: 2px solid black;
+  color: [-HEAD-];
+  width: 100%;
+  padding: 0px /* 0.2em 0px; */
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
 }
 
 #footer
@@ -30,7 +28,7 @@
   bottom: 0px;
   text-align: center;
   width: 100%;
-  font-size: 10px;
+  font-size: [-BASICFONTSIZE-];
   /* max-width: 1000px; */
   color: [-FOOT-];
   background-color: [-FOOTBACKGROUND-];
@@ -55,7 +53,7 @@
   direction: ltr;
   margin-left: 15px;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
-  font-size: 16px;
+  font-size: [-BASICFONTSIZE-];
 }
 
 .headright,
@@ -66,24 +64,28 @@
   direction: rtl;
   margin-right: 15px;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
-  font-size: 16px;
+  font-size: [-BASICFONTSIZE-];
 }
 
 .headmiddle
 {
   text-align: center;
   display: flex;
-  background-color: rgb(20,210,255);
+  background-color: [-HEADBACKGROUND-];
   font-weight: normal;
   text-align: left;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
-  font-size: 16px;
+  font-size: [-BIGFONTSIZE-];
+  border-bottom: 1px solid black;
+  border-top: 0px solid black;
 }
 
 .footermiddle
 {
   text-align: center;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
-  font-size: 16px;
+  font-size: [-BASICFONTSIZE-];
+  border-top: 1px solid [-GENERALBORDER-];
+  border-bottom: 0px solid [-GENERALBORDER-];
 }
 

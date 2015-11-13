@@ -162,6 +162,7 @@ var localStoragePresent = false;
 var SITE_ID = "(unknown)";
 var SITE_UXID = "(unknown)";
 var SITE_PULL = 0;
+var animationSpeed = 250;
 
 // <JSCRIPTPRELOADTAG>
 
@@ -1506,7 +1507,7 @@ if ($feedbackserver ne "") {
 } else {
   push @converrors, "Kein FeedbackServer deklariert, es wird kein Feedback verschickt.";
 }
-$templateheader .= "var feedbackserver = \"$feedbackserver\"; var feedbackdesc = \"$feedbackdesc\";\n";
+$templateheader .= "var feedbackserver = \"$feedbackserver\";\nvar feedbackdesc = \"$feedbackdesc\";\n";
 
 if ($text =~ s/<!-- mdataserverdeclare;;(.*?);; \/\/-->//s ) { $dataserver = $1; }
 if ($dataserver ne "") {

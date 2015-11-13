@@ -53,7 +53,7 @@
   margin: 8px 12px 8px 12px;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
-  font-size: 17px;
+  font-size: [-BIGFONTSIZE-];
   border: thin solid [-HINTLINE-]
 }
 
@@ -66,7 +66,7 @@
   margin: 8px 12px 8px 12px;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
-  font-size: 17px;
+  font-size: [-BIGFONTSIZE-];
 }
 
 .loginbox
@@ -79,7 +79,7 @@
   margin: 8px 12px 8px 12px;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
-  font-size: 17px;
+  font-size: [-BIGFONTSIZE-];
   border: thin solid [-INFOLINE-];
 }
 
