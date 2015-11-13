@@ -154,7 +154,7 @@ Schreibt dem Nutzer zugeordnete Daten in die Datenbank.
 Normale Nutzer dürfen ihre eigenen Daten überschreiben. Admins haben Schreibzugriff auf die Daten aller Nutzer.
 
 ###action=logout
-Schreibt dem Nutzer zugeordnete Daten in die Datenbank.
+Loggt den Nutzer aus.
 
 **Variablen**
 * keine
