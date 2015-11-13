@@ -126,9 +126,11 @@ function onSignal() {
 }
 
 //register exit handlers (triggered by kill signals sent from the system)
-process.on('SIGTERM', onSignal);
-process.on('SIGINT', onSignal);
-process.on('SIGHUP', onSignal);
+if (run) {
+  process.on('SIGTERM', onSignal);
+  process.on('SIGINT', onSignal);
+  process.on('SIGHUP', onSignal);
+}
 
 //log to logfile
 function log(message) {
