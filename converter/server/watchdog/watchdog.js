@@ -57,6 +57,15 @@ try {
   mailqueue = {};
 }
 
+var run = true; //run the watchdog?
+//if the commandline parameter 'sendMails' is provided, send mails and exit
+process.argv.forEach(function (argument) {
+  if (argument === 'sendMails') {
+    run = false;
+    sendMails();
+  }
+});
+
 
 // initialize log rotation
 var logrotateStream = require('logrotate-stream');
@@ -352,4 +361,6 @@ function watch() {
  * it out. All requests that arrive after the timeout has been called won't be
  * included in the 'collection' and therefore are handled like they didn't arrive at all.
  */
-var watcher = setInterval(watch, config.interval * 60 * 1000);
+if (run) {
+  var watcher = setInterval(watch, config.interval * 60 * 1000);
+}

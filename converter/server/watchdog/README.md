@@ -11,7 +11,7 @@ Before you run this, make sure you have *nodejs* and *npm* installed. Then insta
 
 You can run it directly with `./watchdog.js` or via `node watchdog.js` (might be `nodejs watchdog.js` on some GNU/Linux distributions).
 
-If you want to save the output to a log file, use shell redirection: `./watchdog.js 1>> logfile`
+If you only want to send remaining emails, run it with the commanline parameter `sendMails`.
 
 Installation as a service (with systemd)
 ----------------------------------------
