@@ -32,6 +32,7 @@ var fs = require('fs');
 var freespace = require('freespace-nix');
 var stream = require('stream');
 var base64 = require('js-base64').Base64;
+var child_process = require('child_process');
 
 /*
  * Deobfuscate mailer password and username
@@ -56,6 +57,20 @@ try {
 } catch(e) {
   mailqueue = {};
 }
+
+var run = true; //run the watchdog?
+//if the commandline parameter '--send-mails' is provided, send mails and exit
+process.argv.forEach(function (argument, index) {
+  if (argument === '--send-mails') {
+    run = false;
+    if (process.argv[index + 1] && (process.argv[index + 1] != "")) {
+      //send the text of the following parameter as email
+      queueMail(0, process.argv[index + 1]);
+    } else {
+      sendMails();
+    }
+  }
+});
 
 
 // initialize log rotation
@@ -89,6 +104,32 @@ if (config.errorlog && (typeof config.errorlog == 'object')) {
   }
   errorlogStream.on('error', errorlogWriteFailed);
   errorlogPipe.on('error', errorlogWriteFailed);
+}
+
+//send email when starting
+if (run && (config.mailOnStart === true)) {
+  queueMail(0, "Watchdog started.");
+}
+
+//callback function to run when a signal is received (like kill, ctrl-c ...)
+function onSignal() {
+  if (config.mailOnStop === true) {
+    //run a child process that sends the remaining mails
+    var args = clone(process.argv);
+    var command = args.shift(); //get the command from the list of arguments and shift it
+    args.push("--send-mails"); //add 'sendMails' command line parameter
+    args.push('Watchdog stopped.');
+    child_process.spawn(command, args);
+  }
+
+  process.exit();
+}
+
+//register exit handlers (triggered by kill signals sent from the system)
+if (run) {
+  process.on('SIGTERM', onSignal);
+  process.on('SIGINT', onSignal);
+  process.on('SIGHUP', onSignal);
 }
 
 //log to logfile
@@ -128,14 +169,19 @@ function queueMail(timestamp, message) {
   sendMails();
 }
 
-//send emails
-function sendMails() {
+//write a backup of the mailqueue to a file
+function writeMailQueue() {
   //write a backup of the mailqueue to a file
   fs.writeFile(config.mailqueue, JSON.stringify(mailqueue), function (error) {
     if (error) {
       errorLog("ERROR: Failed to save mailqueue to '" + config.mailqueue + "'");
     }
   });
+}
+
+//send emails, optionally runs a callback when finished
+function sendMails(callback) {
+  writeMailQueue();
 
   var email = clone(config.email);
 
@@ -149,6 +195,7 @@ function sendMails() {
       } else {
         //remove mail from queue
         delete mailqueue[this.key];
+        writeMailQueue();
       }
     }.bind({key: key})); //bind makes sure that the current value of key is accessible from the callback, not only the last value
   }
@@ -347,4 +394,6 @@ function watch() {
  * it out. All requests that arrive after the timeout has been called won't be
  * included in the 'collection' and therefore are handled like they didn't arrive at all.
  */
-var watcher = setInterval(watch, config.interval * 60 * 1000);
+if (run) {
+  var watcher = setInterval(watch, config.interval * 60 * 1000);
+}

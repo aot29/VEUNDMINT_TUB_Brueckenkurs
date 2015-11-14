@@ -11,7 +11,7 @@ Before you run this, make sure you have *nodejs* and *npm* installed. Then insta
 
 You can run it directly with `./watchdog.js` or via `node watchdog.js` (might be `nodejs watchdog.js` on some GNU/Linux distributions).
 
-If you want to save the output to a log file, use shell redirection: `./watchdog.js 1>> logfile`
+If you only want to send remaining emails, run it with the commanline parameter `--send-mails`. This parameter also accepts strings in the parameter after that and will send an email containing that string.
 
 Installation as a service (with systemd)
 ----------------------------------------
@@ -213,6 +213,8 @@ module.exports = {
   timeout: 10,
   //watchdog interval in minutes
   interval: 5.5,
+  mailOnStart: true, //send an email when watchdog is started
+  mailOnStop: true, //send an email when watchdog is stopped
   email: {
     from: "Foo Bar <foo@bar.baz>",
     to: "someone@somewhere.tld",
