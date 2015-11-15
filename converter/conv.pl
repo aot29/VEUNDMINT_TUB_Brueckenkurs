@@ -129,7 +129,7 @@ our $templateheader = <<ENDE;
 <script src="qtip2/jquery.qtip.min.js" type="text/javascript"></script>
 <script src="knockout-3.0.0.js" type="text/javascript"></script>
 <script src="math.js" type="text/javascript"></script>
-<script src="colors.js" type="text/javascript"></script>
+<script src="dynamiccss.js" type="text/javascript"></script>
 <script src="convinfo.js" type="text/javascript"></script>
 <script src="mparser.js" type="text/javascript"></script>
 <script src="scormwrapper.js" type="text/javascript"></script>

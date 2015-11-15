@@ -1,7 +1,7 @@
 .toc
 {
   position:         fixed;
-  width:            164px; /* 185-21 */
+  width:            [-TOCWIDTH-];
   height:           100%;
   padding:          1em 10px;
   margin:           0px;

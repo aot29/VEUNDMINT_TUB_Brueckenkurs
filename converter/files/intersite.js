@@ -424,11 +424,11 @@ function updateLoginfield() {
     
     var d = $('div.headmiddle').height() + 2;
     
-    var systyle = "style=\"width:" + (d+2) + "px;height:" + d + "px\"";
+    var systyle = "style=\"height:" + d + "px\"";
     var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px\"";
     
-    head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_share_black_48px.svg\"></button>";
-    head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_menu_black_48px.svg\"></button>";
+    head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_share_blue_96px.png\"></button>";
+    head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_menu_blue_96px.png\"></button>";
     
     $('div.headmiddle').html(head);
     $('#footerleft').html("<a href=\"mailto:admin@ve-und-mint.de\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
@@ -443,7 +443,6 @@ function updateLoginfield() {
 
     var shareintext = "Diese Seite teilen über:<br /><br />";
     var myurl = window.location.href;
-
     
     shareintext += "<a href=\"#\" onclick=\"shareFacebook()\"><img src=\"" + linkPath + "images/sharetargetfacebook.png\"></a>";
     shareintext += "&nbsp;";
@@ -1228,7 +1227,7 @@ function hideNavigation() {
 }
 
 function showNavigation() {
-  $('#content').css("margin-left","185px");
+  $('#content').css("margin-left",MENUWIDTH + "px");
   $('div.navi').slideDown(animationSpeed);
   $('tocnavsymb').hide();
   $('div.toc').animate({width: 'show'}, animationSpeed);

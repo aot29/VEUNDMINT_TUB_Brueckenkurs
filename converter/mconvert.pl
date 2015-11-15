@@ -11,6 +11,7 @@ use warnings;
 #
 use Cwd;
 use File::Path;
+use Storable 'dclone';
 
 my $helptext = "Usage: mconvert.pl <configuration.pl>\n\n";
 
@@ -485,7 +486,6 @@ sub createButtonFiles {
 # my $IncludeTags = ""; # Sammelt die Makros fuer predefinierte Tagmakros, diese werden an mintmod.tex angehaengt
 
 
-
 checkSystem();
 
 if ($#ARGV eq 0) {
@@ -560,17 +560,6 @@ while ($roottex =~ s/\\MPragma{PDFTEXDeclare;(.+?)}/\\MPragma{Nothing}/ ) {
   print "Root-Pragma PDFTEXDeclare: $1\n";
   push @PDFDeclare, [ $1 ];
 }
-
-my $colorfile = "";
-
-if ($roottex =~ s/\\MColorFile{(.+?)}// ) {
-  $colorfile = $1; # Dateiname Relativ zu converter/precss
-  print("Colorfile declared: " . $colorfile . "\n");
-} else {
-  $colorfile = "farben_bare.ini";
-  print("No colorfile given, using standard " . $colorfile . "\n");
-}
-
 
 print("Settup up output directory " . $config{output} . "\n");
 system("rm -fr " . $config{output});
@@ -1336,66 +1325,38 @@ system("php -n grundlagen.php >grundlagen.pcss");
 
 my $cccs = open(CSS, "< grundlagen.pcss") or die "FATAL: Could not open pcss-file";
 my $cccs2 = open(OCSS, "> grundlagen.css") or die "FATAL: Could not create css-file";
-my $cccsJ = open(JCSS, "> colors.js") or die "FATAL: Could not create colors.js-file";
+my $cccsJ = open(JCSS, "> dynamiccss.js") or die "FATAL: Could not create dynmiccss.js-file";
 my @mycss = <CSS>;
 close(CSS);
 
-my $fcs = open(FARBEN, "< $colorfile") or die "FATAL: Could not open color file $colorfile in directory precss";
-my @farben = <FARBEN>;
-close(FARBEN);
+
+print "colors:\n";
+
+my $ckey = "";
+my $cval = "";
 
 # Farben fuer color.js parsen
 my $jrow = "";
 my $fz;
-foreach $fz (@farben) {
-  if (($fz =~ /=/ ) and (!($fz =~ /#/ ))) {
-    my $pre = "";
-    my $post = "";
-    if ($fz =~ m/(.+?)=(.+?)px/ ) {
-      $pre = $1;
-      $post = $2;
-      $pre =~ s/ //g;
-      $post =~ s/ //g;
-      $post =~ s/\n//g;
-      $jrow = "var $pre = $post;\n";
-    } else {
-      ($pre,$post) = split(/=/,$fz);
-      $pre =~ s/ //g;
-      $post =~ s/ //g;
-      $post =~ s/\n//g;
-      $post = "\#" . $post;
-      $jrow = "var $pre = \"$post\";\n";
-    }
-    print JCSS $jrow;
-  }
+while (($ckey, $cval) = each($config{'colors'})) {
+  print JCSS "var $ckey = \"\#$cval\";\n";
+}
+
+# Sizes fuer color.js parsen
+while (($ckey, $cval) = each($config{'sizes'})) {
+  print JCSS "var $ckey = $cval;\n";
 }
 close(JCSS);
 
-# Farben und Fonts in CSS-Dateien ersetzen
+# Farben und Sizes in CSS-Dateien ersetzen
 my $row;
 foreach $row (@mycss) {
-  foreach $fz (@farben) {
-    if (($fz =~ /=/ ) and (!($fz =~ /#/ ))) {
-      my $pre = "";
-      my $post = "";
-      
-      if ($fz =~ m/(.+?)=(.+?)px/ ) {
-        $pre = $1;
-        $post = $2;
-        $pre =~ s/ //g;
-        $post =~ s/ //g;
-        $post =~ s/\n//g;
-        $post = $post . "px";
-        $row =~ s/\[-$pre-\]/$post/g ;
-      } else {
-        ($pre,$post) = split(/=/,$fz);
-        $pre =~ s/ //g;
-        $post =~ s/ //g;
-        $post =~ s/\n//g;
-        $post = "\#" . $post;
-        $row =~ s/\[-$pre-\]/$post/g ;
-      }
-    }
+  while (($ckey, $cval) = each($config{'colors'})) {
+    $row =~ s/\[-$ckey-\]/\#$cval/g ;
+  }
+  while (($ckey, $cval) = each($config{'sizes'})) {
+    $cval .= "px";
+    $row =~ s/\[-$ckey-\]/$cval/g ;
   }
   print OCSS $row;
 }
@@ -1404,7 +1365,7 @@ close(OCSS);
 
 
 system("cp grundlagen.css ../files/css/.");
-system("cp colors.js ../files/.");
+system("cp dynamiccss.js ../files/.");
 
 # mintmod.tex so veraendern, dass lokale Preamblen und Tagmakros eingebunden werden
 chdir("../tex");

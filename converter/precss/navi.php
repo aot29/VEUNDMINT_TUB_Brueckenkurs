@@ -3,7 +3,7 @@
   margin: 0px;
   color: [-XSYMBCOLOR-];
   background-color: [-NAVIBACKGROUND-];
-  margin-left: 185px;
+  margin-left: [-MENUWIDTH-];
   border-bottom: 1px solid [-GENERALBORDER-];
 }
 

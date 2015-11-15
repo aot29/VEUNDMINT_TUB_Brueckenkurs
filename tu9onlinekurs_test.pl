@@ -20,4 +20,72 @@ output          =>      "tu9onlinekurstest", # Zielverzeichnis relativ zur Posit
 source          =>      "module_veundmint",  # Quellverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
 module          =>      "tree_tu9onlinekurs.tex",  # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!)
 outtmp          =>      "tmp",               # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
-description     =>      "Onlinebrückenkurs Mathematik"
+description     =>      "Onlinebrückenkurs Mathematik",
+
+colors => {
+    CONTENTBACKGROUND => "FFFFFF",
+    GENERALBORDER => "A0B0D0",
+
+    TOCBACKGROUND => "F0F0F0",
+    TOCFIRSTMENUBACKGROUND => "BFBFBF",
+    TOCMENUBACKGROUND => "CFEFCF",
+    TOCHOVER => "F2FFF2",
+    TOCMENUBORDER => "404040",
+    TOCNAVSYMBBACKGROUND => "14D2FF",
+
+    TOCMINBUTTONHOVER => "B6F3FF",
+    TOCMINBORDER => "2564AC",
+    TOCMINBUTTON => "9EE3FF",
+
+    XSYMBHOVER => "FAF4FF",
+    XSYMB => "C4EDFF",
+
+    HEADBACKGROUND => "ABD0FC",
+
+    NAVIBACKGROUND => "F0F0F0",
+    NAVISELECTED => "4080A0",
+    NAVIHOVER => "EBFFFF",
+
+    FOOTBACKGROUND => "ABD0FC",
+
+    INFOBACKGROUND => "CBEFFF",
+    INFOLINE => "5680E4",
+
+    EXMPBACKGROUND => "FFDCEC",
+    EXMPLINE => "EFC2C3",
+
+    EXPEBACKGROUND => "DFDCBC",
+    EXPELINE => "CFC2A3",
+
+    HINTBACKGROUND => "E4E4E4",
+    HINTBACKGROUNDC => "E0FFE0",
+    HINTLINE => "C4C4C4",
+
+    REPLYBACKGROUND => "E4FFF4",
+
+    LOGINBACKGROUND => "D5D5FF",
+
+    # font colors
+   NAVI => ($menucolor = "000090"),
+   TOCMINBUTTONCOLOR => $menucolor,
+   LOGINCOLOR => "000000",
+   FOOT => "202070",
+   HEAD => "FFFFFF",
+   XSYMBCOLOR => $menucolor,
+   TOC => $menucolor,
+   TOCSELECTED => "4080A0",
+   TOCB => "202070",
+   TOCBSELECTED => "D02030",
+   CONTENT => "000000",
+   CONTENTANCHOR => "483AA1",
+   REPLYCOLOR => "000000",
+},
+  
+# font sizes
+sizes =>  {
+    MENUWIDTH      =>   ($menuwidth = 185),     # Breite der Menueleiste am linken Rand
+    TOCWIDTH      =>     $menuwidth - 21,
+    BASICFONTSIZE =>    ($mybasicfontsize = 16),
+    SMALLFONTSIZE =>     $mybasicfontsize - 2,
+    BIGFONTSIZE   =>     $mybasicfontsize + 2
+}
