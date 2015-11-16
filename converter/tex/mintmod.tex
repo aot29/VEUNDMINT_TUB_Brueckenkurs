@@ -1762,14 +1762,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \fi
 
 
-% Optionale redefinition der headertexte (sollte nur in Hauptdatei verwendet werden)
-\ifttm%
-\newcommand{\MHeaders}[6]{\special{html:<!-- headertext;}#1\special{html:;}#2\special{html: ;}#3\special{html:;}#4\special{html:;}#5\special{html:;}#6\special{html:; //-->}}
-\else%
-\newcommand{\MHeaders}[6]{\relax}
-\fi
-
-
 % Pragmas - Sind Schluesselwoerter, die dem Preprocessing sowie dem Konverter uebergeben werden und bestimmte
 %           Aktionen ausloesen. Im Output (PDF und HTML) tauchen sie nicht auf.
 \newcommand{\MPragma}[1]{%
@@ -2195,57 +2187,6 @@ Hier erscheint die Testauswertung!
 \newenvironment{MDirectHTML}{\begin{html}}{\end{html}}%
 \fi
 
-
-% MSignature wird (nur im HTML) durch conv.pl gefunden und setzt die Signatur des Onlinepakets
-\ifttm
-\newcommand{\MSignature}[3]{\special{html:<!-- msignature;;}#1\special{html:;;}#2\special{html:;;}#3\special{html:;; //-->}}
-\else
-\newcommand{\MSignature}[3]{\relax}
-% ggf. in PDF-Signatur einbauen?
-\fi
-
-\ifttm
-\newcommand{\MReplyAdress}[1]{\special{html:<!-- mreplyadress;;}#1\special{html:;; //-->}}
-\else
-\newcommand{\MReplyAdress}[1]{\relax}
-% ggf. in PDF-Signatur einbauen?
-\fi
-
-% MDeclareFeedbackServer wird (nur im HTML) durch conv.pl gefunden und setzt die Adresse des Feedback-Servers
-% #1 = Vollstaendige Servicebezeichnung (sollte auf .php enden), #2 = Lesbare Serverbezeichnung fuer Benutzer
-\ifttm
-\newcommand{\MDeclareFeedbackServer}[2]{\special{html:<!-- mfeedbackserverdeclare;;}#1\special{html:;;}#2\special{html:;; //-->}}
-\newcommand{\MDeclareDataServer}[1]{\special{html:<!-- mdataserverdeclare;;}#1\special{html:;; //-->}}
-\newcommand{\MDeclareExerciseServer}[1]{\special{html:<!-- mexerciseserverdeclare;;}#1\special{html:;; //-->}}
-\else
-\newcommand{\MDeclareFeedbackServer}[2]{\relax}
-\newcommand{\MDeclareDataServer}[1]{\relax}
-\newcommand{\MDeclareExerciseServer}[1]{\relax}
-\fi
-
-\ifttm
-\newcommand{\MMainLogo}[1]{\special{html:<!-- mmainlogo;;}#1\special{html:;; //-->}}%
-\else
-\newcommand{\MMainLogo}[1]{\relax}%
-\fi
-
-\ifttm
-\newcommand{\MColorFile}[1]{\special{html:<!-- mcolorfile;;}#1\special{html:;; //-->}}%
-\else
-\newcommand{\MColorFile}[1]{\relax}%
-\fi
-
-\ifttm
-\newcommand{\MDoFeedback}[1]{\special{html:<!-- mdofeedback;;}#1\special{html:;; //-->}}%
-\else
-\newcommand{\MDoFeedback}[1]{\relax}%
-\fi
-
-\ifttm
-\newcommand{\MDoExport}[1]{\special{html:<!-- mdoexport;;}#1\special{html:;; //-->}}%
-\else
-\newcommand{\MDoExport}[1]{\relax}%
-\fi
 
 % ---------------------------------- Location Management ---------------------------------------------
 

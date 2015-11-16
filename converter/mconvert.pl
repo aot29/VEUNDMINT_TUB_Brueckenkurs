@@ -20,6 +20,11 @@ my $helptext = "Usage: mconvert.pl <configuration.pl>\n\n";
 
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
+# Mandatory option parameter in config file
+our @mandatory = ("signature_main", "signature_version", "signature_localization",
+   "reply_mail", "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",
+   "footer_middle", "footer_right", "mainlogo", "do_feedback", "do_export");
+
 our %config = ();       
 our $mconfigfile = "";       # Konfigurationsdatei (mit Pfad relativ vom Aufruf aus)
 our $basis = "";             # Das Verzeichnis, in dem converter liegt (wird momentan auf aktuelles Verzeichnis gesetzt)
@@ -422,7 +427,19 @@ ENDE
   print "HTML-Baum wird als SCORM-Lernmodul Version 2004v4 eingerichtet\n";
 }
 
-# Checks if options are consistent, quits with a fatal error otherwise
+# Checks if given parameter key is present and has a nonempty string as value
+sub checkParameter {
+  my $p = $_[0];
+  if (exists $config{parameter}{$p}) {
+    if ($config{parameter}{$p} eq "") {
+      die("FATAL: Mandatory option parameter $p is an empty string");
+    }
+  } else {
+    die("FATAL: Mandatory option parameter $p is missing");
+  }
+}
+
+# Checks if options are present and consistent, quits with a fatal error otherwise
 sub checkOptions {
   open(F,$basis . "/converter/conv.pl") or die ("FATAL: conv.pl not found in $basis/converter");
   close(F);
@@ -457,6 +474,15 @@ sub checkOptions {
       die("FATAL: zip-filename " . $config{output} . " not of type name.zip");
     }
   }
+  
+  # Check mandatory option parameters
+  print "Checking " . ($#mandatory+1) . " parameters ... ";
+  my $a;
+  for ($a = 0; $a <= $#mandatory; $a++) {
+    checkParameter($mandatory[$a]);
+  }
+  print "ok\n";
+
 }
 
 # sub createButtonFiles()
@@ -1327,6 +1353,8 @@ print "colors:\n";
 
 my $ckey = "";
 my $cval = "";
+
+# Freie Parameter werden von conv.pl in convinfo.js eingetragen!
 
 # Farben fuer color.js parsen
 my $jrow = "";

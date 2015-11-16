@@ -21,6 +21,38 @@ module          =>      "tree_tu9onlinekurs.tex",  # tex-Hauptdatei des Kurses (
 outtmp          =>      "tmp",               # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
 description     =>      "Onlinebrückenkurs Mathematik",
 
+parameter => {                                        # Benutzeridentifizierung haengt von diesen drei Teilen ab!
+  signature_main          => "OBM_VEUNDMINT",         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+  signature_version       => "10000",                 # Versionsnummer, 10000 = erste oeffentliche nicht-Beta
+  signature_localization  => "DE_MINT",               # Lokalversion des Kurses, hier die bundesweite MINT-Variante
+  do_feedback             => "0",                     # Feedbackfunktionen aktivieren?
+  do_export               => "0",                     # Aufgabenexport aktivieren?
+  reply_mail              => "admin\@ve-und-mint.de", # Wird in mailto vom Admin-Button eingesetzt
+  data_server             => ($server = "https://mintlx3.scc.kit.edu/dbtest"),
+  exercise_server         => $server,
+  feedback_service        => "$server/feedback.php",  # Absolute Angabe
+  data_server_description => "Server 3 (KIT)",        
+  data_server_user        => "$server/userdata.php",  # Absolute Angabe
+  footer_middle           => "Onlinebrückenkurs Mathematik",
+  footer_right            => "Lizenz: CC BY-SA 3",
+  mainlogo                => "veundmint_sharelogo.png" # Im Pfad files/images
+},
+
+# fonts
+fonts => {
+    BASICFONTFAMILY  =>    "\"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", Verdana, Arial, Helvetica , sans-serif"
+},
+
+# sizes
+sizes =>  {
+    CONTENTMINWIDTH =>    800,                    # Breite unter die der content nicht geschrumpft werden kann ohne Scrollbalken zu aktivieren
+    MENUWIDTH       =>    ($menuwidth = 160),     # Breite der Menueleiste am linken Rand
+    TOCWIDTH        =>     $menuwidth - 21,
+    BASICFONTSIZE   =>    ($mybasicfontsize = 16),
+    SMALLFONTSIZE   =>     $mybasicfontsize - 2,
+    BIGFONTSIZE     =>     $mybasicfontsize + 2
+},
+
 colors => {
     CONTENTBACKGROUND => "FFFFFF",
     GENERALBORDER => "A0B0D0",
@@ -78,19 +110,5 @@ colors => {
    CONTENT => "000000",
    CONTENTANCHOR => "483AA1",
    REPLYCOLOR => "000000",
-},
-  
-# fonts
-fonts => {
-    BASICFONTFAMILY  =>    "\"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", Verdana, Arial, Helvetica , sans-serif"
-},
-
-# sizes
-sizes =>  {
-    CONTENTMINWIDTH =>    800,                    # Breite unter die der content nicht geschrumpft werden kann ohne Scrollbalken zu aktivieren
-    MENUWIDTH       =>    ($menuwidth = 160),     # Breite der Menueleiste am linken Rand
-    TOCWIDTH        =>     $menuwidth - 21,
-    BASICFONTSIZE   =>    ($mybasicfontsize = 16),
-    SMALLFONTSIZE   =>     $mybasicfontsize - 2,
-    BIGFONTSIZE     =>     $mybasicfontsize + 2
 }
+  

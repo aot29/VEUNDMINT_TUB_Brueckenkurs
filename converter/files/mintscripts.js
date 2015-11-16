@@ -1467,9 +1467,10 @@ function globalloadHandler(pulluserstr)
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   // Fragefelder initialisieren und einfaerben
   logMessage(DEBUGINFO, "globalLoadHandler start, pulluser = " + ((pulluserstr == "") ? ("\"\"") : ("userdata")));
+  SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
+  logMessage(DEBUGINFO, "SetupIntersite fertig");
   applyLayout();
   logMessage(DEBUGINFO, "Layout gesetzt");
-  SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
   InitResults(false);
   setupBOperations();
   
@@ -1864,7 +1865,7 @@ function applyLayout() {
     head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_menu_blue_96px.png\"></button>";
     
     $('div.headmiddle').html(head);
-    $('#footerleft').html("<a href=\"mailto:admin@ve-und-mint.de\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
+    $('#footerleft').html("<a href=\"mailto:" + reply_mail + "\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
     
 
     $('.navi > ul > li').each(function(i) {
@@ -1884,6 +1885,10 @@ function applyLayout() {
     shareintext += "<a href=\"https://plus.google.com/share?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargetgoogleplus.png\"></a>";
     
     showHint($('#sharebutton'), shareintext);
+    
+    if (intersiteactive) {
+      if (intersiteobj.layout.menuactive == false) hideNavigation();
+    }
 }
 
 function hideNavigation() {
@@ -1894,6 +1899,7 @@ function hideNavigation() {
   $('#footermiddle').slideUp(animationSpeed);
   $('#footerright').slideUp(animationSpeed);
   $('#content').css("margin-left","0px");
+  if (intersiteactive) intersiteobj.layout.menuactive = false;
 }
 
 function showNavigation() {
@@ -1905,10 +1911,15 @@ function showNavigation() {
   $('#footerleft').slideDown(animationSpeed);
   $('#footermiddle').slideDown(animationSpeed);
   $('#footerright').slideDown(animationSpeed);
+  if (intersiteactive) intersiteobj.layout.menuactive = true;
 }
 
 function menuClick() {
-    if ($('div.navi').is(":visible")) hideNavigation(); else showNavigation();
+    if ($('div.navi').is(":visible")) {
+        hideNavigation();
+    } else {
+        showNavigation();
+    }
 }
 
 // Zeigt einmalig einen Hinweis fuer ein Bedienelement an und merkt sich im intersiteobj dass der hint gezeigt wurde

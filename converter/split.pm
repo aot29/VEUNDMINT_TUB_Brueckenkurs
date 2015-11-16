@@ -465,7 +465,7 @@ sub postprocess {
     $ibt .= "</button><br />\n";
     
     # Feedbackbuttons nur, (ehemals falls keine Testumgebung und) falls nicht global abgeschaltet
-    if ($main::dofeedback == 1) {
+    if ($main::config{parameter}{do_feedback} eq "1") {
       $text =~ s/<!-- mfeedbackbutton;$type;$testsite;$exid; \/\/-->/$ibt/s ;
     } else {
       $text =~ s/<!-- mfeedbackbutton;$type;$testsite;$exid; \/\/-->//s ;
@@ -487,7 +487,7 @@ sub postprocess {
     my $expt = $2;
     if ($qpos == $3) {
       my $rep = "";
-      if ($main::doexport == 1) {
+      if ($main::config{parameter}{do_export} eq "1") {
         my $exprefix = "\% Export Nr. $qpos aus " . $orgpage->{TITLE} . "\n";
         $exprefix .= "\% Dieser Quellcode steht unter CCL BY-SA, entnommen aus dem VE\&MINT-Kurs " . $main::signature_CID . ",\n";
         $exprefix .= "\% Inhalte und Quellcode des Kurses dürfen gemäß den Bestimmungen der Creative Common Lincense frei weiterverwendet werden.\n";
@@ -591,13 +591,17 @@ sub getstyleimporttags {
 # sub getheader()
 # Erzeugt das head-div fuer die html-Seiten
 sub getheader {
-  return "<div class=\"headmiddle\">" . $main::headertext_middle . "</div>\n";    
+  # Inhalt wird von js-Funktionen dynamisch gefuellt
+  return "<div class=\"headmiddle\">&nbsp;</div>\n"; # ohne echten div-Inhalt werden icons nicht erzeugt
 }
 
 # sub getfooter()
 # Erzeugt das footer-div fuer die html-Seiten
 sub getfooter {
-  my $footer = "<div id=\"footerleft\">" . $main::footertext_left . "</div><div id=\"footerright\">" . $main::footertext_right . "</div><div id=\"footermiddle\">" . $main::footertext_middle . "</div>\n";
+  # Inhalt von footer_left wird von js-Funktionen dynamisch gefuellt
+  my $footer = "<div id=\"footerleft\"></div>" .
+               "<div id=\"footerright\">" . $main::config{parameter}{footer_right} . "</div>" .
+               "<div id=\"footermiddle\">" . $main::config{parameter}{footer_middle} . "</div>\n";
   return $footer;
 }
 

@@ -21,17 +21,15 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  * */
 
-//define this here until it is defined elsewhere, this should be removed later
-if (typeof dataserver !== 'string') {
-    dataserver = 'http://mintlx3.scc.kit.edu/dbtest';
-}
-logMessage(DEBUGINFO, "Benutzer dataserver = " + dataserver);
-
-var userdata = (function (baseURL) {
+var userdata = (function (serviceURL) {
     var exports = {};
+    var url = serviceURL;
 
-    var url = baseURL + '/userdata.php';
-
+    logMessage(DEBUGINFO, "Benutzer dataserver " + data_server_description + " bei " + url);
+    if (url == "") {
+      logMessage(CLIENTERROR, "Kein dataserver deklariert!");
+    }
+    
     /**
      * PRIVATE FUNCTION
      * Create a success callback for jquery's ajax requests.
@@ -233,4 +231,4 @@ var userdata = (function (baseURL) {
     };
 
     return exports;
-})(dataserver);
+})(data_server_user);

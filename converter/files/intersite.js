@@ -44,8 +44,15 @@ function getObjName() {
 
 
 function createIntersiteObj() {
-  logMessage(VERBOSEINFO,"New IntersiteObj created");
-  var obj = { active: false, configuration: {}, scores: [], sites: [], login: { type: 0, vname: "", sname: "", username: "", password: "", email: "" } };
+  logMessage(VERBOSEINFO, "New IntersiteObj created");
+  var obj = { 
+    active: false,
+    layout: { menuactive: true },
+    configuration: {},
+    scores: [],
+    sites: [],
+    login: { type: 0, vname: "", sname: "", username: "", password: "", email: "" }
+  };  
   return obj;
 }
 
@@ -286,7 +293,7 @@ function SetupIntersite(clearuser, pulledstr) {
 	intersiteobj.configuration.CF_LOCAL = "1";
 	intersiteobj.configuration.CF_USAGE = "1";
 	intersiteobj.configuration.CF_TESTS = "1";
-	intersiteactive = true;
+        intersiteactive = true;
 	logMessage(VERBOSEINFO, "Intersite setup with local storage from scratch from " + intersiteobj.startertitle);
 	if ((intersiteobj.configuration.CF_USAGE == "1") && (clearuser == false)) {
 	    var timestamp = +new Date();
@@ -779,7 +786,7 @@ var feedbackLog = [];
 /* 
  * Sendet einen String an den Feedback-Server um ihn dort in der Datenbank zu speichern
  *
- * Die URL kommt aus der globalen Variable feedbackserver
+ * Die URL kommt aus der globalen Variable feedback_service
  *
  * content:
  * 	{
@@ -790,8 +797,8 @@ var feedbackLog = [];
  * */
 function sendeFeedback( content,async ) {
 	//Feedback nur Senden, wenn ein feedbackserver angegeben ist
-	if( feedbackserver != "" ) {
-		sendCorsRequest( feedbackserver, content, 
+	if( feedback_service != "" ) {
+		sendCorsRequest( feedback_service, content, 
 				//success callback
 				function( value ) { 
 					logMessage(VERBOSEINFO,"SendeFeedback success callback: " + JSON.stringify(value));

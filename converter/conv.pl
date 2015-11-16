@@ -51,12 +51,8 @@ our $locationlong = ""; # Wird aus Dokument geholt
 our $locationshort = "";# Wird aus Dokument geholt
 our $locationicon = "";# Wird aus Dokument geholt
 
-our $replyadress = ""; # Wird aus Dokument geholt
-
 our $paramlinkonsubsection = 1;
 our $parammenuauswahllevel = 2;
-our $paramheader = "";
-our $paramfooter = "";
 our $paramlanguage = "de";
 our $paramsplitlevel = 3;
 our $paramtitle = "Vorkurs Mathematik";
@@ -67,21 +63,7 @@ our $modulstartenbuttontext = "Modul starten"; # oder "Test starten";
 
 our $templatempl = ""; # wird von split::loadtemplates gefuellt
 
-# Userdata
-our $dataserver = ""; # wird durch mdataserverdeclare ueberschrieben (ggf. durch "" falls keiner vorliegt), nur Server ohne php-Aufruf
-
-# Feedback
-our $feedbackserver = "";
-our $feedbackdesc = "";
-
-# Aufgabendatenbank
-our $exerciseserver = "";
-
 our @feedbacktitles = ("Beschreibung/Aufgabenstellung ist unverst�ndlich","Der Inhalt bzw. die Frage ist zu schwer","War genau richtig","Das ist mir zu leicht","Fehler in Modulelement melden");
-our $dofeedback = 0; # wird durch mdofeedback aus Eingabedatei ueberschrieben, haengt nicht von config.pl ab
-our $doexport = 0; # wird durch mdoexport aus Eingabedatei ueberschrieben, haengt nicht von config.pl ab
-
-our $logofile = ""; # wird durch mmainlogo ueberschrieben, enthaelt Dateiname in files/images/
 
 our @DirectHTML = (); # Wird als separate Datei von mconvert.pl erzeugt
 our @sitepoints = ();
@@ -94,23 +76,8 @@ our @colexports = (); # Wird vom postprocessing in split.pm gefuellt
 
 our @converrors = (); # Array aus Strings
 
-# Die Signatur wird durch das msignature-Kommando ueberschrieben
-our $signature_main = "TESTING";
-our $signature_version = "0.0.0";
-our $signature_locale = "unknown";
-our $signature_timestamp = "?";
-our $signature_convmachine = "?";
-our $signature_convuser = "?";
-our $signature_CID = "???"; # Eindeutige Kurs-ID wird bei Auswertung von MSignature (falls vorhanden) erzeugt
 our $isBeta = 1; # = 0 -> release, wird auf 0 gesetzt wenn kein globalbetatag im xml
 
-# Die Headertexte koennen durch das mheader-Kommando ueberschrieben
-our $headertext_left = "<a href=\"http://www.mint-kolleg.de\" target=\"\_new\">www.mint-kolleg.de</a>";
-our $headertext_middle = "Onlinemodule MINT-Kolleg Baden-W&uuml;rttemberg";
-our $headertext_right = "MINT / VEMINT";
-our $footertext_left = "$version";
-our $footertext_middle = "Dieses Dokument ist nur f&uuml;r den pers&#246;nlichen Gebrauch bestimmt und darf in keiner Form an Dritte weitergegeben werden";
-our $footertext_right = "";
 our $mainsiteline = 0;
 
 
@@ -259,7 +226,7 @@ ENDE
 
 # stellt das Verhalten des Menues im Header ein
 # 0 bedeutet, dass Info die erste Seite eines Moduls ist
-# 1 Infowird nach Aufgaben eingegliedert und aus der Vorwaerts-Rückwärtskonfig ausgeklammert
+# 1 Info wird nach Aufgaben eingegliedert und aus der Vorwaerts-Rückwärtskonfig ausgeklammert
 our $newBehavior = 1;
 our $contentlevel = 4; # Level der subsubsections
 our $PageIDCounter = 1;
@@ -338,7 +305,6 @@ sub languageen {
 	$langgothere = "Go there!";
 	$langjumpinfo = "Jump to<br/>Info";
 }
-
 
 sub verarbeitung {
 	my ($root) = @_;
@@ -1497,64 +1463,43 @@ $paramversion = "all";
 # Schritt 1: Initialisierung
 # ==========================
 
-$templateheader .= "<script>\n";
+$templateheader .= "\n";
 
-if ($text =~ s/<!-- mfeedbackserverdeclare;;(.*?);;(.*?);; \/\/-->//s ) { $feedbackserver = $1; $feedbackdesc = $2; }
-if ($feedbackserver ne "") {
-  print("FeedbackServer deklariert: " . $feedbackserver . " ($feedbackdesc)\n");
+if ($config{parameter}{feedback_service} ne "") {
+  print("FeedbackServer deklariert: " . $config{parameter}{feedback_service} . "\n");
 } else {
   push @converrors, "Kein FeedbackServer deklariert, es wird kein Feedback verschickt.";
 }
-$templateheader .= "var feedbackserver = \"$feedbackserver\";\nvar feedbackdesc = \"$feedbackdesc\";\n";
-
-if ($text =~ s/<!-- mdataserverdeclare;;(.*?);; \/\/-->//s ) { $dataserver = $1; }
-if ($dataserver ne "") {
-  print("DataServer deklariert: " . $dataserver . "\n");
+if ($config{parameter}{data_server} ne "") {
+  print("DataServer deklariert: " . $config{parameter}{data_server} . "\n");
+  print("Description: " . $config{parameter}{data_server_description} . "\n");
 } else {
-  push @converrors, "Kein DataServer deklariert!";
+  push @converrors, "Kein DataServer in Konfigurationsdatei deklariert (Parameter data_server)!";
 }
 
-if ($text =~ s/<!-- mexerciseserverdeclare;;(.*?);; \/\/-->//s ) { $exerciseserver = $1; }
-if ($exerciseserver ne "") {
-  print("ExerciseServer deklariert: " . $exerciseserver . "\n");
+if ($config{parameter}{exercise_server} ne "") {
+  print("ExerciseServer deklariert: " . $config{parameter}{execise_server} . "\n");
 } else {
-  push @converrors, "Kein ExerciseServer deklariert!";
-}
-
-if ($text =~ s/<!-- mreplyadress;;(.*?);; \/\/-->//s ) {
-  print("Reply-Adresse gegeben: " . $1 . "\n"); 
-  $replyadress = $1;
-} else {
-  push @converrors, "Keine Reply-Adresse gefunden, Feedback-Button erscheint nicht.";
-  $replyadress = "";
+  push @converrors, "Kein ExerciseServer in Konfigurationsdatei deklariert (Parameter exercise_server)!";
 }
 
 
-if ($text =~ s/<!-- msignature;;(.*?);;(.*?);;(.*?);; \/\/-->//s ) {
-  print "Signatur des Pakets:\n"; 
-  $signature_main = $1;
-  $signature_version = $2;
-  $signature_locale = $3;
-} else {
-  push @converrors, "Keine Signaturdefinition gegeben!";
-  print "Keine Signaturdefinition gefunden, verwende:\n";
-}
-
-$signature_timestamp = strftime "%Y-%m-%d %H-%M-%S", localtime;
-$signature_convmachine = `hostname`;
-$signature_convmachine =~ s/\n//sg ;
-$signature_convuser = (getpwuid($<))[0];
+# Hier pruefen ob ueberhaupt in config vorhanden!!!
+$config{parameter}{signature_timestamp} = strftime "%Y-%m-%d %H-%M-%S", localtime;
+$config{parameter}{signature_convmachine} = `hostname`;
+$config{parameter}{signature_convmachine} =~ s/\n//sg ;
+$config{parameter}{signature_convuser} = (getpwuid($<))[0];
 
 # Generiere Course-ID, diese sollte pro Kurs und Version eindeutig sein
-$signature_CID = "($signature_main;;$signature_version;;$signature_locale)";
+$config{parameter}{signature_CID} = "(" . $config{parameter}{signature_main} . ";;" . $config{parameter}{signature_version} . ";;" . $config{parameter}{signature_localization} . ")";
 
-print "     main: " . $signature_main . "\n";
-print "  version: " . $signature_version . "\n";
-print "   locale: " . $signature_locale . "\n";
-print "timestamp: " . $signature_timestamp . "\n";
-print "conv-user: " . $signature_convuser . "\n";
-print "c-machine: " . $signature_convmachine . "\n";
-print "      CID: " . $signature_CID . "\n";
+print "     main: " . $config{parameter}{signature_main} . "\n";
+print "  version: " . $config{parameter}{signature_version} . "\n";
+print "   locale: " . $config{parameter}{signature_localization} . "\n";
+print "timestamp: " . $config{parameter}{signature_timestamp} . "\n";
+print "conv-user: " . $config{parameter}{signature_convuser} . "\n";
+print "c-machine: " . $config{parameter}{signature_convmachine} . "\n";
+print "      CID: " . $config{parameter}{signature_CID} . "\n";
 print "Diese Informationen werden im HTML-Baum hinterlegt.\n\n";
 
 # Wir befinden uns gerade im zu erzeugenden Baum, in dem perl ein Unverzeichnis ist, das Kopieren der Dateien von perl/files nach .. wurde schon durchgefuehrt
@@ -1582,16 +1527,12 @@ print MINTS "var isVerbose = " . $config{doverbose} . ";\n";
 if ($config{doverbose} eq 1) {
   print MINTS "console.log(\"VERBOSE-VERSION\");\n";
 }
-print MINTS "var exerciseserver = \"$exerciseserver\";\n";
-print MINTS "var dataserver = \"$dataserver\";\n";
-print MINTS "var dataserver_user = \"$dataserver/userdata.php\";\n";
-print MINTS "var signature_main = \"" . $signature_main . "\";\n";
-print MINTS "var signature_version = \"" . $signature_version . "\";\n";
-print MINTS "var signature_locale = \"" . $signature_locale . "\";\n";
-print MINTS "var signature_timestamp = \"" . $signature_timestamp . "\";\n";
-print MINTS "var signature_convuser = \"" . $signature_convuser . "\";\n";
-print MINTS "var signature_convmachine = \"" . $signature_convmachine . "\";\n";
-print MINTS "var signature_CID = \"" . $signature_CID . "\";\n";
+
+# Freie Parameter aus config eintragen
+while (($ckey, $cval) = each($config{'parameter'})) {
+  print MINTS "var $ckey = \"$cval\";\n";
+}
+
 print MINTS "var globalsitepoints = [];\n";
 print MINTS "var globalexpoints = [];\n";
 print MINTS "var globaltestpoints = [];\n";
@@ -1605,47 +1546,8 @@ for ($i=0; $i<=$#expoints; $i++) {
 close(MINTS);
 
 
-$templateheader .= "</script>\n";
-
-if ($text =~ s/<!-- mmainlogo;;(.*?);; \/\/-->//s ) {
-  $logofile = $1;
-  print "Logo: $logofile\n";
-} else {
-  # $logofile = "veundmintv1.png";
-  $logofile = "";
-  print "DEBUG: No logo file given, html will not include a logo\n";
-}
-
-if ($text =~ s/<!-- mdoexport;;(.*?);; \/\/-->//s ) {
-  $doexport = $1;
-} else {
-  $doexport = 0;
-}
-print "Export-Flag: $doexport\n";
-
-if ($text =~ s/<!-- mdofeedback;;(.*?);; \/\/-->//s ) {
-  $dofeedback = $1;
-} else {
-  $dofeedback = 0;
-  print "Feedback-Flag: $dofeedback\n";
-}
-
-if ($dofeedback eq 1) { print "----------------------- FEEDBACKVERSION WILL BE GENERATED ----------------------------\n";  }
-
-if ($text =~ s/<!-- headertext;(.*?);(.*?);(.*?);(.*?);(.*?);(.*?); \/\/-->//s ) {
-  print "Header-Pragma:\n"; 
-  $headertext_left = $1;
-  $headertext_middle = $2;
-  $headertext_right = $3;
-  $footertext_middle = $4;
-  $footertext_left= $5;
-  $footertext_right = $6;
-} else {
-  print "No header pragma found, using:\n";
-}
-
-print $headertext_left . " , " . $headertext_middle . " , " . $headertext_right . " , " . $footertext_left . " , " . $footertext_middle . " , " . $footertext_right . "\n";
-
+if ($config{parameter}{do_export} eq "1") { print "----------------------- EXPORTVERSION WILL BE GENERATED ----------------------------\n";  }
+if ($config{parameter}{do_feedback} eq "1") { print "----------------------- FEEDBACKVERSION WILL BE GENERATED ----------------------------\n";  }
 
 my @umwordindexlist = ();
 my @wordindexlist = ();
