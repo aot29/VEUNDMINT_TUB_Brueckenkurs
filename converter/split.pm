@@ -591,13 +591,7 @@ sub getstyleimporttags {
 # sub getheader()
 # Erzeugt das head-div fuer die html-Seiten
 sub getheader {
-  if ($main::config{layout} eq "tu9_thin") {
-    # Duenner Layout mit nur einem Element
-    return "<div class=\"headmiddle\">" . $main::headertext_middle . "</div>\n";    
-  } else {
-    # Alter layout mit drei Kopfelementen
-    return "<div class=\"headleft\">" . $main::headertext_left . "</div><div class=\"headright\">" . $main::headertext_right . "</div><div class=\"headmiddle\">" . $main::headertext_middle . "</div>\n";
-  }
+  return "<div class=\"headmiddle\">" . $main::headertext_middle . "</div>\n";    
 }
 
 # sub getfooter()
@@ -938,7 +932,6 @@ sub gettoccaption_menustyle {
 # 
   
   
-  if ($main::config{layout} eq "tu9_thin") {
     # Duenner TU9-Layout mit einzelnen Aufklappunterpunkten
     $c .= "<tocnavsymb><ul>";
     $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><div class=\"tocmintitle\">Kursinhalt</div></a>";
@@ -1012,80 +1005,10 @@ sub gettoccaption_menustyle {
     $c .= "</ul></div>";
     $c .= "</li>";
     $c .= "</ul></tocnavsymb>"; # level1-ul
-  } else {
-    # Alter Layout mit aufklapp-Unterpunkten auf oberster Ebene  
-    $c .= "<tocnav><ul>";
-    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::chaptersite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/chab.png\" style=\"border: none\"> Kursinhalt</a>";
-    $c .= "<div><ul>\n";
-   
-    my $i1=0; # eigentlich for-schleife, aber hier nur Kursinhalt
-    $p1 = $pages1[$i1];
-    if ($p1->{ID}==$site->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
-    $attr = "";
-    $ff = $i1 + 1;
-
-    # Fachbereiche ohne Nummern anzeigen
-    $ti = $p1->{TITLE};
-    $ti =~ s/([12345] )(.*)/$2/ ;
-    # $c .= "<li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p1->link() . ".{EXT}\">" . $ti . "</a>\n"; 
-
-    my @pages2 = @{$p1->{SUBPAGES}};
-    my $i2;
-    my $n2 = $#pages2 + 1;
-    if ($n2 > 0) {
-      # $c .= "  <div><ul>\n";
-      for ( $i2=0; $i2 < $n2; $i2++ ) {
-        my $p2 = $pages2[$i2];
-        $ti = $p2->{TITLE};
-        $ti =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/$2\.$3/ ;
-        if ($p2->{ID}==$site->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
-        $attr = "";
-        $c .= "  <li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p2->link() . ".{EXT}\">" . $ti . "</a>\n";
-        if ($fsubi ne -1) {
-          # Untereintraege immer einfuegen im neuen Stil
-          # if ($fsubi == $p2->{ID}) {
-          my @pages3 = @{$p2->{SUBPAGES}};
-          my $i3;
-          my $n3 = $#pages3 + 1;
-          # print "TOC:     lvl3 hat $n3 Eintraege\n";
-          if ($n3 > 0) {
-            $c .= "    <div><ul>\n";
-            for ( $i3=0; $i3 < $n3; $i3++ ) {
-              my $p3 = $pages3[$i3];
-              if (($site->{LEVEL}==$main::contentlevel) and ($p3->{ID}==$site->{PARENT}->{ID})) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
-              $attr = "";
-              $c .= "    <li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p3->link() . ".{EXT}\">" . $p3->{NR}.$p3->{TITLE} . "</a></li>\n";
-            }
-            $c .= "    </ul></div>\n"; # level3-ul
-          }
-        } # if subsection notwendig
-        $c .= "  </li>\n";
-      }
-    }
-    $c .= "\n";
-    $c .= "</ul></div>";
-    $c .= "</li>";
-    $c .= "</ul></tocnav>"; # level1-ul
-  }
     
   $c .= "<br /><br />";
   
-  if ($main::config{layout} eq "tu9_thin") {
-    # Symbole komplett in Kopfleiste und von intersite.js erzeugt
-  } else {
-    $c .= "<tocnav><ul>";
-    if ($main::startsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::startsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/startsiteb.png\" style=\"border: none\"> Einführung</a></li>"; }
-    if ($main::datasite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::datasite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/datab.png\" style=\"border: none\"> Mein Kurs</a></li>"; }
-    if ($main::confsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::confsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/confb.png\" style=\"border: none\"> Einstellungen</a></li>"; }
-    if ($main::stestsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::stestsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/stestsiteb.png\" style=\"border: none\"> Eingangstest</a></li>"; }
-    if ($main::searchsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::searchsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/searchb.png\" style=\"border: none\"> Suche</a></li>"; }
-    if ($main::favorsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::favorsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/favoriteb.png\" style=\"border: none\"> Lesezeichen</a></li>"; }
-    if ($main::locationsite ne "") { $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$main::locationsite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/$main::locationicon\" style=\"border: none\">$main::locationshort</a></li>"; }
-    if ($main::replyadress ne "") {
-      $c .= "<li><a href=\"mailto:" . $main::replyadress . "\"><img src=\"" . $site->linkpath() . "../images/mailb.png\" style=\"border: none\"> Feedback</a></li>"; 
-    }
-    $c .= "</ul></tocnav>";
-  }
+  # Symbole komplett in Kopfleiste und von intersite.js erzeugt
   
   # PDF zum Fachbereich anbieten falls PDFs aktiviert sind und wir nicht im Hilfebereich sind
   if (($main::dopdf eq 1) and ($site->{HELPSITE} eq 0)) {

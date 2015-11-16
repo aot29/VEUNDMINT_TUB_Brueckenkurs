@@ -409,49 +409,9 @@ function updateLoginfield() {
   }
 
   
-  // Kopfzeileninfo eintragen falls im TU9-Layout
-  if (globalLayout == "tu9_thin") {
-
-    var head = "<a href=\"" + linkPath + "config.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Einstellungen</div></a>" +
-               "<a href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
-    
-        
-    head += "<div style=\"color:" + cl + ";display:inline-block;flex-grow:100;text-align:center\">" + s + "</div>";
-
-    head += "<a href=\"" + linkPath + "search.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Stichwortliste</div></a>";
-    head += "<a href=\"" + linkPath + "index.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Startseite</div></a>";
-
-    
-    var d = $('div.headmiddle').height() + 2;
-    
-    var systyle = "style=\"height:" + d + "px\"";
-    var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px\"";
-    
-    head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_share_blue_96px.png\"></button>";
-    head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_menu_blue_96px.png\"></button>";
-    
-    $('div.headmiddle').html(head);
-    $('#footerleft').html("<a href=\"mailto:admin@ve-und-mint.de\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
-    
-
-    $('.navi > ul > li').each(function(i) {
-      $(this).hover(function() { $(this).css("background-color", TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", TOCMINBUTTON); });
-    });
-
-
-    showHint($('#menubutton'), "Hier klicken um Navigationsleisten ein- oder auszublenden");
-
-    var shareintext = "Diese Seite teilen über:<br /><br />";
-    var myurl = window.location.href;
-    
-    shareintext += "<a href=\"#\" onclick=\"shareFacebook()\"><img src=\"" + linkPath + "images/sharetargetfacebook.png\"></a>";
-    shareintext += "&nbsp;";
-    shareintext += "<a href=\"http://twitter.com/intent/tweet?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargettwitter.png\"></a>";
-    shareintext += "&nbsp;";
-    shareintext += "<a href=\"https://plus.google.com/share?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargetgoogleplus.png\"></a>";
-    
-    showHint($('#sharebutton'), shareintext);
-  }
+  // Kopfzeileninfo eintragen
+  $('#LOGINROW').css("color",cl);
+  $('#LOGINROW').html(s);
   
   // Nur-Loginfelder aufbauen falls auf Seite vorhanden
   e = document.getElementById("ONLYLOGINFIELD");
@@ -1212,66 +1172,4 @@ function setIntersiteType(t) {
   } else {
       logMessage(DEBUGINFO, "intersiteactive == false");
   }
-}
-
-// ---------------------- Funktionen fuer Seitenverhalten/Frames -------------------------------------------
-
-function hideNavigation() {
-  $('div.navi').slideUp(animationSpeed);
-  $('tocnavsymb').hide();
-  $('div.toc').animate({width: 'hide'}, animationSpeed);
-  $('#footerleft').slideUp(animationSpeed);
-  $('#footermiddle').slideUp(animationSpeed);
-  $('#footerright').slideUp(animationSpeed);
-  $('#content').css("margin-left","0px");
-}
-
-function showNavigation() {
-  $('#content').css("margin-left",MENUWIDTH + "px");
-  $('div.navi').slideDown(animationSpeed);
-  $('tocnavsymb').hide();
-  $('div.toc').animate({width: 'show'}, animationSpeed);
-  $('tocnavsymb').show();
-  $('#footerleft').slideDown(animationSpeed);
-  $('#footermiddle').slideDown(animationSpeed);
-  $('#footerright').slideDown(animationSpeed);
-}
-
-function menuClick() {
-    if ($('div.navi').is(":visible")) hideNavigation(); else showNavigation();
-}
-
-// Zeigt einmalig einen Hinweis fuer ein Bedienelement an und merkt sich im intersiteobj dass der hint gezeigt wurde
-// Hinweis wird bei laengerem Hover wieder eingeblendet
-function showHint(element, hinttext) {
-
-  hinttext = "<div style=\"font-size:" + SMALLFONTSIZE + "px;line-height:100%\">" + hinttext + "</div>";
-
-  // Check if qtip is already attached to the element
-  if(typeof element.data('qtip') === 'object') {
-    element.qtip('option', 'content.text', hinttext);
-  } else {
-    element.qtip({
-       content: { text: hinttext },
-       show: { delay: 750 },
-       hide: { delay: 1000, fixed: true },
-       position: {
-           my: 'top right',
-           at: 'bottom left',
-           target: element
-       },
-       style: { classes: 'qtip-yellow'}
-    });
-  }
-}
-
-function shareClick() {
-  $('#sharebutton').qtip("toggle","true");
-}
-
-function shareFacebook() {
-  window.open(
-    'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), 
-    'facebook-share-dialog', 
-    'width=626,height=436'); 
 }

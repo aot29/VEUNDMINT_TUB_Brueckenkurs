@@ -1,6 +1,5 @@
 # Globale Einstellungen fuer mconvert.pl und conv.pl (sowie die darin eingebundenen modules)
 
-layout          =>      "tu9_thin",
 testonly        =>      0       , # =1 -> Zahlreiche Funktionen (z.B. Einstellungen) werden deaktiviert
 scormlogin      =>      0       , # =1 -> Alle Anmeldesysteme werden deaktiviert, und Teilnehmer ueber SCORM identifiziert
 nosols          =>      0       , # =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
@@ -81,11 +80,17 @@ colors => {
    REPLYCOLOR => "000000",
 },
   
-# font sizes
+# fonts
+fonts => {
+    BASICFONTFAMILY  =>    "\"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", Verdana, Arial, Helvetica , sans-serif"
+},
+
+# sizes
 sizes =>  {
-    MENUWIDTH      =>   ($menuwidth = 185),     # Breite der Menueleiste am linken Rand
-    TOCWIDTH      =>     $menuwidth - 21,
-    BASICFONTSIZE =>    ($mybasicfontsize = 16),
-    SMALLFONTSIZE =>     $mybasicfontsize - 2,
-    BIGFONTSIZE   =>     $mybasicfontsize + 2
+    CONTENTMINWIDTH =>    800,                    # Breite unter die der content nicht geschrumpft werden kann ohne Scrollbalken zu aktivieren
+    MENUWIDTH       =>    ($menuwidth = 160),     # Breite der Menueleiste am linken Rand
+    TOCWIDTH        =>     $menuwidth - 21,
+    BASICFONTSIZE   =>    ($mybasicfontsize = 16),
+    SMALLFONTSIZE   =>     $mybasicfontsize - 2,
+    BIGFONTSIZE     =>     $mybasicfontsize + 2
 }

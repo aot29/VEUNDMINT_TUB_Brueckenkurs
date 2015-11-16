@@ -3,7 +3,7 @@
 body
 {
   /* max-width: 1000px; */
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-size: [-BASICFONTSIZE-];
   padding: 0px;
   margin: 0px;
@@ -12,14 +12,14 @@ body
 
 input
 {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-size: [-BASICFONTSIZE-];
   height: 100%;  
 }
 
 button
 {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-size: [-BASICFONTSIZE-];
   height: 100%;  
 }

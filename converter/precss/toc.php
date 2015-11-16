@@ -96,6 +96,7 @@
   border: 1px solid rgb(55,180,220);
   display: inline-block;
   color: [-XSYMBCOLOR-];
+  font-size: [-SMALLFONTSIZE-];
 }
 
 .xsymb:hover {
@@ -107,7 +108,7 @@
   color: [-TOCMINBUTTONCOLOR-];
   padding: 0px 5px 0px;
   border: 1px solid [-TOCMINBORDER-];
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-size: [-BIGFONTSIZE-];
 }
 
@@ -116,7 +117,7 @@
   color: [-TOCMINBUTTONCOLOR-];
   padding: 0px 5px 0px;
   border: 1px solid [-TOCMINBORDER-];
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-size: [-BIGFONTSIZE-];
 }
 
@@ -132,7 +133,7 @@ tocnavsymb {
   display: block;
   margin: 8px 4px 8px 4px;
   overflow: hidden;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-size: [-BASICFONTSIZE-];
 }
 

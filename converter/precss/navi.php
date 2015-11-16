@@ -49,7 +49,7 @@
   float: left;
   text-align: left;
   direction: ltr;
-  background-image: url('../images/button_arl1.png');
+  background-image: url('[LINKPATH]images/button_arl1.png');
 }
 
 .nnext
@@ -57,7 +57,7 @@
   float: right;
   text-align: right;
   direction: rtl;
-  background-image: url('../images/button_arr1.png');
+  background-image: url('[LINKPATH]images/button_arr1.png');
 }
 
 .nprevg
@@ -65,7 +65,7 @@
   float: left;
   text-align: left;
   direction: ltr;
-  background-image: url('../images/button_arl3.png');
+  background-image: url('[LINKPATH]images/button_arl3.png');
 }
 
 .nnextg
@@ -73,7 +73,7 @@
   float: right;
   text-align: right;
   direction: rtl;
-  background-image: url('../images/button_arr3.png');
+  background-image: url('[LINKPATH]images/button_arr3.png');
 }
 
 .xnprev
@@ -81,7 +81,7 @@
   float: left;
   text-align: left;
   direction: ltr;
-  background-image: url('../images/button_xarl1.png');
+  background-image: url('[LINKPATH]images/button_xarl1.png');
 }
 
 .xnnext
@@ -89,7 +89,7 @@
   float: right;
   text-align: right;
   direction: rtl;
-  background-image: url('../images/button_xarr1.png');
+  background-image: url('[LINKPATH]images/button_xarr1.png');
 }
 
 .xnprevg
@@ -97,7 +97,7 @@
   float: left;
   text-align: left;
   direction: ltr;
-  background-image: url('../images/button_xarl3.png');
+  background-image: url('[LINKPATH]images/button_xarl3.png');
 }
 
 .xnnextg
@@ -105,5 +105,5 @@
   float: right;
   text-align: right;
   direction: rtl;
-  background-image: url('../images/button_xarr3.png');
+  background-image: url('[LINKPATH]images/button_xarr3.png');
 }

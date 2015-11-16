@@ -51,7 +51,7 @@
   border-radius: 4px;
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
   margin: 8px 12px 8px 12px;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-weight: 300;
   font-size: [-BIGFONTSIZE-];
   border: thin solid [-HINTLINE-]
@@ -64,7 +64,7 @@
   color: [-REPLYCOLOR-];
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
   margin: 8px 12px 8px 12px;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-weight: 300;
   font-size: [-BIGFONTSIZE-];
 }
@@ -77,7 +77,7 @@
   color: [-LOGINCOLOR-];
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
   margin: 8px 12px 8px 12px;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-weight: 300;
   font-size: [-BIGFONTSIZE-];
   border: thin solid [-INFOLINE-];

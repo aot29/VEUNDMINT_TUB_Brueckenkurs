@@ -52,7 +52,7 @@
   text-align: left;
   direction: ltr;
   margin-left: 15px;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-size: [-BASICFONTSIZE-];
 }
 
@@ -63,7 +63,7 @@
   text-align: right;
   direction: rtl;
   margin-right: 15px;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-size: [-BASICFONTSIZE-];
 }
 
@@ -74,7 +74,7 @@
   background-color: [-HEADBACKGROUND-];
   font-weight: normal;
   text-align: left;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-size: [-BIGFONTSIZE-];
   border-bottom: 1px solid black;
   border-top: 0px solid black;
@@ -83,7 +83,7 @@
 .footermiddle
 {
   text-align: center;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;
+  font-family: [-BASICFONTFAMILY-];
   font-size: [-BASICFONTSIZE-];
   border-top: 1px solid [-GENERALBORDER-];
   border-bottom: 0px solid [-GENERALBORDER-];
