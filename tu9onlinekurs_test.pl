@@ -17,7 +17,7 @@ dotikz          =>      0       , # =1 -> TikZ wird aufgerufen um Grafiken zu ex
 dozip           =>      0       , # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
 output          =>      "tu9onlinekurstest", # Zielverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
 source          =>      "module_veundmint",  # Quellverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
-module          =>      "tree_tu9onlinekurs.tex",  # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!)
+module          =>      "tree_tu9onlinekurs.tex",  # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
 outtmp          =>      "tmp",               # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
 description     =>      "Onlinebrückenkurs Mathematik",
 
@@ -34,8 +34,12 @@ parameter => {                                        # Benutzeridentifizierung 
   data_server_description => "Server 3 (KIT)",        
   data_server_user        => "$server/userdata.php",  # Absolute Angabe
   footer_middle           => "Onlinebrückenkurs Mathematik",
-  footer_right            => "Lizenz: CC BY-SA 3",
+  footer_right            => "Lizenz: CC BY-SA 3.0",
   mainlogo                => "veundmint_sharelogo.png" # Im Pfad files/images
+},
+
+generate_pdf => {
+  "tree1_tu9onlinekurs"  # Datei relativ zum source-Pfad
 },
 
 # fonts

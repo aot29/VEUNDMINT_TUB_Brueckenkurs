@@ -32,7 +32,6 @@ our $rfilename = "";         # Filename of main tex file including path relative
 our $zip = "";               # Filename of zip file (if neccessary)
 
 our @IncludeStorage = ();
-our @PDFDeclare = ();
 our @DirectHTML = ();
 
 # -------------------------------------------------------------------------------------------------------------
@@ -563,7 +562,17 @@ if ($config{doscorm} eq 1) {
 }
 
 if ($config{dopdf} eq 1) {
-  print("...generating PDF files\n");
+  print("...generating PDF files: ");
+  my $i = 0;
+  my $ckey = "";
+  while ($ckey = each($config{generate_pdf})) {
+    print $ckey . " ";
+    $i++;
+  }
+  print "\n";
+  if ($i eq 0) {
+    die("FATAL: No PDF files given in config but dopdf=1");
+  }
 } else {
   print("...no PDF files\n");
 }
@@ -588,11 +597,6 @@ while(defined($texzeile = <MINTS>)) {
   $roottex .= $texzeile;
 }
 close(MINTS);
-
-while ($roottex =~ s/\\MPragma{PDFTEXDeclare;(.+?)}/\\MPragma{Nothing}/ ) {
-  print "Root-Pragma PDFTEXDeclare: $1\n";
-  push @PDFDeclare, [ $1 ];
-}
 
 print("Settup up output directory " . $config{output} . "\n");
 system("rm -fr " . $config{output});
@@ -1270,71 +1274,6 @@ foreach $file (@orgicons) {
 chdir(".."); # Verlaesst sich darauf, dass $config{output} nur eine Verzeichnisebene ist !
 print "PostIcons: CWD is " . cwd() . "\n";
 
-# # Predefinierte Tagmakros umsetzen (NICHT MEHR VERWENDET)
-# print "Erzeuge predefinierte Tagmakros:\n";
-# my $tagf = open(MINTS, "< $output/converter/textags.ini") or die "Fehler beim Erstellen der Tagmakros: textags.ini nicht gefunden.\n";
-# my $tagsource = "";
-# while(defined($texzeile = <MINTS>)) {
-#   $texzeile =~ s/\\\%/XYZPERCTAG/g ; # LaTeX-Kommentare am Zeilenende entfernen, und Prozentzeichen löscht Zeilenumbruch
-#   $texzeile =~ s/\%(.*)\n//g ; # LaTeX-Kommentare am Zeilenende entfernen, und Prozentzeichen löscht Zeilenumbruch
-#   $texzeile =~ s/XYZPERCTAG/\%/g ;
-#   $tagsource .= $texzeile;
-# }
-# close(MINTS);
-# 
-# # Parsen der Tags (sollte in textags.ini ebenso lauten):
-# # Struktur eines tagmakros:
-# # Parameter stehen in beiden Definitionen als #1,#2,... zur Verfügung,
-# # PDF-Definition ist in LaTeX, HTML-Definition direkt als HTML mit direkter
-# # Verwendung der Parameter (compile-evaluation).
-# #
-# #   {tagmacro:MAKRONAME}{AnzahlParameter}{DIRECTHTML=0,1}{PDFDEFINITION}{HTMLDEFINITION}
-# 
-# my @tagarray = $tagsource =~ /( \{ (?: [^{}]* | (?0) )* \} )/xg;
-# $i = 0;
-# while ($i <= $#tagarray) {
-#   if ($tagarray[$i] =~ m/{tagmacro:(.+)}/s ) {
-#     my $tmname = $1;
-#     if (($i+4) > $#tagarray) { die("ERROR: textags.ini hat fehlerhaftes Format, nicht genug Angaben fuer Makro $tmname"); }
-#     if ($i ge 1) { print(" "); }
-#     print $tmname;
-# 
-#     my $tmpars = $tagarray[$i+1];
-#     $tmpars =~ s/{(.+)}/$1/g ;
-#     my $tmdirect = $tagarray[$i+2];
-#     $tmdirect =~ s/{(.+)}/$1/g ;
-#     my $tmpdf = $tagarray[$i+3];
-#     my $tmhtml = $tagarray[$i+4];
-#     $tmhtml =~ s/\{(.*)\}/$1/ ;
-#     
-#     
-#     my $hparas = ";;$tmpars";
-#     my $j = 1;
-#     for ($j = 1; $j < ($tmpars+1); $j++) { $hparas .= ";;\}\#$j\\special\{html:"; }
-#     
-#     my $htmltag;
-#     $tmhtml =~ s/\\\#/\#\_/g ;
-#     if ($tmdirect ne 0) { $tmhtml =~ s/\#([0123456789]+)/\}\#$1\\special\{html:/g; }
-#     $tmhtml =~ s/\#\_/\#/g ;
-#     if ($tmdirect ne 0) { $tmhtml = "\\special\{html:$tmhtml\}"; }
-#     
-#     $htmltag = "\\newcommand\{$tmname\}[$tmpars]\{$tmhtml\}";
-#     $IncludeTags .= "\\ifttm\n\\newcommand{$tmname}\[$tmpars\]$tmpdf\n\\else\n$htmltag\n\\fi\n";
-#    
-#     
-#     $i += 5;
-#   } else {
-#     die("ERROR: textags.ini hat fehlerhaftes Format: " . $tagarray[$i] . "\n");
-#   }
-# }
-# 
-# print "\n";
-
-# # Java-Kram (NICHT MEHR BENOETIGT)
-# print "Erzeuge Java-Bytecode\n";
-# system("javac *.java");
-# system("cp *.class ../files/.");
-
 print "Creating stylesheets\n";
 chdir($config{output} . "/converter/precss");
 system("php -n grundlagen.php >grundlagen.pcss");
@@ -1426,10 +1365,9 @@ if ($rt1 != 0) { die("FATAL exit from conv.pl"); }
 chdir("tex");
 my $pdfok = 1;
 if ($config{dopdf} eq 1) {
-    # Ganzer Baum wird erstellt: Die Fachbereiche separat texen
+    # Ganzer Baum wird erstellt: Die Einzelmodule separat texen
     my $doct = "";
-    for ( $i=0; ($i <= $#PDFDeclare) and ($pdfok == 1); $i++ ) {
-      $doct = $PDFDeclare[$i][0];
+    while (($doct = each($config{generate_pdf})) and ($pdfok == 1)) {
       print "======= Generating PDF file $doct.tex ========================================\n";
 
       $rt1 = system("pdflatex $doct.tex");
@@ -1455,6 +1393,7 @@ if ($config{dopdf} eq 1) {
 	  }
 	}
       }
+    $i++;
   }
   if ($pdfok == 1) {
     print("======= PDF files build successfully =======================================\n");
