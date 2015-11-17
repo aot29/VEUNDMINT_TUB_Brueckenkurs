@@ -28,7 +28,7 @@
   bottom: 0px;
   text-align: center;
   width: 100%;
-  font-size: [-BASICFONTSIZE-];
+  font-size: [-BIGFONTSIZE-];
   /* max-width: 1000px; */
   color: [-FOOT-];
   background-color: [-FOOTBACKGROUND-];

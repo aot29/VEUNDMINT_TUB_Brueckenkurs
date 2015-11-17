@@ -312,7 +312,7 @@ Geben Sie den größtmöglichen Definitionsbereich der Funktion
 \]
 an.
 \begin{MHint}{Lösung}
-Die Wurzel liefert für alle nicht-negativen reellen Zahlen ein sinnvolles reelles Ergebnis. Somit gilt $D_w=[0,\infty)$.  
+Die Wurzel liefert für alle nicht-negativen reellen Zahlen ein sinnvolles reelles Ergebnis. Somit gilt $D_w=[0;\infty)$.  
 \end{MHint}
 \end{MExercise}
 
@@ -383,7 +383,7 @@ Somit gilt für die Werte der Funktion $\varphi(y)\in(1;4)$ und deshalb $W_\varph
 \MDeclareSiteUXID{VBKM06_FunktionenAnwendungen}
 Mathematische Funktionen beschreiben oft Zusammenhänge zwischen Größen, die aus anderen Wissenschaften oder dem Alltagsbereich stammen. So ist etwa das Volumen $V$ eines Würfels abhängig von der Kantenlänge $a$ des Würfels. Damit kann das Volumen als mathematische Funktion aufgefasst werden, in der jeder Kantenlänge $a>0$ das entsprechende Volumen $V(a)=a^3$ zugeordnet wird:
 \[
- \function{V}{(0,\infty)}{\R}{a}{V(a)=a^3.}
+ \function{V}{(0;\infty)}{\R}{a}{V(a)=a^3.}
 \]
 Es ergibt sich die kubische Standardparabel (siehe Abschnitt \MNRef{sec:monome}) als Zusammenhang zwischen Kantenlänge und Volumen. Auf diese Art lassen sich noch viele weitere Beispiele aus Naturwissenschaften und aus dem Alltagsbereich finden: Ort in Abhängigkeit von der Zeit in der Physik, Reaktionsgeschwindigkeit in Ab\-häng\-ig\-keit von der Konzentration in der Chemie, Mehlmenge in Abhängigkeit von der gewünschten Teigmenge in einem Rezept, usw. 
 
@@ -393,7 +393,7 @@ Wir betrachten dazu ein Beispiel.
 \begin{MExample}\MLabel{bsp:anwendungen}
 Die Intensität radioaktiver Strahlung ist \highlight{umgekehrt proportional} zum Quadrat des Abstands von der Quelle. Dies wird auch als \modsemph{Abstandsgesetz} bezeichnet. Unter Benutzung einer physikalischen \highlight{Proportionalitätskonstante} $c>0$ kann man den Zusammenhang zwischen Intensität $I$ der Strahlung und Abstand $r>0$ von der Quelle folgendermaßen als mathematische Funktion formulieren:
 \[
- \function{I}{(0,\infty)}{\R}{r}{\frac{c}{r^2}.}
+ \function{I}{(0;\infty)}{\R}{r}{\frac{c}{r^2}.}
 \]
 Für die Intensität gilt also die Abbildungsvorschrift $I(r)=\frac{c}{r^2}$, die somit die Abhängigkeit der Größen $I$ und $r$ voneinander beschreibt. 
 \end{MExample}
@@ -403,7 +403,7 @@ Beim Bau von Windkraftanlagen gilt in guter Näherung, dass die Leistung \highlig
 
 a)
 \[
- \function{P}{(0,\infty)}{\R}{v}{P(v)=\frac{\rho}{v^3}}
+ \function{P}{(0;\infty)}{\R}{v}{P(v)=\frac{\rho}{v^3}}
 \]
 b)
 \[
@@ -411,11 +411,11 @@ b)
 \]
 c)
 \[
- \function{P}{[0,\infty)}{\R}{v}{P(v)=\rho v^3}
+ \function{P}{[0;\infty)}{\R}{v}{P(v)=\rho v^3}
 \]
 d)
 \[
- \function{x}{[0,\infty)}{\R}{f}{x(f)=\rho f^3}
+ \function{x}{[0;\infty)}{\R}{f}{x(f)=\rho f^3}
 \]
 \begin{MHint}{Lösung}
 c) und d). a) ist falsch, da es sich um eine umgekehrte Proportionalität handelt. b) ist nicht der Problemstellung angepasst. Negative Windgeschwindigkeiten ergeben in diesem Zusammenhang keinen Sinn und sollten aus dem Definitionsbereich ausgeschlossen werden. c) ist korrekt; in diesem Fall ergibt sich die Abhängigkeit $P(v)=\rho v^3$ für die Leistung $P$ und die Windgeschwindigkeit $v$. Wir bemerken, dass d) genauso richtig ist. In diesem Fall haben wir eine Funktion, die völlig identisch zu Fall c) ist, nur die Leistung wird in diesem Fall mit $x$ und die Windgeschwindigkeit mit $f$ bezeichnet. Dies verdeutlicht nochmals, dass die Variablen, die für die Bezeichnung der Funktion und für die Veränderliche benutzt werden, mathematisch völlig willkürlich sind. Allerdings gibt es in den Naturwissenschaften Konventionen, welche Variablen \modsemph{üblicherweise} für bestimmte Größen verwendet werden. So ist es hier doch üblicher die Geschwindigkeit mit $v$ (vom englischen \modsemph{velocity}) und die Leistung 
@@ -612,7 +612,7 @@ markieren Sie Definitions- und Wertebereiche auf Quer- und Hochachse und geben S
 \end{tikzpicture}
 }%
 
-$D_f=\R$, $W_f=[0,\infty)$
+$D_f=\R$, $W_f=[0;\infty)$
 \end{MHint}
 \end{MExercise}
 
@@ -697,7 +697,7 @@ und ihren Graphen.
 \end{tikzpicture}
 }%
 
-Auf der Querachse in diesem Graphen erkennen wir zwei Bereiche, in denen der Graph unterschiedliches \modsemph{Wachstumsverhalten} zeigt. Im Bereich von $x$-Werten mit $x\in(-\infty,0)$ \modsemph{fällt} der Graph. Das heißt, werden die $x$-Werte größer, so werden die zugehörigen Funktionswerte auf der Hochachse kleiner. Im Bereich von $x$-Werten mit $x\in(0,\infty)$ stellen wir das gegenteilige Verhalten fest. Bei größer werdenden $x$-Werten werden auch die zugehörigen Funktionswerte größer. Der Graph \modsemph{wächst}. Beim Wert $0\in\R$ geht der fallende Bereich in den wachsenden Bereich über. Solche Werte werden bei der Untersuchung von Scheitelpunkten in Abschnitt \MNRef{sec:polynome} und beim Bestimmen von \MSRef{VBKM07_Kurvendiskussion}{Extremwerten} in Modul \MNRef{VBKM07} besonders wichtig werden.
+Auf der Querachse in diesem Graphen erkennen wir zwei Bereiche, in denen der Graph unterschiedliches \modsemph{Wachstumsverhalten} zeigt. Im Bereich von $x$-Werten mit $x\in(-\infty,0)$ \modsemph{fällt} der Graph. Das heißt, werden die $x$-Werte größer, so werden die zugehörigen Funktionswerte auf der Hochachse kleiner. Im Bereich von $x$-Werten mit $x\in(0;\infty)$ stellen wir das gegenteilige Verhalten fest. Bei größer werdenden $x$-Werten werden auch die zugehörigen Funktionswerte größer. Der Graph \modsemph{wächst}. Beim Wert $0\in\R$ geht der fallende Bereich in den wachsenden Bereich über. Solche Werte werden bei der Untersuchung von Scheitelpunkten in Abschnitt \MNRef{sec:polynome} und beim Bestimmen von \MSRef{VBKM07_Kurvendiskussion}{Extremwerten} in Modul \MNRef{VBKM07} besonders wichtig werden.
 
 Wir bezeichnen diese beiden Eigenschaften als \highlight{streng monoton fallend} bzw.~\highlight{streng monoton wachsend} und schreiben sie mathematisch folgendermaßen auf:
 
@@ -1268,7 +1268,7 @@ Im Kontext dieses Moduls kann der Betrag nun als Funktion aufgefasst werden. Man
 \begin{MExercise}
 Was ist die Wertemenge $W_b$ der Betragsfunktion $b$?
 \begin{MHint}{Lösung}
-Da für alle Zahlen $x$ aus $D_b=\R$ gilt $b(x)=|x|\geq0$, ergibt sich $W_b=[0,\infty)$. 
+Da für alle Zahlen $x$ aus $D_b=\R$ gilt $b(x)=|x|\geq0$, ergibt sich $W_b=[0;\infty)$. 
 \end{MHint}
 \end{MExercise}
 
@@ -1394,7 +1394,7 @@ folglich:
 \end{tikzpicture}
 }%
 
-Da $|-8x+1|\geq0$ gilt, folgt $|-8x+1|-1\geq -1$ und damit ist $W_\alpha=[-1,\infty)$.
+Da $|-8x+1|\geq0$ gilt, folgt $|-8x+1|-1\geq -1$ und damit ist $W_\alpha=[-1;\infty)$.
 \end{MHint}
 \end{MExercise}
 
@@ -1506,7 +1506,7 @@ Man bezeichnet das Monom vom Grad $2$ auch als die \highlight{Standardparabel}. 
 \end{tikzpicture}
 }%
 
-Auf Basis dieser Graphen fassen wir nun einige Erkenntisse über Monome zusammen: Es gibt einen grundlegenden Unterschied zwischen Monomen (mit Abbildungsvorschrift $f(x)=x^n$, $n\in\N$) von geradem und von ungeradem Grad. Die Monome von geradem Grad haben als Wertebereich immer die Menge $[0,\infty)$, während die Monome von ungeradem Grad ganz $\R$ als Wertebereich besitzen. Weiterhin gilt stets
+Auf Basis dieser Graphen fassen wir nun einige Erkenntisse über Monome zusammen: Es gibt einen grundlegenden Unterschied zwischen Monomen (mit Abbildungsvorschrift $f(x)=x^n$, $n\in\N$) von geradem und von ungeradem Grad. Die Monome von geradem Grad haben als Wertebereich immer die Menge $[0;\infty)$, während die Monome von ungeradem Grad ganz $\R$ als Wertebereich besitzen. Weiterhin gilt stets
 \[
  f(1)=1^n=1,
 \]
@@ -1519,7 +1519,7 @@ und
 \]
 Ferner gilt
 \[
- \MCases{x>x^2>x^3>x^4>\dots & \text{für}\ x\in(0,1) \\ x<x^2<x^3<x^4<\dots & \text{für}\ x\in(1,\infty).}
+ \MCases{x>x^2>x^3>x^4>\dots & \text{für}\ x\in(0,1) \\ x<x^2<x^3<x^4<\dots & \text{für}\ x\in(1;\infty).}
 \]
 
 \begin{MExercise}
@@ -1721,7 +1721,7 @@ Das Polynom lautet
 \[
  \function{f}{\R}{\R}{x}{9x^4+\pi x^2-4.}
 \]
-und besitzt den Wertebereich $W_f=[-4,\infty)$, da die geraden Potenzen von $x$ nur nichtnegative Werte annehmen können.
+und besitzt den Wertebereich $W_f=[-4;\infty)$, da die geraden Potenzen von $x$ nur nichtnegative Werte annehmen können.
 \end{MHint}
 \end{MExercise}
 
@@ -1867,7 +1867,7 @@ Wie lautet die Wertemenge $W_{f_n}$ der Funktion $f_n$ für gerade $n\in\N$ bzw.~
 \begin{MHint}{Lösung}
 Stets gilt $\frac{1}{x^n}\neq0$, da ein Quotient nur Null werden kann, wenn der Zähler Null wird. Folglich kommt $0\in\R$ nie in der Wertemenge vor. Da stets $x^n\geq0$ für gerade $n\in\N$ gilt, folgt $\frac{1}{x^n}>0$ für gerade $n\in\N$. Für ungerade $n\in\N$ kann allerdings auch $\frac{1}{x^n}<0$ sein. Es ergibt sich
 \[
- W_{f_n}=\MCases{\R\setminus\{0\} & \text{falls}\ n\ \text{ungerade} \\ (0,\infty) & \text{falls}\ n\ \text{gerade.}}
+ W_{f_n}=\MCases{\R\setminus\{0\} & \text{falls}\ n\ \text{ungerade} \\ (0;\infty) & \text{falls}\ n\ \text{gerade.}}
 \]
 Dies ist auch aus den Graphen der Funktionen vom hyperbolischen Typ ersichtlich.
 \end{MHint}
@@ -2349,7 +2349,7 @@ Dabei ist $g\approx9.81\frac{\text{m}}{\text{s}^2}$ die physikalische Konstante 
 
 Dies legt nahe, dass man den Zusammenhang zwischen $t$ und $s$, mit $s$ als Veränderlicher, mathematisch durch die Funktion
 \[
- \function{t}{[0,\infty)}{\R}{s}{\sqrt{\frac{2}{g}}\cdot \sqrt{s}}
+ \function{t}{[0;\infty)}{\R}{s}{\sqrt{\frac{2}{g}}\cdot \sqrt{s}}
 \]
 beschreiben kann, also eine Funktion, in deren Abbildungsvorschrift die Wurzel (genauer gesagt die Quadratwurzel) der Veränderlichen vorkommt. Deren Graph beinhaltet dann die obigen gemessenen Punkte:
 
@@ -3301,7 +3301,7 @@ In diesem Abschnitt wollen wir nun das große Sortiment an elementaren Funktionen
 
  \item Die Funktion 
  \[
-  \function{h}{(0,\infty)}{\R}{x}{e^x\frac{1}{x}}
+  \function{h}{(0;\infty)}{\R}{x}{e^x\frac{1}{x}}
  \]
  ist das \modsemph{Produkt} aus der natürlichen Exponentialfunktion mit Abbildungsvorschrift $e^x$ (und der Hyperbel mit Abbildungvorschrift $\frac{1}{x}$ (vgl.~Abschnitt \MNRef{sec:hyperbel}). Sie besitzt folgenden Graphen:
  
@@ -3444,7 +3444,7 @@ Wir betrachten dazu einige Beispiele.
  \]
  und 
  \[
-  \function{w}{[0,\infty)}{\R}{x}{\sqrt{x}}
+  \function{w}{[0;\infty)}{\R}{x}{\sqrt{x}}
  \]
  ist allerdings auf die Definitionsbereiche bei der Verkettung zu achten. Denn wollen wir etwa die verkettete Funktion $w\circ h$ betrachten, so gilt
  \[

@@ -20,6 +20,15 @@
  * */
 // encoding: latin1
 
+// Ueberbleibsel aus parser.js
+function extround(zahl,n_stelle) 
+{
+    var i;
+    i = Math.pow(10,n_stelle);
+    zahl = (Math.round(zahl * i) / i);
+    return zahl;
+}
+
 function notationParser_IN(s) {
 
     // Von der Koordinierungsgruppe beschlossene OMB+ Notation
@@ -1152,7 +1161,7 @@ function InitResults(empty)
   if ((empty==true) || (intersiteactive!=true)) for (i=1; i<FVAR.length; i++) { FVAR[i].clear(); }
  
   if ((intersiteactive == true) && (empty==false)) {
-    logMessage(VERBOSEINFO, "Performing reload");
+    logMessage(VERBOSEINFO, "Performing MQuestion-result reload");
     var gid = "";
     var v = "";
     for (i=1; i<FVAR.length; i++) {
@@ -1465,33 +1474,31 @@ function globalloadHandler(pulluserstr)
 {
   // Wird aufgerufen, wenn die Seite komplett geladen ist (NACH globalready) ODER durch pull-emit-callback wenn intersiteobj aktualisiert werden muss
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
-  // Fragefelder initialisieren und einfaerben
   logMessage(DEBUGINFO, "globalLoadHandler start, pulluser = " + ((pulluserstr == "") ? ("\"\"") : ("userdata")));
-  SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
-  logMessage(DEBUGINFO, "SetupIntersite fertig");
-  applyLayout();
-  logMessage(DEBUGINFO, "Layout gesetzt");
-  InitResults(false);
-  setupBOperations();
+  if (pulluserstr != "") {
+    SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
+    logMessage(DEBUGINFO, "SetupIntersite in loadhandler fertig");
+    applyLayout(false);
+    logMessage(DEBUGINFO, "Layout gesetzt in loadhandler");
+    InitResults(false);
+    logMessage(DEBUGINFO, "Results eingetragen");
+
+  }
   
-
-  /*
-  $( "input[mfieldtype='4']" ).qtip({
-        content: '...',
-	show: {event: 'mouseenter click' }
-  });
-  alert("p");
-  */
-
-
   logMessage(DEBUGINFO, "globalLoadHandler finish");
- 
 }
 
-function globalreadyHandler()
+function globalreadyHandler(pulluserstr)
 {
+  // Wird aufgerufen, wenn die Seite komplett geladen und alle Bilder/iframes gefuellt sind (VOR globalload, NACH direkt-JS-Befehlen auf html-Seite im body-Bereich oder eingebundenen js-Dateien) ODER durch pull-emit-callback wenn intersiteobj aktualisiert werden muss
+  // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   logMessage(DEBUGINFO, "globalreadyHandler start");
-  setupJQuery();
+  SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
+  logMessage(DEBUGINFO, "SetupIntersite fertig");
+  applyLayout(true);
+  logMessage(DEBUGINFO, "Layout gesetzt");
+  InitResults(false);
+  logMessage(DEBUGINFO, "Results eingetragen");
   logMessage(DEBUGINFO, "globalreadyHandler finish");
 }
 
@@ -1692,19 +1699,6 @@ function displayInputContent(id,latex) {
 }
 
 
-function setupJQuery() {
-    
-    // qtips an die Feedbackbuttons haengen
-    $("button[ttip='1']").qtip({ 
-           position: { target: 'mouse', adjust: { x: 5, y: 5 } },
-           style: { classes: 'qtip-blue qtip-shadow' },
-           content: { attr: 'tiptitle' },
-           show: { event: "mouseenter" }
-    });
-
-}
-
-
 // --------------------------- Hilfsmethoden der Variablenobjekte ----------------------------------------
 
 // Mindestsatz fuer ein Variablenobject:
@@ -1830,10 +1824,12 @@ function rouletteExercise(rid) {
 
 // ---------------------- Funktionen fuer Seitenverhalten/Frames -------------------------------------------
 
-function applyLayout() {
+// first = false -> Seite wurde schonmal mit Layout aufgesetzt, Layout soll nur angepasst werden
+function applyLayout(first) {
   
-  // create or replace style sheet
-  
+  // if dynamically loadad from server
+  //    var cssLink = $("<link rel='stylesheet' type='text/css' href='"+href+"'>");
+  //   $("head").append(cssLink);
   
   var e = document.getElementById("dynamic_css");
   if (e == null) {
@@ -1844,6 +1840,11 @@ function applyLayout() {
   
   e.innerHTML = DYNAMICCSS.replace(/\[LINKPATH\]/g, linkPath);
   
+
+  if (intersiteactive) {
+    if (intersiteobj.layout.menuactive == false) hideNavigation(false);
+  }
+
   
 
     var head = "<a href=\"" + linkPath + "config.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Einstellungen</div></a>" +
@@ -1886,40 +1887,49 @@ function applyLayout() {
     shareintext += "<a href=\"https://plus.google.com/share?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargetgoogleplus.png\"></a>";
     
     showHint($('#sharebutton'), shareintext);
-    
-    if (intersiteactive) {
-      if (intersiteobj.layout.menuactive == false) hideNavigation();
-    }
+
+    // qtips an die Feedbackbuttons haengen falls vorhanden
+    $("button[ttip='1']").qtip({ 
+           position: { target: 'mouse', adjust: { x: 5, y: 5 } },
+           style: { classes: 'qtip-blue qtip-shadow' },
+           content: { attr: 'tiptitle' },
+           show: { event: "mouseenter" }
+    });
+
 }
 
-function hideNavigation() {
-  $('div.navi').slideUp(animationSpeed);
+function hideNavigation(animate) {
+  var speed;
+  if (animate == true) speed = animationSpeed; else speed = 0;
+  $('div.navi').slideUp(speed);
   $('tocnavsymb').hide();
-  $('div.toc').animate({width: 'hide'}, animationSpeed);
-  $('#footerleft').slideUp(animationSpeed);
-  $('#footermiddle').slideUp(animationSpeed);
-  $('#footerright').slideUp(animationSpeed);
+  $('div.toc').animate({width: 'hide'}, speed);
+  $('#footerleft').slideUp(speed);
+  $('#footermiddle').slideUp(speed);
+  $('#footerright').slideUp(speed);
   $('#content').css("margin-left","0px");
   if (intersiteactive) intersiteobj.layout.menuactive = false;
 }
 
-function showNavigation() {
+function showNavigation(animate) {
+  var speed;
+  if (animate == true) speed = animationSpeed; else speed = 0;
   $('#content').css("margin-left",MENUWIDTH + "px");
-  $('div.navi').slideDown(animationSpeed);
+  $('div.navi').slideDown(speed);
   $('tocnavsymb').hide();
-  $('div.toc').animate({width: 'show'}, animationSpeed);
+  $('div.toc').animate({width: 'show'}, speed);
   $('tocnavsymb').show();
-  $('#footerleft').slideDown(animationSpeed);
-  $('#footermiddle').slideDown(animationSpeed);
-  $('#footerright').slideDown(animationSpeed);
+  $('#footerleft').slideDown(speed);
+  $('#footermiddle').slideDown(speed);
+  $('#footerright').slideDown(speed);
   if (intersiteactive) intersiteobj.layout.menuactive = true;
 }
 
 function menuClick() {
     if ($('div.navi').is(":visible")) {
-        hideNavigation();
+        hideNavigation(true);
     } else {
-        showNavigation();
+        showNavigation(true);
     }
 }
 

@@ -98,7 +98,6 @@ our $templateheader = <<ENDE;
 <script src="convinfo.js" type="text/javascript"></script>
 <script src="mparser.js" type="text/javascript"></script>
 <script src="scormwrapper.js" type="text/javascript"></script>
-<script src="parser.js" type="text/javascript"></script>
 <script src="dlog.js" type="text/javascript"></script>
 <script src="userdata.js" type="text/javascript"></script>
 <script src="intersite.js" type="text/javascript"></script>
@@ -132,7 +131,7 @@ var animationSpeed = 250;
 // <JSCRIPTPRELOADTAG>
 
 function loadHandler() {
-  globalloadHandler(false);
+  globalloadHandler("");
 }
 
 function unloadHandler() {
@@ -207,7 +206,7 @@ ko.applyBindings(viewmodel);
 
 
 \$(document).ready(function () {
-  globalreadyHandler();   
+  globalreadyHandler("");   
 });
 
   // <JSCRIPTPOSTMODEL>
