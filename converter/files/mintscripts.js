@@ -1838,64 +1838,104 @@ function applyLayout(first) {
     document.body.appendChild(e);
   }
   
-  e.innerHTML = DYNAMICCSS.replace(/\[LINKPATH\]/g, linkPath);
+  // change layout parameters according to user settings
+  if (intersiteactive) {
+    SIZES.BASICFONTSIZE = SIZES.STARTFONTSIZE + intersiteobj.layout.fontadd;
+    SIZES.SMALLFONTSIZE = SIZES.BASICFONTSIZE - 2;
+    SIZES.BIGFONTSIZE = SIZES.BASICFONTSIZE + 2;
+    SIZES.MENUWIDTH = 160 + 10 * intersiteobj.layout.fontadd;
+    SIZES.TOCWIDTH = SIZES.MENUWIDTH - 21;
+  }
   
+  
+  var css = DYNAMICCSS;
+  css = css.replace(/\[LINKPATH\]/g, linkPath);
+
+  
+  for (var ckey in COLORS) {
+    var rex = new RegExp("\\[-" + ckey + "-\\]",'g');
+    css = css.replace(rex, "#" + COLORS[ckey]);
+  }
+
+  for (var ckey in SIZES) {
+    var rex = new RegExp("\\[-" + ckey + "-\\]",'g');
+    css = css.replace(rex, SIZES[ckey] + "px");
+  }
+  
+  for (var ckey in FONTS) {
+    var rex = new RegExp("\\[-" + ckey + "-\\]",'g');
+    css = css.replace(rex, FONTS[ckey]);
+  }
+
+
+  e.innerHTML = css;
+  logMessage(VERBOSEINFO, "Set dynamic style sheet, size = " + css.length);
 
   if (intersiteactive) {
     if (intersiteobj.layout.menuactive == false) hideNavigation(false);
   }
 
-  
+  var d = 10 + SIZES.BASICFONTSIZE;
+  $('div.headmiddle').height(d);
+  var systyle = "style=\"max-height:" + d + "px;height:" + d + "px\"";
+  var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px;max-height:" + (d-2) + "px\"";
 
-    var head = "<a href=\"" + linkPath + "config.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Einstellungen</div></a>" +
-               "<a href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
+               
+  d = d - 2;
+  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Anmelden</div></a>" +
+             "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
     
-        
-    head += "<div id=\"LOGINROW\" style=\"color:rgb(255,255,255);display:inline-block;flex-grow:100;text-align:center\"></div>";
 
-    head += "<a href=\"" + linkPath + "search.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Stichwortliste</div></a>";
-    head += "<a href=\"" + linkPath + "index.html\" class=\"MINTERLINK\" ><div style=\"display:inline-block\" class=\"tocminbutton\">Startseite</div></a>";
+  head += "<div id=\"LOGINROW\" style=\"color:rgb(255,255,255);display:inline-block;flex-grow:100;text-align:center\"></div>";
+  head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "search.html\" class=\"MINTERLINK\"><div style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Stichwortliste</div></a>";
+  head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "index.html\" class=\"MINTERLINK\"><div style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Startseite</div></a>";
 
     
-    var d = $('div.headmiddle').height() + 2;
+  head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"><img " + icstyle + " src=\"" + linkPath + "images/icminusblue_96px.png\"></button>";
+  head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"><img " + icstyle + " src=\"" + linkPath + "images/icplusblue_96px.png\"></button>";
+  head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_share_blue_96px.png\"></button>";
+  head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_menu_blue_96px.png\"></button>";
     
-    var systyle = "style=\"height:" + d + "px\"";
-    var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px\"";
+  $('div.headmiddle').html(head);
+  $('#footerleft').html("<a href=\"mailto:" + reply_mail + "\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
+
     
-    head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_share_blue_96px.png\"></button>";
-    head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_menu_blue_96px.png\"></button>";
+
+  $('.navi > ul > li').each(function(i) {
+    $(this).hover(function() { $(this).css("background-color", COLORS.TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", COLORS.TOCMINBUTTON); });
+  });
+
+
+  showHint($('#menubutton'), "Hier klicken um Navigationsleisten ein- oder auszublenden");
+  showHint($('#plusbutton'), "Vergrößert die Schriftgröße");
+  showHint($('#minusbutton'), "Verkleinert die Schriftgröße");
+
+  var shareintext = "Diese Seite teilen über:<br /><br />";
+  var myurl = window.location.href;
     
-    $('div.headmiddle').html(head);
-    $('#footerleft').html("<a href=\"mailto:" + reply_mail + "\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
-    d = $('div.footerleft').height + 2;
-  
-
-    $('.navi > ul > li').each(function(i) {
-      $(this).hover(function() { $(this).css("background-color", TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", TOCMINBUTTON); });
-    });
-
-
-    showHint($('#menubutton'), "Hier klicken um Navigationsleisten ein- oder auszublenden");
-
-    var shareintext = "Diese Seite teilen über:<br /><br />";
-    var myurl = window.location.href;
+  shareintext += "<a href=\"#\" onclick=\"shareFacebook()\"><img src=\"" + linkPath + "images/sharetargetfacebook.png\"></a>";
+  shareintext += "&nbsp;";
+  shareintext += "<a href=\"http://twitter.com/intent/tweet?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargettwitter.png\"></a>";
+  shareintext += "&nbsp;";
+  shareintext += "<a href=\"https://plus.google.com/share?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargetgoogleplus.png\"></a>";
     
-    shareintext += "<a href=\"#\" onclick=\"shareFacebook()\"><img src=\"" + linkPath + "images/sharetargetfacebook.png\"></a>";
-    shareintext += "&nbsp;";
-    shareintext += "<a href=\"http://twitter.com/intent/tweet?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargettwitter.png\"></a>";
-    shareintext += "&nbsp;";
-    shareintext += "<a href=\"https://plus.google.com/share?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargetgoogleplus.png\"></a>";
-    
-    showHint($('#sharebutton'), shareintext);
+  showHint($('#sharebutton'), shareintext);
 
-    // qtips an die Feedbackbuttons haengen falls vorhanden
-    $("button[ttip='1']").qtip({ 
-           position: { target: 'mouse', adjust: { x: 5, y: 5 } },
-           style: { classes: 'qtip-blue qtip-shadow' },
-           content: { attr: 'tiptitle' },
-           show: { event: "mouseenter" }
-    });
+  // qtips an die Feedbackbuttons haengen falls vorhanden
+  $("button[ttip='1']").qtip({ 
+         position: { target: 'mouse', adjust: { x: 5, y: 5 } },
+         style: { classes: 'qtip-blue qtip-shadow' },
+         content: { attr: 'tiptitle' },
+         show: { event: "mouseenter" }
+  });
 
+}
+
+function changeFontSize(add) {
+  if (intersiteactive) {
+    intersiteobj.layout.fontadd = Math.max(Math.min(intersiteobj.layout.fontadd + add, 20), -3);
+    applyLayout(false);
+  }
 }
 
 function hideNavigation(animate) {
@@ -1914,7 +1954,7 @@ function hideNavigation(animate) {
 function showNavigation(animate) {
   var speed;
   if (animate == true) speed = animationSpeed; else speed = 0;
-  $('#content').css("margin-left",MENUWIDTH + "px");
+  $('#content').css("margin-left",SIZES.MENUWIDTH + "px");
   $('div.navi').slideDown(speed);
   $('tocnavsymb').hide();
   $('div.toc').animate({width: 'show'}, speed);
@@ -1937,7 +1977,7 @@ function menuClick() {
 // Hinweis wird bei laengerem Hover wieder eingeblendet
 function showHint(element, hinttext) {
 
-  hinttext = "<div style=\"font-size:" + SMALLFONTSIZE + "px;line-height:100%\">" + hinttext + "</div>";
+  hinttext = "<div style=\"font-size:" + SIZES.SMALLFONTSIZE + "px;line-height:100%\">" + hinttext + "</div>";
 
   // Check if qtip is already attached to the element
   if(typeof element.data('qtip') === 'object') {

@@ -47,7 +47,7 @@ function createIntersiteObj() {
   logMessage(VERBOSEINFO, "New IntersiteObj created");
   var obj = { 
     active: false,
-    layout: { menuactive: true },
+    layout: { fontadd: 0, menuactive: true },
     configuration: {},
     scores: [],
     sites: [],
@@ -390,21 +390,25 @@ function updateLoginfield() {
       case 0: {
         s = "Kein Benutzer angemeldet";
         cl = "#E01010";
+        $('#loginbutton').css("background-color","#FF5050");
         break;
       }
       case 1: {
         s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet";
         cl = "#FFFF10";
+        $('#loginbutton').css("background-color","#FFFF50");
         break;
       }
       case 2: {
         s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         cl = "#FFFFFF";
+        $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
         break;
       }
       case 3: {
         s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         cl = "#FFFFFF";
+        $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
         break;
       }
       default: {
@@ -415,7 +419,6 @@ function updateLoginfield() {
     }
   }
 
-  
   // Kopfzeileninfo eintragen
   $('#LOGINROW').css("color",cl);
   $('#LOGINROW').html(s);

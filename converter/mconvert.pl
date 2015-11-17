@@ -1295,27 +1295,34 @@ my $cval = "";
 
 # Freie Parameter werden von conv.pl in convinfo.js eingetragen!
 
-# Farben fuer color.js parsen
+# Farben parsen (Strings, das #-Prefix wird dynamisch zugefuegt)
 my $jrow = "";
 my $fz;
+print JCSS "var COLORS = new Object();\n";
 while (($ckey, $cval) = each($config{'colors'})) {
-  print JCSS "var $ckey = \"\#$cval\";\n";
+  print JCSS "COLORS.$ckey = \"$cval\";\n";
 }
 
-# Fonts fuer color.js parsen
+# Fonts parsen (Strings)
+print JCSS "var FONTS = new Object();\n";
 while (($ckey, $cval) = each($config{'fonts'})) {
-  print JCSS "var $ckey = \'$cval\';\n";
+  $cval = injectEscapes($cval);
+  print JCSS "FONTS.$ckey = \"$cval\";\n";
 }
 
-# Sizes fuer color.js parsen
+# Sizes parsen (numerische Werte)
+print JCSS "var SIZES = new Object();\n";
 while (($ckey, $cval) = each($config{'sizes'})) {
-  print JCSS "var $ckey = $cval;\n";
+  print JCSS "SIZES.$ckey = $cval;\n";
 }
 
-# Farben, Fonts und Sizes in CSS-Dateien ersetzen, css-Datei auch als JavaScript-Variable erzeugen
+# Farben, Fonts und Sizes in CSS-Dateien ersetzen, css-Datei auch als JavaScript-Variable OHNE ERSETZUNG erzeugen
 print JCSS "var DYNAMICCSS = \"\"\n";
 my $row;
 foreach $row (@mycss) {
+  print OCSS $row; # unveraendert in Ziel-CSS schreiben, Ersetzung wird dynamisch von den Seiten vorgenommen
+  $row = injectEscapes($row);
+  print JCSS " + \"" . $row . "\"\n";
   while (($ckey, $cval) = each($config{'colors'})) {
     $row =~ s/\[-$ckey-\]/\#$cval/g ;
   }
@@ -1326,9 +1333,6 @@ foreach $row (@mycss) {
     $cval .= "px";
     $row =~ s/\[-$ckey-\]/$cval/g ;
   }
-  print OCSS $row;
-  $row = injectEscapes($row);
-  print JCSS " + \"" . $row . "\"\n";
 }
 print JCSS "$dyniconcss;\n";
 close(OCSS);
@@ -1537,14 +1541,14 @@ chdir($ndir);
 system("rm -fr *.js~");
 
 if ($config{dozip} eq 0) {
-  print("\nHTML module " . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "have been created.\n\n");
+  print("\nHTML module " . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "created.\n\n");
 } else {
   system("chmod -R 777 *");
   system("zip -r $zip *");
   system("cp $zip ../.");
   chdir("..");
   system("rm -fr $ndir");
-  print("\nHTML module" . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "have been created and zipped to $zip.\n\n");
+  print("\nHTML module" . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "created and zipped to $zip.\n\n");
 }
 
 print "Tree entry chain:\n";

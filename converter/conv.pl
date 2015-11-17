@@ -88,7 +88,7 @@ our $mainsiteline = 0;
 #<script src="jquery-1.3.2.min.js" type="text/javascript"></script>
 #<script src="jquery.qtip-1.0.0-rc3.min.js" type="text/javascript"></script>
 
-our $templateheader = <<ENDE;
+our $scriptheader = <<ENDE;
 <script src="es5-sham.min.js" type="text/javascript"></script>
 <script src="qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="qtip2/jquery.qtip.min.js" type="text/javascript"></script>
@@ -104,6 +104,9 @@ our $templateheader = <<ENDE;
 <script src="exercises.js" type="text/javascript"></script>
 <script src="mintscripts.js" type="text/javascript"></script>
 <script src="servicescripts.js" type="text/javascript"></script>
+ENDE
+
+our $templateheader = <<ENDE;
 <script>
 var isTest = false;
 var testFinished = true;
@@ -1462,7 +1465,7 @@ $paramversion = "all";
 # Schritt 1: Initialisierung
 # ==========================
 
-$templateheader .= "\n";
+$templateheader = $scriptheader . $templateheader . "\n";
 
 if ($config{parameter}{feedback_service} ne "") {
   print("FeedbackServer deklariert: " . $config{parameter}{feedback_service} . "\n");

@@ -23,7 +23,7 @@ description     =>      "Onlinebrückenkurs Mathematik",
 
 parameter => {                                        # Benutzeridentifizierung haengt von diesen drei Teilen ab!
   signature_main          => "OBM_VEUNDMINT",         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
-  signature_version       => "10000",                 # Versionsnummer, 10000 = erste oeffentliche nicht-Beta
+  signature_version       => "10000",                 # Versionsnummer, nicht relevant fuer localstorage-userget!
   signature_localization  => "DE_MINT",               # Lokalversion des Kurses, hier die bundesweite MINT-Variante
   do_feedback             => "0",                     # Feedbackfunktionen aktivieren?
   do_export               => "0",                     # Aufgabenexport aktivieren?
@@ -35,7 +35,7 @@ parameter => {                                        # Benutzeridentifizierung 
   data_server_user        => "$server/userdata.php",  # Absolute Angabe
   footer_middle           => "Onlinebrückenkurs Mathematik",
   footer_right            => "Lizenz: CC BY-SA 3.0",
-  mainlogo                => "veundmint_sharelogo.png" # Im Pfad files/images
+  mainlogo                => "veundmint_netlogo.png" # Im Pfad files/images
 },
 
 generate_pdf => {
@@ -52,7 +52,8 @@ sizes =>  {
     CONTENTMINWIDTH =>    800,                    # Breite unter die der content nicht geschrumpft werden kann ohne Scrollbalken zu aktivieren
     MENUWIDTH       =>    ($menuwidth = 160),     # Breite der Menueleiste am linken Rand
     TOCWIDTH        =>     $menuwidth - 21,
-    BASICFONTSIZE   =>    ($mybasicfontsize = 16),
+    STARTFONTSIZE   =>    ($mybasicfontsize = 16),# Grundlage zur dynamischen Veraenderung der anderen fontsizes
+    BASICFONTSIZE   =>     $mybasicfontsize,
     SMALLFONTSIZE   =>     $mybasicfontsize - 2,
     BIGFONTSIZE     =>     $mybasicfontsize + 2
 },
@@ -101,18 +102,18 @@ colors => {
     LOGINBACKGROUND => "D5D5FF",
 
     # font colors
-   NAVI => ($menucolor = "000090"),
-   TOCMINBUTTONCOLOR => $menucolor,
-   LOGINCOLOR => "000000",
-   FOOT => "202070",
-   HEAD => "FFFFFF",
-   XSYMBCOLOR => $menucolor,
-   TOC => $menucolor,
-   TOCSELECTED => "4080A0",
-   TOCB => "202070",
-   TOCBSELECTED => "D02030",
-   CONTENT => "000000",
-   CONTENTANCHOR => "483AA1",
-   REPLYCOLOR => "000000",
+    NAVI => ($menucolor = "000090"),
+    TOCMINBUTTONCOLOR => $menucolor,
+    LOGINCOLOR => "000000",
+    FOOT => "202070",
+    HEAD => "FFFFFF",
+    XSYMBCOLOR => $menucolor,
+    TOC => $menucolor,
+    TOCSELECTED => "4080A0",
+    TOCB => "202070",
+    TOCBSELECTED => "D02030",
+    CONTENT => "000000",
+    CONTENTANCHOR => "483AA1",
+    REPLYCOLOR => "000000",
 }
   
