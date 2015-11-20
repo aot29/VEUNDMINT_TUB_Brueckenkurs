@@ -163,8 +163,11 @@ var userdata = (function (baseURL) {
      *
      * The 'username' argument is optional ( can be undefined )
      **/
-    exports.writeData = function (async, username, data, success, error) {
-        sendRequest(async, 'POST', {action: 'write_data', username: username, data: data},
+    exports.writeData = function (async, username, data, overwrite, success, error) {
+        if (overwrite == true) {
+            overwrite = 'true';
+        }
+        sendRequest(async, 'POST', {action: 'write_data', username: username, data: data, overwrite: overwrite},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
