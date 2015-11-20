@@ -1079,7 +1079,7 @@ var mparser = (function () {
 	 * Returns the position of the match or -1 if no match is found.
 	 *
 	 * NOTICE: Treat's all bracket's equally. It doesn't check if they actually match
-	 * TODO: Make this distinction possible
+	 * (possible improvement: Make this distinction possible)
 	 * */
 	function findeAufKlammerEbene(input, suchString, klammerEbene, startPos) {
 		//set default value if undefined
@@ -1138,7 +1138,7 @@ var mparser = (function () {
 			var untereGrenzeEnde = sucheKlammern(input, untereGrenzeStart + 1); //_(...)<-"ende"
 			if (untereGrenzeEnde < 0) {
 				errorMessageObject.push({
-					nutzer: "Untere grenze endet nicht",    //TODO: find better name because "Grenze" only fits with integrals
+					nutzer: "Untere grenze endet nicht",
 					debug: "swapBoundaries: untere Grenze endet nicht" } );
 				return input;
 			}
@@ -1165,7 +1165,7 @@ var mparser = (function () {
 					return anfang + "_(" + untereGrenze + ")" + "^(" +  obereGrenze + ")" + swapBoundaries(endeRest, errorMessageObject);
 				} else {
 					errorMessageObject.push({
-						nutzer: "Obere grenze endet nicht",    //TODO: find better name because "Grenze" only fits with integrals
+						nutzer: "Obere grenze endet nicht",
 						debug: "swapBoundaries: obere Grenze endet nicht" } );
 					return input;
 				}
@@ -1230,11 +1230,10 @@ var mparser = (function () {
 	 *                                ^   ^
 	 *                          'anfang' 'ende'
 	 *
-	 * Returns an object with the elements 'mathjs' and 'mathjs' TODO: WTF?
+	 * Returns an object with the element 'mathjs'
 	 * */
 	function replaceConstructs(input, integrationsSchritte, errorMessageObject) {
 		var result = {
-			mathjs: input,
 			mathjs: input
 		};
 		var rex = new RegExp("(int|sum|prod)_\\(");
@@ -1388,7 +1387,7 @@ var mparser = (function () {
 					return input;
 				}
 
-				ende += startPos;	//Mache ende zu Postion in input statt rest TODO: ??????
+				ende += startPos;
 			} else {
 				//search for the end of the third curly brace, comma or end of the string
 				// "...\prod_{..}^{..}{...}..." or "...\prod_{..}^{..}....."
@@ -1433,7 +1432,7 @@ var mparser = (function () {
 	 * and '^' as beginning of an upper bound
 	 * */
 	function encloseLatexPower( input, errorMessageObject ) {
-		//TODO: less copy and paste
+		//possible improvement: less copy and paste
 		//replace any number of whitespaces by only one whitespace (e.g "  " -> " ")
 		input = input.replace( /\s+/g, " " );
 
@@ -1619,7 +1618,7 @@ var mparser = (function () {
 		do {
 			lastInput = input;
 			var treffer;
-			do { //skip constructs so that they still can be parsed TODO: this might be obsolete, not quite sure
+			do { //skip constructs so that they still can be parsed
 				treffer = rex.exec( input );
 			} while( (treffer != null) && /.(sum\(|int\(|prod\()/.test( input ) );
 			if( treffer == null ) {
