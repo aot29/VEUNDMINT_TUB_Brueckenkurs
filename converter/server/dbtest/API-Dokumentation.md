@@ -139,11 +139,12 @@ Ein normaler Nutzer kann immer nur sein eigenes Passwort ändern. Admins können
 Nur Admins können die Rolle eines Nutzers ändern.
 
 ###action=write_data
-Schreibt dem Nutzer zugeordnete Daten in die Datenbank.
+Schreibt dem Nutzer zugeordnete Daten in die Datenbank. Diese werden automatisch mit den schon in der Datenbank stehenden Daten zusammengeführt.
 
 **Variablen**
 * `username`
 * `data`: String, der in der Datenbank gespeichert werden soll. Der vorherige Datenbankeintrag wird überschrieben.
+* `overwrite`: Auf `true` setzen, um die Daten zu überschreiben, statt sie zusammenzuführen.
 
 **Rückgabe**
 

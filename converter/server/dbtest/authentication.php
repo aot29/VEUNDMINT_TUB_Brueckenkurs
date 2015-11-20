@@ -293,6 +293,43 @@ function write_data($database_handler, $data, $username, $mysql_users_table, $my
 		}
 	}
 
+	if ($_POST['overwrite'] !== 'true') { //merge the data if overwrite is false
+	    //get the current data from the database (for later merging)
+	    $statement = $database_handler->prepare("SELECT * FROM $mysql_data_table WHERE user_id = :user_id");
+	    $statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+	    $statement->execute();
+	    $data_column = $statement->fetch();
+	    $old_data = $data_column['data'];
+
+	    //merge the old and the new data
+	    try {
+		$old_data_array = json_decode($old_data, TRUE /* associative array */);
+		if ($old_data_array == NULL) {
+		    $old_data_array = array();
+		}
+		$data_array = json_decode($data, TRUE /* associative array */);
+		if ($data_array == NULL) {
+		    $data_array = array();
+		}
+
+		//now do the merge
+		$data_array = array_replace_recursive($old_data_array, $data_array);
+		if ($data_array === NULL) {
+		    throw new Exception('failed to merge arrays');
+		}
+
+		//generate resulting json
+		$data = json_encode($data_array);
+	    } catch (Exception $e) {
+		exit(json_encode(array(
+		    'action' => 'write_data',
+		    'quickfix' => $quickfix,
+		    'error' => 'failed to parse JSON',
+		    'status' => 'false'
+		)));
+	    }
+	}
+
 	//write data to the database
 	$callstr = "REPLACE INTO $mysql_data_table (user_id, data) VALUES (:user_id, :data)";
 	$statement = $database_handler->prepare($callstr);
