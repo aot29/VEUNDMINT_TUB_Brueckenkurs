@@ -268,12 +268,9 @@ function change_role($database_handler, $username, $new_role, $mysql_users_table
 
 //write data into the database
 function write_data($database_handler, $data, $username, $mysql_users_table, $mysql_data_table) {
-	// REALLY DIRTY QUICKFIX for CORS-handling problem (which somehow looses the session username between login and get/write)
-	$quickfix = "NO";
 	if ((null == $_SESSION['username']) && ($_SESSION['role'] == ROLES['ANONYMOUS'])) {
 		  $user_column = get_user_column($database_handler, $username, $mysql_users_table);
 		  $user_id = $user_column['user_id'];
-		  $quickfix = "YES";
 	} else {
 		if ($username !== $_SESSION['username'] ) {
 			if ($_SESSION['role'] !== ROLES['ADMIN']) {
@@ -323,7 +320,6 @@ function write_data($database_handler, $data, $username, $mysql_users_table, $my
 	    } catch (Exception $e) {
 		exit(json_encode(array(
 		    'action' => 'write_data',
-		    'quickfix' => $quickfix,
 		    'error' => 'failed to parse JSON',
 		    'status' => 'false'
 		)));
@@ -339,23 +335,18 @@ function write_data($database_handler, $data, $username, $mysql_users_table, $my
 
 	if (!$status) {
 		exit(json_encode(array('action' => 'write_data',
-			'quickfix' => $quickfix,
 			'error' => 'couldn\'t write data',
 			'status' => false)));
 	}
 	exit(json_encode(array('action' => 'write_data',
-		'quickfix' => $quickfix,
 		'status' => true)));
 }
 
 //get data from the database
 function get_data($database_handler, $username, $mysql_users_table, $mysql_data_table) {
-	// REALLY DIRTY QUICKFIX for CORS-handling problem (which somehow looses the session username between login and get/write)
-	$quickfix = "NO";
 	if ((null == $_SESSION['username']) && ($_SESSION['role'] == ROLES['ANONYMOUS'])) {
 		$user_column = get_user_column($database_handler, $username, $mysql_users_table);
 		$user_id = $user_column['user_id'];
-		$quickfix = "YES";
 	} else {
 		if ($username !== $_SESSION['username']) {
 			if ($_SESSION['role'] !== ROLES['ADMIN']) {
@@ -385,7 +376,6 @@ function get_data($database_handler, $username, $mysql_users_table, $mysql_data_
 	$data_column = $statement->fetch();
 	exit(json_encode(array('action' => 'get_data',
 		'data' => $data_column['data'],
-		'quickfix' => $quickfix,
 		'status' => true)));
 }
 
