@@ -54,7 +54,7 @@ var userdata = (function (serviceURL) {
                     data = { status: false, error: "invalid data object" };
                 }
             }
-            
+
             if (data.status === true) { //API call was successful --> call success callback
                 return success(data);
             }
@@ -132,14 +132,14 @@ var userdata = (function (serviceURL) {
     /**
      * Add user
      *
-     * The third argument is optional ( can be undefined )
+     * The 'role' argument is optional ( can be undefined )
      **/
     exports.addUser = function (async, username, password, role, success, error) {
         role = (role == '') ? undefined : role; //use undefined if role is an empty string
         sendRequest(async, 'POST', {action: 'add_user', username: username, password: password, role: role},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
-    
+
     /**
      * Log in
      **/
@@ -159,10 +159,13 @@ var userdata = (function (serviceURL) {
     /**
      * Write data
      *
-     * The first argument is optional ( can be undefined )
+     * The 'username' argument is optional ( can be undefined )
      **/
-    exports.writeData = function (async, username, data, success, error) {
-        sendRequest(async, 'POST', {action: 'write_data', username: username, data: data},
+    exports.writeData = function (async, username, data, overwrite, success, error) {
+        if (overwrite == true) {
+            overwrite = 'true';
+        }
+        sendRequest(async, 'POST', {action: 'write_data', username: username, data: data, overwrite: overwrite},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
 
@@ -177,7 +180,7 @@ var userdata = (function (serviceURL) {
     /**
      * Get the role of the currently logged in user
      *
-     * The first argument is optional ( can be undefined )
+     * The 'username' argument is optional ( can be undefined )
      **/
     exports.getRole = function (async, username, success, error) {
         sendRequest(async, 'GET', {action: 'get_role', username: username},
@@ -187,7 +190,7 @@ var userdata = (function (serviceURL) {
     /**
      * Get the data of the current user
      *
-     * The first argument is optional ( can be undefined )
+     * The 'username' argument is optional ( can be undefined )
      **/
     exports.getData = function (async, username, success, error) {
         sendRequest(async, 'GET', {action: 'get_data', username: username},

@@ -67,7 +67,7 @@ try {
 
 	//database initialization is now done
 
-	if (!$_SESSION['authenticated'] === true) {	
+	if (!$_SESSION['authenticated'] === true) {
 		authenticate($database_handler, '', '', ''); // authenticate as role 'ANONYMOUS'
 	}
 
@@ -86,20 +86,23 @@ try {
 					   	'status' => true)));
 					break;
 				case 'get_role': //TODO allow admins to see the role of every user
-                    //this can be done by any role
-                    get_role($database_handler, filter_var($_GET['username']), $mysql_users_table);
+					//this can be done by any role
+					get_role($database_handler, filter_var($_GET['username']), $mysql_users_table);
 					break;
 				case 'get_username':
 					//this can be done by any role
 					exit(json_encode(array('action' => 'get_username',
 						'username' => $_SESSION['username'],
 						'status' => true)));
-                    break;
-                case 'get_login_data':
-                    //this can be done by admins and evaluation
-                    get_login_data($database_handler, filter_var($_GET['username']), $mysql_users_table, $mysql_data_table);
-                    break;
+					break;
+				case 'get_login_data':
+					//this can be done by admins and evaluation
+					get_login_data($database_handler, filter_var($_GET['username']), $mysql_users_table, $mysql_data_table);
+					break;
 				default:
+					if ($_GET['action'] != NULL) {
+						exit(json_encode(array('error' => "invalid action: '{$_GET['action']}'", 'status' => false)));
+					}
 					exit(json_encode(array('error' => 'no action specified', 'status' => false)));
 			}
 			break;
@@ -113,7 +116,7 @@ try {
 						'status' => true)));
 					break;
 				case 'add_user':
-					//any role can create new users	
+					//any role can create new users
 					$new_password = filter_var($_POST['password']);
 					$new_username = filter_var($_POST['username']);
 					$new_role = ROLES['USER'];
@@ -146,6 +149,9 @@ try {
 					logout();
 					break;
 				default:
+					if ($_POST['action'] != NULL) {
+						exit(json_encode(array('error' => "invalid action: '{$_POST['action']}'", 'status' => false)));
+					}
 					exit(json_encode(array('error' => 'no action specified', 'status' => false)));
 			}
 			break;
