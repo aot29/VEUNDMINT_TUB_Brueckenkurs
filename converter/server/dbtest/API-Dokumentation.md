@@ -141,6 +141,10 @@ Nur Admins können die Rolle eines Nutzers ändern.
 ###action=write_data
 Schreibt dem Nutzer zugeordnete Daten in die Datenbank. Diese werden automatisch mit den schon in der Datenbank stehenden Daten zusammengeführt.
 
+Hinweis: Objekte werden normal zusammengeführt (`{"2":2}+{"3":3}={"2":2,"3":3}`).
+In Arrays wird allerdings der Wert an der entsprechenden Position überschrieben. (`[1,2]+[3]=[3,2]`).
+(PHP-Funktion `array_replace_recursive`!)
+
 **Variablen**
 * `username`
 * `data`: String, der in der Datenbank gespeichert werden soll. Der vorherige Datenbankeintrag wird überschrieben.
