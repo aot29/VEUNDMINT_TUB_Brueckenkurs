@@ -100,6 +100,9 @@ try {
 					get_login_data($database_handler, filter_var($_GET['username']), $mysql_users_table, $mysql_data_table);
 					break;
 				default:
+					if ($_GET['action'] != NULL) {
+						exit(json_encode(array('error' => "invalid action: '{$_GET['action']}'", 'status' => false)));
+					}
 					exit(json_encode(array('error' => 'no action specified', 'status' => false)));
 			}
 			break;
@@ -146,6 +149,9 @@ try {
 					logout();
 					break;
 				default:
+					if ($_POST['action'] != NULL) {
+						exit(json_encode(array('error' => "invalid action: '{$_POST['action']}'", 'status' => false)));
+					}
 					exit(json_encode(array('error' => 'no action specified', 'status' => false)));
 			}
 			break;
