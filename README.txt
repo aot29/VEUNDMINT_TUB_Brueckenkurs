@@ -12,7 +12,7 @@ Hauptzweige:
  - TU9Onlinekurs              [Live-Version des Onlinekurses]
 
 Entwicklungszweige:
- - develop                    [Arbeitsversion der Technik, hier werden Erweiterungen programmiert und Programmfehler korrigiert]
+ - develop_software           [Arbeitsversion der Technik, hier werden Erweiterungen programmiert und Programmfehler korrigiert]
  - develop_content            [Arbeitsversion der Inhalte, hier werden inhaltliche Änderungen in die TeX-Dateien eingepflegt]
 
 Abspaltungen:
@@ -20,8 +20,11 @@ Abspaltungen:
  - MatheV4_2015vak            [Der Online-Mathevorkurs V4 für WiIng und TVWL am KIT verwendet gleiche Technik, aber andere Inhalte]
  - hm1test_unihannover_ws2015 [Sonderversion für die Uni Hannover, die nur den Eingangstest des Kurses als eTest vor Ort haben will]
 
+Sonstige:
+ - playground                 [Hier darf mit dem Code und den Modulen frei herumgespielt werden]
  
- Beschreibung der Ordner innerhalb der Zweige:
+ 
+Beschreibung der Ordner innerhalb der Zweige:
  - module_veundmint           [Die LaTeX-Quelldateien des Projekts, neben den TU9-Modulen noch einige Sondermodule]
  - module_hannovertest        [Quellen für den eTest der Uni Hannover]
  - converter                  [Programmcode und Konvertermaterialien]
