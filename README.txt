@@ -1,11 +1,11 @@
-README.txt des Repositories mintkolleg_converter
+README.txt des Repositories ve-und-mint
 Autor: Daniel Haase 2015
 
-Dies ist der Hauptordner des Repositories mintkolleg_converter,
+Dies ist der Hauptordner des Repositories ve-und-mint,
 es dient der Entwicklung der nicht-öffentlichen Version des
 VE&MINT-Onlinebrückenkurses im Rahmen einer TU9-Initiative.
 
-Beschreibung der git-Zweige (branches) im Projekt mintkolleg_converter:
+Beschreibung der git-Zweige (branches) im Projekt ve-und-mint:
 
 Hauptzweige:
  - master                     [aktuelle getestete Version von Technik und Inhalt, das eigentliche Projekt]
