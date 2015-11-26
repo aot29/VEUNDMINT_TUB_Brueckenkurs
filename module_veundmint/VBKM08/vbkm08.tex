@@ -1581,14 +1581,19 @@ Antwort: \MEquationItem{$I_A$}{\MLParsedQuestion{30}{24}{4}{IG35}}.
 
 \begin{MHint}{Lösung}
 Die Nullstellen von $f(x) = 3 \sin\left(x\right)$ auf $[-2 \pi; 2 \pi]$ 
-sind $-2 \pi$, $-\pi$, $0$, $\pi$ und $2 \pi$. Da der Graph von $f$ symmetrisch bez"uglich 
+sind $-2 \pi$, $-\pi$, $0$, $\pi$ und $2 \pi$. Da der Graph von $f$ 
+punktsymmetrisch bez"uglich 
 der $x$-Achse ist, ergibt sich der Fl"acheninhalt mit der folgenden Rechnung zu
 \begin{eqnarray*}
 \int_{-2 \pi}^{2 \pi} |f(x)| \MD x %
  & = & 3 \cdot \int_{-2 \pi}^{2 \pi}  \left|\sin\left(x\right)\right| \MD x \\
- & = & 3 \cdot \left|\int_{-2 \pi}^{2 \pi}  \sin\left(x\right) \MD x\right| \\
- & = & 6 \cdot \left|\int_{0}^{2 \pi}  \sin\left(x\right) \MD x\right| \\
- & = & 12 \cdot \left|\int_{0}^{\pi}  \sin\left(x\right) \MD x\right| \\
+ & = & 3 \cdot 2 \cdot \int_{0}^{2 \pi}  \left|\sin\left(x\right)\right| \MD x,
+\qquad \text{da die Funktion $|\sin|$ gerade ist,} \\
+ & = & 6 \cdot \left(\int_{0}^{\pi} \sin\left(x\right) \MD x %
+ + \int_{0}^{\pi} -\sin\left(x\right) \MD x\right) \\
+ & = & 6 \cdot \left( \left[-\cos\left(x\right)\right]_0^{\pi} %
+ + \left[\cos\left(x\right)\right]_{\pi}^{2\pi}\right) \\
+ & = & 6 \cdot \left(\left(-(-1) + 1\right) + \left(1 - (-1)\right)\right) \\
  & = & 24. %
 \end{eqnarray*}
 \end{MHint}
@@ -1639,7 +1644,7 @@ $F: [1; \infty) \rightarrow \R, r \mapsto F(r) := -\gamma \cdot \frac{m }{r^2}$
 l"angs des Weges $[1; 4]$ in Abh"angigkeit der gegebenen Masse $m$ und 
 der Gravitationskonstanten $\gamma$.
 
-Antwort: \MEquationItem{$W$}{\MLSimplifyQuestion{30}{-3/4*gamma*m*M}{10}{gamma,m,M}{4}{0}{ILGAMMA}}.
+Antwort: \MEquationItem{$W$}{\MLSimplifyQuestion{30}{-3/4*gamma*m}{10}{gamma,m}{4}{0}{ILGAMMA}}.
 \ \\
 \MInputHint{Die Konstanten $m$ und $\gamma$ müssen in der Lösung stehen bleiben, für $\gamma$ kann man \texttt{gamma} eingeben.}
 \ \\
@@ -1650,7 +1655,7 @@ W = \int_1^4 F(r) \MD r %
  & = & \int_1^4 -\gamma \cdot \frac{m }{r^2} \MD r \\
  & = & \left[ \gamma \cdot \frac{m }{r} \right]_{1}^{4} \\
  & = & \gamma \cdot m  \left(\frac{1}{4} - \frac{1}{1}\right) \\
- & = & -\gamma \frac{3 m }{4} %%
+ & = & -\gamma \cdot \frac{3 m }{4} %%
 \end{eqnarray*}
 \end{MHint}
 %
