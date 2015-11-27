@@ -1851,50 +1851,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 }
 \fi
 
-% --------------------------------- Spezialbefehle aus dem Aufgabenpaket vom mkbw ---------------------
-
-\newcommand{\MZXYZhltrennzeichen}{.}
-\newcommand{\MZahltrennzeichen}[1]{\renewcommand{\MZXYZhltrennzeichen}{#1}}
-\newcommand{\MZahl}[3][\MZXYZhltrennzeichen]{{}#2{#1}#3} 
-% Masseinheit, Standardabstand: \,
-\newcommand{\MEinheitenabstXYZnd}{\MThinspace} 
-\newcommand{\MEinheitenabstand}[1]{\renewcommand{\MEinheitenabstXYZnd}{#1}}
-\newcommand{\MEinheit}[2][\MEinheitenabstXYZnd]{{}#1 \mathrm{#2}} 
-% Exponent zur Basis 10 in der Exponentialschreibweise, 
-% Standardmalzeichen: \times
-\newcommand{\MExponentensymbXYZl}{\times} 
-\newcommand{\MExponentensymbol}[1]{\renewcommand{\MExponentensymbXYZl}{#1}}
-\newcommand{\MExponent}[2][\MExponentensymbXYZl]{{}#1{} 10^{#2}} 
-
-%Alias-Namen
-
-\newcommand{\msz}[3][\MZXYZhltrennzeichen]{\MZahl[#1]{#2}{#3}}
-\newcommand{\mse}[2][\MEinheitenabstXYZnd]{\MEinheit[#1]{#2}}
-\newcommand{\msx}[2][\MExponentensymbXYZl]{\MExponent[#1]{#2}}
-
-
-% % ENTFERNT FUER TU9-Kurs
-% % Das Editierfenster
-% \ifttm%
-% \newcommand{\MCodeEdit}[1]{%
-% \MRegisterFile{../../files/ShowField.class}
-% \special{html:
-% <div id="editor">}#1\special{html:</div>
-% <script>
-%   var codeeditor}\arabic{MCodeEditCounter}\special{html: = ace.edit("editor");
-%   codeeditor}\arabic{MCodeEditCounter}\special{html:.setTheme("ace/theme/eclipse");
-%   codeeditor}\arabic{MCodeEditCounter}\special{html:.getSession().setMode("ace/mode/java");
-% </script>
-% <button name="Name_MCodeButton}\arabic{MCodeEditCounter}\special{html:" id="MCodeCheckButton}\arabic{MCodeEditCounter}\special{html:"
-%   type="button" onclick="checkCESyntax(codeeditor}\arabic{MCodeEditCounter}\special{html:,document.JavaView}\arabic{MCodeEditCounter}\special{html:);">}Syntax prüfen\special{html:</button>
-% <applet codebase="}\MMaterial\special{html:/}\MLastFilePath\special{html:" code="}\MLastFileName\special{html:" name="JavaView}\arabic{MCodeEditCounter}\special{html:" width="200" height="85">
-% }
-% \addtocounter{MCodeEditCounter}{1}
-% }%
-% \else%
-% \newcommand{\MCodeEdit}[1]{}
-% \fi
-
 % In einer reinen LaTeX-Uebersetzung kapselt der Preambelinclude-Befehl nur input,
 % in einer konvertergesteuerten PDF/HTML-Uebersetzung wird er dagegen entfernt und
 % die Preambeln an mintmod angehaengt, die Ersetzung wird von mconvert.pl vorgenommen.
@@ -2167,6 +2123,35 @@ Hier erscheint die Testauswertung!
 \fi
 
 % ---------------------------------- Sonderbefehle ---------------------------------------------------
+
+\newcommand{\MZXYZhltrennzeichen}{,}
+\newcommand{\MZahltrennzeichen}[1]{\renewcommand{\MZXYZhltrennzeichen}{#1}}
+\ifttm
+\newcommand{\MZahl}[3][\MZXYZhltrennzeichen]{\edef\MZXYZtemp{\noexpand\special{html:<mn>#2#1#3</mn>}}\MZXYZtemp}
+\else
+\newcommand{\MZahl}[3][\MZXYZhltrennzeichen]{{}#2{#1}#3}
+\fi
+% Masseinheit, Standardabstand: \,
+\newcommand{\MEinheitenabstXYZnd}{\MThinspace} 
+\newcommand{\MEinheitenabstand}[1]{\renewcommand{\MEinheitenabstXYZnd}{#1}}
+\newcommand{\MEinheit}[2][\MEinheitenabstXYZnd]{{}#1 \mathrm{#2}} 
+% Exponent zur Basis 10 in der Exponentialschreibweise, 
+% Standardmalzeichen: \times
+\newcommand{\MExponentensymbXYZl}{\times} 
+\newcommand{\MExponentensymbol}[1]{\renewcommand{\MExponentensymbXYZl}{#1}}
+\newcommand{\MExponent}[2][\MExponentensymbXYZl]{{}#1{} 10^{#2}} 
+
+
+%Zahlen-Separation im IntervaLL
+\newcommand{\MIntvlSep}{;} %oder ','
+
+%
+\ifttm
+\newcommand{\MOhm}{\special{html:<mn>&#x3A9;</mn>}}
+\else
+\newcommand{\MOhm}{\Omega} %\varOmega
+\fi
+
 
 % Wird beim Postprocessing durch grafische HTML-Modultiteldarstellung ersetzt
 \ifttm
