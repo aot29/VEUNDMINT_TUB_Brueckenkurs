@@ -958,7 +958,7 @@ function allowedUsername(una) {
     var i;
     for (i = 0; i < una.length; i++) {
         var c = una.charAt(i);
-        if (!(((c >= "A") && (c <= "Z")) || ((c >= "a") && (c <= "z")) || ((c >= "0") && (c <= "9")) || (c == "_") || (c == "-") || (c == "+"))) {
+        if (!RegExp('[a-z]|[0-9]|_|\\-|\\+', 'i').test(c)) {
             return "Im Loginnamen sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
         }
     }
