@@ -449,7 +449,7 @@ Die Kurzschreibweise für die im Video aufgestellte Fallunterscheidung wäre
 $$
 |2x-4| \;=\; \MCases{2x-4 &\text{falls}\;x\geq 2 \\ -2x+4 & \text{falls}\;x<2} \;=\;\MCases{2x-4 &\text{falls}\;x\geq 2 \\ -2x+4 & \text{sonst}}\: .
 $$
-\MInputHint{In einem Eingabefeld würde man das als \texttt{falls(x>=2;-2*x+4;2*x-4)} eintippen. Auch \texttt{falls(x<2;2*x-4;-2*x+4)} wäre richtig.}
+\MInputHint{In einem Eingabefeld würde man das als \texttt{falls(x>=2;2*x-4;-2*x+4)} eintippen. Auch \texttt{falls(x<2;-2*x+4;2*x-4)} wäre richtig.}
 
 \begin{MExercise}
 Beschreiben Sie den Wert des Ausdrucks $2\cdot |x-4|$ durch eine Fallunterscheidung:
@@ -514,10 +514,10 @@ Verwenden Sie nicht die Schreibweise $]a;b[$ für offene Intervalle. Mengen könne
 Damit ist die Lösungsmenge insgesamt \MEquationItem{$\ML$}{\MLParsedQuestion{20}{3/2+sqrt(45/4),3/2+sqrt(45/4)}{5}{GIM8}}.
 \ \\ \ \\
 \begin{MHint}{Lösung}
-Ist $x$ aus dem Intervall $[3;\infty)$, so ist der Term im Betrag nicht negativ und wir erhalten die quadratische Gleichung $x^2-3x-9=0$ mit Lösungsmenge
+Ist $x$ aus dem Intervall $[3\MIntvlSep \infty)$, so ist der Term im Betrag nicht negativ und wir erhalten die quadratische Gleichung $x^2-3x-9=0$ mit Lösungsmenge
 $\ML=\lbrace \frac32-\sqrt{\frac{45}{4}};\frac32+\sqrt{\frac{45}{4}}\rbrace$. Nur die größere Lösung $\frac32+\sqrt{\frac{45}{4}}$  erfüllt die Fallbedingung $x\geq 3$. Das sieht man auch ohne Taschenrechner an der Abschätzung
 $\sqrt{\frac{45}{4}}\geq\sqrt{\frac{36}{4}}=3$.
-Ist $x$ dagegen aus dem Intervall $(-\infty;3)$, so ist der Term im Betrag negativ. Wir erhalten die normierte quadratische Gleichung $x^2-3x+9=0$.
+Ist $x$ dagegen aus dem Intervall $(-\infty\MIntvlSep 3)$, so ist der Term im Betrag negativ. Wir erhalten die normierte quadratische Gleichung $x^2-3x+9=0$.
 Sie ist wegen $\frac14p^2-q<0$ in der $p q$-Formel unlösbar. Damit besitzt die ursprüngliche Gleichung nur die einzige Lösung $\frac32+\sqrt{\frac{45}{4}}$.
 \end{MHint}
 \end{MExercise}

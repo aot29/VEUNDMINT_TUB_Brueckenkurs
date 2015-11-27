@@ -11,7 +11,7 @@
 
 \begin{MSectionStart}
 \MDeclareSiteUXID{VBKM01_START}
-In diesem Modul wird ein Überblick \"uber die mathematischen Grundlagen zum elementaren Rechnen gegeben und die Notation eingeführt und erklärt.
+In diesem Modul wird ein Überblick über die mathematischen Grundlagen zum elementaren Rechnen gegeben und die Notation eingeführt und erklärt.
 Dieses Modul besteht aus
 \begin{itemize}
 \item{dem Abschnitt \MSRef{M01_Zahlenbereiche}{Zahlen, Variablen, Terme},}
@@ -30,7 +30,7 @@ Dieses Modul besteht aus
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM01_ZahlenIntro}
 
-$$\dots; 0; -3; 4; \frac{4}{5}; \sqrt 2; \MEU; \pi; 12,3; 10^{23}\dots$$ 
+$$\dots; 0; -3; 4; \frac{4}{5}; \sqrt 2; \MEU; \pi; \MZahl{12}{3}; 10^{23}\dots$$ 
 Mathematik ist die Welt der Zahlen. Wenn man verschiedene Zahlen n"aher 
 betrachtet, so erkennt man jedoch grundlegende Unterschiede. Manche Zahlen 
 lassen sich nicht als geschlossener Dezimalbruch darstellen, andere sind schier
@@ -512,7 +512,7 @@ $$\frac23\cdot \frac45 = \frac{2\cdot 4}{3\cdot 5} = \frac{8}{15}, \qquad \frac2
 
 
 Wird ein Bruch ausdividiert, so erhalten wir einen \MEntry{Dezimalbruch}{Dezimalbruch} bzw. eine Dezimalzahl, zum Beispiel
-$$\frac{1}{2} = 0,5 \quad \frac{1}{3} = 0,33333...= 0,\bar{3} \quad \frac{1}{7} = 0,\overline{142857} \quad \frac{1}{8} = 0,125.$$
+$$\frac{1}{2} = \MZahl{0}{5} \quad \frac{1}{3} = \MZahl{0}{33333}\ldots= \MZahl{0}{}\bar{3} \quad \frac{1}{7} = \MZahl{0}{}\overline{142857} \quad \frac{1}{8} = \MZahl{0}{125}.$$
 Schon an diesen Beispielen zeigt sich, dass die Division entweder aufgehen kann und man
 einen \MEntry{endlichen Dezimalbruch}{Dezimalbruch (endlich)} erh"alt oder aber die Ziffern wiederholen sich
 in einer bestimmten Reihenfolge, dann liegt ein \MEntry{unendlicher periodischer Dezimalbruch}{Dezimalbruch (periodisch)} vor.
@@ -532,7 +532,7 @@ ZT&T&H&Z&E&,&z&h&t&zt\\
 wobei ZT ... Zehntausender, T ... Tausender, H ... Hunderter, Z ... Zehner, E ... Einer, z ... Zehntel, h ... Hundertstel, t ... Tausendstel, zt ... Zehntausendstel u.s.w. beschreiben.\\
 Die Umwandlung sieht dann folgenderma"sen aus:
 \begin{eqnarray*}
-4,375 &=& 4 + \frac{3}{10}+\frac{7}{100}+\frac{5}{1000} \ \\
+\MZahl{4}{375} &=& 4 + \frac{3}{10}+\frac{7}{100}+\frac{5}{1000} \ \\
 &=& 4 + \frac{300+70+5}{1000} \ \\
 &=& 4 + \frac{375}{1000}\ \\
 &=& 4 + \frac{75}{200} \ \\
@@ -548,48 +548,48 @@ für den Dezimalbruch $x$, der zu $x=\frac{n}{10^k-1}$ (ein gewöhnlicher Bruch) a
 \end{MInfo}
 
 \begin{MExample}
-Die Zahl $0,\bar 6$ soll in einen Bruch umgewandelt werden. Hierzu multipliziert man die Zahl
+	Die Zahl $\MZahl{0}{}\bar 6$ soll in einen Bruch umgewandelt werden. Hierzu multipliziert man die Zahl
 mit 10 und subtrahiert vom Ergebnis die Ausgangszahl, um die unendliche Periode
 zu eliminieren:
 \begin{center}
 \begin{tabular}{crclcr}
-&$10$ & $\cdot$ & $0,\bar 6$ & = & $6,\bar 6$\\
-- & $1$ & $\cdot$ & $0,\bar 6$ & = & $0,\bar 6$\\
+	&$10$ & $\cdot$ & $\MZahl{0}{}\bar 6$ & = & $\MZahl{6}{}\bar 6$\\
+	$-$ & $1$ & $\cdot$ & $\MZahl{0}{}\bar 6$ & = & $\MZahl{0}{}\bar 6$\\
 \hline
-$\Rightarrow$&$9$ & $\cdot$ & $0,\bar 6$ & = & $6,0$\\
+$\Rightarrow$&$9$ & $\cdot$ & $\MZahl{0}{}\bar 6$ & = & $\MZahl{6}{0}$\\
 \end{tabular}
 \end{center}
-Aus der letzten Beziehung folgt nach Division durch $9$ sofort:\quad $\displaystyle 0,\bar 6 = \frac{6}{9} = \frac{2}{3}.$
+Aus der letzten Beziehung folgt nach Division durch $9$ sofort:\quad $\displaystyle \MZahl{0}{}\bar 6 = \frac{6}{9} = \frac{2}{3}.$
 \end{MExample}
 
 Dieses Vorgehen funktioniert auch, wenn sich nicht alle Ziffern hinter dem Komma periodisch wiederholen:
 
 \begin{MExample}
-Der Dezimalbruch $0,8\bar{3}=0,83333\ldots$ soll in einen Bruch umgewandelt werden:
+Der Dezimalbruch $\MZahl{0}{8}\bar{3}=\MZahl{0}{83333}\ldots$ soll in einen Bruch umgewandelt werden:
 \begin{center}
 \begin{tabular}{crclcr}
-&$100$ & $\cdot$ & $0,8\bar 3$ & = & $83,\bar 3$\\
--&$10$ & $\cdot$ & $0,8\bar 3$ & = & $8,\bar 3$\\
+&$100$ & $\cdot$ & $\MZahl{0}{8}\bar 3$ & = & $\MZahl{83}{}\bar 3$\\
+$-$&$10$ & $\cdot$ & $\MZahl{0}{8}\bar 3$ & = & $\MZahl{8}{}\bar 3$\\
 \hline
-$\Rightarrow$&$90$ & $\cdot$ & $0,8\bar 3$ & = & $75,0$\\
+$\Rightarrow$&$90$ & $\cdot$ & $\MZahl{0}{8}\bar 3$ & = & $\MZahl{75}{0}$\\
 \end{tabular}
 \end{center}
-Division durch $90$ liefert das Ergebnis: $\displaystyle 0,8\bar 3 = \frac{75}{90} = \frac{5}{6}$.
+Division durch $90$ liefert das Ergebnis: $\displaystyle \MZahl{0}{8}\bar 3 = \frac{75}{90} = \frac{5}{6}$.
 \end{MExample}
 
 Die Vorgehensweise ist also immer dieselbe: durch geeignete Multiplikation mit Zehnerpotenzen und anschlie"sender Subtraktion wird die unendliche Periode entfernt.
 
 \begin{MExercise}
-Berechnen Sie mit dem obigen Verfahren einen gewöhnlichen und gekürzten Bruch, der den Wert $0,45555\ldots$ darstellt.
+Berechnen Sie mit dem obigen Verfahren einen gewöhnlichen und gekürzten Bruch, der den Wert $\MZahl{0}{45555}\ldots$ darstellt.
 \ \\ \ \\
-Antwort: \MEquationItem{$\displaystyle 0,4\overline{5}$}{\MLSpecialQuestion{12}{41/90}{5}{0}{0}{exactfraction}{BRZ3}}.
+Antwort: \MEquationItem{$\displaystyle \MZahl{0}{4}\overline{5}$}{\MLSpecialQuestion{12}{41/90}{5}{0}{0}{exactfraction}{BRZ3}}.
 \ \\
 \MInputHint{Geben Sie den Bruch in der Form \texttt{Zähler/Nenner} maximal gekürzt und mit positivem Nenner ein.}
 \ \\
 \begin{MHint}{Lösung}
-Multiplikation von $x=0,4\overline{5}$ mit einer geeigneten Zehnerpotenz ergibt
+Multiplikation von $x=\MZahl{0}{4}\overline{5}$ mit einer geeigneten Zehnerpotenz ergibt
 $$
-10x-x=4,1\;\Rightarrow\; 9x=\frac{41}{10}\;\Rightarrow\;x=\frac{41}{90}\: .
+10x-x=\MZahl{4}{1}\;\Rightarrow\; 9x=\frac{41}{10}\;\Rightarrow\;x=\frac{41}{90}\: .
 $$
 Dieser Bruch ist auch schon maximal gekürzt.
 \end{MHint}
@@ -650,8 +650,8 @@ Berechnen bzw. vereinfachen Sie die folgenden Ausdr"ucke f"ur geeignete Zahlen $
 \item{\MEquationItem{$\displaystyle \frac12-\frac27+\frac38+\frac34$}{\MLSpecialQuestion{10}{75/56}{5}{0}{0}{exactfraction}{BRX1}}. \begin{MHint}{L"osung}Summieren über den Hauptnenner ergibt $\frac12-\frac27+\frac38+\frac34=\frac{28}{56}-\frac{16}{56}+\frac{21}{56}+\frac{42}{56}=\frac{75}{56}$ da $\MGGT(2,7,8,4)=56$ ist.\end{MHint}}
 \item{\MEquationItem{$\displaystyle \frac{3}{13}:\frac{7}{26}$}{\MLSpecialQuestion{10}{6/7}{5}{0}{0}{exactfraction}{BRX2}}. \begin{MHint}{L"osung}Die Division durch einen Bruch ist das Gleiche wie die Multiplikation
 mit seinem Kehrwert: $\frac{3}{13}:\frac{7}{26}=\frac{3}{13}\cdot\frac{26}{7}=\frac{3\cdot 26}{13\cdot 7}=\frac{3\cdot 2}{1\cdot 7}=\frac67$.\end{MHint}}
-\item{\MEquationItem{$\displaystyle \left(1,\bar{4}\cdot 3-\frac12\right)\cdot\frac{6}{7}$}{\MLSpecialQuestion{10}{23/7}{5}{0}{0}{exactfraction}{BRX3}}. \begin{MHint}{L"osung}Umwandeln des Dezimalausdrucks in einen Bruch ergibt
-$\left(1,\bar{4}\cdot 3-\frac12\right)\cdot\frac{6}{7}=\left(1,\bar{4}\cdot 18-3\right)\cdot\frac{1}{7}=\left(26-3\right)\cdot\frac{1}{7}=\frac{23}{7}$.\end{MHint}}
+\item{\MEquationItem{$\displaystyle \left(\MZahl{1}{}\bar{4}\cdot 3-\frac12\right)\cdot\frac{6}{7}$}{\MLSpecialQuestion{10}{23/7}{5}{0}{0}{exactfraction}{BRX3}}. \begin{MHint}{L"osung}Umwandeln des Dezimalausdrucks in einen Bruch ergibt
+$\left(\MZahl{1}{}\bar{4}\cdot 3-\frac12\right)\cdot\frac{6}{7}=\left(\MZahl{1}{}\bar{4}\cdot 18-3\right)\cdot\frac{1}{7}=\left(26-3\right)\cdot\frac{1}{7}=\frac{23}{7}$.\end{MHint}}
 \item{\MEquationItem{$\displaystyle \frac{3a}{3a+6b}+\frac{2b}{a+2b}$}{\MLSpecialQuestion{10}{1}{5}{0}{0}{exactfraction}{BRX4}}. \begin{MHint}{L"osung}Summieren über den Hauptnenner ergibt
 $\frac{3a}{3a+6b}+\frac{2b}{a+2b}=\frac{3a}{3a+6b}+\frac{6b}{3a+6b}=\frac{3a+6b}{3a+6b}=1$.\end{MHint}}
 \item{\MEquationItem{$\displaystyle \frac{18x^2-48x y+32y^2}{12y-9x}\cdot \frac{18x+24y}{9x^2-16y^2}$}{\MLSpecialQuestion{10}{-4}{5}{0}{0}{exactfraction}{BRX5}}. \begin{MHint}{L"osung}Vereinfachen des Ausdrucks ergibt
@@ -668,10 +668,10 @@ $\frac{3a}{3a+6b}+\frac{2b}{a+2b}=\frac{3a}{3a+6b}+\frac{6b}{3a+6b}=\frac{3a+6b}
 \begin{MExercise}
 Wandeln Sie die folgenden unendlichen periodischen Dezimalbr"uche in Br"uche um und k"urzen Sie soweit wie m"oglich:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle 0,\overline{4}$}{\MLSpecialQuestion{12}{4/9}{5}{0}{0}{exactfraction}{BRZ1}}.}
-\item{\MEquationItem{$\displaystyle 0,\overline{23}$}{\MLSpecialQuestion{12}{23/99}{5}{0}{0}{exactfraction}{BRZ2}}.}
-\item{\MEquationItem{$\displaystyle 0,12\overline{34}$}{\MLSpecialQuestion{12}{1222/9900}{9}{0}{0}{exactfraction}{BRZ4}}.}
-\item{\MEquationItem{$\displaystyle 0,\overline{9}$}{\MLSpecialQuestion{12}{1}{5}{0}{0}{exactfraction}{BRZ5}}.}
+\item{\MEquationItem{$\displaystyle \MZahl{0}{}\overline{4}$}{\MLSpecialQuestion{12}{4/9}{5}{0}{0}{exactfraction}{BRZ1}}.}
+\item{\MEquationItem{$\displaystyle \MZahl{0}{}\overline{23}$}{\MLSpecialQuestion{12}{23/99}{5}{0}{0}{exactfraction}{BRZ2}}.}
+\item{\MEquationItem{$\displaystyle \MZahl{0}{12}\overline{34}$}{\MLSpecialQuestion{12}{1222/9900}{9}{0}{0}{exactfraction}{BRZ4}}.}
+\item{\MEquationItem{$\displaystyle \MZahl{0}{}\overline{9}$}{\MLSpecialQuestion{12}{1}{5}{0}{0}{exactfraction}{BRZ5}}.}
 \end{MExerciseItems}
 \MInputHint{Geben Sie die Brüche maximal gekürzt und mit positivem Nenner ein.}
 \end{MExercise}
@@ -679,12 +679,12 @@ Wandeln Sie die folgenden unendlichen periodischen Dezimalbr"uche in Br"uche um 
 \begin{MHint}{L"osung}
 Mithilfe des \MSRef{Mathematik_Grundlagen_UDB}{Umformungstricks} f"ur unendliche Dezimalbr"uche erhalten wir diese L"osungen:
 \begin{itemize}
- \item{$x=0,\overline{4}$, also $\displaystyle 10x-x=4\;\Rightarrow\;9x=4\;\Rightarrow\;x=\frac49$,}
- \item{$x=0,\overline{23}$, also $\displaystyle 100x-x=23\;\Rightarrow\;99x=23\;\Rightarrow\; x=\frac{23}{99}$,}
- \item{$x=0,12\overline{34}$, also $\displaystyle 100x-x=12,22\;\Rightarrow\;99x=\frac{1222}{100}\;\Rightarrow\;x=\frac{1222}{9900}=\frac{611}{4950}$,}
- \item{$x=0,\overline{9}$, also $\displaystyle 10x-x=9\;\Rightarrow\;9x=9\;\Rightarrow\;x=1$.}
+\item{$x=\MZahl{0}{}\overline{4}$, also $\displaystyle 10x-x=4\;\Rightarrow\;9x=4\;\Rightarrow\;x=\frac49$,}
+\item{$x=\MZahl{0}{}\overline{23}$, also $\displaystyle 100x-x=23\;\Rightarrow\;99x=23\;\Rightarrow\; x=\frac{23}{99}$,}
+\item{$x=\MZahl{0}{12}\overline{34}$, also $\displaystyle 100x-x=\MZahl{12}{22}\;\Rightarrow\;99x=\frac{1222}{100}\;\Rightarrow\;x=\frac{1222}{9900}=\frac{611}{4950}$,}
+\item{$x=\MZahl{0}{}\overline{9}$, also $\displaystyle 10x-x=9\;\Rightarrow\;9x=9\;\Rightarrow\;x=1$.}
  \end{itemize}
- Beim letzten Aufgabenteil ist zu beachten, dass $1=1,000\ldots$ und $1=0,999\ldots=0,\overline{9}$
+ Beim letzten Aufgabenteil ist zu beachten, dass $1=\MZahl{1}{000}\ldots$ und $1=\MZahl{0}{999}\ldots=\MZahl{0}{}\overline{9}$
  zwei verschiedene Dezimalbruchdarstellungen f"ur die gleiche Zahl sind.
 \end{MHint}
 \end{MExercises}
@@ -703,7 +703,7 @@ Was genau sind Terme?
 Terme kann man auf drei Arten interpretieren:
 \begin{itemize}
 \item{Als funktionale Ausdrücke: Wenn man für die im Term auftretenden Variablen konkrete Zahlen einsetzt, so ergibt der Term einen Zahlenwert.
-Beispielsweise ist $x+x-1$ ein Term, sobald man $x=2$ einsetzt erhält man den Wert $3$. Auch $2x-1$ ist ein Term, dieser Term
+Beispielsweise ist $x+x-1$ ein Term; sobald man $x=2$ einsetzt erhält man den Wert $3$. Auch $2x-1$ ist ein Term, dieser Term
 kann zu $x+x-1$ umgeformt werden und ergibt daher den gleichen Wert, wenn man $x=2$ einsetzt. Als symbolischer Ausdruck an sich ist $x+x-1$ verschieden von
 $2x-1$, als funktionaler Ausdruck sind beide aber gleich: Egal welchen Wert man für $x$ einsetzt, beide Terme ergeben immer das gleiche Endergebnis.
 Ein Term kann auch an sich einen Wert darstellen, wenn keine Variablen auftreten. Beispielsweise ist $3\cdot (2+4)$ ein Term mit Wert
