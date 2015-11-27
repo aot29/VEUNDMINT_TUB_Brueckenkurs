@@ -19,27 +19,27 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  * */
 
-// liefert local-storage-name des intersite-Objekts
+// determines the local storage name of the intersite object
 function getObjName() {
-    return "isobj_" + signature_main; // Wichtig: gleiches Objekt auch fuer verschiedene Versionen!
+    return "isobj_" + signature_main; // Important: same object even for different versions
 }
 
-// Typen von Anmeldungen:
-// Typ -1: Kein LocalStorage verfuegbar, es kann nichts gespeichert werden
-//        - Daten in intersiteobj existieren, werden aber nicht gespeichert
-//        - Jede neu aufgerufene Seite erzeugt intersiteobj komplett neu
-// Typ  0: Anonym local:
-//        - Strings in login-Teilobjekt sind leer, Benutzer ist anonym
-//        - intersiteobj wird in Abhaengigkeit der Flags in LocalStorage abgelegt
-// Typ  1: Personalisiert local:
-//        - Strings in login-Teilobjekt sind mit Nutzerdaten gefuellt, aber Passwort ist leer
-//        - intersiteobj wird in Abhaengigkeit der Flags in LocalStorage abgelegt
-// Typ  2: Personalisiert server sync:    (diese beiden Typen sind die einzig moeglichen falls scormLogin==true)
-//        - Strings in login-Teilobjekt sind mit Nutzerdaten gefuellt und Paar (username,password) ist vom Server akzeptiert
-//        - Daten in intersiteobj sind mit Serverdaten identisch und muessen nicht gepusht werden
-// Typ  3: Personalisiert server async:
-//        - Strings in login-Teilobjekt sind mit Nutzerdaten gefuellt und Paar (username,password) ist vom Server akzeptiert
-//        - Daten in intersiteobj koennen aktueller sein als Serverdaten und muessen noch gepusht werden
+// login types:
+// type -1: No LocalStorage available, nothing can be stored
+//        - Data in 'intersiteobj' do exist, but nothing can be added
+//        - Every pageload creates an entirely new 'intersiteobj'
+// type 0: anonymous, local:
+//        - Strings in the 'login' subobject are empty, user is anonymous
+//        - 'depending' on the flags, 'intersiteobj' get's stored in LocalStorage
+// type 1: personalized, local:
+//        - Strings in the 'login' subobject contain user data but the password is empty
+//        - 'depending' on the flags, 'intersiteobj' get's stored in LocalStorage
+// type 2: personalized, server sync: (the two types are the only valid when 'scormLogin == true')
+//        - Strings in the 'login' subobject' contain user data and the user exists on the server with the given data pair (username,password).
+//        - Data on the server is in sync with 'intersiteobj' so it doesn't need to be pushed.
+// Typ  3: personalized, server async:
+//        - Strings in the 'login' subobject' contain user data and the user exists on the server with the given data pair (username,password).
+//        - Data in 'intersiteobj' can be more up to data than the data on the server and still needs to be pushed.
 
 
 
@@ -80,7 +80,7 @@ function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
   return obj;
 }
 
-// Callbacks fuer createIntersiteObjFormSCORM
+// Callbacks for createIntersiteObjFormSCORM
 function check_user_scorm_success(data) {
   logMessage(VERBOSEINFO, "checkuser_scorm success: data = " + JSON.stringify(data));
 
@@ -88,11 +88,11 @@ function check_user_scorm_success(data) {
     logMessage(VERBOSEINFO, "User does not exist, adding user to database with initial data push");
     userdata.addUser(true, intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
     intersiteobj.type = 3;
-    // Weiter mit register-Callbacks
+    // continue with register callbacks
   } else {
     logMessage(VERBOSEINFO, "User is present in database, emitting data pull request");
     userdata.login(true, intersiteobj.login.username, intersiteobj.login.password, scormlogin_success, scormlogin_error);
-    // Weiter mit login-Callbacks
+    // continue with login callbacks
   }
 }
 
@@ -106,7 +106,7 @@ function check_user_scorm_error(message, data) {
 function scormlogin_error(message, data) {
   logMessage(CLIENTERROR, "Konnte user nicht am Server einloggen: " + message + ", data = " + JSON.stringify(data));
   logMessage(CLIENTONLY, "Server nicht erreichbar, speichere Daten im Browser und aktualisiere Server sobald Verbindung wieder hergestellt ist");
-  setIntersiteType(1); // Erstmal nur lokal weiterarbeiten, damit nicht aktuellere Daten in DB zerstoert werden
+  setIntersiteType(1); // Work locally for now so as not to destruct more up to date data in the database
 
   // Retrieve old userdata from LocalStorage, if not present continue to use newly created intersiteobj from first pull start
   // ...
@@ -117,7 +117,7 @@ function scormlogin_success(data) {
     if (data.status == false) { scormlogin_error("Login gescheitert", null); return; }
     logMessage(VERBOSEINFO, "Login ok, role = " + data.role);
 
-    // Daten holen, weiter mit scormdbread-callbacks
+    // get data, continue with 'scrombread' callbacks
     logMessage(VERBOSEINFO, "i-name = " + intersiteobj.login.username);
     userdata.getData(true, intersiteobj.login.username, scormdbread_success, scormdbread_error);
 }
@@ -125,9 +125,9 @@ function scormlogin_success(data) {
 function scormdbread_error(message, data) {
   logMessage(CLIENTERROR, "Konnte user-Daten nicht vom Server abfragen: " + message + ", data = " + JSON.stringify(data));
   logMessage(CLIENTONLY, "Server nicht erreichbar, speichere Daten im Browser und aktualisiere Server sobald Verbindung wieder hergestellt ist");
-  setIntersiteType(1); // Erstmal nur lokal weiterarbeiten, damit nicht aktuellere Daten in DB zerstoert werden
+  setIntersiteType(1); // Work locally for now so as not to destruct more up to date data in the database
 
-  // Benutzer hier informieren?
+  // Inform the user here?
 
   userdata.logout(true, scormlogout_success, scormlogout_error);
 
@@ -152,7 +152,7 @@ function scormlogout_error(message, data) {
 }
 
 
-// Hilfsfunktion zum rekursiven Klonen von einfachen Objekten in JS
+// Helper function for recursive cloning of simple objects in JS
 function objClone(obj) {
   // return JSON.parse(JSON.stringify(obj));
     if(obj == null || typeof(obj) != 'object')
@@ -169,8 +169,8 @@ function objClone(obj) {
     return temp;
 }
 
-// Initialisiert das Intersite-Objekt, falls update==true werden vorhandene Daten ueberschrieben, falls scormLogin==true wird Benutzerkennung nicht aus localStorage sondern SCORM geholt (schliesst clearuser aus)
-// pulledstr = JSON-String aus db fuer user-obj, oder "" falls nicht gepullt werden soll
+// Initialises the intersite object, if 'update == true', existing data get's overwritten, if 'scormLogin == true' the user id is used from SCORM instead of localStorage (this doesn't include 'clearuser')
+// pulledstr = JSON-String from db for user-obj, otherwise "" if nothing needs to be pulled.
 function SetupIntersite(clearuser, pulledstr) {
   logMessage(VERBOSEINFO,"SetupIntersite START");
   var s_login = "";
@@ -183,7 +183,7 @@ function SetupIntersite(clearuser, pulledstr) {
   } else {
 
   var ls = ""; // local SCORM data if present
-  // LocalStorage nur anfragen, wenn loginscorm == 0
+  // Only access LocalStorage if 'loginscrom == 0)
   if (typeof(localStorage) !== "undefined") {
     localStoragePresent = true;
     logMessage(VERBOSEINFO, "localStorage found");
@@ -201,10 +201,10 @@ function SetupIntersite(clearuser, pulledstr) {
 
   if (doScorm == 1) {
     if ((ls == "") || (ls == "CLEARED")) {
-      // SCORM neu initialisieren
+      // reinitialize SCORM
       logMessage(VERBOSEINFO, "pipwerks.SCORM start");
     } else {
-      // SCORM ist schon aktiv, pipwerks-Objektzustand uebernehmen
+      // SCORM is already active, inherit state of the pipwerks object
       var sobj = JSON.parse(ls);
       if (sobj != null) {
         pipwerks.scormdata = sobj;
@@ -216,7 +216,7 @@ function SetupIntersite(clearuser, pulledstr) {
   }
 
   if ((scormLogin == 1) && (SITE_PULL == 1)) {
-    // SCORM-pull: Uebergehe LocalStorage und hole Daten direkt vom DB-Server falls moeglich, sonst neuer Benutzer mit SCORM-ID und CID als login
+    // SCORM-pull: Skip LocalStorage an fetch data directly from the database server if possible, otherwise use new user with SCROM-ID and CID as login
     logMessage(VERBOSEINFO, "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + ")");
 
     var psres = pipwerks.SCORM.init();
@@ -260,7 +260,7 @@ function SetupIntersite(clearuser, pulledstr) {
       logMessage(VERBOSEINFO,"Pull request send");
     }
   } else {
-    // Kein SCORM: Verwende LocalStorage falls verfuegbar
+    // No SCORM: Use LocalStorage if available
     if (localStoragePresent == false) {
       intersiteobj = createIntersiteObj();
       intersiteobj.active = true;
@@ -309,7 +309,7 @@ function SetupIntersite(clearuser, pulledstr) {
   } // pulledstr-test
 
   if (intersiteactive == true) {
-    // Falls Benutzer vernetzt, Passwort erfragen, einloggen und Daten von Server beziehen
+    // If user is online, ask for password, login and fetch data from server
     if ((intersiteobj.login.type == 2) || (intersiteobj.login.type == 3)) logMessage(VERBOSEINFO,"Type=2,3, serverget missing");
   } else {
     alert("Ihre Benutzerdaten konnten nicht vom Server geladen werden, eine automatische eMail an den Administrator wurde verschickt. Sie können den Kurs trotzdem anonym bearbeiten, eingetragene Lösungen werden jedoch nicht gespeichert!");
@@ -327,7 +327,7 @@ function SetupIntersite(clearuser, pulledstr) {
     intersiteactive = true;
   }
 
-  // Seite als besucht markieren
+  // Mark site as visited
   if ((intersiteactive == true) && (SITE_UXID != "(unknown)")) {
     if (intersiteobj.configuration.CF_USAGE == "1") {
       var f = false;
@@ -362,7 +362,7 @@ function SetupIntersite(clearuser, pulledstr) {
   confHandlerISOLoad()
   updateLoginfield();
 
-  // Muss nach UpdateSpecials aufgerufen werden, da dort hrefs erzeugt werden
+  // Has to be called after UpdateSpecials, because that creates hrefs
   if (intersitelinks != true) {
     var links = document.getElementsByClassName("MINTERLINK");
     for (i=0; i<links.length; i++) {
@@ -417,11 +417,11 @@ function updateLoginfield() {
     }
   }
 
-  // Kopfzeileninfo eintragen
+  // Set headers
   $('#LOGINROW').css("color",cl);
   $('#LOGINROW').html(s);
 
-  // Nur-Loginfelder aufbauen falls auf Seite vorhanden
+  // Build login-only fields if they exist on the page
   e = document.getElementById("ONLYLOGINFIELD");
   if (e != null) {
       logMessage(VERBOSEINFO, "Einlogfeld gefunden");
@@ -444,7 +444,7 @@ function updateLoginfield() {
   }
 
 
-  // Vollstaendiges Login-Feld in Einstellungsseite aufstellen
+  // Create complete login field on settings page
   e = document.getElementById("RESETBUTTON");
   if (e != null) {
       var dis = true;
@@ -475,7 +475,7 @@ function updateLoginfield() {
             if (scormLogin == 0) {
               prefixs = "Benutzername: " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ")";
             } else {
-              // Benutzername ist id-Kombination in SCORM-Login-Modulen
+              // Username is id combination in the SCORM login modules
               prefixs = "Benutzer: " + intersiteobj.login.vname + " " + intersiteobj.login.sname;
             }
             switch (t) {
@@ -501,7 +501,7 @@ function updateLoginfield() {
                 }
 
                 case 3: {
-                    // Dass es nicht aktuell ist wird hier nicht angezeigt
+                    // Doesn't display that it isn't up to date
                     s = prefixs + ",<br />Datenspeicherung in diesem Browser und auf Server ";
                     if (cr != null) cr.disabled = true;
                     if (unf != null) unf.style.display = "none";
@@ -556,10 +556,10 @@ function updateLoginfield() {
 
 
 function UpdateSpecials() {
-  // Datenstand-Infofeld auf Einstellungsseite updaten falls vorhanden
+  // update element 'CHECKIS' if present
   var e = document.getElementById("CHECKIS");
   if (e != null) {
-    // textarea nur in Einstellungsseite vorhanden, wird dort durch Seite erzeugt und vorbereitet bevor load stattfindet
+    // textarea exists only on the settings page, is created and prepared by the page before load happens
     if ((intersiteactive==true) && (intersiteobj.configuration.CF_LOCAL == "0")) {
         e.innerHTML = "Datenspeicherung wurde durch Benutzer deaktiviert, es werden keine Kursdaten gespeichert.";
     } else {
@@ -568,17 +568,17 @@ function UpdateSpecials() {
     }
   }
 
-  // Ausgabefeld fuer intersiteobj updaten falls vorhanden
+  // update output field for 'intersiteobj' if it exists
   var e = document.getElementById("OBJOUT");
   if (e != null) {
-    // textarea nur in Einstellungsseite vorhanden, wird dort durch Seite erzeugt und vorbereitet bevor load stattfindet
+    // textarea exists only on the settings page, is created and prepared by the page before load happens
     e.value = JSON.stringify(intersiteobj);
   }
 
-  // Ausgabefeld fuer intersitearrays updaten falls vorhanden
+  // update output field for 'intersiteobj' if it exists
   var e = document.getElementById("OBJARRAYS");
   if (e != null) {
-    // textarea nur in Einstellungsseite vorhanden, wird dort durch Seite erzeugt und vorbereitet bevor load stattfindet
+    // textarea exists only on the settings page, is created and prepared by the page before load happens
     if (intersiteactive == true) {
         e.value = "SITES:\n";
         var i = 0;
@@ -593,10 +593,10 @@ function UpdateSpecials() {
     }
   }
 
-  // Ausgabefeld fuer Kursstatistiken updaten falls vorhanden
+  // update output field for course statistics if it exists
   var e = document.getElementById("CDATAS");
   if (e != null) {
-    // textarea nur in Einstellungsseite vorhanden, wird dort durch Seite erzeugt und vorbereitet bevor load stattfindet
+    // textarea exists only on the settings page, is created and prepared by the page before load happens
     if ((intersiteactive==true) && (intersiteobj.configuration.CF_LOCAL == "0")) {
         e.innerHTML = "Datenspeicherung wurde durch Benutzer deaktiviert, es werden keine Kursdaten gespeichert.";
     } else {
@@ -646,7 +646,7 @@ function UpdateSpecials() {
 }
 
 
-// Callbacks fuer pushlogin
+// callbacks for pushlogin
 
 function pushlogin_s_success(data) {
     // hotfix: parallel code in pushlogin_success !!!
@@ -655,9 +655,9 @@ function pushlogin_s_success(data) {
     logMessage(VERBOSEINFO, "Login ok, role = " + data.role);
 
 
-    // Daten ablegen
+    // store data
     var datastring = JSON.stringify(intersiteobj);
-    userdata.writeData(false, intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout wird von den write-Callbacks ausgefuehrt
+    userdata.writeData(false, intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout is done by the write callbacks
 }
 
 function pushlogin_success(data) {
@@ -666,15 +666,15 @@ function pushlogin_success(data) {
     logMessage(VERBOSEINFO, "Login ok, role = " + data.role);
 
 
-    // Daten ablegen
+    // store data
     var datastring = JSON.stringify(intersiteobj);
-    userdata.writeData(true, intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout wird von den write-Callbacks ausgefuehrt
+    userdata.writeData(true, intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout is done by the write callbacks 
 }
 
 function pushlogin_error(message, data) {
   logMessage(CLIENTERROR, "Konnte Daten nicht auf Server ablegen: " + message + ", data = " + JSON.stringify(data));
   logMessage(CLIENTONLY, "Server nicht erreichbar, speichere Daten im Browser und aktualisiere Server sobald Verbindung wieder hergestellt ist");
-  setIntersiteType(3); // sind jetzt im Modus Lokal>Server
+  setIntersiteType(3); // we are now in mode local>server
 }
 
 function pushlogout_success(data) {
@@ -687,7 +687,7 @@ function pushlogout_error(message, data) {
 
 function pushwrite_success(data) {
   logMessage(VERBOSEINFO,"pushwrite success, data = " + JSON.stringify(data));
-  setIntersiteType(2); // Server ist jetzt aktuell
+  setIntersiteType(2); // server is now up to date
   userdata.logout(false, pushlogout_success, pushlogout_error);
 }
 
@@ -696,8 +696,8 @@ function pushwrite_error(message, data) {
   userdata.logout(false, pushlogout_success, pushlogout_error);
 }
 
-// Schreibt alle vorhandenen Daten in die Storage
-// synced == true => nur synchrone ajax-calls absetzen (notwendig beispielsweise bei Aufruf aus unload-Handler weil sonst die callback-seite weg ist wenn der Aufruf beantwortet wird)
+// Writes all available data into the storage
+// synced == true => only do synchronous ajax calls (necessary when calling unload-Handler for example because the callback page would be gone when the request get's replied to)
 function pushISO(synced) {
   logMessage(VERBOSEINFO,"pushISO start (synced = " + synced + ")");
   var s = JSON.stringify(intersiteobj);
@@ -721,20 +721,20 @@ function pushISO(synced) {
   logMessage(VERBOSEINFO,"pushISO finish");
 }
 
-// Oeffnet eine neue Webseite (aus dem lokalen Paket) in einem neuen Browsertab
-// localurl sollte direkt aus dem href-Attribut bei anchors genommen werden
-// Vermerkt die Seite als angeschaut im intersiteobj
+// Opens a new webpage (from the local packet) in a new browser tab
+// localurl sollte direkt aus dem href-Attribut bei anchors genommen werden TODO: Translation
+// Marks the page as visited in 'intersiteobj'
 function opensite(localurl) {
-  //window.location.href = localurl; // holt die neue Seite
+  //window.location.href = localurl; // fetches the new page
 
-  // pushISO(); wird jetzt von beforeunload auf den Seiten ausgefuehrt
+  // pushISO(); is now called on the pages by beforeunload
 
   if (intersiteactive == true) {
     if (intersiteobj.configuration.CF_USAGE == "1") {
 
       var timestamp = +new Date();
       var cm = "OPENSITE: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", SITEUXID:" + SITE_UXID + ", localurl:" + localurl;
-      sendeFeedback( { statistics: cm }, false ); // synced, sonst ist Seite mit Callbacks weg wenn Auftrag fertig
+      sendeFeedback( { statistics: cm }, false ); // synced, otherwise the page with callbacks is gone when the request is completed
     }
   }
 
@@ -742,16 +742,17 @@ function opensite(localurl) {
 }
 
 /*
- * Sendet ein Objekt an die gegebene URL via CORS-Request
+ * Sends an object to the given URL via CORS request
  *
- * url: URL, an die das Objekt gesendet wird
- * data: Objekt, das versendet werden soll
- * success: Callback, der im Erfolgsfall ausgefuehrt wird, eine Funktion der Form:
- * 		function( response ) {}
+ * url: URL the object is sent to
+ * data: object that should be sent
+ * success: callback that get's called in case of success. Input as follows:
+ *      function( response ) {}
  * error: Callback, der im Fehlerfall ausgefuehrt wird, eine Funktion der Form:
- * 		function( errorMessage ) {}
+ * error: callback that get's called in case of errors. Input as follows:
+ *      function( errorMessage ) {}
  * */
-// Sollte mit Funktion aus userdata.js gemergt werden!
+// Should be merged with function from userdata.js
 function sendCorsRequest( url, data, success, error,async ) {
         logMessage(VERBOSEINFO, "intersite.sendCorsRequest called, type = POST, url = " + url + ", async = " + async + ", data = " + JSON.stringify(data));
         $.ajax( url, {
@@ -761,19 +762,19 @@ function sendCorsRequest( url, data, success, error,async ) {
                 contentType: 'application/x-www-form-urlencoded',
                 crossDomain: true,
                 data: data,
-                //dataType: 'html', //Erwarteter Datentyp der Antwort
+                //dataType: 'html', //Data type that's requeset for the response
                 error: error,
                 success: success
-                //statusCode: {}, //Liste von Handlern fuer verschiedene HTTP status codes
-                //timout: 1000,        //Timeout in ms
+                //statusCode: {}, //list of handlers for various HTTP status codes
+                //timout: 1000, //Timeout in ms
         });
 }
 
 /*
- * Hier wird das gesendete Feedback dokumentiert ( die callbacks schreiben hier rein ).
- * Damit hat man eine Uebersicht von erfolgreichen und fehlgeschlagenen Feedbacks.
+ * The sent feedback get's documented here (the callbacks write into there)
+ * This provides an overview of successfull and failed feedbacks.
  *
- * Array aus Objekten der Form:
+ * Array of objects as follows:
  * {
  *      success: true/false,
  *      status: string,
@@ -784,18 +785,18 @@ function sendCorsRequest( url, data, success, error,async ) {
 var feedbackLog = [];
 
 /*
- * Sendet einen String an den Feedback-Server um ihn dort in der Datenbank zu speichern
+ * Sends a feedback string to the feedback server to save it in the databse
  *
- * Die URL kommt aus der globalen Variable feedback_service
+ * The URL is taken from the global variable 'feedback_service'
  *
  * content:
- * 	{
- * 		feedback: "Manuell vom Nutzer gegebenes Feedback",
- * 		statistics: "Automatisches Feedback fuer Statistik"
- * 	}
+ *  {
+ *      feedback: "feedback entered manually by the user",
+ *      statistics: "autoamtic feedback for statistics"
+ *  }
  * */
 function sendeFeedback( content,async ) {
-        //Feedback nur Senden, wenn ein feedbackserver angegeben ist
+        //send feedback only if a feedbackserver has been specified
         if( feedback_service != "" ) {
                 sendCorsRequest( feedback_service, content,
                                 //success callback
@@ -812,7 +813,7 @@ function sendeFeedback( content,async ) {
         }
 }
 
-// ---------------------------------------------- Konfigurationsroutinen ------------------------------------------------
+// ---------------------------------------------- configuration routines ------------------------------------------------
 
 function confHandlerChange(id) {
   var e = document.getElementById(id);
@@ -852,16 +853,16 @@ function confHandlerISOLoad() {
   }
 }
 
-// -------------------------------------------------- Usermanagement (wird in userdata.js ausgelagert) ---------------------------------------------------
+// -------------------------------------------------- user management (TODO: outsource into userdata.js) ---------------------------------------------------
 
 function userlogin_click() {
   logMessage(VERBOSEINFO, "userlogin geklickt");
 
-  // Behandlung des schon eingelogten Benutzers:
-  // type = 0: Anonym, Daten werden verworfen
-  // type = 1: Lokal, Benutzer vorher fragen
-  // type = 2: Server ist aktuell, lokale Daten werden verworfen
-  // type = 3: Versuch vorher alles zu speichern
+  // handle the user that's already logged in:
+  // type = 0: anonymous, discard data
+  // type = 1: local, ask user beforehand
+  // type = 2: server is up to data, discard local data
+  // type = 3: try to save everything beforehand
 
   var user_login = "";
   var user_pw = "";
@@ -877,17 +878,17 @@ function userlogin_click() {
 
   logMessage(VERBOSEINFO, "Starte Login " + user_login);
 
-  // Versuche den Login am Server
+  // Try loggin in to the server.
   userdata.login(true, user_login, user_pw, userlogin_success, userlogin_error);
-  // Weiter mit den Callbacks
+  // continue with callbacks
 }
 
 function userlogin_success(data) {
     logMessage(VERBOSEINFO, "userlogin success");
     if (data.status == false) { userlogin_error("Login gescheitert", null); return; }
     logMessage(VERBOSEINFO, "Login ok, username = " + data.username + ", role = " + data.role);
-    userdata.getData(true, undefined, loginread_success, loginread_error); // logout wird von den write-Callbacks ausgefuehrt
-  // Weiter mit den Callbacks
+    userdata.getData(true, undefined, loginread_success, loginread_error); // logout is done by the write callbacks
+  // continue with callbacks
 }
 
 function userlogin_error(message, data) {
@@ -913,9 +914,9 @@ function loginread_success(data) {
   logMessage(VERBOSEINFO, "iso = " + JSON.stringify(iso));
 
   intersiteobj = iso;
-  setIntersiteType(2); // sind jetzt synchron
+  setIntersiteType(2); // are now synchronous
 
-  // Erstmal gleich wieder ausloggen
+  // TODO: belongs to quickfix, should be removed
   userdata.logout(true, pushlogout_success, pushlogout_error);
 }
 
@@ -940,7 +941,7 @@ function userreset_click() {
   if (confirm(s) == true) SetupIntersite(true);
 }
 
-// Returnwerte: "" falls Benutzername zulaessig, Fehlerstring fuer Benutzer sonst
+// returns "" for valid usernames, error string otherwise
 function allowedUsername(una) {
     if ((una.length < 6) || (una.length > 18)) {
          return "Der Loginname muss mindestens 6 und höchstens 18 Zeichen enthalten";
@@ -957,7 +958,7 @@ function allowedUsername(una) {
     return "";
 }
 
-// Returnwerte: "" falls Benutzername zulaessig, Fehlerstring fuer Benutzer sonst
+// return "" for valid passwords, error string otherwise
 function allowedPassword(una) {
     if ((una.length < 6) || (una.length > 18)) {
          return "Das Passwort muss mindestens 6 und höchstens 18 Zeichen enthalten";
@@ -974,7 +975,7 @@ function allowedPassword(una) {
     return "";
 }
 
-// type = 1 -> Nur lokal anlegen, type =2 -> Lokal anlegen und sofort zu Servernutzer upgraden
+// type = 1 -> Create locally only, type = 2 -> create locally and immediately upgrade to server user
 function usercreatelocal_click(type) {
     if (type==2) {
         alert("In der Korrekturversion ist das Anlegen eines Netz-Benutzers nicht möglich um eine Verzerrung der Aufgaben- und Nutzerdatenauswertung zu vermeiden, bitte registrieren Sie sich nur innerhalb Ihres Browsers mit dem Button unten.");
@@ -1005,13 +1006,13 @@ function usercreatelocal_click(type) {
     }
 
     var pws = "";
-    if (4==4) {
-      // Korrekturversion: username=password
+    if (4==4) { //TODO: Wy is this always true statement here?
+      // Version for correction: username=password
 
     } else {
-      // Normalversion: Password eingeben lassen
+      // normal version: password requested from user
       pws = prompt("Geben Sie ein Passwort für den Benutzer " + una + " ein:");
-      if (pws == null) return; // Benutzer hat Abbrechen gedrueckt
+      if (pws == null) return; // user has pressed abort
       rt = allowedPassword(pws);
       if (rt != "") {
           alert(rt);
@@ -1019,7 +1020,7 @@ function usercreatelocal_click(type) {
       }
 
       var pws2 = prompt("Geben Sie das Passwort zur Sicherheit nochmal ein:");
-      if (pws2 == null) return; // Benutzer hat Abbrechen gedrueckt
+      if (pws2 == null) return; // user has pressed abort
       if (pws2 != pws) {
           alert("Die Passwörter stimmen nicht überein.");
           return;
@@ -1052,7 +1053,7 @@ function usercreatelocal_click(type) {
     }
 }
 
-// Callbacks fuer Erstregistrierung
+// callbacks for first sign up
 function register_success(data) {
   logMessage(VERBOSEINFO, "Register success, data = " + JSON.stringify(data));
   var na;
@@ -1091,7 +1092,7 @@ function register_error(message, data) {
 }
 
 
-// Callbacks fuer UserCheck-Aufruf an Datenbank
+// Callbacks for check_user call to the database (checking if a user exists)
 
 function check_user_success(data) {
     logMessage(VERBOSEINFO, "checkuser success");
@@ -1145,7 +1146,7 @@ function ulreply_set(ok, m) {
   if (e == null) return; else e.innerHTML = m;
 }
 
-// Prueft, ob der Nutzername in der DB vorhanden (true) ist oder nicht (false)
+// checks if the user already exists in the database (true) or not (false)
 function usercheck() {
     var e = document.getElementById("USER_UNAME");
     if (e == null) {
