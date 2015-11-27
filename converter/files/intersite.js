@@ -942,36 +942,28 @@ function userreset_click() {
 }
 
 // returns "" for valid usernames, error string otherwise
-function allowedUsername(una) {
-    if ((una.length < 6) || (una.length > 18)) {
+function allowedUsername(username) {
+    if ((username.length < 6) || (username.length > 18)) {
          return "Der Loginname muss mindestens 6 und höchstens 18 Zeichen enthalten";
     }
 
-    var i;
-    for (i = 0; i < una.length; i++) {
-        var c = una.charAt(i);
-        if (!RegExp('[a-z]|[0-9]|_|\\-|\\+', 'i').test(c)) {
-            return "Im Loginnamen sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
-        }
+    if (RegExp('[^a-z0-9\\-\\+_]', 'i').test(username)) {
+        return "Im Loginnamen sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
     }
-    
+
     return "";
 }
 
 // return "" for valid passwords, error string otherwise
-function allowedPassword(una) {
-    if ((una.length < 6) || (una.length > 18)) {
+function allowedPassword(password) {
+    if ((password.length < 6) || (password.length > 18)) {
          return "Das Passwort muss mindestens 6 und höchstens 18 Zeichen enthalten";
     }
 
-    var i;
-    for (i = 0; i < una.length; i++) {
-        var c = una.charAt(i);
-        if (!(((c >= "A") && (c <= "Z")) || ((c >= "a") && (c <= "z")) || ((c >= "0") && (c <= "9")) || (c == "_") || (c == "-") || (c == "+"))) {
-            return "Im Passwort sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
-        }
+    if (RegExp('[^a-z0-9\\-\\+_]', 'i').test(password)) {
+          return "Im Passwort sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
     }
-    
+
     return "";
 }
 
