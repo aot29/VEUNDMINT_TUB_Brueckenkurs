@@ -264,19 +264,23 @@ Die Überprüfung, ob wir die Stammfunktion einer vorgegebenen Funktion $f$ richti
 \MDeclareSiteUXID{VBKM08_Stammfunktionen_Exercises}
 
 \begin{MExercise}
+% TODO Musterloesungen einsetzen
 Geben Sie eine Stammfunktion an:
 \begin{MExerciseItems}
-\item $\displaystyle\int \left(12 x^2 - 4 x^7\right) \MD x = $%
- \MSimplifyQuestion{30}{4*x^3 - 1/2*x^8}{10}{x}{4}{32}
-\item $\displaystyle\int \left(\sin x + \cos x\right) \MD x = $%
- \MSimplifyQuestion{30}{sin(x)-cos(x)}{10}{x}{4}{32}
-\item $\displaystyle\int \frac{1}{x^2 + 1} \MD x = $%
- \MSimplifyQuestion{30}{arctan(x)}{10}{x}{4}{32}
+\item{\MEquationItem{$\displaystyle\int \left(12 x^2 - 4 x^7\right) \MD x $}{\MLSimplifyQuestion{30}{4*x^3 - 1/2*x^8}{10}{x}{4}{32}{LSTFX1}}. \begin{MHint}{Lösung}{%
+% Lösung hier schreiben
+}\end{MHint}}
+\item{\MEquationItem{$\displaystyle\int \left(\sin x + \cos x\right) \MD x$}{\MLSimplifyQuestion{30}{sin(x)-cos(x)}{10}{x}{4}{32}{LSTFX2}}. \begin{MHint}{Lösung}{%
+% Lösung hier schreiben
+}\end{MHint}}
+\item{\MEquationItem{$\displaystyle\int \frac{1}{x^2 + 1} \MD x$}{\MLSimplifyQuestion{30}{arctan(x)}{10}{x}{4}{32}{LSTFX3}}. \begin{MHint}{Lösung}{%
+% Lösung hier schreiben
+}\end{MHint}}
 \end{MExerciseItems}
 \end{MExercise}
 
-
 \begin{MExercise}
+% TODO Musterloesungen einsetzen, analog zur vorhergehenden Aufgabe
 Bestimmen Sie eine Stammfunktion:
 \begin{MExerciseItems}
 \item{\MEquationItem{$\displaystyle\int \MEU^{x+2} \MD x$}{\MLSimplifyQuestion{30}{exp(x+2)}{10}{x}{4}{32}{LSTNF1}}.}
@@ -341,6 +345,7 @@ führt (bis auf eine Konstante).
 
 
 \begin{MExercise}
+% TODO Musterloesungen einsetzen
 Finden Sie Polynome $p(x)$ und $q(x)$, sodass $F$ und $G$ mit 
 $F(x) = p(x) + x \cdot \ln(x)$ bzw. $G(x) = q(x) + x \cdot \ln(x)$
 Stammfunktionen von $f(x) = \ln(x)$ f"ur $x > 0$ sind.
@@ -350,6 +355,7 @@ und es gilt $F'(x) = $\MLSimplifyQuestion{10}{ln(x)}{1}{x}{20}{0}{IGYY1}.
 
 % Letztes Aufgabenelement darf kein MSimplifyQuestion sein, weil die Eingabebox sonst unter dem Bildschirmrand landet
 \begin{MExercise}
+% TODO Musterloesungen einsetzen, analog zur vorhergehenden Aufgabe
 Angenommen $F(x)$ ist eine Stammfunktion von $f(x)=1+x^2$ und besitzt den Wert $F(0)=1$, dann ist $F(3)$ = \MLParsedQuestion{10}{13}{10}{IG22}.
 \end{MExercise}
 
@@ -806,6 +812,7 @@ des zweiten Integrals Null ist.
 \MDeclareSiteUXID{VBKM08_Umformungen_Exercises}
 
 \begin{MExercise}
+% TODO Musterloesungen einsetzen
 Berechnen Sie zu $f:[-3\MIntvlSep 4] \rightarrow \R$ mit dem unten dargestellten Graphen
 das Integral $\displaystyle \int_{-3}^{4} f(x) \MD x$ mit Methoden aus der Geometrie.
 
@@ -856,13 +863,11 @@ $$
 $$
 ist \MLParsedQuestion{10}{-2}{4}{IG23}.
 
-% \begin{MHint}{Lösung}
-% Die Fläche unter der Kurve kann man wie folgt berechnen: ???
-% \end{MHint}
 \end{MExercise}
 
 
 \begin{MExercise}
+% TODO Musterloesungen einsetzen
 Berechnen Sie die folgenden Integrale:
 \begin{MExerciseItems}
 \item{\MEquationItem{$\displaystyle \int_{0}^{5} 3 \MD x$}{\MLParsedQuestion{10}{15}{4}{IG24}}.}
@@ -874,6 +879,7 @@ Berechnen Sie die folgenden Integrale:
 
 
 \begin{MExercise}
+% TODO Musterloesungen einsetzen
 Der Wert des Integrals
 $$
 \int_{-\pi}^{\pi} \left(5 x^3 - 4 \sin(x)\right) \MD x
@@ -999,184 +1005,8 @@ Die Funktionen $\sin$ und $\cos$ haben die Eigenschaft, dass das Integral
 "uber eine Periode gleich Null ist. F"ur andere periodische Funktionen wie 
 zum Beispiel $|\sin(x)|$ k"onnen sich f"ur das Integral "uber eine Periode 
 auch Werte ungleich Null ergeben.
-% F"ur $f(x) = |x| - |x + 1|$ gilt dagegen
-% \[
-% f(x) = \left\{\begin{array}{ll}
-% - x - (-(x + 1)) = 1 & \text{ f"ur } x < -1, \\
-% - x - (x + 1) = -2 x - 1 & \text{ f"ur } -1 \leq x < 0, \\
-%  x - (x + 1) = -1 & \text{ f"ur } 0 \leq x. %%
-% \end{array}\right.
-% \]
-% Somit ist
-% \[
-% F(x) =  \left\{\begin{array}{ll}
-%  x & \text{ f"ur } x < -1, \\
-%  -x^2 - x & \text{ f"ur } -1 \leq x < 0, \\
-%  -x & \text{ f"ur } 0 \leq x. %%
-% \end{array}\right.
-% \]
-% eine Stammfunktion von $f$. 
-% Mit den Rechenregeln und dem Hauptsatz 
-% ergibt sich
-% \begin{eqnarray*}
-% \int_{-3}^{3} \left(|x| - |x + 1|\right) \MD x %
-%  & = & \int_{-3}^{-1} (-x - (-(x + 1))) \MD x\\
-%   && + \int_{-1}^{0} (-x - (x + 1)) \MD x\\
-%    &&+ \int_{0}^{2} (x - (x + 1)) \MD x \\
-%  & = & \left[ x \right]_{-3}^{-1} %
-%    + \left[ -x^2 - x \right]_{-1}^{0} %
-%    + \left[ -x \right]_{0}^{3} \\
-%  & = & \left( -1 - (-3) \right) %
-%    + \left( 0 - 0 - (-1 - (-1)) \right) %
-%    + \left( -3 - (0) \right) \\
-%  & = & 2 + 0 -3 = -1. %
-% \end{eqnarray*}
-% Es kann auch zuerst mit den Rechenregeln eine Summe von Integralen betrachtet 
-% und dann jeweils das Integrationsintervall aufgeteilt werden. Dies f"uhrt mit 
-% dem Hauptsatz zu folgender Berechnung:
-% \begin{eqnarray*}
-% \int_{-3}^{3} \left(|x| - |x + 1|\right) \MD x %
-%  & = & \int_{-3}^{3} |x| \MD x - \int_{-3}^{3} |x + 1| \MD x \\
-%  & = & 2 \int_{0}^{3} x \MD x
-%      - \left(\int_{-3}^{-1} -(x + 1) \MD x 
-%         + \int_{-1}^{3} (x + 1) \MD x\right) \\
-%  & = & \left[ x^2 \right]_{0}^{3} %
-%   + \left[ \frac{1}{2} x^2 + x \right]_{-3}^{-1} %
-%   - \left[ \frac{1}{2} x^2 + x \right]_{-1}^{3} \\
-%  & = & (9 - 0) + \left(\frac{1}{2} - 1\right) - \left(\frac{9}{2} - 3\right)
-%   - \left(\frac{9}{2} + 3\right) + \left(\frac{1}{2} - 1\right) \\
-%  & = & -1. %%
-% \end{eqnarray*}
 \end{MHint}
 \end{MExercise}
-
-
-%\begin{MExercise}
-%Berechnen Sie die Integrale mittels partieller Integration:
-%\begin{MExerciseItems}
-%\item $\displaystyle \int_{0}^{\pi} 3 x \cdot \sin x \MD x$
-%\item $\displaystyle \int_{\MEU}^{\MEU^2} x^2 \cdot \ln x \MD x$
-%\end{MExerciseItems}
-%\end{MExercise}
-
-
-%\begin{MExercise}
-%Berechnen Sie die Integrale mit verketteten Integranden:
-%\begin{MExerciseItems}
-%\item $\displaystyle %
-%\int_{-\frac{\pi}{2}}^{\pi} \cos\left(2 x + \frac{\pi}{2}\right) \MD x$
-% $ = $\MParsedQuestion{30}{1}{4}.
-%
-%\jErg{$1$}
-%\begin{MHint}{Lösung}
-%Zuerst wird der Integrand gem"a"s
-%$\cos\left(2 x + \frac{\pi}{2}\right) = -\sin(2 x)$ umgeformt.
-%Mit $u(x) = 2x$ und $u'(x) = 2$ ergibt sich
-%\begin{eqnarray*}
-%\int_{-\frac{\pi}{2}}^{\pi} \cos\left(2 x + \frac{\pi}{2}\right) \MD x
-% & = & 
-%\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} -\sin(2 x) \MD x \\
-% & = &
-%\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{1}{2} \cdot (-\sin(u(x)) \MD x \\
-% & = & \frac{1}{2} \int_{-\pi}^{\pi} -\sin(z) \MD z \\
-% & = & \frac{1}{2} \left[ \cos(z) \right]_{-\pi}^{2 \pi} \\
-% & = & \frac{1}{2} (1 - (-1)) %
-% = 1. %
-%\end{eqnarray*}
-%\end{MHint}
-%
-%\item $\displaystyle \int_{0}^{7} 15 \sqrt{3 x + 4} \MD x$
-% $ = $\MParsedQuestion{30}{390}{4}.
-%
-%\jErg{$390$}
-%\begin{MHint}{Lösung}
-%Mit $u(x) = 3 x + 4$ und $u'(x) = 3$ ergibt sich
-%\begin{eqnarray*}
-%\int_{0}^{7} 15 \sqrt{3 x + 4} \MD x %
-% & = & 15 \int_{0}^{7} \frac{1}{3} \sqrt{u(x)} \MD x \\
-% & = & 5 \int_{4}^{25} \sqrt{z} \MD z \\
-% & = & 5 \left[ \frac{2}{3} z^{\frac{3}{2}} \right]_{4}^{25} \\
-% & = & \frac{10}{3} (125 - 8) %
-% = 390. %
-%\end{eqnarray*}
-%\end{MHint}
-%
-%\end{MExerciseItems}
-%\end{MExercise}
-
-%\begin{MExercise}
-%Berechnen Sie die Integrale:
-%\begin{MExerciseItems}
-%\item $\displaystyle \int_{-2}^{-1} x \MEU^{2 x} \MD x$
-%\item $\displaystyle \int_{3}^{0} x \ln(x + 1) \MD x$
-%\end{MExerciseItems}
-%\end{MExercise}
-
-
-%\begin{MExercise}
-%Berechnen Sie die Integrale:
-%\begin{MExerciseItems}
-%\item $\displaystyle \int_{0}^{4} \frac{6}{2^{1 - 3 x}} \MD x$
-% $ = $\MSimplifyQuestion{30}{4095/ln(2)}{4}{x}{4}{0}.
-%%
-%\jErg{$\frac{4095}{\ln(2)}$}
-%\begin{MHint}{Lösung}
-%Der Integrand wird zuerst umgeformt:
-%\[
-%f(x) = \frac{6}{2^{1 - 3 x}} = \frac{6}{2^1 \cdot 2^{-3 x}} %
-% = 3 \cdot 2^{3 x} = 3 \cdot \MEU^{3 x \ln(2)} %%
-%\] 
-%Hier ist die Exponentialfunktion mit der Funktion $u(x) = 3 \ln(2) \cdot x$ 
-%verkettet. Mit $u'(x) = 3 \ln(2)$ ergibt sich
-%\begin{eqnarray*}
-%\int_{0}^{4} \frac{6}{2^{1 - 3 x}} \MD x %
-% & = & \int_{0}^{4} 3 \cdot \MEU^{3 \ln(2) \cdot x} \MD x \\
-% & = & \int_{0}^{4} 3 \cdot \MEU^{u(x)} \MD x \\
-% & = & \int_{u(0)}^{u(4)} 3 \cdot \MEU^{z} \cdot \frac{1}{3 \ln(2)} \MD z \\
-% & = & \left[ \frac{1}{\ln(2)} \MEU^{z} \right]_{u(0)}^{u(4)} \\
-% & = & \frac{1}{\ln(2)} \left( \MEU^{u(4)} - \MEU^{u(0)} \right) \\
-% & = & \frac{1}{\ln(2)} \left( \MEU^{12 \ln(2)} - \MEU^{0} \right) \\
-% & = & \frac{1}{\ln(2)} \left( 2^{12} - 1 \right) %
-% = \frac{4095}{\ln(2)}. %
-%\end{eqnarray*}
-%\end{MHint}
-%%
-%\item $\displaystyle %
-%%\int_{-2}^{1} \frac{x^6 - x^4 + x^2 - 1}{x^2 + 1} \MD x$
-%\int_{-2}^{1} \frac{3 x^8 - 7 x^6 - 8 x^4 + 2 x^2}{x^2 + 1} \MD x$
-% $ = $\MParsedQuestion{30}{123 + 2/7}{4}.
-%%
-%\jErg{$123 + \frac{2}{7}$}
-%\begin{MHint}{Lösung}
-%Der Integrand $f(x) = \frac{3 x^8 + 7 x^6 - 8 x^4 + x^2}{x^2 + 1}$ ist 
-%eine rationale Funktion. Der Grad des Polynoms im Z"ahler ist gr"o"ser als 
-%im Nenner. Deshalb wird zun"achst eine Polynomdivision durchgef"uhrt:
-%\[
-%\begin{array}{*{4}{r}cl}
-%3 x^8 & - 7 x^6 & - 8 x^4 & + 2 x^2  %
-%                              & = & (x^2 + 1) \cdot (3 x^6 - 10 x^4 + 2 x^2) \\
-%-(3 x^8 & + 3 x^6) & \\
-%      &-10 x^6 & - 8 x^4 & + 2 x^2 & & \\
-%    &-(-10 x^6 & - 10 x^4) &     & & \\
-%      &        &   2 x^4 & + x^2 & & \\
-%      &        & -(2 x^4 & + x^2) & & \\
-%      &        &         &    0  & & %%
-%\end{array}
-%\]
-%Somit ist $f(x) = 3 x^6 - 10 x^4 + 2 x^2$, woraus mit der Stammfunktion
-%$F(x) = \frac{3}{7} x^7 - 2 x^5 + \frac{2}{3} x^3$ und dem Hauptsatz dann
-%\begin{eqnarray*}
-%\int_{-2}^{1} \frac{3 x^8 - 7 x^6 - 8 x^4 + 2 x^2}{x^2 + 1} \MD x
-% & = & \left[ \frac{3}{7} x^7 - 2 x^5 + \frac{2}{3} x^3 \right]_{-2}^{1} \\
-% & = & \left( \frac{3}{7} - 2 + \frac{2}{3} \right) %
-%  - \left(-\frac{3 \cdot 128}{7} + 2 \cdot 32 - \frac{2 \cdot 8}{3} \right) \\%
-% & = & 123 + \frac{2}{7} %%
-%\end{eqnarray*}
-%folgt.
-%\end{MHint}
-%%
-%\end{MExerciseItems}
-%\end{MExercise}
 
 \end{MExercises}
 
