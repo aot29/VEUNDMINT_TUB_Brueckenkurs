@@ -7,12 +7,12 @@ doscorm         =>      0       , # =0: Kein SCORM, =1 -> SCORM-Manifest und Def
 qautoexport     =>      0       , # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
 diaok           =>      0       , # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
 cleanup         =>      0       , # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
-localjax        =>      0       , # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
+localjax        =>      1       , # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
 borkify         =>      0       , # =1 html und js-Dateien werden borkifiziert
 dorelease       =>      0       , # In Release-Versionen werden z.B. bestimmte Logmeldungen unterdrueckt
 doverbose       =>      1       , # Schaltet alle Debugmeldungen auf der Browserkonsole an
 docollections   =>      0       , # Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
-dopdf           =>      1       , # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
+dopdf           =>      0       , # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
 dotikz          =>      0       , # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
 dozip           =>      0       , # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
 output          =>      "tu9onlinekurstest", # Zielverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
@@ -20,6 +20,9 @@ source          =>      "module_veundmint",  # Quellverzeichnis relativ zur Posi
 module          =>      "tree_tu9onlinekurs.tex",  # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
 outtmp          =>      "tmp",               # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
 description     =>      "Onlinebrückenkurs Mathematik",
+moduleprefix    =>      "Onlinebrückenkurs Mathematik",  # Wird vor Browser-Bookmarks gesetzt
+stylesheets     =>      "qtip2/jquery.qtip.min.css", # durch Leerzeichen getrennte Dateinamen, grundlagen.css wird automatisch eingesetzt
+scriptheaders   =>      "es5-sham.min.js qtip2/jquery-1.10.2.min.js qtip2/jquery.qtip.min.js knockout-3.0.0.js math.js dynamiccss.js convinfo.js mparser.js scormwrapper.js dlog.js userdata.js intersite.js exercises.js mintscripts.js servicescripts.js",
 
 parameter => {                                        # Benutzeridentifizierung haengt von diesen drei Teilen ab!
   signature_main          => "OBM_VEUNDMINT",         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
@@ -42,12 +45,19 @@ generate_pdf => {
   "tree1_tu9onlinekurs"  # Datei relativ zum source-Pfad
 },
 
-# fonts
+strings => {
+  module_starttext    => "Modul starten",
+  module_solutionlink => "L&#246;sung ansehen",
+  module_solution     => "L&#246;sung",
+  module_solutionback => "Zur&#252;ck zur Aufgabe",
+  button_previous     => "Zur&#252;ck",
+  button_next         => "Weiter"
+},
+
 fonts => {
     BASICFONTFAMILY  =>    "\"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", Verdana, Arial, Helvetica , sans-serif"
 },
 
-# sizes
 sizes =>  {
     CONTENTMINWIDTH =>    800,                    # Breite unter die der content nicht geschrumpft werden kann ohne Scrollbalken zu aktivieren
     MENUWIDTH       =>    ($menuwidth = 160),     # Breite der Menueleiste am linken Rand
@@ -114,6 +124,6 @@ colors => {
     TOCBSELECTED => "D02030",
     CONTENT => "000000",
     CONTENTANCHOR => "483AA1",
-    REPLYCOLOR => "000000",
+    REPLYCOLOR => "000000"
 }
   

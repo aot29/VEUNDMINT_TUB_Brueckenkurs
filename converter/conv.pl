@@ -1,15 +1,14 @@
 #!/usr/bin/env perl
 
-#  conv.pl
-#  Basiert auf dem VEMA-Originalkonverter
 #  Daniel Haase, 2014
 #  daniel.haase@kit.edu
-#
 
 our $version = "Version 3.0";
 our $dokversion = "M3.0";
 
+# Diese Einstellungen haben keine Auswirkungen auf die produzierten Module, daher nicht in Parameterdatei
 our $logfile = "./conv.log";
+our $xmlfile = "converted.xml";
 
 # =======================
 # = Parameter festlegen =
@@ -33,9 +32,6 @@ unless (%config = do 'config.pl') {
 # Diese Einstellungen muessen mit denen in mconvert.pl uebereinstimmen !
 our $doconctitles = 1; # =1 -> Titel der Vaterseiten werden mit denen der Unterseiten auf den Unterseiten kombiniert [war bei alten Onlinemodulen der Fall macht aber eigentlich keinen Sinn]
 
-our $inputfile = "vorkurs.xml";
-our $inputfileen = "vorkursen.xml";
-
 # Diese sind mittlerweile in intersite.js fest verdrahtet!
 our $confsite = "config.html";
 our $datasite = "cdata.html";
@@ -51,19 +47,11 @@ our $locationlong = ""; # Wird aus Dokument geholt
 our $locationshort = "";# Wird aus Dokument geholt
 our $locationicon = "";# Wird aus Dokument geholt
 
-our $paramlinkonsubsection = 1;
-our $parammenuauswahllevel = 2;
-our $paramlanguage = "de";
 our $paramsplitlevel = 3;
-our $paramtitle = "Vorkurs Mathematik";
-our $paramstylesheets = "qtip2/jquery.qtip.min.css"; # grundlagen.css wird dynamisch eingesetzt
-our $modtprefix = "Onlinebrückenkurs Mathematik";  # Fuer die alten Onlinemodule: "MINT-Module"
-
-our $modulstartenbuttontext = "Modul starten"; # oder "Test starten";
 
 our $templatempl = ""; # wird von split::loadtemplates gefuellt
 
-our @feedbacktitles = ("Beschreibung/Aufgabenstellung ist unverständlich","Der Inhalt bzw. die Frage ist zu schwer","War genau richtig","Das ist mir zu leicht","Fehler in Modulelement melden");
+# our @feedbacktitles = ("Beschreibung/Aufgabenstellung ist unverständlich","Der Inhalt bzw. die Frage ist zu schwer","War genau richtig","Das ist mir zu leicht","Fehler in Modulelement melden");
 
 our @DirectHTML = (); # Wird als separate Datei von mconvert.pl erzeugt
 our @sitepoints = ();
@@ -88,23 +76,18 @@ our $mainsiteline = 0;
 #<script src="jquery-1.3.2.min.js" type="text/javascript"></script>
 #<script src="jquery.qtip-1.0.0-rc3.min.js" type="text/javascript"></script>
 
-our $scriptheader = <<ENDE;
-<script src="es5-sham.min.js" type="text/javascript"></script>
-<script src="qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="qtip2/jquery.qtip.min.js" type="text/javascript"></script>
-<script src="knockout-3.0.0.js" type="text/javascript"></script>
-<script src="math.js" type="text/javascript"></script>
-<script src="dynamiccss.js" type="text/javascript"></script>
-<script src="convinfo.js" type="text/javascript"></script>
-<script src="mparser.js" type="text/javascript"></script>
-<script src="scormwrapper.js" type="text/javascript"></script>
-<script src="dlog.js" type="text/javascript"></script>
-<script src="userdata.js" type="text/javascript"></script>
-<script src="intersite.js" type="text/javascript"></script>
-<script src="exercises.js" type="text/javascript"></script>
-<script src="mintscripts.js" type="text/javascript"></script>
-<script src="servicescripts.js" type="text/javascript"></script>
-ENDE
+sub generate_scriptheaders {
+   my @c = split(/ /,$main::config{scriptheaders});
+   my $itags = "";
+   print "Using headers: ";
+   foreach $cs (@c) {
+     $itags = $itags . "<script src=\"$cs\" type=\"text/javascript\"></script>\n";
+     print "$cs "; 
+   }
+   print "\n";
+   return $itags;
+}
+
 
 our $templateheader = <<ENDE;
 <script>
@@ -240,17 +223,6 @@ our @LabelStorage; # Format jedes Eintrags: [ $lab, $sub, $sec, $ssec, $sssec, $
 # = Spracheinstellungen =
 # =======================
 
-our @modulid = ('start','genetisch','info', 'xcontent','anwdg', 'aufgb','weiterfhrg');
-our (@modulcaption, @modultitle);
-our ($langhome, $langprevious, $langnext, $langback);
-our ($langcontent, $langnavigation, $langmodulnavigation, $langsubsections);
-our ($langmodulprevious, $langmodulnext, $langmodulstart, $langmodulstartintro, $langjumpinfo);
-our ($langsolution);
-our ($langgothere);
-our $verde; # Setzt Wechselbuttons zwischen den Sprachen
-our $veren;
-
-
 # -------------------------------------- subs --------------------------------------------------------------------------------
 
 sub main::VERSION_MESSAGE {
@@ -262,50 +234,6 @@ sub main::HELP_MESSAGE {
     print "Die Hauptdatei ist stets vorkursxml.tex\n";
     print "Flags:\n";
     print "  -nopdf Deaktiviert die Verlinkung von PDF-Dokumenten.\n\n";
-}
-
-sub languagede {
-	@modulcaption = ('&#220;bersicht','Einf&#252;hrung','Infok&#228;sten','Modulinhalt','Tabellen','Aufgaben','Erg&#228;nzungen');
-	@modultitle = ('&#220;bersicht','Einf&#252;hrung','Infok&#228;sten','Modulinhalt','Tabellen','Aufgaben','Erg&#228;nzungen');
-	$langhome = "Home";
-	$langprevious = "Zur&#252;ck";
-	$langnext = "Weiter";
-	$langback = "Neustart";
-	$langcontent = "Inhalt";
-	$langnavigation = "Navigation";
-	$langmodulnavigation = "Modul Navigation";
-	$langsubsections = "Unterabschnitte";
-	$langmodulprevious = "Letzter<br/>Abschnitt";
-	$langmodulnext = "N&#228;chster<br/>Abschnitt";
-	$langmodulstart = "Start ohne<br/> Einf&#252;hrung";
-	$langmodulstartintro = "Abschnitt<br />starten";
-	$langsolutionlink = "L&#246;sung ansehen";
-	$langsolution = "L&#246;sung";
-	$langsolutionback = "Zur&#252;ck zur Aufgabe";
-	$langgothere = "Gehe dorthin!";
-	$langjumpinfo = "Nur die<br />Infok&#228;sten";
-}
-
-sub languageen {
-	@modulcaption = ('Overview','Introduction', 'Info', 'Explanation','A1','Exercises','Suppplement');
-	@modultitle = ('Overview','Introduction', 'Info', 'Explanation','A2','Exercises','Supplement');
-	$langhome = "Home";
-	$langprevious = "Previous";
-	$langnext = "Next";
-	$langback = "Return";
-	$langcontent = "Content";
-	$langnavigation = "Navigation";
-	$langmodulnavigation = "Module Navigation";
-	$langsubsections = "Subsections";
-	$langmodulprevious = "Previous<br/>Module";
-	$langmodulnext = "Next<br/>Module";
-	$langmodulstart = "Start without<br/> introduction";
-	$langmodulstartintro = "Start with<br/> introduction";
-	$langsolutionlink = "View solution";
-	$langsolution = "Solution";
-	$langsolutionback = "Back to the exercise";
-	$langgothere = "Go there!";
-	$langjumpinfo = "Jump to<br/>Info";
 }
 
 sub verarbeitung {
@@ -441,8 +369,8 @@ sub aufgabenloesungen {
 				#erzeuge Link
 				$linkname = $p->secpath() . "-ex$count";
 				#speichere Text der Loesungsseite mit Link zur Aufgabe
-				$linkback = "<p><a class=\"MINTERLINK\" href=\"#$linkname\">$langsolutionback</a></p>";
-				$lsg->{TEXT} = "<h2>$langsolution</h2>\n$linkback$1$linkback";
+				$linkback = "<p><a class=\"MINTERLINK\" href=\"#$linkname\">" . $config{strings}{module_solutionback} . "</a></p>";
+				$lsg->{TEXT} = "<h2>" . $config{strings}{module_solution} . "</h2>\n$linkback$1$linkback";
 				$lsg->{POS} = $count;
 				$link = $p->{LINK} . "_$count";
 				$lsg->{LINK} = $link;
@@ -454,8 +382,8 @@ sub aufgabenloesungen {
 
 				#Loesung entfernen und durch Link auf Loesungs-Seite ersetzen
 				$link = $p->linkpath() . $link;
-                $text =~ s/<!-- loesung -->(.|\n)*?<!-- endloesung -->/<a class="MINTERLINK" name="$linkname"><\/a><a href="$link.{EXT}">$langsolutionlink<\/a>/;
-				$alte_aufgabe =~ s/<!-- loesung -->(.|\n)*?<!-- endloesung -->/<a class="MINTERLINK" name="$linkname"><\/a><a class="MINTERLINK" href="$link.{EXT}">$langsolutionlink<\/a>/;
+                $text =~ s/<!-- loesung -->(.|\n)*?<!-- endloesung -->/<a class="MINTERLINK" name="$linkname"><\/a><a href="$link.{EXT}">" . $config{strings}{module_solutionlink} . "<\/a>/;
+				$alte_aufgabe =~ s/<!-- loesung -->(.|\n)*?<!-- endloesung -->/<a class="MINTERLINK" name="$linkname"><\/a><a class="MINTERLINK" href="$link.{EXT}">" . $config{strings}{module_solutionlink} . "<\/a>/;
 
 				if ($alte_aufgabe !~ /<!-- loesung -->(.|\n)*?<!-- endloesung -->/) {
 					$text =~ s/<div class="(aufgabe|aufgaberahmen)">(\n)?<b>/<div class="$1 n"><b>/;
@@ -486,62 +414,6 @@ sub aufgabenloesungen {
 
 }
 
-
-# =========================
-# = Objekt-Manipulationen =
-# =========================
-
-#
-# sub langswitch
-# Querverweise zwischen verschiedenen Sprachen
-sub langswitch {
-	my($de, $en) = @_;
-
-	selflinkde($de);
-	selflinken($en);
-	crosslinks($de,$en);
-
-	# Link auf die gleiche Seite bei deutschen Seiten
-	sub selflinkde {
-		my ($de) = @_;
-		my (@subpagesde, $i);
-		$de->{SWITCHDE} = $de->{LINK};
-		@subpagesde = @{$de->{SUBPAGES}};
-		for ( $i=0; $i <=$#subpagesde; $i++ ) {
-			selflinkde($subpagesde[$i]);
-		}
-	}
-	#Link auf die gleiche Seite bei englischen Seiten
-	sub selflinken {
-		my ($en) = @_;
-		my (@subpagesen, $i);
-		$en->{SWITCHEN} = $en->{LINK};
-		@subpagesen = @{$en->{SUBPAGES}};
-		for ( $i=0; $i <=$#subpagesen; $i++ ) {
-			selflinken($subpagesen[$i]);
-		}
-	}
-	#Querverweise
-	sub crosslinks {
-		my($de, $en) = @_;
-		my (@subpagesde,@subpagesen, $i);
-		if ($de->{TEXT} ne "" && $en->{TEXT} ne "") {
-			$de->logtext("Querverweise anlegen.");
-			$de->{SWITCHEN} = $de->linkpath() . "../../en/{MATHMLPATH}" . $en->link();
-			$en->{SWITCHDE} = $en->linkpath() . "../../de/{MATHMLPATH}" . $de->link();
-		}
-
-		#Rekursion auf Unterseiten
-		@subpagesde = @{$de->{SUBPAGES}};
-		@subpagesen = @{$en->{SUBPAGES}};
-		if ($#subpagesde == $#subpagesen || $de->{LEVEL} ==0){
-			for ( $i=0; $i <=$#subpagesde; $i++ ) {
-				crosslinks($subpagesde[$i], $subpagesen[$i]);
-			}
-		}
-	}
-
-}
 
 # --------------------------------------------- Objektdefinitionen ---------------------------------------------------------------------------------------------------------------------
 
@@ -741,7 +613,7 @@ sub langswitch {
 				      # print "DEBUG: xcontent \"$p->{TITLE}\" hat Nummern $sec.$ssec.$sssec\n";
 				      # <title> der HTML-Seite erweitern
 
-				      $p->{TITLE} = "$modtprefix Abschnitt $sec.$ssec.$sssec " . $p->{TITLE};
+				      $p->{TITLE} = $config{moduleprefix} . " Abschnitt $sec.$ssec.$sssec " . $p->{TITLE};
 				      # Fehler im ttm korrigieren: subsubsection-Titel werden ohne Nummernprefix ausgegeben
 				      # {XONTENTPREFIX} wird in split.pm (sub printpages) durch die captions der vorgaenger ersetzt, diese
                                       # sind zum jetzigen Zeitpunkt noch nicht gesetzt
@@ -813,7 +685,7 @@ sub langswitch {
                                     $p->{NR} = ""; #$self->{NR} . "." . ($i+1);
                                     $p->{LEVEL} = 4;
                                     $p->{TITLE} = $1;
-				    $p->{TITLE} = "$modtprefix " . $p->{TITLE};
+				    $p->{TITLE} = $config{moduleprefix} . " " . $p->{TITLE};
                                     if ($2 ne "") {
                                       $p->{CAPTION} = $2;
                                     } else {
@@ -958,85 +830,6 @@ sub langswitch {
 
 	}
 
-	sub switchlanguage {
-		my ($self) = @_;
-		my $text;
-
-		if ($verde && $veren) {
-			$text = "<div id=\"langswitch\">";
-			if ($self->{SWITCHDE}) {
-				$text .= "<img src=\"" . $self->linkpath() . "../images/de_sm.jpg\"/> <a class=\"MINTERLINK\" href=\"" . $self->{SWITCHDE} . ".{EXT}\">deutsch</a> ";
-			} else {
-				$text .= "<span class=\"noswitch\"><img src=\"" . $self->linkpath() . "../images/de_smg.jpg\"/> deutsch</span> ";
-			}
-			if ($self->{SWITCHEN}) {
-				$text .= "<img src=\"" . $self->linkpath() . "../images/en_sm.jpg\"/> <a class=\"MINTERLINK\" href=\"" . $self->{SWITCHEN} . ".{EXT}\">english</a></div>\n";
-			} else {
-				$text .= "<span class=\"noswitch\"><img src=\"" . $self->linkpath() . "../images/en_smg.jpg\"/> english</span></div>";
-			}
-		}
-		return $text;
-	}
-
-	# sub navigation()
-	# Falls ISMODUL=0: Verhalten wie Page-Klasse.
-	# Falls ISMODUL=1: Erzeugung der Modul-Navigation
-	sub deprecated_navigation {
-		my ($self, $homelink) = @_;
-		my ($p, $text);
-		$text = $self->switchlanguage();
-		if (! $self->{ISMODUL}) {
-			$text .= $self->SUPER::deprecated_navigation($homelink);
-		} else {
-			#Modulnavigation erzeugen
-			#my $text = "<div id=\"navigation\">\n<h3>$langnavigation</h3>\n<ul>\n";
-			my $text .= "<!--ZOOMSTOP-->\n";
-			$text .= "<ul>\n";
-			my @pages = @{$self->{PARENT}->{SUBPAGES}};
-			# Home-Link
-			$text .= "<li id=\"home\"><a class=\"MINTERLINK\" href=\"" . $self->linkpath() . "$homelink\">$langhome</a></li>\n";
-			# Links auf Modulseiten
-			for ( $i=0; $i <=$#pages; $i++ ) {
-                                if ($pages[$i]->{ICON} eq "STD") {
-                                  $iconid = "beweis";
-                                } else {
-                                  $iconid = $pages[$i]->{ICON};
-                                }
-				# print "NAVI: $i " . $pages[$i]->{MODULID} ." ". $pages[$i]->{DISPLAY} ."\n";
-                                if ($pages[$i]->{ICON} ne "NONE") {
-                                  if ($pages[$i]->{DISPLAY}) {
-                                          $text .= "<li id=\"" . $iconid . "\"><a class=\"MINTERLINK\"";
-                                          if ($pages[$i]->secpath() eq $self->secpath()) {
-                                                  $text .= "class=\"selected\" ";
-                                          }
-                                          $text .= "href=\"" . $self->linkpath() . $pages[$i]->link() . ".{EXT}\">" . $pages[$i]->{CAPTION} . "</a></li>\n";
-                                  } else {
-                                          $text .= "<li id=\"" . $iconid . "\"><span class=\"grey\">" . $pages[$i]->{CAPTION} . "</span></li>\n";
-                                  }
-                                }
-			}
-			# vor/zurueck
-			if ($p = $self->navprev()) {
-				$text .= "<li id=\"prev\"><a class=\"MINTERLINK\" href=\"" . $self->linkpath() . $p->link() . ".{EXT}\">$langprevious</a></li>\n";
-			} else {
-				#$text .= "<li id=\"prev\"><span class=\"grey\"><span class=\"invisible\">$langprevious</span></span></li>\n";
-				$text .= "<li id=\"prev\"><span class=\"grey\">$langprevious</span></li>\n";
-			}
-
-			if ($p = $self->navnext()) {
-				$text .= "<li id=\"next\"><a class=\"MINTERLINK\" href=\"" . $self->linkpath() . $p->link() . ".{EXT}\">$langnext</a></li>\n";
-			} else {
-				#$text .= "<li id=\"back\"><a href=\"" . $self->linkpath() . $pages[0]->link() . ".{EXT}\">$langback</a></li>\n";
-				$text .= "<li id=\"next\"><span class=\"grey\">$langnext</span></li>\n";
-			}
-
-			#$text .="</ul>\n</div>\n";
-			$text .="</ul>\n";
-			$text .= "<!--ZOOMRESTART-->\n";
-			return $text;
-		}
-	}
-
 	# sub navprev()
 	# liefert bei Modulseiten den Link auf die vorherige Modulseite,
 	#	die Startseite hat keinen Vorgaenger
@@ -1081,72 +874,7 @@ sub langswitch {
 		my ($link, $text, $p);
 
  		if ($self->{ISMODUL} && $self->{MODULID} eq "start") {
-# 			# Die Startseite wird erst hier komplett erzeugt, da beim Aufruf von split
-# 			# die Links noch nicht alle richtig sind
-# 			$text = <<ENDE;
-# <div id="modulnavigation">
-# <h3>$langmodulnavigation</h3>
-# <ul>
-# <li id="modulprev">{MODULEPREV}</li>
-# <li id="modulstartintro">{STARTGEN}</li>
-# <li id="modulstart">{START}</li>
-# <li id="modulinfo">{INFO}</li>
-# <li id="modulnext">{MODULENEXT}</li>
-# </ul>
-# </div>
-# ENDE
-# 			#$text =~ s/{MODULEPREVTEXT}/$langmodulprevious/;
-# 			#$text =~ s/{MODULENEXTTEXT}/$langmodulnext/;
-# 
-# 			if ($p = $self->{PARENT}->navprev()) {
-# 				$link = "<a href=\"" . $self->linkpath() . $p->link() . ".{EXT}\"><span>$langmodulprevious</span></a>";
-# 			} else {
-# 				$link = "<span class=\"grey\"><span>$langmodulprevious</span></span>";
-# 			}
-# 			$text =~ s/{MODULEPREV}/$link/;
-# 			#print $self->{PARENT}->secpath() . " " . $self->{PARENT}->{NEXT}->secpath() . "\n";
-# 
-# 			if ($p = $self->{PARENT}->{MODULNEXT}) {
-# 				$link = "<a href=\"" . $self->linkpath() . $p->link() . ".{EXT}\"><span>$langmodulnext</span></a>";
-# 			} else {
-# 				$link = "<span class=\"grey\"><span>$langmodulnext</span></span>";
-# 			}
-# 			$text =~ s/{MODULENEXT}/$link/;
-# 
-# 			#genetische Hinfuehrung
-# 			$p = ${$self->{PARENT}->{SUBPAGES}}[1];
-# 			if ($p->{DISPLAY}) {
-# 				$link = "<a href=\"" . $self->linkpath() . $p->{LINK} . ".{EXT}\"><span>$langmodulstartintro</span></a>";
-# 			} else {
-# 				$link = "<span class=\"grey\"><span>$langmodulstartintro</span></span>";
-# 			}
-#  			$text =~ s/{STARTGEN}/$link/;
-# 
-# 			#Seite nach genetischer Hinfuehrung abfragen
-# 			$p = $p->navnext();
-# 			if ($p) {
-# 				$link = "<a href=\"" . $self->linkpath() . $p->{LINK} . ".{EXT}\"><span>$langmodulstart</span></a>";
-# 			} else {
-# 				$link = "<span class=\"grey\"><span>$langmodulstart</span></span>";
-# 			}
-#       $link = "<span>  </span>";
-#  			$text =~ s/{START}/$link/;
-# 
-# 			#info link
-# 			$info_page = 2;
-# 			if ($newBehavior) {
-# 				$info_page = 6;
-# 			}
-# 			$p = ${$self->{PARENT}->{SUBPAGES}}[$info_page];
-# 			if ($p->{DISPLAY}) {
-# 				$link = "<a href=\"" . $self->linkpath() . $p->link() . ".{EXT}\"><span>$langjumpinfo</span></a>";
-# 			} else {
-# 				$link = "<span class=\"grey\"><span>$langjumpinfo<br/></span></span>";
-# 			}
-#  			$text =~ s/{INFO}/$link/;
-
 			$text = $self->{TEXT} . "\n" . $text . "\n";
-
 			return $text;
 		} else {
 			return $self->SUPER::gettext(@args);
@@ -1232,14 +960,6 @@ sub langswitch {
 		return "";
 	}
 
-	# sub navigation()
-	# Verhalten wie ueberheordnetes Objekt
-	# Dadurch erhaelt die Seite die Navigation der uebergeordneten Seite
-	sub deprecated_navigation {
-		my ($self, $homelink) = @_;
-		return $self->{PARENT}->deprecated_navigation($homelink);
-	}
-
 	# sub navprev()
 	# Verhalten wie ueberheordnetes Objekt
 	# Dadurch erhaelt die Seite die Navigation der uebergeordneten Seite
@@ -1282,22 +1002,6 @@ sub langswitch {
 # --------------------------------------------- Das Hauptprogramm ----------------------------------------------------------------------------------------------------------------------
 
 sub main {
-
-# =====================================
-# = Initialisierung der Konvertierung =
-# =====================================
-
-#welche Sprache verfuegbar?
-if (-e "tex") {
-	$verde = 1;
-} else {
-	$verde = 0;
-}
-if (-e "texen") {
-	$veren = 1;
-} else {
-	$veren = 0;
-}
 
 #Log-Datei initialisieren
 $rw = open(OUTPUT, "> $logfile") or die "Fehler beim Erstellen der Logdatei.\n";
@@ -1345,18 +1049,10 @@ while ($direct_all =~ m/<!-- startfilehtml;$k; \/\/-->/s ) {
 print "$k DirectHTML-Statements verwendet\n";
 
 
-#TtM starten und Hauptdatei komplett laden
 print "Starte TtM\n\n";
-if ($verde) {
-	system "./ttm-src/ttm -p./tex < tex/vorkursxml.tex >$inputfile";
-	print "\n";
-	$text = loadfile($inputfile);
-}
-if ($veren) {
-	system "./ttm-src/ttm -p./texen < texen/vorkursxml.tex >$inputfileen";
-	print "\n";
-	$texten = loadfile($inputfileen);
-}
+system "./ttm-src/ttm -p./tex < tex/vorkursxml.tex >$xmlfile";
+print "\n";
+$text = loadfile($xmlfile);
 
 # Debug-Meldungen ausgeben
 while ($text =~ s/<!-- debugprint;;(.+?); \/\/-->/<!-- debug;;$1; \/\/-->/s ) { print "$1\n"; }
@@ -1451,12 +1147,8 @@ if ($text =~ m/<!-- mglobalbetatag -->/s ) { # hier nicht ausschneiden, da globa
 # =========================
 
 # Alles ab 'File translated...' entfernen
-if ($verde) {
-	$text =~ s/<hr \/><small>File translated from.*<\/body>.*//s;
-}
-if ($veren) {
-	$texten =~ s/<hr \/><small>File translated from.*<\/body>.*//s;
-}
+$text =~ s/<hr \/><small>File translated from.*<\/body>.*//s;
+
 $paramversion = "all";
 
 # =================
@@ -1465,7 +1157,7 @@ $paramversion = "all";
 # Schritt 1: Initialisierung
 # ==========================
 
-$templateheader = $scriptheader . $templateheader . "\n";
+$templateheader = generate_scriptheaders() . $templateheader . "\n";
 
 if ($config{parameter}{feedback_service} ne "") {
   print("FeedbackServer deklariert: " . $config{parameter}{feedback_service} . "\n");
@@ -1645,77 +1337,20 @@ print "\n\nErmittele Kapitelstruktur . . .  \n";
 
 logtext("\nErmittele Kapitelstruktur");
 
-if ($verde) {
-	logtext("\nDeutsche Version\n");
-	languagede();
-	$root = ModulPage->new($logfile);
-	$root->{TITLE} = "ROOT";
-	$root->split($text, $paramsplitlevel);
-	$root->{DISPLAY} = 0;
-}
-if ($veren) {
-	logtext("\nEnglische Version\n");
-	languageen();
-	$rooten = ModulPage->new($logfile);
-	$rooten->{TITLE} = "ROOT";
-	$rooten->split($texten, $paramsplitlevel);
-	$rooten->{DISPLAY} = 0;
-}
+$root = ModulPage->new($logfile);
+$root->{TITLE} = "ROOT";
+$root->split($text, $paramsplitlevel);
+$root->{DISPLAY} = 0;
 
-
-
-# Schritt 2: Verarbeitung
-# =======================
-
-
-if ($verde) {
-	logtext("\nDeutsche Version\n");
-	languagede();
-	verarbeitung($root);
-}
-if ($veren) {
-	logtext("\nEnglische Version\n");
-	languageen();
-	verarbeitung($rooten);
-}
-
-
-if ($verde && $veren) {
-	logtext("\nQuerverweise zwischen den beiden Versionen");
-	langswitch($root, $rooten);
-}
-
-
-
-
-
-# Schritt 3: Ausgabe
-# ==================
-
-# print "Final tree:\n";
-# $root->idprint();
-# print "\n";
+verarbeitung($root);
 
 @LabelStorage = ();
 
 my $outfinal = "";
-if ($verde) {
-        print "DE-variant\n";
-	languagede();
-	storelabels($root);
-	$outfinal = $config{outtmp} . ($veren ? "/de" : "");
-	print "Writing output to $outfinal\n";
-	printpages($root, $outfinal);
-}
-if ($veren) {
-        print "EN-variant\n";
-	languageen();
-	storelabels($rooten);
-        $outfinal = $config{outtmp} . ($verde ? "/en" : "");
-        print "Writing output to $outfinal\n";
-	printpages($rooten, $outfinal);
-}
-
+storelabels($root);
+$outfinal = $config{outtmp};
+print "Writing output to $outfinal\n";
+printpages($root, $outfinal);
 
 # print "Vorhandene Labels im HTML-Baum:\n";
 # 

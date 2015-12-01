@@ -533,34 +533,6 @@ sub menu {
 }
 
 
-
-
-# 
-# sub deprecated_navigation(), ersetzt in split.pm durch getnavi()
-# liefert die Navigation dieser Seite
-# Parameter
-# 	$homelink	Link auf die Einstiegsseite des Skripts
-sub deprecated_navigation {
-	my ($self, $homelink) = @_;
-	my ($text, $p);
-	#Erstelle Liste
-	$text = "<!--ZOOMSTOP-->\n";
-	$text .= "<ul>\n";
-	# mit Link auf die Einstiegsseite,
-	$text .= "<li id=\"home\"><a class=\"MINTERLINK\" href=\"$homelink\">Home</a></li>\n";
-	# Link auf die vorherige Seite
-	if ($p = $self->navprev()) {
-		$text .= "<li id=\"prev\"><a class=\"MINTERLINK\" href=\"" . $self->linkpath() . $p->link() . ".{EXT}\">$main::langprevious</a></li>\n";
-	}
-	# und Link auf die naechste Seite
-	if ($p = $self->navnext()) {
-		$text .= "<li id=\"next\"><a class=\"MINTERLINK\" href=\"" . $self->linkpath() . $p->link() . ".{EXT}\">$main::langnext</a></li>\n";
-	}
-	$text .="</ul>\n";
-	$text .="<!--ZOOMRESTART-->\n";		
-}
-
-
 # 
 # sub navprev()
 # liefert das in der Struktur folgende Objekt, das ausgegeben wird

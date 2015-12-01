@@ -568,7 +568,7 @@ sub generatecollectionmark {
 # Parameter: $lp:   Der Linkpath
 sub getstyleimporttags {
    my ($lp) = @_;
-   my @c = split(/ /,$main::paramstylesheets);
+   my @c = split(/ /,$main::config{stylesheets});
   
    my $itags = "";
 
@@ -642,7 +642,7 @@ sub getnavi {
 
   # Link auf die vorherige Seite
   $p = $site->navprev();
-  my $ac = $main::langprevious;
+  my $ac = $main::config{strings}{button_previous};
   my $icon = "nprev";
   if (($site->{XCONTENT} == 1) and (!($p))) {
     if ($site->{XPREV} != -1) {
@@ -661,7 +661,7 @@ sub getnavi {
 
   # Link auf die naechste Seite
   $p = $site->navnext();
-  $ac = $main::langnext;
+  $ac = $main::config{strings}{button_next};
   $icon = "nnext";
   if (($site->{XCONTENT} == 1) and (!($p))) {
     if ($site->{XNEXT} != -1) {
@@ -703,7 +703,7 @@ sub getnavi {
 	  $pp = $sp[0];
 	}
 	if ($pp->{HELPSITE} eq 0) {
-	  $navi .= "  <li class=\"inormalbutton_book\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . $main::modulstartenbuttontext . "</a></li>\n";
+	  $navi .= "  <li class=\"inormalbutton_book\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . $main::config{strings}{module_starttext} . "</a></li>\n";
 	} else {
 	  $navi .= "  <li class=\"inormalbutton_book\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . "Mehr Informationen" . "</a></li>\n";
 	}
@@ -1027,17 +1027,6 @@ sub gettoccaption_menustyle {
   # print "DEBUG: toccaption fuer Seite $site->{CAPTION} ist \n$c\n\n";
 
   return $c;
-}
-
-# Erzeugt das toc-div fuer die html-Seiten (wird von gettoccaption aufgerufen)
-# Parameter: Das Seitenobjekt
-sub gettc_nw {
-  ($p) = @_;
-  my $toc = "";
-  $toc .= "<div id=\"inhalt\">\n<h3>" . $main::langcontent . "</h3>\n";
-  $toc .= $p->fullmenu($main::parammenuauswahllevel);
-  $toc .= "</div>\n";
-  return $toc;
 }
 
 # Erzeugt das content-div fuer die html-Seiten
