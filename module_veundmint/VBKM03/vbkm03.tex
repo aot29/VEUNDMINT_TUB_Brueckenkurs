@@ -122,10 +122,10 @@ Sind diese Ungleichungen richtig oder falsch?
 
 \begin{MQuestionGroup}
 \begin{tabular}{lll}
-\MCheckbox{0}{UG1} & \ \ &  $\frac12>1-\frac13$\\
-\MCheckbox{1}{UG2} & \ \ & $a^2\geq 2a b-b^2$ (wobei $a$ und $b$ unbekannte Zahlen sind)\\
-\MCheckbox{1}{UG3} & \ \ & $\frac12<\frac23<\frac34$\\
-\MCheckbox{0}{UG4} & \ \ & Angenommen $a<b$, dann ist immer auch $a^2<b^2$.
+\MLCheckbox{0}{UG1}{CHECKBOX1} & \ \ &  $\frac12>1-\frac13$\\
+\MLCheckbox{1}{UG2}{CHECKBOX2} & \ \ & $a^2\geq 2a b-b^2$ (wobei $a$ und $b$ unbekannte Zahlen sind)\\
+\MLCheckbox{1}{UG3}{CHECKBOX3} & \ \ & $\frac12<\frac23<\frac34$\\
+\MLCheckbox{0}{UG4}{CHECKBOX4} & \ \ & Angenommen $a<b$, dann ist immer auch $a^2<b^2$.
 \end{tabular}
 \end{MQuestionGroup}
 \MGroupButton{Eingabe überprüfen}
@@ -292,9 +292,9 @@ Wird mit zusammengesetzten Termen multipliziert, so ist genauer zu untersuchen, 
 Untersucht werden soll die Ungleichung $\frac1{4-2x}<3$. Zunächst besitzt sie den Definitionsbereich $D=\R\backslash \lbrace 2\rbrace$, da nur für diese $x$ der Nenner zulässig ist.
 Für die Multiplikation mit dem Term $4-2x$ gibt es drei Fälle. Füllen Sie den Lückentext dazu passend aus:
 \begin{MExerciseItems}
-\item{Auf dem Intervall \MLIntervalQuestion{15}{(-infty,2)}{4}{GOM1} ist der Term positiv, das Vergleichssymbol bleibt erhalten und die neue Ungleichung lautet $1\:<\:$\MSimplifyQuestion{15}{3*(4-2*x)}{5}{x}{5}{0}.
+\item{Auf dem Intervall \MLIntervalQuestion{15}{(-infty,2)}{4}{GOM1} ist der Term positiv, das Vergleichssymbol bleibt erhalten und die neue Ungleichung lautet $1\:<\:$\MLSimplifyQuestion{15}{3*(4-2*x)}{5}{x}{5}{0}{SIMPLE2}.
 Lineares Umformen ergibt die Lösungsmenge \MEquationItem{$\ML_1$}{\MLIntervalQuestion{20}{(-infty,11/6)}{3}{MIXGOM}}. Die Elemente der Menge erfüllen die Vorbedingung.}
-\item{Auf dem Intervall \MLIntervalQuestion{15}{(2,infty)}{4}{GOM2} ist der Term negativ, das Vergleichssymbol wird gedreht. Die neue Ungleichung hat zunächst die Lösungsmenge \MIntervalQuestion{20}{(11/6,infty)}{4},
+\item{Auf dem Intervall \MLIntervalQuestion{15}{(2,infty)}{4}{GOM2} ist der Term negativ, das Vergleichssymbol wird gedreht. Die neue Ungleichung hat zunächst die Lösungsmenge \MLIntervalQuestion{20}{(11/6,infty)}{4}{INT1},
 wegen der Vorbedingung ist aber nur die Teilmenge \MEquationItem{$\ML_2$}{\MLIntervalQuestion{20}{(2,infty)}{4}{GOM3}} davon zulässig.}
 \item{Der Einzelwert $x=2$ ist keine Lösung der ursprünglichen Ungleichung, da er nicht zum \MLQuestion{25}{Definitionsbereich}{UGX} gehört.}
 \end{MExerciseItems}
@@ -557,7 +557,7 @@ Versuchen Sie, eine Darstellung der Form $g(x)=|x+a|+b x+c$ zu finden. Am Knick 
 
 \begin{MExerciseItems}
 \item{Bestimmen Sie anhand des Graphen die Lösungsmenge der Ungleichung $g(x)\leq x$.\\Es ist \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(-infty;1]}{5}{AUX1}}.}
-\item{\MEquationItem{$g(x)$}{\MSimplifyQuestion{20}{abs(x-1)+2*x-1}{10}{x}{10}{0}}. \\\MInputHint{Beträge können in der Form \texttt{betrag(x-a)} oder \texttt{abs(x-a)} eingegeben werden.}}
+\item{\MEquationItem{$g(x)$}{\MLSimplifyQuestion{20}{abs(x-1)+2*x-1}{10}{x}{10}{0}}{SIMPLE3}. \\\MInputHint{Beträge können in der Form \texttt{betrag(x-a)} oder \texttt{abs(x-a)} eingegeben werden.}}
 \end{MExerciseItems}
 \end{MExercise}
 

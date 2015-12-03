@@ -284,7 +284,7 @@ $f(x) := 4 - x^2$ f"ur $x_1 = -2$ und f"ur $x_2 = 1$.
 Antwort: 
 \begin{MExerciseItems}
 \item Der Differenzenquotient von $f$ zu $x$ an der Stelle $x_1 = -2$ ist
-\MSimplifyQuestion{30}{2 - x}{10}{x}{4}{0}
+\MLSimplifyQuestion{30}{2 - x}{10}{x}{4}{0}{SIMPLE4}
 und hat f"ur $x \rightarrow -2$ den Grenzwert
  $f'(-2) = $\MLParsedQuestion{8}{4}{3}{DG11}.
 \item Der Differenzenquotient von $f$ zu $x$ an der Stelle $x_2 = 1$ ist
@@ -635,14 +635,14 @@ dann Ihre Kenntnisse "uber die Ableitung bekannter Funktionen anwenden
 ($x > 0$):
 \begin{MExerciseItems}
 \item $f(x) := x^6 \cdot x^{\frac{7}{2}} = $
-\MSimplifyQuestion{40}{x^(19/2)}{5}{x}{4}{512}. % wird immer noch nicht richtig erkannt
+\MLSimplifyQuestion{40}{x^(19/2)}{5}{x}{4}{512}{SIMPLE5}. % wird immer noch nicht richtig erkannt
 \item $g(x) := \frac{x^{-\frac{3}{2}}}{\sqrt{x}} = $
-\MSimplifyQuestion{40}{1/x^2}{4}{x}{4}{512}.
+\MLSimplifyQuestion{40}{1/x^2}{4}{x}{4}{512}{SIMPLE6}.
 \end{MExerciseItems}
 Damit ist
 \begin{MExerciseItems}
-\item $f'(x) = $ \MSimplifyQuestion{40}{19/2*x^(17/2)}{4}{x}{4}{512}.
-\item $g'(x) = $ \MSimplifyQuestion{40}{-2/x^3}{4}{x}{4}{512}.
+\item $f'(x) = $ \MLSimplifyQuestion{40}{19/2*x^(17/2)}{4}{x}{4}{512}{SIMPLE7}.
+\item $g'(x) = $ \MLSimplifyQuestion{40}{-2/x^3}{4}{x}{4}{512}{SIMPLE8}.
 \end{MExerciseItems}
 \end{MExercise}
 
@@ -667,7 +667,7 @@ Vereinfachen Sie die Funktionsterme, um dann die Ableitung zu bestimmen
 (f"ur $x > 0$ in der ersten Teilaufgabe):
 \begin{MExerciseItems}
 \item $f(x) := 3 \ln(x) + \ln\left(\frac{1}{x}\right) = $
-\MSimplifyQuestion{40}{2*ln(x)}{10}{x}{4}{512}.
+\MLSimplifyQuestion{40}{2*ln(x)}{10}{x}{4}{512}{SIMPLE9}.
 \item $g(x) := \left(\MEU^x\right)^2 \cdot \MEU^{-x} = $
 \MLFunctionQuestion{40}{exp(x)}{10}{x}{4}{DZ10}.
 \end{MExerciseItems}
@@ -879,10 +879,10 @@ Berechnen Sie die Ableitung von
 zu $f'(x) = $\MLParsedQuestion{30}{5}{4}{DG19}
 %
 \item $g(x) := \frac{1}{4 x} - x^3$
-zu $g'(x) = $\MSimplifyQuestion{30}{-1/(4*x^2) - 3*x^2}{1}{x}{20}{512}
+zu $g'(x) = $\MLSimplifyQuestion{30}{-1/(4*x^2) - 3*x^2}{1}{x}{20}{512}{SIMPLE10}
 %
 \item $h(x) := 2 \sqrt{x} + 4 x^{-3}$
-zu $h'(x) = $\MSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}
+zu $h'(x) = $\MLSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}{SIMPLE11}
 \end{MExerciseItems}
 \end{MExercise}
 
@@ -896,7 +896,7 @@ zu $f'(x) = $\MLSimplifyQuestion{30}{-1/(sin(x) * sin(x))}{10}{x}{4}{512}{DG20}
 zu $g'(x) = $\MLFunctionQuestion{30}{3*cos(6*x)}{10}{x}{4}{DG21}
 %
 \item $h(x) := \frac{\sin(3 x)}{\sin(6 x)}$
-zu $h'(x) = $\MSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{512}
+zu $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{512}{SIMPLE12}
 \end{MExerciseItems}
 \end{MExercise}
 
@@ -1142,7 +1142,7 @@ Antwort:
 \item $f$ ist auf $(-\infty\MIntvlSep 0)$ monoton \MLQuestion{12}{fallend}{DFA1}.
 %\item $f$ auf $(-infty,0)$ monoton \MQuestion{12}{fallend}.
 %\item $f$ auf \MIntervalQuestion{20}{(-infty,0)}{4} monoton fallend.
-%\item $f$ auf $(-infty$\MParsedQuestion{8}{0}{4}$)$ monoton fallend.
+%\item $f$ auf $(-infty$\MLParsedQuestion{8}{0}{4}{PARSEDQUEST5}$)$ monoton fallend.
 %
 \item $f$ ist auf $(0\MIntvlSep \infty)$ monoton \MLQuestion{12}{wachsend}{DFA2}.
 %\item $f$ auf $(0, infty)$ monoton \MQuestion{12}{wachsend}.
@@ -1395,8 +1395,8 @@ Einziger Schnittpunkt mit der $y$-Achse ist bei \MEquationItem{$y$}{\MLParsedQue
 Symmetrie: Die Funktion ist\\
 \begin{MQuestionGroup}
 \begin{tabular}{lll}
-\MCheckbox{0}{JCA1} & \ \ & $y$-Achsensymmtrisch,\\
-\MCheckbox{0}{JCA2} & \ \ & Punktsymmetrisch zum Ursprung.
+\MLCheckbox{0}{JCA1}{CHECKBOXJCA1} & \ \ & $y$-Achsensymmtrisch,\\
+\MLCheckbox{0}{JCA2}{CHECKBOXJCA2} & \ \ & Punktsymmetrisch zum Ursprung.
 \end{tabular}
 \end{MQuestionGroup}
 \MGroupButton{Auswahl überprüfen}
@@ -1615,17 +1615,17 @@ declare function={
 
 Die Funktionswerte von $f$ zwischen $-3$ und $0$\\
 \begin{tabular}{lll}
-\MCheckbox{0}{JCC1} & \ \ & sind konstant,\\
-\MCheckbox{1}{JCC2} & \ \ & nehmen um $3$ zu,\\
-\MCheckbox{0}{JCC3} & \ \ & nehmen ab.
+\MLCheckbox{0}{JCC1}{CHECKBOXJCC1} & \ \ & sind konstant,\\
+\MLCheckbox{1}{JCC2}{CHECKBOXJCC2} & \ \ & nehmen um $3$ zu,\\
+\MLCheckbox{0}{JCC3}{CHECKBOXJCC3} & \ \ & nehmen ab.
 \end{tabular}
 \ \\
 
 Die Funktion $f$ hat an der Stelle $0$\\
 \begin{tabular}{lll}
-\MCheckbox{0}{JCC4} & \ \ & eine Sprungstelle,\\
-\MCheckbox{0}{JCC5} & \ \ & keine Ableitung,\\
-\MCheckbox{1}{JCC6} & \ \ & die Ableitung $1$.
+\MLCheckbox{0}{JCC4}{CHECKBOXJCC4} & \ \ & eine Sprungstelle,\\
+\MLCheckbox{0}{JCC5}{CHECKBOXJCC5} & \ \ & keine Ableitung,\\
+\MLCheckbox{1}{JCC6}{CHECKBOXJCC6} & \ \ & die Ableitung $1$.
 \end{tabular}
 \end{MExercise}
 
@@ -1633,9 +1633,9 @@ Die Funktion $f$ hat an der Stelle $0$\\
 Berechnen Sie f"ur
 \begin{MExerciseItems}
 \item $f(x) := \ln\left(x^3 + x^2\right)$ f"ur $x > 0$ die Ableitung
-$f'(x) = $\MSimplifyQuestion{30}{(3 x + 2)/(x^2 + x)}{1}{x}{20}{0}
+$f'(x) = $\MLSimplifyQuestion{30}{(3 x + 2)/(x^2 + x)}{1}{x}{20}{0}{SIMPLE13}
 \item $g(x) := x \cdot \MEU^{-x}$ die zweite Ableitung
-${g'}'(x) = $\MSimplifyQuestion{30}{(x - 2) * exp(-x)}{10}{x}{4}{0}
+${g'}'(x) = $\MLSimplifyQuestion{30}{(x - 2) * exp(-x)}{10}{x}{4}{0}{SIMPLE14}
 \end{MExerciseItems}
 \MInputHint{Klammern Sie die Terme, um Missverständnisse zu vermeiden, z.B. schreiben Sie $\frac{x+1}{(x+2)^2}$ als \texttt{(x+1)/((x+2)^2)}.} 
 \end{MExercise}
@@ -1646,8 +1646,8 @@ in welchen konkav, wenn $f'(x) = x \cdot \ln x$ gilt?
 %
 Geben Sie als Bereiche m"oglichst gro"se offene Intervalle $(c\MIntvlSep  d)$ an:
 \begin{MExerciseItems}
-\item $f$ ist auf \MIntervalQuestion{12}{(0, 1)}{4} monoton fallend,
-\item $f$ ist auf \MIntervalQuestion{12}{(0, 1/e)}{4} konkav.
+\item $f$ ist auf \MLIntervalQuestion{12}{(0, 1)}{4}{INT2} monoton fallend,
+\item $f$ ist auf \MLIntervalQuestion{12}{(0, 1/e)}{4}{INT3} konkav.
 \end{MExerciseItems}
 \MInputHint{Offene Intervalle können in der Form $(a;b)$ eingetippt werden, geschlossene Intervalle als $[a;b]$, $a$ und $b$ dürfen
 beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notation $]a;b[$ für offene Intervalle. Schreiben Sie \texttt{infty} oder

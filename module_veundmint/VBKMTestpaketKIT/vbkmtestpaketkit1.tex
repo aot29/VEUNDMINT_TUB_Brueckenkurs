@@ -132,10 +132,10 @@ Geben Sie die Lösungsmengen dieser Gleichungen an:
 
 Wieviele Lösungen hat die Gleichung $(b-a)^{100}+(b+a)^{100}=0$ wenn $a$ und $b$ voneinander unabhängige Lösungsvariablen sind?\\
 \begin{MQuestionGroup}
-\MCheckbox{0}{RX1} Keine Lösung\ \\
-\MCheckbox{1}{RX2} Genau eine Möglichkeit sowohl für $a$ wie auch für $b$\ \\
-\MCheckbox{0}{RX3} Eine Möglichkeit für $a$ und unendlich viele Möglichkeiten für $b$\ \\
-\MCheckbox{0}{RX4} Unendlich viele Möglichkeiten für beide Variablen
+\MLCheckbox{0}{RX1}{RX1} Keine Lösung\ \\
+\MLCheckbox{1}{RX2}{RX2} Genau eine Möglichkeit sowohl für $a$ wie auch für $b$\ \\
+\MLCheckbox{0}{RX3}{RX3} Eine Möglichkeit für $a$ und unendlich viele Möglichkeiten für $b$\ \\
+\MLCheckbox{0}{RX4}{RX4} Unendlich viele Möglichkeiten für beide Variablen
 \end{MQuestionGroup}\ \\
 \MGroupButton{Eingabe überprüfen}
 \end{MExercise}
@@ -179,7 +179,7 @@ Antwort: Die L\"osungsmenge ist \MEquationItem{$\ML$}{\MLParsedQuestion{30}{5,3}
 
 \begin{MExercise}
 Geben Sie die Lösungsmenge der Ungleichung $x^2+4x<5$ als Intervall an.\\ \ \\
-Antwort: \MEquationItem{$\ML$}{\MIntervalQuestion{20}{(-5,1)}{3}}.\ \\
+Antwort: \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(-5,1)}{3}{INT10}}.\ \\
 \MInputHint{Typische Intervalleingaben sind zum Beispiel \texttt{(-3;2)} oder \texttt{[5;infty)} und auch \texttt{(-infty;infty)}. Für das Symbol $\infty$ kann man
 \texttt{unendlich}, \texttt{infinity} oder kurz \texttt{infty} schreiben. Verwenden Sie nicht die Notation $]a;b[$ für offene Intervalle, sondern $(a;b)$.}
 \end{MExercise}
@@ -224,12 +224,12 @@ Kreuzen Sie an, ob diese mathematischen Ausdrücke jeweils Gleichungen, Ungleichu
 \begin{tabular}{|l|c|c|c|c|}% Fast gleich mit Eingangstest M01
   \hline
   Mathematischer Ausdruck   & Gleichung & Ungleichung & Term & Zahl \\ \hline
-  $\sqrt{3+\Mtfrac12}$      & \MCheckbox{0}{VX11} & \MCheckbox{0}{VX12} &\MCheckbox{1}{VX13} &\MCheckbox{1}{VX14} \\ \hline
-  $5x-1$                    & \MCheckbox{0}{VX21} & \MCheckbox{0}{VX22} &\MCheckbox{1}{VX23} &\MCheckbox{0}{VX24} \\ \hline
-  $32x^2 = \Mtfrac1y$       & \MCheckbox{1}{VX31} & \MCheckbox{0}{VX32} &\MCheckbox{0}{VX33} &\MCheckbox{0}{VX34} \\ \hline
-  $32> 2^x$                 & \MCheckbox{0}{VX41} & \MCheckbox{1}{VX42} &\MCheckbox{0}{VX43} &\MCheckbox{0}{VX44} \\ \hline
-  $x\in \lbrace1;2;3\rbrace$& \MCheckbox{0}{VX51} & \MCheckbox{0}{VX52} &\MCheckbox{0}{VX53} &\MCheckbox{0}{VX54} \\ \hline
-  $b^2-4a c\geq 0$          & \MCheckbox{0}{VX61} & \MCheckbox{1}{VX62} &\MCheckbox{0}{VX63} &\MCheckbox{0}{VX64} \\ \hline
+  $\sqrt{3+\Mtfrac12}$      & \MLCheckbox{0}{VX11}{VX11} & \MLCheckbox{0}{VX12}{VX12} &\MLCheckbox{1}{VX13}{VX13} &\MLCheckbox{1}{VX14}{VX14} \\ \hline
+  $5x-1$                    & \MLCheckbox{0}{VX21}{VX21} & \MLCheckbox{0}{VX22}{VX32} &\MLCheckbox{1}{VX23}{VX23} &\MLCheckbox{0}{VX24}{VX24} \\ \hline
+  $32x^2 = \Mtfrac1y$       & \MLCheckbox{1}{VX31}{VX31} & \MLCheckbox{0}{VX32}{VX32} &\MLCheckbox{0}{VX33}{VX33} &\MLCheckbox{0}{VX34}{VX34} \\ \hline
+  $32> 2^x$                 & \MLCheckbox{0}{VX41}{VX41} & \MLCheckbox{1}{VX42}{VX42} &\MLCheckbox{0}{VX43}{VX43} &\MLCheckbox{0}{VX44}{VX44} \\ \hline
+  $x\in \lbrace1;2;3\rbrace$& \MLCheckbox{0}{VX51}{VX51} & \MLCheckbox{0}{VX52}{VX52} &\MLCheckbox{0}{VX53}{VX53} &\MLCheckbox{0}{VX54}{VX54} \\ \hline
+  $b^2-4a c\geq 0$          & \MLCheckbox{0}{VX61}{VX61} & \MLCheckbox{1}{VX62}{VX62} &\MLCheckbox{0}{VX63}{VX63} &\MLCheckbox{0}{VX64}{VX64} \\ \hline
 \end{tabular}
 \end{MExercise}
 
@@ -316,9 +316,9 @@ Bestimmen Sie die Lösungsmenge für folgendes Lineares Gleichungssystem:
 \end{eqnarray*}
 Die Lösungsmenge
 \begin{tabular}[t]{ll}
-\MCheckbox{0}{M04C1} & ist leer,\\
-\MCheckbox{1}{M04C2} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{LGSMU1} , $y =$ \MLParsedQuestion{5}{-2}{5}{LGSMU2} ,\\
-\MCheckbox{0}{M04C3} & enthält unendlich viele Lösungspaare $(x, y)$.
+\MLCheckbox{0}{M04C1}{M04C1} & ist leer,\\
+\MLCheckbox{1}{M04C2}{M04C2} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{LGSMU1} , $y =$ \MLParsedQuestion{5}{-2}{5}{LGSMU2} ,\\
+\MLCheckbox{0}{M04C3}{M04C3} & enthält unendlich viele Lösungspaare $(x, y)$.
 \end{tabular}
 \end{MExercise}
 
@@ -509,9 +509,9 @@ Wieviele Lösungen besitzt das zugehörige Lineare Gleichungssystem?
 
 Es besitzt
 \begin{tabular}[t]{ll}
-\MCheckbox{0}{M04C4} & keine Lösung,\\
-\MCheckbox{1}{M04C5} & genau eine Lösung oder\\
-\MCheckbox{0}{M04C6} & unendlich viele Lösungen.
+\MLCheckbox{0}{M04C4}{M04C4} & keine Lösung,\\
+\MLCheckbox{1}{M04C5}{M04C5} & genau eine Lösung oder\\
+\MLCheckbox{0}{M04C6}{M04C6} & unendlich viele Lösungen.
 \end{tabular}
 \end{MExercise}
 
@@ -522,9 +522,9 @@ x + 2 z & = & 3 \\ - x + y + z & = & 1 \\ 2 y + 3 z & = & 5
 \end{eqnarray*}
 Die Lösungsmenge
 \begin{tabular}[t]{ll}
-\MCheckbox{0}{M04C7} & ist leer,\\
-\MCheckbox{1}{M04C8} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{ALGS1} , $y =$ \MLParsedQuestion{5}{1}{5}{ALGS2}, $z = $ \MLParsedQuestion{5}{1}{5}{ALGS3} ,\\
-\MCheckbox{0}{M04C9} & enthält unendlich viele Lösungen $(x, y, z)$.
+\MLCheckbox{0}{M04C7}{M04C7} & ist leer,\\
+\MLCheckbox{1}{M04C8}{M04C8} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{ALGS1} , $y =$ \MLParsedQuestion{5}{1}{5}{ALGS2}, $z = $ \MLParsedQuestion{5}{1}{5}{ALGS3} ,\\
+\MLCheckbox{0}{M04C9}{M04C9} & enthält unendlich viele Lösungen $(x, y, z)$.
 \end{tabular}
 \end{MExercise}
 
@@ -593,13 +593,13 @@ declare function={
 
 \begin{MExerciseItems}
 \item In $x_1 = 4$ ist die Ableitung
-\MCheckbox{0}{JC1} gleich $0$,
-\MCheckbox{1}{JC2} nicht definiert,
-\MCheckbox{0}{JC2x} unendlich.
+\MLCheckbox{0}{JC1}{JC1} gleich $0$,
+\MLCheckbox{1}{JC2}{JC2} nicht definiert,
+\MLCheckbox{0}{JC2x}{JC3} unendlich.
 \item In $x_2 = 0$ ist die Ableitung
-\MCheckbox{1}{JC3} positiv,
-\MCheckbox{0}{JC4} gleich $0$,
-\MCheckbox{0}{JC5} negativ.
+\MLCheckbox{1}{JC3}{JC4} positiv,
+\MLCheckbox{0}{JC4}{JC5} gleich $0$,
+\MLCheckbox{0}{JC5}{JC6} negativ.
 \end{MExerciseItems}
 \end{MExercise}
 
@@ -715,11 +715,11 @@ Welche Eigenschaften besitzt dieser Kreis?
 \item{Er schneidet die durch $P=(-3;3)$ und $Q=(3;-3)$ verlaufende Gerade $\overline{P Q}$\\
 \MSetPoints{1}
 \begin{itemize}
-\item{\MCheckbox{0}{VBNT22x} in einem Punkt,}
-\item{\MCheckbox{1}{VBNT23x} in zwei Punkten,}
-\item{\MCheckbox{0}{VBNT24x} in drei Punkten,}
-\item{\MCheckbox{0}{VBNT25x} überhaupt nicht,}
-\item{\MCheckbox{0}{VBNT26x} das hängt von der Konstanten $d$ ab.}
+\item{\MLCheckbox{0}{VBNT22x}{VBNT22} in einem Punkt,}
+\item{\MLCheckbox{1}{VBNT23x}{VBNT23} in zwei Punkten,}
+\item{\MLCheckbox{0}{VBNT24x}{VBNT24} in drei Punkten,}
+\item{\MLCheckbox{0}{VBNT25x}{VBNT25} überhaupt nicht,}
+\item{\MLCheckbox{0}{VBNT26x}{VBNT26} das hängt von der Konstanten $d$ ab.}
 \end{itemize}
 }
 \end{MExerciseItems}
