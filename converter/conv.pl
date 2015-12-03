@@ -77,10 +77,11 @@ our $mainsiteline = 0;
 #<script src="jquery.qtip-1.0.0-rc3.min.js" type="text/javascript"></script>
 
 sub generate_scriptheaders {
-   my @c = split(/ /,$main::config{scriptheaders});
    my $itags = "";
-   print "Using headers: ";
-   foreach $cs (@c) {
+   print "Using scriptheaders: ";
+   my $i;
+   for ($i = 0; $i <= $#{$config{scriptheaders}}; $i++) {
+     my $cs = $config{scriptheaders}[$i];
      $itags = $itags . "<script src=\"$cs\" type=\"text/javascript\"></script>\n";
      print "$cs "; 
    }

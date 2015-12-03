@@ -7,7 +7,7 @@ doscorm         =>      0       , # =0: Kein SCORM, =1 -> SCORM-Manifest und Def
 qautoexport     =>      0       , # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
 diaok           =>      0       , # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
 cleanup         =>      0       , # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
-localjax        =>      1       , # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
+localjax        =>      0       , # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
 borkify         =>      0       , # =1 html und js-Dateien werden borkifiziert
 dorelease       =>      0       , # In Release-Versionen werden z.B. bestimmte Logmeldungen unterdrueckt
 doverbose       =>      1       , # Schaltet alle Debugmeldungen auf der Browserkonsole an
@@ -21,8 +21,24 @@ module          =>      "tree_tu9onlinekurs.tex",  # tex-Hauptdatei des Kurses (
 outtmp          =>      "tmp",               # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
 description     =>      "Onlinebrückenkurs Mathematik",
 moduleprefix    =>      "Onlinebrückenkurs Mathematik",  # Wird vor Browser-Bookmarks gesetzt
-stylesheets     =>      "qtip2/jquery.qtip.min.css", # durch Leerzeichen getrennte Dateinamen, grundlagen.css wird automatisch eingesetzt
-scriptheaders   =>      "es5-sham.min.js qtip2/jquery-1.10.2.min.js qtip2/jquery.qtip.min.js knockout-3.0.0.js math.js dynamiccss.js convinfo.js mparser.js scormwrapper.js dlog.js userdata.js intersite.js exercises.js mintscripts.js servicescripts.js",
+
+stylesheets     =>      ["qtip2/jquery.qtip.min.css"], # Array, grundlagen.css wird automatisch eingesetzt
+
+scriptheaders   =>      ["es5-sham.min.js",
+                         "qtip2/jquery-1.10.2.min.js",
+                         "qtip2/jquery.qtip.min.js",
+                         "knockout-3.0.0.js",
+                         "math.js",
+                         "dynamiccss.js",
+                         "convinfo.js",
+                         "mparser.js",
+                         "scormwrapper.js",
+                         "dlog.js",
+                         "userdata.js",
+                         "intersite.js",
+                         "exercises.js",
+                         "mintscripts.js",
+                         "servicescripts.js"],
 
 parameter => {                                        # Benutzeridentifizierung haengt von diesen drei Teilen ab!
   signature_main          => "OBM_VEUNDMINT",         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig

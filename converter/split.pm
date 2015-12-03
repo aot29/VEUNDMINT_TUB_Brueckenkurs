@@ -568,18 +568,19 @@ sub generatecollectionmark {
 # Parameter: $lp:   Der Linkpath
 sub getstyleimporttags {
    my ($lp) = @_;
-   my @c = split(/ /,$main::config{stylesheets});
   
    my $itags = "";
 
 
-    # print "Using these stylesheets: ";
-    foreach $cs (@c) {
+    print "Using these stylesheets: ";
+    my $i;
+    for ($i = 0; $i <= $#{$main::config{stylesheets}}; $i++) {
+      my $cs = $main::config{stylesheets}[$i];
       $itags = $itags . "<link rel=\"stylesheet\" type=\"text\/css\" href=\"$lp$cs\"\/>\n";
-      # print "$cs "; 
+      print "$cs "; 
     }
     
-    # print "\n";
+    print "\n";
 
     return $itags;
 }
