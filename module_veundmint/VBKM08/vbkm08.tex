@@ -1383,23 +1383,31 @@ I_A & = & \left|\int_0^1 \left(12 x^2 - 12 x + \sin\left(\pi x\right)\right) \MD
 \end{MExercise}
 
 \begin{MExercise}
-Berechnen Sie die Arbeit $W$ im Gravitationsfeld
-$F: [1\MIntvlSep  \infty) \rightarrow \R, r \mapsto F(r) := -\gamma \cdot \frac{m }{r^2}$ 
-l"angs des Weges $[1\MIntvlSep  4]$ in Abh"angigkeit der gegebenen Masse $m$ und 
-der Gravitationskonstanten $\gamma$.
+Berechnen Sie die Arbeit $W$, die n"otig ist, um die Masse $m$ \emph{gegen}
+die Gravitationskraft
+$F: [r_1\MIntvlSep  \infty) \rightarrow \R, r \mapsto F(r) := -\gamma \cdot \frac{m \cdot M}{r^2}$ 
+von der Oberfl"ache eines kugelf"ormigen K"orpers mit Radius $r_1 = 1$ und 
+Masse $M = 2$ bis zu einer Entfernung $r_2 = 4$ zu bewegen (alle L"angen 
+beziehen sich auf den Mittelpunkt des K"orpers der Masse $M$). Hierbei sind
+die Masse $m$ und die Gravitationskonstante $\gamma$ als gegebene Werte
+anzunehmen.
 
-Antwort: \MEquationItem{$W$}{\MLSimplifyQuestion{30}{-3/4*gamma*m}{10}{gamma,m}{4}{0}{ILGAMMA}}.
+Antwort: \MEquationItem{$W$}{\MLSimplifyQuestion{30}{-3/2*gamma*m}{10}{gamma,m}{4}{0}{ILGAMMA}}.
 \ \\
 \MInputHint{Die Konstanten $m$ und $\gamma$ müssen in der Lösung stehen bleiben, für $\gamma$ kann man \texttt{gamma} eingeben.}
 \ \\
 \begin{MHint}{Lösung}
-Die Arbeit $W$ l"angs des Weges ist
+Die Kraft $F_s$ l"angs des Weges, um den K"orper mit der Masse $m$ zu bewegen, 
+zeigt entgegen der Gravitationskraft $F$. Somit ist $F_s = -F$.
+Die aufzuwendende Arbeit $W$ von $r_1 = 1$ zu $r_2 = 4$ ergibt sich damit zu
 \begin{eqnarray*}
-W = \int_1^4 F(r) \MD r %
- & = & \int_1^4 -\gamma \cdot \frac{m }{r^2} \MD r \\
- & = & \left[ \gamma \cdot \frac{m }{r} \right]_{1}^{4} \\
- & = & \gamma \cdot m  \left(\frac{1}{4} - \frac{1}{1}\right) \\
- & = & -\gamma \cdot \frac{3 m }{4}\; . %%
+W = \int_1^4 F_s(r) \MD r %
+ = - \int_1^4 F(r) \MD r %
+ & = & -\int_1^4 -\gamma \cdot \frac{2 \cdot m}{r^2} \MD r \\
+ & = & \int_1^4 \gamma \cdot \frac{2 \cdot m}{r^2} \MD r \\
+ & = & \left[ -\gamma \cdot \frac{2 \cdot m}{r} \right]_{1}^{4} \\
+ & = & -\gamma \cdot 2 \cdot m \left(\frac{1}{4} - \frac{1}{1}\right) \\
+ & = & \gamma \cdot \frac{3 m}{2}\; . %%
 \end{eqnarray*}
 \end{MHint}
 %
