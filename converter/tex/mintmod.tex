@@ -1221,7 +1221,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 % Dieses Skript wird zu Beginn jedes Modulabschnitts (=Webseite) ausgefuehrt und initialisiert den Aufgabenfeldzaehler
 \newcommand{\MPageScripts}{
-\setcounter{MWTabCounter}{1}
 \setcounter{MFieldCounter}{1}
 \addtocounter{MSiteCounter}{1}
 \setcounter{MHintCounter}{1}
@@ -1728,29 +1727,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newenvironment{MCaseEnv}{\left\lbrace\begin{array}{rl}}{\end{array}\right.}
 \else
 \newenvironment{MCaseEnv}{\left\lbrace\begin{array}{rl}}{\end{array}\right.}
-\fi
-
-\newcounter{MWTabCounter}
-
-\ifttm
-
-\newenvironment{MWTabular}[1]{
-\special{html:<!-- wtab-start;;}\arabic{MWTabCounter}\special{html:;;}#1\special{html:; //-->}
-\begin{tabular}{#1}
-}{
-\end{tabular}
-\special{html:<!-- wtab-end;;}\arabic{MWTabCounter}\special{html:; //-->}
-\addtocounter{MWTabCounter}{1}
-}
-
-\else
-
-\newenvironment{MWTabular}[1]{
-\begin{tabular}{#1}
-}{
-\end{tabular}
-}
-
 \fi
 
 \def\MSkip{\ifttm\MCR\fi}

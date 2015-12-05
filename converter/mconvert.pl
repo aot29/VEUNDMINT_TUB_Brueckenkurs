@@ -785,8 +785,6 @@ for ($ka = 0; $ka < $nt; $ka++) {
       }
     }
 
-    # PYTHONPARSING --------------------------------------
-    
     if ($textex =~ m/\\MPragma{MathSkip}/ ) {
       print "  Pragma MathSkip: Skips starting math-environments inserted\n";
       $textex =~ s/(?<!\\)\\\[/\\MSkip\\\[/g;
@@ -1342,7 +1340,7 @@ close(JCSS);
 system("cp grundlagen.css ../files/css/.");
 system("cp dynamiccss.js ../files/.");
 
-# mintmod.tex so veraendern, dass lokale Preamblen und Tagmakros eingebunden werden
+# mintmod.tex so veraendern, dass lokale Preamblen und Tagmakros eingebunden werden, sowie automatisierte tags
 chdir("../tex");
 # MUSS APPEND SEIN
 my $ipf = open(MINTP, ">> mintmod.tex") or die "FATAL: Could not append local preamles to mintmod.tex";
@@ -1355,6 +1353,14 @@ for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
 }
 # print MINTP "% Predefinierte Tagmakro --------- \n";
 # print MINTP $IncludeTags . "\n";
+
+print MINTP "% Automatisierte Tagmakros ---------- \n";
+print MINTP "\\ifttm\n";
+
+print MINTP "\\else\n";
+
+print MINTP "\\fi\n";
+
 close(MINTP);
 
 
