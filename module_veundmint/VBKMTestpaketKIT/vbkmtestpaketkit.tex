@@ -41,10 +41,10 @@ In der folgenden Tabelle sind Winkel in Grad- und Bogenmaß gegeben, teilweise mi
 \hline
 Gradmaß & Bogenmaß \\ \hline
 $120^\circ$ & $\frac23\pi$  \ \\
-$10^\circ$ & \MParsedQuestion{25}{1/(18)*pi}{5} \\
-\MParsedQuestion{25}{((50)/(2*pi))*360}{10}$^\circ$ & $50$ \\
-$60^\circ+\alpha$ & \MSimplifyQuestion{25}{1/3*pi+pi/(180)*alpha}{5}{alpha}{5}{0} \\
-\MSimplifyQuestion{25}{180/pi*beta-90}{5}{beta}{5}{0}$^\circ$ & $\beta-\frac12\pi$ \\
+$10^\circ$ & \MLParsedQuestion{25}{1/(18)*pi}{5}{PARSEDQUEST12} \\
+\MLParsedQuestion{25}{((50)/(2*pi))*360}{10}{PARSEDQUEST13}$^\circ$ & $50$ \\
+$60^\circ+\alpha$ & \MLSimplifyQuestion{25}{1/3*pi+pi/(180)*alpha}{5}{alpha}{5}{0{SIMPLE21} \\
+\MLSimplifyQuestion{25}{180/pi*beta-90}{5}{beta}{5}{0}{SIMPLE22}$^\circ$ & $\beta-\frac12\pi$ \\
 \hline
 \end{tabular}
 \end{center}
@@ -74,10 +74,10 @@ In der folgenden Tabelle sind für ein rechtwinkliges Dreieck einige Größen gegeb
 \hline
 $a$ & $b$ & $c$ & $\alpha$ & $\beta$ & $\gamma$& $\sin(\alpha)$ & $\sin(\beta)$ & $\sin(\gamma)$ \\ \hline
 $1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
-$1$ & $1$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(2)}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5} & $\frac12\pi$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5}   \\ 
-$3$ & $4$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{5}{5} & $*$ & $*$ & $\frac12\pi$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{4/5}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{3/5}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5} \\
-\MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(15)}{5} & $\sqrt7$ & $\sqrt8$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/2}{5} & $*$ & $*$ & $1$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(8/15)}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(7/15)}{5} \\
-\MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{9/sqrt(3)}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{9/sqrt(3)}{5} & $9$ & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/6}{5} & \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/6}{5}& \MParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{2/3*pi}{5}& $\frac12$ & $\frac12$ & $*$\\
+$1$ & $1$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(2)}{5}{PARSEDQUEST14} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5}{PARSEDQUEST15} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5}{PARSEDQUEST16} & $\frac12\pi$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5}{PARSEDQUEST17} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5}{PARSEDQUEST18} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5}{PARSEDQUEST19}   \\ 
+$3$ & $4$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{5}{5}{PARSEDQUEST20} & $*$ & $*$ & $\frac12\pi$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{4/5}{5}{PARSEDQUEST21} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{3/5}{5}{PARSEDQUEST22} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5}{PARSEDQUEST23} \\
+\MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(15)}{5}{PARSEDQUEST24} & $\sqrt7$ & $\sqrt8$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/2}{5}{PARSEDQUEST25} & $*$ & $*$ & $1$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(8/15)}{5}{PARSEDQUEST26} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(7/15)}{5}{PARSEDQUEST27} \\
+\MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{9/sqrt(3)}{5}{PARSEDQUEST28} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{9/sqrt(3)}{5}{PARSEDQUEST29} & $9$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/6}{5}{PARSEDQUEST30} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/6}{5}{PARSEDQUEST31} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{2/3*pi}{5}{PARSEDQUEST32} & $\frac12$ & $\frac12$ & $*$\\
 \hline
 \end{tabular}
 \end{center}
@@ -136,7 +136,7 @@ und
 \[
  \function{g}{\R}{\R}{x}{B\cdot x+\pi.}
 \]
-Antwort: $h(x)$ = \MSimplifyQuestion{20}{C*sin(B*x+pi)}{10}{x,B,C}{4}{0}
+Antwort: $h(x)$ = \MLSimplifyQuestion{20}{C*sin(B*x+pi)}{10}{x,B,C}{4}{0}{SIMPLE23}
 \ \\ \ \\
 Bestimmen Sie nun die beiden Parameter $B,C\in\R$, so dass die durch $h$ beschriebene Sinusschwingung diesen Graph besitzt:
  \begin{center}
@@ -144,7 +144,7 @@ Bestimmen Sie nun die beiden Parameter $B,C\in\R$, so dass die durch $h$ beschri
  \MCopyrightNotice{\MCCLicense}{NONE}{MINT}{Funktionsplot erstellt und exportiert mit Maple15}{VBKM06_Abbildung_Sinusfrage}
  \end{center}
 \ \\ \ \\
-Antwort: $h(x)$ = \MSimplifyQuestion{20}{3*sin(1/2*pi*x+pi)}{10}{x}{4}{0}.
+Antwort: $h(x)$ = \MLSimplifyQuestion{20}{3*sin(1/2*pi*x+pi)}{10}{x}{4}{0}{SIMPLE24}.
 \end{MExercise}
 
 \end{MXContent}
@@ -163,7 +163,7 @@ und
 \]
 jeweils den größtmöglichen Definitionsbereich.
 \ \\ \ \\
-Antwort: $D_f$ = $\R\backslash$\MParsedQuestion{30}{sqrt(2),-sqrt(2)}{10} bzw. $D_g$ = \MIntervalQuestion{30}{(0,infty)}{10}.
+Antwort: $D_f$ = $\R\backslash$\MLParsedQuestion{33}{sqrt(2),-sqrt(2)}{10}{PARSEDQUEST15} bzw. $D_g$ = \MLIntervalQuestion{30}{(0,infty)}{10}{INT4}.
 \ \\
 \MInputHint{Hier können Sie Mengen sowohl in Intervallschreibweise wie auch in Aufzählungsweise eingeben.}
 \end{MExercise}
@@ -173,7 +173,7 @@ Bestimmen Sie für die Funktion
 \[
  \function{i}{\R}{\R}{x}{x^2-4x+4+\pi}
 \]
-die Wertemenge $W_i$ = \MIntervalQuestion{10}{[pi,infty)}{10}.
+die Wertemenge $W_i$ = \MLIntervalQuestion{10}{[pi,infty)}{10}{INT5}.
 \ \\
 \MInputHint{Geben Sie alle Mengen in Intervallschreibweise an.}
 \end{MExercise}
@@ -185,7 +185,7 @@ Bestimmen Sie in der Exponentialfunktion
 \]
 die Parameter $A,\lambda\in\R$, so dass $c(0)=1$ und $c(4)=0$ gilt.
 \ \\ \ \\
-Antwort: $A$=\MParsedQuestion{10}{2}{3}, $B$=\MParsedQuestion{10}{-ln(2)}{3}.
+Antwort: $A$=\MLParsedQuestion{10}{2}{3}{PARSEDQUEST34}, $B$=\MLParsedQuestion{10}{-ln(2)}{3}{PARSEDQUEST35}.
 \ \\
 \MInputHint{Geben Sie alle Mengen in Intervallschreibweise an.}
 \end{MExercise}
@@ -216,8 +216,8 @@ Bestimmen Sie die Umkehrfunktion $u^{-1}$ von
 \[
  \function{u}{(0,\infty)}{\R}{y}{-\log_2(y).}
 \]
-Antwort: Die Funktion $u^{-1}$ hat den Definitionsbereich $D$ = \MIntervalQuestion{20}{(-infty,infty)}{10},
-die Funktionsvorschrift $u^{-1}(y)$ = \MSimplifyQuestion{13}{2^(-y)}{5}{y}{4}{0} und den Wertebereich $W$ = \MIntervalQuestion{10}{(0,infty)}{10}.
+Antwort: Die Funktion $u^{-1}$ hat den Definitionsbereich $D$ = \MLIntervalQuestion{20}{(-infty,infty)}{10}{INT6},
+die Funktionsvorschrift $u^{-1}(y)$ = \MLSimplifyQuestion{13}{2^(-y)}{5}{y}{4}{0}{SIMPLE25} und den Wertebereich $W$ = \MLIntervalQuestion{10}{(0,infty)}{10}{INT7}.
 \ \\
 \MInputHint{Geben Sie alle Mengen in Intervallschreibweise an.}
 \end{MExercise}
@@ -350,14 +350,14 @@ Ordnen Sie den folgenden Graphen die richtigen Abbildungsvorschriften der zugehö
 \end{itemize}
 
 \begin{itemize}
- \item[1)] $f(x)=e^x$ gehört zur Abbildung \MQuestion{3}{C} (nur der Großbuchstabe),
- \item[2)] $f(x)=\sqrt{x}$ gehört zur Abbildung \MQuestion{3}{D},
- \item[3)] $f(x)=\ln(x)$ gehört zur Abbildung \MQuestion{3}{E},
- \item[4)] $f(x)=\frac{1}{2x}-1$ gehört zur Abbildung \MQuestion{3}{A},
- \item[5)] $f(x)=\frac{1}{2}x-1$ gehört zur Abbildung \MQuestion{3}{B}.
+ \item[1)] $f(x)=e^x$ gehört zur Abbildung \MLQuestion{3}{C}{C} (nur der Großbuchstabe),
+ \item[2)] $f(x)=\sqrt{x}$ gehört zur Abbildung \MLQuestion{3}{D}{D},
+ \item[3)] $f(x)=\ln(x)$ gehört zur Abbildung \MLQuestion{3}{E}{E},
+ \item[4)] $f(x)=\frac{1}{2x}-1$ gehört zur Abbildung \MLQuestion{3}{A}{A},
+ \item[5)] $f(x)=\frac{1}{2}x-1$ gehört zur Abbildung \MLQuestion{3}{B}{B}.
 \end{itemize}
 
-Geben Sie zudem die Asymptote der Funktion mit der Abbildungsvorschrift 4) an: $\displaystyle \lim_{x\rightarrow \infty} f(x)$ = \MParsedQuestion{10}{-1}{10}.
+Geben Sie zudem die Asymptote der Funktion mit der Abbildungsvorschrift 4) an: $\displaystyle \lim_{x\rightarrow \infty} f(x)$ = \MLParsedQuestion{10}{-1}{10}{PARSEDQUEST36}.
 \end{MExercise}
 
 \begin{MExercise}
@@ -396,7 +396,7 @@ Berechnen Sie die mittlere Geschwindigkeit $v$ , also die mittlere "Anderungsrat
 zwischen Start- und Zielort. Setzten Sie dazu die fehlenden Zahlen und 
 mathematischen Symbole in die folgende Rechnung ein:
 \begin{center}
-$v\;\;:=\;\;(280\: $\MQuestion{3}{-}$\: 20)\,$\MQuestion{3}{/}$\,($\MParsedQuestion{3}{10}{3}$\:-\:6)\;\; =\;\;$\MParsedQuestion{5}{65}{5}.
+$v\;\;:=\;\;(280\: $\MLQuestion{3}{-}{MINUS}$\: 20)\,$\MLQuestion{3}{/}{DURCH}$\,($\MLParsedQuestion{3}{10}{3}{PARSEDQUEST37}$\:-\:6)\;\; =\;\;$\MLParsedQuestion{5}{65}{5}{PARSEDQUEST38}.
 \end{center}
 \MInputHint{An manchen Stellen sind Rechenoperationen, an anderen Stellen Werte einzutragen.}
 \end{MExercise}
@@ -424,7 +424,7 @@ Gegeben ist die Funktion $f: [-3; 4] \to \R$, deren Graph hier gezeichnet ist:
 
 \begin{MExercise}
 Die Ableitung von $f(x)=e^x\cdot (a+b x+c x^2)$ ist von der Form $f'(x)=e^x\cdot q(x)$ für\\
-das Polynom $q(x)$ = \MSimplifyQuestion{25}{c*x^2+b*x+2*c*x+a+b}{a,b,c}{10}{5}{0}.
+das Polynom $q(x)$ = \MLSimplifyQuestion{25}{c*x^2+b*x+2*c*x+a+b}{a,b,c}{10}{5}{0}{SIMPLE26}.
 \ \\
 \MInputHint{Geben Sie $q(x)$ in Summenform an.}
 \ \\ \ \\
@@ -443,8 +443,8 @@ $(e^x+(e^x)')\cdot p(x)$ \MCheckbox{0}& $e^x(p(x)+p'(x))$ \MCheckbox{1} & $\frac
 Berechnen Sie die erste und zweite Ableitung der Funktion $f: \R \to \R, x \mapsto \frac{6 x + 2}{2 x^2 + 4}$,
 und geben Sie Ihr Resultat gek"urzt und zusammengefasst an:
 \begin{MExerciseItems}
-\item{Erste Ableitung $f'(x)$ = \MSimplifyQuestion{40}{(-3*x^2-2*x+6)/((x^2 + 2)^2)}{8}{x}{5}{0}.}
-\item{Zweite Ableitung ${f'}'(x)$  = \MSimplifyQuestion{40}{((6*x^3+6*x^2-36*x-4)/((x^2+2)^3)}{8}{x}{5}{0}.}
+\item{Erste Ableitung $f'(x)$ = \MLSimplifyQuestion{40}{(-3*x^2-2*x+6)/((x^2 + 2)^2)}{8}{x}{5}{0}{SIMPLE27}.}
+\item{Zweite Ableitung ${f'}'(x)$  = \MLSimplifyQuestion{40}{((6*x^3+6*x^2-36*x-4)/((x^2+2)^3)}{8}{x}{5}{0}{SIMPLE28}.}
 \end{MExerciseItems}
 \end{MExercise}
 
@@ -452,7 +452,7 @@ und geben Sie Ihr Resultat gek"urzt und zusammengefasst an:
 In welchen Bereichen ist die Funktion $f$ mit $f(x) := \frac{\ln x}{x}$ f"ur
 $x \neq 0$ monoton fallend beziehungsweise monoton wachsend?
 \ \\ \ \\
-Antwort: Auf dem Intervall \MIntervalQuestion{20}{(0,e)}{10} ist sie monoton fallend, auf dem Intervall \MIntervalQuestion{20}{(e,infty)}{10} ist sie steigend.\\
+Antwort: Auf dem Intervall \MLIntervalQuestion{20}{(0,e)}{10}{INT8} ist sie monoton fallend, auf dem Intervall \MLIntervalQuestion{20}{(e,infty)}{10}{INT9} ist sie steigend.\\
 \MInputHint{Benutzen Sie offene Intervalle ohne Randpunkte.}
 \end{MExercise}
 
@@ -469,9 +469,9 @@ Antwort: Auf dem Intervall \MIntervalQuestion{20}{(0,e)}{10} ist sie monoton fal
 \begin{MExercise}
 Bestimmen Sie sämtliche Extremstellen (ohne Angabe des Typs):
 \begin{MExerciseItems}
-\item{$p:\: \R\rightarrow \R$, $p(x)=x^3-6x$ besitzt die Extremstellenmenge \MParsedQuestion{30}{-sqrt(2),sqrt(2)}{10}.}
-\item{$f:\: (0,\infty)\rightarrow \R$, $f(x)=\ln(x)^2-2x$ besitzt die Extremstellenmenge \MParsedQuestion{30}{}{10}.}
-\item{$g:\: [-2\pi,2\pi]\rightarrow \R$, $g(x)=\sin(x)^2$ besitzt die Extremstellenmenge \MParsedQuestion{30}{pi/2,3/2*pi,-pi/2,-3/2*pi}{10}.}
+\item{$p:\: \R\rightarrow \R$, $p(x)=x^3-6x$ besitzt die Extremstellenmenge \MLParsedQuestion{30}{-sqrt(2),sqrt(2)}{10}{PARSEDQUEST39}.}
+\item{$f:\: (0,\infty)\rightarrow \R$, $f(x)=\ln(x)^2-2x$ besitzt die Extremstellenmenge \MLParsedQuestion{30}{}{10}{PARSEDQUEST40}.}
+\item{$g:\: [-2\pi,2\pi]\rightarrow \R$, $g(x)=\sin(x)^2$ besitzt die Extremstellenmenge \MLParsedQuestion{30}{pi/2,3/2*pi,-pi/2,-3/2*pi}{10}{PARSEDQUEST41}.}
 \end{MExerciseItems}
 \begin{MHint}{Hinweis für Teil 2}
 Skizzieren Sie die Graphen von $x$ und $\ln(x)$ maßstabgetreu im gleichen Koordinatensystem.
@@ -488,8 +488,8 @@ Skizzieren Sie die Graphen von $x$ und $\ln(x)$ maßstabgetreu im gleichen Koordi
 Bestimmen Sie wie in der Vorgabe jeweils eine Stammfunktion:
 \begin{MExerciseItems}
 \item $\displaystyle\int (x+1)^2 \MD x$ = $\frac13(x+1)^3$, aber auch $\displaystyle\int (x+1)^2 \MD x = \int (x^2+2x+1) \MD x = \frac13x^3+x^2+x$ wäre richtig.
-\item $\displaystyle\int \left(5x^4 + 8 x\right) \MD x = $ \MSimplifyQuestion{20}{x^5 + 4*x^2}{5}{x}{5}{32}.
-\item $\displaystyle\int 6 \sin(2 x) \MD x = $ \MSimplifyQuestion{20}{-3*cos(2*x)}{5}{x}{5}{32}.
+\item $\displaystyle\int \left(5x^4 + 8 x\right) \MD x = $ \MLSimplifyQuestion{20}{x^5 + 4*x^2}{5}{x}{5}{32}{SIMPLE29}.
+\item $\displaystyle\int 6 \sin(2 x) \MD x = $ \MLSimplifyQuestion{20}{-3*cos(2*x)}{5}{x}{5}{32}{SIMPLE30}.
 \end{MExerciseItems}
 \MInputHint{In Ihrer Antwort dürfen keine Integralzeichen mehr auftreten, Vereinfachung ist dagegen nicht notwendig.}
 \end{MExercise}
@@ -506,8 +506,8 @@ Bestimmen Sie wie in der Vorgabe jeweils eine Stammfunktion:
 \begin{MExercise} %Berechnung bestimmter Integrale
 Berechnen Sie die Integrale:
 \begin{MExerciseItems}
-\item $\displaystyle\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}  \left(x^3 + \cos(x)\right) \MD x$ = \MParsedQuestion{25}{2}{15}.
-\item $\displaystyle\int_{\ln(2)}^{\ln(3)} x \cdot \MEU^x \MD x$ = \MParsedQuestion{25}{3*ln(3)-2*ln(2)-1}{10}.
+\item $\displaystyle\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}  \left(x^3 + \cos(x)\right) \MD x$ = \MLParsedQuestion{25}{2}{15}{PARSEDQUEST42}.
+\item $\displaystyle\int_{\ln(2)}^{\ln(3)} x \cdot \MEU^x \MD x$ = \MLParsedQuestion{25}{3*ln(3)-2*ln(2)-1}{10}{PARSEDQUEST43}.
 \end{MExerciseItems}
 \MInputHint{Die Aufgaben sind richtig beantwortet, wenn das Integral aufgelöst ist. Die entstehenden Terme brauchen nicht vereinfacht werden.}
 \end{MExercise}
@@ -516,12 +516,12 @@ Berechnen Sie die Integrale:
 Füllen Sie den Lückentext wie in der Vorgabe:
 \begin{MExerciseItems}
 \item{Das Integral $\int_1^2 x^{10} \MD x$ über die auf dem Integrationsbereich \textit{positive} Funktion $x^{10}$ ist \textit{positiv}.}
-\item{Das Integral $\displaystyle \int_{-1}^{-2} e^x dx$ über die auf dem Integrationsbereich \MQuestion{9}{positive} Funktion $e^x$ ist \MQuestion{9}{negativ}.}
-\item{Das Integral $\displaystyle \int_{\frac13}^{\frac12} \ln(x) dx$ über die auf dem Integrationsbereich \MQuestion{9}{negative} Funktion $\ln(x)$ ist \MQuestion{9}{negativ}.}
-\item{Setzt man in das Integral eine Summe von Funktionen ein, so kommt die \MQuestion{20}{Summe}\ \\der Integral\MQuestion{10}{werte} der Funktionen heraus.}
+\item{Das Integral $\displaystyle \int_{-1}^{-2} e^x dx$ über die auf dem Integrationsbereich \MLQuestion{9}{positive}{POSITIV} Funktion $e^x$ ist \MLQuestion{9}{negativ}{NEGATIV}.}
+\item{Das Integral $\displaystyle \int_{\frac13}^{\frac12} \ln(x) dx$ über die auf dem Integrationsbereich \MLQuestion{9}{negative}{NEGATIV2} Funktion $\ln(x)$ ist \MLQuestion{9}{negativ}{NEGATIV3}.}
+\item{Setzt man in das Integral eine Summe von Funktionen ein, so kommt die \MLQuestion{20}{Summe}{SUMME}\ \\der Integral\MLQuestion{10}{werte}{WERTE} der Funktionen heraus.}
 \item{Es ist $\int_{-5}^{5} x \cdot \cos(4 x) \MD x = 0$, da das Integrationsintervall
-\MQuestion{30}{symmetrisch} bez"uglich $0$ ist und der Integrand eine 
-\MQuestion{30}{ungerade} Funktion ist.}
+\MLQuestion{30}{symmetrisch}{SYMMETRISCH} bez"uglich $0$ ist und der Integrand eine 
+\MLQuestion{30}{ungerade}{UNGERADE} Funktion ist.}
 \end{MExerciseItems}
 \MInputHint{Bei textuellen Eingaben wird Groß- und Kleinschreibung unterschieden, \textit{positiv} ist von \textit{positive} verschieden.}
 \end{MExercise}
@@ -529,8 +529,8 @@ Füllen Sie den Lückentext wie in der Vorgabe:
 \begin{MExercise}
 Wenden Sie jeweils eine Substitution an, um den Integralausdruck zu vereinfachen (ohne ihn explizit auszurechnen):
 \begin{MExerciseItems}
-\item{$\int_{0}^{1} (x+1)^{8} dx$ = \MSimplifyQuestion{30}{int_1^2 x^8 dx}{5}{a,b}{5}{1}.}
-\item{$\int_{2+d}^{6+d} (x-d)^{2}$ = \MSimplifyQuestion{30}{8*int_1^3 x^2 dx}{5}{a,b,d}{5}{1}.}
+\item{$\int_{0}^{1} (x+1)^{8} dx$ = \MLSimplifyQuestion{30}{int_1^2 x^8 dx}{5}{a,b}{5}{1}{SIMPLE31}.}
+\item{$\int_{2+d}^{6+d} (x-d)^{2}$ = \MLSimplifyQuestion{30}{8*int_1^3 x^2 dx}{5}{a,b,d}{5}{1}{SIMPLE32}.}
 \end{MExerciseItems}
 \MInputHint{Bei dieser Aufgabe dürfen keine geklammerten Grenzen oder Potenzen eingetippt werden, dadurch sind Sie gezwungen, das Integral maximal zu vereinfachen. Lassen Sie Leerzeichen zwischen
 dem Integralausdruck, dem Integranden und \texttt{dx}.}
@@ -542,11 +542,11 @@ f"ur $-5 \leq x \leq 1$ und die $x$-Achse schlie"sen eine Fl"ache $A$ ein.
 Berechnen Sie die Schnittpunkte des Graphen von $f$ und der $x$-Achse, und
 bestimmen Sie den Fl"acheninhalt von $A$.
 \ \\ \ \\
-Die Menge der Schnittpunkte ist \MParsedQuestion{20}{1,-5,-1}{20}.
+Die Menge der Schnittpunkte ist \MLParsedQuestion{20}{1,-5,-1}{20}{PARSEDQUEST44}.
 \ \\ \ \\
-Eine Stammfunktion von $f(x)$ ist $F(x)$ = \MSimplifyQuestion{30}{1/4*x^4+5/3*x^3-1/2*x^2-5*x}{10}{x}{10}{33}.
+Eine Stammfunktion von $f(x)$ ist $F(x)$ = \MLSimplifyQuestion{30}{1/4*x^4+5/3*x^3-1/2*x^2-5*x}{10}{x}{10}{33}{SIMPLE33}.
 \ \\ \ \\
-Das die gefragte Fläche ist $A$ = \MSimplifyQuestion{10}{int_(-5)^1 abs(x^3 + 5*x^2 - x -5) dx}{1}{y}{10}{1}.\\
+Das die gefragte Fläche ist $A$ = \MLSimplifyQuestion{10}{int_(-5)^1 abs(x^3 + 5*x^2 - x -5) dx}{1}{y}{10}{1}{SIMPLE34}.\\
 % \ \\ \ \\
 %Nutzen Sie die Stammfunktion $F(x)$ um den Flächeninhalt zu berechnen: $A$ = \MSimplifyQuestion{20}{F(-1)-F(-5)-F(1)+F(-1)}{20}{x}{5}{F=sin}.
 \end{MExercise}
@@ -566,7 +566,7 @@ Die Lösungsmenge
 \begin{MQuestionGroup}
 \begin{tabular}[t]{ll}
 \MCheckbox{0} & ist leer,\\
-\MCheckbox{1} & enthält genau eine Lösung: $x =$ \MParsedQuestion{5}{1}{5} , $y =$ \MParsedQuestion{5}{-2}{5} ,\\
+\MCheckbox{1} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{PARSEDQUEST45} , $y =$ \MLParsedQuestion{5}{-2}{5}{PARSEDQUEST46} ,\\
 \MCheckbox{0} & enthält unendlich viele Lösungspaare $(x, y)$.
 \end{tabular}
 \end{MQuestionGroup}
@@ -577,7 +577,7 @@ Die Lösungsmenge
 Geben Sie diejenige zweistellige Zahl an, die bei Vertauschen von Einer- und Zehnerziffer auf eine um 18 kleinere Zahl
 führt und deren Quersumme 6 ist.
 
-Antwort: \MParsedQuestion{5}{42}{5}
+Antwort: \MLParsedQuestion{5}{42}{5}{PARSEDQUEST47}
 \end{MExercise}
 
 \begin{MExercise}
@@ -587,7 +587,7 @@ Für welchen Wert des reellen Parameters $\alpha$ besitzt das Lineare Gleichungss
 \end{eqnarray*}
 unendlich viele Lösungen?
 
-Antwort: $\alpha = $ \MParsedQuestion{5}{6}{5}
+Antwort: $\alpha = $ \MLParsedQuestion{5}{6}{5}{PARSEDQUEST48}
 \end{MExercise}
 
 \begin{MExercise}
@@ -597,9 +597,9 @@ Die Abbildung zeigt zwei Geraden im 2-dimensionalen Raum.
 \end{center}
 Stellen Sie die beiden Geradengleichungen auf:
 
-Gerade 1: $y = $ \MSimplifyQuestion{15}{-1 + x}{12}{x}{5}{0}
+Gerade 1: $y = $ \MLSimplifyQuestion{15}{-1 + x}{12}{x}{5}{0}{SIMPLE35}
 
-Gerade 2: $y = $ \MSimplifyQuestion{15}{2 - 2*x}{12}{x}{5}{0}
+Gerade 2: $y = $ \MLSimplifyQuestion{15}{2 - 2*x}{12}{x}{5}{0}{SIMPLE36}
 
 Wieviele Lösungen besitzt das zugehörige Lineare Gleichungssystem?
 
@@ -623,7 +623,7 @@ Die Lösungsmenge
 \begin{MQuestionGroup}
 \begin{tabular}[t]{ll}
 \MCheckbox{0} & ist leer,\\
-\MCheckbox{1} & enthält genau eine Lösung: $x =$ \MParsedQuestion{5}{1}{5} , $y =$ \MParsedQuestion{5}{1}{5}, $z = $ \MParsedQuestion{5}{1}{5} ,\\
+\MCheckbox{1} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{PARSEDQUEST49} , $y =$ \MLParsedQuestion{5}{1}{5}{PARSEDQUEST50}, $z = $ \MLParsedQuestion{5}{1}{5}{PARSEDQUEST51} ,\\
 \MCheckbox{0} & enthält unendlich viele Lösungen $(x, y, z)$.
 \end{tabular}
 \end{MQuestionGroup}
@@ -642,14 +642,14 @@ indem Sie erst Umformen und dann durch Rückeinsetzen die Lösung aufstellen.
 Dieses System besitzt unendlich viele Lösungen $(a,b,c,d)$. Formen Sie so um, dass Sie sukzessive die Unbestimmten entweder festlegen oder durch vorhergehende Unbestimmte ausdrücken können.
 Sorgen Sie dafür, dass die Ausdrücke möglichst einfach sind und von möglichst wenigen anderen Unbestimmten abhängen:
 \ \\ \ \\
-Zeile III des umgeformten Systems ergibt, dass die Unbestimmte $d$ festgelegt ist auf \MParsedQuestion{10}{1/3}{3}.
+Zeile III des umgeformten Systems ergibt, dass die Unbestimmte $d$ festgelegt ist auf \MLParsedQuestion{10}{1/3}{3}{PARSEDQUEST52}.
 \ \\ \ \\
-Zeile II ergibt, dass die Unbestimmte $c$ beliebige Werte annehmen kann und man $b$ = \MSimplifyQuestion{10}{2*c-1/3}{5}{a,b,c,d}{4}{0} einsetzen kann.
+Zeile II ergibt, dass die Unbestimmte $c$ beliebige Werte annehmen kann und man $b$ = \MLSimplifyQuestion{10}{2*c-1/3}{5}{a,b,c,d}{4}{0}{SIMPLE37} einsetzen kann.
 \ \\ \ \\
-Zeile I ergibt, dass die letzte Unbestimmte den Wert $a$ = \MSimplifyQuestion{10}{-7*c-1/3}{5}{a,b,c,d}{4}{0} in Abhängigkeit von $c$ besitzt.\\
+Zeile I ergibt, dass die letzte Unbestimmte den Wert $a$ = \MLSimplifyQuestion{10}{-7*c-1/3}{5}{a,b,c,d}{4}{0}{SIMPLE38} in Abhängigkeit von $c$ besitzt.\\
 \MInputHint{Sämtliche Eingaben sind rationale Zahlen oder lineare Terme in den Unbestimmten $a,b,c,d$.}
 \ \\ \ \\
-Dieses Gleichungssystem beschreibt eine vierdimensionale \MQuestion{20}{Gerade}.
+Dieses Gleichungssystem beschreibt eine vierdimensionale \MLQuestion{20}{Gerade}{GERADE}.
 \end{MExercise}
 \end{MXContent}
 
