@@ -66,7 +66,7 @@ require Exporter;
 @EXPORT_OK = qw();
 
 # File::Data enthaelt einige Datei-verarbeitende Funktionen
-use File::Data;
+use converter::File::Data;
 
 
 # sub new()

@@ -547,8 +547,6 @@
 % Bei Uebersetzung nach PDF werden die theorem-Umgebungen verwendet, bei Uebersetzung in HTML ein manuelles Makro
 \ifttm%
 
-  \newenvironment{MSolution}{\special{html:<!-- loesung -->}}{\special{html:<!-- endloesung -->}}
-
   \newenvironment{MHint}[1]{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" id="MHintButton}\arabic{MHintCounter}\special{html:" %
   type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}#1\special{html:</button>}
   \special{html:<div class="hint" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
@@ -709,7 +707,6 @@
   \newenvironment{MFetchExercise}{}{} % kann im PDF nicht dargestellt werden
   
   \newenvironment{MExercise}{\begin{exrc}\renewcommand{\MStdPoints}{1}\MTB}{\end{exrc}}
-  \newenvironment{MSolution}{\ \\ \underline{L\"osung:}\\}{}
   \newenvironment{MHint}[1]{\ \\ \underline{#1:}\\}{}
   \newenvironment{MCOSHZusatz}{\ \\ \underline{Weiterführende Inhalte:}\\}{}
   \newenvironment{MDefinition}{\ifnum\value{MInfoNumbers}=0\begin{defnc}\else\begin{defn}\fi\MTB}{\ifnum\value{MInfoNumbers}=0\end{defnc}\else\end{defn}\fi}
@@ -752,7 +749,7 @@
 \fi%
 
 % MHint sollte nicht direkt fuer Loesungen benutzt werden wegen solutionselect
-\newenvironment{MSolutionHint}{\begin{MHint}{L"osung}}{\end{MHint}}
+\newenvironment{MSolution}{\begin{MHint}{L"osung}}{\end{MHint}}
 
 \newcounter{MCodeCounter}
 
