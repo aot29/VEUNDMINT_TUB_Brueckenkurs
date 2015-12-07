@@ -1422,6 +1422,7 @@ sub postprocess {
   $orgpage = $_[0];
   $text = $_[1];
   $outputfile = $_[2];
+  my $outputfolder = "";
   if ( $outputfile =~ m/(.+)\/(.+)/ ) {
     $outputfolder = $1;
   } else {
@@ -1446,9 +1447,8 @@ sub postprocess {
 
     # $text =~ s/[\n\r]*//g ;
 
-    $pref = "xxx"; # Prefix wird vor modifizierte td's gesetzt um sie zu markieren
-
-    $rpr = "CRLF";
+    my $pref = "xxx"; # Prefix wird vor modifizierte td's gesetzt um sie zu markieren
+    my $rpr = "CRLF";
     while ($text =~ /$rpr/i ) { $rpr = $rpr . "y" };
     # print "Using CRLF-Prefix: $rpr\n";
     $text =~ s/\n/$rpr A/g;
@@ -1480,10 +1480,10 @@ sub postprocess {
       # print "Align-environment $i with align=\"$al\":\n";
 
       while ($text =~ /<!-- startalign;;$i;;$al; \/\/-->(.*?)<td(.*?)>(.*)<!-- stopalign;;$i; \/\/-->/  ) {
-	$x1 = $1;
-	$x2 = $2;
-	$xrep = $x2;
-	$x3 = $3;
+	my $x1 = $1;
+	my $x2 = $2;
+	my $xrep = $x2;
+	my $x3 = $3;
       
 	if ($xrep =~ s/align=[\"'](.*?)[\"']/align=\"$al\"/ ) {
 	  # direct align replace happened
@@ -1590,14 +1590,15 @@ sub postprocess {
       $text =~ s/<!-- registerfile;;$fnameorg2;;$includedir;;$fileid; \/\/-->// ;
       # oberste Verzeichnisebene aus $fname entfernen, denn die include-Verzeichnisse fuer die Module werden im HTML-Baum nicht reproduziert
       if ($includedir ne ".") { $fname =~ s/$includedir\///; }
-      $fi = "tex/" . $includedir . "/" . $fname;
+      my $fi = "tex/" . $includedir . "/" . $fname;
       
       if ($dobase64 eq 1) {
         my $sc = -s $fi;
         print "   generating base64-Inlinestring for $fi of size $sc\n";
         open PNGFILE, '<', $fi;
         binmode PNGFILE;
-        my $buf; $c64 = "";
+        my $buf;
+        my $c64 = "";
         if (read( INFILE, $buf, $sc )) {
           $c64 = encode_base64($buf);
         } else {
@@ -1607,7 +1608,7 @@ sub postprocess {
         print "   OUTPUT = \n" . $c64 . "\n\n";
       }
       
-      $fi2 = $outputfolder . "/" . $fname;
+      my $fi2 = $outputfolder . "/" . $fname;
       print "     Copying $fi to $fi2\n";
       $fi2 =~ /(.*)\/[^\/]*?$/;
       # print "New folder $1\n";
@@ -1639,22 +1640,6 @@ sub postprocess {
 
   # print "POST:\n$text";
 
-  # modulgheader und footer abfangen und grafische Darstellung einsetzen
-  if (($p->{TESTSITE} ne 1) and ($p->{HELPSITE} ne 1)) {
-    my $ghrep = "";
-    # $ghrep = "<b>" . $orgpage->{NR} . " / " . ($#{$orgpage->{PARENT}->{SUBPAGES}} + 1) . "</b>\n";
-    while ($text =~ m/<!-- modulgheader \/\/-->/s ) {
-      $text =~ s/<!-- modulgheader \/\/-->/$ghrep/s ;
-      print("Grafischen Modulheader fuer Modul " . $orgpage->{NR} . " (" . $orgpage->{TITLE} . ") erzeugt\n");
-    }
-    $ghrep = "<p><center><b>Stichworte in diesem Modul</b></center>";
-    
-    while ($text =~ m/<!-- modulgfooter \/\/-->/s ) {
-      $text =~ s/<!-- modulgfooter \/\/-->/$ghrep/s ;
-      print("Grafischen Modulfooter fuer Modul " . $orgpage->{NR} . " (" . $orgpage->{TITLE} . ") erzeugt\n");
-    }
-  }
-  
   # Falls es eine Pruefungsseite ist, Kennvariablen fuer die Aufgabenpunkte erzeugen
   if ($orgpage->{TESTSITE} eq 1) {
     $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/isTest = true;\nvar nMaxPoints = 0;\nvar nPoints = 0;\n\/\/ <JSCRIPTPRELOADTAG>/s ;
@@ -1723,6 +1708,7 @@ sub postprocess {
   # Beachte: qpos = Eindeutiger Exportindex pro tex-Datei (wird im PreParsing erstellt, unabhängig von section oder xcontent)
   # pos = Eindeutiger Exportindex pro page bzw. html-Datei (wird im Postprocessing erstellt), Dateiname des exports ist pagename plus pos plus extension
   while ($text =~ m/<!-- qexportstart;(.*?); \/\/-->(.*?)<!-- qexportend;(.*?); \/\/-->/s ) {
+    my $pos = 0;
     my $qpos = $1;
     my $expt = $2;
     if ($qpos == $3) {
@@ -1732,7 +1718,7 @@ sub postprocess {
         $exprefix .= "\% Dieser Quellcode steht unter CCL BY-SA, entnommen aus dem VE\&MINT-Kurs " . $config{parameter}{signature_CID} . ",\n";
         $exprefix .= "\% Inhalte und Quellcode des Kurses dürfen gemäß den Bestimmungen der Creative Common Lincense frei weiterverwendet werden.\n";
         $exprefix .= "\% Für den Einsatz dieses Codes wird das Makropaket mintmod.tex benötigt.\n";
-        my $pos = 0 + @{$orgpage->{EXPORTS}};
+        $pos = 0 + @{$orgpage->{EXPORTS}};
         push @{$orgpage->{EXPORTS}}, ["export$pos.tex","$exprefix$expt",$qpos];
         $rep = "<br />";
         $rep .= "<button style=\"background-color: #FFFFFF; border: 0px\" ttip=\"1\" tiptitle=\"Quellcode dieser Aufgabe im LaTeX-Format\" name=\"Name_EXPORTT$pos\" id=\"EXPORTT$pos\" type=\"button\" onclick=\"export_button($pos,1);\">";
@@ -1850,7 +1836,7 @@ sub getfooter {
 # Uebersetzt die alten (VEMA) Iconnamen in die neuen Dateiprefixe, im alten Design geschieht diese Uebersetzung im default.css
 # Parameter: Der Iconstring
 sub translateoldicons {
-  ($icon) = @_;
+  my ($icon) = @_;
   
   if ($icon eq "beweis") { $icon = "book"; }
   if ($icon eq "anwdg") { $icon = "exclam"; }
@@ -1867,7 +1853,7 @@ sub translateoldicons {
 # Erzeugt das navigations-div fuer die html-Seiten
 # Parameter: icon (Klassenname) und Anker (HTML-String der a-Tag enthalten sollte)
 sub createTocButton {
-  ($icon, $anchor) = @_;
+  my ($icon, $anchor) = @_;
   
   return "<div class=\"$icon\">" . $anchor . "</div>\n";
 }
@@ -1875,7 +1861,7 @@ sub createTocButton {
 # Erzeugt das navigations-div fuer die html-Seiten
 # Parameter: Das Seitenobjekt
 sub getnavi {
-  ($site) = @_;
+  my ($site) = @_;
 
   my $p;
   my $navi = "";
@@ -1938,7 +1924,7 @@ sub getnavi {
 	$navi .= "  <li class=\"inormalbutton_book\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $site->{BACK}->link() . ".{EXT}\">" . "Zum Modul" . "</a></li>\n";
       } else {
         # Link auf Modulstart setzen bei hoeheren Ebenen
-	$pp = $site;
+	my $pp = $site;
 	if ($pp->{LEVEL}!=$contentlevel) {
 	  my @sp = @{$pp->{SUBPAGES}};
 	  $pp = $sp[0];
@@ -1955,13 +1941,13 @@ sub getnavi {
     if ($parent = $site->{PARENT}) {
       my @pages = @{$parent->{SUBPAGES}};
       for ( $i=0; $i <= $#pages; $i++ ) {
-	$p = $pages[$i];
-	$attr ="normal";
+	my $p = $pages[$i];
+	my $attr ="normal";
 	if ($p->secpath() eq $site->secpath()) { $attr = "selected"; }
-	$icon = $p->{ICON};
+	my $icon = $p->{ICON};
 	if ($icon eq "STD") { $icon = "book"; }
 	$icon = translateoldicons($icon);
-	$cap = $p->{CAPTION};
+	my $cap = $p->{CAPTION};
 	if ($icon ne "NONE") {
 	  $icon = "button_" . $icon;
 	  if (($p->{DISPLAY}) and ($site->{LEVEL}==$contentlevel)) {
@@ -1991,14 +1977,14 @@ sub getnavi {
 # Liefert das anklickbare Logo fuer die Hauptseite als HTML-String
 # Parameter: Das Seitenobjekt
 sub getlogolink {
-  ($p) = @_;
+  my ($p) = @_;
   
   my $r = "";
   
-  if ($logofile eq "") {
+  if ($config{parameter}{mainlogo} eq "") {
     if ($mainsiteline eq 1) { $r = "<a class=\"MINTERLINK\" href=\"" . $p->linkpath() . "../index.html\">Hauptseite</a>"; }
   } else {
-    $r = "<img style=\"\" src=\"" . $p->linkpath() . "../images/$logofile\"><br /><br />";
+    $r = "<img style=\"\" src=\"" . $p->linkpath() . "../images/" . $config{parameter}{mainlogo} . "\"><br /><br />";
     if ($mainsiteline eq 1) {  $r .= "<a class=\"MINTERLINK\" href=\"" . $p->linkpath() . "../index.html\">Hauptseite</a>"; }
   }
 
@@ -2008,7 +1994,7 @@ sub getlogolink {
 # Liefert das Eingabecheckfeld als HTML-String
 # Parameter: Das Seitenobjekt
 sub getinputfield {
-  ($p) = @_;
+  my ($p) = @_;
 
   my $s = "<div id=\"NINPUTFIELD\" data-bind=\"evalmathjax: ifobs\"></div><br />";
   $s .= "<textarea name=\"NUSERMESSAGE\" id=\"UFIDM\" rows=\"4\" style=\"background-color:\#CFDFDF; width:200px; overflow:auto; resize:none\"></textarea><br /><br />";
@@ -2018,7 +2004,7 @@ sub getinputfield {
 # Erzeugt das toccaption-div fuer die html-Seiten
 # Parameter: Das Seitenobjekt
 sub gettoccaption {
-  ($p) = @_;
+  my ($p) = @_;
   my $c = "";
 
   # Nummer des gerade aktuellen Fachbereichs ermitteln
@@ -2129,7 +2115,7 @@ sub gettoccaption {
 # Erzeugt das toccaption-div fuer die html-Seiten im Menu-Style
 # Parameter: Das Seitenobjekt
 sub gettoccaption_menustyle {
-  ($p) = @_;
+  my ($p) = @_;
   my $c = "";
 
   # Nummer des gerade aktuellen Fachbereichs ermitteln
@@ -2273,7 +2259,7 @@ sub gettoccaption_menustyle {
 # Erzeugt das content-div fuer die html-Seiten
 # Parameter: Das Seitenobjekt
 sub getcontent {
-  ($p) = @_;
+  my ($p) = @_;
   my $content = "";
   $content .= "<hr />\n{CONTENT}";
   $content .= "<hr />\n"; # </div> entfernt !
@@ -2822,7 +2808,7 @@ sub createtocs {
     $toc = $toc . "<a class=\"MINTERLINK\" href='" . $lk ."'>" . $subpages[$i]->{TITLE} . "</a><br />";
   }
 
-  $text = $p->{TEXT};
+  my $text = $p->{TEXT};
   if ($text =~ s/<!-- toc -->/$toc/g) { $p->{TEXT} = $text; }
 
   #Rekursion auf Unterseiten
@@ -2883,7 +2869,7 @@ sub createlinks {
 	sub readlinks {
 		my ($p) = @_;
 		my (@subpages, $i, $text, @pagelinks);
-		my $text = $p->{TEXT};
+		$text = $p->{TEXT};
 		
 		#Suche alle Link-Anker
 		@pagelinks = ($text =~ /<a [^>]*?name=".*?".*?>.*?<\/a>/sg);
@@ -2910,7 +2896,7 @@ sub createlinks {
 	sub writelinks {
 		my ($p) = @_;
 		my (@subpages, $i, $text, @pagelinks);
-		my $text = $p->{TEXT};
+		$text = $p->{TEXT};
 		my $linkpath = $p->linkpath();
 		
 		#itteriere ueber die im Hash gespeicherten Link-Anker
