@@ -5,6 +5,9 @@ Dies ist der Hauptordner des Repositories ve-und-mint,
 es dient der Entwicklung der nicht-öffentlichen Version des
 VE&MINT-Onlinebrückenkurses im Rahmen einer TU9-Initiative.
 
+Der Autokonverter kann genutzt werden, um die aktuellen Änderungen im Branch develop_content
+zu konvertieren und anzuzeigen: http://mintlx3.scc.kit.edu/autoconverter/autoconv.php
+
 Beschreibung der git-Zweige (branches) im Projekt ve-und-mint:
 
 Hauptzweige:
