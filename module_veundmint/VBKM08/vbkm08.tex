@@ -1292,7 +1292,7 @@ Der aktuelle Aufenthaltsort $s(T)$ ergibt sich durch die Umkehrung der Ableitung
 Geschwindigkeit über die Zeit. Mit dem Anfangswert $s(t = 0) = s_0$ zur Zeit $t = 0$ erhalten wir damit
 %
 \begin{eqnarray*}
-\int_{0}^{T}\frac{ds}{dt} \MD t &=& \int_{0}^{T} v \MD t \\
+\int_{0}^{T}\frac{\MD s}{\MD t} \MD t &=& \int_{0}^{T} v \MD t \\
 \Leftrightarrow\;\;\left[s(t)\right]_{0}^{T} &=& \int_{0}^{T} v \MD t \\
 \Leftrightarrow\;\;s(T) - s(0) &=& \int_{0}^{T} v \MD t \\
 \Leftrightarrow\;\;s(T) &=& s_0 + \int_0^T v(t) \MD t.
@@ -1332,12 +1332,13 @@ folgenden Rechnung zu
 \begin{eqnarray*}
 \int_{-2 \pi}^{2 \pi} |f(x)| \MD x %
  & = & 3 \cdot \int_{-2 \pi}^{2 \pi}  \left|\sin\left(x\right)\right| \MD x \\
- & = & 3 \cdot 2 \cdot \int_{0}^{2 \pi}  \left|\sin\left(x\right)\right| \MD x \\
- & = & 6 \cdot \left( \int_{0}^{\pi}  \left|\sin\left(x\right)\right| \MD x
-         +\int_{\pi}^{2\pi}  \left|\sin\left(x\right)\right| \MD x\right) \\
- & = & 6 \cdot \left( \left|\int_{0}^{\pi} \sin\left(x\right) \MD x\right|
-         + \left|\int_{\pi}^{2\pi} \sin\left(x\right) \MD x\right|\right) \\
- & = & 6 \cdot (2+2) \\
+ & = & 3 \cdot 2 \cdot \int_{0}^{2 \pi}  \left|\sin\left(x\right)\right| \MD x,
+ \qquad \text{da die Funktion\ $|\sin|$\ gerade ist,} \\
+ & = & 6 \cdot \left( \int_{0}^{\pi}  \sin\left(x\right) \MD x %
+         +\int_{\pi}^{2\pi}  \left(-\sin\left(x\right)\right) \MD x\right) \\
+ & = & 6 \cdot \left( \left[ -\cos\left(x\right)\right]_0^\pi %
+         + \left[ \cos\left(x\right)\right]_{\pi}^{2\pi}\right) \\
+ & = & 6 \cdot \left(\left(-(-1)+1\right)+\left(1-(-1)\right)\right) \\
  & = & 24. %
 \end{eqnarray*}
 \end{MHint}
