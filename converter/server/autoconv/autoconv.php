@@ -50,7 +50,10 @@ try {
 
   simple_execute("git checkout $branch", "Wechsel auf branch $branch");
   simple_execute("git status", "Status des branchs");
-  simple_execute("git pull $repo", "Die letzen $commits Änderungen:");
+  
+  // WICHTIG: Auf dem Server muss git config remote.origin.url https://gitusername:gitpassword@bitbucket.org/dhaase/ve-und-mint.git ausgeführt worden sein!
+  
+  simple_execute("git pull origin $branch", "Die letzen $commits Änderungen:");
   
   $comtext = `git log -$commits`;
   $comtext = str_replace("<", "(", $comtext); $comtext = str_replace(">", ")", $comtext);  // eMail-Klammern entfernen
