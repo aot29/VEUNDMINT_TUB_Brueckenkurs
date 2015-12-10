@@ -19,7 +19,6 @@
 # SAVEPAGE		boolean, Text abspeichern
 # MENUITEM		boolean, Seite taucht im Menu auf
 # DISPLAY		boolean, Seite wird gespeichert
-# LOGFILE		string, Datei in die log-text geschrieben wird
 
 # DH 2011:
 # MODULID		integer, index in das Feld der Modulid's in vorkurs.pl bzw. direkter Strings
@@ -53,7 +52,6 @@
 # navnext		liefert das in der Struktur vorhergehende Objekt, das ausgegeben wird
 # subpagelist	liefert eine Liste der untergeordneten Seiten
 # gettext		liefert den Text dieser Seite
-# logtext		schreibt log-Text in die Datei LOGFILE
 
 # DH 2011
 # idprint		gibt über print die IDs der im Teilbaum enthaltenen Pages aus
@@ -62,7 +60,7 @@ package Page;
 # Exportieren der oeffentlichen Funktionen
 require Exporter;
 @ISA = qw(Exporter);
-@EXPORT = qw(new split link linkpath addpage secpath titlepath menu fullmenu navprev navnext subpagelist gettext logtext idprint);
+@EXPORT = qw(new split link linkpath addpage secpath titlepath menu fullmenu navprev navnext subpagelist gettext idprint);
 @EXPORT_OK = qw();
 
 # File::Data enthaelt einige Datei-verarbeitende Funktionen
@@ -72,10 +70,9 @@ use converter::File::Data;
 # sub new()
 # Konstruktor der Klasse
 # Parameter
-#	$logfile	Pfad der Textdatei in der geloggt werden soll
 #
 sub new {
-	my ($package, $logfile) = @_;
+	my ($package) = @_;
 	
 	# Initialisierung der Objekteigenschaften
 	my $self = {
@@ -101,7 +98,6 @@ sub new {
 		SAVEPAGE  => 0,
 		MENUITEM  => 1,
 		DISPLAY   => 0,
-		LOGFILE   => $logfile,
 		EXPORTS   => (),
 		DOCNAME   => ""
 	};
@@ -111,7 +107,6 @@ sub new {
 	$self->{ROOT} = $self;
 	#Variablentyp auf die Klasse stellen
 	bless $self, $package;
-	#$self->logtext("new page");
 	return $self;
 }
 
@@ -140,13 +135,11 @@ sub split {
 		#keine weitere Unterteilung
 		$self->{TEXT} = $text;
 		$self->{DISPLAY} = 1;
-		$self->logtext("Keine weitere Unterteilung");
 		if ($level>$splitlevel) {
 		$self->{TITLE}="Test";
 		}	
 	} else {
 		#Teilung in Unterabschnitte
-		$self->logtext("Teilung in Unterabschnitte");
 		#Level erhoehen
 		$nextlevel = $level +1;
 		#Trennug des Textes anhand von <h.>
@@ -164,7 +157,7 @@ sub split {
 		for ($subsec = 1;$subsec<=$#subsections;$subsec++)
 		{
 			#neues Objekt
-			$p = Page->new($self->{LOGFILE});
+			$p = Page->new();
 			$p->{DISPLAY} = 1;
 			
 			#Text aus Array holen
@@ -628,23 +621,6 @@ sub gettext {
 	return $self->{TEXT};
 }
 
-
-# 
-# sub logtext()
-# schreibt log-Text in die Datei LOGFILE
-# Parameter
-# 	$text	Text, der in die Datei geschrieben wird
-sub logtext {
-	my ($self, $text) = @_;
-	#Falls es eine log-Datei gibt
-	if ($self->{LOGFILE}) {
-		#wird diese geoeffnet
-		$fh = File::Data->new($self->{LOGFILE});
-		#und eine Zeile mit der Seite-Position und dem Text angehaengt
-		$fh->append($self->secpath() . "\t" . $text . "\n");
-		undef $fh;
-	}
-}
 
 # 
 # sub idprint()

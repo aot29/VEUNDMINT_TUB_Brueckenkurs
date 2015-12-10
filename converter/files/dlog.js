@@ -27,7 +27,8 @@
 // 3: CLIENTWARN   Wird als Feedback an Server geschickt, stellt eine interne Fehlermeldung dar die aber nicht gravierend ist
 // 4: DEBUGINFO    Wird nur auf Browserkonsole ausgegeben, und nur falls es keine Releaseversion ist
 // 5: VERBOSEINFO  Wird nur auf Browserkonsole ausgegeben, und nur falls es keine Releaseversion ist und verbose-flag aktiv ist
-// 6: CLIENTONLY   Wird nur Browserkonsole ausgegeben, auch in Releases, und ohne Prefix
+// 6: CLIENTONLY   Wird nur auf Browserkonsole ausgegeben, auch in Releases, und ohne Prefix
+// 7: FATALERROR   Schwerwiegender Fehler, log-Funktion gibt ihn als die-Meldung aus (nur Konvertierung), macht bei fertigen Modulen (und damit im JS) keinen Sinn
 // Message wird nur in nicht-release-Versionen auf Clientkonsole ausgegeben
 
 var CLIENTINFO = 1;
@@ -36,6 +37,7 @@ var CLIENTWARN = 3;
 var DEBUGINFO = 4;
 var VERBOSEINFO = 5;
 var CLIENTONLY = 6;
+var FATALERROR = 7;
 
 function logMessage(lvl, msg) {
   switch(lvl) {
@@ -89,6 +91,12 @@ function logMessage(lvl, msg) {
 
       case 6: {
           console.log(msg);
+          break;
+      }
+
+      case 7: {
+	  // Sollte JS-seitig niemals eintreten aber trotzdem ausgeben
+          console.log("FATAL: " + msg);
           break;
       }
 

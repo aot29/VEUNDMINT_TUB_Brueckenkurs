@@ -43,6 +43,15 @@ our $zip = "";               # Filename of zip file (if neccessary)
 our @IncludeStorage = ();
 our @DirectHTML = ();
 
+# stellt das Verhalten des Menues im Header ein
+# 0 bedeutet, dass Info die erste Seite eines Moduls ist
+# 1 Info wird nach Aufgaben eingegliedert und aus der Vorwaerts-Rückwärtskonfig ausgeklammert
+our $contentlevel = 4; # Level der subsubsections
+our $XIDObj = -1;
+
+our @LabelStorage; # Format jedes Eintrags: [ $lab, $sub, $sec, $ssec, $sssec, $anchor, $pl ]
+
+
 # -------------------------------------------------------------------------------------------------------------
 
 my @tominify = ("mintscripts.js", "servicescripts.js", "intersite.js", "convinfo.js", "userdata.js", "mparser.js", "dlog.js", "exercises.js");
@@ -68,7 +77,6 @@ our $searchfile = "";
 our $favofile = "";
 our $locationfile = "";
 our $stestfile = "";
-our $betafile = "";
 
 
 # ----------------------------- Variablen fuer die Konvertierung -------------------------------------------------
@@ -77,7 +85,6 @@ our $version = "Version 3.0";
 our $dokversion = "M3.0";
 
 # Diese Einstellungen haben keine Auswirkungen auf die produzierten Module, daher nicht in Parameterdatei
-our $logfile = "./conv.log";
 our $xmlfile = "converted.xml";
 
 
@@ -92,7 +99,6 @@ our $chaptersite = "chapters.html";
 our $startsite = "index.html";
 our $favorsite = ""; # "favor.html";
 our $stestsite = "stest.html";
-our $betasite = "betasite.html";
 
 our $locationsite = ""; # Wird aus Dokument geholt
 our $locationlong = ""; # Wird aus Dokument geholt
@@ -115,13 +121,72 @@ our @colexports = (); # Wird vom postprocessing in split.pm gefuellt
 
 our @converrors = (); # Array aus Strings
 
-our $isBeta = 1; # = 0 -> release, wird auf 0 gesetzt wenn kein globalbetatag im xml
-
 our $mainsiteline = 0;
+
+our $randcharstr = "0123456789,.;abcxysqrt()/*+-";
+
+# Globale Meldungsstufen (client-basiert in dlog.js)
+# 1: CLIENTINFO   Wird als Feedback an Server geschickt, stellt eine Informationsmeldung dar
+# 2: CLIENTERROR  Wird als Feedback an Server geschickt, stellt eine Fehlermeldung dar die behandelt werden muss, wird auch gesendet wenn Benutzer die USAGE abgeschaltet hat
+# 3: CLIENTWARN   Wird als Feedback an Server geschickt, stellt eine interne Fehlermeldung dar die aber nicht gravierend ist
+# 4: DEBUGINFO    Wird nur auf Browserkonsole ausgegeben, und nur falls es keine Releaseversion ist
+# 5: VERBOSEINFO  Wird nur auf Browserkonsole ausgegeben, und nur falls es keine Releaseversion ist und verbose-flag aktiv ist
+# 6: CLIENTONLY   Wird nur auf Browserkonsole ausgegeben, auch in Releases, und ohne Prefix
+# 7: FATALERROR   Schwerwiegender Fehler, log-Funktion gibt ihn als die-Meldung aus
+# Message wird nur in nicht-release-Versionen auf Clientkonsole ausgegeben
+
+our $CLIENTINFO = "1";
+our $CLIENTERROR = "2";
+our $CLIENTWARN = "3";
+our $DEBUGINFO = "4";
+our $VERBOSEINFO = "5";
+our $CLIENTONLY = "6";
+our $FATALERROR = "7";
 
 # ----------------------------- Funktionen -----------------------------------------------------------------------
 
-our $randcharstr = "0123456789,.;abcxysqrt()/*+-";
+# Parameter lvl = loglevel, eine der obigen Konstanten, msg = textstring (die Meldung)
+sub logMessage {
+  my ($lvl, $msg) = @_;
+  
+  # Konvertierung findet auf Server statt, nicht auf Client, also wird alles Serverrelevante sofort ausgegeben
+  if ($lvl eq $CLIENTINFO) {
+    print "INFO:    $msg\n";
+  } else {
+    if ($lvl eq $CLIENTERROR) {
+      print "ERROR:   $msg\n";
+    } else {
+      if ($lvl eq $CLIENTWARN) {
+        print "WARNING: $msg\n";
+      } else {
+        if ($lvl eq $DEBUGINFO) {
+          # release oder nicht macht fuer Serverseite keinen Sinn, also zaehlt doverbose
+          if ($config{doverbose} eq 1) {
+            print "DEBUG:   $msg\n";
+          }
+        } else {
+          if ($lvl eq $VERBOSEINFO) {
+            if ($config{doverbose} eq 1) {
+              print "VERBOSE: $msg\n";
+            }
+          } else {
+            if ($lvl eq $CLIENTONLY) {
+              # Auf Serverseite keine Ausgabe
+            } else {
+              if ($lvl eq $FATALERROR) {
+                print "FATAL ERROR: ";
+                die($msg);
+              } else {
+                print "ERROR: Wrong error type $lvl, message: $msg\n";
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 
 sub injectEscapes {
   my $str = $_[0];
@@ -185,9 +250,9 @@ sub gcd($$) {
 # Minimiert und obfuskiert alle JS-Dateien im aktuellen Verzeichnis (rekursiv!)
 sub minimizeJS {
   my $fdi = 0;
-  print("Minimiere JS:\n");
+  logMessage($CLIENTINFO, "Minimiere JS:");
   my $borknt = $#tominify + 1;
-  print "  $borknt js-Dateien vorgesehen\n";
+  logMessage($CLIENTINFO, "  $borknt js-Dateien vorgesehen");
   my $borkka;
   my $borkfilename = "";
   for ($borkka = 0; $borkka < $borknt; $borkka++) {
@@ -196,7 +261,7 @@ sub minimizeJS {
     
     my $rt = `grep console.log $borkfilename`;
     if ($rt ne "") {
-      print "  JavaScript-Datei $borkfilename enthaelt console.log-Befehle, die durch logMessage zu ersetzen sind!\n";
+        logMessage($CLIENTINFO, "  JavaScript-Datei $borkfilename enthaelt console.log-Befehle, die durch logMessage zu ersetzen sind!");
     }
     
     my $borkcall = "file -i $borkfilename";
@@ -208,18 +273,18 @@ sub minimizeJS {
       $domini = 1;
     } else {
       $rt =~ m/charset\=(.+)\n/s ;
-      print " => Charset " . $1 . " ungeeignet, nur ASCII erlaubt, wird nicht minimiert!\n";
+      logMessage($CLIENTINFO, " => Charset " . $1 . " ungeeignet, nur ASCII erlaubt, wird nicht minimiert!");
     }
     
     if ($domini eq 1) { 
       $borkcall = "java -jar $basis/converter/yuicompressor-2.4.8.jar $borkfilename -o $borkfilename";
-      print("     " . $borkcall . "\n");
+      logMessage($CLIENTINFO, "  " . $borkcall);
       system($borkcall);
       $fdi++;
     }
   }
   
-  print "  $fdi Dateien minimiert\n";
+  logMessage($CLIENTINFO, "  $fdi Dateien minimiert");
 }
 
 # Borkifiziert alle HTML-Dateien im aktuellen Verzeichnis (rekursiv!)
@@ -703,22 +768,6 @@ ENDE
 # Aufrufreihenfolge: JSCRIPTPOSTMODUL, globalreadyHandler, globalloadHandler
 
 
-
-
-# stellt das Verhalten des Menues im Header ein
-# 0 bedeutet, dass Info die erste Seite eines Moduls ist
-# 1 Info wird nach Aufgaben eingegliedert und aus der Vorwaerts-Rückwärtskonfig ausgeklammert
-our $newBehavior = 1;
-our $contentlevel = 4; # Level der subsubsections
-our $PageIDCounter = 1;
-our $XIDObj = -1;
-
-our @LabelStorage; # Format jedes Eintrags: [ $lab, $sub, $sec, $ssec, $sssec, $anchor, $pl ]
-
-# =======================
-# = Spracheinstellungen =
-# =======================
-
 # -------------------------------------- subs --------------------------------------------------------------------------------
 
 sub VERSION_MESSAGE {
@@ -727,35 +776,6 @@ sub VERSION_MESSAGE {
 
 sub HELP_MESSAGE {
     print "Usage: mconvert.pl <parameters.pl>\n";
-}
-
-sub verarbeitung {
-	my ($root) = @_;
-
-	# Auf Unterabschnitte verlinken
-	hidepageswotext($root);
-
-	# MathML Optimierungen
-	logtext("\nMathML Optimierungen");
-	mathmloptimize($root);
-	logtext("Vorkurs Optimierungen");
-
-	# Vorhandene Links mit ../ versehen
-	linkupdate($root, "../");
-
-
-	# Die folgenden Manipulationen muessen nach linkupdate
-	# passieren, da dort Links auf Seiten innerhalb der
-	# Seitenstruktur erstellt werden
-
-        # tocs erzeugen (vor createlinks, weil dort die links im toc gesetzt werden)
-        createtocs($root);
-
-	# Links und Anker setzen
-	createlinks($root);
-
-        # Spezialbehandlung fuer die Hilfesektion
-        relocatehelpsection($root,0);
 }
 
 
@@ -790,8 +810,8 @@ sub verarbeitung {
 	# sub new()
 	# Konstruktor
 	sub new {
-		my ($package, $logfile) = @_;
-		my $self = Page->new($logfile);
+		my ($package) = @_;
+		my $self = Page->new();
 		# ISMODUL gibt an, ob dies ein Modul ist
 		# diese Eigenschaft wird durch die split Funktion gesetzt
 		$self->{ISMODUL} = 0;
@@ -833,9 +853,6 @@ sub verarbeitung {
       # print "DEBUGTEXT:\n\n$text\n\n";
 
 			if ($text =~ /$searchstring/) {
-				$self->logtext("Modulunterteilung");
-				# Modulunterteilung starten
-				#print "split " . $self->{NR} . " in Modulteile\n";
 				$self->{ISMODUL} = 1;
 				$self->{DISPLAY} = 0;
 				$self->{TEXT} = "";
@@ -878,7 +895,7 @@ sub verarbeitung {
 
                                     my $p;
 
-                                    $p = ModulPage->new($self->{LOGFILE});
+                                    $p = ModulPage->new();
                                     # Subpage hinzufuegen
                                     $self->addpage($p);
 
@@ -1016,7 +1033,7 @@ sub verarbeitung {
 				    my $tpcontent = substr($text,$tpa+length($markera),($tpb - $tpa) - length($markera));
                                     my $p;
 
-                                    $p = ModulPage->new($self->{LOGFILE});
+                                    $p = ModulPage->new();
                                     # Subpage hinzufuegen
                                     $self->addpage($p);
 
@@ -1188,7 +1205,11 @@ sub verarbeitung {
 		my ($self) = @_;
 		my ($p);
 
+		
+		main::logMessage($VERBOSEINFO, "  navprev fuer Page " . $self->{TITLE});
 		$p = $self->{PREV};
+		main::logMessage($VERBOSEINFO, "    PREV is " . $p->{TITLE});
+
 		# Hier wird die Schleife auch abgebrochen, wenn Display aus ist und es sich um ein Modul mit Unterseiten handelt
 		until ($p->{LEVEL} == 0 || $p->{DISPLAY} || ($p->{ISMODUL} && $#{$p->{SUBPAGES}} >=0 )) {
 			$p = $p->{PREV};
@@ -1229,138 +1250,11 @@ sub verarbeitung {
 		}
 	}
 
-	# sub logtext()
-	# Verhalten wie Page-Klasse
-	sub logtext {
-		my ($self, @args) = @_;
-		return $self->SUPER::logtext(@args);
-	}
 }
 
-
-
-{
-	package SolutionPage;
-	use base 'Page';
-
-	# sub new()
-	# Konstruktor
-	sub new {
-		my ($package, $logfile) = @_;
-		my $self = Page->new($logfile);
-		$self->{DISPLAY} =1;
-		$self->{MENUITEM} =0;
-		bless $self;
-		return $self;
-	}
-
-	# nichts tun
-	sub split {
-	}
-
-	# sub link()
-	# Verhalten wie Page-Klasse
-	sub link {
-		my ($self, @args) = @_;
-		return $self->SUPER::link(@args);
-	}
-
-	# sub linkpath()
-	# Verhalten wie Page-Klasse
-	sub linkpath {
-		my ($self, @args) = @_;
-		return $self->SUPER::linkpath(@args);
-	}
-
-	# sub addpage()
-	# Verhalten wie Page-Klasse
-	sub addpage {
-		my ($self, @args) = @_;
-		return $self->SUPER::addpage(@args);
-	}
-
-	# sub secpath()
-	# Verhalten wie Page-Klasse
-	sub secpath {
-		my ($self, @args) = @_;
-		return $self->SUPER::secpath(@args);
-	}
-
-	# sub titlepath()
-	# Verhalten wie Page-Klasse
-	sub titlepath {
-		my ($self, @args) = @_;
-		return $self->SUPER::titlepath(@args);
-	}
-
-	# sub fullmenu()
-	# Verhalten wie ueberheordnetes Objekt
-	# Dadurch erhaelt die Seite das Menu der uebergeordneten Seite
-	sub fullmenu {
-		my ($self, @args) = @_;
-		return $self->{PARENT}->fullmenu(@args);
-	}
-
-	# sub menu()
-	# hat kein Menu-Item
-	sub menu {
-		my ($self, $curpage, $menuauswahllevel) = @_ ;
-		return "";
-	}
-
-	# sub navprev()
-	# Verhalten wie ueberheordnetes Objekt
-	# Dadurch erhaelt die Seite die Navigation der uebergeordneten Seite
-	sub navprev {
-		my ($self) = @_;
-		return $self->{PARENT}->navprev();
-	}
-
-	# sub navnext()
-	# Verhalten wie ueberheordnetes Objekt
-	# Dadurch erhaelt die Seite die Navigation der uebergeordneten Seite
-	sub navnext {
-		my ($self, @args) = @_;
-		return $self->{PARENT}->navnext(@args);
-	}
-
-	# sub subpagelist()
-	# Verhalten wie uebergeordnetes Objekt
-	sub subpagelist {
-		my ($self, @args) = @_;
-		return $self->{PARENT}->subpagelist(@args);
-	}
-
-	# sub gettext()
-	# Verhalten wie Page-Klasse
-	sub gettext {
-		my ($self, @args) = @_;
-
-		return $self->SUPER::gettext(@args);
-	}
-
-	# sub logtext()
-	# Verhalten wie Page-Klasse
-	sub logtext {
-		my ($self, @args) = @_;
-		return $self->SUPER::logtext(@args);
-	}
-}
 
 
 # ---------------------------------------------- Bearbeitungsfunktionen -------------------------------------------------------------
-
-# 
-# sub logtext()
-# Schreibt Text die log-Datei
-# Parameter
-# 	$text	Text, der geschrieben werden soll
-sub logtext {
-	my ($text) = @_;
-	my $fh = File::Data->new($logfile);
-	$fh->append($text . "\n");
-	undef $fh;
-}
 
 # sub loadfile()
 # liefert den Inhalt der Datei als String (mit Ausgabe auf Konsole)
@@ -1599,7 +1493,7 @@ sub postprocess {
         binmode PNGFILE;
         my $buf;
         my $c64 = "";
-        if (read( INFILE, $buf, $sc )) {
+        if (read( PNGFILE, $buf, $sc )) {
           $c64 = encode_base64($buf);
         } else {
           print "   file not readable\n";
@@ -1673,15 +1567,6 @@ sub postprocess {
     my $exid = $3;
     my $j;
     my $ibt = "\n<br />";
-    # Ehemalige Buttons fuer Studentenfeedback:
-    # for ($j=1; $j<=5; $j++) {
-    #   my $bid = "FEEDBACK$j\_$exid";
-    #   my $tip = "Feedback zu " . $type . " " . $exid . ":<br /><b>" . $feedbacktitles[$j-1] . "</b>";
-    #   $ibt .= "<button style=\"background-color: #FFFFFF; border: 0px\" ttip=\"1\" tiptitle=\"$tip\" name=\"Name_FEEDBACK$j\_$exid\" id=\"$bid\" type=\"button\" onclick=\"feedback_button($j,\'$exid\',\'$bid\',\'$type $exid\');\">";
-    #   $ibt .= "<img alt=\"Feedbackbutton$j\" style=\"width:32px\" src=\"" . $orgpage->linkpath() . "../images/face$j.png\">";
-    #   $ibt .= "</button>";
-    # }
-    # $ibt .= "<br />\n";
 
     my $bid = "FEEDBACK$j\_$exid";
     my $tip = "Feedback zu " . $type . " " . $exid . ":<br /><b>Meldung abschicken</b>";
@@ -1878,7 +1763,7 @@ sub getnavi {
     }
   }
   my $anchor;
-  if (($p) and ($site->{LEVEL}==$contentlevel)) {
+  if (($p) and ($site->{LEVEL} == $contentlevel)) {
     $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\">$ac</a>";
   } else {
     $icon = $icon . "g";
@@ -2001,117 +1886,6 @@ sub getinputfield {
   return "<br />";
 }
 
-# Erzeugt das toccaption-div fuer die html-Seiten
-# Parameter: Das Seitenobjekt
-sub gettoccaption {
-  my ($p) = @_;
-  my $c = "";
-
-  # Nummer des gerade aktuellen Fachbereichs ermitteln
-  my $pp = $site;
-  
-  # $site->{LEVEL} == 1 fuer Fachbereichsseite
-  
-  my $fsubi = -1;
-  while ($pp->{LEVEL}!=($contentlevel-3)) {
-    if ($pp->{LEVEL}==$contentlevel-2) { $fsubi = $pp->{ID}; }
-    $pp = $pp->{PARENT};
-  }
-  my $fbi = $pp->{ID};
-  my $attr = "";
-  my $root = $p->{ROOT};
-  my @pages1 = @{$root->{SUBPAGES}};
-  my $n1 = $#pages1 + 1;
-
-  $c .= "<div class=\"toccaption\">" .  getlogolink($p) . "</div>\n";
-
-  # Einleitende Liste mit den Fachbereichen ohne Teile, aber NUR falls es mehr als einen gibt
-  if ($n1 > 1) {
-    $c .= "<ul class=\"level1a\">\n";
-    my $i1;
-    for ( $i1=0; $i1 < $n1; $i1++ ) {
-      my $p1 = $pages1[$i1];
-      if ($fbi == $p1->{ID}) {
-	$attr = " class=\"bselected\"";
-      } else {
-	$attr = " class=\"bnotselected\"";
-      }
-      my $ff = $i1 + 1;
-      my $ti = $p1->{TITLE};
-      $ti =~ s/([12345] )(.*)/$2/ ;
-      # if ($p1->{HELPSITE} eq 0) { $ti = "Fachbereich " . $ti; }
-      $c .= "<li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p1->link() . ".{EXT}\">" . $ti . "</a>\n";
-    }
-    $c .= "</ul><br clear=\"all\"><br clear=\"all\"><br clear=\"all\">\n";
-  }
-
-
-  # FACHBEREICHE (chapters) -> MODULE (sections) -> subsections, level der ul ist identisch mit {LEVEL} der Page-Objekts
-
-
-  # print "TOC: lvl1 hat $n1 Einträge\n";
-  $c .= "<ul class=\"level1b\">\n";
-  for ( $i1=0; $i1 < $n1; $i1++ ) {
-    $p1 = $pages1[$i1];
-    if ($p1->{ID}==$site->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
-    $ff = $i1 + 1;
-
-    if ($fbi == $p1->{ID}) {
-      # lvl1 (=Fachbereich) ist aktuelles Dokument, nur aktuellen Fachbereich hier listen
-      # Fachbereiche ohne Nummern anzeigen
-      $ti = $p1->{TITLE};
-      $ti =~ s/([12345] )(.*)/$2/ ;
-      $c .= "<li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p1->link() . ".{EXT}\">" . $ti . "</a>\n";
-
-      my @pages2 = @{$p1->{SUBPAGES}};
-      my $i2;
-      my $n2 = $#pages2 + 1;
-      # print "TOC:   lvl2 hat $n2 Eintraege\n";
-      if ($n2 > 0) {
-	$c .= "  <ul class=\"level2\">\n";
-	for ( $i2=0; $i2 < $n2; $i2++ ) {
-	  my $p2 = $pages2[$i2];
-    $ti = $p2->{TITLE};
-    $ti =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/$2\.$3/ ;
-	  if ($p2->{ID}==$site->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
-	  $c .= "  <li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p2->link() . ".{EXT}\">" . $ti . "</a>\n";
-    if ($fsubi ne -1) {
-      if ($fsubi == $p2->{ID}) {
-        my @pages3 = @{$p2->{SUBPAGES}};
-        my $i3;
-        my $n3 = $#pages3 + 1;
-        # print "TOC:     lvl3 hat $n3 Eintraege\n";
-        if ($n3 > 0) {
-          $c .= "    <ul class=\"level3\">\n";
-          for ( $i3=0; $i3 < $n3; $i3++ ) {
-            my $p3 = $pages3[$i3];
-            if (($site->{LEVEL}==$contentlevel) and ($p3->{ID}==$site->{PARENT}->{ID})) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
-            $c .= "    <li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p3->link() . ".{EXT}\">" . $p3->{NR}.$p3->{TITLE} . "</a></li>\n";
-          }
-          $c .= "    </ul>\n"; # level3-ul
-        }
-      } # if subsection id ist aktuell
-    } # if subsection notwendig
-    $c .= "  </li>\n";
-	}
-	$c .= "  </ul>\n"; # level2-ul
-      }
-      $c .= "</li>\n";
-      # PDF zum Fachbereich anbieten falls PDFs aktiviert sind und wir nicht im Hilfebereich sind
-      if (($dopdf eq 1) and ($site->{HELPSITE} eq 0)) {
-        $c .= "<center><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../tree$ff.pdf\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/docpdf.png\" width=\"48px\" height=\"48px\" style=\"border: none\"></a><br clear=\"all\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../tree$ff.pdf\" target=\"_new\">Download PDF</a></center>";
-      }
-      $c .= "<br clear='all'/>"; 
-    }
-  }
-  $c .= "</ul>"; # level1-ul
-
-
-  # print "DEBUG: toccaption fuer Seite $site->{CAPTION} ist \n$c\n\n";
-
-  return $c;
-}
-
 # Erzeugt das toccaption-div fuer die html-Seiten im Menu-Style
 # Parameter: Das Seitenobjekt
 sub gettoccaption_menustyle {
@@ -2119,16 +1893,14 @@ sub gettoccaption_menustyle {
   my $c = "";
 
   # Nummer des gerade aktuellen Fachbereichs ermitteln
-  my $pp = $site;
-  
-  # $site->{LEVEL} == 1 fuer Fachbereichsseite
-  
-  my $fsubi = -1;
+  my $pp = $p;
+  my $fsubi = -1;  
   while ($pp->{LEVEL}!=($contentlevel-3)) {
     if ($pp->{LEVEL}==$contentlevel-2) { $fsubi = $pp->{ID}; }
     $pp = $pp->{PARENT};
   }
-  my $fbi = $pp->{ID};
+  my $topsite = $pp;
+
   my $attr = "";
   my $root = $p->{ROOT};
   my @pages1 = @{$root->{SUBPAGES}};
@@ -2137,45 +1909,21 @@ sub gettoccaption_menustyle {
   # $c .= "<div class=\"toccaption\">" .  getlogolink($p) . "</div>\n"; # Alte Version mit Logo
   $c .= "<div class=\"toccaption\"></div>\n"; # Neue Version ohne Logo
 
-
-  # FACHBEREICHE (chapters) -> MODULE (sections) -> subsections, level der ul ist identisch mit {LEVEL} der Page-Objekts
-
-
-  
-#   # Einleitende Liste mit den Fachbereichen ohne Teile, aber NUR falls es mehr als einen gibt
-#   if ($n1 > 1) {
-#     my $i1;
-#     for ($i1=0; $i1 < $n1; $i1++ ) {
-#       my $p1 = $pages1[$i1];
-#       if ($fbi == $p1->{ID}) {
-# 	$attr = " class=\"bselected\"";
-#       } else {
-# 	$attr = " class=\"bnotselected\"";
-#       }
-#       $attr = "";
-#       my $ff = $i1 + 1;
-#       my $ti = $p1->{TITLE};
-#       $ti =~ s/([12345] )(.*)/$2/ ;
-#       # if ($p1->{HELPSITE} eq 0) { $ti = "Fachbereich " . $ti; }
-#       $c .= "<li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p1->link() . ".{EXT}\">" . $ti . "</a></li>\n";
-#     }
-#   }
-# 
-  
+ 
   
     # Duenner TU9-Layout mit einzelnen Aufklappunterpunkten
     $c .= "<tocnavsymb><ul>";
-    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$chaptersite\" target=\"_new\"><div class=\"tocmintitle\">Kursinhalt</div></a>";
+    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $topsite->linkpath() . "../$chaptersite\" target=\"_new\"><div class=\"tocmintitle\">Kursinhalt</div></a>";
     $c .= "<div><ul>\n";
    
     my $i1 = 0; # eigentlich for-schleife, aber hier nur Kursinhalt
-    $p1 = $pages1[$i1];
-    if ($p1->{ID}==$site->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
+    my $p1 = $pages1[$i1];
+    if ($p1->{ID} == $p->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
     $attr = "";
-    $ff = $i1 + 1;
+    my $ff = $i1 + 1;
 
     # Fachbereiche ohne Nummern anzeigen
-    $ti = $p1->{TITLE};
+    my $ti = $p1->{TITLE};
     $ti =~ s/([12345] )(.*)/$2/ ;
     # $c .= "<li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p1->link() . ".{EXT}\">" . $ti . "</a>\n"; 
 
@@ -2191,7 +1939,7 @@ sub gettoccaption_menustyle {
         $ti = $i2;
         my $selected = 0;
         # pruefen ob Knoten oder oberknoten der aktuell auszugeben Seite ($site) das $p2 ist
-        my $test = $site;
+        my $test = $p;
         while ($test->{PARENT} != 0) {
           if ($p2->{ID} == $test->{ID}) { $selected = 1; }
           $test = $test->{PARENT};
@@ -2240,18 +1988,6 @@ sub gettoccaption_menustyle {
   $c .= "<br /><br />";
   
   # Symbole komplett in Kopfleiste und von intersite.js erzeugt
-  
-  # PDF zum Fachbereich anbieten falls PDFs aktiviert sind und wir nicht im Hilfebereich sind
-  if (($dopdf eq 1) and ($site->{HELPSITE} eq 0)) {
-     $c .= "<br /><tocnav><ul><li><a href=\"" . $site->linkpath() . "../tree$ff.pdf\"><img src=\"" . $site->linkpath() . "../images/docpdf.png\" style=\"border: none\"> Download</a></li></ul></tocnav>";
-  }
-
-  
-  if ($isBeta eq 1) {
-    $c .= "<br /><tocnav><ul><li><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . "../$betasite\" target=\"_new\"><img src=\"" . $site->linkpath() . "../images/betab.png\" style=\"border: none\"> Beta-Version</a></li></ul></tocnav>";
-  }
-
-  # print "DEBUG: toccaption fuer Seite $site->{CAPTION} ist \n$c\n\n";
 
   return $c;
 }
@@ -2263,7 +1999,7 @@ sub getcontent {
   my $content = "";
   $content .= "<hr />\n{CONTENT}";
   $content .= "<hr />\n"; # </div> entfernt !
-  $contentx = $p->gettext();
+  my $contentx = $p->gettext();
   $content =~ s/{CONTENT}/$contentx/;
   
   return $content;	
@@ -2310,10 +2046,6 @@ sub storelabels {
                     push @LabelStorage, [ $lab, $sub, $sec, $ssec, $sssec, $type, $pl];
                     # print "Added label $lab in FB $sub with number $sec.$ssec.$sssec and type $type, pagelink = $pl\n";
 
-                    if (($type eq 4) and (($fb eq 3) or ($fb eq 4))) {
-                        print "WARNING: Infobox $lab hat ein Label, aber im Fachbereich $fb keine Nummer\n";
-                    }
-                    
                     # if ($type eq 13) { print "Entry: $1\n"; }
 		}
 
@@ -2342,12 +2074,14 @@ sub printpages {
 	my ($p, $outputfolder) = @_;
 	my ($title, $text, $output, $link, $textmpl, @subpages, $i);
 	
-	if ($p->{LEVEL} eq ($contentlevel-2)) {
-	  print "Verarbeite Modul $p->{TITLE}\n";
+	logMessage($VERBOSEINFO, "printpages started for " . $p->{TITLE});
+
+	if ($p->{LEVEL} == ($contentlevel-2)) {
+	  logMessage($VERBOSEINFO, "Verarbeite Modul " . $p->{TITLE} . ", LEVEL = " . $p->{LEVEL});
 	}
 
-	if ($p->{LEVEL} eq ($contentlevel-3)) {
-	  print "Verarbeite Fachbereich $p->{TITLE}\n";
+	if ($p->{LEVEL} == ($contentlevel-3)) {
+	  logMessage($VERBOSEINFO, "Verarbeite Modul " . $p->{TITLE} . ", LEVEL = " . $p->{LEVEL} . " (Fachbereich)");
 	}
 
 	#hole Unterseiten
@@ -2356,7 +2090,7 @@ sub printpages {
 	#falls die Seite ausgegeben werden soll
 	if ($p->{DISPLAY}) {
 
-		$p->logtext("Schreibe Ausgabe");
+		logMessage($VERBOSEINFO, "  DISPLAY im Modul aktiv, erzeuge Ausgabe");
 
 		my $linkpath = "../" . $p->linkpath();
 		my $link = "mpl/" . $p->link();
@@ -2371,11 +2105,11 @@ sub printpages {
 		my $divcontent = getcontent($p);
 
 		# Makro {XSECTIONPREFIX} expandieren
-		$secprefix = "";
-		$q = $p->{PARENT};
+		my $secprefix = "";
+		my $q = $p->{PARENT};
 		while ($q) {
 		  if (($q->{LEVEL} > 0) and ($q->{TITLE} ne "")) {
-		    $ti = $q->{TITLE};
+		    my $ti = $q->{TITLE};
 		    $ti =~ s/(.*?) (.*)/$2/g; # Modulnummerprefix aus dem Titel entfernen
 		    if ($secprefix ne "") {
 		      $secprefix = $ti . "  - " . $secprefix;
@@ -2399,6 +2133,11 @@ sub printpages {
 		$divcontent =~ s/<div class=\"p\"><!----><\/div>/<br clear=\"all\"\/><br clear=\"all\"\/>/g ;
 
 		# Reference-Tags aus mintmod expandieren
+		my $sec = "";
+		my $ssec = "";
+		my $refindex = "";
+		my $objtype = 0;
+		my $fb = -1;
 		while ($divcontent =~ /<!-- mmref;;(.+?);;(.+?); \/\/-->/ ) {
 		  # Expandiere MRef
 		  # print "Expandiere Link $1\n";
@@ -2557,18 +2296,18 @@ sub printpages {
         if ($prefi == 1) { $reftext = $ptext . " " . $reftext; }
         $divcontent =~ s/<!-- mmref;;$nrl;;$prefi; \/\/-->/<a class="MINTERLINK" href=\"$href\">$reftext<\/a>/g ;
       } else {
-		    push @converrors, "ERROR: Konnte Label $lab nicht aufloesen!\n";
-		    $divcontent =~ s/<!-- mmref;;$nrl;;$prefi; \/\/-->/(Verweis?)/g ;
-		  }
-		}
+	push @converrors, "ERROR: Konnte Label $lab nicht aufloesen!\n";
+	$divcontent =~ s/<!-- mmref;;$nrl;;$prefi; \/\/-->/(Verweis?)/g ;
+      }
+}
 
 		while ($divcontent =~ /<!-- msref;;(.+?);;(.+?); \/\/-->/ ) {
 		  # Expandiere MSRef
 		  # print "Expandiere Link $1\n";
- 		  $lab = $1;
- 		  $txt = $2;
-                  $nrl = noregex($lab);
-		  $href = "";
+ 		  my $lab = $1;
+ 		  my $txt = $2;
+                  my $nrl = noregex($lab);
+		  my $href = "";
 		  for ($i=0; $i <= $#LabelStorage; $i++ ) {
 		    if ($LabelStorage[$i][0] eq $lab) {
 		      $href = $linkpath . $LabelStorage[$i][6];
@@ -2676,9 +2415,9 @@ sub printpages {
 		writefile($fullpath, $text);
 
 		# Separate Exportdateien erzeugen
-		my $fc = 0+@{$p->{EXPORTS}};
-		# if ($fc != 0) { print "Generiere $fc zusaetzliche Exportdateien\n"; }
-  	        for ($i=0; $i < $fc; $i++ ) {
+		my $fc = 1 + $#{$p->{EXPORTS}};
+		if ($fc != 0) { logMessage($VERBOSEINFO, "Generiere $fc zusaetzliche Exportdateien"); }
+  	        for ($i = 0; $i < $fc; $i++ ) {
   	          my $fname = ${$p->{EXPORTS}}[$i][0];
   	          writefile("$outputfolder/$link$fname", ${$p->{EXPORTS}}[$i][1]);
   	       }
@@ -2724,7 +2463,7 @@ sub linkupdate {
 
 		#haenge auch linkpath vor alle Links
 		$prepend2 = $prepend . $p->linkpath();
-		$p->logtext("$prepend2 vor alle Links haengen.");
+		logMessage($VERBOSEINFO, "Setze $prepend2 vor alle Links");
 		#Links aktualisieren
 		$text = updatelinks($text, $prepend2);
 		#speichern
@@ -2780,8 +2519,8 @@ sub hidepageswotext {
 	my (@subpages, $i);
 	
 	if ($p->{TEXT} eq "") {
-		$p->logtext("verstecken");
 		$p->{DISPLAY} = 0;
+		logMessage($VERBOSEINFO, "  Page " . $p->{TITLE} . " versteckt");
 	}
 	#Rekursion auf Unterseiten
 	@subpages = @{$p->{SUBPAGES}};
@@ -2797,12 +2536,16 @@ sub hidepageswotext {
 #   $p    Objekt einer Seite
 sub createtocs {
   my ($p) = @_;
+
+  logMessage($VERBOSEINFO, "    Seite " . $p->{TITLE});
+
   
-  @subpages = @{$p->{SUBPAGES}};
+  my @subpages = @{$p->{SUBPAGES}};
   my $toc = "Inhalte:<br />";
 
   # Inhaltsverzeichnis enthaelt die DIREKTEN Unterseiten der aktuellen Seite
 
+  my $i;
   for ($i = 0; $i <= $#subpages; $i++) {
     my $lk = $subpages[$i]->link() . ".{EXT}";
     $toc = $toc . "<a class=\"MINTERLINK\" href='" . $lk ."'>" . $subpages[$i]->{TITLE} . "</a><br />";
@@ -2812,7 +2555,8 @@ sub createtocs {
   if ($text =~ s/<!-- toc -->/$toc/g) { $p->{TEXT} = $text; }
 
   #Rekursion auf Unterseiten
-  for ( $i=0; $i <=$#subpages; $i++ ) {
+  logMessage($VERBOSEINFO, "  Iteriere �ber " . $#subpages . " Unterseiten");
+  for ($i=0; $i <= $#subpages; $i++) {
     createtocs($subpages[$i]);
   }
 }
@@ -2878,7 +2622,7 @@ sub createlinks {
 		for ( $i=0; $i <=$#pagelinks; $i++ ) {
 			$pagelinks[$i] =~ /name="(.*?)"/;
 			$links{$1} = $p->link();
-			$p->logtext("Link-Anker $1 gefunden");
+			logMessage($VERBOSEINFO, "    Link-Anker $1 gefunden");
 		}
 		#setze die class-Eigenschaft dieser Link-Anker auf "label" GEHT DAS NOCH MIT MINTERLINK???
 		$text =~ s/<a (name=".*?".*?>\s*?<\/a>)/<a class="label" $1/sg;
@@ -2900,8 +2644,9 @@ sub createlinks {
 		my $linkpath = $p->linkpath();
 		
 		#itteriere ueber die im Hash gespeicherten Link-Anker
+		my $link;
 		foreach $link (keys %links) {
-			$page = $links{$link};
+			my $page = $links{$link};
 			#ersetze den Link auf diesen Anker
 			$text =~ s/href="#$link"/href="$linkpath$page.{EXT}#$link"/g;
 		}
@@ -2986,11 +2731,10 @@ sub mathmloptimize {
   # vor dem math-Tag, was zu einem zusaetzlichen Leerzeichen vor der Formel fuehrt. Der Zeilenumbruch wird entfernt:
   $text =~ s/\n<math/<math/gs;
 
-	#Bei Tabellen mit Rahmen sollen auch die Zellen Rahmen haben
-	$rep_tab = 0;
-	$rep_tab = ($text =~ s/<table border=\"1\">((.|\s)*?)<\/table>/replacetd($1)/eg);
-	
-	$p->{TEXT} = $text;
+  #Bei Tabellen mit Rahmen sollen auch die Zellen Rahmen haben
+  $text =~ s/<table border=\"1\">((.|\s)*?)<\/table>/replacetd($1)/eg;
+
+  $p->{TEXT} = $text;
 }
 
 
@@ -3057,7 +2801,7 @@ sub getdoctype {
 
 # ImageFonts von MathJax werden abgeschaltet, um die Verzeichnisse klein zu halten (erstmal nicht weil IE streikt)    (  imageFont: null)
 
-# expires=0 verbietet caching der Seiten, sollte nur in beta-Version benutzt werden!
+# expires=0 verbietet caching der Seiten, sollte nur in Anlauf-Phase benutzt werden!
 
 sub loadtemplates_local {
     my $s = <<ENDE;
@@ -3161,24 +2905,13 @@ ENDE
 
 sub converter_decompose {
 
-#Log-Datei initialisieren
-$rw = open(OUTPUT, "> $logfile") or die "Fehler beim Erstellen der Logdatei.\n";
-close(OUTPUT);
-
-#Versionsanzeige
-my $fh = File::Data->new($logfile);
-$fh->write("mconvert.pl $version (MINT-Modifikation $dokversion)\n\n");
-undef $fh;
-
-
-
 print "Zerlegung startet\n";
 
 #Zeit speichern und Startzeit anzeigen
 my $time = time;
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($time);
 print (($year+1900 ) . "-" . ($mon+1) . "-$mday $hour:$min:$sec\n\n");
-logtext("Starting conversion: " . ($year+1900 ) . "-" . ($mon+1) . "-$mday um $hour:$min:$sec Uhr");
+logMessage($CLIENTINFO, "Starting conversion: " . ($year+1900 ) . "-" . ($mon+1) . "-$mday um $hour:$min:$sec Uhr");
 
 #Alte Daten loeschen
 print "Copying files into " . $config{outtmp} . "\n";
@@ -3277,12 +3010,6 @@ if ($text =~ s/<!-- mlocation;;(.+?);;(.+?);;(.+?);; \/\/-->//s ) {
   push @converrors, "Keine Standort-Deklaration gefunden, Standortbutton erscheint nicht im Kurs.";
 }
 
-if ($text =~ m/<!-- mglobalbetatag -->/s ) { # hier nicht ausschneiden, da globaltag und nicht locationtag
-  push @converrors, "BETA-Deklaration gefunden, erstelle Beta-Button!";
-} else {
-  $isBeta = 0;
-}
-
 
 # =========================
 # = Vorkurs-Einstellugnen =
@@ -3312,7 +3039,7 @@ if ($config{parameter}{data_server} ne "") {
 }
 
 if ($config{parameter}{exercise_server} ne "") {
-  print("ExerciseServer deklariert: " . $config{parameter}{execise_server} . "\n");
+  print("ExerciseServer deklariert: " . $config{parameter}{exercise_server} . "\n");
 } else {
   push @converrors, "Kein ExerciseServer in Konfigurationsdatei deklariert (Parameter exercise_server)!";
 }
@@ -3337,7 +3064,7 @@ print "      CID: " . $config{parameter}{signature_CID} . "\n";
 print "Diese Informationen werden im HTML-Baum hinterlegt.\n\n";
 
 # Wir befinden uns gerade im zu erzeugenden Baum, in dem perl ein Unverzeichnis ist, das Kopieren der Dateien von perl/files nach .. wurde schon durchgefuehrt
-$mints_open = open(MINTS, "> " . $config{outtmp} . "/convinfo.js") or die "FATAL: Could not create convinfo.js.\n";
+my $mints_open = open(MINTS, "> " . $config{outtmp} . "/convinfo.js") or die "FATAL: Could not create convinfo.js.\n";
 print MINTS "// Automatically generated by mconvert.pl, will be included by the standard template\n";
 print MINTS "var scormLogin = " . $config{scormlogin} . ";\n";
 print MINTS "var isRelease = " . $config{dorelease} . ";\n";
@@ -3363,6 +3090,8 @@ if ($config{doverbose} eq 1) {
 }
 
 # Freie Parameter aus config eintragen
+my $ckey;
+my $cval;
 while (($ckey, $cval) = each($config{'parameter'})) {
   print MINTS "var $ckey = \"$cval\";\n";
 }
@@ -3452,16 +3181,37 @@ $text =~ s/<!-- msearchtable \/\/-->/$st/s ;
 loadtemplates();
 
 
-print "\n\nErmittele Kapitelstruktur . . .  \n";
+logMessage($VERBOSEINFO, "Ermittele Kapitelstruktur");
 
-logtext("\nErmittele Kapitelstruktur");
-
-my $root = ModulPage->new($logfile);
+my $root = ModulPage->new();
 $root->{TITLE} = "ROOT";
 $root->split($text, $paramsplitlevel);
 $root->{DISPLAY} = 0;
 
-verarbeitung($root);
+logMessage($CLIENTINFO, "Starte Display-Check");
+hidepageswotext($root);
+
+logMessage($CLIENTINFO, "Starte MathML Optimierungen");
+mathmloptimize($root);
+
+logMessage($CLIENTINFO, "Starte Link-Updates");
+linkupdate($root, "../");
+
+
+# Die folgenden Manipulationen muessen nach linkupdate
+# passieren, da dort Links auf Seiten innerhalb der
+# Seitenstruktur erstellt werden
+
+        
+logMessage($CLIENTINFO, "Starte TOC-Erzeugung");
+createtocs($root);
+
+
+logMessage($CLIENTINFO, "Starte Link-Ersetzung");
+createlinks($root);
+
+logMessage($CLIENTINFO, "Relocate Helpsection");
+relocatehelpsection($root,0);
 
 @LabelStorage = ();
 
@@ -4393,7 +4143,7 @@ if ($config{dopdf} eq 1) {
     while (($doct = each($config{generate_pdf})) and ($pdfok == 1)) {
       print "======= Generating PDF file $doct.tex ========================================\n";
 
-      $rt1 = system("pdflatex $doct.tex");
+      my $rt1 = system("pdflatex $doct.tex");
       if ($rt1 != 0) {
         print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
 	$pdfok = 0;
@@ -4516,11 +4266,6 @@ for ($ka = 0; $ka < $nt; $ka++) {
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $stestfile = "mpl/" . $2 . ".html";
       }
-      if ($htmlzeile =~ m/<!-- mglobalbetatag -->/ ) {
-        print "--- Betatag found in file $hfilename\n";
-        $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-        $betafile = "mpl/" . $2 . ".html";
-      }
     }
     close(MINTS);
 }
@@ -4544,7 +4289,6 @@ if ($searchfile ne "") { createRedirect("search.html", $searchfile,0); } else { 
 if ($favofile ne "") { createRedirect("favor.html", $favofile,0); } else { print "Keine Favoriten-Datei definiert!\n"; }
 if ($locationfile ne "") { createRedirect("location.html", $locationfile,0); } else { print "Keine Location-Datei definiert!\n"; }
 if ($stestfile ne "") { createRedirect("stest.html", $stestfile,0); } else { print "Keine Starttest-Datei definiert!\n"; }
-if ($betafile ne "") { createRedirect("betasite.html", $betafile,0); } else { print "Keine Beta-Datei definiert!\n"; }
 
 if ($config{doscorm} eq 1) { createSCORM(); }
 
