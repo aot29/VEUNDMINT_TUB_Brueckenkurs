@@ -21,7 +21,7 @@
 # DISPLAY		boolean, Seite wird gespeichert
 
 # DH 2011:
-# MODULID		integer, index in das Feld der Modulid's in vorkurs.pl bzw. direkter Strings
+# MODULID		string, bezeichnet Modultyp (z.B. "xcontent" oder "start" für den ersten Content eines Ordners)
 # DOCNAME		string, Dateiname des zu produzierenden Dokuments ohne Pfad und ohne Endung (z.B. "xcontent3")
 # ICON                  string, Bezeichner des Icons das in der Navigation verwendet wird. Falls "STD" steht wird das Icon nach der ModulID gewaehlt, bei NONE erscheint der Abschnitt nicht in der Navigation
 # TOCSYMB               string, HTML-Content der im minitoc fuer die section angezeigt wird
@@ -97,7 +97,8 @@ sub new {
 		MENUITEM  => 1,
 		DISPLAY   => 0,
 		EXPORTS   => [],
-		DOCNAME   => ""
+		DOCNAME   => "",
+		MODULID   => ""
 	};
 	$self->{ID} = $main::PageIDCounter;
 	$main::PageIDCounter++;

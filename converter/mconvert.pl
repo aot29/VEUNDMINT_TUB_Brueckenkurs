@@ -58,6 +58,8 @@ my @tominify = ("mintscripts.js", "servicescripts.js", "intersite.js", "convinfo
 
 # -------------------------------------------------------------------------------------------------------------
 
+our $starttime; # Timestamp beim Start des Programms
+
 my $breakoff = 0;
 my $i;
 my $ndir = ""; # wird am Programmstart gefuellt
@@ -185,6 +187,14 @@ sub logMessage {
       }
     }
   }
+}
+
+sub logTimestamp {
+  my ($txt) = @_;
+  
+  my $time2 = time;
+  my $diff = $time2 - $starttime;
+  logMessage($CLIENTINFO, "$txt: $diff seconds.");
 }
 
 
@@ -813,8 +823,6 @@ sub HELP_MESSAGE {
 		# ISMODUL gibt an, ob dies ein Modul ist
 		# diese Eigenschaft wird durch die split Funktion gesetzt
 		$self->{ISMODUL} = 0;
-		$self->{SWITCHDE} = "";
-		$self->{SWITCHEN} = "";
 		# MODULPART gibt an, welcher Teil des Moduls in den Objekt
 		# gespeichert ist
 		$self->{MODULPART} = "";
@@ -1170,13 +1178,10 @@ sub HELP_MESSAGE {
 		my ($p);
 
 		
-		main::logMessage($VERBOSEINFO, "  navprev fuer Page " . $self->{TITLE});
                 if ($self->{PREV} == 0) {
-		  main::logMessage($VERBOSEINFO, "    PREV nicht gesetzt");
 		  return 0;
                 }
 		$p = $self->{PREV};
-		main::logMessage($VERBOSEINFO, "    PREV is " . $p->{TITLE});
 
 		# Hier wird die Schleife auch abgebrochen, wenn Display aus ist und es sich um ein Modul mit Unterseiten handelt
 		until ($p->{LEVEL} == 0 || $p->{DISPLAY} || ($p->{ISMODUL} && $#{$p->{SUBPAGES}} >=0 )) {
@@ -1441,7 +1446,7 @@ sub postprocess {
       
       if ($dobase64 eq 1) {
         my $sc = -s $fi;
-        print "   generating base64-Inlinestring for $fi of size $sc\n";
+        logMessage($VERBOSEINFO, "   generating base64-Inlinestring for $fi of size $sc");
         open PNGFILE, '<', $fi;
         binmode PNGFILE;
         my $buf;
@@ -1449,16 +1454,14 @@ sub postprocess {
         if (read( PNGFILE, $buf, $sc )) {
           $c64 = encode_base64($buf);
         } else {
-          print "   file not readable\n";
+          logMessage($CLIENTWARN, "   file not readable");
         }
         close PNGFILE;
-        print "   OUTPUT = \n" . $c64 . "\n\n";
       }
       
       my $fi2 = $outputfolder . "/" . $fname;
-      print "     Copying $fi to $fi2\n";
+      logMessage($VERBOSEINFO, "     Copying $fi to $fi2");
       $fi2 =~ /(.*)\/[^\/]*?$/;
-      # print "New folder $1\n";
       mkpath($1);
       my $call = "cp -rf $fi $1/.";
       
@@ -1636,15 +1639,15 @@ sub getstyleimporttags {
    my $itags = "";
 
 
-    print "Using these stylesheets: ";
     my $i;
+    my $css = "";
     for ($i = 0; $i <= $#{$config{stylesheets}}; $i++) {
       my $cs = $config{stylesheets}[$i];
       $itags = $itags . "<link rel=\"stylesheet\" type=\"text\/css\" href=\"$lp$cs\"\/>\n";
-      print "$cs "; 
+      $css .= $cs . " "; 
     }
     
-    print "\n";
+    logMessage($VERBOSEINFO, "Using these stylesheets: $css");
 
     return $itags;
 }
@@ -2352,7 +2355,7 @@ sub printpages {
   	        if ($text =~ m/<!-- mdeclaresiteuxidpost;;(.+?);; \/\/-->/s ) {
   	          $uxid = $1;
   	        } else {
-  	          print("Site hat keine uxid: " . $idstr . "\n");
+  	          logMessage($CLIENTWARN, "Site hat keine uxid: " . $idstr);
   	        }
   	        
   	        
@@ -2861,12 +2864,6 @@ sub converter_decompose {
 
 print "Zerlegung startet\n";
 
-#Zeit speichern und Startzeit anzeigen
-my $time = time;
-my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($time);
-print (($year+1900 ) . "-" . ($mon+1) . "-$mday $hour:$min:$sec\n\n");
-logMessage($CLIENTINFO, "Starting conversion: " . ($year+1900 ) . "-" . ($mon+1) . "-$mday um $hour:$min:$sec Uhr");
-
 #Alte Daten loeschen
 print "Copying files into " . $config{outtmp} . "\n";
 system "rm -rf " . $config{outtmp};
@@ -2878,9 +2875,10 @@ print " ok.\n\n";
 print "Es werden " . ($#DirectHTML + 1) . " DirectHTML-Statements werden verwendet\n";
 
 
-print "Starte TtM\n\n";
+
+logTimestamp("Starting ttm tex->html converter");
 system "./ttm-src/ttm -p./tex < tex/vorkursxml.tex >$xmlfile";
-print "\n";
+logTimestamp("Loading ttm output file $xmlfile");
 my $text = loadfile($xmlfile);
 
 # Debug-Meldungen ausgeben
@@ -2972,19 +2970,19 @@ $text =~ s/<hr \/><small>File translated from.*<\/body>.*//s;
 $templateheader = generate_scriptheaders() . $templateheader . "\n";
 
 if ($config{parameter}{feedback_service} ne "") {
-  print("FeedbackServer deklariert: " . $config{parameter}{feedback_service} . "\n");
+  logMessage($CLIENTINFO, "FeedbackServer deklariert: " . $config{parameter}{feedback_service});
 } else {
   push @converrors, "Kein FeedbackServer deklariert, es wird kein Feedback verschickt.";
 }
 if ($config{parameter}{data_server} ne "") {
-  print("DataServer deklariert: " . $config{parameter}{data_server} . "\n");
-  print("Description: " . $config{parameter}{data_server_description} . "\n");
+  logMessage($CLIENTINFO, "DataServer deklariert: " . $config{parameter}{data_server});
+  logMessage($CLIENTINFO, "Description: " . $config{parameter}{data_server_description});
 } else {
   push @converrors, "Kein DataServer in Konfigurationsdatei deklariert (Parameter data_server)!";
 }
 
 if ($config{parameter}{exercise_server} ne "") {
-  print("ExerciseServer deklariert: " . $config{parameter}{exercise_server} . "\n");
+  logMessage($CLIENTINFO, "ExerciseServer deklariert: " . $config{parameter}{exercise_server});
 } else {
   push @converrors, "Kein ExerciseServer in Konfigurationsdatei deklariert (Parameter exercise_server)!";
 }
@@ -2999,14 +2997,14 @@ $config{parameter}{signature_convuser} = (getpwuid($<))[0];
 # Generiere Course-ID, diese sollte pro Kurs und Version eindeutig sein
 $config{parameter}{signature_CID} = "(" . $config{parameter}{signature_main} . ";;" . $config{parameter}{signature_version} . ";;" . $config{parameter}{signature_localization} . ")";
 
-print "     main: " . $config{parameter}{signature_main} . "\n";
-print "  version: " . $config{parameter}{signature_version} . "\n";
-print "   locale: " . $config{parameter}{signature_localization} . "\n";
-print "timestamp: " . $config{parameter}{signature_timestamp} . "\n";
-print "conv-user: " . $config{parameter}{signature_convuser} . "\n";
-print "c-machine: " . $config{parameter}{signature_convmachine} . "\n";
-print "      CID: " . $config{parameter}{signature_CID} . "\n";
-print "Diese Informationen werden im HTML-Baum hinterlegt.\n\n";
+logMessage($CLIENTINFO, "     main: " . $config{parameter}{signature_main});
+logMessage($CLIENTINFO, "  version: " . $config{parameter}{signature_version});
+logMessage($CLIENTINFO, "   locale: " . $config{parameter}{signature_localization});
+logMessage($CLIENTINFO, "timestamp: " . $config{parameter}{signature_timestamp});
+logMessage($CLIENTINFO, "conv-user: " . $config{parameter}{signature_convuser});
+logMessage($CLIENTINFO, "c-machine: " . $config{parameter}{signature_convmachine});
+logMessage($CLIENTINFO, "      CID: " . $config{parameter}{signature_CID});
+logMessage($CLIENTINFO, "Diese Informationen werden im HTML-Baum hinterlegt");
 
 # Wir befinden uns gerade im zu erzeugenden Baum, in dem perl ein Unverzeichnis ist, das Kopieren der Dateien von perl/files nach .. wurde schon durchgefuehrt
 my $mints_open = open(MINTS, "> " . $config{outtmp} . "/convinfo.js") or die "FATAL: Could not create convinfo.js.\n";
@@ -3037,7 +3035,7 @@ if ($config{doverbose} eq 1) {
 # Freie Parameter aus config eintragen
 my $ckey;
 my $cval;
-while (($ckey, $cval) = each($config{'parameter'})) {
+while (($ckey, $cval) = each(%{$config{'parameter'}})) {
   print MINTS "var $ckey = \"$cval\";\n";
 }
 
@@ -3130,16 +3128,28 @@ logMessage($VERBOSEINFO, "Ermittele Kapitelstruktur");
 
 my $root = ModulPage->new();
 $root->{TITLE} = "ROOT";
-$root->split($text, $paramsplitlevel);
+
+logMessage($VERBOSEINFO, "ROOT-Objekt erzeugt mit folgenden Einträgen:");
+while ($ckey = each(%{$root})) {
+  if ($root->{$ckey}) {
+    logMessage($VERBOSEINFO, "  $ckey => " . $root->{$ckey});
+  } else {
+    logMessage($VERBOSEINFO, "  $ckey-Wert nicht initialisiert!");
+  }
+}
+
+
+
+$root->split($text, $paramsplitlevel, 0); # = Startlevel fuer root-Objekt
 $root->{DISPLAY} = 0;
 
-logMessage($CLIENTINFO, "Starte Display-Check");
+logTimestamp("Starte Display-Check");
 hidepageswotext($root);
 
-logMessage($CLIENTINFO, "Starte MathML Optimierungen");
+logTimestamp("Starte MathML Optimierungen");
 mathmloptimize($root);
 
-logMessage($CLIENTINFO, "Starte Link-Updates");
+logTimestamp("Starte Link-Updates");
 linkupdate($root, "../");
 
 
@@ -3148,14 +3158,14 @@ linkupdate($root, "../");
 # Seitenstruktur erstellt werden
 
         
-logMessage($CLIENTINFO, "Starte TOC-Erzeugung");
+logTimestamp("Starte TOC-Erzeugung");
 createtocs($root);
 
 
-logMessage($CLIENTINFO, "Starte Link-Ersetzung");
+logTimestamp("Starte Link-Ersetzung");
 createlinks($root);
 
-logMessage($CLIENTINFO, "Relocate Helpsection");
+logTimestamp("Relocate Helpsection");
 relocatehelpsection($root,0);
 
 @LabelStorage = ();
@@ -3202,10 +3212,6 @@ if ($config{docollections} eq 1) {
 #Rechte setzen
 system "chmod -R 777 " . $config{outtmp};
 
-#Rechenzeit anzeigen
-my $time2 = time;
-my $diff = $time2 - $time;
-print "\nDone: Computation took $diff seconds.\n\n";
 
 if ($#converrors ge 0) {
   print "----------------------- COMPILATION ERRORS ---------------------------------\n";
@@ -3218,14 +3224,19 @@ if ($#converrors ge 0) {
   print "No compilation errors occurred.\n";
 }
 
+logTimestamp("FINISHED COMPUTATION");
+
 }
-
-
 
 # ----------------------------- Start Hauptprogramm --------------------------------------------------------------
 
 # my $IncludeTags = ""; # Sammelt die Makros fuer predefinierte Tagmakros, diese werden an mintmod.tex angehaengt
 
+
+#Zeit speichern und Startzeit anzeigen
+$starttime = time;
+my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($starttime);
+logMessage($CLIENTINFO, "Starting conversion: " . ($year+1900 ) . "-" . ($mon+1) . "-$mday at $hour:$min:$sec");
 
 checkSystem();
 
@@ -3273,7 +3284,7 @@ if ($config{dopdf} eq 1) {
   print("...generating PDF files: ");
   my $i = 0;
   my $ckey = "";
-  while ($ckey = each($config{generate_pdf})) {
+  while ($ckey = each(%{$config{generate_pdf}})) {
     print $ckey . " ";
     $i++;
   }
@@ -3295,6 +3306,9 @@ if ($config{dotikz} eq 1) {
 
 open(F,$rfilename) or die("FATAL: Cannot open main tex file $rfilename");
 close(F);
+
+
+logTimestamp("Finished initializiation");
 
 # Preprocessing of main file
 my $roottex = "";
@@ -4004,20 +4018,20 @@ my $cval = "";
 my $jrow = "";
 my $fz;
 print JCSS "var COLORS = new Object();\n";
-while (($ckey, $cval) = each($config{'colors'})) {
+while (($ckey, $cval) = each(%{$config{'colors'}})) {
   print JCSS "COLORS.$ckey = \"$cval\";\n";
 }
 
 # Fonts parsen (Strings)
 print JCSS "var FONTS = new Object();\n";
-while (($ckey, $cval) = each($config{'fonts'})) {
+while (($ckey, $cval) = each(%{$config{'fonts'}})) {
   $cval = injectEscapes($cval);
   print JCSS "FONTS.$ckey = \"$cval\";\n";
 }
 
 # Sizes parsen (numerische Werte)
 print JCSS "var SIZES = new Object();\n";
-while (($ckey, $cval) = each($config{'sizes'})) {
+while (($ckey, $cval) = each(%{$config{'sizes'}})) {
   print JCSS "SIZES.$ckey = $cval;\n";
 }
 
@@ -4028,13 +4042,13 @@ foreach $row (@mycss) {
   print OCSS $row; # unveraendert in Ziel-CSS schreiben, Ersetzung wird dynamisch von den Seiten vorgenommen
   $row = injectEscapes($row);
   print JCSS " + \"" . $row . "\"\n";
-  while (($ckey, $cval) = each($config{'colors'})) {
+  while (($ckey, $cval) = each(%{$config{'colors'}})) {
     $row =~ s/\[-$ckey-\]/\#$cval/g ;
   }
-  while (($ckey, $cval) = each($config{'fonts'})) {
+  while (($ckey, $cval) = each(%{$config{'fonts'}})) {
     $row =~ s/\[-$ckey-\]/$cval/g ;
   }
-  while (($ckey, $cval) = each($config{'sizes'})) {
+  while (($ckey, $cval) = each(%{$config{'sizes'}})) {
     $cval .= "px";
     $row =~ s/\[-$ckey-\]/$cval/g ;
   }
@@ -4078,6 +4092,7 @@ chdir("$ndir/converter");
 print("Changing to directory $ndir/converter\n");
 
 # Zerlegung der XML-Datei vornehmen
+logTimestamp("Decomposition");
 converter_decompose();
 
 chdir("tex");
@@ -4085,7 +4100,7 @@ my $pdfok = 1;
 if ($config{dopdf} eq 1) {
     # Ganzer Baum wird erstellt: Die Einzelmodule separat texen
     my $doct = "";
-    while (($doct = each($config{generate_pdf})) and ($pdfok == 1)) {
+    while (($doct = each(@{$config{generate_pdf}})) and ($pdfok == 1)) {
       print "======= Generating PDF file $doct.tex ========================================\n";
 
       my $rt1 = system("pdflatex $doct.tex");
