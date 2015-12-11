@@ -47,11 +47,9 @@
 # titlepath		liefert Titel des Kapitels und der aktuellen Seite
 # menu			liefert menu-Eintrag dieser Seite und der untergeordneten Seiten
 #				in Abhaengigkeit der angegebenen Seite
-# fullmenu		liefert das Menu dieser Seite
 # navprev		liefert das in der Struktur folgende Objekt, das ausgegeben wird
 # navnext		liefert das in der Struktur vorhergehende Objekt, das ausgegeben wird
 # subpagelist	liefert eine Liste der untergeordneten Seiten
-# gettext		liefert den Text dieser Seite
 
 # DH 2011
 # idprint		gibt über print die IDs der im Teilbaum enthaltenen Pages aus
@@ -60,7 +58,7 @@ package Page;
 # Exportieren der oeffentlichen Funktionen
 require Exporter;
 @ISA = qw(Exporter);
-@EXPORT = qw(new split link linkpath addpage secpath titlepath menu fullmenu navprev navnext subpagelist gettext idprint);
+@EXPORT = qw(new split link linkpath addpage secpath titlepath menu navprev navnext subpagelist idprint);
 @EXPORT_OK = qw();
 
 # File::Data enthaelt einige Datei-verarbeitende Funktionen
@@ -98,7 +96,7 @@ sub new {
 		SAVEPAGE  => 0,
 		MENUITEM  => 1,
 		DISPLAY   => 0,
-		EXPORTS   => (),
+		EXPORTS   => [],
 		DOCNAME   => ""
 	};
 	$self->{ID} = $main::PageIDCounter;
@@ -342,189 +340,6 @@ sub titlestring {
 }
 
 
-# 
-# sub fullmenu()
-# liefert das Menu dieser Seite
-# Parameter
-# 	$menuauswahllevel	Parameter fuer die Sichtbarkeit der Menu-Abschnitte
-sub fullmenu {
-	my ($self, $menuauswahllevel) = @_;
-	my ($text);
-	#hole das Menu vom root-Objekt und gebe diesem einen Verweis auf das aktuelle Objekt
-	#die menu-Funktion iteriert dann rekursiv durch die Objektstruktur und erstellt 
-	#die Menu-Eintrag
-	$text = "<!--ZOOMSTOP-->\n";
-	$text .= $self->{ROOT}->menu($self, $menuauswahllevel);
-
-# 	$text .= "<center>\n";
-# 	$text .= "<form method=\"get\" action=\"../search/search.html\" target=\"_blank\">\n";
-# 	$text .= "<input type=\"text\" name=\"zoom_query\" size=\"15\" />\n";
-# 	$text .= "<input type=\"submit\" value=\"Suche\" />";
-# 	$text .= "</form>\n";
-# 	$text .= "</center>\n";
-	$text .= "<!--ZOOMRESTART-->";
-
-	return $text;
-}
-
-
-# 
-# sub menu()
-# liefert menu-Eintrag dieser Seite und der untergeordneten Seiten
-# in Abhaengigkeit der angegebenen Seite
-# Parameter
-# 	$curpage			Seite fuer die das Menu erstellt wird
-#	$menuauswahllevel	Parameter fuer die Sichtbarkeit der Menu-Abschnitte
-#
-# Die Seite $curpage fuer die das Menu ausgegeben wird, wird Menu-Seite genannt.
-# Die Seite $self fuer die gerade das Menu-Element ausgegeben wird, wird aktuelle Seite
-# oder aktuelles Objekt genannt.
-#
-# Falls das aktuelle Objekt nicht das root Objekt ist, wird in jedem Fall ein
-# Menu-Eintrag fuer diese Seite erstellt.
-# Die Rekursion wird bei den Unterseiten angewandt, falls diese ausgegeben 
-# werden sollen
-# 
-# Das Menu hat folgende Eigenschaften:
-# - Die Eintraege auf der ersten Ebene (also die Links zu den Kapiteln) werden
-#   immer angezeigt.
-# - Von einem Menu-Eintrag werden entweder alle oder keine untergeordneten Seiten
-#	angezeigt
-# - Durch den Parameter menuauswahllevel laest sich einstellen, welcher Bereich
-#	des Inhaltsverzeichnis immer komplett zu sehen ist. Wenn die Menu-Seite auf dem
-#	Level menuauswahllevel oder hoeher liegt, wird fuer den gesamten Teil der
-#	Objektstruktur die darunter liegt ein Menu-Element ausgegeben
-#	Beispiele:
-#		Ist menuauswahllevel=0, so wird immer das gesamte Inhaltsverzeichnis
-#		ausgegeben.
-#		Ist menuauswahllevel=1, so ist immer der Inhalt eines Kapitels zu sehen.
-#		Ist menuauswahllevel=2 und die Menu-Seite auf Level 1, so sind nur alle 
-#		Unterseiten der Menu-Seite zu sehen. Ist die Menu-Seite auf Level 2, so
-#		ist der Inhalt dieses Abschnitts komplett zu sehen.
-#
-# Die Ueberpruefungen finden anhand der Position in der Objektstruktur statt,
-# die durch die Funktion secpath() geliefert wird.
-#
-sub menu {
-	my ($self, $curpage, $menuauswahllevel) = @_ ;
-	my ($level, @acurpos, $rek, $selected);
-	my ($text, $subtext, $nextlevel, @subpages, $i);
-	# Position der Menu-Seite
-	my $curpos = $curpage->secpath();
-	# Array der Position der Menu-Seite
-	@acurpos = split(/\./, $curpos);
-	# Level der aktuellen Seite
-	$level = $self->{LEVEL};
-	
-	# die boolsche Variable rek gibt an, ob die Rekursion
-	# auf die Unterseiten angewandt wird
-	$rek = 0;
-	
-	# level=0 ist root und wird ausgeschlossen
-	# ausserdem muss die Eigenschaft MENUITEM gesetzt sein
-	if ($level != 0 && $self->{MENUITEM}==1) {
-		#bei 0 ist Rekursionsstart
-		if ($level == 1) {
-			#Ausgabe des ersten Levels
-			#Rekursion aufrufen, wenn 
-			# menuauswahllevel=0, d.h. alle Menu-Eintraege werden immer gezeichnet
-			# oder die Position der aktuellen Seite ist in curpos enthalten, d.h. das 
-			# die aktuelle Seite ist übergeordnetes Element der Menu-Seite
-			$rek = ($menuauswahllevel == 0 || $self->{POS} == $acurpos[0]);
-			if ($self->{POS} == $curpos) {
-				$selected = 1;
-			}
-		} elsif ($level < ($#acurpos+1)) {
-			#Die aktuelle Seite liegt in eienr hoeheren Ebene als die Menu-Siete
-			#Rekursion aufrufen, wenn
-			# level > menuauswahllevel, d.h. das Element liegt unterhalb des Levels 'menuauswahllevel'
-			# und wird immer angezeigt
-			# oder die Position der aktuellen Seite ist in curpos enthalten, s.o.
-			if ($level > $menuauswahllevel || $acurpos[$level-1] == $self->{POS}) {
-				$rek = 1;
-			}
-		} elsif ($level == $#acurpos+1) {
-			#auf der Ebene der Menu-Seite
-			#Rekursion aufrufen, wenn
-			# level > menuauswahllevel, s.o
-			# oder in curpos enthalten, s.o.
-			if ($level > $menuauswahllevel || $acurpos[$level-1] == $self->{POS}) {
-				$rek = 1;
-			}
-			#Wenn die aktuelle Seite und die Menu-Siete die gleichen sind, wird der
-			#Menu-Eintrag markiert
-			if ($self->secpath() eq $curpos) {
-				$selected = 1;
-			}
-		} elsif ($level > ($#acursite+1)) {
-			#Die aktuelle Seite liegt unterhalb der Menu-Seite
-			#Die Rekursion wird fortgefuehrt, wenn
-			# level > menuauswahllevel, s.o.
-			if ($level > $menuauswahllevel) {
-				$rek = 1;
-			}
-		} else {
-			#hier solte der Algorithmus nicht landen
-			die "Menu-Element konnte nicht zugeordnet werden Level $level bei $curpos.";
-		}
-
-		#print "$arrid fuer $cursite mit l $level, pm $menuauswahllevel: $rek";
-		
-		#aktuelles Menueelement zeichnen
-		#print "Zeichne $arrid fuer $cursite\n";
-		if ($selected) {
-			$text = "<li class='level" . $level ."selected'>" . $self->{TITLE} . "\n";
-			#($paramnummenu >= $level ? $self->{NR} . " " : "") . 
-		} else {
-			$text = "<li class='level$level'><a class=\"MINTERLINK\" href='";
-			# wenn der Link der aktuellen Seite in ein Unterverzeichnis fuert,
-			# muss zusaetzlich ../ eingefuegt werden
-			$text .= $curpage->linkpath() . $self->link() . ".{EXT}'>" . $self->{TITLE} . "</a>\n";
-			#$text .= $self->link() . ".{EXT}'>" . $self->{TITLE} . "</a>\n";
-			#($paramnummenu >= $level ? $self->{NR} . " " : "") . $self->{TITLE} . "</a>\n";
-		}
-	}
-	
-	#Rekursion aufrufen
-	if ($rek || $level == 0) {
-		#level hochzaehlen
-		$nextlevel = $level+1;
-		#Unterseiten holen
-		@subpages = @{$self->{SUBPAGES}};
-		
-		if ($#subpages >=0) {
-			#Menu der untergeordneten Elemente aneinanderhaengen
-			$subtext = "";
-			for ($i = 0; $i<=$#subpages;$i++) {
-				$subtext .= $subpages[$i]->menu($curpage, $menuauswahllevel);
-			}
-			#Falls der Text nicht leer ist, dann werden die Liste-Eintraege <li>
-			#in eine List <ul> gepackt
-			if ($subtext ne "") {
-				#Liste starten
-				if ($level != 0) {
-					$text .= "<ul class='level$nextlevel'>\n";
-				} else {
-					$text = "<ul class='level1'>\n";
-				}
-				# Liste zeichen
-				$text .=$subtext;
-				#und die Liste beenden
-				$text .= "</ul>\n";
-			}
-		}
-	}
-	
-	#Es wurde der Eintrag fuer die aktuelle Seite und eine Liste
-	#der Untereintraege gezeichnet
-	#Der Menu-Eintrag fuer die aktuelle Seite muss nun noch abgeschlossen werden
-	if ($level != 0 && $self->{MENUITEM} == 1) {
-		$text .="</li>\n";
-	}
-
-	return($text);
-}
-
 
 # 
 # sub navprev()
@@ -609,18 +424,6 @@ sub subpagelist {
 	
 	return ($text);
 }
-
-
-# 
-# sub gettext()
-# liefert den Text dieser Seite
-# Parameter
-# 	keine
-sub gettext {
-	my ($self) = @_;
-	return $self->{TEXT};
-}
-
 
 # 
 # sub idprint()

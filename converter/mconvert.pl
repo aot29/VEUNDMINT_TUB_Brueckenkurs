@@ -798,8 +798,6 @@ sub HELP_MESSAGE {
 # navprev wird ueberschrieben, damit der "Modul zurueck" Link funktioniert. Obwohl bei der
 # vorherigen Modulseite DISPLAY=0 ist, wird auf diese Seite verwiesen, da dann automatisch
 # auf die erste Unterseite verlinkt wird.
-# Die Funktion gettext wird fuer die Startseiten ueberschrieben, um die Modul-Start-Navigation
-# zu erstellen
 
 # Die Parameter stimmen mit denen im Page-Objekt ueberein und werden hier nicht
 # nochmal kommentiert
@@ -1161,40 +1159,6 @@ sub HELP_MESSAGE {
 		return $self->SUPER::titlepath(@args);
 	}
 
-	# sub fullmenu()
-	# Verhalten wie Page-Klasse
-	sub fullmenu {
-		my ($self, @args) = @_;
-		return $self->SUPER::fullmenu(@args);
-	}
-
-	# sub menu()
-	# Falls der Level=3 ist, wird einfach der Menu-Eintrag gezeichnet. Dabei
-	# ist es egal ob es weitere Unterseiten gibt, diese werden nicht beachtet.
-	# Ansonsten Verhalten wie Page-Klasse
-	sub menu {
-		my ($self, $curpage, $menuauswahllevel) = @_ ;
-	        print "sub menu ausgefuehrt auf Modul " . $self->{TITLE} . "\n";
-		my $level = $self->{LEVEL};
-		my $secpath = $curpage->secpath();
-		#print "menu " . $curpage->secpath() . " Elem " . $self->secpath();
-		my @secpath = split(/\./, $secpath);
-		pop @secpath;
-		$secpath = join('.', @secpath);
-		#print " vergleiche $secpath\n";
-
-		if ($self->{ISMODUL} && $secpath eq $self->secpath()) { # && $#subpages < 0) {
-		  # DH 2011: Alle Eintraege anklickbar, auch wenn Sie auf die gerade aktive Seite zeigen
-		  my $linktext = "<li class='level$level" . "selected" . "'><a href='";
-		  $linktext .= $curpage->linkpath() . $self->link() . ".{EXT}' class=\"MINTERLINK\">" . $self->{TITLE} . "</a></li>\n";
-		  return $linktext;
-		  #return "<li class='level" . $level ."selected'>" . $self->{TITLE} . "</li>\n";
-		} else {
-			return $self->SUPER::menu($curpage, $menuauswahllevel);
-		}
-
-	}
-
 	# sub navprev()
 	# liefert bei Modulseiten den Link auf die vorherige Modulseite,
 	#	die Startseite hat keinen Vorgaenger
@@ -1207,6 +1171,10 @@ sub HELP_MESSAGE {
 
 		
 		main::logMessage($VERBOSEINFO, "  navprev fuer Page " . $self->{TITLE});
+                if ($self->{PREV} == 0) {
+		  main::logMessage($VERBOSEINFO, "    PREV nicht gesetzt");
+		  return 0;
+                }
 		$p = $self->{PREV};
 		main::logMessage($VERBOSEINFO, "    PREV is " . $p->{TITLE});
 
@@ -1235,21 +1203,6 @@ sub HELP_MESSAGE {
 		return $self->SUPER::subpagelist(@args);
 	}
 
-	# sub gettext()
-	# Bei Modulstartseiten wird die Modulnavigation angehaengt.
-	# Verhalten wie Page-Klasse bei allen anderen Seiten.
-	sub gettext {
-		my ($self, @args) = @_;
-		my ($link, $text, $p);
-
- 		if ($self->{ISMODUL} && $self->{MODULID} eq "start") {
-			$text = $self->{TEXT} . "\n" . $text . "\n";
-			return $text;
-		} else {
-			return $self->SUPER::gettext(@args);
-		}
-	}
-
 }
 
 
@@ -1264,7 +1217,7 @@ sub loadfile {
 	my($file, $text, $zeile, $rw);
 	$file = $_[0];
 	$text = "";
-	$rw = open(LDFILE,$file) or die "\nFehler beim Öffnen der Datei \"$file\": $!\n";
+	$rw = open(LDFILE,$file) or die "\nFehler beim Oeffnen der Datei \"$file\": $!\n";
 	while(defined($zeile = <LDFILE>)) { $text .= $zeile; }
 	$text;
 }
@@ -1561,11 +1514,11 @@ sub postprocess {
   }
 
   # mfeedbackbutton ersetzen
+  my $j = 0;
   while ($text =~ m/<!-- mfeedbackbutton;(.+?);(.*?);(.*?); \/\/-->/s ) {
     my $type = $1;
     my $testsite = $2;
     my $exid = $3;
-    my $j;
     my $ibt = "\n<br />";
 
     my $bid = "FEEDBACK$j\_$exid";
@@ -1892,6 +1845,8 @@ sub gettoccaption_menustyle {
   my ($p) = @_;
   my $c = "";
 
+  logMessage($VERBOSEINFO, "gettoccaption_menustyle called on page " . $p->{TITLE});
+
   # Nummer des gerade aktuellen Fachbereichs ermitteln
   my $pp = $p;
   my $fsubi = -1;  
@@ -1899,7 +1854,6 @@ sub gettoccaption_menustyle {
     if ($pp->{LEVEL}==$contentlevel-2) { $fsubi = $pp->{ID}; }
     $pp = $pp->{PARENT};
   }
-  my $topsite = $pp;
 
   my $attr = "";
   my $root = $p->{ROOT};
@@ -1913,7 +1867,7 @@ sub gettoccaption_menustyle {
   
     # Duenner TU9-Layout mit einzelnen Aufklappunterpunkten
     $c .= "<tocnavsymb><ul>";
-    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $topsite->linkpath() . "../$chaptersite\" target=\"_new\"><div class=\"tocmintitle\">Kursinhalt</div></a>";
+    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . "../$chaptersite\" target=\"_new\"><div class=\"tocmintitle\">Kursinhalt</div></a>";
     $c .= "<div><ul>\n";
    
     my $i1 = 0; # eigentlich for-schleife, aber hier nur Kursinhalt
@@ -1999,7 +1953,7 @@ sub getcontent {
   my $content = "";
   $content .= "<hr />\n{CONTENT}";
   $content .= "<hr />\n"; # </div> entfernt !
-  my $contentx = $p->gettext();
+  my $contentx = $p->{TEXT};
   $content =~ s/{CONTENT}/$contentx/;
   
   return $content;	
@@ -3011,18 +2965,9 @@ if ($text =~ s/<!-- mlocation;;(.+?);;(.+?);;(.+?);; \/\/-->//s ) {
 }
 
 
-# =========================
-# = Vorkurs-Einstellugnen =
-# =========================
-
-# Alles ab 'File translated...' entfernen
+# Alles ab 'File translated...' aus ttm-Ausgabe entfernen
 $text =~ s/<hr \/><small>File translated from.*<\/body>.*//s;
 
-# =================
-# = Konvertierung =
-# =================
-# Schritt 1: Initialisierung
-# ==========================
 
 $templateheader = generate_scriptheaders() . $templateheader . "\n";
 
