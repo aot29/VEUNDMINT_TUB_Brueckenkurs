@@ -349,7 +349,11 @@ sub borkifyHTML {
     close(MINTS);
   }
   
+<<<<<<< HEAD
   logMessage($VERBOSEINFO, "  $fdi Dateien borkifiziert");
+=======
+  logMessage($VERBOSEINFO, "  $fdi Dateien borkifiziert";
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
 
 }
 
@@ -453,7 +457,11 @@ ENDE
     print MINTS $indexhtmlscorm;
   }
   close(MINTS);
+<<<<<<< HEAD
   logMessage($CLIENTINFO, "Redirect auf $rurl in $filename erstellt");
+=======
+  logMessage($CLIENTINFO, "Redirect auf $rurl in $filename erstellt";
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
 }
 
 sub createSCORM {
@@ -556,7 +564,11 @@ ENDE
   print MINTS "$manifest";
   close(MINTS); 
   
+<<<<<<< HEAD
   logMessage($CLIENTINFO, "HTML-Baum wird als SCORM-Lernmodul Version 2004v4 eingerichtet");
+=======
+  logMessage($CLIENTINFO, "HTML-Baum wird als SCORM-Lernmodul Version 2004v4 eingerichtet\n";
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
 }
 
 # Checks if given parameter key is present and has a nonempty string as value
@@ -605,7 +617,11 @@ sub checkOptions {
   }
   
   # Check mandatory option parameters
+<<<<<<< HEAD
   logMessage($CLIENTINFO, "Checking " . ($#mandatory+1) . " parameters ... ");
+=======
+  logMessage($CLIENTINFO, "Checking " . ($#mandatory+1) . " parameters ... ";
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
   my $a;
   for ($a = 0; $a <= $#mandatory; $a++) {
     checkParameter($mandatory[$a]);
@@ -947,7 +963,11 @@ ENDE
                                       my $testpage = $5;
                                       
                                       if (($testpage ne 0) and ($testpage ne 1)) {
+<<<<<<< HEAD
 										logMessage($CLIENTERROR, "Zaehlerueberlauf testpage=$testpage");
+=======
+										logMessage($CLIENTERROR, "Zaehlerueberlauf testpage=$testpage";
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
                                       }
                                       
                                       $p->{TESTSITE} = $5;
@@ -957,7 +977,11 @@ ENDE
                                         $p->{PARENT}->{PARENT}->{NR} = "$sec";
                                       }
 
+<<<<<<< HEAD
 				      main::logMessage($VERBOSEINFO, "xcontent \"$p->{TITLE}\" hat Nummern $sec.$ssec.$sssec");
+=======
+				      logMessage($VERBOSEINFO, "xcontent \"$p->{TITLE}\" hat Nummern $sec.$ssec.$sssec");
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
 
 				      # <title> der HTML-Seite erweitern
 				      $p->{TITLE} = $config{moduleprefix} . " Abschnitt $sec.$ssec.$sssec " . $p->{TITLE};
@@ -968,18 +992,30 @@ ENDE
                                       if ($printnr == 1) { $pref = "$sec.$ssec.$sssec "; }
 				      if ($tpcontent =~ s/<h4>(.*?)<\/h4><!-- sectioninfo;;$sec;;$ssec;;$sssec;;$printnr;;$testpage; \/\/-->/<h4>{XCONTENTPREFIX}<\/h4><br \/><h4>$pref$1<\/h4>/ ) {
 				      } else {
+<<<<<<< HEAD
 						main::logMessage($CLIENTERROR, "Konnte in xcontent \"$p->{TITLE}\" nicht replacen");
 				      }
 				      
 				    } else {
 				      main::logMessage($CLIENTERROR, "Konnte Sectionnumbers nicht extrahieren in xcontent: $p->{TITLE}");
+=======
+						logMessage($CLIENTERROR, "Konnte in xcontent \"$p->{TITLE}\" nicht replacen");
+				      }
+				      
+				    } else {
+				      logMessage($CLIENTERROR, "Konnte Sectionnumbers nicht extrahieren in xcontent: $p->{TITLE}");
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
 				    }
 
                                     # MSubsubsections im MXContent mit Nummern versehen
                                     $tpcontent =~ s/<h4>(.+?)<\/h4><!-- sectioninfo;;(\w+?);;(\w+?);;(\w+?);;1;;([01]); \/\/-->/<h4>$2.$3.$4 $1<\/h4>/g ;
 
 
+<<<<<<< HEAD
                                     main::logMessage($VERBOSEINFO, "xcontent $i: $1 ($2), id = $p->{MODULID}, Laenge ist " . ($tpb-$tpa) . ", sslabels = $sslabels");
+=======
+                                    logMessage($VERBOSEINFO, "xcontent $i: $1 ($2), id = $p->{MODULID}, Laenge ist " . ($tpb-$tpa) . ", sslabels = $sslabels");
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
 
                                     $p->{TEXT} = $sslabels . "\n" . $tpcontent;
                                     $sslabels = "";
@@ -990,11 +1026,19 @@ ENDE
                                     $lastpage = $p;
 
 				    } else {
+<<<<<<< HEAD
                                       main::logMessage($CLIENTERROR, "Found xcontent $i but could not process it: \$1=$mp1, \$2=$mp2, \$3=$mp3");
                                       if ($tpa ne -1) {
                                         main::logMessage($CLIENTERROR, " (eof problem, ttm stopped processing here)");
                                       } else {
                                         main::logMessage($CLIENTERROR, "  File content:\n$text\n");
+=======
+                                      logMessage($CLIENTERROR, "Found xcontent $i but could not process it: \$1=$mp1, \$2=$mp2, \$3=$mp3");
+                                      if ($tpa ne -1) {
+                                        logMessage($CLIENTERROR, " (eof problem, ttm stopped processing here)");
+                                      } else {
+                                        logMessage($CLIENTERROR, "  File content:\n$text\n");
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
                                       }
 				    }
 
@@ -1058,16 +1102,28 @@ ENDE
                                     $p->{NEXT} = 0;
 
 
+<<<<<<< HEAD
                                     main::logMessage($VERBOSEINFO, "scontent $i: $1 ($2), id = $p->{MODULID}, Laenge ist " . ($tpb-$tpa));
+=======
+                                    logMessage($VERBOSEINFO, "scontent $i: $1 ($2), id = $p->{MODULID}, Laenge ist " . ($tpb-$tpa));
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
 
                                     $pos = $pos + 1;
 
 				    } else {
+<<<<<<< HEAD
                                       main::logMessage($CLIENTERROR, "Found scontent $i but could not process it: \$1=$mp1, \$2=$mp2, \$3=$mp3");
                                       if ($tpa ne -1) {
                                         main::logMessage($CLIENTERROR, "  (eof problem, ttm stopped processing here)");
                                       } else {
                                         main::logMessage($CLIENTERROR, "  File content:\n$text\n");
+=======
+                                      logMessage($CLIENTERROR, "Found scontent $i but could not process it: \$1=$mp1, \$2=$mp2, \$3=$mp3");
+                                      if ($tpa ne -1) {
+                                        logMessage($CLIENTERROR, "  (eof problem, ttm stopped processing here)");
+                                      } else {
+                                        logMessage($CLIENTERROR, "  File content:\n$text\n");
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
                                       }
 				    }
 
@@ -1099,7 +1155,11 @@ ENDE
 			$self->split();
 		} else {
 			for ( $i=0; $i <= $#subpages; $i++ ) {
+<<<<<<< HEAD
 				main::logMessage($VERBOSEINFO, "Modultyp der Seite " . $subpages[$i]->secpath() . " auf Modul setzen");
+=======
+				logMessage($VERBOSEINFO, "Modultyp der Seite " . $subpages[$i]->secpath() . " auf Modul setzen");
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
 				setmoduletype($subpages[$i]);
 			}
 		}
@@ -3141,7 +3201,11 @@ system "chmod -R 777 " . $config{outtmp};
 
 
 if ($#converrors ge 0) {
+<<<<<<< HEAD
   logMessage($CLIENTINFO, "----------------------- COMPILATION MESSAGES ---------------------------------");
+=======
+  logMessage($CLIENTINFO, "----------------------- COMPILATION MESSAGES ---------------------------------";
+>>>>>>> 8865ac7bc69bd3040bac3cc27f16150defbad3a9
   my $yi = 0;
   for ($yi = 0; $yi <= $#converrors; $yi++) {
     logMessage($CLIENTINFO, "  $converrors[$yi]");
