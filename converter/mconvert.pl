@@ -83,9 +83,6 @@ our $stestfile = "";
 
 # ----------------------------- Variablen fuer die Konvertierung -------------------------------------------------
 
-our $version = "Version 3.0";
-our $dokversion = "M3.0";
-
 # Diese Einstellungen haben keine Auswirkungen auf die produzierten Module, daher nicht in Parameterdatei
 our $xmlfile = "converted.xml";
 
@@ -243,7 +240,6 @@ sub borkString {
   
   my $u = (((5*$lan) - (3*length($str))) % $lan);
   while (gcd($u,$lan) ne 1) { $u = (($u + 1) % $lan);}
-  # print("$u is a unit mod $lan\n");
   
   my $t2 = permuteString($t, $u);
   return $t2;
@@ -277,9 +273,9 @@ sub minimizeJS {
     my $borkcall = "file -i $borkfilename";
     $rt = `$borkcall`;
     my $domini = 0;
-    print("  -> " . $borkfilename);
+    logMessage($VERBOSEINFO, "  -> " . $borkfilename);
     if ($rt =~ m/charset\=us\-ascii/s ) {
-      print " (ist ASCII-codiert)\n";
+      logMessage($VERBOSEINFO, " (ist ASCII-codiert)");
       $domini = 1;
     } else {
       $rt =~ m/charset\=(.+)\n/s ;
@@ -301,13 +297,13 @@ sub minimizeJS {
 sub borkifyHTML {
 
   my $fdi = 0;
-  print("Borkifiziere HTML:\n");
+  logMessage($VERBOSEINFO, "Borkifiziere HTML:");
   my $borkfilecount = 0;
   my $borkcall = "find -P . -name \\*.html";
   my $borktexlist = `$borkcall`; # Finde alle tex-Files, auch in den Unterverzeichnissen
   my @borktexs = split("\n",$borktexlist);
   my $borknt = $#borktexs + 1;
-  print "  $borknt html-Dateien gefunden\n";
+  logMessage($VERBOSEINFO,"  $borknt html-Dateien gefunden");
   my $borkka;
   my $borkfilename = "";
   for ($borkka = 0; $borkka < $borknt; $borkka++) {
@@ -332,7 +328,6 @@ sub borkifyHTML {
       my $s = $3;
       push @st , [$2,$s,length($s)];
       if ($lan <= (2*length($s))) { $lan = 2*length($s) + 1; }
-      # print("    Lösung $s borkifiziert\n");
     }
     my $i;
     for ($i = 0; $i <= $#st; $i++) {
@@ -349,7 +344,7 @@ sub borkifyHTML {
     close(MINTS);
   }
   
-  print "  $fdi Dateien borkifiziert\n";
+  logMessage($VERBOSEINFO, "  $fdi Dateien borkifiziert";
 
 }
 
@@ -361,7 +356,7 @@ sub checkSystem {
   if ($reply =~ m/0\.97\.2/i ) {
     # dia erfolgreich getestet
   } else {
-    print("Program dia (version 0.97.2) not found, dia-compilation will not work\n");
+    logMessage($CLIENTWARN, "Program dia (version 0.97.2) not found, dia-compilation will not work");
   }
 
   # Pruefe ob perl installiert ist
@@ -380,7 +375,7 @@ sub checkSystem {
   # Pruefe ob ein JDK installiert ist
   $reply = `javac -version 2>&1`;
   if ($reply =~ m/javac (.+)/i ) {
-    print "JDK found, using javac from version $1\n";
+    logMessage($CLIENTINFO, "JDK found, using javac from version $1");
   } else {
     die("FATAL: JDK not found");
   }
@@ -453,12 +448,12 @@ ENDE
     print MINTS $indexhtmlscorm;
   }
   close(MINTS);
-  print "Redirect auf $rurl in $filename erstellt\n";
+  logMessage($CLIENTINFO, "Redirect auf $rurl in $filename erstellt";
 }
 
 sub createSCORM {
   # Stelle Dateireferenzen fuer Manifestdatei zusammen, iteriere dazu jede einzelne Datei im Baum
-  print "Sammle Dateireferenzen fuer SCORM-Manifest, Startdatei ist $entryfile\n";
+  logMessage($VERBOSEINFO, "Sammle Dateireferenzen fuer SCORM-Manifest, Startdatei ist $entryfile");
   my $mfiles = `find . -type f -exec echo \"      <file href=\\\"\"{}\"\\\" />\"  \\;`;
 
   my $mani2004rest = <<ENDE;
@@ -549,14 +544,14 @@ ENDE
 #        </imsss:primaryObjective>
 
 
-  print "Erstelle SCORM-Manifestdatei mit title=$manifest_title, version=$manifest_version und id=$manifest_id\n";
+  logMessage($VERBOSEINFO, "Erstelle SCORM-Manifestdatei mit title=$manifest_title, version=$manifest_version und id=$manifest_id");
   
     # Erstelle Manifestdatei fuer SCORM
   my $scorm_open = open(MINTS, "> ./imsmanifest.xml") or die "Fehler beim Erstellen der Manifestdatei.\n";
   print MINTS "$manifest";
   close(MINTS); 
   
-  print "HTML-Baum wird als SCORM-Lernmodul Version 2004v4 eingerichtet\n";
+  logMessage($CLIENTINFO, "HTML-Baum wird als SCORM-Lernmodul Version 2004v4 eingerichtet\n";
 }
 
 # Checks if given parameter key is present and has a nonempty string as value
@@ -605,13 +600,11 @@ sub checkOptions {
   }
   
   # Check mandatory option parameters
-  print "Checking " . ($#mandatory+1) . " parameters ... ";
+  logMessage($CLIENTINFO, "Checking " . ($#mandatory+1) . " parameters ... ";
   my $a;
   for ($a = 0; $a <= $#mandatory; $a++) {
     checkParameter($mandatory[$a]);
   }
-  print "ok\n";
-
 }
 
 # sub createButtonFiles()
@@ -648,14 +641,13 @@ sub createButtonFiles {
 
 sub generate_scriptheaders {
    my $itags = "";
-   print "Using scriptheaders: ";
+   logMessage($VERBOSEINFO, "Using scriptheaders: ");
    my $i;
    for ($i = 0; $i <= $#{$config{scriptheaders}}; $i++) {
      my $cs = $config{scriptheaders}[$i];
      $itags = $itags . "<script src=\"$cs\" type=\"text/javascript\"></script>\n";
-     print "$cs "; 
+     logMessage($VERBOSEINFO, "  $cs"); 
    }
-   print "\n";
    return $itags;
 }
 
@@ -780,18 +772,6 @@ ENDE
 
 # -------------------------------------- subs --------------------------------------------------------------------------------
 
-sub VERSION_MESSAGE {
-    print "mconvert.pl $version\n";
-}
-
-sub HELP_MESSAGE {
-    print "Usage: mconvert.pl <parameters.pl>\n";
-}
-
-
-# Funktionen fuer interaktive Aufgaben
-# ====================================
-
 # --------------------------------------------- Objektdefinitionen ---------------------------------------------------------------------------------------------------------------------
 
 # Die Klasse ModulPage wird von der Klasse Page abgeleitet.
@@ -856,8 +836,6 @@ sub HELP_MESSAGE {
 			#my $searchstring = "<!-- start \/\/-->((.|\n)*?)<!-- endstart \/\/-->";
 			my $text = $self->{TEXT};
 
-      # print "DEBUGTEXT:\n\n$text\n\n";
-
 			if ($text =~ /$searchstring/) {
 				$self->{ISMODUL} = 1;
 				$self->{DISPLAY} = 0;
@@ -867,8 +845,6 @@ sub HELP_MESSAGE {
                                 # Labels in den ersten folgenden xcontent verschieben
                                 my $sslabels = "";
                                 if ($self->{LEVEL} eq 3) {
-                                  # print "SUBSECTION mit Inhalt \n$text\n\n";
-
                                   if ($text =~ /(.*)<!-- xcontent;-;0;-;/s ) {
                                     my $pretext = $1;
                                     while ($pretext =~ s/<!-- mmlabel;;(.*?)\/\/-->//s ) { $sslabels = $sslabels . "<!-- mmlabel;;$1\/\/-->"; }
@@ -881,10 +857,6 @@ sub HELP_MESSAGE {
                                 my $i = 0;
                                 my $pos = 1;
                                 my $lastpage;
-
-                                # if ($sslabels ne "") { print "DEBUG: SSLABELS =  $sslabels\n"; }
-
-                                # print "TEXT: \n$text\n\n";
 
                                 # Die xcontent-Abschnitte werden iteriert und in die Navigationsschleife eingehÃ¤ngt
                      	        my ($mp1, $mp2, $mp3);
@@ -970,7 +942,7 @@ sub HELP_MESSAGE {
                                       my $testpage = $5;
                                       
                                       if (($testpage ne 0) and ($testpage ne 1)) {
-					print "ERROR: Zaehlerueberlauf testpage=$testpage\n";
+										logMessage($CLIENTERROR, "Zaehlerueberlauf testpage=$testpage";
                                       }
                                       
                                       $p->{TESTSITE} = $5;
@@ -980,9 +952,9 @@ sub HELP_MESSAGE {
                                         $p->{PARENT}->{PARENT}->{NR} = "$sec";
                                       }
 
-				      # print "DEBUG: xcontent \"$p->{TITLE}\" hat Nummern $sec.$ssec.$sssec\n";
-				      # <title> der HTML-Seite erweitern
+				      logMessage($VERBOSEINFO, "xcontent \"$p->{TITLE}\" hat Nummern $sec.$ssec.$sssec");
 
+				      # <title> der HTML-Seite erweitern
 				      $p->{TITLE} = $config{moduleprefix} . " Abschnitt $sec.$ssec.$sssec " . $p->{TITLE};
 				      # Fehler im ttm korrigieren: subsubsection-Titel werden ohne Nummernprefix ausgegeben
 				      # {XONTENTPREFIX} wird in split.pm (sub printpages) durch die captions der vorgaenger ersetzt, diese
@@ -991,18 +963,18 @@ sub HELP_MESSAGE {
                                       if ($printnr == 1) { $pref = "$sec.$ssec.$sssec "; }
 				      if ($tpcontent =~ s/<h4>(.*?)<\/h4><!-- sectioninfo;;$sec;;$ssec;;$sssec;;$printnr;;$testpage; \/\/-->/<h4>{XCONTENTPREFIX}<\/h4><br \/><h4>$pref$1<\/h4>/ ) {
 				      } else {
-					print "ERROR: Konnte in xcontent \"$p->{TITLE}\" nicht replacen\n";
+						logMessage($CLIENTERROR, "Konnte in xcontent \"$p->{TITLE}\" nicht replacen");
 				      }
 				      
 				    } else {
-				      print "ERROR: Konnte Sectionnumbers nicht extrahieren in xcontent: $p->{TITLE}\n";
+				      logMessage($CLIENTERROR, "Konnte Sectionnumbers nicht extrahieren in xcontent: $p->{TITLE}");
 				    }
 
                                     # MSubsubsections im MXContent mit Nummern versehen
                                     $tpcontent =~ s/<h4>(.+?)<\/h4><!-- sectioninfo;;(\w+?);;(\w+?);;(\w+?);;1;;([01]); \/\/-->/<h4>$2.$3.$4 $1<\/h4>/g ;
 
 
-                                    # print "XContent $i: $1 ($2), id = $p->{MODULID}, Laenge ist " . ($tpb-$tpa) . ", sslabels = $sslabels\n";
+                                    logMessage($VERBOSEINFO, "xcontent $i: $1 ($2), id = $p->{MODULID}, Laenge ist " . ($tpb-$tpa) . ", sslabels = $sslabels");
 
                                     $p->{TEXT} = $sslabels . "\n" . $tpcontent;
                                     $sslabels = "";
@@ -1013,11 +985,11 @@ sub HELP_MESSAGE {
                                     $lastpage = $p;
 
 				    } else {
-                                      print "ERROR: Found xcontent $i but could not process it: \$1=$mp1, \$2=$mp2, \$3=$mp3";
+                                      logMessage($CLIENTERROR, "Found xcontent $i but could not process it: \$1=$mp1, \$2=$mp2, \$3=$mp3");
                                       if ($tpa ne -1) {
-                                        print " (eof problem, ttm stopped processing here)\n";
+                                        logMessage($CLIENTERROR, " (eof problem, ttm stopped processing here)");
                                       } else {
-                                        print "\nFile content:\n$text\n";
+                                        logMessage($CLIENTERROR, "  File content:\n$text\n");
                                       }
 				    }
 
@@ -1081,16 +1053,16 @@ sub HELP_MESSAGE {
                                     $p->{NEXT} = 0;
 
 
-                                    # print "SContent $i: $1 ($2), id = $p->{MODULID}, Laenge ist " . ($tpb-$tpa) . "\n";
+                                    logMessage($VERBOSEINFO, "scontent $i: $1 ($2), id = $p->{MODULID}, Laenge ist " . ($tpb-$tpa));
 
                                     $pos = $pos + 1;
 
 				    } else {
-                                      print "ERROR: Found scontent $i but could not process it: \$1=$mp1, \$2=$mp2, \$3=$mp3";
+                                      logMessage($CLIENTERROR, "Found scontent $i but could not process it: \$1=$mp1, \$2=$mp2, \$3=$mp3");
                                       if ($tpa ne -1) {
-                                        print " (eof problem, ttm stopped processing here)\n";
+                                        logMessage($CLIENTERROR, "  (eof problem, ttm stopped processing here)");
                                       } else {
-                                        print "\nFile content:\n$text\n";
+                                        logMessage($CLIENTERROR, "  File content:\n$text\n");
                                       }
 				    }
 
@@ -1122,7 +1094,7 @@ sub HELP_MESSAGE {
 			$self->split();
 		} else {
 			for ( $i=0; $i <= $#subpages; $i++ ) {
-				#print "Modultyp der Seite " . $subpages[$i]->secpath() . " auf Modul setzen\n";
+				logMessage($VERBOSEINFO, "Modultyp der Seite " . $subpages[$i]->secpath() . " auf Modul setzen");
 				setmoduletype($subpages[$i]);
 			}
 		}
@@ -1284,7 +1256,7 @@ sub postprocess {
   # Pull-Seiten aktivieren, JS-Variablen anpassen (geschieht bei Zerlegung in xcontents, aber HELPSITE-Sectionstart ist keiner?)
   if ($text =~ m/<!-- pullsite \/\/-->/s ) {
     $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/SITE_PULL = 1;\n\/\/ <JSCRIPTPRELOADTAG>/s ;
-    print "User-Pull on Site: " . $orgpage->{TITLE} . "\n";
+    logMessage($CLIENTINFO, "User-Pull on Site: " . $orgpage->{TITLE});
   } else {
     $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/SITE_PULL = 0;\n\/\/ <JSCRIPTPRELOADTAG>/s ;
   }
@@ -1306,30 +1278,10 @@ sub postprocess {
     $text =~ s/\n/$rpr A/g;
     $text =~ s/\r/$rpr B/g;
 
-
-
-#     while ($text =~ /<!-- minimarker;;(.+?);;(.+?); \/\/-->/ ) {
-#       my $i = $1;
-#       my $width = $2;
-#       my $perc = $width*100;
-#       my $orgs = "<!-- minimarker;;$i;;$width; \/\/-->";
-#   
-#       if ($text =~ s/<table(.*?)>(.*?)$orgs/<$pref table width=\"$perc\%\"$1>$2/ ) {
-# 	print "MiniMarker eingesetzt\n";
-#       } else {
-# 	print "ERROR: Konnte minimarker nicht matchen: $orgs\n";
-# 	print "ORG:\n$text\n\n";
-# 	$text =~ s/$orgs// ;
-#       }
-#     }
-# 
-#     $text =~ s/<$pref table/<table/g;
-
-
     while ($text =~ /<!-- startalign;;(.+?);;(.+?); \/\/-->/ ) {
       my $i = $1;
       my $al = $2;
-      # print "Align-environment $i with align=\"$al\":\n";
+      logMessage($VERBOSEINFO, "Align-environment $i with align=\"$al\":");
 
       while ($text =~ /<!-- startalign;;$i;;$al; \/\/-->(.*?)<td(.*?)>(.*)<!-- stopalign;;$i; \/\/-->/  ) {
 	my $x1 = $1;
@@ -1347,12 +1299,6 @@ sub postprocess {
 	if ($text =~ s/<!-- startalign;;$i;;$al; \/\/-->$x1<td$x2>$x3<!-- stopalign;;$i; \/\/-->/<!-- startalign;;$i;;$al; \/\/-->$x1<$pref td$xrep>$x3<!-- stopalign;;$i; \/\/-->/ ) {
 	  # print "  TD corrected, attributes $x2 changed to $xrep\n";
 	} else {
-	  # print "WARNING: Could not translate a td in align-block $i, removing blockmarkers\n";
-#           $ret = $text;
-# 	  $ret =~ s/$rpr A/\n/g;
-#           $ret =~ s/$rpr B/\r/g;
-# 
-# 	  print "ORG:\n$ret\n\n";
 	  $text =~ s/<!-- startalign;;$i;;$al; \/\/-->//g ;
 	  $text =~ s/<!-- stopalign;;$i; \/\/-->//g ;
 	}
@@ -1370,9 +1316,8 @@ sub postprocess {
     $text =~ s/$rpr B/\r/g;
 
   # Registrierte Dateien ermitteln und an die richtige Stelle kopieren
-  # print "Copying local files, outputfolder=$outputfolder, outputfile=$outputfile\n";
+  logMessage($VERBOSEINFO, "Copying local files, outputfolder=$outputfolder, outputfile=$outputfile");
   my $nf = 0;
-  # print "ORG:\n$text";
   while ($text =~ /<!-- registerfile;;(.+?);;(.+?);;(.+?); \/\/-->/) {
     $nf++;
     my $fileid = $3;
@@ -1380,7 +1325,7 @@ sub postprocess {
     my $fname = $1;
     my $fnameorg = $fname;
 
-    # print "Processing includedir=$includedir and fname=$fname, id = $fileid\n";
+    logMessage($VERBOSEINFO, "Processing includedir=$includedir and fname=$fname, id = $fileid");
 
     # Ist die Dateierweiterung mit angegeben?
     my $dobase64 = 0;
@@ -1388,16 +1333,16 @@ sub postprocess {
     if ($fname =~ m/\.(.+)/ ) {
       $fext = "." . $1;
       $fname =~ s/$fext//;
-      # print "File extension is $fext\n";
-      if ($fext eq ".png") { $dobase64 = 1; } else { $dobase64 = 0; print "   kein .png sondern " . $fext . "\n";}
-      if ($fext eq ".PNG") { print "FEHLER: png-Datei mit Dateierweiterung PNG gefunden, wird nicht erkannt!\n"; }
+      logMessage($VERBOSEINFO, "File extension is $fext");
+      if ($fext eq ".png") { $dobase64 = 1; } else { $dobase64 = 0; logMessage($VERBOSEINFO, "   kein .png sondern " . $fext);}
+      if ($fext eq ".PNG") { logMessage($CLIENTERROR, "png-Datei mit Dateierweiterung PNG (Grossbuchstaben) gefunden, wird nicht erkannt!"); }
       
     } else {
-      # print "No file extension given, guessing graphics extensions";
+      logMessage($VERBOSEINFO, "No file extension given, guessing graphics extensions");
       # Simuliere DeclareGraphicsExtension{png,jpg,gif}
       my $filerump = "tex/" . $includedir . "/" . $fname;
       my $filelist = `ls -l $filerump.*`;
-      # print "filelist=$filelist\n";
+      logMessage($VERBOSEINFO, "  filelist=$filelist");
       my $filerump2 = noregex($filerump);
 
       if ($filelist =~ m/$filerump2\.(png)/i) {
@@ -1406,13 +1351,13 @@ sub postprocess {
       } else {
         if ($filelist =~ m/$filerump2\.(jpg)/i) {
         $fext = ".$1";
-        # print "...found a jpg\n";
+        logMessage($VERBOSEINFO, "  ...found a jpg");
       } else {
         if ($filelist =~ m/$filerump2\.(gif)/i) {
           $fext = ".$1";
-          # print "...found a gif\n";
+          logMessage($VERBOSEINFO, "  ...found a gif");
         } else {
-          print "\nERROR: Could not find suitable graphics extension for $fname, rump is $filerump, rump2 is $filerump2, filelist is\n$filelist\n\n";
+          logMessage($CLIENTERROR, "Could not find suitable graphics extension for $fname, rump is $filerump, rump2 is $filerump2, filelist is\n$filelist\n");
           $fext = "*";
           # Register-Tag aus Quelltext entfernen
           $text =~ s/<!-- registerfile;;$fnameorg;;$includedir;;$fileid; \/\/-->// ;
@@ -1435,7 +1380,7 @@ sub postprocess {
       $text =~ s/<!-- mfilenameref;;$fileid; \/\/-->/$fnamename/g;
       $text =~ s/<!-- mfilepathref;;$fileid; \/\/-->/$fnamepath/g;
 
-      # print "fileid $fileid wird expandiert zu $fname, liegt in Ordner $outputfolder\n";
+      logMessage($VERBOSEINFO, "fileid $fileid wird expandiert zu $fname, liegt in Ordner $outputfolder");
 
       # Register-Tag aus Quelltext entfernen
       my $fnameorg2 = noregex($fnameorg);
@@ -1464,16 +1409,10 @@ sub postprocess {
       $fi2 =~ /(.*)\/[^\/]*?$/;
       mkpath($1);
       my $call = "cp -rf $fi $1/.";
-      
-      
-      
-      
-      # print "DEBUG: call = $call\n";
       system($call);
     }
   }
-  # if ($nf>0) { print "$nf local files copied.\n"; }
-
+  if ($nf>0) { logMessage($VERBOSEINFO, "$nf local files copied"); }
 
   # MathML korrigieren: mtext, normalstyles und boldstyles um den Zeichensatz ergaenzen, damit es keine Serifen hat
   $text =~ s/fontstyle=\"normal\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\"/ig;
@@ -1487,8 +1426,6 @@ sub postprocess {
   # Diese Zeile verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages NICHT vorgenommen wurde
   $text =~ s/<mtext>/<mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
   $text =~ s/<mtext(.*?)>(.*?)<mstyle(.*?)>(.+?)<\/mstyle(.*?)>\n*(.*?)<\/mtext(.*?)>/<mstyle$3><mtext$1>$4<\/mtext$7><\/mstyle$5>/gi;
-
-  # print "POST:\n$text";
 
   # Falls es eine Pruefungsseite ist, Kennvariablen fuer die Aufgabenpunkte erzeugen
   if ($orgpage->{TESTSITE} eq 1) {
@@ -1572,7 +1509,7 @@ sub postprocess {
       
       $text =~ s/<!-- qexportstart;$qpos; \/\/-->(.*?)<!-- qexportend;$qpos; \/\/-->/$rep/s ;
     } else {
-      print "ERROR: Inkongruentes qexportpaar gefunden: $qpos (im Seitenarray an Position $pos$)\n";
+      logMessage($CLIENTERROR, "Inkongruentes qexportpaar gefunden: $qpos (im Seitenarray an Position $pos$)");
     }
   }
  
@@ -1591,7 +1528,7 @@ sub postprocess {
       
       # Aus der collection die Aufgaben extrahieren
       while ($ectext =~ m/<!-- mexercisetextstart;;(.+?);; \/\/-->(.*?)<!-- mexercisetextstop \/\/-->/s ) {
-        print "    Aufgabe extrahiert\n";
+        logMessage($VERBOSEINFO, "    Aufgabe extrahiert");
         my $exid = $1;
         my $extext = $2;
         $ectext =~ s/<!-- mexercisetextstart;;$exid;; \/\/-->(.*?)<!-- mexercisetextstop \/\/-->//s ;
@@ -1612,7 +1549,7 @@ sub postprocess {
       $collc++;
       push @colexports, ["$ecid1", "$ecopt" , $arraystring];
     }
-    if ($collc > 0) { print "  $collc collections mit insgesamt $colla Aufgaben exportiert\n"; }
+    if ($collc > 0) { logMessage($VERBOSEINFO, "$collc collections mit insgesamt $colla Aufgaben exportiert"); }
   }
 
   return $text;
@@ -1969,8 +1906,6 @@ sub storelabels {
 	my (@subpages, $i, $divcontent, $lab, $sub, $sec, $ssec, $sssec, $type, $pl, $linkpath, $link);
 	@subpages = @{$p->{SUBPAGES}};
 
-	# print "storelabels called with \" $p->{TITLE}\"\n";
-
 	if ($p->{DISPLAY}) {
 		$linkpath = "../" . $p->linkpath();
 		$link = "mpl/" . $p->link();
@@ -2001,16 +1936,14 @@ sub storelabels {
 
                     $pl = $link . ".html" . "\#" . $lab; # Absoluter link auf das Label
                     push @LabelStorage, [ $lab, $sub, $sec, $ssec, $sssec, $type, $pl];
-                    # print "Added label $lab in FB $sub with number $sec.$ssec.$sssec and type $type, pagelink = $pl\n";
-
-                    # if ($type eq 13) { print "Entry: $1\n"; }
+                    logMessage($VERBOSEINFO, "Added label $lab in FB $sub with number $sec.$ssec.$sssec and type $type, pagelink = $pl");
 		}
 
 		$p->{TEXT} = $divcontent;
 	}
 
 
-	# print "There are $#subpages subpages\n";
+	logMessage($VERBOSEINFO, "There are $#subpages subpages");
 	for ( $i=0; $i <= $#subpages; $i++ ) {
 		storelabels($subpages[$i]);
 	}
@@ -2097,7 +2030,7 @@ sub printpages {
 		my $fb = -1;
 		while ($divcontent =~ /<!-- mmref;;(.+?);;(.+?); \/\/-->/ ) {
 		  # Expandiere MRef
-		  # print "Expandiere Link $1\n";
+		  logMessage($VERBOSEINFO, "Expandiere Link $1");
 		  my $lab = $1; # Labelstring
 		  my $prefi = $2; # 0 -> Nur Nummer, 1 -> Mit Wortprefix (z.B. "Abbildung 3")
 		  my $href = "";
@@ -2116,7 +2049,7 @@ sub printpages {
 		  }
 
 		  if ($found eq 0) {
-		    print "ERROR: Label $lab wurde nicht in interner Labelliste gefunden\n";
+		    logMessage($CLIENTWARN, "Label $lab wurde nicht in interner Labelliste gefunden");
 		    $objtype = 0;  
 		  }
 
@@ -2165,7 +2098,7 @@ sub printpages {
             $reftext = "$sec.$ssec.$refindex";
           } else {
             $reftext = "";
-            print "ERROR: Verweis $lab auf eine Infobox im Fachbereich $fb ohne Infonummern\n";
+            logMessage($CLIENTWARN, "Verweis $lab auf eine Infobox im Fachbereich $fb ohne Infonummern");
           }
         }
 
@@ -2242,7 +2175,7 @@ sub printpages {
 
         
         else {
-          print "ERROR: MRef konnte Objekttyp $objtype aus Label $lab nicht verarbeiten\n";
+          logMessage($CLIENTWARN, "MRef konnte Objekttyp $objtype aus Label $lab nicht verarbeiten");
           $reftext = "";
         }
       }
@@ -2260,7 +2193,7 @@ sub printpages {
 
 		while ($divcontent =~ /<!-- msref;;(.+?);;(.+?); \/\/-->/ ) {
 		  # Expandiere MSRef
-		  # print "Expandiere Link $1\n";
+		  logMessage($VERBOSEINFO, "Expandiere Link $1");
  		  my $lab = $1;
  		  my $txt = $2;
                   my $nrl = noregex($lab);
@@ -2380,12 +2313,10 @@ sub printpages {
   	       }
   	       
 		
-		# print "OUTPUT: $link.html\n";
-		
 	} else {
 		# display == false
 		# print "schreibe nicht " . $p->{NR} . "\n";
-		# print "NODISPLAY fuer $p->{TITLE}\n";
+		logMessage($VERBOSEINFO, "NODISPLAY fuer $p->{TITLE}");
 	}
 	
 	#Rekursion auf Unterseiten
@@ -2454,7 +2385,7 @@ sub updatelinks {
 
     # $text =~ s/,("|')(?!(\#|'|"|http:\/\/|ftp:\/\/|mailto:|:localmaterial:|:directmaterial:))/,$1$prepend/g;
     if ($text =~ /,("|')(?!(\#|'|"|https:\/\/|http:\/\/|ftp:\/\/|mailto:|:localmaterial:|:directmaterial:))/ ) {
-      # print "DEBUG: Kombination ,$1 im Dokument gefunden, Kontext ist \n$text\n\n";
+      logMessage($VERBOSEINFO, "Kombination ,$1 im Dokument gefunden, Kontext ist \n$text\n");
     }
 
 
@@ -2534,7 +2465,7 @@ sub relocatehelpsection {
 
   if ($h == 0) {
     if ($p->{TITLE} =~ m/(.*)HELPSECTION(.*)/ ) {
-      print "Hilfesektion wird eingerichtet\n";
+      logMessage($CLIENTINFO, "Hilfesektion wird eingerichtet");
       $h = 1;
       $p->{TITLE} = $1 . "Einstiegsseite" . $2;
     }
@@ -2723,16 +2654,16 @@ sub replacetd {
 # 	keine
 sub loadtemplates {
   if ($config{localjax} eq 1) {
-    print "Binde MathJax lokal ein, das Verzeichnis MathJax wird im html-Baum erzeugt!\n";
+    logMessage($CLIENTINFO, "Binde MathJax lokal ein, das Verzeichnis MathJax wird im html-Baum erzeugt!");
     loadtemplates_local();
-    print "MathJax wird lokal adressiert\n";
+    logMessage($CLIENTINFO, "MathJax wird lokal adressiert");
   } else {
     if ($config{localjax} eq 0) {
-      print "Binde MathJax ueber NetService (cdn 2.4) ein\n";
+      logMessage($CLIENTINFO, "Binde MathJax ueber NetService (cdn 2.4) ein");
       loadtemplates_netservice();
-    print "MathJax wird ueber Netservice adressiert\n";
+      logMessage($CLIENTINFO, "MathJax wird ueber Netservice adressiert");
     } else {
-      print "ERROR: Unbekannte MathJax-Quelle: " . $config{localjax} . "\n";
+      logMessage($CLIENTERROR, "Unbekannte MathJax-Quelle: " . $config{localjax});
     }
   }
 }
@@ -2741,7 +2672,7 @@ sub loadtemplates {
 # Momentan wird nur templatempl benutzt
 
 sub getdoctype_oldhtml4 {
-    print "Erstelle HTML-Dokumente nach DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1\n";
+    logMessage($CLIENTINFO, "Erstelle HTML-Dokumente nach DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1");
     my $doctype = <<DENDE;
 <!DOCTYPE html PUBLIC
 "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
@@ -2751,7 +2682,7 @@ DENDE
 }
 
 sub getdoctype {
-    print "Erstelle Standard-HTML5-Dokumente ohne spezialisierte DTD\n";
+    logMessage($CLIENTINFO, "Erstelle Standard-HTML5-Dokumente ohne spezialisierte DTD");
     my $doctype = "<!DOCTYPE html>\n";
     return $doctype;
 }
@@ -2809,7 +2740,7 @@ ENDE
       $scotext = $scoheader;
     }
     $templatempl = $dt . $s . $templateheader . $scotext;
-    # print "DT = $dt\n";
+    logMessage($VERBOSEINFO, "DT = $dt");
 }
 
 sub loadtemplates_netservice {
@@ -2855,26 +2786,24 @@ ENDE
       $scotext = $scoheader;
     }
     $templatempl = $dt . $s . $templateheader . $scotext;
-    # print "DT = $dt\n";
+    logMessage($VERBOSEINFO, "DT = $dt");
 }
 
 # --------------------------------------------- Zerlegung des Dokuments  ----------------------------------------------------------------------------------------------------------------------
 
 sub converter_decompose {
 
-print "Zerlegung startet\n";
+logTimestamp("Starting decomposition");
 
 #Alte Daten loeschen
-print "Copying files into " . $config{outtmp} . "\n";
+logMessage($CLIENTINFO, "Copying files into " . $config{outtmp});
 system "rm -rf " . $config{outtmp};
 system "mkdir -p " . $config{outtmp};
 system "cp -R files/* " . $config{outtmp};
-print " ok.\n\n";
+logMessage($CLIENTINFO, " ok");
 
 
-print "Es werden " . ($#DirectHTML + 1) . " DirectHTML-Statements werden verwendet\n";
-
-
+logMessage($VERBOSEINFO, "Es werden " . ($#DirectHTML + 1) . " DirectHTML-Statements werden verwendet");
 
 logTimestamp("Starting ttm tex->html converter");
 system "./ttm-src/ttm -p./tex < tex/vorkursxml.tex >$xmlfile";
@@ -2882,7 +2811,7 @@ logTimestamp("Loading ttm output file $xmlfile");
 my $text = loadfile($xmlfile);
 
 # Debug-Meldungen ausgeben
-while ($text =~ s/<!-- debugprint;;(.+?); \/\/-->/<!-- debug;;$1; \/\/-->/s ) { print "$1\n"; }
+while ($text =~ s/<!-- debugprint;;(.+?); \/\/-->/<!-- debug;;$1; \/\/-->/s ) { logMessage($DEBUGINFO, $1); }
 
 # Aufgabenpunktetabelle generieren
 for ($i=0; $i <= 9; $i++ ) {
@@ -2899,28 +2828,22 @@ while ($text =~ s/<!-- mdeclaresection;;(.+?);;(.+?);;(.+?);; \/\/-->//s ) {
   }
 }
 
-print "\n";
-
 while ($text =~ s/<!-- mdeclarepoints;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);; \/\/-->//s ) { 
-  # print "POINTS: Module $1, id $2, points $3, intest $4, chapter $5\n"; 
+  logMessage($VERBOSEINFO, "POINTS: Module $1, id $2, points $3, intest $4, chapter $5");
   if ($5 eq 1) {
     my $l = $1 - 1;
     $expoints[$l] += $3;
-    # print "expoints $l now at " . $expoints[$l] . "\n";
     if ($4 == "1") {
       $testpoints[$l] += $3;
-      # print "testpoints $l now at " . $testpoints[$l] . "\n";
     }
   }
 }
 
 while ($text =~ s/<!-- mdeclareuxid;;(.+?);;(.+?);;(.+?);; \/\/-->//s ) { 
-  # print "uxid: $1, $2, $3\n"; 
   push @uxids, [$1, $2, $3];
 }
 
 while ($text =~ s/<!-- mdeclaresiteuxid;;(.+?);;(.+?);;(.+?);; \/\/-->/<!-- mdeclaresiteuxidpost;;$1;; \/\/-->/s ) { 
-  # print "siteuxid: $1 in chapter $2 and section $3\n"; 
   push @siteuxids, $1;
   if ($2 eq 1) { $sitepoints[$3-1]++; }
 }
@@ -2956,7 +2879,7 @@ if ($text =~ s/<!-- mlocation;;(.+?);;(.+?);;(.+?);; \/\/-->//s ) {
   $locationlong = $2;
   $locationshort = $3;
   $locationsite = "location.html";
-  print "Verwende Standort-Deklaration für $locationlong\n";
+  logMessage($CLIENTINFO, "Verwende Standort-Deklaration für $locationlong");
 } else {
   $locationsite = "";
   push @converrors, "Keine Standort-Deklaration gefunden, Standortbutton erscheint nicht im Kurs.";
@@ -3052,8 +2975,8 @@ for ($i=0; $i<=$#expoints; $i++) {
 close(MINTS);
 
 
-if ($config{parameter}{do_export} eq "1") { print "----------------------- EXPORTVERSION WILL BE GENERATED ----------------------------\n";  }
-if ($config{parameter}{do_feedback} eq "1") { print "----------------------- FEEDBACKVERSION WILL BE GENERATED ----------------------------\n";  }
+if ($config{parameter}{do_export} eq "1") { logMessage($CLIENTINFO,  "EXPORTVERSION WILL BE GENERATED");  }
+if ($config{parameter}{do_feedback} eq "1") { logMessage($CLIENTINFO, "FEEDBACKVERSION WILL BE GENERATED");  }
 
 my @umwordindexlist = ();
 my @wordindexlist = ();
@@ -3072,13 +2995,12 @@ while ($text =~ s/<!-- mpreindexentry;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); \/\/--
   $umstr =~ s/Ü/Ue/g ;
   $umstr =~ s/ß/ss/g ;
   push @umwordindexlist, $umstr;
-  # print "Stichwort $1\n";
   $i++;
 }
 
 # Sortieren mit IdiotSort FUNKTIONIERT NICHT MIT UMLAUTEN
 my $swap = 1;
-print "Sortiere " . ($#wordindexlist-1) . " Stichwoerter:\n"; 
+logMessage($VERBOSEINFO, "Sortiere " . ($#wordindexlist-1) . " Stichwoerter"); 
 while ($swap==1) {
   $swap = 0;
   for (my $i=0; $i <= $#wordindexlist; $i++ ) {
@@ -3173,7 +3095,7 @@ relocatehelpsection($root,0);
 my $outfinal = "";
 storelabels($root);
 $outfinal = $config{outtmp};
-print "Writing output to $outfinal\n";
+logMessage($CLIENTINFO, "Writing output to $outfinal");
 printpages($root, $outfinal);
 
 # print "Vorhandene Labels im HTML-Baum:\n";
@@ -3186,12 +3108,12 @@ printpages($root, $outfinal);
 
 # collection-Exportdatei schreiben
 if ($config{docollections} eq 1) {
-  print "Exportfile for contained collections is generated: ";
+  logMessage($VERBOSEINFO, "Exportfile for contained collections is generated:");
   my $nco = $#colexports + 1;
   if ($nco le 0) {
-    print "No exports found!\n";
+    logMessage($VERBOSEINFO, "  No exports found!");
   } else {
-    print("Exporting $nco collections\n");
+    logMessage($VERBOSEINFO, "Exporting $nco collections");
     my $colexportfile = open(MINTS, "> collectionexport.json") or die "FATAL: Cannot write collectionexport.json";
     print MINTS "{ \"comment\": \"Automatisch generierte JSON-Datei basierend auf Kurs-ID " . $config{parameter}{signature_CID} . "\",\n \"collections\": [";
     for (my $k = 0; $k <= $#colexports; $k++) {
@@ -3214,17 +3136,16 @@ system "chmod -R 777 " . $config{outtmp};
 
 
 if ($#converrors ge 0) {
-  print "----------------------- COMPILATION ERRORS ---------------------------------\n";
+  logMessage($CLIENTINFO, "----------------------- COMPILATION MESSAGES ---------------------------------";
   my $yi = 0;
   for ($yi = 0; $yi <= $#converrors; $yi++) {
-    print("  " . $converrors[$yi]);
-    print("\n");
+    logMessage($CLIENTINFO, "  $converrors[$yi]");
   }
 } else {
-  print "No compilation errors occurred.\n";
+  logMessage($VERBOSEINFO, "  No compilation messages occurred");
 }
 
-logTimestamp("FINISHED COMPUTATION");
+logTimestamp("Finished computation");
 
 }
 
@@ -3281,19 +3202,18 @@ if ($config{doscorm} eq 1) {
 }
 
 if ($config{dopdf} eq 1) {
-  print("...generating PDF files: ");
+  logMessage($CLIENTINFO, "...generating PDF files:");
   my $i = 0;
   my $ckey = "";
   while ($ckey = each(%{$config{generate_pdf}})) {
-    print $ckey . " ";
+    logMessage($CLIENTINFO, "  $ckey");
     $i++;
   }
-  print "\n";
   if ($i eq 0) {
     die("FATAL: No PDF files given in config but dopdf=1");
   }
 } else {
-  print("...no PDF files\n");
+  logMessage($CLIENTINFO, "...no PDF files");
 }
 
 if ($config{qautoexport} eq 1) {
@@ -3330,18 +3250,18 @@ system("cp -R " . $config{source} . "/* " . $config{output} . "/converter/tex/."
 my $filecount = 0;
 my $globalposdirecthtml = 0; # Fuer DirectHTML-Array, ist unique fuer alle Teildateien
 my $call = "find -P " . $config{output} . "/converter/tex/. -name \\*.tex";
-print "Executing: $call\n";
+logMessage($VERBOSEINFO, "Executing: $call");
 my $texlist = `$call`; # Finde alle tex-Files, auch in den Unterverzeichnissen
 my @texs = split("\n",$texlist);
 my $nt = $#texs + 1;
-print "$nt texfiles found, processing...\n";
+logMessage($VERBOSEINFO, "$nt texfiles found, processing...");
 my $ka;
 my $pcompletename = "";
 my $dotikzfile = 0;
 for ($ka = 0; $ka < $nt; $ka++) {
 
   if (($texs[$ka] =~ /mintmod/ ) or ($texs[$ka] =~ /tree(.)\.tex/ ) or ($texs[$ka] =~ /tree\.tex/ )) {
-    print "Preprocessing ignores $texs[$ka]\n";
+    logMessage($VERBOSEINFO, "Preprocessing ignores $texs[$ka]");
   } else {
     # -------------------------------- Start Preprocessing per texfile -------------------------------------------------------
     my $textex = "";
@@ -3350,7 +3270,6 @@ for ($ka = 0; $ka < $nt; $ka++) {
     $pcompletename =~ m/(.+)\/(.+?).tex/i;
     my $pdirname = $1;
     my $pfilename = $2 . ".tex";
-    # print "...using directory $pdirname\n";
     $tex_open = open(MINTS, "< $pcompletename") or die "FATAL: Could not open $texs[$ka]\n";
     while(defined($texzeile = <MINTS>)) {
       # Wegen direkter HTML-Zeilen darf man %-Kommentare nicht streichen
@@ -3374,9 +3293,9 @@ for ($ka = 0; $ka < $nt; $ka++) {
     }
     $prx =~ s/.\///g;
     if ($modulname ne "") {
-      print "Tree-preprocess on module $modulname in directory $prx\n";
+      logMessage($VERBOSEINFO, "Tree-preprocess on module $modulname in directory $prx");
     } else {
-      print "Tree-preprocess on bare file $pfname in directory $prx\n";
+      logMessage($VERBOSEINFO, "Tree-preprocess on bare file $pfname in directory $prx");
     }
     
     $filecount++;
@@ -3403,28 +3322,28 @@ for ($ka = 0; $ka < $nt; $ka++) {
     
     
     my $vc = $#verbc + 1;
-    if ($vc > 0) { print " $vc different verb-escape chars found in tex-file\n"; }
+    if ($vc > 0) { logMessage($VERBOSEINFO, " $vc different verb-escape chars found in tex-file"); }
       
     for ($vi = 0; $vi < $vc; $vi++ ) {
       my $c = $verbc[$vi];
-      print " verb-char $c\n";
+      logMessage($VERBOSEINFO, " verb-char $c");
       if ($c eq "\%") {
         # Es gibt wirklich Autoren die in einem LaTeX-Dokument das % als Begrenzer fuer \verb einsetzen, das macht es tricky
-	while ($textex =~ s/\\verb$c([^$c]*?)$c/\\verb\\PERCTAG$1\\PERCTAG/ ) { print "  Delimiter in \%-verb-line escaped\n"; }
+	while ($textex =~ s/\\verb$c([^$c]*?)$c/\\verb\\PERCTAG$1\\PERCTAG/ ) { logMessage($VERBOSEINFO, "  Delimiter in \%-verb-line escaped"); }
       } else {
-	while ($textex =~ s/\\verb$c([^$c]*?)\%([^$c]*?)$c/\\verb$c$1\\PERCTAG$2$c/ ) { print "  \% in verb-line escaped (special char $c)\n"; }
+	while ($textex =~ s/\\verb$c([^$c]*?)\%([^$c]*?)$c/\\verb$c$1\\PERCTAG$2$c/ ) { logMessage($VERBOSEINFO, "  \% in verb-line escaped (special char $c)"); }
       }
     }
     
     while ($textex =~ s/(?<!\\)\%([^\n]+?)\n/\%\n/s ) { $coms++; }
-    if ($coms != 0) { print "  $coms LaTeX-commentlines removed from file\n"; }
+    if ($coms != 0) { logMessage($VERBOSEINFO, "  $coms LaTeX-commentlines removed from file"); }
 
-    while ($textex =~ s/\\PERCTAG/\%/ ) { print "  \% in verb-line reinstated\n"; }
+    while ($textex =~ s/\\PERCTAG/\%/ ) { logMessage($VERBOSEINFO, "  \% in verb-line reinstated"); }
 
     
     $dotikzfile = 0;
     if ($textex =~ s/\\Mtikzexternalize//gs ) {
-      print "  tikzexternalize activated\n";
+      logMessage($CLIENTINFO, "  tikzexternalize activated");
       if ($config{dotikz} eq 1) { $dotikzfile = 1; }
     }
 
@@ -3444,7 +3363,6 @@ for ($ka = 0; $ka < $nt; $ka++) {
       $qex++;
       $globalexstring .= "\\ \\\\\n\\begin{MExercise}\n" . $1 . "\n\\end{MExercise}\n";
     }
-    # if ($qex != 0) { print "  " . $qex . " Aufgaben exportiert\n"; }
        
     # MDirectHTML umsetzen
     while($textex =~ s/\\begin{MDirectHTML}(.+?)\\end{MDirectHTML}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
@@ -3486,7 +3404,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
     }
 
     if ($textex =~ s/\\tikzexternalize//gs ) {
-      print "  found BARE tikzexternalize and removed it (please use macro from mintmod.tex instead)\n";
+      logMessage($CLIENTINFO, "  found BARE tikzexternalize and removed it (please use macro from mintmod.tex instead)");
     }
 
     
@@ -3494,21 +3412,19 @@ for ($ka = 0; $ka < $nt; $ka++) {
 
     if ($textex =~ m/\\MPragma{SolutionSelect}/ ) {
       if ($config{nosols} eq 0) {
-        print "  Pragma SolutionSelect: Ignored due to nosols==0\n";
+        logMessage($CLIENTINFO, "  Pragma SolutionSelect: Ignored due to nosols==0");
       } else {
-        print "  Pragma SolutionSelect: MSolution-environments will be removed: ";
-	while ($textex =~ s/\\begin{MSolution}(.+?)\\end{MSolution}/\\relax/s ) { print "."; }
-	print "\n";
-        print "                         MHint{Lösung}-environments will be removed: ";
-	while ($textex =~ s/\\begin{MHint}{Lösung}(.+?)\\end{MHint}/\\relax/s ) { print "."; }
-	while ($textex =~ s/\\begin{MHint}{L"osung}(.+?)\\end{MHint}/\\relax/s ) { print "."; }
-	while ($textex =~ s/\\begin{MHint}{L\\"osung}(.+?)\\end{MHint}/\\relax/s ) { print "."; }
-	print "\n";
+        logMessage($CLIENTINFO, "  Pragma SolutionSelect: MSolution-environments will be removed");
+	while ($textex =~ s/\\begin{MSolution}(.+?)\\end{MSolution}/\\relax/s ) { ; }
+    logMessage($CLIENTINFO,  "MHint{Lösung}-environments will be removed");
+	while ($textex =~ s/\\begin{MHint}{Lösung}(.+?)\\end{MHint}/\\relax/s ) { ; }
+	while ($textex =~ s/\\begin{MHint}{L"osung}(.+?)\\end{MHint}/\\relax/s ) { ; }
+	while ($textex =~ s/\\begin{MHint}{L\\"osung}(.+?)\\end{MHint}/\\relax/s ) { ; }
       }
     }
 
     if ($textex =~ m/\\MPragma{MathSkip}/ ) {
-      print "  Pragma MathSkip: Skips starting math-environments inserted\n";
+      logMessage($CLIENTINFO, "  Pragma MathSkip: Skips starting math-environments inserted");
       $textex =~ s/(?<!\\)\\\[/\\MSkip\\\[/g;
       $textex =~ s/(?<!\\)\$\$/\\MSkip\$\$/g;
       $textex =~ s/(?<!\\)\\begin{eqnarray/\\MSkip\\begin{eqnarray/g;
@@ -3517,7 +3433,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
     }
 
     while ($textex =~ s/\\MPragma{Substitution;(.+?);(.+?)}/\\MPragma{Nothing}/ ) {
-      print "  Pragma Substitution: $1 --> $2\n";
+      logMessage($CLIENTINFO, "  Pragma Substitution: $1 --> $2");
       my $s1 = $1;
       my $s2 = $2;
       $textex =~ s/$s1/$s2/g ;
@@ -3526,12 +3442,12 @@ for ($ka = 0; $ka < $nt; $ka++) {
     my $incfound;
     while ($textex =~ s/\\MPreambleInclude{(.*)}/\\MPragma{Nothing}/ ) {
       my $prename = $1;
-      print "  Local preamble included: $prename\n";
+      logMessage($CLIENTINFO, "  Local preamble included: $prename");
       # Nicht doppelt einbinden, Liste geht ueber ALLE tex-files!
       $incfound = 0;
       for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
         if ($IncludeStorage[$i][1] eq $prename) {
-          print "    Preamble found again: " . $prename . " (will be ignored, preamble from file " . $IncludeStorage[$i][0] . " is in use)\n";
+          logMessage($CLIENTINFO, "    Preamble found again: " . $prename . " (will be ignored, preamble from file " . $IncludeStorage[$i][0] . " is in use)");
           $incfound = 1;
         }
       }
@@ -3581,20 +3497,20 @@ for ($ka = 0; $ka < $nt; $ka++) {
       
       if ($rt != 0) {
         $config{diaok} = 0;
-        print "ERROR dia/conv-chain failed with return value $rt\n";
+        logMessage($CLIENTERROR, "dia/conv-chain failed with return value $rt");
       }
     } 
 
-    if (($config{diaok} == 0) and ($breakoff == 0)) { $breakoff = 1; print "ERROR dia/conv-chain aborted\n"; }
+    if (($config{diaok} == 0) and ($breakoff == 0)) { $breakoff = 1; logMessage($CLIENTERROR, "ERROR dia/conv-chain aborted"); }
     
     # Eindimensionale pmatrix-Umgebungen als eindimensionale Arrays umsetzen
     if ($textex =~ s/\\begin{pmatrix}([^&]*?)\\end{pmatrix}/\\ifttm\\left({\\begin{array}{c}$1\\end{array}}\\right)\\else\\begin{pmatrix}$1\\end{pmatrix}\\fi/sg ) {
-      print "  pmatrix-environment of dimension 1 substituted\n";
+      logMessage($VERBOSEINFO, "  pmatrix-environment of dimension 1 substituted");
     }
     
     # flushleft-Umgebungen im html ignorieren
     if ($textex =~ s/\\begin{flushleft}(.*?)\\end{flushleft}/\\ifttm{$1}\\else\\begin{flushleft}$1\\end{flushleft}\\fi/sg ) {
-      print "  flushleft-environment removed (no counterpart in html available right now)\n";
+      logMessage($VERBOSEINFO, "  flushleft-environment removed (no counterpart in html available right now)");
     }
 
     # vdots und hdots ersetzen
@@ -3602,10 +3518,10 @@ for ($ka = 0; $ka < $nt; $ka++) {
     $textex =~ s/\\vdots/\\MVDots/g ;
     
     
-    if ($textex =~ m/\\begin{pmatrix}/s ) { print "  Multidimensional pmatrix-environments found, cannot be processed!\n"; }
+    if ($textex =~ m/\\begin{pmatrix}/s ) { logMessage($VERBOSEINFO, "  Multidimensional pmatrix-environments found, cannot be processed"); }
     
     # \relax auf \MRelax umbiegen, da \relax nicht von ttm unterstuetzt
-    if ($textex =~ s/\\relax/\\MRelax/g ) { print "  Command \\relax replaced\n"; }
+    if ($textex =~ s/\\relax/\\MRelax/g ) { logMessage($VERBOSEINFO, "  Command \\relax replaced"); }
     
     # newpage und co aus html-Konversion ausschliessen
     $textex =~ s/\\newpage/\\ifttm\\else\\newpage\\fi/g ;
@@ -3775,7 +3691,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
         }
 
         if ($cl != 0) {
-          print "ERROR: could not parse intertext (cl=$cl) in:\n$rep\n\n";
+          logMessage($CLIENTWARN, "Could not parse intertext (cl=$cl) in:\n$rep\n");
           $bail = 1;
         } else
         {
@@ -3783,7 +3699,6 @@ for ($ka = 0; $ka < $nt; $ka++) {
         }
         $tpb++;
         my $itext = substr($rep,$tpa,($tpb - $tpa));
-        # print "DEBUG: Extract ist |$itext|\n";
         push @its, [$no, $itext];
         $rep = substr($rep,0,$tpa) . "\\MINTERTEXTREPLACEMENT{<!-- xitext;;$no; //-->}" . substr($rep,$tpb,length($rep)-($tpb));
         $no++;
@@ -3848,7 +3763,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
         my $rl = $its[$k][1];
         $rl =~ s/\\intertext//g ;
         if (!($rep =~ s/<!-- xitext;;$nom; \/\/-->/$rl/ )) {
-          print "ERROR: Could not relocate intertext $nom , content is $rl\n";
+          logMessage($CLIENTWARN, "Could not relocate intertext $nom , content is $rl");
         }
       }
 
@@ -3858,7 +3773,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
       my $cmd = $umg[$k][1];
       my $co = $umg[$k][2];
       if ($rep =~ s/$rpr TX $myc/\\begin{$cmd}$co\\end{$cmd}/ ) {
-      # print "  Umgebung entparkt: $cmd: $co\n";
+      logMessage($VERBOSEINFO, "  Umgebung entparkt: $cmd: $co");
 	}
       }
 
@@ -3887,12 +3802,12 @@ for ($ka = 0; $ka < $nt; $ka++) {
       system("cp $basis/converter/tex/mintmod.tex .");
       system("cp $basis/converter/tex/maxpage.sty .");
       my $mca = "pdflatex -shell-escape $pfilename";
-      print "  Starte pdflatex mit shellescape: $mca\n";
+      logMessage($CLIENTINFO, "  Starte pdflatex mit shellescape: $mca");
       my $rtt = system($mca);
       if ($rtt != 0) {
-        print "  pdflatex with tikzexternalize failed!\n";
+        logMessage($CLIENTERROR, "  pdflatex with tikzexternalize failed");
       } else {
-        print "  pdflatex with tikzexternalize ok\n";
+        logMessage($CLIENTINFO, "  pdflatex with tikzexternalize ok");
       }
     }
     chdir($absexedir);
@@ -3905,8 +3820,8 @@ for ($ka = 0; $ka < $nt; $ka++) {
   }
 }
 
-print "Preparsing of $filecount texfiles finished\n";
-print "  $globalposdirecthtml blocks for DirectHTML found\n";
+logTimestamp($CLIENTINFO, "Preparsing of $filecount texfiles finished");
+logMessage($VERBOSEINFO, "  $globalposdirecthtml blocks for DirectHTML found");
 
 $copyrightcollection = "\\begin{tabular}{llll}\%\n$copyrightcollection\\end{tabular}\n";
 
@@ -3967,11 +3882,11 @@ close(MINTS);
 
 # Icons konvertieren
 chdir($config{output});
-print "PreIcons: CWD is " . cwd() . "\n";
+logMessage($VERBOSEINFO, "PreIcons: CWD is " . cwd());
 my @orgicons = <converter/buttons_org/*>; # Shell-Selektionsanweisung akzeptiert keine Strings bzw. parsed diese vorher!
 my $file = "";
 my $dyniconcss = "";
-print "Converting icons:\n";
+logMessage($VERBOSEINFO, "Converting icons");
 foreach $file (@orgicons) {
    createButtonFiles($file, 100, 100); # 50,170 fuer halbgesaettigtes blau
    my $bnms = "";
@@ -3991,9 +3906,8 @@ foreach $file (@orgicons) {
    }
 }
 chdir(".."); # Verlaesst sich darauf, dass $config{output} nur eine Verzeichnisebene ist !
-print "PostIcons: CWD is " . cwd() . "\n";
 
-print "Creating stylesheets\n";
+logMessage($VERBOSEINFO, "Creating stylesheets");
 chdir($config{output} . "/converter/precss");
 system("php -n grundlagen.php >grundlagen.pcss");
 
@@ -4006,8 +3920,6 @@ my @mycss = <CSS>;
 
 close(CSS);
 
-
-print "colors:\n";
 
 my $ckey = "";
 my $cval = "";
@@ -4066,14 +3978,12 @@ chdir("../tex");
 # MUSS APPEND SEIN
 my $ipf = open(MINTP, ">> mintmod.tex") or die "FATAL: Could not append local preamles to mintmod.tex";
 print MINTP "\n% ---------- Automatisch eingebundene Preamblen aus mconvert.pl heraus ---------------\n";
-print "Included preambles:\n";
+logMessage($CLIENTINFO, "Included preambles:");
 for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
-  print " module=$IncludeStorage[$i][0], filename=$IncludeStorage[$i][1]\n";
+  logMessage($CLIENTINFO, " module=$IncludeStorage[$i][0], filename=$IncludeStorage[$i][1]");
   print MINTP "% Automatische Einbindung der Preamble " . $IncludeStorage[$i][1] . ":\n";
   print MINTP $IncludeStorage[$i][2] . "\n";
 }
-# print MINTP "% Predefinierte Tagmakro --------- \n";
-# print MINTP $IncludeTags . "\n";
 
 print MINTP "% Automatisierte Tagmakros ---------- \n";
 print MINTP "\\ifttm\n";
@@ -4101,7 +4011,7 @@ if ($config{dopdf} eq 1) {
     # Ganzer Baum wird erstellt: Die Einzelmodule separat texen
     my $doct = "";
     while (($doct = each(@{$config{generate_pdf}})) and ($pdfok == 1)) {
-      print "======= Generating PDF file $doct.tex ========================================\n";
+      logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex ========================================");
 
       my $rt1 = system("pdflatex $doct.tex");
       if ($rt1 != 0) {
@@ -4153,8 +4063,7 @@ if ($config{doscorm} eq 1) { system("cp -R $ndir/converter/SCORM2004v4/* $ndir/.
 
 
 if ($config{localjax} eq 1) {
-  print "MathJax 2.4 (full package) is added locally\n";
-  #print "MathJax wird nicht lokal angelegt, sondern ueber Web bezogen\n";
+  logMessage($CLIENTINFO, "MathJax 2.4 (full package) is added locally");
   system("mkdir $ndir/MathJax");
   system("tar -xzf $ndir/converter/mathjax24complete.tgz --directory=$ndir/MathJax/.");
   #system("tar -xzf $ndir/converter/mathjax23reduced.tgz --directory=$ndir/MathJax/.");
@@ -4165,10 +4074,10 @@ system("mv $ndir/converter/" . $config{outtmp} . "/* $ndir/.");
 system("rmdir $ndir/converter/" . $config{outtmp});
 
 if ($config{cleanup} == 0) {
-  print "DEBUG converter-subdirectory is NOT removed\n";
+  logMessage($CLIENTINFO, "CONVERTER-SUBDIRECTORY IS NOT BEING REMOVED");
 } else {
   system("rm -fr $ndir/converter");
-  print "converter-directory cleaned up\n";
+  logMessage($CLIENTINFO, "converter-directory cleaned up");
 }
 
 # Globales Starttag suchen und Baum dazu anpassen
@@ -4186,43 +4095,43 @@ for ($ka = 0; $ka < $nt; $ka++) {
     while(defined($htmlzeile = <MINTS>)) {
       if ($htmlzeile =~ m/<!-- mglobalstarttag -->/ ) {
         $starts++;
-        print "--- Starttag found in file $hfilename\n";
+        logMessage($VERBOSEINFO, "--- Starttag found in file $hfilename");
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $startfile = "mpl/" . $2 . ".html";
         $entryfile = "entry_" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalchaptertag -->/ ) {
-        print "--- Chaptertag found in file $hfilename\n";
+        logMessage($VERBOSEINFO, "--- Chaptertag found in file $hfilename");
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $chapterfile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalconftag -->/ ) {
-        print "--- Configtag found in file $hfilename\n";
+        logMessage($VERBOSEINFO, "--- Configtag found in file $hfilename");
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $configfile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobaldatatag -->/ ) {
-        print "--- Datatag found in file $hfilename\n";
+        logMessage($VERBOSEINFO, "--- Datatag found in file $hfilename");
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $datafile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalfavotag -->/ ) {
-        print "--- Favotag found in file $hfilename\n";
+        print "--- Favoritestag found in file $hfilename\n";
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $favofile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mgloballocationtag -->/ ) {
-        print "--- Locationtag found in file $hfilename\n";
+        logMessage($VERBOSEINFO, "--- Locationtag found in file $hfilename");
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $locationfile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalsearchtag -->/ ) {
-        print "--- Searchtag found in file $hfilename\n";
+        logMessage($VERBOSEINFO, "--- Searchtag found in file $hfilename");
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $searchfile = "mpl/" . $2 . ".html";
       }
       if ($htmlzeile =~ m/<!-- mglobalstesttag -->/ ) {
-        print "--- STesttag found in file $hfilename\n";
+        logMessage($VERBOSEINFO, "--- STesttag found in file $hfilename");
         $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
         $stestfile = "mpl/" . $2 . ".html";
       }
@@ -4234,7 +4143,7 @@ if ($starts eq 0 ) {
   die("FATAL: Global start tag not found, HTML tree is disfunctional");
 } else {
   if ($starts ne 1) {
-    print "ERROR: Multiple start tags found, using last one\n";
+    logMessage($CLIENTERROR, "Multiple start tags found, using last one");
   }
 }
 
@@ -4242,13 +4151,13 @@ createRedirect("index.html", $startfile, 0);
 if ($config{doscorm} == 1) {
   createRedirect($entryfile, $startfile, 1);
 }
-if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile,0); } else { print "No Chapter-file defined!\n"; }
-if ($configfile ne "") { createRedirect("config.html", $configfile,0); } else { print "No Config-file defined!\n"; }
-if ($datafile ne "") { createRedirect("cdata.html", $datafile,0); } else { print "Keine Data-Datei definiert!\n"; }
-if ($searchfile ne "") { createRedirect("search.html", $searchfile,0); } else { print "Keine Search-Datei definiert!\n"; }
-if ($favofile ne "") { createRedirect("favor.html", $favofile,0); } else { print "Keine Favoriten-Datei definiert!\n"; }
-if ($locationfile ne "") { createRedirect("location.html", $locationfile,0); } else { print "Keine Location-Datei definiert!\n"; }
-if ($stestfile ne "") { createRedirect("stest.html", $stestfile,0); } else { print "Keine Starttest-Datei definiert!\n"; }
+if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile,0); } else { logMessage($CLIENTINFO, "No Chapter-file defined"); }
+if ($configfile ne "") { createRedirect("config.html", $configfile,0); } else { logMessage($CLIENTINFO, "No Config-file defined"); }
+if ($datafile ne "") { createRedirect("cdata.html", $datafile,0); } else { logMessage($CLIENTINFO, "Keine Data-Datei definiert"); }
+if ($searchfile ne "") { createRedirect("search.html", $searchfile,0); } else { logMessage($CLIENTINFO, "Keine Search-Datei definiert"); }
+if ($favofile ne "") { createRedirect("favor.html", $favofile,0); } else { logMessage($CLIENTINFO, "Keine Favoriten-Datei definiert"); }
+if ($locationfile ne "") { createRedirect("location.html", $locationfile,0); } else { logMessage($CLIENTINFO, "Keine Location-Datei definiert"); }
+if ($stestfile ne "") { createRedirect("stest.html", $stestfile,0); } else { logMessage($CLIENTINFO, "Keine Starttest-Datei definiert"); }
 
 if ($config{doscorm} eq 1) { createSCORM(); }
 
@@ -4274,13 +4183,13 @@ if ($config{dozip} eq 0) {
   print("\nHTML module" . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? " and PDF " : " ") . "created and zipped to $zip.\n\n");
 }
 
-print "Tree entry chain:\n";
-print "  $ndir/index.html -> $ndir/$startfile.\n";
+logMessage($CLIENTINFO, "Tree entry chain:");
+logMessage($CLIENTINFO, "$  ndir/index.html -> $ndir/$startfile");
 if ($config{doscorm} == 1) {
-  print "  SCORM -> $ndir/$entryfile -> $ndir/$startfile.\n";
+  logMessage($CLIENTINFO, "  SCORM -> $ndir/$entryfile -> $ndir/$startfile");
 }
 
-print "mconvert.pl finished successfully\n\n";
+logTimestamp("mconvert.pl finished successfully");
 
 exit;
 
