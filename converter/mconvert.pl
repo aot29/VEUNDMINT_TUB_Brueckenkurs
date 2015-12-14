@@ -17,13 +17,14 @@ use Net::Domain qw (hostname hostfqdn hostdomain);
 use MIME::Base64 qw(encode_base64);
 use Cwd;
 use Switch;
+use JSON;
 use Term::ANSIColor;
 
 use converter::File::Data;
 use converter::Page;
 
 
-my $helptext = "Usage: mconvert.pl <configuration.pl>\n\n";
+my $helptext = "Usage: mconvert.pl <configuration.pl> [command <OptionObject>]\n\n";
 
 # use lib "/home/daniel/BWSYNC/PreTU9Konverter/converter";
 # use courseconfig;
@@ -3154,6 +3155,23 @@ logTimestamp("Finished computation");
 
 }
 
+# Parameter: Name der Konfigurationsdatei relativ zum Aufrufer
+sub setup_options {
+  my ($mconfigfile) = @_;
+  if ($mconfigfile =~ m/(.+).pl/ ) {
+    if ($mconfigfile =~ m/\// ) { die("FATAL: Configuration file must be in calling directory"); }
+    logMessage($CLIENTINFO, "Configuration file: " . $mconfigfile);
+    unless (%config = do $mconfigfile) {
+      warn "Couldn't parse $mconfigfile: $@" if $@;
+      warn "Couldn't run $mconfigfile" unless %config;
+    }
+  } else {
+    die("FATAL: Configuration file must be of type name.pl");
+  }
+    
+  logMessage($CLIENTINFO, "Configuration description: " . $config{description});
+}
+
 # ----------------------------- Start Hauptprogramm --------------------------------------------------------------
 
 # my $IncludeTags = ""; # Sammelt die Makros fuer predefinierte Tagmakros, diese werden an mintmod.tex angehaengt
@@ -3168,23 +3186,17 @@ checkSystem();
 
 if ($#ARGV eq 0) {
   # Nur ein Parameter: Gibt Konfigurationsdatei relativ zum Aufruf an
-    $mconfigfile = $ARGV[0];
-    if ($mconfigfile =~ m/(.+).pl/ ) {
-      if ($mconfigfile =~ m/\// ) { die("FATAL: Configuration file must be in calling directory"); }
-      logMessage($CLIENTINFO, "Configuration file: " . $mconfigfile);
-      unless (%config = do $mconfigfile) {
-        warn "Couldn't parse $mconfigfile: $@" if $@;
-        warn "Couldn't run $mconfigfile" unless %config;
-      }
-    } else {
-      die("FATAL: Configuration file must be of type name.pl");
-    }
-    
-    logMessage($CLIENTINFO, "Configuration description: " . $config{description});
-
+  setup_options($ARGV[0]);
 } else {
+  if ($#ARGV eq 1) {
+    # Zwei Parameter: Konfiguationsdatei plus Funktionsbefehl
+    setup_options($ARGV[0]);
+    
+  } else {
     die($helptext);
+  }
 }
+
 
 my $absexedir = Cwd::cwd(); 
 $basis = $absexedir;
