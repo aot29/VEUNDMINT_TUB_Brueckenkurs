@@ -2391,7 +2391,7 @@ sub updatelinks {
 
     # $text =~ s/,("|')(?!(\#|'|"|http:\/\/|ftp:\/\/|mailto:|:localmaterial:|:directmaterial:))/,$1$prepend/g;
     if ($text =~ /,("|')(?!(\#|'|"|https:\/\/|http:\/\/|ftp:\/\/|mailto:|:localmaterial:|:directmaterial:))/ ) {
-      logMessage($VERBOSEINFO, "Kombination ,$1 im Dokument gefunden, Kontext ist \n$text\n");
+      logMessage($VERBOSEINFO, "Kombination Marker mit Protokollname noch im Dokument gefunden");
     }
 
 
@@ -2797,9 +2797,9 @@ ENDE
 
 # --------------------------------------------- Zerlegung des Dokuments  ----------------------------------------------------------------------------------------------------------------------
 
-sub converter_decompose {
+sub converter_conversion {
 
-logTimestamp("Starting decomposition");
+logTimestamp("Starting conversion");
 
 #Alte Daten loeschen
 logMessage($CLIENTINFO, "Copying files into " . $config{outtmp});
@@ -3068,9 +3068,14 @@ while ($ckey = each(%{$root})) {
 
 
 
+logTimestamp("Starting decomposition");
 $root->split($text, $paramsplitlevel, 0); # = Startlevel fuer root-Objekt
 $root->{DISPLAY} = 0;
 
+# my $structexportfile = open(MINTS, ">structure.json") or die "FATAL: Cannot write structure.json";
+# print MINTS encode_json($root);
+# close(MINTS);
+    
 logTimestamp("Starte Display-Check");
 hidepageswotext($root);
 
@@ -3157,7 +3162,7 @@ logTimestamp("Finished computation");
 
 # Parameter: Name der Konfigurationsdatei relativ zum Aufrufer
 sub setup_options {
-  my ($mconfigfile) = @_;
+  $mconfigfile = $_[0];
   if ($mconfigfile =~ m/(.+).pl/ ) {
     if ($mconfigfile =~ m/\// ) { die("FATAL: Configuration file must be in calling directory"); }
     logMessage($CLIENTINFO, "Configuration file: " . $mconfigfile);
@@ -3166,7 +3171,7 @@ sub setup_options {
       warn "Couldn't run $mconfigfile" unless %config;
     }
   } else {
-    die("FATAL: Configuration file must be of type name.pl");
+    die("FATAL: Configuration file $mconfigfile must be of type name.pl");
   }
     
   logMessage($CLIENTINFO, "Configuration description: " . $config{description});
@@ -3182,8 +3187,6 @@ $starttime = time;
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($starttime);
 logMessage($CLIENTINFO, "Starting conversion: " . ($year+1900 ) . "-" . ($mon+1) . "-$mday at $hour:$min:$sec");
 
-checkSystem();
-
 if ($#ARGV eq 0) {
   # Nur ein Parameter: Gibt Konfigurationsdatei relativ zum Aufruf an
   setup_options($ARGV[0]);
@@ -3197,6 +3200,7 @@ if ($#ARGV eq 0) {
   }
 }
 
+checkSystem();
 
 my $absexedir = Cwd::cwd(); 
 $basis = $absexedir;
@@ -3499,27 +3503,29 @@ for ($ka = 0; $ka < $nt; $ka++) {
 
     my $suffixpdf = "mintpdf";
     my $suffixhtml = "minthtml";
-    while (($textex =~ m/\\MDia\{(.+?)\}/g ) and ($config{diaok} == 1)) {
+    while ($textex =~ m/\\MDia\{(.+?)\}/g ) {
       my $dprx = $config{output} . "/converter/tex/$prx/$1";
-      #print "DEBUG Verarbeite dia-Diagramm $dprx\n";
-      # system "dia --export $dprx.png --filter=cairo-alpha-png $dprx.dia";
+      if ($config{diaok} == "0") {
+        logMessage($CLIENTWARN, "dia/conv-chain disabled, NOT processing dia diagramm $dprx");
+      } else {
+        logMessage($VERBOSEINFO, "Processing dia diagramm $dprx");
+        system "dia --export $dprx.png --filter=cairo-alpha-png $dprx.dia";
       
-      my $rt = 0;
+        my $rt = 0;
       
-      $rt = system("dia --export $dprx.eps $dprx.dia");
-      if ($rt == 0) {
-        system "convert -density 180 $dprx.eps -resample 180 $dprx$suffixpdf.png"; 
-        $rt = system("convert -density 53 $dprx.eps -resample 53 $dprx$suffixhtml.png");
-      }
+        $rt = system("dia --export $dprx.eps $dprx.dia");
+        if ($rt == 0) {
+          system "convert -density 180 $dprx.eps -resample 180 $dprx$suffixpdf.png"; 
+          $rt = system("convert -density 53 $dprx.eps -resample 53 $dprx$suffixhtml.png");
+        }
       
-      if ($rt != 0) {
-        $config{diaok} = 0;
-        logMessage($CLIENTERROR, "dia/conv-chain failed with return value $rt");
+        if ($rt != 0) {
+          $config{diaok} = 0;
+          logMessage($CLIENTERROR, "dia/conv-chain failed with return value $rt");
+        }
       }
     } 
 
-    if (($config{diaok} == 0) and ($breakoff == 0)) { $breakoff = 1; logMessage($CLIENTERROR, "ERROR dia/conv-chain aborted"); }
-    
     # Eindimensionale pmatrix-Umgebungen als eindimensionale Arrays umsetzen
     if ($textex =~ s/\\begin{pmatrix}([^&]*?)\\end{pmatrix}/\\ifttm\\left({\\begin{array}{c}$1\\end{array}}\\right)\\else\\begin{pmatrix}$1\\end{pmatrix}\\fi/sg ) {
       logMessage($VERBOSEINFO, "  pmatrix-environment of dimension 1 substituted");
@@ -3843,6 +3849,7 @@ logMessage($VERBOSEINFO, "  $globalposdirecthtml blocks for DirectHTML found");
 $copyrightcollection = "\\begin{tabular}{llll}\%\n$copyrightcollection\\end{tabular}\n";
 
 # Kopiere Konfigurationsdatei in Ausgabe-converter-Baum
+logMessage($VERBOSEINFO, "Copying configfile $mconfigfile to " . $config{output} . "/converter/config.pl");
 system("cp " . $mconfigfile . " " . $config{output} . "/converter/config.pl");
 
 # Create copyright text file
@@ -4018,8 +4025,8 @@ $ndir = getcwd; # = $output in voller expansion
 chdir("$ndir/converter");
 logMessage($VERBOSEINFO, "Changing to directory $ndir/converter");
 
-# Zerlegung der XML-Datei vornehmen
-converter_decompose();
+# Zerlegung und Umwandlung der XML-Datei vornehmen
+converter_conversion();
 
 chdir("tex");
 my $pdfok = 1;
