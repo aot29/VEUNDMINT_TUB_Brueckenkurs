@@ -19,6 +19,8 @@ use Cwd;
 use Switch;
 use JSON;
 use Term::ANSIColor;
+use GraphViz;
+use Encode;
 
 use converter::File::Data;
 use converter::Page;
@@ -3072,10 +3074,7 @@ logTimestamp("Starting decomposition");
 $root->split($text, $paramsplitlevel, 0); # = Startlevel fuer root-Objekt
 $root->{DISPLAY} = 0;
 
-# my $structexportfile = open(MINTS, ">structure.json") or die "FATAL: Cannot write structure.json";
-# print MINTS encode_json($root);
-# close(MINTS);
-    
+   
 logTimestamp("Starte Display-Check");
 hidepageswotext($root);
 
@@ -3093,7 +3092,6 @@ linkupdate($root, "../");
         
 logTimestamp("Starte TOC-Erzeugung");
 createtocs($root);
-
 
 logTimestamp("Starte Link-Ersetzung");
 createlinks($root);
@@ -3139,6 +3137,40 @@ if ($config{docollections} eq 1) {
   }
 }
 
+
+if ($config{doverbose} == "1") {
+  my $graph = GraphViz->new();
+  my @list = ();
+  push @list, $root;
+  my $k = 0;
+  while ($#list != -1) {
+    my $page = $list[0];
+    splice(@list, 0, 1);
+    my $title = $page->{TITLE};
+    $title = decode("latin1", $title);
+    $title = encode("utf-8", $title);
+    if ($page->{LEVEL} <= 3) {
+      $graph->add_node($title);
+      if ($page->{LEVEL} > 0) {
+        my $pretitle = $page->{PARENT}->{TITLE};
+        $pretitle = decode("latin1", $pretitle);
+        $pretitle = encode("utf-8", $pretitle);
+        $graph->add_edge($title, $pretitle);
+      }
+    }
+    $k++;
+    my @subpages = @{$page->{SUBPAGES}};
+    my $i;
+    for ($i = 0; $i <= $#subpages; $i++) {
+      push @list, $subpages[$i];
+    }
+  }
+  
+  
+  my $graph_png = open(MINTS, "> graph.png") or die("FATAL: Cannot write graph png");
+  print MINTS $graph->as_png();
+  close(MINTS);
+}
 
 
 
