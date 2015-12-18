@@ -108,7 +108,7 @@ our $locationlong = ""; # Wird aus Dokument geholt
 our $locationshort = "";# Wird aus Dokument geholt
 our $locationicon = "";# Wird aus Dokument geholt
 
-our $paramsplitlevel = 3;
+our $paramsplitlevel = 3; # Maximales Level ab dem die Seiten getrennte HTML-Dateien sind
 
 our $templatempl = ""; # wird von split::loadtemplates gefuellt
 
@@ -930,7 +930,7 @@ ENDE
                                     
                                     $p->{TOCSYMB} = "<div class=\"xsymb\"><tt>" . $p->{TOCSYMB} . "</tt></div>";
                                     
-                                    
+                                   
 				    # Erzeuge Dokumentweite XVerlinkung der xcontents
 				    $p->{XPREV} = $XIDObj;
 				    if ($XIDObj != -1) {
@@ -1054,7 +1054,7 @@ ENDE
                                     }
                                     
                                     $p->{TOCSYMB} = "<div class=\"xsymb\"><tt>" . $p->{TOCSYMB} . "</tt></div>";
-
+                                    
                                     $p->{TEXT} = $tpcontent;
 
                                     $p->{PREV} = 0;
@@ -1261,6 +1261,16 @@ sub postprocess {
     $outputfolder = $outputfile;
   }
 
+  # UXIDs eintragen
+  if ($text =~ m/<!-- mdeclaresiteuxidpost;;(.+?);; \/\/-->/s ) {
+    $orgpage->{UXID} = $1;
+    logMessage($VERBOSEINFO, $orgpage->{TITLE} . " -> " . $orgpage->{UXID} . " (siteuxidpost)");
+  } else {
+    logMessage($CLIENTWARN, "Site hat keine uxid: " . $orgpage->{TITLE});
+    $orgpage->{UXID} = "(unknown)";
+  }
+  
+  
   # Pull-Seiten aktivieren, JS-Variablen anpassen (geschieht bei Zerlegung in xcontents, aber HELPSITE-Sectionstart ist keiner?)
   if ($text =~ m/<!-- pullsite \/\/-->/s ) {
     $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/SITE_PULL = 1;\n\/\/ <JSCRIPTPRELOADTAG>/s ;
@@ -2291,18 +2301,10 @@ sub printpages {
                     }
                     $pp = $pp->{PARENT};
                 }
-
-                my $uxid = "(unknown)";
-  	        if ($text =~ m/<!-- mdeclaresiteuxidpost;;(.+?);; \/\/-->/s ) {
-  	          $uxid = $1;
-  	        } else {
-  	          logMessage($CLIENTWARN, "Site hat keine uxid: " . $idstr . " (" . $p->{TITLE} . ")");
-  	        }
-  	        
   	        
   	        # Eigenen Dateinamen und Pfade als JS-Variable verfuegbar machen
                 $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/SITE_ID = \"$idstr\";\n\/\/ <JSCRIPTPRELOADTAG>/s ;
-                $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/SITE_UXID = \"$uxid\";\n\/\/ <JSCRIPTPRELOADTAG>/s ;
+                $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/SITE_UXID = \"$p->{UXID}\";\n\/\/ <JSCRIPTPRELOADTAG>/s ;
                 $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/SECTION_ID = $ssn;\n\/\/ <JSCRIPTPRELOADTAG>/s ;
                 $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/var docName = \"$dname\";\n\/\/ <JSCRIPTPRELOADTAG>/s ;
                 $text =~ s/\/\/ <JSCRIPTPRELOADTAG>/var fullName = \"$docname\";\n\/\/ <JSCRIPTPRELOADTAG>/s ;
@@ -3146,13 +3148,20 @@ if ($config{doverbose} == "1") {
   while ($#list != -1) {
     my $page = $list[0];
     splice(@list, 0, 1);
-    my $title = $page->{TITLE};
+    my $title = $page->{UXID};
+    if ($title eq "") {
+      $title = $page->{TITLE};
+    }
+    logMessage($VERBOSEINFO, "graph item uxid = $title");
     $title = decode("latin1", $title);
     $title = encode("utf-8", $title);
-    if ($page->{LEVEL} <= 3) {
+    if ($page->{LEVEL} <= $paramsplitlevel) {
       $graph->add_node($title);
-      if ($page->{LEVEL} > 0) {
-        my $pretitle = $page->{PARENT}->{TITLE};
+      if ($page->{LEVEL} >= 1) {
+        my $pretitle = $page->{PARENT}->{UXID};
+        if ($pretitle eq "") {
+          $pretitle = $page->{PARENT}->{TITLE};
+        }
         $pretitle = decode("latin1", $pretitle);
         $pretitle = encode("utf-8", $pretitle);
         $graph->add_edge($title, $pretitle);
@@ -3167,7 +3176,7 @@ if ($config{doverbose} == "1") {
   }
   
   
-  my $graph_png = open(MINTS, "> graph.png") or die("FATAL: Cannot write graph png");
+  my $graph_png = open(MINTS, ">graph.png") or die("FATAL: Cannot write graph png");
   print MINTS $graph->as_png();
   close(MINTS);
 }

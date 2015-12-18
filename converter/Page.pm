@@ -98,6 +98,7 @@ sub new {
 		DISPLAY   => 0,
 		EXPORTS   => [],
 		DOCNAME   => "",
+		UXID      => "",
 		MODULID   => ""
 	};
 	$self->{ID} = $main::PageIDCounter;
