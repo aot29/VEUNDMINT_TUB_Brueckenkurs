@@ -290,13 +290,6 @@
 \newcommand{\MGlobalFavoTag}{}
 \fi
 
-% Makro, um in der HTML-Ausgabe die Betaseite zu kennzeichnen
-\ifttm
-\newcommand{\MGlobalBetaTag}{\special{html:<!-- mglobalbetatag -->}}
-\else
-\newcommand{\MGlobalBetaTag}{}
-\fi
-
 % Makro, um in der HTML-Ausgabe die Eingangstestseite zu kennzeichnen
 \ifttm
 \newcommand{\MGlobalSTestTag}{\special{html:<!-- mglobalstesttag -->}}
@@ -547,8 +540,6 @@
 % Bei Uebersetzung nach PDF werden die theorem-Umgebungen verwendet, bei Uebersetzung in HTML ein manuelles Makro
 \ifttm%
 
-  \newenvironment{MSolution}{\special{html:<!-- loesung -->}}{\special{html:<!-- endloesung -->}}
-
   \newenvironment{MHint}[1]{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" id="MHintButton}\arabic{MHintCounter}\special{html:" %
   type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}#1\special{html:</button>}
   \special{html:<div class="hint" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
@@ -709,7 +700,6 @@
   \newenvironment{MFetchExercise}{}{} % kann im PDF nicht dargestellt werden
   
   \newenvironment{MExercise}{\begin{exrc}\renewcommand{\MStdPoints}{1}\MTB}{\end{exrc}}
-  \newenvironment{MSolution}{\ \\ \underline{L\"osung:}\\}{}
   \newenvironment{MHint}[1]{\ \\ \underline{#1:}\\}{}
   \newenvironment{MCOSHZusatz}{\ \\ \underline{Weiterführende Inhalte:}\\}{}
   \newenvironment{MDefinition}{\ifnum\value{MInfoNumbers}=0\begin{defnc}\else\begin{defn}\fi\MTB}{\ifnum\value{MInfoNumbers}=0\end{defnc}\else\end{defn}\fi}
@@ -752,7 +742,7 @@
 \fi%
 
 % MHint sollte nicht direkt fuer Loesungen benutzt werden wegen solutionselect
-\newenvironment{MSolutionHint}{\begin{MHint}{L"osung}}{\end{MHint}}
+\newenvironment{MSolution}{\begin{MHint}{L"osung}}{\end{MHint}}
 
 \newcounter{MCodeCounter}
 
@@ -1229,7 +1219,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 % Dieses Skript wird zu Beginn jedes Modulabschnitts (=Webseite) ausgefuehrt und initialisiert den Aufgabenfeldzaehler
 \newcommand{\MPageScripts}{
-\setcounter{MWTabCounter}{1}
 \setcounter{MFieldCounter}{1}
 \addtocounter{MSiteCounter}{1}
 \setcounter{MHintCounter}{1}
@@ -1293,7 +1282,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 % GHEADER und GFOOTER werden von split.pm gefunden, aber nur, wenn nicht HELPSITE oder TESTSITE
 \ifttm
-\newenvironment{MSectionStart}{\MODULGHEADER\MSubsubsectionx{Modul\"ubersicht}}{\MODULGFOOTER\setcounter{MSSEnd}{0}}
+\newenvironment{MSectionStart}{\MSubsubsectionx{Modul\"ubersicht}}{\setcounter{MSSEnd}{0}}
 % Darf nicht als XContent nummeriert werden, darf nicht als XContent gelabelt werden
 \else
 \newenvironment{MSectionStart}{\MSubsectionx{Modul\"ubersicht}}{\setcounter{MSSEnd}{0}}
@@ -1738,29 +1727,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newenvironment{MCaseEnv}{\left\lbrace\begin{array}{rl}}{\end{array}\right.}
 \fi
 
-\newcounter{MWTabCounter}
-
-\ifttm
-
-\newenvironment{MWTabular}[1]{
-\special{html:<!-- wtab-start;;}\arabic{MWTabCounter}\special{html:;;}#1\special{html:; //-->}
-\begin{tabular}{#1}
-}{
-\end{tabular}
-\special{html:<!-- wtab-end;;}\arabic{MWTabCounter}\special{html:; //-->}
-\addtocounter{MWTabCounter}{1}
-}
-
-\else
-
-\newenvironment{MWTabular}[1]{
-\begin{tabular}{#1}
-}{
-\end{tabular}
-}
-
-\fi
-
 \def\MSkip{\ifttm\MCR\fi}
 
 \ifttm
@@ -2178,16 +2144,6 @@ Hier erscheint die Testauswertung!
 \newcommand{\MOhm}{\Omega} %\varOmega
 \fi
 
-
-% Wird beim Postprocessing durch grafische HTML-Modultiteldarstellung ersetzt
-\ifttm
-%\def\MODULGHEADER{\special{html:<!-- modulgheader //-->}}%
-%\def\MODULGFOOTER{\special{html:<!-- modulgfooter //-->}}%
-\def\MODULGHEADER{}%
-\def\MODULGFOOTER{}%
-\else%
-%
-\fi
 
 \def\PERCTAG{\MAbort{PERCTAG ist zur internen verwendung in mconvert.pl reserviert, dieses Makro darf sonst nicht benutzt werden.}}
 

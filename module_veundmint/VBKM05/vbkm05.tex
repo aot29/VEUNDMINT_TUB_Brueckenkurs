@@ -1574,44 +1574,44 @@ $3$ & $4$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{5}{5}{WR2} & $*$ & $*$ & 
 \end{center}
 Die mit $*$ gekennzeichneten Felder müssen nicht ausgefüllt werden.
 
-% \begin{MSolution}
-% Die ausgefüllte Tabelle lautet wie folgt:
-% \begin{center}
-% \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-% \hline
-% $a$ & $b$ & $c$ & $\alpha$ & $\beta$ & $\gamma$& $\sin(\alpha)$ & $\sin(\beta)$ & $\sin(\gamma)$ \\ \hline
-% $1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
-% $1$ & $1$ & $\sqrt2$ & $\frac14\pi$ & $\frac14\pi$ & $\frac12\pi$ & $\frac1{\sqrt2}$ & $\frac1{\sqrt2}$ & $1$   \\ 
-% $3$ & $4$ & $5$ & $*$ & $*$ & $\frac12\pi$ & $\frac45$ & $\frac35$ & $1$ \\
-% $\sqrt{15}$ & $\sqrt7$ & $\sqrt8$ & $\frac12\pi$ & $*$ & $*$ & $1$ & $\sqrt{8/15}$ & $\sqrt{7/15}$ \\
-% $\frac{9}{\sqrt3}$ & $\frac{9}{\sqrt3}$ & $9$ & $\frac16\pi$ &$\frac16\pi$ & $\frac23\pi$ & $\frac12$ & $\frac12$ & $*$\\
-% \hline
-% \end{tabular}
-% \end{center}
-% In der dritten Zeile benutzt man den rechten Winkel $\gamma=\frac12\pi$, der über den Satz von Pythagoras auf $c=\sqrt{a^2+b^2}=\sqrt2$ führt.
-% Das Dreieck ist gleichschenklig, also auch $\alpha=\beta$. Da die Winkelsumme
-% im Dreieck $\pi$ beträgt, muss $\alpha=\beta=\frac14\pi$ sein. In den beiden letzten Lösungsfeldern ist dann $\sin(\frac14\pi)=\frac{\text{Gegenkathete}}{\text{Hypothenuse}}=\frac1{\sqrt2}$.
-% \ \\ \ \\
-% In der vierten Zeile ist das Dreieck rechtwinklig bei $\gamma=\pi$ und der Satz des Pythagoras führt auf $c=\sqrt{a^2+b^2}=5$. Aus den Seiten kann man die Sinuswerte der Winkel bestimmen: $\sin(\alpha)=\frac45$, $\sin(\beta)=\frac35$ und $\sin(\gamma)=1$.
-% \ \\ \ \\
-% In der fünften Zeile ist das Dreieck wieder rechtwinklig, diesmal aber bei $\alpha=\pi$, daher spielen die Seiten nun andere Rollen: $a$ ist die Länge der Hypothenuse.
-% Der Satz des Pythagoras in dieser Situation liefert $a=\sqrt{b^2+c^2}=\sqrt{15}$. Da alle Seiten vorliegen, können wir wieder die Winkel bestimmen (jetzt mit $a$ als Hypothenuse): $\sin(\alpha)=1$, $\sin(\beta)=\sqrt{\frac{8}{15}}$ und $\sin(\gamma)=\sqrt{\frac{}{15}}$.
-% \ \\ \ \\
-% In der letzten Zeile rechnet man aus $\sin(\alpha)=\sin(\beta)=\frac12$ die Winkel $\alpha=\beta=\frac16\pi$ aus. Wegen der Winkelsumme $\alpha+\beta+\gamma=\pi$ folgt $\gamma=\pi-\frac13\pi=\frac23\pi$.
-% Dieses Dreieck ist gleichschenklig, aber nicht rechtwinklig, wir dürfen die trigonometrischen Funktionen daher nicht direkt an den Seiten ansetzen. Als Hilfmittel kann man die Höhe auf der Seite $c$
-% benutzen, die das Dreieck in zwei rechtwinklige Dreiecke einteilt:
-% 
-% \MUGraphics{dreieck_haelfte.png}{width=0.2\linewidth}{Einteilung eines gleichschenkligen Dreiecks in zwei rechtwinklige Dreiecke.}{width:150px}
-% %\MCopyrightHTML{Wikipedia verändert}{<a href="http://commons.wikimedia.org/wiki/File:Isosceles-triangle-tikz.svg#mediaviewer/Datei:Isosceles-triangle-tikz.svg">Isosceles-triangle-tikz</a> von <a href="//commons.wikimedia.org/wiki/User:MartinThoma" title="User:MartinThoma">MartinThoma</a> - <span class="int-own-work">Eigenes Werk</span>. Lizenziert unter <a title="Creative Commons Attribution 3.0" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> über <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>}
-% 
-% Im linken Teildreieck gibt es einen rechten Winkel, dort ist nun $b$ die Hypothenuse und Ankathete von $\alpha$ besitzt die bekannte Länge $\frac{9}{2}$. Wir wissen auch $\cos(\frac16\pi)=\frac12\sqrt3$, damit kann man
-% nach $b$ auflösen:
-% $$
-% \frac12\sqrt3 \;=\; \cos(\frac16\pi) \;=\; \frac{\text{Ankathete im Teildreieck}}{\text{Hypothenuse im Teildreieck}} \;=\; \frac{\frac92}{b} \;\; \Rightarrow\;\;
-% b \;=\; \frac{9}{\sqrt3}\: .
-% $$
-% und weil das ursprüngliche Dreieck gleichschenklig ist gilt auch $a=\frac{9}{\sqrt3}$.
-% \end{MSolution}
+\begin{MHint}{Lösung}
+Die ausgefüllte Tabelle lautet wie folgt:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+$a$ & $b$ & $c$ & $\alpha$ & $\beta$ & $\gamma$& $\sin(\alpha)$ & $\sin(\beta)$ & $\sin(\gamma)$ \\ \hline
+$1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
+$1$ & $1$ & $\sqrt2$ & $\frac14\pi$ & $\frac14\pi$ & $\frac12\pi$ & $\frac1{\sqrt2}$ & $\frac1{\sqrt2}$ & $1$   \\ 
+$3$ & $4$ & $5$ & $*$ & $*$ & $\frac12\pi$ & $\frac45$ & $\frac35$ & $1$ \\
+$\sqrt{15}$ & $\sqrt7$ & $\sqrt8$ & $\frac12\pi$ & $*$ & $*$ & $1$ & $\sqrt{8/15}$ & $\sqrt{7/15}$ \\
+$\frac{9}{\sqrt3}$ & $\frac{9}{\sqrt3}$ & $9$ & $\frac16\pi$ &$\frac16\pi$ & $\frac23\pi$ & $\frac12$ & $\frac12$ & $*$\\
+\hline
+\end{tabular}
+\end{center}
+In der dritten Zeile benutzt man den rechten Winkel $\gamma=\frac12\pi$, der über den Satz von Pythagoras auf $c=\sqrt{a^2+b^2}=\sqrt2$ führt.
+Das Dreieck ist gleichschenklig, also auch $\alpha=\beta$. Da die Winkelsumme
+im Dreieck $\pi$ beträgt, muss $\alpha=\beta=\frac14\pi$ sein. In den beiden letzten Lösungsfeldern ist dann $\sin(\frac14\pi)=\frac{\text{Gegenkathete}}{\text{Hypothenuse}}=\frac1{\sqrt2}$.
+\ \\ \ \\
+In der vierten Zeile ist das Dreieck rechtwinklig bei $\gamma=\pi$ und der Satz des Pythagoras führt auf $c=\sqrt{a^2+b^2}=5$. Aus den Seiten kann man die Sinuswerte der Winkel bestimmen: $\sin(\alpha)=\frac45$, $\sin(\beta)=\frac35$ und $\sin(\gamma)=1$.
+\ \\ \ \\
+In der fünften Zeile ist das Dreieck wieder rechtwinklig, diesmal aber bei $\alpha=\pi$, daher spielen die Seiten nun andere Rollen: $a$ ist die Länge der Hypothenuse.
+Der Satz des Pythagoras in dieser Situation liefert $a=\sqrt{b^2+c^2}=\sqrt{15}$. Da alle Seiten vorliegen, können wir wieder die Winkel bestimmen (jetzt mit $a$ als Hypothenuse): $\sin(\alpha)=1$, $\sin(\beta)=\sqrt{\frac{8}{15}}$ und $\sin(\gamma)=\sqrt{\frac{}{15}}$.
+\ \\ \ \\
+In der letzten Zeile rechnet man aus $\sin(\alpha)=\sin(\beta)=\frac12$ die Winkel $\alpha=\beta=\frac16\pi$ aus. Wegen der Winkelsumme $\alpha+\beta+\gamma=\pi$ folgt $\gamma=\pi-\frac13\pi=\frac23\pi$.
+Dieses Dreieck ist gleichschenklig, aber nicht rechtwinklig, wir dürfen die trigonometrischen Funktionen daher nicht direkt an den Seiten ansetzen. Als Hilfmittel kann man die Höhe auf der Seite $c$
+benutzen, die das Dreieck in zwei rechtwinklige Dreiecke einteilt:
+
+\MUGraphics{dreieck_haelfte.png}{width=0.2\linewidth}{Einteilung eines gleichschenkligen Dreiecks in zwei rechtwinklige Dreiecke.}{width:150px}
+%\MCopyrightHTML{Wikipedia verändert}{<a href="http://commons.wikimedia.org/wiki/File:Isosceles-triangle-tikz.svg#mediaviewer/Datei:Isosceles-triangle-tikz.svg">Isosceles-triangle-tikz</a> von <a href="//commons.wikimedia.org/wiki/User:MartinThoma" title="User:MartinThoma">MartinThoma</a> - <span class="int-own-work">Eigenes Werk</span>. Lizenziert unter <a title="Creative Commons Attribution 3.0" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> über <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>}
+
+Im linken Teildreieck gibt es einen rechten Winkel, dort ist nun $b$ die Hypothenuse und Ankathete von $\alpha$ besitzt die bekannte Länge $\frac{9}{2}$. Wir wissen auch $\cos(\frac16\pi)=\frac12\sqrt3$, damit kann man
+nach $b$ auflösen:
+$$
+\frac12\sqrt3 \;=\; \cos(\frac16\pi) \;=\; \frac{\text{Ankathete im Teildreieck}}{\text{Hypothenuse im Teildreieck}} \;=\; \frac{\frac92}{b} \;\; \Rightarrow\;\;
+b \;=\; \frac{9}{\sqrt3}\: .
+$$
+und weil das ursprüngliche Dreieck gleichschenklig ist gilt auch $a=\frac{9}{\sqrt3}$.
+\end{MHint}
 
 \end{MExercise}
 
@@ -1630,7 +1630,7 @@ den kleinstmöglichen Kreis, der das Quadrat enthält:
 \ \\ \ \\
 In den Antwortfeldern dürfen keine Klammern oder Wurzelausdrücke auftauchen, schreiben Sie beispielsweise $2^{0.5}$ statt $\sqrt{2}$ um die Wurzel zu vermeiden.
 \ \\ \ \\
-\begin{MSolution}
+\begin{MHint}{Lösung}
 Der mittig im Quadrat liegende Kreis besitzt den Radius $r=\frac12a$, die halbe Seitenlänge des Quadrats. Folglich besitzt er den Umfang $2\pi r =2\pi \cdot \frac12a = \pi a$ und den Flächeninhalt
 $\pi r^2=\pi \cdot \frac14a^2 =\frac14\pi a^2$.\\
 \ \\
@@ -1638,7 +1638,7 @@ Befindet sich das Quadrat dagegen mittig innerhalb des Kreises, so ist sein Radi
 die Länge $d=\sqrt2\cdot a$. Dies folgt aus dem Satz von Pythagoras, da die halbe Quadratdiagonale ein rechtwinkliges Dreieck bildet
 mit Seitenlänge $d$ der Hypothenuse und den beiden Katheten mit Längen $\frac12a$: Also ist der Umfang $2\pi r=2\pi\cdot \sqrt2 \cdot\frac12 a=\sqrt2\cdot \pi \cdot a$,
 der Flächeninhalt ist $\pi r^2=\pi \cdot (\sqrt2\cdot \frac12\cdot a)^2=\pi \cdot\frac12 a^2$.
-\end{MSolution}
+\end{MHint}
 \end{MExercise}
 
 \end{MTest}
