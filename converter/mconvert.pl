@@ -33,6 +33,9 @@ my $helptext = "Usage: mconvert.pl <configuration.pl> [command <OptionObject>]\n
 
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
+our $macrofilename = "mintmod";
+our $macrofile = "$macrofilename.tex"; # Relativ zum converter/tex Verzeichnis
+
 # Mandatory option parameter in config file
 our @mandatory = ("signature_main", "signature_version", "signature_localization",
    "reply_mail", "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",
@@ -1513,7 +1516,7 @@ sub postprocess {
         my $exprefix = "\% Export Nr. $qpos aus " . $orgpage->{TITLE} . "\n";
         $exprefix .= "\% Dieser Quellcode steht unter CCL BY-SA, entnommen aus dem VE\&MINT-Kurs " . $config{parameter}{signature_CID} . ",\n";
         $exprefix .= "\% Inhalte und Quellcode des Kurses dürfen gemäß den Bestimmungen der Creative Common Lincense frei weiterverwendet werden.\n";
-        $exprefix .= "\% Für den Einsatz dieses Codes wird das Makropaket mintmod.tex benötigt.\n";
+        $exprefix .= "\% Für den Einsatz dieses Codes wird das Makropaket $macrofile benötigt.\n";
         $pos = 0 + @{$orgpage->{EXPORTS}};
         push @{$orgpage->{EXPORTS}}, ["export$pos.tex","$exprefix$expt",$qpos];
         $rep = "<br />";
@@ -2209,9 +2212,9 @@ sub printpages {
       }
 }
 
-		while ($divcontent =~ /<!-- msref;;(.+?);;(.+?); \/\/-->/ ) {
+		while ($divcontent =~ /<!-- msref;;(.+?);;(.+?); \/\/-->/s ) {
 		  # Expandiere MSRef
-		  logMessage($VERBOSEINFO, "Expandiere Link $1");
+		  logMessage($VERBOSEINFO, "Expandiere Link $1 mit Titel $2");
  		  my $lab = $1;
  		  my $txt = $2;
                   my $nrl = noregex($lab);
@@ -3322,7 +3325,7 @@ my $pcompletename = "";
 my $dotikzfile = 0;
 for ($ka = 0; $ka < $nt; $ka++) {
 
-  if (($texs[$ka] =~ /mintmod/ ) or ($texs[$ka] =~ /tree(.)\.tex/ ) or ($texs[$ka] =~ /tree\.tex/ )) {
+  if (($texs[$ka] =~ /$macrofile/ ) or ($texs[$ka] =~ /tree(.)\.tex/ ) or ($texs[$ka] =~ /tree\.tex/ )) {
     logMessage($VERBOSEINFO, "Preprocessing ignores $texs[$ka]");
   } else {
     # -------------------------------- Start Preprocessing per texfile -------------------------------------------------------
@@ -3426,6 +3429,10 @@ for ($ka = 0; $ka < $nt; $ka++) {
       $globalexstring .= "\\ \\\\\n\\begin{MExercise}\n" . $1 . "\n\\end{MExercise}\n";
     }
        
+       
+    # Experimental ttm bypass
+    # $textex =~ s/\$\$(.+?)\$\$/\\begin{MDirectHTML}\$\$$1\$\$\\end{MDirectHTML}/sg ;
+       
     # MDirectHTML umsetzen
     while($textex =~ s/\\begin{MDirectHTML}(.+?)\\end{MDirectHTML}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
       push @DirectHTML , $1;
@@ -3466,7 +3473,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
     }
 
     if ($textex =~ s/\\tikzexternalize//gs ) {
-      logMessage($CLIENTINFO, "  found BARE tikzexternalize and removed it (please use macro from mintmod.tex instead)");
+      logMessage($CLIENTINFO, "  found BARE tikzexternalize and removed it (please use macro from $macrofile instead)");
     }
 
     
@@ -3530,8 +3537,8 @@ for ($ka = 0; $ka < $nt; $ka++) {
     if ($modulname ne "") {
       # Dokumentstruktur an tree anpassen, includes und preamble werden schon vorgegeben
       $textex =~ s/\\begin{document}//g ;
-      $textex =~ s/\\input{mintmod\.tex}//g ;
-      $textex =~ s/\\input{mintmod}//g ;
+      $textex =~ s/\\input{$macrofile}//g ;
+      $textex =~ s/\\input{$macrofilename}//g ;
       $textex =~ s/\\end{document}//g ;
       $textex =~ s/\\input{(.+?)}/\\input{$prx\/$1}/g; # !!!!!!!!!!!!!!!
       # input-Anweisungen der Modulebene anpassen: jedes Modul liegt einem eigenen Verzeichnis
@@ -3863,7 +3870,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
       
       # Programm wird an dieser Stelle im Aufrufverzeichnis ausgefuehrt
       chdir($pdirname);
-      system("cp $basis/converter/tex/mintmod.tex .");
+      system("cp $basis/converter/tex/$macrofile .");
       system("cp $basis/converter/tex/maxpage.sty .");
       my $mca = "pdflatex -shell-escape $pfilename";
       logMessage($CLIENTINFO, "  Starte pdflatex mit shellescape: $mca");
@@ -3921,7 +3928,7 @@ my $ttminputfile = $config{output} . "/converter/tex/vorkursxml.tex";
 $mints_open = open(MINTS, "> $ttminputfile") or die "FATAL: Could not create converter input file";
 print MINTS "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
 print MINTS "\\documentclass{book}\n";
-print MINTS "\\input{mintmod.tex}\n";
+print MINTS "\\input{$macrofile}\n";
 print MINTS "\\title{MINT-Module}\n";
 print MINTS "\\author{MINT-Kolleg Baden-W\"urttemberg}\n";
 print MINTS "\\newcounter{MChaptersGiven}\n";
@@ -3937,7 +3944,7 @@ $mints_open = open(MINTS, "> $pdfinputfile") or die "FATAL: Could not create PDF
 print MINTS "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
 print MINTS "\\newcounter{MChaptersGiven}\n";
 print MINTS "\\setcounter{MChaptersGiven}{1}\n";
-print MINTS "\\input{mintmod.tex}\n";
+print MINTS "\\input{$macrofile}\n";
 print MINTS "\\title{MINT-Module}\n";
 print MINTS "\\author{MINT-Kolleg Baden-W\"urttemberg}\n";
 print MINTS "\\begin{document}\n";
@@ -4041,7 +4048,7 @@ system("cp dynamiccss.js ../files/.");
 # mintmod.tex so veraendern, dass lokale Preamblen und Tagmakros eingebunden werden, sowie automatisierte tags
 chdir("../tex");
 # MUSS APPEND SEIN
-my $ipf = open(MINTP, ">> mintmod.tex") or die "FATAL: Could not append local preamles to mintmod.tex";
+my $ipf = open(MINTP, ">> $macrofile") or die "FATAL: Could not append local preambles to $macrofile";
 print MINTP "\n% ---------- Automatisch eingebundene Preamblen aus mconvert.pl heraus ---------------\n";
 logMessage($CLIENTINFO, "Included preambles:");
 for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
@@ -4050,15 +4057,39 @@ for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
   print MINTP $IncludeStorage[$i][2] . "\n";
 }
 
-print MINTP "% Automatisierte Tagmakros ---------- \n";
-print MINTP "\\ifttm\n";
-
-print MINTP "\\else\n";
-
-print MINTP "\\fi\n";
+# print MINTP "% Automatisierte Tagmakros ---------- \n";
+# print MINTP "\\ifttm\n";
+# print MINTP "\\else\n";
+# print MINTP "\\fi\n";
 
 close(MINTP);
 
+$ipf = open(MINTP, "< $macrofile") or die "FATAL: Count not reopen $macrofile";
+my $mintstr = "";
+my $mintr = "";
+while(defined($mintr = <MINTP>)) {
+  $mintstr .= $mintr;
+}
+close(MINTP);
+
+my $mint_tex = $mintstr;
+my $mint_html = $mintstr;
+
+$mint_tex =~ s/\\ifttm(.+?)\\else(.+?)\\fi/$2/sg;
+$mint_tex =~ s/\\ifttm(.+?)\\fi/\n/sg;
+$mint_html =~ s/\\ifttm(.+?)\\else(.+?)\\fi/$1/sg;
+$mint_html =~ s/\\ifttm(.+?)\\fi/$1/sg;
+
+
+logMessage($VERBOSEINFO, "TeX-Macro definitions in $macrofile:");
+
+
+while($mint_tex =~ m/\\def\\(.+?)(\#.)*\{/sg ) {
+  logMessage($VERBOSEINFO, "  def: $1");
+}
+while($mint_tex =~ m/\\newcommand\{(.+?)\}/sg ) {
+  logMessage($VERBOSEINFO, "  newcommand: $1");
+}
 
 # Erzeuge den HTML-Baum
 chdir("../..");
