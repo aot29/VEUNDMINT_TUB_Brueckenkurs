@@ -37,15 +37,15 @@ Aus Modul \MNRef{VBKM01} kennen wir bereits die \highlight{reellen Zahlen} als \
 \begin{MExample}
 Wir möchten die gesamten reellen Zahlen $\R$ außer der Zahl $0\in\R$ in einer Menge zusammenfassen. Wie schreiben wir eine solche Zahlenmenge auf? Hierfür gibt es die Schreibweise
 \[
- \R\setminus\{0\}.
+ \R\setminus\{0\} \MDFPeriod
 \]
 Diese wird gelesen als ``$\R$ ohne $0$''. Eine weitere Schreibweise für diese Menge ist die Vereinigung zweier offener Intervalle:
 \[
- \R\setminus\{0\}=(-\infty\MIntvlSep 0)\cup(0\MIntvlSep \infty).
+ \R\setminus\{0\}=(-\infty\MIntvlSep 0)\cup(0\MIntvlSep \infty) \MDFPeriod
 \]
 Genauso kann man aus beliebigen anderen Mengen einzelne Zahlen entfernen. So beinhaltet etwa die Menge
 \[
- [1\MIntvlSep 3)\setminus\{2\},
+ [1\MIntvlSep 3)\setminus\{2\} \MDFPSpace,
 \]
 alle Zahlen aus dem halboffenen Intervall $[1\MIntvlSep 3)$ außer der Zahl $2$:
 
@@ -186,11 +186,11 @@ Nun wollen wir eine Zuordnung zwischen den Elementen dieser beiden Mengen auf fo
 
 Wir benutzen für die \modsemph{Zuordnung der einzelnen Elemente} der Mengen, die wir oben in Worten beschrieben haben, den sogenannten \highlight{Zuordnungspfeil}. Dies ist ein Pfeil, der auf einer Seite einen senkrechten Strich als Abschluss hat: $\longmapsto$. Er bedeutet, dass der Zahl auf der Seite mit dem senkrechten Strich die Zahl auf der Seite der Pfeilspitze zugeordnet wird: 
 \[
-\N\ni1\longmapsto\MZahl{0}{5}\in\Q,\ \N\ni2\longmapsto1\in\Q,\text{ usw.} 
+\N\ni1\longmapsto\MZahl{0}{5}\in\Q \MDFPSpace,\MDFPaSpace \N\ni2\longmapsto1\in\Q \MDFPSpace, \MDFPaSpace \text{usw.} 
 \]
 Mit diesen Zuordnungen haben wir nun eine \modsemph{Funktion} von den natürlichen Zahlen $\N$ in die rationalen Zahlen $\Q$ konstruiert. In der Mathematik gibt man dieser Zuordnung nun einen Namen, d.h.~man reserviert ein Symbol (oft $f$ für \modsemph{F}unktion), das genau diese Zuordnung beschreiben soll. Dazu muss man die Zahlenmengen notieren, \modsemph{aus denen} und \modsemph{in die} zugeordnet werden soll. In diesem Fall werden den Elementen der natürlichen Zahlen $\N$ rationale Zahlen zugeordnet. Dies schreibt man mathematisch mit einem sogenannten \highlight{Abbildungspfeil} $\null\lto\null$, an dessen Spitze die Menge auftaucht, die das Ziel der Zuordnung ist und an dessen Basis die Menge steht, deren Elemente zugeordnet werden. In diesem Fall also
 \[
- f\colon \N\lto\Q.
+ f\colon \N\lto\Q \MDFPeriod
 \]
 Man liest dies als "`die Funktion $f$ bildet von $\N$ nach $\Q$ ab''. 
 
@@ -201,17 +201,17 @@ aufschreiben können. Dazu erinnern wir uns an den Beginn dieses Beispiels. Wir h
 Damit können wir links und rechts des Zuordnungspfeils nun einfach diese beliebige natürliche Zahl $n$ bzw.~die sich daraus ergebende rationale Zahl $\frac{n}{2}$
 hinschreiben:
 \[
- n\longmapsto\frac{n}{2}.
+ n\longmapsto\frac{n}{2} \MDFPeriod
 \]
 Man liest dies als "`$n$ wird auf $\frac{n}{2}$ abgebildet''. Diese Schreibweise bezeichnet man auch als \highlight{Abbildungsvorschrift} der Funktion.
 Eine weitere Schreibweise für die Abbildungsvorschrift benutzt den Namen der Funktion:
 \[
- f(n) = \frac{n}{2}.
+ f(n) = \frac{n}{2} \MDFPeriod
 \]
 Man liest dies als "`$f$ von $n$ ist gleich $\frac{n}{2}$''.  Wir können also die hier
 betrachtete Funktion $f$ nun zusammengefasst folgendermaßen schreiben:
 \[
- \function{f}{\N}{\Q}{n}{\frac{n}{2}.}
+ \function{f}{\N}{\Q}{n}{\frac{n}{2} \MDFPeriod}
 \]
 Man liest dies nun als "`die Funktion $f$ bildet von $\N$ nach $\Q$ ab, jedes $n\in\N$ wird auf $\frac{n}{2}\in\Q$ abgebildet''.
 Diese zusammenfassende Schreibweise werden wir im Rest diese Moduls für Funktionen weiter verwenden.
@@ -222,12 +222,12 @@ Wir betrachten einige weitere einfache Beispiele für Funktionen:
 \begin{itemize}
  \item Eine Funktion $g$ soll jeder reellen Zahl $x$ ihr Quadrat $x\cdot x=x^2$ zuordnen. Dies ergibt die sogenannte Standardparabel (siehe \MNRef{sec:monome}):
  \[
-  \function{g}{\R}{\R}{x}{x^2.}
+  \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
  \]
  Die Abbildungsvorschrift von $g$ lautet damit $g(x)=x^2$. Man kann dann die Zuordnungen für konkrete Zahlen ausrechnen. Zum Beispiel $g(2)=2^2=4$ oder $g(-\pi)=(-\pi)^2=\pi^2$, usw. 
  \item Eine Funktion $\Mvarphi$ soll jeder reellen Zahl $y$ zwischen $0$ und $1$ ihren dreifachen Wert plus $1$ zuordnen. Dies ist ein Beispiel für eine sogenannte linear-affine Funktion (siehe \MNRef{sec:linear-affin}):
  \[
-  \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1.}
+  \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1 \MDFPeriod}
  \]
  Die Abbildungsvorschrift von $\Mvarphi$ lautet damit $\Mvarphi(y)=3y+1$. Somit errechnet man beispielsweise $\Mvarphi(\frac{1}{3})=3\cdot\frac{1}{3}+1=2$, usw. Allerdings kann man in diesem Fall $\Mvarphi(8)$ oder auch $\Mvarphi(1)$ \modsemph{nicht angeben}, da $8$ und $1$ keine Elemente der Menge $(0\MIntvlSep 1)$ sind.  %Dies wird unten im Rest dieses Abschnitts nochmal genauer erörtert werden. 
 \end{itemize}
@@ -243,7 +243,7 @@ Wir betrachten einige weitere einfache Beispiele für Funktionen:
  von $h$.
  \item[(ii)] Beschreiben Sie in Worten die Zuordnung, die von folgender Funktion ausgeführt wird:
  \[
-  \function{w}{[4\MIntvlSep 9]}{\R}{\alpha}{\sqrt{\alpha}.}
+  \function{w}{[4\MIntvlSep 9]}{\R}{\alpha}{\sqrt{\alpha} \MDFPeriod}
  \]
  Berechnen Sie $w(9)$ und $w(5)$. Kann man auch $w(10)$ angeben?
 \end{itemize}
@@ -252,7 +252,7 @@ Wir betrachten einige weitere einfache Beispiele für Funktionen:
  \begin{itemize}
   \item[(i)] Der Kehrwert von $x$ ist $\frac{1}{x}$. Die positiven reellen Zahlen sind die Menge $(0\MIntvlSep \infty)$. Damit kann man die Funktion $h$ schreiben als
   \[
-   \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\frac{1}{x}.}
+   \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\frac{1}{x} \MDFPeriod}
   \]
   Dies ist ein Beispiel für eine Funktion vom hyperbolischen Typ und wird in Abschnitt \MNRef{M06_Abschnitt5} genauer behandelt. Die Abbildungsvorschrift von $h$ ist $h(x)=\frac{1}{x}$, womit gilt $h(2)=\frac{1}{2}$ und $h(1)=\frac{1}{1}=1$. Außerdem berechnet man $h(3)=\frac{1}{3}$, womit $3\longmapsto\frac{1}{3}$ gilt. Weiterhin führt die Überlegung $h(\frac{1}{2})=\frac{1}{\frac{1}{2}}=2$ auf $\frac{1}{2}\longmapsto2$.
   \item[(ii)] Die Funktion $w$ ordnet jeder reellen Zahl $\alpha$, die größer oder gleich $4$ und kleiner oder gleich $9$ ist, ihre Quadratwurzel $\sqrt{\alpha}$ zu. Die Abbildungsvorschrift lautet $w(\alpha)=\sqrt{\alpha}$, womit $w(9)=\sqrt{9}=3$ sowie $w(5)=\sqrt{5}$ gilt. $w(10)$ kann nicht angegeben werden, da $10\notin[4\MIntvlSep 9]$.
@@ -283,7 +283,7 @@ Es gilt
 \]
 und 
 \[
-  \function{g}{\R}{\R}{x}{x^2,}
+  \function{g}{\R}{\R}{x}{x^2 \MDFPSpace,}
 \]
 womit man $D_w=[4\MIntvlSep 9]$ und $D_g=\R$ erhält.
 \end{MHint}
@@ -300,7 +300,7 @@ kann.
 \begin{MExample}
 Der größtmögliche Definitionsbereich $D_h\subset\R$ der Funktion
 \[
- \function{h}{D_h}{\R}{x}{\frac{1}{x},}
+ \function{h}{D_h}{\R}{x}{\frac{1}{x} \MDFPSpace,}
 \]
 ist $D_h=\R\setminus\{0\}$.
 \end{MExample}
@@ -341,11 +341,11 @@ W_f$.
 
 \begin{MExample}Betrachten wir hierzu nochmal das Beispiel 
 \[
-  \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1.}
+  \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1 \MDFPeriod}
 \]
 Der Wertebereich dieser Funktion ist
 \[
-W_{\Mvarphi}=(1\MIntvlSep 4).
+W_{\Mvarphi}=(1\MIntvlSep 4) \MDFPeriod
 \]
 Dies sieht man ein, indem man einige Werte aus $D_{\Mvarphi}=(0\MIntvlSep 1)$ in die Abbildungsvorschrift einsetzt und die Ergebnisse berechnet.
 Dies führt auf eine sogenannte \MEntry{Wertetabelle}{Wertetabelle}:
@@ -368,11 +368,11 @@ In der Funktion
 \]
 gilt aufgrund des Definitionsbereichs $D_{\Mvarphi}=(0\MIntvlSep 1)$ für die Veränderliche:
 \[
- 0<y<1.
+ 0<y<1 \MDFPeriod
 \]
 Nun benutzen wir Äquivalenzumformungen, um in diesen Ungleichungen die Abbildungsvorschrift $\Mvarphi(y)=3y+1$ zu erzeugen:
 \[
- 0<y<1\,|\cdot 3\quad\Leftrightarrow\quad 0<3y<3\,|+1\quad\Leftrightarrow\quad 1<3y+1<4\quad\Leftrightarrow\quad 1<\Mvarphi(y)<4.
+ 0<y<1\,|\cdot 3\quad\Leftrightarrow\quad 0<3y<3\,|+1\quad\Leftrightarrow\quad 1<3y+1<4\quad\Leftrightarrow\quad 1<\Mvarphi(y)<4 \MDFPeriod
 \]
 Somit gilt für die Werte der Funktion $\Mvarphi(y)\in(1\MIntvlSep 4)$ und deshalb $W_{\Mvarphi}=(1\MIntvlSep 4)$.
 \end{MExample}
@@ -383,7 +383,7 @@ Somit gilt für die Werte der Funktion $\Mvarphi(y)\in(1\MIntvlSep 4)$ und deshal
 \MDeclareSiteUXID{VBKM06_FunktionenAnwendungen}
 Mathematische Funktionen beschreiben oft Zusammenhänge zwischen Größen, die aus anderen Wissenschaften oder dem Alltagsbereich stammen. So ist etwa das Volumen $V$ eines Würfels abhängig von der Kantenlänge $a$ des Würfels. Damit kann das Volumen als mathematische Funktion aufgefasst werden, in der jeder Kantenlänge $a>0$ das entsprechende Volumen $V(a)=a^3$ zugeordnet wird:
 \[
- \function{V}{(0\MIntvlSep \infty)}{\R}{a}{V(a)=a^3.}
+ \function{V}{(0\MIntvlSep \infty)}{\R}{a}{V(a)=a^3 \MDFPeriod}
 \]
 Es ergibt sich die kubische Standardparabel (siehe Abschnitt \MNRef{sec:monome}) als Zusammenhang zwischen Kantenlänge und Volumen. Auf diese Art lassen sich noch viele weitere Beispiele aus Naturwissenschaften und aus dem Alltagsbereich finden: Ort in Abhängigkeit von der Zeit in der Physik, Reaktionsgeschwindigkeit in Ab\-häng\-ig\-keit von der Konzentration in der Chemie, Mehlmenge in Abhängigkeit von der gewünschten Teigmenge in einem Rezept, usw. 
 
@@ -393,7 +393,7 @@ Wir betrachten dazu ein Beispiel.
 \begin{MExample}\MLabel{bsp:anwendungen}
 Die Intensität radioaktiver Strahlung ist \highlight{umgekehrt proportional} zum Quadrat des Abstands von der Quelle. Dies wird auch als \modsemph{Abstandsgesetz} bezeichnet. Unter Benutzung einer physikalischen \highlight{Proportionalitätskonstanten} $c>0$ kann man den Zusammenhang zwischen Intensität $I$ der Strahlung und Abstand $r>0$ von der Quelle folgendermaßen als mathematische Funktion formulieren:
 \[
- \function{I}{(0\MIntvlSep \infty)}{\R}{r}{\frac{c}{r^2}.}
+ \function{I}{(0\MIntvlSep \infty)}{\R}{r}{\frac{c}{r^2} \MDFPeriod}
 \]
 Für die Intensität gilt also die Abbildungsvorschrift $I(r)=\frac{c}{r^2}$, die somit die Abhängigkeit der Größen $I$ und $r$ voneinander beschreibt. 
 \end{MExample}
@@ -432,7 +432,7 @@ vom englischen \modsemph{power}) zu bezeichnen.
 \MDeclareSiteUXID{VBKM06_Umkehrbarkeit}
 Die bildliche Darstellung einer Funktion, wie zum Beispiel
 \[
- \function{f}{\R}{\R}{x}{x^2,}
+ \function{f}{\R}{\R}{x}{x^2 \MDFPSpace,}
 \]
 als sogenanntes Venn-Diagramm (vgl.~Abschnitt \MNRef{sec:zuordnungen})
 
@@ -582,7 +582,7 @@ mit dem Definitionsbereich $D_{\Mvarphi}=(0\MIntvlSep 1)$ und dem Wertebereich $
 \begin{MExercise}
 Betrachten Sie nochmal den Graphen der Funktion
 \[
- \function{f}{\R}{\R}{x}{x^2},
+ \function{f}{\R}{\R}{x}{x^2} \MDFPSpace,
 \]
 markieren Sie Definitions- und Wertebereiche auf Quer- und Hochachse und geben Sie diese an.
 \begin{MHint}{Lösung}
@@ -778,10 +778,10 @@ Dies gilt so für alle Funktionen, die wir in diesem Modul betrachten werden. Oft
 
 Ein weiteres Beispiel zeigt, wie man strenge Monotonie mit Hilfe des Lösens von \MSRef{M03_Ungleichungen}{Ungleichungen} aus Modul \MRef{VBKM03} bei einer Funktion explizit nachrechnen kann.
 
-\begin{MExample}\MLabel{bsp1:monoton}
+\begin{MExample}\MLabel{bsp1:monoton}%
 Gegeben sei die Funktion
 \[
- \function{h}{\R}{\R}{x}{-\frac{1}{2}x+1.}
+ \function{h}{\R}{\R}{x}{-\frac{1}{2}x+1 \MDFPeriod}
 \]
 Ist $h$ streng monoton wachsend oder streng monoton fallend?
 
@@ -791,11 +791,11 @@ Wir beginnen, zwei beliebige Zahlen $x_1,x_2\in D_h=\R$ aufzuschreiben mit der E
 \]
 gilt. Durch \MSRef{VBKM03_AequivalenzumformungenUngleichungen}{Äquivalenzumformungen} von Ungleichungen können wir $x_1<x_2$ nun entweder zu $h(x_1)<h(x_2)$ oder zu $h(x_1)>h(x_2)$ umformen und damit folgern, dass $h$ streng monoton wachsend oder streng monoton fallend ist. Es gelten die folgenden Äquivalenzumformungen für $x_1<x_2$:
 \[
- x_1<x_2\,|\cdot(-\frac{1}{2})\quad\Leftrightarrow\quad -\frac{1}{2}x_1>-\frac{1}{2}x_2.
+ x_1<x_2\,|\cdot(-\frac{1}{2})\quad\Leftrightarrow\quad -\frac{1}{2}x_1>-\frac{1}{2}x_2 \MDFPeriod
 \]
 Weiterhin wird in der Abbildungsvorschrift $+1$ addiert. Wir erhalten also
 \[
- -\frac{1}{2}x_1>-\frac{1}{2}x_2\,|+1\quad\Leftrightarrow\quad -\frac{1}{2}x_1+1>-\frac{1}{2}x_2+1\quad\Leftrightarrow\quad h(x_1)>h(x_2) \;.
+ -\frac{1}{2}x_1>-\frac{1}{2}x_2\,|+1\quad\Leftrightarrow\quad -\frac{1}{2}x_1+1>-\frac{1}{2}x_2+1\quad\Leftrightarrow\quad h(x_1)>h(x_2) \MDFPeriod
 \]
 Da nun $h(x_1)>h(x_2)$ gilt, ist $h$ streng monoton fallend. Dies können wir auch am Graphen von $h$ erkennen:
 
@@ -836,7 +836,7 @@ streng monoton wachsend ist.
 \begin{MHint}{Lösung}
 Es gilt
 \[
- x_1<x_2\,|\cdot2\quad\Leftrightarrow\quad2x_1<2x_2\,|+2\quad\Leftrightarrow\quad2x_1+2<2x_2+2\quad\Leftrightarrow\quad\eta(x_1)<\eta(x_2),
+ x_1<x_2\,|\cdot2\quad\Leftrightarrow\quad2x_1<2x_2\,|+2\quad\Leftrightarrow\quad2x_1+2<2x_2+2\quad\Leftrightarrow\quad\eta(x_1)<\eta(x_2) \MDFPSpace,
 \]
 womit $\eta$ streng monoton wachsend ist.
 \end{MHint}
@@ -862,7 +862,7 @@ sowie Monome und Polynome.
 
 Die sogenannten konstanten Funktionen ordnen jeder Zahl aus dem Definitionsbereich $\R$ \modsemph{eine} konstante Zahl aus dem Zielbereich $\R$ zu. Zum Beispiel die konstante Zahl $2$ auf folgende Art:
 \[
- \function{f}{\R}{\R}{x}{2}
+ \function{f}{\R}{\R}{x}{2 \MDFPeriod}
 \]
 %BILD: venn-const
 \MTikzAuto{%
@@ -921,7 +921,7 @@ Es gilt hier also $f(x)=2$ für alle $x\in\R$, womit die Wertemenge dieser Funkti
 
 Die Identität auf $\R$ ist die Funktion, welche jeder reellen Zahl wieder genau die identische reelle Zahl zuordnet. Man schreibt das so:
 \[
- \function{\Id}{\R}{\R}{x}{x}
+ \function{\Id}{\R}{\R}{x}{x \MDFPeriod}
 \]
 %BILD: venn-id
 \MTikzAuto{%
@@ -991,7 +991,7 @@ Ausgehend von der Identität, kann man sich nun komplexere Funktionen, die sogena
 \]
 oder
 \[
- \function{g}{\R}{\R}{x}{\pi x.}
+ \function{g}{\R}{\R}{x}{\pi x \MDFPeriod}
 \]
 
 %BILD: venn-lin1
@@ -1105,7 +1105,7 @@ oder
 
 Alle linearen Funktionen (außer der Nullfunktion, s.u.) haben also als Wertebereich ebenfalls die gesamten reellen Zahlen ($W_f,W_g=\R$). Der Faktor, mit dem jede reelle Zahl in einer solchen linearen Funktion multipliziert wird, heißt \highlight{Steigung} der linearen Funktion. Oft möchte man auch bei linearen Funktionen nicht eine bestimmte Funktion mit spezifischer Steigung angeben, sondern irgendeine mit beliebiger Steigung $m\in\R$:
 \[
- \function{f}{\R}{\R}{x}{m x.}
+ \function{f}{\R}{\R}{x}{m x \MDFPeriod}
 \]
 
 %GRAPH: lin3
@@ -1167,7 +1167,7 @@ Es ergibt sich $f(x)=0\cdot x=0$, also genau die konstante Funktion, die konstan
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Affin}
 Kombiniert man lineare Funktionen mit konstanten Funktionen, so erhält man die sogenannten \highlight{linear-affinen Funktionen}. Diese ergeben sich als die Summe einer linearen und einer konstanten Funktion. Im allgemeinen Fall, ohne konkret spezifizierte Steigung ($m\in\R$) und mit einer Konstanten ($c\in\R$) schreibt man das so:
 \[
- \function{f}{\R}{\R}{x}{m x+c.}
+ \function{f}{\R}{\R}{x}{m x+c \MDFPeriod}
 \]
 
 %GRAPH: affin1
@@ -1229,13 +1229,13 @@ Die Graphen linear-affiner Funktionen werden auch als \highlight{Geraden} bezeic
 
 die Steigung $m=-2$ und der Achsenabschnitt $c=-1$. Der Achsenabschnitt ergibt sich als Funktionswert bei $x=0$ und somit durch
 \[
- c=f(0)=-2\cdot 0-1 = -1.
+ c=f(0)=-2\cdot 0-1 = -1 \MDFPeriod
 \]
 
 \begin{MExercise}
 Was sind die Steigung und der Achsenabschnitt von 
 \[
- \function{f}{\R}{\R}{x}{\pi x-42?}
+ \function{f}{\R}{\R}{x}{\pi x-42 \MDFPSpace?}
 \]
 \begin{MHint}{Lösung}
 Steigung: $\pi$ und Achsenabschnitt: $-42$
@@ -1258,11 +1258,11 @@ Ist $m=0$, so gilt $f(x)=0\cdot x+c=c$. Damit ergeben sich die konstanten Funkti
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Betrag}
 In Modul \MNRef{VBKM02} wurde der \MSRef{VBKM02_Betrag}{Betrag} einer reellen Zahl $x$ auf folgende Art eingeführt:
 \[
- |x| = \begin{MCaseEnv} x & \text{falls}\;x\geq 0 \\ -x & \text{falls}\;x<0. \end{MCaseEnv}
+ |x| = \begin{MCaseEnv} x & \text{falls}\;x\geq 0 \\ -x & \text{falls}\;x<0 \MDFPeriod \end{MCaseEnv}
 \]
 Im Kontext dieses Moduls kann der Betrag nun als Funktion aufgefasst werden. Man erh\"alt die \MEntry{Betragsfunktion}{Betragsfunktion}
 \[
- \function{b}{\R}{\R}{x}{|x|.}
+ \function{b}{\R}{\R}{x}{|x| \MDFPeriod}
 \]
 
 \begin{MExercise}
@@ -1305,7 +1305,7 @@ ist die Betragsfunktion ein Beispiel für eine \modsemph{abschnittsweise definier
 Eine Eigenschaft des Graphen der Betragsfunktion, die auch bei den meisten allgemeineren Funktionen auftritt, in denen ein Betrag vorkommt, ist der "`Knick'' an der Stelle $x=0$. 
 Die oben definierte Betragsfunktion $b$ ist nur der einfachste Fall einer Funktion, in der der Betrag vorkommt. Man kann sich kompliziertere Beispiele von Funktionen überlegen, in denen ein Betrag oder mehrere Beträge vorkommen, so etwa
 \[
- \function{f}{\R}{\R}{x}{|2x-1|.}
+ \function{f}{\R}{\R}{x}{|2x-1| \MDFPeriod}
 \]
 
 
@@ -1318,7 +1318,7 @@ ist gegeben. Wie sieht ihr Graph aus?
 
 Wir berechnen:
 \[
- f(x)=|2x-1|=\begin{MCaseEnv} 2x-1 & \text{falls}\ 2x-1\geq0 \\ -(2x-1) & \text{falls}\ 2x-1<0\end{MCaseEnv}=\begin{MCaseEnv} 2x-1 & \text{falls}\ x\geq\frac{1}{2} \\ -2x+1 & \text{falls}\ x<\frac{1}{2}.\end{MCaseEnv}
+ f(x)=|2x-1|=\begin{MCaseEnv} 2x-1 & \text{falls}\ 2x-1\geq0 \\ -(2x-1) & \text{falls}\ 2x-1<0\end{MCaseEnv}=\begin{MCaseEnv} 2x-1 & \text{falls}\ x\geq\frac{1}{2} \\ -2x+1 & \text{falls}\ x<\frac{1}{2} \MDFPeriod\end{MCaseEnv}
 \]
 Somit erhalten wir eine abschnittsweise definierte Funktion, deren Graph eine steigende Gerade mit Steigung $2$ und Achsenabschnitt $-1$ im Bereich $x\geq\frac{1}{2}$ und eine fallende Gerade mit Steigung $-2$ und Achsenabschnitt $1$ im Bereich $x<\frac{1}{2}$ ist. Mit diesen Informationen können wir den Graphen von $f$ zeichnen:
 
@@ -1365,7 +1365,7 @@ aus? Geben Sie außerdem $W_\alpha$ an.
 \begin{MHint}{Lösung}
 Es gilt
 \[
- \alpha(x)=|-8x+1|-1=\begin{MCaseEnv} -8x+1-1 & \text{falls}\ -8x+1\geq0 \\ -(-8x+1)-1 & \text{falls}\ -8x+1<0 \end{MCaseEnv}=\begin{MCaseEnv} -8x & \text{falls}\ x\leq\frac{1}{8} \\ 8x-2 & \text{falls}\ x>\frac{1}{8},\end{MCaseEnv}
+ \alpha(x)=|-8x+1|-1=\begin{MCaseEnv} -8x+1-1 & \text{falls}\ -8x+1\geq0 \\ -(-8x+1)-1 & \text{falls}\ -8x+1<0 \end{MCaseEnv}=\begin{MCaseEnv} -8x & \text{falls}\ x\leq\frac{1}{8} \\ 8x-2 & \text{falls}\ x>\frac{1}{8} \MDFPSpace,\end{MCaseEnv}
 \]
 folglich: 
 
@@ -1406,7 +1406,7 @@ Da $|-8x+1|\geq0$ gilt, folgt $|-8x+1|-1\geq -1$ und damit ist $W_\alpha=[-1\MIn
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Monome}
 Neben den linear-affinen Funktionen aus dem vorigen Abschnitt kann man sich nun auch Funktionen überlegen, die allen reellen Zahlen natürliche Potenzen ihrer selbst zuordnen. So zum Beispiel
 \[
- \function{g}{\R}{\R}{x}{x^2.}
+ \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
 \]
 
 % venn-para (siehe venn4)
@@ -1508,18 +1508,18 @@ Man bezeichnet das Monom vom Grad $2$ auch als die \highlight{Standardparabel}. 
 
 Auf Basis dieser Graphen fassen wir nun einige Erkenntisse über Monome zusammen: Es gibt einen grundlegenden Unterschied zwischen Monomen (mit Abbildungsvorschrift $f(x)=x^n$, $n\in\N$) von geradem und von ungeradem Grad. Die Monome von geradem Grad größer Null haben als Wertebereich immer die Menge $[0\MIntvlSep \infty)$, während die Monome von ungeradem Grad ganz $\R$ als Wertebereich besitzen. Weiterhin gilt stets
 \[
- f(1)=1^n=1,
+ f(1)=1^n=1 \MDFPSpace,
 \]
 \[
  f(0)=0^n=0
 \]
 und
 \[
- f(-1)=\MCases{1 & \text{falls}\ n\ \text{gerade} \\ -1 & \text{falls}\ n\ \text{ungerade.} }
+ f(-1)=\MCases{1 & \text{falls}\ n\ \text{gerade} \\ -1 & \text{falls}\ n\ \text{ungerade \MDFPeriod} }
 \]
 Ferner gilt
 \[
- \MCases{x>x^2>x^3>x^4>\dots & \text{für}\ x\in(0\MIntvlSep 1) \\ x<x^2<x^3<x^4<\dots & \text{für}\ x\in(1\MIntvlSep \infty).}
+ \MCases{x>x^2>x^3>x^4>\dots & \text{für}\ x\in(0\MIntvlSep 1) \\ x<x^2<x^3<x^4<\dots & \text{für}\ x\in(1\MIntvlSep \infty) \MDFPeriod}
 \]
 
 \begin{MExercise}
@@ -1705,7 +1705,7 @@ Der Grad eines Polynoms richtet sich also nach dem vorkommenden Monom mit dem hö
 
 Möchte man allgemein ein unspezifiziertes Polynom vom Grad $n\in\N$ angeben, so schreibt man dies folgendermaßen:
 \[
- \function{f}{\R}{\R}{x}{a_nx^n+a_{n-1}x^{n-1}+a_{n-2}x^{n-2}\dots +a_{2}x^{2}+a_1x+a_0.}
+ \function{f}{\R}{\R}{x}{a_nx^n+a_{n-1}x^{n-1}+a_{n-2}x^{n-2}\dots +a_{2}x^{2}+a_1x+a_0 \MDFPeriod}
 \]
 Dabei sind $a_0,a_1,\dots,a_n$ mit $a_n\neq0$ die reellen Vorfaktoren vor den einzelnen Monomen, die als \highlight{Koeffizienten} des Polynoms bezeichnet werden. 
 
@@ -1719,7 +1719,7 @@ sein Wertebereich ist \MEquationItem{$W_f$}{\MLIntervalQuestion{15}{[-4,infty)}{
 \begin{MHint}{Lösung}
 Das Polynom lautet
 \[
- \function{f}{\R}{\R}{x}{9x^4+\pi x^2-4.}
+ \function{f}{\R}{\R}{x}{9x^4+\pi x^2-4}
 \]
 und besitzt den Wertebereich $W_f=[-4\MIntvlSep \infty)$, da die geraden Potenzen von $x$ nur nichtnegative Werte annehmen können.
 \end{MHint}
@@ -1734,13 +1734,13 @@ quadratischer Ausdrücke genauer erklärt.
 \begin{MExample}
 Gegeben ist die Parabel
 \[
- \function{\zeta}{\R}{\R}{y}{2y^2-8y+6.}
+ \function{\zeta}{\R}{\R}{y}{2y^2-8y+6 \MDFPeriod}
 \]
 Wir bestimmen Nullstellen und Scheitelpunkt und zeichnen den Graphen.
 
 Wir führen an der Abbildungsvorschrift $\zeta(y)=2(y^2-4y+3)$ eine quadratische Ergänzung durch:
 \[
- y^2-4y+3=y^2-4y+4-1=(y-2)^2-1.
+ y^2-4y+3=y^2-4y+4-1=(y-2)^2-1 \MDFPeriod
 \]
 Folglich lässt sich die Abbildungsvorschrift als
 \[
@@ -1748,7 +1748,7 @@ Folglich lässt sich die Abbildungsvorschrift als
 \]
 schreiben. Wir erkennen, dass die Parabel gegenüber der Standardparabel um $2$ Längeneinheiten nach rechts und nach unten verschoben ist.  Der Scheitelpunkt lässt sich bei $(2|-2)$ ablesen. Die Nullstellen lassen sich berechnen:
 \[
- \zeta(y)=2((y-2)^2-1)=0\quad\Leftrightarrow\quad (y-2)^2=1\quad\Leftrightarrow\quad y_{1,2}-2=\MCases{1\\-1}\quad\Leftrightarrow\quad y_{1,2}=\MCases{3\\1}
+	\zeta(y)=2((y-2)^2-1)=0\quad\Leftrightarrow\quad (y-2)^2=1\quad\Leftrightarrow\quad y_{1,2}-2=\MCases{1\\-1}\quad\Leftrightarrow\quad y_{1,2}=\MCases{3\\1}\MDFPeriod
 \]
 Der Graph ergibt sich schließlich zu:
 
@@ -1806,13 +1806,13 @@ Wir betrachten Funktionen, die als Abbildungsvorschrift einen \highlight{rezipro
 
 Beispiele reziproker Funktionen sind im Folgenden zusammengestellt; diese ergeben sich als Kehrwerte der Monome und werden auch als Funktionen vom \highlight{hyperbolischen Typ} bezeichnet:
 \[
- \function{f_1}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x},}
+ \function{f_1}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x} \MDFPSpace,}
 \]
 \[
- \function{f_2}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^2},}
+ \function{f_2}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^2} \MDFPSpace,}
 \]
 \[
- \function{f_3}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^3},}
+ \function{f_3}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^3} \MDFPSpace,}
 \]
 usw. Ihre Graphen sehen so aus:
 
@@ -1853,21 +1853,21 @@ usw. Ihre Graphen sehen so aus:
 
 Insbesondere der Graph der Funktion
 \[
- \function{f_1}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x},}
+ \function{f_1}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x} \MDFPSpace,}
 \]
 wird als \highlight{Hyperbel} bezeichnet.
 
 Allgemein kann man für den Kehrwert eines beliebigen Monoms vom Grad $n\in\N$ also eine entsprechende Funktion hyperbolischen Typs angeben:
 
 \[
- \function{f_n}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^n}.}
+ \function{f_n}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^n} \MDFPeriod}
 \]
 \begin{MExercise}
 Wie lautet die Wertemenge $W_{f_n}$ der Funktion $f_n$ für gerade $n\in\N$ bzw.~für ungerade $n\in\N$ ?
 \begin{MHint}{Lösung}
 Stets gilt $\frac{1}{x^n}\neq0$, da ein Quotient nur Null werden kann, wenn der Zähler Null wird. Folglich kommt $0\in\R$ nie in der Wertemenge vor. Da stets $x^n\geq0$ für gerade $n\in\N$ gilt, folgt $\frac{1}{x^n}>0$ für gerade $n\in\N$. Für ungerade $n\in\N$ kann allerdings auch $\frac{1}{x^n}<0$ sein. Es ergibt sich
 \[
- W_{f_n}=\MCases{\R\setminus\{0\} & \text{falls}\ n\ \text{ungerade} \\ (0\MIntvlSep \infty) & \text{falls}\ n\ \text{gerade.}}
+ W_{f_n}=\MCases{\R\setminus\{0\} & \text{falls}\ n\ \text{ungerade} \\ (0\MIntvlSep \infty) & \text{falls}\ n\ \text{gerade} \MDFPeriod}
 \]
 Dies ist auch aus den Graphen der Funktionen vom hyperbolischen Typ ersichtlich.
 \end{MHint}
@@ -1886,13 +1886,13 @@ Allgemeine gebrochenrationale Funktionen besitzen Abbildungsvorschriften, die au
 
 \begin{MExample}\MLabel{einf_bsp_gebr_rat}
 \[
- \function{f}{\R}{\R}{x}{\frac{8}{x^2+1},}
+ \function{f}{\R}{\R}{x}{\frac{8}{x^2+1} \MDFPSpace,}
 \]
 \[
- \function{g}{\R\setminus\{-4,\frac{3}{2}\}}{\R}{x}{\frac{-18x+3}{2x^2+5x-12},}
+ \function{g}{\R\setminus\{-4,\frac{3}{2}\}}{\R}{x}{\frac{-18x+3}{2x^2+5x-12} \MDFPSpace,}
 \]
 \[
- \function{h}{\R\setminus\{-1\}}{\R}{x}{\frac{x^3-x^2+x}{x+1}.}
+ \function{h}{\R\setminus\{-1\}}{\R}{x}{\frac{x^3-x^2+x}{x+1} \MDFPeriod}
 \] 
 
 %GRAPHEN: rat1
@@ -1988,13 +1988,13 @@ Allgemeine gebrochenrationale Funktionen besitzen Abbildungsvorschriften, die au
 \begin{MExercise}
 Gegeben ist die Funktion
 \[
- \function{\psi}{D_\psi}{\R}{x}{\frac{-42x}{x^2-\pi}.}
+ \function{\psi}{D_\psi}{\R}{x}{\frac{-42x}{x^2-\pi} \MDFPeriod}
 \]
 Bestimmen Sie den größtmöglichen Definitionsbereich $D_\psi\subset\R$ für $\psi$.
 \begin{MHint}{Lösung}
 Die Nullstellen des Nenners ergeben sich durch
 \[
- x^2-\pi=0\quad\Leftrightarrow\quad x^2=\pi\quad\Leftrightarrow\quad x=\pm\sqrt{\pi}.
+ x^2-\pi=0\quad\Leftrightarrow\quad x^2=\pi\quad\Leftrightarrow\quad x=\pm\sqrt{\pi} \MDFPeriod
 \]
 Damit ist $D_\psi=\R\setminus\{-\sqrt{\pi},\sqrt{\pi}\}$.
 \end{MHint}
@@ -2015,7 +2015,7 @@ Die Funktion $h$ hat den Zählergrad $3$ und den Nennergrad $1$. Die Nennernullst
 
 Die \highlight{Nullstellen} einer gebrochenrationalen Funktion ergeben sich als die Zählernullstellen. So hat zum Beispiel die Funktion
 \[
- \function{j}{\R\setminus\{-1,3\}}{\R}{x}{\frac{x-1}{x^2-2x-3}}
+ \function{j}{\R\setminus\{-1\MElSetSep 3\}}{\R}{x}{\frac{x-1}{x^2-2x-3}}
 \]
 die einzige Nullstelle bei $x=1$.
 Die Nennernullstellen gebrochenrationaler Funktionen, welche aus dem Definitionsbereich ausgeschlossen werden, müssen oft noch genauer untersucht werden. Vor allem ist von Interesse, wie die Graphen der Funktionen \modsemph{in der Nähe} der Definitionslücken verlaufen. Die Nennernullstellen gebrochenrationaler Funktionen bezeichnet man auch als \highlight{Polstellen}. Die folgenden Beispiele zeigen, dass es verschiedene Typen von Polstellen gibt.
@@ -2136,11 +2136,11 @@ eine echte Polstelle? Wenn ja, warum?
 \begin{MHint}{Lösung}
 Die Stelle $x=\frac{1}{2}$ ist eine Nullstelle des Nenners:
 \[
- 2x-1=0\quad\Leftrightarrow\quad 2x=1\quad\Leftrightarrow\quad x=\frac{1}{2}.
+ 2x-1=0\quad\Leftrightarrow\quad 2x=1\quad\Leftrightarrow\quad x=\frac{1}{2} \MDFPeriod
 \]
 Aber für den Zähler gilt:
 \[
- x^4-1=0\quad\Leftrightarrow\quad x^4=1\quad\Leftrightarrow\quad x=\pm 1,
+ x^4-1=0\quad\Leftrightarrow\quad x^4=1\quad\Leftrightarrow\quad x=\pm 1 \MDFPSpace,
 \]
 womit die Zählernullstellen bei $x=-1$ und $x=1$ liegen und $x=\frac{1}{2}$ keine Zählernullstelle ist. Damit ist $x=\frac{1}{2}$ eine echte Polstelle.
 \end{MHint}
@@ -2160,19 +2160,19 @@ sowie deren Typ. Geben Sie den größtmöglichen Definitionsbereich $D_\gamma\subse
 \begin{MHint}{Lösung}
 Die Nennernullstellen sind die Lösungen der quadratischen Gleichung $x^2-x-6=0$, also
 \[
- x_{1,2}=\frac{-(-1)\pm\sqrt{(-1)^2-4\cdot(-6)\cdot1}}{2}=\frac{1\pm 5}{2}=\MCases{3\\-2.}
+ x_{1,2}=\frac{-(-1)\pm\sqrt{(-1)^2-4\cdot(-6)\cdot1}}{2}=\frac{1\pm 5}{2}=\MCases{3\\-2} \MDFPeriod
 \]
 Folglich ist der größtmögliche Definitionsbereich
 \[
- D_\gamma=\R\setminus\{-2,3\}.
+ D_\gamma=\R\setminus\{-2\MElSetSep 3\} \MDFPeriod
 \]
 Die Zählernullstelle ergibt sich durch $3x+6=0$, liegt also ebenfalls bei $x=-2$. Wir können damit die Abbildungsvorschrift von $\gamma$ also für $x\in D_\gamma$ folgendermaßen umformen:
 \[
- \gamma(x)=\frac{3x+6}{x^2-x-6}=\frac{3(x+2)}{(x-3)(x+2)}=\frac{3}{x-3}.
+ \gamma(x)=\frac{3x+6}{x^2-x-6}=\frac{3(x+2)}{(x-3)(x+2)}=\frac{3}{x-3} \MDFPeriod
 \]
 Damit lässt sich die Funktion auch als
 \[
- \function{\gamma}{\R\setminus\{-2,3\}}{\R}{x}{\frac{3}{x-3}}
+ \function{\gamma}{\R\setminus\{-2\MElSetSep 3\}}{\R}{x}{\frac{3}{x-3}}
 \]
 schreiben und es liegt bei $x=-2$ eine stetig hebbare Definitionslücke und bei $x=3$ eine echte Polstelle mit Vorzeichenwechsel vor.
 \end{MHint}
@@ -2183,7 +2183,7 @@ schreiben und es liegt bei $x=-2$ eine stetig hebbare Definitionslücke und bei $
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Asymptoten}
 Wir wollen in diesem Abschnitt untersuchen, wie sich gebrochenrationale Funktionen im Unendlichen verhalten, falls der \modsemph{Zählergrad kleiner oder gleich dem Nennergrad} ist. Ein Beispiel ist die Funktion
 \[
- \function{f}{\R\setminus\{-\pi\}}{\R}{x}{\frac{x}{x+\pi}.}
+ \function{f}{\R\setminus\{-\pi\}}{\R}{x}{\frac{x}{x+\pi} \MDFPeriod}
 \]
 In $f$ ist der Zählergrad $1$ und der Nennergrad $1$.
 Beispiele hierfür haben wir im vorhergehenden Abschnitt \MNRef{sec:gebrochen} betrachtet. 
@@ -2196,7 +2196,7 @@ Wir betrachten die Funktion
 und stellen fest, dass deren Abbildungsvorschrift in der Form einer Summe aus einem Polynom (vom Grad $0$) und einem gebrochenrationalen Term vorliegt.
 Durch Bilden des Hauptnenners ist es nun einfach, $g(x)$ auf eine gebrochenrationale Form zu bringen, in der der Zählergrad und der Nennergrad gleich sind:
 \[
- g(x)=1+\frac{1}{x-1}=\frac{x-1}{x-1}+\frac{1}{x-1}=\frac{x-1+1}{x-1}=\frac{x}{x-1}.
+ g(x)=1+\frac{1}{x-1}=\frac{x-1}{x-1}+\frac{1}{x-1}=\frac{x-1+1}{x-1}=\frac{x}{x-1} \MDFPeriod
 \]
 Wir können $g$ also auch schreiben als
 \[
@@ -2244,7 +2244,7 @@ Neben der Polstelle und Definitionslücke bei $x=1$ erkennen wir, dass der Wert $
 Dies erkennt man in der Abbildungsvorschrift $g(x)=1+\frac{1}{x-1}$ folgendermaßen. Für "`sehr große'' ($5$, $10$, $100$, usw.) oder "`sehr kleine'' ($-5$, $-10$, $-100$, usw.) Werte für $x$ nähert sich der gebrochenrationale Anteil $\frac{1}{x-1}$
 immer mehr der $0$ an, da $x$ dort im Nenner vorkommt. Tendenziell bleibt also für solche Werte nur noch der polynomielle Anteil $1$ aus der Abbildungsvorschrift übrig. Dieser Anteil kann nun durch eine -- in diesem Fall konstante -- Funktion beschrieben werden, die als \highlight{Asymptote} $g_{As}$ der Funktion $g$ bezeichnet wird:
 \[
- \function{g_{As}}{\R}{\R}{x}{1\;.}
+ \function{g_{As}}{\R}{\R}{x}{1 \MDFPeriod}
 \]
 Da es sich in diesem Fall um eine konstante Funktion handelt, wird diese auch als \modsemph{waagrechte Asymptote} bezeichnet. 
 \end{MExample}
@@ -2265,7 +2265,7 @@ mit gebrochenrationalem Anteil $\frac{6}{x+2}$. Folglich hat die waagrechte Asym
 \]
 besitzt auch eine Asymptote. Wir können die Abbildungsvorschrift schreiben als
 \[
- f(x)=0+\frac{1}{x},
+ f(x)=0+\frac{1}{x} \MDFPSpace,
 \]
 womit für die Asymptote gilt $f_{As}(x)=0$. Hier ist die Asymptote also diejenige Funktion, die konstant $0$ ist: die Nullfunktion bzw. die Querachse des Koordinatensystems. 
 \end{MHint}
@@ -2291,7 +2291,7 @@ hat als Asymptote eine konstante Funktion (bzw. eine waagrechte Asymptote) falls
 \MDeclareSiteUXID{VBKM06_Potenzfunktionen_Intro}
 In den Abschnitten \MNRef{sec:monome} und \MNRef{sec:hyperbel} haben wir Monome und Funktionen vom hyperbolischen Typ kennengelernt. Zusammenfassend kann man diese als folgende Klasse von Funktionen aufschreiben:
 \[
- \function{f}{D_f}{\R}{x}{x^k},
+ \function{f}{D_f}{\R}{x}{x^k} \MDFPSpace,
 \]
 wobei $k\in\Z\setminus\{0\}$ und $D_f=\R$ falls $k\in\N$ sowie $D_f=\R\setminus\{0\}$ falls $k\in\Z$ mit $k<0$. In diesem Abschnitt wollen wir beliebige rationale Werte im Exponenten der Abbildungsvorschrift zulassen. Man erhält dann die sogenannten \modsemph{Potenzfunktionen}, die wiederum die Monome und Funktionen vom hyperbolischen Typ als Spezialfälle enthalten. Wir stellen auch deren fundamentale Eigenschaften und einige Anwendungen zusammen.  
 \end{MIntro}
@@ -2309,7 +2309,7 @@ Fallzeit $t$ in Sekunden & $0$ & $\sqrt{\frac{2}{g}}$ & $\sqrt{\frac{2}{g}}\cdot
 zurückgelegter Weg $s$ in Metern & $0$ & $1$ & $\MZahl{2}{25}$ & $4$ & $9$
 \end{tabular}
 
-Dabei ist $g\approx \MZahl{9}{81}\frac{\text{m}}{\text{s}^2}$ die physikalische Konstante der Fallbeschleunigung. Trägt man nun diese Werte in einem Diagramm mit $t$ auf der Hochachse und $s$ auf der Querachse auf, erhält man:
+Dabei ist $g\approx \MZahl{9}{81}\frac{\MEinheit[]{m}}{\MEinheit[]{s}^2}$ die physikalische Konstante der Fallbeschleunigung. Trägt man nun diese Werte in einem Diagramm mit $t$ auf der Hochachse und $s$ auf der Querachse auf, erhält man:
 
 % GRAPHEN: wurz-mess
 \MTikzAuto{%
@@ -2399,7 +2399,7 @@ Nach den Potenzrechengesetzen gilt
 \]
 für alle natürlichen Zahlen $n$. Also zum Beispiel
 \[
- f_2(x)=\sqrt{x}=x^{\frac{1}{2}}, \quad f_3(x)=\sqrt[3]{x}=x^{\frac{1}{3}}, \quad f_4(x)=\sqrt[4]{x}=x^{\frac{1}{4}}, \dots
+ f_2(x)=\sqrt{x}=x^{\frac{1}{2}}\MDFPSpace, \MDFPaSpace f_3(x)=\sqrt[3]{x}=x^{\frac{1}{3}}\MDFPSpace, \MDFPaSpace f_4(x)=\sqrt[4]{x}=x^{\frac{1}{4}}\MDFPSpace, \MDFPaSpace \dots
 \]
 \end{MHint}
 \end{MExercise}
@@ -2409,7 +2409,7 @@ Welche Funktion $f_n$ ergäbe sich für $n=1$?
 \begin{MHint}{Lösung}
 Für $n=1$ gilt nach den Potenzrechengesetzen
 \[
- f_1(x)=\sqrt[1]{x}=x^{\frac{1}{1}}=x=\Id(x).
+ f_1(x)=\sqrt[1]{x}=x^{\frac{1}{1}}=x=\Id(x) \MDFPeriod
 \]
 Es ergibt sich also die Identität. Diese schließt man für gewöhnlich aus der Klasse der Wurzelfunktionen aus. 
 \end{MHint}
@@ -2511,7 +2511,7 @@ unter Berücksichtigung der strengen Monotonie der Wurzelfunktionen $W_{f_n}=\R$ 
 
 Bei \MEntry{Exponentialfunktionen}{Exponentialfunktion} stellt die Veränderliche im Gegensatz zu den Potenzfunktionen
 nicht die \modstextbf{Basis} des Exponentialausdrucks dar, sondern sie bildet den \modstextbf{Exponenten}. Dementsprechend werden wir Zuordnungsvorschriften betrachten wie z.B.:
-$$x \longmapsto 2^x\; \text{oder}\; x \longmapsto 10^x$$
+$$x \longmapsto 2^x\; \text{oder}\; x \longmapsto 10^x \MDFPeriod$$
 
 \ \\ \ \\
 Exponentialfunktionen spielen in vielen unterschiedlichen Bereichen eine wichtige Rolle, so etwa bei der Beschreibung biologischer
@@ -2545,10 +2545,10 @@ handelt es sich bei der Funktion um eine \modstextbf{Exponentialfunktion}.
 Aus der graphischen Darstellung können wir die gesuchte Anzahl an Bakterien schon etwas genauer ablesen. Aber für die
 exakte Angabe benötigen wir die Abbildungsvorschrift, die hinter dem Graphen aus der Abbildung steht und die wir hier
 zunächst nur angeben:
-$$p: [0\MIntvlSep \infty) \longrightarrow (0\MIntvlSep  \infty) \;\text{mit}\; t \longmapsto p(t) = 500 \cdot 2^{(t/13)}$$
+$$p: [0\MIntvlSep \infty) \longrightarrow (0\MIntvlSep  \infty) \;\text{mit}\; t \longmapsto p(t) = 500 \cdot 2^{(t/13)} \MDFPeriod$$
 (In Aufgabe \MRef{M06_bsp_bak_pop_exercise} werden wir diesen funktionalen Zusammenhang begründen.)\\
 Damit erhalten wir für $t = 75$ (gemessen in Minuten) den Funktionswert
-$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27270$$
+$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27270 \MDFPeriod$$
 Also leben nach $75$ Minuten $27270$ Bakterien in der fraglichen Population.
 \end{MExample}
 \end{MIntro}
@@ -2563,7 +2563,7 @@ Beispiel $t$ - erscheint im Exponenten. Wir wollen nun die allgemeine Abbildungv
 zu einer beliebigen Basis $a$ angeben; dabei setzen wir allerdings $a > 0$ voraus:
 $$
 \begin{array}{rrcl}
- f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot a^{\lambda x}
+ f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot a^{\lambda x} \MDFPeriod
 \end{array}
 $$
 Dabei bezeichnen $f_0$ und $\lambda$ sogenannte Parameter der Exponentialfunktion, auf die wir weiter
@@ -2602,7 +2602,7 @@ sind:
 \end{itemize}
 Und was hat es nun noch mit den Parametern $f_0$ und $\lambda$ auf sich? Der Parameter $f_0$ ist schnell
 erklärt: Setzt man den Wert $x = 0$ für die Veränderliche in die allgemeinen Exponentialfunktionen $f$ ein,
-$$f(x = 0) = f_0 \cdot a^{\lambda \cdot 0} = f_0 \cdot a^0 = f_0 \cdot 1 = f_0 \; \; \; ,$$
+$$f(x = 0) = f_0 \cdot a^{\lambda \cdot 0} = f_0 \cdot a^0 = f_0 \cdot 1 = f_0 \MDFPSpace,$$
 so erkennt man, dass $f_0$ eine Art \modstextbf{Start- oder Anfangswert} darstellt
 (zumindest falls man die Veränderliche $x$ zeitlich interpretiert); der exponentielle Verlauf $a^{\lambda x}$
 wird generell mit dem Faktor $f_0$ multipliziert und dementsprechend gewichtet, d.h. gestreckt (für $|f_0| > 1$)
@@ -2639,27 +2639,27 @@ $\lambda < 0$).
  Es gibt eine ganz besondere Exponentialfunktion, manchmal auch als \textit{die} Exponentialfunktion bezeichnet, um die
  wir uns jetzt kümmern wollen. In der Tat lassen sich, wie wir sehen werden, alle anderen Exponentialfunktionen auf diese
  besondere Exponentialfunktion zurückführen. Sie besitzt als Basis die \MEntry{eulersche Zahl}{Eulersche Zahl} $e$. Ihr (ungefährer) Wert beträgt
- $$e = \MZahl{2}{718281828459045235} \dots \; \; \; .$$
+ $$\MEU = \MZahl{2}{718281828459045235} \dots \MDFPeriod$$
  
  
  Betrachten wir also - zunächst ohne irgendwelche zusätzlichen Parameter - den Graphen \modstextbf{der} Exponentialfunktion,
  $$
  \begin{array}{rrcl}
- g: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & g(x) = e^x \; \; \; ,
+ g: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & g(x) = \MEU^x \MDFPSpace,
  \end{array}
  $$
- wegen der Basis $e$ auch \MEntry{$e$-Funktion}{e-Funktion} oder \MEntry{natürliche Exponentialfunktion}{Exponentialfunktion (natürlich)} genannt:
+ wegen der Basis $\MEU$ auch \MEntry{$\MEU$-Funktion}{e-Funktion} oder \MEntry{natürliche Exponentialfunktion}{Exponentialfunktion (natürlich)} genannt:
  \begin{center}
  \MUGraphicsSolo{e_fkt.png}{scale=1}{width:400px}
  \end{center}
- Wenig überraschend zeigt auch die $e$-Funktion das bereits in \MRef{M06_allgem_exp_fkt}
+ Wenig überraschend zeigt auch die $\MEU$-Funktion das bereits in \MRef{M06_allgem_exp_fkt}
  diskutierte Verhalten der Exponentialfunktionen $x \Mmapsto a^x$ $(a > 1)$;
- schließlich haben wir für die Basis ja auch nur einen speziellen Wert, nämlich $a = e$, gewählt.
- Insbesondere halten wir nochmals fest, dass die $e$-Funktion \modstextbf{streng monoton wachsend} ist, sich für große
+ schließlich haben wir für die Basis ja auch nur einen speziellen Wert, nämlich $a = \MEU$, gewählt.
+ Insbesondere halten wir nochmals fest, dass die $\MEU$-Funktion \modstextbf{streng monoton wachsend} ist, sich für große
  negative $x$-Werte an die negative $x$-Achse anschmiegt und für $x = 0$ den Wert $1$ annimmt.
  \begin{MExercise}
   \MLabel{M06_aufg_e_fkt_2}
-  Wie sieht der Graph der Funktion $h: \R \rightarrow (0\MIntvlSep  \infty)$, $x \Mmapsto h(x) = e^{- x}$ aus, und welche generellen
+  Wie sieht der Graph der Funktion $h: \R \rightarrow (0\MIntvlSep  \infty)$, $x \Mmapsto h(x) = \MEU^{- x}$ aus, und welche generellen
   Eigenschaften besitzt diese Funktion?
   \begin{MHint}{Lösung}
    \begin{center}
@@ -2678,32 +2678,32 @@ $\lambda < 0$).
 
 
  Eingangs dieses Unterabschnitts haben wir behauptet, dass sich die weiter oben besprochenen Exponentialfunktionen
- auf die $e$-Funktion zurückführen lassen. Dies gelingt mit Hilfe der Identität
- $$a^x = e^{x \cdot\ln(a)} \; \; \; ,$$
+ auf die $\MEU$-Funktion zurückführen lassen. Dies gelingt mit Hilfe der Identität
+ $$a^x = \MEU^{x \cdot\ln(a)} \MDFPSpace,$$
  die für beliebige reelle $a > 0$ und beliebige reelle $x$ gilt. Dabei bezeichnet $\ln$ den
  \MSRef{VBKM06_LNDEF}{natürlichen Logarithmus}, dessen Funktionsgestalt uns im folgenden Abschnitt
  \MRef{M06_Abschnitt7} noch ausgiebig beschäftigen wird. 
  \begin{MExercise}
-  Begründen Sie die Identität $a^x = e^{x \cdot \ln(a)}$. \begin{MHint}{Lösung}
+  Begründen Sie die Identität $a^x = \MEU^{x \cdot \ln(a)}$. \begin{MHint}{Lösung}
    Nach dem Potenzgesetz $(b^r)^s = b^{r \cdot s}$ kann die rechte Seite der in Frage stehenden Identität als
-   $e^{x \cdot\ln(a)} = (e^{\ln(a)})^x$ umgeschrieben werden. Da $\ln$ die Umkehrung zu \textit{$e$ hoch}
-   ist, folgt $e^{\ln(a)} = a$. Damit folgt $(e^{\ln(a)})^x = a^x$, was in der Tat die linke Seite der Identität darstellt.
+   $\MEU^{x \cdot\ln(a)} = (\MEU^{\ln(a)})^x$ umgeschrieben werden. Da $\ln$ die Umkehrung zu \textit{$\MEU$ hoch}
+   ist, folgt $\MEU^{\ln(a)} = a$. Damit folgt $(\MEU^{\ln(a)})^x = a^x$, was in der Tat die linke Seite der Identität darstellt.
   \end{MHint}
  \end{MExercise}
  
  
- \modstextbf{Allgemeine $e$-Funktionen} enthalten die bereits in Unterabschnitt \MRef{M06_allgem_exp_fkt} eingeführten
+ \modstextbf{Allgemeine $\MEU$-Funktionen} enthalten die bereits in Unterabschnitt \MRef{M06_allgem_exp_fkt} eingeführten
  Parameter $f_0$ und $\lambda$; ihre funktionale Gestalt sieht also folgendermaßen aus:
  $$
  \begin{array}{rrcl}
-  f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot e^{\lambda x} \; \; \; ,
+  f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot \MEU^{\lambda x} \MDFPeriod
  \end{array}
  $$
  Wiederum repräsentiert $f_0$ die Möglichkeit von $1$ verschiedener Start- oder Anfangswerte, und der Faktor
  $\lambda$ im Exponenten gestattet unterschiedlich starke (positive oder negative) Wachstumsraten. Wir wollen
  dies abschließend an einem Beispiel verdeutlichen:
  \begin{MExample}
- Bei einer Versuchsreihe mit radioaktiven Jodatomen ($^{131}\text{I}$) ergeben sich im Mittel folgende Daten:
+ Bei einer Versuchsreihe mit radioaktiven Jodatomen ($^{131}\mathrm{I}$) ergeben sich im Mittel folgende Daten:
   \begin{center}
    \begin{tabular}{|c|r|r|r|r|r|}
     \hline
@@ -2715,7 +2715,7 @@ $\lambda < 0$).
   spricht daher in diesem Zusammenhang davon, dass die \modstextbf{Halbwertszeit} $h$ von Jod-$131$ $h = \MZahl{8}{04}$ Tage beträgt.
   
   Der radioaktive Zerfall folgt einem \modstextbf{Exponentialgesetz}:
-  $$N(t) = N_0 \cdot e^{\lambda t}\;.$$
+  $$N(t) = N_0 \cdot \MEU^{\lambda t} \MDFPeriod$$
   Unsere \modstextbf{Exponentialfunktion} heißt hier $N$; sie gibt die Anzahl der noch vorhandenen Jodatome an. $N_0$
   steht dementsprechend für die Anzahl der Jodatome zu Beginn, also $N_0 = 10000$. Die Veränderliche im vorliegenden
   Beispiel ist die Zeit $t$ (gemessen in Tagen). Von dem Parameter $\lambda$ erwarten wir, dass er negativ ist,
@@ -2724,18 +2724,18 @@ $\lambda < 0$).
   
   Nach $h = \MZahl{8}{04}$ Tagen sind nur noch $5000$ Jodatome vorhanden, d.h. $N(t = \MZahl{8}{04}) = 5000 = \Mtfrac{N_0}{2}$.
   Verwenden wir das Exponentialgesetz für den radioaktiven Zerfall, so erhalten wir:
-  $$\Mdfrac{N_0}{2} = N_0 \cdot e^{\lambda \cdot h} \;.$$
+  $$\Mdfrac{N_0}{2} = N_0 \cdot \MEU^{\lambda \cdot h}  \MDFPeriod$$
   Wir können $N_0$ auf beiden Seiten der Gleichung kürzen und anschließend logarithmieren (siehe Abschnitt
   \MRef{M06_Abschnitt7}):
-  $$\ln \left( \Mdfrac12 \right ) = \ln(e^{\lambda \cdot h}) \;.$$
+  $$\ln \left( \Mdfrac12 \right ) = \ln(\MEU^{\lambda \cdot h})  \MDFPeriod$$
   Die linke Seite formen wir gemäß den Rechenregeln für den Logarithmus um (siehe Abschnitt \MRef{M06_Abschnitt7}),
   $\ln(1/2) = \ln(1) - \ln(2) = 0 - \ln(2) = - \ln(2)$. Für die rechte Seite beachten
-  wir, dass Logarithmieren die Umkehrung zum Exponentieren darstellt, $\ln(e^{\lambda \cdot h}) = \lambda \cdot h$;
+  wir, dass Logarithmieren die Umkehrung zum Exponentieren darstellt, $\ln(\MEU^{\lambda \cdot h}) = \lambda \cdot h$;
   damit folgt:
   $$\begin{array}{crcl} & - \ln(2) & = & \lambda \cdot h \\[.5ex]
-  \Leftrightarrow & \lambda & = & - \Mdfrac{\ln(2)}{h} \;. \end{array}$$
+  \Leftrightarrow & \lambda & = & - \Mdfrac{\ln(2)}{h}  \MDFPeriod \end{array}$$
   Mit $h = \MZahl{8}{04}$ Tage für Jod-$131$ folgt für den Parameter $\lambda$ im vorliegenden Fall
-  $$\lambda \approx - \MZahl{0}{0862} \; \Mdfrac{1}{\text{Tage}} \; \; \; .$$
+  $$\lambda \approx - \MZahl{0}{0862} \; \Mdfrac{1}{\text{Tage}}  \MDFPeriod$$
   
   Andere radioaktive Substanzen besitzen andere Halbwertszeiten - Plutonium-239 z.B. weist eine Halbwertszeit
   von ungefähr $24000$ Jahren auf - und führen folglich auf andere Werte für den Parameter $\lambda$ im
@@ -2749,10 +2749,10 @@ $\lambda < 0$).
 \MLabel{M06_Abschnitt7}\MLabel{M06_Logarithmus}
 \MDeclareSiteUXID{VBKM06_Logarithmusfunktion}
 
-In Abschnitt \MRef{M06_e_fkt} haben wir beim Studium der $e$-Funktion,
+In Abschnitt \MRef{M06_e_fkt} haben wir beim Studium der $\MEU$-Funktion,
  $$
  \begin{array}{rrcl} g : & \R & \longrightarrow & (0\MIntvlSep  \infty) \\
- & x & \longmapsto & g(x) = e^x  \; \; \; ,
+ & x & \longmapsto & g(x) = \MEU^x  \MDFPSpace,
  \end{array}
  $$
  insbesondere auf eine sehr wichtige Eigenschaft der natürlichen Exponentialfunktion hingewiesen, nämlich dass diese
@@ -2761,14 +2761,14 @@ In Abschnitt \MRef{M06_e_fkt} haben wir beim Studium der $e$-Funktion,
  
 \begin{MInfo}
 \MLabel{VBKM06_LNDEF}
-Die über die Gleichung $e^{\ln(x)}=x$ erklärte Funktion
+Die über die Gleichung $\MEU^{\ln(x)}=x$ erklärte Funktion
 $$
 \function{\ln}{(0\MIntvlSep \infty)}{\R}{x}{\ln(x)}
 $$
 heißt die \MEntry{natürliche Logarithmusfunktion}{Logarithmusfunktion (natürlich)}.
 \end{MInfo}
 
-Die Gleichung ist dabei so zu lesen, dass $\ln(x)=a$ derjenige Wert $a$ ist mit $e^a=x$.
+Die Gleichung ist dabei so zu lesen, dass $\ln(x)=a$ derjenige Wert $a$ ist mit $\MEU^a=x$.
 Diese Konstruktion wird im folgenden Bild dargestellt: 
  \begin{center}
  \MUGraphicsSolo{ln_fkt.png}{scale=1}{}
@@ -2798,24 +2798,24 @@ und den Exponenten abzulesen.
 \begin{MExample}
 Typische Berechnungen für den natürlichen Logarithmus sind
 $$
-\ln(e^5) \;=\; 5\;\; , \;\;\ln(\sqrt{e}) \;=\; \ln(e^{\frac12}) \;=\; \frac12
+\ln(\MEU^5) \;=\; 5\MDFPSpace, \MDFPaSpace \ln(\sqrt{\MEU}) \;=\; \ln(\MEU^{\frac12}) \;=\; \frac12
 $$
 sowie für den allgemeinen Logarithmus
 $$
-\log_5(25) \;=\; \log_5(5^2) \;=\; 2 \;\; , \;\; \log_3(81) \;=\; \log_3(3^4) \;=\; 4\: .
+\log_5(25) \;=\; \log_5(5^2) \;=\; 2 \MDFPSpace, \MDFPaSpace \log_3(81) \;=\; \log_3(3^4) \;=\; 4 \MDFPeriod
 $$
 \end{MExample}
 
 Dabei muss man auf die Basis des Logarithmus achten, beispielsweise ist
 $$
-\log_2(64) \;=\; \log_2(2^6) \;=\; 6 \;\; \text{aber}\;\;
-\log_4(64) \;=\; \log_4(4^3) \;=\; 3\: .
+\log_2(64) \;=\; \log_2(2^6) \;=\; 6 \MDFPSpace,\MDFPSpace \text{ aber }\MDFPSpace
+\log_4(64) \;=\; \log_4(4^3) \;=\; 3 \MDFPeriod
 $$
 
 \begin{MExercise}
 Berechnen Sie diese Logarithmen:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle\ln(\sqrt[3]{e})$}{\MLSimplifyQuestion{10}{1/3}{5}{}{5}{1}{LNA1}}. \begin{MHint}{Lösung}Es ist $\ln(\sqrt[3]{e})=\ln(e^{\frac13})=\frac13$.\end{MHint}}
+\item{\MEquationItem{$\displaystyle\ln(\sqrt[3]{\MEU})$}{\MLSimplifyQuestion{10}{1/3}{5}{}{5}{1}{LNA1}}. \begin{MHint}{Lösung}Es ist $\ln(\sqrt[3]{\MEU})=\ln(\MEU^{\frac13})=\frac13$.\end{MHint}}
 \item{\MEquationItem{$\displaystyle\log_2(256)$}{\MLSimplifyQuestion{10}{8}{5}{}{5}{1}{LNA2}}. \begin{MHint}{Lösung}Es ist $\log_2(256)=\log_2(2^8)=8$.\end{MHint}}
 \item{\MEquationItem{$\displaystyle\log_9(3)$}{\MLSimplifyQuestion{10}{1/2}{5}{}{5}{1}{LNA3}}. \begin{MHint}{Lösung}Es ist $\log_9(3)=\log_9(9^{\frac12})=\frac12$.\end{MHint}}
 \end{MExerciseItems}
@@ -2825,9 +2825,9 @@ In der Mathematik und den Naturwissenschaften werden folgende Logarithmen häufig
 \begin{itemize}
 \item{Logarithmus zur Basis $10$: $\log_{10}(x)=\lg(x)$ oder manchmal auch nur $\log(x)$, dieser Logarithmus gehört zu den Zehnerpotenzen und wird beispielsweise zur Berechnung von pH-Werten in der Chemie eingesetzt.}
 \item{Logarithmus zur Basis $2$: $\log_2(x)=\ld(x)$, dieser Logarithmus ist in der Informatik wichtig.}
-\item{Logarithmus zur Basis $e$: $\log_e(x)=\ln(e)$, der natürliche Logarithmus ist für praktische Rechnungen meist ungeeignet (es sei denn,
-der Ausdruck ist eine $e$-Potenz). Er wird als natürlich bezeichnet, weil die Exponentialfunktion zur Basis $e$ aus mathematischer Sicht einfacher ist
-als die allgemeinen Exponentialfunktionen (z.B. weil $e^x$ seine eigene Ableitung ist, $b^x$ aber nicht $b\not=e$).}
+\item{Logarithmus zur Basis $\MEU$: $\log_\MEU(x)=\ln(\MEU)$, der natürliche Logarithmus ist für praktische Rechnungen meist ungeeignet (es sei denn,
+der Ausdruck ist eine $\MEU$-Potenz). Er wird als natürlich bezeichnet, weil die Exponentialfunktion zur Basis $\MEU$ aus mathematischer Sicht einfacher ist
+als die allgemeinen Exponentialfunktionen (z.B. weil $\MEU^x$ seine eigene Ableitung ist, $b^x$ aber nicht $b\not=\MEU$).}
 \end{itemize}
 
 Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Abschnitt erklärt werden.
@@ -2845,9 +2845,9 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
   \MLabel{M06_log_ges}
   Die folgenden Rechenregeln bezeichnet man als \MEntry{Logarithmengesetze}{Logarithmengesetze}:
   $$\begin{array}{rcll}
-   \log (u \cdot v) & = & \log(u) + \log(v) & (u, v >0) \\[.5ex]
-   \log \left( \Mdfrac{u}{v} \right) & = & \log (u) - \log (v) & (u, v >0) \\[.5ex]
-   \log (u^x) & = & x \cdot \log(u) & (u>0, x \in \R)\: .
+   \log (u \cdot v) & = & \log(u) + \log(v) & (u, v >0) \MDFPSpace, \\[.5ex]
+   \log \left( \Mdfrac{u}{v} \right) & = & \log (u) - \log (v) & (u, v >0) \MDFPSpace, \\[.5ex]
+   \log (u^x) & = & x \cdot \log(u) & (u>0, x \in \R) \MDFPeriod
   \end{array}$$
  \end{MInfo}
  
@@ -2857,11 +2857,11 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
  \begin{MExample}
  Den Wert $\ld(4^5)$ kann man beispielsweise mit Hilfe der Logarithmengesetze so ausrechnen:
  $$
- \ld(8^5) \;=\; \log_2(8^5) \;=\;5\cdot \log_2(8) \;=\; 5\cdot \log_2(2^3) \;=\; 5\cdot 3 \;=\; 15\: .
+ \ld(8^5) \;=\; \log_2(8^5) \;=\;5\cdot \log_2(8) \;=\; 5\cdot \log_2(2^3) \;=\; 5\cdot 3 \;=\; 15 \MDFPeriod
  $$
  Produkte in Logarithmen kann man in Summen außerhalb der Logarithmen zerlegen:
  $$
- \lg\left({100\cdot \sqrt{10}\cdot \frac1{10}}\right) \;=\; \lg(100)+\lg(\sqrt{10})-\lg(10) \;=\; 2+\frac12-1 \;=\; \frac32\: .
+ \lg\left({100\cdot \sqrt{10}\cdot \frac1{10}}\right) \;=\; \lg(100)+\lg(\sqrt{10})-\lg(10) \;=\; 2+\frac12-1 \;=\; \frac32 \MDFPeriod
  $$
  \end{MExample}
 
@@ -2897,7 +2897,7 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
  In Modul \MRef{VBKM05} wurden die trigonometrischen Funktionen elementar im \MSRef{Mathematik_ElementareGeometrie_Def:Trigonometrie}{rechtwinkligen Dreieck} 
  durch
 $$\begin{array}{rcccccl}
-  \sin(\alpha) & = & \Mdfrac{\text{Gegenkathete}}{\text{Hypotenuse}}. & & \\[2ex]
+  \sin(\alpha) & = & \Mdfrac{\text{Gegenkathete}}{\text{Hypotenuse}} \MDFPeriod & & \\[2ex]
  \end{array}$$
  
  sowie am \MSRef{VBKM05_Trigonometrie_Einheitskreis}{Einheitskreis} erklärt.
@@ -2925,7 +2925,7 @@ $$\begin{array}{rcccccl}
  Das voranstehende Schaubild gibt den Graphen der Sinusfunktion,
  $$
  \begin{array}{rrcl}
-  \sin : & \R & \longrightarrow & [- 1; + 1] \\ & \alpha & \longmapsto & \sin(\alpha) \; \; \; ,
+  \sin : & \R & \longrightarrow & [- 1; + 1] \\ & \alpha & \longmapsto & \sin(\alpha) \MDFPSpace,
  \end{array}
  $$
  wieder. Allerdings haben wir auf der Querachse ($\alpha$-Achse) den Winkel $\alpha$ nicht - wie in der bisherigen
@@ -2952,7 +2952,7 @@ $$\begin{array}{rcccccl}
  $b$ nach rechts oder links verrückt werden. Die \modstextbf{allgemeine Sinusfunktion} besitzt daher folgende Gestalt:
  $$\begin{array}{rrcl}
   f : & \R & \longrightarrow & [- A\MIntvlSep  + A] \\
-  & x & \longmapsto & f(x) = A \, \sin (a x + b)  
+  & x & \longmapsto & f(x) = A \, \sin (a x + b) \MDFPeriod 
  \end{array}$$
  \begin{MExample}
   \MLabel{M06_Fadenpendel}
@@ -2960,7 +2960,7 @@ $$\begin{array}{rcccccl}
   an der Decke eines (hohen) Raumes verankert ist. Unter gewissen idealisierenden Annahmen und für kleine Werte des Auslenkwinkels
   $\Mvarphi$ aus der \modstextbf{Ruhelage} (der \modstextbf{Lotrechten}) hängt $\Mvarphi$ von der Veränderlichen $t$, der Zeit, über
   eine allgemeine Sinusfunktion ab:
-  $$\Mvarphi (t) = A \, \sin(\Mdfrac{2 \pi}{T} t + b)$$
+  $$\Mvarphi (t) = A \, \sin(\Mdfrac{2 \pi}{T} t + b) \MDFPeriod$$
   Dabei bezeichnet $T$ die sogenannte \modstextbf{Schwingungsdauer} des Pendels, also diejenige Zeitspanne, die für eine
   vollständige Schwingung vom Pendel benötigt wird.
   
@@ -2984,7 +2984,7 @@ $$\begin{array}{rcccccl}
  $$
  \begin{array}{rrcl}
   \cos : & \R & \longrightarrow & [- 1; + 1] \\ & \alpha & \longmapsto & \cos(\alpha)
- \end{array} \;.
+ \end{array} \MDFPeriod
  $$
  \begin{center}
   \MUGraphicsSolo{cos_fkt.png}{scale=1}{width:400px}
@@ -3000,7 +3000,7 @@ $$\begin{array}{rcccccl}
   \item Aus dem obigen Bild der Graphen von $\cos(\alpha)$ und $\sin(\alpha)$ ergibt sich unmittelbar, dass
   $$\cos(\alpha) = \sin \left( \alpha + \Mdfrac{\pi}{2} \right)$$
   für alle reellen Werte von $\alpha$ gilt. Ebenso richtig, aber etwas schwieriger einzusehen, ist
-  $$\cos(\alpha) = - \sin \left( \alpha - \Mdfrac{\pi}{2} \right) \; \; \; .$$
+  $$\cos(\alpha) = - \sin \left( \alpha - \Mdfrac{\pi}{2} \right) \MDFPeriod$$
  \end{itemize}
  \begin{MExercise}
   \MLabel{M06_cos_diskussion}
@@ -3010,13 +3010,13 @@ $$\begin{array}{rcccccl}
    Es gilt $\cos(0) = 1$; aufgrund der Periodizität mit Periode $2 \pi$ trifft dies auch für $\pm 2 \pi, \pm 2 \cdot 2 \pi,
    \pm 3 \cdot 2 \pi, \dots$ zu. Also nimmt die Kosinusfunktion den maximalen Wert $1$ für alle ganzzahligen Vielfachen von $2 \pi$
    (bzw. für alle geradzahligen Vielfachen von $\pi$) an; man kann dies auch so schreiben:
-   $$\cos(\alpha) = 1 \Leftrightarrow \alpha \in \{ 2 k \cdot \pi; k \in \Z \} \;. $$
+   $$\cos(\alpha) = 1 \Leftrightarrow \alpha \in \{ 2 k \cdot \pi\MCondSetSep k \in \Z \} \MDFPeriod $$
    Den Wert $- 1$ erreicht die Kosinusfunktion an den Stellen $\dots, - 3 \pi, - \pi, \pi, 3 \pi, 5 \pi, \dots$, also für
    ungeradzahlige Vielfache von $\pi$:
-   $$\cos(\alpha) = - 1 \Leftrightarrow \alpha \in \{ (2 k + 1) \cdot \pi; k \in \Z \} \;.$$
+   $$\cos(\alpha) = - 1 \Leftrightarrow \alpha \in \{ (2 k + 1) \cdot \pi\MCondSetSep k \in \Z \} \MDFPeriod $$
    Nullstellen treten für $\dots, - \Mtfrac{3}{2} \pi, - \Mtfrac{1}{2} \pi, \Mtfrac{1}{2} \pi, \Mtfrac32 \pi, \dots$, d.h. für
    halbganzzahlige Vielfache von $\pi$ auf:
-   $$\cos(\alpha) = 0 \Leftrightarrow \alpha \in \{ \Mtfrac{2k+1}{2} \cdot \pi; k \in \Z \} \;.$$
+   $$\cos(\alpha) = 0 \Leftrightarrow \alpha \in \{ \Mtfrac{2k+1}{2} \cdot \pi; k \in \Z \} \MDFPeriod$$
   \end{MHint}
  \end{MExercise}
  Wie im Falle des Sinus gibt es auch für den Kosinus eine \modstextbf{allgemeine Kosinusfunktion}, in deren Definition
@@ -3027,13 +3027,13 @@ $$\begin{array}{rcccccl}
  \begin{array}{rrcl}
   g : & \R & \longrightarrow & [- A; + A] \\
   & x & \longmapsto & g(x) = B \, \cos (c x + d)  
- \end{array} \;.
+ \end{array} \MDFPeriod
  $$
  \begin{MExercise}
   In Beispiel \MRef{M06_Fadenpendel} haben wir das Fadenpendel andiskutiert. Insbesondere kann man den zeitlichen Verlauf
   der Pendelauslenkung $\Mvarphi$ unter den Voraussetzungen bestimmen, dass die Schwingungsdauer $T$ gerade $\pi$ Sekunden beträgt,
   und dass zum Zeitpunkt $t = 0$ das Pendel bei einer Auslenkung von $30^\circ$ losgelassen wird:
-  $$\Mvarphi (t) = \Mdfrac{\pi}{6} \cdot\sin \left(2 t + \Mdfrac{\pi}{2}\right) \;.$$
+  $$\Mvarphi (t) = \Mdfrac{\pi}{6} \cdot\sin \left(2 t + \Mdfrac{\pi}{2}\right) \MDFPeriod$$
   Kann man diese Situation auch mit Hilfe der (allgemeinen) Kosinusfunktion (anstelle der Sinusfunktion) beschreiben,
   und wenn ja, wie sieht dann $\Mvarphi (t)$ aus?  \begin{MHint}{Lösung}
    Die Antwort auf die erste Frage lautet: Ja, es ist möglich, die Kosinusfunktion zur Beschreibung des vorliegenden Sachverhaltes
@@ -3043,9 +3043,9 @@ $$\begin{array}{rcccccl}
    zu denjenigen in Beispiel \MRef{M06_Fadenpendel} verlaufen, die Parameter $B$, $c$ und $d$ im vorliegenden Fall bestimmen.
    Einfacher ist es jedoch, sich auf den Zusammenhang $\cos(\alpha) = \sin(\alpha + \Mdfrac{\pi}{2})$
    zwischen Kosinus- und Sinusfunktion zu besinnen. Denn dann folgt sofort
-   $$\sin(2 t + \Mdfrac{\pi}{2}) = \cos(2 t) \; \; \; ,$$
+   $$\sin(2 t + \Mdfrac{\pi}{2}) = \cos(2 t) \MDFPSpace,$$
    und damit:
-   $$\Mvarphi (t) = \Mdfrac{\pi}{6}\cdot\cos(2 t)$$.
+   $$\Mvarphi (t) = \Mdfrac{\pi}{6}\cdot\cos(2 t) \MDFPeriod$$
    
   \end{MHint}
  \end{MExercise}
@@ -3077,13 +3077,13 @@ $$\begin{array}{rcccccl}
  
  \begin{MExercise}
  Der sogenannte Kotangens (Abkürzung $\cot$) ist definiert durch
- $\cot (\alpha) = \frac1{\tan(\alpha)}= \Mdfrac{\cos(\alpha)}{\sin(\alpha)} \; \; \; .$
+ $\cot (\alpha) = \frac1{\tan(\alpha)}= \Mdfrac{\cos(\alpha)}{\sin(\alpha)}$.
  
   Geben Sie Definitions- und Wertebereich der Kotangensfunktion an!
   \begin{MHint}{Lösung}
    Die Polstellen des Kotangens liegen dort, wo der Sinus $0$ wird, und das ist genau dann der Fall, wenn $\alpha$ ein ganzzahliges Vielfaches
    von $\pi$ ist. Daher müssen wir bei der Definition der Kotangensfunktion genau diese Punkte ausschließen:
-   $$D_{\cot} = \R \setminus \{ k \cdot \pi ; k \in \Z \}$$
+   $$D_{\cot} = \R \setminus \{ k \cdot \pi \MCondSetSep k \in \Z \} \MDFPeriod$$
    Zur Bestimmung des Wertebereichs können Betrachtungen durchgeführt werden, die denjenigen beim Tangens stark ähneln; man findet
    $W_{\cot} = \R$.
    \begin{center}
@@ -3129,7 +3129,7 @@ Diese beiden Symmetriebedingungen für Funktionen sagen also etwas über das Ausse
  \]
  und
  \[
-  \function{f_2}{\R}{\R}{x}{|x|},
+  \function{f_2}{\R}{\R}{x}{|x|\MDFPSpace,}
  \]
  also die Standardparabel (vgl.~Abschnitt \MNRef{sec:monome}) und die Betragsfunktion (vgl.~Abschnitt \MNRef{sec:betrag}), sind Beispiele für gerade Funktionen. Es gilt $f_1(-x)=(-x)^2=x^2=f_1(x)$ und $f_2(-x)=|-x|=|x|=f_2(x)$ für alle $x\in\R$. Die Graphen weisen die Spiegelsymmetrie an der Hochachse auf:
  
@@ -3160,7 +3160,7 @@ Diese beiden Symmetriebedingungen für Funktionen sagen also etwas über das Ausse
 
  \item Die Funktion
  \[
-  \function{g}{\R}{\R}{x}{x^3 \;,}
+  \function{g}{\R}{\R}{x}{x^3 \MDFPSpace,}
  \]
 
  also die kubische Parabel (vgl.~Abschnitt \MNRef{sec:monome}), ist ein Beispiel für eine ungerade Funktion. Es gilt $g(-x)=(-x)^3=-x^3=-g(x)$ für alle $x\in\R$. Der Graph ist punktsymmetrisch bezüglich des Ursprungs:
@@ -3203,7 +3203,7 @@ Natürlich sind die Symmetrieeigenschaften von Funktionen auch benutzbar, wenn de
 \begin{MExercise}
 Geben Sie von den folgenden Funktionen jeweils an, ob diese gerade, ungerade oder nicht-symmetrisch sind.
 \begin{itemize}
- \item[a)] \[\function{f}{\R}{\R}{x}{e^x}\]
+ \item[a)] \[\function{f}{\R}{\R}{x}{\MEU^x}\]
  \item[b)] \[\function{g}{\R}{\R}{y}{\sin(y)}\]
  \item[c)] \[\function{h}{(-\frac{\pi}{2}\MIntvlSep \frac{\pi}{2})}{\R}{\alpha}{\tan(\alpha)}\]
  \item[d)] \[\function{i}{\R}{\R}{u}{\cos(u)}\]
@@ -3290,9 +3290,9 @@ In diesem Abschnitt wollen wir nun das große Sortiment an elementaren Funktionen
 
  \item Die Funktion 
  \[
-  \function{h}{(0\MIntvlSep \infty)}{\R}{x}{e^x\frac{1}{x}}
+  \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\MEU^x\frac{1}{x}}
  \]
- ist das \modsemph{Produkt} aus der natürlichen Exponentialfunktion mit Abbildungsvorschrift $e^x$ (vgl.~Abschnitt \MNRef{sec:exp}) und der Hyperbel mit Abbildungvorschrift $\frac{1}{x}$ (vgl.~Abschnitt \MNRef{sec:hyperbel}). Sie besitzt folgenden Graphen:
+ ist das \modsemph{Produkt} aus der natürlichen Exponentialfunktion mit Abbildungsvorschrift $\MEU^x$ (vgl.~Abschnitt \MNRef{sec:exp}) und der Hyperbel mit Abbildungvorschrift $\frac{1}{x}$ (vgl.~Abschnitt \MNRef{sec:hyperbel}). Sie besitzt folgenden Graphen:
  
    %GRAPH: summ3
 \MTikzAuto{%
@@ -3381,23 +3381,23 @@ Wir betrachten dazu einige Beispiele.
  \]
  und
  \[
-  \function{g}{\R}{\R}{x}{g(x)=e^x}
+  \function{g}{\R}{\R}{x}{g(x)=\MEU^x}
  \]
  lassen sich auf zweierlei Art verketten. Wir können die Funktion $f\circ g\colon\R\lto\R$ oder die Funktion $g\circ f\colon \R\lto\R$ bilden. Wir erhalten 
  \[
-  (f\circ g)(x)=f(g(x))=f(e^x)=(e^x)^2+1=e^{2x}+1,
+  (f\circ g)(x)=f(g(x))=f(\MEU^x)=(\MEU^x)^2+1=\MEU^{2x}+1 \MDFPSpace,
  \]
  also
  \[
-  \function{f\circ g}{\R}{\R}{x}{e^{2x}+1}
+  \function{f\circ g}{\R}{\R}{x}{\MEU^{2x}+1}
  \]
  und
  \[
-  (g\circ f)(x)=g(f(x))=g(x^2+1)=e^{x^2+1},
+  (g\circ f)(x)=g(f(x))=g(x^2+1)=\MEU^{x^2+1} \MDFPSpace,
  \]
  also
  \[
-  \function{g\circ f}{\R}{\R}{x}{e^{x^2+1}.}
+  \function{g\circ f}{\R}{\R}{x}{\MEU^{x^2+1} \MDFPeriod}
  \]
  Anhand der Graphen sehen wir, dass dies zwei völlig unterschiedliche Funktionen sind. Es kommt also auf die Reihenfolge der Verkettung an.
  
@@ -3437,11 +3437,11 @@ Wir betrachten dazu einige Beispiele.
  \]
  ist allerdings auf die Definitionsbereiche bei der Verkettung zu achten. Denn wollen wir etwa die verkettete Funktion $w\circ h$ betrachten, so gilt
  \[
-  (w\circ h)(x)=w(h(x))=w(\sin(x))=\sqrt{\sin(x)}.
+  (w\circ h)(x)=w(h(x))=w(\sin(x))=\sqrt{\sin(x)} \MDFPeriod
  \]
  Da die Funktionswerte des Sinus aber auch negativ werden können, man aber in die Quadratwurzelfunktion nur nicht-negative Werte einsetzen darf, muss also der Definitionsbereich der Sinusfunktion entsprechend eingeschränkt werden, so dass sich nicht-negative Werte ergeben, zum Beispiel mittels $x\in[0\MIntvlSep \pi]=D_{w\circ h}$. Wir erhalten also
  \[
-  \function{w\circ h}{[0\MIntvlSep \pi]}{\R}{x}{\sqrt{\sin(x)}.}
+  \function{w\circ h}{[0\MIntvlSep \pi]}{\R}{x}{\sqrt{\sin(x)} \MDFPeriod}
  \]
 \end{itemize}
 \end{MExample}
@@ -3450,7 +3450,7 @@ Wir betrachten dazu einige Beispiele.
 \begin{MExercise}
 Gegeben sind die Funktionen
 \[
- \function{f}{\R}{\R}{x}{2x-3,}
+ \function{f}{\R}{\R}{x}{2x-3 \MDFPSpace}
 \]
 \[
  \function{g}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x}}
@@ -3458,7 +3458,7 @@ Gegeben sind die Funktionen
 
 und
 \[
- \function{h}{\R}{\R}{x}{\sin(x).}
+ \function{h}{\R}{\R}{x}{\sin(x) \MDFPeriod}
 \]
 Bestimmen Sie die Verkettungen $f\circ g$, $g\circ f$, $h\circ f$, $h\circ g$, $f\circ f$ und $g\circ g$. Schränken Sie dazu eventuell die Definitionsbereiche so ein, dass die Verkettung zulässig ist. Benutzen Sie jedoch für die verketteten Funktion stets die größtmöglichen Definitionsbereiche.
 
@@ -3519,7 +3519,7 @@ die Wertemenge $W_i$.
 \begin{MExercise}
 Bestimmen Sie in der Exponentialfunktion
 \[
- \function{c}{\R}{\R}{x}{A\cdot e^{\lambda x}-1}
+ \function{c}{\R}{\R}{x}{A\cdot \MEU^{\lambda x}-1}
 \]
 die Parameter $A,\lambda\in\R$, so dass $c(0)=1$ und $c(4)=0$ gilt.
 \ \\ \ \\
@@ -3535,7 +3535,7 @@ Bestimmen Sie die Verkettung $h=f\circ g\colon\R\to\R$ (Erläuterung: $h(x)=(f\ci
 \]
 und
 \[
- \function{g}{\R}{\R}{x}{B\cdot x+\pi.}
+ \function{g}{\R}{\R}{x}{B\cdot x+\pi \MDFPeriod}
 \]
 Antwort: \MEquationItem{$h(x)$}{\MLFunctionQuestion{20}{C*sin(B*x+pi)}{10}{x,B,C}{4}{EL3}}.
 \ \\ \ \\
@@ -3552,7 +3552,7 @@ Antwort: \MEquationItem{$h(x)$}{\MLFunctionQuestion{20}{3*sin(1/2*pi*x+pi)}{10}{
 \begin{MExercise}
 Bestimmen Sie die Umkehrfunktion $f=u^{-1}$ von
 \[
- \function{u}{(0\MIntvlSep \infty)}{\R}{y}{-\log_2(y).}
+ \function{u}{(0\MIntvlSep \infty)}{\R}{y}{-\log_2(y) \MDFPeriod}
 \]
 Die Funktion $f=u^{-1}$ besitzt:
 \begin{MExerciseItems}
@@ -3588,7 +3588,7 @@ Die Funktion
 \begin{MExercise}
 Bestimmen Sie diese Logarithmen:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\ln(e^5\cdot\frac1{\sqrt{e}})$}{\MLSimplifyQuestion{10}{9/2}{5}{}{5}{1}{TLG0}}.}
+\item{\MEquationItem{$\ln(\MEU^5\cdot\frac1{\sqrt{\MEU}})$}{\MLSimplifyQuestion{10}{9/2}{5}{}{5}{1}{TLG0}}.}
 \item{\MEquationItem{$\log_{10}(\MZahl{0}{01})$}{\MLSimplifyQuestion{10}{-2}{5}{}{5}{1}{TLG1}}.}
 \item{\MEquationItem{$\log_2(\sqrt{2\cdot 4\cdot 16\cdot 256\cdot 1024})$}{\MLSimplifyQuestion{10}{25/2}{5}{}{5}{1}{TLG2}}.}
 \end{MExerciseItems}

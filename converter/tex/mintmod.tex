@@ -798,6 +798,14 @@
 %\def\MD{\mathrm{d}} % roman-d in den alten Onlinemodulen
 \def\MDB{\|}
 
+%zusaetzlicher Leerraum vor "\MD"
+\ifttm%
+\def\MDSpace{\special{html:<mi>&#x2009;</mi>}}
+\else%
+\def\MDSpace{\,}
+\fi%
+\newcommand{\MDwSp}{\MDSpace\MD}%
+
 \ifttm
 \def\Mdq{\dq}
 \else
@@ -2134,7 +2142,11 @@ Hier erscheint die Testauswertung!
 % Masseinheit, Standardabstand: \,
 \newcommand{\MEinheitenabstXYZnd}{\MThinspace} 
 \newcommand{\MEinheitenabstand}[1]{\renewcommand{\MEinheitenabstXYZnd}{#1}}
+\ifttm
+\newcommand{\MEinheit}[2][\MEinheitenabstXYZnd]{{}#1\edef\MEINHtemp{\noexpand\special{html:<mi mathvariant="normal">#2</mi>}}\MEINHtemp} 
+\else
 \newcommand{\MEinheit}[2][\MEinheitenabstXYZnd]{{}#1 \mathrm{#2}} 
+\fi
 % Exponent zur Basis 10 in der Exponentialschreibweise, 
 % Standardmalzeichen: \times
 \newcommand{\MExponentensymbXYZl}{\times} 
@@ -2144,6 +2156,20 @@ Hier erscheint die Testauswertung!
 
 %Zahlen-Separation im IntervaLL
 \newcommand{\MIntvlSep}{;} %oder ','
+%Separation von Elementen in Mengen
+\newcommand{\MElSetSep}{;} %oder ','
+\newcommand{\MCondSetSep}{\,:\,} %oder '\mid'
+
+%horizontaler Leerraum zwischen herausgestellter Formel und Interpunktion
+\ifttm
+\newcommand{\MDFPSpace}{\,}
+\newcommand{\MDFPaSpace}{\,\,}
+\else
+\newcommand{\MDFPSpace}{\;}
+\newcommand{\MDFPaSpace}{\;\;}
+\fi
+%Satzende in herausgestellter Formel mit horizontalem Leerraum
+\newcommand{\MDFPeriod}{\MDFPSpace .}
 
 %
 \ifttm

@@ -36,7 +36,7 @@ Das Modul umfasst folgende Abschnitte:
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Ableitung_Intro}
-Stellen Sie sich vor, Sie sind mit Ihrem Auto unterwegs in den Urlaub. Sie fahren mit einer Geschwindigkeit von 60~km/h durch eine Baustelle. Am Ende der Baustelle sehen Sie ein Schild, das es Ihnen erlaubt, ab sofort wieder mit einer Geschwindigkeit von 120~km/h zu fahren. Auch wenn Sie so kräftig wie Sie nur können auf das Gaspedal treten, Ihre Geschwindigkeit wird sich nicht sprunghaft ändern, sondern in Abhängigkeit der Zeit steigen. Schaffen Sie es, Ihre Geschwindigkeit innerhalb von 5 Sekunden von 60~km/h auf 120~km/h mit einer konstanten Änderungsrate zu erhöhen, dann finden Sie die Beschleunigung (= Geschwindigkeitsänderung pro Zeit) als konstante Änderungsrate der Geschwindigkeit. Sie ergibt sich aus dem Quotienten der Geschwindigkeitsänderung geteilt durch die dafür benötigte Zeit. Der Wert der Beschleunigung ist in diesem Fall also $12~\text{km/h/s}$. In der Realität werden Sie Ihre Geschwindigkeit jedoch nicht mit einer konstanten Änderungsrate erhöhen, sondern mit einer ebenfalls 
+Stellen Sie sich vor, Sie sind mit Ihrem Auto unterwegs in den Urlaub. Sie fahren mit einer Geschwindigkeit von $60\MEinheit{km}/\MEinheit[]{h}$ durch eine Baustelle. Am Ende der Baustelle sehen Sie ein Schild, das es Ihnen erlaubt, ab sofort wieder mit einer Geschwindigkeit von $120\MEinheit{km}/\MEinheit[]{h}$ zu fahren. Auch wenn Sie so kräftig wie Sie nur können auf das Gaspedal treten, Ihre Geschwindigkeit wird sich nicht sprunghaft ändern, sondern in Abhängigkeit der Zeit steigen. Schaffen Sie es, Ihre Geschwindigkeit innerhalb von 5 Sekunden von $60\MEinheit{km}/\MEinheit[]{h}$ auf $120\MEinheit{km}/\MEinheit[]{h}$ mit einer konstanten Änderungsrate zu erhöhen, dann finden Sie die Beschleunigung (= Geschwindigkeitsänderung pro Zeit) als konstante Änderungsrate der Geschwindigkeit. Sie ergibt sich aus dem Quotienten der Geschwindigkeitsänderung geteilt durch die dafür benötigte Zeit. Der Wert der Beschleunigung ist in diesem Fall also $12\MEinheit{km}/\MEinheit[]{h}/\MEinheit[]{s}$. In der Realität werden Sie Ihre Geschwindigkeit jedoch nicht mit einer konstanten Änderungsrate erhöhen, sondern mit einer ebenfalls 
 zeitabhängigen Änderungsrate. Beschreiben Sie Ihre Geschwindigkeit als Funkion der Zeit $v\left(t\right)$, erhalten Sie die Beschleunigung als Steigung dieser Funktion, unabhängig davon, ob diese Steigung konstant ist oder ebenfalls zeitabhängig ist. Oder mit anderen Worten: Die Beschleunigung ist die \emph{Ableitung} der Geschwindigkeits\emph{funktion} $v\left(t\right)$ nach der Zeit $t$.
 
 Ähnliche Zusammenhänge finden Sie auch in anderen technischen Bereichen, z.B. bei der Berechnung von inneren Kräften, die in Stahlgerüsten von Bauwerken wirken, der Vorhersage von Atmosphären- oder Meeresströmungen oder auch bei der heute so wichtigen Modellierung der Finanzmärkte.
@@ -110,7 +110,7 @@ declare function={
 Halten wir $x_0$ und den entsprechenden Funktionswert $f\left(x_0\right)$ fest und wählen eine weitere beliebige, aber variable Stelle $x$ zwischen $a$ und $b$ sowie ihren Funktionswert $f\left(x\right)$ aus.  Verbinden wir die beiden Punkte, die wir so gefunden haben, auf dem kürzesten Weg miteinander, so erhalten wir eine Gerade, die wir mithilfe einer Geradengleichung beschreiben können. Als Steigung dieser Geraden erhalten wir den Differenzenquotienten
 
 \[
-\frac{\Delta(f)}{\Delta(x)} = \frac{f(x) - f(x_0)}{x - x_0},
+\frac{\Delta(f)}{\Delta(x)} = \frac{f(x) - f(x_0)}{x - x_0}\MDFPSpace,
 \]
 
 der beschreibt, wie sich die Funktionswerte von $f$ \textbf{im Mittel} zwischen $x_0$ und $x$ ändern. Wir haben also eine mittelere Änderungsrate der Funktion $f$ im Intervall $[x_0\MIntvlSep  x]$ gefunden. Dieser Quotient wird auch als \textbf{relative Änderung} bezeichnet.
@@ -131,11 +131,11 @@ als Ableitung von $f$ in $x_0$. Die Funktion $f$ ist dann an der Stelle $x_0$ \t
   Für $f(x)=\sqrt{x}$ ist die relative Änderung an der Stelle $x_0=1$ gegeben durch
   \[
     \frac{f(x) - f(x_0)}{x - x_0} \;=\;
-    \frac{\sqrt{x}-1}{x-1} \;=\; \frac{\sqrt{x}-1}{(\sqrt{x}-1)(\sqrt{x}+1)} \;=\; \frac1{\sqrt{x}+1}\: .
+    \frac{\sqrt{x}-1}{x-1} \;=\; \frac{\sqrt{x}-1}{(\sqrt{x}-1)(\sqrt{x}+1)} \;=\; \frac1{\sqrt{x}+1} \MDFPeriod
   \]
   Bewegt sich nun $x$ auf $x_0=1$ zu, so erhalten wir den Grenzwert
   $$
-  \lim_{x \rightarrow x_0} \frac{\Delta(f)}{\Delta(x)} \;=\; \frac12\: .
+  \lim_{x \rightarrow x_0} \frac{\Delta(f)}{\Delta(x)} \;=\; \frac12 \MDFPeriod
   $$
   Als Ableitung würde man $f'(1)=\frac12$ aufschreiben.
 \end{MExample}
@@ -152,11 +152,11 @@ als Ableitung von $f$ in $x_0$. Die Funktion $f$ ist dann an der Stelle $x_0$ \t
   Für $f(x)=x^2$ ist die relative Änderung an der Stelle $x_0=1$ gegeben durch
   \[
     \frac{f(x) - f(1)}{x - 1} \;=\;
-    \frac{x^2-1}{x-1} \;=\; \frac{(x-1)(x+1)}{x-1} \;=\; x+1\: .
+    \frac{x^2-1}{x-1} \;=\; \frac{(x-1)(x+1)}{x-1} \;=\; x+1 \MDFPeriod
   \]
   Bewegt sich nun $x$ auf $x_0$ zu, so erhalten wir den Grenzwert
   $$
-  \lim_{x \rightarrow 1} \frac{\Delta(f)}{\Delta(x)} \;=\; 2\: .
+  \lim_{x \rightarrow 1} \frac{\Delta(f)}{\Delta(x)} \;=\; 2 \MDFPeriod
   $$
   Das ist die Steigung der Tangente an den Graph von $f(x)$ im Punkt $x_0=1$.
   Als Ableitung würde man $f'(1)=2$ aufschreiben.
@@ -178,7 +178,7 @@ Bausteine.
 \begin{MXInfo}{Schreibweisen der Ableitung}
 In der Mathematik sowie auch in den Natur- und Ingenieurwissenschaften werden verschiedene Schreibweisen der Ableitung äquivalent verwendet:
 \[
-f'(x_0) = \frac{\MD f}{\MD x}(x_0) = \frac{\MD}{\MD x}f(x_0) \;.%%
+f'(x_0) = \frac{\MD f}{\MD x}(x_0) = \frac{\MD}{\MD x}f(x_0) \MDFPeriod %%
 \]
 Diese Schreibweisen haben jeweils die Bedeutung der Ableitung der Funktion $f$ in $x_0$.
 \end{MXInfo}
@@ -223,12 +223,12 @@ declare function={
 
 können wir den Differenzenquotienten mit $x = x_0 + h$ umschreiben:
 \[
-\frac{f(x) - f(x_0)}{x - x_0} = \frac{f(x_0 + h) - f(x_0)}{h}.
+\frac{f(x) - f(x_0)}{x - x_0} = \frac{f(x_0 + h) - f(x_0)}{h} \MDFPeriod
 \]
 Beachten Sie, dass wir keine Voraussetzung darüber getroffen haben, ob $x$ größer oder kleiner als $x_0$ ist. Die Größe $h$ kann daher positive oder negative Werte annehmen. Um die Ableitung der Funktion $f$ zu bestimmen, muss nun der Grenzwert für $h \rightarrow 0$ berechnet werden: 
 \[
 f'(x_0) = \lim_{x \rightarrow x_0} \frac{f(x) - f(x_0)}{x - x_0} %
- = \lim_{h \rightarrow 0} \frac{f(x_0 + h) - f(x_0)}{h}.
+ = \lim_{h \rightarrow 0} \frac{f(x_0 + h) - f(x_0)}{h} \MDFPeriod
 \]
 Wenn dieser Grenzwert existiert, ist eine Funktion differenzierbar. Viele der häufig benutzten Funktionen sind differenzierbar. Ein einfaches Beispiel dafür, dass eine Funktion nicht unbedingt differenzierbar ist, ist die Betragsfunktion $f(x) := |x|$.
 
@@ -236,7 +236,7 @@ Wenn dieser Grenzwert existiert, ist eine Funktion differenzierbar. Viele der hä
 Die Betragsfunktion (siehe Modul \MRef{VBKM06}, Abschnitt \MRef{VBKM06_sec:betrag}) ist an der Stelle $x_0 = 0$ nicht differenzierbar.
 Sehen wir uns den Differenzenquotienten für $f$ an der Stelle $x_0 = 0$ an:
 \[
-\frac{f(0+h) - f(0)}{h} = \frac{|h| - |0|}{h} = \frac{|h|}{h}
+\frac{f(0+h) - f(0)}{h} = \frac{|h| - |0|}{h} = \frac{|h|}{h} \MDFPeriod
 \]
 Da $h$ größer oder kleiner als $0$ sein kann, müssen wir beide Fälle unterscheiden. Beginnen wir mit $h > 0$. Dann ist $\frac{|h|}{h} = \frac{h}{h} = 1$. Untersuchen wir den Fall $h < 0$, so finden wir, dass $\frac{|h|}{h} = \frac{-h}{h} = -1$ ist. Der Grenzwert des Differenzenquotienten hängt also von der Wahl von $h$ ab und ist damit nicht eindeutig bestimmt. Der Grenzwert des Differenzenquotienten an der Stelle $x_0 = 0$ existiert nicht. Daher ist die Betragsfunktion an der Stelle $x_0 = 0$ nicht differenzierbar.
 
@@ -355,7 +355,7 @@ $f'(x) = 0$.
 
 Die Funktion $f(x) := r \cdot x^n$ hat die Ableitung 
 \[
-f'(x) = r \cdot n \cdot x^{n-1} .%%
+f'(x) = r \cdot n \cdot x^{n-1} \MDFPeriod %%
 \]
 Diese Ableitungsregel gilt im Übrigen auch für $n\in\mathbb{R}\setminus\{0\}$.
 \end{MXInfo}
@@ -367,7 +367,7 @@ Wir untersuchen die Funktion $f: \R \rightarrow \R$ mit $f(x) = 5 x^3$.
 Vergleichen wir die gegebene Funktion mit den oben verwendeten Bezeichnungen, dann sind $r = 5$ und $n = 3$. Damit erh"alt man die 
 Ableitung 
 \[
-f'(x) = 5 \cdot 3 x^{3 - 1} = 15 x^2. %%
+f'(x) = 5 \cdot 3 x^{3 - 1} = 15 x^2 \MDFPeriod %%
 \]
 \end{MExample}
 
@@ -381,7 +381,7 @@ parallel zur $y$-Achse und beschreibt somit keine Funktion.
 F"ur $n \in \Z$ mit $n \neq 0$ ist die Funktion
 $f(x) := x^{\frac{1}{n}}$ f"ur $x > 0$ differenzierbar, und es gilt
 \[
-f'(x) = \frac{1}{n} \cdot x^{\frac{1}{n}-1} \text{ f"ur } x > 0 .%%
+f'(x) = \frac{1}{n} \cdot x^{\frac{1}{n}-1} \text{ f"ur } x > 0 \MDFPeriod%%
 \]%
 \end{MXInfo}
 
@@ -432,7 +432,7 @@ Die bisher getroffenen Aussagen können f"ur Exponenten $p \in \R$ mit
 $p \neq 0$ f"ur $x > 0$ verallgemeinert werden:
 Die Ableitung von $f(x) = x^p$ f"ur $x > 0$ ist
 \[
-f'(x) = p \cdot x^{p-1} %%
+f'(x) = p \cdot x^{p-1} \MDFPeriod %%
 \]
 \end{MXContent}
 
@@ -522,16 +522,16 @@ Wie in der Abbildung zu sehen ist, ist die Steigung des Sinus bei $x_0 = \pm\fra
 \begin{MXInfo}{Ableitung trigonometrischer Funktionen}
 F"ur die Sinusfunktion $f(x) := \sin(x)$ gilt 
 \[
-f'(x) = \cos(x) %%
+f'(x) = \cos(x) \MDFPeriod %%
 \]
 F"ur die Kosinusfunktion $g(x) := \cos(x)$ gilt 
 \[
-g'(x) = -\sin(x) %%
+g'(x) = -\sin(x) \MDFPeriod %%
 \]
 F"ur die Tangensfunktion $h(x) := \tan(x)$ f"ur $x \neq \frac{\pi}{2} + k \pi$ 
 mit $k \in \Z$ gilt
 \[
-h'(x) = 1 + (\tan(x))^2 = \frac{1}{\cos^2(x)} %%
+h'(x) = 1 + (\tan(x))^2 = \frac{1}{\cos^2(x)} \MDFPeriod %%
 \]
 \end{MXInfo}
 Letzteres ergibt sich auch aus den nachfolgend erl"auterten Rechenregeln und der 
@@ -540,7 +540,7 @@ Definition des Tangens als Quotient von Sinus und Kosinus.
 \MSubsubsectionx{Ableitung der Exponentialfunktion}
 
 \begin{MInfo}
-Die Exponentialfunktion $f(x) := e^{x} = \exp(x)$ hat die besondere Eigenschaft, 
+Die Exponentialfunktion $f(x) := \MEU^{x} = \exp(x)$ hat die besondere Eigenschaft, 
 dass ihre Ableitung wiederum $f'(x) = \exp(x)$ ist.
 \end{MInfo}
 
@@ -671,13 +671,13 @@ Vereinfachen Sie die Funktionsterme, um dann die Ableitung zu bestimmen
 \item $g(x) := \left(\MEU^x\right)^2 \cdot \MEU^{-x} = $
 \MLFunctionQuestion{40}{exp(x)}{10}{x}{4}{DZ10}.
 \end{MExerciseItems}
-\MInputHint{Schreiben Sie Exponentialfunktionen mit \texttt{exp}, beispielsweise schreiben Sie $e^{4x^2}$ als \texttt{exp(4*x^2)}.}
+\MInputHint{Schreiben Sie Exponentialfunktionen mit \texttt{exp}, beispielsweise schreiben Sie $\MEU^{4x^2}$ als \texttt{exp(4*x^2)}.}
 Damit ist
 \begin{MExerciseItems}
 \item $f'(x) = $ \MLSimplifyQuestion{40}{2/x}{1}{x}{20}{512}{TFR1}.
 \item $g'(x) = $ \MLSimplifyQuestion{40}{exp(x)}{10}{x}{4}{0}{TFR2}.
 \end{MExerciseItems}
-\MInputHint{Schreiben Sie Exponentialfunktionen mit \texttt{exp}, beispielsweise schreiben Sie $e^{4x^2}$ als \texttt{exp(4*x^2)}.}
+\MInputHint{Schreiben Sie Exponentialfunktionen mit \texttt{exp}, beispielsweise schreiben Sie $\MEU^{4x^2}$ als \texttt{exp(4*x^2)}.}
 \end{MExercise}
 
 \end{MExercises}
@@ -705,13 +705,13 @@ Zahl $r$.
 Sind $u$ und $v$ als differenzierbare Funktionen vorgegeben, dann ist auch die Summe der Funktionen $f(x) := u(x) + v(x)$ differenzierbar,
 und es gilt
 $$
-f'(x) = u'(x) + v'(x) .%%
+f'(x) = u'(x) + v'(x) \MDFPeriod%%
 $$
 
 Auch das $r$-fache einer Funktion, also $f(x) := r \cdot u(x)$ ist differenzierbar,
 und es gilt
 $$
-f'(x) = r \cdot u'(x) .%%
+f'(x) = r \cdot u'(x) \MDFPeriod%%
 $$
 \end{MXInfo}
 
@@ -722,11 +722,11 @@ Sehen wir uns einige Beispiele an:
 \begin{MExample}
 Das Polynom $f(x) = \frac{1}{4} x^3 - 2 x^{2} +5 $ ist differenzierbar und wir erhalten
 \[
-f'(x) = \frac{3}{4} x^2 - 4 x .%%
+f'(x) = \frac{3}{4} x^2 - 4 x \MDFPeriod%%
 \]
 Die Ableitung der Funktion $g(x) = x^3 + \ln(x)$ f"ur $x > 0$ ist
 \[
-g'(x) = 3 x^2 + \frac{1}{x} = \frac{3 x^3 + 1}{x} .%%
+g'(x) = 3 x^2 + \frac{1}{x} = \frac{3 x^3 + 1}{x} \MDFPeriod%%
 \]
 %Mit $\ln(x^3) = 3 \ln(x)$ ergibt sich die Ableitung von 
 %$g(x) = \ln(x^3) = 3 \ln(x)$ f"ur $x > 0$ zu
@@ -738,7 +738,7 @@ $h(x) = 4^{-1} \cdot x^2 - \sqrt{x} %
  = \frac{1}{4} x^2 + (-1) \cdot x^{\frac{1}{2}}$ f"ur $x > 0$ ab, dann erhalten wir
 \[
 h'(x) = \frac{1}{2} x - \frac{1}{2} x^{-\frac{1}{2}} %
- = \frac{x^{\frac{3}{2}} - 1}{2 \sqrt{x}} .%%
+ = \frac{x^{\frac{3}{2}} - 1}{2 \sqrt{x}} \MDFPeriod%%
 \]
 \end{MExample}
 
@@ -750,19 +750,19 @@ h'(x) = \frac{1}{2} x - \frac{1}{2} x^{-\frac{1}{2}} %
 \begin{MXInfo}{Produkt- und Quotientenregel}
 Auch das Produkt von Funktionen, $f(x) := u(x) \cdot v(x)$, ist differenzierbar, und es gilt die \textbf{Produktregel}
 $$
-f'(x) = u'(x) \cdot v(x) +  u(x) \cdot v'(x) .%%
+f'(x) = u'(x) \cdot v(x) +  u(x) \cdot v'(x) \MDFPeriod%%
 $$
 
 Der Quotient von Funktionen, $f(x) := \frac{u(x)}{v(x)}$, ist f"ur alle $x$ mit $v(x) \neq 0$ definiert und differenzierbar, und es gilt die \textbf{Quotientenregel}
 \ifttm
 $$
-f'(x) = \frac{u'(x) \cdot v(x) - u(x) \cdot v'(x)}{\left(v'(x)\right)^2} .%%
+f'(x) = \frac{u'(x) \cdot v(x) - u(x) \cdot v'(x)}{\left(v'(x)\right)^2} \MDFPeriod%%
 $$
 \else
 $$
 f'(x) = %
 \frac{u'(x) \cdot v(x) \,\textcolor{red}{\mathbf{-}}\, u(x) \cdot v'(x)}%
-{\left(v'(x)\right)^2} .%%
+{\left(v'(x)\right)^2} \MDFPeriod%%
 $$
 \fi
 \end{MXInfo}
@@ -772,18 +772,18 @@ Veranschaulichen wir auch diese Rechenregeln anhand einiger Beispiele:
 \begin{MExample}
 Bestimmen wir die Ableitung von $f(x) = x^2 \cdot \MEU^x$. Wenden wir die Produktregel an, können wir $u(x) = x^2$ und $v(x) = \MEU^x$ ablesen und die Ableitungen dieser Funktionen bestimmen. Dann gilt $u'(x) = 2x$ und $v'(x) = \MEU^x$. Setzen wir diese Teilergebnisse mit der Produktregel zusammen, dann erhalten wir die Ableitung der Funktion $f$:
 \[
-f'(x) = 2 x \MEU^x + x^2 \MEU^x = (x^2 + 2x) \MEU^x .%%
+f'(x) = 2 x \MEU^x + x^2 \MEU^x = (x^2 + 2x) \MEU^x \MDFPeriod%%
 \]
 Untersuchen wir die Funktion $g(x) = \tan(x) = \frac{\sin(x)}{\cos(x)}$. Hier können wir durch Vergleich $u(x) = \sin(x)$ und $v(x) = \cos(x)$ ablesen. Mit $u'(x) = \cos(x)$ und $v'(x) = -\sin(x)$ können wir auch hier die Teilergebnisse mit der Quotientenregel zur Ableitung der Funktion $g$ zusammensetzen:
 \[
-g'(x) = \frac{\cos(x) \cdot \cos(x) - \sin(x) \cdot (-\sin(x))}{\cos^2(x)} .%
+g'(x) = \frac{\cos(x) \cdot \cos(x) - \sin(x) \cdot (-\sin(x))}{\cos^2(x)} \MDFPeriod%
 \]
 Mit dem in Modul \MNRef{VBKM05} (Abschnitt \MRef{Abschnitt:TrigonometrieAmDreieck}) abgeleiteten Zusammenhang
 $\sin^2(x) + \cos^2(x) = 1$ können wir dieses Ergebnis zu einem der folgenden Ausdrücke zusammenfassen:
 \[
 g'(x) = 1 + \left(\frac{\sin(x)}{\cos(x)}\right)^2 %
  = 1 + \tan^2(x) %
- = \frac{1}{\cos^2(x)} .%%
+ = \frac{1}{\cos^2(x)} \MDFPeriod%%
 \]
 \end{MExample}
 
@@ -798,14 +798,14 @@ um die Ableitung von $f(x)=\sin(x)\cdot x^3$ zu berechnen:
 \begin{MHint}{Lösung}
 Die vier Bausteine sind
 $$
-u(x) \;=\; \sin(x)\;\; , \;\;
-u'(x) \;=\; \cos(x)\;\; , \;\;
-v(x) \;=\; x^3\;\; , \;\;
+u(x) \;=\; \sin(x) \MDFPSpace , \MDFPaSpace
+u'(x) \;=\; \cos(x) \MDFPSpace , \MDFPaSpace
+v(x) \;=\; x^3 \MDFPSpace , \MDFPaSpace
 v'(x) \;=\; 3x^2
 $$
 und Zusammensetzen mit der Produktregel ergibt
 $$
-f'(x) \;=\; \cos(x)\cdot x^3+\sin(x)\cdot 3x^2\: .
+f'(x) \;=\; \cos(x)\cdot x^3+\sin(x)\cdot 3x^2 \MDFPeriod
 $$
 \end{MHint}
 \end{MExercise}
@@ -822,14 +822,14 @@ um die Ableitung von $f(x)=\frac{\ln(x)}{x^2}$ zu berechnen:
 \begin{MHint}{Lösung}
 Die vier Bausteine sind
 $$
-u(x) \;=\; \ln(x)\;\; , \;\;
-u'(x) \;=\; \frac1x\;\; , \;\;
-v(x) \;=\; x^2\;\; , \;\;
+u(x) \;=\; \ln(x) \MDFPSpace , \MDFPaSpace
+u'(x) \;=\; \frac1x \MDFPSpace , \MDFPaSpace
+v(x) \;=\; x^2 \MDFPSpace , \MDFPaSpace
 v'(x) \;=\; 2x
 $$
 und Zusammensetzen mit der Quotientenregel ergibt
 $$
-f'(x) \;=\; \frac{\frac1x\cdot x^2-\ln(x)\cdot 2x}{x^4} \; =\; \frac{1-2\ln(x)}{x^3} \;,
+f'(x) \;=\; \frac{\frac1x\cdot x^2-\ln(x)\cdot 2x}{x^4} \; =\; \frac{1-2\ln(x)}{x^3} \MDFPSpace,
 $$
 wobei der letzte Umformungsschritt (Kürzen um $x$) nur der Vereinfachung dient.
 \end{MHint}
@@ -844,7 +844,7 @@ Zum Abschluss wollen wir die Verkettung (Modul \MRef{VBKM06}, Abschnitt \MRef{Ve
 \begin{MXInfo}{Kettenregel}
 Die Ableitung der Funktion $f(x) := (v \circ u)(x) = v(u(x))$ kann mit der \textbf{Kettenregel} bestimmt werden:
 $$
-f'(x) = v'(u) \cdot u'(x) %%
+f'(x) = v'(u) \cdot u'(x) \MDFPeriod%%
 $$
 Hierbei ist $v'(u)$ als Ableitung der Funktion $v$ nach $u$ zu verstehen. Bei diesem Teil der Ableitung wird die Abhängigkeit der Funktion $u$ von der Variable $x$ nicht berücksichtigt. Es gilt der Merksatz: Innere Ableitung $\times$ äußere Ableitung.
 \end{MXInfo}
@@ -856,12 +856,12 @@ Bestimmen wir die Ableitung der Funktion $f(x) = (3 - 2 x)^5$. Im Vergleich mit 
 
 Um die Ableitung von $f$ zu bestimmen, leiten wir zunächst $u$ nach $x$ ab und erhalten $u'(x) = -2$ als innere Ableitung. Für die äußere Ableitung leiten wir $v$ nach $u$ ab und finden $v'(u) = 5 u^4$. Setzen wir diese Zwischenergebnisse in die Kettenregel ein, so bekommen wir die Ableitung $f'$ der Funktion $f$:
 \[
-f'(x) = 5 u^4 \cdot (-2) = 5 (3 - 2 x)^4 \cdot (-2) = -10 (3 - 2 x)^4 %%
+f'(x) = 5 u^4 \cdot (-2) = 5 (3 - 2 x)^4 \cdot (-2) = -10 (3 - 2 x)^4 \MDFPeriod %%
 \]
 
 Sehen wir uns ein zweites Beispiel an und bestimmen die Ableitung von $g(x) = \MEU^{x^3}$ und verwenden die Zuordnung $u(x) = x^3$ für die innere Funktion und $v(u) = \MEU^u$ für die äußere Funktion. Bestimmen wir die innere und äußere Ableitung, dann erhalten wir $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$. Setzen wir beides in die Kettenregel ein, dann finden wir die Ableitung der Funktion $g$:
 \[
-g'(x) = \MEU^{u} \cdot 3 x^2 = \MEU^{x^3} \cdot 3 x^2 = 3 x^2 \MEU^{x^3} %%
+g'(x) = \MEU^{u} \cdot 3 x^2 = \MEU^{x^3} \cdot 3 x^2 = 3 x^2 \MEU^{x^3} \MDFPeriod %%
 \]
 \end{MExample}
 
@@ -1319,7 +1319,7 @@ wenn $f^{(2)}(x) \leq 0$ gilt.
 \MSubsubsection{Ausführliches Beispiel}
 Wir untersuchen die Funktion
 $$
-f(x) \;=\; \frac{4x}{x^2+2}\: .
+f(x) \;=\; \frac{4x}{x^2+2} \MDFPeriod
 $$
 
 \textbf{Definitionsbereich}\\
@@ -1343,7 +1343,7 @@ $f(x)\rightarrow 0$ für $x\rightarrow\infty$ sowie für $x\rightarrow -\infty$.
 \textbf{Ableitungen}\\
 Die ersten beiden Ableitungen der Funktion erhalten wir mit der Quotientenregel:
 $$
-f'(x) \;=\; 4\cdot\frac{1\cdot (x^2+2)-x\cdot 2x}{(x^2+2)^2} \;=\; 4\cdot \frac{-x^2+2}{(x^2+2)^2}\: .
+f'(x) \;=\; 4\cdot\frac{1\cdot (x^2+2)-x\cdot 2x}{(x^2+2)^2} \;=\; 4\cdot \frac{-x^2+2}{(x^2+2)^2} \MDFPeriod
 $$
 Erneutes Ableiten und Vereinfachen ergibt
 \begin{eqnarray*}
@@ -1352,14 +1352,14 @@ Erneutes Ableiten und Vereinfachen ergibt
 & = & 4 \cdot \frac{-2x (x^2 + 2) - (-x^2 + 2) \cdot 4 x}{(x^2 + 2)^3} \\
 & = & 4 \cdot \frac{-2x^3 - 4x + 4x^3 - 8 x}{(x^2 + 2)^3} \\
 & = & 4 \cdot \frac{2x^3 - 12x}{(x^2 + 2)^3} \\
-& = & 8 \cdot \frac{x (x^2 - 6)}{(x^2 + 2)^3}\: .
+& = & 8 \cdot \frac{x (x^2 - 6)}{(x^2 + 2)^3} \MDFPeriod
 \end{eqnarray*}
 \ \\
 \textbf{Extremwerte}\\
 Die notwendige Bedingung für eine Extremstelle, $f'(x)=0$, ist hier gleichbedeutend mit $-x^2+2=0$. Wir erhalten also $x_1=\sqrt2$ und $x_2=-\sqrt2$. Untersuchen wir an diesen Stellen auch das Verhalten der zweiten Ableitung:
 $$
-{f'}'(x_1) \;=\; 8\frac{\sqrt2\cdot(2-6)}{(2+2)^3}<0\;\; , \;\;
-{f'}'(x_2) \;=\; 8\frac{-\sqrt2\cdot(2-6)}{(2+2)^3}>0\;\; .
+{f'}'(x_1) \;=\; 8\frac{\sqrt2\cdot(2-6)}{(2+2)^3}<0 \MDFPSpace , \MDFPaSpace
+{f'}'(x_2) \;=\; 8\frac{-\sqrt2\cdot(2-6)}{(2+2)^3}>0 \MDFPeriod
 $$
 Folglich ist $x_1$ eine Maximalstelle und $x_2$ eine Minimalstelle von $f$. Durch Einsetzen in $f$ erhalten wir den Hochpunkt $(\sqrt2,\sqrt2)$ und den Tiefpunkt $(-\sqrt2,-\sqrt2)$ von $f$.
 \ \\ \ \\
@@ -1427,7 +1427,7 @@ Die Funktion $f$ ist weder gerade noch ungerade und damit der Graph von $f$ wede
 Da die Funktion für alle reellen Zahlen definiert ist, müssen nur die Asymptoten bei $\pm \infty$ untersucht werden:
 $$
 \lim_{x \rightarrow \infty} - x (x - 2) \MEU^x \; =\; - \infty \;\text{und}\;
-\lim_{x \rightarrow -\infty} - x (x - 2) \MEU^x \;=\;  0 \: .
+\lim_{x \rightarrow -\infty} - x (x - 2) \MEU^x \;=\;  0 \MDFPeriod
 $$
 Somit ist $y = 0$ f"ur $x \rightarrow -\infty$ eine Asymptote.
 \ \\ \ \\
@@ -1435,9 +1435,9 @@ Somit ist $y = 0$ f"ur $x \rightarrow -\infty$ eine Asymptote.
 Die ersten beiden Ableitungen von $f(x)$ sind
 \begin{eqnarray*}
 f'(x) & = & (2 - 2 x) \MEU^x + (2 x - x^2) \MEU^x %
- = (2 - x^2) \MEU^x = - (x^2 - 2) \MEU^x \: ,\\
+ = (2 - x^2) \MEU^x = - (x^2 - 2) \MEU^x \MDFPSpace ,\\
 {f'}'(x) & = & - 2 x \MEU^x + (2 - x^2) \MEU^x %
- = - (x^2 + 2 x - 2) \MEU^x \: .
+ = - (x^2 + 2 x - 2) \MEU^x \MDFPeriod
 \end{eqnarray*}
 \ \\
 \textbf{Monotonieverhalten und Extremwerte}\\
@@ -1506,26 +1506,26 @@ Optimierungsaufgabe genannt.
 Sehen wir uns das Beispiel aus der Einführung dieses Abschnitts etwas genauer an und minimieren die Oberfläche einer zylinderförmigen Dose bei einem vorgegebenen Volumen (Grundfläche mal Höhe)
 %
 \begin{eqnarray*}
-V = \pi r^2 h = 1,
+V = \pi r^2 h = 1 \MDFPSpace,
 \end{eqnarray*}
 %
 wobei $r$ der Radius der Grundfläche und $h$ die Höhe der Dose sind. Die Oberfläche wird zusammengesetzt aus zweimal dem Deckel (je $\pi r^2$) und der Mantelfläche ($\pi r h$) und wir erhalten $O = 2 \pi r^2 + 2 \pi r h$. Die Oberfläche der Dose ist eine Funktion von Radius $r$ und Höhe $h$. Im Gegensatz dazu wird dem Volumen ein fester Wert zugeordnet (Nebenbedingung). Wir können also schreiben:
 %
 \begin{eqnarray*}
-O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h.
+O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h \MDFPeriod
 \end{eqnarray*}
 %
 Wegen der Nebenbedingung, dass $V = \pi r^2 h = 1$ sein soll, kann man dieses Problem in ursprünglich zwei Variablen ($r$ und $h$) auf ein Problem mit nur noch einer Variablen reduzieren. Formen wir das Volumen nach der Höhe der Dose um:
 %
 \begin{eqnarray*}
 \pi r^2 h &=& 1\\
-\Leftrightarrow\quad h &=& \frac{1}{\pi r^2} \;.
+\Leftrightarrow\quad h &=& \frac{1}{\pi r^2} \MDFPeriod
 \end{eqnarray*}
 %
 Setzen wir diese Formel in die Funktion $O(r,h)$ ein, reduziert $O$ sich auf eine Funktion in nur einer Variablen:
 %
 \begin{eqnarray*}
-O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h = 2 \pi r^2 + 2 \pi r \frac{1}{\pi r^2} = 2 \left(\pi r^2 + \frac{1}{r}\right) = O\left(r\right) \;.
+O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h = 2 \pi r^2 + 2 \pi r \frac{1}{\pi r^2} = 2 \left(\pi r^2 + \frac{1}{r}\right) = O\left(r\right) \MDFPeriod
 \end{eqnarray*}
 %
 Nach dieser Umformung können wir die Frage nach der minimalen Oberfläche der Dose ganz analog zu den Extremwerten von Funktionen bearbeiten. Bilden wir also die erste Ableitung der Funktion $O$ nach der Variablen $r$ und setzen diese gleich Null:
@@ -1535,13 +1535,13 @@ O'\left(r\right) = 2 \left(2\pi r - \frac{1}{r^2}\right) &=& 0\\
 \Leftrightarrow\quad 2\pi r &=& \frac{1}{r^2}\\
 \Leftrightarrow\quad 2\pi r^3 &=& 1\\
 \Leftrightarrow\quad r^3 &=& \frac{1}{2\pi}\\
-\Leftrightarrow\quad r &=& \sqrt[3]{\frac{1}{2\pi}} \;.
+\Leftrightarrow\quad r &=& \sqrt[3]{\frac{1}{2\pi}} \MDFPeriod
 \end{eqnarray*}
 %
 Setzen wir dieses Ergebnis in die zweite Ableitung von $O$ ein, um zu überprüfen, ob wir wirklich ein Minimum gefunden haben:
 %
 \begin{eqnarray*}
-{O'}'\left(\sqrt[3]{\frac{1}{2\pi}}\right) = 4\pi + \frac{4}{\left(\sqrt[3]{\frac{1}{2\pi}}\right)^3} = 12\pi > 0 \;.
+{O'}'\left(\sqrt[3]{\frac{1}{2\pi}}\right) = 4\pi + \frac{4}{\left(\sqrt[3]{\frac{1}{2\pi}}\right)^3} = 12\pi > 0 \MDFPeriod
 \end{eqnarray*}
 %
 Für den Radius $r = \sqrt[3]{\frac{1}{2\pi}}$ wird die Oberfläche der zylindrischen Dose mit dem gegebenen Volumen $V = 1$ minimal. Die Höhe erhalten wir in diesem Fall zu $h = \frac{1}{\pi \left(\sqrt[3]{\frac{1}{2\pi}}\right)^2} = \sqrt[3]{\frac{4}{\pi}}$. Stellen wir eine Dose mit dieser Bemaßung her, werden wir für ein vorgegebenes Volumen auch den Materialverbrauch minimieren.
@@ -1554,10 +1554,10 @@ Für den Radius $r = \sqrt[3]{\frac{1}{2\pi}}$ wird die Oberfläche der zylindrisc
 \MLabel{M07_Abschlusstest}
 \MDeclareSiteUXID{VBKM07_Abschlusstest}
 \begin{MExercise}
-In einem Beh"ahlter wird um $9$ Uhr eine Temperatur von $-10^{\circ}{\mathrm{C}}$ 
-gemessen. Um $15$ Uhr betr"agt die Temperatur $-58^{\circ}{\mathrm{C}}$.
+In einem Beh"ahlter wird um $9$ Uhr eine Temperatur von $-10^{\circ}{\MEinheit[]{C}}$ 
+gemessen. Um $15$ Uhr betr"agt die Temperatur $-58^{\circ}{\MEinheit[]{C}}$.
 Nach weiteren vierzehn Stunden ist die Temperatur auf 
-$-140^{\circ}{\mathrm{C}}$ gefallen. 
+$-140^{\circ}{\MEinheit[]{C}}$ gefallen. 
 \begin{MExerciseItems}
 \item Wie gro"s ist die mittlere "Anderungsrate der Temperatur aufgrund der 
 ersten und zweiten Messung?
@@ -1657,7 +1657,7 @@ beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notat
 %TODO Eingabe und Loesung fehlt
 \begin{MExercise} %Anwendungen
 Berechnen Sie alle lokalen und globalen Extremstellen und Wendestellen der 
-Funktion $f: \R \rightarrow \R$ mit $f(x) := (x^2 - 3 x) \cdot e^{2 x}$ f"ur 
+Funktion $f: \R \rightarrow \R$ mit $f(x) := (x^2 - 3 x) \cdot \MEU^{2 x}$ f"ur 
 $x \in \R$.
 \end{MExercise}
 

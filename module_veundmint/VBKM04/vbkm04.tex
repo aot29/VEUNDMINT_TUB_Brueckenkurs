@@ -86,9 +86,9 @@ Bei welchen der folgenden Gleichungssysteme handelt es sich um Lineare Gleichung
 
 \begin{MQuestionGroup}
 \begin{tabular}[t]{ll}
-\MCheckbox{1}{M04C10} & $x + y - 3 z = 0$ und $2 x - 3 = y$ und $\MZahl{1}{5} x - z = 22 + y$ \\
-\MCheckbox{0}{M04C11} & $\sin(x) + \cos(y) = 1$ und $x - y = 0$ \\
-\MCheckbox{0}{M04C12} & $2 z - 3 y + 4 x = 5$ und $z + y - x^2 = 25$
+\MCheckbox{1}{M04C10} & $x + y - 3 z = 0$ und $2 x - 3 = y$ und $\MZahl{1}{5} x - z = 22 + y$, \\
+\MCheckbox{0}{M04C11} & $\sin(x) + \cos(y) = 1$ und $x - y = 0$, \\
+\MCheckbox{0}{M04C12} & $2 z - 3 y + 4 x = 5$ und $z + y - x^2 = 25$.
 \end{tabular}
 \end{MQuestionGroup}
 \MGroupButton{Eingabe kontrollieren}
@@ -137,7 +137,8 @@ Unbekannten.
 Allgemein hat ein Lineares Gleichungssystem (LGS), bestehend aus zwei
 Gleichungen in den Unbekannten $x$ und $y$, folgende Gestalt:
 \begin{eqnarray*}
-a_{11} \cdot x + a_{12} \cdot y = b_{1} \\ a_{21} \cdot x + a_{22} \cdot y = b_2
+	a_{11} \cdot x + a_{12} \cdot y &=& b_{1} \MDFPSpace, \\ 
+	a_{21} \cdot x + a_{22} \cdot y &=& b_2 \MDFPeriod
 \end{eqnarray*}
 Dabei sind $a_{11}, a_{12}, a_{21}$ und $a_{22}$ die sogenannten Koeffizienten des
 Linearen Gleichungssystems,
@@ -151,7 +152,7 @@ Sind die rechten Seiten $b_1$ und $b_2$ beide gleich $0$ ($b_1 = 0 = b_2$), so s
 
 Aufgrund der Linearität kann jede der beiden Gleichungen des Systems in Infobox \MRef{M04_2x2_system} für sich als Gleichung
 einer Geraden in der $x$-$y$-Ebene interpretiert werden: Lösen wir z.B. die erste Gleichung nach $y$ auf,
-$$y = - \Mdfrac{a_{11}}{a_{12}} x + \Mdfrac{b_1}{a_{12}} \; \; \; ,$$
+$$y = - \Mdfrac{a_{11}}{a_{12}} x + \Mdfrac{b_1}{a_{12}} \MDFPSpace ,$$
 so können wir aus dieser expliziten Form direkt ablesen, dass eine Gerade mit der Steigung $m = - a_{11}/a_{12}$
 und dem $y$-Achsenabschnitt $y_0 = b_1/a_{12}$ beschrieben wird.
 
@@ -166,7 +167,7 @@ einen Widerspruch ergeben würde. Für $a_{11} = a_{12} = b_1 = 0$ ist aber die er
 Werte von $x$ und $y$) immer identisch erfüllt ($0 = 0$) und somit wertlos.
 
 Im Fall der zweiten Gleichung in Infobox \MRef{M04_2x2_system} gehen wir ganz entsprechend vor:
-$$y = - \Mdfrac{a_{21}}{a_{22}} x + \Mdfrac{b_2}{a_{22}} \; \; \; .$$
+$$y = - \Mdfrac{a_{21}}{a_{22}} x + \Mdfrac{b_2}{a_{22}} \MDFPeriod$$
 Insgesamt erhalten wir zwei Geraden als Repräsentanten der beiden linearen Gleichungen und die Frage nach Lösbarkeit und Lösung
 des Linearen Gleichungssystems, also die \textbf{Frage nach der
 gleichzeitigen Gültigkeit beider Gleichungen}, liest sich als \textbf{Frage nach Existenz und 
@@ -175,7 +176,7 @@ Lage des Schnittpunkts der beiden Geraden}. Schauen wir uns dazu ein konkretes B
 \begin{MExample}
 Das Lineare Gleichungssystem aus dem einführenden Beispiel \MRef{M04_einfuehrendes_Bsp} lautet:
 $$\left. \begin{array}{rcl} x + y & = & 10 \\[.5ex] x + 2 y & = & 13 \end{array} \right\} \Leftrightarrow
-\left\{ \begin{array}{rcl} y & = & - x + 10 \\[.5ex] y & = & - \Mtfrac12 x + \Mtfrac{13}{2} \end{array} \right. \quad .$$
+\left\{ \begin{array}{rcl} y & = & - x + 10 \\[.5ex] y & = & - \Mtfrac12 x + \Mtfrac{13}{2} \end{array} \right. \MDFPeriod$$
 (Hier nehmen die allgemeinen Koeffizienten und rechten Seiten des Systems \MRef{M04_2x2_system} somit die
 Werte $a_{11} = 1, a_{12} = 1, a_{21} = 1, a_{22} = 2, b_1 = 10$ und $b_2 = 13$ an.)\\
 Es werden zwei Geraden mit den Steigungen $m_{1} = - 1$ bzw. $m_{2} = - \Mtfrac12$ und den $y$-Achsenabschnitten
@@ -184,7 +185,7 @@ $y_{0,1} = 10$ bzw. $y_{0,2} = \Mtfrac{13}{2}$ beschrieben:
 \MUGraphicsSolo{eindeutige_lsg.png}{scale=1}{width:450px}
 \end{center}
 Wir erkennen aus dem Schaubild, dass sich die beiden Geraden in der Tat schneiden und lesen
-die Koordinaten des Schnittpunktes zu $(x = 7, y = 3)$ ab. Dementsprechend besitzt
+die Koordinaten des Schnittpunktes zu $(x = 7; y = 3)$ ab. Dementsprechend besitzt
 das hier betrachtete Lineare Gleichungssystem eine eindeutige Lösung; die
 Lösungsmenge $\ML$ enthält genau ein Zahlenpaar, ${\ML} = \{ (x = 7; y = 3) \}$.
 \end{MExample}
@@ -213,23 +214,23 @@ In beiden Fällen wählen wir als \textbf{Grundmenge} die Menge der reellen Zahlen
 \begin{tabular}{l|l}
 \begin{minipage}{7.5cm}
 $$\left. \begin{array}{rcl} x + y & = & 2 \\[.5ex] 2 x + 2 y & = & 1 \end{array} \right\} \Leftrightarrow
-\left\{ \begin{array}{rcl} y & = & - x + 2 \\[.5ex] y & = & - x + \Mtfrac12 \end{array} \right. $$
+\left\{ \begin{array}{rcl} y & = & - x + 2 \\[.5ex] y & = & - x + \Mtfrac12 \end{array} \right. \MDFPeriod $$
 \end{minipage} &
 \begin{minipage}{7.5cm}
 $$\left. \begin{array}{rcl} x + y & = & 2 \\[.5ex] 2 x + 2 y & = & 4 \end{array} \right\} \Leftrightarrow
-\left\{ \begin{array}{rcl} y & = & - x + 2 \\[.5ex] y & = & - x + 2 \end{array} \right. $$
+\left\{ \begin{array}{rcl} y & = & - x + 2 \\[.5ex] y & = & - x + 2 \end{array} \right. \MDFPeriod $$
 \end{minipage} \\[1cm]
 \MUGraphicsSolo{keine_lsg.png}{scale=1}{width:350px} & \MUGraphicsSolo{unendl_lsg.png}{scale=1}{width:350px} \\[.5cm]
 \begin{minipage}[t]{7.5cm}
 Die beiden Geraden besitzen dieselbe Steigung $m = - 1$, aber verschiedene $y$-Achsenabschnitte ($y_0 = 2$
 bzw. $y_0 = 1/2$); sie verlaufen parallel; das Lineare Gleichungssystem besitzt \textbf{keine}
-Lösung: $${\ML} = \MEmptyset$$
+Lösung: $${\ML} = \MEmptyset\MDFPeriod $$
 \end{minipage} &
 \begin{minipage}[t]{7.5cm}
 Die beiden Geraden besitzen sowohl dieselbe Steigung $m = - 1$ als auch denselben
 $y$-Achsenabschnitt $y_0 = 2$; sie sind deckungsgleich; das Lineare Gleichungssystem besitzt
 unendlich viele Lösungen, die z.B. wie folgt angegeben werden können:
-$${\ML} = \{ (t; - t + 2)\: :\:  t \in \R \}$$
+$${\ML} = \{ (t; - t + 2) \MCondSetSep  t \in \R \}\MDFPeriod $$
 \end{minipage}
 \end{tabular}
 \end{center}
@@ -251,12 +252,12 @@ Bezeichnen wir die Augenzahl des ersten Würfelwurfs mit $x$, diejenige des zweit
 Aussagen des Standbesitzers sehr schnell in Gleichungen übersetzen:
 $$\left. \begin{array}{rcl} 6 y - 2 x & = & 3 \\[.5ex] 4 x + 6 & = & 12 y \end{array} \right\} \Leftrightarrow
 \left\{ \begin{array}{rcl} y & = & \Mtfrac13 x + \Mtfrac12 \\[.5ex]
-y & = & \Mtfrac13 x + \Mtfrac12 \end{array} \right. $$
+y & = & \Mtfrac13 x + \Mtfrac12 \end{array} \right. \MDFPeriod $$
 Wir stellen fest, dass das entstehende Lineare Gleichungssystem - anschaulich interpretiert - auf zwei
 deckungsgleiche Geraden führt. Vordergründig scheint es daher unendlich viele Lösungen zu geben.
 
 Hier kommt jetzt allerdings die Grundmenge ins Spiel: Da sowohl $x$ als auch $y$ Augenzahlen
-eines Würfels repräsentieren, können beide Unbekannte jeweils nur einen Wert aus der Menge $\{ 1; 2; 3; 4; 5; 6 \}$
+eines Würfels repräsentieren, können beide Unbekannte jeweils nur einen Wert aus der Menge $\{ 1\MElSetSep 2\MElSetSep 3\MElSetSep 4\MElSetSep 5\MElSetSep 6 \}$
 annehmen. Betrachtet man die Gerade $y = \Mtfrac13 x + \Mtfrac12$ in der $x$-$y$-Ebene,
 \begin{center}
 \MUGraphicsSolo{betrueger.png}{scale=1}{width:450px}
@@ -283,18 +284,18 @@ laufen die einzelnen Kredite?
 Wir bezeichnen die gesuchten Kredithöhen der beiden Verträge mit $x$ und $y$. Die
 Summe dieser beiden Beträge beläuft sich laut Aufgabentext auf $50000$ Euro, also lautet unsere erste Gleichung:
 \begin{eqnarray*}
-\mbox{Gleichung } (1) & : & x + y = 50000 \; \; \; \mbox{(in Euro )}
+\mbox{Gleichung } (1) & : & x + y = 50000 \; \; \; \mbox{(in Euro )}\MDFPeriod 
 \end{eqnarray*}
 Die Zinslast aus dem mit $5\%$ verzinsten Vertrag beträgt $\MZahl{0}{05} \cdot x$, die aus dem anderen Vertrag  mit $8\%$ Zinsen
 $\MZahl{0}{08} \cdot y$. Beide Lasten summieren sich gemäß Aufgabetext auf $3700$ Euro; dies liefert uns eine zweite Gleichung:
 \begin{eqnarray*}
-\mbox{Gleichung } (2) & : & \MZahl{0}{05} x + \MZahl{0}{08} y = 3700 \; \; \; \mbox{(in Euro )}
+\mbox{Gleichung } (2) & : & \MZahl{0}{05} x + \MZahl{0}{08} y = 3700 \; \; \; \mbox{(in Euro )}\MDFPeriod 
 \end{eqnarray*}
 Wiederum landen wir bei einem Linearen Gleichungssystem vom Typ \MRef{M04_2x2_system}.
 
 Für die rechnerische Lösung stellen wir Gleichung~$(1)$ nach $y$ frei; es entsteht eine zu $(1)$ äquivalente Gleichung~$(1')$:
 \begin{eqnarray*}
-\mbox{Gleichung } (1') & : & y = 50000 - x
+\mbox{Gleichung } (1') & : & y = 50000 - x\MDFPeriod 
 \end{eqnarray*}
 Diesen Ausdruck für $y$ können wir nun in Gleichung~$(2)$ für $y$ \textbf{einsetzen}, sodass die resultierende Gleichung nur noch
 $x$ als Unbekannte enthält und dementsprechend aufgelöst werden kann:
@@ -302,12 +303,12 @@ $x$ als Unbekannte enthält und dementsprechend aufgelöst werden kann:
 & & \MZahl{0}{05} x + \MZahl{0}{08} (50000 - x) = 3700 \\
 \Leftrightarrow & & \MZahl{0}{05} x + 4000 - \MZahl{0}{08} x = 3700 \\
 \Leftrightarrow & & \MZahl{0}{03} x = 300 \\
-\Leftrightarrow & & x = 10000
+\Leftrightarrow & & x = 10000\MDFPeriod 
 \end{eqnarray*}
 Setzt man dieses Ergebnis für $x$ in Gleichung~$(1')$ ein, so folgt:
 \begin{eqnarray*}
 & & y = 50000 - 10000 \\
-\Leftrightarrow & & y = 40000
+\Leftrightarrow & & y = 40000\MDFPeriod 
 \end{eqnarray*}
 Die gesuchten Kreditvolumina betragen daher $10000$ Euro (Vertrag mit $5\%$ Verzinsung) und $40000$ Euro
 (Vertrag mit $8\%$ Verzinsung).
@@ -346,25 +347,25 @@ Als Grundmenge bei beiden Linearen Gleichungssystemen legen wir wiederum $\R$ fe
 \begin{tabular}{c|c}
 \begin{minipage}[t]{7.5cm}
 $$\begin{array}{rcrcl} \mbox{Gleichung } (1): & & x + y & = & 2 \\[.5ex]
-\mbox{Gleichung } (2): & & 2 x + 2 y & = & 1 \end{array}$$
+\mbox{Gleichung } (2): & & 2 x + 2 y & = & 1 \end{array}\MDFPeriod $$
 Freistellen der Gleichung $(1)$ nach $x$ liefert $x = 2 - y$.
 Dies in Gleichung $(2)$ eingesetzt ergibt:
 \begin{eqnarray*}
 & & 2 (2 - y) + 2y = 1 \\
 & \Leftrightarrow & 4 - 2y + 2y = 1 \\
-& \Leftrightarrow & 4 = 1
+& \Leftrightarrow & 4 = 1\MDFPeriod 
 \end{eqnarray*}
 Dies ist ein Widerspruch; das LGS besitzt \textbf{keine} Lösung.
 \end{minipage} &
 \begin{minipage}[t]{7.5cm}
 $$\begin{array}{rcrcl} \mbox{Gleichung } (1): & & x + y & = & 2 \\[.5ex]
-\mbox{Gleichung } (2): & & 2 x + 2 y & = & 4 \end{array}$$
+\mbox{Gleichung } (2): & & 2 x + 2 y & = & 4 \end{array}\MDFPeriod $$
 Freistellen der Gleichung $(1)$ nach $y$ liefert $y = 2 - x$.
 Dies in Gleichung $(2)$ eingesetzt ergibt:
 \begin{eqnarray*}
 & & 2x + 2 (2 - x) = 4 \\
 & \Leftrightarrow & 2x + 4 - 2x = 4 \\
-& \Leftrightarrow & 4 = 4
+& \Leftrightarrow & 4 = 4\MDFPeriod 
 \end{eqnarray*}
 Dies ist immer wahr; das LGS besitzt \textbf{unendlich viele} Lösungen.
 \end{minipage}
@@ -387,34 +388,34 @@ Zur Demonstration lösen wir nochmals das Eingangsbeispiel, jetzt mit Hilfe der G
 \begin{MExample}
 Das Lineare Gleichungssystem unseres einführenden Beispiels lautet:
 \begin{eqnarray*}
-x + y & = & 10 \\ x + 2 y & = & 13
+x + y & = & 10 \MDFPSpace, \\ x + 2 y & = & 13\MDFPeriod 
 \end{eqnarray*}
 Wir lösen beide Gleichungen nach $x$ auf,
 \begin{eqnarray*}
-x & = & 10 - y \\ x & = & 13 - 2y \; \; \; ,
+x & = & 10 - y\MDFPSpace,  \\ x & = & 13 - 2y \MDFPSpace,
 \end{eqnarray*}
 und setzen die rechten Seiten der beiden Gleichungen gleich,
-$$10 - y = 13 - 2y \; \; \; ,$$
+$$10 - y = 13 - 2y \MDFPSpace,$$
 was auf $y = 3$ führt. Dieses Ergebnis können wir in eine der beiden nach $x$ aufgelösten Gleichungen einsetzen,
 um $x = 7$ zu erhalten.
 \end{MExample}
 \begin{MExercise}
 Bestimmen Sie die Lösungsmenge für das Lineare Gleichungssystem
 \begin{eqnarray*}
-7 x + 2 y &= & 14 \\ 3 x - 5 y & = & 6
+7 x + 2 y &= & 14 \MDFPSpace, \\ 3 x - 5 y & = & 6
 \end{eqnarray*}
 mit Hilfe der Gleichsetzmethode.
 \ \\
 \begin{MHint}{Lösung}
 Wir lösen beispielsweise beide Gleichungen nach $x$ auf: dazu multiplizieren wir die erste Gleichung mit
 $(1/7)$ und stellen nach $x$ frei,
-$$x = \Mtfrac{14}{7} - \Mtfrac27 y \Leftrightarrow x = 2 - \Mtfrac27 y \; : \mbox{ Gleichung } (1') \; \; \; ;$$
+$$x = \Mtfrac{14}{7} - \Mtfrac27 y \Leftrightarrow x = 2 - \Mtfrac27 y \; : \mbox{ Gleichung } (1') \MDFPSpace ;$$
 die zweite Gleichung multiplizieren wir dagegen mit $\Mtfrac13$, bevor wir nach $x$ freistellen,
-$$x = \Mtfrac63 + \Mtfrac53 y \Leftrightarrow x = 2 + \Mtfrac53 y \; : \mbox{ Gleichung } (2') \; \; \; .$$
+$$x = \Mtfrac63 + \Mtfrac53 y \Leftrightarrow x = 2 + \Mtfrac53 y \; : \mbox{ Gleichung } (2') \MDFPeriod $$
 Gleichsetzen der beiden rechten Seiten der Gleichungen~$(1')$ und $(2')$ liefert:
-$$2 - \Mtfrac27 y = 2 + \Mtfrac53 y \Leftrightarrow 0 = (\Mtfrac27 + \Mtfrac53) y \Leftrightarrow y = 0 \; \; \; .$$
+$$2 - \Mtfrac27 y = 2 + \Mtfrac53 y \Leftrightarrow 0 = (\Mtfrac27 + \Mtfrac53) y \Leftrightarrow y = 0 \MDFPeriod $$
 Mit diesem Ergebnis für $y$ ergibt z.B. die erste Gleichung:
-$$7 x + 2 \cdot 0 = 14 \Leftrightarrow 7 x = 14 \Leftrightarrow x = 2 \; \; \; .$$
+$$7 x + 2 \cdot 0 = 14 \Leftrightarrow 7 x = 14 \Leftrightarrow x = 2 \MDFPeriod $$
 Also ist das gegebene Lineare Gleichungssystem eindeutig lösbar und ${\ML} = \{ (x = 2; y = 0) \}$.
 
 Alternativ hätten wir die beiden Gleichungen vor dem Gleichsetzen auch nach $y$ auflösen können (oder nach einem
@@ -432,35 +433,36 @@ vielen Unbekannten entwickeln wird, da es sich sehr gut systematisieren lässt. H
 Vorgehensweise gehen. Beginnen wir mit einem Beispiel:
 \begin{MExample}
 Wir suchen die Lösungsmenge des Linearen Gleichungssystems
-$$\begin{array}{rcrcl} \mbox{Gleichung } (1): & & 2 x + y & = & 9 \\
-\mbox{Gleichung } (2): & & 3 x - 11 y & = & 1 \; \; \; , \end{array}$$
+$$\begin{array}{rcrcl} \mbox{Gleichung } (1): & & 2 x + y & = & 9 \MDFPSpace, \\
+\mbox{Gleichung } (2): & & 3 x - 11 y & = & 1 \MDFPSpace, \end{array}$$
 wobei wir als Grundmenge die Menge der reellen Zahlen $\R$ wählen.
 
 Diesmal wollen wir zur Lösung folgenden Weg einschlagen: Wie multiplizieren Gleichung~$(1)$ mit dem Faktor $11$ durch und
 erhalten eine zu Gleichung~$(1)$ äquivalente Gleichung:
 $$\begin{array}{crclcl} & (2 x + y) \cdot 11 & = & 9 \cdot 11 & & \\
-\Leftrightarrow & 22 x + 11 y & = & 99 & & : \mbox{ Gleichung } (1') \end{array}$$
+\Leftrightarrow & 22 x + 11 y & = & 99 & & : \mbox{ Gleichung } (1') 
+\MDFPeriod \end{array}$$
 Anschließend \textbf{addieren} wir die neue Gleichung $(1')$ zu Gleichung $(2)$ hinzu, d.h. wir setzen die
 \textbf{Summe} der linken Seiten von $(1')$ und $(2)$ gleich der \textbf{Summe} der rechten Seiten
 von $(1')$ und $(2)$. Dabei fällt die Unbekannte~$y$
 heraus; dies ist übrigens der Grund für die Wahl des Faktors $11$ im vorherigen Schritt:
-$$3 x - 11 y + 22 x + 11 y = 1 + 99 \Leftrightarrow 25 x = 100 \Leftrightarrow x = 4$$
+$$3 x - 11 y + 22 x + 11 y = 1 + 99 \Leftrightarrow 25 x = 100 \Leftrightarrow x = 4 \MDFPeriod $$
 Um den Lösungswert für $y$ zu bekommen, können wir das gerade erzielte Resultat für $x$ z.B. in Gleichung~$(1)$
 einsetzen:
-$$2 \cdot 4 + y = 9 \Leftrightarrow 8 + y = 9 \Leftrightarrow y = 1$$
+$$2 \cdot 4 + y = 9 \Leftrightarrow 8 + y = 9 \Leftrightarrow y = 1 \MDFPeriod$$
 Das Lineare Gleichungssystem des vorliegenden Beispiels besitzt also eine eindeutige Lösung, ${\ML} =
 \{ (x = 4; y = 1) \}$.
 \end{MExample}
 Auch bei diesem Verfahren liegt das Vorgehen nicht eindeutig fest: So hätten wir z.B. auch Gleichung~$(1)$ mit $3$
 und Gleichung~$(2)$ mit $(- 2)$ durchmultiplizieren können,
 $$\begin{array}{rclcrclcl} (2x + y) \cdot 3 & = & 9 \cdot 3 & \Leftrightarrow & 6 x + 3 y & = & 27
-& & : \mbox{ Gleichung } ({1'}') \\ 
+& & : \mbox{ Gleichung } ({1'}') \MDFPSpace, \\ 
 (3 x - 11 y) \cdot (- 2) & = & 1 \cdot (- 2) & \Leftrightarrow & - 6 x + 22 y & = & - 2
-& & : \mbox{ Gleichung } ({2'}') \; \; \; , \end{array}$$
+& & : \mbox{ Gleichung } ({2'}') \MDFPSpace , \end{array}$$
 um bei der anschließenden \textbf{Addition} der Gleichungen~$({1'}')$ und $({2'}')$ die Variable $x$ zu eliminieren:
-$$6 x + 3 y - 6 x + 22 y = 27 - 2 \Leftrightarrow 25 y = 25 \Leftrightarrow y = 1$$
+$$6 x + 3 y - 6 x + 22 y = 27 - 2 \Leftrightarrow 25 y = 25 \Leftrightarrow y = 1 \MDFPeriod$$
 Das Ergebnis für $y$ hätten wir dann z.B. in Gleichung~$(2)$ einsetzen können, um $x$ zu bestimmen:
-$$3 x - 11 \cdot 1 = 1 \Leftrightarrow 3 x = 12 \Leftrightarrow x = 4$$
+$$3 x - 11 \cdot 1 = 1 \Leftrightarrow 3 x = 12 \Leftrightarrow x = 4 \MDFPeriod$$
 \begin{MInfo}
 Bei der Additionsmethode wird eine der linearen Gleichungen durch geschickte Multiplikation
 mit einem geeigneten Faktor so umgeformt, dass bei der anschließenden \textbf{Addition} der anderen Gleichung (zumindest)
@@ -477,8 +479,8 @@ unendlich vielen Elementen führen.
 \begin{MExercise}
 Lösen Sie die folgenden Linearen Gleichungssysteme mit Hilfe der Einsetzmethode:
 \begin{MExerciseItems}
-\item{$3 x + y = 4$ und $- x + 2 y = 1$}
-\item{$- x + 4 y = 5$ und $2 x - 8 y = - 10$}
+\item{$3 x + y = 4$ und $- x + 2 y = 1$,}
+\item{$- x + 4 y = 5$ und $2 x - 8 y = - 10$.}
 \end{MExerciseItems}
 
 \begin{MHint}{Lösung}
@@ -496,14 +498,14 @@ Es bestehen also einige Freiheiten in der Vorgehensweise.}
 ($2 x - 8 y = - 10$) einsetzen: $2 ( 4 y - 5) - 8 y = - 10 \Leftrightarrow 8 y - 10 - 8y = - 10 \Leftrightarrow 0 = 0$.
 Es entsteht also keine neue Aussage; mit anderen Worten: Die 2.~Gleichung enthält keine neue Information. Damit enthält
 die Lösungsmenge $\ML$ in diesem Fall unendlich viele Lösungspaare $(x; y)$, die sich durch eine reelle Zahl $t$
-parametrisieren lassen. Wählt man z.B. $y = t$, so lautet die Lösungsmenge ${\ML} = \{ (4 t - 5; t) \: :\:  t \in \R \}$.
+parametrisieren lassen. Wählt man z.B. $y = t$, so lautet die Lösungsmenge ${\ML} = \{ (4 t - 5; t)  \MCondSetSep  t \in \R \}$.
 Diese Lösungsmenge lässt sich als Gerade im zweidimensionalen Raum veranschaulichen:
 \begin{center}
 \MUGraphicsSolo{unendl_Lsgsm_Aufg_1b.png}{scale=1}{width:450px}
 \end{center}
 Dementsprechend sind andere Parametrisierungen der Lösungsmenge möglich, z.B. indem man als freien Parameter $x \in \R$
 wählt und die obige Gerade mit Hilfe ihrer Steigung und ihres $y$-Achsenabschnittes charakterisiert, also
-${\ML} = \{ (x; \Mtfrac14 x + \Mtfrac54 )\: : \: x \in \R \}$.}
+${\ML} = \{ (x; \Mtfrac14 x + \Mtfrac54 ) \MCondSetSep x \in \R \}$.}
 \end{MExerciseItems}
 \end{MHint}
 \end{MExercise}
@@ -511,8 +513,8 @@ ${\ML} = \{ (x; \Mtfrac14 x + \Mtfrac54 )\: : \: x \in \R \}$.}
 \begin{MExercise}
 Lösen Sie die folgenden Linearen Gleichungssysteme mit Hilfe der Additionsmethode:
 \begin{MExerciseItems}
-\item{$2 x + 4 y = 1$ und $x + 2 y = 3$}
-\item{$- 7 x + 11 y = 40$ und $2 x + 5 y = 13$}
+\item{$2 x + 4 y = 1$ und $x + 2 y = 3$,}
+\item{$- 7 x + 11 y = 40$ und $2 x + 5 y = 13$.}
 \end{MExerciseItems}
 
 \begin{MHint}{Lösung}
@@ -568,11 +570,11 @@ nehme, so bin ich fünfmal so reich wie ihr beiden Gauner!{\grqq} Wieviel Geld be
 Bezeichnen wir die Geldsummen (in Euro) des ersten, zweiten bzw. dritten Kindes vor dem Portemonnaiefund
 mit $x$, $y$ bzw. $z$, so können wir die Aussage des ersten Kindes wie folgt in eine mathematische Gleichung
 übersetzen:
-$$x + 30 = 2 (y + z) \Leftrightarrow x - 2 y - 2 z = - 30 \; : \mbox{ Gleichung } (1)$$
+$$x + 30 = 2 (y + z) \Leftrightarrow x - 2 y - 2 z = - 30 \; : \mbox{ Gleichung } (1) \MDFPeriod$$
 Analog wird die Aussage des zweiten Kindes übertragen,
-$$y + 30 = 3 (x + z) \Leftrightarrow - 3 x + y - 3 z = - 30 \; : \mbox{ Gleichung } (2) \; \; \; ,$$
+$$y + 30 = 3 (x + z) \Leftrightarrow - 3 x + y - 3 z = - 30 \; : \mbox{ Gleichung } (2) \MDFPSpace ,$$
 und schließlich diejenige des dritten Kindes:
-$$z + 30 = 5 (x + y) \Leftrightarrow - 5 x - 5 y + z = - 30 \; : \mbox{ Gleichung } (3)$$
+$$z + 30 = 5 (x + y) \Leftrightarrow - 5 x - 5 y + z = - 30 \; : \mbox{ Gleichung } (3) \MDFPeriod$$
 Es entsteht also ein System aus drei linearen Gleichungen in drei Unbekannten, die hier $x, y$ und $z$ heißen.
 \end{MExample}
 Wen die Lösung dieses kleinen Rätsels interessiert, der wird sie weiter unten sowohl im Rahmen der
@@ -583,9 +585,9 @@ Wen die Lösung dieses kleinen Rätsels interessiert, der wird sie weiter unten so
 Ein Lineares Gleichungssystem, bestehend aus drei Gleichungen in den drei
 Unbekannten $x, y$ und $z$, besitzt folgende allgemeine Gestalt:
 \begin{eqnarray*}
-a_{11} \cdot x + a_{12} \cdot y + a_{13} \cdot z & = & b_1 \\
-a_{21} \cdot x + a_{22} \cdot y + a_{23} \cdot z & = & b_2 \\
-a_{31} \cdot x + a_{32} \cdot y + a_{33} \cdot z & = & b_3
+a_{11} \cdot x + a_{12} \cdot y + a_{13} \cdot z & = & b_1 \MDFPSpace, \\
+a_{21} \cdot x + a_{22} \cdot y + a_{23} \cdot z & = & b_2 \MDFPSpace, \\
+a_{31} \cdot x + a_{32} \cdot y + a_{33} \cdot z & = & b_3 \MDFPeriod
 \end{eqnarray*}
 Dabei bezeichnen $a_{11}, a_{12}, a_{13}, a_{21}, a_{22}, a_{23}, a_{31}, a_{32}$ und $a_{33}$ die
 \textbf{Koeffizienten} sowie $b_1, b_2$ und $b_3$ die rechten Seiten des \textbf{Linearen Gleichungssystems}.
@@ -603,10 +605,10 @@ und Lage des Schnittpunkts zweier Geraden übersetzen. Und natürlich sollten wir 
 drei linearen Gleichungen in drei Unbekannten eine ähnlich bildhafte Interpretation gegeben werden kann.
 
 Erweitern wir den bisherigen Raum ($x$ und $y$) um eine weitere Dimension oder Variable, nämlich $z$, dann können wir mit einer linearen Gleichung dieser drei Variablen,
-$$a_{11} \cdot x + a_{12} \cdot y + a_{13} \cdot z = b_1 \;\;\; , $$
+$$a_{11} \cdot x + a_{12} \cdot y + a_{13} \cdot z = b_1 \MDFPSpace , $$
 eine \MEntry{Ebene}{Ebenengleichung} \textbf{in Koordinatenform} darstellen, ganz analog zu den Geradengleichungen, die wir bisher untersucht haben. Für $a_{13} \neq 0$ kann diese
 Gleichung nach $z$ aufgelöst werden,
-$$z = \Mtfrac{b_1}{a_{13}} - \Mtfrac{a_{11}}{a_{13}} \cdot x - \Mtfrac{a_{12}}{a_{13}} \cdot y \; \; \; ,$$
+$$z = \Mtfrac{b_1}{a_{13}} - \Mtfrac{a_{11}}{a_{13}} \cdot x - \Mtfrac{a_{12}}{a_{13}} \cdot y \MDFPSpace ,$$
 sodass die \textbf{explizite Form} der Gleichung ebenjener Ebene resultiert. Die letzte Gleichung besagt, dass jedem Paar
 $(x, y)$, also jedem Punkt der $x$-$y$-Koordinatenebene, gemäß der Vorschrift der rechten Seite ein Wert $z$, also
 gewissermaßen ein Höhe, zugeordnet wird; dadurch entsteht eine Fläche über der $x$-$y$-Ebene, die aufgrund der Linearität
@@ -619,31 +621,31 @@ anschaulichen Sprache - das \textbf{Schnittverhalten} dreier Ebenen. Betrachten 
 \begin{MExample}
 \MLabel{M04_3x3_bsp_gleichsetz}
 Wir suchen nach der Lösungsmenge des Linearen Gleichungssystems
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x + y - z & = & 0 \\
-\mbox{Gleichung } (2): & & x + y + z & = & 6 \\
-\mbox{Gleichung } (3): & & 2 x - y + z & = & 4 \; \; \; ; \end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x + y - z & = & 0 \MDFPSpace, \\
+\mbox{Gleichung } (2): & & x + y + z & = & 6 \MDFPSpace, \\
+\mbox{Gleichung } (3): & & 2 x - y + z & = & 4 \MDFPSpace ; \end{array}$$
 als Grundmenge wählen wir die Menge der reellen Zahlen $\R$.
 
 Jede der drei linearen Gleichungen lässt sich problemlos nach $z$ freistellen:
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1'): & & z & = & x + y\\
-\mbox{Gleichung } (2'): & & z & = & 6 - x - y\\
-\mbox{Gleichung } (3'): & & z & = & 4 - 2 x + y \end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1'): & & z & = & x + y \MDFPSpace,\\
+\mbox{Gleichung } (2'): & & z & = & 6 - x - y \MDFPSpace,\\
+\mbox{Gleichung } (3'): & & z & = & 4 - 2 x + y \MDFPeriod \end{array}$$
 \textbf{Setzen} wir jetzt die rechten Seiten der Gleichungen~$(1')$ und $(2')$ \textbf{gleich}, so bedeutet dies -
 anschaulich gesprochen -, dass wir die \MEntry{Schnittgerade}{Schnittgerade} der beiden durch diese Gleichungen
 beschriebenen Ebenen bestimmen:
-$$x + y = 6 - x - y \Leftrightarrow 2 x + 2 y = 6 \Leftrightarrow y = 3 - x \; : \mbox{ Gleichung } (A)$$
+$$x + y = 6 - x - y \Leftrightarrow 2 x + 2 y = 6 \Leftrightarrow y = 3 - x \; : \mbox{ Gleichung } (A) \MDFPeriod $$
 Die vollkommen analoge Aussage gilt, falls wir die rechten Seiten von Gleichung~$(2')$ und $(3')$ \textbf{gleichsetzen};
 wir erhalten dann die \textbf{Schnittgerade} der Ebenen~$(2)$ und $(3)$:
 $$6 - x - y = 4 - 2 x + y \Leftrightarrow x - 2 y = - 2 \Leftrightarrow y = 1 + \Mtfrac12 x \; :
-\mbox{ Gleichung } (B)$$
+\mbox{ Gleichung } (B) \MDFPeriod $$
 Da im Ausgangssystem alle drei Gleichungen simultan gelten sollen, müssen auch die zwei gerade hergeleiteten Geradengleichungen
 gleichzeitig erfüllt sein. Im bildlichen Kontext suchen wir daher den Schnittpunkt dieser beiden Geraden;
 diesen Schnittpunkt bekommen wir, indem wir die rechten Seiten der Gleichungen~$(A)$ und $(B)$ \textbf{gleichsetzen}:
-$$3 - x = 1 + \Mtfrac12 x \Leftrightarrow \Mtfrac32 x = 2 \Leftrightarrow x = \Mtfrac43$$
+$$3 - x = 1 + \Mtfrac12 x \Leftrightarrow \Mtfrac32 x = 2 \Leftrightarrow x = \Mtfrac43 \MDFPeriod $$
 Den Lösungswert für $y$ können wir durch Einsetzen des Ergebnisses für $x$ z.B. in Gleichung~$(A)$ berechnen:
-$$y = 3 - \Mtfrac43 \Leftrightarrow y = \Mtfrac53$$
+$$y = 3 - \Mtfrac43 \Leftrightarrow y = \Mtfrac53 \MDFPeriod $$
 Der Wert für $z$ schließlich resultiert, indem man die Werte für $x$ und $y$ z.B. in Gleichung~$(1')$ einsetzt:
-$$z = \Mtfrac43 + \Mtfrac53 \Leftrightarrow z = \Mtfrac93 \Leftrightarrow z = 3$$
+$$z = \Mtfrac43 + \Mtfrac53 \Leftrightarrow z = \Mtfrac93 \Leftrightarrow z = 3 \MDFPeriod $$
 Das gegebene Lineare Gleichungssystem ist also eindeutig lösbar; für die Lösungsmenge erhalten wir
 ${\ML} = \{ (x = \Mtfrac43; y = \Mtfrac53; z = 3) \}$.
 \end{MExample}
@@ -680,7 +682,7 @@ automatisch gewährleistet, da durch das Gleichsetzen der rechten Seite von Gleic
 Gleichung~$(2')$ (erste Schnittgerade / Gleichung~$(A)$) und durch das Gleichsetzen der rechten Seite von
 Gleichung~$(2')$ mit derjenigen von Gleichung~$(3')$ (zweite Schnittgerade / Gleichung~$(B)$) die Gültigkeit der
 Gleichung für die dritte Schnittgerade (rechte Seite von $(1')$ = rechte Seite von $(3')$),
-$$x + y = 4 - 2 x + y \Leftrightarrow 3 x = 4 \; : \mbox{ Gleichung } (C) \; \; \; ,$$
+$$x + y = 4 - 2 x + y \Leftrightarrow 3 x = 4 \; : \mbox{ Gleichung } (C) \MDFPSpace ,$$
 garantiert ist.
 
 Im Beispiel haben wir als rechnerisches Verfahren die \MSRef{M04_gleichsetzmethode}{Gleichsetzmethode} verwendet, da sie
@@ -698,7 +700,7 @@ aufgebaut ist und das anschließend mit den Methoden des Abschnitts \MRef{M04_2_U
 \begin{MExercise}
 Bestimmen Sie die Lösungsmenge des Linearen Gleichungssystems
 \begin{eqnarray*}
-- x + z & = & 2 \\ - x + y + 2 z & = & 1 \\ y + z & = & 11 \;\; .
+- x + z & = & 2 \MDFPSpace, \\ - x + y + 2 z & = & 1 \MDFPSpace, \\ y + z & = & 11 \MDFPeriod
 \end{eqnarray*}
 Verwenden Sie die Gleichsetzmethode und gehen Sie geschickt vor!
 
@@ -706,9 +708,9 @@ Verwenden Sie die Gleichsetzmethode und gehen Sie geschickt vor!
 Die erste Gleichung hängt von vornherein nicht von der Unbekannten $y$ ab; daher bietet es sich an, aus der
 zweiten und dritten Gleichung zunächst ebenfalls $y$ zu eliminieren. Wir lösen dazu die zweite und die dritte
 Gleichung jeweils nach $y$ auf,
-$$y = 1 + x - 2 z \; \mbox{ und } \; y = 11 - z \; \; \; ,$$
+$$y = 1 + x - 2 z \; \mbox{ und } \; y = 11 - z \MDFPSpace ,$$
 und setzen anschließend die rechten Seiten gleich:
-$$1 + x - 2 z = 11 - z \Leftrightarrow - x + z = - 10 \; \; \; .$$
+$$1 + x - 2 z = 11 - z \Leftrightarrow - x + z = - 10 \MDFPeriod $$
 Als Nächstes müssen wir diese letzte Gleichung und die erste Gleichung des ursprünglichen Systems
 weiterverarbeiten. Beim Betrachten dieser beiden Gleichungen fällt auf, dass die linken Seiten (die
 Kombination $- x + z$ der Unbekannten $x$ und $z$) identisch sind, wohingegen die rechten Seiten
@@ -728,26 +730,26 @@ Systems vom Typ \MRef{M04_3x3_system} ändert sich an der Vorgehensweise nichts P
 \MLabel{M04_einf_Bsp_2_rech}
 Wir greifen das einleitende Beispiel \MRef{M04_einfuehrendes_Bsp_2} dieses Abschnitts wieder auf; das Lineare
 Gleichungssystem im Falle des Rätsels um unsere drei in Versuchung geführten Kinder lautet:
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \\
-\mbox{Gleichung } (2): & & - 3 x + y - 3 z & = & - 30 \\
-\mbox{Gleichung } (3): & & - 5 x - 5 y + z & = & - 30 \end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung } (2): & & - 3 x + y - 3 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung } (3): & & - 5 x - 5 y + z & = & - 30 \MDFPeriod \end{array}$$
 Wir können mit der Lösung z.B. so beginnen, dass wir Gleichung~$(1)$ nach $x$ freistellen,
-$$x = 2 y + 2 z - 30 \; : \mbox{ Gleichung } (1') \; \; \; .$$
+$$x = 2 y + 2 z - 30 \; : \mbox{ Gleichung } (1') \MDFPeriod$$
 \textbf{Setzen} wir diese Gleichung in die Gleichungen~$(2)$ und $(3)$ ein, so wird aus den
 letztgenannten Gleichungen die Unbekannte $x$ eliminiert:
-$$- 3 (2 y + 2 z - 30) + y - 3 z = - 30 \Leftrightarrow - 5 y - 9 z = - 120 \; : \mbox{ Gleichung } (2')$$
-$$- 5 (2 y + 2 z - 30) - 5 y + z = - 30 \Leftrightarrow - 15 y - 9 z = - 180 \; : \mbox{ Gleichung } (3')$$
+$$- 3 (2 y + 2 z - 30) + y - 3 z = - 30 \Leftrightarrow - 5 y - 9 z = - 120 \; : \mbox{ Gleichung } (2') \MDFPSpace, $$
+$$- 5 (2 y + 2 z - 30) - 5 y + z = - 30 \Leftrightarrow - 15 y - 9 z = - 180 \; : \mbox{ Gleichung } (3') \MDFPeriod $$
 Wir erhalten also in diesem Zwischenschritt ein System aus \textbf{zwei} linearen Gleichungen in den \textbf{zwei}
 Unbekannten $y$ und $z$, das mit den Methoden des vorigen Abschnitts \MRef{M04_2_Unbekannte} weiterbehandelt wird.\\
 So können wir z.B. Gleichung~$(2')$ nach $y$ auflösen,
-$$y = 24 - \Mtfrac95 z \; \; \; ,$$
+$$y = 24 - \Mtfrac95 z \MDFPSpace ,$$
 und diesen Ausdruck in Gleichung~$(3')$ \text{einsetzen}:
 $$- 15 (24 - \Mtfrac95 z) - 9 z = - 180 \Leftrightarrow 360 - 27 z + 9 z = 180 \Leftrightarrow 18 z = 180
-\Leftrightarrow z = 10$$
+\Leftrightarrow z = 10 \MDFPeriod$$
 Damit ergibt sich $y$ zu
-$$y = 24 - \Mtfrac95 \cdot 10 = 24 - 9 \cdot 2 = 6 \; \; \; ,$$
+$$y = 24 - \Mtfrac95 \cdot 10 = 24 - 9 \cdot 2 = 6 $$
 und schließlich $x$ (mit Hilfe von beispielsweise Gleichung~$(1')$):
-$$x = 2 \cdot 6 + 2 \cdot 10 - 30 = 12 + 20 - 30 = 2$$
+$$x = 2 \cdot 6 + 2 \cdot 10 - 30 = 12 + 20 - 30 = 2 \MDFPeriod$$
 Das Lineare Gleichungssystem besitzt daher eine eindeutige Lösung; die Lösungsmenge $\ML$ enthält genau
 ein Element, ${\ML} = \{ (x = 2; y = 6; z = 10) \}$.
 \end{MExample}
@@ -796,22 +798,22 @@ des Beispiels der möglicherweise diebischen Kinder:
 \begin{MExample}
 \MLabel{M04_einf_Bsp_2_rech_2}
 Das uns zu einer erneuten Lösung auffordernde System linearer Gleichungen lautet also:
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \\
-\mbox{Gleichung } (2): & & - 3 x + y - 3 z & = & - 30 \\
-\mbox{Gleichung } (3): & & - 5 x - 5 y + z & = & - 30 \; \; .\end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung } (2): & & - 3 x + y - 3 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung } (3): & & - 5 x - 5 y + z & = & - 30 \MDFPeriod \end{array}$$
 Gleichung~$(1)$ werden wir im Folgenden unverändert beibehalten. Gleichung~$(2)$ jedoch wollen wir durch eine
 neue Gleichung ersetzen, die wir durch \textbf{Addition} von Gleichung~$(2)$ mit der mit dem Faktor $3$
 durchmultiplizierten Gleichung~$(1)$ - kurz notiert als $(2) + 3 \cdot (1)$ - gewinnen:
 $$(-3 x + y - 3 z) + 3 \cdot (x - 2 y - 2 z) = - 30 + 3 \cdot (- 30) \Leftrightarrow
-- 5 y - 9 z = - 120 \; : \mbox{ Gleichung } (2')\; .$$
+- 5 y - 9 z = - 120 \; : \mbox{ Gleichung } (2') \MDFPeriod $$
 Ähnlich gehen wir mit Gleichung~$(3)$ vor: Wir ersetzen sie durch $(3) + 5 \cdot (1)$, also durch die
 \textbf{Summe} aus Gleichung~$(3)$ und der mit dem Faktor $5$ durchmultiplizierten Gleichung~$(1)$:
 $$(- 5 x - 5 y + z) + 5 \cdot (x - 2 y - 2 z) = - 30 + 5 \cdot (- 30) \Leftrightarrow
--15 y - 9 z = - 180 \; : \mbox{ Gleichung } (3')\; .$$
+-15 y - 9 z = - 180 \; : \mbox{ Gleichung } (3') \MDFPeriod $$
 Unser System sieht jetzt folgendermaßen aus:
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \\
-\mbox{Gleichung } (2'): & & - 5 y - 9 z & = & - 120 \\
-\mbox{Gleichung } (3'): & & - 15 y - 9 z & = & - 180 \; \; .\end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung } (2'): & & - 5 y - 9 z & = & - 120 \MDFPSpace, \\
+\mbox{Gleichung } (3'): & & - 15 y - 9 z & = & - 180  \MDFPeriod \end{array}$$
 Aus den Gleichungen~$(2')$ und $(3')$ ist die Abhängigkeit von der Unbekannten $x$ verschwunden - das war das
 Ziel und der Grund für die Faktoren $3$ bzw. $5$ bei den obigen Summationen.
 
@@ -821,11 +823,11 @@ innerhalb der Additionsmethode arbeiten: Dazu nehmen wir in der Folge Gleichung~
 von Änderungen aus; Gleichung~$(3')$ soll aber nochmals ersetzt werden und zwar durch die Summe
 $(3') + (- 3) \cdot (2')$:
 $$(- 15 y - 9 z) + (- 3) \cdot (- 5 y - 9 z) = - 180 + (- 3) \cdot (- 120) \Leftrightarrow
-18 z = 180 \; : \mbox{ Gleichung } ({3'}') \; .$$
+18 z = 180 \; : \mbox{ Gleichung } ({3'}') \MDFPeriod $$
 Unser System hat ein weiteres Mal sein Aussehen gewandelt,
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \\
-\mbox{Gleichung } (2'): & & - 5 y - 9 z & = & - 120 \\
-\mbox{Gleichung } ({3'}'): & & 18 z & = &  180 \; \; \; , \end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung } (2'): & & - 5 y - 9 z & = & - 120 \MDFPSpace, \\
+\mbox{Gleichung } ({3'}'): & & 18 z & = &  180 \MDFPSpace, \end{array}$$
 und besitzt nun - zumindest was die linken Seiten anbelangt - so eine Art \textbf{Dreiecksform}.
 
 Die Bestimmung der Unbekannten ist nun äußerst einfach: Die unterste Gleichung (Gleichung~$({3'}')$) hängt nur noch
@@ -845,7 +847,7 @@ plus $3$ mal Gleichung~$(1)$, also Gleichung~$(2')$, tritt.
 Wenn wir nach der Lösung eines Gleichungssystems forschen, verlangen wir die \textbf{gleichzeitige Gültigkeit}
 aller Gleichungen des Systems. Damit insistieren wir - um im Beispiel \MRef{M04_einf_Bsp_2_rech_2} zu sprechen - mit
 der Forderung, dass Gleichung~$(1)$ \textbf{und} Gleichung~$(2)$ gelten sollen, klarerweise auch auf der Gültigkeit von
-$$\mbox{Gleichung } (1) + 3 \cdot \mbox{ Gleichung } (2) \Leftrightarrow \mbox{ Gleichung } (2') \; \; \; .$$
+$$\mbox{Gleichung } (1) + 3 \cdot \mbox{ Gleichung } (2) \Leftrightarrow \mbox{ Gleichung } (2') \MDFPeriod $$
 Also dürfen wir im System Gleichung~$(2)$ durch Gleichung~$(2')$ ersetzen.
 
 Zugleich erkennen wir hier einen weiteren wichtigen Punkt: Würden wir die \textbf{eine} Gleichung~$(2')$ an die
@@ -877,7 +879,7 @@ besonders einfach.
 \begin{MExercise}
 Geben Sie die Lösungsmenge für das Lineare Gleichungssystem
 \begin{eqnarray*}
-2 x - y + 5 z & = & 1 \\ 11 x + 8 z & = & 2 \\ - 4 x + y - 3 z & = & - 1
+2 x - y + 5 z & = & 1 \MDFPSpace, \\ 11 x + 8 z & = & 2 \MDFPSpace, \\ - 4 x + y - 3 z & = & - 1
 \end{eqnarray*}
 an. Verwenden Sie zum Lösen
 \begin{MExerciseItems}
@@ -889,24 +891,24 @@ an. Verwenden Sie zum Lösen
 \begin{MExerciseItems}
 \item{Wir stellen z.B. die erste Gleichung ($2 x - y + 5 z = 1$) nach $y$ frei, $y = 2 x + 5 z - 1$,
 und setzen dieses Ergebnis in die dritte Gleichung ($- 4 x + y - 3 z = - 1$) ein:
-$$- 4 x + (2 x + 5 z - 1) - 3 z = - 1 \Leftrightarrow - 2 x + 2 z = 0 \Leftrightarrow z = x$$
+$$- 4 x + (2 x + 5 z - 1) - 3 z = - 1 \Leftrightarrow - 2 x + 2 z = 0 \Leftrightarrow z = x \MDFPeriod$$
 Das letzte Ergebnis, das wir schon nach der Unbekannten $z$ aufgelöst haben, setzen wir in die zweite
 Gleichung ein ($11 x + 8 z = 2$), die von vornherein unabhängig von $y$ ist:
-$$11 x + 8 x = 2 \Leftrightarrow 19 x = 2 \Leftrightarrow x = \Mtfrac{2}{19}$$
+$$11 x + 8 x = 2 \Leftrightarrow 19 x = 2 \Leftrightarrow x = \Mtfrac{2}{19} \MDFPeriod$$
 Damit gilt auch
-$$z = \Mtfrac{2}{19} \; \; \; ,$$
+$$z = \Mtfrac{2}{19} \MDFPSpace ,$$
 und für $y$ erhalten wir - gemäß der Gleichung aus der ersten Umformung -:
-$$y = 2 \cdot \Mtfrac{2}{19} + 5 \cdot \Mtfrac{2}{19} - 1 = \Mtfrac{4 + 10 - 19}{19} = \Mtfrac{-5}{19}$$
+$$y = 2 \cdot \Mtfrac{2}{19} + 5 \cdot \Mtfrac{2}{19} - 1 = \Mtfrac{4 + 10 - 19}{19} = \Mtfrac{-5}{19} \MDFPeriod$$
 Also ist das Lineare Gleichungssystem eindeutig lösbar mit ${\ML} = \{ (x = \Mtfrac{2}{19};
 y = - \Mtfrac{5}{19}; z = \Mtfrac{2}{19} \}$.\\
 Alternative Lösungswege sind ebenso gut möglich.}
 \item{Addition der ersten und der dritten Gleichung eliminiert die Unbekannte $y$:
-$$(2 x - y + 5 z) + (- 4 x + y - 3 z) = 1 + (- 1) \Leftrightarrow - 2 x + 2 z = 0$$
+$$(2 x - y + 5 z) + (- 4 x + y - 3 z) = 1 + (- 1) \Leftrightarrow - 2 x + 2 z = 0 \MDFPeriod$$
 Multiplizieren wir die letzte Gleichung mit $(- 4)$, so entsteht
-$$8 x - 8 z = 0 \; \; \; ,$$
+$$8 x - 8 z = 0 \MDFPSpace ,$$
 und die anschließende Addition der zweiten Gleichung ($11 x  + 8 z = 2$) sorgt dafür, dass die Abhängigkeit
 von $z$ herausfällt:
-$$(8 x - 8 z) + (11 x + 8 z) = 0 + 2 \Leftrightarrow 19 x = 2 \Leftrightarrow x = \Mtfrac{2}{19}$$
+$$(8 x - 8 z) + (11 x + 8 z) = 0 + 2 \Leftrightarrow 19 x = 2 \Leftrightarrow x = \Mtfrac{2}{19} \MDFPeriod$$
 Wir im ersten Aufgabenteil können in der Folge $z$ und $y$ bestimmt werden; natürlich bekommen wir
 dasselbe Ergebnis ${\ML} = \{ (x = \Mtfrac{2}{19}; y = - \Mtfrac{5}{19}; z = \Mtfrac{2}{19} \}$.\\
 Alternative Lösungswege sind ebenso gut möglich.}
@@ -919,46 +921,48 @@ Wir wollen folgende einfache Schaltung betrachten:
 \begin{center}
 \MUGraphicsSolo{schaltung.png}{scale=1.1}{width:450px}
 \end{center}
-Sie ist aus einer Spannungsquelle, die eine Spannung $U = \MZahl{5}{5}~\text{V}$ liefern soll, sowie aus drei Widerständen
-$R_1 = 1~\MOhm$, $R_2 = 2~\MOhm$ und $R_3 = 3~\MOhm$ aufgebaut. Gefragt ist nach den in den einzelnen
+Sie ist aus einer Spannungsquelle, die eine Spannung $U = \MZahl{5}{5}\MEinheit{V}$ liefern soll, sowie aus drei Widerständen
+$R_1 = 1\MEinheit{}\MOhm$, $R_2 = 2\MEinheit{}\MOhm$ und $R_3 = 3\MEinheit{}\MOhm$ aufgebaut. Gefragt ist nach den in den einzelnen
 Zweigen fließenden Strömen $I_1$, $I_2$ und $I_3$.\\
 \textbf{Hinweise:} Die Zusammenhänge zwischen den interessierenden Größen, sprich den Spannungen, den 
 Widerständen und den Stromstärken, werden für solche Schaltungen von den sogenannten \textbf{Kirchhoffschen Regeln}
 geliefert, die im vorliegenden Beispiel drei Gleichungen bereitstellen:
 \begin{eqnarray*}
-I_1 - I_2 - I_3 & = & 0\quad:\quad\text{Gleichung (1)} \\ R_1 I_1 + R_2 I_2 & = & U\quad:\quad\text{Gleichung (2)} \\ R_2 I_2 - R_3 I_3 & = & 0\quad:\quad\text{Gleichung (3)} \; \; .
+I_1 - I_2 - I_3 & = & 0\quad:\quad\text{Gleichung (1)} \MDFPSpace, \\ R_1 I_1 + R_2 I_2 & = & U\quad:\quad\text{Gleichung (2)}\MDFPSpace,  \\ R_2 I_2 - R_3 I_3 & = & 0\quad:\quad\text{Gleichung (3)} \MDFPeriod
 \end{eqnarray*}
-Außerdem wird die Beziehung zwischen den physikalischen Einheiten Volt (V) (für die Spannung),
-Amp\`ere (A) (für die Stromstärke) und Ohm ($\MOhm$) (für den Widerstand) benötigt: $1 \MOhm = (1~\text{V}) / (1\text{A})$.
+Außerdem wird die Beziehung zwischen den physikalischen Einheiten Volt ($\MEinheit[]{V}$) (für die Spannung),
+Amp\`ere ($\MEinheit[]{A}$) (für die Stromstärke) und Ohm ($\MOhm$) (für den Widerstand) benötigt: $1\MEinheit{}\MOhm = (1\MEinheit{V}) / (1\MEinheit{A})$.
 
 \begin{MHint}{Lösung}
 Wir lösen z.B. die erste Gleichung nach $I_1$ auf,
-$$I_1 = I_2 + I_3 \; \; \; ,$$
+$$I_1 = I_2 + I_3 \MDFPSpace ,$$
 und setzen das Ergebnis in die zweite Gleichung ein:
-$$R_1 (I_2 + I_3) + R_2 I_2 = U \Leftrightarrow (R_1 + R_2) I_2 + R_1 I_3 = U \; : \mbox{ Gleichung } (2')$$
+$$R_1 (I_2 + I_3) + R_2 I_2 = U \Leftrightarrow (R_1 + R_2) I_2 + R_1 I_3 = U \; : \mbox{ Gleichung } (2') \MDFPeriod$$
 Die letzte Gleichung und die dritte Gleichung im ursprünglichen System hängen nur noch von den Unbekannten
 $I_2$ und $I_3$ ab. Sie bilden ein System aus zwei linearen Gleichungen in zwei Unbekannten, das wir jetzt
 weiter lösen: Dazu stellen wir z.B. die dritte Gleichung des ursprünglichen Systems nach $I_3$ frei,
-$$I_3 = \Mdfrac{R_2}{R_3} I_2 \; : \mbox{ Gleichung } (3') \; \; \; ,$$
+$$I_3 = \Mdfrac{R_2}{R_3} I_2 \; : \mbox{ Gleichung } (3') \MDFPSpace ,$$
 und setzen das Resultat in Gleichung~$(2')$ ein:
 \begin{eqnarray*}
 & & (R_1 + R_2) I_2 + R_1 \cdot \Mdfrac{R_2}{R_3} I_2 = U \\[.5ex]
 & \Leftrightarrow & \left( R_1 + R_2 + R_1 \cdot \Mdfrac{R_2}{R_3} \right) I_2 = U \\[.5ex]
 & \Leftrightarrow & \left( \Mdfrac{R_1 R_3}{R_3} + \Mdfrac{R_2 R_3}{R_3} + \Mdfrac{R_1 R_2}{R_3} \right) I_2 = U \\[.5ex]
 & \Leftrightarrow & \Mdfrac{R_1 R_2 + R_1 R_3 + R_2 R_3}{R_3} I_2 = U \\[.5ex]
-& \Leftrightarrow & I_2 = \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} U
+& \Leftrightarrow & I_2 = \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} U \MDFPeriod
 \end{eqnarray*}
 Damit folgt für $I_3$ wegen Gleichung~$(3')$
 $$I_3 = \Mdfrac{R_2}{R_3} \cdot \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} U = \Mdfrac{R_2}{R_1 R_2 + R_1 R_3 + R_2 R_3} U$$
 und für $I_1$ schließlich:
-$$I_1 = I_2 + I_3 = \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U + \Mdfrac{R_2}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U
-= \Mdfrac{R_2 + R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U \; .$$
+\begin{eqnarray*}
+  I_1 = I_2 + I_3 &=& \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U + \Mdfrac{R_2}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U \\
+  &=& \Mdfrac{R_2 + R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U \MDFPeriod
+\end{eqnarray*}
 Nun können wir die in der Aufgabenstellung vorgegebenen Werte für die Widerstände
-($R_1 = 1~\MOhm$, $R_2 = 2~\MOhm$ und $R_3 = 3~\MOhm$)
-und die Spannung ($U = \MZahl{5}{5}~\text{V}$) einsetzen; für $I_1$ erhalten wir unter Verwendung von $1~\text{V} = 1~\MOhm \cdot 1~\text{A}$:
-$$I_1 = \Mdfrac{(2 + 3) \MOhm}{(1 \cdot 2 + 1 \cdot 3 + 2 \cdot 3) \MOhm^2} \cdot \MZahl{5}{5} \cdot \MOhm \cdot \text{A}
-= \MZahl{2}{5}~\text{A} \; .$$
-Analog finden wir für $I_2$ und $I_3$: $I_2 = \MZahl{1}{5}~\text{A}$ und $I_3 = 1~\text{A}.$\\
+($R_1 = 1\MEinheit{}\MOhm$, $R_2 = 2\MEinheit{}\MOhm$ und $R_3 = 3\MEinheit{}\MOhm$)
+und die Spannung ($U = \MZahl{5}{5}\MEinheit{V}$) einsetzen; für $I_1$ erhalten wir unter Verwendung von $1\MEinheit{V} = 1\MEinheit{}\MOhm \cdot 1\MEinheit{A}$:
+$$I_1 = \Mdfrac{(2 + 3)\MEinheit{}\MOhm}{(1 \cdot 2 + 1 \cdot 3 + 2 \cdot 3)\MEinheit{}\MOhm^2} \cdot \MZahl{5}{5} \cdot \MOhm \cdot \MEinheit[]{A}
+= \MZahl{2}{5}\MEinheit{A} \MDFPeriod$$
+Analog finden wir für $I_2$ und $I_3$: $I_2 = \MZahl{1}{5}\MEinheit{A}$ und $I_3 = 1\MEinheit{A}.$\\
 Alternative Lösungswege sind ebenso gut möglich.
 \end{MHint}
 \end{MExercise}
@@ -966,7 +970,7 @@ Alternative Lösungswege sind ebenso gut möglich.
 \begin{MExercise}
 Lösen Sie das folgende Lineare Gleichungssystem mit Hilfe der Additionsmethode:
 \begin{eqnarray*}
-x + 2 z & = & 5 \\ 3 x + y - 2 z & = & - 1 \\ - x - 2 y + 4 z & = & 7
+x + 2 z & = & 5 \MDFPSpace, \\ 3 x + y - 2 z & = & - 1  \MDFPSpace,\\ - x - 2 y + 4 z & = & 7 \MDFPeriod
 \end{eqnarray*}
 
 \begin{MHint}{Lösung}
@@ -978,13 +982,13 @@ Gleichung ($3 x + y - 2 z = - 1$) mit $2$ und addieren die resultierende Gleichu
 & & (- x - 2 y + 4 z) + 2 \cdot (3 x + y - 2 z) = 7 + 2 \cdot (- 1) \\
 & \Leftrightarrow & - x - 2 y + 4 z + 6 x + 2 y - 4 z = 7 - 2 \\
 & \Leftrightarrow & 5 x = 5 \\
-& \Leftrightarrow & x = 1 
+& \Leftrightarrow & x = 1 \MDFPeriod
 \end{eqnarray*}
 Zufälligerweise fällt gleichzeitig auch die Unbekannte $z$ heraus.
 Mit dem Ergebnis für $x$ liefert die erste Gleichung
-$$1 + 2 z = 5 \Leftrightarrow 2 z = 4 \Leftrightarrow z = 2 \; \; \; .$$
+$$1 + 2 z = 5 \Leftrightarrow 2 z = 4 \Leftrightarrow z = 2 \MDFPeriod$$
 Den Wert für $y$ erhalten wir sodann, indem wir z.B. die zweite Gleichung verwenden:
-$$3 \cdot 1 + y - 2 \cdot 2 = - 1 \Leftrightarrow 3 + y - 4 = - 1 \Leftrightarrow y = 0$$
+$$3 \cdot 1 + y - 2 \cdot 2 = - 1 \Leftrightarrow 3 + y - 4 = - 1 \Leftrightarrow y = 0 \MDFPeriod$$
 Also lautet die Lösungsmenge ${\ML} = \{ (x = 1; y = 0; z = 2) \}$.
 \end{MHint}
 \end{MExercise}
@@ -1019,13 +1023,13 @@ wenn nicht \textbf{den}, entscheidenden Punkt im Zusammenhang mit freien Paramet
 linearer Gleichungen hinführen wird:
 \begin{MExample}
 Wir wollen nach der Lösungsmenge für das Lineare Gleichungssystem
-$$\begin{array}{rcrcl} \mbox{Gleichung } (1) : & & x - 2 y & = & 3 \\
+$$\begin{array}{rcrcl} \mbox{Gleichung } (1) : & & x - 2 y & = & 3 \MDFPSpace,\\
 \mbox{ Gleichung } (2) : & & - 2 x + 4 y & = & \alpha \end{array}$$
 in Abhängigkeit von dem Parameter $\alpha$ suchen.
 
 Dazu multiplizieren wir Gleichung~$(1)$ mit dem Faktor $2$ durch und addieren Gleichung~$(2)$:
 $$2 \cdot (x - 2 y) + (- 2 x + 4 y) = 2 \cdot 3 + \alpha \Leftrightarrow 2 x - 4 y - 2 x + 4 y = 6 + \alpha
-\Leftrightarrow 0 = 6 + \alpha$$
+\Leftrightarrow 0 = 6 + \alpha \MDFPeriod$$
 
 Nun müssen wir zwei Fälle unterscheiden:
 
@@ -1037,7 +1041,7 @@ auf einen Widerspruch. In diesem Fall besitzt das Lineare Gleichungssystem \text
 identisch erfüllt ($0 = 0$). In der Tat sind in diesem Fall die beiden Ausgangsgleichungen gerade Vielfache
 voneinander, sodass nur eine von ihnen tatsächlich Information trägt. Dementsprechend ist jetzt die
 \textbf{Lösungsmenge unendlich mächtig} und kann beispielsweise folgendermaßen angegeben werden: ${\ML}
-= \{ (x = 3 + 2 t; y = t) \: :\: t \in \R \}$
+= \{ (x = 3 + 2 t; y = t)  \MCondSetSep t \in \R \}$.
 \end{MExample}
 Das Beispiel zeigt, dass das Aussehen der Lösungsmenge sehr stark von der Wahl des freien Parameters abhängen kann.
 
@@ -1048,17 +1052,17 @@ komplizierteres Beispiel:
 \begin{MExample}
 Im Folgenden wollen wir die Lösungsmenge des Linearen Gleichungssystems
 \begin{eqnarray*}
-x + y + \alpha z & = & 1 \\ x + \alpha y + z & = & 1 \\ \alpha x + y + z & = & 1
+x + y + \alpha z & = & 1 \MDFPSpace, \\ x + \alpha y + z & = & 1 \MDFPSpace, \\ \alpha x + y + z & = & 1
 \end{eqnarray*}
 studieren und zwar in Abhängigkeit von dem Wert des Parameters $\alpha$.
 
 Dazu lösen wir beispielsweise die erste Gleichung nach der Unbekannten $x$ auf,
-$$x = 1 - y - \alpha z \; : \mbox{ Gleichung } (1') \; \; \; ,$$
+$$x = 1 - y - \alpha z \; : \mbox{ Gleichung } (1') \MDFPSpace ,$$
 und \textbf{setzen} das Ergebnis für $x$ in die zweite und in die dritte Gleichung \textbf{ein}:
 $$\begin{array}{rclcrclcl} (1 - y - \alpha z) + \alpha y + z & = & 1 & \Leftrightarrow &
--(1 - \alpha) y + (1 - \alpha) z & = & 0 & & : \mbox{ Gleichung } (2') \\
+-(1 - \alpha) y + (1 - \alpha) z & = & 0 & & : \mbox{ Gleichung } (2') \MDFPSpace, \\
 \alpha (1 - y - \alpha z) + y + z & = & 1 & \Leftrightarrow &
-(1 - \alpha) y + (1 - \alpha^2) z & = & 1 - \alpha & & : \mbox{ Gleichung } (3') \end{array}$$
+(1 - \alpha) y + (1 - \alpha^2) z & = & 1 - \alpha & & : \mbox{ Gleichung } (3') \MDFPeriod \end{array}$$
 Es entsteht ein System aus \textbf{zwei} linearen Gleichungen in den \textbf{zwei} Unbekannten $y$ und $z$.
 Diesem System sieht man sofort an, dass für den Wert $\alpha = 1$ etwas Besonderes passiert.
 Wir führen daher eine Fallunterscheidung durch:
@@ -1069,16 +1073,16 @@ den Unbekannten $x, y$ und $z$ verbleibt Gleichung~$(1')$ bzw. Gleichung~$(1)$, 
 $$x + y + z = 1 \; : \mbox{ Gleichung } (\hat{1})$$
 lautet. Daher besitzt die Lösungsmenge hier unendlich viele Elemente. Sie kann mit Hilfe \textbf{zweier freier
 Parameter} angegeben werden, z.B.
-$${\ML} = \{ (s; t; 1 - s- t)\: :\:  s, t \in \R \} \; \; \; .$$
+$${\ML} = \{ (s; t; 1 - s- t) \MCondSetSep  s, t \in \R \} \MDFPeriod $$
 Anschaulich gesprochen entspricht die Lösungsmenge gerade der durch Gleichung~$(\hat{1})$ beschriebenen Ebene.
 
 \textbf{Fall 2:} $\alpha \neq 1$: In diesem Fall können wir sowohl Gleichung~$(2')$ als auch Gleichung~$(3')$
 durch $(1 - \alpha)$ dividieren; wir erhalten unter Verwendung der 3.~Binomischen Formel ($(1 - \alpha^2)
 = (1 - \alpha)(1 + \alpha)$):
-$$\begin{array}{rclcl} - y + z & = & 0 & & : \mbox{ Gleichung } ({2'}') \\
-y + (1 + \alpha) z & = & 1 & & : \mbox{ Gleichung } ({3'}') \end{array}$$
+$$\begin{array}{rclcl} - y + z & = & 0 & & : \mbox{ Gleichung } ({2'}') \MDFPSpace, \\
+y + (1 + \alpha) z & = & 1 & & : \mbox{ Gleichung } ({3'}') \MDFPeriod \end{array}$$
 Gleichung~$({2'}')$ besagt, dass $y = z$ gilt; dies setzen wir in Gleichung~$({3'}')$ ein:
-$$z + (1 + \alpha) z = 1 \Leftrightarrow (2 + \alpha) z = 1 \; : \mbox{ Gleichung } (\star)$$
+$$z + (1 + \alpha) z = 1 \Leftrightarrow (2 + \alpha) z = 1 \; : \mbox{ Gleichung } (\star)\MDFPeriod $$
 Jetzt müssen wir nochmals vorsichtig sein und eine weitere Fallunterscheidung durchführen, da $\alpha = - 2$
 und $\alpha \neq - 2$ unterschiedliche Konsequenzen nach sich ziehen:
 
@@ -1088,7 +1092,7 @@ Widerspruch auf und das Lineare Gleichungssystem, von dem wir ausgegangen sind, 
 
 \textbf{Fall 2b:} $\alpha \neq - 2$: In diesem (Unter-)Fall können wir die letzte Gleichung
 problemlos nach $z$ auflösen,
-$$z = \Mdfrac{1}{2 + \alpha} \; \; \; .$$
+$$z = \Mdfrac{1}{2 + \alpha} \MDFPeriod $$
 
 Damit liegen auch $y$ ($y = z$) und $x$ ($x = 1 - y - \alpha z$) fest; das ursprüngliche Lineare Gleichungssystem
 besitzt eine eindeutige Lösung, ${\ML} = \{ (x = \Mtfrac{1}{2 + \alpha}; y = \Mtfrac{1}{2 + \alpha};
@@ -1096,7 +1100,7 @@ z = \Mtfrac{1}{2 + \alpha} ) \}$.
 \end{MExample}
 Wir haben im Vorhergehenden das Beispiel auch deshalb so ausführlich ausbuchstabiert, um eindringlich auf die
 Wichtigkeit einer sauberen und genauen Fallunterscheidung hinzuweisen. Je nachdem, ob $\alpha = 1$, $\alpha = - 2$
-oder $\alpha \in \R \setminus \{- 2, 1 \}$ gilt, sieht die Lösungsmenge völlig verschieden aus! Im ersten Fall
+oder $\alpha \in \R \setminus \{- 2\MElSetSep 1 \}$ gilt, sieht die Lösungsmenge völlig verschieden aus! Im ersten Fall
 ist sie unendlich mächtig, im zweiten leer und im dritten besteht sie aus genau einem Element!
 
 Übrigens hätten wir die Besonderheit des Falles $\alpha = 1$ auch direkt an dem ursprünglichen System ablesen
@@ -1116,7 +1120,7 @@ $x + y + z = 1$ stellt für $\alpha = 1$ eine Beziehung zwischen den drei Unbekan
 \begin{MExercise}
 Bestimmen Sie die Lösungsmenge für folgendes Lineares Gleichungssystem:
 \begin{eqnarray*}
-- x + 2 y & = & - 5 \\ 3 x + y & = & 1
+- x + 2 y & = & - 5 \MDFPSpace,  \\ 3 x + y & = & 1 \MDFPeriod
 \end{eqnarray*}
 Die Lösungsmenge
 \begin{tabular}[t]{ll}
@@ -1130,17 +1134,17 @@ Die Lösungsmenge
 Geben Sie diejenige zweistellige Zahl an, die bei Vertauschen von Einer- und Zehnerziffer auf eine um 18 kleinere Zahl
 führt und deren Quersumme 6 ist.
 % 
-Antwort: \MLParsedQuestion{5}{42}{5}{ATX42}
+Antwort: \MLParsedQuestion{5}{42}{5}{ATX42}.
 \end{MExercise}
 
 \begin{MExercise}
 Für welchen Wert des reellen Parameters $\alpha$ besitzt das Lineare Gleichungssystem
 \begin{eqnarray*}
-2 x + y & = & 3 \\ 4 x + 2 y & = & \alpha
+2 x + y & = & 3 \MDFPSpace, \\ 4 x + 2 y & = & \alpha
 \end{eqnarray*}
 unendlich viele Lösungen?
 
-Antwort: $\alpha = $ \MLParsedQuestion{5}{6}{5}{ATX}
+Antwort: $\alpha = $ \MLParsedQuestion{5}{6}{5}{ATX}.
 \end{MExercise}
 
 \begin{MExercise}
@@ -1150,9 +1154,9 @@ Die Abbildung zeigt zwei Geraden im zweidimensionalen Raum.
 \end{center}
 Stellen Sie die beiden Geradengleichungen auf:
 
-Gerade 1: $y = $ \MLFunctionQuestion{15}{-1+x}{2}{x}{5}{XAFG1}
+Gerade 1: $y = $ \MLFunctionQuestion{15}{-1+x}{2}{x}{5}{XAFG1},
 
-Gerade 2: $y = $ \MLFunctionQuestion{15}{2-2*x}{2}{x}{5}{XAFG2}
+Gerade 2: $y = $ \MLFunctionQuestion{15}{2-2*x}{2}{x}{5}{XAFG2}.
 
 Wieviele Lösungen besitzt das zugehörige Lineare Gleichungssystem?
 
@@ -1167,7 +1171,7 @@ Es besitzt
 \begin{MExercise}
 Geben Sie die Lösungsmenge für folgendes Lineare Gleichungssystem, bestehend aus drei Gleichungen mit drei Unbekannten, an:
 \begin{eqnarray*}
-x + 2 z & = & 3 \\ - x + y + z & = & 1 \\ 2 y + 3 z & = & 5
+x + 2 z & = & 3 \MDFPSpace, \\ - x + y + z & = & 1 \MDFPSpace, \\ 2 y + 3 z & = & 5 \MDFPeriod
 \end{eqnarray*}
 Die Lösungsmenge
 \begin{tabular}[t]{ll}
