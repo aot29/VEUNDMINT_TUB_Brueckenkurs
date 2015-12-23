@@ -17,7 +17,7 @@ use Net::Domain qw (hostname hostfqdn hostdomain);
 use MIME::Base64 qw(encode_base64);
 use Cwd;
 use Switch;
-use JSON;
+use JSON::XS;
 use Term::ANSIColor;
 use GraphViz;
 use Encode;
@@ -56,6 +56,7 @@ our $XIDObj = -1;
 
 our @LabelStorage; # Format jedes Eintrags: [ $lab, $sub, $sec, $ssec, $sssec, $anchor, $pl ]
 
+our $PageIDCounter = 1;
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -90,9 +91,9 @@ our $stestfile = "";
 
 # Diese Einstellungen haben keine Auswirkungen auf die produzierten Module, daher nicht in Parameterdatei
 our $xmlfile = "converted.xml";
+our $xmlerrormsg = "ttm_errors.txt";
 our $UNKNOWN_UXID = "(unknown)";
 
-# Diese Einstellungen muessen mit denen in mconvert.pl uebereinstimmen !
 our $doconctitles = 1; # =1 -> Titel der Vaterseiten werden mit denen der Unterseiten auf den Unterseiten kombiniert [war bei alten Onlinemodulen der Fall macht aber eigentlich keinen Sinn]
 
 # Diese sind mittlerweile in intersite.js fest verdrahtet!
@@ -101,7 +102,7 @@ our $datasite = "cdata.html";
 our $searchsite = "search.html";
 our $chaptersite = "chapters.html";
 our $startsite = "index.html";
-our $favorsite = ""; # "favor.html";
+our $favorsite = "favor.html";
 our $stestsite = "stest.html";
 
 our $locationsite = ""; # Wird aus Dokument geholt
@@ -830,7 +831,6 @@ sub new {
 	bless $self, $package;
 	return $self;
 }
-
 
 # sub split()
 # Zerteilung von Text, Erstellung der Objektstruktur
@@ -3222,9 +3222,20 @@ logMessage($CLIENTINFO, " ok");
 logMessage($VERBOSEINFO, "Es werden " . ($#DirectHTML + 1) . " DirectHTML-Statements werden verwendet");
 
 logTimestamp("Starting ttm tex->html converter");
-system "./ttm-src/ttm -p./tex < tex/vorkursxml.tex >$xmlfile";
+system "./ttm-src/ttm -p./tex < tex/vorkursxml.tex 1>$xmlfile 2>$xmlerrormsg";
 logTimestamp("Loading ttm output file $xmlfile");
 my $text = loadfile($xmlfile);
+my $ttm_errors = loadfile($xmlerrormsg);
+my @ttm_errors = split("\n", $ttm_errors);
+
+for ($i = 0; $i <= $#ttm_errors; $i++) {
+  if ($ttm_errors[$i] =~ m/\*\*\*\* Unknown command (.+?), /s ) {
+    logMessage($CLIENTWARN, "(ttm) " . $ttm_errors[$i]);
+    push @converrors, "ERROR: ttm konnte LaTeX-Kommando $1 nicht verarbeiten";
+  } else {
+    logMessage($CLIENTINFO, "(ttm) " . $ttm_errors[$i]);
+  }
+}
 
 # Debug-Meldungen ausgeben
 while ($text =~ s/<!-- debugprint;;(.+?); \/\/-->/<!-- debug;;$1; \/\/-->/s ) { logMessage($DEBUGINFO, $1); }
@@ -3545,36 +3556,30 @@ if ($config{docollections} eq 1) {
   }
 }
 
-
 if ($config{doverbose} == "1") {
   my $graph = GraphViz->new();
   my @list = ();
   push @list, $root;
-  my $k = 0;
   while ($#list != -1) {
     my $page = $list[0];
-    $page->{GRAPHID} = $k;
     splice(@list, 0, 1);
     my $title = $page->{UXID};
     if ($title eq $UNKNOWN_UXID) {
-      $title = $page->{TITLE} . " " . $page->{GRAPHID};
+      $title = $page->{TITLE} . " " . $page->{ID};
     }
     logMessage($VERBOSEINFO, "graph item uxid = $title");
     $title = decode("latin1", $title);
     $title = encode("utf-8", $title);
-    if ($page->{LEVEL} <= ($paramsplitlevel+100)) {
-      $graph->add_node($title);
-      if ($page->{LEVEL} >= 1) {
-        my $pretitle = $page->{PARENT}->{UXID};
-        if ($pretitle eq $UNKNOWN_UXID) {
-          $pretitle = $page->{PARENT}->{TITLE} . " " . $page->{PARENT}->{GRAPHID};
-        }
-        $pretitle = decode("latin1", $pretitle);
-        $pretitle = encode("utf-8", $pretitle);
-        $graph->add_edge($title, $pretitle);
+    $graph->add_node($title);
+    if ($page->{LEVEL} >= 1) {
+      my $pretitle = $page->{PARENT}->{UXID};
+      if ($pretitle eq $UNKNOWN_UXID) {
+        $pretitle = $page->{PARENT}->{TITLE} . " " . $page->{PARENT}->{ID};
       }
+      $pretitle = decode("latin1", $pretitle);
+      $pretitle = encode("utf-8", $pretitle);
+      $graph->add_edge($title, $pretitle);
     }
-    $k++;
     my @subpages = @{$page->{SUBPAGES}};
     my $i;
     for ($i = 0; $i <= $#subpages; $i++) {
@@ -3587,8 +3592,6 @@ if ($config{doverbose} == "1") {
   print MINTS $graph->as_png();
   close(MINTS);
 }
-
-
 
 #Rechte setzen
 system "chmod -R 777 " . $config{outtmp};
@@ -3671,18 +3674,9 @@ if ($config{doscorm} eq 1) {
 }
 
 if ($config{dopdf} eq 1) {
-  logMessage($CLIENTINFO, "...generating PDF files:");
-  my $i = 0;
-  my $ckey = "";
-  while ($ckey = each(%{$config{generate_pdf}})) {
-    logMessage($CLIENTINFO, "  $ckey");
-    $i++;
-  }
-  if ($i eq 0) {
-    die("FATAL: No PDF files given in config but dopdf=1");
-  }
+  logMessage($CLIENTINFO, "Generating PDF files");
 } else {
-  logMessage($CLIENTINFO, "...no PDF files");
+  logMessage($CLIENTINFO, "PDF files not requested");
 }
 
 if ($config{qautoexport} eq 1) {
@@ -4509,8 +4503,8 @@ my $pdfok = 1;
 if ($config{dopdf} eq 1) {
     # Ganzer Baum wird erstellt: Die Einzelmodule separat texen
     my $doct = "";
-    while (($doct = each(@{$config{generate_pdf}})) and ($pdfok == 1)) {
-      logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex ========================================");
+    while (($doct = each(%{$config{generate_pdf}})) and ($pdfok == 1)) {
+      logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex (" . $config{generate_pdf}->{$doct} . ") ========================================");
 
       my $rt1 = system("pdflatex $doct.tex");
       if ($rt1 != 0) {
