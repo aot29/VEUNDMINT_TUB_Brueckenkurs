@@ -37,7 +37,7 @@ Das Modul umfasst folgende Abschnitte:
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Ableitung_Intro}
 Stellen Sie sich vor, Sie sind mit Ihrem Auto unterwegs in den Urlaub. Sie fahren mit einer Geschwindigkeit von $60\MEinheit{km}/\MEinheit[]{h}$ durch eine Baustelle. Am Ende der Baustelle sehen Sie ein Schild, das es Ihnen erlaubt, ab sofort wieder mit einer Geschwindigkeit von $120\MEinheit{km}/\MEinheit[]{h}$ zu fahren. Auch wenn Sie so kräftig wie Sie nur können auf das Gaspedal treten, Ihre Geschwindigkeit wird sich nicht sprunghaft ändern, sondern in Abhängigkeit der Zeit steigen. Schaffen Sie es, Ihre Geschwindigkeit innerhalb von 5 Sekunden von $60\MEinheit{km}/\MEinheit[]{h}$ auf $120\MEinheit{km}/\MEinheit[]{h}$ mit einer konstanten Änderungsrate zu erhöhen, dann finden Sie die Beschleunigung (= Geschwindigkeitsänderung pro Zeit) als konstante Änderungsrate der Geschwindigkeit. Sie ergibt sich aus dem Quotienten der Geschwindigkeitsänderung geteilt durch die dafür benötigte Zeit. Der Wert der Beschleunigung ist in diesem Fall also $12\MEinheit{km}/\MEinheit[]{h}/\MEinheit[]{s}$. In der Realität werden Sie Ihre Geschwindigkeit jedoch nicht mit einer konstanten Änderungsrate erhöhen, sondern mit einer ebenfalls 
-zeitabhängigen Änderungsrate. Beschreiben Sie Ihre Geschwindigkeit als Funkion der Zeit $v\left(t\right)$, erhalten Sie die Beschleunigung als Steigung dieser Funktion, unabhängig davon, ob diese Steigung konstant ist oder ebenfalls zeitabhängig ist. Oder mit anderen Worten: Die Beschleunigung ist die \emph{Ableitung} der Geschwindigkeits\emph{funktion} $v\left(t\right)$ nach der Zeit $t$.
+zeitabhängigen Änderungsrate. Beschreiben Sie Ihre Geschwindigkeit als Funktion der Zeit $v\left(t\right)$, erhalten Sie die Beschleunigung als Steigung dieser Funktion, unabhängig davon, ob diese Steigung konstant ist oder ebenfalls zeitabhängig ist. Oder mit anderen Worten: Die Beschleunigung ist die \emph{Ableitung} der Geschwindigkeits\emph{funktion} $v\left(t\right)$ nach der Zeit $t$.
 
 Ähnliche Zusammenhänge finden Sie auch in anderen technischen Bereichen, z.B. bei der Berechnung von inneren Kräften, die in Stahlgerüsten von Bauwerken wirken, der Vorhersage von Atmosphären- oder Meeresströmungen oder auch bei der heute so wichtigen Modellierung der Finanzmärkte.
 
@@ -113,12 +113,12 @@ Halten wir $x_0$ und den entsprechenden Funktionswert $f\left(x_0\right)$ fest u
 \frac{\Delta(f)}{\Delta(x)} = \frac{f(x) - f(x_0)}{x - x_0}\MDFPSpace,
 \]
 
-der beschreibt, wie sich die Funktionswerte von $f$ \textbf{im Mittel} zwischen $x_0$ und $x$ ändern. Wir haben also eine mittelere Änderungsrate der Funktion $f$ im Intervall $[x_0\MIntvlSep  x]$ gefunden. Dieser Quotient wird auch als \textbf{relative Änderung} bezeichnet.
+der beschreibt, wie sich die Funktionswerte von $f$ \textbf{im Mittel} zwischen $x_0$ und $x$ ändern. Wir haben also eine mittlere Änderungsrate der Funktion $f$ im Intervall $[x_0\MIntvlSep  x]$ gefunden. Dieser Quotient wird auch als \textbf{relative Änderung} bezeichnet.
 
 Bilden wir den \MEntry{Grenzwert}{Grenzwert} für $x \rightarrow x_0$, stellen wir fest, dass die Gerade, die den Graphen der Funktion
 in den Punkten $\left(x_0\MIntvlSep f\left(x_0\right)\right)$ und $\left(x\MIntvlSep f\left(x\right)\right)$ schneidet, immer mehr zu einer Tangenten
 an den Graphen im Punkt $\left(x_0\MIntvlSep f\left(x_0\right)\right)$ wird. Auf diese Weise können wir uns also der Änderungsrate
-der Funktion $f$ an der Stelle $x_0$ annähern. Existiert dieser Grenzwert, so bezeichnen wir
+der Funktion $f$ an der Stelle $x_0$ annähern. Existiert dieser Grenzwert,  so bezeichnen wir
 
 \[
 f'(x_0) = \lim_{x \rightarrow x_0} \frac{\Delta(f)}{\Delta(x)} 
