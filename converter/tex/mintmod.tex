@@ -2119,6 +2119,11 @@ Hier erscheint die Testauswertung!
 \newcommand{\MExponentensymbol}[1]{\renewcommand{\MExponentensymbXYZl}{#1}}
 \newcommand{\MExponent}[2][\MExponentensymbXYZl]{{}#1{} 10^{#2}} 
 
+%Begrenzungszeichen fuer offene Intervalle
+%\newcommand{\MoIl}{\mbox{}]} % bzw. '('
+%\newcommand{\MoIr}{[\mbox{}} % bzw. ')'
+\newcommand{\MoIl}[1][]{\mbox{}#1]} % bzw. '('
+\newcommand{\MoIr}[1][]{#1[\mbox{}} % bzw. ')'
 
 %Zahlen-Separation im IntervaLL
 \newcommand{\MIntvlSep}{;} %oder ','
