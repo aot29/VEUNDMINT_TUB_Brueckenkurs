@@ -2130,6 +2130,14 @@ Hier erscheint die Testauswertung!
 %Separation von Elementen in Mengen
 \newcommand{\MElSetSep}{;} %oder ','
 \newcommand{\MCondSetSep}{\,:\,} %oder '\mid'
+%Separation von Koordinaten in Punkten
+\newcommand{\MCoordPointSep}{;} %oder '|', '\MThinspace|\MThinspace'
+
+%Punkte in 2 und 3 Dimensionen
+\newcommand{\MPointTwo}[3][]{#1(#2\MCoordPointSep #3{}#1)}
+\newcommand{\MPointThree}[4][]{#1(#2\MCoordPointSep #3\MCoordPointSep #4{}#1)}
+\newcommand{\MPointTwoAS}[2]{\left(#1\MCoordPointSep #2\right)}
+\newcommand{\MPointThreeAS}[3]{\left(#1\MCoordPointSep #2\MCoordPointSep #3\right)}
 
 %horizontaler Leerraum zwischen herausgestellter Formel und Interpunktion
 \ifttm
