@@ -185,9 +185,9 @@ $y_{0,1} = 10$ bzw. $y_{0,2} = \Mtfrac{13}{2}$ beschrieben:
 \MUGraphicsSolo{eindeutige_lsg.png}{scale=1}{width:450px}
 \end{center}
 Wir erkennen aus dem Schaubild, dass sich die beiden Geraden in der Tat schneiden und lesen
-die Koordinaten des Schnittpunktes zu $(x = 7; y = 3)$ ab. Dementsprechend besitzt
+die Koordinaten des Schnittpunktes zu $\MPointTwo{x = 7}{y = 3})$ ab. Dementsprechend besitzt
 das hier betrachtete Lineare Gleichungssystem eine eindeutige Lösung; die
-Lösungsmenge $\ML$ enthält genau ein Zahlenpaar, ${\ML} = \{ (x = 7; y = 3) \}$.
+Lösungsmenge $\ML$ enthält genau ein Zahlenpaar, ${\ML} = \{ \MPointTwo{x = 7}{y = 3} \}$.
 \end{MExample}
 Diese anschauliche Betrachtungsweise eignet sich hervorragend, alle Fälle zu
 diskutieren, die überhaupt nur auftreten können: Denn entweder schneiden sich zwei Geraden in der $x$-$y$-Ebene -
@@ -230,7 +230,7 @@ Lösung: $${\ML} = \MEmptyset\MDFPeriod $$
 Die beiden Geraden besitzen sowohl dieselbe Steigung $m = - 1$ als auch denselben
 $y$-Achsenabschnitt $y_0 = 2$; sie sind deckungsgleich; das Lineare Gleichungssystem besitzt
 unendlich viele Lösungen, die z.B. wie folgt angegeben werden können:
-$${\ML} = \{ (t; - t + 2) \MCondSetSep  t \in \R \}\MDFPeriod $$
+$${\ML} = \{ \MPointTwo{t}{ - t + 2} \MCondSetSep  t \in \R \}\MDFPeriod $$
 \end{minipage}
 \end{tabular}
 \end{center}
@@ -416,7 +416,7 @@ Gleichsetzen der beiden rechten Seiten der Gleichungen~$(1')$ und $(2')$ liefert
 $$2 - \Mtfrac27 y = 2 + \Mtfrac53 y \Leftrightarrow 0 = (\Mtfrac27 + \Mtfrac53) y \Leftrightarrow y = 0 \MDFPeriod $$
 Mit diesem Ergebnis für $y$ ergibt z.B. die erste Gleichung:
 $$7 x + 2 \cdot 0 = 14 \Leftrightarrow 7 x = 14 \Leftrightarrow x = 2 \MDFPeriod $$
-Also ist das gegebene Lineare Gleichungssystem eindeutig lösbar und ${\ML} = \{ (x = 2; y = 0) \}$.
+Also ist das gegebene Lineare Gleichungssystem eindeutig lösbar und ${\ML} = \{ \MPointTwo{x = 2}{y = 0} \}$.
 
 Alternativ hätten wir die beiden Gleichungen vor dem Gleichsetzen auch nach $y$ auflösen können (oder nach einem
 Vielfachen von $x$ oder nach einem Vielfachen von $y$). Das Endresultat ist jedesmal dasselbe.
@@ -451,7 +451,7 @@ Um den Lösungswert für $y$ zu bekommen, können wir das gerade erzielte Resultat 
 einsetzen:
 $$2 \cdot 4 + y = 9 \Leftrightarrow 8 + y = 9 \Leftrightarrow y = 1 \MDFPeriod$$
 Das Lineare Gleichungssystem des vorliegenden Beispiels besitzt also eine eindeutige Lösung, ${\ML} =
-\{ (x = 4; y = 1) \}$.
+\{ \MPointTwo{x = 4}{y = 1} \}$.
 \end{MExample}
 Auch bei diesem Verfahren liegt das Vorgehen nicht eindeutig fest: So hätten wir z.B. auch Gleichung~$(1)$ mit $3$
 und Gleichung~$(2)$ mit $(- 2)$ durchmultiplizieren können,
@@ -488,7 +488,7 @@ Lösen Sie die folgenden Linearen Gleichungssysteme mit Hilfe der Einsetzmethode:
 \item{Auflösen z.B. der 1.~Gleichung ($3 x + y = 4$) nach $y$ liefert $y = 4 - 3 x$. Dies kann man dann in die 2.~Gleichung
 ($- x + 2 y = 1$) einsetzen: $- x + 2 (4 - 3 x) = 1 \Leftrightarrow - x + 8 - 6 x = 1 \Leftrightarrow - 7 x = - 7
 \Leftrightarrow x = 1$. Mit diesem Ergebnis für $x$ liefert in der Folge z.B. die 1.~Gleichung $3 \cdot 1 + y = 4
-\Leftrightarrow y = 1$. Die Lösungsmenge $\ML$ lautet hier also ${\ML} = \{ (1; 1) \}$.
+\Leftrightarrow y = 1$. Die Lösungsmenge $\ML$ lautet hier also ${\ML} = \{ \MPointTwo{1}{1} \}$.
 
 Selbstverständlich könnte man auch anders beginnen: Man könnte z.B. die 1.~Gleichung nach $x$ auflösen und
 das Ergebnis für $x$ dann in die 2.~Gleichung einsetzen, um $y$ zu bestimmen; oder man könnte generell mit
@@ -497,15 +497,15 @@ Es bestehen also einige Freiheiten in der Vorgehensweise.}
 \item{Auflösen z.B. der 1.~Gleichung ($- x + 4 y = 5$) nach $x$ liefert $x = 4 y - 5$. Dies kann man dann in die 2.~Gleichung
 ($2 x - 8 y = - 10$) einsetzen: $2 ( 4 y - 5) - 8 y = - 10 \Leftrightarrow 8 y - 10 - 8y = - 10 \Leftrightarrow 0 = 0$.
 Es entsteht also keine neue Aussage; mit anderen Worten: Die 2.~Gleichung enthält keine neue Information. Damit enthält
-die Lösungsmenge $\ML$ in diesem Fall unendlich viele Lösungspaare $(x; y)$, die sich durch eine reelle Zahl $t$
-parametrisieren lassen. Wählt man z.B. $y = t$, so lautet die Lösungsmenge ${\ML} = \{ (4 t - 5; t)  \MCondSetSep  t \in \R \}$.
+die Lösungsmenge $\ML$ in diesem Fall unendlich viele Lösungspaare $\MPointTwo{x}{y}$, die sich durch eine reelle Zahl $t$
+parametrisieren lassen. Wählt man z.B. $y = t$, so lautet die Lösungsmenge ${\ML} = \{ \MPointTwo{4 t - 5}{t}  \MCondSetSep  t \in \R \}$.
 Diese Lösungsmenge lässt sich als Gerade im zweidimensionalen Raum veranschaulichen:
 \begin{center}
 \MUGraphicsSolo{unendl_Lsgsm_Aufg_1b.png}{scale=1}{width:450px}
 \end{center}
 Dementsprechend sind andere Parametrisierungen der Lösungsmenge möglich, z.B. indem man als freien Parameter $x \in \R$
 wählt und die obige Gerade mit Hilfe ihrer Steigung und ihres $y$-Achsenabschnittes charakterisiert, also
-${\ML} = \{ (x; \Mtfrac14 x + \Mtfrac54 ) \MCondSetSep x \in \R \}$.}
+${\ML} = \{ \MPointTwo{x}{ \Mtfrac14 x + \Mtfrac54 } \MCondSetSep x \in \R \}$.}
 \end{MExerciseItems}
 \end{MHint}
 \end{MExercise}
@@ -529,7 +529,7 @@ $14 x + 35 y = 91$. Anschließende Addition der Gleichungen $(1')$ und $(2')$ lie
 $- 14 x + 22 y + 14 x + 35 y = 80 + 91 \Leftrightarrow 57 y = 171 \Leftrightarrow y = 3$. Setzt man dieses
 Ergebnis für $y$ z.B. in die 2.~Gleichung ein, so entsteht: $2 x + 5 \cdot 3 = 13 \Leftrightarrow
 2 x = 13 - 15 \Leftrightarrow 2 x = - 2 \Leftrightarrow x = - 1$. Damit lautet die Lösungsmenge $\ML$ hier:
-${\ML} = \{ (- 1; 3) \}$.}
+${\ML} = \{ \MThinspace{- 1}{ 3} \}$.}
 \end{MExerciseItems}
 \end{MHint}
 \end{MExercise}
@@ -539,13 +539,13 @@ Lösen Sie das folgende Lineare Gleichungssystem graphisch: $2 x = 2$ und $x + 3 
 
 \begin{MHint}{Lösung}
 Die 1.~Gleichung ($2 x = 2$) ist äquivalent zu $x = 1$: Diese Gleichung beschreibt eine Gerade parallel zur
-$y$-Achse durch den Punkt $(1, 0)$ auf der $x$-Achse. Die 2.~Gleichung ($x + 3 y = 4$) kann umgeformt werden zu
+$y$-Achse durch den Punkt $\MThinspace{1}{0}$ auf der $x$-Achse. Die 2.~Gleichung ($x + 3 y = 4$) kann umgeformt werden zu
 $y = - \Mtfrac{1}{3} x + \Mtfrac{4}{3}$; dies beschreibt ebenfalls eine Gerade, diesmal mit der Steigung $- \Mtfrac{1}{3}$ und 
 dem $y$-Achsenabschnitt $\Mtfrac{4}{3}$. Es ergibt sich also folgendes Bild:
 \begin{center}
 \MUGraphicsSolo{Aufgabe_Schnittpunkt_Geraden_1.png}{scale=1}{width:450px}
 \end{center}
-Aus diesem Bild liest man die Koordinaten des Schnittpunktes zu $(x = 1, y = 1)$ ab; daher: ${\ML} = \{ (1; 1) \}$.
+Aus diesem Bild liest man die Koordinaten des Schnittpunktes zu $\MThinspace{x = 1}{y = 1}$ ab; daher: ${\ML} = \{ \MThinspace{1}{1} \}$.
 \end{MHint}
 \end{MExercise}
 
@@ -610,7 +610,7 @@ eine \MEntry{Ebene}{Ebenengleichung} \textbf{in Koordinatenform} darstellen, gan
 Gleichung nach $z$ aufgelöst werden,
 $$z = \Mtfrac{b_1}{a_{13}} - \Mtfrac{a_{11}}{a_{13}} \cdot x - \Mtfrac{a_{12}}{a_{13}} \cdot y \MDFPSpace ,$$
 sodass die \textbf{explizite Form} der Gleichung ebenjener Ebene resultiert. Die letzte Gleichung besagt, dass jedem Paar
-$(x, y)$, also jedem Punkt der $x$-$y$-Koordinatenebene, gemäß der Vorschrift der rechten Seite ein Wert $z$, also
+$\MPointTwo{x}{y}$, also jedem Punkt der $x$-$y$-Koordinatenebene, gemäß der Vorschrift der rechten Seite ein Wert $z$, also
 gewissermaßen ein Höhe, zugeordnet wird; dadurch entsteht eine Fläche über der $x$-$y$-Ebene, die aufgrund der Linearität
 der Gleichung selbst eine Ebene ist.
 
@@ -647,7 +647,7 @@ $$y = 3 - \Mtfrac43 \Leftrightarrow y = \Mtfrac53 \MDFPeriod $$
 Der Wert für $z$ schließlich resultiert, indem man die Werte für $x$ und $y$ z.B. in Gleichung~$(1')$ einsetzt:
 $$z = \Mtfrac43 + \Mtfrac53 \Leftrightarrow z = \Mtfrac93 \Leftrightarrow z = 3 \MDFPeriod $$
 Das gegebene Lineare Gleichungssystem ist also eindeutig lösbar; für die Lösungsmenge erhalten wir
-${\ML} = \{ (x = \Mtfrac43; y = \Mtfrac53; z = 3) \}$.
+${\ML} = \{ \MPointThree{x = \Mtfrac43}{y = \Mtfrac53}{z = 3} \}$.
 \end{MExample}
 Verweilen wir noch für einen Moment in der bildhaften Welt, um die Frage der Lösbarkeit eines Systems aus drei linearen
 Gleichungen in drei Unbekannten allgemeiner und etwas genauer unter die Lupe zu nehmen:
@@ -751,7 +751,7 @@ $$y = 24 - \Mtfrac95 \cdot 10 = 24 - 9 \cdot 2 = 6 $$
 und schließlich $x$ (mit Hilfe von beispielsweise Gleichung~$(1')$):
 $$x = 2 \cdot 6 + 2 \cdot 10 - 30 = 12 + 20 - 30 = 2 \MDFPeriod$$
 Das Lineare Gleichungssystem besitzt daher eine eindeutige Lösung; die Lösungsmenge $\ML$ enthält genau
-ein Element, ${\ML} = \{ (x = 2; y = 6; z = 10) \}$.
+ein Element, ${\ML} = \{ \MPointThree{x = 2}{y = 6}{z = 10} \}$.
 \end{MExample}
 Vielleicht fragt sich der eine oder andere im Zusammenhang mir dem voranstehenden Beispiel, ob es in Anbetracht
 der identischen rechten Seiten - alle gleich $- 30$ - nicht praktischer wäre, einfach die linken Seiten paarweise
@@ -899,8 +899,8 @@ Damit gilt auch
 $$z = \Mtfrac{2}{19} \MDFPSpace ,$$
 und für $y$ erhalten wir - gemäß der Gleichung aus der ersten Umformung -:
 $$y = 2 \cdot \Mtfrac{2}{19} + 5 \cdot \Mtfrac{2}{19} - 1 = \Mtfrac{4 + 10 - 19}{19} = \Mtfrac{-5}{19} \MDFPeriod$$
-Also ist das Lineare Gleichungssystem eindeutig lösbar mit ${\ML} = \{ (x = \Mtfrac{2}{19};
-y = - \Mtfrac{5}{19}; z = \Mtfrac{2}{19} \}$.\\
+Also ist das Lineare Gleichungssystem eindeutig lösbar mit ${\ML} = \{ \MPointThree{x = \Mtfrac{2}{19}}{
+y = - \Mtfrac{5}{19}}{ z = \Mtfrac{2}{19}} \}$.\\
 Alternative Lösungswege sind ebenso gut möglich.}
 \item{Addition der ersten und der dritten Gleichung eliminiert die Unbekannte $y$:
 $$(2 x - y + 5 z) + (- 4 x + y - 3 z) = 1 + (- 1) \Leftrightarrow - 2 x + 2 z = 0 \MDFPeriod$$
@@ -910,7 +910,7 @@ und die anschließende Addition der zweiten Gleichung ($11 x  + 8 z = 2$) sorgt d
 von $z$ herausfällt:
 $$(8 x - 8 z) + (11 x + 8 z) = 0 + 2 \Leftrightarrow 19 x = 2 \Leftrightarrow x = \Mtfrac{2}{19} \MDFPeriod$$
 Wir im ersten Aufgabenteil können in der Folge $z$ und $y$ bestimmt werden; natürlich bekommen wir
-dasselbe Ergebnis ${\ML} = \{ (x = \Mtfrac{2}{19}; y = - \Mtfrac{5}{19}; z = \Mtfrac{2}{19} \}$.\\
+dasselbe Ergebnis ${\ML} = \{ \MPointThree{x = \Mtfrac{2}{19}}{y = - \Mtfrac{5}{19}}{z = \Mtfrac{2}{19}} \}$.\\
 Alternative Lösungswege sind ebenso gut möglich.}
 \end{MExerciseItems}
 \end{MHint}
@@ -989,7 +989,7 @@ Mit dem Ergebnis für $x$ liefert die erste Gleichung
 $$1 + 2 z = 5 \Leftrightarrow 2 z = 4 \Leftrightarrow z = 2 \MDFPeriod$$
 Den Wert für $y$ erhalten wir sodann, indem wir z.B. die zweite Gleichung verwenden:
 $$3 \cdot 1 + y - 2 \cdot 2 = - 1 \Leftrightarrow 3 + y - 4 = - 1 \Leftrightarrow y = 0 \MDFPeriod$$
-Also lautet die Lösungsmenge ${\ML} = \{ (x = 1; y = 0; z = 2) \}$.
+Also lautet die Lösungsmenge ${\ML} = \{ \MPointThree{x = 1}{y = 0}{z = 2} \}$.
 \end{MHint}
 \end{MExercise}
 \end{MExercises}
@@ -1041,7 +1041,7 @@ auf einen Widerspruch. In diesem Fall besitzt das Lineare Gleichungssystem \text
 identisch erfüllt ($0 = 0$). In der Tat sind in diesem Fall die beiden Ausgangsgleichungen gerade Vielfache
 voneinander, sodass nur eine von ihnen tatsächlich Information trägt. Dementsprechend ist jetzt die
 \textbf{Lösungsmenge unendlich mächtig} und kann beispielsweise folgendermaßen angegeben werden: ${\ML}
-= \{ (x = 3 + 2 t; y = t)  \MCondSetSep t \in \R \}$.
+= \{ \MPointTwo{x = 3 + 2 t}{y = t}  \MCondSetSep t \in \R \}$.
 \end{MExample}
 Das Beispiel zeigt, dass das Aussehen der Lösungsmenge sehr stark von der Wahl des freien Parameters abhängen kann.
 
@@ -1073,7 +1073,7 @@ den Unbekannten $x, y$ und $z$ verbleibt Gleichung~$(1')$ bzw. Gleichung~$(1)$, 
 $$x + y + z = 1 \; : \mbox{ Gleichung } (\hat{1})$$
 lautet. Daher besitzt die Lösungsmenge hier unendlich viele Elemente. Sie kann mit Hilfe \textbf{zweier freier
 Parameter} angegeben werden, z.B.
-$${\ML} = \{ (s; t; 1 - s- t) \MCondSetSep  s, t \in \R \} \MDFPeriod $$
+$${\ML} = \{ \MPointThree{s}{t}{1 - s- t} \MCondSetSep  s, t \in \R \} \MDFPeriod $$
 Anschaulich gesprochen entspricht die Lösungsmenge gerade der durch Gleichung~$(\hat{1})$ beschriebenen Ebene.
 
 \textbf{Fall 2:} $\alpha \neq 1$: In diesem Fall können wir sowohl Gleichung~$(2')$ als auch Gleichung~$(3')$
@@ -1095,8 +1095,8 @@ problemlos nach $z$ auflösen,
 $$z = \Mdfrac{1}{2 + \alpha} \MDFPeriod $$
 
 Damit liegen auch $y$ ($y = z$) und $x$ ($x = 1 - y - \alpha z$) fest; das ursprüngliche Lineare Gleichungssystem
-besitzt eine eindeutige Lösung, ${\ML} = \{ (x = \Mtfrac{1}{2 + \alpha}; y = \Mtfrac{1}{2 + \alpha};
-z = \Mtfrac{1}{2 + \alpha} ) \}$.
+besitzt eine eindeutige Lösung, ${\ML} = \{ \MPointThree{x = \Mtfrac{1}{2 + \alpha}}{ y = \Mtfrac{1}{2 + \alpha}}{
+z = \Mtfrac{1}{2 + \alpha} } \}$.
 \end{MExample}
 Wir haben im Vorhergehenden das Beispiel auch deshalb so ausführlich ausbuchstabiert, um eindringlich auf die
 Wichtigkeit einer sauberen und genauen Fallunterscheidung hinzuweisen. Je nachdem, ob $\alpha = 1$, $\alpha = - 2$
@@ -1126,7 +1126,7 @@ Die Lösungsmenge
 \begin{tabular}[t]{ll}
 \MCheckbox{0}{M04C13} & ist leer,\\
 \MCheckbox{1}{M04C14} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{ATXY1} , $y =$ \MLParsedQuestion{5}{-2}{5}{ATXY2} ,\\
-\MCheckbox{0}{M04C15} & enthält unendlich viele Lösungspaare $(x, y)$.
+\MCheckbox{0}{M04C15} & enthält unendlich viele Lösungspaare $\MPointTwo{x}{y}$.
 \end{tabular}
 \end{MExercise}
 
@@ -1178,7 +1178,7 @@ Die Lösungsmenge
 \MCheckbox{0}{M04C19} & ist leer,\\
 \MCheckbox{1}{M04C20} & enthält genau eine Lösung: $x =$ \MLParsedQuestion{5}{1}{5}{ATXY4} , $y =$ \MLParsedQuestion{5}{1}{5}{ATXY5}
 , $z = $ \MLParsedQuestion{5}{1}{5}{ATXY6} ,\\
-\MCheckbox{0}{M04C21} & enthält unendlich viele Lösungen $(x, y, z)$.
+\MCheckbox{0}{M04C21} & enthält unendlich viele Lösungen $\MPointThree{x}{y}{z}$.
 \end{tabular}
 \end{MExercise}
 
