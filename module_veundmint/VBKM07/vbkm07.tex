@@ -123,9 +123,9 @@ an den Graphen im Punkt $\left(x_0\MIntvlSep f\left(x_0\right)\right)$ wird. Auf
 der Funktion $f$ - oder die \textbf{Steigung} des Graphen von $f$ - an der Stelle $x_0$ \emph{selbst} bestimmen. Führt der geschilderte Prozess der Annäherung von $x$ an $x_0$ bildlich gesprochen
 auf eine eindeutige Tangente (mit einer eindeutigen Steigung, die insbesondere nicht unendlich sein darf), so spricht man in der Mathematik davon,
 dass der \MEntry{Grenzwert}{Grenzwert} des Differenzenquotienten \emph{existiert}. Beschrieben wird dieser Grenzwertprozess, dass $x$ gegen $x_0$ strebt,
-hier und im Folgenden mit dem
+hier und im Folgenden mit dem Symbol
 \[
-\mbox{Symbol } \lim_{x \rightarrow x_0} \MDFPSpace,
+\lim_{x \rightarrow x_0} \MDFPSpace,
 \]
 wobei $\lim$ abkürzend für \emph{Limes}, das lateinische Wort für Grenze, steht.
 Existiert der Grenzwert des Differenzenquotienten, so bezeichnen wir mit
@@ -353,20 +353,27 @@ sind differenzierbar. Im Folgenden wollen wir die Ableitungsregeln für diese Fun
 \end{MIntro}
 
 
-\begin{MXContent}{Ableitung von Polynomen}{Ableitung von Polynomen}{STD}
+\begin{MXContent}{Ableitung von Potenzfunktionen}{Ableitung von Potenzfunktionen}{STD}
 \MDeclareSiteUXID{VBKM07_StdAbleitungen_Polynome}
  
-Aus der Einf"uhrung der Ableitung mithilfe des Differenzenquotienten ergibt sich f"ur eine linear-affine Funktion (siehe Modul \MRef{VBKM06}, Abschnitt \MRef{VBKM06_sec:linear-affin}) $f\left(x\right) = m x + b$, wobei $m$ und $b$ gegebene Zahlen sind, dass die Ableitung von $f$ an der Stelle $x_0$ gleich $f'(x_0) = m$ ist. (Überprüfen Sie dies gerne selbst!) F"ur Monome $x^n$ mit $n \geq 1$ ist es am einfachsten, die Ableitung "uber den Differenzenquotienten zu bestimmen. Ohne detaillierte Rechnung oder Beweis ergeben sich die folgenden Aussagen:
+Aus der Einf"uhrung der Ableitung als Grenzwert des Differenzenquotienten ergibt sich f"ur eine affin lineare Funktion
+(siehe Modul \MRef{VBKM06}, Abschnitt \MRef{VBKM06_sec:linear-affin})
+$f: \R \rightarrow \R$, $x \mapsto f\left(x\right) = m x + b$, wobei $m$ und $b$ gegebene Zahlen sind, dass der Wert der Ableitung von $f$
+an der Stelle $x_0$ gleich $f'(x_0) = m$ ist. (Überprüfen Sie dies gerne selbst!)
+
+F"ur Monome $x^n$ mit $n \geq 1$ ist es am einfachsten,
+die Ableitung "uber den Differenzenquotienten zu bestimmen. Ohne hier eine detaillierte Rechnung oder einen Beweis anzugeben,
+erhalten wir die folgenden Aussagen:
 
 \begin{MXInfo}{Ableitung von $x^n$}
 Gegeben sind eine nat"urliche Zahl $n$ und eine reelle Zahl $r$.
 
-Die konstante Funktion $f(x) := r = r \cdot x^0$ hat die Ableitung
-$f'(x) = 0$.
+Die konstante Funktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) := r = r \cdot x^0$ besitzt die Ableitung
+$f': \R \rightarrow \R$ mit $x \mapsto f'(x) = 0$.
 
-Die Funktion $f(x) := r \cdot x^n$ hat die Ableitung 
+Die Funktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) := r \cdot x^n$ besitzt die Ableitung 
 \[
-f'(x) = r \cdot n \cdot x^{n-1} \MDFPeriod %%
+f': \R \rightarrow \R \MDFPSpace \mbox{ mit } \MDFPSpace x \mapsto f'(x) = r \cdot n \cdot x^{n-1} \MDFPeriod %%
 \]
 Diese Ableitungsregel gilt im Übrigen auch für $n\in\mathbb{R}\setminus\{0\}$.
 \end{MXInfo}
@@ -374,9 +381,9 @@ Diese Ableitungsregel gilt im Übrigen auch für $n\in\mathbb{R}\setminus\{0\}$.
 Überprüfen Sie auch diese Aussagen selbst!
 
 \begin{MExample}
-Wir untersuchen die Funktion $f: \R \rightarrow \R$ mit $f(x) = 5 x^3$.
-Vergleichen wir die gegebene Funktion mit den oben verwendeten Bezeichnungen, dann sind $r = 5$ und $n = 3$. Damit erh"alt man die 
-Ableitung 
+Wir untersuchen die Funktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) = 5 x^3$.
+Vergleichen wir die gegebene Funktion mit den oben verwendeten Bezeichnungen, dann sind $r = 5$ und $n = 3$. Damit erh"alt man für den Wert der 
+Ableitung an der Stelle $x$
 \[
 f'(x) = 5 \cdot 3 x^{3 - 1} = 15 x^2 \MDFPeriod %%
 \]
@@ -386,26 +393,26 @@ f'(x) = 5 \cdot 3 x^{3 - 1} = 15 x^2 \MDFPeriod %%
 F"ur Wurzelfunktionen ergibt sich eine entsprechende Aussage. Allerdings 
 ist zu beachten, dass Wurzelfunktionen nur f"ur $x > 0$ differenzierbar sind.
 Denn die Tangente an den Funktionsgraphen durch den Punkt $(0, 0)$ verl"auft 
-parallel zur $y$-Achse und beschreibt somit keine Funktion. 
+parallel zur $y$-Achse und ist somit kein Schaubild einer Funktion. 
 
 \begin{MXInfo}{Ableitung von $x^{\frac{1}{n}}$}
 F"ur $n \in \Z$ mit $n \neq 0$ ist die Funktion
-$f(x) := x^{\frac{1}{n}}$ f"ur $x > 0$ differenzierbar, und es gilt
+$f: [0 \MIntvlSep \infty ) \rightarrow \R$, $x \mapsto f(x) := x^{\frac{1}{n}}$ für $x>0$ differenzierbar, und es gilt
 \[
-f'(x) = \frac{1}{n} \cdot x^{\frac{1}{n}-1} \text{ f"ur } x > 0 \MDFPeriod%%
-\]%
+f': (0 \MIntvlSep \infty ) \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto f'(x) = \frac{1}{n} \cdot x^{\frac{1}{n}-1} \MDFPeriod
+\]
 \end{MXInfo}
 
-F"ur $n\in\mathbb{N}$ werden durch $f(x) = x^{\frac{1}{n}}$ Wurzelfunktionen beschrieben. Die hier beschriebene Ableitungsregel gilt natürlich auch für $n = 1$ oder $n = -1$.
+F"ur $n\in\mathbb{N}$ werden durch $f(x) = x^{\frac{1}{n}}$ Wurzelfunktionen beschrieben. Die hier wiedergegebene Ableitungsregel gilt natürlich auch für $n = 1$ oder $n = -1$.
 \begin{MExample}
 Die Wurzelfunktion $f: [0\MIntvlSep \infty) \rightarrow \R$ mit
- $f(x) := \sqrt{x} = x^{\frac{1}{2}}$
-ist f"ur $x > 0$ differenzierbar. Die Ableitung ist durch
+$x \mapsto f(x) := \sqrt{x} = x^{\frac{1}{2}}$
+ist f"ur $x > 0$ differenzierbar. Der Wert der Ableitung an einer beliebigen Stelle $x>0$ ist durch
 \[
 f'(x) = \frac{1}{2} \cdot x^{\frac{1}{2}-1} %
 = \frac{1}{2} \cdot x^{-\frac{1}{2}} = \frac{1}{2 \cdot \sqrt{x}} %%
 \] 
-gegeben. In diesem Beispiel ist leicht zu sehen, dass die Ableitung in $x_0 = 0$ nicht existiert.
+gegeben. Die Ableitung in $x_0 = 0$ existiert nicht, da die Tangente an den Graphen von $f$ dort eine unendliche Steigung hätte.
 
 \begin{center}
 \MTikzAuto{%
@@ -435,13 +442,13 @@ gegeben. In diesem Beispiel ist leicht zu sehen, dass die Ableitung in $x_0 = 0$
 }
 \end{center}
 
-Die Tangente in $x_0 = 1$ an den Graphen der Wurzelfunktion $f(x) = \sqrt{x}$ hat 
-die Steigung $\frac{1}{2 \sqrt{1}} = \frac{1}{2}$.
+Die Tangente im Punkt $(1 \MIntvlSep 1)$ an den Graphen der vorliegenden Wurzelfunktion weist 
+die Steigung $\frac{1}{2 \sqrt{1}} = \frac{1}{2}$ auf.
 \end{MExample}
 
-Die bisher getroffenen Aussagen können f"ur Exponenten $p \in \R$ mit 
-$p \neq 0$ f"ur $x > 0$ verallgemeinert werden:
-Die Ableitung von $f(x) = x^p$ f"ur $x > 0$ ist
+Die bisherigen Aussagen können f"ur $x>0$ auf Exponenten $p \in \R$ mit 
+$p \neq 0$ ausgedehnt werden:
+Der Wert $f'(x)$ der Ableitung einer Funktion $f$ mit Funktionsterm $f(x) = x^p$ f"ur $x > 0$ ist
 \[
 f'(x) = p \cdot x^{p-1} \MDFPeriod %%
 \]
@@ -452,7 +459,7 @@ f'(x) = p \cdot x^{p-1} \MDFPeriod %%
 
 \MSubsubsectionx{Ableitung trigonometrischer Funktionen}
 
-Die Sinusfunktion ist periodisch mit Periode $2 \pi$. Somit gen"ugt es, die
+Die Sinusfunktion $f: \R \rightarrow \R$, $x \mapsto f(x) = \sin(x)$ ist periodisch mit Periode $2 \pi$. Somit gen"ugt es, die
 Funktion auf einem Intervall der L"ange $2 \pi$ zu betrachten. Einen Ausschnitt 
 des Graphen f"ur $-\pi \leq x \leq \pi$ zeigt die folgende Abbildung:
 
@@ -528,20 +535,25 @@ declare function={
 }
 \end{center}
 
-Wie in der Abbildung zu sehen ist, ist die Steigung des Sinus bei $x_0 = \pm\frac{\pi}{2}$ gerade $f'(\pm\frac{\pi}{2}) = 0$. Legt man eine Tangente an der Stelle $x_0 = 0$ an den Sinus, wird man die Steigung $f'(0) = 1$ finden. Untersucht man die Stellen $x_0 = \pm\pi$, ist sofort einsichtig, dass dort dieselbe Steigung herrschen muss wie bei $x_0 = 0$, aber mit umgedrehtem Vorzeichen. Die Steigung ist dort also $f'(\pm\pi) = -1$. Als Ableitung des Sinus suchen wir also eine Funktion, die genau diese Eigenschaften erfüllt. Eine genaue Untersuchung der Bereiche zwischen diesen speziell ausgesuchten Stellen ergibt, dass der Kosinus die Ableitung des Sinus beschreibt:
+Wie in der Abbildung zu sehen, ist die Steigung des Sinus bei $x_0 = \pm\frac{\pi}{2}$ gerade $f'(\pm\frac{\pi}{2}) = 0$.
+Legt man eine Tangente an der Stelle $x_0 = 0$ an den Graphen der Sinusfunktion, erhält man als deren Steigung $f'(0) = 1$.
+Untersucht man die Stellen $x_0 = \pm\pi$, so findet man, dass dort die gleiche Steigung wie bei $x_0 = 0$, aber mit umgedrehtem Vorzeichen, vorliegt.
+Die Steigung ist dort also $f'(\pm\pi) = -1$. Die Ableitung des Sinus ist also eine Funktion, die genau diese Eigenschaften erfüllt.
+Eine genaue Untersuchung der Bereiche zwischen diesen speziell ausgesuchten Stellen ergibt, dass der Kosinus die Ableitung des Sinus darstellt:
 
 \begin{MXInfo}{Ableitung trigonometrischer Funktionen}
-F"ur die Sinusfunktion $f(x) := \sin(x)$ gilt 
+F"ur die Sinusfunktion $f: \R \rightarrow \R$, $x \mapsto f(x) := \sin(x)$ gilt 
 \[
-f'(x) = \cos(x) \MDFPeriod %%
+f': \R \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto f'(x) = \cos(x) \MDFPeriod %%
 \]
-F"ur die Kosinusfunktion $g(x) := \cos(x)$ gilt 
+F"ur die Kosinusfunktion $g: \R \rightarrow \R$, $x  \mapsto g(x) := \cos(x)$ gilt 
 \[
-g'(x) = -\sin(x) \MDFPeriod %%
+g': \R \rightarrow \R \MDFPSpace , \MDFPSpace g'(x) = -\sin(x) \MDFPeriod %%
 \]
-F"ur die Tangensfunktion $h(x) := \tan(x)$ f"ur $x \neq \frac{\pi}{2} + k \pi$ 
-mit $k \in \Z$ gilt
+F"ur die Tangensfunktion $h: \R \setminus \{ \frac{\pi}{2} + k \pi \MDFPSpace | \MDFPSpace k \in \Z \} \rightarrow \R$,
+$x \mapsto h(x) := \tan(x)$ gilt
 \[
+h': \R \setminus \{ \frac{\pi}{2} + k \pi \MDFPSpace | \MDFPSpace k \in \Z \} \rightarrow \R \MDFPSpace , \MDFPSpace
 h'(x) = 1 + (\tan(x))^2 = \frac{1}{\cos^2(x)} \MDFPeriod %%
 \]
 \end{MXInfo}
@@ -551,8 +563,8 @@ Definition des Tangens als Quotient von Sinus und Kosinus.
 \MSubsubsectionx{Ableitung der Exponentialfunktion}
 
 \begin{MInfo}
-Die Exponentialfunktion $f(x) := \MEU^{x} = \exp(x)$ hat die besondere Eigenschaft, 
-dass ihre Ableitung wiederum $f'(x) = \exp(x)$ ist.
+Die Exponentialfunktion $f: \R \rightarrow \R$, $x \mapsto f(x) := \MEU^{x} = \exp(x)$ hat die besondere Eigenschaft, 
+dass ihre Ableitung $f'$ wiederum die Exponentialfunktion ist, also $f'(x) = \exp(x)$ gilt.
 \end{MInfo}
 
 \MSubsubsectionx{Ableitung der Logarithmusfunktion}
@@ -568,70 +580,73 @@ dass ihre Ableitung wiederum $f'(x) = \exp(x)$ ist.
 %Geometrisch ist es die Steigung der gespiegelten Tangente, also die Tangente
 %an die Umkehrfunktion $\ln$.
 
-Verwenden wir wieder die gewohnten Bezeichnungen für die unabhängige Variable, können wir ohne Beweis die Ableitung der Logarithmusfunktion angeben. Es gilt: $f'(x) = \frac{1}{x}$ ist die Ableitung der 
-Logarithmusfunktion $f(x) = \ln(x)$.
+%Verwenden wir wieder die gewohnten Bezeichnungen für die unabhängige Variable, können wir ohne Beweis die Ableitung der Logarithmusfunktion angeben. Es gilt: $f'(x) = \frac{1}{x}$ ist die Ableitung der 
+%Logarithmusfunktion $f(x) = \ln(x)$.
 
-\begin{center}
-\MTikzAuto{%
-%{Tangenten an $\exp$ und an die Umkehrfunktion $\ln$}{}
-\begin{small}
-\begin{tikzpicture}[line width=1.5pt,scale=0.8]
-%Koordinatenachsen:
-\draw[->] (-3.2, 0) -- (4.6, 0) node[below left]{$x$}; %x-Achse
-\draw[->] (0, -3.2) -- (0, 4) node[below left]{$y$}; %y-Achse
-%Achsenbeschriftung:
-\foreach \x in {-3, -2, -1} \draw (\x, 0) -- ++(0, -0.1); % node[below] {$\x$};
-\foreach \x in {1, 2, 3} \draw (\x, 0) -- ++(0, -0.1) node[below] {$\x$};
-\foreach \y in {-3, -2, -1} \draw (0, \y) -- ++(-0.1, 0); % node[left] {$\y$};
-\foreach \y in {1, 2, 3} \draw (0, \y) -- ++(-0.1, 0) node[left] {$\y$};
-%\node[below left] at (0, 0) {$0$};
-%
-%Funktion exp:
-\draw[domain=-2.4:1.3,samples=120,color=white!50!black] %\jccolorfkt] %
- plot (\x, {exp(\x)});
-%Tangenten in verschiedenen Punkten:
-%x_0 = 0:
+Wir geben hier die Ableitung der Logarithmusfunktion ohne Beweis an. Für $f: (0 \MIntvlSep \infty) \rightarrow \R$ mit $x \mapsto f(x) = \ln(x)$
+erhält man $f': (0 \MIntvlSep \infty) \rightarrow \R$, $x \mapsto f'(x) = \frac1x$.
+
+%\begin{center}
+%\MTikzAuto{%
+%%%{Tangenten an $\exp$ und an die Umkehrfunktion $\ln$}{}
+%\begin{small}
+%\begin{tikzpicture}[line width=1.5pt,scale=0.8]
+%%%Koordinatenachsen:
+%\draw[->] (-3.2, 0) -- (4.6, 0) node[below left]{$x$}; %x-Achse
+%\draw[->] (0, -3.2) -- (0, 4) node[below left]{$y$}; %y-Achse
+%%%Achsenbeschriftung:
+%\foreach \x in {-3, -2, -1} \draw (\x, 0) -- ++(0, -0.1); % node[below] {$\x$};
+%\foreach \x in {1, 2, 3} \draw (\x, 0) -- ++(0, -0.1) node[below] {$\x$};
+%\foreach \y in {-3, -2, -1} \draw (0, \y) -- ++(-0.1, 0); % node[left] {$\y$};
+%\foreach \y in {1, 2, 3} \draw (0, \y) -- ++(-0.1, 0) node[left] {$\y$};
+%%%\node[below left] at (0, 0) {$0$};
+%%%
+%%%Funktion exp:
+%\draw[domain=-2.4:1.3,samples=120,color=white!50!black] %\jccolorfkt] %
+% plot (\x, {exp(\x)});
+%%%Tangenten in verschiedenen Punkten:
+%%%x_0 = 0:
+%%%\draw[samples=120,color=blue!50!black] %
+%%% (-0.45, 0.45) -- (0.55, 1.55);
+%%%
+%%%x_0 = 1:
+%%% ({3/4}, {exp(1) - 1/4 * exp(1)}) -- ++({2/4}, {2/4*exp(1)});
+%%%
+%%%x_0 = ln(2): y = exp(ln(2)) + 2 * (x - ln(2)) = 2 + 2 * (x - ln(2)):
+%\draw[style=dashed,samples=120,color=blue!50!black] %
+% ({ln(2) - 3/8}, {5/4}) -- ++({6/8}, {6/8*2});
+%%%
+%%%Punkte:
+%%%\filldraw[color=black] (0, 1) circle (2pt);
+%\filldraw[color=black] (0, 2) circle (2pt);
+%\filldraw[color=black] ({ln(2)}, 2) circle (2pt);
+%%%
+%%%Spiegelachse (erste Winkelhalbierende):
+%\draw[samples=120,style=dotted,color=white!50!black] %
+% (-2.1, -2.1) -- (3.1, 3.1);
+%%%
+%%%Umkehrfunktion ln:
+%\draw[domain=0.1:{exp(1.3},samples=120,color=\jccolorfkt] %
+% plot (\x, {ln(\x)});
+%%%Tangenten in verschiedenen Punkten:
+%%%\draw[samples=120,color=blue!50!black] %
+%%% (0.45, -0.45) -- (1.55, 0.55);
+%%%
+%%%\draw[style=dotted,samples=120,color=blue!50!black] %
+%%% ({exp(1) - 1/2}, {1 - 1/2 * 1/exp(1)}) -- ++(1, {1/exp(1)});
+%%%\draw[style=dotted,samples=120,color=blue!50!black] %
+%%% ({exp(1) - 1/4*exp(1)}, {3/4}) -- ++({2/4*exp(1)}, {2/4});
+%%%x_0 = 2: y = ln(2) + 1/2 * (x - 2):
 %\draw[samples=120,color=blue!50!black] %
-% (-0.45, 0.45) -- (0.55, 1.55);
-%
-%x_0 = 1:
-% ({3/4}, {exp(1) - 1/4 * exp(1)}) -- ++({2/4}, {2/4*exp(1)});
-%
-%x_0 = ln(2): y = exp(ln(2)) + 2 * (x - ln(2)) = 2 + 2 * (x - ln(2)):
-\draw[style=dashed,samples=120,color=blue!50!black] %
- ({ln(2) - 3/8}, {5/4}) -- ++({6/8}, {6/8*2});
-%
-%Punkte:
-%\filldraw[color=black] (0, 1) circle (2pt);
-\filldraw[color=black] (0, 2) circle (2pt);
-\filldraw[color=black] ({ln(2)}, 2) circle (2pt);
-%
-%Spiegelachse (erste Winkelhalbierende):
-\draw[samples=120,style=dotted,color=white!50!black] %
- (-2.1, -2.1) -- (3.1, 3.1);
-%
-%Umkehrfunktion ln:
-\draw[domain=0.1:{exp(1.3},samples=120,color=\jccolorfkt] %
- plot (\x, {ln(\x)});
-%Tangenten in verschiedenen Punkten:
-%\draw[samples=120,color=blue!50!black] %
-% (0.45, -0.45) -- (1.55, 0.55);
-%
-%\draw[style=dotted,samples=120,color=blue!50!black] %
-% ({exp(1) - 1/2}, {1 - 1/2 * 1/exp(1)}) -- ++(1, {1/exp(1)});
-%\draw[style=dotted,samples=120,color=blue!50!black] %
-% ({exp(1) - 1/4*exp(1)}, {3/4}) -- ++({2/4*exp(1)}, {2/4});
-%x_0 = 2: y = ln(2) + 1/2 * (x - 2):
-\draw[samples=120,color=blue!50!black] %
- ({2 - 3/4}, {ln(2) - 1/2 * 3/4}) -- ++({2*3/4}, {2*3/4*1/2});
-%Punkte:
-%\filldraw[color=black] (1, 0) circle (2pt);
-\filldraw[color=black] (2, 0) circle (2pt);
-\filldraw[color=black] (2, {ln(2)}) circle (2pt);
-\end{tikzpicture}
-\end{small}
-}
-\end{center}
+% ({2 - 3/4}, {ln(2) - 1/2 * 3/4}) -- ++({2*3/4}, {2*3/4*1/2});
+%%%Punkte:
+%%%\filldraw[color=black] (1, 0) circle (2pt);
+%\filldraw[color=black] (2, 0) circle (2pt);
+%\filldraw[color=black] (2, {ln(2)}) circle (2pt);
+%\end{tikzpicture}
+%\end{small}
+%}
+%\end{center}
 
 \end{MXContent}
 
@@ -705,39 +720,39 @@ vorgestellten Ableitungen lässt sich eine Vielzahl an Funktionen
 differenzieren.
 \end{MIntro}
 
-\begin{MXContent}{Vielfache und Summen von Funktionen}{Vielfache und Summen}{STD}
+\begin{MXContent}{Vielfaches und Summe von Funktionen}{Vielfache und Summen}{STD}
 \MDeclareSiteUXID{VBKM07_Rechenregeln_Summen}
 
-Gegeben sind beliebige differenzierbare Funktionen $u, v: D \rightarrow \R$ und eine reelle
-Zahl $r$.
+Im Folgenden bezeichnen $u, v: D \rightarrow \R$ zwei beliebige differenzierbare Funktionen sowie $r$ eine beliebige reelle
+Zahl.
 
 
 \begin{MXInfo}{Summenregel und Vielfache von Funktionen}
-Sind $u$ und $v$ als differenzierbare Funktionen vorgegeben, dann ist auch die Summe der Funktionen $f(x) := u(x) + v(x)$ differenzierbar,
-und es gilt
+Sind $u$ und $v$ als differenzierbare Funktionen vorgegeben, dann ist auch die Summe der Funktionen
+$f := u+v$ mit $f(x) = (u+v)(x) := u(x) + v(x)$ differenzierbar, und es gilt
 $$
 f'(x) = u'(x) + v'(x) \MDFPeriod%%
 $$
 
-Auch das $r$-fache einer Funktion, also $f(x) := r \cdot u(x)$ ist differenzierbar,
+Auch das $r$-fache einer Funktion, also $f = r \cdot u$ mit $f(x) = (r \cdot u)(x) := r \cdot u(x)$ ist differenzierbar,
 und es gilt
 $$
 f'(x) = r \cdot u'(x) \MDFPeriod%%
 $$
 \end{MXInfo}
 
-Mit diesen beiden Rechenregeln und der Ableitungsregel für Monome lässt sich z.B. jedes beliebige Polynom ableiten.
+Mit diesen beiden Rechenregeln und der Ableitungsregel für Monome $x^n$ lässt sich z.B. jedes beliebige Polynom ableiten.
 
 Sehen wir uns einige Beispiele an:
 
 \begin{MExample}
-Das Polynom $f(x) = \frac{1}{4} x^3 - 2 x^{2} +5 $ ist differenzierbar und wir erhalten
+Das Polynom $f$ mit dem Funktionsterm $f(x) = \frac{1}{4} x^3 - 2 x^{2} +5 $ ist differenzierbar, und wir erhalten
 \[
 f'(x) = \frac{3}{4} x^2 - 4 x \MDFPeriod%%
 \]
-Die Ableitung der Funktion $g(x) = x^3 + \ln(x)$ f"ur $x > 0$ ist
+Die Ableitung der Funktion $g: (0 \MIntvlSep \infty) \rightarrow \R$ mit $g(x) = x^3 + \ln(x)$ ist
 \[
-g'(x) = 3 x^2 + \frac{1}{x} = \frac{3 x^3 + 1}{x} \MDFPeriod%%
+g': (0 \MIntvlSep \infty ) \rightarrow \R \MDFPSpace \text{ mit } \MDFPSpace g'(x) = 3 x^2 + \frac{1}{x} = \frac{3 x^3 + 1}{x} \MDFPeriod%%
 \]
 %Mit $\ln(x^3) = 3 \ln(x)$ ergibt sich die Ableitung von 
 %$g(x) = \ln(x^3) = 3 \ln(x)$ f"ur $x > 0$ zu
@@ -745,8 +760,8 @@ g'(x) = 3 x^2 + \frac{1}{x} = \frac{3 x^3 + 1}{x} \MDFPeriod%%
 %g'(x) = \frac{3}{x} %%
 %\]
 Leiten wir die Funktion
-$h(x) = 4^{-1} \cdot x^2 - \sqrt{x} %
- = \frac{1}{4} x^2 + (-1) \cdot x^{\frac{1}{2}}$ f"ur $x > 0$ ab, dann erhalten wir
+$h: [0 \MIntvlSep \infty) \rightarrow \R$ mit $h(x) = 4^{-1} \cdot x^2 - \sqrt{x} %
+ = \frac{1}{4} x^2 + (-1) \cdot x^{\frac{1}{2}}$ ab, dann erhalten wir für $x>0$
 \[
 h'(x) = \frac{1}{2} x - \frac{1}{2} x^{-\frac{1}{2}} %
  = \frac{x^{\frac{3}{2}} - 1}{2 \sqrt{x}} \MDFPeriod%%
@@ -759,21 +774,23 @@ h'(x) = \frac{1}{2} x - \frac{1}{2} x^{-\frac{1}{2}} %
 \MDeclareSiteUXID{VBKM07_Produktregel}
 
 \begin{MXInfo}{Produkt- und Quotientenregel}
-Auch das Produkt von Funktionen, $f(x) := u(x) \cdot v(x)$, ist differenzierbar, und es gilt die \textbf{Produktregel}
+Auch das Produkt von Funktionen, $f := u \cdot v$ mit $f(x) = (u \cdot v)(x) := u(x) \cdot v(x)$, ist differenzierbar,
+und es gilt die \textbf{Produktregel}
 $$
 f'(x) = u'(x) \cdot v(x) +  u(x) \cdot v'(x) \MDFPeriod%%
 $$
 
-Der Quotient von Funktionen, $f(x) := \frac{u(x)}{v(x)}$, ist f"ur alle $x$ mit $v(x) \neq 0$ definiert und differenzierbar, und es gilt die \textbf{Quotientenregel}
+Der Quotient von Funktionen, $f := \frac{u}{v}$ mit $f(x) = \left( \frac{u}{v} \right) (x) := \frac{u(x)}{v(x)}$,
+ist f"ur alle $x$ mit $v(x) \neq 0$ definiert und differenzierbar, und es gilt die \textbf{Quotientenregel}
 \ifttm
 $$
-f'(x) = \frac{u'(x) \cdot v(x) - u(x) \cdot v'(x)}{\left(v'(x)\right)^2} \MDFPeriod%%
+f'(x) = \frac{u'(x) \cdot v(x) - u(x) \cdot v'(x)}{\left( v(x) \right)^2} \MDFPeriod%%
 $$
 \else
 $$
 f'(x) = %
 \frac{u'(x) \cdot v(x) \,\textcolor{red}{\mathbf{-}}\, u(x) \cdot v'(x)}%
-{\left(v'(x)\right)^2} \MDFPeriod%%
+{\left(v(x)\right)^2} \MDFPeriod%%
 $$
 \fi
 \end{MXInfo}
@@ -781,30 +798,35 @@ $$
 Veranschaulichen wir auch diese Rechenregeln anhand einiger Beispiele:
 
 \begin{MExample}
-Bestimmen wir die Ableitung von $f(x) = x^2 \cdot \MEU^x$. Wenden wir die Produktregel an, können wir $u(x) = x^2$ und $v(x) = \MEU^x$ ablesen und die Ableitungen dieser Funktionen bestimmen. Dann gilt $u'(x) = 2x$ und $v'(x) = \MEU^x$. Setzen wir diese Teilergebnisse mit der Produktregel zusammen, dann erhalten wir die Ableitung der Funktion $f$:
+Bestimmen wir die Ableitung von $f: \R \rightarrow \R$ mit $f(x) = x^2 \cdot \MEU^x$.
+Wir wenden die Produktregel an und können (z.B.) $u(x) = x^2$ und $v(x) = \MEU^x$ setzen.
+Dann gilt $u'(x) = 2x$ und $v'(x) = \MEU^x$. Setzen wir diese Teilergebnisse mit der Produktregel zusammen, dann erhalten wir die Ableitung der Funktion $f$:
 \[
-f'(x) = 2 x \MEU^x + x^2 \MEU^x = (x^2 + 2x) \MEU^x \MDFPeriod%%
+f': \R \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto f'(x) = 2 x \MEU^x + x^2 \MEU^x = (x^2 + 2x) \MEU^x \MDFPeriod%%
 \]
-Untersuchen wir die Funktion $g(x) = \tan(x) = \frac{\sin(x)}{\cos(x)}$. Hier können wir durch Vergleich $u(x) = \sin(x)$ und $v(x) = \cos(x)$ ablesen. Mit $u'(x) = \cos(x)$ und $v'(x) = -\sin(x)$ können wir auch hier die Teilergebnisse mit der Quotientenregel zur Ableitung der Funktion $g$ zusammensetzen:
+Untersuchen wir die Tangensfunktion $g$ mit $g(x) = \tan(x) = \frac{\sin(x)}{\cos(x)}$ ($\cos(x) \neq 0$).
+Hier lesen wir durch Vergleich $u(x) = \sin(x)$ und $v(x) = \cos(x)$ ab. Mit $u'(x) = \cos(x)$ und $v'(x) = -\sin(x)$
+können wir hier die Teilergebnisse mit der Quotientenregel zur Ableitung der Funktion $g$ zusammensetzen; es folgt:
 \[
 g'(x) = \frac{\cos(x) \cdot \cos(x) - \sin(x) \cdot (-\sin(x))}{\cos^2(x)} \MDFPeriod%
 \]
-Mit dem in Modul \MNRef{VBKM05} (Abschnitt \MRef{Abschnitt:TrigonometrieAmDreieck}) abgeleiteten Zusammenhang
-$\sin^2(x) + \cos^2(x) = 1$ können wir dieses Ergebnis zu einem der folgenden Ausdrücke zusammenfassen:
+Dieses Ergebnis lässt sich zu einem der folgenden Ausdrücke zusammenfassen:
 \[
 g'(x) = 1 + \left(\frac{\sin(x)}{\cos(x)}\right)^2 %
  = 1 + \tan^2(x) %
  = \frac{1}{\cos^2(x)} \MDFPeriod%%
 \]
+Für das letzte Gleichheitszeichen wurde der in Modul \MNRef{VBKM05} (Abschnitt \MRef{Abschnitt:TrigonometrieAmDreieck}) besprochene Zusammenhang
+$\sin^2(x) + \cos^2(x) = 1$ verwendet.
 \end{MExample}
 
 \begin{MExercise}
-Zerlegen Sie dieses Produkt in zwei Faktoren, bilden Sie die Ableitungen und setzen Sie diese mit Hilfe der Produktregel zusammen,
-um die Ableitung von $f(x)=\sin(x)\cdot x^3$ zu berechnen:
+Berechnen Sie die Ableitung von $f: \R \rightarrow \R$ mit $f(x)=\sin(x)\cdot x^3$, indem Sie dieses Produkt in zwei Faktoren zerlegen,
+die Ableitungen bilden und diese mit Hilfe der Produktregel zusammensetzen:
 \begin{MExerciseItems}
-\item{Linker Faktor \MEquationItem{$u(x)$}{\MLFunctionQuestion{10}{sin(x)}{5}{x}{5}{DS2}} hat Ableitung \MEquationItem{$u'(x)$}{\MLFunctionQuestion{10}{cos(x)}{5}{x}{5}{DS5}}.}
-\item{Rechter Faktor \MEquationItem{$v(x)$}{\MLFunctionQuestion{10}{x^3}{5}{x}{5}{DS3}} hat Ableitung \MEquationItem{$v'(x)$}{\MLFunctionQuestion{10}{3*x^2}{5}{x}{5}{DS4}}.}
-\item{Das Produkt hat die Ableitung \MEquationItem{$f'(x)$}{\MLFunctionQuestion{30}{(cos(x)*x^3)+(sin(x)*3*x^2)}{5}{x}{5}{DS6}}.}
+\item{Der linke Faktor \MEquationItem{$u(x)$}{\MLFunctionQuestion{10}{sin(x)}{5}{x}{5}{DS2}} führt auf \MEquationItem{$u'(x)$}{\MLFunctionQuestion{10}{cos(x)}{5}{x}{5}{DS5}}.}
+\item{Der rechte Faktor \MEquationItem{$v(x)$}{\MLFunctionQuestion{10}{x^3}{5}{x}{5}{DS3}} führt auf \MEquationItem{$v'(x)$}{\MLFunctionQuestion{10}{3*x^2}{5}{x}{5}{DS4}}.}
+\item{Für das Produkt $f$ gilt daher \MEquationItem{$f'(x)$}{\MLFunctionQuestion{30}{(cos(x)*x^3)+(sin(x)*3*x^2)}{5}{x}{5}{DS6}}.}
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
 Die vier Bausteine sind
@@ -812,7 +834,7 @@ $$
 u(x) \;=\; \sin(x) \MDFPSpace , \MDFPaSpace
 u'(x) \;=\; \cos(x) \MDFPSpace , \MDFPaSpace
 v(x) \;=\; x^3 \MDFPSpace , \MDFPaSpace
-v'(x) \;=\; 3x^2
+v'(x) \;=\; 3x^2 \MDFPSpace ,
 $$
 und Zusammensetzen mit der Produktregel ergibt
 $$
@@ -822,13 +844,13 @@ $$
 \end{MExercise}
 
 \begin{MExercise}
-Zerlegen Sie diesen Quotienten in Zähler und Nenner, bilden Sie die Ableitungen
-und setzen Sie diese mit Hilfe der Quotientenregel zusammen,
-um die Ableitung von $f(x)=\frac{\ln(x)}{x^2}$ zu berechnen:
+Berechnen Sie die Ableitung von $f: (0 \MIntvlSep \infty) \rightarrow \R$ mit $f(x)=\frac{\ln(x)}{x^2}$, indem Sie
+diesen Quotienten in Zähler und Nenner zerlegen, die Ableitungen bilden
+und diese mit Hilfe der Quotientenregel zusammensetzen:
 \begin{MExerciseItems}
-\item{Zähler \MEquationItem{$u(x)$}{\MLSimplifyQuestion{10}{ln(x)}{5}{x}{5}{512}{DS7}} hat Ableitung \MEquationItem{$u'(x)$}{\MLSimplifyQuestion{10}{1/x}{5}{x}{5}{512}{DS8}}.}
-\item{Nenner \MEquationItem{$v(x)$}{\MLFunctionQuestion{10}{x^2}{5}{x}{5}{DZ2}} hat Ableitung \MEquationItem{$v'(x)$}{\MLFunctionQuestion{10}{2*x}{5}{x}{5}{DZ1}}.}
-\item{Der Quotient hat die Ableitung \MEquationItem{$f'(x)$}{\MLSimplifyQuestion{30}{(1/x*x^2-ln(x)*2*x)/(x^4)}{5}{x}{5}{512}{DS9}}.}
+\item{Der Zähler \MEquationItem{$u(x)$}{\MLSimplifyQuestion{10}{ln(x)}{5}{x}{5}{512}{DS7}} führt auf \MEquationItem{$u'(x)$}{\MLSimplifyQuestion{10}{1/x}{5}{x}{5}{512}{DS8}}.}
+\item{Der Nenner \MEquationItem{$v(x)$}{\MLFunctionQuestion{10}{x^2}{5}{x}{5}{DZ2}} führt auf \MEquationItem{$v'(x)$}{\MLFunctionQuestion{10}{2*x}{5}{x}{5}{DZ1}}.}
+\item{Für den Quotienten $f$ gilt \MEquationItem{$f'(x)$}{\MLSimplifyQuestion{30}{(1/x*x^2-ln(x)*2*x)/(x^4)}{5}{x}{5}{512}{DS9}}.}
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
 Die vier Bausteine sind
@@ -836,7 +858,7 @@ $$
 u(x) \;=\; \ln(x) \MDFPSpace , \MDFPaSpace
 u'(x) \;=\; \frac1x \MDFPSpace , \MDFPaSpace
 v(x) \;=\; x^2 \MDFPSpace , \MDFPaSpace
-v'(x) \;=\; 2x
+v'(x) \;=\; 2x \MDFPSpace ,
 $$
 und Zusammensetzen mit der Quotientenregel ergibt
 $$
@@ -850,29 +872,43 @@ wobei der letzte Umformungsschritt (Kürzen um $x$) nur der Vereinfachung dient.
 \begin{MXContent}{Verkettung von Funktionen}{Verkettung}{STD}
 \MDeclareSiteUXID{VBKM07_Verkettung}
 
-Zum Abschluss wollen wir die Verkettung (Modul \MRef{VBKM06}, Abschnitt \MRef{Verkettung}) von Funktionen untersuchen. Wir wollen also wissen, was passiert, wenn wir eine Funktion $u$ (innere Funktion) in eine andere Funktion $v$ (äußere Funktion) einsetzen. Eine solche Verkettung wird in der Mathematik durch die Schreibweise $f(x) := (v \circ u)(x) = v(u(x))$ dargestellt. Diese bedeutet, dass wir den Wert einer Funktion $u$ in Abhängigkeit von der Variable $x$ bestimmen. Diesen so berechneten Wert $u$ verwenden wir als neue Variable, die wir in $v$ einsetzen. Aus dieser Kombination berechnen wir schließlich den endgültigen Funktionswert $v(u(x))$.
+Zum Abschluss untersuchen wir die Verkettung (Modul \MRef{VBKM06}, Abschnitt \MRef{Verkettung}) von Funktionen.
+Wir wollen also wissen, was passiert, wenn wir eine Funktion $u$ (die innere Funktion) in eine andere Funktion $v$
+(die äußere Funktion) sozusagen einsetzen. Eine solche Verkettung wird in der Mathematik durch die Schreibweise $f := v \circ u$ mit
+$f(x) = (v \circ u)(x) := v(u(x))$ dargestellt. Dies bedeutet, dass wir zunächst den Wert einer Funktion $u$ in Abhängigkeit von der Variable $x$ bestimmen.
+Diesen so berechneten Wert $u(x)$ verwenden wir dann als Argument der Funktion $v$. Auf diese Weise entsteht der endgültige Funktionswert $v(u(x))$.
 
 \begin{MXInfo}{Kettenregel}
-Die Ableitung der Funktion $f(x) := (v \circ u)(x) = v(u(x))$ kann mit der \textbf{Kettenregel} bestimmt werden:
+Die Ableitung der Funktion $f := v \circ u$ mit $f(x) = (v \circ u)(x) := v(u(x))$ kann mit der \textbf{Kettenregel} bestimmt werden; es gilt:
 $$
-f'(x) = v'(u) \cdot u'(x) \MDFPeriod%%
+f'(x) = v'(u(x)) \cdot u'(x) \MDFPeriod%%
 $$
-Hierbei ist $v'(u)$ als Ableitung der Funktion $v$ nach $u$ zu verstehen. Bei diesem Teil der Ableitung wird die Abhängigkeit der Funktion $u$ von der Variable $x$ nicht berücksichtigt. Es gilt der Merksatz: Innere Ableitung $\times$ äußere Ableitung.
+Hierbei ist $v'(u(x))$ so zu verstehen, dass man $v$ als Funktion von $u$ auffasst und dementsprechend nach $u$ differenziert; anschließend wertet man
+$v'(u)$ für $u = u(x)$ aus.\\
+Hilfreich ist der Merksatz: Ableitung der Verkettung ist äußere Ableitung mal innere Ableitung.
 \end{MXInfo}
 
-Machen wir uns diese Ableitungsregel an einigen Beispielen klar:
+Verdeutlichen wir diese Ableitungsregel an einigen Beispielen:
 
 \begin{MExample}
-Bestimmen wir die Ableitung der Funktion $f(x) = (3 - 2 x)^5$. Im Vergleich mit der Kettenregel müssen wir eine innere und eine äußere Funktion ablesen. Verwenden wir $u(x) = 3 - 2x$ als innere Funktion, dann können wir $v(u) = u^5$ als äußere Funktion ablesen. Setzen wir $u(x)$ für $u$ in $v(u)$ ein, erhalten wir die ursprüngliche Funktion $f$.
+Bestimmen wir die Ableitung der Funktion $f: \R \rightarrow \R$ mit $f(x) = (3 - 2 x)^5$.
+Wollen wir die Kettenregel anwenden, müssen wir eine innere und eine äußere Funktion identifizieren.
+Setzen wir für die innere Funktion $u$ den Funktionsterm $u(x) = 3 - 2x$, dann ist die äußere Funktion $v$ durch $v(u) = u^5$ gegeben.
+Damit gilt wie verlangt $v(u(x)) = f(x)$.
 
-Um die Ableitung von $f$ zu bestimmen, leiten wir zunächst $u$ nach $x$ ab und erhalten $u'(x) = -2$ als innere Ableitung. Für die äußere Ableitung leiten wir $v$ nach $u$ ab und finden $v'(u) = 5 u^4$. Setzen wir diese Zwischenergebnisse in die Kettenregel ein, so bekommen wir die Ableitung $f'$ der Funktion $f$:
+Nun leiten wir zunächst die innere Funktion $u$ nach $x$ ab und erhalten $u'(x) = -2$.
+Für die äußere Ableitung differenzieren wir $v$ nach $u$ und finden $v'(u) = 5 u^4$.
+Setzen wir diese Zwischenergebnisse in die Kettenregel ein, so bekommen wir die Ableitung $f'$ der Funktion $f$ mit:
 \[
-f'(x) = 5 u^4 \cdot (-2) = 5 (3 - 2 x)^4 \cdot (-2) = -10 (3 - 2 x)^4 \MDFPeriod %%
+f'(x) = 5 (u(x))^4 \cdot (-2) = 5 (3 - 2 x)^4 \cdot (-2) = -10 (3 - 2 x)^4 \MDFPeriod %%
 \]
 
-Sehen wir uns ein zweites Beispiel an und bestimmen die Ableitung von $g(x) = \MEU^{x^3}$ und verwenden die Zuordnung $u(x) = x^3$ für die innere Funktion und $v(u) = \MEU^u$ für die äußere Funktion. Bestimmen wir die innere und äußere Ableitung, dann erhalten wir $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$. Setzen wir beides in die Kettenregel ein, dann finden wir die Ableitung der Funktion $g$:
+Sehen wir uns ein zweites Beispiel an und berechnen die Ableitung von $g: \R \rightarrow \R$ mit $g(x) = \MEU^{x^3}$.
+Dazu verwenden wir die Zuordnung $x \mapsto u(x) = x^3$ für die innere Funktion $u$ und $u \mapsto v(u) = \MEU^u$ für die äußere Funktion $v$.
+Bestimmen wir die innere und äußere Ableitung, dann erhalten wir $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$.
+Setzen wir beides in die Kettenregel ein, bekommen wir die Ableitung der Funktion $g$:
 \[
-g'(x) = \MEU^{u} \cdot 3 x^2 = \MEU^{x^3} \cdot 3 x^2 = 3 x^2 \MEU^{x^3} \MDFPeriod %%
+g': \R \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto g'(x) = \MEU^{u(x)} \cdot 3 x^2 = \MEU^{x^3} \cdot 3 x^2 = 3 x^2 \MEU^{x^3} \MDFPeriod %%
 \]
 \end{MExample}
 
@@ -884,53 +920,54 @@ g'(x) = \MEU^{u} \cdot 3 x^2 = \MEU^{x^3} \cdot 3 x^2 = 3 x^2 \MEU^{x^3} \MDFPer
 \MDeclareSiteUXID{VBKM07_Rechenregeln_Exercises}
 
 \begin{MExercise}
-Berechnen Sie die Ableitung von
+Berechnen Sie die Ableitungen der Funktionen $f,g$ und $h$ mit den gegebenen Funktionstermen:
 \begin{MExerciseItems}
 \item $f(x) := 3 + 5 x$
-zu $f'(x) = $\MLParsedQuestion{30}{5}{4}{DG19}
+führt auf $f'(x) = $\MLParsedQuestion{30}{5}{4}{DG19}
 %
 \item $g(x) := \frac{1}{4 x} - x^3$
-zu $g'(x) = $\MLSimplifyQuestion{30}{-1/(4*x^2) - 3*x^2}{1}{x}{20}{512}{SIMPLE10}
+führt auf $g'(x) = $\MLSimplifyQuestion{30}{-1/(4*x^2) - 3*x^2}{1}{x}{20}{512}{SIMPLE10}
 %
 \item $h(x) := 2 \sqrt{x} + 4 x^{-3}$
-zu $h'(x) = $\MLSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}{SIMPLE11}
+führt auf $h'(x) = $\MLSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}{SIMPLE11}
 \end{MExerciseItems}
 \end{MExercise}
 
 \begin{MExercise}
-Berechnen und vereinfachen Sie die Ableitung von
+Berechnen und vereinfachen Sie die Ableitungen der Funktionen $f,g$ und $h$ mit den gegebenen Funktionstermen:
 \begin{MExerciseItems}
 \item $f(x) := \cot x = \frac{\cos x}{\sin x}$
-zu $f'(x) = $\MLSimplifyQuestion{30}{-1/(sin(x) * sin(x))}{10}{x}{4}{512}{DG20}
+führt auf $f'(x) = $\MLSimplifyQuestion{30}{-1/(sin(x) * sin(x))}{10}{x}{4}{512}{DG20}
 %
 \item $g(x) := \sin(3 x) \cdot \cos(3 x)$
-zu $g'(x) = $\MLFunctionQuestion{30}{3*cos(6*x)}{10}{x}{4}{DG21}
+führt auf $g'(x) = $\MLFunctionQuestion{30}{3*cos(6*x)}{10}{x}{4}{DG21}
 %
 \item $h(x) := \frac{\sin(3 x)}{\sin(6 x)}$
-zu $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{512}{SIMPLE12}
+führt auf $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{512}{SIMPLE12}
 \end{MExerciseItems}
 \end{MExercise}
 
 \begin{MExercise}
-Berechnen Sie die Ableitung von
+Berechnen Sie die Ableitungen der Funktionen $f,g$ und $h$ mit den gegebenen Funktionstermen:
 \begin{MExerciseItems}
 \item $f(x) := \MEU^{5 x}$
-zu $f'(x) = $\MLFunctionQuestion{30}{5*exp(5*x)}{10}{x}{4}{DG22}
+führt auf $f'(x) = $\MLFunctionQuestion{30}{5*exp(5*x)}{10}{x}{4}{DG22}
 %
 \item $g(x) := x \cdot \MEU^{6 x}$
-zu $g'(x) = $\MLFunctionQuestion{30}{(6*x+1)*exp(6*x)}{10}{x}{4}{DG23}
+führt auf $g'(x) = $\MLFunctionQuestion{30}{(6*x+1)*exp(6*x)}{10}{x}{4}{DG23}
 %
 \item $h(x) := (x^2 - x) \cdot \MEU^{-2 x}$
-zu $h'(x) = $\MLFunctionQuestion{30}{-(2*x^2 - 4*x + 1) * exp(-2*x)}{10}{x}{4}{DG24}
+führt auf $h'(x) = $\MLFunctionQuestion{30}{-(2*x^2 - 4*x + 1) * exp(-2*x)}{10}{x}{4}{DG24}
 \end{MExerciseItems}
 \end{MExercise}
 
 \begin{MExercise}
-Berechnen Sie die ersten vier Ableitungen von $f(x) := \sin(1 - 2x)$.
+Berechnen Sie die ersten vier Ableitungen von $f: \R \rightarrow \R$ mit $f(x) := \sin(1 - 2x)$.
 
 Antwort: 
-Wir bezeichnen $f^{(k)}$ als die $k$-te Ableitung von $f$.
-Damit ist
+Wir bezeichnen mit $f^{(k)}$ die $k$-te Ableitung von $f$. Dabei ist $f^{(1)} = f'$, $f^{(2)}$ die Ableitung von $f^{(1)}$,
+$f^{(3)}$ die Ableitung von $f^{(2)}$ usw.
+Damit:
 \begin{itemize}
 \item
  $f^{(1)}(x) = $\MLFunctionQuestion{30}{-2 * cos(1 - 2*x)}{10}{x}{4}{DG25}
