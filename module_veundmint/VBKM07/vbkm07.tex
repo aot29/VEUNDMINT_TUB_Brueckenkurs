@@ -1126,17 +1126,17 @@ ist monoton fallend. Zudem ist $h$ f"ur alle $x > 0$ ebenfalls monoton fallend.
 %Seien $a,b \in D$ mit $a<b$.
 Wir untersuchen eine Funktion $f: D \rightarrow \R$, die auf dem Intervall $(a\MIntvlSep b) \subseteq D$
 differenzierbar ist. Ist deren Ableitung $f'$ ebenfalls auf dem Intervall $(a\MIntvlSep b) \subseteq D$ differenzierbar, so nennen wir $f$ \textbf{zweimal differenzierbar}.
-Bilden wir die Ableitung der ersten Ableitung von $f$, dann nennen wir $(f')' = f''$ die \textbf{zweite Ableitung} der Funktion $f$.
+Bilden wir die Ableitung der ersten Ableitung von $f$, dann nennen wir $(f')' = {f'}'$ die \textbf{zweite Ableitung} der Funktion $f$.
 
 Wir können die zweite Ableitung der Funktion $f$ verwenden, um das Krümmungsverhalten der Funktion zu untersuchen:
 
 \begin{MXInfo}{Kr"ummungseigenschaften}
-Ist $f''(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann nennen wir $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konvex (linksgekrümmt)}.
+Ist ${f'}'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann nennen wir $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konvex (linksgekrümmt)}.
 
-Ist $f''(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann nennen wir $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konkav (rechtsgekrümmt)}.
+Ist ${f'}'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann nennen wir $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konkav (rechtsgekrümmt)}.
 \end{MXInfo}
 
-Somit gen"ugt es, das Vorzeichen der zweiten Ableitung $f''$ zu bestimmen, 
+Somit gen"ugt es, das Vorzeichen der zweiten Ableitung ${f'}'$ zu bestimmen, 
 um zu erkennen, ob eine Funktion konvex (linksgekr"ummt) oder konkav 
 (rechtsgekr"ummt) ist.
 %\end{MXContent}
@@ -1151,7 +1151,7 @@ Damit bezeichnet
 \begin{itemize}
 \item $f^{(0)} = f$ die Funktion $f$, 
 \item $f^{(1)} = f'$ die (erste) Ableitung,
-\item $f^{(2)} = f''$ die zweite Ableitung,
+\item $f^{(2)} = {f'}'$ die zweite Ableitung,
 \item $f^{(3)}$ die dritte Ableitung,
 \item $f^{(4)}$ die vierte Ableitung von $f$.
 \end{itemize}
@@ -1165,9 +1165,9 @@ Bereich konvex und in einem anderen konkav sein kann.
 Die Funktion $f: \R \rightarrow \R, x \mapsto x^3$ ist sicherlich mindestens zweimal differenzierbar. Wegen
 $f'(x) = 3 x^2 \geq 0$ für alle $x$ ist $f$ auf dem gesamten Definitionsbereich monoton wachsend.
 
-Weiter ist $f''(x) = 6 x$. Somit ist f"ur $x < 0$ auch $f''(x) < 0$
+Weiter ist ${f'}'(x) = 6 x$. Somit ist f"ur $x < 0$ auch ${f'}'(x) < 0$
 und damit $f$ hier konkav (nach rechts gekr"ummt). F"ur $x > 0$ ist
-$f''(x) > 0$, sodass $f$ f"ur $x > 0$ konvex (nach links gekr"ummt) ist.
+${f'}'(x) > 0$, sodass $f$ f"ur $x > 0$ konvex (nach links gekr"ummt) ist.
 \end{MExample}
 \end{MContent}
 
@@ -1349,18 +1349,18 @@ Berechnung der ersten und zweiten Ableitung (soweit vorhanden).
 \item[Extremwerte und Monotonie]
 Notwendige Bedingung f"ur Extremstellen $x$ (sofern $x \in D$ kein Randpunkt von $D$ ist): $f'(x) = 0$\newline
 Wir berechnen also diejenigen Stellen $x_0$, an denen die Ableitung $f'$ den Wert Null annimmt. Wenn an diesen Stellen auch die zweite
-Ableitung $f''$ existiert, gilt:
+Ableitung ${f'}'$ existiert, gilt:
 \begin{itemize}
-\item $f''(x_0) > 0$: $x_0$ ist eine Minimalstelle von $f$.
-\item $f''(x_0) < 0$: $x_0$ ist eine Maximalstelle von $f$.
+ \item ${f'}'(x_0) > 0$: $x_0$ ist eine Minimalstelle von $f$.
+\item ${f'}'(x_0) < 0$: $x_0$ ist eine Maximalstelle von $f$.
 \end{itemize}
 Die Funktion $f$ ist auf denjenigen Intervallen des Definitionsbereichs monoton
 wachsend, auf denen $f'(x) \geq 0$ gilt. Sie ist dort monoton fallend, wo $f'(x) \leq 0$ 
 ist.
 
 \item[Wendestellen und Kr"ummungseigenschaften]
-Notwendige Bedingung f"ur Wendestellen (sofern die zweite Ableitung $f''$ existiert): $f''(w) = 0$\newline
-Wenn $f''(w_0) = 0$ und $f^{(3)}(w_0) \neq 0$ ist, dann ist $w_0$ eine Wendestelle, d.h. $f$ ändert an dieser Stelle das Krümmungsverhalten.\newline
+Notwendige Bedingung f"ur Wendestellen (sofern die zweite Ableitung ${f'}'$ existiert): ${f'}'(w) = 0$\newline
+Wenn ${f'}'(w_0) = 0$ und $f^{(3)}(w_0) \neq 0$ ist, dann ist $w_0$ eine Wendestelle, d.h. $f$ ändert an dieser Stelle das Krümmungsverhalten.\newline
 Die Funktion $f$ ist auf denjenigen Intervallen des Definitionsbereichs konvex
 (linksgekr"ummt), auf denen $f^{(2)}(x) \geq 0$ gilt. Sie ist konkav (rechtsgekr"ummt) dort, 
 wo $f^{(2)}(x) \leq 0$ ist.
@@ -1404,7 +1404,7 @@ f'(x) \;=\; 4\cdot\frac{1\cdot (x^2+2)-x\cdot 2x}{(x^2+2)^2} \;=\; 4\cdot \frac{
 $$
 Erneutes Ableiten und Vereinfachen ergibt
 \begin{eqnarray*}
-f''(x) & = & 4 \cdot % 
+{f'}'(x) & = & 4 \cdot % 
 \frac{-2x (x^2 + 2)^2 - (-x^2 + 2) \cdot 2 (x^2 + 2) \cdot 2 x}{(x^2 + 2)^4} \\
 & = & 4 \cdot \frac{-2x (x^2 + 2) - (-x^2 + 2) \cdot 4 x}{(x^2 + 2)^3} \\
 & = & 4 \cdot \frac{-2x^3 - 4x + 4x^3 - 8 x}{(x^2 + 2)^3} \\
@@ -1415,8 +1415,8 @@ f''(x) & = & 4 \cdot %
 \textbf{Extremwerte}\\
 Die notwendige Bedingung für eine Extremstelle, $f'(x)=0$, ist hier gleichbedeutend mit $-x^2+2=0$. Wir erhalten also $x_1=\sqrt2$ und $x_2=-\sqrt2$. Untersuchen wir an diesen Stellen auch das Verhalten der zweiten Ableitung:
 $$
-f''(x_1) \;=\; 8\frac{\sqrt2\cdot(2-6)}{(2+2)^3}<0 \MDFPSpace , \MDFPaSpace
-f''(x_2) \;=\; 8\frac{-\sqrt2\cdot(2-6)}{(2+2)^3}>0 \MDFPeriod
+{f'}'(x_1) \;=\; 8\frac{\sqrt2\cdot(2-6)}{(2+2)^3}<0 \MDFPSpace , \MDFPaSpace
+{f'}'(x_2) \;=\; 8\frac{-\sqrt2\cdot(2-6)}{(2+2)^3}>0 \MDFPeriod
 $$
 Folglich ist $x_1$ eine Maximalstelle und $x_2$ eine Minimalstelle von $f$. Durch Einsetzen in $f$ erhalten wir das
 Maximum $(\sqrt2,\sqrt2)$ und das Minimum $(-\sqrt2,-\sqrt2)$ von $f$.
@@ -1428,9 +1428,9 @@ $(-\infty\MIntvlSep -\sqrt2)$, monoton wachsend auf $(-\sqrt2\MIntvlSep \sqrt2)$
 und monoton fallend auf $(\sqrt2\MIntvlSep \infty)$. Monotonieintervalle geben wir stets in offener Form an.
 \ \\ \ \\
 \textbf{Wendestellen}\\
-Aus der notwendigen Bedingung für Wendestellen $f''(x)=0$ erhalten wir die Gleichung $8x(x^2-6)=0$.
+Aus der notwendigen Bedingung für Wendestellen ${f'}'(x)=0$ erhalten wir die Gleichung $8x(x^2-6)=0$.
 Somit sind $w_0=0$, $w_1=\sqrt6$ und $w_2=-\sqrt6$ die einzigen Lösungen.
-Das Polynom im Nenner von $f''$ ist stets größer als Null. Da das Zählerpolynom nur einfache Nullstellen besitzt, ändert $f''(x)$
+Das Polynom im Nenner von ${f'}'$ ist stets größer als Null. Da das Zählerpolynom nur einfache Nullstellen besitzt, ändert ${f'}'(x)$
 in allen diesen Stellen das Vorzeichen. Es handelt sich
 daher um Wendestellen von $f$. Die Wendepunkte $(0,0)$, $(\sqrt6,\frac12\sqrt6)$, $(-\sqrt6,-\frac12\sqrt6)$ ergeben sich durch
 Einsetzen der Wendestellen in $f$.
@@ -1438,7 +1438,7 @@ Einsetzen der Wendestellen in $f$.
 \textbf{Krümmungsverhalten}\\
 Die zweimal differenzierbare Funktion $f$ ist konvex, wenn die zweite Ableitung größer oder gleich Null ist. Sie ist konkav,
 wenn die zweite Ableitung kleiner oder gleich Null ist.
-Da das Polynom im Nenner von $f''(x)$ stets positiv ist, genügt es, das Vorzeichen des Polynoms $p(x)=8x(x-\sqrt6)(x+\sqrt6)$ im Zähler
+Da das Polynom im Nenner von ${f'}'(x)$ stets positiv ist, genügt es, das Vorzeichen des Polynoms $p(x)=8x(x-\sqrt6)(x+\sqrt6)$ im Zähler
 zu untersuchen. Für $0<x<\sqrt6$ ist es negativ (dort ist $f$ konkav). Für $x>\sqrt6$ ist es positiv (dort ist $f$ konvex).
 Da $f$ punktsymmetrisch ist, folgt, dass $f$ auf den Intervallen $(-\sqrt 6\MIntvlSep 0)$ und $(\sqrt6\MIntvlSep \infty)$ konvex
 sowie auf $(-\infty\MIntvlSep -\sqrt6)$ und $(0\MIntvlSep \sqrt6)$ konkav ist.
@@ -1473,7 +1473,7 @@ Grenzverhalten: Für $x\rightarrow \infty$ streben die Funktionswerte $f(x)$ gege
 und für $x\rightarrow-\infty$ gegen \MLParsedQuestion{15}{0}{3}{DXG5}.\\
 \ \\
 Ableitungen: Es ist $f'(x)$ = \MLFunctionQuestion{20}{-(x^2-2)*exp(x)}{4}{x}{4}{DXG6} sowie
-$f''(x)$ = \MLFunctionQuestion{30}{-(x^2+2*x-2)*exp(x)}{5}{x}{5}{DXG7} .\\
+${f'}'(x)$ = \MLFunctionQuestion{30}{-(x^2+2*x-2)*exp(x)}{5}{x}{5}{DXG7} .\\
 \ \\
 Monotonieverhalten: Die Funktion ist auf dem Intervall \MLIntervalQuestion{26}{(-sqrt(2),sqrt(2))}{4}{DXG8} monoton wachsend und ansonsten monoton fallend.\\
 \ \\
@@ -1511,7 +1511,7 @@ Die ersten beiden Ableitungen von $f$ führen auf
 \begin{eqnarray*}
 f'(x) & = & (2 - 2 x) \MEU^x + (2 x - x^2) \MEU^x %
  = (2 - x^2) \MEU^x = - (x^2 - 2) \MEU^x \MDFPSpace ,\\
-f''(x) & = & - 2 x \MEU^x + (2 - x^2) \MEU^x %
+{f'}'(x) & = & - 2 x \MEU^x + (2 - x^2) \MEU^x %
  = - (x^2 + 2 x - 2) \MEU^x \MDFPeriod
 \end{eqnarray*}
 \ \\
@@ -1527,7 +1527,7 @@ Auf $(\sqrt{2}\MIntvlSep  \infty)$ ist $f'$ negativ und damit $f$ monoton fallen
 Somit ist $x_1 = -\sqrt{2}$ Minimalstelle und $x_2 = \sqrt{2}$ Maximalstelle.
 \ \\ \ \\
 \textbf{Wendepunkte}\\
-Die notwendige Bedingung f"ur Wendestellen $f''(x) = 0$ f"uhrt auf die quadratische Gleichung
+Die notwendige Bedingung f"ur Wendestellen ${f'}'(x) = 0$ f"uhrt auf die quadratische Gleichung
 $x^2 + 2 x - 2 = 0$. Die L"osungen sind $w_1 = \frac{-2 - \sqrt{4 + 8}}{2} = -1 - \sqrt{3}$
 und $w_2 = \frac{-2 + \sqrt{4 + 8}}{2} = -1 + \sqrt{3}$.
 \ \\ \ \\
@@ -1622,9 +1622,9 @@ O'\left(r\right) = 2 \left(2\pi r - \frac{1}{r^2}\right) &=& 0\\
 %
 Für die letzte Äquivalenzumformung haben wir verwendet, dass der Radius $r$ keine negativen Werte annehmen kann.
 Setzen wir dieses Ergebnis in die zweite Ableitung von $O$ ein, um zu überprüfen, ob wir wirklich ein Minimum gefunden haben
-($O''(r) = 4\pi + 4/r^3$):
+(${O'}'(r) = 4\pi + 4/r^3$):
 \begin{eqnarray*}
-O''\left(\sqrt[3]{\frac{1}{2\pi}}\right) = 4\pi + \frac{4}{\left(\sqrt[3]{\frac{1}{2\pi}}\right)^3} = 12\pi > 0 \MDFPeriod
+{O'}'\left(\sqrt[3]{\frac{1}{2\pi}}\right) = 4\pi + \frac{4}{\left(\sqrt[3]{\frac{1}{2\pi}}\right)^3} = 12\pi > 0 \MDFPeriod
 \end{eqnarray*}
 %
 Für den Radius $r = \sqrt[3]{\frac{1}{2\pi}}$ wird die Oberfläche der zylindrischen Dose mit dem gegebenen Volumen $V = 1$ minimal.
