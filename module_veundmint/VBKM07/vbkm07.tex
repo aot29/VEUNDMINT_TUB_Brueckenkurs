@@ -586,11 +586,11 @@ dass ihre Ableitung $f'$ wiederum die Exponentialfunktion ist, also $f'(x) = \ex
 Wir geben hier die Ableitung der Logarithmusfunktion ohne Beweis an. Für $f: (0 \MIntvlSep \infty) \rightarrow \R$ mit $x \mapsto f(x) = \ln(x)$
 erhält man $f': (0 \MIntvlSep \infty) \rightarrow \R$, $x \mapsto f'(x) = \frac1x$.
 
-%\begin{center}
-%\MTikzAuto{%
+\begin{center}
+\MTikzAuto{%
 %%%{Tangenten an $\exp$ und an die Umkehrfunktion $\ln$}{}
-%\begin{small}
-%\begin{tikzpicture}[line width=1.5pt,scale=0.8]
+\begin{small}
+\begin{tikzpicture}[line width=1.5pt,scale=0.8]
 %%%Koordinatenachsen:
 %\draw[->] (-3.2, 0) -- (4.6, 0) node[below left]{$x$}; %x-Achse
 %\draw[->] (0, -3.2) -- (0, 4) node[below left]{$y$}; %y-Achse
@@ -643,10 +643,10 @@ erhält man $f': (0 \MIntvlSep \infty) \rightarrow \R$, $x \mapsto f'(x) = \frac1
 %%%\filldraw[color=black] (1, 0) circle (2pt);
 %\filldraw[color=black] (2, 0) circle (2pt);
 %\filldraw[color=black] (2, {ln(2)}) circle (2pt);
-%\end{tikzpicture}
-%\end{small}
-%}
-%\end{center}
+\end{tikzpicture}
+\end{small}
+}
+\end{center}
 
 \end{MXContent}
 
@@ -989,8 +989,9 @@ Damit:
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Eigenschaften_Intro}
-Die Ableitung wurde weiter oben mittels einer Tangenten an den Graphen einer Funktion eingef"uhrt, die die Änderungsrate bzw. Ableitung einer Funktion {\glqq}n"aherungsweise{\grqq} beschreibt. Aus den 
-Eigenschaften dieser Geraden können wir auch auf Eigenschaften der Funktion schließen.
+Die Ableitung wurde weiter oben mittels einer Tangente an den Graphen einer Funktion eingef"uhrt, die die Änderungsrate dieser Funktion
+{\glqq}n"aherungsweise{\grqq} beschreibt. Aus den Eigenschaften dieser Geraden können wir auch auf Eigenschaften der
+angenäherten Funktion schließen.
 \end{MIntro}
 
 \begin{MContent} 
@@ -1018,9 +1019,9 @@ Eigenschaften dieser Geraden können wir auch auf Eigenschaften der Funktion schl
 %\begin{MXContent}{Monotonie}
 
 Mit der Ableitung kann das lokale Wachstumsverhalten untersucht werden, das 
-hei"st ob f"ur gr"o"ser werdende $x$-Werte die Funktionswerte gr"o"ser oder 
+hei"st, ob f"ur steigende Argumente die zugehörigen Funktionswerte gr"o"ser oder 
 kleiner werden.
-Dazu wird eine Funktion $f: D \rightarrow \R$ betrachtet, die auf $(a\MIntvlSep b) \subseteq D$ 
+Dazu betrachten wir eine Funktion $f: D \rightarrow \R$, die auf $(a\MIntvlSep b) \subseteq D$ 
 differenzierbar ist.
 \begin{center}
 \MTikzAuto{%
@@ -1080,7 +1081,7 @@ auf dem Intervall $(a\MIntvlSep b)$ monoton wachsend.
 %\end{MXInfo}
 
 Somit gen"ugt es, das Vorzeichen der Ableitung $f'$ zu bestimmen, um zu 
-erkennen, ob eine Funktion monoton wachsend oder monoton fallend ist.
+erkennen, ob eine Funktion auf dem Intervall $(a \MIntvlSep b)$ monoton wachsend oder monoton fallend ist.
 %\end{MXContent}
 
 \begin{MExample}
@@ -1088,10 +1089,10 @@ Die Funktion $f: \R \rightarrow \R, x \mapsto x^3$ ist differenzierbar mit
 $f'(x) = 3 x^2$. Da $x^2 \geq 0$ f"ur alle $x \in \R$ gilt, ist 
 $f'(x) \geq 0$ und damit $f$ monoton wachsend.
 
-F"ur $g: \R \rightarrow \R$ mit $g(x) = 2 x^3 + 6 x^2 - 18 x + 10$ hat die Ableitung
+F"ur $g: \R \rightarrow \R$ mit $g(x) = 2 x^3 + 6 x^2 - 18 x + 10$ besitzt
 $g'(x) = 6 x^2 + 12 x - 18 = 6 (x + 3) (x - 1)$ die Nullstellen $x_1 = -3$ 
 und $x_2 = 1$. Zur Untersuchung des Monotonieverhaltens können wir also drei Bereiche unterscheiden, in denen
-$g'$ jeweils ein anderes Vorzeichen hat.
+die Ableitung $g'$ jeweils ein anderes Vorzeichen hat.
 
 Mit Hilfe folgender Tabelle wird bestimmt, in welchen Bereichen die Ableitung 
 von $g$ positiv bzw. negativ ist. Diese Bereiche entsprechen den Monotoniebereichen von 
@@ -1107,8 +1108,8 @@ g'(x) & + & - & + \\\hline\hline
 g \text{ ist monoton } & \text{ wachsend } & \text{ fallend } & \text{ wachsend } \\
 \end{array}
 \]
-Die Funktion $h: \R \setminus \{ 0 \} \rightarrow \R$ mit $h(x) = \frac{1}{x}$
-hat die Ableitung $h'(x) = - \frac{1}{x^2}$. Hier gilt 
+Für die Funktion $h: \R \setminus \{ 0 \} \rightarrow \R$ mit $h(x) = \frac{1}{x}$
+gilt $h'(x) = - \frac{1}{x^2}$. Hier ist 
 $h'(x) < 0$ f"ur alle $x \neq 0$.
 
 Auch wenn wir für die beiden unterschiedenen Teilbereiche dasselbe Monotonieverhalten finden,
@@ -1122,34 +1123,35 @@ ist monoton fallend. Zudem ist $h$ f"ur alle $x > 0$ ebenfalls monoton fallend.
 \MSubsubsection{Zweite Ableitung und Kr"ummungseigenschaften}
 %\begin{MXContent}{Kr"ummungseigenschaften}
 
-Seien $a,b \in D$ mit $a<b$. Wir untersuchen eine Funktion $f: D \rightarrow \R$, die auf dem Intervall $(a\MIntvlSep b) \subseteq D$
+%Seien $a,b \in D$ mit $a<b$.
+Wir untersuchen eine Funktion $f: D \rightarrow \R$, die auf dem Intervall $(a\MIntvlSep b) \subseteq D$
 differenzierbar ist. Ist deren Ableitung $f'$ ebenfalls auf dem Intervall $(a\MIntvlSep b) \subseteq D$ differenzierbar, so nennen wir $f$ \textbf{zweimal differenzierbar}.
-Bilden wir die Ableitung der ersten Ableitung von $f$, dann nennen wir $(f')' = {f'}'$ die \textbf{zweite Ableitung} der Funktion $f$.
+Bilden wir die Ableitung der ersten Ableitung von $f$, dann nennen wir $(f')' = f''$ die \textbf{zweite Ableitung} der Funktion $f$.
 
 Wir können die zweite Ableitung der Funktion $f$ verwenden, um das Krümmungsverhalten der Funktion zu untersuchen:
 
 \begin{MXInfo}{Kr"ummungseigenschaften}
-Ist ${f'}'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann nennen wir $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konvex (linksgekrümmt)}.
+Ist $f''(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann nennen wir $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konvex (linksgekrümmt)}.
 
-Ist ${f'}'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann nennen wir $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konkav (rechtsgekrümmt)}.
+Ist $f''(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann nennen wir $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konkav (rechtsgekrümmt)}.
 \end{MXInfo}
 
-Somit gen"ugt es, das Vorzeichen der zweiten Ableitung ${f'}'$ zu bestimmen, 
+Somit gen"ugt es, das Vorzeichen der zweiten Ableitung $f''$ zu bestimmen, 
 um zu erkennen, ob eine Funktion konvex (linksgekr"ummt) oder konkav 
 (rechtsgekr"ummt) ist.
 %\end{MXContent}
 
 \begin{MXInfo}{Anmerkung zur Notation}
-Die zweite und weitere {\glqq}h"ohere{\grqq} Ableitungen werden oft mit nat"urlichen 
-Zahlen in runden Klammern gekennzeichnet: Die $k$-te Ableitung wird dann mit
-$f^{(k)}$ bezeichnet. Diese Bezeichnung wird besonders in allgemein gehaltenen Formeln auch f"ur 
+Die zweite und weitere {\glqq}h"ohere{\grqq} Ableitungen werden oft mit hochgestellten nat"urlichen 
+Zahlen in runden Klammern notiert: $f^{(k)}$ bezeichnet dann die $k$-te Ableitung von $f$.
+Diese Notation wird besonders in allgemein gehaltenen Formeln auch f"ur 
 die (erste) Ableitung f"ur $k=1$ und f"ur die Funktion $f$ selbst f"ur $k=0$ verwendet.
 
 Damit bezeichnet 
 \begin{itemize}
 \item $f^{(0)} = f$ die Funktion $f$, 
 \item $f^{(1)} = f'$ die (erste) Ableitung,
-\item $f^{(2)} = {f'}'$ die zweite Ableitung,
+\item $f^{(2)} = f''$ die zweite Ableitung,
 \item $f^{(3)}$ die dritte Ableitung,
 \item $f^{(4)}$ die vierte Ableitung von $f$.
 \end{itemize}
@@ -1160,12 +1162,12 @@ Das folgende Beispiel zeigt, dass eine monoton wachsende Funktion in einem
 Bereich konvex und in einem anderen konkav sein kann.
 
 \begin{MExample}
-Die Funktion $f: \R \rightarrow \R, x \mapsto x^3$ ist zweimal differenzierbar. Wegen
+Die Funktion $f: \R \rightarrow \R, x \mapsto x^3$ ist sicherlich mindestens zweimal differenzierbar. Wegen
 $f'(x) = 3 x^2 \geq 0$ für alle $x$ ist $f$ auf dem gesamten Definitionsbereich monoton wachsend.
 
-Weiter ist ${f'}'(x) = 6 x$. Somit ist f"ur $x < 0$ auch ${f'}'(x) < 0$
+Weiter ist $f''(x) = 6 x$. Somit ist f"ur $x < 0$ auch $f''(x) < 0$
 und damit $f$ hier konkav (nach rechts gekr"ummt). F"ur $x > 0$ ist
-${f'}'(x) > 0$, sodass $f$ f"ur $x > 0$ konvex (nach links gekr"ummt) ist.
+$f''(x) > 0$, sodass $f$ f"ur $x > 0$ konvex (nach links gekr"ummt) ist.
 \end{MExample}
 \end{MContent}
 
@@ -1223,8 +1225,8 @@ beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notat
 
 
 \begin{MExercise}
-Gegeben ist eine Funktion $f: [-\MZahl{4}{5}\MIntvlSep 4] \rightarrow \R$ mit $f(0) := 2$, deren 
-Ableitung $f'$ in nachstehendem Graphen gezeichnet ist.
+Gegeben ist eine Funktion $f: [-\MZahl{4}{5} \MIntvlSep 4] \rightarrow \R$ mit $f(0) := 2$; deren 
+Ableitung $f'$ besitze folgenden Graphen:
 
 \begin{center}
 \MTikzAuto{%
@@ -1278,8 +1280,8 @@ Antwort:
 %
 \item $f$ ist auf $(3\MIntvlSep 4)$ monoton \MLQuestion{16}{wachsend}{DEG6}.
 \end{itemize}
-Die Maximalstelle von $f$ ist \MLParsedQuestion{8}{-4}{4}{DEG7}.
-Die Minimalstelle von $f$ ist \MLParsedQuestion{8}{0}{4}{DEG8}.
+Die Maximalstelle von $f$ ist bei \MLParsedQuestion{8}{-4}{4}{DEG7}.
+Die Minimalstelle von $f$ ist bei \MLParsedQuestion{8}{0}{4}{DEG8}.
 \end{MExercise}
 \end{MExercises}
 
@@ -1293,10 +1295,10 @@ Die Minimalstelle von $f$ ist \MLParsedQuestion{8}{0}{4}{DEG8}.
 
 
 Gegeben ist eine differenzierbare Funktion $f: (a\MIntvlSep b) \rightarrow \R$ 
-mit Zuordnungsvorschrift $y = f(x)$ f"ur $x \in (a\MIntvlSep b)$.
+mit Zuordnungsvorschrift $x \mapsto y = f(x)$ f"ur $x \in (a\MIntvlSep b)$.
 Eine vollständige Kurvendiskussion für $f$ besteht in diesem Kurs aus folgenden Angaben:
 
-\begin{enumerate}
+\begin{itemize}
 \item Maximaler Definitionsbereich
 \item Achsenschnittpunkte des Graphen
 \item Symmetrie des Graphen
@@ -1307,11 +1309,11 @@ Eine vollständige Kurvendiskussion für $f$ besteht in diesem Kurs aus folgenden 
 \item Wendestellen
 \item Krümmungsverhalten
 \item Skizze des Graphen
-\end{enumerate}
+\end{itemize}
 
 Viele dieser Punkte wurden bereits in Modul \MRef{VBKM06} besprochen. Daher
 werden wir im Folgenden nur kurz wiederholen, was wir unter den einzelnen
-Schritten der Kurvendiskussion verstehen wollen. Im Anschluss werden wir
+Schritten der Kurvendiskussion verstehen. Im Anschluss werden wir
 uns eine Kurvendiskussion detailliert an einem Beispiel ansehen.
 
 Der erste Teil der Kurvendiskussion besteht aus algebraischen und geometrischen Aspekten von $f$:
@@ -1321,16 +1323,17 @@ Der erste Teil der Kurvendiskussion besteht aus algebraischen und geometrischen 
 Wir bestimmen alle reellen Zahlen $x$, f"ur die $f(x)$ existiert. Die 
 Menge $D$ all dieser Zahlen wird maximaler Definitionsbereich genannt.
 
-\item[Symmetrie des Graphen]
-Der Graph der Funktion ist symmetrisch zur $y$-Achse, wenn $f(-x) = f(x)$ f"ur
-alle $x \in D$ ist. Ist $f(-x) = -f(x)$ f"ur alle $x \in D$, dann ist der Graph
-zum Ursprung $(0\MIntvlSep 0)$ des Koordinatensystems punktsymmetrisch.
-
 \item[Schnittpunkte mit den Achsen] ~\relax
 \begin{itemize}
 \item $x$-Achse: Wir bestimmen alle Nullstellen von $f$.
 \item $y$-Achse: Wir berechnen den Funktionswert $f(0)$ (falls $0 \in D$).
 \end{itemize}
+
+\item[Symmetrie des Graphen]
+Der Graph der Funktion ist symmetrisch zur $y$-Achse, wenn $f(-x) = f(x)$ f"ur
+alle $x \in D$ ist. Ist $f(-x) = -f(x)$ f"ur alle $x \in D$, dann ist der Graph
+zum Ursprung $(0\MIntvlSep 0)$ des Koordinatensystems punktsymmetrisch.
+
 \item[Asymptotisches Verhalten an den R"andern des Definitionsbereichs]
 Wir untersuchen die Grenzwerte der Funktion $f$ an den Grenzen ihres Definitionsbereichs.
 \end{description} 
@@ -1344,37 +1347,41 @@ berechnen, sofern diese existieren.
 Berechnung der ersten und zweiten Ableitung (soweit vorhanden).
 
 \item[Extremwerte und Monotonie]
-Notwendige Bedingung f"ur Extremstellen: $f'(x) = 0$\newline
-Wir berechnen also diejenigen Stellen $x_0$, an denen die Ableitung $f'$ den Wert Null annimmt. Wenn an diesen Stellen auch die zweite Ableitung ${f'}'$ existiert, gilt:
+Notwendige Bedingung f"ur Extremstellen $x$ (sofern $x \in D$ kein Randpunkt von $D$ ist): $f'(x) = 0$\newline
+Wir berechnen also diejenigen Stellen $x_0$, an denen die Ableitung $f'$ den Wert Null annimmt. Wenn an diesen Stellen auch die zweite
+Ableitung $f''$ existiert, gilt:
 \begin{itemize}
-\item ${f'}'(x_0) > 0$: $x_0$ ist eine Minimalstelle von $f$.
-\item $f{'}'(x_0) < 0$: $x_0$ ist eine Maximalstelle von $f$.
+\item $f''(x_0) > 0$: $x_0$ ist eine Minimalstelle von $f$.
+\item $f''(x_0) < 0$: $x_0$ ist eine Maximalstelle von $f$.
 \end{itemize}
-Die Funktion $f$ ist auf den Intervallen des Definitionsbereichs monoton
-wachsend, wo $f'(x) \geq 0$ gilt. Sie ist monoton fallend, wenn $f'(x) \leq 0$ 
-gilt.
+Die Funktion $f$ ist auf denjenigen Intervallen des Definitionsbereichs monoton
+wachsend, auf denen $f'(x) \geq 0$ gilt. Sie ist dort monoton fallend, wo $f'(x) \leq 0$ 
+ist.
 
 \item[Wendestellen und Kr"ummungseigenschaften]
-Notwendige Bedingung f"ur Wendestellen (wenn die zweite Ableitung ${f'}'$ existiert): ${f'}'(w) = 0$\newline
-Wenn ${f'}'(w_0) = 0$ und $f^{(3)}(w_0) \neq 0$ ist, dann ist $w_0$ eine Wendestelle, d.h. $f$ ändert an dieser Stelle das Krümmungsverhalten.\newline
-Die Funktion $f$ ist auf den Intervallen des Definitionsbereichs konvex
-(linksgekr"ummt), wo $f^{(2)}(x) \geq 0$ gilt. Sie ist konkav (rechtsgekr"ummt), 
-wenn $f^{(2)}(x) \leq 0$ gilt.
+Notwendige Bedingung f"ur Wendestellen (sofern die zweite Ableitung $f''$ existiert): $f''(w) = 0$\newline
+Wenn $f''(w_0) = 0$ und $f^{(3)}(w_0) \neq 0$ ist, dann ist $w_0$ eine Wendestelle, d.h. $f$ ändert an dieser Stelle das Krümmungsverhalten.\newline
+Die Funktion $f$ ist auf denjenigen Intervallen des Definitionsbereichs konvex
+(linksgekr"ummt), auf denen $f^{(2)}(x) \geq 0$ gilt. Sie ist konkav (rechtsgekr"ummt) dort, 
+wo $f^{(2)}(x) \leq 0$ ist.
 
-\item[Skizze des Graphen] Wir fertigen eine Skizze des Graphen in einem geeigneten Koordinatensystem unter Berücksichtigung der während der Kurvendiskussion gewonnenen Daten.
+\item[Skizze des Graphen] Wir fertigen eine Skizze des Graphen in einem geeigneten Koordinatensystem unter
+Berücksichtigung der während der Kurvendiskussion gewonnenen Daten an.
 \end{description}
 
 \MSubsubsection{Ausführliches Beispiel}
-Wir untersuchen die Funktion
+Wir untersuchen eine Funktion $f$ mit dem Funktionsterm
 $$
 f(x) \;=\; \frac{4x}{x^2+2} \MDFPeriod
 $$
 
-\textbf{Definitionsbereich}\\
-Der maximale Definitionsbereich dieser Funktion ist $D_f=\R$, da der Nenner der Funktion $x^2+2\geq 2$ niemals Null wird und daher keine Stellen ausgeschlossen werden müssen.
+\textbf{Maximaler Definitionsbereich}\\
+Der maximale Definitionsbereich dieser Funktion ist $D_f=\R$, da der Nenner der Funktion $x^2+2\geq 2$ ist, also niemals Null wird,
+und daher keine Stellen ausgeschlossen werden müssen.
 \ \\ \ \\
 \textbf{Achsenschnittpunkte}\\
-Die Nullstellen der Funktion entsprechen den Nullstellen des Zählers. Daher schneidet $f$ die $x$-Achse nur im Nullpunkt $(0,0)$, denn der Zähler wird nur für $x=0$ zu Null. Dies ist auch der einzige Schnittpunkt mit der $y$-Achse, da $f(0)=0$ ist.
+Die Nullstellen der Funktion entsprechen den Nullstellen des Zählers. Daher schneidet der Graph von $f$ die $x$-Achse nur
+im Nullpunkt $(0,0)$, denn der Zähler wird nur für $x=0$ zu Null. Dies ist auch der einzige Schnittpunkt mit der $y$-Achse, da $f(0)=0$ ist.
 \ \\ \ \\
 \textbf{Symmetrie}\\
 Um das Symmetrieverhalten zu untersuchen, ersetzen wir $x$ durch $(-x)$. Es gilt
@@ -1386,7 +1393,9 @@ für alle $x\in\R$. Der Graph von $f$ ist folglich punktsymmetrisch zum Ursprung.
 \textbf{Grenzverhalten}\\
 Die Funktion ist auf ganz $\R$ definiert, daher ist nur das Grenzverhalten für $x\rightarrow \infty$ und $x\rightarrow -\infty$ zu untersuchen.
 Da $f(x)$ ein Bruch aus zwei Polynomen ist und der Nenner die höhere Potenz besitzt, ist die $x$-Achse die waagerechte Asymptote in beide Richtungen:
-$f(x)\rightarrow 0$ für $x\rightarrow\infty$ sowie für $x\rightarrow -\infty$.
+\[
+\lim_{x \rightarrow \pm \infty} f(x) = 0 \MDFPeriod
+\]
 \ \\ \ \\
 \textbf{Ableitungen}\\
 Die ersten beiden Ableitungen der Funktion erhalten wir mit der Quotientenregel:
@@ -1395,7 +1404,7 @@ f'(x) \;=\; 4\cdot\frac{1\cdot (x^2+2)-x\cdot 2x}{(x^2+2)^2} \;=\; 4\cdot \frac{
 $$
 Erneutes Ableiten und Vereinfachen ergibt
 \begin{eqnarray*}
-{f'}'(x) & = & 4 \cdot % 
+f''(x) & = & 4 \cdot % 
 \frac{-2x (x^2 + 2)^2 - (-x^2 + 2) \cdot 2 (x^2 + 2) \cdot 2 x}{(x^2 + 2)^4} \\
 & = & 4 \cdot \frac{-2x (x^2 + 2) - (-x^2 + 2) \cdot 4 x}{(x^2 + 2)^3} \\
 & = & 4 \cdot \frac{-2x^3 - 4x + 4x^3 - 8 x}{(x^2 + 2)^3} \\
@@ -1406,70 +1415,88 @@ Erneutes Ableiten und Vereinfachen ergibt
 \textbf{Extremwerte}\\
 Die notwendige Bedingung für eine Extremstelle, $f'(x)=0$, ist hier gleichbedeutend mit $-x^2+2=0$. Wir erhalten also $x_1=\sqrt2$ und $x_2=-\sqrt2$. Untersuchen wir an diesen Stellen auch das Verhalten der zweiten Ableitung:
 $$
-{f'}'(x_1) \;=\; 8\frac{\sqrt2\cdot(2-6)}{(2+2)^3}<0 \MDFPSpace , \MDFPaSpace
-{f'}'(x_2) \;=\; 8\frac{-\sqrt2\cdot(2-6)}{(2+2)^3}>0 \MDFPeriod
+f''(x_1) \;=\; 8\frac{\sqrt2\cdot(2-6)}{(2+2)^3}<0 \MDFPSpace , \MDFPaSpace
+f''(x_2) \;=\; 8\frac{-\sqrt2\cdot(2-6)}{(2+2)^3}>0 \MDFPeriod
 $$
-Folglich ist $x_1$ eine Maximalstelle und $x_2$ eine Minimalstelle von $f$. Durch Einsetzen in $f$ erhalten wir den Hochpunkt $(\sqrt2,\sqrt2)$ und den Tiefpunkt $(-\sqrt2,-\sqrt2)$ von $f$.
+Folglich ist $x_1$ eine Maximalstelle und $x_2$ eine Minimalstelle von $f$. Durch Einsetzen in $f$ erhalten wir das
+Maximum $(\sqrt2,\sqrt2)$ und das Minimum $(-\sqrt2,-\sqrt2)$ von $f$.
 \ \\ \ \\
 \textbf{Monotonieverhalten}\\
-Da $f$ auf ganz $\R$ definiert ist, kann das Monotonieverhalten an den Extremstellen abgelesen werden: $f$ ist monoton fallend auf $(-\infty\MIntvlSep -\sqrt2)$, monoton wachsend auf $(-\sqrt2\MIntvlSep \sqrt2)$
+Da $f$ auf ganz $\R$ definiert ist und sich für $x \rightarrow \pm \infty$ der $x$-Achse annähert,
+kann das Monotonieverhalten mit Hilfe der Extremstellen abgelesen werden: $f$ ist monoton fallend auf
+$(-\infty\MIntvlSep -\sqrt2)$, monoton wachsend auf $(-\sqrt2\MIntvlSep \sqrt2)$
 und monoton fallend auf $(\sqrt2\MIntvlSep \infty)$. Monotonieintervalle geben wir stets in offener Form an.
 \ \\ \ \\
 \textbf{Wendestellen}\\
-Aus der notwendigen Bedingung für Wendestellen ${f'}'(x)=0$ erhalten wir die Gleichung $8x(x^2-6)=0$. Somit sind $w_0=0$, $w_1=\sqrt6$ und $w_2=-\sqrt6$ die einzigen Lösungen.
-Das Polynom im Nenner von ${f'}'$ ist stets größer als Null. Da das Zählerpolynom nur einfache Nullstellen besitzt, ändert ${f'}'(x)$ in allen diesen Stellen das Vorzeichen. Es handelt sich
-daher um Wendestellen von $f$. Die Wendepunkte $(0,0)$, $(\sqrt6,\frac12\sqrt6)$, $(-\sqrt6,-\frac12\sqrt6)$ des Graphen von $f$ ergeben sich durch Einsetzen in $f$.
+Aus der notwendigen Bedingung für Wendestellen $f''(x)=0$ erhalten wir die Gleichung $8x(x^2-6)=0$.
+Somit sind $w_0=0$, $w_1=\sqrt6$ und $w_2=-\sqrt6$ die einzigen Lösungen.
+Das Polynom im Nenner von $f''$ ist stets größer als Null. Da das Zählerpolynom nur einfache Nullstellen besitzt, ändert $f''(x)$
+in allen diesen Stellen das Vorzeichen. Es handelt sich
+daher um Wendestellen von $f$. Die Wendepunkte $(0,0)$, $(\sqrt6,\frac12\sqrt6)$, $(-\sqrt6,-\frac12\sqrt6)$ ergeben sich durch
+Einsetzen der Wendestellen in $f$.
 \ \\ \ \\
 \textbf{Krümmungsverhalten}\\
-Die zweimal differenzierbare Funktion $f(x)$ ist konvex, wenn die zweite Ableitung größer oder gleich Null ist. Sie ist konkav, wenn die zweite Ableitung kleiner oder gleich Null ist.
-Da das Polynom im Nenner von ${f'}'$ stets positiv ist, genügt es, das Vorzeichen des Polynoms $p(x)=8x(x-\sqrt6)(x+\sqrt6)$ im Zähler zu untersuchen. Für $0<x<\sqrt6$ ist es negativ (dort ist $f$ konkav). Für $x>\sqrt6$ ist es positiv (dort ist $f$ konvex). Da $f$ punktsymmetrisch ist folgt, dass $f$ auf den Intervallen $(-\sqrt 6\MIntvlSep 0)$ und $(\sqrt6\MIntvlSep \infty)$ konvex sowie auf $(-\infty\MIntvlSep -\sqrt6)$ und $(0\MIntvlSep \sqrt6)$ konkav ist.
+Die zweimal differenzierbare Funktion $f$ ist konvex, wenn die zweite Ableitung größer oder gleich Null ist. Sie ist konkav,
+wenn die zweite Ableitung kleiner oder gleich Null ist.
+Da das Polynom im Nenner von $f''(x)$ stets positiv ist, genügt es, das Vorzeichen des Polynoms $p(x)=8x(x-\sqrt6)(x+\sqrt6)$ im Zähler
+zu untersuchen. Für $0<x<\sqrt6$ ist es negativ (dort ist $f$ konkav). Für $x>\sqrt6$ ist es positiv (dort ist $f$ konvex).
+Da $f$ punktsymmetrisch ist, folgt, dass $f$ auf den Intervallen $(-\sqrt 6\MIntvlSep 0)$ und $(\sqrt6\MIntvlSep \infty)$ konvex
+sowie auf $(-\infty\MIntvlSep -\sqrt6)$ und $(0\MIntvlSep \sqrt6)$ konkav ist.
 \ \\ \ \\
 \textbf{Skizze des Graphen}\\
-\MUGraphics{BildKurvendiskussion1.png}{width=0.5\linewidth}{Die Funktion $f(x)$ skizziert auf dem Intervall $[-8\MIntvlSep 8]$.}{width:600px}
+\MUGraphics{BildKurvendiskussion1.png}{width=0.5\linewidth}{Der Graph der Funktion $f$, skizziert auf dem Intervall $[-8\MIntvlSep 8]$.}{width:600px}
 \end{MXContent}
 
 \begin{MExercises}
 \MDeclareSiteUXID{VBKM07_Kurvendiskussion_Exercises}
 
 \begin{MExercise}
-Führen Sie eine vollständige Kurvendiskussion für die Funktion $f(x) = (2 x - x^2) \MEU^x$ und füllen Sie die Eingabefelder mit Ihren Ergebnissen aus:
+Führen Sie eine vollständige Kurvendiskussion für eine Funktion $f$ mit $f(x) = (2 x - x^2) \MEU^x$ durch und
+füllen Sie die Eingabefelder mit Ihren Ergebnissen aus:
 \ \\ \ \\
-Definitionsbereich: \MLIntervalQuestion{25}{(-infty,infty)}{5}{DXG18} \MInputHint{(in Intervallschreibweise \texttt{(a;b)})}.\\
+Maximaler Definitionsbereich: \MLIntervalQuestion{25}{(-infty,infty)}{5}{DXG18} \MInputHint{(in Intervallschreibweise \texttt{(a;b)})}.\\
 \ \\
 Menge der Schnittpunkte mit der $x$-Achse (Nullstellen von $f(x)$): \MLParsedQuestion{5}{0,2}{5}{DXG1} \MInputHint{(in Mengenschreibweise \texttt{$\lbrace$a;b;c$\rbrace$}, nur $x$-Komponenten)}.\\
 \ \\
-Einziger Schnittpunkt mit der $y$-Achse ist bei \MEquationItem{$y$}{\MLParsedQuestion{5}{0}{5}{DXG2}}.\\
+Der Schnittpunkt mit der $y$-Achse ist bei \MEquationItem{$y$}{\MLParsedQuestion{5}{0}{5}{DXG2}}.\\
 \ \\
 Symmetrie: Die Funktion ist\\
 \begin{MQuestionGroup}
 \begin{tabular}{lll}
-\MCheckbox{0}{JCA1} & \ \ & $y$-Achsensymmtrisch,\\
-\MCheckbox{0}{JCA2} & \ \ & Punktsymmetrisch zum Ursprung.
+\MCheckbox{0}{JCA1} & \ \ & achsensymmtrisch zur $y$-Acshe,\\
+\MCheckbox{0}{JCA2} & \ \ & punktsymmetrisch zum Ursprung.
 \end{tabular}
 \end{MQuestionGroup}
 \MGroupButton{Auswahl überprüfen}
+\ \\ \ \\
+Grenzverhalten: Für $x\rightarrow \infty$ streben die Funktionswerte $f(x)$ gegen \MLFunctionQuestion{20}{-infty}{4}{infty}{4}{DXG3}
+und für $x\rightarrow-\infty$ gegen \MLParsedQuestion{15}{0}{3}{DXG5}.\\
 \ \\
-Grenzverhalten: Die Asymptoten am Rand sind \MLFunctionQuestion{20}{-infty}{4}{infty}{4}{DXG3} am für $x\rightarrow \infty$ und \MLParsedQuestion{15}{0}{3}{DXG5} für $x\rightarrow-\infty$.\\
-\ \\
-Ableitungen: Es ist $f'(x)$ = \MLFunctionQuestion{20}{-(x^2-2)*exp(x)}{4}{x}{4}{DXG6} sowie ${f'}'(x)$ = \MLFunctionQuestion{30}{-(x^2+2*x-2)*exp(x)}{5}{x}{5}{DXG7} .\\
+Ableitungen: Es ist $f'(x)$ = \MLFunctionQuestion{20}{-(x^2-2)*exp(x)}{4}{x}{4}{DXG6} sowie
+$f''(x)$ = \MLFunctionQuestion{30}{-(x^2+2*x-2)*exp(x)}{5}{x}{5}{DXG7} .\\
 \ \\
 Monotonieverhalten: Die Funktion ist auf dem Intervall \MLIntervalQuestion{26}{(-sqrt(2),sqrt(2))}{4}{DXG8} monoton wachsend und ansonsten monoton fallend.\\
 \ \\
-Extremwerte: Die Stelle $x_1$ = \MLParsedQuestion{13}{-sqrt(2)}{3}{DXG9} ist ein Minimum und $x_2$ = \MLParsedQuestion{13}{sqrt(2)}{3}{DXG10} ist ein Maximum.\\
+Extremwerte: Die Stelle $x_1$ = \MLParsedQuestion{13}{-sqrt(2)}{3}{DXG9} ist eine Minimalstelle und
+$x_2$ = \MLParsedQuestion{13}{sqrt(2)}{3}{DXG10} ist eine Maximalstelle.\\
 \ \\
-Wendepunkte: Die Menge der Wendepunkte (nur $x$-Komponente) ist \MLParsedQuestion{30}{-1-sqrt(3),-1+sqrt(3)}{3}{DXG11}\\\MInputHint{(in Mengenschreibweise, Wurzeln dürfen stehenbleiben)}.\\
+Wendepunkte: Die Menge der Wendestellen ist
+\MLParsedQuestion{30}{-1-sqrt(3),-1+sqrt(3)}{3}{DXG11}\\\MInputHint{(in Mengenschreibweise, Wurzeln dürfen stehenbleiben)}.\\
 \ \\
-Skizzieren Sie den Graph und vergleichen Sie ihn anschließend mit der Musterlösung:
+Skizzieren Sie den Graphen und vergleichen Sie ihn anschließend mit der Musterlösung:
 
 \begin{MHint}{Lösung}
-\textbf{Definitionsbereich}\\
-Es gilt $f(x) = - x (x - 2) \MEU^x$ und $\MEU^x > 0$ f"ur alle  $x \in \R$, damit ist $D_f = \R$ der maximale Definitionsbereich.
+\textbf{Maximaler Definitionsbereich}\\
+Es gilt $f(x) = - x (x - 2) \MEU^x$ und $\MEU^x > 0$ f"ur alle  $x \in \R$, damit ist $D_f = \R = (-\infty \MIntvlSep \infty)$
+der maximale Definitionsbereich.
 \ \\ \ \\
 \textbf{Achsenschnittpunkte}\\
-Schnittpunkte mit der $x$-Achse (Nullstellen der Funktion) liegen bei $x=0$ und $x=2$, was auf die Punkte $(0,0)$ und $(2,0)$ führt. Der Schnittpunkt mit der $y$-Achse ist $(0,0)$.
+Schnittpunkte mit der $x$-Achse (Nullstellen der Funktion) liegen bei $x_1=0$ und $x_2=2$, was auf die Punkte $(0,0)$ und $(2,0)$ führt.
+Der Schnittpunkt mit der $y$-Achse ist $(0,0)$.
 \ \\ \ \\
 \textbf{Symmetrie}\\
-Die Funktion $f$ ist weder gerade noch ungerade und damit der Graph von $f$ weder $y$-achsensymmetrisch noch punktsymmetrisch bzgl. des Ursprungs.
+Die Funktion $f$ ist weder gerade noch ungerade, und damit ist der Graph von $f$ weder achsensymmetrisch zur $y$-Achse noch
+punktsymmetrisch bzgl. des Ursprungs.
 \ \\ \ \\
 \textbf{Grenzverhalten}\\
 Da die Funktion für alle reellen Zahlen definiert ist, müssen nur die Asymptoten bei $\pm \infty$ untersucht werden:
@@ -1480,11 +1507,11 @@ $$
 Somit ist $y = 0$ f"ur $x \rightarrow -\infty$ eine Asymptote.
 \ \\ \ \\
 \textbf{Ableitungen}\\
-Die ersten beiden Ableitungen von $f(x)$ sind
+Die ersten beiden Ableitungen von $f$ führen auf
 \begin{eqnarray*}
 f'(x) & = & (2 - 2 x) \MEU^x + (2 x - x^2) \MEU^x %
  = (2 - x^2) \MEU^x = - (x^2 - 2) \MEU^x \MDFPSpace ,\\
-{f'}'(x) & = & - 2 x \MEU^x + (2 - x^2) \MEU^x %
+f''(x) & = & - 2 x \MEU^x + (2 - x^2) \MEU^x %
  = - (x^2 + 2 x - 2) \MEU^x \MDFPeriod
 \end{eqnarray*}
 \ \\
@@ -1500,12 +1527,13 @@ Auf $(\sqrt{2}\MIntvlSep  \infty)$ ist $f'$ negativ und damit $f$ monoton fallen
 Somit ist $x_1 = -\sqrt{2}$ Minimalstelle und $x_2 = \sqrt{2}$ Maximalstelle.
 \ \\ \ \\
 \textbf{Wendepunkte}\\
-Die notwendige Bedingung f"ur Wendepunkte ${f'}'(x) = 0$ f"uhrt auf die quadratische Gleichung
+Die notwendige Bedingung f"ur Wendestellen $f''(x) = 0$ f"uhrt auf die quadratische Gleichung
 $x^2 + 2 x - 2 = 0$. Die L"osungen sind $w_1 = \frac{-2 - \sqrt{4 + 8}}{2} = -1 - \sqrt{3}$
 und $w_2 = \frac{-2 + \sqrt{4 + 8}}{2} = -1 + \sqrt{3}$.
 \ \\ \ \\
 \textbf{Skizze des Graphen}\\
-\MUGraphics{BildKurvendiskussion3.png}{width=0.5\linewidth}{Die Funktion $f(x)$ skizziert auf dem Intervall $(-\MZahl{6}{2}\MIntvlSep 3)$.}{width:400px}
+\MUGraphics{BildKurvendiskussion3.png}{width=0.5\linewidth}{Der Grapgh der Funktion $f$,
+skizziert auf dem Intervall $(-\MZahl{6}{2}\MIntvlSep 3)$.}{width:400px}
 \end{MHint}
 
 \end{MExercise}
@@ -1521,12 +1549,12 @@ und $w_2 = \frac{-2 + \sqrt{4 + 8}}{2} = -1 + \sqrt{3}$.
 In vielen Anwendungen der Technik oder Wirtschaft findet man Problemlösungen, die nicht eindeutig sind. Häufig hängen sie von variablen Bedingungen ab. Um eine ideale Lösung zu finden, werden zusätzliche Eigenschaften (Nebenbedingungen) definiert, die von der Lösung erfüllt werden müssen. Dies führt sehr oft zu sogenannten \textbf{Optimierungsaufgaben}, bei denen aus einer Schar von Lösungen diejenige gesucht werden muss, die eine vorab festgelegte Eigenschaft am besten erf"ullt.
 
 Als Beispiel betrachten wir die Aufgabe, eine zylinderf"ormige Dose zu konstruieren. Die Dose soll zus"atzlich die Bedingung erf"ullen, ein 
-Fassungsverm"ogen (Volumen) von einem Liter zu haben. Sind $r$ der Radius und $h$ die H"ohe der Dose, so soll also $V = \pi r^2 \cdot h = 1$ sein
-(auf die physikalischen Einheiten wurde der mathematischen Einfachheit halber verzichtet -- in der Praxis ist es allerdings unumgänglich, mit den
-Einheiten zu rechnen).  Um Arbeitsmaterial zu sparen, suchen wir nach derjenigen Dose, die eine m"oglichst kleine Oberfl"ache
-$O = 2 \cdot \pi r^2 + 2 \pi r h$ hat. Hier ist die Oberfläche $O$ eine Funktion in Abhängigkeit von Radius $r$ und Höhe $h$ der Dose.
+Fassungsverm"ogen (Volumen) von einem Liter zu haben. Sind $r$ der Radius und $h$ die H"ohe der Dose, so soll also $V = \pi r^2 \cdot h = 1$ sein.
+(Auf die physikalischen Einheiten wurde der mathematischen Einfachheit halber verzichtet -- in der Praxis ist es allerdings unumgänglich, mit
+Einheiten zu rechnen.) Um Arbeitsmaterial zu sparen, suchen wir nach derjenigen Dose, die eine m"oglichst kleine Oberfl"ache
+$O = 2 \cdot \pi r^2 + 2 \pi r h$ hat. Hier ist die Oberfläche $O$ eine Funktion in Abhängigkeit vom Radius $r$ und von der Höhe $h$ der Dose.
 
-Mathematisch formuliert f"uhrt die Aufgabe auf die Suche nach einem Minimum f"ur die Funktion $O$ der Oberfl"ache, wobei für die Berechnung des Minimums nur 
+Mathematisch formuliert, f"uhrt die Aufgabe auf die Suche nach einem Minimum f"ur die Funktion $O$ der Oberfl"ache, wobei für die Berechnung des Minimums nur 
 Werte f"ur $r$ und $h$ zugelassen werden, f"ur die auch die Bedingung "uber das Volumen $V = \pi r^2 \cdot h = 1$ erf"ullt ist. Eine solche zus"atzliche
 Bedingung bei der Suche nach Extremstellen wird auch \textbf{Nebenbedingung} genannt.
 
@@ -1535,7 +1563,7 @@ In einer \MEntry{Optimierungsaufgabe}{Optimierungsaufgabe} wird eine
 Extremstelle $x_{\text{ext}}$ einer Funktion $f$ gesucht, die eine 
 gegebene Gleichung $g(x_{\text{ext}}) = b$ erf"ullt.
 
-Wenn ein globales Minimum gesucht wird, spricht man auch von einer 
+Wird ein Minimum gesucht, spricht man auch von einer 
 \MEntry{Minimierungsaufgabe}{Minimierungsaufgabe}. Wenn ein Maximum gesucht
 wird, hei"st die Optimierungsaufgabe eine 
 \MEntry{Maximierungsaufgabe}{Maximierungsaufgabe}.
@@ -1551,26 +1579,32 @@ Optimierungsaufgabe genannt.
 \begin{MXContent}{Beispiel}{Beispiel}{STD}
 \MDeclareSiteUXID{VBKM07_WeitereBeispiele}
 
-Sehen wir uns das Beispiel aus der Einführung dieses Abschnitts etwas genauer an und minimieren die Oberfläche einer zylinderförmigen Dose bei einem vorgegebenen Volumen (Grundfläche mal Höhe)
+Sehen wir uns das obige Beispiel etwas genauer an und minimieren die Oberfläche einer zylinderförmigen Dose bei einem vorgegebenen Volumen
+(Grundfläche mal Höhe)
 %
 \begin{eqnarray*}
 V = \pi r^2 h = 1 \MDFPSpace,
 \end{eqnarray*}
 %
-wobei $r$ der Radius der Grundfläche und $h$ die Höhe der Dose sind. Die Oberfläche wird zusammengesetzt aus zweimal dem Deckel (je $\pi r^2$) und der Mantelfläche ($\pi r h$) und wir erhalten $O = 2 \pi r^2 + 2 \pi r h$. Die Oberfläche der Dose ist eine Funktion von Radius $r$ und Höhe $h$. Im Gegensatz dazu wird dem Volumen ein fester Wert zugeordnet (Nebenbedingung). Wir können also schreiben:
+wobei $r$ der Radius der Grundfläche und $h$ die Höhe der Dose sind. Die Oberfläche setzt sich aus dem Deckel und dem Boden
+(jeweils mit einer Fläche der Größe $\pi r^2$) und der Mantelfläche (der Größe $2 \pi r h$) zusammen,
+und wir erhalten $O = 2 \pi r^2 + 2 \pi r h$. Die Oberfläche der Dose ist eine Funktion vom Radius $r$ und von der Höhe $h$.
+Im Gegensatz dazu wird dem Volumen ein fester Wert zugeordnet (Nebenbedingung). Wir können also schreiben:
 %
 \begin{eqnarray*}
 O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h \MDFPeriod
 \end{eqnarray*}
 %
-Wegen der Nebenbedingung, dass $V = \pi r^2 h = 1$ sein soll, kann man dieses Problem in ursprünglich zwei Variablen ($r$ und $h$) auf ein Problem mit nur noch einer Variablen reduzieren. Formen wir das Volumen nach der Höhe der Dose um:
+Wegen der Nebenbedingung, dass $V = \pi r^2 h = 1$ sein soll, kann man dieses Problem in ursprünglich zwei Variablen ($r$ und $h$)
+auf ein Problem mit nur noch einer Variablen reduzieren. Formen wir das Volumen nach der Höhe der Dose um, so erhalten wir:
 %
 \begin{eqnarray*}
 \pi r^2 h &=& 1\\
 \Leftrightarrow\quad h &=& \frac{1}{\pi r^2} \MDFPeriod
 \end{eqnarray*}
 %
-Setzen wir diese Formel in die Funktion $O(r,h)$ ein, reduziert $O$ sich auf eine Funktion in nur einer Variablen:
+Setzen wir diese Formel in die Funktion $O(r,h)$ ein, bekommen wir eine Funktion, die nur noch von einer Variablen abhängt und die wir der
+Einfachheit halber ebenfalls $O$ nennen:
 %
 \begin{eqnarray*}
 O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h = 2 \pi r^2 + 2 \pi r \frac{1}{\pi r^2} = 2 \left(\pi r^2 + \frac{1}{r}\right) = O\left(r\right) \MDFPeriod
@@ -1586,13 +1620,16 @@ O'\left(r\right) = 2 \left(2\pi r - \frac{1}{r^2}\right) &=& 0\\
 \Leftrightarrow\quad r &=& \sqrt[3]{\frac{1}{2\pi}} \MDFPeriod
 \end{eqnarray*}
 %
-Setzen wir dieses Ergebnis in die zweite Ableitung von $O$ ein, um zu überprüfen, ob wir wirklich ein Minimum gefunden haben:
-%
+Für die letzte Äquivalenzumformung haben wir verwendet, dass der Radius $r$ keine negativen Werte annehmen kann.
+Setzen wir dieses Ergebnis in die zweite Ableitung von $O$ ein, um zu überprüfen, ob wir wirklich ein Minimum gefunden haben
+($O''(r) = 4\pi + 4/r^3$):
 \begin{eqnarray*}
-{O'}'\left(\sqrt[3]{\frac{1}{2\pi}}\right) = 4\pi + \frac{4}{\left(\sqrt[3]{\frac{1}{2\pi}}\right)^3} = 12\pi > 0 \MDFPeriod
+O''\left(\sqrt[3]{\frac{1}{2\pi}}\right) = 4\pi + \frac{4}{\left(\sqrt[3]{\frac{1}{2\pi}}\right)^3} = 12\pi > 0 \MDFPeriod
 \end{eqnarray*}
 %
-Für den Radius $r = \sqrt[3]{\frac{1}{2\pi}}$ wird die Oberfläche der zylindrischen Dose mit dem gegebenen Volumen $V = 1$ minimal. Die Höhe erhalten wir in diesem Fall zu $h = \frac{1}{\pi \left(\sqrt[3]{\frac{1}{2\pi}}\right)^2} = \sqrt[3]{\frac{4}{\pi}}$. Stellen wir eine Dose mit dieser Bemaßung her, werden wir für ein vorgegebenes Volumen auch den Materialverbrauch minimieren.
+Für den Radius $r = \sqrt[3]{\frac{1}{2\pi}}$ wird die Oberfläche der zylindrischen Dose mit dem gegebenen Volumen $V = 1$ minimal.
+Die Höhe erhalten wir in diesem Fall zu $h = \frac{1}{\pi \left(\sqrt[3]{\frac{1}{2\pi}}\right)^2} = \sqrt[3]{\frac{4}{\pi}}$.
+Stellen wir eine Dose mit diesen Maßen her, werden wir für das im Beispiel vorgegebene Volumen den Materialverbrauch minimieren.
 
 \end{MXContent}
 
