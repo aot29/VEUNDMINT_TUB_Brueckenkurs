@@ -12,7 +12,7 @@ borkify         =>      0       , # =1 html und js-Dateien werden borkifiziert
 dorelease       =>      0       , # In Release-Versionen werden z.B. bestimmte Logmeldungen unterdrueckt
 doverbose       =>      1       , # Schaltet alle Debugmeldungen auf der Browserkonsole an
 docollections   =>      0       , # Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
-dopdf           =>      0       , # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
+dopdf           =>      1       , # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
 dotikz          =>      0       , # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
 dozip           =>      0       , # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
 output          =>      "tu9onlinekurstest", # Zielverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis

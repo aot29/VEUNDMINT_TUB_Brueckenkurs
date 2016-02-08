@@ -29,6 +29,8 @@ my $helptext = "Usage: mconvert.pl <configuration.pl> [command <OptionObject>]\n
 # use lib "/home/daniel/BWSYNC/PreTU9Konverter/converter";
 # use courseconfig;
 
+our $mainlogfile = "conversion.log";
+
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
 our $macrofilename = "mintmod";
@@ -154,39 +156,48 @@ our $NOBASHCOLOR = "\033[0m";
 
 # ----------------------------- Funktionen -----------------------------------------------------------------------
 
+# Separate Ausgabe: Farbcodiert fuer die Konsole (sollte auch nicht gepipet werden) und nur-Text fuer logfile
+# Parameter color = string, txt = string (ohne Zeilenumbruch)
+sub printMessage {
+  my ($color, $txt) = @_;
+  print color($color), "$txt\n", color("reset");
+  print LOGFILE "$txt\n";
+}
+
 # Parameter lvl = loglevel, eine der obigen Konstanten, msg = textstring (die Meldung)
 sub logMessage {
   my ($lvl, $msg) = @_;
   
   # Konvertierung findet auf Server statt, nicht auf Client, also wird alles Serverrelevante sofort ausgegeben
   if ($lvl eq $CLIENTINFO) {
-    print "INFO:    $msg\n";
+    printMessage("black", "INFO:    $msg");
   } else {
     if ($lvl eq $CLIENTERROR) {
-      print color("red"), "ERROR:   $msg\n", color("reset");
+      printMessage("red", "ERROR:   $msg");
     } else {
       if ($lvl eq $CLIENTWARN) {
-        print color("red"), "WARNING: $msg\n", color("reset");
+        printMessage("red", "WARNING: $msg");
       } else {
         if ($lvl eq $DEBUGINFO) {
           # release oder nicht macht fuer Serverseite keinen Sinn, also zaehlt doverbose
           if ($config{doverbose} eq 1) {
-            print "DEBUG:   $msg\n";
+            printMessage("black", "DEBUG:   $msg");
           }
         } else {
           if ($lvl eq $VERBOSEINFO) {
             if ($config{doverbose} eq 1) {
-              print color("green"), "VERBOSE: $msg\n", color("reset");
+              printMessage("green", "VERBOSE: $msg");
             }
           } else {
             if ($lvl eq $CLIENTONLY) {
               # Auf Serverseite keine Ausgabe
             } else {
               if ($lvl eq $FATALERROR) {
-                print color("red"), "FATAL ERROR: $msg\n", color("reset");
-                die("Program aborte");
+                printMessage("red", "FATAL ERROR: $msg");
+                close(LOGFILE);
+                die("Program aborted");
               } else {
-                print color("red"), "ERROR: Wrong error type $lvl, message: $msg\n", color("reset");
+                printMessage("red", "ERROR: Wrong error type $lvl, message: $msg");
               }
             }
           }
@@ -3632,6 +3643,9 @@ sub setup_options {
 
 # my $IncludeTags = ""; # Sammelt die Makros fuer predefinierte Tagmakros, diese werden an mintmod.tex angehaengt
 
+# Logfile als erstes einrichten, auf der Ebene des Aufrufs
+open(LOGFILE, "> $mainlogfile") or die("ERROR: Cannot open log file, aborting!");
+
 
 #Zeit speichern und Startzeit anzeigen
 $starttime = time;
@@ -4683,6 +4697,8 @@ if ($config{doscorm} == 1) {
 }
 
 logTimestamp("mconvert.pl finished successfully");
+
+close(LOGFILE);
 
 exit;
 
