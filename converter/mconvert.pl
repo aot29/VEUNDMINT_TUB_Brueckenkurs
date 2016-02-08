@@ -1064,12 +1064,17 @@ sub titlestring {
 	} else {
 		@subpages = @{$self->{PARENT}->{PARENT}->{SUBPAGES}};
 	}
-	if (($#subpages >0 && substr($self->secpath(),,6,6)!=1) and ($main::doconctitles eq 1)) {
+	main::printMessage("red", "!! string before = " . $self->secpath());
+	# Verkettete Titel nur, falls self in Kette von Unterabschnitten und nicht erstes Element darin ist
+	if (($#subpages >0 && substr($self->secpath(),-1,1)!=1) and ($main::doconctitles eq 1)) {
+		main::printMessage("red", "!! string after true = " . $self->secpath());
 		$path=$subpages[0]->{TITLE} ." - " . $self->{TITLE};
 	} else {
+		main::printMessage("red", "!! string after false = " . $self->secpath());
 		$path=$self->{TITLE};
 	}
 #        $path = substr($self->secpath(),0,5) . " " . $self->{TITLE}; 
+        main::printMessage("red", "!! title = $path");
         return $path;
 }
 
@@ -4515,10 +4520,10 @@ converter_conversion();
 chdir("tex");
 my $pdfok = 1;
 if ($config{dopdf} eq 1) {
-    # Ganzer Baum wird erstellt: Die Einzelmodule separat texen
     my $doct = "";
-    while (($doct = each(%{$config{generate_pdf}})) and ($pdfok == 1)) {
-      logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex (" . $config{generate_pdf}->{$doct} . ") ========================================");
+    my $docdesc = "";
+    while ((($doct, $docdesc) = each(%{$config{generate_pdf}})) and ($pdfok == 1)) {
+      logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex ($docdesc) ========================================");
 
       my $rt1 = system("pdflatex $doct.tex");
       if ($rt1 != 0) {
