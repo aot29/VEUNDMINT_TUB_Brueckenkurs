@@ -1894,6 +1894,7 @@ function applyLayout(first) {
   head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"><img " + icstyle + " src=\"" + linkPath + "images/icminusblue_96px.png\"></button>";
   head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"><img " + icstyle + " src=\"" + linkPath + "images/icplusblue_96px.png\"></button>";
   head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_share_blue_96px.png\"></button>";
+  head += "<button id=\"starbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"starClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_star_blue_96px.png\"></button>";
   head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_menu_blue_96px.png\"></button>";
     
   $('div.headmiddle').html(head);
@@ -1918,8 +1919,12 @@ function applyLayout(first) {
   shareintext += "<a href=\"http://twitter.com/intent/tweet?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargettwitter.png\"></a>";
   shareintext += "&nbsp;";
   shareintext += "<a href=\"https://plus.google.com/share?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargetgoogleplus.png\"></a>";
-    
   showHint($('#sharebutton'), shareintext);
+
+  shareintext = "Aktuelle Favoriten:<br /><br />";
+  shareintext += generateShortFavoriteList() + "<br /><br />";
+  shareintext += "<a style=\"color:#0000FF\"href=\"" + linkPath + "favor.html" + "\">Meine Favoritenliste</a>";
+  showHint($('#starbutton'), shareintext);
 
   // qtips an die Feedbackbuttons haengen falls vorhanden
   $("button[ttip='1']").qtip({ 
@@ -2000,6 +2005,11 @@ function showHint(element, hinttext) {
 function shareClick() {
   $('#sharebutton').qtip("toggle","true");
 }
+
+function starClick() {
+  opensite(linkPath + "favor.html");
+}
+
 
 function shareFacebook() {
   window.open(

@@ -17,19 +17,19 @@ use Net::Domain qw (hostname hostfqdn hostdomain);
 use MIME::Base64 qw(encode_base64);
 use Cwd;
 use Switch;
-use JSON;
+use JSON::XS;
 use Term::ANSIColor;
 use GraphViz;
 use Encode;
 
 use converter::File::Data;
-use converter::Page;
-
 
 my $helptext = "Usage: mconvert.pl <configuration.pl> [command <OptionObject>]\n\n";
 
 # use lib "/home/daniel/BWSYNC/PreTU9Konverter/converter";
 # use courseconfig;
+
+our $mainlogfile = "conversion.log";
 
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
@@ -58,6 +58,7 @@ our $XIDObj = -1;
 
 our @LabelStorage; # Format jedes Eintrags: [ $lab, $sub, $sec, $ssec, $sssec, $anchor, $pl ]
 
+our $PageIDCounter = 1;
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -92,9 +93,9 @@ our $stestfile = "";
 
 # Diese Einstellungen haben keine Auswirkungen auf die produzierten Module, daher nicht in Parameterdatei
 our $xmlfile = "converted.xml";
+our $xmlerrormsg = "ttm_errors.txt";
+our $UNKNOWN_UXID = "(unknown)";
 
-
-# Diese Einstellungen muessen mit denen in mconvert.pl uebereinstimmen !
 our $doconctitles = 1; # =1 -> Titel der Vaterseiten werden mit denen der Unterseiten auf den Unterseiten kombiniert [war bei alten Onlinemodulen der Fall macht aber eigentlich keinen Sinn]
 
 # Diese sind mittlerweile in intersite.js fest verdrahtet!
@@ -103,7 +104,7 @@ our $datasite = "cdata.html";
 our $searchsite = "search.html";
 our $chaptersite = "chapters.html";
 our $startsite = "index.html";
-our $favorsite = ""; # "favor.html";
+our $favorsite = "favor.html";
 our $stestsite = "stest.html";
 
 our $locationsite = ""; # Wird aus Dokument geholt
@@ -155,39 +156,48 @@ our $NOBASHCOLOR = "\033[0m";
 
 # ----------------------------- Funktionen -----------------------------------------------------------------------
 
+# Separate Ausgabe: Farbcodiert fuer die Konsole (sollte auch nicht gepipet werden) und nur-Text fuer logfile
+# Parameter color = string, txt = string (ohne Zeilenumbruch)
+sub printMessage {
+  my ($color, $txt) = @_;
+  print color($color), "$txt\n", color("reset");
+  print LOGFILE "$txt\n";
+}
+
 # Parameter lvl = loglevel, eine der obigen Konstanten, msg = textstring (die Meldung)
 sub logMessage {
   my ($lvl, $msg) = @_;
   
   # Konvertierung findet auf Server statt, nicht auf Client, also wird alles Serverrelevante sofort ausgegeben
   if ($lvl eq $CLIENTINFO) {
-    print "INFO:    $msg\n";
+    printMessage("black", "INFO:    $msg");
   } else {
     if ($lvl eq $CLIENTERROR) {
-      print color("red"), "ERROR:   $msg\n", color("reset");
+      printMessage("red", "ERROR:   $msg");
     } else {
       if ($lvl eq $CLIENTWARN) {
-        print color("red"), "WARNING: $msg\n", color("reset");
+        printMessage("red", "WARNING: $msg");
       } else {
         if ($lvl eq $DEBUGINFO) {
           # release oder nicht macht fuer Serverseite keinen Sinn, also zaehlt doverbose
           if ($config{doverbose} eq 1) {
-            print "DEBUG:   $msg\n";
+            printMessage("black", "DEBUG:   $msg");
           }
         } else {
           if ($lvl eq $VERBOSEINFO) {
             if ($config{doverbose} eq 1) {
-              print color("green"), "VERBOSE: $msg\n", color("reset");
+              printMessage("green", "VERBOSE: $msg");
             }
           } else {
             if ($lvl eq $CLIENTONLY) {
               # Auf Serverseite keine Ausgabe
             } else {
               if ($lvl eq $FATALERROR) {
-                print color("red"), "FATAL ERROR: $msg\n", color("reset");
-                die("Program aborte");
+                printMessage("red", "FATAL ERROR: $msg");
+                close(LOGFILE);
+                die("Program aborted");
               } else {
-                print color("red"), "ERROR: Wrong error type $lvl, message: $msg\n", color("reset");
+                printMessage("red", "ERROR: Wrong error type $lvl, message: $msg");
               }
             }
           }
@@ -785,6 +795,410 @@ ENDE
 
 # --------------------------------------------- Objektdefinitionen ---------------------------------------------------------------------------------------------------------------------
 
+{
+package Page;
+
+# sub new()
+# Konstruktor der Klasse
+# Parameter
+#
+sub new {
+	my ($package) = @_;
+	
+	# Initialisierung der Objekteigenschaften
+	my $self = {
+		SUBPAGES  => [],
+		LEVEL     => 0,
+		ISCHAPTER => 0,
+		PARENT    => 0,
+		ROOT      => 0,
+		NEXT      => 0,
+		PREV      => 0,
+		XNEXT     => -1,
+		XPREV     => -1,
+		XCONTENT  => 0,
+                HELPSITE  => 0,
+                TESTSITE  => 0,
+		NR 	  => "1",
+		POS       => "0",
+		ICON      => "STD",   
+		TOCSYMB   => "?",
+		TITLE     => "",
+		TEXT      => "",
+		LINK      => "",
+		SAVEPAGE  => 0,
+		MENUITEM  => 1,
+		DISPLAY   => 0,
+		EXPORTS   => [],
+		DOCNAME   => "",
+		UXID      => $main::UNKNOWN_UXID,
+		MODULID   => ""
+	};
+	$self->{ID} = $main::PageIDCounter;
+	$main::PageIDCounter++;
+	#Initialisierung der root-Eigenschaft
+	$self->{ROOT} = $self;
+	#Variablentyp auf die Klasse stellen
+	bless $self, $package;
+	return $self;
+}
+
+# sub split()
+# Zerteilung von Text, Erstellung der Objektstruktur
+# Parameter
+#	$text		Text, der in Teile getrennt werden soll
+#	$splitlevel	Ebene bei der mit der Trennung aufgehoert wird
+#	$level		Ebene der aktuellen Seite
+#	$lastobj	zuletzt erstelltes Objekt
+sub split {
+	my ($self, $text, $splitlevel, $level, $lastobj) = @_;
+	my (@subsections, $p, $nextlevel, $i, $subsec);
+	
+	if ($lastobj) {
+		#das zuletzt erstellte Objekt erhaelt Link auf das aktuelle Objekt
+		$lastobj->{NEXT} = $self;
+	}
+	#nun ist das aktuelle Objekt das zuletzt erstellte
+	$lastobj = $self;
+	#Level abspeichern
+	$self->{LEVEL} = $level;
+	
+	if ( $level>=$splitlevel) {
+		#keine weitere Unterteilung
+		$self->{TEXT} = $text;
+		$self->{DISPLAY} = 1;
+		if ($level>$splitlevel) {
+		$self->{TITLE}="Test";
+		}	
+	} else {
+		#Teilung in Unterabschnitte
+		#Level erhoehen
+		$nextlevel = $level +1;
+		#Trennug des Textes anhand von <h.>
+		@subsections = split(/<h$nextlevel>/,$text);
+		
+		#Der Text vor dem ersten <h.> steht an Stelle 0 des Arrays
+		#dieser Text gehoert zum aktuellen Objekt
+		$text = $subsections[0];
+		#eigentlich Vorkurs-spezifisch, dass der folgende Text als leer angesehen wird
+		$text =~ s/\s*(<div class=\"p\"><!----><\/div>)?\s*$//;
+		#Text abspeichern
+		$self->{TEXT} = $text;
+		
+		#ueber die Unterabschnitte iterieren und neue Objekte erstellen
+		for ($subsec = 1;$subsec<=$#subsections;$subsec++)
+		{
+			#neues Objekt
+			$p = Page->new();
+			$p->{DISPLAY} = 1;
+			
+			#Text aus Array holen
+			$text = $subsections[$subsec];
+			#eigentlich Vorkurs-spezifisch, dass der folgende Text am Ende des Abschnitts
+			#geloescht wird
+			$text =~ s/\s*(<div class=\"p\"><!----><\/div>)?\s*$//;
+			#nach </h.> suchen und den Text zwischen den h-Tags als Titel abspeichern
+			$text =~ /^(.*?)<\/h$nextlevel>/s;
+			$p->{TITLE} = $1;
+			#Position der Seite innerhalb des Arrays
+			$p->{POS} = $subsec;
+			#Link auf das letzte Objekt speichern
+			$p->{PREV} = $lastobj;
+			
+			#Unsinn! wird das noch genutzt?
+			$p->{ISCHAPTER} = ($1 eq "chAp");
+			
+			#Titel am Anfang des Textes entfernen
+			$text = substr($subsections[$subsec],length($&));
+			
+			#Diese Unterseite an das aktuelle Objekt anhaengen
+			$self->addpage($p);
+			#Link initialisieren
+			$p->{LINK} = $p->secpath();
+			
+			#for ($i=1;$i<$nextlevel;$i++) {print ". . ";}
+			#print $p->{TITLE} . "\n";
+			
+			#Rekursion aufrufen
+			$lastobj = $p->split($text, $splitlevel, $nextlevel, $lastobj);
+		}
+	}
+	#das zuletzt erstellte Objekt fuer die Rekursion zurueckliefern
+	return $lastobj;
+}
+
+
+# 
+# sub link()
+# liefert den Dateipfad, wo diese Seite gespeichert wird
+# Parameter
+# 	keine
+sub link {
+	my ($self) = @_;
+	my (@subpages);
+	#Array der Unterseiten
+	@subpages = @{$self->{SUBPAGES}};
+	if (! $self->{DISPLAY} && $#subpages >=0) {
+		#Falls die aktuelle Seite nicht angezeigt wird und sie Unterseiten hat,
+		#dann wird der Link auf die erste Unterseite geliefert
+		return $subpages[0]->link();
+	} else {
+		#Ansonsten der in der LINK-Eigenschaft abgespeicherte Link
+		return $self->{LINK};
+	}
+}
+
+
+# 
+# sub linkpath()
+# liefert zum link passende Anzahl von "../"
+# Parameter
+# 	keine
+sub linkpath {
+	my ($self) = @_;
+	my ($link, @subdirs, $i, $text);
+	#hole eigenen Link
+	$link = $self->link();
+	$text = "";
+	#zaehlen wie oft /abc/ zu finden ist
+	#aufeinanderfolgende // zaehlen nicht
+	@subdirs = ($link =~ /[^\/]+?\//g);
+	#fuer jeden dieser Unterordner ein "../" anhaengen
+	for ( $i=0; $i <=$#subdirs; $i++ ) {
+		$text .= "../";
+	}
+	#relativen Pfad-Prefix zurueckliefern
+	return $text;
+}
+
+
+# 
+# sub addpage()
+# erweitert das Array SUBPAGES um das abgegebene Objekt und setzt die
+# Eigenschaften PARENT und ROOT
+# Parameter
+# 	$page	Objekt, das angehaengt werden soll
+sub addpage {
+	my ($self, $page) = @_ ;
+	#Objekt an das sUBPAGES-Array anhaengen
+	push @{$self->{SUBPAGES}}, $page;
+	#Eigenschaften setzen
+	$page->{PARENT} = $self;
+	$page->{ROOT} = $self->{ROOT};
+}
+
+
+# 
+# sub secpath()
+# liefert eine eindeutige Position des Objekts innerhalb der Objektstruktur
+# Parameter
+# 	keine
+sub secpath {
+	my ($self) = @_;
+	my ($path, $p);
+	#uebergeordnetes Objekt abfragen
+	$p = $self->{PARENT};
+	if ($p->{LEVEL} != 0) {
+		#Falls das uebergeordnete Objekt nicht das root-Objekt ist,
+		#wird zunaechst der Pfad dieses Objekts abgefragt
+		$path = $p->secpath() . ".";
+	}
+	#danach wird die eigene Position angehaengt
+		$path .= $self->{POS};
+}
+
+
+# 
+# sub titlepath()
+# liefert Titel des Kapitels und der aktuellen Seite
+# Parameter
+# 	keine
+sub titlepath {
+	my ($self) = @_;
+	my ($path, $p, $root);
+	
+	#abhaengig vom Level des aktuellen Objekts
+	if ($self->{LEVEL} > 1) {
+		#nicht root und nicht auf erster Ebene
+		#hole uebergeordnetes Objekt auf erster Ebene
+		$p = $self->{PARENT};
+		until ($p->{LEVEL}<=1) {
+			$p = $p->{PARENT};
+		}
+		#root Objekt ist dem nochmals uebergeordnet
+		$root = $p->{PARENT};
+		
+		#hole titlepath vom root-Objekt und haenge Titel des Kapitels und
+		#der aktuellen Seite an
+		$path = $root->titlepath() . 
+			"<h1>" . $p->{TITLE} . "</h1>\n" . 
+			"<h2>" . $self->{TITLE} . "</h2>\n";
+	} elsif ($self->{LEVEL} == 1) {
+		#auf erster Ebene
+		#uebergeordnetes Objekt ist root
+		$root = $self->{PARENT};
+		#hole titlepath von root und haenge eigenen Titel an
+		$path = $root->titlepath() . 
+			"<h1>" . $self->{TITLE} . "</h1>\n";
+	} else {
+		#root Objekt
+		#falls root einen Titel hat, wird dieser in h1-tags gesetzt
+		#ansonsten ist der Text leer
+		$path = ($self->{TITLE} ? "<h1>" . $self->{TITLE} . "</h1>\n" : "" );
+	}
+	
+	return $path;
+}
+
+#
+# sub titlestring()
+# liefert Title der HTML-Seite
+# Parameter
+#       keine
+sub titlestring {
+        my ($self) = @_;
+        my ($path);
+	my (@subpages);
+	if (length($self->secpath())<9){
+		@subpages = @{$self->{PARENT}->{SUBPAGES}};
+	} else {
+		@subpages = @{$self->{PARENT}->{PARENT}->{SUBPAGES}};
+	}
+	if (($#subpages >0 && substr($self->secpath(),,6,6)!=1) and ($main::doconctitles eq 1)) {
+		$path=$subpages[0]->{TITLE} ." - " . $self->{TITLE};
+	} else {
+		$path=$self->{TITLE};
+	}
+#        $path = substr($self->secpath(),0,5) . " " . $self->{TITLE}; 
+        return $path;
+}
+
+
+
+# 
+# sub navprev()
+# liefert das in der Struktur folgende Objekt, das ausgegeben wird
+# Parameter
+# 	keine
+sub navprev {
+	my ($self) = @_;
+	my ($p);
+	
+	#hole vorheriges Objekt
+	$p = $self->{PREV};
+	#iteriere dies, solange bis das root-Objekt oder eine Seite, die ausgegeben wird,
+	#erreicht wird
+	until ($p->{LEVEL} == 0 || $p->{DISPLAY}) {
+		$p = $p->{PREV};
+	}
+	#liefere einen Verweis auf das Objekt
+	if ($p->{LEVEL} != 0) {
+		return $p;
+	} else {
+		return 0;
+	}
+}
+
+
+# 
+# sub navnext()
+# liefert das in der Struktur vorhergehende Objekt, das ausgegeben wird
+# Parameter
+# 
+sub navnext {
+	my ($self) = @_;
+	my ($p);
+	
+	#hole naechstes Objekt
+	$p = $self->{NEXT};
+	#iteriere dies, solange bis das Ende der Objekt-Struktur oder eine Seite,
+	#die ausgegeben wird, erreicht wird
+	until (! $p || $p->{DISPLAY}) {
+		$p = $p->{NEXT};
+	}
+	
+	#liefere einen Verweis auf das Objekt
+	if ($p) {
+		return $p;
+	} else {
+		return 0;
+	}
+}
+
+
+# 
+# sub subpagelist()
+# liefert eine Liste der untergeordneten Seiten
+# Parameter
+# 	keine
+sub subpagelist {
+	my ($self) = @_;
+	my (@subpages, $text, $i);
+	
+	#hole Unterseiten
+	@subpages = @{$self->{SUBPAGES}};
+	
+	#falls es Unterseiten gibt, wird eine Liste ausgegeben
+	if ($#subpages >= 0) {
+		#ueber Unterseiten iterieren und Eintrag erstellen, falls die Eigenschaft
+		#MENUITEM gesetzt ist
+		for ($i = 0; $i<=$#subpages; $i++) {
+			if ($subpages[$i]->{MENUITEM}) {
+				$text .= "<li class='chplist'><a class=\"MINTERLINK\" href='" . $subpages[$i]->link() . ".{EXT}'>";
+				$text .= $subpages[$i]->{TITLE} . "</a></li>\n";
+			}
+		}
+		#Anfang und Ende der Liste
+		if ($text != "") {
+			$text = "<ul class='chplist'>\n$text</ul>\n";
+		}
+	} else {
+		$text = "";
+	}
+	
+	return ($text);
+}
+
+# 
+# sub idprint()
+# gibt den Teilbaum ueber print aus
+sub idprint {
+  my ($self) = @_;
+  my $i;
+  my $j;
+  for ($j=0; $j <= $self->{LEVEL}; $j++) {
+    print "  ";
+  }
+
+  my @pages = @{$self->{SUBPAGES}};
+  my $k = ($#pages)+1;
+
+  my $nid = -1;
+  my $pid = -1;
+  my $xnid = -1;
+  my $xpid = -1;
+  my $bid = -1;
+  my $pa = -1;
+
+  if ($self->{NEXT}) { $nid = $self->{NEXT}->{ID}; }
+  if ($self->{XPREV}) { $xpid = $self->{XPREV}->{ID}; }
+  if ($self->{XNEXT}) { $xnid = $self->{XNEXT}->{ID}; }
+  if ($self->{PREV}) { $pid = $self->{PREV}->{ID}; }
+  if ($self->{PARENT}) { $pa = $self->{PARENT}->{ID}; }
+
+
+  print "(id=$self->{ID},xco=$self->{XCONTENT},lev=$self->{LEVEL},title=$self->{TITLE},on=$self->{DISPLAY},parent=$pa,prev=$pid,next=$nid,xprev=$xpid,xnext=$xnid)\n";
+
+  for ( $i=0; $i < $k; $i++ ) {
+    $pages[$i]->idprint();
+  }
+
+}
+
+}
+
+
+
 # Die Klasse ModulPage wird von der Klasse Page abgeleitet.
 # Die meisten Funktionen werden gar nicht ueberschrieben.
 # Die split-Funktion ruft zunaechst die split-Funktion der Page-Klasse auf,
@@ -1270,7 +1684,7 @@ sub postprocess {
     logMessage($VERBOSEINFO, $orgpage->{TITLE} . " -> " . $orgpage->{UXID} . " (siteuxidpost)");
   } else {
     logMessage($CLIENTWARN, "Site hat keine uxid: " . $orgpage->{TITLE});
-    $orgpage->{UXID} = "(unknown)";
+    $orgpage->{UXID} = $UNKNOWN_UXID;
   }
   
   
@@ -2819,9 +3233,20 @@ logMessage($CLIENTINFO, " ok");
 logMessage($VERBOSEINFO, "Es werden " . ($#DirectHTML + 1) . " DirectHTML-Statements werden verwendet");
 
 logTimestamp("Starting ttm tex->html converter");
-system "./ttm-src/ttm -p./tex < tex/vorkursxml.tex >$xmlfile";
+system "./ttm-src/ttm -p./tex < tex/vorkursxml.tex 1>$xmlfile 2>$xmlerrormsg";
 logTimestamp("Loading ttm output file $xmlfile");
 my $text = loadfile($xmlfile);
+my $ttm_errors = loadfile($xmlerrormsg);
+my @ttm_errors = split("\n", $ttm_errors);
+
+for ($i = 0; $i <= $#ttm_errors; $i++) {
+  if ($ttm_errors[$i] =~ m/\*\*\*\* Unknown command (.+?), /s ) {
+    logMessage($CLIENTWARN, "(ttm) " . $ttm_errors[$i]);
+    push @converrors, "ERROR: ttm konnte LaTeX-Kommando $1 nicht verarbeiten";
+  } else {
+    logMessage($CLIENTINFO, "(ttm) " . $ttm_errors[$i]);
+  }
+}
 
 # Debug-Meldungen ausgeben
 while ($text =~ s/<!-- debugprint;;(.+?); \/\/-->/<!-- debug;;$1; \/\/-->/s ) { logMessage($DEBUGINFO, $1); }
@@ -3142,35 +3567,30 @@ if ($config{docollections} eq 1) {
   }
 }
 
-
 if ($config{doverbose} == "1") {
   my $graph = GraphViz->new();
   my @list = ();
   push @list, $root;
-  my $k = 0;
   while ($#list != -1) {
     my $page = $list[0];
     splice(@list, 0, 1);
     my $title = $page->{UXID};
-    if ($title eq "") {
-      $title = $page->{TITLE};
+    if ($title eq $UNKNOWN_UXID) {
+      $title = $page->{TITLE} . " " . $page->{ID};
     }
     logMessage($VERBOSEINFO, "graph item uxid = $title");
     $title = decode("latin1", $title);
     $title = encode("utf-8", $title);
-    if ($page->{LEVEL} <= $paramsplitlevel) {
-      $graph->add_node($title);
-      if ($page->{LEVEL} >= 1) {
-        my $pretitle = $page->{PARENT}->{UXID};
-        if ($pretitle eq "") {
-          $pretitle = $page->{PARENT}->{TITLE};
-        }
-        $pretitle = decode("latin1", $pretitle);
-        $pretitle = encode("utf-8", $pretitle);
-        $graph->add_edge($title, $pretitle);
+    $graph->add_node($title);
+    if ($page->{LEVEL} >= 1) {
+      my $pretitle = $page->{PARENT}->{UXID};
+      if ($pretitle eq $UNKNOWN_UXID) {
+        $pretitle = $page->{PARENT}->{TITLE} . " " . $page->{PARENT}->{ID};
       }
+      $pretitle = decode("latin1", $pretitle);
+      $pretitle = encode("utf-8", $pretitle);
+      $graph->add_edge($title, $pretitle);
     }
-    $k++;
     my @subpages = @{$page->{SUBPAGES}};
     my $i;
     for ($i = 0; $i <= $#subpages; $i++) {
@@ -3183,8 +3603,6 @@ if ($config{doverbose} == "1") {
   print MINTS $graph->as_png();
   close(MINTS);
 }
-
-
 
 #Rechte setzen
 system "chmod -R 777 " . $config{outtmp};
@@ -3224,6 +3642,9 @@ sub setup_options {
 # ----------------------------- Start Hauptprogramm --------------------------------------------------------------
 
 # my $IncludeTags = ""; # Sammelt die Makros fuer predefinierte Tagmakros, diese werden an mintmod.tex angehaengt
+
+# Logfile als erstes einrichten, auf der Ebene des Aufrufs
+open(LOGFILE, "> $mainlogfile") or die("ERROR: Cannot open log file, aborting!");
 
 
 #Zeit speichern und Startzeit anzeigen
@@ -3267,18 +3688,9 @@ if ($config{doscorm} eq 1) {
 }
 
 if ($config{dopdf} eq 1) {
-  logMessage($CLIENTINFO, "...generating PDF files:");
-  my $i = 0;
-  my $ckey = "";
-  while ($ckey = each(%{$config{generate_pdf}})) {
-    logMessage($CLIENTINFO, "  $ckey");
-    $i++;
-  }
-  if ($i eq 0) {
-    die("FATAL: No PDF files given in config but dopdf=1");
-  }
+  logMessage($CLIENTINFO, "Generating PDF files");
 } else {
-  logMessage($CLIENTINFO, "...no PDF files");
+  logMessage($CLIENTINFO, "PDF files not requested");
 }
 
 if ($config{qautoexport} eq 1) {
@@ -4105,8 +4517,8 @@ my $pdfok = 1;
 if ($config{dopdf} eq 1) {
     # Ganzer Baum wird erstellt: Die Einzelmodule separat texen
     my $doct = "";
-    while (($doct = each(@{$config{generate_pdf}})) and ($pdfok == 1)) {
-      logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex ========================================");
+    while (($doct = each(%{$config{generate_pdf}})) and ($pdfok == 1)) {
+      logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex (" . $config{generate_pdf}->{$doct} . ") ========================================");
 
       my $rt1 = system("pdflatex $doct.tex");
       if ($rt1 != 0) {
@@ -4285,6 +4697,8 @@ if ($config{doscorm} == 1) {
 }
 
 logTimestamp("mconvert.pl finished successfully");
+
+close(LOGFILE);
 
 exit;
 

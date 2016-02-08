@@ -51,6 +51,7 @@ function createIntersiteObj() {
     configuration: {},
     scores: [],
     sites: [],
+    favorites: [ createHelpFavorite() ],
     login: { type: 0, vname: "", sname: "", username: "", password: "", email: "" }
   };
   return obj;
@@ -284,6 +285,12 @@ function SetupIntersite(clearuser, pulledstr) {
 	  iso = null;
 	  logMessage(VERBOSEINFO, "Userreset verlangt");
       }
+      
+      if (iso == "") {
+	iso = null; // Falls localStorage von der JavaScript-Konsole aus resettet wurde
+	logMessage(VERBOSEINFO, "iso = \"\" auf null gesetzt");
+      }
+
       if (iso == null) {
 	intersiteobj = createIntersiteObj();
 	intersiteobj.active = true;
@@ -556,6 +563,17 @@ function updateLoginfield() {
 
 
 function UpdateSpecials() {
+  // update div 'FAVORITELISTLONG' if present
+  var e = document.getElementById("FAVORITELISTLONG");
+  if (e != null) {
+    // textarea exists only on the settings page, is created and prepared by the page before load happens
+    if ((intersiteactive==true) && (intersiteobj.configuration.CF_LOCAL == "0")) {
+        e.innerHTML = "Datenspeicherung wurde durch Benutzer deaktiviert, es werden keine Kursdaten gespeichert.";
+    } else {
+      e.innerHTML = ((intersiteactive==true) && (localStoragePresent==true)) ? generateLongFavoriteList() : "Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert.";
+    }
+  }
+
   // update element 'CHECKIS' if present
   var e = document.getElementById("CHECKIS");
   if (e != null) {
@@ -1163,4 +1181,56 @@ function setIntersiteType(t) {
   } else {
       logMessage(DEBUGINFO, "intersiteactive == false");
   }
+}
+
+// ----------------------------------- Favorites management -----------------------------------------
+
+function createHelpFavorite() {
+  var fav = {
+    type: "Tipp",
+    color: "00FF00",
+    text: "Eingangstest probieren",
+    pid: "?",
+    icon: "test01.png"
+  };
+  logMessage(VERBOSEINFO, "New HelpFavorite created");
+  return fav;
+}
+
+function generateShortFavoriteList() {
+  if (intersiteactive == false) {
+    return "Datenspeicherung nicht möglich";
+  }
+  
+  if (typeof(intersiteobj.favorites) != "object") {
+    intersiteobj.favorites = new Array();
+  }
+
+  var i;
+  var s = "";
+  for (i = 0; i < intersiteobj.favorites.length; i++) {
+    s += "<img src=\"" + linkPath + "images/" + intersiteobj.favorites[i].icon + "\" style=\"width:20px;height:20px\">&nbsp;&nbsp;";
+    s += "<a href=\"\" >" + intersiteobj.favorites[i].text + "</a><br />";
+  }
+  
+  return s;
+}
+
+function generateLongFavoriteList() {
+  if (intersiteactive == false) {
+    return "Datenspeicherung nicht möglich";
+  }
+  
+  if (typeof(intersiteobj.favorites) != "object") {
+    intersiteobj.favorites = new Array();
+  }
+
+  var i;
+  var s = "";
+  for (i = 0; i < intersiteobj.favorites.length; i++) {
+    s += "<img src=\"" + linkPath + "images/" + intersiteobj.favorites[i].icon + "\" style=\"width:48px;height:48px\">&nbsp;&nbsp;";
+    s += "<a href=\"\" >" + intersiteobj.favorites[i].text + "</a><br />";
+  }
+  
+  return s;
 }
