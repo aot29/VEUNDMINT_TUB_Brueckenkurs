@@ -10,7 +10,7 @@ cleanup         =>      0       , # =1 -> trunk-Verzeichnis wird nach Erstellung
 localjax        =>      1       , # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
 borkify         =>      0       , # =1 html und js-Dateien werden borkifiziert
 dorelease       =>      0       , # In Release-Versionen werden z.B. bestimmte Logmeldungen unterdrueckt
-doverbose       =>      1       , # Schaltet alle Debugmeldungen auf der Browserkonsole an
+doverbose       =>      0       , # Schaltet alle Debugmeldungen auf der Browserkonsole an
 docollections   =>      0       , # Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
 dopdf           =>      0       , # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
 dotikz          =>      0       , # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
