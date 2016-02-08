@@ -1064,17 +1064,13 @@ sub titlestring {
 	} else {
 		@subpages = @{$self->{PARENT}->{PARENT}->{SUBPAGES}};
 	}
-	main::printMessage("red", "!! string before = " . $self->secpath());
 	# Verkettete Titel nur, falls self in Kette von Unterabschnitten und nicht erstes Element darin ist
 	if (($#subpages >0 && substr($self->secpath(),-1,1)!=1) and ($main::doconctitles eq 1)) {
-		main::printMessage("red", "!! string after true = " . $self->secpath());
 		$path=$subpages[0]->{TITLE} ." - " . $self->{TITLE};
 	} else {
-		main::printMessage("red", "!! string after false = " . $self->secpath());
 		$path=$self->{TITLE};
 	}
 #        $path = substr($self->secpath(),0,5) . " " . $self->{TITLE}; 
-        main::printMessage("red", "!! title = $path");
         return $path;
 }
 
