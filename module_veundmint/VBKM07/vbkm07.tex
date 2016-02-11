@@ -108,7 +108,9 @@ declare function={
 %----------------------------------------------------------------------------------------
 
 Halten wir $x_0$ und den entsprechenden Funktionswert $f\left(x_0\right)$ fest und wählen eine weitere beliebige, aber variable Stelle $x$ zwischen $a$ und $b$ sowie ihren Funktionswert $f\left(x\right)$ aus. 
-Durch diese beiden Punkte, also durch $\left(x_0\MIntvlSep f(x_0)\right)$ und $\left(x\MIntvlSep f(x)\right)$, können wir eine Gerade legen, die durch ihre Steigung und ihren $y$-Achsenabschnitt festgelegt ist. Als Steigung dieser Geraden erhalten wir den sogenannten Differenzenquotienten
+Durch diese beiden Punkte, also durch $\left(x_0\MIntvlSep f(x_0)\right)$ und $\left(x\MIntvlSep f(x)\right)$,
+können wir eine Gerade legen, die durch ihre Steigung und ihren $y$-Achsenabschnitt festgelegt ist.
+Als Steigung dieser Geraden erhalten wir den sogenannten \textbf{Differenzenquotienten}
 
 \[
 \frac{\Delta(f)}{\Delta(x)} = \frac{f(x) - f(x_0)}{x - x_0}\MDFPSpace,
@@ -135,7 +137,7 @@ f'(x_0) = \lim_{x \rightarrow x_0} \frac{\Delta(f)}{\Delta(x)}
  = \lim_{x \rightarrow x_0} \frac{f(x) - f(x_0)}{x - x_0} %%
 \] 
 
-den Wert der Ableitung von $f$ in $x_0$. Die Funktion $f$ ist dann an der Stelle $x_0$ \textbf{ableitbar} bzw. \textbf{differenzierbar}.
+den Wert der \MEntry{Ableitung}{Ableitung} von $f$ in $x_0$. Die Funktion $f$ ist dann an der Stelle $x_0$ \textbf{ableitbar} bzw. \textbf{differenzierbar}.
 
 \begin{MExample}
   Für $f(x)=\sqrt{x}$ ist die relative Änderung an der Stelle $x_0=1$ gegeben durch
@@ -174,9 +176,9 @@ den Wert der Ableitung von $f$ in $x_0$. Die Funktion $f$ ist dann an der Stelle
 \end{MExercise}
 
 Über die Formel für die relative Änderungsrate kann man die Ableitung nur sehr mühsam und
-auch nur für sehr einfache Funktionen ausrechnen. Typischerweise rechnet man die Ableitung
-durch Anwendung von Rechenregeln und durch Einsetzen bekannter Ableitungswerte für bestimmte
-Bausteine aus.
+auch nur für sehr einfache Funktionen ausrechnen. Typischerweise bestimmt man die Ableitung
+durch Anwenden von Rechenregeln und durch Einsetzen bekannter Ableitungswerte für die einzelnen
+Bausteine.
 
 \end{MXContent}
 
@@ -241,7 +243,9 @@ f'(x_0) = \lim_{x \rightarrow x_0} \frac{f(x) - f(x_0)}{x - x_0} %
  = \lim_{h \rightarrow 0} \frac{f(x_0 + h) - f(x_0)}{h} \MDFPeriod
 \]
 Wenn dieser Grenzwert \emph{für alle} Stellen $x_0$ aus dem Definitionsbereich einer Funktion existiert, so nennt man diese Funktion (insgesamt)
-\textbf{differenzierbar}. Viele der häufig benutzten Funktionen sind differenzierbar. Ein einfaches Beispiel dafür, dass eine Funktion nicht unbedingt differenzierbar ist, ist die Betragsfunktion $f(x) := |x|$.
+\textbf{differenzierbar}. Viele der häufig benutzten Funktionen sind differenzierbar.
+Ein einfaches Beispiel dafür, dass eine Funktion nicht unbedingt differenzierbar ist,
+ist die Betragsfunktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) := |x|$.
 
 \begin{MExample}
 Die Betragsfunktion (siehe Modul \MRef{VBKM06}, Abschnitt \MRef{VBKM06_sec:betrag}) ist an der Stelle $x_0 = 0$ nicht differenzierbar.
@@ -294,11 +298,13 @@ $f: \R \rightarrow \R$, $x \mapsto f(x) := 4 - x^2$ an den Stellen $x_1 = -2$ un
 
 Antwort: 
 \begin{MExerciseItems}
-\item Der Differenzenquotient von $f$ zu $x$ an der Stelle $x_1 = -2$ ist
+\item Der Differenzenquotient von $f$ %zu $x$
+an der Stelle $x_1 = -2$ ist
 \MLSimplifyQuestion{30}{2 - x}{10}{x}{4}{0}{SIMPLE4}
 und hat f"ur $x \rightarrow -2$ den Grenzwert
  $f'(-2) = $\MLParsedQuestion{8}{4}{3}{DG11}.
-\item Der Differenzenquotient von $f$ zu $x$ an der Stelle $x_2 = 1$ ist
+\item Der Differenzenquotient von $f$ %zu $x$
+an der Stelle $x_2 = 1$ ist
 \MLFunctionQuestion{30}{-1 - x}{10}{x}{4}{DG13X}
 und hat f"ur $x \rightarrow 1$ den Grenzwert
  $f'(1) = $\MLParsedQuestion{8}{-2}{3}{DG12}.
@@ -309,10 +315,10 @@ und hat f"ur $x \rightarrow 1$ den Grenzwert
 \begin{MExercise}
 Erl"autern Sie, warum
 \begin{MExerciseItems}
-\item $f(x) := \sqrt{x+3}$ in $x_0 = -3$,
-\item $g(x) := 6 \cdot |2 x - 10|$ in $x_0 = 5$
+\item $f: [-3 \MIntvlSep \infty ) \rightarrow \R$ mit $f(x) := \sqrt{x+3}$ in $x_0 = -3$ und
+\item $g: \R \rightarrow \R$ mit $g(x) := 6 \cdot |2 x - 10|$ in $x_0 = 5$
 \end{MExerciseItems}
-nicht differenzierbar ist.
+nicht differenzierbar sind.
 
 Antwort:
 Die Ableitung von
@@ -564,7 +570,7 @@ Definition des Tangens als Quotient von Sinus und Kosinus.
 
 \begin{MInfo}
 Die Exponentialfunktion $f: \R \rightarrow \R$, $x \mapsto f(x) := \MEU^{x} = \exp(x)$ hat die besondere Eigenschaft, 
-dass ihre Ableitung $f'$ wiederum die Exponentialfunktion ist, also $f'(x) = \exp(x)$ gilt.
+dass ihre Ableitung $f'$ wiederum die Exponentialfunktion ist, also $f'(x) = \MEU^{x} = \exp(x)$ gilt.
 \end{MInfo}
 
 \MSubsubsectionx{Ableitung der Logarithmusfunktion}
@@ -727,14 +733,14 @@ Im Folgenden bezeichnen $u, v: D \rightarrow \R$ zwei beliebige differenzierbare
 Zahl.
 
 
-\begin{MXInfo}{Summenregel und Vielfache von Funktionen}
-Sind $u$ und $v$ als differenzierbare Funktionen vorgegeben, dann ist auch die Summe der Funktionen
+\begin{MXInfo}{Summenregel und Vielfaches von Funktionen}
+Sind $u$ und $v$ als differenzierbare Funktionen vorgegeben, dann ist auch die Summe
 $f := u+v$ mit $f(x) = (u+v)(x) := u(x) + v(x)$ differenzierbar, und es gilt
 $$
 f'(x) = u'(x) + v'(x) \MDFPeriod%%
 $$
 
-Auch das $r$-fache einer Funktion, also $f = r \cdot u$ mit $f(x) = (r \cdot u)(x) := r \cdot u(x)$ ist differenzierbar,
+Auch das $r$-fache einer Funktion, also $f := r \cdot u$ mit $f(x) = (r \cdot u)(x) := r \cdot u(x)$ ist differenzierbar,
 und es gilt
 $$
 f'(x) = r \cdot u'(x) \MDFPeriod%%
@@ -806,7 +812,7 @@ f': \R \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto f'(x) = 2 x \MEU^x + x^2
 \]
 Untersuchen wir die Tangensfunktion $g$ mit $g(x) = \tan(x) = \frac{\sin(x)}{\cos(x)}$ ($\cos(x) \neq 0$).
 Hier lesen wir durch Vergleich $u(x) = \sin(x)$ und $v(x) = \cos(x)$ ab. Mit $u'(x) = \cos(x)$ und $v'(x) = -\sin(x)$
-können wir hier die Teilergebnisse mit der Quotientenregel zur Ableitung der Funktion $g$ zusammensetzen; es folgt:
+können wir die Teilergebnisse mit der Quotientenregel zur Ableitung der Funktion $g$ zusammensetzen; es folgt:
 \[
 g'(x) = \frac{\cos(x) \cdot \cos(x) - \sin(x) \cdot (-\sin(x))}{\cos^2(x)} \MDFPeriod%
 \]
@@ -905,7 +911,7 @@ f'(x) = 5 (u(x))^4 \cdot (-2) = 5 (3 - 2 x)^4 \cdot (-2) = -10 (3 - 2 x)^4 \MDFP
 
 Sehen wir uns ein zweites Beispiel an und berechnen die Ableitung von $g: \R \rightarrow \R$ mit $g(x) = \MEU^{x^3}$.
 Dazu verwenden wir die Zuordnung $x \mapsto u(x) = x^3$ für die innere Funktion $u$ und $u \mapsto v(u) = \MEU^u$ für die äußere Funktion $v$.
-Bestimmen wir die innere und äußere Ableitung, dann erhalten wir $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$.
+Bestimmen wir die innere und die äußere Ableitung, dann erhalten wir $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$.
 Setzen wir beides in die Kettenregel ein, bekommen wir die Ableitung der Funktion $g$:
 \[
 g': \R \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto g'(x) = \MEU^{u(x)} \cdot 3 x^2 = \MEU^{x^3} \cdot 3 x^2 = 3 x^2 \MEU^{x^3} \MDFPeriod %%
@@ -989,8 +995,8 @@ Damit:
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Eigenschaften_Intro}
-Die Ableitung wurde weiter oben mittels einer Tangente an den Graphen einer Funktion eingef"uhrt, die die Änderungsrate dieser Funktion
-{\glqq}n"aherungsweise{\grqq} beschreibt. Aus den Eigenschaften dieser Geraden können wir auch auf Eigenschaften der
+Die Ableitung wurde weiter oben mittels einer Tangente an den Graphen einer Funktion eingef"uhrt. Diese Tangente beschreibt die gegebene Funktion
+in einem gewissen Bereich {\glqq}n"aherungsweise{\grqq}. Aus den Eigenschaften dieser Geraden können wir auch auf Eigenschaften der
 angenäherten Funktion schließen.
 \end{MIntro}
 
@@ -1022,7 +1028,7 @@ Mit der Ableitung kann das lokale Wachstumsverhalten untersucht werden, das
 hei"st, ob f"ur steigende Argumente die zugehörigen Funktionswerte gr"o"ser oder 
 kleiner werden.
 Dazu betrachten wir eine Funktion $f: D \rightarrow \R$, die auf $(a\MIntvlSep b) \subseteq D$ 
-differenzierbar ist.
+differenzierbar ist:
 \begin{center}
 \MTikzAuto{%
 \begin{small}
@@ -1112,7 +1118,7 @@ Für die Funktion $h: \R \setminus \{ 0 \} \rightarrow \R$ mit $h(x) = \frac{1}{x
 gilt $h'(x) = - \frac{1}{x^2}$. Hier ist 
 $h'(x) < 0$ f"ur alle $x \neq 0$.
 
-Auch wenn wir für die beiden unterschiedenen Teilbereiche dasselbe Monotonieverhalten finden,
+Auch wenn wir für die beiden Teilbereiche $x<0$ und $x>0$ dasselbe Monotonieverhalten finden,
 ist $h$ nicht über den gesamten Definitionsbereich monoton fallend. Als Gegenbeispiel können wir 
 $h(-2) = -\frac{1}{2}$ und $h(1) = 1$ anführen. Hier gilt $-2 < 1$, aber auch $h(-2) < h(1)$. Dies
 entspricht einem wachsenden Verhalten beim Übergang vom einen zum anderen Teilbereich. Dass die Funktion $h$
@@ -1142,10 +1148,10 @@ um zu erkennen, ob eine Funktion konvex (linksgekr"ummt) oder konkav
 %\end{MXContent}
 
 \begin{MXInfo}{Anmerkung zur Notation}
-Die zweite und weitere {\glqq}h"ohere{\grqq} Ableitungen werden oft mit hochgestellten nat"urlichen 
+Die zweite Ableitung und weitere {\glqq}h"ohere{\grqq} Ableitungen werden oft mit hochgestellten nat"urlichen 
 Zahlen in runden Klammern notiert: $f^{(k)}$ bezeichnet dann die $k$-te Ableitung von $f$.
 Diese Notation wird besonders in allgemein gehaltenen Formeln auch f"ur 
-die (erste) Ableitung f"ur $k=1$ und f"ur die Funktion $f$ selbst f"ur $k=0$ verwendet.
+die (erste) Ableitung ($k=1$) und f"ur die Funktion $f$ selbst ($k=0$) verwendet.
 
 Damit bezeichnet 
 \begin{itemize}
@@ -1163,7 +1169,7 @@ Bereich konvex und in einem anderen konkav sein kann.
 
 \begin{MExample}
 Die Funktion $f: \R \rightarrow \R, x \mapsto x^3$ ist sicherlich mindestens zweimal differenzierbar. Wegen
-$f'(x) = 3 x^2 \geq 0$ für alle $x$ ist $f$ auf dem gesamten Definitionsbereich monoton wachsend.
+$f'(x) = 3 x^2 \geq 0$ für alle $x \in \R$ ist $f$ auf dem gesamten Definitionsbereich monoton wachsend.
 
 Weiter ist ${f'}'(x) = 6 x$. Somit ist f"ur $x < 0$ auch ${f'}'(x) < 0$
 und damit $f$ hier konkav (nach rechts gekr"ummt). F"ur $x > 0$ ist
@@ -1177,7 +1183,7 @@ ${f'}'(x) > 0$, sodass $f$ f"ur $x > 0$ konvex (nach links gekr"ummt) ist.
 \MDeclareSiteUXID{VBKM07_Verhalten_Exercises}
 
 \begin{MExercise}
-In welchen m"oglichst gro"sen offenen Intervallen ist die Funktion
+In welchen m"oglichst gro"sen offenen Intervallen ist die Funktion $f$ mit
 $f(x) := \frac{x^2 - 1}{x^2 + 1}$
 monoton wachsend beziehungsweise monoton fallend?
 %In welchen m"oglichst gro"sen offenen Intervallen sind die Funktionen
@@ -1203,7 +1209,7 @@ Antwort:
 
 
 \begin{MExercise}
-In welchen m"oglichst gro"sen offenen Intervallen $(c\MIntvlSep d)$ ist die Funktion
+In welchen m"oglichst gro"sen offenen Intervallen $(c\MIntvlSep d)$ ist die Funktion $f$ mit
 $f(x) := \frac{x^2 - 1}{x^2 + 1}$ f"ur $x > 0$
 konvex beziehungsweise konkav?
 %In welchen m"oglichst gro"sen offenen Intervallen sind die Funktionen
@@ -1295,7 +1301,7 @@ Die Minimalstelle von $f$ ist bei \MLParsedQuestion{8}{0}{4}{DEG8}.
 
 
 Gegeben ist eine differenzierbare Funktion $f: (a\MIntvlSep b) \rightarrow \R$ 
-mit Zuordnungsvorschrift $x \mapsto y = f(x)$ f"ur $x \in (a\MIntvlSep b)$.
+mit Abbildungsvorschrift $x \mapsto y = f(x)$ f"ur $x \in (a\MIntvlSep b)$.
 Eine vollständige Kurvendiskussion für $f$ besteht in diesem Kurs aus folgenden Angaben:
 
 \begin{itemize}
@@ -1331,8 +1337,10 @@ Menge $D$ all dieser Zahlen wird maximaler Definitionsbereich genannt.
 
 \item[Symmetrie des Graphen]
 Der Graph der Funktion ist symmetrisch zur $y$-Achse, wenn $f(-x) = f(x)$ f"ur
-alle $x \in D$ ist. Ist $f(-x) = -f(x)$ f"ur alle $x \in D$, dann ist der Graph
+alle $x \in D$ ist. Dann heißt die Funktion $f$ auch \textbf{gerade}.
+Ist $f(-x) = -f(x)$ f"ur alle $x \in D$, so ist der Graph
 zum Ursprung $(0\MIntvlSep 0)$ des Koordinatensystems punktsymmetrisch.
+In diesem Falle nennt man die Funktion $f$ auch \textbf{ungerade}.
 
 \item[Asymptotisches Verhalten an den R"andern des Definitionsbereichs]
 Wir untersuchen die Grenzwerte der Funktion $f$ an den Grenzen ihres Definitionsbereichs.
@@ -1359,7 +1367,7 @@ wachsend, auf denen $f'(x) \geq 0$ gilt. Sie ist dort monoton fallend, wo $f'(x)
 ist.
 
 \item[Wendestellen und Kr"ummungseigenschaften]
-Notwendige Bedingung f"ur Wendestellen (sofern die zweite Ableitung ${f'}'$ existiert): ${f'}'(w) = 0$\newline
+Notwendige Bedingung f"ur Wendestellen (sofern die zweite Ableitung ${f'}'$ existiert): ${f'}'(x) = 0$\newline
 Wenn ${f'}'(w_0) = 0$ und $f^{(3)}(w_0) \neq 0$ ist, dann ist $w_0$ eine Wendestelle, d.h. $f$ ändert an dieser Stelle das Krümmungsverhalten.\newline
 Die Funktion $f$ ist auf denjenigen Intervallen des Definitionsbereichs konvex
 (linksgekr"ummt), auf denen $f^{(2)}(x) \geq 0$ gilt. Sie ist konkav (rechtsgekr"ummt) dort, 
@@ -1422,8 +1430,8 @@ Folglich ist $x_1$ eine Maximalstelle und $x_2$ eine Minimalstelle von $f$. Durc
 Maximum $(\sqrt2,\sqrt2)$ und das Minimum $(-\sqrt2,-\sqrt2)$ von $f$.
 \ \\ \ \\
 \textbf{Monotonieverhalten}\\
-Da $f$ auf ganz $\R$ definiert ist und sich für $x \rightarrow \pm \infty$ der $x$-Achse annähert,
-kann das Monotonieverhalten mit Hilfe der Extremstellen abgelesen werden: $f$ ist monoton fallend auf
+Da $f$ auf ganz $\R$ definiert ist,
+kann das Monotonieverhalten aus der Lage der Extremstellen und aus deren Typ abgelesen werden: $f$ ist monoton fallend auf
 $(-\infty\MIntvlSep -\sqrt2)$, monoton wachsend auf $(-\sqrt2\MIntvlSep \sqrt2)$
 und monoton fallend auf $(\sqrt2\MIntvlSep \infty)$. Monotonieintervalle geben wir stets in offener Form an.
 \ \\ \ \\
@@ -1483,7 +1491,7 @@ $x_2$ = \MLParsedQuestion{13}{sqrt(2)}{3}{DXG10} ist eine Maximalstelle.\\
 Wendepunkte: Die Menge der Wendestellen ist
 \MLParsedQuestion{30}{-1-sqrt(3),-1+sqrt(3)}{3}{DXG11}\\\MInputHint{(in Mengenschreibweise, Wurzeln dürfen stehenbleiben)}.\\
 \ \\
-Skizzieren Sie den Graphen und vergleichen Sie ihn anschließend mit der Musterlösung:
+Skizzieren Sie den Graphen und vergleichen Sie ihn anschließend mit der Musterlösung.
 
 \begin{MHint}{Lösung}
 \textbf{Maximaler Definitionsbereich}\\
@@ -1549,10 +1557,14 @@ skizziert auf dem Intervall $(-\MZahl{6}{2}\MIntvlSep 3)$.}{width:400px}
 In vielen Anwendungen der Technik oder Wirtschaft findet man Problemlösungen, die nicht eindeutig sind. Häufig hängen sie von variablen Bedingungen ab. Um eine ideale Lösung zu finden, werden zusätzliche Eigenschaften (Nebenbedingungen) definiert, die von der Lösung erfüllt werden müssen. Dies führt sehr oft zu sogenannten \textbf{Optimierungsaufgaben}, bei denen aus einer Schar von Lösungen diejenige gesucht werden muss, die eine vorab festgelegte Eigenschaft am besten erf"ullt.
 
 Als Beispiel betrachten wir die Aufgabe, eine zylinderf"ormige Dose zu konstruieren. Die Dose soll zus"atzlich die Bedingung erf"ullen, ein 
-Fassungsverm"ogen (Volumen) von einem Liter zu haben. Sind $r$ der Radius und $h$ die H"ohe der Dose, so soll also $V = \pi r^2 \cdot h = 1$ sein.
-(Auf die physikalischen Einheiten wurde der mathematischen Einfachheit halber verzichtet -- in der Praxis ist es allerdings unumgänglich, mit
-Einheiten zu rechnen.) Um Arbeitsmaterial zu sparen, suchen wir nach derjenigen Dose, die eine m"oglichst kleine Oberfl"ache
-$O = 2 \cdot \pi r^2 + 2 \pi r h$ hat. Hier ist die Oberfläche $O$ eine Funktion in Abhängigkeit vom Radius $r$ und von der Höhe $h$ der Dose.
+Fassungsverm"ogen (Volumen) $V$ von einem Liter, also einem Kubikdezimeter ($1 \MEinheit{dm}^3$), zu haben. Wählen wir für $V$ die
+Einheit $\MEinheit[]{dm}^3$ und
+sind $r$ der Radius und $h$ die H"ohe der Dose, jeweils gemessen in Dezimetern ($\MEinheit[]{dm}$), so soll also $V = \pi r^2 \cdot h = 1$ sein.
+%(Auf die physikalischen Einheiten wurde der mathematischen Einfachheit halber verzichtet -- in der Praxis ist es allerdings unumgänglich, mit
+%Einheiten zu rechnen.)
+Um Arbeitsmaterial zu sparen, suchen wir nach derjenigen Dose, die eine m"oglichst kleine Oberfl"ache
+$O = 2 \cdot \pi r^2 + 2 \pi r h$ hat. Hier ist die Oberfläche $O$ in Quadratdezimetern ($\MEinheit[]{dm}^2$)
+eine Funktion in Abhängigkeit vom Radius $r$ und von der Höhe $h$ der Dose.
 
 Mathematisch formuliert, f"uhrt die Aufgabe auf die Suche nach einem Minimum f"ur die Funktion $O$ der Oberfl"ache, wobei für die Berechnung des Minimums nur 
 Werte f"ur $r$ und $h$ zugelassen werden, f"ur die auch die Bedingung "uber das Volumen $V = \pi r^2 \cdot h = 1$ erf"ullt ist. Eine solche zus"atzliche
