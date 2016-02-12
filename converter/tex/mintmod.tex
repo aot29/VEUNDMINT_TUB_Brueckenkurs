@@ -323,6 +323,11 @@
 
 \newcommand{\MTestName}{\relax} % wird durch Test-Umgebung gesetzt
 
+% Fuer experimentelle Kursinhalte, die im Release-Umsetzungsvorgang eine Fehlermeldung
+% produzieren sollen aber sonst normal umgesetzt werden
+\newenvironment{MExperimental}{%
+}{%
+}
 
 % Wird von ttm nicht richtig umgesetzt!!
 \newenvironment{MExerciseItems}{%
@@ -383,7 +388,14 @@
 
 % Inhalt wird in der Form a & b \\ c & d erwartet
 % Vorsicht: MVector = Komponentenspalte, MVec = Variablensymbol
+\ifttm%
 \newcommand{\MVector}[1]{\left({\begin{array}{c}#1\end{array}}\right)}
+\else%
+\newcommand{\MVector}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\fi
+
+
+
 \newcommand{\MVec}[1]{\vec{#1}}
 \newcommand{\MDVec}[1]{\overrightarrow{#1}}
 
@@ -2097,6 +2109,9 @@ Hier erscheint die Testauswertung!
 \fi
 
 % ---------------------------------- Sonderbefehle ---------------------------------------------------
+
+
+
 
 \newcommand{\MZXYZhltrennzeichen}{,}
 \newcommand{\MZahltrennzeichen}[1]{\renewcommand{\MZXYZhltrennzeichen}{#1}}
