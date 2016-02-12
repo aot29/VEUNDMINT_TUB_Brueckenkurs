@@ -2182,6 +2182,12 @@ Hier erscheint die Testauswertung!
 \newenvironment{MDirectHTML}{\begin{html}}{\end{html}}%
 \fi
 
+% Im Gegensatz zu einfachen Mathe-Umgebungen werden MDirectMath-Umgebungen von mconvert.pl am ganzen ttm-Prozess vorbeigeschleust, ueber MathJax realisiert, und im PDF als $$ ... $$ gesetzt
+\ifttm%
+\newenvironment{MDirectMath}{\begin{html}}{\end{html}}%
+\else%
+\newenvironment{MDirectMath}{\begin{equation*}}{\end{equation*}}% Vorsicht, auch \[ und \] werden in amsmath durch equation* redefiniert
+\fi
 
 % ---------------------------------- Location Management ---------------------------------------------
 

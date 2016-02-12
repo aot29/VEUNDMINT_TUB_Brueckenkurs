@@ -3895,9 +3895,12 @@ for ($ka = 0; $ka < $nt; $ka++) {
     }
        
        
-    # Experimental ttm bypass
-    # $textex =~ s/\$\$(.+?)\$\$/\\begin{MDirectHTML}\$\$$1\$\$\\end{MDirectHTML}/sg ;
-       
+    # MDirectMath umsetzen (als DirectHTML)
+    while($textex =~ s/\\begin{MDirectMath}(.+?)\\end{MDirectMath}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
+      push @DirectHTML , "\\[" . $1 . "\\]";
+      $globalposdirecthtml++;
+    }
+
     # MDirectHTML umsetzen
     while($textex =~ s/\\begin{MDirectHTML}(.+?)\\end{MDirectHTML}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
       push @DirectHTML , $1;
