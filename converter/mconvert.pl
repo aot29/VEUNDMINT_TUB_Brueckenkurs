@@ -3240,13 +3240,20 @@ my $text = loadfile($xmlfile);
 my $ttm_errors = loadfile($xmlerrormsg);
 my @ttm_errors = split("\n", $ttm_errors);
 
+my $j = 0;
+
 for ($i = 0; $i <= $#ttm_errors; $i++) {
   if ($ttm_errors[$i] =~ m/\*\*\*\* Unknown command (.+?), /s ) {
     logMessage($CLIENTWARN, "(ttm) " . $ttm_errors[$i]);
     push @converrors, "ERROR: ttm konnte LaTeX-Kommando $1 nicht verarbeiten";
+    $j++;
   } else {
     logMessage($CLIENTINFO, "(ttm) " . $ttm_errors[$i]);
   }
+}
+
+if (($config{dorelease} eq 1) and ($j > 0)) {
+      logMessage($CLIENTERROR, "ttm found $j unknown commands, not valid in release version!");
 }
 
 # Debug-Meldungen ausgeben
@@ -3640,6 +3647,25 @@ sub setup_options {
   logMessage($CLIENTINFO, "Configuration description: " . $config{description});
 }
 
+
+# Parameter: string, content of a tex file
+# returns 1 if tex file is valid for a release
+sub checkRelease {
+  my $tex = $_[0];
+  my $reply = 1;
+  # no experimental environments
+  if ($tex =~ m/\\begin{MExperimental}/s ) {
+    logMessage($VERBOSEINFO, "MExperimental found in tex file");
+    $reply = 0;
+  }
+  if ($tex =~ m/\% TODO/s ) {
+    logMessage($VERBOSEINFO, "TODO comment found in tex file");
+    $reply = 0;
+  }
+  return $reply;
+}
+
+
 # ----------------------------- Start Hauptprogramm --------------------------------------------------------------
 
 # my $IncludeTags = ""; # Sammelt die Makros fuer predefinierte Tagmakros, diese werden an mintmod.tex angehaengt
@@ -3775,7 +3801,14 @@ for ($ka = 0; $ka < $nt; $ka++) {
     } else {
       logMessage($VERBOSEINFO, "Tree-preprocess on bare file $pfname in directory $prx");
     }
-    
+ 
+    if ($config{dorelease} eq 1) {
+      if (checkRelease($textex) eq 0) {
+        logMessage($CLIENTERROR, "tex-file " . $texs[$ka] . " did not pass release check");
+      }
+    }
+
+ 
     $filecount++;
     
     # Kommentarzeilen radikal entfernen (außer wenn \% statt % im LaTeX-Code steht oder wenn in verb-line)
