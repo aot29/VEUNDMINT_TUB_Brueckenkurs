@@ -36,13 +36,13 @@ Dieses Modul besteht aus
 \MLabel{VBKM09_Koordinaten_Intro}
 \MDeclareSiteUXID{VBKM09_Koordinaten_Intro}
 
-Will man Objekte wie Geraden oder Kreise, die in \MSRef{VBKM05}{Modul 5} rein geometrisch betrachtet wurden, auch algebraisch (das heißt mit Hilfe von Gleichungen) untersuchen, so muss man zur eindeutigen Beschreibung von Punkten in der Ebene ein \MEntry{Koordinatensystem}{Koordinatensystem} einführen. Die grundlegende Idee von Koordinatensystemen ist sehr einfach: Will man den Ort eine Punktes von Interesse exakt angeben, so braucht man neben einem Referenzpunkt (in der Mathematik als \MEntry{Ursprung}{Ursprung} bezeichnet) eine bestimmte Längeneinheit (zum Beispiel Kilometer). Dann kann man den Ort des Punktes mit Hilfe von zwei Zahlen exakt angeben. Diese zwei Zahlen werden in der Mathematik als \MEntry{Koordinaten}{Koordinaten} des Punktes bezeichnet. In der Praxis findet man das zum Beispiel auf Schildern, die den Ort von Feuerhydranten im Boden angeben:
+Will man Objekte, wie Geraden oder Kreise, die in \MSRef{VBKM05}{Kapitel 5} rein geometrisch betrachtet wurden, auch algebraisch (das heißt mit Hilfe von Gleichungen) untersuchen, so muss man zur eindeutigen Beschreibung von Punkten in der Ebene \MEntry{Koordinatensysteme}{Koordinatensysteme} einführen. Die grundlegende Idee von Koordinatensystemen ist sehr einfach: Will man den Ort eine Punktes von Interesse exakt angeben, so braucht man neben einem Referenzpunkt (in der Mathematik als \MEntry{Ursprung}{Ursprung} bezeichnet) eine bestimmte Längeneinheit (zum Beispiel Kilometer). Dann kann man den Ort des Punktes mit Hilfe von zwei Zahlen eindeutig angeben. Diese zwei Zahlen werden in der Mathematik als \MEntry{Koordinaten}{Koordinaten} des Punktes bezeichnet. In der Praxis findet man diess zum Beispiel auf Schildern, die den Ort von Feuerhydranten im Boden angeben:
 
 \begin{center}
 \MUGraphicsSolo{hydrant.png}{scale=0.6}{width:571px}
 \end{center}
 
-In diesem Fall ist der Ursprung der Ort an dem das Schild angebracht ist, die Längeneinheit ist Meter und die beiden abzulesenden Zahlen \MZahl{0}{9} und \MZahl{6}{4} geben an, dass man sich vom Ort des Schilds aus \MZahl{0}{9} Meter nach rechts und \MZahl{6}{4} Meter nach hinten begeben muss um den Hydranten zu finden. Die beiden Zahlen \MZahl{0}{9} und \MZahl{6}{4} bilden also die Koordinaten des Hydranten in dem Koordinatensystem, das durch den Ort des Schilds und die Längeneinheit Meter festgelegt wird:
+In diesem Fall ist der Ursprung der Ort an dem das Schild angebracht ist, die Längeneinheit ist Meter und die beiden abzulesenden Zahlen \MZahl{0}{9}\ und \MZahl{6}{4}\ geben an, dass man sich vom Ort des Schilds aus \MZahl{0}{9}\ Meter nach rechts und \MZahl{6}{4}\ Meter nach hinten begeben muss um den Hydranten zu finden. Die beiden Zahlen \MZahl{0}{9}\ und \MZahl{6}{4}\ bilden also die Koordinaten des Hydranten in dem Koordinatensystem, das durch den Ort des Schilds und die Längeneinheit Meter festgelegt wird:
 
 \begin{center}
 \MTikzAuto{\begin{tikzpicture}
@@ -105,7 +105,7 @@ In der Mathematik werden die Richtungen in einem Koordinatensystem selten \glqq 
 
 Die verwendete Längeneinheit kann hier noch zusätzlich angegeben werden, diese ist aber für rein mathematische Betrachtungen zunächst nicht wichtig. Beachtet werden sollte aber die Benutzung negativer Koordinaten \glqq links und unterhalb\grqq\ des Ursprungs. Die gezeichneten \MEntry{Achsen}{Achsen} bezeichnet man schließlich entsprechend oft als $x$-Achse oder $x_1$-Achse und $y$-Achse oder $x_2$-Achse. Üblich sind weiterhin die Bezeichnungen \MEntry{Abszissenachse}{Abszissenachse} für die horizontale Achse (die Koordinatenwerte darauf heißen dann \MEntry{Abszissen}{Abszissen}) und \MEntry{Ordinatenachse}{Ordinatenachse} für die vertikale Achse (die Koordinatenwerte darauf heißen dann \MEntry{Ordinaten}{Ordinaten}).
 
-Man erkennt nun, dass ein solches Koordinatensystem die Ebene in vier Bereiche teilt, die wiederrum besondere Bezeichnungen tragen. Man spricht hier von den \MEntry{Quadranten}{Quadranten} \textbf{I} bis \textbf{IV}:
+Man erkennt nun, dass ein solches Koordinatensystem die Ebene in vier Bereiche teilt, die wiederum besondere Bezeichnungen tragen. Man spricht hier von den \MEntry{Quadranten}{Quadranten} \textbf{I} bis \textbf{IV}:
 
 \begin{center}
 \MTikzAuto{
@@ -139,20 +139,20 @@ Man erkennt nun, dass ein solches Koordinatensystem die Ebene in vier Bereiche t
 }
 \end{center}
 
-Weiterhin werden die oben beschriebenen Koordinatensysteme auch als \MEntry{kartesische Koordinatensysteme}{kartesische Koordinatensysteme} bezeichnet, da ihre Achsen senkrecht aufeinander stehen, sich also im Urpsrung in einem $90^{\circ}$-Winkel schneiden. Es gibt also auch nicht-kartesische Koordinatensysteme, die in diesem Kurs allerdings nicht betrachtet werden. Deshalb wird im Folgenden oft einfach nur der Begriff Koordinatensystem benutzt. 
+Weiterhin werden die oben beschriebenen Koordinatensysteme auch als \MEntry{kartesische Koordinatensysteme}{kartesische Koordinatensysteme} bezeichnet, da ihre Achsen senkrecht aufeinander stehen, sich also im Urpsrung unter einem $90^{\circ}$-Winkel schneiden. Es gibt also auch nicht-kartesische Koordinatensysteme, die in diesem Kurs allerdings nicht betrachtet werden. Deshalb wird im Folgenden oft einfach nur der Begriff Koordinatensystem für ein kartesisches Koordinatensystem benutzt. 
 
-Hat man nun das Konzept der Koordinatensysteme der Ebene verinnerlicht, so wird klar, dass man auf ähnliche Weise auch die Position von Punkten im Raum beschreiben kann. Will man zum Beispiel die Position eines Flugzeugs exakt angeben, ist dafür nicht nur seine Position relativ zum Tower relevant, sondern auch seine Flughöhe. Man braucht hierfür also eine dritte Koordinate und folglich ein Koordinatensystem mit drei Achsen. Solche Koordinatensysteme werden in \MSRef{VBKM10}{Modul 10} eingeführt.  
+Hat man nun das Konzept der Koordinatensysteme der Ebene verinnerlicht, so wird klar, dass man auf ähnliche Weise auch die Position von Punkten im Raum beschreiben kann. Will man zum Beispiel die Position eines Flugzeugs exakt angeben, ist dafür nicht nur seine Position relativ zum Tower relevant, sondern auch seine Flughöhe. Man braucht hierfür also eine dritte Koordinate und folglich ein Koordinatensystem mit drei Achsen. Solche Koordinatensysteme werden in \MSRef{VBKM10}{Kapitel 10} eingeführt.  
 \end{MIntro}
 
 \begin{MXContent}{Punkte in kartesischen Koordinatensystemen}{Punkte}{STD}
 \MLabel{VBKM09_Punkte}
 \MDeclareSiteUXID{VBKM09_Punkte}
 
-Wenn man nun Punkte in der Ebene durch Koordinaten beschreiben möchte, benutzt man auch hier oft Variablen. Typischerweise sind dies Großbuchstaben $A,B,C,\MHDots$ oder $P,Q,R,\MHDots$ für Punkte und Kleinbuchstbaben $a,b,c,\MHDots$ oder $x,y,\MHDots$ für ihre Koordinaten. Wir legen nun zunächst fest was unter einem Punkt in der Ebene, in welcher eine Koordinatensystem gegeben ist, zu verstehen ist und welche Schreibweisen dafür im Folgenden benutzt werden. 
+Wenn man nun Punkte in der Ebene durch Koordinaten beschreiben möchte, benutzt man auch hier oft Variablen. Typischerweise sind dies Großbuchstaben $A,B,C,\MHDots$ oder $P,Q,R,\MHDots$ für Punkte und Kleinbuchstbaben $a,b,c,\MHDots$ oder $x,y,\MHDots$ für ihre Koordinaten. Zunächst wird nun festgelegt, was unter einem Punkt in der Ebene, in welcher eine Koordinatensystem gegeben ist, zu verstehen sein soll und welche Schreibweisen dafür im Folgenden benutzt werden. 
 
 \begin{MInfo}
 \MLabel{VBKM09_PunktInEbene}
-Einen \MEntry{Punkt}{Punkt} in der Ebene bezüglich eines gegebenen Koordinatensystems wird beschrieben durch $P=\MPointTwo{a}{b}$, dabei ist $P$ die Variable für den Punkt und $a$ und $b$ sind seine Koordinaten. Seine Abszisse oder seine $x$-Koordinate ist $a$ und seine Ordinate oder $y$-Koordinate ist $b$:
+Einen \MEntry{Punkt}{Punkt} in der Ebene, bezüglich eines gegebenen Koordinatensystems, wird beschrieben durch $P=\MPointTwo{a}{b}$, dabei ist $P$ die Variable für den Punkt und $a$ und $b$ sind seine Koordinaten. Seine Abszisse oder seine $x$-Koordinate ist $a$ und seine Ordinate oder $y$-Koordinate ist $b$:
 
 \begin{center}
 \MTikzAuto{
@@ -183,11 +183,11 @@ Einen \MEntry{Punkt}{Punkt} in der Ebene bezüglich eines gegebenen Koordinatensy
 
 \end{MInfo}
 
-Für Punkte gibt es verschiedene Notationen, in der Schule wird oft $P(a|b)$ statt $P=(a;b)$ geschrieben, oft statt dem Semikolon ein Trennstrich oder ein Komma als Trennzeichen zwischen den Koordinaten benutzt. Im diesen Kurs wird durchgehend die Bezeichnung $P=(a;b)$ verwendet. Da Punkte durch ihre Koordinaten eindeutig bestimmt werden, wird im folgenden nicht mehr zwischen dem Punkt $P$ und seinen Koordinaten $\MPointTwo{a}{b}$ unterschieden, sondern beide werden als das gleiche Objekt aufgefasst. Ein besonderer Punkt in jedem Koordinatensystem ist natürlich der Ursprung mit dem Koordinatenpaar $\MPointTwo{0}{0}$, für diesen wird üblicherweise die Variable $O$ (vom englischen \textit{origin}) reserviert, also: $O=\MPointTwo{0}{0}$.
+Für Punkte gibt es verschiedene Notationen, in der Schule wird oft $P(a|b)$ statt $P=\MPointTwo{a}{b}$ geschrieben, oft statt dem Semikolon ein Trennstrich oder ein Komma als Trennzeichen zwischen den Koordinaten benutzt. Im diesen Kurs wird durchgehend die Bezeichnung $P=\MPointTwo{a}{b}$ verwendet. Da Punkte durch ihre Koordinaten eindeutig bestimmt werden, wird im Folgenden nicht mehr zwischen dem Punkt $P$ und seinen Koordinaten $\MPointTwo{a}{b}$ unterschieden, sondern beide werden als das gleiche Objekt aufgefasst. Ein besonderer Punkt in jedem Koordinatensystem ist natürlich der Ursprung mit dem Koordinatenpaar $\MPointTwo{0}{0}$, für diesen wird üblicherweise die Variable $O$ (vom englischen \textit{origin}) reserviert, also: $O=\MPointTwo{0}{0}$.
 
 \begin{MExample}
-In der folgenden Abbildung sind die drei Punkte $P=\MPointTwo{2}{4}$, $Q=\MPointTwo{-1}{1}$ und $R=\MPointTwo{0}{-1}$ abgebildet.
-Der Punkt $Q$ besitzt beispielsweise die $x$-Koordinate $-1$ (eine Längeneinheit nahc links auf der Abszissenachse) und die $y$-Koordinate $1$ (eine Längeneinheit nach oben auf der Ordinatenachse):
+In der folgenden Schaubild sind die drei Punkte $P=\MPointTwo{2}{4}$, $Q=\MPointTwo{-1}{1}$ und $R=\MPointTwo{0}{-1}$ abgebildet.
+Der Punkt $Q$ besitzt beispielsweise die $x$-Koordinate $-1$ (eine Längeneinheit nach links auf der Abszissenachse) und die $y$-Koordinate $1$ (eine Längeneinheit nach oben auf der Ordinatenachse):
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -285,9 +285,9 @@ Geben Sie die Koordinaten der im folgenden Koordinatensystem eingezeichneten Pun
 \begin{MHint}{Lösung}
 Die Koordinatenpaare der gefragten Punkte lauten
 $$
-P \;=\; (-2;1) \MDFPSpace, \MDFPaSpace
-Q \;=\; (1;0) \MDFPSpace, \MDFPaSpace
-R \;=\; (-2;\frac52) \;=\; (-2;2,5) \MDFPeriod
+P \;=\; \MPointTwo{-2}{1} \MDFPSpace, \MDFPaSpace
+Q \;=\; \MPointTwo{1}{0} \MDFPSpace, \MDFPaSpace
+R \;=\; \MPointTwo[\Big]{-2}{\frac52} \;=\; \MPointTwo{-2}{\MZahl{2}{5}} \MDFPeriod
 $$
 % In Vektorschreibweise lauten die Punkte
 % $$
@@ -296,7 +296,7 @@ $$
 \end{MHint}
 \end{MExercise}
 
-Sollen im Folgenden nun weitere geometrische Objekte, wie etwa Geraden oder Kreise, durch Koordinaten beschrieben werden muss man sich zunächst klarmachen, dass Punkte in der Ebene (beschrieben durch ihre Koordinaten bezüglich eines vorgegebenen Koordinatensystems) wieder zu Mengen, sogenannten \MEntry{Punktmengen}{Punktmengen}, zusammengefasst werden können. Dies veranschaulicht man sich am Besten Anhand eines Beispiels.
+In den folgenden Abschnitten sollen nun weitere geometrische Objekte, wie etwa Geraden und Kreise, durch Koordinaten beschrieben werden. Dafür muss man sich zunächst klarmachen, dass Punkte in der Ebene (beschrieben durch ihre Koordinaten bezüglich eines vorgegebenen Koordinatensystems) wieder zu Mengen, sogenannten \MEntry{Punktmengen}{Punktmengen}, zusammengefasst werden können. Dies veranschaulicht das folgende Beispiel:
 
 \begin{MExample}
 In der folgenden Abbildung sind drei Punkte eingezeichnet.
@@ -338,15 +338,15 @@ Diese Punktmenge kann zum Beispiel durch folgende Mengenangaben beschrieben werd
 Zeichnen Sie die folgenden Punktmengen in ein kartesisches Koordinatensystem ein.
 
 \begin{itemize}
- \item[a.] $\{\MPointTwo{i}{i+1}\MCondSetSep i\in\{-2,-1,0,1,2\}\}$ 
- \item[b.] $\{\MPointTwo[\Big]{\frac{1}{n}}{0}\MCondSetSep n=1\vee n=2 \vee n=4\}\cup\{\MPointTwo{-1}{-2}\}$
- \item[c.] Die Menge aller Punkte im I. Quadranten mit ganzzahliger Abszisse kleiner $5$ und Ordinate $1$  
+ \item[1.] $\{\MPointTwo{i}{i+1}\MCondSetSep i\in\{-2,-1,0,1,2\}\}$ 
+ \item[2.] $\{\MPointTwo[\Big]{\frac{1}{n}}{0}\MCondSetSep n=1\vee n=2 \vee n=4\}\cup\{\MPointTwo{-1}{-2}\}$
+ \item[3.] Die Menge aller Punkte im I. Quadranten mit ganzzahliger Abszisse kleiner $5$ und Ordinate $1$  
 \end{itemize}
 
 
 \begin{MHint}{Lösung}
 \begin{itemize}
- \item[a.]
+ \item[1.]
  
 \begin{center}
 \MTikzAuto{
@@ -373,7 +373,7 @@ Zeichnen Sie die folgenden Punktmengen in ein kartesisches Koordinatensystem ein
 \end{center}
  
  
-\item[b.]
+\item[2.]
 
 \begin{center}
 \MTikzAuto{
@@ -398,7 +398,7 @@ Zeichnen Sie die folgenden Punktmengen in ein kartesisches Koordinatensystem ein
 }
 \end{center}
 
-\item[c.]
+\item[3.]
 
 \begin{center}
 \MTikzAuto{
@@ -427,7 +427,7 @@ Zeichnen Sie die folgenden Punktmengen in ein kartesisches Koordinatensystem ein
 \end{MHint}
 \end{MExercise}
 
-Wie aus \MSRef{VBKM05}{Modul 5} bekannt ist, handelt es sich bei Geraden und Kreise um Mengen von unendlich vielen Punkten. Deren Koordinaten mittels Punktmengen und geeigneten Gleichungen zu beschreiben ist Inhalt der folgenden Abschnitte. Eine spezielle unendliche Punktmenge ist die Zusammenfassung aller Punkte in einem Koordinatensystem in der Ebene zu einer Menge. Für diese Menge gibt es eine besondere Bezeichnung:
+Wie aus \MSRef{VBKM05}{Kapitel 5} bekannt ist, handelt es sich bei Geraden und Kreisen um Mengen von unendlich vielen Punkten. Deren Koordinaten mittels Punktmengen und geeigneten Gleichungen zu beschreiben, ist Inhalt der folgenden Abschnitte. Eine spezielle unendliche Punktmenge ist die Zusammenfassung \textit{aller} Punkte in einem Koordinatensystem in der Ebene zu einer Menge. Für diese Menge gibt es eine besondere Bezeichnung:
 
 \begin{MInfo}
 \MLabel{VBKM09_R2}
