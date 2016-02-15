@@ -12,22 +12,182 @@
 \MDeclareSiteUXID{VBKM09_START}
 Dieses Modul besteht aus
 \begin{itemize}
-\item{dem Abschnitt \MSRef{M09_PGE}{Punkte und Geraden in der Ebene},}
-\item{dem Abschnitt \MSRef{M09_Kreise}{Kreise in der Ebene},}
-\item{dem \MSRef{VBKM09_Abschlusstest}{Abschlusstest}.}
+\item{dem Abschnitt \MSRef{M09_1kartesisch}{Kartesische Koordinatensysteme in der Ebene},}
+\item{dem Abschnitt \MSRef{M09_2Geraden}{Geraden in der Ebene},}
+\item{dem Abschnitt \MSRef{M09_3Kreise}{Kreise in der Ebene},}
+\item{dem Abschnitt \MSRef{M09_4Bereiche}{Bereiche in der Ebene},}
+\item{dem \MSRef{VBKM09_5Abschlusstest}{Abschlusstest}.}
 \end{itemize}
+
+% \begin{itemize}
+% \item{dem Abschnitt \MSRef{M09_PGE}{Punkte und Geraden in der Ebene},}
+% \item{dem Abschnitt \MSRef{M09_Kreise}{Kreise in der Ebene},}
+% \item{dem \MSRef{VBKM09_Abschlusstest}{Abschlusstest}.}
+% \end{itemize}
 
 \end{MSectionStart}
 
-\MSubsection{Punkte und Geraden in der Ebene}
-\MLabel{M09_PGE}
+% \MSubsection{Punkte und Geraden in der Ebene}
+% \MLabel{M09_PGE}
+\MSubsection{Kartesische Koordinatensysteme in der Ebene}
+\MLabel{M09_1kartesisch}
+
 \begin{MIntro}
-\MDeclareSiteUXID{VBKM09_ObjekteEbene_Intro}
+\MLabel{VBKM09_Koordinaten_Intro}
+\MDeclareSiteUXID{VBKM09_Koordinaten_Intro}
+
+Will man Objekte, wie Geraden oder Kreise, die in \MSRef{VBKM05}{Kapitel 5} rein geometrisch betrachtet wurden, auch algebraisch (das heißt mit Hilfe von Gleichungen) untersuchen, so muss man zur eindeutigen Beschreibung von Punkten in der Ebene \MEntry{Koordinatensysteme}{Koordinatensysteme} einführen. Die grundlegende Idee von Koordinatensystemen ist sehr einfach: Will man den Ort eine Punktes von Interesse exakt angeben, so braucht man neben einem Referenzpunkt (in der Mathematik als \MEntry{Ursprung}{Ursprung} bezeichnet) eine bestimmte Längeneinheit (zum Beispiel Kilometer). Dann kann man den Ort des Punktes mit Hilfe von zwei Zahlen eindeutig angeben. Diese zwei Zahlen werden in der Mathematik als \MEntry{Koordinaten}{Koordinaten} des Punktes bezeichnet. In der Praxis findet man diess zum Beispiel auf Schildern, die den Ort von Feuerhydranten im Boden angeben:
+
+\begin{center}
+\MUGraphicsSolo{hydrant.png}{scale=0.6}{width:571px}
+\end{center}
+
+In diesem Fall ist der Ursprung der Ort an dem das Schild angebracht ist, die Längeneinheit ist Meter und die beiden abzulesenden Zahlen \MZahl{0}{9}\ und \MZahl{6}{4}\ geben an, dass man sich vom Ort des Schilds aus \MZahl{0}{9}\ Meter nach rechts und \MZahl{6}{4}\ Meter nach hinten begeben muss um den Hydranten zu finden. Die beiden Zahlen \MZahl{0}{9}\ und \MZahl{6}{4}\ bilden also die Koordinaten des Hydranten in dem Koordinatensystem, das durch den Ort des Schilds und die Längeneinheit Meter festgelegt wird:
+
+\begin{center}
+\MTikzAuto{\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (2.2,0);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,1.2) -- (0,-7.2);
+\foreach \y in {7,6,5,4,3,2,1}
+\draw[shift={(0,-\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%Achsenbeschriftung
+\draw (2.1,0) node[anchor=north west] {\footnotesize rechts in Meter};
+\draw (0.1,-7.2) node[anchor=north west] {\footnotesize hinten in Meter};
+%Punkte
+\draw [dashed] (0.9,0)--(0.9, -6.4);
+\draw [dashed] (0,-6.4)--(0.9, -6.4);
+\draw[fill = red](0.0,0.0) circle (1.5pt);
+\draw[color=red] (-32pt,-8pt) node[right] {\footnotesize Schild};
+\draw[fill = blue](0.9,-6.4) circle (1.5pt);
+\draw[color=blue] (0.9,-6.4) node[right] {\footnotesize Hydrant};
+
+\end{tikzpicture}}
+\end{center}
+
+In der Mathematik werden die Richtungen in einem Koordinatensystem selten \glqq rechts\grqq\ und \glqq hinten\grqq\ genannt. Zeichnet man ein Koordinatensystem, so nennt man die horizontale Richtung oft $x$-Richtung oder $x_1$-Richtung und die vertikale Richtung $y$-Richtung oder $x_2$-Richtung. Die mathematische Konvention dabei ist außerdem, dass die Richtungen nach rechts und nach oben verlaufen sollen:
+
+\begin{center}
+\begin{tabular}{lr}
+\MTikzAuto{\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.5,0) -- (2.9,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.3) -- (0,2.8);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.2) node[anchor=north west] {$y$};
+\end{tikzpicture}}
+
+& 
+
+\MTikzAuto{\begin{tikzpicture}
+\draw[->,color=black] (-2.5,0) -- (2.9,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.3) -- (0,2.8);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.8,0) node[anchor=north west] {$x_1$};
+\draw (-0.5,3.2) node[anchor=north west] {$x_2$};
+\end{tikzpicture}}
+\end{tabular}
+\end{center}
+
+
+Die verwendete Längeneinheit kann hier noch zusätzlich angegeben werden, diese ist aber für rein mathematische Betrachtungen zunächst nicht wichtig. Beachtet werden sollte aber die Benutzung negativer Koordinaten \glqq links und unterhalb\grqq\ des Ursprungs. Die gezeichneten \MEntry{Achsen}{Achsen} bezeichnet man schließlich entsprechend oft als $x$-Achse oder $x_1$-Achse und $y$-Achse oder $x_2$-Achse. Üblich sind weiterhin die Bezeichnungen \MEntry{Abszissenachse}{Abszissenachse} für die horizontale Achse (die Koordinatenwerte darauf heißen dann \MEntry{Abszissen}{Abszissen}) und \MEntry{Ordinatenachse}{Ordinatenachse} für die vertikale Achse (die Koordinatenwerte darauf heißen dann \MEntry{Ordinaten}{Ordinaten}).
+
+Man erkennt nun, dass ein solches Koordinatensystem die Ebene in vier Bereiche teilt, die wiederum besondere Bezeichnungen tragen. Man spricht hier von den \MEntry{Quadranten}{Quadranten} \textbf{I} bis \textbf{IV}:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.1,0);
+%\foreach \x in {-2,-1,1,2}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.1);
+%\foreach \y in {-2,-1,1,2}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.2) node[anchor=north west] {$y$};
+%Quadranten füllen
+\def \q1{(0,0) -- (3,0) -- (3,3) -- (0,3)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\def \q2{(0,0) -- (-3,0) -- (-3,3) -- (0,3)}
+\fill[color=green,fill=green,fill opacity=0.15] \q2;
+\def \q3{(0,0) -- (-3,0) -- (-3,-3) -- (0,-3)}
+\fill[color=blue,fill=blue,fill opacity=0.15] \q3;
+\def \q4{(0,0) -- (3,0) -- (3,-3) -- (0,-3)}
+\fill[color=yellow,fill=yellow,fill opacity=0.15] \q4;
+\draw (0.5,1.5) node[anchor=west] {Quadrant I};
+\draw (-0.5,1.5) node[anchor=east] {Quadrant II};
+\draw (-0.5,-1.5) node[anchor=east] {Quadrant III};
+\draw (0.5,-1.5) node[anchor=west] {Quadrant IV};
+
+\end{tikzpicture}
+}
+\end{center}
+
+Weiterhin werden die oben beschriebenen Koordinatensysteme auch als \MEntry{kartesische Koordinatensysteme}{kartesische Koordinatensysteme} bezeichnet, da ihre Achsen senkrecht aufeinander stehen, sich also im Urpsrung unter einem $90^{\circ}$-Winkel schneiden. Es gibt also auch nicht-kartesische Koordinatensysteme, die in diesem Kurs allerdings nicht betrachtet werden. Deshalb wird im Folgenden oft einfach nur der Begriff Koordinatensystem für ein kartesisches Koordinatensystem benutzt. 
+
+Hat man nun das Konzept der Koordinatensysteme der Ebene verinnerlicht, so wird klar, dass man auf ähnliche Weise auch die Position von Punkten im Raum beschreiben kann. Will man zum Beispiel die Position eines Flugzeugs exakt angeben, ist dafür nicht nur seine Position relativ zum Tower relevant, sondern auch seine Flughöhe. Man braucht hierfür also eine dritte Koordinate und folglich ein Koordinatensystem mit drei Achsen. Solche Koordinatensysteme werden in \MSRef{VBKM10}{Kapitel 10} eingeführt.  
+\end{MIntro}
+
+\begin{MXContent}{Punkte in kartesischen Koordinatensystemen}{Punkte}{STD}
+\MLabel{VBKM09_Punkte}
+\MDeclareSiteUXID{VBKM09_Punkte}
+
+Wenn man nun Punkte in der Ebene durch Koordinaten beschreiben möchte, benutzt man auch hier oft Variablen. Typischerweise sind dies Großbuchstaben $A,B,C,\MHDots$ oder $P,Q,R,\MHDots$ für Punkte und Kleinbuchstbaben $a,b,c,\MHDots$ oder $x,y,\MHDots$ für ihre Koordinaten. Zunächst wird nun festgelegt, was unter einem Punkt in der Ebene, in welcher eine Koordinatensystem gegeben ist, zu verstehen sein soll und welche Schreibweisen dafür im Folgenden benutzt werden. 
 
 \begin{MInfo}
 \MLabel{VBKM09_PunktInEbene}
-Einen \MEntry{Punkt}{Punkt} in der Ebene beschreiben wir durch $P=(x;y)$, dabei ist $P$ das Symbol für den Punkt
-und $x$ bzw. $y$ sind seine \MEntry{Koordinaten}{Koordinaten} in der Ebene: $x$ ist der Abstand von $P$ zur vertikalen Achse, $y$ ist der Abstand zur horizontalen Achse:
+Einen \MEntry{Punkt}{Punkt} in der Ebene, bezüglich eines gegebenen Koordinatensystems, wird beschrieben durch $P=\MPointTwo{a}{b}$, dabei ist $P$ die Variable für den Punkt und $a$ und $b$ sind seine Koordinaten. Seine Abszisse oder seine $x$-Koordinate ist $a$ und seine Ordinate oder $y$-Koordinate ist $b$:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.1,0) -- (3.1,0);
+%\foreach \x in {-2,-1,1,2}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,3.1);
+%\foreach \y in {-2,-1,1,2}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.2) node[anchor=north west] {$y$};
+%Punkt
+\draw [dashed] (2,0)--(2,1);
+\draw [dashed] (0,1)--(2,1);
+\draw[fill = red](2,1) circle (1.5pt);
+\draw[color=red] (2,1) node[right] {$P=\MPointTwo{a}{b}$};
+
+\draw[color=red] (2,0) node[below] {\footnotesize $a$};
+\draw[color=red] (0,1) node[left] {\footnotesize $b$};
+
+\end{tikzpicture}
+}
+\end{center}
+
+\end{MInfo}
+
+Für Punkte gibt es verschiedene Notationen, in der Schule wird oft $P(a|b)$ statt $P=\MPointTwo{a}{b}$ geschrieben, oft statt dem Semikolon ein Trennstrich oder ein Komma als Trennzeichen zwischen den Koordinaten benutzt. Im diesen Kurs wird durchgehend die Bezeichnung $P=\MPointTwo{a}{b}$ verwendet. Da Punkte durch ihre Koordinaten eindeutig bestimmt werden, wird im Folgenden nicht mehr zwischen dem Punkt $P$ und seinen Koordinaten $\MPointTwo{a}{b}$ unterschieden, sondern beide werden als das gleiche Objekt aufgefasst. Ein besonderer Punkt in jedem Koordinatensystem ist natürlich der Ursprung mit dem Koordinatenpaar $\MPointTwo{0}{0}$, für diesen wird üblicherweise die Variable $O$ (vom englischen \textit{origin}) reserviert, also: $O=\MPointTwo{0}{0}$.
+
+\begin{MExample}
+In der folgenden Schaubild sind die drei Punkte $P=\MPointTwo{2}{4}$, $Q=\MPointTwo{-1}{1}$ und $R=\MPointTwo{0}{-1}$ abgebildet.
+Der Punkt $Q$ besitzt beispielsweise die $x$-Koordinate $-1$ (eine Längeneinheit nach links auf der Abszissenachse) und die $y$-Koordinate $1$ (eine Längeneinheit nach oben auf der Ordinatenachse):
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -35,59 +195,59 @@ und $x$ bzw. $y$ sind seine \MEntry{Koordinaten}{Koordinaten} in der Ebene: $x$ 
 \draw[->,color=black] (-4,0) -- (3.9,0);
 \foreach \x in {-3,-2,-1,1,2,3}
 \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
-\draw[->,color=black] (0,-0.5) -- (0,4.7);
-\foreach \y in {1,2,3,4}
+\draw[->,color=black] (0,-1.5) -- (0,4.7);
+\foreach \y in {-1,1,2,3,4}
 \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
 \draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
 %Achsenbeschriftung
-\draw (4,0) node[anchor=north west] {$x$};
-\draw (-1,5.2) node[anchor=north west] {$y$};
+\draw (3.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,5) node[anchor=north west] {$y$};
 %Ausgewählte Elemente des Definitionsbereiches:
 \foreach \x in {-1,2}{
         \fill [color = cyan](\x,0.0) circle (1.5pt);
         % f(x):
         \fill [color = orange] (0, \x*\x) circle (1.5pt);
-        %Punktepaare
-        \draw [fill=green] (\x,\x*\x) circle (1.5pt);
+        
         %kreuzlinien
         \draw [dashed, color = cyan] (\x,0)--(\x, \x*\x);
         \draw [dashed, color = orange] (0,\x*\x)--(\x, \x*\x);
+        %Punktepaare
+        \draw [fill=green] (\x,\x*\x) circle (1.5pt);
 }
+\draw [dashed, color = cyan] (0,0)--(0, -1);
+\draw [fill=green] (0, -1) circle (1.5pt);
 % Beschriftung:
 %\begin{scriptsize}
-        \draw (2,4) node[anchor = west]{$P=(2;4)$};
-        \draw (-1,1) node[anchor = east]{$Q=(-1;1)$};
+        \draw (2,4) node[anchor = west]{$P=\MPointTwo{2}{4}$};
+        \draw (-1,1) node[anchor = east]{$Q=\MPointTwo{-1}{1}$};
+        \draw (0,-1) node[anchor = west] {$R=\MPointTwo{0}{-1}$};
 %\end{scriptsize}
 \end{tikzpicture}
 }
 \end{center}
-Im Bild sind die beiden Punkte $P=(2;4)$ und $Q=(-1;1)$ abgebildet.
-Der Punkt $P$ besitzt beispielsweise die Koordinaten $x=2$ (zwei Längeneinheiten Abstand zur vertikalen Achse)
-und $y=4$ (vier Längeneinheiten Abstand zur horizontalen Achse).
-\ \\ \ \\
-\end{MInfo}
 
-Bei der Beschreibung von Punkten lassen wir physikalische Einheiten stets weg. Für das Rechnen mit den geometrischen Objekten ist es unerheblich, ob es sich um Millimeter,
-Meter oder andere Längeneinheiten handelt. Nur die Zahlenwerte werden verwendet. Dagegen ist es wie im Beispiel durchaus möglich, dass Koordinaten durch Brüche, Dezimalzahlen
-oder andere auswertbare Ausdrücke gegeben sind.
+\end{MExample}
 
-Für Punkte gibt es verschiedene Notationen, in der Schule wird oft $P(x|y)$ statt $P=(x;y)$ geschrieben, oft statt dem Semikolon ein Trennstrich oder ein Komma
-als Trennzeichen zwischen den Koordinaten benutzt. Im Kurs verwenden wir durchgehend die Bezeichnung $P=(x;y)$ wobei das Symbol $P$ den gleichen Punkt bezeichnet wie
-das Koordinatenpaar $(x;y)$. 
 
-\begin{MInfo}
-In der Notation $P=(x;y)$ schreibt man die Koordinaten in einer Zeile auf. Dies wird schwerer lesbar, sobald mehr als zwei Koordinaten auftreten und
-die Punkte in Gleichungen auftauchen.
-Bei der \MEntry{Vektorschreibweise}{Vektorschreibweise} werden daher Koordinaten zu einem Vektor zusammengefasst und untereinander geschrieben:
-$$
-\MVec{v} \;=\; \MVector{2\\-4} \MDFPSpace,
-$$
-hier beispielsweise der Vektor $\MVec{v}$ mit den Koordinaten $2$ und $-4$.
-Diese Schreibweise ist angenehmer, sobald mehr als zwei Komponenten vorhanden sind und Gleichungen mit den Vektoren aufgestellt werden.
-\end{MInfo}
+% Bei der Beschreibung von Punkten lassen wir physikalische Einheiten stets weg. Für das Rechnen mit den geometrischen Objekten ist es unerheblich, ob es sich um Millimeter,
+% Meter oder andere Längeneinheiten handelt. Nur die Zahlenwerte werden verwendet. Dagegen ist es wie im Beispiel durchaus möglich, dass Koordinaten durch Brüche, Dezimalzahlen
+% oder andere auswertbare Ausdrücke gegeben sind.
+
+
+
+% \begin{MInfo}
+% In der Notation $P=(x;y)$ schreibt man die Koordinaten in einer Zeile auf. Dies wird schwerer lesbar, sobald mehr als zwei Koordinaten auftreten und
+% die Punkte in Gleichungen auftauchen.
+% Bei der \MEntry{Vektorschreibweise}{Vektorschreibweise} werden daher Koordinaten zu einem Vektor zusammengefasst und untereinander geschrieben:
+% $$
+% \MVec{v} \;=\; \MVector{2\\-4} \MDFPSpace,
+% $$
+% hier beispielsweise der Vektor $\MVec{v}$ mit den Koordinaten $2$ und $-4$.
+% Diese Schreibweise ist angenehmer, sobald mehr als zwei Komponenten vorhanden sind und Gleichungen mit den Vektoren aufgestellt werden.
+% \end{MInfo}
 
 \begin{MExercise}
-Geben Sie die im Koordinatensystem eingetragenen Punkte in Zeilenschreibweise ein:
+Geben Sie die Koordinaten der im folgenden Koordinatensystem eingezeichneten Punkte an.
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -100,8 +260,8 @@ Geben Sie die im Koordinatensystem eingetragenen Punkte in Zeilenschreibweise ei
 \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
 \draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
 %Achsenbeschriftung
-\draw (4,0) node[anchor=north west] {$x$};
-\draw (-1,4.2) node[anchor=north west] {$y$};
+\draw (3.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,5) node[anchor=north west] {$y$};
 %Punktepaare
 \draw [fill=green] (-2,1) circle (1.5pt);
 \draw [fill=green] (1,0) circle (1.5pt);
@@ -109,7 +269,7 @@ Geben Sie die im Koordinatensystem eingetragenen Punkte in Zeilenschreibweise ei
 % Beschriftung:
 %\begin{scriptsize}
         \draw (-2,1) node[anchor = east]{$P$};
-        \draw (1,0) node[anchor = west]{$Q$};
+        \draw (1,0) node[anchor = south west]{$Q$};
         \draw (-2,2.5) node[anchor = east]{$R$};
 %\end{scriptsize}
 \end{tikzpicture}
@@ -120,22 +280,181 @@ Geben Sie die im Koordinatensystem eingetragenen Punkte in Zeilenschreibweise ei
 \item{\MEquationItem{$Q$}{\MLFunctionQuestion{15}{(1,0)}{5}{x}{5}{VEB2}}.}
 \item{\MEquationItem{$R$}{\MLFunctionQuestion{15}{(-2,5/2)}{5}{x}{5}{VEB3}}.}
 \end{MExerciseItems}
-\MInputHint{Geben Sie Punkte in der Form $(x;y)$ ein, beispielsweise \texttt{(12;-4)} für den Punkt mit Koordinaten $x=12$ und $y=-4$. Im Kontrollfenster werden die Punkte
-in Vektorschreibweise dargestellt.}
+\MInputHint{Geben Sie Punkte in der Form $(x;y)$ ein, beispielsweise \texttt{(12;-4)} für den Punkt mit der $x$-Koordinate $12$ und der $y$-Koordinate $-4$.}
 
 \begin{MHint}{Lösung}
-Die gefragten Punkte (in Zeilen- wie auch Vektorschreibweise) lauten
+Die Koordinatenpaare der gefragten Punkte lauten
 $$
-P \;=\; (-2;1) \MDFPSpace, \MDFPaSpace
-Q \;=\; (1;0) \MDFPSpace, \MDFPaSpace
-R \;=\; (-2;\frac52) \;=\; (-2;2,5) \MDFPeriod
+P \;=\; \MPointTwo{-2}{1} \MDFPSpace, \MDFPaSpace
+Q \;=\; \MPointTwo{1}{0} \MDFPSpace, \MDFPaSpace
+R \;=\; \MPointTwo[\Big]{-2}{\frac52} \;=\; \MPointTwo{-2}{\MZahl{2}{5}} \MDFPeriod
 $$
-In Vektorschreibweise lauten die Punkte
-$$
-\MVector{-2\\1}\MDFPSpace, \MDFPaSpace \MVector{1\\0}\MDFPSpace, \MDFPaSpace  \MVector{-2\\\frac52} \MDFPeriod
-$$
+% In Vektorschreibweise lauten die Punkte
+% $$
+% \MVector{-2\\1}\MDFPSpace, \MDFPaSpace \MVector{1\\0}\MDFPSpace, \MDFPaSpace  \MVector{-2\\\frac52} \MDFPeriod
+% $$
 \end{MHint}
 \end{MExercise}
+
+In den folgenden Abschnitten sollen nun weitere geometrische Objekte, wie etwa Geraden und Kreise, durch Koordinaten beschrieben werden. Dafür muss man sich zunächst klarmachen, dass Punkte in der Ebene (beschrieben durch ihre Koordinaten bezüglich eines vorgegebenen Koordinatensystems) wieder zu Mengen, sogenannten \MEntry{Punktmengen}{Punktmengen}, zusammengefasst werden können. Dies veranschaulicht das folgende Beispiel:
+
+\begin{MExample}
+In der folgenden Abbildung sind drei Punkte eingezeichnet.
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.1,0) -- (3.5,0);
+\foreach \x in {-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,3.5);
+\foreach \y in {-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north west] {$x$};
+\draw (-0.7,3.8) node[anchor=north west] {$y$};
+%Punkte
+\draw [dashed] (-0.5,0)--(-0.5,-0.5);
+\draw [dashed] (0,-0.5)--(-0.5,-0.5);
+\draw [fill = red] (-0.5,-0.5) circle (1.5pt);
+\draw [dashed] (1,0)--(1,1);
+\draw [dashed] (0,1)--(1,1);
+\draw [fill = red] (1,1) circle (1.5pt);
+\draw [dashed] (2,0)--(2,2);
+\draw [dashed] (0,2)--(2,2);
+\draw [fill = red] (2,2) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+
+Diese Punktmenge kann zum Beispiel durch folgende Mengenangaben beschrieben werden:
+\[
+ \{\MPointTwo{-\MZahl{0}{5}}{-\MZahl{0}{5}}\MElSetSep \MPointTwo{1}{1}\MElSetSep \MPointTwo{2}{2}\} = \{\MPointTwo{a}{a}\MCondSetSep a\in\{-\MZahl{0}{5}\MElSetSep 1\MElSetSep 2\}\}
+\]
+\end{MExample}
+
+\begin{MExercise}
+Zeichnen Sie die folgenden Punktmengen in ein kartesisches Koordinatensystem ein.
+
+\begin{itemize}
+ \item[1.] $\{\MPointTwo{i}{i+1}\MCondSetSep i\in\{-2,-1,0,1,2\}\}$ 
+ \item[2.] $\{\MPointTwo[\Big]{\frac{1}{n}}{0}\MCondSetSep n=1\vee n=2 \vee n=4\}\cup\{\MPointTwo{-1}{-2}\}$
+ \item[3.] Die Menge aller Punkte im I. Quadranten mit ganzzahliger Abszisse kleiner $5$ und Ordinate $1$  
+\end{itemize}
+
+
+\begin{MHint}{Lösung}
+\begin{itemize}
+ \item[1.]
+ 
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.5,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (0,3.5);
+\foreach \y in {-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north west] {$x$};
+\draw (-0.7,3.8) node[anchor=north west] {$y$};
+%Punkte
+\draw [fill = red] (-2,-1) circle (1.5pt);
+\draw [fill = red] (-1,0) circle (1.5pt);
+\draw [fill = red] (0,1) circle (1.5pt);
+\draw [fill = red] (1,2) circle (1.5pt);
+\draw [fill = red] (2,3) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+ 
+ 
+\item[2.]
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.5,0) -- (2.5,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (0,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.5,0) node[anchor=north west] {$x$};
+\draw (-0.7,2.8) node[anchor=north west] {$y$};
+%Punkte
+\draw [fill = red] (1,0) circle (1.5pt);
+\draw [fill = red] (0.5,0) circle (1.5pt);
+\draw [fill = red] (0.25,0) circle (1.5pt);
+\draw [fill = red] (-1,-2) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+
+\item[3.]
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.5,0) -- (4.5,0);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,2.5);
+\foreach \y in {-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.7,2.8) node[anchor=north west] {$y$};
+%Punkte
+\draw [fill = red] (1,1) circle (1.5pt);
+\draw [fill = red] (2,1) circle (1.5pt);
+\draw [fill = red] (3,1) circle (1.5pt);
+\draw [fill = red] (4,1) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+\end{itemize}
+
+\end{MHint}
+\end{MExercise}
+
+Wie aus \MSRef{VBKM05}{Kapitel 5} bekannt ist, handelt es sich bei Geraden und Kreisen um Mengen von unendlich vielen Punkten. Deren Koordinaten mittels Punktmengen und geeigneten Gleichungen zu beschreiben, ist Inhalt der folgenden Abschnitte. Eine spezielle unendliche Punktmenge ist die Zusammenfassung \textit{aller} Punkte in einem Koordinatensystem in der Ebene zu einer Menge. Für diese Menge gibt es eine besondere Bezeichnung:
+
+\begin{MInfo}
+\MLabel{VBKM09_R2}
+Die Menge aller Punkte in der Ebene, als Koordinatenpaare bezüglich einers gegebenen kartesischen Koordinatensystems, werden mit
+\[
+ \R^2 := \{ \MPointTwo{x}{y}\MCondSetSep x\in\R\wedge y\in\R \}
+\]
+bezeichnet. Das Symbol $\R^2$ wird dabei als \glqq$\R$ zwei\grqq, \glqq$\R$ hoch zwei\grqq\ oder \glqq$\R$ quadrat\grqq\ gesprochen. Dies spiegelt wieder, dass jeder Punkt durch ein Koordinatenpaar, bestehend aus zwei reellen Zahlen, beschrieben werden kann.   
+\end{MInfo}
+
+
+
+\end{MXContent}
+
+
+
+
+
+% \MSubsection{Kreise}
+% \MLabel{M09_Kreise}
+
+\MSubsection{Geraden in der Ebene}
+\MLabel{M09_2Geraden}
+
+\begin{MIntro}
+\MLabel{VBKM09_Geraden_Intro}
+\MDeclareSiteUXID{VBKM09_Geraden_Intro}
 
 Geometrische Figuren in der Ebene wie Geraden und Kreise bestehen aus Punkten. Dabei ist es aber nicht sinnvoll, die unendlich vielen Punkte einfach aufzuzählen.
 Verschiedene Techniken zur Beschreibung dieser Objekte werden in den nächsten Abschnitten vorgestellt. Die einfachste Figur ist die Gerade:
@@ -150,7 +469,10 @@ Eine \MEntry{Gerade}{Gerade} ist eine durchgezogene Linie in der Ebene. Eine Ger
 \end{MInfo}
 
 Diese Beschreibungsmöglichkeiten werden in den folgenden Abschnitten vorgestellt.
+
 \end{MIntro}
+
+
 
 \begin{MXContent}{Funktionsgleichung}{Funktionsgleichung}{STD}
 \MLabel{VBKM09_Funktionsgleichung}
@@ -602,8 +924,8 @@ Damit ist $S=(-1;f(-1))=(-1;-1)$ der gesuchte Schnittpunkt.
 
 \end{MXContent}
 
-\MSubsection{Kreise}
-\MLabel{M09_Kreise}
+\MSubsection{Kreise in der Ebene}
+\MLabel{M09_3Kreise}
 
 \begin{MIntro}
 \MLabel{VBKM09_Kreise_Intro}
@@ -689,7 +1011,6 @@ Wie bei der Zwei-Punkte-Form für Geraden ist die Beschreibung eines Kreises durc
 
 \end{MIntro}
 
-
 \begin{MXContent}{Allgemeine Form}{Allgemeine Form}{STD}
 \MLabel{VBKM09_Kreise_Allgemein}
 \MDeclareSiteUXID{VBKM09_Kreise_Allgemein}
@@ -742,12 +1063,15 @@ womit $(2;2)$ nicht auf dem Kreis liegt.
 \end{MXContent}
 
 
+% \MSubsection{Bereiche in der Ebene}
+% \MLabel{M09_4Bereiche}
+
 \MSubsection{Abschlusstest}
 
 
 \begin{MTest}{Abschlusstest Kapitel \arabic{section}}
 \MLabel{VBKM09_Abschlusstest}
-\MDeclareSiteUXID{VBKM09_Abschlusstest}
+\MDeclareSiteUXID{VBKM09_5Abschlusstest}
 
 
 \begin{MExercise}

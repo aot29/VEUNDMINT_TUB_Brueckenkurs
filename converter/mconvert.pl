@@ -1064,7 +1064,8 @@ sub titlestring {
 	} else {
 		@subpages = @{$self->{PARENT}->{PARENT}->{SUBPAGES}};
 	}
-	if (($#subpages >0 && substr($self->secpath(),,6,6)!=1) and ($main::doconctitles eq 1)) {
+	# Verkettete Titel nur, falls self in Kette von Unterabschnitten und nicht erstes Element darin ist
+	if (($#subpages >0 && substr($self->secpath(),-1,1)!=1) and ($main::doconctitles eq 1)) {
 		$path=$subpages[0]->{TITLE} ." - " . $self->{TITLE};
 	} else {
 		$path=$self->{TITLE};
@@ -3239,13 +3240,20 @@ my $text = loadfile($xmlfile);
 my $ttm_errors = loadfile($xmlerrormsg);
 my @ttm_errors = split("\n", $ttm_errors);
 
+my $j = 0;
+
 for ($i = 0; $i <= $#ttm_errors; $i++) {
   if ($ttm_errors[$i] =~ m/\*\*\*\* Unknown command (.+?), /s ) {
     logMessage($CLIENTWARN, "(ttm) " . $ttm_errors[$i]);
     push @converrors, "ERROR: ttm konnte LaTeX-Kommando $1 nicht verarbeiten";
+    $j++;
   } else {
     logMessage($CLIENTINFO, "(ttm) " . $ttm_errors[$i]);
   }
+}
+
+if (($config{dorelease} eq 1) and ($j > 0)) {
+      logMessage($CLIENTERROR, "ttm found $j unknown commands, not valid in release version!");
 }
 
 # Debug-Meldungen ausgeben
@@ -3639,6 +3647,25 @@ sub setup_options {
   logMessage($CLIENTINFO, "Configuration description: " . $config{description});
 }
 
+
+# Parameter: string, content of a tex file
+# returns 1 if tex file is valid for a release
+sub checkRelease {
+  my $tex = $_[0];
+  my $reply = 1;
+  # no experimental environments
+  if ($tex =~ m/\\begin{MExperimental}/s ) {
+    logMessage($VERBOSEINFO, "MExperimental found in tex file");
+    $reply = 0;
+  }
+  if ($tex =~ m/\% TODO/s ) {
+    logMessage($VERBOSEINFO, "TODO comment found in tex file");
+    $reply = 0;
+  }
+  return $reply;
+}
+
+
 # ----------------------------- Start Hauptprogramm --------------------------------------------------------------
 
 # my $IncludeTags = ""; # Sammelt die Makros fuer predefinierte Tagmakros, diese werden an mintmod.tex angehaengt
@@ -3747,6 +3774,25 @@ for ($ka = 0; $ka < $nt; $ka++) {
     $pcompletename =~ m/(.+)\/(.+?).tex/i;
     my $pdirname = $1;
     my $pfilename = $2 . ".tex";
+    
+    my $tex_info = `file -i $pcompletename`;
+    my $charset_ok = 0;
+    if ($tex_info =~ m/charset=iso-8859-1/s ) {
+      logMessage($VERBOSEINFO, "  charset = iso-8859-1 (latin1)");
+      $charset_ok = 1;
+    }
+    
+    if ($tex_info =~ m/charset=us-ascii/s ) {
+      logMessage($VERBOSEINFO, "  charset = us-ascii found (nice but latin1 is ok)");
+      $charset_ok = 1;
+    }
+    
+    if ($charset_ok ne 1) {
+      $tex_info =~ m/charset=(.+)/i ;
+      logMessage($CLIENTWARN, "  bad charset " . $1 . " in file " . $texs[$ka] . ", must be latin1");
+    }
+    
+    
     $tex_open = open(MINTS, "< $pcompletename") or die "FATAL: Could not open $texs[$ka]\n";
     while(defined($texzeile = <MINTS>)) {
       # Wegen direkter HTML-Zeilen darf man %-Kommentare nicht streichen
@@ -3774,7 +3820,14 @@ for ($ka = 0; $ka < $nt; $ka++) {
     } else {
       logMessage($VERBOSEINFO, "Tree-preprocess on bare file $pfname in directory $prx");
     }
-    
+ 
+    if ($config{dorelease} eq 1) {
+      if (checkRelease($textex) eq 0) {
+        logMessage($CLIENTERROR, "tex-file " . $texs[$ka] . " did not pass release check");
+      }
+    }
+
+ 
     $filecount++;
     
     # Kommentarzeilen radikal entfernen (außer wenn \% statt % im LaTeX-Code steht oder wenn in verb-line)
@@ -3842,9 +3895,12 @@ for ($ka = 0; $ka < $nt; $ka++) {
     }
        
        
-    # Experimental ttm bypass
-    # $textex =~ s/\$\$(.+?)\$\$/\\begin{MDirectHTML}\$\$$1\$\$\\end{MDirectHTML}/sg ;
-       
+    # MDirectMath umsetzen (als DirectHTML)
+    while($textex =~ s/\\begin{MDirectMath}(.+?)\\end{MDirectMath}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
+      push @DirectHTML , "\\[" . $1 . "\\]";
+      $globalposdirecthtml++;
+    }
+
     # MDirectHTML umsetzen
     while($textex =~ s/\\begin{MDirectHTML}(.+?)\\end{MDirectHTML}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
       push @DirectHTML , $1;
@@ -4515,10 +4571,10 @@ converter_conversion();
 chdir("tex");
 my $pdfok = 1;
 if ($config{dopdf} eq 1) {
-    # Ganzer Baum wird erstellt: Die Einzelmodule separat texen
     my $doct = "";
-    while (($doct = each(%{$config{generate_pdf}})) and ($pdfok == 1)) {
-      logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex (" . $config{generate_pdf}->{$doct} . ") ========================================");
+    my $docdesc = "";
+    while ((($doct, $docdesc) = each(%{$config{generate_pdf}})) and ($pdfok == 1)) {
+      logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex ($docdesc) ========================================");
 
       my $rt1 = system("pdflatex $doct.tex");
       if ($rt1 != 0) {
