@@ -439,7 +439,7 @@ gegeben. Die Ableitung in $x_0 = 0$ existiert nicht, da die Tangente an den Grap
 %Tangenten y = f(x_0) + f'(x_0) * (x - x_0) im Punkt $(x_0, f(x_0)$ des Graphen:
 %$x_0 := 1$:
 \draw[samples=120,color=blue!50!black] %
- (0.5, {1 - 1/2 * 1/2}) -- ++(1, {1/2});
+({-1/2}, {1/4}) -- ++({7/2}, {7/4});
 %Punkt:
 \filldraw[color=black, fill=black] (1, 0) circle (2pt);
 %end of file
@@ -578,25 +578,21 @@ dass ihre Ableitung $f'$ wiederum die Exponentialfunktion ist, also $f'(x) = \ME
 %Die Logarithmusfunktion $f(y) := \ln(y)$ f"ur $y > 0$ ist die Umkehrfunktion
 %der Exponentialfunktion $y = \MEU^x$. Die Ableitung und damit die Steigung $m$ einer Tangente an den 
 %Graphen der Exponentialfunktion ist $m = \MEU^x$. 
-
 %In der folgenden Abbildung ist die Tangente an den Graphen der Exponentialfunktion im
 %Punkt $(x_0, \MEU^{x_0})$ f"ur $x_0 = \ln(2)$ angedeutet, sodass die 
 %Tangentensteigung $m = 2$ ist. Die Umkehrabbildung der Tangente hat dann 
 %die Steigung $\frac{1}{m} = \frac{1}{2}$. 
 %Geometrisch ist es die Steigung der gespiegelten Tangente, also die Tangente
 %an die Umkehrfunktion $\ln$.
-
 %Verwenden wir wieder die gewohnten Bezeichnungen für die unabhängige Variable, können wir ohne Beweis die Ableitung der Logarithmusfunktion angeben. Es gilt: $f'(x) = \frac{1}{x}$ ist die Ableitung der 
 %Logarithmusfunktion $f(x) = \ln(x)$.
-
 Wir geben hier die Ableitung der Logarithmusfunktion ohne Beweis an. Für $f: (0 \MIntvlSep \infty) \rightarrow \R$ mit $x \mapsto f(x) = \ln(x)$
 erhält man $f': (0 \MIntvlSep \infty) \rightarrow \R$, $x \mapsto f'(x) = \frac1x$.
-
-\begin{center}
-\MTikzAuto{%
+%\begin{center}
+%\MTikzAuto{%
 %%%{Tangenten an $\exp$ und an die Umkehrfunktion $\ln$}{}
-\begin{small}
-\begin{tikzpicture}[line width=1.5pt,scale=0.8]
+%\begin{small}
+%\begin{tikzpicture}[line width=1.5pt,scale=0.8]
 %%%Koordinatenachsen:
 %\draw[->] (-3.2, 0) -- (4.6, 0) node[below left]{$x$}; %x-Achse
 %\draw[->] (0, -3.2) -- (0, 4) node[below left]{$y$}; %y-Achse
@@ -649,10 +645,10 @@ erhält man $f': (0 \MIntvlSep \infty) \rightarrow \R$, $x \mapsto f'(x) = \frac1
 %%%\filldraw[color=black] (1, 0) circle (2pt);
 %\filldraw[color=black] (2, 0) circle (2pt);
 %\filldraw[color=black] (2, {ln(2)}) circle (2pt);
-\end{tikzpicture}
-\end{small}
-}
-\end{center}
+%\end{tikzpicture}
+%\end{small}
+%}
+%\end{center}
 
 \end{MXContent}
 
@@ -703,7 +699,7 @@ Vereinfachen Sie die Funktionsterme, um dann die Ableitung zu bestimmen
 \item $g(x) := \left(\MEU^x\right)^2 \cdot \MEU^{-x} = $
 \MLFunctionQuestion{40}{exp(x)}{10}{x}{4}{DZ10}.
 \end{MExerciseItems}
-\MInputHint{Schreiben Sie Exponentialfunktionen mit \texttt{exp}, beispielsweise schreiben Sie $\MEU^{4x^2}$ als \texttt{exp(4*x^2)}.}
+%\MInputHint{Schreiben Sie Exponentialfunktionen mit \texttt{exp}, beispielsweise schreiben Sie $\MEU^{4x^2}$ als \texttt{exp(4*x^2)}.}
 Damit ist
 \begin{MExerciseItems}
 \item $f'(x) = $ \MLSimplifyQuestion{40}{2/x}{1}{x}{20}{512}{TFR1}.
@@ -1073,6 +1069,8 @@ declare function={
 %Beschriftung:
 \node[right] at (5.1, 1.25) {$f'(x_0) = m_0 > 0$};
 \node[style={fill=white},left] at (0.9, 1.25) {$f'(x_1) = m_1 < 0$};
+\node[below] at (x0, -0.1) {$x_0$};
+\node[below] at (x1, -0.1) {$x_1$};
 \end{tikzpicture}
 \end{small}
 }
