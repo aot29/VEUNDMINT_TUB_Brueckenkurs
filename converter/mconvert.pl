@@ -160,7 +160,10 @@ our $NOBASHCOLOR = "\033[0m";
 # Parameter color = string, txt = string (ohne Zeilenumbruch)
 sub printMessage {
   my ($color, $txt) = @_;
-  print color($color), "$txt\n", color("reset");
+  if (($color ne "green") or ($config{doverbose} eq 1)) {
+    # gruene verbose-Meldungen nur in Logdatei, nicht auf Konsole ausser wenn aktiviert
+    print color($color), "$txt\n", color("reset");
+  }
   print LOGFILE "$txt\n";
 }
 
@@ -180,14 +183,10 @@ sub logMessage {
       } else {
         if ($lvl eq $DEBUGINFO) {
           # release oder nicht macht fuer Serverseite keinen Sinn, also zaehlt doverbose
-          if ($config{doverbose} eq 1) {
-            printMessage("black", "DEBUG:   $msg");
-          }
+          printMessage("green", "DEBUG:   $msg");
         } else {
           if ($lvl eq $VERBOSEINFO) {
-            if ($config{doverbose} eq 1) {
-              printMessage("green", "VERBOSE: $msg");
-            }
+            printMessage("green", "VERBOSE: $msg");
           } else {
             if ($lvl eq $CLIENTONLY) {
               # Auf Serverseite keine Ausgabe
