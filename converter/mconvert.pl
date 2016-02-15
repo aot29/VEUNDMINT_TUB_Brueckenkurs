@@ -3774,6 +3774,25 @@ for ($ka = 0; $ka < $nt; $ka++) {
     $pcompletename =~ m/(.+)\/(.+?).tex/i;
     my $pdirname = $1;
     my $pfilename = $2 . ".tex";
+    
+    my $tex_info = `file -i $pcompletename`;
+    my $charset_ok = 0;
+    if ($tex_info =~ m/charset=iso-8859-1/s ) {
+      logMessage($VERBOSEINFO, "  charset = iso-8859-1 (latin1)");
+      $charset_ok = 1;
+    }
+    
+    if ($tex_info =~ m/charset=us-ascii/s ) {
+      logMessage($VERBOSEINFO, "  charset = us-ascii found (nice but latin1 is ok)");
+      $charset_ok = 1;
+    }
+    
+    if ($charset_ok ne 1) {
+      $tex_info =~ m/charset=(.+)/i ;
+      logMessage($CLIENTWARN, "  bad charset " . $1 . " in file " . $texs[$ka] . ", must be latin1");
+    }
+    
+    
     $tex_open = open(MINTS, "< $pcompletename") or die "FATAL: Could not open $texs[$ka]\n";
     while(defined($texzeile = <MINTS>)) {
       # Wegen direkter HTML-Zeilen darf man %-Kommentare nicht streichen
@@ -3876,9 +3895,12 @@ for ($ka = 0; $ka < $nt; $ka++) {
     }
        
        
-    # Experimental ttm bypass
-    # $textex =~ s/\$\$(.+?)\$\$/\\begin{MDirectHTML}\$\$$1\$\$\\end{MDirectHTML}/sg ;
-       
+    # MDirectMath umsetzen (als DirectHTML)
+    while($textex =~ s/\\begin{MDirectMath}(.+?)\\end{MDirectMath}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
+      push @DirectHTML , "\\[" . $1 . "\\]";
+      $globalposdirecthtml++;
+    }
+
     # MDirectHTML umsetzen
     while($textex =~ s/\\begin{MDirectHTML}(.+?)\\end{MDirectHTML}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
       push @DirectHTML , $1;

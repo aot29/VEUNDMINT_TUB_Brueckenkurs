@@ -76,6 +76,7 @@ try {
 
   echo("<p>");  
   echo("<br ><strong>Die Konvertierung wurde erzeugt und ist einsehbar unter <a href=\"$linkstring\">$linkstring</a></strong><br />");
+  echo("Die komplette Liste der Meldungen im Log gibt es hier: <a href=\"ve-und-mint/conversion.log\">conversion.log</a><br />");
   simple_execute("converter/mconvert.pl tu9onlinekurs_test.pl", "Konvertierungsmeldungen");
   echo("</p>");
 
