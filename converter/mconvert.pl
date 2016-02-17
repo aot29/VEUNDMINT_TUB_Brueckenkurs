@@ -30,6 +30,7 @@ my $helptext = "Usage: mconvert.pl <configuration.pl> [<parameter>=<value> ...]\
 # use courseconfig;
 
 our $mainlogfile = "conversion.log";
+our $configactive = 0; # set to 1 once config-pl-file is fully loaded
 
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
@@ -160,12 +161,18 @@ our $NOBASHCOLOR = "\033[0m";
 # Parameter color = string, txt = string (ohne Zeilenumbruch)
 sub printMessage {
   my ($color, $txt) = @_;
-  # gruene verbose-Meldungen nur in Logdatei, nicht auf Konsole ausser wenn aktiviert
-  if (($color ne "green") or ($config{doverbose} eq 1)) {
-    if ($config{"consolecolors"} eq 1) {
-      print color($color), "$txt\n", color("reset");
-    } else {
-      print "$txt\n";
+
+  # Nur einfache Meldungen ausgeben solange config-Objekt noch nicht geladen ist
+  if ($configactive eq 0) {
+    print "$txt\n";
+  } else {  
+    # gruene verbose-Meldungen nur in Logdatei, nicht auf Konsole ausser wenn aktiviert
+    if (($color ne "green") or ($config{doverbose} eq 1)) {
+      if ($config{"consolecolors"} eq 1) {
+        print color($color), "$txt\n", color("reset");
+      } else {
+        print "$txt\n";
+      }
     }
   }
   print LOGFILE "$txt\n";
@@ -390,10 +397,10 @@ sub checkSystem {
       # Alles ok
   }   else
     {
-      die("FATAL: perl version 5.10 is required, but found perl 5" . $1);
+      logMessage($FATALERROR, "perl version 5.10 is required, but found perl 5" . $1);
     }
   } else {
-    die("FATAL: perl (at least version 5.10) is required");
+    logMessage($FATALERROR, "perl (at least version 5.10) is required");
   }
 
   # Pruefe ob ein JDK installiert ist
@@ -401,7 +408,7 @@ sub checkSystem {
   if ($reply =~ m/javac (.+)/i ) {
     logMessage($CLIENTINFO, "JDK found, using javac from version $1");
   } else {
-    die("FATAL: JDK not found");
+    logMessage($FATALERROR, "JDK not found");
   }
   
   # Pruefe ob php installiert ist
@@ -409,7 +416,7 @@ sub checkSystem {
   if ($reply =~ m/HTML/i ) {
     # php erfolgreich getestet
   } else {
-    die("PHP (Version 5 inklusive PHP-curl) ist offenbar nicht installiert!\n");
+    logMessage($FATALERROR, "PHP (version 5 and PHP-curl) not found\n");
   }
 }
 
@@ -583,33 +590,33 @@ sub checkParameter {
   my $p = $_[0];
   if (exists $config{parameter}{$p}) {
     if ($config{parameter}{$p} eq "") {
-      die("FATAL: Mandatory option parameter $p is an empty string");
+      logMessage($FATALERROR, "Mandatory option parameter $p is an empty string");
     }
   } else {
-    die("FATAL: Mandatory option parameter $p is missing");
+    logMessage($FATALERROR, "Mandatory option parameter $p is missing");
   }
 }
 
 # Checks if options are present and consistent, quits with a fatal error otherwise
 sub checkOptions {
-  open(F,$config{source}) or die("FATAL: Cannot open source directory " . $config{source});
+  open(F,$config{source}) or logMessage($FATALERROR, "Cannot open source directory " . $config{source});
   close(F);
 
   if ($config{docollections} eq 1) {
     if (($config{nosols} eq 1) or ($config{qautoexport} eq 1) or ($config{cleanup} eq 1)) {
-      die("FATAL: Option docollections is inconsistent with nosols, qautoexport and cleanup, deactivate one of them");
+      logMessage($FATALERROR, "Option docollections is inconsistent with nosols, qautoexport and cleanup, deactivate one of them");
     }
   }
 
   if ($config{dorelease} eq 1) {
     if (($config{cleanup} eq 0) or ($config{docollections} eq 1) or ($config{doverbose} eq 1)) {
-      die("FATAL: Option dorelease is inconsistent with cleanup=0, docollections=1 and doverbose=1, deactivate dorelease");
+      logMessage($FATALERROR, "Option dorelease is inconsistent with cleanup=0, docollections=1 and doverbose=1, deactivate dorelease");
     }
   }
 
   if ($config{scormlogin} eq 1) {
     if ($config{doscorm} eq 0) {
-      die("FATAL: Option scormlogin is inconsistent with doscorm=0, activate doscorm");
+      logMessage($FATALERROR, "Option scormlogin is inconsistent with doscorm=0, activate doscorm");
     }
   }
 
@@ -619,7 +626,7 @@ sub checkOptions {
       $zip = $config{output};
       $config{output} = $1 . "DIRECTORY";
     } else {
-      die("FATAL: zip-filename " . $config{output} . " not of type name.zip");
+      logMessage($FATALERROR, "zip-filename " . $config{output} . " not of type name.zip");
     }
   }
   
@@ -3610,7 +3617,7 @@ if ($config{doverbose} == "1") {
   }
   
   
-  my $graph_png = open(MINTS, ">graph.png") or die("FATAL: Cannot write graph png");
+  my $graph_png = open(MINTS, ">graph.png") or logMessage($FATALERROR, "Cannot write graph png");
   print MINTS $graph->as_png();
   close(MINTS);
 }
@@ -3636,17 +3643,22 @@ logTimestamp("Finished computation");
 # Parameter: Name der Konfigurationsdatei relativ zum Aufrufer
 sub setup_options {
   $mconfigfile = $_[0];
-  if ($mconfigfile =~ m/(.+).pl/ ) {
-    if ($mconfigfile =~ m/\// ) { die("FATAL: Configuration file must be in calling directory"); }
-    logMessage($CLIENTINFO, "Configuration file: " . $mconfigfile);
-    unless (%config = do $mconfigfile) {
-      warn "Couldn't parse $mconfigfile: $@" if $@;
-      warn "Couldn't run $mconfigfile" unless %config;
+  if ($mconfigfile =~ m/(.+)\.pl/ ) {
+    if ($mconfigfile =~ m/\// ) { logMessage($FATALERROR, "Configuration file must be in calling directory"); }
+    
+    if (-e $mconfigfile) {
+      logMessage($CLIENTINFO, "Configuration file: " . $mconfigfile);
+      unless (%config = do $mconfigfile) {
+        warn "Couldn't parse $mconfigfile: $@" if $@;
+        warn "Couldn't run $mconfigfile" unless %config;
+      }
+    } else {
+      logMessage($FATALERROR, "Configuration file $mconfigfile does not exist");
     }
   } else {
-    die("FATAL: Configuration file $mconfigfile must be of type name.pl");
+    logMessage($FATALERROR, "Configuration file $mconfigfile must be of type name.pl");
   }
-    
+  $configactive = 1;  
   logMessage($CLIENTINFO, "Configuration description: " . $config{description});
 }
 
@@ -3708,7 +3720,7 @@ if ($#ARGV eq 0) {
       }
     }
   } else {
-    die($helptext);
+    logMessage($FATALERROR, $helptext);
   }
 }
 
@@ -3748,7 +3760,7 @@ if ($config{dotikz} eq 1) {
   logMessage($CLIENTINFO, "...TikZ externalization activated");
 }
 
-open(F,$rfilename) or die("FATAL: Cannot open main tex file $rfilename");
+open(F,$rfilename) or logMessage($FATALERROR, "Cannot open main tex file $rfilename");
 close(F);
 
 
@@ -3756,7 +3768,7 @@ logTimestamp("Finished initializiation");
 
 # Preprocessing of main file
 my $roottex = "";
-my $tex_open = open(MINTS, "< $rfilename") or die("FATAL: Cannot read main tex file $rfilename");
+my $tex_open = open(MINTS, "< $rfilename") or logMessage($FATALERROR, "Cannot read main tex file $rfilename");
 my $texzeile = "";
 while(defined($texzeile = <MINTS>)) {
   # Wegen direkter HTML-Zeilen darf man %-Kommentare nicht streichen
@@ -3832,7 +3844,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
       $prx = $2;
       $pfname = $3;
     } else {
-      die("FATAL: Could not decode $texs[$ka]");
+      logMessage($FATALERROR, "Could not decode $texs[$ka]");
     }
     $prx =~ s/.\///g;
     if ($modulname ne "") {
@@ -4723,7 +4735,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
 }
 
 if ($starts eq 0 ) {
-  die("FATAL: Global start tag not found, HTML tree is disfunctional");
+  logMessage($FATALERROR, "Global start tag not found, HTML tree is disfunctional");
 } else {
   if ($starts ne 1) {
     logMessage($CLIENTERROR, "Multiple start tags found, using last one");
