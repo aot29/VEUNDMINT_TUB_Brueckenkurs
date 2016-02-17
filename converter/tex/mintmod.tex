@@ -1807,9 +1807,9 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 {
   % Defines a custom style which generates BOTH, .png and .pdf export, then deletes the pdf
   png export/.style=%
-  {
-    external/system call/.add={}{; convert -density 300 -scale 37.5\% -transparent
-    white "\image.pdf" "\image.png"; rm "\image.pdf"; rm "\image.log"; rm "\image.dpth"; rm "\image.idx"},
+  { % org = 112.5, Exportierte pngs sind daher leicht groesser, was beim Einbinden des Bilds im HTML auch nicht kompensiert wird
+    external/system call/.add={}{; convert -density 175 -transparent
+    white "\image.pdf" "\image.png"; rm "\image.log"; rm "\image.dpth"; rm "\image.idx"},
     external/force remake,
   }
 }
@@ -1826,7 +1826,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\MTikzAuto}[1]{%
 \addtocounter{MTIKZAutofilenumber}{1}
 \renewcommand{\MTIKZautofilename}{mtikzauto_\arabic{MTIKZAutofilenumber}}
-\MGraphicsSolo{\MSectionID\MTIKZautofilename.png}{scale=0.5}
+\MUGraphicsSolo{\MSectionID\MTIKZautofilename.png}{scale=0.25}{}
 }
 \else%
 % PDF-Version: Falls Autogenerator aktiv wird Datei automatisch benannt und exportiert
@@ -1834,9 +1834,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \addtocounter{MTIKZAutofilenumber}{1}%
 \renewcommand{\MTIKZautofilename}{mtikzauto_\arabic{MTIKZAutofilenumber}}
 \tikzsetnextfilename{\MTIKZautofilename}%
-\scalebox{1}{
 #1%
-}%
 }
 \fi
 
