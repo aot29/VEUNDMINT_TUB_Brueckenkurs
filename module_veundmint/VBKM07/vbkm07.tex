@@ -309,6 +309,22 @@ an der Stelle $x_2 = 1$ ist
 und hat f"ur $x \rightarrow 1$ den Grenzwert
  $f'(1) = $\MLParsedQuestion{8}{-2}{3}{DG12}.
 \end{MExerciseItems}
+\begin{MHint}{Lösung}
+ \begin{MExerciseItems}
+  \item An der Stelle $x_1 = -2$ gilt für den Differenzenquotienten
+  \[
+  \frac{\Delta (f)}{\Delta (x)} = \frac{f(x) - f(x_1)}{x - x_1} = \frac{f(x) - f(-2)}{x - (-2)} =
+  \frac{4 - x^2 - 0}{x + 2} = \frac{(2-x)(2+x)}{2+x} = 2-x \MDFPeriod
+  \]
+  Für $x \rightarrow x_1$, also $x \rightarrow -2$, strebt dieser Differenzenquotient gegen $2 - (-2) = 4$; daher $f'(-2) = 4$.
+  \item An der Stelle $x_2 = 1$ gilt für den Differenzenquotienten
+  \[
+  \frac{\Delta (f)}{\Delta (x)} = \frac{f(x) - f(x_2)}{x - x_2} = \frac{f(x) - f(1)}{x - 1} =
+  \frac{4 - x^2 - 3}{x - 1} = \frac{1 - x^2}{x - 1} = - \frac{(x-1)(x+1)}{x-1} = - x - 1 \MDFPeriod
+  \]
+  Für $x \rightarrow x_2$, also $x \rightarrow 1$, besitzt dieser Differenzenquotient den Grenzwert $- 1 - 1 = -2$; daher $f'(1) = - 2$.
+ \end{MExerciseItems}
+\end{MHint}
 \end{MExercise}
 
 
@@ -321,15 +337,14 @@ Erl"autern Sie, warum
 nicht differenzierbar sind.
 
 Antwort:
-Die Ableitung von
 %Die Tangente an den Funktionsgraphen der stetigen Funktion
 \begin{MExerciseItems}
-\item $f$ existiert an der Stelle $x_0 = -3$ nicht, 
+\item Die Ableitung von $f$ existiert an der Stelle $x_0 = -3$ nicht, 
 da der Differenzenquotient 
 \MLFunctionQuestion{30}{1/sqrt(h)}{1}{h}{20}{DG13}
 f"ur $h \rightarrow 0$ nicht konvergiert.
 % in $x_0 = -3$ verl"auft parallel zur $y$-Achse,
-\item $g$ existiert an der Stelle $x_0 = 5$ nicht, da der 
+\item Die Ableitung von $g$ existiert an der Stelle $x_0 = 5$ nicht, da der 
 Differenzenquotient f"ur $h < 0$ den Wert 
 \MLParsedQuestion{8}{-12}{3}{DG14} und f"ur $h > 0$ den 
 Wert {\MLParsedQuestion{8}{12}{3}{DG15}} hat. Somit existiert der Grenzwert f"ur 
@@ -337,6 +352,23 @@ $h \rightarrow 0$ nicht.
 %F"ur $x < 5$ haben alle Tangenten die Steigung $-12$, 
 %und f"ur $x > 5$ die Steigung $21$.
 \end{MExerciseItems}
+\begin{MHint}{Lösung}
+ \begin{MExerciseItems}
+  \item Der Differenzenquotient von $f$ an der Stelle $x_0 = - 3$ ist
+  \[
+  \frac{\Delta (f)}{\Delta (x)} = \frac{f(x_0 + h) - f(x_0)}{h} = \frac{\sqrt{-3 + h + 3} - \sqrt{-3 + 3}}{h}
+  = \frac{\sqrt{h} - 0}{h} = \frac{1}{\sqrt{h}} \MDFPeriod
+  \]
+  Für $h \rightarrow 0$ ($h > 0$) wächst dieser Differenzenquotient über alle Ma{\ss}en, d.h. der Grenzwert des Differenzenquotienten existiert nicht.
+  \item Der Differenzenquotient von $g$ an der Stelle $x_0 = 5$ ist
+  \[
+  \frac{\Delta (g)}{\Delta (x)} = \frac{g(x_0 + h) - g(x_0)}{h} = \frac{6 \cdot |2 (5+h) - 10| - 6 \cdot |2 \cdot 5 - 10|}{h}
+  = \frac{12 |h| - 0}{h} = \frac{12 |h|}{h} \MDFPeriod
+  \]
+  Für $h<0$ hat der Differenzenquotient wegen $|h| = -h$ also den Wert $-12$, für $h>0$ dagegen wegen $|h|=h$ den Wert $12$. Somit existiert kein Grenzwert
+  des Differenzenquotienten. (Ein Grenzwert ist immer eindeutig.)
+ \end{MExerciseItems}
+\end{MHint}
 \end{MExercise}
 
 %\begin{MExercise}
@@ -672,6 +704,14 @@ Damit ist
 \item $f'(x) = $ \MLSimplifyQuestion{40}{19/2*x^(17/2)}{4}{x}{4}{512}{SIMPLE7}.
 \item $g'(x) = $ \MLSimplifyQuestion{40}{-2/x^3}{4}{x}{4}{512}{SIMPLE8}.
 \end{MExerciseItems}
+\begin{MHint}{Lösung}
+ \begin{MExerciseItems}
+  \item Es ist $f(x) = x^6 \cdot x^\frac72 = x^{6 + \frac72} = x^\frac{19}{2}$.
+  Damit gilt $f'(x) = \frac{19}{2} x^{\frac{19}{2} - 1} = \frac{19}{2} x^\frac{17}{2}$.
+  \item Es ist $g(x) = \frac{x^{-\frac32}}{\sqrt{x}} = x^{- \frac32} \cdot x^{- \frac12} = x^{- \frac32 - \frac12} = x^{-2}$.
+  Damit gilt $g'(x) = (-2) \cdot x^{-2 -1} = -2 \cdot x^{-3} = - \frac{2}{x^3}$.
+ \end{MExerciseItems}
+\end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
@@ -688,6 +728,16 @@ Damit ist
 \item $f'(x) = $ \MLFunctionQuestion{40}{cos(x)}{10}{x}{4}{DG17}
 \item $g'(x) = $ \MLParsedQuestion{40}{0}{3}{DG18} 
 \end{MExerciseItems}
+\begin{MHint}{Lösung}
+ \begin{MExerciseItems}
+  \item Es ist allgemein
+  \[
+   \sin (u) \cdot \cos (v) = \frac12 \left( \sin (u-v) + \sin (u+v) \right) \MDFPeriod
+  \]
+  Im vorliegenden Fall gilt somit $f(x) = 2 \cdot \frac12 ( \sin(0) + \sin(x) ) = \sin (x)$ und daher $f'(x) =  \cos (x)$.
+  \item Wegen $\sin^2 (u) + \cos^2 (u) = 1$ gilt $g(x) = 1$ und daher $g'(x) = 0$.
+ \end{MExerciseItems}
+\end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
