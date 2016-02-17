@@ -24,7 +24,7 @@ use Encode;
 
 use converter::File::Data;
 
-my $helptext = "Usage: mconvert.pl <configuration.pl> [command <OptionObject>]\n\n";
+my $helptext = "Usage: mconvert.pl <configuration.pl> [<parameter>=<value> ...]\n\n";
 
 # use lib "/home/daniel/BWSYNC/PreTU9Konverter/converter";
 # use courseconfig;
@@ -156,13 +156,17 @@ our $NOBASHCOLOR = "\033[0m";
 
 # ----------------------------- Funktionen -----------------------------------------------------------------------
 
-# Separate Ausgabe: Farbcodiert fuer die Konsole (sollte auch nicht gepipet werden) und nur-Text fuer logfile
+# Separate Ausgabe: Farbcodiert fuer die Konsole falls gewuenscht und nur-Text fuer logfile
 # Parameter color = string, txt = string (ohne Zeilenumbruch)
 sub printMessage {
   my ($color, $txt) = @_;
+  # gruene verbose-Meldungen nur in Logdatei, nicht auf Konsole ausser wenn aktiviert
   if (($color ne "green") or ($config{doverbose} eq 1)) {
-    # gruene verbose-Meldungen nur in Logdatei, nicht auf Konsole ausser wenn aktiviert
-    print color($color), "$txt\n", color("reset");
+    if ($config{"consolecolors"} eq 1) {
+      print color($color), "$txt\n", color("reset");
+    } else {
+      print "$txt\n";
+    }
   }
   print LOGFILE "$txt\n";
 }
@@ -3682,10 +3686,27 @@ if ($#ARGV eq 0) {
   # Nur ein Parameter: Gibt Konfigurationsdatei relativ zum Aufruf an
   setup_options($ARGV[0]);
 } else {
-  if ($#ARGV eq 1) {
-    # Zwei Parameter: Konfiguationsdatei plus Funktionsbefehl
+  if ($#ARGV ge 1) {
+    # Ein oder mehr Parameter: Konfiguationsdatei plus Kommandos der Form option=wert
     setup_options($ARGV[0]);
+    my $i;
+    for ($i = 1; $i <= $#ARGV; $i++) {
     
+      if ($ARGV[$i] =~ m/(.+)=(.*)/ ) {
+        my $obj = $1;
+        my $val = $2;
+        # check if modified parameter exists
+        if (exists $config{$obj}) {
+          logMessage($CLIENTINFO, "Parameter modification: \"$obj\" changed from \"" . $config{$obj} . "\" to \"$val\"");
+          $config{$obj} = $val;
+        } else {
+          logMessage($CLIENTINFO, "New parameter added: \"$obj\" set to \"$val\"");
+          $config{$obj} = $val;
+        }
+      } else {
+        logMessage($FATALERROR, "Command line argument " . $ARGV[$i] . " not of type <parameter>=<value>");
+      }
+    }
   } else {
     die($helptext);
   }

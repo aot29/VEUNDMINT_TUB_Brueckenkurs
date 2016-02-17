@@ -71,7 +71,7 @@ try {
   echo("</p>");
   
   
-  $reply = `converter/mconvert.pl tu9onlinekurs_test.pl`;
+  $reply = `converter/mconvert.pl tu9onlinekurs_test.pl consolecolors=0`;
   
 
   echo("<p>");  

@@ -15,6 +15,7 @@ docollections   =>      0       , # Schaltet Export der collection-Exercises ein
 dopdf           =>      0       , # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
 dotikz          =>      0       , # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
 dozip           =>      0       , # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
+consolecolors   =>      1       , # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
 output          =>      "tu9onlinekurstest", # Zielverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
 source          =>      "module_veundmint",  # Quellverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
 module          =>      "tree_tu9onlinekurs.tex",  # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
