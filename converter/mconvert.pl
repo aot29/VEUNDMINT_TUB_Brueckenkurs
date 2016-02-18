@@ -4372,6 +4372,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
       chdir($pdirname);
       system("cp $basis/converter/tex/$macrofile .");
       system("cp $basis/converter/tex/maxpage.sty .");
+      system("cp $basis/converter/tex/bibgerm.sty .");
       my $mca = "pdflatex -shell-escape $pfilename";
       logMessage($CLIENTINFO, "  Starte pdflatex mit shellescape: $mca");
       my $rtt = system($mca);
@@ -4379,6 +4380,24 @@ for ($ka = 0; $ka < $nt; $ka++) {
         logMessage($CLIENTERROR, "  pdflatex with tikzexternalize failed");
       } else {
         logMessage($CLIENTINFO, "  pdflatex with tikzexternalize ok");
+        
+        if ($textex =~ m/\\MSetSectionID{(.+?)}/s ) {
+          my $tid = $1 . "mtikzauto_";
+          logMessage($VERBOSEINFO, "  Module section id is " . $1 . ", TikZ id is $tid");
+          my $j = 1;
+          my $ok = 1;
+          do {
+            $ok = 0;
+            my $tname = $tid . $j;
+            if (-e $tname . ".svg") {logMessage($VERBOSEINFO, "  externalized svg found: $tname"); $ok = 1; }
+            if (-e $tname . ".png") {logMessage($VERBOSEINFO, "  externalized png found: $tname"); $ok = 1; }
+            if (-e $tname . ".4.png") {logMessage($VERBOSEINFO, "  externalized highres png found: $tname"); $ok = 1; }
+            $j++;
+          } while($ok eq 1);
+        } else {
+          logMessage($CLIENTERROR, "  No TikZ id found for externalized output files");
+        }
+        
       }
     }
     chdir($absexedir);
