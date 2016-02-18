@@ -1610,7 +1610,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 % Parameter 3: Skalierungsoptionen (wirken nur im HTML), als style-format: "width=???, height=???"
 \ifttm
 \newcommand{\MUGraphicsSolo}[3]{\MRegisterFile{#1}\begin{html}
-<img src="\end{html}\MMaterial/\MLastFile\begin{html}" style="#3" alt="\end{html}\MMaterial/\MLastFile\begin{html}"/>
+<img src="\end{html}\MMaterial/\MLastFile\begin{html}" style="\end{html}#3\begin{html}" alt="\end{html}\MMaterial/\MLastFile\begin{html}"/>
 \end{html}%
 \special{html:<!-- mfeedbackbutton;Abbildung;}#1\special{html:;}\MMaterial/\MLastFile\special{html:; //-->}%
 }
@@ -1806,14 +1806,14 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \else
 \tikzset%
 {
-  % Defines a custom style which generates pdf andconverts to (low quality) png and svg, then deletes the pdf
-  % Important: Do not directly convert from pdf to svg or png with convert as it has some problems
+  % Defines a custom style which generates pdf and converts to (low and hi-res quality) png and svg, then deletes the pdf
+  % Important: DO NOT directly convert from pdf to hires-png or from svg to png with GraphViz convert as it has some problems and memory leaks
   png export/.style=%
   {
     external/system call/.add={}{; 
       pdf2svg "\image.pdf" "\image.svg" ; 
-      convert -density 112.5 -transparent white "\image.svg" "\image.png"; 
-      convert -density 450 -transparent white "\image.svg" "\image.4.png"; 
+      convert -density 112.5 -transparent white "\image.pdf" "\image.png"; 
+      inkscape --export-png="\image.4x.png" --export-dpi=450 --export-background-opacity=0 --without-gui "\image.svg"; 
       rm "\image.pdf"; rm "\image.log"; rm "\image.dpth"; rm "\image.idx"
     },
     external/force remake,
@@ -1834,7 +1834,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\MTikzAuto}[1]{%
 \addtocounter{MTIKZAutofilenumber}{1}
 \renewcommand{\MTIKZautofilename}{mtikzauto_\arabic{MTIKZAutofilenumber}}
-\MUGraphicsSolo{\MSectionID\MTIKZautofilename.4.png}{scale=0.25}{width:25\%}
+\MUGraphicsSolo{\MSectionID\MTIKZautofilename.4x.png}{scale=1}{\special{html:<!-- svgstyle;}\MSectionID\MTIKZautofilename\special{html: //-->}} % Styleinfos werden aus original-png, nicht 4x-png geholt!
 \MRegisterFile{\MSectionID\MTIKZautofilename.png}
 \MRegisterFile{\MSectionID\MTIKZautofilename.svg}
 }

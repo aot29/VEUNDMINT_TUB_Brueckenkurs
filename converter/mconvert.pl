@@ -64,6 +64,7 @@ our $PageIDCounter = 1;
 # -------------------------------------------------------------------------------------------------------------
 
 my @tominify = ("mintscripts.js", "servicescripts.js", "intersite.js", "convinfo.js", "userdata.js", "mparser.js", "dlog.js", "exercises.js");
+my %tikzpng = (); # Wird von tikz-Erkennung gefuellt mit Eintraegen der Form "xyz" => "style" mit xyz ohne Endung .png
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -418,8 +419,24 @@ sub checkSystem {
   } else {
     logMessage($FATALERROR, "PHP (version 5 and PHP-curl) not found\n");
   }
-}
 
+  # Pruefe ob pdf2svg installiert ist
+  $reply = `pdf2svg`;
+  if ($reply =~ m/Usage:/i ) {
+    logMessage($CLIENTINFO, "pdf2svg found");
+  } else {
+    logMessage($FATALERROR, "pdf2svg not found");
+  }
+
+  # Pruefe ob inkscape installiert ist
+  $reply = `inkscape --help`;
+  if ($reply =~ m/--without-gui/i ) {
+    logMessage($CLIENTINFO, "inkscape command line tool found");
+  } else {
+    logMessage($FATALERROR, "inkscape command line tool not found");
+  }
+  
+}
 
 # Parameter: filename, redirect-url, scormclear
 sub createRedirect {
@@ -1899,6 +1916,20 @@ sub postprocess {
     $text =~ s/\/\/ <JSCRIPTPOSTMODEL>/$prel\n\/\/ <JSCRIPTPOSTMODEL>/s ;
   }
 
+  # SVGStyles einsetzen
+  while ($text =~ m/<!-- svgstyle;(.+?) \/\/-->/s ) {
+    my $tname = $1;
+    if (exists $tikzpng{$tname}) {
+      my $style = $tikzpng{$tname};
+      logMessage($VERBOSEINFO, "Found style info for svg on $tname: $style");
+      delete $tikzpng{$tname};
+      $text =~ s/<!-- svgstyle;$tname \/\/-->/$style/g ; 
+    } else {
+      logMessage($CLIENTERROR, "Could not find image information for $tname");
+    }
+  }
+ 
+  
   # mfeedbackbutton ersetzen
   my $j = 0;
   while ($text =~ m/<!-- mfeedbackbutton;(.+?);(.*?);(.*?); \/\/-->/s ) {
@@ -3979,6 +4010,12 @@ for ($ka = 0; $ka < $nt; $ka++) {
     
     #  ------------------------ Pragmas einlesen und verarbeiten ----------------------------------
 
+    my $htmltikzscale = 1.3;
+    if ($textex =~ m/\\MPragma{HTMLTikZScale;(.+?)}/ ) {
+      $htmltikzscale = $1;
+      logMessage($CLIENTINFO, "  Pragma HTMLTikZScale: HTMLTikZ set to $htmltikzscale");
+    }
+    
     if ($textex =~ m/\\MPragma{SolutionSelect}/ ) {
       if ($config{nosols} eq 0) {
         logMessage($CLIENTINFO, "  Pragma SolutionSelect: Ignored due to nosols==0");
@@ -4363,13 +4400,12 @@ for ($ka = 0; $ka < $nt; $ka++) {
     # -------------------------------- Ende Preprocessing per texfile -------------------------------------------------------
    
     # Schreiben der Datei oder vorher noch tikz-externalize
-    
+    chdir($pdirname);
     if ($dotikzfile eq 1) {
       # Modifikationen sind hier noch nicht geschrieben und mintmod reicht Mtikzexternalize weiter
       # Lokales Makropaket installieren
       
       # Programm wird an dieser Stelle im Aufrufverzeichnis ausgefuehrt
-      chdir($pdirname);
       system("cp $basis/converter/tex/$macrofile .");
       system("cp $basis/converter/tex/maxpage.sty .");
       system("cp $basis/converter/tex/bibgerm.sty .");
@@ -4380,26 +4416,54 @@ for ($ka = 0; $ka < $nt; $ka++) {
         logMessage($CLIENTERROR, "  pdflatex with tikzexternalize failed");
       } else {
         logMessage($CLIENTINFO, "  pdflatex with tikzexternalize ok");
-        
-        if ($textex =~ m/\\MSetSectionID{(.+?)}/s ) {
-          my $tid = $1 . "mtikzauto_";
-          logMessage($VERBOSEINFO, "  Module section id is " . $1 . ", TikZ id is $tid");
-          my $j = 1;
-          my $ok = 1;
-          do {
-            $ok = 0;
-            my $tname = $tid . $j;
-            if (-e $tname . ".svg") {logMessage($VERBOSEINFO, "  externalized svg found: $tname"); $ok = 1; }
-            if (-e $tname . ".png") {logMessage($VERBOSEINFO, "  externalized png found: $tname"); $ok = 1; }
-            if (-e $tname . ".4.png") {logMessage($VERBOSEINFO, "  externalized highres png found: $tname"); $ok = 1; }
-            $j++;
-          } while($ok eq 1);
-        } else {
-          logMessage($CLIENTERROR, "  No TikZ id found for externalized output files");
-        }
-        
       }
     }
+    
+    if ($textex =~ m/\\MSetSectionID{(.+?)}/s ) {
+      my $tid = $1 . "mtikzauto_";
+      # Files $tid?.png, $tid?.svg anf $tid.4x.png should be present (matching generator definition in mintmod.tex)
+      logMessage($VERBOSEINFO, "  Module section id is " . $1 . ", TikZ id is $tid");
+      my $j = 1;
+      my $ok = 1;
+      do {
+        $ok = 0;
+        my $tname = $tid . $j;
+        if (-e $tname . ".svg") {
+          logMessage($VERBOSEINFO, "  externalized svg found: $tname");
+          $ok = 1;
+        }
+        if (-e $tname . ".4x.png") {
+          logMessage($VERBOSEINFO, "  externalized hi-res png found: $tname");
+          $ok = 1;
+        }
+        if (-e $tname . ".png") {
+          $ok = 1;
+          my $tinfo = `file $tname.png`;
+          if ($tinfo =~ m/$tname\.png: PNG image data, ([0123456789]+?) x ([0123456789]+?),/s ) {
+            my $sizex = $1;
+            my $sizey = $2;
+            logMessage($VERBOSEINFO, "  externalized png found: $tname.png, size is $sizex x $sizey");
+            $sizex = int($sizex * $htmltikzscale);
+            $sizey = int($sizey * $htmltikzscale);
+            logMessage($VERBOSEINFO, "  rescaled to $sizex x $sizey");
+            if (exists $tikzpng{$tname}) {
+              logMessage($CLIENTERROR, "  externalized file name $tname not unique, refusing to save sizes");
+            } else {
+              $tikzpng{$tname} = "width:$sizex" . "px;height:$sizey" . "px";
+            }
+          } else {
+            logMessage($CLIENTERROR, "  externalized png found: $tname.png, could not determine its size");
+          }
+        }
+            
+        $j++;
+      } while($ok eq 1);
+    } else {
+      logMessage($VERBOSEINFO, "  No section id found");
+    }
+
+    
+    
     chdir($absexedir);
 
     $tex_open = open(MINTS, "> $texs[$ka]") or die "FATAL: Could not write $texs[$ka]\n";
@@ -4753,6 +4817,15 @@ for ($ka = 0; $ka < $nt; $ka++) {
     close(MINTS);
 }
 
+my $npng = keys %tikzpng;
+if ($npng ge 1) {
+  logMessage($CLIENTERROR, "$npng tikz externalized files have not been used in svg style infos");
+  my $tname;
+  foreach $tname (keys %tikzpng) {
+    logMessage($VERBOSEINFO, "  $tname");
+  }
+}
+
 if ($starts eq 0 ) {
   logMessage($FATALERROR, "Global start tag not found, HTML tree is disfunctional");
 } else {
@@ -4803,7 +4876,11 @@ if ($config{doscorm} == 1) {
   logMessage($CLIENTINFO, "  SCORM -> $ndir/$entryfile -> $ndir/$startfile");
 }
 
+
+
 logTimestamp("mconvert.pl finished successfully");
+
+
 
 close(LOGFILE);
 
