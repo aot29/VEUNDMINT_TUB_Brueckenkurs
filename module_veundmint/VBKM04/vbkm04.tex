@@ -1,6 +1,10 @@
 \input{mintmod}
+%%\usepackage{tikz-3dplot}
 \MPragma{MathSkip}
 \MSetSubject{\MINTMathematics}
+
+%Einkommentieren um automatisiert pngs zu exportieren
+%\Mtikzexternalize
 
 \begin{document}
 
@@ -44,12 +48,12 @@ In einem ersten Schritt gilt es, die in der Aufgabenstellung enthaltenen Informa
 Gleichungen zu übersetzen. Bezeichnet man die gesuchte Anzahl der Einräder mit $x$, diejenige der Zweiräder mit $y$,
 so kann man als erste Information aus der Problembeschreibung herauslesen, dass
 \begin{eqnarray*}
-\mbox{Gleichung } (1) & : & x + y = 10
+\mbox{Gleichung}\MBlank (1) & : & x + y = 10
 \end{eqnarray*}
 gelten muss, da die Gruppe insgesamt $10$ Räder ihr Eigentum nennt. Außerdem hat ein Einrad eine Felge, ein Zweirad dagegen
 zwei Felgen. Weil alles in allem $13$ Felgen angeschafft werden sollen, weiß man auch, dass
 \begin{eqnarray*}
-\mbox{Gleichung } (2) & : & x + 2 y = 13
+\mbox{Gleichung}\MBlank (2) & : & x + 2 y = 13
 \end{eqnarray*}
 ist. Aus der vorliegenden Problemstellung ergeben sich also zwei Gleichungen, die die zwei unbekannten Größen
 $x$ (Anzahl der Einräder) und $y$ (Anzahl der Zweiräder) in Beziehung setzen.
@@ -68,7 +72,7 @@ Bevor man richtig loslegen kann, muss man den Sprachgebrauch noch ein bisschen s
 Mehrere Gleichungen, die auf eine bestimmte Anzahl Unbekannter \textbf{gleichzeitig} zutreffen, bilden ein sogenanntes
 \MEntry{Gleichungssystem}{Gleichungssystem}. Kommen in jeder einzelnen Gleichung eines solchen Systems die Unbekannten
 in jedem Term nur linear, d.h. höchstens zur Potenz $1$ und ausschließlich multipliziert mit (konstanten)
-Zahlen, vor, so spricht man von einem \MEntry{Linearen Gleichungssystem}{Gleichungssystem (linear)}, oder kurz \MEntry{LGS}{LGS}.
+Zahlen vor, so spricht man von einem \MEntry{Linearen Gleichungssystem}{Gleichungssystem (linear)}, oder kurz \MEntry{LGS}{LGS}.
 \end{MInfo}
 Die beiden Gleichungen aus dem einführenden Beispiel \MRef{M04_einfuehrendes_Bsp} stellen ein Lineares Gleichungssystem
 für zwei Unbekannte $x$ und $y$ dar. Dagegen bilden die drei Gleichungen
@@ -183,7 +187,33 @@ Werte $a_{11} = 1, a_{12} = 1, a_{21} = 1, a_{22} = 2, b_1 = 10$ und $b_2 = 13$ 
 Es werden zwei Geraden mit den Steigungen $m_{1} = - 1$ bzw. $m_{2} = - \Mtfrac12$ und den $y$-Achsenabschnitten
 $y_{0,1} = 10$ bzw. $y_{0,2} = \Mtfrac{13}{2}$ beschrieben:
 \begin{center}
-\MUGraphicsSolo{eindeutige_lsg.png}{scale=1}{width:450px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.4cm, y=0.5cm] 
+%Koordinatensystem
+\node (xMAX) at (16.5,0){};
+\node (yMAX) at (0,11){};
+\draw[->,color=black] (-6.2,0) -- (xMAX);
+\foreach \x in {-6, -4, -2, 2, 4, 6, 8, 10, 12, 14, 16}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.0) -- (yMAX);
+\foreach \y in {2,4,6,8,10}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8.5pt) node[right] {\footnotesize $0$};
+\draw[color=black] (-2.0pt,7pt) node[left] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=south] {$x$};
+\draw (yMAX) node[anchor=west] {$y$};
+%Beschriftung
+\clip(-6,-0.5) rectangle (16.5,10.5);
+\draw[color=red, thick] (15,-1.0) -- (-6,9.5);
+\draw[color=blue, thick] (11,-1.0) -- (-0.5,10.5);
+\draw[color=black, thick] (7,3) circle (1.5pt);
+\draw[color=red] (2.35,4.7) node[anchor=east] {$y=-x/2+13/2$};
+\draw[color=blue] (2.7,8) node[anchor=west] {$y=-x+10$};
+\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+\end{tikzpicture}
+}%
+%%\MUGraphicsSolo{eindeutige_lsg.png}{scale=1}{width:450px}
 \end{center}
 Man erkennt aus dem Schaubild, dass sich die beiden Geraden in der Tat schneiden, und liest
 die Koordinaten des Schnittpunktes zu $\MPointTwo{x = 7}{y = 3})$ ab. Dementsprechend besitzt
@@ -221,7 +251,60 @@ $$\left. \begin{array}{rcl} x + y & = & 2 \\[.5ex] 2 x + 2 y & = & 1 \end{array}
 $$\left. \begin{array}{rcl} x + y & = & 2 \\[.5ex] 2 x + 2 y & = & 4 \end{array} \right\} \Leftrightarrow
 \left\{ \begin{array}{rcl} y & = & - x + 2 \\[.5ex] y & = & - x + 2 \end{array} \right. \MDFPeriod $$
 \end{minipage} \\[1cm]
-\MUGraphicsSolo{keine_lsg.png}{scale=1}{width:350px} & \MUGraphicsSolo{unendl_lsg.png}{scale=1}{width:350px} \\[.5cm]
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.4cm] 
+%Koordinatensystem
+\node (xMAX) at (3.5,0){};
+\node (yMAX) at (0,2.5){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2, -1, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8.5pt) node[right] {\footnotesize $0$};
+\draw[color=black] (-2.0pt,7pt) node[left] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=south] {$x$};
+\draw (yMAX) node[anchor=west] {$y$};
+%Beschriftung und Graphen
+\clip(-2.8,-0.6) rectangle (3.6,2.7);
+\draw[color=blue, thick] (1,-0.5) -- (-2,2.5);
+\draw[color=blue, thick] (2.5,-0.5) -- (-0.5,2.5);
+\draw[color=black] (-0.2,0.5) node[anchor=east] {$y=-x+1/2$};
+\draw[color=black] (0.7,1.5) node[anchor=west] {$y=-x+2$};
+%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+\end{tikzpicture}
+}
+%%\MUGraphicsSolo{keine_lsg.png}{scale=1}{width:350px}
+&
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.4cm] 
+%Koordinatensystem
+\node (xMAX) at (4,0){};
+\node (yMAX) at (0,2.5){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8.5pt) node[right] {\footnotesize $0$};
+\draw[color=black] (-2.0pt,7pt) node[left] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=south] {$x$};
+\draw (yMAX) node[anchor=west] {$y$};
+%Beschriftung und Graphen
+\clip(-1.6,-0.6) rectangle (4,2.7);
+\draw[color=red, thick] (2.5,-0.52) -- (-0.5,2.48);
+\draw[color=blue, thick] (2.5,-0.48) -- (-0.5,2.52);
+\draw[color=red] (1.35,0.45) node[anchor=east] {$2x+2y=4$};
+\draw[color=blue] (0.7,1.5) node[anchor=west] {$x+y=2$};
+%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+\end{tikzpicture}
+}
+%%\MUGraphicsSolo{unendl_lsg.png}{scale=1}{width:350px}
+\\[.5cm]
 \begin{minipage}[t]{7.5cm}
 Die beiden Geraden besitzen dieselbe Steigung $m = - 1$, aber verschiedene $y$-Achsenabschnitte ($y_0 = 2$
 bzw. $y_0 = 1/2$); sie verlaufen parallel; das Lineare Gleichungssystem besitzt \textbf{keine}
@@ -261,7 +344,39 @@ Hier kommt jetzt allerdings die Grundmenge ins Spiel: Da sowohl $x$ als auch $y$
 eines Würfels repräsentieren, können beide Unbekannte jeweils nur einen Wert aus der Menge $\{ 1\MElSetSep 2\MElSetSep 3\MElSetSep 4\MElSetSep 5\MElSetSep 6 \}$
 annehmen. Betrachtet man die Gerade $y = \Mtfrac13 x + \Mtfrac12$ in der $x$-$y$-Ebene,
 \begin{center}
-\MUGraphicsSolo{betrueger.png}{scale=1}{width:450px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+%Koordinatensystem
+\node (xMAX) at (10.5,0){};
+\node (yMAX) at (0,6.5){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below right] {\scriptsize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {0, 1, 2, 3, 4, 5, 6}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[above left] {\scriptsize $\y$};
+%%\draw[color=black] (0pt,-8.5pt) node[right] {\footnotesize $0$};
+%%\draw[color=black] (-2.0pt,7pt) node[left] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=south] {$x$};
+\draw (yMAX) node[anchor=west] {$y$};
+%Beschriftung und Graphen
+\clip(-1.4,-0.4) rectangle (10.5,6.5);
+\draw[help lines, gray, dashed] (-2,-1) grid (11,7); % was dotted
+\fill[red!50!white, opacity=0.50] (1,1) rectangle (6,6);
+\draw[color=brown] (1,1) rectangle (6,6);
+\foreach \i in {1, 2, 3, 4, 5, 6}
+  \foreach \j in {1, 2, 3, 4, 5, 6}
+  {
+    \fill[color=blue] (\i,\j) circle (2.0pt);
+    \draw[color=black] (\i,\j) circle (2.0pt);
+  }
+\draw[color=black, thick] (-1.5,0.0) -- (10.5,4.0);
+\draw[color=black] (6.3,2.35) node[anchor=west] {\Large $y=\frac{1}{3}x+\frac{1}{2}$};
+%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+\end{tikzpicture}
+}%
+%%\MUGraphicsSolo{betrueger.png}{scale=1}{width:450px}
 \end{center}
 so erkennt man, dass
 kein mögliches Augenzahlpaar auf dieser Geraden liegt; daher ist die Lösungsmenge hier tatsächlich leer,
@@ -285,18 +400,18 @@ laufen die einzelnen Kredite?
 Man bezeichnet die gesuchten Kredithöhen der beiden Verträge mit $x$ und $y$. Die
 Summe dieser beiden Beträge beläuft sich laut Aufgabentext auf $50000$ Euro, also lautet die erste Gleichung:
 \begin{eqnarray*}
-\mbox{Gleichung } (1) & : & x + y = 50000 \; \; \; \mbox{(in Euro )}\MDFPeriod 
+\mbox{Gleichung}\MBlank (1) & : & x + y = 50000 \; \; \; \mbox{(in Euro )}\MDFPeriod 
 \end{eqnarray*}
 Die Zinslast aus dem mit $5\%$ verzinsten Vertrag beträgt $\MZahl{0}{05} \cdot x$, die aus dem anderen Vertrag  mit $8\%$ Zinsen
 $\MZahl{0}{08} \cdot y$. Beide Lasten summieren sich gemäß Aufgabetext auf $3700$ Euro; dies liefert eine zweite Gleichung:
 \begin{eqnarray*}
-\mbox{Gleichung } (2) & : & \MZahl{0}{05} x + \MZahl{0}{08} y = 3700 \; \; \; \mbox{(in Euro )}\MDFPeriod 
+\mbox{Gleichung}\MBlank (2) & : & \MZahl{0}{05} x + \MZahl{0}{08} y = 3700 \; \; \; \mbox{(in Euro )}\MDFPeriod 
 \end{eqnarray*}
 Wiederum landet man bei einem Linearen Gleichungssystem vom Typ \MRef{M04_2x2_system}.
 
 Für die rechnerische Lösung stellt man Gleichung~$(1)$ nach $y$ frei; es entsteht eine zu $(1)$ äquivalente Gleichung~$(1')$:
 \begin{eqnarray*}
-\mbox{Gleichung } (1') & : & y = 50000 - x\MDFPeriod 
+\mbox{Gleichung}\MBlank (1') & : & y = 50000 - x\MDFPeriod 
 \end{eqnarray*}
 Diesen Ausdruck für $y$ kann man nun in Gleichung~$(2)$ für $y$ \textbf{einsetzen}, sodass die resultierende Gleichung nur noch
 $x$ als Unbekannte enthält und dementsprechend aufgelöst werden kann:
@@ -347,8 +462,8 @@ Als Grundmenge bei beiden Linearen Gleichungssystemen legt man wiederum $\R$ fes
 \begin{center}
 \begin{tabular}{c|c}
 \begin{minipage}[t]{7.5cm}
-$$\begin{array}{rcrcl} \mbox{Gleichung } (1): & & x + y & = & 2 \\[.5ex]
-\mbox{Gleichung } (2): & & 2 x + 2 y & = & 1 \end{array}\MDFPeriod $$
+$$\begin{array}{rcrcl} \mbox{Gleichung}\MBlank (1): & & x + y & = & 2 \\[.5ex]
+\mbox{Gleichung}\MBlank (2): & & 2 x + 2 y & = & 1 \end{array}\MDFPeriod $$
 Freistellen der Gleichung $(1)$ nach $x$ liefert $x = 2 - y$.
 Dies in Gleichung $(2)$ eingesetzt ergibt:
 \begin{eqnarray*}
@@ -359,8 +474,8 @@ Dies in Gleichung $(2)$ eingesetzt ergibt:
 Dies ist ein Widerspruch; das LGS besitzt \textbf{keine} Lösung.
 \end{minipage} &
 \begin{minipage}[t]{7.5cm}
-$$\begin{array}{rcrcl} \mbox{Gleichung } (1): & & x + y & = & 2 \\[.5ex]
-\mbox{Gleichung } (2): & & 2 x + 2 y & = & 4 \end{array}\MDFPeriod $$
+$$\begin{array}{rcrcl} \mbox{Gleichung}\MBlank (1): & & x + y & = & 2 \\[.5ex]
+\mbox{Gleichung}\MBlank (2): & & 2 x + 2 y & = & 4 \end{array}\MDFPeriod $$
 Freistellen der Gleichung $(1)$ nach $y$ liefert $y = 2 - x$.
 Dies in Gleichung $(2)$ eingesetzt ergibt:
 \begin{eqnarray*}
@@ -410,9 +525,9 @@ mit Hilfe der Gleichsetzmethode.
 \begin{MHint}{Lösung}
 Man löst beispielsweise beide Gleichungen nach $x$ auf: dazu multipliziert man die erste Gleichung mit
 $(1/7)$ und stellt nach $x$ frei,
-$$x = \Mtfrac{14}{7} - \Mtfrac27 y \Leftrightarrow x = 2 - \Mtfrac27 y \; : \mbox{ Gleichung } (1') \MDFPSpace ;$$
+$$x = \Mtfrac{14}{7} - \Mtfrac27 y \Leftrightarrow x = 2 - \Mtfrac27 y \; : \MBlank\mbox{Gleichung}\MBlank (1') \MDFPSpace ;$$
 die zweite Gleichung multipliziert man dagegen mit $\Mtfrac13$, bevor man nach $x$ freistellt,
-$$x = \Mtfrac63 + \Mtfrac53 y \Leftrightarrow x = 2 + \Mtfrac53 y \; : \mbox{ Gleichung } (2') \MDFPeriod $$
+$$x = \Mtfrac63 + \Mtfrac53 y \Leftrightarrow x = 2 + \Mtfrac53 y \; : \MBlank\mbox{Gleichung}\MBlank (2') \MDFPeriod $$
 Gleichsetzen der beiden rechten Seiten der Gleichungen~$(1')$ und $(2')$ liefert:
 $$2 - \Mtfrac27 y = 2 + \Mtfrac53 y \Leftrightarrow 0 = (\Mtfrac27 + \Mtfrac53) y \Leftrightarrow y = 0 \MDFPeriod $$
 Mit diesem Ergebnis für $y$ ergibt z.B. die erste Gleichung:
@@ -434,14 +549,14 @@ vielen Unbekannten entwickeln wird, da es sich sehr gut systematisieren lässt. H
 Vorgehensweise gehen. Zu Beginn wird ein Beispiel betrachtet:
 \begin{MExample}
 Man sucht die Lösungsmenge des Linearen Gleichungssystems
-$$\begin{array}{rcrcl} \mbox{Gleichung } (1): & & 2 x + y & = & 9 \MDFPSpace, \\
-\mbox{Gleichung } (2): & & 3 x - 11 y & = & 1 \MDFPSpace, \end{array}$$
+$$\begin{array}{rcrcl} \mbox{Gleichung}\MBlank (1): & & 2 x + y & = & 9 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank (2): & & 3 x - 11 y & = & 1 \MDFPSpace, \end{array}$$
 wobei als Grundmenge die Menge der reellen Zahlen $\R$ gewählt wird.
 
 Diesmal wird zur Lösung folgender Weg eingeschlagen: Man multipliziert Gleichung~$(1)$ mit dem Faktor $11$ durch und
 erhält eine zu Gleichung~$(1)$ äquivalente Gleichung:
 $$\begin{array}{crclcl} & (2 x + y) \cdot 11 & = & 9 \cdot 11 & & \\
-\Leftrightarrow & 22 x + 11 y & = & 99 & & : \mbox{ Gleichung } (1') 
+\Leftrightarrow & 22 x + 11 y & = & 99 & & : \MBlank\mbox{Gleichung}\MBlank (1') 
 \MDFPeriod \end{array}$$
 Anschließend \textbf{addiert} man die neue Gleichung $(1')$ zu Gleichung $(2)$ hinzu, d.h. man setzt die
 \textbf{Summe} der linken Seiten von $(1')$ und $(2)$ gleich der \textbf{Summe} der rechten Seiten
@@ -457,9 +572,9 @@ Das Lineare Gleichungssystem des vorliegenden Beispiels besitzt also eine eindeu
 Auch bei diesem Verfahren liegt das Vorgehen nicht eindeutig fest: So hätte man z.B. auch Gleichung~$(1)$ mit $3$
 und Gleichung~$(2)$ mit $(- 2)$ durchmultiplizieren können,
 $$\begin{array}{rclcrclcl} (2x + y) \cdot 3 & = & 9 \cdot 3 & \Leftrightarrow & 6 x + 3 y & = & 27
-& & : \mbox{ Gleichung } ({1'}') \MDFPSpace, \\ 
+& & : \MBlank\mbox{Gleichung}\MBlank ({1'}') \MDFPSpace, \\ 
 (3 x - 11 y) \cdot (- 2) & = & 1 \cdot (- 2) & \Leftrightarrow & - 6 x + 22 y & = & - 2
-& & : \mbox{ Gleichung } ({2'}') \MDFPSpace , \end{array}$$
+& & : \MBlank\mbox{Gleichung}\MBlank ({2'}') \MDFPSpace , \end{array}$$
 um bei der anschließenden \textbf{Addition} der Gleichungen~$({1'}')$ und $({2'}')$ die Variable $x$ zu eliminieren:
 $$6 x + 3 y - 6 x + 22 y = 27 - 2 \Leftrightarrow 25 y = 25 \Leftrightarrow y = 1 \MDFPeriod$$
 Das Ergebnis für $y$ hätte man dann z.B. in Gleichung~$(2)$ einsetzen können, um $x$ zu bestimmen:
@@ -502,7 +617,31 @@ die Lösungsmenge $\ML$ in diesem Fall unendlich viele Lösungspaare $\MPointTwo{x
 parametrisieren lassen. Wählt man z.B. $y = t$, so lautet die Lösungsmenge ${\ML} = \{ \MPointTwo{4 t - 5}{t}  \MCondSetSep  t \in \R \}$.
 Diese Lösungsmenge lässt sich als Gerade im zweidimensionalen Raum veranschaulichen:
 \begin{center}
-\MUGraphicsSolo{unendl_Lsgsm_Aufg_1b.png}{scale=1}{width:450px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=2.0cm] 
+%Koordinatensystem
+\node (xMAX) at (3.4,0){};
+\node (yMAX) at (0,3.4){};
+\draw[->,color=black] (-8.2,0) -- (xMAX);
+\foreach \x in {-8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below right] {\scriptsize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {0, 0.5, 1, 1.5, 2, 2.5, 3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[above left] {\scriptsize $\y$};
+%Achsenbeschriftung
+%%\draw (xMAX) node[anchor=south] {$x$};
+%%\draw (yMAX) node[anchor=west] {$y$};
+%Beschriftung und Graphen
+\clip(-8.2,-0.6) rectangle (3.4,3.4);
+\draw[help lines, gray, dashed, xstep=0.5, ystep=0.5] (-9,-1) grid (4,4);  % was dotted
+%%\fill[red!50!white, opacity=0.50] (1,1) rectangle (6,6);
+\draw[color=black, thick] (-9.0,-1.0) -- (7.0,3.0);
+\draw[color=black] (0.1,3.0) node[anchor=south west] {\Large $y=t$};
+\draw[color=black] (3.3,0.25) node[anchor=east] {\Large $x=4t-5$};
+%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+\end{tikzpicture}
+}%
+%%\MUGraphicsSolo{unendl_Lsgsm_Aufg_1b.png}{scale=1}{width:450px}
 \end{center}
 Dementsprechend sind andere Parametrisierungen der Lösungsmenge möglich, z.B. indem man als freien Parameter $x \in \R$
 wählt und die obige Gerade mit Hilfe ihrer Steigung und ihres $y$-Achsenabschnittes charakterisiert, also
@@ -544,7 +683,33 @@ $y$-Achse durch den Punkt $\MPointTwo{1}{0}$ auf der $x$-Achse. Die 2.~Gleichung
 $y = - \Mtfrac{1}{3} x + \Mtfrac{4}{3}$; dies beschreibt ebenfalls eine Gerade, diesmal mit der Steigung $- \Mtfrac{1}{3}$ und 
 dem $y$-Achsenabschnitt $\Mtfrac{4}{3}$. Es ergibt sich also folgendes Bild:
 \begin{center}
-\MUGraphicsSolo{Aufgabe_Schnittpunkt_Geraden_1.png}{scale=1}{width:450px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.8cm, y=1.8cm] 
+%Koordinatensystem
+\node (xMAX) at (2.8,0){};
+\node (yMAX) at (0,2.8){};
+\draw[->,color=black] (-1.0,0) -- (xMAX);
+\foreach \x in {0, 1, 2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[above right] {\scriptsize $\x$};
+\draw[->,color=black] (0,-0.2) -- (yMAX);
+\foreach \y in {1, 2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[above right] {\scriptsize $\y$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=south east] {$x$};
+\draw (yMAX) node[anchor=north east] {$y$};
+%Beschriftung und Graphen
+\clip(-1.0,-0.2) rectangle (2.8,2.4);
+\draw[help lines, gray, dashed, xstep=0.5, ystep=0.5] (-1,-0.5) grid (3,2.5);  % was dotted
+\fill[color=black] (1,1) circle (2.0pt);
+%%\fill[red!50!white, opacity=0.50] (1,1) rectangle (6,6);
+\draw[color=blue, thick] (1.0,-0.2) -- (1.0,2.8);
+\draw[color=blue, thick] (-2.0,2.0) -- (4.0,0.0);
+\draw[color=black] (1.0,1.75) node[anchor=west] {Gerade 1: $x=1$};
+\draw[color=black] (1.0,1.0) node[anchor=south west] {Schnittpunkt};
+\draw[color=black] (2.0,0.7) node[anchor=north east] {Gerade 2: $y=-\frac{1}{3}x+\frac{4}{3}$};
+\end{tikzpicture}
+}%
+%%\MUGraphicsSolo{Aufgabe_Schnittpunkt_Geraden_1.png}{scale=1}{width:450px}
 \end{center}
 Aus diesem Bild liest man die Koordinaten des Schnittpunktes zu $\MPointTwo{x = 1}{y = 1}$ ab; daher: ${\ML} = \{ \MPointTwo{1}{1} \}$.
 \end{MHint}
@@ -571,11 +736,11 @@ nehme, so bin ich fünfmal so reich wie ihr beiden Gauner!{\grqq} Wieviel Geld be
 Bezeichnet man die Geldsummen (in Euro) des ersten, zweiten bzw. dritten Kindes vor dem Portemonnaiefund
 mit $x$, $y$ bzw. $z$, so kann man die Aussage des ersten Kindes wie folgt in eine mathematische Gleichung
 übersetzen:
-$$x + 30 = 2 (y + z) \Leftrightarrow x - 2 y - 2 z = - 30 \; : \mbox{ Gleichung } (1) \MDFPeriod$$
+$$x + 30 = 2 (y + z) \Leftrightarrow x - 2 y - 2 z = - 30 \; : \MBlank\mbox{Gleichung}\MBlank (1) \MDFPeriod$$
 Analog wird die Aussage des zweiten Kindes übertragen,
-$$y + 30 = 3 (x + z) \Leftrightarrow - 3 x + y - 3 z = - 30 \; : \mbox{ Gleichung } (2) \MDFPSpace ,$$
+$$y + 30 = 3 (x + z) \Leftrightarrow - 3 x + y - 3 z = - 30 \; : \MBlank\mbox{Gleichung}\MBlank (2) \MDFPSpace ,$$
 und schließlich diejenige des dritten Kindes:
-$$z + 30 = 5 (x + y) \Leftrightarrow - 5 x - 5 y + z = - 30 \; : \mbox{ Gleichung } (3) \MDFPeriod$$
+$$z + 30 = 5 (x + y) \Leftrightarrow - 5 x - 5 y + z = - 30 \; : \MBlank\mbox{Gleichung}\MBlank (3) \MDFPeriod$$
 Es entsteht also ein System aus drei linearen Gleichungen in drei Unbekannten, die hier $x, y$ und $z$ heißen.
 \end{MExample}
 Wen die Lösung dieses kleinen Rätsels interessiert, der wird sie weiter unten sowohl im Rahmen der
@@ -622,29 +787,404 @@ anschaulichen Sprache - das \textbf{Schnittverhalten} dreier Ebenen. Hierzu wird
 \begin{MExample}
 \MLabel{M04_3x3_bsp_gleichsetz}
 Es wird nach der Lösungsmenge des Linearen Gleichungssystems
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x + y - z & = & 0 \MDFPSpace, \\
-\mbox{Gleichung } (2): & & x + y + z & = & 6 \MDFPSpace, \\
-\mbox{Gleichung } (3): & & 2 x - y + z & = & 4 \end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung}\MBlank (1): & & x + y - z & = & 0 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank (2): & & x + y + z & = & 6 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank (3): & & 2 x - y + z & = & 4 \end{array}$$
 gesucht; als Grundmenge wählt man die Menge der reellen Zahlen $\R$.
 
 Jede der drei linearen Gleichungen lässt sich problemlos nach $z$ freistellen:
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1'): & & z & = & x + y \MDFPSpace,\\
-\mbox{Gleichung } (2'): & & z & = & 6 - x - y \MDFPSpace,\\
-\mbox{Gleichung } (3'): & & z & = & 4 - 2 x + y \MDFPeriod \end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung}\MBlank (1'): & & z & = & x + y \MDFPSpace,\\
+\mbox{Gleichung}\MBlank (2'): & & z & = & 6 - x - y \MDFPSpace,\\
+\mbox{Gleichung}\MBlank (3'): & & z & = & 4 - 2 x + y \MDFPeriod \end{array}$$
 \textbf{Setzt} man jetzt die rechten Seiten der Gleichungen~$(1')$ und $(2')$ \textbf{gleich}, so bedeutet dies -
 anschaulich gesprochen -, dass man die \MEntry{Schnittgerade}{Schnittgerade} der beiden durch diese Gleichungen
 beschriebenen Ebenen bestimmt:
-$$x + y = 6 - x - y \Leftrightarrow 2 x + 2 y = 6 \Leftrightarrow y = 3 - x \; : \mbox{ Gleichung } (A) \MDFPeriod $$
+$$x + y = 6 - x - y \Leftrightarrow 2 x + 2 y = 6 \Leftrightarrow y = 3 - x \; : \MBlank\mbox{Gleichung}\MBlank (A) \MDFPeriod $$
+Durch Einsetzen dieser Beziehung in Gleichung~$(1')$ oder $(2')$ erhält man
+die zugehörigen $z$-Koordinaten der Schnittgeraden; hier ergibt sich $z=3$.
+Die folgende perspektivische Skizze zeigt diese Schnittgerade, Gleichung $(A)$, 
+als den Schnitt der durch die Gleichungen $(1')$ und $(2')$ beschriebenen,
+nicht parallelen Ebenen:
+\begin{center}
+\MTikzAuto{%
+\tdplotsetmaincoords{60}{60}
+\begin{tikzpicture}[tdplot_main_coords]
+      \draw[thick,->] (-5,0,0) -- (6,0,0) node[anchor=north east]{\Large $x$};
+      \draw[thick,->] (0,-5,0) -- (0,6,0) node[anchor=north west]{\Large $y$};
+      \draw[thick,->] (0,0,-5) -- (0,0,5) node[anchor=south]{\Large $z$};
+% Koordinaten-Box in der xy-Ebene
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfpathclose
+\pgfsetstrokecolor{black}
+\pgfusepath{stroke}
+% Beschriftungen
+\draw[color=black,tdplot_main_coords] (-4.0,-4.0,0.0) node[anchor=north east] {$\MPointTwo{-4}{-4}$};
+\draw[color=black,tdplot_main_coords] (-4.0,4.0,0.0) node[anchor=south] {$\MPointTwo{-4}{4}$};
+\draw[color=black,tdplot_main_coords] (4.0,-4.0,0.0) node[anchor=north] {$\MPointTwo{4}{-4}$};
+\draw[color=black,tdplot_main_coords] (4.0,4.0,0.0) node[anchor=north west] {$\MPointTwo{4}{4}$};
+\draw[color=black,tdplot_main_coords] (0.0,0.0,-4.0) -- (0.0,0.1,-4.0) node[anchor=west] {$-16$};
+\draw[color=black,tdplot_main_coords] (0.0,0.0,-2.0) -- (0.0,0.1,-2.0) node[anchor=west] {$-8$};
+\draw[color=black,tdplot_main_coords] (0.0,0.0,2.0) -- (0.0,0.1,2.0) node[anchor=west] {$8$};
+\draw[color=black,tdplot_main_coords] (0.0,0.0,4.0) -- (0.0,0.1,4.0) node[anchor=west] {$16$};
+% Ebene z=x+y, Teil 1
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{-1}
+\pgfmathsetmacro{\az}{0.75} %3
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{-0.5} % -2
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{-1}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{0.75} % 3
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfpathclose
+\pgfsetstrokecolor{green}
+\pgfsetfillcolor{green}
+\pgfsetfillopacity{0.5}
+\pgfusepath{stroke,fill}
+% Ebene z=6-x-y
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{-2} % -8
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{2} % 8
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfpathclose
+\pgfsetstrokecolor{red}
+\pgfsetfillcolor{red}
+\pgfsetfillopacity{0.5}
+\pgfusepath{stroke,fill}
+% Ebene z=x+y, Teil 2
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{3.5} % 14
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{1.5} %6
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{-1}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{0.75} % 3
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{-1}
+\pgfmathsetmacro{\az}{0.75} % 3
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{1.5} % 6
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfpathclose
+\pgfsetstrokecolor{green}
+\pgfsetfillcolor{green}
+\pgfsetfillopacity{0.5}
+\pgfusepath{stroke,fill}
+% Gerade y=3-x
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{-1}
+\pgfmathsetmacro{\az}{0.75} % 3
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{-1}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{0.75} % 3
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfsetlinewidth{1mm}
+\pgfsetstrokecolor{yellow}
+\pgfusepath{stroke}
+% Legende
+\pgfsetfillopacity{1.0}
+\pgfsetlinewidth{0.4pt}
+\fill[red, opacity=0.50, tdplot_main_coords] (-5.0,-5.0,-4.5) circle (1.5mm);
+\draw[red, tdplot_main_coords] (-5.0,-5.0,-4.5) circle (1.5mm);
+\fill[green, opacity=0.50, tdplot_main_coords] (-5.0,-5.0,-5.0) circle (1.5mm);
+\draw[green, tdplot_main_coords] (-5.0,-5.0,-5.0) circle (1.5mm);
+\fill[yellow, tdplot_main_coords] (-5.0,-5.0,-5.5) circle (1.0mm);
+\draw[color=black] (-5.0,-5.0,-4.5) node[anchor=west] {\ Gl. $(1')$: $z=x+y$};
+\draw[color=black] (-5.0,-5.0,-5.0) node[anchor=west] {\ Gl. $(2')$: $z=6-x-y$};
+\draw[color=black] (-5.0,-5.0,-5.5) node[anchor=west] {\ Gl. $(A)$: $y=3-x$ ($z=3$)};
+\end{tikzpicture}
+}%
+\end{center}
 Die vollkommen analoge Aussage gilt, falls man die rechten Seiten von Gleichung~$(2')$ und $(3')$ \textbf{gleichsetzt};
 man erhält dann die \textbf{Schnittgerade} der Ebenen~$(2)$ und $(3)$:
 $$6 - x - y = 4 - 2 x + y \Leftrightarrow x - 2 y = - 2 \Leftrightarrow y = 1 + \Mtfrac12 x \; :
-\mbox{ Gleichung } (B) \MDFPeriod $$
+\MBlank\mbox{Gleichung}\MBlank (B) \MDFPeriod $$
+Deren $z$-Koordinaten ergeben sich entsprechend durch Einsetzen dieser 
+Beziehung in Gleichung $(2')$ oder $(3')$ zu $z=5-\frac{3}{2}x$.
+Eine diesem Sachverhalt entsprechende perspektivische Skizze aus derselben
+Blickrichtung zeigt diese Schnittgerade, Gleichung $(B)$, als den Schnitt
+der durch die Gleichungen $(2')$ und $(3')$ beschriebenen,
+nicht parallelen Ebenen:
+\begin{center}
+\MTikzAuto{%
+\tdplotsetmaincoords{60}{60}
+\begin{tikzpicture}[tdplot_main_coords]
+      \draw[thick,->] (-5,0,0) -- (6,0,0) node[anchor=north east]{\Large $x$};
+      \draw[thick,->] (0,-5,0) -- (0,6,0) node[anchor=north west]{\Large $y$};
+      \draw[thick,->] (0,0,-5) -- (0,0,5) node[anchor=south]{\Large $z$};
+% Koordinaten-Box in der xy-Ebene
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfpathclose
+\pgfsetstrokecolor{black}
+\pgfusepath{stroke}
+% Beschriftungen
+\draw[color=black,tdplot_main_coords] (-4.0,-4.0,0.0) node[anchor=north east] {$\MPointTwo{-4}{-4}$};
+\draw[color=black,tdplot_main_coords] (-4.0,4.0,0.0) node[anchor=south] {$\MPointTwo{-4}{4}$};
+\draw[color=black,tdplot_main_coords] (4.0,-4.0,0.0) node[anchor=north] {$\MPointTwo{4}{-4}$};
+\draw[color=black,tdplot_main_coords] (4.0,4.0,0.0) node[anchor=north west] {$\MPointTwo{4}{4}$};
+\draw[color=black,tdplot_main_coords] (0.0,0.0,-4.0) -- (0.0,0.1,-4.0) node[anchor=west] {$-16$};
+\draw[color=black,tdplot_main_coords] (0.0,0.0,-2.0) -- (0.0,0.1,-2.0) node[anchor=west] {$-8$};
+\draw[color=black,tdplot_main_coords] (0.0,0.0,2.0) -- (0.0,0.1,2.0) node[anchor=west] {$8$};
+\draw[color=black,tdplot_main_coords] (0.0,0.0,4.0) -- (0.0,0.1,4.0) node[anchor=west] {$16$};
+% Ebene z=6-x-y, Teil 1
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{-1}
+\pgfmathsetmacro{\az}{2.75} % 11
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{3}
+\pgfmathsetmacro{\az}{-0.25} % -1
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{-0.5} % -2
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{1.5} % 6
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfpathclose
+\pgfsetstrokecolor{green}
+\pgfsetfillcolor{green}
+\pgfsetfillopacity{0.5}
+\pgfusepath{stroke,fill}
+% Ebene z=4-2x+y
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{2} % 8
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{4} % 16
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{4}
+\pgfmathsetmacro{\az}{0}
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{-2} % -8
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfpathclose
+\pgfsetstrokecolor{blue}
+\pgfsetfillcolor{blue}
+\pgfsetfillopacity{0.5}
+\pgfusepath{stroke,fill}
+% Ebene z=6-x-y, Teil 2
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{-1}
+\pgfmathsetmacro{\az}{2.75} % 11
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{3.5} % 14
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{-4}
+\pgfmathsetmacro{\az}{1.5} % 6
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{3}
+\pgfmathsetmacro{\az}{-0.25} % -1
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfpathclose
+\pgfsetstrokecolor{green}
+\pgfsetfillcolor{green}
+\pgfsetfillopacity{0.5}
+\pgfusepath{stroke,fill}
+% Gerade y=1+(1/2)x
+\pgfmathsetmacro{\ax}{-4}
+\pgfmathsetmacro{\ay}{-1}
+\pgfmathsetmacro{\az}{2.75} % 11
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfmathsetmacro{\ax}{4}
+\pgfmathsetmacro{\ay}{3}
+\pgfmathsetmacro{\az}{-0.25} % -1
+\tdplottransformmainscreen{\ax}{\ay}{\az}
+\pgfpathlineto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+%
+\pgfsetlinewidth{1mm}
+\pgfsetstrokecolor{cyan}
+\pgfusepath{stroke}
+% Legende
+\pgfsetfillopacity{1.0}
+\pgfsetlinewidth{0.4pt}
+%
+\fill[green, opacity=0.50, tdplot_main_coords] (-5.0,-5.0,-4.2) circle (1.5mm);
+\draw[green, tdplot_main_coords] (-5.0,-5.0,-4.2) circle (1.5mm);
+\fill[blue, opacity=0.50, tdplot_main_coords] (-5.0,-5.0,-4.8) circle (1.5mm);
+\draw[blue, tdplot_main_coords] (-5.0,-5.0,-4.8) circle (1.5mm);
+\fill[cyan, tdplot_main_coords] (-5.0,-5.0,-5.4) circle (1mm);
+%
+\draw[color=black] (-5.0,-5.0,-4.2) node[anchor=west] {\ Gl. $(2')$: $z=6-x-y$};
+\draw[color=black] (-5.0,-5.0,-4.8) node[anchor=west] {\ Gl. $(3')$: $z=4-2x+y$};
+\draw[color=black] (-5.0,-5.0,-5.4) node[anchor=west] {\ Gl. $(B)$: $y=1+\frac{1}{2}x$};
+\draw[color=black] (-5.0,-5.0,-6.0) node[anchor=west] {\ \hspace{1.3cm} ($z=5-\frac{3}{2}x$)};
+\end{tikzpicture}
+}%
+\end{center}
 Da im Ausgangssystem alle drei Gleichungen simultan gelten sollen, müssen auch die zwei gerade hergeleiteten Geradengleichungen
 gleichzeitig erfüllt sein. Im bildlichen Kontext suchen man daher den Schnittpunkt dieser beiden Geraden;
 diesen Schnittpunkt bekommt man, indem man die rechten Seiten der Gleichungen~$(A)$ und $(B)$ \textbf{gleichsetzt}:
 $$3 - x = 1 + \Mtfrac12 x \Leftrightarrow \Mtfrac32 x = 2 \Leftrightarrow x = \Mtfrac43 \MDFPeriod $$
 Den Lösungswert für $y$ kann man durch Einsetzen des Ergebnisses für $x$ z.B. in Gleichung~$(A)$ berechnen:
 $$y = 3 - \Mtfrac43 \Leftrightarrow y = \Mtfrac53 \MDFPeriod $$
+Die folgende Skizze zeigt die Schnittgeraden, Gleichungen $(A)$ und $(B)$,
+in der $x$-$y$-Ebene, Projektion - Ansicht von oben -, und deren Schnittpunkt:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+%Koordinatensystem
+\node (xMAX) at (5.0,0){};
+\node (yMAX) at (0,5.0){};
+\draw[->,color=black] (-5.0,0) -- (xMAX);
+\foreach \x in {-4, -3, -2, -1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[above right] {\scriptsize $\x$};
+\draw[->,color=black] (0,-2.5) -- (yMAX);
+\foreach \y in {-2, -1, 1, 2, 3, 4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[above right] {\scriptsize $\y$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=south east] {$x$};
+\draw (yMAX) node[anchor=north east] {$y$};
+%Beschriftung und Graphen
+\clip(-4.1,-2.4) rectangle (4.1,4.1);
+\draw[help lines, gray, dashed] (-4,-2) grid (4,4); % was dotted
+%\fill[color=black] (1,1) circle (2.0pt);
+%%\fill[red!50!white, opacity=0.50] (1,1) rectangle (6,6);
+\draw[color=yellow, very thick] (-4.0,7.0) -- (4.0,-1.0);
+\draw[color=cyan, very thick] (-4.0,-1.0) -- (4.0,3.0);
+\fill[color=black] (1.3333333,1.6666666) circle (2.0pt);
+\draw[color=black] (1.45,1.85) node[anchor=south] 
+{$\MPointTwo{\frac{4}{3}}{\frac{5}{3}}$};
+\draw[color=black] (4.0,-1.5) node[anchor=east] {Gl. $(A)$: $y=3-x$};
+\draw[color=black] (-4.0,-1.5) node[anchor=west] {Gl. $(B)$: $y=1+\frac{1}{2}x$};
+%\draw[color=black] (2.0,0.7) node[anchor=north east] {Gerade 2: $y=-\frac{1}{3}x+\frac{4}{3}$};
+\end{tikzpicture}
+}%
+\end{center}
 Der Wert für $z$ schließlich resultiert, indem man die Werte für $x$ und $y$ z.B. in Gleichung~$(1')$ einsetzt:
 $$z = \Mtfrac43 + \Mtfrac53 \Leftrightarrow z = \Mtfrac93 \Leftrightarrow z = 3 \MDFPeriod $$
 Das gegebene Lineare Gleichungssystem ist also eindeutig lösbar; für die Lösungsmenge erhält man
@@ -684,7 +1224,7 @@ automatisch gewährleistet, da durch das Gleichsetzen der rechten Seite von Gleic
 Gleichung~$(2')$ (erste Schnittgerade / Gleichung~$(A)$) und durch das Gleichsetzen der rechten Seite von
 Gleichung~$(2')$ mit derjenigen von Gleichung~$(3')$ (zweite Schnittgerade / Gleichung~$(B)$) die Gültigkeit der
 Gleichung für die dritte Schnittgerade (rechte Seite von $(1')$ = rechte Seite von $(3')$),
-$$x + y = 4 - 2 x + y \Leftrightarrow 3 x = 4 \; : \mbox{ Gleichung } (C) \MDFPSpace ,$$
+$$x + y = 4 - 2 x + y \Leftrightarrow 3 x = 4 \; : \MBlank\mbox{Gleichung}\MBlank (C) \MDFPSpace ,$$
 garantiert ist.
 
 Im Beispiel wurde als rechnerisches Verfahren die \MSRef{M04_gleichsetzmethode}{Gleichsetzmethode} verwendet, da sie
@@ -710,7 +1250,7 @@ Verwenden Sie die Gleichsetzmethode und gehen Sie geschickt vor!
 Die erste Gleichung hängt von vornherein nicht von der Unbekannten $y$ ab; daher bietet es sich an, aus der
 zweiten und dritten Gleichung zunächst ebenfalls $y$ zu eliminieren. Man löst dazu die zweite und die dritte
 Gleichung jeweils nach $y$ auf,
-$$y = 1 + x - 2 z \; \mbox{ und } \; y = 11 - z \MDFPSpace ,$$
+$$y = 1 + x - 2 z \; \MBlank\mbox{und}\MBlank \; y = 11 - z \MDFPSpace ,$$
 und setzt anschließend die rechten Seiten gleich:
 $$1 + x - 2 z = 11 - z \Leftrightarrow - x + z = - 10 \MDFPeriod $$
 Als Nächstes muss man diese letzte Gleichung und die erste Gleichung des ursprünglichen Systems
@@ -732,15 +1272,15 @@ Systems vom Typ \MRef{M04_3x3_system} ändert sich an der Vorgehensweise nichts P
 \MLabel{M04_einf_Bsp_2_rech}
 Das einleitende Beispiel \MRef{M04_einfuehrendes_Bsp_2} dieses Abschnitts wird wieder aufgegriffen; das Lineare
 Gleichungssystem im Falle des Rätsels um die drei in Versuchung geführten Kinder lautet:
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
-\mbox{Gleichung } (2): & & - 3 x + y - 3 z & = & - 30 \MDFPSpace, \\
-\mbox{Gleichung } (3): & & - 5 x - 5 y + z & = & - 30 \MDFPeriod \end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung}\MBlank (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank (2): & & - 3 x + y - 3 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank (3): & & - 5 x - 5 y + z & = & - 30 \MDFPeriod \end{array}$$
 Man kann mit der Lösung z.B. so beginnen, dass man Gleichung~$(1)$ nach $x$ freistellt,
-$$x = 2 y + 2 z - 30 \; : \mbox{ Gleichung } (1') \MDFPeriod$$
+$$x = 2 y + 2 z - 30 \; : \MBlank\mbox{Gleichung}\MBlank (1') \MDFPeriod$$
 \textbf{Setzt} man diese Gleichung in die Gleichungen~$(2)$ und $(3)$ \textbf{ein}, so wird aus den
 letztgenannten Gleichungen die Unbekannte $x$ eliminiert:
-$$- 3 (2 y + 2 z - 30) + y - 3 z = - 30 \Leftrightarrow - 5 y - 9 z = - 120 \; : \mbox{ Gleichung } (2') \MDFPSpace, $$
-$$- 5 (2 y + 2 z - 30) - 5 y + z = - 30 \Leftrightarrow - 15 y - 9 z = - 180 \; : \mbox{ Gleichung } (3') \MDFPeriod $$
+$$- 3 (2 y + 2 z - 30) + y - 3 z = - 30 \Leftrightarrow - 5 y - 9 z = - 120 \; : \MBlank\mbox{Gleichung}\MBlank (2') \MDFPSpace, $$
+$$- 5 (2 y + 2 z - 30) - 5 y + z = - 30 \Leftrightarrow - 15 y - 9 z = - 180 \; : \MBlank\mbox{Gleichung}\MBlank (3') \MDFPeriod $$
 Man erhält also in diesem Zwischenschritt ein System aus \textbf{zwei} linearen Gleichungen in den \textbf{zwei}
 Unbekannten $y$ und $z$, das mit den Methoden des vorigen Abschnitts \MRef{M04_2_Unbekannte} weiterbehandelt wird.\\
 So kann man z.B. Gleichung~$(2')$ nach $y$ auflösen,
@@ -800,22 +1340,22 @@ des Beispiels der möglicherweise diebischen Kinder:
 \begin{MExample}
 \MLabel{M04_einf_Bsp_2_rech_2}
 Das zu einer erneuten Lösung auffordernde System linearer Gleichungen lautet also:
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
-\mbox{Gleichung } (2): & & - 3 x + y - 3 z & = & - 30 \MDFPSpace, \\
-\mbox{Gleichung } (3): & & - 5 x - 5 y + z & = & - 30 \MDFPeriod \end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung}\MBlank (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank (2): & & - 3 x + y - 3 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank (3): & & - 5 x - 5 y + z & = & - 30 \MDFPeriod \end{array}$$
 Gleichung~$(1)$ wird im Folgenden unverändert beibehalten. Gleichung~$(2)$ jedoch soll durch eine
 neue Gleichung ersetzt werden, die durch \textbf{Addition} von Gleichung~$(2)$ mit der mit dem Faktor $3$
 durchmultiplizierten Gleichung~$(1)$ - kurz notiert als $(2) + 3 \cdot (1)$ - gewonnen wird:
 $$(-3 x + y - 3 z) + 3 \cdot (x - 2 y - 2 z) = - 30 + 3 \cdot (- 30) \Leftrightarrow
-- 5 y - 9 z = - 120 \; : \mbox{ Gleichung } (2') \MDFPeriod $$
+- 5 y - 9 z = - 120 \; : \MBlank\mbox{Gleichung}\MBlank (2') \MDFPeriod $$
 Ähnlich geht man mit Gleichung~$(3)$ vor: Sie wird durch $(3) + 5 \cdot (1)$, also durch die
 \textbf{Summe} aus Gleichung~$(3)$ und der mit dem Faktor $5$ durchmultiplizierten Gleichung~$(1)$ ersetzt:
 $$(- 5 x - 5 y + z) + 5 \cdot (x - 2 y - 2 z) = - 30 + 5 \cdot (- 30) \Leftrightarrow
--15 y - 9 z = - 180 \; : \mbox{ Gleichung } (3') \MDFPeriod $$
+-15 y - 9 z = - 180 \; : \MBlank\mbox{Gleichung}\MBlank (3') \MDFPeriod $$
 Das System sieht jetzt folgendermaßen aus:
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
-\mbox{Gleichung } (2'): & & - 5 y - 9 z & = & - 120 \MDFPSpace, \\
-\mbox{Gleichung } (3'): & & - 15 y - 9 z & = & - 180  \MDFPeriod \end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung}\MBlank (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank (2'): & & - 5 y - 9 z & = & - 120 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank (3'): & & - 15 y - 9 z & = & - 180  \MDFPeriod \end{array}$$
 Aus den Gleichungen~$(2')$ und $(3')$ ist die Abhängigkeit von der Unbekannten $x$ verschwunden - das war das
 Ziel und der Grund für die Faktoren $3$ bzw. $5$ bei den obigen Summationen.
 
@@ -825,11 +1365,11 @@ innerhalb der Additionsmethode gearbeitet werden: Dazu nimmt man in der Folge Gl
 von Änderungen aus; Gleichung~$(3')$ soll aber nochmals ersetzt werden und zwar durch die Summe
 $(3') + (- 3) \cdot (2')$:
 $$(- 15 y - 9 z) + (- 3) \cdot (- 5 y - 9 z) = - 180 + (- 3) \cdot (- 120) \Leftrightarrow
-18 z = 180 \; : \mbox{ Gleichung } ({3'}') \MDFPeriod $$
+18 z = 180 \; : \MBlank\mbox{Gleichung}\MBlank ({3'}') \MDFPeriod $$
 Das System hat ein weiteres Mal sein Aussehen gewandelt,
-$$\begin{array}{lcrcl} \mbox{Gleichung } (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
-\mbox{Gleichung } (2'): & & - 5 y - 9 z & = & - 120 \MDFPSpace, \\
-\mbox{Gleichung } ({3'}'): & & 18 z & = &  180 \MDFPSpace, \end{array}$$
+$$\begin{array}{lcrcl} \mbox{Gleichung}\MBlank (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank (2'): & & - 5 y - 9 z & = & - 120 \MDFPSpace, \\
+\mbox{Gleichung}\MBlank ({3'}'): & & 18 z & = &  180 \MDFPSpace, \end{array}$$
 und besitzt nun - zumindest was die linken Seiten anbelangt - so eine Art \textbf{Dreiecksform}.
 
 Die Bestimmung der Unbekannten ist nun äußerst einfach: Die unterste Gleichung (Gleichung~$({3'}')$) hängt nur noch
@@ -849,10 +1389,10 @@ plus $3$ mal Gleichung~$(1)$, also Gleichung~$(2')$, tritt.
 Wenn man nach der Lösung eines Gleichungssystems forscht, verlangt man die \textbf{gleichzeitige Gültigkeit}
 aller Gleichungen des Systems. Damit insistiert man - um im Beispiel \MRef{M04_einf_Bsp_2_rech_2} zu sprechen - mit
 der Forderung, dass Gleichung~$(1)$ \textbf{und} Gleichung~$(2)$ gelten sollen, klarerweise auch auf der Gültigkeit von
-$$\mbox{Gleichung } (2) + 3 \cdot \mbox{ Gleichung } (1) \Leftrightarrow \mbox{ Gleichung } (2') \MDFPeriod $$
+$$\mbox{Gleichung}\MBlank (2) + 3 \cdot \MBlank\mbox{Gleichung}\MBlank (1) \Leftrightarrow \MBlank\mbox{Gleichung}\MBlank (2') \MDFPeriod $$
 Gelten nun stattdessen simultan Gleichung~$(1)$ \textbf{und} Gleichung~$(2')$, 
 dann folgt umgekehrt auch die Gültigkeit von Gleichung~$(2)$ mit
-$$\mbox{Gleichung } (2') + (-1) \cdot \mbox{ Gleichung } (1) \Leftrightarrow 3\cdot\mbox{ Gleichung } (2) \Leftrightarrow \mbox{ Gleichung } (2) \MDFPeriod $$
+$$\mbox{Gleichung}\MBlank (2') + (-1) \cdot \MBlank\mbox{Gleichung}\MBlank (1) \Leftrightarrow 3\cdot\MBlank\mbox{Gleichung}\MBlank (2) \Leftrightarrow \MBlank\mbox{Gleichung}\MBlank (2) \MDFPeriod $$
 Also ist es zulässig, im System Gleichung~$(2)$ durch Gleichung~$(2')$ zu ersetzen.
 
 Zugleich erkennt man hier einen weiteren wichtigen Punkt: Würde man die \textbf{eine} Gleichung~$(2')$ an die
@@ -924,7 +1464,37 @@ Alternative Lösungswege sind ebenso gut möglich.}
 \begin{MExercise}
 Die folgende einfache Schaltung soll betrachtet werden:
 \begin{center}
-\MUGraphicsSolo{schaltung.png}{scale=1.1}{width:450px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.75cm, y=0.75cm] 
+%Koordinatensystem
+\node (xMAX) at (8.6,0){};
+\node (yMAX) at (0,5.0){};
+\draw[->,color=black] (0.0,0.0) -- (0.0,2.5);
+\draw[color=black] (0.0,2.5) -- (0.0,5.0) -- (7.3,5.0);
+\draw[color=black] (0.0,0.0) -- (1.2,0.0);
+\draw[color=black] (1.2,-0.8) -- (1.2,0.8);
+\fill[color=black, rounded corners=1.0pt] (1.5,-0.4) rectangle (1.6,0.4);
+\draw[->,color=black] (1.6,0.0) -- (8.6,0.0) -- (8.6,5.0) -- (7.3,5.0);
+\draw[->,color=black] (6.0,0.0) -- (6.0,4.25);
+\draw[color=black] (6.0,4.25) -- (6.0,5.0);
+%Achsenbeschriftung
+%%\draw (xMAX) node[anchor=south] {$x$};
+%%\draw (yMAX) node[anchor=west] {$y$};
+%Beschriftung und Graphen
+%%\clip(-8.2,-0.6) rectangle (3.4,3.4);
+\fill[black] (2.0,4.5) rectangle (4.0,5.5);
+\fill[black] (5.5,1.5) rectangle (6.5,3.5);
+\fill[black] (8.1,1.5) rectangle (9.1,3.5);
+\draw[color=black] (0.0,2.5) node[anchor=east] {$I_1$};
+\draw[color=black] (6.0,4.25) node[anchor=west] {$I_2$};
+\draw[color=black] (7.3,5.0) node[anchor=south] {$I_3$};
+\draw[color=black] (3.0,4.5) node[anchor=north] {$R_1$};
+\draw[color=black] (5.5,2.5) node[anchor=east] {$R_2$};
+\draw[color=black] (9.1,2.5) node[anchor=west] {$R_3$};
+\draw[color=black] (1.4,0.6) node[anchor=south west] {$U$};
+\end{tikzpicture}
+}%
+%%\MUGraphicsSolo{schaltung.png}{scale=1.1}{width:450px}
 \end{center}
 Sie ist aus einer Spannungsquelle, die eine Spannung $U = \MZahl{5}{5}\MEinheit{V}$ liefern soll, sowie aus drei Widerständen
 $R_1 = 1\MEinheit{}\MOhm$, $R_2 = 2\MEinheit{}\MOhm$ und $R_3 = 3\MEinheit{}\MOhm$ aufgebaut. Gefragt ist nach den in den einzelnen
@@ -933,7 +1503,7 @@ Zweigen fließenden Strömen $I_1$, $I_2$ und $I_3$.\\
 Widerständen und den Stromstärken, werden für solche Schaltungen von den sogenannten \textbf{Kirchhoffschen Regeln}
 geliefert, die im vorliegenden Beispiel drei Gleichungen bereitstellen:
 \begin{eqnarray*}
-I_1 - I_2 - I_3 & = & 0\quad:\quad\mbox{Gleichung}\MDFPSpace (1) \MDFPSpace, \\ R_1 I_1 + R_2 I_2 & = & U\quad:\quad\mbox{Gleichung}\MDFPSpace (2)\MDFPSpace,  \\ R_2 I_2 - R_3 I_3 & = & 0\quad:\quad\mbox{Gleichung}\MDFPSpace (3) \MDFPeriod
+I_1 - I_2 - I_3 & = & 0\quad:\quad\mbox{Gleichung}\MBlank (1) \MDFPSpace, \\ R_1 I_1 + R_2 I_2 & = & U\quad:\quad\mbox{Gleichung}\MBlank (2)\MDFPSpace,  \\ R_2 I_2 - R_3 I_3 & = & 0\quad:\quad\mbox{Gleichung}\MBlank (3) \MDFPeriod
 \end{eqnarray*}
 Außerdem wird die Beziehung zwischen den physikalischen Einheiten Volt ($\MEinheit[]{V}$) (für die Spannung),
 Amp\`ere ($\MEinheit[]{A}$) (für die Stromstärke) und Ohm ($\MOhm$) (für den Widerstand) benötigt: $1\MEinheit{}\MOhm = (1\MEinheit{V}) / (1\MEinheit{A})$.
@@ -942,11 +1512,11 @@ Amp\`ere ($\MEinheit[]{A}$) (für die Stromstärke) und Ohm ($\MOhm$) (für den Wid
 Man löst z.B. die erste Gleichung nach $I_1$ auf,
 $$I_1 = I_2 + I_3 \MDFPSpace ,$$
 und setzt das Ergebnis in die zweite Gleichung ein:
-$$R_1 (I_2 + I_3) + R_2 I_2 = U \Leftrightarrow (R_1 + R_2) I_2 + R_1 I_3 = U \; : \mbox{ Gleichung } (2') \MDFPeriod$$
+$$R_1 (I_2 + I_3) + R_2 I_2 = U \Leftrightarrow (R_1 + R_2) I_2 + R_1 I_3 = U \; : \MBlank\mbox{Gleichung}\MBlank (2') \MDFPeriod$$
 Die letzte Gleichung und die dritte Gleichung im ursprünglichen System hängen nur noch von den Unbekannten
 $I_2$ und $I_3$ ab. Sie bilden ein System aus zwei linearen Gleichungen in zwei Unbekannten, das man jetzt
 weiter löst: Dazu stellt man z.B. die dritte Gleichung des ursprünglichen Systems nach $I_3$ frei,
-$$I_3 = \Mdfrac{R_2}{R_3} I_2 \; : \mbox{ Gleichung } (3') \MDFPSpace ,$$
+$$I_3 = \Mdfrac{R_2}{R_3} I_2 \; : \MBlank\mbox{Gleichung}\MBlank (3') \MDFPSpace ,$$
 und setzt das Resultat in Gleichung~$(2')$ ein:
 \begin{eqnarray*}
 & & (R_1 + R_2) I_2 + R_1 \cdot \Mdfrac{R_2}{R_3} I_2 = U \\[.5ex]
@@ -1028,8 +1598,8 @@ wenn nicht \textbf{den}, entscheidenden Punkt im Zusammenhang mit freien Paramet
 linearer Gleichungen hinführen wird:
 \begin{MExample}
 Es soll nach der Lösungsmenge für das Lineare Gleichungssystem
-$$\begin{array}{rcrcl} \mbox{Gleichung } (1) : & & x - 2 y & = & 3 \MDFPSpace,\\
-\mbox{ Gleichung } (2) : & & - 2 x + 4 y & = & \alpha \end{array}$$
+$$\begin{array}{rcrcl} \mbox{Gleichung}\MBlank (1) : & & x - 2 y & = & 3 \MDFPSpace,\\
+\MBlank\mbox{Gleichung}\MBlank (2) : & & - 2 x + 4 y & = & \alpha \end{array}$$
 in Abhängigkeit von dem Parameter $\alpha$ gesucht werden.
 
 Dazu multipliziert man Gleichung~$(1)$ mit dem Faktor $2$ durch und addiert Gleichung~$(2)$:
@@ -1061,12 +1631,12 @@ x + y + \alpha z & = & 1 \MDFPSpace, \\ x + \alpha y + z & = & 1 \MDFPSpace, \\ 
 studiert werden und zwar in Abhängigkeit von dem Wert des Parameters $\alpha$.
 
 Dazu löst man beispielsweise die erste Gleichung nach der Unbekannten $x$ auf,
-$$x = 1 - y - \alpha z \; : \mbox{ Gleichung } (1') \MDFPSpace ,$$
+$$x = 1 - y - \alpha z \; : \MBlank\mbox{Gleichung}\MBlank (1') \MDFPSpace ,$$
 und \textbf{setzt} das Ergebnis für $x$ in die zweite und in die dritte Gleichung \textbf{ein}:
 $$\begin{array}{rclcrclcl} (1 - y - \alpha z) + \alpha y + z & = & 1 & \Leftrightarrow &
--(1 - \alpha) y + (1 - \alpha) z & = & 0 & & : \mbox{ Gleichung } (2') \MDFPSpace, \\
+-(1 - \alpha) y + (1 - \alpha) z & = & 0 & & : \MBlank\mbox{Gleichung}\MBlank (2') \MDFPSpace, \\
 \alpha (1 - y - \alpha z) + y + z & = & 1 & \Leftrightarrow &
-(1 - \alpha) y + (1 - \alpha^2) z & = & 1 - \alpha & & : \mbox{ Gleichung } (3') \MDFPeriod \end{array}$$
+(1 - \alpha) y + (1 - \alpha^2) z & = & 1 - \alpha & & : \MBlank\mbox{Gleichung}\MBlank (3') \MDFPeriod \end{array}$$
 Es entsteht ein System aus \textbf{zwei} linearen Gleichungen in den \textbf{zwei} Unbekannten $y$ und $z$.
 Diesem System sieht man sofort an, dass für den Wert $\alpha = 1$ etwas Besonderes passiert.
 Man führt daher eine Fallunterscheidung durch:
@@ -1074,7 +1644,7 @@ Man führt daher eine Fallunterscheidung durch:
 \textbf{Fall 1:} $\alpha = 1$: In diesem Fall sind die beiden Gleichungen~$(2')$ und $(3')$ identisch
 erfüllt ($0 = 0$) und liefern keine weiteren Informationen; als einzige Beziehung zwischen
 den Unbekannten $x, y$ und $z$ verbleibt Gleichung~$(1')$ bzw. Gleichung~$(1)$, die für $\alpha = 1$
-$$x + y + z = 1 \; : \mbox{ Gleichung } (\hat{1})$$
+$$x + y + z = 1 \; : \MBlank\mbox{Gleichung}\MBlank (\hat{1})$$
 lautet. Daher besitzt die Lösungsmenge hier unendlich viele Elemente. Sie kann mit Hilfe \textbf{zweier freier
 Parameter} angegeben werden, z.B.
 $${\ML} = \{ \MPointThree{s}{t}{1 - s- t} \MCondSetSep  s, t \in \R \} \MDFPeriod $$
@@ -1083,10 +1653,10 @@ Anschaulich gesprochen entspricht die Lösungsmenge gerade der durch Gleichung~$(
 \textbf{Fall 2:} $\alpha \neq 1$: In diesem Fall kann man sowohl Gleichung~$(2')$ als auch Gleichung~$(3')$
 durch $(1 - \alpha)$ dividieren; man erhält unter Verwendung der 3.~Binomischen Formel ($(1 - \alpha^2)
 = (1 - \alpha)(1 + \alpha)$):
-$$\begin{array}{rclcl} - y + z & = & 0 & & : \mbox{ Gleichung } ({2'}') \MDFPSpace, \\
-y + (1 + \alpha) z & = & 1 & & : \mbox{ Gleichung } ({3'}') \MDFPeriod \end{array}$$
+$$\begin{array}{rclcl} - y + z & = & 0 & & : \MBlank\mbox{Gleichung}\MBlank ({2'}') \MDFPSpace, \\
+y + (1 + \alpha) z & = & 1 & & : \MBlank\mbox{Gleichung}\MBlank ({3'}') \MDFPeriod \end{array}$$
 Gleichung~$({2'}')$ besagt, dass $y = z$ gilt; dies setzt man in Gleichung~$({3'}')$ ein:
-$$z + (1 + \alpha) z = 1 \Leftrightarrow (2 + \alpha) z = 1 \; : \mbox{ Gleichung } (\star)\MDFPeriod $$
+$$z + (1 + \alpha) z = 1 \Leftrightarrow (2 + \alpha) z = 1 \; : \MBlank\mbox{Gleichung}\MBlank (\star)\MDFPeriod $$
 Jetzt muss man nochmals vorsichtig sein und eine weitere Fallunterscheidung durchführen, da $\alpha = - 2$
 und $\alpha \neq - 2$ unterschiedliche Konsequenzen nach sich ziehen:
 
@@ -1154,7 +1724,34 @@ Antwort: $\alpha = $ \MLParsedQuestion{5}{6}{5}{ATX}.
 \begin{MExercise}
 Die Abbildung zeigt zwei Geraden im zweidimensionalen Raum.
 \begin{center}
-\MUGraphicsSolo{LGS_schneidende_Geraden.png}{width=0.5\linewidth}{width:450px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+%Koordinatensystem
+\node (xMAX) at (5.0,0){};
+\node (yMAX) at (0,4.7){};
+\clip(-4.1,-2.8) rectangle (5.1,4.7);
+\draw[help lines, gray, dashed, xstep=1.0, ystep=1.0] (-4,-3) grid (5,5);
+\draw[->,color=black] (-4.0,0) -- (xMAX);
+\foreach \x in {-3, -2, -1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below right] {\scriptsize $\x$};
+\draw[->,color=black] (0,-2.8) -- (yMAX);
+\foreach \y in {-2, -1, 0, 1, 2, 3, 4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[above left] {\scriptsize $\y$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=south east] {$x$};
+\draw (yMAX) node[anchor=north west] {$y$};
+%Beschriftung und Graphen
+%%\fill[red!50!white, opacity=0.50] (1,1) rectangle (6,6);
+\draw[color=blue, thick] (-2.0,-3.0) -- (5.0,4.0);
+\draw[color=blue, thick] (3.0,-4.0) -- (-2.0,6.0);
+\fill[color=red] (1,0) circle (2.0pt);
+\draw[color=black] (1,0) circle (2.0pt);
+\draw[color=red] (0.60,0) node[anchor=south] {\scriptsize $P$};
+\draw[color=blue] (3.0,2.0) node[anchor=north west] {\scriptsize Gerade 1};
+\draw[color=blue] (-0.5,3.0) node[anchor=north east] {\scriptsize Gerade 2};
+\end{tikzpicture}
+}%
+%%\MUGraphicsSolo{LGS_schneidende_Geraden.png}{width=0.5\linewidth}{width:450px}
 \end{center}
 Stellen Sie die beiden Geradengleichungen auf:
 

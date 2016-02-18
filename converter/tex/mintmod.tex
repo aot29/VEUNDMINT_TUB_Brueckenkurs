@@ -41,6 +41,7 @@
 \usepackage{maxpage}
 \usepackage{tikz}
 \usepackage{tikzscale}
+\usepackage{tikz-3dplot}
 \usepackage{bibgerm}
 \usepackage{chemarrow}
 \usepackage{polynom}
@@ -1815,6 +1816,8 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 }
 \tikzset{png export}
 \tikzsetexternalprefix{}
+% PNGs bei externer Erzeugung in "richtiger" Groesse einbinden
+\pgfkeys{/pgf/images/include external/.code={\includegraphics[scale=0.64]{#1}}}
 \fi
 
 % Spezielle Umgebung fuer Autogenerierung, Bildernamen sind nur innerhalb eines Moduls (einer MSection) eindeutig)
@@ -2159,9 +2162,11 @@ Hier erscheint die Testauswertung!
 \ifttm
 \newcommand{\MDFPSpace}{\,}
 \newcommand{\MDFPaSpace}{\,\,}
+\newcommand{\MBlank}{\ }
 \else
 \newcommand{\MDFPSpace}{\;}
 \newcommand{\MDFPaSpace}{\;\;}
+\newcommand{\MBlank}{\ }
 \fi
 %Satzende in herausgestellter Formel mit horizontalem Leerraum
 \newcommand{\MDFPeriod}{\MDFPSpace .}

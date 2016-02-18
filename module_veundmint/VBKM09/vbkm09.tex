@@ -521,7 +521,7 @@ hat als Graph ($G_f$) eine Gerade $h$ mit dem Achsenabschnitt $1$ und der Steigu
 
 
 
-\begin{MXContent}{Koordinatengleichungen für Geraden}{Koordinatengleichungen}{STD}
+\begin{MXContent}{Koordinatengleichungen für Geraden}{Koordinatengleichungen Geraden}{STD}
 \MLabel{VBKM09_Koordinatengleichungen}
 \MDeclareSiteUXID{VBKM09_Koordinatengleichungen}
 
@@ -929,10 +929,10 @@ Die Geradengleichung von $h$ in Normalform lautet $y=\frac{1}{2}x-1=\MZahl{0}{5}
 Außer mittels einer Geradengleichung, kann eine bestimtme Gerade in der Ebene auch durch andere Daten eindeutig festgelegt werden. Aus diesen Daten kann man die zugehörige Geradengleichung ermitteln und die entsprechende Gerade in eine Koordinatensystem einzeichnen.   
 
 \begin{MInfo}
-Für eine Geraden in der Ebene gilt:
+Für eine Gerade in der Ebene gilt:
 \begin{itemize}
  \item \textbf{\glqq Zwei Punkte legen eine Gerade eindeutig fest\grqq:} Sind zwei Punkte $P$ und $Q$ im $\R^2$ gegeben, so gibt es genau eine Gerade $g$, welche durch $P$ und $Q$ verläuft. Man schreibt dann auch $g=g_{P Q}=g_{Q P}$ oder einfach $g=P Q$ für die Gerade durch $P$ und $Q$.  
- \item \textbf{\glqq Ein Punkt und eine Steigung legen eine Gerade eindeutig fest\grqq:} Ist ein Punkt $P$ und eine Steigung $m$ gegeben, so gibt es genau eine Gerade $g$. welche durch $P$ verläuft un die Steigung $m$ besitzt.
+ \item \textbf{\glqq Ein Punkt und eine Steigung legen eine Gerade eindeutig fest\grqq:} Ist ein Punkt $P$ und eine Steigung $m$ gegeben, so gibt es genau eine Gerade $g$. welche durch $P$ verläuft und die Steigung $m$ besitzt.
 \end{itemize}
 \end{MInfo}
 
@@ -1474,7 +1474,7 @@ unlösbar ist.}
 \draw[color=red] (-2,-4)--(3,1);
 \draw[color=red] (3,1) node[anchor=west] {$f$};
 \draw[color=blue] (-2,4)--(3,-1);
-\draw[color=blue] (3,-1) node[anchor=west] {$f$};
+\draw[color=blue] (3,-1) node[anchor=west] {$g$};
 \draw [fill=violet] (2,0) circle (1.5pt);
 \end{tikzpicture}       
 }%
@@ -1836,6 +1836,190 @@ unlösbar ist.}
 \MLabel{VBKM09_Kreise_Intro}
 \MDeclareSiteUXID{VBKM09_Kreise_Intro}
 
+Jeder bringt ein intuitives Verständnis dafür mit, was ein \textbf{Kreis} ist:
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Kreis
+\draw[color=red] (0,0) circle (1);
+%Radius
+\draw[color=black] (0,0) -- (0.707,0.707);
+\draw[color=black] (0.3,0.36) node[anchor=north west] {\footnotesize $r$};
+%Mittelpunkt
+\draw[fill=green] (0,0) circle (1.5pt);
+\draw[color=green] (0,0) node[anchor=south east] {\footnotesize $M$};
+\end{tikzpicture}       
+}%
+\end{center}
+Alle Punkte auf dem (roten) Kreis haben von einem Punkt, dem \textbf{Mittelpunkt} $M$, den gleichen \textbf{Abstand}, nämlich $r$, den sogenannten \textbf{Radius} des Kreises (vgl. Kapitel \MNRef{VBKM05}). Will man aber nun Kreise in einem vorgegebenen Koordinatensystem, ähnlich wie die Geraden im vorigen Abschnitt, mittels Gleichungen beschreiben und mit diesen Beschreibungen rechnen, so muss man die Begriffe Kreis, Mittelpunkt, Abstand und Radius genauer betrachten und kann dann schließlich die allgemeine \textbf{Kreisgleichung} angeben. Das ist Inhalt dieses Abschnitts.  
+
+
+\end{MIntro}
+
+\begin{MXContent}{Abstand und Streckenlänge}{Abstand Strecken}{STD}
+\MLabel{VBKM09_Abstand_Strecken}
+\MDeclareSiteUXID{VBKM09_Abstand_Strecken}
+
+Rekapituliert man nochmal das einführende Beispiel des Feuerhydranten aus \MNRef{VBKM09_Koordinaten_Intro}, so stellt man fest, dass man mit Hilfe der Daten auf dem Hydrantenschild zwar nun den Ort des Hydranten in einem Koordinatensystem genau angeben kann, interessiert man sich aber dafür wie weit der Hydrant nun vom Schild tatsächlich entfernt ist, muss man dies aus den Koordinaten erst ausrechen.   
+
+\begin{center}
+\MUGraphicsSolo{hydrant.png}{scale=0.6}{width:571px}
+\end{center}
+
+Hier hilft der \MSRef{VBKM05_Pythagoras}{Satzes des Pythagoras} weiter:
+
+\begin{center}
+\MTikzAuto{\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (2.2,0);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,1.2) -- (0,-7.2);
+\foreach \y in {7,6,5,4,3,2,1}
+\draw[shift={(0,-\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%Achsenbeschriftung
+\draw (2.1,0) node[anchor=north west] {\footnotesize rechts in Meter};
+\draw (0.1,-7.2) node[anchor=north west] {\footnotesize hinten in Meter};
+%Pythagoras
+\draw[color=violet, line width=1.5pt] (0,0) -- (0.9, -6.4);
+\draw[color=violet] (0.25,-2) node[anchor=west] {\footnotesize $d$};
+\draw[color=violet] (0,0) -- (0.9, 0);
+\draw[color=violet] (0.45,-0.1) node[anchor=south] {\footnotesize $\MZahl{0}{9}$};
+\draw[color=violet] (0.9,-3.2) node[anchor=west] {\footnotesize $\MZahl{6}{4}$};
+\draw[color=violet] (0.7,0) -- (0.7, -0.2);
+\draw[color=violet] (0.7,-0.2) -- (0.9, -0.2);
+\draw[color=violet, fill=violet] (0.8,-0.1) circle (0.5pt);
+%Punkte
+\draw[color=violet] (0.9,0)--(0.9, -6.4);
+\draw [dashed] (0,-6.4)--(0.9, -6.4);
+\draw[fill = red](0.0,0.0) circle (1.5pt);
+\draw[color=red] (-32pt,-8pt) node[right] {\footnotesize Schild};
+\draw[fill = blue](0.9,-6.4) circle (1.5pt);
+\draw[color=blue] (0.9,-6.4) node[right] {\footnotesize Hydrant};
+\end{tikzpicture}}
+\end{center}
+
+Man erhält für den Abstand $d$ zwischen Schild und Hydrant:
+\[
+ d^2 = \MZahl{0}{9}^2 + \MZahl{6}{4}^2 \MDFPeriod
+\]
+Somit kann man $d$ hier (näherungsweise) ausrechnen:
+\[
+ d = \sqrt{\MZahl{0}{81} + \MZahl{40}{96}} \approx \MZahl{6}{46} \MDFPeriod
+\]
+Der Abstand zwischen Schild und Hydrant beträgt also (in der hier verwendeten Längeneinheit Meter) etwa $6$ Meter und $46$ Centimeter. Für rein mathematische Betrachtungen sind auch hier die Längeneinheiten nicht wichtig, so dass wir diese im Folgenden wieder weglassen werden.
+
+Das obige Beispiel des Schilds und des Hydranten kann man bequem verallgemeinern. Der Abstand zwischen zwei Punkten im $\R^2$ ist stets durch das Anlegen eines geeigneten rechtwinkligen Dreiecks und durch den \MSRef{VBKM05_Pythagoras}{Satzes des Pythagoras} zu bestimmen.  
+
+\begin{MExample}\MLabel{bsp:abstand}
+Die Punkte $P=\MPointTwo{1}{2}$ und $Q=\MPointTwo{3}{3}$ haben den Abstand
+\[
+\sqrt{(3-1)^2+(3-2)^2} = \sqrt{2^2+1^2} = \sqrt{5} \MDFPeriod
+\]
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (4.3,0);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.2) -- (0,4.3);
+\foreach \y in {-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Steigungsdreieck
+\draw[color=red, dashed] (1,2) -- (3,2);
+\draw[color=red, dashed] (3,2) -- (3,3);
+\draw[color=red] (2,2) node[anchor=north] {\footnotesize $2=3-1$};
+\draw[color=red] (3,2.5) node[anchor=west] {\footnotesize $1=3-2$};
+\draw[color=red] (2.2,2.4) node[anchor=south east] {\footnotesize $\sqrt{5}$};
+%Punkte
+\draw[color=red] (1,2) -- (3,3);
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {$P$};
+\draw[fill=red] (3,3) circle (1.5pt);
+\draw[color=red] (3,3) node[anchor=south] {$Q$};
+%rechter Winkel
+\draw[color=red] (2.8,2.2) -- (3,2.2);
+\draw[color=red] (2.8,2.2) -- (2.8,2);
+\draw[color=red,fill=red] (2.9,2.1) circle (0.5pt);
+\end{tikzpicture}
+}
+\end{center} 
+\end{MExample}
+
+Der Abstand zwischen zwei Punkten in der Ebene kann also dadurch berechnet werden, dass man aus ihren Abszissen und Ordinaten die Seitenlängen eines rechtwinkligen Dreiecks bestimmt und dann den Satz des Pythagoras anwendet. Weiterhin ist in obigem Beispiel \MNRef{bsp:abstand} ersichtlich, dass der Abstand zwischen den Punkten $P$ und $Q$ genau die Länge eines endlichen Stücks der Gerade $P Q$ beschreibt, nämlich desjenigen Stücks zwischen $P$ und $Q$. Dieses endliche Stück der Gerade $P Q$ heißt \MEntry{Strecke}{Strecke} zwischen $P$ und $Q$ und wird mit dem Symbol $\overline{P Q}$ bezeichnet. Die \MEntry{Länge der Strecke}{Streckenlänge} $\overline{P Q}$ ist der Abstand zwischen $P$ und $Q$ und trägt das Symbol $[\overline{P Q}]$. 
+
+\begin{MInfo}
+\MLabel{VBKM09_Abstand}
+Der \MEntry{Abstand}{Abstand} zwischen zwei Punkten $P=\MPointTwo{x_0}{y_0}$ und $Q=\MPointTwo{x_1}{y_1}$ im $\R^2$ ist gegeben durch
+\[
+ [\overline{P Q}] = \sqrt{(x_1-x_0)^2+(y_1-y_0)^2} \MDFPeriod
+\]
+\end{MInfo}
+
+Man stellt hier außerdem fest: zwei Punkte haben genau dann den Abstand Null, wenn sie identisch sind.
+
+\begin{MExercise}
+\begin{MExerciseItems}
+\item{Berechnen Sie den Abstand der beiden Punkte $A=\MPointTwo{-1}{-5}$ und $B=\MPointTwo{4}{7}$.\\ $[\overline{A B}]=$\MFunctionQuestion{12}{13}{4}{x}{3}} 
+\item{Berechnen Sie \textit{das Quadrat} des Abstands der beiden Punkte $P=\MPointTwo{3}{0}$ und $Q=\MPointTwo{1}{\psi}$ in Abhängigkeit von $\psi$.\\ \MEquationItem{$[\overline{P Q}]^2$}{\MLSimplifyQuestion{30}{4+psi^2}{5}{psi}{5}{1}{AB1}}}
+\item{Bestimmen Sie den Punkt $V$ im III. Quadranten, der vom Punkt $U=\MPointTwo{2}{1}$ den Abstand $3\sqrt{5}$ hat und auf der Geraden durch $U$ mit der Steigung $2$ liegt.\\
+\MEquationItem{$V$}{\MLFunctionQuestion{15}{(-1,-5)}{5}{x}{5}{AB2}}}
+
+\end{MExerciseItems}
+Beim zweiten Aufgabenteil ist $\psi$ eine unbekannte Konstante, die in der Lösung als \MInputHint{\texttt{psi}} eingegeben werden kann.
+
+\begin{MHint}{Lösung} 
+\begin{MExerciseItems}
+\item{\[
+       [\overline{A B}] = \sqrt{(-1-4)^2+(-5-7)^2} = \sqrt{5^2+12^2} = \sqrt{169} = 13
+      \]
+} 
+\item{\[
+       [\overline{P Q}]^2 = (3-1)^2 + (0-\psi)^2 = 4+\psi^2
+      \]
+}
+\item{Die Gerade durch $U=\MPointTwo{2}{1}$ mit der Steigung $2$ hat nach Abschnitt \MNRef{VBKM09_Koordinatengleichungen} die Gleichung $y=2x+b$ mit dem Achsenabschnitt $b$, der durch Einsetzen des Punktes $U$ ermittelt werden kann:
+\[
+ 1 = 2\cdot 2 + b\MDFPaSpace\Leftrightarrow\MDFPaSpace b=-3\MDFPeriod
+\]
+Somit ergibt sich die Gleichung $y=2x-3$ für die Gerade durch $U$ mit Steigung $2$. Punkte auf dieser Geraden haben also die Koordinaten $\MPointTwo{x}{2x-3}$. Von diesen Punkten gilt es nun denjenigen zu finden, der von $U$ den Abstand $3\sqrt{5}$ hat und im III. Quadranten liegt. Für den Abstand zwischen $U=\MPointTwo{2}{1}$ und einem Punkt $\MPointTwo{x}{2x-3}$ gilt in Abhängigkeit von $x$:
+\[
+ [\overline{U\MPointTwo{x}{2x-3}}] = \sqrt{(2-x)^2+(1-(2x+3))^2}=\sqrt{(x-2)^2 + (2x-4)^2} =
+\]
+\[
+ = \sqrt{(x-2)^2 + 4(x-2)^2} = \sqrt{5(x-2)^2} = \sqrt{5}|x-2|\MDFPeriod
+\]
+Das Lösen der Gleichung
+\[
+ \sqrt{5}|x-2| = 3\sqrt{5}\MDFPaSpace\Leftrightarrow\MDFPaSpace |x-2|=3
+\]
+mit den Methoden aus \MNRef{M02_Betragsgleichungen} liefert die beiden $x$-Werte $-1$ und $4$. Dabei kann nur der $x$-Wert $-1$ als Abszisse eines Punktes im III. Quadranten auftreten. Die zugehörige Ordinate ergibt sich durch Einsetzen in die Geradengleichung:
+\[
+ y = 2\cdot(-1)-3 = -5\MDFPeriod
+\]
+Somit ist der gesuchte Punkt $V=\MPointTwo{-1}{-5}$.
+
+}
+\end{MExerciseItems}
+
+\end{MHint} 
+
+\end{MExercise}
+
+
+
+\end{MXContent}
+
+\begin{MXContent}{Koordinatengleichungen für Kreise}{Koordinatengleichungen Kreise}{STD}
+\MLabel{VBKM09_Kreise_Koordinaten}
+\MDeclareSiteUXID{VBKM09_Kreise_Koordinaten}
+
 \begin{MInfo}
 Ein \MEntry{Kreis}{Kreis} ist die Menge aller Punkte, die einen festen Abstand zu einem gemeinsamen Mittelpunkt besitzen. Diesen Abstand nennt man \MEntry{Radius}{Radius} und notiert ihn
 mit einem kleinen $r$. Die Angabe des Radius $r>0$ und des Mittelpunkts $P=(x_0;y_0)$ legt einen Kreis eindeutig fest.
@@ -1844,23 +2028,7 @@ mit einem kleinen $r$. Die Angabe des Radius $r>0$ und des Mittelpunkts $P=(x_0;
 Der geometrische Abstand zwischen zwei Punkten ist die Länge der Verbindungsstrecke zwischen den Punkten. Fasst man diese als Eckpunkte eines rechtwinkligen Dreiecks auf,
 so ergibt Auflösung des \MSRef{VBKM05_Pythagoras}{Satzes des Pythagoras} nach der Länge $c$ diese Formel für den Abstand:
 
-\begin{MInfo}
-\MLabel{VBKM09_Abstand}
-Der geometrische \MEntry{Abstand}{Abstand} zwischen zwei Punkten $P=(x_0;y_0)$ und $Q=(x_1;y_1)$ wird durch den Ausdruck
-$$
-\sqrt{(x_1-x_0)^2+(y_1-y_0)^2}
-$$
-gegeben.
-\end{MInfo}
 
-Wie bei Koordinaten verwenden wir keine Längeneinheit für den Abstand, er ist eine absolute Zahl. Zwei Punkte haben den Abstand Null genau dann, wenn sie gleich sind.
-
-\begin{MExample}
-Die Punkte $P=(1;2)$ und $Q=(3;3)$ haben den Abstand
-$$
-\sqrt{(3-1)^2+(3-2)^2} \;=\; \sqrt{5} \; \approx\; \MZahl{2}{236}  \MDFPeriod
-$$
-\end{MExample}
 
 \begin{MExample}
 Der Kreis mit Mittelpunkt $P=(2;1)$ und Radius $r=2$ besteht aus allen Punkten, deren Verbindungslinie zu $P$ die Länge $2$ besitzt. Beispielsweise ist $Q=(0;1)$ ein Punkt auf dem Kreis:
@@ -1914,11 +2082,6 @@ womit $(5;6)$ tatsächlich auf dem Kreis mit Radius $5$ um $P$ liegt.
 
 Wie bei der Zwei-Punkte-Form für Geraden ist die Beschreibung eines Kreises durch Mittelpunkt und Radius erstmal nicht geeignet, um direkte Rechnungen mit dem Kreis auszuführen.
 
-\end{MIntro}
-
-\begin{MXContent}{Allgemeine Form}{Allgemeine Form}{STD}
-\MLabel{VBKM09_Kreise_Allgemein}
-\MDeclareSiteUXID{VBKM09_Kreise_Allgemein}
 
 Genau wie bei Geraden sind Kreise letztlich Mengen von unendlich vielen Punkten, die in einer geeigneten Form beschrieben werden müssen, damit man mit ihnen rechnen kann.
 In Modul \MNRef{VBKM05} haben wir schon mit dem Einheitskreis gearbeitet, um die \MSRef{VBKM05_Trigonometrie_Einheitskreis}{trigonometrischen Funktionen} zu veranschaulichen.

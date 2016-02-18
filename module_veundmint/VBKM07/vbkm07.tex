@@ -41,7 +41,12 @@ Stellen Sie sich vor, Sie sind mit Ihrem Auto unterwegs in den Urlaub. Sie fahre
 
 Ähnliche Zusammenhänge finden Sie auch in anderen technischen Bereichen, z.B. bei der Berechnung von inneren Kräften, die in Stahlgerüsten von Bauwerken wirken, der Vorhersage von Atmosphären- oder Meeresströmungen oder auch bei der heute so wichtigen Modellierung der Finanzmärkte.
 
-In diesem Kapitel wiederholen wir die grundlegenden Ideen, die hinter diesen Berechnungen stecken. Wir sehen uns die Differentialrechnung an. Mit anderen Worten: Wir bilden Ableitungen von Funktionen und bestimmen so deren Steigungen bzw. Änderungsraten. Auch wenn wir diese Berechnungen hier streng mathematisch durchführen, ist unsere Motivation nicht rein mathematischer Natur. Ableitungen nehmen in vielen wissenschaftlichen Bereichen in der Interpretation als Änderungsraten verschiedener Funktionen eine wichtige Rolle ein und werden oft als herausragende Größen untersucht.
+In diesem Kapitel wiederholen wir die grundlegenden Ideen, die hinter diesen Berechnungen stecken. Wir sehen uns die Differentialrechnung an.
+Mit anderen Worten: Wir bilden Ableitungen von Funktionen und bestimmen so deren Steigungen bzw. Änderungsraten.
+Auch wenn wir diese Berechnungen hier streng mathematisch durchführen, ist unsere Motivation nicht rein mathematischer Natur.
+Ableitungen nehmen in vielen wissenschaftlichen Bereichen in der Interpretation als Änderungsraten verschiedener
+Funktionen eine wichtige Rolle ein und werden oft als herausragende Größen untersucht.
+
 \end{MIntro}
 
 \begin{MXContent}{Relative Änderungsrate einer Funktion}{Relative Änderungsrate}{STD}
@@ -756,6 +761,23 @@ Damit ist
 \item $g'(x) = $ \MLSimplifyQuestion{40}{exp(x)}{10}{x}{4}{0}{TFR2}.
 \end{MExerciseItems}
 \MInputHint{Schreiben Sie Exponentialfunktionen mit \texttt{exp}, beispielsweise schreiben Sie $\MEU^{4x^2}$ als \texttt{exp(4*x^2)}.}
+
+\begin{MHint}{Lösung}
+ \begin{MExerciseItems}
+  \item Es ist
+  \[
+   f(x) = 3 \ln (x) + \ln \left( \frac1x \right) = \ln (x^3) + \ln \left( \frac1x \right) = ln \left( x^3 \cdot \frac1x \right)
+   = \ln \left( x^2 \right) \MDFPeriod
+  \]
+  Für den Wert der Ableitung von $f$ an der Stelle $x$ ($x>0$) folgt daher mit Hilfe der Kettenregel
+  $f'(x) = \frac{1}{x^2} \cdot 2 x = \frac{2}{x}$.
+  \item Es ist
+  \[
+  g(x) = \left( e^x \right)^2 \cdot e^{-x} = e^x \cdot e^x \cdot e^{-x} = e^{x+x-x} = e^x \MDFPeriod
+  \]
+  Daher folgt $g'(x) = e^x$.
+ \end{MExerciseItems}
+\end{MHint}
 \end{MExercise}
 
 \end{MExercises}
@@ -956,7 +978,7 @@ f'(x) = 5 (u(x))^4 \cdot (-2) = 5 (3 - 2 x)^4 \cdot (-2) = -10 (3 - 2 x)^4 \MDFP
 \]
 
 Sehen wir uns ein zweites Beispiel an und berechnen die Ableitung von $g: \R \rightarrow \R$ mit $g(x) = \MEU^{x^3}$.
-Dazu verwenden wir die Zuordnung $x \mapsto u(x) = x^3$ für die innere Funktion $u$ und $u \mapsto v(u) = \MEU^u$ für die äußere Funktion $v$.
+Dazu verwenden wir die Zuordnungen $x \mapsto u(x) = x^3$ für die innere Funktion $u$ und $u \mapsto v(u) = \MEU^u$ für die äußere Funktion $v$.
 Bestimmen wir die innere und die äußere Ableitung, dann erhalten wir $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$.
 Setzen wir beides in die Kettenregel ein, bekommen wir die Ableitung der Funktion $g$:
 \[
@@ -983,6 +1005,15 @@ führt auf $g'(x) = $\MLSimplifyQuestion{30}{-1/(4*x^2) - 3*x^2}{1}{x}{20}{512}{S
 \item $h(x) := 2 \sqrt{x} + 4 x^{-3}$
 führt auf $h'(x) = $\MLSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}{SIMPLE11}
 \end{MExerciseItems}
+\begin{MHint}{Lösung}
+ \begin{MExerciseItems}
+  \item Es ist $f'(x) = 0 + 5 \cdot 1 \cdot x^0 = 0 + 5 = 5$.
+  \item Wegen $g(x) = \frac{1}{4x} - x^3 = \frac14 x^{-1} - x^3$ folgt
+  $g'(x) = \frac14 \cdot (-1) \cdot x^{-2} - 3 \cdot x^2 = - \frac{1}{4 x^2} - 3 x^2$.
+  \item Wegen $h(x) = 2 \sqrt{x} + 4 x^{-3} = 2 x^\frac12 + 4 x^{-3}$ folgt
+  $h'(x) = 2 \cdot \frac12 \cdot x^{-\frac12} + 4 \cdot (-3) \cdot x^{-4} = \frac{1}{\sqrt{x}} - \frac{12}{x^4}$.
+ \end{MExerciseItems}
+\end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
@@ -997,6 +1028,31 @@ führt auf $g'(x) = $\MLFunctionQuestion{30}{3*cos(6*x)}{10}{x}{4}{DG21}
 \item $h(x) := \frac{\sin(3 x)}{\sin(6 x)}$
 führt auf $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{512}{SIMPLE12}
 \end{MExerciseItems}
+\begin{MHint}{Lösung}
+ \begin{MExerciseItems}
+  \item Es ist mit Hilfe der Quotientenregel
+  \[
+  f'(x) = \frac{(- \sin (x)) \cdot \sin (x) - \cos (x) \cdot \cos (x)}{\left( \sin (x) \right)^2}
+  = - \frac{\sin^2 (x) + \cos^2 (x)}{\sin^2 (x)} = - \frac{1}{\sin^2 (x)} \MDFPeriod
+  \]
+  \item Produkt- und Kettenregel liefern
+  \[
+   g'(x) = \cos (3x) \cdot 3 \cdot \cos (3x) + \sin (3x) \cdot \left( - \sin (3x) \right) \cdot 3
+   = 3 \left( \cos^2 (3x) - \sin^2 (3x) \right) \MDFPeriod
+  \]
+  Da allgemein $\cos^2 (u) - \sin^2 (u) = \cos (2u)$ gilt, folgt also $g'(x) = 3 \cos (6x)$.
+  \item Aufgrund der allgemeinen Relation $\sin (2u) = 2 \sin(u) \cos(u)$ ist
+  \[
+  h(x) = \frac{\sin (3x)}{\sin (6x)} = \frac{\sin (3x)}{2 \sin (3x) \cos (3x)} = \frac{1}{2 \cos (3x)}
+  = \frac12 \cdot \left( \cos (3x) \right)^{-1} \MDFPeriod
+  \]
+  Mehrmaliges Anwenden der Kettenregel führt dann auf
+  \[
+  h'(x) = \frac12 \cdot (-1) \cdot \left( \cos (3x) \right)^{-2} \cdot \left( - \sin (3x) \right) \cdot 3
+  = \frac{3 \sin (3x)}{2 \cos^2 (3x)} = \frac{3 \tan (3x)}{2 \cos (3x)} \MDFPeriod
+  \]
+ \end{MExerciseItems}
+\end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
@@ -1011,6 +1067,14 @@ führt auf $g'(x) = $\MLFunctionQuestion{30}{(6*x+1)*exp(6*x)}{10}{x}{4}{DG23}
 \item $h(x) := (x^2 - x) \cdot \MEU^{-2 x}$
 führt auf $h'(x) = $\MLFunctionQuestion{30}{-(2*x^2 - 4*x + 1) * exp(-2*x)}{10}{x}{4}{DG24}
 \end{MExerciseItems}
+\begin{MHint}{Lösung}
+ \begin{MExerciseItems}
+  \item Die Kettenregel liefert sofort $f'(x) = 5 e^{5x}$.
+  \item Produkt- und Kettenregel führen auf $g'(x) = 1 \cdot e^{6x} + x \cdot e^{6x} \cdot 6 = e^{6x} (1 + 6x)$.
+  \item Produkt- und Kettenregel führen auf $h'(x) = (2x - 1) \cdot e^{-2x} + (x^2 - x) \cdot e^{-2x} \cdot (-2)
+  = - (2x^2 - 4x + 1) e^{-2x}$.
+ \end{MExerciseItems}
+\end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
@@ -1030,6 +1094,15 @@ Damit:
 \item
  $f^{(4)}(x) = $\MLFunctionQuestion{30}{16 * sin(1 - 2*x)}{10}{x}{4}{DG28}
 \end{itemize}
+\begin{MHint}{Lösung}
+ Mit Hilfe der Kettenregel bestimmt man sukzessive:
+ \begin{eqnarray*}
+  f^{(1)} (x) & = & \cos(1 - 2x) \cdot (-2) = -2 \cos(1 - 2x) \\
+  f^{(2)} (x) & = & -2 \cdot \left( - \sin (1 - 2x) \right) \cdot (-2) = -4 \sin (1 - 2x) \\
+  f^{(3)} (x) & = & -4 \cdot \cos (1 - 2x) \cdot (-2) = 8 \cos (1 - 2x) \\
+  f^{(4)} (x) & = & 8 \cdot \left( - \sin (1 - 2x) \right) \cdot (-2) = 16 \sin (1 - 2x) \MDFPeriod
+ \end{eqnarray*}
+\end{MHint}
 \end{MExercise}
 
 \end{MExercises}
@@ -1253,6 +1326,15 @@ Antwort:
 %\item $f$ auf \MIntervalQuestion{20}{(0,infty)}{4} monoton wachsend.
 %\item $f$ auf $($\MIntervalQuestion{8}{0}{4}$, infty)$ monoton wachsend.
 \end{itemize}
+\begin{MHint}{Lösung}
+ Die Ableitung $f'$ der Funktion $f$ besitzt den Funktionsterm
+ \[
+ f'(x) = \frac{2x \cdot (x^2 + 1) - (x^2 - 1) \cdot 2x}{(x^2 + 1)^2}
+ = \frac{2x \left( x^2 + 1 - x^2 + 1 \right)}{(x^2 + 1)^2} = \frac{4x}{(x^2 + 1)^2} \MDFPeriod
+ \]
+ Da der Nenner von $f'(x)$ immer positiv ist, bestimmt ausschließlich der Zähler das Vorzeichen von $f'(x)$: Für alle negativen $x \in \R$ ist
+ $f'(x) < 0$ und $f$ daher dort monoton fallend; für alle positiven $x \in \R$ dagegen ist $f'(x) > 0$ und $f$ daher dort monoton wachsend.
+\end{MHint}
 \end{MExercise}
 
 
@@ -1275,6 +1357,20 @@ Antwort:
 \MInputHint{Offene Intervalle können in der Form $(a;b)$ eingetippt werden, geschlossene Intervalle als $[a;b]$, $a$ und $b$ dürfen
 beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notation $]a;b[$ für offene Intervalle. Schreiben Sie \texttt{infty} oder
 \texttt{unendlich} f"ur $\infty$ in Ihrer Antwort.}
+
+\begin{MHint}{Lösung}
+ Man berechnet für die erste und die zweite Ableitung von $f$ mit Hilfe der Quotientenregel
+ \begin{eqnarray*}
+  f'(x) & = & \frac{4x}{(x^2 + 1)^2} , \\
+  {f'}'(x) & = & \frac{4 \cdot (x^2 + 1)^2 - 4x \cdot 2 (x^2 + 1) \cdot 2x}{(x^2 + 1)^4}
+  = \frac{4x^2 + 4 - 16x^2}{(x^2 + 1)^3} = \frac{4 (1-3x^2)}{(x^2 + 1)^3} \MDFPeriod
+ \end{eqnarray*}
+ Da $4/(x^2 + 1)^3$ stets positiv ist, wird das Vorzeichen von ${f'}'(x)$ einzig durch den Faktor $(1 - 3x^2)$ bestimmt. Die einfachen
+ Nullstellen von ${f'}'(x)$ liegen bei $x_0 = \pm \frac{1}{\sqrt{3}}$. Daher ist für $x>0$ ${f'}'(x)$ auf dem
+ offenen Intervall $(0 \MIntvlSep \frac{1}{\sqrt{3}} )$
+ echt größer $0$ und $f$ daher dort linksgekrümmt (konvex). Auf $(\frac{1}{\sqrt{3}} \MIntvlSep \infty )$ gilt ${f'}'(x) < 0$; somit ist $f$ dort
+ rechtsgekrümmt (konkav).
+ \end{MHint}
 \end{MExercise}
 
 
@@ -1336,6 +1432,18 @@ Antwort:
 \end{itemize}
 Die Maximalstelle von $f$ ist bei \MLParsedQuestion{8}{-4}{4}{DEG7}.
 Die Minimalstelle von $f$ ist bei \MLParsedQuestion{8}{0}{4}{DEG8}.
+
+\begin{MHint}{Lösung}
+ Das Monotonieverhalten wird durch die Ableitung $f'$ der Funktion $f$ bestimmt. Da der Graph der Ableitung $f'$ in der Aufgabenstellung
+ als Schaubild gegeben ist, muss man nur ablesen, in welchen Intervallen der Graph oberhalb (bzw. unterhalb) der $x$-Achse verläuft:
+ Auf den Intervallen $(-4,5 \MIntvlSep -4)$, $(0 \MIntvlSep 3)$ und $(3 \MIntvlSep 4)$ ist $f'(x) > 0$ und $f$ daher dort monoton wachsend;
+ auf dem Intervall $(-4 \MIntvlSep 0)$ dagegen ist $f'(x) < 0$ und $f$ daher dort monoton fallend.\newline
+ An einer Extremstelle $x_e$ (Maximal- oder Minimalstelle) einer Funktion $f$ (die nicht auf dem Rand des Definitionsbereichs liegt)
+ verschwindet die erste Ableitung: $f'(x_e) = 0$. Anschaulich bedeutet dies, dass an einer solchen Stelle die Tangente an den Graphen
+ von $f$ waagrecht verläuft. Die Nullstellen von $f'(x)$ liegen laut Aufgabenstellung bei $x_ 1 = -4$, $x_2 = 0$ und $x_3 = 3$. Da $f$ auf
+ $(-4,5 \MIntvlSep -4)$ monoton wächst und auf $(-4 \MIntvlSep 0)$ monoton fällt, ist $x_1 = - 4$ eine Maximalstelle.
+ Analog begründet man, dass bei $x_2 = 0$ eine Minimalstelle vorliegt. (Bei $x_3 = 3$ handelt es sich um eine Sattelstelle.)
+\end{MHint}
 \end{MExercise}
 \end{MExercises}
 
