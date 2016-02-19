@@ -794,7 +794,7 @@ vorgestellten Ableitungen lässt sich eine Vielzahl an Funktionen
 differenzieren.
 \end{MIntro}
 
-\begin{MXContent}{Vielfaches und Summe von Funktionen}{Vielfache und Summen}{STD}
+\begin{MXContent}{Vielfaches und Summe von Funktionen}{Vielfaches und Summe}{STD}
 \MDeclareSiteUXID{VBKM07_Rechenregeln_Summen}
 
 Im Folgenden bezeichnen $u, v: D \rightarrow \R$ zwei beliebige differenzierbare Funktionen sowie $r$ eine beliebige reelle
@@ -1807,7 +1807,7 @@ Stellen wir eine Dose mit diesen Maßen her, werden wir für das im Beispiel vorge
 \MLabel{M07_Abschlusstest}
 \MDeclareSiteUXID{VBKM07_Abschlusstest}
 \begin{MExercise}
-In einem Beh"ahlter wird um $9$ Uhr eine Temperatur von $-10^{\circ}{\MEinheit[]{C}}$ 
+In einem Beh"alter wird um $9$ Uhr eine Temperatur von $-10^{\circ}{\MEinheit[]{C}}$ 
 gemessen. Um $15$ Uhr betr"agt die Temperatur $-58^{\circ}{\MEinheit[]{C}}$.
 Nach weiteren vierzehn Stunden ist die Temperatur auf 
 $-140^{\circ}{\MEinheit[]{C}}$ gefallen. 
@@ -1821,16 +1821,15 @@ Antwort: \MLParsedQuestion{5}{-8}{3}{DYG12}
 %\item Wodurch dr"uckt sich in der (mittleren) "Anderungsrate aus, dass die 
 %Temperatur f"allt?
 %
-\item In der (mittleren) "Anderungsrate dr"uckt sich die Eigenschaft, dass die
-Temperatur f"allt, dadurch aus, dass die "Anderungsrate
+\item In der (mittleren) "Anderungsrate dr"uckt sich die Eigenschaft der fallenden Temperatur dadurch aus, dass die "Anderungsrate
 {\MLQuestion{20}{negativ}{DFA10}} ist.
 \begin{MHint}{Hinweis}
 Geben Sie ein Adjektiv an.
 \end{MHint}
 %{\MQuestion{20}{kleiner null bzw. negativ}} ist.
 %
-\item Berechnen Sie die mittlere "Anderungsrate der Temperatur der gesamten
-Messdauer, die sich anhand der ersten und letzten Messung ergibt.
+\item Berechnen Sie die mittlere "Anderungsrate der Temperatur über die gesamte
+Messdauer.
 
 Antwort: \MLParsedQuestion{5}{-6.5}{3}{DXG12}
 %Ergebnis: $(-140 - (-10)) / (29 - 9) = -130 / 20 = -6.5$.
@@ -1838,7 +1837,7 @@ Antwort: \MLParsedQuestion{5}{-6.5}{3}{DXG12}
 \end{MExercise}
 
 \begin{MExercise}
-Zu einer Funktion $f: [-3\MIntvlSep 2] \rightarrow \R$ geh"ort die Ableitung $f'$, deren 
+Zu einer Funktion $f: [-3\MIntvlSep 2] \rightarrow \R$, $x \mapsto f(x)$ geh"ort die Ableitung $f'$, deren 
 Graph hier gezeichnet ist:
 
 \begin{center}
@@ -1874,28 +1873,28 @@ Die Funktionswerte von $f$ zwischen $-3$ und $0$\\
 \end{tabular}
 \ \\
 
-Die Funktion $f$ hat an der Stelle $0$\\
+Die Funktion $f$ besitzt an der Stelle $0$\\
 \begin{tabular}{lll}
 \MCheckbox{0}{JCC4} & \ \ & eine Sprungstelle,\\
 \MCheckbox{0}{JCC5} & \ \ & keine Ableitung,\\
-\MCheckbox{1}{JCC6} & \ \ & die Ableitung $1$.
+\MCheckbox{1}{JCC6} & \ \ & $1$ als Wert der Ableitung.
 \end{tabular}
 \end{MExercise}
 
 \begin{MExercise} %Rechenregeln
 Berechnen Sie f"ur
 \begin{MExerciseItems}
-\item $f(x) := \ln\left(x^3 + x^2\right)$ f"ur $x > 0$ die Ableitung
-$f'(x) = $\MLSimplifyQuestion{30}{(3 x + 2)/(x^2 + x)}{1}{x}{20}{0}{SIMPLE13}
-\item $g(x) := x \cdot \MEU^{-x}$ die zweite Ableitung
-${g'}'(x) = $\MLSimplifyQuestion{30}{(x - 2) * exp(-x)}{10}{x}{4}{0}{SIMPLE14}
+ \item $f: \{ x \in \R | x > 0 \} \rightarrow \R$ mit $f(x) := \ln\left(x^3 + x^2\right)$ den Wert der Ableitung $f'$ an der Stelle $x$:\newline
+$f'(x) = $\MLSimplifyQuestion{30}{(3 x + 2)/(x^2 + x)}{1}{x}{20}{0}{SIMPLE13} \MDFPeriod
+\item $g: \R \rightarrow \R$ mit $g(x) := x \cdot \MEU^{-x}$ den Wert der zweiten Ableitung ${g'}'$ an der Stelle $x$:\newline
+${g'}'(x) = $\MLSimplifyQuestion{30}{(x - 2) * exp(-x)}{10}{x}{4}{0}{SIMPLE14} \MDFPeriod
 \end{MExerciseItems}
 \MInputHint{Klammern Sie die Terme, um Missverständnisse zu vermeiden, z.B. schreiben Sie $\frac{x+1}{(x+2)^2}$ als \texttt{(x+1)/((x+2)^2)}.} 
 \end{MExercise}
 
 \begin{MExercise} %Eigenschaften
-In welchen Bereichen ist $f: (0\MIntvlSep  \infty) \rightarrow \R$ monoton fallend, 
-in welchen konkav, wenn $f'(x) = x \cdot \ln x$ gilt?
+Man betrachte die Funktion $f: (0\MIntvlSep  \infty) \rightarrow \R$, $x \mapsto f(x)$ mit $f'(x) = x \cdot \ln x$.
+In welchen Bereichen ist $f$ monoton fallend, in welchen Bereichen ist $f$ konkav?
 %
 Geben Sie als Bereiche m"oglichst gro"se offene Intervalle $(c\MIntvlSep  d)$ an:
 \begin{MExerciseItems}
@@ -1908,11 +1907,11 @@ beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notat
 \end{MExercise}
 
 %TODO Eingabe und Loesung fehlt
-\begin{MExercise} %Anwendungen
-Berechnen Sie alle lokalen und globalen Extremstellen und Wendestellen der 
-Funktion $f: \R \rightarrow \R$ mit $f(x) := (x^2 - 3 x) \cdot \MEU^{2 x}$ f"ur 
-$x \in \R$.
-\end{MExercise}
+%\begin{MExercise} %Anwendungen
+%Berechnen Sie alle lokalen und globalen Extremstellen und Wendestellen der 
+%Funktion $f: \R \rightarrow \R$ mit $f(x) := (x^2 - 3 x) \cdot \MEU^{2 x}$ f"ur 
+%$x \in \R$.
+%\end{MExercise}
 
 
 \end{MTest}
