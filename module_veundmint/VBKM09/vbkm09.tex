@@ -18,7 +18,7 @@ Dieses Modul besteht aus
 \item{dem Abschnitt \MSRef{M09_2Geraden}{Geraden in der Ebene},}
 \item{dem Abschnitt \MSRef{M09_3Kreise}{Kreise in der Ebene},}
 \item{dem Abschnitt \MSRef{M09_4Bereiche}{Bereiche in der Ebene},}
-\item{dem \MSRef{VBKM09_5Abschlusstest}{Abschlusstest}.}
+\item{dem \MSRef{VBKM09_Abschlusstest}{Abschlusstest}.}
 \end{itemize}
 
 % \begin{itemize}
@@ -2022,18 +2022,193 @@ Somit ist der gesuchte Punkt $V=\MPointTwo{-1}{-5}$.
 \MLabel{VBKM09_Kreise_Koordinaten}
 \MDeclareSiteUXID{VBKM09_Kreise_Koordinaten}
 
-\begin{MInfo}
-Ein \MEntry{Kreis}{Kreis} ist die Menge aller Punkte, die einen festen Abstand zu einem gemeinsamen Mittelpunkt besitzen. Diesen Abstand nennt man \MEntry{Radius}{Radius} und notiert ihn
-mit einem kleinen $r$. Die Angabe des Radius $r>0$ und des Mittelpunkts $P=(x_0;y_0)$ legt einen Kreis eindeutig fest.
+Hat man in der Ebene ein Koordinatensystem zur Verfügung, so kann man nun die Punkte auf einem Kreis mit Hilfe des Abstandsbegriffs aus dem vorigen Abschnitt \MNRef{VBKM09_Abstand_Strecken} mit Hilfe einer Gleichung, der sogenannten Kreisgleichung, beschreiben. In der Praxis möchte man sich die, in der Abstandsformel obligatorische, Wurzel ersparen und benutzt stattdessen das Quadrat des Abstands. Dies ist möglich, da Abstände immer nicht-negativ sind. Es gilt also für zwei Punkte $P_1=\MPointTwo{x_1}{y_1}$ und $P_2=\MPointTwo{x_2}{y_2}$:
+\[
+ [\overline{P_1P_2}] = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\MDFPaSpace\Leftrightarrow\MDFPaSpace[\overline{P_1P_2}]^2 = (x_2-x_1)^2 + (y_2-y_1)^2 \MDFPeriod
+\]
+Dies wird in der folgenden Infobox zusammengefasst:
+
+\begin{MInfo}\MLabel{infobox_kreis}
+Ein \MEntry{Kreis}{Kreis} $K$ in der Ebene mit einem vorgegebenen Koordinatensystem ist die Menge aller Punkte, die einen festen Abstand $r>0$, den sogenannten \MEntry{Radius}{Radius} zu einem gemeinsamen \MEntry{Mittelpunkt}{Mittelpunkt} $M=\MPointTwo{x_0}{y_0}$ besitzen. Die Angabe des Radius und des Mittelpunkts legt den Kreis eindeutig fest. Also gilt:
+\[
+ K=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 = r^2\}\MDFPeriod
+\]
+So wie bei Geraden gibt man auch für Kreise oft nur die \MEntry{Kreisgleichung}{Kreisgleichung} an:
+\[
+ K\colon\MDFPSpace(x-x_0)^2 + (y-y_0)^2 = r^2\MDFPeriod
+\]
+Punkte auf dem Kreis, sind also alle, deren Koordinaten die Kreisgleichung erfüllen. Bild hierzu:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (4.3,0);
+\draw[->,color=black] (0,-1.2) -- (0,3.3);
+\draw[dotted,color=violet] (2,1.5) -- (2,0);
+\draw[dotted,color=violet] (2,1.5) -- (0,1.5);
+\draw[shift={(2,0)},color=black] (0pt,2pt) -- (0pt,-2pt); 
+\draw[color=violet] (2,0) node[below] {\footnotesize $x_0$};
+\draw[shift={(0,1.5)},color=black] (0pt,2pt) -- (0pt,-2pt); 
+\draw[color=violet] (0,1.5) node[left] {\footnotesize $y_0$};
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Kreis
+\draw[color=red] (2,1.5) circle (1);
+\draw[color=red] (2.707,0.82) node[anchor=north west] {\footnotesize $K$};
+%Radius
+\draw[color=black] (2,1.5) -- (2.707,2.207);
+\draw[color=black] (2.3,1.86) node[anchor=north west] {\footnotesize $r$};
+%Mittelpunkt
+\draw[fill=violet] (2,1.5) circle (1.5pt);
+\draw[color=violet] (2,1.5) node[anchor=south east] {\footnotesize $M$};
+\end{tikzpicture}       
+}%
+\end{center}
 \end{MInfo}
 
-Der geometrische Abstand zwischen zwei Punkten ist die Länge der Verbindungsstrecke zwischen den Punkten. Fasst man diese als Eckpunkte eines rechtwinkligen Dreiecks auf,
-so ergibt Auflösung des \MSRef{VBKM05_Pythagoras}{Satzes des Pythagoras} nach der Länge $c$ diese Formel für den Abstand:
+Mit Hilfe der Kreisgleichung können nun beliebige Kreise in der Ebene, sowie Punkte auf diesen Kreisen und solche nicht auf diesen Kreisen beschrieben werden. 
 
 
 
 \begin{MExample}
-Der Kreis mit Mittelpunkt $P=(2;1)$ und Radius $r=2$ besteht aus allen Punkten, deren Verbindungslinie zu $P$ die Länge $2$ besitzt. Beispielsweise ist $Q=(0;1)$ ein Punkt auf dem Kreis:
+Der Kreis mit Mittelpunkt $P=\MPointTwo{2}{1}$ und Radius $r=2$ wird beschrieben durch die Kreisgleichung
+\[
+ (x-2)^2 + (y-1)^2 = 2^2 = 4.
+\]
+Auf dem Kreis liegen also alle Punkte, die von $P$ den Abstand $2$ haben. Beispielsweise ist $Q=\MPointTwo{0}{1}$ ein Punkt auf dem Kreis, da gilt
+\[
+ (0-2)^2 + (1-1)^2 = (-2)^2 + 0^2 = 4,
+\]
+aber $R=\MPointTwo{3}{-2}$ ist kein Punkt auf dem Kreis, denn er besitzt den Abstand
+\[
+ [\overline{PR}] = \sqrt{(2-3)^2 + (1-(-2))^2} = \sqrt{10} \neq 2.
+\]
+Der Punkt $R$ erfüllt also nicht die Kreisgleichung.
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (4.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw (2,1) circle (2);
+\draw [fill=red] (2,1) circle (1.5pt);
+\draw [fill=green] (0,1) circle (1.5pt);
+\draw[color=black] (2,1)--(4,1);
+\draw (2,1) node[anchor = north]{$P$};
+\draw (0,1) node[anchor = west]{$Q$};
+\draw (3,1) node[anchor = north]{$r$};
+\draw [fill=green] (3,-2) circle (1.5pt);
+\draw (3,-2) node[anchor = north]{$R$};
+\end{tikzpicture}
+}%
+\end{center}
+\end{MExample}
+
+Ein wichtiger, häufig auftretender Spezialfall eines Kreises ist derjenige, für den der Mittelpunkt dem Ursprung des Koordinatensystems entspricht. So wird beispielsweise durch die Kreisgleichung
+\[
+ x^2+y^2=2
+\]
+ein Kreis vom Radius $\sqrt{2}$ um den Ursprung $\MPointTwo{0}{0}$ beschrieben:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,2.8){};
+\draw[->,color=black] (0,-2.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (0,0) circle (1.42);
+\end{tikzpicture}
+}%
+\end{center}
+
+Ein weiterer Spezialfall hiervon ist der Kreis mit Radius $1$ um den Ursprung. 
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,2.8){};
+\draw[->,color=black] (0,-2.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (0,0) circle (1);
+\draw[color=red] (0.707,-0.707) node[anchor=north west] {\footnotesize Einheitskreis};
+\end{tikzpicture}
+}%
+\end{center}
+
+Dieser trägt die besondere Bezeichnung \MEntry{Einheitskreis}{Einheitskreis} und spielt eine besondere Rolle in der Trigonometrie (vgl.: \MNRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie} und \MNRef{M06_Abschnitt8}).
+
+\begin{MExercise}
+\begin{MExerciseItems}
+\item{Ein Kreis $\Xi$ ist durch die Gleichung
+\[
+ \Xi\colon x^2 + (y+2)^2 = 8
+\]
+gegeben. Sein Mittelpunkt ist $M=$\MFunctionQuestion{12}{(0,-2)}{4}{x}{3} und sein Radius lautet $r=$\MFunctionQuestion{12}{sqrt(8)}{4}{x}{3}. Zeichnen Sie den Kreis.}  
+
+\item{Die Kreisgleichung des Kreises vom Radius $1$ um den Punkt $\MPointTwo{-2}{-1}$ lautet\\ \MLSimplifyQuestion{30}{(x+2)^2+(y+1)^2}{5}{x,y}{5}{1}{Kreis1}$=1$.\\
+Entscheiden Sie jeweils ob die angegebenen Punkte auf dem Kreis liegen. Markieren Sie diejenigen Punkte, die auf dem Kreis liegen.\\
+\begin{MQuestionGroup}
+\begin{tabular}{ll}
+\MCheckbox{0}{Kreis2} & Der Ursprung\\
+\MCheckbox{0}{Kreis3} & $\MPointTwo{1}{1}$\\
+\MCheckbox{1}{Kreis4} & $\MPointTwo{-2}{0}$\\
+\MCheckbox{1}{Kreis5} & $\MPointTwo[\Big]{-\frac{3}{2}}{\frac{\sqrt{3}-2}{2}}$\\
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Punkte kontrollieren}
+}
+\end{MExerciseItems}
+
+
+\begin{MHint}{Lösung} 
+\begin{MExerciseItems}
+\item{
+\[
+ M=\MPointTwo{0}{-2}
+\]
+\[
+ r=2\sqrt{2}
+\]
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture} 
@@ -2044,97 +2219,218 @@ Der Kreis mit Mittelpunkt $P=(2;1)$ und Radius $r=2$ besteht aus allen Punkten, 
 \foreach \x in {-3,-2,-1,1,2,3}
 \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
 % y-Achse
-\node (yMAX) at (0,3.8){};
-\draw[->,color=black] (0,-3.5) -- (yMAX);
-%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
-\foreach \x in {-3,-2,-1,1,2,3}
+\node (yMAX) at (0,1.8){};
+\draw[->,color=black] (0,-5.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-5,-4,-3,-2,-1,1}
 \draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
 %Achsenbeschriftung
-%\draw (xMAX) node[anchor=north east] {$x$};
-%\draw (yMAX) node[anchor=east] {$y$};
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
 %Graphen
-\draw (2,1) circle (2);
-\draw [fill=red] (2,1) circle (1.5pt);
-\draw [fill=green] (0,1) circle (1.5pt);
-\draw[color=red] (2,1)--(4,1);
-\draw (2,1) node[anchor = north]{$P$};
-\draw (0,1) node[anchor = west]{$Q$};
-\draw (3,1) node[anchor = north]{$r$};
+\draw[color=red] (0,-2) circle (2.828);
+\draw[color=red] (2.3,-3.8) node[anchor=south east] {\footnotesize $\Xi$};
+\draw[fill=green] (0,-2) circle (1.5pt);
+\draw[color=green] (0,-2) node[anchor=west] {\footnotesize $M$};
 \end{tikzpicture}
 }%
 \end{center}
-Dagegen ist beispielsweise $R=(5;2)$ kein Punkt auf dem Kreis, denn er besitzt den Abstand
-$$
-\sqrt{(5-2)^2+(2-1)^2} \;=\; \sqrt{10} \; \not=\; 2
-$$
-vom Mittelpunkt.
+} 
+\item{\[
+       (x+2)^2+(y+1)^2=1
+      \]
+Der Ursprung und $\MPointTwo{1}{1}$ liegen nicht auf dem Kreis, $\MPointTwo{-2}{0}$ und $\MPointTwo[\Big]{-\frac{3}{2}}{\frac{\sqrt{3}-2}{2}}$ hingegen schon, wie das Einsetzen in die Kreisgleichung zeigt:
+\[
+ (0+2)^2+(0+1)^2=4+1=5\neq 1,
+\]
+\[
+ (1+2)^2+(1+1)^2=9+1=10\neq 1,
+\]
+\[
+ (-2+2)^2 + (0+1)^2 = 0+1=1,
+\]
+\[
+ \left(-\frac{3}{2}+2\right)^2 + \left(\frac{\sqrt{3}-2}{2}+1\right)^2 = \left(\frac{1}{2}\right)^2 + \left(\frac{\sqrt{3}}{2}\right)^2 = \frac{1}{4}+\frac{3}{4}=1\MDFPeriod
+\]
+
+}
+\end{MExerciseItems}
+
+\end{MHint} 
+
+\end{MExercise}
+
+% Wie bei der Zwei-Punkte-Form für Geraden ist die Beschreibung eines Kreises durch Mittelpunkt und Radius erstmal nicht geeignet, um direkte Rechnungen mit dem Kreis auszuführen.
+% 
+% 
+% Genau wie bei Geraden sind Kreise letztlich Mengen von unendlich vielen Punkten, die in einer geeigneten Form beschrieben werden müssen, damit man mit ihnen rechnen kann.
+% In Modul \MNRef{VBKM05} haben wir schon mit dem Einheitskreis gearbeitet, um die \MSRef{VBKM05_Trigonometrie_Einheitskreis}{trigonometrischen Funktionen} zu veranschaulichen.
+% Er kann durch eine quadratische Gleichung beschrieben werden, die als Grundlage für beliebige Kreise dient:
+% 
+% \begin{MInfo}
+% Der Einheitskreis wird durch die \MEntry{Kreisgleichung}{Kreisgleichung}
+% $$
+% x^2+y^2 \;=\; 1
+% $$
+% beschrieben. Diese Gleichung drückt aus, dass die Punkte auf dem Kreis den Abstand $1$ zum Ursprung besitzen.
+% \end{MInfo}
+% 
+% Ein beliebiger Kreis mit Radius $1$ kann nun dadurch beschrieben werden, dass man den Einheitskreis zum neuen Mittelpunkt verschiebt.
+% Dabei wird jede Koordinate separat verschoben und man erhält die Kreisgleichung
+% $$
+% (x-x_0)^2+(y-y_0)^2 \;=\; 1
+% $$
+% für den Kreis um den Mittelpunkt $P=(x_0;y_0)$ mit Radius $1$.
+% Um nun noch den Radius anzupassen und damit beliebige Kreise ausdrücken zu können, verändert man die Konstante auf der rechten Seite der Gleichung. Da in der \MSRef{VBKM09_Abstand}{Abstandsgleichung}
+% die Wurzel aus den Quadraten auftritt, muss in der Kreisgleichung nun das Quadrat des Radius eingesetzt werden:
+% 
+% \begin{MInfo}
+% Die \MEntry{allgemeine Kreisgleichung}{Allgemeine Kreisgleichung} für den Kreis mit Mittelpunkt $(x_0;y_0)$ und Radius $r>0$ lautet
+% $$
+% (x-x_0)^2+(y-y_0)^2 \;=\; r^2 \MDFPeriod
+% $$
+% \end{MInfo}
+% 
+% \begin{MExample}
+% Liegt der Punkt $(2;2)$ auf dem Kreis um den Mittelpunkt $(3;4)$ mit Radius $2$?
+% Dazu stellen wir die allgemeine Kreisgleichung auf und prüfen, ob der Punkt $(2;2)$ sie erfüllt.
+% Einsetzen der Verschiebung auf den neuen Mittelpunkt und des Quadrats des Radius ergibt die Kreisgleichung
+% $$
+% (x-3)^2+(y-4)^2 \;=\; 4 \MDFPeriod
+% $$
+% Einsetzen von $x=2$ und $y=2$ ergibt
+% $$
+% (2-3)^2+(2-4)^2 \;=\; 5 \; \not=\; 4 \MDFPSpace,
+% $$
+% womit $(2;2)$ nicht auf dem Kreis liegt.
+% \end{MExample}
+
+In den obigen Beispielen und Aufgaben ist erkennbar, dass das Ablesen des Mittelpunkts und des Radius eines Kreises aus seiner Gleichung relativ einfach ist, insofern die Gleichung genau in der Form 
+\[
+ (x-x_0)^2+(y-y_0)^2=r^2
+\]
+aus Infobox \MNRef{infobox_kreis} gegeben ist. Deshalb spricht man hierbei auch von der \MEntry{Normalform}{Normalform (einer Kreisgleichung)} der Kreisgleichung. Leider kommt es aber oft vor, dass die Kreisgleichung nicht in dieser einfachen Form vorliegt, sondern erst in einigen Rechenschritten umgeformt werden muss, um dann den Mittelpunkt und  den Radius ablesen zu können. Das Vorgehen wird in dem folgenden Beispiel demonstriert. 
+
+\begin{MExample}
+Gegeben ist ein Kreis $K$ durch die Gleichung
+\[
+ K\colon x^2+y^2-6x+y+\frac{21}{4}=0.
+\]
+Dieser Gleichung sieht man weder sofort an, dass es sich um eine Kreisgleichung handelt, noch ist sofort der Mittelpunkt und der Radius des Kreises ersichtlich. Man kann die Gleichung aber auf Normalform bringen indem man sich der Methode der \MSRef{VBKM02_QuadratischErgaenzung}{Quadratischen Ergänzung} bedient. Diese wird hier auf die Terme mit $x$ und die Terme mit $y$ in obiger Kreisgleichung getrennt angewandt.
+
+Für die Terme mit $x$ ergibt sich
+\[
+ x^2-6x = x^2 -2\cdot3x = x^2 -2\cdot3x +3^2-3^2 = x^2-6x+9-9 = (x-3)^2-9,
+\]
+und für die Terme mit $y$ ergibt sich
+\[
+ y^2+y = y^2+2\cdot\frac{1}{2}x =  y^2+2\cdot\frac{1}{2}x + \left(\frac{1}{2}\right)^2 - \left(\frac{1}{2}\right)^2 = y^2+y+\frac{1}{4}-\frac{1}{4}=\left(y+\frac{1}{2}\right)^2-\frac{1}{4}\MDFPeriod 
+\]
+Somit folgt für die Kreisgleichung:
+\[
+ x^2+y^2-6x+y+\frac{21}{4}=0\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-3)^2-9 + \left(y+\frac{1}{2}\right)^2-\frac{1}{4}+\frac{21}{4}=0\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-3)^2+ \left(y+\frac{1}{2}\right)^2=4
+\]
+Somit ist die Kreisgleichung auf Normalform gebracht und der Mittelpunkt $M=\MPointTwo[\Big]{3}{-\frac{1}{2}}$ und der Radius $r=2$ kann abgelesen werden:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (5.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,2.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=black] (3,-0.5) -- (5,-0.5);
+\draw[color=black] (4,-0.5) node[anchor=north] {\footnotesize $r$};
+\draw[color=red] (3,-0.5) circle (2);
+\draw[fill=red] (3,-0.5) circle (1.5pt);
+\draw[color=red] (3,-0.5) node[anchor=north] {\footnotesize $M$};
+
+\end{tikzpicture}
+}%
+\end{center}
 \end{MExample}
 
 \begin{MExercise}
-Prüfen Sie durch eine Abstandsberechnung, ob der Punkt $(5;6)$ auf dem Kreis um den Mittelpunkt $P=(2;2)$ mit Radius $r=5$ liegt.
+Bestimmen Sie Mittelpunkt $P$ und Radius $\rho$ des Kreises
+\[
+ \Lambda = \{\MPointTwo{x}{y}\MCondSetSep x^2+2\sqrt{3}x=2\sqrt{3}y-y^2\}
+\]
+indem Sie die Kreisgleichung mittels quadratischer Ergänzung auf Normalform bringen. Skizzieren Sie außerdem den Kreis.\\
+$P=$\MFunctionQuestion{12}{(-sqrt(3),sqrt(3))}{4}{x}{3}\\
+$\rho=$\MFunctionQuestion{12}{sqrt(6)}{4}{x}{3}
 
 \begin{MHint}{Lösung}
-Der Abstand der beiden Punkte ist
-$$
-\sqrt{(5-2)^2+(6-2)^2} \;=\; \sqrt{9+16} \;=\; \sqrt{25} \;=\; 5 \MDFPSpace,
-$$
-womit $(5;6)$ tatsächlich auf dem Kreis mit Radius $5$ um $P$ liegt.
+\[
+ x^2+2\sqrt{3}x=2\sqrt{3}y-y^2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+2\sqrt{3}x+y^2-2\sqrt{3}y=0 \MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+2\sqrt{3}x+3+y^2-2\sqrt{3}y+3=6
+\]
+\[
+ \Leftrightarrow\MDFPaSpace (x+\sqrt{3})^2+(y-\sqrt{3})^2 = 6 
+\]
+Somit: $P=\MPointTwo{-\sqrt{3}}{\sqrt{3}}$ und $\rho=\sqrt{6}$.
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (1.8,0){};
+\draw[->,color=black] (-5.5,0) -- (xMAX);
+\foreach \x in {-5,-4,-3,-2,-1,1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,5.8){};
+\draw[->,color=black] (0,-1.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-1,1,2,3,4,5}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=black] (-1.73,1.73) -- (-1.73,4.18);
+\draw[color=black] (-1.73,3) node[anchor=west] {\footnotesize $\rho$};
+\draw[color=red] (-1.73,1.73) circle (2.45);
+\draw[color=red] (0,0) node[anchor=south east] {\footnotesize $\Lambda$};
+\draw[fill=violet] (-1.73,1.73) circle (1.5pt);
+\draw[color=violet] (-1.73,1.73) node[anchor=north] {\footnotesize $P$};
+
+\end{tikzpicture}
+}%
+\end{center}
 \end{MHint}
+
 \end{MExercise}
-
-Wie bei der Zwei-Punkte-Form für Geraden ist die Beschreibung eines Kreises durch Mittelpunkt und Radius erstmal nicht geeignet, um direkte Rechnungen mit dem Kreis auszuführen.
-
-
-Genau wie bei Geraden sind Kreise letztlich Mengen von unendlich vielen Punkten, die in einer geeigneten Form beschrieben werden müssen, damit man mit ihnen rechnen kann.
-In Modul \MNRef{VBKM05} haben wir schon mit dem Einheitskreis gearbeitet, um die \MSRef{VBKM05_Trigonometrie_Einheitskreis}{trigonometrischen Funktionen} zu veranschaulichen.
-Er kann durch eine quadratische Gleichung beschrieben werden, die als Grundlage für beliebige Kreise dient:
-
-\begin{MInfo}
-Der Einheitskreis wird durch die \MEntry{Kreisgleichung}{Kreisgleichung}
-$$
-x^2+y^2 \;=\; 1
-$$
-beschrieben. Diese Gleichung drückt aus, dass die Punkte auf dem Kreis den Abstand $1$ zum Ursprung besitzen.
-\end{MInfo}
-
-Ein beliebiger Kreis mit Radius $1$ kann nun dadurch beschrieben werden, dass man den Einheitskreis zum neuen Mittelpunkt verschiebt.
-Dabei wird jede Koordinate separat verschoben und man erhält die Kreisgleichung
-$$
-(x-x_0)^2+(y-y_0)^2 \;=\; 1
-$$
-für den Kreis um den Mittelpunkt $P=(x_0;y_0)$ mit Radius $1$.
-Um nun noch den Radius anzupassen und damit beliebige Kreise ausdrücken zu können, verändert man die Konstante auf der rechten Seite der Gleichung. Da in der \MSRef{VBKM09_Abstand}{Abstandsgleichung}
-die Wurzel aus den Quadraten auftritt, muss in der Kreisgleichung nun das Quadrat des Radius eingesetzt werden:
-
-\begin{MInfo}
-Die \MEntry{allgemeine Kreisgleichung}{Allgemeine Kreisgleichung} für den Kreis mit Mittelpunkt $(x_0;y_0)$ und Radius $r>0$ lautet
-$$
-(x-x_0)^2+(y-y_0)^2 \;=\; r^2 \MDFPeriod
-$$
-\end{MInfo}
-
-\begin{MExample}
-Liegt der Punkt $(2;2)$ auf dem Kreis um den Mittelpunkt $(3;4)$ mit Radius $2$?
-Dazu stellen wir die allgemeine Kreisgleichung auf und prüfen, ob der Punkt $(2;2)$ sie erfüllt.
-Einsetzen der Verschiebung auf den neuen Mittelpunkt und des Quadrats des Radius ergibt die Kreisgleichung
-$$
-(x-3)^2+(y-4)^2 \;=\; 4 \MDFPeriod
-$$
-Einsetzen von $x=2$ und $y=2$ ergibt
-$$
-(2-3)^2+(2-4)^2 \;=\; 5 \; \not=\; 4 \MDFPSpace,
-$$
-womit $(2;2)$ nicht auf dem Kreis liegt.
-\end{MExample}
-
-
-
 
 \end{MXContent}
 
+\begin{MXContent}{Lagebeziehungen für Kreise}{Lagebeziehung Kreise}{STD}
+\MLabel{VBKM09_Kreise_Lage}
+\MDeclareSiteUXID{VBKM09_Kreise_Lage}
+Dieser Abschnitt erscheint in Kürze.
+\end{MXContent}
 
-% \MSubsection{Bereiche in der Ebene}
-% \MLabel{M09_4Bereiche}
+\MSubsection{Bereiche in der Ebene}
+\MLabel{M09_4Bereiche}
+\begin{MIntro}
+\MLabel{VBKM09_Bereiche_Intro}
+\MDeclareSiteUXID{VBKM09_Bereiche_Intro}
+Dieser Abschnitt erscheint in Kürze.
+\end{MIntro}
+
+
+
+
+
 
 \MSubsection{Abschlusstest}
 
@@ -2146,49 +2442,49 @@ womit $(2;2)$ nicht auf dem Kreis liegt.
 
 \begin{MExercise}
 \MSetPoints{8}
-Wie lautet die Funktionsgleichung für die Gerade $\overline{P Q}$, welche durch die beiden Punkte $P=(1;3)$ und $Q=(-1;7)$ verläuft?
+Wie lautet die Normalform der Gleichung für die Gerade $P Q$, welche durch die beiden Punkte $P=\MPointTwo{1}{3}$ und $Q=\MPointTwo{-1}{7}$ verläuft?
 \ \\ \ \\
 Antwort: \MEquationItem{$y$}{\MLSimplifyQuestion{20}{-2*x+5}{5}{x}{5}{1}{VBNT1}}.
 \end{MExercise}
 
 \begin{MExercise}
-Gegeben sei eine Gerade durch die allgemeine Gleichung $6x+2y=4$.
+Gegeben ist eine Gerade durch die Gleichung $6x+2y=4$.
 
 \begin{MExerciseItems}
 \MSetPoints{8}
-\item{Die Funktionsgleichung dieser Geraden lautet \MEquationItem{$y$}{\MLSimplifyQuestion{20}{2-3*x}{5}{x}{5}{1}{VBNT2}}.}
-\item{Wie liegt diese Gerade im Verhältnis zu der durch die Funktionsgleichung $y=3x-2$ beschriebenen Geraden?\\
+\item{Die Normalform dieser Geradengleichung lautet \MEquationItem{$y$}{\MLSimplifyQuestion{20}{2-3*x}{5}{x}{5}{1}{VBNT2}}.}
+\item{Wie liegt diese Gerade im Verhältnis zu der durch die Gleichung $y=3x-2$ beschriebenen Geraden?\\
 \MSetPoints{2}
 \begin{tabular}{lll}
 \MCheckbox{0}{VBNT3} & \ \ & Es gibt keinen Schnittpunkt.\\
 \MCheckbox{1}{VBNT4} & \ \ & Es gibt genau einen Schnittpunkt.\\
-\MCheckbox{0}{VBNT5} & \ \ & Die Geraden sind gleich.
+\MCheckbox{0}{VBNT5} & \ \ & Die Geraden sind identisch.
 \end{tabular}}
 \end{MExerciseItems}
 \end{MExercise}
 
 \begin{MExercise}
-Bestimmen Sie den Schnittpunkt der durch die Funktionsgleichung $y=2x+2$ beschriebenen Geraden mit der durch die allgemeine Gleichung $2x+0y=6$ beschriebenen Geraden.
+Bestimmen Sie den Schnittpunkt der Geraden, die durch die Gleichung $y=2x+2$ beschriebenen wird, mit der Geraden, die durch die Gleichung $2x=6$ beschrieben wird.
 \ \\ \ \\
 Antwort: Der Schnittpunkt ist \MLFunctionQuestion{15}{(3,8)}{5}{x}{5}{VBNT6}.\\
 \MInputHint{Geben Sie Punkte in der Form \texttt{(a;b)} ein.}
 \ \\ \ \\
-Kreuzen Sie mögliche Gründe an, warum die zweite Gerade nicht als eine Funktionsgleichung in $x$ geschrieben werden kann (mehrere Aussagen können richtig sein):\\
+Kreuzen Sie mögliche Gründe an, warum die Geradengleichung $2x=6$ der zweiten Geraden nicht auf Normalform gebracht werden kann (mehrere Aussagen können richtig sein):\\
 \MSetPoints{1}
 \begin{tabular}{lll}
-\MCheckbox{0}{VBNT7} & \ \ & Die allgemeine Gleichung kann nicht nach $x$ aufgelöst werden.\\
-\MCheckbox{1}{VBNT8} & \ \ & Die allgemeine Gleichung kann nicht nach $y$ aufgelöst werden.\\
-\MCheckbox{0}{VBNT9} & \ \ & Die allgemeine Gleichung ist noch nicht gekürzt.\\
+\MCheckbox{0}{VBNT7} & \ \ & Die Geradengleichung kann nicht nach $x$ aufgelöst werden.\\
+\MCheckbox{1}{VBNT8} & \ \ & Die Geradengleichung kann nicht nach $y$ aufgelöst werden.\\
+\MCheckbox{0}{VBNT9} & \ \ & Die Geradengleichung ist noch nicht gekürzt.\\
 \MCheckbox{0}{VBNT10} & \ \ & Die Gerade ist parallel zur $x$-Achse.\\
 \MCheckbox{1}{VBNT11} & \ \ & Die Gerade ist parallel zur $y$-Achse.\\
 \MCheckbox{1}{VBNT12} & \ \ & Die Gerade besitzt keine endliche Steigung.\\
 \MCheckbox{0}{VBNT13} & \ \ &  Die Gerade schneidet die $x$-Achse nicht.\\
-\MCheckbox{0}{VBNT14} & \ \ &  Die Gleichung beschreibt keine Gerade.
+%\MCheckbox{0}{VBNT14} & \ \ &  Die Gleichung beschreibt keine Gerade.
 \end{tabular}
 \end{MExercise}
 
 \begin{MExercise}
-Entscheiden Sie, welche der folgenden Punkte auf dem Rand des Kreises mit Mittelpunkt $P=(3;-1)$ und Radius $r=\sqrt{10}$ liegen:\\
+Entscheiden Sie, welche der folgenden Punkte auf dem Kreis mit Mittelpunkt $P=\MPointTwo{3}{-1}$ und Radius $r=\sqrt{10}$ liegen:\\
 \MSetPoints{2}
 \begin{tabular}{lll}
 \MCheckbox{1}{VBNT15} & \ \ & Der Ursprung.\\
@@ -2200,7 +2496,7 @@ Entscheiden Sie, welche der folgenden Punkte auf dem Rand des Kreises mit Mittel
 \end{MExercise}
 
 \begin{MExercise}
-Ein Kreis habe die allgemeine Kreisgleichung
+Ein Kreis wird durch die folgende Kreisgleichung beschrieben:
 $$
 (x-2)^2+(y+3)^2 \;=\; 9 \MDFPeriod
 $$
@@ -2208,9 +2504,9 @@ Welche Eigenschaften besitzt dieser Kreis?
 \MSetPoints{2}
 \begin{MExerciseItems}
 \item{Sein Radius ist \MEquationItem{$r$}{\MLParsedQuestion{5}{3}{4}{VBNT20}}.}
-\item{Sein Mittelpunkt ist \MEquationItem{$P$}{\MLFunctionQuestion{15}{(2,-3)}{5}{x}{5}{VBNT21}}.}\\
+\item{Sein Mittelpunkt ist \MEquationItem{$M$}{\MLFunctionQuestion{15}{(2,-3)}{5}{x}{5}{VBNT21}}.}\\
 \MInputHint{Geben Sie Punkte in der Form \texttt{(a;b)} ein.}
-\item{Er schneidet die durch $P$ und einen unbekannten weiteren Punkt $Q$ verlaufende Gerade\\
+\item{Er schneidet die durch $M$ und einen unbekannten weiteren Punkt $P$ verlaufende Gerade\\
 \MSetPoints{1}
 \begin{tabular}{lll}
 \MCheckbox{0}{VBNT22} & \ \ & in einem Punkt,\\
