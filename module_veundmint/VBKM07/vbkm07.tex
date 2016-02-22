@@ -36,14 +36,23 @@ Das Modul umfasst folgende Abschnitte:
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Ableitung_Intro}
-Stellen Sie sich vor, Sie sind mit Ihrem Auto unterwegs in den Urlaub. Sie fahren mit einer Geschwindigkeit von $60\MEinheit{km}/\MEinheit[]{h}$ durch eine Baustelle. Am Ende der Baustelle sehen Sie ein Schild, das es Ihnen erlaubt, ab sofort wieder mit einer Geschwindigkeit von $120\MEinheit{km}/\MEinheit[]{h}$ zu fahren. Auch wenn Sie so kräftig, wie Sie nur können, auf das Gaspedal treten, Ihre Geschwindigkeit wird sich nicht sprunghaft ändern, sondern in Abhängigkeit von der Zeit steigen. Schaffen Sie es, Ihre Geschwindigkeit innerhalb von 5 Sekunden von $60\MEinheit{km}/\MEinheit[]{h}$ auf $120\MEinheit{km}/\MEinheit[]{h}$ mit einer konstanten Änderungsrate zu erhöhen, dann ist die \emph{Beschleunigung} (= Geschwindigkeitsänderung pro Zeit) im vorliegenden Fall diese konstante Änderungsrate der Geschwindigkeit: Die Beschleunigung ergibt sich als Quotient aus der Geschwindigkeitsänderung und der dafür benötigten Zeit. Ihr Wert ist hier also $12$ Kilometer pro Stunde pro Sekunde. In der Realität werden Sie Ihre Geschwindigkeit jedoch nicht mit einer konstanten Änderungsrate erhöhen, sondern mit einer 
-\emph{zeitabhängigen} Änderungsrate. Beschreiben Sie Ihre Geschwindigkeit als Funktion $v$ der Zeit $t$, erhalten Sie die Beschleunigung als Steigung dieser Funktion, unabhängig davon, ob diese Steigung (zeitlich) konstant ist oder nicht. Mit anderen Worten: Die Beschleunigung ist die \emph{Ableitung} der Geschwindigkeits\emph{funktion} $v$ nach der Zeit $t$.
+Eine Familie ist mit ihrem Auto unterwegs in den Urlaub. Der Wagen fährt mit einer Geschwindigkeit von $60\MEinheit{km}/\MEinheit[]{h}$ durch eine Baustelle.
+Am Ende der Baustelle steht ein Schild, das ab sofort wieder eine Geschwindigkeit von $120\MEinheit{km}/\MEinheit[]{h}$ erlaubt.
+Auch wenn die Fahrerin oder der Fahrer so kräftig wie nur irgend möglich auf das Gaspedal tritt, die Geschwindigkeit des Wagens wird sich nicht sprunghaft ändern,
+sondern in Abhängigkeit von der Zeit steigen. Wird die Geschwindigkeit innerhalb von 5 Sekunden von $60\MEinheit{km}/\MEinheit[]{h}$ auf $120\MEinheit{km}/\MEinheit[]{h}$
+mit einer konstanten Änderungsrate erhöht, dann ist die \emph{Beschleunigung} (= Geschwindigkeitsänderung pro Zeit) im vorliegenden Fall diese konstante Änderungsrate der Geschwindigkeit:
+Die Beschleunigung ergibt sich als Quotient aus der Geschwindigkeitsänderung und der dafür benötigten Zeit. Ihr Wert ist hier also $12$ Kilometer pro Stunde pro Sekunde.
+In der Realität wird die Geschwindigkeit des Autos jedoch nicht mit einer konstanten Änderungsrate erhöht werden können, sondern mit einer 
+\emph{zeitabhängigen} Änderungsrate. Beschreibt man die Geschwindigkeit als Funktion $v$ der Zeit $t$, erhält man die Beschleunigung als Steigung dieser Funktion,
+unabhängig davon, ob diese Steigung (zeitlich) konstant ist oder nicht. Mit anderen Worten: Die Beschleunigung ist die \emph{Ableitung} der Geschwindigkeits\emph{funktion} $v$
+nach der Zeit $t$.
 
-Ähnliche Zusammenhänge finden Sie auch in anderen technischen Bereichen, z.B. bei der Berechnung von inneren Kräften, die in Stahlgerüsten von Bauwerken wirken, der Vorhersage von Atmosphären- oder Meeresströmungen oder auch bei der heute so wichtigen Modellierung der Finanzmärkte.
+Ähnliche Zusammenhänge finden sich auch in anderen technischen Bereichen, z.B. bei der Berechnung von inneren Kräften, die in Stahlgerüsten von Bauwerken wirken,
+der Vorhersage von Atmosphären- oder Meeresströmungen oder auch bei der heute so wichtigen Modellierung der Finanzmärkte.
 
-In diesem Kapitel wiederholen wir die grundlegenden Ideen, die hinter diesen Berechnungen stecken. Wir sehen uns die Differentialrechnung an.
-Mit anderen Worten: Wir bilden Ableitungen von Funktionen und bestimmen so deren Steigungen bzw. Änderungsraten.
-Auch wenn wir diese Berechnungen hier streng mathematisch durchführen, ist unsere Motivation nicht rein mathematischer Natur.
+Dieses Kapitel wiederholt die grundlegenden Ideen, die hinter diesen Berechnungen stecken, Gegenstand ist also die \textbf{Differentialrechnung}.
+Mit anderen Worten: Es werden Ableitungen von Funktionen gebildet und so deren Steigungen bzw. Änderungsraten bestimmt.
+Auch wenn hier diese Berechnungen streng mathematisch durchgeführt werden, ist die Motivation dafür nicht rein mathematischer Natur.
 Ableitungen nehmen in vielen wissenschaftlichen Bereichen in der Interpretation als Änderungsraten verschiedener
 Funktionen eine wichtige Rolle ein und werden oft als herausragende Größen untersucht.
 
@@ -52,9 +61,9 @@ Funktionen eine wichtige Rolle ein und werden oft als herausragende Größen unter
 \begin{MXContent}{Relative Änderungsrate einer Funktion}{Relative Änderungsrate}{STD}
 \MDeclareSiteUXID{VBKM07_Ableitung_Aenderungsrate}
 
-Betrachten wir eine Funktion $f: [a\MIntvlSep  b] \rightarrow \R$ sowie eine Skizze des Graphen von $f$ (siehe unten).
-Unser Ziel ist die Beschreibung der Änderungsrate dieser Funktion an einer beliebigen Stelle $x_0$ zwischen $a$ und $b$.
-Dies wird uns auf den Begriff der Ableitung einer Funktion führen. Generell wollen wir möglichst einfache Rechenregeln verwenden.
+Es sollen eine Funktion $f: [a\MIntvlSep  b] \rightarrow \R$, $x \mapsto f(x)$ sowie eine Skizze des Graphen von $f$ (siehe unten) betrachtet werden.
+Das Ziel ist die Beschreibung der Änderungsrate dieser Funktion an einer beliebigen Stelle $x_0$ zwischen $a$ und $b$.
+Dies wird auf den Begriff der Ableitung einer Funktion führen. Generell sollen möglichst einfache Rechenregeln Anwendung finden.
 
 \begin{center}
 \MTikzAuto{%
@@ -112,30 +121,32 @@ declare function={
 
 %----------------------------------------------------------------------------------------
 
-Halten wir $x_0$ und den entsprechenden Funktionswert $f\left(x_0\right)$ fest und wählen eine weitere beliebige, aber variable Stelle $x$ zwischen $a$ und $b$ sowie ihren Funktionswert $f\left(x\right)$ aus. 
-Durch diese beiden Punkte, also durch $\left(x_0\MIntvlSep f(x_0)\right)$ und $\left(x\MIntvlSep f(x)\right)$,
-können wir eine Gerade legen, die durch ihre Steigung und ihren $y$-Achsenabschnitt festgelegt ist.
-Als Steigung dieser Geraden erhalten wir den sogenannten \textbf{Differenzenquotienten}
+Werden $x_0$ und der entsprechende Funktionswert $f\left(x_0\right)$ festgehalten und eine weitere beliebige, aber variable Stelle $x$ zwischen $a$ und $b$ sowie ihr
+Funktionswert $f\left(x\right)$ ausgewählt, so lässt sich 
+durch diese beiden Punkte, also durch $\left(x_0\MIntvlSep f(x_0)\right)$ und $\left(x\MIntvlSep f(x)\right)$,
+eine Gerade legen, die durch ihre Steigung und ihren $y$-Achsenabschnitt charakterisiert wird.
+Als Steigung dieser Geraden erhält man den sogenannten \textbf{Differenzenquotienten}
 
 \[
 \frac{\Delta(f)}{\Delta(x)} = \frac{f(x) - f(x_0)}{x - x_0}\MDFPSpace,
 \]
 
 der beschreibt, wie sich die Funktionswerte von $f$ \textbf{im Mittel} zwischen $x_0$ und $x$ ändern.
-Wir haben also eine mittlere Änderungsrate der Funktion $f$ im Intervall $[x_0\MIntvlSep  x]$ gefunden. Dieser Quotient wird auch als \textbf{relative Änderung} bezeichnet.
+Damit ist eine mittlere Änderungsrate der Funktion $f$ im Intervall $[x_0\MIntvlSep  x]$ gefunden. Dieser Quotient wird auch als \textbf{relative Änderung} bezeichnet.
 
-Lassen wir nun die variable Stelle $x$ gegen die Stelle $x_0$ streben, so stellen wir fest, dass die Gerade, die den Graphen der Funktion
+Strebt nun die variable Stelle $x$ gegen die Stelle $x_0$, so stellt man fest, dass die Gerade, die den Graphen der Funktion
 in den Punkten $\left(x_0\MIntvlSep f\left(x_0\right)\right)$ und $\left(x\MIntvlSep f\left(x\right)\right)$ schneidet, immer mehr zu einer Tangente
-an den Graphen im Punkt $\left(x_0\MIntvlSep f\left(x_0\right)\right)$ wird. Auf diese Weise können wir die Änderungsrate
-der Funktion $f$ - oder die \textbf{Steigung} des Graphen von $f$ - an der Stelle $x_0$ \emph{selbst} bestimmen. Führt der geschilderte Prozess der Annäherung von $x$ an $x_0$ bildlich gesprochen
+an den Graphen im Punkt $\left(x_0\MIntvlSep f\left(x_0\right)\right)$ wird. Auf diese Weise kann die Änderungsrate
+der Funktion $f$ - oder die \textbf{Steigung} des Graphen von $f$ - an der Stelle $x_0$ \textbf{selbst} bestimmt werden.
+Führt der geschilderte Prozess der Annäherung von $x$ an $x_0$ bildlich gesprochen
 auf eine eindeutige Tangente (mit einer eindeutigen Steigung, die insbesondere nicht unendlich sein darf), so spricht man in der Mathematik davon,
-dass der \MEntry{Grenzwert}{Grenzwert} des Differenzenquotienten \emph{existiert}. Beschrieben wird dieser Grenzwertprozess, dass $x$ gegen $x_0$ strebt,
+dass der \MEntry{Grenzwert}{Grenzwert} des Differenzenquotienten \textbf{existiert}. Beschrieben wird dieser Grenzwertprozess, dass $x$ gegen $x_0$ strebt,
 hier und im Folgenden mit dem Symbol
 \[
 \lim_{x \rightarrow x_0} \MDFPSpace,
 \]
 wobei $\lim$ abkürzend für \emph{Limes}, das lateinische Wort für Grenze, steht.
-Existiert der Grenzwert des Differenzenquotienten, so bezeichnen wir mit
+Existiert der Grenzwert des Differenzenquotienten, so bezeichnet
 
 \[
 f'(x_0) = \lim_{x \rightarrow x_0} \frac{\Delta(f)}{\Delta(x)} 
@@ -150,7 +161,7 @@ den Wert der \MEntry{Ableitung}{Ableitung} von $f$ in $x_0$. Die Funktion $f$ is
     \frac{f(x) - f(x_0)}{x - x_0} \;=\;
     \frac{\sqrt{x}-\sqrt{1}}{x-1} \;=\; \frac{\sqrt{x}-1}{(\sqrt{x}-1)(\sqrt{x}+1)} \;=\; \frac1{\sqrt{x}+1} \MDFPeriod
   \]
-  Bewegt sich nun $x$ auf $x_0=1$ zu, so erhalten wir den Grenzwert
+  Bewegt sich nun $x$ auf $x_0=1$ zu, so resultiert der Grenzwert
   $$
   \lim_{x \rightarrow x_0} \frac{\Delta(f)}{\Delta(x)} \;=\; \frac12 \MDFPeriod
   $$
@@ -163,7 +174,7 @@ den Wert der \MEntry{Ableitung}{Ableitung} von $f$ in $x_0$. Die Funktion $f$ is
   \MEquationItem{$\displaystyle \frac{f(x) - f(1)}{x - 1}$}{\MLFunctionQuestion{8}{x+1}{4}{x}{4}{OR30}}.\\
   \MInputHint{Rechnen Sie den Quotienten direkt aus, ohne bekannte Ableitungswerte und Regeln aus der Schule einzusetzen.}
  
-  Bewegt sich $x$ auf $x_0=1$ zu, so erhalten wir die Steigung \MLParsedQuestion{5}{2}{5}{DG10} des Graphen von $f$ an der Stelle $x_0=1$.
+  Bewegt sich $x$ auf $x_0=1$ zu, so erhält man die Steigung \MLParsedQuestion{5}{2}{5}{DG10} des Graphen von $f$ an der Stelle $x_0=1$.
 
   \begin{MHint}{Lösung}
   Für $f(x)=x^2$ ist die relative Änderung an der Stelle $x_0=1$ gegeben durch
@@ -171,7 +182,7 @@ den Wert der \MEntry{Ableitung}{Ableitung} von $f$ in $x_0$. Die Funktion $f$ is
     \frac{f(x) - f(1)}{x - 1} \;=\;
     \frac{x^2-1}{x-1} \;=\; \frac{(x-1)(x+1)}{x-1} \;=\; x+1 \MDFPeriod
   \]
-  Bewegt sich nun $x$ auf $x_0$ zu, so erhalten wir den Grenzwert
+  Bewegt sich nun $x$ auf $x_0$ zu, so führt dies auf den Grenzwert
   $$
   \lim_{x \rightarrow 1} \frac{\Delta(f)}{\Delta(x)} \;=\; 2 \MDFPeriod
   $$
@@ -201,7 +212,7 @@ Diese Schreibweisen haben jeweils die Bedeutung der Ableitung der Funktion $f$ a
 \end{MXInfo}
 
 Wenn die Ableitung mithilfe des Differenzenquotienten $\frac{f(x) - f(x_0)}{x - x_0}$ berechnet werden muss,
-bietet es sich oft an, den Differenzenquotienten anders aufzuschreiben. Verwenden wir die Differenz von $x$ und $x_0$ und bezeichnen wir sie als $h := x - x_0$, 
+bietet es sich oft an, den Differenzenquotienten anders aufzuschreiben. Verwendet man die Differenz von $x$ und $x_0$ und bezeichnet sie als $h := x - x_0$, 
 
 %Bild:
 \begin{center}
@@ -238,11 +249,12 @@ declare function={
 }
 \end{center}
 
-können wir den Differenzenquotienten mit $x = x_0 + h$ umschreiben:
+kann der Differenzenquotienten mit $x = x_0 + h$ umgeschrieben werden zu
 \[
 \frac{f(x) - f(x_0)}{x - x_0} = \frac{f(x_0 + h) - f(x_0)}{h} \MDFPeriod
 \]
-Beachten Sie, dass wir keine Voraussetzung darüber getroffen haben, ob $x$ größer oder kleiner als $x_0$ ist. Die Größe $h$ kann daher positive oder negative Werte annehmen. Um die Ableitung der Funktion $f$ zu bestimmen, muss nun der Grenzwert für $h \rightarrow 0$ berechnet werden: 
+Es wurde keine Voraussetzung darüber getroffen, ob $x$ größer oder kleiner als $x_0$ ist.
+Die Größe $h$ kann daher positive oder negative Werte annehmen. Um die Ableitung der Funktion $f$ zu bestimmen, muss nun der Grenzwert für $h \rightarrow 0$ berechnet werden: 
 \[
 f'(x_0) = \lim_{x \rightarrow x_0} \frac{f(x) - f(x_0)}{x - x_0} %
  = \lim_{h \rightarrow 0} \frac{f(x_0 + h) - f(x_0)}{h} \MDFPeriod
@@ -254,11 +266,14 @@ ist die Betragsfunktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) := |x|$.
 
 \begin{MExample}
 Die Betragsfunktion (siehe Modul \MRef{VBKM06}, Abschnitt \MRef{VBKM06_sec:betrag}) ist an der Stelle $x_0 = 0$ nicht differenzierbar.
-Sehen wir uns den Differenzenquotienten für $f$ an der Stelle $x_0 = 0$ an:
+Der Differenzenquotient für $f$ an der Stelle $x_0 = 0$ lautet:
 \[
 \frac{f(0+h) - f(0)}{h} = \frac{|h| - |0|}{h} = \frac{|h|}{h} \MDFPeriod
 \]
-Da $h$ größer oder kleiner als $0$ sein kann, unterscheiden wir zwei Fälle: Beginnen wir mit dem Fall $h > 0$. Dann ist $\frac{|h|}{h} = \frac{h}{h} = 1$. Im Fall $h < 0$ erhalten wir $\frac{|h|}{h} = \frac{-h}{h} = -1$. Der Grenzwertprozess, dass $h$ sich $0$ nähert, führt in den beiden Fällen also auf zwei verschiedene Ergebnisse ($1$ und $-1$). Daher existiert \textbf{der} Grenzwert des Differenzenquotienten an der Stelle $x_0 = 0$ nicht. Als Folge davon ist die Betragsfunktion an der Stelle $x_0 = 0$ nicht differenzierbar.
+Da $h$ größer oder kleiner als $0$ sein kann, sind zwei Fälle zu unterscheiden:
+Im Fall $h > 0$ ist $\frac{|h|}{h} = \frac{h}{h} = 1$, im Fall $h < 0$ erhält man $\frac{|h|}{h} = \frac{-h}{h} = -1$.
+Der Grenzwertprozess, dass $h$ sich $0$ nähert, führt in den beiden Fällen also auf zwei verschiedene Ergebnisse ($1$ und $-1$).
+Daher existiert \textbf{der} Grenzwert des Differenzenquotienten an der Stelle $x_0 = 0$ nicht. Als Folge davon ist die Betragsfunktion an der Stelle $x_0 = 0$ nicht differenzierbar.
 
 Der Verlauf des Graphen "andert seine Richtung an der Stelle $(0, 0)$ sprunghaft: Salopp ausgedr"uckt, weist der Funktionsgraph an der Stelle $(0, 0)$ einen Knick auf.
 %Bild:
@@ -391,8 +406,8 @@ $h \rightarrow 0$ nicht.
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_StdAbleitungen_Intro}
-Die meisten Funktionen, die Ihnen bekannt sind, wie z.B. Polynome, trigonometrische Funktionen und Exponentialfunktionen (siehe Modul \MRef{VBKM06}),
-sind differenzierbar. Im Folgenden wollen wir die Ableitungsregeln für diese Funktionen wiederholen.
+Die meisten bekannten Funktionen, wie z.B. Polynome, trigonometrische Funktionen und Exponentialfunktionen (siehe Modul \MRef{VBKM06}),
+sind differenzierbar. Im Folgenden werden die Ableitungsregeln für diese Funktionen wiederholt.
 \end{MIntro}
 
 
@@ -402,11 +417,11 @@ sind differenzierbar. Im Folgenden wollen wir die Ableitungsregeln für diese Fun
 Aus der Einf"uhrung der Ableitung als Grenzwert des Differenzenquotienten ergibt sich f"ur eine affin lineare Funktion
 (siehe Modul \MRef{VBKM06}, Abschnitt \MRef{VBKM06_sec:linear-affin})
 $f: \R \rightarrow \R$, $x \mapsto f\left(x\right) = m x + b$, wobei $m$ und $b$ gegebene Zahlen sind, dass der Wert der Ableitung von $f$
-an der Stelle $x_0$ gleich $f'(x_0) = m$ ist. (Überprüfen Sie dies gerne selbst!)
+an der Stelle $x_0$ gleich $f'(x_0) = m$ ist. (Die geneigte Leserin, der geneigte Leser möge dies gerne selbst überprüfen!)
 
 F"ur Monome $x^n$ mit $n \geq 1$ ist es am einfachsten,
 die Ableitung "uber den Differenzenquotienten zu bestimmen. Ohne hier eine detaillierte Rechnung oder einen Beweis anzugeben,
-erhalten wir die folgenden Aussagen:
+erhält man die folgenden Aussagen:
 
 \begin{MXInfo}{Ableitung von $x^n$}
 Gegeben sind eine nat"urliche Zahl $n$ und eine reelle Zahl $r$.
@@ -421,11 +436,11 @@ f': \R \rightarrow \R \MDFPSpace \mbox{ mit } \MDFPSpace x \mapsto f'(x) = r \cd
 Diese Ableitungsregel gilt im Übrigen auch für $n\in\mathbb{R}\setminus\{0\}$.
 \end{MXInfo}
 
-Überprüfen Sie auch diese Aussagen selbst!
+Auch die Überprüfung dieser Aussagen sei dem Selbststudium überlassen!
 
 \begin{MExample}
-Wir untersuchen die Funktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) = 5 x^3$.
-Vergleichen wir die gegebene Funktion mit den oben verwendeten Bezeichnungen, dann sind $r = 5$ und $n = 3$. Damit erh"alt man für den Wert der 
+Die folgende Untersuchung gilt der Funktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) = 5 x^3$.
+Der Vergleich der gegebenen Funktion mit den oben verwendeten Bezeichnungen ergibt $r = 5$ und $n = 3$. Damit erh"alt man für den Wert der 
 Ableitung an der Stelle $x$
 \[
 f'(x) = 5 \cdot 3 x^{3 - 1} = 15 x^2 \MDFPeriod %%
@@ -623,7 +638,7 @@ dass ihre Ableitung $f'$ wiederum die Exponentialfunktion ist, also $f'(x) = \ME
 %an die Umkehrfunktion $\ln$.
 %Verwenden wir wieder die gewohnten Bezeichnungen für die unabhängige Variable, können wir ohne Beweis die Ableitung der Logarithmusfunktion angeben. Es gilt: $f'(x) = \frac{1}{x}$ ist die Ableitung der 
 %Logarithmusfunktion $f(x) = \ln(x)$.
-Wir geben hier die Ableitung der Logarithmusfunktion ohne Beweis an. Für $f: (0 \MIntvlSep \infty) \rightarrow \R$ mit $x \mapsto f(x) = \ln(x)$
+Die Ableitung der Logarithmusfunktion wird hier ohne Beweis angegeben. Für $f: (0 \MIntvlSep \infty) \rightarrow \R$ mit $x \mapsto f(x) = \ln(x)$
 erhält man $f': (0 \MIntvlSep \infty) \rightarrow \R$, $x \mapsto f'(x) = \frac1x$.
 %\begin{center}
 %\MTikzAuto{%
