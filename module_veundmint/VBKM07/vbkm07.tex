@@ -831,11 +831,10 @@ $$
 \end{MXInfo}
 
 Mit diesen beiden Rechenregeln und der Ableitungsregel für Monome $x^n$ lässt sich z.B. jedes beliebige Polynom ableiten.
-
-Sehen wir uns einige Beispiele an:
+Es folgen einige Beispiele:
 
 \begin{MExample}
-Das Polynom $f$ mit dem Funktionsterm $f(x) = \frac{1}{4} x^3 - 2 x^{2} +5 $ ist differenzierbar, und wir erhalten
+Das Polynom $f$ mit dem Funktionsterm $f(x) = \frac{1}{4} x^3 - 2 x^{2} +5 $ ist differenzierbar, und man erhält
 \[
 f'(x) = \frac{3}{4} x^2 - 4 x \MDFPeriod%%
 \]
@@ -848,9 +847,9 @@ g': (0 \MIntvlSep \infty ) \rightarrow \R \MDFPSpace \text{ mit } \MDFPSpace g'(
 %\[
 %g'(x) = \frac{3}{x} %%
 %\]
-Leiten wir die Funktion
+Ableiten der Funktion
 $h: [0 \MIntvlSep \infty) \rightarrow \R$ mit $h(x) = 4^{-1} \cdot x^2 - \sqrt{x} %
- = \frac{1}{4} x^2 + (-1) \cdot x^{\frac{1}{2}}$ ab, dann erhalten wir für $x>0$
+ = \frac{1}{4} x^2 + (-1) \cdot x^{\frac{1}{2}}$ führt für $x>0$ auf
 \[
 h'(x) = \frac{1}{2} x - \frac{1}{2} x^{-\frac{1}{2}} %
  = \frac{x^{\frac{3}{2}} - 1}{2 \sqrt{x}} \MDFPeriod%%
@@ -884,18 +883,18 @@ $$
 \fi
 \end{MXInfo}
 
-Veranschaulichen wir auch diese Rechenregeln anhand einiger Beispiele:
+Auch diese Rechenregeln sollen anhand einiger Beispiele veranschaulicht werden:
 
 \begin{MExample}
-Bestimmen wir die Ableitung von $f: \R \rightarrow \R$ mit $f(x) = x^2 \cdot \MEU^x$.
-Wir wenden die Produktregel an und können (z.B.) $u(x) = x^2$ und $v(x) = \MEU^x$ setzen.
-Dann gilt $u'(x) = 2x$ und $v'(x) = \MEU^x$. Setzen wir diese Teilergebnisse mit der Produktregel zusammen, dann erhalten wir die Ableitung der Funktion $f$:
+Gesucht ist die Ableitung von $f: \R \rightarrow \R$ mit $f(x) = x^2 \cdot \MEU^x$.
+Anwenden der Produktregel mit (z.B.) $u(x) = x^2$ und $v(x) = \MEU^x$ führt auf
+$u'(x) = 2x$ und $v'(x) = \MEU^x$. Werden diese Teilergebnisse mit der Produktregel zusammengesetzt, dann resultiert die Ableitung der Funktion $f$:
 \[
 f': \R \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto f'(x) = 2 x \MEU^x + x^2 \MEU^x = (x^2 + 2x) \MEU^x \MDFPeriod%%
 \]
-Untersuchen wir die Tangensfunktion $g$ mit $g(x) = \tan(x) = \frac{\sin(x)}{\cos(x)}$ ($\cos(x) \neq 0$).
-Hier lesen wir durch Vergleich $u(x) = \sin(x)$ und $v(x) = \cos(x)$ ab. Mit $u'(x) = \cos(x)$ und $v'(x) = -\sin(x)$
-können wir die Teilergebnisse mit der Quotientenregel zur Ableitung der Funktion $g$ zusammensetzen; es folgt:
+Als Nächstes soll die Tangensfunktion $g$ mit $g(x) = \tan(x) = \frac{\sin(x)}{\cos(x)}$ ($\cos(x) \neq 0$) untersucht werden.
+Durch Vergleich mit der Quotientenregel liest man $u(x) = \sin(x)$ und $v(x) = \cos(x)$ ab. Mit $u'(x) = \cos(x)$ und $v'(x) = -\sin(x)$
+können die Teilergebnisse mit Hilfe der Quotientenregel zur Ableitung der Funktion $g$ zusammengefügt werden; es folgt:
 \[
 g'(x) = \frac{\cos(x) \cdot \cos(x) - \sin(x) \cdot (-\sin(x))}{\cos^2(x)} \MDFPeriod%
 \]
@@ -961,11 +960,11 @@ wobei der letzte Umformungsschritt (Kürzen um $x$) nur der Vereinfachung dient.
 \begin{MXContent}{Verkettung von Funktionen}{Verkettung}{STD}
 \MDeclareSiteUXID{VBKM07_Verkettung}
 
-Zum Abschluss untersuchen wir die Verkettung (Modul \MRef{VBKM06}, Abschnitt \MRef{Verkettung}) von Funktionen.
-Wir wollen also wissen, was passiert, wenn wir eine Funktion $u$ (die innere Funktion) in eine andere Funktion $v$
-(die äußere Funktion) sozusagen einsetzen. Eine solche Verkettung wird in der Mathematik durch die Schreibweise $f := v \circ u$ mit
-$f(x) = (v \circ u)(x) := v(u(x))$ dargestellt. Dies bedeutet, dass wir zunächst den Wert einer Funktion $u$ in Abhängigkeit von der Variable $x$ bestimmen.
-Diesen so berechneten Wert $u(x)$ verwenden wir dann als Argument der Funktion $v$. Auf diese Weise entsteht der endgültige Funktionswert $v(u(x))$.
+Zum Abschluss wird die Verkettung (Modul \MRef{VBKM06}, Abschnitt \MRef{Verkettung}) von Funktionen untersucht:
+Was passiert, wenn eine Funktion $u$ (die innere Funktion) in eine andere Funktion $v$
+(die äußere Funktion) sozusagen eingesetzt wird? Eine solche Verkettung wird in der Mathematik durch die Schreibweise $f := v \circ u$ mit
+$f(x) = (v \circ u)(x) := v(u(x))$ dargestellt. Dies bedeutet, dass zunächst der Wert einer Funktion $u$ in Abhängigkeit von der Variable $x$ bestimmt wird.
+Dieser so berechnete Wert $u(x)$  wird dann als Argument der Funktion $v$ verwendet. Auf diese Weise entsteht der endgültige Funktionswert $v(u(x))$.
 
 \begin{MXInfo}{Kettenregel}
 Die Ableitung der Funktion $f := v \circ u$ mit $f(x) = (v \circ u)(x) := v(u(x))$ kann mit der \textbf{Kettenregel} bestimmt werden; es gilt:
@@ -977,25 +976,25 @@ $v'(u)$ für $u = u(x)$ aus.\\
 Hilfreich ist der Merksatz: Ableitung der Verkettung ist äußere Ableitung mal innere Ableitung.
 \end{MXInfo}
 
-Verdeutlichen wir diese Ableitungsregel an einigen Beispielen:
+Diese Ableitungsregel soll anhand einiger Beispiele verdeutlicht werden:
 
 \begin{MExample}
-Bestimmen wir die Ableitung der Funktion $f: \R \rightarrow \R$ mit $f(x) = (3 - 2 x)^5$.
-Wollen wir die Kettenregel anwenden, müssen wir eine innere und eine äußere Funktion identifizieren.
-Setzen wir für die innere Funktion $u$ den Funktionsterm $u(x) = 3 - 2x$, dann ist die äußere Funktion $v$ durch $v(u) = u^5$ gegeben.
+Gesucht wird die Ableitung der Funktion $f: \R \rightarrow \R$ mit $f(x) = (3 - 2 x)^5$.
+Soll die Kettenregel angewendet werden, sind eine innere und eine äußere Funktion zu identifizieren.
+Setzt man für die innere Funktion $u$ den Funktionsterm $u(x) = 3 - 2x$, dann ist die äußere Funktion $v$ durch $v(u) = u^5$ gegeben.
 Damit gilt wie verlangt $v(u(x)) = f(x)$.
 
-Nun leiten wir zunächst die innere Funktion $u$ nach $x$ ab und erhalten $u'(x) = -2$.
-Für die äußere Ableitung differenzieren wir $v$ nach $u$ und finden $v'(u) = 5 u^4$.
-Setzen wir diese Zwischenergebnisse in die Kettenregel ein, so bekommen wir die Ableitung $f'$ der Funktion $f$ mit:
+Ableiten der inneren Funktion $u$ nach $x$ liefert $u'(x) = -2$.
+Für die äußere Ableitung differenziert man $v$ nach $u$ und findet $v'(u) = 5 u^4$.
+Einsetzen dieser Zwischenergebnisse in die Kettenregel führt auf die Ableitung $f'$ der Funktion $f$ mit:
 \[
 f'(x) = 5 (u(x))^4 \cdot (-2) = 5 (3 - 2 x)^4 \cdot (-2) = -10 (3 - 2 x)^4 \MDFPeriod %%
 \]
 
-Sehen wir uns ein zweites Beispiel an und berechnen die Ableitung von $g: \R \rightarrow \R$ mit $g(x) = \MEU^{x^3}$.
-Dazu verwenden wir die Zuordnungen $x \mapsto u(x) = x^3$ für die innere Funktion $u$ und $u \mapsto v(u) = \MEU^u$ für die äußere Funktion $v$.
-Bestimmen wir die innere und die äußere Ableitung, dann erhalten wir $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$.
-Setzen wir beides in die Kettenregel ein, bekommen wir die Ableitung der Funktion $g$:
+Als zweites Beispiel soll die Ableitung von $g: \R \rightarrow \R$ mit $g(x) = \MEU^{x^3}$ berechnet werden.
+Dazu bieten sich die Zuordnungen $x \mapsto u(x) = x^3$ für die innere Funktion $u$ und $u \mapsto v(u) = \MEU^u$ für die äußere Funktion $v$ an.
+Die Bestimmung der inneren und der äußeren Ableitung führt auf $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$.
+Setzt man beides in die Kettenregel ein, erhält man die Ableitung der Funktion $g$:
 \[
 g': \R \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto g'(x) = \MEU^{u(x)} \cdot 3 x^2 = \MEU^{x^3} \cdot 3 x^2 = 3 x^2 \MEU^{x^3} \MDFPeriod %%
 \]
@@ -1096,7 +1095,7 @@ führt auf $h'(x) = $\MLFunctionQuestion{30}{-(2*x^2 - 4*x + 1) * exp(-2*x)}{10}{
 Berechnen Sie die ersten vier Ableitungen von $f: \R \rightarrow \R$ mit $f(x) := \sin(1 - 2x)$.
 
 Antwort: 
-Wir bezeichnen mit $f^{(k)}$ die $k$-te Ableitung von $f$. Dabei ist $f^{(1)} = f'$, $f^{(2)}$ die Ableitung von $f^{(1)}$,
+Die $k$-te Ableitung von $f$ wird mit $f^{(k)}$ bezeichnet. Dabei ist $f^{(1)} = f'$, $f^{(2)}$ die Ableitung von $f^{(1)}$,
 $f^{(3)}$ die Ableitung von $f^{(2)}$ usw.
 Damit:
 \begin{itemize}
@@ -1130,8 +1129,8 @@ Damit:
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Eigenschaften_Intro}
 Die Ableitung wurde weiter oben mittels einer Tangente an den Graphen einer Funktion eingef"uhrt. Diese Tangente beschreibt die gegebene Funktion
-in einem gewissen Bereich {\glqq}n"aherungsweise{\grqq}. Aus den Eigenschaften dieser Geraden können wir auch auf Eigenschaften der
-angenäherten Funktion schließen.
+in einem gewissen Bereich {\glqq}n"aherungsweise{\grqq}. Aus den Eigenschaften dieser Geraden kann auch auf Eigenschaften der
+angenäherten Funktion geschlossen werden.
 \end{MIntro}
 
 \begin{MContent} 
@@ -1161,7 +1160,7 @@ angenäherten Funktion schließen.
 Mit der Ableitung kann das lokale Wachstumsverhalten untersucht werden, das 
 hei"st, ob f"ur steigende Argumente die zugehörigen Funktionswerte gr"o"ser oder 
 kleiner werden.
-Dazu betrachten wir eine Funktion $f: D \rightarrow \R$, die auf $(a\MIntvlSep b) \subseteq D$ 
+Dazu wird eine Funktion $f: D \rightarrow \R$ betrachtet, die auf $(a\MIntvlSep b) \subseteq D$ 
 differenzierbar ist:
 \begin{center}
 \MTikzAuto{%
@@ -1233,7 +1232,7 @@ $f'(x) \geq 0$ und damit $f$ monoton wachsend.
 
 F"ur $g: \R \rightarrow \R$ mit $g(x) = 2 x^3 + 6 x^2 - 18 x + 10$ besitzt
 $g'(x) = 6 x^2 + 12 x - 18 = 6 (x + 3) (x - 1)$ die Nullstellen $x_1 = -3$ 
-und $x_2 = 1$. Zur Untersuchung des Monotonieverhaltens können wir also drei Bereiche unterscheiden, in denen
+und $x_2 = 1$. Zur Untersuchung des Monotonieverhaltens werden also drei Bereiche unterschieden, in denen
 die Ableitung $g'$ jeweils ein anderes Vorzeichen hat.
 
 Mit Hilfe folgender Tabelle wird bestimmt, in welchen Bereichen die Ableitung 
@@ -1254,9 +1253,9 @@ Für die Funktion $h: \R \setminus \{ 0 \} \rightarrow \R$ mit $h(x) = \frac{1}{x
 gilt $h'(x) = - \frac{1}{x^2}$. Hier ist 
 $h'(x) < 0$ f"ur alle $x \neq 0$.
 
-Auch wenn wir für die beiden Teilbereiche $x<0$ und $x>0$ dasselbe Monotonieverhalten finden,
-ist $h$ nicht über den gesamten Definitionsbereich monoton fallend. Als Gegenbeispiel können wir 
-$h(-2) = -\frac{1}{2}$ und $h(1) = 1$ anführen. Hier gilt $-2 < 1$, aber auch $h(-2) < h(1)$. Dies
+Auch wenn für die beiden Teilbereiche $x<0$ und $x>0$ dasselbe Monotonieverhalten auftritt,
+ist $h$ nicht über den gesamten Definitionsbereich monoton fallend. Als Gegenbeispiel kann
+$h(-2) = -\frac{1}{2}$ und $h(1) = 1$ angeführt werden. Hier gilt $-2 < 1$, aber auch $h(-2) < h(1)$. Dies
 entspricht einem wachsenden Verhalten beim Übergang vom einen zum anderen Teilbereich. Dass die Funktion $h$
 auf $(-\infty\MIntvlSep 0)$ monoton fallend ist, bedeutet also, die Einschr"ankung von $h$ auf dieses Intervall
 ist monoton fallend. Zudem ist $h$ f"ur alle $x > 0$ ebenfalls monoton fallend.
@@ -1266,16 +1265,16 @@ ist monoton fallend. Zudem ist $h$ f"ur alle $x > 0$ ebenfalls monoton fallend.
 %\begin{MXContent}{Kr"ummungseigenschaften}
 
 %Seien $a,b \in D$ mit $a<b$.
-Wir untersuchen eine Funktion $f: D \rightarrow \R$, die auf dem Intervall $(a\MIntvlSep b) \subseteq D$
-differenzierbar ist. Ist deren Ableitung $f'$ ebenfalls auf dem Intervall $(a\MIntvlSep b) \subseteq D$ differenzierbar, so nennen wir $f$ \textbf{zweimal differenzierbar}.
-Bilden wir die Ableitung der ersten Ableitung von $f$, dann nennen wir $(f')' = {f'}'$ die \textbf{zweite Ableitung} der Funktion $f$.
+Gegenstand der Untersuchung ist eine Funktion $f: D \rightarrow \R$, die auf dem Intervall $(a\MIntvlSep b) \subseteq D$
+differenzierbar ist. Ist deren Ableitung $f'$ ebenfalls auf dem Intervall $(a\MIntvlSep b) \subseteq D$ differenzierbar, so hei{\ss}t $f$ \textbf{zweimal differenzierbar}.
+Bildet man die Ableitung der ersten Ableitung von $f$, dann nennt man $(f')' = {f'}'$ die \textbf{zweite Ableitung} der Funktion $f$.
 
-Wir können die zweite Ableitung der Funktion $f$ verwenden, um das Krümmungsverhalten der Funktion zu untersuchen:
+Die zweite Ableitung der Funktion $f$ kann verwendet werden, um das Krümmungsverhalten der Funktion zu untersuchen:
 
 \begin{MXInfo}{Kr"ummungseigenschaften}
-Ist ${f'}'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann nennen wir $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konvex (linksgekrümmt)}.
+ Ist ${f'}'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konvex (linksgekrümmt)}.
 
-Ist ${f'}'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann nennen wir $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konkav (rechtsgekrümmt)}.
+ Ist ${f'}'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konkav (rechtsgekrümmt)}.
 \end{MXInfo}
 
 Somit gen"ugt es, das Vorzeichen der zweiten Ableitung ${f'}'$ zu bestimmen, 
@@ -1488,22 +1487,22 @@ Eine vollständige Kurvendiskussion für $f$ besteht in diesem Kurs aus folgenden 
 \item Skizze des Graphen
 \end{itemize}
 
-Viele dieser Punkte wurden bereits in Modul \MRef{VBKM06} besprochen. Daher
-werden wir im Folgenden nur kurz wiederholen, was wir unter den einzelnen
-Schritten der Kurvendiskussion verstehen. Im Anschluss werden wir
-uns eine Kurvendiskussion detailliert an einem Beispiel ansehen.
+Viele dieser Punkte wurden bereits in Modul \MRef{VBKM06} behandelt. Daher
+wiederholt das Folgende nur kurz, was unter den einzelnen
+Schritten der Kurvendiskussion zu verstehen ist. Im Anschluss wird
+eine Kurvendiskussion detailliert an einem Beispiel durchgesprochen.
 
 Der erste Teil der Kurvendiskussion besteht aus algebraischen und geometrischen Aspekten von $f$:
 
 \begin{description}
 \item[Maximaler Definitionsbereich]
-Wir bestimmen alle reellen Zahlen $x$, f"ur die $f(x)$ existiert. Die 
+Es werden alle reellen Zahlen $x$ bestimmt, f"ur die $f(x)$ existiert. Die 
 Menge $D$ all dieser Zahlen wird maximaler Definitionsbereich genannt.
 
 \item[Schnittpunkte mit den Achsen] ~\relax
 \begin{itemize}
-\item $x$-Achse: Wir bestimmen alle Nullstellen von $f$.
-\item $y$-Achse: Wir berechnen den Funktionswert $f(0)$ (falls $0 \in D$).
+\item $x$-Achse: Alle Nullstellen von $f$ werden bestimmt.
+\item $y$-Achse: Der Funktionswert $f(0)$ (falls $0 \in D$) wird berechnet.
 \end{itemize}
 
 \item[Symmetrie des Graphen]
@@ -1514,12 +1513,12 @@ zum Ursprung $(0\MIntvlSep 0)$ des Koordinatensystems punktsymmetrisch.
 In diesem Falle nennt man die Funktion $f$ auch \textbf{ungerade}.
 
 \item[Asymptotisches Verhalten an den R"andern des Definitionsbereichs]
-Wir untersuchen die Grenzwerte der Funktion $f$ an den Grenzen ihres Definitionsbereichs.
+Die Grenzwerte der Funktion $f$ an den Grenzen ihres Definitionsbereichs werden untersucht.
 \end{description} 
 
 Im zweiten Teil wird die Funktion mittels Folgerungen aus der Ableitung 
-analytisch untersucht. Dazu müssen wir natürlich zunächst die erste und zweite Ableitung 
-berechnen, sofern diese existieren.
+analytisch untersucht. Dazu müssen natürlich zunächst die erste und die zweite Ableitung 
+berechnet werden, sofern diese existieren.
 
 \begin{description}
 \item[Ableitungen]
@@ -1544,15 +1543,16 @@ Die Funktion $f$ ist auf denjenigen Intervallen des Definitionsbereichs konvex
 (linksgekr"ummt), auf denen $f^{(2)}(x) \geq 0$ gilt. Sie ist konkav (rechtsgekr"ummt) dort, 
 wo $f^{(2)}(x) \leq 0$ ist.
 
-\item[Skizze des Graphen] Wir fertigen eine Skizze des Graphen in einem geeigneten Koordinatensystem unter
-Berücksichtigung der während der Kurvendiskussion gewonnenen Daten an.
+\item[Skizze des Graphen] Eine Skizze des Graphen in einem geeigneten Koordinatensystem wird angefertigt, und zwar unter
+Berücksichtigung der während der Kurvendiskussion gewonnenen Daten.
 \end{description}
 
 \MSubsubsection{Ausführliches Beispiel}
-Wir untersuchen eine Funktion $f$ mit dem Funktionsterm
+Es soll eine Funktion $f$ mit dem Funktionsterm
 $$
-f(x) \;=\; \frac{4x}{x^2+2} \MDFPeriod
+f(x) \;=\; \frac{4x}{x^2+2}
 $$
+untersucht werden.
 
 \textbf{Maximaler Definitionsbereich}\\
 Der maximale Definitionsbereich dieser Funktion ist $D_f=\R$, da der Nenner der Funktion $x^2+2\geq 2$ ist, also niemals Null wird,
@@ -1563,7 +1563,7 @@ Die Nullstellen der Funktion entsprechen den Nullstellen des Zählers. Daher schn
 im Nullpunkt $(0,0)$, denn der Zähler wird nur für $x=0$ zu Null. Dies ist auch der einzige Schnittpunkt mit der $y$-Achse, da $f(0)=0$ ist.
 \ \\ \ \\
 \textbf{Symmetrie}\\
-Um das Symmetrieverhalten zu untersuchen, ersetzen wir $x$ durch $(-x)$. Es gilt
+Um das Symmetrieverhalten zu untersuchen, wird das Argument $x$ durch $(-x)$ ersetzt. Es gilt
 $$
 f(-x) \;=\;\frac{4\cdot (-x)}{(-x)^2+2} \;=\; -\frac{4x}{x^2+2} \;=\; -f(x)
 $$
@@ -1577,7 +1577,7 @@ Da $f(x)$ ein Bruch aus zwei Polynomen ist und der Nenner die höhere Potenz besi
 \]
 \ \\ \ \\
 \textbf{Ableitungen}\\
-Die ersten beiden Ableitungen der Funktion erhalten wir mit der Quotientenregel:
+Die ersten beiden Ableitungen der Funktion folgen mit Hilfe der Quotientenregel:
 $$
 f'(x) \;=\; 4\cdot\frac{1\cdot (x^2+2)-x\cdot 2x}{(x^2+2)^2} \;=\; 4\cdot \frac{-x^2+2}{(x^2+2)^2} \MDFPeriod
 $$
@@ -1592,22 +1592,23 @@ Erneutes Ableiten und Vereinfachen ergibt
 \end{eqnarray*}
 \ \\
 \textbf{Extremwerte}\\
-Die notwendige Bedingung für eine Extremstelle, $f'(x)=0$, ist hier gleichbedeutend mit $-x^2+2=0$. Wir erhalten also $x_1=\sqrt2$ und $x_2=-\sqrt2$. Untersuchen wir an diesen Stellen auch das Verhalten der zweiten Ableitung:
+Die notwendige Bedingung für eine Extremstelle, $f'(x)=0$, ist hier gleichbedeutend mit $-x^2+2=0$.
+Man erhält also $x_1=\sqrt2$ und $x_2=-\sqrt2$. Es muss noch das Verhalten der zweiten Ableitung an diesen Stellen untersucht werden:
 $$
 {f'}'(x_1) \;=\; 8\frac{\sqrt2\cdot(2-6)}{(2+2)^3}<0 \MDFPSpace , \MDFPaSpace
 {f'}'(x_2) \;=\; 8\frac{-\sqrt2\cdot(2-6)}{(2+2)^3}>0 \MDFPeriod
 $$
-Folglich ist $x_1$ eine Maximalstelle und $x_2$ eine Minimalstelle von $f$. Durch Einsetzen in $f$ erhalten wir das
+Folglich ist $x_1$ eine Maximalstelle und $x_2$ eine Minimalstelle von $f$. Durch Einsetzen in $f$ resultieren das
 Maximum $(\sqrt2,\sqrt2)$ und das Minimum $(-\sqrt2,-\sqrt2)$ von $f$.
 \ \\ \ \\
 \textbf{Monotonieverhalten}\\
 Da $f$ auf ganz $\R$ definiert ist,
 kann das Monotonieverhalten aus der Lage der Extremstellen und aus deren Typ abgelesen werden: $f$ ist monoton fallend auf
 $(-\infty\MIntvlSep -\sqrt2)$, monoton wachsend auf $(-\sqrt2\MIntvlSep \sqrt2)$
-und monoton fallend auf $(\sqrt2\MIntvlSep \infty)$. Monotonieintervalle geben wir stets in offener Form an.
+und monoton fallend auf $(\sqrt2\MIntvlSep \infty)$. Monotonieintervalle werden stets in offener Form angegeben.
 \ \\ \ \\
 \textbf{Wendestellen}\\
-Aus der notwendigen Bedingung für Wendestellen ${f'}'(x)=0$ erhalten wir die Gleichung $8x(x^2-6)=0$.
+Aus der notwendigen Bedingung für Wendestellen ${f'}'(x)=0$ erhält man die Gleichung $8x(x^2-6)=0$.
 Somit sind $w_0=0$, $w_1=\sqrt6$ und $w_2=-\sqrt6$ die einzigen Lösungen.
 Das Polynom im Nenner von ${f'}'$ ist stets größer als Null. Da das Zählerpolynom nur einfache Nullstellen besitzt, ändert ${f'}'(x)$
 in allen diesen Stellen das Vorzeichen. Es handelt sich
@@ -1727,13 +1728,13 @@ skizziert auf dem Intervall $(-\MZahl{6}{2}\MIntvlSep 3)$.}{width:400px}
 
 In vielen Anwendungen der Technik oder Wirtschaft findet man Problemlösungen, die nicht eindeutig sind. Häufig hängen sie von variablen Bedingungen ab. Um eine ideale Lösung zu finden, werden zusätzliche Eigenschaften (Nebenbedingungen) definiert, die von der Lösung erfüllt werden müssen. Dies führt sehr oft zu sogenannten \textbf{Optimierungsaufgaben}, bei denen aus einer Schar von Lösungen diejenige gesucht werden muss, die eine vorab festgelegte Eigenschaft am besten erf"ullt.
 
-Als Beispiel betrachten wir die Aufgabe, eine zylinderf"ormige Dose zu konstruieren. Die Dose soll zus"atzlich die Bedingung erf"ullen, ein 
-Fassungsverm"ogen (Volumen) $V$ von einem Liter, also einem Kubikdezimeter ($1 \MEinheit{dm}^3$), zu haben. Wählen wir für $V$ die
+Als Beispiel werde die Aufgabe betrachtet, eine zylinderf"ormige Dose zu konstruieren. Die Dose soll zus"atzlich die Bedingung erf"ullen, ein 
+Fassungsverm"ogen (Volumen) $V$ von einem Liter, also einem Kubikdezimeter ($1 \MEinheit{dm}^3$), zu haben. Wählt man für $V$ die
 Einheit $\MEinheit[]{dm}^3$ und
 sind $r$ der Radius und $h$ die H"ohe der Dose, jeweils gemessen in Dezimetern ($\MEinheit[]{dm}$), so soll also $V = \pi r^2 \cdot h = 1$ sein.
 %(Auf die physikalischen Einheiten wurde der mathematischen Einfachheit halber verzichtet -- in der Praxis ist es allerdings unumgänglich, mit
 %Einheiten zu rechnen.)
-Um Arbeitsmaterial zu sparen, suchen wir nach derjenigen Dose, die eine m"oglichst kleine Oberfl"ache
+Um Arbeitsmaterial zu sparen, wird nach derjenigen Dose gesucht, die eine m"oglichst kleine Oberfl"ache
 $O = 2 \cdot \pi r^2 + 2 \pi r h$ hat. Hier ist die Oberfläche $O$ in Quadratdezimetern ($\MEinheit[]{dm}^2$)
 eine Funktion in Abhängigkeit vom Radius $r$ und von der Höhe $h$ der Dose.
 
@@ -1762,7 +1763,7 @@ Optimierungsaufgabe genannt.
 \begin{MXContent}{Beispiel}{Beispiel}{STD}
 \MDeclareSiteUXID{VBKM07_WeitereBeispiele}
 
-Sehen wir uns das obige Beispiel etwas genauer an und minimieren die Oberfläche einer zylinderförmigen Dose bei einem vorgegebenen Volumen
+Das obige Beispiel soll etwas genauer betrachtet werden: Es geht also um die Minimierung der Oberfläche einer zylinderförmigen Dose bei einem vorgegebenen Volumen
 (Grundfläche mal Höhe)
 %
 \begin{eqnarray*}
@@ -1771,29 +1772,30 @@ V = \pi r^2 h = 1 \MDFPSpace,
 %
 wobei $r$ der Radius der Grundfläche und $h$ die Höhe der Dose sind. Die Oberfläche setzt sich aus dem Deckel und dem Boden
 (jeweils mit einer Fläche der Größe $\pi r^2$) und der Mantelfläche (der Größe $2 \pi r h$) zusammen,
-und wir erhalten $O = 2 \pi r^2 + 2 \pi r h$. Die Oberfläche der Dose ist eine Funktion vom Radius $r$ und von der Höhe $h$.
-Im Gegensatz dazu wird dem Volumen ein fester Wert zugeordnet (Nebenbedingung). Wir können also schreiben:
+und man erhält $O = 2 \pi r^2 + 2 \pi r h$. Die Oberfläche der Dose ist eine Funktion vom Radius $r$ und von der Höhe $h$.
+Im Gegensatz dazu wird dem Volumen ein fester Wert zugeordnet (Nebenbedingung). Es kann also geschrieben werden:
 %
 \begin{eqnarray*}
 O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h \MDFPeriod
 \end{eqnarray*}
 %
 Wegen der Nebenbedingung, dass $V = \pi r^2 h = 1$ sein soll, kann man dieses Problem in ursprünglich zwei Variablen ($r$ und $h$)
-auf ein Problem mit nur noch einer Variablen reduzieren. Formen wir das Volumen nach der Höhe der Dose um, so erhalten wir:
+auf ein Problem mit nur noch einer Variablen reduzieren. Umformen des Volumens nach der Höhe der Dose führt auf:
 %
 \begin{eqnarray*}
 \pi r^2 h &=& 1\\
 \Leftrightarrow\quad h &=& \frac{1}{\pi r^2} \MDFPeriod
 \end{eqnarray*}
 %
-Setzen wir diese Formel in die Funktion $O(r,h)$ ein, bekommen wir eine Funktion, die nur noch von einer Variablen abhängt und die wir der
-Einfachheit halber ebenfalls $O$ nennen:
+Nach dem Einsetzen dieser Formel in die Funktion $O(r,h)$ resultiert eine Funktion, die nur noch von einer Variablen abhängt und die der
+Einfachheit halber ebenfalls $O$ genannt werde:
 %
 \begin{eqnarray*}
 O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h = 2 \pi r^2 + 2 \pi r \frac{1}{\pi r^2} = 2 \left(\pi r^2 + \frac{1}{r}\right) = O\left(r\right) \MDFPeriod
 \end{eqnarray*}
 %
-Nach dieser Umformung können wir die Frage nach der minimalen Oberfläche der Dose ganz analog zu den Extremwerten von Funktionen bearbeiten. Bilden wir also die erste Ableitung der Funktion $O$ nach der Variablen $r$ und setzen diese gleich Null:
+Nach dieser Manipulation kann die Frage nach der minimalen Oberfläche der Dose ganz analog zu den Extremwertaufgaben von Funktionen bearbeitet werden.
+Es wird also die erste Ableitung der Funktion $O$ nach der Variablen $r$ gebildet und diese gleich Null gesetzt:
 %
 \begin{eqnarray*}
 O'\left(r\right) = 2 \left(2\pi r - \frac{1}{r^2}\right) &=& 0\\
@@ -1803,16 +1805,16 @@ O'\left(r\right) = 2 \left(2\pi r - \frac{1}{r^2}\right) &=& 0\\
 \Leftrightarrow\quad r &=& \sqrt[3]{\frac{1}{2\pi}} \MDFPeriod
 \end{eqnarray*}
 %
-Für die letzte Äquivalenzumformung haben wir verwendet, dass der Radius $r$ keine negativen Werte annehmen kann.
-Setzen wir dieses Ergebnis in die zweite Ableitung von $O$ ein, um zu überprüfen, ob wir wirklich ein Minimum gefunden haben
+Für die letzte Äquivalenzumformung wurde verwendet, dass der Radius $r$ keine negativen Werte annehmen kann.
+Einsetzen dieses Ergebnises in die zweite Ableitung von $O$  dient der Überprüfung, ob wirklich ein Minimum gefunden wurde
 (${O'}'(r) = 4\pi + 4/r^3$):
 \begin{eqnarray*}
 {O'}'\left(\sqrt[3]{\frac{1}{2\pi}}\right) = 4\pi + \frac{4}{\left(\sqrt[3]{\frac{1}{2\pi}}\right)^3} = 12\pi > 0 \MDFPeriod
 \end{eqnarray*}
 %
 Für den Radius $r = \sqrt[3]{\frac{1}{2\pi}}$ wird die Oberfläche der zylindrischen Dose mit dem gegebenen Volumen $V = 1$ minimal.
-Die Höhe erhalten wir in diesem Fall zu $h = \frac{1}{\pi \left(\sqrt[3]{\frac{1}{2\pi}}\right)^2} = \sqrt[3]{\frac{4}{\pi}}$.
-Stellen wir eine Dose mit diesen Maßen her, werden wir für das im Beispiel vorgegebene Volumen den Materialverbrauch minimieren.
+Die Höhe erhält man in diesem Fall zu $h = \frac{1}{\pi \left(\sqrt[3]{\frac{1}{2\pi}}\right)^2} = \sqrt[3]{\frac{4}{\pi}}$.
+Wird eine Dose mit diesen Maßen hergestellt, wird für das im Beispiel vorgegebene Volumen der Materialverbrauch minimiert.
 
 \end{MXContent}
 
