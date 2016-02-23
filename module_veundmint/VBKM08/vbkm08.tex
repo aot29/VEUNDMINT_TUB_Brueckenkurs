@@ -273,28 +273,85 @@ Probe nicht mit der Funktion $f$ überein, so muss die Stammfunktion noch einmal
 \MDeclareSiteUXID{VBKM08_Stammfunktionen_Exercises}
 
 \begin{MExercise}
-% TODO Musterloesungen einsetzen
+%Loesungshinweise erstellt (jgl).
 Geben Sie eine Stammfunktion an:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle\int \left(12 x^2 - 4 x^7\right) \MD x $}{\MLSimplifyQuestion{30}{4*x^3 - 1/2*x^8}{10}{x}{4}{32}{LSTFX1}}. \begin{MHint}{Lösung}{%
-% Lösung hier schreiben
+\item{\MEquationItem{$\displaystyle\int \left(12 x^2 - 4 x^7\right) \MDwSp x $}
+{\MLSimplifyQuestion{30}{4*x^3 - 1/2*x^8}{10}{x}{4}{32}{LSTFX1}}.
+\begin{MHint}{Lösung}{%
+Es ist
+\[
+\int \left(12 x^2 - 4 x^7\right) \MDwSp x
+= 12 \cdot \frac{1}{3} \cdot x^3 - 4 \cdot \frac{1}{8} \cdot x^8 %
+= 4 \cdot x^3 - \frac{1}{2} \cdot x^8 + C\MDFPeriod %
+\]
+}
+\end{MHint}}
+%
+\item{\MEquationItem{$\displaystyle\int \left(\sin(x) + \cos(x)\right) \MDwSp x$}
+{\MLSimplifyQuestion{30}{sin(x)-cos(x)}{10}{x}{4}{32}{LSTFX2}}.
+\begin{MHint}{Lösung}{%
+Es ist
+\[
+\int \left(\sin x + \cos x\right) \MDwSp x %
+= -\cos(x) + \sin(x) + C %
+= \sin(x) - \cos(x) + C\MDFPeriod %
+\]
 }\end{MHint}}
-\item{\MEquationItem{$\displaystyle\int \left(\sin x + \cos x\right) \MD x$}{\MLSimplifyQuestion{30}{sin(x)-cos(x)}{10}{x}{4}{32}{LSTFX2}}. \begin{MHint}{Lösung}{%
-% Lösung hier schreiben
-}\end{MHint}}
-\item{\MEquationItem{$\displaystyle\int \frac{1}{x^2 + 1} \MDwSp x$}{\MLSimplifyQuestion{30}{arctan(x)}{10}{x}{4}{32}{LSTFX3}}. \begin{MHint}{Lösung}{%
-% Lösung hier schreiben
-}\end{MHint}}
+%Teilaufgabe ersetzt, da arctan nicht (mehr) in der Liste von Stammfunktionen
+%vermerkt werden soll (jgl):
+%\item{\MEquationItem{$\displaystyle\int \frac{1}{x^2 + 1} \MDwSp x$}{\MLSimplifyQuestion{30}{arctan(x)}{10}{x}{4}{32}{LSTFX3}}. \begin{MHint}{Lösung}{%
+%% Die Stammfunktion kann aus der obigen Tabelle entnommen werden.
+%}\end{MHint}}
+\item{\MEquationItem{$\displaystyle\int \MEU^{6+x} \MDwSp x$}
+{\MLSimplifyQuestion{30}{exp(6+x)}{10}{x}{4}{32}{LSTFX3}}. 
+\begin{MHint}{Lösung}{%
+Es ist $\MEU^{6+x} = \MEU^6 \cdot \MEU^x$. Somit ist
+\[
+\int \MEU^{6+x} \MDwSp x = \int \MEU^6 \cdot \MEU^x \MDwSp x %
+= \MEU^6 \cdot \int \MEU^x \MDwSp x = \MEU^6 \cdot \MEU^x + C %
+= \MEU^{6+x} + C\MDFPeriod
+\]
+}
+\end{MHint}}
 \end{MExerciseItems}
 \end{MExercise}
 
 \begin{MExercise}
-% TODO Musterloesungen einsetzen, analog zur vorhergehenden Aufgabe
+%Loesungshinweise erstellt (jgl).
 Bestimmen Sie eine Stammfunktion:
 \begin{MExerciseItems}
 \item{\MEquationItem{$\displaystyle\int \MEU^{x+2} \MDwSp x$}{\MLSimplifyQuestion{30}{exp(x+2)}{10}{x}{4}{32}{LSTNF1}}.}
+\begin{MHint}{L"osung}
+Es ist
+$\int \MEU^{x+2} \MDwSp x = %
+\int \MEU^x \cdot \MEU^2 \MDwSp x = %
+\MEU^2 \cdot \int \MEU^x \MDwSp x = %
+\MEU^2 \cdot \MEU^x + C = %
+\MEU^x \cdot \MEU^2 + C = %
+\MEU^{x + 2} + C$.
+\end{MHint}
+%
 \item{\MEquationItem{$\displaystyle\int 3 x\cdot \sqrt[4]{x} \MDwSp x$}{\MLSimplifyQuestion{30}{4/3*x^(9/4)}{1}{x}{10}{32}{LSTNF2}}.}
-\item{\MEquationItem{$\displaystyle\int |x| \MDwSp x$}{\MLSimplifyQuestion{60}{1/2*x*abs(x)}{10}{x}{4}{32}{LSTNF3}}.
+\begin{MHint}{L"osung}
+Es ist
+$\int 3 x \cdot \sqrt[4]{x} \MDwSp x = %
+3 \cdot \int x \cdot x^{\frac{1}{4}} \MDwSp x = %
+3 \cdot \int x^{\frac{5}{4}} \MDwSp x = %
+3 \cdot \frac{4}{9} \cdot x^{\frac{9}{4}} + C = %
+\frac{4}{3} \cdot x^{\frac{9}{4}} + C$.
+\end{MHint}
+\end{MExerciseItems}
+\jHTMLHinweisEingabeFunktionenExp
+\end{MExercise}
+%
+\begin{MExercise}
+Beschreiben Sie den Betrag $|x|$ einer reellen Zahl $x$ mittels einer
+Fallunterscheidung und bestimmen Sie damit 
+\MEquationItem{$\displaystyle\int |x| \MDwSp x$}.
+
+Antwort: \MEquationItem{$\displaystyle\int |x| \MDwSp x$} %
+= \MLSimplifyQuestion{60}{1/2*x*abs(x)}{10}{x}{4}{32}{LSTNF3}
 \ \\ \ \\
 \MInputHint{Die Stammfunktion kann entweder über eine Fallunterscheidung, oder wieder mit Hilfe der Betragsfunktion notiert werden.
 Fallunterscheidungen mit zwei Fällen können mit dem Textstück \texttt{falls(bedingung,fall1,fall2)} eingegeben werden, beispielsweise tippt man
@@ -303,17 +360,22 @@ $$
 |x| \;=\; \left\lbrace{\begin{array}{ll} \phantom{-}x & \text{falls$\;x>0$} \\ -x & \text{falls$\;x\leq 0$}\end{array}}\right.
 $$
 als \texttt{falls(x>0,x,-x)} ein.
-}}
-\end{MExerciseItems}
-\jHTMLHinweisEingabeFunktionenExp
+}
 \end{MExercise}
 
 \begin{MExercise}
 Bestimmen Sie eine Stammfunktion zu
 \begin{MExerciseItems}
-\item $f(x) := \frac{1+x+x^2+\sqrt{x}}{x}$,
-\item $g(x) := 4 + \left(\frac{4 \cos^2 x}{(2 \sin x)^2}\right)^{-1}$,
-\item $h(x) := \frac{2}{4 + (2x)^2}$,
+%Teilaufgabe ersetzt, da die Aufgabe als zu umfangreich bezeichnet wurde (jgl):
+%\item $f(x) := \frac{1+x+x^2+\sqrt{x}}{x}$,
+\item $f(x) := \frac{8 x - 6 x^2}{x}$,
+%Teilaufgabe ersetzt, da die Aufgabe als zu umfangreich bezeichnet wurde (jgl):
+%\item $g(x) := 4 + \left(\frac{4 \cos^2 x}{(2 \sin x)^2}\right)^{-1}$,
+\item $g(x) := 4 + \frac{5 x}{x + 2 x^2}$,
+%Teilaufgabe ersetzt, da arctan nicht (mehr) in der Liste der Stammfunktionen
+%aufgefuehrt werden soll (jgl):
+%\item $h(x) := \frac{2}{4 + (2x)^2}$,
+\item $h(x) := \frac{x + 2 \sqrt{x}}{4x}$,
 \end{MExerciseItems}
 nachdem Sie die Funktionsterme vereinfacht haben:
 
@@ -654,7 +716,7 @@ F"ur Vielfache einer Funktion gilt
 \end{equation}
 \end{MXInfo}
 
-%\begin{MCOSHZusatz}
+\begin{MCOSHZusatz}
 Auch für die Berechnung eines Produktes zweier Funktionen gibt es eine 
 Rechenregel.
 
@@ -702,7 +764,7 @@ am obigen Beispiel deutlich, wenn die Rollen von $f'$ und $g$ vertauscht werden.
 Die Leserin bzw. der Leser mag probieren, dieses Beispiel zu lösen, indem $f'$ 
 und $g$ anders herum gewählt werden!
 \end{MExample}
-%\end{MCOSHZusatz}
+\end{MCOSHZusatz}
 
 \end{MXContent}
 
@@ -727,16 +789,17 @@ $$
 $$
 
 Im Fall einer geraden Funktion $g: [-c\MIntvlSep c] \rightarrow \R$ ist der Graph 
-symmetrisch bez"uglich der $y$-Achse. Die Fl"ache zwischen dem Graphen von $g$ und der 
-$x$-Achse ist hier symmetrisch bez"uglich der $y$-Achse. Die Teilfl"ache links 
-davon ist also das Spiegelbild der rechts liegenden Fl"ache. Beide zusammen 
+symmetrisch bez"uglich der $y$-Achse. Die Fl"ache zwischen dem Graphen von $g$ 
+und der $x$-Achse ist hier symmetrisch bez"uglich der $y$-Achse. Die Teilfl"ache 
+links davon ist also das Spiegelbild der rechts liegenden Fl"ache. Beide zusammen 
 ergeben die Gesamtfl"ache
 
 $$
 \int_{-c}^c g(x) \MDwSp x = 2 \cdot \int_{0}^c g(x) \MDwSp x \MDFPeriod
 $$
 
-In sehr vielen Situationen wird die Berechung eines Integrals einfacher, wenn man den Integranden vor der Integration in eine bekannte Form bringt. Entsprechende Umformungen sollen im Folgenden an einigen Beispielen betrachtet werden.
+In sehr vielen Situationen wird die Berechung eines Integrals einfacher, wenn man den Integranden vor der Integration in eine bekannte Form bringt. Entsprechende 
+Umformungen sollen im Folgenden an einigen Beispielen betrachtet werden.
 Im ersten Beispiel werden Potzenfunktionen untersucht.
 
 \begin{MExample}
@@ -766,20 +829,23 @@ Damit kann man das Integral einfacher lösen:
 \end{eqnarray*}
 \end{MExample}
 
-Im n"achsten Beispiel wird die Umformung eines Integranden mit trigonometrischen Funktionen durchgeführt.
+Im n"achsten Beispiel wird die Umformung eines Integranden mit trigonometrischen 
+Funktionen durchgeführt.
 
 \begin{MExample}
 Bestimmt werden soll das Integral
 \[
 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{\sin(x)}{\tan(x)} \MDwSp x \MDFPSpace, %%
 \]
-indem die Definition der Tangensfunktion ausgenutzt wird. Damit erhält man die Umformung
+indem die Definition der Tangensfunktion ausgenutzt wird. Damit erhält man die 
+Umformung
 \[
 \frac{\sin(x)}{\tan(x)} %
 = \frac{\sin(x)}{\frac{\sin(x)}{\cos(x)}} %
 = \cos(x) \MDFPSpace, %%
 \]
-sodass das Integral schließlich auf sehr einfache Art und Weise gelöst werden kann:
+sodass das Integral schließlich auf sehr einfache Art und Weise gelöst werden 
+kann:
 \[
 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{\sin(x)}{\tan(x)} \MDwSp x %%
 = 
@@ -791,10 +857,12 @@ sodass das Integral schließlich auf sehr einfache Art und Weise gelöst werden ka
 \]
 \end{MExample}
 
-Ist bei einer rationalen Funktion der Grad des Zählerpolynoms größer oder gleich dem Grad des Nennerpolynoms,
-dann führt man zunächst eine Polynomdivision (siehe Modul \MRef{VBKM06}) durch. Je nach Situation können sich auch noch weitere Umformungen (z.B. Partialbruchzerlegung)
-anbieten, die man in weiterführender Literatur und Formelsammlungen finden kann. Im folgenden Beispiel wird eine
-Polynomdivision durchgeführt, um eine rationale Funktion zu integrieren.
+Ist bei einer rationalen Funktion der Grad des Zählerpolynoms größer oder gleich 
+dem Grad des Nennerpolynoms, dann führt man zunächst eine Polynomdivision 
+(siehe Modul \MRef{VBKM06}) durch. Je nach Situation können sich auch noch 
+weitere Umformungen (z.B. Partialbruchzerlegung) anbieten, die man in 
+weiterführender Literatur und Formelsammlungen finden kann. Im folgenden Beispiel
+wird eine Polynomdivision durchgeführt, um eine rationale Funktion zu integrieren.
 
 \begin{MExample}
 Zu berechnen ist Integral
@@ -815,7 +883,8 @@ um. Damit ist dann
 = \left[4 x\right]_{-1}^{1} - 0 %
 = 8 \MDFPeriod
 \end{eqnarray*}
-Denn der Integrand des zweiten Integrals ist eine ungerade Funktion und im Integrationsintervall $[-1\MIntvlSep 1]$ punktsymmetrisch, sodass der Wert
+Denn der Integrand des zweiten Integrals ist eine ungerade Funktion und im 
+Integrationsintervall $[-1\MIntvlSep 1]$ punktsymmetrisch, sodass der Wert
 des zweiten Integrals Null ist.
 \end{MExample}
 
@@ -1034,11 +1103,14 @@ auch Werte ungleich Null ergeben.
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM08_Anwendungen_Intro}
-Die Integralrechnung findet sehr viele Anwendungen, insbesondere in naturwissenschaftlich-technischen Bereichen.
-Beispielhaft soll hier zunächst die Berechnung von Flächen erörtert werden, deren Ränder durch mathematische Funktionen
-beschrieben werden können. Auch dies ist keine rein mathematische Anwendung, sondern findet Einsatzmöglichkeiten bei der Bestimmung
-von Schwerpunkten, von Rotationseigenschaften starrer Körper oder den Biegeeigenschaften von Balken oder Stahlträgern.
-Zum Abschluss werden einige weitere physikalisch-technische Anwendungen betrachtet.
+Die Integralrechnung findet sehr viele Anwendungen, insbesondere in 
+naturwissenschaftlich-technischen Bereichen. Beispielhaft soll hier zunächst 
+die Berechnung von Flächen erörtert werden, deren Ränder durch mathematische 
+Funktionen beschrieben werden können. Auch dies ist keine rein mathematische 
+Anwendung, sondern findet Einsatzmöglichkeiten bei der Bestimmung von 
+Schwerpunkten, von Rotationseigenschaften starrer Körper oder den 
+Biegeeigenschaften von Balken oder Stahlträgern. Zum Abschluss werden einige 
+weitere physikalisch-technische Anwendungen betrachtet.
 \end{MIntro}
 
 \begin{MXContent}{Fl"achenberechnung}{Fl"achenberechnung}{STD}
@@ -1357,6 +1429,8 @@ folgenden Rechnung zu
  & = & 6 \cdot \left(\left(-(-1)+1\right)+\left(1-(-1)\right)\right) \\
  & = & 24 \MDFPeriod %
 \end{eqnarray*}
+Die Berechnung ist nat"urlich auch ohne die Beobachtung m"oglich, dass der 
+Graph von $f$ punktsymmetrisch zum Ursprung ist.
 \end{MHint}
 \end{MExercise}
 
@@ -1369,6 +1443,11 @@ $g: [0\MIntvlSep  1] \rightarrow \R, x \mapsto 12 x^2 - 12 x$ und
 eingeschlossen wird.
 
 Antwort: \MEquationItem{$I_A$}{\MLParsedQuestion{30}{30}{2-2/pi}{IG36}}.
+
+\begin{MHint}{Tipp}
+Zeichnen Sie zun"achst die Graphen der Funktionen, bevor Sie den 
+Fl"acheninhalt berechnen.
+\end{MHint}{Tipp}
 
 \begin{MHint}{Lösung}
 Man betrachtet $f(x) - g(x) = 12 x - 12 x^2 + \sin\left(\pi x\right)$ auf dem Intervall
@@ -1399,12 +1478,20 @@ I_A & = & \left|\int_0^1 \left(12 x^2 - 12 x + \sin\left(\pi x\right)\right) \MD
 \end{MHint}
 \end{MExercise}
 
+In der n"achsten Aufgabe wird eine physikalische Fragestellung in der Sprache
+der Mathematik formuliert. Dies soll exemplarisch verdeutlichen, dass die 
+mathematischen Schreibweisen wie hier f"ur Funktionen prinzipiell auch in 
+Anwendungen eingesetzt werden k"onnen. In der Praxis werden oft k"urze 
+Formulierungen verwendet. So werden beispielsweise Definitionsbereich und 
+Zielbereich einer Funktion nicht explizit notiert, wenn sich diese aus dem 
+Kontext ergeben.
+
 \begin{MExercise}
-Berechnen Sie die Arbeit $W$, die n"otig ist, um die Masse $m$ \emph{gegen}
-die Gravitationskraft
+Berechnen Sie die Arbeit $W$, die n"otig ist, um einen kugelf"ormigen homogenen
+K"orper mit der Masse $m$ \emph{gegen} die Gravitationskraft
 $F: [r_1\MIntvlSep  \infty\MoIr \rightarrow \R, r \mapsto F(r) := -\gamma \cdot \frac{m \cdot M}{r^2}$ 
-von der Oberfl"ache eines kugelf"ormigen K"orpers mit Radius $r_1 = 1$ und 
-Masse $M = 2$ bis zu einer Entfernung $r_2 = 4$ zu bewegen (alle L"angen 
+von der Oberfl"ache eines kugelf"ormigen homogenen K"orpers mit Radius $r_1 = 1$ 
+und Masse $M = 2$ bis zu einer Entfernung $r_2 = 4$ zu bewegen (alle L"angen 
 beziehen sich auf den Mittelpunkt des K"orpers der Masse $M$). Hierbei sind
 die Masse $m$ und die Gravitationskonstante $\gamma$ als gegebene Werte
 anzunehmen.
@@ -1452,25 +1539,52 @@ Bestimmen Sie jeweils eine Stammfunktion:
 \jHTMLHinweisEingabeFunktionenExp
 \end{MExercise}
 
+%Die Aufgaben in den Abschlusstests sollen sich am "geforderten Mindestniveau"
+%orientieren. Deshalb wurde die Aufgabe durch die nachfolgende neue Aufgabe
+%ersetzt:
+%\begin{MExercise} %Integralbegriff und Eigenschaften
+%Die Funktion $f(x) := \frac{1}{x+1}$ ist f"ur $x \geq 0$ 
+%streng monoton \MLQuestion{20}{fallend}{IG3}. Somit gilt
+%\ifttm
+%
+%\begin{center}
+%$\;\displaystyle\sum_{k=0}^7 \frac{1}{k+1} \cdot (k+1 - k) \;$%
+%\MLQuestion{5}{>=}{IG5}%
+%$\;\displaystyle\int_0^8 \frac{1}{x+1} \MDwSp x.$
+%\end{enter}
+%
+%\else
+%\[
+%\sum_{k=0}^7 \frac{1}{k+1} \cdot (k+1 - k) \;\; \MLQuestion{5}{>=}{IG6} \;\; %
+%\int_0^8 \frac{1}{x+1} \MDwSp x. %%
+%\]
+%\fi
+%\MInputHint{Erg"anzen Sie den Text zu einer richtigen Aussage. Vergleiche 
+%werden mit \texttt{=}, \texttt{<=} oder \texttt{>=} geschrieben.}
+%\end{MExercise}
+
+%Neue Aufgabe:
 \begin{MExercise} %Integralbegriff und Eigenschaften
-Die Funktion $f(x) := \frac{1}{x+1}$ ist f"ur $x \geq 0$ 
-streng monoton \MLQuestion{20}{fallend}{IG3}. Somit gilt
+Berechnen Sie die Integrale
 \ifttm
 
 \begin{center}
-$\;\displaystyle\sum_{k=0}^7 \frac{1}{k+1} \cdot (k+1 - k) \;$%
-\MLQuestion{5}{>=}{IG5}%
-$\;\displaystyle\int_0^8 \frac{1}{x+1} \MDwSp x.$
-\end{enter}
+$\displaystyle\int_{1}^{\MEU} \frac{1}{2 x} \MDwSp x = $%
+\MLParsedQuestion{10}{1/2}{4}{IG38}
+und
+$\displaystyle\int_{5}^{8} \frac{6}{x-4} \MDwSp x = $%
+\MLParsedQuestion{10}{12*ln(2)}{4}{IG37}
+\end{center}
 
 \else
 \[
-\sum_{k=0}^7 \frac{1}{k+1} \cdot (k+1 - k) \;\; \MLQuestion{5}{>=}{IG6} \;\; %
-\int_0^8 \frac{1}{x+1} \MDwSp x. %%
+\int_{1}^{\MEU} \frac{1}{2 x} \MDwSp x = %
+\MLParsedQuestion{10}{1/2}{4}{IG40}
+\qquad \text{und} \qquad
+\int_{5}^{8} \frac{6}{x-4} \MDwSp x = %
+\MLParsedQuestion{10}{12*ln(2)}{4}{IG39}
 \]
 \fi
-\MInputHint{Erg"anzen Sie den Text zu einer richtigen Aussage. Vergleiche 
-werden mit \texttt{=}, \texttt{<=} oder \texttt{>=} geschrieben.}
 \end{MExercise}
 
 
@@ -1490,8 +1604,8 @@ $\displaystyle\int_{\pi}^{\frac{3\pi}{4}} 5 \sin(4 x - 3 \pi) \MDwSp x = $%
 \int_{0}^{3} x \cdot \sqrt{x+1} \MDwSp x = %
 \MLParsedQuestion{10}{116/15}{4}{IG39}
 \qquad \text{und} \qquad
-\int_{\pi}^{\frac{3\pi}{4}} 5 \sin(3 \pi - 4 x) \MDwSp x = %
-\MLParsedQuestion{10}{5/2}{4}{IG40}
+\int_{\pi}^{\frac{3\pi}{4}} 5 \sin(4 x - 3 \pi) \MDwSp x = %
+\MLParsedQuestion{10}{-5/2}{4}{IG40}
 \]
 \fi
 \end{MExercise}
