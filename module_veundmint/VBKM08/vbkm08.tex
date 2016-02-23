@@ -31,14 +31,18 @@ Das Modul umfasst folgende Abschnitte:
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM08_Stammfunktionen_Intro}
-Im letzten Kapitel wurden Ableitungen von Funktionen behandelt. Natürlich stellt sich,
-wie bei jeder Rechenoperation, auch hier die Frage nach der Umkehrung, so wie die Subtraktion als Umkehrung
-der Addition aufgefasst werden kann oder die Division als Umkehrung der Multiplikation. Die Suche nach der
-Umkehrung der Ableitung führt zur Einführung der Integralrechnung und damit zur Stammfunktionsbildung. Der Zusammenhang ist
-sehr einfach erklärt. Kann man einer Funktion $f$ eine Ableitung $f'$ zuordnen und fasst auch $f'$ als Funktion auf,
-so kann man auch der Funktion $f'$ eine Funktion $f$ zuordnen, indem man die Operation "`Ableitung"' rückgängig macht.
-Man dreht in diesem Kapitel also die Fragestellung um: Kann man zu einer Funktion $f$ eine andere Funktion finden,
-deren Ableitung wieder die Funktion $f$ ist?
+Im letzten Kapitel wurden Ableitungen von Funktionen behandelt. Natürlich 
+stellt sich, wie bei jeder Rechenoperation, auch hier die Frage nach der 
+Umkehrung, so wie die Subtraktion als Umkehrung der Addition aufgefasst werden 
+kann oder die Division als Umkehrung der Multiplikation. Die Suche nach der
+Umkehrung der Ableitung führt zur Einführung der Integralrechnung und damit zur 
+Stammfunktionsbildung. Der Zusammenhang ist sehr einfach erklärt. Kann man 
+einer Funktion $f$ eine Ableitung $f'$ zuordnen und fasst auch $f'$ als Funktion 
+auf, so kann man auch der Funktion $f'$ eine Funktion $f$ zuordnen, indem man 
+die Operation "`Ableitung"' rückgängig macht.
+Man dreht in diesem Kapitel also die Fragestellung um: Kann man zu einer 
+Funktion $f$ eine andere Funktion finden, deren Ableitung wieder die 
+Funktion $f$ ist?
 
 Die Anwendungen der Integralrechnung sind genauso vielfältig wie die Anwendungen der Differentialrechnung. Untersucht man z.B. in der Physik die Kraft $F$, die auf einen Körper wirkt, dann kann man unter Verwendung des bekannten Zusammenhangs $F = m a$ ($m$: Masse des Körpers, $a$: Beschleunigung des Körpers) zunächst aus der Kraft die Beschleunigung $a = F/m$ berechnen. Interpretiert man die Beschleunigung als Änderungsrate der Geschwindigkeit, $a = \frac{\MD v}{\MD t}$, dann kann man anschließend die Geschwindigkeit über die Umkehrung der Ableitung -- also durch die Integralrechnung -- bestimmen. Ähnliche Zusammenhänge lassen sich in vielen Bereichen aus Naturwissenschaften, Technik und auch Wirtschaftswissenschaften finden. So benötigt man die Integralrechnung zur Bestimmung von Flächen, von Schwerpunkten, Biegeeigenschaften von Balken oder zur Lösung sogenannter Differentialgleichungen, mit denen die meisten Probleme im naturwissenschaftlich-technischen Umfeld beschrieben werden.
 \end{MIntro}
@@ -254,7 +258,12 @@ Integrationskonstante $C$ häufig durch die Angabe weiterer Bedingungen festgeleg
 %Ableitungsregeln.
 
 \begin{MXInfo}{Ein praktischer Hinweis}
-Die Überprüfung, ob man die Stammfunktion einer vorgegebenen Funktion $f$ richtig gebildet hat, ist sehr einfach. Man bestimmt die Ableitung der gefundenen Stammfunktion und vergleicht diese mit der ursprünglich vorgegebenen Funktion $f$. Stimmen beide überein, dann war die Rechnung richtig. Stimmt das Ergebnis der Probe nicht mit der Funktion $f$ überein, so muss die Stammfunktion noch einmal überprüft werden.
+Die Überprüfung, ob man die Stammfunktion einer vorgegebenen Funktion $f$ richtig
+gebildet hat, ist sehr einfach. Man bestimmt die Ableitung der gefundenen 
+Stammfunktion und vergleicht diese mit der ursprünglich vorgegebenen Funktion $f$.
+Stimmen beide überein, dann war die Rechnung richtig. Stimmt das Ergebnis der 
+Probe nicht mit der Funktion $f$ überein, so muss die Stammfunktion noch einmal 
+überprüft werden.
 \end{MXInfo}
 \end{MContent}
 
@@ -645,7 +654,9 @@ F"ur Vielfache einer Funktion gilt
 \end{equation}
 \end{MXInfo}
 
-Auch für die Berechnung eines Produktes zweier Funktionen gibt es eine Rechenregel.
+%\begin{MCOSHZusatz}
+Auch für die Berechnung eines Produktes zweier Funktionen gibt es eine 
+Rechenregel.
 
 \begin{MXInfo}{Partielle Integration}
 Sei $f'$ eine auf $[a\MIntvlSep b]$ integrierbare Funktion und $g$ eine auf $[a\MIntvlSep b]$ differenzierbare Funktion, dann gilt
@@ -686,8 +697,12 @@ So kann man das gesuchte Integral berechnen:
 &=& -(-1)\cdot\pi + \left[\sin x\right]_0^\pi = \pi \MDFPeriod
 \end{eqnarray*}
 %
-Die Zuordnung der Funktionen $f'$ und $g$ muss zielführend erfolgen. Die Leserin bzw. der Leser mag probieren, dieses Beispiel zu lösen, indem $f'$ und $g$ anders herum gewählt werden!
+Die Zuordnung der Funktionen $f'$ und $g$ muss zielführend erfolgen. Dies wird 
+am obigen Beispiel deutlich, wenn die Rollen von $f'$ und $g$ vertauscht werden. 
+Die Leserin bzw. der Leser mag probieren, dieses Beispiel zu lösen, indem $f'$ 
+und $g$ anders herum gewählt werden!
 \end{MExample}
+%\end{MCOSHZusatz}
 
 \end{MXContent}
 
@@ -813,8 +828,9 @@ des zweiten Integrals Null ist.
 
 \begin{MExercise}
 % TODO Musterloesungen einsetzen
-Berechnen Sie zu $f:[-3\MIntvlSep 4] \rightarrow \R$ mit dem unten dargestellten Graphen
-das Integral $\displaystyle \int_{-3}^{4} f(x) \MDwSp x$ mit Methoden aus der Geometrie.
+Berechnen Sie zu $f:[-3\MIntvlSep 4] \rightarrow \R$ mit dem unten dargestellten 
+Graphen das Integral $\displaystyle \int_{-3}^{4} f(x) \MDwSp x$ mit Methoden 
+aus der Geometrie.
 
 \begin{center}
 \MTikzAuto{%
@@ -1519,6 +1535,45 @@ $f$ und $g$ auf $[-3\MIntvlSep  2]$ mit $f(x) = x^2$ und $g(x) = 6 - x$
 eingeschlossen wird.
 
 Antwort: $I_A = $\MLParsedQuestion{10}{125/6}{4}{IG45}
+\end{MExercise}
+
+\begin{MExercise} %Hauptsatz: Gemeinsame Aufgabe mit OMB+
+Es ist eine Stammfunktion $F$ der Funktion $f$ gegeben, und eine 
+Stammfunktion $G$ von $g$. Weiter ist eine Funktion $\Mid$ mit 
+$\Mid(x) = x$ gegeben.
+
+Welche der folgenden Aussagen gelten stets (wenn die jeweiligen 
+Verkn"upfungen m"oglich sind)?
+
+\begin{tabular}[t]{ccl}
+%\begin{tabular}[t]{lcc}
+%Aussage: & richtig: & falsch: \\
+ richtig: & falsch: & Aussage: \\
+ \MCheckbox{0}{M08C01a} & \MCheckbox{1}{M08C01b} &
+$\Mid \cdot F$ ist eine Stammfunktion von $\Mid \cdot f$? \\
+% & \MCheckbox{0}{M08C01a} & \MCheckbox{1}{M08C01b} \\
+%
+ \MCheckbox{0}{M08C02a} & \MCheckbox{1}{M08C02b} &
+$F \circ G$ ist eine Stammfunktion von $f \circ g$? \\
+% & \MCheckbox{0}{M08C02a} & \MCheckbox{1}{M08C02b} \\
+%
+ \MCheckbox{1}{M08C03a} & \MCheckbox{0}{M08C03b} &
+$F - G$ ist eine Stammfunktion von $f - g$? \\
+% & \MCheckbox{1}{M08C03a} & \MCheckbox{0}{M08C03b} \\
+%
+ \MCheckbox{0}{M08C04a} & \MCheckbox{1}{M08C04b} &
+$F / G$ ist eine Stammfunktion von $f / g$? \\
+% & \MCheckbox{0}{M08C04a} & \MCheckbox{1}{M08C04b} \\
+%
+ \MCheckbox{0}{M08C05a} & \MCheckbox{1}{M08C05b} &
+$F \cdot G$ ist eine Stammfunktion von $f \cdot g$? \\
+% & \MCheckbox{0}{M08C05a} & \MCheckbox{1}{M08C05b} \\
+%
+ \MCheckbox{1}{M08C06a} & \MCheckbox{0}{M08C06b} %%
+$-20 \cdot F$ ist eine Stammfunktion von $-20 \cdot f$? %
+% & \MCheckbox{1}{M08C06a} & \MCheckbox{0}{M08C06b} %%
+%
+\end{tabular}
 \end{MExercise}
 \end{MTest}
 
