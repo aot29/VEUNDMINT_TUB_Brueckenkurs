@@ -3274,9 +3274,31 @@ logMessage($CLIENTINFO, " ok");
 
 logMessage($VERBOSEINFO, "Es werden " . ($#DirectHTML + 1) . " DirectHTML-Statements werden verwendet");
 
-logTimestamp("Starting ttm tex->html converter");
-system "./ttm-src/ttm -p./tex < tex/vorkursxml.tex 1>$xmlfile 2>$xmlerrormsg";
-logTimestamp("Loading ttm output file $xmlfile");
+# Variants
+my $vok = 0;
+for ($i = 0; $i <= $#{$config{variants}}; $i++) {
+  my $vfile;
+  if ($config{variants}[$i] eq "std") {
+    $vfile = $xmlfile;
+    $vok = 1;
+  } else {
+    $vfile = $config{variants}[$i] . "_" . $xmlfile;
+  }
+    
+  my $target = "tex/htmltarget.tex";
+  # this is really dirty and should be replaced by internal code
+  system("perl -pi.back -e 's/\\MVARIANT{(.+?)}/\\MVARIANT{" . $config{variants}[$i] . " }/sg;' $target");
+
+  logTimestamp("Starting ttm tex->html converter for variant " . $config{variants}[$i]);
+  system "./ttm-src/ttm -p./tex < $target 1>$vfile 2>$xmlerrormsg";
+}
+
+if ($vok eq 0) {
+  logMessage($FATALERROR, "No main variant (keyword std) found, cannot generate HTML files");
+}
+
+logTimestamp("Loading ttm output file $xmlfile for main variant");
+
 my $text = loadfile($xmlfile);
 my $ttm_errors = loadfile($xmlerrormsg);
 my @ttm_errors = split("\n", $ttm_errors);
@@ -4507,16 +4529,18 @@ print MINTS $globalexstring;
 close(MINTS);
 
 # Create main file for converter build
-my $ttminputfile = $config{output} . "/converter/tex/vorkursxml.tex";
+my $ttminputfile = $config{output} . "/converter/tex/htmltarget.tex";
 $mints_open = open(MINTS, "> $ttminputfile") or die "FATAL: Could not create converter input file";
 print MINTS "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
 print MINTS "\\documentclass{book}\n";
+print MINTS "\\def\\MVARIANT{std}\n"; # Wird bei Erzeugung mehrerer Varianten ueberschrieben
 print MINTS "\\input{$macrofile}\n";
 print MINTS "\\title{MINT-Module}\n";
 print MINTS "\\author{MINT-Kolleg Baden-W\"urttemberg}\n";
 print MINTS "\\newcounter{MChaptersGiven}\n";
 print MINTS "\\setcounter{MChaptersGiven}{1}\n";
 print MINTS "\\begin{document}\n";
+print MINTS "\\begin{html}<!-- variant;\\end{html}\\MVARIANT\\begin{html}//-->\\end{html}\n";
 print MINTS "\\input{" . $config{module} . "}\n";
 print MINTS "\\end{document}\n";
 close(MINTS);
