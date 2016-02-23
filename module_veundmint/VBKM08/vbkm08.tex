@@ -303,14 +303,18 @@ Es ist
 %\item{\MEquationItem{$\displaystyle\int \frac{1}{x^2 + 1} \MDwSp x$}{\MLSimplifyQuestion{30}{arctan(x)}{10}{x}{4}{32}{LSTFX3}}. \begin{MHint}{Lösung}{%
 %% Die Stammfunktion kann aus der obigen Tabelle entnommen werden.
 %}\end{MHint}}
-\item{\MEquationItem{$\displaystyle\int \MEU^{6+x} \MDwSp x$}
+\item{\MEquationItem{$\displaystyle\int \frac{1}{6 \sqrt{x}} \MDwSp x$}
 {\MLSimplifyQuestion{30}{exp(6+x)}{10}{x}{4}{32}{LSTFX3}}. 
 \begin{MHint}{Lösung}{%
-Es ist $\MEU^{6+x} = \MEU^6 \cdot \MEU^x$. Somit ist
+Es ist 
+$\frac{1}{6 \sqrt{x}} = \frac{1}{6} \cdot \frac{1}{\sqrt{x}} %
+= \frac{1}{6} \cdot x^{-\frac{1}{2}}$. Somit ist
 \[
-\int \MEU^{6+x} \MDwSp x = \int \MEU^6 \cdot \MEU^x \MDwSp x %
-= \MEU^6 \cdot \int \MEU^x \MDwSp x = \MEU^6 \cdot \MEU^x + C %
-= \MEU^{6+x} + C\MDFPeriod
+\int \frac{1}{6 \sqrt{x}} \MDwSp x %
+= \frac{1}{6} \cdot \int x^{-\frac{1}{2}} \MDwSp x %
+= \frac{1}{6} \cdot \frac{1}{-\frac{1}{2} + 1} \cdot x^{-\frac{1}{2} + 1} + C %
+= \frac{1}{6} \cdot 2 \cdot x^{\frac{1}{2}} + C %
+= \frac{1}{3} \cdot \sqrt{x} + C\MDFPeriod %
 \]
 }
 \end{MHint}}
@@ -347,12 +351,13 @@ $\int 3 x \cdot \sqrt[4]{x} \MDwSp x = %
 %
 \begin{MExercise}
 Beschreiben Sie den Betrag $|x|$ einer reellen Zahl $x$ mittels einer
-Fallunterscheidung und bestimmen Sie damit 
-\MEquationItem{$\displaystyle\int |x| \MDwSp x$}.
+Fallunterscheidung und bestimmen Sie damit $\displaystyle\int |x| \MDwSp x$.
 
-Antwort: \MEquationItem{$\displaystyle\int |x| \MDwSp x$} %
+Antwort: $\displaystyle\int |x| \MDwSp x$ %
 = \MLSimplifyQuestion{60}{1/2*x*abs(x)}{10}{x}{4}{32}{LSTNF3}
+\ifttm
 \ \\ \ \\
+\else\relax\fi
 \MInputHint{Die Stammfunktion kann entweder über eine Fallunterscheidung, oder wieder mit Hilfe der Betragsfunktion notiert werden.
 Fallunterscheidungen mit zwei Fällen können mit dem Textstück \texttt{falls(bedingung,fall1,fall2)} eingegeben werden, beispielsweise tippt man
 eine Fallunterscheidung der Form
@@ -363,51 +368,100 @@ als \texttt{falls(x>0,x,-x)} ein.
 }
 \end{MExercise}
 
+
+%Alle Teilaufgaben der Aufgabe ersetzt, da die Aufgabe als zu umfangreich 
+%bezeichnet wurde beziehungsweise da arctan nicht (mehr) in der Liste der 
+%Stammfunktionen aufgefuehrt werden soll (jgl):
+%\begin{MExercise}
+%Bestimmen Sie eine Stammfunktion zu
+%\begin{MExerciseItems}
+%\item $f(x) := \frac{1+x+x^2+\sqrt{x}}{x}$,
+%\item $g(x) := 4 + \left(\frac{4 \cos^2 x}{(2 \sin x)^2}\right)^{-1}$,
+%\item $h(x) := \frac{2}{4 + (2x)^2}$,
+%\end{MExerciseItems}
+%nachdem Sie die Funktionsterme vereinfacht haben:
+%
+%\begin{MExerciseItems}
+%\item{Mit der Vereinfachung \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{1/x+1+x+1/sqrt(x)}{10}{x}{4}{512}{ISF1}}\\ 
+%ergibt sich \MEquationItem{$F(x)$}{\MLSimplifyQuestion{30}{ln(x)+x+1/2*x^2+2*sqrt(x)}{10}{x}{4}{544}{ISF1b}} für $x>0$.\\
+%\begin{MHint}{Lösung}
+%Die Funktion lässt sich zu $f(x)=\frac1x+1+x+x^{-\frac12}$ vereinfachen, was auf 
+%$$
+%F(x) \;=\; \ln(x)+x+\frac12x^2+2x^{\frac12} \;=\;\ln(x)+x+\frac12x^2+2\sqrt{x}
+%$$
+%führt (bis auf eine Konstante).
+%\end{MHint}
+%}
+%\item{Mit der Vereinfachung \MEquationItem{$g(x)$}{\MLSimplifyQuestion{30}{4 + (tan(x))^2}{10}{x}{4}{512}{ISF2}}\\
+%ergibt sich \MEquationItem{$G(x)$}{\MLSimplifyQuestion{30}{3*x + tan(x)}{10}{x}{4}{544}{ISF2b}}.\\
+%\begin{MHint}{Lösung}
+%Die Funktion lässt sich zu $g(x)=4+\tan(x)^2$ vereinfachen, was auf 
+%$$
+%G(x) \;=\; 3x+\tan(x)
+%$$
+%führt (bis auf eine Konstante).
+%\end{MHint}
+%}
+%\item{Mit der Vereinfachung \MEquationItem{$h(x)$}{\MLSimplifyQuestion{30}{1/2*1/(1 + x^2)}{10}{x}{4}{0}{ISF3}}\\
+%ergibt sich \MEquationItem{$H(x)$}{\MLSimplifyQuestion{30}{1/2*arctan(x)}{10}{x}{4}{32}{ISF3b}}.\\
+%\begin{MHint}{Lösung}
+%Die Funktion lässt sich zu $h(x)=\frac12\cdot \frac1{1+x^2}$ vereinfachen, was auf 
+%$$
+%H(x) \;=\; \frac12\cdot \arctan(x)
+%$$
+%führt (bis auf eine Konstante).
+%\end{MHint}
+%}
+%\end{MExerciseItems}
+%\MInputHint{Schreiben Sie beispielsweise $\cos^2(x)$ als \texttt{cos(x)^2} und den Arkustangens als \texttt{arctan(x)}.}
+%\end{MExercise}
+
+
+%Neue Aufgabe als Ersatz fuer die vorherige Version (siehe oben, jgl):
 \begin{MExercise}
 Bestimmen Sie eine Stammfunktion zu
 \begin{MExerciseItems}
-%Teilaufgabe ersetzt, da die Aufgabe als zu umfangreich bezeichnet wurde (jgl):
-%\item $f(x) := \frac{1+x+x^2+\sqrt{x}}{x}$,
-\item $f(x) := \frac{8 x - 6 x^2}{x}$,
-%Teilaufgabe ersetzt, da die Aufgabe als zu umfangreich bezeichnet wurde (jgl):
-%\item $g(x) := 4 + \left(\frac{4 \cos^2 x}{(2 \sin x)^2}\right)^{-1}$,
-\item $g(x) := 4 + \frac{5 x}{x + 2 x^2}$,
-%Teilaufgabe ersetzt, da arctan nicht (mehr) in der Liste der Stammfunktionen
-%aufgefuehrt werden soll (jgl):
-%\item $h(x) := \frac{2}{4 + (2x)^2}$,
-\item $h(x) := \frac{x + 2 \sqrt{x}}{4x}$,
+\item $\displaystyle f(x) := \frac{8 x^3 - 6 x^2}{x^4}$,
+%\item $\displaystyle g(x) := \frac{5 x}{x + 2 x^2}$,
+%\item $\displaystyle g(x) := \frac{6 \sqrt{x} + 1}{3 \sqrt{x^5}}$,
+\item $\displaystyle g(x) := \frac{18 x^2}{3 \sqrt{x^5}}$,
+\item $\displaystyle h(x) := \frac{x + 2 \sqrt{x}}{4x}$,
 \end{MExerciseItems}
-nachdem Sie die Funktionsterme vereinfacht haben:
+f"ur $x > 0$, nachdem Sie die Funktionsterme vereinfacht haben:
 
 \begin{MExerciseItems}
-\item{Mit der Vereinfachung \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{1/x+1+x+1/sqrt(x)}{10}{x}{4}{512}{ISF1}}\\ 
-ergibt sich \MEquationItem{$F(x)$}{\MLSimplifyQuestion{30}{ln(x)+x+1/2*x^2+2*sqrt(x)}{10}{x}{4}{544}{ISF1b}} für $x>0$.\\
+\item{Mit der Vereinfachung \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{8/x-6/x^2}{10}{x}{4}{512}{ISF1}}\\ 
+ergibt sich \MEquationItem{$F(x)$}{\MLSimplifyQuestion{30}{8*ln(x)+6/x}{10}{x}{4}{544}{ISF1b}} für $x>0$.\\
 \begin{MHint}{Lösung}
-Die Funktion lässt sich zu $f(x)=\frac1x+1+x+x^{-\frac12}$ vereinfachen, was auf 
-$$
-F(x) \;=\; \ln(x)+x+\frac12x^2+2x^{\frac12} \;=\;\ln(x)+x+\frac12x^2+2\sqrt{x}
-$$
-führt (bis auf eine Konstante).
+Die Funktion lässt sich zu $f(x)=\frac{8}{x} - \frac{6}{x^2}$ vereinfachen, was 
+auf 
+\[
+F(x) \;=\; 8 \cdot \ln(x) + \frac{6}{x} %
+\]
+f"ur $x > 0$ führt (bis auf eine Konstante).
 \end{MHint}
 }
-\item{Mit der Vereinfachung \MEquationItem{$g(x)$}{\MLSimplifyQuestion{30}{4 + (tan(x))^2}{10}{x}{4}{512}{ISF2}}\\
-ergibt sich \MEquationItem{$G(x)$}{\MLSimplifyQuestion{30}{3*x + tan(x)}{10}{x}{4}{544}{ISF2b}}.\\
+\item{Mit der Vereinfachung \MEquationItem{$g(x)$}{\MLSimplifyQuestion{30}{6/sqrt(x)}{10}{x}{4}{512}{ISF2}}\\
+ergibt sich \MEquationItem{$G(x)$}{\MLSimplifyQuestion{30}{12*sqrt(x)}{10}{x}{4}{544}{ISF2b}} f"ur $x > 0$.\\
 \begin{MHint}{Lösung}
-Die Funktion lässt sich zu $g(x)=4+\tan(x)^2$ vereinfachen, was auf 
-$$
-G(x) \;=\; 3x+\tan(x)
-$$
-führt (bis auf eine Konstante).
+Die Funktion lässt sich zu %
+$g(x)= \frac{6}{\sqrt{x}} = 6 \cdot x^{-\frac{1}{2}}$ %
+vereinfachen, was auf 
+\[
+G(x) \;=\; 6 \cdot 2 \cdot \sqrt{x} = 12 \cdot \sqrt{x} %%
+\]
+f"ur $x > 0$ führt (bis auf eine Konstante).
 \end{MHint}
 }
-\item{Mit der Vereinfachung \MEquationItem{$h(x)$}{\MLSimplifyQuestion{30}{1/2*1/(1 + x^2)}{10}{x}{4}{0}{ISF3}}\\
-ergibt sich \MEquationItem{$H(x)$}{\MLSimplifyQuestion{30}{1/2*arctan(x)}{10}{x}{4}{32}{ISF3b}}.\\
+\item{Mit der Vereinfachung \MEquationItem{$h(x)$}{\MLSimplifyQuestion{30}{1/4+1/(2*sqrt(x))}{10}{x}{4}{0}{ISF3}}\\
+ergibt sich \MEquationItem{$H(x)$}{\MLSimplifyQuestion{30}{x/4+sqrt(x)}{10}{x}{4}{32}{ISF3b}} f"ur $x > 0$.\\
 \begin{MHint}{Lösung}
-Die Funktion lässt sich zu $h(x)=\frac12\cdot \frac1{1+x^2}$ vereinfachen, was auf 
-$$
-H(x) \;=\; \frac12\cdot \arctan(x)
-$$
-führt (bis auf eine Konstante).
+Die Funktion lässt sich zu %
+$h(x)=\frac{1}{4} + \frac{1}{2 \cdot \sqrt{x}}$ vereinfachen, was auf 
+\[
+H(x) \;=\; \frac{1}{4} \cdot x + \sqrt{x} %%
+\]
+f"ur $x > 0$ führt (bis auf eine Konstante).
 \end{MHint}
 }
 \end{MExerciseItems}
@@ -495,8 +549,10 @@ S_8 &=& f(x_0) \cdot (x_1-x_0) + f(x_1) \cdot (x_2-x_1) + f(x_2) \cdot (x_3-x_2)
     &=& f(x_0) \cdot 1 + f(x_1) \cdot 1 + f(x_2) \cdot 1 + f(x_3) \cdot 1 + f(x_4) \cdot 1 + f(x_5) \cdot 1 + f(x_6) \cdot 1 + f(x_7) \cdot 1 \MDFPeriod
 \end{eqnarray*}
 %
-Leider ist dieser Vorgang nicht immer so einfach wie in diesem Beispiel und die Intervalllänge nicht immer $1$. Die Intervalllänge soll schließlich gegen Null gehen, um einen möglichst genauen Wert der Fläche zu berechnen.
-% TODO? TS: "..., um einen -- falls möglich -- exakten Wert der Fläche zu berechnen."
+Leider ist dieser Vorgang nicht immer so einfach wie in diesem Beispiel und die 
+Intervalllänge nicht immer $1$. Die Intervalllänge soll schließlich gegen Null 
+gehen, um einen möglichst genauen Wert der Fläche zu berechnen. 
+
 \begin{MXInfo}{Integral}
 Gegeben ist eine Funktion $f: [a\MIntvlSep b] \rightarrow \R$ auf einem reellen Intervall $[a\MIntvlSep b]$. Dann nennt man
 %
@@ -504,7 +560,7 @@ Gegeben ist eine Funktion $f: [a\MIntvlSep b] \rightarrow \R$ auf einem reellen 
 \int_a^b f(x) \MDwSp x = \lim_{n \rightarrow \infty} S_n %%
 \end{equation}
 %
-das \MEntry{bestimmte Integral}{Integral (bestimmt)} von $f$ mit der Untergrenze $a$ und der Obergrenze $b$.
+das \MEntry{bestimmte Integral}{Integral (bestimmt)} von $f$ mit der Untergrenze $a$ und der Obergrenze $b$ (wenn der Grenzwert existiert).
 \end{MXInfo}
 %
 %\begin{MXInfo}{Integral}
@@ -530,6 +586,10 @@ das \MEntry{bestimmte Integral}{Integral (bestimmt)} von $f$ mit der Untergrenze
 %geschrieben. Es hei"st $a$ Untergrenze, $b$ Obergrenze des Integrals "uber dem
 %Integranden $f(x)$ mit der Integrationsvariablen $x$.
 %\end{MXInfo}
+Prinzipiell kann es vorkommen, dass auf diese Weise gar kein bestimmter Wert 
+berechnet werden kann, das Integral also nicht exisitert.
+Weiterf"uhrende "Uberlegungen zeigen, dass f"ur jede stetige Funktion das 
+Integral existiert.
 
 Als Beispiel wird das Integral von $f: [0\MIntvlSep 1] \rightarrow \R,\, x \mapsto x$ 
 berechnet, wobei die Berechnung des Grenzwertes im Vordergrund steht.
@@ -1683,7 +1743,7 @@ $F / G$ ist eine Stammfunktion von $f / g$? \\
 $F \cdot G$ ist eine Stammfunktion von $f \cdot g$? \\
 % & \MCheckbox{0}{M08C05a} & \MCheckbox{1}{M08C05b} \\
 %
- \MCheckbox{1}{M08C06a} & \MCheckbox{0}{M08C06b} %%
+ \MCheckbox{1}{M08C06a} & \MCheckbox{0}{M08C06b} &
 $-20 \cdot F$ ist eine Stammfunktion von $-20 \cdot f$? %
 % & \MCheckbox{1}{M08C06a} & \MCheckbox{0}{M08C06b} %%
 %
