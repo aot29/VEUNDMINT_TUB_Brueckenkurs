@@ -38,13 +38,13 @@ Dieses Modul besteht aus
 \MLabel{VBKM09_Koordinaten_Intro}
 \MDeclareSiteUXID{VBKM09_Koordinaten_Intro}
 
-Will man Objekte, wie Geraden oder Kreise, die in \MSRef{VBKM05}{Kapitel 5} rein geometrisch betrachtet wurden, auch algebraisch (das heißt mit Hilfe von Gleichungen) untersuchen, so muss man zur eindeutigen Beschreibung von Punkten in der Ebene \MEntry{Koordinatensysteme}{Koordinatensystem} einführen. Die grundlegende Idee von Koordinatensystemen ist sehr einfach: Will man den Ort eine Punktes von Interesse exakt angeben, so braucht man neben einem Referenzpunkt (in der Mathematik als \MEntry{Ursprung}{Ursprung} bezeichnet) eine bestimmte Längeneinheit (zum Beispiel Kilometer). Dann kann man den Ort des Punktes mit Hilfe von zwei Zahlen eindeutig angeben. Diese zwei Zahlen werden in der Mathematik als \MEntry{Koordinaten}{Koordinaten} des Punktes bezeichnet. In der Praxis findet man diess zum Beispiel auf Schildern, die den Ort von Feuerhydranten im Boden angeben:
+Will man Objekte, wie Geraden oder Kreise, die in \MSRef{VBKM05}{Kapitel 5} rein geometrisch betrachtet wurden, auch algebraisch (das heißt mit Hilfe von Gleichungen) untersuchen, so muss man zur eindeutigen Beschreibung von Punkten in der Ebene \MEntry{Koordinatensysteme}{Koordinatensystem} einführen. Die grundlegende Idee von Koordinatensystemen ist sehr einfach: Will man den Ort eines Punktes von Interesse exakt angeben, so braucht man neben einem Referenzpunkt (in der Mathematik als \MEntry{Ursprung}{Ursprung} bezeichnet) eine bestimmte Längeneinheit (zum Beispiel Kilometer). Dann kann man den Ort des Punktes mit Hilfe von zwei Zahlen eindeutig benennen. Diese zwei Zahlen werden in der Mathematik als \MEntry{Koordinaten}{Koordinaten} des Punktes bezeichnet. In der Praxis findet man dies zum Beispiel auf Schildern, die den Ort von Hydranten im Boden angeben:
 
 \begin{center}
 \MUGraphicsSolo{hydrant.png}{scale=0.6}{width:571px}
 \end{center}
 
-In diesem Fall ist der Ursprung der Ort an dem das Schild angebracht ist, die Längeneinheit ist Meter und die beiden abzulesenden Zahlen \MZahl{0}{9}\ und \MZahl{6}{4}\ geben an, dass man sich vom Ort des Schilds aus \MZahl{0}{9}\ Meter nach rechts und \MZahl{6}{4}\ Meter nach hinten begeben muss um den Hydranten zu finden. Die beiden Zahlen \MZahl{0}{9}\ und \MZahl{6}{4}\ bilden also die Koordinaten des Hydranten in dem Koordinatensystem, das durch den Ort des Schilds und die Längeneinheit Meter festgelegt wird:
+In diesem Fall ist der Ursprung der Ort, an dem das Schild angebracht ist, die Längeneinheit ist Meter, und die beiden abzulesenden Zahlen \MZahl{0}{9}\ und \MZahl{6}{4}\ geben an, dass man sich vom Ort des Schilds aus \MZahl{0}{9}\ Meter nach rechts und \MZahl{6}{4}\ Meter nach hinten begeben muss, um den Hydranten zu finden. Die beiden Zahlen \MZahl{0}{9}\ und \MZahl{6}{4}\ bilden also die Koordinaten des Hydranten in dem Koordinatensystem, das durch den Ort des Schilds und die Längeneinheit Meter festgelegt wird:
 
 \begin{center}
 \MTikzAuto{\begin{tikzpicture}
@@ -105,7 +105,7 @@ In der Mathematik werden die Richtungen in einem Koordinatensystem selten \glqq 
 \end{center}
 
 
-Die verwendete Längeneinheit kann hier noch zusätzlich angegeben werden, diese ist aber für rein mathematische Betrachtungen zunächst nicht wichtig. Beachtet werden sollte aber die Benutzung negativer Koordinaten \glqq links und unterhalb\grqq\ des Ursprungs. Die gezeichneten \MEntry{Achsen}{Achsen} bezeichnet man schließlich entsprechend oft als $x$-Achse oder $x_1$-Achse und $y$-Achse oder $x_2$-Achse. Üblich sind weiterhin die Bezeichnungen \MEntry{Abszissenachse}{Abszissenachse} für die horizontale Achse (die Koordinatenwerte darauf heißen dann \MEntry{Abszissen}{Abszisse}) und \MEntry{Ordinatenachse}{Ordinatenachse} für die vertikale Achse (die Koordinatenwerte darauf heißen dann \MEntry{Ordinaten}{Ordinate}).
+Die verwendete Längeneinheit kann hier noch zusätzlich angegeben werden, diese ist aber für rein mathematische Betrachtungen zunächst nicht wichtig. Beachtet werden sollte aber die Benutzung negativer Koordinaten \glqq links\grqq\ und \glqq unterhalb\grqq\ des Ursprungs. Die gezeichneten \MEntry{Achsen}{Achsen} bezeichnet man schließlich entsprechend oft als $x$-Achse oder $x_1$-Achse und $y$-Achse oder $x_2$-Achse. Üblich sind weiterhin die Bezeichnungen \MEntry{Abszissenachse}{Abszissenachse} für die horizontale Achse (die Koordinatenwerte darauf heißen dann \MEntry{Abszissen}{Abszisse}) und \MEntry{Ordinatenachse}{Ordinatenachse} für die vertikale Achse (die Koordinatenwerte darauf heißen dann \MEntry{Ordinaten}{Ordinate}).
 
 Man erkennt nun, dass ein solches Koordinatensystem die Ebene in vier Bereiche teilt, die wiederum besondere Bezeichnungen tragen. Man spricht hier von den \MEntry{Quadranten}{Quadranten} \textbf{I} bis \textbf{IV}:
 
@@ -144,17 +144,18 @@ Man erkennt nun, dass ein solches Koordinatensystem die Ebene in vier Bereiche t
 Weiterhin werden die oben beschriebenen Koordinatensysteme auch als \MEntry{kartesische Koordinatensysteme}{kartesisches Koordinatensystem} bezeichnet, da ihre Achsen senkrecht aufeinander stehen, sich also im Urpsrung unter einem $90^{\circ}$-Winkel schneiden. Es gibt also auch nicht-kartesische Koordinatensysteme, die in diesem Kurs allerdings nicht betrachtet werden. Deshalb wird im Folgenden oft einfach nur der Begriff Koordinatensystem für ein kartesisches Koordinatensystem benutzt. 
 
 Hat man nun das Konzept der Koordinatensysteme der Ebene verinnerlicht, so wird klar, dass man auf ähnliche Weise auch die Position von Punkten im Raum beschreiben kann. Will man zum Beispiel die Position eines Flugzeugs exakt angeben, ist dafür nicht nur seine Position relativ zum Tower relevant, sondern auch seine Flughöhe. Man braucht hierfür also eine dritte Koordinate und folglich ein Koordinatensystem mit drei Achsen. Solche Koordinatensysteme werden in \MSRef{VBKM10}{Kapitel 10} eingeführt.  
+
 \end{MIntro}
 
 \begin{MXContent}{Punkte in kartesischen Koordinatensystemen}{Punkte}{STD}
 \MLabel{VBKM09_Punkte}
 \MDeclareSiteUXID{VBKM09_Punkte}
 
-Wenn man nun Punkte in der Ebene durch Koordinaten beschreiben möchte, benutzt man auch hier oft Variablen. Typischerweise sind dies Großbuchstaben $A,B,C,\MHDots$ oder $P,Q,R,\MHDots$ für Punkte und Kleinbuchstbaben $a,b,c,\MHDots$ oder $x,y,\MHDots$ für ihre Koordinaten. Zunächst wird nun festgelegt, was unter einem Punkt in der Ebene, in welcher eine Koordinatensystem gegeben ist, zu verstehen sein soll und welche Schreibweisen dafür im Folgenden benutzt werden. 
+Wenn man nun Punkte in der Ebene durch Koordinaten beschreiben möchte, benutzt man auch hier oft Variablen. Typischerweise sind dies Großbuchstaben $A,B,C,\MHDots$ oder $P,Q,R,\MHDots$ für Punkte und Kleinbuchstbaben $a,b,c,\MHDots$ oder $x,y,\MHDots$ für ihre Koordinaten. Zunächst wird nun festgelegt, was unter einem Punkt in der Ebene, in welcher ein Koordinatensystem gegeben ist, zu verstehen sein soll und welche Schreibweisen dafür im Folgenden benutzt werden. 
 
 \begin{MInfo}
 \MLabel{VBKM09_PunktInEbene}
-Einen \MEntry{Punkt}{Punkt} in der Ebene, bezüglich eines gegebenen Koordinatensystems, wird beschrieben durch $P=\MPointTwo{a}{b}$, dabei ist $P$ die Variable für den Punkt und $a$ und $b$ sind seine Koordinaten. Seine Abszisse oder seine $x$-Koordinate ist $a$ und seine Ordinate oder $y$-Koordinate ist $b$:
+Ein \MEntry{Punkt}{Punkt} in der Ebene, bezüglich eines gegebenen Koordinatensystems, wird beschrieben durch $P=\MPointTwo{a}{b}$, dabei ist $P$ die Variable für den Punkt und $a$ und $b$ sind seine Koordinaten. Seine Abszisse oder seine $x$-Koordinate ist $a$ und seine Ordinate oder $y$-Koordinate ist $b$:
 
 \begin{center}
 \MTikzAuto{
@@ -185,11 +186,11 @@ Einen \MEntry{Punkt}{Punkt} in der Ebene, bezüglich eines gegebenen Koordinatens
 
 \end{MInfo}
 
-Für Punkte gibt es verschiedene Notationen, in der Schule wird oft $P(a|b)$ statt $P=\MPointTwo{a}{b}$ geschrieben, oft statt dem Semikolon ein Trennstrich oder ein Komma als Trennzeichen zwischen den Koordinaten benutzt. Im diesen Kurs wird durchgehend die Bezeichnung $P=\MPointTwo{a}{b}$ verwendet. Da Punkte durch ihre Koordinaten eindeutig bestimmt werden, wird im Folgenden nicht mehr zwischen dem Punkt $P$ und seinen Koordinaten $\MPointTwo{a}{b}$ unterschieden, sondern beide werden als das gleiche Objekt aufgefasst. Ein besonderer Punkt in jedem Koordinatensystem ist natürlich der Ursprung mit dem Koordinatenpaar $\MPointTwo{0}{0}$, für diesen wird üblicherweise die Variable $O$ (vom englischen \textit{origin}) reserviert, also: $O=\MPointTwo{0}{0}$.
+Für Punkte gibt es verschiedene Notationen. In der Schule wird oft $P(a|b)$ statt $P=\MPointTwo{a}{b}$ geschrieben, oft statt dem Semikolon ein Trennstrich oder ein Komma als Trennzeichen zwischen den Koordinaten benutzt. In diesem Kurs wird durchgehend die Bezeichnung $P=\MPointTwo{a}{b}$ verwendet. Da Punkte durch ihre Koordinaten eindeutig bestimmt werden, wird im Folgenden nicht mehr zwischen dem Punkt $P$ und seinen Koordinaten $\MPointTwo{a}{b}$ unterschieden, sondern beide werden als das gleiche Objekt aufgefasst. Ein besonderer Punkt in jedem Koordinatensystem ist natürlich der Ursprung mit dem Koordinatenpaar $\MPointTwo{0}{0}$; für diesen wird üblicherweise die Variable $O$ (vom englischen \textit{origin}) reserviert, also: $O=\MPointTwo{0}{0}$.
 
 \begin{MExample}
-In der folgenden Schaubild sind die drei Punkte $P=\MPointTwo{2}{4}$, $Q=\MPointTwo{-1}{1}$ und $R=\MPointTwo{0}{-1}$ abgebildet.
-Der Punkt $Q$ besitzt beispielsweise die $x$-Koordinate $-1$ (eine Längeneinheit nach links auf der Abszissenachse) und die $y$-Koordinate $1$ (eine Längeneinheit nach oben auf der Ordinatenachse):
+In dem folgenden Schaubild sind die drei Punkte $P=\MPointTwo{2}{4}$, $Q=\MPointTwo{-1}{1}$ und $R=\MPointTwo{0}{-1}$ abgebildet.
+Der Punkt $Q$ beispielsweise besitzt die $x$-Koordinate $-1$ (eine Längeneinheit nach links auf der Abszissenachse) und die $y$-Koordinate $1$ (eine Längeneinheit nach oben auf der Ordinatenachse):
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -330,7 +331,7 @@ In der folgenden Abbildung sind drei Punkte eingezeichnet.
 }
 \end{center}
 
-Diese Punktmenge kann zum Beispiel durch folgende Mengenangaben beschrieben werden:
+Diese Punktmenge kann durch folgende Mengenangaben beschrieben werden:
 \[
  \{\MPointTwo{-\MZahl{0}{5}}{-\MZahl{0}{5}}\MElSetSep \MPointTwo{1}{1}\MElSetSep \MPointTwo{2}{2}\} = \{\MPointTwo{a}{a}\MCondSetSep a\in\{-\MZahl{0}{5}\MElSetSep 1\MElSetSep 2\}\}
 \]
@@ -433,11 +434,11 @@ Wie aus \MSRef{VBKM05}{Kapitel 5} bekannt ist, handelt es sich bei Geraden und K
 
 \begin{MInfo}
 \MLabel{VBKM09_R2}
-Die Menge aller Punkte in der Ebene, als Koordinatenpaare bezüglich einers gegebenen kartesischen Koordinatensystems, werden mit
+Die Menge aller Punkte in der Ebene, als Koordinatenpaare bezüglich eines gegebenen kartesischen Koordinatensystems, werden mit
 \[
  \R^2 := \{ \MPointTwo{x}{y}\MCondSetSep x\in\R\wedge y\in\R \}
 \]
-bezeichnet. Das Symbol $\R^2$ wird dabei als \glqq$\R$ zwei\grqq, \glqq$\R$ hoch zwei\grqq\ oder \glqq$\R$ quadrat\grqq\ gesprochen. Dies spiegelt wieder, dass jeder Punkt durch ein Koordinatenpaar, bestehend aus zwei reellen Zahlen, beschrieben werden kann.   
+bezeichnet. Das Symbol $\R^2$ wird dabei als \glqq$\R$ zwei\grqq, \glqq$\R$ hoch zwei\grqq\ oder \glqq$\R$ Quadrat\grqq\ gesprochen. Dies spiegelt wieder, dass jeder Punkt durch ein Koordinatenpaar, bestehend aus zwei reellen Zahlen, beschrieben werden kann.   
 \end{MInfo}
 
 
@@ -484,7 +485,7 @@ In \MSRef{VBKM05}{Kapitel 5} wurden Geraden in der Ebene als unendlich weit ausg
 }
 \end{center}
 
-Spezialfälle von Geraden, die als unendliche Punktmengen im $\R^2$ gegeben sind, sind bereits aus \MSRef{VBKM06}{Kapitel 6} bekannt. Dies sind nämlich die Graphen linear-affiner Funktionen aus dem Abschnitt \MSRef{M06_Abschnitt2}{Lineare Funktionen und Polynome} in Kapitel 6. Anhand des folgenden Beispiels können nochmal die wichtigsten Begriffe aus diesem Abschnitt rekapituliert werden, die im Folgenden wieder benutzt werden:
+Spezialfälle von Geraden, die als unendliche Punktmengen im $\R^2$ gegeben sind, sind bereits aus \MSRef{VBKM06}{Kapitel 6} bekannt. Dies sind nämlich die Graphen linear-affiner Funktionen aus dem Abschnitt \MSRef{M06_Abschnitt2}{Lineare Funktionen und Polynome} in Kapitel 6. Anhand des folgenden Beispiels können nochmals die wichtigsten Begriffe aus diesem Abschnitt rekapituliert werden, die im Folgenden wieder benutzt werden:
 
 \begin{MExample}
 Die linear-affine Funktion
@@ -538,7 +539,7 @@ Dabei sind $p,q,c$ reelle Zahlen, welche die Gerade festlegen. Die Zahlen $p$ un
 \[
  px+qy=c
 \]
-heißt dabei \MEntry{Geradengleichung}{Geradengleichung} oder genauer, um sie von anderen möglichen Formen vom Geradengleichungen zu unterscheiden, auch \MEntry{Koordinatenform der Geradengleichung}{Koordinatenform}. Um die oben stehende Mengenschreibweise für Geraden abzukürzen, hat es sich auch eingebürgert nur die Variable für die Gerade und die Geradengleichung anzugeben:
+heißt \MEntry{Geradengleichung}{Geradengleichung} oder genauer, um sie von anderen möglichen Formen von Geradengleichungen zu unterscheiden, auch \MEntry{Koordinatenform der Geradengleichung}{Koordinatenform}. Um die oben stehende Mengenschreibweise für Geraden abzukürzen, hat es sich auch eingebürgert, nur die Variable für die Gerade und die Geradengleichung anzugeben:
 \[
  g\colon\MDFPSpace px+qy=c\MDFPeriod
 \]
@@ -588,7 +589,7 @@ Das folgende Beispiel zeigt einige Geraden und ihre Mengenbeschreibungen bzw. Ge
  
  Hier ist $p=1$, $q=-1$ und $c=0$.
  }
- \item[b)]{\ $h\colon\MDFPSpace -x - 2 = 3y\MDFPaSpace\Leftrightarrow\MDFPaSpace h\colon\MDFPSpace -x + 3y = 2$
+ \item[b)]{\ $h\colon\MDFPSpace -x - 2 = -3y\MDFPaSpace\Leftrightarrow\MDFPaSpace h\colon\MDFPSpace -x + 3y = 2$
  \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -686,12 +687,12 @@ Das folgende Beispiel zeigt einige Geraden und ihre Mengenbeschreibungen bzw. Ge
 % \end{itemize}
 % \end{MInfo}
 
-Ziel ist es nun eine Gerade, welche durch eine Geradengleichung oder andere Daten eindeutig festgelegt ist in einem Koordinatensystem im $R^2$ korrekt einzeichnen zu können. Hierfür wird noch ein genauerer Zusammenhang zu den Graphen linear-affiner Funktionen benötigt. Außerdem muss man wissen durch welche Arten von Daten eine Gerade in der Ebene eindeutig festgelegt ist. Dies wird im Folgenden vorgestellt.
+Ziel ist es nun eine Gerade, welche durch eine Geradengleichung oder andere Daten eindeutig festgelegt ist, in einem Koordinatensystem im $\R^2$ korrekt einzeichnen zu können. Hierfür wird noch ein genauerer Zusammenhang zu den Graphen linear-affiner Funktionen benötigt. Außerdem muss man wissen, durch welche Arten von Daten eine Gerade in der Ebene eindeutig festgelegt ist. Dies wird im Folgenden vorgestellt.
 
 \begin{MInfo}
-Eine Gerade $g$ gegeben durch eine Geradengleichung in Koordiantenform 
+Eine Gerade $g$, gegeben durch eine Geradengleichung in Koordiantenform 
 \[
- g\colon\MDFPSpace px+qy=c
+ g\colon\MDFPSpace px+qy=c \MDFPSpace ,
 \]
 kann in \MEntry{Normalform}{Normalform (einer Geraden)} angegeben werden, falls $q\neq 0$ gilt. Denn dann lässt sich die Geradengleichung $px+qy=c$ nach $y$ auflösen und die Normalform von $g$ lautet
 \[
@@ -703,7 +704,7 @@ In dieser Form beschreibt die Gerade den Graphen einer \MSRef{sec:linear-affin}{
 \]
 \end{MInfo}
 
-Da man in der Normalform einer Geraden ihre Steigung und ihren Achsenabschnitt ablesen kann, kann man diese so wie die Graphen \MSRef{sec:linear-affin}{linear-affinen Funktionen} zeichnen.
+Da man in der Normalform einer Geraden ihre Steigung und ihren Achsenabschnitt ablesen kann, kann man diese so wie die Graphen \MSRef{sec:linear-affin}{linear-affiner Funktionen} zeichnen.
 
 \begin{MExample}
 Die Gerade
@@ -720,7 +721,7 @@ und beschreibt dadurch den Graphen der linear-affinen Funktion
 \]
 mit der Steigung $-\frac{1}{2}$ und dem Achsenabschnitt $-1$.
 
-Um $g$ zu zeichnen mache man sich folgendes klar: Der Achsenabschnitt $-1$ impliziert, dass $g$ den Punkt $\MPointTwo{0}{-1}$ beinhaltet. Ausgehend von diesem Punkt kann $g$ durch das Anlegen eines Steigungsdreiecks der Steigung $-\frac{1}{2}$ (um $x=1$ nach rechts und um $y=\frac{1}{2}$ nach unten) die Gerade in der korrekten Richtung gezeichnet werden:
+Um $g$ zu zeichnen, mache man sich Folgendes klar: Der Achsenabschnitt $-1$ impliziert, dass $g$ den Punkt $\MPointTwo{0}{-1}$ beinhaltet. Ausgehend von diesem Punkt kann $g$ durch das Anlegen eines Steigungsdreiecks der Steigung $-\frac{1}{2}$ (um $x=1$ nach rechts und um $y=\frac{1}{2}$ nach unten) in der korrekten Richtung gezeichnet werden:
  \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -797,7 +798,7 @@ An dieser Stelle sind nun zwei Besonderheiten zu beachten. Diese zeigen sich am 
 }
 \end{center}
 
-Die Gerade $\alpha$ is parallel zur $x$-Achse. Ihre Normalform $\alpha\colon y=\frac{1}{4}$ beschreibt also den Graphen einer konstanten Funktion, als Spezialfall der linear-affinen Funktionen. Die Gerade $\beta$ ist parallel zur $y$-Achse. Ihre Geradengleichung erfüllt nicht die Voraussetzungen um auf Normalform gebracht werden zu können. Dies trifft auf alle Geraden zu, die parallel zur $y$-Achse verlaufen. Für solche Geraden gibt es also keine Normalform, da sie nicht durch den Graphen einer Funktion beschrieben werden können (vgl. \MNRef{sec:graphen}). Weiterhin besitzen Geraden parallel zur $y$-Achse auch keinen Achsenabschnitt, da sie die $y$-Achse nicht schneiden. Auch eine Steigung besitzen solche Geraden eigentlich nicht, man kann ihnen aber aus Konsistenzgründen sie Steigung $\infty$ zuordnen.
+Die Gerade $\alpha$ ist parallel zur $x$-Achse. Ihre Normalform $\alpha\colon y=\frac{1}{4}$ beschreibt also den Graphen einer konstanten Funktion, als Spezialfall der linear-affinen Funktionen. Die Gerade $\beta$ ist parallel zur $y$-Achse. Ihre Geradengleichung erfüllt nicht die Voraussetzungen, um auf Normalform gebracht werden zu können. Dies trifft auf alle Geraden zu, die parallel zur $y$-Achse verlaufen. Für solche Geraden gibt es also keine Normalform, da sie nicht durch den Graphen einer Funktion beschrieben werden können (vgl. \MNRef{sec:graphen}). Weiterhin besitzen Geraden parallel zur $y$-Achse auch keinen Achsenabschnitt, da sie die $y$-Achse nicht schneiden. Auch eine Steigung besitzen solche Geraden eigentlich nicht, man kann ihnen aber aus Konsistenzgründen die Steigung $\infty$ zuordnen.
 
 \begin{MExercise}
 Zeichnen Sie die folgenden Geraden in ein Koordinatensystem ein. Bringen Sie die Geradengleichung (falls möglich und nötig) jeweils zunächst auf Normalform. 
@@ -928,20 +929,21 @@ Die Geradengleichung von $h$ in Normalform lautet $y=\frac{1}{2}x-1=\MZahl{0}{5}
 \end{MHint}
 \end{MExercise}
 
-Außer mittels einer Geradengleichung, kann eine bestimtme Gerade in der Ebene auch durch andere Daten eindeutig festgelegt werden. Aus diesen Daten kann man die zugehörige Geradengleichung ermitteln und die entsprechende Gerade in eine Koordinatensystem einzeichnen.   
+Außer mittels einer Geradengleichung, kann eine bestimmte Gerade in der Ebene auch durch andere Daten eindeutig festgelegt werden. Aus diesen Daten kann man die zugehörige Geradengleichung ermitteln und die entsprechende Gerade in ein Koordinatensystem einzeichnen.   
 
 \begin{MInfo}
 Für eine Gerade in der Ebene gilt:
 \begin{itemize}
  \item \textbf{\glqq Zwei Punkte legen eine Gerade eindeutig fest\grqq:} Sind zwei Punkte $P$ und $Q$ im $\R^2$ gegeben, so gibt es genau eine Gerade $g$, welche durch $P$ und $Q$ verläuft. Man schreibt dann auch $g=g_{P Q}=g_{Q P}$ oder einfach $g=P Q$ für die Gerade durch $P$ und $Q$.  
- \item \textbf{\glqq Ein Punkt und eine Steigung legen eine Gerade eindeutig fest\grqq:} Ist ein Punkt $P$ und eine Steigung $m$ gegeben, so gibt es genau eine Gerade $g$. welche durch $P$ verläuft und die Steigung $m$ besitzt.
+ \item \textbf{\glqq Ein Punkt und eine Steigung legen eine Gerade eindeutig fest\grqq:} Ist ein Punkt $P$ und eine Steigung $m$ gegeben, so gibt es genau eine Gerade $g$, welche durch $P$ verläuft und die Steigung $m$ besitzt.
 \end{itemize}
 \end{MInfo}
 
 Die folgenden beiden Beispiele zeigen, wie aus Daten, die eine Gerade eindeutig festlegen, die entsprechende Geradengleichung ermittelt und die Gerade gezeichnet werden kann.
 
-\begin{MExample}\MLabel{bsp:geraden2}
-Gegeben sind die Punkte $P=\MPointTwo{-1}{-1}$ und $Q=\MPointTwo{2}{1}$. Die Gerade $g_{P Q}=P Q$ durch diese beiden Punkte kann direkt gezeichnet werden. Zur Ermittlung der Geradengleichung ist es nützlich die beiden gegebenen Punkte zur Konstruktion eines Steigungsdreiecks zu nutzen: 
+\begin{MExample}
+\MLabel{bsp:geraden2}
+Gegeben sind die Punkte $P=\MPointTwo{-1}{-1}$ und $Q=\MPointTwo{2}{1}$. Die Gerade $g_{P Q}=P Q$ durch diese beiden Punkte kann direkt gezeichnet werden. Zur Ermittlung der Geradengleichung ist es nützlich, die beiden gegebenen Punkte zur Konstruktion eines Steigungsdreiecks zu nutzen: 
   \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -994,7 +996,8 @@ Gegeben ist der Punkt $R=\MPointTwo{2}{-1}$ und die Steigung $m=\frac{1}{2}$. Ge
 \]
 Weiterhin sind hier nun $x$- und $y$-Koordinaten des Punktes $R$ gegeben, aus welchen -- ebenfalls wie in Beispiel \MNRef{bsp:geraden2} oben -- der Achsenabschnitt $b$ berechnet werden kann:
 \[
- y=\frac{1}{2}x + b\MDFPaSpace\Leftrightarrow\MDFPaSpace -1=\frac{1}{2}\cdot 2 + b\MDFPaSpace\Leftrightarrow\MDFPaSpace b=-2\MDFPeriod
+%y=\frac{1}{2}x + b\MDFPaSpace\Leftrightarrow\MDFPaSpace
+ -1=\frac{1}{2}\cdot 2 + b\MDFPaSpace\Leftrightarrow\MDFPaSpace b=-2\MDFPeriod
 \]
 Somit lautet die gesuchte Geradengleichung
 \[
@@ -1032,7 +1035,7 @@ Aus dem Punkt $R=\MPointTwo{2}{-1}$ und der Steigung $m=\frac{1}{2}$ kann $g$ au
 \end{MExample}
 
 \begin{MExercise}
-Geben Sie jeweils die gesuchten Geradengleichungen an und zeichnen Sie die jeweils die Geraden. 
+Geben Sie jeweils die gesuchten Geradengleichungen an und zeichnen Sie jeweils die Geraden. 
 \begin{MExerciseItems}
 \item{Gegeben sind die Punkte $A=\MPointTwo{1}{5}$ und $B=\MPointTwo{3}{1}$.\\ $g_{A B}\colon\MDFPSpace y=$\MFunctionQuestion{12}{-2*x+7}{4}{x}{3}} 
 \item{Gegeben sind die Punkte $S=\MPointTwo{\MZahl{1}{5}}{-\MZahl{0}{5}}$ und $T=\MPointTwo[\Big]{\frac{3}{2}}{2}$.\\ $g_{S T}\colon\MDFPSpace x=$\MFunctionQuestion{12}{1.5}{4}{x}{3}} 
@@ -1167,14 +1170,14 @@ Geben Sie jeweils die gesuchten Geradengleichungen an und zeichnen Sie die jewei
 \MLabel{VBKM09_Lagebeziehungen}
 \MDeclareSiteUXID{VBKM09_Lagebeziehungen}
 
-Während es im vorigen Abschnitt \MNRef{VBKM09_Koordinatengleichungen} darum ging Geraden mittels Koordinatengleichungen zu beschreiben und Gleichungen für Geraden, die mittels vorgegebener Daten festgelegt sind, zu finden, widmet sich dieser Abschnitt der Untersuchung der relativen Lage von Geraden, welche durch Gleichungen vorgegeben sind, zueinander und zu weiteren gegebenen Punkten. Letzteres ist relativ einfach, da ein Punkt nur auf einer Gerade liegen kann oder nicht:
+Während es im vorigen Abschnitt \MNRef{VBKM09_Koordinatengleichungen} darum ging, Geraden mittels Koordinatengleichungen zu beschreiben und Gleichungen für Geraden, die mittels vorgegebener Daten festgelegt sind, zu finden, widmet sich dieser Abschnitt der Untersuchung der relativen Lage von Geraden, welche durch Gleichungen vorgegeben sind, zueinander und zu weiteren gegebenen Punkten. Letzteres ist relativ einfach, da ein Punkt nur auf einer Gerade liegen kann oder nicht:
 
 \begin{MInfo}
 Ist 
 \[
  g = \{\MPointTwo{x}{y}\MCondSetSep px+qy=c\}
 \]
-eine Gerade und $P=\MPointTwo{a}{b}$ ein Punkt im $\R^2$, so liegt $P$ genau dann auf der Geraden ($P\in g$) wenn seine Abszisse und Ordinate die Geradengleichung erfüllen, also wenn
+eine Gerade und $P=\MPointTwo{a}{b}$ ein Punkt im $\R^2$, so liegt $P$ genau dann auf der Geraden ($P\in g$), wenn seine Abszisse und Ordinate die Geradengleichung erfüllen, also wenn
 \[
  pa+qb=c
 \]
@@ -1192,7 +1195,7 @@ gilt zum Beispiel, dass $A=\MPointTwo[\Big]{-2}{\frac{1}{2}}$ auf $h$ liegt, da 
 \[
  -2 + 2\cdot\frac{1}{2}=-2+1=-1 \MDFPeriod
 \]
-Allerdings liegt zum Beispiel $B=\MPointTwo{1}{1}$ nicht auf $h$, da da $x=1$ und $y=1$ die Geradengleichung nicht erfüllen:
+Allerdings liegt zum Beispiel $B=\MPointTwo{1}{1}$ nicht auf $h$, da $x=1$ und $y=1$ die Geradengleichung nicht erfüllen:
 \[
  1+2\cdot1=3\neq -1\MDFPeriod
 \]
@@ -1225,7 +1228,7 @@ Bild hierzu:
 \end{MExample}
 
 \begin{MExercise}
-Entscheiden Sie jeweils durch Rechnung ob die angegebenen Punkte auf der Geraden liegen. Kreuzen Sie die Punkte auf der Geraden an.\\
+Entscheiden Sie jeweils durch Rechnung, ob die angegebenen Punkte auf der Geraden liegen. Kreuzen Sie die Punkte auf der Geraden an.\\
 
 \begin{MQuestionGroup}
 $g\colon\MDFPSpace 2x-4(\frac{y}{2}+x)+2y=-3$:\\
@@ -1247,7 +1250,7 @@ Die Geradengleichung lässt sich vereinfachen:
 \[
  2x-4(\frac{y}{2}+x)+2y=-3\MDFPaSpace\Leftrightarrow\MDFPaSpace2x-2y-4x+2y=-3\MDFPaSpace\Leftrightarrow\MDFPaSpace-2x=-3\MDFPaSpace\Leftrightarrow\MDFPaSpace x=\frac{3}{2}\MDFPeriod
 \]
-Somit ist $h$ also eine Gerade parallel zur Ordinatenachse und es liegen genau die Punkte auf $h$, welche Abszisse $\MZahl{1}{5}$ haben. Da
+Somit ist $h$ also eine Gerade parallel zur Ordinatenachse, und es liegen genau die Punkte auf $h$, welche Abszisse $\MZahl{1}{5}$ haben. Da
 \[
  \frac{9}{6} = \frac{3}{2} = \MZahl{1}{5}
 \]
@@ -1298,7 +1301,7 @@ Sind $g$ und $h$ zwei Geraden in der Ebene, gegeben durch Geradengleichungen bez
 \end{enumerate}
 \end{MInfo}
 
-Die letzte dieser Möglichkeiten, klingt zunächst etwas seltsam. Man fragt sich, wieso es zwei Bezeichnungen ($g$ und $h$) für etwas gibt, was eigentlich nur eine Gerade ist. Man mache sich in diesem Zusammenhang aber klar, dass unterschiedliche Geradengleichungen genau die gleiche Gerade beschreiben können, wenn die Geradengleichungen durch Äquivalenzumformungen auseinander hervorgehen. So ist es durchaus möglich, dass man mit $g$ und $h$ zwei Beschreibungen (durch unterschiedliche, aber äquivalente Gleichungen) ein und der selben Geraden vorliegen hat, dies aber eventuell nicht sofort ersichtlich ist, sondern die Gleichungen dafür genauer untersucht werden müssen. Dies zeigt auch nochmal das folgende Beispiel:
+Die letzte dieser Möglichkeiten, klingt zunächst etwas seltsam. Man fragt sich, wieso es zwei Bezeichnungen ($g$ und $h$) für etwas gibt, was eigentlich nur eine Gerade ist. Man mache sich in diesem Zusammenhang aber klar, dass unterschiedliche Geradengleichungen genau die gleiche Gerade beschreiben können, wenn die Geradengleichungen durch Äquivalenzumformungen auseinander hervorgehen. So ist es durchaus möglich, dass man mit $g$ und $h$ zwei Beschreibungen (durch unterschiedliche, aber äquivalente Gleichungen) ein und der selben Geraden vorliegen hat, dies aber eventuell nicht sofort ersichtlich ist, sondern die Gleichungen dafür genauer untersucht werden müssen. Dies zeigt auch nochmals das folgende Beispiel:
 
 \begin{MExample}
 \begin{enumerate}
@@ -1381,7 +1384,7 @@ Die letzte dieser Möglichkeiten, klingt zunächst etwas seltsam. Man fragt sich, 
  
 \end{MExample}
 
-Die Methoden zur Berechnung von Schnittpunkten von Geraden, sind die Methoden zum Lösen von zwei linearen Gleichungen mit zwei Unbekannten (in diesem Fall sind dies die Geradengleichungen), die in Kapitel \MNRef{VBKM04} ausführlich behandelt wurden. Insbesondere wurde auch der geometrische Aspekt des Schnittpunkts von Geraden in diesem Zusammenhang in Abschnitt \MNRef{M04_2_Unbekannte} bereits ausführlich behandelt. Deshalb sei an dieser Stelle für die Methoden der Schnittpunktbestimmung auf ebendiesen Abschnitt \MNRef{M04_2_Unbekannte} verwiesen und dessen kurze Wiederholung wird hier wärmstens empfohlen.  
+Die Methoden zur Berechnung von Schnittpunkten von Geraden, sind die Methoden zum Lösen von zwei linearen Gleichungen mit zwei Unbekannten (in diesem Fall sind dies die Geradengleichungen), die in Kapitel \MNRef{VBKM04} ausführlich behandelt wurden. Insbesondere wurde auch der geometrische Aspekt des Schnittpunkts von Geraden in diesem Zusammenhang in Abschnitt \MNRef{M04_2_Unbekannte} bereits ausführlich behandelt. Deshalb sei an dieser Stelle für die Methoden der Schnittpunktbestimmung auf ebendiesen Abschnitt \MNRef{M04_2_Unbekannte} verwiesen, und dessen kurze Wiederholung wird hier wärmstens empfohlen.  
 
 Liegen zwei Geradengleichungen allerdings in Normalform vor, kennt man also ihre Steigungen und Achsenabschnitte, so kann man (ohne Rechnung) direkt eine Aussage darüber treffen, welche der drei relativen Lagebeziehungen aus Infobox \MNRef{info_relative_lage} auf die beiden Geraden zutrifft:
 
@@ -1863,13 +1866,13 @@ Alle Punkte auf dem (roten) Kreis haben von einem Punkt, dem \textbf{Mittelpunkt
 \MLabel{VBKM09_Abstand_Strecken}
 \MDeclareSiteUXID{VBKM09_Abstand_Strecken}
 
-Rekapituliert man nochmal das einführende Beispiel des Feuerhydranten aus \MNRef{VBKM09_Koordinaten_Intro}, so stellt man fest, dass man mit Hilfe der Daten auf dem Hydrantenschild zwar nun den Ort des Hydranten in einem Koordinatensystem genau angeben kann, interessiert man sich aber dafür wie weit der Hydrant nun vom Schild tatsächlich entfernt ist, muss man dies aus den Koordinaten erst ausrechen.   
+Rekapituliert man nochmals das einführende Beispiel des Hydranten aus \MNRef{VBKM09_Koordinaten_Intro}, so stellt man fest, dass man mit Hilfe der Daten auf dem Hydrantenschild zwar nun den Ort des Hydranten in einem Koordinatensystem genau angeben kann. Interessiert man sich aber dafür, wie weit der Hydrant vom Schild tatsächlich entfernt ist, muss man dies aus den Koordinaten erst ausrechen.   
 
 \begin{center}
 \MUGraphicsSolo{hydrant.png}{scale=0.6}{width:571px}
 \end{center}
 
-Hier hilft der \MSRef{VBKM05_Pythagoras}{Satzes des Pythagoras} weiter:
+Hier hilft der \MSRef{VBKM05_Pythagoras}{Satz des Pythagoras} weiter:
 
 \begin{center}
 \MTikzAuto{\begin{tikzpicture}
@@ -1910,9 +1913,9 @@ Somit kann man $d$ hier (näherungsweise) ausrechnen:
 \[
  d = \sqrt{\MZahl{0}{81} + \MZahl{40}{96}} \approx \MZahl{6}{46} \MDFPeriod
 \]
-Der Abstand zwischen Schild und Hydrant beträgt also (in der hier verwendeten Längeneinheit Meter) etwa $6$ Meter und $46$ Centimeter. Für rein mathematische Betrachtungen sind auch hier die Längeneinheiten nicht wichtig, so dass wir diese im Folgenden wieder weglassen werden.
+Der Abstand zwischen Schild und Hydrant beträgt also (in der hier verwendeten Längeneinheit Meter) etwa $6$ Meter und $46$ Zentimeter. Für rein mathematische Betrachtungen sind auch hier die Längeneinheiten nicht wichtig, so dass diese im Folgenden wieder weggelassen werden.
 
-Das obige Beispiel des Schilds und des Hydranten kann man bequem verallgemeinern. Der Abstand zwischen zwei Punkten im $\R^2$ ist stets durch das Anlegen eines geeigneten rechtwinkligen Dreiecks und durch den \MSRef{VBKM05_Pythagoras}{Satzes des Pythagoras} zu bestimmen.  
+Das obige Beispiel des Schilds und des Hydranten kann man bequem verallgemeinern. Der Abstand zwischen zwei Punkten im $\R^2$ ist stets durch das Anlegen eines geeigneten rechtwinkligen Dreiecks und durch den \MSRef{VBKM05_Pythagoras}{Satz des Pythagoras} zu bestimmen.  
 
 \begin{MExample}\MLabel{bsp:abstand}
 Die Punkte $P=\MPointTwo{1}{2}$ und $Q=\MPointTwo{3}{3}$ haben den Abstand
@@ -1992,7 +1995,7 @@ Beim zweiten Aufgabenteil ist $\psi$ eine unbekannte Konstante, die in der Lösun
 \]
 Somit ergibt sich die Gleichung $y=2x-3$ für die Gerade durch $U$ mit Steigung $2$. Punkte auf dieser Geraden haben also die Koordinaten $\MPointTwo{x}{2x-3}$. Von diesen Punkten gilt es nun denjenigen zu finden, der von $U$ den Abstand $3\sqrt{5}$ hat und im III. Quadranten liegt. Für den Abstand zwischen $U=\MPointTwo{2}{1}$ und einem Punkt $\MPointTwo{x}{2x-3}$ gilt in Abhängigkeit von $x$:
 \[
- [\overline{U\MPointTwo{x}{2x-3}}] = \sqrt{(2-x)^2+(1-(2x+3))^2}=\sqrt{(x-2)^2 + (2x-4)^2} =
+ [\overline{U\MPointTwo{x}{2x-3}}] = \sqrt{(2-x)^2+(1-(2x-3))^2}=\sqrt{(x-2)^2 + (2x-4)^2} =
 \]
 \[
  = \sqrt{(x-2)^2 + 4(x-2)^2} = \sqrt{5(x-2)^2} = \sqrt{5}|x-2|\MDFPeriod
@@ -2001,7 +2004,7 @@ Das Lösen der Gleichung
 \[
  \sqrt{5}|x-2| = 3\sqrt{5}\MDFPaSpace\Leftrightarrow\MDFPaSpace |x-2|=3
 \]
-mit den Methoden aus \MNRef{M02_Betragsgleichungen} liefert die beiden $x$-Werte $-1$ und $4$. Dabei kann nur der $x$-Wert $-1$ als Abszisse eines Punktes im III. Quadranten auftreten. Die zugehörige Ordinate ergibt sich durch Einsetzen in die Geradengleichung:
+mit den Methoden aus \MNRef{M02_Betragsgleichungen} liefert die beiden $x$-Werte $-1$ und $5$. Dabei kann nur der $x$-Wert $-1$ als Abszisse eines Punktes im III. Quadranten auftreten. Die zugehörige Ordinate ergibt sich durch Einsetzen in die Geradengleichung:
 \[
  y = 2\cdot(-1)-3 = -5\MDFPeriod
 \]
@@ -2022,14 +2025,14 @@ Somit ist der gesuchte Punkt $V=\MPointTwo{-1}{-5}$.
 \MLabel{VBKM09_Kreise_Koordinaten}
 \MDeclareSiteUXID{VBKM09_Kreise_Koordinaten}
 
-Hat man in der Ebene ein Koordinatensystem zur Verfügung, so kann man nun die Punkte auf einem Kreis mit Hilfe des Abstandsbegriffs aus dem vorigen Abschnitt \MNRef{VBKM09_Abstand_Strecken} mit Hilfe einer Gleichung, der sogenannten Kreisgleichung, beschreiben. In der Praxis möchte man sich die, in der Abstandsformel obligatorische, Wurzel ersparen und benutzt stattdessen das Quadrat des Abstands. Dies ist möglich, da Abstände immer nicht-negativ sind. Es gilt also für zwei Punkte $P_1=\MPointTwo{x_1}{y_1}$ und $P_2=\MPointTwo{x_2}{y_2}$:
+Hat man in der Ebene ein Koordinatensystem zur Verfügung, so kann man nun die Punkte auf einem Kreis unter Verwendung des Abstandsbegriffs aus dem vorigen Abschnitt \MNRef{VBKM09_Abstand_Strecken} mit Hilfe einer Gleichung, der sogenannten Kreisgleichung, beschreiben. In der Praxis möchte man sich die, in der Abstandsformel obligatorische, Wurzel ersparen und benutzt stattdessen das Quadrat des Abstands. Dies ist möglich, da Abstände immer nicht-negativ sind. Es gilt also für zwei Punkte $P_1=\MPointTwo{x_1}{y_1}$ und $P_2=\MPointTwo{x_2}{y_2}$:
 \[
  [\overline{P_1P_2}] = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\MDFPaSpace\Leftrightarrow\MDFPaSpace[\overline{P_1P_2}]^2 = (x_2-x_1)^2 + (y_2-y_1)^2 \MDFPeriod
 \]
 Dies wird in der folgenden Infobox zusammengefasst:
 
 \begin{MInfo}\MLabel{infobox_kreis}
-Ein \MEntry{Kreis}{Kreis} $K$ in der Ebene mit einem vorgegebenen Koordinatensystem ist die Menge aller Punkte, die einen festen Abstand $r>0$, den sogenannten \MEntry{Radius}{Radius} zu einem gemeinsamen \MEntry{Mittelpunkt}{Mittelpunkt} $M=\MPointTwo{x_0}{y_0}$ besitzen. Die Angabe des Radius und des Mittelpunkts legt den Kreis eindeutig fest. Also gilt:
+Ein \MEntry{Kreis}{Kreis} $K$ in der Ebene mit einem vorgegebenen Koordinatensystem ist die Menge aller Punkte, die einen festen Abstand $r>0$, den sogenannten \MEntry{Radius}{Radius}, zu einem gemeinsamen \MEntry{Mittelpunkt}{Mittelpunkt} $M=\MPointTwo{x_0}{y_0}$ besitzen. Die Angabe des Radius und des Mittelpunkts legt den Kreis eindeutig fest. Also gilt:
 \[
  K=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 = r^2\}\MDFPeriod
 \]
@@ -2037,7 +2040,7 @@ So wie bei Geraden gibt man auch für Kreise oft nur die \MEntry{Kreisgleichung}{
 \[
  K\colon\MDFPSpace(x-x_0)^2 + (y-y_0)^2 = r^2\MDFPeriod
 \]
-Punkte auf dem Kreis, sind also alle, deren Koordinaten die Kreisgleichung erfüllen. Bild hierzu:
+Es gehören also alle diejenigen Punkte zum Kreis, deren Koordinaten die Kreisgleichung erfüllen. Bild hierzu:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture} 
@@ -2067,7 +2070,7 @@ Punkte auf dem Kreis, sind also alle, deren Koordinaten die Kreisgleichung erfül
 \end{center}
 \end{MInfo}
 
-Mit Hilfe der Kreisgleichung können nun beliebige Kreise in der Ebene, sowie Punkte auf diesen Kreisen und solche nicht auf diesen Kreisen beschrieben werden. 
+Mit Hilfe der Kreisgleichung können nun beliebige Kreise in der Ebene sowie Punkte auf diesen Kreisen und solche, die nicht auf diesen Kreisen liegen, beschrieben werden. 
 
 
 
@@ -2076,11 +2079,11 @@ Der Kreis mit Mittelpunkt $P=\MPointTwo{2}{1}$ und Radius $r=2$ wird beschrieben
 \[
  (x-2)^2 + (y-1)^2 = 2^2 = 4.
 \]
-Auf dem Kreis liegen also alle Punkte, die von $P$ den Abstand $2$ haben. Beispielsweise ist $Q=\MPointTwo{0}{1}$ ein Punkt auf dem Kreis, da gilt
+Auf dem Kreis liegen also alle Punkte, die von $P$ den Abstand $2$ haben. Beispielsweise ist $Q=\MPointTwo{0}{1}$ ein Punkt auf dem Kreis, da
 \[
- (0-2)^2 + (1-1)^2 = (-2)^2 + 0^2 = 4,
+ (0-2)^2 + (1-1)^2 = (-2)^2 + 0^2 = 4
 \]
-aber $R=\MPointTwo{3}{-2}$ ist kein Punkt auf dem Kreis, denn er besitzt den Abstand
+gilt. $R=\MPointTwo{3}{-2}$ dagegen ist kein Punkt auf dem Kreis, denn er besitzt den Abstand
 \[
  [\overline{PR}] = \sqrt{(2-3)^2 + (1-(-2))^2} = \sqrt{10} \neq 2.
 \]
@@ -2186,7 +2189,7 @@ Dieser trägt die besondere Bezeichnung \MEntry{Einheitskreis}{Einheitskreis} und
 gegeben. Sein Mittelpunkt ist $M=$\MFunctionQuestion{12}{(0,-2)}{4}{x}{3} und sein Radius lautet $r=$\MFunctionQuestion{12}{sqrt(8)}{4}{x}{3}. Zeichnen Sie den Kreis.}  
 
 \item{Die Kreisgleichung des Kreises vom Radius $1$ um den Punkt $\MPointTwo{-2}{-1}$ lautet\\ \MLSimplifyQuestion{30}{(x+2)^2+(y+1)^2}{5}{x,y}{5}{1}{Kreis1}$=1$.\\
-Entscheiden Sie jeweils ob die angegebenen Punkte auf dem Kreis liegen. Markieren Sie diejenigen Punkte, die auf dem Kreis liegen.\\
+Entscheiden Sie jeweils, ob die angegebenen Punkte auf dem Kreis liegen. Markieren Sie diejenigen Punkte, die auf dem Kreis liegen.\\
 \begin{MQuestionGroup}
 \begin{tabular}{ll}
 \MCheckbox{0}{Kreis2} & Der Ursprung\\
@@ -2244,7 +2247,7 @@ Der Ursprung und $\MPointTwo{1}{1}$ liegen nicht auf dem Kreis, $\MPointTwo{-2}{
  (0+2)^2+(0+1)^2=4+1=5\neq 1,
 \]
 \[
- (1+2)^2+(1+1)^2=9+1=10\neq 1,
+ (1+2)^2+(1+1)^2=9+4=13\neq 1,
 \]
 \[
  (-2+2)^2 + (0+1)^2 = 0+1=1,
@@ -2316,7 +2319,7 @@ Gegeben ist ein Kreis $K$ durch die Gleichung
 \[
  K\colon x^2+y^2-6x+y+\frac{21}{4}=0.
 \]
-Dieser Gleichung sieht man weder sofort an, dass es sich um eine Kreisgleichung handelt, noch ist sofort der Mittelpunkt und der Radius des Kreises ersichtlich. Man kann die Gleichung aber auf Normalform bringen indem man sich der Methode der \MSRef{VBKM02_QuadratischErgaenzung}{Quadratischen Ergänzung} bedient. Diese wird hier auf die Terme mit $x$ und die Terme mit $y$ in obiger Kreisgleichung getrennt angewandt.
+Dieser Gleichung sieht man weder sofort an, dass es sich um eine Kreisgleichung handelt, noch sind sofort der Mittelpunkt und der Radius des Kreises ersichtlich. Man kann die Gleichung aber auf Normalform bringen, indem man sich der Methode der \MSRef{VBKM02_QuadratischErgaenzung}{Quadratischen Ergänzung} bedient. Diese wird hier auf die Terme mit $x$ und die Terme mit $y$ in obiger Kreisgleichung getrennt angewandt.
 
 Für die Terme mit $x$ ergibt sich
 \[
@@ -2324,13 +2327,13 @@ Für die Terme mit $x$ ergibt sich
 \]
 und für die Terme mit $y$ ergibt sich
 \[
- y^2+y = y^2+2\cdot\frac{1}{2}x =  y^2+2\cdot\frac{1}{2}x + \left(\frac{1}{2}\right)^2 - \left(\frac{1}{2}\right)^2 = y^2+y+\frac{1}{4}-\frac{1}{4}=\left(y+\frac{1}{2}\right)^2-\frac{1}{4}\MDFPeriod 
+ y^2+y = y^2+2\cdot\frac{1}{2}y =  y^2+2\cdot\frac{1}{2}y + \left(\frac{1}{2}\right)^2 - \left(\frac{1}{2}\right)^2 = y^2+y+\frac{1}{4}-\frac{1}{4}=\left(y+\frac{1}{2}\right)^2-\frac{1}{4}\MDFPeriod 
 \]
 Somit folgt für die Kreisgleichung:
 \[
  x^2+y^2-6x+y+\frac{21}{4}=0\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-3)^2-9 + \left(y+\frac{1}{2}\right)^2-\frac{1}{4}+\frac{21}{4}=0\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-3)^2+ \left(y+\frac{1}{2}\right)^2=4
 \]
-Somit ist die Kreisgleichung auf Normalform gebracht und der Mittelpunkt $M=\MPointTwo[\Big]{3}{-\frac{1}{2}}$ und der Radius $r=2$ kann abgelesen werden:
+Somit ist die Kreisgleichung auf Normalform gebracht und der Mittelpunkt $M=\MPointTwo[\Big]{3}{-\frac{1}{2}}$ und der Radius $r=2$ können abgelesen werden:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture} 
@@ -2364,9 +2367,9 @@ Somit ist die Kreisgleichung auf Normalform gebracht und der Mittelpunkt $M=\MPo
 \begin{MExercise}
 Bestimmen Sie Mittelpunkt $P$ und Radius $\rho$ des Kreises
 \[
- \Lambda = \{\MPointTwo{x}{y}\MCondSetSep x^2+2\sqrt{3}x=2\sqrt{3}y-y^2\}
+ \Lambda = \{\MPointTwo{x}{y}\MCondSetSep x^2+2\sqrt{3}x=2\sqrt{3}y-y^2\} \MDFPSpace ,
 \]
-indem Sie die Kreisgleichung mittels quadratischer Ergänzung auf Normalform bringen. Skizzieren Sie außerdem den Kreis.\\
+indem Sie die Kreisgleichung mittels Quadratischer Ergänzung auf Normalform bringen. Skizzieren Sie außerdem den Kreis.\\
 $P=$\MFunctionQuestion{12}{(-sqrt(3),sqrt(3))}{4}{x}{3}\\
 $\rho=$\MFunctionQuestion{12}{sqrt(6)}{4}{x}{3}
 
@@ -2469,7 +2472,7 @@ Bestimmen Sie den Schnittpunkt der Geraden, die durch die Gleichung $y=2x+2$ bes
 Antwort: Der Schnittpunkt ist \MLFunctionQuestion{15}{(3,8)}{5}{x}{5}{VBNT6}.\\
 \MInputHint{Geben Sie Punkte in der Form \texttt{(a;b)} ein.}
 \ \\ \ \\
-Kreuzen Sie mögliche Gründe an, warum die Geradengleichung $2x=6$ der zweiten Geraden nicht auf Normalform gebracht werden kann (mehrere Aussagen können richtig sein):\\
+Kreuzen Sie mögliche Gründe an, warum die Geradengleichung $2x=6$ der zweiten Geraden nicht auf Normalform gebracht werden kann. (Mehrere Aussagen können richtig sein.)\\
 \MSetPoints{1}
 \begin{tabular}{lll}
 \MCheckbox{0}{VBNT7} & \ \ & Die Geradengleichung kann nicht nach $x$ aufgelöst werden.\\
