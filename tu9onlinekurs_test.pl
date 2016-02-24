@@ -23,7 +23,7 @@ outtmp          =>      "tmp",               # Temporaeres Verzeichnis im cleanu
 description     =>      "Onlinebrückenkurs Mathematik",
 moduleprefix    =>      "Onlinebrückenkurs Mathematik",  # Wird vor Browser-Bookmarks gesetzt
 
-variants        =>      ["std"],  # zu erzeugende Varianten der HTML-files, muss mindestens "std" (die Hauptvariante) enthalten, bisher wird nur target-xml variiert
+variants        =>      ["std", "unotation"],  # zu erzeugende Varianten der HTML-files, muss mindestens "std" (die Hauptvariante) enthalten, bisher wird nur target-xml variiert
 
 stylesheets     =>      ["qtip2/jquery.qtip.min.css"], # Array, grundlagen.css wird automatisch eingesetzt
 

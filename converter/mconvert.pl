@@ -3285,12 +3285,36 @@ for ($i = 0; $i <= $#{$config{variants}}; $i++) {
     $vfile = $config{variants}[$i] . "_" . $xmlfile;
   }
     
-  my $target = "tex/htmltarget.tex";
-  # this is really dirty and should be replaced by internal code
-  system("perl -pi.back -e 's/\\MVARIANT{(.+?)}/\\MVARIANT{" . $config{variants}[$i] . " }/sg;' $target");
+  my $target = "tex/htmlprepare.tex";
+  
+  if (open(MINTS, "< tex/$macrofile")) {
+    logMessage($VERBOSEINFO, "Preparing $macrofile for variant " . $config{variants}[$i]);
+  } else {
+    logMessage($FATALERROR, "Could not open $macrofile");
+  }
+
+  my $prow;
+  my $mtex = "";
+  while(defined($prow = <MINTS>)) {
+      $mtex .= $prow;
+  }
+  close(MINTS);
+  
+  if (open(MINTS, "> tex/mod_$macrofile")) {
+    logMessage($VERBOSEINFO, "Writing prepared file to mod_$macrofile");
+  } else {
+    logMessage($FATALERROR, "Could not write file $target for ttm preparation of variant " . $config{variants}[$i]);
+  }
+  
+  print MINTS "\\newif\\ifvariant" . $config{variants}[$i] . "\n";
+  print MINTS "\\variant" . $config{variants}[$i] . "true\n";
+  print MINTS $mtex;
+  
+  close(MINTS);
 
   logTimestamp("Starting ttm tex->html converter for variant " . $config{variants}[$i]);
   system "./ttm-src/ttm -p./tex < $target 1>$vfile 2>$xmlerrormsg";
+  # todo: Errormessage von std-conversion sollte uebergeben werden, oder jede separat, momentan ist es einfach die letzte
 }
 
 if ($vok eq 0) {
@@ -4529,29 +4553,28 @@ print MINTS $globalexstring;
 close(MINTS);
 
 # Create main file for converter build
-my $ttminputfile = $config{output} . "/converter/tex/htmltarget.tex";
+my $ttminputfile = $config{output} . "/converter/tex/htmlprepare.tex";
 $mints_open = open(MINTS, "> $ttminputfile") or die "FATAL: Could not create converter input file";
 print MINTS "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
 print MINTS "\\documentclass{book}\n";
-print MINTS "\\def\\MVARIANT{std}\n"; # Wird bei Erzeugung mehrerer Varianten ueberschrieben
-print MINTS "\\input{$macrofile}\n";
+print MINTS "\\input{mod_$macrofile}\n"; # Makrodatei wird fuer jede Uebersetzung modifiziert
 print MINTS "\\title{MINT-Module}\n";
 print MINTS "\\author{MINT-Kolleg Baden-W\"urttemberg}\n";
 print MINTS "\\newcounter{MChaptersGiven}\n";
 print MINTS "\\setcounter{MChaptersGiven}{1}\n";
 print MINTS "\\begin{document}\n";
-print MINTS "\\begin{html}<!-- variant;\\end{html}\\MVARIANT\\begin{html}//-->\\end{html}\n";
+print MINTS "\\begin{html}<!-- variant;\\end{html}\\MVariant\\begin{html} //-->\\end{html}\n";
 print MINTS "\\input{" . $config{module} . "}\n";
 print MINTS "\\end{document}\n";
 close(MINTS);
 
-# Create main file for PDF build
-my $pdfinputfile = $config{output} . "/converter/tex/vorkurspdf.tex";
+# Create main file for PDF build (with std variant, that is without modifications on the macro file)
+my $pdfinputfile = $config{output} . "/converter/tex/targetpdf.tex";
 $mints_open = open(MINTS, "> $pdfinputfile") or die "FATAL: Could not create PDF input file";
 print MINTS "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
 print MINTS "\\newcounter{MChaptersGiven}\n";
 print MINTS "\\setcounter{MChaptersGiven}{1}\n";
-print MINTS "\\input{$macrofile}\n";
+print MINTS "\\input{mod_$macrofile}\n"; # Makrodatei wird fuer jede Uebersetzung modifiziert
 print MINTS "\\title{MINT-Module}\n";
 print MINTS "\\author{MINT-Kolleg Baden-W\"urttemberg}\n";
 print MINTS "\\begin{document}\n";
