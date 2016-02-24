@@ -1,6 +1,6 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
-\Mtikzexternalize
+%\Mtikzexternalize
 
 \begin{document}
 
@@ -10,30 +10,196 @@
 
 \begin{MSectionStart}
 \MDeclareSiteUXID{VBKM10_START}
-Dieses Modul besteht im Moment nur aus dem \MSRef{VBKM10_Abschlusstest}{Abschlusstest}, die Modulinhalte folgen in den nächsten Tagen.
-
-% \begin{itemize}
-% \item{dem Abschnitt \MSRef{VBKM10_PfeilVektor}{Vom Pfeil zum Vektor},}
+%Dieses Modul besteht im Moment nur aus dem \MSRef{VBKM10_Abschlusstest}{Abschlusstest}, die Modulinhalte folgen in den nächsten Tagen.
+Diese Modul besteht aus
+\begin{itemize}
+\item{dem Abschnitt \MSRef{VBKM10_PfeilVektor}{Vom Pfeil zum Vektor},}
 % \item{dem Abschnitt \MSRef{VBKM10_GeradenEbenen}{Geraden und Ebenen},}
 % \item{dem \MSRef{VBKM10_Abschlusstest}{Abschlusstest}.}
-% \end{itemize}
+\end{itemize}
 
 \end{MSectionStart}
 
-% \MSubsection{Vom Pfeil zum Vektor}
-% \MLabel{VBKM10_PfeilVektor}
+\MSubsection{Vom Pfeil zum Vektor}
+\MLabel{VBKM10_PfeilVektor}
+
+\begin{MIntro}
+\MLabel{VBKM10_PfeilVektor_Intro}
+\MDeclareSiteUXID{VBKM10_PfeilVektor_Intro}
+Eine grundlegende Idee hinter dem mathematischen Konzept des Vektors ist eine physikalische. Es gibt in der naturwissenschaftlichen Praxis einerseits Größen, die nur durch eine Zahl beschrieben werden, die also einen bestimmten Betrag haben, wie etwa Spannung, Arbeit oder Leistung. Diese Größen werden mathematisch einfach durch Elemente aus der Menge der reellen zahlen beschrieben. Andererseits existieren auch Größen, die neben einem Betrag auch eine bestimmte \textit{Richtung} besitzen, wie etwa Kraft oder Geschwindigkeit. So kann man sich zum Beispiel eine Kraft, die mit einem bestimmten Betrag an einem Punkt angreift, als Pfeil der entsprechenden Länge, der am Angriffspunkt sitzt, veranschaulichen. Die Richtung des Pfeils entspricht in diesem Fall der Wirkungsrichtung des Kraft:
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Pfeil
+\draw[color=black,->] (0,0) -- (3,1);
+\draw[color=black] (1.5,0.8) node[anchor=east] {\footnotesize Länge $\hat{=}$ Betrag der Kraft};
+\draw[color=black] (1.5,0.2) node[anchor=west] {\footnotesize Richtung $\hat{=}$ Wirkungsrichtung der Kraft};
+\draw[color=black] (3,1) node[anchor=west] {\footnotesize Pfeil $\hat{=}$ Kraft};
+%Punkt
+\draw[fill=red] (0,0) circle (2pt);
+\draw[color=red] (0,0) node[anchor=north east] {\footnotesize Angriffspunkt};
+\end{tikzpicture}       
+}%
+\end{center}
+
+Solche Größen werden mathematisch durch Vektoren beschrieben. In der naturwissenschaftlichen Anwendung müsste man für den Betrag von Vektoren bestimmte Maßeinheiten benutzen (zum Beispiel die Einheit Newton  für Kräfte), diese Einheiten spielen aber für rein mathematische Betrachtungen keine Rolle und werden deshalb im Folgenden stets weggelassen. Das Konzept des Vektors ist der wesentliche Inhalt dieses Abschnitts und wird im zweiten Abschnitt \MNRef{VBKM10_Vektoren} behandelt. Da Vektoren nicht nur in zwei Dimensionen (also in der Ebene), sondern auch in drei Dimensionen (also im Raum) betrachtet werden sollen, muss zunächst das Konzept der Koordinatensysteme und Punkte aus Kapitel \MNRef{VBKM09} auf drei Dimensionen erweitert werden. Dies geschieht im ersten Abschnitt \MNRef{VBKM10_Raumkoordinaten}. Schließlich stellt man fest, dass ma nmit Vektoren auch bestimmte Rechenoperationen ausführen kann. Das Rechnen mit Vektoren wird dann im dritten Abschnitt \MNRef{VBKM10_Vektorrechnung} untersucht.    
+\end{MIntro}
+
+\begin{MXContent}{Koordinatensysteme im Raum}{Raumkoordinaten}{STD}
+\MLabel{VBKM10_Raumkoordinaten}
+\MDeclareSiteUXID{VBKM10_Raumkoordinaten}
+Im vorhergehenden Kapitel \MNRef{VBKM09} wurden im Abschnitt \MNRef{M09_1kartesisch} kartesische Koordinatensysteme und Punkte in der Ebene mit Koordinaten bezüglich dieser Systeme eingeführt. Ein sicherer Umgang mit diesen Konzepten wird hier nun vorausgesetzt. Zur eindeutigen Beschreibung eines \MEntry{Punktes im Raum}{Punkt (3-D)} braucht man drei -- statt nur zwei -- \MEntry{Koordinaten}{Koordinaten (3-D)}. Damit benötigt ein \MEntry{Koordinatensystem}{Koordinatensystem (3-D)} im Raum ebenfalls drei \MEntry{Achsen}{Achsen (3-D)}, die als $x$-, $y$- und $z$-Achse (oder manchmal auch als $x_1$-, $x_2$- und $x_3$-Achse) bezeichnet werden. Für Punkte werden wieder üblicherweise Großbuchstaben $P,Q,R,\MHDots$ und für ihre Koordinaten Kleinbuchstaben $a,b,c,x,y,z,\MHDots$ als Variablen verwendet. In Erweiterung der Schreibweise aus Kapitel \MNRef{VBKM09} werden die Koordinaten von Punkten zum Beispiel wie folgt notiert:
+\[
+ P=\MPointThree{1}{3}{0}
+\]
+oder
+\[
+ Q=\MPointThree{-2}{2}{3}\MDFPeriod
+\]
+Hier ist $Q$ beispielsweise ein Punkt mit der $x$-Koordinate $-2$, der $y$-Koordinate $2$ und der $z$-Koordinate $3$. Für den Punkt mit den Koordinaten $\MPointThree{0}{0}{0}$ ist die Bezeichnung \textbf{Ursprung} und das Symbol $O$ (vom englischen \textit{origin}) reserviert. Alle diese Punkte sind im folgenden Bild dargestellt:  
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth]
+% Dashed lines for the points P, Q
+\draw[dashed, color=gray] (1,0) -- (1,3);
+\draw[dashed, color=gray] (1,3) -- (0,3);
+\draw[dashed, color=gray] (xyz cs:x=0,z=3) -- (xyz cs:x=-2,z=3);
+\draw[dashed, color=gray] (xyz cs:x=-2,z=3) -- (xyz cs:x=-2,z=0);
+\draw[dashed, color=gray] (xyz cs:x=-2,y=0,z=3) -- (xyz cs:x=-2,y=2,z=3);
+\draw[dashed, color=gray] (xyz cs:x=0,y=2,z=3) -- (xyz cs:x=-2,y=2,z=3);
+\draw[dashed, color=gray] (xyz cs:x=-2,y=2,z=3) -- (xyz cs:x=-2,y=2,z=0);
+\draw[dashed, color=gray] (xyz cs:x=0,y=2,z=3) -- (xyz cs:x=0,y=2,z=0);
+\draw[dashed, color=gray] (xyz cs:x=0,y=2,z=0) -- (xyz cs:x=-2,y=2,z=0);
+\draw[dashed, color=gray] (xyz cs:y=0,z=3) -- (xyz cs:y=2,z=3); 
 % 
-% \begin{MIntro}
-% \MLabel{VBKM10_PfeilVektor_Intro}
-% \MDeclareSiteUXID{VBKM10_PfeilVektor_Intro}
+% % Dots and labels for P, Q
+\draw[fill=red] (1,3) circle (1.5pt);
+\draw[color=red] (1,3) node[right] {\footnotesize $P=\MPointThree{1}{3}{0}$};
+\draw[fill=violet] (xyz cs:x=-2,y=2,z=3) circle (1.5pt);
+\draw[color=violet] (xyz cs:x=-2,y=2,z=3) node[left] {\footnotesize $Q=\MPointThree{-2}{2}{3}$};
+% The origin
+\node[align=center] at (2,-2) (ori) {\footnotesize $O=\MPointThree{0}{0}{0}$\\(Ursprung)};
+\draw[->,help lines,shorten >=3pt] (ori) .. controls (0.5,-1.5) and (0.8,-1) .. (0,0,0);
+% The axes
+\draw[->] (xyz cs:x=-3.5) -- (xyz cs:x=3.5) node[above] {\footnotesize $x$};
+\draw[->] (xyz cs:y=-3.5) -- (xyz cs:y=3.5) node[right] {\footnotesize $y$};
+\draw[->] (xyz cs:z=-3.5) -- (xyz cs:z=3.5) node[left] {\footnotesize $z$};
+% The ticks
+\foreach \coo in {-3,-2,-1,1,2,3}
+{
+  \draw (\coo,-3pt) -- (\coo,3pt) node[below=4pt] {\footnotesize \coo};
+  \draw (-3pt,\coo) -- (3pt,\coo) node[left=4pt] {\footnotesize \coo};
+  \draw (xyz cs:y=-0.1pt,z=\coo) -- (xyz cs:y=0.1pt,z=\coo) node[below=3pt] {\scriptsize \coo};
+}
+\end{tikzpicture}
+}
+\end{center}
+Die gestrichelten Hilfslinien in diesem Bild geben einen Hinweise darauf wie in einer solchen dreidimensionalen Darstellung die Koordinaten von Punkten korrekt eingezeichnet und abgelesen werden können. Man beachte, dass die Hilfslinien alle parallel zu den Koordinatenachsen verlaufen.
+
+Es werden nur Koordinatensysteme im Raum betrachtet, deren Achsen alle senkrecht aufeinander stehen. Diese heißen auch \MEntry{kartesische Koordinatensysteme}{kartesisches Koordinatensystem (3-D)}. Es wird hier außerdem die übliche mathematische Konvention benutzt, dass die Koordinatensysteme im Raum \textbf{rechtshändig} oder sogenannte \textbf{Rechtssysteme} sein sollen. Dies bedeutet, dass die positiven Achsenrichtungen von $x$-, $y$- und $z$-Achse durch die Drei-Finger-Regel der \textit{rechten} Hand bestimmt werden:
+
+\begin{center}
+\MUGraphicsSolo{rechtehand.png}{scale=0.4}{width:368px}
+\end{center}
+%Bemerkung: Bild von hier https://de.wikipedia.org/wiki/Rechtssystem_%28Mathematik%29, ist public domain, deshalb keine Lizenz nötig.
+
+Trotzdem gibt es hier noch unterschiedliche mögliche Darstellungsformen: zum Beispiel ein Verlauf der $x$-Achse nach rechts, der $y$-Achse nach oben und der $z$-Achse nach vorne aus der Zeichenebene heraus wie im Koordinatensystem mit den Punkten $P$ und $Q$ oben oder ein Verlauf der $x$-Achse nach rechts, der $y$-Achse nach hinten in die Zeichenebene hinein und der $z$-Achse nach oben wie im Drei-Finger-Bild oben. Die Rechtshändigkeit ist aber in beiden Fällen gegeben.  
+
+\begin{MExercise}
+Geben Sie die Koordinaten der im folgenden Bild eingezeichneten Punkte an. Überlegen Sie sich außerdem wie man alle eingezeichneten Punkte zu einem mathematischen Objekt zusammenfassen kann.
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth]
+% Dashed lines for the points 
+%A,B,C,D:
+\draw[dashed, color=gray] (2,0) -- (2,1);
+\draw[dashed, color=gray] (2,0) -- (2,-2);
+\draw[color=green] (2,-2,0) -- (2,-2,1);
+\draw[dashed, color=gray] (2,-2,0) -- (0,0,0);
+\draw[dashed, color=gray] (2,-2,1) -- (0,0,1);
+%P:
+\draw[dashed, color=gray] (-2,0,0) -- (-2,1,0);
+\draw[dashed, color=gray] (-2,1,0) -- (-2,1,-1);
+%\draw[dashed, color=gray] (-2,1,0) -- (0,1,0);
+\draw[dashed, color=gray] (0,1,-1) -- (-2,1,-1);
+\draw[dashed, color=gray] (0,1,-1) -- (0,0,-1);
 % 
-% \end{MIntro}
-% 
-% \begin{MXContent}{Koordinatensysteme im Raum}{Raumkoordinaten}{STD}
-% \MLabel{VBKM10_Raumkoordinaten}
-% \MDeclareSiteUXID{VBKM10_Raumkoordinaten}
-% 
-% \end{MXContent}
+
+% The axes
+\draw[->] (xyz cs:x=-3.5) -- (xyz cs:x=3.5) node[above] {\footnotesize $x$};
+\draw[->] (xyz cs:y=-3.5) -- (xyz cs:y=3.5) node[right] {\footnotesize $y$};
+\draw[->] (xyz cs:z=-3.5) -- (xyz cs:z=3.5) node[left] {\footnotesize $z$};
+% The ticks
+\foreach \coo in {-3,-2,-1,1,2,3}
+{
+  \draw (\coo,-3pt) -- (\coo,3pt) node[below=4pt] {\footnotesize \coo};
+  \draw (-3pt,\coo) -- (3pt,\coo) node[left=4pt] {\footnotesize \coo};
+  \draw (xyz cs:y=-0.1pt,z=\coo) -- (xyz cs:y=0.1pt,z=\coo) node[below=3pt] {\scriptsize \coo};
+}
+% % Dots and labels for the points
+\draw[fill=red] (2,0,0) circle (1.5pt);
+\draw[color=red] (2,0,0) node[anchor=south west] {\footnotesize $A$};
+\draw[fill=blue] (2,1,0) circle (1.5pt);
+\draw[color=blue] (2,1,0) node[right] {\footnotesize $B$};
+\draw[fill=violet] (2,-2,0) circle (1.5pt);
+\draw[color=violet] (2,-2,0) node[right] {\footnotesize $C$};
+\draw[fill=green] (2,-2,1) circle (1.5pt);
+\draw[color=green] (2,-2,1) node[below] {\footnotesize $D$};
+\draw[fill=black] (-2,1,-1) circle (1.5pt);
+\draw[color=black] (-2,1,-1) node[left] {\footnotesize $P$};
+\draw[color=green] (0,0,0) -- (0,0,1);
+\end{tikzpicture}
+}
+\end{center}
+
+\begin{MExerciseItems}
+\item{\MEquationItem{$A$}{\MLFunctionQuestion{15}{(2,0,0)}{5}{x}{5}{Point1}}.}
+\item{\MEquationItem{$B$}{\MLFunctionQuestion{15}{(2,1,0)}{5}{x}{5}{Point2}}.}
+\item{\MEquationItem{$C$}{\MLFunctionQuestion{15}{(2,-2,0)}{5}{x}{5}{Point3}}.}
+\item{\MEquationItem{$D$}{\MLFunctionQuestion{15}{(2,-2,1)}{5}{x}{5}{Point4}}.}
+\item{\MEquationItem{$P$}{\MLFunctionQuestion{15}{(-2,1,-1)}{5}{x}{5}{Point5}}.}
+\end{MExerciseItems}
+\MInputHint{Geben Sie Punkte in der Form $(x;y;z)$ ein, beispielsweise \texttt{(8;-4;15)} für den Punkt mit der $x$-Koordinate $8$, der $y$-Koordinate $-4$ und der $z$-Koordinate $15$.}
+
+\begin{MHint}{Lösung}
+Die Koordinatentripel der gefragten Punkte lauten:
+\[
+ A=\MPointThree{2}{0}{0},
+\]
+\[
+ B=\MPointThree{2}{1}{0},
+\]
+\[
+ C=\MPointThree{2}{-2}{0},
+\]
+\[
+ D=\MPointThree{2}{-2}{1},
+\]
+\[
+ P=\MPointThree{-2}{1}{-1}\MDFPeriod
+\]
+Die Menge aller im obigen Bild eingezeichneten Punkte ist
+\[
+ \{A\MElSetSep B\MElSetSep C\MElSetSep D\MElSetSep P\} = \{\MPointThree{2}{0}{0}\MElSetSep\MPointThree{2}{1}{0} \MElSetSep\MPointThree{2}{-2}{0} \MElSetSep\MPointThree{2}{-2}{1} \MElSetSep\MPointThree{-2}{1}{-1}\}.
+\]
+
+\end{MHint}
+\end{MExercise}
+
+Analog zum zweidimensionalen Fall in Abschnitt \MNRef{VBKM09_Punkte} kann man also auch hier im dreidimensionalen Fall eine beliebige Anzahl von Punkten im Raum wieder zu einer \MEntry{Punktmenge}{Punktmenge (3-D)} zusammenfassen. Insbesondere gibt es auch hier wieder die folgende Bezeichnung:
+
+\begin{MInfo}
+Die Menge aller Punkte im Raum, als Koordinatentripel bezüglich eines gegebenen kartesischen Koordinatensystems, werden mit
+\[
+ \R^3 := \{ \MPointThree{x}{y}{z}\MCondSetSep x\in\R\wedge y\in\R\wedge z\in\R \}
+\]
+bezeichnet. Das Symbol $\R^3$ wird dabei als \glqq$\R$ drei\grqq oder \glqq$\R$ hoch drei\grqq\ gesprochen. Dies spiegelt wieder, dass jeder Punkt eindeutig durch ein Koordinatentripel, bestehend aus drei reellen Zahlen, beschrieben werden kann.    
+\end{MInfo}
+
+\end{MXContent}
+
 % 
 % \begin{MXContent}{Vektoren in der Ebene und im Raum}{Vektoren}{STD}
 % \MLabel{VBKM10_Vektoren}
