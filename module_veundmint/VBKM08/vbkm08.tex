@@ -470,18 +470,50 @@ f"ur $x > 0$ führt (bis auf eine Konstante).
 
 
 \begin{MExercise}
-% TODO Musterloesungen einsetzen
-Finden Sie Polynome $p(x)$ und $q(x)$, sodass $F$ und $G$ mit 
+Finden Sie zwei Polynome $p(x)$ und $q(x)$, sodass $F$ und $G$ mit 
 $F(x) = p(x) + x \cdot \ln(x)$ bzw. $G(x) = q(x) + x \cdot \ln(x)$
 Stammfunktionen von $f(x) = \ln(x)$ f"ur $x > 0$ sind.
 Dann ist $F(x) - G(x)$ ein Polynom vom Grad \MLParsedQuestion{4}{0}{4}{IG21}, 
 und es gilt $F'(x) = $\MLSimplifyQuestion{10}{ln(x)}{1}{x}{20}{0}{IGYY1}.
+%Loesungshinweis erstellt (jgl):
+\begin{MHint}{L"osung}
+Es ist $H$ mit $H(x) = r(x) + x \cdot \ln(x)$ eine Stammfunktion von 
+$f$ mit $f(x) = \ln(x)$, wenn $H'(x) = f(x)$ f"ur alle $x > 0$ und damit
+\[
+\ln(x) = f(x) = F'(x) = r'(x) + \ln(x) + x \cdot \frac{1}{x} %
+ = r'(x) + 1 + \ln(x) %%
+\]
+gilt, woraus
+$0 = r'(x) + 1$ und damit $r'(x) = -1$ folgt. Somit ist $r(x) = -x + C$ f"ur 
+eine Zahl $C$. Beispielsweise sind $F$ und $G$ mit
+$F(x) = -x + 0 + x \cdot \ln(x)$ sowie
+$G(x) = -x + -14 + x \cdot \ln(x)$ Stammfunktionen von $f$.
+
+Es ist $F(x) - G(x) = 0 - (-14) = 14$, sodass $F - G$ ein Polynom vom Grad $0$
+ist. Weiter ist $F'(x) = -1 + \ln(x) + 1 = \ln(x)$ f"ur alle $x > 0$.
+\end{MHint}
 \end{MExercise}
 
-% Letztes Aufgabenelement darf kein MSimplifyQuestion sein, weil die Eingabebox sonst unter dem Bildschirmrand landet
+% Letztes Aufgabenelement darf kein MSimplifyQuestion sein, weil die Eingabebox 
+%sonst unter dem Bildschirmrand landet.
 \begin{MExercise}
-% TODO Musterloesungen einsetzen, analog zur vorhergehenden Aufgabe
-Angenommen $F(x)$ ist eine Stammfunktion von $f(x)=1+x^2$ und besitzt den Wert $F(0)=1$, dann ist $F(3)$ = \MLParsedQuestion{10}{13}{10}{IG22}.
+%Aufgabentext ueberarbeitet (jgl):
+Angenommen, es ist $F$ eine Stammfunktion von $f$ mit $f(x)=1+x^2$ und besitzt 
+den Wert $F(0)=1$, dann ist $F(3)$ = \MLParsedQuestion{10}{13}{10}{IG22}.
+%Loesungshinweis erstellt (jgl):
+\begin{MHint}{L"osung}
+Nach Voraussetzung ist $F$ eine Stammfunktion von $f$ mit $f(x) = 1 + x^2$. 
+Somit gilt $F'(x) = f(x) = 1 + x^2 = x^0 + x^2$, woraus 
+\[
+F(x) = \frac{1}{0 + 1} \cdot x^{0+1} + \frac{1}{2 + 1} \cdot x^{2 + 1} + C %
+= x + \frac{1}{3} \cdot x^3 + C %%
+\]
+f"ur eine Zahl $C$ folgt.
+Au"serdem soll $F(0) = 1$ gelten, sodass 
+$1 = F(0) = 0 + \frac{1}{3} \cdot 0^3 + C = C$ ist. Damit erh"alt man
+$F(x) = \frac{1}{3} \cdot x^3 + x + 1$. Einsetzen von $x = 3$ ergibt den 
+gesuchten Wert $F(3) = \frac{1}{3} \cdot 3^3 + 3 + 1 = 13$.
+\end{MHint}
 \end{MExercise}
 
 \end{MExercises}
@@ -554,13 +586,16 @@ Intervalllänge nicht immer $1$. Die Intervalllänge soll schließlich gegen Null
 gehen, um einen möglichst genauen Wert der Fläche zu berechnen. 
 
 \begin{MXInfo}{Integral}
-Gegeben ist eine Funktion $f: [a\MIntvlSep b] \rightarrow \R$ auf einem reellen Intervall $[a\MIntvlSep b]$. Dann nennt man
+Gegeben ist eine Funktion $f: [a\MIntvlSep b] \rightarrow \R$ auf einem reellen 
+Intervall $[a\MIntvlSep b]$. Dann nennt man
 %
 \begin{equation}
 \int_a^b f(x) \MDwSp x = \lim_{n \rightarrow \infty} S_n %%
 \end{equation}
 %
-das \MEntry{bestimmte Integral}{Integral (bestimmt)} von $f$ mit der Untergrenze $a$ und der Obergrenze $b$ (wenn der Grenzwert existiert).
+das \MEntry{bestimmte Integral}{Integral (bestimmt)} von $f$ mit der 
+Untergrenze $a$ und der Obergrenze $b$ (wenn der Grenzwert existiert), und die 
+Funktion $f$ hei"st \MEntry{integrierbar}{integrierbar}.
 \end{MXInfo}
 %
 %\begin{MXInfo}{Integral}
@@ -588,33 +623,39 @@ das \MEntry{bestimmte Integral}{Integral (bestimmt)} von $f$ mit der Untergrenze
 %\end{MXInfo}
 Prinzipiell kann es vorkommen, dass auf diese Weise gar kein bestimmter Wert 
 berechnet werden kann, das Integral also nicht exisitert.
-Weiterf"uhrende "Uberlegungen zeigen, dass f"ur jede stetige Funktion das 
-Integral existiert.
+Weiterf"uhrende "Uberlegungen zeigen, dass jedenfalls f"ur jede stetige 
+Funktion das Integral existiert.
 
-Als Beispiel wird das Integral von $f: [0\MIntvlSep 1] \rightarrow \R,\, x \mapsto x$ 
+Als Beispiel wird das Integral von 
+$f: [0\MIntvlSep 1] \rightarrow \R,\, x \mapsto x$ 
 berechnet, wobei die Berechnung des Grenzwertes im Vordergrund steht.
 
 \begin{MExample}
-Es soll das Integral von $f: [0\MIntvlSep 1] \rightarrow \R,\, x \mapsto x$ berechnet werden.
-Dazu teilt man das Intervall $[0\MIntvlSep 1]$ in Teilintervalle $[x_{k}\MIntvlSep x_{k+1}]$ mit 
+Es soll das Integral von $f: [0\MIntvlSep 1] \rightarrow \R,\, x \mapsto x$ 
+berechnet werden.
+Dazu teilt man das Intervall $[0\MIntvlSep 1]$ in Teilintervalle 
+$[x_{k}\MIntvlSep x_{k+1}]$ mit 
 $x_0 := 0$ und $x_k := x_{k-1} + \frac{1}{n}$ ein. Die Intervalllänge ist also
 $\Delta(x_k) = x_{k+1} - x_{k} = \frac{1}{n}$.
 
-Untersucht man die Intervalllänge auf ihr Verhalten für $n$ gegen unendlich, dann
-sieht man, dass $\Delta(x_k)$ immer kleiner wird und gegen Null strebt. Die Voraussetzung
-für die Berechnung eines bestimmten Integrals ist also gegeben.
+Untersucht man die Intervalllänge auf ihr Verhalten für $n$ gegen unendlich, 
+dann sieht man, dass $\Delta(x_k)$ immer kleiner wird und gegen Null strebt. 
+Die Voraussetzung für die Berechnung eines bestimmten Integrals ist also gegeben.
 
-Für die Werte $x_k$ findet man unter Zuhilfenahme der Intervalllänge außerdem $x_k = \frac{k}{n}$ und damit auch $f(x_k) = x_k = \frac{k}{n}$.
+Für die Werte $x_k$ findet man unter Zuhilfenahme der Intervalllänge außerdem 
+$x_k = \frac{k}{n}$ und damit auch $f(x_k) = x_k = \frac{k}{n}$.
 
-Setzt man diese Ergebnisse in die Summenformel ein, dann erhält man unter der Verwendung von $\sum_{k=1}^{n-1} k = \frac{1}{2}\,n(n-1)$ ("`kleiner Gauß"')
+Setzt man diese Ergebnisse in die Summenformel ein, dann erhält man unter der 
+Verwendung von $\sum_{k=1}^{n-1} k = \frac{1}{2}\,n(n-1)$ ("`kleiner Gauß"') die
+Gleichung
 %
 \begin{eqnarray*}
 S_n &=& \sum_{k=0}^{n-1} f(x_k)\cdot\Delta(x_k) = \sum_{k=0}^{n-1} x_k \cdot \frac{1}{n} = \sum_{k=0}^{n-1} \frac{k}{n} \cdot \frac{1}{n} = \frac{1}{n^2} \cdot \sum_{k=0}^{n-1} k = \frac{1}{n^2} \cdot \sum_{k=1}^{n-1} k\\
  &=& \frac{1}{n^2} \frac{n (n-1)}{2} = \frac{1}{2} \cdot \frac{n-1}{n} = \frac{1}{2} \cdot \left(1 - \frac{1}{n}\right) \MDFPeriod %
 \end{eqnarray*}
 %
-Und mit $\displaystyle\lim_{n \rightarrow \infty} \frac{1}{n} = 0$ ergibt sich f"ur 
-das Integral
+Und mit $\displaystyle\lim_{n \rightarrow \infty} \frac{1}{n} = 0$ ergibt 
+sich f"ur das Integral
 \[
 \int_0^1 x \MDwSp x = \lim_{n \rightarrow \infty} S_n = \frac{1}{2} \MDFPeriod %%
 \]
@@ -627,25 +668,27 @@ sowie deren Verkn"upfungen.
 %==========================
 % Anfang Hauptsatz
 
-Um Rechnungen möglichst unkompliziert durchführen zu können, sind möglichst einfache
-Regeln zur Integration von Funktionen nötig. Ein wichtiges Ergebnis liefert der
+Um Rechnungen möglichst unkompliziert durchführen zu können, sind möglichst 
+einfache Regeln zur Integration von Funktionen nötig. Ein wichtiges Ergebnis 
+liefert der
 sogenannte \MEntry{Hauptsatz der Differential- und Integralrechnung}{Hauptsatz}.
 Er beschreibt einen Zusammenhang zwischen den Stammfunktionen einer Funktion und 
 deren Integral.
 
 \begin{MXInfo}{Hauptsatz der Differential- und Integralrechnung}
 \MLabel{HSDDIR}
-Gegeben ist eine Funktion $f: [a\MIntvlSep b] \rightarrow \R$ auf einem reellen 
-Intervall $[a\MIntvlSep b]$. Besitzt $f$ eine Stammfunktion, dann gilt f"ur jede Stammfunktion $F$ von $f$
+Gegeben ist eine stetige Funktion $f: [a\MIntvlSep b] \rightarrow \R$ auf 
+einem reellen Intervall $[a\MIntvlSep b]$. Dann besitzt $f$ eine Stammfunktion, 
+und f"ur jede Stammfunktion $F$ von $f$ gilt
 \[
 \int_{a}^{b} f(x) \MDwSp x \;=\;  \left[{F(x)}\right]_a^b\;=\; F(b) - F(a) \MDFPeriod %% 
 \]
 \end{MXInfo}
 
 Als einfaches Beispiel wird das bestimmte Integral der Funktion $f$ mit 
-$f(x) = x^2$ zwischen $a = 1$ und $b = 2$ berechnet. Mit den Regeln für die Bestimmung von
-Stammfunktionen und dem Hauptsatz der Differential- und Integralrechnung kann
-man diese Aufgabe sehr leicht lösen.
+$f(x) = x^2$ zwischen $a = 1$ und $b = 2$ berechnet. Mit den Regeln für die 
+Bestimmung von Stammfunktionen und dem Hauptsatz der Differential- und 
+Integralrechnung kann man diese Aufgabe sehr leicht lösen.
 
 \begin{MExample}
 Die Funktion $f: [a\MIntvlSep b] \rightarrow \R$ mit $f(x) := x^2$ hat nach der Tabelle
@@ -832,8 +875,9 @@ und $g$ anders herum gewählt werden!
 \begin{MXContent}{Eigenschaften des Integrals}{Eigenschaften des Integrals}{STD}
 \MDeclareSiteUXID{VBKM08_Eigenschaften_Integral}
 
-F"ur ungerade Funktionen $f: [-c\MIntvlSep c] \rightarrow \R$ ist das Integral Null.
-Dies soll am Beispiel der Funktion $f$ auf $[-2\MIntvlSep 2]$ mit $f(x) = x^3$ erläutert werden:
+F"ur ungerade Funktionen $f: [-c\MIntvlSep c] \rightarrow \R$ ist das Integral 
+Null. Dies soll am Beispiel der Funktion $f$ auf $[-2\MIntvlSep 2]$ mit 
+$f(x) = x^3$ erläutert werden:
 \MUGraphics{BildFlaechePolynomxdrei.png}{scale=0.4}{Ungerade Funktion $f(x) = x^3$ auf einem Intervall $[-2\MIntvlSep 2]$.}{}
 
 Man teilt den Graphen von $f$ in zwei Teile zwischen $-2$ und $0$ bzw. $0$ und $2$ ein und untersucht die Teilflächen,
@@ -955,11 +999,22 @@ des zweiten Integrals Null ist.
 \begin{MExercises}
 \MDeclareSiteUXID{VBKM08_Umformungen_Exercises}
 
+%Einfuehrende Erlaeuterung zur ersten Aufgabe erstellt (jgl).
+In der ersten Aufgabe wird die Idee zur Definition des Integrals aufgegriffen,
+mittels geeigneter Zerlegungen den Integralwert zu berechnen, wobei in der 
+Aufgabe neben Rechtecken allgemeiner beispielsweise auch Dreiecksfl"achen 
+verwendet werden.
+
 \begin{MExercise}
-% TODO Musterloesungen einsetzen
+%Aufgabentext ueberarbeitet (jgl).
 Berechnen Sie zu $f:[-3\MIntvlSep 4] \rightarrow \R$ mit dem unten dargestellten 
 Graphen das Integral $\displaystyle \int_{-3}^{4} f(x) \MDwSp x$ mit Methoden 
-aus der Geometrie.
+aus der elementaren Geometrie, indem Sie die entsprechende Fl"ache 
+{\glqq}unter dem Graphen der Funktion{\grqq} in elementare geometrische Fl"achen
+wie Dreiecke oder Rechtecke zerlegen, die entweder oberhalb oder unterhalb 
+der $x$-Achse liegen.
+Die einzelnen Fl"acheninhalte k"onnen Sie in dieser Situation dann mit 
+Formeln f"ur Dreiecke oder Rechtecke berechnen.
 
 \begin{center}
 \MTikzAuto{%
@@ -1001,35 +1056,135 @@ declare function={
 \end{small}
 }
 \end{center}
+Der Integralwert ergibt sich dann als Summe der Teilfl"achen, die oberhalb der 
+$x$-Achse liegen, abz"uglich der Summe der Teilfl"achen, die unterhalb der 
+$x$-Achse liegen. In diesem Sinne kann man den Integralwert als die Summe
+vorzeichenbehafteter Fl"achenwerte verstehen.
 
 Der Integralwert von
-$$
-\int_{-3}^{4} f(x) \MDwSp x
-$$
+$\displaystyle \int_{-3}^{4} f(x) \MDwSp x$
 ist \MLParsedQuestion{10}{-2}{4}{IG23}.
 
+\begin{MHint}{L"osung}
+Die Fl"ache wird mit Geraden durch $x_0 = -3$, $x_1 = -1$, $x_2 = 0$, 
+$x_3 = \frac{3}{2}$, $x_4 = 2$, $x_5 = 3$ und $x_6 = 4$ in Teilfl"achen zerlegt,
+die jeweils durch den Graphen von $f$, die $x$-Achse und durch die Geraden 
+$x_{k-1}$ und $x_k$ f"ur $1 \leq k \leq 6$ begrenzt werden.
+
+Es werden die zugeh"origen vorzeichenbehafteten Fl"acheninhalte aufsummiert, 
+sodass sich der Integralwert ergibt:
+\[
+\int_{-3}^{4} f(x) \MDwSp x %
+= -\frac{2 \cdot 2}{2} + \frac{1 \cdot 1}{2} + 1 \cdot 1 %
+ + \frac{\frac{1}{2} \cdot 1}{2}
+ - \frac{\frac{1}{2} \cdot 1}{2}
+ + 1 \cdot 1 + \frac{1 \cdot 1}{2} %
+= -2\MDFPeriod %%
+\]
+Die Fl"ache kann auch in andere Teilfl"achen zerlegt werden. Wird die Fl"ache
+beispielsweise durch $z_0 = -3$, $z_1 = -1$, $z_2 = \frac{1}{2}$ und $z_3 = 4$ 
+in drei Teilfl"achen zerlegt, hat die Teilfl"ache $B_2$ zwischen $z_1$ und $z_2$ 
+denselben Fl"acheninhalt wie die Teilfl"ache $B_3$ zwischen $z_2$ und $z_3$, 
+jedoch erhalten die Werte verschiedenes Vorzeichen, da $B_2$ oberhalb der 
+$x$-Achse liegt und $B_3$ unterhalb. 
+\begin{center}
+\MTikzAuto{%
+\begin{small}
+\begin{tikzpicture}[line width=1.5pt,scale=0.8, %
+declare function={
+  u0 = -3;
+  u1 = 0;
+  u2 = 2;
+  u3 = 4;
+  fkt1(\x) = \x + 1; % $-3 \leq x \leq 0$
+  fkt2(\x) = -\x + 1 - abs(-\x + 1) + 1; % $0 \leq x \leq 2$
+  fkt3(\x) = (\x - 3 + abs(\x - 3))/2 - 1; % $2 \leq x \leq 4$
+%Auch erlaubt:
+%  fkt3(\z) = (\z - 3 + abs(\z - 3))/2 - 1; % $2 \leq x \leq 4$
+}
+] %[every node/.style={fill=white}] 
+%Koordinatenachsen:
+\draw[->] ({u0-1}, 0) -- ({u3+1}, 0) node[below left]{$x$}; %x-Achse
+%Berechnung der Werte: Minimalstelle ist u0, Maximalstelle ist u1:
+\draw[->] (0, {fkt1(u0)-1}) -- (0, {fkt1(u1)+1}) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+\foreach \x in {-3, -2, -1, 1, 2, 3, 4} \draw (\x, 0) -- ++(0, -0.1);
+\node[above] at (-3, 0) {$-3$}; 
+\node[below] at (1, 0) {$1$}; 
+\node[below] at (4, 0) {$4$}; 
+\foreach \y in {-2, -1, 1} \draw (0, \y) -- ++(-0.1, 0) %
+ node[left] {$y$};
+\node[below left] at (0, 0) {$0$};
+%Begrenzung:
+\draw[style=dotted] (-3,-2) -- (-3,0);
+%Funktion:
+\draw[domain=u0:u1,samples=120,color=\jccolorfkt] %
+ plot (\x, {fkt1(\x)});
+\draw[domain=u1:u2,samples=120,color=\jccolorfkt] %
+ plot (\x, {fkt2(\x)});
+\draw[domain=u2:u3,samples=120,color=\jccolorfkt] %
+ plot (\x, {fkt3(\x)});
+%Beschriftung:
+\node[right] at (1.1, {fkt2(1)}) {$f(x)$};
+\node at (-2.5, -0.75) {$B_1$};
+\node at (0.5, 0.5) {$B_2$};
+\node at (2.6, -0.5) {$B_3$};
+%
+\end{tikzpicture}
+\end{small}
+}
+\end{center}
+Somit ist der Integralwert gleich dem negativen Fl"acheninhalt der Fl"ache 
+$B_1$ zwischen $z_0$ und $z_1$, die unterhalb der $x$-Achse liegt.
+\end{MHint}
 \end{MExercise}
 
 
 \begin{MExercise}
-% TODO Musterloesungen einsetzen
 Berechnen Sie die folgenden Integrale:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \int_{0}^{5} 3 \MDwSp x$}{\MLParsedQuestion{10}{15}{4}{IG24}}.}
-\item{\MEquationItem{$\displaystyle \int_{0}^{5} -4 \MDwSp x$}{\MLParsedQuestion{10}{-20}{4}{IG25}}.}
-\item{\MEquationItem{$\displaystyle \int_{0}^{4} 2 x \MDwSp x$}{\MLParsedQuestion{10}{16}{4}{IG26}}.}
-\item{\MEquationItem{$\displaystyle \int_{0}^{4} \left(4 - x\right) \MD x$}{\MLParsedQuestion{10}{8}{4}{IG27}}.}
+\item{\MEquationItem{$\displaystyle \int_{0}^{5} 3 \MDwSp x$}{\MLParsedQuestion{10}{15}{4}{IG24}},}
+\item{\MEquationItem{$\displaystyle \int_{0}^{5} -4 \MDwSp x$}{\MLParsedQuestion{10}{-20}{4}{IG25}},}
+\item{\MEquationItem{$\displaystyle \int_{0}^{4} 2 x \MDwSp x$}{\MLParsedQuestion{10}{16}{4}{IG26}},}
+\item{\MEquationItem{$\displaystyle \int_{0}^{4} \left(4 - x\right) \MDwSp x$}{\MLParsedQuestion{10}{8}{4}{IG27}}.}
 \end{MExerciseItems}
+%Loesungshinweise erstellt (jgl):
+\begin{MHint}{L"osung}
+Mit dem Hauptsatz der Differential- und Integralrechnung erh"alt man
+\begin{enumerate}
+\item $\displaystyle \int_{0}^{5} 3 \MDwSp x %
+= \left[ 3 x \right]_0^5 = 15\MDFPSpace$,
+%
+\item $\displaystyle \int_{0}^{5} -4 \MDwSp x %
+= \left[ -4 x \right]_0^5 = -20\MDFPSpace$,
+%
+\item $\displaystyle \int_{0}^{4} 2 x \MDwSp x %
+= \left[ x^2 \right]_0^4 = 16\MDFPSpace$,
+%
+\item $\displaystyle \int_{0}^{4} \left(4 - x\right) \MDwSp x %
+= \left[ 4 x - \frac{1}{2} \cdot x^2 \right]_0^4 = 8\MDFPSpace$.
+%
+\end{enumerate}
+\end{MHint}
 \end{MExercise}
 
 
 \begin{MExercise}
-% TODO Musterloesungen einsetzen
 Der Wert des Integrals
-$$
-\int_{-\pi}^{\pi} \left(5 x^3 - 4 \sin(x)\right) \MD x
-$$
+$\displaystyle \int_{-\pi}^{\pi} \left(5 x^3 - 4 \sin(x)\right) \MDwSp x$
 ist \MLParsedQuestion{10}{0}{4}{IG28}.
+%Loesungshinweise erstellt (jgl):
+\begin{MHint}{L"osung}
+Der Integrand ist ungerade und das Integrationsintervall ist symmetrisch 
+bez"uglich $0$, sodass das Integral den Wert $0$ hat.
+Oder es wird das Integral mit dem Hauptsatz berechnet:
+\[
+\int_{-\pi}^{\pi} \left(5 x^3 - 4 \sin(x)\right) \MD x %
+= \left[ \frac{5}{4} \cdot x^4 + 4 \cos(x) \right]_{-\pi}^{\pi} %
+= \left[ \frac{5}{4} \cdot x^4 + 4 \cos(x) \right]_{-\pi}^{\pi} %
+= 0\MDFPeriod %%
+\]
+\end{MHint}
 \end{MExercise}
 
 
@@ -1038,7 +1193,8 @@ Berechnen Sie eine reelle Zahl $z$, so dass der Integralwert
 \[
 \int_{0}^{2} \left(x^2 + z\cdot x+1\right) \MD x
 \]
-genau Null ergibt: \MEquationItem{$z$}{\MLParsedQuestion{10}{-14/6}{4}{ICONSTFIND}}.
+den Wert $0$ ergibt: %
+\MEquationItem{$z$}{\MLParsedQuestion{10}{-14/6}{4}{ICONSTFIND}}.
 
 \begin{MHint}{Lösung}
 Nimmt man $z$ als unbekannte Konstante, so ist
@@ -1047,20 +1203,20 @@ $$
 \left[{\frac13x^3+\frac12 z x^2+x}\right]_0^2 \;=\;
 \frac83+2z+2 \MDFPSpace,
 $$
-also muss man $z=-\frac{14}{6}$ einsetzen.
+also muss man $z=-\frac{14}{6} = -\frac{7}{3}$ einsetzen.
 \end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
 Berechnen Sie die Integrale:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \int_{-3}^{2} \left(1 + 6 x^2 - 4 x\right) \MD x$}{\MLParsedQuestion{30}{85}{4}{IG29}}.}
+\item{\MEquationItem{$\displaystyle \int_{-3}^{2} \left(1 + 6 x^2 - 4 x\right) \MD x$}{\MLParsedQuestion{30}{85}{4}{IG29}},}
 \item{\MEquationItem{$\displaystyle \int_{1}^{9} \frac{5}{\sqrt{4 x}} \MDwSp x$}{\MLParsedQuestion{30}{10}{4}{IG30}}.}
 \end{MExerciseItems}
 
 \begin{MHint}{Lösung}
 Der Integrand $f(x) = 1 + 6 x^2 - 4x = 6 x^2 - 4 x + 1$ ist ein Polynom, sodass
-$F(x) = 2 x^3 - 2 x^2 + x$ eine Stammfunktion ist. Mit dem Hauptsatz folgt
+$F$ mit $F(x) = 2 x^3 - 2 x^2 + x$ eine Stammfunktion ist. Mit dem Hauptsatz folgt
 \[
  \int_{0}^{1} \left(1 + 6 x^2 - 4 x\right) \MD x %
  = \left[ 2 x^3 - 2 x^2 + x \right]_{-3}^{2} %
@@ -1068,7 +1224,7 @@ $F(x) = 2 x^3 - 2 x^2 + x$ eine Stammfunktion ist. Mit dem Hauptsatz folgt
 \]
 Beim zweiten Aufgabenteil ist
 der Integrand $f(x) = \frac{5}{\sqrt{4 x}}= \frac{5}{2} x^{-1/2}$ ein 
-Produkt einer Wurzelfunktion mit einem konstanten Faktor. Damit ist
+Produkt einer Wurzelfunktion mit einem konstanten Faktor. Damit ist $F$ mit
 $F(x) = 5 x^{1/2} = 5 \sqrt{x}$ eine Stammfunktion von $f$. Mit dem Hauptsatz 
 folgt
 \[
@@ -1081,14 +1237,12 @@ folgt
 
 \begin{MExercise}
 Der Wert des Integrals
-$$
-\int_{-24}^{-6} \frac{1}{2 x} \MDwSp x
-$$
+$\displaystyle \int_{-24}^{-6} \frac{1}{2 x} \MDwSp x$
 ist \MLParsedQuestion{10}{-ln(2)}{4}{ILN1}.
 
 \begin{MHint}{Lösung}
 Zum Integranden $f(x) = \frac{1}{2 x} = \frac{1}{2} \cdot \frac{1}{x}$ ist 
-$F(x) = \frac{1}{2} \ln|x|$ eine Stammfunktion von $f$. Mit dem Hauptsatz 
+$F$ mit $F(x) = \frac{1}{2} \ln|x|$ eine Stammfunktion von $f$. Mit dem Hauptsatz 
 folgt
 \[
  \int_{-24}^{-6} \frac{1}{2 x} \MDwSp x %
@@ -1103,7 +1257,7 @@ folgt
 \begin{MExercise}
 Berechnen Sie die Integrale
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \int_{0}^{3} (2 x - 1) \MDwSp x$}{\MLParsedQuestion{30}{6}{4}{IG31}}.}
+\item{\MEquationItem{$\displaystyle \int_{0}^{3} (2 x - 1) \MDwSp x$}{\MLParsedQuestion{30}{6}{4}{IG31}},}
 \item{\MEquationItem{$\displaystyle \int_{-3}^{0} (1 - 2 x) \MDwSp x$}{\MLParsedQuestion{30}{12}{4}{IG32}}.}
 \end{MExerciseItems}
 
@@ -1117,10 +1271,8 @@ folgt
  = 9 - 3 - 0%
  = 6 \MDFPeriod %
 \]
-Beim zweiten Aufgabenteil ist
-der Integrand $f(x) = 1 - 2 x$ eine Polynomfunktion. Damit ist
-$F(x) = x - x^2$ eine Stammfunktion von $f$. Mit dem Hauptsatz 
-folgt
+Im zweiten Aufgabenteil ist der Integrand $f(x) = 1 - 2 x$ eine Polynomfunktion.
+Damit ist $F(x) = x - x^2$ eine Stammfunktion von $f$. Mit dem Hauptsatz folgt
 \[
  \int_{-3}^{0} (1 - 2 x) \MDwSp x %
  = \left[ x - x^2 \right]_{-3}^{0} %
@@ -1175,13 +1327,23 @@ weitere physikalisch-technische Anwendungen betrachtet.
 
 \begin{MXContent}{Fl"achenberechnung}{Fl"achenberechnung}{STD}
 \MDeclareSiteUXID{VBKM08_Anwendungen_Flaechenberechnung}
-Eine erste Anwendung der Integrationsrechnung ist die Berechnung von \MEntry{Flächeninhalten}{Flächeninhalt (Integral)}, deren Ränder von mathematischen Funktionen beschrieben werden können.
-Zur Veranschaulichung ist in der folgenden Abbildung (linkes Bild) die Funktion $f(x) = \frac{1}{2} x^3$ auf dem Intervall $[-2\MIntvlSep 2]$ dargestellt. Das Ziel ist
-die Berechnung des Flächeninhalts, der vom Graphen der Funktion und der $x$-Achse eingeschlossen wird. Die bisherigen Untersuchungen ergeben, dass das
-Integral über diese ungerade Funktion in den Grenzen von -2 bis 2 genau Null ergeben wird, da die linke und rechte Teilfläche gleich groß sind, aber bei
-der Integration unterschiedliche Vorzeichen erhalten. Das Integral entspricht hier also nicht dem Wert des Flächeninhalts.
-Spiegelt man jedoch die "`negative"' Fläche an der $x$-Achse, gibt man der Funktion also ein positives Vorzeichen (rechtes Bild), dann kann man den Flächeninhalt
-richtig bestimmen. Mathematisch bedeutet das, dass man nicht das Integral der Funktion $f$ berechnet, sondern das Integral des Betrags $\left|f\right|$.
+Eine erste Anwendung der Integrationsrechnung ist die Berechnung von 
+\MEntry{Flächeninhalten}{Flächeninhalt (Integral)}, deren Ränder von 
+mathematischen Funktionen beschrieben werden können.
+Zur Veranschaulichung ist in der folgenden Abbildung (linkes Bild) die 
+Funktion $f(x) = \frac{1}{2} x^3$ auf dem Intervall $[-2\MIntvlSep 2]$ 
+dargestellt. Das Ziel ist die Berechnung des Flächeninhalts, der vom Graphen 
+der Funktion und der $x$-Achse eingeschlossen wird. Die bisherigen 
+Untersuchungen ergeben, dass das Integral über diese ungerade Funktion in 
+den Grenzen von -2 bis 2 genau Null ergeben wird, da die linke und rechte 
+Teilfläche gleich groß sind, aber bei der Integration unterschiedliche 
+Vorzeichen erhalten. Das Integral entspricht hier also nicht dem Wert des 
+Flächeninhalts.
+Spiegelt man jedoch die "`negative"' Fläche an der $x$-Achse, gibt man der 
+Funktion also ein positives Vorzeichen (rechtes Bild), dann kann man den 
+Flächeninhalt richtig bestimmen. Mathematisch bedeutet das, dass man nicht 
+das Integral der Funktion $f$ berechnet, sondern das Integral des Betrags 
+$\left|f\right|$.
 
 \begin{center}
 \MTikzAuto{%
@@ -1237,8 +1399,10 @@ richtig bestimmen. Mathematisch bedeutet das, dass man nicht das Integral der Fu
 }
 \end{center}
 
-Durch die Bildung des Betrags der Funktion benötigt man eine Aufteilung des Integrals in die Bereiche mit positivem und negativem Vorzeichen.
-F"ur die Berechnung heißt dies, dass man das Integrationsintervall in Abschnitte zu unterteilt, in denen die Funktionswerte dasselbe Vorzeichen haben.
+Durch die Bildung des Betrags der Funktion benötigt man eine Aufteilung des 
+Integrals in die Bereiche mit positivem und negativem Vorzeichen.
+F"ur die Berechnung heißt dies, dass man das Integrationsintervall in 
+Abschnitte zu unterteilt, in denen die Funktionswerte dasselbe Vorzeichen haben.
 
 \begin{MXInfo}{Fl"achenberechnung} 
 Gegeben ist eine Funktionen $f: [a\MIntvlSep  b] \rightarrow \R$ auf einem 
@@ -1258,7 +1422,11 @@ ist der Fl"acheninhalt zwischen dem Graphen von $f$ und der $x$-Achse gleich
 Dies soll für das oben dargestellte Beispiel etwas genauer erörtert werden.
 
 \begin{MExample}
-Zu berechnen ist der Flächeninhalt $A$, den die Funktion $f(x) = \frac{1}{2} x^3$ im Bereich $[-2\MIntvlSep 2]$ mit der $x$-Ache einschließt. Die einzige Nullstelle der gegebenen Funktion befindet sich bei $x_0 = 0$. Man teilt den Integrationsbereich also in die beiden Teilintervalle $[-2\MIntvlSep 0]$ und $[0\MIntvlSep 2]$ auf und berechnet mit
+Zu berechnen ist der Flächeninhalt $I_A$ der Fl"ache, den die Funktion 
+$f(x) = \frac{1}{2} x^3$ im Bereich $[-2\MIntvlSep 2]$ mit der $x$-Ache 
+einschließt. Die einzige Nullstelle der gegebenen Funktion befindet sich bei 
+$x_0 = 0$. Man teilt den Integrationsbereich also in die beiden Teilintervalle
+x $[-2\MIntvlSep 0]$ und $[0\MIntvlSep 2]$ auf und berechnet mit
 %
 \begin{eqnarray*}
 A &=& \int_{-2}^{2} \left|\frac{1}{2} x^3\right| \MD x = \left|\int_{-2}^{0} \frac{1}{2} x^3 \MDwSp x\right| + \left|\int_{0}^{2} \frac{1}{2} x^3 \MDwSp x\right| \\
@@ -1267,10 +1435,12 @@ A &=& \int_{-2}^{2} \left|\frac{1}{2} x^3\right| \MD x = \left|\int_{-2}^{0} \fr
   &=& 4
 \end{eqnarray*}
 %
-den Flächeninhalt zwischen Kurve und $x$-Achse zu $A = 4$.
+den Flächeninhalt zwischen Kurve und $x$-Achse zu $I_A = 4$.
 \end{MExample}
 
-Man kann nicht nur Flächeninhalte zwischen einer Kurve und der $x$-Achse bestimmen, sondern auch den Inhalt einer Fläche, die von zwei Kurven eingeschlossen wird, wie in der folgenden Abbildung veranschaulicht.
+Man kann nicht nur Flächeninhalte zwischen einer Kurve und der $x$-Achse 
+bestimmen, sondern auch den Inhalt einer Fläche, die von zwei Kurven 
+eingeschlossen wird, wie in der folgenden Abbildung veranschaulicht wird.
 
 \begin{center}
 \MTikzAuto{%
@@ -1370,7 +1540,8 @@ pattern color=red!50!black,pattern=crosshatch dots] %
 }
 \end{center}
 
-Dieses Prinzip soll ebenfalls zuerst formal vorgestellt und danach an einem Beispiel erläutert werden.
+Dieses Prinzip soll ebenfalls zuerst formal vorgestellt und danach an einem 
+Beispiel erläutert werden.
 
 \begin{MXInfo}{Fl"achenberechnung zwischen den Graphen zweier Funktionen} 
 Gegeben sind zwei Funktionen $f, g: [a\MIntvlSep  b] \rightarrow \R$ auf einem 
@@ -1411,10 +1582,13 @@ kann man die reellen Nullstellen von $f-g$ berechnen:
 \Leftrightarrow & x = \pm 2  \MDFPeriod \\
 \end{eqnarray*}
 
-In der Rechnung wurde nach dem Ziehen der ersten Wurzel auf eine nähere Betrachtung des Falls $x^2 + 2 = -6$ verzichtet, da man
-aus der daraus folgenden Gleichung $x^2 = -8$ keine reellen Nullstellen erhält. Die reellen Nullstellen von $f-g$ sind $-2$ und $2$.
-Dies sind gleichzeitig auch die Randstellen des Intervalls $[-2\MIntvlSep  2]$. Eine Aufteilung des Integrals in verschiedene Bereiche ist also
-nicht nötig. Die Werte von $f(x)$ sind kleiner als die von $g(x)$ auf diesem Intervall, also
+In der Rechnung wurde nach dem Ziehen der ersten Wurzel auf eine nähere 
+Betrachtung des Falls $x^2 + 2 = -6$ verzichtet, da man
+aus der daraus folgenden Gleichung $x^2 = -8$ keine reellen Nullstellen erhält.
+Die reellen Nullstellen von $f-g$ sind $-2$ und $2$.
+Dies sind gleichzeitig auch die Randstellen des Intervalls $[-2\MIntvlSep  2]$.
+Eine Aufteilung des Integrals in verschiedene Bereiche ist also nicht nötig. 
+Die Werte von $f(x)$ sind kleiner als die von $g(x)$ auf diesem Intervall, also
 ergibt sich der Fl"acheninhalt $I_A$ zu
 
 \begin{eqnarray*}
@@ -1434,10 +1608,11 @@ I_A &=& \int_{-2}^{2} \left|f(x) - g(x)\right| \MD x\\
 \MDeclareSiteUXID{VBKM08_Anwendungen_Physik}
 
 Die Geschwindigkeit $v$ beschreibt die momentane "Anderungsrate des Ortes 
-zur Zeit $t$. Es gilt also $v = \frac{\MD s}{\MD t}$, wenn man $v = v(t)$ und $s = s(t)$
-als Funktionen der Zeit auffasst.
-Der aktuelle Aufenthaltsort $s(T)$ ergibt sich durch die Umkehrung der Ableitung, also durch die Integration der
-Geschwindigkeit über die Zeit. Mit dem Anfangswert $s(t = 0) = s_0$ zur Zeit $t = 0$ erhält man damit
+zur Zeit $t$. Es gilt also $v = \frac{\MD s}{\MD t}$, wenn man $v = v(t)$ 
+und $s = s(t)$ als Funktionen der Zeit auffasst.
+Der aktuelle Aufenthaltsort $s(T)$ ergibt sich durch die Umkehrung der 
+Ableitung, also durch die Integration der Geschwindigkeit über die Zeit. 
+Mit dem Anfangswert $s(t = 0) = s_0$ zur Zeit $t = 0$ erhält man damit
 %
 \begin{eqnarray*}
 \int_{0}^{T}\frac{\MD s}{\MD t} \MDwSp t &=& \int_{0}^{T} v \MDwSp t \\
@@ -1446,16 +1621,22 @@ Geschwindigkeit über die Zeit. Mit dem Anfangswert $s(t = 0) = s_0$ zur Zeit $t 
 \Leftrightarrow\;\;s(T) &=& s_0 + \int_0^T v(t) \MDwSp t \MDFPeriod
 \end{eqnarray*}
 %
-Ein weiteres Beispiel aus der Physik, das der Leserin oder dem Leser bekannt sein könnte, ist die Bestimmung der Arbeit als Produkt aus Kraft und Weg: $W = F_s \cdot s$. Dabei ist
-$F_s$ die Projektion der Kraft auf die Wegrichtung.
-Ist die Kraft jedoch wegabhängig, gilt dieses Gesetz nicht mehr in seiner einfachen Form. Um die Arbeit, die z.B. beim Verschieben eines massiven Körpers entlang eines Weges verrichtet wird, zu bestimmen, muss man die aufgewendete Kraft dann entlang des Weges vom Anfangspunkt $s_1$ bis zum Endpunkt $s_2$ integrieren:
-
+Ein weiteres Beispiel aus der Physik, das der Leserin oder dem Leser bekannt 
+sein könnte, ist die Bestimmung der Arbeit als Produkt aus Kraft und Weg:
+$W = F_s \cdot s$. Dabei ist $F_s$ die Projektion der Kraft auf die Wegrichtung.
+Ist die Kraft jedoch wegabhängig, gilt dieses Gesetz nicht mehr in seiner 
+einfachen Form. Um die Arbeit, die z.B. beim Verschieben eines massiven 
+Körpers entlang eines Weges verrichtet wird, zu bestimmen, muss man die 
+aufgewendete Kraft dann entlang des Weges vom Anfangspunkt $s_1$ bis zum 
+Endpunkt $s_2$ integrieren:
 %
 \begin{eqnarray*}
 W = \int_{s_1}^{s_2}F_s(s) \MDwSp s \MDFPeriod
 \end{eqnarray*}
 %
-Dies sollen nur zwei Beispiele aus dem physikalisch-technischen Bereich sein. Im Verlauf des Studiums wird ggf. eine ganze Reihe weiterer Anwendungen der Integration auftauchen.
+Dies sollen nur zwei Beispiele aus dem physikalisch-technischen Bereich sein. 
+Im Verlauf des Studiums werden je nach Fachrichtung eine ganze Reihe weiterer 
+Anwendungen der Integration auftauchen.
 \end{MXContent}
 
 
@@ -1507,26 +1688,52 @@ Antwort: \MEquationItem{$I_A$}{\MLParsedQuestion{30}{30}{2-2/pi}{IG36}}.
 \begin{MHint}{Tipp}
 Zeichnen Sie zun"achst die Graphen der Funktionen, bevor Sie den 
 Fl"acheninhalt berechnen.
-\end{MHint}{Tipp}
+\end{MHint}
 
 \begin{MHint}{Lösung}
 Man betrachtet $f(x) - g(x) = 12 x - 12 x^2 + \sin\left(\pi x\right)$ auf dem Intervall
 $[0\MIntvlSep  1]$. Die Funktion $f - g$ wird nur an den R"andern des 
-Intervalls $[0\MIntvlSep  1]$ gleich Null. Dies kann man mit einer einfachen Überlegung verstehen:
+Intervalls $[0\MIntvlSep  1]$ gleich Null. Dies kann man anhand einer 
+Zeichnung der Funktionsgraphen sehen.
+\begin{center}
+\MTikzAuto{%
+\begin{small}
+\begin{tikzpicture}[line width=1.5pt,scale=2.0,
+declare function={
+  u1 = 0;
+  u2 = 1;
+  fkt1(\x) = sin(pi * \x r); % $0 \leq x \leq 1$
+  fkt2(\x) = 12 * \x * (\x - 1); % $0 \leq x \leq 1$
+}
+] %[every node/.style={fill=white}] 
+%Koordinatenachsen:
+\draw[->] (-0.5, 0) -- (1.5, 0) node[below left]{$x$}; %x-Achse
+\draw[->] (0, -3.5) -- (0, 1.5) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+%\foreach \x in {1} \draw (\x, 0) -- ++(0, -0.1) %
+% node[below right] {$\x$}; 
+\node[below right] at (1, 0) {$1$}; 
+\foreach \y in {-2, -1, 1} \draw (0, \y) -- ++(-0.1, 0) %
+ node[left] {$\y$};
+\node[below left] at (0, 0) {$0$};
+%Funktion:
+\draw[domain=u1:u2,samples=120,color=\jccolorfkt] %
+ plot (\x, {fkt1(\x)});
+\draw[domain=u1:u2,samples=120,color=blue] %\jccolorfkt] %
+ plot (\x, {fkt2(\x)});
+%Beschriftung:
+\node[right] at (0.75, {fkt1(0.7)}) {$f(x) = \sin(\pi x) \geq 0$};
+\node[right] at (0.75, {fkt2(0.7)}) {$g(x) = 12 x (1 - x) \leq 0$};
+%
+\end{tikzpicture}
+\end{small}
+}
+\end{center}
 
-Auf dem Intervall $\MoIl 0\MIntvlSep  1\MoIr$ ist die Funktion $g\left(x\right) = 12x^2 - 12x = 12x\left(x-1\right)$
-immer kleiner als Null, da $x-1$ in diesem Intervall kleiner als Null ist. Nimmt man
-nun die Randwerte des Intervalls hinzu, so sieht man, dass die Funktion $g$ dort ihre Nullstellen
-hat.
-
-Untersucht man hingegen die Funktion $f\left(x\right) = \sin\left(\pi x\right)$ auf demselben
-Intervall, dann findet man, dass diese Funktion dort immer positiv ist und ebenfalls an den
-Rändern ihre Nullstellen besitzt.
-
-Berechnet man also $f-g$, dann zieht man auf dem gesamten offenen
-Intervall $\MoIl 0\MIntvlSep  1\MoIr$ eine negative Zahl von einer positiven Zahl ab, erhält also durchgehend positive
-Werte für $f -g$. Nur an den Rändern rechnet man $0 - 0$ und erhält dort auch für die Differenz
-der Funktionen den Wert Null.
+Berechnet man also $f - g$, dann zieht man auf dem gesamten offenen Intervall 
+$\MoIl 0\MIntvlSep  1\MoIr$ eine negative Zahl von einer positiven Zahl ab, 
+erhält also durchgehend positive Werte für $f - g$. Nur an den Rändern rechnet 
+man $0 - 0$ und erhält dort auch für die Differenz der Funktionen den Wert Null.
 
 Damit ergibt sich f"ur den Fl"acheninhalt $I_A$ zwischen den Kurven
 \begin{eqnarray*}
@@ -1535,6 +1742,20 @@ I_A & = & \left|\int_0^1 \left(12 x^2 - 12 x + \sin\left(\pi x\right)\right) \MD
  & = & \left| 4 - 6 + \frac{1}{\pi} - \left( 0 - 0 - \frac{1}{\pi}\right) \right| \\
  & = & |-2 + \frac{2}{\pi}| = 2 - \frac{2}{\pi} \MDFPeriod %%
 \end{eqnarray*}
+Anmerkung:
+Dass die Funktionen $f$ und $g$ nur an den R"andern gemeinsame Funktionswerte 
+haben, kann man auch rechnerisch mit einer einfachen Überlegung verstehen:
+
+Auf dem Intervall $\MoIl 0\MIntvlSep  1\MoIr$ ist die Funktion $g$ mit
+$g\left(x\right) = 12x^2 - 12x = 12x\left(x-1\right)$
+immer kleiner als Null, da $x-1$ in diesem Intervall kleiner als Null ist. 
+Nimmt man nun die Randwerte des Intervalls hinzu, so sieht man, dass die 
+Funktion $g$ dort ihre Nullstellen hat.
+
+Untersucht man hingegen die Funktion $f$ mit 
+$f\left(x\right) = \sin\left(\pi x\right)$ 
+auf demselben Intervall, dann findet man, dass diese Funktion dort immer 
+positiv ist und ebenfalls an den Rändern ihre Nullstellen besitzt.
 \end{MHint}
 \end{MExercise}
 
