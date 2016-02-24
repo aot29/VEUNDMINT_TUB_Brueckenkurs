@@ -3,7 +3,7 @@
 
 \begin{document}
 
-\MSection{Gleichungen mit einer Unbekannten}
+\MSection{Gleichungen in einer Unbekannten}
 \MLabel{VBKM02}
 
 \begin{MSectionStart}
@@ -110,7 +110,7 @@ Die folgenden Umformungen sind nur dann Äquivalenzumformungen, wenn der verwende
 
 Dabei verwendet man folgende \MEntry{Notation}{Äquivalenzumformung (Notation)}:
 \begin{itemize}
- \item{Äquivalente Gleichungen werden durch das Symbol $\Leftrightarrow$ (gesprochen: genau dann wenn, d.h. die eine Gleichung ist genau dann erfüllt, wenn auch die andere Gleichung erfüllt ist).}
+ \item{Äquivalente Gleichungen werden durch das Symbol $\Leftrightarrow$ (gesprochen: genau dann wenn, d.h. die eine Gleichung ist genau dann erfüllt, wenn auch die andere Gleichung erfüllt ist) gekennzeichnet.}
  \item{Unter das Symbol (oder bei mehrzeiligen Lösungen abgetrennt neben die Umformung) wird die Umformungsoperation geschrieben.}
 \end{itemize}
 
@@ -129,11 +129,11 @@ Die Gleichungen links und rechts sind äquivalent. Auf der linken Seite steht die
 \MLabel{BSP_Umformungen1}
 Bei mehreren komplizierten Umformungen sollten die Umformungsschritte untereinander geschrieben werden, in diesem Fall notiert man die durchgeführte Operation mit einem Trennstrich:
 \begin{eqnarray*}
-& \text{Start:} & 12+t \;=\;\frac{2t}{2t^2}+t \ \ \ \ \MSep \ -t\ \\ \ \\
-& \Leftrightarrow & 12 \;=\; \frac{2t}{2t^2}  \ \ \ \ \MSep \ \text{Gleichung umgedreht}\ \\ \ \\
-& \Leftrightarrow & \frac{2t}{2t^2} \;=\; 12  \ \ \ \ \MSep \ \text{Linke Seite umgeformt}\ \\ \ \\
-& \Leftrightarrow & \frac1t \;=\; 12  \ \ \ \ \MSep \ \text{Kehrwerte genommen}\ \\ \ \\
-& \Leftrightarrow & t \;=\; \frac{1}{12} \MDFPeriod
+& \text{Start:} & 12+t \;=\;\Mdfrac{2t}{2t^2}+t \ \ \ \ \MSep \ -t\ \\ \ \\
+& \Leftrightarrow & 12 \;=\; \Mdfrac{2t}{2t^2}  \ \ \ \ \MSep \ \text{Gleichung umgedreht}\ \\ \ \\
+& \Leftrightarrow & \Mdfrac{2t}{2t^2} \;=\; 12  \ \ \ \ \MSep \ \text{Linke Seite umgeformt}\ \\ \ \\
+& \Leftrightarrow & \Mdfrac1t \;=\; 12  \ \ \ \ \MSep \ \text{Kehrwerte genommen}\ \\ \ \\
+& \Leftrightarrow & t \;=\; \Mdfrac{1}{12} \MDFPeriod
 \end{eqnarray*}
 
 Dabei können sowohl kurze Symbole wie z.B. $-t$ hinter dem Trennstrich stehen wie auch textuelle Beschreibungen. Wichtig dabei ist, dass ein Leser nachvollziehen kann,
@@ -153,10 +153,10 @@ In diesem Beispiel sind die notwendigen Bedingungen für die Umformungen nicht pr
 \begin{eqnarray*}
 & \text{Start:} & 9x \;=\;81x^2  \ \ \ \ \MSep \ :x\text{, Umformung erlaubt falls }x\not=0\ \\ \ \\
 & \Leftrightarrow & 9 \;=\; 81x  \ \ \ \ \MSep \ :81\text{ und umdrehen}\ \\ \ \\
-& \Leftrightarrow & x \;=\; \frac19 \ \ \ \ \text{und erfüllt die Bedingung }x\not=0 \MDFPeriod
+& \Leftrightarrow & x \;=\; \Mdfrac19 \ \ \ \ \text{und erfüllt die Bedingung }x\not=0 \MDFPeriod
 \end{eqnarray*}
 Auch das durch die Bedingung aussortierte $x=0$ muss geprüft werden: Die Gleichung $9x=81x^2$ ist für $x=0$ erfüllt, also ist auch $x=0$ eine Lösung.
-In Mengenschreibweise hat diese Gleichung die Lösungsmenge $\ML=\lbrace 0\MElSetSep \frac19\rbrace$.
+In Mengenschreibweise hat diese Gleichung die Lösungsmenge $\ML=\lbrace 0\MElSetSep \Mtfrac19\rbrace$.
 \end{MExample}
 
 Werte, welche die Bedingung verletzen, müssen in jedem Fall gesondert untersucht werden, auch wenn sie am Ende als Lösung in der Gleichung stehen:
@@ -185,7 +185,7 @@ Die richtige Umformungskette mit Bedingung ist
 & \Leftrightarrow & x-2\;=\; x+3 \ \ \ \ \MSep \ -x \ \\ \ \\
 & \Leftrightarrow & -2 \;=\; 3 \; \text{ist eine falsche Gleichung.}
 \end{eqnarray*}
-Wichtig hier ist, dass diese Gleichung nur für $x\not=3$ falsch ist, für $x=3$ müssen wir separat nachrechnen, und tatsächlich ist die Startgleichung für $x=3$ erfüllt.
+Wichtig hier ist, dass diese Gleichung nur für $x\not=3$ falsch ist. Für $x=3$ muss separat nachgerechnet werden, und tatsächlich ist die Startgleichung für $x=3$ erfüllt.
 \end{MHint}
 \end{MExercise}
 \end{MXContent}
@@ -223,7 +223,7 @@ In Mengenschreibweise (mit der Lösungsmenge $\ML$) kann man diese Fälle so notie
 
 
 \begin{MExample}
-Die lineare Gleichung $3x+2=2x-1$ hat eine Lösung, diese erhalten wir durch Äquivalenzumformungen:
+Die lineare Gleichung $3x+2=2x-1$ hat eine Lösung. Diese erhält man durch Äquivalenzumformungen:
 $$
 3x+2 \;=\; 2x-1 \;\;\MUnderset{-2x}\Leftrightarrow\;\; x+2\;=\;-1\;\;\MUnderset{-2}\Leftrightarrow\;\; x\;=\; -3 \MDFPeriod
 $$
@@ -237,7 +237,7 @@ $$
 $$
 Dies ist eine falsche Aussage, also ist die Gleichung für alle $x\not=-1$ (Bedingung aus der Umformung) falsch. Einsetzen von $x=-1$ erfüllt jedoch die Gleichung, daher ist es die einzige Lösung.
 \ \\ \ \\
-Alternativ hätte man die Gleichung aus so umformen können:
+Alternativ hätte man die Gleichung auch so umformen können:
 $$
 3x+3 \;=\; 9x+9 \;\;\MUnderset{-3x-9}\Leftrightarrow\;\; -6 \;=\; 6x \;\; \Leftrightarrow\;\; x \;=\; -1 \MDFPeriod
 $$
@@ -271,7 +271,7 @@ Geben Sie an, wann die drei Fälle eintreten:
 \begin{MHint}{Lösung}
 Jedes $x$ ist Lösung ($\ML=\R$) falls $a=0$ und $b=0$ ist.
 Es gibt keine Lösung ($\ML=\MEmptyset$) falls $a=0$ und $b\not=0$ ist.
-Ansonsten gibt es nur eine Lösung, und zwar $x=\frac{b}{a}$.
+Ansonsten gibt es nur eine Lösung, und zwar $x=\Mtfrac{b}{a}$.
 \end{MHint}
 
 \end{MExercise}
@@ -299,12 +299,12 @@ Die Lösungen erhält man dabei über \MEntry{quadratische Lösungsformeln}{Lösungsf
 \MLabel{VBKM02_pqFormel}
 Die \MEntry{$p q$-Formel}{pq-Formel} für die Gleichung $x^2+p x + q = 0$ lautet
 $$
-x_{1,2} \;=\; -\frac{p}{2}\pm \sqrt{\frac14p^2-q} \MDFPeriod
+x_{1,2} \;=\; -\Mdfrac{p}{2}\pm \sqrt{\Mdfrac14p^2-q} \MDFPeriod
 $$
 Dabei besitzt die Gleichung
 \begin{itemize}
-\item{keine Lösung, falls $\frac14p^2-q<0$ ist (dann darf man die Wurzel nicht ziehen),}
-\item{eine einzige Lösung $x_1=-\frac{p}{2}$, falls $\frac14p^2=q$ ist und die Wurzel verschwindet,}
+\item{keine Lösung, falls $\Mtfrac14p^2-q<0$ ist (dann darf man die Wurzel nicht ziehen),}
+\item{eine einzige Lösung $x_1=-\Mtfrac{p}{2}$, falls $\Mtfrac14p^2=q$ ist und die Wurzel verschwindet,}
 \item{zwei verschiedene Lösungen, falls die Wurzel eine positive Zahl ist.}
 \end{itemize}
 \end{MInfo}
@@ -322,11 +322,11 @@ Die drei Situationen: Kein Schnittpunkt, ein Schnittpunkt und zwei Schnittpunkte
 
 
 \begin{MExample}
-Die quadratische Gleichung $x^2-x+1=0$ hat keine Lösung, denn in der $p q$-Formel ist $\frac14p^2-q=-\frac34$ negativ.
+Die quadratische Gleichung $x^2-x+1=0$ hat keine Lösung, denn in der $p q$-Formel ist $\Mtfrac14p^2-q=-\Mtfrac34$ negativ.
 Dagegen besitzt $x^2-x-1=0$ die beiden Lösungen
 \begin{eqnarray*}
-x_1 &=& \frac12+\sqrt{\frac14+1} \;=\; \frac12(1+\sqrt5) \MDFPSpace ,\ \\
-x_2 &=& \frac12-\sqrt{\frac14+1} \;=\; \frac12(1-\sqrt5) \MDFPeriod
+x_1 &=& \Mdfrac12+\sqrt{\Mdfrac14+1} \;=\; \Mdfrac12(1+\sqrt5) \MDFPSpace ,\ \\
+x_2 &=& \Mdfrac12-\sqrt{\Mdfrac14+1} \;=\; \Mdfrac12(1-\sqrt5) \MDFPeriod
 \end{eqnarray*}
 \end{MExample}
 
@@ -338,7 +338,7 @@ In dieser Situation ist $(s\,|\,-d)$ der \MEntry{Scheitelpunkt}{Scheitelpunkt (P
 
 Falls $a>0$ ist gibt es zwei Lösungen
 $$
-x_1 \;=\; s-\sqrt{\frac{d}{a}} \MDFPSpace,\MDFPaSpace x_2 \;=\; s+\sqrt{\frac{d}{a}}
+x_1 \;=\; s-\sqrt{\Mdfrac{d}{a}} \MDFPSpace,\MDFPaSpace x_2 \;=\; s+\sqrt{\Mdfrac{d}{a}}
 $$
 der Gleichung, diese liegen symmetrisch um die $x$-Koordinate des Scheitelpunkts. Für $d=0$ gibt es nur eine Lösung.
 
@@ -356,7 +356,7 @@ Dazu wird auf beiden Seiten eine Konstante addiert, so dass links ein Term der F
 \begin{MExample}
 Die Gleichung $x^2-4x+2=0$ kann man durch Addieren der Konstanten $2$ in die Form $x^2-4x+4=2$ bzw. in die Scheitelpunktform $(x-2)^2=2$ bringen. 
 Aus ihr kann man sofort die Lösungen $x_1=2-\sqrt{2}$ und $2+\sqrt{2}$ ablesen. Andererseits besitzt die quadratische Gleichung
-$x^2+x=-2$ keine Lösung, denn quadratische Ergänzung führt auf $x^2+x+\frac14=-\frac74$ bzw. $(x+\frac12)^2=-\frac74$ mit negativer rechter Seite.
+$x^2+x=-2$ keine Lösung, denn die quadratische Ergänzung führt auf $x^2+x+\Mtfrac14=-\Mtfrac74$ bzw. $(x+\Mtfrac12)^2=-\Mtfrac74$ mit negativer rechter Seite.
 \end{MExample}
 
 \begin{MExercise}
@@ -375,7 +375,7 @@ Die Umformungen lauten:
 &\Leftrightarrow&x^2-8x+1=0 \ \\
 &\Leftrightarrow&x^2-8x+16=15 \ \\
 &\Leftrightarrow&(x-4)^2=15 \ \\
-&& \ML=\lbrace 4-\sqrt{15};4+\sqrt{15}\rbrace
+&& \ML=\lbrace 4-\sqrt{15}\MElSetSep 4+\sqrt{15}\rbrace
 \end{eqnarray*}
 sowie für die zweite Gleichung
 \begin{eqnarray*}
@@ -464,16 +464,31 @@ Beschreiben Sie den Wert des Ausdrucks $2\cdot |x-4|$ durch eine Fallunterscheid
 $\displaystyle 2\cdot |x-4|$ = \MLSimplifyQuestion{30}{falls(x>=4,2*(x-4),-2*(x-4))}{15}{x}{4}{128}{VBKM02ALTFALL1}.
 \end{center}
 \MInputHint{Schreiben Sie die Fallunterscheidung in der Form \texttt{falls(BEDINGUNG;W1;W2)}, wobei \texttt{W1} der angenommene Wert ist, falls die Bedingung erfüllt ist. Verwenden Sie nicht die Betragsfunktion.}
+\begin{MHint}{Lösung}
+\begin{eqnarray*}
+2\cdot |x-4| \;=\; \MCases{2x-x &\text{falls}\;x\geq 4 \\ -2x+8 & \text{falls}\;x<4}
+\end{eqnarray*}
+\end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
 Reproduzieren Sie die Schritte aus Video \MRef{VBKM06_Video_Beispiel1} um die Betragsgleichung
 $|6+3x|=12$ aufzulösen. \ \\ \ \\
-Die Fallunterscheidung in Kurzschreibweise lautet $|6+3x|$ = \MLSimplifyQuestion{40}{falls(x>=-2,6+3*x,-6-3*x)}{15}{x}{3}{128}{VBKM02ALTFALL2}.\\
+Die Fallunterscheidung in Kurzschreibweise lautet $|6+3x|$ = \MLSimplifyQuestion{40}{falls(x>=-2,6+3*x,-6-3*x)}{15}{x}{3}{128}{VBKM02ALTFALL2}.
+\begin{MHint}{Lösung}
+\begin{eqnarray*}
+|6+3x| \;=\; \MCases{6+3x &\text{falls}\;x\geq -2 \\ -6-3x & \text{falls}\;x<-2}
+\end{eqnarray*}
+\end{MHint}\\
 \MInputHint{Schreiben Sie die Fallunterscheidung in der Form \texttt{falls(BEDINGUNG;W1;W2)}, wobei \texttt{W1} der angenommene Wert ist, falls die Bedingung erfüllt ist.
 Sie können auch eines der Eingabebeispiele in das Eingabefeld kopieren und für die neue Ungleichung anpassen.}
 \ \\ \ \\
-Bestimmungen der Lösungen innerhalb der Fälle und Prüfen der Fallbedinungen ergibt die Lösungsmenge \MEquationItem{\ML}{\MLParsedQuestion{10}{2,-6}{3}{LVI}} für die Gleichung $|6+3x|=12$.\\
+Bestimmung der Lösungen innerhalb der Fälle und Prüfung der Fallbedinungen ergibt die Lösungsmenge \MEquationItem{\ML}{\MLParsedQuestion{10}{2,-6}{3}{LVI}} für die Gleichung $|6+3x|=12$.
+\begin{MHint}{Lösung}
+\begin{eqnarray*}
+\ML \;=\; \{-6\MElSetSep 2\}
+\end{eqnarray*}
+\end{MHint}\\
 \MInputHint{Mengen können in der Form \texttt{$\lbrace$a;b;c;\ldots$\rbrace$} eingegeben werden.}
 \end{MExercise}
 
@@ -493,12 +508,12 @@ Zu lösen sei die Gleichung $|x-1|+x^2=1$. Die Fallunterscheidung lautet hier wie
 \begin{itemize}
 \item{Ist $x\geq 1$, so kann man den Betrag durch Klammern ersetzen und erhält die quadratische Gleichung $(x-1)+x^2=1$, welche zu $x^2+x-2=0$ umgeformt wird. Die $p q$-Formel liefert die beiden Lösungen
 \begin{eqnarray*}
-x_1 & =& -\frac12-\sqrt{\frac94}\;=\; -2 \MDFPSpace, \\
-x_2 & =& -\frac12+\sqrt{\frac94}\;=\; 1 \MDFPSpace,
+x_1 & =& -\Mdfrac12-\sqrt{\Mdfrac94}\;=\; -2 \MDFPSpace, \\
+x_2 & =& -\Mdfrac12+\sqrt{\Mdfrac94}\;=\; 1 \MDFPSpace,
 \end{eqnarray*}
 von denen nur $x_2$ die Fallbedingung erfüllt.
 }
-\item{Ist $x<1$, so kann erhält man die Gleichung $-(x-1)+x^2=1$, welche zu $x^2-x=0$ bzw. $x\cdot (x-1)=0$ umgeformt wird. Man kann aus der Produktdarstellung die beiden Lösungen $x_3=0$ und $x_4=1$ ablesen,
+\item{Ist $x<1$, so erhält man die Gleichung $-(x-1)+x^2=1$, welche zu $x^2-x=0$ bzw. $x\cdot (x-1)=0$ umgeformt wird. Man kann aus der Produktdarstellung die beiden Lösungen $x_3=0$ und $x_4=1$ ablesen,
 wegen der Fallbedingung ist hier nur $x_3=0$ eine Lösung der ursprünglichen Gleichung.
 }
 \end{itemize}
@@ -506,14 +521,16 @@ Insgesamt ist also $\ML=\lbrace 0\MElSetSep 1\rbrace$ die Lösungsmenge der Ausga
 \end{MExample}
 
 %TODO: Intervalle sind hier noch garnicht erklaert
+%TODO: Kodierung von offenen Intervallgrenzen in "\MLIntervalQuestion" (?!)
 \begin{MExercise}
 Wie lautet die Lösungsmenge für die gemischte Gleichung $|x-3|\cdot x=9$?
 \begin{MExerciseItems}
-\item{Ist $x$ aus dem Intervall \MLIntervalQuestion{14}{[3,infty)}{5}{GIM1}, so ist der Term im Betrag nicht negativ.\\Wir erhalten die quadratische Gleichung \MEquationItem{\MLFunctionQuestion{15}{x^2-3*x-9}{5}{x}{5}{GIM2}}{$0$}.\\
-Sie besitzt die Lösungsmenge \MLParsedQuestion{35}{3/2-sqrt(45/4),3/2+sqrt(45/4)}{5}{GIM3}.\\Nur die Lösung \MLParsedQuestion{15}{3/2+sqrt(45/4)}{5}{GIM4} erfüllt die Fallbedingung.}
-\item{Ist $x$ aus dem Intervall \MLIntervalQuestion{14}{(-infty,3)}{5}{GIM5}, so ist der Term im Betrag negativ.\\Wir erhalten die normierte quadratische Gleichung \MEquationItem{\MLFunctionQuestion{15}{x^2-3*x+9}{5}{x}{5}{GIM6}}{$0$}.\\
+\item{Ist $x$ aus dem Intervall \MLIntervalQuestion{14}{[3,infty)}{5}{GIM1}, so ist der Term im Betrag nicht negativ.\\Man erhält die quadratische Gleichung \MEquationItem{\MLFunctionQuestion{15}{x^2-3*x-9}{5}{x}{5}{GIM2}}{$0$}.\\
+Sie besitzt die Lösungsmenge \MLParsedQuestion{35}{3/2-sqrt(45/4)\MElSetSep 3/2+sqrt(45/4)}{5}{GIM3}.\\Nur die Lösung \MLParsedQuestion{15}{3/2+sqrt(45/4)}{5}{GIM4} erfüllt die Fallbedingung.}
+\item{Ist $x$ aus dem Intervall \MLIntervalQuestion{14}{(-infty,3)}{5}{GIM5}, so ist der Term im Betrag negativ.\\Man erhält die normierte quadratische Gleichung \MEquationItem{\MLFunctionQuestion{15}{x^2-3*x+9}{5}{x}{5}{GIM6}}{$0$}.\\
 Sie besitzt die Lösungsmenge \MLParsedQuestion{30}{}{5}{GIM7}.}
 \end{MExerciseItems}
+%TODO: Text und Kodierung anpassen
 \MInputHint{Offene Intervalle können in der Form $(3;5)$, geschlossene Intervalle in der Form $[3;5]$ eingegeben werden. Unendlich kann man als Wort oder kurz als \texttt{infty} schreiben.
 Verwenden Sie nicht die Schreibweise $]a;b[$ für offene Intervalle. Mengen können in aufzählender Form $\lbrace 1\MElSetSep 2\MElSetSep 3\rbrace$ eingegeben werden. Die Mengenklammer erhalten Sie mit AltGr+7 bzw. AltGr+0.}
 
@@ -521,11 +538,11 @@ Verwenden Sie nicht die Schreibweise $]a;b[$ für offene Intervalle. Mengen könne
 Damit ist die Lösungsmenge insgesamt \MEquationItem{$\ML$}{\MLParsedQuestion{20}{3/2+sqrt(45/4),3/2+sqrt(45/4)}{5}{GIM8}}.
 \ \\ \ \\
 \begin{MHint}{Lösung}
-Ist $x$ aus dem Intervall $[3\MIntvlSep \infty)$, so ist der Term im Betrag nicht negativ und wir erhalten die quadratische Gleichung $x^2-3x-9=0$ mit Lösungsmenge
-$\ML=\lbrace \frac32-\sqrt{\frac{45}{4}};\frac32+\sqrt{\frac{45}{4}}\rbrace$. Nur die größere Lösung $\frac32+\sqrt{\frac{45}{4}}$  erfüllt die Fallbedingung $x\geq 3$. Das sieht man auch ohne Taschenrechner an der Abschätzung
-$\sqrt{\frac{45}{4}}\geq\sqrt{\frac{36}{4}}=3$.
-Ist $x$ dagegen aus dem Intervall $(-\infty\MIntvlSep 3)$, so ist der Term im Betrag negativ. Wir erhalten die normierte quadratische Gleichung $x^2-3x+9=0$.
-Sie ist wegen $\frac14p^2-q<0$ in der $p q$-Formel unlösbar. Damit besitzt die ursprüngliche Gleichung nur die einzige Lösung $\frac32+\sqrt{\frac{45}{4}}$.
+Ist $x$ aus dem Intervall $\left[3\MIntvlSep \infty\MoIr[\right]$, so ist der Term im Betrag nicht negativ und man erhält die quadratische Gleichung $x^2-3x-9=0$ mit Lösungsmenge
+$\ML=\lbrace \Mtfrac32-\sqrt{\Mtfrac{45}{4}};\Mtfrac32+\sqrt{\Mtfrac{45}{4}}\rbrace$. Nur die größere Lösung $\Mtfrac32+\sqrt{\Mtfrac{45}{4}}$  erfüllt die Fallbedingung $x\geq 3$. Das sieht man auch ohne Taschenrechner an der Abschätzung
+$\sqrt{\Mtfrac{45}{4}}\geq\sqrt{\Mtfrac{36}{4}}=3$.
+Ist $x$ dagegen aus dem Intervall $\MoIl[\left]-\infty\MIntvlSep 3\MoIr[\right]$, so ist der Term im Betrag negativ. Man erhält die normierte quadratische Gleichung $x^2-3x+9=0$.
+Sie ist wegen $\Mtfrac14p^2-q<0$ in der $p q$-Formel unlösbar. Damit besitzt die ursprüngliche Gleichung nur die einzige Lösung $\Mtfrac32+\sqrt{\Mtfrac{45}{4}}$.
 \end{MHint}
 \end{MExercise}
 
@@ -540,21 +557,21 @@ Durch Untereinanderstellen der Fallunterscheidungen für die Betragsausdrücke $|2
 \MGraphics{fallunterscheidung3.png}{scale=1}{Graphische Darstellung der drei Fälle.\MCopyrightLabel{VBKM02_Grafik_Fallunterscheidung3}}
 \MCopyrightNotice{\MCCLicense}{NONE}{VEMINT}{Im Rahmen des VE\&MINT-Projekts}{VBKM02_Grafik_Fallunterscheidung3}
 
-Wir lesen die folgenden drei Fälle ab:
+Man kann die folgenden drei Fälle ablesen:
 \begin{itemize}
-\item{Fall 1: $x<-\frac12$, hier sind die Terme in beiden Beträgen negativ.}
-\item{Fall 2: $-\frac12\leq x<5$, hier ist der Term im zweiten Betrag negativ, im ersten Betrag dagegen nicht.}
+\item{Fall 1: $x<-\Mtfrac12$, hier sind die Terme in beiden Beträgen negativ.}
+\item{Fall 2: $-\Mtfrac12\leq x<5$, hier ist der Term im zweiten Betrag negativ, im ersten Betrag dagegen nicht.}
 \item{Fall 3: $5\leq x$, hier sind beide Terme in den Beträgen nicht negativ.}
 \item{Es gibt offenbar kein $x$, für das der erste Term negativ, der zweite Term aber nicht negativ wird.}
 \end{itemize}
 
-Damit können wir die Lösungen zusammenfassen:
+Damit kann man die Lösungen zusammenfassen:
 \begin{itemize}
-\item{Im Fall 1 drehen beide Beträge das Vorzeichen: $3|2x+1|=|x-5|\;\Leftrightarrow\;3(-(2x+1)) = -(x-5)$.\\Diese Gleichung hat die Lösung $x=-\frac85$, sie erfüllt die Fallbedingung.}
-\item{Im Fall 2 dreht nur der zweite Betrag das Vorzeichen: $3|2x+1|=|x-5|\;\Leftrightarrow\;3(2x+1) = -(x-5)$.\\Diese Gleichung hat die Lösung $x=\frac27$, sie erfüllt die Fallbedingung.}
-\item{Im Fall 3 kann man beide Beträge weglassen: $3|2x+1|=|x-5|\;\Leftrightarrow\;3(2x+1) = (x-5)$.\\Diese Gleichung hat die Lösung $x=-\frac85$, sie erfüllt \textit{nicht} die Fallbedingung und wird daher innerhalb ihres Falles verworfen.}
+\item{Im Fall 1 drehen beide Beträge das Vorzeichen: $3|2x+1|=|x-5|\;\Leftrightarrow\;3(-(2x+1)) = -(x-5)$.\\Diese Gleichung hat die Lösung $x=-\Mtfrac85$, sie erfüllt die Fallbedingung.}
+\item{Im Fall 2 dreht nur der zweite Betrag das Vorzeichen: $3|2x+1|=|x-5|\;\Leftrightarrow\;3(2x+1) = -(x-5)$.\\Diese Gleichung hat die Lösung $x=\Mtfrac27$, sie erfüllt die Fallbedingung.}
+\item{Im Fall 3 kann man beide Beträge weglassen: $3|2x+1|=|x-5|\;\Leftrightarrow\;3(2x+1) = (x-5)$.\\Diese Gleichung hat die Lösung $x=-\Mtfrac85$, sie erfüllt \textit{nicht} die Fallbedingung und wird daher innerhalb ihres Falles verworfen.}
 \end{itemize}
-Die Lösungsmenge ist $\lbrace -\frac85\MElSetSep \frac27\rbrace$.
+Die Lösungsmenge ist $\lbrace -\Mtfrac85\MElSetSep \Mtfrac27\rbrace$.
 \end{MHint}
 \end{MExercise}
 
