@@ -3286,6 +3286,9 @@ for (my $i = 0; $i <= $#ttm_errors; $i++) {
     $j++;
   } else {
     logMessage($CLIENTINFO, "(ttm) " . $ttm_errors[$i]);
+    if ($ttm_errors[$i] =~ m/Error: Fatal/s ) {
+      logMessage($FATALERROR, "ttm exited with fatal error, aborting");
+    }
   }
 }
 
