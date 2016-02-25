@@ -123,7 +123,7 @@ declare function={
 
 Werden $x_0$ und der entsprechende Funktionswert $f\left(x_0\right)$ festgehalten und eine weitere beliebige, aber variable Stelle $x$ zwischen $a$ und $b$ sowie ihr
 Funktionswert $f\left(x\right)$ ausgewählt, so lässt sich 
-durch diese beiden Punkte, also durch $\left(x_0\MIntvlSep f(x_0)\right)$ und $\left(x\MIntvlSep f(x)\right)$,
+durch diese beiden Punkte, also durch $\MPointTwoAS{x_0}{f(x_0)}$ und $\MPointTwoAS{x}{f(x)}$,
 eine Gerade legen, die durch ihre Steigung und ihren $y$-Achsenabschnitt charakterisiert wird.
 Als Steigung dieser Geraden erhält man den sogenannten \textbf{Differenzenquotienten}
 
@@ -135,8 +135,8 @@ der beschreibt, wie sich die Funktionswerte von $f$ \textbf{im Mittel} zwischen 
 Damit ist eine mittlere Änderungsrate der Funktion $f$ im Intervall $[x_0\MIntvlSep  x]$ gefunden. Dieser Quotient wird auch als \textbf{relative Änderung} bezeichnet.
 
 Strebt nun die variable Stelle $x$ gegen die Stelle $x_0$, so stellt man fest, dass die Gerade, die den Graphen der Funktion
-in den Punkten $\left(x_0\MIntvlSep f\left(x_0\right)\right)$ und $\left(x\MIntvlSep f\left(x\right)\right)$ schneidet, immer mehr zu einer Tangente
-an den Graphen im Punkt $\left(x_0\MIntvlSep f\left(x_0\right)\right)$ wird. Auf diese Weise kann die Änderungsrate
+in den Punkten $\MPointTwoAS{x_0}{f\left(x_0\right)}$ und $\MPointTwoAS{x}{f\left(x\right)}$ schneidet, immer mehr zu einer Tangente
+an den Graphen im Punkt $\MPointTwoAS{x_0}{f\left(x_0\right)}$ wird. Auf diese Weise kann die Änderungsrate
 der Funktion $f$ - oder die \textbf{Steigung} des Graphen von $f$ - an der Stelle $x_0$ \textbf{selbst} bestimmt werden.
 Führt der geschilderte Prozess der Annäherung von $x$ an $x_0$ bildlich gesprochen
 auf eine eindeutige Tangente (mit einer eindeutigen Steigung, die insbesondere nicht unendlich sein darf), so spricht man in der Mathematik davon,
@@ -186,7 +186,7 @@ den Wert der \MEntry{Ableitung}{Ableitung} von $f$ in $x_0$. Die Funktion $f$ is
   $$
   \lim_{x \rightarrow 1} \frac{\Delta(f)}{\Delta(x)} \;=\; 2 \MDFPeriod
   $$
-  Das ist die Steigung der Tangente an den Graphen von $f$ im Punkt $(x_0\MIntvlSep f(x_0)) = (1\MIntvlSep 1)$.
+  Das ist die Steigung der Tangente an den Graphen von $f$ im Punkt $\MPointTwo{x_0}{f(x_0)} = \MPointTwo{1}{1}$.
   Für den Wert der Ableitung von $f$ an der Stelle $x_0=1$ schreibt man $f'(1)=2$.
   \end{MHint}  
 \end{MExercise}
@@ -275,7 +275,7 @@ Im Fall $h > 0$ ist $\frac{|h|}{h} = \frac{h}{h} = 1$, im Fall $h < 0$ erhält ma
 Der Grenzwertprozess, dass $h$ sich $0$ nähert, führt in den beiden Fällen also auf zwei verschiedene Ergebnisse ($1$ und $-1$).
 Daher existiert \textbf{der} Grenzwert des Differenzenquotienten an der Stelle $x_0 = 0$ nicht. Als Folge davon ist die Betragsfunktion an der Stelle $x_0 = 0$ nicht differenzierbar.
 
-Der Verlauf des Graphen "andert seine Richtung an der Stelle $(0, 0)$ sprunghaft: Salopp ausgedr"uckt, weist der Funktionsgraph an der Stelle $(0, 0)$ einen Knick auf.
+Der Verlauf des Graphen "andert seine Richtung im Punkt $\MPointTwo{0}{0}$ sprunghaft: Salopp ausgedr"uckt, weist der Funktionsgraph im Punkt $\MPointTwo{0}{0}$ einen Knick auf.
 %Bild:
 \begin{center}
 \MTikzAuto{%
@@ -351,7 +351,7 @@ und hat f"ur $x \rightarrow 1$ den Grenzwert
 \begin{MExercise}
 Erl"autern Sie, warum
 \begin{MExerciseItems}
-\item $f: [-3 \MIntvlSep \infty ) \rightarrow \R$ mit $f(x) := \sqrt{x+3}$ in $x_0 = -3$ und
+\item $f: [-3 \MIntvlSep \infty \MoIr \rightarrow \R$ mit $f(x) := \sqrt{x+3}$ in $x_0 = -3$ und
 \item $g: \R \rightarrow \R$ mit $g(x) := 6 \cdot |2 x - 10|$ in $x_0 = 5$
 \end{MExerciseItems}
 nicht differenzierbar sind.
@@ -450,20 +450,20 @@ f'(x) = 5 \cdot 3 x^{3 - 1} = 15 x^2 \MDFPeriod %%
 
 F"ur Wurzelfunktionen ergibt sich eine entsprechende Aussage. Allerdings 
 ist zu beachten, dass Wurzelfunktionen nur f"ur $x > 0$ differenzierbar sind.
-Denn die Tangente an den Funktionsgraphen durch den Punkt $(0, 0)$ verl"auft 
+Denn die Tangente an den Funktionsgraphen durch den Punkt $\MPointTwo{0}{0}$ verl"auft 
 parallel zur $y$-Achse und ist somit kein Schaubild einer Funktion. 
 
 \begin{MXInfo}{Ableitung von $x^{\frac{1}{n}}$}
 F"ur $n \in \Z$ mit $n \neq 0$ ist die Funktion
-$f: [0 \MIntvlSep \infty ) \rightarrow \R$, $x \mapsto f(x) := x^{\frac{1}{n}}$ für $x>0$ differenzierbar, und es gilt
+$f: [0 \MIntvlSep \infty \MoIr \rightarrow \R$, $x \mapsto f(x) := x^{\frac{1}{n}}$ für $x>0$ differenzierbar, und es gilt
 \[
-f': (0 \MIntvlSep \infty ) \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto f'(x) = \frac{1}{n} \cdot x^{\frac{1}{n}-1} \MDFPeriod
+f': \MoIl 0 \MIntvlSep \infty \MoIr \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto f'(x) = \frac{1}{n} \cdot x^{\frac{1}{n}-1} \MDFPeriod
 \]
 \end{MXInfo}
 
 F"ur $n\in\mathbb{N}$ werden durch $f(x) = x^{\frac{1}{n}}$ Wurzelfunktionen beschrieben. Die hier wiedergegebene Ableitungsregel gilt natürlich auch für $n = 1$ oder $n = -1$.
 \begin{MExample}
-Die Wurzelfunktion $f: [0\MIntvlSep \infty) \rightarrow \R$ mit
+Die Wurzelfunktion $f: [0\MIntvlSep \infty\MoIr \rightarrow \R$ mit
 $x \mapsto f(x) := \sqrt{x} = x^{\frac{1}{2}}$
 ist f"ur $x > 0$ differenzierbar. Der Wert der Ableitung an einer beliebigen Stelle $x>0$ ist durch
 \[
@@ -500,7 +500,7 @@ gegeben. Die Ableitung in $x_0 = 0$ existiert nicht, da die Tangente an den Grap
 }
 \end{center}
 
-Die Tangente im Punkt $(1 \MIntvlSep 1)$ an den Graphen der vorliegenden Wurzelfunktion weist 
+Die Tangente im Punkt $\MPointTwo{1}{1}$ an den Graphen der vorliegenden Wurzelfunktion weist 
 die Steigung $\frac{1}{2 \sqrt{1}} = \frac{1}{2}$ auf.
 \end{MExample}
 
@@ -602,16 +602,16 @@ Eine genaue Untersuchung der Bereiche zwischen diesen speziell ausgesuchten Stel
 \begin{MXInfo}{Ableitung trigonometrischer Funktionen}
 F"ur die Sinusfunktion $f: \R \rightarrow \R$, $x \mapsto f(x) := \sin(x)$ gilt 
 \[
-f': \R \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto f'(x) = \cos(x) \MDFPeriod %%
+f': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto f'(x) = \cos(x) \MDFPeriod %%
 \]
 F"ur die Kosinusfunktion $g: \R \rightarrow \R$, $x  \mapsto g(x) := \cos(x)$ gilt 
 \[
-g': \R \rightarrow \R \MDFPSpace , \MDFPSpace g'(x) = -\sin(x) \MDFPeriod %%
+g': \R \rightarrow \R \MDFPSpace , \MDFPaSpace g'(x) = -\sin(x) \MDFPeriod %%
 \]
-F"ur die Tangensfunktion $h: \R \setminus \{ \frac{\pi}{2} + k \pi \MDFPSpace | \MDFPSpace k \in \Z \} \rightarrow \R$,
+F"ur die Tangensfunktion $h: \R \setminus \{ \frac{\pi}{2} + k \pi \MCondSetSep k \in \Z \} \rightarrow \R$,
 $x \mapsto h(x) := \tan(x)$ gilt
 \[
-h': \R \setminus \{ \frac{\pi}{2} + k \pi \MDFPSpace | \MDFPSpace k \in \Z \} \rightarrow \R \MDFPSpace , \MDFPSpace
+h': \R \setminus \{ \frac{\pi}{2} + k \pi \MCondSetSep k \in \Z \} \rightarrow \R \MDFPSpace , \MDFPaSpace
 h'(x) = 1 + (\tan(x))^2 = \frac{1}{\cos^2(x)} \MDFPeriod %%
 \]
 \end{MXInfo}
@@ -638,8 +638,8 @@ dass ihre Ableitung $f'$ wiederum die Exponentialfunktion ist, also $f'(x) = \ME
 %an die Umkehrfunktion $\ln$.
 %Verwenden wir wieder die gewohnten Bezeichnungen für die unabhängige Variable, können wir ohne Beweis die Ableitung der Logarithmusfunktion angeben. Es gilt: $f'(x) = \frac{1}{x}$ ist die Ableitung der 
 %Logarithmusfunktion $f(x) = \ln(x)$.
-Die Ableitung der Logarithmusfunktion wird hier ohne Beweis angegeben. Für $f: (0 \MIntvlSep \infty) \rightarrow \R$ mit $x \mapsto f(x) = \ln(x)$
-erhält man $f': (0 \MIntvlSep \infty) \rightarrow \R$, $x \mapsto f'(x) = \frac1x$.
+Die Ableitung der Logarithmusfunktion wird hier ohne Beweis angegeben. Für $f: \MoIl 0 \MIntvlSep \infty\MoIr  \rightarrow \R$ mit $x \mapsto f(x) = \ln(x)$
+erhält man $f': \MoIl 0 \MIntvlSep \infty\MoIr \rightarrow \R$, $x \mapsto f'(x) = \frac1x$.
 %\begin{center}
 %\MTikzAuto{%
 %%%{Tangenten an $\exp$ und an die Umkehrfunktion $\ln$}{}
@@ -788,9 +788,9 @@ Damit ist
   $f'(x) = \frac{1}{x^2} \cdot 2 x = \frac{2}{x}$.
   \item Es ist
   \[
-  g(x) = \left( e^x \right)^2 \cdot e^{-x} = e^x \cdot e^x \cdot e^{-x} = e^{x+x-x} = e^x \MDFPeriod
+  g(x) = \left( \MEU^x \right)^2 \cdot \MEU^{-x} = \MEU^x \cdot \MEU^x \cdot \MEU^{-x} = \MEU^{x+x-x} = \MEU^x \MDFPeriod
   \]
-  Daher folgt $g'(x) = e^x$.
+  Daher folgt $g'(x) = \MEU^x$.
  \end{MExerciseItems}
 \end{MHint}
 \end{MExercise}
@@ -838,9 +838,9 @@ Das Polynom $f$ mit dem Funktionsterm $f(x) = \frac{1}{4} x^3 - 2 x^{2} +5 $ ist
 \[
 f'(x) = \frac{3}{4} x^2 - 4 x \MDFPeriod%%
 \]
-Die Ableitung der Funktion $g: (0 \MIntvlSep \infty) \rightarrow \R$ mit $g(x) = x^3 + \ln(x)$ ist
+Die Ableitung der Funktion $g: \MoIl 0 \MIntvlSep \infty\MoIr \rightarrow \R$ mit $g(x) = x^3 + \ln(x)$ ist
 \[
-g': (0 \MIntvlSep \infty ) \rightarrow \R \MDFPSpace \text{ mit } \MDFPSpace g'(x) = 3 x^2 + \frac{1}{x} = \frac{3 x^3 + 1}{x} \MDFPeriod%%
+g': \MoIl 0 \MIntvlSep \infty \MoIr \rightarrow \R \MDFPSpace \text{ mit } \MDFPSpace g'(x) = 3 x^2 + \frac{1}{x} = \frac{3 x^3 + 1}{x} \MDFPeriod%%
 \]
 %Mit $\ln(x^3) = 3 \ln(x)$ ergibt sich die Ableitung von 
 %$g(x) = \ln(x^3) = 3 \ln(x)$ f"ur $x > 0$ zu
@@ -848,7 +848,7 @@ g': (0 \MIntvlSep \infty ) \rightarrow \R \MDFPSpace \text{ mit } \MDFPSpace g'(
 %g'(x) = \frac{3}{x} %%
 %\]
 Ableiten der Funktion
-$h: [0 \MIntvlSep \infty) \rightarrow \R$ mit $h(x) = 4^{-1} \cdot x^2 - \sqrt{x} %
+$h: [0 \MIntvlSep \infty\MoIr \rightarrow \R$ mit $h(x) = 4^{-1} \cdot x^2 - \sqrt{x} %
  = \frac{1}{4} x^2 + (-1) \cdot x^{\frac{1}{2}}$ führt für $x>0$ auf
 \[
 h'(x) = \frac{1}{2} x - \frac{1}{2} x^{-\frac{1}{2}} %
@@ -890,7 +890,7 @@ Gesucht ist die Ableitung von $f: \R \rightarrow \R$ mit $f(x) = x^2 \cdot \MEU^
 Anwenden der Produktregel mit (z.B.) $u(x) = x^2$ und $v(x) = \MEU^x$ führt auf
 $u'(x) = 2x$ und $v'(x) = \MEU^x$. Werden diese Teilergebnisse mit der Produktregel zusammengesetzt, dann resultiert die Ableitung der Funktion $f$:
 \[
-f': \R \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto f'(x) = 2 x \MEU^x + x^2 \MEU^x = (x^2 + 2x) \MEU^x \MDFPeriod%%
+f': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto f'(x) = 2 x \MEU^x + x^2 \MEU^x = (x^2 + 2x) \MEU^x \MDFPeriod%%
 \]
 Als Nächstes soll die Tangensfunktion $g$ mit $g(x) = \tan(x) = \frac{\sin(x)}{\cos(x)}$ ($\cos(x) \neq 0$) untersucht werden.
 Durch Vergleich mit der Quotientenregel liest man $u(x) = \sin(x)$ und $v(x) = \cos(x)$ ab. Mit $u'(x) = \cos(x)$ und $v'(x) = -\sin(x)$
@@ -932,7 +932,7 @@ $$
 \end{MExercise}
 
 \begin{MExercise}
-Berechnen Sie die Ableitung von $f: (0 \MIntvlSep \infty) \rightarrow \R$ mit $f(x)=\frac{\ln(x)}{x^2}$, indem Sie
+Berechnen Sie die Ableitung von $f: \MoIl 0 \MIntvlSep \infty\MoIr \rightarrow \R$ mit $f(x)=\frac{\ln(x)}{x^2}$, indem Sie
 diesen Quotienten in Zähler und Nenner zerlegen, die Ableitungen bilden
 und diese mit Hilfe der Quotientenregel zusammensetzen:
 \begin{MExerciseItems}
@@ -996,7 +996,7 @@ Dazu bieten sich die Zuordnungen $x \mapsto u(x) = x^3$ für die innere Funktion 
 Die Bestimmung der inneren und der äußeren Ableitung führt auf $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$.
 Setzt man beides in die Kettenregel ein, erhält man die Ableitung der Funktion $g$:
 \[
-g': \R \rightarrow \R \MDFPSpace , \MDFPSpace x \mapsto g'(x) = \MEU^{u(x)} \cdot 3 x^2 = \MEU^{x^3} \cdot 3 x^2 = 3 x^2 \MEU^{x^3} \MDFPeriod %%
+g': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto g'(x) = \MEU^{u(x)} \cdot 3 x^2 = \MEU^{x^3} \cdot 3 x^2 = 3 x^2 \MEU^{x^3} \MDFPeriod %%
 \]
 \end{MExample}
 
@@ -1083,10 +1083,10 @@ führt auf $h'(x) = $\MLFunctionQuestion{30}{-(2*x^2 - 4*x + 1) * exp(-2*x)}{10}{
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
  \begin{MExerciseItems}
-  \item Die Kettenregel liefert sofort $f'(x) = 5 e^{5x}$.
-  \item Produkt- und Kettenregel führen auf $g'(x) = 1 \cdot e^{6x} + x \cdot e^{6x} \cdot 6 = e^{6x} (1 + 6x)$.
-  \item Produkt- und Kettenregel führen auf $h'(x) = (2x - 1) \cdot e^{-2x} + (x^2 - x) \cdot e^{-2x} \cdot (-2)
-  = - (2x^2 - 4x + 1) e^{-2x}$.
+  \item Die Kettenregel liefert sofort $f'(x) = 5 \MEU^{5x}$.
+  \item Produkt- und Kettenregel führen auf $g'(x) = 1 \cdot \MEU^{6x} + x \cdot \MEU^{6x} \cdot 6 = \MEU^{6x} (1 + 6x)$.
+  \item Produkt- und Kettenregel führen auf $h'(x) = (2x - 1) \cdot \MEU^{-2x} + (x^2 - x) \cdot \MEU^{-2x} \cdot (-2)
+  = - (2x^2 - 4x + 1) \MEU^{-2x}$.
  \end{MExerciseItems}
 \end{MHint}
 \end{MExercise}
@@ -1160,7 +1160,7 @@ angenäherten Funktion geschlossen werden.
 Mit der Ableitung kann das lokale Wachstumsverhalten untersucht werden, das 
 hei"st, ob f"ur steigende Argumente die zugehörigen Funktionswerte gr"o"ser oder 
 kleiner werden.
-Dazu wird eine Funktion $f: D \rightarrow \R$ betrachtet, die auf $(a\MIntvlSep b) \subseteq D$ 
+Dazu wird eine Funktion $f: D \rightarrow \R$ betrachtet, die auf $\MoIl a\MIntvlSep b\MoIr \subseteq D$ 
 differenzierbar ist:
 \begin{center}
 \MTikzAuto{%
@@ -1215,14 +1215,14 @@ declare function={
 
 %\begin{MXInfo}{Monotonie}
 Wenn $f'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$ gilt, dann ist $f$ 
-auf dem Intervall $(a\MIntvlSep b)$ monoton fallend.
+auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ monoton fallend.
 
 Wenn $f'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$ gilt, dann ist $f$ 
-auf dem Intervall $(a\MIntvlSep b)$ monoton wachsend.
+auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ monoton wachsend.
 %\end{MXInfo}
 
 Somit gen"ugt es, das Vorzeichen der Ableitung $f'$ zu bestimmen, um zu 
-erkennen, ob eine Funktion auf dem Intervall $(a \MIntvlSep b)$ monoton wachsend oder monoton fallend ist.
+erkennen, ob eine Funktion auf dem Intervall $\MoIl a \MIntvlSep b\MoIr$ monoton wachsend oder monoton fallend ist.
 %\end{MXContent}
 
 \begin{MExample}
@@ -1257,7 +1257,7 @@ Auch wenn für die beiden Teilbereiche $x<0$ und $x>0$ dasselbe Monotonieverhalte
 ist $h$ nicht über den gesamten Definitionsbereich monoton fallend. Als Gegenbeispiel kann
 $h(-2) = -\frac{1}{2}$ und $h(1) = 1$ angeführt werden. Hier gilt $-2 < 1$, aber auch $h(-2) < h(1)$. Dies
 entspricht einem wachsenden Verhalten beim Übergang vom einen zum anderen Teilbereich. Dass die Funktion $h$
-auf $(-\infty\MIntvlSep 0)$ monoton fallend ist, bedeutet also, die Einschr"ankung von $h$ auf dieses Intervall
+auf $\MoIl -\infty\MIntvlSep 0\MoIr$ monoton fallend ist, bedeutet also, die Einschr"ankung von $h$ auf dieses Intervall
 ist monoton fallend. Zudem ist $h$ f"ur alle $x > 0$ ebenfalls monoton fallend.
 \end{MExample}
 
@@ -1265,16 +1265,16 @@ ist monoton fallend. Zudem ist $h$ f"ur alle $x > 0$ ebenfalls monoton fallend.
 %\begin{MXContent}{Kr"ummungseigenschaften}
 
 %Seien $a,b \in D$ mit $a<b$.
-Gegenstand der Untersuchung ist eine Funktion $f: D \rightarrow \R$, die auf dem Intervall $(a\MIntvlSep b) \subseteq D$
-differenzierbar ist. Ist deren Ableitung $f'$ ebenfalls auf dem Intervall $(a\MIntvlSep b) \subseteq D$ differenzierbar, so hei{\ss}t $f$ \textbf{zweimal differenzierbar}.
+Gegenstand der Untersuchung ist eine Funktion $f: D \rightarrow \R$, die auf dem Intervall $\MoIl a\MIntvlSep b\MoIr \subseteq D$
+differenzierbar ist. Ist deren Ableitung $f'$ ebenfalls auf dem Intervall $\MoIl a\MIntvlSep b\MoIr \subseteq D$ differenzierbar, so hei{\ss}t $f$ \textbf{zweimal differenzierbar}.
 Bildet man die Ableitung der ersten Ableitung von $f$, dann nennt man $(f')' = {f'}'$ die \textbf{zweite Ableitung} der Funktion $f$.
 
 Die zweite Ableitung der Funktion $f$ kann verwendet werden, um das Krümmungsverhalten der Funktion zu untersuchen:
 
 \begin{MXInfo}{Kr"ummungseigenschaften}
- Ist ${f'}'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konvex (linksgekrümmt)}.
+ Ist ${f'}'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ \textbf{konvex (linksgekrümmt)}.
 
- Ist ${f'}'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $(a\MIntvlSep b)$ \textbf{konkav (rechtsgekrümmt)}.
+ Ist ${f'}'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ \textbf{konkav (rechtsgekrümmt)}.
 \end{MXInfo}
 
 Somit gen"ugt es, das Vorzeichen der zweiten Ableitung ${f'}'$ zu bestimmen, 
@@ -1330,12 +1330,12 @@ monoton wachsend beziehungsweise monoton fallend?
 
 Antwort:
 \begin{itemize}
-\item $f$ ist auf $(-\infty\MIntvlSep 0)$ monoton \MLQuestion{12}{fallend}{DFA1}.
+\item $f$ ist auf $\MoIl -\infty\MIntvlSep 0\MoIr$ monoton \MLQuestion{12}{fallend}{DFA1}.
 %\item $f$ auf $(-infty,0)$ monoton \MQuestion{12}{fallend}.
 %\item $f$ auf \MIntervalQuestion{20}{(-infty,0)}{4} monoton fallend.
 %\item $f$ auf $(-infty$\MLParsedQuestion{8}{0}{4}{PARSEDQUEST5}$)$ monoton fallend.
 %
-\item $f$ ist auf $(0\MIntvlSep \infty)$ monoton \MLQuestion{12}{wachsend}{DFA2}.
+\item $f$ ist auf $\MoIl 0\MIntvlSep \infty\MoIr$ monoton \MLQuestion{12}{wachsend}{DFA2}.
 %\item $f$ auf $(0, infty)$ monoton \MQuestion{12}{wachsend}.
 %\item $f$ auf \MIntervalQuestion{20}{(0,infty)}{4} monoton wachsend.
 %\item $f$ auf $($\MIntervalQuestion{8}{0}{4}$, infty)$ monoton wachsend.
@@ -1353,7 +1353,7 @@ Antwort:
 
 
 \begin{MExercise}
-In welchen m"oglichst gro"sen offenen Intervallen $(c\MIntvlSep d)$ ist die Funktion $f$ mit
+In welchen m"oglichst gro"sen offenen Intervallen $\MoIl c\MIntvlSep d\MoIr$ ist die Funktion $f$ mit
 $f(x) := \frac{x^2 - 1}{x^2 + 1}$ f"ur $x > 0$
 konvex beziehungsweise konkav?
 %In welchen m"oglichst gro"sen offenen Intervallen sind die Funktionen
@@ -1381,8 +1381,8 @@ beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notat
  \end{eqnarray*}
  Da $4/(x^2 + 1)^3$ stets positiv ist, wird das Vorzeichen von ${f'}'(x)$ einzig durch den Faktor $(1 - 3x^2)$ bestimmt. Die einfachen
  Nullstellen von ${f'}'(x)$ liegen bei $x_0 = \pm \frac{1}{\sqrt{3}}$. Daher ist für $x>0$ ${f'}'(x)$ auf dem
- offenen Intervall $(0 \MIntvlSep \frac{1}{\sqrt{3}} )$
- echt größer $0$ und $f$ daher dort linksgekrümmt (konvex). Auf $(\frac{1}{\sqrt{3}} \MIntvlSep \infty )$ gilt ${f'}'(x) < 0$; somit ist $f$ dort
+ offenen Intervall $\MoIl[\left] 0 \MIntvlSep \frac{1}{\sqrt{3}} \MoIr[\right] $
+ echt größer $0$ und $f$ daher dort linksgekrümmt (konvex). Auf $\MoIl[\left] \frac{1}{\sqrt{3}} \MIntvlSep \infty \MoIr[\right]$ gilt ${f'}'(x) < 0$; somit ist $f$ dort
  rechtsgekrümmt (konkav).
  \end{MHint}
 \end{MExercise}
@@ -1424,7 +1424,7 @@ declare function={
 
 \begin{MExerciseItems}
 \item Wo ist $f$ monoton wachsend, wo monoton fallend? 
-Gesucht sind jeweils m"oglichst gro"se offene Intervalle $(c\MIntvlSep d)$, auf 
+Gesucht sind jeweils m"oglichst gro"se offene Intervalle $\MoIl c\MIntvlSep d\MoIr$, auf 
 denen $f$ diese Eigenschaft hat.
 %
 \item Welche Aussagen erhalten 
@@ -1434,15 +1434,15 @@ Sie "uber die Maximal- beziehungsweise Minimalstellen der Funktion $f$?
 
 Antwort:
 \begin{itemize}
-\item $f$ ist auf $(-\MZahl{4}{5}\MIntvlSep $\MLParsedQuestion{8}{-4}{4}{DEG3}$)$ monoton
+\item $f$ ist auf $\MoIl[\big] -\MZahl{4}{5}\MIntvlSep $\MLParsedQuestion{8}{-4}{4}{DEG3}$\MoIr[\big]$ monoton
 \MLQuestion{16}{wachsend}{DFA6}.
 %
-\item $f$ ist auf $($\MLParsedQuestion{16}{-4}{4}{DEG4}$\MIntvlSep 0)$ monoton 
+\item $f$ ist auf $\MoIl[\big]$\MLParsedQuestion{16}{-4}{4}{DEG4}$\MIntvlSep 0\MoIr[\big]$ monoton 
 \MLQuestion{16}{fallend}{DFA7}.
 %
-\item $f$ ist auf $(0\MIntvlSep 3)$ monoton \MLQuestion{16}{wachsend}{DEG5}.
+\item $f$ ist auf $\MoIl 0\MIntvlSep 3\MoIr$ monoton \MLQuestion{16}{wachsend}{DEG5}.
 %
-\item $f$ ist auf $(3\MIntvlSep 4)$ monoton \MLQuestion{16}{wachsend}{DEG6}.
+\item $f$ ist auf $\MoIl 3\MIntvlSep 4\MoIr$ monoton \MLQuestion{16}{wachsend}{DEG6}.
 \end{itemize}
 Die Maximalstelle von $f$ ist bei \MLParsedQuestion{8}{-4}{4}{DEG7}.
 Die Minimalstelle von $f$ ist bei \MLParsedQuestion{8}{0}{4}{DEG8}.
@@ -1450,12 +1450,12 @@ Die Minimalstelle von $f$ ist bei \MLParsedQuestion{8}{0}{4}{DEG8}.
 \begin{MHint}{Lösung}
  Das Monotonieverhalten wird durch die Ableitung $f'$ der Funktion $f$ bestimmt. Da der Graph der Ableitung $f'$ in der Aufgabenstellung
  als Schaubild gegeben ist, muss man nur ablesen, in welchen Intervallen der Graph oberhalb (bzw. unterhalb) der $x$-Achse verläuft:
- Auf den Intervallen $(-4,5 \MIntvlSep -4)$, $(0 \MIntvlSep 3)$ und $(3 \MIntvlSep 4)$ ist $f'(x) > 0$ und $f$ daher dort monoton wachsend;
- auf dem Intervall $(-4 \MIntvlSep 0)$ dagegen ist $f'(x) < 0$ und $f$ daher dort monoton fallend.\newline
+ Auf den Intervallen $\MoIr -\MZahl{4}{5} \MIntvlSep -4\MoIr$, $\MoIl 0 \MIntvlSep 3\MoIr$ und $\MoIl 3 \MIntvlSep 4\MoIr$ ist $f'(x) > 0$ und $f$ daher dort monoton wachsend;
+ auf dem Intervall $\MoIl -4 \MIntvlSep 0\MoIr$ dagegen ist $f'(x) < 0$ und $f$ daher dort monoton fallend.\newline
  An einer Extremstelle $x_e$ (Maximal- oder Minimalstelle) einer Funktion $f$ (die nicht auf dem Rand des Definitionsbereichs liegt)
  verschwindet die erste Ableitung: $f'(x_e) = 0$. Anschaulich bedeutet dies, dass an einer solchen Stelle die Tangente an den Graphen
  von $f$ waagrecht verläuft. Die Nullstellen von $f'(x)$ liegen laut Aufgabenstellung bei $x_ 1 = -4$, $x_2 = 0$ und $x_3 = 3$. Da $f$ auf
- $(-4,5 \MIntvlSep -4)$ monoton wächst und auf $(-4 \MIntvlSep 0)$ monoton fällt, ist $x_1 = - 4$ eine Maximalstelle.
+ $\MoIl -\MZahl{4}{5} \MIntvlSep -4\MoIr$ monoton wächst und auf $\MoIl -4 \MIntvlSep 0\MoIr$ monoton fällt, ist $x_1 = - 4$ eine Maximalstelle.
  Analog begründet man, dass bei $x_2 = 0$ eine Minimalstelle vorliegt. (Bei $x_3 = 3$ handelt es sich um eine Sattelstelle.)
 \end{MHint}
 \end{MExercise}
@@ -1470,8 +1470,8 @@ Die Minimalstelle von $f$ ist bei \MLParsedQuestion{8}{0}{4}{DEG8}.
 \MDeclareSiteUXID{VBKM07_Kurvendiskussion}
 
 
-Gegeben ist eine differenzierbare Funktion $f: (a\MIntvlSep b) \rightarrow \R$ 
-mit Abbildungsvorschrift $x \mapsto y = f(x)$ f"ur $x \in (a\MIntvlSep b)$.
+Gegeben ist eine differenzierbare Funktion $f: \MoIl a\MIntvlSep b\MoIr \rightarrow \R$ 
+mit Abbildungsvorschrift $x \mapsto y = f(x)$ f"ur $x \in \MoIl a\MIntvlSep b\MoIr$.
 Eine vollständige Kurvendiskussion für $f$ besteht in diesem Kurs aus folgenden Angaben:
 
 \begin{itemize}
@@ -1509,7 +1509,7 @@ Menge $D$ all dieser Zahlen wird maximaler Definitionsbereich genannt.
 Der Graph der Funktion ist symmetrisch zur $y$-Achse, wenn $f(-x) = f(x)$ f"ur
 alle $x \in D$ ist. Dann heißt die Funktion $f$ auch \textbf{gerade}.
 Ist $f(-x) = -f(x)$ f"ur alle $x \in D$, so ist der Graph
-zum Ursprung $(0\MIntvlSep 0)$ des Koordinatensystems punktsymmetrisch.
+zum Ursprung $\MPointTwo{0}{0}$ des Koordinatensystems punktsymmetrisch.
 In diesem Falle nennt man die Funktion $f$ auch \textbf{ungerade}.
 
 \item[Asymptotisches Verhalten an den R"andern des Definitionsbereichs]
@@ -1560,7 +1560,7 @@ und daher keine Stellen ausgeschlossen werden müssen.
 \ \\ \ \\
 \textbf{Achsenschnittpunkte}\\
 Die Nullstellen der Funktion entsprechen den Nullstellen des Zählers. Daher schneidet der Graph von $f$ die $x$-Achse nur
-im Nullpunkt $(0,0)$, denn der Zähler wird nur für $x=0$ zu Null. Dies ist auch der einzige Schnittpunkt mit der $y$-Achse, da $f(0)=0$ ist.
+im Nullpunkt $\MPointTwo{0}{0}$, denn der Zähler wird nur für $x=0$ zu Null. Dies ist auch der einzige Schnittpunkt mit der $y$-Achse, da $f(0)=0$ ist.
 \ \\ \ \\
 \textbf{Symmetrie}\\
 Um das Symmetrieverhalten zu untersuchen, wird das Argument $x$ durch $(-x)$ ersetzt. Es gilt
@@ -1599,20 +1599,20 @@ $$
 {f'}'(x_2) \;=\; 8\frac{-\sqrt2\cdot(2-6)}{(2+2)^3}>0 \MDFPeriod
 $$
 Folglich ist $x_1$ eine Maximalstelle und $x_2$ eine Minimalstelle von $f$. Durch Einsetzen in $f$ resultieren das
-Maximum $(\sqrt2,\sqrt2)$ und das Minimum $(-\sqrt2,-\sqrt2)$ von $f$.
+Maximum $\MPointTwoAS{\sqrt2}{\sqrt2}$ und das Minimum $\MPointTwoAS{-\sqrt2}{-\sqrt2}$ von $f$.
 \ \\ \ \\
 \textbf{Monotonieverhalten}\\
 Da $f$ auf ganz $\R$ definiert ist,
 kann das Monotonieverhalten aus der Lage der Extremstellen und aus deren Typ abgelesen werden: $f$ ist monoton fallend auf
-$(-\infty\MIntvlSep -\sqrt2)$, monoton wachsend auf $(-\sqrt2\MIntvlSep \sqrt2)$
-und monoton fallend auf $(\sqrt2\MIntvlSep \infty)$. Monotonieintervalle werden stets in offener Form angegeben.
+$\MoIl[\left]-\infty\MIntvlSep -\sqrt2\MoIr[\right]$, monoton wachsend auf $\MoIl[\left]-\sqrt2\MIntvlSep \sqrt2\MoIr[\right]$
+und monoton fallend auf $\MoIl[\left]\sqrt2\MIntvlSep \infty\MoIr[\right]$. Monotonieintervalle werden stets in offener Form angegeben.
 \ \\ \ \\
 \textbf{Wendestellen}\\
 Aus der notwendigen Bedingung für Wendestellen ${f'}'(x)=0$ erhält man die Gleichung $8x(x^2-6)=0$.
 Somit sind $w_0=0$, $w_1=\sqrt6$ und $w_2=-\sqrt6$ die einzigen Lösungen.
 Das Polynom im Nenner von ${f'}'$ ist stets größer als Null. Da das Zählerpolynom nur einfache Nullstellen besitzt, ändert ${f'}'(x)$
 in allen diesen Stellen das Vorzeichen. Es handelt sich
-daher um Wendestellen von $f$. Die Wendepunkte $(0,0)$, $(\sqrt6,\frac12\sqrt6)$, $(-\sqrt6,-\frac12\sqrt6)$ ergeben sich durch
+daher um Wendestellen von $f$. Die Wendepunkte $\MPointTwo{0}{0}$, $\MPointTwoAS{\sqrt6}{\frac12\sqrt6}$, $\MPointTwoAS{-\sqrt6}{-\frac12\sqrt6}$ ergeben sich durch
 Einsetzen der Wendestellen in $f$.
 \ \\ \ \\
 \textbf{Krümmungsverhalten}\\
@@ -1620,8 +1620,8 @@ Die zweimal differenzierbare Funktion $f$ ist konvex, wenn die zweite Ableitung 
 wenn die zweite Ableitung kleiner oder gleich Null ist.
 Da das Polynom im Nenner von ${f'}'(x)$ stets positiv ist, genügt es, das Vorzeichen des Polynoms $p(x)=8x(x-\sqrt6)(x+\sqrt6)$ im Zähler
 zu untersuchen. Für $0<x<\sqrt6$ ist es negativ (dort ist $f$ konkav). Für $x>\sqrt6$ ist es positiv (dort ist $f$ konvex).
-Da $f$ punktsymmetrisch ist, folgt, dass $f$ auf den Intervallen $(-\sqrt 6\MIntvlSep 0)$ und $(\sqrt6\MIntvlSep \infty)$ konvex
-sowie auf $(-\infty\MIntvlSep -\sqrt6)$ und $(0\MIntvlSep \sqrt6)$ konkav ist.
+Da $f$ punktsymmetrisch ist, folgt, dass $f$ auf den Intervallen $\MoIl[\left]-\sqrt 6\MIntvlSep 0\MoIr[\right]$ und $\MoIl[\left]\sqrt6\MIntvlSep \infty\MoIr[\right]$ konvex
+sowie auf $\MoIl[\left]-\infty\MIntvlSep -\sqrt6\MoIr[\right]$ und $\MoIl[\left]0\MIntvlSep \sqrt6\MoIr[\right]$ konkav ist.
 \ \\ \ \\
 \textbf{Skizze des Graphen}\\
 \MUGraphics{BildKurvendiskussion1.png}{width=0.5\linewidth}{Der Graph der Funktion $f$, skizziert auf dem Intervall $[-8\MIntvlSep 8]$.}{width:600px}
@@ -1667,12 +1667,12 @@ Skizzieren Sie den Graphen und vergleichen Sie ihn anschließend mit der Musterlö
 
 \begin{MHint}{Lösung}
 \textbf{Maximaler Definitionsbereich}\\
-Es gilt $f(x) = - x (x - 2) \MEU^x$ und $\MEU^x > 0$ f"ur alle  $x \in \R$, damit ist $D_f = \R = (-\infty \MIntvlSep \infty)$
+Es gilt $f(x) = - x (x - 2) \MEU^x$ und $\MEU^x > 0$ f"ur alle  $x \in \R$, damit ist $D_f = \R = \MoIl -\infty \MIntvlSep \infty\MoIr$
 der maximale Definitionsbereich.
 \ \\ \ \\
 \textbf{Achsenschnittpunkte}\\
-Schnittpunkte mit der $x$-Achse (Nullstellen der Funktion) liegen bei $x_1=0$ und $x_2=2$, was auf die Punkte $(0,0)$ und $(2,0)$ führt.
-Der Schnittpunkt mit der $y$-Achse ist $(0,0)$.
+Schnittpunkte mit der $x$-Achse (Nullstellen der Funktion) liegen bei $x_1=0$ und $x_2=2$, was auf die Punkte $\MPointTwo{0}{0}$ und $\MPointTwo{2}{0}$ führt.
+Der Schnittpunkt mit der $y$-Achse ist $\MPointTwo{0}{0}$.
 \ \\ \ \\
 \textbf{Symmetrie}\\
 Die Funktion $f$ ist weder gerade noch ungerade, und damit ist der Graph von $f$ weder achsensymmetrisch zur $y$-Achse noch
@@ -1699,11 +1699,11 @@ f'(x) & = & (2 - 2 x) \MEU^x + (2 x - x^2) \MEU^x %
 L"osungen von $f'(x) = 0$ sind $x_1 = -\sqrt{2}$ und $x_2 = \sqrt{2}$. 
 Weiter ist $x_1 < x_2$ und 
 $$
-f'(x)\; =\; - (x + \sqrt{2}) (x - \sqrt{2}) \MEU^x\: .
+f'(x)\; =\; - (x + \sqrt{2}) (x - \sqrt{2}) \MEU^x \MDFPeriod
 $$
-Auf $(-\infty\MIntvlSep  -\sqrt{2})$ ist $f'$ negativ und damit $f$ monoton fallend.
-Auf $(-\sqrt{2}\MIntvlSep  \sqrt{2})$ ist $f'$ positiv und damit $f$ monoton wachsend.
-Auf $(\sqrt{2}\MIntvlSep  \infty)$ ist $f'$ negativ und damit $f$ monoton fallend.
+Auf $\MoIl[\left]-\infty\MIntvlSep  -\sqrt{2}\MoIr[\right]$ ist $f'$ negativ und damit $f$ monoton fallend.
+Auf $\MoIl[\left]-\sqrt{2}\MIntvlSep  \sqrt{2}\MoIr[\right]$ ist $f'$ positiv und damit $f$ monoton wachsend.
+Auf $\MoIl[\left]\sqrt{2}\MIntvlSep  \infty\MoIr[\right]$ ist $f'$ negativ und damit $f$ monoton fallend.
 Somit ist $x_1 = -\sqrt{2}$ Minimalstelle und $x_2 = \sqrt{2}$ Maximalstelle.
 \ \\ \ \\
 \textbf{Wendepunkte}\\
@@ -1712,8 +1712,8 @@ $x^2 + 2 x - 2 = 0$. Die L"osungen sind $w_1 = \frac{-2 - \sqrt{4 + 8}}{2} = -1 
 und $w_2 = \frac{-2 + \sqrt{4 + 8}}{2} = -1 + \sqrt{3}$.
 \ \\ \ \\
 \textbf{Skizze des Graphen}\\
-\MUGraphics{BildKurvendiskussion3.png}{width=0.5\linewidth}{Der Grapgh der Funktion $f$,
-skizziert auf dem Intervall $(-\MZahl{6}{2}\MIntvlSep 3)$.}{width:400px}
+\MUGraphics{BildKurvendiskussion3.png}{width=0.5\linewidth}{Der Graph der Funktion $f$,
+skizziert auf dem Intervall $\MoIl -\MZahl{6}{2}\MIntvlSep 3\MoIr$.}{width:400px}
 \end{MHint}
 
 \end{MExercise}
@@ -1901,7 +1901,7 @@ Die Funktion $f$ besitzt an der Stelle $0$\\
 \begin{MExercise} %Rechenregeln
 Berechnen Sie f"ur
 \begin{MExerciseItems}
- \item $f: \{ x \in \R | x > 0 \} \rightarrow \R$ mit $f(x) := \ln\left(x^3 + x^2\right)$ den Wert der Ableitung $f'$ an der Stelle $x$:\newline
+ \item $f: \{ x \in \R \MCondSetSep x > 0 \} \rightarrow \R$ mit $f(x) := \ln\left(x^3 + x^2\right)$ den Wert der Ableitung $f'$ an der Stelle $x$:\newline
 $f'(x) = $\MLSimplifyQuestion{30}{(3 x + 2)/(x^2 + x)}{1}{x}{20}{0}{SIMPLE13} \MDFPeriod
 \item $g: \R \rightarrow \R$ mit $g(x) := x \cdot \MEU^{-x}$ den Wert der zweiten Ableitung ${g'}'$ an der Stelle $x$:\newline
 ${g'}'(x) = $\MLSimplifyQuestion{30}{(x - 2) * exp(-x)}{10}{x}{4}{0}{SIMPLE14} \MDFPeriod
@@ -1910,10 +1910,10 @@ ${g'}'(x) = $\MLSimplifyQuestion{30}{(x - 2) * exp(-x)}{10}{x}{4}{0}{SIMPLE14} \
 \end{MExercise}
 
 \begin{MExercise} %Eigenschaften
-Man betrachte die Funktion $f: (0\MIntvlSep  \infty) \rightarrow \R$, $x \mapsto f(x)$ mit $f'(x) = x \cdot \ln x$.
+Man betrachte die Funktion $f: \MoIl 0\MIntvlSep  \infty\MoIr \rightarrow \R$, $x \mapsto f(x)$ mit $f'(x) = x \cdot \ln x$.
 In welchen Bereichen ist $f$ monoton fallend, in welchen Bereichen ist $f$ konkav?
 %
-Geben Sie als Bereiche m"oglichst gro"se offene Intervalle $(c\MIntvlSep  d)$ an:
+Geben Sie als Bereiche m"oglichst gro"se offene Intervalle $\MoIl c\MIntvlSep  d\MoIr$ an:
 \begin{MExerciseItems}
 \item $f$ ist auf \MLIntervalQuestion{12}{(0, 1)}{4}{INT2} monoton fallend,
 \item $f$ ist auf \MLIntervalQuestion{12}{(0, 1/e)}{4}{INT3} konkav.
