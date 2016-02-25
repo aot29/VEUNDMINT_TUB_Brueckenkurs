@@ -204,7 +204,7 @@ bezeichnet. Das Symbol $\R^3$ wird dabei als \glqq$\R$ drei\grqq oder \glqq$\R$ 
 \begin{MXContent}{Vektoren in der Ebene und im Raum}{Vektoren}{STD}
 \MLabel{VBKM10_Vektoren}
 \MDeclareSiteUXID{VBKM10_Vektoren}
-Punkte in der Ebene und im Raum, die als Koordiantenpaare oder -tripel bezüglich eines vorgegebenen Koordinatensystems gegeben sind, können durch Strecken verbunden werden. Gibt man diesen Strecken zusätzlich eine Richtung so erhält man Pfeile, die von einem Punkt zum anderen zeigen:
+Punkte in der Ebene und im Raum, die als Koordinatenpaare oder -tripel bezüglich eines vorgegebenen Koordinatensystems gegeben sind, können durch Strecken verbunden werden. Gibt man diesen Strecken zusätzlich eine Orientierung (d.h. man legt einen der Punkte als Fußpunkt und einen der Punkte als Spitze fest), so erhält man Pfeile, die von einem Punkt zum anderen zeigen:
 
 \begin{center}
 \begin{tabular}{cc}
@@ -269,7 +269,7 @@ Punkte in der Ebene und im Raum, die als Koordiantenpaare oder -tripel bezüglich
 \end{tabular}
 \end{center}
 
-Im Sinne dieser Abbildungen kann man den Informationsgehalt eines Pfeils folgendermaßen charakterisieren: Ein Pfeil gibt an, wie man von einem Punkt (am Fußpunkt des Pfeils) zu einem anderen Punkt (an der Spitze des Pfeils gelangt). So gibt der Pfeil, welcher im zweidimensionalen Fall $Q$ mit $R$ verbindet, wieder, dass man von $Q$ aus um $3$ Längeneinheiten nach links und um $2$ Längeneinheiten nach oben gehen muss um $R$ zu erreichen. Oder in einer mathematischeren Sprechweise: Man gehe von $Q$ aus um $-3$ entlang der $x$-Achse und um $2$ entlang der $y$-Achse. Für den Pfeil, der im zweidimensionalen Fall den Ursprung mit dem Punkt $P$ verbindet ist dies sogar noch einfacher, denn um von $O$ nach $P$ zu gelangen, geht man einfach um $2$ in $x$-Richtung und um $1$ in $y$-Richtung. Diese Werte entsprechen natürlich genau den Koordinaten des Punktes $P$.
+Im Sinne dieser Abbildungen kann man den Informationsgehalt eines Pfeils folgendermaßen charakterisieren: Ein Pfeil gibt an, wie man von einem Punkt (am Fußpunkt des Pfeils) zu einem anderen Punkt (an der Spitze des Pfeils) gelangt. So gibt der Pfeil, welcher im zweidimensionalen Fall $Q$ mit $R$ verbindet, wieder, dass man von $Q$ aus um $3$ Längeneinheiten nach links und um $2$ Längeneinheiten nach oben gehen muss, um $R$ zu erreichen. Oder in einer mathematischeren Sprechweise: Man gehe von $Q$ aus um $-3$ in $x$-Richtung und um $2$ in $y$-Richtung. Für den Pfeil, der im zweidimensionalen Fall den Ursprung mit dem Punkt $P$ verbindet, ist dies sogar noch einfacher, denn um von $O$ nach $P$ zu gelangen, geht man einfach um $2$ in $x$-Richtung und um $1$ in $y$-Richtung. Diese Werte entsprechen natürlich genau den Koordinaten des Punktes $P$.
 
 \begin{MExercise}
 Bestimmen Sie für die Pfeile in der obigen dreidimensionalen Abbildung die (vorzeichenbehafteten) Bewegungen in die drei Koordinatenrichtungen, die nötig sind um vom Fußpunkt zur Spitze des jeweiligen Pfeils zu gelangen. Gehen Sie analog zu den oben stehenden Erläuterungen im zweidimensionalen Fall vor.
@@ -313,7 +313,7 @@ Bestimmen Sie für die Pfeile in der obigen dreidimensionalen Abbildung die (vorz
 \end{MHint}
 \end{MExercise}
 
-Nun ist ersichtlich, dass auch im Fall der Pfeile die jeweils $Q$ mit $R$ verbinden, die Bewegungen in die jeweiligen Koordinatenrichtungen durch die Koordinaten der Punkte an Fußpunkt und Spitze der Pfeile bestimmt werden. Es gilt offenbar im zweidimensionalen Fall:
+Nun ist ersichtlich, dass auch im Fall der Pfeile, die jeweils $Q$ mit $R$ verbinden, die Bewegungen in die jeweiligen Koordinatenrichtungen durch die Koordinaten der Punkte an Fußpunkt und Spitze der Pfeile bestimmt werden. Es gilt offenbar im zweidimensionalen Fall:
 \[
  \left.\begin{array}{r}R=\MPointTwo{1}{3} \\ Q=\MPointTwo{4}{1}\end{array}\right\}\MDFPSpace\Rightarrow\MDFPSpace\left\{\begin{array}{l}\textrm{in}\ x\textrm{-Richtung:}\MDFPSpace-3=1-4 \\ \textrm{in}\ y\textrm{-Richtung:}\MDFPSpace2=3-1\end{array}\right.
 \]
@@ -321,7 +321,7 @@ und im dreidimensionalen Fall:
 \[
  \left.\begin{array}{r}R=\MPointThree{1}{3}{-1} \\ Q=\MPointThree{3}{1}{0}\end{array}\right\}\MDFPSpace\Rightarrow\MDFPSpace\left\{\begin{array}{l}\textrm{in}\ x\textrm{-Richtung:}\MDFPSpace-2=1-3 \\ \textrm{in}\ y\textrm{-Richtung:}\MDFPSpace2=3-1 \\ \textrm{in}\ z\textrm{-Richtung:}\MDFPSpace-1=-1-0\MDFPeriod\end{array}\right.
 \]
-Die Bewegungen in die verschiedenen Koordinatenrichtungen ergeben sich also als die Differenzen der Koordinaten des Punkts an der Spitze des Pfeils und des Punkts am Fußpunkt des Pfeils. Dies bedeutet aber, dass alle Punktepaare, für welche sich gleiche Koordinatendifferenzen ergeben, jeweils durch den gleichen Pfeil verbunden sind. Geometrisch werden die Pfeile dabei nur, unter Beibehaltung ihrer Orientierung, parallelverschoben. Die Punktepaare $P$ und $Q$, $A$ und $B$ sowie $O$ und $R$ im folgenden zweidimensionalen Bild werden jeweils vom gleichen Pfeil verbunden:
+Die Bewegungen in die verschiedenen Koordinatenrichtungen ergeben sich also als die Differenzen der Koordinaten des Punkts an der Spitze des Pfeils und des Punkts am Fußpunkt des Pfeils. Dies bedeutet aber, dass sich alle Pfeile, welche Punktepaare miteinander verbinden, für die sich jeweils gleiche Koordinatendifferenzen ergeben, nur durch eine Parallelverschiebung -- unter Beibehaltung ihrer Orientierung -- unterscheiden. Die Punktepaare $P$ und $Q$, $A$ und $B$ sowie $O$ und $R$ im folgenden zweidimensionalen Bild werden jeweils durch Pfeile verbunden, die durch Parallelverschiebung zur Deckung gebracht werden können:
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}[>=stealth]
@@ -357,23 +357,23 @@ Die Bewegungen in die verschiedenen Koordinatenrichtungen ergeben sich also als 
 } 
 \end{center}
 
-Man kann hier natürlich noch beliebig viele weitere Punktepaare finden, die durch ebendiesen Pfeil verbunden werden und das Ganze funktioniert selbstverständlich analog auch im dreidimensionalen Fall. 
+Man kann hier natürlich noch beliebig viele weitere Punktepaare finden, die durch einen ebensolchen Pfeil verbunden werden, und das Ganze funktioniert selbstverständlich analog auch im dreidimensionalen Fall. 
 
-Jeder Pfeil in der obigen Abbildung gibt also den gleichen Informationsgehalt, nämlich $-3$ in $x$-Richtung und $1$ in $y$-Richtung, wieder. Was liegt also mathematisch näher, als jeden dieser Pfeile nur als Vertreter (ein sogenannter \textbf{Repräsentant}) eines viel grundlegenderen Objekts aufzufassen? Dieses grundlegendere mathematische Objekt heißt \textbf{Vektor} und hat in diesem Fall die \textbf{Komponenten} $-3$ ($x$-Komponente) und $1$ ($y$-Komponente), welche als sogenanntes $2$-\textbf{Tupel} übereinander geschrieben werden:
+Jeder Pfeil in der obigen Abbildung gibt also den gleichen Informationsgehalt, nämlich $-3$ in $x$-Richtung und $1$ in $y$-Richtung, wieder. Was liegt also mathematisch näher, als jeden dieser Pfeile nur als Vertreter (einen sogenannten \textbf{Repräsentanten}) eines viel grundlegenderen Objekts aufzufassen? Dieses grundlegendere mathematische Objekt heißt \textbf{Vektor} und hat in diesem Fall die \textbf{Komponenten} $-3$ ($x$-Komponente) und $1$ ($y$-Komponente), welche als sogenanntes $2$-\textbf{Tupel} übereinander geschrieben werden:
 \[
  \textrm{Vektor mit den Repräsentanten aus obiger Abbildung}\ = \MVector{-3\\1}\MDFPeriod
 \]
 Die folgende Infobox fasst diese Erkenntnis und noch einige weitere Schreib- und Sprechweisen zu Vektoren zusammen.
 
 \begin{MInfo}
-Ein zwei- bzw. dreidimensionaler \MEntry{Vektor}{Vektor} ist ein $2$- bzw. $3$-\MEntry{Tupel}{Tupel} mit $2$ bzw. $3$ \MEntry{Komponenten}{Komponenten (von Vektoren)}, die als $x$-, $y$- (und $z$-)Komponenten bezeichnet werden. Als Variablen für Vektoren werden für gewöhnlich Kleinbuchstaben mit Pfeil benutzt. Als Variablen für ihre Komponenten oft der gleiche Kleinbuchstabe mit der zugehörigen Koordinatenrichtung als Index zur Unterscheidung: 
+Ein zwei- bzw. dreidimensionaler \MEntry{Vektor}{Vektor} ist ein $2$- bzw. $3$-\MEntry{Tupel}{Tupel} mit $2$ bzw. $3$ \MEntry{Komponenten}{Komponenten (von Vektoren)}, die als $x$-, $y$- (und $z$-)Komponenten bezeichnet werden. Als Variablen für Vektoren werden für gewöhnlich Kleinbuchstaben mit Pfeil benutzt. Als Variable für ihre Komponenten wird oft der gleiche Kleinbuchstabe mit der zugehörigen Koordinatenrichtung als Index zur Unterscheidung verwendet: 
 \[
  \MVec{a}=\MVector{a_x\\a_y},\MDFPaSpace \MVec{b}=\MVector{b_x\\b_y\\b_z}\MDFPeriod
 \]
-Ein Pfeil in der Ebene oder im Raum heißt \MEntry{Repräsentant}{Repräsentant (eines Vektors)} des Vektors, wenn dieser zwei Punkte in der Ebene oder im Raum verbindet, die so liegen, dass die Differenzen der Koordinaten des Punkts an der Spitze des Pfeils und des Punkts am Fußpunkt des Pfeils, genau die Komponenten des Vektors ergeben.  
+Ein Pfeil in der Ebene oder im Raum heißt \MEntry{Repräsentant}{Repräsentant (eines Vektors)} des Vektors, wenn der Pfeil zwei Punkte in der Ebene oder im Raum verbindet, die so liegen, dass die Differenzen der Koordinaten des Punkts an der Spitze des Pfeils und des Punkts am Fußpunkt des Pfeils genau die Komponenten des Vektors ergeben.  
 \end{MInfo}
 
-Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum bzw. zwei Punkte $Q$ und $R$ in der Ebene oder im Raum gegeben hat, und möchte nun den Vektor angeben, von welchem der Pfeil vom Ursprung $O$ zu dem gegebenen Punkt $P$ bzw. von welchem der Pfeil der $Q$ mit $R$ verbindet, jeweils ein Repräsentant ist. Die dafür benutzte Schreib- und Sprechweise sowie die nötige Rechenoperation gibt die folgende Infobox wieder:
+Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum bzw. zwei Punkte $Q$ und $R$ in der Ebene oder im Raum gegeben hat, und man möchte nun den Vektor angeben, von welchem der Pfeil vom Ursprung $O$ zu dem gegebenen Punkt $P$ bzw. von welchem der Pfeil, der $Q$ mit $R$ verbindet, jeweils ein Repräsentant ist. Die dafür benutzte Schreib- und Sprechweise sowie die nötige Rechenoperation gibt die folgende Infobox wieder:
 
 \begin{MInfo}
 \begin{itemize}
@@ -564,7 +564,7 @@ Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum
  
 \end{MExample}
 
-Das obige Beispiel zeigt bereits folgende interessante Tatsache: Dreht man die Orientierung eines Vektors (und damit die Orientierung aller Pfeile, die ihn repräsentieren) um, so erhält man einen Vektor in dem die Komponenten das entgegengesetzte Vorzeichen besitzen. Man spricht hier auch vom sogenannten \textbf{Gegenvektor}. Dies ist ein erster Hinweis darauf, dass man mit Vektoren komponentenweise rechnen kann. Dies wird ausführlich im nachfolgenden Abschnitt \MNRef{VBKM10_Vektorrechnung} behandelt.  
+Das obige Beispiel zeigt bereits folgende interessante Tatsache: Dreht man die Orientierung eines Vektors (und damit die Orientierung aller Pfeile, die ihn repräsentieren) um, so erhält man einen Vektor, in dem die Komponenten das entgegengesetzte Vorzeichen besitzen. Man spricht hier auch vom sogenannten \textbf{Gegenvektor}. Dies ist ein erster Hinweis darauf, dass man mit Vektoren komponentenweise rechnen kann. Dies wird ausführlich im nachfolgenden Abschnitt \MNRef{VBKM10_Vektorrechnung} behandelt.  
 
 Außerdem gibt es offenbar im zwei- und im dreidimensionalen Fall jeweils einen Vektor, dessen Komponenten alle gleich $0$ sind:
 \[
@@ -583,7 +583,7 @@ in der Ebene, die Punkte
 \]
 im Raum sowie die zwei- bzw. dreidimensionalen Vektoren
 \[
- a=\MVector{\pi\\-1}\MDFPaSpace\textrm{und}\MDFPaSpace v=\MVector{0\\3\\-3}.
+ \MVec{a}=\MVector{\pi\\-1}\MDFPaSpace\textrm{und}\MDFPaSpace \MVec{v}=\MVector{0\\3\\-3}.
 \]
 \begin{itemize}
  \item Bestimmen Sie die folgenden Vektoren:\\
@@ -597,8 +597,8 @@ im Raum sowie die zwei- bzw. dreidimensionalen Vektoren
 
 \item Bestimmen Sie Punkte $C$ in der Ebene und $R$ im Raum, so dass folgende Aussagen wahr sind:\\
 \begin{MExerciseItems}
-\item{$a=\MDVec{C B}\MDFPSpace\Leftrightarrow\MDFPSpace C=$\MLFunctionQuestion{15}{(0,-1)}{5}{x}{5}{POINTI1}} 
-\item{$v=\MDVec{Q R}\MDFPSpace\Leftrightarrow\MDFPSpace R=$\MLFunctionQuestion{15}{(0.5,2,-2)}{5}{x}{5}{POINTI2}} 
+\item{$\MVec{a}=\MDVec{C B}\MDFPSpace\Leftrightarrow\MDFPSpace C=$\MLFunctionQuestion{15}{(0,-1)}{5}{x}{5}{POINTI1}} 
+\item{$\MVec{v}=\MDVec{Q R}\MDFPSpace\Leftrightarrow\MDFPSpace R=$\MLFunctionQuestion{15}{(0.5,2,-2)}{5}{x}{5}{POINTI2}} 
 \end{MExerciseItems}
 \MInputHint{Auch Punkte können in der Form \texttt{(a;b)} bzw. \texttt{(a;b;c)} eingegeben werden.} 
 
@@ -620,7 +620,7 @@ im Raum sowie die zwei- bzw. dreidimensionalen Vektoren
 \item{$C=\MPointTwo{0}{-1}$} 
 \item{$R=\MPointThree[\Big]{\frac{1}{2}}{2}{-2}$}
 \end{MExerciseItems}
- \item Das folgende Bild zeigt drei mögliche Repräsentanten von $a=\MVector{\pi\\-1}$:
+ \item Das folgende Bild zeigt drei mögliche Repräsentanten von $\MVec{a}=\MVector{\pi\\-1}$:
  
 \begin{center}
 \MTikzAuto{
@@ -652,9 +652,9 @@ im Raum sowie die zwei- bzw. dreidimensionalen Vektoren
 
 \end{MExercise}
 
-Die vorhergehende Einführung des Vektorkonzepts zeigt die nahe Verwandtschaft von Vektoren und Punkten. Tatsächlich gibt es sogar eine eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren: Zu jedem Punkt gibt es genau einen Vektor, der Ortsvektor des Punktes ist und umgekehrt gibt es zu jedem Vektor genau einen Punkt, für den der Vektor der zugehörige Ortsvektor ist. Dies gilt im zwei- sowie im dreidimensionalen Fall. Das rechtfertigt nun die -- in den folgenden Abschnitten oft benutzte -- Konvention Punkte durch ihre Ortsvektoren zu beschreiben. So beschreibt man zum Beispiel einen Punkt $P=\MPointTwo{2}{1}$ statt durch seine Koordinaten $\MPointTwo{2}{1}$ oft durch seinen zugehörigen Ortsvektor $\MDVec{P}=\MVector{2\\1}$. Dies bringt bei der Untersuchung geometrischer Objekte wie Geraden oder Ebenen (insbesondere im dreidimensionalen Fall) dann auch gewisse Vorteile in der Beschreibung mit sich (vgl. die Abschnitte \MNRef{VBKM10_GeradenEbene}, \MNRef{VBKM10_GeradenRaum} und \MNRef{VBKM10_EbenenRaum}).   
+Die vorhergehende Einführung des Vektorkonzepts zeigt die nahe Verwandtschaft von Vektoren und Punkten. Tatsächlich gibt es sogar eine Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren: Zu jedem Punkt gibt es genau einen Vektor, der Ortsvektor dieses Punktes ist, und umgekehrt gibt es zu jedem Vektor genau einen Punkt, für den dieser Vektor der zugehörige Ortsvektor ist. Dies gilt im zwei- sowie im dreidimensionalen Fall. Das rechtfertigt nun die -- in den folgenden Abschnitten oft benutzte -- Konvention, Punkte durch ihre Ortsvektoren zu beschreiben. So beschreibt man zum Beispiel einen Punkt $P=\MPointTwo{2}{1}$ statt durch seine Koordinaten $\MPointTwo{2}{1}$ oft durch seinen zugehörigen Ortsvektor $\MDVec{P}=\MVector{2\\1}$. Dies bringt bei der Untersuchung geometrischer Objekte wie Geraden oder Ebenen (insbesondere im dreidimensionalen Fall) dann auch gewisse Vorteile in der Beschreibung mit sich (vgl. die Abschnitte \MNRef{VBKM10_GeradenEbene}, \MNRef{VBKM10_GeradenRaum} und \MNRef{VBKM10_EbenenRaum}).   
 
-Weiterhin rechtfertigt die eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren auch, die Abkürzungen $\R^2$ und $\R^3$ nicht nur für die Menge aller Punkte in der Ebene bzw. im Raum zu verwenden, sondern auch für die Menge aller zwei- bzw. dreidimensionaler Vektoren. Davon wird in den nächsten Abschnitten ebenfalls Gebrauch gemacht.
+Weiterhin rechtfertigt die Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren auch, die Abkürzungen $\R^2$ und $\R^3$ nicht nur für die Menge aller Punkte in der Ebene bzw. im Raum zu verwenden, sondern auch für die Menge aller zwei- bzw. dreidimensionaler Vektoren. Davon wird in den nächsten Abschnitten ebenfalls Gebrauch gemacht.
 
 \end{MXContent}
 % 
