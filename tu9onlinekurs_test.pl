@@ -21,9 +21,9 @@ source          =>      "module_veundmint",  # Quellverzeichnis relativ zur Posi
 module          =>      "tree_tu9onlinekurs.tex",  # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
 outtmp          =>      "tmp",               # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
 description     =>      "Onlinebrückenkurs Mathematik",
+author          =>      "Projekt VE&MINT",
 moduleprefix    =>      "Onlinebrückenkurs Mathematik",  # Wird vor Browser-Bookmarks gesetzt
-
-variants        =>      ["std"],  # zu erzeugende Varianten der HTML-files, muss mindestens "std" (die Hauptvariante) enthalten, bisher wird nur target-xml variiert
+variant         =>      "std",  # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete aus
 
 stylesheets     =>      ["qtip2/jquery.qtip.min.css"], # Array, grundlagen.css wird automatisch eingesetzt
 
