@@ -378,27 +378,33 @@ Entscheiden Sie, ob die folgenden Aussagen richtig sind.
 %Stammfunktion von $f$ und $G$ eine Stammfunktion von $g$.
 
 \ifttm
-% \begin{tabular}[t]{ccl}
-%  richtig: & falsch: & Aussage: \\
-%  \MCheckbox{0}{M08Ex1101a} & \MCheckbox{1}{M08Ex1101b} &
-% $F$ mit $F(x) = -\frac{\cos(\pi x) + 2}{\pi}$ ist eine Stammfunktion 
-% von $f$ mit $f(x) = \sin(\pi x) + 2$. \\
-% %
-%  \MCheckbox{1}{M08Ex1101a} & \MCheckbox{0}{M08Ex1101b} &
-% $F$ mit $F(x) = -\frac{\cos(\pi x) + 2}{\pi}$ ist eine Stammfunktion 
-% von $f$ mit $f(x) = \sin(\pi x)$. \\
-% % 
-%  \MCheckbox{0}{M08Ex1101a} & \MCheckbox{1}{M08Ex1101b} &
-% $F$ mit $F(x) = -7$ ist eine Stammfunktion von $f$ mit $f(x) = -7x$. \\
-% % 
-%  \MCheckbox{1}{M08Ex1101a} & \MCheckbox{0}{M08Ex1101b} &
-% $F$ mit $F(x) = (\sin(x))^2$ ist eine Stammfunktion 
-% von $f$ mit $f(x) = 2 \sin(x) \cos(x)$. \\
-% %
-%  \MCheckbox{1}{M08Ex1103a} & \MCheckbox{0}{M08Ex1103b} &
-% Wenn $F$ eine Stammfunktion von $f$ ist, $G$ eine Stammfunktion von $g$, 
-% dann ist $F + G$ ist eine Stammfunktion von $f + g$. %%
-% \end{tabular}
+\begin{MQuestionGroup}
+\begin{tabular}{|l|l|l|}
+\hline
+richtig: & falsch: & Aussage: \\
+ \MCheckbox{0}{M08Ex1101a} & \MCheckbox{1}{M08Ex1101b} &
+$F$ mit $F(x) = -\frac{\cos(\pi x) + 2}{\pi}$ ist eine Stammfunktion 
+von $f$ mit $f(x) = \sin(\pi x) + 2$. \\
+%
+ \MCheckbox{1}{M08Ex1102a} & \MCheckbox{0}{M08Ex1102b} &
+$F$ mit $F(x) = -\frac{\cos(\pi x) + 2}{\pi}$ ist eine Stammfunktion 
+von $f$ mit $f(x) = \sin(\pi x)$. \\
+% 
+ \MCheckbox{0}{M08Ex1103a} & \MCheckbox{1}{M08Ex1103b} &
+$F$ mit $F(x) = -7$ ist eine Stammfunktion von $f$ mit $f(x) = -7x$. \\
+% 
+ \MCheckbox{1}{M08Ex1104a} & \MCheckbox{0}{M08Ex1104b} &
+$F$ mit $F(x) = (\sin(x))^2$ ist eine Stammfunktion 
+von $f$ mit $f(x) = 2 \sin(x) \cos(x)$. \\
+%
+ \MCheckbox{1}{M08Ex1105a} & \MCheckbox{0}{M08Ex1105b} &
+Wenn $F$ eine Stammfunktion von $f$ ist, $G$ eine Stammfunktion von $g$, 
+dann ist $F + G$ ist eine Stammfunktion von $f + g$. %%
+\ \\
+\hline
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Eingabe überprüfen}
 %
 \else
 %
@@ -408,18 +414,18 @@ Entscheiden Sie, ob die folgenden Aussagen richtig sind.
 $F$ mit $F(x) = -\frac{\cos(\pi x) + 2}{\pi}$ ist eine Stammfunktion 
 von $f$ mit $f(x) = \sin(\pi x) + 2$. \\
 %
- \MCheckbox{1}{M08Ex1101a} & \MCheckbox{0}{M08Ex1101b} &
+ \MCheckbox{1}{M08Ex1102a} & \MCheckbox{0}{M08Ex1102b} &
 $F$ mit $F(x) = -\frac{\cos(\pi x) + 2}{\pi}$ ist eine Stammfunktion 
 von $f$ mit $f(x) = \sin(\pi x)$. \\
 % 
- \MCheckbox{0}{M08Ex1101a} & \MCheckbox{1}{M08Ex1101b} &
+ \MCheckbox{0}{M08Ex1103a} & \MCheckbox{1}{M08Ex1103b} &
 $F$ mit $F(x) = -7$ ist eine Stammfunktion von $f$ mit $f(x) = -7x$. \\
 % 
- \MCheckbox{1}{M08Ex1101a} & \MCheckbox{0}{M08Ex1101b} &
+ \MCheckbox{1}{M08Ex1104a} & \MCheckbox{0}{M08Ex1104b} &
 $F$ mit $F(x) = (\sin(x))^2$ ist eine Stammfunktion 
 von $f$ mit $f(x) = 2 \sin(x) \cos(x)$. \\
 %
- \MCheckbox{1}{M08Ex1103a} & \MCheckbox{0}{M08Ex1103b} &
+ \MCheckbox{1}{M08Ex1105a} & \MCheckbox{0}{M08Ex1105b} &
 Wenn $F$ eine Stammfunktion von $f$ ist, $G$ eine Stammfunktion von $g$, 
 dann ist $F + G$ ist eine Stammfunktion von $f + g$. %%
 \end{tabular}
@@ -564,7 +570,7 @@ Frage ob, es sich um Stammfunktionen von $f$ handelt:
 Es ist: 
  \MEquationItem{$F_1'(x)$}{\MLSimplifyQuestion{30}{1/x}{10}{x}{4}{512}{IEx11ln}}
 und 
- \MEquationItem{$F_2'(x)$}{\MLSimplifyQuestion{30}{1/(x+7)}{10}{x}{4}{512}{IEx11ln}}. 
+ \MEquationItem{$F_2'(x)$}{\MLSimplifyQuestion{30}{1/(x+7)}{10}{x}{4}{512}{IEx12ln}}. 
 
 Kreuzen Sie die richtigen Aussagen an:\ \\
 \begin{MQuestionGroup}
@@ -641,7 +647,7 @@ aufsummiert. Dies ist in der unten gezeigten Abbildung dargestellt.
 %\else
 \begin{center}
 \MTikzAuto{%
-\begin{small}
+\ifttm\else\begin{small}\fi
 \begin{tikzpicture}[line width=1.5pt,scale=1.0, %
 declare function={
   x0 = 0;
@@ -685,7 +691,7 @@ declare function={
 Zur Definition des Integrals: Funktion angenähert durch %
 eine Treppenfunktion,\\
 unterteilt in acht Teilintervalle.
-\end{small}
+\ifttm\else\end{small}\fi
 \end{center}
 %\fi
 Man erkennt, dass die Fläche unter der Kurve zunächst durch Rechtecke
@@ -1020,7 +1026,7 @@ $f(x) = x^3$ erläutert werden:
 %\else
 \begin{center}
 \MTikzAuto{%
-\begin{small}
+\ifttm\else\begin{small}\fi
 \begin{tikzpicture}[scale=0.8,line width=1.5pt]
 %\clip(-3.7,-4.7) rectangle (3.7, 4.7);
 %Koordinatenachsen:
@@ -1040,7 +1046,7 @@ $f(x) = x^3$ erläutert werden:
 \draw[color=\jccolorfkt] (1.6, 0.5) -- +(0, 0.4);
 \draw[color=\jccolorfkt] (-1.4, -0.7) -- +(-0.4, 0);
 \end{tikzpicture}
-\end{small}
+\ifttm\else\end{small}\fi
 }
 \end{center}
 %\fi
@@ -1066,7 +1072,7 @@ Im Fall einer geraden Funktion $g: [-c\MIntvlSep c] \rightarrow \R$ ist der Grap
 symmetrisch bez"uglich der $y$-Achse. 
 \begin{center}
 \MTikzAuto{%
-\begin{small}
+\ifttm\else\begin{small}\fi
 \begin{tikzpicture}[scale=0.8,line width=1.5pt]
 %\clip(-3.7,-4.7) rectangle (3.7, 4.7);
 %Koordinatenachsen:
@@ -1087,7 +1093,7 @@ symmetrisch bez"uglich der $y$-Achse.
 \draw[color=\jccolorfkt] (-1.4, 0.7) -- +(-0.4, 0);
 \draw[color=\jccolorfkt] (-1.6, 0.5) -- +(0, 0.4);
 \end{tikzpicture}
-\end{small}
+\ifttm\else\end{small}\fi
 }
 \end{center}
 Die Fl"ache zwischen dem Graphen von $g$ und der $x$-Achse ist hier 
@@ -1226,7 +1232,7 @@ Formeln f"ur Dreiecke oder Rechtecke berechnen.
 
 \begin{center}
 \MTikzAuto{%
-\begin{small}
+\ifttm\else\begin{small}\fi
 \begin{tikzpicture}[line width=1.5pt,scale=0.8, %
 declare function={
   u0 = -3;
@@ -1261,7 +1267,7 @@ declare function={
 \node[right] at (1.1, {fkt2(1)}) {$f(x)$};
 %
 \end{tikzpicture}
-\end{small}
+\ifttm\else\end{small}\fi
 }
 \end{center}
 Der Integralwert ergibt sich dann als Summe der Teilfl"achen, die oberhalb der 
@@ -1297,7 +1303,7 @@ jedoch erhalten die Werte verschiedenes Vorzeichen, da $B_2$ oberhalb der
 $x$-Achse liegt und $B_3$ unterhalb. 
 \begin{center}
 \MTikzAuto{%
-\begin{small}
+\ifttm\else\begin{small}\fi
 \begin{tikzpicture}[line width=1.5pt,scale=0.8, %
 declare function={
   u0 = -3;
@@ -1339,7 +1345,7 @@ declare function={
 \node at (2.6, -0.5) {$B_3$};
 %
 \end{tikzpicture}
-\end{small}
+\ifttm\else\end{small}\fi
 }
 \end{center}
 Somit ist der Integralwert gleich dem negativen Fl"acheninhalt der Fl"ache 
@@ -1555,7 +1561,7 @@ $\left|f\right|$.
 
 \begin{center}
 \MTikzAuto{%
-\begin{small}
+\ifttm\else\begin{small}\fi
 \begin{tikzpicture}[scale=0.8,line width=1.5pt]
 \begin{scope}[xshift=-8.5cm]
 %\clip(-3.7,-4.7) rectangle (3.7, 4.7);
@@ -1603,7 +1609,7 @@ $\left|f\right|$.
 \draw[color=green!75!white] (-1.4, -0.7) -- +(-0.4, 0);
 \end{scope}
 \end{tikzpicture}
-\end{small}
+\ifttm\else\end{small}\fi
 }
 \end{center}
 
@@ -1655,7 +1661,7 @@ eingeschlossen wird, wie in der folgenden Abbildung veranschaulicht wird.
 %{Beispiel einer Fl"ache zwischen dem gr"un gezeichneten Graphen 
 %von $f$ und dem rot gezeichneten Graphen von $g$: Zur Berechnung des 
 %Fl"acheninhalts wird die Differenz der Funktionen $f - g$ betrachtet.}{0.5}
-\begin{small}
+\ifttm\else\begin{small}\fi
 \begin{tikzpicture}[scale=0.6,line width=1.5pt,
  declare function={
   Fktf(\x) = -1/2 * (\x - 4) * (\x - 4) + 7/2; 
@@ -1744,7 +1750,7 @@ pattern color=red!50!black,pattern=crosshatch dots] %
 \draw[color=black] (5.0, 3.0) circle[radius=1pt];
 \end{scope}
 \end{tikzpicture}
-\end{small}
+\ifttm\else\end{small}\fi
 }
 \end{center}
 
@@ -1932,7 +1938,7 @@ $[1\MIntvlSep  3]$ betrachtet.
 
 \begin{center}
 \MTikzAuto{%
-\begin{small}
+\ifttm\else\begin{small}\fi
 \begin{tikzpicture}[line width=1.5pt,scale=1.0,
 declare function={
   u1 = 1;
@@ -1960,7 +1966,7 @@ declare function={
 \node[right] at (2.75, {fkt2(2.7)}) {$g(x)$};
 %
 \end{tikzpicture}
-\end{small}
+\ifttm\else\end{small}\fi
 }
 \end{center}
 Aus den Zeichnungen der Funktionsgraphen ist zu sehen, dass die Differenz 
@@ -2021,7 +2027,7 @@ I_A & = & \left|\int_1^3 \left(3 - (x - 2)^2 - 2 \cdot (x - 2)^4\right) \MD x \r
 %Zeichnung der Funktionsgraphen sehen.
 %\begin{center}
 %\MTikzAuto{%
-%\begin{small}
+%\ifttm\else\begin{small}\fi
 %\begin{tikzpicture}[line width=1.5pt,scale=2.0,
 %declare function={
 %  u1 = 0;
@@ -2050,7 +2056,7 @@ I_A & = & \left|\int_1^3 \left(3 - (x - 2)^2 - 2 \cdot (x - 2)^4\right) \MD x \r
 %\node[right] at (0.75, {fkt2(0.7)}) {$g(x) = 12 x (1 - x) \leq 0$};
 %%
 %\end{tikzpicture}
-%\end{small}
+%\ifttm\else\end{small}\fi
 %}
 %\end{center}
 %
@@ -2264,6 +2270,40 @@ $\Mid(x) = x$ gegeben.
 Welche der folgenden Aussagen gelten stets (wenn die jeweiligen 
 Verkn"upfungen m"oglich sind)?
 
+\ifttm
+\begin{tabular}{|l|l|l|}
+\hline
+%\begin{tabular}[t]{lcc}
+%Aussage: & richtig: & falsch: \\
+ richtig: & falsch: & Aussage: \\
+ \MCheckbox{0}{M08C01a} & \MCheckbox{1}{M08C01b} &
+$\Mid \cdot F$ ist eine Stammfunktion von $\Mid \cdot f$? \\
+% & \MCheckbox{0}{M08C01a} & \MCheckbox{1}{M08C01b} \\
+%
+ \MCheckbox{0}{M08C02a} & \MCheckbox{1}{M08C02b} &
+$F \circ G$ ist eine Stammfunktion von $f \circ g$? \\
+% & \MCheckbox{0}{M08C02a} & \MCheckbox{1}{M08C02b} \\
+%
+ \MCheckbox{1}{M08C03a} & \MCheckbox{0}{M08C03b} &
+$F - G$ ist eine Stammfunktion von $f - g$? \\
+% & \MCheckbox{1}{M08C03a} & \MCheckbox{0}{M08C03b} \\
+%
+ \MCheckbox{0}{M08C04a} & \MCheckbox{1}{M08C04b} &
+$F / G$ ist eine Stammfunktion von $f / g$? \\
+% & \MCheckbox{0}{M08C04a} & \MCheckbox{1}{M08C04b} \\
+%
+ \MCheckbox{0}{M08C05a} & \MCheckbox{1}{M08C05b} &
+$F \cdot G$ ist eine Stammfunktion von $f \cdot g$? \\
+% & \MCheckbox{0}{M08C05a} & \MCheckbox{1}{M08C05b} \\
+%
+ \MCheckbox{1}{M08C06a} & \MCheckbox{0}{M08C06b} &
+$-20 \cdot F$ ist eine Stammfunktion von $-20 \cdot f$? %
+% & \MCheckbox{1}{M08C06a} & \MCheckbox{0}{M08C06b} %%
+%
+\ \\
+\hline
+\end{tabular}
+\else
 \begin{tabular}[t]{ccl}
 %\begin{tabular}[t]{lcc}
 %Aussage: & richtig: & falsch: \\
@@ -2293,6 +2333,7 @@ $-20 \cdot F$ ist eine Stammfunktion von $-20 \cdot f$? %
 % & \MCheckbox{1}{M08C06a} & \MCheckbox{0}{M08C06b} %%
 %
 \end{tabular}
+\fi
 \end{MExercise}
 \end{MTest}
 
