@@ -48,7 +48,6 @@ our $basis = "";             # Das Verzeichnis, in dem converter liegt (wird mom
 our $rfilename = "";         # Filename of main tex file including path relative to execution directory
 our $zip = "";               # Filename of zip file (if neccessary)
 
-our @IncludeStorage = ();
 our @DirectHTML = ();
 
 # stellt das Verhalten des Menues im Header ein
@@ -69,12 +68,12 @@ my %tikzpng = (); # Wird von tikz-Erkennung gefuellt mit Eintraegen der Form "xy
 # -------------------------------------------------------------------------------------------------------------
 
 our $macrotex = ""; # Wird vor dem Aufruf von ttm mit dem Original-Inhalt der Makrodatei gefuellt
-our $variantactive; # Bestimmt Variante der Kursumsetzung, wird ueber die Varianten in der config-Datei iteriert
+our $modmacrotex = "";
+our $variantactive; # Bestimmt Variante der Kursumsetzung
 
 our $starttime; # Timestamp beim Start des Programms
 
 my $breakoff = 0;
-my $i;
 my $ndir = ""; # wird am Programmstart gefuellt
 
 my $copyrightcollection = "";
@@ -250,8 +249,7 @@ sub permuteString {
   my $n = length($str);
   my $t = "";
   
-  my $i;
-  for ($i = 0; $i < $n; $i++) {
+  for (my $i = 0; $i < $n; $i++) {
     $t .= substr($str,($u*$i) % $n,1);
   }
  
@@ -266,8 +264,7 @@ sub borkString {
   
   my $t = "";
   
-  my $i;
-  for ($i = 0; $i < $lan; $i++) {
+  for (my $i = 0; $i < $lan; $i++) {
     my $c;
     if ($i < length($str)) { $c = substr($str,$i,1); } else { $c = randomChar(); }
     $t .= $c;
@@ -360,8 +357,7 @@ sub borkifyHTML {
       push @st , [$2,$s,length($s)];
       if ($lan <= (2*length($s))) { $lan = 2*length($s) + 1; }
     }
-    my $i;
-    for ($i = 0; $i <= $#st; $i++) {
+    for (my $i = 0; $i <= $#st; $i++) {
       my $b = borkString($lan, $st[$i][1]);
       $GSLS .= "if(c==" . $st[$i][0] . "){str=debork(\"$b\"," . $st[$i][2]. ");}";
     }
@@ -681,8 +677,7 @@ sub createButtonFiles {
 sub generate_scriptheaders {
    my $itags = "";
    logMessage($VERBOSEINFO, "Using scriptheaders: ");
-   my $i;
-   for ($i = 0; $i <= $#{$config{scriptheaders}}; $i++) {
+   for (my $i = 0; $i <= $#{$config{scriptheaders}}; $i++) {
      my $cs = $config{scriptheaders}[$i];
      $itags = $itags . "<script src=\"$cs\" type=\"text/javascript\"></script>\n";
      logMessage($VERBOSEINFO, "  $cs"); 
@@ -1183,9 +1178,7 @@ sub subpagelist {
 # gibt den Teilbaum ueber print aus
 sub idprint {
   my ($self) = @_;
-  my $i;
-  my $j;
-  for ($j=0; $j <= $self->{LEVEL}; $j++) {
+  for (my $j = 0; $j <= $self->{LEVEL}; $j++) {
     print "  ";
   }
 
@@ -1208,7 +1201,7 @@ sub idprint {
 
   print "(id=$self->{ID},xco=$self->{XCONTENT},lev=$self->{LEVEL},title=$self->{TITLE},on=$self->{DISPLAY},parent=$pa,prev=$pid,next=$nid,xprev=$xpid,xnext=$xnid)\n";
 
-  for ( $i=0; $i < $k; $i++ ) {
+  for (my $i = 0; $i < $k; $i++ ) {
     $pages[$i]->idprint();
   }
 
@@ -2050,9 +2043,8 @@ sub getstyleimporttags {
    my $itags = "";
 
 
-    my $i;
     my $css = "";
-    for ($i = 0; $i <= $#{$config{stylesheets}}; $i++) {
+    for (my $i = 0; $i <= $#{$config{stylesheets}}; $i++) {
       my $cs = $config{stylesheets}[$i];
       $itags = $itags . "<link rel=\"stylesheet\" type=\"text\/css\" href=\"$lp$cs\"\/>\n";
       $css .= $cs . " "; 
@@ -2192,7 +2184,7 @@ sub getnavi {
     my $parent;
     if ($parent = $site->{PARENT}) {
       my @pages = @{$parent->{SUBPAGES}};
-      for ( $i=0; $i <= $#pages; $i++ ) {
+      for (my $i = 0; $i <= $#pages; $i++ ) {
 	my $p = $pages[$i];
 	my $attr ="normal";
 	if ($p->secpath() eq $site->secpath()) { $attr = "selected"; }
@@ -2899,8 +2891,7 @@ sub createtocs {
 
   # Inhaltsverzeichnis enthaelt die DIREKTEN Unterseiten der aktuellen Seite
 
-  my $i;
-  for ($i = 0; $i <= $#subpages; $i++) {
+  for (my $i = 0; $i <= $#subpages; $i++) {
     my $lk = $subpages[$i]->link() . ".{EXT}";
     $toc = $toc . "<a class=\"MINTERLINK\" href='" . $lk ."'>" . $subpages[$i]->{TITLE} . "</a><br />";
   }
@@ -2910,7 +2901,7 @@ sub createtocs {
 
   #Rekursion auf Unterseiten
   logMessage($VERBOSEINFO, "  Iteriere über " . $#subpages . " Unterseiten");
-  for ($i=0; $i <= $#subpages; $i++) {
+  for (my $i = 0; $i <= $#subpages; $i++) {
     createtocs($subpages[$i]);
   }
 }
@@ -2939,9 +2930,8 @@ sub relocatehelpsection {
 
   $p->{HELPSITE} = $h;
   #Rekursion auf Unterseiten
-  my $i;
-  for ( $i=0; $i <= $#subpages; $i++ ) {
-	    relocatehelpsection($subpages[$i], $h);
+  for (my $i = 0; $i <= $#subpages; $i++ ) {
+    relocatehelpsection($subpages[$i], $h);
   }
 
 }
@@ -3255,7 +3245,7 @@ ENDE
     logMessage($VERBOSEINFO, "DT = $dt");
 }
 
-# --------------------------------------------- Zerlegung des Dokuments  ----------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------- Konvertierung des Dokuments zu XML ----------------------------------------------------------------------------------------------------------------------
 
 # Parameter: output-directory
 sub converter_conversion {
@@ -3276,18 +3266,10 @@ logMessage($VERBOSEINFO, "Es werden " . ($#DirectHTML + 1) . " DirectHTML-Statem
 
 # Variants
 my $target = "tex/htmlprepare.tex";
-my $modmacros = $macrotex;
-  
-my $repl = "\\variant" . $variantactive . "true \% this string was added by mconvert.pl\n";
-if ($modmacros =~ s/\\variantstdtrue/$repl/s ) {
-  logMessage($VERBOSEINFO, "Preparing $macrofile for variant " . $config{variants}[$i]);    
-} else {
-  logMessage($CLIENTERROR, "Variant selection statement \\variantstdtrue not found in macro file $macrofile");
-}
-  
-writefile("tex/mod_$macrofile", $modmacros);
 
-logTimestamp("Starting ttm tex->html converter for variant " . $config{variants}[$i]);
+writefile("tex/mod_$macrofile", $modmacrotex);
+
+logTimestamp("Starting ttm tex->html converter for variant $variantactive");
 system "./ttm-src/ttm -p./tex < $target 1>$xmlfile 2>$xmlerrormsg";
 
 logTimestamp("Loading ttm output file $xmlfile");
@@ -3297,7 +3279,7 @@ my @ttm_errors = split("\n", $ttm_errors);
 
 my $j = 0;
 
-for ($i = 0; $i <= $#ttm_errors; $i++) {
+for (my $i = 0; $i <= $#ttm_errors; $i++) {
   if ($ttm_errors[$i] =~ m/\*\*\*\* Unknown command (.+?), /s ) {
     logMessage($CLIENTWARN, "(ttm) " . $ttm_errors[$i]);
     push @converrors, "ERROR: ttm konnte LaTeX-Kommando $1 nicht verarbeiten";
@@ -3315,7 +3297,7 @@ if (($config{dorelease} eq 1) and ($j > 0)) {
 while ($text =~ s/<!-- debugprint;;(.+?); \/\/-->/<!-- debug;;$1; \/\/-->/s ) { logMessage($DEBUGINFO, $1); }
 
 # Aufgabenpunktetabelle generieren
-for ($i=0; $i <= 9; $i++ ) {
+for (my $i = 0; $i <= 9; $i++ ) {
   push @sitepoints, 0;
   push @expoints, 0;
   push @testpoints, 0;
@@ -3349,10 +3331,8 @@ while ($text =~ s/<!-- mdeclaresiteuxid;;(.+?);;(.+?);;(.+?);; \/\/-->/<!-- mdec
   if ($2 eq 1) { $sitepoints[$3-1]++; }
 }
 
-my $ia = 0;
-my $ib = 0;
-for ( $ia = 0; $ia <=$#uxids; $ia++ ) {
-  for ( $ib = $ia + 1; $ib <=$#uxids; $ib++ ) {
+for (my $ia = 0; $ia <=$#uxids; $ia++ ) {
+  for (my $ib = $ia + 1; $ib <=$#uxids; $ib++ ) {
     if ($uxids[$ia][0] eq $uxids[$ib][0]) {
       my $tmpstr = "Gleiche uxid: " . $uxids[$ia][0] . " mit ids " . $uxids[$ia][2] . " und " . $uxids[$ib][2];
       push @converrors, $tmpstr;
@@ -3360,8 +3340,8 @@ for ( $ia = 0; $ia <=$#uxids; $ia++ ) {
   }
 }
 
-for ( $ia = 0; $ia <=$#siteuxids; $ia++ ) {
-  for ( $ib = $ia + 1; $ib <=$#siteuxids; $ib++ ) {
+for (my $ia = 0; $ia <=$#siteuxids; $ia++ ) {
+  for (my $ib = $ia + 1; $ib <=$#siteuxids; $ib++ ) {
     if ($siteuxids[$ia] eq $siteuxids[$ib]) {
       my $tmpstr = "Gleiche siteuxid: " . $siteuxids[$ia];
       push @converrors, $tmpstr;
@@ -3370,7 +3350,7 @@ for ( $ia = 0; $ia <=$#siteuxids; $ia++ ) {
 }
 
 
-for ($i=0; $i <= 9; $i++ ) {
+for (my $i = 0; $i <= 9; $i++ ) {
   logMessage($VERBOSEINFO, "Punkte in section " . ($i+1) . ": " . $expoints[$i] . ", davon " . $testpoints[$i] . " von Tests");
   logMessage($VERBOSEINFO, "Sites in section " . ($i+1) . ": " . $sitepoints[$i]);
 }
@@ -3466,7 +3446,7 @@ $confinfocontent .= "var globalsitepoints = [];\n";
 $confinfocontent .= "var globalexpoints = [];\n";
 $confinfocontent .= "var globaltestpoints = [];\n";
 $confinfocontent .= "var globalsections = [];\n";
-for ($i=0; $i<=$#expoints; $i++) {
+for (my $i = 0; $i <= $#expoints; $i++) {
   $confinfocontent .= "globalsitepoints[$i] = " . $sitepoints[$i] . ";\n";
   $confinfocontent .= "globalexpoints[$i] = " . $expoints[$i] . ";\n";
   $confinfocontent .= "globaltestpoints[$i] = " . $testpoints[$i] . ";\n";
@@ -3481,12 +3461,12 @@ if ($config{parameter}{do_feedback} eq "1") { logMessage($CLIENTINFO, "FEEDBACKV
 my @umwordindexlist = ();
 my @wordindexlist = ();
 my @wordindexlinklist = ();
-$i = 0;
+my $icount = 0;
 my $li = "ELI_SW";
-while ($text =~ s/<!-- mpreindexentry;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); \/\/-->/<!-- mindexentry;;$1; \/\/--><a class=\"label\" name=\"$li$i\"><\/a><!-- mmlabel;;$li$i;;$2;;$3;;$4;;$5;;13; \/\/-->/s ) {
+while ($text =~ s/<!-- mpreindexentry;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); \/\/-->/<!-- mindexentry;;$1; \/\/--><a class=\"label\" name=\"$li$icount\"><\/a><!-- mmlabel;;$li$icount;;$2;;$3;;$4;;$5;;13; \/\/-->/s ) {
   my $umstr = $1;
   push @wordindexlist, $1;
-  push @wordindexlinklist, "$li$i";
+  push @wordindexlinklist, "$li$icount";
   $umstr =~ s/ä/ae/g ;
   $umstr =~ s/ö/oe/g ;
   $umstr =~ s/ü/ue/g ;
@@ -3495,7 +3475,7 @@ while ($text =~ s/<!-- mpreindexentry;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); \/\/--
   $umstr =~ s/Ü/Ue/g ;
   $umstr =~ s/ß/ss/g ;
   push @umwordindexlist, $umstr;
-  $i++;
+  $icount++;
 }
 
 # Sortieren mit IdiotSort FUNKTIONIERT NICHT MIT UMLAUTEN
@@ -3503,8 +3483,8 @@ my $swap = 1;
 logMessage($VERBOSEINFO, "Sortiere " . ($#wordindexlist-1) . " Stichwoerter"); 
 while ($swap==1) {
   $swap = 0;
-  for (my $i=0; $i <= $#wordindexlist; $i++ ) {
-    for (my $j=$i+1; $j <= $#wordindexlist; $j++ ) {
+  for (my $i = 0; $i <= $#wordindexlist; $i++ ) {
+    for (my $j = $i + 1; $j <= $#wordindexlist; $j++ ) {
       if (lc($umwordindexlist[$i]) gt lc($umwordindexlist[$j])) {
         my $s = $umwordindexlist[$i];
         $umwordindexlist[$i] = $umwordindexlist[$j];
@@ -3652,8 +3632,7 @@ if ($config{doverbose} == "1") {
       $graph->add_edge($title, $pretitle);
     }
     my @subpages = @{$page->{SUBPAGES}};
-    my $i;
-    for ($i = 0; $i <= $#subpages; $i++) {
+    for (my $i = 0; $i <= $#subpages; $i++) {
       push @list, $subpages[$i];
     }
   }
@@ -3722,16 +3701,13 @@ sub checkRelease {
 # Parameter: Variant id string, main tex file
 sub create_tree {
 
-  $variantactive = $_[0];
-  $rfilename = $_[1];
+
+  $rfilename = $_[0];
   logMessage($CLIENTINFO, "Setting up variant $variantactive");
   logMessage($VERBOSEINFO, "Main tex file is $rfilename");
+  
   my $roottex = readfile($rfilename);
-
   my $outputdir = $config{output};
-  if ($variantactive ne "std") {
-    $outputdir .= "_" . $variantactive;
-  }
   
   logMessage($CLIENTINFO, "Creating output directory " . $outputdir);
   system("rm -fr " . $outputdir);
@@ -3739,6 +3715,16 @@ sub create_tree {
   system("cp -R $basis/converter $outputdir/.");
   system("cp -R " . $config{source} . "/* $outputdir/converter/tex/.");
 
+  # Makropaket und Modifikation im Speicher einrichten
+  $macrotex = readfile("$basis/converter/tex/$macrofile");
+  $modmacrotex = $macrotex;
+  my $repl = "\\variant" . $variantactive . "true \% this string was added by mconvert.pl\n";
+  if ($modmacrotex =~ s/\\variantstdtrue/$repl/s ) {
+    logMessage($VERBOSEINFO, "Preparing $macrofile for variant $variantactive");    
+  } else {
+    logMessage($CLIENTERROR, "Variant selection statement \\variantstdtrue not found in macro file $macrofile");
+  }
+  
   # Preprocessing aller tex-Files
   my $filecount = 0;
   my $globalposdirecthtml = 0; # Fuer DirectHTML-Array, ist unique fuer alle Teildateien
@@ -3961,25 +3947,9 @@ sub create_tree {
       $textex =~ s/$s1/$s2/g ;
     }
 
-    my $incfound;
-    while ($textex =~ s/\\MPreambleInclude{(.*)}/\\MPragma{Nothing}/ ) {
-      my $prename = $1;
-      logMessage($CLIENTINFO, "  Local preamble included: $prename");
-      # Nicht doppelt einbinden, Liste geht ueber ALLE tex-files!
-      $incfound = 0;
-      for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
-        if ($IncludeStorage[$i][1] eq $prename) {
-          logMessage($CLIENTINFO, "    Preamble found again: " . $prename . " (will be ignored, preamble from file " . $IncludeStorage[$i][0] . " is in use)");
-          $incfound = 1;
-        }
-      }
-      if ($incfound eq 0) {
-        push @IncludeStorage, [ $pcompletename, $prename, readfile("< $pdirname\/" . $prename) ];
-      }
-
+    if ($textex =~ s/\\MPreambleInclude{(.*)}/\\MPragma{Nothing}/g ) {
+      logMessage($CLIENTERROR, "Inclusion of local preamble (found " . $1 . ") is no longer supported, please add them to $macrofile manually");
     }
-
-      
     
     if ($modulname ne "") {
       # Dokumentstruktur an tree anpassen, includes und preamble werden schon vorgegeben
@@ -4316,7 +4286,7 @@ sub create_tree {
       # Lokales Makropaket installieren
       
       # Programm wird an dieser Stelle im Aufrufverzeichnis ausgefuehrt
-      system("cp $basis/converter/tex/$macrofile .");
+      writefile($macrofile, $modmacrotex);
       system("cp $basis/converter/tex/maxpage.sty .");
       system("cp $basis/converter/tex/bibgerm.sty .");
       my $mca = "pdflatex -shell-escape $pfilename";
@@ -4396,7 +4366,7 @@ sub create_tree {
   # Erstelle Datei mit DirectHTML-Texten
   my $directhtmlfile = "$outputdir/converter/directhtml.txt";
   my $directhtmlcontent = "<!-- file directhtml.txt is autogenerated, do not modify //-->\n";
-  for ($i=0; $i <= $#DirectHTML; $i++ ) {
+  for (my $i = 0; $i <= $#DirectHTML; $i++ ) {
     $directhtmlcontent .= "<!-- startfilehtml;$i; //-->";
     $directhtmlcontent .= $DirectHTML[$i] . "\n";
     $directhtmlcontent .= "<!-- stopfilehtml;$i; //-->";
@@ -4527,23 +4497,13 @@ sub create_tree {
 
   chdir("../tex");
 
-  $macrotex = readfile($macrofile);
-
-  $macrotex .= "\n% ---------- Automatisch eingebundene Preamblen aus mconvert.pl heraus ---------------\n";
-  logMessage($CLIENTINFO, "Included preambles:");
-  for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
-    logMessage($CLIENTINFO, " module=$IncludeStorage[$i][0], filename=$IncludeStorage[$i][1]");
-    $macrotex .=  "% Automatische Einbindung der Preamble " . $IncludeStorage[$i][1] . ":\n";
-    $macrotex .= $IncludeStorage[$i][2] . "\n";
-  }
-
   # print MINTP "% Automatisierte Tagmakros ---------- \n";
   # print MINTP "\\ifttm\n";
   # print MINTP "\\else\n";
   # print MINTP "\\fi\n";
  
-  my $mint_tex = $macrotex;
-  my $mint_html = $macrotex;
+  my $mint_tex = $modmacrotex;
+  my $mint_html = $modmacrotex;
 
   $mint_tex =~ s/\\ifttm(.+?)\\else(.+?)\\fi/$2/sg;
   $mint_tex =~ s/\\ifttm(.+?)\\fi/\n/sg;
@@ -4599,7 +4559,6 @@ sub create_tree {
 	    }
 	  }
         }
-      $i++;
     }
     if ($pdfok == 1) {
       print("======= PDF files build successfully =======================================\n");
@@ -4748,10 +4707,6 @@ sub create_tree {
     logMessage($CLIENTINFO, "HTML module " . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? "and PDF " : " ") . "created");
     chdir("..");
   } else {
-    my $vzip = $zip;
-    if ($variantactive ne "std") {
-      $vzip =~ s/(.+?)\.zip/$1_$variantactive\.zip/s ;
-    }
     system("chmod -R 777 *");
     system("zip -r $zip *");
     system("cp $zip ../.");
@@ -4790,8 +4745,7 @@ if ($#ARGV eq 0) {
   if ($#ARGV ge 1) {
     # Ein oder mehr Parameter: Konfiguationsdatei plus Kommandos der Form option=wert
     setup_options($ARGV[0]);
-    my $i;
-    for ($i = 1; $i <= $#ARGV; $i++) {
+    for (my $i = 1; $i <= $#ARGV; $i++) {
     
       if ($ARGV[$i] =~ m/(.+)=(.*)/ ) {
         my $obj = $1;
@@ -4848,18 +4802,13 @@ if ($config{dotikz} eq 1) {
   logMessage($CLIENTINFO, "...TikZ externalization activated");
 }
 
+$variantactive = $config{variant};
+
 logTimestamp("Finished initializiation");
-
-
-create_tree("std", $rfilename);
-
-
+create_tree($rfilename);
 logTimestamp("mconvert.pl finished successfully");
-
 
 
 close(LOGFILE);
 
 exit;
-
-
