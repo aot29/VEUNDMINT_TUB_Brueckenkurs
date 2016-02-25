@@ -3262,7 +3262,7 @@ sub converter_conversion {
 
 my $outputdir = $_[0];
 
-logTimestamp("Starting conversion on output directory $outputdir");
+logTimestamp("Starting conversion on output directory $outputdir in directory " . getcwd);
 
 #Alte Daten loeschen
 logMessage($CLIENTINFO, "Copying files into temporary folder " . $config{outtmp});
@@ -3473,7 +3473,6 @@ for ($i=0; $i<=$#expoints; $i++) {
   $confinfocontent .= "globalsections[$i] = \"" . $sections[$i] . "\";\n";
 }
 
-# Wir befinden uns gerade im zu erzeugenden Baum, in dem perl ein Unverzeichnis ist, das Kopieren der Dateien von perl/files nach .. wurde schon durchgefuehrt
 writefile($config{outtmp} . "/convinfo.js" , $confinfocontent);
 
 if ($config{parameter}{do_export} eq "1") { logMessage($CLIENTINFO,  "EXPORTVERSION WILL BE GENERATED");  }
@@ -4375,7 +4374,7 @@ sub create_tree {
 
     
     
-    chdir($absexedir);
+    chdir($basis);
 
     writefile($texs[$ka], $textex);
   }
@@ -4816,14 +4815,13 @@ if ($#ARGV eq 0) {
 
 checkSystem();
 
-my $absexedir = Cwd::cwd(); 
-$basis = $absexedir;
+$basis = Cwd::cwd(); 
 
 checkOptions();
 
 $rfilename = $config{source} . "/" . $config{module}; # sollte durch PERL-Join ersetzt werden
 
-logMessage($VERBOSEINFO, " Absolute directory: " . $absexedir);
+logMessage($VERBOSEINFO, " Absolute directory: " . $basis);
 logMessage($VERBOSEINFO, "Converter directory: " . $basis);
 logMessage($VERBOSEINFO, "   Source directory: " . $config{source});
 logMessage($VERBOSEINFO, "   Output directory: " . $config{output});

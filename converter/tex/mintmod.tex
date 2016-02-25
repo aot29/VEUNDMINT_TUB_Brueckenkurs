@@ -2165,6 +2165,11 @@ Hier erscheint die Testauswertung!
 % Separation von Aufzaehlung und Bedingung in Menge
 \newcommand{\MCondSetSep}{\,:\,} %oder '\mid'
 
+% Konverter kennt mathopen nicht
+\ifttm
+\def\mathopen#1{}
+\fi
+
 % ---------------------------------- START Makros, die von der Kursvariante abhaengen ----------------------------------
 
 \ifvariantunotation
@@ -2179,7 +2184,7 @@ Hier erscheint die Testauswertung!
   \newcommand{\MExponentensymbXYZl}{\times} 
 
   % Begrenzungszeichen fuer offene Intervalle
-  \newcommand{\MoIl}[1][]{\mbox{}#1(} % bzw. ']'
+  \newcommand{\MoIl}[1][]{\mbox{}#1(\mathopen{}} % bzw. ']'
   \newcommand{\MoIr}[1][]{#1)\mbox{}} % bzw. '['
 
   % Zahlen-Separation im IntervaLL
@@ -2204,7 +2209,7 @@ Hier erscheint die Testauswertung!
   \newcommand{\MExponentensymbXYZl}{\times} 
 
   % Begrenzungszeichen fuer offene Intervalle
-  \newcommand{\MoIl}[1][]{\mbox{}#1]} % bzw. '('
+  \newcommand{\MoIl}[1][]{\mbox{}#1]\mathopen{}} % bzw. '('
   \newcommand{\MoIr}[1][]{#1[\mbox{}} % bzw. ')'
 
   % Zahlen-Separation im IntervaLL
