@@ -4,6 +4,11 @@
 
 \newif\ifttm                % gesetzt falls Uebersetzung in HTML stattfindet, sonst uebersetzung in PDF
 
+% Wahl der Notationsvariante ist im PDF immer std, in der HTML-Uebersetzung wird vom Konverter die Auswahl modifiziert
+\newif\ifvariantstd
+\newif\ifvariantunotation
+\variantstdtrue % Diese Zeile wird vom Konverter erkannt und ggf. modifiziert, daher nicht veraendern!
+
 
 \def\MOutputDVI{1}
 \def\MOutputPDF{2}
@@ -62,15 +67,6 @@
 \usepackage{ifpdf}
 
 \usepackage{movie15}
-
-\ifttm
-\else
-% \usepackage{pdfanim} % Fuer MATLAB-Modul Info1314
-%     \PDFAnimLoad[width=.8\linewidth,loop,remember]{Informatik_Matlab_Animation}{Info1314_Matlab/Informatik_Matlab_Animation}{100}
-%     \PDFAnimLoad[width=.5\linewidth,loop,remember]{Informatik_Matlab_Aufg_Astroide_Animation}{Info1314_Matlab/Informatik_Matlab_Aufg_Astroide_Animation}{100}
-%\ifpdfoutput{\DeclareGraphicsExtensions{.pdf,.png,.jpg}}{}\fi
-\fi
-
 
 \setcounter{tocdepth}{2} % In Inhaltsverzeichnis bis subsection
 \setcounter{secnumdepth}{3} % Nummeriert bis subsubsection

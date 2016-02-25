@@ -21,6 +21,7 @@ source          =>      "module_veundmint",  # Quellverzeichnis relativ zur Posi
 module          =>      "tree_tu9onlinekurs.tex",  # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
 outtmp          =>      "tmp",               # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
 description     =>      "Onlinebrückenkurs Mathematik",
+author          =>      "Projekt VE&MINT",
 moduleprefix    =>      "Onlinebrückenkurs Mathematik",  # Wird vor Browser-Bookmarks gesetzt
 
 variants        =>      ["std", "unotation"],  # zu erzeugende Varianten der HTML-files, muss mindestens "std" (die Hauptvariante) enthalten, bisher wird nur target-xml variiert
