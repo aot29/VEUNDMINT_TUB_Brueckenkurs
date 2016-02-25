@@ -1,6 +1,6 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
-\Mtikzexternalize
+%\Mtikzexternalize
 
 \begin{document}
 
@@ -206,6 +206,7 @@ bezeichnet. Das Symbol $\R^3$ wird dabei als \glqq$\R$ drei\grqq oder \glqq$\R$ 
 \MDeclareSiteUXID{VBKM10_Vektoren}
 Punkte in der Ebene und im Raum, die als Koordiantenpaare oder -tripel bezüglich eines vorgegebenen Koordinatensystems gegeben sind, können durch Strecken verbunden werden. Gibt man diesen Strecken zusätzlich eine Richtung so erhält man Pfeile, die von einem Punkt zum anderen zeigen:
 
+\begin{center}
 \begin{tabular}{cc}
 \MTikzAuto{
 \begin{tikzpicture}[>=stealth]
@@ -219,10 +220,7 @@ Punkte in der Ebene und im Raum, die als Koordiantenpaare oder -tripel bezüglich
 \draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
 %Achsenbeschriftung
 \draw (4.5,0) node[anchor=north west] {$x$};
-\draw (-0.7,4.8) node[anchor=north west] {$y$};
-%Pfeile
-\draw[->, line width = 1.5pt] (0,0) -- (2,1);
-\draw[->, line width = 1.5pt] (4,1) -- (1,3);
+\draw (-0.5,4.8) node[anchor=north west] {$y$};
 %Punkte
 \draw [fill = black] (0,0) circle (1.5pt);
 \draw [color=black] (0,0) node[anchor=south east] {\footnotesize $O=\MPointTwo{0}{0}$};
@@ -232,6 +230,9 @@ Punkte in der Ebene und im Raum, die als Koordiantenpaare oder -tripel bezüglich
 \draw [color=blue] (4,1) node[anchor=south west] {\footnotesize $Q=\MPointTwo{4}{1}$};
 \draw [fill = violet] (1,3) circle (1.5pt);
 \draw [color=violet] (1,3) node[anchor=south] {\footnotesize $R=\MPointTwo{1}{3}$};
+%Pfeile
+\draw[->, line width = 1.5pt] (0,0) -- (2,1);
+\draw[->, line width = 1.5pt] (4,1) -- (1,3);
 \end{tikzpicture}
 }
 
@@ -251,9 +252,6 @@ Punkte in der Ebene und im Raum, die als Koordiantenpaare oder -tripel bezüglich
   \draw (-3pt,\coo) -- (3pt,\coo) node[left=4pt] {\footnotesize \coo};
   \draw (xyz cs:y=-0.1pt,z=\coo) -- (xyz cs:y=0.1pt,z=\coo) node[below=3pt] {\scriptsize \coo};
 }
-%Arrows
-\draw[->, line width = 1.5pt] (0,0,0) -- (2,-1,2);
-\draw[->, line width = 1.5pt] (3,1,0) -- (1,3,-1);
 % % Dots and labels for the points
 \draw[fill=black] (0,0,0) circle (1.5pt);
 \draw[color=black] (0,0,0) node[anchor=south east] {\footnotesize $O=\MPointThree{0}{0}{0}$};
@@ -262,14 +260,401 @@ Punkte in der Ebene und im Raum, die als Koordiantenpaare oder -tripel bezüglich
 \draw[fill=blue] (3,1,0) circle (1.5pt);
 \draw[color=blue] (3,1,0) node[anchor=west] {\footnotesize $Q=\MPointThree{3}{1}{0}$};
 \draw[fill=violet] (1,3,-1) circle (1.5pt);
-\draw[color=violet] (1,3,-1) node[anchor=west] {\footnotesize $P=\MPointThree{1}{3}{-1}$};
-
+\draw[color=violet] (1,3,-1) node[anchor=west] {\footnotesize $R=\MPointThree{1}{3}{-1}$};
+%Arrows
+\draw[->, line width = 1.5pt] (0,0,0) -- (2,-1,2);
+\draw[->, line width = 1.5pt] (3,1,0) -- (1,3,-1);
 \end{tikzpicture}
 }
 \end{tabular}
+\end{center}
+
+Im Sinne dieser Abbildungen kann man den Informationsgehalt eines Pfeils folgendermaßen charakterisieren: Ein Pfeil gibt an, wie man von einem Punkt (am Fußpunkt des Pfeils) zu einem anderen Punkt (an der Spitze des Pfeils gelangt). So gibt der Pfeil, welcher im zweidimensionalen Fall $Q$ mit $R$ verbindet, wieder, dass man von $Q$ aus um $3$ Längeneinheiten nach links und um $2$ Längeneinheiten nach oben gehen muss um $R$ zu erreichen. Oder in einer mathematischeren Sprechweise: Man gehe von $Q$ aus um $-3$ entlang der $x$-Achse und um $2$ entlang der $y$-Achse. Für den Pfeil, der im zweidimensionalen Fall den Ursprung mit dem Punkt $P$ verbindet ist dies sogar noch einfacher, denn um von $O$ nach $P$ zu gelangen, geht man einfach um $2$ in $x$-Richtung und um $1$ in $y$-Richtung. Diese Werte entsprechen natürlich genau den Koordinaten des Punktes $P$.
+
+\begin{MExercise}
+Bestimmen Sie für die Pfeile in der obigen dreidimensionalen Abbildung die (vorzeichenbehafteten) Bewegungen in die drei Koordinatenrichtungen, die nötig sind um vom Fußpunkt zur Spitze des jeweiligen Pfeils zu gelangen. Gehen Sie analog zu den oben stehenden Erläuterungen im zweidimensionalen Fall vor.
+
+\begin{itemize}
+ \item[{}] Für den Pfeil von $O$ nach $P$: 
+ 
+  \begin{MExerciseItems}
+  \item{in $x$-Richtung: \MLFunctionQuestion{15}{2}{5}{x}{5}{Pfeil1x},}
+  \item{in $y$-Richtung: \MLFunctionQuestion{15}{-1}{5}{x}{5}{Pfeil1y},}
+  \item{in $z$-Richtung: \MLFunctionQuestion{15}{2}{5}{x}{5}{Pfeil1z}.}
+  \end{MExerciseItems} 
+  \item[{}] Für den Pfeil von $Q$ nach $R$:
+  
+  \begin{MExerciseItems}
+  \item{in $x$-Richtung: \MLFunctionQuestion{15}{-2}{5}{x}{5}{Pfeil2x},}
+  \item{in $y$-Richtung: \MLFunctionQuestion{15}{2}{5}{x}{5}{Pfeil2y},}
+  \item{in $z$-Richtung: \MLFunctionQuestion{15}{-1}{5}{x}{5}{Pfeil2z}.}
+  \end{MExerciseItems} 
+\end{itemize}
+
+\begin{MHint}{Lösung}
+
+\begin{itemize}
+ \item[{}] Für den Pfeil von $O$ nach $P$: 
+ 
+  \begin{MExerciseItems}
+  \item{in $x$-Richtung: $2$,}
+  \item{in $y$-Richtung: $-1$,}
+  \item{in $z$-Richtung: $2$.}
+  \end{MExerciseItems} 
+  \item[{}] Für den Pfeil von $Q$ nach $R$:
+  
+  \begin{MExerciseItems}
+  \item{in $x$-Richtung: $-2$,}
+  \item{in $y$-Richtung: $2$,}
+  \item{in $z$-Richtung: $-1$.}
+  \end{MExerciseItems} 
+\end{itemize}
+
+\end{MHint}
+\end{MExercise}
+
+Nun ist ersichtlich, dass auch im Fall der Pfeile die jeweils $Q$ mit $R$ verbinden, die Bewegungen in die jeweiligen Koordinatenrichtungen durch die Koordinaten der Punkte an Fußpunkt und Spitze der Pfeile bestimmt werden. Es gilt offenbar im zweidimensionalen Fall:
+\[
+ \left.\begin{array}{r}R=\MPointTwo{1}{3} \\ Q=\MPointTwo{4}{1}\end{array}\right\}\MDFPSpace\Rightarrow\MDFPSpace\left\{\begin{array}{l}\textrm{in}\ x\textrm{-Richtung:}\MDFPSpace-3=1-4 \\ \textrm{in}\ y\textrm{-Richtung:}\MDFPSpace2=3-1\end{array}\right.
+\]
+und im dreidimensionalen Fall:
+\[
+ \left.\begin{array}{r}R=\MPointThree{1}{3}{-1} \\ Q=\MPointThree{3}{1}{0}\end{array}\right\}\MDFPSpace\Rightarrow\MDFPSpace\left\{\begin{array}{l}\textrm{in}\ x\textrm{-Richtung:}\MDFPSpace-2=1-3 \\ \textrm{in}\ y\textrm{-Richtung:}\MDFPSpace2=3-1 \\ \textrm{in}\ z\textrm{-Richtung:}\MDFPSpace-1=-1-0\MDFPeriod\end{array}\right.
+\]
+Die Bewegungen in die verschiedenen Koordinatenrichtungen ergeben sich also als die Differenzen der Koordinaten des Punkts an der Spitze des Pfeils und des Punkts am Fußpunkt des Pfeils. Dies bedeutet aber, dass alle Punktepaare, für welche sich gleiche Koordinatendifferenzen ergeben, jeweils durch den gleichen Pfeil verbunden sind. Geometrisch werden die Pfeile dabei nur, unter Beibehaltung ihrer Orientierung, parallelverschoben. Die Punktepaare $P$ und $Q$, $A$ und $B$ sowie $O$ und $R$ im folgenden zweidimensionalen Bild werden jeweils vom gleichen Pfeil verbunden:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}[>=stealth]
+%Koordinatensystem
+\draw[->,color=black] (-3.5,0) -- (4.5,0);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (0,3.5);
+\foreach \y in {-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.8) node[anchor=north west] {$y$};
+%Punkte
+\draw [fill = black] (0,0) circle (1.5pt);
+\draw [color=black] (0,0) node[anchor=south west] {\footnotesize $O=\MPointTwo{0}{0}$};
+\draw [fill = red] (-3,1) circle (1.5pt);
+\draw [color=red] (-3,1) node[anchor=south west] {\footnotesize $R=\MPointTwo{-3}{1}$};
+\draw [fill = blue] (4,1) circle (1.5pt);
+\draw [color=blue] (4,1) node[anchor=south west] {\footnotesize $P=\MPointTwo{4}{1}$};
+\draw [fill = violet] (1,2) circle (1.5pt);
+\draw [color=violet] (1,2) node[anchor=south] {\footnotesize $Q=\MPointTwo{1}{2}$};
+\draw [fill = green] (2,-2) circle (1.5pt);
+\draw [color=green] (2,-2) node[anchor=north west] {\footnotesize $A=\MPointTwo{2}{-2}$};
+\draw [fill = brown] (-1,-1) circle (1.5pt);
+\draw [color=brown] (-1,-1) node[anchor=east] {\footnotesize $B=\MPointTwo{-1}{-1}$};
+%Pfeile
+\draw[->, line width = 1.5pt] (4,1) -- (1,2);
+\draw[->, line width = 1.5pt] (0,0) -- (-3,1);
+\draw[->, line width = 1.5pt] (2,-2) -- (-1,-1);
+\end{tikzpicture}
+} 
+\end{center}
+
+Man kann hier natürlich noch beliebig viele weitere Punktepaare finden, die durch ebendiesen Pfeil verbunden werden und das Ganze funktioniert selbstverständlich analog auch im dreidimensionalen Fall. 
+
+Jeder Pfeil in der obigen Abbildung gibt also den gleichen Informationsgehalt, nämlich $-3$ in $x$-Richtung und $1$ in $y$-Richtung, wieder. Was liegt also mathematisch näher, als jeden dieser Pfeile nur als Vertreter (ein sogenannter \textbf{Repräsentant}) eines viel grundlegenderen Objekts aufzufassen? Dieses grundlegendere mathematische Objekt heißt \textbf{Vektor} und hat in diesem Fall die \textbf{Komponenten} $-3$ ($x$-Komponente) und $1$ ($y$-Komponente), welche als sogenanntes $2$-\textbf{Tupel} übereinander geschrieben werden:
+\[
+ \textrm{Vektor mit den Repräsentanten aus obiger Abbildung}\ = \MVector{-3\\1}\MDFPeriod
+\]
+Die folgende Infobox fasst diese Erkenntnis und noch einige weitere Schreib- und Sprechweisen zu Vektoren zusammen.
+
+\begin{MInfo}
+Ein zwei- bzw. dreidimensionaler \MEntry{Vektor}{Vektor} ist ein $2$- bzw. $3$-\MEntry{Tupel}{Tupel} mit $2$ bzw. $3$ \MEntry{Komponenten}{Komponenten (von Vektoren)}, die als $x$-, $y$- (und $z$-)Komponenten bezeichnet werden. Als Variablen für Vektoren werden für gewöhnlich Kleinbuchstaben mit Pfeil benutzt. Als Variablen für ihre Komponenten oft der gleiche Kleinbuchstabe mit der zugehörigen Koordinatenrichtung als Index zur Unterscheidung: 
+\[
+ \MVec{a}=\MVector{a_x\\a_y},\MDFPaSpace \MVec{b}=\MVector{b_x\\b_y\\b_z}\MDFPeriod
+\]
+Ein Pfeil in der Ebene oder im Raum heißt \MEntry{Repräsentant}{Repräsentant (eines Vektors)} des Vektors, wenn dieser zwei Punkte in der Ebene oder im Raum verbindet, die so liegen, dass die Differenzen der Koordinaten des Punkts an der Spitze des Pfeils und des Punkts am Fußpunkt des Pfeils, genau die Komponenten des Vektors ergeben.  
+\end{MInfo}
+
+Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum bzw. zwei Punkte $Q$ und $R$ in der Ebene oder im Raum gegeben hat, und möchte nun den Vektor angeben, von welchem der Pfeil vom Ursprung $O$ zu dem gegebenen Punkt $P$ bzw. von welchem der Pfeil der $Q$ mit $R$ verbindet, jeweils ein Repräsentant ist. Die dafür benutzte Schreib- und Sprechweise sowie die nötige Rechenoperation gibt die folgende Infobox wieder:
+
+\begin{MInfo}
+\begin{itemize}
+ \item \textbf{Zweidimensionaler Fall:}\\
+ Sind $P=\MPointTwo{p_x}{p_y}$ sowie $Q=\MPointTwo{q_x}{q_y}$ und $R=\MPointTwo{r_x}{r_y}$ Punkte in der Ebene, so heißt der Vektor
+ \[
+  \MDVec{Q R} := \MVector{r_x-q_x \\ r_y-q_y}
+ \]
+ \MEntry{Verbindungsvektor vom Punkt}{Verbindungsvektor} $Q$ \textbf{zum Punkt} $R$ und 
+ \[
+  \MDVec{P} := \MDVec{O P} = \MVector{p_x\\p_y}
+ \]
+ \MEntry{Ortsvektor des Punkts}{Ortsvektor} $P$. Dies sind genau diejenigen Vektoren, welche als Repräsentanten unter anderem die entsprechenden Verbindungspfeile der Punkte besitzen:
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}[>=stealth]
+%Koordinatensystem
+\draw[->,color=black] (-1.5,0) -- (4.5,0);
+% \foreach \x in {-3,-2,-1,1,2,3,4}
+% \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,4.5);
+\foreach \y in {-2,-1,1,2,3}
+% \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+% \draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.8) node[anchor=north west] {$y$};
+%Koordinaten
+\draw[dashed, color=red] (0.5,1) -- (0.5,0);
+\draw[dashed, color=red] (0.5,1) -- (0,1);
+\draw[color=red] (0.5,-2pt) -- (0.5,2pt);
+\draw[color=red] (0.5,0) node[anchor=north] {\scriptsize $p_x$};
+\draw[color=red] (-2pt,1) -- (2pt,1);
+\draw[color=red] (0,1) node[anchor=east] {\scriptsize $p_y$};
+
+\draw[dashed, color=blue] (4,1.5) -- (4,0);
+\draw[dashed, color=blue] (4,1.5) -- (0,1.5);
+\draw[color=blue] (4,-2pt) -- (4,2pt);
+\draw[color=blue] (4,0) node[anchor=north] {\scriptsize $q_x$};
+\draw[color=blue] (-2pt,1.5) -- (2pt,1.5);
+\draw[color=blue] (0,1.5) node[anchor=east] {\scriptsize $q_y$};
+
+\draw[dashed, color=violet] (1,3.5) -- (0,3.5);
+\draw[dashed, color=violet] (1,3.5) -- (1,0);
+\draw[color=violet] (1,-2pt) -- (1,2pt);
+\draw[color=violet] (1,0) node[anchor=north] {\scriptsize $r_x$};
+\draw[color=violet] (-2pt,3.5) -- (2pt,3.5);
+\draw[color=violet] (0,3.5) node[anchor=east] {\scriptsize $r_y$};
+%Punkte
+\draw [fill = black] (0,0) circle (1.5pt);
+\draw [color=black] (0,0) node[anchor=south east] {\footnotesize $O=\MPointTwo{0}{0}$};
+\draw [fill = red] (0.5,1) circle (1.5pt);
+\draw [color=red] (0.5,1) node[anchor=south] {\footnotesize $P$};
+\draw [fill = blue] (4,1.5) circle (1.5pt);
+\draw [color=blue] (4,1.5) node[anchor=south west] {\footnotesize $Q$};
+\draw [fill = violet] (1,3.5) circle (1.5pt);
+\draw [color=violet] (1,3.5) node[anchor=south] {\footnotesize $R$};
+%Pfeile
+\draw[->, line width = 1.5pt] (0,0) -- (0.5,1);
+\draw[->, line width = 1.5pt] (4,1.5) -- (1,3.5);
+\end{tikzpicture}
+} 
+\end{center}
+
+ \item \textbf{Dreidimensionaler Fall:}\\
+ Sind $P=\MPointThree{p_x}{p_y}{p_z}$ sowie $Q=\MPointThree{q_x}{q_y}{q_z}$ und $R=\MPointThree{r_x}{r_y}{r_z}$ Punkte im Raum, so heißt der Vektor
+ \[
+  \MDVec{Q R} := \MVector{r_x-q_x \\ r_y-q_y \\ r_z-q_z}
+ \]
+ \MEntry{Verbindungsvektor vom Punkt}{Verbindungsvektor} $Q$ \textbf{zum Punkt} $R$ und 
+ \[
+  \MDVec{P} := \MDVec{O P} = \MVector{p_x\\p_y\\p_z}
+ \]
+ \MEntry{Ortsvektor des Punkts}{Ortsvektor} $P$. Dies sind genau diejenigen Vektoren, welche als Repräsentanten unter anderem die entsprechenden Verbindungspfeile der Punkte besitzen:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth]
+
+% The axes
+\draw[->] (xyz cs:x=-2.5) -- (xyz cs:x=3.5) node[above] {\footnotesize $x$};
+\draw[->] (xyz cs:y=-2.5) -- (xyz cs:y=3.5) node[right] {\footnotesize $y$};
+\draw[->] (xyz cs:z=-2.5) -- (xyz cs:z=3.5) node[left] {\footnotesize $z$};
+% The ticks
+% \foreach \coo in {-2,-1,1,2,3}
+% {
+%   \draw (\coo,-3pt) -- (\coo,3pt) node[below=4pt] {\footnotesize \coo};
+%   \draw (-3pt,\coo) -- (3pt,\coo) node[left=4pt] {\footnotesize \coo};
+%   \draw (xyz cs:y=-0.1pt,z=\coo) -- (xyz cs:y=0.1pt,z=\coo) node[below=3pt] {\scriptsize \coo};
+% }
+%Coordinates
+\draw[dashed, color=red] (0.5,2,-1) -- (0.5,2,0);
+\draw[dashed, color=red] (0.5,2,-1) -- (0.5,0,-1);
+\draw[dashed, color=red] (0.5,2,-1) -- (0,2,-1);
+\draw[dashed, color=red] (0.5,2,0) -- (0,2,0);
+\draw[dashed, color=red] (0.5,0,-1) -- (0.5,0,0);
+\draw[dashed, color=red] (0,2,-1) -- (0,2,0);
+\draw[dashed, color=red] (0.5,0,-1) -- (0,0,-1);
+\draw[color=red] (0,-0.06,-1) -- (0,0.06,-1);
+\draw[color=red] (0,0,-1) node[anchor=north] {\scriptsize $p_z$};
+\draw[color=red] (0.5,-2pt) -- (0.5,2pt);
+\draw[color=red] (0.5,0,0) node[anchor=north] {\scriptsize $p_x$};
+\draw[color=red] (-2pt,2) -- (2pt,2);
+\draw[color=red] (0,2,0) node[anchor=east] {\scriptsize $p_y$};
+
+\draw[dashed, color=violet] (1,-1,2) -- (0,-1,2);
+\draw[dashed, color=violet] (1,-1,2)-- (1,0,2);
+\draw[dashed, color=violet] (1,-1,2)-- (1,-1,0);
+\draw[dashed, color=violet] (0,-1,2) -- (0,-1,0);
+\draw[dashed, color=violet] (1,0,2) -- (1,0,0);
+\draw[dashed, color=violet] (1,0,2) -- (0,0,2);
+\draw[dashed, color=violet] (1,-1,0) -- (0,-1,0);
+\draw[color=violet] (1,-2pt) -- (1,2pt);
+\draw[color=violet] (1,0,0) node[anchor=south] {\scriptsize $r_x$};
+\draw[color=violet] (-2pt,-1) -- (2pt,-1);
+\draw[color=violet] (0,-1,0) node[anchor=east] {\scriptsize $r_y$};
+\draw[color=violet] (0,-0.06,2) -- (0,0.06,2);
+\draw[color=violet] (0,0,2) node[anchor=east] {\scriptsize $r_z$};
+
+\draw[dashed, color=blue] (3,1,1) -- (0,1,1);
+\draw[dashed, color=blue] (3,1,1) -- (3,0,1);
+\draw[dashed, color=blue] (3,1,1) -- (3,1,0);
+\draw[dashed, color=blue] (0,1,1) -- (0,1,0);
+\draw[dashed, color=blue] (3,1,0) -- (0,1,0);
+\draw[dashed, color=blue] (3,0,1) -- (0,0,1);
+\draw[dashed, color=blue] (3,0,1) -- (3,0,0);
+\draw[color=blue] (3,-2pt) -- (3,2pt);
+\draw[color=blue] (3,0,0) node[anchor=south] {\scriptsize $q_x$};
+\draw[color=blue] (-2pt,1) -- (2pt,1);
+\draw[color=blue] (0,1,0) node[anchor=east] {\scriptsize $q_y$};
+\draw[color=blue] (0,-0.06,1) -- (0,0.06,1);
+\draw[color=blue] (0,0,1) node[anchor=east] {\scriptsize $q_z$};
+
+% % Points:
+\draw[fill=black] (0,0,0) circle (1.5pt);
+\draw[color=black] (0,0,0) node[anchor=south east] {\footnotesize $O=\MPointThree{0}{0}{0}$};
+\draw[fill=red] (0.5,2,-1) circle (1.5pt);
+\draw[color=red] (0.5,2,-1) node[anchor=south] {\footnotesize $P$};
+\draw[fill=violet] (1,-1,2) circle (1.5pt);
+\draw[color=violet] (1,-1,2) node[anchor=north] {\footnotesize $R$};
+\draw[fill=blue] (3,1,1) circle (1.5pt);
+\draw[color=blue] (3,1,1) node[anchor=west] {\footnotesize $Q$};
+
+%Arrows
+\draw[->, line width = 1.5pt] (0,0,0) -- (0.5,2,-1);
+\draw[->, line width = 1.5pt] (3,1,1) -- (1,-1,2);
+\end{tikzpicture}
+}
+\end{center}
+
+\end{itemize}
+ 
+\end{MInfo}
+
+\begin{MExample}
+\begin{itemize}
+ \item \textbf{Zweidimensionaler Fall:}\\
+ Der Punkt $P=\MPointTwo{-1}{-2}$ besitzt den Ortsvektor 
+ \[
+  \MDVec{P} = \MVector{-1\\-2}.
+ \]
+ Der Vektor 
+ \[
+  v=\MVector{2\\0}
+ \]
+ ist zum Beispiel Verbindungsvektor vom Punkt $A=\MPointTwo{1}{1}$ zum Punkt $B=\MPointTwo{3}{1}$, also gilt
+ \[
+  v=\MDVec{A B}. 
+ \]
+ Allerdings ist $v\neq\MDVec{B A}$, denn 
+ \[
+  \MDVec{B A} = \MVector{1-3\\1-1} = \MVector{-2\\0}\neq\MVector{2\\0}.
+ \]
+ \item \textbf{Dreidimensionaler Fall:}\\
+ Zu den beiden Punkten $Q=\MPointThree{1}{1}{1}$ und $R=\MPointThree{-2}{0}{2}$ ist der Verbindungsvektor von $Q$ nach $R$:
+ \[
+  \MDVec{Q R}=\MVector{-2-1\\0-1\\2-1}= \MVector{-3\\-1\\1}\MDFPeriod
+ \]
+ Aber der Verbindungsvektor von $R$ nach $Q$ ist
+ \[
+  \MDVec{R Q}=\MVector{1-(-2)\\1-0\\1-2}=\MVector{3\\1\\-1}.
+ \]
+ Der Vektor 
+ \[
+  \MVector{3\\1\\-1}
+ \]
+ ist natürlich gleichzeitig auch Ortsvektor des Punktes $\MPointThree{3}{1}{-1}$.
+\end{itemize}
+ 
+\end{MExample}
+
+Das obige Beispiel zeigt bereits folgende interessante Tatsache: Dreht man die Orientierung eines Vektors (und damit die Orientierung aller Pfeile, die ihn repräsentieren) um, so erhält man einen Vektor in dem die Komponenten das entgegengesetzte Vorzeichen besitzen. Man spricht hier auch vom sogenannten \textbf{Gegenvektor}. Dies ist ein erster Hinweis darauf, dass man mit Vektoren komponentenweise rechnen kann. Dies wird ausführlich im nachfolgenden Abschnitt \MNRef{VBKM10_Vektorrechnung} behandelt.  
+
+Außerdem gibt es offenbar im zwei- und im dreidimensionalen Fall jeweils einen Vektor, dessen Komponenten alle gleich $0$ sind:
+\[
+ \MVector{0\\0}\MDFPaSpace\textrm{bzw.}\MDFPaSpace\MVector{0\\0\\0}\MDFPeriod
+\]
+Dieser Vektor wird jeweils als zwei- bzw. dreidimensionaler \textbf{Nullvektor} bezeichnet. Man kann sich vorstellen, dass seine Repräsentanten \glqq Pfeile der Länge $0$\grqq\ sind, also solche die einen Punkt mit sich selbst verbinden. Oder anders gesagt: Der Nullvektor ist der Ortsvektor des Ursprungs.
+
+\begin{MExercise}
+Gegeben sind die Punkte
+\[
+ A=\MPointTwo[\Big]{-1}{\frac{3}{2}}\MDFPaSpace\textrm{und}\MDFPaSpace B=\MPointTwo{\pi}{-2}
+\]
+in der Ebene, die Punkte
+\[
+ P=\MPointThree{\MZahl{0}{5}}{1}{-1}\MDFPaSpace\textrm{und}\MDFPaSpace Q=\MPointThree[\Big]{\frac{1}{2}}{-1}{1}
+\]
+im Raum sowie die zwei- bzw. dreidimensionalen Vektoren
+\[
+ a=\MVector{\pi\\-1}\MDFPaSpace\textrm{und}\MDFPaSpace v=\MVector{0\\3\\-3}.
+\]
+\begin{itemize}
+ \item Bestimmen Sie die folgenden Vektoren:\\
+ \begin{MExerciseItems}
+\item{$\MDVec{A B}=$\MLFunctionQuestion{15}{(pi+1,-(7/2))}{5}{x}{5}{VECI1}} 
+\item{$\MDVec{B A}=$\MLFunctionQuestion{15}{(-1-pi,(7/2))}{5}{x}{5}{VECI2}} 
+\item{$\MDVec{P Q}=$\MLFunctionQuestion{15}{(0,-2,2)}{5}{x}{5}{VECI3}} 
+\item{$\MDVec{Q P}=$\MLFunctionQuestion{15}{(0,2,-2)}{5}{x}{5}{VECI4}} 
+\end{MExerciseItems}
+\MInputHint{Vektoren können in der Form \texttt{(a;b)} bzw. \texttt{(a;b;c)} eingegeben werden, zum Beispiel \texttt{(1;0)} für den Vektor $\MVector{1\\0}$. Die Zahl $\pi$ kann als \texttt{pi} eingegeben werden.} 
+
+\item Bestimmen Sie Punkte $C$ in der Ebene und $R$ im Raum, so dass folgende Aussagen wahr sind:\\
+\begin{MExerciseItems}
+\item{$a=\MDVec{C B}\MDFPSpace\Leftrightarrow\MDFPSpace C=$\MLFunctionQuestion{15}{(0,-1)}{5}{x}{5}{POINTI1}} 
+\item{$v=\MDVec{Q R}\MDFPSpace\Leftrightarrow\MDFPSpace R=$\MLFunctionQuestion{15}{(0.5,2,-2)}{5}{x}{5}{POINTI2}} 
+\end{MExerciseItems}
+\MInputHint{Auch Punkte können in der Form \texttt{(a;b)} bzw. \texttt{(a;b;c)} eingegeben werden.} 
+
+\item Zeichnen Sie mindestens drei Repräsentanten des Vektors $a$. 
+\end{itemize}
 
 
+\begin{MHint}{Lösung}
+\begin{itemize}
+ \item Die gesuchten Vektoren sind:\\
+ \begin{MExerciseItems}
+\item{$\MDVec{A B}=\MVector{\pi+1\\-\frac{7}{2}}$} 
+\item{$\MDVec{B A}=\MVector{-1-\pi\\ \frac{7}{2}}$}
+\item{$\MDVec{P Q}=\MVector{0\\-2\\2}$} 
+\item{$\MDVec{Q P}=\MVector{0\\2\\-2}$} 
+\end{MExerciseItems}
+ \item Die gesuchten Punkte sind:\\
+  \begin{MExerciseItems}
+\item{$C=\MPointTwo{0}{-1}$} 
+\item{$R=\MPointThree[\Big]{\frac{1}{2}}{2}{-2}$}
+\end{MExerciseItems}
+ \item Das folgende Bild zeigt drei mögliche Repräsentanten von $a=\MVector{\pi\\-1}$:
+ 
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}[>=stealth]
+%Koordinatensystem
+\draw[->,color=black] (-2.5,0) -- (6.5,0);
+\foreach \x in {-2,-1,1,2,3,4,5,6}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,3.5);
+\foreach \y in {-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (6.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.8) node[anchor=north west] {$y$};
+%Punkte
 
+%Pfeile
+\draw[->, line width = 1.5pt] (0,0) -- (3.14,-1);
+\draw[->, line width = 1.5pt] (-2,2) -- (1.14,1);
+\draw[->, line width = 1.5pt] (2,3) -- (5.14,2);
+\end{tikzpicture}
+} 
+\end{center}
+
+\end{itemize}
+
+\end{MHint}
+
+\end{MExercise}
+
+Die vorhergehende Einführung des Vektorkonzepts zeigt die nahe Verwandtschaft von Vektoren und Punkten. Tatsächlich gibt es sogar eine eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren: Zu jedem Punkt gibt es genau einen Vektor, der Ortsvektor des Punktes ist und umgekehrt gibt es zu jedem Vektor genau einen Punkt, für den der Vektor der zugehörige Ortsvektor ist. Dies gilt im zwei- sowie im dreidimensionalen Fall. Das rechtfertigt nun die -- in den folgenden Abschnitten oft benutzte -- Konvention Punkte durch ihre Ortsvektoren zu beschreiben. So beschreibt man zum Beispiel einen Punkt $P=\MPointTwo{2}{1}$ statt durch seine Koordinaten $\MPointTwo{2}{1}$ oft durch seinen zugehörigen Ortsvektor $\MDVec{P}=\MVector{2\\1}$. Dies bringt bei der Untersuchung geometrischer Objekte wie Geraden oder Ebenen (insbesondere im dreidimensionalen Fall) dann auch gewisse Vorteile in der Beschreibung mit sich (vgl. die Abschnitte \MNRef{VBKM10_GeradenEbene}, \MNRef{VBKM10_GeradenRaum} und \MNRef{VBKM10_EbenenRaum}).   
+
+Weiterhin rechtfertigt die eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren auch, die Abkürzungen $\R^2$ und $\R^3$ nicht nur für die Menge aller Punkte in der Ebene bzw. im Raum zu verwenden, sondern auch für die Menge aller zwei- bzw. dreidimensionaler Vektoren. Davon wird in den nächsten Abschnitten ebenfalls Gebrauch gemacht.
 
 \end{MXContent}
 % 
