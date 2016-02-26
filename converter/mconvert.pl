@@ -3166,8 +3166,7 @@ MathJax.Hub.Config({
       minScaleAdjust: 80,
       mtextFontInherit: true,
       styles: {},
-      noReflows: true,
-      linebreaks: { automatic: false }
+      noReflows: true
    },
   MMLorHTML: {
    prefer: {
@@ -3755,18 +3754,18 @@ sub create_tree {
       my $tex_info = `file -i $pcompletename`;
       my $charset_ok = 0;
       if ($tex_info =~ m/charset=iso-8859-1/s ) {
-        logMessage($VERBOSEINFO, "  charset = iso-8859-1 (latin1)");
+        logMessage($VERBOSEINFO, $texs[$ka] . " has charset = iso-8859-1 (latin1)");
         $charset_ok = 1;
       }
     
       if ($tex_info =~ m/charset=us-ascii/s ) {
-        logMessage($VERBOSEINFO, "  charset = us-ascii found (nice but latin1 is ok)");
+        logMessage($VERBOSEINFO, $texs[$ka] . " has charset us-ascii (nice but latin1 is ok)");
         $charset_ok = 1;
       }
     
       if ($charset_ok ne 1) {
         $tex_info =~ m/charset=(.+)/i ;
-        logMessage($CLIENTWARN, "  bad charset " . $1 . " in file " . $texs[$ka] . ", must be latin1");
+        logMessage($CLIENTWARN, "Bad charset " . $1 . " in file " . $texs[$ka] . ", must be latin1");
       }
     
       my $textex = readfile($pcompletename);

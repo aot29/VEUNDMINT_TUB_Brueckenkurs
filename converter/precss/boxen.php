@@ -4,6 +4,7 @@
 .exmp,
 .expe
 .xreply
+.coshwarn
 .loginbox
 .usercreatereply
 {
@@ -15,32 +16,43 @@
 {
   margin-top: 0px;
   background-color: [-HINTBACKGROUND-];
-	border: thin solid [-HINTLINE-];
+  border: none;
 }
 
 .hintc
 {
   margin-top: 0px;
   background-color: [-HINTBACKGROUNDC-];
-        border: thin solid [-HINTLINE-];
+  border: thin solid [-HINTLINE-];
+}
+
+.coshwarn
+{
+  margin-top: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: [-HINTBACKGROUNDWARN-];
+  border: this solid [-HINTLINE-];
+  font-family: [-BASICFONTFAMILY-];
+  font-size: [-SMALLFONTSIZE-];
 }
 
 .expe
 {
   background-color: [-EXPEBACKGROUND-];
-	border: thin solid [-EXPELINE-];
+  border: none;
 }
 
 .info
 {
   background-color: [-INFOBACKGROUND-];
-	border: thin solid [-INFOLINE-];
+  border: none;
 }
 
 .exmp
 {
   background-color: [-EXMPBACKGROUND-];
-	border: thin solid [-EXMPLINE-];
+  border: none;
 }
 
 .xreply

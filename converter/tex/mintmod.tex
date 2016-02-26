@@ -557,29 +557,26 @@
 
   \newenvironment{MCOSHZusatz}{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" id="MHintButton}\arabic{MHintCounter}\special{html:" %
   type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}Weiterführende Inhalte\special{html:</button>}
-  \special{html:<div class="hintc" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
+  \special{html:<div class="hintc" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:">
+  <div class="coshwarn">Diese Inhalte gehen über das Kursniveau hinaus und werden in den Aufgaben und Tests nicht abgefragt.</div><br />}
+  }{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
 
   
   \newenvironment{MDefinition}{\begin{definition}\setcounter{MLastIndex}{\value{definition}}\ \\}{\end{definition}}
 
   
-  % Darstellung wird dann aus dem CSS genommen
   \newenvironment{MExercise}{
   \renewcommand{\MStdPoints}{4}
   \addtocounter{MExerciseCounter}{1}
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{5}
 
-  \special{html:</div>}%
   \ifnum\value{MExerciseCollectionCounter}=0\else\addtocounter{MExerciseCollectionTextCounter}{1}\special{html:<!-- mexercisetextstart;;}\arabic{MExerciseCollectionTextCounter}\special{html:;; //-->}\fi
   \special{html:<div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
   \textbf{Aufgabe \MGenerateExNumber
   } \ \\}{
   \special{html:</div><!-- mfeedbackbutton;Aufgabe;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->}
   \ifnum\value{MExerciseCollectionCounter}=0\else\special{html:<!-- mexercisetextstop //-->}\fi
-  \begin{html}
-  <div class="text">
-  \end{html}
   }
 
   % Stellt eine Kombination aus Aufgabe, Loesungstext und Eingabefeld bereit,
@@ -590,7 +587,7 @@
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{5}
 
-  \special{html:</div><div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
+  \special{html:<div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
   \textbf{Aufgabe \MGenerateExNumber
   } \ \\%
   \special{html:</div><div class="exfetch_text" id="ADIVTEXT_}\MGenerateExNumber\special{html:">}%
@@ -598,19 +595,13 @@
   \special{html:</div><div class="exfetch_input" id="ADIVINPUT_}\MGenerateExNumber\special{html:">}%
   }{
   \special{html:</div>}
-  \begin{html}
-  <div class="text">
-  \end{html}
   }
 
-  % Imitiert die info-Umgebung aus dem Kasseler xmlbefehle-Package
-  % Darstellung wird dann aus dem CSS genommen
   \newenvironment{MExample}{
   \addtocounter{MExampleCounter}{1}
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{6}
   \begin{html}
-  </div>
   <div class="exmp">
   <div class="exmprahmen">
   \end{html}\textbf{Beispiel
@@ -621,18 +612,15 @@
   \fi
   } \ \\}{\begin{html}</div>
   </div>
-  <div class="text">
   \end{html}
   \special{html:<!-- mfeedbackbutton;Beispiel;}\arabic{MTestSite}\special{html:;}\MGenerateExmpNumber\special{html:; //-->}
   }
-  % Imitiert die info-Umgebung aus dem Kasseler cpxmlbefehle-Package
-  % Darstellung wird dann aus dem CSS genommen
+
   \newenvironment{MExperiment}{
   \addtocounter{MExperimentCounter}{1}
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{7}
   \begin{html}
-  </div>
   <div class="expe">
   <div class="experahmen">
   \end{html}\textbf{Versuch
@@ -644,30 +632,22 @@
   \fi
   } \ \\}{\begin{html}</div>
   </div>
-  <div class="text">
   \end{html}}
 
-  % Imitiert die info-Umgebung aus dem Kasseler xmlbefehle-Package
-  % Darstellung wird dann aus dem CSS genommen, es wird keine Nummer vergeben
   \newenvironment{MChemInfo}{
   \setcounter{MLastType}{4}
   \begin{html}
-  </div>
   <div class="info">
   <div class="inforahmen">
   \end{html}}{\begin{html}</div>
   </div>
-  <div class="text">
   \end{html}}
 
-  % Imitiert die info-Umgebung aus dem Kasseler xmlbefehle-Package
-  % Darstellung wird dann aus dem CSS genommen
   \newenvironment{MXInfo}[1]{
   \addtocounter{MInfoCounter}{1}
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{4}
   \begin{html}
-  </div>
   <div class="info">
   <div class="inforahmen">
   \end{html}\textbf{#1
@@ -681,7 +661,6 @@
   \fi
   } \ \\}{\begin{html}</div>
   </div>
-  <div class="text">
   \end{html}
   \special{html:<!-- mfeedbackbutton;Info;}\arabic{MTestSite}\special{html:;}\MGenerateInfoNumber\special{html:; //-->}
   }
