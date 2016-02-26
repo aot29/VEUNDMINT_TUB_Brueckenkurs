@@ -197,18 +197,22 @@ function CreateQuestionObj(uxid,c,solution,id,type,option,pnts,intest,section) {
 // Blendet Hinweis-Bereiche ein und aus
 function toggle_hint(div_id) {
     var e = document.getElementById(div_id);
-    
-/*
-    if (e.style.visibility == 'hidden') {
-      e.style.visibility = 'visible';
-    } else {
-      e.style.visibility = 'hidden';
+    if (e != null) {
+      if (e.style.display == 'none') {
+        e.style.display = 'block';
+      } else {
+        e.style.display = 'none';
+      }
     }
-*/
-    if (e.style.display == 'none') {
-      e.style.display = 'block';
-    } else {
-      e.style.display = 'none';
+    e = document.getElementById(div_id + "_button");
+    if (e != null) {
+      if (e.className == "hintbutton_closed") {
+        e.className = "hintbutton_open";
+      } else {
+        if (e.className == "hintbutton_open") {
+          e.className = "hintbutton_closed";
+        }        
+      }
     }
 }
 
