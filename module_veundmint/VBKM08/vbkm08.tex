@@ -44,14 +44,28 @@ Man dreht in diesem Kapitel also die Fragestellung um: Kann man zu einer
 Funktion $f$ eine andere Funktion finden, deren Ableitung wieder die 
 Funktion $f$ ist?
 
-Die Anwendungen der Integralrechnung sind genauso vielfältig wie die Anwendungen der Differentialrechnung. Untersucht man z.B. in der Physik die Kraft $F$, die auf einen Körper wirkt, dann kann man unter Verwendung des bekannten Zusammenhangs $F = m a$ ($m$: Masse des Körpers, $a$: Beschleunigung des Körpers) zunächst aus der Kraft die Beschleunigung $a = F/m$ berechnen. Interpretiert man die Beschleunigung als Änderungsrate der Geschwindigkeit, $a = \frac{\MD v}{\MD t}$, dann kann man anschließend die Geschwindigkeit über die Umkehrung der Ableitung -- also durch die Integralrechnung -- bestimmen. Ähnliche Zusammenhänge lassen sich in vielen Bereichen aus Naturwissenschaften, Technik und auch Wirtschaftswissenschaften finden. So benötigt man die Integralrechnung zur Bestimmung von Flächen, von Schwerpunkten, Biegeeigenschaften von Balken oder zur Lösung sogenannter Differentialgleichungen, mit denen die meisten Probleme im naturwissenschaftlich-technischen Umfeld beschrieben werden.
+Die Anwendungen der Integralrechnung sind genauso vielfältig wie die 
+Anwendungen der Differentialrechnung. Untersucht man z.B. in der Physik die 
+Kraft $F$, die auf einen Körper wirkt, dann kann man unter Verwendung des 
+bekannten Zusammenhangs $F = m a$ ($m$: Masse des Körpers, $a$: Beschleunigung 
+des Körpers) zunächst aus der Kraft die Beschleunigung $a = F/m$ berechnen. 
+Interpretiert man die Beschleunigung als Änderungsrate der Geschwindigkeit, 
+$a = \frac{\MD v}{\MD t}$, dann kann man anschließend die Geschwindigkeit 
+über die Umkehrung der Ableitung -- also durch die Integralrechnung -- bestimmen.
+Ähnliche Zusammenhänge lassen sich in vielen Bereichen aus Naturwissenschaften, 
+Technik und auch Wirtschaftswissenschaften finden. So benötigt man die 
+Integralrechnung zur Bestimmung von Flächen, von Schwerpunkten, 
+Biegeeigenschaften von Balken oder zur Lösung sogenannter 
+Differentialgleichungen, mit denen viele Probleme im 
+naturwissenschaftlich-technischen Umfeld beschrieben werden.
 \end{MIntro}
 
 \begin{MContent}
 \MDeclareSiteUXID{VBKM08_Stammfunktionen_Content}
 
 \begin{MXInfo}{Stammfunktion} 
-Gegeben ist ein Intervall $D \subseteq \R$ und eine Funktion $f: D \rightarrow \R$. 
+Gegeben ist ein Intervall $D \subseteq \R$ und eine 
+Funktion $f: D \rightarrow \R$. 
 Wenn es eine differenzierbare Funktion $F: D  \rightarrow \R$ gibt, deren 
 Ableitung gleich $f$ ist, f"ur die also $F'(x) = f(x)$ f"ur alle $x \in D$ gilt, 
 dann hei"st $F$ eine \MEntry{Stammfunktion}{Stammfunktion} von $f$.
@@ -62,7 +76,8 @@ Eine Stammfunktion wird auch
 $$
 \int f(x) \MDwSp x = F(x) %%
 $$
-notiert. Die Sprechweise ist hier: "`$F$ ist das Integral über $f$."' Der Zusammenhang zum Integral wird in der Infobox \MRef{HSDDIR} 
+notiert. Die Sprechweise ist hier: "`$F$ ist das Integral über $f$."' 
+Der Zusammenhang zum Integral wird in der Infobox \MRef{HSDDIR} 
 zum Hauptsatz der Differential- und Integralrechnung beschrieben.
 
 Zunächst sollen einige Beispiele betrachtet werden.
@@ -107,7 +122,7 @@ f(x) = \sin(x)                             & F(x) = -\cos(x) \\
 f(x) = \sin(k x)                           & F(x) = -\frac{1}{k}\,\cos(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R \setminus \{0\}\\
 f(x) = \cos(x)                             & F(x) = \sin(x) \\
 f(x) = \cos(k x)                           & F(x) = \frac{1}{k}\,\sin(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R \setminus \{0\}\\
-f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)} & F(x) = \tan(x) \\
+%f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)} & F(x) = \tan(x) \\
 f(x) = \MEU^x                              & F(x) = \MEU^x \\
 f(x) = \MEU^{k x}                          & F(x) = \frac{1}{k}\,\MEU^{k x} \quad\mbox{\ f"ur eine Zahl \ } k \in \R \setminus \{0\}\\
 f(x) = \frac{1}{x}                         & F(x) = \ln|x|
@@ -124,39 +139,45 @@ f(x) = \frac{1}{x}                         & F(x) = \ln|x|
 f(x) = 0                                   & F(x) = C \quad\text{ f"ur eine Zahl } C \in \R \\
 f(x) = x^n                                 & F(x) = \frac{1}{n+1} \cdot x^{n+1} \\
 f(x) = \sin(x)                             & F(x) = -\cos(x) \\
-f(x) = \sin(k x)                           & F(x) = -\frac{1}{k}\,\cos(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R \\
+f(x) = \sin(k x)                           & F(x) = -\frac{1}{k}\,\cos(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R, k \neq 0 \\
 f(x) = \cos(x)                             & F(x) = \sin(x) \\
-f(x) = \cos(k x)                           & F(x) = \frac{1}{k}\,\sin(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R \\
-f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)} & F(x) = \tan(x) \\
+f(x) = \cos(k x)                           & F(x) = \frac{1}{k}\,\sin(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R, k \neq 0 \\
+%f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)} & F(x) = \tan(x) \\
 f(x) = \MEU^x                              & F(x) = \MEU^x \\
-f(x) = \MEU^{k x}                          & F(x) = \frac{1}{k}\,\MEU^{k x} \quad\mbox{\ f"ur eine Zahl \ } k \in \R \\
+f(x) = \MEU^{k x}                          & F(x) = \frac{1}{k}\,\MEU^{k x} \quad\mbox{\ f"ur eine Zahl \ } k \in \R, k \neq 0 \\
 f(x) = \frac{1}{x}                         & F(x) = \ln|x|
 %f(x) = \frac{1}{1 + x^2} & F(x) = \arctan(x) %
 \end{array}
 \]
+%Hier bezeichnet $k$ eine beliebige reelle Zahlen mit $k \neq 0$.
 \end{MXInfo}
 \fi
 
 In der ersten Zeile in obiger Tabelle steht, dass $F(x) = C$ eine Stammfunktion 
-zu $f(x) = 0$ ist. Klar, denn die Ableitung einer konstanten Funktion ist die Nullfunktion.
-Aber woher kennt man den Wert dieser Konstanten $C$? Schließlich ist die Ableitung jeder beliebigen
-konstanten Funktion die Null. So gilt z.B. für $F(x) = 3$ und für $G(x) = 5$, dass $F' = G' = 0$ ist.
-Ist nur nach einer Stammfunktion von $f(x) = 0$ gefragt, ohne dass weitere Forderungen getroffen werden,
-ist die Stammfunktion eine ganz beliebige Konstante $C$. Andere M"oglichkeiten, als dass es sich um
+zu $f(x) = 0$ ist. Klar, denn die Ableitung einer konstanten Funktion ist die 
+Nullfunktion.
+Aber woher kennt man den Wert dieser Konstanten $C$? Schließlich ist die 
+Ableitung jeder beliebigen konstanten Funktion die Null. So gilt z.B. für 
+$F(x) = 3$ und für $G(x) = 5$, dass $F' = G' = 0$ ist.
+Ist nur nach einer Stammfunktion von $f(x) = 0$ gefragt, ohne dass weitere 
+Forderungen getroffen werden, ist die Stammfunktion eine ganz beliebige 
+Konstante $C$. Andere M"oglichkeiten, als dass es sich um
 irgendeine \emph{konstante} Funktion handelt, gibt es nicht.
 
-Haben die Funktionen $F$ und $G$ dieselbe Ableitung $f = F' = G'$, dann ist $G'(x) - F'(x) = 0$. Bildet man nun
-auf beiden Seiten der Gleichung die Stammfunktion, dann erhält man den Zusammenhang $G(x) - F(x) = C$. Somit
-ist $G(x) = F(x) + C$. Hat man also mit $F$ eine Stammfunktion von $f$ gefunden, dann ist auch $G$ mit $G(x) = F(x) + C$
+Haben die Funktionen $F$ und $G$ dieselbe Ableitung $f = F' = G'$, dann ist 
+$G'(x) - F'(x) = 0$. Bildet man nun auf beiden Seiten der Gleichung die 
+Stammfunktion auf einem Intervall, dann erhält man den Zusammenhang 
+$G(x) - F(x) = C$. Somit ist $G(x) = F(x) + C$. Hat man also mit $F$ eine 
+Stammfunktion von $f$ gefunden, dann ist auch $G$ mit $G(x) = F(x) + C$
 eine Stammfunktion von $f$.
 
 \begin{MXInfo}{Aussage "uber Stammfunktionen}
-Wenn $F$ und $G$ Stammfunktionen von $f: D \rightarrow \R$ sind, dann gibt es 
-eine Zahl $C$, sodass
-$$
+Wenn $F$ und $G$ Stammfunktionen von $f: D \rightarrow \R$ auf einem Intervall
+$D$ sind, dann gibt es eine Zahl $C$, sodass
+\[
 F(x) = G(x) + C %
 \qquad \text{f"ur alle } x \in D %%
-$$
+\]
 gilt. Hierf"ur schreibt man auch
 \[
 \int f(x) \MDwSp x = F(x) + C \MDFPSpace, %%
@@ -165,25 +186,26 @@ um auszudr"ucken, wie s"amtliche Stammfunktionen von $f$ aussehen.
 \end{MXInfo}
 
 \begin{MExample}
-Die Funktion $F(x) = 5 x^2 - 6 x$ hat die Ableitung $F'(x) = 10 x - 6$. 
-Somit wird durch 
+Die Funktion $F: \R \to \R$ mit $F(x) = 5 x^2 - 6 x$ hat die 
+Ableitung $F'(x) = 10 x - 6$. Somit wird durch 
 \[
 \int (10 x - 6) \MDwSp x = 5 x^2 - 6 x + C
 \]
-die Gesamtheit der Stammfunktionen von $f(x) = 10 x - 6$ beschrieben,
-wobei $C$ f"ur eine beliebige reelle Zahl steht.
+die Gesamtheit der Stammfunktionen von $f: \R \to \R$ mit $f(x) = 10 x - 6$ 
+beschrieben, wobei $C$ f"ur eine beliebige reelle Zahl steht.
 
 %Beispielsweise sind $F_0(x) = 5 x^2 - 6 x$ und $F_{-7}(x) := 5 x^2 - 6 x - 7$ 
 %jeweils Stammfunktionen von $f$.
 
-Beispielsweise ist auch $G(x) := 5 x^2 - 6 x - 7$ eine Stammfunktion 
-von $f(x) = 10 x - 6$, denn es ist $G'(x) = 5 \cdot 2 x - 6 = f(x)$.
+Beispielsweise ist auch $G: \R \to \R$ mit $G(x) := 5 x^2 - 6 x - 7$ eine 
+Stammfunktion von $f$, denn es ist $G'(x) = 5 \cdot 2 x - 6 = f(x)$ f"ur alle 
+$x \in \R$.
 \end{MExample}
 
 \ifttm\relax\else\vspace{-4ex}\fi
 
 Aus der obigen Tabelle zu Stammfunktionen ergibt sich die Gesamtheit aller 
-L"osungen dann jeweils durch die Addition einer Konstanten:
+Stammfunktionen dann jeweils durch die Addition einer Konstanten:
 
 \ifttm\relax\else\vspace{-4ex}\fi
 
@@ -199,14 +221,14 @@ f(x) = \sin(x)                                & F(x) = \int \sin(x) \MDwSp x = -
 f(x) = \sin(k x)                              & F(x) = -\frac{1}{k}\,\cos(k x) + C \\
 f(x) = \cos(x)                                & F(x) = \int \cos(x) \MDwSp x = \sin(x) + C \\
 f(x) = \cos(k x)                              & F(x) = \frac{1}{k}\,\sin(k x) + C \\
-f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}    & F(x) = \int (1 + \tan^2(x)) \MDwSp x = \tan(x) + C \\
+%f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}    & F(x) = \int (1 + \tan^2(x)) \MDwSp x = \tan(x) + C \\
 f(x) = \MEU^x                                 & F(x) = \int \MEU^x \MDwSp x = \MEU^x + C \\
 f(x) = \MEU^{k x}                             & F(x) = \frac{1}{k}\,\MEU^{k x} + C \\
-f(x) = \frac{1}{x}                            & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C
+f(x) = \frac{1}{x}                            & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C %%
 %f(x) = \frac{1}{1 + x^2} & F(x) = \int \frac{1}{1 + x^2} \MDwSp x = \arctan(x) + C %
 \end{array}
 \]
-Hier bezeichnen $C$ beliebige und $k$ nichtverschwindende reelle Zahlen.
+Hier bezeichnen $k$ und $C$ beliebige reelle Zahlen mit $k \neq 0$.
 \end{MXInfo}
 \else
 \begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen -- zweite Version}
@@ -221,14 +243,14 @@ f(x) = \sin(x)                                  & F(x) = \int \sin(x) \MDwSp x =
 f(x) = \sin(k x)                                & F(x) = -\frac{1}{k}\,\cos(k x) + C \\
 f(x) = \cos(x)                                  & F(x) = \int \cos(x) \MDwSp x = \sin(x) + C \\
 f(x) = \cos(k x)                                & F(x) = \frac{1}{k}\,\sin(k x) + C \\
-f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}      & F(x) = \int (1 + \tan^2(x) \MDwSp x = \tan(x) + C \\
+%f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}      & F(x) = \int (1 + \tan^2(x) \MDwSp x = \tan(x) + C \\
 f(x) = \MEU^x                                   & F(x) = \int \MEU^x \MDwSp x = \MEU^x + C \\
 f(x) = \MEU^{k x}                               & F(x) = \frac{1}{k}\,\MEU^{k x} + C \\
-f(x) = \frac{1}{x}                              & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C
+f(x) = \frac{1}{x}                              & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C %
 %f(x) = \frac{1}{1 + x^2} & F(x) = \int \frac{1}{1 + x^2} \MDwSp x = \arctan(x) + C %
 \end{array}
 \]
-Hier bezeichnen $k$ und $C$ beliebige reelle Zahlen.
+Hier bezeichnen $k$ und $C$ beliebige reelle Zahlen mit $k \neq 0$.
 \end{MXInfo}
 \fi
 
@@ -276,24 +298,24 @@ Probe nicht mit der Funktion $f$ überein, so muss die Stammfunktion noch einmal
 %Loesungshinweise erstellt (jgl).
 Geben Sie eine Stammfunktion an:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle\int \left(12 x^2 - 4 x^7\right) \MDwSp x $}
+\item{\MEquationItem{$\displaystyle\int \left(12 x^2 - 4 x^7\right) \MD x $}
 {\MLSimplifyQuestion{30}{4*x^3 - 1/2*x^8}{10}{x}{4}{32}{LSTFX1}}.
 \begin{MHint}{Lösung}{%
 Es ist
 \[
-\int \left(12 x^2 - 4 x^7\right) \MDwSp x
+\int \left(12 x^2 - 4 x^7\right) \MD x %
 = 12 \cdot \frac{1}{3} \cdot x^3 - 4 \cdot \frac{1}{8} \cdot x^8 %
 = 4 \cdot x^3 - \frac{1}{2} \cdot x^8 + C\MDFPeriod %
 \]
 }
 \end{MHint}}
 %
-\item{\MEquationItem{$\displaystyle\int \left(\sin(x) + \cos(x)\right) \MDwSp x$}
+\item{\MEquationItem{$\displaystyle\int \left(\sin(x) + \cos(x)\right) \MD x$}
 {\MLSimplifyQuestion{30}{sin(x)-cos(x)}{10}{x}{4}{32}{LSTFX2}}.
 \begin{MHint}{Lösung}{%
 Es ist
 \[
-\int \left(\sin x + \cos x\right) \MDwSp x %
+\int \left(\sin x + \cos x\right) \MD x %
 = -\cos(x) + \sin(x) + C %
 = \sin(x) - \cos(x) + C\MDFPeriod %
 \]
@@ -328,7 +350,7 @@ Bestimmen Sie eine Stammfunktion:
 \item{\MEquationItem{$\displaystyle\int \MEU^{x+2} \MDwSp x$}{\MLSimplifyQuestion{30}{exp(x+2)}{10}{x}{4}{32}{LSTNF1}}.}
 \begin{MHint}{L"osung}
 Es ist
-$\int \MEU^{x+2} \MDwSp x = %
+$\displaystyle \int \MEU^{x+2} \MDwSp x = %
 \int \MEU^x \cdot \MEU^2 \MDwSp x = %
 \MEU^2 \cdot \int \MEU^x \MDwSp x = %
 \MEU^2 \cdot \MEU^x + C = %
@@ -339,7 +361,7 @@ $\int \MEU^{x+2} \MDwSp x = %
 \item{\MEquationItem{$\displaystyle\int 3 x\cdot \sqrt[4]{x} \MDwSp x$}{\MLSimplifyQuestion{30}{4/3*x^(9/4)}{1}{x}{10}{32}{LSTNF2}}.}
 \begin{MHint}{L"osung}
 Es ist
-$\int 3 x \cdot \sqrt[4]{x} \MDwSp x = %
+$\displaystyle \int 3 x \cdot \sqrt[4]{x} \MDwSp x = %
 3 \cdot \int x \cdot x^{\frac{1}{4}} \MDwSp x = %
 3 \cdot \int x^{\frac{5}{4}} \MDwSp x = %
 3 \cdot \frac{4}{9} \cdot x^{\frac{9}{4}} + C = %
@@ -372,7 +394,7 @@ $\int 3 x \cdot \sqrt[4]{x} \MDwSp x = %
 
 %Neue Aufgabe (jgl) als Vorbereitung auf den Abschlusstest:
 \begin{MExercise} %Stammfunktionen:
-Entscheiden Sie, ob die folgenden Aussagen richtig sind.
+Entscheiden Sie, ob die folgenden Aussagen f"ur reelle Funktionen richtig sind.
 %Hierbei sind in der letzten Teilaufgabe irgendwelche Funktionen $f$ und $g$ 
 %gegeben, die jeweils Stammfunktionen besitzen, und es ist $F$ eine 
 %Stammfunktion von $f$ und $G$ eine Stammfunktion von $g$.
@@ -391,7 +413,8 @@ $F$ mit $F(x) = -\frac{\cos(\pi x) + 2}{\pi}$ ist eine Stammfunktion
 von $f$ mit $f(x) = \sin(\pi x)$. \\
 % 
  \MCheckbox{0}{M08Ex1103a} & \MCheckbox{1}{M08Ex1103b} &
-$F$ mit $F(x) = -7$ ist eine Stammfunktion von $f$ mit $f(x) = -7x$. \\
+$F$ mit $F(x) = -7$ ist eine Stammfunktion von $f$ mit $f(x) = -7x$ %
+f"ur $x \in \R$. \\
 % 
  \MCheckbox{1}{M08Ex1104a} & \MCheckbox{0}{M08Ex1104b} &
 $F$ mit $F(x) = (\sin(x))^2$ ist eine Stammfunktion 
@@ -419,7 +442,8 @@ $F$ mit $F(x) = -\frac{\cos(\pi x) + 2}{\pi}$ ist eine Stammfunktion
 von $f$ mit $f(x) = \sin(\pi x)$. \\
 % 
  \MCheckbox{0}{M08Ex1103a} & \MCheckbox{1}{M08Ex1103b} &
-$F$ mit $F(x) = -7$ ist eine Stammfunktion von $f$ mit $f(x) = -7x$. \\
+$F$ mit $F(x) = -7$ ist eine Stammfunktion von $f$ mit $f(x) = -7x$
+f"ur $x \in \R$. \\
 % 
  \MCheckbox{1}{M08Ex1104a} & \MCheckbox{0}{M08Ex1104b} &
 $F$ mit $F(x) = (\sin(x))^2$ ist eine Stammfunktion 
@@ -430,6 +454,26 @@ Wenn $F$ eine Stammfunktion von $f$ ist, $G$ eine Stammfunktion von $g$,
 dann ist $F + G$ ist eine Stammfunktion von $f + g$. %%
 \end{tabular}
 \fi
+\begin{MHint}{L"osung}
+\begin{itemize}
+\item Die Ableitung von $F$ mit $F(x) =  -\frac{\cos(\pi x) + 2}{\pi}$ ist
+$F'(x) = \sin(\pi x) \neq \sin(\pi x) + 2 = f(x)$, sodass $F$ keine 
+Stammfunktion von $f$ ist.
+\item Die Ableitung von $F$ mit $F(x) =  -\frac{\cos(\pi x) + 2}{\pi}$ ist
+$F'(x) = \sin(\pi x) = f(x)$, sodass $F$ eine Stammfunktion von $f$ ist.
+\item Die Ableitung von $F$ mit $F(x) =  -7$ ist 
+$F'(x) = 0 \neq -7x = f(x)$ (f"ur $x \neq 0$). Deshalb ist $F$ keine 
+Stammfunktion von $f$.
+\item Die Ableitung von $F$ mit $F(x) =  (\sin(x))^2$ ergibt sich mit der
+Kettenregel zu $F'(x) = 2 \cdot \sin(x) \cdot \cos(x) = f(x)$. Somit ist $F$ 
+eine Stammfunktion von $f$.
+\item Wenn $F$ eine Stammfunktion von $f$ ist, $G$ eine Stammfunktion von $g$, 
+dann sind $F$ und $G$ differenzierbar, wobei $F' = f$ und $G' = g$ gilt. 
+Somit ist auch $F + G$ differenzierbar, und es gilt 
+$(F + G)'(x) = F'(x) + G'(x) = f(x) + g(x) = (f + g)(x)$. Das hei"st, dass 
+$F + G$ eine Stammfunktion von $f + g$ ist. %%
+\end{itemize}
+\end{MHint}
 \end{MExercise}
 
 
@@ -498,8 +542,9 @@ geschrieben haben:
 \item{Mit der Vereinfachung \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{8/x-6/x^2}{10}{x}{4}{512}{ISF1}}\\ 
 ergibt sich \MEquationItem{$F(x)$}{\MLSimplifyQuestion{30}{8*ln(x)+6/x}{10}{x}{4}{544}{ISF1b}} für $x>0$.\\
 \begin{MHint}{Lösung}
-Die Funktion lässt sich zu $f(x)=\frac{8}{x} - \frac{6}{x^2}$ vereinfachen, was 
-auf 
+Der Funktionsterm lässt sich zu 
+$f(x) = \frac{8}{x} - \frac{6}{x^2} = \frac{8}{x} - 6 x^{-2}$ vereinfachen,
+was auf 
 \[
 F(x) \;=\; 8 \cdot \ln(x) + \frac{6}{x} %
 \]
@@ -509,8 +554,8 @@ f"ur $x > 0$ führt (bis auf eine Konstante).
 \item{Mit der Vereinfachung \MEquationItem{$g(x)$}{\MLSimplifyQuestion{30}{6/sqrt(x)}{10}{x}{4}{512}{ISF2}}\\
 ergibt sich \MEquationItem{$G(x)$}{\MLSimplifyQuestion{30}{12*sqrt(x)}{10}{x}{4}{544}{ISF2b}} f"ur $x > 0$.\\
 \begin{MHint}{Lösung}
-Die Funktion lässt sich zu %
-$g(x)= \frac{6}{\sqrt{x}} = 6 \cdot x^{-\frac{1}{2}}$ %
+Der Funktionsterm lässt sich zu %
+$g(x) = \frac{6}{\sqrt{x}} = 6 \cdot x^{-\frac{1}{2}}$ %
 vereinfachen, was auf 
 \[
 G(x) \;=\; 6 \cdot 2 \cdot \sqrt{x} = 12 \cdot \sqrt{x} %%
@@ -521,8 +566,9 @@ f"ur $x > 0$ führt (bis auf eine Konstante).
 \item{Mit der Vereinfachung \MEquationItem{$h(x)$}{\MLSimplifyQuestion{30}{1/4+1/(2*sqrt(x))}{10}{x}{4}{0}{ISF3}}\\
 ergibt sich \MEquationItem{$H(x)$}{\MLSimplifyQuestion{30}{x/4+sqrt(x)}{10}{x}{4}{32}{ISF3b}} f"ur $x > 0$.\\
 \begin{MHint}{Lösung}
-Die Funktion lässt sich zu %
-$h(x)=\frac{1}{4} + \frac{1}{2 \cdot \sqrt{x}}$ vereinfachen, was auf 
+Der Funktionsterm lässt sich zu %
+$h(x)=\frac{1}{4} + \frac{1}{2 \cdot \sqrt{x}}$ 
+vereinfachen, was auf 
 \[
 H(x) \;=\; \frac{1}{4} \cdot x + \sqrt{x} %%
 \]
@@ -560,8 +606,9 @@ f"ur $x > 0$ führt (bis auf eine Konstante).
 %\end{MHint}
 %\end{MExercise}
 
+%Aufgabe neu erstellt (jgl):
 \begin{MExercise}
-Gegeben ist $f$ mit $f(x) = \frac{1}{x}$ f"ur $x > 0$.
+Gegeben ist eine Funktion $f$ mit $f(x) = \frac{1}{x}$ f"ur $x > 0$.
 Weiter sind Funktionen $F_1$ und $F_2$ mit 
 $F_1(x) = \ln(7x)$ bzw. $F_2(x) = \ln(x + 7)$ f"ur $x > 0$ gegeben.
 Berechnen Sie die Ableitung von $F_1$ und von $F_2$, und beantworten Sie die 
@@ -579,14 +626,32 @@ Kreuzen Sie die richtigen Aussagen an:\ \\
 \end{MQuestionGroup}\ \\
 \MGroupButton{Eingaben "uberpr"ufen}
 
+\begin{MHint}{L"osung}
+Die Ableitung von $F_1$ mit $F_1(x) = \ln(7 x)$ f"ur $x > 0$ ist
+$F_1'(x) = \frac{1}{7 x} \cdot 7 = \frac{1}{x} = f(x)$. Somit ist $F_1$ eine 
+Stammfunktion von $f$.
+
+Die Funktion $F_2$ mit $F_2(x) = \ln(x + 7)$ f"ur $x > 0$ hat die Ableitung
+$F_2'(x) = \frac{x + 7} \cdot 1 = \frac{1}{x + 7} \neq \frac{1}{x}$. 
+Deshalb ist $F_2$ keine Stammfunktion von $f$.
+%
+%Optional koennte auf eine moegliche Umformung des Funktionsterms der ersten
+%Funktion hingewiesen werden, um zu verdeutlichen, weshalb die Funktion dieselbe
+%Ableitung wie die natuerliche Logarithmusfunktion hat (jgl):
+%Zur Berechnung der Ableitung von $F_1$ soll noch darauf hingewiesen werden,
+%dass der Funktionsterm mit den Rechenregeln zum Logarithmus zu 
+%$F_1(x) = \ln(7 \cdot x) = \ln(7) + \ln(x)$ umgeformt werden kann, woraus sich
+%dann ebenfalls die Ableitung $F_1'(x) = \frac{1}{x}$ ergibt.
+\end{MHint}
 \end{MExercise}
 
-% Letztes Aufgabenelement darf kein MSimplifyQuestion sein, weil die Eingabebox 
-%sonst unter dem Bildschirmrand landet.
+%Letztes Aufgabenelement darf kein MSimplifyQuestion sein, weil die Eingabebox 
+%sonst unter dem Bildschirmrand landet (jgl, 2014).
 \begin{MExercise}
 %Aufgabentext ueberarbeitet (jgl):
-Angenommen, es ist $F$ eine Stammfunktion von $f$ mit $f(x)=1+x^2$ und besitzt 
-den Wert $F(0)=1$, dann ist $F(3)$ = \MLParsedQuestion{10}{13}{10}{IG22}.
+Es wird angenommen, dass $F$ eine Stammfunktion von $f$ mit $f(x)=1 + x^2$ ist
+und $F$ den Funktionswert $F(0) = 1$ hat. Dann 
+ist $F(3)$ = \MLParsedQuestion{10}{13}{10}{IG22}.
 %Loesungshinweis erstellt (jgl):
 \begin{MHint}{L"osung}
 Nach Voraussetzung ist $F$ eine Stammfunktion von $f$ mit $f(x) = 1 + x^2$. 
@@ -620,7 +685,7 @@ Dadurch gewinnt man sehr viele Detailinformationen.
 
 Umgekehrt erh"alt man eine {\glqq}globale Kenngr"o"se{\grqq}, wenn man die 
 Funktionswerte gewichtet aufsummiert. 
-Diese Idee führt auf das sogenannte \MEntry{Riemann-Integral}{Integral!Riemann}.
+Diese Idee führt auf das sogenannte \MEntry{Riemann-Integral}{Integral (Riemann)}.
 \end{MIntro}
 
 \begin{MXContent}{Integral}{Integral}{STD}
@@ -808,8 +873,8 @@ sowie deren Verkn"upfungen.
 
 Um Rechnungen möglichst unkompliziert durchführen zu können, sind möglichst 
 einfache Regeln zur Integration von Funktionen nötig. Ein wichtiges Ergebnis 
-liefert der
-sogenannte \MEntry{Hauptsatz der Differential- und Integralrechnung}{Hauptsatz}.
+liefert der 
+sogenannte \MEntry{Hauptsatz der Differential- und Integralrechnung}{Hauptsatz (Integralrechnung)}.
 Er beschreibt einen Zusammenhang zwischen den Stammfunktionen einer Funktion und 
 deren Integral.
 
@@ -961,55 +1026,116 @@ F"ur Vielfache einer Funktion gilt
 \end{MXInfo}
 
 \begin{MCOSHZusatz}
+%Formulierungen im Zusatz ueberarbeitet und Aufgaben erstellt (jgl):
 Auch für die Berechnung eines Produktes zweier Funktionen gibt es eine 
-Rechenregel.
+Rechenregel. Sie ergibt sich aus der Produktregel der Ableitung.
 
 \begin{MXInfo}{Partielle Integration}
-Sei $f'$ eine auf $[a\MIntvlSep b]$ integrierbare Funktion und $g$ eine auf $[a\MIntvlSep b]$ differenzierbare Funktion, dann gilt
+Seien $u$ und $v$ auf $[a\MIntvlSep b]$ differenzierbare Funktionen mit 
+stetigen Ableitungen $u'$ beziehungsweise $v'$. 
+F"ur das Integral der Funktion $u \cdot v'$ gilt dann
 %
 $$
-\int_a^b f'(x) \cdot g(x) \MDwSp x = \left[f(x)\cdot g(x)\right]_a^b - \int_a^b f(x)\cdot g'(x) \MDwSp x \MDFPSpace, %%
+\int_a^b u(x) \cdot v'(x) \MDwSp x %
+ = \left[u(x)\cdot v(x)\right]_a^b - \int_a^b u'(x) \cdot v(x) \MDwSp x \MDFPSpace, %%
 $$
 %
-wobei $f$ die Stammfuktion von $f'$ ist und $g'$ die Ableitung der Funktion $g$.
-Diese Rechenregel ist als \MEntry{partielle Integration}{Partielle Integration} 
-bekannt.
+wobei $u'$ die Ableitung von $u$ ist und $v$ eine Stammfunktion von $v'$ ist.
+Diese Rechenregel wird \MEntry{partielle Integration}{Integration (partielle)} 
+genannt.
 \end{MXInfo}
 
 Auch zu dieser Regel wird ein Beispiel betrachtet:
 
 \begin{MExample}
-Zu berechnen ist das Integral
+Es wird das Integral
 %
 $$
-\int_{0}^{\pi} x\sin x \MDwSp x
+\int_{0}^{\pi} x \sin(x) \MDwSp x
 $$
 %
-unter Verwendung der partiellen Integration. Dazu werden die Funktionen
+mit Hilfe der partiellen Integration berechnet. Dazu werden die Funktionen $u$ 
+und $v'$ mit
 %
 \begin{eqnarray*}
-f'(x) = \sin x \quad\text{und}\quad g(x) = x
+u(x) = x \quad \text{und} \quad v'(x) = \sin(x) %%
 \end{eqnarray*}
 %
-gewählt; man erhält damit die für die partielle Integration nötigen Funktionen
+gewählt. Damit erhält man 
 %
 \begin{eqnarray*}
-f(x) = -\cos x \quad\text{und}\quad g'(x) = 1 \MDFPSpace.
+u'(x) = 1 \quad\text{und}\quad v(x) = -\cos x \MDFPeriod
 \end{eqnarray*}
 %
-So kann man das gesuchte Integral berechnen:
+So kann man das gesuchte Integral mit partieller Integration berechnen:
 %
 \begin{eqnarray*}
-\int_{0}^{\pi} x\sin x \MDwSp x &=& \left[(-\cos x)\cdot x\right]_0^\pi - \int_{0}^{\pi} (-\cos x)\cdot 1 \MDwSp x \\
-&=& (-\cos\pi)\cdot\pi - 0 + \int_{0}^{\pi} \cos x \MDwSp x \\
-&=& -(-1)\cdot\pi + \left[\sin x\right]_0^\pi = \pi \MDFPeriod
+\int_{0}^{\pi} x \sin x \MDwSp x %
+& = & \left[x \cdot (-\cos(x))\right]_0^\pi %
+      - \int_{0}^{\pi} 1 \cdot (-\cos x) \MDwSp x \\
+& = & \pi \cdot (-\cos(\pi)) - 0 + \int_{0}^{\pi} \cos(x) \MDwSp x \\
+& = & \pi \cdot (-(-1)) + \left[\sin(x)\right]_0^\pi = \pi \MDFPeriod
 \end{eqnarray*}
 %
-Die Zuordnung der Funktionen $f'$ und $g$ muss zielführend erfolgen. Dies wird 
-am obigen Beispiel deutlich, wenn die Rollen von $f'$ und $g$ vertauscht werden. 
-Die Leserin bzw. der Leser mag probieren, dieses Beispiel zu lösen, indem $f'$ 
-und $g$ anders herum gewählt werden!
+Die Zuordnung der Funktionen $u$ und $v'$ muss zielführend erfolgen. Dies wird 
+am obigen Beispiel deutlich, wenn die Rollen von $u$ und $v'$ vertauscht werden. 
+Die Leserin bzw. der Leser mag probieren, dieses Beispiel zu lösen, indem $u$ 
+und $v'$ anders herum gewählt werden!
 \end{MExample}
+
+Anhand der folgenden beiden "Ubungsausfgaben kann man die Regel zur 
+partiellen Integration selbst anwenden lernen.
+
+\begin{MExercise}
+Es soll das Integral $\displaystyle I = \int_{1}^{4} x \cdot \MEU^{x} \MDwSp x$
+berechnet werden: $I = $\MLParsedQuestion{10}{3*e^4}{4}{M08ZEx01}.
+\begin{MHint}{L"osung}
+Der Integrand $f$ mit $f(x) = x \cdot \MEU^{x}$ ist ein Produkt einer 
+Polynomfunktion $u$ mit $u(x) = x$ und einer Exponentialfunktion. Die 
+Ableitung von $u$ ist $u'(x) = 1$, also eine konstante Funktion. Au"serdem 
+ist zur Exponentialfunktion eine Stammfunktion bekannt: Zu $v'$ mit 
+$v'(x) = \MEU^{x}$ ist $v$ mit $v(x) = \MEU^{x}$ eine Stammfunktion. 
+Damit erh"alt man mit partieller Integration
+\[
+ \int_{0}^{4} x \cdot \MEU^{x} \MDwSp x %
+= \left[ x \cdot \MEU^{x} \right]_{1}^{4} - \int_{1}^{4} 1 \cdot \MEU^{x} \MDwSp x %
+= \left[ x \cdot \MEU^{x} \right]_{1}^{4} - \left[ \MEU^{x} \right]_{1}^{4} %
+= \left[ x \cdot \MEU^{x} - \MEU^{x} \right]_{1}^{4} %
+= \left[ (x - 1) \cdot \MEU^{x} \right]_{1}^{4} %
+= 3 \MEU^{4} \MDFPeriod %%
+\]
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Es soll das Integral $I = \displaystyle \int_{4}^{8} x \cdot \ln(x) \MDwSp x$
+berechnet werden: $I = $\MLParsedQuestion{10}{24*ln(2)-16+1/4}{4}{M08ZEx02}.
+\begin{MHint}{L"osung}
+Der Integrand $f$ mit $f(x) = x \cdot \ln(x) = \ln(x) \cdot x$ f"ur 
+$1 \leq x \leq 8$ ist ein Produkt einer Polynomfunktion und einer 
+Logarithmusfunktion. Die Ableitung der Logarithmumsfunktion $u$ mit 
+$u(x) = \ln(x)$ ergibt $u'(x) = \frac{1}{x}$.
+Somit ist $u'$ eine "`einfache"' rationale Funktion. Weiter ist zur 
+Polynomfunktion $v'$ mit $v'(x) = x$ eine Stammfunktion bekannt,
+n"amlich $v$ mit $v'(x) = \frac{1}{2} \cdot x^2$. Das Produkt
+$u' \cdot v$ mit 
+$u'(x) \cdot v(x) = \frac{1}{x} \cdot \frac{1}{2} x^2 = \frac{1}{2} x$ 
+f"ur $1 \leq x \leq 8$ eine stetige Funktion, zu der eine Stammfunktion 
+bekannt ist. Damit kann das gesuchte Integral mittels partieller Integration
+gem"a"s
+\begin{eqnarray*}
+\int_{1}^{8} x \cdot \ln(x) \MDwSp x %
+ = \int_{1}^{8} \ln(x) \cdot x \MDwSp x %
+& = & \left[ \ln(x) \cdot x \right]_{1}^{8} - \int_{4}^{8} \frac{1}{x} \cdot \frac{1}{2} x^2 \MDwSp x \\
+& = & \left[ \ln(x) \cdot x \right]_{1}^{8} - \int_{4}^{8} \frac{1}{2} x \MDwSp x \\
+%& = & \left[ \ln(x) \cdot x \right]_{1}^{8} - \left[ \frac{1}{2} \cdot \frac{1}{2} x^2 \right]_{1}^{8} \\
+& = & \left[ x \cdot \ln(x) - \frac{1}{4} x^2 \right]_{1}^{8} %
+%& = & \left(8 \ln(8) - 16\right) - \left(1 \cdot \ln(1) - \frac{1}{4}\right) \\
+ =  24 \ln(2) - 16 + \frac{1}{4} %%
+\end{eqnarray*}
+berechnet werden, wobei $\ln(8) = \ln(2^3) = 3 \cdot \ln(2)$ verwendet wurde.
+\end{MHint}
+\end{MExercise}
 \end{MCOSHZusatz}
 
 \end{MXContent}
@@ -1183,10 +1309,11 @@ weiterführender Literatur und Formelsammlungen finden kann. Im folgenden Beispie
 wird eine Polynomdivision durchgeführt, um eine rationale Funktion zu integrieren.
 
 \begin{MExample}
-Zu berechnen ist Integral
+Es wird Integral
 \[
 \int_{-1}^{1} \frac{4 x^2 - x + 4}{x^2 + 1} \MDwSp x \MDFPeriod %%
 \]
+berechnet.
 Dazu formt man zun"achst den Integranden mittels Polynomdivision zu
 \[
 \frac{4 x^2 - x + 4}{x^2 + 1} = 4 - \frac{x}{x^2 + 1} %%
@@ -1204,14 +1331,18 @@ um. Damit ist dann
 Denn der Integrand des zweiten Integrals ist eine ungerade Funktion und im 
 Integrationsintervall $[-1\MIntvlSep 1]$ punktsymmetrisch, sodass der Wert
 des zweiten Integrals Null ist.
+
+Hier wurde eine besondere Situation gew"ahlt, um einen ersten Eindruck zur
+Integration rationaler Funktionen zu vermitteln. In weiterf"uhrenden 
+mathematischen Vorlesungen oder in der Literatur wird dies allgemein beschrieben.
 \end{MExample}
 
 \end{MXContent}
 
 
-%%%Uebungen zum Abschnitt:
+%%%Uebungen zum Abschnitt zum bestimmten Integral:
 \begin{MExercises}
-\MDeclareSiteUXID{VBKM08_Umformungen_Exercises}
+\MDeclareSiteUXID{VBKM08_BestimmtesIntegral_Exercises}
 
 %Einfuehrende Erlaeuterung zur ersten Aufgabe erstellt (jgl).
 In der ersten Aufgabe wird die Idee zur Definition des Integrals aufgegriffen,
@@ -1360,7 +1491,7 @@ Berechnen Sie die folgenden Integrale:
 \item{\MEquationItem{$\displaystyle \int_{0}^{5} 3 \MDwSp x$}{\MLParsedQuestion{10}{15}{4}{IG24}},}
 \item{\MEquationItem{$\displaystyle \int_{0}^{5} -4 \MDwSp x$}{\MLParsedQuestion{10}{-20}{4}{IG25}},}
 \item{\MEquationItem{$\displaystyle \int_{0}^{4} 2 x \MDwSp x$}{\MLParsedQuestion{10}{16}{4}{IG26}},}
-\item{\MEquationItem{$\displaystyle \int_{0}^{4} \left(4 - x\right) \MDwSp x$}{\MLParsedQuestion{10}{8}{4}{IG27}}.}
+\item{\MEquationItem{$\displaystyle \int_{0}^{4} \left(4 - x\right) \MD x$}{\MLParsedQuestion{10}{8}{4}{IG27}}.}
 \end{MExerciseItems}
 %Loesungshinweise erstellt (jgl):
 \begin{MHint}{L"osung}
@@ -1375,7 +1506,7 @@ Mit dem Hauptsatz der Differential- und Integralrechnung erh"alt man
 \item $\displaystyle \int_{0}^{4} 2 x \MDwSp x %
 = \left[ x^2 \right]_0^4 = 16\MDFPSpace$,
 %
-\item $\displaystyle \int_{0}^{4} \left(4 - x\right) \MDwSp x %
+\item $\displaystyle \int_{0}^{4} \left(4 - x\right) \MD x %
 = \left[ 4 x - \frac{1}{2} \cdot x^2 \right]_0^4 = 8\MDFPSpace$.
 %
 \end{enumerate}
@@ -1385,7 +1516,7 @@ Mit dem Hauptsatz der Differential- und Integralrechnung erh"alt man
 
 \begin{MExercise}
 Der Wert des Integrals
-$\displaystyle \int_{-\pi}^{\pi} \left(5 x^3 - 4 \sin(x)\right) \MDwSp x$
+$\displaystyle \int_{-\pi}^{\pi} \left(5 x^3 - 4 \sin(x)\right) \MD x$
 ist \MLParsedQuestion{10}{0}{4}{IG28}.
 %Loesungshinweise erstellt (jgl):
 \begin{MHint}{L"osung}
@@ -1403,21 +1534,22 @@ Oder es wird das Integral mit dem Hauptsatz berechnet:
 
 
 \begin{MExercise}
-Berechnen Sie eine reelle Zahl $z$, so dass der Integralwert
+Berechnen Sie eine reelle Zahl $z$ so, dass der Integralwert
 \[
-\int_{0}^{2} \left(x^2 + z\cdot x+1\right) \MD x
+\int_{0}^{2} \left(x^2 + z\cdot x+1\right) \MD x %
 \]
 den Wert $0$ ergibt: %
-\MEquationItem{$z$}{\MLParsedQuestion{10}{-14/6}{4}{ICONSTFIND}}.
+Der Wert f"ur $z$ 
+ist \MEquationItem{$z$}{\MLParsedQuestion{10}{-7/3}{4}{ICONSTFIND}}.
 
 \begin{MHint}{Lösung}
 Nimmt man $z$ als unbekannte Konstante, so ist
 $$
-\int_{0}^{2} \left(x^2 + z\cdot x+1\right) \MD x \;=\;
-\left[{\frac13x^3+\frac12 z x^2+x}\right]_0^2 \;=\;
-\frac83+2z+2 \MDFPSpace,
+\int_{0}^{2} \left(x^2 + z\cdot x+1\right) \MD x %
+\;=\; \left[{\frac13x^3+\frac12 z x^2+x}\right]_0^2 %
+\;=\; \frac83+2z+2 \MDFPeriod %%
 $$
-also muss man $z=-\frac{14}{6} = -\frac{7}{3}$ einsetzen.
+Also ist $z=-\frac{14}{6} = -\frac{7}{3}$ der gesuchte Wert.
 \end{MHint}
 \end{MExercise}
 
@@ -1429,8 +1561,9 @@ Berechnen Sie die Integrale:
 \end{MExerciseItems}
 
 \begin{MHint}{Lösung}
-Der Integrand $f(x) = 1 + 6 x^2 - 4x = 6 x^2 - 4 x + 1$ ist ein Polynom, sodass
-$F$ mit $F(x) = 2 x^3 - 2 x^2 + x$ eine Stammfunktion ist. Mit dem Hauptsatz folgt
+Der Integrand $f$ mit $f(x) = 1 + 6 x^2 - 4x = 6 x^2 - 4 x + 1$ ist ein Polynom,
+sodass $F$ mit $F(x) = 2 x^3 - 2 x^2 + x$ eine Stammfunktion ist. Mit dem 
+Hauptsatz folgt
 \[
  \int_{0}^{1} \left(1 + 6 x^2 - 4 x\right) \MD x %
  = \left[ 2 x^3 - 2 x^2 + x \right]_{-3}^{2} %
@@ -1455,14 +1588,15 @@ $\displaystyle \int_{-24}^{-6} \frac{1}{2 x} \MDwSp x$
 ist \MLParsedQuestion{10}{-ln(2)}{4}{ILN1}.
 
 \begin{MHint}{Lösung}
-Zum Integranden $f(x) = \frac{1}{2 x} = \frac{1}{2} \cdot \frac{1}{x}$ ist 
-$F$ mit $F(x) = \frac{1}{2} \ln|x|$ eine Stammfunktion von $f$. Mit dem Hauptsatz 
-folgt
+Zum Integranden $f$ mit $f(x) = \frac{1}{2 x} = \frac{1}{2} \cdot \frac{1}{x}$ 
+f"ur $x < 0$ ist $F$ mit $F(x) = \frac{1}{2} \ln|x|$ eine Stammfunktion.
+Mit dem Hauptsatz folgt
 \[
  \int_{-24}^{-6} \frac{1}{2 x} \MDwSp x %
  = \left[ \frac{1}{2} \ln|x| \right]_{-24}^{-6} %
  = \frac{1}{2} \left(\ln|-6| - \ln|-24|\right) %
- = \frac{1}{2} \ln\left(\frac{1}{2^2}\right) %
+ = \frac{1}{2} \ln\left(\frac{6}{24}\right) %
+ = \frac{1}{2} \ln\left(2^{-2}\right) %
  = -\ln(2) \MDFPeriod %
 \]
 \end{MHint}
@@ -1476,8 +1610,8 @@ Berechnen Sie die Integrale
 \end{MExerciseItems}
 
 \begin{MHint}{Lösung}
-Der Integrand $f(x) = 2 x - 1$ ist eine Polynomfunktion. Damit ist
-$F(x) = x^2 - x$ eine Stammfunktion von $f$. Mit dem Hauptsatz 
+Der Integrand $f$ mit $f(x) = 2 x - 1$ ist eine Polynomfunktion. Damit ist
+$F$ mit $F(x) = x^2 - x$ eine Stammfunktion von $f$. Mit dem Hauptsatz 
 folgt
 \[
  \int_{0}^{3} (2 x - 1) \MDwSp x %
@@ -1485,8 +1619,9 @@ folgt
  = 9 - 3 - 0%
  = 6 \MDFPeriod %
 \]
-Im zweiten Aufgabenteil ist der Integrand $f(x) = 1 - 2 x$ eine Polynomfunktion.
-Damit ist $F(x) = x - x^2$ eine Stammfunktion von $f$. Mit dem Hauptsatz folgt
+Im zweiten Aufgabenteil ist der Integrand $f$ mit $f(x) = 1 - 2 x$ ebenfalls 
+eine Polynomfunktion. Damit ist $F$ mit $F(x) = x - x^2$ eine Stammfunktion 
+von $f$. Mit dem Hauptsatz folgt
 \[
  \int_{-3}^{0} (1 - 2 x) \MDwSp x %
  = \left[ x - x^2 \right]_{-3}^{0} %
@@ -1503,8 +1638,8 @@ Berechnen Sie das Integral
 % \item{\MEquationItem{$\displaystyle \int_{-3}^{3} \left(|x| - |x + 1|\right) \MD x$}{\MLParsedQuestion{30}{-1}{4}{IG34}}.}
 
 \begin{MHint}{Lösung}
-Zum Integranden $f(x) = \frac{3 \pi}{x^2} - 4 \sin(x)$ ist 
-$F(x) = -\frac{3 \pi}{x} + 4 \cos(x)$ eine Stammfunktion von $f$. Mit dem 
+Zum Integranden $f$ mit $f(x) = \frac{3 \pi}{x^2} - 4 \sin(x)$ ist $F$ mit
+$F(x) = -\frac{3 \pi}{x} + 4 \cos(x)$ eine Stammfunktion. Mit dem 
 Hauptsatz folgt
 \[
  \int_{\pi}^{3 \pi} \left(\frac{3 \pi}{x^2} - 4 \sin(x)\right) \MD x %
@@ -1512,10 +1647,12 @@ Hauptsatz folgt
  = ( -1 - 4 ) - ( -3 - 4 )%
  = 2 \MDFPeriod %
 \]
-Die Funktionen $\sin$ und $\cos$ haben die Eigenschaft, dass das Integral
-"uber eine Periode gleich Null ist. F"ur andere periodische Funktionen wie 
-zum Beispiel $|\sin(x)|$ k"onnen sich f"ur das Integral "uber eine Periode 
-auch Werte ungleich Null ergeben.
+Anmerkung: Die periodischen Funktionen $\sin$ und $\cos$ mit Periode $2 \pi$ 
+haben die Eigenschaft, dass das Integral "uber eine Periode gleich Null ist. 
+F"ur andere periodische Funktionen wie zum Beispiel $f$ mit 
+$f(x) = \sin(x) + \frac{1}{2}$ k"onnen sich f"ur das Integral auch Werte 
+ungleich Null ergeben, wenn das Integrationsintervall eine Periode der 
+Funktion umfasst.
 \end{MHint}
 \end{MExercise}
 
@@ -1617,16 +1754,16 @@ Durch die Bildung des Betrags der Funktion benötigt man eine Aufteilung des
 Integrals in die Bereiche mit positivem und negativem Vorzeichen.
 F"ur die Berechnung heißt dies, dass man das Integrationsintervall in 
 Abschnitte zu unterteilt, in denen die Funktionswerte dasselbe Vorzeichen haben.
+F"ur stetige Funktionen ergeben sich diese durch die Nullstellen der Funktion.
 
 \begin{MXInfo}{Fl"achenberechnung} 
-Gegeben ist eine Funktionen $f: [a\MIntvlSep  b] \rightarrow \R$ auf einem 
-Intervall $[a\MIntvlSep  b]$. 
+Gegeben ist eine stetige Funktionen $f: [a\MIntvlSep  b] \rightarrow \R$ auf 
+einem Intervall $[a\MIntvlSep  b]$. 
 Weiter seien $x_1$ bis $x_m$ die Nullstellen von $f$ mit 
 $x_1 < x_2 < \ldots < x_m$. 
 Es werden $x_0 := a$ und $x_{m+1} := b$ gesetzt.
 
-Dann
-ist der Fl"acheninhalt zwischen dem Graphen von $f$ und der $x$-Achse gleich
+Dann ist der Fl"acheninhalt zwischen dem Graphen von $f$ und der $x$-Achse gleich
 \[
 \int_{a}^{b} |f(x)| \MDwSp x %
 = \sum_{k=0}^{m} \left|\int_{x_k}^{x_{k+1}} f(x) \MDwSp x\right| \MDFPeriod %% 
@@ -1636,17 +1773,18 @@ ist der Fl"acheninhalt zwischen dem Graphen von $f$ und der $x$-Achse gleich
 Dies soll für das oben dargestellte Beispiel etwas genauer erörtert werden.
 
 \begin{MExample}
-Zu berechnen ist der Flächeninhalt $I_A$ der Fl"ache, den die Funktion 
-$f(x) = \frac{1}{2} x^3$ im Bereich $[-2\MIntvlSep 2]$ mit der $x$-Ache 
+Zu berechnen ist der Flächeninhalt $I_A$ der Fl"ache, den die stetige Funktion
+$f$ mit $f(x) = \frac{1}{2} x^3$ im Bereich $[-2\MIntvlSep 2]$ mit der $x$-Ache 
 einschließt. Die einzige Nullstelle der gegebenen Funktion befindet sich bei 
 $x_0 = 0$. Man teilt den Integrationsbereich also in die beiden Teilintervalle
-x $[-2\MIntvlSep 0]$ und $[0\MIntvlSep 2]$ auf und berechnet mit
+$[-2\MIntvlSep 0]$ und $[0\MIntvlSep 2]$ auf und berechnet mit
 %
 \begin{eqnarray*}
-A &=& \int_{-2}^{2} \left|\frac{1}{2} x^3\right| \MD x = \left|\int_{-2}^{0} \frac{1}{2} x^3 \MDwSp x\right| + \left|\int_{0}^{2} \frac{1}{2} x^3 \MDwSp x\right| \\
-  &=& \left|\left[\frac{1}{8} x^4\right]_{-2}^{0}\right| + \left|\left[\frac{1}{8} x^4\right]_{0}^{2}\right| \\
-  &=& \left|0 - 2\right| + \left|2 - 0\right| \\
-  &=& 4
+I_A  =  \int_{-2}^{2} \left|\frac{1}{2} x^3\right| \MD x %
+ & = & \left|\int_{-2}^{0} \frac{1}{2} x^3 \MDwSp x\right| + \left|\int_{0}^{2} \frac{1}{2} x^3 \MDwSp x\right| \\
+ & = & \left|\left[\frac{1}{8} x^4\right]_{-2}^{0}\right| + \left|\left[\frac{1}{8} x^4\right]_{0}^{2}\right| \\
+  & = & \left|0 - 2\right| + \left|2 - 0\right| \\
+  & = & 4
 \end{eqnarray*}
 %
 den Flächeninhalt zwischen Kurve und $x$-Achse zu $I_A = 4$.
@@ -1655,6 +1793,9 @@ den Flächeninhalt zwischen Kurve und $x$-Achse zu $I_A = 4$.
 Man kann nicht nur Flächeninhalte zwischen einer Kurve und der $x$-Achse 
 bestimmen, sondern auch den Inhalt einer Fläche, die von zwei Kurven 
 eingeschlossen wird, wie in der folgenden Abbildung veranschaulicht wird.
+Dort zeigt das rechte Bild die gesuchte Fl"ache, deren Fl"acheninhalt als
+die Differenz der Fl"acheninhalte aus dem linken und dem mittleren Bild 
+berechnet wird.
 
 \begin{center}
 \MTikzAuto{%
@@ -1758,9 +1899,10 @@ Dieses Prinzip soll ebenfalls zuerst formal vorgestellt und danach an einem
 Beispiel erläutert werden.
 
 \begin{MXInfo}{Fl"achenberechnung zwischen den Graphen zweier Funktionen} 
-Gegeben sind zwei Funktionen $f, g: [a\MIntvlSep  b] \rightarrow \R$ auf einem 
-Intervall $[a\MIntvlSep  b]$. Weiter seien $x_1$ bis $x_m$ die Nullstellen von $f-g$ mit 
-$x_1 < x_2 < \ldots < x_m$. Es werden $x_0 := a$ und $x_{m+1} := b$ gesetzt.
+Gegeben sind zwei stetige Funktionen $f, g: [a\MIntvlSep  b] \rightarrow \R$ 
+auf einem Intervall $[a\MIntvlSep  b]$. Weiter seien $x_1$ bis $x_m$ die 
+Nullstellen von $f - g$ mit $x_1 < x_2 < \ldots < x_m$. Es werden $x_0 := a$ 
+und $x_{m+1} := b$ gesetzt.
 
 Dann kann der Fl"acheninhalt zwischen dem Graphen von $f$ und dem von $g$ durch
 %
@@ -1776,7 +1918,8 @@ Dazu soll nun ein Beispiel betrachtet werden.
 
 \begin{MExample}
 Berechnet werden soll der Inhalt $I_A$ der Fl"ache zwischen den Graphen von 
-$f(x) = x^2$ und $g(x) := 8 - \frac{1}{4} x^4$ f"ur $x \in [-2\MIntvlSep  2]$.
+$f$ und $g$ mit $f(x) = x^2$ und $g(x) := 8 - \frac{1}{4} x^4$ f"ur 
+$x \in [-2\MIntvlSep  2]$.
 Zun"achst untersucht man die Differenz $f - g$ der Funktionen auf
 ihre Nullstellen. Mit
 %
@@ -1784,34 +1927,42 @@ ihre Nullstellen. Mit
 f(x) - g(x) & = & \frac{1}{4} x^4 + x^2 - 8 \\
  & = & \frac{1}{4} \left( x^4 + 4 x^2 - 32 \right) \\
  & = & \frac{1}{4} \left( x^4 + 4 x^2 + 2^2 - 2^2 - 32 \right) \\
- & = & \frac{1}{4} \left( \left( x^2 + 2 \right)^2 - 36 \right) \\
+ & = & \frac{1}{4} \left( \left( x^2 + 2 \right)^2 - 36 \right) %%
 \end{eqnarray*}
 %
-kann man die reellen Nullstellen von $f-g$ berechnen:
+kann man die reellen Nullstellen von $f - g$ berechnen:
 \begin{eqnarray*}
 & \left( x^2 + 2 \right)^2 - 36 = 0 \\
 \Leftrightarrow & \left( x^2 + 2 \right)^2 = 36 \\
 \Leftrightarrow & x^2 + 2 = 6 \\
 \Leftrightarrow & x^2 = 4 \\
-\Leftrightarrow & x = \pm 2  \MDFPeriod \\
+\Leftrightarrow & x = \pm 2  %%
 \end{eqnarray*}
-
-In der Rechnung wurde nach dem Ziehen der ersten Wurzel auf eine nähere 
+oder mit der dritten binomischen Formel:
+\begin{eqnarray*}
+ 0 & = & \left( x^2 + 2 \right)^2 - 36 %
+ = \left( x^2 + 2 \right)^2 - 6^2 \\
+& = & \left(x^2 + 2 - 6 \right) \cdot \left(x^2 + 2 + 6 \right) %
+ = \left(x^2 - 4 \right) \cdot \left(x^2 + 2 + 6 \right) %
+ = (x - 2) \cdot (x + 2) \cdot \left(x^2 + 8 \right) \MDFPeriod %%
+\end{eqnarray*}
+%
+In der ersten Rechnung wurde nach dem Ziehen der ersten Wurzel auf eine nähere 
 Betrachtung des Falls $x^2 + 2 = -6$ verzichtet, da man
 aus der daraus folgenden Gleichung $x^2 = -8$ keine reellen Nullstellen erhält.
 Die reellen Nullstellen von $f-g$ sind $-2$ und $2$.
 Dies sind gleichzeitig auch die Randstellen des Intervalls $[-2\MIntvlSep  2]$.
 Eine Aufteilung des Integrals in verschiedene Bereiche ist also nicht nötig. 
-Die Werte von $f(x)$ sind kleiner als die von $g(x)$ auf diesem Intervall, also
+Die Werte von $f$ sind kleiner als die von $g$ auf diesem Intervall. Also
 ergibt sich der Fl"acheninhalt $I_A$ zu
 
 \begin{eqnarray*}
-I_A &=& \int_{-2}^{2} \left|f(x) - g(x)\right| \MD x\\
- & = & \int_{-2}^{2} \left({g(x) - f(x)}\right) \MD x\\
+I_A &=& \int_{-2}^{2} \left|f(x) - g(x)\right| \MD x \\
+ & = & \int_{-2}^{2} \left({g(x) - f(x)}\right) \MD x \\
  & = & \int_{-2}^{2} \left({-\frac{1}{4} x^4 - x^2 + 8 }\right) \MD x \\
  & = & \left[{-\frac{1}{20} x^5 - \frac{1}{3} x^3 + 8 x}\right]_{-2}^{2} \\
  & = & 2\cdot \left({-\frac{32}{20}-\frac{8}{3}+16}\right) \\
- & = & \frac{352}{15}\; .
+ & = & \frac{352}{15} \MDFPeriod %%
 \end{eqnarray*}
 \end{MExample}
 
@@ -1878,7 +2029,8 @@ Endpunkt $s_2$ integrieren:
 W = \int_{s_1}^{s_2}F_s(s) \MDwSp s \MDFPeriod
 \end{eqnarray*}
 %
-Dies sollen nur zwei Beispiele aus dem physikalisch-technischen Bereich sein. 
+Dies sollen nur drei Beispiele aus dem naturwissenschaftlich-technischen 
+Bereich sein, in denen der Integralbegriff hilfreich ist. 
 Im Verlauf des Studiums werden je nach Fachrichtung eine ganze Reihe weiterer 
 Anwendungen der Integration auftauchen.
 \end{MXContent}
@@ -1997,7 +2149,7 @@ $u$ mit $u(x) = x - 2$.  Deshalb ist $F$ eine Stammfunktion von $f$.
 Entsprechend kann man nachrechnen, dass $G$ mit 
 $G(x) = \frac{2}{5} \cdot (x - 2)^5$ eine Stammfunktion von $g$ ist.
 
-Damit ergibt sich f"ur den Fl"acheninhalt $I_A$ zwischen den Kurven
+Damit ergibt sich f"ur den Fl"acheninhalt $I_A$ zwischen den Funktionsgraphen
 \begin{eqnarray*}
 I_A & = & \left|\int_1^3 \left(3 - (x - 2)^2 - 2 \cdot (x - 2)^4\right) \MD x \right| \\
  & = & \left|\left[ 3 x - \frac{1}{3} (x - 2)^3 - \frac{2}{5} (x - 2)^5 \right]_{1}^{3} \right| \\
@@ -2098,22 +2250,26 @@ Zielbereich einer Funktion nicht explizit notiert, wenn sich diese aus dem
 Kontext ergeben.
 
 \begin{MExercise}
-Berechnen Sie die Arbeit $W$, die n"otig ist, um einen kugelf"ormigen homogenen
-K"orper mit der Masse $m$ \emph{gegen} die Gravitationskraft
+Berechnen Sie die Arbeit $W$, die n"otig ist, um einen kleinen kugelf"ormigen 
+homogenen K"orper, der die Masse $m$ hat, \emph{gegen} die Gravitationskraft
 $F: [r_1\MIntvlSep  \infty\MoIr \rightarrow \R, r \mapsto F(r) := -\gamma \cdot \frac{m \cdot M}{r^2}$ 
-von der Oberfl"ache eines kugelf"ormigen homogenen K"orpers mit Radius $r_1 = 1$ 
-und Masse $M = 2$ bis zu einer Entfernung $r_2 = 4$ zu bewegen (alle L"angen 
-beziehen sich auf den Mittelpunkt des K"orpers der Masse $M$). Hierbei sind
-die Masse $m$ und die Gravitationskonstante $\gamma$ als gegebene Werte
-anzunehmen.
+von der Oberfl"ache eines kugelf"ormigen homogenen K"orpers $K$ mit 
+Radius $r_1 = 1$ und Masse $M = 2$ bis zu einer Entfernung $r_2 = 4$ zu 
+bewegen (alle L"angen beziehen sich auf den Mittelpunkt des K"orpers $K$).
+Hierbei sind die Masse $m$ und die Gravitationskonstante $\gamma$ 
+als gegebene Werte anzunehmen, und der kleine K"orper wird im Vergleich zum 
+K"orper $K$ als punktf"ormig angesehen.
 
 Antwort: \MEquationItem{$W$}{\MLSimplifyQuestion{30}{3/2*gamma*m}{10}{gamma,m}{4}{0}{ILGAMMA}}.
 \ \\
-\MInputHint{Die Konstanten $m$ und $\gamma$ müssen in der Lösung stehen bleiben, für $\gamma$ kann man \texttt{gamma} eingeben.}
+\MInputHint{Die Konstanten $m$ und $\gamma$ müssen in der Lösung stehen bleiben, 
+für $\gamma$ kann man \texttt{gamma} eingeben.}
 \ \\
 \begin{MHint}{Lösung}
-Die Kraft $F_s$ l"angs des Weges, um den K"orper mit der Masse $m$ zu bewegen, 
-zeigt entgegen der Gravitationskraft $F$. Somit ist $F_s = -F$.
+Die Kraft $F_s$ l"angs des Weges, durch die der kleine K"orper mit der 
+Masse $m$ von der Oberfl"ache des K"orpers $K$ weg bewegt wird, zeigt 
+\emph{entgegen} der Gravitationskraft $F$. Somit ist $F_s = -F$.
+
 Die aufzuwendende Arbeit $W$ von $r_1 = 1$ zu $r_2 = 4$ ergibt sich damit zu
 \begin{eqnarray*}
 W = \int_1^4 F_s(r) \MDwSp r %
@@ -2142,7 +2298,7 @@ Bestimmen Sie jeweils eine Stammfunktion:
 \begin{MExerciseItems}
 \item $\displaystyle\int 3 \sqrt{x} \MDwSp x = $%
 \MLSimplifyQuestion{26}{2*x^(3/2)}{1}{x}{4}{32}{SIMPLE18}
-%\item $\displaystyle\int \left(2 x - \frac{1}{x+\pi}\right) \MDwSp x = $%
+%\item $\displaystyle\int \left(2 x - \frac{1}{x+\pi}\right) \MD x = $%
 %\MSimplifyQuestion{26}{x^2-ln(x+pi)}{1}{x}{20}{32}
 \item $\displaystyle\int \left(2 x - \MEU^{x+\pi}\right) \MD x = $%
 \MLSimplifyQuestion{26}{x^2-exp(x+pi)}{10}{x}{4}{32}{SIMPLE19}
