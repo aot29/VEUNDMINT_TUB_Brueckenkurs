@@ -40,7 +40,7 @@ our $macrofile = "$macrofilename.tex"; # Relativ zum converter/tex Verzeichnis
 # Mandatory option parameter in config file
 our @mandatory = ("signature_main", "signature_version", "signature_localization",
    "reply_mail", "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",
-   "footer_middle", "footer_right", "mainlogo", "do_feedback", "do_export");
+   "footer_middle", "footer_right", "mainlogo", "do_feedback", "do_export", "stdmathfont");
 
 our %config = ();       
 our $mconfigfile = "";       # Konfigurationsdatei (mit Pfad relativ vom Aufruf aus)
@@ -1867,18 +1867,21 @@ sub postprocess {
   }
   if ($nf>0) { logMessage($VERBOSEINFO, "$nf local files copied"); }
 
-  # MathML korrigieren: mtext, normalstyles und boldstyles um den Zeichensatz ergaenzen, damit es keine Serifen hat
-  $text =~ s/fontstyle=\"normal\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\"/ig;
-  $text =~ s/fontweight=\"bold\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\" fontweight=\"bold\"/ig;
+  
+  if ($config{parameter}{stdmathfont} == "1") {
+    # MathML korrigieren: mtext, normalstyles und boldstyles um den Zeichensatz ergaenzen, damit es keine Serifen hat
+    $text =~ s/fontstyle=\"normal\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\"/ig;
+    $text =~ s/fontweight=\"bold\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\" fontweight=\"bold\"/ig;
 
-  # Diese Zeilen verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages vorgenommen wurde
-  # $text =~ s/<m:mtext>/<m:mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
-  # MathML korrigieren: mtext/mstyle-Schachtelung umkehren, sonst wird es von den meisten Browsern nicht akzeptiert
-  # $text =~ s/<m:mtext(.*)>(.*)<m:mstyle(.*)>(.+)<\/m:mstyle(.*)>\n*(.*)<\/m:mtext(.*)>/<m:mstyle$3><m:mtext$1>$4<\/m:mtext$7><\/m:mstyle$5>/gi;
+    # Diese Zeilen verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages vorgenommen wurde
+    # $text =~ s/<m:mtext>/<m:mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
+    # MathML korrigieren: mtext/mstyle-Schachtelung umkehren, sonst wird es von den meisten Browsern nicht akzeptiert
+    # $text =~ s/<m:mtext(.*)>(.*)<m:mstyle(.*)>(.+)<\/m:mstyle(.*)>\n*(.*)<\/m:mtext(.*)>/<m:mstyle$3><m:mtext$1>$4<\/m:mtext$7><\/m:mstyle$5>/gi;
 
-  # Diese Zeile verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages NICHT vorgenommen wurde
-  $text =~ s/<mtext>/<mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
-  $text =~ s/<mtext(.*?)>(.*?)<mstyle(.*?)>(.+?)<\/mstyle(.*?)>\n*(.*?)<\/mtext(.*?)>/<mstyle$3><mtext$1>$4<\/mtext$7><\/mstyle$5>/gi;
+    # Diese Zeile verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages NICHT vorgenommen wurde
+    $text =~ s/<mtext>/<mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
+    $text =~ s/<mtext(.*?)>(.*?)<mstyle(.*?)>(.+?)<\/mstyle(.*?)>\n*(.*?)<\/mtext(.*?)>/<mstyle$3><mtext$1>$4<\/mtext$7><\/mstyle$5>/gi;
+  }
 
   # Falls es eine Pruefungsseite ist, Kennvariablen fuer die Aufgabenpunkte erzeugen
   if ($orgpage->{TESTSITE} eq 1) {
@@ -3041,9 +3044,13 @@ sub mathmloptimize {
 	$text =~ s/<mn>([0-9]*)<\/mn><mo>,<\/mo>(\n|\r)*<msup><mrow><mn>([0-9]*)<\/mn><\/mrow><mrow><mn>([0-9])<\/mn><\/mrow>(\n|\r)*<\/msup>/
 	<msup><mrow><mn>$1,$3<\/mn><\/mrow><mrow><mn>$4<\/mn><\/mrow>\n<\/msup>/g;
 	
-	#MathML-Tabellen ohne Breitenangabe und Ausrichtung
+	# Korrektur eines Bugs in MathJax 2.6 (trat <=2.4 nicht auf): displaystyle=true wird nicht auf Tabellen vererbt, also auch innerhalb der Tabelle deklarieren
+	$text =~ s/<mstyle displaystyle="true"><mrow>\n<mtable([^>]+)>/<mstyle displaystyle="true"><mrow>\n<mtable$1><mstyle displaystyle="true">/sg ;
+	
+       	#MathML-Tabellen ohne Breitenangabe und Ausrichtung
 	#diese wuerden grosse Lehrraeume erzeugen (IE)
 	$text =~ s/<mtable([^>]+)>/<mtable>/g;
+
 	
 	#Abgesetzte Formeln nicht in Tabellen sondern in <center>-Tags
 	$text =~ s/<table width="100%"><tr><td align="center">\s*(<math(.|\n)*?<\/math>)\s*<\/td><\/tr><\/table>/<center>$1<\/center>/g;
@@ -3155,31 +3162,27 @@ sub loadtemplates_local {
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{TITLE}</title>
-<script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
-  config: [":directmaterial:TeX-AMS-MML_HTMLorMML.js"],
-  jax: [":directmaterial:input/MathML",":directmaterial:input/TeX",":directmaterial:output/HTML-CSS",":directmaterial:output/NativeMML"],
-  extensions: [":directmaterial:mml2jax.js",":directmaterial:MathMenu.js",":directmaterial:MathZoom.js"],
-  "HTML-CSS": {
-      scale: 100,
-      minScaleAdjust: 80,
-      mtextFontInherit: true,
-      styles: {},
-      noReflows: true
-   },
-  MMLorHTML: {
-   prefer: {
-    MSIE: "HTML",
-    Firefox: "HTML",
-    Safari: "HTML",
-    Chrome: "HTML",
-    Opera: "HTML",
-    other: "HTML"
-      }
-    }
+  jax: [":directmaterial:input/TeX",":directmaterial:input/MathML", ":directmaterial:output/CommonHTML"],
+  extensions: [":directmaterial:tex2jax.js", ":directmaterial:mml2jax.js", ":directmaterial:MathMenu.js", ":directmaterial:MathZoom.js"],
+  TeX: {
+    extensions: [":directmaterial:AMSmath.js",":directmaterial:AMSsymbols.js",":directmaterial:noErrors.js",":directmaterial:noUndefined.js"]
+  },
+  "CommonHTML": {
+    scale: 100,
+    minScaleAdjust: 80,
+    mtextFontInherit: true,
+    linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+    disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
 });
+MathJax.Hub.processSectionDelay = 0;
 </script>
+<script type="text/javascript" src="MathJax/MathJax.js?locale=de"></script>
 <!-- Headerversion MPL/localjax -->
 </head>
 <body onload="loadHandler()" onbeforeunload="unloadHandler()">
@@ -3206,31 +3209,27 @@ sub loadtemplates_netservice {
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{TITLE}</title>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
-  config: [":directmaterial:TeX-AMS-MML_HTMLorMML.js"],
-  jax: [":directmaterial:input/MathML",":directmaterial:input/TeX",":directmaterial:output/HTML-CSS",":directmaterial:output/NativeMML"],
-  extensions: [":directmaterial:mml2jax.js",":directmaterial:MathMenu.js",":directmaterial:MathZoom.js"],
-  "HTML-CSS": {
-      scale: 100,
-      minScaleAdjust: 80,
-      mtextFontInherit: true,
-      styles: {},
-      noReflows: true
-   },
-  MMLorHTML: {
-   prefer: {
-    MSIE: "HTML",
-    Firefox: "HTML",
-    Safari: "HTML",
-    Chrome: "HTML",
-    Opera: "HTML",
-    other: "HTML"
-      }
-    }
+  jax: [":directmaterial:input/TeX",":directmaterial:input/MathML", ":directmaterial:output/CommonHTML"],
+  extensions: [":directmaterial:tex2jax.js", ":directmaterial:mml2jax.js", ":directmaterial:MathMenu.js", ":directmaterial:MathZoom.js"],
+  TeX: {
+    extensions: [":directmaterial:AMSmath.js",":directmaterial:AMSsymbols.js",":directmaterial:noErrors.js",":directmaterial:noUndefined.js"]
+  },
+  "CommonHTML": {
+    scale: 100,
+    minScaleAdjust: 80,
+    mtextFontInherit: true,
+    linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+    disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
 });
+MathJax.Hub.processSectionDelay = 0;
 </script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?locale=de"></script>
 <!-- Headerversion MPL/netservicejax -->
 </head>
 <body onload="loadHandler()" onunload="unloadHandler()">
@@ -3278,18 +3277,26 @@ my @ttm_errors = split("\n", $ttm_errors);
 
 my $j = 0;
 
+my $nl = 0;
 for (my $i = 0; $i <= $#ttm_errors; $i++) {
   if ($ttm_errors[$i] =~ m/\*\*\*\* Unknown command (.+?), /s ) {
     logMessage($CLIENTWARN, "(ttm) " . $ttm_errors[$i]);
     push @converrors, "ERROR: ttm konnte LaTeX-Kommando $1 nicht verarbeiten";
     $j++;
   } else {
-    logMessage($CLIENTINFO, "(ttm) " . $ttm_errors[$i]);
-    if ($ttm_errors[$i] =~ m/Error: Fatal/s ) {
-      logMessage($FATALERROR, "ttm exited with fatal error, aborting");
+    if ($ttm_errors[$i] =~ m/Abnormal NL, removespace/s ) {
+      logMessage($VERBOSEINFO, "(ttm) " . $ttm_errors[$i]);
+      $nl++;
+    } else {
+      logMessage($CLIENTINFO, "(ttm) " . $ttm_errors[$i]);
+      if ($ttm_errors[$i] =~ m/Error: Fatal/s ) {
+        logMessage($FATALERROR, "ttm exited with fatal error, aborting");
+      }
     }
   }
 }
+
+logMessage($CLIENTINFO, "ttm found $nl abnormal newlines");
 
 if (($config{dorelease} eq 1) and ($j > 0)) {
       logMessage($CLIENTERROR, "ttm found $j unknown commands, not valid in release version!");
@@ -3840,7 +3847,7 @@ sub create_tree {
     
       $dotikzfile = 0;
       if ($textex =~ s/\\Mtikzexternalize//gs ) {
-        logMessage($CLIENTINFO, "  tikzexternalize activated");
+        logMessage($VERBOSEINFO, "  tikzexternalize activated");
         if ($config{dotikz} eq 1) { $dotikzfile = 1; }
       }
 
@@ -3934,7 +3941,7 @@ sub create_tree {
     }
 
     if ($textex =~ m/\\MPragma{MathSkip}/ ) {
-      logMessage($CLIENTINFO, "  Pragma MathSkip: Skips starting math-environments inserted");
+      logMessage($VERBOSEINFO, "  Pragma MathSkip: Skips starting math-environments inserted");
       $textex =~ s/(?<!\\)\\\[/\\MSkip\\\[/g;
       $textex =~ s/(?<!\\)\$\$/\\MSkip\$\$/g;
       $textex =~ s/(?<!\\)\\begin{eqnarray/\\MSkip\\begin{eqnarray/g;
@@ -4035,6 +4042,8 @@ sub create_tree {
     my $rpr = "CRLF";
     while ($textex =~ /$rpr/i ) { $rpr = $rpr . "x" };
 
+    # ttm uebersetzt $\displaystyle ...$ nicht
+    $textex =~ s/\\displaystyle/\\displaystyle\\special{html:<mstyle displaystyle="true">}/gs ;
 
     # Nach equation- und eqnarray-starts den Labeltyp anpassen
     my $eqprefix = "\\setcounter{MLastType}{10}\\addtocounter{MLastTypeEq}{1}\\addtocounter{MEquationCounter}{1}\\setcounter{MLastIndex}{\\value{MEquationCounter}}\n";
@@ -4586,11 +4595,9 @@ sub create_tree {
 
 
   if ($config{localjax} eq 1) {
-    logMessage($CLIENTINFO, "MathJax 2.4 (full package) is added locally");
+    logMessage($CLIENTINFO, "MathJax 2.6 (full package) is added locally");
     system("mkdir $ndir/MathJax");
-    system("tar -xzf $ndir/converter/mathjax24complete.tgz --directory=$ndir/MathJax/.");
-    #system("tar -xzf $ndir/converter/mathjax23reduced.tgz --directory=$ndir/MathJax/.");
-    #print "Nutze reduzierte Version von MathJax ohne ImageFonts (benoetigt IE6+, Chrome, Safari 3.1+, Firefox 3.5+, oder Opera 10+)\n";
+    system("tar -xzf $ndir/converter/mathjax26complete.tgz --directory=$ndir/MathJax/.");
   }
 
   system("mv $ndir/converter/" . $config{outtmp} . "/* $ndir/.");

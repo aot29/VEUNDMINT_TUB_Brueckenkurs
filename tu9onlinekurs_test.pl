@@ -7,7 +7,7 @@ doscorm         =>      0       , # =0: Kein SCORM, =1 -> SCORM-Manifest und Def
 qautoexport     =>      0       , # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
 diaok           =>      0       , # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
 cleanup         =>      1       , # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
-localjax        =>      0       , # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
+localjax        =>      1       , # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
 borkify         =>      0       , # =1 html und js-Dateien werden borkifiziert
 dorelease       =>      0       , # In Release-Versionen werden z.B. bestimmte Logmeldungen unterdrueckt
 doverbose       =>      0       , # Schaltet alle Debugmeldungen auf der Browserkonsole an
@@ -23,7 +23,7 @@ outtmp          =>      "tmp",               # Temporaeres Verzeichnis im cleanu
 description     =>      "Onlinebrückenkurs Mathematik",
 author          =>      "Projekt VE&MINT",
 moduleprefix    =>      "Onlinebrückenkurs Mathematik",  # Wird vor Browser-Bookmarks gesetzt
-variant         =>      "std",  # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete aus
+variant         =>      "std",  # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete fuer Mathematikumsetzung aus
 
 stylesheets     =>      ["qtip2/jquery.qtip.min.css"], # Array, grundlagen.css wird automatisch eingesetzt
 
@@ -57,7 +57,8 @@ parameter => {                                        # Benutzeridentifizierung 
   data_server_user        => "$server/userdata.php",  # Absolute Angabe
   footer_middle           => "Onlinebrückenkurs Mathematik",
   footer_right            => "Lizenz: CC BY-SA 3.0",
-  mainlogo                => "veundmint_netlogo.png" # Im Pfad files/images
+  mainlogo                => "veundmint_netlogo.png", # Im Pfad files/images
+  stdmathfont             => "0"                      # Erzwingt Standard-Arial-Font in Text in Formeln
 },
 
 # Hash der Form texname => Beschreibung
@@ -75,7 +76,10 @@ strings => {
 },
 
 fonts => {
-    BASICFONTFAMILY  =>    "\"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", Verdana, Arial, Helvetica , sans-serif"
+
+  # BASICFONTFAMILY  => "Open Sans Condensed"
+  BASICFONTFAMILY  => "open-sans"
+  # BASICFONTFAMILY =>    "\"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", Verdana, Arial, Helvetica , sans-serif"
 },
 
 sizes =>  {

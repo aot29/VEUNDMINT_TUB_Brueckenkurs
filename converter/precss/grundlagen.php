@@ -131,7 +131,105 @@ progress[aria-valuenow]:before {
     column-count: 2;
 }
 
+button.hintbutton_closed:after {
+	font-family: 'FontAwesome' !important;
+	content: "\f107" !important;
+	width:30px !important;
+	font-size: 16px !important;
+	line-height: 20px !important;
+	padding-left: 10px;
+	margin: 0 !important;
+}
+
+button.hintbutton_open:after {
+	font-family: 'FontAwesome' !important;
+	content: "\f106" !important;
+	width:30px !important;
+	font-size: 16px !important;
+	line-height: 20px !important;
+	padding-left: 10px;
+	margin: 0 !important;
+}
+
+button.hintbutton_closed {
+	color: rgb(210,210,210);
+	background-color: rgb(160,190,180);
+	font-family: 'open-sans-condensed';
+	font-weight: 700;
+	display: inline-block;
+	border: 2px solid rgb(210,210,210) !important;
+	border-radius: 3px;
+	padding: 5px 10px !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.5px;
+	margin: 0 !important;
+}
+
+button.hintbutton_open {
+	background-color: rgb(120,140,170);
+	color: white;
+	font-family: 'open-sans-condensed';
+	font-weight: 700;
+	display: inline-block;
+	border: 2px solid rgb(210,210,210) !important;
+	border-radius: 3px 3px 0px 0px;
+	padding: 5px 10px !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.5px;
+	margin: 0 !important;
+}
+
+button.chintbutton_closed:after {
+	font-family: 'FontAwesome' !important;
+	content: "\f107" !important;
+	width:30px !important;
+	font-size: 16px !important;
+	line-height: 20px !important;
+	padding-left: 10px;
+	margin: 0 !important;
+}
+
+button.chintbutton_open:after {
+	font-family: 'FontAwesome' !important;
+	content: "\f106" !important;
+	width:30px !important;
+	font-size: 16px !important;
+	line-height: 20px !important;
+	padding-left: 10px;
+	margin: 0 !important;
+}
+
+button.chintbutton_closed {
+	color: rgb(190,240,200);
+	background-color: rgb(150,200,150);
+	font-family: 'open-sans-condensed';
+	font-weight: 700;
+	display: inline-block;
+	border: 2px solid rgb(190,240,200) !important;
+	border-radius: 3px;
+	padding: 5px 10px !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.5px;
+	margin: 0 !important;
+}
+
+button.chintbutton_open {
+	background-color: rgb(120,190,120);
+	color: white;
+	font-family: 'open-sans-condensed';
+	font-weight: 700;
+	display: inline-block;
+	border: 2px solid rgb(210,210,210) !important;
+	border-radius: 3px 3px 0px 0px;
+	padding: 5px 10px !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.5px;
+	margin: 0 !important;
+}
+
+
 <?php
+include('fonts.php');
 include('headfooter.php');
 include('toc.php');
 include('navi.php');

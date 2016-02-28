@@ -211,7 +211,15 @@ function toggle_hint(div_id) {
       } else {
         if (e.className == "hintbutton_open") {
           e.className = "hintbutton_closed";
-        }        
+        } else {
+          if (e.className == "chintbutton_closed") {
+            e.className = "chintbutton_open";
+          } else {
+            if (e.className == "chintbutton_open") {
+              e.className = "chintbutton_closed";
+            } 
+	  }
+	}
       }
     }
 }
@@ -1853,8 +1861,13 @@ function applyLayout(first) {
   
   
   var css = DYNAMICCSS;
+  
+  
+  
   css = css.replace(/\[LINKPATH\]/g, linkPath);
+  
 
+  
   
   for (var ckey in COLORS) {
     var rex = new RegExp("\\[-" + ckey + "-\\]",'g');
@@ -1870,7 +1883,6 @@ function applyLayout(first) {
     var rex = new RegExp("\\[-" + ckey + "-\\]",'g');
     css = css.replace(rex, FONTS[ckey]);
   }
-
 
   e.innerHTML = css;
   logMessage(VERBOSEINFO, "Set dynamic style sheet, size = " + css.length);
