@@ -153,7 +153,7 @@ button.hintbutton_open:after {
 
 button.hintbutton_closed {
 	color: rgb(210,210,210);
-	background-color: rgb(160,190,180);
+	background-color: rgb(160,170,180);
 	font-family: 'open-sans-condensed';
 	font-weight: 700;
 	display: inline-block;
@@ -166,7 +166,7 @@ button.hintbutton_closed {
 }
 
 button.hintbutton_open {
-	background-color: rgb(120,140,170);
+	background-color: rgb(120,120,170);
 	color: white;
 	font-family: 'open-sans-condensed';
 	font-weight: 700;

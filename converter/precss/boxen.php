@@ -26,14 +26,16 @@
 {
   margin-top: 0px;
   background-color: [-HINTBACKGROUND-];
-  border: none;
+  border: 0 !important;
+  border-radius: 3px !important;
 }
 
 .hintc
 {
   margin-top: 0px;
   background-color: [-HINTBACKGROUNDC-];
-  border: thin solid [-HINTLINE-];
+  border: 0 !important;
+  border-radius: 3px !important;
 }
 
 .coshwarn
@@ -50,19 +52,22 @@
 .expe
 {
   background-color: [-EXPEBACKGROUND-];
-  border: none;
+  border: 0 !important;
+  border-radius: 3px !important;
 }
 
 .info
 {
   background-color: [-INFOBACKGROUND-];
-  border: none;
+  border: 0 !important;
+  border-radius: 3px !important;
 }
 
 .exmp
 {
   background-color: [-EXMPBACKGROUND-];
-  border: none;
+  border: 0 !important;
+  border-radius: 3px !important;
 }
 
 .xreply
