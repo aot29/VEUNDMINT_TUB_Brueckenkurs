@@ -1885,7 +1885,7 @@ function applyLayout(first) {
   }
 
   e.innerHTML = css;
-  logMessage(VERBOSEINFO, "Set dynamic style sheet, size = " + css.length);
+  logMessage(DEBUGINFO, "Set dynamic style sheet, size = " + css.length);
 
   if (intersiteactive) {
     if (intersiteobj.layout.menuactive == false) hideNavigation(false);
@@ -1903,15 +1903,17 @@ function applyLayout(first) {
     
 
   head += "<div id=\"LOGINROW\" style=\"color:rgb(255,255,255);display:inline-block;flex-grow:100;text-align:center\"></div>";
-  head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "search.html\" class=\"MINTERLINK\"><div style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Stichwortliste</div></a>";
-  head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "index.html\" class=\"MINTERLINK\"><div style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Startseite</div></a>";
-
-    
-  head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"><img " + icstyle + " src=\"" + linkPath + "images/icminusblue_96px.png\"></button>";
-  head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"><img " + icstyle + " src=\"" + linkPath + "images/icplusblue_96px.png\"></button>";
-  head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_share_blue_96px.png\"></button>";
-  head += "<button id=\"starbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"starClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_star_blue_96px.png\"></button>";
-  head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"><img " + icstyle + " src=\"" + linkPath + "images/ic_menu_blue_96px.png\"></button>";
+  
+  head += "<a id=\"listebutton\" href=\"" + linkPath + "search.html\" ></a>";
+  head += "<a id=\"homebutton\" href=\"" + linkPath + "index.html\" ></a>";
+  head += "<button id=\"starbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"starClick();\"></button>"; 
+  head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"></button>";
+  head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"></button>";
+  head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"></button>";
+  head += "<button id=\"settingsbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"settingsClick();\"></button>";
+  
+  head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"></button>";
+  
     
   $('div.headmiddle').html(head);
   $('#footerleft').html("<a href=\"mailto:" + reply_mail + "\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
@@ -1926,6 +1928,7 @@ function applyLayout(first) {
   showHint($('#menubutton'), "Hier klicken um Navigationsleisten ein- oder auszublenden");
   showHint($('#plusbutton'), "Vergrößert die Schriftgröße");
   showHint($('#minusbutton'), "Verkleinert die Schriftgröße");
+  showHint($('#settingsbutton'), "Einstellungen");
 
   var shareintext = "Diese Seite teilen über:<br /><br />";
   var myurl = window.location.href;

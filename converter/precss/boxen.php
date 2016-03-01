@@ -12,15 +12,6 @@
 	margin: 10px 0px;
 }
 
-.hintbutton_closed
-{
-  background-color: rgb(180,190,230);
-}
-
-.hintbutton_open
-{
-  background-color: rgb(200,210,250);
-}
 
 .hint
 {

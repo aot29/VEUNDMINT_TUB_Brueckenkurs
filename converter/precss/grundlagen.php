@@ -230,9 +230,10 @@ button.chintbutton_open {
 
 <?php
 include('fonts.php');
-include('headfooter.php');
-include('toc.php');
-include('navi.php');
+// include('headfooter.php');
+// include('toc.php');
+// include('navi.php');
+include('bdesign.php');
 include('content.php');
 include('boxen.php');
 ?>
