@@ -63,6 +63,14 @@ naturwissenschaftlich-technischen Umfeld beschrieben werden.
 \begin{MContent}
 \MDeclareSiteUXID{VBKM08_Stammfunktionen_Content}
 
+Im Kontext dieses Kurses werden die Fragestellungen der Integralrechnung f"ur 
+Funktionen auf {\glqq}zusammenh"angenden{\grqq} Definitionsbereichen betrachtet,
+wie dies f"ur viele praktische Fragestellungen von besonderer Bedeutung ist.
+Mathematisch formuliert, werden die Definitionsbereiche der Funktionen  
+Intervalle sein. Dazu passend werden hier Stammfunktionen auf Intervallen 
+definiert, mit denen die Frage nach der {\glqq}Umkehrung{\grqq} der Ableitung
+betrachtet wird.
+
 \begin{MXInfo}{Stammfunktion} 
 Gegeben ist ein Intervall $D \subseteq \R$ und eine 
 Funktion $f: D \rightarrow \R$. 
@@ -71,98 +79,61 @@ Ableitung gleich $f$ ist, f"ur die also $F'(x) = f(x)$ f"ur alle $x \in D$ gilt,
 dann hei"st $F$ eine \MEntry{Stammfunktion}{Stammfunktion} von $f$.
 \end{MXInfo}
 
-Eine Stammfunktion wird auch 
-\MEntry{unbestimmtes Integral}{Integral (unbestimmt)} genannt und in der Form 
-$$
-\int f(x) \MDwSp x = F(x) %%
-$$
-notiert. Die Sprechweise ist hier: "`$F$ ist das Integral über $f$."' 
-Der Zusammenhang zum Integral wird in der Infobox \MRef{HSDDIR} 
-zum Hauptsatz der Differential- und Integralrechnung beschrieben.
-
 Zunächst sollen einige Beispiele betrachtet werden.
 \begin{MExample}
-Die Funktion $F(x) = -\cos(x)$ hat die Ableitung $F'(x) = -(-\sin(x)) = \sin(x)$. 
-Somit ist 
+Die Funktion $F$ mit $F(x) = -\cos(x)$ hat die Ableitung 
 \[
-\int \sin(x) \MDwSp x = -\cos(x) %%
+F'(x) = -(-\sin(x)) = \sin(x) \MDFPeriod %%
 \]
-eine Stammfunktion von $f(x) = \sin(x)$.
-\end{MExample}
-
-\begin{MExample}
-Die Funktion $G(x) = \MEU^{3x + 7}$ hat die Ableitung 
-$G'(x) = 3 \cdot \MEU^{3 x + 7}$.
-Deshalb ist
-\[
-\int 3 \cdot \MEU^{3 x + 7} \MDwSp x = \MEU^{3 x + 7} %%
-\]
-eine Stammfunktion von $f(x) = 3 \MEU^{3 x + 7}$.
+Somit ist $F$ eine Stammfunktion von $f$ mit $f(x) = \sin(x)$.
+%\[
+%\int \sin(x) \MDwSp x = -\cos(x) %%
+%\]
+%eine Stammfunktion von $f(x) = \sin(x)$.
 \end{MExample}
 
 %\begin{MExample}
-%F"ur negative Zahlen $x$ ist $-x$ positiv. Damit ist $f(x) := \ln(-x)$ f"ur alle $x < 0$ definiert und auch differenzierbar. Mit der Kettenregel folgt $H'(x) = \frac{1}{-x} \cdot (-1) = \frac{1}{x}$. %Somit ist
+%Die Funktion $G(x) = \MEU^{3x + 7}$ hat die Ableitung 
+%$G'(x) = 3 \cdot \MEU^{3 x + 7}$.
+%Deshalb ist
 %\[
-%\int \frac{1}{x} \MDwSp x = \ln(-x) = \ln|x|, %%
+%\int 3 \cdot \MEU^{3 x + 7} \MDwSp x = \MEU^{3 x + 7} %%
 %\]
-%wenn $x < 0$ gilt (hier ist $|x| = -x$).
+%eine Stammfunktion von $f(x) = 3 \MEU^{3 x + 7}$.
 %\end{MExample}
 
-Notiert man die Beziehung zwischen Ableitung $f=F'$ und Stammfunktion $F$ in der eben besprochenen umgekehrten Sichtweise f"ur die bisher betrachteten Funktionsklassen, ergibt sich die folgende Tabelle:
-
-\ifttm
-\begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen}
+\begin{MExample}
+Die Funktion $G$ mit $G(x) = \frac{1}{3} \MEU^{3x + 7}$ hat die Ableitung 
 \[
-\begin{array}{ll}
-\mbox{Funktion \ } f & \mbox{Eine Stammfunktion \ } F \mbox{\ dazu ist:} \\
-\hline
-f(x) = 0                                   & F(x) = C \quad\mbox{\ f"ur eine Zahl \ } C \in \R \\
-f(x) = x^n                                 & F(x) = \frac{1}{n+1} \cdot x^{n+1}\;\; , \;\; n\not=-1 \\
-f(x) = \sin(x)                             & F(x) = -\cos(x) \\
-f(x) = \sin(k x)                           & F(x) = -\frac{1}{k}\,\cos(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R \setminus \{0\}\\
-f(x) = \cos(x)                             & F(x) = \sin(x) \\
-f(x) = \cos(k x)                           & F(x) = \frac{1}{k}\,\sin(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R \setminus \{0\}\\
-%f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)} & F(x) = \tan(x) \\
-f(x) = \MEU^x                              & F(x) = \MEU^x \\
-f(x) = \MEU^{k x}                          & F(x) = \frac{1}{k}\,\MEU^{k x} \quad\mbox{\ f"ur eine Zahl \ } k \in \R \setminus \{0\}\\
-f(x) = \frac{1}{x}                         & F(x) = \ln|x|
-%f(x) = \frac{1}{1 + x^2} & F(x) = \arctan(x) %
-\end{array}
+G'(x) = \frac{1}{3} \cdot 3 \cdot \MEU^{3 x + 7} \MDFPeriod
 \]
-\end{MXInfo}
-\else
-\begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen}
-\[
-\begin{array}{ll}
-\text{Funktion $f$} & \text{Eine Stammfunktion $F$ dazu ist:} \\
-\hline
-f(x) = 0                                   & F(x) = C \quad\text{ f"ur eine Zahl } C \in \R \\
-f(x) = x^n                                 & F(x) = \frac{1}{n+1} \cdot x^{n+1} \\
-f(x) = \sin(x)                             & F(x) = -\cos(x) \\
-f(x) = \sin(k x)                           & F(x) = -\frac{1}{k}\,\cos(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R, k \neq 0 \\
-f(x) = \cos(x)                             & F(x) = \sin(x) \\
-f(x) = \cos(k x)                           & F(x) = \frac{1}{k}\,\sin(k x) \quad\mbox{\ f"ur eine Zahl \ } k \in \R, k \neq 0 \\
-%f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)} & F(x) = \tan(x) \\
-f(x) = \MEU^x                              & F(x) = \MEU^x \\
-f(x) = \MEU^{k x}                          & F(x) = \frac{1}{k}\,\MEU^{k x} \quad\mbox{\ f"ur eine Zahl \ } k \in \R, k \neq 0 \\
-f(x) = \frac{1}{x}                         & F(x) = \ln|x|
-%f(x) = \frac{1}{1 + x^2} & F(x) = \arctan(x) %
-\end{array}
-\]
-%Hier bezeichnet $k$ eine beliebige reelle Zahlen mit $k \neq 0$.
-\end{MXInfo}
-\fi
+Deshalb ist $G$ eine Stammfunktion von $g$ mit $g(x) = \MEU^{3 x + 7}$.
+\end{MExample}
 
-In der ersten Zeile in obiger Tabelle steht, dass $F(x) = C$ eine Stammfunktion 
-zu $f(x) = 0$ ist. Klar, denn die Ableitung einer konstanten Funktion ist die 
-Nullfunktion.
-Aber woher kennt man den Wert dieser Konstanten $C$? Schließlich ist die 
-Ableitung jeder beliebigen konstanten Funktion die Null. So gilt z.B. für 
-$F(x) = 3$ und für $G(x) = 5$, dass $F' = G' = 0$ ist.
-Ist nur nach einer Stammfunktion von $f(x) = 0$ gefragt, ohne dass weitere 
-Forderungen getroffen werden, ist die Stammfunktion eine ganz beliebige 
-Konstante $C$. Andere M"oglichkeiten, als dass es sich um
-irgendeine \emph{konstante} Funktion handelt, gibt es nicht.
+Es wird noch ein ganz einfaches Beispiel betrachtet, an dem ein wichtiger 
+Aspekt deutlich wird, wenn eine Stammfunktion gesucht wird.
+\begin{MExample}
+Es sei $H$ eine konstante Funktion auf einem Intervall mit dem Funktionswert 
+$K(x) = 18$ gegeben. Dann hat $H$ die Ableitung 
+\[
+H'(x) = 0 \MDFPeriod
+\]
+Deshalb ist $H$ eine Stammfunktion von $h$ mit $h(x) = 0$.
+\end{MExample}
+
+Das letzte Beispiel ist wenig "uberraschend, denn die Ableitung einer 
+konstanten Funktion ist die Nullfunktion.
+Somit ist \emph{jede} konstante Funktion $F$ eine Stammfunktion von $f$ mit 
+$f(x) = 0$ auf einem Intervall, das hei"st, es ist $F(x)$ gleich irgendeiner 
+Zahl $C$ f"ur jeden $x$-Wert.
+Andere M"oglichkeiten, als dass es sich um irgendeine \emph{konstante} Funktion 
+handelt, gibt es aber nicht, wenn $f$ auf einem Intervall definiert ist.
+
+\begin{MXInfo}{Alle Stammfunktionen der Nullfunktion}
+Es ist $F$ genau dann eine Stammfunktion von $f$ mit $f(x) = 0$ auf einem
+Intervall, wenn $F$ eine konstante Funktion ist, das hei"st, wenn es eine 
+Zahl $C$ gibt, sodass $F(x) = C$ f"ur alle $x$-Werte des Intervalls gilt.
+\end{MXInfo}
 
 Haben die Funktionen $F$ und $G$ dieselbe Ableitung $f = F' = G'$, dann ist 
 $G'(x) - F'(x) = 0$. Bildet man nun auf beiden Seiten der Gleichung die 
@@ -185,79 +156,116 @@ gilt. Hierf"ur schreibt man auch
 um auszudr"ucken, wie s"amtliche Stammfunktionen von $f$ aussehen.
 \end{MXInfo}
 
-\begin{MExample}
-Die Funktion $F: \R \to \R$ mit $F(x) = 5 x^2 - 6 x$ hat die 
-Ableitung $F'(x) = 10 x - 6$. Somit wird durch 
+Die Gesamtheit aller Stammfunktionen wird auch 
+\MEntry{unbestimmtes Integral}{Integral (unbestimmt)} genannt und in der 
+oben eingef"uhrten Form 
 \[
-\int (10 x - 6) \MDwSp x = 5 x^2 - 6 x + C
+\int f(x) \MDwSp x = F(x) + C %%
 \]
-die Gesamtheit der Stammfunktionen von $f: \R \to \R$ mit $f(x) = 10 x - 6$ 
-beschrieben, wobei $C$ f"ur eine beliebige reelle Zahl steht.
+notiert, wobei $F$ irgendeine Stammfunktion von $f$ ist. 
+%Die Sprechweise ist hier: "`$F$ ist das Integral über $f$."' 
+Den Zusammenhang zum (bestimmten) Integral beschreibt der
+\MEntry{Hauptsatz der Differential- und Integralrechnung}{Hauptsatz (Integral)}
+in \MRef{HSDDIR}. Durch die Schreibweise des unbestimmten Integrals wird 
+betont, dass zur gegebenen Funktion $f$ eine Funktion $F$ mit $F' = f$ gesucht
+wird.
 
-%Beispielsweise sind $F_0(x) = 5 x^2 - 6 x$ und $F_{-7}(x) := 5 x^2 - 6 x - 7$ 
-%jeweils Stammfunktionen von $f$.
-
-Beispielsweise ist auch $G: \R \to \R$ mit $G(x) := 5 x^2 - 6 x - 7$ eine 
-Stammfunktion von $f$, denn es ist $G'(x) = 5 \cdot 2 x - 6 = f(x)$ f"ur alle 
-$x \in \R$.
+Und woher kennt man den Wert dieser Konstanten $C$? 
+Ist nur nach einer Stammfunktion von $f$ mit $f(x) = 0$ auf einem Intervall 
+gefragt, ohne dass weitere Anforderungen bekannt sind, ist $C$ nicht festgelegt.
+Erst wenn zus"atzlich ein Funktionswert $y_0 = F(x_0)$ von $F$ an einer 
+Stelle $x_0$ vorgegeben wird, ist dann auch $C$ festgelegt.
+\begin{MExample}
+Beispielsweise ergibt sich f"ur $f$ mit $f(x) = 2x + 5$ dann
+\[
+\int \left( 2 x + 5 \right) \MD x = x^2 + 5x + C \MDFPeriod %%
+\]
+Wenn nun diejenige Stammfunktion $F$ von $f$ gesucht wird, f"ur die $F(0) = 6$
+gilt, dann muss $6 = F(0) = 0^2 + 5 \cdot 0 + C = C$ und somit $C = 6$ sein.
 \end{MExample}
-
-\ifttm\relax\else\vspace{-4ex}\fi
-
-Aus der obigen Tabelle zu Stammfunktionen ergibt sich die Gesamtheit aller 
-Stammfunktionen dann jeweils durch die Addition einer Konstanten:
-
-\ifttm\relax\else\vspace{-4ex}\fi
+Notiert man die Beziehung zwischen Ableitung $f = F'$ und Stammfunktionen $F$ in 
+der eben besprochenen umgekehrten Sichtweise f"ur die bisher betrachteten 
+Funktionsklassen, ergibt sich die folgende Tabelle:
 
 \ifttm
-\begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen -- zweite Version}
-\MIndex{Stammfunktionen (Tabelle)}\[
+\begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen}%
+\MIndex{Stammfunktionen (Tabelle)}%
+\[
 \begin{array}{ll}
 \mbox{Funktion} & \mbox{Stammfunktionen} \\
 \hline
-f(x) = 0                                      & F(x) = \int 0 \MDwSp x = C \\
-f(x) = x^n                                    & F(x) = \int x^n \MDwSp x = \frac{1}{n+1} \cdot x^{n+1} + C \\
-f(x) = \sin(x)                                & F(x) = \int \sin(x) \MDwSp x = -\cos(x) + C \\
-f(x) = \sin(k x)                              & F(x) = -\frac{1}{k}\,\cos(k x) + C \\
-f(x) = \cos(x)                                & F(x) = \int \cos(x) \MDwSp x = \sin(x) + C \\
-f(x) = \cos(k x)                              & F(x) = \frac{1}{k}\,\sin(k x) + C \\
-%f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}    & F(x) = \int (1 + \tan^2(x)) \MDwSp x = \tan(x) + C \\
-f(x) = \MEU^x                                 & F(x) = \int \MEU^x \MDwSp x = \MEU^x + C \\
-f(x) = \MEU^{k x}                             & F(x) = \frac{1}{k}\,\MEU^{k x} + C \\
-f(x) = \frac{1}{x}                            & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C %%
+f(x) = 0                                    & F(x) = \int 0 \MDwSp x = C \\
+f(x) = x^n                                  & F(x) = \int x^n \MDwSp x = \frac{1}{n+1} \cdot x^{n+1} + C \\
+f(x) = \sin(x)                              & F(x) = \int \sin(x) \MDwSp x = -\cos(x) + C \\
+f(x) = \sin(k x)                            & F(x) = -\frac{1}{k}\,\cos(k x) + C \\
+f(x) = \cos(x)                              & F(x) = \int \cos(x) \MDwSp x = \sin(x) + C \\
+f(x) = \cos(k x)                            & F(x) = \frac{1}{k}\,\sin(k x) + C \\
+%f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}  & F(x) = \int (1 + \tan^2(x)) \MDwSp x = \tan(x) + C \\
+f(x) = \MEU^x                               & F(x) = \int \MEU^x \MDwSp x = \MEU^x + C \\
+f(x) = \MEU^{k x}                           & F(x) = \frac{1}{k}\,\MEU^{k x} + C \\
+f(x) = x^{-1} = \frac{1}{x}                 & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C %%
 %f(x) = \frac{1}{1 + x^2} & F(x) = \int \frac{1}{1 + x^2} \MDwSp x = \arctan(x) + C %
 \end{array}
 \]
-Hier bezeichnen $k$ und $C$ beliebige reelle Zahlen mit $k \neq 0$.
+Hier bezeichnen $k$ und $C$ beliebige reelle Zahlen mit $k \neq 0$ und $n$ eine
+ganze Zahl mit $n \neq -1$.
 \end{MXInfo}
 \else
-\begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen -- zweite Version}
+\begin{MXInfo}{Eine kleine Tabelle von Stammfunktionen}%
 \MIndex{Stammfunktionen (Tabelle)}
 \[
 \begin{array}{ll}
 \text{Funktion} & \text{Stammfunktionen} \\
 \hline
-f(x) = 0                                        & F(x) = \int 0 \MDwSp x = C \\
-f(x) = x^n                                      & F(x) = \int x^n \MDwSp x = \frac{1}{n+1} \cdot x^{n+1} + C \\
-f(x) = \sin(x)                                  & F(x) = \int \sin(x) \MDwSp x = -\cos(x) + C \\
-f(x) = \sin(k x)                                & F(x) = -\frac{1}{k}\,\cos(k x) + C \\
-f(x) = \cos(x)                                  & F(x) = \int \cos(x) \MDwSp x = \sin(x) + C \\
-f(x) = \cos(k x)                                & F(x) = \frac{1}{k}\,\sin(k x) + C \\
-%f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}      & F(x) = \int (1 + \tan^2(x) \MDwSp x = \tan(x) + C \\
-f(x) = \MEU^x                                   & F(x) = \int \MEU^x \MDwSp x = \MEU^x + C \\
-f(x) = \MEU^{k x}                               & F(x) = \frac{1}{k}\,\MEU^{k x} + C \\
-f(x) = \frac{1}{x}                              & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C %
-%f(x) = \frac{1}{1 + x^2} & F(x) = \int \frac{1}{1 + x^2} \MDwSp x = \arctan(x) + C %
+f(x) = 0                                    & F(x) = \int 0 \MDwSp x = C \\[1ex]
+f(x) = x^n                                  & F(x) = \int x^n \MDwSp x = \frac{1}{n+1} \cdot x^{n+1} + C \\[1ex]
+f(x) = \sin(x)                              & F(x) = \int \sin(x) \MDwSp x = -\cos(x) + C \\[1ex]
+f(x) = \sin(k x)                            & F(x) = -\frac{1}{k}\,\cos(k x) + C \\[1ex]
+f(x) = \cos(x)                              & F(x) = \int \cos(x) \MDwSp x = \sin(x) + C \\[1ex]
+f(x) = \cos(k x)                            & F(x) = \frac{1}{k}\,\sin(k x) + C \\[1ex]
+%f(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}  & F(x) = \int (1 + \tan^2(x) \MDwSp x = \tan(x) + C \\[1ex]
+f(x) = \MEU^x                               & F(x) = \int \MEU^x \MDwSp x = \MEU^x + C \\[1ex]
+f(x) = \MEU^{k x}                           & F(x) = \frac{1}{k}\,\MEU^{k x} + C \\[1ex]
+f(x) = x^{-1} = \frac{1}{x}                 & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C %%
+%f(x) = \frac{1}{1 + x^2} & F(x) = \int \frac{1}{1 + x^2} \MDwSp x = \arctan(x) + C %%
 \end{array}
 \]
-Hier bezeichnen $k$ und $C$ beliebige reelle Zahlen mit $k \neq 0$.
+Hier bezeichnen $k$ und $C$ beliebige reelle Zahlen mit $k \neq 0$ und $n$ eine 
+ganze Zahl mit $n \neq -1$.
 \end{MXInfo}
 \fi
 
-In Tabellenwerken wird auf die Angaben der Konstanten oft verzichtet. In 
-einer Rechnung ist es allerdings wichtig, anzugeben, dass es mehrere 
-L"osungen geben kann. Bei der Lösung anwendungsbezogener Probleme wird die
-Integrationskonstante $C$ häufig durch die Angabe weiterer Bedingungen festgelegt.
+Das n"achste Beispiel zeigt, wie die Tabelle gelesen wird.
+
+\begin{MExample}
+Zur Funktion $f$ mit $f(x) = 10 x - 6 = 10 x^2 - 6 x^0$ wird das unbestimmte 
+Integral gesucht.
+Aus der obigen Tabelle k"onnen Stammfunktionen zu $g$ mit $g(x) = x$ und 
+$h$ mit $h(x) = x^0 = 1$ abgelesen werden: Es ist
+$G$ mit $G(x) = \frac{1}{1+1} \cdot x^{1+1} = \frac{1}{2} \cdot x^2$ eine 
+Stammfunktion von $g$ und $H$ mit $H(x) = \frac{1}{1} \cdot x^{0+1} = x$ eine
+Stammfunktion von $h$. Somit ist die Funktion $F: \R \to \R$ mit 
+\[
+F(x) = 10 \cdot \frac{1}{2} x^2 - 6 \cdot x = 5 x^2 - 6 x %%
+\] 
+eine Stammfunktion von $f$. Damit wird durch
+\[
+\int \left(10 x - 6 \right) \MD x = 5 x^2 - 6 x + C
+\]
+die Gesamtheit der Stammfunktionen von $f: \R \to \R$ mit $f(x) = 10 x - 6$ 
+beschrieben, wobei $C$ f"ur eine beliebige reelle Zahl steht.
+
+Die Schreibweise mit der Konstanten $C$ dr"uckt aus, dass beispielsweise auch 
+$G: \R \to \R$ mit $G(x) := 5 x^2 - 6 x - 7$ eine Stammfunktion von $f$ ist, 
+wobei $C = -7$ ist, denn es ist $G'(x) = 5 \cdot 2 x - 6 = f(x)$ f"ur alle 
+$x \in \R$.
+\end{MExample}
+
+In Tabellenwerken wird auf die Angaben der Konstanten oft verzichtet. In einer 
+Rechnung ist es allerdings wichtig, anzugeben, dass es mehrere Funktionen geben 
+kann. Bei der Lösung anwendungsbezogener Aufgaben wird die Konstante $C$ häufig 
+durch die Angabe weiterer Bedingungen wie beispielsweise die Angabe eines 
+Funktionswertes einer Stammfunktion festgelegt.
 
 %\begin{MExample}
 %Die Funktion $F(x) = 5 x^2 - 6 x$ hat die Ableitung $F'(x) = 10 x - 6$. 
@@ -680,12 +688,20 @@ gesuchten Wert $F(3) = \frac{1}{3} \cdot 3^3 + 3 + 1 = 13$.
 \MDeclareSiteUXID{VBKM08_Integral_Intro}
 Die Ableitung $f'(x_0)$ einer differenzierbaren Funktion $f$ beschreibt, 
 wie sich die Funktionswerte {\glqq}in der N"ahe{\grqq} der Stelle $x_0$ "andern:
-Die Ableitung bietet eine lokale Sichtweise auf die Funktion.
-Dadurch gewinnt man sehr viele Detailinformationen.
+Wenn beispielsweise die Ableitung positiv ist, dann ist $f$ monoton wachsend.
+Geometrisch betrachtet dr"uckt sich dies durch eine Tangente an den Graphen 
+von $f$ an der Stelle $x_0$ mit positiver Steigung aus.
+Die Ableitung bietet eine lokale Sichtweise auf die Funktion an jeder Stelle 
+$x_0$. Dadurch gewinnt man sehr viele Detailinformationen.
 
-Umgekehrt erh"alt man eine {\glqq}globale Kenngr"o"se{\grqq}, wenn man die 
-Funktionswerte gewichtet aufsummiert. 
-Diese Idee führt auf das sogenannte \MEntry{Riemann-Integral}{Integral (Riemann)}.
+Umgekehrt erh"alt man eine {\glqq}globale Kenngr"o"se{\grqq}, wenn man eine 
+{\glqq}Bilanz{\grqq} erstellt, indem man die Funktionswerte gewichtet 
+aufsummiert. In der Mathematik spricht man vom Integral oder Integralwert
+der Funktion.
+Geometrisch betrachtet, f"uhrt diese Idee auf eine M"oglichkeit, den 
+Fl"acheninhalt unter dem Graphen einer Funktion zu berechnen.
+Pr"azisiert wurde dieses Vorgehen von Bernhard Riemann, nach dem dieses 
+Integral auch \MEntry{Riemann-Integral}{Integral (Riemann)} genannt wird.
 \end{MIntro}
 
 \begin{MXContent}{Integral}{Integral}{STD}
@@ -760,20 +776,26 @@ unterteilt in acht Teilintervalle.
 \end{center}
 %\fi
 Man erkennt, dass die Fläche unter der Kurve zunächst durch Rechtecke
-angenähert wird, deren eine (horizontale) Seitenlänge durch ein Intervall auf der $x$-Achse bestimmt wird,
-während die Länge der zweiten (vertikalen) Seite durch den Funktionswert am linken Rand des dazu gehörenden
-$x$-Intervalls beschrieben wird. Man bestimmt nun die Flächen dieser Rechtecke und summiert diese Teilflächen auf.
-Je kleiner die Intervalle auf der $x$-Achse werden, umso mehr nähert sich die so berechnete Summe dem "`wahren"'
-Wert der Fläche unter der Kurve, also dem Integral der Funktion, an.
+angenähert wird, deren eine (horizontale) Seitenlänge durch ein Intervall 
+auf der $x$-Achse bestimmt wird, während die Länge der zweiten (vertikalen) 
+Seite durch den Funktionswert am linken Rand des dazu gehörenden $x$-Intervalls 
+beschrieben wird. Man bestimmt nun die Flächen dieser Rechtecke und summiert 
+diese Teilflächen auf.
+Je kleiner die Intervalle auf der $x$-Achse werden, umso mehr nähert sich die 
+so berechnete Summe dem {\glqq}wahren{\grqq} Wert der Fläche unter der Kurve, 
+also dem Integral der Funktion, an.
 
 Formal heißt das, dass man eine Summe $S_n$ der Form
 %
-$$
-S_n = \sum_{k=0}^{n-1} f(x_k) \cdot \Delta(x_k) \qquad \text{mit } \Delta(x_k) := x_{k+1} - x_{k} %%
-$$
+\[
+S_n = \sum_{k=0}^{n-1} f(x_k) \cdot \Delta(x_k) \qquad \text{mit } %
+ \Delta(x_k) = x_{k+1} - x_{k} %%
+\]
 %
-bestimmt. Im betrachteten Beispiel wird das Intervall $[0\MIntvlSep 8]$ in acht gleich große Teile eingeteilt.
-Dabei sind $x_0 = 0$, $x_1 = 1$, $x_2 = 2$, $x_3 = 3$, $x_4 = 4$, $x_5 = 5$, $x_6 = 6$, $x_7 = 7$ und $x_8 = 8$. Wendet man darauf diese Summenformel an, so erhält man
+bestimmt. Im betrachteten Beispiel wird das Intervall $[0\MIntvlSep 8]$ in 
+acht gleich große Teile eingeteilt. Dabei sind $x_0 = 0$, $x_1 = 1$, $x_2 = 2$, 
+$x_3 = 3$, $x_4 = 4$, $x_5 = 5$, $x_6 = 6$, $x_7 = 7$ und $x_8 = 8$. Wendet 
+man darauf diese Summenformel an, so erhält man
 %
 \begin{eqnarray*}
 S_8 &=& f(x_0) \cdot (x_1-x_0) + f(x_1) \cdot (x_2-x_1) + f(x_2) \cdot (x_3-x_2) + f(x_3) \cdot (x_4-x_3)\\
@@ -790,10 +812,13 @@ Voraussetzungen der nachfolgenden Definiton findet man in der Literatur.
 
 \begin{MXInfo}{Integral}
 Gegeben ist eine Funktion $f: [a\MIntvlSep b] \rightarrow \R$ auf einem reellen 
-Intervall $[a\MIntvlSep b]$. Dann nennt man
+Intervall $[a\MIntvlSep b]$. Zu {\glqq}feiner werdenden{\grqq} Unterteilungen 
+des Intervalls nennt man
 %
 \begin{equation}
-\int_a^b f(x) \MDwSp x = \lim_{n \rightarrow \infty} S_n %%
+\int_a^b f(x) \MDwSp x = \lim_{n \rightarrow \infty} S_n %
+ = \lim_{n \rightarrow \infty} \sum_{k=0}^{n-1} f(z_k) \cdot (x_{k} - x_{k-1}) %
+\quad \text{mit } x_{k-1} \leq z_k \leq x_k %%
 \end{equation}
 %
 das \MEntry{bestimmte Integral}{Integral (bestimmt)} von $f$ mit der 
@@ -828,7 +853,7 @@ Prinzipiell kann es vorkommen, dass auf diese Weise gar kein bestimmter Wert
 berechnet werden kann, das Integral also nicht exisitert.
 Weiterf"uhrende "Uberlegungen zeigen, dass jedenfalls f"ur jede stetige 
 Funktion das Integral existiert.
-
+%
 Als Beispiel wird das Integral von 
 $f: [0\MIntvlSep 1] \rightarrow \R,\, x \mapsto x$ 
 berechnet, wobei die Berechnung des Grenzwertes im Vordergrund steht.
