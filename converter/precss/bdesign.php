@@ -87,6 +87,15 @@ tocnavsymb ul li {
         transition: all 0.2s; 
 }
 
+.xsymb {
+  background-color: [-XSYMB-];
+  padding: 0px 5px 0px;
+  border: 1px solid rgb(55,180,220);
+  display: inline-block;
+  color: [-XSYMBCOLOR-];
+  font-size: [-SMALLFONTSIZE-];
+}
+
 .head
 {
   background-color: [-HEADBACKGROUND-];
@@ -118,12 +127,6 @@ tocnavsymb ul li {
 
 .nprev,
 .nnext,
-.xnprev,
-.xnnext,
-.nprevg,
-.nnextg,
-.xnprevg,
-.xnnextg
 {
   background-color: [-TOCMINBUTTON-];
   display: inline-block;
@@ -138,14 +141,37 @@ tocnavsymb ul li {
   color: [-XSYMBCOLOR-];
 }
 
+.nprev {
+  float: left;
+}
+
+.nnext {
+  float: right;
+}
+
+
 .navi a
 {
   padding-top: 35px;
 }
 
+#footer
+{
+  position: fixed;
+  bottom: 0px;
+  text-align: center;
+  width: 100%;
+  font-size: [-BIGFONTSIZE-];
+  color: [-FOOT-];
+  background-color: [-FOOTBACKGROUND-];
+  padding: 0.2em 0px;
+}
+
+
 /* ------------------------- neues Design ------------------------------ */
 
-.inormalbutton_book {
+/* Normaler xsection button */
+.xsectbutton {
     padding: 0 !important;
     background-image: none !important;
 }
@@ -156,8 +182,8 @@ tocnavsymb ul li {
     font-family: 'open-sans-condensed' !important;
     font-weight: 700 !important;
     min-height:30px !important;
-    background-color: rgba(0,82,140,1) !important;
 }
+
 #minusbutton img,
 #plusbutton img,
 #sharebutton img,
@@ -268,7 +294,6 @@ tocnavsymb ul li {
     border-bottom: 0px !important;
     margin-left: 0px !important;
     min-height:60px !important;
-    background-color: rgba(0,82,140,.6) !important;
     padding: 10px 0 !important;
     box-sizing: border-box;
 }
@@ -304,7 +329,7 @@ tocnavsymb ul li {
     background-color:rgba(255,255,255,.5) !important;
 }
 
-.navi .nprevg a, .navi .nprevg a:before {
+.navi .nprev a, .navi .nprev a:before {
     background-image: none !important;
     font-family: 'FontAwesome' !important;
 	content: "\f104";
@@ -315,7 +340,7 @@ tocnavsymb ul li {
 	font-size: 40px;
 	font-weight: 400;
 }
-.navi .xnnext a, .navi .xnnext a:before {
+.navi .nnext a, .navi .nnext a:before {
     background-image: none !important;
     font-family: 'FontAwesome' !important;
 	content: "\f105";
@@ -326,11 +351,11 @@ tocnavsymb ul li {
 	font-size: 40px;
 	font-weight: 400;
 }
-.navi .nprevg:hover a,
-.navi .xnnext:hover a {
+.navi .nprev:hover a,
+.navi .nnext:hover a {
 	color:rgba(255,255,255,.5) !important;
 }
-.navi .nprev, .navi.nnext, .navi .xnprev, .navi .xnnext, .navi .nprevg, .navi .nnextg, .navi .xnprevg, .navi .xnnextg {
+.navi .nprev, .navi.nnext {
     background-color: transparent !important;
     border: 0 !important;
     background-image: none !important;
@@ -350,6 +375,7 @@ tocnavsymb ul li {
     background-color: rgba(0,82,140,0.3) !important;
     width:160px !important;
     box-sizing: border-box !important;
+    position: fixed !important;
 }
 tocnavsymb {
     background-color: transparent !important;
@@ -460,10 +486,10 @@ tocnavsymb ul li ul li a:hover div{
     height:20px !important;
     text-transform: uppercase !important;
     max-width: auto !important;
-    background-color: rgba(0,82,140,.8) !important;
     font-size: 12px !important;
     line-height: 20px !important;
     letter-spacing: 0.5px;
+    position: fixed;
 }
 
 #footerleft .tocminbutton, #footerleft .tocminbutton {

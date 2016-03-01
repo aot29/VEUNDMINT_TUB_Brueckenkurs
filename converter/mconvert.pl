@@ -231,7 +231,9 @@ sub logTimestamp {
 
 sub injectEscapes {
   my $str = $_[0];
+  $str =~ s/\\/\\\\/gs ; # muss vor den anderen Ersetzungen kommen!
   $str =~ s/\"/\\\"/gs ;
+  $str =~ s/\'/\\\'/gs ;
   $str =~ s/\r/\\r/gs ;
   $str =~ s/\n/\\n/gs ;
   return $str;
@@ -1348,17 +1350,14 @@ sub idprint {
                                     $p->{ICON} = $3;
 				    $p->{XCONTENT} = 1;
 
-				    $p->{TOCSYMB} = "I";
+				    $p->{TOCSYMB} = "status1";
                                     if ($tpcontent =~ m/<!-- declaretestsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "Test";
+                                        $p->{TOCSYMB} = "status3";
                                     }
                                     
                                     if ($tpcontent =~ m/<!-- declareexcsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "T";
+                                        $p->{TOCSYMB} = "status2";
                                     }
-                                    
-                                    $p->{TOCSYMB} = "<div class=\"xsymb\"><tt>" . $p->{TOCSYMB} . "</tt></div>";
-                                    
                                    
 				    # Erzeuge Dokumentweite XVerlinkung der xcontents
 				    $p->{XPREV} = $XIDObj;
@@ -1473,16 +1472,14 @@ sub idprint {
                                     $p->{ICON} = $3;
 				    $p->{XCONTENT} = 2;
 
-                                    $p->{TOCSYMB} = "I";
+				    $p->{TOCSYMB} = "status1";
                                     if ($tpcontent =~ m/<!-- declaretestsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "Test";
+                                        $p->{TOCSYMB} = "status3";
                                     }
                                     
                                     if ($tpcontent =~ m/<!-- declareexcsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "T";
+                                        $p->{TOCSYMB} = "status2";
                                     }
-                                    
-                                    $p->{TOCSYMB} = "<div class=\"xsymb\"><tt>" . $p->{TOCSYMB} . "</tt></div>";
                                     
                                     $p->{TEXT} = $tpcontent;
 
@@ -2096,15 +2093,6 @@ sub translateoldicons {
   return $icon;
 }
 
-
-# Erzeugt das navigations-div fuer die html-Seiten
-# Parameter: icon (Klassenname) und Anker (HTML-String der a-Tag enthalten sollte)
-sub createTocButton {
-  my ($icon, $anchor) = @_;
-  
-  return "<div class=\"$icon\">" . $anchor . "</div>\n";
-}
-
 # Erzeugt das navigations-div fuer die html-Seiten
 # Parameter: Das Seitenobjekt
 sub getnavi {
@@ -2116,51 +2104,49 @@ sub getnavi {
 
   # Link auf die vorherige Seite
   $p = $site->navprev();
-  my $ac = $config{strings}{button_previous};
+  my $ac = ""; # $config{strings}{button_previous} nicht mehr benoetigt im bdesign
   my $icon = "nprev";
+  my $anchor;
   if (($site->{XCONTENT} == 1) and (!($p))) {
     if ($site->{XPREV} != -1) {
       $p = $site->{XPREV};
-      $icon = "xnprev";
+      # $icon = "xnprev";
     }
   }
-  my $anchor;
   if (($p) and ($site->{LEVEL} == $contentlevel)) {
-    $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\">$ac</a>";
+    $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\"></a>";
   } else {
-    $icon = $icon . "g";
-    $anchor = $ac;
+    $anchor = "";
   }
   $navi .= "<div class=\"$icon\">" . $anchor . "</div>\n";
 
   # Link auf die naechste Seite
   $p = $site->navnext();
-  $ac = $config{strings}{button_next};
+  $ac = ""; # $config{strings}{button_next}; nicht mehr benoetigt im bdesign
   $icon = "nnext";
   if (($site->{XCONTENT} == 1) and (!($p))) {
     if ($site->{XNEXT} != -1) {
       $p = $site->{XNEXT};
-      $icon = "xnnext";
+      # $icon = "xnnext";
     }
   }
   if (($site->{LEVEL} == ($contentlevel-2)) and ($site->{XNEXT} ne -1)) {
     # Von Modulhauptseite kommt man mit "Weiter" auf die erste contentseite
     $p = $site->{XNEXT};
-    $icon = "xnnext";
+    # $icon = "xnnext";
   }
   if (($site->{LEVEL} == ($contentlevel-3)) and ($site->{XNEXT} ne -1)) {
     # Von FB-Hauptseite kommt man mit "Weiter" auf die erste Modulhauptseite
     $p = $site->{XNEXT};
-    $icon = "xnnext";
+    # $icon = "xnnext";
   }
 
   if (($p) and (($site->{LEVEL}==$contentlevel) or ($site->{LEVEL}==($contentlevel-2)) or ($site->{LEVEL}==($contentlevel-3)))) {
-    $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\">$ac</a>";
+    $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\"></a>";
   } else {
-    $icon = $icon . "g";
-    $anchor = $ac;
+    $anchor = "";
   }
-  $navi .= createTocButton($icon, $anchor);
+  $navi .= "<div class=\"$icon\">" . $anchor . "</div>\n";
 
   # Links auf die subsubsections im gleichen Teilbaum
   $navi .= "<ul>\n";
@@ -2168,7 +2154,8 @@ sub getnavi {
     if ($site->{LEVEL}!=$contentlevel) {
       if ($site->{XCONTENT}==3) {
         # Link auf Aufgabenstellung bei Loesungsseiten
-	$navi .= "  <li class=\"inormalbutton_book\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $site->{BACK}->link() . ".{EXT}\">" . "Zum Modul" . "</a></li>\n";
+	$navi .= "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $site->{BACK}->link() . ".{EXT}\">" . "Zum Modul" . "</a></li>\n";
+	logMessage($FATALERROR," Backtracks from solution pages should no longer appear since MSolution is deprecated");
       } else {
         # Link auf Modulstart setzen bei hoeheren Ebenen
 	my $pp = $site;
@@ -2177,9 +2164,9 @@ sub getnavi {
 	  $pp = $sp[0];
 	}
 	if ($pp->{HELPSITE} eq 0) {
-	  $navi .= "  <li class=\"inormalbutton_book\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . $config{strings}{module_starttext} . "</a></li>\n";
+	  $navi .= "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . $config{strings}{module_starttext} . "</a></li>\n";
 	} else {
-	  $navi .= "  <li class=\"inormalbutton_book\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . "Mehr Informationen" . "</a></li>\n";
+	  $navi .= "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . "Mehr Informationen" . "</a></li>\n";
 	}
       }
     }
@@ -2190,23 +2177,26 @@ sub getnavi {
       for (my $i = 0; $i <= $#pages; $i++ ) {
 	my $p = $pages[$i];
 	my $attr ="normal";
-	if ($p->secpath() eq $site->secpath()) { $attr = "selected"; }
+	if ($p->secpath() eq $site->secpath()) { $attr = "s"; }
 	my $icon = $p->{ICON};
 	if ($icon eq "STD") { $icon = "book"; }
 	$icon = translateoldicons($icon);
+	# bdesign: no images
+	$icon = "xsectbutton";
 	my $cap = $p->{CAPTION};
 	if ($icon ne "NONE") {
-	  $icon = "button_" . $icon;
+	  #$icon = "button_" . $icon;
 	  if (($p->{DISPLAY}) and ($site->{LEVEL}==$contentlevel)) {
-	    # Knopf fuer Seite normal darstellen
-	    $navi .= "  <li class=\"" . "i$attr$icon" . "\"><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p->link() . ".{EXT}\">" . $cap . "</a></li>\n";
+	    # Knopf fuer Seite normal darstellen mit Attributen
+	    $navi .= "  <li class=\"$icon\"><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p->link() . ".{EXT}\">" . $cap . "</a></li>\n";
 	  } else {
 	    if ($site->{LEVEL}!=$contentlevel) {
 	      # Keine Navigationsbuttons wenn auf oberer Ebene
 	    } else
 	    {
 	      # Knopf fuer gesperrte Seite ausgrauen und nicht verlinken
-	      $navi .= "  <li class=\"" . "igrey$icon" . "\">" . $cap . "</li>\n";
+	      $attr = "g";
+	      $navi .= "  <li class=\"$icon\">" . $cap . "</li>\n";
 	    }
 	  }
 	}
@@ -2330,7 +2320,7 @@ sub gettoccaption_menustyle {
                 my $a;
                 for ($a = 0; $a <= $#pages4; $a++) {
                   my $p4 = $pages4[$a];
-                  $tsec .= "<a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p4->link() . ".{EXT}\">" . $p4->{TOCSYMB} . "</a>\n";
+                  $tsec .= "<a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p4->link() . ".{EXT}\"><div class=\"xsymb " . $p4->{TOCSYMB} . "\"></div></a>\n";
                 }
                 
                 
@@ -2699,15 +2689,15 @@ sub printpages {
 
 
 		$text .= "<div id=\"fixed\">\n";
-		$text .= "<div class=\"head\">\n"   . $divhead       . "</div>\n";
-		$text .= "<div class=\"toc\">\n"    . $divtoccaption . "</div>\n";
-		$text .= "<div class=\"navi\">\n"   . $divnavi       . "</div>\n";
+		$text .= "<div id=\"fhead\" class=\"head\">\n"   . $divhead       . "</div>\n";
+		$text .= "<div id=\"ftoc\" class=\"toc\">\n"    . $divtoccaption . "</div>\n";
+		$text .= "<div id=\"fnavi\" class=\"navi\">\n"   . $divnavi       . "</div>\n";
 		$text .= "<div id=\"footer\">\n"    . $divfooter     . "</div>\n";
 		$text .= "</div>\n";
 		$text .= "<div id=\"notfixed\">\n";
-		$text .= "<div class=\"head\">\n"   . $divhead       . "</div>\n";
-		$text .= "<div class=\"toc\">\n"    . $divtoccaption . "</div>\n";
-		$text .= "<div class=\"navi\">\n"   . $divnavi       . "</div>\n";
+		$text .= "<div id=\"nfhead\" class=\"head\">\n"   . $divhead       . "</div>\n";
+		$text .= "<div id=\"nftoc\" class=\"toc\">\n"    . $divtoccaption . "</div>\n";
+		$text .= "<div id=\"nfnavi\" class=\"navi\">\n"   . $divnavi       . "</div>\n";
 		$text .= "<div id=\"content\"><div id=\"text\"><div class=\"text\">\n"   . $divcontent    . "</div></div></div>\n";
 		$text .= "</div>\n";
 

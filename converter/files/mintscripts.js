@@ -1915,7 +1915,11 @@ function applyLayout(first) {
   head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"></button>";
   
     
-  $('div.headmiddle').html(head);
+  $('div.headmiddle').each(function(i) {
+      $(this).html(head);
+    }
+  );
+  
   $('#footerleft').html("<a href=\"mailto:" + reply_mail + "\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
 
     

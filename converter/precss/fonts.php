@@ -2,12 +2,12 @@
 
 @font-face {
   font-family: 'FontAwesome';
-  src: url('[LINKPATH]fonts/fontwaesome/fontawesome-webfont.eot');
-  src: url('[LINKPATH]fonts/fontwaesome/fontawesome-webfont.eot') format('embedded-opentype'),
-       url('[LINKPATH]fonts/fontwaesome/fontawesome-webfont.woff2') format('woff2'),
-       url('[LINKPATH]fonts/fontwaesome/fontawesome-webfont.woff') format('woff'),
-       url('[LINKPATH]fonts/fontwaesome/fontawesome-webfont.ttf') format('truetype'),
-       url('[LINKPATH]fonts/fontwaesome/fontawesome-webfont.svg') format('svg');
+  src: url('[LINKPATH]fonts/fontawesome/fontawesome-webfont.eot');
+  src: url('[LINKPATH]fonts/fontawesome/fontawesome-webfont.eot') format('embedded-opentype'),
+       url('[LINKPATH]fonts/fontawesome/fontawesome-webfont.woff2') format('woff2'),
+       url('[LINKPATH]fonts/fontawesome/fontawesome-webfont.woff') format('woff'),
+       url('[LINKPATH]fonts/fontawesome/fontawesome-webfont.ttf') format('truetype'),
+       url('[LINKPATH]fonts/fontawesome/fontawesome-webfont.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }

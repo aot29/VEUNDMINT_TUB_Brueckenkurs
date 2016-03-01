@@ -72,8 +72,6 @@ strings => {
   module_solutionlink => "L&#246;sung ansehen",
   module_solution     => "L&#246;sung",
   module_solutionback => "Zur&#252;ck zur Aufgabe",
-  button_previous     => "Zur&#252;ck",
-  button_next         => "Weiter"
 },
 
 fonts => {
@@ -111,13 +109,13 @@ colors => {
     XSYMBHOVER => "FAF4FF",
     XSYMB => "C4EDFF",
 
-    HEADBACKGROUND => "ABD0FC",
+    HEADBACKGROUND => "00528C",
 
-    NAVIBACKGROUND => "F0F0F0",
+    NAVIBACKGROUND => "296D9E",
     NAVISELECTED => "4080A0",
     NAVIHOVER => "EBFFFF",
 
-    FOOTBACKGROUND => "ABD0FC",
+    FOOTBACKGROUND => "2F6C97",
 
     INFOBACKGROUND => "CBEFFF",
     INFOLINE => "5680E4",
