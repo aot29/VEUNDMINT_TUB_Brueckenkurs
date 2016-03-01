@@ -536,13 +536,13 @@ Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum
  \]
  Der Vektor 
  \[
-  v=\MVector{2\\0}
+  \MVec{v}=\MVector{2\\0}
  \]
  ist zum Beispiel Verbindungsvektor vom Punkt $A=\MPointTwo{1}{1}$ zum Punkt $B=\MPointTwo{3}{1}$, also gilt
  \[
-  v=\MDVec{A B}. 
+  \MVec{v}=\MDVec{A B}. 
  \]
- Allerdings ist $v\neq\MDVec{B A}$, denn 
+ Allerdings ist $\MVec{v}\neq\MDVec{B A}$, denn 
  \[
   \MDVec{B A} = \MVector{1-3\\1-1} = \MVector{-2\\0}\neq\MVector{2\\0}.
  \]
@@ -652,18 +652,327 @@ im Raum sowie die zwei- bzw. dreidimensionalen Vektoren
 
 \end{MExercise}
 
-Die vorhergehende Einführung des Vektorkonzepts zeigt die nahe Verwandtschaft von Vektoren und Punkten. Tatsächlich gibt es sogar eine Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren: Zu jedem Punkt gibt es genau einen Vektor, der Ortsvektor dieses Punktes ist, und umgekehrt gibt es zu jedem Vektor genau einen Punkt, für den dieser Vektor der zugehörige Ortsvektor ist. Dies gilt im zwei- sowie im dreidimensionalen Fall. Das rechtfertigt nun die -- in den folgenden Abschnitten oft benutzte -- Konvention, Punkte durch ihre Ortsvektoren zu beschreiben. So beschreibt man zum Beispiel einen Punkt $P=\MPointTwo{2}{1}$ statt durch seine Koordinaten $\MPointTwo{2}{1}$ oft durch seinen zugehörigen Ortsvektor $\MDVec{P}=\MVector{2\\1}$. Dies bringt bei der Untersuchung geometrischer Objekte wie Geraden oder Ebenen (insbesondere im dreidimensionalen Fall) dann auch gewisse Vorteile in der Beschreibung mit sich (vgl. die Abschnitte \MNRef{VBKM10_GeradenEbene}, \MNRef{VBKM10_GeradenRaum} und \MNRef{VBKM10_EbenenRaum}).   
+Die vorhergehende Einführung des Vektorkonzepts zeigt die nahe Verwandtschaft von Vektoren und Punkten. Tatsächlich gibt es sogar eine Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren: Zu jedem Punkt gibt es genau einen Vektor, der Ortsvektor dieses Punktes ist, und umgekehrt gibt es zu jedem Vektor genau einen Punkt, für den dieser Vektor der zugehörige Ortsvektor ist. Dies gilt im zwei- sowie im dreidimensionalen Fall. Das rechtfertigt nun die -- in den folgenden Abschnitten oft benutzte -- Konvention, Punkte durch ihre Ortsvektoren zu beschreiben. So beschreibt man zum Beispiel einen Punkt $P=\MPointTwo{2}{1}$ statt durch seine Koordinaten $\MPointTwo{2}{1}$ oft durch seinen zugehörigen Ortsvektor $\MDVec{P}=\MVector{2\\1}$. Dies bringt bei der Untersuchung geometrischer Objekte wie Geraden oder Ebenen (insbesondere im dreidimensionalen Fall) dann auch gewisse Vorteile in der Beschreibung mit sich (vgl. die Abschnitte \MNRef{VBKM10_GeradenEbene}, \MNRef{VBKM10_GeradenRaum} und \MNRef{VBKM10_
+EbenenRaum}).   
 
 Weiterhin rechtfertigt die Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren auch, die Abkürzungen $\R^2$ und $\R^3$ nicht nur für die Menge aller Punkte in der Ebene bzw. im Raum zu verwenden, sondern auch für die Menge aller zwei- bzw. dreidimensionaler Vektoren. Davon wird in den nächsten Abschnitten ebenfalls Gebrauch gemacht.
 
 \end{MXContent}
-% 
-% \begin{MXContent}{Rechnen mit Vektoren}{Vektorrechnung}{STD}
-% \MLabel{VBKM10_Vektorrechnung}
-% \MDeclareSiteUXID{VBKM10_Vektorrechnung}
-% 
-% \end{MXContent}
-% 
+
+\begin{MXContent}{Rechnen mit Vektoren}{Vektorrechnung}{STD}
+\MLabel{VBKM10_Vektorrechnung}
+\MDeclareSiteUXID{VBKM10_Vektorrechnung}
+In diesem Abschnitt wird behandelt, wie man mit den -- im vorigen Abschnitt \MNRef{VBKM10_Vektoren} eingeführten -- Vektoren rechnen kann. Das Rechnen mit Vektoren hat mehrere Aspekte: Zunächst kann man mit Vektoren, die man als 2- oder 3-Tupel angibt, die Rechenoperationen Addition, Subtraktion und -- mit einer gewissen Einschränkung auch -- Multiplikation durchführen, indem man diese Operationen komponentenweise ausführt. Dann haben diese Rechenoperationen aber auch eine geometrische Bedeutung für die Pfeile, welche die Vektoren repräsentieren. Man kann die Rechenoperationen für Vektoren auch als geometrische Operationen mit ihren Repräsentanten interpretieren. Schließlich führt diese geometrische Betrachtung des Rechnens mit Vektoren auch auf ein tieferes Verständnis von Orts- und Verbindungsvektoren von Punkten.
+
+Das Rechnen mit zwei- und dreidimensionalen Vektoren funktioniert im Wesentlichen auf die gleiche Art und Weise. Bei den Rechenoperationen in Komponentenschreibweise werden im Folgenden immer beide Fälle (zwei- und dreidimensional) aufgeführt. Bei den zugehörigen Bildern, welche die geometrische Bedeutung der Operationen für die Repräsentanten der Vektoren sowie für Orts- und Verbindungsvektoren veranschaulichen, werden in diesem Abschnitt nur Pfeile und Punkte, keine Koordinatensysteme dargestellt. So sind diese Bilder sowohl für den zwei- als auch für den dreidimensionalen Fall gültig. 
+
+Da beim Rechnen mit Vektoren im Folgenden, Vektoren durch Rechnung und Äquivalenzumformungen auseinander hervorgehen sollen, muss einmal festgehalten werden, unter welchen Umständen zwei Vektoren gleich sein sollen. 
+
+\begin{MInfo}
+Zwei Vektoren $\MVec{a},\MVec{b}\in\R^2\ \textrm{oder}\ \R^3$ sind genau dann \MEntry{gleich}{Gleichheit (von Vektoren)} (symbolisch: $\MVec{a}=\MVec{b}$), wenn eine (und damit alle) der folgenden äquivalenten Bedingungen zutrifft (zutreffen):
+\begin{itemize}
+ \item $\MVec{a}$ und $\MVec{b}$ besitzen die gleichen Komponenten, also 
+ \[
+  \MVec{a}=\MVec{b}\MDFPSpace\Leftrightarrow\MDFPSpace\MVector{a_x\\a_y}=\MVector{b_x\\b_y}\MDFPSpace\Leftrightarrow\MDFPSpace a_x=b_x\ \textrm{und}\  a_y=b_y
+ \]
+ im zweidimensionalen Fall bzw.
+ \[
+  \MVec{a}=\MVec{b}\MDFPSpace\Leftrightarrow\MDFPSpace\MVector{a_x\\a_y\\a_z}=\MVector{b_x\\b_y\\b_z}\MDFPSpace\Leftrightarrow\MDFPSpace a_x=b_x\ \textrm{und}\  a_y=b_y\ \textrm{und}\  a_z=b_z
+ \]
+ im dreidimensionalen Fall. Dies ist auch unter der Bezeichnung \textbf{Koordinaten-} oder \textbf{Komponentenvergleich} bekannt.
+ \item $\MVec{a}$ und $\MVec{b}$ besitzen einen gleichen Repräsentanten.
+ \item $\MVec{a}$ und $\MVec{b}$ sind beide Ortsvektor des gleichen Punktes.
+ \item $\MVec{a}$ und $\MVec{b}$ sind beide Verbindungsvektor der gleichen zwei Punkte.
+\end{itemize}
+\end{MInfo}
+
+Diese Infobox macht auch klar, dass zwei Vektoren unterschiedlicher Dimension (also etwa $\MVec{a}\in\R^2$ und $\MVec{b}\in\R^3$) niemals gleich sein können. Diese Vektoren sind wegen der unterschiedlichen Anzahl an Komponenten sogar nicht einmal miteinander vergleichbar. Rechnungen mit Vektoren finden also immer nur mit einer festen Anzahl an Komponenten statt (hier entweder zwei oder drei), und die Ergebnisse der Rechnungen sind dann immer auch Vektoren mit ebendieser festen Anzahl an Komponenten.
+
+\begin{MInfo}
+Die \MEntry{Addition zweier Vektoren}{Addition (von Vektoren)} bedeutet die Addition aller ihrer Komponenten. Also
+\[
+ \MVec{a}+\MVec{b} = \MVector{a_x\\a_y}+\MVector{b_x\\b_y} = \MVector{a_x+b_x\\a_y+b_y}
+\]
+im zweidimensionalen Fall und
+\[
+ \MVec{a}+\MVec{b} = \MVector{a_x\\a_y\\a_z}+\MVector{b_x\\b_y\\b_z} = \MVector{a_x+b_x\\a_y+b_y\\a_z+b_z}
+\]
+im dreidimensionalen Fall. Geometrisch kann die Vektoraddition als \glqq Aneinanderhängen\grqq\ von Pfeilen oder als Ergänzung von zwei Pfeilenzu einem Parallelogramm interpretiert werden, je nachdem welche Repräsentanten der Vektoren man verwendet:
+\begin{center}
+\begin{tabular}{lr}
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth] 
+%Pfeile
+\draw[color=red,->] (0,0) -- (3,1);
+\draw[color=red] (1.5,0.5) node[anchor=north] {\footnotesize $\MVec{a}$};
+\draw[color=blue,->] (3,1) -- (4,3);
+\draw[color=blue] (3.5,2) node[anchor=west] {\footnotesize $\MVec{b}$};
+%Summe
+\draw[color=violet,->] (0,0) -- (4,3);
+\draw[color=violet] (1.9,1.5) node[anchor=east] {\footnotesize $\MVec{a}+\MVec{b}$};
+\end{tikzpicture}       
+}%
+&
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth] 
+%Pfeile
+\draw[color=red,->] (0,0) -- (3,1);
+\draw[color=red] (1.5,0.5) node[anchor=north] {\footnotesize $\MVec{a}$};
+\draw[color=blue,->] (0,0) -- (1,2);
+\draw[color=blue] (0.5,1) node[anchor=east] {\footnotesize $\MVec{b}$};
+%Parallelogramm
+\draw[color=red, dashed] (1,2) -- (4,3);
+\draw[color=blue, dashed] (3,1) -- (4,3); 
+%Summe
+\draw[color=violet,->] (0,0) -- (4,3);
+\draw[color=violet] (2.1,1.5) node[anchor=north] {\footnotesize $\MVec{a}+\MVec{b}$};
+\end{tikzpicture}       
+}%
+\end{tabular}
+\end{center}
+\end{MInfo}
+
+Auch bei der Addition von Vektoren gilt, analog zum Rechnen mit reellen Zahlen, das Kommutativ- und das Assoziativgesetz (vgl. Abschnitt \MNRef{VBKM01_TermeUmformen}) 
+\[
+ \MVec{a}+\MVec{b} = \MVec{b}+\MVec{a}
+\]
+sowie
+\[
+ \MVec{a}+\MVec{b}+\MVec{c} = (\MVec{a}+\MVec{b})+\MVec{c} = \MVec{a}+(\MVec{b}+\MVec{c}).
+\]
+Und der \MEntry{Nullvektor}{Nullvektor} $\MDVec{O}=\MVector{0\\0}$ bzw. $\MDVec{O}=\MVector{0\\0\\0}$ erfüllt die analoge Funktion für Vektoren, die die $0$ für reelle Zahlen erfüllt:
+\[
+ \MVec{a}+\MDVec{O} = \MDVec{O} + \MVec{a} = \MVec{a}\MDFPeriod
+\]
+
+
+\begin{MExample}
+Gegeben sind die Vektoren $\MVec{v}=\MVector{2\\-1}$ und $\MVec{w}=\MVector{-1\\2}$. Dann gilt
+\[
+ \MVec{v}+\MVec{w} = \MVector{2\\-1} + \MVector{-1\\2} = \MVector{2-1\\-1+2} = \MVector{1\\1}.
+\]
+Bild hierzu:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}[>=stealth]
+%Koordinatensystem
+\draw[->,color=black] (-2.5,0) -- (3.5,0);
+\foreach \x in {-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (0,3.5);
+\foreach \y in {-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.8) node[anchor=north west] {$y$};
+%Pfeile
+\draw[->, color=red] (0,0) -- (2,-1);
+\draw[color=red] (1,-0.5) node[anchor=north] {\footnotesize $\MVec{v}$};
+\draw[dashed, color=red] (-1,2) -- (1,1);
+\draw[->, color=blue] (0,0) -- (-1,2);
+\draw[color=blue] (-0.5,1) node[anchor=east] {\footnotesize $\MVec{w}$};
+\draw[dashed, color=blue] (2,-1) -- (1,1);
+\draw[->, color=violet] (0,0) -- (1,1);
+\draw[color=violet] (1,1) node[anchor=south west] {\footnotesize $\MVec{v}+\MVec{w}$};
+\end{tikzpicture}
+} 
+\end{center}
+Weiterhin ist $\MVec{w}$ der Verbindungsvektor vom Punkt $P=\MPointTwo{2}{0}$ zum Punkt $Q=\MPointTwo{1}{2}$, also $\MVec{w}=\MDVec{P Q}$ und $\MVec{v}$ ist der Verbindungsvektor vom Punkt $Q=\MPointTwo{1}{2}$ zum Punkt $R=\MPointTwo{3}{1}$, also $\MVec{v}=\MDVec{Q R}$. Dann stellt man fest, dass
+\[
+ \MVec{w}+\MVec{v} = \MDVec{P Q} + \MDVec{Q R} = \MDVec{P R}
+\]
+gilt:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}[>=stealth]
+%Koordinatensystem
+\draw[->,color=black] (-1.5,0) -- (4.5,0);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,3.5);
+\foreach \y in {-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.8) node[anchor=north west] {$y$};
+%Punkte
+\draw[fill=black] (2,0) circle (1.5pt);
+\draw[color=black] (2,0) node[anchor=north west] {\footnotesize $P$};
+\draw[fill=black] (1,2) circle (1.5pt);
+\draw[color=black] (1,2) node[anchor=south] {\footnotesize $Q$};
+\draw[fill=black] (3,1) circle (1.5pt);
+\draw[color=black] (3,1) node[anchor=west] {\footnotesize $R$};
+%Pfeile
+\draw[->, color=blue] (2,0) -- (1,2);
+\draw[color=blue] (1.5,1) node[anchor=east] {\footnotesize $\MVec{w}=\MDVec{P Q}$};
+\draw[->, color=red] (1,2) -- (3,1);
+\draw[color=red] (2,1.5) node[anchor=south west] {\footnotesize $\MVec{v}=\MDVec{Q R}$};
+\draw[->, color=violet] (2,0) -- (3,1);
+\draw[color=violet] (2.5,0.5) node[anchor=west] {\footnotesize $\MVec{w}+\MVec{v}= \MDVec{P R}$};
+\end{tikzpicture}
+} 
+\end{center}
+\end{MExample}
+Das obige Beispiel zeigt, dass man mit Hilfe der Vektorrechnung auch Ausdrücke für Verbindungsvektoren von Punkten vereinfachen kann. Dies wird weiter unten bei der Subtraktion von Vektoren nochmal vertieft. 
+
+\begin{MExercise}
+
+\begin{MExerciseItems}
+\item{Gegeben sind die Vektoren $\MVec{u}=\MVector{1\\0\\-8}$ und $\MVec{v}=\MVector{-3\\-4\\3}$. Berechnen Sie $\MVec{v}+\MVec{u}$.\\$\MVec{v}+\MVec{u}=$\MLFunctionQuestion{15}{(-2,-4,-5)}{5}{x}{5}{VEC21}} 
+\item{Gegeben sind die Punkte $P$, $Q$ und $R$. Welche der folgenden Audrücke sind gleich dem Ausdruck $(\MDVec{P}+\MDVec{P Q})+\MDVec{Q R}$ ?\\
+\begin{MQuestionGroup}
+\begin{tabular}{lll}
+\MCheckbox{1}{VEC22} & \ & $\MDVec{P}+(\MDVec{P Q}+\MDVec{Q R})$\\
+\MCheckbox{0}{VEC23} & \ & $\MDVec{P R}$\\
+\MCheckbox{0}{VEC24} & \ & $\MDVec{Q R}$\\
+\MCheckbox{1}{VEC25} & \ & $\MDVec{O R}$\\
+\MCheckbox{1}{VEC26} & \ & $\MDVec{R}$\\
+\MCheckbox{1}{VEC27} & \ & $\MDVec{Q}+\MDVec{Q R}$\\
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Antworten kontrollieren}
+}
+\end{MExerciseItems}
+
+\begin{MHint}{Lösung}
+\begin{MExerciseItems}
+\item{\[\MVec{v}+\MVec{u}=\MVector{-3\\-4\\3}+\MVector{1\\0\\-8} = \MVector{-3+1\\-4+0\\3-8} =\MVector{-2\\-4\\-5}.\]} 
+\item{\[ (\MDVec{P}+\MDVec{P Q})+\MDVec{Q R} = \MDVec{P}+(\MDVec{P Q}+\MDVec{Q R})\ \textrm{(Assoziativgesetz)}\] \[= (\MDVec{O P}+\MDVec{P Q})+\MDVec{Q R} = \MDVec{O Q}+\MDVec{Q R} = \MDVec{Q}+\MDVec{Q R} = \MDVec{OR} = \MDVec{R}.\]}
+\end{MExerciseItems} 
+\end{MHint}
+\end{MExercise}
+
+Untersucht man mögliche Rechenoperationen für Vektoren nun weiter, so stellt man fest, dass die komponentenweise Multiplikation oder Division von Vektoren keine sinnvolle Operation ist. Dies genauer zu verstehen, würde aber den mathematischen Rahmen dieses Brückenkurses sprengen. So muss man an dieser Stelle einfach akzeptieren, dass man Vektoren nicht so einfach miteinander multiplizieren und schon gar nicht durcheinander dividieren kann. Was allerdings möglich ist, ist die Multiplikation von Vektoren mit reellen Zahlen und -- darauf aufbauend -- auch die Subtraktion von Vektoren. Wichtig ist noch Folgendes: Wird im nachfolgenden von der Länge eines Vektors gesprochen, so ist damit die geometrische Länge der Pfeile gemeint, die ihn repräsentieren. Das Konzept der Länge oder des Betrags eines Vektors wird weiter unten noch genauer untersucht.
+
+\begin{MInfo}
+Die \MEntry{Multiplikation eines Vektors mit einer reellen Zahl}{Multiplikation (Vektor mit Skalar)} bedeutet die Multiplikation in jeder Komponente. Ist also $\MVec{a}$ ein Vektor und $s\in\R$, so gilt
+\[
+ s\cdot\MVec{a} = s\MVec{a}=s\MVector{a_x\\a_y} = \MVector{sa_x\\sa_y}
+\]
+im zweidimensionalen Fall und
+\[
+ s\cdot\MVec{a} = s\MVec{a}=s\MVector{a_x\\a_y\\a_z} = \MVector{sa_x\\sa_y\\sa_z}
+\]
+im dreidimensionalen Fall. Die Division eines Vektors durch eine Zahl $0\neq s\in\R$ ist dann einfach gegeben durch die Multiplikation mit dem Kehrwert $\frac{1}{s}$:
+\[
+ \frac{\MVec{a}}{s}=\frac{1}{s}\MVec{a}\MDFPeriod 
+\]
+Bei der Multiplikation eines Vektors mit einer reellen Zahl $s\in\R$ erhält man also einen gleich orientierten Vektor $s$-facher Länge, wenn $s>0$ ist. Wenn $s<0$ ist, hat der resultierende Vektor ebenfalls $s$-fache Länge, ist aber entgegengesetzt orientiert. Im Spezialfall $s=0$, gilt offenbar \[0\MVec{a}=\MDVec{O}\] für jeden Vektor $\MVec{a}$. Zwei weitere wichtige Fälle sind die Multiplikation mit $s=1$: \[1\cdot\MVec{a}=\MVec{a},\] dies lässt den Vektor offenbar gleich und die Multiplikation mit $s=-1$: \[-1\cdot\MVec{a}=-\MVec{a},\] dies ergibt den sogenannten \MEntry{Gegenvektor}{Gegenvektor}, ein Vektor gleicher Länge aber entgegengesetzter Orientierung. Bild hierzu:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth] 
+%Pfeile
+\draw[color=red, ->] (0,0) -- (2,1);
+\draw[color=black, ->] (0.2,0) -- (3.2,1.5);
+\draw[color=blue, ->] (0.4,0) -- (4.4,2);
+\draw[color=violet, ->] (0,0) -- (-2,-1);
+\draw[color=green, ->] (0.2,0) -- (-3.8,-2);
+%Linie
+\draw[line width = 1pt] (0,0) -- (0.4,0);
+%Beschriftung
+\draw[color=red] (2,1) node[anchor=south east] {\footnotesize $\MVec{a}=1\MVec{a}$};
+\draw[color=black] (3.1,1.5) node[anchor= south east] {\footnotesize $\frac{3}{2}\MVec{a}$};
+\draw[color=blue] (4.4,2) node[anchor=south east] {\footnotesize $2\MVec{a}$};
+\draw[color=violet] (-2,-1) node[anchor=south east] {\footnotesize $-\MVec{a}=-1\cdot\MVec{a}$};
+\draw[color=green] (-3.8,-2) node[anchor=south east] {\footnotesize $-2\MVec{a}$};
+\end{tikzpicture}       
+}% 
+\end{center}
+Da reelle Zahlen bei Multiplikation, die Länge von Vektoren ändern, sie also \textit{skalieren}, nennt man reelle Zahlen in Bezug auf Vektoren oft auch \MEntry{Skalare}{Skalar} und spricht bei der Multiplikation einer reellen Zahl mit einem Vektor von \textbf{Skalarmultiplikation}. 
+\end{MInfo}
+
+\begin{MExample}
+Gegeben ist der Vektor $\MVec{v}=\MVector{3\\\frac{3}{2}}$. Dann gilt zum Beispiel
+\[
+ 2\MVec{v}=2\MVector{3\\\frac{3}{2}}=\MVector{2\cdot3\\2\cdot\frac{3}{2}}=\MVector{6\\3}
+\]
+und
+\[
+ -\frac{\MVec{v}}{3}=-\frac{1}{3}\MVec{v}=-\frac{1}{3}\MVector{3\\\frac{3}{2}}=\MVector{-1\\-\frac{1}{2}}.
+\]
+Außerdem gilt zum Beispiel $\MVec{v}=\MDVec{P Q}$ für $P=\MPointTwo[\Big]{3}{\frac{1}{2}}$ und $Q=\MPointTwo{6}{2}$, da
+\[
+ \MVec{v}=\MVector{3\\\frac{3}{2}}=\MVector{6-3\\2-\frac{1}{2}}.
+\]
+Dann ist aber
+\[
+ -\MVec{v} = -\MDVec{P Q} = \MDVec{Q P},
+\]
+da 
+\[
+ -\MVec{v} = \MVector{-3\\-\frac{3}{2}}=\MVector{3-6\\\frac{1}{2}-2}
+\]
+gilt. Bild dazu:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}[>=stealth]
+%Koordinatensystem
+\draw[->,color=black] (-1.5,0) -- (7.5,0);
+\foreach \x in {-1,1,2,3,4,5,6,7}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,4.5);
+\foreach \y in {-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (7.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.8) node[anchor=north west] {$y$};
+%Punkte
+\draw[fill=black] (3,0.5) circle (1.5pt);
+\draw[color=black] (3,0.5) node[anchor=north west] {\footnotesize $P$};
+\draw[fill=black] (6,2) circle (1.5pt);
+\draw[color=black] (6,2) node[anchor=south] {\footnotesize $Q$};
+%Pfeile
+\draw[->, color=red, line width = 1.2pt] (0,0) -- (3,1.5);
+\draw[color = red] (3,1.5) node[anchor=south east] {\footnotesize $\MVec{v}$};
+\draw[->, color=violet] (0,0) -- (6,3);
+\draw[color = violet] (6,3) node[anchor=south east] {\footnotesize $2\MVec{v}$};
+\draw[->, color=blue] (0,0) -- (-1,-0.5);
+\draw[color = blue] (-1,-0.5) node[anchor=north] {\footnotesize $-\frac{1}{3}\MVec{v}$};
+%Verbindungspfeile
+\draw[->, color=red, line width = 2pt] (3.04,0.506) -- (5.96,1.97);
+\draw[color = red] (4.8,1.22) node[anchor=south east] {\footnotesize $\MVec{v}=\MDVec{P Q}$};
+\draw[->, color=black] (5.96,1.97) -- (3.04,0.506);
+\draw[color = black] (4.2,1.27) node[anchor=north west] {\footnotesize $-\MVec{v}=\MDVec{Q P}$};
+\end{tikzpicture}
+} 
+\end{center}
+\end{MExample}
+
+Für das Rechnen mit Vielfachen von Vektoren gilt nun der folgenden Satz von Rechengesetzen.
+
+\begin{MInfo}
+Sind $r$ und $s$ reelle Zahlen und $\MVec{a}$ und $\MVec{b}$ Vektoren, so gelten die folgenden Rechengesetze:
+\begin{enumerate}
+ \item $r\MVec{a}=\MVec{a}r$
+ \item $rs\MVec{a}=(rs)\MVec{a}=r(s\MVec{a})$
+ \item $(r+s)\MVec{a}=r\MVec{a}+s\MVec{a}$
+ \item $r(\MVec{a}+\MVec{b})=r\MVec{a}+r\MVec{b}$
+ \item $r(-\MVec{a})=(-r)\MVec{a}=-(r\MVec{a})$
+ \item $r\MVec{a}=0\MDFPSpace\Leftrightarrow\MDFPSpace r=0$ oder $\MVec{a}=\MDVec{O}$
+\end{enumerate}
+Die Nummer 1 heißt auch Kommutativgesetz der Skalarmultiplikation, die Nummer 2 Assoziativgesetz der Skalarmultiplikation und die Nummern 3 und 4 Distributivgesetze der Skalarmultiplikation. 
+\end{MInfo}
+
+
+Mit Hilfe des Konzeptes des Gegenvektors, kann nun auch festgehalten werden, was die Subtraktion von Vektoren bedeutet.
+
+\begin{MInfo}
+Sind $\MVec{a}$ und $\MVec{b}$ Vektoren, so ist ihre \MEntry{Differenz}{Subtraktion (von Vektoren)} $\MVec{a}-\MVec{b}$ gegeben als die Summe von $\MVec{a}$ und dem Gegenvektor von $\MVec{b}$. Also gilt
+\[
+ \MVec{a}-\MVec{b}=\MVec{a}+(-\MVec{b})=\MVector{a_x\\a_y}+\MVector{-b_x\\-b_y}=\MVector{a_x-b_x\\a_y-b_y}
+\]
+im zweidimensionalen Fall und
+\[
+ \MVec{a}-\MVec{b}=\MVec{a}+(-\MVec{b})=\MVector{a_x\\a_y\\a_z}+\MVector{-b_x\\-b_y\\-b_z}=\MVector{a_x-b_x\\a_y-b_y\\a_z-b_z}
+\]
+im dreidimensionalen Fall.
+\end{MInfo}
+
+\end{MXContent}
+
 % \MSubsection{Geraden und Ebenen}
 % \MLabel{VBKM10_GeradenEbenen}
 % 

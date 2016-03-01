@@ -21,7 +21,7 @@
 Das Modul umfasst folgende Abschnitte:
 \begin{itemize}
 \item{\MSRef{M07_Ableitung}{Ableitung einer Funktion},}
-\item{\MSRef{M07_Standardableitungen}{Ableitung elementarer Funktionen},}
+\item{\MSRef{M07_Standardableitungen}{Standardableitungen},}
 \item{\MSRef{M07_Rechenregeln}{Rechenregeln},}
 \item{\MSRef{M07_Eigenschaften}{Eigenschaften von Funktionen},}
 \item{\MSRef{M07_Anwendungen}{Anwendungen},}
@@ -32,11 +32,11 @@ Das Modul umfasst folgende Abschnitte:
 \end{MSectionStart}
 
 %%%Abschnitt
-\MSubsection{Ableitung}\MLabel{M07_Ableitung}
+\MSubsection{Ableitung einer Funktion}\MLabel{M07_Ableitung}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Ableitung_Intro}
-Eine Familie ist mit ihrem Auto unterwegs in den Urlaub. Der Wagen fährt mit einer Geschwindigkeit von $60\MEinheit{km}/\MEinheit[]{h}$ durch eine Baustelle.
+Eine Familie ist mit dem Auto unterwegs in den Urlaub. Der Wagen fährt mit einer Geschwindigkeit von $60\MEinheit{km}/\MEinheit[]{h}$ durch eine Baustelle.
 Am Ende der Baustelle steht ein Schild, das ab sofort wieder eine Geschwindigkeit von $120\MEinheit{km}/\MEinheit[]{h}$ erlaubt.
 Auch wenn die Fahrerin oder der Fahrer so kräftig wie nur irgend möglich auf das Gaspedal tritt, die Geschwindigkeit des Wagens wird sich nicht sprunghaft ändern,
 sondern in Abhängigkeit von der Zeit steigen. Wird die Geschwindigkeit innerhalb von 5 Sekunden von $60\MEinheit{km}/\MEinheit[]{h}$ auf $120\MEinheit{km}/\MEinheit[]{h}$
@@ -249,7 +249,7 @@ declare function={
 }
 \end{center}
 
-kann der Differenzenquotienten mit $x = x_0 + h$ umgeschrieben werden zu
+kann der Differenzenquotient mit $x = x_0 + h$ umgeschrieben werden zu
 \[
 \frac{f(x) - f(x_0)}{x - x_0} = \frac{f(x_0 + h) - f(x_0)}{h} \MDFPeriod
 \]
@@ -259,7 +259,7 @@ Die Größe $h$ kann daher positive oder negative Werte annehmen. Um die Ableitung
 f'(x_0) = \lim_{x \rightarrow x_0} \frac{f(x) - f(x_0)}{x - x_0} %
  = \lim_{h \rightarrow 0} \frac{f(x_0 + h) - f(x_0)}{h} \MDFPeriod
 \]
-Wenn dieser Grenzwert \emph{für alle} Stellen $x_0$ aus dem Definitionsbereich einer Funktion existiert, so nennt man diese Funktion (insgesamt)
+Wenn dieser Grenzwert \textbf{für alle} Stellen $x_0$ aus dem Definitionsbereich einer Funktion existiert, so nennt man diese Funktion (insgesamt)
 \textbf{differenzierbar}. Viele der häufig benutzten Funktionen sind differenzierbar.
 Ein einfaches Beispiel dafür, dass eine Funktion nicht unbedingt differenzierbar ist,
 ist die Betragsfunktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) := |x|$.
@@ -606,13 +606,13 @@ f': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto f'(x) = \cos(x) \MDFPer
 \]
 F"ur die Kosinusfunktion $g: \R \rightarrow \R$, $x  \mapsto g(x) := \cos(x)$ gilt 
 \[
-g': \R \rightarrow \R \MDFPSpace , \MDFPaSpace g'(x) = -\sin(x) \MDFPeriod %%
+g': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto g'(x) = -\sin(x) \MDFPeriod %%
 \]
 F"ur die Tangensfunktion $h: \R \setminus \{ \frac{\pi}{2} + k \pi \MCondSetSep k \in \Z \} \rightarrow \R$,
 $x \mapsto h(x) := \tan(x)$ gilt
 \[
 h': \R \setminus \{ \frac{\pi}{2} + k \pi \MCondSetSep k \in \Z \} \rightarrow \R \MDFPSpace , \MDFPaSpace
-h'(x) = 1 + (\tan(x))^2 = \frac{1}{\cos^2(x)} \MDFPeriod %%
+x \mapsto h'(x) = 1 + (\tan(x))^2 = \frac{1}{\cos^2(x)} \MDFPeriod %%
 \]
 \end{MXInfo}
 Letzteres ergibt sich auch aus den nachfolgend erl"auterten Rechenregeln und der 
@@ -719,7 +719,7 @@ dann Ihre Kenntnisse "uber die Ableitung bekannter Funktionen anwenden
 \item $g(x) := \frac{x^{-\frac{3}{2}}}{\sqrt{x}} = $
 \MLSimplifyQuestion{40}{1/x^2}{4}{x}{4}{512}{SIMPLE6}.
 \end{MExerciseItems}
-Damit ist
+Damit ist:
 \begin{MExerciseItems}
 \item $f'(x) = $ \MLSimplifyQuestion{40}{19/2*x^(17/2)}{4}{x}{4}{512}{SIMPLE7}.
 \item $g'(x) = $ \MLSimplifyQuestion{40}{-2/x^3}{4}{x}{4}{512}{SIMPLE8}.
@@ -743,10 +743,10 @@ Vereinfachen Sie die Funktionsterme, um dann die Ableitung zu bestimmen:
 \item $g(x) := \cos^2(3 x) + \sin^2(3 x) = $ %
 \MLParsedQuestion{40}{1}{3}{DG16}.
 \end{MExerciseItems}
-Damit ist
+Damit ist:
 \begin{MExerciseItems}
-\item $f'(x) = $ \MLFunctionQuestion{40}{cos(x)}{10}{x}{4}{DG17}
-\item $g'(x) = $ \MLParsedQuestion{40}{0}{3}{DG18} 
+\item $f'(x) = $ \MLFunctionQuestion{40}{cos(x)}{10}{x}{4}{DG17}.
+\item $g'(x) = $ \MLParsedQuestion{40}{0}{3}{DG18}.
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
  \begin{MExerciseItems}
@@ -770,7 +770,7 @@ Vereinfachen Sie die Funktionsterme, um dann die Ableitung zu bestimmen
 \MLFunctionQuestion{40}{exp(x)}{10}{x}{4}{DZ10}.
 \end{MExerciseItems}
 %\MInputHint{Schreiben Sie Exponentialfunktionen mit \texttt{exp}, beispielsweise schreiben Sie $\MEU^{4x^2}$ als \texttt{exp(4*x^2)}.}
-Damit ist
+Damit ist:
 \begin{MExerciseItems}
 \item $f'(x) = $ \MLSimplifyQuestion{40}{2/x}{1}{x}{20}{512}{TFR1}.
 \item $g'(x) = $ \MLSimplifyQuestion{40}{exp(x)}{10}{x}{4}{0}{TFR2}.
@@ -781,7 +781,7 @@ Damit ist
  \begin{MExerciseItems}
   \item Es ist
   \[
-   f(x) = 3 \ln (x) + \ln \left( \frac1x \right) = \ln (x^3) + \ln \left( \frac1x \right) = ln \left( x^3 \cdot \frac1x \right)
+   f(x) = 3 \ln (x) + \ln \left( \frac1x \right) = \ln (x^3) + \ln \left( \frac1x \right) = \ln \left( x^3 \cdot \frac1x \right)
    = \ln \left( x^2 \right) \MDFPeriod
   \]
   Für den Wert der Ableitung von $f$ an der Stelle $x$ ($x>0$) folgt daher mit Hilfe der Kettenregel
@@ -1011,13 +1011,13 @@ g': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto g'(x) = \MEU^{u(x)} \cd
 Berechnen Sie die Ableitungen der Funktionen $f,g$ und $h$ mit den gegebenen Funktionstermen:
 \begin{MExerciseItems}
 \item $f(x) := 3 + 5 x$
-führt auf $f'(x) = $\MLParsedQuestion{30}{5}{4}{DG19}
+führt auf $f'(x) = $\MLParsedQuestion{30}{5}{4}{DG19}.
 %
 \item $g(x) := \frac{1}{4 x} - x^3$
-führt auf $g'(x) = $\MLSimplifyQuestion{30}{-1/(4*x^2) - 3*x^2}{1}{x}{20}{512}{SIMPLE10}
+führt auf $g'(x) = $\MLSimplifyQuestion{30}{-1/(4*x^2) - 3*x^2}{1}{x}{20}{512}{SIMPLE10}.
 %
 \item $h(x) := 2 \sqrt{x} + 4 x^{-3}$
-führt auf $h'(x) = $\MLSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}{SIMPLE11}
+führt auf $h'(x) = $\MLSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}{SIMPLE11}.
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
  \begin{MExerciseItems}
@@ -1034,13 +1034,13 @@ führt auf $h'(x) = $\MLSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}
 Berechnen und vereinfachen Sie die Ableitungen der Funktionen $f,g$ und $h$ mit den gegebenen Funktionstermen:
 \begin{MExerciseItems}
 \item $f(x) := \cot x = \frac{\cos x}{\sin x}$
-führt auf $f'(x) = $\MLSimplifyQuestion{30}{-1/(sin(x) * sin(x))}{10}{x}{4}{512}{DG20}
+führt auf $f'(x) = $\MLSimplifyQuestion{30}{-1/(sin(x) * sin(x))}{10}{x}{4}{512}{DG20}.
 %
 \item $g(x) := \sin(3 x) \cdot \cos(3 x)$
-führt auf $g'(x) = $\MLFunctionQuestion{30}{3*cos(6*x)}{10}{x}{4}{DG21}
+führt auf $g'(x) = $\MLFunctionQuestion{30}{3*cos(6*x)}{10}{x}{4}{DG21}.
 %
 \item $h(x) := \frac{\sin(3 x)}{\sin(6 x)}$
-führt auf $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{512}{SIMPLE12}
+führt auf $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{512}{SIMPLE12}.
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
  \begin{MExerciseItems}
@@ -1073,13 +1073,13 @@ führt auf $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{5
 Berechnen Sie die Ableitungen der Funktionen $f,g$ und $h$ mit den gegebenen Funktionstermen:
 \begin{MExerciseItems}
 \item $f(x) := \MEU^{5 x}$
-führt auf $f'(x) = $\MLFunctionQuestion{30}{5*exp(5*x)}{10}{x}{4}{DG22}
+führt auf $f'(x) = $\MLFunctionQuestion{30}{5*exp(5*x)}{10}{x}{4}{DG22}.
 %
 \item $g(x) := x \cdot \MEU^{6 x}$
-führt auf $g'(x) = $\MLFunctionQuestion{30}{(6*x+1)*exp(6*x)}{10}{x}{4}{DG23}
+führt auf $g'(x) = $\MLFunctionQuestion{30}{(6*x+1)*exp(6*x)}{10}{x}{4}{DG23}.
 %
 \item $h(x) := (x^2 - x) \cdot \MEU^{-2 x}$
-führt auf $h'(x) = $\MLFunctionQuestion{30}{-(2*x^2 - 4*x + 1) * exp(-2*x)}{10}{x}{4}{DG24}
+führt auf $h'(x) = $\MLFunctionQuestion{30}{-(2*x^2 - 4*x + 1) * exp(-2*x)}{10}{x}{4}{DG24}.
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
  \begin{MExerciseItems}
@@ -1100,20 +1100,20 @@ $f^{(3)}$ die Ableitung von $f^{(2)}$ usw.
 Damit:
 \begin{itemize}
 \item
- $f^{(1)}(x) = $\MLFunctionQuestion{30}{-2 * cos(1 - 2*x)}{10}{x}{4}{DG25}
+ $f^{(1)}(x) = $\MLFunctionQuestion{30}{-2 * cos(1 - 2*x)}{10}{x}{4}{DG25}.
 \item
- $f^{(2)}(x) = $\MLFunctionQuestion{30}{-4 * sin(1 - 2*x)}{10}{x}{4}{DG26}
+ $f^{(2)}(x) = $\MLFunctionQuestion{30}{-4 * sin(1 - 2*x)}{10}{x}{4}{DG26}.
 \item
- $f^{(3)}(x) = $\MLFunctionQuestion{30}{8 * cos(1 - 2*x)}{10}{x}{4}{DG27}
+ $f^{(3)}(x) = $\MLFunctionQuestion{30}{8 * cos(1 - 2*x)}{10}{x}{4}{DG27}.
 \item
- $f^{(4)}(x) = $\MLFunctionQuestion{30}{16 * sin(1 - 2*x)}{10}{x}{4}{DG28}
+ $f^{(4)}(x) = $\MLFunctionQuestion{30}{16 * sin(1 - 2*x)}{10}{x}{4}{DG28}.
 \end{itemize}
 \begin{MHint}{Lösung}
  Mit Hilfe der Kettenregel bestimmt man sukzessive:
  \begin{eqnarray*}
-  f^{(1)} (x) & = & \cos(1 - 2x) \cdot (-2) = -2 \cos(1 - 2x) \\
-  f^{(2)} (x) & = & -2 \cdot \left( - \sin (1 - 2x) \right) \cdot (-2) = -4 \sin (1 - 2x) \\
-  f^{(3)} (x) & = & -4 \cdot \cos (1 - 2x) \cdot (-2) = 8 \cos (1 - 2x) \\
+  f^{(1)} (x) & = & \cos(1 - 2x) \cdot (-2) = -2 \cos(1 - 2x) \MDFPSpace , \\
+  f^{(2)} (x) & = & -2 \cdot \left( - \sin (1 - 2x) \right) \cdot (-2) = -4 \sin (1 - 2x) \MDFPSpace , \\
+  f^{(3)} (x) & = & -4 \cdot \cos (1 - 2x) \cdot (-2) = 8 \cos (1 - 2x) \MDFPSpace , \\
   f^{(4)} (x) & = & 8 \cdot \left( - \sin (1 - 2x) \right) \cdot (-2) = 16 \sin (1 - 2x) \MDFPeriod
  \end{eqnarray*}
 \end{MHint}
@@ -1133,8 +1133,8 @@ in einem gewissen Bereich {\glqq}n"aherungsweise{\grqq}. Aus den Eigenschaften d
 angenäherten Funktion geschlossen werden.
 \end{MIntro}
 
-\begin{MContent} 
-\MDeclareSiteUXID{VBKM07_Eigenschaften_Content}
+%\begin{MContent} 
+%\MDeclareSiteUXID{VBKM07_Eigenschaften_Content}
 
 %\MSubsubsection{Stetigkeit differenzierbarer Funktionen}
 %\begin{MXContent}{Stetigkeit differenzierbarer Funktionen}{Stetigkeit}{STD}
@@ -1154,8 +1154,9 @@ angenäherten Funktion geschlossen werden.
 %differenzierbar.
 %\end{MXContent}
 
-\MSubsubsection{Monotonie}
-%\begin{MXContent}{Monotonie}
+%\MSubsubsection{Monotonie}
+\begin{MXContent}{Monotonie}{Monotonie}{STD}
+\MDeclareSiteUXID{VBKM07_Monotonie}
 
 Mit der Ableitung kann das lokale Wachstumsverhalten untersucht werden, das 
 hei"st, ob f"ur steigende Argumente die zugehörigen Funktionswerte gr"o"ser oder 
@@ -1238,7 +1239,7 @@ die Ableitung $g'$ jeweils ein anderes Vorzeichen hat.
 Mit Hilfe folgender Tabelle wird bestimmt, in welchen Bereichen die Ableitung 
 von $g$ positiv bzw. negativ ist. Diese Bereiche entsprechen den Monotoniebereichen von 
 $g$. Der Eintrag $+$ besagt, dass der betrachtete Term im angegebenen
-Intervall positiv ist. Wenn er negativ ist, wird $-$ eingetragen.
+Intervall positiv ist. Wenn er negativ ist, wird $-$ eingetragen:
 \[
 \begin{array}{c||c|c|c}
 x & x < -3 & -3 < x < 1 & 1 < x \\
@@ -1260,9 +1261,11 @@ entspricht einem wachsenden Verhalten beim Übergang vom einen zum anderen Teilbe
 auf $\MoIl -\infty\MIntvlSep 0\MoIr$ monoton fallend ist, bedeutet also, die Einschr"ankung von $h$ auf dieses Intervall
 ist monoton fallend. Zudem ist $h$ f"ur alle $x > 0$ ebenfalls monoton fallend.
 \end{MExample}
+\end{MXContent}
 
-\MSubsubsection{Zweite Ableitung und Kr"ummungseigenschaften}
-%\begin{MXContent}{Kr"ummungseigenschaften}
+%\MSubsubsection{Zweite Ableitung und Kr"ummungseigenschaften}
+\begin{MXContent}{Zweite Ableitung und Kr"ummungseigenschaften}{Zweite Ableitung und Krümmungseigenschaften}{STD}
+\MDeclareSiteUXID{VBKM07_Kruemmungseigenschaften}
 
 %Seien $a,b \in D$ mit $a<b$.
 Gegenstand der Untersuchung ist eine Funktion $f: D \rightarrow \R$, die auf dem Intervall $\MoIl a\MIntvlSep b\MoIr \subseteq D$
@@ -1272,9 +1275,11 @@ Bildet man die Ableitung der ersten Ableitung von $f$, dann nennt man $(f')' = {
 Die zweite Ableitung der Funktion $f$ kann verwendet werden, um das Krümmungsverhalten der Funktion zu untersuchen:
 
 \begin{MXInfo}{Kr"ummungseigenschaften}
- Ist ${f'}'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ \textbf{konvex (linksgekrümmt)}.
+ Ist ${f'}'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ \textbf{konvex}
+ (\textbf{linksgekrümmt}).
 
- Ist ${f'}'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ \textbf{konkav (rechtsgekrümmt)}.
+ Ist ${f'}'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ \textbf{konkav}
+ (\textbf{rechtsgekrümmt}).
 \end{MXInfo}
 
 Somit gen"ugt es, das Vorzeichen der zweiten Ableitung ${f'}'$ zu bestimmen, 
@@ -1310,7 +1315,8 @@ Weiter ist ${f'}'(x) = 6 x$. Somit ist f"ur $x < 0$ auch ${f'}'(x) < 0$
 und damit $f$ hier konkav (nach rechts gekr"ummt). F"ur $x > 0$ ist
 ${f'}'(x) > 0$, sodass $f$ f"ur $x > 0$ konvex (nach links gekr"ummt) ist.
 \end{MExample}
-\end{MContent}
+%\end{MContent}
+\end{MXContent}
 
 
 %%%Uebungen zum Abschnitt:
@@ -1375,7 +1381,7 @@ beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notat
 \begin{MHint}{Lösung}
  Man berechnet für die erste und die zweite Ableitung von $f$ mit Hilfe der Quotientenregel
  \begin{eqnarray*}
-  f'(x) & = & \frac{4x}{(x^2 + 1)^2} , \\
+  f'(x) & = & \frac{4x}{(x^2 + 1)^2} \MDFPSpace , \\
   {f'}'(x) & = & \frac{4 \cdot (x^2 + 1)^2 - 4x \cdot 2 (x^2 + 1) \cdot 2x}{(x^2 + 1)^4}
   = \frac{4x^2 + 4 - 16x^2}{(x^2 + 1)^3} = \frac{4 (1-3x^2)}{(x^2 + 1)^3} \MDFPeriod
  \end{eqnarray*}
@@ -1596,7 +1602,7 @@ Die notwendige Bedingung für eine Extremstelle, $f'(x)=0$, ist hier gleichbedeut
 Man erhält also $x_1=\sqrt2$ und $x_2=-\sqrt2$. Es muss noch das Verhalten der zweiten Ableitung an diesen Stellen untersucht werden:
 $$
 {f'}'(x_1) \;=\; 8\frac{\sqrt2\cdot(2-6)}{(2+2)^3}<0 \MDFPSpace , \MDFPaSpace
-{f'}'(x_2) \;=\; 8\frac{-\sqrt2\cdot(2-6)}{(2+2)^3}>0 \MDFPeriod
+{f'}'(x_2) \;=\; 8\frac{(-\sqrt2)\cdot(2-6)}{(2+2)^3}>0 \MDFPeriod
 $$
 Folglich ist $x_1$ eine Maximalstelle und $x_2$ eine Minimalstelle von $f$. Durch Einsetzen in $f$ resultieren das
 Maximum $\MPointTwoAS{\sqrt2}{\sqrt2}$ und das Minimum $\MPointTwoAS{-\sqrt2}{-\sqrt2}$ von $f$.
@@ -1667,7 +1673,7 @@ Skizzieren Sie den Graphen und vergleichen Sie ihn anschließend mit der Musterlö
 
 \begin{MHint}{Lösung}
 \textbf{Maximaler Definitionsbereich}\\
-Es gilt $f(x) = - x (x - 2) \MEU^x$ und $\MEU^x > 0$ f"ur alle  $x \in \R$, damit ist $D_f = \R = \MoIl -\infty \MIntvlSep \infty\MoIr$
+Es gilt $f(x) = - x (x - 2) \MEU^x$ und $\MEU^x > 0$ f"ur alle  $x \in \R$; damit ist $D_f = \R = \MoIl -\infty \MIntvlSep \infty\MoIr$
 der maximale Definitionsbereich.
 \ \\ \ \\
 \textbf{Achsenschnittpunkte}\\
@@ -1787,8 +1793,8 @@ auf ein Problem mit nur noch einer Variablen reduzieren. Umformen des Volumens n
 \Leftrightarrow\quad h &=& \frac{1}{\pi r^2} \MDFPeriod
 \end{eqnarray*}
 %
-Nach dem Einsetzen dieser Formel in die Funktion $O(r,h)$ resultiert eine Funktion, die nur noch von einer Variablen abhängt und die der
-Einfachheit halber ebenfalls $O$ genannt werde:
+Nach dem Einsetzen dieser Formel in die Funktion $O(r,h)$ resultiert eine Funktion, die nur noch von einer Variablen abhängt und die \textbf{der
+ Einfachheit halber} ebenfalls $O$ genannt werde:
 %
 \begin{eqnarray*}
 O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h = 2 \pi r^2 + 2 \pi r \frac{1}{\pi r^2} = 2 \left(\pi r^2 + \frac{1}{r}\right) = O\left(r\right) \MDFPeriod
@@ -1806,7 +1812,7 @@ O'\left(r\right) = 2 \left(2\pi r - \frac{1}{r^2}\right) &=& 0\\
 \end{eqnarray*}
 %
 Für die letzte Äquivalenzumformung wurde verwendet, dass der Radius $r$ keine negativen Werte annehmen kann.
-Einsetzen dieses Ergebnises in die zweite Ableitung von $O$  dient der Überprüfung, ob wirklich ein Minimum gefunden wurde
+Einsetzen dieses Ergebnisses in die zweite Ableitung von $O$  dient der Überprüfung, ob wirklich ein Minimum gefunden wurde
 (${O'}'(r) = 4\pi + 4/r^3$):
 \begin{eqnarray*}
 {O'}'\left(\sqrt[3]{\frac{1}{2\pi}}\right) = 4\pi + \frac{4}{\left(\sqrt[3]{\frac{1}{2\pi}}\right)^3} = 12\pi > 0 \MDFPeriod
@@ -1910,12 +1916,12 @@ ${g'}'(x) = $\MLSimplifyQuestion{30}{(x - 2) * exp(-x)}{10}{x}{4}{0}{SIMPLE14} \
 \end{MExercise}
 
 \begin{MExercise} %Eigenschaften
-Man betrachte die Funktion $f: \MoIl 0\MIntvlSep  \infty\MoIr \rightarrow \R$, $x \mapsto f(x)$ mit $f'(x) = x \cdot \ln x$.
+Betrachten Sie die Funktion $f: \MoIl 0\MIntvlSep  \infty\MoIr \rightarrow \R$, $x \mapsto f(x)$ mit $f'(x) = x \cdot \ln x$.
 In welchen Bereichen ist $f$ monoton fallend, in welchen Bereichen ist $f$ konkav?
 %
 Geben Sie als Bereiche m"oglichst gro"se offene Intervalle $\MoIl c\MIntvlSep  d\MoIr$ an:
 \begin{MExerciseItems}
-\item $f$ ist auf \MLIntervalQuestion{12}{(0, 1)}{4}{INT2} monoton fallend,
+\item $f$ ist auf \MLIntervalQuestion{12}{(0, 1)}{4}{INT2} monoton fallend.
 \item $f$ ist auf \MLIntervalQuestion{12}{(0, 1/e)}{4}{INT3} konkav.
 \end{MExerciseItems}
 \MInputHint{Offene Intervalle können in der Form $(a;b)$ eingetippt werden, geschlossene Intervalle als $[a;b]$, $a$ und $b$ dürfen
