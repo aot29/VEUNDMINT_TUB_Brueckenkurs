@@ -1,6 +1,6 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
-\Mtikzexternalize
+%\Mtikzexternalize
 
 \begin{document}
 
@@ -652,7 +652,8 @@ im Raum sowie die zwei- bzw. dreidimensionalen Vektoren
 
 \end{MExercise}
 
-Die vorhergehende Einführung des Vektorkonzepts zeigt die nahe Verwandtschaft von Vektoren und Punkten. Tatsächlich gibt es sogar eine Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren: Zu jedem Punkt gibt es genau einen Vektor, der Ortsvektor dieses Punktes ist, und umgekehrt gibt es zu jedem Vektor genau einen Punkt, für den dieser Vektor der zugehörige Ortsvektor ist. Dies gilt im zwei- sowie im dreidimensionalen Fall. Das rechtfertigt nun die -- in den folgenden Abschnitten oft benutzte -- Konvention, Punkte durch ihre Ortsvektoren zu beschreiben. So beschreibt man zum Beispiel einen Punkt $P=\MPointTwo{2}{1}$ statt durch seine Koordinaten $\MPointTwo{2}{1}$ oft durch seinen zugehörigen Ortsvektor $\MDVec{P}=\MVector{2\\1}$. Dies bringt bei der Untersuchung geometrischer Objekte wie Geraden oder Ebenen (insbesondere im dreidimensionalen Fall) dann auch gewisse Vorteile in der Beschreibung mit sich (vgl. die Abschnitte \MNRef{VBKM10_GeradenEbene}, \MNRef{VBKM10_GeradenRaum} und \MNRef{VBKM10_EbenenRaum}).   
+Die vorhergehende Einführung des Vektorkonzepts zeigt die nahe Verwandtschaft von Vektoren und Punkten. Tatsächlich gibt es sogar eine Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren: Zu jedem Punkt gibt es genau einen Vektor, der Ortsvektor dieses Punktes ist, und umgekehrt gibt es zu jedem Vektor genau einen Punkt, für den dieser Vektor der zugehörige Ortsvektor ist. Dies gilt im zwei- sowie im dreidimensionalen Fall. Das rechtfertigt nun die -- in den folgenden Abschnitten oft benutzte -- Konvention, Punkte durch ihre Ortsvektoren zu beschreiben. So beschreibt man zum Beispiel einen Punkt $P=\MPointTwo{2}{1}$ statt durch seine Koordinaten $\MPointTwo{2}{1}$ oft durch seinen zugehörigen Ortsvektor $\MDVec{P}=\MVector{2\\1}$. Dies bringt bei der Untersuchung geometrischer Objekte wie Geraden oder Ebenen (insbesondere im dreidimensionalen Fall) dann auch gewisse Vorteile in der Beschreibung mit sich (vgl. die Abschnitte \MNRef{VBKM10_GeradenEbene}, \MNRef{VBKM10_GeradenRaum} und \MNRef{VBKM10_
+EbenenRaum}).   
 
 Weiterhin rechtfertigt die Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren auch, die Abkürzungen $\R^2$ und $\R^3$ nicht nur für die Menge aller Punkte in der Ebene bzw. im Raum zu verwenden, sondern auch für die Menge aller zwei- bzw. dreidimensionaler Vektoren. Davon wird in den nächsten Abschnitten ebenfalls Gebrauch gemacht.
 
@@ -661,9 +662,9 @@ Weiterhin rechtfertigt die Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsv
 \begin{MXContent}{Rechnen mit Vektoren}{Vektorrechnung}{STD}
 \MLabel{VBKM10_Vektorrechnung}
 \MDeclareSiteUXID{VBKM10_Vektorrechnung}
-In diesem Abschnitt wird nun eingeführt wie man mit den Vektoren aus dem vorigen Abschnitt \MNRef{VBKM10_Vektoren} rechnen kann. Das Rechnen mit Vektoren hat mehrere Aspekte: Zunächst kann man mit Vektoren, die man als 2- oder 3-Tupel angibt, die Rechenoperationen Addition, Subtraktion und -- mit einer gewissen Einschränkung auch -- Multiplikation durchführen, indem man diese Operationen komponentenweise ausführt. Dann haben diese Rechenoperationen aber auch eine geometrische Bedeutung für die Pfeile, welche die Vektoren repräsentieren, man kann nämlich die Rechenoperationen für Vektoren auch als geometrische Operationen mit ihren Repräsentanten interpretieren. Schließlich führt diese geometrische Betrachtung des Rechnens mit Vektoren auch auf ein tieferes Verständnis von Orts- und Verbindungsvektoren von Punkten.
+In diesem Abschnitt wird behandelt, wie man mit den -- im vorigen Abschnitt \MNRef{VBKM10_Vektoren} eingeführten -- Vektoren rechnen kann. Das Rechnen mit Vektoren hat mehrere Aspekte: Zunächst kann man mit Vektoren, die man als 2- oder 3-Tupel angibt, die Rechenoperationen Addition, Subtraktion und -- mit einer gewissen Einschränkung auch -- Multiplikation durchführen, indem man diese Operationen komponentenweise ausführt. Dann haben diese Rechenoperationen aber auch eine geometrische Bedeutung für die Pfeile, welche die Vektoren repräsentieren. Man kann die Rechenoperationen für Vektoren auch als geometrische Operationen mit ihren Repräsentanten interpretieren. Schließlich führt diese geometrische Betrachtung des Rechnens mit Vektoren auch auf ein tieferes Verständnis von Orts- und Verbindungsvektoren von Punkten.
 
-Das Rechnen mit zwei- und dreidimensionalen Vektoren funktioniert im Wesentlichen gleich. Bei den Rechenoperationen in Komponentenschreibweise werden im Folgenden immer beide Fälle (zwei- und dreidimensional) aufgeführt. Bei den zugehörigen Bildern, welche die geometrische Bedeutung der Operationen für die Repräsentanten der Vektoren sowie für Orts- und Verbindungsvektoren veranschaulichen, werden in diesem Abschnitt nur Pfeile und Punkte, keine Koordinatensysteme dargestellt. So sind diese Bilder sowohl für den zwei- als auch für den dreidimensionalen Fall gültig. 
+Das Rechnen mit zwei- und dreidimensionalen Vektoren funktioniert im Wesentlichen auf die gleiche Art und Weise. Bei den Rechenoperationen in Komponentenschreibweise werden im Folgenden immer beide Fälle (zwei- und dreidimensional) aufgeführt. Bei den zugehörigen Bildern, welche die geometrische Bedeutung der Operationen für die Repräsentanten der Vektoren sowie für Orts- und Verbindungsvektoren veranschaulichen, werden in diesem Abschnitt nur Pfeile und Punkte, keine Koordinatensysteme dargestellt. So sind diese Bilder sowohl für den zwei- als auch für den dreidimensionalen Fall gültig. 
 
 Da beim Rechnen mit Vektoren im Folgenden, Vektoren durch Rechnung und Äquivalenzumformungen auseinander hervorgehen sollen, muss einmal festgehalten werden, unter welchen Umständen zwei Vektoren gleich sein sollen. 
 
@@ -685,7 +686,7 @@ Zwei Vektoren $\MVec{a},\MVec{b}\in\R^2\ \textrm{oder}\ \R^3$ sind genau dann \M
 \end{itemize}
 \end{MInfo}
 
-Diese Infobox macht auch klar, dass zwei Vektoren unterschiedlicher Dimension (also etwa $\MVec{a}\in\R^2$ und $\MVec{b}\in\R^3$) niemals gleich sein können. Diese Vektoren sind wegen der unterschiedlichen Anzahl an Komponenten sogar nicht einmal miteinander vergleichbar. Rechnungen mit Vektoren finden also immer nur mit einer festen Anzahl an Komponenten statt (hier zwei oder drei), und die Ergebnisse der Rechnungen sind dann immer auch Vektoren mit ebendieser festen Anzahl an Komponenten.
+Diese Infobox macht auch klar, dass zwei Vektoren unterschiedlicher Dimension (also etwa $\MVec{a}\in\R^2$ und $\MVec{b}\in\R^3$) niemals gleich sein können. Diese Vektoren sind wegen der unterschiedlichen Anzahl an Komponenten sogar nicht einmal miteinander vergleichbar. Rechnungen mit Vektoren finden also immer nur mit einer festen Anzahl an Komponenten statt (hier entweder zwei oder drei), und die Ergebnisse der Rechnungen sind dann immer auch Vektoren mit ebendieser festen Anzahl an Komponenten.
 
 \begin{MInfo}
 Die \MEntry{Addition zweier Vektoren}{Addition (von Vektoren)} bedeutet die Addition aller ihrer Komponenten. Also
@@ -696,7 +697,7 @@ im zweidimensionalen Fall und
 \[
  \MVec{a}+\MVec{b} = \MVector{a_x\\a_y\\a_z}+\MVector{b_x\\b_y\\b_z} = \MVector{a_x+b_x\\a_y+b_y\\a_z+b_z}
 \]
-im dreidimensionalen Fall. Geometrisch kann die Vektoraddition als \glqq Aneinanderhängen\grqq\ von Pfeilen oder als Ergänzen eines Parallelogramms interpretiert werden, je nachdem welche Repräsentanten der Vektoren man verwendet:
+im dreidimensionalen Fall. Geometrisch kann die Vektoraddition als \glqq Aneinanderhängen\grqq\ von Pfeilen oder als Ergänzung von zwei Pfeilenzu einem Parallelogramm interpretiert werden, je nachdem welche Repräsentanten der Vektoren man verwendet:
 \begin{center}
 \begin{tabular}{lr}
 \MTikzAuto{%
@@ -739,7 +740,7 @@ sowie
 \[
  \MVec{a}+\MVec{b}+\MVec{c} = (\MVec{a}+\MVec{b})+\MVec{c} = \MVec{a}+(\MVec{b}+\MVec{c}).
 \]
-Und der Nullvektor $\MDVec{O}=\MVector{0\\0}$ bzw. $\MDVec{O}=\MVector{0\\0\\0}$ erfüllt die gleiche Funktion für Vektoren, die die $0$ für reelle Zahlen erfüllt:
+Und der \MEntry{Nullvektor}{Nullvektor} $\MDVec{O}=\MVector{0\\0}$ bzw. $\MDVec{O}=\MVector{0\\0\\0}$ erfüllt die analoge Funktion für Vektoren, die die $0$ für reelle Zahlen erfüllt:
 \[
  \MVec{a}+\MDVec{O} = \MDVec{O} + \MVec{a} = \MVec{a}\MDFPeriod
 \]
@@ -777,9 +778,9 @@ Bild hierzu:
 \end{tikzpicture}
 } 
 \end{center}
-Weiterhin ist $\MVec{v}$ unter anderem der Verbindungsvektor vom Punkt $P=\MPointTwo{2}{0}$ zum Punkt $Q=\MPointTwo{1}{2}$, also $\MVec{v}=\MDVec{P Q}$ und $\MVec{w}$ ist unter anderem der Verbindungsvektor vom Punkt $Q=\MPointTwo{1}{2}$ zum Punkt $R=\MPointTwo{3}{1}$, also $\MVec{w}=\MDVec{Q R}$. Dann stellt man fest, dass
+Weiterhin ist $\MVec{w}$ der Verbindungsvektor vom Punkt $P=\MPointTwo{2}{0}$ zum Punkt $Q=\MPointTwo{1}{2}$, also $\MVec{w}=\MDVec{P Q}$ und $\MVec{v}$ ist der Verbindungsvektor vom Punkt $Q=\MPointTwo{1}{2}$ zum Punkt $R=\MPointTwo{3}{1}$, also $\MVec{v}=\MDVec{Q R}$. Dann stellt man fest, dass
 \[
- \MVec{v}+\MVec{w} = \MDVec{P Q} + \MDVec{Q R} = \MDVec{P R}
+ \MVec{w}+\MVec{v} = \MDVec{P Q} + \MDVec{Q R} = \MDVec{P R}
 \]
 gilt:
 \begin{center}
@@ -804,12 +805,12 @@ gilt:
 \draw[fill=black] (3,1) circle (1.5pt);
 \draw[color=black] (3,1) node[anchor=west] {\footnotesize $R$};
 %Pfeile
-\draw[->, color=red] (2,0) -- (1,2);
-\draw[color=red] (1.5,1) node[anchor=east] {\footnotesize $\MVec{v}=\MDVec{P Q}$};
-\draw[->, color=blue] (1,2) -- (3,1);
-\draw[color=blue] (2,1.5) node[anchor=south west] {\footnotesize $\MVec{w}=\MDVec{Q R}$};
+\draw[->, color=blue] (2,0) -- (1,2);
+\draw[color=blue] (1.5,1) node[anchor=east] {\footnotesize $\MVec{w}=\MDVec{P Q}$};
+\draw[->, color=red] (1,2) -- (3,1);
+\draw[color=red] (2,1.5) node[anchor=south west] {\footnotesize $\MVec{v}=\MDVec{Q R}$};
 \draw[->, color=violet] (2,0) -- (3,1);
-\draw[color=violet] (2.5,0.5) node[anchor=west] {\footnotesize $\MVec{v}+\MVec{w} = \MDVec{P R}$};
+\draw[color=violet] (2.5,0.5) node[anchor=west] {\footnotesize $\MVec{w}+\MVec{v}= \MDVec{P R}$};
 \end{tikzpicture}
 } 
 \end{center}
@@ -819,16 +820,16 @@ Das obige Beispiel zeigt, dass man mit Hilfe der Vektorrechnung auch Ausdrücke f
 \begin{MExercise}
 
 \begin{MExerciseItems}
-\item{Gegeben sind die Vektoren $\MVec{u}=\MVector{1\\0\\-8}$ und $\MVec{v}=\MVector{-3\\-4\\3}$. Berechnen Sie $\MVec{v}+\MVec{u}=$\MLFunctionQuestion{15}{(-2,-4,-5)}{5}{x}{5}{VEC21}.} 
+\item{Gegeben sind die Vektoren $\MVec{u}=\MVector{1\\0\\-8}$ und $\MVec{v}=\MVector{-3\\-4\\3}$. Berechnen Sie $\MVec{v}+\MVec{u}$.\\$\MVec{v}+\MVec{u}=$\MLFunctionQuestion{15}{(-2,-4,-5)}{5}{x}{5}{VEC21}} 
 \item{Gegeben sind die Punkte $P$, $Q$ und $R$. Welche der folgenden Audrücke sind gleich dem Ausdruck $(\MDVec{P}+\MDVec{P Q})+\MDVec{Q R}$ ?\\
 \begin{MQuestionGroup}
 \begin{tabular}{lll}
-\MCheckbox{1}{VEC22} & \ & $\MDVec{P}+(\MDVec{P Q}+\MDVec{Q R})$.\\
-\MCheckbox{0}{VEC23} & \ & $\MDVec{P R}$.\\
-\MCheckbox{0}{VEC24} & \ & $\MDVec{Q R}$.\\
-\MCheckbox{1}{VEC25} & \ & $\MDVec{O R}$.\\
-\MCheckbox{1}{VEC26} & \ & $\MDVec{R}$.\\
-\MCheckbox{1}{VEC27} & \ & $\MDVec{Q}+\MDVec{Q R}$.\\
+\MCheckbox{1}{VEC22} & \ & $\MDVec{P}+(\MDVec{P Q}+\MDVec{Q R})$\\
+\MCheckbox{0}{VEC23} & \ & $\MDVec{P R}$\\
+\MCheckbox{0}{VEC24} & \ & $\MDVec{Q R}$\\
+\MCheckbox{1}{VEC25} & \ & $\MDVec{O R}$\\
+\MCheckbox{1}{VEC26} & \ & $\MDVec{R}$\\
+\MCheckbox{1}{VEC27} & \ & $\MDVec{Q}+\MDVec{Q R}$\\
 \end{tabular}
 \end{MQuestionGroup}
 \MGroupButton{Antworten kontrollieren}
@@ -843,7 +844,7 @@ Das obige Beispiel zeigt, dass man mit Hilfe der Vektorrechnung auch Ausdrücke f
 \end{MHint}
 \end{MExercise}
 
-Untersucht man mögliche Rechenoperationen für Vektoren nun weiter, so stellt man fest, dass die komponentenweise Multiplikation oder Division von Vektoren keine sinnvolle Operation ist. Dies genauer zu verstehen, würde aber den mathematischen Rahmen dieses Brückenkurses sprengen. So muss man dieser Stelle einfach akzeptieren, dass man Vektoren nicht so einfach miteinander multiplizieren und schon gar nicht durcheinander dividieren kann. Was allerdings möglich ist, ist die Multiplikation von Vektoren mit reellen Zahlen und -- darauf aufbauend -- auch die Subtraktion von Vektoren. Wichtig ist noch Folgendes: Wird im nachfolgenden von der Länge eines Vektors gesprochen, so ist damit die geometrische Länge der Pfeile gemeint, die ihn repräsentieren.
+Untersucht man mögliche Rechenoperationen für Vektoren nun weiter, so stellt man fest, dass die komponentenweise Multiplikation oder Division von Vektoren keine sinnvolle Operation ist. Dies genauer zu verstehen, würde aber den mathematischen Rahmen dieses Brückenkurses sprengen. So muss man an dieser Stelle einfach akzeptieren, dass man Vektoren nicht so einfach miteinander multiplizieren und schon gar nicht durcheinander dividieren kann. Was allerdings möglich ist, ist die Multiplikation von Vektoren mit reellen Zahlen und -- darauf aufbauend -- auch die Subtraktion von Vektoren. Wichtig ist noch Folgendes: Wird im nachfolgenden von der Länge eines Vektors gesprochen, so ist damit die geometrische Länge der Pfeile gemeint, die ihn repräsentieren. Das Konzept der Länge oder des Betrags eines Vektors wird weiter unten noch genauer untersucht.
 
 \begin{MInfo}
 Die \MEntry{Multiplikation eines Vektors mit einer reellen Zahl}{Multiplikation (Vektor mit Skalar)} bedeutet die Multiplikation in jeder Komponente. Ist also $\MVec{a}$ ein Vektor und $s\in\R$, so gilt
@@ -858,7 +859,7 @@ im dreidimensionalen Fall. Die Division eines Vektors durch eine Zahl $0\neq s\i
 \[
  \frac{\MVec{a}}{s}=\frac{1}{s}\MVec{a}\MDFPeriod 
 \]
-Bei der Multiplikation eines Vektors mit einer reellen Zahl $s\in\R$ erhält man also einen gleich orientierten Vektor $s$-facher Länge, wenn $s>0$ ist. Wenn $s<0$ ist, hat der resultierende Vektor ebenfalls $s$-fache Länge, ist aber entgegengesetzt orientiert. Im Spezialfall $s=0$, gilt offenbar $0\MVec{a}=\MDVec{O}$ für jeden Vektor $\MVec{a}$. Zwei weitere wichtige Fälle sind die Multiplikation mit $s=1$: $1\cdot\MVec{a}=\MVec{a}$, dies lässt den Vektor offenbar gleich und die Multiplikation mit $s=-1$: $-1\cdot\MVec{a}=-\MVec{a}$, dies ergibt den sogenannten \MEntry{Gegenvektor}{Gegenvektor}, ein Vektor gleicher Länge aber entgegengesetzter Orientierung:
+Bei der Multiplikation eines Vektors mit einer reellen Zahl $s\in\R$ erhält man also einen gleich orientierten Vektor $s$-facher Länge, wenn $s>0$ ist. Wenn $s<0$ ist, hat der resultierende Vektor ebenfalls $s$-fache Länge, ist aber entgegengesetzt orientiert. Im Spezialfall $s=0$, gilt offenbar \[0\MVec{a}=\MDVec{O}\] für jeden Vektor $\MVec{a}$. Zwei weitere wichtige Fälle sind die Multiplikation mit $s=1$: \[1\cdot\MVec{a}=\MVec{a},\] dies lässt den Vektor offenbar gleich und die Multiplikation mit $s=-1$: \[-1\cdot\MVec{a}=-\MVec{a},\] dies ergibt den sogenannten \MEntry{Gegenvektor}{Gegenvektor}, ein Vektor gleicher Länge aber entgegengesetzter Orientierung. Bild hierzu:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[>=stealth] 
