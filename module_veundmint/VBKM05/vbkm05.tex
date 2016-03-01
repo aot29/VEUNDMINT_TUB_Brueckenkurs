@@ -9,7 +9,7 @@
 \begin{document}
 
 \MSection{Geometrie}
-\MSetSectionID{Mathematik_ElementareGeometrie_} % hier identisch mit dem alten tikz-Dateien-Prefix 
+\MSetSectionID{VBKM05} % hier identisch mit dem alten tikz-Dateien-Prefix 
 \MLabel{VBKM05}
 
 \begin{MSectionStart}
@@ -40,7 +40,7 @@ Das Bild zeigt einen Ausschnitt des Stra\ss enplans von Ludwigshafen am Rhein. A
 sich einige Erkenntnisse \"uber die Geometrie in der Ebene ablesen.
 
 \begin{center}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Stadtplan.png}{scale=1} \MLabel{Stadtplan}
+\MGraphicsSolo{Stadtplan.png}{scale=1} \MLabel{Stadtplan}
 \end{center}
 
 Man kann hier unter anderem das Bogenma\ss\ eines Winkels entdecken und Stufen- und Wechselwinkel aufsp\"uren. 
@@ -132,11 +132,7 @@ Ein \MEntry{Kreis}{Kreis} (oder eine \MEntry{Kreislinie}{Kreislinie}) mit Mittel
 Zwei Halbgeraden ~$g$ und~$h$ in der Ebene, die von demselben Punkt ~$P$ ausgehen, bilden einen \MEntry{Winkel}{Winkel}.
 
 \begin{center}
-%-%\ifttm%
-%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Bogenmass.png}{scale=1}
-%-%\else%
 \MTikzAuto{%
-\tikzsetnextfilename{Bogenmass}
 \begin{tikzpicture}[scale=0.9,line width=2pt]
  \coordinate[label=left:$P$] (P) at (0,0);
  \coordinate[label=above:$g$] (A) at ($ (P) + (-20:3) $);
@@ -148,10 +144,6 @@ Zwei Halbgeraden ~$g$ und~$h$ in der Ebene, die von demselben Punkt ~$P$ ausgehe
  \draw[dashed, line width=1.5pt] (P) -- node[left]{$1$} ++ (0,-1);
 \end{tikzpicture}
 }
-%-%\fi
-%-%\MCopyrightLabel{Bogenmass}
-%-%\ \\
-%-%\MCopyrightNotice{\MCCLicense}{TIKZ}{MINT}{Erstellt mit dem tikz-Makropaket}{Bogenmass}
 \end{center}
 
 Zeichnet man einen Kreis mit Radius~$1$ um~$P$, wird dieser von den beiden Halbgeraden in zwei Teile zerschnitten. Wichtig ist nun derjenige Kreisbogen, der entsteht, wenn man von der Geraden $g$ gegen den Uhrzeigersinn zur Geraden $h$ geht (im obigen Bild gr\"un eingef\"arbt):
@@ -336,10 +328,7 @@ Je vier dieser Winkel sind gleich gro\ss .
 \begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_StufenwinkelWechselwinkel}%
 
 \begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_StufenWechselwinkelBenannt.png}{scale=1}
-\else%
-\tikzsetnextfilename{StufenWechselwinkelBenannt}
+\MTikzAuto{%
 \begin{tikzpicture}
 \coordinate (G) at (0,0);
 \coordinate (H) at ($ (G) + (30:5) $);
@@ -366,7 +355,7 @@ Je vier dieser Winkel sind gleich gro\ss .
  \node at (T) [below] {$\psi$};
 \end{scope}
 \end{tikzpicture}
-\fi
+}
 \end{center}
 
 \begin{itemize}
@@ -413,10 +402,7 @@ die Innenwinkel, nennt man die Innenwinkel eines Dreiecks auch schlicht
 &
 \begin {minipage}{6cm}
 %\begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_DreieckBezeichnungen.png}{scale=1}
-\else%
-\tikzsetnextfilename{DreieckBezeichnungen}
+\MTikzAuto{%
 \begin{tikzpicture}
 \coordinate[label=below left:$A$] (A) at (0,0);
 \coordinate[label=right:$B$]      (B) at (4,0.5);
@@ -438,7 +424,7 @@ die Innenwinkel, nennt man die Innenwinkel eines Dreiecks auch schlicht
 %     (current bounding box.south) node [below, text width=\n3, text centered, outer sep = 0.5\baselineskip]
  %          {Die Bezeichnungen von Ecken, Seiten und Innenwinkeln in einem Dreieck.};
 \end{tikzpicture}
-\fi
+}
 \end{minipage}
 \end{tabular}
 %\qquad\qquad
@@ -669,10 +655,7 @@ Ecke des Dreiecks ($C$).
 &
 \begin{minipage}{7cm}
 %\begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_sws.png}{scale=1}
-\else%
-\tikzsetnextfilename{sws}
+\MTikzAuto{%
 \begin{tikzpicture}
 \coordinate [label=left:$A$]        (A) at (0,0);
 \coordinate [label=below right:$B$] (B) at ($ (A) + (-15:3.2) $);
@@ -682,8 +665,7 @@ Ecke des Dreiecks ($C$).
 \draw[dotted] (C) -- ($ (C)!-0.5!(A) $) node[below right]{2.};
 \node at (A) [label=135:3., draw, dotted, circle through=(C)]{};
 \end{tikzpicture}
-\fi
-%\end{center}
+}
 \end{minipage}
 \end{tabular}
 \end{MExample}
@@ -701,11 +683,7 @@ Der Schnittpunkt der beiden neuen Schenkel ist die dritte Ecke des Dreiecks.
 \end{minipage}
 &
 \begin{minipage}{7cm}
-%\begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_wsw.png}{scale=1}
-\else%
-\tikzsetnextfilename{wsw}
+\MTikzAuto{%
 \begin{tikzpicture}[scale=0.75]
 \coordinate [label=left:$A$]        (A) at (0,0);
 \coordinate [label=below right:$B$] (B) at ($ (A) + (10:4) $);
@@ -715,8 +693,7 @@ Der Schnittpunkt der beiden neuen Schenkel ist die dritte Ecke des Dreiecks.
 \draw[dotted] (C) -- ($ (C)!-0.5!(A) $) node[below right]{2.};
 \draw[dotted] (C) -- ($ (C)!-0.5!(B) $) node[left]{3.};
 \end{tikzpicture}
-\fi
-%\end{center}
+}
 \end{minipage}
 \end{tabular}
 
@@ -729,7 +706,6 @@ Gegeben seien nun die drei Winkel $\alpha=77^\circ$, $\beta=44^\circ$ und $\gamm
 Diese Angaben findet man nicht bei den Kongruenzs\"atzen \MRef{Mathematik_ElementareGeometrie_Satz:Kongruenzsaetze}. Dennoch kann man entsprechende Dreiecke konstruieren:
 \begin{center}
 \MTikzAuto{%
-\tikzsetnextfilename{www_1}
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 \pgfmathparse{5*sin(44)*cos(77)/sin(59)}\let\cx=\pgfmathresult
 \pgfmathparse{5*sin(44)*sin(77)/sin(59)}\let\cy=\pgfmathresult
@@ -796,9 +772,7 @@ Zwei Dreiecke sind zueinander \"ahnlich, wenn
 
 Eine Besonderheit gibt es bei dem rechten und dem linken Dreieck in Beispiel  \MRef{Mathematik_ElementareGeometrie_Beispiel:Aehnlichkeit}: Hier geht das eine Dreieck durch zentrische Streckung \MLabel{Mathematik_ElementareGeometrie_zentrischeStreckung} mit dem Streckzentrum $S$ und einem Streckfaktor $k$ in das andere \"uber.
 \begin{center}
-%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_zentrische_Streckung.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{zentrische_Streckung}
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 \pgfmathparse{5*sin(44)*cos(77)/sin(59)}\let\cx=\pgfmathresult
 \pgfmathparse{5*sin(44)*sin(77)/sin(59)}\let\cy=\pgfmathresult
@@ -857,10 +831,7 @@ einer Spalte stets der gleiche Winkel stehen.
 \begin{MExercise}
 Untersuchen Sie die folgende Figur auf Stufenwinkel und Wechselwinkel!
 \begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Stern.png}{scale=1}
-\else%
-\tikzsetnextfilename{Stern}
+\MTikzAuto{%
 \begin{tikzpicture}
 \coordinate (A) at (0,0);
 \coordinate (B) at ($ (A) + ( 00:3) $);
@@ -882,7 +853,7 @@ Untersuchen Sie die folgende Figur auf Stufenwinkel und Wechselwinkel!
 \draw (BC) -- (EF);
 \draw (CD) -- (FA);
 \end{tikzpicture}
-\fi
+}
 \end{center}
 
 \begin{MHint}{L\"osung}
@@ -893,9 +864,7 @@ Die Winkel $\alpha$ und $\alpha'$ zum Beispiel sind Stufenwinkel, ebenso $\beta$
 Die Winkel $\alpha'$ und $\beta$ zum Beispiel sind Wechselwinkel, ebenso $\alpha$ und $\beta'$.
 \end{minipage}
 &
-%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Stern_Loesung.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Stern_Loesung}
 \begin{tikzpicture}
 \coordinate (A) at (0,0);
 \coordinate (B) at ($ (A) + ( 00:3) $);
@@ -937,9 +906,7 @@ Zeigen Sie mithilfe von Wechselwinkeln, dass die Summe der Innenwinkel in einem 
 
 \begin{MHint}{L\"osung}
 \begin{tabular}{lc}
-%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Winkelsumme_1.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Winkelsumme_1}
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 %%\draw[help lines, gray!50, xstep=0.5, ystep=0.5] (0,0) grid (9,8);
 \draw[color=black] (1,0)--(9,4) (0.5,3.5)--(7.5,7.0);
@@ -1008,9 +975,7 @@ Zuerst sollen Rechtecke betrachtet werden.
 %\end{MInfo}
 
 \begin{tabular}{lc}
-%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Flaecheninhalt_Rechteck.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Flaecheninhalt_Rechteck}
 \begin{tikzpicture}[x=0.8cm, y=0.8cm] 
 \draw[help lines, black, xstep=1, ystep=1] (1,1) grid (8,5);
 \draw[color=blue, line width=2pt] (1,1)--(8,1) (1,5)--(8,5);
@@ -1042,10 +1007,7 @@ entlang der beiden Hypotenusen aneinander, so erh\"alt man ein Rechteck.
 &
 \begin{minipage}{5cm}
 %\begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_FlaecheninhaltRechteck.png}{scale=1}
-\else%
-\tikzsetnextfilename{FlaecheninhaltRechteck}
+\MTikzAuto{%
 \begin{tikzpicture}[rotate=-20]
 \coordinate (A) at (0,0);
 \coordinate (B) at ($ (A) + (1,-1.5) $);
@@ -1055,7 +1017,7 @@ entlang der beiden Hypotenusen aneinander, so erh\"alt man ein Rechteck.
 \draw (A) node [left]{$A$} -- (B) node[left]{$B$} -- (C) node[right]{$C$} -- cycle;
 \draw[dotted] (B) -- (D) node[right]{$D$} -- (C);
 \end{tikzpicture}
-\fi
+}
 %\end{center}
 \end{minipage}
 \end{tabular}
@@ -1077,10 +1039,7 @@ Aus jedem beliebigen Dreieck kann man zwei rechtwinklige Dreiecke gewinnen, inde
 
 Je nachdem, ob die neue Linie innerhalb oder au\ss erhalb des Dreiecks liegt, ergibt sich der Fl\"acheninhalt des Dreiecks dann aus der Summe oder der Differenz der Fl\"acheninhalte der beiden sich ergebenden rechtwinkligen Dreiecke:
 \begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_FlaecheninhaltDreieckSpitz.png}{scale=1}
-\else%
-\tikzsetnextfilename{FlaecheninhaltDreieckSpitz}
+\MTikzAuto{%
 \begin{tikzpicture}
  \coordinate[label=left:$A$]  (A) at (0,0);
  \coordinate[label=right:$B$] (B) at ($ (A) + (3,0) $);
@@ -1091,12 +1050,9 @@ Je nachdem, ob die neue Linie innerhalb oder au\ss erhalb des Dreiecks liegt, er
  \draw[dotted] (C) -- node[right]{$h_c$} (D);
  \path (A) -- node[above]{$c_1$} (D) -- node[above]{$c_2$} (B);
 \end{tikzpicture}
-\fi
+}
 \hspace{4em}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_FlaecheninhaltDreieckStumpf.png}{scale=1}
-\else%
-\tikzsetnextfilename{FlaecheninhaltDreieckStumpf}
+\MTikzAuto{%
 \begin{tikzpicture}
  \coordinate[label=below:$U$] (U) at (0,0);
  \coordinate[label=right:$V$] (V) at ($ (U) + (3,0) $);
@@ -1108,7 +1064,7 @@ Je nachdem, ob die neue Linie innerhalb oder au\ss erhalb des Dreiecks liegt, er
  \draw[dotted] (W) -- node[left] {$h_w$} (X);
  \draw[dotted] (U) -- node[above]{$w_1$} (X);
 \end{tikzpicture}
-\fi
+}
 \end{center}
 
 Links gilt also (wenn $A_{\Delta}$ den Fl\"acheninhalt des Dreiecks~$\Delta$ bezeichnet)
@@ -1151,7 +1107,6 @@ Rechts gilt genauso
 \begin{tabular}{lc}
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_DreieckFlaeche_Bsp.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{DreieckFlaeche_Bsp}
 \begin{tikzpicture}[x=0.6cm, y=0.6cm] 
 %%\draw[help lines, gray!50, xstep=0.5, ystep=0.5] (0,0) grid (9,8);
 \draw[color=black, very thick] (0,0) -- (1.7032,-6.0654) -- (7.8,0) -- cycle;
@@ -1178,7 +1133,6 @@ Berechnen Sie den Fl\"acheninhalt des Dreiecks:\\
 \ \\
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_DreieckFlaeche_Aufgabe.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{DreieckFlaeche_Aufgabe}
 \begin{tikzpicture}[x=1.2cm, y=1.2cm] 
 %Koordinatensystem
 \node (xMAX) at (6.0,0){};
@@ -1212,7 +1166,6 @@ Nun lassen sich auch die Fl\"achen von anderen Vielecken, auch \textbf{Polygone}
 \begin{tabular}{lc}
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Polygone}
 \begin{tikzpicture}[x=0.5cm, y=0.5cm] 
 \draw[thick] (0,0) -- (9,0) -- (9,9) -- (4,9) -- cycle;
 \draw[thick, dashed] (4,0) -- (4,9);
@@ -1244,7 +1197,6 @@ Tipp: Teilen Sie es sinnvoll auf und schauen Sie sich die entstandenen Dreiecke 
 &
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone_Parallelogramm.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Polygone_Parallelogramm}
 \begin{tikzpicture}[x=0.5cm, y=0.5cm] 
 \draw[thick] (0,0) -- (10,0) -- ++(45:10) -- (45:10) -- cycle;
 \draw[stealth'-stealth',thick] (8,0) -- (8,7.0710678);
@@ -1264,7 +1216,6 @@ Man kann das Parallelogramm in das linke rote Dreieck, einem folgenden Rechteck 
 &
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone_Parallelogramm_Loesung.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Polygone_Parallelogramm_Loesung}
 \begin{tikzpicture}[x=0.5cm, y=0.5cm] 
 \draw[thick] (0,0) -- (10,0) -- ++(45:10) -- (45:10) -- cycle;
 \draw[thick,dashed] (10,0) -- (10,7.0710678);
@@ -1307,7 +1258,6 @@ Berechnen Sie den Fl\"acheninhalt des Polygons:\\
 &
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone_Aufgabe.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Polygone_Aufgabe}
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 \draw[color=black, thick] (0.0,0.0) -- (3.0,-1.8) -- (5.4,0.0) -- 
 (4.0,2.6) -- (1.5,2.2)-- cycle 
@@ -1367,14 +1317,11 @@ Die Strahlens\"atze haben etwas mit der zentrischen Streckung zu tun (siehe \MRe
 %\begin{center}
 \begin{tabular}{lc}
 \mbox{
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_ErsterStrahlensatz.png}{scale=1}
-\else%
-\tikzsetnextfilename{ErsterStrahlensatz}
+\MTikzAuto{%
 \begin{tikzpicture}
 \Strahlensatzfigur
 \end{tikzpicture}
-\fi
+}
 }
 %\end{center}
 &
@@ -1428,10 +1375,7 @@ $p = \left| \overline{AD} \right|$ und $q = \left| \overline{BD} \right|$, so gi
 \end{minipage}
 &
 \begin{minipage}{7cm}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Pythagoras.png}{scale=1}
-\else%
-\tikzsetnextfilename{Pythagoras}
+\MTikzAuto{%
 \begin{tikzpicture}
 \coordinate[label=above:$C$]       (C) at (0,0);
 \coordinate[label=below right:$B$] (B) at ($ (C) + (2,-4) $);
@@ -1445,7 +1389,7 @@ $p = \left| \overline{AD} \right|$ und $q = \left| \overline{BD} \right|$, so gi
 \draw (C) -- node[sloped, right, rotate=-90]{$h_c$} (D);
 \path (A) -- node[sloped, above]{$p$} (D) -- node[sloped, above]{$q$} (B) -- node[sloped, below]{$c$} (A);
 \end{tikzpicture}
-\fi
+}
 \end{minipage}
 \end{tabular}
 \begin{itemize}
@@ -1486,7 +1430,6 @@ Es gibt noch einen weiteren wichtigen Satz, der f\"ur rechtwinklige Dreiecke g\"
 \begin{tabular}{lr}
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Thaleskreis}
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 \draw[color=black, thick] (-3,0) -- (3,0);
 \draw[color=black, thick] (3,0) arc (0:180:3);
@@ -1528,7 +1471,6 @@ Es soll ein rechtwinkliges Dreieck mit der Hypotenusenl\"ange $c=6\MEinheit{cm}$
 &
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis_Konstruktion.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Thaleskreis_Konstruktion}
 \begin{tikzpicture}[x=1.2cm, y=1.2cm] 
 \draw[color=red, thick] (-3,0) -- (3,0);
 \draw[color=blue, thick] (3,0) arc (0:180:3);
@@ -1589,10 +1531,7 @@ Beachten Sie die Breite der Hecke!
 
 \begin{MHint}{L\"osung}
 \begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_HeckeBaum.png}{scale=1}
-\else%
-\tikzsetnextfilename{HeckeBaum}
+\MTikzAuto{%
 \begin{tikzpicture}[x=0.75cm, y=0.75cm]
 \coordinate (KF) at (0,0);
 \coordinate (KK) at (0,1.4);
@@ -1623,7 +1562,7 @@ Beachten Sie die Breite der Hecke!
 \draw (KK) -- (BK) ($ (KF)!-0.05!(BF) $) -- ($ (BF)!-0.05!(KF) $);
 \draw[dashed] (KK) -- (BM);
 \end{tikzpicture}
-\fi
+}
 \end{center}
 
 Eine Anwendung des zweiten Strahlensatz $\left( \frac{\text{komplett}}{\text{vorne}} = \frac{\text{lang}}{\text{kurz}} \right)$
@@ -1684,7 +1623,6 @@ Wendet man nun die Strahlens\"atze an, so gelangt man zu folgenden Erkenntnissen
 \begin{center}
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_TrigonometrieDefinition_1.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{TrigonometrieDefinition_1}
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 \pgfmathparse{sin(39)/sin(91)}\let\laf\pgfmathresult
 \pgfmathparse{sin(50)/sin(91)}\let\lbf\pgfmathresult
@@ -1793,8 +1731,7 @@ Das Diagramm sieht folgenderma\ss en aus:
 
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Diagramm.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Trigonometrie_Diagramm}
-\pgfkeys{/pgf/number format/set decimal separator={{{,}}}}
+\pgfkeys{/pgf/number format/set decimal separator={{{\MZXYZhltrennzeichen}}}}
 \begin{tikzpicture}[x=0.1cm, y=5.4cm] 
 %Koordinatensystem
 \node (xMAX) at (102.0,0){};
@@ -1851,7 +1788,6 @@ Wenn im rechtwinkligen Dreieck mit $\gamma=90^\circ$ der Winkel $\alpha$ gleich 
 \begin{tabular}{lr}
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie45Grad.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Trigonometrie45Grad}
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 %%\draw[help lines, gray!50, xstep=0.5, ystep=0.5] (0,0) grid (9,8);
 \draw[color=black, very thick] (0,0) -- (6,0) -- (3,3) -- cycle;
@@ -1890,7 +1826,6 @@ Nach dem Satz von Pythagoras ist \[\left(\frac{a}{2}\right)^2+h^2=a^2 \quad\Righ
 &
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie60Grad.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Trigonometrie60Grad}
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 %%\draw[help lines, gray!50, xstep=0.5, ystep=0.5] (0,0) grid (9,8);
 \draw[color=black, very thick] (0,0) -- (5,0) -- (2.5,4.33) -- cycle;
@@ -1990,7 +1925,6 @@ Um die gewonnenen Erkenntnisse auf gr\"o\ss ere Winkel als $\pi/2$ ausdehnen zu 
 \begin{center}
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Einheitskreis_a.png}{scale=0.8}
 \MTikzAuto{%
-\tikzsetnextfilename{Trigonometrie_Einheitskreis_a}
 \begin{tikzpicture}[x=0.024cm, y=2.4cm] 
 \begin{scope}[xshift=-4cm,xscale=100]
 %Koordinatensystem
@@ -2035,7 +1969,6 @@ Um die gewonnenen Erkenntnisse auf gr\"o\ss ere Winkel als $\pi/2$ ausdehnen zu 
 }
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Einheitskreis_b.png}{scale=0.8}
 \MTikzAuto{%
-\tikzsetnextfilename{Trigonometrie_Einheitskreis_b}
 \begin{tikzpicture}[x=0.024cm, y=2.4cm] 
 %Koordinatensystem
 \node (xMAX) at (400.0,0){};
@@ -2106,7 +2039,6 @@ Au\ss erdem wissen Sie, dass der Punkt im 3. Quadranten ist, also ein Winkel im 
 
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Aufgabe_Einheitskreis.png}{scale=1}
 \MTikzAuto{%
-\tikzsetnextfilename{Aufgabe_Einheitskreis}
 \begin{tikzpicture}[x=2.6cm, y=2.6cm] 
 %Koordinatensystem
 \node (xMAX) at (1.3,0){};
@@ -2212,7 +2144,6 @@ In der folgenden Tabelle sind f\"ur ein rechtwinkliges Dreieck einige Gr\"o\ss e
 \ \\
 \begin{center}
 \MTikzAuto{%
-\tikzsetnextfilename{dreieck_einfach}
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 \def\anga{31}\def\angb{53}\def\lenc{6.5}
 \pgfmathparse{180-\anga-\angb}\let\angc=\pgfmathresult
@@ -2310,7 +2241,6 @@ benutzen, die das Dreieck in zwei rechtwinklige Dreiecke zerlegt:
 
 \begin{center}
 \MTikzAuto{%
-\tikzsetnextfilename{dreieck_haelfte}
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 \def\anga{68}\def\angb{68}\def\lenc{3.5}\def\lenrf{0.60}\def\lenlf{0.40}
 \pgfmathparse{180-\anga-\angb}\let\angc=\pgfmathresult

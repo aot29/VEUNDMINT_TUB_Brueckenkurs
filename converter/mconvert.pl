@@ -1912,10 +1912,11 @@ sub postprocess {
     if (exists $tikzpng{$tname}) {
       my $style = $tikzpng{$tname};
       logMessage($VERBOSEINFO, "Found style info for svg on $tname: $style");
-      delete $tikzpng{$tname};
       $text =~ s/<!-- svgstyle;$tname \/\/-->/$style/g ; 
+      delete $tikzpng{$tname};
     } else {
       logMessage($CLIENTERROR, "Could not find image information for $tname");
+      $text =~ s/<!-- svgstyle;$tname \/\/-->//g ; 
     }
   }
  
