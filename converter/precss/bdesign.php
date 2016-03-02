@@ -184,6 +184,10 @@ tocnavsymb ul li {
     min-height:30px !important;
 }
 
+.headmiddle {
+    display: flex;
+}
+
 #minusbutton img,
 #plusbutton img,
 #sharebutton img,
@@ -274,6 +278,14 @@ tocnavsymb ul li {
 	display: inline-block;
 	text-align: center;
 }
+
+#LOGINROW {
+        display: inline-block;
+        flex-grow:100;
+        text-align:center
+        /* color und content wird dynamisch gesetzt */
+}
+
 
 #loginbutton, #cdatabutton, #LOGINROW {
 	text-transform: uppercase;
@@ -515,12 +527,14 @@ tocnavsymb ul li ul li a:hover div{
 /* qtip */
 
 .qtip-default {
-	font-family: 'open-sans-condensed' !important;
+    font-family: 'open-sans' !important;
+    font-weight: 700;
+    font-size: [-SMALLFONTSIZE-];
     border-width: 1px !important;
     border-style: solid;
-    border-color: rgb(0,82,140) !important;
-    background-color: rgb(255,255,255) !important;
-    color: rgb(0,82,140);
+    border-color: [-TOCMINCOLOR-] !important;
+    background-color: [-LIGHTBACKGROUND-] !important;
+    color: [-TOCMINCOLOR-];
     box-shadow: 2px 2px 5px rgba(0,0,0,0.7);
 }
 
@@ -532,7 +546,7 @@ tocnavsymb ul li ul li a:hover div{
     padding: 0 !important;
     border: 0 !important;
     font-family: 'open-sans-condensed' !important;
-    font-size: 18px;
+    font-size: [-BIGFONTSIZE-];
 }
 a .tocminbutton {
     color: white !important;

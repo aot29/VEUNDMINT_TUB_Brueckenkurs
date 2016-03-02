@@ -1963,7 +1963,7 @@ function applyLayout(first) {
              "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
     
 
-  head += "<div id=\"LOGINROW\" style=\"color:rgb(255,255,255);display:inline-block;flex-grow:100;text-align:center\"></div>";
+  head += "<div id=\"LOGINROW\" style=\"color:rgb(255,255,255)\"></div>";
   
   head += "<a id=\"listebutton\" href=\"" + linkPath + "search.html\" ></a>";
   head += "<a id=\"homebutton\" href=\"" + linkPath + "index.html\" ></a>";
