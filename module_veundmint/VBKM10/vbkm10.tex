@@ -1,6 +1,6 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
-%\Mtikzexternalize
+\Mtikzexternalize
 
 \begin{document}
 
@@ -375,7 +375,7 @@ Ein Pfeil in der Ebene oder im Raum heißt \MEntry{Repräsentant}{Repräsentant (ei
 
 Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum bzw. zwei Punkte $Q$ und $R$ in der Ebene oder im Raum gegeben hat, und man möchte nun den Vektor angeben, von welchem der Pfeil vom Ursprung $O$ zu dem gegebenen Punkt $P$ bzw. von welchem der Pfeil, der $Q$ mit $R$ verbindet, jeweils ein Repräsentant ist. Die dafür benutzte Schreib- und Sprechweise sowie die nötige Rechenoperation gibt die folgende Infobox wieder:
 
-\begin{MInfo}
+\begin{MInfo}\MLabel{VBKM10_Info_OrtsundVerbindungsvektor}
 \begin{itemize}
  \item \textbf{Zweidimensionaler Fall:}\\
  Sind $P=\MPointTwo{p_x}{p_y}$ sowie $Q=\MPointTwo{q_x}{q_y}$ und $R=\MPointTwo{r_x}{r_y}$ Punkte in der Ebene, so heißt der Vektor
@@ -968,8 +968,422 @@ im zweidimensionalen Fall und
 \[
  \MVec{a}-\MVec{b}=\MVec{a}+(-\MVec{b})=\MVector{a_x\\a_y\\a_z}+\MVector{-b_x\\-b_y\\-b_z}=\MVector{a_x-b_x\\a_y-b_y\\a_z-b_z}
 \]
-im dreidimensionalen Fall.
+im dreidimensionalen Fall. Damit kann die Differenz von Vektoren auch geometrisch mit Hilfe ihrer Repräsentanten interpretiert werden:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth] 
+%Hilfslinien
+\draw[color=black, dotted] (-1,-2) -- (1,-2);
+\draw[color=black, dotted] (2,0) -- (1,-2);
+%Pfeile
+\draw[color=blue, ->] (0,0) -- (2,0);
+\draw[color=red, ->] (0,0) -- (1,2);
+\draw[color=red, ->, dashed] (0,0) -- (-1,-2);
+\draw[color=violet, ->] (0,0) -- (1,-2);
+%Ursprung
+\draw[fill=black] (0,0) circle (1.5pt);
+%Beschriftung
+\draw[color=blue] (2,0) node[anchor=south] {\footnotesize $\MVec{a}$};
+\draw[color=red] (1,2) node[anchor= south] {\footnotesize $\MVec{b}$};
+\draw[color=red] (-1,-2) node[anchor=north] {\footnotesize $-\MVec{b}$};
+\draw[color=violet] (0.9,-1.9) node[anchor=north west] {\footnotesize $\MVec{a}+(-\MVec{b})=\MVec{a}-\MVec{b}$};
+\end{tikzpicture}       
+}% 
+\end{center}
 \end{MInfo}
+
+Betrachtet man in dieser Infobox nur die Differenz von Vektoren anhand ihrer Komponenten, so kann man sich fragen wozu hierfür überhaupt das Konzept des Gegenvektors notwendig ist. Tatsächlich könnte man die Differenz von Vektoren in Komponenten auch ohne die Idee des Gegenvektors in Analogie zur Summe hinschreiben. Überlegt man sich dann aber die geometrische Interpretation der Differenz mit Hilfe von Repräsentanten (vgl. die Abbildung in der Infobox), so sieht man, dass dies nur mit Hilfe des Gegenvektors möglich ist.   
+
+\begin{MExample}
+Es werden in diesem Beispiel einige typische Aufgabenstellungen betrachtet, welche die bisher behandelten Rechengesetze für Vektoren beinhalten.
+\begin{enumerate}
+ \item Es sind die folgenden Vektorausdrücke zu vereinfachen:
+ \begin{itemize}
+  \item[(i)] $\MVector{1\\-2\\\MZahl{0}{5}}-\frac{1}{2}\MVector{2\\-3\\1}$
+  \item[(ii)] $2(\MVec{v}-\MVec{w})+3r\MVec{w}-r\cdot(-2\MVec{v})$ für $r\in\R$
+  \end{itemize}
+  Anwenden der Rechengesetze ergibt:
+  \begin{itemize}
+   \item[(i)]
+   \[
+    \MVector{1\\-2\\\MZahl{0}{5}}-\frac{1}{2}\MVector{2\\-3\\1}=\MVector{1\\-2\\\MZahl{0}{5}}-\MVector{1\\-\frac{3}{2}\\\frac{1}{2}}=\MVector{1-1\\-3-(-\frac{3}{2})\\\MZahl{0}{5}-\frac{1}{2}}
+    =\MVector{0\\-\frac{3}{2}\\0}
+   \]
+   \item[(ii)]
+   \[
+    2(\MVec{v}-\MVec{w})+3r\MVec{w}-r\cdot(-2\MVec{v})=2\MVec{v}-2\MVec{w}+3r\MVec{w}+2r\MVec{v}=2(r+1)\MVec{v}+(3r-2)\MVec{w}
+   \]
+   \end{itemize}
+ \item Für $\MVec{a}=\MVector{1\\2}$ und $\MVec{b}=\MVector{-8\\3}$ ist der unbekannte Vektor $\MVec{x}$ in der Gleichung
+ \[
+  \MVec{a}-2\MVec{b}-(3\MVec{a}+\MVec{x})=\MVector{0\\-1}
+ \]
+ zu bestimmen.
+ 
+ Auflösen nach $\MVec{x}$ sowie Einsetzen von $\MVec{a}$ und $\MVec{b}$ ergibt:
+ \[
+  -(3\MVec{a}+\MVec{x})=\MVector{0\\-1}-\MVec{a}+2\MVec{b}\MDFPaSpace\Leftrightarrow\MDFPaSpace-\MVec{x}=\MVector{0\\-1}-\MVec{a}+2\MVec{b}+3\MVec{a}=\MVector{0\\-1}+2(\MVec{a}+\MVec{b})
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace\MVec{x}=-\MVector{0\\-1}-2\left(\MVector{1\\2}+\MVector{-8\\3}\right)=\MVector{0\\1}-2\MVector{-7\\5}\MDFPaSpace\Leftrightarrow\MDFPaSpace\MVec{x}=\MVector{14\\-9}
+ \]
+ \item Unter Benutzung der Differenz von Vektoren soll der Verbindungsvektor $\MDVec{P Q}$ zweier Punkte $P$ und $Q$ mit Hilfe der Ortsvektoren $\MDVec{P}$ und $\MDVec{Q}$ ausgedrückt werden. Es gilt:
+ \[
+  \MDVec{Q}-\MDVec{P} = \MDVec{O Q} - \MDVec{O P} = -\MDVec{Q O} - \MDVec{O P} = -(\MDVec{Q O} + \MDVec{O P}) = -\MDVec{Q P} = \MDVec{P Q}\MDFPeriod
+ \]
+ Der Verbindungsvektor $\MDVec{P Q}$ von einem Punkt $P$ zu einem Punkt $Q$ ergibt sich also immer als die Differenz des Ortsvektor $\MDVec{Q}$ (zum Endpunkt des Verbindungsvektors) und des Ortsvektors $\MDVec{P}$ (zum Anfangspunkt des Verbindungsvektors). Dies zeigt auch nochmal das folgende Bild und ein Vergleich mit der Rechenregel für Verbindungsvektoren aus \MNRef{VBKM10_Info_OrtsundVerbindungsvektor}.
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth] 
+%Punkte
+\draw[fill=black] (0,0) circle (1.5pt);
+\draw[color=red,fill=red] (2,0) circle (1.5pt);
+\draw[color=blue,fill=blue] (1,2) circle (1.5pt);
+%Pfeile
+\draw[color=blue, ->] (0,0) -- (1,2);
+\draw[color=red, ->] (0,0) -- (2,0);
+\draw[color=violet, ->] (2,0) -- (1,2);
+%Beschriftung
+\draw[color=blue] (1,2) node[anchor=south] {\footnotesize $Q$};
+\draw[color=red] (2,0) node[anchor= north] {\footnotesize $P$};
+\draw[color=black] (0,0) node[anchor=north] {\footnotesize $O$};
+
+\draw[color=blue] (0.5,1) node[anchor=east] {\footnotesize $\MDVec{Q}$};
+\draw[color=red] (1,0) node[anchor= north] {\footnotesize $\MDVec{P}$};
+\draw[color=violet] (1.4,0.8) node[anchor=south west] {\footnotesize $\MDVec{P Q}=\MDVec{Q}-\MDVec{P}$};
+\end{tikzpicture}       
+}% 
+\end{center}
+\item Die Punkte $A=\MPointTwo{2}{1}$, $B=\MPointTwo{4}{2}$ und $C=\MPointTwo{3}{3}$ bilden die Ecken eines Dreiecks. Der (geometrische) Schwerpunkt $S$ dieses Dreiecks kann mit Hilfe der zugehörigen Ortsvektoren berechnet werden:
+\[
+ \MDVec{S}=\frac{1}{3}(\MDVec{A}+\MDVec{B}+\MDVec{C}) = \frac{1}{3}\left(\MVector{2\\1}+\MVector{4\\2}+\MVector{3\\3}\right)=\frac{1}{3}\MVector{9\\6}=\MVector{3\\2}\MDFPeriod
+\]
+Somit ist $S=\MPointTwo{3}{2}$. Bild hierzu:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}[>=stealth]
+%Koordinatensystem
+\draw[->,color=black] (-0.5,0) -- (5.5,0);
+\foreach \x in {1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,4.5);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (5.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.8) node[anchor=north west] {$y$};
+%Punkte
+\draw[fill=black] (2,1) circle (1.5pt);
+\draw[color=black] (2,1) node[anchor=north] {\footnotesize $A$};
+\draw[fill=black] (4,2) circle (1.5pt);
+\draw[color=black] (4,2) node[anchor=west] {\footnotesize $B$};
+\draw[fill=black] (3,3) circle (1.5pt);
+\draw[color=black] (3,3) node[anchor=south] {\footnotesize $C$};
+\draw[color=red,fill=red] (3,2) circle (1.5pt);
+\draw[color=red] (3,2) node[anchor=south]  {\footnotesize $S$};
+%Dreiecks
+\draw[color=black] (2,1) -- (4,2);
+\draw[color=black] (4,2) -- (3,3);
+\draw[color=black] (3,3) -- (2,1);
+\end{tikzpicture}
+} 
+\end{center}
+\end{enumerate}
+ 
+\end{MExample}
+
+\begin{MExercise}
+\begin{MExerciseItems}
+\item{Es sind $P$, $Q$, $R$ und $S$ Punkte im Raum. Vereinfachen Sie den Ausdruck
+\[
+ \MDVec{P Q}-(\MDVec{P Q}-\MDVec{Q R})+\MDVec{R S}
+\]
+so weit wie möglich.} 
+\item{Zeigen Sie, dass die Punkte $A=\MPointTwo{1}{2}$, $B=\MPointTwo{4}{3}$ und $C=\MPointTwo{3}{1}$ zusammen mit dem Ursprung die Ecken eines Parallelogramms bilden.}
+\end{MExerciseItems}
+
+
+
+\begin{MHint}{Lösung}
+\begin{MExerciseItems}
+\item{
+\[
+ \MDVec{P Q}-(\MDVec{P Q}-\MDVec{Q R})+\MDVec{R S}=\MDVec{P Q}-\MDVec{P Q}+\MDVec{Q R}+\MDVec{R S}=\MVec{O}+\MDVec{Q R}+\MDVec{R S}=\MDVec{Q R}
+\]}
+\item{Nach der geometrischen Interpretation der Vektoraddition, ergibt sich ein Parallelogramm, wenn einer der Ortsvektoren $\MDVec{A}$, $\MDVec{B}$ oder $\MDVec{C}$ die Summe der jeweils anderen beiden Ortsvektoren ist. Da 
+\[
+ \MDVec{A} + \MDVec{C} = \MVector{1\\2}+\MVector{3\\1} = \MVector{4\\3} = \MDVec{B}
+\]
+gilt, bilden die drei Punkte zusammen mit dem Ursprung ein Parallelogramm:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}[>=stealth]
+%Koordinatensystem
+\draw[->,color=black] (-0.5,0) -- (5.5,0);
+\foreach \x in {1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,4.5);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (5.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.8) node[anchor=north west] {$y$};
+%Hilfslinien
+\draw[color=red, dashed] (3,1) -- (4,3);
+\draw[color=blue, dashed] (1,2) -- (4,3);
+%Punkte
+\draw[fill=black] (0,0) circle (1.5pt);
+\draw[color=black] (0,0) node[anchor=south east] {\footnotesize $O$};
+\draw[fill=red,color=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\footnotesize $A$};
+\draw[fill=blue,color=blue] (3,1) circle (1.5pt);
+\draw[color=blue] (3,1) node[anchor=north] {\footnotesize $C$};
+\draw[color=violet,fill=violet] (4,3) circle (1.5pt);
+\draw[color=violet] (4,3) node[anchor=south]  {\footnotesize $B$};
+%Pfeile
+\draw[color=red,->] (0,0) -- (1,2);
+\draw[color=blue,->] (0,0) -- (3,1);
+\draw[color=violet,->] (0,0) -- (4,3);
+\end{tikzpicture}
+} 
+\end{center}
+}
+\end{MExerciseItems}
+\end{MHint}
+
+\end{MExercise}
+
+\begin{MExercise}
+Vereinfachen Sie jeweils so weit wie möglich.
+\begin{MExerciseItems}
+\item{$2\MVector{-1\\4\\2}-3\MVector{1\\6\\-2}=$\MLFunctionQuestion{15}{(-5,-10,10)}{5}{x}{5}{SVEC1}} 
+\item{$-2\MVector{-t\\3}-\left(\MVector{-1\\0}+\frac{t}{2}\MVector{4\\-42}\right)=$\MLFunctionQuestion{15}{(1,21*t-6)}{5}{t}{5}{SVEC2}}
+\end{MExerciseItems}
+\MInputHint{Vektoren können in der Form \texttt{(a;b)} bzw. \texttt{(a;b;c)} eingegeben werden.}
+\end{MExercise}
+
+\begin{MHint}{Lösung}
+\begin{MExerciseItems}
+\item{
+\[
+ 2\MVector{-1\\4\\2}-3\MVector{1\\6\\-2}=\MVector{-2\\8\\4}-\MVector{3\\18\\-6}=\MVector{-5\\-10\\10}
+\]
+} 
+\item{
+\[
+ -2\MVector{-t\\3}-\left(\MVector{-1\\0}+\frac{t}{2}\MVector{4\\-42}\right)=\MVector{2t\\-6}+\MVector{1\\0}-\MVector{2t\\-21t}=\MVector{1\\21t-6}
+\]
+
+}
+\end{MExerciseItems}
+ 
+\end{MHint}
+
+\begin{MExercise}
+Bestimmen Sie den Vektor $\MVec{y}$ in der Gleichung
+\[
+ 3\left(\MVector{1\\-1\\1}-\MVec{y}\right)=-8\MVector{\MZahl{0}{25}\\\MZahl{0}{25}\\-\MZahl{0}{25}}+\MVec{y}.
+\]
+$\MVec{y}=$\MLFunctionQuestion{15}{(5/4,-1/4,1/4)}{5}{x}{5}{GVEC1}
+\end{MExercise}
+
+\begin{MHint}{Lösung}
+\[
+ 3\left(\MVector{1\\-1\\1}-\MVec{y}\right)=-8\MVector{\MZahl{0}{25}\\\MZahl{0}{25}\\-\MZahl{0}{25}}+\MVec{y}\MDFPaSpace\Leftrightarrow\MDFPaSpace
+ \MVector{3\\-3\\3}+2\MVector{1\\1\\-1}=4\MVec{y}\MDFPaSpace\Leftrightarrow\MDFPaSpace4\MVec{y}=\MVector{5\\-1\\1}\MDFPaSpace\Leftrightarrow\MDFPaSpace
+ \MVec{y}=\MVector{\frac{5}{4}\\-\frac{1}{4}\\\frac{1}{4}}
+\]
+ 
+\end{MHint}
+
+Da Vektoren durch beliebig viele Pfeile repräsentiert werden, die alle durch Parallelverschiebung auseinander hervorgehen, haben alle diese Repräsentanten die gleiche geometrische Länge (nämlich immer den Abstand der beiden Punkte, die sie verbinden). Deshalb ist es auch sinnvoll von der Länge eines Vektors zu sprechen. Die Länge eines Vektors trägt in der Mathematik die Bezeichnung \textbf{Betrag} oder \textbf{Norm}.
+
+\begin{MInfo}
+Der \MEntry{Betrag}{Betrag (eines Vektors)} oder die \MEntry{Norm}{Norm} eines Vektors $\MVec{a}$ wird als $|\MVec{a}|$ geschrieben und ist der Abstand desjenigen Punktes $P$ vom Ursprung $O$ zu dem der Vektor $\MVec{a}$ der zugehörige Ortsvektor ist (also $\MDVec{P}=\MVec{a}$). Also gilt
+\[
+ |\MVec{a}|=[\overline{O P}]
+\]
+und folglich im zweidimensionalen Fall
+\[
+ |\MVec{a}|=\left|\MVector{a_x\\a_y}\right|=\sqrt{a_x^2+a_y^2}
+\]
+sowie im dreidimensionalen Fall
+\[
+ |\MVec{a}|=\left|\MVector{a_x\\a_y\\a_z}\right|=\sqrt{a_x^2+a_y^2+a_z^2}.
+\]
+Ein Vektor mit Betrag $1$ wird auch \MEntry{Einheitsvektor}{Einheitsvektor} genannt.
+\end{MInfo}
+Durch einen Vergleich mit der Infobox \MNRef{VBKM09_Abstand} zum Abstand zweier Punkte in einem zweidimensionalen Koordinatensystem in Kapitel \MNRef{VBKM09}, ist die Formel für den zweidimensionalen Fall unmittelbar einsichtig:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}[>=stealth]
+%Koordinatensystem
+\draw[->,color=black] (-0.5,0) -- (4.5,0);
+\draw[->,color=black] (0,-0.5) -- (0,3.5);
+\draw[color=black] (-12pt,-6pt) node[right] {\footnotesize $O$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.8) node[anchor=north west] {$y$};
+%Hilfslinien
+\draw[color=red, dashed] (3,2) -- (3,-0.1);
+\draw[color=red, dashed] (3,2) -- (-0.1,2);
+\draw[color=red] (3,0) -- (3,-0.1);
+\draw[color=black] (3,0.2) -- (2.8,0.2);
+\draw[color=black] (2.8,0.2) -- (2.8,0);
+\draw[color=black,fill=black] (2.9,0.1) circle (0.5pt);
+\draw[color=red] (3,-0.1) node[anchor=north] {\footnotesize $a_x$};
+\draw[color=red] (-0.1,2) node[anchor=east] {\footnotesize $a_y$};
+%Punkte
+\draw[fill=black] (0,0) circle (1.5pt);
+\draw[fill=red,color=red] (3,2) circle (1.5pt);
+\draw[color=red] (3,2) node[anchor=south] {\footnotesize $P$};
+%Pfeil
+\draw[color=black,->] (0,0) -- (3,2);
+\draw[color=black] (2.1,1.3) node[anchor=south east] {\footnotesize $\MVec{a}=\MDVec{P}$};
+\draw[color=black] (1.5,1) node[anchor=north] {\footnotesize $|\MVec{a}|$};
+\end{tikzpicture}
+} 
+\end{center}
+Es handelt sich wieder um eine einfache Anwendung des \MSRef{VBKM05_Pythagoras}{Satzes des Pythagoras}. Im dreidimensionalen Fall ist die Lage nicht wesentlich komplizierter. Auch hier hilft der Satz des Pythagoras weiter:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth]
+
+% The axes
+\draw[->] (xyz cs:x=-2.5) -- (xyz cs:x=3.5) node[above] {\footnotesize $x$};
+\draw[->] (xyz cs:y=-1.5) -- (xyz cs:y=2.5) node[right] {\footnotesize $y$};
+\draw[->] (xyz cs:z=-3) -- (xyz cs:z=2.5) node[left] {\footnotesize $z$};
+% The ticks
+% \foreach \coo in {-2,-1,1,2,3}
+% {
+%   \draw (\coo,-3pt) -- (\coo,3pt) node[below=4pt] {\footnotesize \coo};
+%   \draw (-3pt,\coo) -- (3pt,\coo) node[left=4pt] {\footnotesize \coo};
+%   \draw (xyz cs:y=-0.1pt,z=\coo) -- (xyz cs:y=0.1pt,z=\coo) node[below=3pt] {\scriptsize \coo};
+% }
+%Coordinates
+\draw[dashed, color=red] (3,1,1) -- (0,1,1);
+\draw[color=red] (3,1,1) -- (3,0,1);
+\draw[dashed, color=red] (3,1,1) -- (3,1,0);
+\draw[dashed, color=red] (0,1,1) -- (0,1,0);
+\draw[dashed, color=red] (3,1,0) -- (0,1,0);
+\draw[color=red] (3,0,1) -- (0,0,1);
+\draw[color=red] (3,0,1) -- (3,0,0);
+\draw[dashed, color=red] (0,1,1) -- (0,0,1);
+\draw[dashed, color=red] (3,1,0) -- (3,0,0);
+
+%Labels
+\draw[color=red] (1.5,0,1) node[below=0.2pt] {\footnotesize $a_x$};
+\draw[color=red] (3,0,0.6) node[right=0.2pt] {\footnotesize $a_z$};
+\draw[color=red] (3.1,0.6,1) node[left=0.2pt] {\footnotesize $a_y$};
+
+% % Points:
+\draw[fill=black] (0,0,0) circle (1.5pt);
+\draw[color=black] (0.1,0,0) node[anchor=south east] {\footnotesize $O$};
+\draw[fill=red] (3,1,1) circle (1.5pt);
+\draw[color=black] (3,1,1) node[anchor=west] {\footnotesize $\MDVec{P}=\MVec{a}$};
+
+%Arrows and lines
+\draw[->, line width = 1.2pt] (0,0,0) -- (3,1,1);
+\draw[color=blue, line width=1.2pt] (0,0,0) -- (3,0,1);
+\draw[color=black] (0,0,0.8) -- (0.2,0,0.8);
+\draw[color=black] (0.2,0,0.8) -- (0.2,0,1);
+\draw[fill=black] (0.1,0,0.9) circle (0.3pt);
+\draw[color=blue] (3,0.2,1) -- (2.81,0.2,0.94);
+\draw[color=blue] (2.81,0.2,0.94) -- (2.81,0,0.94);
+\draw[fill=blue] (2.9,0.1,0.97) circle (0.5pt);
+\end{tikzpicture}
+}
+\end{center}
+In dieser Abbildung sind zwei rechtwinklige Dreiecke zu sehen. Das rechtwinklige Dreieck in der $xz$-Ebene ergibt eine Länge von $\sqrt{a_x^2+a_z^2}$ für die blaue Linie. Das zweite rechtwinklige Dreieck gibt dann für die Streckenlänge von $O$ nach $P$, also für $|\MVec{a}|$:
+\[
+ \sqrt{a_y^2+\left(\sqrt{a_x^2+a_z^2}\right)^2}=\sqrt{a_x^2+a_y^2+a_z^2}\MDFPeriod
+\]
+
+Für Normen von Vektoren gilt der folgende Satz von Rechenregeln.
+
+\begin{MInfo}
+Sind $\MVec{a}$ und $\MVec{b}$ Vektoren (beide aus dem $\R^2$ oder beide aus dem $\R^3$) und ist $r\in\R$, so gilt
+\begin{enumerate}
+ \item $|\MVec{a}|\geq 0$ und $|\MVec{a}|=0\MDFPSpace\Leftrightarrow\MDFPSpace\MVec{a}=\MDVec{O}$,
+ \item $|r\MVec{a}|=|r|\cdot|\MVec{a}|$ und
+ \item $|\MVec{a}+\MVec{b}|\leq |\MVec{a}|+|\MVec{b}|$.
+\end{enumerate}
+Nummer 1 stellt fest, dass Normen immer nicht-negativ sind und dass nur der Nullvektor die Norm $0$ hat. Nummer 2 ist besonders hilfreich für das Berechnen von Normen von Vielfachen von Vektoren. Nummer 3 heißt \MEntry{Dreiecksungleichung}{Dreiecksungleichung}.
+\end{MInfo}
+
+\begin{MExample}
+\begin{itemize}
+ \item Der Betrag des Vektors $\frac{1}{4}\MVector{3\\-1\\\sqrt{6}}$ berechnet sich zu
+ \[
+  \left|\frac{1}{4}\MVector{3\\-1\\\sqrt{6}}\right|=\left|\frac{1}{4}\right|\left|\MVector{3\\-1\\\sqrt{6}}\right|=\frac{1}{4}\sqrt{3^2+(-1)^2+6}=\frac{\sqrt{16}}{4}=1.
+ \]
+ Es handelt sich also um einen Einheitsvektor.
+ \item Es ist eine Zahl $q\in\R$ zu finden, so dass $\left|\MVector{q^2-2\\4}-2\MVector{q-1\\q}\right|=0$ gilt.
+ \[
+  \left|\MVector{q^2-2\\4}-2\MVector{q-1\\q}\right|=\left|\MVector{q^2-2q\\4-2q}\right|=0\MDFPaSpace\Leftrightarrow\MDFPaSpace\MVector{q^2-2q\\4-2q}=\MVector{0\\0}
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace q^2-2q=0\MDFPSpace\textrm{und}\MDFPSpace4-2q=0\MDFPaSpace\Leftrightarrow\MDFPaSpace q(q-2)=0 \MDFPSpace\textrm{und}\MDFPSpace 2(2-q)=0
+  \MDFPaSpace\Leftrightarrow\MDFPaSpace q=2
+ \]
+
+\end{itemize}
+ 
+\end{MExample}
+
+\begin{MExercise}
+Berechnen Sie\\
+$\left|-\frac{1}{3}\MVector{2\\-14\\5}\right|=$\MLFunctionQuestion{15}{5}{5}{x}{5}{NORM1}
+\begin{MHint}{Lösung}
+\[
+ \left|-\frac{1}{3}\MVector{2\\-14\\5}\right|=\left|-\frac{1}{3}\right|\cdot\left|\MVector{2\\-14\\5}\right|=\frac{1}{3}\sqrt{2^2+(-14)^2+15^2}=\frac{1}{3}\sqrt{225}=\frac{15}{3}=5
+\]
+ 
+\end{MHint}
+
+\end{MExercise}
+
+
+\begin{MExercise}
+Finden Sie die Zahl $\chi>3$, für die $\left|\MVector{3\\\chi}-\MVector{\chi\\3}\right|=2\sqrt{2}$ gilt.\\
+$\chi=$\MLFunctionQuestion{15}{5}{5}{x}{5}{ZAHL1}
+\end{MExercise}
+
+\begin{MHint}{Lösung}
+\[
+\left|\MVector{3\\\chi}-\MVector{\chi\\3}\right| =\left|\MVector{3-\chi\\\chi-3}\right|=\sqrt{(3-\chi)^2+(\chi-3)^2}=2\sqrt{2}\MDFPaSpace\Leftrightarrow\MDFPaSpace\sqrt{2(3-\chi)^2}=2\sqrt{2}
+\]
+\[
+ \Leftrightarrow\MDFPaSpace|3-\chi|=2\MDFPaSpace\Leftrightarrow\MDFPaSpace\chi=1\MDFPSpace\textrm{oder}\MDFPSpace\chi=5
+\]
+Da $\chi>3$ vorgegeben ist, folgt $\chi=5$.
+\end{MHint}
+
+\begin{MExercise}
+Zeigen Sie, dass die Punkte $A=\MPointThree{4}{2}{7}$, $B=\MPointThree{3}{1}{9}$ und $C=\MPointThree{2}{3}{8}$ die Ecken eines gleichseitigen Dreiecks bilden. 
+\end{MExercise}
+
+\begin{MHint}{Lösung}
+Das Dreieck ist gleichseitig falls
+\[
+ |\MDVec{A B}| = |\MDVec{A C}| = |\MDVec{B C}|
+\]
+gilt.
+
+\[
+ |\MDVec{A B}| = |\MDVec{B}-\MDVec{A}|=\left|\MVector{3\\1\\9}-\MVector{4\\2\\7}\right|=\left|\MVector{-1\\-1\\2}\right|=\sqrt{(-1)^2+(-1)^2+2^2}=\sqrt{6}
+\]
+\[
+ |\MDVec{A C}| = |\MDVec{C}-\MDVec{A}|=\left|\MVector{2\\3\\8}-\MVector{4\\2\\7}\right|=\left|\MVector{-2\\1\\1}\right|=\sqrt{(-2)^2+1^2+1^2}=\sqrt{6}
+\]
+\[
+ |\MDVec{B C}| = |\MDVec{C}-\MDVec{B}|=\left|\MVector{2\\3\\8}-\MVector{3\\1\\9}\right|=\left|\MVector{-1\\2\\-1}\right|=\sqrt{(-1)^2+2^2+(-1)^2}=\sqrt{6}
+\]
+Somit ist das Dreieck gleichseitig.
+\end{MHint}
+
 
 \end{MXContent}
 
