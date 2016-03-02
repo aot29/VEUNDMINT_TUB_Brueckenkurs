@@ -91,10 +91,12 @@ sizes =>  {
     BIGFONTSIZE     =>     $mybasicfontsize + 2
 },
 
+# Farben blauzentriert waehlen, damit Schemaauswahl funktioniert
 colors => {
     CONTENTBACKGROUND => "FFFFFF",
     GENERALBORDER => "A0B0D0",
-
+    LIGHTBACKGROUND => "CDDDFF",
+    
     TOCBACKGROUND => "7CA5C4",
     TOCFIRSTMENUBACKGROUND => "BFBFBF",
     TOCMENUBACKGROUND => "CFEFCF",
