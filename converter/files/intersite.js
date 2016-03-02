@@ -48,7 +48,7 @@ function createIntersiteObj() {
   var obj = {
     active: false,
     layout: { fontadd: 0, menuactive: true },
-    configuration: {},
+    configuration: { stylecolor: STYLEBLUE },
     scores: [],
     sites: [],
     favorites: [ createHelpFavorite() ],

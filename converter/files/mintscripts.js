@@ -192,7 +192,36 @@ function CreateQuestionObj(uxid,c,solution,id,type,option,pnts,intest,section) {
   // if ((FVAR.length-1) != c) { alert("Objekt Nr. " + (FVAR.length-1) + " in Array hat Counter " +c); } 
 }
 
+// Blendet Einstellungsseite ein und aus
+function toggle_settings() {
+  var e = document.getElementById("settings");
+  if (e != null) {
+    if (e.style.visibility == "hidden") {
+      e.style.top = "15%";
+      e.style.left = "15%";
+      e.style.width = "70%";
+      e.style.height = "70%";
+      e.style.visibility = "visible";
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, e]);
+    } else {
+      e.style.top = "0";
+      e.style.left = "0";
+      e.style.width = "0";
+      e.style.height = "0";
+      e.style.visibility = "hidden";
+    }
+  }
+}
 
+function selectColor(c) {
+  logMessage(DEBUGINFO, "Color select: " + c);
+  if (intersiteactive == true) {
+    if (intersiteobj != null) {
+      intersiteobj.configuration.stylecolor = c;
+    }
+  }
+  applyLayout(false);
+}
 
 // Blendet Hinweis-Bereiche ein und aus
 function toggle_hint(div_id) {
@@ -1817,6 +1846,12 @@ function debork(str, l) {
   return str.slice(0,l);
 } 
 
+// ----------------------------------------------- Variant management ---------------------------
+
+function selectVariant(v) {
+  logMessage(DEBUGINFO, "Variant selected: " + v);
+}
+
 // ----------------------------------------------- Roulette-Fragen ------------------------------
 
 // Callbacks fuer roulette getCollection
@@ -1836,8 +1871,36 @@ function rouletteExercise(rid) {
 
 // ---------------------- Funktionen fuer Seitenverhalten/Frames -------------------------------------------
 
+function styleColors(c) {
+  if (c.length == 6) {
+    if (intersiteactive == true) {
+      if (intersiteobj != null) {
+        if (typeof intersiteobj.configuration.stylecolor == "string") {
+	  if (intersiteobj.configuration.stylecolor == STYLEGREEN) {
+	    c = c.substr(0,2) + c.substr(4,2) + c.substr(2,2);
+	  } else {
+  	    if (intersiteobj.configuration.stylecolor == STYLERED) {
+	      c = c.substr(4,2) + c.substr(0,2) + c.substr(2,2);
+	    } else {
+    	      if (intersiteobj.configuration.stylecolor == STYLEGREY) {
+  	        c = c.substr(4,2) + c.substr(4,2) + c.substr(4,2);
+	      }
+	    }
+	  }
+        } else {
+  	  logMessage(DEBUGINFO, "No stylecolor found in configuration");
+        }
+      }
+    }
+  }
+  return c;
+}
+    
+
 // first = false -> Seite wurde schonmal mit Layout aufgesetzt, Layout soll nur angepasst werden
 function applyLayout(first) {
+  
+  // first wird noch nicht genutzt um zeitlich zu optimieren!
   
   // if dynamically loadad from server
   //    var cssLink = $("<link rel='stylesheet' type='text/css' href='"+href+"'>");
@@ -1866,12 +1929,10 @@ function applyLayout(first) {
   
   css = css.replace(/\[LINKPATH\]/g, linkPath);
   
-
-  
-  
   for (var ckey in COLORS) {
     var rex = new RegExp("\\[-" + ckey + "-\\]",'g');
-    css = css.replace(rex, "#" + COLORS[ckey]);
+    
+    css = css.replace(rex, "#" + styleColors(COLORS[ckey]));
   }
 
   for (var ckey in SIZES) {
@@ -1890,7 +1951,7 @@ function applyLayout(first) {
   if (intersiteactive) {
     if (intersiteobj.layout.menuactive == false) hideNavigation(false);
   }
-
+  
   var d = 10 + SIZES.BASICFONTSIZE;
   $('div.headmiddle').height(d);
   var systyle = "style=\"max-height:" + d + "px;height:" + d + "px\"";
@@ -1910,7 +1971,7 @@ function applyLayout(first) {
   head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"></button>";
   head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"></button>";
   head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"></button>";
-  head += "<button id=\"settingsbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"settingsClick();\"></button>";
+  head += "<button id=\"settingsbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"toggle_settings();\"></button>";
   
   head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"></button>";
   

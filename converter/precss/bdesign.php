@@ -124,7 +124,7 @@ tocnavsymb ul li {
 }
 
 .navi ul li,
-
+.stdbutton,
 .nprev,
 .nnext,
 {
@@ -372,16 +372,16 @@ tocnavsymb ul li {
 	font-weight: 700 !important;
     top: 90px  !important;
     border-right: 0 !important;
-    background-color: rgba(0,82,140,0.3) !important;
     width:160px !important;
     box-sizing: border-box !important;
     position: fixed !important;
+    background-color: [-TOCBACKGROUND-] !important;
 }
 tocnavsymb {
     background-color: transparent !important;
     border: 0 !important;
     box-shadow: 0 !important;
-    color: #000090;
+    color: [-TOCBORDERCOLOR-];
     margin: 0 !important;
 	font-family: 'open-sans-condensed' !important;
     font-size: 16px;
@@ -390,19 +390,19 @@ tocnavsymb {
 
 .tocmintitle {
     background-color: transparent !important;
-    color: rgb(0,82,140) !important;
+    color: [-TOCMINCOLOR-] !important;
     padding: 20px 10px !important;
     border: 0 !important;
     font-family: 'open-sans-condensed' !important;
     font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border-bottom: 1px solid rgb(0,82,140) !important;
+    border-bottom: 1px solid [-TOCMINCOLOR-] !important;
     box-sizing: border-box !important;
 }
 
 tocnavsymb ul li ul li {
-    border-bottom: 1px solid rgb(0,82,140) !important;
+    border-bottom: 1px solid [-TOCMINCOLOR-] !important;
     padding: 3px 10px !important;
     box-sizing: border-box !important;
 }
@@ -412,7 +412,7 @@ tocnavsymb ul li ul li ul li {
     box-sizing: border-box !important;
 }
 tocnavsymb ul li ul li.aktiv  {
-    background-color: rgb(0,82,140) !important;
+    background-color: [-TOCMINCOLOR-] !important;
     padding: 3px 0px !important;
     box-sizing: border-box !important;
 }
@@ -428,7 +428,7 @@ tocnavsymb ul li ul li.aktiv a:hover .tocminbutton {
 	color:rgba(255,255,255,0.5) !important;
 }
 tocnavsymb ul li ul li a:hover div{
-    color:rgb(0,82,140) !important;
+    color: [-TOCMINCOLOR-] !important;
     box-sizing: border-box !important;
 }
 .xsymb {
@@ -538,3 +538,43 @@ a .tocminbutton {
     color: white !important;
 }
 
+
+#settings {
+    /* Element is hidden until toggled by mintscripts.js */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    padding: 10px;
+    position: fixed;
+    background-color: [-NAVIBACKGROUND-];
+    border-style: solid;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    border-color: rgb(0,82,140) !important;
+    border-radius: 5px !important;
+    font-family: 'open-sans-condensed';
+    font-weight: 700;
+    color: white;
+    display: block;
+}
+
+.stdbutton {
+    color: white !important;
+    background-color: rgba(255,255,255,0) !important;
+    display: inline-block;
+    border: 2px solid rgba(255,255,255,0.5) !important;
+    border-radius: 3px;
+    padding: 5px 10px  !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px;
+    margin: 0px 10px;
+    font-family: 'open-sans-condensed';
+    font-weight: 700;
+}
+
+.stdbutton:hover {
+    background-color:rgba(255,255,255,.5) !important;
+}

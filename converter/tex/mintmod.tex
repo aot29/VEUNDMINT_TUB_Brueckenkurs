@@ -1190,7 +1190,14 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \def\MSubject#1{\MChapter{#1}} % Schluesselwort HELPSECTION ist reserviert fuer Hilfesektion
 
 \newcommand{\MSectionID}{UNKNOWNID}
+
+\ifttm
+\newcommand{\MSetSectionID}[1]{\renewcommand{\MSectionID}{#1}}
+\else
 \newcommand{\MSetSectionID}[1]{\renewcommand{\MSectionID}{#1}\tikzsetexternalprefix{#1}}
+\fi
+
+
 \newcommand{\MSection}[1]{\MSetSectionID{MODULID}\ifnum\value{MSSEnd}>0{\MSubsectionEndMacros}\addtocounter{MSSEnd}{-1}\fi\MSectionChapter\Dsection{#1}\MSectionStartMacros{#1}\setcounter{MLastIndex}{-1}\setcounter{MLastType}{1}} % Sections werden ueber das section-Feld im mmlabel-Tag identifiziert, nicht ueber das Indexfeld
 
 \def\MSubsection#1{\ifnum\value{MSSEnd}>0{\MSubsectionEndMacros}\addtocounter{MSSEnd}{-1}\fi\ifttm\else\clearpage\fi\Dsubsection{#1}\MSubsectionStartMacros\setcounter{MLastIndex}{-1}\setcounter{MLastType}{2}\addtocounter{MSSEnd}{1}}% Subsections werden ueber das subsection-Feld im mmlabel-Tag identifiziert, nicht ueber das Indexfeld

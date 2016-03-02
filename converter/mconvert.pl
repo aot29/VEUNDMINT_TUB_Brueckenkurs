@@ -711,6 +711,10 @@ var localStoragePresent = false;
 var SITE_ID = "(unknown)";
 var SITE_UXID = "(unknown)";
 var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
 var animationSpeed = 250;
 
 // <JSCRIPTPRELOADTAG>
@@ -2060,14 +2064,12 @@ sub getstyleimporttags {
 #------------------------------------------------ START NEUES DESIGN ---------------------------------------------------------------------------------------
 
 
-# sub getheader()
 # Erzeugt das head-div fuer die html-Seiten
 sub getheader {
   # Inhalt wird von js-Funktionen dynamisch gefuellt
   return "<div class=\"headmiddle\">&nbsp;</div>\n"; # ohne echten div-Inhalt werden icons nicht erzeugt
 }
 
-# sub getfooter()
 # Erzeugt das footer-div fuer die html-Seiten
 sub getfooter {
   # Inhalt von footer_left wird von js-Funktionen dynamisch gefuellt
@@ -2077,6 +2079,56 @@ sub getfooter {
   return $footer;
 }
 
+# Erzeugt das settings-div fuer die html-Seiten
+sub getsettings {
+  my $settings = <<ENDE;
+<p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:80%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" type=button onclick="selectColor(STYLEBLUE);">Blaues Schema</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" type=button onclick="selectColor(STYLERED);">Rotes Schema</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" type=button onclick="selectColor(STYLEGREEN);">Grünes Schema</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" type=button onclick="selectColor(STYLEGREY);">Graues Schema</button></center></li>
+</ul>
+</center>
+</p>
+
+<p>
+Auswahl der mathematischen Notation<br />
+<ul style="list-style-type:none;columns: 2;-webkit-columns: 2;-moz-columns: 2;">
+  <li>
+  Notation nach <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (empfohlen)<br />
+  <ul style="list-style-type:none">
+    <li>Intervalle: \\( ]a;b[\\)</li><br />
+    <li>Elemente: \\(\\mathbb N =\\lbrace 1;2;3;\\ldots\\rbrace\\)</li>
+    <li>Punkte/Vektoren: \\(P=(a;b;c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right)\\)</li>
+    <li>Dezimalzahlen: \\(\\frac13=0,\\overline{3}\\ ,\\ \\sqrt2 =1,414\\ldots\\)</li>
+    <li><button class="stdbutton" type=button onclick="selectVariant("std");">Notation wählen</button></li>
+  </ul>
+  </li>
+  <li>
+  Notation orientiert an den meisten technischen Studiengängen:<br />
+  <ul style="list-style-type:none">
+    <li>Intervalle: \\( (a,b)\\)</li><br />
+    <li>Elemente: \\(\\mathbb N =\\lbrace 1,2,3,\\ldots\\rbrace\\)</li>
+    <li>Punkte/Vektoren: \\(P=(a,b,c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right)\\)</li>
+    <li>Dezimalzahlen: \\(\\frac13=0.\\overline{3}\\ ,\\ \\sqrt2 =1.414\\ldots\\)</li>
+    <li><button class="stdbutton" type=button onclick="selectVariant("unotation");">Notation wählen</button></li>
+  </ul>
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+ENDE
+  
+  return $settings;
+}
 
 # Uebersetzt die alten (VEMA) Iconnamen in die neuen Dateiprefixe, im alten Design geschieht diese Uebersetzung im default.css
 # Parameter: Der Iconstring
@@ -2448,6 +2500,7 @@ sub printpages {
 
 		my $divhead = updatelinks(getheader(),$linkpath);
 		my $divfooter = updatelinks(getfooter(),$linkpath);
+		my $divsettings = updatelinks(getsettings(),$linkpath);
 		# Kein update erforderlich da $p verwendet wird:
 		my $divnavi = getnavi($p); 
 		#my $divtoccaption = gettoccaption($p);
@@ -2694,6 +2747,7 @@ sub printpages {
 		$text .= "<div id=\"ftoc\" class=\"toc\">\n"    . $divtoccaption . "</div>\n";
 		$text .= "<div id=\"fnavi\" class=\"navi\">\n"   . $divnavi       . "</div>\n";
 		$text .= "<div id=\"footer\">\n"    . $divfooter     . "</div>\n";
+		$text .= "<div id=\"settings\" style=\"visibility:hidden\">\n" . $divsettings . "</div>\n";
 		$text .= "</div>\n";
 		$text .= "<div id=\"notfixed\">\n";
 		$text .= "<div id=\"nfhead\" class=\"head\">\n"   . $divhead       . "</div>\n";
@@ -3158,8 +3212,13 @@ MathJax.Hub.Config({
   jax: [":directmaterial:input/TeX",":directmaterial:input/MathML", ":directmaterial:output/CommonHTML"],
   extensions: [":directmaterial:tex2jax.js", ":directmaterial:mml2jax.js", ":directmaterial:MathMenu.js", ":directmaterial:MathZoom.js"],
   TeX: {
-    extensions: [":directmaterial:AMSmath.js",":directmaterial:AMSsymbols.js",":directmaterial:noErrors.js",":directmaterial:noUndefined.js"]
+    extensions: [":directmaterial:AMSmath.js",":directmaterial:AMSsymbols.js",":directmaterial:noErrors.js",":directmaterial:noUndefined.js"],
+    Macros: {
+      RR: '{\\\\bf R}',
+      bold: ['{\\\\bf #1}', 1]
+    }
   },
+  tex2jax: { inlineMath: [['\\\\(','\\\\)']], displayMath: [['\\\\[','\\\\]']] },
   "CommonHTML": {
     scale: 100,
     minScaleAdjust: 80,
@@ -3205,8 +3264,13 @@ MathJax.Hub.Config({
   jax: [":directmaterial:input/TeX",":directmaterial:input/MathML", ":directmaterial:output/CommonHTML"],
   extensions: [":directmaterial:tex2jax.js", ":directmaterial:mml2jax.js", ":directmaterial:MathMenu.js", ":directmaterial:MathZoom.js"],
   TeX: {
-    extensions: [":directmaterial:AMSmath.js",":directmaterial:AMSsymbols.js",":directmaterial:noErrors.js",":directmaterial:noUndefined.js"]
+    extensions: [":directmaterial:AMSmath.js",":directmaterial:AMSsymbols.js",":directmaterial:noErrors.js",":directmaterial:noUndefined.js"],
+    Macros: {
+      RR: '{\\\\bf R}',
+      bold: ['{\\\\bf #1}', 1]
+    }
   },
+  tex2jax: { inlineMath: [['\\\\(','\\\\)']], displayMath: [['\\\\[','\\\\]']] },
   "CommonHTML": {
     scale: 100,
     minScaleAdjust: 80,
@@ -3909,6 +3973,9 @@ sub create_tree {
       logMessage($CLIENTINFO, "  found BARE tikzexternalize and removed it (please use macro from $macrofile instead)");
     }
 
+    if ($textex =~ m/\\tikzsetexternalprefix/s ) {
+      logMessage($CLIENTERROR, "  found tikzsetexternalprefix (please use auto-tikz macros from $macrofile instead)");
+    }
     
     #  ------------------------ Pragmas einlesen und verarbeiten ----------------------------------
 
