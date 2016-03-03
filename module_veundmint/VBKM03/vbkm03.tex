@@ -80,13 +80,13 @@ Ist die Unbestimmte in einer Ungleichung isoliert, so ist die Lösungsmenge ein I
 \MLabel{M03_Aufloesungen}
 Die \MEntry{aufgelösten Ungleichungen}{Ungleichungen (aufgelöst)} haben folgende \MEntry{Intervalle}{Intervall} als Lösungsmenge:
 \begin{itemize}
-\item{$x< a$ besitzt die Lösungsmenge $\MoIl -\infty\MIntvlSep a\MoIr$, alle $x$, die kleiner als $a$ sind.}
-\item{$x\leq a$ besitzt die Lösungsmenge $\MoIl -\infty\MIntvlSep a]$, alle $x$, die kleiner oder gleich $a$ sind.}
-\item{$x> a$ besitzt die Lösungsmenge $\MoIl a\MIntvlSep \infty\MoIr$, alle $x$, die größer als $a$ sind.}
-\item{$x\geq a$ besitzt die Lösungsmenge $[a\MIntvlSep \infty\MoIr$, alle $x$, die größer oder gleich $a$ sind.}
+	\item{$x< a$ besitzt die Lösungsmenge $\MoIl[\left] -\infty\MIntvlSep a\MoIr[\right]$, alle $x$, die kleiner als $a$ sind.}
+\item{$x\leq a$ besitzt die Lösungsmenge $\MoIl[\left] -\infty\MIntvlSep a\right]$, alle $x$, die kleiner oder gleich $a$ sind.}
+\item{$x> a$ besitzt die Lösungsmenge $\MoIl[\left] a\MIntvlSep \infty\MoIr[\right]$, alle $x$, die größer als $a$ sind.}
+\item{$x\geq a$ besitzt die Lösungsmenge $\left[a\MIntvlSep \infty\MoIr[\right]$, alle $x$, die größer oder gleich $a$ sind.}
 \end{itemize}
 Dabei ist $x$ die Unbestimmte und $a$ ein konkreter Zahlenwert. Tritt die Unbestimmte in der Ungleichung nicht mehr auf, so ist die Lösungsmenge
-entweder $\R=\MoIl -\infty\MIntvlSep \infty\MoIr$, falls die Ungleichung erfüllt ist, oder die leere Menge $\lbrace \rbrace$, falls die Ungleichung nicht erfüllt ist.
+entweder $\R=\MoIl[\left] -\infty\MIntvlSep \infty\MoIr[\right]$, falls die Ungleichung erfüllt ist, oder die leere Menge $\lbrace \rbrace$, falls die Ungleichung nicht erfüllt ist.
 \end{MInfo}
 
 Das Zeichen $\infty$ bedeutet dabei \MEntry{unendlich}{Unendlich}. Ein endliches Intervall hat die Form $\MoIl a\MIntvlSep b\MoIr$, was \glqq alle Zahlen zwischen $a$ und $b$\grqq\ bedeutet. Möchte man
@@ -157,7 +157,7 @@ Umformen der ersten Ungleichung ergibt
 &\Leftrightarrow& 2x+2 > 3x\;\; \MSep-2x\ \\
 &\Leftrightarrow&2 > x
 \end{eqnarray*}
-und damit das Lösungsintervall $\ML=\MoIl -\infty\MIntvlSep 2\MoIr$. Umformen der zweiten Ungleichung ergibt
+und damit das Lösungsintervall $\ML=\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$. Umformen der zweiten Ungleichung ergibt
 \begin{eqnarray*}
 &&-3x-\frac12\leq x+\frac12 \;\; \MSep +3x-\frac12\ \\
 &\Leftrightarrow&-1\leq 4x \;\; \MSep \cdot \frac14\ \\
@@ -168,7 +168,7 @@ und damit $\ML=\left[-\frac14\MIntvlSep \infty\MoIr[\right]$. Umformen der dritt
 &&x-\frac12\leq x+\frac12\;\; \MSep-x\ \\
 &\Leftrightarrow&-\frac12\leq \frac12 \MDFPeriod
 \end{eqnarray*}
-Diese Aussage ist unabhängig von $x\in\R$ immer erfüllt, also ist $\ML=\R=\MoIl -\infty\MIntvlSep \infty\MoIr$ die Lösungsmenge.
+Diese Aussage ist unabhängig von $x\in\R$ immer erfüllt, also ist $\ML=\R=\MoIl[\left] -\infty\MIntvlSep \infty\MoIr[\right]$ die Lösungsmenge.
 \end{MHint}
 \end{MExercise}
 
@@ -190,8 +190,8 @@ darf man auf beiden Seiten der Ungleichung den Kehrwert nehmen und dabei das Ver
 \end{MInfo}
 
 \begin{MExample}
-Beispielsweise ist die Ungleichung $\frac1{2x}\leq \frac1{3x}$ äquivalent zu $2x\geq 3x$ (Vergleichssymbol wurde gedreht) sofern $x\not=0$ ist. Die neue Ungleichung hat die Lösungsmenge $\MoIl -\infty\MIntvlSep 0]$, aber da
-der Fall $x=0$ ausgeschlossen wurde (und er auch nicht zur Definitionsmenge der ursprünglichen Ungleichung gehört) ist $\ML=\MoIl -\infty\MIntvlSep 0\MoIr$ die Lösungsmenge von $\frac1{2x}\leq \frac1{3x}$.
+Beispielsweise ist die Ungleichung $\frac1{2x}\leq \frac1{3x}$ äquivalent zu $2x\geq 3x$ (Vergleichssymbol wurde gedreht) sofern $x\not=0$ ist. Die neue Ungleichung hat die Lösungsmenge $\MoIl[\left] -\infty\MIntvlSep 0\right]$, aber da
+der Fall $x=0$ ausgeschlossen wurde (und er auch nicht zur Definitionsmenge der ursprünglichen Ungleichung gehört) ist $\ML=\MoIl[\left] -\infty\MIntvlSep 0\MoIr[\right]$ die Lösungsmenge von $\frac1{2x}\leq \frac1{3x}$.
 \end{MExample}
 
 \begin{MExercise}
@@ -252,7 +252,7 @@ Umformungen mit Fallunterscheidungen sind meist notwendig, wenn die Unbestimmte 
 Die Ungleichung $\frac1{2x}\leq 1$ kann vereinfacht werden, indem beide Seiten der Ungleichung mit dem Term $2x$ multipliziert werden:
 \begin{itemize}
 \item{Unter der Bedingung $x>0$ erhält man die neue Ungleichung $1\leq 2x$. Sie hat die Lösungsmenge $\ML_1=\left[\frac12\MIntvlSep \infty\MoIr[\right]$. Die Bedingung $x>0$ ist für alle Elemente der Lösungsmenge erfüllt.}
-\item{Unter der Bedingung $x<0$ erhält man die neue Ungleichung $1\geq 2x$. Sie hat die Lösungsmenge $\MoIl[\left] -\infty\MIntvlSep \frac12\right]$. Wegen der zusätzlichen Bedingung $x<0$ sind in diesem Fall aber nur die Elemente von $\ML_2=\MoIl -\infty\MIntvlSep 0\MoIr$ Lösungen.}
+\item{Unter der Bedingung $x<0$ erhält man die neue Ungleichung $1\geq 2x$. Sie hat die Lösungsmenge $\MoIl[\left] -\infty\MIntvlSep \frac12\right]$. Wegen der zusätzlichen Bedingung $x<0$ sind in diesem Fall aber nur die Elemente von $\ML_2=\MoIl[\left] -\infty\MIntvlSep 0\MoIr[\right]$ Lösungen.}
 \item{Der Einzelfall $x=0$ ist keine Lösung, da er nicht zu der Definitionsmenge der Ungleichung gehört. In diesem Fall darf die Multiplikation mit $x$ nicht durchgeführt werden.}
 \end{itemize}
 Insgesamt erhält man also die Vereinigungsmenge $\ML=\ML_1\cup \ML_2=\R\MSetminus\left[0\MIntvlSep \frac12\MoIr[\right]$ als Lösungsmenge:
@@ -303,7 +303,7 @@ wegen der Vorbedingung ist aber nur die Teilmenge \MEquationItem{$\ML_2$}{\MLInt
 Skizzieren Sie die Lösungsmenge der Ungleichung und markieren Sie die Randpunkte.
 \ \\ \ \\
 \begin{MHint}{Lösung}
-Auf dem Intervall $\MoIl -\infty\MIntvlSep 2\MoIr$ ist der Term positiv mit Lösungsmenge $\MoIl[\left] -\infty\MIntvlSep \frac{11}{6}\MoIr[\right]$.
+Auf dem Intervall $\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$ ist der Term positiv mit Lösungsmenge $\MoIl[\left] -\infty\MIntvlSep \frac{11}{6}\MoIr[\right]$.
 Auf dem Intervall $\MoIl 2\MIntvlSep \infty\MoIr$  ist der Term dagegen negativ, das Vergleichssymbol wird gedreht. Die neue Ungleichung hat zunächst die Lösungsmenge $\MoIl[\left] \frac{11}{6}\MIntvlSep \infty\MoIr[\right]$,
 wegen der Vorbedingung $x>2$ ist aber nur die Teilmenge $\ML_2=\MoIl 2\MIntvlSep \infty\MoIr$ davon zulässig.
 Insgesamt ist die Vereinigungsmenge $\ML=\ML_1\cup\ML_2=\R\MSetminus \left[\frac{11}6\MIntvlSep 2\right]$ die Lösungsmenge der ursprünglichen Ungleichung, die Randpunkte gehören nicht dazu:
@@ -334,10 +334,10 @@ Die Lösungsmenge der Ungleichung $\frac{x-1}{x-2}\leq 1$ ist \MEquationItem{$\ML
 Die Definitionsmenge der Ungleichung ist $D=\R\MSetminus\lbrace 2\rbrace$.
 \begin{itemize}
 \item{Im Fall $x>2$ multipliziert man mit $x-2$ und erhält $x-1\leq x-2$, was äquivalent zur falschen Aussage $-1\leq -2$ ist. Der erste Fall trägt nichts zur Lösungsmenge bei.}
-\item{Im Fall $x<2$ multipliziert man mit $x-2$ und erhält $x-1\geq x-2$, was äquivalent zur wahren Aussage $-1\geq -2$ ist. Wegen der Vorbedingung ist das Lösungsintervall für diesen Fall aber nur $\ML_2=\MoIl -\infty\MIntvlSep 2\MoIr$.}
+\item{Im Fall $x<2$ multipliziert man mit $x-2$ und erhält $x-1\geq x-2$, was äquivalent zur wahren Aussage $-1\geq -2$ ist. Wegen der Vorbedingung ist das Lösungsintervall für diesen Fall aber nur $\ML_2=\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$.}
 \item{Der Einzelwert $x=2$ ist keine Lösung.}
 \end{itemize}
-Die Lösungsmenge ist also insgesamt $\ML=\MoIl -\infty\MIntvlSep 2\MoIr$ ohne die Randpunkte (auch wenn die Ursprungsungleichung mit $\leq$ aufgebaut war).
+Die Lösungsmenge ist also insgesamt $\ML=\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$ ohne die Randpunkte (auch wenn die Ursprungsungleichung mit $\leq$ aufgebaut war).
 \end{MHint}
 \end{MExercise}
 
@@ -411,9 +411,9 @@ Zusammensetzen der beiden Intervalle ergibt das Lösungsintervall \MEquationItem{
 \ \\ \ \\
 \begin{MHint}{Lösung}
 Für $x\in [1\MIntvlSep \infty\MoIr$ sind beide Terme in den Beträgen nicht negativ, man erhält die Ungleichung $x-1<2(x-1)+x$, welche äquivalent zu $x>\frac12$ ist. Wegen der Fallbedingung erhält man $\ML_1=[1\MIntvlSep \infty\MoIr$ als Lösungsmenge.
-Für $x\in\MoIl -\infty\MIntvlSep 1\MoIr$ sind beide Terme in den Beträgen negativ und man erhält $-(x-1)<-2(x-1)+x$. Diese Ungleichung ist äquivalent zur immer richtigen Ungleichung $x-1<x$. Damit ist $\ML_2=\MoIl -\infty\MIntvlSep 1\MoIr$ die Lösungsmenge des zweiten Falls.
+Für $x\in\MoIl[\left] -\infty\MIntvlSep 1\MoIr[\right]$ sind beide Terme in den Beträgen negativ und man erhält $-(x-1)<-2(x-1)+x$. Diese Ungleichung ist äquivalent zur immer richtigen Ungleichung $x-1<x$. Damit ist $\ML_2=\MoIl[\left] -\infty\MIntvlSep 1\MoIr[\right]$ die Lösungsmenge des zweiten Falls.
 \ \\ \ \\
-Wegen $\ML=\ML_1\cup \ML_2=\R=\MoIl -\infty\MIntvlSep \infty\MoIr$ ist die Ungleichung immer erfüllt.
+Wegen $\ML=\ML_1\cup \ML_2=\R=\MoIl[\left] -\infty\MIntvlSep \infty\MoIr[\right]$ ist die Ungleichung immer erfüllt.
 \end{MHint}
 \end{MExercise}
 
@@ -446,7 +446,23 @@ Ziehen der Wurzel ergibt die Betragsungleichung $|x-1|\geq\sqrt{2}$ mit Lösungsm
 Andererseits kann man die Ungleichung $x^2-2x-1\geq0$ auch wie folgt untersuchen: Die linke Seite beschreibt eine nach oben geöffnete Parabel, deren Nullstellen $x_{1,2}=1\pm \sqrt2$ man mit
 der $p q$-Formel erhält:
 \begin{center}
-\MUGraphicsSolo{parabelu.png}{width=0.4\linewidth}{width:400px}
+%%\MUGraphicsSolo{parabelu.png}{width=0.4\linewidth}{width:400px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm,scale=1.50] 
+\draw[black] (-1,0) -- (3,0) (0,-2) -- (0,2);
+\foreach \x in {-1, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-2.0pt) node[below=1.0pt] {\scriptsize $\x$};
+\foreach \x in {-0.5, 0.5, ..., 3.0}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.0pt);
+\foreach \y in {-2, -1, 1, 2}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-2.0pt,0pt) node[left=1.0pt] {\scriptsize $\y$};
+\foreach \y in {-1.5, -0.5, 0.5, 1.5}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.0pt,0pt);
+\draw[black] (-0.0pt,-0.0pt) node[anchor=north east] {\scriptsize $0$};
+\clip(-1.0,-3.0) rectangle (3.0,2.0);
+\draw[smooth,samples=21,domain=-1:3, line width=1.0pt,color=red!50!black] plot(\x,{\x*\x-2*\x-1});
+\end{tikzpicture}
+}
 \end{center}
 Die Ungleichung $x^2-2x-1\geq0$ wird wegen der Öffnung nach oben von den Parabelästen links und rechts von den Nullstellen erfüllt, also von der Menge $\ML=\MoIl[\left] -\infty\MIntvlSep 1-\sqrt{2}\right]\cup \left[1+\sqrt{2}\MIntvlSep \infty\MoIr[\right]$.
 
@@ -455,7 +471,7 @@ Die Ungleichung $x^2-2x-1\geq0$ wird wegen der Öffnung nach oben von den Parabel
 Die quadratische Ungleichung $x^2 +p x +q <0$ (oder andere Vergleichssymbole) besitzt in Abhängigkeit der Nullstellen von $x^2+ p x + q$, der Öffnung der Parabel sowie der Richtung der Ungleichung eine der folgenden Lösungsmengen:
 \begin{itemize}
 \item{die reellen Zahlen $\R$,}
-\item{zwei Äste $\MoIl -\infty\MIntvlSep x_1\MoIr\cup \MoIl x_2\MIntvlSep \infty\MoIr$ (ggf. mit beiden Randpunkten enthalten bei $\leq$ und $\geq$),}
+\item{zwei Äste $\MoIl[\left] -\infty\MIntvlSep x_1\MoIr[\right]\cup \MoIl[\left] x_2\MIntvlSep \infty\MoIr[\right]$ (ggf. mit beiden Randpunkten enthalten bei $\leq$ und $\geq$),}
 \item{ein Intervall $\MoIl x_1\MIntvlSep x_2\MoIr$ (ggf. mit beiden Randpunkten enthalten bei $\leq$ und $\geq$),}
 \item{einen Einzelpunkt $x_1$,}
 \item{die punktierte Menge $\R\MSetminus\lbrace x_1\rbrace$,}
@@ -475,7 +491,7 @@ Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{15}{(-5,-1)}{5}{INVX}}.
 \begin{MHint}{Lösung}
 Umformen ergibt $x^2+6x+5<0$. Mit der $p q$-Formel findet man die Nullstelle $x_{1}=-3\pm\sqrt{9-5}$, also $x_1=-1$ und $x_2=-5$.
 Die linke Seite beschreibt eine nach oben geöffnete Parabel,
-sie erfüllt die Ungleichung mit $<$, also nur auf dem Intervall $\MoIl -5\MIntvlSep -1\MoIr$ ohne die Randpunkte.
+sie erfüllt die Ungleichung mit $<$, also nur auf dem Intervall $\MoIl[\left] -5\MIntvlSep -1\MoIr[\right]$ ohne die Randpunkte.
 \end{MHint}
 \end{MExercise}
 
@@ -553,7 +569,27 @@ Bestimmen Sie den Parameter $\alpha$, so dass die Ungleichung $2x^2\leq x-\alpha
 
 \begin{MExercise}
 Finden Sie eine m\"oglichst einfache Funktion $g(x)$ mit einem Betragsterm, die folgenden Funktionsgraph besitzt:
-\MUGraphics{abs3.png}{width=0.5\linewidth}{Funktionsgraph von $g(x)$.}{width:300px}
+%%\MUGraphics{abs3.png}{width=0.5\linewidth}{Funktionsgraph von $g(x)$.}{width:300px}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.4cm, y=1.9cm] 
+\draw[black] (-3,0) -- (3,0) (0,-3) -- (0,3);
+\foreach \x in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3.0pt) node[below=1.0pt] {\normalsize $\x$};
+\foreach \x in {-3.0, -2.8, ..., 3.0}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.5pt);
+\foreach \y in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-3.0pt,0pt) node[left=1.0pt] {\normalsize $\y$};
+\foreach \y in {-3.0, -2.8, ..., 3.0}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.5pt,0pt);
+%%\draw[black] (-0.0pt,-0.5pt) node[anchor=north east] {\small $0$};
+\clip(-3.0,-3.0) rectangle (3.0,3.0);
+\draw[black, line width=1.0pt,color=black] (-3,-3) -- (1,1) -- (2,4);
+\end{tikzpicture}
+}
+\par
+Funktionsgraph von $g(x)$.
+\end{center}
 Versuchen Sie, eine Darstellung der Form $g(x)=|x+a|+b x+c$ zu finden. Am Knick im Graph k\"onnen Sie erkennen, wie der Term innerhalb des Betrags aussieht.
 
 \begin{MExerciseItems}
