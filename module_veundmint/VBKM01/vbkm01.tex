@@ -1,6 +1,8 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
 
+%\Mtikzexternalize
+
 \begin{document}
 
 \MSection{Elementares Rechnen}
@@ -85,7 +87,14 @@ Ganze Zahlen werden immer dann ben"otigt, wenn das Vorzeichen der nat"urlichen Z
 In $\Z$ k"onnen Zahlen voneinander subtrahiert werden, d.h. Gleichungssysteme der Form $\displaystyle a+x=b$ sind in $\Z$ immer lösbar ($\displaystyle x=b+(-a)$.)
 
 \begin{center}
-\MUGraphicsSolo{ganzzahlen.png}{width=10cm}{width:400px}
+%-%\MUGraphicsSolo{ganzzahlen.png}{width=10cm}{width:400px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\draw[thick, black] (-5.2,0) -- (6.2,0);
+\foreach \x in {-5, -4, ..., 6}
+\draw[shift={(\x,0)},color=black] (0pt,6pt) -- (0pt,-6pt) node[below=1.5pt] {\normalsize $\x$};
+\end{tikzpicture}
+}
 \end{center}
 
 Auf den ganzen Zahlen l"asst sich eindeutig ein Vergleichssymbol $<$ definieren, die ganzen Zahlen lassen sich damit zu einer Kette anordnen:
@@ -100,7 +109,7 @@ $$\Q:=\left\{{\Mdfrac{p}{q}\MCondSetSep p,q\in\Z, q\neq 0 }\right\}$$
 bezeichnet. Die Elemente $\displaystyle \Mtfrac{p}{q}$ der Menge $\Q$ hei"sen \MEntry{Br"uche}{Bruch}, wobei $p$ der \MEntry{Z"ahler}{Zähler} des Bruchs und $q$ der von Null
 verschiedene \MEntry{Nenner}{Nenner} des Bruchs ist.
 \end{MInfo}
-Rationale Zahlen spielen immer dann eine Rolle, wenn Angaben ''genauer'' werden sollen, also Temperaturen in Bruchteilen von $^\circ$C angegeben, Anteile von Fl"achen eingef"arbt oder Medikamente aus bestimmten Bestandteilen zusammengemischt werden sollen.
+Rationale Zahlen spielen immer dann eine Rolle, wenn Angaben \glqq{}genauer\grqq{} werden sollen, also Temperaturen in Bruchteilen von $^\circ$C angegeben, Anteile von Fl"achen eingef"arbt oder Medikamente aus bestimmten Bestandteilen zusammengemischt werden sollen.
 
 Dabei ist zu beachten, dass die Darstellung als Bruch nicht eindeutig ist, man kann die gleiche Zahl durch mehrere Brüche beschreiben.
 Beispielsweise ist
@@ -116,7 +125,17 @@ Betrachtet man zum Beispien ein Quadrat mit der Seitenl"ange 1 und will die Läng
 
 \begin{minipage}{0.45\linewidth}
 \begin{center}
-\MGraphicsSolo{quadrat.png}{width=3cm}
+%-%\MGraphicsSolo{quadrat.png}{width=3cm}
+\MTikzAuto{%
+\begin{tikzpicture}[x=4.0cm, y=4.0cm] 
+\draw[thick, black] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+\draw[thick, black] (0,1) -- (1,0);
+\draw[color=black] (0.5,0.5) node[anchor=south west] {\normalsize $d$};
+\draw[stealth'-,black] (0.0,-0.1) -- (0.36,-0.1);
+\draw[-stealth',black] (0.65,-0.1) -- (1.0,-0.1);
+\draw (0.5,-0.1) node {\scriptsize $1\MEinheit{cm}$};
+\end{tikzpicture}
+}
 \end{center}
 \end{minipage}
 \begin{minipage}{0.55\linewidth}
@@ -132,7 +151,17 @@ Eine weitere Zahl, die nicht als Bruch dargestellt werden kann, erh"alt man durc
 \vspace*{5mm}
 
 \begin{center}
-\MGraphicsSolo{kreispi.png}{width=10cm}
+%-%\MGraphicsSolo{kreispi.png}{width=10cm}
+\MTikzAuto{%
+\begin{tikzpicture}[x=2.0cm, y=2.0cm] 
+\draw[-stealth',black] (-0.7,0.0) -- (4.0,0.0) node[right=3pt] {$x$};
+\draw[color=black] (0,0.5) circle (0.5) ({pi},0.5) circle (0.5);
+\draw[-stealth',black] (1.0,0.7) -- (2.14,0.7);
+\draw[color=black] (0,3pt) -- (0,-3pt) node[below=2pt] {\small $0$};
+\draw[color=black] ({pi},3pt) -- ({pi},-3pt) node[below=2pt] {\small Pi};
+\draw[stealth'-,color=black] (0,0.5) ++(20:0.65) arc (20:60:0.65);
+\end{tikzpicture}
+}
 \end{center}
 
 Eine Zahl ist irrational,  wenn sie nicht rational ist, also nicht als Bruch aufgeschrieben werden kann.
@@ -265,12 +294,13 @@ Am sichersten ist es, die Variablen vor der Termeinsetzung zu klammern, wenn der
 In dieser Figur habe ein Kästchen auf dem Papier die Seitenlänge $x$. Welchen Flächeninhalt (als Term in der Variablen $x$) besitzt
 die Figur?
 
-\ifttm%
+%%\ifttm%
+%%\begin{center}
+%%\MUGraphics{tikz01.png}{}{Eine Figur auf kariertem Papier.}{}
+%%\end{center}
+%%\else%
 \begin{center}
-\MUGraphics{tikz01.png}{}{Eine Figur auf kariertem Papier.}{}
-\end{center}
-\else%
-\begin{center}
+\MTikzAuto{%
 \begin{tikzpicture}
 \filldraw[fill=black!25] (3.5,2.5) circle[radius=2.5];
 \filldraw[fill=white] (2.5,3.5) circle[radius=0.5];
@@ -279,8 +309,11 @@ die Figur?
 \draw[dashed] (0.5,-0.5) grid (6.5,5.5);
 \node at (current bounding box.south) [below] {(Ein Kästchen hat die Länge $x$)};
 \end{tikzpicture}
+}
+\par
+Eine Figur auf kariertem Papier.
 \end{center}
-\fi
+%%\fi
 
 Antwort:
 \begin{itemize}
@@ -536,9 +569,9 @@ Die Umwandlung von endlichen Dezimalbr"uchen in Br"uche geschieht mit der Stelle
 \begin{center}
 \ifttm\else\dots\fi\,\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
-1&2&3&4&5&,&6&7&8&9\\
+1&2&3&4&5&\MZXYZhltrennzeichen &6&7&8&9\\
 \hline
-ZT&T&H&Z&E&,&z&h&t&zt\\
+ZT&T&H&Z&E&\MZXYZhltrennzeichen &z&h&t&zt\\
 \hline
 \end{tabular}\,\ifttm\else\dots\fi
 \end{center}
@@ -969,13 +1002,34 @@ t\cdot (t+1)\cdot (t^2+t+1) & = & t\cdot(t^3+2t^2+2t+1) \;=\; t^4+2t^3+2t^2+t \M
 \begin{MExercise}
 Dieser Graph gehört zu einem Polynom $g(x)$ zweiten Grades:
 
-\MUGraphics{graph1.png}{width=0.3\linewidth}{Graph von $g(x)$.}{width:60\%}
+%%\MUGraphics{graph1.png}{width=0.3\linewidth}{Graph von $g(x)$.}{width:60\%}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=0.2cm, scale=0.80] 
+\draw[black] (-4,0) -- (4,0) (0,-27) -- (0,13);
+\foreach \x in {-4, -3, -2, -1, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3.5pt) node[below=-2.0pt] {\tiny $\x$};
+\foreach \x in {-3.5, -2.5, ..., 4.0}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.8pt);
+\foreach \y in {-20, -10, 10}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-3.5pt,0pt) node[left=-3.0pt] {\tiny $\y$};
+\foreach \y in {-27, -26, ..., 13}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.8pt,0pt);
+\draw[black] (-0.0pt,-0.0pt) node[anchor=north east] {\tiny $0$};
+\clip(-4.0,-27.0) rectangle (4.0,13.0);
+%%\draw[help lines, gray!50, xstep=0.5, ystep=1, dashed] (-4,-26.5) grid (4,12.5);
+\draw[smooth,samples=27,domain=-4:4, line width=0.8pt,color=red] plot(\x,{-2*\x*\x+2*\x+12});
+\end{tikzpicture}
+}
+\par
+Graph von $g(x)$.
+\end{center}
 
 \begin{MExerciseItems}
 \item{Der Graph besitzt zwei Nullstellen $x_1$ und $x_2$, die daraus entstehenden Faktoren ergeben ausmultipliziert das Polynom $f(x)=(x-x_1)(x-x_2)$ = \MLSimplifyQuestion{30}{(x+2)*(x-3)}{10}{x}{5}{1}{LSFF9}.}
 \item{Dieses Polynom gehört nicht zum Graph, denn an der Stelle $x=0$ besitzt $f(x)$ den Wert \MLParsedQuestion{5}{-6}{5}{ER4}, aber $g(x)$ besitzt
 laut Graph den Wert \MLParsedQuestion{5}{12}{5}{ER4b}.
-Diesen Unterschied können wir korrigieren, indem wir $g(x)=c\cdot f(x)$ setzen mit dem Vorfaktor $c$ = \MLParsedQuestion{5}{-2}{5}{ER5}.}
+Diesen Unterschied kann man korrigieren, indem man $g(x)=c\cdot f(x)$ setzt mit dem Vorfaktor $c$ = \MLParsedQuestion{5}{-2}{5}{ER5}.}
 \item{Zusammensetzen ergibt schließlich $g(x)$ = \MLSimplifyQuestion{30}{(0-2)*(x+2)*(x-3)}{4}{x}{3}{1}{LSFF10} in Produktdarstellung.}
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
@@ -1050,7 +1104,7 @@ $\displaystyle \sqrt[2]{a} = \sqrt{a}$ die \MEntry{Quadratwurzel}{Quadratwurzel}
 \end{MInfo}
 
 \begin{MExample}
-$$16^{\Mdfrac12} = \sqrt[2]{16} = \sqrt{16} = 4\MDFPSpace, \MDFPaSpace 27^{\Mdfrac13} = \sqrt[3]{27} = 3 \MDFPeriod$$
+$$16^{\Mtfrac12} = \sqrt[2]{16} = \sqrt{16} = 4\MDFPSpace, \MDFPaSpace 27^{\Mtfrac13} = \sqrt[3]{27} = 3 \MDFPeriod$$
 \end{MExample}
 
 \begin{MInfo}
@@ -1074,11 +1128,11 @@ $$\sqrt[m]{\sqrt[n]{a}} = \sqrt[m\cdot n]{a} \MDFPeriod$$
 \end{enumerate}
 \end{MInfo}
 Somit erhält man
-$$\sqrt[10]{4^5} = (4^5)^{\Mdfrac{1}{10}} = 4^{\Mdfrac{5}{10}} = 4^{\Mdfrac12} = \sqrt[2]{4} = 2 \MDFPeriod$$
+$$\sqrt[10]{4^5} = (4^5)^{\Mtfrac{1}{10}} = 4^{\Mtfrac{5}{10}} = 4^{\Mtfrac12} = \sqrt[2]{4} = 2 \MDFPeriod$$
 
 \begin{MExample}
 Die Berechnung einer allgemeinen Potenz mit rationalem Exponenten sieht dann folgenderma"sen aus:
-$$\left(\Mdfrac14\right)^{-\Mdfrac23} = \sqrt[3]{\left(\Mdfrac14\right)^{-2}} = \sqrt[3]{\Mdfrac{1}{\left(\Mdfrac14\right)^2}} = \sqrt[3]{\Mdfrac{1}{\Mdfrac{1}{16}}} = \sqrt[3]{16} = \sqrt[3]{2^3\cdot 2}=2\sqrt[3]{2} \MDFPeriod$$ 
+$$\left(\Mdfrac14\right)^{-\Mtfrac23} = \sqrt[3]{\left(\Mdfrac14\right)^{-2}} = \sqrt[3]{\Mdfrac{1}{\left(\Mdfrac14\right)^2}} = \sqrt[3]{\Mdfrac{1}{\Mdfrac{1}{16}}} = \sqrt[3]{16} = \sqrt[3]{2^3\cdot 2}=2\sqrt[3]{2} \MDFPeriod$$ 
 \end{MExample}
 
 Die f"ur Potenzen mit reeller Basis und rationalem Exponenten g"ultigen Rechenregeln werden unter der Bezeichnung Potenzgesetze zusammengefasst.
@@ -1120,10 +1174,10 @@ Vereinfachen Sie die folgenden Ausdr"ucke mit den Potenzregeln und durch Kürzen,
 \item{\MEquationItem{$\displaystyle \Mdfrac{(-2)^7}{(-2)^5}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{2048}{PPP9}}.\\\begin{MHint}{L"osung} $$\Mdfrac{(-2)^7}{(-2)^5}=(-2)^{7-5}=(-2)^2 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle 6^2\cdot 3^{-2}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{2048}{PPP10}}.\\\begin{MHint}{L"osung} $$6^2\cdot 3^{-2}=6^2\cdot \left({\Mdfrac13}\right)^{2}=\left({6\cdot\Mdfrac13}\right)^2=2^2 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \Mdfrac{64^3}{8^3}$}{\MLSimplifyQuestion{15}{8^3}{5}{}{5}{2048}{PPP11}}.\\\begin{MHint}{L"osung} $$\Mdfrac{64^3}{8^3}=\left({\Mdfrac{64}{8}}\right)^3=8^3 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \left(\Mdfrac34\right)^{\Mdfrac13}\cdot\left(\Mdfrac34\right)^{\Mdfrac23}$}{\MLSpecialQuestion{15}{3/4}{5}{0}{0}{exactfraction}{PPP12}}.\\
+\item{\MEquationItem{$\displaystyle \left(\Mdfrac34\right)^{\Mtfrac13}\cdot\left(\Mdfrac34\right)^{\Mtfrac23}$}{\MLSpecialQuestion{15}{3/4}{5}{0}{0}{exactfraction}{PPP12}}.\\
 \begin{MHint}{L"osung}
 $$
-\left(\Mdfrac34\right)^{\Mdfrac13}\cdot\left(\Mdfrac34\right)^{\Mdfrac23} = \left(\Mdfrac34\right)^{\Mdfrac13+\Mdfrac23} \;=\; \Mdfrac34  \MDFPeriod
+\left(\Mdfrac34\right)^{\Mtfrac13}\cdot\left(\Mdfrac34\right)^{\Mtfrac23} = \left(\Mdfrac34\right)^{\Mtfrac13+\Mtfrac23} \;=\; \Mdfrac34  \MDFPeriod
 $$
 \end{MHint}}
 \end{MExerciseItems}
@@ -1132,8 +1186,8 @@ $$
 \begin{MExercise}
 Berechnen Sie die folgenden Wurzeln (es kommen hier stets ganze Zahlen heraus):
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \left(\sqrt[5]{3}\right)^5$}{\MLSimplifyQuestion{15}{3}{5}{}{5}{1024}{PPP13}}.\\\begin{MHint}{L"osung} $$\left(\sqrt[5]{3}\right)^5=(3^5)^{\Mdfrac15}=3^{5\cdot \Mdfrac15}=3 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \sqrt[4]{256}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{1024}{PPP14}}.\\\begin{MHint}{L"osung} $$\sqrt[4]{256}=\left({2^8}\right)^{\Mdfrac14}=2^2=4 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \left(\sqrt[5]{3}\right)^5$}{\MLSimplifyQuestion{15}{3}{5}{}{5}{1024}{PPP13}}.\\\begin{MHint}{L"osung} $$\left(\sqrt[5]{3}\right)^5=(3^5)^{\Mtfrac15}=3^{5\cdot \Mdfrac15}=3 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \sqrt[4]{256}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{1024}{PPP14}}.\\\begin{MHint}{L"osung} $$\sqrt[4]{256}=\left({2^8}\right)^{\Mtfrac14}=2^2=4 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \sqrt[3]{3}\cdot \sqrt[3]{9}$}{\MLSimplifyQuestion{15}{3}{5}{}{5}{1024}{PPP15}}.\\\begin{MHint}{L"osung} $$\sqrt[3]{3}\cdot \sqrt[3]{9}=\sqrt[3]{3\cdot 3\cdot 3}=3 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \sqrt[3]{343}$}{\MLSimplifyQuestion{15}{7}{5}{}{5}{1024}{PPP16}}.\\\begin{MHint}{L"osung} $$\sqrt[3]{343}=\sqrt[3]{7^3}=7 \MDFPeriod$$\end{MHint}}
 \end{MExerciseItems}
@@ -1150,7 +1204,7 @@ Vereinfachen Sie die folgenden Ausdr"ucke und berechnen Sie den Zahlenwert als g
 % \begin{MExercise}
 % Vereinfachen Sie diese Ausdrücke soweit wie möglich:
 % \begin{MExerciseItems}
-% \item{\MEquationItem{$\displaystyle \Mdfrac{\sqrt[5]{a^3}}{\sqrt[4]{a^5}}\quad (a>0)$}{\MLSimplifyQuestion{15}{a^{-\Mdfrac{13}{20}}}{5}{a}{5}{2048}{PPP19}}.\\\begin{MHint}{L"osung} $$\Mdfrac{\sqrt[5]{a^3}}{\sqrt[4]{a^5}}=a^{\Mdfrac35-\Mdfrac54}=a^{\Mdfrac{12-25}{20}}=a^{-\Mdfrac{13}{20}} \MDFPeriod$$\end{MHint}
+% \item{\MEquationItem{$\displaystyle \Mdfrac{\sqrt[5]{a^3}}{\sqrt[4]{a^5}}\quad (a>0)$}{\MLSimplifyQuestion{15}{a^{-\Mtfrac{13}{20}}}{5}{a}{5}{2048}{PPP19}}.\\\begin{MHint}{L"osung} $$\Mdfrac{\sqrt[5]{a^3}}{\sqrt[4]{a^5}}=a^{\Mtfrac35-\Mdfrac54}=a^{\Mtfrac{12-25}{20}}=a^{-\Mtfrac{13}{20}} \MDFPeriod$$\end{MHint}
 % 
 % \MInputHint{Quadratwurzeln können Sie in der Form \texttt{sqrt(x y z)} eingeben.}
 
