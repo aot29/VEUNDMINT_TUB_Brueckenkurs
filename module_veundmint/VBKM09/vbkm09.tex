@@ -2419,14 +2419,14 @@ Somit: $P=\MPointTwo{-\sqrt{3}}{\sqrt{3}}$ und $\rho=\sqrt{6}$.
 \begin{MXContent}{Lagebeziehungen für Kreise}{Lagebeziehung Kreise}{STD}
 \MLabel{VBKM09_Kreise_Lage}
 \MDeclareSiteUXID{VBKM09_Kreise_Lage}
-Genau wie für zwei Geraden, kann man nun für einen Kreis und eine Gerade oder zwei Kreise die Frage stellen, wie die beiden Objekte relativ zueinander im Koordinatensystem liegen. Dies bedeutet die Frage zu beantworten, ob die beiden Objekte sich schneiden, berühren oder keine Punkte gemeinsam haben. Für einen Kreis und eine Gerade kann man dann eventuelle Schnitt- oder Berührpunkte auch relativ einfach ausrechnen. Für zwei Kreise ist dies schwieriger und geht über den Rahmen dieses Brückenkurses hinaus. Für zwei Kreise wird also nur die Fragestellung behandelt werden, ob sich diese schneiden oder berühren und nicht in welchen Punkten dies passiert. 
+Genau wie für zwei Geraden, kann man nun für einen Kreis und eine Gerade oder zwei Kreise die Frage stellen, wie die beiden Objekte relativ zueinander im Koordinatensystem liegen. Dies bedeutet die Frage zu beantworten, ob die beiden Objekte sich schneiden, berühren oder keine Punkte gemeinsam haben. Für einen Kreis und eine Gerade kann man dann eventuelle Schnitt- oder Berührpunkte auch relativ einfach ausrechnen. Für zwei Kreise ist dies schwieriger und geht über den Rahmen dieses Brückenkurses hinaus. Für zwei Kreise wird also nur die Fragestellung behandelt werden, ob sich diese schneiden oder berühren, und nicht an welchen Punkten dies passiert. 
 
 \begin{MInfo}
-Sind ein Kreis $K$ und eine Gerade $g$ in der Ebene (mit Hilfe von Koordinatengleichungen bezüglich eines festen Koordinatensystems) gegeben, so gibt es für ihre relative Lage genau drei Fälle:
+Sind ein Kreis $K$ und eine Gerade $g$ in der Ebene (durch Koordinatengleichungen bezüglich eines festen Koordinatensystems) gegeben, so gibt es für ihre relative Lage genau drei Fälle:
 \begin{enumerate}
  \item Der Kreis $K$ und die Gerade $g$ haben keine gemeinsamen Punkte. Dies ist für die rote Gerade in der Abbildung unten der Fall. Eine solche Gerade heißt \MEntry{Passante}{Passante} des Kreises.
- \item Der Kreis $K$ und die Gerade $g$ haben genau einen Punkt gemeinsam. Dies ist für die blaue Gerade in der Abbildung unten der Fall. Eine solche Gerade heißt \MEntry{Tangente}{Tangente (eines Kreises)} des Kreises.
- \item Der Kreis $K$ und die Gerade $g$ haben zwei gemeinsame Punkte. Dies ist für die grüne Gerade in der Abbildung unten der Fall. Eine solche Gerade heißt \MEntry{Sekante}{Sekante (eines Kreises)} des Kreises.
+ \item Der Kreis $K$ und die Gerade $g$ haben genau einen Punkt gemeinsam, das heißt die Gerade berührt den Kreis. Dies ist für die blaue Gerade in der Abbildung unten der Fall. Eine solche Gerade heißt \MEntry{Tangente}{Tangente (eines Kreises)} des Kreises.
+ \item Der Kreis $K$ und die Gerade $g$ haben zwei gemeinsame Punkte, das heißt die Gerade schneidet den Kreis. Dies ist für die grüne Gerade in der Abbildung unten der Fall. Eine solche Gerade heißt \MEntry{Sekante}{Sekante (eines Kreises)} des Kreises.
 \end{enumerate}
 \begin{center}
  \MTikzAuto{
@@ -2452,7 +2452,7 @@ Sind ein Kreis $K$ und eine Gerade $g$ in der Ebene (mit Hilfe von Koordinatengl
 \end{center} 
 \end{MInfo}
 
-Im Fall einer Sekante oder Tangente haben Kreis oder Gerade also zwei Punkte oder einen Punkt gemeinsam. Wie kann man diesen Punkt oder diese Punkte nun ausrechnen? Da die Punkte jeweils auf Kreis und Gerade liegen müssen, müssen sie sowohl die Koordinatengleichung des Kreises als auch die Koordinatengleichung der Geraden erfüllen. Man hat dann also zwei Gleichungen für die beiden unbekannten Koordinaten der Schnittpunkte, die man aus diesen beiden Gleichungen ausrechnen kann. Dabei ist allerdings folgendes zu beachten: Da in der Koordinatengleichung für Kreise die Unbekannten quadriert vorkommen handelt es sich \textit{nicht} um zwei lineare Gleichungen. Es sind also leider \textit{nicht} die Methoden zum Lösen linearer Gleichungssysteme aus Kapitel \MNRef{VBKM05} anwendbar. Die folgende Infobox fasst die Methode zur Berechnung der Schnittunkte zusammen.
+Im Fall einer Sekante oder Tangente haben Kreis oder Gerade also zwei Punkte oder einen Punkt gemeinsam. Wie kann man diesen Punkt oder diese Punkte nun ausrechnen? Da die Punkte jeweils auf Kreis und Gerade liegen, müssen sie sowohl die Koordinatengleichung des Kreises als auch die Koordinatengleichung der Geraden erfüllen. Man hat dann also zwei Gleichungen für die beiden unbekannten Koordinaten der Schnittpunkte und kann diese dadurch ausrechnen. Dabei ist allerdings folgendes zu beachten: Da in der Koordinatengleichung für Kreise die Unbekannten quadriert vorkommen, handelt es sich \textit{nicht} um zwei lineare Gleichungen. Es sind also leider \textit{nicht} die Methoden zum Lösen linearer Gleichungssysteme aus Kapitel \MNRef{VBKM05} anwendbar. Die folgende Infobox fasst die Methode zur Berechnung der Schnittunkte zusammen.
 
 \begin{MInfo}
 Ist ein Kreis $K$ in der Ebene mit Mittelpunkt $\MPointTwo{x_0}{y_0}$ und Radius $r$ mittels einer Koordinatengleichung
@@ -2470,8 +2470,8 @@ gegeben, so kann zur Berechnung eventueller Schnittpunkte, die Gleichung für $g$
 Für quadratische Gleichungen können bekanntermaßen drei Fälle auftreten (vgl. \MNRef{VBKM02_QuadratischeGleichungen}):
 \begin{enumerate}
  \item Die quadratische Gleichung hat keine Lösung. In diesem Fall handelt es sich bei $g$ um eine Passante von $K$. Es lässt sich keine $x$-Koordinate eines gemeinsamen Punktes finden.
- \item Die quadratische Gleichung hat genau eine Lösung. In diesem Fall handelt es sich bei $g$ um eine Tangente von $K$. Zu der $x$-Koordinate (der Lösung der quadratischen Gleichung) lässt sich mit Hilfe der Geradengleichung eine zugehörige $y$-Koordinate berechnen. Die beiden Koordinaten zusammen bilden den Berührpunkt der Tangente $g$ am Kreis $K$.
- \item Die quadratische Gleichung hat zwei Lösungen. In diesem Fall handelt es sich bei $g$ um eine Sekante von $K$. Zu den beiden $x$-Koordinaten (den Lösungen der quadratischen Gleichung) lassen sich mit Hilfe der Geradengleichung zugehörige $y$-Koordinaten berechnen. Die beiden Koordinatenpaare bilden jeweils einen Schnittpunkt der Sekante $g$ mit dem Kreis $K$. 
+ \item Die quadratische Gleichung hat genau eine Lösung. In diesem Fall handelt es sich bei $g$ um eine Tangente an $K$. Zu der $x$-Koordinate (der Lösung der quadratischen Gleichung) lässt sich mit Hilfe der Geradengleichung eine zugehörige $y$-Koordinate berechnen. Die beiden Koordinaten zusammen bilden den Berührpunkt der Tangente $g$ am Kreis $K$.
+ \item Die quadratische Gleichung hat zwei Lösungen. In diesem Fall handelt es sich bei $g$ um eine Sekante von $K$. Zu den beiden $x$-Koordinaten (den Lösungen der quadratischen Gleichung) lassen sich mit Hilfe der Geradengleichung zugehörige $y$-Koordinaten berechnen. Die beiden Koordinatenpaare bilden die Schnittpunkte der Sekante $g$ mit dem Kreis $K$. 
 \end{enumerate}
 
 \end{MInfo}
@@ -2631,7 +2631,7 @@ Einsetzen in die Geradengleichung liefert die zugehörige $y$-Koordinate:
  \Leftrightarrow\MDFPaSpace 5x^2+4x-1=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x_{1,2}=\frac{-4\pm\sqrt{25-16}}{10}=\frac{-4\pm 3}{10}\MDFPaSpace\Leftrightarrow\MDFPaSpace
  x_1=-\frac{1}{10}\ \wedge\ x_2=-\frac{7}{10}.
 \]
-Da die quadratische Gleichung zwei Lösungen besitzt ist $h$ eine Sekante von $K$. Die zugehörigen $y$-Koordinaten ergeben sich wieder durch einsetzen in die Geradengleichung:
+Da die quadratische Gleichung zwei Lösungen besitzt ist $h$ eine Sekante von $K$. Die zugehörigen $y$-Koordinaten ergeben sich wieder durch Einsetzen in die Geradengleichung:
 \[
  y_1=2\left(-\frac{1}{10}\right)+2=-\frac{2}{10}+2=\frac{9}{5}
 \]
@@ -2665,7 +2665,7 @@ $b\in]$\MLFunctionQuestion{15}{-6-4*sqrt(5)}{5}{x}{5}{SEK1}$;$\MLFunctionQuestio
 \begin{MHint}{Lösung}
 Einsetzen der Geradengleichung (mit unbekanntem $b$) in die Kreisgleichung liefert
 \[
- (x-3)^2+(2x+b)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-6x+9+4x^2+4bx+b^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace 5x^2+(4b-6)x+b^2+7=0.
+ (x-3)^2+(2x+b)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-6x+9+4x^2+4b x+b^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace 5x^2+(4b-6)x+b^2+7=0.
 \]
 Damit es sich bei $g$ um eine Sekante handelt muss diese quadratische Gleichung (in der Variablen $x$) zwei Lösungen besitzen. Dies ist der Fall wenn ihre Diskriminante positiv ist, also wenn gilt:
 \[
@@ -2732,8 +2732,8 @@ Die zugehörigen $x$-Koordinaten sind natürlich beide gleich $\frac{3}{2}$, da di
 
 Für die relative Lage zweier Kreise listet die folgende Infobox die möglichen Fälle auf, zusammen mit allgemeinen Kriterien durch die festgestellt werden kann, welcher Fall für zwei gegebene Kreise jeweils vorliegt.
 
-\begin{MInfo}
-Sind zwei (verschiedene) Kreise $K_1$ mit dem Mittelpunkt $M_1$ und dem Radius $r_1$ sowie $K_2$ mit dem Mittelpunkt $M_2$ und dem Radius $r_2$ in der Ebene (mit Hilfe von Koordinatengleichungen bezüglich eines festen Koordinatensystems) gegeben, so gibt für ihre relative Lage genau drei Fälle:
+\begin{MInfo}\MLabel{VBKM09_Info_Kreiseschneiden}
+Sind zwei (verschiedene) Kreise $K_1$ mit dem Mittelpunkt $M_1$ und dem Radius $r_1$ sowie $K_2$ mit dem Mittelpunkt $M_2$ und dem Radius $r_2$ in der Ebene (durch Koordinatengleichungen bezüglich eines festen Koordinatensystems) gegeben, so gibt es für ihre relative Lage genau drei Fälle:
 \begin{enumerate}
  \item Die Kreise $K_1$ und $K_2$ haben keine gemeinsamen Punkte, das heißt sie schneiden sich nicht. Dies ist genau dann der Fall wenn für die Radien $r_1$ und $r_2$ sowie für den Abstand $[\overline{M_1 M_2}]$ der beiden Mittelpunkte gilt:
  \[
@@ -2751,6 +2751,13 @@ Sind zwei (verschiedene) Kreise $K_1$ mit dem Mittelpunkt $M_1$ und dem Radius $
 Die drei Situationen sind in den folgenden Abbildungen dargestellt:
 \begin{center}
 \begin{tabular}{cc}
+
+$[\overline{M_1 M_2}]>r_1+r_2$:
+
+&
+
+$[\overline{M_1 M_2}]<|r_1-r_2|$:\\
+
 \MTikzAuto{
 \begin{tikzpicture}
 %Koordinatensystem
@@ -2772,17 +2779,50 @@ Die drei Situationen sind in den folgenden Abbildungen dargestellt:
 \draw[fill=red] (1,2) circle (1.5pt);
 \draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
 \draw[color=blue] (3,1) circle (0.8);
-\draw[color=blue] (3,1.8) node[anchor=south] {\scriptsize $K_2$};
+\draw[color=blue] (3,1.7) node[anchor=south] {\scriptsize $K_2$};
 \draw[fill=blue] (3,1) circle (1.5pt);
 \draw[color=blue] (3,1) node[anchor=south] {\scriptsize $M_2$};
 
 \end{tikzpicture}
 } 
 &
-TODO
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (4.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (2,1);
+\draw[color=violet] (1.45,1.75) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (-1,2);
+\draw[color=black] (0,2) node[anchor=south west] {\scriptsize $r_1$};
+\draw[color=black] (2,1) -- (2,0.5);
+\draw[color=black] (1.9,0.75) node[anchor=west] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (2);
+\draw[color=red] (1,4) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (2,1) circle (0.5);
+\draw[color=blue] (2,1.4) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (2,1) circle (1.5pt);
+\draw[color=blue] (1.9,0.9) node[anchor=south west] {\scriptsize $M_2$};
+
+\end{tikzpicture}
+} 
 \end{tabular}
 
 \begin{tabular}{cc}
+
+$[\overline{M_1 M_2}]=r_1+r_2$:
+
+&
+
+$[\overline{M_1 M_2}]=|r_1-r_2|$:\\
+
 \MTikzAuto{
 \begin{tikzpicture}
 %Koordinatensystem
@@ -2804,7 +2844,7 @@ TODO
 \draw[fill=red] (1,2) circle (1.5pt);
 \draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
 \draw[color=blue] (3,1) circle (0.736);
-\draw[color=blue] (3,1.8) node[anchor=south] {\scriptsize $K_2$};
+\draw[color=blue] (3,1.7) node[anchor=south] {\scriptsize $K_2$};
 \draw[fill=blue] (3,1) circle (1.5pt);
 \draw[color=blue] (3,1) node[anchor=south] {\scriptsize $M_2$};
 %Berührpunkt
@@ -2812,10 +2852,40 @@ TODO
 \end{tikzpicture}
 } 
 &
-TODO
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (4.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (2,1);
+\draw[color=violet] (1.45,1.75) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (-1,2);
+\draw[color=black] (0,2) node[anchor=south west] {\scriptsize $r_1$};
+\draw[color=black] (2,1) -- (2,0.414);
+\draw[color=black] (1.9,0.75) node[anchor=west] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (2);
+\draw[color=red] (1,4) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (2,1) circle (0.586);
+\draw[color=blue] (2,1.5) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (2,1) circle (1.5pt);
+\draw[color=blue] (1.9,0.9) node[anchor=south west] {\scriptsize $M_2$};
+%Berührpunkt
+\draw[fill=violet] (2.414,0.586) circle (1.5pt);
+\end{tikzpicture}
+} 
 \end{tabular}
 
-\begin{tabular}{cc}
+\begin{tabular}{c}
+
+$|r_1-r_2|<[\overline{M_1 M_2}]<r_1+r_2$:\\
+
 \MTikzAuto{
 \begin{tikzpicture}
 %Koordinatensystem
@@ -2845,8 +2915,7 @@ TODO
 \draw[fill=violet] (1.063,0.501) circle (1.5pt);
 \end{tikzpicture}
 }
-& 
-TODO
+
 \end{tabular}
 
 \end{center}
@@ -2855,11 +2924,11 @@ TODO
 Um die relative Lage zweier Kreise festzustellen benötigt man also nur deren Mittelpunkte und Radien. Das Berechnen möglicher Schnittpunkte ist schwieriger und kann im Rahmen dieses Brückenkurses nicht behandelt werden.
 
 \begin{MExample}
-Gegeben ist ein Kreis $K$ durch die Gleichung
+Gegeben ist ein Kreis $K$ mit Mittelpunkt $M_K$ und Radius $r_K$ durch die Gleichung
 \[
  K\colon x^2+y^2-2y=1
 \]
-und eine Kreis $L$ mit noch unbekanntem Radius $r>0$ durch die Kreisgleichung
+und ein Kreis $L$ mit Mittelpunkt $M_L$ und noch unbekanntem Radius $r>0$ durch die Kreisgleichung
 \[
  L\colon (x+1)^2+(y-1)^2=r^2.
 \]
@@ -2877,8 +2946,281 @@ und die Summe der beiden Radien ist
 \[
  r+r_K=r+\sqrt{2}.
 \]
-Somit berühren sich die Kreise, falls 
+Da $r>0$ gilt folgt
+\[
+ r+\sqrt{2}>\sqrt{2}>1=[\overline{M_K M_L}].
+\]
+Somit kann die Situation $[\overline{M_K M_L}]\geq r+\sqrt{2}$ in diesem Fall nicht eintreten. (Der geometrische Grund hierfür ist, dass der Mittelpunkt von $L$ innerhalb des Kreises $K$ liegt, wie auch aus der Abbildung unten hervorgeht.) Nach den Kriterien in Infobox \MNRef{VBKM09_Info_Kreiseschneiden} berühren sich die beiden Kreise somit, falls
+\[
+ |r-\sqrt{2}|=1=[\overline{M_K M_L}]
+\]
+gilt. Nach dem Abschnitt über \MSRef{M02_Betragsgleichungen}{Betragsgleichungen}, ist diese Gleichung erfüllt, falls 
+\[
+ r-\sqrt{2}=1\MDFPaSpace\textrm{oder}\MDFPaSpace r-\sqrt{2}=-1
+\]
+gilt. Also sind die beiden Radien $r$, für die der Kreis $L$ den Kreis $K$ berührt:
+\[
+ r=\sqrt{2}+1\MDFPaSpace\textrm{und}\MDFPaSpace r=\sqrt{2}-1\MDFPeriod
+\]
+Nun sind noch die restlichen möglichen Werte für $r$ zu untersuchen. Für $0<r<\sqrt{2}-1$ gilt
+\[
+ |r-\sqrt{2}|=-(r-\sqrt{2})=\sqrt{2}-r>1=[\overline{M_K M_L}],
+\]
+womit $K$ und $L$ in diesem Fall keine gemeinsamen Punkte besitzen. Für $\sqrt{2}-1<r<\sqrt{2}+1$ sind zur Untersuchung des Betrags nochmal die Fälle $\sqrt{2}-1<r\leq\sqrt{2}$ und $\sqrt{2}<r<\sqrt{2}+1$ zu unterscheiden. Im Fall $\sqrt{2}-1<r\leq\sqrt{2}$ gilt
+\[
+ |r-\sqrt{2}|=-(r-\sqrt{2})=\sqrt{2}-r<1=[\overline{M_K M_L}]
+\]
+und auch im Fall $\sqrt{2}<r<\sqrt{2}+1$ gilt
+\[
+ |r-\sqrt{2}|=r-\sqrt{2}<1=[\overline{M_K M_L}].
+\]
+Somit haben $K$ und $L$ für $\sqrt{2}-1<r<\sqrt{2}+1$ zwei gemeinsame Punkte, die Kreise schneiden sich also. Zuletzt gilt im Fall $r>\sqrt{2}+1$:
+\[
+ |r-\sqrt{2}|=r-\sqrt{2}>1=[\overline{M_K M_L}]\MDFPeriod
+\]
+Somit haben $K$ und $L$ auch in diesem Fall keine gemeinsamen Punkte. Zusammenfassend erhält man für die relative Lage von $K$ und $L$ die folgenden Bedingungen:
+\begin{itemize}
+ \item Falls $r\in\{\sqrt{2}-1\MElSetSep\sqrt{2}+1\}$ gilt, berühren sich die beiden Kreise $K$ und $L$ in jeweils einem Punkt.
+ \item Falls $r\in]\sqrt{2}-1\MIntvlSep\sqrt{2}+1[$ gilt, schneiden sich die beiden Kreise $K$ und $L$ in jeweils zwei Punkten.
+ \item Falls $r\in]0\MIntvlSep\sqrt{2}-1[\cup]\sqrt{2}+1\MIntvlSep\infty[$ gilt, haben die beiden Kreise $K$ und $L$ keine gemeinsamen Punkte.
+\end{itemize}
+Einige Fälle für die Kreise $K$ und $L$ sind in den folgenden Abbildungen dargestellt:
+\begin{center}
+ 
+\begin{tabular}{cc}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-1,0.667);
+\draw[color=black] (-1.1,0.75) node[anchor=north west] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (0.33);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,0.93) node[anchor=south] {\tiny $M_L$};
+\draw[color=blue] (-1,1.33) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=\frac{1}{3}$};
+\end{tikzpicture}
+} 
+
+& 
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-1,0.586);
+\draw[color=black] (-1.1,0.65) node[anchor=north west] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (0.414);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,0.95) node[anchor=south] {\tiny $M_L$};
+\draw[color=blue] (-1,1.4) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=\sqrt{2}-1$};
+%Berührpunkt
+\draw[fill=violet] (-1.414,1) circle (1.5pt);
+\end{tikzpicture}
+} \\
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-1,0);
+\draw[color=black] (-1.1,0.5) node[anchor=west] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (1);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,1) node[anchor=south] {\scriptsize $M_L$};
+\draw[color=blue] (-2,1) node[anchor=east] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=1$};
+%Schnittpunkte
+\draw[fill=violet] (-1,0) circle (1.5pt);
+\draw[fill=violet] (-1,2) circle (1.5pt);
+\draw[fill=red] (0,1) circle (1.5pt);
+\end{tikzpicture}
+} 
+
+&
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-3.414,1);
+\draw[color=black] (-2.2,1) node[anchor=south] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (2.414);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,1) node[anchor=south] {\scriptsize $M_L$};
+\draw[color=blue] (-1,3.414) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=\sqrt{2}+1$};
+%Berührpunkt
+\draw[fill=violet] (1.414,1) circle (1.5pt);
+
+\end{tikzpicture}
+} 
+\end{tabular}
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-4,1);
+\draw[color=black] (-2.5,1) node[anchor=south] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (3);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,1) node[anchor=south] {\scriptsize $M_L$};
+\draw[color=blue] (-1,4) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=3$};
+
+\end{tikzpicture}
+} 
+\end{center}
+
 \end{MExample}
+
+\begin{MExercise}
+Gegeben sind die beiden Kreise $K_1$ und $K_2$ durch die Gleichungen
+\[
+ K_1\colon (x+6)^2+(y+4)^2=64
+\]
+und
+\[
+ K_2\colon x^2+2x+y^2-16y+40=0.
+\]
+Die beiden Kreise $K_1$ und $K_2$
+
+\begin{MQuestionGroup}
+\begin{tabular}{ll}
+\MCheckbox{1}{KREIS_COSH1} & berühren sich in einem Punkt,\\
+\MCheckbox{0}{KREIS_COSH2} & schneiden sich in zwei Punkten,\\
+\MCheckbox{0}{KREIS_COSH3} & haben keine gemeinsamen Punkte.
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Eingabe kontrollieren}
+
+\begin{MHint}{Lösung}
+Der Mittelpunkt $M_1$ und der Radius $r_1$ des Kreises $K_1$ ist direkt abzulesen. Es gilt $M_1=\MPointTwo{-6}{-4}$ und $r_1=8$. Für $K_2$ ist eine quadratische Ergänzung durchzuführen:
+\[
+ x^2+2x+y^2-16y+40=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+2x+1 + y²-2\cdot8y+64+40-64-1=0
+\]
+\[
+ \Leftrightarrow\MDFPaSpace (x+1)^2+(y-8)^2=25\MDFPeriod
+\]
+Nun kann der Mittelpunkt $M_2$ und der Radius $r_2$ von $K_2$ abgelesen werden. Es gilt $M_2=\MPointTwo{-1}{8}$ und $r_2=5$. Damit berechnet man
+\[
+ [\overline{M_1 M_2}]=\sqrt{(-1+6)^2+(8+4)^2}=\sqrt{25+144}=\sqrt{169}=13
+\]
+und
+\[
+ r_1+r_2=13.
+\]
+Es ist in diesem Fall also $[\overline{M_1 M_2}]=13=r_1+r_2$ und nach Infobox \MNRef{VBKM09_Info_Kreiseschneiden} berühren sich die Kreise $K_1$ und $K_2$ folglich in einem Punkt.
+\end{MHint}
+
+
+\end{MExercise}
 
 \end{MXContent}
 
