@@ -2085,7 +2085,7 @@ sub getsettings {
 <p>
 <center>
 <b>Auswahl des Farbschemas für den Onlinekurs</b><br />
-<ul style="width:80%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
 <li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" type=button onclick="selectColor(STYLEBLUE);">Blaues Schema</button></center></li>
 <li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" type=button onclick="selectColor(STYLERED);">Rotes Schema</button></center></li>
 <li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" type=button onclick="selectColor(STYLEGREEN);">Grünes Schema</button></center></li>
@@ -2094,28 +2094,24 @@ sub getsettings {
 </center>
 </p>
 
+<br /><br />
+
 <p>
-Auswahl der mathematischen Notation<br />
-<ul style="list-style-type:none;columns: 2;-webkit-columns: 2;-moz-columns: 2;">
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
   <li>
-  Notation nach <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (empfohlen)<br />
-  <ul style="list-style-type:none">
-    <li>Intervalle: \\( ]a;b[\\)</li><br />
-    <li>Elemente: \\(\\mathbb N =\\lbrace 1;2;3;\\ldots\\rbrace\\)</li>
-    <li>Punkte/Vektoren: \\(P=(a;b;c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right)\\)</li>
-    <li>Dezimalzahlen: \\(\\frac13=0,\\overline{3}\\ ,\\ \\sqrt2 =1,414\\ldots\\)</li>
-    <li><button class="stdbutton" type=button onclick="selectVariant("std");">Notation wählen</button></li>
-  </ul>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \\(\\displaystyle
+  ]a;b[\\ , \\ \\mathbb N =\\lbrace 1;2;3;\\ldots\\rbrace \\ , \\ P=(a;b;c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right) \\ ,\\ \\sqrt2 =1,414\\ldots
+  \\)
   </li>
   <li>
-  Notation orientiert an den meisten technischen Studiengängen:<br />
-  <ul style="list-style-type:none">
-    <li>Intervalle: \\( (a,b)\\)</li><br />
-    <li>Elemente: \\(\\mathbb N =\\lbrace 1,2,3,\\ldots\\rbrace\\)</li>
-    <li>Punkte/Vektoren: \\(P=(a,b,c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right)\\)</li>
-    <li>Dezimalzahlen: \\(\\frac13=0.\\overline{3}\\ ,\\ \\sqrt2 =1.414\\ldots\\)</li>
-    <li><button class="stdbutton" type=button onclick="selectVariant("unotation");">Notation wählen</button></li>
-  </ul>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \\(\\displaystyle
+  (a,b)\\ , \\ \\mathbb N =\\lbrace 1,2,3,\\ldots\\rbrace \\ , \\ P=(a,b,c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right) \\ ,\\ \\sqrt2 =1.414\\ldots
+  \\)
   </li>
 </ul>
 </p>
