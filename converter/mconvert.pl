@@ -31,6 +31,7 @@ my $helptext = "Usage: mconvert.pl <configuration.pl> [<parameter>=<value> ...]\
 
 our $mainlogfile = "conversion.log";
 our $configactive = 0; # set to 1 once config-pl-file is fully loaded
+our $stdencoding = "iso-8859-1";
 
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
@@ -1639,27 +1640,35 @@ sub readfile {
 	  $n++;
 	}
 	close(F);
-	logMessage($VERBOSEINFO, "Read $n lines resp. " . length($text) . " characters from file $file");
-	return $text;
+	logMessage($VERBOSEINFO, "Read $n lines resp. " . length($text) . " characters from file $file (encoding: $stdencoding)");
+	return decode($stdencoding, $text);
 }
 
 
 sub writefile {
 	my $file = $_[0];
 	my $text = $_[1];
-	$file =~ /(.*)\/[^\/]*?$/;
-	my $path = $1;
-	logMessage($VERBOSEINFO, "Creating path $path (if not already there)");
-	mkpath($1);
+  	my $path;
+	if ($file =~ /(.*)\/[^\/]*?$/ ) {
+	  $path = $1;
+	} else {
+	  $path = ".";
+	}
+	if ($path ne ".") {
+  	  logMessage($VERBOSEINFO, "Creating path $path");
+	  mkpath($path);
+	}
 	if (open(F, "> $file")) {
 	  logMessage($VERBOSEINFO, "Writing to file $file");
 	} else {
 	  logMessage($FATALERROR, "Cannot create/overwrite file $file in path $path");
 	}
-	print F $text;
+	my $code = encode($stdencoding, $text); 
+	
+	print F $code;
 	close(F);
 	
-	logMessage($VERBOSEINFO, "Written " . length($text) . " characters to file $file");
+	logMessage($VERBOSEINFO, "Written " . length($text) . " characters to file $file (encoding: $stdencoding)");
 }
 
 # sub noregex()
@@ -4800,6 +4809,8 @@ open(LOGFILE, "> $mainlogfile") or die("ERROR: Cannot open log file, aborting!")
 $starttime = time;
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($starttime);
 logMessage($CLIENTINFO, "Starting conversion: " . ($year+1900 ) . "-" . ($mon+1) . "-$mday at $hour:$min:$sec");
+
+logMessage($CLIENTINFO, "Using encoding $stdencoding for read/write operations");
 
 if ($#ARGV eq 0) {
   # Nur ein Parameter: Gibt Konfigurationsdatei relativ zum Aufruf an
