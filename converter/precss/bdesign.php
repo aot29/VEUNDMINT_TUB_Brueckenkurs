@@ -125,6 +125,7 @@ tocnavsymb ul li {
 
 .navi ul li,
 .stdbutton,
+.roulettebutton,
 .nprev,
 .nnext,
 {
@@ -591,4 +592,22 @@ a .tocminbutton {
 
 .stdbutton:hover {
     background-color:rgba(255,255,255,.5) !important;
+}
+
+.roulettebutton {
+    color: grey !important;
+    background-color: rgba(215,235,255,0) !important;
+    display: inline-block;
+    border: 2px solid rgba(155,200,210,0.5) !important;
+    border-radius: 3px;
+    padding: 5px 10px  !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px;
+    margin: 0px 10px;
+    font-family: 'open-sans-condensed';
+    font-weight: 700;
+}
+
+.roulettebutton:hover {
+    background-color:rgba(215,235,255,.5) !important;
 }

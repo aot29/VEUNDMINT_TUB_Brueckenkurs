@@ -29,7 +29,8 @@
   border-radius: 3px !important;
 }
 
-.coshwarn
+.coshwarn,
+.rouletteselector
 {
   margin-top: 0px;
   padding-left: 5px;
@@ -38,6 +39,12 @@
   border: this solid [-HINTLINE-];
   font-family: [-BASICFONTFAMILY-];
   font-size: [-SMALLFONTSIZE-];
+}
+
+.rouletteselector
+{
+  background-color: white;
+  border: 2px solid [-HINTLINE-];
 }
 
 .expe
