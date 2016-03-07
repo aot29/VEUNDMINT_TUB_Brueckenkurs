@@ -16,11 +16,11 @@
 In diesem Modul wird ein Überblick über die mathematischen Grundlagen zum elementaren Rechnen gegeben und die Notation eingeführt und erklärt.
 Dieses Modul besteht aus
 \begin{itemize}
-\item{dem Abschnitt \MSRef{M01_Zahlenbereiche}{Zahlen, Variablen, Terme},}
-\item{dem Abschnitt \MSRef{M01_Bruchrechnung}{Bruchrechnung},}
-\item{dem Abschnitt \MSRef{M01_Potenzenwurzeln}{Potenzen und Wurzeln},}
-\item{dem Abschnitt \MSRef{M01_Umformen}{Umformen von Termen},}
-\item{dem \MSRef{M01_Ausgangstest}{Abschlusstest}.}
+\item{dem Abschnitt \MNRef{M01_Zahlenbereiche}, \MSRef{M01_Zahlenbereiche}{Zahlen, Variablen, Terme},}
+\item{dem Abschnitt \MNRef{M01_Bruchrechnung}, \MSRef{M01_Bruchrechnung}{Bruchrechnung},}
+\item{dem Abschnitt \MNRef{M01_Potenzenwurzeln}, \MSRef{M01_Potenzenwurzeln}{Potenzen und Wurzeln},}
+\item{dem Abschnitt \MNRef{M01_Umformen}, \MSRef{M01_Umformen}{Umformen von Termen},}
+\item{dem \MSRef{M01_Ausgangstest}{Abschlusstest}, \MNRef{M01_Ausgangstest}.}
 \end{itemize}
 
 
@@ -32,8 +32,70 @@ Dieses Modul besteht aus
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM01_ZahlenIntro}
 
-$$\dots\MElSetSep 0\MElSetSep -3\MElSetSep 4\MElSetSep \Mdfrac{4}{5}\MElSetSep \sqrt 2\MElSetSep \MEU\MElSetSep \pi\MElSetSep \MZahl{12}{3}\MElSetSep 10^{23}\dots$$ 
-Mathematik ist die Welt der Zahlen. Wenn man verschiedene Zahlen n"aher 
+%Einfügung Mengenschreibweise
+Die Mathematik ist eine Wissenschaft, in der allgemein abstrakte Strukturen
+und deren logische Zusammenhänge untersucht werden. 
+Bevor auf die eigentlichen Inhalte dieses Abschnitts näher eingegangen wird,
+soll kurz auf den grundlegenden Begriff der \MEntry{Menge}{Menge} Bezug
+genommen werden.
+
+\begin{MInfo}
+Um Aussagen in kompakter Weise über eine Reihe von strukturell ähnlichen
+Objekten treffen zu können, kann man solche Objekte in Mengen zusammengefassen,
+die als Behältnis für die Objekte dienen. Seien die Objekte mit $a,b,c,\ldots$
+benannt, dann bildet das Symbol $M=\{a\MElSetSep b \MElSetSep c \MElSetSep
+\ldots\}$ die Menge $M$, welche die vorigen Objekte als \textbf{Elemente}
+enthält. Letzteres schreibt man kurz $a\in M$, $b\in M$, $c\in M$ usw.;
+das Zeichen $\in$ bedeutet also \glqq{}ist Element von\grqq{}.
+(Manchmal ist es schreibtechnisch geboten, die Reihenfolge von Element und
+Menge auszutauschen. Zum Erhalten der gleichen Aussage(n) wird dann das
+$\in$-Symbol umgedreht, d.h. $M\ni a$, $M\ni b$, $M\ni c$ usw. heißt
+dann dasselbe, wobei $\ni$ \glqq{}enthält als Element\grqq{} bzw.
+\glqq{}beinhaltet\grqq{} bedeutet.)
+
+Neben der aufzählenden Schreibweise von Mengen existieren weitere 
+Schreibweisen. Wenn die Elemente z.B. eine Bedingung $B$ erfüllen sollen,
+dann schreibt man $T=\{x\MCondSetSep x\MBlank\text{erfüllt}\MBlank B\}$.
+Wird dabei $x$ (explizit) aus einer umfassenderen Menge $U$ entnommen,
+dann wird dies auch in der Form
+$T=\{x\MCondSetSep x\in U \MBlank\text{und}\MBlank 
+x\MBlank\text{erfüllt}\MBlank B\}$
+oder kurz
+$T=\{x\in U\MCondSetSep x\MBlank\text{erfüllt}\MBlank B\}$
+geschrieben.
+%%Da die Bedingung $B$ eine Einschränkung für die Elemente von $U$ darstellt,
+%%ist $T$ dann in natürlicher Weise eine \textbf{Teilmenge} von $U$,
+%%notiert in Formelnotation als $T\subset U$.
+
+Für zwei Mengen $M$ und $N$ notiert man
+\begin{itemize}
+\item{%
+$M\subseteq N$, d.h. $M$ ist (unechte) \textbf{Teilmenge} von $N$, wenn jedes
+Element von $M$ auch in $N$ enthalten ist; gibt es dann mindestens ein Element
+in $N$, das nicht in $M$ enthalten ist, wenn also $M$ eine echte Teilmenge von
+$N$ ist, so schreibt man (auch) $M\subset N$;
+}
+\item{%
+$M\cup N$ für die \textbf{Vereinigung} der beiden Mengen; diese bezeichnet
+jene Menge, die alle Elemente enthält, die in mindestens einer der beiden
+Mengen vorkommen;
+}
+\item{%
+$M\cap N$ für den \textbf{Schnitt} der beiden Mengen; dieser bezeichnet
+jene Menge, in der alle Elemente enthalten sind, die in beiden Mengen
+vorkommen;
+}
+\item{%
+$N\MSetminus M$ für diejenige Menge, welche die Elemente von $N$ enthält,
+die \textit{nicht} in $M$ vorkommen.
+}
+\end{itemize}
+\end{MInfo}
+%
+
+Mathematik beinhaltet die Welt der Zahlen:
+$$\dots\MElSetSep 0\MElSetSep -3\MElSetSep 4\MElSetSep \Mdfrac{4}{5}\MElSetSep \sqrt 2\MElSetSep \MEU\MElSetSep \pi\MElSetSep \MZahl{12}{3}\MElSetSep 10^{23}\MElSetSep \dots \MDFPeriod$$ 
+Wenn man verschiedene Zahlen n"aher 
 betrachtet, so erkennt man jedoch grundlegende Unterschiede. Manche Zahlen 
 lassen sich nicht als geschlossener Dezimalbruch darstellen, andere sind schier
 unvorstellbar (imagin"ar), wieder andere kann man an den Fingern abz"ahlen oder 
@@ -52,8 +114,8 @@ $\displaystyle \R$ & die \textbf{Menge der reellen Zahlen}.\\
 
 Diese Zahlenbereiche sind nicht unabh"angig voneinander, sondern bilden eine Kette ineinandergeschachtelter Zahlenmengen:
 $$\N\subset\N_{0}\subset\Z\subset\Q\subset\R \MDFPeriod$$ 
-Dabei bedeutet das Symbol $\subset$, dass der links stehende Zahlenbereich eine Teilmenge des rechts stehenden Zahlenbereichs ist.
-Beispielsweise ist jede ganze Zahl aus $\Z$ immer auch eine rationale Zahl aus $\Q$.
+%%Dabei bedeutet das Symbol $\subset$, dass der links stehende Zahlenbereich eine Teilmenge des rechts stehenden Zahlenbereichs ist.
+%%Beispielsweise ist jede ganze Zahl aus $\Z$ immer auch eine rationale Zahl aus $\Q$.
 Diese Zahlenbereiche erhält man, indem man sich nacheinander die 
 L"osungen folgender Gleichungen anschaut und die Zahlenbereiche so erweitert, dass immer eine L"osung existiert:
 
@@ -84,7 +146,7 @@ und man erhält $\Z$. Die \MEntry{Menge der ganzen Zahlen}{Ganze Zahlen $\Z$} wir
 $$\Z:=\{\dots\MElSetSep  -4\MElSetSep -3\MElSetSep -2\MElSetSep -1\MElSetSep 0\MElSetSep 1\MElSetSep 2\MElSetSep 3\MElSetSep 4\MElSetSep \dots\}$$
 bezeichnet. 
 Ganze Zahlen werden immer dann ben"otigt, wenn das Vorzeichen der nat"urlichen Zahlen eine Rolle spielt.
-In $\Z$ k"onnen Zahlen voneinander subtrahiert werden, d.h. Gleichungssysteme der Form $\displaystyle a+x=b$ sind in $\Z$ immer lösbar ($\displaystyle x=b+(-a)$.)
+In $\Z$ k"onnen Zahlen voneinander subtrahiert werden, d.h. Gleichungssysteme der Form $\displaystyle a+x=b$ sind in $\Z$ immer lösbar ($\displaystyle x=b+(-a)$).
 
 \begin{center}
 %-%\MUGraphicsSolo{ganzzahlen.png}{width=10cm}{width:400px}
@@ -146,7 +208,7 @@ $$d^2 = 1^2+1^2 = 2, \;\mbox{also formal}\; d=\sqrt{2}.$$
 
 \vspace*{5mm}
 
-Eine weitere Zahl, die nicht als Bruch dargestellt werden kann, erh"alt man durch Abrollen eines Rades mit Durchmesser 1 auf der Zahlengeraden. Es handelt sich um die Zahl $\pi$. Mit einem einfachen (hier nicht durchgeführten Beweis) ließe sich zeigen, dass diese beiden Zahlen ($\sqrt{2} und \pi$) nicht in Form eines Bruchs geschrieben werden können. Sie sind zwei Beispiele aus der Menge der sogenannten \MEntry{irrationalen Zahlen}{Irrationale Zahlen}.
+Eine weitere Zahl, die nicht als Bruch dargestellt werden kann, erh"alt man durch Abrollen eines Rades mit Durchmesser $1$ auf der Zahlengeraden. Es handelt sich um die Zahl $\pi$. Man kann zeigen, dass diese beiden Zahlen ($\sqrt{2}$ und $\pi$) nicht in Form eines Bruchs geschrieben werden können. (Der Beweis für $\sqrt{2}$ ist dabei verhältnismäßig einfach.) Sie sind zwei Beispiele aus der Menge der sogenannten \MEntry{irrationalen Zahlen}{Irrationale Zahlen}.
 
 \vspace*{5mm}
 
@@ -173,6 +235,65 @@ Sie enth"alt alle auf der Zahlengeraden darstellbaren Zahlen.
 
 Reelle Zahlen dienen als Ma"szahlen f"ur L"angen, Fl"acheninhalte, Temperaturen, Massen, etc. 
 In diesem Kurs werden die mathematischen Probleme typischerweise mit reellen Zahlen gelöst.
+
+Eine Grundeigenschaft reeller Zahlen ist, dass diese geordnet sind, d.h.
+für zwei reelle Zahlen $a,b$ gilt genau eine der drei Beziehungen
+$a<b$, $a=b$ oder $a>b$. Eine weitere definierende Eigenschaft ist
+die Vollständigkeit, die - grob gesprochen - die 
+\glqq Lückenlosigkeit\grqq{} der Zahlengeraden beschreibt. 
+
+\begin{MInfo}
+Für zwei verschiedene reelle Zahlen betrachtet man insbesondere alle Zahlen,
+die auf der Zahlengeraden zwischen diesen beiden Zahlen liegen. Solche
+Teilmengen reeller Zahlen bezeichnet man als \MEntry{Intervalle}{Intervall}.
+Deren Beschreibung wird so festgelegt, dass man ihnen eine linke 
+Intervallgrenze ($a$) und eine rechte Intervallgrenze $(b)$ zuordnet
+mit $a<b$. Je nachdem, ob eine oder beide Intervallgrenzen zum
+Intervall dazugehören, ergibt sich folgende Fallunterscheidung:
+\begin{itemize}
+\item{%
+$\{x\in\R \MCondSetSep x\ge a \MBlank\text{und}\MBlank x\le b\}
+= [a\MIntvlSep b]$ bezeichnet das \textbf{abgeschlossene} Intervall
+zwichen $a$ und $b$, bei dem die Grenzen zum Intervall dazugehören.
+}
+\item{%
+$\{x\in\R \MCondSetSep x> a \MBlank\text{und}\MBlank x< b\}
+= \MoIl a\MIntvlSep b\MoIr$ bezeichnet das \textbf{offene} Intervall
+zwichen $a$ und $b$, bei dem die Grenzen \textit{nicht} zum Intervall
+dazugehören.
+}
+\item{%
+$\{x\in\R \MCondSetSep x\ge a \MBlank\text{und}\MBlank x< b\}
+= [a\MIntvlSep b\MoIr$ bezeichnet das \textbf{links abgeschlossene und 
+rechts offene} Intervall zwichen $a$ und $b$, bei dem die linke Grenze
+zum Intervall dazugehört, die rechte aber nicht.
+}
+\item{%
+$\{x\in\R \MCondSetSep x> a \MBlank\text{und}\MBlank x\le b\}
+= \MoIl a\MIntvlSep b]$ bezeichnet das \textbf{links offene und 
+rechts abgeschlossene} Intervall zwichen $a$ und $b$, bei dem die rechte 
+Grenze zum Intervall dazugehört, die linke aber nicht.
+}
+\end{itemize}
+Die Intervalle der letzten beiden Typen heißen auch \textbf{halboffene}
+Intervalle.
+
+Im Falle offener Intervallenden kann man auch \textbf{unbeschränkte}
+Intervalle betrachten. In diesen Fällen entfällt die jeweilige
+Bedingung in der Mengenbeschreibung:
+$\{x\in\R \MCondSetSep x\ge a\} = \left[a\MIntvlSep \infty\MoIr[\right]$,
+$\{x\in\R \MCondSetSep x> a\} = \MoIl[\left] a\MIntvlSep \infty\MoIr[\right]$,
+$\{x\in\R \MCondSetSep x\le b\} = \MoIl[\left] {-}\infty\MIntvlSep b\right]$,
+$\{x\in\R \MCondSetSep x< b\} = \MoIl[\left] {-}\infty\MIntvlSep b\MoIr[\right]$,
+$\{x\in\R\} = \R = \MoIl[\left] {-}\infty\MIntvlSep \infty\MoIr[\right]$.
+
+Darüber hinaus sind folgende Bezeichnungen gebräuchlich:
+$\R^+=\MoIl[\left] 0\MIntvlSep \infty\MoIr[\right]$,  
+$\R_0^+= \left[ 0\MIntvlSep \infty\MoIr[\right]$,  
+$\R^-=\MoIl[\left] -\infty \MIntvlSep 0\MoIr[\right]$,  
+$\R_0^-=\MoIl[\left] -\infty \MIntvlSep 0\right]$.  
+\end{MInfo}
+
 \end{MIntro}
 
 \begin{MXContent}{Variablen und Terme}{Variablen und Terme}{STD}
@@ -244,8 +365,8 @@ $y^2+x^2=(-1)^2+(-1)^2=2$ in Teil 2) und $1+2+3+4+5+6=21$ in Teil 3).
 \end{MExercise}
 
 \begin{MExercise}
-Formalisieren Sie mit den vorgegebenen Variablen den Anteil der Mädchen (Variable $a$)
-sowie der Jungen (Variable $b$) an der Gesamtzahl an Kindern:
+Formalisieren Sie mit den vorgegebenen Variablen den Anteil der Mädchen, deren Anzahl durch die Variable $a$ gegeben sei,
+sowie den der Jungen, deren Anzahl durch die Variable $b$ gegeben sei, an der Gesamtzahl an Kindern:
 
 Anteil der Mädchen ist \MLSimplifyQuestion{15}{a/(a+b)}{5}{a,b}{5}{512}{LSFF1} und
 Anteil der Jungen ist \MLSimplifyQuestion{15}{b/(a+b)}{5}{a,b}{5}{512}{LSFF2}.\\
@@ -310,7 +431,7 @@ die Figur?
 \node at (current bounding box.south) [below] {(Ein Kästchen hat die Länge $x$)};
 \end{tikzpicture}
 }
-\par
+\par\ifttm\else\penalty+10000\fi
 Eine Figur auf kariertem Papier.
 \end{center}
 %%\fi
@@ -597,7 +718,7 @@ für den Dezimalbruch $x$, der zu $x=\Mdfrac{n}{10^k-1}$ (ein gewöhnlicher Bruch)
 
 \begin{MExample}
 	Die Zahl $\MZahl{0}{}\bar 6$ soll in einen Bruch umgewandelt werden. Hierzu multipliziert man die Zahl
-mit 10 und subtrahiert vom Ergebnis die Ausgangszahl, um die unendliche Periode
+mit $10$ und subtrahiert vom Ergebnis die Ausgangszahl, um die unendliche Periode
 zu eliminieren:
 \begin{center}
 \begin{tabular}{crclcr}
@@ -700,15 +821,15 @@ Berechnen bzw. vereinfachen Sie die folgenden Ausdr"ucke f"ur geeignete Zahlen $
 mit seinem Kehrwert: $\Mdfrac{3}{13}:\Mdfrac{7}{26}=\Mdfrac{3}{13}\cdot\Mdfrac{26}{7}=\Mdfrac{3\cdot 26}{13\cdot 7}=\Mdfrac{3\cdot 2}{1\cdot 7}=\Mdfrac67$.\end{MHint}}
 \item{\MEquationItem{$\displaystyle \left(\MZahl{1}{}\bar{4}\cdot 3-\Mdfrac12\right)\cdot\Mdfrac{6}{7}$}{\MLSpecialQuestion{10}{23/7}{5}{0}{0}{exactfraction}{BRX3}}. \begin{MHint}{L"osung}Umwandeln des Dezimalausdrucks in einen Bruch ergibt
 $\left(\MZahl{1}{}\bar{4}\cdot 3-\Mdfrac12\right)\cdot\Mdfrac{6}{7}=\left(\MZahl{1}{}\bar{4}\cdot 18-3\right)\cdot\Mdfrac{1}{7}=\left(26-3\right)\cdot\Mdfrac{1}{7}=\Mdfrac{23}{7}$.\end{MHint}}
-\item{\MEquationItem{$\displaystyle \Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}$}{\MLSpecialQuestion{10}{1}{5}{0}{0}{exactfraction}{BRX4}}. \begin{MHint}{L"osung}Summieren über den Hauptnenner ergibt
-$\Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}=\Mdfrac{3a}{3a+6b}+\Mdfrac{6b}{3a+6b}=\Mdfrac{3a+6b}{3a+6b}=1$.\end{MHint}}
-\item{\MEquationItem{$\displaystyle \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y^2}$}{\MLSpecialQuestion{10}{-4}{5}{0}{0}{exactfraction}{BRX5}}. \begin{MHint}{L"osung}Vereinfachen des Ausdrucks ergibt
-\begin{eqnarray*}
-\Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y^2} & =&
-4\cdot \Mdfrac{9x^2-24x y+16y^2}{4y-3x}\cdot \Mdfrac{3x+4y}{9x^2-16y^2}\\
-& =& 4\cdot \Mdfrac{(3x-4y)^2}{4y-3x}\cdot \Mdfrac{3x+4y}{9x^2-16y^2}\\
-& =& -4\cdot \Mdfrac{(3x-4y)^2}{3x-4y}\cdot \Mdfrac{3x+4y}{(3x+4y)(3x-4y)}=-4 \MDFPeriod
-\end{eqnarray*}\end{MHint}}
+%%\item{\MEquationItem{$\displaystyle \Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}$}{\MLSpecialQuestion{10}{1}{5}{0}{0}{exactfraction}{BRX4}}. \begin{MHint}{L"osung}Summieren über den Hauptnenner ergibt
+%%$\Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}=\Mdfrac{3a}{3a+6b}+\Mdfrac{6b}{3a+6b}=\Mdfrac{3a+6b}{3a+6b}=1$.\end{MHint}}
+%%\item{\MEquationItem{$\displaystyle \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y^2}$}{\MLSpecialQuestion{10}{-4}{5}{0}{0}{exactfraction}{BRX5}}. \begin{MHint}{L"osung}Vereinfachen des Ausdrucks ergibt
+%%\begin{eqnarray*}
+%%\Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y^2} & =&
+%%4\cdot \Mdfrac{9x^2-24x y+16y^2}{4y-3x}\cdot \Mdfrac{3x+4y}{9x^2-16y^2}\\
+%%& =& 4\cdot \Mdfrac{(3x-4y)^2}{4y-3x}\cdot \Mdfrac{3x+4y}{9x^2-16y^2}\\
+%%& =& -4\cdot \Mdfrac{(3x-4y)^2}{3x-4y}\cdot \Mdfrac{3x+4y}{(3x+4y)(3x-4y)}=-4 \MDFPeriod
+%%\end{eqnarray*}\end{MHint}}
 \end{MExerciseItems}
 \MInputHint{Geben Sie die Brüche maximal gekürzt und mit positivem Nenner ein.}
 \end{MExercise}
@@ -851,7 +972,9 @@ Vereinfachen Sie die folgenden Terme f"ur geeignete Zahlen $a,b,x,y,z$:
 \item{\MEquationItem{$\displaystyle \Mdfrac{3x -6x y^2+4 x y z}{-2x}$}{\MLSimplifyQuestion{20}{-3/2+3*y^2-2*y*z}{5}{x,y,z}{5}{1}{UMPF2}}. \begin{MHint}{L"osung}$$\Mdfrac{3x -6x y^2+4 x y z}{-2x}\;=\; -\Mdfrac32+3y^2-2y z \MDFPeriod  $$\end{MHint}}
 \item{\MEquationItem{$\displaystyle (3a-2b)\cdot(4a-6)$}{\MLSimplifyQuestion{26}{12*a^2-18*a-8*a*b+12*b}{5}{a,b}{5}{1}{UMPF3}}. \begin{MHint}{L"osung} $$(3a-2b)\cdot(4a-6)\;=\; 12a^2-18a-8a b+12b\MDFPeriod  $$\end{MHint}}
 \item{\MEquationItem{$\displaystyle (2a+3b)^2-(3a-2b)^2$}{\MLSimplifyQuestion{26}{-5*a^2+24*a*b+5*b^2}{5}{a,b}{5}{1}{UMPF4}}. \begin{MHint}{L"osung} \begin{eqnarray*}(2a+3b)^2-(3a-2b)^2&=& (4a^2+12a b+9b^2)-(9a^2-12a b+4b^2)\ \\ &=& -5a^2+24a b+5b^2  \: . \end{eqnarray*}\end{MHint}}
-\item{\MEquationItem{$\displaystyle \Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}$}{\MLSimplifyQuestion{25}{1}{5}{a,b}{5}{1}{UMPF7}}. \begin{MHint}{L"osung}$$\Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b} \; = \; \Mdfrac{a}{a+2b}+\Mdfrac{2b}{a+2b}\;=\; \Mdfrac{a+2b}{a+2b} \;=\; 1 \MDFPeriod $$\end{MHint}}
+%%\item{\MEquationItem{$\displaystyle \Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}$}{\MLSimplifyQuestion{25}{1}{5}{a,b}{5}{1}{UMPF7}}. \begin{MHint}{L"osung}$$\Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b} \; = \; \Mdfrac{a}{a+2b}+\Mdfrac{2b}{a+2b}\;=\; \Mdfrac{a+2b}{a+2b} \;=\; 1 \MDFPeriod $$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}$}{\MLSpecialQuestion{10}{1}{5}{0}{0}{exactfraction}{UMPF7}}. \begin{MHint}{L"osung}Summieren über den Hauptnenner ergibt
+$\Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}=\Mdfrac{3a}{3a+6b}+\Mdfrac{6b}{3a+6b}=\Mdfrac{3a+6b}{3a+6b}=1$.\end{MHint}}
 \end{MExerciseItems}
 \MInputHint{In den Eingaben dürfen keine Klammern mehr auftreten.}
 \end{MExercise}
@@ -860,11 +983,18 @@ Vereinfachen Sie die folgenden Terme f"ur geeignete Zahlen $a,b,x,y,z$:
 Diese Aufgaben erfordern etwas mehr Durchhaltevermögen. Vereinfachen Sie:\ \\
 \begin{MExerciseItems}
 \item{\MEquationItem{$\displaystyle \Mdfrac12x(4x+3y)+\Mdfrac32(5x^2-6x y)$}{\MLSimplifyQuestion{36}{19/2*x^2-15/2*x*y}{5}{x,y}{5}{1}{UMPF5}}. \begin{MHint}{L"osung} $$\Mdfrac12x(4x+3y)+\Mdfrac32(5x^2-6x y)\;=\; 2x^2+\Mdfrac32x y+\Mdfrac{15}2x^2-9x y \;=\; \Mdfrac{19}{2}x^2-\Mdfrac{15}{2}x y  \MDFPeriod  $$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y}$}{\MLSimplifyQuestion{25}{-4}{5}{x,y}{5}{1}{UMPF8}}. \begin{MHint}{L"osung}\begin{eqnarray*}
-    \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y}  & = &
-    \Mdfrac{2\cdot (3x-4y)^2}{-3\cdot(3x-4y)}\cdot \Mdfrac{6\cdot(3x+4y)}{(3x+4y)(3x-4y)}\ \\
-    &=&-\Mdfrac23(3x-4y)\cdot \Mdfrac{6}{3x-4y} \;=\; -4\: .
-    \end{eqnarray*}\end{MHint}}
+%%\item{\MEquationItem{$\displaystyle \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y}$}{\MLSimplifyQuestion{25}{-4}{5}{x,y}{5}{1}{UMPF8}}. \begin{MHint}{L"osung}\begin{eqnarray*}
+%%    \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y}  & = &
+%%    \Mdfrac{2\cdot (3x-4y)^2}{-3\cdot(3x-4y)}\cdot \Mdfrac{6\cdot(3x+4y)}{(3x+4y)(3x-4y)}\ \\
+%%    &=&-\Mdfrac23(3x-4y)\cdot \Mdfrac{6}{3x-4y} \;=\; -4\: .
+%%    \end{eqnarray*}\end{MHint}}
+\item{\MEquationItem{$\displaystyle \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y^2}$}{\MLSpecialQuestion{10}{-4}{5}{0}{0}{exactfraction}{UMPF8}}. \begin{MHint}{L"osung}Vereinfachen des Ausdrucks ergibt
+\begin{eqnarray*}
+\Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y^2} & =&
+4\cdot \Mdfrac{9x^2-24x y+16y^2}{4y-3x}\cdot \Mdfrac{3x+4y}{9x^2-16y^2}\\
+& =& 4\cdot \Mdfrac{(3x-4y)^2}{4y-3x}\cdot \Mdfrac{3x+4y}{9x^2-16y^2}\\
+& =& -4\cdot \Mdfrac{(3x-4y)^2}{3x-4y}\cdot \Mdfrac{3x+4y}{(3x+4y)(3x-4y)}=-4 \MDFPeriod
+\end{eqnarray*}\end{MHint}}
 \item{\MEquationItem{$\displaystyle (a^2+5a-2)(2a^2-3a-9)-\left(\Mdfrac12a^2+3a-5\right)(a^2-4a+3)$}{\MLSimplifyQuestion{35}{3/2*a^4+6*a^3-25/2*a^2-68*a+33}{5}{a}{5}{1}{UMPF6}}. \begin{MHint}{L"osung}$$ 
 (a^2+5a-2)(2a^2-3a-9)-\left(\Mdfrac12a^2+3a-5\right)(a^2-4a+3)\ \ \ \ \ \ \ \ \ \ \ \ 
 $$
@@ -994,7 +1124,7 @@ In den anderen Aufgabenteilen ergibt sich durch Ausmultiplizieren
 \begin{eqnarray*}
 (x+4)(2-x)(x+2) &=& -x^3-4x^2+4x+16 \MDFPSpace,\ \\
 (3-x)(x+1)^2 &=& (3-x)(x^2+2x+1) \;=\; -x^3+x^2+5x+3 \MDFPSpace, \ \\
-t\cdot (t+1)\cdot (t^2+t+1) & = & t\cdot(t^3+2t^2+2t+1) \;=\; t^4+2t^3+2t^2+t \MDFPeriod .
+t\cdot (t+1)\cdot (t^2+t+1) & = & t\cdot(t^3+2t^2+2t+1) \;=\; t^4+2t^3+2t^2+t \MDFPeriod
 \end{eqnarray*}
 \end{MHint}
 \end{MExercise}
