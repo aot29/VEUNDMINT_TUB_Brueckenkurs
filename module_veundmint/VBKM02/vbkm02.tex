@@ -18,10 +18,10 @@ Einfache Gleichungen lassen sich durch Umformungen und Lösungsformeln auflösen. 
 Dieses Modul gliedert sich in folgende Abschnitte:
 
 \begin{itemize}
-\item{dem Abschnitt \MSRef{M02_EinfacheGleichungen}{Einfache Gleichungen},}
-%\item{dem Abschnitt \MSRef{M02_Wurzelgleichungen}{Gleichungen mit Wurzeln},}
-\item{dem Abschnitt \MSRef{M02_Betragsgleichungen}{Betragsgleichungen},}
-\item{dem \MSRef{M02_Abschlusstest}{Abschlusstest}.}
+\item{dem Abschnitt \MNRef{M02_EinfacheGleichungen}, \MSRef{M02_EinfacheGleichungen}{Einfache Gleichungen},}
+%\item{dem Abschnitt \MNRef{M02_Wurzelgleichungen}, \MSRef{M02_Wurzelgleichungen}{Gleichungen mit Wurzeln},}
+\item{dem Abschnitt \MNRef{M02_Betragsgleichungen}, \MSRef{M02_Betragsgleichungen}{Betragsgleichungen},}
+\item{dem \MSRef{M02_Abschlusstest}{Abschlusstest}, \MNRef{M02_Abschlusstest}.}
 \end{itemize}
 \end{MSectionStart}
 
@@ -193,6 +193,110 @@ Wichtig hier ist, dass diese Gleichung nur für $x\not=3$ falsch ist. Für $x=3$ m
 \end{MExercise}
 \end{MXContent}
 
+\begin{MXContent}{Proportionalität und Dreisatz}{Proportionalität}{STD}
+\MLabel{VBKM02_Dreisatz}
+\MDeclareSiteUXID{VBKM02_Dreisatz}
+Ein in der Praxis häufig vorkommender Fall der Beziehung zwischen zwei
+Größen ist die  \MEntry{Proportionalität}{Proportionalität} zwischen
+diesen Größen wie z.B. zwischen 
+Masse und Volumen, Zeit und zurückgelegter Wegstrecke oder Gewicht bzw. 
+Masse (Menge) einer Ware und Preis. Die Beziehung kann exemplarisch für
+bestimmte feste Größen vorliegen. Ein erstes Ziel ist dann, diese daraus
+folgende Beziehung für ein anderes Anwendungsbeispiel zu formulieren.
+Das Vorgehen soll an einem Beispiel verdeutlicht werden:
+\begin{MExample}
+$5\MEinheit{kg}$ Äpfel kosten $3$ Euro. Wie viel kosten dann $11\MEinheit{kg}$
+Äpfel?
+\par
+Die Ausgangsbeziehung lässt sich folgendermaßen formulieren:
+$$
+5\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 3\MBlank \text{Euro}
+\MDFPeriod
+$$
+Es wird vorausgesetzt, dass diese Größen proportional zueinander sind.
+Im folgenden Schritt wird die Beziehung zwischen den Größen daher auf 
+die Einheit einer der Größen zurückgeführt, nämlich jener der gegebenen 
+Größe. In diesem Fall werden beide Größen mit $1/5$ multipliziert --
+die Bezugseinheit ist also $1\MEinheit{kg}$ --:
+$$
+1\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 
+\frac{1}{5}\cdot 3\MBlank \text{Euro} = \MZahl{0}{6}\MBlank \text{Euro}
+\MDFPeriod
+$$
+Schließlich werden beide Seiten mit dem Vielfachen der Bezugseinheit der
+angegebenen Größe multipliziert, in diesem Fall mit dem Faktor $11$:
+$$
+11\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 
+11\cdot\MZahl{0}{6}\MBlank \text{Euro} = \MZahl{6}{6}\MBlank \text{Euro}
+\MDFPeriod
+$$
+Der gesuchte Preis für die $11\MEinheit{kg}$ Äpfel ist also
+$\MZahl{6}{60}\MBlank \text{Euro}$.
+\end{MExample}
+Das hier beispielhaft vorgeführte Verfahren, die Ausgangsbeziehung über
+die Beziehung für eine Einheit einer Größe zur gesuchten Beziehung zu führen,
+wird als \MEntry{Dreisatz}{Dreisatz} bezeichnet.
+
+Das gestellte Problem lässt sich aber auch über die Einführung eines
+Proportionalitätsfaktors lösen. Dazu wird das vorige Beispiel erneut
+betrachtet.
+\begin{MExample}
+Der Preis $P$ ist proportional zur Masse $m$. Es gibt daher eine Konstante
+$k$ mit
+$$
+P=k m \MDFPeriod
+$$
+Da diese Beziehung auch für die vorgegebenen Werte $m_0=5\MEinheit{kg}$
+und $P_0=3\MBlank\text{Euro}$ gilt, folgt
+\begin{eqnarray*}
+  P_0=k m_0 & \MTSP\MSep\MTSP & \text{Multiplikation mit}\MBlank \frac{1}{m_0} \\
+  \Longleftrightarrow\MDFPSpace\frac{P_0}{m_0}=k &;& 
+\end{eqnarray*}
+in diesem Fall ist also
+$$
+k=\frac{3}{5} = \MZahl{0}{6} \MDFPSpace,
+$$
+interpretiert in den Einheiten Euro pro kg. (In den Naturwissenschaften
+würde man korrekterweise $k=\MZahl{0}{6} \MBlank \text{Euro}/\MEinheit[]{kg}$
+schreiben, weil Proportionalitätsfaktoren i.A. dimensionsbehaftet sind.)
+Daraus erhält man mit $m_1=11\MEinheit{kg}$ abschließend
+$$
+P_1=k m_1 = \MZahl{0}{6}\cdot 11 =\MZahl{6}{6} \MBlank \text{(in Euro)}
+\MDFPSpace,
+$$
+also dasselbe Ergebnis wie mit dem Dreisatz.
+\end{MExample}
+
+\begin{MExercise}
+Ein Fahrzeug fährt in $9$ Minuten eine Strecke von $6\MEinheit{km}$.
+\begin{MExerciseItems}
+\item{%
+Welche Strecke $s$ fährt das Fahrzeug in $15$ Minuten?
+\medskip\par
+Die Lösung ist $s_{15}$ = \MLParsedQuestion{5}{10}{5}{EASY2}$\MEinheit{km}$.
+}
+\item{%
+Der Proportionalitätsfaktor zwischen Fahrstrecke $s$ und Fahrzeit $t$
+ist die Geschwindigkeit $v$ des Fahrzeugs.
+\medskip\par
+Diese beträgt $v$ = \MLParsedQuestion{5}{40}{5}{EASY3}$\MEinheit{km}/\MEinheit{h}$.
+}
+\end{MExerciseItems}
+\begin{MHint}{Lösung}
+Mit den Angaben fährt das Fahrzeug in einer Minute $\frac{6}{9}\MEinheit{km}
+=\frac{2}{3}\MEinheit{km}$ und damit in $15$ Minuten 
+$15\cdot\frac{2}{3}\MEinheit{km}=10\MEinheit{km}$.
+\par
+Damit ergibt sich die Geschwindigkeit zu 
+$$v=\frac{10\MEinheit{km}}{15\MEinheit{min}} = 
+\frac{10\MEinheit{km}}{(1/4)\MEinheit{h}} =
+40\MEinheit{}\frac{\MEinheit[]{km}}{\MEinheit[]{h}}
+\MDFPeriod
+$$
+\end{MHint}
+\end{MExercise}
+\end{MXContent}
+
 \begin{MXContent}{Auflösen linearer Gleichungen}{Auflösen}{STD}
 \MLabel{VBKM02_LineareGleichungenLoesen}
 \MDeclareSiteUXID{VBKM02_Aufloesen}
@@ -211,7 +315,7 @@ Diese drei Situationen erkennt man an der Umformungskette:
 \begin{itemize}
  \item{Endet die Umformungskette mit einer für alle $x$ falschen Aussage (z.B. $1=0$), so ist die Gleichung unlösbar.}
  \item{Endet die Umformungskette mit einer für alle $x$ wahren Aussage (z.B. $1=1$), so ist die Gleichung für alle Werte für $x$ lösbar.}
- \item{Ansonsten kann die Gleichung aufgelöst werden, d.h. man kann sie zur Gleichung $x=\text{Wert}$ Umformen und die Lösung ablesen.}
+ \item{Ansonsten kann die Gleichung aufgelöst werden, d.h. man kann sie zur Gleichung $x=\text{Wert}$ umformen und die Lösung ablesen.}
 \end{itemize}
 
 \begin{MXInfo}{Mengennotation}
@@ -507,13 +611,13 @@ $\displaystyle 2\cdot |x-4|$ = \MLSimplifyQuestion{30}{falls(x>=4,2*(x-4),-2*(x-
 \MInputHint{Schreiben Sie die Fallunterscheidung in der Form \texttt{falls(BEDINGUNG;W1;W2)}, wobei \texttt{W1} der angenommene Wert ist, falls die Bedingung erfüllt ist. Verwenden Sie nicht die Betragsfunktion.}
 \begin{MHint}{Lösung}
 \begin{eqnarray*}
-2\cdot |x-4| \;=\; \MCases{2x-x &\text{falls}\;x\geq 4 \\ -2x+8 & \text{falls}\;x<4}
+2\cdot |x-4| \;=\; \MCases{2x-8 &\text{falls}\;x\geq 4 \\ -2x+8 & \text{falls}\;x<4}
 \end{eqnarray*}
 \end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
-Reproduzieren Sie die Schritte aus Video \MRef{VBKM06_Video_Beispiel1} um die Betragsgleichung
+Reproduzieren Sie die Schritte aus Video \MRef{VBKM06_Video_Beispiel1}, um die Betragsgleichung
 $|6+3x|=12$ aufzulösen. \ \\ \ \\
 Die Fallunterscheidung in Kurzschreibweise lautet $|6+3x|$ = \MLSimplifyQuestion{40}{falls(x>=-2,6+3*x,-6-3*x)}{15}{x}{3}{128}{VBKM02ALTFALL2}.
 \begin{MHint}{Lösung}
@@ -524,7 +628,7 @@ Die Fallunterscheidung in Kurzschreibweise lautet $|6+3x|$ = \MLSimplifyQuestion
 \MInputHint{Schreiben Sie die Fallunterscheidung in der Form \texttt{falls(BEDINGUNG;W1;W2)}, wobei \texttt{W1} der angenommene Wert ist, falls die Bedingung erfüllt ist.
 Sie können auch eines der Eingabebeispiele in das Eingabefeld kopieren und für die neue Ungleichung anpassen.}
 \ \\ \ \\
-Bestimmung der Lösungen innerhalb der Fälle und Prüfung der Fallbedinungen ergibt die Lösungsmenge \MEquationItem{\ML}{\MLParsedQuestion{10}{2,-6}{3}{LVI}} für die Gleichung $|6+3x|=12$.
+Bestimmung der Lösungen innerhalb der Fälle und Prüfung der Fallbedinungen ergibt die Lösungsmenge \MEquationItem{$\ML$}{\MLParsedQuestion{10}{2,-6}{3}{LVI}} für die Gleichung $|6+3x|=12$.
 \begin{MHint}{Lösung}
 \begin{eqnarray*}
 \ML \;=\; \{-6\MElSetSep 2\}
