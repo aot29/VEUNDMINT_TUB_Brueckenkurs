@@ -1,6 +1,6 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
-\Mtikzexternalize
+%\Mtikzexternalize
 
 \begin{document}
 
@@ -14,8 +14,8 @@
 Diese Modul besteht aus
 \begin{itemize}
 \item{dem Abschnitt \MSRef{VBKM10_PfeilVektor}{Vom Pfeil zum Vektor},}
-% \item{dem Abschnitt \MSRef{VBKM10_GeradenEbenen}{Geraden und Ebenen},}
-% \item{dem \MSRef{VBKM10_Abschlusstest}{Abschlusstest}.}
+\item{dem Abschnitt \MSRef{VBKM10_GeradenEbenen}{Geraden und Ebenen},}
+\item{dem \MSRef{VBKM10_Abschlusstest}{Abschlusstest}.}
 \end{itemize}
 
 \end{MSectionStart}
@@ -1387,19 +1387,234 @@ Somit ist das Dreieck gleichseitig.
 
 \end{MXContent}
 
-% \MSubsection{Geraden und Ebenen}
-% \MLabel{VBKM10_GeradenEbenen}
-% 
-% \begin{MIntro}
-% \MDeclareSiteUXID{VBKM10_GeradenEbenen_Intro}
-% 
-% \end{MIntro}
-% 
-% \begin{MXContent}{Geraden in der Ebene}{Geraden Ebene}{STD}
-% \MLabel{VBKM10_GeradenEbene}
-% \MDeclareSiteUXID{VBKM10_GeradenEbene}
-% 
-% \end{MXContent}
+\MSubsection{Geraden und Ebenen}
+\MLabel{VBKM10_GeradenEbenen}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM10_GeradenEbenen_Intro}
+In diesem Abschnitt werden nun Vektoren genutzt um (zunächst) Geraden in der Ebene zu beschreiben. Man stellt dann fest, dass sich diese Beschreibung von Geraden unmittelbar auf den dreidimensionalen Fall übertragen lässt, man also damit auch Geraden im Raum beschreiben kann. Im Raum gibt es dann, neben den Geraden, weitere mathematisch interessante und mit Hilfe von Vektoren einfach zu beschreibende Objekte, nämlich Ebenen. Schließlich kann sich überlegen wie Punkte, Geraden und Ebenen im Raum relativ zueinander liegen können.
+
+Hierfür sind die -- in der folgenden Infobox zusammengefassten -- Konzepte wichtig.
+
+\begin{MInfo}
+\begin{itemize}
+ \item Zwei Vektoren $\MVec{a}$ und $\MVec{b}$ aus dem $\R^2$ oder $\R^3$ ($\MVec{a},\MVec{b}\neq\MDVec{O}$) heißen \MEntry{kollinear}{kollinear}, falls es eine Zahl $s\in\R$ gibt, so dass 
+ \[
+  \MVec{a}=s\MVec{b}
+ \]
+ gilt.
+ \item Drei Vektoren $\MVec{a}$, $\MVec{b}$ und $\MVec{c}$ aus dem $\R^3$ ($\MVec{a},\MVec{b},\MVec{c}\neq\MDVec{O}$) heißen \MEntry{komplanar}{komplanar}, falls  es zwei Zahlen $s,t\in\R$ gibt, so dass
+ \[
+  \MVec{a}=s\MVec{b}+t\MVec{c}
+ \]
+ gilt.
+\end{itemize}
+\end{MInfo}
+
+\begin{MHint}{Weiterführende Bemerkung}
+Der Nullvektor wird im Rahmen dieses Kurses aus der Definition der Kollinearität und Komplanarität ausgeschlossen, da sich dies in der hier benutzten Verwendung zur Beschreibung von Geraden und Ebenen als ausreichend erweisen wird. Zum Preis von etwas komplizierteren Bedingungen für Kollinearität und Komplanarität, kann man den Nullvektor hinzunehmen und wird dann ganz natürlich auf die (wichtigen) Begriffe der \textbf{linearen Unabhängigkeit} und der \textbf{linearen Hülle} geführt, die aber den Rahmen dieses Kurses sprengen.   
+\end{MHint}
+
+
+Die folgenden Überlegungen und Abbildungen machen klar, warum die Konzepte der Kollinearität und Komplanarität insbesondere für die Betrachtung von Geraden und Ebenen wichtig ist: 
+
+Kollineare Vektoren sind Vielfache voneinander, das heißt die Repräsentanten kollinearer Vektoren mit gleichem Basispunkt liegen auf einer Geraden. Zum Beispiel sind die Vektoren
+\[
+ \MVec{x}=\MVector{2\\-1}
+\]
+und 
+\[
+ \MVec{y}=\MVector{-1\\\frac{1}{2}}
+\]
+kollinear, da 
+\[
+ \MVec{y}=\MVector{-1\\\frac{1}{2}}=-\frac{1}{2}\MVector{2\\-1}=-\frac{1}{2}\MVec{x}
+\]
+(oder auch $\MVec{x}=-2\MVec{y}$) gilt. Weitere Vektoren die zu $\MVec{x}$ und auch zu $\MVec{y}$ kollinear sind, sind beispielsweise $\MVector{4\\-2}$ oder $\MVector{-2\\1}$. Allerdings ist zum Beispiel der Vektor $\MVector{1\\1}$ nicht kollinear zu $\MVec{x}$ (und damit auch nicht zu $\MVec{y}$), da es \textit{keine} Zahl $s\in\R$ gibt, die die Gleichung
+\[
+ \MVec{x}=\MVector{2\\-1}=s\MVector{1\\1}
+\]
+erfüllt. Repräsentanten kollinearer Vektoren mit gleichem Basispunkt, etwa die Pfeile der zugehörigen Ortsvektoren (siehe unten), liegen alle auf einer Geraden:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.5,0) -- (4.5,0);
+\foreach \x in {-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (0,1.5);
+\foreach \y in {-2,-1,1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,1.8) node[anchor=north west] {$y$};
+%Pfeile
+\draw[color=red, ->, line width=2pt] (0,0) -- (4,-2);
+\draw[color=blue, ->, line width=2pt] (0,0) -- (2,-1);
+\draw[color=violet, ->, line width=2pt] (0,0) -- (-2,1);
+\draw[color=green, ->, line width=2pt] (0,0) -- (-1,0.5);
+%Beschriftung
+\draw[color=red] (4,-1.9) node[anchor=south] {\scriptsize $\MVector{4\\-2}$};
+\draw[color=blue] (2,-1.1) node[anchor=north] {\scriptsize $\MVector{2\\-1}$};
+\draw[color=violet] (-2,1.1) node[anchor=south] {\scriptsize $\MVector{-2\\1}$};
+\draw[color=green] (-1,0.6) node[anchor=south] {\scriptsize $\MVector{-1\\\frac{1}{2}}$};
+\draw[color=black] (4.5,-2.25) node[anchor=north] {\scriptsize Gerade};
+%Gerade
+\draw[color=black] (-2.5,1.25) -- (4.5,-2.25);
+\end{tikzpicture}
+} 
+\end{center}
+Komplanare Vektoren im Raum sind derart, dass ihre Repräsentanten in der gleichen Ebene liegen, falls diese den gleichen Basispunkt haben. So sind beispielsweise die Vektoren 
+\[
+ \MVec{e}_1=\MVector{1\\0\\0},\MDFPSpace\MVec{e}_2=\MVector{0\\1\\0}\MDFPSpace\textrm{und}\MDFPSpace\MVector{2\\3\\0}
+\]
+komplanar, da 
+\[
+ \MVector{2\\3\\0}=2\MVec{e}_1 + 3\MVec{e}_2=2\MVector{1\\0\\0}+3\MVector{0\\1\\0}
+\]
+gilt. Die Pfeile ihrer zugehörigen Ortsvektoren als Repräsentanten liegen alle in der $x y$-Ebene eines Koordinatensystems im Raum. Demhingegen sind beispielsweise die Vektoren 
+\[
+ \MVec{e}_1=\MVector{1\\0\\0},\MDFPSpace\MVec{e}_2=\MVector{0\\1\\0}\MDFPSpace\textrm{und}\MDFPSpace\MVector{2\\3\\2}
+\]
+\textit{nicht} komplanar, da $\MVector{2\\3\\2}$ eine von Null verscheidene $z$-Komponente aufweist, seine Repräsentanten also immer aus der $x y$-Ebene herauszeigen. Man sieht leicht ein, dass es keine Zahlen $s,t\in\R$ geben kann, so dass die Gleichung
+\[
+ \MVector{2\\3\\2}=s\MVector{1\\0\\0}+t\MVector{0\\1\\0}
+\]
+erfüllt ist. Bild dazu:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth]
+% The axes
+\draw[->] (xyz cs:x=-1.5) -- (xyz cs:x=3.5) node[above] {\footnotesize $x$};
+\draw[->] (xyz cs:y=-1.5) -- (xyz cs:y=3.5) node[right] {\footnotesize $y$};
+\draw[->] (xyz cs:z=-1.5) -- (xyz cs:z=3.5) node[left] {\footnotesize $z$};
+% The ticks
+\foreach \coo in {-1,1,2,3}
+{
+  \draw (\coo,-3pt) -- (\coo,3pt) node[below=4pt] {\footnotesize \coo};
+  \draw (-3pt,\coo) -- (3pt,\coo) node[left=4pt] {\footnotesize \coo};
+  \draw (xyz cs:y=-0.1pt,z=\coo) -- (xyz cs:y=0.1pt,z=\coo) node[below=3pt] {\scriptsize \coo};
+}
+%Plane
+\def \q1{(-1.5,-1.5,0) -- (3.5,-1.5,0) -- (3.5,3.5,0) -- (-1.5,3.5,0)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red] (2,2,0) node[right] {\scriptsize $x y$-Ebene};
+%Hilfslinien
+\draw[color=gray,dashed,line width=1pt] (0,0,2) -- (2,0,2);
+\draw[color=gray,dashed,line width=1pt] (2,0,0) -- (2,0,2);
+\draw[color=gray,dashed,line width=1pt] (2,0,2) -- (2,3,2);
+%Arrows
+\draw[color=red,->,line width=1pt] (0,0,0) -- (1,0,0);
+\draw[color=red,->,line width=1pt] (0,0,0) -- (0,1,0);
+\draw[color=green,->,line width=1pt] (0,0,0) -- (2,3,0);
+\draw[color=black,->,line width=1pt] (0,0,0) -- (2,3,2);
+%Labels
+\draw[color=red] (0.5,0,0) node[below] {\scriptsize $e_1$};
+\draw[color=red] (0,0.5,0) node[left] {\scriptsize $e_1$};
+\draw[color=black] (2,3,2) node[above] {\scriptsize $\MVector{2\\3\\2}$};
+\draw[color=green] (2,3,0) node[above] {\scriptsize $\MVector{2\\3\\0}$};
+\end{tikzpicture}
+}
+\end{center}
+
+\end{MIntro}
+
+\begin{MXContent}{Geraden in der Ebene}{Geraden Ebene}{STD}
+\MLabel{VBKM10_GeradenEbene}
+\MDeclareSiteUXID{VBKM10_GeradenEbene}
+In Kapitel \MNRef{VBKM09} wurden Geraden in der Ebene mittels Koordinatengleichungen für die Punkte auf der Geraden bezüglich eines festen Koordinatensystems beschrieben. Zum Beispiel ist in dieser Beschreibung eine Gerade $g$ mit Steigung $\frac{1}{2}$ und Achsenabschnitt $1$ gegeben als Punktmenge
+\[
+ g=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y=\frac{1}{2}x+1\},
+\]
+wofür man oft kurz auch nur die Koordinatengleichung (hier in \MSRef{VBKM09_Info_Normalform}{Normalform}) angibt:
+\[
+ g\colon y=\frac{1}{2}x+1\MDFPeriod
+\]
+Das folgende Bild zeigt die Gerade:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.5,0) -- (4.5,0);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,3.5);
+\foreach \y in {-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.8) node[anchor=north west] {$y$};
+%Gerade
+\draw[color=red] (-3.5,-0.75) -- (4.5,3.25);
+\draw[color=red] (4.5,3.25) node[anchor=north] {\footnotesize $g$};
+\end{tikzpicture}
+} 
+\end{center}
+
+Im Folgenden sollen die Punkte auf der Geraden nun durch ihre zugehörigen Ortsvektoren beschrieben werden. Die folgende Überlegung führt auf diese Beschreibung: Die Punkte $\MPointTwo{x}{y}$ auf der obigen Geraden $g$ erfüllen die Gleichung
+\[
+ y=\frac{1}{2}x+1
+\]
+für ihre Koordinaten. Man kann diese Gleichung für die $y$-Koordinaten in die Punkte einsetzen und erhält, dass die Gerade $g$ durch Punkte der Form $\MPointTwo[\Big]{x}{\frac{1}{2}x+1}$ mit $x\in\R$ gebildet wird. Die zu diesen Punkten gehörenden Ortsvektoren sollen mit $\MVec{r}$ bezeichnet sein. Dann gilt
+\[
+ \MVec{r}=\MVector{x\\\frac{1}{2}x+1}=x\MVector{1\\\frac{1}{2}}+\MVector{0\\1}
+\]
+mit $x\in\R$. Das heißt die Gerade $g$ kann unter Benutzung von Ortsvektoren auch beschrieben werden mittels
+\[
+ g\colon \MVec{r}=x\MVector{1\\\frac{1}{2}}+\MVector{0\\1},\MDFPaSpace x\in\R.
+\]
+Das heißt die Punkte auf $g$ werden gebildet durch die Summe des Vektors $\MVector{0\\1}$ und allen möglichen Vielfachen des Vektors $\MVector{1\\\frac{1}{2}}$, also allen zu  $\MVector{1\\\frac{1}{2}}$ kollinearen Vektoren. Das folgende Bild stellt diese Sichtweise auf Geraden dar:
+
+TODO
+
+Die folgende Infobox stellt die wichtigsten Begriffe, Methoden und Konzepte zu dieser als \textbf{Punkt-Richtungs-Form} oder \textbf{Parameterform} bezeichneten Darstellungsweise von Geraden zusammen.
+
+\begin{MInfo}
+TODO 
+\end{MInfo}
+
+Man stellt hier sofort fest, dass die Parameterform einer Geraden nicht eindeutig ist. Als Aufpunkt kann jeder Punkt auf der Geraden dienen und auch als Richtungsvektor hat man beliebig viele 
+kollineare Vektoren zur Auswahl. So wird zum Beispiel die Gerade $g$ mit der Koordinategleichung
+\[
+ g\colon\frac{1}{2}x+1 
+\]
+aus dem einführenden Beispiel nicht nur durch 
+\[
+ g\colon \MVec{r}=x\MVector{1\\\frac{1}{2}}+\MVector{0\\1},\MDFPaSpace x\in\R
+\]
+in Parameterform dargestellt, sondern auch durch 
+\[
+ g\colon \MVec{r}=\lambda\MVector{2\\1}+\MVector{2\\2},\MDFPaSpace \lambda\in\R
+\]
+oder
+\[
+ g\colon \MVec{r}=\nu\MVector{-2\\-1}+\MVector{-2\\0},\MDFPaSpace \nu\in\R.
+\]
+Oft benutzt man Darstellungen mit einem möglichst einfachen Richtugnsvektor. Es sollte nur darauf geachtet werden, dass bei Darstellungen der gleichen Geraden mittels unterschiedlicher Richtungs- oder Aufpunktvektoren jeweils andere Variablen für den Parameter verwendet werden, da gleiche Parameterwerte in unterschiedlichen Darstellungen zu unterschiedlichen Punkten auf der Geraden führen. So ergibt beispielsweise der Parameterwert $\lambda=1$ in der entsprechenden obigen Parameterform für $g$ den Punkt
+\[
+ 1\cdot\MVector{2\\1}+\MVector{2\\2}=\MVector{4\\3}
+\]
+auf $g$, der Parameterwert $\nu=1$ der entsprechenden obigen Parameterform für $g$ den Punkt
+\[
+ 1\cdot\MVector{-2\\-1}+\MVector{-2\\0}=\MVector{-4\\-1}
+\]
+auf $g$.
+
+Das folgende Beispiel zeigt einige Anwendungen der Punkt-Richtungs-Form.
+
+\begin{MExample}
+TODO
+\end{MExample}
+
+\begin{MExercise}
+TODO 
+\end{MExercise}
+
+
+\end{MXContent}
+
 % 
 % \begin{MXContent}{Geraden im Raum}{Geraden Raum}{STD}
 % \MLabel{VBKM10_GeradenRaum}
