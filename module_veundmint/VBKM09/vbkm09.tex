@@ -2419,7 +2419,7 @@ Somit: $P=\MPointTwo{-\sqrt{3}}{\sqrt{3}}$ und $\rho=\sqrt{6}$.
 \begin{MXContent}{Lagebeziehungen für Kreise}{Lagebeziehung Kreise}{STD}
 \MLabel{VBKM09_Kreise_Lage}
 \MDeclareSiteUXID{VBKM09_Kreise_Lage}
-Genau wie für zwei Geraden, kann man nun für einen Kreis und eine Gerade oder zwei Kreise die Frage stellen, wie die beiden Objekte relativ zueinander im Koordinatensystem liegen. Dies bedeutet die Frage zu beantworten, ob die beiden Objekte sich schneiden, berühren oder keine Punkte gemeinsam haben. Für einen Kreis und eine Gerade kann man dann eventuelle Schnitt- oder Berührpunkte auch relativ einfach ausrechnen. Für zwei Kreise ist dies schwieriger und geht über den Rahmen dieses Brückenkurses hinaus. Für zwei Kreise wird also nur die Fragestellung behandelt werden, ob sich diese schneiden oder berühren, und nicht an welchen Punkten dies passiert. 
+Genau wie für zwei Geraden, kann man nun für einen Kreis und eine Gerade oder zwei Kreise die Frage stellen, wie die beiden Objekte relativ zueinander im Koordinatensystem liegen. Dies bedeutet die Frage zu beantworten, ob die beiden Objekte sich schneiden, berühren oder keine Punkte gemeinsam haben. Für einen Kreis und eine Gerade kann man dann eventuelle Schnitt- oder Berührpunkte auch relativ einfach ausrechnen. Für zwei Kreise ist dies schwieriger und geht über den Rahmen dieses Brückenkurses hinaus. Für zwei Kreise wird also nur die Fragestellung behandelt werden, ob sich diese schneiden oder berühren, und nicht, an welchen Punkten dies passiert. 
 
 \begin{MInfo}
 Sind ein Kreis $K$ und eine Gerade $g$ in der Ebene (durch Koordinatengleichungen bezüglich eines festen Koordinatensystems) gegeben, so gibt es für ihre relative Lage genau drei Fälle:
@@ -2452,10 +2452,10 @@ Sind ein Kreis $K$ und eine Gerade $g$ in der Ebene (durch Koordinatengleichunge
 \end{center} 
 \end{MInfo}
 
-Im Fall einer Sekante oder Tangente haben Kreis oder Gerade also zwei Punkte oder einen Punkt gemeinsam. Wie kann man diesen Punkt oder diese Punkte nun ausrechnen? Da die Punkte jeweils auf Kreis und Gerade liegen, müssen sie sowohl die Koordinatengleichung des Kreises als auch die Koordinatengleichung der Geraden erfüllen. Man hat dann also zwei Gleichungen für die beiden unbekannten Koordinaten der Schnittpunkte und kann diese dadurch ausrechnen. Dabei ist allerdings folgendes zu beachten: Da in der Koordinatengleichung für Kreise die Unbekannten quadriert vorkommen, handelt es sich \textit{nicht} um zwei lineare Gleichungen. Es sind also leider \textit{nicht} die Methoden zum Lösen linearer Gleichungssysteme aus Kapitel \MNRef{VBKM05} anwendbar. Die folgende Infobox fasst die Methode zur Berechnung der Schnittunkte zusammen.
+Im Fall einer Sekante oder Tangente haben Kreis und Gerade also zwei Punkte oder einen Punkt gemeinsam. Wie kann man diesen Punkt oder diese Punkte nun ausrechnen? Da die Punkte jeweils auf Kreis und Gerade liegen, müssen sie sowohl die Koordinatengleichung des Kreises als auch die Koordinatengleichung der Geraden erfüllen. Man hat dann also zwei Gleichungen für die beiden unbekannten Koordinaten der Schnittpunkte und kann diese dadurch ausrechnen. Dabei ist allerdings Folgendes zu beachten: Da in der Koordinatengleichung für Kreise die Unbekannten quadriert vorkommen, handelt es sich \textit{nicht} um zwei lineare Gleichungen. Es sind also leider \textit{nicht} die Methoden zum Lösen linearer Gleichungssysteme aus Kapitel \MNRef{VBKM05} anwendbar. Die folgende Infobox fasst die Methode zur Berechnung der Schnittunkte zusammen.
 
 \begin{MInfo}
-Ist ein Kreis $K$ in der Ebene mit Mittelpunkt $\MPointTwo{x_0}{y_0}$ und Radius $r$ mittels einer Koordinatengleichung
+ Sind ein Kreis $K$ in der Ebene mit Mittelpunkt $\MPointTwo{x_0}{y_0}$ und Radius $r$ mittels einer Koordinatengleichung
 \[
  K\colon (x-x_0)^2+(y-y_0)^2=r^2
 \]
@@ -2477,20 +2477,20 @@ Für quadratische Gleichungen können bekanntermaßen drei Fälle auftreten (vgl. \M
 \end{MInfo}
 
 \begin{MExample}
-Gegeben ist der Kreis $K$ mit Mittelpunkt $\MPointTwo{2}{2}$ und Radius $1$ durch
+Gegeben sind der Kreis $K$ mit Mittelpunkt $\MPointTwo{2}{2}$ und Radius $1$ durch
 \[
  K\colon (x-2)^2 + (y-2)^2=1
 \]
 sowie die Geraden $g_1$, $g_2$ und $g_3$ durch
 \[
- g_1\colon y=x-\sqrt{2},
+ g_1\colon y=x-\sqrt{2} \MDFPSpace ,
 \]
 \[
- g_2\colon x+1
+ g_2\colon y=x+1
 \]
 und
 \[
- g_3\colon y=2x+2.
+ g_3\colon y=2x+2 \MDFPSpace .
 \]
 \begin{itemize}
  \item Gerade $g_1$:\\
@@ -2503,7 +2503,7 @@ und
  \]
  \[
   \Leftrightarrow\MDFPaSpace (\sqrt{2}(x-2)-1)^2=0\MDFPaSpace\Leftrightarrow\MDFPaSpace \sqrt{2}(x-2)-1=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x-2=\frac{1}{\sqrt{2}}
-  \MDFPaSpace\Leftrightarrow\MDFPaSpace x = 2+\frac{1}{\sqrt{2}}.
+  \MDFPaSpace\Leftrightarrow\MDFPaSpace x = 2+\frac{1}{\sqrt{2}} \MDFPeriod
  \]
  Die entstehende quadratische Gleichung hat nur die Lösung $x = 2+\frac{1}{\sqrt{2}}$, womit $g_1$ eine Tangente an $K$ ist, welche $K$ in einem Punkt mit der $x$-Koordinate $2+\frac{1}{\sqrt{2}}$ berührt. Die zugehörige $y$-Koordinate ist aus der Geradengleichung zu berechnen:
  \[
@@ -2519,7 +2519,7 @@ und
   \Leftrightarrow\MDFPaSpace x^2-4x+4+x^2-2x+1=1\MDFPaSpace\Leftrightarrow\MDFPaSpace 2x^2-6x+4=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-3x+2=0
  \]
  \[
-  \Leftrightarrow\MDFPaSpace x_{1,2}=\frac{3\pm\sqrt{9-8}}{2}=\frac{3\pm 1}{2}\MDFPaSpace\Leftrightarrow\MDFPaSpace x_1=2\ \wedge\ x_2=1.
+  \Leftrightarrow\MDFPaSpace x_{1,2}=\frac{3\pm\sqrt{9-8}}{2}=\frac{3\pm 1}{2}\MDFPaSpace\Leftrightarrow\MDFPaSpace x_1=2\ \wedge\ x_2=1 \MDFPeriod
  \]
  Die entstehende quadratische Gleichung hat zwei Lösungen, womit $g_2$ eine Sekante des Kreises $K$ ist, die $K$ in zwei Punkten mit den beiden $x$-Koordinaten $x_1=2$ und $x_2=1$ schneidet. Die zugehörigen $y$-Koordinaten berechnen sich aus der Geradengleichung:
  \[
@@ -2532,12 +2532,12 @@ und
   (x-2)^2 + (2x+2-2)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-2)^2 + (2x)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-4x+4+4x^2=1
  \]
  \[
-  \Leftrightarrow\MDFPaSpace 5x^2-4x+3=0.
+  \Leftrightarrow\MDFPaSpace 5x^2-4x+3=0 \MDFPeriod
  \]
  %BEMERKUNG: In Kapitel 2 wird der Begriff der Diskriminante NICHT eingeführt! Warum? Das muss nachgeholt werden!
  Die Diskriminante (vgl. \MNRef{VBKM02_QuadratischeGleichungen}) dieser quadratischen Gleichung ist
  \[
-  (-4)^2-4\cdot5\cdot3=16-60<0,
+  (-4)^2-4\cdot5\cdot3=16-60<0 \MDFPSpace ,
  \]
  womit die Gleichung keine Lösung besitzt. Folglich ist die Gerade $g_3$ eine Passante des Kreises $K$.
 \end{itemize}
@@ -2579,7 +2579,7 @@ Der Kreis, alle drei Geraden und die Schnittpunkte sind in folgender Abbildung d
 \end{MExample}
 
 \begin{MExercise}
-Gegeben ist der Kreis $K$ durch die Gleichung
+Gegeben sind der Kreis $K$ durch die Gleichung
 \[
  K\colon x^2+(y-1)^2=2
 \]
@@ -2589,7 +2589,7 @@ sowie die beiden Geraden
 \]
 und
 \[
- h\colon y=2x+2. 
+ h\colon y=2x+2 \MDFPeriod 
 \]
 \begin{MExerciseItems}
 \item{Zeigen Sie, dass $g$ eine Tangente an $K$ ist und berechnen Sie $x$- und $y$-Koordinate des Berührpunkts $\MPointTwo{x}{y}$ von $g$ und $K$.\\
@@ -2597,10 +2597,10 @@ $x=$\MLFunctionQuestion{10}{-sqrt(7)/2}{5}{x}{5}{TANG1}\\
 $y=$\MLFunctionQuestion{10}{3/2}{5}{x}{5}{TANG2}
 } 
 \item{Zeigen Sie, dass $h$ eine Sekante von $K$ ist und berechnen Sie $x$- und $y$-Koordinaten der Schnittpunkte $\MPointTwo{x_1}{y_1}$ und $\MPointTwo{x_2}{y_2}$ von $h$ und $K$.\\
-$x_1=$\MLFunctionQuestion{10}{-1/10}{5}{x}{5}{SEK01}\\
-$y_1=$\MLFunctionQuestion{10}{9/5}{5}{x}{5}{SEK02}\\
-$x_2=$\MLFunctionQuestion{10}{-7/10}{5}{x}{5}{SEK03}\\
-$y_2=$\MLFunctionQuestion{10}{3/5}{5}{x}{5}{SEK04}
+$x_1=$\MLFunctionQuestion{10}{1/5}{5}{x}{5}{SEK01}\\
+$y_1=$\MLFunctionQuestion{10}{12/5}{5}{x}{5}{SEK02}\\
+$x_2=$\MLFunctionQuestion{10}{-1}{5}{x}{5}{SEK03}\\
+$y_2=$\MLFunctionQuestion{10}{0}{5}{x}{5}{SEK04}
 } 
 \end{MExerciseItems}
 \MInputHint{Wurzeln können als \texttt{sqrt} eingegeben werden. Zum Beispiel \texttt{sqrt(2)} für $\sqrt{2}$.}
@@ -2612,9 +2612,9 @@ $y_2=$\MLFunctionQuestion{10}{3/5}{5}{x}{5}{SEK04}
  x^2+(\sqrt{7}x+5-1)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+(\sqrt{7}x+4)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+7x^2+8\sqrt{7}x+16=2
 \]
 \[
- \Leftrightarrow\MDFPaSpace 8x^2+8\sqrt{7}x+14=0\MDFPaSpace\Leftrightarrow\MDFPaSpace 4x^2+4\sqrt{7}x+7=0\MDFPaSpace\Leftrightarrow\MDFPaSpace (2x+\sqrt{7})^2=0.
+ \Leftrightarrow\MDFPaSpace 8x^2+8\sqrt{7}x+14=0\MDFPaSpace\Leftrightarrow\MDFPaSpace 4x^2+4\sqrt{7}x+7=0\MDFPaSpace\Leftrightarrow\MDFPaSpace (2x+\sqrt{7})^2=0 \MDFPeriod
 \]
-Somit hat die quadratische Gleichung genau eine Lösung und es handelt sich bei $g$ um eine Tangente an $K$. Berechnung des Berührpunkts:
+Somit hat die quadratische Gleichung genau eine Lösung, und es handelt sich bei $g$ um eine Tangente an $K$. Berechnung des Berührpunkts:
 \[
  (2x+\sqrt{7})^2=0\MDFPaSpace\Leftrightarrow\MDFPaSpace 2x+\sqrt{7}=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x=-\frac{\sqrt{7}}{2}\MDFPeriod
 \]
@@ -2623,21 +2623,21 @@ Einsetzen in die Geradengleichung liefert die zugehörige $y$-Koordinate:
  y=\sqrt{7}\left(-\frac{\sqrt{7}}{2}\right)+5=-\frac{7}{2}+5=\frac{3}{2}\MDFPeriod
 \]
 }
-\item{Einsetzen von $g$ in $K$ ergibt
+\item{Einsetzen von $h$ in $K$ ergibt
 \[
  x^2+(2x+2-1)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+(2x+1)^2-2=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+4x^2+4x+1-2=0
 \]
 \[
- \Leftrightarrow\MDFPaSpace 5x^2+4x-1=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x_{1,2}=\frac{-4\pm\sqrt{25-16}}{10}=\frac{-4\pm 3}{10}\MDFPaSpace\Leftrightarrow\MDFPaSpace
- x_1=-\frac{1}{10}\ \wedge\ x_2=-\frac{7}{10}.
+ \Leftrightarrow\MDFPaSpace 5x^2+4x-1=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x_{1,2}=\frac{-4\pm\sqrt{16+20}}{10}=\frac{-4\pm 6}{10}\MDFPaSpace\Leftrightarrow\MDFPaSpace
+ x_1=\frac{1}{5}\ \wedge\ x_2=-1 \MDFPeriod
 \]
-Da die quadratische Gleichung zwei Lösungen besitzt ist $h$ eine Sekante von $K$. Die zugehörigen $y$-Koordinaten ergeben sich wieder durch Einsetzen in die Geradengleichung:
+Da die quadratische Gleichung zwei Lösungen besitzt, ist $h$ eine Sekante von $K$. Die zugehörigen $y$-Koordinaten ergeben sich wieder durch Einsetzen in die Geradengleichung:
 \[
- y_1=2\left(-\frac{1}{10}\right)+2=-\frac{2}{10}+2=\frac{9}{5}
+ y_1=2\left(\frac{1}{5}\right)+2=\frac{2}{5}+2=\frac{12}{5}
 \]
 und 
 \[
- y_2=2\left(-\frac{7}{10}\right)+2=-\frac{14}{10}+2=\frac{3}{5}\MDFPeriod
+ y_2=2\left(-1\right)+2=-2+2=0\MDFPeriod
 \]
 
 }
@@ -2649,7 +2649,7 @@ und
 
 
 \begin{MExercise}
-Gegeben ist der Kreis $K$ durch die Kreisgleichung
+Gegeben sind der Kreis $K$ durch die Kreisgleichung
 \[
  K\colon (x-3)^2+y^2=2
 \]
@@ -2657,41 +2657,41 @@ und die Gerade $g$ mit Steigung $2$ und Achsenabschnitt $b$ durch die Geradengle
 \[
  g\colon y=2x+b
 \]
-in Normalform. Bestimmen Sie das Intervall in dem der Achsenabschnitt $b$ liegen muss damit $g$ eine Sekante von $K$ ist.\\
-$b\in]$\MLFunctionQuestion{15}{-6-4*sqrt(5)}{5}{x}{5}{SEK1}$;$\MLFunctionQuestion{15}{-6+4*sqrt(5)}{5}{x}{5}{SEK2}$[$.
+in Normalform. Bestimmen Sie das Intervall, in dem der Achsenabschnitt $b$ liegen muss, damit $g$ eine Sekante von $K$ ist.\\
+$b\MDFPSpace \in \MDFPSpace ]$\MLFunctionQuestion{15}{-6-sqrt(10)}{5}{x}{5}{SEK1}$;$\MLFunctionQuestion{15}{-6+sqrt(10)}{5}{x}{5}{SEK2}$[ \MDFPSpace$.
 
 \MInputHint{Wurzeln können als \texttt{sqrt} eingegeben werden. Zum Beispiel \texttt{sqrt(2)} für $\sqrt{2}$.}
 
 \begin{MHint}{Lösung}
 Einsetzen der Geradengleichung (mit unbekanntem $b$) in die Kreisgleichung liefert
 \[
- (x-3)^2+(2x+b)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-6x+9+4x^2+4b x+b^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace 5x^2+(4b-6)x+b^2+7=0.
+ (x-3)^2+(2x+b)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-6x+9+4x^2+4b x+b^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace 5x^2+(4b-6)x+b^2+7=0 \MDFPeriod
 \]
-Damit es sich bei $g$ um eine Sekante handelt muss diese quadratische Gleichung (in der Variablen $x$) zwei Lösungen besitzen. Dies ist der Fall wenn ihre Diskriminante positiv ist, also wenn gilt:
+Damit es sich bei $g$ um eine Sekante handelt, muss diese quadratische Gleichung (in der Variablen $x$) zwei Lösungen besitzen. Dies ist der Fall wenn ihre Diskriminante positiv ist, also wenn gilt:
 \[
- (4b-6)^2-4\cdot 5(b^2+7)>0\MDFPaSpace\Leftrightarrow\MDFPaSpace 16b^2-48b+36-20b^2+140>0\MDFPaSpace\Leftrightarrow\MDFPaSpace -4b^2-48b+176>0
+ (4b-6)^2-4\cdot 5(b^2+7)>0\MDFPaSpace\Leftrightarrow\MDFPaSpace 16b^2-48b+36-20b^2-140>0\MDFPaSpace\Leftrightarrow\MDFPaSpace -4b^2-48b-104>0
 \]
 \[
- \Leftrightarrow\MDFPaSpace b^2+12b-44<0\MDFPeriod
+ \Leftrightarrow\MDFPaSpace b^2+12b+26<0\MDFPeriod
 \]
-Die Lösungen der quadratischen Gleichung $b^2+12b-44=0$ (in der Variablen $b$) ergeben sich zu 
+Die Lösungen der quadratischen Gleichung $b^2+12b+26=0$ (in der Variablen $b$) ergeben sich zu 
 \[
- b_{1,2}=\frac{-12\pm\sqrt{144+176}}{2}=\frac{-12\pm\sqrt{320}}{2}=\frac{-12\pm8\sqrt{5}}{5}=-6\pm4\sqrt{5}.
+ b_{1,2}=\frac{-12\pm\sqrt{144-104}}{2}=\frac{-12\pm\sqrt{40}}{2}=\frac{-12\pm2\sqrt{10}}{2}=-6\pm\sqrt{10} \MDFPeriod
 \]
-Damit ist das gesuchte Intervall $]-6-4\sqrt{5};-6+4\sqrt{5}[$.
+Damit ist das gesuchte Intervall $]-6-\sqrt{10};-6+\sqrt{10}[$.
 \end{MHint}
 \end{MExercise}
 
-Auch Geraden, deren Gleichungen nicht auf Normalform gebracht werden können (also solche die parallel zur Ordinatenachse verlaufen), können natürlich Kreise schneiden oder berühren. Für diese Geraden ist das oben stehende Verfahren nicht direkt anwendbar. Das Vorgehen in diesem Fall wird im folgenden Beispiel demonstriert.
+Auch Geraden, deren Gleichungen nicht auf Normalform gebracht werden können (also solche, die parallel zur Ordinatenachse verlaufen), können natürlich Kreise schneiden oder berühren. Für diese Geraden ist das oben stehende Verfahren nicht direkt anwendbar. Das Vorgehen in diesem Fall wird im folgenden Beispiel demonstriert.
 
 \begin{MExample}
-Gegeben ist der Kreis $K$ durch die Kreisgleichung
+Gegeben sind der Kreis $K$ durch die Kreisgleichung
 \[
  K\colon (x-1)^2+(y-1)^2=1
 \]
 sowie die Gerade $g$ durch die Gleichung
 \[
- g\colon x=\frac{3}{2}.
+ g\colon x=\frac{3}{2} \MDFPeriod
 \]
 Die folgende Abbildung stellt die beiden Objekte dar:
 \begin{center}
@@ -2730,7 +2730,7 @@ Offenbar ist $g$ eine Sekante von $K$. Um die Schnittpunkte zu berechnen, kann i
 Die zugehörigen $x$-Koordinaten sind natürlich beide gleich $\frac{3}{2}$, da die Schnittpunkte auf der Geraden $g$ liegen. Somit ergeben sich die beiden Schnittpunkte $\MPointTwo[\Big]{\frac{3}{2}}{1+\frac{\sqrt{3}}{2}}$ und $\MPointTwo[\Big]{\frac{3}{2}}{1-\frac{\sqrt{3}}{2}}$ der Geraden $g$ und des Kreises $K$.
 \end{MExample}
 
-Für die relative Lage zweier Kreise listet die folgende Infobox die möglichen Fälle auf, zusammen mit allgemeinen Kriterien durch die festgestellt werden kann, welcher Fall für zwei gegebene Kreise jeweils vorliegt.
+Für die relative Lage zweier Kreise listet die folgende Infobox die möglichen Fälle auf, zusammen mit allgemeinen Kriterien, durch die festgestellt werden kann, welcher Fall für zwei gegebene Kreise jeweils vorliegt.
 
 \begin{MInfo}\MLabel{VBKM09_Info_Kreiseschneiden}
 Sind zwei (verschiedene) Kreise $K_1$ mit dem Mittelpunkt $M_1$ und dem Radius $r_1$ sowie $K_2$ mit dem Mittelpunkt $M_2$ und dem Radius $r_2$ in der Ebene (durch Koordinatengleichungen bezüglich eines festen Koordinatensystems) gegeben, so gibt es für ihre relative Lage genau drei Fälle:
@@ -2743,7 +2743,7 @@ Sind zwei (verschiedene) Kreise $K_1$ mit dem Mittelpunkt $M_1$ und dem Radius $
  \[
   [\overline{M_1 M_2}]=r_1+r_2\MDFPaSpace\textrm{oder}\MDFPaSpace[\overline{M_1 M_2}]=|r_1-r_2|\MDFPeriod
  \]
- \item Die Kreise $K_1$ und $K_2$ haben zwei gemeinsamen Punkte, das heißt sie schneiden sich. Dies ist genau dann der Fall wenn für die Radien $r_1$ und $r_2$ sowie für den Abstand $[\overline{M_1 M_2}]$ der beiden Mittelpunkte gilt:
+ \item Die Kreise $K_1$ und $K_2$ haben zwei gemeinsame Punkte, das heißt sie schneiden sich. Dies ist genau dann der Fall wenn für die Radien $r_1$ und $r_2$ sowie für den Abstand $[\overline{M_1 M_2}]$ der beiden Mittelpunkte gilt:
  \[
   |r_1-r_2|<[\overline{M_1 M_2}]<r_1+r_2\MDFPeriod
  \]
@@ -2921,10 +2921,10 @@ $|r_1-r_2|<[\overline{M_1 M_2}]<r_1+r_2$:\\
 \end{center}
 
 \end{MInfo}
-Um die relative Lage zweier Kreise festzustellen benötigt man also nur deren Mittelpunkte und Radien. Das Berechnen möglicher Schnittpunkte ist schwieriger und kann im Rahmen dieses Brückenkurses nicht behandelt werden.
+Um die relative Lage zweier Kreise festzustellen, benötigt man also nur deren Mittelpunkte und Radien. Das Berechnen möglicher Schnittpunkte ist schwieriger und kann im Rahmen dieses Brückenkurses nicht behandelt werden.
 
 \begin{MExample}
-Gegeben ist ein Kreis $K$ mit Mittelpunkt $M_K$ und Radius $r_K$ durch die Gleichung
+Gegeben sind ein Kreis $K$ mit Mittelpunkt $M_K$ und Radius $r_K$ durch die Gleichung
 \[
  K\colon x^2+y^2-2y=1
 \]
@@ -2932,23 +2932,23 @@ und ein Kreis $L$ mit Mittelpunkt $M_L$ und noch unbekanntem Radius $r>0$ durch 
 \[
  L\colon (x+1)^2+(y-1)^2=r^2.
 \]
-Es sind diejenigen Werte für $r$ zu bestimmen, für die die Kreise $K$ und $L$ schneiden, berühren bzw. nicht schneiden.
+Es sind diejenigen Werte für $r$ zu bestimmen, für die die Kreise $K$ und $L$ sich schneiden, sich berühren bzw. sich nicht schneiden.
 
 Aus der Kreisgleichung für $L$ kann der Mittelpunkt $M_L$ direkt abgelesen werden: $M_L=\MPointTwo{-1}{1}$. Die Kreisgleichung für $K$ ist noch nicht in Normalform. Durch quadratische Ergänzung kann diese aber leicht auf Normalform gebracht werden, so dass Mittelpunkt $M_K$ und Radius $r_K$ abgelesen werden können:
 \[
  x^2+y^2-2y=1\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+y^2-2y+1-1=1\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+(y-1)^2=2\MDFPeriod
 \]
-Somit ist $M_K=\MPointTwo{0}{1}$ und $r_K=\sqrt{2}$. Somit beträgt der Abstand der beiden Mittelpunkte
+Also ist $M_K=\MPointTwo{0}{1}$ und $r_K=\sqrt{2}$. Somit beträgt der Abstand der beiden Mittelpunkte
 \[
- [\overline{M_K M_L}]=\sqrt{(0+1)^2+(1-1)^2}=1
+ [\overline{M_K M_L}]=\sqrt{(0+1)^2+(1-1)^2}=1 \MDFPSpace ,
 \]
 und die Summe der beiden Radien ist
 \[
- r+r_K=r+\sqrt{2}.
+ r+r_K=r+\sqrt{2} \MDFPeriod
 \]
-Da $r>0$ gilt folgt
+Da $r>0$ gilt, folgt
 \[
- r+\sqrt{2}>\sqrt{2}>1=[\overline{M_K M_L}].
+ r+\sqrt{2}>\sqrt{2}>1=[\overline{M_K M_L}] \MDFPeriod
 \]
 Somit kann die Situation $[\overline{M_K M_L}]\geq r+\sqrt{2}$ in diesem Fall nicht eintreten. (Der geometrische Grund hierfür ist, dass der Mittelpunkt von $L$ innerhalb des Kreises $K$ liegt, wie auch aus der Abbildung unten hervorgeht.) Nach den Kriterien in Infobox \MNRef{VBKM09_Info_Kreiseschneiden} berühren sich die beiden Kreise somit, falls
 \[
@@ -2958,31 +2958,31 @@ gilt. Nach dem Abschnitt über \MSRef{M02_Betragsgleichungen}{Betragsgleichungen}
 \[
  r-\sqrt{2}=1\MDFPaSpace\textrm{oder}\MDFPaSpace r-\sqrt{2}=-1
 \]
-gilt. Also sind die beiden Radien $r$, für die der Kreis $L$ den Kreis $K$ berührt:
+ist. Also sind die beiden Radien $r$, für die der Kreis $L$ den Kreis $K$ berührt:
 \[
  r=\sqrt{2}+1\MDFPaSpace\textrm{und}\MDFPaSpace r=\sqrt{2}-1\MDFPeriod
 \]
 Nun sind noch die restlichen möglichen Werte für $r$ zu untersuchen. Für $0<r<\sqrt{2}-1$ gilt
 \[
- |r-\sqrt{2}|=-(r-\sqrt{2})=\sqrt{2}-r>1=[\overline{M_K M_L}],
+ |r-\sqrt{2}|=-(r-\sqrt{2})=\sqrt{2}-r>1=[\overline{M_K M_L}] \MDFPSpace ,
 \]
 womit $K$ und $L$ in diesem Fall keine gemeinsamen Punkte besitzen. Für $\sqrt{2}-1<r<\sqrt{2}+1$ sind zur Untersuchung des Betrags nochmal die Fälle $\sqrt{2}-1<r\leq\sqrt{2}$ und $\sqrt{2}<r<\sqrt{2}+1$ zu unterscheiden. Im Fall $\sqrt{2}-1<r\leq\sqrt{2}$ gilt
 \[
- |r-\sqrt{2}|=-(r-\sqrt{2})=\sqrt{2}-r<1=[\overline{M_K M_L}]
+ |r-\sqrt{2}|=-(r-\sqrt{2})=\sqrt{2}-r<1=[\overline{M_K M_L}] \MDFPSpace ,
 \]
 und auch im Fall $\sqrt{2}<r<\sqrt{2}+1$ gilt
 \[
- |r-\sqrt{2}|=r-\sqrt{2}<1=[\overline{M_K M_L}].
+ |r-\sqrt{2}|=r-\sqrt{2}<1=[\overline{M_K M_L}] \MDFPeriod
 \]
-Somit haben $K$ und $L$ für $\sqrt{2}-1<r<\sqrt{2}+1$ zwei gemeinsame Punkte, die Kreise schneiden sich also. Zuletzt gilt im Fall $r>\sqrt{2}+1$:
+Damit haben $K$ und $L$ für $\sqrt{2}-1<r<\sqrt{2}+1$ zwei gemeinsame Punkte, die Kreise schneiden sich also. Zuletzt gilt im Fall $r>\sqrt{2}+1$:
 \[
  |r-\sqrt{2}|=r-\sqrt{2}>1=[\overline{M_K M_L}]\MDFPeriod
 \]
 Somit haben $K$ und $L$ auch in diesem Fall keine gemeinsamen Punkte. Zusammenfassend erhält man für die relative Lage von $K$ und $L$ die folgenden Bedingungen:
 \begin{itemize}
  \item Falls $r\in\{\sqrt{2}-1\MElSetSep\sqrt{2}+1\}$ gilt, berühren sich die beiden Kreise $K$ und $L$ in jeweils einem Punkt.
- \item Falls $r\in]\sqrt{2}-1\MIntvlSep\sqrt{2}+1[$ gilt, schneiden sich die beiden Kreise $K$ und $L$ in jeweils zwei Punkten.
- \item Falls $r\in]0\MIntvlSep\sqrt{2}-1[\cup]\sqrt{2}+1\MIntvlSep\infty[$ gilt, haben die beiden Kreise $K$ und $L$ keine gemeinsamen Punkte.
+ \item Falls $r\in$ $]\sqrt{2}-1\MIntvlSep\sqrt{2}+1[$ gilt, schneiden sich die beiden Kreise $K$ und $L$ in jeweils zwei Punkten.
+ \item Falls $r\in$ $]0\MIntvlSep\sqrt{2}-1[$ $\cup$ $]\sqrt{2}+1\MIntvlSep\infty[$ gilt, haben die beiden Kreise $K$ und $L$ keine gemeinsamen Punkte.
 \end{itemize}
 Einige Fälle für die Kreise $K$ und $L$ sind in den folgenden Abbildungen dargestellt:
 \begin{center}
@@ -3187,7 +3187,7 @@ Gegeben sind die beiden Kreise $K_1$ und $K_2$ durch die Gleichungen
 \]
 und
 \[
- K_2\colon x^2+2x+y^2-16y+40=0.
+ K_2\colon x^2+2x+y^2-16y+40=0 \MDFPeriod
 \]
 Die beiden Kreise $K_1$ und $K_2$
 
@@ -3201,22 +3201,22 @@ Die beiden Kreise $K_1$ und $K_2$
 \MGroupButton{Eingabe kontrollieren}
 
 \begin{MHint}{Lösung}
-Der Mittelpunkt $M_1$ und der Radius $r_1$ des Kreises $K_1$ ist direkt abzulesen. Es gilt $M_1=\MPointTwo{-6}{-4}$ und $r_1=8$. Für $K_2$ ist eine quadratische Ergänzung durchzuführen:
+Der Mittelpunkt $M_1$ und der Radius $r_1$ des Kreises $K_1$ sind direkt ablesbar. Es gilt $M_1=\MPointTwo{-6}{-4}$ und $r_1=8$. Für $K_2$ ist eine quadratische Ergänzung durchzuführen:
 \[
  x^2+2x+y^2-16y+40=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+2x+1 + y²-2\cdot8y+64+40-64-1=0
 \]
 \[
  \Leftrightarrow\MDFPaSpace (x+1)^2+(y-8)^2=25\MDFPeriod
 \]
-Nun kann der Mittelpunkt $M_2$ und der Radius $r_2$ von $K_2$ abgelesen werden. Es gilt $M_2=\MPointTwo{-1}{8}$ und $r_2=5$. Damit berechnet man
+Nun können der Mittelpunkt $M_2$ und der Radius $r_2$ von $K_2$ abgelesen werden. Es gilt $M_2=\MPointTwo{-1}{8}$ und $r_2=5$. Damit berechnet man
 \[
  [\overline{M_1 M_2}]=\sqrt{(-1+6)^2+(8+4)^2}=\sqrt{25+144}=\sqrt{169}=13
 \]
 und
 \[
- r_1+r_2=13.
+ r_1+r_2=13 \MDFPeriod
 \]
-Es ist in diesem Fall also $[\overline{M_1 M_2}]=13=r_1+r_2$ und nach Infobox \MNRef{VBKM09_Info_Kreiseschneiden} berühren sich die Kreise $K_1$ und $K_2$ folglich in einem Punkt.
+Es ist in diesem Fall also $[\overline{M_1 M_2}]=13=r_1+r_2$, und nach Infobox \MNRef{VBKM09_Info_Kreiseschneiden} berühren sich die Kreise $K_1$ und $K_2$ folglich in einem Punkt.
 \end{MHint}
 
 
@@ -3277,7 +3277,7 @@ Während in den vorigen Abschnitten Kurven in der Ebene (Geraden oder Kreise) mit
 \end{tikzpicture}
 }
 \end{center}
- \item Bereich oberhalb der Gerade $y=x$ und innerhalb des Einheitskreises $y^2+x^2=1$, inklusive der Punkte auf dem Kreis, aber ohne die Punkte auf der Geraden:
+ \item Bereich oberhalb der Gerade $y=x$ und innerhalb des Einheitskreises $x^2+y^2=1$, inklusive der Punkte auf dem Kreis, aber ohne die Punkte auf der Geraden:
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -3302,7 +3302,7 @@ Während in den vorigen Abschnitten Kurven in der Ebene (Geraden oder Kreise) mit
 }
 \end{center}
 \end{itemize}
-Hier uns im Folgenden wird die übliche Konvention genutzt, dass Abbildungen diejenigen Kurven, welche zur Fläche gehören durchgezogen und diejenigen, welche \textit{nicht} zur Fläche gehören, gestrichelt dargestellt werden.
+Hier und im Folgenden wird die übliche Konvention benutzt, dass in Abbildungen diejenigen Kurven, welche zur Fläche gehören, durchgezogen und diejenigen, welche \textit{nicht} zur Fläche gehören, gestrichelt dargestellt werden.
 
 \end{MIntro}
 
@@ -3310,16 +3310,16 @@ Hier uns im Folgenden wird die übliche Konvention genutzt, dass Abbildungen diej
 \MLabel{VBKM09_Bereiche_Geraden_Kreise}
 \MDeclareSiteUXID{VBKM09_Bereiche_Geraden_Kreise}
 
-Die folgenden Infobox listet die möglichen entstehenden Bereiche auf, wenn man in einer Geradengleichung das Gleichheitszeichen durch ein Ungleichheitszeichen ersetzt.
+Die folgende Infobox listet die möglichen entstehenden Bereiche auf, wenn man in einer Geradengleichung das Gleichheitszeichen durch ein Ungleichheitszeichen ersetzt.
 
 \begin{MInfo}
-Ist eine Gerade $g$ in der Ebene (mit Steigung $m$ und Achsenabschnitt $b$) mittels einer Geradengleichung in Normalform bezüglich eines festen Koordinatensystems gegeben:
+Ist eine Gerade $g$ in der Ebene (mit Steigung $m$ und Achsenabschnitt $b$) mittels einer Geradengleichung in Normalform bezüglich eines festen Koordinatensystems gegeben,
 \[
- g\colon y=m x+b,
+ g\colon y=m x+b \MDFPSpace ,
 \]
-dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitszeichen, die folgenden Mengen, welche jeweils Bereiche in der Ebene beschreiben:
+dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitszeichen die folgenden Mengen, welche jeweils Bereiche in der Ebene beschreiben:
 \begin{itemize}
- \item $B_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y>m x+b\}=$\glqq Bereich oberhalb der Geraden ohne die Punkte auf der Geraden selbst\grqq
+ \item $B_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y>m x+b\}=$ \glqq Bereich oberhalb der Geraden, ohne die Punkte auf der Geraden selbst\grqq
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -3343,7 +3343,7 @@ dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitsze
 \end{tikzpicture}
 }
 \end{center}
- \item $B_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y\geq m x+b\}=$\glqq Bereich oberhalb der Geraden inklusive der Punkte auf der Geraden\grqq
+ \item $B_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y\geq m x+b\}=$ \glqq Bereich oberhalb der Geraden, inklusive der Punkte auf der Geraden\grqq
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -3367,7 +3367,7 @@ dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitsze
 \end{tikzpicture}
 }
 \end{center}
- \item $B_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y<m x+b\}=$\glqq Bereich unterhalb der Geraden ohne die Punkte auf der Geraden selbst\grqq
+ \item $B_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y<m x+b\}=$ \glqq Bereich unterhalb der Geraden, ohne die Punkte auf der Geraden selbst\grqq
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -3391,7 +3391,7 @@ dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitsze
 \end{tikzpicture}
 }
 \end{center}
- \item $B_4:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y\leq m x+b\}=$\glqq Bereich unterhalb der Geraden inklusive Punkte auf der Geraden\grqq
+ \item $B_4:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y\leq m x+b\}=$ \glqq Bereich unterhalb der Geraden, inklusive Punkte auf der Geraden\grqq
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -3419,7 +3419,7 @@ dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitsze
 
 \end{MInfo}
 
-Für Geraden die nicht auf Normalform gebracht werden können funktioniert die Überlegung für die Bereiche völlig analog. Das folgende Beispiel zeigt zwei einfache Fälle.
+Für Geraden, die nicht auf Normalform gebracht werden können, funktioniert die Überlegung für die Bereiche völlig analog. Das folgende Beispiel zeigt zwei einfache Fälle.
 
 \begin{MExample}
 Gegeben sind die beiden Geraden
@@ -3428,14 +3428,14 @@ Gegeben sind die beiden Geraden
 \]
 und 
 \[
- h\colon x=-1.    
+ h\colon x=-1 \MDFPeriod   
 \]
 Zu bestimmen und zu skizzieren sind die Mengen 
 \[
- A=\textrm{\glqq Bereich unterhalb von}\ g\ \textrm{ohne die Punkte auf}\ g\ \textrm{selbst\grqq},
-\]
+ A=\textrm{\glqq Bereich unterhalb von}\ g, \textrm{ ohne die Punkte auf}\ g\ \textrm{selbst\grqq},
+\] 
 \[
- B=\textrm{\glqq Bereich rechts von}\ h\ \textrm{inklusive der Punkte auf}\ h\textrm{\grqq}
+ B=\textrm{\glqq Bereich rechts von}\ h, \textrm{ inklusive der Punkte auf}\ h\textrm{\grqq}
 \]
 sowie $A\cap B$.
 
@@ -3445,9 +3445,9 @@ Zunächst gilt also
 \]
 nach der Infobox oben und 
 \[
- B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x\geq-1\},
+ B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x\geq-1\} \MDFPSpace ,
 \]
-da rechts der Geraden $h$, diejenigen Punkte liegen, deren $x$-Koordinaten größer als $-1$ sind. Die Schnittmenge $A\cap B$ sind diejenigen Punkte, welche beide Bedingungen erfüllen:
+da rechts der Geraden $h$ diejenigen Punkte liegen, deren $x$-Koordinaten größer als $-1$ sind. Die Schnittmenge $A\cap B$ sind diejenigen Punkte, welche beide Bedingungen erfüllen:
 \[
  A\cap B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y<-x+1\wedge x\geq-1\}\MDFPeriod
 \]
@@ -3526,10 +3526,10 @@ Bilder hierzu:
 \end{tikzpicture}
 }
 \end{center}
-Der Schnittpunkt $\MPointTwo{-1}{2}$ der beiden Geraden gehört dabei nicht zum Bereich $A\cap B$ (im Bild angedeutet durch einen leeren Kringel), da Punkte auf $g$ nicht zum Bereich $A\cap B$ gehören.
+Der Schnittpunkt $\MPointTwo{-1}{2}$ der beiden Geraden ist dabei kein Element von $A\cap B$, da Punkte auf $g$ generell nicht zum Bereich $A\cap B$ gehören. Im Bild ist dies durch einen leeren Kringel angedeutet.
 \end{MExample}
 
-Dieses Beispiel zeigt bereits Folgendes: Bereiche, welche durch nur eine Koordinatenungleichung, die aus einer Geradengleichung stammt, gegeben sind, sind relativ einfach anzugeben. Es wird schwieriger, sobald Schnittmengen solcher Bereiche gesucht sind. Das folgende, etwas schwierigere, Beispiel zeigt, dass man nun auch noch Beträge mit ins Spiel bringen kann. 
+Dieses Beispiel zeigt bereits Folgendes: Bereiche, welche durch nur eine Koordinatenungleichung gegeben sind, die aus einer Geradengleichung stammt, sind relativ einfach anzugeben. Es wird schwieriger, sobald Schnittmengen solcher Bereiche gesucht sind. Das folgende, etwas schwierigere, Beispiel zeigt, dass man nun auch noch Beträge mit ins Spiel bringen kann. 
 
 \begin{MExample}
 Es ist die Menge 
@@ -3543,17 +3543,17 @@ Wie üblich bei Beträgen (vgl. \MNRef{M02_Betragsgleichungen}) ist eine Fallunter
  \item $x-y\geq 0\MDFPSpace\Leftrightarrow\MDFPSpace x\geq y$\\
  Die Ungleichung $|x-y|<1$ lässt sich in diesem Fall auflösen zu
  \[
-  |x-y|<1\MDFPSpace\Leftrightarrow\MDFPSpace x-y<1\MDFPSpace\Leftrightarrow\MDFPSpace y>x-1
+  |x-y|<1\MDFPSpace\Leftrightarrow\MDFPSpace x-y<1\MDFPSpace\Leftrightarrow\MDFPSpace y>x-1 \MDFPeriod
  \]
- Somit liegen in diesem Fall alle $\MPointTwo{x}{y}$ in $M$, die $x\geq y$ und $y>x-1$ erfüllen, also diejenigen Punkte welche oberhalb der Geraden $y=x-1$ aber unterhalb oder auf der Winkelhalbierenden $y=x$ liegen.
+ Somit liegen in diesem Fall alle $\MPointTwo{x}{y}$ in $M$, die $x\geq y$ und $y>x-1$ erfüllen, also diejenigen Punkte, welche oberhalb der Geraden $y=x-1$, aber unterhalb oder auf der Winkelhalbierenden $y=x$ liegen.
  \item $x-y< 0\MDFPSpace\Leftrightarrow\MDFPSpace x<y$\\
  Die Ungleichung $|x-y|<1$ lässt sich in diesem Fall auflösen zu
  \[
-  |x-y|<1\MDFPSpace\Leftrightarrow\MDFPSpace -(x-y)<1\MDFPSpace\Leftrightarrow\MDFPSpace y<x+1
+  |x-y|<1\MDFPSpace\Leftrightarrow\MDFPSpace -(x-y)<1\MDFPSpace\Leftrightarrow\MDFPSpace y<x+1 \MDFPeriod
  \]
- Somit liegen in diesem Fall alle $\MPointTwo{x}{y}$ in $M$, die $x<y$ und $y<x+1$ erfüllen, also diejenigen Punkte welche unterhalb der Geraden $y=x+1$ aber oberhalb der Winkelhalbierenden $y=x$ liegen.
+ Somit liegen in diesem Fall alle $\MPointTwo{x}{y}$ in $M$, die $x<y$ und $y<x+1$ erfüllen, also diejenigen Punkte, welche unterhalb der Geraden $y=x+1$, aber oberhalb der Winkelhalbierenden $y=x$ liegen.
 \end{enumerate}
-Aus allen zwei Fällen ergibt sich also die folgende Beschreibung für die Menge $M$:
+Aus beiden Fällen zusammen ergibt sich also die folgende Beschreibung für die Menge $M$:
 \[
  M=\textrm{\glqq Alle Punkte zwischen den Geraden}\ y=x-1\ \textrm{und}\ y=x+1\textrm{, die aber nicht auf den Geraden liegen\grqq}
 \]
@@ -3597,7 +3597,7 @@ Skizzieren Sie jeweils die angegebenen Mengen:
 
 \begin{MHint}{Lösung}
 \begin{MExerciseItems}
-\item{Die Menge aller Punkte, welche $y\geq 1$ erfüllen liegen auf oder oberhalb der Geraden $y=1$ und die Punkte, welche $x\geq 1$ erfüllen liegen auf oder rechts von der Geraden $x=1$. Insgesamt sind die Punkte gesucht, welche beide Bedingungen erfüllen (Schnittmenge). Es ergibt sich also:
+\item{Die Menge aller Punkte, welche $y\geq 1$ erfüllen, liegen auf oder oberhalb der Geraden $y=1$, und die Punkte, welche $x\geq 1$ erfüllen, liegen auf oder rechts von der Geraden $x=1$. Insgesamt sind die Punkte gesucht, welche beide Bedingungen erfüllen (Schnittmenge). Es ergibt sich also:
 
 \begin{center}
 \MTikzAuto{
@@ -3635,12 +3635,12 @@ Skizzieren Sie jeweils die angegebenen Mengen:
  \[
   |2x-y|\geq1\MDFPSpace\Leftrightarrow\MDFPSpace 2x-y\geq 1\MDFPSpace\Leftrightarrow\MDFPSpace y\leq 2x-1
  \]
- Dieser Fall liefert also alle Punkte die auf oder unterhalb der Geraden $y=2x-1$ liegen. 
+ Dieser Fall liefert also alle Punkte, die auf oder unterhalb der Geraden $y=2x-1$ liegen. 
  \item $2x-y<0\MDFPSpace\Leftrightarrow\MDFPSpace y>2x$:\\
  \[
   |2x-y|\geq1\MDFPSpace\Leftrightarrow\MDFPSpace -(2x-y)\geq 1\MDFPSpace\Leftrightarrow\MDFPSpace y\geq 2x+1
  \]
- Dieser Fall liefert also alle Punkte die auf oder oberhalb der Geraden $y=2x+1$ liegen. 
+ Dieser Fall liefert also alle Punkte, die auf oder oberhalb der Geraden $y=2x+1$ liegen. 
 \end{enumerate}
 Insgesamt ergeben sich also die folgenden Bereiche:
 
@@ -3680,12 +3680,12 @@ Insgesamt ergeben sich also die folgenden Bereiche:
  \[
   |y|>x+1\MDFPSpace\Leftrightarrow\MDFPSpace y>x+1
  \]
- Dieser Fall liefert also alle Punkte die eine nicht-negative $y$-Koordinate haben und oberhalb der Geraden $y=x+1$ liegen. 
+ Dieser Fall liefert also alle Punkte, die eine nicht-negative $y$-Koordinate haben und oberhalb der Geraden $y=x+1$ liegen. 
  \item $y<0$:\\
  \[
   |y|>x+1\MDFPSpace\Leftrightarrow\MDFPSpace -y>x+1\MDFPSpace\Leftrightarrow\MDFPSpace y<-x-1
  \]
- Dieser Fall liefert also alle Punkte die eine negative $y$-Koordinate haben und unterhalb der Geraden $y=-x-1$ liegen. 
+ Dieser Fall liefert also alle Punkte, die eine negative $y$-Koordinate haben und unterhalb der Geraden $y=-x-1$ liegen. 
 \end{enumerate}
 Damit ergibt sich der folgende Bereich:
 
@@ -3727,13 +3727,13 @@ Der Punkt $\MPointTwo{-1}{0}$ gehört nicht zu $C$.
 Die folgende Infobox fasst die möglichen Bereiche in der Ebene zusammen, die von einem Kreis begrenzt werden.
 
 \begin{MInfo}
-Ist ein Kreis $K$ in der Ebene (mit Mittelpunkt $M=\MPointTwo{x_0}{y_0}$ und Radius $r$) mittels einer Kreisgleichung in Normalform bezüglich eines festen Koordinatensystems gegeben:
+Ist ein Kreis $K$ in der Ebene (mit Mittelpunkt $M=\MPointTwo{x_0}{y_0}$ und Radius $r$) mittels einer Kreisgleichung in Normalform bezüglich eines festen Koordinatensystems gegeben,
 \[
- K\colon (x-x_0)^2 + (y-y_0)^2 = r^2
+ K\colon (x-x_0)^2 + (y-y_0)^2 = r^2 \MDFPSpace ,
 \]
-dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitszeichen, die folgenden Mengen, welche jeweils Bereiche in der Ebene beschreiben:
+dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitszeichen die folgenden Mengen, welche jeweils Bereiche in der Ebene beschreiben:
 \begin{itemize}
- \item $B_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 < r^2\}=$\glqq Bereich innerhalb des Kreises ohne die Punkte auf dem Kreis selbst\grqq
+ \item $B_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 < r^2\}=$ \glqq Bereich innerhalb des Kreises, ohne die Punkte auf dem Kreis selbst\grqq
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -3756,7 +3756,7 @@ dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitsze
 \end{tikzpicture}
 }
 \end{center}
- \item $B_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 \leq r^2\}=$\glqq Bereich innerhalb des Kreises inklusive der Punkte auf dem Kreis\grqq
+ \item $B_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 \leq r^2\}=$ \glqq Bereich innerhalb des Kreises, inklusive der Punkte auf dem Kreis\grqq
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -3779,7 +3779,7 @@ dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitsze
 \end{tikzpicture}
 }
 \end{center}
-  \item $B_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 > r^2\}=$\glqq Bereich außerhalb des Kreises ohne die Punkte auf dem Kreis selbst\grqq
+  \item $B_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 > r^2\}=$ \glqq Bereich außerhalb des Kreises, ohne die Punkte auf dem Kreis selbst\grqq
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -3802,7 +3802,7 @@ dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitsze
 \end{tikzpicture}
 }
 \end{center}
- \item $B_4:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 \geq r^2\}=$\glqq Bereich außerhalb des Kreises inklusive der Punkte auf dem Kreis\grqq
+ \item $B_4:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 \geq r^2\}=$ \glqq Bereich außerhalb des Kreises, inklusive der Punkte auf dem Kreis\grqq
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -3829,7 +3829,7 @@ dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitsze
 
 \end{MInfo}
 
-Das folgende Beispiel zeigt einige einfache Fälle von Bereichen, die von Kreisen begrenzt werden sowie auch einige kompliziertere Fälle, die entstehen wenn man mehrere Bereiche miteinander oder mit den Bereichen, welche von Geraden begrenzt werden, kombiniert.
+Das folgende Beispiel zeigt einige einfache Fälle von Bereichen, die von Kreisen begrenzt werden, sowie auch einige kompliziertere Fälle, die entstehen, wenn man mehrere Bereiche miteinander oder mit den Bereichen, welche von Geraden begrenzt werden, kombiniert.
 
 \begin{MExample}
 Gegeben sind die Kreise
@@ -3842,7 +3842,7 @@ und
 \]
 sowie die Gerade 
 \[
- g\colon y=-x+1.
+ g\colon y=-x+1 \MDFPeriod
 \]
 \begin{itemize}
  \item Die Menge $A_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2\leq 1\}$ besteht aus allen Punkten innerhalb und auf dem Kreis $K_2$:
@@ -3870,7 +3870,7 @@ sowie die Gerade
 }
 \end{center}
 
-\item Die Menge $A_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2<1\}\cap\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x^2+y^2<4\}$ besteht aus allen Punkten, die sowohl innerhalb des Kreises $K_1$, als auch innerhalb Kreises $K_2$ liegen, also im Schnitt der beiden Kreisscheiben, aber nicht auf den Kreisen selbst:
+\item Die Menge $A_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2<1\}\cap\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x^2+y^2<4\}$ besteht aus allen Punkten, die sowohl innerhalb des Kreises $K_1$ als auch innerhalb des Kreises $K_2$ liegen, also im Schnitt der beiden Kreisscheiben, aber nicht auf den Kreisen selbst:
 
 \begin{center}
 \MTikzAuto{
@@ -3898,7 +3898,7 @@ sowie die Gerade
 }
 \end{center}
 
-\item Die Menge $A_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2<1\wedge y\geq-x+1\}$ besteht aus allen Punkten, die sowohl innerhalb des Kreises $K_2$, aber nicht auf dem Kreis, als auch auf oder oberhalb der Geraden $g$ liegen:
+\item Die Menge $A_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2<1\wedge y\geq-x+1\}$ besteht aus allen Punkten, die sowohl innerhalb des Kreises $K_2$ -- aber nicht auf dem Kreis -- als auch auf oder oberhalb der Geraden $g$ liegen:
 
 \begin{center}
 \MTikzAuto{
@@ -3940,7 +3940,7 @@ Skizzieren Sie jeweils die angegebenen Mengen:
 
 \begin{MHint}{Lösung}
 \begin{MExerciseItems}
-\item{Die Menge $A$ wird gebildet von allen Punkten, die sowohl außerhalb des Kreises um $\MPointTwo{1}{1}$ mit Radius $1$ oder auf diesem, als auch oberhalb der Gerade $y=-\frac{1}{2}x+1$ liegen:
+\item{Die Menge $A$ wird gebildet von allen Punkten, die sowohl außerhalb des Kreises oder auf dem Kreis um $\MPointTwo{1}{1}$ mit Radius $1$ als auch oberhalb der Gerade $y=-\frac{1}{2}x+1$ liegen:
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -3970,8 +3970,8 @@ Skizzieren Sie jeweils die angegebenen Mengen:
 \end{center}
 Die Schnittpunkte von Kreis und Gerade gehören nicht zu $A$.
 }
-\item{Die Punkte in der Ebene, welche die Ungleichung $|x|<1$ erfüllen, sind diejenigen für die $-1<x<1$ gilt. Dazu (Vereinigungmenge!) kommen noch die 
-die Punkte auf oder innerhalb des Kreises $(x+3)^2+(y-1)^2=4$:
+\item{Die Punkte in der Ebene, welche die Ungleichung $|x|<1$ erfüllen, sind diejenigen, für die $-1<x<1$ gilt. Dazu (Vereinigungsmenge!) kommen noch
+die Punkte auf dem Kreis oder innerhalb des Kreises $(x+3)^2+(y-1)^2=4$:
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -4002,7 +4002,7 @@ die Punkte auf oder innerhalb des Kreises $(x+3)^2+(y-1)^2=4$:
 \end{center}
 Der Punkt $\MPointTwo{-1}{1}$ gehört mit zu $B$.
 }
-\item{Die Menge $C$ wird gebildet von allen Punkten, die sowohl innerhalb des Kreises $x^2+y^2=4$, als auch auf oder außerhalb des Kreises $x^2+(y+1)^2=1$, liegen:
+\item{Die Menge $C$ wird gebildet von allen Punkten, die sowohl innerhalb des Kreises $x^2+y^2=4$ als auch auf oder außerhalb des Kreises $x^2+(y+1)^2=1$ liegen:
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
