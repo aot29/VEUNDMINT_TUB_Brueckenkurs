@@ -1,6 +1,6 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
-%\Mtikzexternalize
+\Mtikzexternalize
 
 \begin{document}
 
@@ -1520,7 +1520,7 @@ erfüllt ist. Bild dazu:
 
 \end{MIntro}
 
-\begin{MXContent}{Geraden in der Ebene}{Geraden Ebene}{STD}
+\begin{MXContent}{Geraden in der Ebene und im Raum}{Geraden Ebene Raum}{STD}
 \MLabel{VBKM10_GeradenEbene}
 \MDeclareSiteUXID{VBKM10_GeradenEbene}
 In Kapitel \MNRef{VBKM09} wurden Geraden in der Ebene mittels Koordinatengleichungen für die Punkte auf der Geraden bezüglich eines festen Koordinatensystems beschrieben. Zum Beispiel ist in dieser Beschreibung eine Gerade $g$ mit Steigung $\frac{1}{2}$ und Achsenabschnitt $1$ gegeben als Punktmenge
@@ -1565,18 +1565,158 @@ mit $x\in\R$. Das heißt die Gerade $g$ kann unter Benutzung von Ortsvektoren auc
 \[
  g\colon \MVec{r}=x\MVector{1\\\frac{1}{2}}+\MVector{0\\1},\MDFPaSpace x\in\R.
 \]
-Das heißt die Punkte auf $g$ werden gebildet durch die Summe des Vektors $\MVector{0\\1}$ und allen möglichen Vielfachen des Vektors $\MVector{1\\\frac{1}{2}}$, also allen zu  $\MVector{1\\\frac{1}{2}}$ kollinearen Vektoren. Das folgende Bild stellt diese Sichtweise auf Geraden dar:
+Das heißt die Punkte auf $g$ werden gebildet durch die Summe des Vektors $\MVec{a}=\MVector{0\\1}$ und allen möglichen Vielfachen des Vektors $\MVec{u}=\MVector{1\\\frac{1}{2}}$, also allen zu  $\MVector{1\\\frac{1}{2}}$ kollinearen Vektoren. Das folgende Bild stellt diese Sichtweise auf Geraden dar:
 
-TODO
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.5,0) -- (4.5,0);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,3.5);
+\foreach \y in {-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.8) node[anchor=north west] {$y$};
+%Gerade
+\draw[color=red] (-3.5,-0.75) -- (4.5,3.25);
+\draw[color=red] (4.5,3.25) node[anchor=south] {\footnotesize $g$};
+%Hilfslinien
+\draw[color=gray] (0,1) -- (-0.45,1.89);
+\draw[color=gray] (2,2) -- (1.55,2.89);
+\draw[color=gray] (3.5,2.75) -- (3.05,3.64);
+\draw[color=gray] (1,1.5) -- (0.55,2.39);
+\draw[color=gray] (-2,0) -- (-2.44,0.89);
+%Richtungsvektoren
+\draw[fill=red] (1,1.5) circle (1.5pt);
+\draw[fill=red] (-2,0) circle (1.5pt);
+\draw[fill=red] (2,2) circle (1.5pt);
+\draw[fill=red] (3.5,2.75) circle (1.5pt);
+\draw[color=violet,->] (0,1) -- (1,1.5);
+\draw[color=violet,->] (0,1) -- (-2,0);
+\draw[color=violet,->] (-0.09,1.18) -- (1.91,2.18);
+\draw[color=violet,->] (-0.18,1.36) -- (3.32,3.11);
+%Aufpunkt
+\draw[fill=blue] (0,1) circle (1.5pt);
+\draw[color=blue,->,line width=0.8pt] (0,0) -- (0,1);
+\draw[color=blue] (0,0.5) node[anchor=east] {\scriptsize $\MVec{a}$};
+\draw[color=blue] (0,0.95) node[anchor=west] {\scriptsize $\MPointTwo{0}{1}$};
+%Beschriftung
+\draw[color=violet] (-2.44,0.89) node[anchor=south] {\scriptsize $-2\MVec{u}$};
+\draw[color=violet] (-0.45,1.89) node[anchor=south east] {\scriptsize $0\cdot\MVec{u}$};
+\draw[color=violet] (0.55,2.39) node[anchor=south] {\scriptsize $\MVec{u}$};
+\draw[color=violet] (1.55,2.89) node[anchor=south] {\scriptsize $2\MVec{u}$};
+\draw[color=violet] (3.05,3.64) node[anchor=south] {\scriptsize $\MZahl{3}{5}\cdot\MVec{u}$};
+\draw[color=red] (0.9,1.6) node[anchor=north west] {\scriptsize $\MPointTwo{1}{\frac{3}{2}}$}; 
+\draw[color=red] (1.9,2.1) node[anchor=north west] {\scriptsize $\MPointTwo{2}{2}$};
+\draw[color=red] (3.4,2.85) node[anchor=north west] {\scriptsize $\MPointTwo{\frac{7}{2}}{\frac{11}{4}}$};
+\draw[color=red] (-2.05,-0.05) node[anchor=south east] {\scriptsize $\MPointTwo{-2}{0}$};
+\end{tikzpicture}
+} 
+\end{center}
 
-Die folgende Infobox stellt die wichtigsten Begriffe, Methoden und Konzepte zu dieser als \textbf{Punkt-Richtungs-Form} oder \textbf{Parameterform} bezeichneten Darstellungsweise von Geraden zusammen.
+Die folgende Infobox stellt die wichtigsten Begriffe, Methoden und Konzepte zu dieser als \textbf{Punkt-Richtungsform} oder \textbf{Parameterform} bezeichneten Darstellungsweise von Geraden zusammen.
 
 \begin{MInfo}
-TODO 
+\begin{itemize}
+ \item Eine Gerade $g$ in der Ebene ist in \MEntry{Punkt-Richtungsform}{Punkt-Richtungsform} oder \MEntry{Parameterform}{Parameterform} gegeben als Menge von Ortsvektoren
+\[
+ g=\left\{\MVec{r}=\lambda\MVec{u}+\MVec{a}\in\R^2\MCondSetSep\lambda\in\R\right\},
+\]
+oft kurz geschrieben als
+\[
+ g\colon \MVec{r}=\lambda\MVec{u}+\MVec{a},\MDFPSpace\lambda\in\R\MDFPeriod
+\]
+Hierbei wird $\lambda$ als \textbf{Parameter}, $\MVec{a}$ als \MEntry{Aufpunktvektor}{Aufpunktvektor} und $\MVec{u}\neq\MDVec{O}$ als \MEntry{Richtungsvektor}{Richtungsvektor} der Geraden bezeichnet. Die Ortsvektoren $\MVec{r}$ zeigen dann zu den einzelnen Punkten auf der Geraden. Der Aufpunktvektor $\MVec{a}$ ist der Ortsvektor eines festen Punktes auf der Geraden, der als \MEntry{Aufpunkt}{Aufpunkt} bezeichnet wird. Die Vielfachen $\lambda\MVec{u}$ von $\MVec{u}$ sind alle Vektoren die kollinear zu $\MVec{u}$ sind:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.5,0) -- (4.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3,4}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,3.5);
+%\foreach \y in {-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.8) node[anchor=north west] {$y$};
+%Gerade
+\draw[color=red] (-1.5,0.75) -- (4.5,3.75);
+\draw[color=red] (4.5,3.75) node[anchor=north] {\footnotesize $g$};
+%Vektoren
+\draw[color=blue,->,line width= 1pt] (0,0) -- (1,2); 
+\draw[color=violet,->,line width= 1pt] (1,2) -- (3,3); 
+\draw[color=red,->,line width= 1pt] (0,0) -- (3,3); 
+%Beschriftung
+\draw[color=blue] (0.5,1) node[anchor=east] {\footnotesize $\MVec{a}$};
+\draw[color=violet] (2,2.5) node[anchor=south] {\footnotesize $\lambda\MVec{u}$};
+\draw[color=red] (1.5,1.5) node[anchor=west] {\footnotesize $\MVec{r}$};
+\end{tikzpicture}
+} 
+\end{center}
+\item Für eine Gerade $g$, die durch Angabe einer Geradengleichung in Normalform
+\[
+ g\colon y=m x+b
+\]
+vorliegt, kann eine Punkt-Richtungsform angegeben werden, indem die Ortsvektoren $\MVector{x\\m x+b}=x\MVector{1\\m}+\MVector{0\\b}$ gebildet werden. Die Punkt-Richtungsform lautet dann 
+\[
+ g\colon \MVec{r}=x\MVector{1\\m}+\MVector{0\\b},\MDFPSpace x\in\R
+\]
+mit dem Richtungsvektor $\MVec{u}=\MVector{1\\m}$ und dem Aufpunktvektor $\MVec{a}=\MVector{0\\b}$.
+\item Für eine Gerade $g$, die in Parameterform
+\[
+ g\colon \MVec{r}=\lambda\MVec{u}+\MVec{a},\MDFPSpace\lambda\in\R
+\]
+vorliegt, kann eine zugehörige Geradengleichung folgendermaßen ermittelt werden: Der Richtungsvektor $\MVec{u}=\MVector{u_x\\u_y}$ liefert durch Anlegen eines Steigungsdreiecks sofort die Steigung der Geraden. Es gilt
+\[
+ m=\frac{u_y}{u_x}
+\]
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.5,0) -- (4.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3,4}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,3.5);
+%\foreach \y in {-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.8) node[anchor=north west] {$y$};
+%Gerade
+\draw[color=red] (-1.5,0.75) -- (4.5,3.75);
+\draw[color=red] (4.5,3.75) node[anchor=north] {\footnotesize $g$};
+%Vektoren
+\draw[color=blue,->,line width= 1pt] (0,0) -- (1,2); 
+\draw[color=violet,->,line width= 1pt] (1,2) -- (3,3); 
+%\draw[color=red,->,line width= 1pt] (0,0) -- (3,3); 
+%Beschriftung
+\draw[color=blue] (0.5,1) node[anchor=east] {\footnotesize $\MVec{a}$};
+\draw[color=violet] (2,2.5) node[anchor=south] {\footnotesize $\MVec{u}$};
+%\draw[color=red] (1.5,1.5) node[anchor=west] {\footnotesize $\MVec{r}$};
+%Steigungsdreieck
+\draw[color=violet] (1,2) -- (3,2);
+\draw[color=violet] (3,2) -- (3,3);
+\draw[color=violet] (2,2) node[anchor=north] {\footnotesize $u_x$};
+\draw[color=violet] (3,2.5) node[anchor=west] {\footnotesize $u_y$};
+\end{tikzpicture}
+} 
+\end{center}
+(Hierfür muss $u_x\neq0$ sein. Der Spezialfall $u_x=0$ wird im Beispiel unten behandelt.) Nach den Methoden aus Abschnitt \MNRef{VBKM09_Koordinatengleichungen} benötigt man zur Angabe der Gerdaengleichung in Normalform nun nur noch einen Punkt auf der Geraden aus dem man den Achsenabschnitt $b$ bestimmt. Hiefür benutzt man am einfachsten den Aufpunktvektor $\MVec{a}$.
+\end{itemize}
+
+
 \end{MInfo}
 
 Man stellt hier sofort fest, dass die Parameterform einer Geraden nicht eindeutig ist. Als Aufpunkt kann jeder Punkt auf der Geraden dienen und auch als Richtungsvektor hat man beliebig viele 
-kollineare Vektoren zur Auswahl. So wird zum Beispiel die Gerade $g$ mit der Koordinategleichung
+kollineare Vektoren zur Auswahl. So wird zum Beispiel die Gerade $g$ mit der Koordinatengleichung
 \[
  g\colon\frac{1}{2}x+1 
 \]
@@ -1592,7 +1732,7 @@ oder
 \[
  g\colon \MVec{r}=\nu\MVector{-2\\-1}+\MVector{-2\\0},\MDFPaSpace \nu\in\R.
 \]
-Oft benutzt man Darstellungen mit einem möglichst einfachen Richtugnsvektor. Es sollte nur darauf geachtet werden, dass bei Darstellungen der gleichen Geraden mittels unterschiedlicher Richtungs- oder Aufpunktvektoren jeweils andere Variablen für den Parameter verwendet werden, da gleiche Parameterwerte in unterschiedlichen Darstellungen zu unterschiedlichen Punkten auf der Geraden führen. So ergibt beispielsweise der Parameterwert $\lambda=1$ in der entsprechenden obigen Parameterform für $g$ den Punkt
+Oft benutzt man Darstellungen mit einem möglichst einfachen Richtungsvektor. Es sollte nur darauf geachtet werden, dass bei Darstellungen der gleichen Geraden mittels unterschiedlicher Richtungs- oder Aufpunktvektoren jeweils andere Variablen für den Parameter verwendet werden, da gleiche Parameterwerte in unterschiedlichen Darstellungen zu unterschiedlichen Punkten auf der Geraden führen. So ergibt beispielsweise der Parameterwert $\lambda=1$ in der entsprechenden obigen Parameterform für $g$ den Punkt
 \[
  1\cdot\MVector{2\\1}+\MVector{2\\2}=\MVector{4\\3}
 \]
@@ -1602,25 +1742,375 @@ auf $g$, der Parameterwert $\nu=1$ der entsprechenden obigen Parameterform für $
 \]
 auf $g$.
 
-Das folgende Beispiel zeigt einige Anwendungen der Punkt-Richtungs-Form.
+Das folgende Beispiel zeigt einige Anwendungen der Punkt-Richtungsform.
 
 \begin{MExample}
-TODO
+\begin{itemize}
+ \item Für die Gerade $g$ in der Ebene, welche durch die Geradengleichung 
+ \[
+  g\colon 2y-3x=6
+ \]
+ gegeben ist, sollen zwei verschiedene Parameterformen ermittelt werden.
+ 
+ Zunächst wird die Geradengleichung auf Normalform gebracht:
+ \[
+  2y-3x=6\MDFPaSpace\Leftrightarrow\MDFPaSpace y=\frac{3}{2}x+3
+ \]
+ Punkte auf $g$ haben also die Form $\MPointTwo[\Big]{x}{\frac{3}{2}x+3}$ mit $x\in\R$, welche durch Ortsvektoren $\MVector{x\\\frac{3}{2}x+3}$ mit $x\in\R$ beschrieben werden. Folglich ist eine mögliche Parameterform durch
+ \[
+  g\colon \MVec{r}=x\MVector{1\\\frac{3}{2}}+\MVector{0\\3},\MDFPSpace x\in\R
+ \]
+ gegeben. Für eine andere Parameterform kann ein beliebiger anderer Richtungsvektor, der kollinear zu $\MVector{1\\\frac{3}{2}}$ ist und ein beliebiger anderer Aufpunkt auf $g$ gewählt werden. Zum Beispiel ist $\MVector{2\\3}$ kollinear zu $\MVector{1\\\frac{3}{2}}$, da $\MVector{2\\3}=2\MVector{1\\\frac{3}{2}}$ gilt. Und $\MVector{2\\6}$ ist ein anderer passender Aufpunktvektor, da der Punkt $\MPointTwo{2}{6}$ offenbar die Geradengleichung erfüllt. Folglich ist 
+ \[
+  g\colon \MVec{r}=\sigma\MVector{2\\3}+\MVector{2\\6},\MDFPSpace \sigma\in\R
+ \]
+ eine weitere mögliche Parameterform der Geraden $g$.
+ \item Auch für eine Gerade, deren Koordinatengleichung nicht auf Normalform gebracht werden kann, wie etwa
+ \[
+  h\colon x=2,
+ \]
+ kann eine Punkt-Richtungsform angegeben werden.
+ 
+ Punkte auf der Geraden $h$ haben alle die Form $\MPointTwo{2}{y}$ für $y\in\R$ mit zugehörigen Ortsvektoren $\MVector{2\\y}$ für $y\in\R$. Da $\MVector{2\\y}=y\MVector{0\\1}+\MVector{2\\0}$ gilt ist eine mögliche Punkt-Richtungsform für $h$ durch
+ \[
+  h\colon \MVec{r}=y\MVector{0\\1}+\MVector{2\\0},\MDFPSpace y\in\R
+ \]
+ gegeben.
+ \item Für die Gerade $\alpha$ in Parameterform mit
+ \[
+  \alpha\colon \MVec{r}=\mu\MVector{-3\\2} + \MVector{1\\1},\MDFPSpace \mu\in\R
+ \]
+ soll die zugehörige Geradengleichung in Normalform ermittelt werden.
+ 
+ Der Richtungsvektor $\MVector{-3\\2}$ liefert die Steigung $m=\frac{2}{-3}=-\frac{2}{3}$. Somit hat die Geradengleichung in Normalform die Form
+ \[
+  \alpha\colon y=-\frac{2}{3}x+b.
+ \]
+ Der Aufpunktvektor von $\alpha$ lautet $\MVector{1\\1}$, somit kann zur Bestimmung des Achsenabschnitts $b$, der Aufpunkt $\MPointTwo{1}{1}$ eingesetzt werden:
+ \[
+  1=-\frac{2}{3}\cdot1+b\MDFPSpace\Leftrightarrow\MDFPSpace b=\frac{5}{3}\MDFPeriod
+ \]
+ Somit ergibt sich
+ \[
+  \alpha\colon y=-\frac{2}{3}x+\frac{5}{3}.
+ \]
+ \item Auch für eine Gerade in Parameterform wie etwa
+ \[
+  \beta\colon \MVec{r}=\lambda\MVector{0\\-2} + \MVector{-1\\1},\MDFPSpace \lambda\in\R,
+ \]
+ für welche die $x$-Komponente des Richtungsvektors $0$ ist, kann eine zugehörige Geradengleichung ermittelt werden.
+ 
+ Der Richtungsvektor mit $x$-Komponente gleich $0$ impliziert, dass die Gerade parallel zur $y$-Achse verläuft. Folglich hat die Geradengleichung die Form
+ \[
+  \beta\colon x=c.
+ \]
+ Die Konstante $c$ kann wieder durch Einsetzen des Aufpunkts $\MPointTwo{-1}{1}$ ermittelt werden. Man erhält $-1=c$ und folglich gilt
+ \[
+  \beta\colon x=-1.
+ \]
+ \item Zu den beiden Punkten $P=\MPointTwo{-1}{-1}$ und $Q=\MPointTwo{3}{2}$ ist die Gerade $P Q$ in Parameterform zu bestimmen. 
+ 
+ Als Richtungsvektor dient hier der Verbindungsvektor:
+ \[
+  \MVec{u}=\MDVec{P Q}=\MDVec{Q}-\MDVec{P}=\MVector{3\\2}-\MVector{-1\\-1}=\MVector{4\\3}
+ \]
+ und als Aufpunktvektor, der Ortsvektor von einem der gegebenen Punkte, zum Beispiel
+ \[
+  \MVec{a}=\MDVec{P}=\MVector{-1\\-1}\MDFPeriod
+ \]
+ Somit gilt
+ \[
+  P Q\colon \MVec{r}=\lambda\MVector{4\\3}+\MVector{-1\\-1},\MDFPSpace\lambda\in\R.
+ \]
+ Bild hierzu:
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.5,0) -- (4.5,0);
+\foreach \x in {-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (0,3.5);
+\foreach \y in {-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (10pt,5pt) node[left] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.8) node[anchor=north west] {$y$};
+%Gerade
+\draw[color=red] (-2,-1.75) -- (4.5,3.125);
+\draw[color=red] (4.5,3.125) node[anchor=south] {\footnotesize $P Q$};
+
+%Punkte
+\draw[fill=red] (-1,-1) circle (1.5pt); 
+\draw[color=red] (-1,-1) node[anchor=north] {\footnotesize $P$};
+\draw[fill=red] (3,2) circle (1.5pt); 
+\draw[color=red] (3,2) node[anchor=south] {\footnotesize $Q$};
+%Vektoren
+\draw[color=violet,->,line width=0.8pt] (-1,-1) -- (3,2);
+\draw[color=violet] (1,0.5) node[anchor=south] {\footnotesize $\MVec{u}$};
+\draw[color=blue,->,line width=0.8pt] (0,0) -- (-1,-1);
+\draw[color=blue] (-0.5,-0.5) node[anchor=south] {\footnotesize $\MVec{a}$};
+
+\end{tikzpicture}
+} 
+\end{center}
+\end{itemize}
+
 \end{MExample}
 
 \begin{MExercise}
-TODO 
+\begin{MExerciseItems}
+\item{
+Gegeben ist die Gerade $g$ mittels
+\[
+ g\colon \MVec{r}=t\MVector{-1\\5}+\MVector{2\\5},\MDFPSpace t\in\R
+\]
+in Parameterform. Bestimmen Sie die Koordinatengleichung von $g$ in Normalform:\\
+$g\colon y=$\MLFunctionQuestion{15}{-5*x+15}{5}{x}{5}{PARA1}
+}
+\item{
+Die Gerade $h$ mit der Koordinatengleichung
+\[
+ h\colon\frac{1}{2}y+x+2=0
+\]
+hat die Parameterform
+\[
+ h\colon \MVec{r}=s\MVector{a\\2}+\MVector{b\\-5},\MDFPSpace s\in\R.
+\]
+Bestimmen Sie die fehlenden Werte $a$ und $b$.\\
+$a=$\MLFunctionQuestion{15}{-1}{5}{x}{5}{PARA2}\\
+$b=$\MLFunctionQuestion{15}{0.5}{5}{x}{5}{PARA3}
+}
+\item{
+Gegeben sind die beiden Punkte $A=\MPointTwo{-2}{-1}$ und $B=\MPointTwo{3}{-\frac{3}{2}}$. Welche der folgenden Parameterformen sind korrekte Darstellungen der Geraden $A B$?
+
+\begin{MQuestionGroup}
+\begin{tabular}{lll}
+\MCheckbox{1}{PARA4} & (i) & $A B:\MVec{r}=s\MVector{5\\-\frac{1}{2}}+\MVector{0\\-\frac{6}{5}},\MDFPSpace s\in\R$\\
+\MCheckbox{0}{PARA5} & (ii) & $A B:\MVec{r}=t\MVector{5\\\frac{1}{2}}+\MVector{-2\\-1},\MDFPSpace t\in\R$\\
+\MCheckbox{1}{PARA6} & (iii) & $A B:\MVec{r}=u\MVector{-5\\\frac{1}{2}}+\MVector{-12\\0},\MDFPSpace u\in\R$\\
+\MCheckbox{1}{PARA7} & (iv) & $A B:\MVec{r}=v\MVector{10\\-1}+\MVector{4\\-\frac{8}{5}},\MDFPSpace v\in\R$\\
+\MCheckbox{0}{PARA8} & (v) & $A B:\MVec{r}=w\MVector{-1\\10}+\MVector{-22\\1},\MDFPSpace w\in\R$\\
+\MCheckbox{0}{PARA9} & (vi) & $A B:\MVec{r}=z\MVector{\frac{5}{2}\\-\frac{1}{4}}+\MVector{\frac{6}{5}\\-1},\MDFPSpace z\in\R$\\
+\end{tabular} 
+\end{MQuestionGroup}
+
+\MGroupButton{Antworten kontrollieren}
+}
+\item{
+Für welchen Wert von $\psi$ liegt der Punkt $P$ mit dem Ortsvektor
+\[
+ \MDVec{P}=\MVector{-2\\\psi}
+\]
+auf der Geraden 
+\[
+ i\colon \MVec{r}=\tau\MVector{1\\-3}+\MVector{-1\\2},\MDFPSpace\tau\in\R
+\]
+und für welchen Parameterwert $\tau$ gilt dann $\MVec{r}=\MDVec{P}$?\\
+$\psi=$\MLFunctionQuestion{15}{5}{5}{x}{5}{PARA10}\\
+$\tau=$\MLFunctionQuestion{15}{-1}{5}{x}{5}{PARA11}
+}
+\end{MExerciseItems}
+
+\begin{MHint}{Lösung}
+ \begin{MExerciseItems}
+\item{
+Die Steigung der Geraden wird aus dem Richtungsvektor $\MVector{-1\\5}$ ermittelt: $m=\frac{5}{-1}=-5$. Damit gilt
+\[
+ g\colon y=-5x+b.
+\]
+Der Achsenabschnitt ergibt sich durch Einsetzen des Aufpunkts $\MPointTwo{2}{5}$:
+\[
+ 5=-5\cdot 2+b\MDFPSpace\Leftrightarrow\MDFPSpace b=15\MDFPeriod
+\]
+Somit:
+\[
+ g\colon y=-5x+15\MDFPeriod
+\]
+}
+\item{
+Überführen der Geradengleichung in Normalform ergibt
+\[
+ \frac{1}{2}y+x+2=0\MDFPSpace\Leftrightarrow\MDFPSpace y=-2x-4.
+\]
+Der zum Aufpunktvektor $\MVector{b\\-5}$ gehörende Aufpunkt $\MPointTwo{b}{-5}$ muss auf der Geraden liegen, also die Geradengleichung erfüllen. Damit ergibt sich
+\[
+ -5 = -2b-4\MDFPSpace\Leftrightarrow\MDFPSpace b=\frac{1}{2}. 
+\]
+Die Ortsvektoren der Punkte auf $h$ haben die Form $\MVector{x\\-2x-4}=x\MVector{1\\-2}+\MVector{0\\-4}$. Somit ist $\MVector{1\\-2}$ ein Richtungsvektor von $h$. Weitere Richtungsvektoren von $h$ sind zu diesem kollinear. Da gilt
+\[
+ -1\cdot\MVector{1\\-2}=\MVector{-1\\2}
+\]
+folgt $a=-1$.
+}
+\item{
+Aus den gegebenen Punkten $A$ und $B$ folgt der Richtungsvektor
+\[
+ \MDVec{A B}=\MDVec{B}-\MDVec{A}=\MVector{3\\-\frac{3}{2}}-\MVector{-2\\-1}=\MVector{5\\-\frac{1}{2}}.
+\]
+Die Richtungsvektoren in den Fällen (ii) und (v) sind nicht zu diesem Vektor kollinear. Damit sind (ii) und (v) sicher keine korrekten Darstellungen der Geraden $A B$. Aus dem Richtungsvektor $\MDVec{A B}=\MVector{5\\-\frac{1}{2}}$ folgt die Steigung $m=\frac{-\frac{1}{2}}{5}=-\frac{1}{10}$ der Geraden $A B$. Damit lautet die Geradengleichung
+\[
+ A B\colon y=-\frac{1}{10}x+b
+\]
+und Einsetzen von $A$ liefert den  Achsenabschnitt $b$:
+\[
+ -1=-\frac{1}{10}\cdot(-2)+b\MDFPSpace\Leftrightarrow\MDFPSpace b=-\frac{6}{5}\MDFPeriod
+\]
+Es gilt also
+\[
+ A B\colon y=-\frac{1}{10}x-\frac{6}{5}.
+\]
+Diese Geradengleichung wird von den Aufpunkten in den Fällen (i) bis (v) erfüllt, im Fall (vi) aber nicht. Damit sind insgesamt die Fälle (i), (iii) und (iv) korrekte Darstellungen der Geraden, die Fälle (ii), (v) und (vi) aber nicht. 
+}
+\item{
+Die Bedingung 
+\[
+ \MVector{-2\\\psi} = \tau\MVector{1\\-3}+\MVector{-1\\2}
+\]
+führt auf die beiden Gleichungen
+\[
+ -2=\tau-1\MDFPSpace\textrm{und}\MDFPSpace\psi=-3\tau+2.
+\]
+Damit ergibt sich zunächst $\tau=-1$ und somit $\psi=-3\cdot(-1)+2=5$.
+}
+\end{MExerciseItems}
+\end{MHint}
+
 \end{MExercise}
 
+Geraden im Raum lassen sich im Gegensatz zu Geraden in der Ebene \textit{nicht} mit Hilfe einer Koordinatengleichung darstellen. Hier hilft aber die Punkt-Richtungsform die sich problemlos vom zwei- auf den dreidimensionalen Fall überträgt:
+
+\begin{MInfo}
+Eine Gerade $g$ im Raum ist in \MEntry{Punkt-Richtungsform}{Punkt-Richtungsform} oder \MEntry{Parameterform}{Parameterform} gegeben als Menge von Ortsvektoren
+\[
+ g=\left\{\MVec{r}=\lambda\MVec{u}+\MVec{a}\in\R^3\MCondSetSep\lambda\in\R\right\},
+\]
+oft kurz geschrieben als
+\[
+ g\colon \MVec{r}=\lambda\MVec{u}+\MVec{a},\MDFPSpace\lambda\in\R\MDFPeriod
+\]
+Hier gelten die gleichen Bezeichnungen wie im zweidimensionalen Fall: $\lambda$ heißt \textbf{Parameter}, $\MVec{a}$ heißt \MEntry{Aufpunktvektor}{Aufpunktvektor} und $\MVec{u}\neq\MDVec{O}$ heißt \MEntry{Richtungsvektor}{Richtungsvektor} der Geraden:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[>=stealth]
+
+% The axes
+\draw[->] (xyz cs:x=-2.5) -- (xyz cs:x=3.5) node[above] {\footnotesize $x$};
+\draw[->] (xyz cs:y=-2.5) -- (xyz cs:y=3.5) node[right] {\footnotesize $y$};
+\draw[->] (xyz cs:z=-2.5) -- (xyz cs:z=3.5) node[left] {\footnotesize $z$};
+% The ticks
+\foreach \coo in {-2,-1,1,2,3}
+{
+  \draw (\coo,-3pt) -- (\coo,3pt) node[below=4pt] {\footnotesize \coo};
+  \draw (-3pt,\coo) -- (3pt,\coo) node[left=4pt] {\footnotesize \coo};
+  \draw (xyz cs:y=-0.1pt,z=\coo) -- (xyz cs:y=0.1pt,z=\coo) node[below=3pt] {\scriptsize \coo};
+}
+\draw[color=red] (-2,-1,2) -- (3,3,-1);
+\draw[color=blue,->,line width = 0.8pt] (0,0,0) -- (0.5,1,0.5);
+\draw[color=violet,->,line width=0.8pt] (0.5,1,0.5) -- (1.75,2,-0.25);
+\draw[color=red,->,line width=0.8pt] (0,0,0) -- (1.75,2,-0.25);
+\draw[color=red] (3,3,-1) node[below] {\scriptsize $g$};
+\draw[color=blue] (0.25,0.4,0.25) node[left] {\scriptsize $\MVec{a}$};
+\draw[color=violet] (1,1.5,0.375) node[above] {\scriptsize $\lambda\MVec{u}$};
+\draw[color=red] (0.875,1,-0.125) node[right] {\scriptsize $\MVec{r}$};
+\end{tikzpicture}
+}
+\end{center}
+\end{MInfo}
+
+Auch hier im dreidimensionalen Fall ist -- analog zur Situation bei Geraden in der Ebene -- die Parameterform einer Geraden nie eindeutig. Das folgende Beispiel zeigt die Anwendung von Geraden in Parameterform im Raum.
+
+\begin{MExample}
+Zu den beiden gegebenen Punkten $P=\MPointThree{-1}{-2}{\frac{1}{2}}$ und $Q=\MPointThree{2}{0}{8}$ sind zwei unterschiedliche Darstellungen der Geraden $P Q$ in Parameterform anzugeben.
+
+Der Verbindungsvektor $\MDVec{P Q}$ dient als Richtungsvektor:
+\[
+ \MDVec{P Q}=\MDVec{Q}-\MDVec{P}=\MVector{2\\0\\8}-\MVector{-1\\-2\\\frac{1}{2}}=\MVector{3\\2\\\frac{15}{2}}\MDFPeriod
+\]
+Der Punkt $Q$ kann als Aufpunkt benutzt werden. Damit ergibt sich die Parameterform
+\[
+ P Q\colon \MVec{r}=t\MVector{3\\2\\\frac{15}{2}}+\MVector{2\\0\\8},\MDFPSpace t\in\R\MDFPeriod
+\]
+Weitere zulässige Richtungsvektoren müssen kollinear zu $\MDVec{P Q}$ sein. Zum Beispiel:
+\[
+ \MVector{-6\\-4\\-15}=-2\MVector{3\\2\\\frac{15}{2}}\MDFPeriod
+\]
+Dann kann zum Beispiel auch der Punkt $P$ als Aufpunkt benutzt werden und man erhält
+\[
+ P Q\colon \MVec{r}=s\MVector{-6\\-4\\-15}+\MVector{-1\\-2\\\frac{1}{2}},\MDFPSpace s\in\R
+\]
+als weitere korrekte Punkt-Richtungsform für die Gerade $P Q$.
+\end{MExample}
+
+\begin{MExercise}
+\begin{MExerciseItems}
+\item{
+Die Gerade $h=A B$, welche durch die gegebenen Punkte $A=\MPointThree{-1}{-1}{0}$ und $B=\MPointThree{-3}{0}{1}$
+hat die Parameterform
+\[
+ h\colon \MVec{r}=\lambda\MVector{4\\a\\b}+\MVector{c\\d\\-4},\MDFPSpace\lambda\in\R.
+\]
+Bestimmen Sie die fehlenden Werte $a$, $b$, $c$ und $d$.\\
+$a=$\MLFunctionQuestion{15}{-2}{5}{x}{5}{PARA31}\\
+$b=$\MLFunctionQuestion{15}{-2}{5}{x}{5}{PARA32}\\
+$c=$\MLFunctionQuestion{15}{7}{5}{x}{5}{PARA33}\\
+$d=$\MLFunctionQuestion{15}{-5}{5}{x}{5}{PARA34}\\
+}
+\item{
+Für welchen Wert von $\chi$ liegt der Punkt $P$ mit dem Ortsvektor
+\[
+ \MDVec{P}=\MVector{-2\\\chi\\-8}
+\]
+auf der Geraden 
+\[
+ g\colon \MVec{r}=\nu\MVector{1\\-3\\8}+\MVector{-1\\2\\0},\MDFPSpace\nu\in\R
+\]
+und für welchen Parameterwert $\nu$ gilt dann $\MVec{r}=\MDVec{P}$?\\
+$\chi=$\MLFunctionQuestion{15}{5}{5}{x}{5}{PARA35}\\
+$\nu=$\MLFunctionQuestion{15}{-1}{5}{x}{5}{PARA36}
+}
+\end{MExerciseItems}
+
+\begin{MHint}{Lösung}
+ \begin{MExerciseItems}
+\item{
+Aus den gegebenen Punkten $A$ und $B$ folgt der Richtungsvektor
+\[
+ \MDVec{A B}=\MDVec{B}-\MDVec{A}=\MVector{-3\\0\\1}-\MVector{-1\\-1\\0}=\MVector{-2\\1\\1}.
+\]
+Somit ist $\MVector{4\\a\\b}$ kollinear zu $\MVector{-2\\1\\1}$ und damit ebenfalls ein zulässiger Richtungsvektor für $h$, falls $a=b=-2$ gilt, denn dann hat man
+\[
+ \MVector{4\\-2\\-2} = -2\cdot\MVector{-2\\1\\1}.
+\]
+Der Aufpunktvektor $\MVector{c\\d\\-4}$ muss zu einem Punkt auf $h$ gehören. Eine mögliche Parameterform der Geraden $h$ ergibt sich unter Benutzung von $\MDVec{A B}$ als Richtungsvektor $\MDVec{A}$ als Aufpunktvektor:
+\[
+ h\colon\MVec{r}=t\MVector{-2\\1\\1}+\MVector{-1\\-1\\0},\MDFPSpace t\in\R.
+\]
+Dies führt auf die Gleichung
+\[
+ \MVector{c\\d\\-4}=t\MVector{-2\\1\\1}+\MVector{-1\\-1\\0}=\MVector{-2t-1\\t-1\\t}
+\]
+aus deren dritter Komponente sofort $t=-4$ abzulesen ist. Damit muss
+\[
+ \MVector{c\\d\\-4}=-4\cdot\MVector{-2\\1\\1}+\MVector{-1\\-1\\0}=\MVector{7\\-5\\-4}
+\]
+und folglich $c=7$ sowie $d=5$ gelten.
+}
+\item{
+Die Bedingung 
+\[
+ \MVector{-2\\\chi\\-8} = \nu\MVector{1\\-3\\8}+\MVector{-1\\2\\0} = \MVector{\nu-1\\-3\nu+2\\8\nu}
+\]
+führt in der ersten und dritten Komponenten auf $\nu=-1$, womit in der zweiten Komponente $\chi=-3\cdot(-1)+2=5$ gilt.
+}
+\end{MExerciseItems}
+\end{MHint}
+
+\end{MExercise}
 
 \end{MXContent}
 
-% 
-% \begin{MXContent}{Geraden im Raum}{Geraden Raum}{STD}
-% \MLabel{VBKM10_GeradenRaum}
-% \MDeclareSiteUXID{VBKM10_GeradenRaum}
-% 
-% \end{MXContent}
 % 
 % \begin{MXContent}{Ebenen im Raum}{Ebenen Raum}{STD}
 % \MLabel{VBKM10_EbenenRaum}
