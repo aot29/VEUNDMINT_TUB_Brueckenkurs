@@ -411,13 +411,37 @@ x_{1,2} \;=\; -\Mdfrac{p}{2}\pm \sqrt{\Mdfrac14p^2-q} \MDFPeriod
 $$
 Dabei besitzt die Gleichung
 \begin{itemize}
-\item{keine Lösung, falls $\Mtfrac14p^2-q<0$ ist (dann darf man die Wurzel nicht ziehen),}
+\item{keine (reelle) Lösung, falls $\Mtfrac14p^2-q<0$ ist (dann darf man die Wurzel nicht ziehen),}
 \item{eine einzige Lösung $x_1=-\Mtfrac{p}{2}$, falls $\Mtfrac14p^2=q$ ist und die Wurzel verschwindet,}
 \item{zwei verschiedene Lösungen, falls die Wurzel eine positive Zahl ist.}
 \end{itemize}
+Der hierbei betrachtete Ausdruck unter der Wurzel, $D:=\Mtfrac14p^2-q$, heißt
+\textbf{Diskriminante}.
 \end{MInfo}
-
-Diese drei Situationen entsprechen den drei möglichen Schnitten, die der Graph einer nach oben geöffneten Parabel der Form $f(x)=x^2+p x+ q$
+Die Lösung einer quadratischen Gleichung wird häufig durch eine 
+alternative Formel beschrieben:
+\begin{MInfo}
+\MLabel{VBKM02_abcFormel}
+Für die Gleichung $a x^2+b x + c = 0$ mit $a\ne 0$ lautet die
+\MEntry{$a b c$-Formel}{abc-Formel} oder
+\MEntry{Mitternachtsformel}{Mitternachtsformel}
+$$
+x_{1,2} \;=\; \frac{-b\pm\sqrt{b^2-4 a c}}{2a} \MDFPeriod
+$$
+Dabei besitzt die Gleichung
+\begin{itemize}
+\item{keine (reelle) Lösung, falls $b^2-4 a c<0$ ist (eine Quadratwurzel negativer Zahlen existiert im Reellen nicht),}
+\item{eine einzige Lösung $x_1=-\Mtfrac{b}{2a}$, falls $b^2=4 a c$ ist und die Wurzel verschwindet,}
+\item{zwei verschiedene Lösungen, falls die Wurzel eine positive Zahl ist.}
+\end{itemize}
+Auch der hierbei betrachtete Ausdruck unter der Wurzel, $D:=b^2-4 a c$, heißt
+\textbf{Diskriminante}.
+\end{MInfo}
+Beide Formeln führen natürlich auf dieselben Lösungen. (Für die Anwendung der
+$p q$-Formel ist die Gleichung durch den Vorfaktor $a$ des quadratischen
+Terms zu dividieren.)
+\medskip\par
+Die drei unterschiedenen Situationen entsprechen den drei möglichen Schnitten, die der Graph einer (für der Fall der $p q$-Formel) nach oben geöffneten Parabel der Form $f(x)=x^2+p x+ q$
 mit der $x$-Achse haben kann:
 
 \begin{center}
@@ -460,17 +484,40 @@ x_2 &=& \Mdfrac12-\sqrt{\Mdfrac14+1} \;=\; \Mdfrac12(1-\sqrt5) \MDFPeriod
 
 \begin{MInfo}
 \MLabel{VBKM02_Scheitelpunktform}
-Eine quadratische Gleichung ist in \MEntry{Scheitelpunktform}{Scheitelpunktform}, wenn sie die Form $a\cdot (x-s)^2=d$ besitzt mit $a\not=0$ und $d\geq 0$.
-Für den Funktionsausdruck der zugehörigen Parabel liest sich diese Form $f(x)=a\cdot (x-s)^2-d$.
-In dieser Situation ist $(s\,|\,-d)$ der \MEntry{Scheitelpunkt}{Scheitelpunkt (Parabel)} der Parabel.
+%%Eine quadratische Gleichung ist in \MEntry{Scheitelpunktform}{Scheitelpunktform}, wenn sie die Form $a\cdot (x-s)^2=d$ besitzt mit $a\not=0$ und $d\geq 0$.
+%%Für den Funktionsausdruck der zugehörigen Parabel liest sich diese Form $f(x)=a\cdot (x-s)^2-d$.
+%%In dieser Situation ist $(s\,|\,-d)$ der \MEntry{Scheitelpunkt}{Scheitelpunkt (Parabel)} der Parabel.
+%%
+%%Falls $a>0$ ist gibt es zwei Lösungen
+%%$$
+%%x_1 \;=\; s-\sqrt{\Mdfrac{d}{a}} \MDFPSpace,\MDFPaSpace x_2 \;=\; s+\sqrt{\Mdfrac{d}{a}}
+%%$$
+%%der Gleichung, diese liegen symmetrisch um die $x$-Koordinate des Scheitelpunkts. Für $d=0$ gibt es nur eine Lösung.
+%%
+%%Das Vorzeichen von $a$ bestimmt, ob die Gleichung eine nach oben oder unten geöffnete Parabel beschreibt.
+Der Funktionsausdruck einer Parabel liegt in
+\MEntry{Scheitelpunktform}{Scheitelpunktform} vor, wenn er die Form
+$f(x)=a\cdot (x-s)^2-d$ mit $a\ne 0$ besitzt. In dieser Situation ist
+$\MPointTwo{s}{-d}$ der \MEntry{Scheitelpunkt}{Scheitelpunkt (Parabel)}
+der Parabel. Die zugehörige quadratische Gleichung für $f(x)=0$ lautet
+dann $a\cdot (x-s)^2=d$.
 
-Falls $a>0$ ist gibt es zwei Lösungen
+Dividiert man diese Gleichung durch $a$, dann erhält man die äquivalente
+quadratische Gleichung $(x-s)^2=\frac{d}{a}$. Da die linke Seite ein
+Quadrat eines reellen Ausdrucks ist, existieren nur Lösungen, wenn auch
+die rechte Seite nicht negativ ist, d.h. $\frac{d}{a}\ge 0$ gilt.
+Durch Wurzelziehen unter Beachtung beider möglicher Vorzeichen folgt dann
+$x-s=\pm\sqrt{\frac{d}{a}}$.
+
+Falls $\frac{d}{a}>0$ ist, gibt es damit die beiden Lösungen
 $$
 x_1 \;=\; s-\sqrt{\Mdfrac{d}{a}} \MDFPSpace,\MDFPaSpace x_2 \;=\; s+\sqrt{\Mdfrac{d}{a}}
 $$
-der Gleichung, diese liegen symmetrisch um die $x$-Koordinate des Scheitelpunkts. Für $d=0$ gibt es nur eine Lösung.
+der Gleichung; diese liegen symmetrisch um die $x$-Koordinate $s$ des
+Scheitelpunkts. Für $d=0$ gibt es nur eine Lösung.
 
-Das Vorzeichen von $a$ bestimmt, ob die Gleichung eine nach oben oder unten geöffnete Parabel beschreibt.
+Das Vorzeichen von $a$ bestimmt, ob der Funktionsausdruck eine nach oben oder
+unten geöffnete Parabel beschreibt.
 \end{MInfo}
 
 Die quadratische Gleichung hat nur eine einzige Lösung $s$, falls sie sich in die Form $(x-s)^2=0$ bringen lässt.
@@ -484,11 +531,11 @@ Dazu wird auf beiden Seiten eine Konstante addiert, so dass links ein Term der F
 \begin{MExample}
 Die Gleichung $x^2-4x+2=0$ kann man durch Addieren der Konstanten $2$ in die Form $x^2-4x+4=2$ bzw. in die Scheitelpunktform $(x-2)^2=2$ bringen. 
 Aus ihr kann man sofort die Lösungen $x_1=2-\sqrt{2}$ und $2+\sqrt{2}$ ablesen. Andererseits besitzt die quadratische Gleichung
-$x^2+x=-2$ keine Lösung, denn die quadratische Ergänzung führt auf $x^2+x+\Mtfrac14=-\Mtfrac74$ bzw. $(x+\Mtfrac12)^2=-\Mtfrac74$ mit negativer rechter Seite.
+$x^2+x=-2$ keine Lösung, denn die quadratische Ergänzung führt auf $x^2+x+\Mtfrac14=-\Mtfrac74$ bzw. $(x+\Mtfrac12)^2=-\Mtfrac74$ mit negativer rechter Seite bei $a=1$.
 \end{MExample}
 
 \begin{MExercise}
-Bestimmen Sie die Lösungen dieser quadratischen Gleichungen über quadratische Ergänzung, nachdem Sie die Terme auf die linke Seite sortiert und normiert haben:
+Bestimmen Sie die Lösungen dieser quadratischen Gleichungen über quadratische Ergänzung, nachdem Sie die Terme auf die linke Seite sortiert und normiert (d.h. $a=1$ gewählt) haben:
 \begin{MExerciseItems}
 \item{$x^2=8x-1$ hat die Scheitelpunktform \MEquationItem{\MLSimplifyQuestion{20}{x^2-8*x+16}{5}{x}{5}{0}{MSPF1}}{\MLParsedQuestion{5}{15}{5}{GLD1}}.\\Die Lösungsmenge ist \MEquationItem{$\ML$}{\MLParsedQuestion{30}{4-sqrt(15),4+sqrt(15)}{5}{SQRT1}}.}
 \item{$x^2=2x+2+2x^2$ hat die Scheitelpunktform \MEquationItem{\MLSimplifyQuestion{20}{x^2+2*x+1}{5}{x}{5}{0}{MSPF2}}{\MLParsedQuestion{5}{-1}{5}{GLD2}}.\\Die Lösungsmenge ist \MEquationItem{$\ML$}{\MLParsedQuestion{30}{}{5}{SQRT2}.}}
