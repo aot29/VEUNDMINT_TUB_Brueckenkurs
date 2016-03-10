@@ -18,8 +18,8 @@ Dieses Modul besteht aus
 \begin{itemize}
 \item{dem Abschnitt \MNRef{M01_Zahlenbereiche}, \MSRef{M01_Zahlenbereiche}{Zahlen, Variablen, Terme},}
 \item{dem Abschnitt \MNRef{M01_Bruchrechnung}, \MSRef{M01_Bruchrechnung}{Bruchrechnung},}
-\item{dem Abschnitt \MNRef{M01_Potenzenwurzeln}, \MSRef{M01_Potenzenwurzeln}{Potenzen und Wurzeln},}
 \item{dem Abschnitt \MNRef{M01_Umformen}, \MSRef{M01_Umformen}{Umformen von Termen},}
+\item{dem Abschnitt \MNRef{M01_Potenzenwurzeln}, \MSRef{M01_Potenzenwurzeln}{Potenzen und Wurzeln},}
 \item{dem \MSRef{M01_Ausgangstest}{Abschlusstest}, \MNRef{M01_Ausgangstest}.}
 \end{itemize}
 
@@ -288,10 +288,10 @@ $\{x\in\R \MCondSetSep x< b\} = \MoIl[\left] {-}\infty\MIntvlSep b\MoIr[\right]$
 $\{x\in\R\} = \R = \MoIl[\left] {-}\infty\MIntvlSep \infty\MoIr[\right]$.
 
 Darüber hinaus sind folgende Bezeichnungen gebräuchlich:
-$\R^+=\MoIl[\left] 0\MIntvlSep \infty\MoIr[\right]$,  
-$\R_0^+= \left[ 0\MIntvlSep \infty\MoIr[\right]$,  
-$\R^-=\MoIl[\left] -\infty \MIntvlSep 0\MoIr[\right]$,  
-$\R_0^-=\MoIl[\left] -\infty \MIntvlSep 0\right]$.  
+$\R^{+}=\MoIl[\left] 0\MIntvlSep \infty\MoIr[\right]$,  
+${\R_{0}}^{+}= \left[ 0\MIntvlSep \infty\MoIr[\right]$,  
+$\R^{-}=\MoIl[\left] -\infty \MIntvlSep 0\MoIr[\right]$,  
+${\R_{0}}^{-}=\MoIl[\left] -\infty \MIntvlSep 0\right]$.  
 \end{MInfo}
 
 \end{MIntro}
@@ -1072,7 +1072,12 @@ Beispielsweise wird der Term $(x-1)\cdot (x-2)$ zu Null, falls $x=1$ oder $x=2$ 
 
 \begin{MInfo}
 Bei einer \MEntry{Summendarstellung}{Summendarstellung} ist Addition bzw. Subtraktion die zuletzt ausgeführte Operation. Wegen der Punkt-vor-Strich-Regel sind Terme ohne Klammern
-automatisch in dieser Form. In der Summendarstellung lässt sich das asymptotische Verhalten eines Ausdrucks besonders leicht ablesen, z.B. wird es bei Polynomen nur durch den
+automatisch in dieser Form. In der Summendarstellung lässt sich das asymptotische Verhalten eines Ausdrucks besonders leicht ablesen.
+Mit dem asymptotischen Verhalten einer Funktion wird beschrieben, wie sich
+die Funktion verhält, wenn man zu betragsmäßig immer größeren Werten der
+Variable $x$ bis an die im Unendlichen liegenden Grenzen des
+Definitionsbereichs herangeht.
+Bei Polynomen z.B. wird es nur durch den
 Term mit dem höchsten Exponenten festgelegt.
 \end{MInfo}
 
@@ -1096,13 +1101,24 @@ f(x)
 \end{MExample}
 
 \begin{MExercise}
-Multiplizieren Sie diese Terme vollständig aus und fassen Sie zusammen. Geben Sie das asymptotische Verhalten der Ausdrücke an:
+Multiplizieren Sie diese Terme vollständig aus und fassen Sie zusammen. Geben Sie das asymptotische Verhalten des Gesamtausdrucks an:
 \begin{MExerciseItems}
 \item{$f(x)\;=\;(3-x)(x+1)$ = \MLSimplifyQuestion{30}{(3-x)*(x+1)}{10}{x}{5}{1}{LSFF3}.
-\begin{MHint}{L"osung}$$(3-x)(x+1) \; = \; 3x + 3 -x^2 -x \;=\; 3 + 2x - x^2 $$\end{MHint}\\Das asymptotische Verhalten ist
+\begin{MHint}{L"osung}$$(3-x)(x+1) \; = \; 3x + 3 -x^2 -x \;=\; 3 + 2x - x^2 $$\end{MHint}\\
+%%Das asymptotische Verhalten ist
 \begin{center}
-$\displaystyle \lim_{x\rightarrow +\infty} f(x)\;=\;$\MLSimplifyQuestion{10}{-infty}{3}{infty}{5}{1}{LSFF4}\;\begin{MHint}{L"osung}$$\lim_{x\rightarrow +\infty} f(x) \; = \; -\infty $$\end{MHint}\; , \;\;  % Zusaetzliches Leerzeichen um Loesungen unterschiedlich zu machen
-$\displaystyle \lim_{x\rightarrow -\infty} f(x)\;=\;$\MLSimplifyQuestion{10}{-infty}{3}{infty}{5}{1}{LSFF5}\,\begin{MHint}{L"osung}$$\lim_{x\rightarrow -\infty} f(x) \; = \; -\infty $$\end{MHint}\: .
+%%$\displaystyle \lim_{x\rightarrow +\infty} f(x)\;=\;$
+Beschreibung des asymtotischen Verhaltens:\\ 
+Wenn $x$ gegen $\infty$ strebt, dann strebt $f(x)$ gegen
+\MLSimplifyQuestion{10}{-infty}{3}{infty}{5}{1}{LSFF4}\;. \begin{MHint}{L"osung}%
+Die Asymptotik kann, wenn sie sich in eindeutiger Weise ergibt, abkürzend mit dem Symbol \glqq{}lim\grqq{} bezeichnet werden:
+$$\lim_{x\rightarrow \infty} f(x) \; = \; -\infty \MDFPeriod$$\end{MHint}\\  % Zusaetzliches Leerzeichen um Loesungen unterschiedlich zu machen
+Wenn $x$ gegen $-\infty$ strebt, dann strebt $f(x)$ gegen
+%%$\displaystyle \lim_{x\rightarrow -\infty} f(x)\;=\;$
+\MLSimplifyQuestion{10}{-infty}{3}{infty}{5}{1}{LSFF5}\;. \\
+\begin{MHint}{L"osung}%
+In diesem Fall ergibt sich 
+$$\lim_{x\rightarrow -\infty} f(x) \; = \; -\infty \MDFPeriod$$\end{MHint}
 \end{center}
 \MInputHint{Unendliche Grenzwerte $\infty$ und Asymptoten können Sie als \texttt{unendlich} oder \texttt{infinity} eintippen,
 entsprechend \texttt{-unendlich} für $-\infty$.
@@ -1115,7 +1131,7 @@ Aufgabenteil überspringen.}
 \end{MExerciseItems}
 
 \begin{MHint}{Lösung}
-Ausmultiplizieren ergibt $f(x)=(3-x)(x+1) =-x^2+2x+3$. Wegen dem führenden Term $-x^2$ besitzt diese Funktion als Graph eine
+Ausmultiplizieren ergibt $f(x)=(3-x)(x+1) =-x^2+2x+3$. Wegen des führenden Terms $-x^2$ besitzt diese Funktion als Graph eine
 nach unten geöffnete Parabel mit den Asymptoten $-\infty$ in beide Richtungen:
 $$
 \lim_{x\rightarrow \infty} f(x) \;=\; -\infty \MDFPSpace, \MDFPaSpace \lim_{x\rightarrow -\infty} f(x) \;=\; -\infty\MDFPeriod 
