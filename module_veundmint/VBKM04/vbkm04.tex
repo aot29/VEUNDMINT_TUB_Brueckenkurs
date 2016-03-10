@@ -1736,13 +1736,34 @@ nachfolgende Graphik verdeutlicht.
 }
 \end{center}
 \begin{MExerciseItems}
-\item{Bestimmen Sie das Gleichungssystem für die Geradenparameter $b$ und $m$.}
-\item{Lösen Sie diese Gleichungssystem für $b$ und $m$. Für welche $\alpha$
+\item{Bestimmen Sie das Gleichungssystem für die Geradenparameter $b$ und $m$.
+\par
+Die erste Gleichung lautet \MEquationItem{$m\alpha+b$}{\MLSimplifyQuestion{15}{-2*(1+alpha)}{10}{alpha}{10}{2}{LGSPar1Gl1}};\\ % 513
+die zweite Gleichung lautet \MEquationItem{$m\beta+b$}{\MLSimplifyQuestion{15}{-1+beta}{10}{beta}{10}{2}{LGSPar1Gl2}}. \\ % 513
+\MInputHint{Die Konstanten $\alpha$ und $\beta$ müssen in der Lösung stehen bleiben; 
+für diese kann man \texttt{alpha} und \texttt{beta} eingeben.}
+}
+\item{Lösen Sie dieses Gleichungssystem für $b$ und $m$. Für welche $\alpha$
 und $\beta$ ergibt sich eine eindeutige, keine bzw. unendlich
-viele Lösungen?}
-\item{Was bedeuten die letzten beiden Fälle anschaulich?}
+viele Lösungen?
+\par
+Z.B. erhält man für den Fall $\alpha=-2$ und $\beta=2$ die
+Lösung \MEquationItem{$m$}{\MLParsedQuestion{6}{-1/4}{4}{LGSPar1B1m}}
+und \MEquationItem{$b$}{\MLParsedQuestion{6}{5/2}{4}{LGSPar1B1b}},
+für den Fall $\alpha=2$ und $\beta=-2$ ergibt sich die
+Lösung \MEquationItem{$m$}{\MLParsedQuestion{6}{-3/4}{4}{LGSPar1B2m}}
+und \MEquationItem{$b$}{\MLParsedQuestion{6}{-9/2}{4}{LGSPar1B2b}}.
+\par
+Das LGS besitzt unendlich viele Lösungen, falls
+\MEquationItem{$\alpha$}{\MLParsedQuestion{6}{-1/3}{4}{LGSPar1InfAlp}}
+und \MEquationItem{$\beta$}{\MLParsedQuestion{6}{-1/3}{4}{LGSPar1InfBet}} ist.\\
+Die zugehörigen Lösungen lassen sich parametrisieren mit $m=r$ und 
+\MEquationItem{$b$}{\MLSimplifyQuestion{10}{r/3-4/3}{10}{r}{10}{2}{LGSPar1Infb}}, $r\in\R$. % 513
+}
+\item{Was bedeuten die letzten beiden Fälle, d.h. keine bzw. unendlich
+viele Lösungen, anschaulich?}
 \end{MExerciseItems}
-
+%%
 \begin{MHint}{Lösung}
 \begin{MExerciseItems}
 \item{%
@@ -1755,7 +1776,7 @@ zu
 \[
   \begin{array}{rcll}
      m\alpha +b &=& -2(1+\alpha) & \mbox{Gl.}\MBlank (1)\MDFPSpace, \\[0.5ex]
-     m\beta +b &=& -1-\beta & \mbox{Gl.}\MBlank (2) \MDFPeriod
+     m\beta +b &=& -1+\beta & \mbox{Gl.}\MBlank (2) \MDFPeriod
   \end{array}
 \]
 }
@@ -1765,48 +1786,51 @@ dann erhält man
 \[
   \begin{array}{rcll}
      m\alpha +b &=& -2(1+\alpha) & \mbox{Gl.}\MBlank (1)\MDFPSpace, \\[0.5ex]
-     m(\beta-\alpha) &=& 1+2\alpha-\beta & \mbox{Gl.}\MBlank (2') \MDFPeriod
+     m(\beta-\alpha) &=& 1+2\alpha+\beta & \mbox{Gl.}\MBlank (2') \MDFPeriod
   \end{array}
 \]
 Das LGS liegt damit bereits in Dreiecksform vor.
 %
 \medskip\par\noindent
 %
-1. Für den Fall $\beta-\alpha \ne 0 \MBlank \Longleftrightarrow \MBlank
+1. Für den Fall $\beta-\alpha \ne 0 \MBlank \Leftrightarrow \MBlank
 \beta\ne\alpha$ kann Gl. $(2')$ durch $(\beta-\alpha)$ dividiert werden,
 womit man die Steigung $m$ zu
 \[
-  m=\frac{1+2\alpha-\beta}{\beta-\alpha}
+  m=\frac{1+2\alpha+\beta}{\beta-\alpha}
 \]
 erhält. Dieses Ergebnis kann man z.B. in die nach $b$ aufgelöste Gl. (1)
 einsetzen:
 \[
   b=-2(1+\alpha)-m\alpha=
-  -2(1+\alpha)-\frac{1+2\alpha-\beta}{\beta-\alpha}\alpha=
-  -\frac{2(1+\alpha)(\beta-\alpha)-1-2\alpha+\beta}{\beta-\alpha} \MDFPeriod
+  -2(1+\alpha)-\frac{1+2\alpha+\beta}{\beta-\alpha}\alpha
+%%  =-\frac{\alpha(1+2\alpha+\beta)+2(1+\alpha)(\beta-\alpha)}{\beta-\alpha}
+  \MDFPeriod
 \]
 Die so gefundenen Werte für $m$ und $b$ stellen eine eindeutige Lösung
 des betrachteten LGS dar.
 %
 \medskip\par\noindent
 %
-2. In diesem Fall gilt $\beta-\alpha = 0 \MBlank \Longleftrightarrow \MBlank
+2. In diesem Fall gilt $\beta-\alpha = 0 \MBlank \Leftrightarrow \MBlank
 \beta=\alpha$. Damit verschwindet die linke Seite von Gl. $(2')$. Dies macht
 die folgende weitere Fallunterscheidung nötig:
 %
 \smallskip\par\noindent
 %
-2a. Gilt nun für die rechte Seite von Gl. $(2')$ $1+2\alpha-\beta\ne 0$,
-dann besitzt das LGS keine Lösung, $\ML=\MEmptyset$.
+2a. Gilt nun für die rechte Seite von Gl. $(2')$ $1+2\alpha+\beta\ne 0$,
+dann besitzt das LGS keine Lösung, $\ML=\MEmptyset$. Setzt man noch
+$\beta=\alpha$ ein, dann erhält man $\beta=\alpha\ne -\frac{1}{3}$.
 %
 \smallskip\par\noindent
 2b. Verschwindet die rechte Seite von Gl. $(2')$, dann besteht das LGS
-faktisch nur noch aus Gl. (1). In diesem Fall kann man $m=\lambda$, 
+faktisch nur noch aus Gl. (1) mit $\beta=\alpha=-\frac{1}{3}$.
+In diesem Fall kann man $m=\lambda$, 
 $\lambda\in\R$, beliebig vorgeben, und $b$ ergibt sich direkt aus Gl. (1)
-zu $b =-\lambda\alpha -2(1+\alpha)$. Die Lösungsmenge stellt dich damit
+zu $b =\frac{1}{3}\lambda-\frac{4}{3}$. Die Lösungsmenge stellt sich damit
 wie folgt dar:
 \[
-  \ML = \left\{\MPointTwoAS{m=\lambda}{b=-\lambda\alpha -2(1+\alpha)} 
+  \ML = \left\{\MPointTwoAS{m=\lambda}{b=\frac{1}{3}\lambda-\frac{4}{3}} 
   \MCondSetSep \lambda\in\R\right\} \MDFPeriod
 \]
 }
@@ -1816,8 +1840,8 @@ der Ausgangsgeraden an den Stellen $\alpha$ und $\beta$, d.h.
 $y_1(\alpha)$ und $y_2(\beta)$, sodass in Gl. $(2')$ auf der rechten
 Seite die Differenz $y_2(\beta)-y_1(\alpha)$ steht. Im Fall 2.,
 $\beta=\alpha$, erhält man dann $y_2(\alpha)-y_1(\alpha)$. Das LGS
-hat also keine Lösung (Fall 2a), wenn dann $y_2(\alpha)-y_1(\alpha)\ne 0
-\MBlank \Longleftrightarrow \MBlank y_2(\alpha)\ne y_1(\alpha)$ gilt,
+hat also keine Lösung (Fall 2a), wenn dann $y_2(\alpha)-y_1(\alpha)\ne 0$
+$\Leftrightarrow$ $y_2(\alpha)\ne y_1(\alpha)$ gilt,
 die beiden Geraden also verschiedene $y$-Werte besitzen. Dahingegen
 existieren unendlich viele Lösungen (Fall 2b), wenn sich die beiden
 Ausgangsgeraden an der Stelle $\alpha$ schneiden.
@@ -1825,30 +1849,45 @@ Ausgangsgeraden an der Stelle $\alpha$ schneiden.
 \end{MExerciseItems}
 \end{MHint}
 \end{MExercise}
+
 \begin{MExercise}
 Bestimmen Sie für das folgende parameterabhängige LGS die Lösungsmenge 
 für alle $t\in\R$:
 \[
   \begin{array}{rcll}
-      x -y +tz&=& t & 
+      x -y +t z&=& t & 
 	  \mbox{Gl.}\MBlank (1)\MDFPSpace, \\[0.5ex]
-      tx + (1-t)y +(1+t^2)z&=& -1+t & 
+      t x + (1-t)y +(1+t^2)z&=& -1+t & 
 	  \mbox{Gl.}\MBlank (2)\MDFPSpace, \\[0.5ex]
       (1-t)x+(-2+t)y+(-1+t-t^2)z&=& t^2 & 
 	  \mbox{Gl.}\MBlank (3) \MDFPeriod
   \end{array}
 \]
+\par
+Das LGS besitzt Lösungen nur für folgende Werte des Parameters:
+$t\in\mbox{}$\MLParsedQuestion{12}{-1,1}{4}{LGSPar2PSolSet}. \\
+\MInputHint{Mengen können in der Form \texttt{$\lbrace$a;b;c;$\ldots\rbrace$} eingegeben werden. Die leere Menge kann als $\lbrace\rbrace$ eingegeben werden.}
+\par
+Für den kleinsten dieser Parameterwerte kann die Lösung angegeben werden durch:\\
+\MEquationItem{$x$}{\MLSimplifyQuestion{10}{-4}{10}{r}{10}{513}{LGSPar2LVx}},
+\MEquationItem{$y$}{\MLSimplifyQuestion{10}{-3-r}{10}{r}{10}{513}{LGSPar1LVy}},
+$z=r$, $r\in\R$.\\
+Für den größten dieser Parameterwerte kann die Lösung angegeben werden durch:\\
+\MEquationItem{$x$}{\MLSimplifyQuestion{10}{-2*r}{10}{r}{10}{513}{LGSPar2HVx}},
+\MEquationItem{$y$}{\MLSimplifyQuestion{10}{-1-r}{10}{r}{10}{513}{LGSPar1HVy}},
+$z=r$, $r\in\R$.
 \end{MExercise}
+
 \begin{MHint}{Lösung}
 In einem ersten Schritt kann man Gl. $(2)$ zu Gl. $(3)$ addieren und 
 damit Gl. $(3)$ ersetzen:
 \[
   \begin{array}{rcll}
-      x -y +tz&=& t & 
+      x -y +t z&=& t & 
 	  \mbox{Gl.}\MBlank (1)\MDFPSpace, \\[0.5ex]
-      tx + (1-t)y +(1+t^2)z&=& -1+t & 
+      t x + (1-t)y +(1+t^2)z&=& -1+t & 
 	  \mbox{Gl.}\MBlank (2)\MDFPSpace, \\[0.5ex]
-      x-y+tz&=& -1+t+t^2 & 
+      x-y+t z&=& -1+t+t^2 & 
 	  \mbox{Gl.}\MBlank (3') \MDFPeriod
   \end{array}
 \]
@@ -1857,9 +1896,9 @@ sich an, das Negative von Gl. $(1)$ zu Gl. $(3')$ zu addieren und damit
 Gl. $(3')$ zu ersetzen:
 \[
   \begin{array}{rcll}
-      x -y +tz&=& t & 
+      x -y +t z&=& t & 
 	  \mbox{Gl.}\MBlank (1)\MDFPSpace, \\[0.5ex]
-      tx + (1-t)y +(1+t^2)z&=& -1+t & 
+      t x + (1-t)y +(1+t^2)z&=& -1+t & 
 	  \mbox{Gl.}\MBlank (2)\MDFPSpace, \\[0.5ex]
       0 &=& -1+t^2 & 
 	  \mbox{Gl.}\MBlank ({3'}') \MDFPeriod
@@ -1870,7 +1909,7 @@ $(-t)$-fache von Gl. $(1)$ zu Gl. $(2)$ dazuaddiert und damit Gl. $(2)$
 ersetzt:
 \[
   \begin{array}{rcll}
-      x -y +tz&=& t & 
+      x -y +t z&=& t & 
 	  \mbox{Gl.}\MBlank (1)\MDFPSpace, \\[0.5ex]
       y + z&=& -1+t-t^2 & 
 	  \mbox{Gl.}\MBlank (2')\MDFPSpace, \\[0.5ex]
@@ -1891,7 +1930,7 @@ weiteren Vereinfachung,
   \end{array}
 \]
 Dieses äquivalente LGS besitzt nur dann eine Lösung, wenn auch Gl. $({3'}')$ 
-erfüllt ist, also $0=-1+t^2$ $\Longleftrightarrow \MBlank t^2=1$ gilt.
+erfüllt ist, also $0=-1+t^2$ $\Leftrightarrow$ $t^2=1$ gilt.
 In allen anderen Fällen ist die Lösungsmenge leer, d.h.
 \[
   \ML=\MEmptyset \MBlank\mbox{für}\MBlank t\in\R\MSetminus\{-1\MElSetSep 1\}
