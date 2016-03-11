@@ -1,6 +1,6 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
-\Mtikzexternalize
+%\Mtikzexternalize
 
 \begin{document}
 
@@ -2413,99 +2413,136 @@ woraus man die Lösung $s=-18$ und $t=10$ berechnet. Einsetzen in die dritte Komp
 \begin{MExercise}
 Geben Sie die im Diagramm dargestellten Pfeilklassen als Vektoren an: 
 
-\MUGraphics{vektoren1.png}{width=0.5\linewidth}{Pfeile in der Ebene}{width:400px}
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}[>=stealth]
+%Koordinatensystem
+\draw[->,color=black] (-3.5,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,2.5);
+\foreach \y in {-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north west] {$x$};
+\draw (-0.5,2.8) node[anchor=north west] {$y$};
+%Hilflinien
+\draw[color=gray, dotted] (-3,-1.5) -- (-3,2.5);
+\draw[color=gray, dotted] (-2,-1.5) -- (-2,2.5);
+\draw[color=gray, dotted] (-1,-1.5) -- (-1,2.5);
+\draw[color=gray, dotted] (1,-1.5) -- (1,2.5);
+\draw[color=gray, dotted] (2,-1.5) -- (2,2.5);
+\draw[color=gray, dotted] (3,-1.5) -- (3,2.5);
+\draw[color=gray, dotted] (-3.5,-1) -- (3.5,-1);
+\draw[color=gray, dotted] (-3.5,1) -- (3.5,1);
+\draw[color=gray, dotted] (-3.5,2) -- (3.5,2);
+%Pfeile
+\draw[color=red, ->, line width = 1.5pt] (-3,-1) -- (-2,1);
+\draw[color=blue, ->, line width = 1.5pt] (-1,0) -- (1,2);
+\draw[color=violet, ->, line width = 1.5pt] (0,0) -- (-1,2);
+\draw[color=green, ->, line width = 1.5pt] (2,0) -- (3,1);
+\draw[color=black, ->, line width = 1.5pt] (2,-1) -- (3,0);
+\end{tikzpicture}
+} 
+\end{center}
 
-Beachten Sie die Beschriftung der Achsen (vertikale Achse gehört
-zur ersten Komponente der Vektoren), 
-beispielsweise gehört zum roten Pfeil der Vektor $\MVector{1\\2}$.
+%\MUGraphics{vektoren1.png}{width=0.5\linewidth}{Pfeile in der Ebene}{width:400px}
+
+% Beachten Sie die Beschriftung der Achsen (vertikale Achse gehört
+% zur ersten Komponente der Vektoren), 
+% beispielsweise gehört zum roten Pfeil der Vektor $\MVector{1\\2}$.
 
 \begin{MExerciseItems}
-\item{Gelber Vektor: \MLFunctionQuestion{15}{(-1,2)}{5}{x}{5}{OR20}.} 
+\item{Roter Vektor: \MLFunctionQuestion{15}{(1,2)}{5}{x}{5}{OR20}.} 
+\item{Violetter Vektor: \MLFunctionQuestion{15}{(-1,2)}{5}{x}{5}{OR20}.} 
 \item{Blauer Vektor: \MLFunctionQuestion{15}{(2,2)}{5}{x}{5}{OR21}.} 
 \item{Grüner Vektor: \MLFunctionQuestion{15}{(1,1)}{5}{x}{5}{OR22}.} 
-\item{Schwarzer Vektor: \MLFunctionQuestion{15}{(1,1)}{5}{x}{5}{OR23}.\\
-\MInputHint{Vektoren können in der Form \texttt{(a;b)} eingegeben werden, zum Beispiel \texttt{(1;2)} für den roten Vektor.}} 
+\item{Schwarzer Vektor: \MLFunctionQuestion{15}{(1,1)}{5}{x}{5}{OR23}.}
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
-Der rote Pfeil bewegt um eine Einheit nach rechts und um zwei Einheiten nach oben, er wird also durch $\MVector{1\\2}$ beschrieben.
-Alternativ kann man auch Startpunkte der Pfeile von den Endpunkten abziehen, um den Vektor zu bestimmen. Dabei ist dann die Beschriftung
-der Achsen zu beachten:
-$$
-\MVector{-2\\1}-\MVector{-3\\-1} \;=\; \MVector{-2-(-3)\\1-(-1)} \;=\; \MVector{1\\2}\: .
-$$
-Ebenso erhält man $\MVector{-1\\2}$ für den gelben Vektor, $\MVector{2\\2}$ für den blauen und $\MVector{1\\1}$ für den grünen sowie den schwarzen Vektor.
-Dass die Pfeile im Diagramm verschiedene Start- und Endpunkte haben spielt keine Rolle, als Vektoren (Pfeilklassen) sind beide gleich.
-\end{MHint}
+\MInputHint{Vektoren können in der Form \texttt{(a;b)} eingegeben werden, zum Beispiel \texttt{(8;-9)} für den Vektor $\MVector{8\\-9}$.} 
+
+% \begin{MHint}{Lösung}
+% Der rote Pfeil bewegt um eine Einheit nach rechts und um zwei Einheiten nach oben, er wird also durch $\MVector{1\\2}$ beschrieben.
+% Alternativ kann man auch Startpunkte der Pfeile von den Endpunkten abziehen, um den Vektor zu bestimmen. Dabei ist dann die Beschriftung
+% der Achsen zu beachten:
+% $$
+% \MVector{-2\\1}-\MVector{-3\\-1} \;=\; \MVector{-2-(-3)\\1-(-1)} \;=\; \MVector{1\\2}\: .
+% $$
+% Ebenso erhält man $\MVector{-1\\2}$ für den gelben Vektor, $\MVector{2\\2}$ für den blauen und $\MVector{1\\1}$ für den grünen sowie den schwarzen Vektor.
+% Dass die Pfeile im Diagramm verschiedene Start- und Endpunkte haben spielt keine Rolle, als Vektoren (Pfeilklassen) sind beide gleich.
+% \end{MHint}
+
 \end{MExercise}
 
 \begin{MExercise}
 % Modifizierte  COSH-Frage
 Ein Sportflugzeug würde bei Windstille mit einer Geschwindigkeit von
 150 Kilometer pro Stunde genau nach Süden fliegen. Es wird jedoch von einem Wind,
-der mit der Geschwindigkeit 30 Kilometer pro Stunde aus Richtung Westen bläst,
+der mit der Geschwindigkeit 30 Kilometer pro Stunde aus Richtung Westen weht,
 abgetrieben. Stellen Sie die Geschwindigkeit des Flugzeugs als Summe von zwei Vektoren in der Ebene dar, wobei
 die zweite Komponente zur Nord-Süd-Achse (positive Werte für Norden) und die erste Komponente
 zur Ost-West-Achse gehört (positive Werte für Osten). Lassen Sie die Einheit (Kilometer pro Stunde)
 in der Rechnung weg:
 \begin{MExerciseItems}
-\item{Bei Windstille ist die Geschwindigkeit $\MVector{0\\-150}$.}
-\item{Der Wind verursacht eine zusätzliche Geschwindigkeit von \MLFunctionQuestion{15}{(30,0)}{5}{x}{5}{OR3}.\\
-\MInputHint{Vektoren können in der Form \texttt{(a;b)} eingegeben werden, die Geschwindigkeit bei Windstille wäre
-zum Beispiel \texttt{(0;-150)}.}
-}
+\item{Bei Windstille ist die Geschwindigkeit \MLFunctionQuestion{15}{(0,-150)}{5}{x}{5}{OR0}.}
+\item{Der Wind verursacht eine zusätzliche Geschwindigkeit von \MLFunctionQuestion{15}{(30,0)}{5}{x}{5}{OR3}.}
 \item{Das abgetriebene Flugzeug hat insgesamt den Geschwindigkeitsvektor \MLFunctionQuestion{15}{(30,-150)}{5}{x}{5}{OR1}.}
 \item{Die Länge dieses Vektors (der Betrag der Geschwindigkeit) ist \MLParsedQuestion{15}{sqrt(30*30+150*150)}{5}{OR2}.\\
 \MInputHint{Wurzelausdrücke müssen Sie nicht auswerten.}}
 \end{MExerciseItems}
-
-\ \\
-\begin{MHint}{Lösung}
-Der Wind verursacht eine zusätzliche Geschwindigkeit von $\MVector{30\\0}$, damit ergibt sich die Geschwindigkeitsvektor
-$$
-\MVector{0\\-150}+\MVector{30\\0} \;=\; \MVector{30\\-150}
-$$
-durch komponentenweises Addieren der Vektoren.
-Die Länge dieses Vektors ist
-$$
-\sqrt{30^2+(-150)^2} \;=\; \sqrt{23400}\: .
-$$
-Als Zahlenwert ist das gerundet $152.9706$.
-\end{MHint}
+\MInputHint{Vektoren können in der Form \texttt{(a;b)} eingegeben werden, zum Beispiel \texttt{(8;-9)} für den Vektor $\MVector{8\\-9}$.} 
+% \begin{MHint}{Lösung}
+% Der Wind verursacht eine zusätzliche Geschwindigkeit von $\MVector{30\\0}$, damit ergibt sich die Geschwindigkeitsvektor
+% $$
+% \MVector{0\\-150}+\MVector{30\\0} \;=\; \MVector{30\\-150}
+% $$
+% durch komponentenweises Addieren der Vektoren.
+% Die Länge dieses Vektors ist
+% $$
+% \sqrt{30^2+(-150)^2} \;=\; \sqrt{23400}\: .
+% $$
+% Als Zahlenwert ist das gerundet $152.9706$.
+% \end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
-Gegeben sind die Punkte $P=(3|4)$, $Q=(1|0)$ und $R=(-2|1)$ in der Ebene. Berechnen Sie die folgenden Vektoren:
+Gegeben sind die Punkte $P=\MPointTwo{3}{4}$, $Q=\MPointTwo{1}{0}$ und $R=\MPointTwo{-2}{1}$ in der Ebene. Berechnen Sie die folgenden Vektoren:
 \begin{MExerciseItems}
 \item{\MEquationItem{$\MDVec{P Q}$}{\MLFunctionQuestion{15}{(-2,-4)}{5}{x}{5}{OR4}}.}
+\item{\MEquationItem{$\MDVec{Q R}$}{\MLFunctionQuestion{15}{(-3,1)}{5}{x}{5}{OR4a}}.}
+\item{\MEquationItem{$\MDVec{R R}$}{\MLFunctionQuestion{15}{(0,0)}{5}{x}{5}{OR4b}}.}
+\item{\MEquationItem{$\MDVec{Q P}$}{\MLFunctionQuestion{15}{(2,4)}{5}{x}{5}{OR4c}}.}
+\item{\MEquationItem{$\MDVec{R P}$}{\MLFunctionQuestion{15}{(5,3)}{5}{x}{5}{OR4d}}.}
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
-Die Richtungsvektoren ergeben sich aus der Differenz zwischen End- und Startkoordinaten der Punkte:
-\begin{eqnarray*}
-\MDVec{P Q} &=& \MVector{1\\0}-\MVector{3\\4} \;=\; \MVector{-2\\-4}\: ,\ \\
-\end{eqnarray*}
-\end{MHint}
+% \begin{MHint}{Lösung}
+% Die Richtungsvektoren ergeben sich aus der Differenz zwischen End- und Startkoordinaten der Punkte:
+% \begin{eqnarray*}
+% \MDVec{P Q} &=& \MVector{1\\0}-\MVector{3\\4} \;=\; \MVector{-2\\-4}\: ,\ \\
+% \end{eqnarray*}
+% \end{MHint}
 \end{MExercise}
 
 
 \begin{MExercise}
-Gegeben sind die Punkte $P=(1|2|3)$, $Q=(3|0|0)$ und $R=(-1|2|2)$ im Raum. Berechnen Sie die folgenden Vektoren:
+Gegeben sind die Punkte $P=\MPointThree{1}{2}{3}$, $Q=\MPointThree{3}{0}{0}$ und $R=\MPointThree{-1}{2}{2}$ im Raum. Berechnen Sie die folgenden Vektoren:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\MDVec{P Q}$}{\MLFunctionQuestion{15}{(-2,-2,-3)}{5}{x}{5}{FKT1}}.}
+\item{\MEquationItem{$\MDVec{P Q}$}{\MLFunctionQuestion{15}{(2,-2,-3)}{5}{x}{5}{FKT1}}.}
 \item{\MEquationItem{$\MDVec{R Q}$}{\MLFunctionQuestion{15}{(4,-2,-2)}{5}{x}{5}{FKT2}}.}
 \end{MExerciseItems}
 
-Bestimmen Sie den Mittelpunkt dieser Vektoren: \MEquationItem{$\MVec{m}$}{\MLFunctionQuestion{15}{(1,1,1)}{5}{x}{5}{FKT3}}.
+Bestimmen Sie den Ortsvektor $\MDVec{M}$ des Mittelpunkts $M$ der Strecke $\overline{P R}$:\ \MEquationItem{$\MDVec{M}$}{\MLFunctionQuestion{15}{(0,2,2.5)}{5}{x}{5}{FKT3}}.
 % LOESUNG STIMMT NOCH NICHT XXX !!
 \end{MExercise}
 
 \begin{MExercise}
-Finden Sie den Schnittpunkt der beiden in Punkt-Richtungsform gegebenen Geraden
+Finden Sie den Schnittpunkt $S$ der beiden in Punkt-Richtungsform gegebenen Geraden
 $$
-\MVec{x} \;=\; \MVector{1\\1\\2}+\alpha\cdot \MVector{1\\1\\1}\;\; \text{und}\;\;
-\MVec{x} \;=\; \MVector{0\\1\\-2}+\beta\cdot \MVector{-2\\-4\\4}\: .
+\MVec{r} \;=\; \MVector{1\\1\\2}+\alpha\cdot \MVector{1\\1\\1};\MDFPSpace\alpha\in\R\;\; \text{und}\;\;
+\MVec{r} \;=\; \MVector{0\\1\\-2}+\beta\cdot \MVector{-2\\-4\\4};\MDFPSpace\beta\in\R\: .
 $$
 \begin{MExerciseItems}
-\item{Der Schnittpunkt (als Vektor) ist \MLFunctionQuestion{15}{(-1,-1,0)}{5}{x}{5}{FKT4}.}
+\item{Der Ortsevktor des Schnittpunkts ist $\MDVec{S}=$\MLFunctionQuestion{15}{(-1,-1,0)}{5}{x}{5}{FKT4}.}
 \item{Man erh\"alt ihn als Punkt der ersten Geraden f\"ur den Parameter \MEquationItem{$\alpha$}{\MLParsedQuestion{7}{-2}{3}{PARSEDQUEST10}}.}
 \item{Man erh\"alt ihn als Punkt der zweiten Geraden f\"ur den Parameter \MEquationItem{$\beta$}{\MLParsedQuestion{7}{1/2}{3}{PARSEDQUEST11}}.}
 \end{MExerciseItems}
