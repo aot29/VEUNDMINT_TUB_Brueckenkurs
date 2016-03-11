@@ -2116,7 +2116,8 @@ führt in der ersten und dritten Komponenten auf $\nu=-1$, womit in der zweiten K
 \MLabel{VBKM10_EbenenRaum}
 \MDeclareSiteUXID{VBKM10_EbenenRaum}
 
-Startet man mit einem Vektor $\MVec{u}$ im Raum und betrachtet alle Vielfachen $\lambda\MVec{u}$, $\lambda\in\R$ dieses Vektors, so erhält man alle Vektoren die kollinear zu $\MVec{u}$ sind (vgl. \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor und interpretiert als Ortsvektoren bilden alle diese Vektoren dann die Parameterform einer Geraden, wie sie im vorigen Abschnitt \MNRef{VBKM10_GeradenEbene} untersucht wurde. Aufbauend darauf ist es nun natürlich zu fragen, was man erhält, wenn man mit zwei festen (aber \textit{nicht} kollinearen) Vektoren $\MVec{u}$ und $\MVec{v}$ startet und dann alle möglichen Vektoren betrachtet, die zu diesen komplanar sind, also alle Vektoren die man durch $\lambda\MVec{u}+\mu\MVec{v}$; $\lambda,\mu\in\R$ erhält (vgl. \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor ergibt dies eine natürliche Verallgemeinerung des Konzepts der Parameterform einer Gerade, nämlich die Parameterform einer Ebene im Raum, welche in der unten stehenden Infobox beschrieben wird.  
+Startet man mit einem Vektor $\MVec{u}$ im Raum und betrachtet alle Vielfachen $\lambda\MVec{u}$, $\lambda\in\R$ dieses Vektors, so erhält man alle Vektoren die kollinear zu $\MVec{u}$ sind (vgl. Infobox \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor -- und interpretiert als Ortsvektoren -- bilden alle diese Vektoren dann die Parameterform einer Geraden, wie sie im vorigen Abschnitt \MNRef{VBKM10_GeradenEbene} untersucht wurde. Aufbauend darauf ist es nun natürlich zu fragen, was man erhält, wenn man mit zwei festen (aber \textit{nicht} kollinearen) Vektoren $\MVec{u}$ und $\MVec{v}$ startet und dann alle möglichen Vektoren betrachtet, die zu diesen komplanar sind, also alle Vektoren die man durch $\lambda\MVec{u}+\mu\MVec{v}$; $\lambda,\mu\in\R$ erhält (vgl. wieder Infobox \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor ergibt dies eine Verallgemeinerung des Konzepts der Parameterform einer Gerade, nämlich die Parameterform einer Ebene im Raum, welche in der unten stehenden Infobox 
+beschrieben wird.  
 
 Für Ebenen werden für gewöhnlich Großbuchstaben ($E$, $F$, $G$, ...) als Variablen verwendet. Natürlich ist das Konzept einer Ebene nur im $\R^3$ sinnvoll.
 
@@ -2158,7 +2159,7 @@ Hierbei werden $\lambda$ und $\mu$ als \textbf{Parameter}, $\MVec{a}$ als \MEntr
 \end{center}
 \end{MInfo}
 
-Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Abschnitt \MNRef{VBKM10_GeradenEbene}), so legen drei gegebene Punkte im Raum eine Ebene eindeutig fest. Aus drei gegebenen Punkten kann relativ einfach die Parameterform der zugehörigen Ebene bestimmt werden. Die Punkt-Richtungsform einer Ebene ist -- wie auch diejenige einer Geraden -- für eine bestimmte Ebene nicht eindeutig. Es gibt immer viele gleichwertige Punkt-Richtungsformen um eine Ebene darzustellen. Das folgende Beispiel zeigt einige typische Anwendungen.
+Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Abschnitt \MNRef{VBKM10_GeradenEbene}), so legen drei gegebene Punkte im Raum eine Ebene eindeutig fest. Aus drei gegebenen Punkten kann relativ einfach die Parameterform der zugehörigen Ebene bestimmt werden. Die Punkt-Richtungsform einer Ebene ist -- wie auch diejenige einer Geraden -- für eine gegebene Ebene nicht eindeutig. Es gibt immer viele gleichwertige Punkt-Richtungsformen um eine Ebene darzustellen. Das folgende Beispiel zeigt einige typische Anwendungen.
 
 \begin{MExample}
 \begin{itemize}
@@ -2166,9 +2167,9 @@ Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Absc
  \[
   E\colon \MVec{r}=\MVec{a}+\lambda\MVec{u}+\mu\MVec{v}=\MVector{0\\1\\0}+\lambda\MVector{1\\0\\0}+\mu\MVector{0\\0\\1};\MDFPSpace\lambda,\mu\in\R,
  \]
- in Parameterform, die in der Höhe $1$ parallel zur $xz$-Ebene im Koordinatensystem liegt:
+ in Parameterform, die in der Höhe $1$ parallel zur $x z$-Ebene im Koordinatensystem liegt:
  
- Bild: TODO
+ (Diese Abbildung erscheint in Kürze.)
  
  Die oben angegebene Parameterform für $E$ ist nicht die einzig mögliche. Jeder andere Punkt in $E$ ist ebenfalls als Aufpunkt möglich. Zum Beispiel liegt der Punkt, welcher durch den Ortsvektor $\MVec{a}^\prime=\MVector{1\\1\\1}$ gegeben ist in $E$, denn es gilt für $\lambda=\mu=1$:
  \[
@@ -2178,7 +2179,7 @@ Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Absc
  \[
   E\colon \MVec{r}=\MVec{a}^\prime+s\MVec{u}^\prime+t\MVec{v}^\prime=\MVector{1\\1\\1}+s\MVector{1\\0\\1}+t\MVector{1\\0\\-1};\MDFPSpace s,t\in\R,
  \]
- gegeben.
+ möglich.
  \item Gegeben sind die drei Punkte $A=\MPointThree{1}{0}{-2}$, $B=\MPointThree{4}{1}{2}$ und $C=\MPointThree{0}{2}{1}$. Es ist eine Parameterformen der Ebene $F$ anzugeben, die durch diese drei Punkte festgelegt wird.
  
  Einer der drei Punkte, zum Beispiel $A$, wird als Aufpunkt benutzt. Dann ist $\MDVec{A}=\MVector{1\\0\\-2}$ der Aufpunktvektor. Als Richtungsvektoren dienen dann die Verbindungsvektoren vom Aufpunkt zu den anderen beiden Punkten:
@@ -2194,15 +2195,15 @@ Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Absc
  \]
  eine korrekte Darstellung von $F$ in Parameterform.
   
- Bild: TODO
+ (Diese Abbildung erscheint in Kürze.)
  
- \item Von zwei Punkten $P=\MPointThree{1}{2}{3}$ und $Q=\MPointThree{2}{6}{6}$ ist zu überprüfen, ob sie sich in der Ebene $G$, die in Parameterform durch
+ \item Von zwei Punkten $P=\MPointThree{1}{2}{3}$ und $Q=\MPointThree{2}{6}{6}$ ist zu überprüfen, ob sie in der Ebene $G$, die in Parameterform durch
  \[
   G\colon\MVec{r}=\MVector{0\\3\\2}+\mu\MVector{1\\2\\3}+\nu\MVector{0\\1\\2};\MDFPSpace\mu,\nu\in\R
  \]
- gegeben ist, befinden.
+ gegeben ist, liegen.
  
- Damit $P$ bzw. $Q$ in $G$ liegen müssen sich ihre Ortsvektoren jeweils für bestimmte Parameterwerte $\mu$ und $\nu$ als Ortsvektoren ergeben, es müsste also $\MDVec{P}=\MVec{r}$ bzw. $\MDVec{Q}=\MVec{r}$ für jeweils für geeignete $\mu$ und $\nu$ gelten. Es ergibt sich für $P$:
+ Damit $P$ bzw. $Q$ in $G$ liegen müssen sich ihre Ortsvektoren jeweils für bestimmte Parameterwerte $\mu$ und $\nu$ als Ortsvektoren ergeben, es müsste also $\MDVec{P}=\MVec{r}$ bzw. $\MDVec{Q}=\MVec{r}$ für jeweils geeignete $\mu$ und $\nu$ gelten. Es ergibt sich für $P$:
  \[
   \MDVec{P}=\MVector{1\\2\\3}=\MVector{0\\3\\2}+\mu\MVector{1\\2\\3}+\nu\MVector{0\\1\\2}=\MVector{\mu\\3+2\mu+\nu\\2+3\mu+2\nu}\MDFPeriod
  \]
@@ -2228,12 +2229,12 @@ Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Absc
  \]
  führt. Hier ergibt sich also kein Widerspruch, sondern es stellt sich heraus, dass genau die Parameterwerte $\mu=2$ und $\nu=-1$ den Ortsvektor $\MDVec{Q}$ liefern. Somit liegt $Q$ in $G$.
  
- Bild: TODO
+ (Diese Abbildung erscheint in Kürze.)
  
 \end{itemize}
 \end{MExample}
 
-Neben der Möglichkeit über drei feste Punkte, kann eine Ebene im Raum auch durch eine Gerade und einen Punkt, der nicht auf der Gerade liegt, festgelegt werden. Das folgende Beispiel zeigt, wie dies auf den Fall von drei gegebenen Punkten zurückgeführt werden kann.  
+Neben der Möglichkeit mittels dreier fester Punkte, kann eine Ebene im Raum auch durch eine Gerade und einen Punkt, der nicht auf der Gerade liegt, festgelegt werden. Das folgende Beispiel zeigt, wie dies auf den Fall von drei gegebenen Punkten zurückgeführt werden kann.  
 
 \begin{MExample}
 Gegeben ist der Punkt $P=\MPointThree{2}{1}{-3}$ und die Gerade $g$ in Parameterform durch
@@ -2244,7 +2245,7 @@ Der Punkt $P$ befindet sich nicht auf $g$, da es keinen Parameter $t\in\R$ gibt,
 \[
  \MDVec{P}=\MVector{2\\1\\-3}=\MVector{0\\-1\\0}+t\MVector{2\\0\\-1}=\MVector{2t\\-1\\-t}
 \]
-gilt, denn schon die zweite Komponente dieser Vektorgleichung enthält den Widerspruch $1=-1$. So legen der Punkt $P$ und die Gerade $g$ eine Ebene $E$ eindeutig fest, die sowohl $P$ als auch $g$ enthält. Eine Parameterform dieser Ebene erhält man indem man sich zum Punkt $P$, der als Aufpunkt benutzt werden kann, noch zwei weitere Punkte auf $g$ wählt und dann genaus so wie im obigen Beispiel bei gegebenen drei Punkten vorgeht. Folglich ist hier der Aufpunktvektor
+gilt, denn schon die zweite Komponente dieser Vektorgleichung enthält den Widerspruch $1=-1$. So legen der Punkt $P$ und die Gerade $g$ eine Ebene $E$ eindeutig fest, die sowohl $P$ als auch $g$ enthält. Eine Parameterform dieser Ebene erhält man indem man sich zum Punkt $P$, der als Aufpunkt benutzt werden kann, noch zwei weitere Punkte auf $g$ wählt und dann genauso wie im obigen Beispiel bei gegebenen drei Punkten vorgeht. Folglich ist hier der Aufpunktvektor
 \[
  \MDVec{P}=\MVector{2\\1\\-3}
 \]
@@ -2258,18 +2259,18 @@ Die Wahl $t=1$ führt auf
 \]
 Damit ergeben sich die Richtungvektoren
 \[
- \MDVec{P Q_1}=\MDVec{Q}_1 - \MDVec{P} = \MVector{0\\-1\\0} - \MVector{2\\1\\-3} = \MVector{-2\\-2\\3}
+ \MDVec{P Q}_1=\MDVec{Q}_1 - \MDVec{P} = \MVector{0\\-1\\0} - \MVector{2\\1\\-3} = \MVector{-2\\-2\\3}
 \]
 und
 \[
- \MDVec{P Q_2}=\MDVec{Q}_2 - \MDVec{P} = \MVector{2\\-1\\-1} - \MVector{2\\1\\-3} = \MVector{0\\-2\\2}.
+ \MDVec{P Q}_2=\MDVec{Q}_2 - \MDVec{P} = \MVector{2\\-1\\-1} - \MVector{2\\1\\-3} = \MVector{0\\-2\\2}.
 \]
 Somit lautet eine Punkt-Richtungsform der Ebene $E$:
 \[
  E\colon\MVec{r}=\MVector{2\\1\\-3}+v\MVector{-2\\-2\\3}+w\MVector{0\\-2\\2};\MDFPSpace v,w\in\R.
 \]
 
-Bild: TODO
+(Diese Abbildung erscheint in Kürze.)
 \end{MExample}
 
 Weitere Lagebeziehungen von Ebenen und Geraden -- sowie daraus abgeleitet weitere Daten mit Hilfe derer eine Ebenen eindeutig festgelegt werden kann -- werden im folgenden Abschnitt \MNRef{VBKM10_Lagebeziehung} untersucht.
@@ -2324,9 +2325,9 @@ Völlig analog für den zweiten Vektor:
 \[
  \MVector{5\\z\\-4}=a\MVector{3\\-1\\2}+b\MVector{-1\\-2\\3}=\MVector{3a-b\\-a-2b\\2a+3b}\MDFPeriod
 \]
-Man extrahiert:
+Man extrahiert
 \[
- 5=3a-b\MDFPaSpace\textrm{und}\MDFPaSpace -4=2a+3b,
+ 5=3a-b\MDFPaSpace\textrm{und}\MDFPaSpace -4=2a+3b
 \]
 und berechnet $a=1$ sowie $b=-2$, was auf 
 \[
@@ -2364,11 +2365,11 @@ und
 \[
  \MDVec{R}=\MVec{r}\MDFPSpace\Leftrightarrow\MDFPSpace\MVector{-3\\2\\j}=\MVector{3+2s+3t\\s+2t\\2+7s+5t}
 \]
-führen jeweils auf ein lineares Gleichungssystem in den Parametern $s$, $t$ und $h$ bzw. $i$ bzw. $j$, das mit den Methoden aus Abschnitt \MNRef{M04_3_Unbekannte} gelöst werden kann.
+führen jeweils auf ein lineares Gleichungssystem in den Parametern $s$, $t$ und $h$ bzw. $i$ bzw. $j$, das jeweils mit den Methoden aus Abschnitt \MNRef{M04_3_Unbekannte} gelöst werden kann.
 
 Für $P$ ergibt sich: Die zweite und dritte Komponente bilden zwei lineare Gleichungen mit den zwei Unbekannten $s$ und $t$ der Form
 \[
- 2=s+2t\MDFPaSpace\textrm{und}\MDFPaSpace -4=7s+5t
+ 2=s+2t\MDFPaSpace\textrm{und}\MDFPaSpace -4=7s+5t,
 \]
 woraus man die Lösung $s=-2$ und $t=2$ berechnet. Einsetzen in die erste Komponente führt auf
 \[
@@ -2376,7 +2377,7 @@ woraus man die Lösung $s=-2$ und $t=2$ berechnet. Einsetzen in die erste Kompone
 \]
 Für $Q$ ergibt sich: Die erste und dritte Komponente bilden zwei lineare Gleichungen mit den zwei Unbekannten $s$ und $t$ der Form
 \[
- -2=2s+3t\MDFPaSpace\textrm{und}\MDFPaSpace 4=7s+5t
+ -2=2s+3t\MDFPaSpace\textrm{und}\MDFPaSpace 4=7s+5t,
 \]
 woraus man die Lösung $s=2$ und $t=-2$ berechnet. Einsetzen in die zweite Komponente führt auf
 \[
@@ -2384,7 +2385,7 @@ woraus man die Lösung $s=2$ und $t=-2$ berechnet. Einsetzen in die zweite Kompon
 \]
 Für $R$ ergibt sich: Die erste und zweite Komponente bilden zwei lineare Gleichungen mit den zwei Unbekannten $s$ und $t$ der Form
 \[
- -6=2s+3t\MDFPaSpace\textrm{und}\MDFPaSpace 2=s+2t
+ -6=2s+3t\MDFPaSpace\textrm{und}\MDFPaSpace 2=s+2t,
 \]
 woraus man die Lösung $s=-18$ und $t=10$ berechnet. Einsetzen in die dritte Komponente führt auf
 \[
