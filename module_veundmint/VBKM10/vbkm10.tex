@@ -1,6 +1,6 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
-%\Mtikzexternalize
+\Mtikzexternalize
 
 \begin{document}
 
@@ -2116,7 +2116,8 @@ führt in der ersten und dritten Komponente auf $\nu=-1$, womit in der zweiten Ko
 \MLabel{VBKM10_EbenenRaum}
 \MDeclareSiteUXID{VBKM10_EbenenRaum}
 
-Startet man mit einem Vektor $\MVec{u}$ im Raum und betrachtet alle Vielfachen $\lambda\MVec{u}$, $\lambda\in\R$ dieses Vektors, so erhält man alle Vektoren die kollinear zu $\MVec{u}$ sind (vgl. Infobox \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor -- und interpretiert als Ortsvektoren -- bilden alle diese Vektoren dann die Parameterform einer Geraden, wie sie im vorigen Abschnitt \MNRef{VBKM10_GeradenEbene} untersucht wurde. Aufbauend darauf ist es nun natürlich zu fragen, was man erhält, wenn man mit zwei festen (aber \textit{nicht} kollinearen) Vektoren $\MVec{u}$ und $\MVec{v}$ startet und dann alle möglichen Vektoren betrachtet, die zu diesen komplanar sind, also alle Vektoren die man durch $\lambda\MVec{u}+\mu\MVec{v}$; $\lambda,\mu\in\R$ erhält (vgl. wieder Infobox \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor ergibt dies eine Verallgemeinerung des Konzepts der Parameterform einer Gerade, nämlich die Parameterform einer Ebene im Raum, welche in der unten stehenden Infobox 
+Startet man mit einem Vektor $\MVec{u}$ im Raum und betrachtet alle Vielfachen $\lambda\MVec{u}$, $\lambda\in\R$ dieses Vektors, so erhält man alle Vektoren die kollinear zu $\MVec{u}$ sind (vgl. Infobox \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor -- und interpretiert als Ortsvektoren -- bilden alle diese Vektoren dann die Parameterform einer Geraden, wie sie im vorigen Abschnitt \MNRef{VBKM10_GeradenEbene} untersucht wurde. Aufbauend darauf ist es nun natürlich zu fragen, was man erhält, wenn man mit zwei festen (aber \textit{nicht} kollinearen) Vektoren $\MVec{u}$ und $\MVec{v}$ startet und dann alle möglichen Vektoren betrachtet, die zu diesen komplanar sind, also alle Vektoren die man durch $\lambda\MVec{u}+\mu\MVec{v}$; $\lambda,\mu\in\R$ erhält (vgl. wieder Infobox \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor ergibt dies eine Verallgemeinerung des Konzepts der Parameterform einer Gerade, nämlich die Parameterform einer Ebene im Raum, welche in der unten 
+stehenden Infobox 
 beschrieben wird.  
 
 Für Ebenen werden für gewöhnlich Großbuchstaben ($E$, $F$, $G$, ...) als Variablen verwendet. Natürlich ist das Konzept einer Ebene nur im $\R^3$ sinnvoll.
@@ -2132,31 +2133,34 @@ oft kurz geschrieben als
 \]
 Hierbei werden $\lambda$ und $\mu$ als \textbf{Parameter}, $\MVec{a}$ als \MEntry{Aufpunktvektor}{Aufpunktvektor (einer Ebene)} und $\MVec{u},\MVec{v}\neq\MDVec{O}$ als \MEntry{Richtungsvektoren}{Richtungsvektoren (einer Ebene)} der Ebene bezeichnet. Die Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ sind dabei \textit{nicht} kollinear. Die Ortsvektoren $\MVec{r}$ zeigen dann zu den einzelnen Punkten in der Ebene. Der Aufpunktvektor $\MVec{a}$ ist der Ortsvektor eines festen Punktes auf der Geraden, der als \MEntry{Aufpunkt}{Aufpunkt (einer Ebene)} bezeichnet wird:
 
-\begin{center}
-\MTikzAuto{%
-\begin{tikzpicture}[>=stealth]
+% \begin{center}
+% \MTikzAuto{%
+% \begin{tikzpicture}[>=stealth]
+% 
+% % The axes
+% \draw[->] (xyz cs:x=-3.5) -- (xyz cs:x=3.5) node[above] {\footnotesize $x$};
+% \draw[->] (xyz cs:y=-3.5) -- (xyz cs:y=3.5) node[right] {\footnotesize $y$};
+% \draw[->] (xyz cs:z=-3.5) -- (xyz cs:z=3.5) node[left] {\footnotesize $z$};
+% % The ticks
+% \foreach \coo in {-3,-2,-1,1,2,3}
+% {
+%   \draw (\coo,-3pt) -- (\coo,3pt) node[below=4pt] {\footnotesize \coo};
+%   \draw (-3pt,\coo) -- (3pt,\coo) node[left=4pt] {\footnotesize \coo};
+%   \draw (xyz cs:y=-0.1pt,z=\coo) -- (xyz cs:y=0.1pt,z=\coo) node[below=3pt] {\scriptsize \coo};
+% }
+% \draw[color=blue,->,line width = 0.8pt] (0,0,0) -- (2,1,0);
+% \draw[color=violet,->,line width=0.8pt] (2,1,0) -- (2,3,1);
+% \draw[color=green,->,line width=0.8pt] (2,1,0) -- (3,2,-1);
+% % \draw[color=red] (3,3,-1) node[below] {\scriptsize $g$};
+% % \draw[color=blue] (0.25,0.4,0.25) node[left] {\scriptsize $\MVec{a}$};
+% % \draw[color=violet] (1,1.5,0.375) node[above] {\scriptsize $\lambda\MVec{u}$};
+% % \draw[color=red] (0.875,1,-0.125) node[right] {\scriptsize $\MVec{r}$};
+% \end{tikzpicture}
+% }
+% \end{center}
 
-% The axes
-\draw[->] (xyz cs:x=-3.5) -- (xyz cs:x=3.5) node[above] {\footnotesize $x$};
-\draw[->] (xyz cs:y=-3.5) -- (xyz cs:y=3.5) node[right] {\footnotesize $y$};
-\draw[->] (xyz cs:z=-3.5) -- (xyz cs:z=3.5) node[left] {\footnotesize $z$};
-% The ticks
-\foreach \coo in {-3,-2,-1,1,2,3}
-{
-  \draw (\coo,-3pt) -- (\coo,3pt) node[below=4pt] {\footnotesize \coo};
-  \draw (-3pt,\coo) -- (3pt,\coo) node[left=4pt] {\footnotesize \coo};
-  \draw (xyz cs:y=-0.1pt,z=\coo) -- (xyz cs:y=0.1pt,z=\coo) node[below=3pt] {\scriptsize \coo};
-}
-\draw[color=blue,->,line width = 0.8pt] (0,0,0) -- (2,1,0);
-\draw[color=violet,->,line width=0.8pt] (2,1,0) -- (2,3,1);
-\draw[color=green,->,line width=0.8pt] (2,1,0) -- (3,2,-1);
-% \draw[color=red] (3,3,-1) node[below] {\scriptsize $g$};
-% \draw[color=blue] (0.25,0.4,0.25) node[left] {\scriptsize $\MVec{a}$};
-% \draw[color=violet] (1,1.5,0.375) node[above] {\scriptsize $\lambda\MVec{u}$};
-% \draw[color=red] (0.875,1,-0.125) node[right] {\scriptsize $\MVec{r}$};
-\end{tikzpicture}
-}
-\end{center}
+(Diese Abbildung erscheint in Kürze.)
+
 \end{MInfo}
 
 Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Abschnitt \MNRef{VBKM10_GeradenEbene}), so legen drei gegebene Punkte im Raum eine Ebene eindeutig fest. Aus drei gegebenen Punkten kann relativ einfach die Parameterform der zugehörigen Ebene bestimmt werden. Die Punkt-Richtungsform einer Ebene ist -- wie auch diejenige einer Geraden -- für eine gegebene Ebene nicht eindeutig. Es gibt immer viele gleichwertige Punkt-Richtungsformen um eine Ebene darzustellen. Das folgende Beispiel zeigt einige typische Anwendungen.
@@ -2396,12 +2400,579 @@ woraus man die Lösung $s=-18$ und $t=10$ berechnet. Einsetzen in die dritte Komp
 \end{MExercise}
 
 \end{MXContent}
-% 
-% \begin{MXContent}{Lagebeziehung von Geraden, Ebenen und Punkten im Raum}{Lagebeziehung}{STD}
-% \MLabel{VBKM10_Lagebeziehung}
-% \MDeclareSiteUXID{VBKM10_Lagebeziehung}
-% 
-% \end{MXContent}
+
+\begin{MXContent}{Lagebeziehung von Geraden und Ebenen im Raum}{Lagebeziehung}{STD}
+\MLabel{VBKM10_Lagebeziehung}
+\MDeclareSiteUXID{VBKM10_Lagebeziehung}
+Während es für die Lagebeziehung zweier Geraden in der Ebene nur drei Möglichkeiten gibt (Die Geraden sind parallel, identisch oder sie schneiden sich; vgl. Abschnitt \MNRef{VBKM09_Lagebeziehungen}), existieren für zwei Geraden im Raum vier Möglichkeiten. Diese werden in der folgenden Infobox zusammengefasst. 
+
+\begin{MInfo}\MLabel{info:schnitti}
+Gegeben sind zwei Geraden im Raum in Punkt-Richtungsform, $g$ mit Aufpunktvektor $\MVec{a}$ und Richtungsvektor $\MVec{u}$ sowie $h$ mit Aufpunktvektor $\MVec{b}$ und Richtungsvektor $\MVec{b}$:
+\[
+ g\colon\MVec{r}=\MVec{a}+s\MVec{u};\MDFPSpace s\in\R,
+\]
+\[
+ h\colon\MVec{r}=\MVec{b}+t\MVec{v};\MDFPSpace t\in\R\MDFPeriod
+\]
+Für die relative Lage von $g$ und $h$ gibt es genau vier Möglichkeiten:
+\begin{enumerate}
+ \item Die Geraden sind \textbf{identisch}. In diesem Fall haben $g$ und $h$ alle Punkte gemeinsam, fallen also zusammen. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ kollinear sind und es einen gemeinsamen Punkt gibt.
+ \item Die Geraden sind \MEntry{parallel}{Parallelität (zweier Geraden im Raum)}. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ kollinear sind und es \textit{keinen} gemeinsamen Punkt gibt.
+ \item Die Geraden schneiden sich. In diesem Fall haben $g$ und $h$ genau einen gemeinsamen Punkt, der \MEntry{Schnittpunkt}{Schnittpunkt (zweier Geraden im Raum)} genannt wird. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ \textit{nicht} kollinear sind und es einen gemeinsamen Punkt gibt.
+ \item Geraden, die weder identisch, noch parallel sind und sich auch nicht schneiden heißen \MEntry{windschief}{windschief}. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ \textit{nicht} kollinear sind und es \textit{keinen} gemeinsamen Punkt gibt.
+\end{enumerate}
+
+(Diese Abbildung erscheint in Kürze.)
+
+\end{MInfo}
+
+Nach den Kriterien, die in obiger Infobox für die vier Möglichkeiten der relativen Lage zweier Geraden aufgeführt sind, geht man in der Praxis so vor, dass man zunächst die beiden Richtungsvektoren auf Kollinearität prüft und dann nach möglichen gemeinsamen Punkten der beiden Geraden sucht. Dies legt schließlich einen der vier Fälle eindeutig fest. Das folgende Beispiel zeigt Anwendungen dieses Vorgehens für alle vier Fälle.
+
+\begin{MExample}
+Gegeben sind die vier Geraden $g$, $h$, $i$ und $j$ in Parameterform:
+\[
+ g\colon\MVec{r}=\MVector{-1\\0\\3}+s\MVector{-2\\2\\-4};\MDFPSpace s\in\R,
+\]
+\[
+ h\colon\MVec{r}=\MVector{1\\-2\\7}+t\MVector{1\\-1\\2};\MDFPSpace t\in\R,
+\]
+\[
+ i\colon\MVec{r}=\MVector{4\\0\\8}+u\MVector{-3\\3\\-6};\MDFPSpace u\in\R
+\]
+und
+\[
+ j\colon\MVec{r}=\MVector{1\\3\\2}+v\MVector{1\\3\\-3};\MDFPSpace v\in\R\MDFPeriod
+\]
+\begin{itemize}
+\item Die Geraden $g$ und $h$ sind identisch. Die beiden Richtungsvektoren $\MVector{-2\\2\\-4}$ von $g$ und $\MVector{1\\-1\\2}$ von $h$ sind kollinear. Es gilt
+\[
+  \MVector{-2\\2\\-4}= -2\cdot\MVector{1\\-1\\2}. 
+\]
+Außerdem ist der Punkt, welcher durch den Ortvektor $\MVector{1\\-2\\7}$ beschrieben wird in $h$ (als Aufpunkt) und $g$ enthalten, denn für $g$ gilt:
+\[
+ \MVector{1\\-2\\7}=\MVector{-1\\0\\3}+s\MVector{-2\\2\\-4}=\MVector{-1-2s\\2s\\3-4s}\MDFPSpace\Leftrightarrow\MDFPSpace s=-1\MDFPeriod
+\]
+Also ergibt sich $\MVector{1\\-2\\7}$ in $g$ für den Parameterwert $s=-1$.
+
+\item Die Geraden $h$ und $i$ (und damit natürlich auch $g$ und $i$) sind parallel. Die beiden Richtungsvektoren $\MVector{1\\-1\\2}$ von $h$ und $\MVector{-3\\3\\-6}$ von $i$ sind kollinear. Es gilt
+\[
+  \MVector{-3\\3\\-6}= -3\cdot\MVector{1\\-1\\2}. 
+\]
+Allerdings haben $h$ und $i$ keine Punkte gemeinsam. Dies sieht man in diesem Fall folgendermaßen: Der Aufpunkt der einer der beiden Geraden ist kein Punkt auf der anderen Geraden. Dann haben die beiden Geraden gar keine gemeinsamen Punkte. Hier kann man zum Beispiel testen, ob sich der Aufpunktvektor $\MVector{4\\0\\8}$ der Gerade $i$, als Ortsvektor der Gerade $h$ ergeben kann:
+\[
+ \MVector{4\\0\\8}=\MVector{1\\-2\\7}+t\MVector{1\\-1\\2}=\MVector{1+t\\-2-t\\7+2t}\MDFPeriod
+\]
+In dieser Vektorgleichung ergäbe sich in der ersten Komponente $t=3$ und in der zweiten Komponente $t=-2$, was bereits ein Widerspruch ist. Folglich haben die beiden Geraden keine gemeinsamen Punkte.
+
+\item Die Geraden $i$ und $j$ schneiden sich. Zunächst sind für diese beiden Geraden die Richtungsvektoren $\MVector{-3\\3\\-6}$ und $\MVector{1\\3\\-3}$ nicht kollinear. Es gibt keine Zahl $a\in\R$, so dass
+\[
+ \MVector{-3\\3\\-6}=a\MVector{1\\3\\-3}
+\]
+gilt, denn für die erste Komponente müsste $a=-3$ und für die zweite Komponente $a=1$ gelten, was bereits ein Widerspruch ist. Allerdings haben die beiden Geraden einen gemeinsamen Punkt, den man durch Gleichsetzen der Ortsvektoren für $i$ und $j$ findet:
+\[
+ \MVector{4\\0\\8}+u\MVector{-3\\3\\-6}=\MVector{4-3u\\3u\\8-6u}=\MVector{1+v\\3+3v\\2-3v}=\MVector{1\\3\\2}+v\MVector{1\\3\\-3}\MDFPeriod
+\]
+Hier führen die ersten beiden Komponenten zu den Gleichungen
+\[
+ 3-3u=v\MDFPaSpace\textrm{und}\MDFPaSpace u=1+v
+\]
+für $u$ und $v$, woraus man $v=0$ und $u=1$ berechnet. Dies eingesetzt in die dritte Komponente ergibt
+\[
+ 8-6\cdot 1=2-3\cdot 0\MDFPSpace\Leftrightarrow\MDFPSpace 2=2.
+\]
+Die Vektorgleichung für die Ortsvektoren ist also für die Parameterwerte $u=1$ und $v=0$ erfüllt. Folglich ergibt sich der Ortsvektor des Schnittpunkts für den Parameterwert $u=1$ in der Gerade $i$ oder auch für den Parameterwert $v=0$ in der Gerade $j$. Man erhält als  Schnittpunkt den Punkt $\MPointThree{1}{3}{2}$.
+
+\item Die Geraden $g$ und $j$ (und damit natürlich auch $h$ und $j$) sind windschief. Auch in diesem Fall erhält man analog zum Fall mit Schnittpunkt oben recht schnell, dass die beiden Richtungsvektoren $\MVector{-2\\2\\-4}$ von $g$ und $\MVector{1\\3\\-3}$ von $j$ nicht kollinear sind. Nun haben die beiden Geraden aber keinen gemeinsamen Punkt, was man wieder durch Gleichsetzen der Ortsvektoren findet:
+\[
+ \MVector{-1\\0\\3}+s\MVector{-2\\2\\-4}=\MVector{-1-2s\\2s\\3-4s}=\MVector{1+v\\3+3v\\2-3v}=\MVector{1\\3\\2}+v\MVector{1\\3\\-3}\MDFPeriod
+\]
+Diese Vektorgleichung ist widersprüchlich, das heißt man findet keine Parameterwerte $s$ und $v$ die sie erfüllen und folglich haben $g$ und $j$ keine gemeinsamen Punkte. Die erste und die zweite Komponente führen auf die beiden Gleichungen
+\[
+ -2s=2+v\MDFPaSpace\textrm{und}\MDFPaSpace 2s=3+3v,
+\]
+woraus man $v=-\frac{5}{4}$ und $s=-\frac{3}{8}$ berechnet. Setzt man dies aber in die dritte Komponente ein so ergibt sich der Widerspruch
+\[
+ 3-4(-\frac{3}{8})=2-3(-\frac{5}{4})\MDFPSpace\Leftrightarrow\MDFPSpace \frac{9}{2}=\frac{23}{4}.
+\]
+
+\end{itemize}
+
+\end{MExample}
+
+\begin{MExercise}\MLabel{ex:twolines}
+Die beiden Geraden 
+\[
+ g\colon\MVec{r}=\MVector{1\\2\\4}+x\MVector{-5\\10\\-15};\MDFPaSpace x\in\R
+\]
+und
+\[
+ h\colon\MVec{r}=\MVector{4\\0\\7}+y\MVector{3\\-2\\3};\MDFPaSpace y\in\R
+\]
+schneiden sich, da 
+
+\begin{MQuestionGroup}
+\begin{tabular}{lll}
+\MCheckbox{0}{INTER1} & \ & die beiden Richtungsvektoren kollinear sind,\\
+\MCheckbox{0}{INTER2} & \ & die beiden Richungsvektoren nicht kollinear sind,\\
+\MCheckbox{0}{INTER3} & \ & die beiden Richtungsvektoren kollinear sind und die Geraden einen gemeinsamen Punkt besitzen,\\
+\MCheckbox{1}{INTER4} & \ & die beiden Richungsvektoren nicht kollinear sind und die Geraden einen gemeinsamen Punkt besitzen,\\
+\MCheckbox{0}{INTER5} & \ & die beiden Richungsvektoren nicht kollinear sind und die Geraden keinen gemeinsamen Punkt besitzen.\\
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Antworten kontrollieren}
+
+
+Berechnen Sie den Schnittpunkt $S$ der beiden Geraden $g$ und $h$.\\
+$S=$\MLFunctionQuestion{15}{(1,2,4)}{5}{x}{5}{INTER0}
+
+Der Ortsvektor des Schnittpunkts $\MDVec{S}$ ergibt sich in den Geraden $g$ und $h$ jeweils für die Parameterwerte\\
+$x=$\MLFunctionQuestion{10}{0}{5}{x}{5}{INTER0a} und\\
+$y=$\MLFunctionQuestion{10}{-1}{5}{x}{5}{INTER0b}.
+
+\begin{MHint}{Lösung}
+Die beiden Richtungsvektoren $\MVector{-5\\10\\-15}$ und $\MVector{3\\-2\\3}$ sind nicht kollinear, da es keine Zahl $a\in\R$ gibt, so dass
+\[
+ \MVector{-5\\10\\-15}=a\MVector{3\\-2\\3}
+\]
+erfüllt ist. Denn betrachtet man die zweite Komponente dieser Vektorgleichung, so müsste $a=-5$ gelten, aus der ersten Komponente müsste allerdings $a=-\frac{5}{3}$ folgen; ein Widerspruch. Weiterhin besitzen die Geraden einen gemeinsamen Punkt, den Schnittpunkt $S$, der unten berechnet wird. Diese beiden Tatsachen, und nur diese, sind nach Infobox \MNRef{info:schnitti} hinreichend dafür, dass die beiden Geraden sich schneiden. 
+
+Der Schnittpunkt ergibt sich durch Gleichsetzen der beiden Ortsvektoren:
+\[
+ \MVector{1\\2\\4}+x\MVector{-5\\10\\-15}=\MVector{1-5x\\2+10x\\4-15x}=\MVector{4+3y\\-2y\\7+3y}=\MVector{4\\0\\7}+y\MVector{3\\-2\\3}\MDFPeriod
+\]
+Die ersten beiden Komponenten dieser Vektorgleichung liefern die Gleichungen
+\[
+ -5x=3+3y\MDFPaSpace\textrm{und}\MDFPaSpace 2+10x=-2y,
+\]
+woraus man $x=0$ und $y=-1$ berechnet. Setzt man diese Werte in die dritte Komponente ein, so ergibt sich
+\[
+ 4-15\cdot 0=7+3\cdot(-1)\MDFPSpace\Leftrightarrow\MDFPSpace 4=4.
+\]
+Somit ist die Vektorgleichung für diese Parameterwerte erfüllt und es existiert ein gemeinsamer Punkt der beiden Geraden $g$ und $h$. Dessen Ortsvektor ergibt sich zum Beispiel durch Einsetzen des Parameterwerts $x=0$ in $g$:
+\[
+ \MDVec{S}=\MVector{1\\2\\4}+0\cdot\MVector{-5\\10\\-15}=\MVector{1\\2\\4}\MDFPeriod
+\]
+\end{MHint}
+\end{MExercise}
+
+
+\begin{MExercise}\MLabel{ex:twolines2}
+Die beiden Geraden
+\[
+ \gamma\colon\MVec{r}=\MVector{-4\\6\\0}+s\MVector{3\\-2\\-2};\MDFPSpace s\in\R 
+\]
+und
+\[
+ \kappa\colon\MVec{r}=\MVector{a\\b\\4}+t\MVector{-\frac{3}{2}\\c\\1};\MDFPSpace t\in\R 
+\]
+sind parallel. Bestimmen Sie den fehlenden Eintrag $c$ und geben Sie an welche Werte $a$ und $b$ für die Parallelität \textbf{nicht} annehmen dürfen. 
+
+$a\neq$\MLFunctionQuestion{10}{-10}{5}{x}{5}{PAR1}\\
+$b\neq$\MLFunctionQuestion{10}{10}{5}{x}{5}{PAR2}\\
+$c=$\MLFunctionQuestion{10}{1}{5}{x}{5}{PAR3}
+\end{MExercise}
+
+\begin{MHint}{Lösung}
+Für Parallelität müssen die beiden Richtungsvektoren kollinear sein. Man findet aus der Bedingung
+\[
+ \MVector{-\frac{3}{2}\\c\\1}=s\MVector{3\\-2\\-2},
+\]
+den Wert $s=-\frac{1}{2}$ und damit $c=1$. Damit die Geraden wirklich parallel und nicht identisch sind, darf der Aufpunkt von $\kappa$ nicht auf $\gamma$ liegen, die Werte für $a$ und $b$ müssen also so sein, dass die Vektorgleichung
+\[
+ \MVector{a\\b\\4}=\MVector{-4\\6\\0}+s\MVector{3\\-2\\-2}=\MVector{-4+3s\\6-2s\\-2s}
+\]
+für keinen Parameterwert $s$ erfüllbar ist. Die dritte Komponente liefert sofort $s=-2$ für die Erfüllbarkeit der Gleichung. Dies eingesetzt in die erste und zweite Komponente ergibt $a=-10$ und $b=10$. Folglich muss für echte Parallelität $a\neq-10$ und $b\neq10$ gelten.
+\end{MHint}
+
+Hat man zwei Geraden im Raum gegeben, die echt parallel sind oder sich schneiden, so stellt man fest, dass auch diese jeweils eine Ebene eindeutig festlegen:
+
+(Diese Abbildung erscheint in Kürze.)
+
+Es handelt sich dabei jeweils um diejenige Ebene, die beide Geraden beinhaltet.
+
+Das folgende Beispiel zeigt, wie man aus zwei echt parallelen oder sich schneidenden Geraden die Parameterform der Ebene bekommt, die durch diese eindeutig festgelegt wird.
+
+\begin{MExample}
+\begin{itemize}
+\item Die beiden Geraden 
+\[
+ g\colon\MVec{r}=\MVector{1\\2\\4}+s\MVector{-5\\10\\-15};\MDFPaSpace s\in\R
+\]
+und
+\[
+ h\colon\MVec{r}=\MVector{4\\0\\7}+t\MVector{3\\-2\\3};\MDFPaSpace t\in\R
+\]
+schneiden sich im Punkt $S=\MPointThree{1}{2}{4}$ (vgl. Aufgabe \MNRef{ex:twolines}). Dadurch wird eine Ebene $E$ eindeutig festgelegt, die sowohl $g$ als auch $h$ beinhaltet. Für eine Parameterform von $E$ benutzt man die Ortsvektoren von drei geeigneten Punkten, die man aus den Geraden $g$ und $h$ berechnet. Der Schnittpunkt eignet sich als Aufpunkt von $E$ mit dem Aufpunktvektor
+\[
+ \MDVec{S}=\MVector{1\\2\\4}.
+\]
+Dann ergeben sich noch Ortsvektoren von zwei Punkten $P$ und $Q$ dadurch, dass man zum Beispiel die Parameterwerte $s=1$ und $t=1$ in die Parameterformen der Geraden einsetzt:
+\[
+ \MDVec{P}=\MVector{1\\2\\4}+1\cdot\MVector{-5\\10\\-15}=\MVector{-4\\12\\-11},
+\]
+\[
+ \MDVec{Q}=\MVector{4\\0\\7}+1\cdot\MVector{3\\-2\\3}=\MVector{7\\-2\\10}.
+\]
+Dies ergibt die Richtungsvektoren
+\[
+ \MDVec{S P}=\MDVec{P}-\MDVec{S}= \MVector{-4\\12\\-11}-\MVector{1\\2\\4}=\MVector{-5\\10\\-15}
+\]
+und
+\[
+ \MDVec{S Q}=\MDVec{Q}-\MDVec{S}= \MVector{7\\-2\\10}-\MVector{1\\2\\4}=\MVector{6\\-4\\11}.
+\]
+Somit ist eine mögliche Parameterform von $E$ durch
+\[
+ E\colon \MVec{r}=\MVector{1\\2\\4}+\mu\MVector{-5\\10\\-15}+\nu\MVector{6\\-4\\11};\MDFPaSpace \mu,\nu\in\R
+\]
+gegeben.
+
+\item Die beiden Geraden
+\[
+ g\colon\MVec{r}=\MVector{-4\\6\\0}+s\MVector{3\\-2\\-2};\MDFPSpace s\in\R 
+\]
+und
+\[
+ h\colon\MVec{r}=\MVector{1\\1\\4}+t\MVector{-\frac{3}{2}\\1\\1};\MDFPSpace t\in\R 
+\]
+sind parallel (vgl. Aufgabe \MNRef{ex:twolines2}). Dadurch wird eine Ebene $F$ eindeutig festgelegt, die sowohl $g$ als auch $h$ beinhaltet. Für eine Parameterform von $F$ benutzt man die Ortsvektoren von drei geeigneten Punkten, die man aus den Geraden $g$ und $h$ berechnet. Es eignen sich die Ortsvektoren von Punkten auf $g$ bzw. $h$, die sich für drei Parameterwerte ergeben, zum Beispiel $s=0$, $s=1$ und $t=0$:
+\[
+ \MVec{A}=\MVector{-4\\6\\0}+0\cdot\MVector{3\\-2\\-2}=\MVector{-4\\6\\0},
+\]
+dient als Aufpunktvektor. Dann erhält man sofort unter Benutzung von 
+\[
+ \MVec{B}=\MVector{-4\\6\\0}+1\cdot\MVector{3\\-2\\-2}=\MVector{-1\\4\\-2},
+\]
+dass für den ersten Richtungsvektor $\MDVec{A B}$ der Ebene $F$, genau der Richtungsvektor $\MVector{3\\-2\\-2}$ von $g$ benutzt werden kann. Der zweite Richtungsvektor der Ebene ergibt dich aus dem Ortsvektor eines Punktes $B$ auf $h$ für den Parameterwert $t=0$, also den Aufpunkt von $h$:
+\[
+ \MDVec{B}=\MVector{1\\1\\4}.
+\]
+Und folglich ist
+\[
+ \MDVec{A B}=\MDVec{B}-\MDVec{A}=\MVector{1\\1\\4}-\MVector{-4\\6\\0}=\MVector{5\\-5\\4}
+\]
+der zweite Richtungsvektor von $F$. Eine Parameterform von $F$ ist also gegeben durch 
+\[
+ F\colon \MVec{r}=\MVector{-4\\6\\0}+\lambda\MVector{3\\-2\\-2}+\mu\MVector{5\\-5\\4};\MDFPaSpace \lambda,\mu\in\R.
+\]
+
+\end{itemize}
+ 
+\end{MExample}
+
+Für die Lagebeziehung einer Geraden und einer Ebene im Raum gibt es wieder nur drei Möglichkeiten. Diese sind in der folgenden Infobox zusammengefasst.
+
+\begin{MInfo}\MLabel{info:plane_line}
+Sind eine Gerade $g$ mit Aufpunktvektor $\MVec{a}$ und Richtungsvektor $\MVec{u}$ sowie eine Ebene $E$ mit Aufpunktvektor $\MVec{b}$ und Richtungsvektoren $\MVec{v}$ und $\MVec{w}$ im Raum in Parameterform gegeben durch
+\[
+ g\colon\MVec{r}=\MVec{a}+\lambda\MVec{u};\MDFPaSpace\lambda\in\R
+\]
+und
+\[
+ E\colon\MVec{r}=\MVec{b}+\mu\MVec{v}+\nu\MVec{w};\MDFPaSpace\mu,\nu\in\R,
+\]
+so gibt es für die relative Lage von $g$ und $E$ genau drei Möglichkeiten:
+\begin{enumerate}
+ \item Die Gerade $g$ liegt in der Ebene $E$. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren $\MVec{u}$, $\MVec{v}$ und $\MVec{w}$ komplanar sind und der Aufpunkt der Geraden in der Ebene liegt.
+ \item Die Gerade $g$ liegt parallel zur Ebene $E$. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren $\MVec{u}$, $\MVec{v}$ und $\MVec{w}$ komplanar sind und der Aufpunkt der Geraden \textit{nicht} in der Ebene liegt.
+ \item Die Gerade $g$ liegt und die Ebene $E$ schneiden sich. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren $\MVec{u}$, $\MVec{v}$ und $\MVec{w}$ nicht komplanar sind.
+\end{enumerate}
+
+(Diese Abbildung erscheint in Kürze.)
+
+\end{MInfo}
+
+Hat man eine Gerade und eine Ebene gegeben und möchte deren Lagebeziehung bestimmen, so überprüft man zunächst die drei Richtungsvektoren auf Komplanarität. Ist diese gegeben untersucht man den Aufpunkt der Geraden daraufhin ob er in der Ebene enthalten ist. Dies legt letztlich einen der drei möglichen Fälle eindeutig fest. Falls sich Gerade und Ebene schneiden, kann man dann noch den Schnittpunkt berechnen. Das folgende Beispiel zeigt einige dafür benutzte Vorgehensweisen.
+
+\begin{MExample}
+Gegeben ist eine Ebene $E$ in Parameterform durch
+\[
+ E\colon\MVec{r}=\MVector{2\\2\\2}+s\MVector{3\\-1\\0}+t\MVector{0\\0\\2};\MDFPaSpace s,t\in\R.
+\]
+\begin{itemize}
+ \item Eine Gerade, die den Vektor $\MVector{3\\-1\\-4}$ als Richtungsvektor aufweist liegt entweder in der Ebene $E$ oder ist zu dieser parallel, da $\MVector{3\\-1\\-4}$ zu den beiden Richtungsvektoren von $E$ komplanar ist. Man findet aus der Bedingung
+ \[
+  \MVector{3\\-1\\-4}=s\MVector{3\\-1\\0}+t\MVector{0\\0\\2},
+ \]
+ die Zahlen $s=1$ und $t=-2$. Folglich liegt die Gerade
+ \[
+  g\colon\MVec{r}=\MVector{-1\\3\\0}+x\MVector{3\\-1\\-4};\MDFPaSpace x\in\R
+ \]
+ in der Ebene $E$. Denn der Aufpunkt $\MPointThree{-1}{3}{0}$ liegt in $E$, da man berechnet:
+ \[
+  \MVector{-1\\3\\0}=\MVector{2\\2\\2}+s\MVector{3\\-1\\0}+t\MVector{0\\0\\2}=\MVector{2+3s\\2-s\\2+2t}\MDFPSpace\Leftrightarrow\MDFPSpace s=t=-1\MDFPeriod
+ \]
+ Der Ortsevktor $\MVector{-1\\3\\0}$ der Geraden ergibt sich also für die Parameterwerte $s=t=-1$ in der Ebene. Demhingegen ist die Gerade
+ \[
+  h\colon\MVec{r}=y\MVector{3\\-1\\-4};\MDFPaSpace y\in\R
+ \]
+ parallel zu Ebene $E$. Denn $h$ weist als Aufpunkt den Ursprung $\MPointThree{0}{0}{0}$ auf. Der Ursprung liegt aber nicht in $E$, denn für die Vektorgleichung
+ \[
+  \MVector{0\\0\\0}=\MVector{2\\2\\2}+s\MVector{3\\-1\\0}+t\MVector{0\\0\\2}=\MVector{2+3s\\2-s\\2+2t}
+ \]
+ gibt es keine Parameterwerte $s$ und $t$, die diese erfüllen. Die erste Komponente würde $s=-\frac{2}{3}$ implizieren und die zweite Komponente $s=2$; ein Widerspruch.
+ 
+ \item Jede Gerade mit einem Richtungsvektor, der nicht komplanar zu den beiden Richtungsvektoren $\MVector{3\\-1\\0}$ und $\MVector{0\\0\\2}$ von $E$ ist, schneidet die Ebene $E$ in genau einem Punkt. Ein Beispiel einer solchen Geraden ist
+ \[
+  k\colon\MVec{r}=\MVector{-3\\1\\0}+\mu\MVector{1\\1\\1};\MDFPaSpace\mu\in\R.
+ \]
+ Der Richtungsvektor $\MVector{1\\1\\1}$ ist nicht komplanar zu $\MVector{3\\-1\\0}$ und $\MVector{0\\0\\2}$, denn die Bedingung
+ \[
+  \MVector{1\\1\\1}= a\MVector{3\\-1\\0}+b\MVector{0\\0\\2}=\MVector{3a\\-a\\2b}
+ \]
+ ist durch keine Zahlen $a,b\in\R$ erfüllbar. Die erste Komponente würde $a=\frac{1}{3}$ und die zweite $a=-1$ implizieren; ein Widerspruch. Nun kann durch Gleichsetzen der Ortsvektoren der Geraden $k$ und der Ebene $E$ der Schnittpunkt der beiden berechnet werden:
+ \[
+  \MVector{-3\\1\\0}+\mu\MVector{1\\1\\1}=\MVector{-3+\mu\\1+\mu\\\mu}=\MVector{2+3s\\2-s\\2+2t}=\MVector{2\\2\\2}+s\MVector{3\\-1\\0}+t\MVector{0\\0\\2}\MDFPeriod
+ \]
+ Interessiert man sich nur für den Schnittpunkt, so genügt es den Parameterwert der Geraden zu bestimmen für den diese Vektorgleichung erfüllt ist. Der Orstvektor des Schnittpunkts ergibt sich dann surch Einsetzen des bestimmten Parameterwerts in die Gerade. Die ersten beiden Komponenten dieser Vektorgleichung liefern zwei Gleichungen für die Unbekannten $\mu$ und $s$:
+ \[
+  \mu=5+3s\MDFPaSpace\textrm{und}\MDFPaSpace \mu=1-s,
+ \]
+ woraus man $\mu=2$ erhält. Damit hat der Schnittpunkt den Ortsvektor
+ \[
+  \MVector{-3\\1\\0}+2\MVector{1\\1\\1}=\MVector{-1\\3\\2}.
+ \]
+\end{itemize}
+\end{MExample}
+
+\begin{MExercise}
+Gegeben ist die Ebene
+\[
+ E\colon\MVec{r}=\MVector{8\\-2\\0}+s\MVector{1\\3\\2}+t\MVector{-1\\1\\-1};\MDFPaSpace s,t\in\R
+\]
+und die Gerade 
+\[
+ g\colon \MVec{r}=\MVector{0\\2\\1}+u\MVector{0\\4\\c};\MDFPaSpace u\in\R,
+\]
+deren Aufpunkt nicht in $E$ liegt.
+
+Bestimmen Sie den fehlenden Eintrag $c$, so dass $g$ parallel zu $E$ ist.\\
+$c=$\MLFunctionQuestion{10}{1}{5}{x}{5}{BLUBB1}
+
+Berechnen Sie für alle anderen Werte von $c$, den Schnittpunkt $S=\MPointThree{x}{y}{z}$ in Abhängigkeit von $c$. Geben Sie die drei Komponenten von $S$ getrennt an.\\
+$x=$\MLFunctionQuestion{20}{0}{5}{c}{5}{BLUBB2x}\\
+$y=$\MLFunctionQuestion{20}{2+40/(1-c)}{5}{c}{5}{BLUBB2y}\\
+$z=$\MLFunctionQuestion{20}{1+10*c/(1-c)}{5}{c}{5}{BLUBB2z}
+
+\begin{MHint}{Lösung}
+Damit $g$ und $E$ parallel sind, muss der Richtungsvektor $\MVector{0\\4\\c}$ von $g$ zu den beiden Richtungsvektoren $\MVector{1\\3\\2}$ und $\MVector{-1\\1\\-1}$ von $E$ komplanar sein. Die Bedingung
+\[
+ \MVector{0\\4\\c}=s\MVector{1\\3\\2}+t\MVector{-1\\1\\-1}
+\]
+ist nur für $c=1$ erfüllbar, denn die erste und zweite Komponenten liefern das lineare Gleichungssystem 
+\[
+ s-t=0,\MDFPaSpace 3s+t=4
+\]
+für die Unbekannten $s$ und $t$, das die Lösung $s=t=1$ besitzt. Dies erzwingt in der dritten Komponente
+\[
+ c=2\cdot1-1=1.
+\]
+Für den Schnittpunkt werden die Ortsvektoren von Gerade und Ebene gleichgesetzt:
+\[
+ \MVector{0\\2\\1}+u\MVector{0\\4\\c}=\MVector{0\\1+4u\\1+c u}=\MVector{8+s-t\\-2+3s+t\\2s-t}=\MVector{8\\-2\\0}+s\MVector{1\\3\\2}+t\MVector{-1\\1\\-1}\MDFPeriod
+\]
+Diese Vektorgleichung entspricht einem linearen Gleichungssystem in den Variablen $s$, $t$ und $u$ mit dem Parameter $c$, das mit den Methoden aus Abschnitt \MNRef{M04_freier_Parameter} gelöst werden kann. Man erhält für die Unbekannte $u$:
+\[
+ u=\frac{10}{1-c}\MDFPeriod
+\]
+Damit ergibt sich der Ortsvektor zum Schnittpunkt $S$ durch Einsetzen in die Gerade $g$:
+\[
+ \MDVec{S}=\MVector{0\\2\\1}+\frac{10}{1-c}\MVector{0\\4\\c}=\MVector{0\\2+\frac{40}{1-c}\\1+\frac{10c}{1-c}}\MDFPeriod
+\]
+
+\end{MHint}
+
+
+\end{MExercise}
+
+\begin{MExercise}
+Gegeben ist die Gerade
+\[
+ h\colon\MVec{r}=\MVector{3\\2\\1}+\rho\MVector{-8\\9\\1};\MDFPaSpace\rho\in\R.
+\]
+Bestimmen Sie folgende Werte des Parameters $\rho$:
+\begin{MExerciseItems}
+\item{Wert des Parameters $\rho$ für den $h$ die $x y$-Ebene schneidet:\ $\rho=$\MLFunctionQuestion{10}{-1}{5}{x}{5}{BLAA1}}
+\item{Wert des Parameters $\rho$ für den $h$ die $y z$-Ebene schneidet:\ $\rho=$\MLFunctionQuestion{10}{3/8}{5}{x}{5}{BLAA2}}
+\item{Wert des Parameters $\rho$ für den $h$ die $x z$-Ebene schneidet:\ $\rho=$\MLFunctionQuestion{10}{-2/9}{5}{x}{5}{BLAA3}}
+\end{MExerciseItems}
+
+\begin{MHint}{Lösung}
+\begin{MExerciseItems}
+\item{In der $x y$-Ebene ist $z=0$, also muss die dritte Komponente des Ortsvektors von $h$ gleich Null sein:
+\[
+ 1+\rho=0\MDFPSpace\Leftrightarrow\MDFPSpace\rho=-1\MDFPeriod
+\]
+} 
+\item{In der $y z$-Ebene ist $x=0$, also muss die erste Komponente des Ortsvektors von $h$ gleich Null sein:
+\[
+ 3-8\rho=0\MDFPSpace\Leftrightarrow\MDFPSpace\rho=\frac{3}{8}\MDFPeriod
+\]
+} 
+\item{In der $x z$-Ebene ist $y=0$, also muss die zweite Komponente des Ortsvektors von $h$ gleich Null sein:
+\[
+ 2+9\rho=0\MDFPSpace\Leftrightarrow\MDFPSpace\rho=-\frac{2}{9}\MDFPeriod
+\]
+} 
+\end{MExerciseItems}
+ 
+\end{MHint}
+
+\end{MExercise}
+
+Betrachtet man zwei Ebenen im Raum so gibt es für ihre Lagebeziehung drei Fälle die sich analog zu den drei möglichen relativen Lagen zweier Geraden in der Ebene aus Abschnitt \MNRef{VBKM09_Lagebeziehungen} verhalten. Die folgende Infobox stellt diese Fälle zusammen.
+
+\begin{MInfo}
+Gegeben sind zwei Ebenen $E_1$ mit dem Aufpunktvektor $\MVec{a}_1$ und den beiden Richtungsvektoren $\MVec{u}_1$ und $\MVec{v}_1$ sowie $E_2$ mit dem Aufpunktvektor $\MVec{a}_2$ und den beiden Richtungsvektoren $\MVec{u}_2$ und $\MVec{v}_2$ durch
+\[
+ E_1\colon \MVec{r}=\MVec{a}_1+\mu\MVec{u}_1+\nu\MVec{v}_1;\MDFPaSpace\mu,\nu\in\R
+\]
+und
+\[
+ E_2\colon \MVec{r}=\MVec{a}_2+\rho\MVec{u}_2+\sigma\MVec{v}_2;\MDFPaSpace\rho,\sigma\in\R.
+\]
+Für die relative Lage von $E_1$ und $E_2$ gibt es genau drei Möglichkeiten:
+\begin{enumerate}
+ \item Die Ebenen $E_1$ und $E_2$ sind identisch, falls sie alle Punkte gemeinsam haben. Dies ist genau dann der Fall wenn die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{u}_2$ sowie die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{v}_2$ komplanar sind, und der Aufpunkt von $E_1$ in $E_2$ enthalten ist.  
+ \item Die Ebenen $E_1$ und $E_2$ sind parallel, falls sie keine Punkte gemeinsam haben. Dies ist genau dann der Fall wenn die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{u}_2$ sowie die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{v}_2$ komplanar sind, und der Aufpunkt von $E_1$ \textit{nicht} in $E_2$ enthalten ist. 
+ \item Die Ebenen $E_1$ und $E_2$ schneiden sich, falls ihre gemeinsamen Punkte eine Gerade bilden. Dies ist genau dann der Fall wenn die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{u}_2$ \textit{oder} die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{v}_2$ \textit{nicht} komplanar sind. 
+\end{enumerate}
+
+(Diese Abbildung erscheint in Kürze.)
+
+\end{MInfo}
+
+Natürlich sind in den Bedingungen für die drei Fälle, die in obiger Infobox angegeben sind, die Rollen der beiden Ebenen auch vertauschbar, man kann also beispielsweise auch überprüfen ob der Aufpunkt von $E_2$ in $E_1$ enthalten ist, dies macht keinen Unterschied. Falls die Ebenen sich schneiden, kann die Schnittgerade berechnet werden. Schnittmengen von Ebenen wurden bereits in Abschnitt \MNRef{M04_3_Unbekannte} im Rahmen der geometrischen Interpretation der Lösbarkeit linearer Gleichungssysteme mit drei Unbekannten behandelt. Die Vertrautheit mit diesem Abschnitt wird im Folgenden vorausgesetzt und dessen kurze Wiederholung wird wärmstens empfohlen. Das folgende Beispiel zeigt die Vorgehensweise bei der Untersuchung der relativen Lage zweier Ebenen.
+
+\begin{MExample}
+Gegeben sind die drei Ebenen
+\[
+ E\colon\MVec{r}=\MVector{0\\2\\-2}+a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2};\MDFPaSpace a,b\in\R,
+\]
+\[
+ F\colon\MVec{r}=\MVector{5\\1\\0}+c\MVector{5\\-2\\-1}+d\MVector{-3\\-2\\3};\MDFPaSpace c,d\in\R
+\]
+und
+\[
+ G\colon\MVec{r}=\MVector{5\\0\\1}+x\MVector{1\\-2\\0}+y\MVector{0\\0\\3};\MDFPaSpace x,y\in\R.
+\]
+\begin{itemize}
+ \item Die Ebenen $E$ und $F$ sind parallel. Die Richtungsvektoren $\MVector{1\\-2\\1}$ und $\MVector{4\\0\\-2}$ von $E$ und der erste Richtungsvektor $\MVector{5\\-2\\-1}$ von $F$ sind komplanar, denn die Bedingung
+ \[
+  a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2}=\MVector{5\\-2\\-1}
+ \]
+ ist durch die Zahlen $a=b=1$ erfüllt. Genauso sind die Richtungsvektoren $\MVector{1\\-2\\1}$ und $\MVector{4\\0\\-2}$ von $E$ und der zweite Richtungsvektor $\MVector{-3\\-2\\3}$ von $F$ sind komplanar, denn die Bedingung
+ \[
+  a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2}=\MVector{-3\\-2\\3}
+ \]
+ ist durch die Zahlen $a=1$ und $b=-1$ erfüllt. Weiterhin ist der Aufpunkt von $F$ nicht in $E$ enthalten, denn die Bedingung
+ \[
+  \MVector{5\\1\\0}=\MVector{0\\2\\-2}+a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2}=\MVector{a+4b\\2-2a\\-2+a-2b}
+ \]
+ ist für keine Parameterwerte $a$ und $b$ erfüllbar. Aus der zweiten Komponente würde $a=\frac{1}{2}$ folgen, was eingesetzt in die erste Komponente auf $b=\frac{9}{8}$ führt. Dies ergibt aber in der dritten Komponente den Widerspruch $0=-2+\frac{1}{2}-\frac{9}{4}$. Würde man allerdings in $F$ einen anderen Aufpunkt wählen, der in $E$ enthalten ist, zum Beispiel den gleichen Aufpunkt wie in $E$ so würde man eine zu $E$ identische Ebene erhalten, also eine andere Parameterdarstellung der gleichen Ebene. Zum Beispiel ist
+ \[
+  F^{\prime}\colon\MVec{r}=\MVector{0\\2\\-2}+\alpha\MVector{5\\-2\\-1}+\beta\MVector{-3\\-2\\3};\MDFPaSpace \alpha,\beta\in\R
+ \]
+ eine solche Ebene.
+ 
+ \item Die Ebenen $E$ und $G$ schneiden sich. Beide Richtungsvektoren $\MVector{1\\-2\\0}$ und $\MVector{0\\0\\3}$ von $G$ sind nicht komplanar zu den beiden Richtungsvektoren $\MVector{1\\-2\\1}$ und $\MVector{4\\0\\-2}$ von $E$. Zum Beispiel gilt für den zweiten Richtungsvektor von $G$, dass die Bedingung
+ \[
+  \MVector{0\\0\\3}=a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2}
+ \]
+ durch keine Zahlen $a$ und $b$ erfüllbar ist. Die ersten beiden Komponenten würden $a=b=0$ erzwingen, was der dritten Komponente widerspricht. Die Schnittgerade der beiden Ebenen berechnet man durch Gleichsetzen der Orstvektoren. Man erhält hier:
+ \[
+  \MVector{0\\2\\-2}+a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2}=\MVector{a+4b\\2-2a\\-2+a-2b}=\MVector{5+x\\-2x\\1+y}=\MVector{5\\0\\1}+x\MVector{1\\-2\\0}+y\MVector{0\\0\\3}\MDFPeriod
+ \]
+ Diese Vektorgleichung entspricht einem System von drei linearen Gleichungen mit den vier Unbekannten $x$, $y$, $a$ und $b$. Dies wird nun mit den Methoden aus Abschnitt \MNRef{M04_freier_Parameter} gelöst, indem man eine der Unbekannten als Parameter auffasst und die anderen Unbekannten in Abhängigkeit von diesem berechnet. Dieser übrige Parameter wird am Ende der Parameter in der Punkt-Richtungsform der zu bestimmenden Schnittgeraden werden. Welche der Unbekannten man als Parameter auffasst ist egal. Hier wird nun $x$ als Parameter benutzt. Dann führen die ersten beiden Komponenten der Vektorgleichung auf die beiden Gleichungen
+ \[
+  a+4b=5+x\MDFPaSpace\textrm{und}\MDFPaSpace 2-2a=-2x,
+ \]
+ aus denen man $a=1+x$ und $b=1$ berechnet. Dies in die dritte Komponente eingesetzt ergibt
+ \[
+  -2 + (1+x) - 2\cdot 1=1+y\MDFPSpace\Leftrightarrow\MDFPSpace y=x-4.
+ \]
+ Nun kann $y=x-4$ oder $a=1+x$ und $b=1$ in die Ebene $G$ oder $E$ eingesetzt werden, dies führt auf zwei mögliche Parameterdarstellung der gleichen Geraden $h$, nämlich der Schnittgeraden der beiden Ebenen. Zum Beispiel für das Einsetzen in $G$ ergibt sich:
+ \[
+  h\colon\MVec{r}=\MVector{5\\0\\1}+x\MVector{1\\-2\\0}+(x-4)\MVector{0\\0\\3}=\MVector{5\\0\\-11}+x\MVector{1\\-2\\3};\MDFPaSpace x\in\R\MDFPeriod
+ \]
+
+\end{itemize}
+
+\end{MExample}
+
+\begin{MExercise}
+Gegeben sind die beiden Ebenen 
+\[
+ E\colon\MVec{r}=\MVector{-1\\3\\0}+a\MVector{2\\-5\\8}+b\MVector{0\\-1\\4};\MDFPaSpace a,b\in\R
+\]
+und
+\[
+ F\colon\MVec{r}=\MVector{5\\0\\0}+c\MVector{-2\\3\\x}+d\MVector{2\\y\\12};\MDFPaSpace c,d\in\R,
+\]
+wobei der Aufpunkt von $F$ nicht in $E$ liegt.
+
+Bestimmen Sie die fehlenden Komponenten $x$ und $y$ von $F$, so dass $F$ und $E$ parallel sind.\\
+$x=$\MLFunctionQuestion{10}{0}{5}{x}{5}{GNATZ1}\\
+$y=$\MLFunctionQuestion{10}{-6}{5}{x}{5}{GNATZ2}
+
+\begin{MHint}{Lösung}
+Für Parallelität ist erforderlich, dass beiden Richtungsvektoren von $F$ jeweils zu den beiden Richtungsvektoren von $E$ komplanar sind. Für den ersten Richtungsvektor von $F$ liefert dies die Bedingung
+\[
+ \MVector{-2\\3\\x}=a\MVector{2\\-5\\8}+b\MVector{0\\-1\\4}.
+\]
+Hier berechnet man aus der ersten und zweiten Komponente die Werte $a=-1$ und $b=2$, was in der dritten Komponente den Wert
+\[
+ x=-8+2\cdot 4=0
+\]
+erzwingt. Für den zweiten Richtungsvektor von $F$ liefert dies die Bedingung
+\[
+ \MVector{2\\y\\12}=a\MVector{2\\-5\\8}+b\MVector{0\\-1\\4}.
+\]
+Hier berechnet man aus der ersten und dritten Komponente die Werte $a=b=1$, was in der zweiten Komponente den Wert
+\[
+ y=-5-1=-6
+\]
+erzwingt. 
+\end{MHint}
+
+
+\end{MExercise}
+
+\begin{MExercise}
+Gegeben sind die beiden Ebenen 
+\[
+ E\colon\MVec{r}=a\MVector{2\\-5\\8}+b\MVector{0\\-1\\4};\MDFPaSpace a,b\in\R
+\]
+und
+\[
+ F\colon\MVec{r}=c\MVector{0\\3\\4}+d\MVector{2\\-1\\0};\MDFPaSpace c,d\in\R,
+\]
+welche sich schneiden und die Schnittgerade
+\[
+ g\colon\MVec{r}=\xi\MVector{4\\x\\y};\MDFPaSpace \xi\in\R.
+\]
+
+
+Bestimmen Sie die fehlenden Komponenten $x$ und $y$ des Richtungsvektors der Schnittgerade.\\
+$x=$\MLFunctionQuestion{10}{-14}{5}{x}{5}{GNATZ3}\\
+$y=$\MLFunctionQuestion{10}{-16}{5}{x}{5}{GNATZ4}
+
+\begin{MHint}{Lösung}
+Gleichsetzen der Ortsvektoren der beiden Ebenen führt auf
+\[
+ a\MVector{2\\-5\\8}+b\MVector{0\\-1\\4}=\MVector{2a\\-5a-b\\8a+4b}=\MVector{2d\\3c-d\\4c}=c\MVector{0\\3\\4}+d\MVector{2\\-1\\0}.
+\]
+Lösen des zugehörigen Gleichungssystems mit $d$ als Parameter führt auf $a=d$, $b=2d$ und $c=-2d$. Die Bedingung $c=-2d$ in die Ebene $F$ eingesetzt führt auf
+\[
+ -2d\MVector{0\\3\\4}+d\MVector{2\\-1\\0}=d\MVector{2\\-7\\-8}.
+\]
+Ein geeigneter Richtungsvektor für die Schnittgerade ist also $\MVector{2\\-7\\-8}$. Der Richtungsvektor in der angegebenen Parameterform von $g$ hat als erste Komponente allerdings eine $4$ ist zu diesem Vektor also kollinear, dies führt auf den Vektor $\MVector{4\\-14\\-16}$, als Richtungsvektor, also $x=-14$ und $y=-16$. 
+\end{MHint}
+
+
+\end{MExercise}
+
+\end{MXContent}
 
 
 \MSubsection{Abschlusstest}
