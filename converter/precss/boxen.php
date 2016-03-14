@@ -38,7 +38,6 @@
   background-color: [-HINTBACKGROUNDWARN-];
   border: this solid [-HINTLINE-];
   font-family: [-BASICFONTFAMILY-];
-  font-size: [-SMALLFONTSIZE-];
 }
 
 .rouletteselector

@@ -3209,7 +3209,7 @@ sub loadtemplates {
     logMessage($CLIENTINFO, "MathJax wird lokal adressiert");
   } else {
     if ($config{localjax} eq 0) {
-      logMessage($CLIENTINFO, "Binde MathJax ueber NetService (cdn 2.4) ein");
+      logMessage($CLIENTINFO, "Binde MathJax ueber NetService ein");
       loadtemplates_netservice();
       logMessage($CLIENTINFO, "MathJax wird ueber Netservice adressiert");
     } else {

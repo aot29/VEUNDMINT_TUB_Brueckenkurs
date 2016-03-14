@@ -18,7 +18,7 @@ use Term::ANSIColor;
 
 our $stdencoding = "iso-8859-1";
 
-my $helptext = "Usage: agconvert.pl <input fileprefix> <output file>\n\n";
+my $helptext = "Usage: agconvert.pl <theme> <input fileprefix> <output file>\n\n";
 
 our $doverbose = 1;
 our $consolecolors = 1;
@@ -175,20 +175,15 @@ sub writefile {
 	logMessage($VERBOSEINFO, "Written " . length($text) . " characters to file $file (encoding: $stdencoding)");
 }
 
-# ----------------------------- Der Parser -----------------------------------------------------------------------
+# ----------------------------- Die Parser -----------------------------------------------------------------------
 
-
-# \begin{MAufgabe}{Kuerzen}{kr, MaTeX}
-# K\"urzen Sie soweit m\"oglich: $\frac{42}{105}$.\\ 
-# \ifLsg\MLoesung
-# \quad $\frac{42}{105}=\frac{(21)\cdot(2)}{(21)\cdot(5)}=\frac{2}{5}$.\else\relax\fi
-#  \end{MAufgabe}
-
-
-
-sub parse {
+sub parse_general {
   my $text = $_[0];
 
+  if ($text =~ s/(.+)\\begin{MAufgabe}/\\begin{MAufgabe}/sg ) {
+    logMessage($VERBOSEINFO, "Removed generated content outside MAufgabe environment");
+  }
+  
   if ($text =~ s/\\begin{MAufgabe}{(.+?)}{(.*?)}(.+)\\end{MAufgabe}/\\begin{MExercise}$3\\end{MExercise}\n/s ) {
     logMessage($VERBOSEINFO, "Converting exercise \"" . $1 . "\" (authors: " . $2 . ")");
   } else {
@@ -198,6 +193,19 @@ sub parse {
   if ($text =~ s/\\,/ /gs ) {
     logMessage($VERBOSEINFO, "\\, replaced by normal space");
   }
+  
+  if ($text =~ s/\\MDS/\\displaystyle/gs ) {
+    logMessage($VERBOSEINFO, "\\MDS replaced by displaystyle");
+  }
+
+  return $text;
+}
+
+sub parse_fractions {
+  my $text = $_[0];
+
+  logMessage($VERBOSEINFO, "Parser for exercise theme 'fractions' selected");
+  
 
   my $inputfield = "";
   
@@ -261,6 +269,45 @@ sub parse {
   return $text;
 }
 
+sub parse_abseq {
+  my $text = $_[0];
+
+  logMessage($VERBOSEINFO, "Parser for exercise theme 'absolute value equations' selected");
+
+  if ($text =~ s/\\ifLsg\\MLoesung(.+?)\\else\\relax\\fi/\\begin{MHint}{L\\"osung}$1\\end{MHint}/s ) {
+    logMessage($VERBOSEINFO, "MLoesung found and replaced by MHint");
+    
+    if ($text =~ s/\\includegraphics\[(.+?)\]{(.+?)}/\\MGraphicsSolo{$2}{$1}\n/s ) {
+      logMessage($CLIENTINFO, "Image found: $2, should be converted to transparent and copied manually!");
+    } else {
+      logMessage($CLIENTWARN, "No image found in solution");
+    }
+    
+
+    if ($text =~ s/\$\$\n(.+?)\$\$/\$$1\$/s ) {
+      logMessage($VERBOSEINFO, "Introductory paragraph equation smallified");
+    }
+    
+    if ($text =~ s/\\begin{align\*}(.+?)\= (.+?)\\\\[ \n]*\\Leftrightarrow(.+?)\= (.+?)\\end{align\*}/\$\$\n$1\\;=\\;$2\\;\\;\\Leftrightarrow\\;\\;$3\\;=\\;$4\$\$/sg ) {
+      logMessage($VERBOSEINFO, "Align environment replaced");
+    }
+    
+    if ($text =~ s/\\frac{/\\Mtfrac{/sg ) {
+      logMessage($VERBOSEINFO, "Fractions displayd in small variant");
+    }
+
+    if ($text =~ s/\\begin{cases}(.+?)\\\\(.+?)\\end{cases}/($1\\;\\text{und}\\;$2)\\;/sg ) {
+      logMessage($VERBOSEINFO, "cases-environments displaying conjunctions replaced");
+    }
+
+    
+  } else {
+    logMessage($CLIENTERROR, "Could not convert solution");
+  }
+
+  
+  return $text;
+}
 
 # ----------------------------- Start Hauptprogramm --------------------------------------------------------------
 
@@ -278,9 +325,10 @@ logMessage($CLIENTINFO, "Starting conversion: " . ($year+1900 ) . "-" . ($mon+1)
 
 my $i = 1;
 
-if ($#ARGV eq 1) {
-  my $sourceprefix = $ARGV[0];
-  my $targetfile = $ARGV[1];
+if ($#ARGV eq 2) {
+  my $extype = $ARGV[0]; # Uebernommen aus den Themennummern der MATeX-Generatoren
+  my $sourceprefix = $ARGV[1];
+  my $targetfile = $ARGV[2];
 
   logMessage($CLIENTINFO, "Collection files having prefix $sourceprefix");
   
@@ -300,7 +348,12 @@ if ($#ARGV eq 1) {
     }
   
     my $atext = readfile($sourcefile);
-    $text .= parse($atext);
+    
+    $atext = parse_general($atext);
+    
+    if ($extype eq 10) { $text .= parse_fractions($atext); }
+    if ($extype eq 12) { $text .= parse_abseq($atext); }
+    
     $i++;
     $sourcefile = "$sourceprefix$i.tex";
   }
