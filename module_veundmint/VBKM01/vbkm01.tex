@@ -41,17 +41,17 @@ genommen werden.
 
 \begin{MInfo}
 Um Aussagen in kompakter Weise über eine Reihe von strukturell ähnlichen
-Objekten treffen zu können, kann man solche Objekte in Mengen zusammengefassen,
+Objekten treffen zu können, kann man solche Objekte in Mengen zusammenfassen,
 die als Behältnis für die Objekte dienen. Seien die Objekte mit $a,b,c,\ldots$
 benannt, dann bildet das Symbol $M=\{a\MElSetSep b \MElSetSep c \MElSetSep
 \ldots\}$ die Menge $M$, welche die vorigen Objekte als \textbf{Elemente}
 enthält. Letzteres schreibt man kurz $a\in M$, $b\in M$, $c\in M$ usw.;
-das Zeichen $\in$ bedeutet also \glqq{}ist Element von\grqq{}.
+das Zeichen \glqq{}$\in$\grqq{} bedeutet also \glqq{}ist Element von\grqq{}.
 (Manchmal ist es schreibtechnisch geboten, die Reihenfolge von Element und
 Menge auszutauschen. Zum Erhalten der gleichen Aussage(n) wird dann das
 $\in$-Symbol umgedreht, d.h. $M\ni a$, $M\ni b$, $M\ni c$ usw. heißt
-dann dasselbe, wobei $\ni$ \glqq{}enthält als Element\grqq{} bzw.
-\glqq{}beinhaltet\grqq{} bedeutet.)
+dann dasselbe, wobei \glqq{}$\ni$\grqq{} somit \glqq{}enthält als Element\grqq{}
+bzw.  \glqq{}beinhaltet\grqq{} bedeutet.)
 
 Neben der aufzählenden Schreibweise von Mengen existieren weitere 
 Schreibweisen. Wenn die Elemente z.B. eine Bedingung $B$ erfüllen sollen,
@@ -66,6 +66,16 @@ geschrieben.
 %%Da die Bedingung $B$ eine Einschränkung für die Elemente von $U$ darstellt,
 %%ist $T$ dann in natürlicher Weise eine \textbf{Teilmenge} von $U$,
 %%notiert in Formelnotation als $T\subset U$.
+
+Aussagen wie \glqq{}$x\in U$\grqq{} oder
+\glqq{}$x\MBlank\text{erfüllt}\MBlank B$\grqq{} sind Aussagen im 
+mathematischen Sinn, d.h. ihnen kann ein eindeutiger Wahrheitswert
+\glqq{}wahr\grqq{} oder \glqq{}falsch\grqq{} zugeordnet werden.
+Seien $A_1$ und $A_2$ solche Aussagen. Für den Fall, dass sowohl
+$A_1$ als auch $A_2$ gelten soll, also $A_1$ \textbf{und} $A_2$ gelten
+sollen, schreibt man auch $A_1 \wedge A_2$. Im Fall, dass nur eine von
+beiden Aussagen zu gelten braucht, d.h. $A_1$ \textbf{oder} $A_2$
+(oder beide Aussagen) gelten sollen, schreibt man auch $A_1\vee A_2$.
 
 Für zwei Mengen $M$ und $N$ notiert man
 \begin{itemize}
@@ -86,10 +96,16 @@ jene Menge, in der alle Elemente enthalten sind, die in beiden Mengen
 vorkommen;
 }
 \item{%
-$N\MSetminus M$ für diejenige Menge, welche die Elemente von $N$ enthält,
-die \textit{nicht} in $M$ vorkommen.
+$N\MSetminus M$ für die \textbf{Differenzmenge}, d.h. für diejenige Menge,
+welche die Elemente von $N$ enthält, die \textit{nicht} in $M$ vorkommen.
 }
 \end{itemize}
+Die obige Vereinigung ist also charakterisiert durch Elemente, die
+$(x\in M) \vee (x\in N)$ erfüllen. Für die Elemente der obigen Schnittmenge
+gilt dagegen $(x\in M) \wedge (x\in N)$. Demgegenüber enthält die obige
+Differenzmenge solche Elemente, für die $(x\in N) \wedge (x\notin M)$ gilt.
+Mit dem Symbol $\notin$-Symbol wird die Verneinung (Negation) der
+Element-Aussage beschrieben.
 \end{MInfo}
 %
 
@@ -181,7 +197,7 @@ $$
 die gleiche rationale Zahl.
 
 Andererseits kann nicht jede Zahl auf dem Zahlenstrahl als Bruch dargestellt werden.
-Betrachtet man zum Beispien ein Quadrat mit der Seitenl"ange 1 und will die Länge der Diagonalen $d$ berechnen, so erhält man nach dem Satz von Pythagoras:
+Betrachtet man zum Beispiel ein Quadrat mit der Seitenl"ange 1 und will die Länge der Diagonalen $d$ berechnen, so erhält man nach dem Satz von Pythagoras:
 
 \vspace*{5mm}
 
@@ -249,29 +265,29 @@ Teilmengen reeller Zahlen bezeichnet man als \MEntry{Intervalle}{Intervall}.
 Deren Beschreibung wird so festgelegt, dass man ihnen eine linke 
 Intervallgrenze ($a$) und eine rechte Intervallgrenze $(b)$ zuordnet
 mit $a<b$. Je nachdem, ob eine oder beide Intervallgrenzen zum
-Intervall dazugehören, ergibt sich folgende Fallunterscheidung:
+Intervall dazugehören, ergeben sich folgende Fälle:
 \begin{itemize}
 \item{%
 $\{x\in\R \MCondSetSep x\ge a \MBlank\text{und}\MBlank x\le b\}
 = [a\MIntvlSep b]$ bezeichnet das \textbf{abgeschlossene} Intervall
-zwichen $a$ und $b$, bei dem die Grenzen zum Intervall dazugehören.
+zwischen $a$ und $b$, bei dem die Grenzen zum Intervall dazugehören.
 }
 \item{%
 $\{x\in\R \MCondSetSep x> a \MBlank\text{und}\MBlank x< b\}
 = \MoIl a\MIntvlSep b\MoIr$ bezeichnet das \textbf{offene} Intervall
-zwichen $a$ und $b$, bei dem die Grenzen \textit{nicht} zum Intervall
+zwischen $a$ und $b$, bei dem die Grenzen \textit{nicht} zum Intervall
 dazugehören.
 }
 \item{%
 $\{x\in\R \MCondSetSep x\ge a \MBlank\text{und}\MBlank x< b\}
 = [a\MIntvlSep b\MoIr$ bezeichnet das \textbf{links abgeschlossene und 
-rechts offene} Intervall zwichen $a$ und $b$, bei dem die linke Grenze
+rechts offene} Intervall zwischen $a$ und $b$, bei dem die linke Grenze
 zum Intervall dazugehört, die rechte aber nicht.
 }
 \item{%
 $\{x\in\R \MCondSetSep x> a \MBlank\text{und}\MBlank x\le b\}
 = \MoIl a\MIntvlSep b]$ bezeichnet das \textbf{links offene und 
-rechts abgeschlossene} Intervall zwichen $a$ und $b$, bei dem die rechte 
+rechts abgeschlossene} Intervall zwischen $a$ und $b$, bei dem die rechte 
 Grenze zum Intervall dazugehört, die linke aber nicht.
 }
 \end{itemize}
@@ -510,7 +526,7 @@ Seite kann man ablesen, dass der Term für sehr große $a$ gegen den Wert $1$ stre
 Formen Sie in eine Summendarstellung um: \MEquationItem{$a\cdot(b+c)+c\cdot(a+b)$}{\MLSimplifyQuestion{20}{a*(b+c)+c*(a+b)}{3}{a,b,c}{3}{1}{TC1}}.
 \begin{MHint}{Lösung}
 $$
-a\cdot(b+c)+c\cdot(a+b) \;=\; ab + ac + ca + cb \;=\; ab + 2ac +bc
+a\cdot(b+c)+c\cdot(a+b) \;=\; a b + a c + c a + c b \;=\; a b + 2 a c + b c
 $$
 \end{MHint}
 \end{MExercise}
@@ -519,7 +535,7 @@ $$
 Formen Sie in eine Summendarstellung um: \MEquationItem{$(x-y)(z-x)+(x-z)(y-z)$}{\MLSimplifyQuestion{20}{(x-y)*(z-x)+(x-z)*(y-z)}{3}{x,y,z}{3}{1}{TC2}}.
 \begin{MHint}{Lösung}
 $$
-(x-y)(z-x)+(x-z)(y-z) \;=\; xz - x^2 -yz +yx + xy - xz - zy + z^2 \;=\; -x^2 - 2yz + 2xz + z^2
+(x-y)(z-x)+(x-z)(y-z) \;=\; x z - x^2 -y z +y x + x y - x z - z y + z^2 \;=\; -x^2 - 2 y z + 2 x z + z^2
 $$
 \end{MHint}
 \end{MExercise}
@@ -528,7 +544,7 @@ $$
 Formen Sie in eine Summendarstellung um: \MEquationItem{$(a+b+2)(a+1)$}{\MLSimplifyQuestion{20}{(a+b+2)*(a+1)}{3}{a,b,c}{3}{1}{TC3}}.
 \begin{MHint}{Lösung}
 $$
-(a+b+2)(a+1) \;=\; a^2 + ba + 2a + a + b + 2 \;=\; a^2 + ab + 3a + b +2
+(a+b+2)(a+1) \;=\; a^2 + b a + 2a + a + b + 2 \;=\; a^2 + a b + 3a + b +2
 $$
 \end{MHint}
 \end{MExercise}
@@ -563,7 +579,7 @@ Drei Freunde m"ochten sich eine Pizza teilen. Tom isst $\displaystyle \Mtfrac{1}
 Der Ergebnis wird mithilfe der Bruchrechnung bestimmt: Zun"achst m"ussen zwei Br"uche addiert werden, um festzustellen, wieviel Tim und Tom schon von der Pizza gegessen haben: 
 $$\Mdfrac{1}{4} + \Mdfrac{1}{3} = \Mdfrac{1\cdot 3}{4\cdot 3}+\Mdfrac{1\cdot 4}{3\cdot 4} = \Mdfrac{3}{12} +\Mdfrac{4}{12} = \Mdfrac{7}{12} \MDFPeriod$$
 Hier erkennt man schon die beiden wichtigsten Schritte: zun"achst m"ussen die beiden Br"uche durch Erweitern auf den sogenannten \textbf{Hauptnenner} gebracht oder man sagt auch \textbf{gleichnamig} gemacht werden. Wenn die Br"uche dann denselben Nenner besitzen, k"onnen sie addiert werden, indem ihre Z"ahler addiert und der gemeinsame Nenner "ubernommen wird.
-Mit dem Ergebnis, dass Tim und Tom $\displaystyle \Mtfrac{7}{12}$ der Pizza gegessen haben, kann durch subtraktion berechnet werden, wie viel f"ur Sven "ubrig bleibt: 
+Mit dem Ergebnis, dass Tim und Tom $\displaystyle \Mtfrac{7}{12}$ der Pizza gegessen haben, kann durch Subtraktion berechnet werden, wie viel f"ur Sven "ubrig bleibt: 
 $$ 1 - \Mdfrac{7}{12} = \Mdfrac{12}{12} - \Mdfrac{7}{12} = \Mdfrac{5}{12} \MDFPeriod$$
 Auch hier werden die Br"uche wieder auf den Hauptnenner gebracht und anschlie"send die Z"ahler subtrahiert. Die beiden Freunde haben also f"ur den immer hungrigen Sven tats"achlich die meiste Pizza "ubriggelassen. 
 \end{MExample}
@@ -1008,7 +1024,7 @@ $$
 \end{MExercise}
 
 \begin{MExercise}
-Berechnen Sie mit Hile einer binomischen Formel:
+Berechnen Sie mit Hilfe einer binomischen Formel:
 \begin{MExerciseItems}
 \item{\MEquationItem{$\displaystyle 43^2$}{\MLSimplifyQuestion{6}{1849}{5}{x}{5}{1024}{BMPF1}}. \begin{MHint}{L"osung}$$43^2 \;=\; (40+3)^2 \;=\; 40^2+2\cdot 40\cdot 3+3^2\;=\; 1600+240+9 \;=\; 1849 \MDFPeriod $$\end{MHint}}
 \item{\MEquationItem{$\displaystyle 97^2$}{\MLSimplifyQuestion{6}{9409}{5}{x}{5}{1024}{BMPF2}}. \begin{MHint}{L"osung}$$97^2\;=\; (90+7)^2 \;=\; 90^2+2\cdot90\cdot 7+7^2 \;=\; 8100+1260+49\;=\; 9409 \MDFPeriod $$\end{MHint}}
@@ -1017,7 +1033,7 @@ Berechnen Sie mit Hile einer binomischen Formel:
 \end{MExercise}
 
 \begin{MExercise}
-Wenden Sie eine binomische Formel an um das Produkt aufzulösen und fassen Sie das Ergebniss zusammen:
+Wenden Sie eine binomische Formel an, um das Produkt aufzulösen, und fassen Sie das Ergebnis zusammen:
 \begin{MExerciseItems}
 \item{\MEquationItem{$\displaystyle (-5x y-2)^2$}{\MLSimplifyQuestion{30}{25*x^2*y^2+20*x*y+4}{5}{x,y}{5}{1}{BMPF5}}. \begin{MHint}{L"osung}$$(-5x y-2)^2 \;=\; (-1)^2\cdot(5x y+2)^2 \;=\; 25x^2y^2+20x y+4 \MDFPeriod $$\end{MHint}}
 \item{\MEquationItem{$\displaystyle (-6a b+7b c)(-6a b-7b c)$}{\MLSimplifyQuestion{36}{36*a^2*b^2-49*b^2*c^2}{5}{a,b,c}{5}{1}{BMPF6}}. \begin{MHint}{L"osung}$$ (-6a b+7b c)(-6a b-7b c) \;=\; (-6a b)^2-(7b c)^2 \;=\; 36a^2b^2-49b^2c^2 \MDFPeriod $$\end{MHint}}
@@ -1108,7 +1124,7 @@ Multiplizieren Sie diese Terme vollständig aus und fassen Sie zusammen. Geben Si
 %%Das asymptotische Verhalten ist
 \begin{center}
 %%$\displaystyle \lim_{x\rightarrow +\infty} f(x)\;=\;$
-Beschreibung des asymtotischen Verhaltens:\\ 
+Beschreibung des asymptotischen Verhaltens:\\ 
 Wenn $x$ gegen $\infty$ strebt, dann strebt $f(x)$ gegen
 \MLSimplifyQuestion{10}{-infty}{3}{infty}{5}{1}{LSFF4}\;. \begin{MHint}{L"osung}%
 Die Asymptotik kann, wenn sie sich in eindeutiger Weise ergibt, abkürzend mit dem Symbol \glqq{}lim\grqq{} bezeichnet werden:
