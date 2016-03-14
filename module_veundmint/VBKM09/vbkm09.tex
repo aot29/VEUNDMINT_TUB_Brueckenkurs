@@ -141,7 +141,7 @@ Man erkennt nun, dass ein solches Koordinatensystem die Ebene in vier Bereiche t
 }
 \end{center}
 
-Weiterhin werden die oben beschriebenen Koordinatensysteme auch als \MEntry{kartesische Koordinatensysteme}{kartesisches Koordinatensystem} bezeichnet, da ihre Achsen senkrecht aufeinander stehen, sich also im Urpsrung unter einem $90^{\circ}$-Winkel schneiden. Es gibt also auch nicht-kartesische Koordinatensysteme, die in diesem Kurs allerdings nicht betrachtet werden. Deshalb wird im Folgenden oft einfach nur der Begriff Koordinatensystem für ein kartesisches Koordinatensystem benutzt. 
+Weiterhin werden die oben beschriebenen Koordinatensysteme auch als \MEntry{kartesische Koordinatensysteme}{kartesisches Koordinatensystem} bezeichnet, da ihre Achsen senkrecht aufeinander stehen, sich also im Ursprung unter einem $90^{\circ}$-Winkel schneiden. Es gibt also auch nicht-kartesische Koordinatensysteme, die in diesem Kurs allerdings nicht betrachtet werden. Deshalb wird im Folgenden oft einfach nur der Begriff Koordinatensystem für ein kartesisches Koordinatensystem benutzt. 
 
 Hat man nun das Konzept der Koordinatensysteme der Ebene verinnerlicht, so wird klar, dass man auf ähnliche Weise auch die Position von Punkten im Raum beschreiben kann. Will man zum Beispiel die Position eines Flugzeugs exakt angeben, ist dafür nicht nur seine Position relativ zum Tower relevant, sondern auch seine Flughöhe. Man braucht hierfür also eine dritte Koordinate und folglich ein Koordinatensystem mit drei Achsen. Solche Koordinatensysteme werden in \MSRef{VBKM10}{Kapitel 10} eingeführt.  
 
@@ -151,7 +151,7 @@ Hat man nun das Konzept der Koordinatensysteme der Ebene verinnerlicht, so wird 
 \MLabel{VBKM09_Punkte}
 \MDeclareSiteUXID{VBKM09_Punkte}
 
-Wenn man nun Punkte in der Ebene durch Koordinaten beschreiben möchte, benutzt man auch hier oft Variablen. Typischerweise sind dies Großbuchstaben $A,B,C,\MHDots$ oder $P,Q,R,\MHDots$ für Punkte und Kleinbuchstbaben $a,b,c,\MHDots$ oder $x,y,\MHDots$ für ihre Koordinaten. Zunächst wird nun festgelegt, was unter einem Punkt in der Ebene, in welcher ein Koordinatensystem gegeben ist, zu verstehen sein soll und welche Schreibweisen dafür im Folgenden benutzt werden. 
+Wenn man nun Punkte in der Ebene durch Koordinaten beschreiben möchte, benutzt man auch hier oft Variablen. Typischerweise sind dies Großbuchstaben $A,B,C,\MHDots$ oder $P,Q,R,\MHDots$ für Punkte und Kleinbuchstaben $a,b,c,\MHDots$ oder $x,y,\MHDots$ für ihre Koordinaten. Zunächst wird nun festgelegt, was unter einem Punkt in der Ebene, in welcher ein Koordinatensystem gegeben ist, zu verstehen sein soll und welche Schreibweisen dafür im Folgenden benutzt werden. 
 
 \begin{MInfo}
 \MLabel{VBKM09_PunktInEbene}
@@ -533,15 +533,15 @@ Es wird nun zunächst die allgemeinste Form einer Koordinatengleichung für eine G
 \begin{MInfo}\MLabel{geradengleichung}
 Eine \MEntry{Gerade}{Gerade} $g$ im $\R^2$ ist eine Punktmenge
 \[
- g=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep px+qy=c\}\MDFPeriod
+ g=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep p x+q y=c\}\MDFPeriod
 \]
 Dabei sind $p,q,c$ reelle Zahlen, welche die Gerade festlegen. Die Zahlen $p$ und $q$ dürfen dabei \textit{nicht beide} gleich $0$ sein. Die lineare Gleichung
 \[
- px+qy=c
+ p x+q y=c
 \]
 heißt \MEntry{Geradengleichung}{Geradengleichung} oder genauer, um sie von anderen möglichen Formen von Geradengleichungen zu unterscheiden, auch \MEntry{Koordinatenform der Geradengleichung}{Koordinatenform}. Um die oben stehende Mengenschreibweise für Geraden abzukürzen, hat es sich auch eingebürgert, nur die Variable für die Gerade und die Geradengleichung anzugeben:
 \[
- g\colon\MDFPSpace px+qy=c\MDFPeriod
+ g\colon\MDFPSpace p x+q y=c\MDFPeriod
 \]
 \end{MInfo}
 
@@ -692,9 +692,9 @@ Ziel ist es nun eine Gerade, welche durch eine Geradengleichung oder andere Date
 \begin{MInfo}\MLabel{VBKM09_Info_Normalform}
 Eine Gerade $g$, gegeben durch eine Geradengleichung in Koordinatenform 
 \[
- g\colon\MDFPSpace px+qy=c \MDFPSpace ,
+ g\colon\MDFPSpace p x+q y=c \MDFPSpace ,
 \]
-kann in \MEntry{Normalform}{Normalform (einer Geraden)} angegeben werden, falls $q\neq 0$ gilt. Denn dann lässt sich die Geradengleichung $px+qy=c$ nach $y$ auflösen und die Normalform von $g$ lautet
+kann in \MEntry{Normalform}{Normalform (einer Geraden)} angegeben werden, falls $q\neq 0$ gilt. Denn dann lässt sich die Geradengleichung $p x+q y=c$ nach $y$ auflösen und die Normalform von $g$ lautet
 \[
  g\colon\MDFPSpace y=-\frac{p}{q}x + \frac{c}{q}\MDFPeriod
 \]
@@ -1175,11 +1175,11 @@ Während es im vorigen Abschnitt \MNRef{VBKM09_Koordinatengleichungen} darum ging
 \begin{MInfo}
 Ist 
 \[
- g = \{\MPointTwo{x}{y}\MCondSetSep px+qy=c\}
+ g = \{\MPointTwo{x}{y}\MCondSetSep p x+q y=c\}
 \]
 eine Gerade und $P=\MPointTwo{a}{b}$ ein Punkt im $\R^2$, so liegt $P$ genau dann auf der Geraden ($P\in g$), wenn seine Abszisse und Ordinate die Geradengleichung erfüllen, also wenn
 \[
- pa+qb=c
+ p a+q b=c
 \]
 gilt.
 \end{MInfo}
@@ -1866,7 +1866,7 @@ Alle Punkte auf dem (roten) Kreis haben von einem Punkt, dem \textbf{Mittelpunkt
 \MLabel{VBKM09_Abstand_Strecken}
 \MDeclareSiteUXID{VBKM09_Abstand_Strecken}
 
-Rekapituliert man nochmals das einführende Beispiel des Hydranten aus \MNRef{VBKM09_Koordinaten_Intro}, so stellt man fest, dass man mit Hilfe der Daten auf dem Hydrantenschild zwar nun den Ort des Hydranten in einem Koordinatensystem genau angeben kann. Interessiert man sich aber dafür, wie weit der Hydrant vom Schild tatsächlich entfernt ist, muss man dies aus den Koordinaten erst ausrechen.   
+Rekapituliert man nochmals das einführende Beispiel des Hydranten aus \MNRef{VBKM09_Koordinaten_Intro}, so stellt man fest, dass man mit Hilfe der Daten auf dem Hydrantenschild zwar nun den Ort des Hydranten in einem Koordinatensystem genau angeben kann. Interessiert man sich aber dafür, wie weit der Hydrant vom Schild tatsächlich entfernt ist, muss man dies aus den Koordinaten erst ausrechnen.   
 
 \begin{center}
 \MUGraphicsSolo{hydrant.png}{scale=0.6}{width:571px}
@@ -2085,7 +2085,7 @@ Auf dem Kreis liegen also alle Punkte, die von $P$ den Abstand $2$ haben. Beispi
 \]
 gilt. $R=\MPointTwo{3}{-2}$ dagegen ist kein Punkt auf dem Kreis, denn er besitzt den Abstand
 \[
- [\overline{PR}] = \sqrt{(2-3)^2 + (1-(-2))^2} = \sqrt{10} \neq 2.
+ [\overline{P R}] = \sqrt{(2-3)^2 + (1-(-2))^2} = \sqrt{10} \neq 2.
 \]
 Der Punkt $R$ erfüllt also nicht die Kreisgleichung.
 
@@ -2452,7 +2452,7 @@ Sind ein Kreis $K$ und eine Gerade $g$ in der Ebene (durch Koordinatengleichunge
 \end{center} 
 \end{MInfo}
 
-Im Fall einer Sekante oder Tangente haben Kreis und Gerade also zwei Punkte oder einen Punkt gemeinsam. Wie kann man diesen Punkt oder diese Punkte nun ausrechnen? Da die Punkte jeweils auf Kreis und Gerade liegen, müssen sie sowohl die Koordinatengleichung des Kreises als auch die Koordinatengleichung der Geraden erfüllen. Man hat dann also zwei Gleichungen für die beiden unbekannten Koordinaten der Schnittpunkte und kann diese dadurch ausrechnen. Dabei ist allerdings Folgendes zu beachten: Da in der Koordinatengleichung für Kreise die Unbekannten quadriert vorkommen, handelt es sich \textit{nicht} um zwei lineare Gleichungen. Es sind also leider \textit{nicht} die Methoden zum Lösen linearer Gleichungssysteme aus Kapitel \MNRef{VBKM05} anwendbar. Die folgende Infobox fasst die Methode zur Berechnung der Schnittunkte zusammen.
+Im Fall einer Sekante oder Tangente haben Kreis und Gerade also zwei Punkte oder einen Punkt gemeinsam. Wie kann man diesen Punkt oder diese Punkte nun ausrechnen? Da die Punkte jeweils auf Kreis und Gerade liegen, müssen sie sowohl die Koordinatengleichung des Kreises als auch die Koordinatengleichung der Geraden erfüllen. Man hat dann also zwei Gleichungen für die beiden unbekannten Koordinaten der Schnittpunkte und kann diese dadurch ausrechnen. Dabei ist allerdings Folgendes zu beachten: Da in der Koordinatengleichung für Kreise die Unbekannten quadriert vorkommen, handelt es sich \textit{nicht} um zwei lineare Gleichungen. Es sind also leider \textit{nicht} die Methoden zum Lösen linearer Gleichungssysteme aus Kapitel \MNRef{VBKM05} anwendbar. Die folgende Infobox fasst die Methode zur Berechnung der Schnittpunkte zusammen.
 
 \begin{MInfo}
  Sind ein Kreis $K$ in der Ebene mit Mittelpunkt $\MPointTwo{x_0}{y_0}$ und Radius $r$ mittels einer Koordinatengleichung
