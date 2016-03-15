@@ -207,7 +207,8 @@ f(x) = \cos(x)              & F(x) = \int \cos(x) \MDwSp x = \sin(x) + C \\
 f(x) = \cos(k x)            & F(x) = \int \cos(k x) \MDwSp x = \frac{1}{k}\,\sin(k x) + C \\
 f(x) = \MEU^x               & F(x) = \int \MEU^x \MDwSp x = \MEU^x + C \\
 f(x) = \MEU^{k x}           & F(x) = \int \MEU^{k x} \MDwSp x = \frac{1}{k}\,\MEU^{k x} + C \\
-f(x) = x^{-1} = \frac{1}{x} & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C %%
+f(x) = x^{-1} = \frac{1}{x} & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C  %
+\text{ f"ur } $x > 0$ \text{ oder } $x < 0$ %%
 \end{array}
 \]
 \else
@@ -223,7 +224,8 @@ f(x) = \cos(x)              & F(x) = \int \cos(x) \MDwSp x = \sin(x) + C \\[1ex]
 f(x) = \cos(k x)            & F(x) = \int \cos(k x) \MDwSp x = \frac{1}{k}\,\sin(k x) + C \\[1ex]
 f(x) = \MEU^x               & F(x) = \int \MEU^x \MDwSp x = \MEU^x + C \\[1ex]
 f(x) = \MEU^{k x}           & F(x) = \int \MEU^{k x} \MDwSp x = \frac{1}{k}\,\MEU^{k x} + C \\[1ex]
-f(x) = x^{-1} = \frac{1}{x} & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C %%
+f(x) = x^{-1} = \frac{1}{x} & F(x) = \int \frac{1}{x} \MDwSp x = \ln|x| + C %
+\text{ f"ur } $x > 0$ \text{ oder } $x < 0$ %%
 \end{array}
 \]
 \fi
@@ -1168,14 +1170,14 @@ Ableitung von $u$ ist $u'(x) = 1$, also eine konstante Funktion. Au"serdem
 ist zur Exponentialfunktion eine Stammfunktion bekannt: Zu $v'$ mit 
 $v'(x) = \MEU^{x}$ ist $v$ mit $v(x) = \MEU^{x}$ eine Stammfunktion. 
 Damit erh"alt man mit partieller Integration
-\[
- \int_{0}^{4} x \cdot \MEU^{x} \MDwSp x %
-= \left[ x \cdot \MEU^{x} \right]_{1}^{4} - \int_{1}^{4} 1 \cdot \MEU^{x} \MDwSp x %
-= \left[ x \cdot \MEU^{x} \right]_{1}^{4} - \left[ \MEU^{x} \right]_{1}^{4} %
-= \left[ x \cdot \MEU^{x} - \MEU^{x} \right]_{1}^{4} %
-= \left[ (x - 1) \cdot \MEU^{x} \right]_{1}^{4} %
-= 3 \MEU^{4} \MDFPeriod %%
-\]
+\begin{eqnarray*}
+ \int_{1}^{4} x \cdot \MEU^{x} \MDwSp x %
+& = & \left[ x \cdot \MEU^{x} \right]_{1}^{4} - \int_{1}^{4} 1 \cdot \MEU^{x} \MDwSp x \\
+& = & \left[ x \cdot \MEU^{x} \right]_{1}^{4} - \left[ \MEU^{x} \right]_{1}^{4} \\
+& = & \left[ x \cdot \MEU^{x} - \MEU^{x} \right]_{1}^{4} \\
+& = & \left[ (x - 1) \cdot \MEU^{x} \right]_{1}^{4} \\
+& = & 3 \MEU^{4} \MDFPeriod %%
+\end{eqnarray*}
 \end{MHint}
 \end{MExercise}
 
