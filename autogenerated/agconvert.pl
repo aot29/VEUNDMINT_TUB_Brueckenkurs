@@ -277,7 +277,47 @@ sub parse_abseq {
   if ($text =~ s/\\ifLsg\\MLoesung(.+?)\\else\\relax\\fi/\\begin{MHint}{L\\"osung}$1\\end{MHint}/s ) {
     logMessage($VERBOSEINFO, "MLoesung found and replaced by MHint");
     
-    if ($text =~ s/\\includegraphics\[(.+?)\]{(.+?)}/\\MGraphicsSolo{$2}{$1}\n/s ) {
+    if ($text =~ s/\\includegraphics\[(.+?)\]{(.+?)}/\\MUGraphicsSolo{$2}{$1}{width:700px}\n/s ) {
+      logMessage($CLIENTINFO, "Image found: $2, should be converted to transparent and copied manually!");
+    } else {
+      logMessage($CLIENTWARN, "No image found in solution");
+    }
+    
+
+    if ($text =~ s/\$\$\n(.+?)\$\$/\$$1\$/s ) {
+      logMessage($VERBOSEINFO, "Introductory paragraph equation smallified");
+    }
+    
+    if ($text =~ s/\\begin{align\*}(.+?)\= (.+?)\\\\[ \n]*\\Leftrightarrow(.+?)\= (.+?)\\end{align\*}/\$\$\n$1\\;=\\;$2\\;\\;\\Leftrightarrow\\;\\;$3\\;=\\;$4\$\$/sg ) {
+      logMessage($VERBOSEINFO, "Align environment replaced");
+    }
+    
+    if ($text =~ s/\\frac{/\\Mtfrac{/sg ) {
+      logMessage($VERBOSEINFO, "Fractions displayed in small variant");
+    }
+
+    if ($text =~ s/\\begin{cases}(.+?)\\\\(.+?)\\end{cases}/($1\\;\\text{und}\\;$2)\\;/sg ) {
+      logMessage($VERBOSEINFO, "cases-environments displaying conjunctions replaced");
+    }
+
+    
+  } else {
+    logMessage($CLIENTERROR, "Could not convert solution");
+  }
+
+  
+  return $text;
+}
+
+sub parse_curve {
+  my $text = $_[0];
+
+  logMessage($VERBOSEINFO, "Parser for exercise theme 'curve analysis' selected");
+
+  if ($text =~ s/\\ifLsg\\Loesung(.+?)\\else\\relax\\fi/\\begin{MHint}{L\\"osung}$1\\end{MHint}/s ) {
+    logMessage($VERBOSEINFO, "MLoesung found and replaced by MHint");
+    
+    if ($text =~ s/\\includegraphics\[(.+?)\]{(.+?)}/\\MUGraphicsSolo{$2}{$1}{width:700px}\n/s ) {
       logMessage($CLIENTINFO, "Image found: $2, should be converted to transparent and copied manually!");
     } else {
       logMessage($CLIENTWARN, "No image found in solution");
@@ -352,6 +392,7 @@ if ($#ARGV eq 2) {
     $atext = parse_general($atext);
     
     if ($extype eq 10) { $text .= parse_fractions($atext); }
+    if ($extype eq 11) { $text .= parse_curve($atext); }
     if ($extype eq 12) { $text .= parse_abseq($atext); }
     
     $i++;
