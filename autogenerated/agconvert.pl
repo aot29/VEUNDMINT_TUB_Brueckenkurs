@@ -38,6 +38,7 @@ our $GRAYBASHCOLOR = "\037[0;31m";
 our $REDBASHCOLOR = "\033[0;31m";
 our $NOBASHCOLOR = "\033[0m";
 
+our $texpath = ""; # Pfad in dem gerade tex-Dateien gelesen werden und auch die Bilder liegen sollten
 
 # ----------------------------- Funktionen -----------------------------------------------------------------------
 
@@ -175,6 +176,40 @@ sub writefile {
 	logMessage($VERBOSEINFO, "Written " . length($text) . " characters to file $file (encoding: $stdencoding)");
 }
 
+# Konvertiert eine gegebene Bilddatei in png und ersetzt die Hintergrundfarbe "weiss" durch "transparent"
+# Parameter 1: Dateiname des Bilds (ohne Pfad aber mit Endung), Pfad wird aus globaler Pfadvariable genommen
+# Rueckgabewert: Neuer Dateiname ohne Pfad
+
+sub convertimage {
+
+  my $image = $_[0];
+  my $type = "";
+  my $rawname = "";
+  if ($image =~ m/(.+)\.(.+)/s ) {
+    $type = $2;
+    $rawname = $1;
+    if ($type eq "png") {
+      logMessage($VERBOSEINFO, "Found png image");
+    } else {
+      logMessage($VERBOSEINFO, "Found $type image, converting to png");
+    }
+  } else {
+    logMessage($CLIENTWARN, "$image has no readable type");
+    return $image;
+  }
+  my $file =  $texpath . "/" . $image;
+  $rawname .= "_conv.png";
+  my $output = $texpath . "/" . $rawname;
+  if (-e $file) {
+    logMessage($VERBOSEINFO, "Converting image $file to transparent $output");
+    system("convert $file -transparent white $output");
+    return $rawname;
+  } else {
+    logMessage($CLIENTWARN, "Could not convert image $file");
+    return $image;
+  }
+}
+
 # ----------------------------- Die Parser -----------------------------------------------------------------------
 
 sub parse_general {
@@ -198,6 +233,9 @@ sub parse_general {
     logMessage($VERBOSEINFO, "\\MDS replaced by displaystyle");
   }
 
+  if ($text =~ s/\\mathcal{L}/\\ML/sg ) {
+    logMessage($VERBOSEINFO, "\\mathcal{L} replaced by mintmod-macro");
+  }
   return $text;
 }
 
@@ -277,8 +315,10 @@ sub parse_abseq {
   if ($text =~ s/\\ifLsg\\MLoesung(.+?)\\else\\relax\\fi/\\begin{MHint}{L\\"osung}$1\\end{MHint}/s ) {
     logMessage($VERBOSEINFO, "MLoesung found and replaced by MHint");
     
-    if ($text =~ s/\\includegraphics\[(.+?)\]{(.+?)}/\\MUGraphicsSolo{$2}{$1}{width:700px}\n/s ) {
-      logMessage($CLIENTINFO, "Image found: $2, should be converted to transparent and copied manually!");
+    if ($text =~ s/\\includegraphics\[(.+?)\]{(.+?)}/\\MUGraphicsSolo{;AUTOFILENAME;}{$1}{width:700px}\n/s ) {
+      my $oldfile = $2;
+      my $newfile = convertimage($oldfile);
+      $text =~ s/;AUTOFILENAME;/$newfile/s ;
     } else {
       logMessage($CLIENTWARN, "No image found in solution");
     }
@@ -299,6 +339,17 @@ sub parse_abseq {
     if ($text =~ s/\\begin{cases}(.+?)\\\\(.+?)\\end{cases}/($1\\;\\text{und}\\;$2)\\;/sg ) {
       logMessage($VERBOSEINFO, "cases-environments displaying conjunctions replaced");
     }
+    
+    if ($text =~ m/Die L\\\"osungsmenge des Ausgangsproblems ist die Vereinigung der einzelnen L\\\"sungsmengen:.+?\$\$.*\\left\\{(.+?)\\right\\}[ \.\n]+\$\$/s ) {
+      my $sol = $1;
+      $sol =~ s/\\MElSetSep/ /sg;
+      $sol =~ s/\\frac{(.+?)}{(.+?)}/($1)\/($2)/sg;
+      logMessage($VERBOSEINFO, "Solution set found (case nonempty): " . $1);
+    } else {
+      logMessage($CLIENTWARN, "Solution set not found (no input fields will be generated)");
+    }
+
+    
 
     
   } else {
@@ -317,8 +368,10 @@ sub parse_curve {
   if ($text =~ s/\\ifLsg\\Loesung(.+?)\\else\\relax\\fi/\\begin{MHint}{L\\"osung}$1\\end{MHint}/s ) {
     logMessage($VERBOSEINFO, "MLoesung found and replaced by MHint");
     
-    if ($text =~ s/\\includegraphics\[(.+?)\]{(.+?)}/\\MUGraphicsSolo{$2}{$1}{width:700px}\n/s ) {
-      logMessage($CLIENTINFO, "Image found: $2, should be converted to transparent and copied manually!");
+    if ($text =~ s/\\includegraphics\[(.+?)\]{(.+?)}/\\MUGraphicsSolo{;AUTOFILENAME}{$1}{width:700px}\n/s ) {
+      my $oldfile = $2;
+      my $newfile = convertimage($oldfile);
+      $text =~ s/;AUTOFILENAME;/$newfile/s ;
     } else {
       logMessage($CLIENTWARN, "No image found in solution");
     }
@@ -387,7 +440,16 @@ if ($#ARGV eq 2) {
       }
     }
   
+    
+  
     my $atext = readfile($sourcefile);
+
+    if ($sourcefile =~ m/(.+)\/(.+?)\.tex/s ) {
+      $texpath = $1;
+      logMessage($VERBOSEINFO, "Reading in path $texpath");
+    } else {
+      logMessage($FATALERROR, "Cannot find path, texfiles must not be in the same directory as this program");
+    }
     
     $atext = parse_general($atext);
     
