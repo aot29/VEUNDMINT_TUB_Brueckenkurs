@@ -14,11 +14,11 @@
 \MDeclareSiteUXID{VBKM09_START}
 Dieses Modul besteht aus
 \begin{itemize}
-\item{dem Abschnitt \MSRef{M09_1kartesisch}{Kartesische Koordinatensysteme in der Ebene},}
-\item{dem Abschnitt \MSRef{M09_2Geraden}{Geraden in der Ebene},}
-\item{dem Abschnitt \MSRef{M09_3Kreise}{Kreise in der Ebene},}
-\item{dem Abschnitt \MSRef{M09_4Bereiche}{Bereiche in der Ebene},}
-\item{dem \MSRef{VBKM09_Abschlusstest}{Abschlusstest}.}
+\item{dem Abschnitt \MNRef{M09_1kartesisch}, \MSRef{M09_1kartesisch}{Kartesische Koordinatensysteme in der Ebene},}
+\item{dem Abschnitt \MNRef{M09_2Geraden}, \MSRef{M09_2Geraden}{Geraden in der Ebene},}
+\item{dem Abschnitt \MNRef{M09_3Kreise}, \MSRef{M09_3Kreise}{Kreise in der Ebene},}
+\item{dem Abschnitt \MNRef{M09_4Bereiche}, \MSRef{M09_4Bereiche}{Bereiche in der Ebene},}
+\item{dem \MSRef{VBKM09_Abschlusstest}{Abschlusstest}, \MNRef{VBKM09_Abschlusstest}.}
 \end{itemize}
 
 % \begin{itemize}
@@ -141,7 +141,7 @@ Man erkennt nun, dass ein solches Koordinatensystem die Ebene in vier Bereiche t
 }
 \end{center}
 
-Weiterhin werden die oben beschriebenen Koordinatensysteme auch als \MEntry{kartesische Koordinatensysteme}{kartesisches Koordinatensystem} bezeichnet, da ihre Achsen senkrecht aufeinander stehen, sich also im Urpsrung unter einem $90^{\circ}$-Winkel schneiden. Es gibt also auch nicht-kartesische Koordinatensysteme, die in diesem Kurs allerdings nicht betrachtet werden. Deshalb wird im Folgenden oft einfach nur der Begriff Koordinatensystem für ein kartesisches Koordinatensystem benutzt. 
+Weiterhin werden die oben beschriebenen Koordinatensysteme auch als \MEntry{kartesische Koordinatensysteme}{kartesisches Koordinatensystem} bezeichnet, da ihre Achsen senkrecht aufeinander stehen, sich also im Ursprung unter einem $90^{\circ}$-Winkel schneiden. Es gibt also auch nicht-kartesische Koordinatensysteme, die in diesem Kurs allerdings nicht betrachtet werden. Deshalb wird im Folgenden oft einfach nur der Begriff Koordinatensystem für ein kartesisches Koordinatensystem benutzt. 
 
 Hat man nun das Konzept der Koordinatensysteme der Ebene verinnerlicht, so wird klar, dass man auf ähnliche Weise auch die Position von Punkten im Raum beschreiben kann. Will man zum Beispiel die Position eines Flugzeugs exakt angeben, ist dafür nicht nur seine Position relativ zum Tower relevant, sondern auch seine Flughöhe. Man braucht hierfür also eine dritte Koordinate und folglich ein Koordinatensystem mit drei Achsen. Solche Koordinatensysteme werden in \MSRef{VBKM10}{Kapitel 10} eingeführt.  
 
@@ -151,7 +151,7 @@ Hat man nun das Konzept der Koordinatensysteme der Ebene verinnerlicht, so wird 
 \MLabel{VBKM09_Punkte}
 \MDeclareSiteUXID{VBKM09_Punkte}
 
-Wenn man nun Punkte in der Ebene durch Koordinaten beschreiben möchte, benutzt man auch hier oft Variablen. Typischerweise sind dies Großbuchstaben $A,B,C,\MHDots$ oder $P,Q,R,\MHDots$ für Punkte und Kleinbuchstbaben $a,b,c,\MHDots$ oder $x,y,\MHDots$ für ihre Koordinaten. Zunächst wird nun festgelegt, was unter einem Punkt in der Ebene, in welcher ein Koordinatensystem gegeben ist, zu verstehen sein soll und welche Schreibweisen dafür im Folgenden benutzt werden. 
+Wenn man nun Punkte in der Ebene durch Koordinaten beschreiben möchte, benutzt man auch hier oft Variablen. Typischerweise sind dies Großbuchstaben $A,B,C,\MHDots$ oder $P,Q,R,\MHDots$ für Punkte und Kleinbuchstaben $a,b,c,\MHDots$ oder $x,y,\MHDots$ für ihre Koordinaten. Zunächst wird nun festgelegt, was unter einem Punkt in der Ebene, in welcher ein Koordinatensystem gegeben ist, zu verstehen sein soll und welche Schreibweisen dafür im Folgenden benutzt werden. 
 
 \begin{MInfo}
 \MLabel{VBKM09_PunktInEbene}
@@ -533,15 +533,15 @@ Es wird nun zunächst die allgemeinste Form einer Koordinatengleichung für eine G
 \begin{MInfo}\MLabel{geradengleichung}
 Eine \MEntry{Gerade}{Gerade} $g$ im $\R^2$ ist eine Punktmenge
 \[
- g=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep px+qy=c\}\MDFPeriod
+ g=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep p x+q y=c\}\MDFPeriod
 \]
 Dabei sind $p,q,c$ reelle Zahlen, welche die Gerade festlegen. Die Zahlen $p$ und $q$ dürfen dabei \textit{nicht beide} gleich $0$ sein. Die lineare Gleichung
 \[
- px+qy=c
+ p x+q y=c
 \]
 heißt \MEntry{Geradengleichung}{Geradengleichung} oder genauer, um sie von anderen möglichen Formen von Geradengleichungen zu unterscheiden, auch \MEntry{Koordinatenform der Geradengleichung}{Koordinatenform}. Um die oben stehende Mengenschreibweise für Geraden abzukürzen, hat es sich auch eingebürgert, nur die Variable für die Gerade und die Geradengleichung anzugeben:
 \[
- g\colon\MDFPSpace px+qy=c\MDFPeriod
+ g\colon\MDFPSpace p x+q y=c\MDFPeriod
 \]
 \end{MInfo}
 
@@ -689,12 +689,12 @@ Das folgende Beispiel zeigt einige Geraden und ihre Mengenbeschreibungen bzw. Ge
 
 Ziel ist es nun eine Gerade, welche durch eine Geradengleichung oder andere Daten eindeutig festgelegt ist, in einem Koordinatensystem im $\R^2$ korrekt einzeichnen zu können. Hierfür wird noch ein genauerer Zusammenhang zu den Graphen linear-affiner Funktionen benötigt. Außerdem muss man wissen, durch welche Arten von Daten eine Gerade in der Ebene eindeutig festgelegt ist. Dies wird im Folgenden vorgestellt.
 
-\begin{MInfo}
-Eine Gerade $g$, gegeben durch eine Geradengleichung in Koordiantenform 
+\begin{MInfo}\MLabel{VBKM09_Info_Normalform}
+Eine Gerade $g$, gegeben durch eine Geradengleichung in Koordinatenform 
 \[
- g\colon\MDFPSpace px+qy=c \MDFPSpace ,
+ g\colon\MDFPSpace p x+q y=c \MDFPSpace ,
 \]
-kann in \MEntry{Normalform}{Normalform (einer Geraden)} angegeben werden, falls $q\neq 0$ gilt. Denn dann lässt sich die Geradengleichung $px+qy=c$ nach $y$ auflösen und die Normalform von $g$ lautet
+kann in \MEntry{Normalform}{Normalform (einer Geraden)} angegeben werden, falls $q\neq 0$ gilt. Denn dann lässt sich die Geradengleichung $p x+q y=c$ nach $y$ auflösen und die Normalform von $g$ lautet
 \[
  g\colon\MDFPSpace y=-\frac{p}{q}x + \frac{c}{q}\MDFPeriod
 \]
@@ -977,7 +977,7 @@ Gegeben sind die Punkte $P=\MPointTwo{-1}{-1}$ und $Q=\MPointTwo{2}{1}$. Die Ger
 
 Aus den $x$-Koordinaten $-1$ und $2$ von $P$ und $Q$ ergibt sich die Breite $3$ des Steigungsdreiecks und aus den entsprechenden $y$-Koordinaten $-1$ und $1$ die Höhe $2$. Damit ist die Steigung der Gerade $m=\frac{2}{3}$. Man erhält nun die Geradengleichung von $g_{P Q}$ in Normalform: 
 \[
- g_{P Q}\colon\MDFPSpace y=mx+b=\frac{2}{3}x+b\MDFPeriod
+ g_{P Q}\colon\MDFPSpace y=m x+b=\frac{2}{3}x+b\MDFPeriod
 \]
 Es wird nur noch der Achsenabschnitt $b$ benötigt. Hierfür nutzt man aus, dass $g_{P Q}$ durch die beiden Punkte $P$ und $Q$ verläuft. Man setzt die $x$- und $y$-Koordinaten eines der beiden Punkte in die Geradengleichung ein und berechnet $b$. Benutzt man zum Beispiel den Punkt $Q=\MPointTwo{2}{1}$ erhält man
 \[
@@ -992,7 +992,7 @@ Benutzung des Punktes $P=\MPointTwo{-1}{-1}$ würde auf das gleiche Ergebnis führ
 \begin{MExample}
 Gegeben ist der Punkt $R=\MPointTwo{2}{-1}$ und die Steigung $m=\frac{1}{2}$. Gesucht ist die Gerade $g$, welche durch $R$ verläuft und die Steigung $m=\frac{1}{2}$ besitzt. Analog wie in Beispiel \MNRef{bsp:geraden2} oben kann hier die Normalform der Geradengleichung von $g$ mit noch unbekanntem Achsenabschnitt direkt angegeben werden:
 \[
- g\colon\MDFPSpace y=mx+b=\frac{1}{2}x+b\MDFPeriod
+ g\colon\MDFPSpace y=m x+b=\frac{1}{2}x+b\MDFPeriod
 \]
 Weiterhin sind hier nun $x$- und $y$-Koordinaten des Punktes $R$ gegeben, aus welchen -- ebenfalls wie in Beispiel \MNRef{bsp:geraden2} oben -- der Achsenabschnitt $b$ berechnet werden kann:
 \[
@@ -1001,7 +1001,7 @@ Weiterhin sind hier nun $x$- und $y$-Koordinaten des Punktes $R$ gegeben, aus we
 \]
 Somit lautet die gesuchte Geradengleichung
 \[
- g\colon\MDFPSpace y=mx+b=\frac{1}{2}x-2\MDFPeriod
+ g\colon\MDFPSpace y=m x+b=\frac{1}{2}x-2\MDFPeriod
 \]
 Aus dem Punkt $R=\MPointTwo{2}{-1}$ und der Steigung $m=\frac{1}{2}$ kann $g$ auch sofort gezeichnet werden, wie das folgende Bild veranschaulicht:
   \begin{center}
@@ -1175,11 +1175,11 @@ Während es im vorigen Abschnitt \MNRef{VBKM09_Koordinatengleichungen} darum ging
 \begin{MInfo}
 Ist 
 \[
- g = \{\MPointTwo{x}{y}\MCondSetSep px+qy=c\}
+ g = \{\MPointTwo{x}{y}\MCondSetSep p x+q y=c\}
 \]
 eine Gerade und $P=\MPointTwo{a}{b}$ ein Punkt im $\R^2$, so liegt $P$ genau dann auf der Geraden ($P\in g$), wenn seine Abszisse und Ordinate die Geradengleichung erfüllen, also wenn
 \[
- pa+qb=c
+ p a+q b=c
 \]
 gilt.
 \end{MInfo}
@@ -1866,7 +1866,7 @@ Alle Punkte auf dem (roten) Kreis haben von einem Punkt, dem \textbf{Mittelpunkt
 \MLabel{VBKM09_Abstand_Strecken}
 \MDeclareSiteUXID{VBKM09_Abstand_Strecken}
 
-Rekapituliert man nochmals das einführende Beispiel des Hydranten aus \MNRef{VBKM09_Koordinaten_Intro}, so stellt man fest, dass man mit Hilfe der Daten auf dem Hydrantenschild zwar nun den Ort des Hydranten in einem Koordinatensystem genau angeben kann. Interessiert man sich aber dafür, wie weit der Hydrant vom Schild tatsächlich entfernt ist, muss man dies aus den Koordinaten erst ausrechen.   
+Rekapituliert man nochmals das einführende Beispiel des Hydranten aus \MNRef{VBKM09_Koordinaten_Intro}, so stellt man fest, dass man mit Hilfe der Daten auf dem Hydrantenschild zwar nun den Ort des Hydranten in einem Koordinatensystem genau angeben kann. Interessiert man sich aber dafür, wie weit der Hydrant vom Schild tatsächlich entfernt ist, muss man dies aus den Koordinaten erst ausrechnen.   
 
 \begin{center}
 \MUGraphicsSolo{hydrant.png}{scale=0.6}{width:571px}
@@ -2085,7 +2085,7 @@ Auf dem Kreis liegen also alle Punkte, die von $P$ den Abstand $2$ haben. Beispi
 \]
 gilt. $R=\MPointTwo{3}{-2}$ dagegen ist kein Punkt auf dem Kreis, denn er besitzt den Abstand
 \[
- [\overline{PR}] = \sqrt{(2-3)^2 + (1-(-2))^2} = \sqrt{10} \neq 2.
+ [\overline{P R}] = \sqrt{(2-3)^2 + (1-(-2))^2} = \sqrt{10} \neq 2.
 \]
 Der Punkt $R$ erfüllt also nicht die Kreisgleichung.
 
@@ -2419,7 +2419,809 @@ Somit: $P=\MPointTwo{-\sqrt{3}}{\sqrt{3}}$ und $\rho=\sqrt{6}$.
 \begin{MXContent}{Lagebeziehungen für Kreise}{Lagebeziehung Kreise}{STD}
 \MLabel{VBKM09_Kreise_Lage}
 \MDeclareSiteUXID{VBKM09_Kreise_Lage}
-Dieser Abschnitt erscheint in Kürze.
+Genau wie für zwei Geraden, kann man nun für einen Kreis und eine Gerade oder zwei Kreise die Frage stellen, wie die beiden Objekte relativ zueinander im Koordinatensystem liegen. Dies bedeutet die Frage zu beantworten, ob die beiden Objekte sich schneiden, berühren oder keine Punkte gemeinsam haben. Für einen Kreis und eine Gerade kann man dann eventuelle Schnitt- oder Berührpunkte auch relativ einfach ausrechnen. Für zwei Kreise ist dies schwieriger und geht über den Rahmen dieses Brückenkurses hinaus. Für zwei Kreise wird also nur die Fragestellung behandelt werden, ob sich diese schneiden oder berühren, und nicht, an welchen Punkten dies passiert. 
+
+\begin{MInfo}
+Sind ein Kreis $K$ und eine Gerade $g$ in der Ebene (durch Koordinatengleichungen bezüglich eines festen Koordinatensystems) gegeben, so gibt es für ihre relative Lage genau drei Fälle:
+\begin{enumerate}
+ \item Der Kreis $K$ und die Gerade $g$ haben keine gemeinsamen Punkte. Dies ist für die rote Gerade in der Abbildung unten der Fall. Eine solche Gerade heißt \MEntry{Passante}{Passante} des Kreises.
+ \item Der Kreis $K$ und die Gerade $g$ haben genau einen Punkt gemeinsam, das heißt die Gerade berührt den Kreis. Dies ist für die blaue Gerade in der Abbildung unten der Fall. Eine solche Gerade heißt \MEntry{Tangente}{Tangente (eines Kreises)} des Kreises.
+ \item Der Kreis $K$ und die Gerade $g$ haben zwei gemeinsame Punkte, das heißt die Gerade schneidet den Kreis. Dies ist für die grüne Gerade in der Abbildung unten der Fall. Eine solche Gerade heißt \MEntry{Sekante}{Sekante (eines Kreises)} des Kreises.
+\end{enumerate}
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (4.3,0);
+\draw[->,color=black] (0,-2) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis
+\draw[color=black] (2,2) circle (1);
+\draw[color=black] (2.9,2.2) node[anchor=south west] {\footnotesize $K$};
+%Geraden
+\draw[color=red] (-1,-0.5) -- (2,4);
+\draw[color=red] (2,4) node[anchor=west] {\footnotesize $g$};
+\draw[color=green] (-1,-1) -- (3.5,4);
+\draw[color=green] (3.5,4) node[anchor=west] {\footnotesize $g$};
+\draw[color=blue] (-0.2,-1.61) -- (4,2.59);
+\draw[color=blue] (4,2.59) node[anchor=west] {\footnotesize $g$};
+\end{tikzpicture}
+}
+\end{center} 
+\end{MInfo}
+
+Im Fall einer Sekante oder Tangente haben Kreis und Gerade also zwei Punkte oder einen Punkt gemeinsam. Wie kann man diesen Punkt oder diese Punkte nun ausrechnen? Da die Punkte jeweils auf Kreis und Gerade liegen, müssen sie sowohl die Koordinatengleichung des Kreises als auch die Koordinatengleichung der Geraden erfüllen. Man hat dann also zwei Gleichungen für die beiden unbekannten Koordinaten der Schnittpunkte und kann diese dadurch ausrechnen. Dabei ist allerdings Folgendes zu beachten: Da in der Koordinatengleichung für Kreise die Unbekannten quadriert vorkommen, handelt es sich \textit{nicht} um zwei lineare Gleichungen. Es sind also leider \textit{nicht} die Methoden zum Lösen linearer Gleichungssysteme aus Kapitel \MNRef{VBKM05} anwendbar. Die folgende Infobox fasst die Methode zur Berechnung der Schnittpunkte zusammen.
+
+\begin{MInfo}
+ Sind ein Kreis $K$ in der Ebene mit Mittelpunkt $\MPointTwo{x_0}{y_0}$ und Radius $r$ mittels einer Koordinatengleichung
+\[
+ K\colon (x-x_0)^2+(y-y_0)^2=r^2
+\]
+und eine Gerade mit Steigung $m$ und Achsenabschnitt $b$ in Normalform
+\[
+ g\colon y=m x+b
+\]
+gegeben, so kann zur Berechnung eventueller Schnittpunkte, die Gleichung für $g$ in die Gleichung für $K$ eingesetzt werden. Dies resultiert in einer quadratischen Gleichung in der Variablen $x$:
+\[
+ (x-x_0)^2+(\underbrace{m x+b}_{=y}-y_0)^2=r^2\MDFPeriod
+\]
+Für quadratische Gleichungen können bekanntermaßen drei Fälle auftreten (vgl. \MNRef{VBKM02_QuadratischeGleichungen}):
+\begin{enumerate}
+ \item Die quadratische Gleichung hat keine Lösung. In diesem Fall handelt es sich bei $g$ um eine Passante von $K$. Es lässt sich keine $x$-Koordinate eines gemeinsamen Punktes finden.
+ \item Die quadratische Gleichung hat genau eine Lösung. In diesem Fall handelt es sich bei $g$ um eine Tangente an $K$. Zu der $x$-Koordinate (der Lösung der quadratischen Gleichung) lässt sich mit Hilfe der Geradengleichung eine zugehörige $y$-Koordinate berechnen. Die beiden Koordinaten zusammen bilden den Berührpunkt der Tangente $g$ am Kreis $K$.
+ \item Die quadratische Gleichung hat zwei Lösungen. In diesem Fall handelt es sich bei $g$ um eine Sekante von $K$. Zu den beiden $x$-Koordinaten (den Lösungen der quadratischen Gleichung) lassen sich mit Hilfe der Geradengleichung zugehörige $y$-Koordinaten berechnen. Die beiden Koordinatenpaare bilden die Schnittpunkte der Sekante $g$ mit dem Kreis $K$. 
+\end{enumerate}
+
+\end{MInfo}
+
+\begin{MExample}
+Gegeben sind der Kreis $K$ mit Mittelpunkt $\MPointTwo{2}{2}$ und Radius $1$ durch
+\[
+ K\colon (x-2)^2 + (y-2)^2=1
+\]
+sowie die Geraden $g_1$, $g_2$ und $g_3$ durch
+\[
+ g_1\colon y=x-\sqrt{2} \MDFPSpace ,
+\]
+\[
+ g_2\colon y=x+1
+\]
+und
+\[
+ g_3\colon y=2x+2 \MDFPSpace .
+\]
+\begin{itemize}
+ \item Gerade $g_1$:\\
+ Einsetzen der Geradengleichung $g_1$ in die Kreisgleichung liefert
+ \[
+  (x-2)^2 + (x-\sqrt{2}-2)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-2)^2 + [(x-2)-\sqrt{2}]^2=1
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace (x-2)^2 + (x-2)^2 - 2\sqrt{2}(x-2)+(\sqrt{2})^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace 2(x-2)^2 - 2\sqrt{2}(x-2)+1=0 
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace (\sqrt{2}(x-2)-1)^2=0\MDFPaSpace\Leftrightarrow\MDFPaSpace \sqrt{2}(x-2)-1=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x-2=\frac{1}{\sqrt{2}}
+  \MDFPaSpace\Leftrightarrow\MDFPaSpace x = 2+\frac{1}{\sqrt{2}} \MDFPeriod
+ \]
+ Die entstehende quadratische Gleichung hat nur die Lösung $x = 2+\frac{1}{\sqrt{2}}$, womit $g_1$ eine Tangente an $K$ ist, welche $K$ in einem Punkt mit der $x$-Koordinate $2+\frac{1}{\sqrt{2}}$ berührt. Die zugehörige $y$-Koordinate ist aus der Geradengleichung zu berechnen:
+ \[
+  y=2+\frac{1}{\sqrt{2}}-\sqrt{2}=2+\frac{\sqrt{2}}{2}-\sqrt{2}=2-\frac{1}{\sqrt{2}}\MDFPeriod
+ \]
+ Somit berührt die Tangente $g_1$ den Kreis $K$ im Punkt $P=\MPointTwo[\Big]{2+\frac{1}{\sqrt{2}}}{2-\frac{1}{\sqrt{2}}}$.
+ \item Gerade $g_2$:\\
+ Einsetzen der Geradengleichung $g_2$ in die Kreisgleichung liefert
+ \[
+  (x-2)^2 + (x+1-2)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-2)^2 + (x-1)^2=1
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace x^2-4x+4+x^2-2x+1=1\MDFPaSpace\Leftrightarrow\MDFPaSpace 2x^2-6x+4=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-3x+2=0
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace x_{1,2}=\frac{3\pm\sqrt{9-8}}{2}=\frac{3\pm 1}{2}\MDFPaSpace\Leftrightarrow\MDFPaSpace x_1=2\ \wedge\ x_2=1 \MDFPeriod
+ \]
+ Die entstehende quadratische Gleichung hat zwei Lösungen, womit $g_2$ eine Sekante des Kreises $K$ ist, die $K$ in zwei Punkten mit den beiden $x$-Koordinaten $x_1=2$ und $x_2=1$ schneidet. Die zugehörigen $y$-Koordinaten berechnen sich aus der Geradengleichung:
+ \[
+  y_1=x_1+1=2+1=3\MDFPaSpace\textrm{und}\MDFPaSpace y_2=x_2+1=1+1=2\MDFPeriod
+ \]
+ Somit sind die Schnittpunkte der Sekanten $g_2$ mit dem Kreis $K$ die beiden Punkte $Q_1=\MPointTwo{2}{3}$ und $Q_2=\MPointTwo{1}{2}$.
+ \item Gerade $g_3$:\\
+ Einsetzen der Geradengleichung $g_3$ in die Kreisgleichung liefert
+ \[
+  (x-2)^2 + (2x+2-2)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-2)^2 + (2x)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-4x+4+4x^2=1
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace 5x^2-4x+3=0 \MDFPeriod
+ \]
+ %BEMERKUNG: In Kapitel 2 wird der Begriff der Diskriminante NICHT eingeführt! Warum? Das muss nachgeholt werden!
+ Die Diskriminante (vgl. \MNRef{VBKM02_QuadratischeGleichungen}) dieser quadratischen Gleichung ist
+ \[
+  (-4)^2-4\cdot5\cdot3=16-60<0 \MDFPSpace ,
+ \]
+ womit die Gleichung keine Lösung besitzt. Folglich ist die Gerade $g_3$ eine Passante des Kreises $K$.
+\end{itemize}
+Der Kreis, alle drei Geraden und die Schnittpunkte sind in folgender Abbildung dargestellt:
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.2,0) -- (4.3,0);
+\foreach \x in {-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2) -- (0,4.3);
+\foreach \x in {-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis
+\draw[color=black] (2,2) circle (1);
+\draw[color=black] (2.9,2.2) node[anchor=south west] {\footnotesize $K$};
+%\draw[color=black, fill=black] (2,2) circle (1pt);
+%Geraden
+\draw[color=red] (-2,-2) -- (1,4);
+\draw[color=red] (1,4) node[anchor=west] {\footnotesize $g_3$};
+\draw[color=violet] (-2,-1) -- (3,4);
+\draw[color=violet] (3,4) node[anchor=west] {\footnotesize $g_2$};
+\draw[fill=violet] (1,2) circle (1.5pt);
+\draw[fill=violet] (2,3) circle (1.5pt);
+\draw[color=violet] (1,2) node[anchor=east] {\footnotesize $Q_2$};
+\draw[color=violet] (2,3) node[anchor=south east] {\footnotesize $Q_1$};
+\draw[color=blue] (-0.2,-1.61) -- (4,2.59);
+\draw[color=blue] (4,2.59) node[anchor=west] {\footnotesize $g_1$};
+\draw[fill=blue] (2.71,1.29) circle (1.5pt);
+\draw[color=blue] (2.71,1.29) node[anchor=north west] {\footnotesize $P$};
+\end{tikzpicture}
+}
+\end{center} 
+\end{MExample}
+
+\begin{MExercise}
+Gegeben sind der Kreis $K$ durch die Gleichung
+\[
+ K\colon x^2+(y-1)^2=2
+\]
+sowie die beiden Geraden
+\[
+ g\colon y=\sqrt{7}x+5
+\]
+und
+\[
+ h\colon y=2x+2 \MDFPeriod 
+\]
+\begin{MExerciseItems}
+\item{Zeigen Sie, dass $g$ eine Tangente an $K$ ist und berechnen Sie $x$- und $y$-Koordinate des Berührpunkts $\MPointTwo{x}{y}$ von $g$ und $K$.\\
+$x=$\MLFunctionQuestion{10}{-sqrt(7)/2}{5}{x}{5}{TANG1}\\
+$y=$\MLFunctionQuestion{10}{3/2}{5}{x}{5}{TANG2}
+} 
+\item{Zeigen Sie, dass $h$ eine Sekante von $K$ ist und berechnen Sie $x$- und $y$-Koordinaten der Schnittpunkte $\MPointTwo{x_1}{y_1}$ und $\MPointTwo{x_2}{y_2}$ von $h$ und $K$.\\
+$x_1=$\MLFunctionQuestion{10}{1/5}{5}{x}{5}{SEK01}\\
+$y_1=$\MLFunctionQuestion{10}{12/5}{5}{x}{5}{SEK02}\\
+$x_2=$\MLFunctionQuestion{10}{-1}{5}{x}{5}{SEK03}\\
+$y_2=$\MLFunctionQuestion{10}{0}{5}{x}{5}{SEK04}
+} 
+\end{MExerciseItems}
+\MInputHint{Wurzeln können als \texttt{sqrt} eingegeben werden. Zum Beispiel \texttt{sqrt(2)} für $\sqrt{2}$.}
+
+\begin{MHint}{Lösung}
+\begin{MExerciseItems}
+\item{Einsetzen von $g$ in $K$ ergibt
+\[
+ x^2+(\sqrt{7}x+5-1)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+(\sqrt{7}x+4)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+7x^2+8\sqrt{7}x+16=2
+\]
+\[
+ \Leftrightarrow\MDFPaSpace 8x^2+8\sqrt{7}x+14=0\MDFPaSpace\Leftrightarrow\MDFPaSpace 4x^2+4\sqrt{7}x+7=0\MDFPaSpace\Leftrightarrow\MDFPaSpace (2x+\sqrt{7})^2=0 \MDFPeriod
+\]
+Somit hat die quadratische Gleichung genau eine Lösung, und es handelt sich bei $g$ um eine Tangente an $K$. Berechnung des Berührpunkts:
+\[
+ (2x+\sqrt{7})^2=0\MDFPaSpace\Leftrightarrow\MDFPaSpace 2x+\sqrt{7}=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x=-\frac{\sqrt{7}}{2}\MDFPeriod
+\]
+Einsetzen in die Geradengleichung liefert die zugehörige $y$-Koordinate:
+\[
+ y=\sqrt{7}\left(-\frac{\sqrt{7}}{2}\right)+5=-\frac{7}{2}+5=\frac{3}{2}\MDFPeriod
+\]
+}
+\item{Einsetzen von $h$ in $K$ ergibt
+\[
+ x^2+(2x+2-1)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+(2x+1)^2-2=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+4x^2+4x+1-2=0
+\]
+\[
+ \Leftrightarrow\MDFPaSpace 5x^2+4x-1=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x_{1,2}=\frac{-4\pm\sqrt{16+20}}{10}=\frac{-4\pm 6}{10}\MDFPaSpace\Leftrightarrow\MDFPaSpace
+ x_1=\frac{1}{5}\ \wedge\ x_2=-1 \MDFPeriod
+\]
+Da die quadratische Gleichung zwei Lösungen besitzt, ist $h$ eine Sekante von $K$. Die zugehörigen $y$-Koordinaten ergeben sich wieder durch Einsetzen in die Geradengleichung:
+\[
+ y_1=2\left(\frac{1}{5}\right)+2=\frac{2}{5}+2=\frac{12}{5}
+\]
+und 
+\[
+ y_2=2\left(-1\right)+2=-2+2=0\MDFPeriod
+\]
+
+}
+\end{MExerciseItems}
+ 
+\end{MHint}
+
+\end{MExercise}
+
+
+\begin{MExercise}
+Gegeben sind der Kreis $K$ durch die Kreisgleichung
+\[
+ K\colon (x-3)^2+y^2=2
+\]
+und die Gerade $g$ mit Steigung $2$ und Achsenabschnitt $b$ durch die Geradengleichung
+\[
+ g\colon y=2x+b
+\]
+in Normalform. Bestimmen Sie das Intervall, in dem der Achsenabschnitt $b$ liegen muss, damit $g$ eine Sekante von $K$ ist.\\
+$b\MDFPSpace \in \MDFPSpace ]$\MLFunctionQuestion{15}{-6-sqrt(10)}{5}{x}{5}{SEK1}$;$\MLFunctionQuestion{15}{-6+sqrt(10)}{5}{x}{5}{SEK2}$[ \MDFPSpace$.
+
+\MInputHint{Wurzeln können als \texttt{sqrt} eingegeben werden. Zum Beispiel \texttt{sqrt(2)} für $\sqrt{2}$.}
+
+\begin{MHint}{Lösung}
+Einsetzen der Geradengleichung (mit unbekanntem $b$) in die Kreisgleichung liefert
+\[
+ (x-3)^2+(2x+b)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-6x+9+4x^2+4b x+b^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace 5x^2+(4b-6)x+b^2+7=0 \MDFPeriod
+\]
+Damit es sich bei $g$ um eine Sekante handelt, muss diese quadratische Gleichung (in der Variablen $x$) zwei Lösungen besitzen. Dies ist der Fall wenn ihre Diskriminante positiv ist, also wenn gilt:
+\[
+ (4b-6)^2-4\cdot 5(b^2+7)>0\MDFPaSpace\Leftrightarrow\MDFPaSpace 16b^2-48b+36-20b^2-140>0\MDFPaSpace\Leftrightarrow\MDFPaSpace -4b^2-48b-104>0
+\]
+\[
+ \Leftrightarrow\MDFPaSpace b^2+12b+26<0\MDFPeriod
+\]
+Die Lösungen der quadratischen Gleichung $b^2+12b+26=0$ (in der Variablen $b$) ergeben sich zu 
+\[
+ b_{1,2}=\frac{-12\pm\sqrt{144-104}}{2}=\frac{-12\pm\sqrt{40}}{2}=\frac{-12\pm2\sqrt{10}}{2}=-6\pm\sqrt{10} \MDFPeriod
+\]
+Damit ist das gesuchte Intervall $]-6-\sqrt{10};-6+\sqrt{10}[$.
+\end{MHint}
+\end{MExercise}
+
+Auch Geraden, deren Gleichungen nicht auf Normalform gebracht werden können (also solche, die parallel zur Ordinatenachse verlaufen), können natürlich Kreise schneiden oder berühren. Für diese Geraden ist das oben stehende Verfahren nicht direkt anwendbar. Das Vorgehen in diesem Fall wird im folgenden Beispiel demonstriert.
+
+\begin{MExample}
+Gegeben sind der Kreis $K$ durch die Kreisgleichung
+\[
+ K\colon (x-1)^2+(y-1)^2=1
+\]
+sowie die Gerade $g$ durch die Gleichung
+\[
+ g\colon x=\frac{3}{2} \MDFPeriod
+\]
+Die folgende Abbildung stellt die beiden Objekte dar:
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (3.3,0);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.2) -- (0,3.3);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Kreis
+\draw[color=red] (1,1) circle (1);
+\draw[color=red] (1.9,1.2) node[anchor=south west] {\footnotesize $K$};
+%Gerade
+\draw[color=blue] (1.5,-1) -- (1.5,3);
+\draw[color=blue] (1.5,3) node[anchor=west] {\footnotesize $g$};
+%Punkte
+\draw[fill=violet] (1.5,1.866) circle (1pt);
+\draw[fill=violet] (1.5,0.134) circle (1pt);
+\end{tikzpicture}
+}
+\end{center} 
+Offenbar ist $g$ eine Sekante von $K$. Um die Schnittpunkte zu berechnen, kann in diesem Fall die Geradengleichung natürlich nicht nach $y$ aufgelöst werden. Stattdessen wird einfach die Geradengleichung $x=\frac{3}{2}$ für $x$ in die Kreisgleichung eingesetzt. Dies liefert zwei $y$-Werte, die $y$-Koordinaten der Schnittpunkte:
+\[
+  (\frac{3}{2}-1)^2+(y-1)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace \frac{1}{4}+y^2-2y+1=1 \MDFPaSpace\Leftrightarrow\MDFPaSpace y^2-2y+\frac{1}{4}=0
+\]
+\[
+ \Leftrightarrow\MDFPaSpace y_{1,2}=\frac{2\pm\sqrt{4-1}}{2}=1\pm\frac{\sqrt{3}}{2}\MDFPaSpace\Leftrightarrow\MDFPaSpace y_1=1+\frac{\sqrt{3}}{2}\ \wedge\ y_2=1-\frac{\sqrt{3}}{2}\MDFPeriod
+\]
+Die zugehörigen $x$-Koordinaten sind natürlich beide gleich $\frac{3}{2}$, da die Schnittpunkte auf der Geraden $g$ liegen. Somit ergeben sich die beiden Schnittpunkte $\MPointTwo[\Big]{\frac{3}{2}}{1+\frac{\sqrt{3}}{2}}$ und $\MPointTwo[\Big]{\frac{3}{2}}{1-\frac{\sqrt{3}}{2}}$ der Geraden $g$ und des Kreises $K$.
+\end{MExample}
+
+Für die relative Lage zweier Kreise listet die folgende Infobox die möglichen Fälle auf, zusammen mit allgemeinen Kriterien, durch die festgestellt werden kann, welcher Fall für zwei gegebene Kreise jeweils vorliegt.
+
+\begin{MInfo}\MLabel{VBKM09_Info_Kreiseschneiden}
+Sind zwei (verschiedene) Kreise $K_1$ mit dem Mittelpunkt $M_1$ und dem Radius $r_1$ sowie $K_2$ mit dem Mittelpunkt $M_2$ und dem Radius $r_2$ in der Ebene (durch Koordinatengleichungen bezüglich eines festen Koordinatensystems) gegeben, so gibt es für ihre relative Lage genau drei Fälle:
+\begin{enumerate}
+ \item Die Kreise $K_1$ und $K_2$ haben keine gemeinsamen Punkte, das heißt sie schneiden sich nicht. Dies ist genau dann der Fall wenn für die Radien $r_1$ und $r_2$ sowie für den Abstand $[\overline{M_1 M_2}]$ der beiden Mittelpunkte gilt:
+ \[
+  [\overline{M_1 M_2}]>r_1+r_2\MDFPaSpace\textrm{oder}\MDFPaSpace[\overline{M_1 M_2}]<|r_1-r_2|\MDFPeriod
+ \]
+ \item Die Kreise $K_1$ und $K_2$ haben einen gemeinsamen Punkt, das heißt sie berühren sich. Dies ist genau dann der Fall wenn für die Radien $r_1$ und $r_2$ sowie für den Abstand $[\overline{M_1 M_2}]$ der beiden Mittelpunkte gilt:
+ \[
+  [\overline{M_1 M_2}]=r_1+r_2\MDFPaSpace\textrm{oder}\MDFPaSpace[\overline{M_1 M_2}]=|r_1-r_2|\MDFPeriod
+ \]
+ \item Die Kreise $K_1$ und $K_2$ haben zwei gemeinsame Punkte, das heißt sie schneiden sich. Dies ist genau dann der Fall wenn für die Radien $r_1$ und $r_2$ sowie für den Abstand $[\overline{M_1 M_2}]$ der beiden Mittelpunkte gilt:
+ \[
+  |r_1-r_2|<[\overline{M_1 M_2}]<r_1+r_2\MDFPeriod
+ \]
+\end{enumerate}
+Die drei Situationen sind in den folgenden Abbildungen dargestellt:
+\begin{center}
+\begin{tabular}{cc}
+
+$[\overline{M_1 M_2}]>r_1+r_2$:
+
+&
+
+$[\overline{M_1 M_2}]<|r_1-r_2|$:\\
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (4.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (3,1);
+\draw[color=violet] (1.75,1.75) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (2.2,2);
+\draw[color=black] (1.6,2) node[anchor=south] {\scriptsize $r_1$};
+\draw[color=black] (3,1) -- (2.2,1);
+\draw[color=black] (2.6,1) node[anchor=north] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (1.2);
+\draw[color=red] (1,3.2) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (3,1) circle (0.8);
+\draw[color=blue] (3,1.7) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (3,1) circle (1.5pt);
+\draw[color=blue] (3,1) node[anchor=south] {\scriptsize $M_2$};
+
+\end{tikzpicture}
+} 
+&
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (4.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (2,1);
+\draw[color=violet] (1.45,1.75) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (-1,2);
+\draw[color=black] (0,2) node[anchor=south west] {\scriptsize $r_1$};
+\draw[color=black] (2,1) -- (2,0.5);
+\draw[color=black] (1.9,0.75) node[anchor=west] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (2);
+\draw[color=red] (1,4) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (2,1) circle (0.5);
+\draw[color=blue] (2,1.4) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (2,1) circle (1.5pt);
+\draw[color=blue] (1.9,0.9) node[anchor=south west] {\scriptsize $M_2$};
+
+\end{tikzpicture}
+} 
+\end{tabular}
+
+\begin{tabular}{cc}
+
+$[\overline{M_1 M_2}]=r_1+r_2$:
+
+&
+
+$[\overline{M_1 M_2}]=|r_1-r_2|$:\\
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (4.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (3,1);
+\draw[color=violet] (1.9,1.6) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (2.5,2);
+\draw[color=black] (1.75,2) node[anchor=south] {\scriptsize $r_1$};
+\draw[color=black] (3,1) -- (2.264,1);
+\draw[color=black] (2.65,1) node[anchor=north] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (1.5);
+\draw[color=red] (1,3.5) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (3,1) circle (0.736);
+\draw[color=blue] (3,1.7) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (3,1) circle (1.5pt);
+\draw[color=blue] (3,1) node[anchor=south] {\scriptsize $M_2$};
+%Berührpunkt
+\draw[fill=violet] (2.34,1.33) circle (1.5pt);
+\end{tikzpicture}
+} 
+&
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (4.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (2,1);
+\draw[color=violet] (1.45,1.75) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (-1,2);
+\draw[color=black] (0,2) node[anchor=south west] {\scriptsize $r_1$};
+\draw[color=black] (2,1) -- (2,0.414);
+\draw[color=black] (1.9,0.75) node[anchor=west] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (2);
+\draw[color=red] (1,4) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (2,1) circle (0.586);
+\draw[color=blue] (2,1.5) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (2,1) circle (1.5pt);
+\draw[color=blue] (1.9,0.9) node[anchor=south west] {\scriptsize $M_2$};
+%Berührpunkt
+\draw[fill=violet] (2.414,0.586) circle (1.5pt);
+\end{tikzpicture}
+} 
+\end{tabular}
+
+\begin{tabular}{c}
+
+$|r_1-r_2|<[\overline{M_1 M_2}]<r_1+r_2$:\\
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (5.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (5.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (3,1);
+\draw[color=violet] (2.2,1.5) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (2.5,2);
+\draw[color=black] (1.8,2) node[anchor=south] {\scriptsize $r_1$};
+\draw[color=black] (3,1) -- (3,-1);
+\draw[color=black] (3,0) node[anchor=north west] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (1.5);
+\draw[color=red] (1,3.5) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (3,1) circle (2);
+\draw[color=blue] (3,3) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (3,1) circle (1.5pt);
+\draw[color=blue] (3,1) node[anchor=south] {\scriptsize $M_2$};
+%Schnittpunkte
+\draw[fill=violet] (2.237,2.849) circle (1.5pt);
+\draw[fill=violet] (1.063,0.501) circle (1.5pt);
+\end{tikzpicture}
+}
+
+\end{tabular}
+
+\end{center}
+
+\end{MInfo}
+Um die relative Lage zweier Kreise festzustellen, benötigt man also nur deren Mittelpunkte und Radien. Das Berechnen möglicher Schnittpunkte ist schwieriger und kann im Rahmen dieses Brückenkurses nicht behandelt werden.
+
+\begin{MExample}
+Gegeben sind ein Kreis $K$ mit Mittelpunkt $M_K$ und Radius $r_K$ durch die Gleichung
+\[
+ K\colon x^2+y^2-2y=1
+\]
+und ein Kreis $L$ mit Mittelpunkt $M_L$ und noch unbekanntem Radius $r>0$ durch die Kreisgleichung
+\[
+ L\colon (x+1)^2+(y-1)^2=r^2.
+\]
+Es sind diejenigen Werte für $r$ zu bestimmen, für die die Kreise $K$ und $L$ sich schneiden, sich berühren bzw. sich nicht schneiden.
+
+Aus der Kreisgleichung für $L$ kann der Mittelpunkt $M_L$ direkt abgelesen werden: $M_L=\MPointTwo{-1}{1}$. Die Kreisgleichung für $K$ ist noch nicht in Normalform. Durch quadratische Ergänzung kann diese aber leicht auf Normalform gebracht werden, so dass Mittelpunkt $M_K$ und Radius $r_K$ abgelesen werden können:
+\[
+ x^2+y^2-2y=1\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+y^2-2y+1-1=1\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+(y-1)^2=2\MDFPeriod
+\]
+Also ist $M_K=\MPointTwo{0}{1}$ und $r_K=\sqrt{2}$. Somit beträgt der Abstand der beiden Mittelpunkte
+\[
+ [\overline{M_K M_L}]=\sqrt{(0+1)^2+(1-1)^2}=1 \MDFPSpace ,
+\]
+und die Summe der beiden Radien ist
+\[
+ r+r_K=r+\sqrt{2} \MDFPeriod
+\]
+Da $r>0$ gilt, folgt
+\[
+ r+\sqrt{2}>\sqrt{2}>1=[\overline{M_K M_L}] \MDFPeriod
+\]
+Somit kann die Situation $[\overline{M_K M_L}]\geq r+\sqrt{2}$ in diesem Fall nicht eintreten. (Der geometrische Grund hierfür ist, dass der Mittelpunkt von $L$ innerhalb des Kreises $K$ liegt, wie auch aus der Abbildung unten hervorgeht.) Nach den Kriterien in Infobox \MNRef{VBKM09_Info_Kreiseschneiden} berühren sich die beiden Kreise somit, falls
+\[
+ |r-\sqrt{2}|=1=[\overline{M_K M_L}]
+\]
+gilt. Nach dem Abschnitt über \MSRef{M02_Betragsgleichungen}{Betragsgleichungen}, ist diese Gleichung erfüllt, falls 
+\[
+ r-\sqrt{2}=1\MDFPaSpace\textrm{oder}\MDFPaSpace r-\sqrt{2}=-1
+\]
+ist. Also sind die beiden Radien $r$, für die der Kreis $L$ den Kreis $K$ berührt:
+\[
+ r=\sqrt{2}+1\MDFPaSpace\textrm{und}\MDFPaSpace r=\sqrt{2}-1\MDFPeriod
+\]
+Nun sind noch die restlichen möglichen Werte für $r$ zu untersuchen. Für $0<r<\sqrt{2}-1$ gilt
+\[
+ |r-\sqrt{2}|=-(r-\sqrt{2})=\sqrt{2}-r>1=[\overline{M_K M_L}] \MDFPSpace ,
+\]
+womit $K$ und $L$ in diesem Fall keine gemeinsamen Punkte besitzen. Für $\sqrt{2}-1<r<\sqrt{2}+1$ sind zur Untersuchung des Betrags nochmal die Fälle $\sqrt{2}-1<r\leq\sqrt{2}$ und $\sqrt{2}<r<\sqrt{2}+1$ zu unterscheiden. Im Fall $\sqrt{2}-1<r\leq\sqrt{2}$ gilt
+\[
+ |r-\sqrt{2}|=-(r-\sqrt{2})=\sqrt{2}-r<1=[\overline{M_K M_L}] \MDFPSpace ,
+\]
+und auch im Fall $\sqrt{2}<r<\sqrt{2}+1$ gilt
+\[
+ |r-\sqrt{2}|=r-\sqrt{2}<1=[\overline{M_K M_L}] \MDFPeriod
+\]
+Damit haben $K$ und $L$ für $\sqrt{2}-1<r<\sqrt{2}+1$ zwei gemeinsame Punkte, die Kreise schneiden sich also. Zuletzt gilt im Fall $r>\sqrt{2}+1$:
+\[
+ |r-\sqrt{2}|=r-\sqrt{2}>1=[\overline{M_K M_L}]\MDFPeriod
+\]
+Somit haben $K$ und $L$ auch in diesem Fall keine gemeinsamen Punkte. Zusammenfassend erhält man für die relative Lage von $K$ und $L$ die folgenden Bedingungen:
+\begin{itemize}
+ \item Falls $r\in\{\sqrt{2}-1\MElSetSep\sqrt{2}+1\}$ gilt, berühren sich die beiden Kreise $K$ und $L$ in jeweils einem Punkt.
+ \item Falls $r\in$ $]\sqrt{2}-1\MIntvlSep\sqrt{2}+1[$ gilt, schneiden sich die beiden Kreise $K$ und $L$ in jeweils zwei Punkten.
+ \item Falls $r\in$ $]0\MIntvlSep\sqrt{2}-1[$ $\cup$ $]\sqrt{2}+1\MIntvlSep\infty[$ gilt, haben die beiden Kreise $K$ und $L$ keine gemeinsamen Punkte.
+\end{itemize}
+Einige Fälle für die Kreise $K$ und $L$ sind in den folgenden Abbildungen dargestellt:
+\begin{center}
+ 
+\begin{tabular}{cc}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-1,0.667);
+\draw[color=black] (-1.1,0.75) node[anchor=north west] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (0.33);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,0.93) node[anchor=south] {\tiny $M_L$};
+\draw[color=blue] (-1,1.33) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=\frac{1}{3}$};
+\end{tikzpicture}
+} 
+
+& 
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-1,0.586);
+\draw[color=black] (-1.1,0.65) node[anchor=north west] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (0.414);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,0.95) node[anchor=south] {\tiny $M_L$};
+\draw[color=blue] (-1,1.4) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=\sqrt{2}-1$};
+%Berührpunkt
+\draw[fill=violet] (-1.414,1) circle (1.5pt);
+\end{tikzpicture}
+} \\
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-1,0);
+\draw[color=black] (-1.1,0.5) node[anchor=west] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (1);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,1) node[anchor=south] {\scriptsize $M_L$};
+\draw[color=blue] (-2,1) node[anchor=east] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=1$};
+%Schnittpunkte
+\draw[fill=violet] (-1,0) circle (1.5pt);
+\draw[fill=violet] (-1,2) circle (1.5pt);
+\draw[fill=red] (0,1) circle (1.5pt);
+\end{tikzpicture}
+} 
+
+&
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-3.414,1);
+\draw[color=black] (-2.2,1) node[anchor=south] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (2.414);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,1) node[anchor=south] {\scriptsize $M_L$};
+\draw[color=blue] (-1,3.414) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=\sqrt{2}+1$};
+%Berührpunkt
+\draw[fill=violet] (1.414,1) circle (1.5pt);
+
+\end{tikzpicture}
+} 
+\end{tabular}
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-4,1);
+\draw[color=black] (-2.5,1) node[anchor=south] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (3);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,1) node[anchor=south] {\scriptsize $M_L$};
+\draw[color=blue] (-1,4) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=3$};
+
+\end{tikzpicture}
+} 
+\end{center}
+
+\end{MExample}
+
+\begin{MExercise}
+Gegeben sind die beiden Kreise $K_1$ und $K_2$ durch die Gleichungen
+\[
+ K_1\colon (x+6)^2+(y+4)^2=64
+\]
+und
+\[
+ K_2\colon x^2+2x+y^2-16y+40=0 \MDFPeriod
+\]
+Die beiden Kreise $K_1$ und $K_2$
+
+\begin{MQuestionGroup}
+\begin{tabular}{ll}
+\MCheckbox{1}{KREIS_COSH1} & berühren sich in einem Punkt,\\
+\MCheckbox{0}{KREIS_COSH2} & schneiden sich in zwei Punkten,\\
+\MCheckbox{0}{KREIS_COSH3} & haben keine gemeinsamen Punkte.
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Eingabe kontrollieren}
+
+\begin{MHint}{Lösung}
+Der Mittelpunkt $M_1$ und der Radius $r_1$ des Kreises $K_1$ sind direkt ablesbar. Es gilt $M_1=\MPointTwo{-6}{-4}$ und $r_1=8$. Für $K_2$ ist eine quadratische Ergänzung durchzuführen:
+\[
+ x^2+2x+y^2-16y+40=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+2x+1 + y²-2\cdot8y+64+40-64-1=0
+\]
+\[
+ \Leftrightarrow\MDFPaSpace (x+1)^2+(y-8)^2=25\MDFPeriod
+\]
+Nun können der Mittelpunkt $M_2$ und der Radius $r_2$ von $K_2$ abgelesen werden. Es gilt $M_2=\MPointTwo{-1}{8}$ und $r_2=5$. Damit berechnet man
+\[
+ [\overline{M_1 M_2}]=\sqrt{(-1+6)^2+(8+4)^2}=\sqrt{25+144}=\sqrt{169}=13
+\]
+und
+\[
+ r_1+r_2=13 \MDFPeriod
+\]
+Es ist in diesem Fall also $[\overline{M_1 M_2}]=13=r_1+r_2$, und nach Infobox \MNRef{VBKM09_Info_Kreiseschneiden} berühren sich die Kreise $K_1$ und $K_2$ folglich in einem Punkt.
+\end{MHint}
+
+
+\end{MExercise}
+
 \end{MXContent}
 
 \MSubsection{Bereiche in der Ebene}
@@ -2427,12 +3229,815 @@ Dieser Abschnitt erscheint in Kürze.
 \begin{MIntro}
 \MLabel{VBKM09_Bereiche_Intro}
 \MDeclareSiteUXID{VBKM09_Bereiche_Intro}
-Dieser Abschnitt erscheint in Kürze.
+Während in den vorigen Abschnitten Kurven in der Ebene (Geraden oder Kreise) mittels Koordinatengleichungen untersucht wurden, sollen in diesem Abschnitt die Koordinaten\textit{gleichungen} durch Koordinaten\textit{ungleichungen} ersetzt werden. Dadurch werden dann keine Kurven mehr beschrieben, sondern \textit{Bereiche} in der Ebene, die durch die entsprechenden Kurven begrenzt werden. Die begrenzende Kurve kann dabei zum Bereich gehören oder nicht, je nachdem, ob man eine strenge Ungleichung ($<$ oder $>$) vorliegen hat oder nicht ($\leq$ oder $\geq$). Bereiche können zum Beispiel Flächen ober- oder unterhalb von Geraden, außer- oder innerhalb von Kreisen oder sogar Schnittmengen davon sein. Einige Beispiele sind in den folgenden Abbildungen dargestellt.
+\begin{itemize}
+ \item Bereich oberhalb der Geraden $y=\frac{1}{2}x-1$, ohne die Gerade selbst:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2.5) -- (3.5,0.75) -- (3.5,3.5) -- (-3,3.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-3,-2.5) -- (3.5,0.75);
+
+\end{tikzpicture}
+}
+\end{center}
+ \item Bereich unterhalb der Geraden $y=2$, inklusive der Geraden:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,2) -- (-3,-3) -- (3.5,-3) -- (3.5,2)}
+\fill[color=blue,fill=blue,fill opacity=0.15] \q1;
+\draw[color=blue] (-3,2) -- (3.5,2);
+
+\end{tikzpicture}
+}
+\end{center}
+ \item Bereich oberhalb der Gerade $y=x$ und innerhalb des Einheitskreises $x^2+y^2=1$, inklusive der Punkte auf dem Kreis, aber ohne die Punkte auf der Geraden:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+%\def \q1{(-3,-3) -- (3.5,3.5) -- (3.5,3.5) -- (-3,3.5)}
+\fill[color=green,fill=green,fill opacity=0.15] (-0.707,-0.707) arc [radius=1, start angle=225, delta angle=-180];
+\draw[color=green, dashed] (-3,-3) -- (3.5,3.5);
+\draw[color=green] (0,0) circle (1);
+
+\end{tikzpicture}
+}
+\end{center}
+\end{itemize}
+Hier und im Folgenden wird die übliche Konvention benutzt, dass in Abbildungen diejenigen Kurven, welche zur Fläche gehören, durchgezogen und diejenigen, welche \textit{nicht} zur Fläche gehören, gestrichelt dargestellt werden.
+
 \end{MIntro}
 
+\begin{MXContent}{Von Geraden und Kreisen begrenzte Bereiche}{Bereiche (Geraden und Kreise als Rand)}{STD}
+\MLabel{VBKM09_Bereiche_Geraden_Kreise}
+\MDeclareSiteUXID{VBKM09_Bereiche_Geraden_Kreise}
+
+Die folgende Infobox listet die möglichen entstehenden Bereiche auf, wenn man in einer Geradengleichung das Gleichheitszeichen durch ein Ungleichheitszeichen ersetzt.
+
+\begin{MInfo}
+Ist eine Gerade $g$ in der Ebene (mit Steigung $m$ und Achsenabschnitt $b$) mittels einer Geradengleichung in Normalform bezüglich eines festen Koordinatensystems gegeben,
+\[
+ g\colon y=m x+b \MDFPSpace ,
+\]
+dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitszeichen die folgenden Mengen, welche jeweils Bereiche in der Ebene beschreiben:
+\begin{itemize}
+ \item $B_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y>m x+b\}=$ \glqq Bereich oberhalb der Geraden, ohne die Punkte auf der Geraden selbst\grqq
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2.5) -- (3.5,0.75) -- (3.5,3.5) -- (-3,3.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-3,-2.5) -- (3.5,0.75);
+\draw[color=red] (3.5,0.75) node[anchor=west] {\footnotesize $g$};
+\draw[color=red] (-1,1) node[anchor=south east] {$B_1$};
+\end{tikzpicture}
+}
+\end{center}
+ \item $B_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y\geq m x+b\}=$ \glqq Bereich oberhalb der Geraden, inklusive der Punkte auf der Geraden\grqq
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2.5) -- (3.5,0.75) -- (3.5,3.5) -- (-3,3.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red] (-3,-2.5) -- (3.5,0.75);
+\draw[color=red] (3.5,0.75) node[anchor=west] {\footnotesize $g$};
+\draw[color=red] (-1,1) node[anchor=south east] {$B_2$};
+\end{tikzpicture}
+}
+\end{center}
+ \item $B_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y<m x+b\}=$ \glqq Bereich unterhalb der Geraden, ohne die Punkte auf der Geraden selbst\grqq
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2.5) -- (3.5,0.75) -- (3.5,-3.1) -- (-3,-3.1)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-3,-2.5) -- (3.5,0.75);
+\draw[color=red] (3.5,0.75) node[anchor=west] {\footnotesize $g$};
+\draw[color=red] (2,-2) node[anchor=north west] {$B_3$};
+\end{tikzpicture}
+}
+\end{center}
+ \item $B_4:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y\leq m x+b\}=$ \glqq Bereich unterhalb der Geraden, inklusive Punkte auf der Geraden\grqq
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2.5) -- (3.5,0.75) -- (3.5,-3.1) -- (-3,-3.1)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red] (-3,-2.5) -- (3.5,0.75);
+\draw[color=red] (3.5,0.75) node[anchor=west] {\footnotesize $g$};
+\draw[color=red] (2,-2) node[anchor=north west] {$B_4$};
+\end{tikzpicture}
+}
+\end{center}
+\end{itemize}
+
+\end{MInfo}
+
+Für Geraden, die nicht auf Normalform gebracht werden können, funktioniert die Überlegung für die Bereiche völlig analog. Das folgende Beispiel zeigt zwei einfache Fälle.
+
+\begin{MExample}
+Gegeben sind die beiden Geraden
+\[
+ g\colon y=-x+1
+\]
+und 
+\[
+ h\colon x=-1 \MDFPeriod   
+\]
+Zu bestimmen und zu skizzieren sind die Mengen 
+\[
+ A=\textrm{\glqq Bereich unterhalb von}\ g, \textrm{ ohne die Punkte auf}\ g\ \textrm{selbst\grqq},
+\] 
+\[
+ B=\textrm{\glqq Bereich rechts von}\ h, \textrm{ inklusive der Punkte auf}\ h\textrm{\grqq}
+\]
+sowie $A\cap B$.
+
+Zunächst gilt also
+\[
+ A=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y<-x+1\}
+\]
+nach der Infobox oben und 
+\[
+ B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x\geq-1\} \MDFPSpace ,
+\]
+da rechts der Geraden $h$ diejenigen Punkte liegen, deren $x$-Koordinaten größer als $-1$ sind. Die Schnittmenge $A\cap B$ sind diejenigen Punkte, welche beide Bedingungen erfüllen:
+\[
+ A\cap B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y<-x+1\wedge x\geq-1\}\MDFPeriod
+\]
+Bilder hierzu:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-2,3)-- (3.5,-2.5) -- (3.5,-3) -- (-3,-3) -- (-3,3)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-2,3) -- (3.5,-2.5);
+\draw[color=red] (3.5,-2.5) node[anchor=south west] {\footnotesize $g$};
+\draw[color=red] (-2,-2) node[anchor=south west] {$A$};
+\end{tikzpicture}
+}
+\end{center}
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-1,-3) -- (-1,3.5) -- (3.5,3.5) -- (3.5,-3)}
+\fill[color=blue,fill=blue,fill opacity=0.15] \q1;
+\draw[color=blue] (-1,-3) -- (-1,3.5);
+\draw[color=blue] (-1,-3) node[anchor=east] {\footnotesize $h$};
+\draw[color=blue] (2,2) node[anchor=north east] {$B$};
+\end{tikzpicture}
+}
+\end{center}
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-1,2) -- (-1,-3) -- (3.5,-3) -- (3.5,-2.5)}
+\fill[color=violet,fill=violet,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-2,3) -- (3.5,-2.5);
+\draw[color=blue] (-1,-3) -- (-1,3.5);
+\draw[color=blue] (-1,-3) node[anchor=east] {\footnotesize $h$};
+\draw[color=red] (3.5,-2.5) node[anchor=south west] {\footnotesize $g$};
+\draw[color=violet] (2,-2) node[anchor=north east] {$A\cap B$};
+\draw[color=violet] (-1,2) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+Der Schnittpunkt $\MPointTwo{-1}{2}$ der beiden Geraden ist dabei kein Element von $A\cap B$, da Punkte auf $g$ generell nicht zum Bereich $A\cap B$ gehören. Im Bild ist dies durch einen leeren Kringel angedeutet.
+\end{MExample}
+
+Dieses Beispiel zeigt bereits Folgendes: Bereiche, welche durch nur eine Koordinatenungleichung gegeben sind, die aus einer Geradengleichung stammt, sind relativ einfach anzugeben. Es wird schwieriger, sobald Schnittmengen solcher Bereiche gesucht sind. Das folgende, etwas schwierigere, Beispiel zeigt, dass man nun auch noch Beträge mit ins Spiel bringen kann. 
+
+\begin{MExample}
+Es ist die Menge 
+\[
+ M=\{\MPointTwo{x}{y}\MCondSetSep |x-y|<1\}
+\]
+in Worten zu beschreiben und zu skizzieren.
+
+Wie üblich bei Beträgen (vgl. \MNRef{M02_Betragsgleichungen}) ist eine Fallunterscheidung nötig:
+\begin{enumerate}
+ \item $x-y\geq 0\MDFPSpace\Leftrightarrow\MDFPSpace x\geq y$\\
+ Die Ungleichung $|x-y|<1$ lässt sich in diesem Fall auflösen zu
+ \[
+  |x-y|<1\MDFPSpace\Leftrightarrow\MDFPSpace x-y<1\MDFPSpace\Leftrightarrow\MDFPSpace y>x-1 \MDFPeriod
+ \]
+ Somit liegen in diesem Fall alle $\MPointTwo{x}{y}$ in $M$, die $x\geq y$ und $y>x-1$ erfüllen, also diejenigen Punkte, welche oberhalb der Geraden $y=x-1$, aber unterhalb oder auf der Winkelhalbierenden $y=x$ liegen.
+ \item $x-y< 0\MDFPSpace\Leftrightarrow\MDFPSpace x<y$\\
+ Die Ungleichung $|x-y|<1$ lässt sich in diesem Fall auflösen zu
+ \[
+  |x-y|<1\MDFPSpace\Leftrightarrow\MDFPSpace -(x-y)<1\MDFPSpace\Leftrightarrow\MDFPSpace y<x+1 \MDFPeriod
+ \]
+ Somit liegen in diesem Fall alle $\MPointTwo{x}{y}$ in $M$, die $x<y$ und $y<x+1$ erfüllen, also diejenigen Punkte, welche unterhalb der Geraden $y=x+1$, aber oberhalb der Winkelhalbierenden $y=x$ liegen.
+\end{enumerate}
+Aus beiden Fällen zusammen ergibt sich also die folgende Beschreibung für die Menge $M$:
+\[
+ M=\textrm{\glqq Alle Punkte zwischen den Geraden}\ y=x-1\ \textrm{und}\ y=x+1\textrm{, die aber nicht auf den Geraden liegen\grqq}
+\]
+Skizze hierzu:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2) -- (-3,-3) -- (-2,-3) -- (3.5,2.5) -- (3.5,3.5) -- (2.5,3.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-2,-3) -- (3.5,2.5);
+\draw[color=red, dashed] (-3,-2) -- (2.5,3.5);
+\draw[color=red] (-3,-3) -- (3.5,3.5);
+\draw[color=red] (3.5,2.5) node[anchor=west] {\footnotesize $y=x-1$};
+\draw[color=red] (2.5,3.5) node[anchor=east] {\footnotesize $y=x+1$};
+\draw[color=red] (3.5,3.5) node[anchor=west] {\footnotesize $y=x$};
+\draw[color=red] (-1.8,-1) node[anchor=west] {$M$};
+\end{tikzpicture}
+}
+\end{center}
+\end{MExample}
+
+\begin{MExercise}
+Skizzieren Sie jeweils die angegebenen Mengen:
+\begin{MExerciseItems}
+\item{$A=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y\geq 1\}\cap\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x\geq 1\} $} 
+\item{$B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep |2x-y|\geq 1\}$}
+\item{$C=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep |y|>x+1\}$}
+\end{MExerciseItems}
+
+\begin{MHint}{Lösung}
+\begin{MExerciseItems}
+\item{Die Menge aller Punkte, welche $y\geq 1$ erfüllen, liegen auf oder oberhalb der Geraden $y=1$, und die Punkte, welche $x\geq 1$ erfüllen, liegen auf oder rechts von der Geraden $x=1$. Insgesamt sind die Punkte gesucht, welche beide Bedingungen erfüllen (Schnittmenge). Es ergibt sich also:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(1,3.5) -- (3.5,3.5) -- (3.5,1) -- (1,1)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red] (1,1) -- (3.5,1);
+\draw[color=red] (1,1) -- (1,3.5);
+\draw[color=red, dashed] (-3,1) -- (1,1);
+\draw[color=red, dashed] (1,-3) -- (1,1);
+\draw[color=red] (-3,1) node[anchor=north] {\footnotesize $y=1$};
+\draw[color=red] (1,-3) node[anchor=west] {\footnotesize $x=1$};
+\draw[color=red] (2,2) node[anchor=south west] {$A$};
+\draw[color=red, fill=red] (1,1) circle (1pt);
+\end{tikzpicture}
+}
+\end{center}
+
+}
+\item{Fallunterscheidung:
+\begin{enumerate}
+ \item $2x-y\geq0\MDFPSpace\Leftrightarrow\MDFPSpace y\leq 2x$:\\
+ \[
+  |2x-y|\geq1\MDFPSpace\Leftrightarrow\MDFPSpace 2x-y\geq 1\MDFPSpace\Leftrightarrow\MDFPSpace y\leq 2x-1
+ \]
+ Dieser Fall liefert also alle Punkte, die auf oder unterhalb der Geraden $y=2x-1$ liegen. 
+ \item $2x-y<0\MDFPSpace\Leftrightarrow\MDFPSpace y>2x$:\\
+ \[
+  |2x-y|\geq1\MDFPSpace\Leftrightarrow\MDFPSpace -(2x-y)\geq 1\MDFPSpace\Leftrightarrow\MDFPSpace y\geq 2x+1
+ \]
+ Dieser Fall liefert also alle Punkte, die auf oder oberhalb der Geraden $y=2x+1$ liegen. 
+\end{enumerate}
+Insgesamt ergeben sich also die folgenden Bereiche:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-4.1) -- (0,4.5);
+\foreach \y in {-4,-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,4.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-2.5,-4) -- (-3,-4) -- (-3,4.5) -- (1.75,4.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\def \q2{(-1.5,-4) -- (3.5,-4) -- (3.5,4.5) -- (2.75,4.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q2;
+\draw[color=red] (-2.5,-4) -- (1.75,4.5);
+\draw[color=red] (-1.5,-4) -- (2.75,4.5);
+\draw[color=red] (-2.5,-4) node[anchor=north east] {\footnotesize $y=2x+1$};
+\draw[color=red] (-1.5,-4) node[anchor=north] {\footnotesize $y=2x-1$};
+\draw[color=red] (2,-2) node[anchor=south west] {$B$};
+\draw[color=red] (-2,2) node[anchor=south west] {$B$};
+\end{tikzpicture}
+}
+\end{center}
+
+}
+\item{Fallunterscheidung:
+\begin{enumerate}
+ \item $y\geq0$:\\
+ \[
+  |y|>x+1\MDFPSpace\Leftrightarrow\MDFPSpace y>x+1
+ \]
+ Dieser Fall liefert also alle Punkte, die eine nicht-negative $y$-Koordinate haben und oberhalb der Geraden $y=x+1$ liegen. 
+ \item $y<0$:\\
+ \[
+  |y|>x+1\MDFPSpace\Leftrightarrow\MDFPSpace -y>x+1\MDFPSpace\Leftrightarrow\MDFPSpace y<-x-1
+ \]
+ Dieser Fall liefert also alle Punkte, die eine negative $y$-Koordinate haben und unterhalb der Geraden $y=-x-1$ liegen. 
+\end{enumerate}
+Damit ergibt sich der folgende Bereich:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-3) -- (2,-3) -- (-1,0) -- (2.5,3.5) -- (-3,3.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red] (-3.1,0) -- (-1,0);
+\draw[color=red,dashed] (-1,0) -- (2.5,3.5);
+\draw[color=red,dashed] (-1,0) -- (2,-3);
+\draw[color=red] (2.5,3.5) node[anchor=west] {\footnotesize $y=x+1$};
+\draw[color=red] (2,-3) node[anchor=west] {\footnotesize $y=-x-1$};
+\draw[color=red] (-2,-1) node[anchor=south west] {$C$};
+\draw[color=red, fill=white] (-1,0) circle (1.5pt);
+\end{tikzpicture}
+}
+
+\end{center}
+Der Punkt $\MPointTwo{-1}{0}$ gehört nicht zu $C$.
+}
+\end{MExerciseItems}
+ 
+\end{MHint}
+\end{MExercise}
+
+Die folgende Infobox fasst die möglichen Bereiche in der Ebene zusammen, die von einem Kreis begrenzt werden.
+
+\begin{MInfo}
+Ist ein Kreis $K$ in der Ebene (mit Mittelpunkt $M=\MPointTwo{x_0}{y_0}$ und Radius $r$) mittels einer Kreisgleichung in Normalform bezüglich eines festen Koordinatensystems gegeben,
+\[
+ K\colon (x-x_0)^2 + (y-y_0)^2 = r^2 \MDFPSpace ,
+\]
+dann erhält man durch Ersetzen des Gleichheitszeichens durch ein Ungleichheitszeichen die folgenden Mengen, welche jeweils Bereiche in der Ebene beschreiben:
+\begin{itemize}
+ \item $B_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 < r^2\}=$ \glqq Bereich innerhalb des Kreises, ohne die Punkte auf dem Kreis selbst\grqq
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (4.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red,dashed] (2,1.5) circle (1); 
+\draw[color=red] (2.707,2.207) node[anchor=south west] {\footnotesize $K$};
+\draw[color=red] (2,1.5) node[anchor=north] {$B_1$};
+\fill[color=red,fill=red,fill opacity=0.15] (3,1.5) arc [radius=1, start angle=0, delta angle=360];
+\end{tikzpicture}
+}
+\end{center}
+ \item $B_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 \leq r^2\}=$ \glqq Bereich innerhalb des Kreises, inklusive der Punkte auf dem Kreis\grqq
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (4.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red] (2,1.5) circle (1); 
+\draw[color=red] (2.707,2.207) node[anchor=south west] {\footnotesize $K$};
+\draw[color=red] (2,1.5) node[anchor=north] {$B_2$};
+\fill[color=red,fill=red,fill opacity=0.15] (3,1.5) arc [radius=1, start angle=0, delta angle=360];
+\end{tikzpicture}
+}
+\end{center}
+  \item $B_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 > r^2\}=$ \glqq Bereich außerhalb des Kreises, ohne die Punkte auf dem Kreis selbst\grqq
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (4.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red,dashed] (2,1.5) circle (1); 
+\draw[color=red] (2.707,2.207) node[anchor=south west] {\footnotesize $K$};
+\draw[color=red] (4,1.5) node[anchor=north] {$B_3$};
+\fill[color=red,fill=red,fill opacity=0.15] (-1,3.5) -- (4.5,3.5) -- (4.5,-1) -- (-1,-1) -- cycle (2,1.5) circle (1);
+\end{tikzpicture}
+}
+\end{center}
+ \item $B_4:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 \geq r^2\}=$ \glqq Bereich außerhalb des Kreises, inklusive der Punkte auf dem Kreis\grqq
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (4.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red] (2,1.5) circle (1); 
+\draw[color=red] (2.707,2.207) node[anchor=south west] {\footnotesize $K$};
+\draw[color=red] (4,1.5) node[anchor=north] {$B_4$};
+\fill[color=red,fill=red,fill opacity=0.15] (-1,3.5) -- (4.5,3.5) -- (4.5,-1) -- (-1,-1) -- cycle (2,1.5) circle (1);
+\end{tikzpicture}
+}
+\end{center}
+\end{itemize}
+
+\end{MInfo}
+
+Das folgende Beispiel zeigt einige einfache Fälle von Bereichen, die von Kreisen begrenzt werden, sowie auch einige kompliziertere Fälle, die entstehen, wenn man mehrere Bereiche miteinander oder mit den Bereichen, welche von Geraden begrenzt werden, kombiniert.
+
+\begin{MExample}
+Gegeben sind die Kreise
+\[
+ K_1\colon x^2+y^2=4
+\]
+und 
+\[
+ K_2\colon (x-2)^2+y^2=1
+\]
+sowie die Gerade 
+\[
+ g\colon y=-x+1 \MDFPeriod
+\]
+\begin{itemize}
+ \item Die Menge $A_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2\leq 1\}$ besteht aus allen Punkten innerhalb und auf dem Kreis $K_2$:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (4.5,0);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north] {$x$};
+\draw (-0.2,2.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red] (2,0) circle (1); 
+\draw[color=red] (2.707,0.707) node[anchor=south west] {\footnotesize $K_2$};
+\draw[color=red] (2,0.1) node[anchor=south] {$A_1$};
+\fill[color=red,fill=red,fill opacity=0.15] (2,0) circle (1);
+\end{tikzpicture}
+}
+\end{center}
+
+\item Die Menge $A_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2<1\}\cap\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x^2+y^2<4\}$ besteht aus allen Punkten, die sowohl innerhalb des Kreises $K_1$ als auch innerhalb des Kreises $K_2$ liegen, also im Schnitt der beiden Kreisscheiben, aber nicht auf den Kreisen selbst:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.1,0) -- (3.5,0);
+\foreach \x in {-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,2.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red,dashed] (2,0) circle (1); 
+\draw[color=red,dashed] (0,0) circle (2); 
+\draw[color=red] (2.707,0.707) node[anchor=south west] {\footnotesize $K_2$};
+\draw[color=red] (-1.41,1.41) node[anchor=south east] {\footnotesize $K_1$};
+\draw[color=red] (1.5,0.1) node[anchor=south] {$A_2$};
+\begin{scope} \clip{(2,0) circle (1)}; \fill[color=red,fill=red,fill opacity=0.15]  (0,0) circle (2); \end{scope}
+
+\end{tikzpicture}
+}
+\end{center}
+
+\item Die Menge $A_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2<1\wedge y\geq-x+1\}$ besteht aus allen Punkten, die sowohl innerhalb des Kreises $K_2$ -- aber nicht auf dem Kreis -- als auch auf oder oberhalb der Geraden $g$ liegen:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (3.5,0);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,2.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red,dashed] (2,0) circle (1); 
+\draw[color=red] (-1,2) -- (3,-2);
+\draw[color=red] (2.707,0.707) node[anchor=south west] {\footnotesize $K_2$};
+\draw[color=red] (3,-2) node[anchor=north] {\footnotesize $g$};
+\draw[color=red] (2,0.1) node[anchor=south] {$A_3$};
+\begin{scope} \clip{(2,0) circle (1)}; \fill[color=red,fill=red,fill opacity=0.15] (-1,2) -- (-1,2.5) -- (3.5,2.5) -- (3.5,-2) -- (3,-2); \end{scope}
+\draw[color=red,fill=white] (1,0) circle (1pt);
+\draw[color=red,fill=white] (2,-1) circle (1pt);
+\end{tikzpicture}
+}
+\end{center}
+Die Schnittpunkte von Kreis und Gerade gehören nicht zu $A_3$.
+\end{itemize}
+\end{MExample}
+
+\begin{MExercise}
+Skizzieren Sie jeweils die angegebenen Mengen:
+\begin{MExerciseItems}
+\item{$A=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-1)^2+(y-1)^2\geq 1\}\cap\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y>-\frac{1}{2}x+1\} $} 
+\item{$B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep |x|<1\}\cup\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x+3)^2+(y-1)^2\leq 4\}$}
+\item{$C=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x^2+y^2<4\wedge x^2+(y+1)^2\geq 1\}$}
+\end{MExerciseItems} 
+
+\begin{MHint}{Lösung}
+\begin{MExerciseItems}
+\item{Die Menge $A$ wird gebildet von allen Punkten, die sowohl außerhalb des Kreises oder auf dem Kreis um $\MPointTwo{1}{1}$ mit Radius $1$ als auch oberhalb der Gerade $y=-\frac{1}{2}x+1$ liegen:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (3.5,0);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.1) -- (0,3.5);
+\foreach \y in {-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red] (0,1) arc [radius=1, start angle=180, delta angle=-233]; 
+\draw[color=red,dashed] (0,1) arc [radius=1, start angle=180, delta angle=127]; 
+\draw[color=red,dashed] (-1,1.5) -- (3.5,-0.75);
+\draw[color=red] (1.707,1.707) node[anchor=south west] {\footnotesize $(x-1)^2+(y-1)^2=1$};
+\draw[color=red] (3.5,-0.75) node[anchor=north] {\footnotesize $y=-\frac{1}{2}x+1$};
+\draw[color=red] (1,3) node[anchor=east] {$A$};
+\begin{scope} \clip{(-1,1.5) -- (-1,3.5) -- (3.5,3.5) --  (3.5,-0.75) -- cycle}; \fill[color=red,fill=red,fill opacity=0.15] (-1,1.5) -- (-1,3.5) -- (3.5,3.5) --  (3.5,-0.75) -- cycle (1,1) circle (1); \end{scope}
+\draw[color=red,fill=white] (0,1) circle (1pt);
+\draw[color=red,fill=white] (1.6,0.2) circle (1pt);
+\end{tikzpicture}
+}
+\end{center}
+Die Schnittpunkte von Kreis und Gerade gehören nicht zu $A$.
+}
+\item{Die Punkte in der Ebene, welche die Ungleichung $|x|<1$ erfüllen, sind diejenigen, für die $-1<x<1$ gilt. Dazu (Vereinigungsmenge!) kommen noch
+die Punkte auf dem Kreis oder innerhalb des Kreises $(x+3)^2+(y-1)^2=4$:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-5.1,0) -- (2.5,0);
+\foreach \x in {-5,-4,-3,-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,4.5);
+\foreach \y in {-2,-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.5,0) node[anchor=north] {$x$};
+\draw (-0.2,4.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red] (-3,1) circle (2);
+\draw[color=red,dashed] (-1,-2) -- (-1,4.5);
+\draw[color=red,dashed] (1,-2) -- (1,4.5);
+\draw[color=red] (-4.5,2.5) node[anchor=south east] {\footnotesize $(x+3)^2+(y-1)^2=4$};
+\draw[color=red] (-1,-2) node[anchor=north] {\footnotesize $x=-1$};
+\draw[color=red] (1,-2) node[anchor=north] {\footnotesize $x=1$};
+\draw[color=red] (-3,1.5) node[anchor=south] {$B$};
+\fill[color=red,fill=red,fill opacity=0.15] (-1,-2) -- (-1,4.5) -- (1,4.5) --  (1,-2);
+\fill[color=red,fill=red,fill opacity=0.15] (-3,1) circle (2);
+\draw[color=red,fill=red] (-1,1) circle (1pt);
+\end{tikzpicture}
+}
+\end{center}
+Der Punkt $\MPointTwo{-1}{1}$ gehört mit zu $B$.
+}
+\item{Die Menge $C$ wird gebildet von allen Punkten, die sowohl innerhalb des Kreises $x^2+y^2=4$ als auch auf oder außerhalb des Kreises $x^2+(y+1)^2=1$ liegen:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red,dashed] (0,0) circle (2);
+\draw[color=red] (0,-1) circle (1);
+\draw[color=red] (0,0) node[anchor=south] {\footnotesize $x^2+(y+1)^2=1$};
+\draw[color=red] (0,2) node[anchor=south west] {\footnotesize $x^2+y^2=4$};
+\draw[color=red] (1,1) node[anchor=south] {$C$};
+\fill[color=red,fill=red,fill opacity=0.15] (0,0) circle (2) (-1,-1) arc [radius=1, start angle=180, delta angle=-360];
+\draw[color=red,fill=white] (0,-2) circle (1pt);
+\end{tikzpicture}
+}
+\end{center}
+Der Punkt $\MPointTwo{0}{-2}$ gehört nicht zu $C$.
+}
+
+\end{MExerciseItems}
+\end{MHint}
 
 
+\end{MExercise}
 
+\end{MXContent}
 
 
 \MSubsection{Abschlusstest}
@@ -2454,7 +4059,7 @@ Antwort: \MEquationItem{$y$}{\MLSimplifyQuestion{20}{-2*x+5}{5}{x}{5}{1}{VBNT1}}
 Gegeben ist eine Gerade durch die Gleichung $6x+2y=4$.
 
 \begin{MExerciseItems}
-\MSetPoints{8}
+\MSetPoints{8} 
 \item{Die Normalform dieser Geradengleichung lautet \MEquationItem{$y$}{\MLSimplifyQuestion{20}{2-3*x}{5}{x}{5}{1}{VBNT2}}.}
 \item{Wie liegt diese Gerade im Verhältnis zu der durch die Gleichung $y=3x-2$ beschriebenen Geraden?\\
 \MSetPoints{2}

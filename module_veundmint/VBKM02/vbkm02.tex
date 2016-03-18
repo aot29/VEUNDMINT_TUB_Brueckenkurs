@@ -1,10 +1,13 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
 
+%\Mtikzexternalize
+
 \begin{document}
 
 \MSection{Gleichungen in einer Unbekannten}
 \MLabel{VBKM02}
+\MSetSectionID{VBKM02} % wird fuer tikz-Dateien verwendet
 
 \begin{MSectionStart}
 \MDeclareSiteUXID{VBKM02_START}
@@ -15,10 +18,10 @@ Einfache Gleichungen lassen sich durch Umformungen und Lösungsformeln auflösen. 
 Dieses Modul gliedert sich in folgende Abschnitte:
 
 \begin{itemize}
-\item{dem Abschnitt \MSRef{M02_EinfacheGleichungen}{Einfache Gleichungen},}
-%\item{dem Abschnitt \MSRef{M02_Wurzelgleichungen}{Gleichungen mit Wurzeln},}
-\item{dem Abschnitt \MSRef{M02_Betragsgleichungen}{Betragsgleichungen},}
-\item{dem \MSRef{M02_Abschlusstest}{Abschlusstest}.}
+\item{dem Abschnitt \MNRef{M02_EinfacheGleichungen}, \MSRef{M02_EinfacheGleichungen}{Einfache Gleichungen},}
+%\item{dem Abschnitt \MNRef{M02_Wurzelgleichungen}, \MSRef{M02_Wurzelgleichungen}{Gleichungen mit Wurzeln},}
+\item{dem Abschnitt \MNRef{M02_Betragsgleichungen}, \MSRef{M02_Betragsgleichungen}{Betragsgleichungen},}
+\item{dem \MSRef{M02_Abschlusstest}{Abschlusstest}, \MNRef{M02_Abschlusstest}.}
 \end{itemize}
 \end{MSectionStart}
 
@@ -63,7 +66,7 @@ Typische Aufgabenstellungen für Gleichungen sind
 
 
 \begin{MExample}
-  Eine Spareinlage soll so konzipiert werden, dass eine feste Rendite pro Jahr ensteht. Ziel der Bank ist es zu erreichen, dass der Sparer bei einer Geldeinlage für 5 Jahre genau 600 Euro mehr Rendite
+  Eine Spareinlage soll so konzipiert werden, dass eine feste Rendite pro Jahr entsteht. Ziel der Bank ist es zu erreichen, dass der Sparer bei einer Geldeinlage für 5 Jahre genau 600 Euro mehr Rendite
   bekommt, als wenn er es nur 2 Jahre angelegt hätte.
   \ \\ \ \\
   Die Aufgabenstellung wird zunächst in eine Gleichung übersetzt, wobei die Variable $r$ für die Rendite pro Jahr stehen soll. Die Gleichung lautet dann $5\cdot r=2\cdot r+600$ und drückt aus,
@@ -190,6 +193,110 @@ Wichtig hier ist, dass diese Gleichung nur für $x\not=3$ falsch ist. Für $x=3$ m
 \end{MExercise}
 \end{MXContent}
 
+\begin{MXContent}{Proportionalität und Dreisatz}{Proportionalität}{STD}
+\MLabel{VBKM02_Dreisatz}
+\MDeclareSiteUXID{VBKM02_Dreisatz}
+Ein in der Praxis häufig vorkommender Fall der Beziehung zwischen zwei
+Größen ist die  \MEntry{Proportionalität}{Proportionalität} zwischen
+diesen Größen wie z.B. zwischen 
+Masse und Volumen, Zeit und zurückgelegter Wegstrecke oder Gewicht bzw. 
+Masse (Menge) einer Ware und Preis. Die Beziehung kann exemplarisch für
+bestimmte feste Größen vorliegen. Ein erstes Ziel ist dann, diese daraus
+folgende Beziehung für ein anderes Anwendungsbeispiel zu formulieren.
+Das Vorgehen soll an einem Beispiel verdeutlicht werden:
+\begin{MExample}
+$5\MEinheit{kg}$ Äpfel kosten $3$ Euro. Wie viel kosten dann $11\MEinheit{kg}$
+Äpfel?
+\par
+Die Ausgangsbeziehung lässt sich folgendermaßen formulieren:
+$$
+5\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 3\MBlank \text{Euro}
+\MDFPeriod
+$$
+Es wird vorausgesetzt, dass diese Größen proportional zueinander sind.
+Im folgenden Schritt wird die Beziehung zwischen den Größen daher auf 
+die Einheit einer der Größen zurückgeführt, nämlich jener der gegebenen 
+Größe. In diesem Fall werden beide Größen mit $1/5$ multipliziert --
+die Bezugseinheit ist also $1\MEinheit{kg}$ --:
+$$
+1\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 
+\frac{1}{5}\cdot 3\MBlank \text{Euro} = \MZahl{0}{6}\MBlank \text{Euro}
+\MDFPeriod
+$$
+Schließlich werden beide Seiten mit dem Vielfachen der Bezugseinheit der
+angegebenen Größe multipliziert, in diesem Fall mit dem Faktor $11$:
+$$
+11\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 
+11\cdot\MZahl{0}{6}\MBlank \text{Euro} = \MZahl{6}{6}\MBlank \text{Euro}
+\MDFPeriod
+$$
+Der gesuchte Preis für die $11\MEinheit{kg}$ Äpfel ist also
+$\MZahl{6}{60}\MBlank \text{Euro}$.
+\end{MExample}
+Das hier beispielhaft vorgeführte Verfahren, die Ausgangsbeziehung über
+die Beziehung für eine Einheit einer Größe zur gesuchten Beziehung zu führen,
+wird als \MEntry{Dreisatz}{Dreisatz} bezeichnet.
+
+Das gestellte Problem lässt sich aber auch über die Einführung eines
+Proportionalitätsfaktors lösen. Dazu wird das vorige Beispiel erneut
+betrachtet.
+\begin{MExample}
+Der Preis $P$ ist proportional zur Masse $m$. Es gibt daher eine Konstante
+$k$ mit
+$$
+P=k m \MDFPeriod
+$$
+Da diese Beziehung auch für die vorgegebenen Werte $m_0=5\MEinheit{kg}$
+und $P_0=3\MBlank\text{Euro}$ gilt, folgt
+\begin{eqnarray*}
+  P_0=k m_0 & \MTSP\MSep\MTSP & \text{Multiplikation mit}\MBlank \frac{1}{m_0} \\
+  \Longleftrightarrow\MDFPSpace\frac{P_0}{m_0}=k &;& 
+\end{eqnarray*}
+in diesem Fall ist also
+$$
+k=\frac{3}{5} = \MZahl{0}{6} \MDFPSpace,
+$$
+interpretiert in den Einheiten Euro pro kg. (In den Naturwissenschaften
+würde man korrekterweise $k=\MZahl{0}{6} \MBlank \text{Euro}/\MEinheit[]{kg}$
+schreiben, weil Proportionalitätsfaktoren i.A. dimensionsbehaftet sind.)
+Daraus erhält man mit $m_1=11\MEinheit{kg}$ abschließend
+$$
+P_1=k m_1 = \MZahl{0}{6}\cdot 11 =\MZahl{6}{6} \MBlank \text{(in Euro)}
+\MDFPSpace,
+$$
+also dasselbe Ergebnis wie mit dem Dreisatz.
+\end{MExample}
+
+\begin{MExercise}
+Ein Fahrzeug fährt in $9$ Minuten eine Strecke von $6\MEinheit{km}$.
+\begin{MExerciseItems}
+\item{%
+Welche Strecke $s$ fährt das Fahrzeug in $15$ Minuten?
+\medskip\par
+Die Lösung ist $s_{15}$ = \MLParsedQuestion{5}{10}{5}{EASY2}$\MEinheit{km}$.
+}
+\item{%
+Der Proportionalitätsfaktor zwischen Fahrstrecke $s$ und Fahrzeit $t$
+ist die Geschwindigkeit $v$ des Fahrzeugs.
+\medskip\par
+Diese beträgt $v$ = \MLParsedQuestion{5}{40}{5}{EASY3}$\MEinheit{km}/\MEinheit{h}$.
+}
+\end{MExerciseItems}
+\begin{MHint}{Lösung}
+Mit den Angaben fährt das Fahrzeug in einer Minute $\frac{6}{9}\MEinheit{km}
+=\frac{2}{3}\MEinheit{km}$ und damit in $15$ Minuten 
+$15\cdot\frac{2}{3}\MEinheit{km}=10\MEinheit{km}$.
+\par
+Damit ergibt sich die Geschwindigkeit zu 
+$$v=\frac{10\MEinheit{km}}{15\MEinheit{min}} = 
+\frac{10\MEinheit{km}}{(1/4)\MEinheit{h}} =
+40\MEinheit{}\frac{\MEinheit[]{km}}{\MEinheit[]{h}}
+\MDFPeriod
+$$
+\end{MHint}
+\end{MExercise}
+\end{MXContent}
+
 \begin{MXContent}{Auflösen linearer Gleichungen}{Auflösen}{STD}
 \MLabel{VBKM02_LineareGleichungenLoesen}
 \MDeclareSiteUXID{VBKM02_Aufloesen}
@@ -208,7 +315,7 @@ Diese drei Situationen erkennt man an der Umformungskette:
 \begin{itemize}
  \item{Endet die Umformungskette mit einer für alle $x$ falschen Aussage (z.B. $1=0$), so ist die Gleichung unlösbar.}
  \item{Endet die Umformungskette mit einer für alle $x$ wahren Aussage (z.B. $1=1$), so ist die Gleichung für alle Werte für $x$ lösbar.}
- \item{Ansonsten kann die Gleichung aufgelöst werden, d.h. man kann sie zur Gleichung $x=\text{Wert}$ Umformen und die Lösung ablesen.}
+ \item{Ansonsten kann die Gleichung aufgelöst werden, d.h. man kann sie zur Gleichung $x=\text{Wert}$ umformen und die Lösung ablesen.}
 \end{itemize}
 
 \begin{MXInfo}{Mengennotation}
@@ -280,6 +387,7 @@ Ansonsten gibt es nur eine Lösung, und zwar $x=\Mtfrac{b}{a}$.
 \end{MXContent}
 
 \begin{MXContent}{Auflösen quadratischer Gleichungen}{Quadratische Gleichungen}{STD}
+\MLabel{VBKM02_QuadratischeGleichungen}
 \MDeclareSiteUXID{VBKM02_Quadratische Gleichungen}
 \begin{MInfo}
 Eine \MEntry{quadratische Gleichung}{Gleichung (quadratisch)} ist eine Gleichung der Form $a x^2 + b x + c = 0$ mit $a\not=0$,
@@ -303,19 +411,63 @@ x_{1,2} \;=\; -\Mdfrac{p}{2}\pm \sqrt{\Mdfrac14p^2-q} \MDFPeriod
 $$
 Dabei besitzt die Gleichung
 \begin{itemize}
-\item{keine Lösung, falls $\Mtfrac14p^2-q<0$ ist (dann darf man die Wurzel nicht ziehen),}
+\item{keine (reelle) Lösung, falls $\Mtfrac14p^2-q<0$ ist (dann darf man die Wurzel nicht ziehen),}
 \item{eine einzige Lösung $x_1=-\Mtfrac{p}{2}$, falls $\Mtfrac14p^2=q$ ist und die Wurzel verschwindet,}
 \item{zwei verschiedene Lösungen, falls die Wurzel eine positive Zahl ist.}
 \end{itemize}
+Der hierbei betrachtete Ausdruck unter der Wurzel, $D:=\Mtfrac14p^2-q$, heißt
+\textbf{Diskriminante}.
 \end{MInfo}
-
-Diese drei Situationen entsprechen den drei möglichen Schnitten, die der Graph einer nach oben geöffneten Parabel der Form $f(x)=x^2+p x+ q$
+Die Lösung einer quadratischen Gleichung wird häufig durch eine 
+alternative Formel beschrieben:
+\begin{MInfo}
+\MLabel{VBKM02_abcFormel}
+Für die Gleichung $a x^2+b x + c = 0$ mit $a\ne 0$ lautet die
+\MEntry{$a b c$-Formel}{abc-Formel} oder
+\MEntry{Mitternachtsformel}{Mitternachtsformel}
+$$
+x_{1,2} \;=\; \frac{-b\pm\sqrt{b^2-4 a c}}{2a} \MDFPeriod
+$$
+Dabei besitzt die Gleichung
+\begin{itemize}
+\item{keine (reelle) Lösung, falls $b^2-4 a c<0$ ist (eine Quadratwurzel negativer Zahlen existiert im Reellen nicht),}
+\item{eine einzige Lösung $x_1=-\Mtfrac{b}{2a}$, falls $b^2=4 a c$ ist und die Wurzel verschwindet,}
+\item{zwei verschiedene Lösungen, falls die Wurzel eine positive Zahl ist.}
+\end{itemize}
+Auch der hierbei betrachtete Ausdruck unter der Wurzel, $D:=b^2-4 a c$, heißt
+\textbf{Diskriminante}.
+\end{MInfo}
+Beide Formeln führen natürlich auf dieselben Lösungen. (Für die Anwendung der
+$p q$-Formel ist die Gleichung durch den Vorfaktor $a$ des quadratischen
+Terms zu dividieren.)
+\medskip\par
+Die drei unterschiedenen Situationen entsprechen den drei möglichen Schnitten, die der Graph einer (für der Fall der $p q$-Formel) nach oben geöffneten Parabel der Form $f(x)=x^2+p x+ q$
 mit der $x$-Achse haben kann:
 
 \begin{center}
-\MUGraphicsSolo{para1b.png}{width=0.2\linewidth}{width:230px}\ \ 
-\MUGraphicsSolo{para2b.png}{width=0.2\linewidth}{width:230px}\ \ 
-\MUGraphicsSolo{para3b.png}{width=0.2\linewidth}{width:230px}
+%%\MUGraphicsSolo{para1b.png}{width=0.2\linewidth}{width:230px}\ \ 
+%%\MUGraphicsSolo{para2b.png}{width=0.2\linewidth}{width:230px}\ \ 
+%%\MUGraphicsSolo{para3b.png}{width=0.2\linewidth}{width:230px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm,scale=0.60] 
+\foreach \sx/\fsy in {-7.0cm/0.5,0.0cm/0.0,7.0cm/-0.5} {
+\begin{scope}[xshift=\sx,yshift=0]
+\draw[black] (-3,0) -- (3,0) (0,-3) -- (0,3);
+\foreach \x in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-2.0pt) node[below=1.0pt] {\tiny $\x$};
+\foreach \x in {-2.5, -1.5, ..., 2.5}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.0pt);
+\foreach \y in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-2.0pt,0pt) node[left=1.0pt] {\tiny $\y$};
+\foreach \y in {-2.5, -1.5, ..., 2.5}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.0pt,0pt);
+\draw[black] (-0.0pt,-0.0pt) node[anchor=north east] {\tiny $0$};
+\clip(-3.0,-3.0) rectangle (3.0,3.0);
+\draw[smooth,samples=27,domain=-3:3, line width=1.0pt,color=red!50!black] plot(\x,{\x*\x+\fsy});
+\end{scope}
+}
+\end{tikzpicture}
+}
 \end{center}
 
 Die drei Situationen: Kein Schnittpunkt, ein Schnittpunkt und zwei Schnittpunkte mit der $x$-Achse.
@@ -332,17 +484,40 @@ x_2 &=& \Mdfrac12-\sqrt{\Mdfrac14+1} \;=\; \Mdfrac12(1-\sqrt5) \MDFPeriod
 
 \begin{MInfo}
 \MLabel{VBKM02_Scheitelpunktform}
-Eine quadratische Gleichung ist in \MEntry{Scheitelpunktform}{Scheitelpunktform}, wenn sie die Form $a\cdot (x-s)^2=d$ besitzt mit $a\not=0$ und $d\geq 0$.
-Für den Funktionsausdruck der zugehörigen Parabel liest sich diese Form $f(x)=a\cdot (x-s)^2-d$.
-In dieser Situation ist $(s\,|\,-d)$ der \MEntry{Scheitelpunkt}{Scheitelpunkt (Parabel)} der Parabel.
+%%Eine quadratische Gleichung ist in \MEntry{Scheitelpunktform}{Scheitelpunktform}, wenn sie die Form $a\cdot (x-s)^2=d$ besitzt mit $a\not=0$ und $d\geq 0$.
+%%Für den Funktionsausdruck der zugehörigen Parabel liest sich diese Form $f(x)=a\cdot (x-s)^2-d$.
+%%In dieser Situation ist $(s\,|\,-d)$ der \MEntry{Scheitelpunkt}{Scheitelpunkt (Parabel)} der Parabel.
+%%
+%%Falls $a>0$ ist gibt es zwei Lösungen
+%%$$
+%%x_1 \;=\; s-\sqrt{\Mdfrac{d}{a}} \MDFPSpace,\MDFPaSpace x_2 \;=\; s+\sqrt{\Mdfrac{d}{a}}
+%%$$
+%%der Gleichung, diese liegen symmetrisch um die $x$-Koordinate des Scheitelpunkts. Für $d=0$ gibt es nur eine Lösung.
+%%
+%%Das Vorzeichen von $a$ bestimmt, ob die Gleichung eine nach oben oder unten geöffnete Parabel beschreibt.
+Der Funktionsausdruck einer Parabel liegt in
+\MEntry{Scheitelpunktform}{Scheitelpunktform} vor, wenn er die Form
+$f(x)=a\cdot (x-s)^2-d$ mit $a\ne 0$ besitzt. In dieser Situation ist
+$\MPointTwo{s}{-d}$ der \MEntry{Scheitelpunkt}{Scheitelpunkt (Parabel)}
+der Parabel. Die zugehörige quadratische Gleichung für $f(x)=0$ lautet
+dann $a\cdot (x-s)^2=d$.
 
-Falls $a>0$ ist gibt es zwei Lösungen
+Dividiert man diese Gleichung durch $a$, dann erhält man die äquivalente
+quadratische Gleichung $(x-s)^2=\frac{d}{a}$. Da die linke Seite ein
+Quadrat eines reellen Ausdrucks ist, existieren nur Lösungen, wenn auch
+die rechte Seite nicht negativ ist, d.h. $\frac{d}{a}\ge 0$ gilt.
+Durch Wurzelziehen unter Beachtung beider möglicher Vorzeichen folgt dann
+$x-s=\pm\sqrt{\frac{d}{a}}$.
+
+Falls $\frac{d}{a}>0$ ist, gibt es damit die beiden Lösungen
 $$
 x_1 \;=\; s-\sqrt{\Mdfrac{d}{a}} \MDFPSpace,\MDFPaSpace x_2 \;=\; s+\sqrt{\Mdfrac{d}{a}}
 $$
-der Gleichung, diese liegen symmetrisch um die $x$-Koordinate des Scheitelpunkts. Für $d=0$ gibt es nur eine Lösung.
+der Gleichung; diese liegen symmetrisch um die $x$-Koordinate $s$ des
+Scheitelpunkts. Für $d=0$ gibt es nur eine Lösung.
 
-Das Vorzeichen von $a$ bestimmt, ob die Gleichung eine nach oben oder unten geöffnete Parabel beschreibt.
+Das Vorzeichen von $a$ bestimmt, ob der Funktionsausdruck eine nach oben oder
+unten geöffnete Parabel beschreibt.
 \end{MInfo}
 
 Die quadratische Gleichung hat nur eine einzige Lösung $s$, falls sie sich in die Form $(x-s)^2=0$ bringen lässt.
@@ -356,11 +531,11 @@ Dazu wird auf beiden Seiten eine Konstante addiert, so dass links ein Term der F
 \begin{MExample}
 Die Gleichung $x^2-4x+2=0$ kann man durch Addieren der Konstanten $2$ in die Form $x^2-4x+4=2$ bzw. in die Scheitelpunktform $(x-2)^2=2$ bringen. 
 Aus ihr kann man sofort die Lösungen $x_1=2-\sqrt{2}$ und $2+\sqrt{2}$ ablesen. Andererseits besitzt die quadratische Gleichung
-$x^2+x=-2$ keine Lösung, denn die quadratische Ergänzung führt auf $x^2+x+\Mtfrac14=-\Mtfrac74$ bzw. $(x+\Mtfrac12)^2=-\Mtfrac74$ mit negativer rechter Seite.
+$x^2+x=-2$ keine Lösung, denn die quadratische Ergänzung führt auf $x^2+x+\Mtfrac14=-\Mtfrac74$ bzw. $(x+\Mtfrac12)^2=-\Mtfrac74$ mit negativer rechter Seite bei $a=1$.
 \end{MExample}
 
 \begin{MExercise}
-Bestimmen Sie die Lösungen dieser quadratischen Gleichungen über quadratische Ergänzung, nachdem Sie die Terme auf die linke Seite sortiert und normiert haben:
+Bestimmen Sie die Lösungen dieser quadratischen Gleichungen über quadratische Ergänzung, nachdem Sie die Terme auf die linke Seite sortiert und normiert (d.h. $a=1$ gewählt) haben:
 \begin{MExerciseItems}
 \item{$x^2=8x-1$ hat die Scheitelpunktform \MEquationItem{\MLSimplifyQuestion{20}{x^2-8*x+16}{5}{x}{5}{0}{MSPF1}}{\MLParsedQuestion{5}{15}{5}{GLD1}}.\\Die Lösungsmenge ist \MEquationItem{$\ML$}{\MLParsedQuestion{30}{4-sqrt(15),4+sqrt(15)}{5}{SQRT1}}.}
 \item{$x^2=2x+2+2x^2$ hat die Scheitelpunktform \MEquationItem{\MLSimplifyQuestion{20}{x^2+2*x+1}{5}{x}{5}{0}{MSPF2}}{\MLParsedQuestion{5}{-1}{5}{GLD2}}.\\Die Lösungsmenge ist \MEquationItem{$\ML$}{\MLParsedQuestion{30}{}{5}{SQRT2}.}}
@@ -408,7 +583,24 @@ und für die dritte Gleichung
 \MLabel{VBKM02_Betrag}
 Die Betragsfunktion $|x|$ ordnet einem $x\in\R$ seinen Wert ohne das Vorzeichen zu: Ist $x\geq 0$, so ist $|x|=x$, andernfalls ist $|x|=-x$:
 \begin{center}
-\MUGraphicsSolo{betrag1.png}{width=0.4\linewidth}{width:350px}\\
+%%\MUGraphicsSolo{betrag1.png}{width=0.4\linewidth}{width:350px}\\
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\draw[black] (-3,0) -- (3,0) (0,-3) -- (0,3);
+\foreach \x in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-2.0pt) node[below=1.0pt] {\scriptsize $\x$};
+\foreach \x in {-2.5, -1.5, ..., 2.5}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.0pt);
+\foreach \y in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-2.0pt,0pt) node[left=1.0pt] {\scriptsize $\y$};
+\foreach \y in {-2.5, -1.5, ..., 2.5}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.0pt,0pt);
+\draw[black] (-0.0pt,-0.5pt) node[anchor=north east] {\scriptsize $0$};
+\clip(-3.0,-3.0) rectangle (3.0,3.0);
+\draw[black, line width=1.0pt,color=red!50!black] (-3,3) -- (0,0) -- (3,3);
+\end{tikzpicture}
+}
+\par
 Die Betragsfunktion $|x|$ in Abhängigkeit von $x$.
 \end{center}
 
@@ -466,13 +658,13 @@ $\displaystyle 2\cdot |x-4|$ = \MLSimplifyQuestion{30}{falls(x>=4,2*(x-4),-2*(x-
 \MInputHint{Schreiben Sie die Fallunterscheidung in der Form \texttt{falls(BEDINGUNG;W1;W2)}, wobei \texttt{W1} der angenommene Wert ist, falls die Bedingung erfüllt ist. Verwenden Sie nicht die Betragsfunktion.}
 \begin{MHint}{Lösung}
 \begin{eqnarray*}
-2\cdot |x-4| \;=\; \MCases{2x-x &\text{falls}\;x\geq 4 \\ -2x+8 & \text{falls}\;x<4}
+2\cdot |x-4| \;=\; \MCases{2x-8 &\text{falls}\;x\geq 4 \\ -2x+8 & \text{falls}\;x<4}
 \end{eqnarray*}
 \end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
-Reproduzieren Sie die Schritte aus Video \MRef{VBKM06_Video_Beispiel1} um die Betragsgleichung
+Reproduzieren Sie die Schritte aus Video \MRef{VBKM06_Video_Beispiel1}, um die Betragsgleichung
 $|6+3x|=12$ aufzulösen. \ \\ \ \\
 Die Fallunterscheidung in Kurzschreibweise lautet $|6+3x|$ = \MLSimplifyQuestion{40}{falls(x>=-2,6+3*x,-6-3*x)}{15}{x}{3}{128}{VBKM02ALTFALL2}.
 \begin{MHint}{Lösung}
@@ -483,7 +675,7 @@ Die Fallunterscheidung in Kurzschreibweise lautet $|6+3x|$ = \MLSimplifyQuestion
 \MInputHint{Schreiben Sie die Fallunterscheidung in der Form \texttt{falls(BEDINGUNG;W1;W2)}, wobei \texttt{W1} der angenommene Wert ist, falls die Bedingung erfüllt ist.
 Sie können auch eines der Eingabebeispiele in das Eingabefeld kopieren und für die neue Ungleichung anpassen.}
 \ \\ \ \\
-Bestimmung der Lösungen innerhalb der Fälle und Prüfung der Fallbedinungen ergibt die Lösungsmenge \MEquationItem{\ML}{\MLParsedQuestion{10}{2,-6}{3}{LVI}} für die Gleichung $|6+3x|=12$.
+Bestimmung der Lösungen innerhalb der Fälle und Prüfung der Fallbedingungen ergibt die Lösungsmenge \MEquationItem{$\ML$}{\MLParsedQuestion{10}{2,-6}{3}{LVI}} für die Gleichung $|6+3x|=12$.
 \begin{MHint}{Lösung}
 \begin{eqnarray*}
 \ML \;=\; \{-6\MElSetSep 2\}
@@ -559,8 +751,51 @@ Die Lösungsmenge ist \MLParsedQuestion{10}{-8/5,2/7}{5}{PARSEDQUEST1}.
 
 \begin{MHint}{Lösung}
 Durch Untereinanderstellen der Fallunterscheidungen für die Betragsausdrücke $|2x+1|$ und $|x-5|$ kann man die insgesamt vorzunehmende Fallunterscheidung ablesen:
-\MGraphics{fallunterscheidung3.png}{scale=1}{Graphische Darstellung der drei Fälle.\MCopyrightLabel{VBKM02_Grafik_Fallunterscheidung3}}
-\MCopyrightNotice{\MCCLicense}{NONE}{VEMINT}{Im Rahmen des VE\&MINT-Projekts}{VBKM02_Grafik_Fallunterscheidung3}
+%%\MGraphics{fallunterscheidung3.png}{scale=1}{Graphische Darstellung der drei Fälle.\MCopyrightLabel{VBKM02_Grafik_Fallunterscheidung3}}
+%%\MCopyrightNotice{\MCCLicense}{NONE}{VEMINT}{Im Rahmen des VE\&MINT-Projekts}{VBKM02_Grafik_Fallunterscheidung3}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.35cm, y=1.0cm] 
+\fill[color=yellow!20!white] (-7,-1.2) rectangle (15,6.2);
+\foreach \sy in {0.0cm,2.5cm,5.0cm} {
+\begin{scope}[xshift=0,yshift=\sy]
+\draw[-stealth',black] (-6,0) -- (13.5,0);
+\foreach \x in {-4, 0, 4, 8, 12}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,3.0pt) (0pt,0pt) node[below=1.0pt] {\small $\x$};
+\foreach \x in {-5, -3, -2, -1, 1, 2, 3, 5, 6, 7, 9, 10, 11}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,1.0pt);
+\end{scope}
+\def\rdst{0.2}
+\def\tdst{0.6}
+\def\vdst{0.4}
+\draw[color=red,line width=2.2pt] (-6.0,\rdst) -- (-0.5,\rdst);
+\draw[color=green!60!black,line width=2.2pt] (-0.5,\rdst) -- (5.0,\rdst);
+\draw[color=orange,line width=2.2pt] (5.0,\rdst) -- (12.0,\rdst);
+\draw[color=red,line width=2.2pt] (-3.25,\tdst) node {Fall (1)};
+\draw[color=green!60!black,line width=2.2pt] (2.25,\tdst) node {Fall (2)};
+\draw[color=orange,line width=2.2pt] (8.5,\tdst) node {Fall (3)};
+\draw[color=blue,line width=0.8pt] (-0.5,\vdst) -- (-0.5,-0.5) node[below=0pt] {$-\frac{1}{2}$} ;
+\draw[color=blue,line width=0.8pt] (5.0,\vdst) -- (5.0,-0.5) node[below=0pt] {$5$} ;
+\begin{scope}[xshift=0,yshift=2.5cm]
+\draw[color=red,line width=2.2pt] (-6.0,\rdst) -- (5.0,\rdst);
+\draw[color=orange,line width=2.2pt] (5.0,\rdst) -- (12.0,\rdst);
+\draw[color=red,line width=2.2pt] (-0.50,\tdst) node {$x-5<0$};
+\draw[color=orange,line width=2.2pt] (8.5,\tdst) node {$x-5>0$};
+\draw[color=blue,line width=0.8pt] (5.0,\vdst) -- (5.0,-0.5) node[below=0pt] {$5$} ;
+\end{scope}
+\begin{scope}[xshift=0,yshift=5cm]
+\draw[color=red,line width=2.2pt] (-6.0,\rdst) -- (-0.5,\rdst);
+\draw[color=orange,line width=2.2pt] (-0.5,\rdst) -- (12.0,\rdst);
+\draw[color=red,line width=2.2pt] (-3.25,\tdst) node {$2x+1<0$};
+\draw[color=orange,line width=2.2pt] (5.75,\tdst) node {$2x+1>0$};
+\draw[color=blue,line width=0.8pt] (-0.5,\vdst) -- (-0.5,-0.5) node[below=0pt] {$-\frac{1}{2}$} ;
+\end{scope}
+}
+\end{tikzpicture}
+}
+\par
+Graphische Darstellung der drei Fälle.
+\end{center}
 
 Man kann die folgenden drei Fälle ablesen:
 \begin{itemize}
@@ -591,7 +826,27 @@ Die Lösungsmenge ist $\lbrace -\Mtfrac85\MElSetSep \Mtfrac27\rbrace$.
 
 \begin{MExercise}
 Finden Sie einen m\"oglichst einfachen Term mit einer Betragsfunktion, der folgenden Funktionsgraph beschreibt:
-\MUGraphics{abs2.png}{width=0.5\linewidth}{Funktionsgraph von $f(x)$.}{width:300px}
+%%\MUGraphics{abs2.png}{width=0.5\linewidth}{Funktionsgraph von $f(x)$.}{width:300px}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm, y=1.12cm] 
+\draw[black] (-5,0) -- (5,0) (0,-5) -- (0,5);
+\foreach \x in {-4, -2, 2, 4}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3.0pt) node[below=1.0pt] {\normalsize $\x$};
+\foreach \x in {-4.8, -4.4, ..., 5.0}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.5pt);
+\foreach \y in {-4, -2, 2, 4}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-3.0pt,0pt) node[left=1.0pt] {\normalsize $\y$};
+\foreach \y in {-4.8, -4.4, ..., 5.0}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.5pt,0pt);
+%%\draw[black] (-0.0pt,-0.5pt) node[anchor=north east] {\small $0$};
+\clip(-5.0,-5.0) rectangle (5.0,5.0);
+\draw[black, line width=1.0pt,color=black] (-1,6) -- (3,-2) -- (5,2);
+\end{tikzpicture}
+}
+\par
+Funktionsgraph von $f(x)$.
+\end{center}
 
 Antwort: $f(x)=$ \MLSimplifyQuestion{20}{2*abs(x-3)-2}{5}{x}{5}{0}{KA0}\: .
 \end{MExercise}
