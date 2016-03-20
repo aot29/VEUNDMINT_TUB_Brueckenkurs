@@ -15,18 +15,22 @@ docollections   =>      0       , # Schaltet Export der collection-Exercises ein
 dopdf           =>      0       , # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
 dotikz          =>      0       , # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
 dozip           =>      0       , # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
+consolecolors   =>      1       , # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
 output          =>      "tu9onlinekurstest", # Zielverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
 source          =>      "module_veundmint",  # Quellverzeichnis relativ zur Position der Konfigurationsdatei = Aufrufverzeichnis
 module          =>      "tree_tu9onlinekurs.tex",  # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
 outtmp          =>      "tmp",               # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
 description     =>      "Onlinebrückenkurs Mathematik",
+author          =>      "Projekt VE&MINT",
 moduleprefix    =>      "Onlinebrückenkurs Mathematik",  # Wird vor Browser-Bookmarks gesetzt
+variant         =>      "std",  # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete fuer Mathematikumsetzung aus
 
-stylesheets     =>      ["qtip2/jquery.qtip.min.css"], # Array, grundlagen.css wird automatisch eingesetzt
+stylesheets     =>      ["qtip2/jquery.qtip.min.css", "datatables/min.css"], # Array, grundlagen.css wird automatisch eingesetzt
 
 scriptheaders   =>      ["es5-sham.min.js",
                          "qtip2/jquery-1.10.2.min.js",
                          "qtip2/jquery.qtip.min.js",
+                         "datatables/datatables.min.js",
                          "knockout-3.0.0.js",
                          "math.js",
                          "dynamiccss.js",
@@ -54,11 +58,13 @@ parameter => {                                        # Benutzeridentifizierung 
   data_server_user        => "$server/userdata.php",  # Absolute Angabe
   footer_middle           => "Onlinebrückenkurs Mathematik",
   footer_right            => "Lizenz: CC BY-SA 3.0",
-  mainlogo                => "veundmint_netlogo.png" # Im Pfad files/images
+  mainlogo                => "veundmint_netlogo.png", # Im Pfad files/images
+  stdmathfont             => "0"                      # Erzwingt Standard-Arial-Font in Text in Formeln
 },
 
+# Hash der Form texname => Beschreibung
 generate_pdf => {
-  "tree1_tu9onlinekurs"  # Datei relativ zum source-Pfad
+  tree1_tu9onlinekurs  => "GesamtPDF Onlinekurs"
 },
 
 strings => {
@@ -66,12 +72,13 @@ strings => {
   module_solutionlink => "L&#246;sung ansehen",
   module_solution     => "L&#246;sung",
   module_solutionback => "Zur&#252;ck zur Aufgabe",
-  button_previous     => "Zur&#252;ck",
-  button_next         => "Weiter"
 },
 
 fonts => {
-    BASICFONTFAMILY  =>    "\"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", Verdana, Arial, Helvetica , sans-serif"
+
+  # BASICFONTFAMILY  => "Open Sans Condensed"
+  BASICFONTFAMILY  => "open-sans"
+  # BASICFONTFAMILY =>    "\"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", Verdana, Arial, Helvetica , sans-serif"
 },
 
 sizes =>  {
@@ -84,11 +91,13 @@ sizes =>  {
     BIGFONTSIZE     =>     $mybasicfontsize + 2
 },
 
+# Farben blauzentriert waehlen, damit Schemaauswahl funktioniert
 colors => {
     CONTENTBACKGROUND => "FFFFFF",
     GENERALBORDER => "A0B0D0",
-
-    TOCBACKGROUND => "F0F0F0",
+    LIGHTBACKGROUND => "CDDDFF",
+    
+    TOCBACKGROUND => "7CA5C4",
     TOCFIRSTMENUBACKGROUND => "BFBFBF",
     TOCMENUBACKGROUND => "CFEFCF",
     TOCHOVER => "F2FFF2",
@@ -98,17 +107,19 @@ colors => {
     TOCMINBUTTONHOVER => "B6F3FF",
     TOCMINBORDER => "2564AC",
     TOCMINBUTTON => "9EE3FF",
+    TOCMINCOLOR => "00528C",
+    TOCBORDERCOLOR => "000090",
 
     XSYMBHOVER => "FAF4FF",
     XSYMB => "C4EDFF",
 
-    HEADBACKGROUND => "ABD0FC",
+    HEADBACKGROUND => "00528C",
 
-    NAVIBACKGROUND => "F0F0F0",
+    NAVIBACKGROUND => "296D9E",
     NAVISELECTED => "4080A0",
     NAVIHOVER => "EBFFFF",
 
-    FOOTBACKGROUND => "ABD0FC",
+    FOOTBACKGROUND => "2F6C97",
 
     INFOBACKGROUND => "CBEFFF",
     INFOLINE => "5680E4",
@@ -121,8 +132,11 @@ colors => {
 
     HINTBACKGROUND => "E4E4E4",
     HINTBACKGROUNDC => "E0FFE0",
+    HINTBACKGROUNDWARN => "C5DFC5",
     HINTLINE => "C4C4C4",
 
+    SELECTORBACKGROUND => "D0E0F0",
+    
     REPLYBACKGROUND => "E4FFF4",
 
     LOGINBACKGROUND => "D5D5FF",

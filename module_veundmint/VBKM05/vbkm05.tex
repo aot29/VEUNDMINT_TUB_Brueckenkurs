@@ -2,36 +2,34 @@
 \MPragma{MathSkip}
 
 %Einkommentieren zur Erzeugung der pngs aus den tikz-Umgebungen
-\Mtikzexternalize
+%\Mtikzexternalize
 
 \MSetSubject{\MINTMathematics}
 
 \begin{document}
 
 \MSection{Geometrie}
-\MSetSectionID{Mathematik_ElementareGeometrie_} % hier identisch mit dem alten tikz-Dateien-Prefix 
+\MSetSectionID{VBKM05} % hier identisch mit dem alten tikz-Dateien-Prefix 
 \MLabel{VBKM05}
 
 \begin{MSectionStart}
 \MDeclareSiteUXID{VBKM05_START}
-Wir beginnen die Elementare Geometrie mit der Einf\"uhrung von Winkeln im Bogenma\ss\ und im Gradmaß 
-und arbeiten uns \"uber Stufen- und Wechselwinkel zu den Dreiecken vor. Wir schauen uns kongruente und ähnliche Dreiecke, berechnen ihre Flächeninhalte und die von anderen Figuren und kommen dann zu den Strahlensätzen, die die Grundlage f\"ur die Einf\"uhrung der trigonometrischen Funktionen
-am rechtwinkligen Dreieck bilden. Nachdem wir uns auch die Trigonometrie am Einheitskreis angesehen haben, erobern wir die dritte Dimension und besch\"aftigen uns mit den Volumina 
-von Zylindern, Kegeln und Kugeln:
+Die Darstellung der Elementaren Geometrie beginnt mit der Einf\"uhrung von Winkeln im Bogenma\ss\ und im Gradma\ss\ 
+und wird \"uber Stufen- und Wechselwinkel zu den Dreiecken hin fortgesetzt. Es werden kongruente und \"ahnliche Dreiecke betrachtet, ihre Fl\"acheninhalte und die von anderen Figuren berechnet, worauf man dann zu den Strahlens\"atzen kommt, die die Grundlage f\"ur die Einf\"uhrung der trigonometrischen Funktionen
+am rechtwinkligen Dreieck bilden. Nachdem man sich auch die Trigonometrie am Einheitskreis angesehen hat, wird die dritte Dimension hinzugenommen und es werden Volumina von Zylindern, Kegeln und Kugeln behandelt.
 
 Dieses Modul gliedert sich in folgende Abschnitte:
 
 \begin{itemize}
-\item{\MSRef{M05_Winkel}{Winkel, Kongruenz und Ähnlichkeit}}
-\item{\MSRef{M05_Flaecheninhalt}{Flächeninhalt und Strahlensätze}}
-\item{\MSRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}{Trigonometrie}}
-\item{\MSRef{M05_Abschlusstest}{Abschlusstest} für Modul \MNRef{VBKM05}.}
+\item{\MNRef{M05_Winkel}, \MSRef{M05_Winkel}{Winkel, Kongruenz und \"Ahnlichkeit}}
+\item{\MNRef{M05_Flaecheninhalt}, \MSRef{M05_Flaecheninhalt}{Fl\"acheninhalt und Strahlens\"atze}}
+\item{\MNRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}, \MSRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}{Trigonometrie}}
+\item{\MNRef{M05_Abschlusstest}, \MSRef{M05_Abschlusstest}{Abschlusstest} f\"ur Modul \MNRef{VBKM05}.}
 \end{itemize}
-
 
 \end{MSectionStart}
 
-\MSubsection{Winkel, Kongruenz und Ähnlichkeit}
+\MSubsection{Winkel, Kongruenz und \"Ahnlichkeit}
 \MLabel{M05_Winkel}
 
 \begin{MIntro}
@@ -41,26 +39,99 @@ Das Bild zeigt einen Ausschnitt des Stra\ss enplans von Ludwigshafen am Rhein. A
 sich einige Erkenntnisse \"uber die Geometrie in der Ebene ablesen.
 
 \begin{center}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Stadtplan.png}{scale=1} \MLabel{Stadtplan}
+\MGraphicsSolo{Stadtplan.png}{scale=1} \MLabel{Stadtplan}
 \end{center}
 
 Man kann hier unter anderem das Bogenma\ss\ eines Winkels entdecken und Stufen- und Wechselwinkel aufsp\"uren. 
 
-Im ersten Abschnitt dieses Moduls werden wir das Bogenma\ss\ und das Gradmaß einf\"uhren,
-Stufen- und Wechselwinkel betrachten und die Winkelsumme in Dreiecken bestimmen. Und wir werden sehen, wann zwei Dreiecke kongruent oder ähnlich sind.
+Im ersten Abschnitt dieses Moduls wird an einige geometrische Grundbegriffe erinnert, ehe im darauf folgenden 
+Abschnitt das Bogenma\ss\ und das Gradma\ss\ eingef\"uhrt,
+Stufen- und Wechselwinkel betrachtet und die Winkelsumme in Dreiecken bestimmt werden. Ferner werden Kriterien, wann zwei Dreiecke kongruent oder \"ahnlich sind, vorgestellt.
 
 \end{MIntro}
 
+
+\begin{MXContent}{Geometrische Grundbegriffe}{Geometrische Grundbegriffe}{STD}
+
+\MDeclareSiteUXID{VBKM05_Gerade}
+
+\begin{MInfo}
+\MLabel{VBKM05_Gerade}
+Eine \MEntry{Gerade}{Gerade} in der Ebene ist anschaulich gesprochen eine gerade, unendlich d\"unne Linie, auf der man beliebig entlang laufen kann, ohne an eine Begrenzung zu sto\ss en, d.h., sie erstreckt sich in beiden Richtungen ins Unendliche.
+\begin{itemize}
+ \item Eine mathematisch korrekte Erkl\"arung dieses Begriffes definiert eine Gerade in der Ebene als die L\"osungmenge einer linearen Gleichung der Form $ax+by=0$, wobei $a$ und $b$ reelle Zahlen sind, die nicht beide zugleich $0$ sein d\"urfen.
+ \item   Eine Gerade ist stets durch die Angabe zweier voneinander verschiedener Punkte, die auf ihr liegen, eindeutig bestimmt.
+\item Zwei Geraden in der Ebene
+\begin{itemize}
+ \item haben entweder genau einen gemeinsamen Punkt (der sogenannte Schnittpunkt der Geraden $g$ und $h$) oder
+\item sind gleich oder
+ \item haben \"uberhaupt keinen gemeinsamen Punkt.
+\end{itemize}
+In den beiden letzten F\"allen nennt man die beiden Geraden \MEntry{parallel}{parallele Geraden}.
+\end{itemize}
+\end{MInfo}
+
+\MDeclareSiteUXID{VBKM05_Halbgerade}
+
+\begin{MInfo}
+\MLabel{VBKM05_Halbgerade}
+Eine \MEntry{Halbgerade}{Halbgerade} (auch \MEntry{Strahl}{Strahl} genannt) ist \"ahnlich wie eine Gerade eine gerade, unendlich d\"unne Linie, auf der man nun allerdings lediglich in eine Richtung beliebig entlang laufen kann, ohne an eine Begrenzung zu sto\ss en, d.h., sie erstreckt sich nur in einer Richtung ins Unendliche und besitzt einen Anfangspunkt.
+\begin{itemize}
+ \item Halbgeraden sind genau diejenigen Punktmengen, die man erh\"alt, indem man die rechte reelle Zahlenachse (einschlie\ss lich $0$) in der Ebene dreht oder verschiebt (oder beides).
+\item Mathematisch formuliert gestattet jede Halbgerade wenigstens eine der folgenden Darstellungen:
+\begin{itemize}
+ \item als L\"osungsmenge der Gleichung $ax+by=0$ unter der Nebenbedingung $x\geq c$;
+ \item als L\"osungsmenge der Gleichung $ax+by=0$ unter der Nebenbedingung $x\leq c$;
+ \item als L\"osungsmenge der Gleichung $ax+by=0$ unter der Nebenbedingung $y\geq c$;
+ \item als L\"osungsmenge der Gleichung $ax+by=0$ unter der Nebenbedingung $y\leq c$;
+\end{itemize}
+mit reellen Zahlen $a$, $b$ und $c$, wobei $a$ und $b$ nicht beide zugleich $0$ sein d\"urfen.
+ \item Eine Halbgerade ist durch die Angabe ihres Anfangspunktes und eines weiteren Punktes, der auf der Halbgeraden liegt, eindeutig bestimmt.
+ \item Zu jeder Halbgeraden gibt es genau eine Gerade, auf der diese Halbgerade liegt.
+ \item Zu jeder Halbgeraden $g$ gibt es die sogenannte \MEntry{entgegengesetzte Halbgerade}{entgegengesetzte Halbgerade}, die hier mit $g^-$ bezeichnet wird.
+Die entgegengesetzte Halbgerade $g^-$ erh\"alt man, indem man im Anfangspunkt der Halbgeraden $g$ startend in die genau entgegengesetzte Richtung l\"auft.
+Oder anders ausgedr\"uckt: Ist $g$ eine Halbgerade mit Anfangspunkt $P$ und ist $h$ die eindeutig bestimmte Gerade, auf der $g$ liegt, so erh\"alt man $g^-$, indem bis auf den Punkt $P$ alle Punkte, die zu $g$ geh\"oren, aus $h$ entfernt. Die entgegengesetzte Halbgerade hat den gleichen Anfangspunkt wie die urspr\"ungliche Halbgerade.
+\end{itemize}
+\end{MInfo}
+
+
+\MDeclareSiteUXID{VBKM05_Strecke}
+
+\begin{MInfo}
+\MLabel{VBKM05_Strecke}
+Eine \MEntry{Strecke}{Strecke} ist anschaulich gesprochen diejenige gerade, unendlich d\"unne Linie, die zwei Punkte direkt miteinander verbindet. Man nennt diese beiden Punkt die Endpunkte der Strecke.
+\begin{itemize}
+ \item Strecken sind genau diejenigen nichtleeren Punktmengen, die als Schnittmengen zweier Halbgeraden, von denen keine die jeweils andere enth\"alt, auftreten. Man beachte jedoch, dass bei dieser Definition auch einzelne Punkte als Strecken aufgefasst werden.
+\item Eine Strecke ist stets durch die Angabe ihrer Endpunkte eindeutig bestimmt. Man sagt auch, dass eine Strecke ihre Endpunkte miteinander verbindet.
+ \item Strecken haben stets eine endliche L\"ange. Diese L\"ange ist genau der Abstand zwischen ihren Endpunkten.
+ \item Zu jeder Strecke, die aus mehr als einem Punkt besteht, gibt es genau eine Gerade, auf der diese Strecke liegt.
+\item Zwei Strecken, die jeweils beide mehr als einen Punkt besitzen und zudem auf parallelen Geraden liegen, nennt man \MEntry{parallel}{parallel (Strecken)}.
+\end{itemize}
+\end{MInfo}  
+
+
+\MDeclareSiteUXID{VBKM05_Kreis}
+
+\begin{MInfo}
+\MLabel{VBKM05_Strecke}
+Ein \MEntry{Kreis}{Kreis} (oder eine \MEntry{Kreislinie}{Kreislinie}) mit Mittelpunkt $M$ und Radius $r>0$ ist die Menge aller Punkte der Ebene, welche zu $M$ genau den Abstand $r$ besitzen.
+\begin{itemize}
+\item Jeder Kreis l\"asst sich mathematisch als die L\"osungsmenge einer Gleichung der Form $$(x-a)^2+(y-b)^2=r^2$$ mit reellen Zahlen $a$ und $b$ beschreiben.
+ \item Jeder Kreis ist durch die Angabe dreier voneinander verschiedener Punkte, die auf ihm liegen, eindeutig bestimmt.
+\item Zwei voneinander verschiedene Kreise schneiden sich entweder in keinem, in genau einem oder in genau zwei Punkten.
+ \item Der \MEntry{Durchmesser}{Durchmesser} $d$ eines Kreises mit Radius $r$ ist $2r$.
+\end{itemize}
+\end{MInfo}  
+\end{MXContent}
+
 \begin{MXContent}{Winkel}{Winkel}{STD}
+
 \MDeclareSiteUXID{VBKM05_WinkelContent}
 \MLabel{VBKM05_Winkel}
 Zwei Halbgeraden ~$g$ und~$h$ in der Ebene, die von demselben Punkt ~$P$ ausgehen, bilden einen \MEntry{Winkel}{Winkel}.
 
 \begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Bogenmass.png}{scale=1}
-\else%
-\tikzsetnextfilename{Bogenmass}
+\MTikzAuto{%
 \begin{tikzpicture}[scale=0.9,line width=2pt]
  \coordinate[label=left:$P$] (P) at (0,0);
  \coordinate[label=above:$g$] (A) at ($ (P) + (-20:3) $);
@@ -71,24 +142,25 @@ Zwei Halbgeraden ~$g$ und~$h$ in der Ebene, die von demselben Punkt ~$P$ ausgehe
  \draw (A) -- (P) -- (B);
  \draw[dashed, line width=1.5pt] (P) -- node[left]{$1$} ++ (0,-1);
 \end{tikzpicture}
-\fi
-\MCopyrightLabel{Bogenmass}
-\ \\
-\MCopyrightNotice{\MCCLicense}{TIKZ}{MINT}{Erstellt mit dem tikz-Makropaket}{Bogenmass}
+}
 \end{center}
 
-Zeichnen wir einen Kreis mit Radius~$1$ um~$P$, wird dieser von den beiden Halbgeraden in zwei Teile zerschnitten. Wichtig ist nun derjenige Kreisbogen, der entsteht, wenn man von der Geraden $g$ gegen den Uhrzeigersinn zur Geraden $h$ geht:
+Zeichnet man einen Kreis mit Radius~$1$ um~$P$, wird dieser von den beiden Halbgeraden in zwei Teile zerschnitten. Wichtig ist nun derjenige Kreisbogen, der entsteht, wenn man von der Geraden $g$ gegen den Uhrzeigersinn zur Geraden $h$ geht (im obigen Bild gr\"un eingef\"arbt):
 
 \begin{MInfo}%
 \MLabel{VBKM05_Bogenmass}
-  Der \MEntry{Kreisbogen}{Kreisbogen}, der entsteht, wenn man von der Geraden $g$ gegen den Uhrzeigersinn zur Geraden $h$ geht, bezeichnet den \MEntry{Winkel}{Winkel} von $g$ zu $h$.
+Der \MEntry{Kreisbogen}{Kreisbogen}, der entsteht, wenn man von der Geraden $g$ gegen den Uhrzeigersinn zur Geraden $h$ geht, bezeichnet den \MEntry{Winkel}{Winkel} von $g$ zu $h$.
   \begin{itemize}
-    \item Die Länge des Kreisbogens mit dem Radius $1$ ist das sogenannte \MEntry{Bogenmaß}{Bogenmaß} $\Mmeasuredangle \left( g, h \right)$.
+    \item Die L\"ange des Kreisbogens mit dem Radius $1$ ist das sogenannte \MEntry{Bogenma\ss }{Bogenma\ss } $\Mmeasuredangle \left( g, h \right)$.
     \item $P$ hei\ss t \MEntry{Scheitelpunkt}{Scheitelpunkt (Winkel)} des Winkels, und die beiden Halbgeraden, die den Winkel bilden, hei\ss en \MEntry{Schenkel}{Schenkel} des Winkels.
     \item Hat man einen Punkt $A$ auf der Geraden $g$ und einen Punkt $B$ auf der Geraden $h$, so kann man auch $\Mmeasuredangle \left( A P B \right)$ statt $\Mmeasuredangle \left( g, h \right)$ schreiben.
-    \item Winkel werden häufig mit kleinen griechischen Buchstaben bezeichnet, z. Bsp. $\alpha$.
+    \item Winkel werden h\"aufig mit kleinen griechischen Buchstaben bezeichnet, z. Bsp. $\alpha$.
   \end{itemize}
 \end{MInfo}
+
+Man beachte, dass es bei der Bedeutung des Symbols $\Mmeasuredangle \left( g, h \right)$ wesentlich auf die Reihenfolge, in welcher $g$ und $h$ aufgef\"uhrt werden, ankommt:
+$\Mmeasuredangle \left( h, g \right)$ bezeichnet n\"amlich die L\"ange desjenigen Kreisbogens, der entsteht, wenn man von der Geraden $h$ gegen den Uhrzeigersinn zur Geraden $g$ l\"auft (im obigen Bild rot eingef\"arbt), und diese L\"ange ist in der Regel von $\Mmeasuredangle \left( g, h \right)$ verschieden!
+
 
 \begin{MHint}{griechische Buchstaben}
 Falls Sie das griechische Alphabet noch nicht so gut kennen, gibt es hier eine kleine (nach mathematischen Gesichtspunkten geordnete) \"Ubersicht,
@@ -131,8 +203,21 @@ die auch die Gro\ss buchstaben enth\"alt:
 \end{center}
 \end{MHint}
 
+Indem man auch noch die entgegengesetzten Halbgeraden in die Betrachtungen miteinbezieht, lassen sich weitere Winkel entdecken.
+
+\begin{MInfo}%
+\MLabel{VBKM05_Scheitelwinkel_Nebenwinkel}%
+Es seien $g$ und $h$ zwei Halbgeraden mit gleichem Anfangspunkt $P$ und mit den entgegengesetzten Halbgeraden $g^-$ bzw. $h^-$.
+  \begin{itemize}
+    \item Der Winkel $\Mmeasuredangle \left( g^-, h^- \right)$ hei\ss t \MEntry{Scheitelwinkel}{Scheitelwinkel}.
+		\item Der Winkel $\Mmeasuredangle \left( g, h \right)$ und der Scheitelwinkel $\Mmeasuredangle \left( g^-, h^- \right)$ sind stets gleich gro\ss.
+\item Die Winkel $\Mmeasuredangle \left( g^-, h \right)$ und $\Mmeasuredangle \left( g, h^- \right)$ hei\ss en \MEntry{Nebenwinkel}{Nebenwinkel}.
+\item Die Nebenwinkel sind immer gleich gro\ss.
+  \end{itemize}
+\end{MInfo}
+
 %\begin{MExample}
-%Ein schönes Beispiel für einen Winkel sieht man im Ludwigshafener Stadtplan bei der Kurf\"urstenstra\ss e und der Saarlandstra\ss e:
+%Ein sch\"ones Beispiel f\"ur einen Winkel sieht man im Ludwigshafener Stadtplan bei der Kurf\"urstenstra\ss e und der Saarlandstra\ss e:
 
 %\begin{center}
 %\MGraphicsSolo{../Bilder/Mathematik_ElementareGeometrie/Mathematik_ElementareGeometrie_Stadtplan_Radialmass.png}{scale=1}
@@ -148,11 +233,11 @@ die auch die Gro\ss buchstaben enth\"alt:
 %die Kreuzung Kurf\"urstenstra\ss e und Saarlandstra\ss e herumf\"uhrt.)
 %\end{MExample}
 
-Nun wollen wir das Bogenmaß bestimmen.
+Nun soll das Bogenma\ss\ bestimmt werden.
 
 Bereits die Griechen stellten fest, dass das Verh\"altnis des
 Umfangs~$U$ eines Kreises zu seinem Radius~$r$ stets das gleiche ist.
-Sie definierten dieses Verhältnis über die Kreiszahl~$\pi$: 
+Sie definierten dieses Verh\"altnis \"uber die Kreiszahl~$\pi$: 
 \begin{MInfo}\MLabel{Kreiszahl}%
 Die \textbf{Kreiszahl} ist
 \[
@@ -163,24 +248,24 @@ Dabei ist $\pi$ keine rationale Zahl, sie kann nicht als endlicher oder periodis
 $\pi \approx \MZahl{3}{141592653589793}$ ist.
 \end{MInfo}
 
-Ist der Radius des Kreises genau $1$, so hat der Kreis den Umfang $2\pi$. Die Länge eines Kreisbogens, also das Bogenmaß des Winkels, ist dann ein Teil von $2\pi$.
+Ist der Radius des Kreises genau $1$, so hat der Kreis den Umfang $2\pi$. Die L\"ange eines Kreisbogens, also das Bogenma\ss\ des Winkels, ist dann eine Zahl zwischen $0$ und $2\pi$.
 
 \begin{MExample}
-Der Winkel zwischen zwei Halbgeraden, die einen Halbkreis ausschneiden, beträgt $2\pi/2=\pi$.\\
-Der Winkel zwischen zwei Halbgeraden, die einen Viertelskreis ausschneiden, beträgt $2\pi/4=\pi/2$.\\
-Der Winkel zwischen zwei Halbgeraden, die einen Achtelskreis ausschneiden, beträgt $2\pi/8=\pi/4$.
+Der Winkel zwischen zwei Halbgeraden, die einen Halbkreis ausschneiden, betr\"agt $2\pi/2=\pi$.\\
+Der Winkel zwischen zwei Halbgeraden, die einen Viertelkreis ausschneiden, betr\"agt $2\pi/4=\pi/2$.\\
+Der Winkel zwischen zwei Halbgeraden, die einen Achtelkreis ausschneiden, betr\"agt $2\pi/8=\pi/4$.
 \end{MExample}
 
 
-Wenn man den Winkel $\Mmeasuredangle \left( g, h \right)$ kennt, so kann man nun auch leicht den Winkel $\Mmeasuredangle \left( h, g \right)$ bestimmen, der ja nach dem Bild \MRef{Bogenmass} durch den anderen Kreisbogen bestimmt ist:
+Wenn man den Winkel $\Mmeasuredangle \left( g, h \right)$ kennt, so kann man nun auch leicht den Winkel $\Mmeasuredangle \left( h, g \right)$ bestimmen, der ja nach dem Bild \MRef{VBKM05_Bogenmass} durch den anderen Kreisbogen bestimmt ist:
 \[
    \Mmeasuredangle \left( h, g \right)
  = 2 \pi - \Mmeasuredangle \left( g, h \right) \MDFPeriod
 \]
 
 
-Ein anderes sehr gebräuchliches Winkelmaß erhält man, indem man den Kreis in 360~gleich
-gro\ss e Teile teilt und dann misst, wie viele dieser Teile
+Ein anderes sehr gebr\"auchliches Winkelma\ss\ erh\"alt man, indem man den Kreis in 360~gleich
+gro\ss e Teile zerlegt und dann misst, wie viele dieser Teile
 \"uberstrichen werden, wenn~$g$ mathematisch positiv auf~$h$ gedreht wird.
 Dieses \textbf{Gradma\ss} eines Winkels kann leicht in das
 Bogenma\ss\ \"uberf\"uhrt werden:
@@ -191,7 +276,7 @@ Bogenma\ss\ \"uberf\"uhrt werden:
 wenn $\alpha$ das Gradma\ss\ des Winkels zwischen~$g$ und~$h$ angibt.
 
 \begin{MExercise}
-Der Winkel $\Mmeasuredangle\left(g, h\right)$ beträgt im Gradmaß $60^\circ$. Rechnen Sie den Winkel in das Bogenmaß um:
+Der Winkel $\Mmeasuredangle\left(g, h\right)$ betr\"agt im Gradma\ss\ $60^\circ$. Rechnen Sie den Winkel in das Bogenma\ss\ um:
 \ifttm%
 (Ein~$\pi$ geben Sie als \glqq\texttt{pi}\grqq\ ein. Bitte runden Sie Ihre Ergebnisse auf drei Nachkommastellen!)
 \fi
@@ -199,19 +284,19 @@ Der Winkel $\Mmeasuredangle\left(g, h\right)$ beträgt im Gradmaß $60^\circ$. Rec
 \ \\
 $\Mmeasuredangle\left(g, h\right)=$\MLParsedQuestion{10}{pi/3}{3}{GEO1}.
 \ \\
-\begin{MHint}{Lösung}
+\begin{MHint}{L\"osung}
 \[\frac{60^\circ}{360^\circ}=\frac{\Mmeasuredangle\left(g, h\right)}{2\pi} \quad\Rightarrow\quad \Mmeasuredangle\left(g, h\right)=\frac{60^\circ}{360^\circ}\cdot 2\pi=\frac{1}{6}\cdot 2\pi=\frac{\pi}{3}\MDFPeriod\]
 \end{MHint}
 
 \end{MExercise}
 
 \begin{MExercise}
-Der Winkel $\beta$ beträgt im Bogenmaß $\pi/4$. Wie groß ist der Winkel im Gradmaß?
+Der Winkel $\beta$ betr\"agt im Bogenma\ss\ $\pi/4$. Wie gro\ss\ ist der Winkel im Gradma\ss ?
 
 \ \\
 $\beta=$\MLParsedQuestion{10}{45}{3}{PARSEDQUEST2}$^\circ$.
 \ \\
-\begin{MHint}{Lösung}
+\begin{MHint}{L\"osung}
 \[\frac{\pi/4}{2\pi}=\frac{\beta}{360^\circ}\quad\Rightarrow\quad \beta=\frac{\pi/4}{2\pi}\cdot 360^\circ=\frac{1}{8}\cdot 360^\circ=45^\circ \MDFPeriod\]
 \end{MHint}
 \end{MExercise}
@@ -235,17 +320,14 @@ Ein Winkel mit einem Ma\ss\ zwischen~$\pi$ und~$2 \pi$ hei\ss t \textbf{\"uberst
 \end{MInfo}
   
 
-Betrachten wir nun drei verschiedene Geraden, von denen zwei parallel sind,
-w\"ahrend die dritte nicht parallel zu diesen beiden ist. Es ergeben sich acht Schnittwinkel.
+Als n\"achstes sollen nun drei verschiedene Geraden betrachtet werden, von denen zwei parallel sind,
+wohingegen die dritte nicht parallel zu diesen beiden ist. Es ergeben sich dann acht Schnittwinkel.
 Je vier dieser Winkel sind gleich gro\ss .
 
 \begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_StufenwinkelWechselwinkel}%
 
 \begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_StufenWechselwinkelBenannt.png}{scale=1}
-\else%
-\tikzsetnextfilename{StufenWechselwinkelBenannt}
+\MTikzAuto{%
 \begin{tikzpicture}
 \coordinate (G) at (0,0);
 \coordinate (H) at ($ (G) + (30:5) $);
@@ -272,13 +354,13 @@ Je vier dieser Winkel sind gleich gro\ss .
  \node at (T) [below] {$\psi$};
 \end{scope}
 \end{tikzpicture}
-\fi
+}
 \end{center}
 
 \begin{itemize}
   \item Die Winkel $\alpha, \gamma, \Mvarepsilon$ und $\Mvarphi$ sind gleich gro\ss , ebenso die Winkel $\beta, \delta, \chi$ und $\psi$.
   \item Dabei nennt man $\beta$ und $\psi$ bzw. $\gamma$ und $\Mvarepsilon$ \textbf{Wechselwinkel}.
-  \item Die Winkel $\alpha$ und $\Mvarepsilon$ heißen \textbf{Stufenwinkel}, ebenso $\beta$ und $\chi$, $\delta$ und $\psi$ und $\gamma$ und $\Mvarphi$.
+  \item Die Winkel $\alpha$ und $\Mvarepsilon$ hei\ss en \textbf{Stufenwinkel}, ebenso $\beta$ und $\chi$, $\delta$ und $\psi$ und $\gamma$ und $\Mvarphi$.
 \end{itemize}
 
 \end{MInfo}
@@ -319,10 +401,7 @@ die Innenwinkel, nennt man die Innenwinkel eines Dreiecks auch schlicht
 &
 \begin {minipage}{6cm}
 %\begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_DreieckBezeichnungen.png}{scale=1}
-\else%
-\tikzsetnextfilename{DreieckBezeichnungen}
+\MTikzAuto{%
 \begin{tikzpicture}
 \coordinate[label=below left:$A$] (A) at (0,0);
 \coordinate[label=right:$B$]      (B) at (4,0.5);
@@ -344,7 +423,7 @@ die Innenwinkel, nennt man die Innenwinkel eines Dreiecks auch schlicht
 %     (current bounding box.south) node [below, text width=\n3, text centered, outer sep = 0.5\baselineskip]
  %          {Die Bezeichnungen von Ecken, Seiten und Innenwinkeln in einem Dreieck.};
 \end{tikzpicture}
-\fi
+}
 \end{minipage}
 \end{tabular}
 %\qquad\qquad
@@ -399,7 +478,7 @@ die Innenwinkel, nennt man die Innenwinkel eines Dreiecks auch schlicht
 %Wegen $\alpha = \delta$ und $\beta = \Mvarepsilon$ folgt die Behauptung.
 \ \\
 Da die Summe aller Winkel in einem Dreieck~$\pi$ betr\"agt, kann h\"ochstens
-ein Winkel gleich oder größer als~$\frac{\pi}{2}$ sein. Dadurch werden die
+ein Winkel gleich oder gr\"o\ss er als~$\frac{\pi}{2}$ sein. Dadurch werden die
 Dreiecke nach ihrem gr\"o\ss ten Winkel in drei verschiedene Klassen eingeteilt:
 \begin{MInfo}%
 \begin{itemize}
@@ -416,6 +495,109 @@ Dreiecke nach ihrem gr\"o\ss ten Winkel in drei verschiedene Klassen eingeteilt:
        besitzt, hei\ss t \textbf{stumpfwinklig}.
 \end{itemize}
 \end{MInfo}
+
+Neben Dreiecken kann man nat\"urlich auch Figuren mit mehr Ecken betrachten:
+
+\begin{MInfo}\MLabel{VBKM05_Vielecke}%
+Es sei $n$ eine nat\"urliche Zahl, die mindestens $3$ betrage.
+\begin{itemize}
+ \item 
+Ein \MEntry{$n$-Eck}{$n$-Eck} (auch als \MEntry{Vieleck}{Vieleck} oder \MEntry{Polygon}{Polygon} bezeichnet) entsteht,
+      wenn man $n$ Punkte in der Ebene nacheinander in einer zuvor festgelegten Reihenfolge durch Strecken miteinander verbindet,
+			wobei der letzte Punkt wieder mit dem ersten Punkt verbunden wird und je drei aufeinander folgende Punkte nicht auf einer gemeinsamen Geraden
+			liegen d\"urfen.
+       
+ \item Die $n$ Punkte, die verbunden werden, hei\ss en
+       \MEntry{Ecken}{Ecken ($n$-Eck)} des $n$-Ecks, und
+       die $n$ Verbindungsstrecken hei\ss en
+       \MEntry{Seiten}{Seiten ($n$-Eck)} des $n$-Ecks.
+   \item Wenn sich die Seiten eines $n$-Ecks h\"ochstens in den Ecken schneiden, so spricht man von einem \MEntry{einfachen $n$-Eck}{einfaches $n$-Eck} (bzw. von einem \MEntry{einfachen Vieleck}{einfaches Vieleck} oder \MEntry{einfachem Polygon}{einfaches Polygon}).  
+ \item Je zwei Seiten eines $n$-Ecks bilden je zwei Winkel.
+Der kleinere dieser beiden Winkel hei\ss t
+\MEntry{Innenwinkel}{Innenwinkel ($n$-Eck)},
+       und der gr\"o\ss ere der beiden Winkel hei\ss t
+       \MEntry{Au\ss enwinkel}{Au\ss enwinkel ($n$-Eck)}.
+		\item Jedes einfache $n$-Eck l\"asst sich in $(n-2)$ einander nicht \"uberlappende Dreiecke zerlegen. Die Summe aller Innenwinkel eines einfachen $n$-Ecks betr\"agt daher stets $(n-2)\pi$ bzw. $(n-2)180^\circ$.
+ \item Ein einfaches $n$-Eck, dessen Seiten alle die gleiche L\"ange haben und dessen Innenwinkel zudem alle gleich gro\ss\ sind, nennt man
+\MEntry{regelm\"a\ss iges $n$-Eck}{regelm\"a\ss iges $n$-Eck} (bzw. \MEntry{regelm\"a\ss iges Vieleck}{regelm\"a\ss iges Vieleck} oder \MEntry{regelm\"a\ss iges Polygon}{regelm\"a\ss iges Polygon}).
+\item Die Verbindungsstrecken zwischen je zwei Ecken, die nicht auf derselben Seite des $n$-Ecks liegen, hei\ss en die \MEntry{Diagonalen}{Diagonale ($n$-Eck)} des $n$-Ecks.
+\end{itemize}
+\end{MInfo}
+
+Unter den Vielecken nehmen die Vierecke eine besondere Stellung ein, da diese in noch feinere Klassen eingeteilt werden.
+
+\begin{MInfo}\MLabel{VBKM05_Vierecke}%
+Ein Viereck hei\ss t
+\begin{itemize}
+ \item \MEntry{Trapez}{Trapez}, falls wenigstens zwei Seiten parallel sind;
+ \item \MEntry{Parallelogramm}{Parallelogramm}, falls je zwei gegen\"uberliegende Seiten parallel sind;
+ \item \MEntry{Raute}{Raute} oder \MEntry{gleichseitiges Viereck}{gleichseitiges Viereck} oder auch \MEntry{Rhombus}{Rhombus}, falls alle vier Seiten gleich lang sind;
+ \item \MEntry{Rechteck}{Rechteck}, falls alle vier Winkel rechte Winkel sind;
+ \item \MEntry{Quadrat}{Quadrat}, falls es ein Rechteck ist, bei dem alle Seiten gleich lang sind;
+ \item \MEntry{Einheitsquadrat}{Einheitsquadrat}, falls es ein Quadrat mit Seitenl\"ange $1$ ist.
+\end{itemize}
+\end{MInfo}
+
+Unter den gerade eingef\"uhrten speziellen Vierecken gibt es eine ganze Reihe von Zusammenh\"angen:
+
+\begin{MInfo}\MLabel{VBKM05_Vierecke_Beziehungen}%
+\begin{itemize}
+ \item Jedes Quadrat ist ein Rechteck.
+\item Jedes Quadrat ist eine Raute.
+\item Jedes Rechteck ist ein Parallelogramm.
+\item Jedes Parallelogramm ist ein Trapez.
+\item Jede Raute ist ein Parallelogramm.
+\end{itemize}
+\end{MInfo}
+
+Ferner lassen sich diese Vierecke auf vielerlei Arten charakterisieren.
+
+\begin{MInfo}\MLabel{VBKM05_Parallelogramm}%
+Ein Viereck ist genau dann ein Parallelogramm, wenn
+\begin{itemize}
+ \item es ein einfaches Viereck ist, dessen gegen\"uberliegenden Seiten jeweils gleich lang sind;
+\item gegen\"uberliegende Innenwinkel gleich gro\ss\ sind;
+\item zwei benachbarte Innenwinkel zusammen $\pi$ bzw. $180^\circ$ ergeben; 
+\item die Diagonalen einander halbieren.
+\end{itemize}
+\end{MInfo}
+
+
+\begin{MInfo}\MLabel{VBKM05_Raute}%
+Ein Viereck ist genau dann eine Raute, wenn
+\begin{itemize}
+ \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht zueinander stehen;
+ \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren.
+\end{itemize}
+\end{MInfo}
+
+
+\begin{MInfo}\MLabel{VBKM05_Rechteck}%
+Ein Viereck ist genau dann ein Rechteck, wenn
+\begin{itemize}
+ \item alle Innenwinkel gleich gro\ss\ sind;
+\item es ein Parallelogramm ist, bei dem wenigstens ein Innenwinkel ein rechter Winkel ist;
+\item es ein Parallelogramm ist, bei dem die Diagonalen gleich lang sind; 
+\item die Diagonalen einander halbieren und gleich lang sind;
+\item es eine Raute mit gleich langen Diagonalen ist;
+\item die Diagonalen einander halbieren und wenigstens ein Innenwinkel ein rechter Winkel ist.
+\end{itemize}
+\end{MInfo}
+
+
+\begin{MInfo}\MLabel{VBKM05_Quadrat}%
+Ein Viereck ist genau dann eine Quadrat, wenn
+\begin{itemize}
+\item alle Seiten gleich lang und alle Winkel gleich gro\ss\ sind;
+ \item die Diagonalen einander halbieren und gleich lang sind und zudem alle Seiten gleich lang sind;
+ \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht zueinander stehen und welches wenigstens einen rechten Winkel besitzt;
+ \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren und welches wenigstens einen rechten Winkel besitzt;
+ \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht zueinander stehen und alle Innenwinkel gleich gro\ss\ sind;
+ \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren und alle Innenwinkel gleich gro\ss\ sind;
+\item es sowohl eine Raute als auch ein Rechteck ist.
+\end{itemize}
+\end{MInfo}
+
 \end{MXContent}
 
 
@@ -423,9 +605,9 @@ Dreiecke nach ihrem gr\"o\ss ten Winkel in drei verschiedene Klassen eingeteilt:
 \begin{MXContent}{Kongruenzs\"atze}{Kongruenz}{weiterfhrg}
 \MDeclareSiteUXID{VBKM05_Kongruenzsaetze}
 
-Zu einem Dreieck gehören drei Seitenlängen und drei Winkel, also sechs Größen. Wenn bei zwei Dreiecken alle diese Größen übereinstimmen, so sind diese Dreiecke \textbf{kongruent} oder deckungsgleich, dabei spielt es keine Rolle, wo sich die Dreiecke befinden. Kongruente Dreiecke können also durch Drehung, Spiegelung und Verschiebung ineinander überführt werden.\\
-Kennt man vier von den sechs Größen, so ist das Dreieck eindeutig bestimmt bis auf Spielgelung oder Drehung, das heißt bis auf die Lage des Dreiecks im Raum. Alle Dreiecke, die man mit diesen Angaben erhält, sind dann kongruent. In einigen Fällen genügen sogar drei Angaben, um das Dreieck eindeutig zu bestimmen.
-Diese Fälle werden mit den \MEntry{Kongruenzsätzen}{Kongruenzsätze} beschrieben:
+Zu einem Dreieck geh\"oren drei Seitenl\"angen und drei Winkel, also sechs Gr\"o\ss en. Wenn bei zwei Dreiecken alle diese Gr\"o\ss en \"ubereinstimmen, so sind diese Dreiecke \textbf{kongruent} oder deckungsgleich, dabei spielt es keine Rolle, wo sich die Dreiecke befinden. Kongruente Dreiecke k\"onnen also durch Drehung, Spiegelung und Verschiebung ineinander \"uberf\"uhrt werden.\\
+Kennt man vier von den sechs Gr\"o\ss en, so ist das Dreieck eindeutig bestimmt bis auf Spielgelung oder Drehung, das hei\ss t bis auf die Lage des Dreiecks im Raum. Alle Dreiecke, die man mit diesen Angaben erh\"alt, sind dann kongruent. In einigen F\"allen gen\"ugen sogar drei Angaben, um das Dreieck eindeutig zu bestimmen.
+Diese F\"alle werden mit den \MEntry{Kongruenzs\"atzen}{Kongruenzs\"atze} beschrieben:
 
 \begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_Satz:Kongruenzsaetze}%
 Ein Dreieck ist eindeutig bestimmt, wenn
@@ -456,14 +638,14 @@ Hat man von einem Dreieck nur zwei oder drei Angaben, die
 keinem der oben angegebenen F\"alle entsprechen, gegeben, so gibt es verschiedene
  Dreiecke, f\"ur die die Angaben zutreffen.
 
-\ifttm\relax\else\newpage\fi
+%%\ifttm\relax\else\newpage\fi
 
 \begin{MExample}
 \begin{tabular}{lr}
 \begin{minipage}{10cm}
 Gegeben seien der Winkel~$\alpha$ und die Seiten $b$ und~$c$.
-Das Dreieck \glqq sws\grqq\ erhält man, indem man zun\"achst eine Seite, hier zum Beispiel die Seite $c$, zeichnet und an der
-nach der Bezeichnungskonvention korrekten Ecke ($A$) den Winkel $\alpha$ anfügt.
+Das Dreieck \glqq sws\grqq\ erh\"alt man, indem man zun\"achst eine Seite, hier zum Beispiel die Seite $c$, zeichnet und an der
+nach der Bezeichnungskonvention korrekten Ecke ($A$) den Winkel $\alpha$ anf\"ugt.
 Dann schl\"agt man um diese Ecke einen Kreis, dessen Radius der
 L\"ange der zweiten Seite (hier $b$) entspricht. Der Schnittpunkt dieses
 Kreises mit dem zweiten Schenkel des Winkels bildet die dritte
@@ -472,10 +654,7 @@ Ecke des Dreiecks ($C$).
 &
 \begin{minipage}{7cm}
 %\begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_sws.png}{scale=1}
-\else%
-\tikzsetnextfilename{sws}
+\MTikzAuto{%
 \begin{tikzpicture}
 \coordinate [label=left:$A$]        (A) at (0,0);
 \coordinate [label=below right:$B$] (B) at ($ (A) + (-15:3.2) $);
@@ -485,8 +664,7 @@ Ecke des Dreiecks ($C$).
 \draw[dotted] (C) -- ($ (C)!-0.5!(A) $) node[below right]{2.};
 \node at (A) [label=135:3., draw, dotted, circle through=(C)]{};
 \end{tikzpicture}
-\fi
-%\end{center}
+}
 \end{minipage}
 \end{tabular}
 \end{MExample}
@@ -495,7 +673,7 @@ Ecke des Dreiecks ($C$).
 \begin{MExercise}
 Konstruieren Sie ein Dreieck mit der Seite $c=5$ und den Winkeln $\alpha=30^\circ$ und $\beta=120^\circ$.
 
-\begin{MHint}{Lösung}
+\begin{MHint}{L\"osung}
 \begin{tabular}{lr}
 \begin{minipage}{9cm}
 Man zeichnet zuerst die gegebene Strecke $c$.
@@ -504,11 +682,7 @@ Der Schnittpunkt der beiden neuen Schenkel ist die dritte Ecke des Dreiecks.
 \end{minipage}
 &
 \begin{minipage}{7cm}
-%\begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_wsw.png}{scale=1}
-\else%
-\tikzsetnextfilename{wsw}
+\MTikzAuto{%
 \begin{tikzpicture}[scale=0.75]
 \coordinate [label=left:$A$]        (A) at (0,0);
 \coordinate [label=below right:$B$] (B) at ($ (A) + (10:4) $);
@@ -518,8 +692,7 @@ Der Schnittpunkt der beiden neuen Schenkel ist die dritte Ecke des Dreiecks.
 \draw[dotted] (C) -- ($ (C)!-0.5!(A) $) node[below right]{2.};
 \draw[dotted] (C) -- ($ (C)!-0.5!(B) $) node[left]{3.};
 \end{tikzpicture}
-\fi
-%\end{center}
+}
 \end{minipage}
 \end{tabular}
 
@@ -529,10 +702,33 @@ Der Schnittpunkt der beiden neuen Schenkel ist die dritte Ecke des Dreiecks.
 \begin{MExample}\MLabel{Mathematik_ElementareGeometrie_Beispiel:Aehnlichkeit}
 
 Gegeben seien nun die drei Winkel $\alpha=77^\circ$, $\beta=44^\circ$ und $\gamma=59^\circ$.
-Diese Angaben findet man nicht bei den Kongruenzsätzen \MRef{Mathematik_ElementareGeometrie_Satz:Kongruenzsaetze}. Wir wollen trotzdem versuchen, ein Dreieck zu konstruieren.
+Diese Angaben findet man nicht bei den Kongruenzs\"atzen \MRef{Mathematik_ElementareGeometrie_Satz:Kongruenzsaetze}. Dennoch kann man entsprechende Dreiecke konstruieren:
 \begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\pgfmathparse{5*sin(44)*cos(77)/sin(59)}\let\cx=\pgfmathresult
+\pgfmathparse{5*sin(44)*sin(77)/sin(59)}\let\cy=\pgfmathresult
+\foreach \sx/\sy/\dsf/\ang in {0.0cm/0.0cm/1.0/-15,6.0cm/2.0cm/0.4/40,8.0cm/0.0cm/0.5/-15} {
+\begin{scope}[xshift=\sx,yshift=\sy,rotate=\ang]
+\coordinate (OB) at (5,0);
+\coordinate (OC) at (\cx,\cy);
+\coordinate (A) at (0,0);
+\coordinate (B) at ($ (A)!\dsf!(OB) $);
+\coordinate (C) at ($ (A)!\dsf!(OC) $);
+\coordinate (MAB) at ($ (A)!0.5!(B) $);
+\coordinate (MBC) at ($ (B)!0.5!(C) $);
+\coordinate (MCA) at ($ (C)!0.5!(A) $);
+\draw[black,thick] (A) -- (B) -- (C) -- cycle;
+\pgfmathparse{0.15/\dsf}
+\path (A) -- node[pos=\pgfmathresult]{$\alpha$} (MBC);
+\path (B) -- node[pos=\pgfmathresult]{$\beta$}  (MCA);
+\path (C) -- node[pos=\pgfmathresult]{$\gamma$} (MAB);
+\end{scope}
+}
+\end{tikzpicture}
+}
 %\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_www_1.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_www_1.png}{scale=1}
 %\else%
 %\tikzsetnextfilename{wwGross}
 %\begin{tikzpicture}
@@ -556,27 +752,58 @@ Diese Angaben findet man nicht bei den Kongruenzsätzen \MRef{Mathematik_Elementa
 %\end{tikzpicture}
 %\fi
 \end{center}
-
-Wir erhalten unendlich viele Dreiecke, die nicht kongruent sind, also nicht durch Drehung oder Spiegelung ineinander übergeführt werden können.
+Es stellt sich heraus, dass es sogar unendlich viele derartige Dreiecke gibt, die nicht kongruent zueinander sind, also nicht durch Drehung oder Spiegelung ineinander \"ubergef\"uhrt werden k\"onnen.
 \end{MExample}
 
-Allerdings sehen diese Dreiecke irgendwie ähnlich aus. Solche \textbf{ähnlichen} Dreiecke erhält man auch, wenn man zum Beispiel die Verhältnisse aller Seiten zueinander kennt.
+Allerdings sehen diese Dreiecke irgendwie \"ahnlich aus. Solche \textbf{\"ahnlichen} Dreiecke erh\"alt man auch, wenn man zum Beispiel die Verh\"altnisse aller Seiten zueinander kennt.
 
 \begin{MInfo}%
-\textbf{Ähnlichkeitss\"atze f\"ur Dreiecke}\\
+\textbf{\"Ahnlichkeitss\"atze f\"ur Dreiecke}\\
 \ \\
-Zwei Dreiecke sind zueinander ähnlich, wenn
+Zwei Dreiecke sind zueinander \"ahnlich, wenn
 \begin{itemize}
- \item	sie in zwei (und damit wegen der Winkelinnensumme in drei) Winkeln übereinstimmen.
- \item  sie in allen \textbf{Verhältnissen} ihrer entsprechenden Seiten übereinstimmen.
- \item  sie in einem Winkel und im \textbf{Verhältnis} der anliegenden Seiten übereinstimmen.
- \item  sie im \textbf{Verhältnis} zweier Seiten und im Gegenwinkel der größeren Seite übereinstimmen.
+ \item	sie in zwei (und damit wegen der Winkelinnensumme in drei) Winkeln \"ubereinstimmen.
+ \item  sie in allen \textbf{Verh\"altnissen} ihrer entsprechenden Seiten \"ubereinstimmen.
+ \item  sie in einem Winkel und im \textbf{Verh\"altnis} der anliegenden Seiten \"ubereinstimmen.
+ \item  sie im \textbf{Verh\"altnis} zweier Seiten und im Gegenwinkel der gr\"o\ss eren Seite \"ubereinstimmen.
 \end{itemize}
 \end{MInfo}
 
 Eine Besonderheit gibt es bei dem rechten und dem linken Dreieck in Beispiel  \MRef{Mathematik_ElementareGeometrie_Beispiel:Aehnlichkeit}: Hier geht das eine Dreieck durch zentrische Streckung \MLabel{Mathematik_ElementareGeometrie_zentrischeStreckung} mit dem Streckzentrum $S$ und einem Streckfaktor $k$ in das andere \"uber.
 \begin{center}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_zentrische_Streckung.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\pgfmathparse{5*sin(44)*cos(77)/sin(59)}\let\cx=\pgfmathresult
+\pgfmathparse{5*sin(44)*sin(77)/sin(59)}\let\cy=\pgfmathresult
+\pgfmathparse{cos(15)}\let\rc=\pgfmathresult
+\pgfmathparse{sin(15)}\let\rs=\pgfmathresult
+\foreach \ax/\ay/\lsf/\rsf in {\cx/\cy/-1/14,5/0/-2/15,0/0/-0.5/13.8} {
+  \pgfmathparse{\lsf+(12-\lsf)/12*(\ax*\rc+\ay*\rs)}\let\cax\pgfmathresult
+  \pgfmathparse{(12-\lsf)/12*(-\ax*\rs+\ay*\rc)}\let\cay\pgfmathresult
+  \pgfmathparse{\rsf+(12-\rsf)/12*(\ax*\rc+\ay*\rs)}\let\cbx\pgfmathresult
+  \pgfmathparse{(12-\rsf)/12*(-\ax*\rs+\ay*\rc)}\let\cby\pgfmathresult
+  \draw[gray, dashed] (\cax,\cay) -- (\cbx,\cby);
+}
+\node[anchor=south] at (12,0) {$S$};
+\foreach \sx/\sy/\dsf/\ang in {0.0cm/0.0cm/1.0/-15,4.8cm/0.0cm/0.60/-15} {
+  \begin{scope}[xshift=\sx,yshift=\sy,rotate=\ang]
+  \coordinate (OB) at (5,0);
+  \coordinate (OC) at (\cx,\cy);
+  \coordinate (A) at (0,0);
+  \coordinate (B) at ($ (A)!\dsf!(OB) $);
+  \coordinate (C) at ($ (A)!\dsf!(OC) $);
+  \coordinate (MAB) at ($ (A)!0.5!(B) $);
+  \coordinate (MBC) at ($ (B)!0.5!(C) $);
+  \coordinate (MCA) at ($ (C)!0.5!(A) $);
+  \draw[black,thick] (A) -- (B) -- (C) -- cycle;
+  \pgfmathparse{0.15/\dsf}
+  \path (A) -- node[pos=\pgfmathresult]{$\alpha$} (MBC);
+  \path (B) -- node[pos=\pgfmathresult]{$\beta$}  (MCA);
+  \path (C) -- node[pos=\pgfmathresult]{$\gamma$} (MAB);
+  \end{scope}
+}
+\end{tikzpicture}
+}
 \end{center}
 
 \end{MXContent}
@@ -603,10 +830,7 @@ einer Spalte stets der gleiche Winkel stehen.
 \begin{MExercise}
 Untersuchen Sie die folgende Figur auf Stufenwinkel und Wechselwinkel!
 \begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Stern.png}{scale=1}
-\else%
-\tikzsetnextfilename{Stern}
+\MTikzAuto{%
 \begin{tikzpicture}
 \coordinate (A) at (0,0);
 \coordinate (B) at ($ (A) + ( 00:3) $);
@@ -628,7 +852,7 @@ Untersuchen Sie die folgende Figur auf Stufenwinkel und Wechselwinkel!
 \draw (BC) -- (EF);
 \draw (CD) -- (FA);
 \end{tikzpicture}
-\fi
+}
 \end{center}
 
 \begin{MHint}{L\"osung}
@@ -639,7 +863,37 @@ Die Winkel $\alpha$ und $\alpha'$ zum Beispiel sind Stufenwinkel, ebenso $\beta$
 Die Winkel $\alpha'$ und $\beta$ zum Beispiel sind Wechselwinkel, ebenso $\alpha$ und $\beta'$.
 \end{minipage}
 &
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Stern_Loesung.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($ (A) + ( 00:3) $);
+\coordinate (C) at ($ (B) + ( 60:3) $);
+\coordinate (D) at ($ (C) + (120:3) $);
+\coordinate (E) at ($ (D) + (180:3) $);
+\coordinate (F) at ($ (E) + (240:3) $);
+\coordinate (AB) at (intersection of A--C and B--F);
+\coordinate (BC) at (intersection of B--D and C--A);
+\coordinate (CD) at (intersection of C--E and D--B);
+\coordinate (DE) at (intersection of D--F and E--C);
+\coordinate (EF) at (intersection of E--A and F--D);
+\coordinate (FA) at (intersection of F--B and A--E);
+%
+\draw (A) -- (C) -- (E) -- cycle;
+\draw (B) -- (D) -- (F) -- cycle;
+%
+\draw (AB) -- (DE);
+\draw (BC) -- (EF);
+\draw (CD) -- (FA);
+\draw[color=black, thin] (DE) ++(-30:0.65) arc (-30:30:0.65);
+\draw[color=black] (DE) ++(0:0.45) node {\small $\alpha'$};
+\draw[color=black, thin] (DE) ++(150:0.65) arc (150:210:0.65);
+\draw[color=black] (DE) ++(0:-0.45) node {\small $\beta'$};
+\draw[color=black, thin] (EF) ++(-30:0.65) arc (-30:30:0.65);
+\draw[color=black] (EF) ++(0:0.45) node {\small $\alpha$};
+\draw[color=black, thin] (CD) ++(150:0.65) arc (150:210:0.65);
+\draw[color=black] (CD) ++(0:-0.45) node {\small $\beta$};
+\end{tikzpicture}
+}
 \end{tabular}
 
 \end{MHint}
@@ -647,14 +901,33 @@ Die Winkel $\alpha'$ und $\beta$ zum Beispiel sind Wechselwinkel, ebenso $\alpha
 
 
 \begin{MExercise}
-Zeigen Sie mit Hilfe von Wechselwinkeln, dass die Summe der Innenwinkel in einem Dreieck stets $\pi$ beträgt.
+Zeigen Sie mithilfe von Wechselwinkeln, dass die Summe der Innenwinkel in einem Dreieck stets $\pi$ betr\"agt.
 
-\begin{MHint}{Lösung}
+\begin{MHint}{L\"osung}
 \begin{tabular}{lc}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Winkelsumme_1.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+%%\draw[help lines, gray!50, xstep=0.5, ystep=0.5] (0,0) grid (9,8);
+\draw[color=black] (1,0)--(9,4) (0.5,3.5)--(7.5,7.0);
+\draw[color=black, very thick] (2,0.5) -- (7.5,3.25) -- (4.0,5.25) -- cycle;
+\draw[color=black, thin] (2,0.5) ++(26.5660:1.2) arc (26.5650:67.1663:1.2);
+\draw[color=black] (2,0.5) ++(46.865:0.8) node {\large $\alpha$};
+\draw[color=black, thin] (7.5,3.25) ++(150.255:1.2) arc (150.255:205.565:1.2);
+\draw[color=black] (7.5,3.25) ++(177.910:0.8) node {\large $\beta$};
+\draw[color=black, thin] (4.0,5.25) ++(247.1663:0.9) arc (247.1663:330.255:0.9);
+\draw[color=black] (4.0,5.25) ++(288.7107:0.6) node {\large $\gamma$};
+\draw[color=black, thin] (4.0,5.25) ++(206.5660:1.2) arc (206.5650:247.1663:1.2);
+\draw[color=black] (4.0,5.25) ++(226.865:0.8) node {\large $\alpha'$};
+\draw[color=black, thin] (4.0,5.25) ++(-29.745:1.2) arc (-29.745:26.5660:1.2);
+\draw[color=black] (4.0,5.25) ++(-1.5895:0.8) node {\large $\beta'$};
+\draw[color=black] (5.75,4.25) node[anchor=south west] {\large $a$};
+\draw[color=black] (3.0,2.875) node[anchor=south east] {\large $b$};
+\draw[color=black] (4.75,1.875) node[anchor=north west] {\large $c$};
+\end{tikzpicture}
+}
 &
 \begin{minipage}[b]{9cm}
-Zeichnet man parallel zur Seite $c$ eine Gerade durch die obere Ecke des Dreiecks, so erhält man jeweils einen Wechselwinkel $\alpha'$ zu $\alpha$ und $\beta'$ zu $\beta$. \\
+Zeichnet man parallel zur Seite $c$ eine Gerade durch die obere Ecke des Dreiecks, so erh\"alt man jeweils einen Wechselwinkel $\alpha'$ zu $\alpha$ und $\beta'$ zu $\beta$. \\
 \ \\
 An der Geraden gilt
 \[\alpha'+\gamma+\beta'=\pi\MDFPeriod\]
@@ -673,7 +946,7 @@ Da $\alpha'=\alpha\quad\text{und}\quad\beta'=\beta\quad\text{folgt}\quad\alpha+\
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Flaecheninhalt_Intro}
-Das Bauamt von Ludwigshafen m\"ochte die Grundst\"ucksgr\"o\ss en des in unserem
+Das Bauamt von Ludwigshafen m\"ochte die Grundst\"ucksgr\"o\ss en des im zuvor betrachteten
 Ausschnitt des Stadtplans (Bild \MRef{Stadtplan}) abgebildeten Viertels neu berechnen.
 
 
@@ -682,9 +955,9 @@ die sich, wie man zeigen kann, in Dreiecke aufspalten l\"asst. Das Bauamt teilt 
 also in Dreiecke auf, berechnet die Fl\"acheninhalte der Dreiecke und erh\"alt
 so die Gesamtfl\"ache der Grundst\"ucke durch die Addition der Dreiecksfl\"acheninhalte.
 
-In diesem Abschnitt wiederholen wir, wie man den Umfang und Flächeninhalte von Dreiecken und anderen Figuren berechnet. 
+In diesem Abschnitt wird wiederholt, wie man den Umfang und Fl\"acheninhalt eines Dreiecks und anderer Figuren berechnet. 
 
-Dann werden wir die sogenannten Strahlens\"atze einführen,
+Im Anschluss daran werden die sogenannten Strahlens\"atze eingef\"uhrt,
 die zum Beispiel bei der Skalierung einer Zeichnung oder bei der Berechnung
 von H\"ohen bzw.\ Abst\"anden zum Einsatz kommen.
 \end{MIntro}
@@ -693,41 +966,47 @@ von H\"ohen bzw.\ Abst\"anden zum Einsatz kommen.
 
 \begin{MXContent}{Fl\"acheninhalt}{Fl\"acheninhalt}{STD}
 \MDeclareSiteUXID{VBKM05_Flaecheninhalt_Content}
-Der Inhalt einer Fläche ist die Zahl der Einheitsquadrate, die man benötigt, um diese Fläche vollständig zu bedecken.\\
+Der Inhalt einer Fl\"ache ist die Zahl der Einheitsquadrate, die man ben\"otigt, um diese Fl\"ache vollst\"andig zu bedecken.\\
 \ \\
-Zuerst wollen wir uns ein Rechteck ansehen.
-\begin{MInfo}
-Ein Rechteck ist ein Viereck, bei dem alle vier Innenwinkel rechte Winkel sind.
-\end{MInfo}
+Zuerst sollen Rechtecke betrachtet werden.
+%\begin{MInfo}
+%Ein Rechteck ist ein Viereck, bei dem alle vier Innenwinkel rechte Winkel sind.
+%\end{MInfo}
 
 \begin{tabular}{lc}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Flaecheninhalt_Rechteck.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm, y=0.8cm] 
+\draw[help lines, black, xstep=1, ystep=1] (1,1) grid (8,5);
+\draw[color=blue, line width=2pt] (1,1)--(8,1) (1,5)--(8,5);
+\draw[color=red, line width=2pt] (1,1)--(1,5) (8,1)--(8,5);
+\draw[color=blue] (4.5,1) node[anchor=north] {\large $a$};
+\draw[color=blue] (4.5,5) node[anchor=south] {\large $a$};
+\draw[color=red] (1,3) node[anchor=east] {\large $b$};
+\draw[color=red] (8,3) node[anchor=west] {\large $b$};
+\end{tikzpicture}
+}
 &
 \begin{minipage}[b]{10cm}
- Wenn ein Rechteck eine Seite der Länge $a$ und eine Seite der Länge $b$ hat, dann gibt es $b$ Reihen mit $a$ Einheitsquadraten, also $a\cdot b$ Einheitsquadrate.\\
+ Wenn ein Rechteck eine Seite der L\"ange $a$ und eine Seite der L\"ange $b$ hat, dann gibt es $b$ Reihen mit $a$ Einheitsquadraten, also $a\cdot b$ Einheitsquadrate.\\
  \ \\
 \end{minipage}
 \end{tabular}
 
 \begin{MInfo}
- Die Fläche $A$ des Rechtecks ist 
+ Die Fl\"ache $A$ des Rechtecks ist 
  \[A=b\cdot a=a\cdot b \MDFPeriod\]
 \end{MInfo}
 
 \begin{tabular}{lr}
 \begin{minipage}{10cm}
-Damit können wir auch leicht den Flächeninhalt eines rechtwinkligen Dreiecks berechnen.
-Wir nehmen ein rechtwinkliges Dreieck~$ABC$, drehen es um~$180^\circ$ und
-legen die beiden Hypotenusen des Dreiecks~$ABC$ und des gedrehten
-Dreiecks aufeinander. Damit erhalten wir ein Rechteck.
+Damit l\"asst sich nun auch leicht der Fl\"acheninhalt eines rechtwinkligen Dreiecks berechnen.
+Es sei~$ABC$ ein rechtwinkliges Dreieck, welches um~$180^\circ$ gedreht werde. Legt man anschlie\ss end das urspr\"ungliche und das neue Dreieck
+entlang der beiden Hypotenusen aneinander, so erh\"alt man ein Rechteck.
 \end{minipage}
 &
 \begin{minipage}{5cm}
 %\begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_FlaecheninhaltRechteck.png}{scale=1}
-\else%
-\tikzsetnextfilename{FlaecheninhaltRechteck}
+\MTikzAuto{%
 \begin{tikzpicture}[rotate=-20]
 \coordinate (A) at (0,0);
 \coordinate (B) at ($ (A) + (1,-1.5) $);
@@ -737,12 +1016,12 @@ Dreiecks aufeinander. Damit erhalten wir ein Rechteck.
 \draw (A) node [left]{$A$} -- (B) node[left]{$B$} -- (C) node[right]{$C$} -- cycle;
 \draw[dotted] (B) -- (D) node[right]{$D$} -- (C);
 \end{tikzpicture}
-\fi
+}
 %\end{center}
 \end{minipage}
 \end{tabular}
 
-Der Flächeninhalt des Dreiecks ist nun die Hälfte des Flächeninhaltes des Rechtecks, also $A=\frac{1}{2}\cdot a\cdot b$
+Der Fl\"acheninhalt des Dreiecks ist nun die H\"alfte des Fl\"acheninhaltes des Rechtecks, also $A=\frac{1}{2}\cdot a\cdot b$
 
 Doch was ist zu tun,
 wenn das Dreieck nicht rechtwinklig ist?
@@ -755,14 +1034,11 @@ wenn das Dreieck nicht rechtwinklig ist?
 
 %Die Sch\"utzenstra\ss e bildet mit der Rottstra\ss e und der Wittelsbachstra\ss e ein Dreieck. Durch den kurzen Weg von der Ecke Sch\"utzenstra\ss e und Rottstra\ss e auf die Wittelsbachstra\ss e wird dieses Dreieck in zwei rechtwinklige Dreiecke zerteilt.
 
-Aus jedem beliebigen Dreieck kann man zwei rechtwinklige Dreiecke gewinnen, indem man von einer Ecke aus eine Linie auf die gegen\"uberliegende Seite zieht, so dass sie diese senkrecht trifft. Diese Linie nennt man die \textbf{Höhe} $h_{i}$ eines Dreiecks auf die bestimmte Seite $i$, wobei der Index $i$ derjenigen Seite $a$, $b$ oder $c$ entspricht, über der die Höhe bestimmt wird.
+Aus jedem beliebigen Dreieck kann man zwei rechtwinklige Dreiecke gewinnen, indem man von einer Ecke aus eine Linie auf die gegen\"uberliegende Seite zieht, so dass sie diese senkrecht trifft. Diese Linie nennt man die \textbf{H\"ohe} $h_{i}$ eines Dreiecks auf die bestimmte Seite $i$, wobei der Index $i$ derjenigen Seite $a$, $b$ oder $c$ entspricht, \"uber der die H\"ohe bestimmt wird.
 
 Je nachdem, ob die neue Linie innerhalb oder au\ss erhalb des Dreiecks liegt, ergibt sich der Fl\"acheninhalt des Dreiecks dann aus der Summe oder der Differenz der Fl\"acheninhalte der beiden sich ergebenden rechtwinkligen Dreiecke:
 \begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_FlaecheninhaltDreieckSpitz.png}{scale=1}
-\else%
-\tikzsetnextfilename{FlaecheninhaltDreieckSpitz}
+\MTikzAuto{%
 \begin{tikzpicture}
  \coordinate[label=left:$A$]  (A) at (0,0);
  \coordinate[label=right:$B$] (B) at ($ (A) + (3,0) $);
@@ -773,12 +1049,9 @@ Je nachdem, ob die neue Linie innerhalb oder au\ss erhalb des Dreiecks liegt, er
  \draw[dotted] (C) -- node[right]{$h_c$} (D);
  \path (A) -- node[above]{$c_1$} (D) -- node[above]{$c_2$} (B);
 \end{tikzpicture}
-\fi
+}
 \hspace{4em}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_FlaecheninhaltDreieckStumpf.png}{scale=1}
-\else%
-\tikzsetnextfilename{FlaecheninhaltDreieckStumpf}
+\MTikzAuto{%
 \begin{tikzpicture}
  \coordinate[label=below:$U$] (U) at (0,0);
  \coordinate[label=right:$V$] (V) at ($ (U) + (3,0) $);
@@ -790,7 +1063,7 @@ Je nachdem, ob die neue Linie innerhalb oder au\ss erhalb des Dreiecks liegt, er
  \draw[dotted] (W) -- node[left] {$h_w$} (X);
  \draw[dotted] (U) -- node[above]{$w_1$} (X);
 \end{tikzpicture}
-\fi
+}
 \end{center}
 
 Links gilt also (wenn $A_{\Delta}$ den Fl\"acheninhalt des Dreiecks~$\Delta$ bezeichnet)
@@ -831,35 +1104,79 @@ Rechts gilt genauso
 
 \begin{MExample}
 \begin{tabular}{lc}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_DreieckFlaeche_Bsp.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_DreieckFlaeche_Bsp.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.6cm, y=0.6cm] 
+%%\draw[help lines, gray!50, xstep=0.5, ystep=0.5] (0,0) grid (9,8);
+\draw[color=black, very thick] (0,0) -- (1.7032,-6.0654) -- (7.8,0) -- cycle;
+\draw[color=black, thick] (0,0) -- (3.87986,-3.89994);
+\draw[color=black] (3.9,0) node[anchor=south] {\large $7{,}8$};
+\draw[color=black] (0.85160,-3.0327) node[anchor=north east] {\large $6{,}3$};
+\draw[color=black] (4.7516,-3.0327) node[anchor=north west] {\large $8{,}6$};
+\draw[color=black] (1.93993,-1.94997) node[anchor=south west] {\large $5{,}5$};
+\end{tikzpicture}
+}
 &
 \begin{minipage}[b]{10cm}
-Bei dem hier gezeigten Dreieck ist die Höhe gegeben, die zur Seite mit dem Wert $\MZahl{8}{5}$ gehört. Der Flächeninhalt des Dreiecks ist also
-\[A=\frac{\MZahl{8}{5}\cdot\MZahl{5}{5}}{2}=\MZahl{23}{375} \MDFPeriod\]
+Bei dem hier gezeigten Dreieck ist die H\"ohe gegeben, die zur Seite mit dem Wert $\MZahl{8}{5}$ geh\"ort.
+(Bei den Angaben handelt es sich jeweils um gerundete numerische Werte.)
+Der Fl\"acheninhalt des Dreiecks ist also
+\[A=\frac{\MZahl{8}{6}\cdot\MZahl{5}{5}}{2}=\MZahl{23}{65} \MDFPeriod\]
 \ \\
 \end{minipage}\\
 \end{tabular}
 \end{MExample}
 
 \begin{MExercise}
-Berechnen Sie den Flächeninhalt des Dreiecks:\\
+Berechnen Sie den Fl\"acheninhalt des Dreiecks:\\
 \ \\
-\MGraphicsSolo{Mathematik_ElementareGeometrie_DreieckFlaeche_Aufgabe.png}{scale=1}
-\begin{MHint}{Lösung}
-An diesem Dreieck lässt sich die zur Seite, die auf der $x$-Achse liegt, zugehörige Höhe ablesen:
-\[\text{Seite}=4, \quad \text{Höhe}=2\quad
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_DreieckFlaeche_Aufgabe.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.2cm, y=1.2cm] 
+%Koordinatensystem
+\node (xMAX) at (6.0,0){};
+\node (yMAX) at (0,3.2){};
+\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
+\draw[->,color=black] (-0.4,0) -- (xMAX);
+\foreach \x in {1, 2, 3, 4, 5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\normalsize $\x$};
+\draw[->,color=black] (0,-0.4) -- (yMAX);
+\foreach \y in {1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\normalsize $\y$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=north east] {$y$};
+%Beschriftung und Graphen
+%%\clip(-2.8,-0.5) rectangle (6,3);
+\draw[color=black, very thick] (1,0) -- (4,2) -- (5,0) -- cycle;
+%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+\end{tikzpicture}
+}
+\begin{MHint}{L\"osung}
+An diesem Dreieck l\"asst sich die zur Seite, die auf der $x$-Achse liegt, zugeh\"orige H\"ohe ablesen:
+\[\text{Seite}=4, \quad \text{H\"ohe}=2\quad
 \Rightarrow\quad\ A=\frac{4\cdot 2}{2}=4 \MDFPeriod\] 
 \end{MHint}
 \end{MExercise}
 
-Nun können wir auch die Flächen von anderen Vielecken, auch \textbf{Polygone} genannt, bestimmen. Wir werden uns jedoch auf einige einfache Formen beschränken. Polygone können in Dreiecke unterteilt werden. Die Summe der Flächeninhalte dieser Dreiecke ergibt den Flächeninhalt des Polygons.
+Nun lassen sich auch die Fl\"achen von anderen Vielecken, auch \textbf{Polygone} genannt, bestimmen. Hier soll die Betrachtung jedoch auf einige einfache Formen beschr\"ankt bleiben. Polygone k\"onnen in Dreiecke unterteilt werden. Die Summe der Fl\"acheninhalte dieser Dreiecke ergibt den Fl\"acheninhalt des Polygons.
 
 \begin{MExample}
 \begin{tabular}{lc}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.5cm, y=0.5cm] 
+\draw[thick] (0,0) -- (9,0) -- (9,9) -- (4,9) -- cycle;
+\draw[thick, dashed] (4,0) -- (4,9);
+\node[anchor=north] at (4.5,0) {$a$};
+\node[anchor=west] at (9,4.5) {$b$};
+\node[anchor=south] at (6.5,9) {$c$};
+\node[anchor=south east] at (2.0,4.5) {$d$};
+\end{tikzpicture}
+}
 &
 \begin {minipage}[b]{10cm}
-Sehen wir uns das links dargestellte Polygon an. Bei unserem Beispiel kann man das Polygon in ein rechtwinkliges Dreieck mit den Katheten $\left(a-c\right)$ und $b$ und der Hypotenuse $d$ sowie ein Rechteck mit den Seiten $b$ und $c$ unterteilen. Der Flächeninhalt des Polygons ist dann:
+Man betrachte das links dargestellte Polygon. In diesem Beispiel kann man das Polygon in ein rechtwinkliges Dreieck mit den Katheten $\left(a-c\right)$ und $b$ und der Hypotenuse $d$ sowie ein Rechteck mit den Seiten $b$ und $c$ unterteilen. Der Fl\"acheninhalt des Polygons ist dann:
 \ \\
 \end{minipage}
 \end{tabular}
@@ -872,36 +1189,56 @@ Sehen wir uns das links dargestellte Polygon an. Bei unserem Beispiel kann man d
 \begin{MExercise}
 \begin{tabular}{lr}
 \begin{minipage}[b]{7cm}
-Berechnen Sie den Flächeninhalt des\newline \textbf{Parallelogramms} für $a=4$ und $h=5$.\\
+Berechnen Sie den Fl\"acheninhalt des\newline \textbf{Parallelogramms} f\"ur $a=4$ und $h=5$.\\
 Tipp: Teilen Sie es sinnvoll auf und schauen Sie sich die entstandenen Dreiecke gut an!\\
 \vspace*{1cm}
 \end{minipage}
 &
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone_Parallelogramm.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone_Parallelogramm.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.5cm, y=0.5cm] 
+\draw[thick] (0,0) -- (10,0) -- ++(45:10) -- (45:10) -- cycle;
+\draw[stealth'-stealth',thick] (8,0) -- (8,7.0710678);
+\node[anchor=north] at (5,0) {$a$};
+\node[anchor=west] at (8,3.5355339) {$h$};
+\end{tikzpicture}
+}
 \end{tabular}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{L\"osung}
 
 \begin{tabular}{lr}
 \begin{minipage}[b]{7cm}
-Man kann das Parallelogramm in das linke rote Dreieck, einem folgenden Rechteck und das rechte Dreieck aufspalten. Schneidet man das rote Dreieck aus und setzt es von rechts an das Parallelogramm, erhält man ein Rechteck mit den Seiten $a$ und $h$. Der Flächeninhalt ergibt sich dann zu
+Man kann das Parallelogramm in das linke rote Dreieck, einem folgenden Rechteck und das rechte Dreieck aufspalten. Schneidet man das rote Dreieck aus und setzt es von rechts an das Parallelogramm, erh\"alt man ein Rechteck mit den Seiten $a$ und $h$. Der Fl\"acheninhalt ergibt sich dann zu
 \[A=a\cdot b=4\cdot 5=20 \MDFPeriod\]
 \end{minipage}
 &
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone_Parallelogramm_Loesung.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone_Parallelogramm_Loesung.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.5cm, y=0.5cm] 
+\draw[thick] (0,0) -- (10,0) -- ++(45:10) -- (45:10) -- cycle;
+\draw[thick,dashed] (10,0) -- (10,7.0710678);
+\draw (7.0710678,0) -- (7.0710678,7.0710678);
+\draw[red,thick] (45:10) -- (0,0) -- (7.0710678,0);
+\draw[red,thick,dashed] (7.0710678,0) -- (7.0710678,7.0710678);
+\draw[red,thick,dashed] (10,0) -- ++(7.0710678,0) -- ++(0,7.0710678) -- cycle;
+\node[anchor=north] at (5,0) {$a$};
+\node[anchor=west] at (10,3.5355339) {$h$};
+\end{tikzpicture}
+}
 \end{tabular}
 \end{MHint}
 \end{MExercise}
 
-Zum Schluss wollen wir noch Kreisflächen berechnen. Wir haben zu Beginn bei \MRef{Kreiszahl} schon die Kreiszahl $\pi$ kennengelernt, die über den Umfang des Kreises definiert ist. 
-Ebenso hängt die Kreiszahl mit dem Flächeninhalt von Kreisen zusammen.
+Zum Schluss sollen noch Kreisfl\"achen berechnet werden. In \MRef{Kreiszahl} wurde bereits die Kreiszahl $\pi$ vorgestellt, die \"uber den Umfang des Kreises definiert ist. 
+Ebenso h\"angt die Kreiszahl mit dem Fl\"acheninhalt von Kreisen zusammen.
 \begin{MInfo}
-Der Flächeninhalt eines Kreises mit dem Radius $r$ berechnet sich zu 
+Der Fl\"acheninhalt eines Kreises mit dem Radius $r$ berechnet sich zu 
 \[A=\pi\cdot r^2 \MDFPeriod\]
 \end{MInfo}
 
 \begin{MExample}
-Ein Kreis hat einen Flächeninhalt von $\MZahl{12}{566}$ bei einem Radius von ungefähr $r=2$. Wir können daraus die Kreiszahl $\pi$ berechnen:
+Ein Kreis habe einen Fl\"acheninhalt von $\MZahl{12}{566}$ bei einem Radius von $r=2$. Hieraus l\"asst sich die Kreiszahl $\pi$ berechnen:
 \[A=\pi\cdot r^2\quad\Rightarrow\quad \pi=\frac{A}{r^2}=\frac{\MZahl{12}{566}}{4}=\MZahl{3}{1415} \MDFPeriod\]
 \end{MExample}
 
@@ -914,11 +1251,30 @@ Ein Kreis hat einen Flächeninhalt von $\MZahl{12}{566}$ bei einem Radius von ung
 \begin{MExercise}
 \begin{tabular}{lr}
 \begin{minipage}[b]{8cm}
-Berechnen Sie den Flächeninhalt des Polygons:\\
+Berechnen Sie den Fl\"acheninhalt des Polygons:\\
 \vspace{3.5cm}
 \end{minipage}
 &
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone_Aufgabe.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone_Aufgabe.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\draw[color=black, thick] (0.0,0.0) -- (3.0,-1.8) -- (5.4,0.0) -- 
+(4.0,2.6) -- (1.5,2.2)-- cycle 
+(0.0,0.0) -- (5.4,0.0) (1.5,0.0) -- (1.5,2.2)
+(4.0,0.0) -- (4.0,2.6) (3.0,0.0) -- (3.0,-1.8);
+\draw[color=black] (1.1,0.8) node {\large $A_1$};
+\draw[color=black] (2.75,1.2) node {\large $A_2$};
+\draw[color=black] (4.4,0.9) node {\large $A_3$};
+\draw[color=black] (2.2,-0.6) node {\large $A_4$};
+\draw[color=black] (3.9,-0.5) node {\large $A_5$};
+\draw[color=black] (0.75,0.0) node[anchor=south] {\large $15$};
+\draw[color=black] (2.75,0.0) node[anchor=south] {\large $25$};
+\draw[color=black] (4.7,0.0) node[anchor=south] {\large $14$};
+\draw[color=black] (1.5,1.5) node[anchor=west] {\large $22$};
+\draw[color=black] (4.0,1.8) node[anchor=east] {\large $26$};
+\draw[color=black] (3.0,-0.9) node[anchor=west] {\large $18$};
+\end{tikzpicture}
+}
 \end{tabular}
 \end{MExercise}
 
@@ -928,7 +1284,7 @@ Berechnen Sie den Flächeninhalt des Polygons:\\
 \begin{MXContent}{Die Strahlens\"atze}{Strahlens\"atze}{STD}
 \MDeclareSiteUXID{VBKM05_Strahlensaetze}
 
-Die Strahlensätze haben etwas mit der zentrischen Streckung zu tun (siehe \MRef{Mathematik_ElementareGeometrie_zentrischeStreckung}).
+Die Strahlens\"atze haben etwas mit der zentrischen Streckung zu tun (siehe \MRef{Mathematik_ElementareGeometrie_zentrischeStreckung}).
 
 %\MGraphicsSolo{../Bilder/Mathematik_ElementareGeometrie/Mathematik_ElementareGeometrie_Stadtplan_Strahlensatz.png}{scale=1}
 
@@ -955,19 +1311,16 @@ Die Strahlensätze haben etwas mit der zentrischen Streckung zu tun (siehe \MRef{
 \fi
 
 \begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_Satz:ErsterStrahlensatz}%
-\textbf{Strahlensätze}
+\textbf{Strahlens\"atze}
 
 %\begin{center}
 \begin{tabular}{lc}
 \mbox{
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_ErsterStrahlensatz.png}{scale=1}
-\else%
-\tikzsetnextfilename{ErsterStrahlensatz}
+\MTikzAuto{%
 \begin{tikzpicture}
 \Strahlensatzfigur
 \end{tikzpicture}
-\fi
+}
 }
 %\end{center}
 &
@@ -1009,7 +1362,7 @@ Die Abschnitte auf den Parallelen  verhalten sich wie die von $S$ ausgehenden en
 %\end{center}
 %\end{MHint}
 
-Mit dem Strahlensatz lassen sich auch einige wichtige Sätze herleiten, die für ein rechtwinkliges Dreieck gelten, zum Beispiel die \textbf{Satzgruppe des Pythagoras}. Diese wollen wir hier aber ohne Herleitung angeben:
+Mit dem Strahlensatz lassen sich auch einige wichtige S\"atze herleiten, die f\"ur ein rechtwinkliges Dreieck gelten, zum Beispiel die \textbf{Satzgruppe des Pythagoras}. Diese sollen hier aber ohne Herleitung angegeben werden:
 
 \begin{MInfo}
 \MLabel{VBKM05_Pythagoras}
@@ -1021,10 +1374,7 @@ $p = \left| \overline{AD} \right|$ und $q = \left| \overline{BD} \right|$, so gi
 \end{minipage}
 &
 \begin{minipage}{7cm}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Pythagoras.png}{scale=1}
-\else%
-\tikzsetnextfilename{Pythagoras}
+\MTikzAuto{%
 \begin{tikzpicture}
 \coordinate[label=above:$C$]       (C) at (0,0);
 \coordinate[label=below right:$B$] (B) at ($ (C) + (2,-4) $);
@@ -1038,46 +1388,64 @@ $p = \left| \overline{AD} \right|$ und $q = \left| \overline{BD} \right|$, so gi
 \draw (C) -- node[sloped, right, rotate=-90]{$h_c$} (D);
 \path (A) -- node[sloped, above]{$p$} (D) -- node[sloped, above]{$q$} (B) -- node[sloped, below]{$c$} (A);
 \end{tikzpicture}
-\fi
+}
 \end{minipage}
 \end{tabular}
 \begin{itemize}
 	\item \textbf{Satz des Pythagoras}\\
-		Die Summe der Quadrate über den Katheten haben den gleichen Flächeninhalt wie das Quadrat über der Hypotenuse. So gilt für das hier abgebildete Dreieck: \[a^2+b^2=c^2 \MDFPeriod\]
+		Die Summe der Quadrate \"uber den Katheten haben den gleichen Fl\"acheninhalt wie das Quadrat \"uber der Hypotenuse. So gilt f\"ur das hier abgebildete Dreieck: \[a^2+b^2=c^2 \MDFPeriod\]
 		Werden die Seiten des Dreiecks anders bezeichnet, muss die Gleichung entsprechend angepasst werden!
 	\item \textbf{Kathetensatz}\\
-		Das Quadrat über einer Kathete ist flächeninhaltsgleich dem Rechteck aus der Hypotenuse und dem anliegenden Hypotenusenabschnitt: \[a^2=c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
-	\item \textbf{Höhensatz}\\
-		Das Quadrat über der Höhe ist flächeninhaltsgleich dem Rechteck aus den beiden Hypotenusenabschnitten: \[h^2=p\cdot q \MDFPeriod\]	
+		Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus der Hypotenuse und dem anliegenden Hypotenusenabschnitt: \[a^2=c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
+	\item \textbf{H\"ohensatz}\\
+		Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus den beiden Hypotenusenabschnitten: \[h^2=p\cdot q \MDFPeriod\]	
 \end{itemize}
 \end{MInfo}
 
 \begin{MExample}
-Gegeben sei ein rechtwinkliges Dreieck mit den Kathetenlängen $a=3$ und $b=4$.\\
+Gegeben sei ein rechtwinkliges Dreieck mit den Kathetenl\"angen $a=3$ und $b=4$.\\
 \ \\
-Wir können die Hypotenuse mit Hilfe des Satzes von Pythagoras berechnen:
+Die L\"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras berechnet werden:
 \[c^2=\sqrt{a^2 + b^2}=\sqrt{9 + 16}=\sqrt{25}=5 \MDFPeriod\]
-Die einzelnen Hypotenusenabschnitte $p$ und $q$ berechnen wir mit dem Kathetensatz:
+Die einzelnen Hypotenusenabschnitte $p$ und $q$ berechnen sich gem\"a\ss\ dem Kathetensatz zu:
 \[q=\frac{a^2}{c}=\frac{9}{5} \MDFPSpace, \MDFPaSpace p=\frac{b^2}{c}=\frac{16}{5} \MDFPeriod\]
-Die Höhe $h_c$ erhalten wir mit dem Höhensatz:
+Die H\"ohe $h_c$ erh\"alt man mit dem H\"ohensatz:
 \[h_c=\sqrt{p\cdot q}=\sqrt{\frac{9}{5}\cdot\frac{16}{5}}=\sqrt{\frac{144}{25}}=\frac{12}{5} \MDFPeriod\]
 \end{MExample}
 
 \begin{MExercise}
-Berechnen Sie für ein rechtwinkliges Dreieck mit der Hypotenuse $c=\MZahl{10}{5}$, der Höhe $h_c=\MZahl{5}{04}$ und dem Hypotenusenabschnitt $q=\MZahl{3}{78}$ die Länge der beiden Katheten.
+Berechnen Sie f\"ur ein rechtwinkliges Dreieck mit der Hypotenuse $c=\MZahl{10}{5}$, der H\"ohe $h_c=\MZahl{5}{04}$ und dem Hypotenusenabschnitt $q=\MZahl{3}{78}$ die L\"ange der beiden Katheten.
 
-\begin{MHint}{Lösung}
+\begin{MHint}{L\"osung}
 \[\text{Kathetensatz:} \quad a=\sqrt{c\cdot q}=\sqrt{\MZahl{10}{5} \cdot \MZahl{3}{78}}=\MZahl{6}{3} \MDFPSpace;\]
 \[\text{Satz des Pythagoras:} \quad b=\sqrt{c^2-a^2} = \sqrt{{\MZahl{10}{5}}^2-{\MZahl{6}{3}}^2}=\MZahl{8}{4} \MDFPeriod\]
 \end{MHint}
 \end{MExercise}
 
-Es gibt noch einen weiteren wichtigen Satz, der für rechtwinklige Dreiecke gültig ist:
+Es gibt noch einen weiteren wichtigen Satz, der f\"ur rechtwinklige Dreiecke g\"ultig ist:
 \begin{MInfo}
 \textbf{Satz des Thales}\\
 \ \\
 \begin{tabular}{lr}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\draw[color=black, thick] (-3,0) -- (3,0);
+\draw[color=black, thick] (3,0) arc (0:180:3);
+\draw[color=red, thick] (-3,0) -- (50:3) -- (3,0);
+\draw[color=red, thick] (-3,0) -- (100:3) -- (3,0);
+\draw[color=black] (50:3) ++(295:0.6) arc (295:205:0.6);
+\draw[color=black] (100:3) ++(320:0.6) arc (320:230:0.6);
+\fill[color=black] (50:3) ++(250:0.3) circle (1.0pt);
+\fill[color=black] (100:3) ++(275:0.3) circle (1.0pt);
+\draw[color=black] (0,0) node[anchor=north] {$M$};
+\draw[color=black] (-1.5,0) node[anchor=south] {$r$};
+\draw[color=black] (1.5,0) node[anchor=south] {$r$};
+\draw (0,0) -- (50:3) (0,0) -- (100:3);
+\node[anchor=north west] at (50:1.5) {$r$};
+\node[anchor=west] at (100:1.8) {$r$};
+\end{tikzpicture}
+}
 &
 \begin{minipage}[b]{7cm}
 Hat das Dreieck $ABC$ bei $C$ einen rechten Winkel, so liegt $C$ auf einem Kreis mit der Hypotenuse $c=\overline{AB}$ als Durchmesser.
@@ -1086,31 +1454,53 @@ Hat das Dreieck $ABC$ bei $C$ einen rechten Winkel, so liegt $C$ auf einem Kreis
 \end{tabular}
 \end{MInfo}
 
-Wenn man also über einer Strecke $\overline{AB}$ einen Halbkreis konstruiert und dann $A$ und $B$ mit einem beliebigen Punkt $C$ auf dem Halbkreis verbindet, dann ist das so entstandene Dreieck immer rechtwinklig.
+Wenn man also \"uber einer Strecke $\overline{AB}$ einen Halbkreis konstruiert und dann $A$ und $B$ mit einem beliebigen Punkt $C$ auf dem Halbkreis verbindet, dann ist das so entstandene Dreieck immer rechtwinklig.
 
 \begin{MExample}\MLabel{ThaleskreisAufgabe}
-Es soll ein rechtwinkliges Dreieck mit der Hypotenusenlänge $c=6\MEinheit{cm}$ und der Höhe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.\\
+Es soll ein rechtwinkliges Dreieck mit der Hypotenusenl\"ange $c=6\MEinheit{cm}$ und der H\"ohe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.\\
 \ \\
 \begin{tabular}{lr}
 \begin{minipage}[b]{7cm}
   \begin{enumerate}
     \item Zuerst zeichnet man die Hypotenuse \newline $c=\overline{AB}$.\\
-    \item Die Mitte der Hypotenuse wird nun zum Mittelpunkt eines Kreises mit der Länge $c/2$.\\
+    \item Die Mitte der Hypotenuse wird nun zum Mittelpunkt eines Kreises mit der L\"ange $c/2$.\\
     \item Nun zeichnet man eine Parallelle zur Hypotenuse im Abstand $h_c$. Es gibt zwei Schnittpunkte $C$ und $C'$ dieser Parallelen mit dem Thaleskreis. 
   \end{enumerate}
 \end{minipage}
 &
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis_Konstruktion.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis_Konstruktion.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.2cm, y=1.2cm] 
+\draw[color=red, thick] (-3,0) -- (3,0);
+\draw[color=blue, thick] (3,0) arc (0:180:3);
+\draw[color=red, thick, dashed] (-3,2.5) -- (3,2.5);
+\fill[color=black, opacity=0.5] (0,0) circle (2.0pt);
+\draw[color=black, thick] (-3,0) -- (-1.658312395,2.5) -- (3,0);
+\draw[color=black, thick, dashed] (-3,0) -- (1.658312395,2.5) -- (3,0);
+\draw[color=black] (-1.658312395,0) -- (-1.658312395,2.5);
+\draw[color=gray, dashed] (1.658312395,0) -- (1.658312395,2.5);
+\draw[color=black] (-3,0) node[anchor=north east] {$A$};
+\draw[color=black] (3,0) node[anchor=north west] {$B$};
+\draw[color=black] (0,-2pt) node[anchor=north] {$M$};
+\draw[color=black] (-1.658312395,1.10) node[anchor=east] {$h_c$};
+\draw[color=black] (1.658312395,1.10) node[anchor=west] {$h_c$};
+\node[anchor=south east] at (-1.658312395,2.5) {$C$};
+\node[anchor=south west] at (1.658312395,2.5) {$C'$};
+\draw[color=red] (-1.5,0) node[anchor=north] {\large $\mathsf{1}$};
+\draw[color=blue] (30:3) node[anchor=west] {\large $\mathsf{2}$};
+\draw[color=red] (3,2.5) node[anchor=south east] {\large $\mathsf{3}$};
+\end{tikzpicture}
+}
 \end{tabular}\\
-Diese sind jeweils die dritte Ecke eines Dreiecks, das die geforderten Eigenschaften hat, das heißt, man erhält zwei Lösungen.
-Würde man noch einen Thaleskreis nach unten zeichen, so ergäben sich noch mal zwei Lösungen.
+Diese sind jeweils die dritte Ecke eines Dreiecks, das die geforderten Eigenschaften hat, das hei\ss t, man erh\"alt zwei L\"osungen.
+W\"urde man noch einen Thaleskreis nach unten zeichen, so erg\"aben sich noch mal zwei L\"osungen.
 \end{MExample}
 
 \begin{MExercise}
-Welche Höhe $h_c$ kann ein rechtwinkliges Dreieck mit der Hypotenuse $c$ maximal haben?
+Welche H\"ohe $h_c$ kann ein rechtwinkliges Dreieck mit der Hypotenuse $c$ maximal haben?
 
-\begin{MHint}{Lösung}
-Die Höhe $h_c$ kann maximal so groß werden wie der Radius des Thaleskreises über der Hypotenuse, also $h_c\leq c/2$.
+\begin{MHint}{L\"osung}
+Die H\"ohe $h_c$ kann maximal so gro\ss\ werden wie der Radius des Thaleskreises \"uber der Hypotenuse, also $h_c\leq c/2$.
 \end{MHint}
 \end{MExercise}
 
@@ -1140,10 +1530,7 @@ Beachten Sie die Breite der Hecke!
 
 \begin{MHint}{L\"osung}
 \begin{center}
-\ifttm%
-\MGraphicsSolo{Mathematik_ElementareGeometrie_HeckeBaum.png}{scale=1}
-\else%
-\tikzsetnextfilename{HeckeBaum}
+\MTikzAuto{%
 \begin{tikzpicture}[x=0.75cm, y=0.75cm]
 \coordinate (KF) at (0,0);
 \coordinate (KK) at (0,1.4);
@@ -1157,11 +1544,11 @@ Beachten Sie die Breite der Hecke!
 \draw (KF) -- ++ (0,-0.3) ++(0,0.15) -- node[below]{$\MZahl{2}{5}\MEinheit{m}$} ($ (HF) + (-0.5,-0.15) $) ++(0,-0.15) -- ++(0,0.3);
 \draw ($ (HF) + (0.5,0) $) -- ++ (0,-0.3) ++(0,0.15) -- node[below]{$\MZahl{14}{5}\MEinheit{m}$} ($ (BF) + (0,-0.15) $) ++(0,-0.15) -- ++(0,0.3);
  \node at (HF) [below]{$1\MEinheit{m}$};
- \draw ($ (KF)!0.5!(BF) $) -- node[right]{$h_K = \MZahl{1}{4}\MEinheit{m}$} ($ (KK)!0.5!(BM) $) ++ (-0.15,0) -- ++(0.3,0);
- \draw (BF) -- node[right]{$h_B$} (BK) ++ (-0.15,0) -- ++(0.3,0);
- \draw ($ (HF) + (0.75,0) $) -- node[below right]{$h_H = \MZahl{2}{4}\MEinheit{m}$} ($ (HK) + (0.75,0) $) ++ (-0.15,0) -- ++(0.3,0);
- \draw (KK) -- ++ (0,-0.3) ++(0,0.15) -- node[below]{$d_{KH}$} ($ (HF) + (KK) - (KF) + (0,-0.15) $) ++(0,-0.15) -- ++(0,0.3);
- \draw (KK) -- ++ (0,0.3) ++(0,-0.15) -- node[above]{$d_{KB}$} ($ (BM) + (0,0.15) $) ++(0,0.15) -- ++(0,-0.3);
+ \draw ($ (KF)!0.5!(BF) $) -- node[right]{$h_{\mathrm{K}} = \MZahl{1}{4}\MEinheit{m}$} ($ (KK)!0.5!(BM) $) ++ (-0.15,0) -- ++(0.3,0);
+ \draw (BF) -- node[right]{$h_{\mathrm{B}}$} (BK) ++ (-0.15,0) -- ++(0.3,0);
+ \draw ($ (HF) + (0.75,0) $) -- node[below right]{$h_{\mathrm{H}} = \MZahl{2}{4}\MEinheit{m}$} ($ (HK) + (0.75,0) $) ++ (-0.15,0) -- ++(0.3,0);
+ \draw (KK) -- ++ (0,-0.3) ++(0,0.15) -- node[below]{$d_{\mathrm{KH}}$} ($ (HF) + (KK) - (KF) + (0,-0.15) $) ++(0,-0.15) -- ++(0,0.3);
+ \draw (KK) -- ++ (0,0.3) ++(0,-0.15) -- node[above]{$d_{\mathrm{KB}}$} ($ (BM) + (0,0.15) $) ++(0,0.15) -- ++(0,-0.3);
 \end{scope}
 \draw (KF) ++ (-0.2,0) -- ++ (0.2,0.5) -- ++ (0.2,-0.5)
       (KF) ++ (0,0.5) -- ++ (0,0.5)
@@ -1174,23 +1561,23 @@ Beachten Sie die Breite der Hecke!
 \draw (KK) -- (BK) ($ (KF)!-0.05!(BF) $) -- ($ (BF)!-0.05!(KF) $);
 \draw[dashed] (KK) -- (BM);
 \end{tikzpicture}
-\fi
+}
 \end{center}
 
-Wir wenden den zweiten Strahlensatz $\left( \frac{\text{komplett}}{\text{vorne}} = \frac{\text{lang}}{\text{kurz}} \right)$
-an:
+Eine Anwendung des zweiten Strahlensatz $\left( \frac{\text{komplett}}{\text{vorne}} = \frac{\text{lang}}{\text{kurz}} \right)$
+liefert:
 \[
-   \frac{d_{KB}}{d_{KH}}
- = \frac{h_B - h_K}{h_H - h_K}
+\frac{d_{\mathrm{KB}}}{d_{\mathrm{KH}}}
+= \frac{h_{\mathrm{B}} - h_{\mathrm{K}}}{h_{\mathrm{H}} - h_{\mathrm{K}}}
  \qquad \text{bzw.} \qquad
-   h_B = \left( h_H - h_K \right) \cdot \frac{d_{KB}}{d_{KH}} + h_K \MDFPeriod
+ h_{\mathrm{B}} = \left( h_{\mathrm{H}} - h_{\mathrm{K}} \right) \cdot \frac{d_{\mathrm{KB}}}{d_{\mathrm{KH}}} + h_{\mathrm{K}} \MDFPeriod
 \]
 
-Nun gelten $d_{KH} = \MZahl{2}{5}\MEinheit{m} + \frac{1\MEinheit{m}}{2} = 3\MEinheit{m}$
-und $d_{KB} = \MZahl{2}{5}\MEinheit{m} + 1\MEinheit{m} + \MZahl{14}{5}\MEinheit{m} = 18\MEinheit{m}$.
+Nun gelten $d_{\mathrm{KH}} = \MZahl{2}{5}\MEinheit{m} + \frac{1\MEinheit{m}}{2} = 3\MEinheit{m}$
+und $d_{\mathrm{KB}} = \MZahl{2}{5}\MEinheit{m} + 1\MEinheit{m} + \MZahl{14}{5}\MEinheit{m} = 18\MEinheit{m}$.
 Damit folgt
 \[
-   h_B
+  h_{\mathrm{B}}
    = \left( \MZahl{2}{4}\MEinheit{m} - \MZahl{1}{4}\MEinheit{m} \right) \cdot \frac{18\MEinheit{m}}{3\MEinheit{m}} + \MZahl{1}{4}\MEinheit{m}
    = 1\MEinheit{m} \cdot 6 + \MZahl{1}{4}\MEinheit{m}
    = \MZahl{7}{4}\MEinheit{m} \MDFPeriod
@@ -1208,14 +1595,15 @@ Damit folgt
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Intro}
-Im vorherigen Abschnitt haben wir uns bei rechtwinkligen Dreiecken mit deren Seiten beschäftigt. Nun werden wir uns auch den anderen Winkeln im rechtwinkligen Dreieck zuwenden und ihren Beziehung zu den Seiten. Daraus können wir dann auch die Höhe $h$ eines nicht rechtwinkligen Dreiecks berechnen, die man für die Flächenberechnung benötigt, die oftmals aber nicht gegeben hat.
+Der vorherige Abschnitt besch\"aftigte sich unter anderem mit den Seiten rechtwinkliger Dreiecke.
+Im nun folgenden Abschnitt sollen auch die beiden anderen Winkel im rechtwinkligen Dreieck in die Betrachtung miteinbezogen und deren Beziehung zu den Seiten erhellt werden. Dies erm\"oglicht es dann auch die H\"ohe $h$ eines nicht rechtwinkligen Dreiecks zu berechnen, die man einerseits f\"ur die Fl\"achenberechnung ben\"otigt, die jedoch andererseits oftmals gar nicht explizit gegeben ist.
 \end{MIntro}
 
 \begin{MXContent}{Trigonometrie am Dreieck}{Dreieck}{STD}
 \MLabel{Abschnitt:TrigonometrieAmDreieck}
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Content}
 
-Durch die Strahlens\"atze haben wir gesehen, dass die Verh\"altnisse der
+Mithilfe der Strahlens\"atze konnte gezeigt werden, dass die Verh\"altnisse der
 Seiten in einem Dreieck lediglich von den Winkeln des Dreiecks abh\"angen. \"Andert man
 in einem Strahlensatz den Winkel bei~$S$ oder den Winkel, in dem die
 parallelen Geraden einen Strahl schneiden, so \"andern sich nat\"urlich
@@ -1224,25 +1612,50 @@ Legt man hingegen einen der beiden Winkel fest, so kann man die
 Verh\"altnisse in Abh\"angigkeit von dem anderen Winkel als Funktion
 von einer Variablen darstellen.\\
 \ \\
-Wir legen nun den Winkel $\gamma$ fest auf $\gamma\,=\,\pi/2$, das heißt wir betrachten ein rechtwinkliges Dreieck. Nun sind die Seitenverhältnisse nur vom Winkel $\alpha$ abhängig, der Winkel $\beta$ ergibt sich aus der Winkelinnensumme des Dreiecks. Wir erhalten eine Schar von ähnlichen Dreiecken, wobei die Seiten $c$, $c'$, ... die Hypotenusen sind. Im Hinblick auf den betrachteten Winkel $\alpha$ bezeichnet man die dem Winkel gegenüberliegen Seiten $a$, $a'
-$, ... als \textbf{Gegenkatheten} und die am Winkel anliegenden Seiten $b$, $b'$, ... als \textbf{Ankatheten}.\\
-Wendet man nun die Strahlensätze an, so erhält man folgende Erkenntnisse: 
+Es sei nun der Winkel $\gamma$ auf $\gamma\,=\,\pi/2$ festgelegt, das hei\ss t es werde ein rechtwinkliges Dreieck betrachtet mit rechtem Winkel bei $\gamma$. Nun sind die Seitenverh\"altnisse nur vom Winkel $\alpha$ abh\"angig, der Winkel $\beta$ ergibt sich n\"amlich aus der Winkelinnensumme des Dreiecks. Dies f\"uhrt zu einer ganzen Schar von \"ahnlichen Dreiecken, wobei die Seiten $c$, $c'$, $\ldots$ die Hypotenusen sind. Im Hinblick auf den betrachteten Winkel $\alpha$ bezeichnet man die dem Winkel gegen\"uberliegen Seiten
+$a$, $a'$, $\ldots$ als \textbf{Gegenkatheten} und die am Winkel anliegenden Seiten $b$, $b'$, $\ldots$ als \textbf{Ankatheten}.\\
+Wendet man nun die Strahlens\"atze an, so gelangt man zu folgenden Erkenntnissen: 
 
 \begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_Def:Trigonometrie}%
 \textbf{Die trigonometrischen Funktionen im rechtwinkligen Dreieck}
 
 \begin{center}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_TrigonometrieDefinition_1.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_TrigonometrieDefinition_1.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\pgfmathparse{sin(39)/sin(91)}\let\laf\pgfmathresult
+\pgfmathparse{sin(50)/sin(91)}\let\lbf\pgfmathresult
+\draw[color=black, thick] (0,0) -- (23:9) (0,0) -- (62:7);
+\draw[color=black, thick] (23:5.4) -- +(153:{5.4*\laf});
+\draw[color=black, thin] (0,0) ++(23:1.2) arc (23:62:1.2);
+\draw[color=black] (0,0) ++(42.5:0.8) node {$\alpha$};
+\draw[color=black, thin] (23:5.4) ++(153:1.2) arc (153:203:1.2);
+\draw[color=black] (23:5.4) ++(178:0.8) node {$\beta$};
+\draw[color=black, thin] (23:5.4) ++(153:{5.4*\laf}) ++(242:0.9) arc (242:333:0.9);
+\draw[color=black] (23:5.4) ++(153:{5.4*\laf}) ++(287.5:0.6) node {$\gamma$};
+\path (23:5.4) ++(153:{5.4*0.5*\laf}) node[anchor=south west] {$a$};
+\path (62:{5.4*0.5*\lbf}) node[anchor=south east] {$b$};
+\path (23:{5.4*0.5}) node[anchor=north west] {$c$};
+\draw[color=black, thick, loosely dashed] (23:7.0) -- +(153:{7.0*\laf});
+\path (23:7.0) ++(153:{7.0*0.5*\laf}) node[anchor=south west] {$a'$};
+\path (62:{6.4*\lbf}) node[anchor=south east] {$b'$};
+\path (23:{6.4}) node[anchor=north west] {$c'$};
+\draw[color=black, thick, loosely dotted] (23:8.4) -- +(153:{8.4*\laf});
+\path (23:8.4) ++(153:{8.4*0.5*\laf}) node[anchor=south west] {${a'}'$};
+\path (62:{7.7*\lbf}) node[anchor=south east] {${b'}'$};
+\path (23:{7.7}) node[anchor=north west] {${c'}'$};
+\end{tikzpicture}
+}
 \end{center}
 
 \begin{itemize}
- \item Das Verhältnis \[\frac{a}{c}=\frac{a'}{c'}=\frac{  {a'}'}{{c'}'}=\ldots=\frac{\text{Gegenkathete}}{\text{Hypotenuse}}:=\sin\left(\alpha\right)\]
+ \item Das Verh\"altnis \[\frac{a}{c}=\frac{a'}{c'}=\frac{  {a'}'}{{c'}'}=\ldots=\frac{\text{Gegenkathete}}{\text{Hypotenuse}}:=\sin\left(\alpha\right)\]
  bezeichnet man als den \textbf{Sinus} des Winkels $\alpha$.
  
- \item  Das Verhältnis \[\frac{b}{c}=\frac{b'}{c'}=\frac{{b'}'}{{c'}'}=\ldots=\frac{\text{Ankathete}}{\text{Hypotenuse}}:=\cos\left(\alpha\right)\]
+ \item  Das Verh\"altnis \[\frac{b}{c}=\frac{b'}{c'}=\frac{{b'}'}{{c'}'}=\ldots=\frac{\text{Ankathete}}{\text{Hypotenuse}}:=\cos\left(\alpha\right)\]
  bezeichnet man als den \textbf{Kosinus} des Winkels $\alpha$.
  
- \item Das Verhältnis \[\frac{a}{b}=\frac{a'}{b'}=\frac{{a'}'}{{b'}'}=\ldots=\frac{\text{Gegenkathete}}{\text{Ankathete}}:=\tan\left(\alpha\right)\]
+ \item Das Verh\"altnis \[\frac{a}{b}=\frac{a'}{b'}=\frac{{a'}'}{{b'}'}=\ldots=\frac{\text{Gegenkathete}}{\text{Ankathete}}:=\tan\left(\alpha\right)\]
  bezeichnet man als den \textbf{Tangens} des Winkels $\alpha$.
 \end{itemize}
 
@@ -1251,44 +1664,44 @@ Wendet man nun die Strahlensätze an, so erhält man folgende Erkenntnisse:
 Der Tangens des Winkels $\alpha$ ist nach der Definition \[\tan\left(\alpha\right)=\frac{a}{b}=\frac{a}{b}\cdot\frac{c}{c}=\frac{a}{c}\cdot\frac{c}{b}=\frac{\sin\left(\alpha\right)}{\cos\left(\alpha\right)} \MDFPeriod\]
 
 \begin{MExample}
-Von einem Dreieck ist bekannt, dass es einen rechten Winkel $\gamma=\frac{\pi}{2}=90^\circ$ hat. Die Seite $c$ ist $5\MEinheit{cm}$, die Seite $a$ ist $\MZahl{2}{5}\MEinheit{cm}$ lang. Wir wollen jeweils den Sinus, Kosinus und Tangens des Winkels $\alpha$ bestimmen:
+Von einem Dreieck ist bekannt, dass es einen rechten Winkel $\gamma=\frac{\pi}{2}=90^\circ$ hat. Die Seite $c$ ist $5\MEinheit{cm}$, die Seite $a$ ist $\MZahl{2}{5}\MEinheit{cm}$ lang. Es sollen jeweils der Sinus, Kosinus und Tangens des Winkels $\alpha$ bestimmt werden:
 
-Den Sinus können wir sofort aus den Angaben berechnen:
+Der Sinus l\"asst sich sofort aus den Angaben berechnen:
 \[\sin\left(\alpha\right)=\frac{a}{c}=\frac{\MZahl{2}{5}\MEinheit{cm}}{5\MEinheit{cm}}=\MZahl{0}{5} \MDFPeriod\]
-Für den Kosinus benötigen wir die Länge der Seite $b$, die wir mit Hilfe des Satzes von Pythagoras erhalten:
+F\"ur den Kosinus wird die L\"ange der Seite $b$ ben\"otigt, welche man mithilfe des Satzes von Pythagoras erh\"alt:
 \[b^2=c^2-a^2\quad\Rightarrow\quad\cos\left(\alpha\right)=\frac{b}{c}=\frac{\sqrt{c^2-a^2}}{c}=\frac{\sqrt{\left(5\MEinheit{cm}\right)^2-\left(\MZahl{2}{5}\MEinheit{cm}\right)^2}}{5\MEinheit{cm}}=\MZahl{0}{866} \MDFPeriod\]
-Daraus folgt für den Tangens
+Daraus folgt f\"ur den Tangens
 \[\tan\left(\alpha\right)=\frac{\sin\left(\alpha\right)}{\cos\left(\alpha\right)}=\frac{\MZahl{0}{5}}{\MZahl{0}{866}}=\MZahl{0}{5773} \MDFPeriod\]
 \end{MExample}
 
 
 \begin{MExercise}\MLabel{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle}
-Die Hypotenuse $c=5$ ist vorgegeben. Zeichnen Sie mit Hilfe des Thaleskreises (Maßstab $ 1\hat{=}2\MEinheit{cm}$
-die rechtwinkligen Dreiecke für die Winkel $\alpha\in\left\{0^\circ\MElSetSep 10^\circ\MElSetSep 20^\circ\MElSetSep 30^\circ\MElSetSep 40^\circ\MElSetSep 45^\circ\MElSetSep
+Die Hypotenuse $c=5$ ist vorgegeben. Zeichnen Sie mithilfe des Thaleskreises (Ma\ss stab $ 1\hat{=}2\MEinheit{cm}$
+die rechtwinkligen Dreiecke f\"ur die Winkel $\alpha\in\left\{0^\circ\MElSetSep 10^\circ\MElSetSep 20^\circ\MElSetSep 30^\circ\MElSetSep 40^\circ\MElSetSep 45^\circ\MElSetSep
 50^\circ\MElSetSep 60^\circ\MElSetSep 70^\circ\MElSetSep 80^\circ\MElSetSep 90^\circ\right\}$.
 
 Messen Sie die Seiten $a$ und $b$ und schreiben Sie sie in eine Tabelle. Berechnen Sie zu jedem Dreieck den Sinus, Kosinus und Tangens.
 
 Schauen Sie sich die Werte genauer an und versuchen Sie, sie zu interpretieren.
 
-Tragen Sie die Werte von Sinus, Kosinus und Tangens in Abhängigkeit des Winkels $\alpha$ in ein Diagramm.
+Tragen Sie die Werte von Sinus, Kosinus und Tangens in Abh\"angigkeit des Winkels $\alpha$ in ein Diagramm.
 
-\begin{MHint}{Lösung}
+\begin{MHint}{L\"osung}
 Beim Messen entstehen immer Messfehler!
-Die Tabelle könnte folgendermaßen aussehen:
+Die Tabelle k\"onnte folgenderma\ss en aussehen:
 
 \begin{center}
 \begin{tabular}{r|r|r|r|r|r}\hline
 	$\alpha$ 		& $a$ 				& $b$ 				& $\sin\left(\alpha\right)$ & $\cos\left(\alpha\right)$ & $\tan\left(\alpha\right)$\\ \hline\hline
 	0 						& $\MZahl{0}{0}$		& $\MZahl{5}{0}$ 	& $\MZahl{0}{0}$		& $\MZahl{1}{0}$	& $\MZahl{0}{0}$\\ \hline
 	$10^\circ$		& $\MZahl{0}{8}$	& $\MZahl{4}{9}$	& $\MZahl{0}{160}$	& $\MZahl{0}{98}$	& $\MZahl{0}{1633}$\\ \hline
-	$20^\circ$		& $\MZahl{1}{7}$	& $\MZahl{4}{7}$	& $\MZahl{0}{34}$	& $\MZahl{0}{96}$	& $\MZahl{0}{3617}$\\ \hline
+	$20^\circ$		& $\MZahl{1}{7}$	& $\MZahl{4}{7}$	& $\MZahl{0}{34}$	& $\MZahl{0}{94}$	& $\MZahl{0}{3617}$\\ \hline
 	$30^\circ$		& $\MZahl{2}{5}$	& $\MZahl{4}{3}$	& $\MZahl{0}{5}$	& $\MZahl{0}{86}$	& $\MZahl{0}{5814}$\\ \hline
 	$40^\circ$		& $\MZahl{3}{2}$	& $\MZahl{3}{8}$	& $\MZahl{0}{64}$	& $\MZahl{0}{76}$	& $\MZahl{0}{8421}$\\ \hline
 	$45^\circ$		& $\MZahl{3}{5}$	& $\MZahl{3}{5}$	& $\MZahl{0}{7}$	& $\MZahl{0}{7}$	& $\MZahl{1}{0}$\\ \hline
 	$50^\circ$		& $\MZahl{3}{8}$	& $\MZahl{3}{27}$	& $\MZahl{0}{76}$	& $\MZahl{0}{64}$	& $\MZahl{1}{1875}$\\ \hline
 	$60^\circ$		& $\MZahl{4}{3}$	& $\MZahl{2}{5}$	& $\MZahl{0}{86}$	& $\MZahl{0}{5}$	& $\MZahl{1}{7200}$\\ \hline
-	$70^\circ$		& $\MZahl{4}{7}$	& $\MZahl{1}{7}$	& $\MZahl{0}{96}$	& $\MZahl{0}{34}$	& $\MZahl{2}{7647}$\\ \hline
+	$70^\circ$		& $\MZahl{4}{7}$	& $\MZahl{1}{7}$	& $\MZahl{0}{94}$	& $\MZahl{0}{34}$	& $\MZahl{2}{7647}$\\ \hline
 	$80^\circ$		& $\MZahl{4}{9}$	& $\MZahl{0}{8}$	& $\MZahl{0}{98}$	& $\MZahl{0}{160}$	& $\MZahl{6}{1250}$\\ \hline
 	$90^\circ$		& $\MZahl{5}{0}$		& $\MZahl{0}{0}$	& $\MZahl{1}{0}$	& $\MZahl{0}{0}$	& $\rightarrow\infty$\\ \hline
 \end{tabular}
@@ -1299,7 +1712,7 @@ Die Tabelle könnte folgendermaßen aussehen:
 
 Ebenso verhalten sich $\sin\left(\alpha\right)\sim a$ und $\cos\left(\alpha\right)\sim b$.
 
-\item Mit zunehmendem Winkel $\alpha$ nimmt $a$ in dem gleichen Maß zu wie $b$ mit dem von $90^\circ$ aus fallenden Winkel $\alpha$ abnimmt. Im Thaleskreis sind die beiden Dreiecke mit den entgegengesetzten Werten für $a$ und $b$ die zwei Lösungen für die Konstruktion eines rechtwinkligen Dreiecks mit gegebener Hypotenuse und gegebener Höhe (Aufgabe \MRef{ThaleskreisAufgabe}).
+\item Mit zunehmendem Winkel $\alpha$ nimmt $a$ in dem gleichen Ma\ss\ zu wie $b$ mit dem von $90^\circ$ aus fallenden Winkel $\alpha$ abnimmt. Im Thaleskreis sind die beiden Dreiecke mit den entgegengesetzten Werten f\"ur $a$ und $b$ die zwei L\"osungen f\"ur die Konstruktion eines rechtwinkligen Dreiecks mit gegebener Hypotenuse und gegebener H\"ohe (Aufgabe \MRef{ThaleskreisAufgabe}).
 
 Ebenso verhalten sich Sinus und Kosinus zueinander: es ist also
 
@@ -1310,60 +1723,142 @@ $\cos\left(\alpha\right)=\sin\left(90^\circ-\alpha\right)=\sin\left(\pi/2-\alpha
 
 \item Bei $\alpha=45^\circ$ sind die Katheten und damit auch Sinus und Kosinus von $\alpha$ gleich.
 
-\item Der Tangens, also das Verhältnis von $a$ zu $b$, steigt mit zunehmendem Winkel $\alpha$ von Null ins Unendliche. 
+\item Der Tangens, also das Verh\"altnis von $a$ zu $b$, steigt mit zunehmendem Winkel $\alpha$ von Null ins Unendliche. 
 \end{itemize}
 
-Das Diagramm sieht folgendermaßen aus:
+Das Diagramm sieht folgenderma\ss en aus:
 
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Diagramm.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Diagramm.png}{scale=1}
+\MTikzAuto{%
+\pgfkeys{/pgf/number format/set decimal separator={{{\MZXYZhltrennzeichen}}}}
+\begin{tikzpicture}[x=0.1cm, y=5.4cm] 
+%Koordinatensystem
+\node (xMAX) at (102.0,0){};
+\node (yMAX) at (0,1.15){};
+%%\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
+\draw[-stealth',color=black] (-5,0) -- (xMAX);
+\foreach \x in {10, 20, 30, 40, 50, 60, 70, 80, 90}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\normalsize $\x^\circ$};
+\draw[-stealth',color=black] (0,-0.12) -- (yMAX);
+\foreach \y in {0.25, 0.5, 0.75, 1}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-6pt,0pt)  node[left] {\normalsize $\pgfmathprintnumber{\y}$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$\alpha$};
+\draw[color=blue] (yMAX) ++(0.,-16pt) node[anchor=south east] {$\cos(\alpha)$};
+\draw[color=red] (yMAX) ++(0.,-5pt) node[anchor=south east] {$\sin(\alpha)$};
+\fill[color=red] (90,1.0) circle (2.0pt);
+\fill[color=red] (80,0.98) circle (2.0pt);
+\fill[color=red] (70,0.94) circle (2.0pt);
+\fill[color=red] (60,0.86) circle (2.0pt);
+\fill[color=red] (50,0.76) circle (2.0pt);
+%\fill[color=red] (45,0.7) circle (2.0pt);
+\fill[color=red] (40,0.64) circle (2.0pt);
+\fill[color=red] (30,0.5) circle (2.0pt);
+\fill[color=red] (20,0.34) circle (2.0pt);
+\fill[color=red] (10,0.16) circle (2.0pt);
+\fill[color=red] (0,0.0) circle (2.0pt);
+\fill[color=blue] (0,1.0) circle (2.0pt);
+\fill[color=blue] (10,0.98) circle (2.0pt);
+\fill[color=blue] (20,0.94) circle (2.0pt);
+\fill[color=blue] (30,0.86) circle (2.0pt);
+\fill[color=blue] (40,0.76) circle (2.0pt);
+%\fill[color=blue] (45,0.7) circle (2.0pt);
+\fill[color=blue] (50,0.64) circle (2.0pt);
+\fill[color=blue] (60,0.5) circle (2.0pt);
+\fill[color=blue] (70,0.34) circle (2.0pt);
+\fill[color=blue] (80,0.16) circle (2.0pt);
+\fill[color=blue] (90,0.0) circle (2.0pt);
+\fill[color=magenta!50!black] (45,0.7) circle (2.0pt);
+%Beschriftung und Graphen
+%%\clip(-2.8,-0.5) rectangle (6,3);
+%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+\end{tikzpicture}
+}
 
 \end{MHint}
 \end{MExercise}
 
 
 \begin{MExample}
-Wir wollen den Sinus des Winkels $\alpha=45^\circ$ nun berechnen, also nicht aus gemessenen (= fehlerbehafteten) Werten berechnen, wie in der letzten Aufgabe.
+Es soll der Sinus des Winkels $\alpha=45^\circ$ nun exakt berechnet, also nicht wie in Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle} aus gemessenen (und damit fehlerbehafteten) Werten bestimmt werden.
 
 Wenn im rechtwinkligen Dreieck mit $\gamma=90^\circ$ der Winkel $\alpha$ gleich $45^\circ$ ist, so muss wegen der Innenwinkelsumme $\alpha+\beta+\gamma=\pi=180^\circ$ der Winkel $\beta$ auch gleich $45^\circ=\pi/4$ sein, und die beiden Katheten $a$ und $b$ sind gleich lang. Ein Dreieck mit zwei gleich langen Seiten nennt man \textbf{gleichschenklig}:
 
 \begin{tabular}{lr}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie45Grad.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie45Grad.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+%%\draw[help lines, gray!50, xstep=0.5, ystep=0.5] (0,0) grid (9,8);
+\draw[color=black, very thick] (0,0) -- (6,0) -- (3,3) -- cycle;
+\draw[color=black, thin] (0,0) ++(0:1.2) arc (0:45:1.2);
+\draw[color=black] (0,0) ++(22.5:0.8) node {\large $\alpha$};
+\draw[color=black, thin] (6,0) ++(135:1.2) arc (135:180:1.2);
+\draw[color=black] (6,0) ++(157.5:0.8) node {\large $\beta$};
+\draw[color=black, thin] (3,3) ++(225:1.2) arc (225:315:1.2);
+\fill[color=black] (3,3) ++(0,-0.6) circle (1.5pt);
+\draw[color=black] (4.5,1.5) node[anchor=south west] {\large $a$};
+\draw[color=black] (1.5,1.5) node[anchor=south east] {\large $b$};
+\draw[color=black] (3,0) node[anchor=north] {\large $c$};
+\end{tikzpicture}
+}
 &
 \begin{minipage}[b]{10cm}
 Es gilt: \[\sin\left(\alpha\right) = \sin\left(45^\circ\right) = \frac{a}{c} \MDFPeriod\]
-Außerdem gilt: \[a^2+b^2 = 2a^2 = c^2\quad\Rightarrow\quad c=\sqrt{2}\cdot a\]
+Au\ss erdem gilt: \[a^2+b^2 = 2a^2 = c^2\quad\Rightarrow\quad c=\sqrt{2}\cdot a\]
 \[\Rightarrow\quad \sin\left(45^\circ\right) = \sin\left(\pi/4\right)=\frac{a}{\sqrt{2}\cdot a} = \frac{1}{2}\cdot \sqrt{2} \MDFPeriod\]
 \end{minipage}
 \end{tabular}
-In der Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle} haben wir für den Sinus von $45^\circ$ einen Wert von $\MZahl{0}{7}$ erhalten, was dem errechneten Wert von $\frac{1}{2}\cdot \sqrt{2}$ schon recht nahe kommt.
+In der Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle} wurde der Sinus von $45^\circ$ durch einen Wert von $\MZahl{0}{7}$ angen\"hert, was dem tats\"achlichen Wert von $\frac{1}{2}\cdot \sqrt{2}$ schon recht nahe kommt.
 \end{MExample}
 
 \begin{MExample}\MLabel{Mathematik_ElementareGeometrie:Trigonometrie_Beispiel:gleichseitigesDreieck}%
-Wir betracheten nun ein \textbf{gleichseitiges} Dreieck. Wie der Name sagt, sind in diesem Dreieck alle Seiten gleich lang, und auch die Winkel sind alle gleich groß, nämlich $\alpha=\beta=\gamma = \frac{180^\circ}{3} = 60^\circ = \frac{\pi}{3}$.
-Das Dreieck ist nach dem Kongruenzsatz "`sss"' mit der Angabe einer Seite $a$ eindeutig bestimmt, und wir erhalten es, indem wir die Seite $a$ zeichnen und mit dem Zirkel einen Kreis mit dem Radius $a$ um jede Ecke schlagen. Der Schnittpunkt der Kreise ist nun die dritte Ecke.
+In diesem Beispiel soll ein \textbf{gleichseitiges} Dreieck betrachtet werden. Wie der Name sagt, sind in diesem Dreieck alle Seiten gleich lang, und auch die Winkel sind alle gleich gro\ss , n\"amlich $\alpha=\beta=\gamma = \frac{180^\circ}{3} = 60^\circ = \frac{\pi}{3}$.
+Das Dreieck ist nach dem Kongruenzsatz "`sss"' mit der Angabe einer Seite $a$ eindeutig bestimmt, und man erh\"alten dieses, indem man die Seite $a$ zeichnet und mit dem Zirkel einen Kreis vom Radius $a$ um jede Ecke schl\"agt. Der Schnittpunkt der Kreise ist nun die dritte Ecke.
 
 \begin{tabular}{lr}
 \begin{minipage}[b]{10.5cm}
-Dieses Dreieck hat keinen rechten Winkel. Zeichnen wir eine Höhe $h$ auf eine der Seiten $a$ ein, so erhalten wir zwei kongruente Dreiecke mit je einem rechten Winkel.
+Dieses Dreieck hat keinen rechten Winkel. Zeichnet man eine H\"ohe $h$ auf eine der Seiten $a$ ein, so erh\"alt man zwei kongruente Dreiecke mit je einem rechten Winkel.
 
 Es gilt nun: \[\sin\left(\alpha\right)=\sin\left(60^\circ\right)=\frac{h}{a} \MDFPeriod\]
 Nach dem Satz von Pythagoras ist \[\left(\frac{a}{2}\right)^2+h^2=a^2 \quad\Rightarrow\quad h^2=\frac{3}{4}a^2 \Rightarrow\quad h=\frac{1}{2}\sqrt{3}\cdot a\]
 \end{minipage}
 &
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie60Grad.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie60Grad.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+%%\draw[help lines, gray!50, xstep=0.5, ystep=0.5] (0,0) grid (9,8);
+\draw[color=black, very thick] (0,0) -- (5,0) -- (2.5,4.33) -- cycle;
+\draw[color=black, thin] (0,0) ++(0:1.2) arc (0:60:1.2);
+\draw[color=black] (0,0) ++(30:0.8) node {\large $\alpha$};
+\draw[color=black, thin] (5,0) ++(120:1.2) arc (120:180:1.2);
+\draw[color=black] (5,0) ++(150:0.8) node {\large $\alpha$};
+\draw[color=black, thin] (2.5,0) -- (2.5,3.13);
+\draw[color=black, gray, thin] (2.5,3.13) -- (2.5,4.33);
+\draw[color=black, thin] (2.5,4.33) ++(240:1.2) arc (240:300:1.2);
+\draw[color=black] (2.5,4.33) ++(270:0.8) node {\large $\alpha$};
+\draw[color=black, thin] (2.5,0) ++(90:0.8) arc (90:180:0.8);
+\fill[color=black] (2.5,0) ++(135:0.4) circle (1.5pt);
+\draw[color=black] (3.75,2.165) node[anchor=south west] {\large $a$};
+\draw[color=black] (1.25,2.165) node[anchor=south east] {\large $a$};
+\draw[color=black] (2.5,0.0) node[anchor=north] {\large $a$};
+\draw[color=black] (2.5,1.65) node[anchor=west] {\large $h$};
+\draw[color=black, gray, thin] (0,0) ++(50:5.0) arc (50:70:5.0);
+\draw[color=black, gray, thin] (5,0) ++(110:5.0) arc (110:130:5.0);
+\end{tikzpicture}
+}
 \end{tabular}
  \[\Rightarrow\quad\sin\left(60^\circ\right)=\sin\left(\frac{\pi}{3}\right)=\frac{1}{2}\cdot \sqrt{3} \MDFPeriod\]
  \ \\
-Aus diesem Dreieck können wir noch den Sinus eines weiteren Winkels berechnen: 
-Die Höhe $h$ teilt den oberen Winkel in zwei gleiche Teile, so dass wir in den beiden kleinen kongruenten Dreiecken jeweils den Winkel $30^\circ = \frac{\pi}{6}$ erhalten.
+Aus diesem Dreieck kann man noch den Sinus eines weiteren Winkels berechnen: 
+Die H\"ohe $h$ teilt den oberen Winkel in zwei gleiche Teile, sodass man in den beiden kleinen kongruenten Dreiecken jeweils den Winkel $30^\circ = \frac{\pi}{6}$ erh\"alt.
 Es ist nun \[\sin\left(30^\circ\right)=\sin\left(\frac{\pi}{6}\right)=\frac{a/2}{a}=\frac{1}{2} \MDFPeriod\]
 \end{MExample}
 
 \begin{MExercise}
-Berechnen Sie, auf die vorher gezeigten Beispiele Bezug nehmend, den exakten Wert des Kosinus für die Winkel $\alpha_1=30^\circ, \alpha_2=45^\circ$ und $\alpha_3=60^\circ$. Verwenden Sie die Erkenntnisse aus Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle}.
+Berechnen Sie, auf die vorher gezeigten Beispiele Bezug nehmend, den exakten Wert des Kosinus f\"ur die Winkel $\alpha_1=30^\circ, \alpha_2=45^\circ$ und $\alpha_3=60^\circ$. Verwenden Sie die Erkenntnisse aus Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle}.
 
-\begin{MHint}{Lösung}
-Aus der Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle} wissen wir, dass $\cos\left(\alpha\right)= \sin\left(90^\circ-\alpha\right)$.
+\begin{MHint}{L\"osung}
+Aus der Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle} ist bekannt, dass $\cos\left(\alpha\right)= \sin\left(90^\circ-\alpha\right)$.
 
 Daraus folgt
 \[\cos\left(30^\circ\right)=\sin\left(90^\circ-30^\circ\right)=\sin\left(60^\circ\right)=\frac{1}{2}\cdot\sqrt{3} \MDFPSpace, \]
@@ -1372,7 +1867,7 @@ Daraus folgt
 \end{MHint}
 \end{MExercise}
 
-In einer kleinen Tabelle können wir nun unsere gefundenen Werte für markante Winkel zusammentragen:
+In einer kleinen Tabelle k\"onnen die gefundenen Werte f\"ur markante Winkel zusammengetragen werden:
 
 \ifttm
 \begin{MDirectHTML}
@@ -1398,15 +1893,15 @@ In einer kleinen Tabelle können wir nun unsere gefundenen Werte für markante Win
 \end{center}
 \fi
 
-Diese Werte sollte man sich merken. Die trigonometrischen Funktionen für andere Winkel sind in Tabellen bzw. im Taschenrechener gespeichert.
+Diese Werte sollte man sich merken. Die trigonometrischen Funktionen f\"ur andere Winkel sind in Tabellen bzw. im Taschenrechener gespeichert.
 
-Im Beispiel \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Beispiel:gleichseitigesDreieck} haben wir mit Hilfe der trigonometrischen Funktionen die Höhe $h$ des Dreiecks berechnet. Diese Vorgehensweise gilt für alle beliebigen Dreiecke, da die Höhe $h$ das Dreieck immer in zwei rechtwinklige Dreiecke teilt und somit die trigonometrischen Funktionen angewandt werden können.
+Im Beispiel \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Beispiel:gleichseitigesDreieck} wurde mithilfe der trigonometrischen Funktionen die H\"ohe $h$ des Dreiecks berechnet. Diese Vorgehensweise gilt f\"ur alle beliebigen Dreiecke, da die H\"ohe $h$ das Dreieck immer in zwei rechtwinklige Dreiecke teilt und somit die trigonometrischen Funktionen angewandt werden k\"onnen.
 
 \begin{MExercise}
-Berechnen Sie den Flächeninhalt eines Dreiecks mit den Seiten $c=7$ und $b=3$, sowie dem Winkel $\alpha=30^\circ$.
+Berechnen Sie den Fl\"acheninhalt eines Dreiecks mit den Seiten $c=7$ und $b=3$, sowie dem Winkel $\alpha=30^\circ$.
 
-\begin{MHint}{Lösung}
-Der Flächeninhalt ist $A=\frac{1}{2}\cdot c \cdot h_c$.
+\begin{MHint}{L\"osung}
+Der Fl\"acheninhalt ist $A=\frac{1}{2}\cdot c \cdot h_c$.
 \[\sin\left(\alpha\right)=\frac{h_c}{b}\quad\Rightarrow\quad h_c=b\cdot\sin\left(\alpha\right)=3\cdot\sin\left(30^\circ\right)= 3\cdot\frac{1}{2}\]
 \[\Rightarrow\quad A=\frac{1}{2}\cdot c\cdot b\cdot\sin\left(\alpha\right)=\frac{1}{2}\cdot 7 \cdot3\cdot\frac{1}{2}=\frac{21}{4} \MDFPeriod\]
 \end{MHint}
@@ -1420,39 +1915,104 @@ Der Flächeninhalt ist $A=\frac{1}{2}\cdot c \cdot h_c$.
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Einheitskreis}
 
 
-Im letzten Abschnitt haben wir die trigonometrischen Funktionen anhand eines rechtwinkligen Dreiecks angeschaut. Die gefundenen Erkenntnisse gelten also für einen Winkelbereich von $0$ bis $90^\circ=\frac{\pi}{2}$.
+Im letzten Abschnitt wurden die trigonometrischen Funktionen anhand eines rechtwinkligen Dreiecks betrachtet. Die gefundenen Erkenntnisse gelten also f\"ur einen Winkelbereich von $0$ bis $90^\circ=\frac{\pi}{2}$.
 
-Um unsere Erkenntnisse auf größere Winkel als $\pi/2$ ausdehnen zu können, schauen wir uns den Einheitskreis an.\newpage
+Um die gewonnenen Erkenntnisse auf gr\"o\ss ere Winkel als $\pi/2$ ausdehnen zu k\"onnen, erweist sich der Blick auf den sogenannten Einheitskreis als besonders n\"utzlich.
+
+\ifttm\else\newpage\fi
 
 \begin{center}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Einheitskreis_a.png}{scale=0.8}
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Einheitskreis_b.png}{scale=0.8}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Einheitskreis_a.png}{scale=0.8}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.024cm, y=2.4cm] 
+\begin{scope}[xshift=-4cm,xscale=100]
+%Koordinatensystem
+\node (xMAX) at (1.3,0){};
+\node (yMAX) at (0,1.4){};
+\draw[color=black] (0,0) circle (1);
+\draw[-stealth',color=black] (-1.2,0) -- (1.3,0);
+\draw[-stealth',color=black] (0,-1.4) -- (0,1.4);
+\draw (xMAX) node[anchor=north] {$x$};
+\draw (yMAX) node[anchor=north east] {$y$};
+\foreach \x in {-1, 1}
+\draw[shift={(\x,0)},thick,color=black] (0,-0.05) -- (0,0.05) (0,0) node[anchor=north west] {\normalsize $\x$};
+\foreach \y in {-1, 1}
+\draw[shift={(0,\y)},thick,color=black] (0.05,0) -- (-0.05,0) (0,0) node[anchor=north west] {\normalsize $\y$};
+\def\cAng{38}
+\draw[-stealth',thick,color=black] (0,0) -- ({cos(\cAng)},{sin(\cAng)}) node[anchor=south west] {$P$};
+\draw[shift={({cos(\cAng)},0)},very thick,color=blue] (0,0.05) -- (0,-0.05) node[anchor=north east] {\normalsize $\cos(\alpha)$};
+\draw[shift={(0,{sin(\cAng)})},very thick,color=red] (0.05,0) -- (-0.05,0) node[anchor=east] {\normalsize $\sin(\alpha)$};
+\draw[thick,color=blue] (0,0) -- ({cos(\cAng)},0.0);
+\draw[thick,color=red] ({cos(\cAng)},0) -- ({cos(\cAng)},{sin(\cAng)});
+\draw[color=black, thin] (0,0) ++(0:0.5) arc (0:\cAng:0.5);
+\draw[color=black] (0,0) ++({0.5*\cAng}:0.35) node {$\alpha$};
+\end{scope}
+%Koordinatensystem
+\node (xMAX) at (400.0,0){};
+\node (yMAX) at (0,1.4){};
+%%\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
+\draw[-stealth',color=black] (-20,0) -- (xMAX);
+\foreach \x in {30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\scriptsize $\x^\circ$};
+\draw[-stealth',color=black] (0,-1.4) -- (yMAX);
+\foreach \y in {1}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-6pt,0pt)  node[left] {\normalsize $\pgfmathprintnumber{\y}$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$\alpha$};
+\draw[color=red] (yMAX) node[anchor=north west] {$y=\sin(\alpha)$};
+\draw[smooth,samples=73,domain=0:360, line width=1pt,color=red] plot(\x,{sin(\x)}); %{cos(\x r)}
+%Beschriftung und Graphen
+%%\clip(-2.8,-0.5) rectangle (6,3);
+%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+\end{tikzpicture}
+}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Einheitskreis_b.png}{scale=0.8}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.024cm, y=2.4cm] 
+%Koordinatensystem
+\node (xMAX) at (400.0,0){};
+\node (yMAX) at (0,1.4){};
+%%\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
+\draw[-stealth',color=black] (-20,0) -- (xMAX);
+\foreach \x in {30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\scriptsize $\x^\circ$};
+\draw[-stealth',color=black] (0,-1.4) -- (yMAX);
+\foreach \y in {1}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-6pt,0pt)  node[left] {\normalsize $\pgfmathprintnumber{\y}$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$\alpha$};
+\draw[color=blue] (yMAX) node[anchor=north west] {$x=\cos(\alpha)$};
+\draw[smooth,samples=73,domain=0:360, line width=1pt,color=blue] plot(\x,{cos(\x)}); %{cos(\x r)}
+%Beschriftung und Graphen
+%%\clip(-2.8,-0.5) rectangle (6,3);
+%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+\end{tikzpicture}
+}
 \end{center}
 
 Der Einheitskreis ist ein Kreis mit Radius $1$ und Mittelpunkt im Ursprung des kartesischen Koordinatensystems.\\
 \ \\
- Wir betrachten einen Vektor vom Ursprung aus mit der Länge $1$. Wir lassen diesen Vektor von seiner Ausgangslage auf der positiven $x$-Achse gegen den Uhrzeigersinn, also im mathematisch positiven Sinn um den Nullpunkt rotieren. Dabei überstreicht seine Spitze den Einheitskreis, und er bildet mit der positiven $x$-Achse den Winkel $\alpha$, der bei der Rotation von $0$ bis $2\pi$ bzw. $360^\circ$ wächst. Zu jedem Winkel $\alpha$ gehört also ein Punkt $P_\alpha$ mit den Koordinaten $x_\alpha$ und $y_\alpha$ auf dem Einheitskreis.
+ Es werde ein Vektor vom Ursprung aus mit der L\"ange $1$ betrachtet. Dieser Vektor werde nun von seiner Ausgangslage auf der positiven $x$-Achse gegen den Uhrzeigersinn, also im mathematisch positiven Sinn um den Nullpunkt rotiert. Dabei \"uberstreicht seine Spitze den Einheitskreis, und er bildet mit der positiven $x$-Achse den Winkel $\alpha$, der bei der Rotation von $0$ bis $2\pi$ bzw. $360^\circ$ w\"achst. Zu jedem Winkel $\alpha$ geh\"ort also ein Punkt $P_\alpha$ mit den Koordinaten $x_\alpha$ und $y_\alpha$ auf dem Einheitskreis.
 \ \\
-Für $\alpha\in\left[0\MIntvlSep \pi/2\right]$ kann man den Vektor, den zugehörigen $x$-Achsenabschnitt  und den zugehörigen $y$-Achsenabschnitt als rechtwinkliges Dreieck ansehen, wie wir es vom letzten Kapitel her kennen. Die Hypotenuse ist der Vektor mit der Länge $1$, der $x$-Achsenabschnitt ist die Ankathete und der $y$-Achsenabschnitt die Gegenkathete.\\
+F\"ur $\alpha\in\left[0\MIntvlSep \pi/2\right]$ kann man den Vektor, den zugeh\"origen $x$-Achsenabschnitt und den zugeh\"origen $y$-Achsenabschnitt als rechtwinkliges Dreieck ansehen, wie es vom letzten Kapitel her bekannt ist. Die Hypotenuse ist der Vektor mit der L\"ange $1$, der $x$-Achsenabschnitt ist die Ankathete und der $y$-Achsenabschnitt die Gegenkathete.\\
 \ \\
 Der Sinus des Winkels $\alpha$ ist also
 \[\sin\left(\alpha\right)=\frac{y_\alpha}{1}=y_\alpha\]
 und der Kosinus ist
 \[\cos\left(\alpha\right)=\frac{x_\alpha}{1}=x_\alpha \MDFPeriod\]
 
-Diese Definitionen gelten auch für die Winkel $\alpha>\pi/2$. Dabei können die Werte für $x_\alpha$ und $y_\alpha$ auch negativ werden und damit auch der Kosinus bzw. Sinus. Trägt man die $y$-Werte in Abhängigkeit vom Winkel $\alpha$ in ein Diagramm, so erhält man die rote Kurve, für die $x$-Werte erhält man die blaue Kurve.
+Diese Definitionen gelten auch f\"ur die Winkel $\alpha>\pi/2$. Dabei k\"onnen die Werte f\"ur $x_\alpha$ und $y_\alpha$ auch negativ werden und damit auch der Kosinus bzw. Sinus. Tr\"agt man die $y$-Werte in Abh\"angigkeit vom Winkel $\alpha$ in ein Diagramm, so erh\"alt man die rote Kurve, f\"ur die $x$-Werte erh\"alt man die blaue Kurve.
 \ \\
-Mit dem Satz von Pythagoras gilt außerdem
+Mit dem Satz von Pythagoras gilt au\ss erdem
 \[x_{\alpha}^{2}+y_{\alpha}^{2}=1 \MDFPeriod\]
-Setzen wir hier die Beziehungen für $x_{\alpha}$ und $y_{\alpha}$ mit den Winkelfunktionen ein, erhalten wir, dass für beliebige Winkel $\alpha$ die wichtige Beziehung
-\[\sin^2\left(\alpha\right)+\cos^2\left(\alpha\right)=1\]
-gilt.
+Setzt man hier die Beziehungen f\"ur $x_{\alpha}$ und $y_{\alpha}$ mit den Winkelfunktionen ein, so ergibt sich f\"ur beliebige Winkel $\alpha$ die wichtige Beziehung
+\[\sin^2\left(\alpha\right)+\cos^2\left(\alpha\right)=1 \MDFPeriod\]
 
 
 \begin{MExample}
-Wir suchen die Werte jeweils des Sinus, Kosinus und Tangens des Winkels $\alpha=315^\circ$.\\
+Gesucht sind jeweils die Werte des Sinus, Kosinus und Tangens des Winkels $\alpha=315^\circ$.\\
 
-Für $\alpha=315^\circ$ liegt der Punkt $P_\alpha$ im 4. Quadranten, der zugehörige Vektor bildet mit den zugehörigen Achsenabschnitten ein gleichschenkliges Dreieck. Es gilt: \[\left|x_\alpha\right|=\left|y_\alpha\right|\quad\Rightarrow\quad \left|x_\alpha\right|^2+\left|y_\alpha\right|^2=2\cdot\left|x_\alpha\right|^2=1\]
+F\"ur $\alpha=315^\circ$ liegt der Punkt $P_\alpha$ im 4. Quadranten, der zugeh\"orige Vektor bildet mit den zugeh\"origen Achsenabschnitten ein gleichschenkliges Dreieck. Es gilt: \[\left|x_\alpha\right|=\left|y_\alpha\right|\quad\Rightarrow\quad \left|x_\alpha\right|^2+\left|y_\alpha\right|^2=2\cdot\left|x_\alpha\right|^2=1\]
 \[\Rightarrow\quad \left|x_\alpha\right|=\left|y_\alpha\right|=\frac{1}{\sqrt 2}=\frac{1}{2}\sqrt 2 \MDFPSpace,\]
 \[\cos\left(\alpha\right)=x_\alpha=\frac{1}{2}\sqrt 2 \MDFPSpace,	\MDFPaSpace	\sin\left(\alpha\right)=y_\alpha=-\frac{1}{2}\sqrt 2 \MDFPSpace,	\MDFPaSpace	\tan\left(\alpha\right)=\frac{y_\alpha}{x_\alpha}=-1 \MDFPeriod\]
 \end{MExample}
@@ -1463,24 +2023,55 @@ Für $\alpha=315^\circ$ liegt der Punkt $P_\alpha$ im 4. Quadranten, der zugehöri
 \begin{MExercises}
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Exercises}
 \begin{MExercise}
-Welcher Winkel gehört zu dem Punkt $P_\alpha\left(-\MZahl{0}{643}, -\MZahl{0}{766}\right)$? 
+Welcher Winkel geh\"ort zu dem Punkt $P_\alpha\left(-\MZahl{0}{643}, -\MZahl{0}{766}\right)$? 
 \begin{MHint}{Hinweis}
 Verwenden Sie dazu den Taschenrechner, aber vertrauen Sie ihm nicht blind!
 \end{MHint}
 
-\begin{MHint}{Lösung}
-Aus den Koordinaten des Punktes $P_\alpha$ erhalten wir:
+\begin{MHint}{L\"osung}
+Aus den Koordinaten des Punktes $P_\alpha$ ergibt sich:
 \[\sin\left(\alpha\right)=-\MZahl{0}{766}\quad	\text{und}	\quad\cos\left(\alpha\right)=-\MZahl{0}{643} \MDFPeriod\]
 Tippen Sie in den Taschenrechner:\\
-invers(sin(-\MZahl{0}{766})) bzw. $\sin^{-1}$(-\MZahl{0}{766}), so erhalten Sie ungefähr $-50^\circ$, und \\
-invers(cos(-\MZahl{0}{643})) bzw. $\sin^{-1}$(-\MZahl{0}{643}), so erhalten Sie ungefähr $130^\circ$.\\
-Außerdem wissen Sie, dass der Punkt im 3. Quadranten ist, also ein Winkel im Bereich zwischen $180^\circ$ und $270^\circ$ herauskommen muss.
+invers(sin(-\MZahl{0}{766})) bzw. $\sin^{-1}$(-\MZahl{0}{766}), so erhalten Sie ungef\"ahr $-50^\circ$, und \\
+invers(cos(-\MZahl{0}{643})) bzw. $\sin^{-1}$(-\MZahl{0}{643}), so erhalten Sie ungef\"ahr $130^\circ$.\\
+Au\ss erdem wissen Sie, dass der Punkt im 3. Quadranten ist, also ein Winkel im Bereich zwischen $180^\circ$ und $270^\circ$ herauskommen muss.
 
-\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Aufgabe_Einheitskreis.png}{scale=1}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Trigonometrie_Aufgabe_Einheitskreis.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=2.6cm, y=2.6cm] 
+%Koordinatensystem
+\node (xMAX) at (1.3,0){};
+\node (yMAX) at (0,1.3){};
+\draw[color=black] (0,0) circle (1);
+\draw[-stealth',color=black] (-1.2,0) -- (1.3,0);
+\draw[-stealth',color=black] (0,-1.3) -- (0,1.3);
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=north east] {$y$};
+\foreach \x in {-1, 1}
+\draw[shift={(\x,0)},thick,color=black] (0,-0.05) -- (0,0.05) (0,0) node[anchor=north west] {\normalsize $\x$};
+\foreach \y in {-1, 1}
+\draw[shift={(0,\y)},thick,color=black] (0.05,0) -- (-0.05,0) (0,0) node[anchor=north west] {\normalsize $\y$};
+\def\cRad{1.3}
+\def\cAng{50}
+\draw[thick,color=black] (0,0) -- ({\cRad*cos(\cAng)},{-\cRad*sin(\cAng)});
+\draw[thick,color=black] (0,0) -- (1,0);
+\draw[thick,color=black] (0,0) -- ({-\cRad*cos(\cAng)},{\cRad*sin(\cAng)});
+\draw[color=black, thin] (0,0) ++({-\cAng}:0.5) arc ({-\cAng}:{180-\cAng}:0.5);
+\draw[color=black] (0,0) ++({-0.5*\cAng}:0.35) node {$-\cAng^\circ$};
+\draw[color=black] (0,0) ++(45:0.30) node {$130^\circ$}; %({90-0.5*\cAng}:0.35)
+\draw[color=magenta, thin] (0,0) ++({-\cAng}:0.60) arc ({-\cAng}:{180+\cAng}:0.60);
+\draw[thick,color=magenta] (0,0) -- ({-cos(\cAng)},{-sin(\cAng)});
+\draw[thick,color=red] ({cos(\cAng)},0) -- ({cos(\cAng)},{-sin(\cAng)});
+\draw[thick,color=black,dashed] ({-cos(\cAng)},0) -- ({-cos(\cAng)},{sin(\cAng)});
+\draw[color=black,dashed] ({-cos(\cAng)},0) -- ({-cos(\cAng)},{-sin(\cAng)-0.1});
+\draw[color=black,dashed] ({-cos(\cAng)-0.1},{-sin(\cAng)}) -- (0,{-sin(\cAng)});
+\draw[thick,color=black,red] (-0.05,{-sin(\cAng)}) -- (0.05,{-sin(\cAng)});
+\end{tikzpicture}
+}
 \begin{minipage}[b]{10cm}
-Anhand des Bildes kann man erkennen, dass der negative Sinuswert zwar zum Winkel $-50^\circ$, aber auch zu $\alpha=\left(180^\circ+50^\circ\right)=230^\circ$ gehört.\\
+Anhand des Bildes kann man erkennen, dass der negative Sinuswert zwar zum Winkel $-50^\circ$, aber auch zu $\alpha=\left(180^\circ+50^\circ\right)=230^\circ$ geh\"ort.\\
 \ \\
-Ebenso kann der negative Kosinuswert zu $130^\circ$, aber auch zu $\alpha=-130^\circ=\left(360^\circ-130^\circ\right)=230^\circ$ gehören.\\
+Ebenso kann der negative Kosinuswert zu $130^\circ$, aber auch zu $\alpha=-130^\circ=\left(360^\circ-130^\circ\right)=230^\circ$ geh\"oren.\\
 \ \\
 Der richtige Winkel ist also $\alpha=230^\circ$ (rosa).
 \vspace*{2cm}
@@ -1547,11 +2138,57 @@ Der richtige Winkel ist also $\alpha=230^\circ$ (rosa).
 \MDeclareSiteUXID{VBKM05_Abschlusstest}
 
 \begin{MExercise}
-In der folgenden Tabelle sind für ein rechtwinkliges Dreieck einige Größen gegeben, berechnen Sie die übrigen Größen. Verwenden Sie für die Winkel stets das Bogenmaß:\\
+In der folgenden Tabelle sind f\"ur ein rechtwinkliges Dreieck einige Gr\"o\ss en gegeben, berechnen Sie die \"ubrigen Gr\"o\ss en. Verwenden Sie f\"ur die Winkel stets das Bogenma\ss :\\
 \MInputHint{Geben Sie Kreiszahl einfach als Text ein, zum Beispiel tippen Sie $\frac23\pi$ ein als \texttt{2/3*pi}.}
 \ \\
-\MUGraphics{dreieck_einfach.png}{width=0.4\linewidth}{Winkel erhalten die griechischen Buchstaben zu den gegenüberliegenden Seiten\MCopyrightLabel{VBKM05_Abbildung_dreieck_einfach}}{width:400px}
-\MCopyrightNotice{\MCCLicense}{http://commons.wikimedia.org/wiki/File:Dreieck.svg#mediaviewer/Datei:Dreieck.svg}{http://de.wikipedia.org/wiki/Benutzer:Thire}{Modifiziert mit GIMP}{VBKM05_Abbildung_dreieck_einfach}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\def\anga{31}\def\angb{53}\def\lenc{6.5}
+\pgfmathparse{180-\anga-\angb}\let\angc=\pgfmathresult
+\pgfmathparse{\lenc*sin(\angb)*cos(\anga)/sin(\angc)}\let\cx=\pgfmathresult
+\pgfmathparse{\lenc*sin(\angb)*sin(\anga)/sin(\angc)}\let\cy=\pgfmathresult
+%-%\foreach \sx/\sy/\dsf/\ang in {0.0cm/0.0cm/1.0/-12} {
+\def\sx{0.0cm}\def\sy{0.0cm}\def\dsf{1.0}\def\ang{-12}
+\begin{scope}[xshift=\sx,yshift=\sy,rotate=\ang]
+\coordinate (OB) at (\lenc,0);
+\coordinate (OC) at (\cx,\cy);
+\coordinate (A) at (0,0);
+\coordinate (B) at ($ (A)!\dsf!(OB) $);
+\coordinate (C) at ($ (A)!\dsf!(OC) $);
+\coordinate (MAB) at ($ (A)!0.5!(B) $);
+\coordinate (MBC) at ($ (B)!0.5!(C) $);
+\coordinate (MCA) at ($ (C)!0.5!(A) $);
+\fill[gray] (A) -- (B) -- (C) -- cycle;
+\draw[color=black] (MBC) ++({90-\angb}:0.3) node {$a$};
+\draw[color=black] (MCA) ++({90+\anga}:0.3) node {$b$};
+\draw[color=black] (MAB) ++(270:0.3) node {$c$};
+\pgfmathparse{0.75/sin(\anga)}\let\sncia=\pgfmathresult
+\pgfmathparse{0.75/sin(\angb)}\let\sncib=\pgfmathresult
+\pgfmathparse{0.75/sin(\angc)}\let\sncic=\pgfmathresult
+\fill[color=gray!50!white] (A) -- ++(0:\sncia) arc (0:\anga:\sncia) -- cycle;
+\fill[color=gray!50!white] (B) -- ++({180-\angb}:\sncib) arc ({180-\angb}:180:\sncib) -- cycle;
+\fill[color=gray!50!white] (C) -- ++({180+\anga}:\sncic) arc ({180+\anga}:{360-\angb}:\sncic) -- cycle;
+\draw[color=black] (A) ++(0:\sncia) arc (0:\anga:\sncia);
+\draw[color=black] (B) ++({180-\angb}:\sncib) arc ({180-\angb}:180:\sncib);
+\draw[color=black] (C) ++({180+\anga}:\sncic) arc ({180+\anga}:{360-\angb}:\sncic);
+\pgfmathparse{0.50/sin(\anga)}\let\sncia=\pgfmathresult
+\pgfmathparse{0.50/sin(\angb)}\let\sncib=\pgfmathresult
+\pgfmathparse{0.50/sin(\angc)}\let\sncic=\pgfmathresult
+\draw[color=black] (A) ++({0.5*\anga}:\sncia) node {$\alpha$};
+\draw[color=black] (B) ++({180-0.5*\angb}:\sncib) node {$\beta$};
+\draw[color=black] (C) ++({270+0.5*(\anga-\angb)}:\sncic) node {$\gamma$};
+%
+\draw[black,very thick] (A) -- (B) -- (C) -- cycle;
+\end{scope}
+%%}
+\end{tikzpicture}
+}
+\par
+Winkel erhalten die griechischen Buchstaben zu den gegen\"uberliegenden Seiten
+\end{center}
+%-%\MUGraphics{dreieck_einfach.png}{width=0.4\linewidth}{Winkel erhalten die griechischen Buchstaben zu den gegen\"uberliegenden Seiten\MCopyrightLabel{VBKM05_Abbildung_dreieck_einfach}}{width:400px}
+%-%\MCopyrightNotice{\MCCLicense}{http://commons.wikimedia.org/wiki/File:Dreieck.svg#mediaviewer/Datei:Dreieck.svg}{http://de.wikipedia.org/wiki/Benutzer:Thire}{Modifiziert mit GIMP}{VBKM05_Abbildung_dreieck_einfach}
 %\MCopyrightHTML{CC BY-SA 5.0}{http://commons.wikimedia.org/wiki/File:Dreieck.svg#mediaviewer/Datei:Dreieck.svg}{http://de.wikipedia.org/wiki/Benutzer:Thire}
 
 \ifttm
@@ -1572,10 +2209,10 @@ $3$ & $4$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{5}{5}{WR2} & $*$ & $*$ & 
 \hline
 \end{tabular}
 \end{center}
-Die mit $*$ gekennzeichneten Felder müssen nicht ausgefüllt werden.
+Die mit $*$ gekennzeichneten Felder m\"ussen nicht ausgef\"ullt werden.
 
-\begin{MHint}{Lösung}
-Die ausgefüllte Tabelle lautet wie folgt:
+\begin{MHint}{L\"osung}
+Die ausgef\"ullte Tabelle lautet wie folgt:
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
@@ -1588,29 +2225,76 @@ $\frac{9}{\sqrt3}$ & $\frac{9}{\sqrt3}$ & $9$ & $\frac16\pi$ &$\frac16\pi$ & $\f
 \hline
 \end{tabular}
 \end{center}
-In der dritten Zeile benutzt man den rechten Winkel $\gamma=\frac12\pi$, der über den Satz von Pythagoras auf $c=\sqrt{a^2+b^2}=\sqrt2$ führt.
+In der dritten Zeile benutzt man den rechten Winkel $\gamma=\frac12\pi$, der \"uber den Satz von Pythagoras auf $c=\sqrt{a^2+b^2}=\sqrt2$ f\"uhrt.
 Das Dreieck ist gleichschenklig, also auch $\alpha=\beta$. Da die Winkelsumme
-im Dreieck $\pi$ beträgt, muss $\alpha=\beta=\frac14\pi$ sein. In den beiden letzten Lösungsfeldern ist dann $\sin(\frac14\pi)=\frac{\text{Gegenkathete}}{\text{Hypothenuse}}=\frac1{\sqrt2}$.
+im Dreieck $\pi$ betr\"agt, muss $\alpha=\beta=\frac14\pi$ sein. In den beiden letzten L\"osungsfeldern ist dann $\sin(\frac14\pi)=\frac{\text{Gegenkathete}}{\text{Hypotenuse}}=\frac1{\sqrt2}$.
 \ \\ \ \\
-In der vierten Zeile ist das Dreieck rechtwinklig bei $\gamma=\pi$ und der Satz des Pythagoras führt auf $c=\sqrt{a^2+b^2}=5$. Aus den Seiten kann man die Sinuswerte der Winkel bestimmen: $\sin(\alpha)=\frac45$, $\sin(\beta)=\frac35$ und $\sin(\gamma)=1$.
+In der vierten Zeile ist das Dreieck rechtwinklig bei $\gamma=\pi$ und der Satz des Pythagoras f\"uhrt auf $c=\sqrt{a^2+b^2}=5$. Aus den Seiten kann man die Sinuswerte der Winkel bestimmen: $\sin(\alpha)=\frac45$, $\sin(\beta)=\frac35$ und $\sin(\gamma)=1$.
 \ \\ \ \\
-In der fünften Zeile ist das Dreieck wieder rechtwinklig, diesmal aber bei $\alpha=\pi$, daher spielen die Seiten nun andere Rollen: $a$ ist die Länge der Hypothenuse.
-Der Satz des Pythagoras in dieser Situation liefert $a=\sqrt{b^2+c^2}=\sqrt{15}$. Da alle Seiten vorliegen, können wir wieder die Winkel bestimmen (jetzt mit $a$ als Hypothenuse): $\sin(\alpha)=1$, $\sin(\beta)=\sqrt{\frac{8}{15}}$ und $\sin(\gamma)=\sqrt{\frac{}{15}}$.
+In der f\"unften Zeile ist das Dreieck wieder rechtwinklig, diesmal aber bei $\alpha=\pi$, daher spielen die Seiten nun andere Rollen: $a$ ist die L\"ange der Hypotenuse.
+Der Satz des Pythagoras liefert in dieser Situation $a=\sqrt{b^2+c^2}=\sqrt{15}$. Da alle Seiten vorliegen, lassen sich die Winkel wieder bestimmen (jetzt mit $a$ als Hypotenuse): $\sin(\alpha)=1$, $\sin(\beta)=\sqrt{\frac{8}{15}}$ und $\sin(\gamma)=\sqrt{\frac{}{15}}$.
 \ \\ \ \\
 In der letzten Zeile rechnet man aus $\sin(\alpha)=\sin(\beta)=\frac12$ die Winkel $\alpha=\beta=\frac16\pi$ aus. Wegen der Winkelsumme $\alpha+\beta+\gamma=\pi$ folgt $\gamma=\pi-\frac13\pi=\frac23\pi$.
-Dieses Dreieck ist gleichschenklig, aber nicht rechtwinklig, wir dürfen die trigonometrischen Funktionen daher nicht direkt an den Seiten ansetzen. Als Hilfmittel kann man die Höhe auf der Seite $c$
-benutzen, die das Dreieck in zwei rechtwinklige Dreiecke einteilt:
+Dieses Dreieck ist gleichschenklig, aber nicht rechtwinklig, daher d\"urfen die trigonometrischen Funktionen nicht direkt an den Seiten angesetzt werden. Als Hilfsmittel kann man die H\"ohe auf der Seite $c$
+benutzen, die das Dreieck in zwei rechtwinklige Dreiecke zerlegt:
 
-\MUGraphics{dreieck_haelfte.png}{width=0.2\linewidth}{Einteilung eines gleichschenkligen Dreiecks in zwei rechtwinklige Dreiecke.}{width:150px}
-%\MCopyrightHTML{Wikipedia verändert}{<a href="http://commons.wikimedia.org/wiki/File:Isosceles-triangle-tikz.svg#mediaviewer/Datei:Isosceles-triangle-tikz.svg">Isosceles-triangle-tikz</a> von <a href="//commons.wikimedia.org/wiki/User:MartinThoma" title="User:MartinThoma">MartinThoma</a> - <span class="int-own-work">Eigenes Werk</span>. Lizenziert unter <a title="Creative Commons Attribution 3.0" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> über <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\def\anga{68}\def\angb{68}\def\lenc{3.5}\def\lenrf{0.60}\def\lenlf{0.40}
+\pgfmathparse{180-\anga-\angb}\let\angc=\pgfmathresult
+\pgfmathparse{\lenc*sin(\angb)*cos(\anga)/sin(\angc)}\let\cx=\pgfmathresult
+\pgfmathparse{\lenc*sin(\angb)*sin(\anga)/sin(\angc)}\let\cy=\pgfmathresult
+%-%\foreach \sx/\sy/\dsf/\ang in {0.0cm/0.0cm/1.0/-12} {
+\def\sx{0.0cm}\def\sy{0.0cm}\def\dsf{1.0}\def\ang{0}
+\begin{scope}[xshift=\sx,yshift=\sy,rotate=\ang]
+\coordinate (OB) at (\lenc,0);
+\coordinate (OC) at (\cx,\cy);
+\coordinate (A) at (0,0);
+\coordinate (B) at ($ (A)!\dsf!(OB) $);
+\coordinate (C) at ($ (A)!\dsf!(OC) $);
+\coordinate (MAB) at ($ (A)!0.5!(B) $);
+\coordinate (MBC) at ($ (B)!0.5!(C) $);
+\coordinate (MCA) at ($ (C)!0.5!(A) $);
+\fill[gray!6.25!white] (A) -- (B) -- (C) -- cycle;
+\draw[color=black] (MBC) ++({90-\angb}:0.3) node {$a$};
+\draw[color=black] (MCA) ++({90+\anga}:0.3) node {$b$};
+\draw[color=black] (MAB) ++(270:0.3) node {$c$};
+\pgfmathparse{\lenrf/sin(\anga)}\let\sncia=\pgfmathresult
+\pgfmathparse{\lenrf/sin(\angb)}\let\sncib=\pgfmathresult
+\pgfmathparse{\lenrf/sin(\angc)}\let\sncic=\pgfmathresult
+\fill[color=gray!25!white] (A) -- ++(0:\sncia) arc (0:\anga:\sncia) -- cycle;
+\fill[color=gray!25!white] (B) -- ++({180-\angb}:\sncib) arc ({180-\angb}:180:\sncib) -- cycle;
+\fill[color=white] (C) -- ++({180+\anga}:\sncic) arc ({180+\anga}:{360-\angb}:\sncic) -- cycle;
+\draw[color=black] (A) ++(0:\sncia) arc (0:\anga:\sncia);
+\draw[color=black] (B) ++({180-\angb}:\sncib) arc ({180-\angb}:180:\sncib);
+\draw[color=black] (C) ++({180+\anga}:\sncic) arc ({180+\anga}:{360-\angb}:\sncic);
+\pgfmathparse{\lenlf/sin(\anga)}\let\sncia=\pgfmathresult
+\pgfmathparse{\lenlf/sin(\angb)}\let\sncib=\pgfmathresult
+\pgfmathparse{\lenlf/sin(\angc)}\let\sncic=\pgfmathresult
+\draw[color=black] (A) ++({0.5*\anga}:\sncia) node {$\alpha$};
+\draw[color=black] (B) ++({180-0.5*\angb}:\sncib) node {$\beta$};
+%%\draw[color=black] (C) ++({270+0.5*(\anga-\angb)}:\sncic) node {$\gamma$};
+%
+\draw[black,very thick] (A) -- (B) -- (C) -- cycle;
+\draw[black] (MAB) -- (C);
+\end{scope}
+%%}
+\end{tikzpicture}
+}
+\par
+Einteilung eines gleichschenkligen Dreiecks in zwei rechtwinklige Dreiecke.
+\end{center}
+%-%\MUGraphics{dreieck_haelfte.png}{width=0.2\linewidth}{Einteilung eines gleichschenkligen Dreiecks in zwei rechtwinklige Dreiecke.}{width:150px}
+%\MCopyrightHTML{Wikipedia ver\"andert}{<a href="http://commons.wikimedia.org/wiki/File:Isosceles-triangle-tikz.svg#mediaviewer/Datei:Isosceles-triangle-tikz.svg">Isosceles-triangle-tikz</a> von <a href="//commons.wikimedia.org/wiki/User:MartinThoma" title="User:MartinThoma">MartinThoma</a> - <span class="int-own-work">Eigenes Werk</span>. Lizenziert unter <a title="Creative Commons Attribution 3.0" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> \"uber <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>}
 
-Im linken Teildreieck gibt es einen rechten Winkel, dort ist nun $b$ die Hypothenuse und Ankathete von $\alpha$ besitzt die bekannte Länge $\frac{9}{2}$. Wir wissen auch $\cos(\frac16\pi)=\frac12\sqrt3$, damit kann man
-nach $b$ auflösen:
+Im linken Teildreieck gibt es einen rechten Winkel, dort ist nun $b$ die Hypotenuse und Ankathete von $\alpha$ besitzt die bekannte L\"ange $\frac{9}{2}$. Wegen $\cos(\frac16\pi)=\frac12\sqrt3$ kann man
+nach $b$ aufl\"osen:
 $$
-\frac12\sqrt3 \;=\; \cos(\frac16\pi) \;=\; \frac{\text{Ankathete im Teildreieck}}{\text{Hypothenuse im Teildreieck}} \;=\; \frac{\frac92}{b} \;\; \Rightarrow\;\;
-b \;=\; \frac{9}{\sqrt3}\: .
+\frac12\sqrt3 \;=\; \cos(\frac16\pi) \;=\; \frac{\text{Ankathete im Teildreieck}}{\text{Hypotenuse im Teildreieck}} \;=\; \frac{\frac92}{b} \;\; \Rightarrow\;\;
+b \;=\; \frac{9}{\sqrt3} \MDFPeriod
 $$
-und weil das ursprüngliche Dreieck gleichschenklig ist gilt auch $a=\frac{9}{\sqrt3}$.
+und weil das urspr\"ungliche Dreieck gleichschenklig ist gilt auch $a=\frac{9}{\sqrt3}$.
 \end{MHint}
 
 \end{MExercise}
@@ -1619,25 +2303,25 @@ und weil das ursprüngliche Dreieck gleichschenklig ist gilt auch $a=\frac{9}{\sq
 
 \begin{MExercise}
 \MLabel{VBKM05_A_Quadratkreise}
-Ein Quadrat mit Seitenlänge $a$ sei gegeben. Geben Sie Formeln an für Flächeninhalt und Umfang des größtmöglichen Kreises innerhalb des Quadrats, sowie für
-den kleinstmöglichen Kreis, der das Quadrat enthält:
+Ein Quadrat mit Seitenl\"ange $a$ sei gegeben. Geben Sie Formeln an f\"ur Fl\"acheninhalt und Umfang des gr\"o\ss tm\"oglichen Kreises innerhalb des Quadrats, sowie f\"ur
+den kleinstm\"oglichen Kreis, der das Quadrat enth\"alt:
 \begin{MExerciseItems}
-\item{Umfang des Kreises im Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{pi*a}{14}{a}{4}{1}{NGEOM1}}
-\item{Flächeninhalt des Kreises im Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{(1/4)*pi*a*a}{14}{a}{4}{1}{NGEOM2}}
-\item{Umfang des Kreises um das Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{sqrt(2)*pi*a}{14}{a}{4}{1}{NGEOM3}}
-\item{Flächeninhalt des Kreises um das Quadrat in Abhängigkeit von der Seitenlänge $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{NGEOM4}}
+\item{Umfang des Kreises im Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a}{14}{a}{4}{1}{NGEOM1}}
+\item{Fl\"acheninhalt des Kreises im Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{(1/4)*pi*a*a}{14}{a}{4}{1}{NGEOM2}}
+\item{Umfang des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{sqrt(2)*pi*a}{14}{a}{4}{1}{NGEOM3}}
+\item{Fl\"acheninhalt des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{NGEOM4}}
 \end{MExerciseItems}
 \ \\ \ \\
-In den Antwortfeldern dürfen keine Klammern oder Wurzelausdrücke auftauchen, schreiben Sie beispielsweise $2^{0.5}$ statt $\sqrt{2}$ um die Wurzel zu vermeiden.
+In den Antwortfeldern d\"urfen keine Klammern oder Wurzelausdr\"ucke auftauchen, schreiben Sie beispielsweise $2^{0.5}$ statt $\sqrt{2}$ um die Wurzel zu vermeiden.
 \ \\ \ \\
-\begin{MHint}{Lösung}
-Der mittig im Quadrat liegende Kreis besitzt den Radius $r=\frac12a$, die halbe Seitenlänge des Quadrats. Folglich besitzt er den Umfang $2\pi r =2\pi \cdot \frac12a = \pi a$ und den Flächeninhalt
+\begin{MHint}{L\"osung}
+Der mittig im Quadrat liegende Kreis besitzt den Radius $r=\frac12a$, die halbe Seitenl\"ange des Quadrats. Folglich besitzt er den Umfang $2\pi r =2\pi \cdot \frac12a = \pi a$ und den Fl\"acheninhalt
 $\pi r^2=\pi \cdot \frac14a^2 =\frac14\pi a^2$.\\
 \ \\
-Befindet sich das Quadrat dagegen mittig innerhalb des Kreises, so ist sein Radius die Hälfte der Länge der Diagonalen vom Quadrat. Diese besitzt
-die Länge $d=\sqrt2\cdot a$. Dies folgt aus dem Satz von Pythagoras, da die halbe Quadratdiagonale ein rechtwinkliges Dreieck bildet
-mit Seitenlänge $d$ der Hypothenuse und den beiden Katheten mit Längen $\frac12a$: Also ist der Umfang $2\pi r=2\pi\cdot \sqrt2 \cdot\frac12 a=\sqrt2\cdot \pi \cdot a$,
-der Flächeninhalt ist $\pi r^2=\pi \cdot (\sqrt2\cdot \frac12\cdot a)^2=\pi \cdot\frac12 a^2$.
+Befindet sich das Quadrat dagegen mittig innerhalb des Kreises, so ist sein Radius die H\"alfte der L\"ange der Diagonalen vom Quadrat. Diese besitzt
+die L\"ange $d=\sqrt2\cdot a$. Dies folgt aus dem Satz von Pythagoras, da die halbe Quadratdiagonale ein rechtwinkliges Dreieck bildet
+mit Seitenl\"ange $d$ der Hypotenuse und den beiden Katheten mit L\"angen $\frac12a$: Also ist der Umfang $2\pi r=2\pi\cdot \sqrt2 \cdot\frac12 a=\sqrt2\cdot \pi \cdot a$,
+der Fl\"acheninhalt ist $\pi r^2=\pi \cdot (\sqrt2\cdot \frac12\cdot a)^2=\pi \cdot\frac12 a^2$.
 \end{MHint}
 \end{MExercise}
 

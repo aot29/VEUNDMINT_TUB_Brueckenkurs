@@ -17,19 +17,21 @@ use Net::Domain qw (hostname hostfqdn hostdomain);
 use MIME::Base64 qw(encode_base64);
 use Cwd;
 use Switch;
-use JSON;
+use JSON::XS;
 use Term::ANSIColor;
 use GraphViz;
 use Encode;
 
 use converter::File::Data;
-use converter::Page;
 
-
-my $helptext = "Usage: mconvert.pl <configuration.pl> [command <OptionObject>]\n\n";
+my $helptext = "Usage: mconvert.pl <configuration.pl> [<parameter>=<value> ...]\n\n";
 
 # use lib "/home/daniel/BWSYNC/PreTU9Konverter/converter";
 # use courseconfig;
+
+our $mainlogfile = "conversion.log";
+our $configactive = 0; # set to 1 once config-pl-file is fully loaded
+our $stdencoding = "iso-8859-1";
 
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
@@ -39,7 +41,7 @@ our $macrofile = "$macrofilename.tex"; # Relativ zum converter/tex Verzeichnis
 # Mandatory option parameter in config file
 our @mandatory = ("signature_main", "signature_version", "signature_localization",
    "reply_mail", "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",
-   "footer_middle", "footer_right", "mainlogo", "do_feedback", "do_export");
+   "footer_middle", "footer_right", "mainlogo", "do_feedback", "do_export", "stdmathfont");
 
 our %config = ();       
 our $mconfigfile = "";       # Konfigurationsdatei (mit Pfad relativ vom Aufruf aus)
@@ -47,8 +49,8 @@ our $basis = "";             # Das Verzeichnis, in dem converter liegt (wird mom
 our $rfilename = "";         # Filename of main tex file including path relative to execution directory
 our $zip = "";               # Filename of zip file (if neccessary)
 
-our @IncludeStorage = ();
 our @DirectHTML = ();
+our %DirectRoulettes = (); # Enthaelt Eintraege der Form "Roulette-id" => "Anzahl"
 
 # stellt das Verhalten des Menues im Header ein
 # 0 bedeutet, dass Info die erste Seite eines Moduls ist
@@ -58,17 +60,23 @@ our $XIDObj = -1;
 
 our @LabelStorage; # Format jedes Eintrags: [ $lab, $sub, $sec, $ssec, $sssec, $anchor, $pl ]
 
+our $PageIDCounter = 1;
+
 
 # -------------------------------------------------------------------------------------------------------------
 
 my @tominify = ("mintscripts.js", "servicescripts.js", "intersite.js", "convinfo.js", "userdata.js", "mparser.js", "dlog.js", "exercises.js");
+my %tikzpng = (); # Wird von tikz-Erkennung gefuellt mit Eintraegen der Form "xyz" => "style" mit xyz ohne Endung .png
 
 # -------------------------------------------------------------------------------------------------------------
+
+our $macrotex = ""; # Wird vor dem Aufruf von ttm mit dem Original-Inhalt der Makrodatei gefuellt
+our $modmacrotex = "";
+our $variantactive; # Bestimmt Variante der Kursumsetzung
 
 our $starttime; # Timestamp beim Start des Programms
 
 my $breakoff = 0;
-my $i;
 my $ndir = ""; # wird am Programmstart gefuellt
 
 my $copyrightcollection = "";
@@ -92,9 +100,9 @@ our $stestfile = "";
 
 # Diese Einstellungen haben keine Auswirkungen auf die produzierten Module, daher nicht in Parameterdatei
 our $xmlfile = "converted.xml";
+our $xmlerrormsg = "ttm_errors.txt";
+our $UNKNOWN_UXID = "(unknown)";
 
-
-# Diese Einstellungen muessen mit denen in mconvert.pl uebereinstimmen !
 our $doconctitles = 1; # =1 -> Titel der Vaterseiten werden mit denen der Unterseiten auf den Unterseiten kombiniert [war bei alten Onlinemodulen der Fall macht aber eigentlich keinen Sinn]
 
 # Diese sind mittlerweile in intersite.js fest verdrahtet!
@@ -103,7 +111,7 @@ our $datasite = "cdata.html";
 our $searchsite = "search.html";
 our $chaptersite = "chapters.html";
 our $startsite = "index.html";
-our $favorsite = ""; # "favor.html";
+our $favorsite = "favor.html";
 our $stestsite = "stest.html";
 
 our $locationsite = ""; # Wird aus Dokument geholt
@@ -155,39 +163,57 @@ our $NOBASHCOLOR = "\033[0m";
 
 # ----------------------------- Funktionen -----------------------------------------------------------------------
 
+# Separate Ausgabe: Farbcodiert fuer die Konsole falls gewuenscht und nur-Text fuer logfile
+# Parameter color = string, txt = string (ohne Zeilenumbruch)
+sub printMessage {
+  my ($color, $txt) = @_;
+
+  # Nur einfache Meldungen ausgeben solange config-Objekt noch nicht geladen ist
+  if ($configactive eq 0) {
+    print "$txt\n";
+  } else {  
+    # gruene verbose-Meldungen nur in Logdatei, nicht auf Konsole ausser wenn aktiviert
+    if (($color ne "green") or ($config{doverbose} eq 1)) {
+      if ($config{"consolecolors"} eq 1) {
+        print color($color), "$txt\n", color("reset");
+      } else {
+        print "$txt\n";
+      }
+    }
+  }
+  print LOGFILE "$txt\n";
+}
+
 # Parameter lvl = loglevel, eine der obigen Konstanten, msg = textstring (die Meldung)
 sub logMessage {
   my ($lvl, $msg) = @_;
   
   # Konvertierung findet auf Server statt, nicht auf Client, also wird alles Serverrelevante sofort ausgegeben
   if ($lvl eq $CLIENTINFO) {
-    print "INFO:    $msg\n";
+    printMessage("black", "INFO:    $msg");
   } else {
     if ($lvl eq $CLIENTERROR) {
-      print color("red"), "ERROR:   $msg\n", color("reset");
+      printMessage("red", "ERROR:   $msg");
     } else {
       if ($lvl eq $CLIENTWARN) {
-        print color("red"), "WARNING: $msg\n", color("reset");
+        printMessage("red", "WARNING: $msg");
       } else {
         if ($lvl eq $DEBUGINFO) {
           # release oder nicht macht fuer Serverseite keinen Sinn, also zaehlt doverbose
-          if ($config{doverbose} eq 1) {
-            print "DEBUG:   $msg\n";
-          }
+          printMessage("green", "DEBUG:   $msg");
         } else {
           if ($lvl eq $VERBOSEINFO) {
-            if ($config{doverbose} eq 1) {
-              print color("green"), "VERBOSE: $msg\n", color("reset");
-            }
+            printMessage("green", "VERBOSE: $msg");
           } else {
             if ($lvl eq $CLIENTONLY) {
               # Auf Serverseite keine Ausgabe
             } else {
               if ($lvl eq $FATALERROR) {
-                print color("red"), "FATAL ERROR: $msg\n", color("reset");
-                die("Program aborte");
+                printMessage("red", "FATAL ERROR: $msg");
+                close(LOGFILE);
+                die("Program aborted");
               } else {
-                print color("red"), "ERROR: Wrong error type $lvl, message: $msg\n", color("reset");
+                printMessage("red", "ERROR: Wrong error type $lvl, message: $msg");
               }
             }
           }
@@ -208,7 +234,9 @@ sub logTimestamp {
 
 sub injectEscapes {
   my $str = $_[0];
+  $str =~ s/\\/\\\\/gs ; # muss vor den anderen Ersetzungen kommen!
   $str =~ s/\"/\\\"/gs ;
+  $str =~ s/\'/\\\'/gs ;
   $str =~ s/\r/\\r/gs ;
   $str =~ s/\n/\\n/gs ;
   return $str;
@@ -226,8 +254,7 @@ sub permuteString {
   my $n = length($str);
   my $t = "";
   
-  my $i;
-  for ($i = 0; $i < $n; $i++) {
+  for (my $i = 0; $i < $n; $i++) {
     $t .= substr($str,($u*$i) % $n,1);
   }
  
@@ -242,8 +269,7 @@ sub borkString {
   
   my $t = "";
   
-  my $i;
-  for ($i = 0; $i < $lan; $i++) {
+  for (my $i = 0; $i < $lan; $i++) {
     my $c;
     if ($i < length($str)) { $c = substr($str,$i,1); } else { $c = randomChar(); }
     $t .= $c;
@@ -323,11 +349,7 @@ sub borkifyHTML {
     $borkfilename = $borktexs[$borkka];
     $borkfilename =~ m/(.+)\/(.+?).html/i;
     my $borkdirname = $1;
-    my $borktex_open = open(MINTS, "< $borkfilename") or die "  ERROR: Fehler beim Oeffnen von $borktexs[$borkka]\n";
-    while(defined($borktexzeile = <MINTS>)) {
-      $borkhtml .= $borktexzeile;
-    }
-    close(MINTS);
+    $borkhtml = readfile($borkfilename);
     $fdi++;
     
     
@@ -340,8 +362,7 @@ sub borkifyHTML {
       push @st , [$2,$s,length($s)];
       if ($lan <= (2*length($s))) { $lan = 2*length($s) + 1; }
     }
-    my $i;
-    for ($i = 0; $i <= $#st; $i++) {
+    for (my $i = 0; $i <= $#st; $i++) {
       my $b = borkString($lan, $st[$i][1]);
       $GSLS .= "if(c==" . $st[$i][0] . "){str=debork(\"$b\"," . $st[$i][2]. ");}";
     }
@@ -349,10 +370,7 @@ sub borkifyHTML {
     $GSLS .= "return str;\}\n";
     $borkhtml =~ s/__CQJ/\n$GSLS\n__CQJ/s ;
     
-    # Datei speichern
-    $borktex_open = open(MINTS, "> $borktexs[$borkka]") or die "ERROR: Fehler beim Schreiben von $borktexs[$borkka]\n";
-    print MINTS $borkhtml;
-    close(MINTS);
+    writefile($borktexs[$borkka], $borkhtml);
   }
   
   logMessage($VERBOSEINFO, "  $fdi Dateien borkifiziert");
@@ -377,10 +395,10 @@ sub checkSystem {
       # Alles ok
   }   else
     {
-      die("FATAL: perl version 5.10 is required, but found perl 5" . $1);
+      logMessage($FATALERROR, "perl version 5.10 is required, but found perl 5" . $1);
     }
   } else {
-    die("FATAL: perl (at least version 5.10) is required");
+    logMessage($FATALERROR, "perl (at least version 5.10) is required");
   }
 
   # Pruefe ob ein JDK installiert ist
@@ -388,7 +406,7 @@ sub checkSystem {
   if ($reply =~ m/javac (.+)/i ) {
     logMessage($CLIENTINFO, "JDK found, using javac from version $1");
   } else {
-    die("FATAL: JDK not found");
+    logMessage($FATALERROR, "JDK not found");
   }
   
   # Pruefe ob php installiert ist
@@ -396,10 +414,26 @@ sub checkSystem {
   if ($reply =~ m/HTML/i ) {
     # php erfolgreich getestet
   } else {
-    die("PHP (Version 5 inklusive PHP-curl) ist offenbar nicht installiert!\n");
+    logMessage($FATALERROR, "PHP (version 5 and PHP-curl) not found\n");
   }
-}
 
+  # Pruefe ob pdf2svg installiert ist
+  $reply = `pdf2svg`;
+  if ($reply =~ m/Usage:/i ) {
+    logMessage($CLIENTINFO, "pdf2svg found");
+  } else {
+    logMessage($FATALERROR, "pdf2svg not found");
+  }
+
+  # Pruefe ob inkscape installiert ist
+  $reply = `inkscape --help`;
+  if ($reply =~ m/--without-gui/i ) {
+    logMessage($CLIENTINFO, "inkscape command line tool found");
+  } else {
+    logMessage($FATALERROR, "inkscape command line tool not found");
+  }
+  
+}
 
 # Parameter: filename, redirect-url, scormclear
 sub createRedirect {
@@ -452,13 +486,11 @@ ENDE
 </html>
 ENDE
 
-  my $tempfile = open(MINTS, ">$ndir/$filename");
   if ($scormclear == 0) {
-    print MINTS $indexhtml;
+    writefile("$ndir/$filename", $indexhtml);
   } else {
-    print MINTS $indexhtmlscorm;
+    writefile("$ndir/$filename", $indexhtmlscorm);
   }
-  close(MINTS);
   logMessage($CLIENTINFO, "Redirect auf $rurl in $filename erstellt");
 }
 
@@ -555,14 +587,11 @@ ENDE
 #        </imsss:primaryObjective>
 
 
-  logMessage($VERBOSEINFO, "Erstelle SCORM-Manifestdatei mit title=$manifest_title, version=$manifest_version und id=$manifest_id");
+  logMessage($VERBOSEINFO, "Creating SCORM manifest: title=$manifest_title, version=$manifest_version, id=$manifest_id");
   
-    # Erstelle Manifestdatei fuer SCORM
-  my $scorm_open = open(MINTS, "> ./imsmanifest.xml") or die "Fehler beim Erstellen der Manifestdatei.\n";
-  print MINTS "$manifest";
-  close(MINTS); 
-  
-  logMessage($CLIENTINFO, "HTML-Baum wird als SCORM-Lernmodul Version 2004v4 eingerichtet");
+  # Erstelle Manifestdatei fuer SCORM
+  writefile("./imsmanifest.xml", $manifest);
+  logMessage($CLIENTINFO, "Creating HTML tree as a SCORM module version 2004v4");
 }
 
 # Checks if given parameter key is present and has a nonempty string as value
@@ -570,43 +599,43 @@ sub checkParameter {
   my $p = $_[0];
   if (exists $config{parameter}{$p}) {
     if ($config{parameter}{$p} eq "") {
-      die("FATAL: Mandatory option parameter $p is an empty string");
+      logMessage($FATALERROR, "Mandatory option parameter $p is an empty string");
     }
   } else {
-    die("FATAL: Mandatory option parameter $p is missing");
+    logMessage($FATALERROR, "Mandatory option parameter $p is missing");
   }
 }
 
 # Checks if options are present and consistent, quits with a fatal error otherwise
 sub checkOptions {
-  open(F,$config{source}) or die("FATAL: Cannot open source directory " . $config{source});
+  open(F, $config{source}) or logMessage($FATALERROR, "Cannot open source directory " . $config{source});
   close(F);
 
   if ($config{docollections} eq 1) {
     if (($config{nosols} eq 1) or ($config{qautoexport} eq 1) or ($config{cleanup} eq 1)) {
-      die("FATAL: Option docollections is inconsistent with nosols, qautoexport and cleanup, deactivate one of them");
+      logMessage($FATALERROR, "Option docollections is inconsistent with nosols, qautoexport and cleanup, deactivate one of them");
     }
   }
 
   if ($config{dorelease} eq 1) {
     if (($config{cleanup} eq 0) or ($config{docollections} eq 1) or ($config{doverbose} eq 1)) {
-      die("FATAL: Option dorelease is inconsistent with cleanup=0, docollections=1 and doverbose=1, deactivate dorelease");
+      logMessage($FATALERROR, "Option dorelease is inconsistent with cleanup=0, docollections=1 and doverbose=1, deactivate dorelease");
     }
   }
 
   if ($config{scormlogin} eq 1) {
     if ($config{doscorm} eq 0) {
-      die("FATAL: Option scormlogin is inconsistent with doscorm=0, activate doscorm");
+      logMessage($FATALERROR, "Option scormlogin is inconsistent with doscorm=0, activate doscorm");
     }
   }
 
   $zip = ""; # Pfad+Name der zipdatei
   if ($config{dozip} eq 1) {
     if ($config{output} =~ m/(.+)\.zip/i) {
-      $zip = $config{output};
+      $zip = $config{output}; # Wird in der Variant-Iteration durch xyz_var.zip ersetzt
       $config{output} = $1 . "DIRECTORY";
     } else {
-      die("FATAL: zip-filename " . $config{output} . " not of type name.zip");
+      logMessage($FATALERROR, "zip-filename " . $config{output} . " not of type name.zip");
     }
   }
   
@@ -653,8 +682,7 @@ sub createButtonFiles {
 sub generate_scriptheaders {
    my $itags = "";
    logMessage($VERBOSEINFO, "Using scriptheaders: ");
-   my $i;
-   for ($i = 0; $i <= $#{$config{scriptheaders}}; $i++) {
+   for (my $i = 0; $i <= $#{$config{scriptheaders}}; $i++) {
      my $cs = $config{scriptheaders}[$i];
      $itags = $itags . "<script src=\"$cs\" type=\"text/javascript\"></script>\n";
      logMessage($VERBOSEINFO, "  $cs"); 
@@ -686,6 +714,10 @@ var localStoragePresent = false;
 var SITE_ID = "(unknown)";
 var SITE_UXID = "(unknown)";
 var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
 var animationSpeed = 250;
 
 // <JSCRIPTPRELOADTAG>
@@ -784,6 +816,409 @@ ENDE
 # -------------------------------------- subs --------------------------------------------------------------------------------
 
 # --------------------------------------------- Objektdefinitionen ---------------------------------------------------------------------------------------------------------------------
+
+{
+package Page;
+
+# sub new()
+# Konstruktor der Klasse
+# Parameter
+#
+sub new {
+	my ($package) = @_;
+	
+	# Initialisierung der Objekteigenschaften
+	my $self = {
+		SUBPAGES  => [],
+		LEVEL     => 0,
+		ISCHAPTER => 0,
+		PARENT    => 0,
+		ROOT      => 0,
+		NEXT      => 0,
+		PREV      => 0,
+		XNEXT     => -1,
+		XPREV     => -1,
+		XCONTENT  => 0,
+                HELPSITE  => 0,
+                TESTSITE  => 0,
+		NR 	  => "1",
+		POS       => "0",
+		ICON      => "STD",   
+		TOCSYMB   => "?",
+		TITLE     => "",
+		TEXT      => "",
+		LINK      => "",
+		SAVEPAGE  => 0,
+		MENUITEM  => 1,
+		DISPLAY   => 0,
+		EXPORTS   => [],
+		DOCNAME   => "",
+		UXID      => $main::UNKNOWN_UXID,
+		MODULID   => ""
+	};
+	$self->{ID} = $main::PageIDCounter;
+	$main::PageIDCounter++;
+	#Initialisierung der root-Eigenschaft
+	$self->{ROOT} = $self;
+	#Variablentyp auf die Klasse stellen
+	bless $self, $package;
+	return $self;
+}
+
+# sub split()
+# Zerteilung von Text, Erstellung der Objektstruktur
+# Parameter
+#	$text		Text, der in Teile getrennt werden soll
+#	$splitlevel	Ebene bei der mit der Trennung aufgehoert wird
+#	$level		Ebene der aktuellen Seite
+#	$lastobj	zuletzt erstelltes Objekt
+sub split {
+	my ($self, $text, $splitlevel, $level, $lastobj) = @_;
+	my (@subsections, $p, $nextlevel, $i, $subsec);
+	
+	if ($lastobj) {
+		#das zuletzt erstellte Objekt erhaelt Link auf das aktuelle Objekt
+		$lastobj->{NEXT} = $self;
+	}
+	#nun ist das aktuelle Objekt das zuletzt erstellte
+	$lastobj = $self;
+	#Level abspeichern
+	$self->{LEVEL} = $level;
+	
+	if ( $level>=$splitlevel) {
+		#keine weitere Unterteilung
+		$self->{TEXT} = $text;
+		$self->{DISPLAY} = 1;
+		if ($level>$splitlevel) {
+		$self->{TITLE}="Test";
+		}	
+	} else {
+		#Teilung in Unterabschnitte
+		#Level erhoehen
+		$nextlevel = $level +1;
+		#Trennug des Textes anhand von <h.>
+		@subsections = split(/<h$nextlevel>/,$text);
+		
+		#Der Text vor dem ersten <h.> steht an Stelle 0 des Arrays
+		#dieser Text gehoert zum aktuellen Objekt
+		$text = $subsections[0];
+		#eigentlich Vorkurs-spezifisch, dass der folgende Text als leer angesehen wird
+		$text =~ s/\s*(<div class=\"p\"><!----><\/div>)?\s*$//;
+		#Text abspeichern
+		$self->{TEXT} = $text;
+		
+		#ueber die Unterabschnitte iterieren und neue Objekte erstellen
+		for ($subsec = 1;$subsec<=$#subsections;$subsec++)
+		{
+			#neues Objekt
+			$p = Page->new();
+			$p->{DISPLAY} = 1;
+			
+			#Text aus Array holen
+			$text = $subsections[$subsec];
+			#eigentlich Vorkurs-spezifisch, dass der folgende Text am Ende des Abschnitts
+			#geloescht wird
+			$text =~ s/\s*(<div class=\"p\"><!----><\/div>)?\s*$//;
+			#nach </h.> suchen und den Text zwischen den h-Tags als Titel abspeichern
+			$text =~ /^(.*?)<\/h$nextlevel>/s;
+			$p->{TITLE} = $1;
+			#Position der Seite innerhalb des Arrays
+			$p->{POS} = $subsec;
+			#Link auf das letzte Objekt speichern
+			$p->{PREV} = $lastobj;
+			
+			#Unsinn! wird das noch genutzt?
+			$p->{ISCHAPTER} = ($1 eq "chAp");
+			
+			#Titel am Anfang des Textes entfernen
+			$text = substr($subsections[$subsec],length($&));
+			
+			#Diese Unterseite an das aktuelle Objekt anhaengen
+			$self->addpage($p);
+			#Link initialisieren
+			$p->{LINK} = $p->secpath();
+			
+			#for ($i=1;$i<$nextlevel;$i++) {print ". . ";}
+			#print $p->{TITLE} . "\n";
+			
+			#Rekursion aufrufen
+			$lastobj = $p->split($text, $splitlevel, $nextlevel, $lastobj);
+		}
+	}
+	#das zuletzt erstellte Objekt fuer die Rekursion zurueckliefern
+	return $lastobj;
+}
+
+
+# 
+# sub link()
+# liefert den Dateipfad, wo diese Seite gespeichert wird
+# Parameter
+# 	keine
+sub link {
+	my ($self) = @_;
+	my (@subpages);
+	#Array der Unterseiten
+	@subpages = @{$self->{SUBPAGES}};
+	if (! $self->{DISPLAY} && $#subpages >=0) {
+		#Falls die aktuelle Seite nicht angezeigt wird und sie Unterseiten hat,
+		#dann wird der Link auf die erste Unterseite geliefert
+		return $subpages[0]->link();
+	} else {
+		#Ansonsten der in der LINK-Eigenschaft abgespeicherte Link
+		return $self->{LINK};
+	}
+}
+
+
+# 
+# sub linkpath()
+# liefert zum link passende Anzahl von "../"
+# Parameter
+# 	keine
+sub linkpath {
+	my ($self) = @_;
+	my ($link, @subdirs, $i, $text);
+	#hole eigenen Link
+	$link = $self->link();
+	$text = "";
+	#zaehlen wie oft /abc/ zu finden ist
+	#aufeinanderfolgende // zaehlen nicht
+	@subdirs = ($link =~ /[^\/]+?\//g);
+	#fuer jeden dieser Unterordner ein "../" anhaengen
+	for ( $i=0; $i <=$#subdirs; $i++ ) {
+		$text .= "../";
+	}
+	#relativen Pfad-Prefix zurueckliefern
+	return $text;
+}
+
+
+# 
+# sub addpage()
+# erweitert das Array SUBPAGES um das abgegebene Objekt und setzt die
+# Eigenschaften PARENT und ROOT
+# Parameter
+# 	$page	Objekt, das angehaengt werden soll
+sub addpage {
+	my ($self, $page) = @_ ;
+	#Objekt an das sUBPAGES-Array anhaengen
+	push @{$self->{SUBPAGES}}, $page;
+	#Eigenschaften setzen
+	$page->{PARENT} = $self;
+	$page->{ROOT} = $self->{ROOT};
+}
+
+
+# 
+# sub secpath()
+# liefert eine eindeutige Position des Objekts innerhalb der Objektstruktur
+# Parameter
+# 	keine
+sub secpath {
+	my ($self) = @_;
+	my ($path, $p);
+	#uebergeordnetes Objekt abfragen
+	$p = $self->{PARENT};
+	if ($p->{LEVEL} != 0) {
+		#Falls das uebergeordnete Objekt nicht das root-Objekt ist,
+		#wird zunaechst der Pfad dieses Objekts abgefragt
+		$path = $p->secpath() . ".";
+	}
+	#danach wird die eigene Position angehaengt
+		$path .= $self->{POS};
+}
+
+
+# 
+# sub titlepath()
+# liefert Titel des Kapitels und der aktuellen Seite
+# Parameter
+# 	keine
+sub titlepath {
+	my ($self) = @_;
+	my ($path, $p, $root);
+	
+	#abhaengig vom Level des aktuellen Objekts
+	if ($self->{LEVEL} > 1) {
+		#nicht root und nicht auf erster Ebene
+		#hole uebergeordnetes Objekt auf erster Ebene
+		$p = $self->{PARENT};
+		until ($p->{LEVEL}<=1) {
+			$p = $p->{PARENT};
+		}
+		#root Objekt ist dem nochmals uebergeordnet
+		$root = $p->{PARENT};
+		
+		#hole titlepath vom root-Objekt und haenge Titel des Kapitels und
+		#der aktuellen Seite an
+		$path = $root->titlepath() . 
+			"<h1>" . $p->{TITLE} . "</h1>\n" . 
+			"<h2>" . $self->{TITLE} . "</h2>\n";
+	} elsif ($self->{LEVEL} == 1) {
+		#auf erster Ebene
+		#uebergeordnetes Objekt ist root
+		$root = $self->{PARENT};
+		#hole titlepath von root und haenge eigenen Titel an
+		$path = $root->titlepath() . 
+			"<h1>" . $self->{TITLE} . "</h1>\n";
+	} else {
+		#root Objekt
+		#falls root einen Titel hat, wird dieser in h1-tags gesetzt
+		#ansonsten ist der Text leer
+		$path = ($self->{TITLE} ? "<h1>" . $self->{TITLE} . "</h1>\n" : "" );
+	}
+	
+	return $path;
+}
+
+#
+# sub titlestring()
+# liefert Title der HTML-Seite
+# Parameter
+#       keine
+sub titlestring {
+        my ($self) = @_;
+        my ($path);
+	my (@subpages);
+	if (length($self->secpath())<9){
+		@subpages = @{$self->{PARENT}->{SUBPAGES}};
+	} else {
+		@subpages = @{$self->{PARENT}->{PARENT}->{SUBPAGES}};
+	}
+	# Verkettete Titel nur, falls self in Kette von Unterabschnitten und nicht erstes Element darin ist
+	if (($#subpages >0 && substr($self->secpath(),-1,1)!=1) and ($main::doconctitles eq 1)) {
+		$path=$subpages[0]->{TITLE} ." - " . $self->{TITLE};
+	} else {
+		$path=$self->{TITLE};
+	}
+#        $path = substr($self->secpath(),0,5) . " " . $self->{TITLE}; 
+        return $path;
+}
+
+
+
+# 
+# sub navprev()
+# liefert das in der Struktur folgende Objekt, das ausgegeben wird
+# Parameter
+# 	keine
+sub navprev {
+	my ($self) = @_;
+	my ($p);
+	
+	#hole vorheriges Objekt
+	$p = $self->{PREV};
+	#iteriere dies, solange bis das root-Objekt oder eine Seite, die ausgegeben wird,
+	#erreicht wird
+	until ($p->{LEVEL} == 0 || $p->{DISPLAY}) {
+		$p = $p->{PREV};
+	}
+	#liefere einen Verweis auf das Objekt
+	if ($p->{LEVEL} != 0) {
+		return $p;
+	} else {
+		return 0;
+	}
+}
+
+
+# 
+# sub navnext()
+# liefert das in der Struktur vorhergehende Objekt, das ausgegeben wird
+# Parameter
+# 
+sub navnext {
+	my ($self) = @_;
+	my ($p);
+	
+	#hole naechstes Objekt
+	$p = $self->{NEXT};
+	#iteriere dies, solange bis das Ende der Objekt-Struktur oder eine Seite,
+	#die ausgegeben wird, erreicht wird
+	until (! $p || $p->{DISPLAY}) {
+		$p = $p->{NEXT};
+	}
+	
+	#liefere einen Verweis auf das Objekt
+	if ($p) {
+		return $p;
+	} else {
+		return 0;
+	}
+}
+
+
+# 
+# sub subpagelist()
+# liefert eine Liste der untergeordneten Seiten
+# Parameter
+# 	keine
+sub subpagelist {
+	my ($self) = @_;
+	my (@subpages, $text, $i);
+	
+	#hole Unterseiten
+	@subpages = @{$self->{SUBPAGES}};
+	
+	#falls es Unterseiten gibt, wird eine Liste ausgegeben
+	if ($#subpages >= 0) {
+		#ueber Unterseiten iterieren und Eintrag erstellen, falls die Eigenschaft
+		#MENUITEM gesetzt ist
+		for ($i = 0; $i<=$#subpages; $i++) {
+			if ($subpages[$i]->{MENUITEM}) {
+				$text .= "<li class='chplist'><a class=\"MINTERLINK\" href='" . $subpages[$i]->link() . ".{EXT}'>";
+				$text .= $subpages[$i]->{TITLE} . "</a></li>\n";
+			}
+		}
+		#Anfang und Ende der Liste
+		if ($text != "") {
+			$text = "<ul class='chplist'>\n$text</ul>\n";
+		}
+	} else {
+		$text = "";
+	}
+	
+	return ($text);
+}
+
+# 
+# sub idprint()
+# gibt den Teilbaum ueber print aus
+sub idprint {
+  my ($self) = @_;
+  for (my $j = 0; $j <= $self->{LEVEL}; $j++) {
+    print "  ";
+  }
+
+  my @pages = @{$self->{SUBPAGES}};
+  my $k = ($#pages)+1;
+
+  my $nid = -1;
+  my $pid = -1;
+  my $xnid = -1;
+  my $xpid = -1;
+  my $bid = -1;
+  my $pa = -1;
+
+  if ($self->{NEXT}) { $nid = $self->{NEXT}->{ID}; }
+  if ($self->{XPREV}) { $xpid = $self->{XPREV}->{ID}; }
+  if ($self->{XNEXT}) { $xnid = $self->{XNEXT}->{ID}; }
+  if ($self->{PREV}) { $pid = $self->{PREV}->{ID}; }
+  if ($self->{PARENT}) { $pa = $self->{PARENT}->{ID}; }
+
+
+  print "(id=$self->{ID},xco=$self->{XCONTENT},lev=$self->{LEVEL},title=$self->{TITLE},on=$self->{DISPLAY},parent=$pa,prev=$pid,next=$nid,xprev=$xpid,xnext=$xnid)\n";
+
+  for (my $i = 0; $i < $k; $i++ ) {
+    $pages[$i]->idprint();
+  }
+
+}
+
+}
+
+
 
 # Die Klasse ModulPage wird von der Klasse Page abgeleitet.
 # Die meisten Funktionen werden gar nicht ueberschrieben.
@@ -922,17 +1357,14 @@ ENDE
                                     $p->{ICON} = $3;
 				    $p->{XCONTENT} = 1;
 
-				    $p->{TOCSYMB} = "I";
+				    $p->{TOCSYMB} = "status1";
                                     if ($tpcontent =~ m/<!-- declaretestsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "Test";
+                                        $p->{TOCSYMB} = "status3";
                                     }
                                     
                                     if ($tpcontent =~ m/<!-- declareexcsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "T";
+                                        $p->{TOCSYMB} = "status2";
                                     }
-                                    
-                                    $p->{TOCSYMB} = "<div class=\"xsymb\"><tt>" . $p->{TOCSYMB} . "</tt></div>";
-                                    
                                    
 				    # Erzeuge Dokumentweite XVerlinkung der xcontents
 				    $p->{XPREV} = $XIDObj;
@@ -1047,16 +1479,14 @@ ENDE
                                     $p->{ICON} = $3;
 				    $p->{XCONTENT} = 2;
 
-                                    $p->{TOCSYMB} = "I";
+				    $p->{TOCSYMB} = "status1";
                                     if ($tpcontent =~ m/<!-- declaretestsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "Test";
+                                        $p->{TOCSYMB} = "status3";
                                     }
                                     
                                     if ($tpcontent =~ m/<!-- declareexcsymb \/\/-->/s ) {
-                                        $p->{TOCSYMB} = "T";
+                                        $p->{TOCSYMB} = "status2";
                                     }
-                                    
-                                    $p->{TOCSYMB} = "<div class=\"xsymb\"><tt>" . $p->{TOCSYMB} . "</tt></div>";
                                     
                                     $p->{TEXT} = $tpcontent;
 
@@ -1197,35 +1627,64 @@ ENDE
 
 # ---------------------------------------------- Bearbeitungsfunktionen -------------------------------------------------------------
 
-# sub loadfile()
-# liefert den Inhalt der Datei als String (mit Ausgabe auf Konsole)
-# Parameter
-# 	$file	Dateiname
-sub loadfile {
-	my($file, $text, $zeile, $rw);
-	$file = $_[0];
-	$text = "";
-	$rw = open(LDFILE,$file) or die "\nFehler beim Oeffnen der Datei \"$file\": $!\n";
-	while(defined($zeile = <LDFILE>)) { $text .= $zeile; }
-	$text;
+sub readfile {
+	my $file = $_[0];
+	
+	if (-e $file) {
+          my $rt = `file -i $file`;
+          if ($rt =~ m/charset\=us\-ascii/s ) {
+          } else {
+            if ($rt =~ m/charset\=$stdencoding/s ) {
+            } else {
+              logMessage($CLIENTWARN, "File $file has wrong encoding (should be $stdencoding or ASCII)");
+            }
+          }
+        } else {
+          logMessage($FATALERROR, "File $file does not exist");
+        }
+	
+	my $text = "";
+	if (open(F, $file)) {
+	  logMessage($VERBOSEINFO, "Reading file $file");
+	} else {
+	  logMessage($FATALERROR, "Could not open file $file for reading");
+	}
+	my $n = 0;
+	my $r = "";
+	while(defined($r = <F>)) {
+	  $text .= $r;
+	  $n++;
+	}
+	close(F);
+	logMessage($VERBOSEINFO, "Read $n lines resp. " . length($text) . " characters from file $file (encoding: $stdencoding)");
+	return decode($stdencoding, $text);
 }
 
 
-# 
-# sub writefile()
-# schreibt Inhalt in eine Datei (mit Ausgabe auf Konsole)
-# Parameter
-# 	$file	Dateiname
-#	$output	Inhalt
 sub writefile {
-	my($file, $output, $rw);
-	$file = $_[0];
-	$output = $_[1];
-	$file =~ /(.*)\/[^\/]*?$/;
-	mkpath($1);
-	$rw = open(OUTPUT, "> $file") or die "Fehler beim Erstellen von '$file': $!\n";
-	print OUTPUT $output;
-	close(OUTPUT);
+	my $file = $_[0];
+	my $text = $_[1];
+  	my $path;
+	if ($file =~ /(.*)\/[^\/]*?$/ ) {
+	  $path = $1;
+	} else {
+	  $path = ".";
+	}
+	if ($path ne ".") {
+  	  logMessage($VERBOSEINFO, "Creating path $path");
+	  mkpath($path);
+	}
+	if (open(F, "> $file")) {
+	  logMessage($VERBOSEINFO, "Writing to file $file");
+	} else {
+	  logMessage($FATALERROR, "Cannot create/overwrite file $file in path $path");
+	}
+	my $code = encode($stdencoding, $text); 
+	
+	print F $code;
+	close(F);
+	
+	logMessage($VERBOSEINFO, "Written " . length($text) . " characters to file $file (encoding: $stdencoding)");
 }
 
 # sub noregex()
@@ -1236,8 +1695,7 @@ sub writefile {
 # Ausnahme: "*" um Dateisuche zu ermoeglichen
 
 sub noregex {
-  my $s;
-  $s = $_[0];
+  my $s = $_[0];
   foreach my $sz ("+","-","?",".","_","#","(",")","[","]") {
     my $sz2;
     $sz2 = "\\" . $sz;
@@ -1270,7 +1728,7 @@ sub postprocess {
     logMessage($VERBOSEINFO, $orgpage->{TITLE} . " -> " . $orgpage->{UXID} . " (siteuxidpost)");
   } else {
     logMessage($CLIENTWARN, "Site hat keine uxid: " . $orgpage->{TITLE});
-    $orgpage->{UXID} = "(unknown)";
+    $orgpage->{UXID} = $UNKNOWN_UXID;
   }
   
   
@@ -1435,18 +1893,21 @@ sub postprocess {
   }
   if ($nf>0) { logMessage($VERBOSEINFO, "$nf local files copied"); }
 
-  # MathML korrigieren: mtext, normalstyles und boldstyles um den Zeichensatz ergaenzen, damit es keine Serifen hat
-  $text =~ s/fontstyle=\"normal\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\"/ig;
-  $text =~ s/fontweight=\"bold\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\" fontweight=\"bold\"/ig;
+  
+  if ($config{parameter}{stdmathfont} == "1") {
+    # MathML korrigieren: mtext, normalstyles und boldstyles um den Zeichensatz ergaenzen, damit es keine Serifen hat
+    $text =~ s/fontstyle=\"normal\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\"/ig;
+    $text =~ s/fontweight=\"bold\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\" fontweight=\"bold\"/ig;
 
-  # Diese Zeilen verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages vorgenommen wurde
-  # $text =~ s/<m:mtext>/<m:mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
-  # MathML korrigieren: mtext/mstyle-Schachtelung umkehren, sonst wird es von den meisten Browsern nicht akzeptiert
-  # $text =~ s/<m:mtext(.*)>(.*)<m:mstyle(.*)>(.+)<\/m:mstyle(.*)>\n*(.*)<\/m:mtext(.*)>/<m:mstyle$3><m:mtext$1>$4<\/m:mtext$7><\/m:mstyle$5>/gi;
+    # Diese Zeilen verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages vorgenommen wurde
+    # $text =~ s/<m:mtext>/<m:mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
+    # MathML korrigieren: mtext/mstyle-Schachtelung umkehren, sonst wird es von den meisten Browsern nicht akzeptiert
+    # $text =~ s/<m:mtext(.*)>(.*)<m:mstyle(.*)>(.+)<\/m:mstyle(.*)>\n*(.*)<\/m:mtext(.*)>/<m:mstyle$3><m:mtext$1>$4<\/m:mtext$7><\/m:mstyle$5>/gi;
 
-  # Diese Zeile verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages NICHT vorgenommen wurde
-  $text =~ s/<mtext>/<mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
-  $text =~ s/<mtext(.*?)>(.*?)<mstyle(.*?)>(.+?)<\/mstyle(.*?)>\n*(.*?)<\/mtext(.*?)>/<mstyle$3><mtext$1>$4<\/mtext$7><\/mstyle$5>/gi;
+    # Diese Zeile verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages NICHT vorgenommen wurde
+    $text =~ s/<mtext>/<mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
+    $text =~ s/<mtext(.*?)>(.*?)<mstyle(.*?)>(.+?)<\/mstyle(.*?)>\n*(.*?)<\/mtext(.*?)>/<mstyle$3><mtext$1>$4<\/mtext$7><\/mstyle$5>/gi;
+  }
 
   # Falls es eine Pruefungsseite ist, Kennvariablen fuer die Aufgabenpunkte erzeugen
   if ($orgpage->{TESTSITE} eq 1) {
@@ -1474,6 +1935,21 @@ sub postprocess {
     $text =~ s/\/\/ <JSCRIPTPOSTMODEL>/$prel\n\/\/ <JSCRIPTPOSTMODEL>/s ;
   }
 
+  # SVGStyles einsetzen
+  while ($text =~ m/<!-- svgstyle;(.+?) \/\/-->/s ) {
+    my $tname = $1;
+    if (exists $tikzpng{$tname}) {
+      my $style = $tikzpng{$tname};
+      logMessage($VERBOSEINFO, "Found style info for svg on $tname: $style");
+      $text =~ s/<!-- svgstyle;$tname \/\/-->/$style/g ; 
+      delete $tikzpng{$tname};
+    } else {
+      logMessage($CLIENTERROR, "Could not find image information for $tname");
+      $text =~ s/<!-- svgstyle;$tname \/\/-->//g ; 
+    }
+  }
+ 
+  
   # mfeedbackbutton ersetzen
   my $j = 0;
   while ($text =~ m/<!-- mfeedbackbutton;(.+?);(.*?);(.*?); \/\/-->/s ) {
@@ -1573,6 +2049,27 @@ sub postprocess {
     if ($collc > 0) { logMessage($VERBOSEINFO, "$collc collections mit insgesamt $colla Aufgaben exportiert"); }
   }
 
+  
+  # DirectRoulette-divs einrichten
+  while ($text =~ m/<!-- rouletteexc-start;(.+?);(.+?); \/\/-->(.+?)<!-- rouletteexc-stop;(.+?);(.+?); \/\/-->/s ) {
+    my $rid = $1;
+    my $id = $2;
+    
+    my $maxid = 0;
+    
+    if (exists $DirectRoulettes{$rid}) {
+      $maxid = $DirectRoulettes{$rid};
+    } else {
+      logMessage($CLIENTERROR, "Could not find roulette id $rid");
+    }
+    my $vis = ($id eq "0") ? "block" : "none";
+    
+    my $bt = "<div class=\"rouletteselector\"><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'$rid\',$id,$maxid);\">Neue Aufgabe</button><br />";
+    
+    $text =~ s/<!-- rouletteexc-start;$rid;$id; \/\/-->(.+?)<!-- rouletteexc-stop;$rid;$id; \/\/-->/<div style=\"display:$vis\" id=\"DROULETTE$rid\.$id\">$bt$1<\/div><\/div>/s ;
+    logMessage($VERBOSEINFO, "Roulette $rid.$id done");
+  }
+  
   return $text;
 }
 
@@ -1597,9 +2094,8 @@ sub getstyleimporttags {
    my $itags = "";
 
 
-    my $i;
     my $css = "";
-    for ($i = 0; $i <= $#{$config{stylesheets}}; $i++) {
+    for (my $i = 0; $i <= $#{$config{stylesheets}}; $i++) {
       my $cs = $config{stylesheets}[$i];
       $itags = $itags . "<link rel=\"stylesheet\" type=\"text\/css\" href=\"$lp$cs\"\/>\n";
       $css .= $cs . " "; 
@@ -1614,14 +2110,12 @@ sub getstyleimporttags {
 #------------------------------------------------ START NEUES DESIGN ---------------------------------------------------------------------------------------
 
 
-# sub getheader()
 # Erzeugt das head-div fuer die html-Seiten
 sub getheader {
   # Inhalt wird von js-Funktionen dynamisch gefuellt
   return "<div class=\"headmiddle\">&nbsp;</div>\n"; # ohne echten div-Inhalt werden icons nicht erzeugt
 }
 
-# sub getfooter()
 # Erzeugt das footer-div fuer die html-Seiten
 sub getfooter {
   # Inhalt von footer_left wird von js-Funktionen dynamisch gefuellt
@@ -1631,6 +2125,52 @@ sub getfooter {
   return $footer;
 }
 
+# Erzeugt das settings-div fuer die html-Seiten
+sub getsettings {
+  my $settings = <<ENDE;
+<p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" type="button" onclick="selectColor(STYLEBLUE);">Blaues Schema</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" type="button" onclick="selectColor(STYLERED);">Rotes Schema</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" type="button" onclick="selectColor(STYLEGREEN);">Grünes Schema</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" type="button" onclick="selectColor(STYLEGREY);">Graues Schema</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \\(\\displaystyle
+  ]a;b[\\ , \\ \\mathbb N =\\lbrace 1;2;3;\\ldots\\rbrace \\ , \\ P=(a;b;c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right) \\ ,\\ \\sqrt2 =1,414\\ldots
+  \\)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \\(\\displaystyle
+  (a,b)\\ , \\ \\mathbb N =\\lbrace 1,2,3,\\ldots\\rbrace \\ , \\ P=(a,b,c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right) \\ ,\\ \\sqrt2 =1.414\\ldots
+  \\)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+ENDE
+  
+  return $settings;
+}
 
 # Uebersetzt die alten (VEMA) Iconnamen in die neuen Dateiprefixe, im alten Design geschieht diese Uebersetzung im default.css
 # Parameter: Der Iconstring
@@ -1648,15 +2188,6 @@ sub translateoldicons {
   return $icon;
 }
 
-
-# Erzeugt das navigations-div fuer die html-Seiten
-# Parameter: icon (Klassenname) und Anker (HTML-String der a-Tag enthalten sollte)
-sub createTocButton {
-  my ($icon, $anchor) = @_;
-  
-  return "<div class=\"$icon\">" . $anchor . "</div>\n";
-}
-
 # Erzeugt das navigations-div fuer die html-Seiten
 # Parameter: Das Seitenobjekt
 sub getnavi {
@@ -1668,51 +2199,49 @@ sub getnavi {
 
   # Link auf die vorherige Seite
   $p = $site->navprev();
-  my $ac = $config{strings}{button_previous};
+  my $ac = ""; # $config{strings}{button_previous} nicht mehr benoetigt im bdesign
   my $icon = "nprev";
+  my $anchor;
   if (($site->{XCONTENT} == 1) and (!($p))) {
     if ($site->{XPREV} != -1) {
       $p = $site->{XPREV};
-      $icon = "xnprev";
+      # $icon = "xnprev";
     }
   }
-  my $anchor;
   if (($p) and ($site->{LEVEL} == $contentlevel)) {
-    $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\">$ac</a>";
+    $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\"></a>";
   } else {
-    $icon = $icon . "g";
-    $anchor = $ac;
+    $anchor = "";
   }
   $navi .= "<div class=\"$icon\">" . $anchor . "</div>\n";
 
   # Link auf die naechste Seite
   $p = $site->navnext();
-  $ac = $config{strings}{button_next};
+  $ac = ""; # $config{strings}{button_next}; nicht mehr benoetigt im bdesign
   $icon = "nnext";
   if (($site->{XCONTENT} == 1) and (!($p))) {
     if ($site->{XNEXT} != -1) {
       $p = $site->{XNEXT};
-      $icon = "xnnext";
+      # $icon = "xnnext";
     }
   }
   if (($site->{LEVEL} == ($contentlevel-2)) and ($site->{XNEXT} ne -1)) {
     # Von Modulhauptseite kommt man mit "Weiter" auf die erste contentseite
     $p = $site->{XNEXT};
-    $icon = "xnnext";
+    # $icon = "xnnext";
   }
   if (($site->{LEVEL} == ($contentlevel-3)) and ($site->{XNEXT} ne -1)) {
     # Von FB-Hauptseite kommt man mit "Weiter" auf die erste Modulhauptseite
     $p = $site->{XNEXT};
-    $icon = "xnnext";
+    # $icon = "xnnext";
   }
 
   if (($p) and (($site->{LEVEL}==$contentlevel) or ($site->{LEVEL}==($contentlevel-2)) or ($site->{LEVEL}==($contentlevel-3)))) {
-    $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\">$ac</a>";
+    $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\"></a>";
   } else {
-    $icon = $icon . "g";
-    $anchor = $ac;
+    $anchor = "";
   }
-  $navi .= createTocButton($icon, $anchor);
+  $navi .= "<div class=\"$icon\">" . $anchor . "</div>\n";
 
   # Links auf die subsubsections im gleichen Teilbaum
   $navi .= "<ul>\n";
@@ -1720,7 +2249,8 @@ sub getnavi {
     if ($site->{LEVEL}!=$contentlevel) {
       if ($site->{XCONTENT}==3) {
         # Link auf Aufgabenstellung bei Loesungsseiten
-	$navi .= "  <li class=\"inormalbutton_book\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $site->{BACK}->link() . ".{EXT}\">" . "Zum Modul" . "</a></li>\n";
+	$navi .= "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $site->{BACK}->link() . ".{EXT}\">" . "Zum Modul" . "</a></li>\n";
+	logMessage($FATALERROR," Backtracks from solution pages should no longer appear since MSolution is deprecated");
       } else {
         # Link auf Modulstart setzen bei hoeheren Ebenen
 	my $pp = $site;
@@ -1729,9 +2259,9 @@ sub getnavi {
 	  $pp = $sp[0];
 	}
 	if ($pp->{HELPSITE} eq 0) {
-	  $navi .= "  <li class=\"inormalbutton_book\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . $config{strings}{module_starttext} . "</a></li>\n";
+	  $navi .= "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . $config{strings}{module_starttext} . "</a></li>\n";
 	} else {
-	  $navi .= "  <li class=\"inormalbutton_book\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . "Mehr Informationen" . "</a></li>\n";
+	  $navi .= "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . "Mehr Informationen" . "</a></li>\n";
 	}
       }
     }
@@ -1739,26 +2269,29 @@ sub getnavi {
     my $parent;
     if ($parent = $site->{PARENT}) {
       my @pages = @{$parent->{SUBPAGES}};
-      for ( $i=0; $i <= $#pages; $i++ ) {
+      for (my $i = 0; $i <= $#pages; $i++ ) {
 	my $p = $pages[$i];
 	my $attr ="normal";
-	if ($p->secpath() eq $site->secpath()) { $attr = "selected"; }
+	if ($p->secpath() eq $site->secpath()) { $attr = "s"; }
 	my $icon = $p->{ICON};
 	if ($icon eq "STD") { $icon = "book"; }
 	$icon = translateoldicons($icon);
+	# bdesign: no images
+	$icon = "xsectbutton";
 	my $cap = $p->{CAPTION};
 	if ($icon ne "NONE") {
-	  $icon = "button_" . $icon;
+	  #$icon = "button_" . $icon;
 	  if (($p->{DISPLAY}) and ($site->{LEVEL}==$contentlevel)) {
-	    # Knopf fuer Seite normal darstellen
-	    $navi .= "  <li class=\"" . "i$attr$icon" . "\"><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p->link() . ".{EXT}\">" . $cap . "</a></li>\n";
+	    # Knopf fuer Seite normal darstellen mit Attributen
+	    $navi .= "  <li class=\"$icon\"><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p->link() . ".{EXT}\">" . $cap . "</a></li>\n";
 	  } else {
 	    if ($site->{LEVEL}!=$contentlevel) {
 	      # Keine Navigationsbuttons wenn auf oberer Ebene
 	    } else
 	    {
 	      # Knopf fuer gesperrte Seite ausgrauen und nicht verlinken
-	      $navi .= "  <li class=\"" . "igrey$icon" . "\">" . $cap . "</li>\n";
+	      $attr = "g";
+	      $navi .= "  <li class=\"$icon\">" . $cap . "</li>\n";
 	    }
 	  }
 	}
@@ -1882,7 +2415,7 @@ sub gettoccaption_menustyle {
                 my $a;
                 for ($a = 0; $a <= $#pages4; $a++) {
                   my $p4 = $pages4[$a];
-                  $tsec .= "<a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p4->link() . ".{EXT}\">" . $p4->{TOCSYMB} . "</a>\n";
+                  $tsec .= "<a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p4->link() . ".{EXT}\"><div class=\"xsymb " . $p4->{TOCSYMB} . "\"></div></a>\n";
                 }
                 
                 
@@ -2009,6 +2542,7 @@ sub printpages {
 
 		my $divhead = updatelinks(getheader(),$linkpath);
 		my $divfooter = updatelinks(getfooter(),$linkpath);
+		my $divsettings = updatelinks(getsettings(),$linkpath);
 		# Kein update erforderlich da $p verwendet wird:
 		my $divnavi = getnavi($p); 
 		#my $divtoccaption = gettoccaption($p);
@@ -2251,15 +2785,16 @@ sub printpages {
 
 
 		$text .= "<div id=\"fixed\">\n";
-		$text .= "<div class=\"head\">\n"   . $divhead       . "</div>\n";
-		$text .= "<div class=\"toc\">\n"    . $divtoccaption . "</div>\n";
-		$text .= "<div class=\"navi\">\n"   . $divnavi       . "</div>\n";
+		$text .= "<div id=\"fhead\" class=\"head\">\n"   . $divhead       . "</div>\n";
+		$text .= "<div id=\"ftoc\" class=\"toc\">\n"    . $divtoccaption . "</div>\n";
+		$text .= "<div id=\"fnavi\" class=\"navi\">\n"   . $divnavi       . "</div>\n";
 		$text .= "<div id=\"footer\">\n"    . $divfooter     . "</div>\n";
+		$text .= "<div id=\"settings\" style=\"visibility:hidden\">\n" . $divsettings . "</div>\n";
 		$text .= "</div>\n";
 		$text .= "<div id=\"notfixed\">\n";
-		$text .= "<div class=\"head\">\n"   . $divhead       . "</div>\n";
-		$text .= "<div class=\"toc\">\n"    . $divtoccaption . "</div>\n";
-		$text .= "<div class=\"navi\">\n"   . $divnavi       . "</div>\n";
+		$text .= "<div id=\"nfhead\" class=\"head\">\n"   . $divhead       . "</div>\n";
+		$text .= "<div id=\"nftoc\" class=\"toc\">\n"    . $divtoccaption . "</div>\n";
+		$text .= "<div id=\"nfnavi\" class=\"navi\">\n"   . $divnavi       . "</div>\n";
 		$text .= "<div id=\"content\"><div id=\"text\"><div class=\"text\">\n"   . $divcontent    . "</div></div></div>\n";
 		$text .= "</div>\n";
 
@@ -2446,8 +2981,7 @@ sub createtocs {
 
   # Inhaltsverzeichnis enthaelt die DIREKTEN Unterseiten der aktuellen Seite
 
-  my $i;
-  for ($i = 0; $i <= $#subpages; $i++) {
+  for (my $i = 0; $i <= $#subpages; $i++) {
     my $lk = $subpages[$i]->link() . ".{EXT}";
     $toc = $toc . "<a class=\"MINTERLINK\" href='" . $lk ."'>" . $subpages[$i]->{TITLE} . "</a><br />";
   }
@@ -2457,7 +2991,7 @@ sub createtocs {
 
   #Rekursion auf Unterseiten
   logMessage($VERBOSEINFO, "  Iteriere über " . $#subpages . " Unterseiten");
-  for ($i=0; $i <= $#subpages; $i++) {
+  for (my $i = 0; $i <= $#subpages; $i++) {
     createtocs($subpages[$i]);
   }
 }
@@ -2486,9 +3020,8 @@ sub relocatehelpsection {
 
   $p->{HELPSITE} = $h;
   #Rekursion auf Unterseiten
-  my $i;
-  for ( $i=0; $i <= $#subpages; $i++ ) {
-	    relocatehelpsection($subpages[$i], $h);
+  for (my $i = 0; $i <= $#subpages; $i++ ) {
+    relocatehelpsection($subpages[$i], $h);
   }
 
 }
@@ -2598,9 +3131,13 @@ sub mathmloptimize {
 	$text =~ s/<mn>([0-9]*)<\/mn><mo>,<\/mo>(\n|\r)*<msup><mrow><mn>([0-9]*)<\/mn><\/mrow><mrow><mn>([0-9])<\/mn><\/mrow>(\n|\r)*<\/msup>/
 	<msup><mrow><mn>$1,$3<\/mn><\/mrow><mrow><mn>$4<\/mn><\/mrow>\n<\/msup>/g;
 	
-	#MathML-Tabellen ohne Breitenangabe und Ausrichtung
+	# Korrektur eines Bugs in MathJax 2.6 (trat <=2.4 nicht auf): displaystyle=true wird nicht auf Tabellen vererbt, also auch innerhalb der Tabelle deklarieren
+	$text =~ s/<mstyle displaystyle="true"><mrow>\n<mtable([^>]+)>/<mstyle displaystyle="true"><mrow>\n<mtable$1><mstyle displaystyle="true">/sg ;
+	
+       	#MathML-Tabellen ohne Breitenangabe und Ausrichtung
 	#diese wuerden grosse Lehrraeume erzeugen (IE)
 	$text =~ s/<mtable([^>]+)>/<mtable>/g;
+
 	
 	#Abgesetzte Formeln nicht in Tabellen sondern in <center>-Tags
 	$text =~ s/<table width="100%"><tr><td align="center">\s*(<math(.|\n)*?<\/math>)\s*<\/td><\/tr><\/table>/<center>$1<\/center>/g;
@@ -2672,7 +3209,7 @@ sub loadtemplates {
     logMessage($CLIENTINFO, "MathJax wird lokal adressiert");
   } else {
     if ($config{localjax} eq 0) {
-      logMessage($CLIENTINFO, "Binde MathJax ueber NetService (cdn 2.4) ein");
+      logMessage($CLIENTINFO, "Binde MathJax ueber NetService ein");
       loadtemplates_netservice();
       logMessage($CLIENTINFO, "MathJax wird ueber Netservice adressiert");
     } else {
@@ -2712,32 +3249,32 @@ sub loadtemplates_local {
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{TITLE}</title>
-<script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
-  config: [":directmaterial:TeX-AMS-MML_HTMLorMML.js"],
-  jax: [":directmaterial:input/MathML",":directmaterial:input/TeX",":directmaterial:output/HTML-CSS",":directmaterial:output/NativeMML"],
-  extensions: [":directmaterial:mml2jax.js",":directmaterial:MathMenu.js",":directmaterial:MathZoom.js"],
-  "HTML-CSS": {
-      scale: 100,
-      minScaleAdjust: 80,
-      mtextFontInherit: true,
-      styles: {},
-      noReflows: true,
-      linebreaks: { automatic: false }
-   },
-  MMLorHTML: {
-   prefer: {
-    MSIE: "HTML",
-    Firefox: "HTML",
-    Safari: "HTML",
-    Chrome: "HTML",
-    Opera: "HTML",
-    other: "HTML"
-      }
+  jax: [":directmaterial:input/TeX",":directmaterial:input/MathML", ":directmaterial:output/CommonHTML"],
+  extensions: [":directmaterial:tex2jax.js", ":directmaterial:mml2jax.js", ":directmaterial:MathMenu.js", ":directmaterial:MathZoom.js"],
+  TeX: {
+    extensions: [":directmaterial:AMSmath.js",":directmaterial:AMSsymbols.js",":directmaterial:noErrors.js",":directmaterial:noUndefined.js"],
+    Macros: {
+      RR: '{\\\\bf R}',
+      bold: ['{\\\\bf #1}', 1]
     }
+  },
+  tex2jax: { inlineMath: [['\\\\(','\\\\)']], displayMath: [['\\\\[','\\\\]']] },
+  "CommonHTML": {
+    scale: 100,
+    minScaleAdjust: 80,
+    mtextFontInherit: true,
+    linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+    disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
 });
+MathJax.Hub.processSectionDelay = 0;
 </script>
+<script type="text/javascript" src="MathJax/MathJax.js?locale=de"></script>
 <!-- Headerversion MPL/localjax -->
 </head>
 <body onload="loadHandler()" onbeforeunload="unloadHandler()">
@@ -2764,31 +3301,32 @@ sub loadtemplates_netservice {
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{TITLE}</title>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
-  config: [":directmaterial:TeX-AMS-MML_HTMLorMML.js"],
-  jax: [":directmaterial:input/MathML",":directmaterial:input/TeX",":directmaterial:output/HTML-CSS",":directmaterial:output/NativeMML"],
-  extensions: [":directmaterial:mml2jax.js",":directmaterial:MathMenu.js",":directmaterial:MathZoom.js"],
-  "HTML-CSS": {
-      scale: 100,
-      minScaleAdjust: 80,
-      mtextFontInherit: true,
-      styles: {},
-      noReflows: true
-   },
-  MMLorHTML: {
-   prefer: {
-    MSIE: "HTML",
-    Firefox: "HTML",
-    Safari: "HTML",
-    Chrome: "HTML",
-    Opera: "HTML",
-    other: "HTML"
-      }
+  jax: [":directmaterial:input/TeX",":directmaterial:input/MathML", ":directmaterial:output/CommonHTML"],
+  extensions: [":directmaterial:tex2jax.js", ":directmaterial:mml2jax.js", ":directmaterial:MathMenu.js", ":directmaterial:MathZoom.js"],
+  TeX: {
+    extensions: [":directmaterial:AMSmath.js",":directmaterial:AMSsymbols.js",":directmaterial:noErrors.js",":directmaterial:noUndefined.js"],
+    Macros: {
+      RR: '{\\\\bf R}',
+      bold: ['{\\\\bf #1}', 1]
     }
+  },
+  tex2jax: { inlineMath: [['\\\\(','\\\\)']], displayMath: [['\\\\[','\\\\]']] },
+  "CommonHTML": {
+    scale: 100,
+    minScaleAdjust: 80,
+    mtextFontInherit: true,
+    linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+    disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
 });
+MathJax.Hub.processSectionDelay = 0;
 </script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?locale=de"></script>
 <!-- Headerversion MPL/netservicejax -->
 </head>
 <body onload="loadHandler()" onunload="unloadHandler()">
@@ -2802,14 +3340,17 @@ ENDE
     logMessage($VERBOSEINFO, "DT = $dt");
 }
 
-# --------------------------------------------- Zerlegung des Dokuments  ----------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------- Konvertierung des Dokuments zu XML ----------------------------------------------------------------------------------------------------------------------
 
+# Parameter: output-directory
 sub converter_conversion {
 
-logTimestamp("Starting conversion");
+my $outputdir = $_[0];
+
+logTimestamp("Starting conversion on output directory $outputdir in directory " . getcwd);
 
 #Alte Daten loeschen
-logMessage($CLIENTINFO, "Copying files into " . $config{outtmp});
+logMessage($CLIENTINFO, "Copying files into temporary folder " . $config{outtmp});
 system "rm -rf " . $config{outtmp};
 system "mkdir -p " . $config{outtmp};
 system "cp -R files/* " . $config{outtmp};
@@ -2818,16 +3359,51 @@ logMessage($CLIENTINFO, " ok");
 
 logMessage($VERBOSEINFO, "Es werden " . ($#DirectHTML + 1) . " DirectHTML-Statements werden verwendet");
 
-logTimestamp("Starting ttm tex->html converter");
-system "./ttm-src/ttm -p./tex < tex/vorkursxml.tex >$xmlfile";
+# Variants
+my $target = "tex/htmlprepare.tex";
+
+writefile("tex/mod_$macrofile", $modmacrotex);
+
+logTimestamp("Starting ttm tex->html converter for variant $variantactive");
+system "./ttm-src/ttm -p./tex < $target 1>$xmlfile 2>$xmlerrormsg";
+
 logTimestamp("Loading ttm output file $xmlfile");
-my $text = loadfile($xmlfile);
+my $text = readfile($xmlfile);
+my $ttm_errors = readfile($xmlerrormsg);
+my @ttm_errors = split("\n", $ttm_errors);
+
+my $j = 0;
+
+my $nl = 0;
+for (my $i = 0; $i <= $#ttm_errors; $i++) {
+  if ($ttm_errors[$i] =~ m/\*\*\*\* Unknown command (.+?), /s ) {
+    logMessage($CLIENTWARN, "(ttm) " . $ttm_errors[$i]);
+    push @converrors, "ERROR: ttm konnte LaTeX-Kommando $1 nicht verarbeiten";
+    $j++;
+  } else {
+    if ($ttm_errors[$i] =~ m/Abnormal NL, removespace/s ) {
+      logMessage($VERBOSEINFO, "(ttm) " . $ttm_errors[$i]);
+      $nl++;
+    } else {
+      logMessage($CLIENTINFO, "(ttm) " . $ttm_errors[$i]);
+      if ($ttm_errors[$i] =~ m/Error: Fatal/s ) {
+        logMessage($FATALERROR, "ttm exited with fatal error, aborting");
+      }
+    }
+  }
+}
+
+logMessage($CLIENTINFO, "ttm found $nl abnormal newlines");
+
+if (($config{dorelease} eq 1) and ($j > 0)) {
+      logMessage($CLIENTERROR, "ttm found $j unknown commands, not valid in release version!");
+}
 
 # Debug-Meldungen ausgeben
 while ($text =~ s/<!-- debugprint;;(.+?); \/\/-->/<!-- debug;;$1; \/\/-->/s ) { logMessage($DEBUGINFO, $1); }
 
 # Aufgabenpunktetabelle generieren
-for ($i=0; $i <= 9; $i++ ) {
+for (my $i = 0; $i <= 9; $i++ ) {
   push @sitepoints, 0;
   push @expoints, 0;
   push @testpoints, 0;
@@ -2861,19 +3437,17 @@ while ($text =~ s/<!-- mdeclaresiteuxid;;(.+?);;(.+?);;(.+?);; \/\/-->/<!-- mdec
   if ($2 eq 1) { $sitepoints[$3-1]++; }
 }
 
-my $ia = 0;
-my $ib = 0;
-for ( $ia = 0; $ia <=$#uxids; $ia++ ) {
-  for ( $ib = $ia + 1; $ib <=$#uxids; $ib++ ) {
-    if ($uxids[$ia][0] eq $uxids[$ib][0]) {
+for (my $ia = 0; $ia <=$#uxids; $ia++ ) {
+  for (my $ib = $ia + 1; $ib <=$#uxids; $ib++ ) {
+    if (($uxids[$ia][0] eq $uxids[$ib][0]) and ($uxids[$ia][0] ne "UXAUTOGENERATED")) {
       my $tmpstr = "Gleiche uxid: " . $uxids[$ia][0] . " mit ids " . $uxids[$ia][2] . " und " . $uxids[$ib][2];
       push @converrors, $tmpstr;
     }
   }
 }
 
-for ( $ia = 0; $ia <=$#siteuxids; $ia++ ) {
-  for ( $ib = $ia + 1; $ib <=$#siteuxids; $ib++ ) {
+for (my $ia = 0; $ia <=$#siteuxids; $ia++ ) {
+  for (my $ib = $ia + 1; $ib <=$#siteuxids; $ib++ ) {
     if ($siteuxids[$ia] eq $siteuxids[$ib]) {
       my $tmpstr = "Gleiche siteuxid: " . $siteuxids[$ia];
       push @converrors, $tmpstr;
@@ -2882,7 +3456,7 @@ for ( $ia = 0; $ia <=$#siteuxids; $ia++ ) {
 }
 
 
-for ($i=0; $i <= 9; $i++ ) {
+for (my $i = 0; $i <= 9; $i++ ) {
   logMessage($VERBOSEINFO, "Punkte in section " . ($i+1) . ": " . $expoints[$i] . ", davon " . $testpoints[$i] . " von Tests");
   logMessage($VERBOSEINFO, "Sites in section " . ($i+1) . ": " . $sitepoints[$i]);
 }
@@ -2942,51 +3516,50 @@ logMessage($CLIENTINFO, "c-machine: " . $config{parameter}{signature_convmachine
 logMessage($CLIENTINFO, "      CID: " . $config{parameter}{signature_CID});
 logMessage($CLIENTINFO, "Diese Informationen werden im HTML-Baum hinterlegt");
 
-# Wir befinden uns gerade im zu erzeugenden Baum, in dem perl ein Unverzeichnis ist, das Kopieren der Dateien von perl/files nach .. wurde schon durchgefuehrt
-my $mints_open = open(MINTS, "> " . $config{outtmp} . "/convinfo.js") or die "FATAL: Could not create convinfo.js.\n";
-print MINTS "// Automatically generated by mconvert.pl, will be included by the standard template\n";
-print MINTS "var scormLogin = " . $config{scormlogin} . ";\n";
-print MINTS "var isRelease = " . $config{dorelease} . ";\n";
-print MINTS "var doCollections = " . $config{docollections} . ";\n";
+my $confinfocontent = "";
+$confinfocontent .= "// Automatically generated by mconvert.pl, will be included by the standard template\n";
+$confinfocontent .= "var scormLogin = " . $config{scormlogin} . ";\n";
+$confinfocontent .= "var isRelease = " . $config{dorelease} . ";\n";
+$confinfocontent .= "var doCollections = " . $config{docollections} . ";\n";
 
 if ($config{testonly} eq 1) {
-  print MINTS "var testOnly = 1;\n";
+  $confinfocontent .= "var testOnly = 1;\n";
   print "TESTONLY aktiviert!\n";
   # Deaktiviert Buttons
   $confsite = "";
   $datasite = "";
   $searchsite = "";
 } else {
-  print MINTS "var testOnly = 0;\n";
+  $confinfocontent .= "var testOnly = 0;\n";
 }
 
 if ($config{dorelease} ne 1) {
-  print MINTS "console.log(\"KEINE RELEASE-VERSION\");\n";
+  $confinfocontent .= "console.log(\"KEINE RELEASE-VERSION\");\n";
 }
-print MINTS "var isVerbose = " . $config{doverbose} . ";\n";
+$confinfocontent .= "var isVerbose = " . $config{doverbose} . ";\n";
 if ($config{doverbose} eq 1) {
-  print MINTS "console.log(\"VERBOSE-VERSION\");\n";
+  $confinfocontent .= "console.log(\"VERBOSE-VERSION\");\n";
 }
 
 # Freie Parameter aus config eintragen
 my $ckey;
 my $cval;
 while (($ckey, $cval) = each(%{$config{'parameter'}})) {
-  print MINTS "var $ckey = \"$cval\";\n";
+  $confinfocontent .= "var $ckey = \"$cval\";\n";
 }
 
-print MINTS "var globalsitepoints = [];\n";
-print MINTS "var globalexpoints = [];\n";
-print MINTS "var globaltestpoints = [];\n";
-print MINTS "var globalsections = [];\n";
-for ($i=0; $i<=$#expoints; $i++) {
-  print MINTS "globalsitepoints[$i] = " . $sitepoints[$i] . ";\n";
-  print MINTS "globalexpoints[$i] = " . $expoints[$i] . ";\n";
-  print MINTS "globaltestpoints[$i] = " . $testpoints[$i] . ";\n";
-  print MINTS "globalsections[$i] = \"" . $sections[$i] . "\";\n";
+$confinfocontent .= "var globalsitepoints = [];\n";
+$confinfocontent .= "var globalexpoints = [];\n";
+$confinfocontent .= "var globaltestpoints = [];\n";
+$confinfocontent .= "var globalsections = [];\n";
+for (my $i = 0; $i <= $#expoints; $i++) {
+  $confinfocontent .= "globalsitepoints[$i] = " . $sitepoints[$i] . ";\n";
+  $confinfocontent .= "globalexpoints[$i] = " . $expoints[$i] . ";\n";
+  $confinfocontent .= "globaltestpoints[$i] = " . $testpoints[$i] . ";\n";
+  $confinfocontent .= "globalsections[$i] = \"" . $sections[$i] . "\";\n";
 }
-close(MINTS);
 
+writefile($config{outtmp} . "/convinfo.js" , $confinfocontent);
 
 if ($config{parameter}{do_export} eq "1") { logMessage($CLIENTINFO,  "EXPORTVERSION WILL BE GENERATED");  }
 if ($config{parameter}{do_feedback} eq "1") { logMessage($CLIENTINFO, "FEEDBACKVERSION WILL BE GENERATED");  }
@@ -2994,12 +3567,12 @@ if ($config{parameter}{do_feedback} eq "1") { logMessage($CLIENTINFO, "FEEDBACKV
 my @umwordindexlist = ();
 my @wordindexlist = ();
 my @wordindexlinklist = ();
-$i = 0;
+my $icount = 0;
 my $li = "ELI_SW";
-while ($text =~ s/<!-- mpreindexentry;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); \/\/-->/<!-- mindexentry;;$1; \/\/--><a class=\"label\" name=\"$li$i\"><\/a><!-- mmlabel;;$li$i;;$2;;$3;;$4;;$5;;13; \/\/-->/s ) {
+while ($text =~ s/<!-- mpreindexentry;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); \/\/-->/<!-- mindexentry;;$1; \/\/--><a class=\"label\" name=\"$li$icount\"><\/a><!-- mmlabel;;$li$icount;;$2;;$3;;$4;;$5;;13; \/\/-->/s ) {
   my $umstr = $1;
   push @wordindexlist, $1;
-  push @wordindexlinklist, "$li$i";
+  push @wordindexlinklist, "$li$icount";
   $umstr =~ s/ä/ae/g ;
   $umstr =~ s/ö/oe/g ;
   $umstr =~ s/ü/ue/g ;
@@ -3008,7 +3581,7 @@ while ($text =~ s/<!-- mpreindexentry;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); \/\/--
   $umstr =~ s/Ü/Ue/g ;
   $umstr =~ s/ß/ss/g ;
   push @umwordindexlist, $umstr;
-  $i++;
+  $icount++;
 }
 
 # Sortieren mit IdiotSort FUNKTIONIERT NICHT MIT UMLAUTEN
@@ -3016,8 +3589,8 @@ my $swap = 1;
 logMessage($VERBOSEINFO, "Sortiere " . ($#wordindexlist-1) . " Stichwoerter"); 
 while ($swap==1) {
   $swap = 0;
-  for (my $i=0; $i <= $#wordindexlist; $i++ ) {
-    for (my $j=$i+1; $j <= $#wordindexlist; $j++ ) {
+  for (my $i = 0; $i <= $#wordindexlist; $i++ ) {
+    for (my $j = $i + 1; $j <= $#wordindexlist; $j++ ) {
       if (lc($umwordindexlist[$i]) gt lc($umwordindexlist[$j])) {
         my $s = $umwordindexlist[$i];
         $umwordindexlist[$i] = $umwordindexlist[$j];
@@ -3128,63 +3701,50 @@ if ($config{docollections} eq 1) {
     logMessage($VERBOSEINFO, "  No exports found!");
   } else {
     logMessage($VERBOSEINFO, "Exporting $nco collections");
-    my $colexportfile = open(MINTS, "> collectionexport.json") or die "FATAL: Cannot write collectionexport.json";
-    print MINTS "{ \"comment\": \"Automatisch generierte JSON-Datei basierend auf Kurs-ID " . $config{parameter}{signature_CID} . "\",\n \"collections\": [";
+    my $colexpcontent = "";
+    $colexpcontent .= "{ \"comment\": \"Automatisch generierte JSON-Datei basierend auf Kurs-ID " . $config{parameter}{signature_CID} . "\",\n \"collections\": [";
     for (my $k = 0; $k <= $#colexports; $k++) {
-    print MINTS "  ";
+    $colexpcontent .= "  ";
       if ($k ge 1) { print MINTS ","; }
-      print MINTS "{ \"id\": \"" . $colexports[$k][0] . "\", \"exercises\": " . $colexports[$k][2] . "}";
+      $colexpcontent .= "{ \"id\": \"" . $colexports[$k][0] . "\", \"exercises\": " . $colexports[$k][2] . "}";
     }
-    
-    
-    print MINTS "]}\n";
-    close(MINTS);
+    $colexpcontent .= "]}\n";
+    writefile("collectionexport.json", $colexpcontent);
   }
 }
-
 
 if ($config{doverbose} == "1") {
   my $graph = GraphViz->new();
   my @list = ();
   push @list, $root;
-  my $k = 0;
   while ($#list != -1) {
     my $page = $list[0];
     splice(@list, 0, 1);
     my $title = $page->{UXID};
-    if ($title eq "") {
-      $title = $page->{TITLE};
+    if ($title eq $UNKNOWN_UXID) {
+      $title = $page->{TITLE} . " " . $page->{ID};
     }
     logMessage($VERBOSEINFO, "graph item uxid = $title");
     $title = decode("latin1", $title);
     $title = encode("utf-8", $title);
-    if ($page->{LEVEL} <= $paramsplitlevel) {
-      $graph->add_node($title);
-      if ($page->{LEVEL} >= 1) {
-        my $pretitle = $page->{PARENT}->{UXID};
-        if ($pretitle eq "") {
-          $pretitle = $page->{PARENT}->{TITLE};
-        }
-        $pretitle = decode("latin1", $pretitle);
-        $pretitle = encode("utf-8", $pretitle);
-        $graph->add_edge($title, $pretitle);
+    $graph->add_node($title);
+    if ($page->{LEVEL} >= 1) {
+      my $pretitle = $page->{PARENT}->{UXID};
+      if ($pretitle eq $UNKNOWN_UXID) {
+        $pretitle = $page->{PARENT}->{TITLE} . " " . $page->{PARENT}->{ID};
       }
+      $pretitle = decode("latin1", $pretitle);
+      $pretitle = encode("utf-8", $pretitle);
+      $graph->add_edge($title, $pretitle);
     }
-    $k++;
     my @subpages = @{$page->{SUBPAGES}};
-    my $i;
-    for ($i = 0; $i <= $#subpages; $i++) {
+    for (my $i = 0; $i <= $#subpages; $i++) {
       push @list, $subpages[$i];
     }
   }
-  
-  
-  my $graph_png = open(MINTS, ">graph.png") or die("FATAL: Cannot write graph png");
-  print MINTS $graph->as_png();
-  close(MINTS);
+ 
+  writefile("graph.png", $graph->as_png());
 }
-
-
 
 #Rechte setzen
 system "chmod -R 777 " . $config{outtmp};
@@ -3207,278 +3767,303 @@ logTimestamp("Finished computation");
 # Parameter: Name der Konfigurationsdatei relativ zum Aufrufer
 sub setup_options {
   $mconfigfile = $_[0];
-  if ($mconfigfile =~ m/(.+).pl/ ) {
-    if ($mconfigfile =~ m/\// ) { die("FATAL: Configuration file must be in calling directory"); }
-    logMessage($CLIENTINFO, "Configuration file: " . $mconfigfile);
-    unless (%config = do $mconfigfile) {
-      warn "Couldn't parse $mconfigfile: $@" if $@;
-      warn "Couldn't run $mconfigfile" unless %config;
+  if ($mconfigfile =~ m/(.+)\.pl/ ) {
+    if ($mconfigfile =~ m/\// ) { logMessage($FATALERROR, "Configuration file must be in calling directory"); }
+    
+    if (-e $mconfigfile) {
+      logMessage($CLIENTINFO, "Configuration file: " . $mconfigfile);
+      unless (%config = do $mconfigfile) {
+        warn "Couldn't parse $mconfigfile: $@" if $@;
+        warn "Couldn't run $mconfigfile" unless %config;
+      }
+    } else {
+      logMessage($FATALERROR, "Configuration file $mconfigfile does not exist");
     }
   } else {
-    die("FATAL: Configuration file $mconfigfile must be of type name.pl");
+    logMessage($FATALERROR, "Configuration file $mconfigfile must be of type name.pl");
   }
-    
+  $configactive = 1;  
   logMessage($CLIENTINFO, "Configuration description: " . $config{description});
 }
 
-# ----------------------------- Start Hauptprogramm --------------------------------------------------------------
 
-# my $IncludeTags = ""; # Sammelt die Makros fuer predefinierte Tagmakros, diese werden an mintmod.tex angehaengt
+# Parameter: string, content of a tex file
+# returns 1 if tex file is valid for a release
+sub checkRelease {
+  my $tex = $_[0];
+  my $reply = 1;
+  # no experimental environments
+  if ($tex =~ m/\\begin{MExperimental}/s ) {
+    logMessage($VERBOSEINFO, "MExperimental found in tex file");
+    $reply = 0;
+  }
+  if ($tex =~ m/\% TODO/s ) {
+    logMessage($VERBOSEINFO, "TODO comment found in tex file");
+    $reply = 0;
+  }
+  return $reply;
+}
+
+# Parameter: Variant id string, main tex file
+sub create_tree {
 
 
-#Zeit speichern und Startzeit anzeigen
-$starttime = time;
-my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($starttime);
-logMessage($CLIENTINFO, "Starting conversion: " . ($year+1900 ) . "-" . ($mon+1) . "-$mday at $hour:$min:$sec");
+  $rfilename = $_[0];
+  logMessage($CLIENTINFO, "Setting up variant $variantactive");
+  logMessage($VERBOSEINFO, "Main tex file is $rfilename");
+  
+  my $roottex = readfile($rfilename);
+  my $outputdir = $config{output};
+  
+  logMessage($CLIENTINFO, "Creating output directory " . $outputdir);
+  system("rm -fr " . $outputdir);
+  system("mkdir " . $outputdir);
+  system("cp -R $basis/converter $outputdir/.");
+  system("cp -R " . $config{source} . "/* $outputdir/converter/tex/.");
 
-if ($#ARGV eq 0) {
-  # Nur ein Parameter: Gibt Konfigurationsdatei relativ zum Aufruf an
-  setup_options($ARGV[0]);
-} else {
-  if ($#ARGV eq 1) {
-    # Zwei Parameter: Konfiguationsdatei plus Funktionsbefehl
-    setup_options($ARGV[0]);
-    
+  # Makropaket und Modifikation im Speicher einrichten
+  $macrotex = readfile("$basis/converter/tex/$macrofile");
+  $modmacrotex = $macrotex;
+  my $repl = "\\variant" . $variantactive . "true \% this string was added by mconvert.pl\n";
+  if ($modmacrotex =~ s/\\variantstdtrue/$repl/s ) {
+    logMessage($VERBOSEINFO, "Preparing $macrofile for variant $variantactive");    
   } else {
-    die($helptext);
+    logMessage($CLIENTERROR, "Variant selection statement \\variantstdtrue not found in macro file $macrofile");
   }
-}
+  
+  # Preprocessing aller tex-Files
+  my $filecount = 0;
+  my $globalposdirecthtml = 0; # Fuer DirectHTML-Array, ist unique fuer alle Teildateien
+  my $call = "find -P " . $outputdir . "/converter/tex/. -name \\*.tex";
+  logMessage($VERBOSEINFO, "Executing: $call");
+  my $texlist = `$call`; # Finde alle tex-Files, auch in den Unterverzeichnissen
+  my @texs = split("\n",$texlist);
+  my $nt = $#texs + 1;
+  logMessage($VERBOSEINFO, "$nt texfiles found, processing...");
+  my $ka;
+  my $pcompletename = "";
+  my $dotikzfile = 0;
+  for ($ka = 0; $ka < $nt; $ka++) {
 
-checkSystem();
-
-my $absexedir = Cwd::cwd(); 
-$basis = $absexedir;
-
-checkOptions();
-
-$rfilename = $config{source} . "/" . $config{module}; # sollte durch PERL-Join ersetzt werden
-
-logMessage($VERBOSEINFO, " Absolute directory: " . $absexedir);
-logMessage($VERBOSEINFO, "Converter directory: " . $basis);
-logMessage($VERBOSEINFO, "   Source directory: " . $config{source});
-logMessage($VERBOSEINFO, "   Output directory: " . $config{output});
-logMessage($VERBOSEINFO, "   Main module file: " . $rfilename);
-logMessage($VERBOSEINFO, "Generating HTML tree as described in " . $rfilename);
-
-if ($config{doscorm} eq 1) {
-  logMessage($CLIENTINFO, "Tree will be SCORM-compatible (version 2004v4)");
-} else {
-  logMessage($VERBOSEINFO, "No SCORM support");
-}
-
-if ($config{dopdf} eq 1) {
-  logMessage($CLIENTINFO, "...generating PDF files:");
-  my $i = 0;
-  my $ckey = "";
-  while ($ckey = each(%{$config{generate_pdf}})) {
-    logMessage($CLIENTINFO, "  $ckey");
-    $i++;
-  }
-  if ($i eq 0) {
-    die("FATAL: No PDF files given in config but dopdf=1");
-  }
-} else {
-  logMessage($CLIENTINFO, "...no PDF files");
-}
-
-if ($config{qautoexport} eq 1) {
-  logMessage($CLIENTINFO, "Exercise autoexport activated");
-}
-
-if ($config{dotikz} eq 1) {
-  logMessage($CLIENTINFO, "...TikZ externalization activated");
-}
-
-open(F,$rfilename) or die("FATAL: Cannot open main tex file $rfilename");
-close(F);
-
-
-logTimestamp("Finished initializiation");
-
-# Preprocessing of main file
-my $roottex = "";
-my $tex_open = open(MINTS, "< $rfilename") or die("FATAL: Cannot read main tex file $rfilename");
-my $texzeile = "";
-while(defined($texzeile = <MINTS>)) {
-  # Wegen direkter HTML-Zeilen darf man %-Kommentare nicht streichen
-  $roottex .= $texzeile;
-}
-close(MINTS);
-
-logMessage($CLIENTINFO, "Setting up output directory " . $config{output});
-system("rm -fr " . $config{output});
-system("mkdir " . $config{output});
-system("cp -R $basis/converter " . $config{output} . "/.");
-system("cp -R " . $config{source} . "/* " . $config{output} . "/converter/tex/.");
-
-# Preprocessing aller tex-Files
-my $filecount = 0;
-my $globalposdirecthtml = 0; # Fuer DirectHTML-Array, ist unique fuer alle Teildateien
-my $call = "find -P " . $config{output} . "/converter/tex/. -name \\*.tex";
-logMessage($VERBOSEINFO, "Executing: $call");
-my $texlist = `$call`; # Finde alle tex-Files, auch in den Unterverzeichnissen
-my @texs = split("\n",$texlist);
-my $nt = $#texs + 1;
-logMessage($VERBOSEINFO, "$nt texfiles found, processing...");
-my $ka;
-my $pcompletename = "";
-my $dotikzfile = 0;
-for ($ka = 0; $ka < $nt; $ka++) {
-
-  if (($texs[$ka] =~ /$macrofile/ ) or ($texs[$ka] =~ /tree(.)\.tex/ ) or ($texs[$ka] =~ /tree\.tex/ )) {
-    logMessage($VERBOSEINFO, "Preprocessing ignores $texs[$ka]");
-  } else {
-    # -------------------------------- Start Preprocessing per texfile -------------------------------------------------------
-    my $textex = "";
-    $texzeile = "";
-    $pcompletename = $texs[$ka];
-    $pcompletename =~ m/(.+)\/(.+?).tex/i;
-    my $pdirname = $1;
-    my $pfilename = $2 . ".tex";
-    $tex_open = open(MINTS, "< $pcompletename") or die "FATAL: Could not open $texs[$ka]\n";
-    while(defined($texzeile = <MINTS>)) {
-      # Wegen direkter HTML-Zeilen darf man %-Kommentare nicht streichen
-      # $texzeile =~ s/\%(.*)//g ;
-      $textex .= $texzeile;
-    }
-    close(MINTS);
-    
-    
-    my $modulname = "";
-    if ($textex =~ /\\MSection\{(.+?)\}/ ) {
-      $modulname = $1;
-    }
-    my $prx = "";
-    my $pfname = "";
-    if ($texs[$ka] =~ /(.*)\/tex\/(.+)\/(.+?)\.tex/ ) {
-      $prx = $2;
-      $pfname = $3;
+    if (($texs[$ka] =~ /$macrofile/ ) or ($texs[$ka] =~ /tree(.)\.tex/ ) or ($texs[$ka] =~ /tree\.tex/ )) {
+      logMessage($VERBOSEINFO, "Preprocessing ignores $texs[$ka]");
     } else {
-      die("FATAL: Could not decode $texs[$ka]");
-    }
-    $prx =~ s/.\///g;
-    if ($modulname ne "") {
-      logMessage($VERBOSEINFO, "Tree-preprocess on module $modulname in directory $prx");
-    } else {
-      logMessage($VERBOSEINFO, "Tree-preprocess on bare file $pfname in directory $prx");
-    }
+      # -------------------------------- Start Preprocessing per texfile -------------------------------------------------------
+      my $texzeile = "";
+      $pcompletename = $texs[$ka];
+      $pcompletename =~ m/(.+)\/(.+?).tex/i;
+      my $pdirname = $1;
+      my $pfilename = $2 . ".tex";
     
-    $filecount++;
-    
-    # Kommentarzeilen radikal entfernen (außer wenn \% statt % im LaTeX-Code steht oder wenn in verb-line)
-    my $coms = 0;
-    
-    # Suchen welche Sonderzeichen fuer verb-Kommandos eingesetzt werden
-    
-    my $vi = 0;
-    my @verbac = ($textex =~ m/\\verb(.)/g );
-    my @verbc = ();
-    for ($vi = 0; $vi <= $#verbac; $vi++) {
-      my $found = 0;
-      my $vb;
-      for ($vb = 0; (($vb <= $#verbc) and ($found == 0)); $vb++ ) {
-        if ($verbc[$vb] eq $verbac[$vi]) { $found = 1; }
+      my $tex_info = `file -i $pcompletename`;
+      my $charset_ok = 0;
+      if ($tex_info =~ m/charset=iso-8859-1/s ) {
+        logMessage($VERBOSEINFO, $texs[$ka] . " has charset = iso-8859-1 (latin1)");
+        $charset_ok = 1;
       }
-      if ($found == 0) {
-        my $c = $verbac[$vi];
-        push @verbc, $c;
+    
+      if ($tex_info =~ m/charset=us-ascii/s ) {
+        logMessage($VERBOSEINFO, $texs[$ka] . " has charset us-ascii (nice but latin1 is ok)");
+        $charset_ok = 1;
       }
-    }
     
+      if ($charset_ok ne 1) {
+        $tex_info =~ m/charset=(.+)/i ;
+        logMessage($CLIENTWARN, "Bad charset " . $1 . " in file " . $texs[$ka] . ", must be latin1");
+      }
     
-    my $vc = $#verbc + 1;
-    if ($vc > 0) { logMessage($VERBOSEINFO, " $vc different verb-escape chars found in tex-file"); }
-      
-    for ($vi = 0; $vi < $vc; $vi++ ) {
-      my $c = $verbc[$vi];
-      logMessage($VERBOSEINFO, " verb-char $c");
-      if ($c eq "\%") {
-        # Es gibt wirklich Autoren die in einem LaTeX-Dokument das % als Begrenzer fuer \verb einsetzen, das macht es tricky
-	while ($textex =~ s/\\verb$c([^$c]*?)$c/\\verb\\PERCTAG$1\\PERCTAG/ ) { logMessage($VERBOSEINFO, "  Delimiter in \%-verb-line escaped"); }
+      my $textex = readfile($pcompletename);
+    
+      my $modulname = "";
+      if ($textex =~ /\\MSection\{(.+?)\}/ ) {
+        $modulname = $1;
+      }
+      my $prx = "";
+      my $pfname = "";
+      if ($texs[$ka] =~ /(.*)\/tex\/(.+)\/(.+?)\.tex/ ) {
+        $prx = $2;
+        $pfname = $3;
       } else {
-	while ($textex =~ s/\\verb$c([^$c]*?)\%([^$c]*?)$c/\\verb$c$1\\PERCTAG$2$c/ ) { logMessage($VERBOSEINFO, "  \% in verb-line escaped (special char $c)"); }
+        logMessage($FATALERROR, "Could not decode $texs[$ka]");
       }
-    }
-    
-    while ($textex =~ s/(?<!\\)\%([^\n]+?)\n/\%\n/s ) { $coms++; }
-    if ($coms != 0) { logMessage($VERBOSEINFO, "  $coms LaTeX-commentlines removed from file"); }
-
-    while ($textex =~ s/\\PERCTAG/\%/ ) { logMessage($VERBOSEINFO, "  \% in verb-line reinstated"); }
-
-    
-    $dotikzfile = 0;
-    if ($textex =~ s/\\Mtikzexternalize//gs ) {
-      logMessage($CLIENTINFO, "  tikzexternalize activated");
-      if ($config{dotikz} eq 1) { $dotikzfile = 1; }
-    }
-
-    
-    # Frageumgebungen ggf. fuer Export vorbereiten
-    if ($config{qautoexport} eq 1) {
-      $textex =~ s/\\begin{MExercise}(.+?)\\end{MExercise}/\\begin{MExportExercise}$1\\end{MExportExercise}/sg ;
-    }
-     
-    if ($textex =~m/\\MSection{(.+?)}/s ) {
-      $globalexstring .= "\\MSubsubsectionx{" . $1 . "}\n";
-    }
-     
-    # Exportmarkierte Frageumgebungen in DirectHTML umsetzen, das muss vor jeglichem Preprocessing stattfinden
-    my $qex = 0;
-    while ($textex =~ s/\\begin{MExportExercise}(.+?)\\end{MExportExercise}/\\begin{MExercise}$1\\end{MExercise}\n\\begin{MDirectHTML}\n<!-- qexportstart;$qex; \/\/-->$1<!-- qexportend;$qex; \/\/-->\n\\end{MDirectHTML}/s ) { 
-      $qex++;
-      $globalexstring .= "\\ \\\\\n\\begin{MExercise}\n" . $1 . "\n\\end{MExercise}\n";
-    }
-       
-       
-    # Experimental ttm bypass
-    # $textex =~ s/\$\$(.+?)\$\$/\\begin{MDirectHTML}\$\$$1\$\$\\end{MDirectHTML}/sg ;
-       
-    # MDirectHTML umsetzen
-    while($textex =~ s/\\begin{MDirectHTML}(.+?)\\end{MDirectHTML}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
-      push @DirectHTML , $1;
-      $globalposdirecthtml++;
-    }
-
-    
-     # Copyright-notices umsetzen, wichtig ist hier dass die DirectHTML-Eintraege und die Aufgabenexporte schon gemacht sind
-    while($textex =~ s/\\MCopyrightNotice{(.+?)}{(.+?)}{(.+?)}{(.+?)}{(.+?)}/\\MCopyrightNoticePOST{$1}{$2}{$3}{$4}{$5}/s ) {
-      my $authortext = "";
-      if ($3 eq "MINT") {
-        $authortext = "\\MExtLink{http://www.mint-kolleg.de}{MINT-Kolleg Baden-Württemberg}";
+      $prx =~ s/.\///g;
+      if ($modulname ne "") {
+        logMessage($VERBOSEINFO, "Tree-preprocess on module $modulname in directory $prx");
       } else {
-        if ($3 eq "VEMINT") {
-          $authortext = "\\MExtLink{http://www.vemint.de}{VEMINT-Konsortium}";
-        } else {
-          if ($3 eq "NONE") {
-            $authortext = "Unbekannter Autor";
-            } else {
-            $authortext = "\\MExtLink{$3}{Autor}";
-          }
+        logMessage($VERBOSEINFO, "Tree-preprocess on bare file $pfname in directory $prx");
+      }
+ 
+      if ($config{dorelease} eq 1) {
+        if (checkRelease($textex) eq 0) {
+          logMessage($CLIENTERROR, "tex-file " . $texs[$ka] . " did not pass release check");
         }
       }
-      
-      if ($2 eq "NONE") {
-	$copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & Ersterstellung & $4 \\\\ \\ \\\\\n";
-      } else {
-        if ($2 eq "TIKZ") {
-          $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & Grafikdatei erzeugt aus tikz-Code & $4 \\\\ \\ \\\\\n";
+
+ 
+      $filecount++;
+    
+    
+      # Als allererstes inlcude-Aufgaben aus Roulettes einbinden, damit auch auf diese das Preparsing angewendet wird
+      while ($textex =~ m/\\MDirectRouletteExercises{(.+?)}{(.+?)}/s ) {
+        my $rfilename = $1;
+        my $rid = $2;
+        my $rfile = "$pdirname/$rfilename";
+        if ($rfilename =~ m/\.tex/s ) {
+          logMessage($CLIENTWARN, "Roulette input file $rfile is a pure tex file, please change the file name to non-tex to avoid double preparsing");
+        }
+        logMessage($VERBOSEINFO, "MDirectRouletteExercises on include file $rfile with id $rid");
+        my $rtext = readfile($rfile);
+        
+        # Jede Aufgabe des includes bekommt ein eigenes div, davon ist nur eines sichtbar, trotzdem werden alle zugehoerigen Frageobjekte generiert
+        
+        my $id = 0;
+
+        my $htex = "";
+        while ($rtext =~ s/\\begin{MExercise}(.+?)\\end{MExercise}//s ) {
+          $htex .= "\\special{html:<!-- rouletteexc-start;$rid;$id; \/\/-->}\\begin{MExercise}$1\\end{MExercise}\\special{html:<!-- rouletteexc-stop;$rid;$id; \/\/-->}\n";
+          $id++;
+        }
+        
+        
+        $rtext = "\\ifttm\\special{html:<!-- directroulette-start;$rid; //-->}$htex\\special{html:<!-- directroulette-stop;$rid; //-->}\\else\\texttt{Im HTML erscheinen hier Aufgaben aus einer Aufgabenliste...}\\fi\n";
+        $textex =~ s/\\MDirectRouletteExercises{$rfilename}{$rid}/$rtext/s ;
+        
+        if (exists $DirectRoulettes{$rid}) {
+          logMessage($CLIENTERROR, "Roulette id $rid not unique");
         } else {
-            if ($2 eq "FSZ") {
-                $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & Aufgenommen im \\MExtLink{http://www.fsz.kit.edu}{Fernstudienzentrum} des \\MExtLink{http://www.kit.edu}{KIT} & $4 \\\\ \\ \\\\\n";
-            } else {
-                $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & \\MExtLink{$2}{Originaldatei} & $4 \\\\ \\ \\\\\n";
-            }
-         }
+          $DirectRoulettes{$rid} = "$id";
+        }
+
+        logMessage($VERBOSEINFO, "Roulette $rid contains $id exercises");
+        
       }
+    
+    
+      # Kommentarzeilen radikal entfernen (außer wenn \% statt % im LaTeX-Code steht oder wenn in verb-line)
+      my $coms = 0;
+    
+      # Suchen welche Sonderzeichen fuer verb-Kommandos eingesetzt werden
+    
+      my $vi = 0;
+      my @verbac = ($textex =~ m/\\verb(.)/g );
+      my @verbc = ();
+      for ($vi = 0; $vi <= $#verbac; $vi++) {
+        my $found = 0;
+        my $vb;
+        for ($vb = 0; (($vb <= $#verbc) and ($found == 0)); $vb++ ) {
+          if ($verbc[$vb] eq $verbac[$vi]) { $found = 1; }
+        }
+        if ($found == 0) {
+          my $c = $verbac[$vi];
+          push @verbc, $c;
+        }
+      }
+        
+      my $vc = $#verbc + 1;
+      if ($vc > 0) { logMessage($VERBOSEINFO, " $vc different verb-escape chars found in tex-file"); }
+      
+      for ($vi = 0; $vi < $vc; $vi++ ) {
+        my $c = $verbc[$vi];
+        logMessage($VERBOSEINFO, " verb-char $c");
+        if ($c eq "\%") {
+          # Es gibt wirklich Autoren die in einem LaTeX-Dokument das % als Begrenzer fuer \verb einsetzen, das macht es tricky
+	  while ($textex =~ s/\\verb$c([^$c]*?)$c/\\verb\\PERCTAG$1\\PERCTAG/ ) { logMessage($VERBOSEINFO, "  Delimiter in \%-verb-line escaped"); }
+        } else {
+  	while ($textex =~ s/\\verb$c([^$c]*?)\%([^$c]*?)$c/\\verb$c$1\\PERCTAG$2$c/ ) { logMessage($VERBOSEINFO, "  \% in verb-line escaped (special char $c)"); }
+        }
+      }
+    
+      while ($textex =~ s/(?<!\\)\%([^\n]+?)\n/\%\n/s ) { $coms++; }
+      if ($coms != 0) { logMessage($VERBOSEINFO, "  $coms LaTeX-commentlines removed from file"); }
+
+      while ($textex =~ s/\\PERCTAG/\%/ ) { logMessage($VERBOSEINFO, "  \% in verb-line reinstated"); }
+
+    
+      $dotikzfile = 0;
+      if ($textex =~ s/\\Mtikzexternalize//gs ) {
+        logMessage($VERBOSEINFO, "  tikzexternalize activated");
+        if ($config{dotikz} eq 1) { $dotikzfile = 1; }
+      }
+
+    
+      # Frageumgebungen ggf. fuer Export vorbereiten
+      if ($config{qautoexport} eq 1) {
+        $textex =~ s/\\begin{MExercise}(.+?)\\end{MExercise}/\\begin{MExportExercise}$1\\end{MExportExercise}/sg ;
+      }
+     
+      if ($textex =~m/\\MSection{(.+?)}/s ) {
+        $globalexstring .= "\\MSubsubsectionx{" . $1 . "}\n";
+      }
+     
+      # Exportmarkierte Frageumgebungen in DirectHTML umsetzen, das muss vor jeglichem Preprocessing stattfinden
+      my $qex = 0;
+      while ($textex =~ s/\\begin{MExportExercise}(.+?)\\end{MExportExercise}/\\begin{MExercise}$1\\end{MExercise}\n\\begin{MDirectHTML}\n<!-- qexportstart;$qex; \/\/-->$1<!-- qexportend;$qex; \/\/-->\n\\end{MDirectHTML}/s ) { 
+        $qex++;
+        $globalexstring .= "\\ \\\\\n\\begin{MExercise}\n" . $1 . "\n\\end{MExercise}\n";
+      }
+       
+       
+      # MDirectMath umsetzen (als DirectHTML)
+      while($textex =~ s/\\begin{MDirectMath}(.+?)\\end{MDirectMath}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
+        push @DirectHTML , "\\[" . $1 . "\\]";
+        $globalposdirecthtml++;
+      }
+
+      # MDirectHTML umsetzen
+      while($textex =~ s/\\begin{MDirectHTML}(.+?)\\end{MDirectHTML}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
+        push @DirectHTML , $1;
+        $globalposdirecthtml++;
+      }
+
+    
+      # Copyright-notices umsetzen, wichtig ist hier dass die DirectHTML-Eintraege und die Aufgabenexporte schon gemacht sind
+      while($textex =~ s/\\MCopyrightNotice{(.+?)}{(.+?)}{(.+?)}{(.+?)}{(.+?)}/\\MCopyrightNoticePOST{$1}{$2}{$3}{$4}{$5}/s ) {
+        my $authortext = "";
+        if ($3 eq "MINT") {
+          $authortext = "\\MExtLink{http://www.mint-kolleg.de}{MINT-Kolleg Baden-Württemberg}";
+        } else {
+          if ($3 eq "VEMINT") {
+            $authortext = "\\MExtLink{http://www.vemint.de}{VEMINT-Konsortium}";
+          } else {
+            if ($3 eq "NONE") {
+              $authortext = "Unbekannter Autor";
+              } else {
+              $authortext = "\\MExtLink{$3}{Autor}";
+            }
+          }
+        }
+      
+        if ($2 eq "NONE") {
+  	  $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & Ersterstellung & $4 \\\\ \\ \\\\\n";
+        } else {
+          if ($2 eq "TIKZ") {
+            $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & Grafikdatei erzeugt aus tikz-Code & $4 \\\\ \\ \\\\\n";
+          } else {
+            if ($2 eq "FSZ") {
+              $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & Aufgenommen im \\MExtLink{http://www.fsz.kit.edu}{Fernstudienzentrum} des \\MExtLink{http://www.kit.edu}{KIT} & $4 \\\\ \\ \\\\\n";
+            } else {
+              $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & \\MExtLink{$2}{Originaldatei} & $4 \\\\ \\ \\\\\n";
+            }
+          }
+       }
     }
 
     if ($textex =~ s/\\tikzexternalize//gs ) {
       logMessage($CLIENTINFO, "  found BARE tikzexternalize and removed it (please use macro from $macrofile instead)");
     }
 
+    if ($textex =~ m/\\tikzsetexternalprefix/s ) {
+      logMessage($CLIENTERROR, "  found tikzsetexternalprefix (please use auto-tikz macros from $macrofile instead)");
+    }
     
     #  ------------------------ Pragmas einlesen und verarbeiten ----------------------------------
 
+    my $htmltikzscale = 1.3;
+    if ($textex =~ m/\\MPragma{HTMLTikZScale;(.+?)}/ ) {
+      $htmltikzscale = $1;
+      logMessage($CLIENTINFO, "  Pragma HTMLTikZScale: HTMLTikZ set to $htmltikzscale");
+    }
+    
     if ($textex =~ m/\\MPragma{SolutionSelect}/ ) {
       if ($config{nosols} eq 0) {
         logMessage($CLIENTINFO, "  Pragma SolutionSelect: Ignored due to nosols==0");
@@ -3493,7 +4078,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
     }
 
     if ($textex =~ m/\\MPragma{MathSkip}/ ) {
-      logMessage($CLIENTINFO, "  Pragma MathSkip: Skips starting math-environments inserted");
+      logMessage($VERBOSEINFO, "  Pragma MathSkip: Skips starting math-environments inserted");
       $textex =~ s/(?<!\\)\\\[/\\MSkip\\\[/g;
       $textex =~ s/(?<!\\)\$\$/\\MSkip\$\$/g;
       $textex =~ s/(?<!\\)\\begin{eqnarray/\\MSkip\\begin{eqnarray/g;
@@ -3508,31 +4093,9 @@ for ($ka = 0; $ka < $nt; $ka++) {
       $textex =~ s/$s1/$s2/g ;
     }
 
-    my $incfound;
-    while ($textex =~ s/\\MPreambleInclude{(.*)}/\\MPragma{Nothing}/ ) {
-      my $prename = $1;
-      logMessage($CLIENTINFO, "  Local preamble included: $prename");
-      # Nicht doppelt einbinden, Liste geht ueber ALLE tex-files!
-      $incfound = 0;
-      for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
-        if ($IncludeStorage[$i][1] eq $prename) {
-          logMessage($CLIENTINFO, "    Preamble found again: " . $prename . " (will be ignored, preamble from file " . $IncludeStorage[$i][0] . " is in use)");
-          $incfound = 1;
-        }
-      }
-      if ($incfound eq 0) {
-        my $inccontent = "";
-        my $tex_inc_open = open(MINTI, "< $pdirname\/".$prename) or die "FATAL: Could not read preamble $pdirname\/$prename";
-        while(defined($texzeile = <MINTI>)) {
-          $inccontent .= $texzeile;
-        }
-        close(MINTI);
-        push @IncludeStorage, [ $pcompletename, $prename, $inccontent ];
-      }
-
+    if ($textex =~ s/\\MPreambleInclude{(.*)}/\\MPragma{Nothing}/g ) {
+      logMessage($CLIENTERROR, "Inclusion of local preamble (found " . $1 . ") is no longer supported, please add them to $macrofile manually");
     }
-
-      
     
     if ($modulname ne "") {
       # Dokumentstruktur an tree anpassen, includes und preamble werden schon vorgegeben
@@ -3552,7 +4115,7 @@ for ($ka = 0; $ka < $nt; $ka++) {
     my $suffixpdf = "mintpdf";
     my $suffixhtml = "minthtml";
     while ($textex =~ m/\\MDia\{(.+?)\}/g ) {
-      my $dprx = $config{output} . "/converter/tex/$prx/$1";
+      my $dprx = "$outputdir/converter/tex/$prx/$1";
       if ($config{diaok} == "0") {
         logMessage($CLIENTWARN, "dia/conv-chain disabled, NOT processing dia diagramm $dprx");
       } else {
@@ -3616,6 +4179,8 @@ for ($ka = 0; $ka < $nt; $ka++) {
     my $rpr = "CRLF";
     while ($textex =~ /$rpr/i ) { $rpr = $rpr . "x" };
 
+    # ttm uebersetzt $\displaystyle ...$ nicht
+    $textex =~ s/\\displaystyle/\\displaystyle\\ifttm\\special{html:<mstyle displaystyle="true">}\\fi/gs ;
 
     # Nach equation- und eqnarray-starts den Labeltyp anpassen
     my $eqprefix = "\\setcounter{MLastType}{10}\\addtocounter{MLastTypeEq}{1}\\addtocounter{MEquationCounter}{1}\\setcounter{MLastIndex}{\\value{MEquationCounter}}\n";
@@ -3863,15 +4428,15 @@ for ($ka = 0; $ka < $nt; $ka++) {
     # -------------------------------- Ende Preprocessing per texfile -------------------------------------------------------
    
     # Schreiben der Datei oder vorher noch tikz-externalize
-    
+    chdir($pdirname);
     if ($dotikzfile eq 1) {
       # Modifikationen sind hier noch nicht geschrieben und mintmod reicht Mtikzexternalize weiter
       # Lokales Makropaket installieren
       
       # Programm wird an dieser Stelle im Aufrufverzeichnis ausgefuehrt
-      chdir($pdirname);
-      system("cp $basis/converter/tex/$macrofile .");
+      writefile($macrofile, $modmacrotex);
       system("cp $basis/converter/tex/maxpage.sty .");
+      system("cp $basis/converter/tex/bibgerm.sty .");
       my $mca = "pdflatex -shell-escape $pfilename";
       logMessage($CLIENTINFO, "  Starte pdflatex mit shellescape: $mca");
       my $rtt = system($mca);
@@ -3881,89 +4446,125 @@ for ($ka = 0; $ka < $nt; $ka++) {
         logMessage($CLIENTINFO, "  pdflatex with tikzexternalize ok");
       }
     }
-    chdir($absexedir);
-
-    $tex_open = open(MINTS, "> $texs[$ka]") or die "FATAL: Could not write $texs[$ka]\n";
-    print MINTS $textex;
-    close(MINTS);
+    
+    if ($textex =~ m/\\MSetSectionID{(.+?)}/s ) {
+      my $tid = $1 . "mtikzauto_";
+      # Files $tid?.png, $tid?.svg anf $tid.4x.png should be present (matching generator definition in mintmod.tex)
+      logMessage($VERBOSEINFO, "  Module section id is " . $1 . ", TikZ id is $tid");
+      my $j = 1;
+      my $ok = 1;
+      do {
+        $ok = 0;
+        my $tname = $tid . $j;
+        if (-e $tname . ".svg") {
+          logMessage($VERBOSEINFO, "  externalized svg found: $tname");
+          $ok = 1;
+        }
+        if (-e $tname . ".4x.png") {
+          logMessage($VERBOSEINFO, "  externalized hi-res png found: $tname");
+          $ok = 1;
+        }
+        if (-e $tname . ".png") {
+          $ok = 1;
+          my $tinfo = `file $tname.png`;
+          if ($tinfo =~ m/$tname\.png: PNG image data, ([0123456789]+?) x ([0123456789]+?),/s ) {
+            my $sizex = $1;
+            my $sizey = $2;
+            logMessage($VERBOSEINFO, "  externalized png found: $tname.png, size is $sizex x $sizey");
+            $sizex = int($sizex * $htmltikzscale);
+            $sizey = int($sizey * $htmltikzscale);
+            logMessage($VERBOSEINFO, "  rescaled to $sizex x $sizey");
+            if (exists $tikzpng{$tname}) {
+              logMessage($CLIENTERROR, "  externalized file name $tname not unique, refusing to save sizes");
+            } else {
+              $tikzpng{$tname} = "width:$sizex" . "px;height:$sizey" . "px";
+            }
+          } else {
+            logMessage($CLIENTERROR, "  externalized png found: $tname.png, could not determine its size");
+          }
+        }
+            
+        $j++;
+      } while($ok eq 1);
+    } else {
+      logMessage($VERBOSEINFO, "  No section id found");
+    }
 
     
+    
+    chdir($basis);
+
+    writefile($texs[$ka], $textex);
   }
-}
+  }
 
-logTimestamp($CLIENTINFO, "Preparsing of $filecount texfiles finished");
-logMessage($VERBOSEINFO, "  $globalposdirecthtml blocks for DirectHTML found");
+  logTimestamp($CLIENTINFO, "Preparsing of $filecount texfiles finished");
+  logMessage($VERBOSEINFO, "  $globalposdirecthtml blocks for DirectHTML found");
 
-$copyrightcollection = "\\begin{tabular}{llll}\%\n$copyrightcollection\\end{tabular}\n";
+  $copyrightcollection = "\\begin{tabular}{llll}\%\n$copyrightcollection\\end{tabular}\n";
 
-# Kopiere Konfigurationsdatei in Ausgabe-converter-Baum
-logMessage($VERBOSEINFO, "Copying configfile $mconfigfile to " . $config{output} . "/converter/config.pl");
-system("cp " . $mconfigfile . " " . $config{output} . "/converter/config.pl");
+  # Kopiere Konfigurationsdatei in Ausgabe-converter-Baum
+  logMessage($VERBOSEINFO, "Copying configfile $mconfigfile to " . $outputdir . "/converter/config.pl");
+  system("cp " . $mconfigfile . " " . $outputdir . "/converter/config.pl");
 
-# Create copyright text file
-my $copyrightfile = $config{output} . "/converter/tex/copyrightcollection.tex";
-my $mints_open = open(MINTS, "> $copyrightfile") or die "FATAL: Could not create copyright file";
-print MINTS "\%---------- Von mconvert.pl generierte Datei ------------\n$copyrightcollection";
-close(MINTS);
+  # Create copyright text file
+  my $copyrightfile = $outputdir . "/converter/tex/copyrightcollection.tex";
+  writefile($copyrightfile, "\%---------- Von mconvert.pl generierte Datei ------------\n" . $copyrightcollection);
 
-# Erstelle Datei mit DirectHTML-Texten
-my $directhtmlfile = $config{output} . "/converter/directhtml.txt";
-$mints_open = open(MINTS, "> $directhtmlfile") or die "FATAL: Could not create file for DirectHTML.";
-print MINTS "<!-- file directhtml.txt is autogenerated, do not modify //-->\n";
-for ($i=0; $i <= $#DirectHTML; $i++ ) {
-  print MINTS "<!-- startfilehtml;$i; //-->";
-  print MINTS $DirectHTML[$i]."\n";
-  print MINTS "<!-- stopfilehtml;$i; //-->";
-}
-close(MINTS);
+  # Erstelle Datei mit DirectHTML-Texten
+  my $directhtmlfile = "$outputdir/converter/directhtml.txt";
+  my $directhtmlcontent = "<!-- file directhtml.txt is autogenerated, do not modify //-->\n";
+  for (my $i = 0; $i <= $#DirectHTML; $i++ ) {
+    $directhtmlcontent .= "<!-- startfilehtml;$i; //-->";
+    $directhtmlcontent .= $DirectHTML[$i] . "\n";
+    $directhtmlcontent .= "<!-- stopfilehtml;$i; //-->";
+  }
+  writefile($directhtmlfile, $directhtmlcontent);
 
-# Erstelle Datei mit DirectHTML-Texten
-my $directexercisesfile = $config{output} . "/converter/directexercises.tex";
-$mints_open = open(MINTS, "> $directexercisesfile") or die "FATAL: Could not create file for DirectExercises";
-print MINTS $globalexstring;
-close(MINTS);
+  # Erstelle Datei mit DirectHTML-Texten
+  my $directexercisesfile = "$outputdir/converter/directexercises.tex";
+  writefile($directexercisesfile, $globalexstring);
 
-# Create main file for converter build
-my $ttminputfile = $config{output} . "/converter/tex/vorkursxml.tex";
-$mints_open = open(MINTS, "> $ttminputfile") or die "FATAL: Could not create converter input file";
-print MINTS "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
-print MINTS "\\documentclass{book}\n";
-print MINTS "\\input{$macrofile}\n";
-print MINTS "\\title{MINT-Module}\n";
-print MINTS "\\author{MINT-Kolleg Baden-W\"urttemberg}\n";
-print MINTS "\\newcounter{MChaptersGiven}\n";
-print MINTS "\\setcounter{MChaptersGiven}{1}\n";
-print MINTS "\\begin{document}\n";
-print MINTS "\\input{" . $config{module} . "}\n";
-print MINTS "\\end{document}\n";
-close(MINTS);
+  # Create main file for converter build
+  my $ttminputfile = "$outputdir/converter/tex/htmlprepare.tex";
+  my $ttminputstring = "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
+  $ttminputstring .= "\\documentclass{book}\n";
+  $ttminputstring .= "\\input{mod_$macrofile}\n";
+  $ttminputstring .= "\\title{" . $config{description} . "}\n";
+  $ttminputstring .= "\\author{" . $config{author} . "}\n";
+  $ttminputstring .= "\\newcounter{MChaptersGiven}\n";
+  $ttminputstring .= "\\setcounter{MChaptersGiven}{1}\n";
+  $ttminputstring .= "\\begin{document}\n";
+  $ttminputstring .= "\\begin{html}<!-- variant;\\end{html}\\MVariant\\begin{html} //-->\\end{html}\n";
+  $ttminputstring .= "\\input{" . $config{module} . "}\n";
+  $ttminputstring .= "\\end{document}\n";
+  writefile($ttminputfile, $ttminputstring);
 
-# Create main file for PDF build
-my $pdfinputfile = $config{output} . "/converter/tex/vorkurspdf.tex";
-$mints_open = open(MINTS, "> $pdfinputfile") or die "FATAL: Could not create PDF input file";
-print MINTS "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
-print MINTS "\\newcounter{MChaptersGiven}\n";
-print MINTS "\\setcounter{MChaptersGiven}{1}\n";
-print MINTS "\\input{$macrofile}\n";
-print MINTS "\\title{MINT-Module}\n";
-print MINTS "\\author{MINT-Kolleg Baden-W\"urttemberg}\n";
-print MINTS "\\begin{document}\n";
-print MINTS "\\input{" . $config{module} . "}\n";
-print MINTS "\\end{document}\n";
-close(MINTS);
+  # Create main file for PDF build (with std variant, that is without modifications on the macro file)
+  my $pdfinputfile = "$outputdir/converter/tex/targetpdf.tex";
+  $ttminputstring = "% DIESE DATEI WURDE AUTOMATISCH ERSTELLT, UND SOLLTE NICHT VERAENDERT WERDEN (mconvert)\n";
+  $ttminputstring .= "\\newcounter{MChaptersGiven}\n";
+  $ttminputstring .= "\\setcounter{MChaptersGiven}{1}\n";
+  $ttminputstring .= "\\input{mod_$macrofile}\n";
+  $ttminputstring .= "\\title{" . $config{description} . "}\n";
+  $ttminputstring .= "\\author{" . $config{author} . "}\n";
+  $ttminputstring .= "\\begin{document}\n";
+  $ttminputstring .= "\\input{" . $config{module} . "}\n";
+  $ttminputstring .= "\\end{document}\n";
+  writefile($pdfinputfile, $ttminputstring);
 
-# Icons konvertieren
-chdir($config{output});
-logMessage($VERBOSEINFO, "PreIcons: CWD is " . cwd());
-my @orgicons = <converter/buttons_org/*>; # Shell-Selektionsanweisung akzeptiert keine Strings bzw. parsed diese vorher!
-my $file = "";
-my $dyniconcss = "";
-logMessage($VERBOSEINFO, "Converting icons");
-foreach $file (@orgicons) {
-   createButtonFiles($file, 100, 100); # 50,170 fuer halbgesaettigtes blau
-   my $bnms = "";
-   my $inms = "";
-   if ($file =~ /(.*)buttons_org\/(.*).png/) {
+  # Icons konvertieren
+  chdir($outputdir);
+  logMessage($VERBOSEINFO, "PreIcons: CWD is " . cwd());
+  my @orgicons = <converter/buttons_org/*>; # Shell-Selektionsanweisung akzeptiert keine Strings bzw. parsed diese vorher!
+  my $file = "";
+  my $dyniconcss = "";
+  logMessage($VERBOSEINFO, "Converting icons");
+  foreach $file (@orgicons) {
+    createButtonFiles($file, 100, 100); # 50,170 fuer halbgesaettigtes blau
+    my $bnms = "";
+    my $inms = "";
+    if ($file =~ /(.*)buttons_org\/(.*).png/) {
       my $cssicon = "padding: 1px";
       $bnms = $2;
       $inms = $2;
@@ -3975,317 +4576,387 @@ foreach $file (@orgicons) {
       $dyniconcss .= injectEscapes(".iselected$bnms\n\{\n $cssicon;\n background-image: url('[LINKPATH]images\/$bnms"."2.png');\n\}\n");
       $dyniconcss .= injectEscapes(".igrey$bnms\n\{\n $cssicon;\n background-image: url('[LINKPATH]images\/$bnms"."3.png');\n\}\n\n");
       $dyniconcss .= "\"\r\n";
-   }
-}
-chdir(".."); # Verlaesst sich darauf, dass $config{output} nur eine Verzeichnisebene ist !
+    }
+  }
+  chdir(".."); # Verlaesst sich darauf, dass $outputdir nur eine Verzeichnisebene ist !
 
-logMessage($VERBOSEINFO, "Creating stylesheets");
-chdir($config{output} . "/converter/precss");
-system("php -n grundlagen.php >grundlagen.pcss");
+  logMessage($VERBOSEINFO, "Creating stylesheets");
+  chdir($outputdir . "/converter/precss");
+  system("php -n grundlagen.php >grundlagen.pcss");
 
-# Ersetze Farben im Stylesheet mit den Vorgaben
+  # Ersetze Farben im Stylesheet mit den Vorgaben
 
-my $cccs = open(CSS, "< grundlagen.pcss") or die "FATAL: Could not open pcss-file";
-my $cccs2 = open(OCSS, "> grundlagen.css") or die "FATAL: Could not create css-file";
-my $cccsJ = open(JCSS, "> dynamiccss.js") or die "FATAL: Could not create dynmiccss.js-file";
-my @mycss = <CSS>;
+  my $cccs = open(CSS, "< grundlagen.pcss") or die "FATAL: Could not open pcss-file";
+  my $cccs2 = open(OCSS, "> grundlagen.css") or die "FATAL: Could not create css-file";
+  my $cccsJ = open(JCSS, "> dynamiccss.js") or die "FATAL: Could not create dynmiccss.js-file";
+  my @mycss = <CSS>;
+  close(CSS);
 
-close(CSS);
+  my $ckey = "";
+  my $cval = "";
 
+  # Freie Parameter sind in convinfo.js eingetragen!
 
-my $ckey = "";
-my $cval = "";
-
-# Freie Parameter sind in convinfo.js eingetragen!
-
-# Farben parsen (Strings, das #-Prefix wird dynamisch zugefuegt)
-my $jrow = "";
-my $fz;
-print JCSS "var COLORS = new Object();\n";
-while (($ckey, $cval) = each(%{$config{'colors'}})) {
-  print JCSS "COLORS.$ckey = \"$cval\";\n";
-}
-
-# Fonts parsen (Strings)
-print JCSS "var FONTS = new Object();\n";
-while (($ckey, $cval) = each(%{$config{'fonts'}})) {
-  $cval = injectEscapes($cval);
-  print JCSS "FONTS.$ckey = \"$cval\";\n";
-}
-
-# Sizes parsen (numerische Werte)
-print JCSS "var SIZES = new Object();\n";
-while (($ckey, $cval) = each(%{$config{'sizes'}})) {
-  print JCSS "SIZES.$ckey = $cval;\n";
-}
-
-# Farben, Fonts und Sizes in CSS-Dateien ersetzen, css-Datei auch als JavaScript-Variable OHNE ERSETZUNG erzeugen
-print JCSS "var DYNAMICCSS = \"\"\n";
-my $row;
-foreach $row (@mycss) {
-  print OCSS $row; # unveraendert in Ziel-CSS schreiben, Ersetzung wird dynamisch von den Seiten vorgenommen
-  $row = injectEscapes($row);
-  print JCSS " + \"" . $row . "\"\n";
+  # Farben parsen (Strings, das #-Prefix wird dynamisch zugefuegt)
+  my $jrow = "";
+  my $fz;
+  print JCSS "var COLORS = new Object();\n";
   while (($ckey, $cval) = each(%{$config{'colors'}})) {
-    $row =~ s/\[-$ckey-\]/\#$cval/g ;
+    print JCSS "COLORS.$ckey = \"$cval\";\n";
   }
+
+  # Fonts parsen (Strings)
+  print JCSS "var FONTS = new Object();\n";
   while (($ckey, $cval) = each(%{$config{'fonts'}})) {
-    $row =~ s/\[-$ckey-\]/$cval/g ;
+    $cval = injectEscapes($cval);
+    print JCSS "FONTS.$ckey = \"$cval\";\n";
   }
+
+  # Sizes parsen (numerische Werte)
+  print JCSS "var SIZES = new Object();\n";
   while (($ckey, $cval) = each(%{$config{'sizes'}})) {
-    $cval .= "px";
-    $row =~ s/\[-$ckey-\]/$cval/g ;
+    print JCSS "SIZES.$ckey = $cval;\n";
   }
-}
-print JCSS "$dyniconcss;\n";
-close(OCSS);
-close(JCSS);
+
+  # Farben, Fonts und Sizes in CSS-Dateien ersetzen, css-Datei auch als JavaScript-Variable OHNE ERSETZUNG erzeugen
+  print JCSS "var DYNAMICCSS = \"\"\n";
+  my $row;
+  foreach $row (@mycss) {
+    print OCSS $row; # unveraendert in Ziel-CSS schreiben, Ersetzung wird dynamisch von den Seiten vorgenommen
+    $row = injectEscapes($row);
+    print JCSS " + \"" . $row . "\"\n";
+    while (($ckey, $cval) = each(%{$config{'colors'}})) {
+      $row =~ s/\[-$ckey-\]/\#$cval/g ;
+    }
+    while (($ckey, $cval) = each(%{$config{'fonts'}})) {
+      $row =~ s/\[-$ckey-\]/$cval/g ;
+    }
+    while (($ckey, $cval) = each(%{$config{'sizes'}})) {
+      $cval .= "px";
+      $row =~ s/\[-$ckey-\]/$cval/g ;
+    }
+  }
+  print JCSS "$dyniconcss;\n";
+  close(OCSS);
+  close(JCSS);
+
+  system("cp grundlagen.css ../files/css/.");
+  system("cp dynamiccss.js ../files/.");
+
+  chdir("../tex");
+
+  # print MINTP "% Automatisierte Tagmakros ---------- \n";
+  # print MINTP "\\ifttm\n";
+  # print MINTP "\\else\n";
+  # print MINTP "\\fi\n";
+ 
+  my $mint_tex = $modmacrotex;
+  my $mint_html = $modmacrotex;
+
+  $mint_tex =~ s/\\ifttm(.+?)\\else(.+?)\\fi/$2/sg;
+  $mint_tex =~ s/\\ifttm(.+?)\\fi/\n/sg;
+  $mint_html =~ s/\\ifttm(.+?)\\else(.+?)\\fi/$1/sg;
+  $mint_html =~ s/\\ifttm(.+?)\\fi/$1/sg;
 
 
-system("cp grundlagen.css ../files/css/.");
-system("cp dynamiccss.js ../files/.");
+  logMessage($VERBOSEINFO, "TeX-Macro definitions in $macrofile:");
+  while($mint_tex =~ m/\\def\\(.+?)(\#.)*\{/sg ) {
+    logMessage($VERBOSEINFO, "  def: $1");
+  }
+  while($mint_tex =~ m/\\newcommand\{(.+?)\}/sg ) {
+    logMessage($VERBOSEINFO, "  newcommand: $1");
+  }
 
-# mintmod.tex so veraendern, dass lokale Preamblen und Tagmakros eingebunden werden, sowie automatisierte tags
-chdir("../tex");
-# MUSS APPEND SEIN
-my $ipf = open(MINTP, ">> $macrofile") or die "FATAL: Could not append local preambles to $macrofile";
-print MINTP "\n% ---------- Automatisch eingebundene Preamblen aus mconvert.pl heraus ---------------\n";
-logMessage($CLIENTINFO, "Included preambles:");
-for ( $i=0; $i <= $#IncludeStorage; $i++ ) {
-  logMessage($CLIENTINFO, " module=$IncludeStorage[$i][0], filename=$IncludeStorage[$i][1]");
-  print MINTP "% Automatische Einbindung der Preamble " . $IncludeStorage[$i][1] . ":\n";
-  print MINTP $IncludeStorage[$i][2] . "\n";
-}
+  # Erzeuge den HTML-Baum
+  chdir("../..");
+  $ndir = getcwd; # = $output in voller expansion
+  chdir("$ndir/converter");
+  logMessage($VERBOSEINFO, "Changing to directory $ndir/converter");
 
-# print MINTP "% Automatisierte Tagmakros ---------- \n";
-# print MINTP "\\ifttm\n";
-# print MINTP "\\else\n";
-# print MINTP "\\fi\n";
+  # Zerlegung und Umwandlung der XML-Datei vornehmen
+  converter_conversion($outputdir);
 
-close(MINTP);
-
-$ipf = open(MINTP, "< $macrofile") or die "FATAL: Count not reopen $macrofile";
-my $mintstr = "";
-my $mintr = "";
-while(defined($mintr = <MINTP>)) {
-  $mintstr .= $mintr;
-}
-close(MINTP);
-
-my $mint_tex = $mintstr;
-my $mint_html = $mintstr;
-
-$mint_tex =~ s/\\ifttm(.+?)\\else(.+?)\\fi/$2/sg;
-$mint_tex =~ s/\\ifttm(.+?)\\fi/\n/sg;
-$mint_html =~ s/\\ifttm(.+?)\\else(.+?)\\fi/$1/sg;
-$mint_html =~ s/\\ifttm(.+?)\\fi/$1/sg;
-
-
-logMessage($VERBOSEINFO, "TeX-Macro definitions in $macrofile:");
-
-
-while($mint_tex =~ m/\\def\\(.+?)(\#.)*\{/sg ) {
-  logMessage($VERBOSEINFO, "  def: $1");
-}
-while($mint_tex =~ m/\\newcommand\{(.+?)\}/sg ) {
-  logMessage($VERBOSEINFO, "  newcommand: $1");
-}
-
-# Erzeuge den HTML-Baum
-chdir("../..");
-$ndir = getcwd; # = $output in voller expansion
-chdir("$ndir/converter");
-logMessage($VERBOSEINFO, "Changing to directory $ndir/converter");
-
-# Zerlegung und Umwandlung der XML-Datei vornehmen
-converter_conversion();
-
-chdir("tex");
-my $pdfok = 1;
-if ($config{dopdf} eq 1) {
-    # Ganzer Baum wird erstellt: Die Einzelmodule separat texen
-    my $doct = "";
-    while (($doct = each(@{$config{generate_pdf}})) and ($pdfok == 1)) {
-      logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex ========================================");
-
-      my $rt1 = system("pdflatex $doct.tex");
-      if ($rt1 != 0) {
-        print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
-	$pdfok = 0;
-      } else {      
-	$rt1 = system("pdflatex $doct.tex");
-	if ($rt1 != 0) {
+  chdir("tex");
+  my $pdfok = 1;
+  if ($config{dopdf} eq 1) {
+      my $doct = "";
+      my $docdesc = "";
+      while ((($doct, $docdesc) = each(%{$config{generate_pdf}})) and ($pdfok == 1)) {
+        logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex ($docdesc) ========================================");
+  
+        my $rt1 = system("pdflatex $doct.tex");
+        if ($rt1 != 0) {
           print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
 	  $pdfok = 0;
-	} else {      
-	  $rt1 = system("makeindex $doct");
+        } else {      
+  	$rt1 = system("pdflatex $doct.tex");
 	  if ($rt1 != 0) {
             print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
 	    $pdfok = 0;
 	  } else {      
-	    $rt1 = system("pdflatex $doct.tex");
+  	  $rt1 = system("makeindex $doct");
 	    if ($rt1 != 0) {
               print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
 	      $pdfok = 0;
+	    } else {      
+  	    $rt1 = system("pdflatex $doct.tex");
+	      if ($rt1 != 0) {
+                print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
+	        $pdfok = 0;
+	      }
 	    }
 	  }
-	}
+        }
+    }
+    if ($pdfok == 1) {
+      print("======= PDF files build successfully =======================================\n");
+    } else {
+      print("======= PDF files have not been build =================================\n");
+    }
+  }
+
+  logMessage($VERBOSEINFO, "Changing back to directory $ndir");
+  chdir("$ndir");
+
+  # Loesche das build-Verzeichnis und berichtige den Baum
+  if ($config{dopdf} eq 1) {
+    if ($pdfok == 1) {
+      system("cp $ndir/converter/tex/*.pdf $ndir/.");
+      print("PDFs generated\n");
+    } else {
+      print("No PDFs generated due to errors\n");
+    }
+  }
+
+  if ($config{doscorm} eq 1) { system("cp -R $ndir/converter/SCORM2004v4/* $ndir/."); }
+
+
+  if ($config{localjax} eq 1) {
+    logMessage($CLIENTINFO, "MathJax 2.6 (full package) is added locally");
+    system("mkdir $ndir/MathJax");
+    system("tar -xzf $ndir/converter/mathjax26complete.tgz --directory=$ndir/MathJax/.");
+  }
+
+  system("mv $ndir/converter/" . $config{outtmp} . "/* $ndir/.");
+  system("rmdir $ndir/converter/" . $config{outtmp});
+
+  if ($config{cleanup} == 0) {
+    logMessage($CLIENTINFO, "CONVERTER-SUBDIRECTORY IS NOT BEING REMOVED");
+  } else {
+    system("rm -fr $ndir/converter");
+    logMessage($CLIENTINFO, "converter-directory cleaned up");
+  }
+
+  # Globales Starttag suchen und Baum dazu anpassen
+
+  $call = "find -P $ndir/. -name \\*.html";
+  my $htmllist = `$call`; # Finde alle html-Files, auch in den Unterverzeichnissen
+  my @htmls = split("\n",$htmllist);
+  $nt = $#htmls + 1;
+  my $htmlzeile = "";
+  my $starts = 0;
+  for ($ka = 0; $ka < $nt; $ka++) {
+      my $content = "";
+      my $hfilename = $htmls[$ka];
+      my $html_open = open(MINTS, "< $hfilename") or die "FATAL:: Could not open $htmls[$ka]\n";
+      while(defined($htmlzeile = <MINTS>)) {
+        if ($htmlzeile =~ m/<!-- mglobalstarttag -->/ ) {
+          $starts++;
+          logMessage($VERBOSEINFO, "--- Starttag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $startfile = "mpl/" . $2 . ".html";
+          $entryfile = "entry_" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobalchaptertag -->/ ) {
+          logMessage($VERBOSEINFO, "--- Chaptertag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $chapterfile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobalconftag -->/ ) {
+          logMessage($VERBOSEINFO, "--- Configtag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $configfile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobaldatatag -->/ ) {
+          logMessage($VERBOSEINFO, "--- Datatag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $datafile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobalfavotag -->/ ) {
+          print "--- Favoritestag found in file $hfilename\n";
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $favofile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mgloballocationtag -->/ ) {
+          logMessage($VERBOSEINFO, "--- Locationtag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $locationfile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobalsearchtag -->/ ) {
+          logMessage($VERBOSEINFO, "--- Searchtag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $searchfile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobalstesttag -->/ ) {
+          logMessage($VERBOSEINFO, "--- STesttag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $stestfile = "mpl/" . $2 . ".html";
+        }
       }
-    $i++;
+      close(MINTS);
   }
-  if ($pdfok == 1) {
-    print("======= PDF files build successfully =======================================\n");
+
+  my $npng = keys %tikzpng;
+  if ($npng ge 1) {
+    logMessage($CLIENTERROR, "$npng tikz externalized files have not been used in svg style infos");
+    my $tname;
+    foreach $tname (keys %tikzpng) {
+      logMessage($VERBOSEINFO, "  $tname");
+    }
+  }
+
+  if ($starts eq 0 ) {
+    logMessage($FATALERROR, "Global start tag not found, HTML tree is disfunctional");
   } else {
-    print("======= PDF files have not been build =================================\n");
+    if ($starts ne 1) {
+      logMessage($CLIENTERROR, "Multiple start tags found, using last one");
+    }
   }
-}
 
+  createRedirect("index.html", $startfile, 0);
+  if ($config{doscorm} == 1) {
+    createRedirect($entryfile, $startfile, 1);
+  }
+  
+  if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile,0); } else { logMessage($CLIENTINFO, "No Chapter-file defined"); }
+  if ($configfile ne "") { createRedirect("config.html", $configfile,0); } else { logMessage($CLIENTINFO, "No Config-file defined"); }
+  if ($datafile ne "") { createRedirect("cdata.html", $datafile,0); } else { logMessage($CLIENTINFO, "Keine Data-Datei definiert"); }
+  if ($searchfile ne "") { createRedirect("search.html", $searchfile,0); } else { logMessage($CLIENTINFO, "Keine Search-Datei definiert"); }
+  if ($favofile ne "") { createRedirect("favor.html", $favofile,0); } else { logMessage($CLIENTINFO, "Keine Favoriten-Datei definiert"); }
+  if ($locationfile ne "") { createRedirect("location.html", $locationfile,0); } else { logMessage($CLIENTINFO, "Keine Location-Datei definiert"); }
+  if ($stestfile ne "") { createRedirect("stest.html", $stestfile,0); } else { logMessage($CLIENTINFO, "Keine Starttest-Datei definiert"); }
 
-logMessage($VERBOSEINFO, "Changing back to directory $ndir");
-chdir("$ndir");
+  if ($config{doscorm} eq 1) { createSCORM(); }
 
-# Loesche das build-Verzeichnis und berichtige den Baum
-if ($config{dopdf} eq 1) {
-  if ($pdfok == 1) {
-    system("cp $ndir/converter/tex/*.pdf $ndir/.");
-    print("PDFs generated\n");
+  if ($config{borkify} eq 1) {
+    chdir("$ndir/mpl");
+    borkifyHTML();
+    chdir("..");
+    minimizeJS();
+  }
+
+  chdir($ndir);
+
+  system("rm -fr *.js~");
+
+  if ($config{dozip} eq 0) {
+    logMessage($CLIENTINFO, "HTML module " . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? "and PDF " : " ") . "created");
+    chdir("..");
   } else {
-    print("No PDFs generated due to errors\n");
+    system("chmod -R 777 *");
+    system("zip -r $zip *");
+    system("cp $zip ../.");
+    chdir("..");
+    system("rm -fr $ndir");
+    logMessage($CLIENTINFO, "HTML module" . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? "and PDF " : " ") . "created and zipped to $zip");
   }
+
+  logMessage($CLIENTINFO, "Tree entry chain:");
+  logMessage($CLIENTINFO, "$  ndir/index.html -> $ndir/$startfile");
+  if ($config{doscorm} == 1) {
+    logMessage($CLIENTINFO, "  SCORM -> $ndir/$entryfile -> $ndir/$startfile");
+  }
+  
+  logTimestamp("Finishing create_tree on variant $variantactive in directory " . getcwd);
 }
 
-if ($config{doscorm} eq 1) { system("cp -R $ndir/converter/SCORM2004v4/* $ndir/."); }
+
+# ----------------------------- Start Hauptprogramm --------------------------------------------------------------
+
+# my $IncludeTags = ""; # Sammelt die Makros fuer predefinierte Tagmakros, diese werden an mintmod.tex angehaengt
+
+# Logfile als erstes einrichten, auf der Ebene des Aufrufs
+open(LOGFILE, "> $mainlogfile") or die("ERROR: Cannot open log file, aborting!");
 
 
-if ($config{localjax} eq 1) {
-  logMessage($CLIENTINFO, "MathJax 2.4 (full package) is added locally");
-  system("mkdir $ndir/MathJax");
-  system("tar -xzf $ndir/converter/mathjax24complete.tgz --directory=$ndir/MathJax/.");
-  #system("tar -xzf $ndir/converter/mathjax23reduced.tgz --directory=$ndir/MathJax/.");
-  #print "Nutze reduzierte Version von MathJax ohne ImageFonts (benoetigt IE6+, Chrome, Safari 3.1+, Firefox 3.5+, oder Opera 10+)\n";
-}
+#Zeit speichern und Startzeit anzeigen
+$starttime = time;
+my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($starttime);
+logMessage($CLIENTINFO, "Starting conversion: " . ($year+1900 ) . "-" . ($mon+1) . "-$mday at $hour:$min:$sec");
 
-system("mv $ndir/converter/" . $config{outtmp} . "/* $ndir/.");
-system("rmdir $ndir/converter/" . $config{outtmp});
+logMessage($CLIENTINFO, "Using encoding $stdencoding for read/write operations");
 
-if ($config{cleanup} == 0) {
-  logMessage($CLIENTINFO, "CONVERTER-SUBDIRECTORY IS NOT BEING REMOVED");
+if ($#ARGV eq 0) {
+  # Nur ein Parameter: Gibt Konfigurationsdatei relativ zum Aufruf an
+  setup_options($ARGV[0]);
 } else {
-  system("rm -fr $ndir/converter");
-  logMessage($CLIENTINFO, "converter-directory cleaned up");
-}
-
-# Globales Starttag suchen und Baum dazu anpassen
-
-$call = "find -P $ndir/. -name \\*.html";
-my $htmllist = `$call`; # Finde alle html-Files, auch in den Unterverzeichnissen
-my @htmls = split("\n",$htmllist);
-$nt = $#htmls + 1;
-my $htmlzeile = "";
-my $starts = 0;
-for ($ka = 0; $ka < $nt; $ka++) {
-    my $content = "";
-    my $hfilename = $htmls[$ka];
-    my $html_open = open(MINTS, "< $hfilename") or die "FATAL:: Could not open $htmls[$ka]\n";
-    while(defined($htmlzeile = <MINTS>)) {
-      if ($htmlzeile =~ m/<!-- mglobalstarttag -->/ ) {
-        $starts++;
-        logMessage($VERBOSEINFO, "--- Starttag found in file $hfilename");
-        $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-        $startfile = "mpl/" . $2 . ".html";
-        $entryfile = "entry_" . $2 . ".html";
-      }
-      if ($htmlzeile =~ m/<!-- mglobalchaptertag -->/ ) {
-        logMessage($VERBOSEINFO, "--- Chaptertag found in file $hfilename");
-        $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-        $chapterfile = "mpl/" . $2 . ".html";
-      }
-      if ($htmlzeile =~ m/<!-- mglobalconftag -->/ ) {
-        logMessage($VERBOSEINFO, "--- Configtag found in file $hfilename");
-        $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-        $configfile = "mpl/" . $2 . ".html";
-      }
-      if ($htmlzeile =~ m/<!-- mglobaldatatag -->/ ) {
-        logMessage($VERBOSEINFO, "--- Datatag found in file $hfilename");
-        $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-        $datafile = "mpl/" . $2 . ".html";
-      }
-      if ($htmlzeile =~ m/<!-- mglobalfavotag -->/ ) {
-        print "--- Favoritestag found in file $hfilename\n";
-        $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-        $favofile = "mpl/" . $2 . ".html";
-      }
-      if ($htmlzeile =~ m/<!-- mgloballocationtag -->/ ) {
-        logMessage($VERBOSEINFO, "--- Locationtag found in file $hfilename");
-        $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-        $locationfile = "mpl/" . $2 . ".html";
-      }
-      if ($htmlzeile =~ m/<!-- mglobalsearchtag -->/ ) {
-        logMessage($VERBOSEINFO, "--- Searchtag found in file $hfilename");
-        $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-        $searchfile = "mpl/" . $2 . ".html";
-      }
-      if ($htmlzeile =~ m/<!-- mglobalstesttag -->/ ) {
-        logMessage($VERBOSEINFO, "--- STesttag found in file $hfilename");
-        $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-        $stestfile = "mpl/" . $2 . ".html";
+  if ($#ARGV ge 1) {
+    # Ein oder mehr Parameter: Konfiguationsdatei plus Kommandos der Form option=wert
+    setup_options($ARGV[0]);
+    for (my $i = 1; $i <= $#ARGV; $i++) {
+    
+      if ($ARGV[$i] =~ m/(.+)=(.*)/ ) {
+        my $obj = $1;
+        my $val = $2;
+        # check if modified parameter exists
+        if (exists $config{$obj}) {
+          logMessage($CLIENTINFO, "Parameter modification: \"$obj\" changed from \"" . $config{$obj} . "\" to \"$val\"");
+          $config{$obj} = $val;
+        } else {
+          logMessage($CLIENTINFO, "New parameter added: \"$obj\" set to \"$val\"");
+          $config{$obj} = $val;
+        }
+      } else {
+        logMessage($FATALERROR, "Command line argument " . $ARGV[$i] . " not of type <parameter>=<value>");
       }
     }
-    close(MINTS);
-}
-
-if ($starts eq 0 ) {
-  die("FATAL: Global start tag not found, HTML tree is disfunctional");
-} else {
-  if ($starts ne 1) {
-    logMessage($CLIENTERROR, "Multiple start tags found, using last one");
+  } else {
+    logMessage($FATALERROR, $helptext);
   }
 }
 
-createRedirect("index.html", $startfile, 0);
-if ($config{doscorm} == 1) {
-  createRedirect($entryfile, $startfile, 1);
-}
-if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile,0); } else { logMessage($CLIENTINFO, "No Chapter-file defined"); }
-if ($configfile ne "") { createRedirect("config.html", $configfile,0); } else { logMessage($CLIENTINFO, "No Config-file defined"); }
-if ($datafile ne "") { createRedirect("cdata.html", $datafile,0); } else { logMessage($CLIENTINFO, "Keine Data-Datei definiert"); }
-if ($searchfile ne "") { createRedirect("search.html", $searchfile,0); } else { logMessage($CLIENTINFO, "Keine Search-Datei definiert"); }
-if ($favofile ne "") { createRedirect("favor.html", $favofile,0); } else { logMessage($CLIENTINFO, "Keine Favoriten-Datei definiert"); }
-if ($locationfile ne "") { createRedirect("location.html", $locationfile,0); } else { logMessage($CLIENTINFO, "Keine Location-Datei definiert"); }
-if ($stestfile ne "") { createRedirect("stest.html", $stestfile,0); } else { logMessage($CLIENTINFO, "Keine Starttest-Datei definiert"); }
+checkSystem();
 
-if ($config{doscorm} eq 1) { createSCORM(); }
+$basis = Cwd::cwd(); 
 
-if ($config{borkify} eq 1) {
-  chdir("$ndir/mpl");
-  borkifyHTML();
-  chdir("..");
-  minimizeJS();
-}
+checkOptions();
 
-chdir($ndir);
+$rfilename = $config{source} . "/" . $config{module}; # sollte durch PERL-Join ersetzt werden
 
-system("rm -fr *.js~");
+logMessage($VERBOSEINFO, " Absolute directory: " . $basis);
+logMessage($VERBOSEINFO, "Converter directory: " . $basis);
+logMessage($VERBOSEINFO, "   Source directory: " . $config{source});
+logMessage($VERBOSEINFO, "   Output directory: " . $config{output});
+logMessage($VERBOSEINFO, "   Main module file: " . $rfilename);
+logMessage($VERBOSEINFO, "Generating HTML tree as described in " . $rfilename);
 
-if ($config{dozip} eq 0) {
-  logMessage($CLIENTINFO, "HTML module " . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? "and PDF " : " ") . "created");
+if ($config{doscorm} eq 1) {
+  logMessage($CLIENTINFO, "Tree will be SCORM-compatible (version 2004v4)");
 } else {
-  system("chmod -R 777 *");
-  system("zip -r $zip *");
-  system("cp $zip ../.");
-  chdir("..");
-  system("rm -fr $ndir");
-  logMessage($CLIENTINFO, "HTML module" . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? "and PDF " : " ") . "created and zipped to $zip");
+  logMessage($VERBOSEINFO, "No SCORM support");
 }
 
-logMessage($CLIENTINFO, "Tree entry chain:");
-logMessage($CLIENTINFO, "$  ndir/index.html -> $ndir/$startfile");
-if ($config{doscorm} == 1) {
-  logMessage($CLIENTINFO, "  SCORM -> $ndir/$entryfile -> $ndir/$startfile");
+if ($config{dopdf} eq 1) {
+  logMessage($CLIENTINFO, "Generating PDF files");
+} else {
+  logMessage($CLIENTINFO, "PDF files not requested");
 }
 
+if ($config{qautoexport} eq 1) {
+  logMessage($CLIENTINFO, "Exercise autoexport activated");
+}
+
+if ($config{dotikz} eq 1) {
+  logMessage($CLIENTINFO, "...TikZ externalization activated");
+}
+
+$variantactive = $config{variant};
+
+logTimestamp("Finished initializiation");
+create_tree($rfilename);
 logTimestamp("mconvert.pl finished successfully");
 
+
+close(LOGFILE);
+
 exit;
-
-

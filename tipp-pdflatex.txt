@@ -1,0 +1,5 @@
+Ein Tipp für content-Autoren, die ihre Arbeit an den Modulen zur Kontrolle mit pdf-LaTeX übersetzen wollen:
+
+Da dafür die Dateien mintmod.tex, bibgerm.sty und maxpage.sty aus dem ordner ve-und-mint/converter/tex notwendig sind, müssen diese in den entsprechenden Modulordnern verfügbar gemacht werden. Da sich diese Dateien durch commits allerdings auch ändern können (insbesondere mintmod.tex), ist ein einfaches Kopieren dieser Dateien in die Modulordner nur eingeschränkt praktikabel, da der Kopiervorgang dann bei jeder Änderung wiederholt werden müsste. Eine einfache Möglichkeit stets auf den aktuellen Stand dieser Dateien zuzugreifen ist das Setzen eines symbolischen Links an der entsprechenden im entsprechenden Modulverzeichnis. Zum Beispiel:
+
+ln -s PFAD-ZUM-GITVERZEICHNIS/ve-und-mint/converter/tex/mintmod.tex PFAD-ZUM-GITVERZEICHNIS/module-veundmint/VBKM09/mintmod.tex  

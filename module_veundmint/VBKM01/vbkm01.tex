@@ -1,6 +1,8 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
 
+%\Mtikzexternalize
+
 \begin{document}
 
 \MSection{Elementares Rechnen}
@@ -14,11 +16,11 @@
 In diesem Modul wird ein Überblick über die mathematischen Grundlagen zum elementaren Rechnen gegeben und die Notation eingeführt und erklärt.
 Dieses Modul besteht aus
 \begin{itemize}
-\item{dem Abschnitt \MSRef{M01_Zahlenbereiche}{Zahlen, Variablen, Terme},}
-\item{dem Abschnitt \MSRef{M01_Bruchrechnung}{Bruchrechnung},}
-\item{dem Abschnitt \MSRef{M01_Potenzenwurzeln}{Potenzen und Wurzeln},}
-\item{dem Abschnitt \MSRef{M01_Umformen}{Umformen von Termen},}
-\item{dem \MSRef{M01_Ausgangstest}{Abschlusstest}.}
+\item{dem Abschnitt \MNRef{M01_Zahlenbereiche}, \MSRef{M01_Zahlenbereiche}{Zahlen, Variablen, Terme},}
+\item{dem Abschnitt \MNRef{M01_Bruchrechnung}, \MSRef{M01_Bruchrechnung}{Bruchrechnung},}
+\item{dem Abschnitt \MNRef{M01_Umformen}, \MSRef{M01_Umformen}{Umformen von Termen},}
+\item{dem Abschnitt \MNRef{M01_Potenzenwurzeln}, \MSRef{M01_Potenzenwurzeln}{Potenzen und Wurzeln},}
+\item{dem \MSRef{M01_Ausgangstest}{Abschlusstest}, \MNRef{M01_Ausgangstest}.}
 \end{itemize}
 
 
@@ -30,15 +32,93 @@ Dieses Modul besteht aus
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM01_ZahlenIntro}
 
-$$\dots\MElSetSep 0\MElSetSep -3\MElSetSep 4\MElSetSep \frac{4}{5}\MElSetSep \sqrt 2\MElSetSep \MEU\MElSetSep \pi\MElSetSep \MZahl{12}{3}\MElSetSep 10^{23}\dots$$ 
-Mathematik ist die Welt der Zahlen. Wenn man verschiedene Zahlen n"aher 
+%Einfügung Mengenschreibweise
+Die Mathematik ist eine Wissenschaft, in der allgemein abstrakte Strukturen
+und deren logische Zusammenhänge untersucht werden. 
+Bevor auf die eigentlichen Inhalte dieses Abschnitts näher eingegangen wird,
+soll kurz auf den grundlegenden Begriff der \MEntry{Menge}{Menge} Bezug
+genommen werden.
+
+\begin{MInfo}
+Um Aussagen in kompakter Weise über eine Reihe von strukturell ähnlichen
+Objekten treffen zu können, kann man solche Objekte in Mengen zusammenfassen,
+die als Behältnis für die Objekte dienen. Seien die Objekte mit $a,b,c,\ldots$
+benannt, dann bildet das Symbol $M=\{a\MElSetSep b \MElSetSep c \MElSetSep
+\ldots\}$ die Menge $M$, welche die vorigen Objekte als \textbf{Elemente}
+enthält. Letzteres schreibt man kurz $a\in M$, $b\in M$, $c\in M$ usw.;
+das Zeichen \glqq{}$\in$\grqq{} bedeutet also \glqq{}ist Element von\grqq{}.
+(Manchmal ist es schreibtechnisch geboten, die Reihenfolge von Element und
+Menge auszutauschen. Zum Erhalten der gleichen Aussage(n) wird dann das
+$\in$-Symbol umgedreht, d.h. $M\ni a$, $M\ni b$, $M\ni c$ usw. heißt
+dann dasselbe, wobei \glqq{}$\ni$\grqq{} somit \glqq{}enthält als Element\grqq{}
+bzw.  \glqq{}beinhaltet\grqq{} bedeutet.)
+
+Neben der aufzählenden Schreibweise von Mengen existieren weitere 
+Schreibweisen. Wenn die Elemente z.B. eine Bedingung $B$ erfüllen sollen,
+dann schreibt man $T=\{x\MCondSetSep x\MBlank\text{erfüllt}\MBlank B\}$.
+Wird dabei $x$ (explizit) aus einer umfassenderen Menge $U$ entnommen,
+dann wird dies auch in der Form
+$T=\{x\MCondSetSep x\in U \MBlank\text{und}\MBlank 
+x\MBlank\text{erfüllt}\MBlank B\}$
+oder kurz
+$T=\{x\in U\MCondSetSep x\MBlank\text{erfüllt}\MBlank B\}$
+geschrieben.
+%%Da die Bedingung $B$ eine Einschränkung für die Elemente von $U$ darstellt,
+%%ist $T$ dann in natürlicher Weise eine \textbf{Teilmenge} von $U$,
+%%notiert in Formelnotation als $T\subset U$.
+
+Aussagen wie \glqq{}$x\in U$\grqq{} oder
+\glqq{}$x\MBlank\text{erfüllt}\MBlank B$\grqq{} sind Aussagen im 
+mathematischen Sinn, d.h. ihnen kann ein eindeutiger Wahrheitswert
+\glqq{}wahr\grqq{} oder \glqq{}falsch\grqq{} zugeordnet werden.
+Seien $A_1$ und $A_2$ solche Aussagen. Für den Fall, dass sowohl
+$A_1$ als auch $A_2$ gelten soll, also $A_1$ \textbf{und} $A_2$ gelten
+sollen, schreibt man auch $A_1 \wedge A_2$. Im Fall, dass nur eine von
+beiden Aussagen zu gelten braucht, d.h. $A_1$ \textbf{oder} $A_2$
+(oder beide Aussagen) gelten sollen, schreibt man auch $A_1\vee A_2$.
+
+Für zwei Mengen $M$ und $N$ notiert man
+\begin{itemize}
+\item{%
+$M\subseteq N$, d.h. $M$ ist (unechte) \textbf{Teilmenge} von $N$, wenn jedes
+Element von $M$ auch in $N$ enthalten ist; gibt es dann mindestens ein Element
+in $N$, das nicht in $M$ enthalten ist, wenn also $M$ eine echte Teilmenge von
+$N$ ist, so schreibt man (auch) $M\subset N$;
+}
+\item{%
+$M\cup N$ für die \textbf{Vereinigung} der beiden Mengen; diese bezeichnet
+jene Menge, die alle Elemente enthält, die in mindestens einer der beiden
+Mengen vorkommen;
+}
+\item{%
+$M\cap N$ für den \textbf{Schnitt} der beiden Mengen; dieser bezeichnet
+jene Menge, in der alle Elemente enthalten sind, die in beiden Mengen
+vorkommen;
+}
+\item{%
+$N\MSetminus M$ für die \textbf{Differenzmenge}, d.h. für diejenige Menge,
+welche die Elemente von $N$ enthält, die \textit{nicht} in $M$ vorkommen.
+}
+\end{itemize}
+Die obige Vereinigung ist also charakterisiert durch Elemente, die
+$(x\in M) \vee (x\in N)$ erfüllen. Für die Elemente der obigen Schnittmenge
+gilt dagegen $(x\in M) \wedge (x\in N)$. Demgegenüber enthält die obige
+Differenzmenge solche Elemente, für die $(x\in N) \wedge (x\notin M)$ gilt.
+Mit dem Symbol $\notin$-Symbol wird die Verneinung (Negation) der
+Element-Aussage beschrieben.
+\end{MInfo}
+%
+
+Mathematik beinhaltet die Welt der Zahlen:
+$$\dots\MElSetSep 0\MElSetSep -3\MElSetSep 4\MElSetSep \Mdfrac{4}{5}\MElSetSep \sqrt 2\MElSetSep \MEU\MElSetSep \pi\MElSetSep \MZahl{12}{3}\MElSetSep 10^{23}\MElSetSep \dots \MDFPeriod$$ 
+Wenn man verschiedene Zahlen n"aher 
 betrachtet, so erkennt man jedoch grundlegende Unterschiede. Manche Zahlen 
 lassen sich nicht als geschlossener Dezimalbruch darstellen, andere sind schier
 unvorstellbar (imagin"ar), wieder andere kann man an den Fingern abz"ahlen oder 
 aber als L"osungen von Gleichungen gewinnen. 
 
 \begin{MInfo}
-Die in der Mathematik verwendeten Zahlenbereiche sind:\ifttm\else\ \\\fi
+Die in diesem Kurs verwendeten Zahlenbereiche sind:\ifttm\else\ \\\fi
 \begin{tabular}{ll}
 $\displaystyle \N=\lbrace 1\MElSetSep 2\MElSetSep 3\MElSetSep\ldots\rbrace$ & die \textbf{Menge der nat"urlichen Zahlen ohne Null},\\ 
 $\displaystyle \N_{0}=\lbrace 0\MElSetSep 1\MElSetSep 2\MElSetSep 3\MElSetSep\ldots\rbrace$ &die \textbf{Menge der nat"urlichen Zahlen inklusive Null},\\
@@ -50,10 +130,10 @@ $\displaystyle \R$ & die \textbf{Menge der reellen Zahlen}.\\
 
 Diese Zahlenbereiche sind nicht unabh"angig voneinander, sondern bilden eine Kette ineinandergeschachtelter Zahlenmengen:
 $$\N\subset\N_{0}\subset\Z\subset\Q\subset\R \MDFPeriod$$ 
-Dabei bedeutet das Symbol $\subset$, dass der links stehende Zahlenbereich eine Teilmenge des rechts stehenden Zahlenbereichs ist.
-Beispielsweise ist jede ganze Zahl aus $\Z$ immer auch eine rationale Zahl aus $\Q$.
-Diese Zahlenbereiche erhalten wir, indem wir uns nacheinander die 
-L"osungen folgender Gleichungen anschauen und die Zahlenbereiche so erweitern, dass immer eine L"osung existiert:
+%%Dabei bedeutet das Symbol $\subset$, dass der links stehende Zahlenbereich eine Teilmenge des rechts stehenden Zahlenbereichs ist.
+%%Beispielsweise ist jede ganze Zahl aus $\Z$ immer auch eine rationale Zahl aus $\Q$.
+Diese Zahlenbereiche erhält man, indem man sich nacheinander die 
+L"osungen folgender Gleichungen anschaut und die Zahlenbereiche so erweitert, dass immer eine L"osung existiert:
 
 \begin{center}
 \begin{tabular}{|c|r|r|r|c|}
@@ -75,18 +155,24 @@ ist zum Beispiel eine nat"urliche Zahl. In der Informatik bilden sie die Grundla
 das Dualsystem hat die Basis 2, das Dezimalsystem die Basis 10 und das Hexadezimalsystem die Basis 16.
 Bestimmte nat"urliche Zahlen, die Primzahlen, bilden die Grundlage der modernen Verschl"usselungstechniken.
 
-In der Menge der nat"urlichen Zahlen l"asst es sich einfach rechnen, aber wir sto"sen an Grenzen, wenn wir zum Beispiel
-eine Temperaturangabe von 3$^\circ$C lesen (handelt es sich um Plus- oder Minusgrade?) oder eine Gleichung
-der Form $x+5=1$ aufl"osen m"ochten. Daher m"ussen wir die Menge der nat"urlichen Zahlen um die negativen nat"urlichen Zahlen erweitern
-und erhalten $\Z$. Die \MEntry{Menge der ganzen Zahlen}{Ganze Zahlen $\Z$} wird mit
+In der Menge der nat"urlichen Zahlen l"asst es sich einfach rechnen, aber man sto"st an Grenzen, wenn man zum Beispiel
+eine Temperaturangabe von 3$^\circ$C liest (handelt es sich um Plus- oder Minusgrade?) oder eine Gleichung
+der Form $x+5=1$ aufl"osen m"ochte. Daher muss die Menge der nat"urlichen Zahlen um die negativen nat"urlichen Zahlen erweitert werden
+und man erhält $\Z$. Die \MEntry{Menge der ganzen Zahlen}{Ganze Zahlen $\Z$} wird mit
 $$\Z:=\{\dots\MElSetSep  -4\MElSetSep -3\MElSetSep -2\MElSetSep -1\MElSetSep 0\MElSetSep 1\MElSetSep 2\MElSetSep 3\MElSetSep 4\MElSetSep \dots\}$$
 bezeichnet. 
 Ganze Zahlen werden immer dann ben"otigt, wenn das Vorzeichen der nat"urlichen Zahlen eine Rolle spielt.
-In $\Z$ k"onnen Zahlen voneinander subtrahiert werden, d.h. Gleichungssysteme der Form $\displaystyle a+x=b$ sind
-lösbar ($\displaystyle x=b+(-a)$.)
+In $\Z$ k"onnen Zahlen voneinander subtrahiert werden, d.h. Gleichungssysteme der Form $\displaystyle a+x=b$ sind in $\Z$ immer lösbar ($\displaystyle x=b+(-a)$).
 
 \begin{center}
-\MUGraphicsSolo{ganzzahlen.png}{width=10cm}{width:400px}
+%-%\MUGraphicsSolo{ganzzahlen.png}{width=10cm}{width:400px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\draw[thick, black] (-5.2,0) -- (6.2,0);
+\foreach \x in {-5, -4, ..., 6}
+\draw[shift={(\x,0)},color=black] (0pt,6pt) -- (0pt,-6pt) node[below=1.5pt] {\normalsize $\x$};
+\end{tikzpicture}
+}
 \end{center}
 
 Auf den ganzen Zahlen l"asst sich eindeutig ein Vergleichssymbol $<$ definieren, die ganzen Zahlen lassen sich damit zu einer Kette anordnen:
@@ -97,27 +183,37 @@ Eine rationale Zahl stellt das Verh"altnis zweier ganzer Zahlen dar:
 
 \begin{MInfo}
 Die Menge der \MEntry{rationalen Zahlen}{Rationale Zahlen $\Q$} wird mit
-$$\Q:=\left\{{\frac{p}{q}\MCondSetSep p,q\in\Z, q\neq 0 }\right\}$$
-bezeichnet. Die Elemente $\displaystyle \frac{p}{q}$ der Menge $\Q$ hei"sen \MEntry{Br"uche}{Bruch}, wobei $p$ der \MEntry{Z"ahler}{Zähler} des Bruchs und $q$ der von Null
+$$\Q:=\left\{{\Mdfrac{p}{q}\MCondSetSep p,q\in\Z, q\neq 0 }\right\}$$
+bezeichnet. Die Elemente $\displaystyle \Mtfrac{p}{q}$ der Menge $\Q$ hei"sen \MEntry{Br"uche}{Bruch}, wobei $p$ der \MEntry{Z"ahler}{Zähler} des Bruchs und $q$ der von Null
 verschiedene \MEntry{Nenner}{Nenner} des Bruchs ist.
 \end{MInfo}
-Rationale Zahlen spielen immer dann eine Rolle, wenn Angaben ''genauer'' werden sollen, also Temperaturen in Bruchteilen von $^\circ$C angegeben, Anteile von Fl"achen eingef"arbt oder Medikamente aus bestimmten Bestandteilen zusammengemischt werden sollen.
+Rationale Zahlen spielen immer dann eine Rolle, wenn Angaben \glqq{}genauer\grqq{} werden sollen, also Temperaturen in Bruchteilen von $^\circ$C angegeben, Anteile von Fl"achen eingef"arbt oder Medikamente aus bestimmten Bestandteilen zusammengemischt werden sollen.
 
 Dabei ist zu beachten, dass die Darstellung als Bruch nicht eindeutig ist, man kann die gleiche Zahl durch mehrere Brüche beschreiben.
 Beispielsweise ist
 $$
-2 \;=\; \frac{4}{2} \;=\; \frac{1024}{512}
+2 \;=\; \Mdfrac{4}{2} \;=\; \Mdfrac{1024}{512}
 $$
 die gleiche rationale Zahl.
 
 Andererseits kann nicht jede Zahl auf dem Zahlenstrahl als Bruch dargestellt werden.
-Wenn wir ein Quadrat mit der Seitenl"ange 1 betrachten und die Diagonale $d$ berechnen wollen, so erhalten wir nach dem Satz von Pythagoras:
+Betrachtet man zum Beispiel ein Quadrat mit der Seitenl"ange 1 und will die Länge der Diagonalen $d$ berechnen, so erhält man nach dem Satz von Pythagoras:
 
 \vspace*{5mm}
 
 \begin{minipage}{0.45\linewidth}
 \begin{center}
-\MGraphicsSolo{quadrat.png}{width=3cm}
+%-%\MGraphicsSolo{quadrat.png}{width=3cm}
+\MTikzAuto{%
+\begin{tikzpicture}[x=4.0cm, y=4.0cm] 
+\draw[thick, black] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+\draw[thick, black] (0,1) -- (1,0);
+\draw[color=black] (0.5,0.5) node[anchor=south west] {\normalsize $d$};
+\draw[stealth'-,black] (0.0,-0.1) -- (0.36,-0.1);
+\draw[-stealth',black] (0.65,-0.1) -- (1.0,-0.1);
+\draw (0.5,-0.1) node {\scriptsize $1\MEinheit{cm}$};
+\end{tikzpicture}
+}
 \end{center}
 \end{minipage}
 \begin{minipage}{0.55\linewidth}
@@ -128,12 +224,22 @@ $$d^2 = 1^2+1^2 = 2, \;\mbox{also formal}\; d=\sqrt{2}.$$
 
 \vspace*{5mm}
 
-Eine weitere Zahl, die nicht als Bruch dargestellt werden kann, erh"alt man durch Abrollen eines Rades mit Durchmesser 1 auf der Zahlengeraden. Es handelt sich um die Zahl $\pi$. 
+Eine weitere Zahl, die nicht als Bruch dargestellt werden kann, erh"alt man durch Abrollen eines Rades mit Durchmesser $1$ auf der Zahlengeraden. Es handelt sich um die Zahl $\pi$. Man kann zeigen, dass diese beiden Zahlen ($\sqrt{2}$ und $\pi$) nicht in Form eines Bruchs geschrieben werden können. (Der Beweis für $\sqrt{2}$ ist dabei verhältnismäßig einfach.) Sie sind zwei Beispiele aus der Menge der sogenannten \MEntry{irrationalen Zahlen}{Irrationale Zahlen}.
 
 \vspace*{5mm}
 
 \begin{center}
-\MGraphicsSolo{kreispi.png}{width=10cm}
+%-%\MGraphicsSolo{kreispi.png}{width=10cm}
+\MTikzAuto{%
+\begin{tikzpicture}[x=2.0cm, y=2.0cm] 
+\draw[-stealth',black] (-0.7,0.0) -- (4.0,0.0) node[right=3pt] {$x$};
+\draw[color=black] (0,0.5) circle (0.5) ({pi},0.5) circle (0.5);
+\draw[-stealth',black] (1.0,0.7) -- (2.14,0.7);
+\draw[color=black] (0,3pt) -- (0,-3pt) node[below=2pt] {\small $0$};
+\draw[color=black] ({pi},3pt) -- ({pi},-3pt) node[below=2pt] {\small Pi};
+\draw[stealth'-,color=black] (0,0.5) ++(20:0.65) arc (20:60:0.65);
+\end{tikzpicture}
+}
 \end{center}
 
 Eine Zahl ist irrational,  wenn sie nicht rational ist, also nicht als Bruch aufgeschrieben werden kann.
@@ -144,7 +250,66 @@ Sie enth"alt alle auf der Zahlengeraden darstellbaren Zahlen.
 \end{MInfo}
 
 Reelle Zahlen dienen als Ma"szahlen f"ur L"angen, Fl"acheninhalte, Temperaturen, Massen, etc. 
-Im Kurs werden die mathematischen Probleme typischerweise mit reellen Zahlen gelöst.
+In diesem Kurs werden die mathematischen Probleme typischerweise mit reellen Zahlen gelöst.
+
+Eine Grundeigenschaft reeller Zahlen ist, dass diese geordnet sind, d.h.
+für zwei reelle Zahlen $a,b$ gilt genau eine der drei Beziehungen
+$a<b$, $a=b$ oder $a>b$. Eine weitere definierende Eigenschaft ist
+die Vollständigkeit, die - grob gesprochen - die 
+\glqq Lückenlosigkeit\grqq{} der Zahlengeraden beschreibt. 
+
+\begin{MInfo}
+Für zwei verschiedene reelle Zahlen betrachtet man insbesondere alle Zahlen,
+die auf der Zahlengeraden zwischen diesen beiden Zahlen liegen. Solche
+Teilmengen reeller Zahlen bezeichnet man als \MEntry{Intervalle}{Intervall}.
+Deren Beschreibung wird so festgelegt, dass man ihnen eine linke 
+Intervallgrenze ($a$) und eine rechte Intervallgrenze $(b)$ zuordnet
+mit $a<b$. Je nachdem, ob eine oder beide Intervallgrenzen zum
+Intervall dazugehören, ergeben sich folgende Fälle:
+\begin{itemize}
+\item{%
+$\{x\in\R \MCondSetSep x\ge a \MBlank\text{und}\MBlank x\le b\}
+= [a\MIntvlSep b]$ bezeichnet das \textbf{abgeschlossene} Intervall
+zwischen $a$ und $b$, bei dem die Grenzen zum Intervall dazugehören.
+}
+\item{%
+$\{x\in\R \MCondSetSep x> a \MBlank\text{und}\MBlank x< b\}
+= \MoIl a\MIntvlSep b\MoIr$ bezeichnet das \textbf{offene} Intervall
+zwischen $a$ und $b$, bei dem die Grenzen \textit{nicht} zum Intervall
+dazugehören.
+}
+\item{%
+$\{x\in\R \MCondSetSep x\ge a \MBlank\text{und}\MBlank x< b\}
+= [a\MIntvlSep b\MoIr$ bezeichnet das \textbf{links abgeschlossene und 
+rechts offene} Intervall zwischen $a$ und $b$, bei dem die linke Grenze
+zum Intervall dazugehört, die rechte aber nicht.
+}
+\item{%
+$\{x\in\R \MCondSetSep x> a \MBlank\text{und}\MBlank x\le b\}
+= \MoIl a\MIntvlSep b]$ bezeichnet das \textbf{links offene und 
+rechts abgeschlossene} Intervall zwischen $a$ und $b$, bei dem die rechte 
+Grenze zum Intervall dazugehört, die linke aber nicht.
+}
+\end{itemize}
+Die Intervalle der letzten beiden Typen heißen auch \textbf{halboffene}
+Intervalle.
+
+Im Falle offener Intervallenden kann man auch \textbf{unbeschränkte}
+Intervalle betrachten. In diesen Fällen entfällt die jeweilige
+Bedingung in der Mengenbeschreibung:
+$\{x\in\R \MCondSetSep x\ge a\} = \left[a\MIntvlSep \infty\MoIr[\right]$,
+$\{x\in\R \MCondSetSep x> a\} = \MoIl[\left] a\MIntvlSep \infty\MoIr[\right]$,
+$\{x\in\R \MCondSetSep x\le b\} = \MoIl[\left] {-}\infty\MIntvlSep b\right]$,
+$\{x\in\R \MCondSetSep x< b\} = \MoIl[\left] {-}\infty\MIntvlSep b\MoIr[\right]$,
+$\{x\in\R\} = \R = \MoIl[\left] {-}\infty\MIntvlSep \infty\MoIr[\right]$.
+
+Darüber hinaus sind folgende Bezeichnungen gebräuchlich:
+$\R^{+}=\MoIl[\left] 0\MIntvlSep \infty\MoIr[\right]$,  
+${\R_{0}}^{+}= \left[ 0\MIntvlSep \infty\MoIr[\right]$,  
+$\R^{-}=\MoIl[\left] -\infty \MIntvlSep 0\MoIr[\right]$,  
+${\R_{0}}^{-}=\MoIl[\left] -\infty \MIntvlSep 0\right]$.  
+\end{MInfo}
+
 \end{MIntro}
 
 \begin{MXContent}{Variablen und Terme}{Variablen und Terme}{STD}
@@ -153,10 +318,10 @@ Im Kurs werden die mathematischen Probleme typischerweise mit reellen Zahlen gel
 Die Verwendung von Variablen, Termen und Gleichungen ist notwendig, um Aussagen mit noch unbestimmten Werten zu formalisieren.
 
 \begin{MInfo}
-Eine \MEntry{Variable}{Variable} ist ein Symbol (typischerweise ein Buchstabe), dass als Platzhalter für einen unbestimmten Wert
+Eine \MEntry{Variable}{Variable} ist ein Symbol (typischerweise ein Buchstabe), das als Platzhalter für einen unbestimmten Wert
 eingesetzt wird. Ein \MEntry{Term}{Term} ist ein mathematischer Ausdruck, der Variablen, Rechenoperationen und weitere Symbole enthalten kann,
 und der nach Einsetzung von Zahlen für die Variablen einen konkreten Zahlenwert ergibt. Terme können zu Gleichungen bzw. Ungleichungen
-kombiniert oder in Funktionsbeschreibungen eingesetzt werden, dazu kommen wir aber erst später.
+kombiniert oder in Funktionsbeschreibungen eingesetzt werden, dazu später mehr.
 \end{MInfo}
 
 
@@ -165,8 +330,8 @@ Die textuelle Frage
 
 \textit{In einer Schulklasse gibt es vier Mädchen mehr als Jungs und insgesamt 20 Kinder, wieviele Mädchen bzw. Jungs sind in der Klasse?}
 
-kann man beispielsweise formalisieren, indem man Variablen $a$ (für die Anzahl der Mädchen) und
-$b$ (für die Anzahl der Jungs) in der Schulklasse einführt und damit die beiden Gleichungen
+kann man beispielsweise formalisieren, indem man die Variablen $a$ für die Anzahl der Mädchen und
+$b$ für die Anzahl der Jungs in der Schulklasse einführt und damit die beiden Gleichungen
 $a=b+4$ und $a+b=20$ aufstellt. Diese kann man durch Einsetzen nun auflösen zu $a=12$ und $b=8$
 und daraus den textuellen Antwortsatz
 
@@ -184,7 +349,7 @@ Die folgenden Ausdrücke sind Terme:
 \begin{itemize}
 \item{$x\cdot (y+z)-1$, für $x=1$, $y=2$ und $z=0$ erhält man beispielsweise den Wert $1$ des Terms.}
 \item{$1+2+3+4$, es treten keine Variablen auf, trotzdem handelt es sich um einen Term (der immer den Wert $10$ ergibt).}
-\item{$\frac{\alpha+\beta}{1+\gamma}$, beispielsweise erhält man für $\alpha=1$, $\beta=2$ und $\gamma=3$ den Wert $\frac34$ für den Term.
+\item{$\Mtfrac{\alpha+\beta}{1+\gamma}$, beispielsweise erhält man für $\alpha=1$, $\beta=2$ und $\gamma=3$ den Wert $\Mtfrac{3}{4}$ für den Term.
 Hier darf man aber nicht $\gamma=-1$ einsetzen.}
 \item{$\sin(\pi (x+1))$, beispielsweise ergibt der Term den Wert Null wenn man für $x$ eine ganze Zahl einsetzt.}
 \item{$z$, eine Variable für sich allein ist auch ein Term.}
@@ -197,7 +362,7 @@ Diese Ausdrücke sind keine Terme im Sinne der Mathematik:
 \begin{itemize}
 \item{$a+b=20$, ist eine Gleichung (Einsetzen von Werten für $a$ und $b$ ergibt keine Zahl, sondern die Gleichung ist eben wahr oder falsch).}
 \item{$a\cdot (b+c$ ist nicht richtig geklammert,}
-\item{\glqq\textit{Anteil der Mädchen in der Schulklasse}\grqq\ ist kein Term, kann aber durch den Term $\frac{a}{a+b}$ formalisiert werden,}
+\item{\glqq\textit{Anteil der Mädchen in der Schulklasse}\grqq\ ist kein Term, kann aber durch den Term $\Mtfrac{a}{a+b}$ formalisiert werden,}
 \item{$\sin$ ist kein Term sondern ein Funktionsname, dagegen ist $\sin(x)$ ein Term (der bei Einsetzen einer Zahl für $x$ ausgewertet werden kann).}
 \end{itemize}
 \end{MExample}
@@ -205,28 +370,28 @@ Diese Ausdrücke sind keine Terme im Sinne der Mathematik:
 \begin{MExercise}
 Gegeben sind jeweils ein Term und Zahlenwerte für die im Term auftretenden Variablen. Wie lautet die Auswertung des Terms?
 \begin{MExerciseItems}
-\item{$\frac{\alpha+\beta}{\alpha-\beta}$ nimmt den Wert \MLParsedQuestion{10}{5}{3}{ER1} an für $\alpha=6$ und $\beta=4$.}
+\item{$\Mtfrac{\alpha+\beta}{\alpha-\beta}$ nimmt den Wert \MLParsedQuestion{10}{5}{3}{ER1} an für $\alpha=6$ und $\beta=4$.}
 \item{$y^2+x^2$ nimmt den Wert \MLParsedQuestion{10}{2}{3}{ER2} an für $y=2x+1$ und $x=-1$.}
 \item{$1+2+3+\cdots+(n-1)+n$ nimmt den Wert \MLParsedQuestion{10}{21}{3}{ER3} an für $n=6$.}
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
-Einsetzen der gegebenen Werte für die Variablen ergibt $\frac{\alpha+\beta}{\alpha-\beta}=\frac{6+4}{6-4}=\frac{10}{2}=5$ in Teil 1),
+Einsetzen der gegebenen Werte für die Variablen ergibt $\Mtfrac{\alpha+\beta}{\alpha-\beta}=\Mtfrac{6+4}{6-4}=\Mtfrac{10}{2}=5$ in Teil 1),
 $y^2+x^2=(-1)^2+(-1)^2=2$ in Teil 2) und $1+2+3+4+5+6=21$ in Teil 3).
 \end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
-Formalisieren Sie mit den vorgegebenen Variablen den Anteil der Mädchen (Variable $a$)
-sowie der Jungen (Variable $b$) an der Gesamtzahl an Kindern:
+Formalisieren Sie mit den vorgegebenen Variablen den Anteil der Mädchen, deren Anzahl durch die Variable $a$ gegeben sei,
+sowie den der Jungen, deren Anzahl durch die Variable $b$ gegeben sei, an der Gesamtzahl an Kindern:
 
 Anteil der Mädchen ist \MLSimplifyQuestion{15}{a/(a+b)}{5}{a,b}{5}{512}{LSFF1} und
 Anteil der Jungen ist \MLSimplifyQuestion{15}{b/(a+b)}{5}{a,b}{5}{512}{LSFF2}.\\
 \MInputHint{Brüche können mit dem Strich (über der 7-Taste auf den meisten Tastaturen) eingegeben werden,
 dabei sollten Zähler bzw. Nenner geklammert werden wenn Rechenoperationen auftreten. Beispielsweise kann
-man den Bruch $\frac{1+x}{2+y}$ eingeben als \texttt{(1+x)/(2+y)}.}
+man den Bruch $\Mtfrac{1+x}{2+y}$ eingeben als \texttt{(1+x)/(2+y)}.}
 
 \begin{MHint}{Lösung}
-Die Gesamtanzahl der Kinder ist $a+b$, der Mädchenanteil ist daher $\frac{a}{a+b}$ und der Jungenanteil ist $\frac{b}{a+b}$.
+Die Gesamtanzahl der Kinder ist $a+b$, der Mädchenanteil ist daher $\Mtfrac{a}{a+b}$ und der Jungenanteil ist $\Mtfrac{b}{a+b}$.
 \end{MHint}
 \end{MExercise}
 
@@ -263,15 +428,16 @@ Am sichersten ist es, die Variablen vor der Termeinsetzung zu klammern, wenn der
 \end{MExercise}
 
 \begin{MExercise}
-In dieser Figur habe ein Kästchen auf dem Papier die Seitenlänge $x$, welchen Flächeninhalt (als Term in der Variablen $x$) besitzt
+In dieser Figur habe ein Kästchen auf dem Papier die Seitenlänge $x$. Welchen Flächeninhalt (als Term in der Variablen $x$) besitzt
 die Figur?
 
-\ifttm%
+%%\ifttm%
+%%\begin{center}
+%%\MUGraphics{tikz01.png}{}{Eine Figur auf kariertem Papier.}{}
+%%\end{center}
+%%\else%
 \begin{center}
-\MUGraphics{tikz01.png}{}{Eine Figur auf kariertem Papier.}{}
-\end{center}
-\else%
-\begin{center}
+\MTikzAuto{%
 \begin{tikzpicture}
 \filldraw[fill=black!25] (3.5,2.5) circle[radius=2.5];
 \filldraw[fill=white] (2.5,3.5) circle[radius=0.5];
@@ -280,8 +446,11 @@ die Figur?
 \draw[dashed] (0.5,-0.5) grid (6.5,5.5);
 \node at (current bounding box.south) [below] {(Ein Kästchen hat die Länge $x$)};
 \end{tikzpicture}
+}
+\par\ifttm\else\penalty+10000\fi
+Eine Figur auf kariertem Papier.
 \end{center}
-\fi
+%%\fi
 
 Antwort:
 \begin{itemize}
@@ -298,15 +467,16 @@ und dass ein Kreis mit Radius $r$ den Flächeninhalt $\pi r^2$ (geschrieben \text
 \end{MHint}
 
 \begin{MHint}{Lösung}
-Der große Kreis hat insgesamt den Flächeninhalt $\frac{25}{4}\pi x^2$ (oder getippt \texttt{25/4*pi*x*x}).
-Je ein kleiner Kreis hat den Flächeninhalt $\frac14\pi x^2$ und
-die Figur insgesamt hat den Flächeninhalt $(\frac{25}{4}\pi-\frac12\pi-3)\cdot x^2$.
+Der große Kreis hat insgesamt den Flächeninhalt $\Mtfrac{25}{4}\pi x^2$ (oder getippt \texttt{25/4*pi*x*x}).
+Je ein kleiner Kreis hat den Flächeninhalt $\Mtfrac{1}{4}\pi x^2$ und
+die Figur insgesamt hat den Flächeninhalt $(\Mtfrac{25}{4}\pi-\Mtfrac{1}{2}\pi-3)\cdot x^2$.
 \end{MHint}
 \end{MExercise}
 
 \end{MXContent}
 
 \begin{MXContent}{Terme umformen}{Terme umformen}{STD}
+\MLabel{VBKM01_TermeUmformen}
 \MDeclareSiteUXID{VBKM01_TermeUmformen}
 Verschiedene Operationen in einem Term können den gleichen Wert beschreiben, beispielsweise ist $x+x$ eine von $2x$
 verschiedene Symbolanordnung, die aber den gleichen Term beschreibt, d.h. wenn man eine konkrete Zahl für $x$ einsetzt
@@ -327,7 +497,7 @@ Eine \MEntry{Umformung}{Umformung} eines Terms entsteht, indem man eine oder meh
 \item{Assoziativgesetz (\glqq Klammern umsetzen bei gleichen Operationen\grqq): $a+(b+c)=(a+b)+c=a+b+c$, ebenso für die Multiplikation.}
 \item{Rechenregeln für Potenzen und spezielle Funktionen.}
 \item{Rechenregeln für bestimmte Formen von Termen (z.B. die binomischen Formeln).}
-\item{Rechenregeln für Brüche: $\frac1{\phantom{2}\frac{a}{b}\phantom{2}}=\frac{b}{a}$.}
+\item{Rechenregeln für Brüche: $\Mtfrac1{\phantom{2}\Mtfrac{a}{b}\phantom{2}}=\Mtfrac{b}{a}$.}
 \end{itemize}
 \end{MInfo}
 
@@ -344,8 +514,8 @@ Zulässige Umformungen sind
 den Scheitelpunkt $(-3,-9)$ ablesen, an der rechten Seite die beiden Nullstellen ($x_1=0$ und $x_2=-6$).}
 \item{$1+3x+3x^2+x^3=(1+x)^3$, an der rechten Seite kann man beispielsweise ablesen, dass die durch den Term beschriebene Funktion
 nur die Nullstelle $x_1=-1$ besitzt.}
-\item{$\frac{a+1}{a}=1+\frac1a$, an der linken Seite kann man ablesen, dass der Term die Nullstelle $a_1=-1$ besitzt, an der rechten
-Seite kann man ablesen, dass der Term für sehr große $a$ gegen den Wert $1$ strebt (weil $\frac1a$ dann sehr klein ist).}
+\item{$\Mtfrac{a+1}{a}=1+\Mtfrac{1}{a}$, an der linken Seite kann man ablesen, dass der Term die Nullstelle $a_1=-1$ besitzt, an der rechten
+Seite kann man ablesen, dass der Term für sehr große $a$ gegen den Wert $1$ strebt (weil $\Mtfrac{1}{a}$ dann sehr klein ist).}
 \end{itemize}
 \end{MExample}
 
@@ -354,14 +524,29 @@ Seite kann man ablesen, dass der Term für sehr große $a$ gegen den Wert $1$ stre
 
 \begin{MExercise}
 Formen Sie in eine Summendarstellung um: \MEquationItem{$a\cdot(b+c)+c\cdot(a+b)$}{\MLSimplifyQuestion{20}{a*(b+c)+c*(a+b)}{3}{a,b,c}{3}{1}{TC1}}.
+\begin{MHint}{Lösung}
+$$
+a\cdot(b+c)+c\cdot(a+b) \;=\; a b + a c + c a + c b \;=\; a b + 2 a c + b c
+$$
+\end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
 Formen Sie in eine Summendarstellung um: \MEquationItem{$(x-y)(z-x)+(x-z)(y-z)$}{\MLSimplifyQuestion{20}{(x-y)*(z-x)+(x-z)*(y-z)}{3}{x,y,z}{3}{1}{TC2}}.
+\begin{MHint}{Lösung}
+$$
+(x-y)(z-x)+(x-z)(y-z) \;=\; x z - x^2 -y z +y x + x y - x z - z y + z^2 \;=\; -x^2 - 2 y z + 2 x z + z^2
+$$
+\end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
 Formen Sie in eine Summendarstellung um: \MEquationItem{$(a+b+2)(a+1)$}{\MLSimplifyQuestion{20}{(a+b+2)*(a+1)}{3}{a,b,c}{3}{1}{TC3}}.
+\begin{MHint}{Lösung}
+$$
+(a+b+2)(a+1) \;=\; a^2 + b a + 2a + a + b + 2 \;=\; a^2 + a b + 3a + b +2
+$$
+\end{MHint}
 \end{MExercise}
 
 \end{MExerciseCollection}
@@ -377,27 +562,41 @@ Formen Sie in eine Summendarstellung um: \MEquationItem{$(a+b+2)(a+1)$}{\MLSimpl
 \begin{MXContent}{Bruchrechnung}{Bruchrechnung}{STD}
 \MDeclareSiteUXID{VBKM01_Bruchrechnung}
 
-Ein Bruch ist eine rationale Zahl der Form $\displaystyle \frac{\mbox{Z"ahler}}{\mbox{Nenner}}$, wobei Z"ahler und Nenner ganze Zahlen sind und der Nenner $\neq 0$ ist. 
+Ein Bruch ist eine rationale Zahl der Form $\displaystyle \Mtfrac{\mbox{Z"ahler}}{\mbox{Nenner}}$, wobei Z"ahler und Nenner ganze Zahlen sind und der Nenner $\neq 0$ ist. 
 Beispiele hierf"ur sind:
-$$\frac{1}{2}\MDFPSpace, \MDFPaSpace\frac{5}{10}\MDFPSpace, \MDFPaSpace\frac{17}{12}\MDFPSpace, \MDFPaSpace\frac{1}{23}\MDFPSpace, \MDFPaSpace\frac{4}{6}\MDFPSpace, \MDFPaSpace\frac{2}{3}\MDFPSpace, \MDFPaSpace \ldots \MDFPeriod$$
+$$\Mdfrac{1}{2}\MDFPSpace, \MDFPaSpace\Mdfrac{5}{-10}\MDFPSpace, \MDFPaSpace\Mdfrac{-17}{12}\MDFPSpace, \MDFPaSpace\Mdfrac{1}{23}\MDFPSpace, \MDFPaSpace\Mdfrac{4}{6}\MDFPSpace, \MDFPaSpace\Mdfrac{-2}{3}\MDFPSpace, \MDFPaSpace \ldots \MDFPeriod$$
 Sehr schnell erkennt man, dass ein und dieselbe rationale Zahl beliebig viele "aquivalente Darstellungen haben kann. Zum Beispiel gilt:
-$$\frac{12}{36} = \frac{1}{3} = \frac{24}{72} = \frac{-12}{-36} = \frac{3}{9} = \frac{2}{6} = \frac{120}{360}= \dots \MDFPeriod$$
+$$\Mdfrac{12}{36} = \Mdfrac{1}{3} = \Mdfrac{24}{72} = \Mdfrac{-12}{-36} = \Mdfrac{3}{9} = \Mdfrac{2}{6} = \Mdfrac{120}{360}= \dots \MDFPeriod$$
 Die verschiedenen Darstellungen gehen durch \textbf{K"urzen} bzw. \textbf{Erweitern} ineinander "uber.
 \begin{MInfo}
-Br"uche werden \MEntry{gek"urzt}{Kürzen}, indem Z"ahler und Nenner durch dieselbe ganze Zahl dividiert werden.
+Br"uche werden \MEntry{gek"urzt}{Kürzen}, indem Z"ahler und Nenner durch dieselbe ganze Zahl ungleich Null dividiert werden.
 
-Br"uche werden \MEntry{erweitert}{Erweitern}, indem Z"ahler und Nenner mit derselben ganzen Zahl multipliziert werden.
+Br"uche werden \MEntry{erweitert}{Erweitern}, indem Z"ahler und Nenner mit derselbe ganze Zahl ungleich Null multipliziert werden.
 \end{MInfo}
 
 \begin{MExample}
-Drei Freunde m"ochten sich eine Pizza teilen. Tom isst $\displaystyle \frac{1}{4}$ der Pizza, Tim $\displaystyle \frac{1}{3}$ der Pizza. Wieviel Pizza ist noch f"ur ihren Freund Sven "ubrig, der eigentlich immer den meisten Hunger hat? \\
-Jetzt m"ussen wir zum ersten Mal mit Br"uchen rechnen. Zun"achst m"ussen zwei Br"uche addiert werden, um festzustellen, wieviel Tim und Tom schon von der Pizza gegessen haben: 
-$$\frac{1}{4} + \frac{1}{3} = \frac{1\cdot 3}{4\cdot 3}+\frac{1\cdot 4}{3\cdot 4} = \frac{3}{12} +\frac{4}{12} = \frac{7}{12} \MDFPeriod$$
-Hier erkennen wir schon die beiden wichtigsten Schritte: zun"achst m"ussen die beiden Br"uche durch Erweitern auf den sogenannten \textbf{Hauptnenner} gebracht oder man sagt auch \textbf{gleichnamig} gemacht werden. Wenn die Br"uche dann denselben Nenner besitzen, k"onnen sie addiert werden, indem ihre Z"ahler addiert und der gemeinsame Nenner "ubernommen wird.
-Nun wissen wir also, dass Tim und Tom $\displaystyle \frac{7}{12}$ der Pizza gegessen haben, aber wieviel bleibt nun f"ur Sven "ubrig? Nun m"ussen wir subtrahieren: 
-$$ 1 - \frac{7}{12} = \frac{12}{12} - \frac{7}{12} = \frac{5}{12} \MDFPeriod$$
+Drei Freunde m"ochten sich eine Pizza teilen. Tom isst $\displaystyle \Mtfrac{1}{4}$ der Pizza, Tim $\displaystyle \Mtfrac{1}{3}$ der Pizza. Wieviel Pizza ist noch f"ur ihren Freund Sven "ubrig, der eigentlich immer den meisten Hunger hat?\\
+Der Ergebnis wird mithilfe der Bruchrechnung bestimmt: Zun"achst m"ussen zwei Br"uche addiert werden, um festzustellen, wieviel Tim und Tom schon von der Pizza gegessen haben: 
+$$\Mdfrac{1}{4} + \Mdfrac{1}{3} = \Mdfrac{1\cdot 3}{4\cdot 3}+\Mdfrac{1\cdot 4}{3\cdot 4} = \Mdfrac{3}{12} +\Mdfrac{4}{12} = \Mdfrac{7}{12} \MDFPeriod$$
+Hier erkennt man schon die beiden wichtigsten Schritte: zun"achst m"ussen die beiden Br"uche durch Erweitern auf den sogenannten \textbf{Hauptnenner} gebracht oder man sagt auch \textbf{gleichnamig} gemacht werden. Wenn die Br"uche dann denselben Nenner besitzen, k"onnen sie addiert werden, indem ihre Z"ahler addiert und der gemeinsame Nenner "ubernommen wird.
+Mit dem Ergebnis, dass Tim und Tom $\displaystyle \Mtfrac{7}{12}$ der Pizza gegessen haben, kann durch Subtraktion berechnet werden, wie viel f"ur Sven "ubrig bleibt: 
+$$ 1 - \Mdfrac{7}{12} = \Mdfrac{12}{12} - \Mdfrac{7}{12} = \Mdfrac{5}{12} \MDFPeriod$$
 Auch hier werden die Br"uche wieder auf den Hauptnenner gebracht und anschlie"send die Z"ahler subtrahiert. Die beiden Freunde haben also f"ur den immer hungrigen Sven tats"achlich die meiste Pizza "ubriggelassen. 
 \end{MExample}
+
+In dieser Trainingsaufgabe kann das Kürzen von Zahlen in Zähler und Nenner eingeübt werden:
+
+\MDirectRouletteExercises{fraction_cancellation.rtex}{VBKM01_FRACTIONTRAINING}
+
+Schwieriger wird es, wenn Unbestimmte in Zähler in Nenner auftreten. Diese können genau wie Zahlen (aber nicht mit Zahlen) gekürzt werden, beispielsweise ist
+$$
+\frac{4x^2y^3+3y^2}{10y^2} \;=\; \frac{4x^2y+3}{10}
+$$
+nach Kürzung durch den Term $y^2$ Zähler und Nenner.
+Die folgende Trainingsaufgabe wurde um Unbestimmte erweitert:
+
+\MDirectRouletteExercises{vfraction_cancellation.rtex}{VBKM01_VFRACTIONTRAINING}
+
 
 \begin{MInfo}
 Der \MEntry{Hauptnenner}{Hauptnenner} von zwei Br"uchen ist das kleinste gemeinsame Vielfache (kgV) der beiden Nenner.
@@ -411,31 +610,31 @@ Ist die Bestimmung des kgV bei den folgenden Rechenregeln zu kompliziert, so kan
 
 \begin{MInfo}
 Br"uche werden \MEntry{addiert/subtrahiert}{Addition (Bruch)}, indem man sie auf den gleichen Nenner bringt und die Z"ahler anschlie"send addiert/subtrahiert, d.~h.
-$$\frac{a}{b} \pm \frac{c}{d} = \frac{a d\pm b c}{b d} \MDFPSpace, \MDFPaSpace b d\neq 0 \MDFPeriod$$
+$$\Mdfrac{a}{b} \pm \Mdfrac{c}{d} = \Mdfrac{a d\pm b c}{b d} \MDFPSpace, \MDFPaSpace b d\neq 0 \MDFPeriod$$
 "Ublicherweise werden die Br"uche auf den Hauptnenner erweitert. 
 \end{MInfo}
 
 Beispielsweise ist das kleinste gemeinsame Vielfache von $6=2\cdot 3$ und $15=3\cdot 5$ die Zahl $2\cdot3\cdot 5=30$, das Produkt ist dagegen $6\cdot 15=90$. Man kann also
 $$
-\frac{1}{6}+\frac1{15} \;=\; \frac{5}{30}+\frac{2}{30} \;=\; \frac{7}{30}
+\Mdfrac{1}{6}+\Mdfrac{1}{15} \;=\; \Mdfrac{5}{30}+\Mdfrac{2}{30} \;=\; \Mdfrac{7}{30}
 $$
 aber auch
 $$
-\frac{1}{6}+\frac1{15} \;=\; \frac{15}{90}+\frac{6}{90} \;=\; \frac{21}{90}
+\Mdfrac{1}{6}+\Mdfrac1{15} \;=\; \Mdfrac{15}{90}+\Mdfrac{6}{90} \;=\; \Mdfrac{21}{90}
 $$
-rechnen und den letzten Bruch dann noch zu $\frac{7}{30}$ kürzen.
+rechnen und den letzten Bruch dann noch zu $\Mtfrac{7}{30}$ kürzen.
 
 \begin{MExample}
 Das kleinste gemeinsame Vielfache für den Hauptnenner ist die kleinste Zahl,
 die von allen beteiligten Nennern geteilt wird. Falls die Zahlen keine gemeinsamen Faktoren haben,
 ist es einfach das Produkt der beiden Zahlen:
 \begin{eqnarray*}
-\frac1{6}+\frac1{10} &=& \frac{5}{30}+\frac{3}{30} \;=\; \frac{8}{30} \;=\; \frac{4}{15}\MDFPSpace , \ \\
-\frac1{6}+\frac1{10} &=& \frac{10}{60}+\frac{6}{60} \;=\; \frac{16}{60} \;=\; \frac{4}{15}\MDFPaSpace  \text{(auch richtig)}, \ \\
-\frac4{15}-\frac1{2} &=& \frac{8}{30}-\frac{15}{30} \;=\; \frac{8-15}{30} \;=\; -\frac{7}{30}\MDFPSpace , \ \\
-\frac13+\frac19 &=& \frac39+\frac19 \;=\; \frac49\MDFPSpace ,\ \\
-\frac1{2^2}+\frac1{2^4} & = & \frac{2^2}{2^4}+\frac{1}{2^4} \;=\; \frac{5}{16}\MDFPSpace ,\ \\
-\frac12+\frac13+\frac17 & = & \frac{21}{42}+\frac{14}{42}+\frac{6}{42} \;=\; \frac{41}{42}\MDFPeriod
+\Mdfrac{1}{6}+\Mdfrac{1}{10} &=& \Mdfrac{5}{30}+\Mdfrac{3}{30} \;=\; \Mdfrac{8}{30} \;=\; \Mdfrac{4}{15}\MDFPSpace , \ \\
+\Mdfrac{1}{6}+\Mdfrac{1}{10} &=& \Mdfrac{10}{60}+\Mdfrac{6}{60} \;=\; \Mdfrac{16}{60} \;=\; \Mdfrac{4}{15}\MDFPaSpace  \text{(auch richtig)}, \ \\
+\Mdfrac{4}{15}-\Mdfrac1{2} &=& \Mdfrac{8}{30}-\Mdfrac{15}{30} \;=\; \Mdfrac{8-15}{30} \;=\; -\Mdfrac{7}{30}\MDFPSpace , \ \\
+\Mdfrac{1}{3}+\Mdfrac{1}{9} &=& \Mdfrac{3}{9}+\Mdfrac19 \;=\; \Mdfrac49\MDFPSpace ,\ \\
+\Mdfrac1{2^2}+\Mdfrac1{2^4} & = & \Mdfrac{2^2}{2^4}+\Mdfrac{1}{2^4} \;=\; \Mdfrac{5}{16}\MDFPSpace ,\ \\
+\Mdfrac12+\Mdfrac13+\Mdfrac17 & = & \Mdfrac{21}{42}+\Mdfrac{14}{42}+\Mdfrac{6}{42} \;=\; \Mdfrac{41}{42}\MDFPeriod
 \end{eqnarray*}
 \end{MExample}
 
@@ -446,27 +645,27 @@ müssen diese wie Zahlen ohne gemeinsame Faktoren behandelt werden:
 \begin{MExample}
 Sind $x$ und $y$ eine Variablen, so gilt
 \begin{eqnarray*}
-\frac13+\frac1x & = & \frac{x}{3\cdot x}+\frac{3}{3\cdot x} \; =\; \frac{3+x}{3\cdot x}\MDFPSpace ,\\
-\frac{1}{x}+\frac1{y} & = & \frac{y}{x\cdot y}+\frac{x}{x\cdot y} \;=\; \frac{x+y}{x\cdot y}\MDFPSpace ,\ \\
-\frac{1}{(x+1)^2}+\frac1{x+1} & = & \frac{1}{(x+1)^2}+\frac{x+1}{(x+1)^2}\;=\;\frac{x+2}{(x+1)^2}\MDFPeriod
+\Mdfrac13+\Mdfrac1x & = & \Mdfrac{x}{3\cdot x}+\Mdfrac{3}{3\cdot x} \; =\; \Mdfrac{3+x}{3\cdot x}\MDFPSpace ,\\
+\Mdfrac{1}{x}+\Mdfrac1{y} & = & \Mdfrac{y}{x\cdot y}+\Mdfrac{x}{x\cdot y} \;=\; \Mdfrac{x+y}{x\cdot y}\MDFPSpace ,\ \\
+\Mdfrac{1}{(x+1)^2}+\Mdfrac1{x+1} & = & \Mdfrac{1}{(x+1)^2}+\Mdfrac{x+1}{(x+1)^2}\;=\;\Mdfrac{x+2}{(x+1)^2}\MDFPeriod
 \end{eqnarray*}
 \end{MExample}
 
 \begin{MExercise}
 Diese Summen sollen über Hauptnenner (oder das Produkt der Nenner) ausgerechnet werden:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\frac12-\frac18$}{\MLSimplifyQuestion{20}{-1/8+1/2}{4}{}{4}{16}{HN1}}.}
-\item{\MEquationItem{$\frac13+\frac15+\frac16$}{\MLSimplifyQuestion{20}{1/3+1/5+1/6}{4}{}{4}{16}{HN2}}.}
-\item{\MEquationItem{$\frac1{2x}+\frac1{3x}$}{\MLSimplifyQuestion{20}{5/(6*x)}{4}{x}{4}{528}{HN3}}.}
+\item{\MEquationItem{$\Mtfrac12-\Mtfrac18$}{\MLSimplifyQuestion{20}{-1/8+1/2}{4}{}{4}{16}{HN1}}.}
+\item{\MEquationItem{$\Mtfrac13+\Mtfrac15+\Mtfrac16$}{\MLSimplifyQuestion{20}{1/3+1/5+1/6}{4}{}{4}{16}{HN2}}.}
+\item{\MEquationItem{$\Mtfrac1{2x}+\Mtfrac1{3x}$}{\MLSimplifyQuestion{20}{5/(6*x)}{4}{x}{4}{528}{HN3}}.}
 \end{MExerciseItems}
 \MInputHint{Bei dieser Aufgabe dürfen keine Rechenoperationen bis auf Multiplikation \texttt{*} und den Divisonsstrich \texttt{/} eingegeben werden.}
 
 \begin{MHint}{Lösung}
 Bilden des Hauptnenners und Zusammenfassen/Kürzen ergibt
 \begin{eqnarray*}
-\frac12-\frac18 & = & \frac48-\frac18 \;=\; \frac38 \MDFPSpace ,\\
-\frac13+\frac15+\frac16 & = & \frac{10}{30}+\frac6{30}+\frac{5}{30} \;=\; \frac{21}{30} \;=\; \frac{7}{10}\MDFPSpace ,\\
-\frac1{2x}+\frac1{3x} & = & \frac{3}{6x}+\frac{2}{6x} \;=\; \frac{5}{6x} \MDFPSpace .
+\Mdfrac12-\Mdfrac18 & = & \Mdfrac48-\Mdfrac18 \;=\; \Mdfrac38 \MDFPSpace ,\\
+\Mdfrac13+\Mdfrac15+\Mdfrac16 & = & \Mdfrac{10}{30}+\Mdfrac6{30}+\Mdfrac{5}{30} \;=\; \Mdfrac{21}{30} \;=\; \Mdfrac{7}{10}\MDFPSpace ,\\
+\Mdfrac1{2x}+\Mdfrac1{3x} & = & \Mdfrac{3}{6x}+\Mdfrac{2}{6x} \;=\; \Mdfrac{5}{6x} \MDFPSpace .
 \end{eqnarray*}
 \end{MHint}
 \end{MExercise}
@@ -475,44 +674,44 @@ Bilden des Hauptnenners und Zusammenfassen/Kürzen ergibt
 Bei gleichnamigen Brüchen darf man nur die Zähler addieren bzw. zerlegen, für den Nenner gibt es keine solche Regel.
 Berechnen Sie zum Nachweis die folgenden Zahlenwerte, indem Sie den Hauptnenner bilden und soweit möglich kürzen:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\frac12+\frac13$}{\MLSpecialQuestion{10}{5/6}{5}{0}{0}{exactfraction}{GLN1}} aber \MEquationItem{$\frac1{2+3}$}{\MLSpecialQuestion{12}{1/5}{5}{0}{0}{exactfraction}{GLN2}}.}
-\item{\MEquationItem{$\frac{1+2}{5+6}$}{\MLSpecialQuestion{12}{3/11}{5}{0}{0}{exactfraction}{GLN3}} aber \MEquationItem{$\frac15+\frac26$}{\MLSpecialQuestion{12}{8/15}{5}{0}{0}{exactfraction}{GLN4}}.}
+\item{\MEquationItem{$\Mdfrac12+\Mdfrac13$}{\MLSpecialQuestion{10}{5/6}{5}{0}{0}{exactfraction}{GLN1}} aber \MEquationItem{$\Mdfrac1{2+3}$}{\MLSpecialQuestion{12}{1/5}{5}{0}{0}{exactfraction}{GLN2}}.}
+\item{\MEquationItem{$\Mdfrac{1+2}{5+6}$}{\MLSpecialQuestion{12}{3/11}{5}{0}{0}{exactfraction}{GLN3}} aber \MEquationItem{$\Mdfrac15+\Mdfrac26$}{\MLSpecialQuestion{12}{8/15}{5}{0}{0}{exactfraction}{GLN4}}.}
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
 Summen von Nennern darf man nicht zusammenfassen, auch nicht bei gleichem Zähler, hier ist
 $$
-\frac12+\frac13\;=\; \frac{3}{6}+\frac26 \;=\; \frac56\;\;\text{aber}\;\;
-\frac{1}{2+3} \;=\; \frac15\MDFPSpace .
+\Mdfrac12+\Mdfrac13\;=\; \Mdfrac{3}{6}+\Mdfrac26 \;=\; \Mdfrac56\;\;\text{aber}\;\;
+\Mdfrac{1}{2+3} \;=\; \Mdfrac15\MDFPSpace .
 $$
 Auch das einfache \glqq Auseinandernehmen\grqq\ von Bestandteilen der Brüche ist nicht erlaubt, hier ist
 $$
-\frac{1+2}{5+6} \;=\; \frac{3}{11}  \;\;\text{aber}\;\; \frac15+\frac26 \;=\; \frac{6}{30}+\frac{10}{30} \;=\; \frac{16}{30}\;=\; \frac{8}{15}\MDFPSpace .
+\Mdfrac{1+2}{5+6} \;=\; \Mdfrac{3}{11}  \;\;\text{aber}\;\; \Mdfrac15+\Mdfrac26 \;=\; \Mdfrac{6}{30}+\Mdfrac{10}{30} \;=\; \Mdfrac{16}{30}\;=\; \Mdfrac{8}{15}\MDFPSpace .
 $$
 \end{MHint}
 \end{MExercise}
 
 \begin{MInfo}
 Br"uche werden \MEntry{multipliziert}{Multiplikation (Bruch)}, indem Z"ahler mit Z"ahler und Nenner mit Nenner multipliziert werden, d.~h. 
-$$\frac{a}{b} \cdot \frac{c}{d} = \frac{a\cdot c}{b\cdot d}\MDFPSpace, \MDFPaSpace b d\neq 0 \MDFPeriod$$
+$$\Mdfrac{a}{b} \cdot \Mdfrac{c}{d} = \Mdfrac{a\cdot c}{b\cdot d}\MDFPSpace, \MDFPaSpace b d\neq 0 \MDFPeriod$$
 \end{MInfo}
 
 Die Division zweier Br"uche wird auf die Multiplikation zur"uckgef"uhrt:
 
 \begin{MInfo}
 Br"uche werden \MEntry{dividiert}{Division (Bruch)}, indem der erste Bruch mit dem Kehrwert des zweiten Bruchs multipliziert wird, d.h.
-$$\frac{a}{b} : \frac{c}{d} = \frac{a}{b} \cdot \frac{d}{c} = \frac{a\cdot d}{b\cdot c}\MDFPSpace, \MDFPaSpace b,c,d\neq 0 \MDFPeriod$$
+$$\Mdfrac{a}{b} : \Mdfrac{c}{d} = \Mdfrac{a}{b} \cdot \Mdfrac{d}{c} = \Mdfrac{a\cdot d}{b\cdot c}\MDFPSpace, \MDFPaSpace b,c,d\neq 0 \MDFPeriod$$
 Die Division zweier Br"uche kann auch als \textbf{Doppelbruch} geschrieben werden:
-$$\frac{a}{b} : \frac{c}{d} = \frac{\frac{a}{b}}{\frac{c}{d}} \MDFPeriod$$
+$$\Mdfrac{a}{b} : \Mdfrac{c}{d} = \Mdfrac{\Mdfrac{a}{b}}{\Mdfrac{c}{d}} \MDFPeriod$$
 \end{MInfo}
 
 \begin{MExample}
 Die Multiplikation bzw. Division zweier Br"uche sieht unter Ber"ucksichtigung von eventuellem K"urzen folgenderma"sen aus:
-$$\frac23\cdot \frac45 = \frac{2\cdot 4}{3\cdot 5} = \frac{8}{15}\MDFPSpace, \MDFPaSpace \frac23 : \frac45 = \frac23\cdot \frac54 = \frac{10}{12} = \frac56 \MDFPeriod$$
+$$\Mdfrac23\cdot \Mdfrac45 = \Mdfrac{2\cdot 4}{3\cdot 5} = \Mdfrac{8}{15}\MDFPSpace, \MDFPaSpace \Mdfrac23 : \Mdfrac45 = \Mdfrac23\cdot \Mdfrac54 = \Mdfrac{10}{12} = \Mdfrac56 \MDFPeriod$$
 \end{MExample}
 
 
-Wird ein Bruch ausdividiert, so erhalten wir einen \MEntry{Dezimalbruch}{Dezimalbruch} bzw. eine Dezimalzahl, zum Beispiel
-$$\frac{1}{2} = \MZahl{0}{5} \MDFPSpace, \MDFPaSpace \frac{1}{3} = \MZahl{0}{33333}\ldots= \MZahl{0}{}\bar{3} \MDFPSpace, \MDFPaSpace \frac{1}{7} = \MZahl{0}{}\overline{142857} \MDFPSpace, \MDFPaSpace \frac{1}{8} = \MZahl{0}{125} \MDFPeriod$$
+Wird ein Bruch ausdividiert, so erhält man einen \MEntry{Dezimalbruch}{Dezimalbruch} bzw. eine Dezimalzahl, zum Beispiel
+$$\Mdfrac{1}{2} = \MZahl{0}{5} \MDFPSpace, \MDFPaSpace \Mdfrac{1}{3} = \MZahl{0}{33333}\ldots= \MZahl{0}{}\bar{3} \MDFPSpace, \MDFPaSpace \Mdfrac{1}{7} = \MZahl{0}{}\overline{142857} \MDFPSpace, \MDFPaSpace \Mdfrac{1}{8} = \MZahl{0}{125} \MDFPeriod$$
 Schon an diesen Beispielen zeigt sich, dass die Division entweder aufgehen kann und man
 einen \MEntry{endlichen Dezimalbruch}{Dezimalbruch (endlich)} erh"alt oder aber die Ziffern wiederholen sich
 in einer bestimmten Reihenfolge, dann liegt ein \MEntry{unendlicher periodischer Dezimalbruch}{Dezimalbruch (periodisch)} vor.
@@ -521,9 +720,9 @@ Die Umwandlung von endlichen Dezimalbr"uchen in Br"uche geschieht mit der Stelle
 \begin{center}
 \ifttm\else\dots\fi\,\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
-1&2&3&4&5&,&6&7&8&9\\
+1&2&3&4&5&\MZXYZhltrennzeichen &6&7&8&9\\
 \hline
-ZT&T&H&Z&E&,&z&h&t&zt\\
+ZT&T&H&Z&E&\MZXYZhltrennzeichen &z&h&t&zt\\
 \hline
 \end{tabular}\,\ifttm\else\dots\fi
 \end{center}
@@ -532,24 +731,24 @@ ZT&T&H&Z&E&,&z&h&t&zt\\
 wobei ZT \ldots\ Zehntausender, T \ldots\ Tausender, H \ldots\ Hunderter, Z \ldots\ Zehner, E \ldots\ Einer, z \ldots\ Zehntel, h \ldots\ Hundertstel, t \ldots\ Tausendstel, zt \ldots\ Zehntausendstel u.s.w. beschreiben.\\
 Die Umwandlung sieht dann folgenderma"sen aus:
 \begin{eqnarray*}
-\MZahl{4}{375} &=& 4 + \frac{3}{10}+\frac{7}{100}+\frac{5}{1000} \ \\
-&=& 4 + \frac{300+70+5}{1000} \ \\
-&=& 4 + \frac{375}{1000}\ \\
-&=& 4 + \frac{75}{200} \ \\
-&=& 4 + \frac{15}{40} = \frac{35}{8} \MDFPeriod
+\MZahl{4}{375} &=& 4 + \Mdfrac{3}{10}+\Mdfrac{7}{100}+\Mdfrac{5}{1000} \ \\
+&=& 4 + \Mdfrac{300+70+5}{1000} \ \\
+&=& 4 + \Mdfrac{375}{1000}\ \\
+&=& 4 + \Mdfrac{75}{200} \ \\
+&=& 4 + \Mdfrac{15}{40} = \Mdfrac{35}{8} \MDFPeriod
 \end{eqnarray*}
-Aber wie sieht es bei periodischen Dezimalbr"uchen aus? Anscheinend m"ussten wir unendlich viele Br"uche aufsummieren, was in der Praxis nat"urlich wenig Sinn macht. Daher bedienen wir uns bei der \textbf{Umwandlung unendlicher periodischer Dezimalbr"uche in Br"uche} eines Tricks:
+Aber wie sieht es bei periodischen Dezimalbr"uchen aus? Anscheinend m"ussten hier unendlich viele Br"uche aufsummiert werden, was in der Praxis nat"urlich wenig Sinn macht. Daher bedient man sich bei der \textbf{Umwandlung unendlicher periodischer Dezimalbr"uche in Br"uche} eines Tricks:
 
 \begin{MInfo}
 \MLabel{Mathematik_Grundlagen_UDB}
 Die \MEntry{Umwandlung}{Umwandlung (Dezimalbrüche)} periodischer Dezimalbrüche in Brüche geschieht, indem man durch Multiplikation mit einer Zehnerpotenz
 die periodischen Nachkommastellen vor das Komma holt. Dies ergibt eine Gleichung der Form $10^k\cdot x=x+n$
-für den Dezimalbruch $x$, der zu $x=\frac{n}{10^k-1}$ (ein gewöhnlicher Bruch) aufgelöst werden kann.
+für den Dezimalbruch $x$, der zu $x=\Mdfrac{n}{10^k-1}$ (ein gewöhnlicher Bruch) aufgelöst werden kann.
 \end{MInfo}
 
 \begin{MExample}
 	Die Zahl $\MZahl{0}{}\bar 6$ soll in einen Bruch umgewandelt werden. Hierzu multipliziert man die Zahl
-mit 10 und subtrahiert vom Ergebnis die Ausgangszahl, um die unendliche Periode
+mit $10$ und subtrahiert vom Ergebnis die Ausgangszahl, um die unendliche Periode
 zu eliminieren:
 \begin{center}
 \begin{tabular}{crclcr}
@@ -559,7 +758,7 @@ zu eliminieren:
 $\Rightarrow$&$9$ & $\cdot$ & $\MZahl{0}{}\bar 6$ & = & $\MZahl{6}{0}$\\
 \end{tabular}
 \end{center}
-Aus der letzten Beziehung folgt nach Division durch $9$ sofort:\quad $\displaystyle \MZahl{0}{}\bar 6 = \frac{6}{9} = \frac{2}{3}.$
+Aus der letzten Beziehung folgt nach Division durch $9$ sofort:\quad $\displaystyle \MZahl{0}{}\bar 6 = \Mtfrac{6}{9} = \Mtfrac{2}{3}.$
 \end{MExample}
 
 Dieses Vorgehen funktioniert auch, wenn sich nicht alle Ziffern hinter dem Komma periodisch wiederholen:
@@ -574,7 +773,7 @@ $-$&$10$ & $\cdot$ & $\MZahl{0}{8}\bar 3$ & = & $\MZahl{8}{}\bar 3$\\
 $\Rightarrow$&$90$ & $\cdot$ & $\MZahl{0}{8}\bar 3$ & = & $\MZahl{75}{0}$\\
 \end{tabular}
 \end{center}
-Division durch $90$ liefert das Ergebnis: $\displaystyle \MZahl{0}{8}\bar 3 = \frac{75}{90} = \frac{5}{6}$.
+Division durch $90$ liefert das Ergebnis: $\displaystyle \MZahl{0}{8}\bar 3 = \Mtfrac{75}{90} = \Mtfrac{5}{6}$.
 \end{MExample}
 
 Die Vorgehensweise ist also immer dieselbe: durch geeignete Multiplikation mit Zehnerpotenzen und anschlie"sender Subtraktion wird die unendliche Periode entfernt.
@@ -589,7 +788,7 @@ Antwort: \MEquationItem{$\displaystyle \MZahl{0}{4}\overline{5}$}{\MLSpecialQues
 \begin{MHint}{Lösung}
 Multiplikation von $x=\MZahl{0}{4}\overline{5}$ mit einer geeigneten Zehnerpotenz ergibt
 $$
-10x-x=\MZahl{4}{1}\;\Rightarrow\; 9x=\frac{41}{10}\;\Rightarrow\;x=\frac{41}{90} \MDFPeriod
+10x-x=\MZahl{4}{1}\;\Rightarrow\; 9x=\Mdfrac{41}{10}\;\Rightarrow\;x=\Mdfrac{41}{90} \MDFPeriod
 $$
 Dieser Bruch ist auch schon maximal gekürzt.
 \end{MHint}
@@ -603,11 +802,11 @@ Dieser Bruch ist auch schon maximal gekürzt.
 \begin{MExercise}
 K"urzen Sie die folgenden Br"uche soweit wie m"oglich:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \frac{216}{240}$}{\MLSpecialQuestion{8}{9/10}{5}{0}{0}{exactfraction}{BRF1}}. \begin{MHint}{L"osung}Wegen $\MGGT(216,240)=24$ ist $\displaystyle\frac{216}{240}=\frac{216:24}{240:24}=\frac{9}{10}$.\end{MHint}}
-\item{\MEquationItem{$\displaystyle \frac{36}{72}$}{\MLSpecialQuestion{8}{1/2}{5}{0}{0}{exactfraction}{BRF2}}. \begin{MHint}{L"osung}$36$ teilt $72$, also ist $\frac{36}{72}=\frac{1}{2}.$\end{MHint}} 
-\item{\MEquationItem{$\displaystyle \frac{48}{144}$}{\MLSpecialQuestion{8}{1/3}{5}{0}{0}{exactfraction}{BRF3}}. \begin{MHint}{L"osung}$48$ teilt $144$, also ist $\frac{48}{144}=\frac{1}{3}.$\end{MHint}}
-\item{\MEquationItem{$\displaystyle\frac{-a+2b}{-4b+2a}$}{\MLSpecialQuestion{8}{-1/2}{5}{0}{0}{exactfraction}{BRF4}} falls $a$ nicht gleich \MLSimplifyQuestion{5}{2*b}{5}{a,b}{5}{1}{BRF4b} ist. \begin{MHint}{L"osung}Kürzen ergibt $\frac{-a+2b}{-4b+2a}=\frac{(-1)\cdot (-2b+a)}{2\cdot (-2b+a)}=-\frac12$. Der Bruch an sich ist nur für $a\not=2b$ definiert.\end{MHint}} 
-%\item $\displaystyle\frac{18\cdot u^2\cdot v \cdot w^3}{45\cdot u\cdot v\cdot w^2}$, \quad $u,v,w\neq 0$\\\begin{MHint}{L"osung} $$\frac{18\cdot u^2 \cdot v\cdot w^3}{45\cdot u\cdot v\cdot w^2}=\frac{2\cdot u\cdot w}{5}$$\end{MHint} 
+\item{\MEquationItem{$\displaystyle \Mdfrac{216}{240}$}{\MLSpecialQuestion{8}{9/10}{5}{0}{0}{exactfraction}{BRF1}}. \begin{MHint}{L"osung}Wegen $\MGGT(216,240)=24$ ist $\displaystyle\Mdfrac{216}{240}=\Mdfrac{216:24}{240:24}=\Mdfrac{9}{10}$.\end{MHint}}
+\item{\MEquationItem{$\displaystyle \Mdfrac{36}{72}$}{\MLSpecialQuestion{8}{1/2}{5}{0}{0}{exactfraction}{BRF2}}. \begin{MHint}{L"osung}$36$ teilt $72$, also ist $\Mdfrac{36}{72}=\Mdfrac{1}{2}.$\end{MHint}} 
+\item{\MEquationItem{$\displaystyle \Mdfrac{48}{144}$}{\MLSpecialQuestion{8}{1/3}{5}{0}{0}{exactfraction}{BRF3}}. \begin{MHint}{L"osung}$48$ teilt $144$, also ist $\Mdfrac{48}{144}=\Mdfrac{1}{3}.$\end{MHint}}
+\item{\MEquationItem{$\displaystyle\Mdfrac{-a+2b}{-4b+2a}$}{\MLSpecialQuestion{8}{-1/2}{5}{0}{0}{exactfraction}{BRF4}} falls $a$ nicht gleich \MLSimplifyQuestion{5}{2*b}{5}{a,b}{5}{1}{BRF4b} ist. \begin{MHint}{L"osung}Kürzen ergibt $\Mdfrac{-a+2b}{-4b+2a}=\Mdfrac{(-1)\cdot (-2b+a)}{2\cdot (-2b+a)}=-\Mdfrac12$. Der Bruch an sich ist nur für $a\not=2b$ definiert.\end{MHint}} 
+%\item $\displaystyle\Mdfrac{18\cdot u^2\cdot v \cdot w^3}{45\cdot u\cdot v\cdot w^2}$, \quad $u,v,w\neq 0$\\\begin{MHint}{L"osung} $$\Mdfrac{18\cdot u^2 \cdot v\cdot w^3}{45\cdot u\cdot v\cdot w^2}=\Mdfrac{2\cdot u\cdot w}{5}$$\end{MHint} 
 \end{MExerciseItems}
 \MInputHint{Geben Sie die Brüche in der Form \texttt{Zähler/Nenner} maximal gekürzt und mit positivem Nenner ein. Ziehen Sie Vorzeichen stets vor die Brüche
 und verwenden Sie keine Klammern.}
@@ -618,26 +817,26 @@ und verwenden Sie keine Klammern.}
 % \begin{enumerate}
 % \item Stellen Sie fest, um welche Takte es sich hierbei handelt, wenn die folgenden Noten in einem Takt gegeben sind:
 % 
-% \textbf{a)} $\displaystyle \frac18, \frac18, \frac12$ \qquad \textbf{b)} $\displaystyle \frac{1}{16}, \frac14, \frac{1}{16}, \frac14, \frac18$ \qquad \textbf{c)} $\displaystyle \frac18, \frac{1}{16}, \frac14, \frac{1}{16}$
+% \textbf{a)} $\displaystyle \Mdfrac18, \Mdfrac18, \Mdfrac12$ \qquad \textbf{b)} $\displaystyle \Mdfrac{1}{16}, \Mdfrac14, \Mdfrac{1}{16}, \Mdfrac14, \Mdfrac18$ \qquad \textbf{c)} $\displaystyle \Mdfrac18, \Mdfrac{1}{16}, \Mdfrac14, \Mdfrac{1}{16}$
 % \ \\
 % \begin{MHint}{L"osung}
 % Die Summe der Notenl"angen zeigt an, wieviele ganze Noten ein Takt besitzt:
 % \begin{itemize}
-% \item{$\displaystyle \frac18+\frac18+\frac12=\frac{1+1+4}{8}=\frac68$ oder $\displaystyle \frac34$,}
-% \item{$\displaystyle \frac{1}{16}+ \frac14+ \frac{1}{16}+ \frac14+ \frac18=\frac{1+4+1+4+2}{16}=\frac{12}{16}=\frac{6}{8}$ oder $\displaystyle \frac34$,}
-% \item{$\displaystyle \frac18+ \frac{1}{16}+ \frac14+ \frac{1}{16}=\frac{2+1+4+1}{16}=\frac{8}{16}=\frac12$ oder $\displaystyle \frac24$.}
+% \item{$\displaystyle \Mdfrac18+\Mdfrac18+\Mdfrac12=\Mdfrac{1+1+4}{8}=\Mdfrac68$ oder $\displaystyle \Mdfrac34$,}
+% \item{$\displaystyle \Mdfrac{1}{16}+ \Mdfrac14+ \Mdfrac{1}{16}+ \Mdfrac14+ \Mdfrac18=\Mdfrac{1+4+1+4+2}{16}=\Mdfrac{12}{16}=\Mdfrac{6}{8}$ oder $\displaystyle \Mdfrac34$,}
+% \item{$\displaystyle \Mdfrac18+ \Mdfrac{1}{16}+ \Mdfrac14+ \Mdfrac{1}{16}=\Mdfrac{2+1+4+1}{16}=\Mdfrac{8}{16}=\Mdfrac12$ oder $\displaystyle \Mdfrac24$.}
 % \end{itemize}
 % \end{MHint}
 % \ \\
-% \item Welche Noten fehlen, damit es sich um einen $\displaystyle \frac34$-Takt handelt?
+% \item Welche Noten fehlen, damit es sich um einen $\displaystyle \Mdfrac34$-Takt handelt?
 % \ \\
-% \textbf{a)} $\displaystyle \frac18, \frac14$ \qquad \textbf{b)} $\displaystyle \frac{1}{16}, \frac18, \frac18$
+% \textbf{a)} $\displaystyle \Mdfrac18, \Mdfrac14$ \qquad \textbf{b)} $\displaystyle \Mdfrac{1}{16}, \Mdfrac18, \Mdfrac18$
 % \ \\
 % \begin{MHint}{L"osung}
-% Wir erg"anzen die Summe der Noten zum Bruch $\frac34$:
+% Wir erg"anzen die Summe der Noten zum Bruch $\Mdfrac34$:
 % \begin{itemize}
-% \item{$\displaystyle \frac18+ \frac14=\frac38$, addiert man drei Achtelnoten, so erh"alt man $\displaystyle \frac38+\frac38=\frac68=\frac34$,}
-% \item{$\displaystyle \frac{1}{16}+ \frac18+ \frac18=\frac{5}{16}$, addiert man 7 Sechzehntelnoten (oder eine andere Aufteilung die zu $\displaystyle \frac7{16}$ in der Summe f"uhrt), so ist die Gesamtsumme $\displaystyle \frac5{16}+\frac7{16}=\frac{12}{16}=\frac34$.}
+% \item{$\displaystyle \Mdfrac18+ \Mdfrac14=\Mdfrac38$, addiert man drei Achtelnoten, so erh"alt man $\displaystyle \Mdfrac38+\Mdfrac38=\Mdfrac68=\Mdfrac34$,}
+% \item{$\displaystyle \Mdfrac{1}{16}+ \Mdfrac18+ \Mdfrac18=\Mdfrac{5}{16}$, addiert man 7 Sechzehntelnoten (oder eine andere Aufteilung die zu $\displaystyle \Mdfrac7{16}$ in der Summe f"uhrt), so ist die Gesamtsumme $\displaystyle \Mdfrac5{16}+\Mdfrac7{16}=\Mdfrac{12}{16}=\Mdfrac34$.}
 % \end{itemize}
 % \end{MHint}
 % \end{enumerate} 
@@ -647,20 +846,20 @@ und verwenden Sie keine Klammern.}
 \begin{MExercise}
 Berechnen bzw. vereinfachen Sie die folgenden Ausdr"ucke f"ur geeignete Zahlen $a,b,x,y$ so weit wie m"oglich:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \frac12-\frac27+\frac38+\frac34$}{\MLSpecialQuestion{10}{75/56}{5}{0}{0}{exactfraction}{BRX1}}. \begin{MHint}{L"osung}Summieren über den Hauptnenner ergibt $\frac12-\frac27+\frac38+\frac34=\frac{28}{56}-\frac{16}{56}+\frac{21}{56}+\frac{42}{56}=\frac{75}{56}$ da $\MGGT(2,7,8,4)=56$ ist.\end{MHint}}
-\item{\MEquationItem{$\displaystyle \frac{3}{13}:\frac{7}{26}$}{\MLSpecialQuestion{10}{6/7}{5}{0}{0}{exactfraction}{BRX2}}. \begin{MHint}{L"osung}Die Division durch einen Bruch ist das Gleiche wie die Multiplikation
-mit seinem Kehrwert: $\frac{3}{13}:\frac{7}{26}=\frac{3}{13}\cdot\frac{26}{7}=\frac{3\cdot 26}{13\cdot 7}=\frac{3\cdot 2}{1\cdot 7}=\frac67$.\end{MHint}}
-\item{\MEquationItem{$\displaystyle \left(\MZahl{1}{}\bar{4}\cdot 3-\frac12\right)\cdot\frac{6}{7}$}{\MLSpecialQuestion{10}{23/7}{5}{0}{0}{exactfraction}{BRX3}}. \begin{MHint}{L"osung}Umwandeln des Dezimalausdrucks in einen Bruch ergibt
-$\left(\MZahl{1}{}\bar{4}\cdot 3-\frac12\right)\cdot\frac{6}{7}=\left(\MZahl{1}{}\bar{4}\cdot 18-3\right)\cdot\frac{1}{7}=\left(26-3\right)\cdot\frac{1}{7}=\frac{23}{7}$.\end{MHint}}
-\item{\MEquationItem{$\displaystyle \frac{3a}{3a+6b}+\frac{2b}{a+2b}$}{\MLSpecialQuestion{10}{1}{5}{0}{0}{exactfraction}{BRX4}}. \begin{MHint}{L"osung}Summieren über den Hauptnenner ergibt
-$\frac{3a}{3a+6b}+\frac{2b}{a+2b}=\frac{3a}{3a+6b}+\frac{6b}{3a+6b}=\frac{3a+6b}{3a+6b}=1$.\end{MHint}}
-\item{\MEquationItem{$\displaystyle \frac{18x^2-48x y+32y^2}{12y-9x}\cdot \frac{18x+24y}{9x^2-16y^2}$}{\MLSpecialQuestion{10}{-4}{5}{0}{0}{exactfraction}{BRX5}}. \begin{MHint}{L"osung}Vereinfachen des Ausdrucks ergibt
-\begin{eqnarray*}
-\frac{18x^2-48x y+32y^2}{12y-9x}\cdot \frac{18x+24y}{9x^2-16y^2} & =&
-4\cdot \frac{9x^2-24x y+16y^2}{4y-3x}\cdot \frac{3x+4y}{9x^2-16y^2}\\
-& =& 4\cdot \frac{(3x-4y)^2}{4y-3x}\cdot \frac{3x+4y}{9x^2-16y^2}\\
-& =& -4\cdot \frac{(3x-4y)^2}{3x-4y}\cdot \frac{3x+4y}{(3x+4y)(3x-4y)}=-4 \MDFPeriod
-\end{eqnarray*}\end{MHint}}
+\item{\MEquationItem{$\displaystyle \Mdfrac12-\Mdfrac27+\Mdfrac38+\Mdfrac34$}{\MLSpecialQuestion{10}{75/56}{5}{0}{0}{exactfraction}{BRX1}}. \begin{MHint}{L"osung}Summieren über den Hauptnenner ergibt $\Mdfrac12-\Mdfrac27+\Mdfrac38+\Mdfrac34=\Mdfrac{28}{56}-\Mdfrac{16}{56}+\Mdfrac{21}{56}+\Mdfrac{42}{56}=\Mdfrac{75}{56}$ da $\MGGT(2,7,8,4)=56$ ist.\end{MHint}}
+\item{\MEquationItem{$\displaystyle \Mdfrac{3}{13}:\Mdfrac{7}{26}$}{\MLSpecialQuestion{10}{6/7}{5}{0}{0}{exactfraction}{BRX2}}. \begin{MHint}{L"osung}Die Division durch einen Bruch ist das Gleiche wie die Multiplikation
+mit seinem Kehrwert: $\Mdfrac{3}{13}:\Mdfrac{7}{26}=\Mdfrac{3}{13}\cdot\Mdfrac{26}{7}=\Mdfrac{3\cdot 26}{13\cdot 7}=\Mdfrac{3\cdot 2}{1\cdot 7}=\Mdfrac67$.\end{MHint}}
+\item{\MEquationItem{$\displaystyle \left(\MZahl{1}{}\bar{4}\cdot 3-\Mdfrac12\right)\cdot\Mdfrac{6}{7}$}{\MLSpecialQuestion{10}{23/7}{5}{0}{0}{exactfraction}{BRX3}}. \begin{MHint}{L"osung}Umwandeln des Dezimalausdrucks in einen Bruch ergibt
+$\left(\MZahl{1}{}\bar{4}\cdot 3-\Mdfrac12\right)\cdot\Mdfrac{6}{7}=\left(\MZahl{1}{}\bar{4}\cdot 18-3\right)\cdot\Mdfrac{1}{7}=\left(26-3\right)\cdot\Mdfrac{1}{7}=\Mdfrac{23}{7}$.\end{MHint}}
+%%\item{\MEquationItem{$\displaystyle \Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}$}{\MLSpecialQuestion{10}{1}{5}{0}{0}{exactfraction}{BRX4}}. \begin{MHint}{L"osung}Summieren über den Hauptnenner ergibt
+%%$\Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}=\Mdfrac{3a}{3a+6b}+\Mdfrac{6b}{3a+6b}=\Mdfrac{3a+6b}{3a+6b}=1$.\end{MHint}}
+%%\item{\MEquationItem{$\displaystyle \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y^2}$}{\MLSpecialQuestion{10}{-4}{5}{0}{0}{exactfraction}{BRX5}}. \begin{MHint}{L"osung}Vereinfachen des Ausdrucks ergibt
+%%\begin{eqnarray*}
+%%\Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y^2} & =&
+%%4\cdot \Mdfrac{9x^2-24x y+16y^2}{4y-3x}\cdot \Mdfrac{3x+4y}{9x^2-16y^2}\\
+%%& =& 4\cdot \Mdfrac{(3x-4y)^2}{4y-3x}\cdot \Mdfrac{3x+4y}{9x^2-16y^2}\\
+%%& =& -4\cdot \Mdfrac{(3x-4y)^2}{3x-4y}\cdot \Mdfrac{3x+4y}{(3x+4y)(3x-4y)}=-4 \MDFPeriod
+%%\end{eqnarray*}\end{MHint}}
 \end{MExerciseItems}
 \MInputHint{Geben Sie die Brüche maximal gekürzt und mit positivem Nenner ein.}
 \end{MExercise}
@@ -677,11 +876,11 @@ Wandeln Sie die folgenden unendlichen periodischen Dezimalbr"uche in Br"uche um 
 \end{MExercise}
 \ \\
 \begin{MHint}{L"osung}
-Mithilfe des \MSRef{Mathematik_Grundlagen_UDB}{Umformungstricks} f"ur unendliche Dezimalbr"uche erhalten wir diese L"osungen:
+Mithilfe des \MSRef{Mathematik_Grundlagen_UDB}{Umformungstricks} f"ur unendliche Dezimalbr"uche erhält man diese L"osungen:
 \begin{itemize}
-\item{$x=\MZahl{0}{}\overline{4}$, also $\displaystyle 10x-x=4\;\Rightarrow\;9x=4\;\Rightarrow\;x=\frac49$,}
-\item{$x=\MZahl{0}{}\overline{23}$, also $\displaystyle 100x-x=23\;\Rightarrow\;99x=23\;\Rightarrow\; x=\frac{23}{99}$,}
-\item{$x=\MZahl{0}{12}\overline{34}$, also $\displaystyle 100x-x=\MZahl{12}{22}\;\Rightarrow\;99x=\frac{1222}{100}\;\Rightarrow\;x=\frac{1222}{9900}=\frac{611}{4950}$,}
+\item{$x=\MZahl{0}{}\overline{4}$, also $\displaystyle 10x-x=4\;\Rightarrow\;9x=4\;\Rightarrow\;x=\Mtfrac49$,}
+\item{$x=\MZahl{0}{}\overline{23}$, also $\displaystyle 100x-x=23\;\Rightarrow\;99x=23\;\Rightarrow\; x=\Mtfrac{23}{99}$,}
+\item{$x=\MZahl{0}{12}\overline{34}$, also $\displaystyle 100x-x=\MZahl{12}{22}\;\Rightarrow\;99x=\Mtfrac{1222}{100}\;\Rightarrow\;x=\Mtfrac{1222}{9900}=\Mtfrac{611}{4950}$,}
 \item{$x=\MZahl{0}{}\overline{9}$, also $\displaystyle 10x-x=9\;\Rightarrow\;9x=9\;\Rightarrow\;x=1$.}
  \end{itemize}
  Beim letzten Aufgabenteil ist zu beachten, dass $1=\MZahl{1}{000}\ldots$ und $1=\MZahl{0}{999}\ldots=\MZahl{0}{}\overline{9}$
@@ -700,7 +899,7 @@ Was genau sind Terme?
 \MEntry{Terme}{Terme} sind Rechenausdr"ucke, die eine Kombination von Zahlen, Variablen, Klammern und geeigneten Rechenoperationen darstellen.
 \end{MInfo}
 
-Terme kann man auf drei Arten interpretieren:
+Terme kann man auf zwei Arten interpretieren:
 \begin{itemize}
 \item{Als funktionale Ausdrücke: Wenn man für die im Term auftretenden Variablen konkrete Zahlen einsetzt, so ergibt der Term einen Zahlenwert.
 Beispielsweise ist $x+x-1$ ein Term; sobald man $x=2$ einsetzt erhält man den Wert $3$. Auch $2x-1$ ist ein Term, dieser Term
@@ -712,7 +911,7 @@ $18$.}
 einen neuen Wert berechnet. Beispielsweise kann man den Term $x^2-1$ lesen als \glqq Quadriere den Wert in $x$ und ziehe Eins ab\grqq.
 Er ist verschieden von dem Term $(x+1)(x-1)$, auch wenn gleiche Werte herauskommen. Der zweite Term beschreibt die Auswertung als
 \glqq Addiere Eins zu $x$ und multipliziere mit dem Wert, der entsteht, wenn man von $x$ Eins abzieht\grqq.
-Beide Terme sind mathematisch gleich, wir schreiben $x^2-1=(x-1)(x+1)$, stellen aber verschiedene Möglichkeiten dar,
+Beide Terme sind mathematisch gleich. Man schreibt $x^2-1=(x-1)(x+1)$, stellt aber zwei verschiedene Möglichkeiten dar,
 den Wert auszurechnen. Je nach Problemstellung kann einer der beiden Terme besser geeignet sein, um das Problem zu lösen.}
 \end{itemize}
 
@@ -731,7 +930,7 @@ Zwei Terme sind \MEntry{gleich}{Gleichheit (Terme)}, wenn Sie durch zul"assige T
 \item Es gilt Potenzrechnung vor Punktrechnung vor Strichrechnung.
 \item Beim Rechnen mit Klammern gelten die Distributivgesetze:
 $$a\cdot(b\pm c) = a\cdot b\pm a\cdot c \MDFPSpace, \MDFPaSpace (a\pm b)\cdot c = a\cdot c \pm b\cdot c \MDFPeriod$$
-\item Mit $d\neq 0$ gilt: $\displaystyle (a\pm b):d = \frac{a}{d}\pm \frac{b}{d}.$
+\item Mit $d\neq 0$ gilt: $\displaystyle (a\pm b):d = \Mtfrac{a}{d}\pm \Mtfrac{b}{d}.$
 \item Bei geschachtelten Klammerausdr"ucken werden zun"achst die inneren und dann die "au"seren Klammern unter Beachtung der Rechengesetze aufgel"ost.
 \end{enumerate}
 \end{MInfo}
@@ -772,8 +971,9 @@ Wenden Sie die 2. binomische Formel an, um den Term zu vereinfachen:\ \\ \ \\
 \end{MExercise}
 
 \begin{MExample}
-Die binomischen Formeln k"onnen zum geschickten Umformen von quadratischen Ausdr"ucken verwendet werden,
-dies ist sehr hilfreich, wenn Zahlenquadrate ohne Taschenrechner auszurechnen sind. Dabei zerlegt man
+Die binomischen Formeln k"onnen zum geschickten Umformen von quadratischen Ausdr"ucken verwendet werden.
+Dies ist sehr hilfreich, wenn Zahlenquadrate ohne Taschenrechner auszurechnen sind. Dabei zerlegt man
+Dies ist sehr hilfreich, wenn Zahlenquadrate ohne Taschenrechner auszurechnen sind. Dabei zerlegt man
 die zu quadrierende Zahl in eine einfache Zahl (meist eine Zehnerpotenz) und den Rest:
 \begin{eqnarray*}
 103^2 & = & (100+3)^2 = 100^2+2\cdot 100\cdot 3+3^2 = 10609 \MDFPSpace,\\
@@ -799,10 +999,12 @@ Im folgenden \MSRef{VBKM01_AufgabenUmformen}{Aufgabenabschnitt} können Sie die U
 \begin{MExercise}
 Vereinfachen Sie die folgenden Terme f"ur geeignete Zahlen $a,b,x,y,z$:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \frac{3x -6x y^2+4 x y z}{-2x}$}{\MLSimplifyQuestion{20}{-3/2+3*y^2-2*y*z}{5}{x,y,z}{5}{1}{UMPF2}}. \begin{MHint}{L"osung}$$\frac{3x -6x y^2+4 x y z}{-2x}\;=\; -\frac32+3y^2-2y z \MDFPeriod  $$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \Mdfrac{3x -6x y^2+4 x y z}{-2x}$}{\MLSimplifyQuestion{20}{-3/2+3*y^2-2*y*z}{5}{x,y,z}{5}{1}{UMPF2}}. \begin{MHint}{L"osung}$$\Mdfrac{3x -6x y^2+4 x y z}{-2x}\;=\; -\Mdfrac32+3y^2-2y z \MDFPeriod  $$\end{MHint}}
 \item{\MEquationItem{$\displaystyle (3a-2b)\cdot(4a-6)$}{\MLSimplifyQuestion{26}{12*a^2-18*a-8*a*b+12*b}{5}{a,b}{5}{1}{UMPF3}}. \begin{MHint}{L"osung} $$(3a-2b)\cdot(4a-6)\;=\; 12a^2-18a-8a b+12b\MDFPeriod  $$\end{MHint}}
 \item{\MEquationItem{$\displaystyle (2a+3b)^2-(3a-2b)^2$}{\MLSimplifyQuestion{26}{-5*a^2+24*a*b+5*b^2}{5}{a,b}{5}{1}{UMPF4}}. \begin{MHint}{L"osung} \begin{eqnarray*}(2a+3b)^2-(3a-2b)^2&=& (4a^2+12a b+9b^2)-(9a^2-12a b+4b^2)\ \\ &=& -5a^2+24a b+5b^2  \: . \end{eqnarray*}\end{MHint}}
-\item{\MEquationItem{$\displaystyle \frac{3a}{3a+6b}+\frac{2b}{a+2b}$}{\MLSimplifyQuestion{25}{1}{5}{a,b}{5}{1}{UMPF7}}. \begin{MHint}{L"osung}$$\frac{3a}{3a+6b}+\frac{2b}{a+2b} \; = \; \frac{a}{a+2b}+\frac{2b}{a+2b}\;=\; \frac{a+2b}{a+2b} \;=\; 1 \MDFPeriod $$\end{MHint}}
+%%\item{\MEquationItem{$\displaystyle \Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}$}{\MLSimplifyQuestion{25}{1}{5}{a,b}{5}{1}{UMPF7}}. \begin{MHint}{L"osung}$$\Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b} \; = \; \Mdfrac{a}{a+2b}+\Mdfrac{2b}{a+2b}\;=\; \Mdfrac{a+2b}{a+2b} \;=\; 1 \MDFPeriod $$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}$}{\MLSpecialQuestion{10}{1}{5}{0}{0}{exactfraction}{UMPF7}}. \begin{MHint}{L"osung}Summieren über den Hauptnenner ergibt
+$\Mdfrac{3a}{3a+6b}+\Mdfrac{2b}{a+2b}=\Mdfrac{3a}{3a+6b}+\Mdfrac{6b}{3a+6b}=\Mdfrac{3a+6b}{3a+6b}=1$.\end{MHint}}
 \end{MExerciseItems}
 \MInputHint{In den Eingaben dürfen keine Klammern mehr auftreten.}
 \end{MExercise}
@@ -810,18 +1012,25 @@ Vereinfachen Sie die folgenden Terme f"ur geeignete Zahlen $a,b,x,y,z$:
 \begin{MExercise}
 Diese Aufgaben erfordern etwas mehr Durchhaltevermögen. Vereinfachen Sie:\ \\
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \frac12x(4x+3y)+\frac32(5x^2-6x y)$}{\MLSimplifyQuestion{36}{19/2*x^2-15/2*x*y}{5}{x,y}{5}{1}{UMPF5}}. \begin{MHint}{L"osung} $$\frac12x(4x+3y)+\frac32(5x^2-6x y)\;=\; 2x^2+\frac32x y+\frac{15}2x^2-9x y \;=\; \frac{19}{2}x^2-\frac{15}{2}x y  \MDFPeriod  $$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \frac{18x^2-48x y+32y^2}{12y-9x}\cdot \frac{18x+24y}{9x^2-16y}$}{\MLSimplifyQuestion{25}{-4}{5}{x,y}{5}{1}{UMPF8}}. \begin{MHint}{L"osung}\begin{eqnarray*}
-    \frac{18x^2-48x y+32y^2}{12y-9x}\cdot \frac{18x+24y}{9x^2-16y}  & = &
-    \frac{2\cdot (3x-4y)^2}{-3\cdot(3x-4y)}\cdot \frac{6\cdot(3x+4y)}{(3x+4y)(3x-4y)}\ \\
-    &=&-\frac23(3x-4y)\cdot \frac{6}{3x-4y} \;=\; -4\: .
-    \end{eqnarray*}\end{MHint}}
-\item{\MEquationItem{$\displaystyle (a^2+5a-2)(2a^2-3a-9)-\left(\frac12a^2+3a-5\right)(a^2-4a+3)$}{\MLSimplifyQuestion{35}{3/2*a^4+6*a^3-25/2*a^2-68*a+33}{5}{a}{5}{1}{UMPF6}}. \begin{MHint}{L"osung}$$ 
-(a^2+5a-2)(2a^2-3a-9)-\left(\frac12a^2+3a-5\right)(a^2-4a+3)\ \ \ \ \ \ \ \ \ \ \ \ 
+\item{\MEquationItem{$\displaystyle \Mdfrac12x(4x+3y)+\Mdfrac32(5x^2-6x y)$}{\MLSimplifyQuestion{36}{19/2*x^2-15/2*x*y}{5}{x,y}{5}{1}{UMPF5}}. \begin{MHint}{L"osung} $$\Mdfrac12x(4x+3y)+\Mdfrac32(5x^2-6x y)\;=\; 2x^2+\Mdfrac32x y+\Mdfrac{15}2x^2-9x y \;=\; \Mdfrac{19}{2}x^2-\Mdfrac{15}{2}x y  \MDFPeriod  $$\end{MHint}}
+%%\item{\MEquationItem{$\displaystyle \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y}$}{\MLSimplifyQuestion{25}{-4}{5}{x,y}{5}{1}{UMPF8}}. \begin{MHint}{L"osung}\begin{eqnarray*}
+%%    \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y}  & = &
+%%    \Mdfrac{2\cdot (3x-4y)^2}{-3\cdot(3x-4y)}\cdot \Mdfrac{6\cdot(3x+4y)}{(3x+4y)(3x-4y)}\ \\
+%%    &=&-\Mdfrac23(3x-4y)\cdot \Mdfrac{6}{3x-4y} \;=\; -4\: .
+%%    \end{eqnarray*}\end{MHint}}
+\item{\MEquationItem{$\displaystyle \Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y^2}$}{\MLSpecialQuestion{10}{-4}{5}{0}{0}{exactfraction}{UMPF8}}. \begin{MHint}{L"osung}Vereinfachen des Ausdrucks ergibt
+\begin{eqnarray*}
+\Mdfrac{18x^2-48x y+32y^2}{12y-9x}\cdot \Mdfrac{18x+24y}{9x^2-16y^2} & =&
+4\cdot \Mdfrac{9x^2-24x y+16y^2}{4y-3x}\cdot \Mdfrac{3x+4y}{9x^2-16y^2}\\
+& =& 4\cdot \Mdfrac{(3x-4y)^2}{4y-3x}\cdot \Mdfrac{3x+4y}{9x^2-16y^2}\\
+& =& -4\cdot \Mdfrac{(3x-4y)^2}{3x-4y}\cdot \Mdfrac{3x+4y}{(3x+4y)(3x-4y)}=-4 \MDFPeriod
+\end{eqnarray*}\end{MHint}}
+\item{\MEquationItem{$\displaystyle (a^2+5a-2)(2a^2-3a-9)-\left(\Mdfrac12a^2+3a-5\right)(a^2-4a+3)$}{\MLSimplifyQuestion{35}{3/2*a^4+6*a^3-25/2*a^2-68*a+33}{5}{a}{5}{1}{UMPF6}}. \begin{MHint}{L"osung}$$ 
+(a^2+5a-2)(2a^2-3a-9)-\left(\Mdfrac12a^2+3a-5\right)(a^2-4a+3)\ \ \ \ \ \ \ \ \ \ \ \ 
 $$
 \begin{eqnarray*}
-     & = & 2a^4+10a^3-4a^2-3a^3-15a^2+6a-9a^2-45a+18\\&&\ \ \ \ \ \  -\left({\frac12a^4+3a^3-5a^2-2a^3-12a^2+20a+\frac32a^2+9a-15}\right)\ \\ \ \\
-     &= & \frac32a^4+6a^3-\frac{25}{2}a^2-68a+33 \MDFPeriod
+     & = & 2a^4+10a^3-4a^2-3a^3-15a^2+6a-9a^2-45a+18\\&&\ \ \ \ \ \  -\left({\Mdfrac12a^4+3a^3-5a^2-2a^3-12a^2+20a+\Mdfrac32a^2+9a-15}\right)\ \\ \ \\
+     &= & \Mdfrac32a^4+6a^3-\Mdfrac{25}{2}a^2-68a+33 \MDFPeriod
     \end{eqnarray*}\end{MHint}}
 \end{MExerciseItems}
 % Hier Eingabe des Originals bei b) noch moeglich wenn man das hoch-2-Symbol nimmt
@@ -829,7 +1038,7 @@ $$
 \end{MExercise}
 
 \begin{MExercise}
-Berechnen Sie mit Hile einer binomischen Formel:
+Berechnen Sie mit Hilfe einer binomischen Formel:
 \begin{MExerciseItems}
 \item{\MEquationItem{$\displaystyle 43^2$}{\MLSimplifyQuestion{6}{1849}{5}{x}{5}{1024}{BMPF1}}. \begin{MHint}{L"osung}$$43^2 \;=\; (40+3)^2 \;=\; 40^2+2\cdot 40\cdot 3+3^2\;=\; 1600+240+9 \;=\; 1849 \MDFPeriod $$\end{MHint}}
 \item{\MEquationItem{$\displaystyle 97^2$}{\MLSimplifyQuestion{6}{9409}{5}{x}{5}{1024}{BMPF2}}. \begin{MHint}{L"osung}$$97^2\;=\; (90+7)^2 \;=\; 90^2+2\cdot90\cdot 7+7^2 \;=\; 8100+1260+49\;=\; 9409 \MDFPeriod $$\end{MHint}}
@@ -838,7 +1047,7 @@ Berechnen Sie mit Hile einer binomischen Formel:
 \end{MExercise}
 
 \begin{MExercise}
-Wenden Sie eine binomische Formel an um das Produkt aufzulösen und fassen Sie das Ergebniss zusammen:
+Wenden Sie eine binomische Formel an, um das Produkt aufzulösen, und fassen Sie das Ergebnis zusammen:
 \begin{MExerciseItems}
 \item{\MEquationItem{$\displaystyle (-5x y-2)^2$}{\MLSimplifyQuestion{30}{25*x^2*y^2+20*x*y+4}{5}{x,y}{5}{1}{BMPF5}}. \begin{MHint}{L"osung}$$(-5x y-2)^2 \;=\; (-1)^2\cdot(5x y+2)^2 \;=\; 25x^2y^2+20x y+4 \MDFPeriod $$\end{MHint}}
 \item{\MEquationItem{$\displaystyle (-6a b+7b c)(-6a b-7b c)$}{\MLSimplifyQuestion{36}{36*a^2*b^2-49*b^2*c^2}{5}{a,b,c}{5}{1}{BMPF6}}. \begin{MHint}{L"osung}$$ (-6a b+7b c)(-6a b-7b c) \;=\; (-6a b)^2-(7b c)^2 \;=\; 36a^2b^2-49b^2c^2 \MDFPeriod $$\end{MHint}}
@@ -854,7 +1063,7 @@ Faktorisieren Sie die folgenden Terme so weit wie m"oglich mit Hilfe einer binom
 \item{\MEquationItem{$\displaystyle 64a^2-96a+36$}{\MLSimplifyQuestion{10}{(8*a-6)^2}{5}{a}{5}{0}{BMPF10}}. \begin{MHint}{L"osung}$$64a^2-96a+36\;=\;(8a-6)^2   \MDFPeriod $$\end{MHint}}
 % Aufgabentyp faktorisieren ohne Platztrick noch nicht machbar:
 %\item{\MEquationItem{$\displaystyle 9x^2-16$}{\MLSimplifyQuestion{20}{(3*x+4)*(3*x-4)}{5}{x}{5}{0}{BMPF11}}. \begin{MHint}{L"osung}$$9x^2-16\;=\; (3x+4)(3x-4)  \MDFPeriod $$\end{MHint}}
-%\item{\MEquationItem{$\displaystyle 81-\frac14y^2$\\\begin{MHint}{L"osung}$$81-\frac14y^2\;=\;\left({9+\frac12y}\right)\left({9-\frac12y}\right)\MDFPeriod $$\end{MHint}   
+%\item{\MEquationItem{$\displaystyle 81-\Mdfrac14y^2$\\\begin{MHint}{L"osung}$$81-\Mdfrac14y^2\;=\;\left({9+\Mdfrac12y}\right)\left({9-\Mdfrac12y}\right)\MDFPeriod $$\end{MHint}   
 \item{\MEquationItem{$\displaystyle 25x^2-16y^2+15x+12y$}{\MLSimplifyQuestion{22}{(5*x+4*y)*(5*x-4*y+3)}{5}{x,y}{5}{0}{BMPF15}}. \begin{MHint}{L"osung}\begin{eqnarray*}25x^2-16y^2+15x+12y&=&(5x)^2-(4y)^2+3\cdot(5x+4y)\ \\ &=& (5x+4y)(5x-4y)+3\cdot(5x+4y)\ \\ &=& (5x+4y)(5x-4y+3)  \: .\end{eqnarray*}\end{MHint}}
 \end{MExerciseItems}
 \end{MExercise}
@@ -893,7 +1102,12 @@ Beispielsweise wird der Term $(x-1)\cdot (x-2)$ zu Null, falls $x=1$ oder $x=2$ 
 
 \begin{MInfo}
 Bei einer \MEntry{Summendarstellung}{Summendarstellung} ist Addition bzw. Subtraktion die zuletzt ausgeführte Operation. Wegen der Punkt-vor-Strich-Regel sind Terme ohne Klammern
-automatisch in dieser Form. In der Summendarstellung lässt sich das asymptotische Verhalten eines Ausdrucks besonders leicht ablesen, z.B. wird es bei Polynomen nur durch den
+automatisch in dieser Form. In der Summendarstellung lässt sich das asymptotische Verhalten eines Ausdrucks besonders leicht ablesen.
+Mit dem asymptotischen Verhalten einer Funktion wird beschrieben, wie sich
+die Funktion verhält, wenn man zu betragsmäßig immer größeren Werten der
+Variable $x$ bis an die im Unendlichen liegenden Grenzen des
+Definitionsbereichs herangeht.
+Bei Polynomen z.B. wird es nur durch den
 Term mit dem höchsten Exponenten festgelegt.
 \end{MInfo}
 
@@ -917,25 +1131,37 @@ f(x)
 \end{MExample}
 
 \begin{MExercise}
-Multiplizieren Sie diese Terme vollständig aus und fassen Sie zusammen. Geben Sie das asymptotische Verhalten der Ausdrücke an:
+Multiplizieren Sie diese Terme vollständig aus und fassen Sie zusammen. Geben Sie das asymptotische Verhalten des Gesamtausdrucks an:
 \begin{MExerciseItems}
-\item{$f(x)\;=\;(3-x)(x+1)$ = \MLSimplifyQuestion{30}{(3-x)*(x+1)}{10}{x}{5}{1}{LSFF3}.\\Das asymptotische Verhalten ist
+\item{$f(x)\;=\;(3-x)(x+1)$ = \MLSimplifyQuestion{30}{(3-x)*(x+1)}{10}{x}{5}{1}{LSFF3}.
+\begin{MHint}{L"osung}$$(3-x)(x+1) \; = \; 3x + 3 -x^2 -x \;=\; 3 + 2x - x^2 $$\end{MHint}\\
+%%Das asymptotische Verhalten ist
 \begin{center}
-$\displaystyle \lim_{x\rightarrow +\infty} f(x)\;=\;$\MLSimplifyQuestion{10}{-infty}{3}{infty}{5}{1}{LSFF4}\;\; , \;\;  % Zusaetzliches Leerzeichen um Loesungen unterschiedlich zu machen
-$\displaystyle \lim_{x\rightarrow -\infty} f(x)\;=\;$\MLSimplifyQuestion{10}{-infty}{3}{infty}{5}{1}{LSFF5}\: .
+%%$\displaystyle \lim_{x\rightarrow +\infty} f(x)\;=\;$
+Beschreibung des asymptotischen Verhaltens:\\ 
+Wenn $x$ gegen $\infty$ strebt, dann strebt $f(x)$ gegen
+\MLSimplifyQuestion{10}{-infty}{3}{infty}{5}{1}{LSFF4}\;. \begin{MHint}{L"osung}%
+Die Asymptotik kann, wenn sie sich in eindeutiger Weise ergibt, abkürzend mit dem Symbol \glqq{}lim\grqq{} bezeichnet werden:
+$$\lim_{x\rightarrow \infty} f(x) \; = \; -\infty \MDFPeriod$$\end{MHint}\\  % Zusaetzliches Leerzeichen um Loesungen unterschiedlich zu machen
+Wenn $x$ gegen $-\infty$ strebt, dann strebt $f(x)$ gegen
+%%$\displaystyle \lim_{x\rightarrow -\infty} f(x)\;=\;$
+\MLSimplifyQuestion{10}{-infty}{3}{infty}{5}{1}{LSFF5}\;. \\
+\begin{MHint}{L"osung}%
+In diesem Fall ergibt sich 
+$$\lim_{x\rightarrow -\infty} f(x) \; = \; -\infty \MDFPeriod$$\end{MHint}
 \end{center}
 \MInputHint{Unendliche Grenzwerte $\infty$ und Asymptoten können Sie als \texttt{unendlich} oder \texttt{infinity} eintippen,
 entsprechend \texttt{-unendlich} für $-\infty$.
 Das asymptotische Verhalten wird in einem späteren Modul erklärt, falls Sie die Symbolik noch nicht beherrschen, können Sie diesen
 Aufgabenteil überspringen.}
 }
-\item{$(x+4)(2-x)(x+2)$ = \MLSimplifyQuestion{30}{(x+4)*(2-x)*(x+2)}{10}{x}{5}{1}{LSFF6}.}
-\item{$(3-x)(x+1)^2$ = \MLSimplifyQuestion{30}{(3-x)*(x+1)*(x+1)}{10}{x}{5}{1}{LSFF7}.}
-\item{$t\cdot (t+1)\cdot (t^2+t+1)$ = \MLSimplifyQuestion{30}{t*(t+1)*(t*t+t+1)}{10}{t}{5}{1}{LSFF8}.}
+\item{$(x+4)(2-x)(x+2)$ = \MLSimplifyQuestion{30}{(x+4)*(2-x)*(x+2)}{10}{x}{5}{1}{LSFF6}. \begin{MHint}{L"osung}$$(x+4)(2-x)(x+2) \; = \; (x+4)(4-x^4) \;=\; 4x-x^3+16-4x^2 \;=\; 16 + 4x - 4x^2 -x^3 $$\end{MHint}}
+\item{$(3-x)(x+1)^2$ = \MLSimplifyQuestion{30}{(3-x)*(x+1)*(x+1)}{10}{x}{5}{1}{LSFF7}. \begin{MHint}{L"osung}$$(3-x)(x+1)^2 \; = \; (3-x)(x^2+2x+1) \;=\; 3x^2+6x+3-x^3-2x^2-x \;=\; 3 + 5x + x^2 -x^3 $$\end{MHint}}
+\item{$t\cdot (t+1)\cdot (t^2+t+1)$ = \MLSimplifyQuestion{30}{t*(t+1)*(t*t+t+1)}{10}{t}{5}{1}{LSFF8}. \begin{MHint}{L"osung}$$t\cdot (t+1)\cdot (t^2+t+1) \; = \; (t^2+t)(t^2+t+1) \;=\; t^4+t^3+t^2+t^3+t^2+t \;=\; t^4+2t^3+2t^2+t $$\end{MHint}}
 \end{MExerciseItems}
 
 \begin{MHint}{Lösung}
-Ausmultiplizieren ergibt $f(x)=(3-x)(x+1) =-x^2+2x+3$. Wegen dem führenden Term $-x^2$ besitzt diese Funktion als Graph eine
+Ausmultiplizieren ergibt $f(x)=(3-x)(x+1) =-x^2+2x+3$. Wegen des führenden Terms $-x^2$ besitzt diese Funktion als Graph eine
 nach unten geöffnete Parabel mit den Asymptoten $-\infty$ in beide Richtungen:
 $$
 \lim_{x\rightarrow \infty} f(x) \;=\; -\infty \MDFPSpace, \MDFPaSpace \lim_{x\rightarrow -\infty} f(x) \;=\; -\infty\MDFPeriod 
@@ -944,7 +1170,7 @@ In den anderen Aufgabenteilen ergibt sich durch Ausmultiplizieren
 \begin{eqnarray*}
 (x+4)(2-x)(x+2) &=& -x^3-4x^2+4x+16 \MDFPSpace,\ \\
 (3-x)(x+1)^2 &=& (3-x)(x^2+2x+1) \;=\; -x^3+x^2+5x+3 \MDFPSpace, \ \\
-t\cdot (t+1)\cdot (t^2+t+1) & = & t\cdot(t^3+2t^2+2t+1) \;=\; t^4+2t^3+2t^2+t \MDFPeriod .
+t\cdot (t+1)\cdot (t^2+t+1) & = & t\cdot(t^3+2t^2+2t+1) \;=\; t^4+2t^3+2t^2+t \MDFPeriod
 \end{eqnarray*}
 \end{MHint}
 \end{MExercise}
@@ -952,20 +1178,41 @@ t\cdot (t+1)\cdot (t^2+t+1) & = & t\cdot(t^3+2t^2+2t+1) \;=\; t^4+2t^3+2t^2+t \M
 \begin{MExercise}
 Dieser Graph gehört zu einem Polynom $g(x)$ zweiten Grades:
 
-\MUGraphics{graph1.png}{width=0.3\linewidth}{Graph von $g(x)$.}{width:60\%}
+%%\MUGraphics{graph1.png}{width=0.3\linewidth}{Graph von $g(x)$.}{width:60\%}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=0.2cm, scale=0.80] 
+\draw[black] (-4,0) -- (4,0) (0,-27) -- (0,13);
+\foreach \x in {-4, -3, -2, -1, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3.5pt) node[below=-2.0pt] {\tiny $\x$};
+\foreach \x in {-3.5, -2.5, ..., 4.0}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.8pt);
+\foreach \y in {-20, -10, 10}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-3.5pt,0pt) node[left=-3.0pt] {\tiny $\y$};
+\foreach \y in {-27, -26, ..., 13}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.8pt,0pt);
+\draw[black] (-0.0pt,-0.0pt) node[anchor=north east] {\tiny $0$};
+\clip(-4.0,-27.0) rectangle (4.0,13.0);
+%%\draw[help lines, gray!50, xstep=0.5, ystep=1, dashed] (-4,-26.5) grid (4,12.5);
+\draw[smooth,samples=27,domain=-4:4, line width=0.8pt,color=red] plot(\x,{-2*\x*\x+2*\x+12});
+\end{tikzpicture}
+}
+\par
+Graph von $g(x)$.
+\end{center}
 
 \begin{MExerciseItems}
 \item{Der Graph besitzt zwei Nullstellen $x_1$ und $x_2$, die daraus entstehenden Faktoren ergeben ausmultipliziert das Polynom $f(x)=(x-x_1)(x-x_2)$ = \MLSimplifyQuestion{30}{(x+2)*(x-3)}{10}{x}{5}{1}{LSFF9}.}
 \item{Dieses Polynom gehört nicht zum Graph, denn an der Stelle $x=0$ besitzt $f(x)$ den Wert \MLParsedQuestion{5}{-6}{5}{ER4}, aber $g(x)$ besitzt
 laut Graph den Wert \MLParsedQuestion{5}{12}{5}{ER4b}.
-Diesen Unterschied können wir korrigieren, indem wir $g(x)=c\cdot f(x)$ setzen mit dem Vorfaktor $c$ = \MLParsedQuestion{5}{-2}{5}{ER5}.}
+Diesen Unterschied kann man korrigieren, indem man $g(x)=c\cdot f(x)$ setzt mit dem Vorfaktor $c$ = \MLParsedQuestion{5}{-2}{5}{ER5}.}
 \item{Zusammensetzen ergibt schließlich $g(x)$ = \MLSimplifyQuestion{30}{(0-2)*(x+2)*(x-3)}{4}{x}{3}{1}{LSFF10} in Produktdarstellung.}
 \end{MExerciseItems}
 \begin{MHint}{Lösung}
 Der Graph zeigt die Nullstellen $x_1=-2$ und $x_2=3$, die daraus entstehenden Faktoren ergeben ausmultipliziert
 das Polynom $f(x)=(x+2)(x-3)=x^2-x-6$.
-An der Stelle $x=0$ ist $f(0)=-6$ aber $g(0)=12$ laut Graph. Dies können wir korrigieren, indem wir noch den Faktor $-2$ hinzunehmen.
-Insgesamt erhalten wir $g(x)=-2x^2+2x+12$.
+An der Stelle $x=0$ ist $f(0)=-6$ aber $g(0)=12$ laut Graph. Dies kann korrigiert werden, indem man noch den Faktor $-2$ hinzunimmt.
+Insgesamt erhält man $g(x)=-2x^2+2x+12$.
 \end{MHint}
 \end{MExercise}
 
@@ -992,7 +1239,7 @@ Am einfachsten multipliziert man jeden Summanden links mit jedem Summanden recht
 \MDeclareSiteUXID{VBKM01_PotenzenWurzeln}
 
 
-Im folgenden Abschnitt wollen wir uns mit Ausdr"ucken der Form $\displaystyle a^s$ besch"aftigen. Hierbei sei $a\in\R$. Aber f"ur welche Zahlen $s$ k"onnen wir die Potenz sinnvoll definieren?
+Der folgende Abschnitt beschäftigt sich mit Ausdr"ucken der Form $\displaystyle a^s$. Hierbei sei $a\in\R$. Aber f"ur welche Zahlen $s$ kann die Potenz sinnvoll definiert werden?
 
 Potenzen mit nat"urlichem Exponenten werden folgenderma"sen definiert:
 \begin{MInfo}
@@ -1005,27 +1252,27 @@ a^n & =&  a\cdot a\cdot a\cdot\dots\cdot a\: .\\ && \;\;(n\:\text{Faktoren})
 $$a^n = \underbrace{a\cdot a\cdot a\cdot\dots\cdot a}_{\mbox{$n$ Faktoren}} \MDFPeriod$$
 \fi
 $a$ wird als \MEntry{Basis}{Basis} und $n$ als \MEntry{Exponent}{Exponent} bezeichnet.\\
-Ferner ist $\displaystyle a^0 = 1$ für alle $a\neq 0$.
+Ferner ist $\displaystyle a^0 = 1$.
 \end{MInfo}
 \begin{MExample}
- $$3^2 = 3\cdot 3 = 9 \MDFPSpace, \MDFPaSpace (-2)^3 = (-2)\cdot(-2)\cdot(-2) = -8 \MDFPSpace, \MDFPaSpace \left(\frac12\right)^4 = \frac12\cdot\frac12\cdot\frac12\cdot\frac12=\frac{1}{16} \MDFPeriod$$
+ $$3^2 = 3\cdot 3 = 9 \MDFPSpace, \MDFPaSpace (-2)^3 = (-2)\cdot(-2)\cdot(-2) = -8 \MDFPSpace, \MDFPaSpace \left(\Mdfrac12\right)^4 = \Mdfrac12\cdot\Mdfrac12\cdot\Mdfrac12\cdot\Mdfrac12=\Mdfrac{1}{16} \MDFPeriod$$
 \end{MExample}
 Viele Potenzen k"onnen mit obiger Rechenregel berechnet werden -- aber wie sieht es mit $\displaystyle 2^{-2}$ aus?
 \begin{MInfo}
 Potenzen mit negativen nat"urlichen Exponenten werden definiert durch die Formel
- $a^{-n} = \frac{1}{a^n}, n\in\N, a\neq 0.$ 
+ $a^{-n} = \Mtfrac{1}{a^n}, n\in\N, a\neq 0.$ 
 \end{MInfo}
-Folglich berechnet sich $\displaystyle 2^{-2} = \frac{1}{2^2}=\frac14$. Analog ergibt sich $\displaystyle (-2)^{-2} = \frac{1}{(-2)^2} = \frac14$.
+Folglich berechnet sich $\displaystyle 2^{-2} = \Mtfrac{1}{2^2}=\Mtfrac14$. Analog ergibt sich $\displaystyle (-2)^{-2} = \Mtfrac{1}{(-2)^2} = \Mtfrac14$.
 
-Aber schon bei einem rationalen Exponenten der Form $\displaystyle \frac{1}{n}, n\in\N$, m"ussen wir unsere Definition wieder erweitern, um zum Beispiel $\displaystyle 4^{\frac12}$ berechnen zu k"onnen. Diese Potenz l"asst sich auch in Wurzelschreibweise umwandeln und wir erhalten $\displaystyle 4^{\frac12} = \sqrt{4} =2$. Allgemein gilt:
+Aber schon bei einem rationalen Exponenten der Form $\displaystyle \Mtfrac{1}{n}, n\in\N$, muss die Definition wieder erweitert werden, um zum Beispiel $\displaystyle 4^{\Mtfrac12}$ berechnen zu k"onnen. Diese Potenz l"asst sich auch in Wurzelschreibweise umwandeln und man erhält $\displaystyle 4^{\Mtfrac12} = \sqrt{4} =2$. Allgemein gilt:
 \begin{MInfo}
-Sei $n\in\N$ und $a\in\R$ mit $a\geq 0.$ Die $n$-te Wurzel besitzt die Potenzschreibweise $\displaystyle \sqrt[n]{a} = a^{\frac{1}{n}}$.
+Sei $n\in\N$ und $a\in\R$ mit $a\geq 0.$ Die $n$-te Wurzel besitzt die Potenzschreibweise $\displaystyle \sqrt[n]{a} = a^{\Mtfrac{1}{n}}$.
 \end{MInfo} 
-Dies f"uhrt uns auf die Umkehrung der Potenzrechnung, das Wurzelziehen.
+Dies f"uhrt auf die Umkehrung der Potenzrechnung, das Wurzelziehen.
 
 \begin{MInfo}
 Die $n$-te \MEntry{Wurzel}{Wurzel} einer Zahl $a\in\R, a\geq 0,$ ist diejenige Zahl, deren $n$-te Potenz gleich $a$ ist:
-$$a^{\frac{1}{n}} = \sqrt[n]{a} = b \Longrightarrow b^n = a \MDFPeriod$$
+$$a^{\Mtfrac{1}{n}} = \sqrt[n]{a} = b \Longrightarrow b^n = a \MDFPeriod$$
 $a$ wird als \MEntry{Wurzelbasis}{Wurzelbasis} oder \MEntry{Radikand}{Radikand} und $n$ als \MEntry{Wurzelexponent}{Exponent} bezeichnet.\\
 Es gilt $\displaystyle \sqrt[1]{a} = a$ und es hei"sen 
 $\displaystyle \sqrt[2]{a} = \sqrt{a}$ die \MEntry{Quadratwurzel}{Quadratwurzel} und 
@@ -1033,7 +1280,7 @@ $\displaystyle \sqrt[2]{a} = \sqrt{a}$ die \MEntry{Quadratwurzel}{Quadratwurzel}
 \end{MInfo}
 
 \begin{MExample}
-$$16^{\frac12} = \sqrt[2]{16} = \sqrt{16} = 4\MDFPSpace, \MDFPaSpace 27^{\frac13} = \sqrt[3]{27} = 3 \MDFPeriod$$
+$$16^{\Mtfrac12} = \sqrt[2]{16} = \sqrt{16} = 4\MDFPSpace, \MDFPaSpace 27^{\Mtfrac13} = \sqrt[3]{27} = 3 \MDFPeriod$$
 \end{MExample}
 
 \begin{MInfo}
@@ -1042,7 +1289,7 @@ F"ur $n\in\N, a,b\in\R$ mit $a,b\geq 0$ gelten die folgenden \MEntry{Wurzelreche
 \item Zwei Wurzeln mit gleichem Exponenten werden multipliziert, indem die Wurzel aus dem Produkt der Radikanden gezogen wird, der Wurzelexponent bleibt unver"andert:
 $$\sqrt[n]{a}\cdot \sqrt[n]{b} = \sqrt[n]{a\cdot b} \MDFPeriod$$
 \item Zwei Wurzeln mit gleichem Exponenten werden dividiert, indem die Wurzel aus dem Quotienten der Radikanden gezogen wird, der Wurzelexponent bleibt unver"andert:
-$$\frac{\sqrt[n]{a}}{\sqrt[n]{b}} = \sqrt[n]{\frac{a}{b}}, b\neq 0 \MDFPeriod$$
+$$\Mdfrac{\sqrt[n]{a}}{\sqrt[n]{b}} = \sqrt[n]{\Mdfrac{a}{b}}, b\neq 0 \MDFPeriod$$
 \end{enumerate}
 \end{MInfo}
 Aber wie kann die Zahl $\displaystyle \left(\sqrt[10]{4}\right)^5$ berechnet werden?
@@ -1051,17 +1298,17 @@ Aber wie kann die Zahl $\displaystyle \left(\sqrt[10]{4}\right)^5$ berechnet wer
 Seien $m,n\in\N$ und $a\in\R, a\geq 0.$
 \begin{enumerate}
 \item Die $m$-te Potenz einer Wurzel bildet man, indem die $m$-te Potenz des Radikanden gebildet wird, der Wurzelexponent bleibt unver"andert:
-$$\left(\sqrt[n]{a}\right)^m = \sqrt[n]{a^m} = a^{\frac{m}{n}} \MDFPeriod$$
+$$\left(\sqrt[n]{a}\right)^m = \sqrt[n]{a^m} = a^{\Mtfrac{m}{n}} \MDFPeriod$$
 \item Die \textbf{$m$-te Wurzel aus einer Wurzel} bildet man, indem die Wurzelexponenten multipliziert werden und die Basis gleich bleibt (\MEntry{Radizieren einer Wurzel}{Radizieren}).
 $$\sqrt[m]{\sqrt[n]{a}} = \sqrt[m\cdot n]{a} \MDFPeriod$$
 \end{enumerate}
 \end{MInfo}
-Somit erhalten wir
-$$\sqrt[10]{4^5} = (4^5)^{\frac{1}{10}} = 4^{\frac{5}{10}} = 4^{\frac12} = \sqrt[2]{4} = 2 \MDFPeriod$$
+Somit erhält man
+$$\sqrt[10]{4^5} = (4^5)^{\Mtfrac{1}{10}} = 4^{\Mtfrac{5}{10}} = 4^{\Mtfrac12} = \sqrt[2]{4} = 2 \MDFPeriod$$
 
 \begin{MExample}
 Die Berechnung einer allgemeinen Potenz mit rationalem Exponenten sieht dann folgenderma"sen aus:
-$$\left(\frac14\right)^{-\frac23} = \sqrt[3]{\left(\frac14\right)^{-2}} = \sqrt[3]{\frac{1}{\left(\frac14\right)^2}} = \sqrt[3]{\frac{1}{\frac{1}{16}}} = \sqrt[3]{16} = \sqrt[3]{2^3\cdot 2}=2\sqrt[3]{2} \MDFPeriod$$ 
+$$\left(\Mdfrac14\right)^{-\Mtfrac23} = \sqrt[3]{\left(\Mdfrac14\right)^{-2}} = \sqrt[3]{\Mdfrac{1}{\left(\Mdfrac14\right)^2}} = \sqrt[3]{\Mdfrac{1}{\Mdfrac{1}{16}}} = \sqrt[3]{16} = \sqrt[3]{2^3\cdot 2}=2\sqrt[3]{2} \MDFPeriod$$ 
 \end{MExample}
 
 Die f"ur Potenzen mit reeller Basis und rationalem Exponenten g"ultigen Rechenregeln werden unter der Bezeichnung Potenzgesetze zusammengefasst.
@@ -1071,7 +1318,7 @@ Die Regeln differieren in Abh"angigkeit von der Betrachtung von Potenzen mit der
 \begin{MInfo}
 \MLabel{VBKM01_Potenzgesetze}
 F"ur $a,b \in \R, a,b>0, p,q\in\Q$ gelten die \MEntry{Potenzgesetze}{Potenzgesetze}:
-$$a^p\cdot b^p = (a\cdot b)^p \MDFPSpace, \MDFPaSpace \frac{a^p}{b^p} = \left(\frac{a}{b}\right)^p \MDFPSpace,  \MDFPaSpace a^p\cdot a^q = a^{p+q} \MDFPSpace, \MDFPaSpace \frac{a^p}{a^q} = a^{p-q} \MDFPSpace, \MDFPaSpace (a^p)^q = a^{p\cdot q} \MDFPeriod$$ 
+$$a^p\cdot b^p = (a\cdot b)^p \MDFPSpace, \MDFPaSpace \Mdfrac{a^p}{b^p} = \left(\Mdfrac{a}{b}\right)^p \MDFPSpace,  \MDFPaSpace a^p\cdot a^q = a^{p+q} \MDFPSpace, \MDFPaSpace \Mdfrac{a^p}{a^q} = a^{p-q} \MDFPSpace, \MDFPaSpace (a^p)^q = a^{p\cdot q} \MDFPeriod$$ 
 \end{MInfo}
 
 Insbesondere ist zu beachten, dass im Allgemeinen $\displaystyle (a^p)^q \neq a^{p^q}$, d.~h. bei mehrfachem Potenzieren sollten Klammern gesetzt werden.
@@ -1089,9 +1336,9 @@ Berechnen Sie die folgenden Potenzen:
 \item{\MEquationItem{$\displaystyle 5^3$}{\MLSimplifyQuestion{15}{5^3}{5}{}{5}{256}{PPP1}}.\\\begin{MHint}{L"osung} $$5^3 = 125 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle (-1)^{1001}$}{\MLSimplifyQuestion{15}{-1}{5}{}{5}{256}{PPP2}}.\\\begin{MHint}{L"osung} $$(-1)^{1001}=-1 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \left((-3)^2\right)^3$}{\MLSimplifyQuestion{15}{9^3}{5}{}{5}{256}{PPP3}}.\\\begin{MHint}{L"osung} $$\left((-3)^2\right)^3=9^3=729 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \left(-\frac{3}{5}\right)^4$}{\MLSpecialQuestion{10}{81/625}{5}{0}{0}{exactfraction}{PPP4}}.\\\begin{MHint}{L"osung} $$\left(-\frac{3}{5}\right)^4=\frac{3^4}{5^4}=\frac{81}{625} \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \left(-\Mdfrac{3}{5}\right)^4$}{\MLSpecialQuestion{10}{81/625}{5}{0}{0}{exactfraction}{PPP4}}.\\\begin{MHint}{L"osung} $$\left(-\Mdfrac{3}{5}\right)^4=\Mdfrac{3^4}{5^4}=\Mdfrac{81}{625} \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \left(2^{-2}\right)^{-3}$}{\MLSimplifyQuestion{15}{2^6}{5}{}{5}{256}{PPP5}}.\\\begin{MHint}{L"osung} $$\left(2^{-2}\right)^{-3}=2^{(-2)\cdot(-3)}=2^6=64 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle\left(-\frac{1}{2}\right)^0 $}{\MLSimplifyQuestion{15}{1}{5}{}{5}{256}{PPP6}}.\\\begin{MHint}{L"osung} $$\left(-\frac{1}{2}\right)^0=1 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle\left(-\Mdfrac{1}{2}\right)^0 $}{\MLSimplifyQuestion{15}{1}{5}{}{5}{256}{PPP6}}.\\\begin{MHint}{L"osung} $$\left(-\Mdfrac{1}{2}\right)^0=1 \MDFPeriod$$\end{MHint}}
 \end{MExerciseItems}
 \end{MExercise}
 
@@ -1100,13 +1347,13 @@ Vereinfachen Sie die folgenden Ausdr"ucke mit den Potenzregeln und durch Kürzen,
 \begin{MExerciseItems}
 \item{\MEquationItem{$\displaystyle 3^3\cdot 3^5\cdot 3^{-1}$}{\MLSimplifyQuestion{15}{3^7}{5}{}{5}{2048}{PPP7}}.\\\begin{MHint}{L"osung} $$3^3\cdot 3^5\cdot 3^{-1}=3^{3+5-1}=3^7 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle 4^2\cdot 3^2$}{\MLSimplifyQuestion{15}{12^2}{5}{}{5}{2048}{PPP8}}.\\\begin{MHint}{L"osung} $$4^2\cdot 3^2=(4\cdot 3)^2=12^2 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \frac{(-2)^7}{(-2)^5}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{2048}{PPP9}}.\\\begin{MHint}{L"osung} $$\frac{(-2)^7}{(-2)^5}=(-2)^{7-5}=(-2)^2 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle 6^2\cdot 3^{-2}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{2048}{PPP10}}.\\\begin{MHint}{L"osung} $$6^2\cdot 3^{-2}=6^2\cdot \left({\frac13}\right)^{2}=\left({6\cdot\frac13}\right)^2=2^2 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \frac{64^3}{8^3}$}{\MLSimplifyQuestion{15}{8^3}{5}{}{5}{2048}{PPP11}}.\\\begin{MHint}{L"osung} $$\frac{64^3}{8^3}=\left({\frac{64}{8}}\right)^3=8^3 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \left(\frac34\right)^{\frac13}\cdot\left(\frac34\right)^{\frac23}$}{\MLSpecialQuestion{15}{3/4}{5}{0}{0}{exactfraction}{PPP12}}.\\
+\item{\MEquationItem{$\displaystyle \Mdfrac{(-2)^7}{(-2)^5}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{2048}{PPP9}}.\\\begin{MHint}{L"osung} $$\Mdfrac{(-2)^7}{(-2)^5}=(-2)^{7-5}=(-2)^2 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle 6^2\cdot 3^{-2}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{2048}{PPP10}}.\\\begin{MHint}{L"osung} $$6^2\cdot 3^{-2}=6^2\cdot \left({\Mdfrac13}\right)^{2}=\left({6\cdot\Mdfrac13}\right)^2=2^2 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \Mdfrac{64^3}{8^3}$}{\MLSimplifyQuestion{15}{8^3}{5}{}{5}{2048}{PPP11}}.\\\begin{MHint}{L"osung} $$\Mdfrac{64^3}{8^3}=\left({\Mdfrac{64}{8}}\right)^3=8^3 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \left(\Mdfrac34\right)^{\Mtfrac13}\cdot\left(\Mdfrac34\right)^{\Mtfrac23}$}{\MLSpecialQuestion{15}{3/4}{5}{0}{0}{exactfraction}{PPP12}}.\\
 \begin{MHint}{L"osung}
 $$
-\left(\frac34\right)^{\frac13}\cdot\left(\frac34\right)^{\frac23} = \left(\frac34\right)^{\frac13+\frac23} \;=\; \frac34  \MDFPeriod
+\left(\Mdfrac34\right)^{\Mtfrac13}\cdot\left(\Mdfrac34\right)^{\Mtfrac23} = \left(\Mdfrac34\right)^{\Mtfrac13+\Mtfrac23} \;=\; \Mdfrac34  \MDFPeriod
 $$
 \end{MHint}}
 \end{MExerciseItems}
@@ -1115,8 +1362,8 @@ $$
 \begin{MExercise}
 Berechnen Sie die folgenden Wurzeln (es kommen hier stets ganze Zahlen heraus):
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \left(\sqrt[5]{3}\right)^5$}{\MLSimplifyQuestion{15}{3}{5}{}{5}{1024}{PPP13}}.\\\begin{MHint}{L"osung} $$\left(\sqrt[5]{3}\right)^5=(3^5)^{\frac15}=3^{5\cdot \frac15}=3 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \sqrt[4]{256}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{1024}{PPP14}}.\\\begin{MHint}{L"osung} $$\sqrt[4]{256}=\left({2^8}\right)^{\frac14}=2^2=4 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \left(\sqrt[5]{3}\right)^5$}{\MLSimplifyQuestion{15}{3}{5}{}{5}{1024}{PPP13}}.\\\begin{MHint}{L"osung} $$\left(\sqrt[5]{3}\right)^5=(3^5)^{\Mtfrac15}=3^{5\cdot \Mdfrac15}=3 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \sqrt[4]{256}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{1024}{PPP14}}.\\\begin{MHint}{L"osung} $$\sqrt[4]{256}=\left({2^8}\right)^{\Mtfrac14}=2^2=4 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \sqrt[3]{3}\cdot \sqrt[3]{9}$}{\MLSimplifyQuestion{15}{3}{5}{}{5}{1024}{PPP15}}.\\\begin{MHint}{L"osung} $$\sqrt[3]{3}\cdot \sqrt[3]{9}=\sqrt[3]{3\cdot 3\cdot 3}=3 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \sqrt[3]{343}$}{\MLSimplifyQuestion{15}{7}{5}{}{5}{1024}{PPP16}}.\\\begin{MHint}{L"osung} $$\sqrt[3]{343}=\sqrt[3]{7^3}=7 \MDFPeriod$$\end{MHint}}
 \end{MExerciseItems}
@@ -1125,7 +1372,7 @@ Berechnen Sie die folgenden Wurzeln (es kommen hier stets ganze Zahlen heraus):
 \begin{MExercise}
 Vereinfachen Sie die folgenden Ausdr"ucke und berechnen Sie den Zahlenwert als gekürzten Bruch ohne Potenzausdrücke:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \frac{3^3\cdot 6^3}{9\cdot2^3\cdot 4^3}$}{\MLSpecialQuestion{10}{81/64}{5}{0}{0}{exactfraction}{PPP17}}.\\\begin{MHint}{L"osung} $$\frac{3^3\cdot 6^3}{9\cdot2^3\cdot 4^3}=\frac{3^4\cdot 2^3}{2^3\cdot 4^3}=\frac{3^4}{4^3}=\frac{81}{64} \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \Mdfrac{3^3\cdot 6^3}{9\cdot2^3\cdot 4^3}$}{\MLSpecialQuestion{10}{81/64}{5}{0}{0}{exactfraction}{PPP17}}.\\\begin{MHint}{L"osung} $$\Mdfrac{3^3\cdot 6^3}{9\cdot2^3\cdot 4^3}=\Mdfrac{3^4\cdot 2^3}{2^3\cdot 4^3}=\Mdfrac{3^4}{4^3}=\Mdfrac{81}{64} \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle 3^2\cdot 9^{-3}\cdot 27^{6}\cdot 27^{-2}$}{\MLSpecialQuestion{10}{6561}{5}{0}{0}{exactfraction}{PPP18}}.\\\begin{MHint}{L"osung} $$3^2\cdot 9^{-3}\cdot 27^{-2}\cdot 27^{6}=3^{2+2\cdot(-3)+3\cdot 6-6}=3^{8} \MDFPeriod$$\end{MHint}}
 \end{MExerciseItems}
 \end{MExercise}
@@ -1133,7 +1380,7 @@ Vereinfachen Sie die folgenden Ausdr"ucke und berechnen Sie den Zahlenwert als g
 % \begin{MExercise}
 % Vereinfachen Sie diese Ausdrücke soweit wie möglich:
 % \begin{MExerciseItems}
-% \item{\MEquationItem{$\displaystyle \frac{\sqrt[5]{a^3}}{\sqrt[4]{a^5}}\quad (a>0)$}{\MLSimplifyQuestion{15}{a^{-\frac{13}{20}}}{5}{a}{5}{2048}{PPP19}}.\\\begin{MHint}{L"osung} $$\frac{\sqrt[5]{a^3}}{\sqrt[4]{a^5}}=a^{\frac35-\frac54}=a^{\frac{12-25}{20}}=a^{-\frac{13}{20}} \MDFPeriod$$\end{MHint}
+% \item{\MEquationItem{$\displaystyle \Mdfrac{\sqrt[5]{a^3}}{\sqrt[4]{a^5}}\quad (a>0)$}{\MLSimplifyQuestion{15}{a^{-\Mtfrac{13}{20}}}{5}{a}{5}{2048}{PPP19}}.\\\begin{MHint}{L"osung} $$\Mdfrac{\sqrt[5]{a^3}}{\sqrt[4]{a^5}}=a^{\Mtfrac35-\Mdfrac54}=a^{\Mtfrac{12-25}{20}}=a^{-\Mtfrac{13}{20}} \MDFPeriod$$\end{MHint}
 % 
 % \MInputHint{Quadratwurzeln können Sie in der Form \texttt{sqrt(x y z)} eingeben.}
 
@@ -1152,7 +1399,7 @@ Kreuzen Sie an, ob diese mathematischen Ausdrücke jeweils Gleichungen, Ungleichu
 \begin{tabular}{|l|c|c|c|c|}
   \hline
   Mathematischer Ausdruck  & Gleichung & Ungleichung & Term & Zahl \\ \hline
-  $1+\frac12-3(3-\frac12)$ & \MCheckbox{0}{TX11} & \MCheckbox{0}{TX12} &\MCheckbox{1}{TX13} &\MCheckbox{1}{TX14} \\ \hline
+  $1+\Mdfrac12-3(3-\Mdfrac12)$ & \MCheckbox{0}{TX11} & \MCheckbox{0}{TX12} &\MCheckbox{1}{TX13} &\MCheckbox{1}{TX14} \\ \hline
   $5^x-x^5$                & \MCheckbox{0}{TX21} & \MCheckbox{0}{TX22} &\MCheckbox{1}{TX23} &\MCheckbox{0}{TX24} \\ \hline
   $x^2<\sqrt{x}$           & \MCheckbox{0}{TX41} & \MCheckbox{1}{TX42} &\MCheckbox{0}{TX43} &\MCheckbox{0}{TX44} \\ \hline
   $x y z-1$                  & \MCheckbox{0}{TX31} & \MCheckbox{0}{TX32} &\MCheckbox{1}{TX33} &\MCheckbox{0}{TX34} \\ \hline

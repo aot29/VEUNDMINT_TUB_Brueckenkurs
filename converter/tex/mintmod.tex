@@ -1,13 +1,19 @@
-% Version 2.9 (Abschlussstand vor Konverterumstellung 03/2014) von Daniel Haase, MINT-Kolleg BW
+% Version 3.1 (Abschlussstand nach TU9-Korrekturen)
 
-\newif\ifttm
+% Parameter aus Konvertierungsprozess (PDF und HTML-Erzeugung wenn vom Konverter aus gestartet) werden hier eingefuegt, Preambleincludes werden am Schluss angehaengt
+
+\newif\ifttm                % gesetzt falls Uebersetzung in HTML stattfindet, sonst uebersetzung in PDF
+
+% Wahl der Notationsvariante ist im PDF immer std, in der HTML-Uebersetzung wird vom Konverter die Auswahl modifiziert
+\newif\ifvariantstd
+\newif\ifvariantunotation
+\variantstdtrue % Diese Zeile wird vom Konverter erkannt und ggf. modifiziert, daher nicht veraendern!
 
 
 \def\MOutputDVI{1}
 \def\MOutputPDF{2}
 \def\MOutputHTML{3}
 \newcounter{MOutput}
-
 
 \ifttm
 \usepackage{german}
@@ -40,6 +46,8 @@
 \usepackage{longtable}
 \usepackage{maxpage}
 \usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{tikz-3dplot}
 \usepackage{bibgerm}
 \usepackage{chemarrow}
 \usepackage{polynom}
@@ -59,15 +67,6 @@
 \usepackage{ifpdf}
 
 \usepackage{movie15}
-
-\ifttm
-\else
-% \usepackage{pdfanim} % Fuer MATLAB-Modul Info1314
-%     \PDFAnimLoad[width=.8\linewidth,loop,remember]{Informatik_Matlab_Animation}{Info1314_Matlab/Informatik_Matlab_Animation}{100}
-%     \PDFAnimLoad[width=.5\linewidth,loop,remember]{Informatik_Matlab_Aufg_Astroide_Animation}{Info1314_Matlab/Informatik_Matlab_Aufg_Astroide_Animation}{100}
-%\ifpdfoutput{\DeclareGraphicsExtensions{.pdf,.png,.jpg}}{}\fi
-\fi
-
 
 \setcounter{tocdepth}{2} % In Inhaltsverzeichnis bis subsection
 \setcounter{secnumdepth}{3} % Nummeriert bis subsubsection
@@ -323,6 +322,11 @@
 
 \newcommand{\MTestName}{\relax} % wird durch Test-Umgebung gesetzt
 
+% Fuer experimentelle Kursinhalte, die im Release-Umsetzungsvorgang eine Fehlermeldung
+% produzieren sollen aber sonst normal umgesetzt werden
+\newenvironment{MExperimental}{%
+}{%
+}
 
 % Wird von ttm nicht richtig umgesetzt!!
 \newenvironment{MExerciseItems}{%
@@ -383,7 +387,14 @@
 
 % Inhalt wird in der Form a & b \\ c & d erwartet
 % Vorsicht: MVector = Komponentenspalte, MVec = Variablensymbol
+\ifttm%
 \newcommand{\MVector}[1]{\left({\begin{array}{c}#1\end{array}}\right)}
+\else%
+\newcommand{\MVector}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\fi
+
+
+
 \newcommand{\MVec}[1]{\vec{#1}}
 \newcommand{\MDVec}[1]{\overrightarrow{#1}}
 
@@ -540,35 +551,32 @@
 % Bei Uebersetzung nach PDF werden die theorem-Umgebungen verwendet, bei Uebersetzung in HTML ein manuelles Makro
 \ifttm%
 
-  \newenvironment{MHint}[1]{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" id="MHintButton}\arabic{MHintCounter}\special{html:" %
+  \newenvironment{MHint}[1]{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" class="hintbutton_closed" id="MHint}\arabic{MHintCounter}\special{html:_button" %
   type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}#1\special{html:</button>}
   \special{html:<div class="hint" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
 
-  \newenvironment{MCOSHZusatz}{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" id="MHintButton}\arabic{MHintCounter}\special{html:" %
+  \newenvironment{MCOSHZusatz}{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" class="chintbutton_closed" id="MHint}\arabic{MHintCounter}\special{html:_button" %
   type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}Weiterführende Inhalte\special{html:</button>}
-  \special{html:<div class="hintc" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
+  \special{html:<div class="hintc" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:">
+  <div class="coshwarn">Diese Inhalte gehen über das Kursniveau hinaus und werden in den Aufgaben und Tests nicht abgefragt.</div><br />}
+  }{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
 
   
   \newenvironment{MDefinition}{\begin{definition}\setcounter{MLastIndex}{\value{definition}}\ \\}{\end{definition}}
 
   
-  % Darstellung wird dann aus dem CSS genommen
   \newenvironment{MExercise}{
   \renewcommand{\MStdPoints}{4}
   \addtocounter{MExerciseCounter}{1}
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{5}
 
-  \special{html:</div>}%
   \ifnum\value{MExerciseCollectionCounter}=0\else\addtocounter{MExerciseCollectionTextCounter}{1}\special{html:<!-- mexercisetextstart;;}\arabic{MExerciseCollectionTextCounter}\special{html:;; //-->}\fi
   \special{html:<div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
   \textbf{Aufgabe \MGenerateExNumber
   } \ \\}{
   \special{html:</div><!-- mfeedbackbutton;Aufgabe;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->}
   \ifnum\value{MExerciseCollectionCounter}=0\else\special{html:<!-- mexercisetextstop //-->}\fi
-  \begin{html}
-  <div class="text">
-  \end{html}
   }
 
   % Stellt eine Kombination aus Aufgabe, Loesungstext und Eingabefeld bereit,
@@ -579,7 +587,7 @@
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{5}
 
-  \special{html:</div><div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
+  \special{html:<div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
   \textbf{Aufgabe \MGenerateExNumber
   } \ \\%
   \special{html:</div><div class="exfetch_text" id="ADIVTEXT_}\MGenerateExNumber\special{html:">}%
@@ -587,19 +595,13 @@
   \special{html:</div><div class="exfetch_input" id="ADIVINPUT_}\MGenerateExNumber\special{html:">}%
   }{
   \special{html:</div>}
-  \begin{html}
-  <div class="text">
-  \end{html}
   }
 
-  % Imitiert die info-Umgebung aus dem Kasseler xmlbefehle-Package
-  % Darstellung wird dann aus dem CSS genommen
   \newenvironment{MExample}{
   \addtocounter{MExampleCounter}{1}
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{6}
   \begin{html}
-  </div>
   <div class="exmp">
   <div class="exmprahmen">
   \end{html}\textbf{Beispiel
@@ -610,18 +612,15 @@
   \fi
   } \ \\}{\begin{html}</div>
   </div>
-  <div class="text">
   \end{html}
   \special{html:<!-- mfeedbackbutton;Beispiel;}\arabic{MTestSite}\special{html:;}\MGenerateExmpNumber\special{html:; //-->}
   }
-  % Imitiert die info-Umgebung aus dem Kasseler cpxmlbefehle-Package
-  % Darstellung wird dann aus dem CSS genommen
+
   \newenvironment{MExperiment}{
   \addtocounter{MExperimentCounter}{1}
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{7}
   \begin{html}
-  </div>
   <div class="expe">
   <div class="experahmen">
   \end{html}\textbf{Versuch
@@ -633,30 +632,22 @@
   \fi
   } \ \\}{\begin{html}</div>
   </div>
-  <div class="text">
   \end{html}}
 
-  % Imitiert die info-Umgebung aus dem Kasseler xmlbefehle-Package
-  % Darstellung wird dann aus dem CSS genommen, es wird keine Nummer vergeben
   \newenvironment{MChemInfo}{
   \setcounter{MLastType}{4}
   \begin{html}
-  </div>
   <div class="info">
   <div class="inforahmen">
   \end{html}}{\begin{html}</div>
   </div>
-  <div class="text">
   \end{html}}
 
-  % Imitiert die info-Umgebung aus dem Kasseler xmlbefehle-Package
-  % Darstellung wird dann aus dem CSS genommen
   \newenvironment{MXInfo}[1]{
   \addtocounter{MInfoCounter}{1}
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{4}
   \begin{html}
-  </div>
   <div class="info">
   <div class="inforahmen">
   \end{html}\textbf{#1
@@ -670,7 +661,6 @@
   \fi
   } \ \\}{\begin{html}</div>
   </div>
-  <div class="text">
   \end{html}
   \special{html:<!-- mfeedbackbutton;Info;}\arabic{MTestSite}\special{html:;}\MGenerateInfoNumber\special{html:; //-->}
   }
@@ -1200,7 +1190,14 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \def\MSubject#1{\MChapter{#1}} % Schluesselwort HELPSECTION ist reserviert fuer Hilfesektion
 
 \newcommand{\MSectionID}{UNKNOWNID}
+
+\ifttm
+\newcommand{\MSetSectionID}[1]{\renewcommand{\MSectionID}{#1}}
+\else
 \newcommand{\MSetSectionID}[1]{\renewcommand{\MSectionID}{#1}\tikzsetexternalprefix{#1}}
+\fi
+
+
 \newcommand{\MSection}[1]{\MSetSectionID{MODULID}\ifnum\value{MSSEnd}>0{\MSubsectionEndMacros}\addtocounter{MSSEnd}{-1}\fi\MSectionChapter\Dsection{#1}\MSectionStartMacros{#1}\setcounter{MLastIndex}{-1}\setcounter{MLastType}{1}} % Sections werden ueber das section-Feld im mmlabel-Tag identifiziert, nicht ueber das Indexfeld
 
 \def\MSubsection#1{\ifnum\value{MSSEnd}>0{\MSubsectionEndMacros}\addtocounter{MSSEnd}{-1}\fi\ifttm\else\clearpage\fi\Dsubsection{#1}\MSubsectionStartMacros\setcounter{MLastIndex}{-1}\setcounter{MLastType}{2}\addtocounter{MSSEnd}{1}}% Subsections werden ueber das subsection-Feld im mmlabel-Tag identifiziert, nicht ueber das Indexfeld
@@ -1596,7 +1593,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 % Parameter 3: Skalierungsoptionen (wirken nur im HTML), als style-format: "width=???, height=???"
 \ifttm
 \newcommand{\MUGraphicsSolo}[3]{\MRegisterFile{#1}\begin{html}
-<img src="\end{html}\MMaterial/\MLastFile\begin{html}" style="#3" alt="\end{html}\MMaterial/\MLastFile\begin{html}"/>
+<img src="\end{html}\MMaterial/\MLastFile\begin{html}" style="\end{html}#3\begin{html}" alt="\end{html}\MMaterial/\MLastFile\begin{html}"/>
 \end{html}%
 \special{html:<!-- mfeedbackbutton;Abbildung;}#1\special{html:;}\MMaterial/\MLastFile\special{html:; //-->}%
 }
@@ -1792,16 +1789,23 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \else
 \tikzset%
 {
-  % Defines a custom style which generates BOTH, .png and .pdf export
+  % Defines a custom style which generates pdf and converts to (low and hi-res quality) png and svg, then deletes the pdf
+  % Important: DO NOT directly convert from pdf to hires-png or from svg to png with GraphViz convert as it has some problems and memory leaks
   png export/.style=%
   {
-    external/system call/.add={}{; convert -density 300 -scale 37.5\% -transparent
-    white "\image.pdf" "\image.png"; rm "\image.pdf"; rm "\image.log"; rm "\image.dpth"; rm "\image.idx"},
+    external/system call/.add={}{; 
+      pdf2svg "\image.pdf" "\image.svg" ; 
+      convert -density 112.5 -transparent white "\image.pdf" "\image.png"; 
+      inkscape --export-png="\image.4x.png" --export-dpi=450 --export-background-opacity=0 --without-gui "\image.svg"; 
+      rm "\image.pdf"; rm "\image.log"; rm "\image.dpth"; rm "\image.idx"
+    },
     external/force remake,
   }
 }
 \tikzset{png export}
 \tikzsetexternalprefix{}
+% PNGs bei externer Erzeugung in "richtiger" Groesse einbinden
+\pgfkeys{/pgf/images/include external/.code={\includegraphics[scale=0.64]{#1}}}
 \fi
 
 % Spezielle Umgebung fuer Autogenerierung, Bildernamen sind nur innerhalb eines Moduls (einer MSection) eindeutig)
@@ -1813,7 +1817,9 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\MTikzAuto}[1]{%
 \addtocounter{MTIKZAutofilenumber}{1}
 \renewcommand{\MTIKZautofilename}{mtikzauto_\arabic{MTIKZAutofilenumber}}
-\MGraphicsSolo{\MSectionID\MTIKZautofilename.png}{scale=1}
+\MUGraphicsSolo{\MSectionID\MTIKZautofilename.4x.png}{scale=1}{\special{html:<!-- svgstyle;}\MSectionID\MTIKZautofilename\special{html: //-->}} % Styleinfos werden aus original-png, nicht 4x-png geholt!
+\MRegisterFile{\MSectionID\MTIKZautofilename.png}
+\MRegisterFile{\MSectionID\MTIKZautofilename.svg}
 }
 \else%
 % PDF-Version: Falls Autogenerator aktiv wird Datei automatisch benannt und exportiert
@@ -2096,51 +2102,130 @@ Hier erscheint die Testauswertung!
 }
 \fi
 
-% ---------------------------------- Sonderbefehle ---------------------------------------------------
 
-\newcommand{\MZXYZhltrennzeichen}{,}
+% ---------------------------------- Notationsmakros -------------------------------------------------------------
+
+% Notationsmakros die nicht von der Kursvariante abhaengig sind
+
 \newcommand{\MZahltrennzeichen}[1]{\renewcommand{\MZXYZhltrennzeichen}{#1}}
+
 \ifttm
 \newcommand{\MZahl}[3][\MZXYZhltrennzeichen]{\edef\MZXYZtemp{\noexpand\special{html:<mn>#2#1#3</mn>}}\MZXYZtemp}
 \else
 \newcommand{\MZahl}[3][\MZXYZhltrennzeichen]{{}#2{#1}#3}
 \fi
-% Masseinheit, Standardabstand: \,
-\newcommand{\MEinheitenabstXYZnd}{\MThinspace} 
+
 \newcommand{\MEinheitenabstand}[1]{\renewcommand{\MEinheitenabstXYZnd}{#1}}
 \ifttm
 \newcommand{\MEinheit}[2][\MEinheitenabstXYZnd]{{}#1\edef\MEINHtemp{\noexpand\special{html:<mi mathvariant="normal">#2</mi>}}\MEINHtemp} 
 \else
 \newcommand{\MEinheit}[2][\MEinheitenabstXYZnd]{{}#1 \mathrm{#2}} 
 \fi
-% Exponent zur Basis 10 in der Exponentialschreibweise, 
-% Standardmalzeichen: \times
-\newcommand{\MExponentensymbXYZl}{\times} 
+
 \newcommand{\MExponentensymbol}[1]{\renewcommand{\MExponentensymbXYZl}{#1}}
 \newcommand{\MExponent}[2][\MExponentensymbXYZl]{{}#1{} 10^{#2}} 
 
-%Begrenzungszeichen fuer offene Intervalle
-%\newcommand{\MoIl}{\mbox{}]} % bzw. '('
-%\newcommand{\MoIr}{[\mbox{}} % bzw. ')'
-\newcommand{\MoIl}[1][]{\mbox{}#1]} % bzw. '('
-\newcommand{\MoIr}[1][]{#1[\mbox{}} % bzw. ')'
+%Punkte in 2 und 3 Dimensionen
+\newcommand{\MPointTwo}[3][]{#1(#2\MCoordPointSep #3{}#1)}
+\newcommand{\MPointThree}[4][]{#1(#2\MCoordPointSep #3\MCoordPointSep #4{}#1)}
+\newcommand{\MPointTwoAS}[2]{\left(#1\MCoordPointSep #2\right)}
+\newcommand{\MPointThreeAS}[3]{\left(#1\MCoordPointSep #2\MCoordPointSep #3\right)}
 
-%Zahlen-Separation im IntervaLL
-\newcommand{\MIntvlSep}{;} %oder ','
-%Separation von Elementen in Mengen
-\newcommand{\MElSetSep}{;} %oder ','
-\newcommand{\MCondSetSep}{\,:\,} %oder '\mid'
+% Masseinheit, Standardabstand: \,
+\newcommand{\MEinheitenabstXYZnd}{\MThinspace} 
 
-%horizontaler Leerraum zwischen herausgestellter Formel und Interpunktion
+% Horizontaler Leerraum zwischen herausgestellter Formel und Interpunktion
 \ifttm
 \newcommand{\MDFPSpace}{\,}
 \newcommand{\MDFPaSpace}{\,\,}
+\newcommand{\MBlank}{\ }
 \else
 \newcommand{\MDFPSpace}{\;}
 \newcommand{\MDFPaSpace}{\;\;}
+\newcommand{\MBlank}{\ }
 \fi
-%Satzende in herausgestellter Formel mit horizontalem Leerraum
+
+% Satzende in herausgestellter Formel mit horizontalem Leerraum
 \newcommand{\MDFPeriod}{\MDFPSpace .}
+
+% Separation von Aufzaehlung und Bedingung in Menge
+\newcommand{\MCondSetSep}{\,:\,} %oder '\mid'
+
+% Konverter kennt mathopen nicht
+\ifttm
+\def\mathopen#1{}
+\fi
+
+% -----------------------------------START Rouletteaufgaben ------------------------------------------------------------
+
+\ifttm
+% #1 = Dateiname, #2 = eindeutige ID fuer das Roulette im Kurs
+\newcommand{\MDirectRouletteExercises}[2]{
+\begin{MExercise}
+\texttt{Im HTML erscheinen hier Aufgaben aus einer Aufgabenliste...}
+\end{MExercise}
+}
+\else
+\newcommand{\MDirectRouletteExercises}[2]{\relax} % wird durch mconvert.pl gefunden und ersetzt
+\fi
+
+
+% ---------------------------------- START Makros, die von der Kursvariante abhaengen ----------------------------------
+
+\ifvariantunotation
+  % unotation = An Universitaeten uebliche Notation
+  \def\MVariant{unotation}
+
+  % Trennzeichen fuer Dezimalzahlen
+  \newcommand{\MZXYZhltrennzeichen}{.}
+
+  % Exponent zur Basis 10 in der Exponentialschreibweise, 
+  % Standardmalzeichen: \times
+  \newcommand{\MExponentensymbXYZl}{\times} 
+
+  % Begrenzungszeichen fuer offene Intervalle
+  \newcommand{\MoIl}[1][]{\mbox{}#1(\mathopen{}} % bzw. ']'
+  \newcommand{\MoIr}[1][]{#1)\mbox{}} % bzw. '['
+
+  % Zahlen-Separation im IntervaLL
+  \newcommand{\MIntvlSep}{,} %oder ';'
+
+  % Separation von Elementen in Mengen
+  \newcommand{\MElSetSep}{,} %oder ';'
+
+  % Separation von Koordinaten in Punkten
+  \newcommand{\MCoordPointSep}{,} %oder ';' oder '|', '\MThinspace|\MThinspace'
+
+\else
+  % An dieser Stelle wird angenommen, dass std-Variante aktiv ist
+  % std = beschlossene Notation im TU9-Onlinekurs 
+  \def\MVariant{std}
+
+  % Trennzeichen fuer Dezimalzahlen
+  \newcommand{\MZXYZhltrennzeichen}{,}
+
+  % Exponent zur Basis 10 in der Exponentialschreibweise, 
+  % Standardmalzeichen: \times
+  \newcommand{\MExponentensymbXYZl}{\times} 
+
+  % Begrenzungszeichen fuer offene Intervalle
+  \newcommand{\MoIl}[1][]{\mbox{}#1]\mathopen{}} % bzw. '('
+  \newcommand{\MoIr}[1][]{#1[\mbox{}} % bzw. ')'
+
+  % Zahlen-Separation im IntervaLL
+  \newcommand{\MIntvlSep}{;} %oder ','
+  
+  % Separation von Elementen in Mengen
+  \newcommand{\MElSetSep}{;} %oder ','
+
+  % Separation von Koordinaten in Punkten
+  \newcommand{\MCoordPointSep}{;} %oder '|', '\MThinspace|\MThinspace'
+
+\fi
+
+
+
+% ---------------------------------- ENDE Makros, die von der Kursvariante abhaengen ----------------------------------
 
 %
 \ifttm
@@ -2159,6 +2244,12 @@ Hier erscheint die Testauswertung!
 \newenvironment{MDirectHTML}{\begin{html}}{\end{html}}%
 \fi
 
+% Im Gegensatz zu einfachen Mathe-Umgebungen werden MDirectMath-Umgebungen von mconvert.pl am ganzen ttm-Prozess vorbeigeschleust, ueber MathJax realisiert, und im PDF als $$ ... $$ gesetzt
+\ifttm%
+\newenvironment{MDirectMath}{\begin{html}}{\end{html}}%
+\else%
+\newenvironment{MDirectMath}{\begin{equation*}}{\end{equation*}}% Vorsicht, auch \[ und \] werden in amsmath durch equation* redefiniert
+\fi
 
 % ---------------------------------- Location Management ---------------------------------------------
 
@@ -2206,5 +2297,3 @@ Hier erscheint die Testauswertung!
 % #1 = DOM-id der Box
 \ifttm\newcommand{\MConfigbox}[1]{\special{html:<input cfieldtype="2" type="checkbox" name="Name_}#1\special{html:" id="}#1\special{html:" onchange="confHandlerChange('}#1\special{html:');"/>}}\fi % darf im PDF nicht aufgerufen werden!
 
-
-% ----------------------------------- Am Ende werden von mconvert.pl die lokalen Preambeln aus den Modulen angefuegt -------

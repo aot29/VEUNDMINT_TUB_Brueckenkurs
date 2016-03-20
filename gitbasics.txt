@@ -42,7 +42,9 @@ Einfacher Workflow für einen Arbeitsgang:
 WICHTIG: git meckert nicht wenn etwas nicht gepusht wurde, oder wenn etwas nicht registriert und
 dann beim push nicht mitgeschickt wurde. Mit "git status" (auf der Linux-Konsole oder dem SourceTree-Terminal)
 kann man git fragen, welche Dateien gerade nicht registriert sind (engl. untracked).
-Manche Dateien (z.B. die pdf-files oder aux-files in den Modulordnern) möchte man auch garnicht registrieren.
+Manche Dateien (z.B. die pdf-files oder aux-files in den Modulordnern) möchte man auch gar nicht registrieren.
+
+ERGÄNZUNG: "git status" ist eigentlich nicht dafür gedacht Dateien anzuzeigen, die man dauerhaft nicht registrieren möchte. Um die Ausgabe von "git status" möglichst sauber und übersichtlich zu halten ist es empfehlenswert git mitzuteilen solche Dateien dauerhaft zu ignorieren. Dies geschieht am einfachsten durch einen Eintrag in die Datei ve-und-mint/.git/info/exclude. Beispiel: die Zeile module_veundmint/VBKM09/vbkm09.pdf in dieser Datei teilt git mit die PDF-Datei vbkm09.pdf in dem entsprechenden Pfad dauerhaft zu ignorieren. 
 
 
 
@@ -54,7 +56,9 @@ Windows/SourceTree: Gewünschten Branch in Branchliste (Mitte des Fensters) doppe
                     Falls noch nicht lokal vorhanden: "Checkout"-Button -> Neuen Branch
                     -> Im Remote-Aufklapper den gewünschten Branch wählen
                     
-WICHTIG: Arbeit im aktuellen Branch vorher abschließen und pushen, sonst ggf. Datenverlust!
+WICHTIG: Arbeit im aktuellen Branch vorher abschließen und pushen, sonst Datenverlust!
+
+ERGÄNZUNG: Manchmal ist es sinnvoll, den branch ohne Datenverlust wechseln zu können ohne vorher alle Änderungen auf den Server pushen zu müssen. Dafür gibt es den Befehl "git stash". Dieser speichert die momentanen Änderungen zwischen und man kann den branch wechseln ohne, dass die Daten verloren gehen. Nach der Rückkehr in den branch mit den zwischengespeicherten Daten führt man den Befehl "git stash pop" aus und kann die Arbeit an der gleichen Stelle fortsetzen. 
 
 pull / push beziehen sich immer nur auf einen einzigen branch.
 
