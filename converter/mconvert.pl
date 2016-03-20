@@ -4180,7 +4180,7 @@ sub create_tree {
     while ($textex =~ /$rpr/i ) { $rpr = $rpr . "x" };
 
     # ttm uebersetzt $\displaystyle ...$ nicht
-    $textex =~ s/\\displaystyle/\\displaystyle\\special{html:<mstyle displaystyle="true">}/gs ;
+    $textex =~ s/\\displaystyle/\\displaystyle\\ifttm\\special{html:<mstyle displaystyle="true">}\\fi/gs ;
 
     # Nach equation- und eqnarray-starts den Labeltyp anpassen
     my $eqprefix = "\\setcounter{MLastType}{10}\\addtocounter{MLastTypeEq}{1}\\addtocounter{MEquationCounter}{1}\\setcounter{MLastIndex}{\\value{MEquationCounter}}\n";
