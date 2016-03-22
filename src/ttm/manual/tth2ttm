@@ -1,0 +1,4 @@
+#!/bin/sh 
+# Convert documentation from TtH to TtM
+sed -e '/tth[^/@]/ s/tth/ttm/g' tth_manual.tex | sed -e 's/TtH/TtM/g' -e 's/ttmfootnote/tthfootnote/g' >ttm_manual.tex
+

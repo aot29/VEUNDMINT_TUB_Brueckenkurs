@@ -1,0 +1,1007 @@
+From ihutch@mit.edu Mon Jan 24 09:17:01 2011
+Return-path: <ihutch@mit.edu>
+Envelope-to: iml@localhost
+Delivery-date: Mon, 24 Jan 2011 09:17:01 +1100
+Received: from localhost ([127.0.0.1] helo=thunder.home)
+	by thunder.home with esmtp (Exim 4.72)
+	(envelope-from <ihutch@mit.edu>)
+	id 1Ph8F2-0000hP-In
+	for iml@localhost; Mon, 24 Jan 2011 09:17:01 +1100
+Delivered-To: ilmaclain@gmail.com
+Received: from gmail-imap.l.google.com
+	by thunder.home with IMAP (fetchmail-6.3.18)
+	for <iml@localhost> (single-drop); Mon, 24 Jan 2011 09:17:00 +1100 (EST)
+Received: by 10.223.120.204 with SMTP id e12cs151756far; Sun, 23 Jan 2011
+ 06:04:57 -0800 (PST)
+Received: by 10.90.75.18 with SMTP id x18mr3558849aga.5.1295791496958; Sun, 23
+ Jan 2011 06:04:56 -0800 (PST)
+Received: from master.debian.org (master.debian.org [70.103.162.29]) by
+ mx.google.com with ESMTPS id x10si27168622anx.153.2011.01.23.06.04.56
+ (version=TLSv1/SSLv3 cipher=RC4-MD5); Sun, 23 Jan 2011 06:04:56 -0800 (PST)
+Received-SPF: softfail (google.com: domain of transitioning ihutch@mit.edu
+ does not designate 70.103.162.29 as permitted sender)
+ client-ip=70.103.162.29;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of
+ transitioning ihutch@mit.edu does not designate 70.103.162.29 as permitted
+ sender) smtp.mail=ihutch@mit.edu
+Received: from psfcsv1.psfc.mit.edu ([198.125.176.238]) by master.debian.org
+ with esmtps (TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69) (envelope-from
+ <ihutch@mit.edu>) id 1Ph0Yp-0006MP-OM for ilmaclain@gmail.com; Sun, 23 Jan
+ 2011 14:04:56 +0000
+Received: from localhost.localdomain
+ (pool-173-48-209-179.bstnma.fios.verizon.net [173.48.209.179] (may be
+ forged)) (authenticated bits=0) by psfcsv1.psfc.mit.edu (8.13.1/8.13.1) with
+ ESMTP id p0NE4mWq012343 (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA
+ bits=256 verify=NOT) for <iml@debian.org>; Sun, 23 Jan 2011 09:04:48 -0500
+Received: from localhost.localdomain (localhost [127.0.0.1]) by
+ localhost.localdomain (8.14.3/8.14.3/Debian-9.1ubuntu1) with ESMTP id
+ p0NE4lo1028171 for <iml@debian.org>; Sun, 23 Jan 2011 09:04:48 -0500
+Received: from localhost (hutch@localhost) by localhost.localdomain
+ (8.14.3/8.14.3/Submit) with ESMTP id p0NE4lAp028167 for <iml@debian.org>;
+ Sun, 23 Jan 2011 09:04:47 -0500
+X-Authentication-Warning: localhost.localdomain: hutch owned process doing -bs
+Date: Sun, 23 Jan 2011 09:04:47 -0500 (EST)
+From: Ian Hutchinson <ihutch@mit.edu>
+X-X-Sender: hutch@localhost.localdomain
+To: iml@debian.org
+Subject: Re: TtH license.txt
+In-Reply-To: <20110120060153.GA6975@cumulo.mine.nu>
+Message-ID: <alpine.DEB.2.00.1101230859100.27751@localhost.localdomain>
+References: <20110120060153.GA6975@cumulo.mine.nu>
+User-Agent: Alpine 2.00 (DEB 1167 2008-08-23)
+X-GPG-PUBLIC_KEY: http://silas.psfc.mit.edu/hutch.asc
+X-GPG-FINGRPRINT: 66CD 4D6B F9E9 3030 078A  59E9 4EDF AC6F 7BBF 6E61
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+X-Scanned-By: MIMEDefang 2.54 on 198.125.176.238
+Status: RO
+X-Status: A
+Content-Length: 1661
+Lines: 48
+
+Dear Ian,
+
+ 	Last month I decided to open source tth in its entirety. It is now on
+source forge, including the flex source. sourceforge.net/projects/tth/
+
+I propose that the Debian package should now depend upon that sourceforge
+distribution. It contains a free license, which I mildly prefer to the MIT
+license. If there's a strong reason that Debian objects to the license for tth
+on sourceforge, please let me know and I'll consider what to do.
+
+Also, I am abandoning the distinction between tth and tthgold, so no reduced
+functionality package is included now.
+
+ 	Ian Hutchinson
+ 	http://www.psfc.mit.edu/people/hutch/
+
+
+-
+
+> Date: Thu, 20 Jan 2011 17:01:53 +1100
+> From: Ian Maclaine-cross <ianmaclain@gmail.com>
+> Reply-To: iml@debian.org
+> To: Ian Hutchinson <hutch@RLEWEBSERVER.mit.edu>
+> Cc: 533027@bugs.debian.org
+> Subject: TtH license.txt
+> Resent-Date: Sun, 23 Jan 2011 13:45:24 +1100
+> Resent-From: Ian Maclaine-cross <iml@debian.org>
+> Resent-To: Ian Hutchinson <ihutch@mit.edu>
+>
+> Ian Hutchinson
+> Author of TtH
+>
+> Hi,
+>
+> Thank you for writing and making TtH freely available and for replying
+> promptly to my emails over the years. I am still the Debian
+> Organization's maintainer for its package tth.
+>
+> For legal reasons Debian can only make software like TtH available for
+> all supported architectures and operating systems if free software
+> licenses are explicit and detailed. The shortest version of such a
+> license is the "expat" or "MIT" license.
+>
+> In attached file expat.txt I have shown how the "expat" license
+> would look for TtH. Please consider renaming this as license.txt in the
+> next version of tth_C.tgz.
+>
+>
+
+From iml@debian.org Thu Jan 20 17:01:53 2011
+Date: Thu, 20 Jan 2011 17:01:53 +1100
+From: Ian Maclaine-cross <iml@debian.org>
+To: Ian Hutchinson <hutch@sfc.mit.edu>
+Cc: 533027@bugs.debian.org
+Subject: TtH license.txt
+Message-ID: <20110120060153.GA6975@cumulo.mine.nu>
+Reply-To: iml@debian.org
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="C7zPtVaVf+AK4Oqc"
+Content-Disposition: inline
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Status: RO
+Content-Length: 2166
+Lines: 58
+
+
+--C7zPtVaVf+AK4Oqc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Ian Hutchinson
+Author of TtH
+
+Hi,
+
+Thank you for writing and making TtH freely available and for replying
+promptly to my emails over the years. I am still the Debian
+Organization's maintainer for its package tth.
+
+For legal reasons Debian can only make software like TtH available for
+all supported architectures and operating systems if free software
+licenses are explicit and detailed. The shortest version of such a
+license is the "expat" or "MIT" license.
+
+In attached file expat.txt I have shown how the "expat" license
+would look for TtH. Please consider renaming this as license.txt in the
+next version of tth_C.tgz.
+
+--
+Regards,
+Ian Maclaine-cross <iml@debian.org>
+GnuPG key fingerprint = 5F7A 7539 EA0D F4B4 95D3  0D22 A8BB B366 1D1D FB53
+
+
+--C7zPtVaVf+AK4Oqc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="expat.txt"
+
+License for TtH, a TeX to HTML translator
+_________________________________________
+
+tth is copyright (C) 1997-2007 Ian Hutchinson <hutch@psfc.mit.edu>.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+--C7zPtVaVf+AK4Oqc--
+
+From iml@debian.org Tue Jan 25 01:40:26 2011
+Date: Tue, 25 Jan 2011 01:40:27 +1100
+From: Ian Maclaine-cross <iml@debian.org>
+To: Ian Hutchinson <ihutch@mit.edu>
+Subject: Re: TtH license.txt
+Message-ID: <20110124144026.GA12655@cumulo.mine.nu>
+Reply-To: iml@debian.org
+References: <20110120060153.GA6975@cumulo.mine.nu>
+ <alpine.DEB.2.00.1101230859100.27751@localhost.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.00.1101230859100.27751@localhost.localdomain>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Status: RO
+Content-Length: 4334
+Lines: 120
+
+Dear Ian,
+
+Thank you granting access to the TtH and TtM flex source at
+http://sourceforge.net/projects/tth. I downloaded tth4_00.tar.gz and
+followed your instructions in the file tth/README. It does indeed
+compile working tth and ttm executables under Debian. I realize
+you have spent thousands of hours writing and revising these
+very useful programs.
+
+There are a number of problems with your copyright license in the
+file tth/README which would need to fixed before it would fully comply
+with the Debian Free Software Guidelines (DFSG). These are:---
+
+1. Conflicting licenses in other files. My list of files with
+   copyright license information is:
+
+       tth/README
+       tth/manual/ttm_manual.tex
+       tth/manual/tth_manual.tex
+       tth/manual/split/sec14.html
+       tth/manual/split/tth_manual.html
+       tth/ttmC/README
+       tth/ttmL/README
+       tth/TtMdir/readme.ttm
+       tth/tthfunc/tars/tthdynamic/tth_manual.tex
+       tth/tthfunc/tars/tthdynamic/tth_manual.html
+       tth/tthgold/install.bat
+       tth/tthgold/license.txt
+
+   Ideally tth should have one license.txt file and wherever
+   else you have a copyright claim you add the taglines:
+
+   You may use this software only under the terms and conditions in
+   the file license.txt originally included in the source tar file.
+
+   If you have two licenses use different filenames and
+   clearly identify which license applies to each file. Ideally
+   one would have two separate tar if this were the case.
+
+2. The copyright license should be titled "Copyright License"
+   unless in a file on its own.
+
+3. tth/README does not make it clear that the license applies
+   to all software in the tth4_00.tar.gz file. What about ttm?
+
+4. The word "freely" has many meanings. It is not clear which
+   of these meanings applies.
+
+5. The disclaimer in the second paragraph should be more general in
+   who it covers and specific in what it covers against.
+
+6. It has not been found compatible with the GPL which
+   is a DFSG requirement.
+
+7. Debian prefers the GPL version 3 as it extends free software and
+   protects against software patent abuse but accepts many other
+   boilerplate licenses as satisfying the DFSG. It has been tested in
+   law courts of the USA and other countries and found to mean what is
+   claimed.
+
+Boilerplate like the Expat license takes the work out of drafting
+a license which satisfies the DFSG.
+
+On Sun, Jan 23, 2011 at 09:04:47AM -0500, Ian Hutchinson wrote:
+> Dear Ian,
+>
+> 	Last month I decided to open source tth in its entirety. It is now
+> on source forge, including the flex source.
+> sourceforge.net/projects/tth/
+>
+> I propose that the Debian package should now depend upon that
+> sourceforge distribution. It contains a free license, which I mildly
+> prefer to the MIT license. If there's a strong reason that Debian
+> objects to the license for tth on sourceforge, please let me know
+> and I'll consider what to do.
+>
+> Also, I am abandoning the distinction between tth and tthgold, so no
+> reduced functionality package is included now.
+>
+> 	Ian Hutchinson
+> 	http://www.psfc.mit.edu/people/hutch/
+>
+>
+> -
+>
+> >Date: Thu, 20 Jan 2011 17:01:53 +1100
+> >From: Ian Maclaine-cross <ianmaclain@gmail.com>
+> >Reply-To: iml@debian.org
+> >To: Ian Hutchinson <hutch@RLEWEBSERVER.mit.edu>
+> >Cc: 533027@bugs.debian.org
+> >Subject: TtH license.txt
+> >Resent-Date: Sun, 23 Jan 2011 13:45:24 +1100
+> >Resent-From: Ian Maclaine-cross <iml@debian.org>
+> >Resent-To: Ian Hutchinson <ihutch@mit.edu>
+> >
+> >Ian Hutchinson
+> >Author of TtH
+> >
+> >Hi,
+> >
+> >Thank you for writing and making TtH freely available and for replying
+> >promptly to my emails over the years. I am still the Debian
+> >Organization's maintainer for its package tth.
+> >
+> >For legal reasons Debian can only make software like TtH available for
+> >all supported architectures and operating systems if free software
+> >licenses are explicit and detailed. The shortest version of such a
+> >license is the "expat" or "MIT" license.
+> >
+> >In attached file expat.txt I have shown how the "expat" license
+> >would look for TtH. Please consider renaming this as license.txt in the
+> >next version of tth_C.tgz.
+> >
+> >
+
+--
+Regards,
+Ian Maclaine-cross <iml@debian.org>
+GnuPG key fingerprint = 5F7A 7539 EA0D F4B4 95D3  0D22 A8BB B366 1D1D FB53
+
+
+From ihutch@mit.edu Tue Jan 25 08:47:06 2011
+Return-path: <ihutch@mit.edu>
+Envelope-to: iml@localhost
+Delivery-date: Tue, 25 Jan 2011 08:47:06 +1100
+Received: from localhost ([127.0.0.1] helo=thunder.home)
+	by thunder.home with esmtp (Exim 4.72)
+	(envelope-from <ihutch@mit.edu>)
+	id 1PhUFd-0003Q4-45
+	for iml@localhost; Tue, 25 Jan 2011 08:47:06 +1100
+Delivered-To: ilmaclain@gmail.com
+Received: from gmail-imap.l.google.com
+	by thunder.home with IMAP (fetchmail-6.3.18)
+	for <iml@localhost> (single-drop); Tue, 25 Jan 2011 08:47:05 +1100 (EST)
+Received: by 10.204.112.84 with SMTP id v20cs87436bkp; Mon, 24 Jan 2011
+ 08:45:15 -0800 (PST)
+Received: by 10.90.78.12 with SMTP id a12mr5236903agb.38.1295887514415; Mon,
+ 24 Jan 2011 08:45:14 -0800 (PST)
+Received: from master.debian.org (master.debian.org [70.103.162.29]) by
+ mx.google.com with ESMTPS id 8si30513623anr.33.2011.01.24.08.45.13
+ (version=TLSv1/SSLv3 cipher=RC4-MD5); Mon, 24 Jan 2011 08:45:14 -0800 (PST)
+Received-SPF: softfail (google.com: domain of transitioning ihutch@mit.edu
+ does not designate 70.103.162.29 as permitted sender)
+ client-ip=70.103.162.29;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of
+ transitioning ihutch@mit.edu does not designate 70.103.162.29 as permitted
+ sender) smtp.mail=ihutch@mit.edu
+Received: from psfcsv1.psfc.mit.edu ([198.125.176.238]) by master.debian.org
+ with esmtps (TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69) (envelope-from
+ <ihutch@mit.edu>) id 1PhPXV-0004yT-4O for ilmaclain@gmail.com; Mon, 24 Jan
+ 2011 16:45:13 +0000
+Received: from localhost.localdomain (ihhutch.psfc.mit.edu [198.125.176.98])
+ (authenticated bits=0) by psfcsv1.psfc.mit.edu (8.13.1/8.13.1) with ESMTP id
+ p0OGj4oM020588 (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256
+ verify=NOT) for <iml@debian.org>; Mon, 24 Jan 2011 11:45:05 -0500
+Received: from localhost.localdomain (localhost [127.0.0.1]) by
+ localhost.localdomain (8.14.3/8.14.3/Debian-9.1ubuntu1) with ESMTP id
+ p0OGj33W008239 for <iml@debian.org>; Mon, 24 Jan 2011 11:45:04 -0500
+Received: from localhost (hutch@localhost) by localhost.localdomain
+ (8.14.3/8.14.3/Submit) with ESMTP id p0OGj3IU008235 for <iml@debian.org>;
+ Mon, 24 Jan 2011 11:45:03 -0500
+X-Authentication-Warning: localhost.localdomain: hutch owned process doing -bs
+Date: Mon, 24 Jan 2011 11:45:03 -0500 (EST)
+From: Ian Hutchinson <ihutch@mit.edu>
+X-X-Sender: hutch@localhost.localdomain
+To: iml@debian.org
+Subject: Re: TtH license.txt
+In-Reply-To: <20110124144026.GA12655@cumulo.mine.nu>
+Message-ID: <alpine.DEB.2.00.1101241144390.8222@localhost.localdomain>
+References: <20110120060153.GA6975@cumulo.mine.nu>
+ <alpine.DEB.2.00.1101230859100.27751@localhost.localdomain>
+ <20110124144026.GA12655@cumulo.mine.nu>
+User-Agent: Alpine 2.00 (DEB 1167 2008-08-23)
+X-GPG-PUBLIC_KEY: http://silas.psfc.mit.edu/hutch.asc
+X-GPG-FINGRPRINT: 66CD 4D6B F9E9 3030 078A  59E9 4EDF AC6F 7BBF 6E61
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+X-Scanned-By: MIMEDefang 2.54 on 198.125.176.238
+Status: RO
+Content-Length: 4643
+Lines: 130
+
+Ok, I'll look into it, but it may take me a few days to get round to it.
+
+ 	Ian Hutchinson
+ 	http://www.psfc.mit.edu/people/hutch/
+
+
+-
+
+> Date: Tue, 25 Jan 2011 01:40:27 +1100
+> From: Ian Maclaine-cross <ianmaclain@gmail.com>
+> Reply-To: iml@debian.org
+> To: Ian Hutchinson <ihutch@mit.edu>
+> Subject: Re: TtH license.txt
+>
+> Dear Ian,
+>
+> Thank you granting access to the TtH and TtM flex source at
+> http://sourceforge.net/projects/tth. I downloaded tth4_00.tar.gz and
+> followed your instructions in the file tth/README. It does indeed
+> compile working tth and ttm executables under Debian. I realize
+> you have spent thousands of hours writing and revising these
+> very useful programs.
+>
+> There are a number of problems with your copyright license in the
+> file tth/README which would need to fixed before it would fully comply
+> with the Debian Free Software Guidelines (DFSG). These are:---
+>
+> 1. Conflicting licenses in other files. My list of files with
+>   copyright license information is:
+>
+>       tth/README
+>       tth/manual/ttm_manual.tex
+>       tth/manual/tth_manual.tex
+>       tth/manual/split/sec14.html
+>       tth/manual/split/tth_manual.html
+>       tth/ttmC/README
+>       tth/ttmL/README
+>       tth/TtMdir/readme.ttm
+>       tth/tthfunc/tars/tthdynamic/tth_manual.tex
+>       tth/tthfunc/tars/tthdynamic/tth_manual.html
+>       tth/tthgold/install.bat
+>       tth/tthgold/license.txt
+>
+>   Ideally tth should have one license.txt file and wherever
+>   else you have a copyright claim you add the taglines:
+>
+>   You may use this software only under the terms and conditions in
+>   the file license.txt originally included in the source tar file.
+>
+>   If you have two licenses use different filenames and
+>   clearly identify which license applies to each file. Ideally
+>   one would have two separate tar if this were the case.
+>
+> 2. The copyright license should be titled "Copyright License"
+>   unless in a file on its own.
+>
+> 3. tth/README does not make it clear that the license applies
+>   to all software in the tth4_00.tar.gz file. What about ttm?
+>
+> 4. The word "freely" has many meanings. It is not clear which
+>   of these meanings applies.
+>
+> 5. The disclaimer in the second paragraph should be more general in
+>   who it covers and specific in what it covers against.
+>
+> 6. It has not been found compatible with the GPL which
+>   is a DFSG requirement.
+>
+> 7. Debian prefers the GPL version 3 as it extends free software and
+>   protects against software patent abuse but accepts many other
+>   boilerplate licenses as satisfying the DFSG. It has been tested in
+>   law courts of the USA and other countries and found to mean what is
+>   claimed.
+>
+> Boilerplate like the Expat license takes the work out of drafting
+> a license which satisfies the DFSG.
+>
+> On Sun, Jan 23, 2011 at 09:04:47AM -0500, Ian Hutchinson wrote:
+>> Dear Ian,
+>>
+>> 	Last month I decided to open source tth in its entirety. It is now
+>> on source forge, including the flex source.
+>> sourceforge.net/projects/tth/
+>>
+>> I propose that the Debian package should now depend upon that
+>> sourceforge distribution. It contains a free license, which I mildly
+>> prefer to the MIT license. If there's a strong reason that Debian
+>> objects to the license for tth on sourceforge, please let me know
+>> and I'll consider what to do.
+>>
+>> Also, I am abandoning the distinction between tth and tthgold, so no
+>> reduced functionality package is included now.
+>>
+>> 	Ian Hutchinson
+>> 	http://www.psfc.mit.edu/people/hutch/
+>>
+>>
+>> -
+>>
+>>> Date: Thu, 20 Jan 2011 17:01:53 +1100
+>>> From: Ian Maclaine-cross <ianmaclain@gmail.com>
+>>> Reply-To: iml@debian.org
+>>> To: Ian Hutchinson <hutch@RLEWEBSERVER.mit.edu>
+>>> Cc: 533027@bugs.debian.org
+>>> Subject: TtH license.txt
+>>> Resent-Date: Sun, 23 Jan 2011 13:45:24 +1100
+>>> Resent-From: Ian Maclaine-cross <iml@debian.org>
+>>> Resent-To: Ian Hutchinson <ihutch@mit.edu>
+>>>
+>>> Ian Hutchinson
+>>> Author of TtH
+>>>
+>>> Hi,
+>>>
+>>> Thank you for writing and making TtH freely available and for replying
+>>> promptly to my emails over the years. I am still the Debian
+>>> Organization's maintainer for its package tth.
+>>>
+>>> For legal reasons Debian can only make software like TtH available for
+>>> all supported architectures and operating systems if free software
+>>> licenses are explicit and detailed. The shortest version of such a
+>>> license is the "expat" or "MIT" license.
+>>>
+>>> In attached file expat.txt I have shown how the "expat" license
+>>> would look for TtH. Please consider renaming this as license.txt in the
+>>> next version of tth_C.tgz.
+>>>
+>>>
+>
+>
+
+From iml@debian.org Wed Jan 26 18:33:52 2011
+Date: Wed, 26 Jan 2011 18:33:52 +1100
+From: Ian Maclaine-cross <iml@debian.org>
+To: Ian Hutchinson <ihutch@mit.edu>
+Subject: Re: TtH license.txt
+Message-ID: <20110126073352.GA7110@cumulo.mine.nu>
+Reply-To: iml@debian.org
+References: <20110120060153.GA6975@cumulo.mine.nu>
+ <alpine.DEB.2.00.1101230859100.27751@localhost.localdomain>
+ <20110124144026.GA12655@cumulo.mine.nu>
+ <alpine.DEB.2.00.1101242233280.18507@localhost.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.00.1101242233280.18507@localhost.localdomain>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Status: RO
+Content-Length: 1448
+Lines: 43
+
+Dear Ian,
+
+Thank you for making all your TtH and TtM 4.01 software sources
+available under the GNU General Public License version 2
+(GPL-2). Debian considers that this license grants the four freedoms.
+I will propose packages tth and ttm version 4.01 for installation in
+Debian main/. Tth 4.00 is only available for i386. Tth and ttm 4.01
+may initially appear for i386 in the sid distribution. They may be
+modified and autobuilt eventually for all architectures and subsequent
+distributions Debian and others such as Ubuntu and Redhat support.
+
+I was able to download the current draft using:
+
+ $ svn co https://tth.svn.sourceforge.net/svnroot/tth/trunk tth
+
+and I noticed an inconsistent copyright license in file:
+
+ 	 tth/manual/split/tth_manual.html
+
+Please replace this with a GPL-2 license before releasing tth4_01.tar.gz.
+
+On Mon, Jan 24, 2011 at 10:38:11PM -0500, Ian Hutchinson wrote:
+> Hi again,
+>
+> 	I have decided to release tth under the GPL-2. (Not 3)
+> I have modified the svn version on sourceforge (but not the tar, so
+> don't get that) to rationalize the licensing situation. To check it
+> out do
+>
+> svn co https://tth.svn.sourceforge.net/svnroot/tth/trunk tth
+>
+> Please let me know if that satisfies your license needs. Thanks,
+>
+> 	Ian Hutchinson
+> 	http://www.psfc.mit.edu/people/hutch/
+>
+>
+
+--
+Regards,
+Ian Maclaine-cross <iml@debian.org>
+GnuPG key fingerprint = 5F7A 7539 EA0D F4B4 95D3  0D22 A8BB B366 1D1D FB53
+
+
+From ihutch@mit.edu Tue Jan 25 14:40:11 2011
+Return-path: <ihutch@mit.edu>
+Envelope-to: iml@localhost
+Delivery-date: Tue, 25 Jan 2011 14:40:11 +1100
+Received: from localhost ([127.0.0.1] helo=thunder.home)
+	by thunder.home with esmtp (Exim 4.72)
+	(envelope-from <ihutch@mit.edu>)
+	id 1PhZlK-0004Iz-4a
+	for iml@localhost; Tue, 25 Jan 2011 14:40:10 +1100
+Delivered-To: ilmaclain@gmail.com
+Received: from gmail-imap.l.google.com
+	by thunder.home with IMAP (fetchmail-6.3.18)
+	for <iml@localhost> (single-drop); Tue, 25 Jan 2011 14:40:10 +1100 (EST)
+Received: by 10.223.120.204 with SMTP id e12cs60568far; Mon, 24 Jan 2011
+ 19:38:23 -0800 (PST)
+Received: by 10.90.67.10 with SMTP id p10mr6217146aga.35.1295926702418; Mon,
+ 24 Jan 2011 19:38:22 -0800 (PST)
+Received: from master.debian.org (master.debian.org [70.103.162.29]) by
+ mx.google.com with ESMTPS id w40si31836391ana.123.2011.01.24.19.38.21
+ (version=TLSv1/SSLv3 cipher=RC4-MD5); Mon, 24 Jan 2011 19:38:22 -0800 (PST)
+Received-SPF: softfail (google.com: domain of transitioning ihutch@mit.edu
+ does not designate 70.103.162.29 as permitted sender)
+ client-ip=70.103.162.29;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of
+ transitioning ihutch@mit.edu does not designate 70.103.162.29 as permitted
+ sender) smtp.mail=ihutch@mit.edu
+Received: from psfcsv1.psfc.mit.edu ([198.125.176.238]) by master.debian.org
+ with esmtps (TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69) (envelope-from
+ <ihutch@mit.edu>) id 1PhZjZ-0007zi-1V for ilmaclain@gmail.com; Tue, 25 Jan
+ 2011 03:38:21 +0000
+Received: from localhost.localdomain
+ (pool-173-48-209-179.bstnma.fios.verizon.net [173.48.209.179] (may be
+ forged)) (authenticated bits=0) by psfcsv1.psfc.mit.edu (8.13.1/8.13.1) with
+ ESMTP id p0P3cCJJ016905 (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA
+ bits=256 verify=NOT) for <iml@debian.org>; Mon, 24 Jan 2011 22:38:13 -0500
+Received: from localhost.localdomain (localhost [127.0.0.1]) by
+ localhost.localdomain (8.14.3/8.14.3/Debian-9.1ubuntu1) with ESMTP id
+ p0P3cBXY020079 for <iml@debian.org>; Mon, 24 Jan 2011 22:38:12 -0500
+Received: from localhost (hutch@localhost) by localhost.localdomain
+ (8.14.3/8.14.3/Submit) with ESMTP id p0P3cBea020074 for <iml@debian.org>;
+ Mon, 24 Jan 2011 22:38:11 -0500
+X-Authentication-Warning: localhost.localdomain: hutch owned process doing -bs
+Date: Mon, 24 Jan 2011 22:38:11 -0500 (EST)
+From: Ian Hutchinson <ihutch@mit.edu>
+X-X-Sender: hutch@localhost.localdomain
+To: iml@debian.org
+Subject: Re: TtH license.txt
+In-Reply-To: <20110124144026.GA12655@cumulo.mine.nu>
+Message-ID: <alpine.DEB.2.00.1101242233280.18507@localhost.localdomain>
+References: <20110120060153.GA6975@cumulo.mine.nu>
+ <alpine.DEB.2.00.1101230859100.27751@localhost.localdomain>
+ <20110124144026.GA12655@cumulo.mine.nu>
+User-Agent: Alpine 2.00 (DEB 1167 2008-08-23)
+X-GPG-PUBLIC_KEY: http://silas.psfc.mit.edu/hutch.asc
+X-GPG-FINGRPRINT: 66CD 4D6B F9E9 3030 078A  59E9 4EDF AC6F 7BBF 6E61
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+X-Scanned-By: MIMEDefang 2.54 on 198.125.176.238
+Status: RO
+X-Status: A
+Content-Length: 4910
+Lines: 138
+
+Hi again,
+
+ 	I have decided to release tth under the GPL-2. (Not 3)
+I have modified the svn version on sourceforge (but not the tar, so don't get
+that) to rationalize the licensing situation. To check it out do
+
+svn co https://tth.svn.sourceforge.net/svnroot/tth/trunk tth
+
+Please let me know if that satisfies your license needs. Thanks,
+
+ 	Ian Hutchinson
+ 	http://www.psfc.mit.edu/people/hutch/
+
+
+-
+
+> Date: Tue, 25 Jan 2011 01:40:27 +1100
+> From: Ian Maclaine-cross <ianmaclain@gmail.com>
+> Reply-To: iml@debian.org
+> To: Ian Hutchinson <ihutch@mit.edu>
+> Subject: Re: TtH license.txt
+>
+> Dear Ian,
+>
+> Thank you granting access to the TtH and TtM flex source at
+> http://sourceforge.net/projects/tth. I downloaded tth4_00.tar.gz and
+> followed your instructions in the file tth/README. It does indeed
+> compile working tth and ttm executables under Debian. I realize
+> you have spent thousands of hours writing and revising these
+> very useful programs.
+>
+> There are a number of problems with your copyright license in the
+> file tth/README which would need to fixed before it would fully comply
+> with the Debian Free Software Guidelines (DFSG). These are:---
+>
+> 1. Conflicting licenses in other files. My list of files with
+>   copyright license information is:
+>
+>       tth/README
+>       tth/manual/ttm_manual.tex
+>       tth/manual/tth_manual.tex
+>       tth/manual/split/sec14.html
+>       tth/manual/split/tth_manual.html
+>       tth/ttmC/README
+>       tth/ttmL/README
+>       tth/TtMdir/readme.ttm
+>       tth/tthfunc/tars/tthdynamic/tth_manual.tex
+>       tth/tthfunc/tars/tthdynamic/tth_manual.html
+>       tth/tthgold/install.bat
+>       tth/tthgold/license.txt
+>
+>   Ideally tth should have one license.txt file and wherever
+>   else you have a copyright claim you add the taglines:
+>
+>   You may use this software only under the terms and conditions in
+>   the file license.txt originally included in the source tar file.
+>
+>   If you have two licenses use different filenames and
+>   clearly identify which license applies to each file. Ideally
+>   one would have two separate tar if this were the case.
+>
+> 2. The copyright license should be titled "Copyright License"
+>   unless in a file on its own.
+>
+> 3. tth/README does not make it clear that the license applies
+>   to all software in the tth4_00.tar.gz file. What about ttm?
+>
+> 4. The word "freely" has many meanings. It is not clear which
+>   of these meanings applies.
+>
+> 5. The disclaimer in the second paragraph should be more general in
+>   who it covers and specific in what it covers against.
+>
+> 6. It has not been found compatible with the GPL which
+>   is a DFSG requirement.
+>
+> 7. Debian prefers the GPL version 3 as it extends free software and
+>   protects against software patent abuse but accepts many other
+>   boilerplate licenses as satisfying the DFSG. It has been tested in
+>   law courts of the USA and other countries and found to mean what is
+>   claimed.
+>
+> Boilerplate like the Expat license takes the work out of drafting
+> a license which satisfies the DFSG.
+>
+> On Sun, Jan 23, 2011 at 09:04:47AM -0500, Ian Hutchinson wrote:
+>> Dear Ian,
+>>
+>> 	Last month I decided to open source tth in its entirety. It is now
+>> on source forge, including the flex source.
+>> sourceforge.net/projects/tth/
+>>
+>> I propose that the Debian package should now depend upon that
+>> sourceforge distribution. It contains a free license, which I mildly
+>> prefer to the MIT license. If there's a strong reason that Debian
+>> objects to the license for tth on sourceforge, please let me know
+>> and I'll consider what to do.
+>>
+>> Also, I am abandoning the distinction between tth and tthgold, so no
+>> reduced functionality package is included now.
+>>
+>> 	Ian Hutchinson
+>> 	http://www.psfc.mit.edu/people/hutch/
+>>
+>>
+>> -
+>>
+>>> Date: Thu, 20 Jan 2011 17:01:53 +1100
+>>> From: Ian Maclaine-cross <ianmaclain@gmail.com>
+>>> Reply-To: iml@debian.org
+>>> To: Ian Hutchinson <hutch@RLEWEBSERVER.mit.edu>
+>>> Cc: 533027@bugs.debian.org
+>>> Subject: TtH license.txt
+>>> Resent-Date: Sun, 23 Jan 2011 13:45:24 +1100
+>>> Resent-From: Ian Maclaine-cross <iml@debian.org>
+>>> Resent-To: Ian Hutchinson <ihutch@mit.edu>
+>>>
+>>> Ian Hutchinson
+>>> Author of TtH
+>>>
+>>> Hi,
+>>>
+>>> Thank you for writing and making TtH freely available and for replying
+>>> promptly to my emails over the years. I am still the Debian
+>>> Organization's maintainer for its package tth.
+>>>
+>>> For legal reasons Debian can only make software like TtH available for
+>>> all supported architectures and operating systems if free software
+>>> licenses are explicit and detailed. The shortest version of such a
+>>> license is the "expat" or "MIT" license.
+>>>
+>>> In attached file expat.txt I have shown how the "expat" license
+>>> would look for TtH. Please consider renaming this as license.txt in the
+>>> next version of tth_C.tgz.
+>>>
+>>>
+>
+>
+
+From iml@debian.org Thu Jan 27 13:19:49 2011
+Date: Thu, 27 Jan 2011 13:19:49 +1100
+From: Ian Maclaine-cross <iml@debian.org>
+To: Ian Hutchinson <ihutch@mit.edu>
+Subject: Re: TtH license.txt
+Message-ID: <20110127021949.GA10144@cumulo.mine.nu>
+Reply-To: iml@debian.org
+References: <20110120060153.GA6975@cumulo.mine.nu>
+ <alpine.DEB.2.00.1101230859100.27751@localhost.localdomain>
+ <20110124144026.GA12655@cumulo.mine.nu>
+ <alpine.DEB.2.00.1101242233280.18507@localhost.localdomain>
+ <20110126073352.GA7110@cumulo.mine.nu>
+ <alpine.DEB.2.00.1101260856550.4566@localhost.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.00.1101260856550.4566@localhost.localdomain>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Status: RO
+Content-Length: 2516
+Lines: 80
+
+Dear Ian,
+ I have downloaded tth 4.01 using:
+
+ $ svn co https://tth.svn.sourceforge.net/svnroot/tth/trunk tth
+
+and have made tth_4.01.orig.tar.gz on 27th February 2011 at 11.40 am
+AEDT using:
+
+ $ tar -cvzf tth_4.01.orig.tar.gz --exclude-vcs tth
+
+and will commence the Debian packaging process based on
+the file tth_4.01.orig.tar.gz created as you suggest.
+
+On Wed, Jan 26, 2011 at 09:01:22AM -0500, Ian Hutchinson wrote:
+> Dear Ian,
+>
+> Thanks for pointing out that spurious file. It's svn deleted now.
+> Thanks for your help in rationalizing the license situation. Work
+> from the svn repository version. It may take a while before I
+> get the tar finalized on sourceforge.
+>
+> Regards,
+>
+> 	Ian Hutchinson
+> 	http://www.psfc.mit.edu/people/hutch/
+>
+>
+> -
+>
+> >Date: Wed, 26 Jan 2011 18:33:52 +1100
+> >From: Ian Maclaine-cross <ianmaclain@gmail.com>
+> >Reply-To: iml@debian.org
+> >To: Ian Hutchinson <ihutch@mit.edu>
+> >Subject: Re: TtH license.txt
+> >
+> >Dear Ian,
+> >
+> >Thank you for making all your TtH and TtM 4.01 software sources
+> >available under the GNU General Public License version 2
+> >(GPL-2). Debian considers that this license grants the four freedoms.
+> >I will propose packages tth and ttm version 4.01 for installation in
+> >Debian main/. Tth 4.00 is only available for i386. Tth and ttm 4.01
+> >may initially appear for i386 in the sid distribution. They may be
+> >modified and autobuilt eventually for all architectures and subsequent
+> >distributions Debian and others such as Ubuntu and Redhat support.
+> >
+> >I was able to download the current draft using:
+> >
+> >$ svn co https://tth.svn.sourceforge.net/svnroot/tth/trunk tth
+> >
+> >and I noticed an inconsistent copyright license in file:
+> >
+> >	 tth/manual/split/tth_manual.html
+> >
+> >Please replace this with a GPL-2 license before releasing tth4_01.tar.gz.
+> >
+> >On Mon, Jan 24, 2011 at 10:38:11PM -0500, Ian Hutchinson wrote:
+> >>Hi again,
+> >>
+> >>	I have decided to release tth under the GPL-2. (Not 3)
+> >>I have modified the svn version on sourceforge (but not the tar, so
+> >>don't get that) to rationalize the licensing situation. To check it
+> >>out do
+> >>
+> >>svn co https://tth.svn.sourceforge.net/svnroot/tth/trunk tth
+> >>
+> >>Please let me know if that satisfies your license needs. Thanks,
+> >>
+> >>	Ian Hutchinson
+> >>	http://www.psfc.mit.edu/people/hutch/
+> >>
+> >>
+> >
+> >
+
+--
+Regards,
+Ian Maclaine-cross <iml@debian.org>
+GnuPG key fingerprint = 5F7A 7539 EA0D F4B4 95D3  0D22 A8BB B366 1D1D FB53
+
+
+From ihutch@mit.edu Thu Jan 27 09:33:50 2011
+Return-path: <ihutch@mit.edu>
+Envelope-to: iml@localhost
+Delivery-date: Thu, 27 Jan 2011 09:33:50 +1100
+Received: from localhost ([127.0.0.1] helo=thunder.home)
+	by thunder.home with esmtp (Exim 4.72)
+	(envelope-from <ihutch@mit.edu>)
+	id 1PiDvx-0002XW-2M
+	for iml@localhost; Thu, 27 Jan 2011 09:33:50 +1100
+Delivered-To: ilmaclain@gmail.com
+Received: from gmail-imap.l.google.com
+	by thunder.home with IMAP (fetchmail-6.3.18)
+	for <iml@localhost> (single-drop); Thu, 27 Jan 2011 09:33:49 +1100 (EST)
+Received: by 10.223.120.204 with SMTP id e12cs75475far; Wed, 26 Jan 2011
+ 06:01:33 -0800 (PST)
+Received: by 10.236.108.129 with SMTP id q1mr2640474yhg.49.1296050491915; Wed,
+ 26 Jan 2011 06:01:31 -0800 (PST)
+Received: from master.debian.org (master.debian.org [70.103.162.29]) by
+ mx.google.com with ESMTPS id 14si4305396yhl.145.2011.01.26.06.01.31
+ (version=TLSv1/SSLv3 cipher=RC4-MD5); Wed, 26 Jan 2011 06:01:31 -0800 (PST)
+Received-SPF: softfail (google.com: domain of transitioning ihutch@mit.edu
+ does not designate 70.103.162.29 as permitted sender)
+ client-ip=70.103.162.29;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of
+ transitioning ihutch@mit.edu does not designate 70.103.162.29 as permitted
+ sender) smtp.mail=ihutch@mit.edu
+Received: from psfcsv1.psfc.mit.edu ([198.125.176.238]) by master.debian.org
+ with esmtps (TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69) (envelope-from
+ <ihutch@mit.edu>) id 1Pi5wA-0007Kp-8y for ilmaclain@gmail.com; Wed, 26 Jan
+ 2011 14:01:30 +0000
+Received: from localhost.localdomain (ihhutch.psfc.mit.edu [198.125.176.98])
+ (authenticated bits=0) by psfcsv1.psfc.mit.edu (8.13.1/8.13.1) with ESMTP id
+ p0QE1NKT010285 (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256
+ verify=NOT) for <iml@debian.org>; Wed, 26 Jan 2011 09:01:23 -0500
+Received: from localhost.localdomain (localhost [127.0.0.1]) by
+ localhost.localdomain (8.14.3/8.14.3/Debian-9.1ubuntu1) with ESMTP id
+ p0QE1MB7004620 for <iml@debian.org>; Wed, 26 Jan 2011 09:01:23 -0500
+Received: from localhost (hutch@localhost) by localhost.localdomain
+ (8.14.3/8.14.3/Submit) with ESMTP id p0QE1MwT004616 for <iml@debian.org>;
+ Wed, 26 Jan 2011 09:01:22 -0500
+X-Authentication-Warning: localhost.localdomain: hutch owned process doing -bs
+Date: Wed, 26 Jan 2011 09:01:22 -0500 (EST)
+From: Ian Hutchinson <ihutch@mit.edu>
+X-X-Sender: hutch@localhost.localdomain
+To: iml@debian.org
+Subject: Re: TtH license.txt
+In-Reply-To: <20110126073352.GA7110@cumulo.mine.nu>
+Message-ID: <alpine.DEB.2.00.1101260856550.4566@localhost.localdomain>
+References: <20110120060153.GA6975@cumulo.mine.nu>
+ <alpine.DEB.2.00.1101230859100.27751@localhost.localdomain>
+ <20110124144026.GA12655@cumulo.mine.nu>
+ <alpine.DEB.2.00.1101242233280.18507@localhost.localdomain>
+ <20110126073352.GA7110@cumulo.mine.nu>
+User-Agent: Alpine 2.00 (DEB 1167 2008-08-23)
+X-GPG-PUBLIC_KEY: http://silas.psfc.mit.edu/hutch.asc
+X-GPG-FINGRPRINT: 66CD 4D6B F9E9 3030 078A  59E9 4EDF AC6F 7BBF 6E61
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII; format=flowed
+X-Scanned-By: MIMEDefang 2.54 on 198.125.176.238
+Status: RO
+X-Status: A
+Content-Length: 1874
+Lines: 60
+
+Dear Ian,
+
+Thanks for pointing out that spurious file. It's svn deleted now.
+Thanks for your help in rationalizing the license situation.
+Work from the svn repository version. It may take a while before I
+get the tar finalized on sourceforge.
+
+Regards,
+
+ 	Ian Hutchinson
+ 	http://www.psfc.mit.edu/people/hutch/
+
+
+-
+
+> Date: Wed, 26 Jan 2011 18:33:52 +1100
+> From: Ian Maclaine-cross <ianmaclain@gmail.com>
+> Reply-To: iml@debian.org
+> To: Ian Hutchinson <ihutch@mit.edu>
+> Subject: Re: TtH license.txt
+>
+> Dear Ian,
+>
+> Thank you for making all your TtH and TtM 4.01 software sources
+> available under the GNU General Public License version 2
+> (GPL-2). Debian considers that this license grants the four freedoms.
+> I will propose packages tth and ttm version 4.01 for installation in
+> Debian main/. Tth 4.00 is only available for i386. Tth and ttm 4.01
+> may initially appear for i386 in the sid distribution. They may be
+> modified and autobuilt eventually for all architectures and subsequent
+> distributions Debian and others such as Ubuntu and Redhat support.
+>
+> I was able to download the current draft using:
+>
+> $ svn co https://tth.svn.sourceforge.net/svnroot/tth/trunk tth
+>
+> and I noticed an inconsistent copyright license in file:
+>
+> 	 tth/manual/split/tth_manual.html
+>
+> Please replace this with a GPL-2 license before releasing tth4_01.tar.gz.
+>
+> On Mon, Jan 24, 2011 at 10:38:11PM -0500, Ian Hutchinson wrote:
+>> Hi again,
+>>
+>> 	I have decided to release tth under the GPL-2. (Not 3)
+>> I have modified the svn version on sourceforge (but not the tar, so
+>> don't get that) to rationalize the licensing situation. To check it
+>> out do
+>>
+>> svn co https://tth.svn.sourceforge.net/svnroot/tth/trunk tth
+>>
+>> Please let me know if that satisfies your license needs. Thanks,
+>>
+>> 	Ian Hutchinson
+>> 	http://www.psfc.mit.edu/people/hutch/
+>>
+>>
+>

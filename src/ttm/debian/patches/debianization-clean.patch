@@ -1,0 +1,15 @@
+debianization: clean part
+--- a/makefile
++++ b/makefile
+@@ -157,9 +157,9 @@
+ 	rm -f tthrfcat tthgold_manual.*
+ 	rm -f tth.lex ttm.lex
+ 	make -C manual clean
+-	make -C tth-gui clean
++#	make -C tth-gui clean
+ 	make -C tools clean
+-	make -C tthfunc clean
++#	make -C tthfunc clean
+ 
+ version : tthg.lex
+ 	sed -n -e "/define TTH_VERSION/p" tthg.lex | sed -e 's/#define TTH_VERSION "//' -e 's/"//' > version

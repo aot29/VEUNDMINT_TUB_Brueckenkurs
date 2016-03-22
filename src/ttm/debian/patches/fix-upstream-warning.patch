@@ -1,0 +1,63 @@
+fixes to quiet warnings that must be submitted to the upstream maintainer
+--- a/tools/tthsplit.c
++++ b/tools/tthsplit.c
+@@ -7,11 +7,11 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
+-main(argc,argv)
++int main(argc,argv)
+ int argc;
+ char *argv[];
+ {
+-int slen;
++/* int slen; */
+ char *ch,*ch2;
+ char bound[LINELEN]={0};
+ char buff[LINELEN]={0};
+@@ -55,6 +55,7 @@
+   } else fputs(buff,file);
+ }
+ fclose(file);
++return EXIT_SUCCESS;
+ }
+ 
+ 
+--- a/tthgold/tthrfcat.c
++++ b/tthgold/tthrfcat.c
+@@ -11,10 +11,11 @@
+ #endif
+ 
+ #define LINELEN 256
++#include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
+ #define TEMPFILE "refs.temp"
+-main(argc,argv)
++int main(argc,argv)
+ int argc;
+ char *argv[];
+ {
+@@ -49,12 +50,13 @@
+      } while (ch2!=NULL && ch == NULL); /* in header lines down to </title> */
+ 
+      while(fgets(buff,LINELEN,reffile) != NULL){
+-       if(!strstr(buff,"</head>") && !strstr(buff,"<body>") || !ifile) 
++       if((!strstr(buff,"</head>") && !strstr(buff,"<body>")) || !ifile) {
+ 	 if(strstr(buff,"</html>") || strstr(buff,"</body>") ){
+ 	   break; /*from while*/
+ 	 }else{
+ 	   fputs(buff,tempfile);
+ 	 }
++	 }
+      }
+      fclose(reffile);
+      if(ifile) {
+@@ -80,6 +82,7 @@
+    sprintf(bound,"%s %s",RMCMD,TEMPFILE);
+    system(bound);
+  }
++return EXIT_SUCCESS;
+ }
+ 
+ 

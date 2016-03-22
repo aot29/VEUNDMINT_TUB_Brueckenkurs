@@ -1,0 +1,95 @@
+debianization
+--- a/tools/makefile
++++ b/tools/makefile
+@@ -7,7 +7,7 @@
+ 	mingw -o choice.exe choice.c
+ 
+ tthsplit : tthsplit.c
+-	gcc -o tthsplit tthsplit.c
++	gcc $(LDFLAGS) $(CFLAGS) $(CPPFLAGS) -Wall -o tthsplit tthsplit.c
+ 
+ tthsplit.exe : tthsplit.c
+ 	mingw -o tthsplit.exe tthsplit.c
+--- a/makefile
++++ b/makefile
+@@ -1,8 +1,30 @@
+ MINGW=mingw
+-GCC=gcc -O
+ TARS= tars/tthgoldC.tgz tars/tthgoldL.tar.gz  tars/ttmC.tar.gz\
+  tars/ttmL.tar.gz  tars/tthgoldW.exe tars/ttmW.exe
+ 
++##CFLAGS += -O0
++
++dh_auto_build_default: tth ttm dh_auto_build_tthsplit dh_auto_build_tthrfcat dh_auto_build_manual dh_auto_build_gold_manual
++
++dh_auto_build_tthsplit:
++	make -C tools tthsplit
++
++dh_auto_build_tthrfcat: tthgold/tthrfcat.c
++	gcc $(LDFLAGS) $(CFLAGS) $(CPPFLAGS) -Wall -o tthrfcat $<
++
++dh_auto_build_manual: tth dh_auto_build_tthsplit
++	make -C manual
++
++dh_auto_build_gold_manual: tthgold_manual.tex tth
++	latex -no-shell-escape -interaction=batchmode $<
++	./tth -a $<
++
++tthgold_manual.tex: tthgold/gold_man.tex
++	sed \
++			-e 's#usr\/local\/tth#usr\/share\/tth#g' \
++			-e 's#tth\/swedish.bab#tth\/babel\/swedish.bab#g' \
++		< $< > $@
++
+ unopt : tth.c
+ 	gcc -o tth -Wall tth.c
+ 	sleep 1s
+@@ -33,13 +55,13 @@
+ 	flex -ottm.c ttm.lex
+ 
+ ttm : ttm.c
+-	gcc -o ttm -Wall ttm.c
++	gcc $(LDFLAGS) $(CFLAGS) $(CPPFLAGS) -Wall -o ttm ttm.c
+ 
+ tth.c : tth.lex
+ 	flex -otth.c tth.lex
+ 
+ tth : tth.c
+-	$(GCC) -o tth -Wall tth.c
++	gcc $(LDFLAGS) $(CFLAGS) $(CPPFLAGS) -Wall -o tth tth.c
+ 
+ # The tars are individual packages. Win32, Linux, C.
+ 
+@@ -132,6 +154,7 @@
+ 	rm -f opt unopt
+ 	rm -f tars/*.gz tars/*.zip tars/*.tgz tars/*.exe
+ 	rm -f tth tth tth.exe ttm ttm.exe 
++	rm -f tthrfcat tthgold_manual.*
+ 	rm -f tth.lex ttm.lex
+ 	make -C manual clean
+ 	make -C tth-gui clean
+@@ -142,4 +165,4 @@
+ 	sed -n -e "/define TTH_VERSION/p" tthg.lex | sed -e 's/#define TTH_VERSION "//' -e 's/"//' > version
+ 
+ tarball : clean version
+-	@cd ..; tar --exclude-vcs --exclude=*.tar.gz -czf tth/tth`cat tth/version`.tar.gz tth; echo Made distribution tar ball.
+\ No newline at end of file
++	@cd ..; tar --exclude-vcs --exclude=*.tar.gz -czf tth/tth`cat tth/version`.tar.gz tth; echo Made distribution tar ball.
+--- a/manual/makefile
++++ b/manual/makefile
+@@ -26,4 +26,5 @@
+ 
+ clean :
+ 	make -C split clean
++	rm -f ttm_manual.tex
+ 	rm -f *.log *.tlg *.idx *.ilg *.html *.toc *.out *.dvi *.lyx *.tms *.tid *.tin *.ind *.aux
+--- a/tthgold/README.txt
++++ b/tthgold/README.txt
+@@ -1,4 +1,4 @@
+-Unzip or untar the distribution. It should make its own directory.
+-For Wind@ws run the install.bat file by the command "install".
+-Read the file gold_man.html or gold_man.tex for further instructions.
++Unzip or untar the distribution. It should make its own directory.
++For Wind@ws run the install.bat file by the command "install".
++Read the file tthgold_manual.html or tthgold_manual.tex for further instructions.
+ 

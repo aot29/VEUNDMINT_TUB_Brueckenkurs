@@ -1,0 +1,53 @@
+% Some amsppt formating macros simplified for TtH
+% Those with names the same as Plain TeX macros will work ONLY if
+% they are used without a following ``{''. Otherwise they are interpreted 
+% as in Plain.
+% (c) 1998 Ian Hutchinson.
+\def\title#1\endtitle{\title{#1}}
+\def\author#1\endauthor{\author{#1}}
+\def\address#1\endaddress{\address{#1}}
+\def\date#1\enddate{\date{#1}}
+\def\thanks#1\endthanks{\\thanks{#1}}
+\def\abstract{\begin{abstract}}
+\def\endabstract{\end{abstract}}
+\def\email#1\endemail{\href{mailto:#1}{#1}}
+\def\head#1\endhead{\section*{#1}}
+\def\subhead#1\endsubhead{\subsection*{#1}}
+\def\subsubhead#1\endsubsubhead{\subsubsection*{#1}}
+\def\block{\begin{quote}}
+\def\endblock{\end{quote}}
+\def\roster{\begin{description}}
+\def\endroster{\end{description}}
+\def\proclaim#1{{\bf #1}\begingroup}
+\def\endproclaim{\endgroup\par}
+\def\matrix{\begin{array}{dummy}}
+\def\endmatrix{\end{array}}
+\def\pmatrix{\left(\begin{array}{dummy}}
+\def\endpmatrix{\end{array}\right)}
+\def\bmatrix{\left[\begin{array}{dummy}}
+\def\endbmatrix{\end{array}\right]}
+\def\vmatrix{\left|\begin{array}{dummy}}
+\def\endvmatrix{\end{array}\right|}
+\def\Vmatrix{\left|\begin{array}{dummy}}
+\def\endVmatrix{\end{array}\right|}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
