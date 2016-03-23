@@ -1,0 +1,68 @@
+% Some AMSLATEX macros simplified for TtH. 
+\def\latex#1{\LaTeX}
+\def\amslatex#1{AMSLaTeX}
+\def\amstex#1{AMSTeX}
+\def\tex#1{\TeX}
+\def\AmS{AMS}
+\def\fn#1{{\sffamily #1}}
+\def\cn#1{{\verb!\!\verb!#1!}} %Problem interpreting \\.
+
+\def\ncn#1{{\verb!\!\verb!#1!}} %Caused Amsldoc to crash quietly.
+\def\env#1{{\bf #1}}
+\def\pkg#1{{\tt #1}}
+\def\cls#1{{\tt #1}}
+\def\opt#1{{\tt #1}}
+\def\eqref#1{(\ref{#1})}
+\newcommand{\tthdummy}[1][]{} % Remove an optional argument.
+\def\qc#1{{\tt #1}}
+\def\numberwithin#1#2{\@addtoreset{#1}{#2}}
+
+\def\text#1{\mbox{#1}}
+\def\dfrac#1#2{{#1\over #2}}% Ignore the size control.
+\def\tfrac#1#2{{#1\over #2}}
+\def\cfrac#1#2{{#1\over #2}}
+\def\binom#1#2{{#1\choose #2}}
+\def\boldsymbol#1{{\bf #1}}
+\def\pmb#1{{\bf #1}}
+\def\iint{\int\int}% Not very satisfactory. Too spread out..
+\def\iiint{\int\int\int}
+\def\iiiint{\int\int\int\int}
+\def\overset#1#2{\mathop{#2}^{#1}}
+\def\underset#1#2{\mathop{#2}_{#1}}
+\def\intertext#1{\noalign{#1}}
+\def\lvert{\vert}
+\def\rvert{\vert}
+\def\lVert{\Vert}
+\def\rVert{\Vert}
+\newcommand{\hdotsfor}[2][]{\multicolumn{#2}{}{\dots}}
+
+
+\newenvironment{ctab}[1]{\begin{center}\begin{tabular}{#1}}{\end{tabular}\end{center}}
+
+\newenvironment{multline}{\begin{equation}\begin{array}{c}}{\end{array}\end{equation}}
+\newenvironment{flalign}{\begin{eqnarray}}{\end{eqnarray}}
+\newenvironment{align}{\begin{eqnarray}}{\end{eqnarray}}
+\newenvironment{gather}{\begin{eqnarray}}{\end{eqnarray}}
+\newenvironment{alignat}[1]{\begin{eqnarray}}{\end{eqnarray}}
+\newenvironment{xalignat}[1]{\begin{eqnarray}}{\end{eqnarray}}
+\newenvironment{xxalignat}[1]{\begin{eqnarray}}{\end{eqnarray}}
+
+\newenvironment{multline*}{\begin{equation*}\begin{array}{c}}{\end{array}\end{equation*}}
+\newenvironment{flalign*}{\begin{eqnarray*}}{\end{eqnarray*}}
+\newenvironment{align*}{\begin{eqnarray*}}{\end{eqnarray*}}
+\newenvironment{gather*}{\begin{eqnarray*}}{\end{eqnarray*}}
+\newenvironment{alignat*}[1]{\begin{eqnarray*}}{\end{eqnarray*}}
+\newenvironment{xalignat*}[1]{\begin{eqnarray*}}{\end{eqnarray*}}
+\newenvironment{xxalignat*}[1]{\begin{eqnarray*}}{\end{eqnarray*}}
+\newenvironment{matrix}{\begin{array}{c}}{\end{array}}
+\newenvironment{pmatrix}{\left(\begin{array}{c}}{\end{array}\right)}
+\newenvironment{bmatrix}{\left[\begin{array}{c}}{\end{array}\right]}
+\newenvironment{vmatrix}{\left|\begin{array}{c}}{\end{array}\right|}
+\newenvironment{Vmatrix}{\left|\left|\begin{array}{c}}{\end{array}\right|\right|}
+\newenvironment{aligned}{\begin{array}{c}\tthdummy}{\end{array}}
+\newenvironment{gathered}{\begin{array}{c}\tthdummy}{\end{array}}
+\newenvironment{split}{\begin{array}{rl}}{\end{array}}
+\newenvironment{cases}{\left\{\begin{array}{ll}}{\end{array}\right.}
+\newenvironment{smallmatrix}{\begin{array}{c}}{\end{array}}
+%\def\shoveright{}
+%\def\shoveleft{}

@@ -1,0 +1,18 @@
+fix that must be submitted to the upstrema maintaine
+--- a/manual/split/makefile
++++ b/manual/split/makefile
+@@ -5,10 +5,11 @@
+ #TTH=../tth
+ 
+ index.html : ../tth_manual.tex
+-	$(TTH) -s -e2 <../tth_manual.tex -L../tth_manual -p../ | ../../tools/tthsplit
++	$(LATEX) ../tth_manual.tex
++	$(TTH) -s -e2 <../tth_manual.tex -L./tth_manual | ../../tools/tthsplit
+ 
+ tidy :
+ 	rm -f *.log *.idx *.ilg *.toc *.out *.dvi *.lyx *.tms *.tid *.tin *.ind
+ 
+ clean :
+-	rm -f *.log *.idx *.ilg *.html *.toc *.out *.dvi *.lyx *.tms *.tid *.tin *.ind *.aux
+\ No newline at end of file
++	rm -f *.log *.idx *.ilg *.html *.toc *.out *.dvi *.lyx *.tms *.tid *.tin *.ind *.aux

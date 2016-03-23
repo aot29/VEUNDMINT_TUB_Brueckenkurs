@@ -16,8 +16,9 @@ Hauptzweige:
 
 Entwicklungszweige:
  - develop_software           [Arbeitsversion der Technik, hier werden Erweiterungen programmiert und Programmfehler korrigiert]
+ - develop_python             [Arbeitsversion für Python-Version des Konverters, wird momentan von Stefan Born und Hans Adler bearbeitet (TU Berlin)]
  - develop_content            [Arbeitsversion der Inhalte, hier werden inhaltliche Änderungen in die TeX-Dateien eingepflegt]
-
+ 
 Abspaltungen:
  - VMBeta                     [Alte Beta-Version des Onlinekurses]
  - MatheV4_2015vak            [Der Online-Mathevorkurs V4 für WiIng und TVWL am KIT verwendet gleiche Technik, aber andere Inhalte]

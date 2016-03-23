@@ -1,0 +1,380 @@
+\documentclass[12pt]{article}
+
+\def\href#1#2{#2}
+\def\tth{T$_{\rm T}$H}
+%%tth: \def\tth{T$_T$H}
+\begin{document}
+
+\title{TtHgold Special Features}
+\special{html:<center><img src="tth.gif" alt="TtH icon"></center>}
+\author{}\date{}
+\maketitle
+\tableofcontents
+
+\begin{abstract}
+Use of the additional features included in \tth{}gold is described.
+\end{abstract}
+
+\section{Installation}
+
+\begin{enumerate}
+
+\item
+Unpack the distribution for Windows by the command 
+\begin{verbatim}
+tthgoldW.exe
+\end{verbatim}
+which uses the self-unzipping capability of the distributed file
+or use some other archive unzipper such as ``winzip''.
+
+or for the C distribution
+\begin{verbatim}
+tar xzvf tthgoldC.tgz
+\end{verbatim}
+
+or for Linux
+\begin{verbatim}
+tar xzvf tthgoldL.tar.gz
+\end{verbatim}
+
+depending on the distribution you obtained.
+
+\item For the Windows executable distribution (tthgoldW.exe) you
+may install simply by executing the install.bat file by the command
+\begin{verbatim}
+install 
+\end{verbatim}
+(in your unzipped directory) or double-clicking on the install
+program. This will put the tth graphical user interface, tth-gui, on
+your desktop.
+
+\item If you are using the C
+distribution (for systems other than Linux or DOS/Windows), then
+assuming your compiler is called \verb!cc!, compile the code, for
+example by the commands:
+\begin{verbatim}
+cc -o tth tth.c
+cc -o tthsplit tthsplit.c
+\end{verbatim}
+
+\item For the C distribution, copy the executable \verb!tth! or (under
+Windows etc) \verb!tth.exe! to a directory that is on your path,
+e.g. /usr/local/bin. Copy to the same place the additional executable
+\verb!tthsplit!. Your installation is complete!
+
+\end{enumerate}
+
+
+\section{Features}
+
+\subsection{Additional Capabilities}
+\tth{}gold possesses all the capabilities of the standard \tth. For
+details of these standard features, see the
+\href{/tth/manual.cgi}{\tth\ manual}. The additional capabilities of
+\tth{}gold lie primarily in its ability to produce from \LaTeX\ source
+a set of correctly cross-hyperlinked HTML files: one file for each
+section for the ``article'' style (or any style that does not have
+chapters) or one for each chapter for ``book'' (or other relevant)
+style. Splitting the output to lower levels of sectioning is not
+recommended or supported.
+
+An alternate rendering of equations is available by using the
+\verb!-y! switch. This tells \tth{}gold to use cascading style sheets
+(CSS1) to compress the height of fractions and other built-up concepts
+in equations. The resulting HTML has improved, more compact, vertical
+layout rivalling any existing mathmatics screen renderer for aesthetic
+quality.
+
+\subsection{Windows Graphical User Interface}
+The tth-gui enables translation to be done by simply dragging a TeX
+file and dropping it on the tth icon. When that is done, a window pops
+up, offering optional buttons for fine tuning the output. Hit the
+button ``run'' to do the translation, and ``quit'' when you are
+satisfied.  The executable may also be run from the command line by
+giving the command \verb!tth [switches] filename! and the graphical
+user interface by be run with the command \verb!tth-gui!. However, the
+tth-gui is better at managing long file names than the command line
+executable under the most common Windows operating system versions.
+
+
+\section{Producing output split into different files.}
+
+\subsection{Overview}
+
+Because the \tth\ program itself always produces just one output file,
+the division of the output into different files takes place in two
+steps. First, \tth\ is run on the \LaTeX\ file with the switch
+\verb!-s! (for ``split''). This switch tells \tth\ to produce output
+that is in {\bf multipart MIME} format. Incidentally, this format is
+used for sending multipart mail messages with attachments over the
+internet. For present purposes it is simply a convenient standard for
+\tth\ to use to show how to split the output and what the names of the
+final files should be. If we wanted to keep this MIME file, then for
+example the command
+\begin{verbatim}
+tth -s -Ltexdocument <texdocument.tex >mimedocument.html
+\end{verbatim}
+
+\noindent would produce such a file called \verb!mimedocument.html! from a
+\LaTeX\ file called \verb!texdocument.tex!. The switch \verb!-L!
+tells \tth\ to use auxiliary files that were produced when \LaTeX\ 
+was previously run on it. Alternatively if you want the output file to
+have the same name as the texdocument but with the extension
+\verb!html!, you can use just
+\begin{verbatim}
+tth -s texdocument
+\end{verbatim}
+
+There are available standard tools for unpacking multipart mime files
+into their individual files, notably the \verb!mpack! tools available from
+the ``Andrew'' distribution, which may be available on some
+systems. However the executable \verb!tthsplit! is a more specific 
+program that will unpack MIME files produced by \tth. (\verb!tthsplit!
+will {\em not} handle general MIME files.) To unpack the multipart
+file into its individual files requires the simple command:
+
+\begin{verbatim}
+tthsplit <mimedocument.html
+\end{verbatim}
+
+\noindent This will inform the user of the files produced, for
+example
+
+\begin{verbatim}
+index.html
+chap1.html
+chap2.html
+refs.html
+footnote.html
+\end{verbatim}
+
+\noindent the file \verb!index.html! is always the topmost file with
+links to succeeding files, and cross-links from any table of contents
+or list of figures, etc. 
+
+It is unnecessary to save the intermediate file. Instead, the output
+of \verb!tth! can be piped to \verb!tthsplit! to produce the split
+files directly by the command line:
+
+\begin{verbatim}
+tth -s -Ltexdocument <texdocument.tex | tthsplit
+\end{verbatim}
+
+Since the names of the split parts of the document are predetermined,
+it is strongly advisable to make a separate directory for each
+different \LaTeX\ document to keep the parts of the document in. The
+conversion and splitting must then be performed in that directory to
+ensure the files end up there. This task is left to the user.
+
+The Windows graphical user interface tth-gui offers an option for
+the translated file to ``split it here''. If this button is checked,
+the file will be split in the same folder as the tex file, producing
+the HTML files as above.
+
+\subsection{Navigation Controls at File Top and Tail}
+
+By default \tth\ places navigation links labelled ``PREVIOUS'' and
+``NEXT'' at the top and tail of the split pages, and a link ``HEAD''
+to the first section of the file at both places. These do not use cute
+little images because images have to be in separate files, which would
+defeat the principle of \tth\ always outputing just one file. However,
+authors might want their own images or indeed far more elaborate
+navigation links. The links can be customized straightforwardly by
+redefining two special macros that are used for the navigation
+section. By default these macros are defined as
+\begin{verbatim}
+\def\tthsplittail{
+ \special{html:\n<hr><table width=\"100\%\"><tr><td>
+ <a href=\"}\tthfilenext\special{html:\">}NEXT
+ \special{html:</a></td><td align=\"right\">
+ <a href=\"index.html\">HEAD</a></td></tr></table>\n</html>}}
+\def\tthsplittop{
+ \special{html:<table width=\"100\%\"><tr><td>
+ <a href=\"}\tthfilechar\special{html:\">}PREVIOUS
+ \special{html:</a></td><td align=\"right\">
+ <a href=\"index.html\">HEAD</a></td></tr></table>}}
+\end{verbatim}
+
+The macro \verb!\tthsplittail! is called when splitting, as soon as a
+chapter or section command is detected. Then after the split is
+completed and the HTML header has been inserted for the next file,
+\verb!\tthsplittop! is called. Note that these macros use the
+builtins \verb!\tthfilenext! and \verb!\tthfilechar! to access the
+names of the next and the previous HTML files respectively.
+
+These splitting macros can be redefined to whatever style of
+navigation the author prefers. But careful attention should be paid to
+the use of raw HTML output, for example using the HTML special.
+
+
+\subsection{Special Precautions when Splitting Output}
+
+\subsubsection{Floats such as figures or tables}
+If you are splitting an article-style file that has a lot of
+floating bodies (i.e. figures or tables) in it, these may be moved by
+\LaTeX\ beyond the end of their corresponding section. This is a
+familiar problem with \LaTeX. The result of this float misplacement
+is that \tth\ may become confused and generate incorrect
+cross-references to these floats in the list of figures and or list of
+tables, because the only way that \tth\ can tell the section of float
+placement is by the order of lines in the auxiliary files. If this
+happens, some special precautions will prevent it. 
+
+All that is required is to add to the \LaTeX\ source file, in the
+preamble between the documentclass and the begin\{document\} commands,
+the extra command:
+
+\begin{verbatim}
+\input /usr/local/tth/tthprep.sty
+\end{verbatim}
+
+\noindent where the path should be to wherever you unpacked or are
+keeping the tth distribution file \verb!tthprep.sty!. Then \LaTeX\ should
+be run twice on the file to create the auxiliary files that tth will
+use in its translation. Because of the extra definitions in
+\verb!tthprep.sty!, the auxiliary files so produced can be interpreted by
+tth to give correctly linked split files. If you want to produce
+\verb!dvi! output from your \LaTeX\ then you should remove this extra
+input command.  None of this is needed unless splitting by {\em
+sections\/} (not chapters) is to be performed or floats are
+problematic.
+
+To make it easier for the user, a script is provided called
+\verb!tthprep! which automates the process of producing satisfactory
+auxiliary files through the single command
+
+\begin{verbatim}
+tthprep texdocument.tex
+\end{verbatim}
+
+\noindent The script will leave the \LaTeX\ file in its original condition,
+but the auxiliary files in appropriate form for \tth.
+
+\subsubsection{Multiple Bibliographies}
+Multiple bibliographies in split files are a problem. All the
+citations in the rest of the text link to a single file
+\verb!refs.html! because there is no way for TtHgold know the name of other
+files to refer to. However, each time a bibliography is started,
+when splitting, TtHgold starts a new file. TtHgold numbers reference
+files after the first as \verb!refs1.html! \verb!refs2.html!
+etc. 
+
+After splitting the output using tthsplit, the user has then to
+concatenate the reference files into a single html file if the
+cross-references are all to be correct. The utility program
+\verb!tthrfcat! will do this if run in the directory where the split
+files reside. It destroys all the \verb!refsx.html! files. But since those
+were generated by TtHgold, they can always be generated again. Some
+spurious file navigation buttons will remain in the resulting
+\verb!refs.html! file. They can be removed by hand if desired.
+
+Things go much more smoothly if there is only one bibliography per TeX
+document and it is at the end of the TeX file.
+
+\section{Style-Sheet Compact Layout}
+
+When using the switch \verb!-y1! to  produce vertically more compact
+fractions, no additional precautions are needed. \tth{}gold should
+perform this optimization completely transparently.
+
+The publisher should nevertheless bear in mind that not all browsers
+support CSS1 style sheets. The subset of CSS1 used by \tth{}gold is
+fully supported by Netsc*pe 4+ and IE 4+. Earlier versions of Netsc*pe
+do not support style sheets at all. Some users switch off the
+style-sheet capability of their browsers to avoid difficulties with
+poorly designed pages using style sheets. The HTML output is designed to be
+rendered by such a browser exactly as it would be if the \verb!-y1!
+switch had not been used, which means that no loss of quality will
+occur.
+
+The switch \verb!-y2! produces ``inline overaccents'': things like
+hats and tildes inside of paragraphs, based on CSS2 style sheet
+capability. It is impossible to do so while preserving the ability to
+fall back gracefully when a browser does not use CSS2
+support. Therefore, while the accents may look better to you, be
+careful. Realize that they may not look better to someone else.
+
+\section{Other Files}
+
+The \tth{}gold distribution also includes some other definition files
+that are specifically tuned for use with \tth. They provide support
+for several desirable features that in normal \LaTeX\ are implemented
+by style files that use unsupported features, for example category codes. 
+
+\subsection{Babel Language Support}
+
+Rudimentary support for different languages, normally part of the
+``Babel'' package, is obtained by adding into the \LaTeX\ preamble the
+line, for example
+
+\begin{verbatim}
+%%tth: \input /usr/local/tth/swedish.bab
+\end{verbatim}
+
+\noindent This redefines the titles of chapters, table of contents, index, and
+so on according to the Babel scheme for the language specified. This
+line is ignored by \LaTeX\ since it is a comment.
+
+\subsection{AMS\LaTeX\ Support}
+
+Some of the additional equation and array environments of AMS\LaTeX\ are
+supported by the simplified TtH style file input via:
+
+\begin{verbatim}
+%%tth:\input /usr/local/tth/amslatex.sty
+\end{verbatim}
+
+\noindent The layout subtleties of these environments are inappropriate
+for an HTML file, so they are simply translated into corresponding
+\LaTeX\ eqnarray or array environments. In addition some of the
+AMS-specific commands are defined,
+\begin{verbatim}
+\text, \dfrac, \cfrac, \tfrac, \binom, \boldsymbol, \iint etc,
+\overset, \underset, \intertext
+\end{verbatim}
+ but are treated similarly by simple
+translation.
+
+The many additional symbols that AMS\LaTeX\ makes available to TeX
+are, of course, not available for most browsers --- they do not
+have the fonts. Therefore, TtH is likewise unable to support them.
+
+\subsection{Natbib Support}
+
+Natbib extended citation commands are supported through an external
+style file. TtH will try to input
+the file tthntbib.sty (abbreviated to stay within the 8.3 name limit
+of some file systems) if it finds a \verb!\usepackage{natbib}! command
+in the LaTeX file. If that file is not in your current path, an error
+message will occur, and the Natbib support will be less extensive.
+Either set the environment variable TTHINPUTS to include the directory
+where tthntbib.sty lives, or use the -p switch. If, for some reason,
+the \verb!\usepackage{natbib}! is not explicitly in your LaTeX file,
+you can add the following line in the preamble.
+\begin{verbatim}
+%%tth: \input /usr/local/tth/tthntbib.sty
+\end{verbatim}
+Your file might already contain, or you might want also to add lines like:
+\begin{verbatim}
+%%tth: \NAT@numberstrue % or not, as the case may be.
+\end{verbatim}
+The default is that ifNAT@numbers is false so one obtains author-date
+style citations and references. It is also possible to use the natbib
+bibpunct command to define the spacing and labeling style explicitly,
+for example,\\ 
+\verb|%%tth: \bibpunct{\{}{\}}{:}{n}{}{}|
+\\ (The \verb!%%tth! is only needed if you want to hide the command 
+from LaTeX.)
+
+The starred
+and alternative versions of commands are not supported, nor are
+citetext or multiple bibliographies.
+
+
+\end{document}
+
+
+
+
+
+

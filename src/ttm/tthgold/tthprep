@@ -1,0 +1,31 @@
+#!/bin/bash
+# IHH Feb 2001
+#Prepare for tth conversion by running latex on kludged file.
+#Needs a safety check
+if [ $# = 1 ] ; then
+if ls $1 ; then
+	if cp $1 tth_temp.tex  ; then
+	echo "Copying latex file to:" 
+	if ls tth_temp.tex  ; then
+		sed -e '/\\document/r tthprep.sty' tth_temp.tex > $1
+#		cat tth_prep.tex tth_temp.tex > $1
+		echo "Running Latex twice on temporarily modified file:"
+		ls $1
+		echo
+		if latex $1 ; then
+		latex $1 ; fi
+		echo
+		if cp tth_temp.tex $1; then
+			echo "Restored latex file."
+		else
+			echo "Something really bad happened. Restore by hand!"
+		fi
+		exit 0
+	else
+		echo "Could not make temporary file"
+	fi
+	fi
+fi
+fi
+echo "  Usage: tth_prep filename.tex"
+exit 1

@@ -1,0 +1,17 @@
+silence TeX and its friends
+--- a/manual/makefile
++++ b/manual/makefile
+@@ -1,4 +1,4 @@
+-LATEX=latex -no-shell-escape
++LATEX=latex -no-shell-escape -interaction=batchmode
+ TTH=../tth -a
+ # If latex is not installed, try the following fall-back:
+ #LATEX=echo
+--- a/manual/split/makefile
++++ b/manual/split/makefile
+@@ -1,4 +1,4 @@
+-LATEX=latex -no-shell-escape
++LATEX=latex -no-shell-escape -interaction=batchmode
+ TTH=../../tth -a
+ # If latex is not installed, try the following fall-back:
+ #LATEX=echo
