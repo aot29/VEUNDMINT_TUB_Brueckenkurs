@@ -29,9 +29,6 @@ my $helptext = "Usage: mconvert.pl <configuration.pl> [<parameter>=<value> ...]\
 # use lib "/home/daniel/BWSYNC/PreTU9Konverter/converter";
 # use courseconfig;
 
-our $mainlogfile = "conversion.log";
-our $configactive = 0; # set to 1 once config-pl-file is fully loaded
-our $stdencoding = "iso-8859-1";
 
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
@@ -139,97 +136,8 @@ our $mainsiteline = 0;
 
 our $randcharstr = "0123456789,.;abcxysqrt()/*+-";
 
-# Globale Meldungsstufen (client-basiert in dlog.js)
-# 1: CLIENTINFO   Wird als Feedback an Server geschickt, stellt eine Informationsmeldung dar
-# 2: CLIENTERROR  Wird als Feedback an Server geschickt, stellt eine Fehlermeldung dar die behandelt werden muss, wird auch gesendet wenn Benutzer die USAGE abgeschaltet hat
-# 3: CLIENTWARN   Wird als Feedback an Server geschickt, stellt eine interne Fehlermeldung dar die aber nicht gravierend ist
-# 4: DEBUGINFO    Wird nur auf Browserkonsole ausgegeben, und nur falls es keine Releaseversion ist
-# 5: VERBOSEINFO  Wird nur auf Browserkonsole ausgegeben, und nur falls es keine Releaseversion ist und verbose-flag aktiv ist
-# 6: CLIENTONLY   Wird nur auf Browserkonsole ausgegeben, auch in Releases, und ohne Prefix
-# 7: FATALERROR   Schwerwiegender Fehler, log-Funktion gibt ihn als die-Meldung aus
-# Message wird nur in nicht-release-Versionen auf Clientkonsole ausgegeben
 
-our $CLIENTINFO = "1";
-our $CLIENTERROR = "2";
-our $CLIENTWARN = "3";
-our $DEBUGINFO = "4";
-our $VERBOSEINFO = "5";
-our $CLIENTONLY = "6";
-our $FATALERROR = "7";
 
-our $GRAYBASHCOLOR = "\037[0;31m";
-our $REDBASHCOLOR = "\033[0;31m";
-our $NOBASHCOLOR = "\033[0m";
-
-# ----------------------------- Funktionen -----------------------------------------------------------------------
-
-# Separate Ausgabe: Farbcodiert fuer die Konsole falls gewuenscht und nur-Text fuer logfile
-# Parameter color = string, txt = string (ohne Zeilenumbruch)
-sub printMessage {
-  my ($color, $txt) = @_;
-
-  # Nur einfache Meldungen ausgeben solange config-Objekt noch nicht geladen ist
-  if ($configactive eq 0) {
-    print "$txt\n";
-  } else {  
-    # gruene verbose-Meldungen nur in Logdatei, nicht auf Konsole ausser wenn aktiviert
-    if (($color ne "green") or ($config{doverbose} eq 1)) {
-      if ($config{"consolecolors"} eq 1) {
-        print color($color), "$txt\n", color("reset");
-      } else {
-        print "$txt\n";
-      }
-    }
-  }
-  print LOGFILE "$txt\n";
-}
-
-# Parameter lvl = loglevel, eine der obigen Konstanten, msg = textstring (die Meldung)
-sub logMessage {
-  my ($lvl, $msg) = @_;
-  
-  # Konvertierung findet auf Server statt, nicht auf Client, also wird alles Serverrelevante sofort ausgegeben
-  if ($lvl eq $CLIENTINFO) {
-    printMessage("black", "INFO:    $msg");
-  } else {
-    if ($lvl eq $CLIENTERROR) {
-      printMessage("red", "ERROR:   $msg");
-    } else {
-      if ($lvl eq $CLIENTWARN) {
-        printMessage("red", "WARNING: $msg");
-      } else {
-        if ($lvl eq $DEBUGINFO) {
-          # release oder nicht macht fuer Serverseite keinen Sinn, also zaehlt doverbose
-          printMessage("green", "DEBUG:   $msg");
-        } else {
-          if ($lvl eq $VERBOSEINFO) {
-            printMessage("green", "VERBOSE: $msg");
-          } else {
-            if ($lvl eq $CLIENTONLY) {
-              # Auf Serverseite keine Ausgabe
-            } else {
-              if ($lvl eq $FATALERROR) {
-                printMessage("red", "FATAL ERROR: $msg");
-                close(LOGFILE);
-                die("Program aborted");
-              } else {
-                printMessage("red", "ERROR: Wrong error type $lvl, message: $msg");
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-sub logTimestamp {
-  my ($txt) = @_;
-  
-  my $time2 = time;
-  my $diff = $time2 - $starttime;
-  logMessage($CLIENTINFO, "$txt: $diff seconds.");
-}
 
 
 sub injectEscapes {
@@ -1597,66 +1505,6 @@ sub idprint {
 
 
 # ---------------------------------------------- Bearbeitungsfunktionen -------------------------------------------------------------
-
-sub readfile {
-	my $file = $_[0];
-	
-	if (-e $file) {
-          my $rt = `file -i $file`;
-          if ($rt =~ m/charset\=us\-ascii/s ) {
-          } else {
-            if ($rt =~ m/charset\=$stdencoding/s ) {
-            } else {
-              logMessage($CLIENTWARN, "File $file has wrong encoding (should be $stdencoding or ASCII)");
-            }
-          }
-        } else {
-          logMessage($FATALERROR, "File $file does not exist");
-        }
-	
-	my $text = "";
-	if (open(F, $file)) {
-	  logMessage($VERBOSEINFO, "Reading file $file");
-	} else {
-	  logMessage($FATALERROR, "Could not open file $file for reading");
-	}
-	my $n = 0;
-	my $r = "";
-	while(defined($r = <F>)) {
-	  $text .= $r;
-	  $n++;
-	}
-	close(F);
-	logMessage($VERBOSEINFO, "Read $n lines resp. " . length($text) . " characters from file $file (encoding: $stdencoding)");
-	return decode($stdencoding, $text);
-}
-
-
-sub writefile {
-	my $file = $_[0];
-	my $text = $_[1];
-  	my $path;
-	if ($file =~ /(.*)\/[^\/]*?$/ ) {
-	  $path = $1;
-	} else {
-	  $path = ".";
-	}
-	if ($path ne ".") {
-  	  logMessage($VERBOSEINFO, "Creating path $path");
-	  mkpath($path);
-	}
-	if (open(F, "> $file")) {
-	  logMessage($VERBOSEINFO, "Writing to file $file");
-	} else {
-	  logMessage($FATALERROR, "Cannot create/overwrite file $file in path $path");
-	}
-	my $code = encode($stdencoding, $text); 
-	
-	print F $code;
-	close(F);
-	
-	logMessage($VERBOSEINFO, "Written " . length($text) . " characters to file $file (encoding: $stdencoding)");
-}
 
 # sub noregex()
 # Kapselt alle Sonderzeichen in einem Matching-Pattern

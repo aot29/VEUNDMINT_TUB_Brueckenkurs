@@ -66,6 +66,7 @@ class Option(object):
         self.consolecolors = 1    # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
         
         # VE&MINT source/target parameters
+        self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex and html files
         self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt
         self.source = "module_veundmint"                     # Quellverzeichnis, platziert in Ebene ueber tex2x.py
         self.module = "tree_tu9onlinekurs.tex"               # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung

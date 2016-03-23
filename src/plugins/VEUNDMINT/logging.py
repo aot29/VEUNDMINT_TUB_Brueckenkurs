@@ -35,7 +35,6 @@ class Logging(object):
     FATALERROR = "7"    # Converter: Conversion chain is aborted giving the error message
 
     # bash console color scheme
-    BASHCOLORYELLOW = "\033[93m"
     BASHCOLORRED = "\033[91m"
     BASHCOLORGREEN = "\033[92m"
     BASHCOLORRESET = "\033[0m"
@@ -52,7 +51,6 @@ class Logging(object):
 
         with open(self.logFilename, 'w', encoding='utf-8') as log:
             log.write("Started logging at absolute time " + str(self.startTime) + " [seconds]\n")
-
 
     def _printMessage(self, color, txt):
         # green verbose messages only in logfile, and on console if verbose is active
@@ -76,7 +74,7 @@ class Logging(object):
                 self._printMessage(self.BASHCOLORRED, "ERROR:   " + msg)
             else:
                 if (lvl == self.CLIENTWARN):
-                    self._printMessage(self.BASHCOLORYELLOW, "WARNING: " + msg)
+                    self._printMessage(self.BASHCOLORRED, "WARNING: " + msg)
                 else:
                     if (lvl == self.DEBUGINFO):
                         self._printMessage(self.BASHCOLORGREEN, "DEBUG:   " + msg)

@@ -19,15 +19,17 @@
 from plugins.VEUNDMINT import System as vsys
 from plugins.VEUNDMINT import Option as opt
 from plugins.VEUNDMINT.logging import Logging
+#from plugins.VEUNDMINT.preprocessor import Preprocessor
 
 import os
+
 
 options = opt.Option(os.path.join(".."));
 
 # Add VEUNDMINT logging functionality to the structure object (both under GPL license)
 self.log = Logging(os.path.join(options.currentDir, options.logFilename), options.doverbose, options.consolecolors)
 self.log.timestamp("VEUNDMINT log initialized")
-
+vsys.log = self.log # References to the same object
 
 # Prepare working folder
 vsys.emptyTree(options.sourcepath)
@@ -42,6 +44,29 @@ else:
 vsys.emptyTree(options.targetpath)
 vsys.copyFiletree(options.converterCommonFiles, options.targetpath, ".")
 self.log.timestamp("Common HTML tree files copied")
+
+# Preprocessing of each tex file in the folder and subfolders
+pathLen = len(options.sourceTEX)+1
+fileArray=[]
+for root,dirs,files in os.walk(options.sourceTEX):                
+    root=root[pathLen:]
+    for name in files:
+        if (name[-4:] == ".tex"):
+            fileArray.append(os.path.join(options.sourceTEX, root, name))
+    for name in dirs:
+        continue
+
+self.log.message(self.log.VERBOSEINFO, "Preprocessor starting on " + str(len(fileArray)) + " texfiles")
+
+pp_data = dict()
+#proc = Preprocessor(log, pp_data)
+
+for texfile in fileArray:
+    tex = vsys.readTextFile(texfile, options.stdencoding)
+    #tex = proc.preprocess_texfile(texfile, tex)
+    vsys.writeTextFile(texfile, tex, options.stdencoding)
+    
+
 
 
 

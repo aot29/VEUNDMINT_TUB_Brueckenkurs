@@ -19,8 +19,12 @@
 
 import shutil
 import os
+import subprocess
+import re
 from distutils.dir_util import copy_tree, mkpath
 from distutils.file_util import copy_file
+
+# log variable should be set by calling code after module is imported
 
 def openFile(path,attr):
     """
@@ -80,13 +84,13 @@ def removeTree(path):
     if os.path.isdir(path):
         shutil.rmtree(path)
     else:
-        self.log(self.log.CLIENTERROR, "removeTree got " + path + ", but it is not a tree or does not exist")
+        log.message(log.CLIENTERROR, "removeTree got " + path + ", but it is not a tree or does not exist")
     
 def removeFile(path):
     if os.path.isfile(path):
         os.remove(path)
     else:
-        self.log(self.log.CLIENTERROR, "removeFile got " + path + ", but it is not a file or does not exist")
+        log.message(log.CLIENTERROR, "removeFile got " + path + ", but it is not a file or does not exist")
         
 def makePath(path):
     os.makedirs(path)
@@ -97,3 +101,39 @@ def emptyTree(path):
     if os.path.isdir(path):
         shutil.rmtree(path)
     makePath(path)
+
+# retrieves the input of a text file and checks its encoding, but always converts found encoding to unicode strings
+# Return value is always a Python3 string (in unicode)
+def readTextFile(name, enc):
+    text = ""
+    if (os.path.isfile(name) == False):
+        log.message(log.FATALERROR, "File " + name + " not found")
+    p = subprocess.Popen(["file", "-i", name], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+    (output, err) = p.communicate()
+    m = re.match(r".*?; charset=([^\n ]+)", output, re.S)
+    if m:
+        if (m.group(1) == "binary"):
+            log.message(log.FATALERROR, "File " + name + " appears to be binary, not a text file")
+        if ((m.group(1) != enc) and (m.group(1) != "us-ascii")):
+            log.message(log.CLIENTWARN, "File " + name + " is encoded in " + m.group(1) + " instead of requested " + enc + " or us-ascii, doing implicit conversion")
+        with open(name, "r", encoding = m.group(1)) as file:
+            text = file.read()
+        log.message(log.VERBOSEINFO, "Read string of length " + str(len(text)) + " from file " + name + " encoded in " + m.group(1) + ", converted to python3 unicode string")
+
+    else:
+        log.message(log.FATALERROR, "Output of file-command could not be matched (VEUNDMINT System.py, readTextfile function): " + output)
+    
+    return text
+    
+
+# Writes text to a text file (creating or overwriting existing files) in a given encoding given a Python3 unicode string
+# subfolders are created if not already there
+def writeTextFile(name, text, enc):
+    if ((not os.path.exists(os.path.dirname(name))) and (os.path.dirname(name) != "")):
+        os.makedirs(os.path.dirname(name))
+
+    with open(name, "w", encoding = enc) as file:
+        file.write(text)
+        
+    log.message(log.VERBOSEINFO, "Written string of length " + str(len(text)) + " to file " + name + " encoded in " + enc)
+
