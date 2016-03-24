@@ -66,6 +66,8 @@ class Option(object):
         self.consolecolors = 1    # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
         
         # VE&MINT source/target parameters
+        self.macrofilename = "mintmod"
+        self.macrofile = self.macrofilename + ".tex"
         self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex and html files
         self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt
         self.source = "module_veundmint"                     # Quellverzeichnis, platziert in Ebene ueber tex2x.py
@@ -154,6 +156,7 @@ class Option(object):
         # variables used by the OSS converter, should not be changed directly as they take input from the above definitions
         self.parserName = "lxml"
         self.converterCommonFiles = os.path.join(self.converterDir, "files") # Bedeutung von sourceCommonFiles vom OSS-Konverter ist anders
+        self.texCommonFiles = os.path.join(self.converterDir, "tex") 
         self.sourcepath_original = os.path.join(self.currentDir, self.source) # Pfad zu den Quellen (werden readonly behandelt)
         self.sourcepath = os.path.join(self.currentDir, self.outtmp) # Pfad in dem gearbeitet wird
         self.sourceTEX = os.path.join(self.sourcepath, "tex") # Teilpfad in dem die LaTeX-Quellenkopien liegen

@@ -19,7 +19,7 @@
 from plugins.VEUNDMINT import System as vsys
 from plugins.VEUNDMINT import Option as opt
 from plugins.VEUNDMINT.logging import Logging
-#from plugins.VEUNDMINT.preprocessor import Preprocessor
+from plugins.VEUNDMINT.preprocessor import Preprocessor
 
 import os
 
@@ -33,8 +33,9 @@ vsys.log = self.log # References to the same object
 
 # Prepare working folder
 vsys.emptyTree(options.sourcepath)
+vsys.copyFiletree(options.texCommonFiles, options.sourceTEX, ".")
 vsys.copyFiletree(options.sourcepath_original, options.sourceTEX, ".")
-self.log.timestamp("Source tex files copied")
+self.log.timestamp("Source and common tex files copied")
 if os.path.isfile(options.sourceTEXStartFile):
   self.log.message(self.log.VERBOSEINFO, "Found main tex file " + options.sourceTEXStartFile)
 else:
@@ -59,11 +60,11 @@ for root,dirs,files in os.walk(options.sourceTEX):
 self.log.message(self.log.VERBOSEINFO, "Preprocessor starting on " + str(len(fileArray)) + " texfiles")
 
 pp_data = dict()
-#proc = Preprocessor(log, pp_data)
+proc = Preprocessor(self.log, pp_data, options)
 
 for texfile in fileArray:
     tex = vsys.readTextFile(texfile, options.stdencoding)
-    #tex = proc.preprocess_texfile(texfile, tex)
+    tex = proc.preprocess_texfile(texfile, tex)
     vsys.writeTextFile(texfile, tex, options.stdencoding)
     
 

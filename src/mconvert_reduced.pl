@@ -32,8 +32,6 @@ my $helptext = "Usage: mconvert.pl <configuration.pl> [<parameter>=<value> ...]\
 
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
-our $macrofilename = "mintmod";
-our $macrofile = "$macrofilename.tex"; # Relativ zum converter/tex Verzeichnis
 
 # Mandatory option parameter in config file
 our @mandatory = ("signature_main", "signature_version", "signature_localization",
