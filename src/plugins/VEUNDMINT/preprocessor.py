@@ -76,10 +76,59 @@ class Preprocessor(object):
              
             
             
+        tex = self.preprocess_roulette(tex)
+            
             
         return tex
     
     
-             
+    def preprocess_roulette(self, tex):             
+          
+        
+        # First, include roulette exercise files in the code
+        k = 0
+        do:
+            m = re.match(r".*\\MDirectRouletteExercises{(.+?)}{(.+?)}.*", tex, re.S)
+            if m:
+                print("match: \\MDR{" + m.group(1) + "}{" + m.group(2) + "}")
+
+            k = k + 1
+            while((k<100) and m)
+  
+        """
+        my $rfilename = $1;
+        my $rid = $2;
+        my $rfile = "$pdirname/$rfilename";
+        if ($rfilename =~ m/\.tex/s ) {
+          logMessage($CLIENTWARN, "Roulette input file $rfile is a pure tex file, please change the file name to non-tex to avoid double preparsing");
+        }
+        logMessage($VERBOSEINFO, "MDirectRouletteExercises on include file $rfile with id $rid");
+        my $rtext = readfile($rfile);
+        
+        # Jede Aufgabe des includes bekommt ein eigenes div, davon ist nur eines sichtbar, trotzdem werden alle zugehoerigen Frageobjekte generiert
+        
+        my $id = 0;
+
+        my $htex = "";
+        while ($rtext =~ s/\\begin{MExercise}(.+?)\\end{MExercise}//s ) {
+          $htex .= "\\special{html:<!-- rouletteexc-start;$rid;$id; \/\/-->}\\begin{MExercise}$1\\end{MExercise}\\special{html:<!-- rouletteexc-stop;$rid;$id; \/\/-->}\n";
+          $id++;
+        }
+        
+        
+        $rtext = "\\ifttm\\special{html:<!-- directroulette-start;$rid; //-->}$htex\\special{html:<!-- directroulette-stop;$rid; //-->}\\else\\texttt{Im HTML erscheinen hier Aufgaben aus einer Aufgabenliste...}\\fi\n";
+        $textex =~ s/\\MDirectRouletteExercises{$rfilename}{$rid}/$rtext/s ;
+        
+        if (exists $DirectRoulettes{$rid}) {
+          logMessage($CLIENTERROR, "Roulette id $rid not unique");
+        } else {
+          $DirectRoulettes{$rid} = "$id";
+        }
+
+        logMessage($VERBOSEINFO, "Roulette $rid contains $id exercises");
+        
+      }
+        """
       
-      
+        return tex
+  
