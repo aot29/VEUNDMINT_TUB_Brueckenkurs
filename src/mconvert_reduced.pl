@@ -45,7 +45,6 @@ our $rfilename = "";         # Filename of main tex file including path relative
 our $zip = "";               # Filename of zip file (if neccessary)
 
 our @DirectHTML = ();
-our %DirectRoulettes = (); # Enthaelt Eintraege der Form "Roulette-id" => "Anzahl"
 
 # stellt das Verhalten des Menues im Header ein
 # 0 bedeutet, dass Info die erste Seite eines Moduls ist
@@ -135,18 +134,6 @@ our $mainsiteline = 0;
 our $randcharstr = "0123456789,.;abcxysqrt()/*+-";
 
 
-
-
-
-sub injectEscapes {
-  my $str = $_[0];
-  $str =~ s/\\/\\\\/gs ; # muss vor den anderen Ersetzungen kommen!
-  $str =~ s/\"/\\\"/gs ;
-  $str =~ s/\'/\\\'/gs ;
-  $str =~ s/\r/\\r/gs ;
-  $str =~ s/\n/\\n/gs ;
-  return $str;
-}
 
 sub randomChar {
   my $r = int(rand(length($randcharstr)));
