@@ -35,6 +35,7 @@ import argparse
 parser = argparse.ArgumentParser(description='tex2x converter')
 parser.add_argument("plugin", help="specify the plugin you want to run")
 parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
+parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
 
 args = parser.parse_args()
 #print(args.plugin)
@@ -44,7 +45,7 @@ print("\ntex2x parser!\n\n")
 #optionen = Option.Option()
 
 #create object and start processing
-struct.structure.Structure().startTex2x(args.verbose, args.plugin)
+struct.structure.Structure().startTex2x(args.verbose, args.plugin, args.override)
 
 
 

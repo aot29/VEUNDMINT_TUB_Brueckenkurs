@@ -18,9 +18,7 @@
 
 import os.path
 import json
-import sys
-
-from plugins.VEUNDMINT.logging import Logging
+import re
 
 class Option(object):
     """
@@ -38,7 +36,7 @@ class Option(object):
     Diese Angaben beziehen sich auf die Structure-Klasse. Da eingebundene Plug-ins unter anderen Lizenzen als der GPL veröffentlicht werden können, darf hier kein Austausch stattfinden.
     """
     
-    def __init__(self, currentDir):
+    def __init__(self, currentDir, override):
         
         #Debugging
         self.DEBUG = True
@@ -107,7 +105,7 @@ class Option(object):
             "BIGFONTSIZE": mybasicfontsize + 2
         }
 
-        # Farbpalette wird aus JSON-Datei eingelesen
+        # Read color settings from a json file
         with open(os.path.join(self.converterDir, "plugins", "VEUNDMINT", "colorset_blue.json")) as colorfile:
             self.colors = json.load(colorfile)
 
@@ -183,7 +181,38 @@ class Option(object):
         self.ModuleStructureClass= "xcontent"#nach dieser klasse wird gesucht, um Modulbereiche zu identifizieren. (Dann jeweils mit einer Nummer dahinter)
 
         
-        #use these Plugins (plugin path must be listed below within the plugin settings!)
-        self.usePlugins = [ "HTML5" ]
-        self.pluginPath = { "HTML5": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "VEUNDMINT_html5.py") }
+        # use these Plugins (plugin path must be listed below within the plugin settings!)
+        self.usePreprocessorPlugins = [ "PRE_MINTMODTEX" ]
+        self.useOutputPlugins = [ "HTML5_MINTMODTEX" ]
+        self.pluginPath = { 
+            "PRE_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "preprocessor_mintmodtex.py"),
+            "HTML5_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "html5_mintmodtex.py")
+        }
         
+        for ov in override:
+            m = re.match(r"(.+?)=(.+)", ov) 
+            if m:
+                if hasattr(self, m.group(1)):
+                    vr = getattr(self, m.group(1))
+                    if (type(vr).__name__ == "int"):
+                        setattr(self, m.group(1), int(m.group(2)))
+                        # print("Option override: " + m.group(1) + " := " + m.group(2) + " [int]")
+                    else:
+                        if (type(vr).__name__ == "str"):
+                            setattr(self, m.group(1), m.group(2))
+                            # print("Option override: " + m.group(1) + " := " + m.group(2) + " [string]")
+                        else:
+                            if (type(vr).__name__ == "bool"):
+                                if (m.group(2) == "0"):
+                                    setattr(self, m.group(1), False)
+                                    # print("Option override: " + m.group(1) + " := " + m.group(2) + " [boolean false]")
+                                else:
+                                    setattr(self, m.group(1), True)
+                                    # print("Option override: " + m.group(1) + " := " + m.group(2) + " [boolean true]")
+                            else:
+                                print("Option type " + type(vr).__name__ + " not acceptable")
+                else:
+                    print("Option " + m.group(1) + " does not exist, cannot override")
+                
+            else:
+                print("Invalid override string: " + ov)

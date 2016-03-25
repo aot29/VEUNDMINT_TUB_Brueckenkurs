@@ -17,8 +17,6 @@
 """
 
 from . import Option as op
-#import html5lib
-#import html5lib.treebuilders as treebuilders
 import os
 import time
 import re
@@ -29,7 +27,7 @@ from lxml.html import html5parser
 from io import StringIO
 from plugins.exceptions import PluginException
 import subprocess
-from . import System as System
+from . import System as TSystem
 import imp
 import json
 import traceback
@@ -107,9 +105,10 @@ class Structure(object):
         '''
         Constructor
         '''  
-        #self.startTex2x()
 
-    def startTex2x(self, verbose, plugin_name):
+        
+
+    def startTex2x(self, verbose, plugin_name, override):
         """
         Wird vom Konstruktor aufgerufen und leitet die Verarbeitung der Materialien ein.
         Zusätzlich werden die Optionen aus der Option-Klasse eingebunden und berücksichtigt.
@@ -126,21 +125,88 @@ class Structure(object):
         * Erstellen der verschiedenen Ausgabeformate anhand der in den Optionen spezifizierten Plugins
         """
         
+        currentDir = ".."
+
         """
-        Die Optionen werden aus einem Objekt heraus initialisiert
-        """
-        self.options = op.Option(os.path.abspath(".."))
-        self.data = dict()
+        --------------------- BEGIN DEFINITION OF THE MODULE INTERFACE ------------------------------------------------------
+        
+        INITIALIZE INTERFACE DATA MEMBER, WHICH SERVES AS THE SOLE COMMUNICATION INTERFACE TO LINKED MODULES
+        AS DESCRIBED IN THE tex2x LICENSE. LINKED MODULES (PLUGINS) MAY ONLY USE THE FOLLOWING DATA MEMBERS
+        FOR COMMUNICATION AND FUNCTION CALLS:
         
         """
-        Jetzt parsen wir das XML-Grundgerüst als HTML5
-        """
+        self.interface = dict()
         
-        """
-        TODO: alle Variablen, die später gebraucht werden, hier schon anlegen, die später genutzt werden, required_files etc
-        Allgemeine Variablen
-        """
-        
+        # data member: linked modules may READ/WRITE/CHANGE/DELETE elements of the data member,
+        # added elements must not contain functions or code of any kind.
+        self.interface['data'] = dict()
+
+        # options member: A module exposing a class "Option", linked modules must provide the class definition and may READ but not modify data exposed by this object reference
+        # class Options must be under LGPL or GPL license
+        try:
+            module = imp.load_source(plugin_name, os.path.join("plugins", plugin_name, "Option.py"))
+            self.interface['options'] = module.Option(currentDir, override)
+        except Exception:
+            formatted_lines = traceback.format_exc().splitlines()
+            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Option'") < 0:
+                print(traceback.format_exc())
+            else:
+                print("\nCannot load options of plugin '" + plugin_name + "'.\n")
+            self.interface['options'] = None
+
+        # system member: A module exposing a class "System", linked modules may provide the class definition and may CALL functions exposed by this object reference
+        # class System must be under GPL license
+        try:
+            module = imp.load_source(plugin_name, os.path.join("plugins", plugin_name, "system.py"))
+            self.interface['system'] = module.System(self.interface['options'])
+        except Exception:
+            formatted_lines = traceback.format_exc().splitlines()
+            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'System'") < 0:
+                print(traceback.format_exc())
+            else:
+                print("\nCannot load System facility of plugin '" + plugin_name + "', using system from tex2x\n")
+                
+            self.interface['system'] = TSystem
+
+        # preprocessor_plugins member: A list of modules exposing a class "Preprocessor" which has a function "preprocess"
+        try:
+            self.interface['preprocessor_plugins'] = []
+            for p in self.interface['options'].usePreprocessorPlugins:
+                module = imp.load_source(plugin_name + "_preprocessor_" + p, self.interface['options'].pluginPath[p])
+                self.interface['preprocessor_plugins'].append(module.Preprocessor(self.interface['system'], self.interface['data'], self.interface['options']))
+        except Exception:
+            formatted_lines = traceback.format_exc().splitlines()
+            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Preprocessor'") < 0:
+                print(traceback.format_exc())
+            else:
+                print("\nCannot load preprocessor plugins for '" + plugin_name + "'.\n")
+            self.interface['preprocessor_plugins'] = []
+
+        # output_plugins member: A list of modules exposing a class "Plugin" which has a function "create_output"
+        try:
+            self.interface['output_plugins'] = []
+            for p in self.interface['options'].useOutputPlugins:
+                module = imp.load_source(plugin_name + "_output_" + p, self.interface['options'].pluginPath[p])
+                self.interface['output_plugins'].append(module.Plugin())
+        except Exception:
+            formatted_lines = traceback.format_exc().splitlines()
+            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Plugin'") < 0:
+                print(traceback.format_exc())
+            else:
+                print("\nCannot load output plugins for '" + plugin_name + "'.\n")
+            self.interface['output_plugins'] = []
+
+        # simplify access
+        self.options = self.interface['options']
+        self.sys = self.interface['system']
+        self.data = self.interface['data']
+
+
+        # --------------------- END DEFINITION OF THE MODULE INTERFACE ------------------------------------------------------
+
+
+
+       
         
         schritt = 1
         total_time = 0;
@@ -149,7 +215,8 @@ class Structure(object):
             time_start = time.time()
             
         #Preprocessing aus den Plugins aktivieren
-        self.start_preprocessing(plugin_name);
+        for pp in self.interface['preprocessor_plugins']:
+            pp.preprocess()
         
         
         if verbose:
@@ -480,41 +547,14 @@ class Structure(object):
         self.required_images = None
         
         
-        try:
-            module = imp.load_source(plugin_name, os.path.join(self.options.pluginPath, plugin_name, plugin_name + ".py"))
-            output_plugin = module.Plugin()
-            output_plugin.create_output()
-            print("Creating output for " + os.path.join(self.options.pluginPath, plugin_name, plugin_name + ".py"))
-        #print(possible_plugin)
-        except Exception:
-            formatted_lines = traceback.format_exc().splitlines()
-            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Plugin'") < 0:
-                print(traceback.format_exc())
-            else:
-                print("\nDas angegebene Plug-in '" + plugin_name + "' konnte nicht geladen werden. Bitte die Schreibweise prüfen.\n")
-                
+        #Preprocessing aus den Plugins aktivieren
+        for op in self.interface['output_plugins']:
+            op.create_output()
+             
         #Temporäre Dateien aufräumen
         self.clean_up();
 
-                
-    def start_preprocessing(self, plugin_name):
-          
-        preprocessor = open(os.path.join(self.options.pluginPath, plugin_name, "preprocessing.py"), "rb")
-        exec(preprocessor.read())
-        preprocessor.close()
-        return;
-        try:
-            module = imp.load_source(plugin_name, os.path.join(self.options.pluginPath, plugin_name, plugin_name + ".py"))
-            module.preprocessing()
-            
-        #print(possible_plugin)
-        except Exception:
-            formatted_lines = traceback.format_exc().splitlines()
-            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Plugin'") < 0:
-                print(traceback.format_exc())
-            else:
-                print("\nDas angegebene Plug-in '" + plugin_name + "' konnte nicht geladen werden. Bitte die Schreibweise prüfen.\n")
-            
+           
     def replace_html_entities(self, text):
         """
         :param text: String -- Text, in welchem die HTML-Entitäten bearbeitet werden sollen
