@@ -42,10 +42,13 @@ args = parser.parse_args()
     
 print("\ntex2x parser!\n\n")
 
-#optionen = Option.Option()
+# TODO: tex2x should be callable from everywhere, right now directory joins assume we are in src
+if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
+    print("tex2x must be called in its own directory")
+else:
+    #create object and start processing
+    struct.structure.Structure().startTex2x(args.verbose, args.plugin, args.override)
 
-#create object and start processing
-struct.structure.Structure().startTex2x(args.verbose, args.plugin, args.override)
 
 
 

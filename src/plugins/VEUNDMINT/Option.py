@@ -41,7 +41,7 @@ class Option(object):
         #Debugging
         self.DEBUG = True
         
-        self.currentDir = os.path.abspath(currentDir) # typically one level above location of tex2x.py
+        self.currentDir = os.path.abspath(currentDir) # one level above location of tex2x.py
         self.converterDir = os.path.join(self.currentDir, "src")
         self.logFilename = "conversion.log"
         
@@ -216,3 +216,4 @@ class Option(object):
                 
             else:
                 print("Invalid override string: " + ov)
+

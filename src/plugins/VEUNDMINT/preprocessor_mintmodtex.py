@@ -97,7 +97,7 @@ class Preprocessor(object):
     # Return value: processed tex (may be unchanged)
     def preprocess_texfile(self, name, tex):
 
-        # Exclude special files
+        # Exclude special files from preprocessing
         if re.match(".*" + self.options.macrofilename  + "\\.tex", name):
             self.sys.message(self.sys.VERBOSEINFO, "Preprocessing ignores macro file " + name)
             return tex
@@ -134,12 +134,15 @@ class Preprocessor(object):
             self.sys.message(self.sys.CLIENTWARN, "texfile " + name + " does not have a directory")
       
             
+        # application of changes to the tex code
         tex = self.preprocess_roulette(tex, pdirname)
+        tex = self.preprocess_comments(tex)
             
             
         return tex
+
     
-    
+    # preprocessing of roulette include statements
     def preprocess_roulette(self, tex, pdirname):             
           
         
@@ -191,4 +194,47 @@ class Preprocessor(object):
 
         self.sys.timestamp("Finished roulette preprocessing")
         return tex
-  
+
+    # preprocessing of LaTeX comments (and verb constructs which may contain % in text or as a delimiter)
+    def preprocess_comments(self, tex):
+        # find single characters used with \verb
+        rx = re.compile(r"\\verb(.)", re.S)
+        verbac = rx.findall(tex)
+        
+        # create list which contains no double verb-chars
+        verbc = []
+        for c in verbac:
+            if not c in verbc:
+                verbc.append(c)
+            
+        if (len(verbc) > 0):
+            self.sys.message(self.sys.CLIENTWARN, str(len(verbc)) + " verb-delimiters found in tex-file, usage of \\verb will be handled by preprocessing, but probably not by ttm")
+
+
+        # \PERCTAG is used to escape % used in verb-constructs (as verb-delimiter or inside the verb string)
+        for c in verbc:
+            if c == r"%":
+                # escape % as a verb-delimiter, now it's sure no % appears inside the verb string
+                tex = re.sub(r"\\verb\%([^\%]*?)\%", r"\\verb\\PERCTAG\1\\PERCTAG", tex, count = 0, flags = re.S)
+            else:
+                # escape % as a comment truncator insinde the verb string, now it's sure the delimiter is not %
+                # but we have to escape c because it may be a regex symbol or a backlash
+                found = True
+                n = 0
+                while found:
+                    (tex, k) = re.subn(r"\\verb" + re.escape(c) + r"([^" + re.escape(c) + r"]*?)%([^" + re.escape(c) + r"]*?)" + re.escape(c),
+                                       r"\\verb" + c + r"\1\\PERCTAG\2" + c,
+                                       tex, count = 0, flags = re.S)
+                    if k == 0:
+                        found = False
+                
+                
+        # remove CONTENT(!) of comment lines, take care not to remove \%, replace \PERCTAG by % afterwards
+        tex = re.sub(r"(?<!\\)\%([^\n]+?)\n", "%\n", tex, count = 0, flags = re.S)
+        tex = tex.replace(r"\PERCTAG", r"%") # re-escape %
+        
+
+        return tex
+                
+    
+    

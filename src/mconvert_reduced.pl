@@ -3742,46 +3742,9 @@ sub create_tree {
         
       }
     
-    
-      # Kommentarzeilen radikal entfernen (auﬂer wenn \% statt % im LaTeX-Code steht oder wenn in verb-line)
-      my $coms = 0;
-    
-      # Suchen welche Sonderzeichen fuer verb-Kommandos eingesetzt werden
-    
-      my $vi = 0;
-      my @verbac = ($textex =~ m/\\verb(.)/g );
-      my @verbc = ();
-      for ($vi = 0; $vi <= $#verbac; $vi++) {
-        my $found = 0;
-        my $vb;
-        for ($vb = 0; (($vb <= $#verbc) and ($found == 0)); $vb++ ) {
-          if ($verbc[$vb] eq $verbac[$vi]) { $found = 1; }
-        }
-        if ($found == 0) {
-          my $c = $verbac[$vi];
-          push @verbc, $c;
-        }
-      }
-        
-      my $vc = $#verbc + 1;
-      if ($vc > 0) { logMessage($VERBOSEINFO, " $vc different verb-escape chars found in tex-file"); }
-      
-      for ($vi = 0; $vi < $vc; $vi++ ) {
-        my $c = $verbc[$vi];
-        logMessage($VERBOSEINFO, " verb-char $c");
-        if ($c eq "\%") {
-          # Es gibt wirklich Autoren die in einem LaTeX-Dokument das % als Begrenzer fuer \verb einsetzen, das macht es tricky
-	  while ($textex =~ s/\\verb$c([^$c]*?)$c/\\verb\\PERCTAG$1\\PERCTAG/ ) { logMessage($VERBOSEINFO, "  Delimiter in \%-verb-line escaped"); }
-        } else {
-  	while ($textex =~ s/\\verb$c([^$c]*?)\%([^$c]*?)$c/\\verb$c$1\\PERCTAG$2$c/ ) { logMessage($VERBOSEINFO, "  \% in verb-line escaped (special char $c)"); }
-        }
-      }
-    
-      while ($textex =~ s/(?<!\\)\%([^\n]+?)\n/\%\n/s ) { $coms++; }
-      if ($coms != 0) { logMessage($VERBOSEINFO, "  $coms LaTeX-commentlines removed from file"); }
 
-      while ($textex =~ s/\\PERCTAG/\%/ ) { logMessage($VERBOSEINFO, "  \% in verb-line reinstated"); }
 
+      # XXX PYTHON TRANSLATION
     
       $dotikzfile = 0;
       if ($textex =~ s/\\Mtikzexternalize//gs ) {

@@ -25,6 +25,8 @@ from distutils.dir_util import copy_tree, mkpath
 from distutils.file_util import copy_file
 import sys
 import time
+import getpass
+import socket
 
 class System(object):
 
@@ -52,9 +54,12 @@ class System(object):
         self.checkTime = self.startTime
 
         with open(self.logFilename, 'w', encoding='utf-8') as log:
-            log.write("Started logging at absolute time " + str(self.startTime) + " [seconds]\n")
+            s = "Started logging at absolute time " + time.ctime(self.startTime)
+            log.write(s + "\n")
+            print(s)
 
         self.message(self.CLIENTINFO, "Using option object: " + options.description)
+        self.message(self.VERBOSEINFO, "Host = " + socket.gethostname() + ", user = " + getpass.getuser())
 
     def _printMessage(self, color, txt):
         # green verbose messages only in logfile, and on console if verbose is active

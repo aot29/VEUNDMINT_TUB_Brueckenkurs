@@ -219,6 +219,8 @@ class Structure(object):
             pp.preprocess()
         
         
+        self.sys.message(self.sys.FATALERROR, "PREMATURE END")
+        
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
