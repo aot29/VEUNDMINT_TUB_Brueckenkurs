@@ -79,6 +79,7 @@ class Option(object):
 
         self.texstylefiles = ["bibgerm.sty", "maxpage.sty"]  # style files needed in local directories for local pdflatex compilation
         self.htmltikzscale = 1.3                             # scaling factor used for tikz-png scaling, can be overridden by pragmas
+        self.autotikzcopyright = 1
 
         self.generate_pdf = { "tree1_tu9onlinekurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung
 

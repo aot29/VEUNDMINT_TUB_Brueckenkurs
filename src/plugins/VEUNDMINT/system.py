@@ -238,4 +238,19 @@ class System(object):
         else:
             self.message(self.FATALERROR, "popdir did not match pushdir, dirstack is empty")
     
-    
+    # substitutes umlauts by tex commands
+    def umlauts_tex(self, tex):
+        tex = tex.replace("ß","\"s")
+        tex = tex.replace("Ä","\"A")
+        tex = tex.replace("Ö","\"O")
+        tex = tex.replace("Ü","\"U")
+        tex = tex.replace("ä","\"a")
+        tex = tex.replace("ö","\"o")
+        tex = tex.replace("ü","\"u")
+        return tex
+            
+    # creates a string which is not the prefix of anything in the given text
+    def generate_autotag(self, text):
+        t = "T_AUTOTAG"
+        while re.search(re.escape(t), text, re.S): t = t + "x"
+        return t

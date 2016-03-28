@@ -3672,75 +3672,42 @@ sub create_tree {
 
     # Mit MDia eingebundene dia-Files verarbeiten (eps->png aus dia lokal produzieren, png's fuer das PDF erhalten hoeheres dpi)
 
-    my $suffixpdf = "mintpdf";
-    my $suffixhtml = "minthtml";
-    while ($textex =~ m/\\MDia\{(.+?)\}/g ) {
-      my $dprx = "$outputdir/converter/tex/$prx/$1";
-      if ($config{diaok} == "0") {
-        logMessage($CLIENTWARN, "dia/conv-chain disabled, NOT processing dia diagramm $dprx");
-      } else {
-        logMessage($VERBOSEINFO, "Processing dia diagramm $dprx");
-        system "dia --export $dprx.png --filter=cairo-alpha-png $dprx.dia";
-      
-        my $rt = 0;
-      
-        $rt = system("dia --export $dprx.eps $dprx.dia");
-        if ($rt == 0) {
-          system "convert -density 180 $dprx.eps -resample 180 $dprx$suffixpdf.png"; 
-          $rt = system("convert -density 53 $dprx.eps -resample 53 $dprx$suffixhtml.png");
-        }
-      
-        if ($rt != 0) {
-          $config{diaok} = 0;
-          logMessage($CLIENTERROR, "dia/conv-chain failed with return value $rt");
-        }
-      }
-    } 
+#     my $suffixpdf = "mintpdf";
+#     my $suffixhtml = "minthtml";
+#     while ($textex =~ m/\\MDia\{(.+?)\}/g ) {
+#       my $dprx = "$outputdir/converter/tex/$prx/$1";
+#       if ($config{diaok} == "0") {
+#         logMessage($CLIENTWARN, "dia/conv-chain disabled, NOT processing dia diagramm $dprx");
+#       } else {
+#         logMessage($VERBOSEINFO, "Processing dia diagramm $dprx");
+#         system "dia --export $dprx.png --filter=cairo-alpha-png $dprx.dia";
+#       
+#         my $rt = 0;
+#       
+#         $rt = system("dia --export $dprx.eps $dprx.dia");
+#         if ($rt == 0) {
+#           system "convert -density 180 $dprx.eps -resample 180 $dprx$suffixpdf.png"; 
+#           $rt = system("convert -density 53 $dprx.eps -resample 53 $dprx$suffixhtml.png");
+#         }
+#       
+#         if ($rt != 0) {
+#           $config{diaok} = 0;
+#           logMessage($CLIENTERROR, "dia/conv-chain failed with return value $rt");
+#         }
+#       }
+#     } 
 
-    # Eindimensionale pmatrix-Umgebungen als eindimensionale Arrays umsetzen
-    if ($textex =~ s/\\begin{pmatrix}([^&]*?)\\end{pmatrix}/\\ifttm\\left({\\begin{array}{c}$1\\end{array}}\\right)\\else\\begin{pmatrix}$1\\end{pmatrix}\\fi/sg ) {
-      logMessage($VERBOSEINFO, "  pmatrix-environment of dimension 1 substituted");
-    }
-    
-    # flushleft-Umgebungen im html ignorieren
-    if ($textex =~ s/\\begin{flushleft}(.*?)\\end{flushleft}/\\ifttm{$1}\\else\\begin{flushleft}$1\\end{flushleft}\\fi/sg ) {
-      logMessage($VERBOSEINFO, "  flushleft-environment removed (no counterpart in html available right now)");
-    }
 
-    # vdots und hdots ersetzen
-    $textex =~ s/\\hdots/\\MHDots/g ;
-    $textex =~ s/\\vdots/\\MVDots/g ;
-    
-    
-    if ($textex =~ m/\\begin{pmatrix}/s ) { logMessage($VERBOSEINFO, "  Multidimensional pmatrix-environments found, cannot be processed"); }
-    
-    # \relax auf \MRelax umbiegen, da \relax nicht von ttm unterstuetzt
-    if ($textex =~ s/\\relax/\\MRelax/g ) { logMessage($VERBOSEINFO, "  Command \\relax replaced"); }
-    
-    # newpage und co aus html-Konversion ausschliessen
-    $textex =~ s/\\newpage/\\ifttm\\else\\newpage\\fi/g ;
-    $textex =~ s/\\pagebreak/\\ifttm\\else\\pagebreak\\fi/g ;
-    $textex =~ s/\\clearpage/\\ifttm\\else\\clearpage\\fi/g ;
-    $textex =~ s/\\allowbreak/\\ifttm\\else\\allowbreak\\fi/g ;
 
-    # Ligaturbefehl aus html-Konversion ausschliessen
-    $textex =~ s/\\\//\\ifttm\\else\\\/\\fi\%\n/g ;
 
-    # Umlaute in Knopftitel fuer MHint ersetzen (wird von ttm ignoriert weil als Teil des TeX-Kommandos interpretiert)
-    $textex =~ s/\\begin\{MHint\}\{([^\{\}]*?)ö([^\{\}]*?)\}/\\begin\{MHint\}\{$1\"o$2\}/sg ;
-    $textex =~ s/\\begin\{MHint\}\{([^\{\}]*?)ä([^\{\}]*?)\}/\\begin\{MHint\}\{$1\"a$2\}/sg ;
-    $textex =~ s/\\begin\{MHint\}\{([^\{\}]*?)ü([^\{\}]*?)\}/\\begin\{MHint\}\{$1\"u$2\}/sg ;
-    $textex =~ s/\\begin\{MHint\}\{([^\{\}]*?)Ö([^\{\}]*?)\}/\\begin\{MHint\}\{$1\"O$2\}/sg ;
-    $textex =~ s/\\begin\{MHint\}\{([^\{\}]*?)Ä([^\{\}]*?)\}/\\begin\{MHint\}\{$1\"A$2\}/sg ;
-    $textex =~ s/\\begin\{MHint\}\{([^\{\}]*?)Ü([^\{\}]*?)\}/\\begin\{MHint\}\{$1\"U$2\}/sg ;
-    $textex =~ s/\\begin\{MHint\}\{([^\{\}]*?)ß([^\{\}]*?)\}/\\begin\{MHint\}\{$1\"s$2\}/sg ;
+
+
+
 
     
     my $rpr = "CRLF";
     while ($textex =~ /$rpr/i ) { $rpr = $rpr . "x" };
 
-    # ttm uebersetzt $\displaystyle ...$ nicht
-    $textex =~ s/\\displaystyle/\\displaystyle\\ifttm\\special{html:<mstyle displaystyle="true">}\\fi/gs ;
 
     # Nach equation- und eqnarray-starts den Labeltyp anpassen
     my $eqprefix = "\\setcounter{MLastType}{10}\\addtocounter{MLastTypeEq}{1}\\addtocounter{MEquationCounter}{1}\\setcounter{MLastIndex}{\\value{MEquationCounter}}\n";

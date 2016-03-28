@@ -135,9 +135,7 @@ class Preprocessor(object):
     
         self.sys.timestamp("Finished preprocessor " + self.name)
         self.sys.message(self.sys.FATALERROR, "PREMATURE END")
-        
-        
-        
+                
 
     # Checks if given tex code is valid for a release version
     # Return value: boolean True if release check passed
@@ -218,6 +216,7 @@ class Preprocessor(object):
         self.preprocess_pragmas()
         if self.local['modulename'] != "":
             self.preprocess_includify()
+        self.preprocess_ttmcompability()
 
 
 
@@ -360,13 +359,14 @@ class Preprocessor(object):
     # copyright processing, exports, tikz-generation and DirectHTML processing must happen before this one
 
         # attach standard MINT authorship and CC license to each auto tikz image
-        def ctikz(part):
-            label = self._autolabel()
-            return "\MCopyrightLabel{" + label + "}\\MCopyrightNotice{\\MCCLicense}{TIKZ}{MINT}{TikZ-Quelltext in der Datei " + self.local['pfilename'] + "}{" + label + "}\\MTikzAuto{"
-            
-        (self.local['tex'], n) = re.subn(r"\\MTikzAuto\{", ctikz, self.local['tex'], 0, re.S)
-        if (n > 0):
-            self.sys.message(self.sys.VERBOSEINFO, "Forcibly attached CC licenses to " + str(n) + " tikz pictures in this files")
+        if self.options.autotikzcopyright == 1:
+            def ctikz(part):
+                label = self._autolabel()
+                return "\MCopyrightLabel{" + label + "}\\MCopyrightNotice{\\MCCLicense}{TIKZ}{MINT}{TikZ-Quelltext in der Datei " + self.local['pfilename'] + "}{" + label + "}\\MTikzAuto{"
+                
+            (self.local['tex'], n) = re.subn(r"\\MTikzAuto\{", ctikz, self.local['tex'], 0, re.S)
+            if (n > 0):
+                self.sys.message(self.sys.VERBOSEINFO, "Forcibly attached CC licenses to " + str(n) + " tikz pictures in this files")
     
     
         def cright(part):
@@ -560,4 +560,62 @@ class Preprocessor(object):
         (self.local['tex'], n) = re.subn(r"\\input\{(.+?)\}", "\\input{" + self.local['moddirprefix'] + "/\1}", self.local['tex'], 0, re.S)
         if n > 0: self.sys.message(self.sys.CLIENTWARN, "Module " + self.local['modulename'] + " uses local input files")
 
+        return
+
+    def preprocess_ttmcompability(self):
+        # modify tex constructs that are not translated correctly by the original ttm converter,
+        # but preserve the original version of pdf version
+
+        # turn 1d-pmatrix expressions into arrays in HTML version
+        (self.local['tex'], n) = re.subn(r"\\begin\{pmatrix\}([^&]*?)\\end\{pmatrix\}",
+                                         "\\ifttm\\left({\\begin{array}{c}\1\\end{array}}\\right)\\else\\begin{pmatrix}\1\\end{pmatrix}\\fi",
+                                         self.local['tex'], 0, re.S)
+        if n > 0: self.sys.message(self.sys.VERBOSEINFO, str(n) + " pmatrix-environments of dimension 1 substituted")
+
+        # ignore flushleft in HTML version
+        (self.local['tex'], n) = re.subn(r"\\begin\{flushleft\}(.*?)\\end\{flushleft\}",
+                                   "\\ifttm{\1}\\else\\begin{flushleft}\1\\end{flushleft}\\fi",
+                                   self.local['tex'], 0, re.S)
+        if n > 0: self.sys.message(self.sys.VERBOSEINFO, str(n) + " flushleft-environments removed (no counterpart in html available right now)")
+    
+        # replace hdots, vdots and relax by macro versions as ttm does not understand them
+        (self.local['tex'], n) = re.subn(r"\\hdots", "\\MHDots", self.local['tex'], 0, re.S)
+        if n > 0: self.sys.message(self.sys.VERBOSEINFO, str(n) + " \\hdots modified")
+        (self.local['tex'], n) = re.subn(r"\\vdots", "\\MVDots", self.local['tex'], 0, re.S)
+        if n > 0: self.sys.message(self.sys.VERBOSEINFO, str(n) + " \\vdots modified")
+        (self.local['tex'], n) = re.subn(r"\\relax", "\\MRelax", self.local['tex'], 0, re.S)
+        if n > 0: self.sys.message(self.sys.VERBOSEINFO, str(n) + " \\relax modified")
+        
+        if re.search(r"\\begin\{pmatrix\}", self.local['tex'], re.S):
+            self.sys.message(self.sys.CLIENTWARN, "Multidimensional pmatrix-environments found, cannot be processed by original ttm")
+    
+    
+        # exclude newpage and related statements entirely from html version
+        for exc in ["newpage", "pagebreak", "clearpage", "allowbreak"]:
+            (self.local['tex'], n) = re.subn(r"\\" + exc, "\\\\ifttm\\else\\\\" + exc + "\\\\fi", self.local['tex'], 0, re.S)
+            if n > 0: self.sys.message(self.sys.VERBOSEINFO, str(n) + " \\" + exc + " removed from HTML version")
+            # For some unknown reason it has to be \\\\fi in this target regex, while in other ones in this module \\fi suffices ?
+            
+        # remove ligature commands from html version
+        (self.local['tex'], n) = re.subn(r"\\/", "\\ifttm\\else\\/\\fi\%\n", self.local['tex'], 0, re.S)
+        if n > 0: self.sys.message(self.sys.VERBOSEINFO, str(n) + " ligatures excluded")
+
+        # remove umlauts from MHint button texts as ttm does not process them correctly
+        def hbutton(part):
+            return "\\begin{MHint}{" + self.sys.umlauts_tex(part.group(1)) + "}"
+        (self.local['tex'], n) = re.subn(r"\\begin\{MHint\}\{(.+?)\}", hbutton, self.local['tex'], 0, re.S)
+        if n > 0: self.sys.message(self.sys.VERBOSEINFO, str(n) + " MHint button umlauts substituted")
+        
+        # ttm does not translate $\displaystyle ...$ correctly, on the other hand pdflatex does not want \special in math environment
+        (self.local['tex'], n) = re.subn(r"\\displaystyle", "\\displaystyle\\ifttm\\special{html:<mstyle displaystyle=\"true\">}\\\\fi", self.local['tex'], 0, re.S)
+        # For some unknown reason it has to be \\\\fi in this target regex, while in other ones in this module \\fi suffices ?
+        if n > 0: self.sys.message(self.sys.VERBOSEINFO, str(n) + " displaystyles prepared for ttm")
+        
+        # check features not reproduced from old converter version yet
+        for f in ["align", "align*", "alignat", "alignat*"]:
+            if re.search(r"\\begin\{" + re.escape(f) + "\}", self.local['tex'], re.S):
+                self.sys.message(self.sys.CLIENTWARN, "LaTeX environment " + f + " is not implemented in this converter version")
+        
+        
+        
         return
