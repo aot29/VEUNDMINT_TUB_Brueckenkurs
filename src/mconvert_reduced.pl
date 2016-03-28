@@ -3667,59 +3667,8 @@ sub create_tree {
 
     
     
-    #  ------------------------ Pragmas einlesen und verarbeiten ----------------------------------
-
-    my $htmltikzscale = 1.3;
-    if ($textex =~ m/\\MPragma{HTMLTikZScale;(.+?)}/ ) {
-      $htmltikzscale = $1;
-      logMessage($CLIENTINFO, "  Pragma HTMLTikZScale: HTMLTikZ set to $htmltikzscale");
-    }
     
-    if ($textex =~ m/\\MPragma{SolutionSelect}/ ) {
-      if ($config{nosols} eq 0) {
-        logMessage($CLIENTINFO, "  Pragma SolutionSelect: Ignored due to nosols==0");
-      } else {
-        logMessage($CLIENTINFO, "  Pragma SolutionSelect: MSolution-environments will be removed");
-	while ($textex =~ s/\\begin{MSolution}(.+?)\\end{MSolution}/\\relax/s ) { ; }
-    logMessage($CLIENTINFO,  "MHint{Lösung}-environments will be removed");
-	while ($textex =~ s/\\begin{MHint}{Lösung}(.+?)\\end{MHint}/\\relax/s ) { ; }
-	while ($textex =~ s/\\begin{MHint}{L"osung}(.+?)\\end{MHint}/\\relax/s ) { ; }
-	while ($textex =~ s/\\begin{MHint}{L\\"osung}(.+?)\\end{MHint}/\\relax/s ) { ; }
-      }
-    }
-
-    if ($textex =~ m/\\MPragma{MathSkip}/ ) {
-      logMessage($VERBOSEINFO, "  Pragma MathSkip: Skips starting math-environments inserted");
-      $textex =~ s/(?<!\\)\\\[/\\MSkip\\\[/g;
-      $textex =~ s/(?<!\\)\$\$/\\MSkip\$\$/g;
-      $textex =~ s/(?<!\\)\\begin{eqnarray/\\MSkip\\begin{eqnarray/g;
-      $textex =~ s/(?<!\\)\\begin{equation/\\MSkip\\begin{equation/g;
-      $textex =~ s/(?<!\\)\\begin{align/\\MSkip\\begin{align/g;
-    }
-
-    while ($textex =~ s/\\MPragma{Substitution;(.+?);(.+?)}/\\MPragma{Nothing}/ ) {
-      logMessage($CLIENTINFO, "  Pragma Substitution: $1 --> $2");
-      my $s1 = $1;
-      my $s2 = $2;
-      $textex =~ s/$s1/$s2/g ;
-    }
-
-    if ($textex =~ s/\\MPreambleInclude{(.*)}/\\MPragma{Nothing}/g ) {
-      logMessage($CLIENTERROR, "Inclusion of local preamble (found " . $1 . ") is no longer supported, please add them to $macrofile manually");
-    }
     
-    if ($modulname ne "") {
-      # Dokumentstruktur an tree anpassen, includes und preamble werden schon vorgegeben
-      $textex =~ s/\\begin{document}//g ;
-      $textex =~ s/\\input{$macrofile}//g ;
-      $textex =~ s/\\input{$macrofilename}//g ;
-      $textex =~ s/\\end{document}//g ;
-      $textex =~ s/\\input{(.+?)}/\\input{$prx\/$1}/g; # !!!!!!!!!!!!!!!
-      # input-Anweisungen der Modulebene anpassen: jedes Modul liegt einem eigenen Verzeichnis
-      # Alle printindex-Kommandos entfernen
-      $textex =~ s/\\printindex//g;
-      $textex =~ s/\\MPrintIndex//g;
-    }
 
     # Mit MDia eingebundene dia-Files verarbeiten (eps->png aus dia lokal produzieren, png's fuer das PDF erhalten hoeheres dpi)
 

@@ -78,6 +78,7 @@ class Option(object):
         self.variant = "std"                                 # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete fuer Mathematikumsetzung aus, Alternative ist "unotation"
 
         self.texstylefiles = ["bibgerm.sty", "maxpage.sty"]  # style files needed in local directories for local pdflatex compilation
+        self.htmltikzscale = 1.3                             # scaling factor used for tikz-png scaling, can be overridden by pragmas
 
         self.generate_pdf = { "tree1_tu9onlinekurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung
 
@@ -198,21 +199,20 @@ class Option(object):
                     vr = getattr(self, m.group(1))
                     if (type(vr).__name__ == "int"):
                         setattr(self, m.group(1), int(m.group(2)))
-                        # print("Option override: " + m.group(1) + " := " + m.group(2) + " [int]")
                     else:
                         if (type(vr).__name__ == "str"):
                             setattr(self, m.group(1), m.group(2))
-                            # print("Option override: " + m.group(1) + " := " + m.group(2) + " [string]")
                         else:
-                            if (type(vr).__name__ == "bool"):
-                                if (m.group(2) == "0"):
-                                    setattr(self, m.group(1), False)
-                                    # print("Option override: " + m.group(1) + " := " + m.group(2) + " [boolean false]")
-                                else:
-                                    setattr(self, m.group(1), True)
-                                    # print("Option override: " + m.group(1) + " := " + m.group(2) + " [boolean true]")
+                            if (type(vr).__name__ == "float"):
+                                setattr(self, m.group(1), float(m.group(2)))
                             else:
-                                print("Option type " + type(vr).__name__ + " not acceptable")
+                                if (type(vr).__name__ == "bool"):
+                                    if (m.group(2) == "0"):
+                                        setattr(self, m.group(1), False)
+                                    else:
+                                        setattr(self, m.group(1), True)
+                                else:
+                                    print("Option type " + type(vr).__name__ + " not acceptable")
                 else:
                     print("Option " + m.group(1) + " does not exist, cannot override")
                 
