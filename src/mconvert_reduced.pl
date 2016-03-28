@@ -60,7 +60,6 @@ our $PageIDCounter = 1;
 # -------------------------------------------------------------------------------------------------------------
 
 my @tominify = ("mintscripts.js", "servicescripts.js", "intersite.js", "convinfo.js", "userdata.js", "mparser.js", "dlog.js", "exercises.js");
-my %tikzpng = (); # Wird von tikz-Erkennung gefuellt mit Eintraegen der Form "xyz" => "style" mit xyz ohne Endung .png
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -3653,175 +3652,20 @@ sub create_tree {
       logMessage($VERBOSEINFO, "Preprocessing ignores $texs[$ka]");
     } else {
       # -------------------------------- Start Preprocessing per texfile -------------------------------------------------------
-      my $texzeile = "";
-      $pcompletename = $texs[$ka];
-      $pcompletename =~ m/(.+)\/(.+?).tex/i;
-      my $pdirname = $1;
-      my $pfilename = $2 . ".tex";
-    
-      my $tex_info = `file -i $pcompletename`;
-      my $charset_ok = 0;
-      if ($tex_info =~ m/charset=iso-8859-1/s ) {
-        logMessage($VERBOSEINFO, $texs[$ka] . " has charset = iso-8859-1 (latin1)");
-        $charset_ok = 1;
-      }
-    
-      if ($tex_info =~ m/charset=us-ascii/s ) {
-        logMessage($VERBOSEINFO, $texs[$ka] . " has charset us-ascii (nice but latin1 is ok)");
-        $charset_ok = 1;
-      }
-    
-      if ($charset_ok ne 1) {
-        $tex_info =~ m/charset=(.+)/i ;
-        logMessage($CLIENTWARN, "Bad charset " . $1 . " in file " . $texs[$ka] . ", must be latin1");
-      }
-    
-      my $textex = readfile($pcompletename);
-    
-      my $modulname = "";
-      if ($textex =~ /\\MSection\{(.+?)\}/ ) {
-        $modulname = $1;
-      }
-      my $prx = "";
-      my $pfname = "";
-      if ($texs[$ka] =~ /(.*)\/tex\/(.+)\/(.+?)\.tex/ ) {
-        $prx = $2;
-        $pfname = $3;
-      } else {
-        logMessage($FATALERROR, "Could not decode $texs[$ka]");
-      }
-      $prx =~ s/.\///g;
-      if ($modulname ne "") {
-        logMessage($VERBOSEINFO, "Tree-preprocess on module $modulname in directory $prx");
-      } else {
-        logMessage($VERBOSEINFO, "Tree-preprocess on bare file $pfname in directory $prx");
-      }
- 
-      if ($config{dorelease} eq 1) {
-        if (checkRelease($textex) eq 0) {
-          logMessage($CLIENTERROR, "tex-file " . $texs[$ka] . " did not pass release check");
-        }
-      }
 
- 
-      $filecount++;
-    
-    
-      # Als allererstes inlcude-Aufgaben aus Roulettes einbinden, damit auch auf diese das Preparsing angewendet wird
-      while ($textex =~ m/\\MDirectRouletteExercises{(.+?)}{(.+?)}/s ) {
-        my $rfilename = $1;
-        my $rid = $2;
-        my $rfile = "$pdirname/$rfilename";
-        if ($rfilename =~ m/\.tex/s ) {
-          logMessage($CLIENTWARN, "Roulette input file $rfile is a pure tex file, please change the file name to non-tex to avoid double preparsing");
-        }
-        logMessage($VERBOSEINFO, "MDirectRouletteExercises on include file $rfile with id $rid");
-        my $rtext = readfile($rfile);
-        
-        # Jede Aufgabe des includes bekommt ein eigenes div, davon ist nur eines sichtbar, trotzdem werden alle zugehoerigen Frageobjekte generiert
-        
-        my $id = 0;
-
-        my $htex = "";
-        while ($rtext =~ s/\\begin{MExercise}(.+?)\\end{MExercise}//s ) {
-          $htex .= "\\special{html:<!-- rouletteexc-start;$rid;$id; \/\/-->}\\begin{MExercise}$1\\end{MExercise}\\special{html:<!-- rouletteexc-stop;$rid;$id; \/\/-->}\n";
-          $id++;
-        }
-        
-        
-        $rtext = "\\ifttm\\special{html:<!-- directroulette-start;$rid; //-->}$htex\\special{html:<!-- directroulette-stop;$rid; //-->}\\else\\texttt{Im HTML erscheinen hier Aufgaben aus einer Aufgabenliste...}\\fi\n";
-        $textex =~ s/\\MDirectRouletteExercises{$rfilename}{$rid}/$rtext/s ;
-        
-        if (exists $DirectRoulettes{$rid}) {
-          logMessage($CLIENTERROR, "Roulette id $rid not unique");
-        } else {
-          $DirectRoulettes{$rid} = "$id";
-        }
-
-        logMessage($VERBOSEINFO, "Roulette $rid contains $id exercises");
-        
-      }
-    
-
+      
 
       # XXX PYTHON TRANSLATION
     
-      $dotikzfile = 0;
-      if ($textex =~ s/\\Mtikzexternalize//gs ) {
-        logMessage($VERBOSEINFO, "  tikzexternalize activated");
-        if ($config{dotikz} eq 1) { $dotikzfile = 1; }
-      }
 
     
-      # Frageumgebungen ggf. fuer Export vorbereiten
-      if ($config{qautoexport} eq 1) {
-        $textex =~ s/\\begin{MExercise}(.+?)\\end{MExercise}/\\begin{MExportExercise}$1\\end{MExportExercise}/sg ;
-      }
-     
-      if ($textex =~m/\\MSection{(.+?)}/s ) {
-        $globalexstring .= "\\MSubsubsectionx{" . $1 . "}\n";
-      }
-     
-      # Exportmarkierte Frageumgebungen in DirectHTML umsetzen, das muss vor jeglichem Preprocessing stattfinden
-      my $qex = 0;
-      while ($textex =~ s/\\begin{MExportExercise}(.+?)\\end{MExportExercise}/\\begin{MExercise}$1\\end{MExercise}\n\\begin{MDirectHTML}\n<!-- qexportstart;$qex; \/\/-->$1<!-- qexportend;$qex; \/\/-->\n\\end{MDirectHTML}/s ) { 
-        $qex++;
-        $globalexstring .= "\\ \\\\\n\\begin{MExercise}\n" . $1 . "\n\\end{MExercise}\n";
-      }
-       
-       
-      # MDirectMath umsetzen (als DirectHTML)
-      while($textex =~ s/\\begin{MDirectMath}(.+?)\\end{MDirectMath}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
-        push @DirectHTML , "\\[" . $1 . "\\]";
-        $globalposdirecthtml++;
-      }
-
-      # MDirectHTML umsetzen
-      while($textex =~ s/\\begin{MDirectHTML}(.+?)\\end{MDirectHTML}/\\ifttm\\special{html:<!-- directhtml;;$globalposdirecthtml; \/\/-->}\\fi/s ) {
-        push @DirectHTML , $1;
-        $globalposdirecthtml++;
-      }
 
     
-      # Copyright-notices umsetzen, wichtig ist hier dass die DirectHTML-Eintraege und die Aufgabenexporte schon gemacht sind
-      while($textex =~ s/\\MCopyrightNotice{(.+?)}{(.+?)}{(.+?)}{(.+?)}{(.+?)}/\\MCopyrightNoticePOST{$1}{$2}{$3}{$4}{$5}/s ) {
-        my $authortext = "";
-        if ($3 eq "MINT") {
-          $authortext = "\\MExtLink{http://www.mint-kolleg.de}{MINT-Kolleg Baden-Württemberg}";
-        } else {
-          if ($3 eq "VEMINT") {
-            $authortext = "\\MExtLink{http://www.vemint.de}{VEMINT-Konsortium}";
-          } else {
-            if ($3 eq "NONE") {
-              $authortext = "Unbekannter Autor";
-              } else {
-              $authortext = "\\MExtLink{$3}{Autor}";
-            }
-          }
-        }
-      
-        if ($2 eq "NONE") {
-  	  $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & Ersterstellung & $4 \\\\ \\ \\\\\n";
-        } else {
-          if ($2 eq "TIKZ") {
-            $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & Grafikdatei erzeugt aus tikz-Code & $4 \\\\ \\ \\\\\n";
-          } else {
-            if ($2 eq "FSZ") {
-              $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & Aufgenommen im \\MExtLink{http://www.fsz.kit.edu}{Fernstudienzentrum} des \\MExtLink{http://www.kit.edu}{KIT} & $4 \\\\ \\ \\\\\n";
-            } else {
-              $copyrightcollection .= "\\MCRef{$5} & $1 & $authortext & \\MExtLink{$2}{Originaldatei} & $4 \\\\ \\ \\\\\n";
-            }
-          }
-       }
-    }
+    
+    
 
-    if ($textex =~ s/\\tikzexternalize//gs ) {
-      logMessage($CLIENTINFO, "  found BARE tikzexternalize and removed it (please use macro from $macrofile instead)");
-    }
 
-    if ($textex =~ m/\\tikzsetexternalprefix/s ) {
-      logMessage($CLIENTERROR, "  found tikzsetexternalprefix (please use auto-tikz macros from $macrofile instead)");
-    }
+    
     
     #  ------------------------ Pragmas einlesen und verarbeiten ----------------------------------
 
@@ -4195,73 +4039,11 @@ sub create_tree {
     # -------------------------------- Ende Preprocessing per texfile -------------------------------------------------------
    
     # Schreiben der Datei oder vorher noch tikz-externalize
-    chdir($pdirname);
-    if ($dotikzfile eq 1) {
-      # Modifikationen sind hier noch nicht geschrieben und mintmod reicht Mtikzexternalize weiter
-      # Lokales Makropaket installieren
-      
-      # Programm wird an dieser Stelle im Aufrufverzeichnis ausgefuehrt
-      writefile($macrofile, $modmacrotex);
-      system("cp $basis/converter/tex/maxpage.sty .");
-      system("cp $basis/converter/tex/bibgerm.sty .");
-      my $mca = "pdflatex -shell-escape $pfilename";
-      logMessage($CLIENTINFO, "  Starte pdflatex mit shellescape: $mca");
-      my $rtt = system($mca);
-      if ($rtt != 0) {
-        logMessage($CLIENTERROR, "  pdflatex with tikzexternalize failed");
-      } else {
-        logMessage($CLIENTINFO, "  pdflatex with tikzexternalize ok");
-      }
-    }
-    
-    if ($textex =~ m/\\MSetSectionID{(.+?)}/s ) {
-      my $tid = $1 . "mtikzauto_";
-      # Files $tid?.png, $tid?.svg anf $tid.4x.png should be present (matching generator definition in mintmod.tex)
-      logMessage($VERBOSEINFO, "  Module section id is " . $1 . ", TikZ id is $tid");
-      my $j = 1;
-      my $ok = 1;
-      do {
-        $ok = 0;
-        my $tname = $tid . $j;
-        if (-e $tname . ".svg") {
-          logMessage($VERBOSEINFO, "  externalized svg found: $tname");
-          $ok = 1;
-        }
-        if (-e $tname . ".4x.png") {
-          logMessage($VERBOSEINFO, "  externalized hi-res png found: $tname");
-          $ok = 1;
-        }
-        if (-e $tname . ".png") {
-          $ok = 1;
-          my $tinfo = `file $tname.png`;
-          if ($tinfo =~ m/$tname\.png: PNG image data, ([0123456789]+?) x ([0123456789]+?),/s ) {
-            my $sizex = $1;
-            my $sizey = $2;
-            logMessage($VERBOSEINFO, "  externalized png found: $tname.png, size is $sizex x $sizey");
-            $sizex = int($sizex * $htmltikzscale);
-            $sizey = int($sizey * $htmltikzscale);
-            logMessage($VERBOSEINFO, "  rescaled to $sizex x $sizey");
-            if (exists $tikzpng{$tname}) {
-              logMessage($CLIENTERROR, "  externalized file name $tname not unique, refusing to save sizes");
-            } else {
-              $tikzpng{$tname} = "width:$sizex" . "px;height:$sizey" . "px";
-            }
-          } else {
-            logMessage($CLIENTERROR, "  externalized png found: $tname.png, could not determine its size");
-          }
-        }
-            
-        $j++;
-      } while($ok eq 1);
-    } else {
-      logMessage($VERBOSEINFO, "  No section id found");
-    }
 
     
     
-    chdir($basis);
-
-    writefile($texs[$ka], $textex);
+    
+    # writefile($texs[$ka], $textex);
   }
   }
 

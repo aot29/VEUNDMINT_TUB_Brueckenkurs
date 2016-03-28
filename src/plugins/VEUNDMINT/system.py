@@ -50,6 +50,8 @@ class System(object):
         self.doColors = options.consolecolors
         self.doVerbose = options.doverbose
         
+        self.dirstack = []
+        
         self.startTime = time.time()
         self.checkTime = self.startTime
 
@@ -211,7 +213,7 @@ class System(object):
         return text
         
     
-    # Writes text to a text file (creating or overwriting existing files) in a given encoding given a Python3 unicode string
+    # writes text to a text file (creating or overwriting existing files) in a given encoding given a Python3 unicode string
     # subfolders are created if not already there
     def writeTextFile(self, name, text, enc):
         if ((not os.path.exists(os.path.dirname(name))) and (os.path.dirname(name) != "")):
@@ -221,5 +223,19 @@ class System(object):
             file.write(text)
             
         self.message(self.VERBOSEINFO, "Written string of length " + str(len(text)) + " to file " + name + " encoded in " + enc)
+
+
+    # stores the current working directory on the dirstack
+    def pushdir(self):
+        self.dirstack.append(os.path.abspath(os.getcwd()))
     
-        
+    
+    # changes back to the last directory on the dirstack
+    def popdir(self):
+        if len(self.dirstack) > 0:
+            os.chdir(self.dirstack[-1])
+            del self.dirstack[-1]
+        else:
+            self.message(self.FATALERROR, "popdir did not match pushdir, dirstack is empty")
+    
+    

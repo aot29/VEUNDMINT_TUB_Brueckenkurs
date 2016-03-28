@@ -16,8 +16,16 @@
     along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
 """
 
+
+"""
+    This is the preprocessor object associated to the mintmod macro package, 
+    Version P0.1.0, needs to be consistent with mintmod.tex
+"""
+
+
 import re
 import os.path
+import subprocess
 
 
 class Preprocessor(object):
@@ -29,11 +37,61 @@ class Preprocessor(object):
         self.data = data
         self.options = options
         self.name = "MINTMODTEX"
+        self.version ="P0.1.0"
 
         if 'DirectRoulettes' in self.data:
             sys.message(sys.CLIENTWARN, "Another Preprocessor is using DirectRoulettes")
         else:
             self.data['DirectRoulettes'] = {}
+
+        if 'macrotex' in self.data:
+            sys.message(sys.CLIENTWARN, "Using macrotex from an another preprocessor, hope it works out")
+        else:
+            # read original code of the macro package
+            self.data['macrotex'] = self.sys.readTextFile(os.path.join(self.options.converterDir, "tex", self.options.macrofile), self.options.stdencoding)
+            if re.search(r"\\MPragma{mintmodversion;" + self.version + r"}", self.data['macrotex'], re.S):
+                self.sys.message(self.sys.VERBOSEINFO, "Macro package " + self.options.macrofile + " checked, seems to be ok")
+            else:                
+                self.sys.message(self.sys.CLIENTERROR, "Macro package " + self.options.macrofile + " does not provide macroset of preprocessor version")
+            
+        if 'modmacrotex' in self.data:
+            sys.message(sys.CLIENTWARN, "Using MODIFIED macrotex from an another preprocessor, hope it works out")
+        else:
+            # use the original code for now
+            self.data['modmacrotex'] = self.data['macrotex']
+
+
+        if 'DirectHTML' in self.data:
+            sys.message(sys.CLIENTWARN, "Another plugin has been using DirectHTML, appending existing values")
+        else:
+            self.data['DirectHTML'] = []
+            
+        if 'autolabels' in self.data:
+            sys.message(sys.CLIENTWARN, "Another plugin has been using autolabels, appending existing values")
+        else:
+            self.data['autolabels'] = []
+
+        if 'copyrightcollection' in self.data:
+            sys.message(sys.CLIENTWARN, "Another plugin has been using copyrightcollection, appending existing values")
+        else:
+            self.data['copyrightcollection'] = ""
+
+
+        # set data content used by this preprocessor object which need to be shared with other plugins
+        self.data['htmltikz'] = dict() # entries are created by tikz preprocessing and associate a filename (without extension) to CSS-stylescale
+            
+            
+            
+            
+        # set some data default values which may be overwritten by preprocessing pragmas
+        self.data['htmltikzscale'] = 1.3
+
+        # set some variables used only by this object
+        self.globalexstring = "" # will be filled with exercise texts to be exported independently of the conversion
+
+            
+        self.sys.message(self.sys.VERBOSEINFO, "Preprocessor " + self.name + " of version " + self.version + " constructed")
+
 
 
     # main function to be called from tex2x
@@ -72,10 +130,13 @@ class Preprocessor(object):
             tex = self.sys.readTextFile(texfile, self.options.stdencoding)
             tex = self.preprocess_texfile(texfile, tex)
             self.sys.writeTextFile(texfile, tex, self.options.stdencoding)
+
     
+        self.sys.timestamp("Finished preprocessor " + self.name)
         self.sys.message(self.sys.FATALERROR, "PREMATURE END")
         
-        self.sys.timestamp("Finished preprocessor " + self.name)
+        
+        
 
     # Checks if given tex code is valid for a release version
     # Return value: boolean True if release check passed
@@ -125,18 +186,29 @@ class Preprocessor(object):
                 self.sys.message(self.sys.CLIENTERROR, "tex-file " + name + " did not pass release check");
              
             
-        m = re.match(r"(.*)/(.*?).tex", name)
+        m = re.match(r"(.*)/(.*?.tex)", name)
         if m:
             pdirname = m.group(1)
-            self.sys.message(self.sys.VERBOSEINFO, "Preprocessing in directory " + pdirname)
+            pfilename = m.group(2)
+            self.sys.message(self.sys.VERBOSEINFO, "Preprocessing file " + pfilename + " in directory " + pdirname)
         else:
             pdirname = ""
+            pfilename = name
             self.sys.message(self.sys.CLIENTWARN, "texfile " + name + " does not have a directory")
       
             
-        # application of changes to the tex code
+        # application of preliminary changes to the tex code
         tex = self.preprocess_roulette(tex, pdirname)
         tex = self.preprocess_comments(tex)
+        tex = self.preprocess_directhtml(tex)
+        tex = self.preprocess_copyrights(tex, pfilename)
+
+
+
+
+
+        # tikz preparation has to come last, as TikZ formulas contain arbitrary tex code which should be preprocessed and may depend on executed pragmas
+        tex = self.preprocess_tikz(tex, pdirname, pfilename)
             
             
         return tex
@@ -195,6 +267,7 @@ class Preprocessor(object):
         self.sys.timestamp("Finished roulette preprocessing")
         return tex
 
+
     # preprocessing of LaTeX comments (and verb constructs which may contain % in text or as a delimiter)
     def preprocess_comments(self, tex):
         # find single characters used with \verb
@@ -236,5 +309,195 @@ class Preprocessor(object):
 
         return tex
                 
+
+    def preprocess_directhtml(self, tex):
+      # prepare exercises for export if requested
+      if (self.options.qautoexport == 1):
+          tex = re.sub(r"\\begin\{MExercise\}(.+?)\\end\{MExercise\}", r"\\begin{MExportExercise}\1\end{MExportExercise}", tex, 0, re.S)
+
+      m = re.search(r"\\MSection{(.+?)}", tex, re.S)
+      if m:
+          self.globalexstring = self.globalexstring + "\\MSubsubsectionx{" + m.group(1) + "}\n"
+
+
+      # exercise environments marked for export (either by qautoexport or by the module author) are translated to DirectHTML before any preprocessing happens
+      qex = 0
+      def fexport(part):
+          nonlocal qex
+          self.globalexstring = self.globalexstring + "\\ \\\\\n\\begin{MExercise}\n" + part.group(1) + "\n\\end{MExercise}\n"
+          s = "\\begin{MExercise}" + part.group(1) + "\\end{MExercise}\n\\begin{MDirectHTML}\n<!-- qexportstart;" + str(qex) + "; //-->" + part.group(1) + "<!-- qexportend;" + str(qex) + "; //-->\n\\end{MDirectHTML}"
+          qex = qex + 1
+          return s
+      tex = re.sub(r"\\begin\{MExportExercise\}(.+?)\\end\{MExportExercise\}", fexport, tex, 0, re.S) 
+
+      # MDirectMath processing (as DirectHTML)
+      def dmath(part):
+          self.data['DirectHTML'].append("\\[" + part.group(1) + "\\]")
+          return "\\ifttm\\special{html:<!-- directhtml;;" + str(len(self.data['DirectHTML']) - 1) + "; //-->}\\fi"
+      tex = re.sub(r"\\begin\{MDirectMath\}(.+?)\\end\{MDirectMath}", dmath, tex, 0, re.S)
+      
+      
+      # MDirectHTML processing
+      def dhtml(part):
+          self.data['DirectHTML'].append(part.group(1))
+          return "\\ifttm\\special{html:<!-- directhtml;;" + str(len(self.data['DirectHTML']) - 1) + "; //-->}\\fi"
+      tex = re.sub(r"\\begin\{MDirectHTML\}(.+?)\\end\{MDirectHTML}", dhtml, tex, 0, re.S)
+
+      return tex
+
+
+    def preprocess_copyrights(self, tex, pfilename):
+    # copyright processing, exports, tikz-generation and DirectHTML processing must happen before this one
+
+        # attach standard MINT authorship and CC license to each auto tikz image
+        def ctikz(part):
+            label = self._autolabel()
+            return "\MCopyrightLabel{" + label + "}\\MCopyrightNotice{\\MCCLicense}{TIKZ}{MINT}{TikZ-Quelltext in der Datei " + pfilename + "}{" + label + "}\\MTikzAuto{"
+            
+        (tex, n) = re.subn(r"\\MTikzAuto\{", ctikz, tex, 0, re.S)
+        if (n > 0):
+            self.sys.message(self.sys.VERBOSEINFO, "Forcibly attached CC licenses to " + str(n) + " tikz pictures in this files")
     
     
+        def cright(part):
+            authortext = ""
+            if part.group(3) == "MINT":
+                authortext = "\\MExtLink{http://www.mint-kolleg.de}{MINT-Kolleg Baden-Württemberg}"
+            else:
+                if part.group(3) == "VEMINT":
+                    authortext = "\\MExtLink{http://www.vemint.de}{VEMINT-Konsortium}"
+                else:
+                    if part.group(3) == "NONE":
+                        authortext = "Unbekannter Autor"
+                    else:
+                        authortext = "\\MExtLink{" + part.group(3) + "}{Autor}"
+      
+            if part.group(2) == "NONE":
+                self.data['copyrightcollection'] = self.data['copyrightcollection'] + "\\MCRef{" + part.group(5) + "} & " + part.group(1) + " & " + authortext +" & Ersterstellung & " + part.group(4) + " \\\\ \\ \\\\\n"
+            else:
+                if part.group(2) == "TIKZ":
+                    self.data['copyrightcollection'] = self.data['copyrightcollection'] + "\\MCRef{" + part.group(5) + "} & " + part.group(1) + " & " + authortext + " & Grafikdatei erzeugt aus tikz-Code & " + part.group(4) + " \\\\ \\ \\\\\n"
+                else:
+                    if part.group(2) == "FSZ":
+                        self.data['copyrightcollection'] = self.data['copyrightcollection'] + "\\MCRef{" + part.group(5) + "} & " + part.group(1) + " & " + authortext + " & Aufgenommen im \\MExtLink{http://www.fsz.kit.edu}{Fernstudienzentrum} des \\MExtLink{http://www.kit.edu}{KIT} & " + part.group(4) + " \\\\ \\ \\\\\n"
+                    else:
+                        self.data['copyrightcollection'] = self.data['copyrightcollection'] + "\\MCRef{" + part.group(5) + "} & " + part.group(1) + " & " + authortext + " & \\MExtLink{" + part.group(2) + "}{Originaldatei} & " + part.group(4) + " \\\\ \\ \\\\\n"
+
+            
+            return "\\MCopyrightNoticePOST{" + part.group(1) + "}{" + part.group(2) + "}{" + part.group(3) + "}{" + part.group(4) + "}{" + part.group(5) + "}"
+    
+        tex = re.sub(r"\\MCopyrightNotice\{(.+?)\}\{(.+?)\}\{(.+?)\}\{(.+?)\}\{(.+?)\}", cright, tex, 0, re.S)
+
+        return tex
+    
+    
+    def preprocess_tikz(self, tex, pdirname, pfilename):
+        # check if tikz-externalization is actually requested and if the tex supports it
+        dotikzfile = False
+        if re.search(r"\\tikzexternalize", tex, re.S):
+            self.sys.message(self.sys.CLIENTWARN, "texfile contains \\tikzexternalize, which should be changed to \\Mtikzexternalize")
+        if re.search(r"\\tikzsetexternalprefix", tex, re.S):
+            self.sys.message(self.sys.CLIENTWARN, "texfile contains \\tikzsetexternalprefix which interferes with tikz automatization")
+        (tex, n) = re.subn(r"\\Mtikzexternalize", r"", tex, 0, re.S)
+        if n > 0:
+            if (self.options.dotikz == 0):
+                self.sys.message(self.sys.VERBOSEINFO, "Mtikzexternalize ignored, present externalized files will be used")
+            else:
+                self.sys.message(self.sys.VERBOSEINFO, "Mtikzexternalize activated, externalized files will be generated")
+                dotikzfile = True
+        else:
+            if re.search(r"\\MTikzAuto", tex, re.S):
+                self.sys.message(self.sys.CLIENTWARN, "texfile contains MTikzAuto environments, but not \\Mtikzexternalize")
+                
+
+        # switch to local tex directory, externalize if requested, and convert image formats            
+        self.sys.pushdir()
+        os.chdir(pdirname)
+
+        # call pdflatex to externalize tikz pictures if requested, but some preparations are needed
+        if dotikzfile:
+            self.sys.timestamp("Calling pdflatx in directory " + pdirname + " to create externalized images")
+
+            # Carefull: modifications HAVE NOT BEEN WRITTEN at this point, should be corrected
+            
+            # Install modified local macro package and used style files, we're in the local directory,
+            # don't use a direct copy, always check and modify the encoding if needed
+            self.sys.writeTextFile(self.options.macrofile, self.data['modmacrotex'], self.options.stdencoding)
+            for f in self.options.texstylefiles:
+                self.sys.writeTextFile(f, self.sys.readTextFile(os.path.join(self.options.converterDir, "tex", f), self.options.stdencoding), self.options.stdencoding)
+                
+            p = subprocess.Popen(["pdflatex", "-halt-on-error", "-interaction=errorstopmode", "-shell-escape", pfilename], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+            (output, err) = p.communicate()
+            
+            if p.returncode < 0:
+                self.sys.message(self.sys.FATALERROR, "Call to pdflatex for file " + pfilename + " during tikz externatlization was terminated by a signal (POSIX return code " + p.returncode + ")")
+            else:
+                if p.returncode > 0:
+                    self.sys.message(self.sys.CLIENTERROR, "pdflatex could not process file " + pfilename + ", pdflatex error lines have been written to logfile")
+                    s = output[-256:]
+                    s = s.replace("\n",", ")
+                    self.sys.message(self.sys.VERBOSEINFO, "Last pdflatex lines: " + s)
+                else:
+                    self.sys.timestamp("pdflatex finished successfully")
+            
+            # remove local style files and the macro package
+            for f in self.options.texstylefiles:
+                self.sys.removeFile(f)
+            self.sys.removeFile(self.options.macrofile)
+
+        # assume pngs have been provided in the original source directory if dotikz was false
+        m = re.search(r"\\MSetSectionID{(.+?)}", tex, re.S)
+        if m:
+            # Files $tid?.png, $tid?.svg anf $tid.4x.png should be present (matching generator definition in mintmod.tex)
+            tid = m.group(1) + r"mtikzauto_"
+            self.sys.message(self.sys.VERBOSEINFO, "Module section id is "  + m.group(1) + ", TikZ id is " + tid)
+            j = 1
+            ok = True
+           
+            while (ok):
+                ok = False
+                tname = tid + str(j)
+               
+                if os.path.isfile(tname + ".svg"):
+                    self.sys.message(self.sys.VERBOSEINFO, "  externalized svg found: " + tname + ".svg")
+                    ok = True
+                    
+                if os.path.isfile(tname + ".4x.png"):
+                    self.sys.message(self.sys.VERBOSEINFO, "  externalized hi-res png found: " + tname + ".4x.png")
+                    ok = True
+
+                if os.path.isfile(tname + ".png"):
+                    ok = True
+                    p = subprocess.Popen(["file", tname + ".png"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+                    (output, err) = p.communicate()
+                    fm = re.search(tname + r"\.png: PNG image data, ([0123456789]+?) x ([0123456789]+?),", output, re.S)
+                    if fm:
+                        sizex = int(fm.group(1))
+                        sizey = int(fm.group(2))
+                        self.sys.message(self.sys.VERBOSEINFO, "  externalized png found: " + tname + ".png, size is " + str(sizex) + "x" + str(sizey))
+                        sizex = int(sizex * self.data['htmltikzscale'])
+                        sizey = int(sizey * self.data['htmltikzscale'])
+                        self.sys.message(self.sys.VERBOSEINFO, "  rescaled to " + str(sizex) + "x" + str(sizey))
+                        if tname in self.data['htmltikz']: 
+                            self.sys.message(self.sys.CLIENTERROR, "  externalized file name " + tname + " not unique, refusing to save sizes")
+                        else:
+                            self.data['htmltikz'][tname] = "width:" + str(sizex) + "px;height:" + str(sizey) + "px"
+                    else:
+                        self.sys.message(self.sys.CLIENTERROR, "  externalized png found: " + tname + ".png, but could not determine its size")
+
+                j = j + 1
+                
+        else:
+            self.sys.message(self.sys.VERBOSEINFO, "  No section id found")
+
+
+        self.sys.popdir()
+        return tex
+        
+    def _autolabel(self):
+        # generate a label string which is unique in the entire module tree
+        j = len(self.data['autolabels'])
+        s = "L_SOURCEAUTOLABEL_" + str(j)
+        self.data['autolabels'].append(s)
+        return s
+        
