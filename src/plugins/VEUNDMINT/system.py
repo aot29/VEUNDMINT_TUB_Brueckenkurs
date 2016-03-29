@@ -249,8 +249,8 @@ class System(object):
         tex = tex.replace("ü","\"u")
         return tex
             
-    # creates a string which is not the prefix of anything in the given text
+    # creates a string which is not the prefix of anything in the given text and contains no regex problematic characters
     def generate_autotag(self, text):
-        t = "T_AUTOTAG"
-        while re.search(re.escape(t), text, re.S): t = t + "x"
+        t = "TTAG"
+        while re.search(re.escape(t), text, re.S): t = t + "A"
         return t
