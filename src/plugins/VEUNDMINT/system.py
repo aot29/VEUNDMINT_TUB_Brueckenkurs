@@ -171,13 +171,13 @@ class System(object):
         if os.path.isdir(path):
             shutil.rmtree(path)
         else:
-            self.message(log.CLIENTERROR, "removeTree got " + path + ", but it is not a tree or does not exist")
+            self.message(self.CLIENTERROR, "removeTree got " + path + ", but it is not a tree or does not exist")
         
     def removeFile(self, path):
         if os.path.isfile(path):
             os.remove(path)
         else:
-            self.message(log.CLIENTERROR, "removeFile got " + path + ", but it is not a file or does not exist")
+            self.message(self.CLIENTERROR, "removeFile got " + path + ", but it is not a file or does not exist")
             
     def makePath(self, path):
         os.makedirs(path)
@@ -194,15 +194,15 @@ class System(object):
     def readTextFile(self, name, enc):
         text = ""
         if (os.path.isfile(name) == False):
-            self.message(log.FATALERROR, "File " + name + " not found")
+            self.message(self.FATALERROR, "File " + name + " not found")
         p = subprocess.Popen(["file", "-i", name], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
         (output, err) = p.communicate()
         m = re.match(r".*?; charset=([^\n ]+)", output, re.S)
         if m:
             if (m.group(1) == "binary"):
-                self.message(log.FATALERROR, "File " + name + " appears to be binary, not a text file")
+                self.message(self.FATALERROR, "File " + name + " appears to be binary, not a text file")
             if ((m.group(1) != enc) and (m.group(1) != "us-ascii")):
-                self.message(log.CLIENTWARN, "File " + name + " is encoded in " + m.group(1) + " instead of requested " + enc + " or us-ascii, doing implicit conversion")
+                self.message(self.CLIENTWARN, "File " + name + " is encoded in " + m.group(1) + " instead of requested " + enc + " or us-ascii, doing implicit conversion")
             with open(name, "r", encoding = m.group(1)) as file:
                 text = file.read()
             self.message(self.VERBOSEINFO, "Read string of length " + str(len(text)) + " from file " + name + " encoded in " + m.group(1) + ", converted to python3 unicode string")

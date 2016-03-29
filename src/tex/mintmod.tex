@@ -1250,15 +1250,15 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 %Fuegt eine zusaetzliche html-Seite an hinter ALLEN bisherigen und zukuenftigen content-Seiten ausserhalb der vor-zurueck-Schleife (d.h. nur durch Button oder MIntLink erreichbar!)
 % #1 = Titel des Modulabschnitts, #2 = Kurztitel fuer die Buttons, #3 = Buttonkennung (STD = default nehmen, NONE = Ohne Button in der Navigation)
-\newenvironment{MSContent}[3]{\special{html:<!-- scontent;-;}\arabic{MSCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsectionx{#1}}{\MEndScripts\special{html:<!-- endscontent;;}\arabic{MSCounter}\special{html: //-->}\addtocounter{MSCounter}{1}}
+\newenvironment{MSContent}[3]{\special{html:<div class="xcontent"><!-- scontent;-;}\arabic{MSCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsectionx{#1}}{\MEndScripts\special{html:<!-- endscontent;;}\arabic{MSCounter}\special{html: //--></div>}\addtocounter{MSCounter}{1}}
 
 % Fuegt eine zusaetzliche html-Seite ein hinter den bereits vorhandenen content-Seiten (oder als erste Seite) innerhalb der vor-zurueck-Schleife der Navigation
 % #1 = Titel des Modulabschnitts, #2 = Kurztitel fuer die Buttons, #3 = Buttonkennung (STD = Defaultbutton, NONE = Ohne Button in der Navigation)
-\newenvironment{MXContent}[3]{\special{html:<!-- xcontent;-;}\arabic{MXCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsection{#1}}{\MEndScripts\special{html:<!-- endxcontent;;}\arabic{MXCounter}\special{html: //-->}\addtocounter{MXCounter}{1}}
+\newenvironment{MXContent}[3]{\special{html:<div class="xcontent"><!-- xcontent;-;}\arabic{MXCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsection{#1}}{\MEndScripts\special{html:<!-- endxcontent;;}\arabic{MXCounter}\special{html: //--></div>}\addtocounter{MXCounter}{1}}
 
 % Fuegt eine zusaetzliche html-Seite ein die keine subsubsection-Nummer bekommt, nur zur internen Verwendung in mintmod.tex gedacht!
 % #1 = Titel des Modulabschnitts, #2 = Kurztitel fuer die Buttons, #3 = Buttonkennung (STD = Defaultbutton, NONE = Ohne Button in der Navigation)
-\newenvironment{MUContent}[3]{\special{html:<!-- xcontent;-;}\arabic{MXCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsectionx{#1}}{\MEndScripts\special{html:<!-- endxcontent;;}\arabic{MXCounter}\special{html: //-->}\addtocounter{MXCounter}{1}}
+\newenvironment{MUContent}[3]{\special{html:<div class="xcontent"><!-- xcontent;-;}\arabic{MXCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsectionx{#1}}{\MEndScripts\special{html:<!-- endxcontent;;}\arabic{MXCounter}\special{html: //--></div>}\addtocounter{MXCounter}{1}}
 
 \newcommand{\MDeclareSiteUXID}[1]{\special{html:<!-- mdeclaresiteuxid;;}#1\special{html:;;}\arabic{chapter}\special{html:;;}\arabic{section}\special{html:;; //-->}}
 

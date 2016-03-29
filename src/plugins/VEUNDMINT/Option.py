@@ -72,7 +72,7 @@ class Option(object):
         self.module = "tree_tu9onlinekurs.tex"               # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
         self.outtmp = "_tmp"                                 # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
         self.description = "Onlinebrückenkurs Mathematik"    # Bezeichnung des erstellen Kurses
-        self.author = "Projekt VE&MINT"                      # Offizieller Autor des Kurses           
+        self.author = "Projekt VEUNDMINT"                    # Offizieller Autor des Kurses           
         self.contentlicense = "CC BY-SA 3.0"                 # Lizenz des Kursinhalts
         self.moduleprefix = "Onlinebrückenkurs Mathematik"   # Wird vor Browser-Bookmarks gesetzt
         self.variant = "std"                                 # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete fuer Mathematikumsetzung aus, Alternative ist "unotation"
@@ -162,19 +162,25 @@ class Option(object):
         self.sourcepath_original = os.path.join(self.currentDir, self.source) # Pfad zu den Quellen (werden readonly behandelt)
         self.sourcepath = os.path.join(self.currentDir, self.outtmp) # Pfad in dem gearbeitet wird
         self.sourceTEX = os.path.join(self.sourcepath, "tex") # Teilpfad in dem die LaTeX-Quellenkopien liegen
-        self.sourceTEXStartFile = os.path.join(self.sourceTEX, self.module)
+        self.sourceTEXStartFile = os.path.join(self.sourceTEX, self.module) 
         self.targetpath = os.path.join(self.currentDir, self.output) # Pfad in den der generierte Kurs kommt
-        
+        self.copyrightFile = os.path.join(self.sourceTEX, "copyrightcollection.tex")
+        self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
+
         # ttm-file
-        self.ttmPath = os.path.join(self.converterDir, "ttm-original")
         self.ttmExecute = True
-        self.ttmFile = os.path.join(self.targetpath, "vorkursxml.xml")
+        self.ttmPath = os.path.join(self.converterDir, "ttm-original")
+        self.ttmFile = os.path.join(self.targetpath, "targetxml.xml")
+        
+        # optimization options
+        self.keepequationtables = 1
         
         # ContentStructure
         self.ContentStructure=[]
-        self.ContentStructure.append("h1")
-        self.ContentStructure.append("h2")
-        self.ContentStructure.append("h3")
+        self.ContentStructure.append("h1") # the whole course
+        self.ContentStructure.append("h2") # a section in the course, a MSection according to MINTMOD
+        self.ContentStructure.append("h3") # a subsection in the coursre, MSubsection according to MINTMOD
+        self.ContentStructure.append("h4") # used for subsection introduction inside xcontents
         #self.ContentStructure.append("div")#Container werden nun über Attribute identifiziert
         
         # ModuleStructure
@@ -182,7 +188,7 @@ class Option(object):
 
         
         # ModuleStructure
-        self.ModuleStructureClass= "xcontent"#nach dieser klasse wird gesucht, um Modulbereiche zu identifizieren. (Dann jeweils mit einer Nummer dahinter)
+        self.ModuleStructureClass= "xcontent" #nach dieser klasse wird gesucht, um Modulbereiche zu identifizieren. (Dann jeweils mit einer Nummer dahinter)
 
         
         # use these Plugins (plugin path must be listed below within the plugin settings!)

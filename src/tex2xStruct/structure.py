@@ -218,9 +218,6 @@ class Structure(object):
         for pp in self.interface['preprocessor_plugins']:
             pp.preprocess()
         
-        
-        self.sys.message(self.sys.FATALERROR, "PREMATURE END")
-        
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
@@ -252,9 +249,13 @@ class Structure(object):
         if verbose:
             time_start = time.time()
         
-        xmlfile = open(self.options.ttmFile, "rb")
-        xmltext = xmlfile.read().decode()
-        xmlfile.close()
+        try:
+            xmlfile = open(self.options.ttmFile, "rb")
+            xmltext = xmlfile.read().decode()
+            xmlfile.close()
+        except:
+            # old ttm produces latin1 encoded xml if given tex was latin1
+            xmltext = self.sys.readTextFile(self.options.ttmFile, self.options.stdencoding)
         
         #MathML manuell optimieren, da die Ausgabe des ttm nicht ausreichend ist
         xmltext = self.optimize_mathml(xmltext)
@@ -277,12 +278,10 @@ class Structure(object):
         
         parser = html.HTMLParser(remove_blank_text = False)
         #self.xmltree_raw = etree.parse(StringIO(xmltext),parser)
+
         self.xmltree_raw = etree.fromstring(xmltext, parser)
         #self.xmltree_raw = html5parser.fromstring(xmltext)
         #self.xmltree_raw = html5parser.document_fromstring(xmlfile.read())
-        
-
-        
         
         if verbose:
             time_end = time.time()
@@ -291,7 +290,6 @@ class Structure(object):
             print("(Entities durch HTML5 konforme Entities ersetzen und XML parsen) \n")
             total_time += time_diff
             schritt  += 1
-
         
         #Inhaltsverzeichnis erstellen und Inhalt zusammenschneiden
         if verbose:
@@ -311,6 +309,8 @@ class Structure(object):
         #Erstellen einer Liste mit den tatsächlich benötigten Bild-Dateien
         if verbose:
             time_start = time.time()
+            
+        self.sys.message(self.sys.FATALERROR, "PREMATURE END")
             
         self.required_images = self.get_required_images(self.content)
                 
@@ -392,6 +392,7 @@ class Structure(object):
         root = self.xmltree_raw
         body = root.find("body")
 
+
         if body is None:
             body = root
 
@@ -404,9 +405,19 @@ class Structure(object):
         content = []
         
         #print(etree.tostring(body[0], pretty_print = True).decode())
+        tx = ""
+        j = 0
+        for k in body:
+            tx = tx + "body[" + str(j) + "]:\n"
+            tx = tx + etree.tostring(k, pretty_print = True).decode()
+            tx = tx + "\n\n"
+            j = j + 1
+            
+        self.sys.writeTextFile(os.path.join(self.options.currentDir, "test.txt"), tx, self.options.stdencoding)
+
         
         for node in body[0].iterchildren():
-                  
+            
             level = -1;
             for i in range(len(contentStructure)):
                 if node.tag == contentStructure[i]:
@@ -465,6 +476,7 @@ class Structure(object):
             if level == -1:
                 #Es wurde ein zugehöriges Modul gefunden
                 #Modul wird gespeichert mit zugehörigem Knoten aus dem Inhaltsverzeichnis
+                self.sys.message(self.sys.CLIENTWARN, "level -1 test")
                 
                 if node.get("class") != None and self.options.ModuleStructureClass in node.get("class") and node.get("class").index(self.options.ModuleStructureClass) == 0:
                     #Jetzt sehen wir uns die Zahl an, die in der Klasse mit angegeben wird
@@ -475,6 +487,8 @@ class Structure(object):
                             number = node.get("class")[len(self.options.ModuleStructureClass):]#wir benutzen die Nummer anschließend als String weiter
                         except:
                             print("Fehler beim Parsen der xcontent-Nummer")
+                    else:
+                        self.sys.message(self.sys.CLIENTWARN, "Dissection found class " + self.options.ModuleStructureClass + ", but without a number")
                             
                         
                         
@@ -491,9 +505,8 @@ class Structure(object):
         #Objetkvariable setzen
         self.tocxml = toc
         self.content = content
-        
-        
 
+        
     
 
 
@@ -682,7 +695,7 @@ class Structure(object):
         is_64bits = sys.maxsize > 2**32#Bit Zahl des OS ermitteln, damit wir gleich den richtigen ttm starten können
 
         #ttm starten
-        cwd = os.getcwd()
+        self.sys.pushdir()
         texStartFile = self.options.sourceTEXStartFile
         ttmStartFolder = self.options.ttmPath
         xmlFileName = self.options.ttmFile
@@ -692,7 +705,7 @@ class Structure(object):
             subprocess.call("./ttm -p" + self.options.sourceTEX  + " < " + texStartFile + " > " + xmlFileName, shell = True)
         else:
             subprocess.call("./ttm32 -p" + self.options.sourceTEX  + " < " + texStartFile + " > " + xmlFileName, shell = True)
-        os.chdir(cwd)
+        self.sys.popdir()
 
     def prepare_xml_file(self):
         """
@@ -733,10 +746,12 @@ class Structure(object):
         xmltext = re.sub(pattern, replace, xmltext)
         
          
-        pattern = r"<table width=\"100%\"><tr><td align=\"center\">(?P<a>\s*(<math(.|\n)*?</math>)\s*)</td></tr></table>"
-        replace = r"<center>\g<a></center>"
-        t = re.subn(pattern, replace, xmltext)
-        xmltext = t[0]
+        
+        if not hasattr(self.options, "keepequationtables"): self.options.keepequationtables = 0
+        if self.options.keepequationtables == 0:
+            pattern = r"<table width=\"100%\"><tr><td align=\"center\">(?P<a>\s*(<math(.|\n)*?</math>)\s*)</td></tr></table>"
+            replace = r"<center>\g<a></center>"
+            xmltext = re.sub(pattern, replace, xmltext)
         
         """Kein Effekt
         #Das Zeichen \subsetneq kennt ttm nicht
