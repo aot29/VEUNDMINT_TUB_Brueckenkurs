@@ -418,7 +418,6 @@ class Structure(object):
             #level != -1 bedeutet es handelt sich um einen Ebenen-Wechsel
             #und ein Knoten wird zum toc hinzugefügt
             if (level != -1):
-                
                 #Wir müssen tiefer in die Struktur hinein
                 if (level > previous_level):
                     i = previous_level + 1;
@@ -483,7 +482,8 @@ class Structure(object):
                     content_node = deepcopy(node)
 
                     content.append([toc_node, content_node])
-                    continue                    
+                    continue
+                            
             
             #letzten level merken, um oben zu wissen, wie viele Ebenen gewechselt werden
             if (level != -1):

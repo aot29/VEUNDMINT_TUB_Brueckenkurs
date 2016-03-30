@@ -16,6 +16,11 @@
     along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
 """
 
+"""
+    This is the Option object associated to the mintmod macro package, 
+    Version P0.1.0, needs to be consistent with mintmod.tex
+"""
+
 import os.path
 import json
 import re
