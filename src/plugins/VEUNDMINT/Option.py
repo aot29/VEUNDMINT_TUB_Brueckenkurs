@@ -169,7 +169,7 @@ class Option(object):
 
         # ttm-file
         self.ttmExecute = True
-        self.ttmPath = os.path.join(self.converterDir, "ttm-original")
+        self.ttmPath = os.path.join(self.converterDir, "ttm")
         self.ttmFile = os.path.join(self.targetpath, "targetxml.xml")
         
         # optimization options
