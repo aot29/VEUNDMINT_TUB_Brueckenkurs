@@ -31,14 +31,18 @@ import subprocess
 class Preprocessor(object):
     
     # Constructor parameters: log object reference and data storage for the plugin chain (dict), and options object reference
-    def __init__(self, sys, data, options):
+    def __init__(self, interface):
         
-        self.sys = sys
-        self.data = data
-        self.options = options
+        # copy interface member references
+        self.sys = interface['system']
+        self.data = interface['data']
+        self.options = interface['options']
         self.name = "MINTMODTEX"
         self.version ="P0.1.0"
+        self.sys.message(self.sys.VERBOSEINFO, "Preprocessor " + self.name + " of version " + self.version + " constructed")
 
+    def _prepareData(self):
+        # checks if needed data members are present or empty
         if 'DirectRoulettes' in self.data:
             sys.message(sys.CLIENTWARN, "Another Preprocessor is using DirectRoulettes")
         else:
@@ -85,10 +89,7 @@ class Preprocessor(object):
             sys.message(sys.CLIENTWARN, "Another plugin has been using htmltikz, appending existing values")
         else:
             self.data['htmltikz'] = dict() # entries are created by tikz preprocessing and associate a filename (without extension) to CSS-stylescale
-
-            
-        self.sys.message(self.sys.VERBOSEINFO, "Preprocessor " + self.name + " of version " + self.version + " constructed")
-
+        
 
     def _autolabel(self):
         # generate a label string which is unique in the entire module tree
@@ -101,6 +102,8 @@ class Preprocessor(object):
     # main function to be called from tex2x
     def preprocess(self):
         self.sys.timestamp("Starting preprocessor " + self.name)
+
+        self._prepareData()
 
         # collect copyrightstatements and exerciseexports from this processing event and add them later to the global collection
         self.copyrightcollection = ""
@@ -115,11 +118,6 @@ class Preprocessor(object):
             self.sys.message(self.sys.VERBOSEINFO, "Found main tex file " + self.options.sourceTEXStartFile)
         else:
             self.sys.message(self.sys.FATALERROR, "Main tex file " + self.options.sourceTEXStartFile + " not present in original source folder " + self.options.sourcepath_original)
-
-        # Prepare target folder
-        self.sys.emptyTree(self.options.targetpath)
-        self.sys.copyFiletree(self.options.converterCommonFiles, self.options.targetpath, ".")
-        self.sys.timestamp("Common HTML tree files copied")
 
         # initialize course variant data
         self.variant = self.options.variant

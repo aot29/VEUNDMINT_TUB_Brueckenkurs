@@ -32,7 +32,6 @@ import imp
 import json
 import traceback
 import sys
-from plugins.basePlugin import Plugin as basePlugin 
 
 
 
@@ -173,7 +172,7 @@ class Structure(object):
             self.interface['preprocessor_plugins'] = []
             for p in self.interface['options'].usePreprocessorPlugins:
                 module = imp.load_source(plugin_name + "_preprocessor_" + p, self.interface['options'].pluginPath[p])
-                self.interface['preprocessor_plugins'].append(module.Preprocessor(self.interface['system'], self.interface['data'], self.interface['options']))
+                self.interface['preprocessor_plugins'].append(module.Preprocessor(self.interface))
         except Exception:
             formatted_lines = traceback.format_exc().splitlines()
             if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Preprocessor'") < 0:
@@ -187,7 +186,7 @@ class Structure(object):
             self.interface['output_plugins'] = []
             for p in self.interface['options'].useOutputPlugins:
                 module = imp.load_source(plugin_name + "_output_" + p, self.interface['options'].pluginPath[p])
-                self.interface['output_plugins'].append(module.Plugin())
+                self.interface['output_plugins'].append(module.Plugin(self.interface))
         except Exception:
             formatted_lines = traceback.format_exc().splitlines()
             if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Plugin'") < 0:
@@ -310,8 +309,6 @@ class Structure(object):
         if verbose:
             time_start = time.time()
             
-        self.sys.message(self.sys.FATALERROR, "PREMATURE END")
-            
         self.required_images = self.get_required_images(self.content)
                 
         if verbose:
@@ -325,8 +322,12 @@ class Structure(object):
         #Pfade im Inhalt müssen der Verzeichnisstruktur angepasst werden
         if verbose:
             time_start = time.time()
-            
-        self.correct_path_to_linked_files(self.content)
+
+        if not hasattr(self.options, "nolinkcorrection"): self.options.nolinkcorrection = 0
+        if self.options.nolinkcorrection == 0:
+            self.correct_path_to_linked_files(self.content)
+        else:
+            self.sys.message(self.sys.VERBOSEINFO, "tex2x link correction not requested by options")
                 
         if verbose:
             time_end = time.time()
@@ -538,10 +539,9 @@ class Structure(object):
         Lädt alle Plugins im Pluginverzeichnis und startet diese.
         """
         
-        #Daten an das Basis-Plugin übergeben
-        basePlugin.content = self.content
-        basePlugin.tocxml = self.tocxml
-        basePlugin.required_images = self.required_images
+        self.data['content'] = self.content
+        self.data['tocxml'] = self.tocxml
+        self.data['required_images'] = self.required_images
         
         #Daten hier "löschen"
         self.content = None
@@ -554,7 +554,8 @@ class Structure(object):
             op.create_output()
              
         #Temporäre Dateien aufräumen
-        self.clean_up();
+        if self.options.cleanup == 1:
+            self.clean_up();
 
            
     def replace_html_entities(self, text):
@@ -699,7 +700,7 @@ class Structure(object):
         Stellt sicher, dass die benötigte xml-Datei im Outputverzeichnis liegt. Sonst wird diese vom ttm erzeugt.
         """
         if (os.path.exists(self.options.sourceTEXStartFile)):
-            System.copyFile(self.options.sourceTEXStartFile, self.options.ttmFile, "")
+            self.sys.copyFile(self.options.sourceTEXStartFile, self.options.ttmFile, "")
         else:
             print("Es konnte keine XML-Datei als Vorgabe gefunden werden, daher wird nun (trotz gegenteiliger Angabe in den Optionen) der ttm ausgeführt.")
             self.start_ttm()
@@ -890,8 +891,8 @@ class Structure(object):
         
         #Tempverzeichnis leeren (Reste stören sonst den Ladevorgang der Plugins
         if os.path.exists(self.options.targetpathTemp):
-            System.removeTree(self.options.targetpathTemp)
-        System.makePath(self.options.targetpathTemp)#Verzeichnis anlegen, existierte nicht oder wir haben es gerade gelöscht
+            self.sys.removeTree(self.options.targetpathTemp)
+        self.sys.makePath(self.options.targetpathTemp)#Verzeichnis anlegen, existierte nicht oder wir haben es gerade gelöscht
  
         
         #tocxml in Datei ablegen
@@ -903,7 +904,7 @@ class Structure(object):
         #Ordner-Struktur im tmp-Verzeichnis anlegen
         for node in self.tocxml.iter():
             if (not node.get("name") == None) and (not os.path.exists(os.path.join(self.options.targetpathTemp, node.get("name")))):
-                System.makePath(os.path.join(self.options.targetpathTemp, node.get("name")))
+                self.sys.makePath(os.path.join(self.options.targetpathTemp, node.get("name")))
                             
         for tupel in self.content:
             i = 0
@@ -922,7 +923,7 @@ class Structure(object):
         Wir räumen wieder auf. Insbesondere das temporäre Input-Verzeichnis wird wieder gelöscht.
         """
         print("Räume auf: " + os.path.abspath(self.options.sourcepath))
-        System.removeTree(self.options.sourcepath)
+        self.sys.removeTree(self.options.sourcepath)
         
           
     def _checkContentStructure(self, node, tag):

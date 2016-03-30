@@ -65,6 +65,9 @@ Folder converter contains:
  - ttm
    Updated ttm version used by certain tex2x plugins
    
+ - templates
+   Contains template files for HTML and SCORM plugins
+   
    
    
    

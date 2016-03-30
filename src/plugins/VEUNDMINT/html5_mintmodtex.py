@@ -1,31 +1,28 @@
 """    
-    tex2x converter - Processes tex-files in order to create various output formats via plugins
-    Copyright (C) 2015  VEMINT-Konsortium - http://www.vemint.de
+    VEUNDMINT plugin package
+    Copyright (C) 2016  VE&MINT-Projekt - http://www.ve-und-mint.de
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+    The VEUNDMINT plugin package is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or (at your
+    option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+    The VEUNDMINT plugin package is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+    or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+    License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    You should have received a copy of the GNU Lesser General Public License
+    along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
 """
+
+
 """
-Todo:
-- Das Plugin kann nur den letzten Ordner der Struktur anlegen (rest muss existieren)
-- Checken, ob der Output-Ordner leer ist, sonst [Abfrage/ Fehlermeldung]
-- Funktion schreiben: make-Ordner-Struktur
+    This is html5 output plugin object associated to the mintmod macro package, 
+    Version P0.1.0, needs to be consistent with mintmod.tex and the preprocessor plugin
 """
 
 import os
-#from . import System
-from plugins.basic import Option_html_basic as op
-from tex2xStruct import System
 from lxml import etree
 from lxml import html
 from copy import deepcopy
@@ -33,86 +30,93 @@ from plugins.exceptions import PluginException
 from lxml.html import html5parser
 import fnmatch
 
-
-#Import des "Quasi-Interfaces"
-#from . import basePluginVEMINT
 from plugins.basePlugin import Plugin as basePlugin
 
 class Plugin(basePlugin):
-    '''
-    classdocs
-    '''
 
-    name = "HTML_basic"
-    
-    def __init__(self):
-        pass
+    def __init__(self, interface):
+        
+        # copy interface member references
+        self.sys = interface['system']
+        self.data = interface['data']
+        self.options = interface['options']
+        self.name = "HTML5_MINTMODTEX"
+        self.version ="P0.1.0"
+        self.outputextension = "html"
+        self.sys.message(self.sys.VERBOSEINFO, "Output plugin " + self.name + " of version " + self.version + " constructed")
+
+    def _prepareData(self):
+        # checks if needed data members are present or empty
+        if 'content' in self.data:
+            self.content = self.data['content']
+        else:
+            self.sys.message(self.sys.CLIENTERROR, "tex2x did not provide content in data structure")
+            self.content = ""
+            
+        if 'tocxml' in self.data:
+            self.tocxml = self.data['tocxml']
+        else:
+            self.sys.message(self.sys.CLIENTERROR, "tex2x did not provide tocxml in data structure")
+            self.content = ""
+
+        for dat in ['DirectRoulettes', 'macrotex', 'modmacrotex', 'DirectHTML', 'directexercises', 'autolabels', 'copyrightcollection', 'htmltikz']:
+            if not dat in self.data:
+                self.sys.message(self.sys.CLIENTERROR, "Preprocessors did not provide " + dat)
+
+
      
     def create_output(self):
-        """
-        Diese Funktion ist die Oberfunktion zur Erzeugung des Ausgabeformats
-        In diesem Fall ist das Ziel HTML5
-        """
-        print("Plugin " + Plugin.name + " wird ausgeführt...")
+        self._prepareData()
+        if self.options.forceyes == 0: self.check_if_dir_preexists(self.options.targetpath)
+        self.sys.emptyTree(self.options.targetpath)
+        self.sys.copyFiletree(self.options.converterCommonFiles, self.options.targetpath, ".")
+        self.sys.timestamp("Common HTML5 tree files copied")
         
-        basePlugin.options = op.Option("..")
+        self.create_html_files()
 
 
-        #Plugin.required_interactions = struct.required_interactions
-        Plugin.required_interactions = list()#TODO: Liste besorgen
-        Plugin.required_swf_files = list()#TODO: Liste besorgen
-        Plugin.required_video_files = list()#TODO: Liste besorgen
-        self.check_if_dir_preexists(Plugin.options.targetpath)
-
-        self.create_xml_files(Plugin.options.targetpath)
-        self.create_modstart_files()
+    def create_html_files(self):
+        templatefile = open(os.path.join(self.options.converterTemplates, "template_" + self.name + ".html"), "rb")
+        parser = html.HTMLParser()
+        template = etree.parse(templatefile, parser).getroot()
+        templatefile.close()
+        head = template.find(".//head")
+        title = template.find(".//title")
+        content = template.find(".//div[@id='content']")
         
-        self.copy_required_files()
+        path = os.path.join(self.options.targetpath, self.outputextension)
+        self.sys.writeTextFile(os.path.join(path, "test.html"), etree.tostring(template, pretty_print = True).decode(), self.options.stdencoding)
         
-
-    
-    def copy_required_files(self):
-        """
-        Kopiert alle nötigen Dateien für das HTML5 Format in den Zielordner
+        self.write_html_files()
         
-        Zusätzlich wird für im xml referenzierte Dateien eine Warnmeldung ausgegeben,
-        falls diese nicht im Quellordner gefunden werden
-        """     
         
-        #alle HTML-Grunddateien kopieren
-        System.copyFiletree(Plugin.options.sourcePlugin, Plugin.options.targetpath, "")
-        #diese eine Datei wollen wir nicht in dem Verzeichnis haben (aber es ist leichter diese nachträglich zu löschen
-        #als explizit alle gewünschten Dateien anzugeben oder jeder Datei vor dem Kopieren mit einer Blacklist zu vergleichen
-        #d.h. solange es bei dieser einen Datei bleibt... (überhaupt nötig, wenn sie später überschrieben wird?)
-        System.removeFile(os.path.join(Plugin.options.targetpath, "modstart.xhtml"))  
+    def write_html_files(self):
+        count_moduls = 0
+        moduls = list()# Liste bestehend aus den Übersichts-Seiten
+        count_subsections = dict();
+        for tupel in self.content:
+            if (tupel[1].get("class") == (self.options.ModuleStructureClass + "0")):
+                count_moduls += 1
+                moduls.append(tupel)
+                count_subsections = dict();
+        
+        for tupel in self.content:
+            target_dir = os.path.join(os.path.join(self.options.targetpath, self.outputextension), tupel[0].get("name"))
+            self.sys.ensureTree(target_dir)
                 
-        #Benötigte Bilder kopieren
-        for tupel in Plugin.required_images:
-            for image in tupel[1]:
-                if os.path.exists(os.path.join(Plugin.options.sourceCommonFiles, "images", image)):
-                    System.copyFile(Plugin.options.sourceCommonFiles, Plugin.options.targetpath, os.path.join("images", image))
-                
-        #Benötigte Interaktionen kopieren
-        for tupel in Plugin.required_interactions:
-            for interaction in tupel[1]:
-                if os.path.exists(os.path.join(Plugin.options.sourceCommonFiles, "interaktion", interaction)):
-                    System.copyFile(Plugin.options.sourceCommonFiles, Plugin.options.targetpath, os.path.join("interaktion", interaction))
-
-        #Kopiere benötigte swf-Files            
-        for tupel in self.required_swf_files:
-            for interaction in tupel[1]:
-                if os.path.exists(os.path.join(Plugin.options.sourceCommonFiles, "swf", interaction)):
-                    System.copyFile(Plugin.options.sourceCommonFiles, Plugin.options.targetpath, os.path.join("swf", interaction))
-                else:
-                    print("Die Datei " + os.path.abspath(os.path.join(Plugin.options.sourceCommonFiles, "swf", interaction)) + " wird benötigt, liegt aber nicht vor.")
+            #Okay, jetzt kann die zugehörige XML-Datei gespeichert werden
+            if (not tupel[0].get("name") in count_subsections):#Eintrag bei Bedarf anlegen
+                count_subsections[tupel[0].get("name")] = dict()
+            if(not tupel[1].get("class") in count_subsections[tupel[0].get("name")]):#Eintrag bei Bedarf anlegen
+                count_subsections[tupel[0].get("name")][tupel[1].get("class")] = 0
+            
+            filename = os.path.join(target_dir, tupel[1].get("class") + "_" + str(count_subsections[tupel[0].get("name")][tupel[1].get("class")]) + "." + self.outputextension)
+            txt = etree.tostring(tupel[1], pretty_print = True, encoding = "unicode")
+            self.sys.writeTextFile(filename, txt, "utf-8")
+            count_subsections[tupel[0].get("name")][tupel[1].get("class")] += 1 # counter für bereich erhöhen
         
-        #Kopiere benötigte Video-Files            
-        for tupel in Plugin.required_video_files:
-            for video in tupel[1]:
-                if os.path.exists(os.path.join(Plugin.options.sourceCommonFiles, "video", video[:video.rindex(".")], video)):
-                    System.copyFile(Plugin.options.sourceCommonFiles, Plugin.options.targetpath, os.path.join("video", video[:video.rindex(".")], video))
-                else:
-                    print("Die Datei " + os.path.abspath(os.path.join(Plugin.options.sourceCommonFiles, "video", video[:video.rindex(".")], video)) + " wird benötigt, liegt aber nicht vor.")
+        
+      
     
             
     def create_modstart_files(self):
@@ -123,7 +127,7 @@ class Plugin(basePlugin):
         #Wir zählen die Bereiche in den Dateien
         blocks = dict()
          
-        for tupel in Plugin.content:
+        for tupel in self.content:
             if not tupel[0] in blocks:
                 blocks[tupel[0]] = dict()
                 
@@ -133,15 +137,6 @@ class Plugin(basePlugin):
             
             blocks[tupel[0]][tupel[1].get("class")] = count
                 
-        #Laden der Template modstart.xhtml
-        #zuzüglich allgemeiner Ergänzungen
-        modstart_xmlfile = open(os.path.join(Plugin.options.sourcePlugin, "modstart.xhtml"), "rb")
-        parser = html.HTMLParser()
-        modstart_template = etree.parse(modstart_xmlfile,parser).getroot()
-        modstart_xmlfile.close()
-        head = modstart_template.find(".//head")
-        title = modstart_template.find(".//title")
-        inhalt = modstart_template.find(".//div[@id='inhalt']")
         
         #Notwendig, um Informationen über die vorhandenen bereiche abzulegen
         script_tag = etree.Element("script")
@@ -155,7 +150,7 @@ class Plugin(basePlugin):
         
         
         for toc_node in self.tocxml.iterchildren():
-            self.create_main_toc(1, main_toc, toc_node, Plugin.options.targetpath)#ist rekursiv
+            self.create_main_toc(1, main_toc, toc_node, self.options.targetpath)#ist rekursiv
         #main_toc enthält jetzt die Menüstruktur für den linken Rand
         
         
@@ -172,7 +167,7 @@ class Plugin(basePlugin):
             
 
             if toc_node in blocks:
-                for mod_struct in Plugin.options.ModuleStructure:              
+                for mod_struct in self.options.ModuleStructure:              
                     
                     mod_structure = None
                     for modname in blocks[toc_node].keys():
@@ -216,10 +211,6 @@ class Plugin(basePlugin):
                 tmp = tmp.getparent()
                         
           
-            if os.path.exists(os.path.join(Plugin.options.targetpath, "xml/" + toc_node.get("name"))):
-                fobj = open(os.path.join(Plugin.options.targetpath, "xml/" + toc_node.get("name") + "/modstart.xhtml"), "w")
-                fobj.write(etree.tostring(modstart_template, pretty_print = True).decode())
-                fobj.close()
                 
             
             

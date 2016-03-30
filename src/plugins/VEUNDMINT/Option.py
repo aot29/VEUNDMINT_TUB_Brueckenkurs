@@ -62,11 +62,12 @@ class Option(object):
         self.dotikz = 0           # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
         self.dozip = 0            # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
         self.consolecolors = 1    # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
+        self.forceyes = 1         # =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
         
         # VE&MINT source/target parameters
         self.macrofilename = "mintmod"
         self.macrofile = self.macrofilename + ".tex"
-        self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex and html files
+        self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex files, output files will always be unicode according to XML standard
         self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt
         self.source = "module_veundmint"                     # Quellverzeichnis, platziert in Ebene ueber tex2x.py
         self.module = "tree_tu9onlinekurs.tex"               # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
@@ -158,6 +159,7 @@ class Option(object):
         # variables used by the OSS converter, should not be changed directly as they take input from the above definitions
         self.parserName = "lxml"
         self.converterCommonFiles = os.path.join(self.converterDir, "files") # Bedeutung von sourceCommonFiles vom OSS-Konverter ist anders
+        self.converterTemplates = os.path.join(self.converterDir, "templates") # Vorlagen fuer HTML-Dateien
         self.texCommonFiles = os.path.join(self.converterDir, "tex") 
         self.sourcepath_original = os.path.join(self.currentDir, self.source) # Pfad zu den Quellen (werden readonly behandelt)
         self.sourcepath = os.path.join(self.currentDir, self.outtmp) # Pfad in dem gearbeitet wird
@@ -170,9 +172,10 @@ class Option(object):
         # ttm-file
         self.ttmExecute = True
         self.ttmPath = os.path.join(self.converterDir, "ttm")
-        self.ttmFile = os.path.join(self.targetpath, "targetxml.xml")
+        self.ttmFile = os.path.join(self.sourceTEX, "targetxml.xml")
         
         # optimization options
+        self.nolinkcorrection = 1
         self.keepequationtables = 1
         
         # ContentStructure
@@ -193,7 +196,7 @@ class Option(object):
         
         # use these Plugins (plugin path must be listed below within the plugin settings!)
         self.usePreprocessorPlugins = [ "PRE_MINTMODTEX" ]
-        self.useOutputPlugins = [ "HTML5_MINTMODTEX" ]
+        self.useOutputPlugins = [ "HTML5_MINTMODTEX" ] # name is also postfix of template files used by the plugin
         self.pluginPath = { 
             "PRE_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "preprocessor_mintmodtex.py"),
             "HTML5_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "html5_mintmodtex.py")

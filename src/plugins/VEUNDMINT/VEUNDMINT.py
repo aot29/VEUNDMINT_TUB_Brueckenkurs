@@ -30,6 +30,6 @@ class Plugin(basePlugin):
         from plugins.basic import html_basic
         from plugins.basic import scorm_basic
 
-        html_basic.Plugin().create_output()
-        scorm_basic.Plugin().create_output()
+        # html_basic.Plugin().create_output()
+        # scorm_basic.Plugin().create_output()
         

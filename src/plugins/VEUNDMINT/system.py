@@ -125,9 +125,14 @@ class System(object):
         .. note::
             Nicht existierende Dateien und Pfade werden dabei neu angelegt!
         """
-        if not os.path.exists(os.path.dirname(path)) and os.path.dirname(path) != "":
-            os.makedirs(os.path.dirname(path))
+        self.ensurePath(os.path.dirname(path))
         return open(path,attr)
+
+    # creates a path if it does not exist, leaves it untouched otherwise
+    def ensureTree(self, path):
+        if not os.path.exists(path) and path != "":
+            os.makedirs(path)
+        
 
     def copyFile(self, source, target, filename):
         """
