@@ -28,7 +28,7 @@ class TContent(object):
 
     def __init__(self):
         # following properties are used for the root element of the tree, others have to overwrite most of them
-        self.ismodule = False # ???
+        self.ismodule = False # if element belongs to a course module (as opposed to help and miscelannous sites), will be set later in the output processing
         self.modulepart = "" # ??
         
         self.level = 0
@@ -48,13 +48,13 @@ class TContent(object):
         self.helpsite = False
         self.testsite = False
         self.tocsymb = "?"
-        self.title = "" # text of the html title tag
+        self.title = "ROOT" # text of the html title tag for children
         self.modulid = ""
 
         # tree context information
-        self.nr = 1
+        self.nr = ""
         self.pos = 0
-        self.link = ""
+        self.link = "" # for level <=3: section combination, level4: sectioncombo/docname (without html extension)
         self.savepage = False
         self.menuitem = True
         self.display = False
@@ -69,6 +69,18 @@ class TContent(object):
         self.root = self
 
 
+    # searches for an element in the tree
+    def elementByID(self, myid):
+        if self.myid == myid:
+            return self
+        else:
+            for k in self.subcontents:
+                ref = k.elementByID(myid)
+                if (not ref is None):
+                    return ref
+            return None
+   
+
     # returns a string representation of the tree
     def __str__(self):
         return self._rstr(0)
@@ -79,7 +91,7 @@ class TContent(object):
         while (i < inset):
             s = s + "    "
             i = i + 1
-        s = s + self.title + "\n"
+        s = s + self.title + ", pos=" + str(self.pos) + "\n"
         for p in self.subcontents:
             s = s + p._rstr(inset + 1)
         return s

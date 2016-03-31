@@ -104,41 +104,131 @@ class Plugin(basePlugin):
         
     def setup_contenttree(self):
         
-        nid = 1
+        # we need a real object tree instead of a XML tree which can have only text fields as attribute values and no code
+        # copy tree structure from tocxml up to level 3, fill in level 4 and detailed infos from content
         
-        parent = self.ctree
+        maxlevel = 3
+        root = self.ctree # the ROOT node of level 0
+        nid = root.myid + 1
         
-        parent.level = 3
+        # iterative traversal of the tree up to maxlevel 
+        eparent = self.tocxml
+        parent = root
+        lev = 1
+        pos = 1 # position = local section number = 1 + index in parent array
+        node = eparent[pos-1]
         
-        for k in range(3):
+        while(not node is None):
             q = TContent()
             q.myid = nid
-            nid = nid + 1
-            q.subcontents.append(parent)
-            parent.parent = q
-            q.level = parent.level - 1
-            parent = q
-        
-        root = parent
-        
-        parent = self.ctree
-        
+            q.pos = pos
+            nid += 1
+            q.xmlelement = node # link object tree to xml tree
+            node.attrib['objid'] = str(q.myid)
+            q.level = lev
+            if hasattr(node, "name"): q.nr = node.name
+            q.title = node.text
             
-        
+            # optimizations to make tree identical to one from the old converter
+            # remove chapter prefix from ttm and add a space for level 1
+            if lev == 1: q.title = re.sub(r"Chapter (.)(.+)", r"\1 \2", q.title, 1, re.S)
+            # remove the two utf8 characters where a space should be for level 2, what the hell is ttm doing there?
+            if lev == 2: q.title = re.sub(r"(\d+\.\d+)..(.*)", r"\1 \2", q.title, 1, re.S)
+            # add a space, don't know why it works
+            if lev == 3: q.title = " " + q.title
+                
+            q.parent = parent
+            parent.subcontents.append(q)
+
+            if lev == 1:
+                q.link = str(pos)
+            else:
+                q.link = q.parent.link + "." + str(pos)
+            
+            # process first child next if present
+            if (lev < maxlevel) and (len(node) > 0):
+                eparent = node
+                parent = q
+                node = node[0]
+                lev += 1
+                pos = 1
+                continue
+            
+            # no child, process right neighbour if present
+            if (pos < len(eparent)):
+                pos += 1
+                node = eparent[pos - 1]
+                continue
+            
+            # no child and no right neighbour, move on level up if possible (probably several times)
+            
+            # python STILL supports no do loops
+            while (not parent is None) and  (not eparent.getparent() is None) and (parent.pos >= len(eparent.getparent())):
+                if (node is self.content):
+                    node = None
+                    break
+                else:
+                    eparent = eparent.getparent()
+                    pos = parent.pos
+                    parent = parent.parent
+                    lev -= 1
+                            
+               
+            if (not node is None) and (not eparent.getparent() is None):
+                pos = parent.pos + 1
+                parent = parent.parent
+                node = eparent.getparent()[pos - 1]
+                eparent = eparent.getparent()
+                lev -= 1
+            else:
+                node = None
+
+        # parse content to fill in information for level 3 and nodes for level 4
         
         lastcontent = None
+        lev3parent = None
         
-        
+        # elements will appear according traversing of the tree
         for tupel in self.content:
-
-            text = etree.tostring(tupel[1], pretty_print = True, encoding = "unicode")
-
-            p = TContent()
-            p.myid = nid
-            nid = nid + 1
             
-            # move labels appearing in front into the next xcontent (should be done by preprocessor on latex level!), or labels are added before this parsing??
-            """
+            tocelement = tupel[0]
+            contentelement = tupel[1]
+            text = etree.tostring(contentelement, pretty_print = True, encoding = "unicode")
+            
+            if re.search(r"<!-- scontent;-", text, re.S):
+                self.sys.message(self.sys.CLIENTERROR, "scontent environments no longer supported, consider turning them into xcontents")
+
+            # extract section information from <!-- sectioninfo;;section;;subsection;;subsubsection;;nr_ausgeben;;testseite; //-->
+            ms = re.search(r"<!-- sectioninfo;;(\w+?);;(\w+?);;(\w+?);;([01]);;([01]); //-->", text, re.S)
+            sid = ""
+            if ms:
+                sec = int(ms.group(1))
+                ssec = int(ms.group(2))
+                sssec = int(ms.group(3))
+                sid = str(sec) + "." + str(ssec) + "." + str(sssec)
+                printnr = int(ms.group(4))
+                testpage = int(ms.group(5))
+            else:
+                self.sys.message(self.sys.CLIENTERROR, "content element without sectioninfo found, cannot be processed")
+                break
+            
+            if (ssec == 0):
+                # level 2 content coming from an MSectionStart environment, will be attached to existing level 2 object
+                p = root.elementByID(int(tocelement.attrib['objid']))
+                if p is None:
+                    self.sys.message(self.sys.CLIENTERROR, "Could not locate level 2 object of id = " + tocelement.attrib['objid'])
+                if (p.level != 2):
+                    self.sys.message(self.sys.CLIENTERROR, "Object of id = " + tocelement.attrib['objid'] + " is level " + str(p.level) + " instead of 2")
+                p.xcontent = True
+                p.ismodul = True
+                p.display = False
+                p.content = text
+                p.docname = "sectionx" + str(sec) + "." + str(ssec)
+                lastcontent = None
+                pos = 1
+                
+                # move labels appearing in front into the next xcontent (should be done by preprocessor on latex level!), or labels are added before this parsing??
+                """
                                 my $sslabels = "";
                                 if ($self->{LEVEL} eq 3) {
                                   if ($text =~ /(.*)<!-- xcontent;-;0;-;/s ) {
@@ -148,86 +238,82 @@ class Plugin(basePlugin):
                                     $text =~ s/(.*)<!-- xcontent;-;0;-;/$pretext<!-- xcontent;-;0;-;/s ;
                                   }
                                 }
-            """
-            
-            
-            if re.search(r"<!-- scontent;-", text, re.S):
-                self.sys.message(self.sys.CLIENTERROR, "scontent environments no longer supported, consider turning them into xcontents")
-            
-            
-            m = re.search(r"<!-- xcontent;-;(.*?);-;(.*?);-;(.*?);-;(.*?) //-->(.*?)<!-- endxcontent;;(.*?) //-->", text, re.S)
-            if m:
-                pos = 1
-                i = int(m.group(1))
-                p.title = m.group(2)
-                if m.group(3) != "":
-                    p.caption = m.group(3)
-                else:
-                    p.caption = p.title
-                self.sys.message(self.sys.VERBOSEINFO, "Created tcontent, title=" + p.title + ", caption=" + p.caption)
-                if i != int(m.group(6)):
-                    self.sys.message(self.sys.CLIENTERROR, "start end end of xcontent " + i + " do not match")
-                
-                p.content = m.group(5)
-                p.icon = m.group(4) # will no longer be used
-                p.xcontent = True
-                p.ismodule = True
-                p.display = True
-                p.parent = parent
-                parent.subcontents.append(p)
-                if i == 0:
-                    lastcontent = None
-                    p.modulid = "start"
-                    p.docname = "modstart"
-                    p.left = None
-                    if p.parent.parent.xright is None:
-                        p.parent.parent.xright = p
-                    if p.parent.parent.parent.xright is None:
-                        p.parent.parent.parent.xright = p.parent.parent
-                else:
-                    p.modulid = "xcontent"
-                    p.docname = "xcontent" + str(i)
-                    p.left = lastcontent
-                    lastcontent.right = p
- 
-                p.link = parent.link + "/" + p.docname
-                p.menuitem = 0
-                p.pos = pos
-                p.nr = "" # actually used?
-                p.level = p.parent.level + 1
-                if p.level != 4:
-                    self.sys.message(self.sys.CLIENTWARN, "xcontent did not get level 4")
-                
-                p.tocsymb = "status1"
-                if re.search(r"<!-- declaretestsymb //-->", p.content, re.S):
-                    p.tocsymb = "status3"
-                if re.search(r"<!-- declareexcsymb //-->", p.content, re.S):
-                    p.tocsymb = "status2"
-                    
-                # create course ranged linking
                 """
-                                    $p->{XPREV} = $XIDObj;
-                                    if ($XIDObj != -1) {
-                                      $XIDObj->{XNEXT} = $p;
-                                    }
-                                    $p->{XNEXT} = -1;
-                                    $XIDObj = $p;
-                """
-                # extract section information from <!-- sectioninfo;;section;;subsection;;subsubsection;;nr_ausgeben;;testseite; //-->
-                m = re.search(r"<!-- sectioninfo;;(\w+?);;(\w+?);;(\w+?);;([01]);;([01]); //-->", p.content, re.S)
+                
+                
+                
+            else:
+                # level 4 xcontent coming from MXContent inside a subsection, needs a new node, tocelement points wrongly to toc father node
+                lev3parent = root.elementByID(int(tocelement.attrib['objid']))
+
+                m = re.search(r"<!-- xcontent;-;(.*?);-;(.*?);-;(.*?);-;(.*?) //-->(.*?)<!-- endxcontent;;(.*?) //-->", text, re.S)
                 if m:
-                    sec = int(m.group(1))
-                    ssec = int(m.group(2))
-                    sssec = int(m.group(3))
-                    sid = str(sec) + "." + str(ssec) + "." + str(sssec)
-                    printnr = int(m.group(4))
-                    testpage = int(m.group(5))
-                    if testpage == 0: p.testsite = True
+                    i = int(m.group(1))
+                    p = TContent()
+                    p.parent = lev3parent
+                    lev3parent.subcontents.append(p)
+                    p.myid = nid
+                    nid += 1
+                    p.level = p.parent.level + 1
+                    p.title = m.group(2)
+                    p.ismodul = True
+                    if m.group(3) != "":
+                        p.caption = m.group(3)
+                    else:
+                        p.caption = p.title
+                    self.sys.message(self.sys.VERBOSEINFO, "Created tcontent, title=" + p.title + ", caption=" + p.caption)
+                    if i != int(m.group(6)):
+                        self.sys.message(self.sys.CLIENTERROR, "start end end of xcontent " + i + " do not match")
+                    
+                    p.content = m.group(5)
+                    p.icon = m.group(4) # will no longer be used
+                    p.xcontent = True
+                    p.display = True
+                    if i == 0:
+                        pos = 1
+                        lastcontent = None # it's a modstart
+                        p.modulid = "start"
+                        p.docname = "modstart"
+                        p.left = None
+                        if p.parent.parent.xright is None:
+                            p.parent.parent.xright = p
+                        if p.parent.parent.parent.xright is None:
+                            p.parent.parent.parent.xright = p.parent.parent
+                    else:
+                        p.modulid = "xcontent"
+                        p.docname = "xcontent" + str(i)
+                        p.left = lastcontent
+                        lastcontent.right = p
+    
+                    p.pos = pos
+                    p.link = p.parent.link + "/" + p.docname
+                    p.menuitem = 0
+                    p.nr = "" # actually used?
+                    p.level = p.parent.level + 1
+                    if p.level != 4:
+                        self.sys.message(self.sys.CLIENTWARN, "xcontent did not get level 4")
+                    
+                    p.tocsymb = "status1"
+                    if re.search(r"<!-- declaretestsymb //-->", p.content, re.S):
+                        p.tocsymb = "status3"
+                    if re.search(r"<!-- declareexcsymb //-->", p.content, re.S):
+                        p.tocsymb = "status2"
+                        
+                    # create course ranged linking
+                    """
+                                        $p->{XPREV} = $XIDObj;
+                                        if ($XIDObj != -1) {
+                                        $XIDObj->{XNEXT} = $p;
+                                        }
+                                        $p->{XNEXT} = -1;
+                                        $XIDObj = $p;
+                    """
+                    if testpage != 0: p.testsite = True
                     p.nr = sid
                     if i == 0:
                         p.parent.nr = str(sec) + "." + str(ssec)
                         p.parent.parent.nr = str(sec)
-
+    
                     self.sys.message(self.sys.VERBOSEINFO, "xcontent " + p.title + " has number " + p.nr)
                     # expand <title>
                     p.title = self.options.moduleprefix + " Abschnitt " + sid + " " + p.title
@@ -237,25 +323,34 @@ class Plugin(basePlugin):
                     (p.content, n) = re.subn(r"<h4>(.*?)</h4><!-- sectioninfo;;" + str(sec) + ";;" + str(ssec) + ";;" + str(sssec) + ";;" + str(printnr) + ";;" + str(testpage) + r"; //-->", "<h4>{XCONTENTPREFIX}</h4><br \/><h4>" + pref + "\1</h4>", p.content, 0, re.S)
                     if (n != 1):
                         self.sys.message(self.sys.CLIENTERROR, "Could not substitute sectioninfo in xcontent " + p.title + ", n = " + n)
-                                      
+                                        
+                    
+                    # add numbers to MSubsubsections in MXContent
+                    p.content = re.sub(r"<h4>(.+?)</h4><!-- sectioninfo;;(\w+?);;(\w+?);;(\w+?);;1;;([01]); //-->" ,"<h4>\2.\3.\4 \1</h4>", p.content, 0, re.S)
+                    
+                    p.next = None
+                    pos = pos + 1
+                    
+                    lastcontent = p
+                    
                 else:
-                    self.sys.message(self.sys.CLIENTERROR, "No section info could be found in xcontent " + p.title)
-                
-                # add numbers to MSubsubsections in MXContent
-                p.content = re.sub(r"<h4>(.+?)<\/h4><!-- sectioninfo;;(\w+?);;(\w+?);;(\w+?);;1;;([01]); //-->" ,"<h4>\2.\3.\4 \1</h4>", p.content, 0, re.S)
-                
-                p.next = None
-                pos = pos + 1
-                
-                lastcontent = p
-                
-            else:
-                self.sys.message(self.sys.CLIENTERROR, "xcontent element contains no xcontent information tags, cannot parse it")
+                    self.sys.message(self.sys.CLIENTERROR, "xcontent element of level 4 contains no xcontent information tags, cannot parse it")
                 
         self.sys.message(self.sys.VERBOSEINFO, "Tree buildup: \n" + str(root))
+
+
+                                      
+                
+                
+        
         
         
     def write_html_files(self):
+        
+        
+        # PERL: only dirs of form A.B.C and level 1/2/3 contents directly in mpl
+        # tex2x: separate dirs A.B and content in them
+        
         m = 0
         n = 0
         count_subsections = dict();
@@ -283,6 +378,8 @@ class Plugin(basePlugin):
         
         self.sys.message(self.sys.CLIENTINFO, str(n) + "  " + self.outputextension + "-files have been written in utf8, " + str(m) + " of them have xcontent level zero")
       
+    
+    
     
 # ------------------------------------------------- OLD OSS METHODS ----------------------------------------------------------------------------
 
@@ -378,7 +475,8 @@ class Plugin(basePlugin):
                         title.text = tmp.text + " - " + title.text
                 tmp = tmp.getparent()
                         
-          
+
+        
                 
             
             
