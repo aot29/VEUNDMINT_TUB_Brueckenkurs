@@ -14,9 +14,15 @@
 
 \begin{MSectionStart}
 \MDeclareSiteUXID{VBKM05_START}
-Die Darstellung der Elementaren Geometrie beginnt mit der Einf\"uhrung von Winkeln im Bogenma\ss\ und im Gradma\ss\ 
-und wird \"uber Stufen- und Wechselwinkel zu den Dreiecken hin fortgesetzt. Es werden kongruente und \"ahnliche Dreiecke betrachtet, ihre Fl\"acheninhalte und die von anderen Figuren berechnet, worauf man dann zu den Strahlens\"atzen kommt, die die Grundlage f\"ur die Einf\"uhrung der trigonometrischen Funktionen
-am rechtwinkligen Dreieck bilden. Nachdem man sich auch die Trigonometrie am Einheitskreis angesehen hat, wird die dritte Dimension hinzugenommen und es werden Volumina von Zylindern, Kegeln und Kugeln behandelt.
+Die Darstellung der Elementaren Geometrie beginnt mit der Einf\"uhrung von 
+Winkeln im Bogenma\ss\ und im Gradma\ss\ 
+und wird \"uber Stufen- und Wechselwinkel zu den Dreiecken hin fortgesetzt. 
+Es werden kongruente und \"ahnliche Dreiecke betrachtet, ihre Fl\"acheninhalte 
+und die von anderen Figuren berechnet, worauf man dann zu den Strahlens\"atzen 
+kommt, die die Grundlage f\"ur die Einf\"uhrung der trigonometrischen Funktionen
+am rechtwinkligen Dreieck bilden. Nachdem man sich auch die Trigonometrie am 
+Einheitskreis angesehen hat, wird die dritte Dimension hinzugenommen und es 
+werden Volumina von Zylindern, Kegeln und Kugeln behandelt.
 
 Dieses Modul gliedert sich in folgende Abschnitte:
 
@@ -24,6 +30,7 @@ Dieses Modul gliedert sich in folgende Abschnitte:
 \item{\MNRef{M05_Winkel}, \MSRef{M05_Winkel}{Winkel, Kongruenz und \"Ahnlichkeit}}
 \item{\MNRef{M05_Flaecheninhalt}, \MSRef{M05_Flaecheninhalt}{Fl\"acheninhalt und Strahlens\"atze}}
 \item{\MNRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}, \MSRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}{Trigonometrie}}
+\item{\MNRef{M05_Koerper}, \MSRef{M05_Koerper}{Elementargeometrische K"orper}}
 \item{\MNRef{M05_Abschlusstest}, \MSRef{M05_Abschlusstest}{Abschlusstest} f\"ur Modul \MNRef{VBKM05}.}
 \end{itemize}
 
@@ -35,18 +42,21 @@ Dieses Modul gliedert sich in folgende Abschnitte:
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_WinkelIntro}
 
-Das Bild zeigt einen Ausschnitt des Stra\ss enplans von Ludwigshafen am Rhein. An ihm lassen
-sich einige Erkenntnisse \"uber die Geometrie in der Ebene ablesen.
+Das Bild zeigt einen Ausschnitt des Stra\ss enplans von Ludwigshafen am Rhein. 
+An ihm lassen sich einige Erkenntnisse \"uber die Geometrie in der Ebene ablesen.
 
 \begin{center}
 \MGraphicsSolo{Stadtplan.png}{scale=1} \MLabel{Stadtplan}
 \end{center}
 
-Man kann hier unter anderem das Bogenma\ss\ eines Winkels entdecken und Stufen- und Wechselwinkel aufsp\"uren. 
+Man kann hier unter anderem das Bogenma\ss\ eines Winkels entdecken und 
+Stufen- und Wechselwinkel aufsp\"uren. 
 
-Im ersten Abschnitt dieses Moduls wird an einige geometrische Grundbegriffe erinnert, ehe im darauf folgenden 
-Abschnitt das Bogenma\ss\ und das Gradma\ss\ eingef\"uhrt,
-Stufen- und Wechselwinkel betrachtet und die Winkelsumme in Dreiecken bestimmt werden. Ferner werden Kriterien, wann zwei Dreiecke kongruent oder \"ahnlich sind, vorgestellt.
+Im ersten Abschnitt dieses Moduls wird an einige geometrische Grundbegriffe 
+erinnert, ehe im darauf folgenden Abschnitt das Bogenma\ss\ und das Gradma\ss\ 
+eingef\"uhrt, Stufen- und Wechselwinkel betrachtet und die Winkelsumme in 
+Dreiecken bestimmt werden. Ferner werden Kriterien, wann zwei Dreiecke 
+kongruent oder \"ahnlich sind, vorgestellt.
 
 \end{MIntro}
 
@@ -1391,16 +1401,40 @@ $p = \left| \overline{AD} \right|$ und $q = \left| \overline{BD} \right|$, so gi
 }
 \end{minipage}
 \end{tabular}
-\begin{itemize}
-	\item \textbf{Satz des Pythagoras}\\
-		Die Summe der Quadrate \"uber den Katheten haben den gleichen Fl\"acheninhalt wie das Quadrat \"uber der Hypotenuse. So gilt f\"ur das hier abgebildete Dreieck: \[a^2+b^2=c^2 \MDFPeriod\]
-		Werden die Seiten des Dreiecks anders bezeichnet, muss die Gleichung entsprechend angepasst werden!
-	\item \textbf{Kathetensatz}\\
-		Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus der Hypotenuse und dem anliegenden Hypotenusenabschnitt: \[a^2=c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
-	\item \textbf{H\"ohensatz}\\
-		Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus den beiden Hypotenusenabschnitten: \[h^2=p\cdot q \MDFPeriod\]	
-\end{itemize}
+%\begin{itemize}
+%	\item 
+\textbf{Satz des Pythagoras}\\
+Die Summe der Quadrate \"uber den Katheten $a$ und $b$ haben den gleichen 
+Fl\"acheninhalt wie das Quadrat \"uber der Hypotenuse $c$. So gilt mit den 
+genannten Bezeichnungen (siehe auch das abgebildete Dreieck): 
+\[a^2+b^2=c^2 \MDFPeriod\]
+Werden die Seiten des Dreiecks anders bezeichnet, muss die Gleichung entsprechend angepasst werden!
+
+%Siehe Zusaetzliche Inhalte:
+%	\item \textbf{Kathetensatz}\\
+%		Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus der Hypotenuse und dem anliegenden Hypotenusenabschnitt: \[a^2=c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
+%	\item \textbf{H\"ohensatz}\\
+%		Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus den beiden Hypotenusenabschnitten: \[h^2=p\cdot q \MDFPeriod\]	
+%\end{itemize}
 \end{MInfo}
+
+
+\begin{MCOSHZusatz}
+In einem rechtwinkligen Dreieck gelten neben dem Satz des Pythagoras weitere 
+Aussagen.
+\begin{MXInfo}{Kathetensatz}
+Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus 
+der Hypotenuse und dem anliegenden Hypotenusenabschnitt: 
+\[a^2 = c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
+\end{MXInfo}
+
+\begin{MXInfo}{H"ohensatz}
+Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus 
+den beiden Hypotenusenabschnitten: 
+\[h^2 = p\cdot q \MDFPeriod\]	
+\end{MXInfo}
+
+\end{MCOSHZusatz}
 
 \begin{MExample}
 Gegeben sei ein rechtwinkliges Dreieck mit den Kathetenl\"angen $a=3$ und $b=4$.\\
@@ -2131,6 +2165,459 @@ Der richtige Winkel ist also $\alpha=230^\circ$ (rosa).
 \end{MExercises}
 
 
+
+%jgl: Neuer Abschnitt:
+\MSubsection{Elementargeometrische K"orper}%
+\MLabel{M05_Koerper}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM05A_ElementareKoerper_Intro}
+
+Die Gestalt allt"aglicher Gegenst"ande wie ein Notizblock, ein Handy oder 
+auch technische Konstruktionen wie Tunnel k"onnen durch einfache Grundformen
+beschrieben werden, wenn man von {\glqq}abgerundeteten Ecken{\grqq} absieht.
+Woran liegt das?
+
+Wenn man einen Besen "uber einen ebenen Boden mit Sand bewegt, wird ein 
+viereckiger Ausschnitt des Bodens sichtbar.
+Geometrisch idealisiert formuliert, entsteht aus einer Strecke (dem Besen) 
+durch Verschieben ein Viereck. Wenn man den Besen dreht, kann man eine 
+Kreisscheibe erzeugen. Auf diese Weise ergeben sich aus einfachen Objekten 
+kompliziertere, die trotzdem einfach beschrieben werden k"onnen.
+\end{MIntro}
+
+\begin{MXContent}{Elementargeometrische K"orper}{Elementargeometrische K"orper}{STD}%
+\MDeclareSiteUXID{VBKM05A_ElementareKoerper_Content}
+
+Punkte sind die einfachsten grundlegenden geometrischen Objekte. Verschiebungen
+f"uhren auf Strecken, und Operationen wie das Verschieben oder Drehen von 
+Strecken in der Ebene f"uhren auf elementargeometrische Figuren. 
+Beispielsweise ergeben sich Vielecke und Kreise, wie sie oben beschrieben 
+wurden.
+
+Wenn man Figuren au"serhalb ihrer Ebene verschiebt oder dreht, entstehen neue
+Objekte, die als K"orper bezeichnet werden. Im Folgenden werden einige einfache 
+K"orper beschrieben, deren Form in vielen allt"aglichen Gegenst"anden oder 
+technischen Konstruktionen erkennbar ist.
+
+%Beispiel:
+\begin{MExample}
+Es wird ein Rechteck betrachtet und senkrecht zur Zeichenebene verschoben.
+Dadurch entsteht ein Quader. Seine Oberfl"ache besteht aus dem gegebenen
+Rechteck und einer Kopie davon. Au"serdem entstanden aus den vier Seiten
+des jeweils vier weitere Rechtecke.
+\end{MExample}
+
+Betrachtet man irgend ein Vieleck, und verschiebt dieses senkrecht, entsteht
+ein Prisma genannter K"orper. Der Name wird auch f"ur durchsichtige physikalische
+K"orper dieser Form verwendet, mit denen Lichtwellen gebrochen werden. Die 
+einzelnen Lichtwellen von scheinbar wei"sem Licht werden in verschiedenen Farben
+sichtbar.
+
+\begin{MXInfo}{Prisma}
+Gegeben ist ein Vieleck $G$.
+Ein \MEntry{Prisma}{Prisma} ist ein K"orper, der aus einer senkrechten 
+Verschiebung eines Vielecks $G$ um eine Strecke der L"ange $h$ entsteht. 
+Die beiden Fl"achen, die aus dem gegebenen Vieleck und einer Kopie einen 
+Teil der Oberfl"ache bilden, werden dann als Grundfl"ache des Prismas 
+bezeichnet. Sie sind zueinander parallel. 
+Die anderen Fl"achen bilden zusammen den Mantel $M$.
+
+%Zeichnung Prisma:
+\tdplotsetmaincoords{60}{30}
+\begin{center}
+\begin{tikzpicture}[tdplot_main_coords,>=latex]
+\def\zt{3}
+\def\ticl{0.8}
+\def\dsth{0.5}
+\foreach \zc in {0,\zt} 
+% coordinate number, radius, azimuth
+\foreach \nc/\rc/\ac in {0/3/0,1/3/120,2/1/240} {
+\pgfmathparse{\rc*cos(\ac)}\let\ax=\pgfmathresult
+\pgfmathparse{\rc*sin(\ac)}\let\ay=\pgfmathresult
+\node (PC-\nc-\zc) at (\ax,\ay,\zc) {};
+}
+%,name path=level-ground
+\path[fill=gray!60,opacity=0.5] (PC-0-0.center) 
+\foreach \nc in {1,2} { -- (PC-\nc-0.center) {} } -- cycle;
+\draw[thick, black] (PC-2-0.center) -- (PC-0-0.center);
+\draw[thick, black, dashed] (PC-0-0.center) --  (PC-1-0.center) -- (PC-2-0.center) ;
+\foreach \nc in {0,2} { \draw[thick] (PC-\nc-0.center) -- (PC-\nc-\zt.center); };
+\foreach \nc in {1} { \draw[thick,dashed] (PC-\nc-0.center) -- (PC-\nc-\zt.center); };
+\path[draw=black,thick,fill=gray!30,fill opacity=0.2] (PC-0-\zt.center) 
+\foreach \nc in {1,2} { -- (PC-\nc-\zt.center) {} } -- cycle;
+\draw (PC-2-0.center) [tdplot_screen_coords] -- +(-\ticl,0);
+\draw (PC-2-\zt.center) [tdplot_screen_coords] -- +(-\ticl,0);
+\path (PC-2-0.center) [tdplot_screen_coords] ++(-\dsth,0) coordinate (BG);
+\path (PC-2-\zt.center) [tdplot_screen_coords] ++(-\dsth,0) coordinate (BT);
+\path ($ (BG)!0.5!(BT) $) node (TXT) {$h$}; % [fill=white]
+\draw[<-] (BG) -- (TXT.south);
+\draw[->] (TXT.north) -- (BT);
+%%\tdplottransformmainscreen{\ax}{\ay}{\az}
+%%\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+\end{tikzpicture}
+\end{center}
+
+In der Zeichnung ist ein Prisma mit einem Dreieck als Grundfl"ache gezeigt. Die
+anderen Seitenfl"achen, die an die Grundfl"ache angrenzen sind Rechtecke.
+%Ende (Zeichnung).
+
+Das Volumen $V$ des Prismas ist das Produkt aus dem Fl"acheninhalt des Vielecks 
+$G$ und der H"ohe $h$: Es ist $V = G \cdot h$.
+
+Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich aus dem doppelten Inhalt der 
+Grundfl"ache $G$ und des Mantels $M$. Wenn $U$ der Umfang des gegebenen Vielecks 
+ist, gilt $O = 2 \cdot G + M = 2 \cdot G + U \cdot h$.
+\end{MXInfo}
+
+Im einf"uhrenden Beispiel wurde ein Quader beschrieben. Mit obiger Definition
+kann er als spezielles Prisma angesehen werden, n"amlich ein Prisma mit einem 
+Rechteck als Grundfl"ache. Wenn alle Seitenfl"achen Quadrate sind, spricht man
+von einem W"urfel.
+
+Das Bauprinzip kann auf verschiedene Weisen variiert werden.
+Beispielsweise kann das Vieleck durch eine Kreisscheibe ersetzt werden, die 
+verschoben wird. Durch die senkrechte Verschiebung entsteht ein besonders 
+symmetrischer K"orper, ein Zylinder.
+Eine Tunnelbohrmaschine stellt -- vereinfacht -- eine zylinderf"ormige R"ohre her.
+
+\begin{MXInfo}{Zylinder}
+Gegeben ist eine Kreisscheibe $G$.
+Ein \MEntry{Zylinder}{Zylinder} ist ein K"orper, der aus einer senkrechten 
+Verschiebung einer Kreisscheibe $G$ um eine Strecke der L"ange $h$ entsteht. 
+Die beiden Fl"achen, die aus der gegebenen Kreisscheibe und einer Kopie einen 
+Teil der Oberfl"ache bilden, werden dann als Grundfl"ache des Zylinders
+bezeichnet. Sie sind zueinander parallel. 
+Der gekr"ummte Teil der Oberfl"ache zwischen den beiden Kreisscheiben bildet 
+den Mantel $M$ des Zylinders.
+
+%Zeichnung Zylinder:
+\usetikzlibrary{fadings}
+\tdplotsetmaincoords{60}{30}
+\begin{center}
+\begin{tikzpicture}[tdplot_main_coords,>=latex]
+\def\az{30}
+%\def\pl{60}
+\def\zt{3}
+\def\rd{2}
+\def\ticl{0.8}
+\def\dsth{0.5}
+\pgfmathparse{\rd*cos(\az)}\let\ax=\pgfmathresult
+\pgfmathparse{\rd*sin(\az)}\let\ay=\pgfmathresult
+\path[fill=gray!60,opacity=0.5] (0,0,0) circle (\rd);
+\draw[thick, black,dashed] (\ax,\ay,0) arc (\az:{\az+180}:\rd);
+\draw[thick, black] (-\ax,-\ay,0) arc ({\az+180}:{\az+360}:\rd);
+\draw (-\ax,-\ay,0) [tdplot_screen_coords] -- +(-\ticl,0);
+\draw (-\ax,-\ay,\zt) [tdplot_screen_coords] -- +(-\ticl,0);
+\path (-\ax,-\ay,0) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHB);
+\path (-\ax,-\ay,\zt) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHT);
+\draw[thin,black,dashed] (0,0,0) -- +(0,0,\zt);
+% fadings
+\shade [opacity=0.5,left color=transparent!0,right color=transparent!50]
+(\ax,\ay,0) arc ({\az+360}:{\az+180}:\rd)
+-- (-\ax,-\ay,\zt) arc ({\az+180}:{\az+360}:\rd) -- cycle;
+%
+\draw[thin,black,dashed] (\ax,\ay,0) -- +(0,0,\zt) (-\ax,-\ay,0) -- +(0,0,\zt);
+\path[fill=gray!30,fill opacity=0.2] (0,0,\zt) circle (\rd);
+\draw[thick, black] (0,0,\zt) circle (\rd);
+\path ($ (DHB)!0.5!(DHT) $) node (TXH) {$h$}; % [fill=white]
+\draw[<-] (DHB) -- (TXH.south);
+\draw[->] (TXH.north) -- (DHT);
+\path (-\ay,\ax,\zt) [tdplot_screen_coords] ++(0,\ticl) coordinate (TRL)
+++(\rd,0) coordinate (TRR);
+\path (-\ay,\ax,\zt) [tdplot_screen_coords] ++(0,\dsth) coordinate (DRL)
+++(\rd,0) coordinate (DRR);
+\draw (0,0,\zt) -- (TRL) (\ax,\ay,\zt) -- (TRR);
+\path ($ (DRL)!0.5!(DRR) $) node (TXR) {$r$}; % [fill=white]
+\draw[<-] (DRL) -- (TXR.west);
+\draw[->] (TXR.east) -- (DRR);
+\end{tikzpicture}
+\end{center}
+%Ende (Zeichnung).
+
+Das Volumen $V$ des Zylinders ist das Produkt aus dem Fl"acheninhalt der 
+Kreisscheibe $G$ mit dem Radius $r$ und der H"ohe $h$: 
+Es ist $V = G \cdot h = \pi \cdot r^2 \cdot h$.
+
+Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich als Summe aus dem doppelten
+Inhalt der Kreisscheibe $K$ und dem Mantel $M$.
+Mit dem Umfang $U = 2 \cdot \pi \cdot r$ der gegebenen Kreisscheibe
+gilt 
+$O = 2 \cdot G + M = 2 \cdot \pi \cdot r^2 + 2 \cdot \pi \cdot r \cdot h %
+ = 2 \cdot \pi \cdot r \cdot (r + h)$.
+\end{MXInfo}
+
+Wenn die Kreisscheibe nicht verschoben, sondern rotiert wird, wobei die 
+Drehachse durch den Mittelpunkt und einen Randpunkt verl"auft, ergibt sich
+eine Kugel.
+
+\begin{MXInfo}{Kugel}
+Gegeben ist eine Kreisscheibe mit Mittelpunkt $M$ und Radius $r$. Rotiert die
+Kreisscheibe um $M$ und einen Randpunkt, erh"alt man eine Kugel mit 
+Radius $r$.
+
+%Zeichnung Kugel:
+\usetikzlibrary{fadings}
+\tdplotsetmaincoords{60}{30}
+\begin{center}
+\begin{tikzpicture}[tdplot_main_coords,>=latex]
+\def\az{30}
+\def\pl{60}
+\def\rd{2.5}
+\def\ticl{0.8}
+\def\dsth{0.5}
+\pgfmathparse{\rd*cos(\az)}\let\ax=\pgfmathresult
+\pgfmathparse{\rd*sin(\az)}\let\ay=\pgfmathresult
+% fadings
+\begin{scope}[tdplot_screen_coords]
+  \shade[ball color=gray!50] (0,0,0) circle (\rd);
+\end{scope}
+\draw[thin,black,dashed] (0,0,0) -- +(0,0,\rd);
+\draw[thick, black,dashed] (\ax,\ay,0) arc (\az:{\az+180}:\rd);
+\begin{scope}[tdplot_screen_coords]
+  \fill[opacity=0.5,color=white] (0,0,0) circle (\rd);
+  \draw[black,dashed] (0,0,0) circle (\rd);
+\end{scope}
+\draw[thick,black,dashed] (-\ax,-\ay,0) arc ({\az+180}:{\az+360}:\rd);
+%
+\draw (-\ax,-\ay,0) [tdplot_screen_coords] -- +(-\ticl,0);
+\draw (-\ax,-\ay,\rd) [tdplot_screen_coords] ++(-\ticl,0) 
+[tdplot_main_coords] -- (0,0,\rd);
+\path (-\ax,-\ay,0) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHB);
+\path (-\ax,-\ay,\rd) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHT);
+\path ($ (DHB)!0.5!(DHT) $) node (TXH) {$r$}; % [fill=white]
+\draw[<-] (DHB) -- (TXH.south);
+\draw[->] (TXH.north) -- (DHT);
+\end{tikzpicture}
+\end{center}
+%Ende (Zeichnung).
+
+Das Volumen $V$ der Kugel ist $V = \frac{4}{3} \cdot \pi \cdot r^3$.
+
+Der Fl"acheninhalt $O$ der Oberfl"ache ist durch 
+$O = 4 \cdot \pi \cdot r^2$ gegeben.
+\end{MXInfo}
+
+Eine Kugel kann auch als der K"orper beschrieben werden, der aus allen Punkten 
+besteht, deren Abstand von $M$ kleiner oder gleich $r$ ist (siehe auch 
+Kapitel \MRef{VBKM10}).
+
+In dieser Betrachtungsweise ist ein Prisma ein K"orper aus allen Punkten, 
+die auf einer Verbindungslinie von Grundfl"ache und ihrer Kopie liegen. 
+
+Im Folgenden werden zwei Variationen dieses Vorgehens betrachtet.
+Zun"achst wird wieder von einem Vieleck als Grundfl"ache ausgegangen. 
+Anstelle einer Kopie der Grundfl"ache wird jetzt nur ein einzelner Punkt 
+vorgegeben.
+
+\begin{MXInfo}{Pyramide}
+Gegeben ist ein Vieleck $G$ und ein Punkt $S$ mit dem Abstand $h > 0$ von
+$G$.
+Eine Pyramide mit der Grundfl"ache $G$ und der Spitze $S$ ist der K"orper,
+der aus allen Punkten besteht, die auf einer Strecke von $S$ zu einem 
+Punkt auf der Grundfl"ache $G$ liegen.
+
+%Zeichnung Pyramide:
+\tdplotsetmaincoords{60}{40}
+\begin{center}
+\begin{tikzpicture}[tdplot_main_coords,>=latex]
+\def\zt{5}
+\def\rd{2.5}
+\def\ticl{0.8}
+\def\dsth{0.5}
+% coordinate number, radius, azimuth
+\foreach \nc/\rc/\ac in {0/\rd/0,1/\rd/120,2/\rd/240} {
+\pgfmathparse{\rc*cos(\ac)}\let\ax=\pgfmathresult
+\pgfmathparse{\rc*sin(\ac)}\let\ay=\pgfmathresult
+\node (PC-\nc) at (\ax,\ay,0) {};
+}
+%
+\path[fill=gray!60,opacity=0.5] (PC-0.center) 
+\foreach \nc in {1,2} { -- (PC-\nc.center) {} } -- cycle;
+\draw[thick, black] (PC-2.center) -- (PC-0.center);
+\draw[thick, black, dashed] (PC-0.center) --  (PC-1.center) -- (PC-2.center);
+\foreach \nc in {0,2} { \draw[thick] (PC-\nc.center) -- (0,0,\zt); };
+\foreach \nc in {1} { \draw[thick,dashed] (PC-\nc.center) -- (0,0,\zt); };
+\draw[thin,black,dashed] (0,0,0) -- +(0,0,\zt);
+% Legende
+\draw (0,0,0) [tdplot_screen_coords] -- ++({-\rd-\ticl},0);
+\draw (0,0,\zt) [tdplot_screen_coords] -- ++({-\rd-\ticl},0);
+\path (0,0,0) [tdplot_screen_coords] ++({-\rd-\dsth},0) coordinate (BG);
+\path (0,0,\zt) [tdplot_screen_coords] ++({-\rd-\dsth},0) coordinate (BT);
+\path ($ (BG)!0.5!(BT) $) node (TXT) {$h$}; % [fill=white]
+\draw[<-] (BG) -- (TXT.south);
+\draw[->] (TXT.north) -- (BT);
+%
+\path (PC-2.center) [tdplot_screen_coords] +(0,-\dsth) coordinate (DAL)
++(0,-\ticl) coordinate (TAL);
+\path (PC-0.center) [tdplot_screen_coords] +(0,-\dsth) coordinate (DAR)
++(0,-\ticl) coordinate (TAR);
+\draw (PC-2.center) -- (TAL) (PC-0.center) -- (TAR);
+\path ($ (DAL)!0.5!(DAR) $) node (TXA) {$a$}; % [fill=white]
+\draw[<-] (DAL) -- (TXA.west);
+\draw[->] (TXA.east) -- (DAR);
+\end{tikzpicture}
+\end{center}
+
+In der Zeichnung ist eine Pyramide mit einer dreieckigen Grundfl"ache 
+dargestellt.
+%Ende (Zeichnung).
+
+Das Volumen $V$ der Pyramide ist proportional zum Fl"acheninhalt der 
+Grundfl"ache $G$ und der H"ohe $h$. 
+Es gilt $V = \frac{1}{3} \cdot G \cdot h$.
+
+Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich als Summe aus dem Inhalt 
+der Grundfl"ache $G$ und des Mantels $M$. Dabei ist der Fl"acheninhalt des 
+Mantels die Summe seiner Dreiecksfl"achen $D_k$ ($1 \leq k \leq n$).
+Damit ist $O = G + M = G + D_1 + \ldots + D_n$.
+\end{MXInfo}
+
+Vergleichbar der Betrachtung von Prisma und Zylinder, erh"alt man einen
+weiteren K"orper, wenn anstatt eines Vielecks wie bei der Pyramide eine 
+Kreisscheibe als Grundfl"ache verwendet wird.
+
+\begin{MXInfo}{Kegel}
+Gegeben ist eine Kreisscheibe $G$ mit Radius $r$.
+Au"serdem wird ein Punkt $S$ mit dem Abstand $h > 0$ von $G$ betrachtet.
+Ein Kegel mit der Grundfl"ache $G$ und der Spitze $S$ ist der K"orper,
+der aus allen Punkten besteht, die auf einer Strecke von $S$ zu einem 
+Punkt auf der Grundfl"ache $G$ liegen.
+
+%Zeichnung Kegel:
+%\usetikzlibrary{fadings}
+\def\az{30}
+\def\pl{60}
+\tdplotsetmaincoords{\pl}{\az}
+\begin{center}
+\begin{tikzpicture}[tdplot_main_coords,>=latex]
+\def\zt{4}
+\def\rd{2}
+\def\ticl{0.8}
+\def\dsth{0.5}
+\pgfmathparse{\rd*cos(\az)}\let\ax=\pgfmathresult
+\pgfmathparse{\rd*sin(\az)}\let\ay=\pgfmathresult
+\pgfmathparse{\rd/\zt/tan(\pl)}\let\stm=\pgfmathresult
+\pgfmathparse{less(abs(\stm),1)}\let\cres\pgfmathresult
+\pgfmathparse{greater(\stm,0)}\let\crsg\pgfmathresult
+\def\ccmp{1}
+%%\typeout{cres=\cres, crsg=\crsg}
+\if\cres\ccmp
+  \pgfmathparse{\rd*cos(\pl)*\stm}\let\smy=\pgfmathresult
+  \pgfmathparse{\rd*sqrt(1-\stm*\stm)}\let\smx=\pgfmathresult
+  \pgfmathparse{asin(\stm)}\let\astm=\pgfmathresult
+\else
+  \def\smy{1}\def\smx{0}\def\astm{90}
+\fi
+\pgfmathparse{\rd*cos(\az+\astm)}\let\axl=\pgfmathresult
+\pgfmathparse{\rd*sin(\az+\astm)}\let\ayl=\pgfmathresult
+\path[fill=gray!60,opacity=0.5] (0,0,0) circle (\rd);
+%%\draw[thick,black,dashed] (\ax,\ay,0) arc (\az:{\az+180}:\rd);
+%%\draw[thick,black] (-\ax,-\ay,0) arc ({\az+180}:{\az+360}:\rd);
+\if\crsg\ccmp
+  \draw[thick,black,dashed] (\axl,\ayl,0) arc ({\az+\astm}:{\az+180-\astm}:\rd);
+  \draw[thick,black] (\axl,\ayl,0) arc ({\az+360+\astm}:{\az+180-\astm}:\rd);
+\else
+  \draw[thick,black] (0,0,0) circle (\rd);
+\fi
+\draw (-\ax,-\ay,0) [tdplot_screen_coords] -- +(-\ticl,0);
+\draw (-\ax,-\ay,\zt) [tdplot_screen_coords] ++(-\ticl,0) 
+[tdplot_main_coords] -- (0,0,\zt);
+\path (-\ax,-\ay,0) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHB);
+\path (-\ax,-\ay,\zt) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHT);
+\draw[thin,black,dashed] (0,0,0) -- +(0,0,\zt);
+% fadings
+\if\cres\ccmp
+  \shade [opacity=0.5,left color=transparent!0,right color=transparent!50]
+  (\axl,\ayl,0) arc ({\az+360+\astm}:{\az+180-\astm}:\rd) -- (0,0,\zt) -- cycle;
+\else
+  \shade [opacity=0.5,left color=transparent!0,right color=transparent!50]
+  (0,0,0) circle (\rd);
+\fi
+%
+\if\cres\ccmp
+  \draw[thin,black,dashed] (0,0,\zt) [tdplot_screen_coords] -- (\smx,\smy);
+  \draw[thin,black,dashed] (0,0,\zt) [tdplot_screen_coords] -- (-\smx,\smy);
+\fi
+\path ($ (DHB)!0.5!(DHT) $) node (TXH) {$h$}; % [fill=white]
+\draw[<-] (DHB) -- (TXH.south);
+\draw[->] (TXH.north) -- (DHT);
+\path (0,0,\zt) [tdplot_screen_coords] ++(0,\ticl) coordinate (TRL)
+++(\rd,0) coordinate (TRR);
+\path (0,0,\zt) [tdplot_screen_coords] ++(0,\dsth) coordinate (DRL)
+++(\rd,0) coordinate (DRR);
+\draw (0,0,\zt) -- (TRL) (\ax,\ay,0) -- (TRR);
+\path ($ (DRL)!0.5!(DRR) $) node (TXR) {$r$}; % [fill=white]
+\draw[<-] (DRL) -- (TXR.west);
+\draw[->] (TXR.east) -- (DRR);
+\end{tikzpicture}
+\end{center}
+%Ende (Zeichnung).
+
+Das Volumen $V$ des Kegels ist proportional zum Fl"acheninhalt der 
+Kreisscheibe $G$ und der H"ohe $h$. 
+Es gilt $V = \frac{1}{3} \cdot G \cdot h %
+ = \frac{1}{3} \cdot \pi \cdot r^2 \cdot h$.
+
+Der Fl"acheninhalt der Oberfl"ache ist die Summe des Inhalts der 
+Kreisscheibe $G$ und des Mantels $M$. Wenn $l$ der Abstand der 
+Kegelspitze vom Rand der Kreisscheibe ist, 
+gilt mit dem Kreisumfang $U =  2 \pi r$ dann
+$O = G + M = \pi \cdot r^2 + \pi \cdot r \cdot l %
+ = \pi \cdot r \cdot (r + l)$.
+\end{MXInfo}
+
+\end{MXContent}
+%end of subsection: ElementareKoerper.
+
+%Uebungen zum Abschnitt:
+%%%\begin{MExercises}
+%%%\MDeclareSiteUXID{VBKM05_ElementareKoerper_Exercises}
+%%%
+%%%\begin{MExercise}
+%%%\begin{MExerciseItems}
+%%%\item Frage
+%%%\MEquationItem{$u$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{EqIdstringSimpl1}}
+%%%\begin{MHint}{L"osung}
+%%%\end{MHint}
+%%%%
+%%%\item Frage
+%%%$v = $ \MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{EqIdstringSimpl2}
+%%%\begin{MHint}{L"osung}
+%%%\end{MHint}
+%%%%
+%%%\end{MExerciseItems}
+%%%\end{MExercise}
+%%%
+%%%\begin{MExercise}
+%%%\begin{MExerciseItems}
+%%%\item Frage
+%%%\MEquationItem{$x$}{\MLParsedQuestion{15}{321}{10}{EqIdstringParsed1}}
+%%%\begin{MHint}{L"osung}
+%%%\end{MHint}
+%%%%
+%%%\item Frage
+%%%$y = $\MLParsedQuestion{15}{321}{10}{EqIdstringParsed2}
+%%%\begin{MHint}{L"osung}
+%%%\end{MHint}
+%%%%
+%%%\end{MExerciseItems}
+%%%\end{MExercise}
+%%%
+%%%\begin{MExercise}
+%%%\begin{MQuestionGroup}
+%%%\begin{tabular}{ll}
+%%%\MCheckbox{1}{CbIdstring} & Aussage oder Frage \\
+%%%\end{tabular}
+%%%\end{MQuestionGroup}
+%%%\MGroupButton{Eingabe "uberpr"ufen}
+%%%\end{MExercise}
+%%%
+%%%\end{MExercises}
+%end of exercises: Uebungen zum Abschnitt Elementare Koerper.
+
+
+
 \MSubsection{Abschlusstest}
 
 \begin{MTest}{Abschlusstest Modul \arabic{section}}
@@ -2138,7 +2625,8 @@ Der richtige Winkel ist also $\alpha=230^\circ$ (rosa).
 \MDeclareSiteUXID{VBKM05_Abschlusstest}
 
 \begin{MExercise}
-In der folgenden Tabelle sind f\"ur ein rechtwinkliges Dreieck einige Gr\"o\ss en gegeben, berechnen Sie die \"ubrigen Gr\"o\ss en. Verwenden Sie f\"ur die Winkel stets das Bogenma\ss :\\
+In der folgenden Tabelle sind f\"ur ein rechtwinkliges Dreieck einige Gr\"o{\ss}en gegeben, 
+berechnen Sie die \"ubrigen Gr\"o\ss en. Verwenden Sie f\"ur die Winkel stets das Bogenma\ss :\\
 \MInputHint{Geben Sie Kreiszahl einfach als Text ein, zum Beispiel tippen Sie $\frac23\pi$ ein als \texttt{2/3*pi}.}
 \ \\
 \begin{center}
