@@ -24,11 +24,6 @@ use Encode;
 
 use converter::File::Data;
 
-my $helptext = "Usage: mconvert.pl <configuration.pl> [<parameter>=<value> ...]\n\n";
-
-# use lib "/home/daniel/BWSYNC/PreTU9Konverter/converter";
-# use courseconfig;
-
 
 # --------------------------------- Parameter zur Erstellung des Modulpakets ----------------------------------
 
@@ -38,13 +33,9 @@ our @mandatory = ("signature_main", "signature_version", "signature_localization
    "reply_mail", "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",
    "footer_middle", "footer_right", "mainlogo", "do_feedback", "do_export", "stdmathfont");
 
-our %config = ();       
-our $mconfigfile = "";       # Konfigurationsdatei (mit Pfad relativ vom Aufruf aus)
-our $basis = "";             # Das Verzeichnis, in dem converter liegt (wird momentan auf aktuelles Verzeichnis gesetzt)
 our $rfilename = "";         # Filename of main tex file including path relative to execution directory
 our $zip = "";               # Filename of zip file (if neccessary)
 
-our @DirectHTML = ();
 
 # stellt das Verhalten des Menues im Header ein
 # 0 bedeutet, dass Info die erste Seite eines Moduls ist
@@ -107,23 +98,11 @@ our $startsite = "index.html";
 our $favorsite = "favor.html";
 our $stestsite = "stest.html";
 
-our $locationsite = ""; # Wird aus Dokument geholt
-our $locationlong = ""; # Wird aus Dokument geholt
-our $locationshort = "";# Wird aus Dokument geholt
-our $locationicon = "";# Wird aus Dokument geholt
-
 our $paramsplitlevel = 3; # Maximales Level ab dem die Seiten getrennte HTML-Dateien sind
 
 our $templatempl = ""; # wird von split::loadtemplates gefuellt
 
 # our @feedbacktitles = ("Beschreibung/Aufgabenstellung ist unverständlich","Der Inhalt bzw. die Frage ist zu schwer","War genau richtig","Das ist mir zu leicht","Fehler in Modulelement melden");
-
-our @sitepoints = ();
-our @expoints = ();
-our @testpoints = ();
-our @sections = ();
-our @uxids = ();
-our @siteuxids = ();
 our @colexports = (); # Wird vom postprocessing in split.pm gefuellt
 
 our @converrors = (); # Array aus Strings
@@ -540,63 +519,7 @@ sub checkOptions {
 }
 
 
-# ----------------------------------- Konverterfunktionen -------------------------------------------------------------
 
-sub generate_scriptheaders {
-   my $itags = "";
-   logMessage($VERBOSEINFO, "Using scriptheaders: ");
-   for (my $i = 0; $i <= $#{$config{scriptheaders}}; $i++) {
-     my $cs = $config{scriptheaders}[$i];
-     $itags = $itags . "<script src=\"$cs\" type=\"text/javascript\"></script>\n";
-     logMessage($VERBOSEINFO, "  $cs"); 
-   }
-   return $itags;
-}
-
-
-our $templateheader = <<ENDE;
-<script>
-var isTest = false;
-var testFinished = true;
-var FVAR = new Array();
-FVAR.push("CounterDummy");
-var MVAR = new Array();
-var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
-var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
-var objScormApi = null;
-var doScorm = 0;
-var viewmodel;
-var activeinputfieldid = "";
-var activetooltip = null;
-var activefieldid = "";
-var sendcounter = 0;
-var intersiteactive = false;
-var intersiteobj = createIntersiteObj();
-var intersitelinks = false;
-var localStoragePresent = false;
-var SITE_ID = "(unknown)";
-var SITE_UXID = "(unknown)";
-var SITE_PULL = 0;
-var STYLEBLUE = "0";
-var STYLERED = "1";
-var STYLEGREEN = "2";
-var STYLEGREY = "3";
-var animationSpeed = 250;
-
-// <JSCRIPTPRELOADTAG>
-
-function loadHandler() {
-  globalloadHandler("");
-}
-
-function unloadHandler() {
-  globalunloadHandler();
-}
-
-</script>
-ENDE
-
-# Die Kommentarzeichen gehoeren zu den preloadtags !
 
 # Wird von split.pm an die Headerzeilen angehaengt sofern $doscorm==1 ist
 our $scoheader = <<ENDE;
@@ -619,58 +542,6 @@ if (objScormApi != null){
 </script>
 ENDE
 
-our $templatefooter = <<ENDE;
-<script>
-viewmodel = {
-  // <JSCRIPTVIEWMODEL>
-  
-  ifobs: ko.observable("")
-}
-
-ko.bindingHandlers.evalmathjax = {
-    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-      var value = valueAccessor(), allBindings = allBindingsAccessor();
-      var latex = ko.unwrap(value);
-      
-      var i;
-      latex = applyMVARLatex(latex);
-
-      if (element.childNodes[0]) {
-        // var sy = getScrollY();
-	var mathelement = MathJax.Hub.getAllJax(element)[0];
-	MathJax.Hub.Queue(["Text",mathelement,latex]);
-	// setScrollY(sy);
-      } else {
-	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
-      
-	var s = document.createElement('script');
-	s.type = "math/tex; mode=display";
-	try {
-	  s.appendChild(document.createTextNode(latex));
-	  element.appendChild(s);
-	} catch (e) {
-	  s.text = latex;
-	  element.appendChild(s);
-	}
-	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
-      }
-  }
- };
-
-ko.applyBindings(viewmodel);
-
-
-\$(document).ready(function () {
-  globalreadyHandler("");   
-});
-
-  // <JSCRIPTPOSTMODEL>
-
-</script>
-
-</body>
-</html>
-ENDE
 
 
 # Aufrufreihenfolge: JSCRIPTPOSTMODUL, globalreadyHandler, globalloadHandler
@@ -1488,27 +1359,6 @@ sub generatecollectionmark {
 }
 
 
-# sub getstyleimporttags()
-# Erzeugt die tags zur Einbindung der Stylesheets
-# Parameter: $lp:   Der Linkpath
-sub getstyleimporttags {
-   my ($lp) = @_;
-  
-   my $itags = "";
-
-
-    my $css = "";
-    for (my $i = 0; $i <= $#{$config{stylesheets}}; $i++) {
-      my $cs = $config{stylesheets}[$i];
-      $itags = $itags . "<link rel=\"stylesheet\" type=\"text\/css\" href=\"$lp$cs\"\/>\n";
-      $css .= $cs . " "; 
-    }
-    
-    logMessage($VERBOSEINFO, "Using these stylesheets: $css");
-
-    return $itags;
-}
-
 
 #------------------------------------------------ START NEUES DESIGN ---------------------------------------------------------------------------------------
 
@@ -1952,24 +1802,12 @@ sub printpages {
 		my $divtoccaption = gettoccaption_menustyle($p);
 		my $divcontent = getcontent($p);
 
-		# Makro {XSECTIONPREFIX} expandieren
-		my $secprefix = "";
-		my $q = $p->{PARENT};
-		while ($q) {
-		  if (($q->{LEVEL} > 0) and ($q->{TITLE} ne "")) {
-		    my $ti = $q->{TITLE};
-		    $ti =~ s/(.*?) (.*)/$2/g; # Modulnummerprefix aus dem Titel entfernen
-		    if ($secprefix ne "") {
-		      $secprefix = $ti . "  - " . $secprefix;
-		    } else {
-		      $secprefix = $ti;
-		    }
-		  }
-		  $q = $q->{PARENT};
-		}
 
-		$divcontent =~ s/{XCONTENTPREFIX}/$secprefix/ ;
-
+		
+		
+		
+		
+		
 
 		# Zeilenumbrueche hinter h4 (MSubsubsectionx) verhindern
 		$divcontent =~ s/<\/h4>([ \n]*)<div class=\"p\"><!----><\/div>/<\/h4>\n/g ;
@@ -2594,311 +2432,23 @@ sub replacetd {
 
 
 
-# ===================
-# = Hilfsfunktionen =
-# ===================
 
 
-
-# 
-# sub loadtemplates()
-# laedt die standard-Templates und MathJax (vor dem MathPlayer)
-# Parameter
-# 	keine
-sub loadtemplates {
-  if ($config{localjax} eq 1) {
-    logMessage($CLIENTINFO, "Binde MathJax lokal ein, das Verzeichnis MathJax wird im html-Baum erzeugt!");
-    loadtemplates_local();
-    logMessage($CLIENTINFO, "MathJax wird lokal adressiert");
-  } else {
-    if ($config{localjax} eq 0) {
-      logMessage($CLIENTINFO, "Binde MathJax ueber NetService ein");
-      loadtemplates_netservice();
-      logMessage($CLIENTINFO, "MathJax wird ueber Netservice adressiert");
-    } else {
-      logMessage($CLIENTERROR, "Unbekannte MathJax-Quelle: " . $config{localjax});
-    }
-  }
-}
-
-
-# Momentan wird nur templatempl benutzt
-
-sub getdoctype_oldhtml4 {
-    logMessage($CLIENTINFO, "Erstelle HTML-Dokumente nach DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1");
-    my $doctype = <<DENDE;
-<!DOCTYPE html PUBLIC
-"-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
-"http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
-DENDE
-    return $doctype;
-}
-
-sub getdoctype {
-    logMessage($CLIENTINFO, "Erstelle Standard-HTML5-Dokumente ohne spezialisierte DTD");
-    my $doctype = "<!DOCTYPE html>\n";
-    return $doctype;
-}
-
-# ImageFonts von MathJax werden abgeschaltet, um die Verzeichnisse klein zu halten (erstmal nicht weil IE streikt)    (  imageFont: null)
-
-# expires=0 verbietet caching der Seiten, sollte nur in Anlauf-Phase benutzt werden!
-
-sub loadtemplates_local {
-    my $s = <<ENDE;
-<html xmlns:m="http://www.w3.org/1998/Math/MathML">
-<head>
-<meta http-equiv="expires" content="0">
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{TITLE}</title>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  jax: [":directmaterial:input/TeX",":directmaterial:input/MathML", ":directmaterial:output/CommonHTML"],
-  extensions: [":directmaterial:tex2jax.js", ":directmaterial:mml2jax.js", ":directmaterial:MathMenu.js", ":directmaterial:MathZoom.js"],
-  TeX: {
-    extensions: [":directmaterial:AMSmath.js",":directmaterial:AMSsymbols.js",":directmaterial:noErrors.js",":directmaterial:noUndefined.js"],
-    Macros: {
-      RR: '{\\\\bf R}',
-      bold: ['{\\\\bf #1}', 1]
-    }
-  },
-  tex2jax: { inlineMath: [['\\\\(','\\\\)']], displayMath: [['\\\\[','\\\\]']] },
-  "CommonHTML": {
-    scale: 100,
-    minScaleAdjust: 80,
-    mtextFontInherit: true,
-    linebreak: { automatic: false, width: "container" },
-  },
-  "fast-preview": {
-    disabled: true
-  },
-  menuSettings: { zoom: "Double-Click", zscale: "200%" }
-});
-MathJax.Hub.processSectionDelay = 0;
-</script>
-<script type="text/javascript" src="MathJax/MathJax.js?locale=de"></script>
-<!-- Headerversion MPL/localjax -->
-</head>
-<body onload="loadHandler()" onbeforeunload="unloadHandler()">
-ENDE
-
-    # Entfernt vor letztem </script>: <OBJECT ID=MathPlayer CLASSID="clsid:32F66A20-7614-11D4-BD11-00104BD3F987"></OBJECT>
-    # Entfernt vor ENDE: <?IMPORT NAMESPACE="m" IMPLEMENTATION="#MathPlayer">
-
-    
-    my $dt = getdoctype();
-    my $scotext = "";
-    if ($config{doscorm} eq 1) {
-      $scotext = $scoheader;
-    }
-    $templatempl = $dt . $s . $templateheader . $scotext;
-    logMessage($VERBOSEINFO, "DT = $dt");
-}
-
-sub loadtemplates_netservice {
-    my $s = <<ENDE;
-<html xmlns:m="http://www.w3.org/1998/Math/MathML">
-<head>
-<meta http-equiv="expires" content="0">
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{TITLE}</title>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  jax: [":directmaterial:input/TeX",":directmaterial:input/MathML", ":directmaterial:output/CommonHTML"],
-  extensions: [":directmaterial:tex2jax.js", ":directmaterial:mml2jax.js", ":directmaterial:MathMenu.js", ":directmaterial:MathZoom.js"],
-  TeX: {
-    extensions: [":directmaterial:AMSmath.js",":directmaterial:AMSsymbols.js",":directmaterial:noErrors.js",":directmaterial:noUndefined.js"],
-    Macros: {
-      RR: '{\\\\bf R}',
-      bold: ['{\\\\bf #1}', 1]
-    }
-  },
-  tex2jax: { inlineMath: [['\\\\(','\\\\)']], displayMath: [['\\\\[','\\\\]']] },
-  "CommonHTML": {
-    scale: 100,
-    minScaleAdjust: 80,
-    mtextFontInherit: true,
-    linebreak: { automatic: false, width: "container" },
-  },
-  "fast-preview": {
-    disabled: true
-  },
-  menuSettings: { zoom: "Double-Click", zscale: "200%" }
-});
-MathJax.Hub.processSectionDelay = 0;
-</script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?locale=de"></script>
-<!-- Headerversion MPL/netservicejax -->
-</head>
-<body onload="loadHandler()" onunload="unloadHandler()">
-ENDE
-    my $dt = getdoctype();
-    my $scotext = "";
-    if ($config{doscorm} eq 1) {
-      $scotext = $scoheader;
-    }
-    $templatempl = $dt . $s . $templateheader . $scotext;
-    logMessage($VERBOSEINFO, "DT = $dt");
-}
 
 # --------------------------------------------- Konvertierung des Dokuments zu XML ----------------------------------------------------------------------------------------------------------------------
 
 # Parameter: output-directory
 sub converter_conversion {
 
-my $outputdir = $_[0];
-
-logTimestamp("Starting conversion on output directory $outputdir in directory " . getcwd);
-
-#Alte Daten loeschen
-logMessage($CLIENTINFO, "Copying files into temporary folder " . $config{outtmp});
-system "rm -rf " . $config{outtmp};
-system "mkdir -p " . $config{outtmp};
-system "cp -R files/* " . $config{outtmp};
-logMessage($CLIENTINFO, " ok");
 
 
-logMessage($VERBOSEINFO, "Es werden " . ($#DirectHTML + 1) . " DirectHTML-Statements werden verwendet");
 
-# Variants
-my $target = "tex/htmlprepare.tex";
-
-writefile("tex/mod_$macrofile", $modmacrotex);
-
-logTimestamp("Starting ttm tex->html converter for variant $variantactive");
-system "./ttm-original/ttm -p./tex < $target 1>$xmlfile 2>$xmlerrormsg";
-
-logTimestamp("Loading ttm output file $xmlfile");
-my $text = readfile($xmlfile);
-my $ttm_errors = readfile($xmlerrormsg);
-my @ttm_errors = split("\n", $ttm_errors);
-
-my $j = 0;
-
-my $nl = 0;
-for (my $i = 0; $i <= $#ttm_errors; $i++) {
-  if ($ttm_errors[$i] =~ m/\*\*\*\* Unknown command (.+?), /s ) {
-    logMessage($CLIENTWARN, "(ttm) " . $ttm_errors[$i]);
-    push @converrors, "ERROR: ttm konnte LaTeX-Kommando $1 nicht verarbeiten";
-    $j++;
-  } else {
-    if ($ttm_errors[$i] =~ m/Abnormal NL, removespace/s ) {
-      logMessage($VERBOSEINFO, "(ttm) " . $ttm_errors[$i]);
-      $nl++;
-    } else {
-      logMessage($CLIENTINFO, "(ttm) " . $ttm_errors[$i]);
-      if ($ttm_errors[$i] =~ m/Error: Fatal/s ) {
-        logMessage($FATALERROR, "ttm exited with fatal error, aborting");
-      }
-    }
-  }
-}
-
-logMessage($CLIENTINFO, "ttm found $nl abnormal newlines");
-
-if (($config{dorelease} eq 1) and ($j > 0)) {
-      logMessage($CLIENTERROR, "ttm found $j unknown commands, not valid in release version!");
-}
-
-# Debug-Meldungen ausgeben
-while ($text =~ s/<!-- debugprint;;(.+?); \/\/-->/<!-- debug;;$1; \/\/-->/s ) { logMessage($DEBUGINFO, $1); }
-
-# Aufgabenpunktetabelle generieren
-for (my $i = 0; $i <= 9; $i++ ) {
-  push @sitepoints, 0;
-  push @expoints, 0;
-  push @testpoints, 0;
-  push @sections, "";
-}
-
-while ($text =~ s/<!-- mdeclaresection;;(.+?);;(.+?);;(.+?);; \/\/-->//s ) { 
-  if ($1 eq 1) { # besser Kursinhaltsseiten irgendwie erkennen
-    my $l = $2 - 1;
-    $sections[$l] = $3;
-  }
-}
-
-while ($text =~ s/<!-- mdeclarepoints;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);; \/\/-->//s ) { 
-  logMessage($VERBOSEINFO, "POINTS: Module $1, id $2, points $3, intest $4, chapter $5");
-  if ($5 eq 1) {
-    my $l = $1 - 1;
-    $expoints[$l] += $3;
-    if ($4 == "1") {
-      $testpoints[$l] += $3;
-    }
-  }
-}
-
-while ($text =~ s/<!-- mdeclareuxid;;(.+?);;(.+?);;(.+?);; \/\/-->//s ) { 
-  push @uxids, [$1, $2, $3];
-}
-
-while ($text =~ s/<!-- mdeclaresiteuxid;;(.+?);;(.+?);;(.+?);; \/\/-->/<!-- mdeclaresiteuxidpost;;$1;; \/\/-->/s ) { 
-  push @siteuxids, $1;
-  if ($2 eq 1) { $sitepoints[$3-1]++; }
-}
-
-for (my $ia = 0; $ia <=$#uxids; $ia++ ) {
-  for (my $ib = $ia + 1; $ib <=$#uxids; $ib++ ) {
-    if (($uxids[$ia][0] eq $uxids[$ib][0]) and ($uxids[$ia][0] ne "UXAUTOGENERATED")) {
-      my $tmpstr = "Gleiche uxid: " . $uxids[$ia][0] . " mit ids " . $uxids[$ia][2] . " und " . $uxids[$ib][2];
-      push @converrors, $tmpstr;
-    }
-  }
-}
-
-for (my $ia = 0; $ia <=$#siteuxids; $ia++ ) {
-  for (my $ib = $ia + 1; $ib <=$#siteuxids; $ib++ ) {
-    if ($siteuxids[$ia] eq $siteuxids[$ib]) {
-      my $tmpstr = "Gleiche siteuxid: " . $siteuxids[$ia];
-      push @converrors, $tmpstr;
-    }
-  }
-}
+# PYTHON CONVERSION
 
 
-for (my $i = 0; $i <= 9; $i++ ) {
-  logMessage($VERBOSEINFO, "Punkte in section " . ($i+1) . ": " . $expoints[$i] . ", davon " . $testpoints[$i] . " von Tests");
-  logMessage($VERBOSEINFO, "Sites in section " . ($i+1) . ": " . $sitepoints[$i]);
-}
-
-if ($text =~ s/<!-- mlocation;;(.+?);;(.+?);;(.+?);; \/\/-->//s ) {
-  $locationicon = $1;
-  $locationlong = $2;
-  $locationshort = $3;
-  $locationsite = "location.html";
-  logMessage($CLIENTINFO, "Verwende Standort-Deklaration für $locationlong");
-} else {
-  $locationsite = "";
-  push @converrors, "Keine Standort-Deklaration gefunden, Standortbutton erscheint nicht im Kurs.";
-}
 
 
-# Alles ab 'File translated...' aus ttm-Ausgabe entfernen
-$text =~ s/<hr \/><small>File translated from.*<\/body>.*//s;
 
-
-$templateheader = generate_scriptheaders() . $templateheader . "\n";
-
-if ($config{parameter}{feedback_service} ne "") {
-  logMessage($CLIENTINFO, "FeedbackServer deklariert: " . $config{parameter}{feedback_service});
-} else {
-  push @converrors, "Kein FeedbackServer deklariert, es wird kein Feedback verschickt.";
-}
-if ($config{parameter}{data_server} ne "") {
-  logMessage($CLIENTINFO, "DataServer deklariert: " . $config{parameter}{data_server});
-  logMessage($CLIENTINFO, "Description: " . $config{parameter}{data_server_description});
-} else {
-  push @converrors, "Kein DataServer in Konfigurationsdatei deklariert (Parameter data_server)!";
-}
-
-if ($config{parameter}{exercise_server} ne "") {
-  logMessage($CLIENTINFO, "ExerciseServer deklariert: " . $config{parameter}{exercise_server});
-} else {
-  push @converrors, "Kein ExerciseServer in Konfigurationsdatei deklariert (Parameter exercise_server)!";
-}
 
 
 # Hier pruefen ob ueberhaupt in config vorhanden!!!

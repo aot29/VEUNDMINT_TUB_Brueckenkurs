@@ -1843,7 +1843,7 @@ sub postprocess {
    
       ($fnamepath,$fnamename) = $fname =~ m|^(.*[/\\])([^/\\]+?)$|;
       $fnamepath = $fnamepath . ".";
-      $text =~ s/<!-- mfileref;;$fileid; \/\/-->/$fname/g;
+      $text =~ s/\[\[!-- mfileref;;$fileid; \/\/--\]\]/$fname/g;
       $text =~ s/<!-- mfilenameref;;$fileid; \/\/-->/$fnamename/g;
       $text =~ s/<!-- mfilepathref;;$fileid; \/\/-->/$fnamepath/g;
 
@@ -1924,16 +1924,16 @@ sub postprocess {
   }
 
   # SVGStyles einsetzen
-  while ($text =~ m/<!-- svgstyle;(.+?) \/\/-->/s ) {
+  while ($text =~ m/\[\[!-- svgstyle;(.+?) \/\/--\]\]/s ) {
     my $tname = $1;
     if (exists $tikzpng{$tname}) {
       my $style = $tikzpng{$tname};
       logMessage($VERBOSEINFO, "Found style info for svg on $tname: $style");
-      $text =~ s/<!-- svgstyle;$tname \/\/-->/$style/g ; 
+      $text =~ s/\[\[!-- svgstyle;$tname \/\/--\]\]/$style/g ; 
       delete $tikzpng{$tname};
     } else {
       logMessage($CLIENTERROR, "Could not find image information for $tname");
-      $text =~ s/<!-- svgstyle;$tname \/\/-->//g ; 
+      $text =~ s/\[\[!-- svgstyle;$tname \/\/--\]\]//g ; 
     }
   }
  
@@ -3893,6 +3893,7 @@ sub create_tree {
     
     
       # Als allererstes inlcude-Aufgaben aus Roulettes einbinden, damit auch auf diese das Preparsing angewendet wird
+      # TODO: MSetPoints auf Null setzen, sonst werden echte Punkte deklariert!
       while ($textex =~ m/\\MDirectRouletteExercises{(.+?)}{(.+?)}/s ) {
         my $rfilename = $1;
         my $rid = $2;

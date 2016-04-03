@@ -72,7 +72,8 @@ class Option(object):
         # VE&MINT source/target parameters
         self.macrofilename = "mintmod"
         self.macrofile = self.macrofilename + ".tex"
-        self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex files, output files will always be unicode according to XML standard
+        self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex files and templates
+        self.outputencoding = "utf-8"                        # encoding of generated html files
         self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt
         self.source = "module_veundmint"                     # Quellverzeichnis, platziert in Ebene ueber tex2x.py
         self.module = "tree_tu9onlinekurs.tex"               # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
@@ -164,7 +165,6 @@ class Option(object):
         # variables used by the OSS converter, should not be changed directly as they take input from the above definitions
         self.parserName = "lxml"
         self.converterCommonFiles = os.path.join(self.converterDir, "files") # Bedeutung von sourceCommonFiles vom OSS-Konverter ist anders
-        self.converterTemplates = os.path.join(self.converterDir, "templates") # Vorlagen fuer HTML-Dateien
         self.texCommonFiles = os.path.join(self.converterDir, "tex") 
         self.sourcepath_original = os.path.join(self.currentDir, self.source) # Pfad zu den Quellen (werden readonly behandelt)
         self.sourcepath = os.path.join(self.currentDir, self.outtmp) # Pfad in dem gearbeitet wird
@@ -173,6 +173,15 @@ class Option(object):
         self.targetpath = os.path.join(self.currentDir, self.output) # Pfad in den der generierte Kurs kommt
         self.copyrightFile = os.path.join(self.sourceTEX, "copyrightcollection.tex")
         self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
+
+        # HTML/JS template options
+        self.converterTemplates = os.path.join(self.converterDir, "templates") # Vorlagen fuer HTML-Dateien
+        self.template_html5 = os.path.join(self.converterTemplates, "html5_mintmodtex.html")
+        self.template_javascriptheader = os.path.join(self.converterTemplates, "html5_javascriptheader.html")
+        self.template_javascriptfooter = os.path.join(self.converterTemplates, "html5_javascriptfooter.html")
+        self.template_mathjax_settings = os.path.join(self.converterTemplates, "mathjax_settings.html")
+        self.template_mathjax_cdn = os.path.join(self.converterTemplates, "mathjax_cdn_2_6.html")
+        self.template_mathjax_local = os.path.join(self.converterTemplates, "mathjax_local_2_6.html")
 
         # ttm-file
         self.ttmExecute = True

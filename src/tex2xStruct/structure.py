@@ -270,7 +270,8 @@ class Structure(object):
         #Vor dem Parsen werden alle Entities durch die neuen Versionen ersetzt
         xmltext = self.replace_html_entities(xmltext)
         
-        
+        # include raw xml text for plugins
+        self.data['rawxml'] = xmltext
         
         #parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder(self.options.parserName))
         #self.xmltree_raw = parser.parse(xmlfile)

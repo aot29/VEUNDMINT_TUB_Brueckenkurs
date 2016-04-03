@@ -23,6 +23,7 @@
 import os.path
 import json
 import re
+from lxml import etree
 
 class TContent(object):
 
@@ -35,7 +36,7 @@ class TContent(object):
         self.ischapter = 0
 
         # tree structure of TContent
-        self.subcontents = [] # list of references to TContent objects
+        self.children = [] # list of references to TContent objects
         self.parent = None
         self.root = None
         self.right = None # .next is special in python
@@ -55,6 +56,7 @@ class TContent(object):
         self.nr = ""
         self.pos = 0
         self.link = "" # for level <=3: section combination, level4: sectioncombo/docname (without html extension)
+        self.backpath = "../" # level <=3: located in targetDir/html, should be used as backpath + filename, never use os.path.join here as this is evaluated in JavaScript only!
         self.savepage = False
         self.menuitem = True
         self.display = False
@@ -64,6 +66,8 @@ class TContent(object):
         self.docname = ""
         self.uxid = ""
         self.myid = 0 # .id is special in python, 0 is the id of the root element
+        self.content = "" # pure html content of the element
+        self.html ="" # will we filled by PageFactory with proper html file content
 
         # at time of construction, this object is its own tree
         self.root = self
@@ -74,7 +78,7 @@ class TContent(object):
         if self.myid == myid:
             return self
         else:
-            for k in self.subcontents:
+            for k in self.children:
                 ref = k.elementByID(myid)
                 if (not ref is None):
                     return ref
@@ -92,7 +96,7 @@ class TContent(object):
             s = s + "    "
             i = i + 1
         s = s + self.title + ", pos=" + str(self.pos) + "\n"
-        for p in self.subcontents:
+        for p in self.children:
             s = s + p._rstr(inset + 1)
         return s
         

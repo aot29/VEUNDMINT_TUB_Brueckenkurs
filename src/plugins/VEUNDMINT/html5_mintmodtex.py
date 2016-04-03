@@ -34,6 +34,7 @@ import fnmatch
 from plugins.basePlugin import Plugin as basePlugin
 
 from plugins.VEUNDMINT.tcontent import TContent
+from plugins.VEUNDMINT.pagefactory import PageFactory
 
 class Plugin(basePlugin):
 
@@ -46,6 +47,7 @@ class Plugin(basePlugin):
         self.name = "HTML5_MINTMODTEX"
         self.version ="P0.1.0"
         self.outputextension = "html"
+        self.pagefactory = PageFactory(interface)
         self.sys.message(self.sys.VERBOSEINFO, "Output plugin " + self.name + " of version " + self.version + " constructed")
 
     def _prepareData(self):
@@ -60,7 +62,13 @@ class Plugin(basePlugin):
             self.tocxml = self.data['tocxml']
         else:
             self.sys.message(self.sys.CLIENTERROR, "tex2x did not provide tocxml in data structure")
-            self.content = ""
+            self.tocxml = ""
+
+        if 'rawxml' in self.data:
+            self.rawxml = self.data['rawxml']
+        else:
+            self.sys.message(self.sys.CLIENTERROR, "tex2x did not provide rawxml in data structure")
+            self.rawxml = ""
 
         for dat in ['DirectRoulettes', 'macrotex', 'modmacrotex', 'DirectHTML', 'directexercises', 'autolabels', 'copyrightcollection', 'htmltikz']:
             if not dat in self.data:
@@ -72,35 +80,63 @@ class Plugin(basePlugin):
             self.data['coursetree'] = self.ctree
         else:
             self.data['coursetree'] = self.ctree
+            
+        for dat in ['sitepoints', 'expoints', 'testpoints', 'sections']:
+            if dat in self.data:
+                self.sys.message(self.sys.CLIENTWARN, "Data element " + dat + " was created by another plugin, appending data to it and hoping it works out")
+            else:
+                self.data[dat] = dict()
+                
+        if 'uxids' in self.data:
+            self.sys.message(self.sys.CLIENTWARN, "uxid lists exists from another plugin, appending data to it and hoping it works out")
+        else:
+            self.data['uxids'] = [] # contains tuplets 
+            
+        if 'siteuxids' in self.data:
+            self.sys.message(self.sys.CLIENTWARN, "siteuxid lists exists from another plugin, appending data to it and hoping it works out")
+        else:
+            self.data['siteuxids'] = [] # contains tuplets
+        
+        if (self.options.feedback_service != ""):
+            self.sys.message(self.sys.CLIENTINFO, "Feedback server declared: " + self.options.feedback_service)
+        else:
+            self.sys.message(self.sys.CLIENTERROR, "No feedback server declared in options, feedback send will not be possible")
+
+        if (self.options.data_server != ""):
+            self.sys.message(self.sys.CLIENTINFO, "Data server declared: " + self.options.data_server + " (" + self.options.data_server_description + ")")
+        else:
+            self.sys.message(self.sys.CLIENTERROR, "No data server declared in options")
+            
+        if (self.options.exercise_server != ""):
+            self.sys.message(self.sys.CLIENTINFO, "Exercise server declared: " + self.options.exercise_server)
+        else:
+            self.sys.message(self.sys.CLIENTERROR, "No exercise server declared in options")
+        
+
 
      
     def create_output(self):
         self._prepareData()
-        if self.options.forceyes == 0: self.check_if_dir_preexists(self.options.targetpath)
+        if self.options.forceyes == 0:
+            self.check_if_dir_preexists(self.options.targetpath)
         self.sys.emptyTree(self.options.targetpath)
         self.sys.copyFiletree(self.options.converterCommonFiles, self.options.targetpath, ".")
         self.sys.timestamp("Common HTML5 tree files copied")
         
-        self.setup_template()
         self.setup_contenttree()
-
-
-        self.write_html_files()
-
-
-    def setup_template(self):
-        templatefile = open(os.path.join(self.options.converterTemplates, "template_" + self.name + ".html"), "rb")
-        parser = html.HTMLParser()
-        template = etree.parse(templatefile, parser).getroot()
-        templatefile.close()
-        head = template.find(".//head")
-        title = template.find(".//title")
-        content = template.find(".//div[@id='content']")
+        self.analyze_html() # analyzation done on raw text
+        self.analyze_nodes(self.ctree) # analyzation done inside nodes
         
-        path = os.path.join(self.options.targetpath, self.outputextension)
-        self.sys.writeTextFile(os.path.join(path, "test.html"), etree.tostring(template, pretty_print = True).decode(), self.options.stdencoding)
+        for i in self.data['sections']:
+            self.sys.message(self.sys.VERBOSEINFO, "Points in section " + i + " (" + self.data['sections'][i] + "): " + str(self.data['expoints'][i]) + ", of which " + str(self.data['testpoints'][i]) + " are in tests")
+            self.sys.message(self.sys.VERBOSEINFO, "Sites in section " + i + ": " +  str(self.data['sitepoints'][i]))
         
+        self.generate_html(self.ctree)
 
+        self.filecount = 0
+        self.write_html_files(self.ctree)
+        self.sys.message(self.sys.CLIENTINFO, str(self.filecount) + " files written to directory " + self.outputextension)
+        
         
     def setup_contenttree(self):
         
@@ -138,7 +174,7 @@ class Plugin(basePlugin):
             if lev == 3: q.title = " " + q.title
                 
             q.parent = parent
-            parent.subcontents.append(q)
+            parent.children.append(q)
 
             if lev == 1:
                 q.link = str(pos)
@@ -221,13 +257,14 @@ class Plugin(basePlugin):
                     self.sys.message(self.sys.CLIENTERROR, "Object of id = " + tocelement.attrib['objid'] + " is level " + str(p.level) + " instead of 2")
                 p.xcontent = True
                 p.ismodul = True
-                p.display = False
+                p.display = True
                 p.content = text
                 p.docname = "sectionx" + str(sec) + "." + str(ssec)
                 lastcontent = None
                 pos = 1
                 
                 # move labels appearing in front into the next xcontent (should be done by preprocessor on latex level!), or labels are added before this parsing??
+                # mdeclaresection too!
                 """
                                 my $sslabels = "";
                                 if ($self->{LEVEL} eq 3) {
@@ -251,7 +288,7 @@ class Plugin(basePlugin):
                     i = int(m.group(1))
                     p = TContent()
                     p.parent = lev3parent
-                    lev3parent.subcontents.append(p)
+                    lev3parent.children.append(p)
                     p.myid = nid
                     nid += 1
                     p.level = p.parent.level + 1
@@ -287,6 +324,7 @@ class Plugin(basePlugin):
     
                     p.pos = pos
                     p.link = p.parent.link + "/" + p.docname
+                    p.backpath = p.parent.backpath + "../" # level 4 xcontents are located in html/X.Y.Z/.
                     p.menuitem = 0
                     p.nr = "" # actually used?
                     p.level = p.parent.level + 1
@@ -318,15 +356,29 @@ class Plugin(basePlugin):
                     # expand <title>
                     p.title = self.options.moduleprefix + " Abschnitt " + sid + " " + p.title
                     # care for ttm problem: subsubsection titles appear without number prefix
+                    
+                    
+                    secprefix = ""
+                    q = p.parent
+                    while (not q is None):
+                        if (q.level > 0) and (q.title != ""):
+                            ti = q.title
+                            ti = re.sub(r"(.*?) (.*)", r"\1", ti, 0, re.S) # remove module number prefix from title
+                            if (secprefix != ""):
+                                secprefix = ti + "  - " + secprefix
+                            else:
+                                secprefix = ti
+                        q = q.parent
+                    
                     pref = ""
                     if printnr == 1: pref = sid + " "
-                    (p.content, n) = re.subn(r"<h4>(.*?)</h4><!-- sectioninfo;;" + str(sec) + ";;" + str(ssec) + ";;" + str(sssec) + ";;" + str(printnr) + ";;" + str(testpage) + r"; //-->", "<h4>{XCONTENTPREFIX}</h4><br \/><h4>" + pref + "\1</h4>", p.content, 0, re.S)
+                    (p.content, n) = re.subn(r"<h4>(.*?)</h4><!-- sectioninfo;;" + str(sec) + ";;" + str(ssec) + ";;" + str(sssec) + ";;" + str(printnr) + ";;" + str(testpage) + r"; //-->", "<h4>" + secprefix + "</h4><br /><h4>" + pref + r"\1</h4>", p.content, 0, re.S)
                     if (n != 1):
                         self.sys.message(self.sys.CLIENTERROR, "Could not substitute sectioninfo in xcontent " + p.title + ", n = " + n)
                                         
                     
                     # add numbers to MSubsubsections in MXContent
-                    p.content = re.sub(r"<h4>(.+?)</h4><!-- sectioninfo;;(\w+?);;(\w+?);;(\w+?);;1;;([01]); //-->" ,"<h4>\2.\3.\4 \1</h4>", p.content, 0, re.S)
+                    p.content = re.sub(r"<h4>(.+?)</h4><!-- sectioninfo;;(\w+?);;(\w+?);;(\w+?);;1;;([01]); //-->" ,r"<h4>\2.\3.\4 \1</h4>", p.content, 0, re.S)
                     
                     p.next = None
                     pos = pos + 1
@@ -339,14 +391,102 @@ class Plugin(basePlugin):
         self.sys.message(self.sys.VERBOSEINFO, "Tree buildup: \n" + str(root))
 
 
-                                      
-                
-                
+    # scan raw html for course scope relevant information tags
+    def analyze_html(self):
+        
+        # output user debug messages
+        def cmessage(m):
+            self.sys.message(self.sys.DEBUGINFO, m.group(1))
+            return "<!-- debug;;" + m.group(1) + "; //-->"
+        self.rawxml = re.sub(r"\<!-- debugprint;;(.+?); //--\>", cmessage, self.rawxml, 0, re.S)
+        
+        # write section names to dict indexed by section numbers minus one (like an array but with strings)
+        def dsect(m):
+            if m.group(1) == "1": #  = chapter = lev1 node position, >1 => not part of course modules
+                i = str(int(m.group(2)) - 1)
+                self.data['sections'][i] = m.group(3)
+                self.sys.message(self.sys.VERBOSEINFO, "Created section element " + i + ": " + m.group(3))
+            return "" # remove the tag
+        self.rawxml = re.sub(r"\<!-- mdeclaresection;;(.+?);;(.+?);;(.+?);; //--\>", dsect, self.rawxml, 0, re.S) 
+
+        m = re.search(r"\<!-- mlocation;;(.+?);;(.+?);;(.+?);; //--\>", self.rawxml, re.S)
+        if m:
+            self.data['locationicon'] = m.group(1)
+            self.data['locationlong'] = m.group(2)
+            self.data['locationshort'] = m.group(3)
+            self.data['locationsite'] = "location.html"
+            self.sys.message(self.sys.CLIENTINFO, "Using location declaration: " + self.data['locationlong']);
+        else:
+            self.sys.message(self.sys.CLIENTINFO, "Location declaration not found, no location button will be generated")
+        
+
+    # scan tree content elements for course scope relevant information tags
+    def analyze_nodes(self, tc):
+        for c in tc.children:
+            self.analyze_nodes(c)
+            
+        # add points of exercises to global counters
+        def dpoint(m):
+            if m.group(5) == "1": #  = chapter = lev1 node position, >1 => not part of course modules
+                i = str(int(m.group(1)) - 1)
+                if i in self.data['expoints']:
+                    self.data['expoints'][i] += int(m.group(3))
+                else:
+                    self.data['expoints'][i] = int(m.group(3))
+                if m.group(4) == "1":
+                    if i in self.data['testpoints']:
+                        self.data['testpoints'][i] += int(m.group(3))
+                    else:
+                        self.data['testpoints'][i] = int(m.group(3))
+                # self.sys.message(self.sys.VERBOSEINFO, "POINTS: Module " + m.group(1) + ", id " + m.group(2) + ", points " + m.group(3) + ", intest " + m.group(4) + ", chapter " + m.group(5))
+            return "" # remove the tag
+        tc.content = re.sub(r"\<!-- mdeclarepoints;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);; //--\>", dpoint, tc.content, 0, re.S)
+
+        # write uxids to content elements, save used uxids in global list and check for duplicates
+        def duxid(m):
+            for u in self.data['uxids']:
+                if (u[0] != "UXAUTOGENERATED") and (u[0] == m.group(1)): # autouxes will never appear in point giving exercises (hopefully)
+                    self.sys.message(self.sys.CLIENTERROR, "Duplicate UXID " + u[0] + " mit id1 = " + u[2] + ", id2 = " + m.group(3))
+                    return ""
+            self.data['uxids'].append([m.group(1), m.group(2), m.group(3)])
+            return "" # remove the tag
+        tc.content = re.sub(r"\<!-- mdeclareuxid;;(.+?);;(.+?);;(.+?);; //--\>", duxid, tc.content, 0, re.S)
+        
+        # write siteuxids to content elements, save used siteuxids in global list and check for duplicates
+        def dsuxid(m):
+            s = "<!-- mdeclaresiteuxidpost;;" + m.group(1) + ";; //-->"
+            if m.group(2) == "1":
+                i = str(int(m.group(3)) - 1)
+                if i in self.data['sitepoints']:
+                    self.data['sitepoints'][i] += 1
+                else:
+                    self.data['sitepoints'][i] = 1
+            for u in self.data['siteuxids']:
+                if u[0] == m.group(1):
+                    self.sys.message(self.sys.CLIENTERROR, "SITEUXID " + u[0] + " mit id1 = " + u[2] + ", id2 = " + m.group(3))
+                    return s
+            self.data['siteuxids'].append([m.group(1), m.group(2), m.group(3)])
+            return s
+        tc.content = re.sub(r"\<!-- mdeclaresiteuxid;;(.+?);;(.+?);;(.+?);; //--\>", dsuxid, tc.content, 0, re.S)
+        # siteuxidpost will be grabbed by postprocessing and fill uxid property of tcontent object
+
+
+    # generates html file content using the page factory object for the entire tree (given by its root node)
+    def generate_html(self, tc):
+        for c in tc.children:
+            self.generate_html(c)
+        self.pagefactory.generate_html(tc)
+        
+    def write_html_files(self, tc):
+        for c in tc.children:
+            self.write_html_files(c)
+        if tc.display:
+            f = os.path.join(self.options.targetpath, self.outputextension, tc.link + "." + self.outputextension)
+            self.sys.writeTextFile(f, tc.html, self.options.outputencoding)
+            self.filecount += 1
         
         
-        
-    def write_html_files(self):
-        
+    def old_write_html_files(self):
         
         # PERL: only dirs of form A.B.C and level 1/2/3 contents directly in mpl
         # tex2x: separate dirs A.B and content in them
@@ -474,9 +614,3 @@ class Plugin(basePlugin):
                     else:
                         title.text = tmp.text + " - " + title.text
                 tmp = tmp.getparent()
-                        
-
-        
-                
-            
-            

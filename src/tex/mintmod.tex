@@ -1384,7 +1384,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 \newcounter{MSSEnd} % Ist 1 falls ein MSubsection aktiv ist, der einen MSubsectionEndMacro-Aufruf verursacht
 \newcounter{MFileNumber}
-\def\MLastFile{\special{html:<!-- mfileref;;}\arabic{MFileNumber}\special{html:; //-->}}
+\def\MLastFile{\special{html:[[!-- mfileref;;}\arabic{MFileNumber}\special{html:; //--]]}}
 \def\MLastFileName{\special{html:<!-- mfilenameref;;}\arabic{MFileNumber}\special{html:; //-->}}
 \def\MLastFilePath{\special{html:<!-- mfilepathref;;}\arabic{MFileNumber}\special{html:; //-->}}
 
@@ -1817,7 +1817,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\MTikzAuto}[1]{%
 \addtocounter{MTIKZAutofilenumber}{1}
 \renewcommand{\MTIKZautofilename}{mtikzauto_\arabic{MTIKZAutofilenumber}}
-\MUGraphicsSolo{\MSectionID\MTIKZautofilename.4x.png}{scale=1}{\special{html:<!-- svgstyle;}\MSectionID\MTIKZautofilename\special{html: //-->}} % Styleinfos werden aus original-png, nicht 4x-png geholt!
+\MUGraphicsSolo{\MSectionID\MTIKZautofilename.4x.png}{scale=1}{\special{html:[[!-- svgstyle;}\MSectionID\MTIKZautofilename\special{html: //--]]}} % Styleinfos werden aus original-png, nicht 4x-png geholt!
 \MRegisterFile{\MSectionID\MTIKZautofilename.png}
 \MRegisterFile{\MSectionID\MTIKZautofilename.svg}
 }

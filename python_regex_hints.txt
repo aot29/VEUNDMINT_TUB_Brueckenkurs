@@ -55,6 +55,9 @@ verbac = findall(r"\\verb(.)", text, re.S)
 PERL:   text =~ s/STARTREGEX/ZIELREGEX/sg ;                            # Im ZIEL sind $1, $2, $3, ... die gefundenen Teilausdrücke
 PYTHON: text =  re.sub(r"STARTREGEX", r"ZIELREGEX", text, 0, re.S)     # Im ZIEL sind \1, \2, \3, ... die gefundenen Teilausdrücke
 
+Vorsicht: r"\1" oder "\\1" im Zielausdruck!
+
+
 PERL-Beispiel, escaped % als verb-delimiter, also beispielsweise   \verb%BLABLA%  --> \verb\PERCTAGBLABLA\PERCTAG
 $text =~ s/\\verb%([^%]*?)%/\\verb\\PERCTAG$1\\PERCTAG/sg 
 
