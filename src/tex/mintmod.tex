@@ -1,4 +1,4 @@
-% Version 3.1 (Abschlussstand nach TU9-Korrekturen)
+% MINTMOD Version P0.1.0, needs to be consistent with preprocesser object in tex2x and MPragma-Version at the end of this file
 
 % Parameter aus Konvertierungsprozess (PDF und HTML-Erzeugung wenn vom Konverter aus gestartet) werden hier eingefuegt, Preambleincludes werden am Schluss angehaengt
 
@@ -1250,15 +1250,15 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 %Fuegt eine zusaetzliche html-Seite an hinter ALLEN bisherigen und zukuenftigen content-Seiten ausserhalb der vor-zurueck-Schleife (d.h. nur durch Button oder MIntLink erreichbar!)
 % #1 = Titel des Modulabschnitts, #2 = Kurztitel fuer die Buttons, #3 = Buttonkennung (STD = default nehmen, NONE = Ohne Button in der Navigation)
-\newenvironment{MSContent}[3]{\special{html:<!-- scontent;-;}\arabic{MSCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsectionx{#1}}{\MEndScripts\special{html:<!-- endscontent;;}\arabic{MSCounter}\special{html: //-->}\addtocounter{MSCounter}{1}}
+\newenvironment{MSContent}[3]{\special{html:<div class="xcontent}\arabic{MSCounter}\special{html:"><!-- scontent;-;}\arabic{MSCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsectionx{#1}}{\MEndScripts\special{html:<!-- endscontent;;}\arabic{MSCounter}\special{html: //--></div>}\addtocounter{MSCounter}{1}}
 
 % Fuegt eine zusaetzliche html-Seite ein hinter den bereits vorhandenen content-Seiten (oder als erste Seite) innerhalb der vor-zurueck-Schleife der Navigation
 % #1 = Titel des Modulabschnitts, #2 = Kurztitel fuer die Buttons, #3 = Buttonkennung (STD = Defaultbutton, NONE = Ohne Button in der Navigation)
-\newenvironment{MXContent}[3]{\special{html:<!-- xcontent;-;}\arabic{MXCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsection{#1}}{\MEndScripts\special{html:<!-- endxcontent;;}\arabic{MXCounter}\special{html: //-->}\addtocounter{MXCounter}{1}}
+\newenvironment{MXContent}[3]{\special{html:<div class="xcontent}\arabic{MXCounter}\special{html:"><!-- xcontent;-;}\arabic{MXCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsection{#1}}{\MEndScripts\special{html:<!-- endxcontent;;}\arabic{MXCounter}\special{html: //--></div>}\addtocounter{MXCounter}{1}}
 
 % Fuegt eine zusaetzliche html-Seite ein die keine subsubsection-Nummer bekommt, nur zur internen Verwendung in mintmod.tex gedacht!
 % #1 = Titel des Modulabschnitts, #2 = Kurztitel fuer die Buttons, #3 = Buttonkennung (STD = Defaultbutton, NONE = Ohne Button in der Navigation)
-\newenvironment{MUContent}[3]{\special{html:<!-- xcontent;-;}\arabic{MXCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsectionx{#1}}{\MEndScripts\special{html:<!-- endxcontent;;}\arabic{MXCounter}\special{html: //-->}\addtocounter{MXCounter}{1}}
+\newenvironment{MUContent}[3]{\special{html:<div class="xcontent}\arabic{MXCounter}\special{html:"><!-- xcontent;-;}\arabic{MXCounter};-;#1;-;#2;-;#3\special{html: //-->}\MPageScripts\MSubsubsectionx{#1}}{\MEndScripts\special{html:<!-- endxcontent;;}\arabic{MXCounter}\special{html: //--></div>}\addtocounter{MXCounter}{1}}
 
 \newcommand{\MDeclareSiteUXID}[1]{\special{html:<!-- mdeclaresiteuxid;;}#1\special{html:;;}\arabic{chapter}\special{html:;;}\arabic{section}\special{html:;; //-->}}
 
@@ -1279,8 +1279,8 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 % GHEADER und GFOOTER werden von split.pm gefunden, aber nur, wenn nicht HELPSITE oder TESTSITE
 \ifttm
-\newenvironment{MSectionStart}{\MSubsubsectionx{Modul\"ubersicht}}{\setcounter{MSSEnd}{0}}
-% Darf nicht als XContent nummeriert werden, darf nicht als XContent gelabelt werden
+\newenvironment{MSectionStart}{\special{html:<div class="xcontent0">}\MSubsubsectionx{Modul\"ubersicht}}{\setcounter{MSSEnd}{0}\special{html:</div>}}
+% Darf nicht als XContent nummeriert werden, darf nicht als XContent gelabelt werden, wird aber in eine xcontent-div gesetzt fuer Python-parsing
 \else
 \newenvironment{MSectionStart}{\MSubsectionx{Modul\"ubersicht}}{\setcounter{MSSEnd}{0}}
 \fi
@@ -1384,7 +1384,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 \newcounter{MSSEnd} % Ist 1 falls ein MSubsection aktiv ist, der einen MSubsectionEndMacro-Aufruf verursacht
 \newcounter{MFileNumber}
-\def\MLastFile{\special{html:<!-- mfileref;;}\arabic{MFileNumber}\special{html:; //-->}}
+\def\MLastFile{\special{html:[[!-- mfileref;;}\arabic{MFileNumber}\special{html:; //--]]}}
 \def\MLastFileName{\special{html:<!-- mfilenameref;;}\arabic{MFileNumber}\special{html:; //-->}}
 \def\MLastFilePath{\special{html:<!-- mfilepathref;;}\arabic{MFileNumber}\special{html:; //-->}}
 
@@ -1817,7 +1817,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\MTikzAuto}[1]{%
 \addtocounter{MTIKZAutofilenumber}{1}
 \renewcommand{\MTIKZautofilename}{mtikzauto_\arabic{MTIKZAutofilenumber}}
-\MUGraphicsSolo{\MSectionID\MTIKZautofilename.4x.png}{scale=1}{\special{html:<!-- svgstyle;}\MSectionID\MTIKZautofilename\special{html: //-->}} % Styleinfos werden aus original-png, nicht 4x-png geholt!
+\MUGraphicsSolo{\MSectionID\MTIKZautofilename.4x.png}{scale=1}{\special{html:[[!-- svgstyle;}\MSectionID\MTIKZautofilename\special{html: //--]]}} % Styleinfos werden aus original-png, nicht 4x-png geholt!
 \MRegisterFile{\MSectionID\MTIKZautofilename.png}
 \MRegisterFile{\MSectionID\MTIKZautofilename.svg}
 }
@@ -2288,8 +2288,8 @@ Hier erscheint die Testauswertung!
 \fi%
 
 % ---------------------------------- Meldungen fuer den Benutzer des Konverters ----------------------
-\MPragma{mintmodversion;3.1}
-\MPragma{usercomment;This is file mintmod.tex version 3.1}
+\MPragma{mintmodversion;P0.1.0}
+\MPragma{usercomment;This is file mintmod.tex version P0.1.0}
 
 
 % ----------------------------------- Spezialelemente fuer Konfigurationsseite, werden nicht von mintscripts.js verwaltet --

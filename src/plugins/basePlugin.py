@@ -36,20 +36,18 @@ class Plugin(object):
     Zusammenarbeit mit dem Structure-Objekt reicht es jedoch :func:`create_output` zu implementieren.
     '''
     
-    #Name des Plugins (für die Ausgabe auf der Konsole wichtig)
-    name = None
-    content = None
-    options = None
-    tocxml = None
-    
-    required_images = list()
-    required_swf_files = list();
-    required_interactions = list();
-    required_video_files = list()
-    
 
     def __init__(self):
-        pass
+        self.options = None
+        self.name = None
+        self.content = None
+        self.options = None
+        self.tocxml = None
+    
+        self.required_images = list()
+        self.required_swf_files = list();
+        self.required_interactions = list();
+        self.required_video_files = list()
      
     def create_output(self):
         """
@@ -133,20 +131,20 @@ class Plugin(object):
         Diese Funktion legt die xml-Dateien an, welche die eigentlichen Inhalte enthalten.  
         """
         if(targetPath==None):
-            targetPath = Plugin.options.targetpath
+            targetPath = self.options.targetpath
         
         
         #Anzahl der Module zählen
         count_moduls = 0
         moduls = list()# Liste bestehend aus den Übersichts-Seiten
         count_subsections = dict();
-        for tupel in Plugin.content:
-            if (tupel[1].get("class") == (Plugin.options.ModuleStructureClass + "1")):
+        for tupel in self.content:
+            if (tupel[1].get("class") == (self.options.ModuleStructureClass + "1")):
                 count_moduls += 1
                 moduls.append(tupel)
                 count_subsections = dict();
         
-        for tupel in Plugin.content:
+        for tupel in self.content:
             #Wenn die XML-Struktur nur für einen bestimmten Inhaltsknoten erzeugt werden soll
             #machen wir nichts, falls wir einen anderen Inhaltsknoten finden
             if not (only_for_toc_node is None) and tupel[0] != only_for_toc_node:
@@ -247,9 +245,6 @@ class Plugin(object):
                         file_xml = etree.parse(f).getroot();
                     self.content.append([node, file_xml])
             
-        #Gesammelte Daten wieder laden
-        with open(os.path.join(self.options.targetpathTemp, "test.json"),"r") as f:
-            Plugin.data = json.load(f)
-            self.required_images = Plugin.data["required_images"]
+        self.required_images = self.data["required_images"]
                  
         

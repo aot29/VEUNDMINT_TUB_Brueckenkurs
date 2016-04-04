@@ -17,8 +17,6 @@
 """
 
 from . import Option as op
-#import html5lib
-#import html5lib.treebuilders as treebuilders
 import os
 import time
 import re
@@ -29,12 +27,11 @@ from lxml.html import html5parser
 from io import StringIO
 from plugins.exceptions import PluginException
 import subprocess
-from . import System as System
+from . import System as TSystem
 import imp
 import json
 import traceback
 import sys
-from plugins.basePlugin import Plugin as basePlugin 
 
 
 
@@ -107,9 +104,10 @@ class Structure(object):
         '''
         Constructor
         '''  
-        #self.startTex2x()
 
-    def startTex2x(self, verbose, plugin_name):
+        
+
+    def startTex2x(self, verbose, plugin_name, override):
         """
         Wird vom Konstruktor aufgerufen und leitet die Verarbeitung der Materialien ein.
         Zusätzlich werden die Optionen aus der Option-Klasse eingebunden und berücksichtigt.
@@ -126,21 +124,88 @@ class Structure(object):
         * Erstellen der verschiedenen Ausgabeformate anhand der in den Optionen spezifizierten Plugins
         """
         
+        currentDir = ".."
+
         """
-        Die Optionen werden aus einem Objekt heraus initialisiert
-        """
-        self.options = op.Option(os.path.abspath(".."))
-        self.data = dict()
+        --------------------- BEGIN DEFINITION OF THE MODULE INTERFACE ------------------------------------------------------
+        
+        INITIALIZE INTERFACE DATA MEMBER, WHICH SERVES AS THE SOLE COMMUNICATION INTERFACE TO LINKED MODULES
+        AS DESCRIBED IN THE tex2x LICENSE. LINKED MODULES (PLUGINS) MAY ONLY USE THE FOLLOWING DATA MEMBERS
+        FOR COMMUNICATION AND FUNCTION CALLS:
         
         """
-        Jetzt parsen wir das XML-Grundgerüst als HTML5
-        """
+        self.interface = dict()
         
-        """
-        TODO: alle Variablen, die später gebraucht werden, hier schon anlegen, die später genutzt werden, required_files etc
-        Allgemeine Variablen
-        """
-        
+        # data member: linked modules may READ/WRITE/CHANGE/DELETE elements of the data member,
+        # added elements must not contain functions or code of any kind.
+        self.interface['data'] = dict()
+
+        # options member: A module exposing a class "Option", linked modules must provide the class definition and may READ but not modify data exposed by this object reference
+        # class Options must be under LGPL or GPL license
+        try:
+            module = imp.load_source(plugin_name, os.path.join("plugins", plugin_name, "Option.py"))
+            self.interface['options'] = module.Option(currentDir, override)
+        except Exception:
+            formatted_lines = traceback.format_exc().splitlines()
+            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Option'") < 0:
+                print(traceback.format_exc())
+            else:
+                print("\nCannot load options of plugin '" + plugin_name + "'.\n")
+            self.interface['options'] = None
+
+        # system member: A module exposing a class "System", linked modules may provide the class definition and may CALL functions exposed by this object reference
+        # class System must be under GPL license
+        try:
+            module = imp.load_source(plugin_name, os.path.join("plugins", plugin_name, "system.py"))
+            self.interface['system'] = module.System(self.interface['options'])
+        except Exception:
+            formatted_lines = traceback.format_exc().splitlines()
+            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'System'") < 0:
+                print(traceback.format_exc())
+            else:
+                print("\nCannot load System facility of plugin '" + plugin_name + "', using system from tex2x\n")
+                
+            self.interface['system'] = TSystem
+
+        # preprocessor_plugins member: A list of modules exposing a class "Preprocessor" which has a function "preprocess"
+        try:
+            self.interface['preprocessor_plugins'] = []
+            for p in self.interface['options'].usePreprocessorPlugins:
+                module = imp.load_source(plugin_name + "_preprocessor_" + p, self.interface['options'].pluginPath[p])
+                self.interface['preprocessor_plugins'].append(module.Preprocessor(self.interface))
+        except Exception:
+            formatted_lines = traceback.format_exc().splitlines()
+            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Preprocessor'") < 0:
+                print(traceback.format_exc())
+            else:
+                print("\nCannot load preprocessor plugins for '" + plugin_name + "'.\n")
+            self.interface['preprocessor_plugins'] = []
+
+        # output_plugins member: A list of modules exposing a class "Plugin" which has a function "create_output"
+        try:
+            self.interface['output_plugins'] = []
+            for p in self.interface['options'].useOutputPlugins:
+                module = imp.load_source(plugin_name + "_output_" + p, self.interface['options'].pluginPath[p])
+                self.interface['output_plugins'].append(module.Plugin(self.interface))
+        except Exception:
+            formatted_lines = traceback.format_exc().splitlines()
+            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Plugin'") < 0:
+                print(traceback.format_exc())
+            else:
+                print("\nCannot load output plugins for '" + plugin_name + "'.\n")
+            self.interface['output_plugins'] = []
+
+        # simplify access
+        self.options = self.interface['options']
+        self.sys = self.interface['system']
+        self.data = self.interface['data']
+
+
+        # --------------------- END DEFINITION OF THE MODULE INTERFACE ------------------------------------------------------
+
+
+
+       
         
         schritt = 1
         total_time = 0;
@@ -149,8 +214,8 @@ class Structure(object):
             time_start = time.time()
             
         #Preprocessing aus den Plugins aktivieren
-        self.start_preprocessing(plugin_name);
-        
+        for pp in self.interface['preprocessor_plugins']:
+            pp.preprocess()
         
         if verbose:
             time_end = time.time()
@@ -183,9 +248,13 @@ class Structure(object):
         if verbose:
             time_start = time.time()
         
-        xmlfile = open(self.options.ttmFile, "rb")
-        xmltext = xmlfile.read().decode()
-        xmlfile.close()
+        try:
+            xmlfile = open(self.options.ttmFile, "rb")
+            xmltext = xmlfile.read().decode()
+            xmlfile.close()
+        except:
+            # old ttm produces latin1 encoded xml if given tex was latin1
+            xmltext = self.sys.readTextFile(self.options.ttmFile, self.options.stdencoding)
         
         #MathML manuell optimieren, da die Ausgabe des ttm nicht ausreichend ist
         xmltext = self.optimize_mathml(xmltext)
@@ -201,19 +270,18 @@ class Structure(object):
         #Vor dem Parsen werden alle Entities durch die neuen Versionen ersetzt
         xmltext = self.replace_html_entities(xmltext)
         
-        
+        # include raw xml text for plugins
+        self.data['rawxml'] = xmltext
         
         #parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder(self.options.parserName))
         #self.xmltree_raw = parser.parse(xmlfile)
         
         parser = html.HTMLParser(remove_blank_text = False)
         #self.xmltree_raw = etree.parse(StringIO(xmltext),parser)
+
         self.xmltree_raw = etree.fromstring(xmltext, parser)
         #self.xmltree_raw = html5parser.fromstring(xmltext)
         #self.xmltree_raw = html5parser.document_fromstring(xmlfile.read())
-        
-
-        
         
         if verbose:
             time_end = time.time()
@@ -222,7 +290,6 @@ class Structure(object):
             print("(Entities durch HTML5 konforme Entities ersetzen und XML parsen) \n")
             total_time += time_diff
             schritt  += 1
-
         
         #Inhaltsverzeichnis erstellen und Inhalt zusammenschneiden
         if verbose:
@@ -256,8 +323,12 @@ class Structure(object):
         #Pfade im Inhalt müssen der Verzeichnisstruktur angepasst werden
         if verbose:
             time_start = time.time()
-            
-        self.correct_path_to_linked_files(self.content)
+
+        if not hasattr(self.options, "nolinkcorrection"): self.options.nolinkcorrection = 0
+        if self.options.nolinkcorrection == 0:
+            self.correct_path_to_linked_files(self.content)
+        else:
+            self.sys.message(self.sys.VERBOSEINFO, "tex2x link correction not requested by options")
                 
         if verbose:
             time_end = time.time()
@@ -323,6 +394,7 @@ class Structure(object):
         root = self.xmltree_raw
         body = root.find("body")
 
+
         if body is None:
             body = root
 
@@ -337,10 +409,9 @@ class Structure(object):
         #print(etree.tostring(body[0], pretty_print = True).decode())
         
         for node in body[0].iterchildren():
-                  
             level = -1;
             for i in range(len(contentStructure)):
-                if node.tag == contentStructure[i]:
+                if self._checkContentStructure(node, contentStructure[i]):
                     level = i;
                     break;
             
@@ -348,7 +419,6 @@ class Structure(object):
             #level != -1 bedeutet es handelt sich um einen Ebenen-Wechsel
             #und ein Knoten wird zum toc hinzugefügt
             if (level != -1):
-                
                 #Wir müssen tiefer in die Struktur hinein
                 if (level > previous_level):
                     i = previous_level + 1;
@@ -396,7 +466,6 @@ class Structure(object):
             if level == -1:
                 #Es wurde ein zugehöriges Modul gefunden
                 #Modul wird gespeichert mit zugehörigem Knoten aus dem Inhaltsverzeichnis
-                
                 if node.get("class") != None and self.options.ModuleStructureClass in node.get("class") and node.get("class").index(self.options.ModuleStructureClass) == 0:
                     #Jetzt sehen wir uns die Zahl an, die in der Klasse mit angegeben wird
                     number = ""
@@ -406,13 +475,16 @@ class Structure(object):
                             number = node.get("class")[len(self.options.ModuleStructureClass):]#wir benutzen die Nummer anschließend als String weiter
                         except:
                             print("Fehler beim Parsen der xcontent-Nummer")
+                    else:
+                        self.sys.message(self.sys.CLIENTWARN, "Dissection found class " + self.options.ModuleStructureClass + ", but without a number")
                             
                         
                         
                     content_node = deepcopy(node)
 
                     content.append([toc_node, content_node])
-                    continue                    
+                    continue
+                            
             
             #letzten level merken, um oben zu wissen, wie viele Ebenen gewechselt werden
             if (level != -1):
@@ -422,9 +494,8 @@ class Structure(object):
         #Objetkvariable setzen
         self.tocxml = toc
         self.content = content
-        
-        
 
+        
     
 
 
@@ -469,10 +540,9 @@ class Structure(object):
         Lädt alle Plugins im Pluginverzeichnis und startet diese.
         """
         
-        #Daten an das Basis-Plugin übergeben
-        basePlugin.content = self.content
-        basePlugin.tocxml = self.tocxml
-        basePlugin.required_images = self.required_images
+        self.data['content'] = self.content
+        self.data['tocxml'] = self.tocxml
+        self.data['required_images'] = self.required_images
         
         #Daten hier "löschen"
         self.content = None
@@ -480,41 +550,15 @@ class Structure(object):
         self.required_images = None
         
         
-        try:
-            module = imp.load_source(plugin_name, os.path.join(self.options.pluginPath, plugin_name, plugin_name + ".py"))
-            output_plugin = module.Plugin()
-            output_plugin.create_output()
-            print("Creating output for " + os.path.join(self.options.pluginPath, plugin_name, plugin_name + ".py"))
-        #print(possible_plugin)
-        except Exception:
-            formatted_lines = traceback.format_exc().splitlines()
-            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Plugin'") < 0:
-                print(traceback.format_exc())
-            else:
-                print("\nDas angegebene Plug-in '" + plugin_name + "' konnte nicht geladen werden. Bitte die Schreibweise prüfen.\n")
-                
+        #Preprocessing aus den Plugins aktivieren
+        for op in self.interface['output_plugins']:
+            op.create_output()
+             
         #Temporäre Dateien aufräumen
-        self.clean_up();
+        if self.options.cleanup == 1:
+            self.clean_up();
 
-                
-    def start_preprocessing(self, plugin_name):
-          
-        preprocessor = open(os.path.join(self.options.pluginPath, plugin_name, "preprocessing.py"), "rb")
-        exec(preprocessor.read())
-        preprocessor.close()
-        return;
-        try:
-            module = imp.load_source(plugin_name, os.path.join(self.options.pluginPath, plugin_name, plugin_name + ".py"))
-            module.preprocessing()
-            
-        #print(possible_plugin)
-        except Exception:
-            formatted_lines = traceback.format_exc().splitlines()
-            if formatted_lines[-1].find("AttributeError: 'module' object has no attribute 'Plugin'") < 0:
-                print(traceback.format_exc())
-            else:
-                print("\nDas angegebene Plug-in '" + plugin_name + "' konnte nicht geladen werden. Bitte die Schreibweise prüfen.\n")
-            
+           
     def replace_html_entities(self, text):
         """
         :param text: String -- Text, in welchem die HTML-Entitäten bearbeitet werden sollen
@@ -640,7 +684,7 @@ class Structure(object):
         is_64bits = sys.maxsize > 2**32#Bit Zahl des OS ermitteln, damit wir gleich den richtigen ttm starten können
 
         #ttm starten
-        cwd = os.getcwd()
+        self.sys.pushdir()
         texStartFile = self.options.sourceTEXStartFile
         ttmStartFolder = self.options.ttmPath
         xmlFileName = self.options.ttmFile
@@ -650,14 +694,14 @@ class Structure(object):
             subprocess.call("./ttm -p" + self.options.sourceTEX  + " < " + texStartFile + " > " + xmlFileName, shell = True)
         else:
             subprocess.call("./ttm32 -p" + self.options.sourceTEX  + " < " + texStartFile + " > " + xmlFileName, shell = True)
-        os.chdir(cwd)
+        self.sys.popdir()
 
     def prepare_xml_file(self):
         """
         Stellt sicher, dass die benötigte xml-Datei im Outputverzeichnis liegt. Sonst wird diese vom ttm erzeugt.
         """
         if (os.path.exists(self.options.sourceTEXStartFile)):
-            System.copyFile(self.options.sourceTEXStartFile, self.options.ttmFile, "")
+            self.sys.copyFile(self.options.sourceTEXStartFile, self.options.ttmFile, "")
         else:
             print("Es konnte keine XML-Datei als Vorgabe gefunden werden, daher wird nun (trotz gegenteiliger Angabe in den Optionen) der ttm ausgeführt.")
             self.start_ttm()
@@ -691,10 +735,12 @@ class Structure(object):
         xmltext = re.sub(pattern, replace, xmltext)
         
          
-        pattern = r"<table width=\"100%\"><tr><td align=\"center\">(?P<a>\s*(<math(.|\n)*?</math>)\s*)</td></tr></table>"
-        replace = r"<center>\g<a></center>"
-        t = re.subn(pattern, replace, xmltext)
-        xmltext = t[0]
+        
+        if not hasattr(self.options, "keepequationtables"): self.options.keepequationtables = 0
+        if self.options.keepequationtables == 0:
+            pattern = r"<table width=\"100%\"><tr><td align=\"center\">(?P<a>\s*(<math(.|\n)*?</math>)\s*)</td></tr></table>"
+            replace = r"<center>\g<a></center>"
+            xmltext = re.sub(pattern, replace, xmltext)
         
         """Kein Effekt
         #Das Zeichen \subsetneq kennt ttm nicht
@@ -846,8 +892,8 @@ class Structure(object):
         
         #Tempverzeichnis leeren (Reste stören sonst den Ladevorgang der Plugins
         if os.path.exists(self.options.targetpathTemp):
-            System.removeTree(self.options.targetpathTemp)
-        System.makePath(self.options.targetpathTemp)#Verzeichnis anlegen, existierte nicht oder wir haben es gerade gelöscht
+            self.sys.removeTree(self.options.targetpathTemp)
+        self.sys.makePath(self.options.targetpathTemp)#Verzeichnis anlegen, existierte nicht oder wir haben es gerade gelöscht
  
         
         #tocxml in Datei ablegen
@@ -859,7 +905,7 @@ class Structure(object):
         #Ordner-Struktur im tmp-Verzeichnis anlegen
         for node in self.tocxml.iter():
             if (not node.get("name") == None) and (not os.path.exists(os.path.join(self.options.targetpathTemp, node.get("name")))):
-                System.makePath(os.path.join(self.options.targetpathTemp, node.get("name")))
+                self.sys.makePath(os.path.join(self.options.targetpathTemp, node.get("name")))
                             
         for tupel in self.content:
             i = 0
@@ -878,18 +924,25 @@ class Structure(object):
         Wir räumen wieder auf. Insbesondere das temporäre Input-Verzeichnis wird wieder gelöscht.
         """
         print("Räume auf: " + os.path.abspath(self.options.sourcepath))
-        System.removeTree(self.options.sourcepath)
+        self.sys.removeTree(self.options.sourcepath)
         
-                    
-
- 
-
-
-
-
-
-
-
-
-            
-            
+          
+    def _checkContentStructure(self, node, tag):
+        # check if node tag belongs to the content structure from options AND if it is structure tag generated by ttm
+        if (node.tag == tag):
+            try:
+                ttmid = node.getprevious().get("id")
+                if ttmid[0:4] == "tth_":
+                    return True
+                else:
+                    # previous node has an id, but it's not from ttm
+                    return False
+            except:
+                # has no previous node or previous node has no defined "id"
+                return False
+   
+            return True
+        else:
+            return False
+    
+         

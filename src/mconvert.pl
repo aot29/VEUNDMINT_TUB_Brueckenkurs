@@ -1184,9 +1184,29 @@ sub idprint {
 
 }
 
+
+sub tostring {    # returns a string representation of the tree
+    my ($self) = @_;
+    return $self->_tostring(0);
 }
 
+sub _tostring {
+  my ($self, $indent) = @_;
+  my $s = "";
+  my $i = 0;
+  while ($i < $indent) {
+    $s .= "    ";
+    $i++;
+  }
+  my @subpages = @{$self->{SUBPAGES}};
+  $s .= $self->{TITLE} . ", pos=" . $self->{POS} . "\n";
+  for (my $j = 0; $j <= $#subpages; $j++) {
+    $s .= $subpages[$j]->_tostring($indent + 1);
+  }
+  return $s;
+}
 
+} # end package Page
 
 # Die Klasse ModulPage wird von der Klasse Page abgeleitet.
 # Die meisten Funktionen werden gar nicht ueberschrieben.
@@ -1823,7 +1843,7 @@ sub postprocess {
    
       ($fnamepath,$fnamename) = $fname =~ m|^(.*[/\\])([^/\\]+?)$|;
       $fnamepath = $fnamepath . ".";
-      $text =~ s/<!-- mfileref;;$fileid; \/\/-->/$fname/g;
+      $text =~ s/\[\[!-- mfileref;;$fileid; \/\/--\]\]/$fname/g;
       $text =~ s/<!-- mfilenameref;;$fileid; \/\/-->/$fnamename/g;
       $text =~ s/<!-- mfilepathref;;$fileid; \/\/-->/$fnamepath/g;
 
@@ -1904,16 +1924,16 @@ sub postprocess {
   }
 
   # SVGStyles einsetzen
-  while ($text =~ m/<!-- svgstyle;(.+?) \/\/-->/s ) {
+  while ($text =~ m/\[\[!-- svgstyle;(.+?) \/\/--\]\]/s ) {
     my $tname = $1;
     if (exists $tikzpng{$tname}) {
       my $style = $tikzpng{$tname};
       logMessage($VERBOSEINFO, "Found style info for svg on $tname: $style");
-      $text =~ s/<!-- svgstyle;$tname \/\/-->/$style/g ; 
+      $text =~ s/\[\[!-- svgstyle;$tname \/\/--\]\]/$style/g ; 
       delete $tikzpng{$tname};
     } else {
       logMessage($CLIENTERROR, "Could not find image information for $tname");
-      $text =~ s/<!-- svgstyle;$tname \/\/-->//g ; 
+      $text =~ s/\[\[!-- svgstyle;$tname \/\/--\]\]//g ; 
     }
   }
  
@@ -3712,6 +3732,7 @@ if ($config{doverbose} == "1") {
   }
  
   writefile("graph.png", $graph->as_png());
+  writefile("graph.txt", $root->tostring());
 }
 
 #Rechte setzen
@@ -3872,6 +3893,7 @@ sub create_tree {
     
     
       # Als allererstes inlcude-Aufgaben aus Roulettes einbinden, damit auch auf diese das Preparsing angewendet wird
+      # TODO: MSetPoints auf Null setzen, sonst werden echte Punkte deklariert!
       while ($textex =~ m/\\MDirectRouletteExercises{(.+?)}{(.+?)}/s ) {
         my $rfilename = $1;
         my $rid = $2;
