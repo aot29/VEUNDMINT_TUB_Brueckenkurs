@@ -84,6 +84,7 @@ class Option(object):
         self.moduleprefix = "Onlinebrückenkurs Mathematik"   # Wird vor Browser-Bookmarks gesetzt
         self.variant = "std"                                 # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete fuer Mathematikumsetzung aus, Alternative ist "unotation"
 
+        self.mathjaxtgz = "mathjax26complete.tgz"
         self.texstylefiles = ["bibgerm.sty", "maxpage.sty"]  # style files needed in local directories for local pdflatex compilation
         self.htmltikzscale = 1.3                             # scaling factor used for tikz-png scaling, can be overridden by pragmas
         self.autotikzcopyright = 1
@@ -91,11 +92,14 @@ class Option(object):
         self.generate_pdf = { "tree1_tu9onlinekurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung
 
         # Settings for HTML design and typical phrases        
+        self.chaptersite = "chapters.html"
         self.strings = {
+	    'chapter': "Kapitel",
             "module_starttext": "Modul starten",
             "module_solutionlink": "L&#246;sung ansehen",
             "module_solution": "L&#246;sung",
-            "module_solutionback": "Zur&#252;ck zur Aufgabe"
+            "module_solutionback": "Zur&#252;ck zur Aufgabe",
+	    "module_content": "Kursinhalt"
         }
 
         self.fonts = {
@@ -174,7 +178,8 @@ class Option(object):
         self.copyrightFile = os.path.join(self.sourceTEX, "copyrightcollection.tex")
         self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
 
-        # HTML/JS template options
+        # HTML/JS/CSS template options
+        self.template_precss = "precss"
         self.converterTemplates = os.path.join(self.converterDir, "templates") # Vorlagen fuer HTML-Dateien
         self.template_html5 = os.path.join(self.converterTemplates, "html5_mintmodtex.html")
         self.template_javascriptheader = os.path.join(self.converterTemplates, "html5_javascriptheader.html")
@@ -182,6 +187,8 @@ class Option(object):
         self.template_mathjax_settings = os.path.join(self.converterTemplates, "mathjax_settings.html")
         self.template_mathjax_cdn = os.path.join(self.converterTemplates, "mathjax_cdn_2_6.html")
         self.template_mathjax_local = os.path.join(self.converterTemplates, "mathjax_local_2_6.html")
+        self.template_redirect_scorm = os.path.join(self.converterTemplates, "html5_redirect_scorm.html")
+        self.template_redirect_basic = os.path.join(self.converterTemplates, "html5_redirect_basic.html")
 
         # ttm-file
         self.ttmExecute = True
@@ -193,6 +200,7 @@ class Option(object):
         self.keepequationtables = 1
         
         # ContentStructure
+        self.contentlevel = 4 # level used by tcontent objects from subsubsections (MXContent)
         self.ContentStructure=[]
         self.ContentStructure.append("h1") # the whole course
         self.ContentStructure.append("h2") # a section in the course, a MSection according to MINTMOD

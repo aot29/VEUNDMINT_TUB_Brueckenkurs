@@ -43,7 +43,6 @@ class PageFactory(object):
         self.options = interface['options']
         self._load_templates()
         
-        
     def _load_templates(self):
         if self.options.doscorm == 0:
             self.sys.message(self.sys.CLIENTINFO, "Using HTML5 MINTMODTEX template")
@@ -75,6 +74,10 @@ class PageFactory(object):
             
     # generates a html page as a string using loaded templates and the given TContent object
     def generate_html(self, tc):
+        if (tc.display == False):
+            tc.html = "<html>NODISPLAY</html>"
+            return
+
         template = etree.fromstring(self.template_html5)
         
         # do substitutions supported by lxml parsers and etree
@@ -82,6 +85,10 @@ class PageFactory(object):
         template.find(".//meta[@id='meta-charset']").attrib['content'] = "text/html; charset=" + self.options.outputencoding
         template.find(".//title").text = tc.title
 
+        template.find(".//div[@id='itoccaption']").text = self.gettoccaption(tc)
+
+        template.find(".//div[@id='footerright']").text = self.options.footer_right
+        template.find(".//div[@id='footermiddle']").text = self.options.footer_middle
 
         # do pure string substitutions
 
@@ -99,4 +106,83 @@ class PageFactory(object):
         tc.html = self._substitute_string(tc.html, "javascript-body-header", js_text + self.template_javascriptheader)
         tc.html = self._substitute_string(tc.html, "javascript-body-footer", self.template_javascriptfooter)
         tc.html = self._substitute_string(tc.html, "content", tc.content)
+        
+        
+    def gettoccaption(self, tc):
+        c = ""
+        # Nummer des gerade aktuellen Fachbereichs ermitteln
+        pp = tc
+        fsubi = -1
+        while (pp.level != (self.options.contentlevel - 3)):
+            if pp.level == (self.options.contentlevel - 2):
+                fsubi = pp.myid
+            pp = pp.parent
+        
+        attr = ""
+        root = tc.root
+        
+        pages1 = root.children
+        n1 = len(pages1)
 
+        c += "<div class=\"toccaption\"></div>\n"; # Neue Version ohne Logo
+
+        c += "<tocnavsymb><ul>"
+        c += "<li><a class=\"MINTERLINK\" href=\"" + tc.backpath + "../" + self.options.chaptersite + "\" target=\"_new\"><div class=\"tocmintitle\">" + self.options.strings['module_content'] + "</div></a>"
+        c += "<div><ul>\n"
+   
+        i1 = 0; # eigentlich for-schleife, aber hier nur Kursinhalt
+        p1 = pages1[i1]
+        if (p1.myid  == tc.myid):
+            attr = " class=\"selected\""
+        else:
+            attr = " class=\"notselected\""
+  
+        attr = ""
+        ff = i1 + 1
+
+        # Fachbereiche ohne Nummern anzeigen
+        ti = re.sub(r"([12345] )(.*)", "\\2", p1.title, 1, re.S)
+        c += "<li" + attr + "><a class=\"MINTERLINK\" href=\"" + tc.backpath + p1.link + ".{EXT}\">" + ti + "</a>\n" 
+
+        pages2 = p1.children
+        n2 = len(pages2)
+        if (n2 > 0):
+            for i2 in range(n2):
+                p2 = pages2[i2]
+                ti = i2;
+                selected = 0
+                # pruefen ob Knoten oder oberknoten der aktuell auszugeben Seite ($site) das $p2 ist
+                test = tc;
+                while not test.parent is None:
+                    if p2.myid == test.myid: selected = 1
+                    test = test.parent
+                # Stil der tocminbuttons wird in intersite.js gesetzt
+                c += "  <li><a class=\"MINTERLINK\" href=\"" + tc.backpath + p2.link + ".{EXT}\"><div class =\"tocminbutton\">" \
+                  +  self.options.strings['chapter'] + " " + str(ti + 1) + "</div></a>\n"
+                if fsubi != -1: 
+                    # Untereintraege immer einfuegen im neuen Stil
+                    pages3 = p2.children
+                    n3 = len(pages3)
+                    if n3 > 0:
+                        c += "    <div><ul>\n"
+                        for i3 in range(n3):
+                            p3 = pages3[i3]
+                            if (selected == 1):
+                                tsec = str(p3.nr) + p3.title
+                                tsec = re.sub(r"([0123456789]+?)[\.]([0123456789]+)(.*)", "<div class=\"xsymb\">\\1.\\2</div>&nbsp;", tsec, 1, re.S)
+                                pages4 = p3.children
+                                for a in range(len(pages4)):
+                                       p4 = pages4[a]
+                                       tsec += "<a class=\"MINTERLINK\" href=\"" + tc.backpath + p4.link \
+                                            +  ".{EXT}\"><div class=\"xsymb " + p4.tocsymb + "\"></div></a>\n"
+                                       
+                                c += "    <li><a class=\"MINTERLINK\" href=\"" + tc.backpath + p3.link + ".{EXT}\">" + tsec + "</a></li>\n"
+                        c += "    </ul></div>\n"
+                c += "  </li>\n"
+        c += "\n" \
+          +  "</ul></div>" \
+          +  "</li>" \
+          +  "</ul></tocnavsymb>" \
+          +  "<br /><br />"
+  
+        return c

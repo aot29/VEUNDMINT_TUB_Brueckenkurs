@@ -63,6 +63,7 @@ class System(object):
         self.message(self.CLIENTINFO, "Using option object: " + options.description)
         self.message(self.VERBOSEINFO, "Host = " + socket.gethostname() + ", user = " + getpass.getuser())
 
+
     def _printMessage(self, color, txt):
         # green verbose messages only in logfile, and on console if verbose is active
         if ((color != self.BASHCOLORGREEN) or (self.doVerbose == 1)):
@@ -103,7 +104,6 @@ class System(object):
                                 else:
                                     self._printMessage(self.BASHCOLORRED, "ERROR: Wrong error type " + lvl + ", message: " + msg)
             
-
     
     def timestamp(self, msg):
         myTime = time.time()
@@ -111,7 +111,6 @@ class System(object):
         abstimediff = myTime - self.startTime
         self.checkTime = myTime
         self.message(self.VERBOSEINFO, msg + " (relative time: " + str(reltimediff) + ", absolute time: " + str(abstimediff) + " [seconds])")
-
 
 
     def openFile(self, path, attr):
@@ -127,6 +126,7 @@ class System(object):
         """
         self.ensurePath(os.path.dirname(path))
         return open(path,attr)
+
 
     # creates a path if it does not exist, leaves it untouched otherwise
     def ensureTree(self, path):
@@ -148,11 +148,13 @@ class System(object):
         mkpath(target)
         mkpath(os.path.dirname(os.path.join(target, filename)))
         copy_file(os.path.join(source, filename),os.path.join(target, filename), update = 1)
+
     
     def getPathName(self, path):
         while path[0]=="." :
             path=path[3:len(path)]
         return(path)
+
 
     def showFilesInPath(self, path):
         pathLen=len(path)+1
@@ -177,12 +179,14 @@ class System(object):
             shutil.rmtree(path)
         else:
             self.message(self.CLIENTERROR, "removeTree got " + path + ", but it is not a tree or does not exist")
+
         
     def removeFile(self, path):
         if os.path.isfile(path):
             os.remove(path)
         else:
             self.message(self.CLIENTERROR, "removeFile got " + path + ", but it is not a file or does not exist")
+
             
     def makePath(self, path):
         os.makedirs(path)
@@ -193,6 +197,7 @@ class System(object):
         if os.path.isdir(path):
             shutil.rmtree(path)
         self.makePath(path)
+
     
     # retrieves the input of a text file and checks its encoding, but always converts found encoding to unicode strings
     # Return value is always a Python3 string (in unicode)
@@ -243,6 +248,7 @@ class System(object):
         else:
             self.message(self.FATALERROR, "popdir did not match pushdir, dirstack is empty")
     
+
     # substitutes umlauts by tex commands
     def umlauts_tex(self, tex):
         tex = tex.replace("ß","\"s")
@@ -253,9 +259,20 @@ class System(object):
         tex = tex.replace("ö","\"o")
         tex = tex.replace("ü","\"u")
         return tex
+
             
     # creates a string which is not the prefix of anything in the given text and contains no regex problematic characters
     def generate_autotag(self, text):
         t = "TTAG"
         while re.search(re.escape(t), text, re.S): t = t + "A"
         return t
+
+
+    def injectEscapes(self, s):
+        s = re.sub(r"\\", "\\\\", s, 0, re.S)
+        s = re.sub(r"\"", "\\\"", s ,0, re.S)
+        s = re.sub(r"\'", "\\\'", s, 0, re.S)
+        s = re.sub(r"\r", "\\r" , s ,0 ,re.S)
+        s = re.sub(r"\n", "\\n", s, 0, re.S)
+        return s
+      

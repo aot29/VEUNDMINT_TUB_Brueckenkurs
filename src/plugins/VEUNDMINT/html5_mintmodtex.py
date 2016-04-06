@@ -24,12 +24,12 @@
 
 import re
 import os
+import subprocess
 from lxml import etree
 from lxml import html
 from copy import deepcopy
 from plugins.exceptions import PluginException
 from lxml.html import html5parser
-import fnmatch
 
 from plugins.basePlugin import Plugin as basePlugin
 
@@ -39,7 +39,7 @@ from plugins.VEUNDMINT.pagefactory import PageFactory
 class Plugin(basePlugin):
 
     def __init__(self, interface):
-        
+        # initialize data which is global for each conversion
         # copy interface member references
         self.sys = interface['system']
         self.data = interface['data']
@@ -51,6 +51,10 @@ class Plugin(basePlugin):
         self.sys.message(self.sys.VERBOSEINFO, "Output plugin " + self.name + " of version " + self.version + " constructed")
 
     def _prepareData(self):
+        # initialize data which should be cleaned for each conversion
+        self.startfile = "" # will be written once starttag is found
+        self.entryfile = ""
+        
         # checks if needed data members are present or empty
         if 'content' in self.data:
             self.content = self.data['content']
@@ -112,16 +116,17 @@ class Plugin(basePlugin):
         else:
             self.sys.message(self.sys.CLIENTERROR, "No exercise server declared in options")
         
+        self.template_redirect_basic = self.sys.readTextFile(self.options.template_redirect_basic, self.options.stdencoding)
+        self.template_redirect_scorm = self.sys.readTextFile(self.options.template_redirect_scorm, self.options.stdencoding)
 
 
      
     def create_output(self):
+        self.sys.timestamp("create_output start")
         self._prepareData()
-        if self.options.forceyes == 0:
-            self.check_if_dir_preexists(self.options.targetpath)
-        self.sys.emptyTree(self.options.targetpath)
-        self.sys.copyFiletree(self.options.converterCommonFiles, self.options.targetpath, ".")
-        self.sys.timestamp("Common HTML5 tree files copied")
+        
+        self.generate_directory()
+        self.generate_css()
         
         self.setup_contenttree()
         self.analyze_html() # analyzation done on raw text
@@ -134,7 +139,11 @@ class Plugin(basePlugin):
         self.generate_html(self.ctree)
 
         self.filecount = 0
-        self.write_html_files(self.ctree)
+        self.write_htmlfiles(self.ctree)
+        self.write_miscfiles()
+        
+        
+  
         self.sys.message(self.sys.CLIENTINFO, str(self.filecount) + " files written to directory " + self.outputextension)
         
         
@@ -158,6 +167,7 @@ class Plugin(basePlugin):
             q = TContent()
             q.myid = nid
             q.pos = pos
+            q.root = root
             nid += 1
             q.xmlelement = node # link object tree to xml tree
             node.attrib['objid'] = str(q.myid)
@@ -288,6 +298,7 @@ class Plugin(basePlugin):
                     i = int(m.group(1))
                     p = TContent()
                     p.parent = lev3parent
+                    p.root = root
                     lev3parent.children.append(p)
                     p.myid = nid
                     nid += 1
@@ -328,8 +339,8 @@ class Plugin(basePlugin):
                     p.menuitem = 0
                     p.nr = "" # actually used?
                     p.level = p.parent.level + 1
-                    if p.level != 4:
-                        self.sys.message(self.sys.CLIENTWARN, "xcontent did not get level 4")
+                    if p.level != self.options.contentlevel:
+                        self.sys.message(self.sys.CLIENTWARN, "xcontent did not get level " + str(self.options.contentlevel) + " as required by options")
                     
                     p.tocsymb = "status1"
                     if re.search(r"<!-- declaretestsymb //-->", p.content, re.S):
@@ -477,140 +488,162 @@ class Plugin(basePlugin):
             self.generate_html(c)
         self.pagefactory.generate_html(tc)
         
-    def write_html_files(self, tc):
+        
+    def write_htmlfiles(self, tc):
         for c in tc.children:
-            self.write_html_files(c)
+            self.write_htmlfiles(c)
         if tc.display:
             f = os.path.join(self.options.targetpath, self.outputextension, tc.link + "." + self.outputextension)
             self.sys.writeTextFile(f, tc.html, self.options.outputencoding)
             self.filecount += 1
-        
-        
-    def old_write_html_files(self):
-        
-        # PERL: only dirs of form A.B.C and level 1/2/3 contents directly in mpl
-        # tex2x: separate dirs A.B and content in them
-        
-        m = 0
-        n = 0
-        count_subsections = dict();
-        for tupel in self.content:
-            if (tupel[1].get("class") == (self.options.ModuleStructureClass + "0")):
-                m = m + 1
-                count_subsections = dict();
-            n = n + 1
-        
-        for tupel in self.content:
-            target_dir = os.path.join(os.path.join(self.options.targetpath, self.outputextension), tupel[0].get("name"))
-            self.sys.ensureTree(target_dir)
-                
-            #Okay, jetzt kann die zugehörige XML-Datei gespeichert werden
-            if (not tupel[0].get("name") in count_subsections):#Eintrag bei Bedarf anlegen
-                count_subsections[tupel[0].get("name")] = dict()
-            if(not tupel[1].get("class") in count_subsections[tupel[0].get("name")]):#Eintrag bei Bedarf anlegen
-                count_subsections[tupel[0].get("name")][tupel[1].get("class")] = 0
+            if "<!-- mglobalstarttag -->" in tc.html:
+                self.sys.message(self.sys.CLIENTINFO, "Global starttag found in file " + f + ", locally " + tc.link)
+                self.startfile = tc.link + self.outputextension
+                self.entryfile = "entry_" + tc.docname + self.outputextension
+  
+            """
+        if ($htmlzeile =~ m/<!-- mglobalchaptertag -->/ ) {
+          logMessage($VERBOSEINFO, "--- Chaptertag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $chapterfile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobalconftag -->/ ) {
+          logMessage($VERBOSEINFO, "--- Configtag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $configfile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobaldatatag -->/ ) {
+          logMessage($VERBOSEINFO, "--- Datatag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $datafile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobalfavotag -->/ ) {
+          print "--- Favoritestag found in file $hfilename\n";
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $favofile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mgloballocationtag -->/ ) {
+          logMessage($VERBOSEINFO, "--- Locationtag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $locationfile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobalsearchtag -->/ ) {
+          logMessage($VERBOSEINFO, "--- Searchtag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $searchfile = "mpl/" . $2 . ".html";
+        }
+        if ($htmlzeile =~ m/<!-- mglobalstesttag -->/ ) {
+          logMessage($VERBOSEINFO, "--- STesttag found in file $hfilename");
+          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
+          $stestfile = "mpl/" . $2 . ".html";
+        }
+      }
+            """        
             
-            filename = os.path.join(target_dir, tupel[1].get("class") + "_" + str(count_subsections[tupel[0].get("name")][tupel[1].get("class")]) + "." + self.outputextension)
-            txt = etree.tostring(tupel[1], pretty_print = True, encoding = "unicode")
-            self.sys.writeTextFile(filename, txt, "utf-8")
-            n = n + 1
-            count_subsections[tupel[0].get("name")][tupel[1].get("class")] += 1 # counter für bereich erhöhen
-        
-        self.sys.message(self.sys.CLIENTINFO, str(n) + "  " + self.outputextension + "-files have been written in utf8, " + str(m) + " of them have xcontent level zero")
-      
-    
-    
-    
-# ------------------------------------------------- OLD OSS METHODS ----------------------------------------------------------------------------
+    def write_miscfiles(self):
+        if self.startfile == "":
+            self.sys.message(self.sys.FATALERROR, "No startfile found")
+        else:
+            self.createRedirect("index.html", self.startfile, False)
+            self.sys.message(self.sys.CLIENTINFO, "HTML Tree entry chain created")
+            self.sys.message(self.sys.CLIENTINFO, "  index.html -> " + self.startfile)
+            if (self.options.doscorm == 1):
+                self.createRedirect(self.entryfile, self.startfile, True)
+                self.sys.message(self.sys.CLIENTINFO, "  SCORM -> " + self.entryfile + " -> " + self.startfile)
 
-            
-    def create_modstart_files(self):
-        """
-        Legt alle Modstart-Dateien zu den Modulen in den entsprechenden Verzeichnissen an.
-        """
+
         
-        #Wir zählen die Bereiche in den Dateien
-        blocks = dict()
+        """  
+  if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile,0); } else { logMessage($CLIENTINFO, "No Chapter-file defined"); }
+  if ($configfile ne "") { createRedirect("config.html", $configfile,0); } else { logMessage($CLIENTINFO, "No Config-file defined"); }
+  if ($datafile ne "") { createRedirect("cdata.html", $datafile,0); } else { logMessage($CLIENTINFO, "Keine Data-Datei definiert"); }
+  if ($searchfile ne "") { createRedirect("search.html", $searchfile,0); } else { logMessage($CLIENTINFO, "Keine Search-Datei definiert"); }
+  if ($favofile ne "") { createRedirect("favor.html", $favofile,0); } else { logMessage($CLIENTINFO, "Keine Favoriten-Datei definiert"); }
+  if ($locationfile ne "") { createRedirect("location.html", $locationfile,0); } else { logMessage($CLIENTINFO, "Keine Location-Datei definiert"); }
+  if ($stestfile ne "") { createRedirect("stest.html", $stestfile,0); } else { logMessage($CLIENTINFO, "Keine Starttest-Datei definiert"); }
+        """
+
+        if self.options.doscorm == 1:
+            pass
+        
+
+
+    # generate css and js style files
+    def generate_css(self):
+        
+        path = os.path.join(self.options.sourcepath, self.options.template_precss)
+        self.sys.copyFiletree(self.options.converterDir, self.options.sourcepath, self.options.template_precss)
+        self.sys.pushdir()
+        os.chdir(path)
+        
+        p = subprocess.Popen(["php", "-n", "grundlagen.php"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+        (css, err) = p.communicate()
+            
+        if p.returncode != 0:
+            css = ""
+            self.sys.message(self.sys.CLIENTERROR, "php reported an error on grundlagen.php:\n" + str(css) + "\n" + str(err))
+
+        jcss = ""
+        ocss = ""
+        
+        # parse color values (given as strings without # prefix)
+        jcss += "var COLORS = new Object();\n"
+        for ckey in self.options.colors:
+            jcss += "COLORS." + ckey + " = \"" + self.options.colors[ckey] + "\";\n"
+   
+        # parse fonts
+        jcss += "var FONTS = new Object();\n"
+        for ckey in self.options.fonts:
+            jcss += "FONTS." + ckey + " = \"" + re.escape(self.options.fonts[ckey]) + "\";\n"
+        
+        # parse sizes
+        jcss += "var SIZES = new Object();\n"
+        for ckey in self.options.sizes:
+            jcss += "SIZES." + ckey + " = " + str(self.options.sizes[ckey]) + "\n"
+  
+
+        # substitute colors, fonts and sizes in css files, but generate a original css file as JS without substitutions
+        jcss += "var DYNAMICCSS = \"\"\n"
+        def drow(m):
+            nonlocal ocss
+            nonlocal jcss
+            row = m.group(1)
+            ocss += row + "\n"
+            row = self.sys.injectEscapes(row)
+            jcss += " + \"" + row + "\"\n"
+        re.sub(r"([^\n]+)", drow, css, 0, re.S)
+        
+        jcss += " + \"\";"
          
-        for tupel in self.content:
-            if not tupel[0] in blocks:
-                blocks[tupel[0]] = dict()
-                
-            count = 1
-            for span in tupel[1].findall(".//span[@id='lo_status']"):
-                count += 1
-            
-            blocks[tupel[0]][tupel[1].get("class")] = count
-                
-        
-        #Notwendig, um Informationen über die vorhandenen bereiche abzulegen
-        script_tag = etree.Element("script")
-        script_tag.set("type", "text/javascript")
-        head.append(script_tag)
-        
-        #Inhaltsverzeichnis am linken Rand 
-        main_toc = etree.Element("ul")
-        main_toc.set("class", "level1")
-        main_toc.set("id", "navstart")
-        
-        
-        for toc_node in self.tocxml.iterchildren():
-            self.create_main_toc(1, main_toc, toc_node, self.options.targetpath)#ist rekursiv
-        #main_toc enthält jetzt die Menüstruktur für den linken Rand
-        
-        
-        inhalt.clear()
-        inhalt.set("id", "inhalt")
-        inhalt.append(main_toc)
-        inhalt.append(etree.Element("br"))
-        
-        
-        #Das Javascript-Array zu Beginn der modstart.xhtml wird im Folgenden generiert
-        for toc_node in self.tocxml.findall(".//*"):
-            array_text = "var bereiche = new Array(\n"
-            first = True
+        self.sys.writeTextFile(os.path.join(self.options.targetpath, "css", "grundlagen.css"), ocss, self.options.outputencoding)
+        self.sys.writeTextFile(os.path.join(self.options.targetpath, "dynamiccss.js"), jcss, self.options.outputencoding)
+        self.sys.popdir()
+        self.sys.message(self.sys.VERBOSEINFO, "Stylefiles created")
+
+
+    def generate_directory(self):
+        if self.options.forceyes == 0:
+            self.check_if_dir_preexists(self.options.targetpath)
+        self.sys.emptyTree(self.options.targetpath)
+        self.sys.copyFiletree(self.options.converterCommonFiles, self.options.targetpath, ".")
+        if self.options.localjax == 1:
+            mpath = os.path.join(self.options.targetpath, "MathJax")
+            self.sys.emptyTree(mpath)
+            p = subprocess.Popen(["tar", "-xvzf", os.path.join(self.options.converterDir, self.options.mathjaxtgz), "--directory=" + mpath],
+                                 stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+            (tar, err) = p.communicate()
+            if p.returncode != 0:
+                self.sys.message(self.sys.CLIENTERROR, "Could not unpack local MathJax folder:\n" + tar + "\n" + str(err))
+            else:
+                self.sys.message(self.sys.CLIENTINFO, "Local MathJax installed (from " + self.options.mathjaxtgz + ") in path " + mpath)
             
 
-            if toc_node in blocks:
-                for mod_struct in self.options.ModuleStructure:              
-                    
-                    mod_structure = None
-                    for modname in blocks[toc_node].keys():
-                        if modname == mod_struct[0]:
-                            mod_structure = mod_struct
-                            break;
-                        
-                    if not first:
-                        array_text += ",\n"
-                    else:
-                        first = False        
-                        
-                    if mod_structure == None:
-                        array_text += '["empty", "empty", [0]]';#Dummy für nicht vorhandenes Untermodul
-                        continue
-                    
-                    
-                    
-                    array_text += '["' + mod_structure[1] + '","' + modname + '",[0'
-                    for i in range(1, blocks[toc_node][modname]):
-                        array_text += ",0"
-                        
-                    array_text += "]]"
-                        
-                
-            array_text += ")\n"                
-            script_tag.text = array_text
-            
-            
-            #Spezifischen Titel für die Modstart generieren
-            #Wir gehen den Pfad durch die Inhaltsstruktur rückwärts, um
-            #den vollständigen Titel ohne großen Aufwand zu erhalten 
-            tmp = toc_node
-            title.text = None
-            while (tmp != None):
-                if tmp.text != None:
-                    if title.text == None:
-                        title.text = tmp.text
-                    else:
-                        title.text = tmp.text + " - " + title.text
-                tmp = tmp.getparent()
+    def createRedirect(self, filename, redirect, scorm):
+        # redirects always reside in target directory top level
+        if scorm:
+            s = self.template_redirect_scorm
+        else:
+            s = self.template_redirect_basic
+        s = re.sub(r"\$url", redirect, s, 0, re.S)
+        self.sys.writeTextFile(os.path.join(self.options.targetpath, filename), s, self.options.outputencoding)
+        self.sys.message(self.sys.CLIENTINFO, "Redirect created from " + filename + " to " + redirect)

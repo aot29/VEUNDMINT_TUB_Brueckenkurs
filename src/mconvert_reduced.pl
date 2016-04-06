@@ -40,7 +40,6 @@ our $zip = "";               # Filename of zip file (if neccessary)
 # stellt das Verhalten des Menues im Header ein
 # 0 bedeutet, dass Info die erste Seite eines Moduls ist
 # 1 Info wird nach Aufgaben eingegliedert und aus der Vorwaerts-Rückwärtskonfig ausgeklammert
-our $contentlevel = 4; # Level der subsubsections
 our $XIDObj = -1;
 
 our @LabelStorage; # Format jedes Eintrags: [ $lab, $sub, $sec, $ssec, $sssec, $anchor, $pl ]
@@ -67,10 +66,10 @@ my $copyrightcollection = "";
 
 my $globalexstring = "";
 
-our $entryfile = ""; # Die erste und nur einmal pro Session aktivierte Datei, startet in der Regel $startfile
+#our $entryfile = ""; # Die erste und nur einmal pro Session aktivierte Datei, startet in der Regel $startfile
 
 # Redirects passend zu den Buttons
-our $startfile = ""; # Wird vor Aufruf der Funktion createSCORM gesetzt durch StartTag, entryfile ebenso
+#our $startfile = ""; # Wird vor Aufruf der Funktion createSCORM gesetzt durch StartTag, entryfile ebenso
 our $chapterfile = "";
 our $configfile = "";
 our $datafile = "";
@@ -93,7 +92,7 @@ our $doconctitles = 1; # =1 -> Titel der Vaterseiten werden mit denen der Unters
 our $confsite = "config.html";
 our $datasite = "cdata.html";
 our $searchsite = "search.html";
-our $chaptersite = "chapters.html";
+
 our $startsite = "index.html";
 our $favorsite = "favor.html";
 our $stestsite = "stest.html";
@@ -306,64 +305,7 @@ sub checkSystem {
   
 }
 
-# Parameter: filename, redirect-url, scormclear
-sub createRedirect {
-  my $filename = $_[0];
-  my $rurl = $_[1];
-  my $scormclear = $_[2];
 
-  my $indexhtmlscorm = <<ENDE;
-<!DOCTYPE HTML>
-<html lang="de-DE">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="1;url=$rurl">
-        <script type="text/javascript">
-
-        if (typeof(localStorage) !== "undefined") {
-            localStorage.setItem("LOCALSCORM", "CLEARED");
-        } else {
-          localStoragePresent = false;
-          var stor = window.localStorage;
-          if (typeof(stor) !== "undefined") {
-            logMessage(CLIENTERROR,"window.localStorage as stor found!");
-            window.localStorage.setItem("LOCALSCORM", "CLEARED");
-          }
-        }
-        window.location.href = "$rurl";
-        </script>
-        <title>Weiterleitung auf Hauptseite der Onlinemodule</title>
-    </head>
-    <body>
-        Klicken Sie <a class="MINTERLINK" href="$rurl">hier</a>, falls Sie nicht automatisch weitergeleitet werden.
-    </body>
-</html>
-ENDE
-  
-  my $indexhtml = <<ENDE;
-<!DOCTYPE HTML>
-<html lang="de-DE">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="1;url=$rurl">
-        <script type="text/javascript">
-        window.location.href = "$rurl";
-        </script>
-        <title>Weiterleitung auf Hauptseite der Onlinemodule</title>
-    </head>
-    <body>
-        Klicken Sie <a class="MINTERLINK" href="$rurl">hier</a>, falls Sie nicht automatisch weitergeleitet werden.
-    </body>
-</html>
-ENDE
-
-  if ($scormclear == 0) {
-    writefile("$ndir/$filename", $indexhtml);
-  } else {
-    writefile("$ndir/$filename", $indexhtmlscorm);
-  }
-  logMessage($CLIENTINFO, "Redirect auf $rurl in $filename erstellt");
-}
 
 sub createSCORM {
   # Stelle Dateireferenzen fuer Manifestdatei zusammen, iteriere dazu jede einzelne Datei im Baum
@@ -1363,20 +1305,6 @@ sub generatecollectionmark {
 #------------------------------------------------ START NEUES DESIGN ---------------------------------------------------------------------------------------
 
 
-# Erzeugt das head-div fuer die html-Seiten
-sub getheader {
-  # Inhalt wird von js-Funktionen dynamisch gefuellt
-  return "<div class=\"headmiddle\">&nbsp;</div>\n"; # ohne echten div-Inhalt werden icons nicht erzeugt
-}
-
-# Erzeugt das footer-div fuer die html-Seiten
-sub getfooter {
-  # Inhalt von footer_left wird von js-Funktionen dynamisch gefuellt
-  my $footer = "<div id=\"footerleft\"></div>" .
-               "<div id=\"footerright\">" . $config{parameter}{footer_right} . "</div>" .
-               "<div id=\"footermiddle\">" . $config{parameter}{footer_middle} . "</div>\n";
-  return $footer;
-}
 
 # Erzeugt das settings-div fuer die html-Seiten
 sub getsettings {
@@ -1588,110 +1516,6 @@ sub getinputfield {
 
 # Erzeugt das toccaption-div fuer die html-Seiten im Menu-Style
 # Parameter: Das Seitenobjekt
-sub gettoccaption_menustyle {
-  my ($p) = @_;
-  my $c = "";
-
-  logMessage($VERBOSEINFO, "gettoccaption_menustyle called on page " . $p->{TITLE});
-
-  # Nummer des gerade aktuellen Fachbereichs ermitteln
-  my $pp = $p;
-  my $fsubi = -1;  
-  while ($pp->{LEVEL}!=($contentlevel-3)) {
-    if ($pp->{LEVEL}==$contentlevel-2) { $fsubi = $pp->{ID}; }
-    $pp = $pp->{PARENT};
-  }
-
-  my $attr = "";
-  my $root = $p->{ROOT};
-  my @pages1 = @{$root->{SUBPAGES}};
-  my $n1 = $#pages1 + 1;
-
-  # $c .= "<div class=\"toccaption\">" .  getlogolink($p) . "</div>\n"; # Alte Version mit Logo
-  $c .= "<div class=\"toccaption\"></div>\n"; # Neue Version ohne Logo
-
- 
-  
-    # Duenner TU9-Layout mit einzelnen Aufklappunterpunkten
-    $c .= "<tocnavsymb><ul>";
-    $c .= "<li><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . "../$chaptersite\" target=\"_new\"><div class=\"tocmintitle\">Kursinhalt</div></a>";
-    $c .= "<div><ul>\n";
-   
-    my $i1 = 0; # eigentlich for-schleife, aber hier nur Kursinhalt
-    my $p1 = $pages1[$i1];
-    if ($p1->{ID} == $p->{ID}) { $attr = " class=\"selected\""; } else { $attr = " class=\"notselected\""; }
-    $attr = "";
-    my $ff = $i1 + 1;
-
-    # Fachbereiche ohne Nummern anzeigen
-    my $ti = $p1->{TITLE};
-    $ti =~ s/([12345] )(.*)/$2/ ;
-    # $c .= "<li$attr><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p1->link() . ".{EXT}\">" . $ti . "</a>\n"; 
-
-    my @pages2 = @{$p1->{SUBPAGES}};
-    my $i2;
-    my $n2 = $#pages2 + 1;
-    if ($n2 > 0) {
-      # $c .= "  <div><ul>\n";
-      for ( $i2=0; $i2 < $n2; $i2++ ) {
-        my $p2 = $pages2[$i2];
-        # $ti = $p2->{TITLE};
-        # $ti =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/$2\.$3/ ;
-        $ti = $i2;
-        my $selected = 0;
-        # pruefen ob Knoten oder oberknoten der aktuell auszugeben Seite ($site) das $p2 ist
-        my $test = $p;
-        while ($test->{PARENT} != 0) {
-          if ($p2->{ID} == $test->{ID}) { $selected = 1; }
-          $test = $test->{PARENT};
-        }
-        # Stil der tocminbuttons wird in intersite.js gesetzt
-        $c .= "  <li><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p2->link() . ".{EXT}\"><div class =\"tocminbutton\">" . "Kapitel " . ($ti + 1) . "</div></a>\n";
-        if ($fsubi ne -1) {
-          # Untereintraege immer einfuegen im neuen Stil
-          # if ($fsubi == $p2->{ID}) {
-          my @pages3 = @{$p2->{SUBPAGES}};
-          my $i3;
-          my $n3 = $#pages3 + 1;
-          # print "TOC:     lvl3 hat $n3 Eintraege\n";
-          if ($n3 > 0) {
-            $c .= "    <div><ul>\n";
-            for ( $i3 = 0; $i3 < $n3; $i3++ ) {
-              my $p3 = $pages3[$i3];
-              if ($selected == 1) {
-                my $tsec = $p3->{NR}.$p3->{TITLE};
-                $tsec =~ s/([0123456789]+?)[\.]([0123456789]+)(.*)/<div class=\"xsymb\">$1\.$2<\/div>&nbsp;/ ;
-                
-                
-                
-                my @pages4 = @{$p3->{SUBPAGES}};
-                my $a;
-                for ($a = 0; $a <= $#pages4; $a++) {
-                  my $p4 = $pages4[$a];
-                  $tsec .= "<a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p4->link() . ".{EXT}\"><div class=\"xsymb " . $p4->{TOCSYMB} . "\"></div></a>\n";
-                }
-                
-                
-                $c .= "    <li><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p3->link() . ".{EXT}\">" . $tsec . "</a></li>\n";
-              }
-            }
-            $c .= "    </ul></div>\n"; # level3-ul
-          }
-        } # if subsection notwendig
-        $c .= "  </li>\n";
-      }
-    }
-    $c .= "\n";
-    $c .= "</ul></div>";
-    $c .= "</li>";
-    $c .= "</ul></tocnavsymb>"; # level1-ul
-    
-  $c .= "<br /><br />";
-  
-  # Symbole komplett in Kopfleiste und von intersite.js erzeugt
-
-  return $c;
-}
 
 # Erzeugt das content-div fuer die html-Seiten
 # Parameter: Das Seitenobjekt
@@ -2765,73 +2589,11 @@ sub create_tree {
   # PYTHON CONVERSION
   
   
+
+
   
-
-  logMessage($VERBOSEINFO, "Creating stylesheets");
-  chdir($outputdir . "/converter/precss");
-  system("php -n grundlagen.php >grundlagen.pcss");
-
-  # Ersetze Farben im Stylesheet mit den Vorgaben
-
-  my $cccs = open(CSS, "< grundlagen.pcss") or die "FATAL: Could not open pcss-file";
-  my $cccs2 = open(OCSS, "> grundlagen.css") or die "FATAL: Could not create css-file";
-  my $cccsJ = open(JCSS, "> dynamiccss.js") or die "FATAL: Could not create dynmiccss.js-file";
-  my @mycss = <CSS>;
-  close(CSS);
-
-  my $ckey = "";
-  my $cval = "";
-
-  # Freie Parameter sind in convinfo.js eingetragen!
-
-  # Farben parsen (Strings, das #-Prefix wird dynamisch zugefuegt)
-  my $jrow = "";
-  my $fz;
-  print JCSS "var COLORS = new Object();\n";
-  while (($ckey, $cval) = each(%{$config{'colors'}})) {
-    print JCSS "COLORS.$ckey = \"$cval\";\n";
-  }
-
-  # Fonts parsen (Strings)
-  print JCSS "var FONTS = new Object();\n";
-  while (($ckey, $cval) = each(%{$config{'fonts'}})) {
-    $cval = injectEscapes($cval);
-    print JCSS "FONTS.$ckey = \"$cval\";\n";
-  }
-
-  # Sizes parsen (numerische Werte)
-  print JCSS "var SIZES = new Object();\n";
-  while (($ckey, $cval) = each(%{$config{'sizes'}})) {
-    print JCSS "SIZES.$ckey = $cval;\n";
-  }
-
-  # Farben, Fonts und Sizes in CSS-Dateien ersetzen, css-Datei auch als JavaScript-Variable OHNE ERSETZUNG erzeugen
-  print JCSS "var DYNAMICCSS = \"\"\n";
-  my $row;
-  foreach $row (@mycss) {
-    print OCSS $row; # unveraendert in Ziel-CSS schreiben, Ersetzung wird dynamisch von den Seiten vorgenommen
-    $row = injectEscapes($row);
-    print JCSS " + \"" . $row . "\"\n";
-    while (($ckey, $cval) = each(%{$config{'colors'}})) {
-      $row =~ s/\[-$ckey-\]/\#$cval/g ;
-    }
-    while (($ckey, $cval) = each(%{$config{'fonts'}})) {
-      $row =~ s/\[-$ckey-\]/$cval/g ;
-    }
-    while (($ckey, $cval) = each(%{$config{'sizes'}})) {
-      $cval .= "px";
-      $row =~ s/\[-$ckey-\]/$cval/g ;
-    }
-  }
   
-  print JCSS " + \"\";";
-    
-  close(OCSS);
-  close(JCSS);
-
-  system("cp grundlagen.css ../files/css/.");
-  system("cp dynamiccss.js ../files/.");
-
+  
   chdir("../tex");
 
   # print MINTP "% Automatisierte Tagmakros ---------- \n";
@@ -2949,49 +2711,6 @@ sub create_tree {
       my $hfilename = $htmls[$ka];
       my $html_open = open(MINTS, "< $hfilename") or die "FATAL:: Could not open $htmls[$ka]\n";
       while(defined($htmlzeile = <MINTS>)) {
-        if ($htmlzeile =~ m/<!-- mglobalstarttag -->/ ) {
-          $starts++;
-          logMessage($VERBOSEINFO, "--- Starttag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $startfile = "mpl/" . $2 . ".html";
-          $entryfile = "entry_" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobalchaptertag -->/ ) {
-          logMessage($VERBOSEINFO, "--- Chaptertag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $chapterfile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobalconftag -->/ ) {
-          logMessage($VERBOSEINFO, "--- Configtag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $configfile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobaldatatag -->/ ) {
-          logMessage($VERBOSEINFO, "--- Datatag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $datafile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobalfavotag -->/ ) {
-          print "--- Favoritestag found in file $hfilename\n";
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $favofile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mgloballocationtag -->/ ) {
-          logMessage($VERBOSEINFO, "--- Locationtag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $locationfile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobalsearchtag -->/ ) {
-          logMessage($VERBOSEINFO, "--- Searchtag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $searchfile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobalstesttag -->/ ) {
-          logMessage($VERBOSEINFO, "--- STesttag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $stestfile = "mpl/" . $2 . ".html";
-        }
-      }
       close(MINTS);
   }
 
@@ -3012,21 +2731,9 @@ sub create_tree {
     }
   }
 
-  createRedirect("index.html", $startfile, 0);
-  if ($config{doscorm} == 1) {
-    createRedirect($entryfile, $startfile, 1);
-  }
+  # PYTHON CONVERSION
   
-  if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile,0); } else { logMessage($CLIENTINFO, "No Chapter-file defined"); }
-  if ($configfile ne "") { createRedirect("config.html", $configfile,0); } else { logMessage($CLIENTINFO, "No Config-file defined"); }
-  if ($datafile ne "") { createRedirect("cdata.html", $datafile,0); } else { logMessage($CLIENTINFO, "Keine Data-Datei definiert"); }
-  if ($searchfile ne "") { createRedirect("search.html", $searchfile,0); } else { logMessage($CLIENTINFO, "Keine Search-Datei definiert"); }
-  if ($favofile ne "") { createRedirect("favor.html", $favofile,0); } else { logMessage($CLIENTINFO, "Keine Favoriten-Datei definiert"); }
-  if ($locationfile ne "") { createRedirect("location.html", $locationfile,0); } else { logMessage($CLIENTINFO, "Keine Location-Datei definiert"); }
-  if ($stestfile ne "") { createRedirect("stest.html", $stestfile,0); } else { logMessage($CLIENTINFO, "Keine Starttest-Datei definiert"); }
-
-  if ($config{doscorm} eq 1) { createSCORM(); }
-
+  
   if ($config{borkify} eq 1) {
     chdir("$ndir/mpl");
     borkifyHTML();
@@ -3050,13 +2757,6 @@ sub create_tree {
     logMessage($CLIENTINFO, "HTML module" . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? "and PDF " : " ") . "created and zipped to $zip");
   }
 
-  logMessage($CLIENTINFO, "Tree entry chain:");
-  logMessage($CLIENTINFO, "$  ndir/index.html -> $ndir/$startfile");
-  if ($config{doscorm} == 1) {
-    logMessage($CLIENTINFO, "  SCORM -> $ndir/$entryfile -> $ndir/$startfile");
-  }
-  
-  logTimestamp("Finishing create_tree on variant $variantactive in directory " . getcwd);
 }
 
 

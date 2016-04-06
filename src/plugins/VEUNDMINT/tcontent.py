@@ -56,7 +56,7 @@ class TContent(object):
         self.nr = ""
         self.pos = 0
         self.link = "" # for level <=3: section combination, level4: sectioncombo/docname (without html extension)
-        self.backpath = "../" # level <=3: located in targetDir/html, should be used as backpath + filename, never use os.path.join here as this is evaluated in JavaScript only!
+        self.backpath = "../" # level <=3: located in targetDir/html, should be used as backpath + link, never use os.path.join here as this is evaluated in JavaScript only!
         self.savepage = False
         self.menuitem = True
         self.display = False
