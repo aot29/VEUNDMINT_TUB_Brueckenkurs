@@ -27,11 +27,12 @@ werden Volumina von Zylindern, Kegeln und Kugeln behandelt.
 Dieses Modul gliedert sich in folgende Abschnitte:
 
 \begin{itemize}
-\item{\MNRef{M05_Winkel}, \MSRef{M05_Winkel}{Winkel, Kongruenz und \"Ahnlichkeit}}
-\item{\MNRef{M05_Flaecheninhalt}, \MSRef{M05_Flaecheninhalt}{Fl\"acheninhalt und Strahlens\"atze}}
-\item{\MNRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}, \MSRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}{Trigonometrie}}
-\item{\MNRef{M05_Koerper}, \MSRef{M05_Koerper}{Elementargeometrische K"orper}}
-\item{\MNRef{M05_Abschlusstest}, \MSRef{M05_Abschlusstest}{Abschlusstest} f\"ur Modul \MNRef{VBKM05}.}
+\item{\MNRef{M05_Winkel}, \MSRef{M05_Winkel}{Winkel, Kongruenz und \"Ahnlichkeit},}
+\item{\MNRef{M05_Flaecheninhalt}, \MSRef{M05_Flaecheninhalt}{Fl\"acheninhalt und Strahlens\"atze},}
+\item{\MNRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}, \MSRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}{Trigonometrie},}
+\item{\MNRef{M05_Koerper}, \MSRef{M05_Koerper}{Elementargeometrische K"orper},}
+\item{\MNRef{M05_Abschlusstest}, \MSRef{M05_Abschlusstest}{Abschlusstest}.}
+%\item{\MNRef{M05_Abschlusstest}, \MSRef{M05_Abschlusstest}{Abschlusstest} f\"ur Modul \MNRef{VBKM05}.}
 \end{itemize}
 
 \end{MSectionStart}
@@ -63,7 +64,7 @@ kongruent oder \"ahnlich sind, vorgestellt.
 
 \begin{MXContent}{Geometrische Grundbegriffe}{Geometrische Grundbegriffe}{STD}
 
-\MDeclareSiteUXID{VBKM05_Gerade}
+\MDeclareSiteUXID{VBKM05_Grundbegriffe}
 
 \begin{MInfo}
 \MLabel{VBKM05_Gerade}
@@ -123,7 +124,7 @@ Eine \MEntry{Strecke}{Strecke} ist anschaulich gesprochen diejenige gerade, unen
 \MDeclareSiteUXID{VBKM05_Kreis}
 
 \begin{MInfo}
-\MLabel{VBKM05_Strecke}
+\MLabel{VBKM05_Kreis}
 Ein \MEntry{Kreis}{Kreis} (oder eine \MEntry{Kreislinie}{Kreislinie}) mit Mittelpunkt $M$ und Radius $r>0$ ist die Menge aller Punkte der Ebene, welche zu $M$ genau den Abstand $r$ besitzen.
 \begin{itemize}
 \item Jeder Kreis l\"asst sich mathematisch als die L\"osungsmenge einer Gleichung der Form $$(x-a)^2+(y-b)^2=r^2$$ mit reellen Zahlen $a$ und $b$ beschreiben.
@@ -2473,9 +2474,30 @@ Mantels die Summe seiner Dreiecksfl"achen $D_k$ ($1 \leq k \leq n$).
 Damit ist $O = G + M = G + D_1 + \ldots + D_n$.
 \end{MXInfo}
 
-Vergleichbar der Betrachtung von Prisma und Zylinder, erh"alt man einen
-weiteren K"orper, wenn anstatt eines Vielecks wie bei der Pyramide eine 
-Kreisscheibe als Grundfl"ache verwendet wird.
+In besonderen Situationen ergeben sich einfache Formeln, mit denen 
+das Volumen und die Oberfl"ache berechnet werden k"onnen. Ein Beispiel ist
+die oben abgebildete Pyramide. Dort sind alle Seitenfl"achen gleichseitige 
+Dreiecke. Die folgende Aufgabe bietet die Gelegenheit, hierf"ur eine Formel
+f"ur Volumen und Oberfl"ache mit den Eigenschaften gleichseitiger Dreiecke
+zu finden.
+
+\begin{MExercise}
+Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ einer Pyramide, deren 
+Seiten alle gleichseitige Dreiecke mit der Seitenl"ange $s$ sind.
+
+Antworten:
+\begin{MExerciseItems}
+\item \MEquationItem{$V$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05TPyr1}}
+\item \MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05TPyr2}}
+\end{MExerciseItems}
+\end{MExercise}
+
+
+Die "Uberlegungen von oben, dass Prismen und Zylinder ein gemeinsames 
+Bauprinzip bei unterschiedlichen Grundfl"achen haben, kann auf die neue 
+Situation einer Pyramide "ubertragen werden.
+Man erh"alt einen weiteren K"orper, wenn anstatt eines Vielecks wie bei der 
+Pyramide eine Kreisscheibe als Grundfl"ache verwendet wird.
 
 \begin{MXInfo}{Kegel}
 Gegeben ist eine Kreisscheibe $G$ mit Radius $r$.
@@ -2567,54 +2589,84 @@ $O = G + M = \pi \cdot r^2 + \pi \cdot r \cdot l %
  = \pi \cdot r \cdot (r + l)$.
 \end{MXInfo}
 
+In obiger Zeichnung eines Kegels wird die H"ohe $h$ genannt. Die angebenen 
+Formeln enthalten jedoch den Abstand der Spitze vom Rank der Kreisscheibe.
+Wie h"angen beide Gr"o"sen zusammen?
+
+\begin{MExercise}
+Stellen Sie sich vor, der Kegel wird von der Spitze eben 
+durch den Mittelpunkt der Kreisscheibe in zwei gleiche Teile zerlegt.
+Dann ist eine Seite der beiden Teile jeweils ein Dreieck, durch dessen Seiten 
+die H"ohe $h$, der Abstand $l$ und der Radius $r$ beziehungsweise der 
+Durchmesser der Kreisscheibe bestimmt werden.
+Hierbei werden $r$ und $h$ als gegeben angesehen.
+
+\begin{MExerciseItems}
+\item
+Beschreiben Sie $l$ in Abh"angigkeit von $h$ und $r$:
+
+\MEquationItem{$l$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl1}}
+
+\item
+Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ des Kegels:
+\begin{MExerciseItems}
+\item \MEquationItem{$V$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl2}}
+\item \MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl3}}
+\end{MExerciseItems}
+\end{MExerciseItems}
+\end{MExercise}
+
 \end{MXContent}
 %end of subsection: ElementareKoerper.
 
-%Uebungen zum Abschnitt:
-%%%\begin{MExercises}
-%%%\MDeclareSiteUXID{VBKM05_ElementareKoerper_Exercises}
-%%%
-%%%\begin{MExercise}
-%%%\begin{MExerciseItems}
-%%%\item Frage
-%%%\MEquationItem{$u$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{EqIdstringSimpl1}}
-%%%\begin{MHint}{L"osung}
-%%%\end{MHint}
-%%%%
-%%%\item Frage
-%%%$v = $ \MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{EqIdstringSimpl2}
-%%%\begin{MHint}{L"osung}
-%%%\end{MHint}
-%%%%
-%%%\end{MExerciseItems}
-%%%\end{MExercise}
-%%%
-%%%\begin{MExercise}
-%%%\begin{MExerciseItems}
-%%%\item Frage
-%%%\MEquationItem{$x$}{\MLParsedQuestion{15}{321}{10}{EqIdstringParsed1}}
-%%%\begin{MHint}{L"osung}
-%%%\end{MHint}
-%%%%
-%%%\item Frage
-%%%$y = $\MLParsedQuestion{15}{321}{10}{EqIdstringParsed2}
-%%%\begin{MHint}{L"osung}
-%%%\end{MHint}
-%%%%
-%%%\end{MExerciseItems}
-%%%\end{MExercise}
-%%%
-%%%\begin{MExercise}
-%%%\begin{MQuestionGroup}
-%%%\begin{tabular}{ll}
-%%%\MCheckbox{1}{CbIdstring} & Aussage oder Frage \\
-%%%\end{tabular}
-%%%\end{MQuestionGroup}
-%%%\MGroupButton{Eingabe "uberpr"ufen}
-%%%\end{MExercise}
-%%%
-%%%\end{MExercises}
-%end of exercises: Uebungen zum Abschnitt Elementare Koerper.
+
+%Uebungen zum Abschnitt Elementare Koerper:
+\begin{MExercises}
+\MDeclareSiteUXID{VBKM05_ElementareKoerper_Exercises}
+
+\begin{MExercise}
+Berechnen Sie das Volumen eines Prismas der H"ohe $h = 8 \MEinheit{cm}$, dessen 
+Grundfl"ache ein gleichseitiges Sechseck mit Seitenl"ange $a = 3 \MEinheit{cm}$ 
+ist.
+
+Antwort: \MLParsedQuestion{15}{177}{10}{ExM05EK1}
+\end{MExercise}
+
+\begin{MExercise}
+Die Oberfl"ache eines Zylinders mit einer H"ohe von $h = 6 \MEinheit{cm}$ 
+soll mit einer Farbfolie beklebt werden. Die Oberfl"ache soll 
+$O = 200 \MEinheit{cm}^3$ gro"s sein. Berechnen Sie den Durchmesser $d$ der 
+Kreisfl"ache und das Volumen $V$ des Zylinders.
+
+Antworten:
+\begin{MExerciseItems}
+\item \MEquationItem{$d$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21}}
+\item \MEquationItem{$V$}{\MLParsedQuestion{15}{177}{10}{ExM05EK22}}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Es ist ein Holzst"uck in Form eines Quaders mit dem Volumen $V_0$ gegeben. 
+Der Quader ist $h = \MZahl{120}{00}$ cm hoch, und die Grundfl"ache besteht aus 
+einem Quadrat mit einer Seitenl"ange von $s = \MZahl{40}{00}$ cm.
+Aus dem Holzst"uck wird ein zylinderf"ormiges Loch der H"ohe $h$ mit einem 
+Durchmesser von $20$ cm {\glqq}mittig{\grqq} ausgebohrt (das hei"st, der 
+Schnittpunkt der Diagonalen der quadratischen Grundfl"ache bildet den 
+Mittelpunkt der Kreisscheibe des Zylinders).
+Berechnen Sie
+\begin{MExerciseItems}
+\item das Volumen $V_Z$ des ausgebohrten Hohlraum:
+
+\MEquationItem{$V_Z$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21}} $\MEinheit{cm^3}$
+%
+\item den prozentualen Anteil des Volumens $V_1$ des neuen Holzst"ucks, 
+das nach dem Ausbohren von $V_0$ noch vorhanden ist:
+
+\MLParsedQuestion{15}{177}{10}{ExM05EK21} $\%$
+\end{MExerciseItems}
+\end{MExercise}
+\end{MExercises}
+%end of exercises: Uebungen zum Abschnitt Elementare Koerper (jgl).
 
 
 
@@ -2623,6 +2675,68 @@ $O = G + M = \pi \cdot r^2 + \pi \cdot r \cdot l %
 \begin{MTest}{Abschlusstest Modul \arabic{section}}
 \MLabel{M05_Abschlusstest}
 \MDeclareSiteUXID{VBKM05_Abschlusstest}
+
+\begin{MExercise} %Testaufgabe
+Welche der Aussagen und Ergebnisse sind richtig?
+
+\ifttm
+\begin{MQuestionGroup}
+\begin{tabular}{|l|l|l|}
+ richtig & falsch & \\
+ \MCheckbox{0}{ExM05TestAg10} & \MCheckbox{1}{ExM05TestAg11} & %
+ Jedes Rechteck ist eine Raute. \\
+%
+\MCheckbox{1}{ExM05TestAg12} & \MCheckbox{0}{ExM05TestAg13} & %
+ Jedes Quadrat ist ein Parallelogramm. \\
+%
+\MCheckbox{1}{ExM05TestAg14} & \MCheckbox{0}{ExM05TestAg15} & %
+ Es gibt genau ein Quadrat mit einer Diagonalen von $5 \MEinheit{cm}$. \\
+%
+\MCheckbox{1}{ExM05TestAg16} & \MCheckbox{0}{ExM05TestAg17} & %
+ Ein Dreieck mit den Winkeln $36^{\circ}$ und $54^{\circ}$ ist rechtwinklig. \\
+%
+\MCheckbox{0}{ExM05TestAg18} & \MCheckbox{1}{ExM05TestAg19} & %
+ In einem Viereck ist die Summe aller Winkel im Bogenma"s gleich $2 \pi$.
+\end{tabular}
+\end{MQuestionGroup}
+\else
+\begin{MQuestionGroup}
+\begin{tabular}[t]{ccp{140mm}}
+ richtig & falsch & \\
+\MCheckbox{0}{ExM05TestAg10} & \MCheckbox{1}{ExM05TestAg11} & %
+ Jedes Rechteck ist eine Raute. \\
+%
+\MCheckbox{1}{ExM05TestAg12} & \MCheckbox{0}{ExM05TestAg13} & %
+ Jedes Quadrat ist ein Parallelogramm. \\
+%
+\MCheckbox{1}{ExM05TestAg14} & \MCheckbox{0}{ExM05TestAg15} & %
+ Es gibt genau ein Quadrat mit einer Diagonalen von $5 \MEinheit{cm}$. \\
+%
+\MCheckbox{1}{ExM05TestAg16} & \MCheckbox{0}{ExM05TestAg17} & %
+ Ein Dreieck mit den Winkeln $36^{\circ}$ und $54^{\circ}$ ist rechtwinklig. \\
+%
+\MCheckbox{0}{ExM05TestAg18} & \MCheckbox{1}{ExM05TestAg19} & %
+ In einem Viereck ist die Summe aller Winkel im Bogenma"s gleich $4 \pi$.
+\end{tabular}
+\end{MQuestionGroup}
+\fi
+\end{MExercise}
+
+\begin{MExercise} %Testaufgabe: Gemeinsame Abschlussaufgabe der TU9-Brueckenkurse
+Im Dreieck ABC mit den Seitenl"angen 
+$a = 5 \MEinheit{cm}$,
+$b = 6 \MEinheit{cm}$ und
+$c = 9 \MEinheit{cm}$
+sind auf der Seite $c$ ein Punkt $P$ und auf der Seite $b$ ein Punkt $Q$ so
+gew"ahlt, dass $PQ$ parallel zur Seite $a$ ist und 
+$PQ = \MZahl{0}{50} \MEinheit{cm}$ gilt. Bestimmen Sie die Streckenl"angen
+$PB$ und $QC$ in Zentimeter:
+
+\begin{MExerciseItems}
+\item \MEquationItem{$PB$}{\MLParsedQuestion{15}{321}{10}{ExM05TestAg21}$\MEinheit{cm}$}
+\item \MEquationItem{$QC$}{\MLParsedQuestion{15}{321}{10}{ExM05TestAg22}$\MEinheit{cm}$}
+\end{MExerciseItems}
+\end{MExercise}
 
 \begin{MExercise}
 In der folgenden Tabelle sind f\"ur ein rechtwinkliges Dreieck einige Gr\"o{\ss}en gegeben, 
@@ -2689,7 +2803,8 @@ Winkel erhalten die griechischen Buchstaben zu den gegen\"uberliegenden Seiten
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
 $a$ & $b$ & $c$ & $\alpha$ & $\beta$ & $\gamma$& $\sin(\alpha)$ & $\sin(\beta)$ & $\sin(\gamma)$ \\ \hline
-$1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
+%Anmerkung: Folgende Angaben beschreiben kein(!) rechtwinkliges Dreieck (jgl):
+%$1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
 $1$ & $1$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(2)}{5}{WR1} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5}{WR21} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5}{WR8} & $\frac12\pi$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5}{WR13} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5}{PARSEDQUEST3} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5}{WR17}   \\ 
 $3$ & $4$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{5}{5}{WR2} & $*$ & $*$ & $\frac12\pi$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{4/5}{5}{WR7} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{3/5}{5}{PARSEDQUEST4} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5}{WR12} \\
 \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(15)}{5}{WR3} & $\sqrt7$ & $\sqrt8$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/2}{5}{WR6} & $*$ & $*$ & $1$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(8/15)}{5}{WR11} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(7/15)}{5}{WR14} \\
