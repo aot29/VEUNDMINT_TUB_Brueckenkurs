@@ -47,7 +47,7 @@ class Plugin(basePlugin):
         self.name = "HTML5_MINTMODTEX"
         self.version ="P0.1.0"
         self.outputextension = "html"
-        self.pagefactory = PageFactory(interface)
+        self.pagefactory = PageFactory(interface, self)
         self.sys.message(self.sys.VERBOSEINFO, "Output plugin " + self.name + " of version " + self.version + " constructed")
 
     def _prepareData(self):
@@ -116,9 +116,13 @@ class Plugin(basePlugin):
         else:
             self.sys.message(self.sys.CLIENTERROR, "No exercise server declared in options")
         
+        
         self.template_redirect_basic = self.sys.readTextFile(self.options.template_redirect_basic, self.options.stdencoding)
         self.template_redirect_scorm = self.sys.readTextFile(self.options.template_redirect_scorm, self.options.stdencoding)
 
+        self.siteredirects = dict() # consists of pairs [ redirectfilename, redirectarget ]
+        for t in self.options.sitetaglist:
+            self.siteredirects[t] = [ t + "." + self.outputextension, "" ]
 
      
     def create_output(self):
@@ -190,6 +194,8 @@ class Plugin(basePlugin):
                 q.link = str(pos)
             else:
                 q.link = q.parent.link + "." + str(pos)
+            
+            q.fullname = self.outputextension + "/" + q.link
             
             # process first child next if present
             if (lev < maxlevel) and (len(node) > 0):
@@ -270,6 +276,8 @@ class Plugin(basePlugin):
                 p.display = True
                 p.content = text
                 p.docname = "sectionx" + str(sec) + "." + str(ssec)
+                p.link = p.docname
+                p.fullname = self.outputextension + "/" + p.link + "." + self.outputextension
                 lastcontent = None
                 pos = 1
                 
@@ -335,6 +343,7 @@ class Plugin(basePlugin):
     
                     p.pos = pos
                     p.link = p.parent.link + "/" + p.docname
+                    p.fullname = self.outputextension + "/" + p.link + "." + self.outputextension
                     p.backpath = p.parent.backpath + "../" # level 4 xcontents are located in html/X.Y.Z/.
                     p.menuitem = 0
                     p.nr = "" # actually used?
@@ -498,49 +507,18 @@ class Plugin(basePlugin):
             self.filecount += 1
             if "<!-- mglobalstarttag -->" in tc.html:
                 self.sys.message(self.sys.CLIENTINFO, "Global starttag found in file " + f + ", locally " + tc.link)
-                self.startfile = tc.link + self.outputextension
-                self.entryfile = "entry_" + tc.docname + self.outputextension
-  
-            """
-        if ($htmlzeile =~ m/<!-- mglobalchaptertag -->/ ) {
-          logMessage($VERBOSEINFO, "--- Chaptertag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $chapterfile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobalconftag -->/ ) {
-          logMessage($VERBOSEINFO, "--- Configtag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $configfile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobaldatatag -->/ ) {
-          logMessage($VERBOSEINFO, "--- Datatag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $datafile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobalfavotag -->/ ) {
-          print "--- Favoritestag found in file $hfilename\n";
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $favofile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mgloballocationtag -->/ ) {
-          logMessage($VERBOSEINFO, "--- Locationtag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $locationfile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobalsearchtag -->/ ) {
-          logMessage($VERBOSEINFO, "--- Searchtag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $searchfile = "mpl/" . $2 . ".html";
-        }
-        if ($htmlzeile =~ m/<!-- mglobalstesttag -->/ ) {
-          logMessage($VERBOSEINFO, "--- STesttag found in file $hfilename");
-          $hfilename =~ m/(.+)\/mpl\/(.+?).html/ ;
-          $stestfile = "mpl/" . $2 . ".html";
-        }
-      }
-            """        
+                self.startfile = self.outputextension + "/" + tc.link + "." + self.outputextension
+                self.entryfile = "entry_" + tc.docname + "." + self.outputextension
+                
+            # search for other tags and create redirects if found
+            for s in self.options.sitetaglist:
+                if "<!-- mglobal" + s + "tag -->" in tc.html:
+                    self.sys.message(self.sys.CLIENTINFO, "Global " + s + "tag found in file " + f + ", locally " + tc.link)
+                    self.siteredirects[s][1] = self.outputextension + "/" + tc.link + "." + self.outputextension
+                    
             
     def write_miscfiles(self):
+        # write redirects
         if self.startfile == "":
             self.sys.message(self.sys.FATALERROR, "No startfile found")
         else:
@@ -551,21 +529,68 @@ class Plugin(basePlugin):
                 self.createRedirect(self.entryfile, self.startfile, True)
                 self.sys.message(self.sys.CLIENTINFO, "  SCORM -> " + self.entryfile + " -> " + self.startfile)
 
+        for s in self.options.sitetaglist:
+            if self.siteredirects[s][1] != "":
+                self.createRedirect(self.siteredirects[s][0], self.siteredirects[s][1], False)
 
-        
-        """  
-  if ($chapterfile ne "") { createRedirect("chapters.html", $chapterfile,0); } else { logMessage($CLIENTINFO, "No Chapter-file defined"); }
-  if ($configfile ne "") { createRedirect("config.html", $configfile,0); } else { logMessage($CLIENTINFO, "No Config-file defined"); }
-  if ($datafile ne "") { createRedirect("cdata.html", $datafile,0); } else { logMessage($CLIENTINFO, "Keine Data-Datei definiert"); }
-  if ($searchfile ne "") { createRedirect("search.html", $searchfile,0); } else { logMessage($CLIENTINFO, "Keine Search-Datei definiert"); }
-  if ($favofile ne "") { createRedirect("favor.html", $favofile,0); } else { logMessage($CLIENTINFO, "Keine Favoriten-Datei definiert"); }
-  if ($locationfile ne "") { createRedirect("location.html", $locationfile,0); } else { logMessage($CLIENTINFO, "Keine Location-Datei definiert"); }
-  if ($stestfile ne "") { createRedirect("stest.html", $stestfile,0); } else { logMessage($CLIENTINFO, "Keine Starttest-Datei definiert"); }
-        """
-
+        # write SCORM manifest if needed
         if self.options.doscorm == 1:
             pass
         
+        # write variables in conversion info file
+        self.data['signature'] = self.sys.get_conversion_signature()
+        # generate a course id which is unique (given course and version)
+        self.data['signature']['CID'] = "(" + self.options.signature_main + ";;" + self.options.signature_version + ";;" + self.options.signature_localization + ")"
+        self.sys.message(self.sys.CLIENTINFO, "Generating Course Signature:")
+        self.sys.message(self.sys.CLIENTINFO, "     main: " + self.options.signature_main)
+        self.sys.message(self.sys.CLIENTINFO, "  version: " + self.options.signature_version)
+        self.sys.message(self.sys.CLIENTINFO, "   locale: " + self.options.signature_localization)
+        self.sys.message(self.sys.CLIENTINFO, "timestamp: " + self.data['signature']['timestamp'])
+        self.sys.message(self.sys.CLIENTINFO, "conv-user: " + self.data['signature']['convuser'])
+        self.sys.message(self.sys.CLIENTINFO, "c-machine: " + self.data['signature']['convmachine'])
+        self.sys.message(self.sys.CLIENTINFO, "      CID: " + self.data['signature']['CID'])
+        self.sys.message(self.sys.CLIENTINFO, "Signature will be available in the HTML tree")
+
+        s = "// Automatically generated by the tex2x VEUNDMINT output plugin\n" \
+          + "var scormLogin = " + str(self.options.scormlogin) + ";\n" \
+          + "var isRelease = " + str(self.options.dorelease) + ";\n" \
+          + "var doCollections = " + str(self.options.docollections) + ";\n" \
+          + "var isVerbose = " + str(self.options.doverbose) + ";\n" \
+          + "var testOnly = " + str(self.options.testonly) + ";\n" \
+
+        for vr in ["signature_main", "signature_version", "signature_localization", "do_feedback", "do_export", "reply_mail",
+                   "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",
+                   "footer_middle", "footer_right", "mainlogo", "stdmathfont"]:
+            s += "var " + vr + " = \"" + getattr(self.options, vr) + "\";\n"
+            
+        
+        if self.options.dorelease == 1:
+            self.sys.message(self.sys.CLIENTINFO, "RELEASE VERSION will be generated")
+        else:
+            self.sys.message(self.sys.CLIENTINFO, "Nonrelease will be generated")
+            s += "console.log(\"NON RELEASE VERSION\");\n"
+            
+        if self.options.doverbose == 1:
+            self.sys.message(self.sys.CLIENTINFO, "Verboseversion will be generated")
+            s += "console.log(\"VERBOSE VERSION\");\n"
+
+        if self.options.do_feedback == 1:
+            self.sys.message(self.sys.CLIENTINFO, "Feedbackversion will be generated")
+
+        if self.options.do_export == 1:
+            self.sys.message(self.sys.CLIENTINFO, "Exportversion will be generated")
+        
+        s += "var globalsections = [];\n"
+        for i in range(len(self.data["sections"])):
+            s += "globalsections[" + str(i) + "] = \"" + str(self.data["sections"][str(i)]) + "\";\n"
+
+        for glb in ['sitepoints', 'expoints', 'testpoints']:
+            s += "var global" + glb + " = [];\n"
+            for i in range(len(self.data[glb])):
+                s += "global" + glb + "[" + str(i) + "] = " + str(self.data[glb][str(i)]) + ";\n"
+        
+
+        self.sys.writeTextFile(os.path.join(self.options.targetpath, self.options.convinfofile), s, self.options.outputencoding)
 
 
     # generate css and js style files
@@ -639,7 +664,7 @@ class Plugin(basePlugin):
             
 
     def createRedirect(self, filename, redirect, scorm):
-        # redirects always reside in target directory top level
+        # filename (containing the redirect) and target are given relative to top level directory
         if scorm:
             s = self.template_redirect_scorm
         else:

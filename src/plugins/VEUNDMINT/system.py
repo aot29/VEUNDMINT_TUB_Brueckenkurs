@@ -276,3 +276,10 @@ class System(object):
         s = re.sub(r"\n", "\\n", s, 0, re.S)
         return s
       
+    def get_conversion_signature(self):
+        s = dict()
+        s['timestamp'] = time.ctime(time.time())
+        s['convmachine'] = socket.gethostname()
+        s['convuser'] = getpass.getuser()
+        return s
+    

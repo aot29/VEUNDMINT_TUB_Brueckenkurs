@@ -18,7 +18,7 @@
 
 
 """
-    This is html5 output plugin PageFactoy object
+    This is html5 output plugin PageFactory object
     Version P0.1.0, needs to be consistent with mintmod.tex and the preprocessor plugin
 """
 
@@ -37,10 +37,11 @@ import fnmatch
 
 class PageFactory(object):
 
-    def __init__(self, interface):
+    def __init__(self, interface, outputplugin):
         self.sys = interface['system']
         self.data = interface['data']
         self.options = interface['options']
+        self.outputplugin = outputplugin
         self._load_templates()
         
     def _load_templates(self):
@@ -71,6 +72,13 @@ class PageFactory(object):
             self.sys.message(self.sys.CLIENTERROR, "div replacement (id=\"" + idstr + "\") happened " + str(n) + " times")
         return html
             
+
+    def _append_string(self, html, idstr, append):
+        # carefull: parser turns <div ....></div> into <div ... />
+        (html, n) = re.subn(re.escape('<div id="' + idstr + '"') + r"(.*?)" + re.escape("/>"), '<div id="' + idstr + '"\\1 />' + append, html, 0, re.S)
+        if n != 1:
+            self.sys.message(self.sys.CLIENTERROR, "div append (id=\"" + idstr + "\") happened " + str(n) + " times")
+        return html
             
     # generates a html page as a string using loaded templates and the given TContent object
     def generate_html(self, tc):
@@ -85,27 +93,57 @@ class PageFactory(object):
         template.find(".//meta[@id='meta-charset']").attrib['content'] = "text/html; charset=" + self.options.outputencoding
         template.find(".//title").text = tc.title
 
-        template.find(".//div[@id='itoccaption']").text = self.gettoccaption(tc)
-
-        template.find(".//div[@id='footerright']").text = self.options.footer_right
-        template.find(".//div[@id='footermiddle']").text = self.options.footer_middle
-
-        # do pure string substitutions
+        # do pure string substitutions, link updates to match tc location in the tree will be done later
 
         tc.html = etree.tostring(template, pretty_print = True, encoding = "unicode") # will always be unicode, output encoding for written files will be determined later
 
         cs_text = ""
         for cs in self.options.stylesheets:
-            cs_text += "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + tc.backpath + cs + "\"/>\n"
+            cs_text += "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + cs + "\"/>\n"
         js_text = ""     
         for js in self.options.scriptheaders:
-            js_text += "<script src=\"" + tc.backpath + js + "\" type=\"text/javascript\"></script>\n"
+            js_text += "<script src=\"" + js + "\" type=\"text/javascript\"></script>\n"
 
         tc.html = self._substitute_string(tc.html, "mathjax-header", self.template_mathjax_settings + self.template_mathjax_include)
         tc.html = self._substitute_string(tc.html, "javascript-header", cs_text)
         tc.html = self._substitute_string(tc.html, "javascript-body-header", js_text + self.template_javascriptheader)
         tc.html = self._substitute_string(tc.html, "javascript-body-footer", self.template_javascriptfooter)
+
+        tc.html = self._append_string(tc.html, "itoccaption", self.gettoccaption(tc))
+        tc.html = self._substitute_string(tc.html, "footerright", self.options.footer_right)
+        tc.html = self._substitute_string(tc.html, "footermiddle", self.options.footer_middle)
+
+
         tc.html = self._substitute_string(tc.html, "content", tc.content)
+
+        # compute number of chapters and section numbers
+        pp = tc
+        idstr = ""
+        ssn = -1
+        while pp.level != (self.options.contentlevel - 4):
+            if pp.level == (self.options.contentlevel - 2):
+                ssn = pp.nr
+            if (idstr == ""):
+                idstr = str(pp.pos)
+            else:
+                idstr = str(pp.pos) + "." + idstr
+            pp = pp.parent
+        
+        # provide tc attributes as JS variables inside the html
+        js = ""
+        js += "var SITE_ID = \"" + idstr + "\";\n" \
+           +  "var SITE_UXID = \"" + tc.uxid + "\";\n" \
+           +  "var SECTION_ID = " + ssn + ";\n" \
+           +  "var docName = \"" + tc.docname + "\";\n" \
+           +  "var fullName = \"" + self.outputplugin.outputextension + "/" + tc.link + "." + self.outputplugin.outputextension + "\";\n" \
+           +  "var linkPath = \"" + tc.backpath + "\";\n"
+       
+        tc.html = tc.html.replace("// <JSCRIPTPRELOADTAG>", js + "// <JSCRIPTPRELOADTAG>")
+
+        
+        tc.html = self.update_links(tc.html, tc.backpath)
+
+        # postprocessing here
         
         
     def gettoccaption(self, tc):
@@ -124,10 +162,8 @@ class PageFactory(object):
         pages1 = root.children
         n1 = len(pages1)
 
-        c += "<div class=\"toccaption\"></div>\n"; # Neue Version ohne Logo
-
         c += "<tocnavsymb><ul>"
-        c += "<li><a class=\"MINTERLINK\" href=\"" + tc.backpath + "../" + self.options.chaptersite + "\" target=\"_new\"><div class=\"tocmintitle\">" + self.options.strings['module_content'] + "</div></a>"
+        c += "<li><a class=\"MINTERLINK\" href=\"" + self.outputplugin.siteredirects['chapter'][0] + "\" target=\"_new\"><div class=\"tocmintitle\">" + self.options.strings['module_content'] + "</div></a>"
         c += "<div><ul>\n"
    
         i1 = 0; # eigentlich for-schleife, aber hier nur Kursinhalt
@@ -142,7 +178,7 @@ class PageFactory(object):
 
         # Fachbereiche ohne Nummern anzeigen
         ti = re.sub(r"([12345] )(.*)", "\\2", p1.title, 1, re.S)
-        c += "<li" + attr + "><a class=\"MINTERLINK\" href=\"" + tc.backpath + p1.link + ".{EXT}\">" + ti + "</a>\n" 
+        c += "<li" + attr + "><a class=\"MINTERLINK\" href=\"" + p1.fullname  + "\">" + ti + "</a>\n" 
 
         pages2 = p1.children
         n2 = len(pages2)
@@ -157,7 +193,7 @@ class PageFactory(object):
                     if p2.myid == test.myid: selected = 1
                     test = test.parent
                 # Stil der tocminbuttons wird in intersite.js gesetzt
-                c += "  <li><a class=\"MINTERLINK\" href=\"" + tc.backpath + p2.link + ".{EXT}\"><div class =\"tocminbutton\">" \
+                c += "  <li><a class=\"MINTERLINK\" href=\"" + p2.fullname + "\"><div class =\"tocminbutton\">" \
                   +  self.options.strings['chapter'] + " " + str(ti + 1) + "</div></a>\n"
                 if fsubi != -1: 
                     # Untereintraege immer einfuegen im neuen Stil
@@ -173,10 +209,9 @@ class PageFactory(object):
                                 pages4 = p3.children
                                 for a in range(len(pages4)):
                                        p4 = pages4[a]
-                                       tsec += "<a class=\"MINTERLINK\" href=\"" + tc.backpath + p4.link \
-                                            +  ".{EXT}\"><div class=\"xsymb " + p4.tocsymb + "\"></div></a>\n"
+                                       tsec += "<a class=\"MINTERLINK\" href=\"" + p4.fullname + "\"><div class=\"xsymb " + p4.tocsymb + "\"></div></a>\n"
                                        
-                                c += "    <li><a class=\"MINTERLINK\" href=\"" + tc.backpath + p3.link + ".{EXT}\">" + tsec + "</a></li>\n"
+                                c += "    <li><a class=\"MINTERLINK\" href=\"" + p3.fullname + "\">" + tsec + "</a></li>\n"
                         c += "    </ul></div>\n"
                 c += "  </li>\n"
         c += "\n" \
@@ -186,3 +221,27 @@ class PageFactory(object):
           +  "<br /><br />"
   
         return c
+    
+    
+    # adds prefix to links in html code
+    def update_links(self, html, prefix):
+        if prefix != "":
+            # expand tex-Makro MMaterial to localmaterial macro inside HTML code
+            html = html.replace("\\MMaterial", ":localmaterial:")
+            # add prefix in front of filenames used by local links (but not in weblinks or escaped links)
+            html = re.sub(r"(src|href)=(\"|')(?!#|https://|http://|ftp://|mailto:|:localmaterial:|:directmaterial:)", "\\1=\\2" + prefix, html, 0, re.S)
+            html = re.sub(r"(\<param name=[\"\']movie[\"\'] value=[\"\'])(?!http|https|ftp)", "\\1" + prefix, html, 0, re.S)
+
+            if re.search(r",(\"|\')(?!(\#|\'|\"|http://|https://|ftp://|mailto:|:localmaterial:|:directmaterial:))", html, re.S): 
+                self.sys.message(self.sys.VERBOSEINFO, "Undesired combination marker and protocol prefix found in html code")
+
+            # Lokale Dateien befinden sich im gleichen Ordner ohne Prefix
+            html = html.replace(":localmaterial:", ".")
+            html = html.replace(":directmaterial:", "")
+        
+        else:
+            self.sys.message(self.sys.CLIENTWARN, "update_links called without a proper link prefix")
+            
+        return html
+
+        
