@@ -124,30 +124,6 @@ class Option(object):
         with open(os.path.join(self.converterDir, "plugins", "VEUNDMINT", "colorset_blue.json")) as colorfile:
             self.colors = json.load(colorfile)
 
-        # VE&MINT stylesheets und JS-files, die in jeder HTML-Datei eingebunden werden, Dateiangaben relativ zum files-Ordner
-        self.stylesheets  = [
-            "qtip2/jquery.qtip.min.css",
-            "datatables/min.css"
-        ]
-        self.scriptheaders = [
-            "es5-sham.min.js",
-            "qtip2/jquery-1.10.2.min.js",
-            "qtip2/jquery.qtip.min.js",
-            "datatables/datatables.min.js",
-            "knockout-3.0.0.js",
-            "math.js",
-            "dynamiccss.js",
-            "convinfo.js",
-            "mparser.js",
-            "scormwrapper.js",
-            "dlog.js",
-            "userdata.js",
-            "intersite.js",
-            "exercises.js",
-            "mintscripts.js",
-            "servicescripts.js"
-        ]
-
         # VE&MINT course parameters, defining values used by the online course
         server = "https://mintlx3.scc.kit.edu/dbtest"
         self.signature_main = "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
@@ -177,6 +153,7 @@ class Option(object):
         self.targetpath = os.path.join(self.currentDir, self.output) # Pfad in den der generierte Kurs kommt
         self.copyrightFile = os.path.join(self.sourceTEX, "copyrightcollection.tex")
         self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
+        self.convinfofile = "convinfo.js"
 
         # HTML/JS/CSS template options
         self.template_precss = "precss"
@@ -189,6 +166,30 @@ class Option(object):
         self.template_mathjax_local = os.path.join(self.converterTemplates, "mathjax_local_2_6.html")
         self.template_redirect_scorm = os.path.join(self.converterTemplates, "html5_redirect_scorm.html")
         self.template_redirect_basic = os.path.join(self.converterTemplates, "html5_redirect_basic.html")
+
+        # VE&MINT stylesheets und JS-files, die in jeder HTML-Datei eingebunden werden, Dateiangaben relativ zum files-Ordner
+        self.stylesheets  = [
+            "qtip2/jquery.qtip.min.css",
+            "datatables/min.css"
+        ]
+        self.scriptheaders = [
+            "es5-sham.min.js",
+            "qtip2/jquery-1.10.2.min.js",
+            "qtip2/jquery.qtip.min.js",
+            "datatables/datatables.min.js",
+            "knockout-3.0.0.js",
+            "math.js",
+            "dynamiccss.js",
+            self.convinfofile,
+            "mparser.js",
+            "scormwrapper.js",
+            "dlog.js",
+            "userdata.js",
+            "intersite.js",
+            "exercises.js",
+            "mintscripts.js",
+            "servicescripts.js"
+        ]
 
         # ttm-file
         self.ttmExecute = True
@@ -207,6 +208,9 @@ class Option(object):
         self.ContentStructure.append("h3") # a subsection in the coursre, MSubsection according to MINTMOD
         self.ContentStructure.append("h4") # used for subsection introduction inside xcontents
         #self.ContentStructure.append("div")#Container werden nun über Attribute identifiziert
+        
+        # special site tags
+        self.sitetaglist = ["chapter", "config", "data", "favorites", "location", "search", "test"]
         
         # ModuleStructure
         self.ModuleStructure=[]
