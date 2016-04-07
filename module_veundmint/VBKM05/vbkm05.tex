@@ -2,7 +2,7 @@
 \MPragma{MathSkip}
 
 %Einkommentieren zur Erzeugung der pngs aus den tikz-Umgebungen
-%\Mtikzexternalize
+\Mtikzexternalize
 
 \MSetSubject{\MINTMathematics}
 
@@ -2225,8 +2225,9 @@ bezeichnet. Sie sind zueinander parallel.
 Die anderen Fl"achen bilden zusammen den Mantel $M$.
 
 %Zeichnung Prisma:
-\tdplotsetmaincoords{60}{30}
 \begin{center}
+\MTikzAuto{%
+\tdplotsetmaincoords{60}{30}
 \begin{tikzpicture}[tdplot_main_coords,>=latex]
 \def\zt{3}
 \def\ticl{0.8}
@@ -2256,7 +2257,7 @@ Die anderen Fl"achen bilden zusammen den Mantel $M$.
 \draw[->] (TXT.north) -- (BT);
 %%\tdplottransformmainscreen{\ax}{\ay}{\az}
 %%\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
-\end{tikzpicture}
+\end{tikzpicture}}
 \end{center}
 
 In der Zeichnung ist ein Prisma mit einem Dreieck als Grundfl"ache gezeigt. Die
@@ -2293,9 +2294,9 @@ Der gekr"ummte Teil der Oberfl"ache zwischen den beiden Kreisscheiben bildet
 den Mantel $M$ des Zylinders.
 
 %Zeichnung Zylinder:
-\usetikzlibrary{fadings}
-\tdplotsetmaincoords{60}{30}
 \begin{center}
+\MTikzAuto{%
+\tdplotsetmaincoords{60}{30}
 \begin{tikzpicture}[tdplot_main_coords,>=latex]
 \def\az{30}
 %\def\pl{60}
@@ -2333,6 +2334,7 @@ den Mantel $M$ des Zylinders.
 \draw[<-] (DRL) -- (TXR.west);
 \draw[->] (TXR.east) -- (DRR);
 \end{tikzpicture}
+}
 \end{center}
 %Ende (Zeichnung).
 
@@ -2358,9 +2360,9 @@ Kreisscheibe um $M$ und einen Randpunkt, erh"alt man eine Kugel mit
 Radius $r$.
 
 %Zeichnung Kugel:
-\usetikzlibrary{fadings}
-\tdplotsetmaincoords{60}{30}
 \begin{center}
+\MTikzAuto{%
+\tdplotsetmaincoords{60}{30}
 \begin{tikzpicture}[tdplot_main_coords,>=latex]
 \def\az{30}
 \def\pl{60}
@@ -2390,6 +2392,7 @@ Radius $r$.
 \draw[<-] (DHB) -- (TXH.south);
 \draw[->] (TXH.north) -- (DHT);
 \end{tikzpicture}
+}
 \end{center}
 %Ende (Zeichnung).
 
@@ -2419,8 +2422,9 @@ der aus allen Punkten besteht, die auf einer Strecke von $S$ zu einem
 Punkt auf der Grundfl"ache $G$ liegen.
 
 %Zeichnung Pyramide:
-\tdplotsetmaincoords{60}{40}
 \begin{center}
+\MTikzAuto{%
+\tdplotsetmaincoords{60}{40}
 \begin{tikzpicture}[tdplot_main_coords,>=latex]
 \def\zt{5}
 \def\rd{2.5}
@@ -2458,6 +2462,7 @@ Punkt auf der Grundfl"ache $G$ liegen.
 \draw[<-] (DAL) -- (TXA.west);
 \draw[->] (TXA.east) -- (DAR);
 \end{tikzpicture}
+}
 \end{center}
 
 In der Zeichnung ist eine Pyramide mit einer dreieckigen Grundfl"ache 
@@ -2507,11 +2512,11 @@ der aus allen Punkten besteht, die auf einer Strecke von $S$ zu einem
 Punkt auf der Grundfl"ache $G$ liegen.
 
 %Zeichnung Kegel:
-%\usetikzlibrary{fadings}
+\begin{center}
+\MTikzAuto{
 \def\az{30}
 \def\pl{60}
 \tdplotsetmaincoords{\pl}{\az}
-\begin{center}
 \begin{tikzpicture}[tdplot_main_coords,>=latex]
 \def\zt{4}
 \def\rd{2}
@@ -2573,6 +2578,7 @@ Punkt auf der Grundfl"ache $G$ liegen.
 \draw[<-] (DRL) -- (TXR.west);
 \draw[->] (TXR.east) -- (DRR);
 \end{tikzpicture}
+}
 \end{center}
 %Ende (Zeichnung).
 
@@ -2657,12 +2663,12 @@ Berechnen Sie
 \begin{MExerciseItems}
 \item das Volumen $V_Z$ des ausgebohrten Hohlraum:
 
-\MEquationItem{$V_Z$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21}} $\MEinheit{cm^3}$
+\MEquationItem{$V_Z$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21b}} $\MEinheit{cm^3}$
 %
 \item den prozentualen Anteil des Volumens $V_1$ des neuen Holzst"ucks, 
 das nach dem Ausbohren von $V_0$ noch vorhanden ist:
 
-\MLParsedQuestion{15}{177}{10}{ExM05EK21} $\%$
+\MLParsedQuestion{15}{177}{10}{ExM05EK21c} $\%$
 \end{MExerciseItems}
 \end{MExercise}
 \end{MExercises}
