@@ -32,6 +32,7 @@ from lxml.html import HTMLParser
 from lxml.html import fragment_fromstring as frag_fromstring # must be this one: html5parser.HTMLParser does not accept JS
 from lxml.html import fromstring as hp_fromstring
 from lxml.html.html5parser import HTMLParser as HTML5Parser
+from lxml.html.html5parser import fromstring as h5_fromstring
 from lxml import etree
 import fnmatch
 
@@ -65,19 +66,19 @@ class PageFactory(object):
             self.template_mathjax_include = self.sys.readTextFile(self.options.template_mathjax_cdn, self.options.stdencoding)
             
             
-    def _substitute_string(self, html, idstr, insertion):
-        # carefull: parser turns <div ....></div> into <div ... />
-        (html, n) = re.subn(re.escape('<div id="' + idstr + '"') + r"(.*?)" + re.escape("/>"), '<div id="' + idstr + '"\\1>' + insertion + "</div>", html, 0, re.S)
-        if n != 1:
-            self.sys.message(self.sys.CLIENTERROR, "div replacement (id=\"" + idstr + "\") happened " + str(n) + " times")
+    def _substitute_string(self, html, cstr, insertion):
+        # carefull: parser turns <div ....></div> into <div ... /> but not if a whitespace is inside
+        (html, n) = re.subn(r"\<div (.*?)class=\"" + re.escape(cstr) + r"\"(.*?)\>(.+?)\</div\>", "<div \\1class=\"" + cstr + "\"\\2>" + insertion + "</div>", html, 0, re.S)
+        if n <= 0:
+            self.sys.message(self.sys.CLIENTERROR, "div replacement (class=\"" + cstr + "\") happened " + str(n) + " times")
         return html
             
 
-    def _append_string(self, html, idstr, append):
+    def _append_string(self, html, cstr, append):
         # carefull: parser turns <div ....></div> into <div ... />
-        (html, n) = re.subn(re.escape('<div id="' + idstr + '"') + r"(.*?)" + re.escape("/>"), '<div id="' + idstr + '"\\1 />' + append, html, 0, re.S)
-        if n != 1:
-            self.sys.message(self.sys.CLIENTERROR, "div append (id=\"" + idstr + "\") happened " + str(n) + " times")
+        (html, n) = re.subn(r"\<div (.*?)class=\"" + re.escape(cstr) + r"\"(.*?)\>(.+?)\</div\>", "<div \\1class=\"" + cstr + "\"\\2></div>" + append, html, 0, re.S)
+        if n <= 0:
+            self.sys.message(self.sys.CLIENTERROR, "div append (class=\"" + cstr + "\") happened " + str(n) + " times")
         return html
             
     # generates a html page as a string using loaded templates and the given TContent object
@@ -87,15 +88,19 @@ class PageFactory(object):
             return
 
         template = etree.fromstring(self.template_html5)
+        #template = h5_fromstring(self.template_html5)
         
         # do substitutions supported by lxml parsers and etree
         
-        template.find(".//meta[@id='meta-charset']").attrib['content'] = "text/html; charset=" + self.options.outputencoding
         template.find(".//title").text = tc.title
+        template.find(".//meta[@id='meta-charset']").attrib['content'] = "text/html; charset=" + self.options.outputencoding
 
         # do pure string substitutions, link updates to match tc location in the tree will be done later
 
         tc.html = etree.tostring(template, pretty_print = True, encoding = "unicode") # will always be unicode, output encoding for written files will be determined later
+
+        # solve some problems arising from standard html parsers
+        tc.html = self._correcthtml5(tc.html)
 
         cs_text = ""
         for cs in self.options.stylesheets:
@@ -109,7 +114,12 @@ class PageFactory(object):
         tc.html = self._substitute_string(tc.html, "javascript-body-header", js_text + self.template_javascriptheader)
         tc.html = self._substitute_string(tc.html, "javascript-body-footer", self.template_javascriptfooter)
 
-        tc.html = self._append_string(tc.html, "itoccaption", self.gettoccaption(tc))
+        
+
+
+        tc.html = self._append_string(tc.html, "toccaption", self.gettoccaption(tc))
+        tc.html = self._substitute_string(tc.html, "navi", self.getnavi(tc))
+        
         tc.html = self._substitute_string(tc.html, "footerright", self.options.footer_right)
         tc.html = self._substitute_string(tc.html, "footermiddle", self.options.footer_middle)
 
@@ -205,13 +215,13 @@ class PageFactory(object):
                             p3 = pages3[i3]
                             if (selected == 1):
                                 tsec = str(p3.nr) + p3.title
-                                tsec = re.sub(r"([0123456789]+?)[\.]([0123456789]+)(.*)", "<div class=\"xsymb\">\\1.\\2</div>&nbsp;", tsec, 1, re.S)
+                                tsec = re.sub(r"([0123456789]+?)\.([0123456789]+)(.*)", "<div class=\"xsymb\">\\1.\\2</div></a>&nbsp;", tsec, 1, re.S)
                                 pages4 = p3.children
                                 for a in range(len(pages4)):
                                        p4 = pages4[a]
                                        tsec += "<a class=\"MINTERLINK\" href=\"" + p4.fullname + "\"><div class=\"xsymb " + p4.tocsymb + "\"></div></a>\n"
                                        
-                                c += "    <li><a class=\"MINTERLINK\" href=\"" + p3.fullname + "\">" + tsec + "</a></li>\n"
+                                c += "    <li><a class=\"MINTERLINK\" href=\"" + p3.fullname + "\">" + tsec + "</li>\n"
                         c += "    </ul></div>\n"
                 c += "  </li>\n"
         c += "\n" \
@@ -245,3 +255,83 @@ class PageFactory(object):
         return html
 
         
+    def getnavi(self, tc):
+        navi = ""
+
+        p = tc.navleft()
+        icon = "nprev"
+        if (tc.level == self.options.contentlevel) and (p is None):
+            if not tc.xleft is None:
+                p = tc.xleft
+            
+        if (not p is None) and (tc.level == self.options.contentlevel):
+            anchor = "<a class=\"MINTERLINK\" href=\"" + p.fullname +  "\"></a>"
+        else:
+            anchor = ""
+            
+        navi += "<div class=\"" + icon + "\">" + anchor + "</div>\n"
+        
+        # link to next page
+        p = tc.navright()
+        icon = "nnext"
+        if ((tc.level == self.options.contentlevel) and (p is None)):
+            if (not tc.xright is None):
+                p = tc.xright
+
+        if ((tc.level == (self.options.contentlevel - 2)) and (not tc.xright is None)):
+            # click on "next" from module main page moves to first content page
+            p = tc.xright
+        if ((tc.level == (self.options.contentlevel - 3)) and (not tc.xright is None)):
+            # click on "next" from chapter main page moves to first modul page
+            p = tc.xright
+
+        if ((not p is None) and ((tc.level == self.options.contentlevel) or (tc.level == (self.options.contentlevel - 2)) or (tc.level == (self.options.contentlevel - 3)))):
+            anchor = "<a class=\"MINTERLINK\" href=\"" + p.fullname + "\"></a>"
+        else:
+            anchor = ""
+        navi += "<div class=\"" + icon + "\">" + anchor + "</div>\n"
+
+        # display links to subsubsections in the same tree
+        navi += "<ul>\n"
+
+        if (tc.level != self.options.contentlevel):
+            # higher level: set links to module start
+            pp = tc
+            if (pp.level != self.options.contentlevel):
+                sp = pp.children
+                pp = sp[0]
+            navi += "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" + pp.fullname + "\">"
+            if (not pp.helpsite):
+                 navi + self.options.strings['module_starttext']
+            else:
+                 navi + self.options.strings['module_moreinfo']
+            navi += "</a></li>\n"
+        
+        parent = tc.parent
+        if not parent is None:
+            pages = parent.children
+            for i in range(len(pages)):
+                p = pages[i]
+                icon = "xsectbutton"
+                cap = p.caption
+                if (p.display and (tc.level == self.options.contentlevel)):
+                    # normal display button
+                    navi += "  <li class=\"" + icon + "\"><a class=\"MINTERLINK\" href=\"" + p.fullname + "\">" + cap + "</a></li>\n"
+                else:
+                    if (not p.display):
+                        # blocked site, greyed button
+                        navi += "  <li class=\"" + icon + "\">" + cap + "</li>\n"
+
+        navi += "</ul>\n"
+
+        return navi
+    
+    
+    # correct specific problems arising from parsing HTML5 with an HTML parser
+    def _correcthtml5(self, html):
+        # parser gobbles doctype
+        html = "<!DOCTYPE html>\n" + html
+        # parser shortens void divs do <div .... /> which is invalid (resp. just a starting tag) in HTML5
+        html = re.sub(r"\<div (.*?)/\>", "<div \\1></div>", html, 0, re.S)
+        return html
+    

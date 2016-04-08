@@ -271,7 +271,6 @@ class Plugin(basePlugin):
                     self.sys.message(self.sys.CLIENTERROR, "Could not locate level 2 object of id = " + tocelement.attrib['objid'])
                 if (p.level != 2):
                     self.sys.message(self.sys.CLIENTERROR, "Object of id = " + tocelement.attrib['objid'] + " is level " + str(p.level) + " instead of 2")
-                p.xcontent = True
                 p.ismodul = True
                 p.display = True
                 p.content = text
@@ -323,7 +322,6 @@ class Plugin(basePlugin):
                     
                     p.content = m.group(5)
                     p.icon = m.group(4) # will no longer be used
-                    p.xcontent = True
                     p.display = True
                     if i == 0:
                         pos = 1
@@ -557,6 +555,7 @@ class Plugin(basePlugin):
           + "var doCollections = " + str(self.options.docollections) + ";\n" \
           + "var isVerbose = " + str(self.options.doverbose) + ";\n" \
           + "var testOnly = " + str(self.options.testonly) + ";\n" \
+          + "var signature_CID = \"" + self.data['signature']['CID'] + "\";\n"
 
         for vr in ["signature_main", "signature_version", "signature_localization", "do_feedback", "do_export", "reply_mail",
                    "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",
@@ -619,7 +618,7 @@ class Plugin(basePlugin):
         # parse fonts
         jcss += "var FONTS = new Object();\n"
         for ckey in self.options.fonts:
-            jcss += "FONTS." + ckey + " = \"" + re.escape(self.options.fonts[ckey]) + "\";\n"
+            jcss += "FONTS." + ckey + " = \"" + self.options.fonts[ckey] + "\";\n"
         
         # parse sizes
         jcss += "var SIZES = new Object();\n"

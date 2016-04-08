@@ -88,15 +88,6 @@ our $UNKNOWN_UXID = "(unknown)";
 
 our $doconctitles = 1; # =1 -> Titel der Vaterseiten werden mit denen der Unterseiten auf den Unterseiten kombiniert [war bei alten Onlinemodulen der Fall macht aber eigentlich keinen Sinn]
 
-# Diese sind mittlerweile in intersite.js fest verdrahtet!
-our $confsite = "config.html";
-our $datasite = "cdata.html";
-our $searchsite = "search.html";
-
-our $startsite = "index.html";
-our $favorsite = "favor.html";
-our $stestsite = "stest.html";
-
 our $paramsplitlevel = 3; # Maximales Level ab dem die Seiten getrennte HTML-Dateien sind
 
 our $templatempl = ""; # wird von split::loadtemplates gefuellt
@@ -560,24 +551,6 @@ sub addpage {
 }
 
 
-# 
-# sub secpath()
-# liefert eine eindeutige Position des Objekts innerhalb der Objektstruktur
-# Parameter
-# 	keine
-sub secpath {
-	my ($self) = @_;
-	my ($path, $p);
-	#uebergeordnetes Objekt abfragen
-	$p = $self->{PARENT};
-	if ($p->{LEVEL} != 0) {
-		#Falls das uebergeordnete Objekt nicht das root-Objekt ist,
-		#wird zunaechst der Pfad dieses Objekts abgefragt
-		$path = $p->secpath() . ".";
-	}
-	#danach wird die eigene Position angehaengt
-		$path .= $self->{POS};
-}
 
 
 # 
@@ -647,56 +620,6 @@ sub titlestring {
 }
 
 
-
-# 
-# sub navprev()
-# liefert das in der Struktur folgende Objekt, das ausgegeben wird
-# Parameter
-# 	keine
-sub navprev {
-	my ($self) = @_;
-	my ($p);
-	
-	#hole vorheriges Objekt
-	$p = $self->{PREV};
-	#iteriere dies, solange bis das root-Objekt oder eine Seite, die ausgegeben wird,
-	#erreicht wird
-	until ($p->{LEVEL} == 0 || $p->{DISPLAY}) {
-		$p = $p->{PREV};
-	}
-	#liefere einen Verweis auf das Objekt
-	if ($p->{LEVEL} != 0) {
-		return $p;
-	} else {
-		return 0;
-	}
-}
-
-
-# 
-# sub navnext()
-# liefert das in der Struktur vorhergehende Objekt, das ausgegeben wird
-# Parameter
-# 
-sub navnext {
-	my ($self) = @_;
-	my ($p);
-	
-	#hole naechstes Objekt
-	$p = $self->{NEXT};
-	#iteriere dies, solange bis das Ende der Objekt-Struktur oder eine Seite,
-	#die ausgegeben wird, erreicht wird
-	until (! $p || $p->{DISPLAY}) {
-		$p = $p->{NEXT};
-	}
-	
-	#liefere einen Verweis auf das Objekt
-	if ($p) {
-		return $p;
-	} else {
-		return 0;
-	}
-}
 
 
 # 
@@ -1369,124 +1292,6 @@ sub translateoldicons {
   return $icon;
 }
 
-# Erzeugt das navigations-div fuer die html-Seiten
-# Parameter: Das Seitenobjekt
-sub getnavi {
-  my ($site) = @_;
-
-  my $p;
-  my $navi = "";
-  $navi .= "<!--ZOOMSTOP-->\n";
-
-  # Link auf die vorherige Seite
-  $p = $site->navprev();
-  my $ac = ""; # $config{strings}{button_previous} nicht mehr benoetigt im bdesign
-  my $icon = "nprev";
-  my $anchor;
-  if (($site->{XCONTENT} == 1) and (!($p))) {
-    if ($site->{XPREV} != -1) {
-      $p = $site->{XPREV};
-      # $icon = "xnprev";
-    }
-  }
-  if (($p) and ($site->{LEVEL} == $contentlevel)) {
-    $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\"></a>";
-  } else {
-    $anchor = "";
-  }
-  $navi .= "<div class=\"$icon\">" . $anchor . "</div>\n";
-
-  # Link auf die naechste Seite
-  $p = $site->navnext();
-  $ac = ""; # $config{strings}{button_next}; nicht mehr benoetigt im bdesign
-  $icon = "nnext";
-  if (($site->{XCONTENT} == 1) and (!($p))) {
-    if ($site->{XNEXT} != -1) {
-      $p = $site->{XNEXT};
-      # $icon = "xnnext";
-    }
-  }
-  if (($site->{LEVEL} == ($contentlevel-2)) and ($site->{XNEXT} ne -1)) {
-    # Von Modulhauptseite kommt man mit "Weiter" auf die erste contentseite
-    $p = $site->{XNEXT};
-    # $icon = "xnnext";
-  }
-  if (($site->{LEVEL} == ($contentlevel-3)) and ($site->{XNEXT} ne -1)) {
-    # Von FB-Hauptseite kommt man mit "Weiter" auf die erste Modulhauptseite
-    $p = $site->{XNEXT};
-    # $icon = "xnnext";
-  }
-
-  if (($p) and (($site->{LEVEL}==$contentlevel) or ($site->{LEVEL}==($contentlevel-2)) or ($site->{LEVEL}==($contentlevel-3)))) {
-    $anchor = "<a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $p->link() . ".{EXT}\"></a>";
-  } else {
-    $anchor = "";
-  }
-  $navi .= "<div class=\"$icon\">" . $anchor . "</div>\n";
-
-  # Links auf die subsubsections im gleichen Teilbaum
-  $navi .= "<ul>\n";
-
-    if ($site->{LEVEL}!=$contentlevel) {
-      if ($site->{XCONTENT}==3) {
-        # Link auf Aufgabenstellung bei Loesungsseiten
-	$navi .= "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $site->{BACK}->link() . ".{EXT}\">" . "Zum Modul" . "</a></li>\n";
-	logMessage($FATALERROR," Backtracks from solution pages should no longer appear since MSolution is deprecated");
-      } else {
-        # Link auf Modulstart setzen bei hoeheren Ebenen
-	my $pp = $site;
-	if ($pp->{LEVEL}!=$contentlevel) {
-	  my @sp = @{$pp->{SUBPAGES}};
-	  $pp = $sp[0];
-	}
-	if ($pp->{HELPSITE} eq 0) {
-	  $navi .= "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . $config{strings}{module_starttext} . "</a></li>\n";
-	} else {
-	  $navi .= "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" . $site->linkpath() . $pp->link() . ".{EXT}\">" . "Mehr Informationen" . "</a></li>\n";
-	}
-      }
-    }
-
-    my $parent;
-    if ($parent = $site->{PARENT}) {
-      my @pages = @{$parent->{SUBPAGES}};
-      for (my $i = 0; $i <= $#pages; $i++ ) {
-	my $p = $pages[$i];
-	my $attr ="normal";
-	if ($p->secpath() eq $site->secpath()) { $attr = "s"; }
-	my $icon = $p->{ICON};
-	if ($icon eq "STD") { $icon = "book"; }
-	$icon = translateoldicons($icon);
-	# bdesign: no images
-	$icon = "xsectbutton";
-	my $cap = $p->{CAPTION};
-	if ($icon ne "NONE") {
-	  #$icon = "button_" . $icon;
-	  if (($p->{DISPLAY}) and ($site->{LEVEL}==$contentlevel)) {
-	    # Knopf fuer Seite normal darstellen mit Attributen
-	    $navi .= "  <li class=\"$icon\"><a class=\"MINTERLINK\" href=\"" . $p->linkpath() . $p->link() . ".{EXT}\">" . $cap . "</a></li>\n";
-	  } else {
-	    if ($site->{LEVEL}!=$contentlevel) {
-	      # Keine Navigationsbuttons wenn auf oberer Ebene
-	    } else
-	    {
-	      # Knopf fuer gesperrte Seite ausgrauen und nicht verlinken
-	      $attr = "g";
-	      $navi .= "  <li class=\"$icon\">" . $cap . "</li>\n";
-	    }
-	  }
-	}
-      }
-    }
-
-  $navi .="</ul>\n";
-
-  $navi .="<!--ZOOMRESTART-->\n";		
-
-  return $navi;
-}
-
-
 # Liefert das anklickbare Logo fuer die Hauptseite als HTML-String
 # Parameter: Das Seitenobjekt
 sub getlogolink {
@@ -1617,14 +1422,13 @@ sub printpages {
 		my $link = "mpl/" . $p->link();
 		
 
-		my $divhead = updatelinks(getheader(),$linkpath);
-		my $divfooter = updatelinks(getfooter(),$linkpath);
+		#my $divhead = updatelinks(getheader(),$linkpath);
+		#my $divfooter = updatelinks(getfooter(),$linkpath);
 		my $divsettings = updatelinks(getsettings(),$linkpath);
 		# Kein update erforderlich da $p verwendet wird:
-		my $divnavi = getnavi($p); 
-		#my $divtoccaption = gettoccaption($p);
-		my $divtoccaption = gettoccaption_menustyle($p);
-		my $divcontent = getcontent($p);
+		#my $divnavi = getnavi($p); 
+		#my $divtoccaption = gettoccaption_menustyle($p);
+		#my $divcontent = getcontent($p);
 
 
 		

@@ -99,7 +99,8 @@ class Option(object):
             "module_solutionlink": "L&#246;sung ansehen",
             "module_solution": "L&#246;sung",
             "module_solutionback": "Zur&#252;ck zur Aufgabe",
-	    "module_content": "Kursinhalt"
+	    "module_content": "Kursinhalt",
+	    "module_moreinfo": "Mehr Informationen"
         }
 
         self.fonts = {

@@ -45,11 +45,11 @@ class TContent(object):
         self.xleft = None
 
         # content information
-        self.xcontent = False
         self.helpsite = False
         self.testsite = False
         self.tocsymb = "?"
         self.title = "ROOT" # text of the html title tag for children
+        self.caption = "" # used for navigation buttons, only filled in by level 4 elements
         self.modulid = ""
 
         # tree context information
@@ -100,4 +100,31 @@ class TContent(object):
         for p in self.children:
             s = s + p._rstr(inset + 1)
         return s
+    
+    
+    # returns next displayable prev object
+    def navleft(self):
+        p = self.left
+        # iterate until root is reached or a displayable object
+        while (not p is None) and (p.level != 0 and not p.display):
+            p = p.left
+        
+        if p is None: return None
+        
+        if p.level != 0:
+            return p
+        else:
+            return None
+
+        
+    # returns next displayable next object
+    def navright(self):  
+        p = self.right
+        # iterate until end of object structure is reached or a displayable object
+        while (not p is None) and p.display:
+            p = p.right
+
+        return p
+
+
         

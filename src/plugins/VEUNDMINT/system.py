@@ -269,7 +269,7 @@ class System(object):
 
 
     def injectEscapes(self, s):
-        s = re.sub(r"\\", "\\\\", s, 0, re.S)
+        s = re.sub(r"\\", "\\\\\\\\", s, 0, re.S)
         s = re.sub(r"\"", "\\\"", s ,0, re.S)
         s = re.sub(r"\'", "\\\'", s, 0, re.S)
         s = re.sub(r"\r", "\\r" , s ,0 ,re.S)
