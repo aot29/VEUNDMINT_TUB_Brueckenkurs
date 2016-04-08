@@ -35,16 +35,20 @@ import argparse
 parser = argparse.ArgumentParser(description='tex2x converter')
 parser.add_argument("plugin", help="specify the plugin you want to run")
 parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
+parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
 
 args = parser.parse_args()
 #print(args.plugin)
     
 print("\ntex2x parser!\n\n")
 
-#optionen = Option.Option()
+# TODO: tex2x should be callable from everywhere, right now directory joins assume we are in src
+if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
+    print("tex2x must be called in its own directory")
+else:
+    #create object and start processing
+    struct.structure.Structure().startTex2x(args.verbose, args.plugin, args.override)
 
-#create object and start processing
-struct.structure.Structure().startTex2x(args.verbose, args.plugin)
 
 
 

@@ -34,7 +34,7 @@ class Option(object):
     Diese Angaben beziehen sich auf die Structure-Klasse. Da eingebundene Plug-ins unter anderen Lizenzen als der GPL veröffentlicht werden können, darf hier kein Austausch stattfinden.
     """
     
-    def __init__(self, currentDir):
+    def __init__(self, currentDir, override):
         
         #Debugging
         self.DEBUG = True
