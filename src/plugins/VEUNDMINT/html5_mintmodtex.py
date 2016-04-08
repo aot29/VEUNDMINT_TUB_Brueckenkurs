@@ -172,6 +172,7 @@ class Plugin(basePlugin):
             q.myid = nid
             q.pos = pos
             q.root = root
+            q.fullpath = self.outputextension
             nid += 1
             q.xmlelement = node # link object tree to xml tree
             node.attrib['objid'] = str(q.myid)
@@ -342,6 +343,11 @@ class Plugin(basePlugin):
                     p.pos = pos
                     p.link = p.parent.link + "/" + p.docname
                     p.fullname = self.outputextension + "/" + p.link + "." + self.outputextension
+                    m = re.search(r"(.*)/(.*?)\." + self.outputextension, p.fullname, re.S)
+                    if m:
+                        p.fullpath = m.group(1)
+                    else:
+                        self.sys.message(self.sys.CLIENTERROR, "Could not determine full path of tc element " + tc.title)
                     p.backpath = p.parent.backpath + "../" # level 4 xcontents are located in html/X.Y.Z/.
                     p.menuitem = 0
                     p.nr = "" # actually used?

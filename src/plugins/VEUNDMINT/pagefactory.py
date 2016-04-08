@@ -24,6 +24,7 @@
 
 import re
 import os
+import subprocess
 from lxml import etree
 from lxml import html
 from copy import deepcopy
@@ -114,17 +115,14 @@ class PageFactory(object):
         tc.html = self._substitute_string(tc.html, "javascript-body-header", js_text + self.template_javascriptheader)
         tc.html = self._substitute_string(tc.html, "javascript-body-footer", self.template_javascriptfooter)
 
-        
-
-
         tc.html = self._append_string(tc.html, "toccaption", self.gettoccaption(tc))
         tc.html = self._substitute_string(tc.html, "navi", self.getnavi(tc))
-        
         tc.html = self._substitute_string(tc.html, "footerright", self.options.footer_right)
         tc.html = self._substitute_string(tc.html, "footermiddle", self.options.footer_middle)
-
-
         tc.html = self._substitute_string(tc.html, "content", tc.content)
+
+        tc.html = self.postprocessing(tc.html, tc)
+
 
         # compute number of chapters and section numbers
         pp = tc
@@ -138,6 +136,7 @@ class PageFactory(object):
             else:
                 idstr = str(pp.pos) + "." + idstr
             pp = pp.parent
+            
         
         # provide tc attributes as JS variables inside the html
         js = ""
@@ -153,7 +152,6 @@ class PageFactory(object):
         
         tc.html = self.update_links(tc.html, tc.backpath)
 
-        # postprocessing here
         
         
     def gettoccaption(self, tc):
@@ -335,3 +333,323 @@ class PageFactory(object):
         html = re.sub(r"\<div (.*?)/\>", "<div \\1></div>", html, 0, re.S)
         return html
     
+    
+    def postprocessing(self, html, tc):
+        # orgpage = tc
+      
+        # read unique ids
+        m = re.search(r"\<!-- mdeclaresiteuxidpost;;(.+?);; //--\>", html, re.S)
+        if m:
+            tc.uxid = m.group(1)
+            self.sys.message(self.sys.VERBOSEINFO, tc.title + " -> " + tc.uxid + " (siteuxidpost)")
+        else:
+            tc.uxid = "UNKNOWNUXID"
+            self.sys.message(self.sys.CLIENTWARN, "Site hat keine uxid: " + tc.title);
+            
+            
+        # activate pull sites and adapt JS variables
+        if "<!-- pullsite //-->" in html:
+            html = html.replace("// <JSCRIPTPRELOADTAG>", "SITE_PULL = 1;\n" + "// <JSCRIPTPRELOADTAG>")
+            self.sys.message(self.sys.CLIENTINFO, "User-Pull on Site: " + tc.title)
+        else:
+            html = html.replace("// <JSCRIPTPRELOADTAG>", "SITE_PULL = 0;\n" + "// <JSCRIPTPRELOADTAG>")
+            
+        # remove br tags which destabilize tabulars, is remains unknown why ttm places br there anyway,
+        # we are detecting the combination <!--hbox--><br clear="all" /> followed by a table tag
+        (html, n) = re.subn(r"\<!--hbox--\>\<br clear=\"all\" /\> *\<table", "<!--hbox--> <table", html, 0, re.S)
+        if n > 0: self.sys.message(self.sys.VERBOSEINFO, "Postprocessing eliminated " + str(n) + " br tags in front of tables")
+        
+        # MStartJustify, MEndJustify  
+        if "<!-- startalign;;" in html:
+            self.sys.message(self.sys.CLIENTERROR, "Justify, JTabular, JustifiedImages are not supported yet")
+            
+
+        # find registered files and copy them to an appropriate position inside the HTML tree
+        self.sys.message(self.sys.VERBOSEINFO, "Copying local files, outputfolder=" + tc.fullpath + ", outputfile=" + tc.fullname)
+        
+        nf = 0
+      
+        fileregs = re.findall(r"\<!-- registerfile;;(.+?);;(.+?);;(.+?); //--\>", html, re.S)
+        for reg in fileregs:
+            
+            nf += 1
+            fname = reg[0]
+            includedir = reg[1]
+            fileid = reg[2]
+            fnameorg = fname
+            self.sys.message(self.sys.VERBOSEINFO, "Processing includedir=" + includedir + ", fname=" + fname + ", id=" + fileid)
+            
+            # file extension given?
+            dobase64 = 0
+            fext = ""
+            em = re.search(r"\.(.+)", fname, re.S)
+            if em:
+                fext = "." + em.group(1)
+                fname = re.sub(re.escape(fext), "" , fname, 1)
+                self.sys.message(self.sys.VERBOSEINFO, "File extension is " + fext)
+                if (fext == ".png"):
+                    dobase64 = 1
+                else:
+                    dobase64 = 0
+                    self.sys.message(self.sys.VERBOSEINFO, "   not a png but " + fext)
+                    if (fext == ".PNG"):
+                        self.sys.message(self.sys.CLIENTERROR, "Found png file of extension PNG, please change them to lower case")
+            else:
+                # simulating DeclareGraphicsExtension{png,jpg,gif} from LaTeX
+                self.sys.message(self.sys.VERBOSEINFO, "No file extension given, guessing graphics extensions")
+                filerump = "tex/" + includedir + "/" + fname
+                p = subprocess.Popen(["ls", "-l", filerump + ".*"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+                (filelist, err) = p.communicate()
+                if p.returncode == 0:
+                    self.sys.message(self.sys.VERBOSEINFO, "  filelist=" + filelist)
+                    filerump2 = re.escape(filerump)
+                    fm = re.search(filerump2 + r"\.(png)", filelist, re.S)
+                    if fm:
+                        fext = "." + fm.group(1)
+                        dobase64 = 1
+                    else:
+                        fm = re.search(filerump2 + r"\.(jpg)", filelist, re.S)
+                        if fm:
+                            fext = "." + fm.group(1)
+                            self.sys.message(self.sys.VERBOSEINFO, "  ...found a jpg (png is preferred)")
+                        else:
+                            fm = re.search(filerump2 + r"\.(gif)", filelist, re.S)
+                            if fm:
+                                fext = "." + fm.group(1)
+                                self.sys.message(self.sys.VERBOSEINFO, "  ...found a gif (not recommended)");
+                            else:
+                                self.sys.message(self.sys.CLIENTERROR, "Could not find suitable graphics extension for " + fname + ", rump is " + filerump + " rump2 is " + filerump2 + ", filelist is\n" + filelist + "\n")
+                                fext = "*"
+                                fnameorg2 = re.escape(fnameorg)
+                                (html, n) = re.sub(r"\<!-- registerfile;;" + fnameorg2 + ";;" + includedir + ";;" + fileid + "; //--\>", "" , html ,0, re.S)
+                                if (n != 1):
+                                    self.sys.message(self.sys.CLIENTERROR, "Register tag with id " + fileid + " found " + str(n) + " times in html content without graphics extension")
+                else:
+                    self.sys.message(self.sys.FATALERROR, "Command ls does not seem to work, error code is " + str(p.returncode))
+                
+            dobase64 = 0 # should be enabled later
+            if (fext != "*"):
+                fname = fname + fext
+                fm = re.search(r"(.*)/(.*?" + re.escape(fext) + ")", fname, re.S)
+                if fm:
+                    fnamepath = fm.group(1)
+                    fnamename = fm.group(2)
+                else:
+                    self.sys.message(self.sys.CLIENTERROR, "Could not determine full path of fname element " + fname)
+                    fnamepath = ""
+                    fnamename = fname
+                
+                fnamepath = fnamepath + "."
+                html = html.replace("<!-- mfileref;;" + fileid + " //-->" , fname)
+                self.sys.message(self.sys.VERBOSEINFO, "fileid " + fileid + " expanded to " + fname + " in directory + " + tc.fullpath)
+
+                # remove register tag from the code
+                fnameorg2 = re.escape(fnameorg)
+                (html, n) = re.subn(r"\<!-- registerfile;;" + fnameorg2 + ";;" + includedir + ";;" + fileid + "; //--\>", "" , html ,0, re.S)
+                if (n != 1):
+                    self.sys.message(self.sys.CLIENTERROR, "Register tag with id " + fileid + " found " + str(n) + " times in html content")
+                
+                # remove top directory level from fname because include directories inside sourceTEX are not being reproduced in HTML
+                if (includedir != "."): fname = fname.replace(includedir, "")
+                fi = "tex/" + includedir + "/" + fname
+                if (dobase64 == 1):
+                    self.sys.message(self.sys.CLIENTERROR, " dobase64 not supported yet")
+                fi2 = tc.fullpath + "/" + fname
+                self.sys.message(self.sys.VERBOSEINFO, "     Copying " + fi + " to " + fi2)
+                dm = re.search(r"(.*)/[^/]*?$/", fi2, re.S)
+                if dm:
+                    os.mkpath(m.group(1))
+                    p = subprocess.Popen(["cp", "-rf", fi, m.group(1) + "/."], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+                    (output, err) = p.communicate()
+                    if p.returncode != 0:
+                        self.sys.message(self.sys.FATALERROR, "cp refused to work on fi=" + fi + ", target=" + m.group(1) + "/.")
+                    
+        
+            # end of regfile for
+
+        if (nf > 0):
+            self.sys.message(self.sys.VERBOSEINFO, str(nf) + " local files copied")
+            
+        
+        """
+  if ($config{parameter}{stdmathfont} == "1") {
+    # MathML korrigieren: mtext, normalstyles und boldstyles um den Zeichensatz ergaenzen, damit es keine Serifen hat
+    html =~ s/fontstyle=\"normal\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\"/ig;
+    html =~ s/fontweight=\"bold\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\" fontweight=\"bold\"/ig;
+
+    # Diese Zeilen verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages vorgenommen wurde
+    # html =~ s/<m:mtext>/<m:mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
+    # MathML korrigieren: mtext/mstyle-Schachtelung umkehren, sonst wird es von den meisten Browsern nicht akzeptiert
+    # html =~ s/<m:mtext(.*)>(.*)<m:mstyle(.*)>(.+)<\/m:mstyle(.*)>\n*(.*)<\/m:mtext(.*)>/<m:mstyle$3><m:mtext$1>$4<\/m:mtext$7><\/m:mstyle$5>/gi;
+
+    # Diese Zeile verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages NICHT vorgenommen wurde
+    html =~ s/<mtext>/<mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
+    html =~ s/<mtext(.*?)>(.*?)<mstyle(.*?)>(.+?)<\/mstyle(.*?)>\n*(.*?)<\/mtext(.*?)>/<mstyle$3><mtext$1>$4<\/mtext$7><\/mstyle$5>/gi;
+  }
+
+  # Falls es eine Pruefungsseite ist, Kennvariablen fuer die Aufgabenpunkte erzeugen
+  if (tc.TESTSITE} eq 1) {
+    html =~ s/\/\/ <JSCRIPTPRELOADTAG>/isTest = true;\nvar nMaxPoints = 0;\nvar nPoints = 0;\n\/\/ <JSCRIPTPRELOADTAG>/s ;
+  }
+
+  # Preload-Abschnitte in den Onload-Event verschieben
+  while (html =~ m/<!-- onloadstart \/\/-->(.*?)<!-- onloadstop \/\/-->/s ) {
+    html =~ s/<!-- onloadstart \/\/-->(.*?)<!-- onloadstop \/\/-->//s;
+    my $prel = $1;
+    html =~ s/\/\/ <JSCRIPTPRELOADTAG>/$prel\n\/\/ <JSCRIPTPRELOADTAG>/s ;
+  }
+  
+  # Viewmodel-Eintraege in die Viewmodel-Deklaration verschieben
+  while (html =~ m/<!-- viewmodelstart \/\/-->(.*?)<!-- viewmodelstop \/\/-->/s ) {
+    html =~ s/<!-- viewmodelstart \/\/-->(.*?)<!-- viewmodelstop \/\/-->//s;
+    my $prel = $1;
+    html =~ s/\/\/ <JSCRIPTVIEWMODEL>/$prel\n\/\/ <JSCRIPTVIEWMODEL>/s ;
+  }
+
+  # postmodel-Eintraege hinter die Viewmodel-Deklaration verschieben
+  while (html =~ m/<!-- postmodelstart \/\/-->(.*?)<!-- postmodelstop \/\/-->/s ) {
+    html =~ s/<!-- postmodelstart \/\/-->(.*?)<!-- postmodelstop \/\/-->//s;
+    my $prel = $1;
+    html =~ s/\/\/ <JSCRIPTPOSTMODEL>/$prel\n\/\/ <JSCRIPTPOSTMODEL>/s ;
+  }
+
+  # SVGStyles einsetzen
+  while (html =~ m/<!-- svgstyle;(.+?) \/\/-->/s ) {
+    my $tname = $1;
+    if (exists $tikzpng{$tname}) {
+      my $style = $tikzpng{$tname};
+      self.sys.message(self.sys.VERBOSEINFO, "Found style info for svg on $tname: $style");
+      html =~ s/<!-- svgstyle;$tname \/\/-->/$style/g ; 
+      delete $tikzpng{$tname};
+    } else {
+      self.sys.message(self.sys.CLIENTERROR, "Could not find image information for $tname");
+      html =~ s/<!-- svgstyle;$tname \/\/-->//g ; 
+    }
+  }
+ 
+  
+  # mfeedbackbutton ersetzen
+  my $j = 0;
+  while (html =~ m/<!-- mfeedbackbutton;(.+?);(.*?);(.*?); \/\/-->/s ) {
+    my $type = $1;
+    my $testsite = $2;
+    my $exid = $3;
+    my $ibt = "\n<br />";
+
+    my $bid = "FEEDBACK$j\_$exid";
+    my $tip = "Feedback zu " . $type . " " . $exid . ":<br /><b>Meldung abschicken</b>";
+    $ibt .= "<button type=\"button\" style=\"background-color: #E0C0C0; border: 2px\" ttip=\"1\" tiptitle=\"$tip\" name=\"Name_FEEDBACK$j\_$exid\" id=\"$bid\" type=\"button\" onclick=\"internal_feedback(\'$exid\',\'$bid\',\'$type $exid\');\">";
+    $ibt .= "Meldung abschicken";
+    $ibt .= "</button><br />\n";
+    
+    # Feedbackbuttons nur, (ehemals falls keine Testumgebung und) falls nicht global abgeschaltet
+    if ($config{parameter}{do_feedback} eq "1") {
+      html =~ s/<!-- mfeedbackbutton;$type;$testsite;$exid; \/\/-->/$ibt/s ;
+    } else {
+      html =~ s/<!-- mfeedbackbutton;$type;$testsite;$exid; \/\/-->//s ;
+    }
+  }
+
+  # DirectHTML-Statements einsetzen
+  while (html =~ m/<!-- directhtml;;(.*?); \/\/-->/s ) {
+    my $pos = $1;
+    my $rep = $DirectHTML[$pos];
+    html =~ s/<!-- directhtml;;$pos; \/\/-->/$rep/s ;
+  }
+  
+  # qexports erfassen
+  # Beachte: qpos = Eindeutiger Exportindex pro tex-Datei (wird im PreParsing erstellt, unabhängig von section oder xcontent)
+  # pos = Eindeutiger Exportindex pro page bzw. html-Datei (wird im Postprocessing erstellt), Dateiname des exports ist pagename plus pos plus extension
+  while (html =~ m/<!-- qexportstart;(.*?); \/\/-->(.*?)<!-- qexportend;(.*?); \/\/-->/s ) {
+    my $pos = 0;
+    my $qpos = $1;
+    my $expt = $2;
+    if ($qpos == $3) {
+      my $rep = "";
+      if ($config{parameter}{do_export} eq "1") {
+        my $exprefix = "\% Export Nr. $qpos aus " . tc.TITLE . "\n";
+        $exprefix .= "\% Dieser Quellcode steht unter CCL BY-SA, entnommen aus dem VE\&MINT-Kurs " . $config{parameter}{signature_CID} . ",\n";
+        $exprefix .= "\% Inhalte und Quellcode des Kurses dürfen gemäß den Bestimmungen der Creative Common Lincense frei weiterverwendet werden.\n";
+        $exprefix .= "\% Für den Einsatz dieses Codes wird das Makropaket $macrofile benötigt.\n";
+        $pos = 0 + @{tc.EXPORTS}};
+        push @{tc.EXPORTS}}, ["export$pos.tex","$exprefix$expt",$qpos];
+        $rep = "<br />";
+        $rep .= "<button style=\"background-color: #FFFFFF; border: 0px\" ttip=\"1\" tiptitle=\"Quellcode dieser Aufgabe im LaTeX-Format\" name=\"Name_EXPORTT$pos\" id=\"EXPORTT$pos\" type=\"button\" onclick=\"export_button($pos,1);\">";
+        $rep .= "<img alt=\"Exportbutton$pos\" style=\"width:36px\" src=\"" . $orgpage->linkpath() . "../images/exportlatex.png\">";
+        $rep .= "</button>";
+        $rep .= "<button style=\"background-color: #FFFFFF; border: 0px\" ttip=\"1\" tiptitle=\"Quellcode dieser Aufgabe im Word-Format\" name=\"Name_EXPORTD$pos\" id=\"EXPORTD$pos\" type=\"button\" onclick=\"export_button($pos,2);\">";
+        $rep .= "<img alt=\"Exportbutton$pos\" style=\"width:36px\" src=\"" . $orgpage->linkpath() . "../images/exportdoc.png\">";
+        $rep .= "</button><br />";
+      }
+      
+      html =~ s/<!-- qexportstart;$qpos; \/\/-->(.*?)<!-- qexportend;$qpos; \/\/-->/$rep/s ;
+    } else {
+      self.sys.message(self.sys.CLIENTERROR, "Inkongruentes qexportpaar gefunden: $qpos (im Seitenarray an Position $pos$)");
+    }
+  }
+ 
+  # exercisecollections erfassen
+  if ($config{docollections} eq 1) {
+    my $collc = 0; my $colla = 0;
+    while (html =~ m/<!-- mexercisecollectionstart;;(.+?);;(.+?);; \/\/-->(.*?)<!-- mexercisecollectionstop \/\/-->/s ) {
+      my $ecid1 = $1;
+      my $ecopt = $2;
+      my $ectext = $3;
+      my $mark = generatecollectionmark($ecid1, $ecopt);
+      html =~ s/<!-- mexercisecollectionstart;;$ecid1;;$ecopt;; \/\/-->(.*?)<!-- mexercisecollectionstop \/\/-->/$mark/s ;
+      
+      my $arraystring = "[";
+      my $ast = 0;
+      
+      # Aus der collection die Aufgaben extrahieren
+      while ($ectext =~ m/<!-- mexercisetextstart;;(.+?);; \/\/-->(.*?)<!-- mexercisetextstop \/\/-->/s ) {
+        self.sys.message(self.sys.VERBOSEINFO, "    Aufgabe extrahiert");
+        my $exid = $1;
+        my $extext = $2;
+        $ectext =~ s/<!-- mexercisetextstart;;$exid;; \/\/-->(.*?)<!-- mexercisetextstop \/\/-->//s ;
+         
+        if ($ast eq 1) { $arraystring .= ","; } else { $ast = 1; }
+        my $ctext = encode_base64($extext);
+        $ctext =~ s/\n/\\n/gs;
+
+        my $l;
+        
+        $arraystring .= "{\"id\": \"$ecid1" . "_" . "$exid\", \"content\": \"$ctext\"}";
+     
+        $colla++;
+      }
+      
+      $arraystring .= "]";
+      
+      $collc++;
+      push @colexports, ["$ecid1", "$ecopt" , $arraystring];
+    }
+    if ($collc > 0) { self.sys.message(self.sys.VERBOSEINFO, "$collc collections mit insgesamt $colla Aufgaben exportiert"); }
+  }
+
+  
+  # DirectRoulette-divs einrichten
+  while (html =~ m/<!-- rouletteexc-start;(.+?);(.+?); \/\/-->(.+?)<!-- rouletteexc-stop;(.+?);(.+?); \/\/-->/s ) {
+    my $rid = $1;
+    my $id = $2;
+    
+    my $maxid = 0;
+    
+    if (exists $DirectRoulettes{$rid}) {
+      $maxid = $DirectRoulettes{$rid};
+    } else {
+      self.sys.message(self.sys.CLIENTERROR, "Could not find roulette id $rid");
+    }
+    my $vis = ($id eq "0") ? "block" : "none";
+    
+    my $bt = "<div class=\"rouletteselector\"><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'$rid\',$id,$maxid);\">Neue Aufgabe</button><br />";
+    
+    html =~ s/<!-- rouletteexc-start;$rid;$id; \/\/-->(.+?)<!-- rouletteexc-stop;$rid;$id; \/\/-->/<div style=\"display:$vis\" id=\"DROULETTE$rid\.$id\">$bt$1<\/div><\/div>/s ;
+    self.sys.message(self.sys.VERBOSEINFO, "Roulette $rid.$id done");
+  }
+  
+  return html;
+}
+        """
+        return html
+        

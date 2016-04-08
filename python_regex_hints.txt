@@ -46,7 +46,7 @@ PERL-Beispiel, liefert Liste aller Vorkommen von verb-Delimitern, also aus \verb
 @verbac = ($text =~ m/\\verb(.)/sg );
 
 PYTHON-Beispiel, liefert Liste aller Vorkommen von verb-Delimitern:
-verbac = findall(r"\\verb(.)", text, re.S)
+verbac = re.findall(r"\\verb(.)", text, re.S)
 
 
 -------------------- Vollständige Ersetzung von Regex-Ausdrücken ------------------------------------------
