@@ -24,6 +24,7 @@
 
 import re
 import os
+from distutils.dir_util import mkpath
 import subprocess
 from lxml import etree
 from lxml import html
@@ -382,8 +383,10 @@ class PageFactory(object):
             # file extension given?
             dobase64 = 0
             fext = ""
-            em = re.search(r"\.(.+)", fname, re.S)
+            em = re.match(r".*\.([^\.]*)", fname, re.S)
             if em:
+                if em.group(1) == "":
+                    self.sys.message(self.sys.CLIENTWARN, "File " + fname + " has empty extension")
                 fext = "." + em.group(1)
                 fname = re.sub(re.escape(fext), "" , fname, 1)
                 self.sys.message(self.sys.VERBOSEINFO, "File extension is " + fext)
@@ -435,13 +438,16 @@ class PageFactory(object):
                     fnamepath = fm.group(1)
                     fnamename = fm.group(2)
                 else:
-                    self.sys.message(self.sys.CLIENTERROR, "Could not determine full path of fname element " + fname)
+                    # not an error, as path of file may be empty
                     fnamepath = ""
                     fnamename = fname
                 
                 fnamepath = fnamepath + "."
-                html = html.replace("<!-- mfileref;;" + fileid + " //-->" , fname)
-                self.sys.message(self.sys.VERBOSEINFO, "fileid " + fileid + " expanded to " + fname + " in directory + " + tc.fullpath)
+                (html, n) = re.subn(r"\[\[!-- mfileref;;" + re.escape(fileid) + "; //--\]\]" , fname, html , 0, re.S)
+                if n > 0:
+                    self.sys.message(self.sys.VERBOSEINFO, "fileid " + fileid + " expanded to " + fname + " in directory " + tc.fullpath)
+                else:
+                    self.sys.message(self.sys.CLIENTWARN, "fileid " + fileid + " was not expanded to " + fname + " in directory " + tc.fullpath + " because it is not used")
 
                 # remove register tag from the code
                 fnameorg2 = re.escape(fnameorg)
@@ -450,19 +456,27 @@ class PageFactory(object):
                     self.sys.message(self.sys.CLIENTERROR, "Register tag with id " + fileid + " found " + str(n) + " times in html content")
                 
                 # remove top directory level from fname because include directories inside sourceTEX are not being reproduced in HTML
-                if (includedir != "."): fname = fname.replace(includedir, "")
+                if (includedir != "."):
+                    # carefull: only 1 replacement allowed because pathname is prefix of mtikzauto-filenames
+                    fname = re.sub(re.escape(includedir) + r"/", "", fname, 1)
                 fi = "tex/" + includedir + "/" + fname
                 if (dobase64 == 1):
-                    self.sys.message(self.sys.CLIENTERROR, " dobase64 not supported yet")
+                    self.sys.message(self.sys.CLIENTERROR, "dobase64 not supported yet")
                 fi2 = tc.fullpath + "/" + fname
-                self.sys.message(self.sys.VERBOSEINFO, "     Copying " + fi + " to " + fi2)
-                dm = re.search(r"(.*)/[^/]*?$/", fi2, re.S)
+                self.sys.message(self.sys.VERBOSEINFO, "Copying " + fi + " to " + fi2)
+                dm = re.match(r"(.*)/[^/]*?", fi2, re.S)
                 if dm:
-                    os.mkpath(m.group(1))
-                    p = subprocess.Popen(["cp", "-rf", fi, m.group(1) + "/."], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+                    targetp = os.path.join(self.options.targetpath, dm.group(1))
+                    sourcep= os.path.join(self.options.sourcepath, fi)
+                    mkpath(targetp)
+                    # use cp -r because registered file might be a directory
+                    targetp = targetp + "/"
+                    p = subprocess.Popen(["cp", "-rf", sourcep, targetp], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
                     (output, err) = p.communicate()
                     if p.returncode != 0:
-                        self.sys.message(self.sys.FATALERROR, "cp refused to work on fi=" + fi + ", target=" + m.group(1) + "/.")
+                        self.sys.message(self.sys.FATALERROR, "cp refused to work on source=" + sourcep + ", target=" + targetp)
+                else:
+                    self.sys.message(self.sys.CLIENTERROR, "Could not extract file details for fi2=" + fi2)
                     
         
             # end of regfile for
@@ -471,126 +485,118 @@ class PageFactory(object):
             self.sys.message(self.sys.VERBOSEINFO, str(nf) + " local files copied")
             
         
+        if self.options.stdmathfont == "1":
+            # add font to mtext, normalstyles and boldstyles (without serif)
+            html = html.replace("fontstyle=\"normal\"", "fontfamily=\'" + self.options.fonts['STDMATHFONTFAMILY'] + "\' fontstyle=\"normal\"")
+            html = html.replace("fontweight=\"bold\"", "fontfamily=\'" + self.options.fonts['STDMATHFONTFAMILY'] + "\' fontstyle=\"normal\" fontweight=\"bold\"")
+            html = html.replace("<mtext>", "<mtext fontfamily=\'" + self.options.fonts['STDMATHFONTFAMILY'] + "\' fontstyle=\"normal\">")
+            html = re.sub(r"\<mtext(.*?)\>(.*?)\<mstyle(.*?)\>(.+?)\</mstyle(.*?)\>\n*(.*?)\</mtext(.*?)\>", "<mstyle\\3><mtext\\1>\\4</mtext\\7></mstyle\\5>", html, 0, re.S)
+            
+        # generate variables used by testsites if needed
+        if tc.testsite:
+            html = html.replace("// <JSCRIPTPRELOADTAG>", "isTest = true;\nvar nMaxPoints = 0;\nvar nPoints = 0;\n// <JSCRIPTPRELOADTAG>")
+            
+        # move JS blocks from tcontents into appropriate head/body segments
+        jsblocks = ""
+        def loadmove(m):
+            nonlocal jsblocks
+            jsblocks += m.group(1) + "\n"
+            return ""
+
+        for tag in [("onload", "// <JSCRIPTPRELOADTAG>"),
+                    ("viewmodel", "// <JSCRIPTVIEWMODEL>"),
+                    ("postmodel", "// <JSCRIPTPOSTMODEL>")]:
+            jsblocks = "// " + tag[0] + " blocks start\n"
+            html = re.sub(r"\<!-- " + re.escape(tag[0]) + "start //--\>(.*?)\<!-- " + re.escape(tag[0]) + "stop //--\>", loadmove, html, 0, re.S)
+            jsblocks += "// " + tag[0] + " blocks stop\n"
+            html = html.replace(tag[1], jsblocks + tag[1])
+
+        # process SVGStyles
+        def svgstyle(m):
+            tname = m.group(1)
+            if tname in self.data['htmltikz']:
+                style = self.data['htmltikz'][tname]
+                self.sys.message(self.sys.VERBOSEINFO, "Found style info for svg on " + tname + ": " + style)
+                del self.data['htmltikz'][tname]
+                return style
+            else:
+                self.sys.message(self.sys.CLIENTERROR, "Could not find image information for " + tname)
+                return ""
+        
+        html= re.sub(r"\[\[!-- svgstyle;(.+?) //--\]\]", svgstyle, html, 0, re.S)
+        
+
+        # prepare feedback buttons
+        j = 0 # is always zero up to now
+        def bfeed(m):
+            nonlocal j
+            ftype = m.group(1)
+            testsite = m.group(2)
+            exid = m.group(3)
+            ibt = "\n<br />"
+            bid = "FEEDBACK" + str(j) + "_" + exid
+            tip = "Feedback zu " + ftype + " " + exid + ":<br /><b>" + self.options.strings['feedback_sendit'] + "</b>"
+            ibt += "<button type=\"button\" style=\"background-color: #E0C0C0; border: 2px\" ttip=\"1\" tiptitle=\"" + tip + "\" name=\"Name_FEEDBACK" + str(j) + "_" + exid + "\" id=\"" + bid + "\" type=\"button\" onclick=\"internal_feedback(\'" + exid + "\',\'" + bid + "\',\'" + ftype + " " + exid + "\');\">"
+            ibt += self.options.strings['feedback_sendit']
+            ibt += "</button><br />\n"
+            
+            # display feedback buttons if (not a test version) and not globally deactivated
+            if self.options.do_feedback == "1":
+                return ibt
+            else:
+                return ""
+        html = re.sub(r"\<!-- mfeedbackbutton;(.+?);(.*?);(.*?); //--\>", bfeed, html, 0, re.S)
+  
+        def dhtml(m):
+            pos = int(m.group(1))
+            self.sys.message(self.sys.VERBOSEINFO, "DirectHTML " + m.group(1) + " set")
+            return self.data['DirectHTML'][pos]
+        html = re.sub(r"\<!-- directhtml;;(.+?); //--\>", dhtml, html, 0, re.S)
+
+        if "<!-- qexportstart" in html:
+            self.sys.message(self.sys.CLIENTERROR, "qexports not implemented yet")
+            
+        
+        # process qexports:
+        # qpos = unique export index per tex file (index generated by preparsing, not affectd by section or xcontent numbers)
+        # pos = unique export index per page (html file) generated by postprocessing, filename of exports is pagename plus pos plus extension
+
+        def qexp(m):
+            pos = 0
+            qpos = int(m.group(1))
+            expt = m.group(2)
+            rep = ""
+            if self.options.do_export == "1":
+                exprefix = "\% Export nr. " + str(qpos) + " from " + tc.title + "\n" \
+                         + "\% License: CCL BY-SA, taken from the VE&MINT math online course " + self.data['signature_CID'] + ",\n" \
+                         + "Usage of this code requires the macro package " + self.options.macrofile + " from the VEUNDMINT converter package"
+                pos = len(tc.exports)
+                tc.exports.append(["export" + str(pos) + ".tex", exprefix + expt, qpos])
+                rep = "<br />"
+                rep += "<button style=\"background-color: #FFFFFF; border: 0px\" ttip=\"1\" tiptitle=\"" + self.options.strings['qexport_download_tex'] + "\""
+                rep += " name=\"Name_EXPORTT" + str(pos) + "\" id=\"EXPORTT" + str(pos) + "\" type=\"button\" onclick=\"export_button(" + str(pos) + ",1);\">"
+                rep += "<img alt=\"Exportbutton" + str(pos) + "\" style=\"width:36px\" src=\"" + tc.backpath + "../images/exportlatex.png\"></button>"
+                rep += "<button style=\"background-color: #FFFFFF; border: 0px\" ttip=\"1\" tiptitle=\"" + self.options.strings['qexport_download_doc'] + "\""
+                rep += " name=\"Name_EXPORTD" + str(pos) + "\" id=\"EXPORTD" + str(pos) + "\" type=\"button\" onclick=\"export_button(" + str(pos) + ",2);\">"
+                rep += "<img alt=\"Exportbutton" + str(pos) + "\" style=\"width:36px\" src=\"" + tc.backpath + "../images/exportdoc.png\"></button>"
+                rep += "<br />"
+                return rep
+            else:
+                # exports disabled: remove export tag entirely
+                return ""
+        
+        html = re.sub(r"\<!-- qexportstart;(.*?); //--\>(.*?)\<!-- qexportend;\1; //--\>", qexp, html, 0, re.S)
+        
+        
+        # process exercise collections
+        if self.options.docollections == 1:
+            self.sys.message(self.sys.CLIENTERROR, "Collection export not implemented yet")
+            collc = 0
+            colla = 0
+            
         """
-  if ($config{parameter}{stdmathfont} == "1") {
-    # MathML korrigieren: mtext, normalstyles und boldstyles um den Zeichensatz ergaenzen, damit es keine Serifen hat
-    html =~ s/fontstyle=\"normal\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\"/ig;
-    html =~ s/fontweight=\"bold\"/fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\" fontweight=\"bold\"/ig;
-
-    # Diese Zeilen verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages vorgenommen wurde
-    # html =~ s/<m:mtext>/<m:mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
-    # MathML korrigieren: mtext/mstyle-Schachtelung umkehren, sonst wird es von den meisten Browsern nicht akzeptiert
-    # html =~ s/<m:mtext(.*)>(.*)<m:mstyle(.*)>(.+)<\/m:mstyle(.*)>\n*(.*)<\/m:mtext(.*)>/<m:mstyle$3><m:mtext$1>$4<\/m:mtext$7><\/m:mstyle$5>/gi;
-
-    # Diese Zeile verwenden fuer HTML, in dem die "m:"-Ersetzung in printpages NICHT vorgenommen wurde
-    html =~ s/<mtext>/<mtext fontfamily=\"Verdana, Arial, Helvetica , sans-serif\" fontstyle=\"normal\">/ig;
-    html =~ s/<mtext(.*?)>(.*?)<mstyle(.*?)>(.+?)<\/mstyle(.*?)>\n*(.*?)<\/mtext(.*?)>/<mstyle$3><mtext$1>$4<\/mtext$7><\/mstyle$5>/gi;
-  }
-
-  # Falls es eine Pruefungsseite ist, Kennvariablen fuer die Aufgabenpunkte erzeugen
-  if (tc.TESTSITE} eq 1) {
-    html =~ s/\/\/ <JSCRIPTPRELOADTAG>/isTest = true;\nvar nMaxPoints = 0;\nvar nPoints = 0;\n\/\/ <JSCRIPTPRELOADTAG>/s ;
-  }
-
-  # Preload-Abschnitte in den Onload-Event verschieben
-  while (html =~ m/<!-- onloadstart \/\/-->(.*?)<!-- onloadstop \/\/-->/s ) {
-    html =~ s/<!-- onloadstart \/\/-->(.*?)<!-- onloadstop \/\/-->//s;
-    my $prel = $1;
-    html =~ s/\/\/ <JSCRIPTPRELOADTAG>/$prel\n\/\/ <JSCRIPTPRELOADTAG>/s ;
-  }
-  
-  # Viewmodel-Eintraege in die Viewmodel-Deklaration verschieben
-  while (html =~ m/<!-- viewmodelstart \/\/-->(.*?)<!-- viewmodelstop \/\/-->/s ) {
-    html =~ s/<!-- viewmodelstart \/\/-->(.*?)<!-- viewmodelstop \/\/-->//s;
-    my $prel = $1;
-    html =~ s/\/\/ <JSCRIPTVIEWMODEL>/$prel\n\/\/ <JSCRIPTVIEWMODEL>/s ;
-  }
-
-  # postmodel-Eintraege hinter die Viewmodel-Deklaration verschieben
-  while (html =~ m/<!-- postmodelstart \/\/-->(.*?)<!-- postmodelstop \/\/-->/s ) {
-    html =~ s/<!-- postmodelstart \/\/-->(.*?)<!-- postmodelstop \/\/-->//s;
-    my $prel = $1;
-    html =~ s/\/\/ <JSCRIPTPOSTMODEL>/$prel\n\/\/ <JSCRIPTPOSTMODEL>/s ;
-  }
-
-  # SVGStyles einsetzen
-  while (html =~ m/<!-- svgstyle;(.+?) \/\/-->/s ) {
-    my $tname = $1;
-    if (exists $tikzpng{$tname}) {
-      my $style = $tikzpng{$tname};
-      self.sys.message(self.sys.VERBOSEINFO, "Found style info for svg on $tname: $style");
-      html =~ s/<!-- svgstyle;$tname \/\/-->/$style/g ; 
-      delete $tikzpng{$tname};
-    } else {
-      self.sys.message(self.sys.CLIENTERROR, "Could not find image information for $tname");
-      html =~ s/<!-- svgstyle;$tname \/\/-->//g ; 
-    }
-  }
- 
-  
-  # mfeedbackbutton ersetzen
-  my $j = 0;
-  while (html =~ m/<!-- mfeedbackbutton;(.+?);(.*?);(.*?); \/\/-->/s ) {
-    my $type = $1;
-    my $testsite = $2;
-    my $exid = $3;
-    my $ibt = "\n<br />";
-
-    my $bid = "FEEDBACK$j\_$exid";
-    my $tip = "Feedback zu " . $type . " " . $exid . ":<br /><b>Meldung abschicken</b>";
-    $ibt .= "<button type=\"button\" style=\"background-color: #E0C0C0; border: 2px\" ttip=\"1\" tiptitle=\"$tip\" name=\"Name_FEEDBACK$j\_$exid\" id=\"$bid\" type=\"button\" onclick=\"internal_feedback(\'$exid\',\'$bid\',\'$type $exid\');\">";
-    $ibt .= "Meldung abschicken";
-    $ibt .= "</button><br />\n";
-    
-    # Feedbackbuttons nur, (ehemals falls keine Testumgebung und) falls nicht global abgeschaltet
-    if ($config{parameter}{do_feedback} eq "1") {
-      html =~ s/<!-- mfeedbackbutton;$type;$testsite;$exid; \/\/-->/$ibt/s ;
-    } else {
-      html =~ s/<!-- mfeedbackbutton;$type;$testsite;$exid; \/\/-->//s ;
-    }
-  }
-
-  # DirectHTML-Statements einsetzen
-  while (html =~ m/<!-- directhtml;;(.*?); \/\/-->/s ) {
-    my $pos = $1;
-    my $rep = $DirectHTML[$pos];
-    html =~ s/<!-- directhtml;;$pos; \/\/-->/$rep/s ;
-  }
-  
-  # qexports erfassen
-  # Beachte: qpos = Eindeutiger Exportindex pro tex-Datei (wird im PreParsing erstellt, unabhängig von section oder xcontent)
-  # pos = Eindeutiger Exportindex pro page bzw. html-Datei (wird im Postprocessing erstellt), Dateiname des exports ist pagename plus pos plus extension
-  while (html =~ m/<!-- qexportstart;(.*?); \/\/-->(.*?)<!-- qexportend;(.*?); \/\/-->/s ) {
-    my $pos = 0;
-    my $qpos = $1;
-    my $expt = $2;
-    if ($qpos == $3) {
-      my $rep = "";
-      if ($config{parameter}{do_export} eq "1") {
-        my $exprefix = "\% Export Nr. $qpos aus " . tc.TITLE . "\n";
-        $exprefix .= "\% Dieser Quellcode steht unter CCL BY-SA, entnommen aus dem VE\&MINT-Kurs " . $config{parameter}{signature_CID} . ",\n";
-        $exprefix .= "\% Inhalte und Quellcode des Kurses dürfen gemäß den Bestimmungen der Creative Common Lincense frei weiterverwendet werden.\n";
-        $exprefix .= "\% Für den Einsatz dieses Codes wird das Makropaket $macrofile benötigt.\n";
-        $pos = 0 + @{tc.EXPORTS}};
-        push @{tc.EXPORTS}}, ["export$pos.tex","$exprefix$expt",$qpos];
-        $rep = "<br />";
-        $rep .= "<button style=\"background-color: #FFFFFF; border: 0px\" ttip=\"1\" tiptitle=\"Quellcode dieser Aufgabe im LaTeX-Format\" name=\"Name_EXPORTT$pos\" id=\"EXPORTT$pos\" type=\"button\" onclick=\"export_button($pos,1);\">";
-        $rep .= "<img alt=\"Exportbutton$pos\" style=\"width:36px\" src=\"" . $orgpage->linkpath() . "../images/exportlatex.png\">";
-        $rep .= "</button>";
-        $rep .= "<button style=\"background-color: #FFFFFF; border: 0px\" ttip=\"1\" tiptitle=\"Quellcode dieser Aufgabe im Word-Format\" name=\"Name_EXPORTD$pos\" id=\"EXPORTD$pos\" type=\"button\" onclick=\"export_button($pos,2);\">";
-        $rep .= "<img alt=\"Exportbutton$pos\" style=\"width:36px\" src=\"" . $orgpage->linkpath() . "../images/exportdoc.png\">";
-        $rep .= "</button><br />";
-      }
-      
-      html =~ s/<!-- qexportstart;$qpos; \/\/-->(.*?)<!-- qexportend;$qpos; \/\/-->/$rep/s ;
-    } else {
-      self.sys.message(self.sys.CLIENTERROR, "Inkongruentes qexportpaar gefunden: $qpos (im Seitenarray an Position $pos$)");
-    }
-  }
- 
-  # exercisecollections erfassen
-  if ($config{docollections} eq 1) {
-    my $collc = 0; my $colla = 0;
+            
+            
     while (html =~ m/<!-- mexercisecollectionstart;;(.+?);;(.+?);; \/\/-->(.*?)<!-- mexercisecollectionstop \/\/-->/s ) {
       my $ecid1 = $1;
       my $ecopt = $2;
@@ -627,29 +633,25 @@ class PageFactory(object):
     if ($collc > 0) { self.sys.message(self.sys.VERBOSEINFO, "$collc collections mit insgesamt $colla Aufgaben exportiert"); }
   }
 
-  
-  # DirectRoulette-divs einrichten
-  while (html =~ m/<!-- rouletteexc-start;(.+?);(.+?); \/\/-->(.+?)<!-- rouletteexc-stop;(.+?);(.+?); \/\/-->/s ) {
-    my $rid = $1;
-    my $id = $2;
-    
-    my $maxid = 0;
-    
-    if (exists $DirectRoulettes{$rid}) {
-      $maxid = $DirectRoulettes{$rid};
-    } else {
-      self.sys.message(self.sys.CLIENTERROR, "Could not find roulette id $rid");
-    }
-    my $vis = ($id eq "0") ? "block" : "none";
-    
-    my $bt = "<div class=\"rouletteselector\"><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'$rid\',$id,$maxid);\">Neue Aufgabe</button><br />";
-    
-    html =~ s/<!-- rouletteexc-start;$rid;$id; \/\/-->(.+?)<!-- rouletteexc-stop;$rid;$id; \/\/-->/<div style=\"display:$vis\" id=\"DROULETTE$rid\.$id\">$bt$1<\/div><\/div>/s ;
-    self.sys.message(self.sys.VERBOSEINFO, "Roulette $rid.$id done");
-  }
-  
-  return html;
-}
         """
-        return html
         
+        # prepare DirectRoulette divs
+        def droul(m):
+            rid = m.group(1)
+            myid = int(m.group(2))
+            maxid = 0
+            if rid in self.data['DirectRoulettes']:
+                maxid = self.data['DirectRoulettes'][rid]
+            else:
+                self.sys.message(self.sys.CLIENTERROR, "Could not find roulette id " + rid)
+            if myid == "0":
+                vis = "block"
+            else:
+                vis = "none"
+            bt = "<div class=\"rouletteselector\"><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">Neue Aufgabe</button><br />"
+            self.sys.message(self.sys.VERBOSEINFO, "Roulette " + rid + "." + str(myid) + " done")
+            return "<div style=\"display:" + vis + "\" id=\"DROULETTE" + rid + "." + str(myid) + "\">" + bt + m.group(3) + "</div></div>"
+  
+        html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>", droul, html, 0, re.S)
+  
+        return html

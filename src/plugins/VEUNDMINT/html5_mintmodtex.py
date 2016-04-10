@@ -29,7 +29,6 @@ from lxml import etree
 from lxml import html
 from copy import deepcopy
 from plugins.exceptions import PluginException
-from lxml.html import html5parser
 
 from plugins.basePlugin import Plugin as basePlugin
 
@@ -90,16 +89,12 @@ class Plugin(basePlugin):
                 self.sys.message(self.sys.CLIENTWARN, "Data element " + dat + " was created by another plugin, appending data to it and hoping it works out")
             else:
                 self.data[dat] = dict()
-                
-        if 'uxids' in self.data:
-            self.sys.message(self.sys.CLIENTWARN, "uxid lists exists from another plugin, appending data to it and hoping it works out")
-        else:
-            self.data['uxids'] = [] # contains tuplets 
-            
-        if 'siteuxids' in self.data:
-            self.sys.message(self.sys.CLIENTWARN, "siteuxid lists exists from another plugin, appending data to it and hoping it works out")
-        else:
-            self.data['siteuxids'] = [] # contains tuplets
+
+        for dat in ['uxids', 'siteuxids', 'wordindexlist', 'labels']:
+            if dat in self.data:
+                self.sys.message(self.sys.CLIENTWARN, dat + " list exists from another plugin, appending data to it and hoping it works out")
+            else:
+                self.data[dat] = []
         
         if (self.options.feedback_service != ""):
             self.sys.message(self.sys.CLIENTINFO, "Feedback server declared: " + self.options.feedback_service)
@@ -115,7 +110,7 @@ class Plugin(basePlugin):
             self.sys.message(self.sys.CLIENTINFO, "Exercise server declared: " + self.options.exercise_server)
         else:
             self.sys.message(self.sys.CLIENTERROR, "No exercise server declared in options")
-        
+
         
         self.template_redirect_basic = self.sys.readTextFile(self.options.template_redirect_basic, self.options.stdencoding)
         self.template_redirect_scorm = self.sys.readTextFile(self.options.template_redirect_scorm, self.options.stdencoding)
@@ -134,7 +129,9 @@ class Plugin(basePlugin):
         
         self.setup_contenttree()
         self.analyze_html() # analyzation done on raw text
-        self.analyze_nodes(self.ctree) # analyzation done inside nodes
+        self.analyze_nodes_stage1(self.ctree) # analyzation done inside nodes
+        self.prepare_index()
+        self.analyze_nodes_stage2(self.ctree) # analyzation parts using information from stage1 and the index
         
         for i in self.data['sections']:
             self.sys.message(self.sys.VERBOSEINFO, "Points in section " + i + " (" + self.data['sections'][i] + "): " + str(self.data['expoints'][i]) + ", of which " + str(self.data['testpoints'][i]) + " are in tests")
@@ -145,6 +142,8 @@ class Plugin(basePlugin):
         self.filecount = 0
         self.write_htmlfiles(self.ctree)
         self.write_miscfiles()
+        
+        self.finishing()
         
         
   
@@ -415,7 +414,7 @@ class Plugin(basePlugin):
         self.sys.message(self.sys.VERBOSEINFO, "Tree buildup: \n" + str(root))
 
 
-    # scan raw html for course scope relevant information tags
+    # scan raw html for course scope relevant information tags, note that rawxml is not used in further computations
     def analyze_html(self):
         
         # output user debug messages
@@ -442,12 +441,69 @@ class Plugin(basePlugin):
             self.sys.message(self.sys.CLIENTINFO, "Using location declaration: " + self.data['locationlong']);
         else:
             self.sys.message(self.sys.CLIENTINFO, "Location declaration not found, no location button will be generated")
-        
+            
 
     # scan tree content elements for course scope relevant information tags
-    def analyze_nodes(self, tc):
-        for c in tc.children:
-            self.analyze_nodes(c)
+    def analyze_nodes_stage1(self, tc):
+        # extract word index information (must be extracted before stage1 label management)
+        def windex(m):
+            idx = len(self.data['wordindexlist'])
+            li = "ELI_SW" + str(idx)
+            
+            (w, n) = re.subn(r"\<math xmlns=\"(.*?)\"\>[\n ]*\<mrow\>\<mi\>(.+?)\</mi\>\</mrow\>\</math\>", "\\2", m.group(1), 0, re.S)
+            if n > 0:
+                self.sys.message(self.sys.VERBOSEINFO, "Removed MathML environments from index word: " + m.group(1) + " -> " + w)
+            
+            (w, n) = re.subn(r"\<math xmlns=\"(.*?)\"\>[\n ]*\<mrow\>\<mo\>(.+?)\</mo\>\</mrow\>\</math\>", "\\2", w, 0, re.S)
+            if n > 0:
+                self.sys.message(self.sys.VERBOSEINFO, "Removed MathML environments from index word containing symbols: " + m.group(1) + " -> " + w)
+
+            if "<math" in w:
+                self.sys.message(self.sys.CLIENTERROR, "Cannot remove MathML tag in index word: " + m.group(1))
+            else:
+                w = html.fromstring(w).text # decodes HTML tags to umlauts
+            
+                if w is None:
+                    self.sys.message(self.sys.CLIENTERROR, "fromstring returned none (perhaps because of malformed MathML) for word " + m.group(1))
+                else:
+                    self.data['wordindexlist'].append((m.group(1), li, w))
+                    self.sys.message(self.sys.VERBOSEINFO, "Found index: " + m.group(1) + ", index is " + str(idx) + ", whole group is " + m.group(0))
+                
+            return "<!-- mindexentry;;" + m.group(1) + "; //--><a class=\"label\" name=\"" + li + "\"><\/a><!-- mmlabel;;" + li + ";;" \
+                   + m.group(2) + ";;" + m.group(3) + ";;" + m.group(4) + ";;" + m.group(5) + ";;13; //-->"
+
+        # carefull with regex, last letter of m.group(1) could be a ; because of math symbol HTML tags, on the other hand expressions have to be greedy to prevent overlaps
+        tc.content = re.sub(r"\<!-- mpreindexentry;;(.+?);;([^;]+?);;([^;]+?);;([^;]+?);;([^;]+?); //--\>", windex, tc.content, 0, re.S)
+        
+
+        # extract labels defined by the macro package: <!-- mmlabel;;LABELBEZEICHNER;;SUBJECTAREA;;SECTION;;SUBSECTION;;OBJEKTTYP;;ANCHORTAG; //-->
+        def elabel(m):
+            # labels defined inside math environments have data elements wrapped in an <mn>-tag
+            lab = re.sub(r"\</?mn\>", "", m.group(1), 0, re.S)
+            sub = re.sub(r"\</?mn\>", "", m.group(2), 0, re.S)
+            sec = re.sub(r"\</?mn\>", "", m.group(3), 0, re.S)
+            ssec = re.sub(r"\</?mn\>", "", m.group(4), 0, re.S)
+            sssec =  re.sub(r"\</?mn\>", "", m.group(5), 0, re.S)
+            ltype =  re.sub(r"\</?mn\>", "", m.group(6), 0, re.S)
+
+            pl = tc.fullname + "#" + lab
+            self.data['labels'].append((lab, sub, sec, ssec, sssec, ltype, pl))
+            self.sys.message(self.sys.VERBOSEINFO, "Added label " + lab  + " in chapter " + sub + " with number " + sec + "." + ssec + "." + sssec + "  and type " + ltype + ", pagelink = " + pl)
+            return "" # remoce the label tag entirely
+
+        tc.content = re.sub(r"\<!-- mmlabel;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); //--\>", elabel, tc.content, 0, re.S)
+        
+        # check if it is a helpsite or a child of one
+        if (not tc.parent is None) and tc.parent.helpsite:
+            tc.helpsite = True
+        else:
+            m = re.search(r"(.*)HELPSECTION(.*)", tc.title, re.S)
+            if m:
+                self.sys.message(self.sys.CLIENTINFO, "Helpsection is being set")
+                tc.title = m.group(1) + self.options.strings['module_helpsitetitle'] + m.group(2)
+                tc.helpsite = True
+            else:
+                tc.helpsite = False
             
         # add points of exercises to global counters
         def dpoint(m):
@@ -494,6 +550,181 @@ class Plugin(basePlugin):
         tc.content = re.sub(r"\<!-- mdeclaresiteuxid;;(.+?);;(.+?);;(.+?);; //--\>", dsuxid, tc.content, 0, re.S)
         # siteuxidpost will be grabbed by postprocessing and fill uxid property of tcontent object
 
+        # recursively analyze children
+        for c in tc.children:
+            self.analyze_nodes_stage1(c)
+
+
+    # analyze node content, after stage1 has been executed on the whole tree
+    def analyze_nodes_stage2(self, tc):
+
+        # prevent line breaks after h4 tags (MSubsubsectionx)
+        tc.content = re.sub(r"\</h4\>([ \n]*)\<div class=\"p\"\>\<!----\>\</div\>", "</h4>\n", tc.content, 0, re.S)
+        
+        # eliminate duplicate line breaks
+        tc.content = re.sub(r"\<div class=\"p\"\>\<!----\>\</div\>([ \n]*)\<div class=\"p\"\>\<!---->\</div\>", "<div class=\"p\"><!----></div>", tc.content, 0, re.S)
+        
+        # expand potential line breaks
+        tc.content = re.sub(r"\<div class=\"p\"\>\<!----\>\</div\>", "<br clear=\"all\"/><br clear=\"all\"/>", tc.content, 0, re.S)
+
+        # insert searchtable if found
+        tc.content = re.sub(r"\<!-- msearchtable //--\>", self.searchtable, tc.content, 0, re.S)
+        
+        # label management: expand reference tags using labels collected in stage1
+        def refexpand(m):
+            self.sys.message(self.sys.VERBOSEINFO, "Expanding link " + m.group(1))
+            lab = m.group(1) # Labelstring
+            prefi = int(m.group(2)) # 0 -> Number only, 1 ->  Prefix (i.e.. "Picture 3") present
+            href = ""
+            objtype = 0
+            found = False
+            for sl in self.data['labels']:
+                if (sl[0] == lab):
+                    found = True
+                    href = tc.fullname + sl[6]
+                    self.sys.message(self.sys.VERBOSEINFO, "  href = " + href)
+                    fb = int(sl[1])
+                    sec = sl[2]
+                    ssec = sl[3]
+                    refindex = sl[4]
+                    objtype = int(sl[5])
+
+            if not found:
+                self.sys.message(self.sys.CLIENTERROR, "Label " + lab + " has not been found by stage1, label list contains " + str(len(self.data['labels'])) + " items")
+                objtype = 0
+                return self.options.strings['brokenlabel']
+
+            # label types must be consistent with macro file definition !
+
+            ptext = ""
+            reftext = ""
+            
+            # oh no, Python has no switch
+            if objtype == 1:
+                # sections are module numbers, displayed as a pure number without subsection numbers, index is irrelevant
+                reftext = "$sec";
+                ptext = self.options.strings['module_labelprefix']
+
+            elif objtype == 2:
+                # subsections are MSubsections in modules, represented as SECTION.SUBSECTION, index is irrelevant
+                reftext = sec + "." + ssec
+                ptext = self.options.strings['subsection_labelprefix']
+
+            elif objtype == 3:
+                # subsubsections are prepresented as number triplet
+                reftext = sec + "." + ssec + "." + refindex
+                ptext = self.options.strings['subsubsection_labelprefix']
+
+            elif objtype == 4:
+                # a info box, given by a number triplet
+                ptext = "Infobox"
+                if ((fb == 1) or (fb == 2)):
+                    reftext = sec + "." + ssec + "."  + refindex
+                else:
+                    reftext = ""
+                    self.sys.message(self.sys.CLIENTWARN, "Reference " + lab + " to an info box given chapter index " + str(fb) + " without info box number")
+
+            elif objtype == 5:
+                # an exercise, represented by a number triplet
+                ptext = self.options.strings['exercise_labelprefix']
+                reftext = sec + "." + ssec + "." + refindex
+                
+            elif objtype == 6:
+                # an example, represented by a number triplet
+                ptext = self.options.strings['example_labelprefix']
+                reftext = sec + "." + ssec + "." + refindex
+
+            elif objtype == 7:
+                # an experiment
+                ptext = self.options.strings['experiment_labelprefix']
+                reftext = sec + "." + ssec + "." + refindex
+                
+            elif objtype == 8:
+                # an image, is referenced by a single number
+                ptext = self.options.strings['image_labelprefix']
+                if (((fb == 1) or (fb == 2) or (fb == 4)) and (prefi == 0)):
+                    reftext = refindex
+                else:
+                    self.sys.message(self.sys.CLIENTWARN, "Reference " + lab + " to an image using chemistry settings not implemented yet")
+                    reftext = refindex
+
+            elif objtype == 9:
+                # a table, is referenced by a single number
+                ptext = self.options.strings['table_labelprefix']
+                if (((fb == 1) or (fb == 2) or (fb == 4)) and (prefi == 0)):
+                    reftext = refindex
+                else:
+                    self.sys.message(self.sys.CLIENTWARN, "Reference " + lab + " to a table using chemistry settings not implemented yet")
+                    reftext = refindex
+                    
+            elif objtype == 10:
+                # a equation, represented by a number triplet with braces
+                # equation numbers force MLastIndex to be set to "equation" in TeX conversion
+                ptext = self.options.strings['equation_labelprefix']
+                reftext = "(" + sec + "." + ssec + "." + refindex + ")"
+
+            elif objtype == 11:
+                # a theorem or theoremx, represented by a number triplet
+                ptext = self.options.strings['theorem_labelprefix']
+                if (((fb == 1) or (fb == 2) or (fb == 4)) and (prefi == 0)):
+                    reftext = sec + "." + ssec + "." + refindex
+                else:
+                    self.sys.message(self.sys.CLIENTWARN, "Reference " + lab + " to a theorem using chemistry settings not implemented yet")
+                    reftext = sec + "." + ssec + "." + refindex
+
+            elif objtype == 12:
+                # a video, represented by a single number
+                ptext = self.options.strings['video_labelprefix']
+                if (((fb == 1) or (fb == 2) or (fb == 4)) and (prefi == 0)):
+                    reftext = sec + "." + ssec + "." + refindex
+                else:
+                    self.sys.message(self.sys.CLIENTWARN, "Reference " + lab + " to a video using chemistry settings not implemented yet")
+                    reftext = sec + "." + ssec + "." + refindex
+
+            elif objtype == 13:
+                # index entries in modules, only position S.SS.SSS is known
+                reftext = sec + "." + ssec
+                ptext = self.options.strings['subsection_labelprefix']
+
+            else:
+               self.sys.message(self.sys.CLIENTWARN, "An MRef reference of type " + str(objtype) + " from label " + lab + " has unknown type")
+               reftext = ""
+
+            if reftext != "":
+                if (prefi == 1):
+                    reftext = ptext + " " + reftext
+                return "<a class=\"MINTERLINK\" href=\"" + href + "\">" + reftext + "</a>"
+
+            self.sys.message(self.sys.CLIENTERROR, "Label " + lab + " could not be resolved")
+            return self.options.strings['brokenlabel']
+                
+            # end refexpand
+        tc.content = re.sub(r"\<!-- mmref;;(.+?);;(.+?); //--\>", refexpand, tc.content, 0, re.S)
+        
+        # label management: expand MSRef tags
+        def srefexpand(m):
+            self.sys.message(self.sys.VERBOSEINFO, "Expanding MSRef link " + m.group(1) + " of title " + m.group(2))
+            lab = m.group(1)
+            txt = m.group(2)
+            href = ""
+            for sl in self.data['labels']:
+                if (sl[0] == lab):
+                    href = tc.fullname + sl[6]
+                    self.sys.message(self.sys.VERBOSEINFO, "  href = " + href)
+  
+            if href != "":
+                return "<a class=\"MINTERLINK\" href=\"" + href + "\">" + txt + "</a>"
+            else:
+                self.sys.message(self.sys.CLIENTERROR, "Could not resolve MSRef on label " + lab + " with text " + txt)
+                return self.options.strings['brokenlabel']
+
+        tc.content = re.sub(r"\<!-- msref;;(.+?);;(.+?); //--\>", srefexpand, tc.content, 0, re.S)
+
+       
+        # recursively analyze children
+        for c in tc.children:
+            self.analyze_nodes_stage2(c)
+            
 
     # generates html file content using the page factory object for the entire tree (given by its root node)
     def generate_html(self, tc):
@@ -629,7 +860,7 @@ class Plugin(basePlugin):
         # parse sizes
         jcss += "var SIZES = new Object();\n"
         for ckey in self.options.sizes:
-            jcss += "SIZES." + ckey + " = " + str(self.options.sizes[ckey]) + "\n"
+            jcss += "SIZES." + ckey + " = " + str(self.options.sizes[ckey]) + ";\n"
   
 
         # substitute colors, fonts and sizes in css files, but generate a original css file as JS without substitutions
@@ -677,3 +908,35 @@ class Plugin(basePlugin):
         s = re.sub(r"\$url", redirect, s, 0, re.S)
         self.sys.writeTextFile(os.path.join(self.options.targetpath, filename), s, self.options.outputencoding)
         self.sys.message(self.sys.CLIENTINFO, "Redirect created from " + filename + " to " + redirect)
+
+
+    def finishing(self):
+        return
+    
+
+    # prepares the searchword index by using the wordlist generated by the tcontent node iteration
+    def prepare_index(self):
+        # sort the list using the modified strings
+        self.data['wordindexlist'] = sorted(self.data['wordindexlist'], key = lambda entry: entry[2])
+        self.sys.message(self.sys.CLIENTINFO, "Found " + str(len(self.data['wordindexlist'])) + " index entries")
+        # create search table in html
+        self.searchtable = "<div class='searchtable'>\n"
+        for ki in range(len(self.data['wordindexlist'])):
+            pr = 0
+            if ki == 0:
+                pr = 1
+            else:
+                if (self.data['wordindexlist'][ki][0] == self.data['wordindexlist'][ki - 1][0]):
+                    pr = 0;
+                else:
+                    pr = 1
+            if pr == 1:
+                self.searchtable += "<br />" + self.data['wordindexlist'][ki][0] + ": "
+            else:
+                self.searchtable += " , "
+            self.searchtable +=  "<!-- mmref;;" +  self.data['wordindexlist'][ki][1] + ";;1; //-->"
+            
+        self.searchtable += "</div>\n"
+        
+
+        

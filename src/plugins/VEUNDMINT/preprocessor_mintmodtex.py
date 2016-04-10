@@ -682,9 +682,12 @@ class Preprocessor(object):
         for f in ["MSContent", "align", "align*", "alignat", "alignat*", "MEvalMathDisplay"]:
             if re.search(r"\\begin\{" + re.escape(f) + "\}", self.local['tex'], re.S):
                 self.sys.message(self.sys.CLIENTWARN, "LaTeX environment " + f + " is not implemented in this converter version")
-                
+        for f in ["MTableOfContents", "tableofcontents"]:
+            if re.search(r"\\" + re.escape(f), self.local['tex'], re.S):
+                self.sys.message(self.sys.CLIENTWARN, "LaTeX command " + f + " is not implemented in this converter version")
         
         return
+
 
     def preprocess_labels(self):
         # set label type after equation starts

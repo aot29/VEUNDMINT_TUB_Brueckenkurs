@@ -180,9 +180,8 @@
 
 % MRegisterFile notiert eine Datei zur Einbindung in den HTML-Baum. Grafiken mit MGraphics werden automatisch eingebunden.
 % Mit MLastFile erhaelt man eine Markierung fuer die zuletzt registrierte Datei.
-% Diese Markierung wird im postprocessing (split.pm) durch den physikalischen Dateinamen ersetzt, aber nur den Namen (d.h. \MMaterial gehoert noch davor, vgl Definition von MGraphics)
+% Diese Markierung wird im postprocessing durch den physikalischen Dateinamen ersetzt, aber nur den Namen (d.h. \MMaterial gehoert noch davor, vgl Definition von MGraphics)
 % Parameter: Pfad/Name der Datei bzw. des Ordners, relativ zur Position des Modul-Tex-Dokuments.
-% Fuer png-Dateien wird in split.pm im postprocessing der base64-Inlinestring erzeugt
 \ifttm
 \newcommand{\MRegisterFile}[1]{\addtocounter{MFileNumber}{1}\special{html:<!-- registerfile;;}#1\special{html:;;}\MDPrefix\special{html:;;}\arabic{MFileNumber}\special{html:; //-->}}
 \else
@@ -1309,12 +1308,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 \newenvironment{MExtra}{\ifttm\else\clearpage\fi\begin{MUContent}{Zus\"atzliche Inhalte}{Zusatz}{weiterfhrg}}{\end{MUContent}}
 
-\ifttm
-\def\MTableOfContents{\special{html:<p><!-- toc //--></p>}}
-\else
-\def\MTableOfContents{\tableofcontents}
-\fi
-
 \makeindex
 
 \ifttm
@@ -1817,8 +1810,8 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \addtocounter{MTIKZAutofilenumber}{1}
 \renewcommand{\MTIKZautofilename}{mtikzauto_\arabic{MTIKZAutofilenumber}}
 \MUGraphicsSolo{\MSectionID\MTIKZautofilename.4x.png}{scale=1}{\special{html:[[!-- svgstyle;}\MSectionID\MTIKZautofilename\special{html: //--]]}} % Styleinfos werden aus original-png, nicht 4x-png geholt!
-\MRegisterFile{\MSectionID\MTIKZautofilename.png}
-\MRegisterFile{\MSectionID\MTIKZautofilename.svg}
+%\MRegisterFile{\MSectionID\MTIKZautofilename.png} % not used right now
+%\MRegisterFile{\MSectionID\MTIKZautofilename.svg}
 }
 \else%
 % PDF-Version: Falls Autogenerator aktiv wird Datei automatisch benannt und exportiert
