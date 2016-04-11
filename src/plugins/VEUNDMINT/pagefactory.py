@@ -28,7 +28,6 @@ from distutils.dir_util import mkpath
 import subprocess
 from lxml import etree
 from lxml import html
-from copy import deepcopy
 from plugins.exceptions import PluginException
 from lxml.html import HTMLParser
 from lxml.html import fragment_fromstring as frag_fromstring # must be this one: html5parser.HTMLParser does not accept JS
@@ -36,7 +35,6 @@ from lxml.html import fromstring as hp_fromstring
 from lxml.html.html5parser import HTMLParser as HTML5Parser
 from lxml.html.html5parser import fromstring as h5_fromstring
 from lxml import etree
-import fnmatch
 
 class PageFactory(object):
 

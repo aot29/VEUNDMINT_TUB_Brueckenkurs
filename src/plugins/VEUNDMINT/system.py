@@ -27,6 +27,7 @@ import sys
 import time
 import getpass
 import socket
+import glob
 
 class System(object):
 
@@ -284,3 +285,7 @@ class System(object):
         s['convuser'] = getpass.getuser()
         return s
     
+    
+    def listFiles(self, pattern):
+        return glob.glob(pattern)
+

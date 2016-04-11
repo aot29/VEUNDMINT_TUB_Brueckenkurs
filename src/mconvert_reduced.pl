@@ -1140,96 +1140,13 @@ if ($config{docollections} eq 1) {
   }
 }
 
-if ($config{doverbose} == "1") {
-  my $graph = GraphViz->new();
-  my @list = ();
-  push @list, $root;
-  while ($#list != -1) {
-    my $page = $list[0];
-    splice(@list, 0, 1);
-    my $title = $page->{UXID};
-    if ($title eq $UNKNOWN_UXID) {
-      $title = $page->{TITLE} . " " . $page->{ID};
-    }
-    logMessage($VERBOSEINFO, "graph item uxid = $title");
-    $title = decode("latin1", $title);
-    $title = encode("utf-8", $title);
-    $graph->add_node($title);
-    if ($page->{LEVEL} >= 1) {
-      my $pretitle = $page->{PARENT}->{UXID};
-      if ($pretitle eq $UNKNOWN_UXID) {
-        $pretitle = $page->{PARENT}->{TITLE} . " " . $page->{PARENT}->{ID};
-      }
-      $pretitle = decode("latin1", $pretitle);
-      $pretitle = encode("utf-8", $pretitle);
-      $graph->add_edge($title, $pretitle);
-    }
-    my @subpages = @{$page->{SUBPAGES}};
-    for (my $i = 0; $i <= $#subpages; $i++) {
-      push @list, $subpages[$i];
-    }
-  }
- 
-  writefile("graph.png", $graph->as_png());
-}
-
-#Rechte setzen
-system "chmod -R 777 " . $config{outtmp};
-
-
-if ($#converrors ge 0) {
-  logMessage($CLIENTINFO, "----------------------- COMPILATION MESSAGES ---------------------------------");
-  my $yi = 0;
-  for ($yi = 0; $yi <= $#converrors; $yi++) {
-    logMessage($CLIENTINFO, "  $converrors[$yi]");
-  }
-} else {
-  logMessage($VERBOSEINFO, "  No compilation messages occurred");
-}
 
 logTimestamp("Finished computation");
 
 }
 
-# Parameter: Name der Konfigurationsdatei relativ zum Aufrufer
-sub setup_options {
-  $mconfigfile = $_[0];
-  if ($mconfigfile =~ m/(.+)\.pl/ ) {
-    if ($mconfigfile =~ m/\// ) { logMessage($FATALERROR, "Configuration file must be in calling directory"); }
-    
-    if (-e $mconfigfile) {
-      logMessage($CLIENTINFO, "Configuration file: " . $mconfigfile);
-      unless (%config = do $mconfigfile) {
-        warn "Couldn't parse $mconfigfile: $@" if $@;
-        warn "Couldn't run $mconfigfile" unless %config;
-      }
-    } else {
-      logMessage($FATALERROR, "Configuration file $mconfigfile does not exist");
-    }
-  } else {
-    logMessage($FATALERROR, "Configuration file $mconfigfile must be of type name.pl");
-  }
-  $configactive = 1;  
-  logMessage($CLIENTINFO, "Configuration description: " . $config{description});
-}
 
 
-# Parameter: string, content of a tex file
-# returns 1 if tex file is valid for a release
-sub checkRelease {
-  my $tex = $_[0];
-  my $reply = 1;
-  # no experimental environments
-  if ($tex =~ m/\\begin{MExperimental}/s ) {
-    logMessage($VERBOSEINFO, "MExperimental found in tex file");
-    $reply = 0;
-  }
-  if ($tex =~ m/\% TODO/s ) {
-    logMessage($VERBOSEINFO, "TODO comment found in tex file");
-    $reply = 0;
-  }
-  return $reply;
-}
 
 # Parameter: Variant id string, main tex file
 sub create_tree {
@@ -1268,144 +1185,22 @@ sub create_tree {
     logMessage($VERBOSEINFO, "  newcommand: $1");
   }
 
-  # Erzeuge den HTML-Baum
-  chdir("../..");
-  $ndir = getcwd; # = $output in voller expansion
-  chdir("$ndir/converter");
-  logMessage($VERBOSEINFO, "Changing to directory $ndir/converter");
-
-  # Zerlegung und Umwandlung der XML-Datei vornehmen
   converter_conversion($outputdir);
 
-  chdir("tex");
-  my $pdfok = 1;
-  if ($config{dopdf} eq 1) {
-      my $doct = "";
-      my $docdesc = "";
-      while ((($doct, $docdesc) = each(%{$config{generate_pdf}})) and ($pdfok == 1)) {
-        logMessage($CLIENTINFO, "======= Generating PDF file $doct.tex ($docdesc) ========================================");
+ 
   
-        my $rt1 = system("pdflatex $doct.tex");
-        if ($rt1 != 0) {
-          print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
-	  $pdfok = 0;
-        } else {      
-  	$rt1 = system("pdflatex $doct.tex");
-	  if ($rt1 != 0) {
-            print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
-	    $pdfok = 0;
-	  } else {      
-  	  $rt1 = system("makeindex $doct");
-	    if ($rt1 != 0) {
-              print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
-	      $pdfok = 0;
-	    } else {      
-  	    $rt1 = system("pdflatex $doct.tex");
-	      if ($rt1 != 0) {
-                print("RETURNVALUE $rt1 from pdflatex, aborting PDFs entirely\n");
-	        $pdfok = 0;
-	      }
-	    }
-	  }
-        }
-    }
-    if ($pdfok == 1) {
-      print("======= PDF files build successfully =======================================\n");
-    } else {
-      print("======= PDF files have not been build =================================\n");
-    }
-  }
-
-  logMessage($VERBOSEINFO, "Changing back to directory $ndir");
-  chdir("$ndir");
-
-  # Loesche das build-Verzeichnis und berichtige den Baum
-  if ($config{dopdf} eq 1) {
-    if ($pdfok == 1) {
-      system("cp $ndir/converter/tex/*.pdf $ndir/.");
-      print("PDFs generated\n");
-    } else {
-      print("No PDFs generated due to errors\n");
-    }
-  }
-
-  if ($config{doscorm} eq 1) { system("cp -R $ndir/converter/SCORM2004v4/* $ndir/."); }
+ 
+  # if ($config{doscorm} eq 1) { system("cp -R $ndir/converter/SCORM2004v4/* $ndir/."); }
 
 
-  if ($config{localjax} eq 1) {
-    logMessage($CLIENTINFO, "MathJax 2.6 (full package) is added locally");
-    system("mkdir $ndir/MathJax");
-    system("tar -xzf $ndir/converter/mathjax26complete.tgz --directory=$ndir/MathJax/.");
-  }
 
-  system("mv $ndir/converter/" . $config{outtmp} . "/* $ndir/.");
-  system("rmdir $ndir/converter/" . $config{outtmp});
 
-  if ($config{cleanup} == 0) {
-    logMessage($CLIENTINFO, "CONVERTER-SUBDIRECTORY IS NOT BEING REMOVED");
-  } else {
-    system("rm -fr $ndir/converter");
-    logMessage($CLIENTINFO, "converter-directory cleaned up");
-  }
-
-  # Globales Starttag suchen und Baum dazu anpassen
-
-  $call = "find -P $ndir/. -name \\*.html";
-  my $htmllist = `$call`; # Finde alle html-Files, auch in den Unterverzeichnissen
-  my @htmls = split("\n",$htmllist);
-  $nt = $#htmls + 1;
-  my $htmlzeile = "";
-  my $starts = 0;
-  for ($ka = 0; $ka < $nt; $ka++) {
-      my $content = "";
-      my $hfilename = $htmls[$ka];
-      my $html_open = open(MINTS, "< $hfilename") or die "FATAL:: Could not open $htmls[$ka]\n";
-      while(defined($htmlzeile = <MINTS>)) {
-      close(MINTS);
-  }
-
-  my $npng = keys %tikzpng;
-  if ($npng ge 1) {
-    logMessage($CLIENTERROR, "$npng tikz externalized files have not been used in svg style infos");
-    my $tname;
-    foreach $tname (keys %tikzpng) {
-      logMessage($VERBOSEINFO, "  $tname");
-    }
-  }
-
-  if ($starts eq 0 ) {
-    logMessage($FATALERROR, "Global start tag not found, HTML tree is disfunctional");
-  } else {
-    if ($starts ne 1) {
-      logMessage($CLIENTERROR, "Multiple start tags found, using last one");
-    }
-  }
 
   # PYTHON CONVERSION
   
   
-  if ($config{borkify} eq 1) {
-    chdir("$ndir/mpl");
-    borkifyHTML();
-    chdir("..");
-    minimizeJS();
-  }
 
-  chdir($ndir);
 
-  system("rm -fr *.js~");
-
-  if ($config{dozip} eq 0) {
-    logMessage($CLIENTINFO, "HTML module " . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? "and PDF " : " ") . "created");
-    chdir("..");
-  } else {
-    system("chmod -R 777 *");
-    system("zip -r $zip *");
-    system("cp $zip ../.");
-    chdir("..");
-    system("rm -fr $ndir");
-    logMessage($CLIENTINFO, "HTML module" . ((($config{dopdf} eq 1) and ($pdfok eq 1)) ? "and PDF " : " ") . "created and zipped to $zip");
-  }
 
 }
 

@@ -83,6 +83,7 @@ class Option(object):
         self.contentlicense = "CC BY-SA 3.0"                 # Lizenz des Kursinhalts
         self.moduleprefix = "Onlinebrückenkurs Mathematik"   # Wird vor Browser-Bookmarks gesetzt
         self.variant = "std"                                 # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete fuer Mathematikumsetzung aus, Alternative ist "unotation"
+        self.accessflags = "777"                             # linux access flag preset for the entire output directory
 
         self.mathjaxtgz = "mathjax26complete.tgz"
         self.texstylefiles = ["bibgerm.sty", "maxpage.sty"]  # style files needed in local directories for local pdflatex compilation
