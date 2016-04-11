@@ -851,53 +851,6 @@ sub generatecollectionmark {
 
 
 
-# Erzeugt das settings-div fuer die html-Seiten
-sub getsettings {
-  my $settings = <<ENDE;
-<p>
-<center>
-<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
-<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
-<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" type="button" onclick="selectColor(STYLEBLUE);">Blaues Schema</button></center></li>
-<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" type="button" onclick="selectColor(STYLERED);">Rotes Schema</button></center></li>
-<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" type="button" onclick="selectColor(STYLEGREEN);">Grünes Schema</button></center></li>
-<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" type="button" onclick="selectColor(STYLEGREY);">Graues Schema</button></center></li>
-</ul>
-</center>
-</p>
-
-<br /><br />
-
-<p>
-<center>Auswahl der mathematischen Notation</center><br />
-<ul style="list-style-type:none">
-  <li>
-  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
-  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
-  \\(\\displaystyle
-  ]a;b[\\ , \\ \\mathbb N =\\lbrace 1;2;3;\\ldots\\rbrace \\ , \\ P=(a;b;c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right) \\ ,\\ \\sqrt2 =1,414\\ldots
-  \\)
-  </li>
-  <li>
-  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
-  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
-  \\(\\displaystyle
-  (a,b)\\ , \\ \\mathbb N =\\lbrace 1,2,3,\\ldots\\rbrace \\ , \\ P=(a,b,c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right) \\ ,\\ \\sqrt2 =1.414\\ldots
-  \\)
-  </li>
-</ul>
-</p>
-<p>
-<br /><br />
-<center>
-<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
-</center>
-</p>
-ENDE
-  
-  return $settings;
-}
-
 # Uebersetzt die alten (VEMA) Iconnamen in die neuen Dateiprefixe, im alten Design geschieht diese Uebersetzung im default.css
 # Parameter: Der Iconstring
 sub translateoldicons {
@@ -994,51 +947,11 @@ sub printpages {
 
 		#my $divhead = updatelinks(getheader(),$linkpath);
 		#my $divfooter = updatelinks(getfooter(),$linkpath);
-		my $divsettings = updatelinks(getsettings(),$linkpath);
+		#my $divsettings = updatelinks(getsettings(),$linkpath);
 		# Kein update erforderlich da $p verwendet wird:
 		#my $divnavi = getnavi($p); 
 		#my $divtoccaption = gettoccaption_menustyle($p);
 		#my $divcontent = getcontent($p);
-
-
-		
-		
-		
-		
-		
-
-
-   
-
-
-
-		$text .= "<div id=\"fixed\">\n";
-		$text .= "<div id=\"fhead\" class=\"head\">\n"   . $divhead       . "</div>\n";
-		$text .= "<div id=\"ftoc\" class=\"toc\">\n"    . $divtoccaption . "</div>\n";
-		$text .= "<div id=\"fnavi\" class=\"navi\">\n"   . $divnavi       . "</div>\n";
-		$text .= "<div id=\"footer\">\n"    . $divfooter     . "</div>\n";
-		$text .= "<div id=\"settings\" style=\"visibility:hidden\">\n" . $divsettings . "</div>\n";
-		$text .= "</div>\n";
-		$text .= "<div id=\"notfixed\">\n";
-		$text .= "<div id=\"nfhead\" class=\"head\">\n"   . $divhead       . "</div>\n";
-		$text .= "<div id=\"nftoc\" class=\"toc\">\n"    . $divtoccaption . "</div>\n";
-		$text .= "<div id=\"nfnavi\" class=\"navi\">\n"   . $divnavi       . "</div>\n";
-		$text .= "<div id=\"content\"><div id=\"text\"><div class=\"text\">\n"   . $divcontent    . "</div></div></div>\n";
-		$text .= "</div>\n";
-
-
-		# --------------
-
-		#Titel der Seite einfuegen
-		$title = $p->titlestring();
-		$text =~ s/{TITLE}/$title/g;
-		  
-		
-		#Endungen setzen
-		$text =~ s/{EXT}/html/g;
-		  
-		#Zusatzpfad
-		$text =~ s/{MATHMLPATH}/mpl\//g;
 
 
 		# Abschluss der Seite

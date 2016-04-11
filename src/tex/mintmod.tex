@@ -1122,6 +1122,9 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 \def\MyText#1{#1}
 
+% is used internally by the conversion package, should not be used by original tex documents
+\def\MOrgLabel#1{\relax}
+
 \ifttm
 
 % Ein MLabel wird im html codiert durch das tag <!-- mmlabel;;Labelbezeichner;;SubjectArea;;section;;subsection;;Index;;Objekttyp; //-->

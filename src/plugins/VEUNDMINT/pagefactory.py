@@ -67,6 +67,7 @@ class PageFactory(object):
             self.sys.message(self.sys.CLIENTINFO, "MathJax will be included from MathJax CDN")
             self.template_mathjax_include = self.sys.readTextFile(self.options.template_mathjax_cdn, self.options.stdencoding)
             
+        self.template_settings = self.sys.readTextFile(self.options.template_settings, self.options.stdencoding)
             
     def _substitute_string(self, html, cstr, insertion):
         # carefull: parser turns <div ....></div> into <div ... /> but not if a whitespace is inside
@@ -121,6 +122,7 @@ class PageFactory(object):
         tc.html = self._substitute_string(tc.html, "footerright", self.options.footer_right)
         tc.html = self._substitute_string(tc.html, "footermiddle", self.options.footer_middle)
         tc.html = self._substitute_string(tc.html, "content", tc.content)
+        tc.html = self._substitute_string(tc.html, "settings", self.template_settings)
 
         tc.html = self.postprocessing(tc.html, tc)
 

@@ -184,6 +184,7 @@ class Option(object):
         self.template_mathjax_local = os.path.join(self.converterTemplates, "mathjax_local_2_6.html")
         self.template_redirect_scorm = os.path.join(self.converterTemplates, "html5_redirect_scorm.html")
         self.template_redirect_basic = os.path.join(self.converterTemplates, "html5_redirect_basic.html")
+        self.template_settings = os.path.join(self.converterTemplates, "html5_settings.html")
 
         # VE&MINT stylesheets und JS-files, die in jeder HTML-Datei eingebunden werden, Dateiangaben relativ zum files-Ordner
         self.stylesheets  = [
