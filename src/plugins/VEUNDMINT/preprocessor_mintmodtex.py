@@ -461,7 +461,8 @@ class Preprocessor(object):
                 dotikzfile = True
         else:
             if re.search(r"\\MTikzAuto", self.local['tex'], re.S):
-                self.sys.message(self.sys.CLIENTWARN, "texfile contains MTikzAuto environments, but not \\Mtikzexternalize")
+                self.sys.message(self.sys.CLIENTWARN, "texfile contains MTikzAuto environments, but not \\Mtikzexternalize (perhaps in comments?)")
+
                 
 
         # switch to local self.local['tex'] directory, externalize if requested, and convert image formats            
@@ -595,7 +596,8 @@ class Preprocessor(object):
         if n > 0: self.sys.message(self.sys.CLIENTWARN, "Module " + self.local['modulename'] + " uses local input files")
 
         return
-
+    
+    
     def preprocess_ttmcompability(self):
         # modify tex constructs that are not translated correctly by the original ttm converter,
         # but preserve the original version of pdf version
@@ -682,11 +684,24 @@ class Preprocessor(object):
         for f in ["MSContent", "align", "align*", "alignat", "alignat*", "MEvalMathDisplay"]:
             if re.search(r"\\begin\{" + re.escape(f) + "\}", self.local['tex'], re.S):
                 self.sys.message(self.sys.CLIENTWARN, "LaTeX environment " + f + " is not implemented in this converter version")
-                
+        for f in ["MTableOfContents", "tableofcontents"]:
+            if re.search(r"\\" + re.escape(f), self.local['tex'], re.S):
+                self.sys.message(self.sys.CLIENTWARN, "LaTeX command " + f + " is not implemented in this converter version")
         
         return
 
+
     def preprocess_labels(self):
+        # check MLabel functionality and move labels to appropriate positions
+        for tag in ['label', 'ref', 'eref']:
+            if ("\\" + tag) in  self.local['tex']:
+                self.sys.message(self.sys.CLIENTERROR, "Use of LaTeX command \\" + tag + " with the VEUNDMINT package will break label management, please use commands from the macro package " + self.options.macrofile + " instead")
+
+        # check duplicate constructs
+        m = re.search(r"\\MLabel\{([^\}]*)\}[\s%]*\\MLabel\{([^\}]*)\}", self.local['tex'], re.S)
+        if m:
+            self.sys.message(self.sys.CLIENTERROR, "Different labels " + m.group(1) + " and " + m.group(2) + " are attached to the same object, which breaks label management")
+
         # set label type after equation starts
         eqprefix = "\\setcounter{MLastType}{10}\\\\addtocounter{MLastTypeEq}{1}\\\\addtocounter{MEquationCounter}{1}\\setcounter{MLastIndex}{\\\\value{MEquationCounter}}\n"
         eqpostfix = "\\\\addtocounter{MLastTypeEq}{-1}\n"
@@ -704,8 +719,22 @@ class Preprocessor(object):
         # MLabels in equation/eqnarray umsetzen, so dass sie vor dem Environment (in dem alles als Mathe geparset wird) stehen
         #     while ($textex =~ s/\\begin{equation}(.*?)([\n ]*)\\MLabel{(.+?)}([\n ]*)(.*?)\\end{equation}/\\MLabel{$3}\n\\begin{equation}$1 $5\\end{equation}/s ) {;} 
         #     while ($textex =~ s/\\begin{eqnarray}(.*?)([\n ]*)\\MLabel{(.+?)}([\n ]*)(.*?)\\end{eqnarray}/\\MLabel{$3}\n\\begin{eqnarray}$1 $5\\end{eqnarray}/s ) {;} 
+        
+        
+        (self.local['tex'], n) = re.subn(r"\\MSection\{([^\}]+?)\}[\s%]*\\MLabel\{([^\}]+?)\}(.*?)\\begin\{MSectionStart\}", "\\MSection{\\1}\\MOrgLabel{\\2}\n\\3\\\\begin{MSectionStart}\\MLabel{\\2}", self.local['tex'], 0, re.S)
+        if n > 0:
+            self.sys.message(self.sys.VERBOSEINFO, str(n) + " section labels have been moved to the following xcontent (MSectionStart)")
+
+        (self.local['tex'], n) = re.subn(r"\\MSubsection\{([^\}]+?)\}[\s%]*\\MLabel\{([^\}]+?)\}[\s%]*\\begin\{MIntro\}", "\\MSubsection{\\1}\\MOrgLabel{\\2}\n\\\\begin{MIntro}\\MLabel{\\2}", self.local['tex'], 0, re.S)
+        if n > 0:
+            self.sys.message(self.sys.VERBOSEINFO, str(n) + " subsection labels have been moved to the following xcontent (MIntro)")
        
+        (self.local['tex'], n) = re.subn(r"\\MSubsection\{([^\}]+?)\}[\s%]*\\MLabel\{([^\}]+?)\}[\s%]*\\begin\{MXContent\}{([^\}]*?)}{([^\}]*?)}{([^\}]*?)}", "\\MSubsection{\\1}\\MOrgLabel{\\2}\n\\\\begin{MXContent}{\\3}{\\4}{\\5}\\MLabel{\\2}", self.local['tex'], 0, re.S)
+        if n > 0:
+            self.sys.message(self.sys.VERBOSEINFO, str(n) + " subsection labels have been moved to the following xcontent (MXContent)")
+            
         return
+
    
     def _installPackages(self):
         # installs modified local macro package and used style files in the current directory
@@ -714,6 +743,7 @@ class Preprocessor(object):
         for f in self.options.texstylefiles:
             self.sys.writeTextFile(f, self.sys.readTextFile(os.path.join(self.options.converterDir, "tex", f), self.options.stdencoding), self.options.stdencoding)
         return
+
 
     def _removePackages(self):
         # removeslocal macro package and style files in the current directory

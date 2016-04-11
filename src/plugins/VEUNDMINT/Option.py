@@ -94,19 +94,36 @@ class Option(object):
         # Settings for HTML design and typical phrases        
         self.chaptersite = "chapters.html"
         self.strings = {
-	    'chapter': "Kapitel",
+            "chapter": "Kapitel",
             "module_starttext": "Modul starten",
             "module_solutionlink": "L&#246;sung ansehen",
             "module_solution": "L&#246;sung",
             "module_solutionback": "Zur&#252;ck zur Aufgabe",
-	    "module_content": "Kursinhalt",
-	    "module_moreinfo": "Mehr Informationen"
+            "module_content": "Kursinhalt",
+            "module_moreinfo": "Mehr Informationen",
+            "module_helpsitetitle": "Einstiegsseite",
+            "module_labelprefix": "Modul",
+            "subsection_labelprefix": "Abschnitt",
+            "subsubsection_labelprefix": "Unterabschnitt",
+            "exercise_labelprefix": "Aufgabe",
+            "example_labelprefix": "Beispiel",
+            "experiment_labelprefix": "Experiment",
+            "image_labelprefix": "Abbildung",
+            "table_labelprefix": "Tabelle",
+            "equation_labelprefix": "Gleichung",
+            "theorem_labelprefix": "Satz",
+            "video_labelprefix": "Video",
+            "brokenlabel": "(VERWEIS)",
+            "feedback_sendit": "Meldung abschicken",
+            "qexport_download_tex": "Quellcode dieser Aufgabe im LaTeX-Format",
+            "qexport_download_doc": "Quellcode dieser Aufgabe im Word-Format"
         }
 
         self.fonts = {
             # BASICFONTFAMILY  => "Open Sans Condensed"
-            "BASICFONTFAMILY": "open-sans"
-            # BASICFONTFAMILY =>    "\"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", Verdana, Arial, Helvetica , sans-serif"
+            "BASICFONTFAMILY": "open-sans",
+            # only used if stdmathfont is on:
+            "STDMATHFONTFAMILY": "\'HelveticaNeue-Light\', \'Helvetica Neue Light\', \'Helvetica Neue\', Helvetica, Arial, \'Lucida Grande\', Verdana, Arial, Helvetica , sans-serif"
         }
         
         menuwidth = 160
@@ -167,6 +184,7 @@ class Option(object):
         self.template_mathjax_local = os.path.join(self.converterTemplates, "mathjax_local_2_6.html")
         self.template_redirect_scorm = os.path.join(self.converterTemplates, "html5_redirect_scorm.html")
         self.template_redirect_basic = os.path.join(self.converterTemplates, "html5_redirect_basic.html")
+        self.template_settings = os.path.join(self.converterTemplates, "html5_settings.html")
 
         # VE&MINT stylesheets und JS-files, die in jeder HTML-Datei eingebunden werden, Dateiangaben relativ zum files-Ordner
         self.stylesheets  = [

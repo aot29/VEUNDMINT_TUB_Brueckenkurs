@@ -24,6 +24,8 @@
 
 import re
 import os
+from distutils.dir_util import mkpath
+import subprocess
 from lxml import etree
 from lxml import html
 from copy import deepcopy
@@ -65,6 +67,7 @@ class PageFactory(object):
             self.sys.message(self.sys.CLIENTINFO, "MathJax will be included from MathJax CDN")
             self.template_mathjax_include = self.sys.readTextFile(self.options.template_mathjax_cdn, self.options.stdencoding)
             
+        self.template_settings = self.sys.readTextFile(self.options.template_settings, self.options.stdencoding)
             
     def _substitute_string(self, html, cstr, insertion):
         # carefull: parser turns <div ....></div> into <div ... /> but not if a whitespace is inside
@@ -114,17 +117,15 @@ class PageFactory(object):
         tc.html = self._substitute_string(tc.html, "javascript-body-header", js_text + self.template_javascriptheader)
         tc.html = self._substitute_string(tc.html, "javascript-body-footer", self.template_javascriptfooter)
 
-        
-
-
         tc.html = self._append_string(tc.html, "toccaption", self.gettoccaption(tc))
         tc.html = self._substitute_string(tc.html, "navi", self.getnavi(tc))
-        
         tc.html = self._substitute_string(tc.html, "footerright", self.options.footer_right)
         tc.html = self._substitute_string(tc.html, "footermiddle", self.options.footer_middle)
-
-
         tc.html = self._substitute_string(tc.html, "content", tc.content)
+        tc.html = self._substitute_string(tc.html, "settings", self.template_settings)
+
+        tc.html = self.postprocessing(tc.html, tc)
+
 
         # compute number of chapters and section numbers
         pp = tc
@@ -138,6 +139,7 @@ class PageFactory(object):
             else:
                 idstr = str(pp.pos) + "." + idstr
             pp = pp.parent
+            
         
         # provide tc attributes as JS variables inside the html
         js = ""
@@ -153,7 +155,6 @@ class PageFactory(object):
         
         tc.html = self.update_links(tc.html, tc.backpath)
 
-        # postprocessing here
         
         
     def gettoccaption(self, tc):
@@ -335,3 +336,324 @@ class PageFactory(object):
         html = re.sub(r"\<div (.*?)/\>", "<div \\1></div>", html, 0, re.S)
         return html
     
+    
+    def postprocessing(self, html, tc):
+        # orgpage = tc
+      
+        # read unique ids
+        m = re.search(r"\<!-- mdeclaresiteuxidpost;;(.+?);; //--\>", html, re.S)
+        if m:
+            tc.uxid = m.group(1)
+            self.sys.message(self.sys.VERBOSEINFO, tc.title + " -> " + tc.uxid + " (siteuxidpost)")
+        else:
+            tc.uxid = "UNKNOWNUXID"
+            self.sys.message(self.sys.CLIENTWARN, "Site hat keine uxid: " + tc.title);
+            
+            
+        # activate pull sites and adapt JS variables
+        if "<!-- pullsite //-->" in html:
+            html = html.replace("// <JSCRIPTPRELOADTAG>", "SITE_PULL = 1;\n" + "// <JSCRIPTPRELOADTAG>")
+            self.sys.message(self.sys.CLIENTINFO, "User-Pull on Site: " + tc.title)
+        else:
+            html = html.replace("// <JSCRIPTPRELOADTAG>", "SITE_PULL = 0;\n" + "// <JSCRIPTPRELOADTAG>")
+            
+        # remove br tags which destabilize tabulars, is remains unknown why ttm places br there anyway,
+        # we are detecting the combination <!--hbox--><br clear="all" /> followed by a table tag
+        (html, n) = re.subn(r"\<!--hbox--\>\<br clear=\"all\" /\> *\<table", "<!--hbox--> <table", html, 0, re.S)
+        if n > 0: self.sys.message(self.sys.VERBOSEINFO, "Postprocessing eliminated " + str(n) + " br tags in front of tables")
+        
+        # MStartJustify, MEndJustify  
+        if "<!-- startalign;;" in html:
+            self.sys.message(self.sys.CLIENTERROR, "Justify, JTabular, JustifiedImages are not supported yet")
+            
+
+        # find registered files and copy them to an appropriate position inside the HTML tree
+        self.sys.message(self.sys.VERBOSEINFO, "Copying local files, outputfolder=" + tc.fullpath + ", outputfile=" + tc.fullname)
+        
+        nf = 0
+      
+        fileregs = re.findall(r"\<!-- registerfile;;(.+?);;(.+?);;(.+?); //--\>", html, re.S)
+        for reg in fileregs:
+            
+            nf += 1
+            fname = reg[0]
+            includedir = reg[1]
+            fileid = reg[2]
+            fnameorg = fname
+            self.sys.message(self.sys.VERBOSEINFO, "Processing includedir=" + includedir + ", fname=" + fname + ", id=" + fileid)
+            
+            # file extension given?
+            dobase64 = 0
+            fext = ""
+            em = re.match(r".*\.([^\.]*)", fname, re.S)
+            if em:
+                if em.group(1) == "":
+                    self.sys.message(self.sys.CLIENTWARN, "File " + fname + " has empty extension")
+                fext = "." + em.group(1)
+                fname = re.sub(re.escape(fext), "" , fname, 1)
+                self.sys.message(self.sys.VERBOSEINFO, "File extension is " + fext)
+                if (fext == ".png"):
+                    dobase64 = 1
+                else:
+                    dobase64 = 0
+                    self.sys.message(self.sys.VERBOSEINFO, "   not a png but " + fext)
+                    if (fext == ".PNG"):
+                        self.sys.message(self.sys.CLIENTERROR, "Found png file of extension PNG, please change them to lower case")
+            else:
+                # simulating DeclareGraphicsExtension{png,jpg,gif} from LaTeX
+                self.sys.message(self.sys.VERBOSEINFO, "No file extension given, guessing graphics extensions")
+                filerump = "tex/" + includedir + "/" + fname
+                p = subprocess.Popen(["ls", "-l", filerump + ".*"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+                (filelist, err) = p.communicate()
+                if p.returncode == 0:
+                    self.sys.message(self.sys.VERBOSEINFO, "  filelist=" + filelist)
+                    filerump2 = re.escape(filerump)
+                    fm = re.search(filerump2 + r"\.(png)", filelist, re.S)
+                    if fm:
+                        fext = "." + fm.group(1)
+                        dobase64 = 1
+                    else:
+                        fm = re.search(filerump2 + r"\.(jpg)", filelist, re.S)
+                        if fm:
+                            fext = "." + fm.group(1)
+                            self.sys.message(self.sys.VERBOSEINFO, "  ...found a jpg (png is preferred)")
+                        else:
+                            fm = re.search(filerump2 + r"\.(gif)", filelist, re.S)
+                            if fm:
+                                fext = "." + fm.group(1)
+                                self.sys.message(self.sys.VERBOSEINFO, "  ...found a gif (not recommended)");
+                            else:
+                                self.sys.message(self.sys.CLIENTERROR, "Could not find suitable graphics extension for " + fname + ", rump is " + filerump + " rump2 is " + filerump2 + ", filelist is\n" + filelist + "\n")
+                                fext = "*"
+                                fnameorg2 = re.escape(fnameorg)
+                                (html, n) = re.sub(r"\<!-- registerfile;;" + fnameorg2 + ";;" + includedir + ";;" + fileid + "; //--\>", "" , html ,0, re.S)
+                                if (n != 1):
+                                    self.sys.message(self.sys.CLIENTERROR, "Register tag with id " + fileid + " found " + str(n) + " times in html content without graphics extension")
+                else:
+                    self.sys.message(self.sys.FATALERROR, "Command ls does not seem to work, error code is " + str(p.returncode))
+                
+            dobase64 = 0 # should be enabled later
+            if (fext != "*"):
+                fname = fname + fext
+                fm = re.search(r"(.*)/(.*?" + re.escape(fext) + ")", fname, re.S)
+                if fm:
+                    fnamepath = fm.group(1)
+                    fnamename = fm.group(2)
+                else:
+                    # not an error, as path of file may be empty
+                    fnamepath = ""
+                    fnamename = fname
+                
+                fnamepath = fnamepath + "."
+                (html, n) = re.subn(r"\[\[!-- mfileref;;" + re.escape(fileid) + "; //--\]\]" , fname, html , 0, re.S)
+                if n > 0:
+                    self.sys.message(self.sys.VERBOSEINFO, "fileid " + fileid + " expanded to " + fname + " in directory " + tc.fullpath)
+                else:
+                    self.sys.message(self.sys.CLIENTWARN, "fileid " + fileid + " was not expanded to " + fname + " in directory " + tc.fullpath + " because it is not used")
+
+                # remove register tag from the code
+                fnameorg2 = re.escape(fnameorg)
+                (html, n) = re.subn(r"\<!-- registerfile;;" + fnameorg2 + ";;" + includedir + ";;" + fileid + "; //--\>", "" , html ,0, re.S)
+                if (n != 1):
+                    self.sys.message(self.sys.CLIENTERROR, "Register tag with id " + fileid + " found " + str(n) + " times in html content")
+                
+                # remove top directory level from fname because include directories inside sourceTEX are not being reproduced in HTML
+                if (includedir != "."):
+                    # carefull: only 1 replacement allowed because pathname is prefix of mtikzauto-filenames
+                    fname = re.sub(re.escape(includedir) + r"/", "", fname, 1)
+                fi = "tex/" + includedir + "/" + fname
+                if (dobase64 == 1):
+                    self.sys.message(self.sys.CLIENTERROR, "dobase64 not supported yet")
+                fi2 = tc.fullpath + "/" + fname
+                self.sys.message(self.sys.VERBOSEINFO, "Copying " + fi + " to " + fi2)
+                dm = re.match(r"(.*)/[^/]*?", fi2, re.S)
+                if dm:
+                    targetp = os.path.join(self.options.targetpath, dm.group(1))
+                    sourcep= os.path.join(self.options.sourcepath, fi)
+                    mkpath(targetp)
+                    # use cp -r because registered file might be a directory
+                    targetp = targetp + "/"
+                    p = subprocess.Popen(["cp", "-rf", sourcep, targetp], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+                    (output, err) = p.communicate()
+                    if p.returncode != 0:
+                        self.sys.message(self.sys.FATALERROR, "cp refused to work on source=" + sourcep + ", target=" + targetp)
+                else:
+                    self.sys.message(self.sys.CLIENTERROR, "Could not extract file details for fi2=" + fi2)
+                    
+        
+            # end of regfile for
+
+        if (nf > 0):
+            self.sys.message(self.sys.VERBOSEINFO, str(nf) + " local files copied")
+            
+        
+        if self.options.stdmathfont == "1":
+            # add font to mtext, normalstyles and boldstyles (without serif)
+            html = html.replace("fontstyle=\"normal\"", "fontfamily=\'" + self.options.fonts['STDMATHFONTFAMILY'] + "\' fontstyle=\"normal\"")
+            html = html.replace("fontweight=\"bold\"", "fontfamily=\'" + self.options.fonts['STDMATHFONTFAMILY'] + "\' fontstyle=\"normal\" fontweight=\"bold\"")
+            html = html.replace("<mtext>", "<mtext fontfamily=\'" + self.options.fonts['STDMATHFONTFAMILY'] + "\' fontstyle=\"normal\">")
+            html = re.sub(r"\<mtext(.*?)\>(.*?)\<mstyle(.*?)\>(.+?)\</mstyle(.*?)\>\n*(.*?)\</mtext(.*?)\>", "<mstyle\\3><mtext\\1>\\4</mtext\\7></mstyle\\5>", html, 0, re.S)
+            
+        # generate variables used by testsites if needed
+        if tc.testsite:
+            html = html.replace("// <JSCRIPTPRELOADTAG>", "isTest = true;\nvar nMaxPoints = 0;\nvar nPoints = 0;\n// <JSCRIPTPRELOADTAG>")
+            
+        # move JS blocks from tcontents into appropriate head/body segments
+        jsblocks = ""
+        def loadmove(m):
+            nonlocal jsblocks
+            jsblocks += m.group(1) + "\n"
+            return ""
+
+        for tag in [("onload", "// <JSCRIPTPRELOADTAG>"),
+                    ("viewmodel", "// <JSCRIPTVIEWMODEL>"),
+                    ("postmodel", "// <JSCRIPTPOSTMODEL>")]:
+            jsblocks = "// " + tag[0] + " blocks start\n"
+            html = re.sub(r"\<!-- " + re.escape(tag[0]) + "start //--\>(.*?)\<!-- " + re.escape(tag[0]) + "stop //--\>", loadmove, html, 0, re.S)
+            jsblocks += "// " + tag[0] + " blocks stop\n"
+            html = html.replace(tag[1], jsblocks + tag[1])
+
+        # process SVGStyles
+        def svgstyle(m):
+            tname = m.group(1)
+            if tname in self.data['htmltikz']:
+                style = self.data['htmltikz'][tname]
+                self.sys.message(self.sys.VERBOSEINFO, "Found style info for svg on " + tname + ": " + style)
+                del self.data['htmltikz'][tname]
+                return style
+            else:
+                self.sys.message(self.sys.CLIENTERROR, "Could not find image information for " + tname)
+                return ""
+        
+        html= re.sub(r"\[\[!-- svgstyle;(.+?) //--\]\]", svgstyle, html, 0, re.S)
+        
+
+        # prepare feedback buttons
+        j = 0 # is always zero up to now
+        def bfeed(m):
+            nonlocal j
+            ftype = m.group(1)
+            testsite = m.group(2)
+            exid = m.group(3)
+            ibt = "\n<br />"
+            bid = "FEEDBACK" + str(j) + "_" + exid
+            tip = "Feedback zu " + ftype + " " + exid + ":<br /><b>" + self.options.strings['feedback_sendit'] + "</b>"
+            ibt += "<button type=\"button\" style=\"background-color: #E0C0C0; border: 2px\" ttip=\"1\" tiptitle=\"" + tip + "\" name=\"Name_FEEDBACK" + str(j) + "_" + exid + "\" id=\"" + bid + "\" type=\"button\" onclick=\"internal_feedback(\'" + exid + "\',\'" + bid + "\',\'" + ftype + " " + exid + "\');\">"
+            ibt += self.options.strings['feedback_sendit']
+            ibt += "</button><br />\n"
+            
+            # display feedback buttons if (not a test version) and not globally deactivated
+            if self.options.do_feedback == "1":
+                return ibt
+            else:
+                return ""
+        html = re.sub(r"\<!-- mfeedbackbutton;(.+?);(.*?);(.*?); //--\>", bfeed, html, 0, re.S)
+  
+        def dhtml(m):
+            pos = int(m.group(1))
+            self.sys.message(self.sys.VERBOSEINFO, "DirectHTML " + m.group(1) + " set")
+            return self.data['DirectHTML'][pos]
+        html = re.sub(r"\<!-- directhtml;;(.+?); //--\>", dhtml, html, 0, re.S)
+
+        if "<!-- qexportstart" in html:
+            self.sys.message(self.sys.CLIENTERROR, "qexports not implemented yet")
+            
+        
+        # process qexports:
+        # qpos = unique export index per tex file (index generated by preparsing, not affectd by section or xcontent numbers)
+        # pos = unique export index per page (html file) generated by postprocessing, filename of exports is pagename plus pos plus extension
+
+        def qexp(m):
+            pos = 0
+            qpos = int(m.group(1))
+            expt = m.group(2)
+            rep = ""
+            if self.options.do_export == "1":
+                exprefix = "\% Export nr. " + str(qpos) + " from " + tc.title + "\n" \
+                         + "\% License: CCL BY-SA, taken from the VE&MINT math online course " + self.data['signature_CID'] + ",\n" \
+                         + "Usage of this code requires the macro package " + self.options.macrofile + " from the VEUNDMINT converter package"
+                pos = len(tc.exports)
+                tc.exports.append(["export" + str(pos) + ".tex", exprefix + expt, qpos])
+                rep = "<br />"
+                rep += "<button style=\"background-color: #FFFFFF; border: 0px\" ttip=\"1\" tiptitle=\"" + self.options.strings['qexport_download_tex'] + "\""
+                rep += " name=\"Name_EXPORTT" + str(pos) + "\" id=\"EXPORTT" + str(pos) + "\" type=\"button\" onclick=\"export_button(" + str(pos) + ",1);\">"
+                rep += "<img alt=\"Exportbutton" + str(pos) + "\" style=\"width:36px\" src=\"" + tc.backpath + "../images/exportlatex.png\"></button>"
+                rep += "<button style=\"background-color: #FFFFFF; border: 0px\" ttip=\"1\" tiptitle=\"" + self.options.strings['qexport_download_doc'] + "\""
+                rep += " name=\"Name_EXPORTD" + str(pos) + "\" id=\"EXPORTD" + str(pos) + "\" type=\"button\" onclick=\"export_button(" + str(pos) + ",2);\">"
+                rep += "<img alt=\"Exportbutton" + str(pos) + "\" style=\"width:36px\" src=\"" + tc.backpath + "../images/exportdoc.png\"></button>"
+                rep += "<br />"
+                return rep
+            else:
+                # exports disabled: remove export tag entirely
+                return ""
+        
+        html = re.sub(r"\<!-- qexportstart;(.*?); //--\>(.*?)\<!-- qexportend;\1; //--\>", qexp, html, 0, re.S)
+        
+        
+        # process exercise collections
+        if self.options.docollections == 1:
+            self.sys.message(self.sys.CLIENTERROR, "Collection export not implemented yet")
+            collc = 0
+            colla = 0
+            
+        """
+            
+            
+    while (html =~ m/<!-- mexercisecollectionstart;;(.+?);;(.+?);; \/\/-->(.*?)<!-- mexercisecollectionstop \/\/-->/s ) {
+      my $ecid1 = $1;
+      my $ecopt = $2;
+      my $ectext = $3;
+      my $mark = generatecollectionmark($ecid1, $ecopt);
+      html =~ s/<!-- mexercisecollectionstart;;$ecid1;;$ecopt;; \/\/-->(.*?)<!-- mexercisecollectionstop \/\/-->/$mark/s ;
+      
+      my $arraystring = "[";
+      my $ast = 0;
+      
+      # Aus der collection die Aufgaben extrahieren
+      while ($ectext =~ m/<!-- mexercisetextstart;;(.+?);; \/\/-->(.*?)<!-- mexercisetextstop \/\/-->/s ) {
+        self.sys.message(self.sys.VERBOSEINFO, "    Aufgabe extrahiert");
+        my $exid = $1;
+        my $extext = $2;
+        $ectext =~ s/<!-- mexercisetextstart;;$exid;; \/\/-->(.*?)<!-- mexercisetextstop \/\/-->//s ;
+         
+        if ($ast eq 1) { $arraystring .= ","; } else { $ast = 1; }
+        my $ctext = encode_base64($extext);
+        $ctext =~ s/\n/\\n/gs;
+
+        my $l;
+        
+        $arraystring .= "{\"id\": \"$ecid1" . "_" . "$exid\", \"content\": \"$ctext\"}";
+     
+        $colla++;
+      }
+      
+      $arraystring .= "]";
+      
+      $collc++;
+      push @colexports, ["$ecid1", "$ecopt" , $arraystring];
+    }
+    if ($collc > 0) { self.sys.message(self.sys.VERBOSEINFO, "$collc collections mit insgesamt $colla Aufgaben exportiert"); }
+  }
+
+        """
+        
+        # prepare DirectRoulette divs
+        def droul(m):
+            rid = m.group(1)
+            myid = int(m.group(2))
+            maxid = 0
+            if rid in self.data['DirectRoulettes']:
+                maxid = self.data['DirectRoulettes'][rid]
+            else:
+                self.sys.message(self.sys.CLIENTERROR, "Could not find roulette id " + rid)
+            if myid == "0":
+                vis = "block"
+            else:
+                vis = "none"
+            bt = "<div class=\"rouletteselector\"><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">Neue Aufgabe</button><br />"
+            self.sys.message(self.sys.VERBOSEINFO, "Roulette " + rid + "." + str(myid) + " done")
+            return "<div style=\"display:" + vis + "\" id=\"DROULETTE" + rid + "." + str(myid) + "\">" + bt + m.group(3) + "</div></div>"
+  
+        html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>", droul, html, 0, re.S)
+  
+        return html

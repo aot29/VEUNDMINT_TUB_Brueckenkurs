@@ -17,18 +17,18 @@
 \MDeclareSiteUXID{VBKM06_START}
 Dieses Modul besteht aus
 \begin{itemize}
-\item{dem Abschnitt \MSRef{M06_Abschnitt1}{Grundlegendes zu Funktionen},
-\MSRef{M06_Abschnitt2}{Lineare Funktionen und Polynome},
+\item{dem Abschnitt \MSRef{VBKM06_Grundlagen}{Grundlegendes zu Funktionen},
+\MSRef{VBKM06_linear}{Lineare Funktionen und Polynome},
 %\MSRef{M06_Abschnitt4}{Rationale Funktionen},
-\MSRef{M06_Abschnitt5}{Potenzfunktionen},
-\MSRef{M06_Abschnitt6}{Exponential- und Logarithmusfunktionen},
-\MSRef{M06_Abschnitt8}{Trigonometrische Funktionen}, \MSRef{M06_Abschnitt9}{Eigenschaften und Konstruktion elementarer Funktionen},}
+\MSRef{VBKM06_Potenz}{Potenzfunktionen},
+\MSRef{VBKM06_exponential}{Exponential- und Logarithmusfunktionen},
+\MSRef{VBKM06_triogonometrisch}{Trigonometrische Funktionen}, \MSRef{VBKM06_eigenschaften}{Eigenschaften und Konstruktion elementarer Funktionen},}
 \item{dem \MSRef{M06_Abschlusstest}{Abschlusstest}.}
 \end{itemize}
 \end{MSectionStart}
 
 \MSubsection{Grundlegendes zu Funktionen}
-\MLabel{M06_Abschnitt1}\label{grundlagen}
+\MLabel{VBKM06_Grundlagen}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_Grundlagen_Intro}
@@ -225,7 +225,7 @@ Wir betrachten einige weitere einfache Beispiele für Funktionen:
   \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
  \]
  Die Abbildungsvorschrift von $g$ lautet damit $g(x)=x^2$. Man kann dann die Zuordnungen für konkrete Zahlen ausrechnen. Zum Beispiel $g(2)=2^2=4$ oder $g(-\pi)=(-\pi)^2=\pi^2$, usw. 
- \item Eine Funktion $\Mvarphi$ soll jeder reellen Zahl $y$ zwischen $0$ und $1$ ihren dreifachen Wert plus $1$ zuordnen. Dies ist ein Beispiel für eine sogenannte linear-affine Funktion (siehe \MNRef{sec:linear-affin}):
+ \item Eine Funktion $\Mvarphi$ soll jeder reellen Zahl $y$ zwischen $0$ und $1$ ihren dreifachen Wert plus $1$ zuordnen. Dies ist ein Beispiel für eine sogenannte linear-affine Funktion (siehe \MNRef{VBKM06_sec:linear-affin}):
  \[
   \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1 \MDFPeriod}
  \]
@@ -254,7 +254,7 @@ Wir betrachten einige weitere einfache Beispiele für Funktionen:
   \[
    \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\frac{1}{x} \MDFPeriod}
   \]
-  Dies ist ein Beispiel für eine Funktion vom hyperbolischen Typ und wird in Abschnitt \MNRef{M06_Abschnitt5} genauer behandelt. Die Abbildungsvorschrift von $h$ ist $h(x)=\frac{1}{x}$, womit gilt $h(2)=\frac{1}{2}$ und $h(1)=\frac{1}{1}=1$. Außerdem berechnet man $h(3)=\frac{1}{3}$, womit $3\longmapsto\frac{1}{3}$ gilt. Weiterhin führt die Überlegung $h(\frac{1}{2})=\frac{1}{\frac{1}{2}}=2$ auf $\frac{1}{2}\longmapsto2$.
+  Dies ist ein Beispiel für eine Funktion vom hyperbolischen Typ und wird in Abschnitt \MNRef{VBKM06_Potenz} genauer behandelt. Die Abbildungsvorschrift von $h$ ist $h(x)=\frac{1}{x}$, womit gilt $h(2)=\frac{1}{2}$ und $h(1)=\frac{1}{1}=1$. Außerdem berechnet man $h(3)=\frac{1}{3}$, womit $3\longmapsto\frac{1}{3}$ gilt. Weiterhin führt die Überlegung $h(\frac{1}{2})=\frac{1}{\frac{1}{2}}=2$ auf $\frac{1}{2}\longmapsto2$.
   \item[(ii)] Die Funktion $w$ ordnet jeder reellen Zahl $\alpha$, die größer oder gleich $4$ und kleiner oder gleich $9$ ist, ihre Quadratwurzel $\sqrt{\alpha}$ zu. Die Abbildungsvorschrift lautet $w(\alpha)=\sqrt{\alpha}$, womit $w(9)=\sqrt{9}=3$ sowie $w(5)=\sqrt{5}$ gilt. $w(10)$ kann nicht angegeben werden, da $10\notin[4\MIntvlSep 9]$.
  \end{itemize}
 
@@ -848,7 +848,7 @@ womit $\eta$ streng monoton wachsend ist.
 \end{MXContent}
 
 \MSubsection{Lineare Funktionen und Polynome}
-\MLabel{M06_Abschnitt2}\label{linear}
+\MLabel{VBKM06_linear}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Intro}
@@ -1162,7 +1162,7 @@ Es ergibt sich $f(x)=0\cdot x=0$, also genau die konstante Funktion, die konstan
 
 \end{MXContent}
  
-\begin{MXContent}{Linear-affine Funktionen}{Affin}{STD}\MLabel{sec:linear-affin}
+\begin{MXContent}{Linear-affine Funktionen}{Affin}{STD}
 \MLabel{VBKM06_sec:linear-affin}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Affin}
 Kombiniert man lineare Funktionen mit konstanten Funktionen, so erhält man die sogenannten \highlight{linear-affinen Funktionen}. Diese ergeben sich als die Summe einer linearen und einer konstanten Funktion. Im allgemeinen Fall, ohne konkret spezifizierte Steigung ($m\in\R$) und mit einer Konstanten ($c\in\R$) schreibt man das so:
@@ -1253,7 +1253,7 @@ Ist $m=0$, so gilt $f(x)=0\cdot x+c=c$. Damit ergeben sich die konstanten Funkti
 
 \end{MXContent}
  
-\begin{MXContent}{Betragsfunktionen}{Betrag}{STD}\MLabel{sec:betrag}
+\begin{MXContent}{Betragsfunktionen}{Betrag}{STD}
 \MLabel{VBKM06_sec:betrag}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Betrag}
 In Modul \MNRef{VBKM02} wurde der \MSRef{VBKM02_Betrag}{Betrag} einer reellen Zahl $x$ auf folgende Art eingeführt:
@@ -1787,18 +1787,6 @@ Der Graph ergibt sich schließlich zu:
 \end{MXContent}
 
 
-% \MSubsection{Rationale Funktionen}
-% \MLabel{M06_Abschnitt4}%\label{rational}
-% 
-% \begin{MIntro}
-% 
-% In diesem Kapitel betrachten wir Funktionen, in deren Abbildungsvorschriften auch \modsemph{Quotienten der Veränderlichen} vorkommen, insbesondere solche, in denen die Veränderliche im Nenner eines Quotienten auftaucht. Ein einfaches Beispiel ist etwa die Funktion
-% \[
-%  \function{f}{\R}{\R}{x}{\frac{x}{x^2+1}.}
-% \]
-% \end{MIntro}
-
-
 \begin{MXContent}{Hyperbeln}{Hyperbeln}{STD}\MLabel{sec:hyperbel}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Hyperbeln}
 
@@ -2286,7 +2274,7 @@ hat als Asymptote eine konstante Funktion (bzw. eine waagrechte Asymptote) falls
 
 
 \MSubsection{Potenzfunktionen}
-\MLabel{M06_Abschnitt5}\label{potenz}
+\MLabel{VBKM06_Potenz}
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_Potenzfunktionen_Intro}
 In den Abschnitten \MNRef{sec:monome} und \MNRef{sec:hyperbel} haben wir Monome und Funktionen vom hyperbolischen Typ kennengelernt. Zusammenfassend kann man diese als folgende Klasse von Funktionen aufschreiben:
@@ -2503,7 +2491,7 @@ unter Berücksichtigung der strengen Monotonie der Wurzelfunktionen $W_{f_n}=\R$ 
 
 
 \MSubsection{Exponentialfunktion und Logarithmus}
-\MLabel{M06_Abschnitt6}\label{exponential}
+\MLabel{VBKM06_exponential}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_Exponentialfunktionen_Intro}
@@ -2578,7 +2566,7 @@ postiven Zahl nur positiv sein kann.
   Eine Exponentialfunktion soll nicht nur für ausgewählte, spezielle oder isolierte Werte der Veränderlichen $x$
   definiert sein, sondern, wenn möglich, für alle reellen Zahlen. Würde man negative Basiswerte $a < 0$ zulassen, so
   würden sofort Probleme beim Wurzelziehen - siehe $a^{(1/2)} = \sqrt{a}, a^{1/4}, a^{1/12}$ etc. - auftreten.
-  Zum Beispiel sind Quadratwurzeln aus negativen Zahlen nicht definiert, vergleiche auch Abschnitt \MRef{M06_Abschnitt5}.
+  Zum Beispiel sind Quadratwurzeln aus negativen Zahlen nicht definiert, vergleiche auch Abschnitt \MRef{VBKM06_Potenz}.
  \end{MHint}
 \end{MExercise}
 
@@ -2633,7 +2621,7 @@ $\lambda < 0$).
 \end{MExercise}
 \end{MContent}
 
-\begin{MXContent}{Eulersche Funktion}{Eulersche Funktion}{STD}\MLabel{sec:exp}
+\begin{MXContent}{Eulersche Funktion}{Eulersche Funktion}{STD}
 \MLabel{M06_e_fkt}
 \MDeclareSiteUXID{VBKM06_Exponentialfunktionen_efkt}
  Es gibt eine ganz besondere Exponentialfunktion, manchmal auch als \textit{die} Exponentialfunktion bezeichnet, um die
@@ -2682,7 +2670,7 @@ $\lambda < 0$).
  $$a^x = \MEU^{x \cdot\ln(a)} \MDFPSpace,$$
  die für beliebige reelle $a > 0$ und beliebige reelle $x$ gilt. Dabei bezeichnet $\ln$ den
  \MSRef{VBKM06_LNDEF}{natürlichen Logarithmus}, dessen Funktionsgestalt uns im folgenden Abschnitt
- \MRef{M06_Abschnitt7} noch ausgiebig beschäftigen wird. 
+ \MRef{M06_Logarithmus} noch ausgiebig beschäftigen wird. 
  \begin{MExercise}
   Begründen Sie die Identität $a^x = \MEU^{x \cdot \ln(a)}$. \begin{MHint}{Lösung}
    Nach dem Potenzgesetz $(b^r)^s = b^{r \cdot s}$ kann die rechte Seite der in Frage stehenden Identität als
@@ -2726,9 +2714,9 @@ $\lambda < 0$).
   Verwenden wir das Exponentialgesetz für den radioaktiven Zerfall, so erhalten wir:
   $$\Mdfrac{N_0}{2} = N_0 \cdot \MEU^{\lambda \cdot h}  \MDFPeriod$$
   Wir können $N_0$ auf beiden Seiten der Gleichung kürzen und anschließend logarithmieren (siehe Abschnitt
-  \MRef{M06_Abschnitt7}):
+  \MRef{M06_Logarithmus}):
   $$\ln \left( \Mdfrac12 \right ) = \ln(\MEU^{\lambda \cdot h})  \MDFPeriod$$
-  Die linke Seite formen wir gemäß den Rechenregeln für den Logarithmus um (siehe Abschnitt \MRef{M06_Abschnitt7}),
+  Die linke Seite formen wir gemäß den Rechenregeln für den Logarithmus um (siehe Abschnitt \MRef{M06_Logarithmus}),
   $\ln(1/2) = \ln(1) - \ln(2) = 0 - \ln(2) = - \ln(2)$. Für die rechte Seite beachten
   wir, dass Logarithmieren die Umkehrung zum Exponentieren darstellt, $\ln(\MEU^{\lambda \cdot h}) = \lambda \cdot h$;
   damit folgt:
@@ -2746,7 +2734,7 @@ $\lambda < 0$).
 
 
 \begin{MXContent}{Logarithmus}{Logarithmus}{STD}
-\MLabel{M06_Abschnitt7}\MLabel{M06_Logarithmus}
+\MLabel{M06_Logarithmus}
 \MDeclareSiteUXID{VBKM06_Logarithmusfunktion}
 
 In Abschnitt \MRef{M06_e_fkt} haben wir beim Studium der $\MEU$-Funktion,
@@ -2876,7 +2864,7 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
 
 
 \MSubsection{Trigonometrische Funktionen}
-\MLabel{M06_Abschnitt8}\label{triogonometrisch}
+\MLabel{VBKM06_triogonometrisch}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_TrigonometrischeFunktionen_Intro}
@@ -2891,8 +2879,8 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
  
 \end{MIntro}
 
-\begin{MXContent}{Die Sinusfunktion}{Die Sinusfunktion}{STD}\MLabel{sec:sinus}
- \MLabel{M06_Sinusfkt}
+\begin{MXContent}{Die Sinusfunktion}{Die Sinusfunktion}{STD}
+\MLabel{M06_Sinusfkt}
 \MDeclareSiteUXID{VBKM06_TrigonometrischeFunktionen_Sinus}
  In Modul \MRef{VBKM05} wurden die trigonometrischen Funktionen elementar im \MSRef{Mathematik_ElementareGeometrie_Def:Trigonometrie}{rechtwinkligen Dreieck} 
  durch
@@ -3095,7 +3083,7 @@ $$\begin{array}{rcccccl}
 
 
 \MSubsection{Eigenschaften und Konstruktion elementarer Funktionen}
-\MLabel{M06_Abschnitt9}\label{eigenschaften}
+\MLabel{VBKM06_eigenschaften}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_Eigenschaften_Intro}
@@ -3131,7 +3119,7 @@ Diese beiden Symmetriebedingungen für Funktionen sagen also etwas über das Ausse
  \[
   \function{f_2}{\R}{\R}{x}{|x|\MDFPSpace,}
  \]
- also die Standardparabel (vgl.~Abschnitt \MNRef{sec:monome}) und die Betragsfunktion (vgl.~Abschnitt \MNRef{sec:betrag}), sind Beispiele für gerade Funktionen. Es gilt $f_1(-x)=(-x)^2=x^2=f_1(x)$ und $f_2(-x)=|-x|=|x|=f_2(x)$ für alle $x\in\R$. Die Graphen weisen die Spiegelsymmetrie an der Hochachse auf:
+ also die Standardparabel (vgl.~Abschnitt \MNRef{sec:monome}) und die Betragsfunktion (vgl.~Abschnitt \MNRef{VBKM06_sec:betrag}), sind Beispiele für gerade Funktionen. Es gilt $f_1(-x)=(-x)^2=x^2=f_1(x)$ und $f_2(-x)=|-x|=|x|=f_2(x)$ für alle $x\in\R$. Die Graphen weisen die Spiegelsymmetrie an der Hochachse auf:
  
 %GRAPH: sym1
 \MTikzAuto{%
@@ -3229,7 +3217,7 @@ In diesem Abschnitt wollen wir nun das große Sortiment an elementaren Funktionen
  \[
   \function{f}{\R}{\R}{x}{x+\sin(x)}
  \]
- ist die \modsemph{Summe} aus der Identität (vgl.~Abschnitt \MNRef{sec:linear}) und der Sinusfunktion (vgl.~Abschnitt \MNRef{sec:sinus}). Sie besitzt den folgenden Graphen:
+ ist die \modsemph{Summe} aus der Identität (vgl.~Abschnitt \MNRef{sec:linear}) und der Sinusfunktion (vgl.~Abschnitt \MNRef{VBKM06_triogonometrisch}). Sie besitzt den folgenden Graphen:
 
 
 
@@ -3261,7 +3249,7 @@ In diesem Abschnitt wollen wir nun das große Sortiment an elementaren Funktionen
  \[
   \function{g}{[1\MIntvlSep 2]}{\R}{y}{y^2-\ln(y)}
  \]
- ist die \modsemph{Differenz} aus der Standardparabel (vgl.~Abschnitt \MNRef{sec:monome}) und der natürlichen Logarithmusfunktion (vgl.~Abschnitt \MNRef{M06_Abschnitt7}). Sie besitzt den folgenden Graphen:
+ ist die \modsemph{Differenz} aus der Standardparabel (vgl.~Abschnitt \MNRef{sec:monome}) und der natürlichen Logarithmusfunktion (vgl.~Abschnitt \MNRef{M06_Logarithmus}). Sie besitzt den folgenden Graphen:
   %GRAPH: summ2
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -3292,7 +3280,7 @@ In diesem Abschnitt wollen wir nun das große Sortiment an elementaren Funktionen
  \[
   \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\MEU^x\frac{1}{x}}
  \]
- ist das \modsemph{Produkt} aus der natürlichen Exponentialfunktion mit Abbildungsvorschrift $\MEU^x$ (vgl.~Abschnitt \MNRef{sec:exp}) und der Hyperbel mit Abbildungvorschrift $\frac{1}{x}$ (vgl.~Abschnitt \MNRef{sec:hyperbel}). Sie besitzt folgenden Graphen:
+ ist das \modsemph{Produkt} aus der natürlichen Exponentialfunktion mit Abbildungsvorschrift $\MEU^x$ (vgl.~Abschnitt \MNRef{M06_e_fkt}) und der Hyperbel mit Abbildungvorschrift $\frac{1}{x}$ (vgl.~Abschnitt \MNRef{sec:hyperbel}). Sie besitzt folgenden Graphen:
  
    %GRAPH: summ3
 \MTikzAuto{%
