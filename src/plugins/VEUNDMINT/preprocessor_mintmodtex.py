@@ -136,16 +136,24 @@ class Preprocessor(object):
             root = root[pathLen:]
             for name in files:
                 if (name[-4:] == ".tex"):
-                    fileArray.append(os.path.join(self.options.sourceTEX, root, name))
+                    # store path to source copy and original source file
+                    fileArray.append([os.path.join(self.options.sourceTEX, root, name), os.path.join(self.options.sourcepath_original, root, name)])
             for name in dirs:
                 continue
 
         self.sys.message(self.sys.VERBOSEINFO, "Preprocessor working on " + str(len(fileArray)) + " texfiles")
 
         for texfile in fileArray:
-            tex = self.sys.readTextFile(texfile, self.options.stdencoding)
-            tex = self.preprocess_texfile(texfile, tex)
-            self.sys.writeTextFile(texfile, tex, self.options.stdencoding)
+            tex = self.sys.readTextFile(texfile[0], self.options.stdencoding)
+            
+            if not self.checkRelease(tex, texfile[1]):
+                self.sys.message(self.sys.CLIENTWARN, "Original tex-file " + texfile[1] + " did not pass release check");
+                if (self.options.dorelease == 1):
+                    self.sys.message(self.sys.FATALERROR, "Refusing to continue with dorelease=1 after checkRelease failed, see logfile for details")
+
+            
+            tex = self.preprocess_texfile(texfile[0], tex)
+            self.sys.writeTextFile(texfile[0], tex, self.options.stdencoding)
         
         self.sys.message(self.sys.CLIENTINFO, "Preparsing of " + str(len(fileArray)) + " texfiles finished")
         self.sys.message(self.sys.CLIENTINFO, "A total of " + str(len(self.data['DirectHTML'])) + " DirectHTML blocks created")
@@ -178,9 +186,9 @@ class Preprocessor(object):
         self.sys.timestamp("Finished preprocessor " + self.name)
                 
 
-    # Checks if given tex code is valid for a release version
-    # Return value: boolean True if release check passed
-    def checkRelease(self, tex):
+    # Checks if given tex code from file fname (original source!) is valid for a release version
+    # Return value: boolean True if release check passed, perfom amendsource if requested
+    def checkRelease(self, tex, orgname):
         reply = True
         # no experimental environments
         if (re.match(r".*\\begin{MExperimental}.*", tex, re.S)):
@@ -189,6 +197,26 @@ class Preprocessor(object):
         if (re.match(r".*\% TODO.*", tex, re.S)):
             self.sys.message(self.sys.VERBOSEINFO, "TODO comment found in tex file");
             reply = False
+            
+        # each MXContent must have a unique content id
+        uxidprefix = "AMENDED" + self.sys.generate_autotag(tex) + self.sys.generate_filehash(orgname)
+        uxidcount = 0
+        def xcontent(m):
+            nonlocal reply, uxidprefix, uxidcount
+            xm = re.search(r"\\MDeclareSiteUXID\{([^\}]*)\}", m.group(4), re.S)
+            if not xm:
+                reply = False
+                if self.options.amendsource == 1:
+                    uxid = uxidprefix + str(uxidcount)
+                    uxidcount += 1
+                    self.sys.message(self.sys.CLIENTINFO, "AMENDSOURCE: Unique id amended to MXContent " + m.group(1) + " in file " + orgname)
+                    return "\\\\begin{MXContent}{" + m.group(1) + "}{" + m.group(2) + "}{" + m.group(3) + "}\n\\MDeclareSiteUXID{" + uxid + "}" + m.group(4) + "\\end{MXContent}"
+                else:
+                    self.sys.message(self.sys.VERBOSEINFO, "MXContent found without unique id declaration: " + m.group(1) + ", consider using amendsource in options")
+                    return m.group(0) # leave it unchanged
+            
+        xcontent = re.sub(r"\\begin\{MXContent\}\{([^\}]*)\}\{([^\}]*)\}\{([^\}]*)\}(.*?)\\end\{MXContent\}", xcontent, tex, 0, re.S)
+        
             
         return reply
 
@@ -224,12 +252,6 @@ class Preprocessor(object):
         else:
             self.local['modulename'] = ""
             self.sys.message(self.sys.CLIENTWARN, "Unknown tex file type: " + name)
-
-
-        if (self.options.dorelease == 1):
-            if (not self.checkRelease(self.local['tex'])):
-                self.sys.message(self.sys.CLIENTERROR, "tex-file " + name + " did not pass release check");
-             
             
         m = re.match(r"(.*)/(.*?.tex)", name)
         if m:

@@ -68,6 +68,7 @@ class Option(object):
         self.dozip = 0            # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
         self.consolecolors = 1    # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
         self.forceyes = 1         # =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
+        self.amendsource = 0      # =1 -> Preprocessor will amend missing items to ORIGINAL SOURCE FILES if possible
         
         # VE&MINT source/target parameters
         self.macrofilename = "mintmod"
@@ -165,7 +166,7 @@ class Option(object):
         self.parserName = "lxml"
         self.converterCommonFiles = os.path.join(self.converterDir, "files") # Bedeutung von sourceCommonFiles vom OSS-Konverter ist anders
         self.texCommonFiles = os.path.join(self.converterDir, "tex") 
-        self.sourcepath_original = os.path.join(self.currentDir, self.source) # Pfad zu den Quellen (werden readonly behandelt)
+        self.sourcepath_original = os.path.join(self.currentDir, self.source) # directory to original source (strictly read only, except if amendsource is active)
         self.sourcepath = os.path.join(self.currentDir, self.outtmp) # Pfad in dem gearbeitet wird
         self.sourceTEX = os.path.join(self.sourcepath, "tex") # Teilpfad in dem die LaTeX-Quellenkopien liegen
         self.sourceTEXStartFile = os.path.join(self.sourceTEX, self.module) 

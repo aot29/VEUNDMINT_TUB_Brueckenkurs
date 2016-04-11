@@ -28,6 +28,7 @@ import time
 import getpass
 import socket
 import glob
+import base64
 
 class System(object):
 
@@ -262,7 +263,7 @@ class System(object):
         return tex
 
             
-    # creates a string which is not the prefix of anything in the given text and contains no regex problematic characters
+    # creates a string which is not a substring of anything in the given text and contains no regex problematic characters
     def generate_autotag(self, text):
         t = "TTAG"
         while re.search(re.escape(t), text, re.S): t = t + "A"
@@ -289,3 +290,8 @@ class System(object):
     def listFiles(self, pattern):
         return glob.glob(pattern)
 
+
+    # generates a unique filenNAME hash containing only base64 letters
+    def generate_filehash(self, fname):
+        return str(base64.b32encode(bytes(fname, "utf-8")))
+        
