@@ -14,132 +14,255 @@
 
 \begin{MSectionStart}
 \MDeclareSiteUXID{VBKM05_START}
-Die Darstellung der Elementaren Geometrie beginnt mit der Einf\"uhrung von 
-Winkeln im Bogenma\ss\ und im Gradma\ss\ 
-und wird \"uber Stufen- und Wechselwinkel zu den Dreiecken hin fortgesetzt. 
-Es werden kongruente und \"ahnliche Dreiecke betrachtet, ihre Fl\"acheninhalte 
-und die von anderen Figuren berechnet, worauf man dann zu den Strahlens\"atzen 
-kommt, die die Grundlage f\"ur die Einf\"uhrung der trigonometrischen Funktionen
-am rechtwinkligen Dreieck bilden. Nachdem man sich auch die Trigonometrie am 
-Einheitskreis angesehen hat, wird die dritte Dimension hinzugenommen und es 
-werden Volumina von Zylindern, Kegeln und Kugeln behandelt.
+
+In den ersten Abschnitten wird in die elementare Geometrie eingef"uhrt. 
+Hierzu wird auch Bezug auf die bisherigen Module genommen. Im Zentrum stehen 
+die Eigenschaften von Dreiecken, bevor Fl"achen von Vielecken und Volumina 
+von einfachen K"orpern berechnet werden.
+Weitergehende Fragestellungen k"onnen mit den Winkelfunktionen bearbeitet
+werden. Diese bieten einen Ausblick auf die kommenden Module zur Analysis
+und zur Analytischen Geometrie.
 
 Dieses Modul gliedert sich in folgende Abschnitte:
 
 \begin{itemize}
-\item{\MNRef{M05_Winkel}, \MSRef{M05_Winkel}{Winkel, Kongruenz und \"Ahnlichkeit},}
-\item{\MNRef{M05_Flaecheninhalt}, \MSRef{M05_Flaecheninhalt}{Fl\"acheninhalt und Strahlens\"atze},}
-\item{\MNRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}, \MSRef{Mathematik_ElementareGeometrie_Sec:Trigonometrie}{Trigonometrie},}
+\item{\MNRef{M05_Grundbegriffe}, \MSRef{M05_Grundbegriffe}{Grundbegriffe der 
+ ebenen Geometrie},}
+\item{\MNRef{M05_Winkel}, \MSRef{M05_Winkel}{Winkel und Winkelmessung},}
+\item{\MNRef{M05_Dreieck}, \MSRef{M05_Dreieck}{Rund um Dreiecke},}
+\item{\MNRef{M05_Vielecke}, \MSRef{M05_Vielecke}{Vielecke, Fl"acheninhalt 
+ und Umfang},}
 \item{\MNRef{M05_Koerper}, \MSRef{M05_Koerper}{Elementargeometrische K"orper},}
+\item{\MNRef{M05_Trigonometrie}, \MSRef{M05_Trigonometrie}{Winkelfunktionen: Sinus und Co.},}
 \item{\MNRef{M05_Abschlusstest}, \MSRef{M05_Abschlusstest}{Abschlusstest}.}
-%\item{\MNRef{M05_Abschlusstest}, \MSRef{M05_Abschlusstest}{Abschlusstest} f\"ur Modul \MNRef{VBKM05}.}
 \end{itemize}
 
 \end{MSectionStart}
 
-\MSubsection{Winkel, Kongruenz und \"Ahnlichkeit}
+\newcommand{\MGeoAbstand}[2]{\ensuremath{\overline{#1#2}}}
+\newcommand{\MGeoGerade}[2]{\ensuremath{#1#2}}
+\newcommand{\MGeoStrecke}[2]{\ensuremath{[#1#2]}}
+
+%jgl: section 1:
+\MSubsection{Grundbegriffe der ebenen Geometrie}
+\MLabel{M05_Grundbegriffe}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM05_GrundbegriffeIntro}
+
+F"ur den Bau eines Sportstadions werden markante Punkte im Gel"ande abgesteckt.
+
+
+\begin{center}
+(Mess-)Punkte und Linien f"ur einen Stadionbau
+%\MGraphicsSolo{Stadtplan.png}{scale=1} \MLabel{Stadtplan}
+\end{center}
+
+
+Im ersten Abschnitt dieses Moduls wird an einige geometrische Grundbegriffe 
+erinnert. Im darauf folgenden Abschnitt werden Winkel gemessen (Bogenma"s und das Gradma"s)
+\end{MIntro}
+
+\begin{MXContent}{Punkte und Geraden}{Punkte und Geraden}{STD}
+Punkte, Geraden, \ldots sind idealisierte Begriffe.
+
+\begin{MXInfo}{Abstand zwischen Punkten}
+\end{MXInfo}
+
+\begin{MXInfo}{Gerade}
+Seien $A$ und $B$ zwei Punkte. Dann bestimmen $A$ und $B$ genau eine Gerade 
+\MGeoGerade{A}{B}.
+\end{MXInfo}
+
+\end{MXContent}
+
+%content: Strahlensatz und Pythagoras.
+
+\begin{MXContent}{Die Strahlens\"atze}{Strahlens\"atze}{STD}
+\MDeclareSiteUXID{VBKM05_Strahlensaetze}
+
+Die Strahlens\"atze haben etwas mit der zentrischen Streckung zu tun 
+(siehe \MRef{Mathematik_ElementareGeometrie_zentrischeStreckung}).
+
+%\MGraphicsSolo{../Bilder/Mathematik_ElementareGeometrie/Mathematik_ElementareGeometrie_Stadtplan_Strahlensatz.png}{scale=1}
+
+\ifttm%
+\relax
+\else%
+\newcommand{\Strahlensatzfigur}[1][]
+{%
+\coordinate (S) at (0,0);
+\coordinate (A) at ($ (S) + (3,0.5) $);
+\coordinate (D) at ($ (S) + (4,2.5) $);
+\coordinate (B) at ($ (S)!1.7!(A) $);
+\coordinate (C) at ($ (S)!1.7!(D) $);
+%
+\path (S) node[left]{$S$} (A) node[below right]{$A$} (B) node[below right]{$B$}
+                          (C) node[above left] {$C$} (D) node[above left] {$D$};
+%
+\draw (S) -- ($ (S)!1.1!(B) $);
+\draw (S) -- ($ (S)!1.1!(C) $);
+%
+\draw[#1] ($ (A)!-0.2!(D) $) -- ($ (D)!-1!(A) $) node[left]{$g$};
+\draw ($ (B)!-0.2!(C) $) node[right]{$h$} -- ($ (C)!-0.1!(B) $);
+}
+\fi
+
+\begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_Satz:ErsterStrahlensatz}%
+\textbf{Strahlens\"atze}
+
+%\begin{center}
+\begin{tabular}{lc}
+\mbox{
+\MTikzAuto{%
+\begin{tikzpicture}
+\Strahlensatzfigur
+\end{tikzpicture}
+}
+}
+%\end{center}
+&
+\begin{minipage}[b]{7cm}
+F\"ur zwei Punkte~$P$ und~$Q$ seien $\overline{PQ}$ die Strecke von~$P$ nach~$Q$
+und $\left| \overline{PQ} \right|$ die L\"ange dieser Strecke.
+\vspace*{2cm}
+\end{minipage}
+\end{tabular}
+
+
+Sind in dem obigen Bild die Geraden~$g$ und~$h$ parallel, so gilt:
+\begin{itemize}
+\item
+Die Abschnitte auf einem Strahl verhalten sich wie die entsprechenden 
+Abschnitte auf dem anderen Strahl:
+\[
+   \frac{\left| \overline{SA} \right|}{\left| \overline{SD} \right|}
+ = \frac{\left| \overline{SB} \right|}{\left| \overline{SC} \right|}
+ = \frac{\left| \overline{AB} \right|}{\left| \overline{CD} \right|} \MDFPeriod
+\]
+\item
+Die Abschnitte auf den Parallelen  verhalten sich wie die von $S$ ausgehenden 
+entsprechenden Abschnitte auf einem Strahl:
+\[
+   \frac{\left| \overline{SA} \right|}{\left| \overline{SB} \right|}
+ = \frac{\left| \overline{SD} \right|}{\left| \overline{SC} \right|}
+ = \frac{\left| \overline{AD} \right|}{\left| \overline{BC} \right|} \MDFPeriod
+\]
+
+\end{itemize}
+\end{MInfo}
+
+\end{MXContent}
+
+
+\begin{MExercises}
+\MDeclareSiteUXID{VBKM05_Strahlensaetze_Exercises}
+\begin{MExercise}
+Der Sohn des Hauses beobachtet den Baum auf des Nachbarn Grundst\"uck. Er 
+stellt fest, dass der Baum von der Hecke, die die beiden Grundst\"ucke trennt,
+vollst\"andig verdeckt wird, wenn er nur nahe genug an die Hecke herantritt.
+Jetzt sucht er den Punkt, an dem der Baum gerade so nicht mehr zu sehen ist.
+
+Der $\MZahl{1}{40}$~Meter gro\ss e Junge muss $\MZahl{2}{50}$~Meter von der 
+$\MZahl{2}{40}$~Meter hohen, $1$~Meter breiten und oben spitz zulaufenden 
+Hecke entfernt stehen, damit der Baum vollst\"andig verdeckt ist.
+
+Wie hoch ist der Baum, wenn die Mitte des Stamms $\MZahl{14}{5}$~Meter von der Hecke entfernt steht?
+\ifttm (Angabe in Metern) \MLParsedQuestion{10}{7.4}{1}{GEO7}\else\relax\fi
+
+F\"uhren Sie die Rechnung bitte zun\"achst allgemein durch und setzen Sie erst
+am Ende die Zahlenwerte ein!
+
+\begin{MHint}{Hinweis}
+Beachten Sie die Breite der Hecke!
+\end{MHint}
+
+\begin{MHint}{L\"osung}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.75cm, y=0.75cm]
+\coordinate (KF) at (0,0);
+\coordinate (KK) at (0,1.4);
+\coordinate (HF) at (3,0);
+\coordinate (HK) at (3,2.4);
+\coordinate (BF) at (16.5,0);
+\coordinate (BK) at (16.5,7.4);
+\coordinate (BM) at (16.5,1.4);
+%
+\begin{scope}[color=black!50, every node/.style={color=black}]
+\draw (KF) -- ++ (0,-0.3) ++(0,0.15) -- node[below]{$\MZahl{2}{5}\MEinheit{m}$} ($ (HF) + (-0.5,-0.15) $) ++(0,-0.15) -- ++(0,0.3);
+\draw ($ (HF) + (0.5,0) $) -- ++ (0,-0.3) ++(0,0.15) -- node[below]{$\MZahl{14}{5}\MEinheit{m}$} ($ (BF) + (0,-0.15) $) ++(0,-0.15) -- ++(0,0.3);
+ \node at (HF) [below]{$1\MEinheit{m}$};
+ \draw ($ (KF)!0.5!(BF) $) -- node[right]{$h_{\mathrm{K}} = \MZahl{1}{4}\MEinheit{m}$} ($ (KK)!0.5!(BM) $) ++ (-0.15,0) -- ++(0.3,0);
+ \draw (BF) -- node[right]{$h_{\mathrm{B}}$} (BK) ++ (-0.15,0) -- ++(0.3,0);
+ \draw ($ (HF) + (0.75,0) $) -- node[below right]{$h_{\mathrm{H}} = \MZahl{2}{4}\MEinheit{m}$} ($ (HK) + (0.75,0) $) ++ (-0.15,0) -- ++(0.3,0);
+ \draw (KK) -- ++ (0,-0.3) ++(0,0.15) -- node[below]{$d_{\mathrm{KH}}$} ($ (HF) + (KK) - (KF) + (0,-0.15) $) ++(0,-0.15) -- ++(0,0.3);
+ \draw (KK) -- ++ (0,0.3) ++(0,-0.15) -- node[above]{$d_{\mathrm{KB}}$} ($ (BM) + (0,0.15) $) ++(0,0.15) -- ++(0,-0.3);
+\end{scope}
+\draw (KF) ++ (-0.2,0) -- ++ (0.2,0.5) -- ++ (0.2,-0.5)
+      (KF) ++ (0,0.5) -- ++ (0,0.5)
+      (KK) ++ (0,-0.6) ++ (-0.2,-0.4) -- ++ (0.2,0.4) -- ++ (0.2,-0.4)
+      (KK) ++ (0,-0.2) circle (0.2);
+\draw (HK) decorate[decoration={random steps,segment length=2pt,amplitude=1pt}] {.. controls ($ (HF) + (-0.5,1.5) $) .. ($ (HF) + (-0.5,0) $)};
+\draw (HK) decorate[decoration={random steps,segment length=2pt,amplitude=1pt}] {.. controls ($ (HF) + (0.5,1.5) $) .. ($ (HF) + (0.5,0) $)};
+\draw (BK) decorate[decoration={saw,mirror}] {-- ($ (BF) + (-2.9,1) $) -- ++ (2.7,0)} -- ($ (BF) + (-0.3,0) $);
+\draw (BK) decorate[decoration={saw}] {-- ($ (BF) + (2.9,1) $) -- ++ (-2.7,0)} -- ($ (BF) + (0.3,0) $);
+\draw (KK) -- (BK) ($ (KF)!-0.05!(BF) $) -- ($ (BF)!-0.05!(KF) $);
+\draw[dashed] (KK) -- (BM);
+\end{tikzpicture}
+}
+\end{center}
+
+Eine Anwendung des zweiten Strahlensatz $\left( \frac{\text{komplett}}{\text{vorne}} = \frac{\text{lang}}{\text{kurz}} \right)$
+liefert:
+\[
+\frac{d_{\mathrm{KB}}}{d_{\mathrm{KH}}}
+= \frac{h_{\mathrm{B}} - h_{\mathrm{K}}}{h_{\mathrm{H}} - h_{\mathrm{K}}}
+ \qquad \text{bzw.} \qquad
+ h_{\mathrm{B}} = \left( h_{\mathrm{H}} - h_{\mathrm{K}} \right) \cdot \frac{d_{\mathrm{KB}}}{d_{\mathrm{KH}}} + h_{\mathrm{K}} \MDFPeriod
+\]
+
+Nun gelten $d_{\mathrm{KH}} = \MZahl{2}{5}\MEinheit{m} + \frac{1\MEinheit{m}}{2} = 3\MEinheit{m}$
+und $d_{\mathrm{KB}} = \MZahl{2}{5}\MEinheit{m} + 1\MEinheit{m} + \MZahl{14}{5}\MEinheit{m} = 18\MEinheit{m}$.
+Damit folgt
+\[
+  h_{\mathrm{B}}
+   = \left( \MZahl{2}{4}\MEinheit{m} - \MZahl{1}{4}\MEinheit{m} \right) \cdot \frac{18\MEinheit{m}}{3\MEinheit{m}} + \MZahl{1}{4}\MEinheit{m}
+   = 1\MEinheit{m} \cdot 6 + \MZahl{1}{4}\MEinheit{m}
+   = \MZahl{7}{4}\MEinheit{m} \MDFPeriod
+\]
+\end{MHint}
+\end{MExercise}
+
+\end{MExercises}
+
+%jgl: end of section 1.
+
+
+%content: section 2: Winkel und Winkelmessung.
+
+\MSubsection{Winkel und Winkelmessung}
 \MLabel{M05_Winkel}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_WinkelIntro}
 
-Das Bild zeigt einen Ausschnitt des Stra\ss enplans von Ludwigshafen am Rhein. 
-An ihm lassen sich einige Erkenntnisse \"uber die Geometrie in der Ebene ablesen.
-
-\begin{center}
-\MGraphicsSolo{Stadtplan.png}{scale=1} \MLabel{Stadtplan}
-\end{center}
-
-Man kann hier unter anderem das Bogenma\ss\ eines Winkels entdecken und 
-Stufen- und Wechselwinkel aufsp\"uren. 
-
-Im ersten Abschnitt dieses Moduls wird an einige geometrische Grundbegriffe 
-erinnert, ehe im darauf folgenden Abschnitt das Bogenma\ss\ und das Gradma\ss\ 
-eingef\"uhrt, Stufen- und Wechselwinkel betrachtet und die Winkelsumme in 
-Dreiecken bestimmt werden. Ferner werden Kriterien, wann zwei Dreiecke 
-kongruent oder \"ahnlich sind, vorgestellt.
+Geraden, die sich in einem Punkt $S$ schneiden, teilen die Ebene in 
+charakteristischer Weise auf.
+Zur Beschreibung dieser Beobachtung wird der Begriff Winkel eingef"uhrt.
+Die Frage nach M"oglichkeiten, Winkel zu messen, wird auf verschiedene 
+Weisen beantwortet, die letztlich alle auf einer Einteilung von Kreisen 
+beruhen. 
 
 \end{MIntro}
 
-
-\begin{MXContent}{Geometrische Grundbegriffe}{Geometrische Grundbegriffe}{STD}
-
-\MDeclareSiteUXID{VBKM05_Grundbegriffe}
-
-\begin{MInfo}
-\MLabel{VBKM05_Gerade}
-Eine \MEntry{Gerade}{Gerade} in der Ebene ist anschaulich gesprochen eine gerade, unendlich d\"unne Linie, auf der man beliebig entlang laufen kann, ohne an eine Begrenzung zu sto\ss en, d.h., sie erstreckt sich in beiden Richtungen ins Unendliche.
-\begin{itemize}
- \item Eine mathematisch korrekte Erkl\"arung dieses Begriffes definiert eine Gerade in der Ebene als die L\"osungmenge einer linearen Gleichung der Form $ax+by=0$, wobei $a$ und $b$ reelle Zahlen sind, die nicht beide zugleich $0$ sein d\"urfen.
- \item   Eine Gerade ist stets durch die Angabe zweier voneinander verschiedener Punkte, die auf ihr liegen, eindeutig bestimmt.
-\item Zwei Geraden in der Ebene
-\begin{itemize}
- \item haben entweder genau einen gemeinsamen Punkt (der sogenannte Schnittpunkt der Geraden $g$ und $h$) oder
-\item sind gleich oder
- \item haben \"uberhaupt keinen gemeinsamen Punkt.
-\end{itemize}
-In den beiden letzten F\"allen nennt man die beiden Geraden \MEntry{parallel}{parallele Geraden}.
-\end{itemize}
-\end{MInfo}
-
-\MDeclareSiteUXID{VBKM05_Halbgerade}
-
-\begin{MInfo}
-\MLabel{VBKM05_Halbgerade}
-Eine \MEntry{Halbgerade}{Halbgerade} (auch \MEntry{Strahl}{Strahl} genannt) ist \"ahnlich wie eine Gerade eine gerade, unendlich d\"unne Linie, auf der man nun allerdings lediglich in eine Richtung beliebig entlang laufen kann, ohne an eine Begrenzung zu sto\ss en, d.h., sie erstreckt sich nur in einer Richtung ins Unendliche und besitzt einen Anfangspunkt.
-\begin{itemize}
- \item Halbgeraden sind genau diejenigen Punktmengen, die man erh\"alt, indem man die rechte reelle Zahlenachse (einschlie\ss lich $0$) in der Ebene dreht oder verschiebt (oder beides).
-\item Mathematisch formuliert gestattet jede Halbgerade wenigstens eine der folgenden Darstellungen:
-\begin{itemize}
- \item als L\"osungsmenge der Gleichung $ax+by=0$ unter der Nebenbedingung $x\geq c$;
- \item als L\"osungsmenge der Gleichung $ax+by=0$ unter der Nebenbedingung $x\leq c$;
- \item als L\"osungsmenge der Gleichung $ax+by=0$ unter der Nebenbedingung $y\geq c$;
- \item als L\"osungsmenge der Gleichung $ax+by=0$ unter der Nebenbedingung $y\leq c$;
-\end{itemize}
-mit reellen Zahlen $a$, $b$ und $c$, wobei $a$ und $b$ nicht beide zugleich $0$ sein d\"urfen.
- \item Eine Halbgerade ist durch die Angabe ihres Anfangspunktes und eines weiteren Punktes, der auf der Halbgeraden liegt, eindeutig bestimmt.
- \item Zu jeder Halbgeraden gibt es genau eine Gerade, auf der diese Halbgerade liegt.
- \item Zu jeder Halbgeraden $g$ gibt es die sogenannte \MEntry{entgegengesetzte Halbgerade}{entgegengesetzte Halbgerade}, die hier mit $g^-$ bezeichnet wird.
-Die entgegengesetzte Halbgerade $g^-$ erh\"alt man, indem man im Anfangspunkt der Halbgeraden $g$ startend in die genau entgegengesetzte Richtung l\"auft.
-Oder anders ausgedr\"uckt: Ist $g$ eine Halbgerade mit Anfangspunkt $P$ und ist $h$ die eindeutig bestimmte Gerade, auf der $g$ liegt, so erh\"alt man $g^-$, indem bis auf den Punkt $P$ alle Punkte, die zu $g$ geh\"oren, aus $h$ entfernt. Die entgegengesetzte Halbgerade hat den gleichen Anfangspunkt wie die urspr\"ungliche Halbgerade.
-\end{itemize}
-\end{MInfo}
-
-
-\MDeclareSiteUXID{VBKM05_Strecke}
-
-\begin{MInfo}
-\MLabel{VBKM05_Strecke}
-Eine \MEntry{Strecke}{Strecke} ist anschaulich gesprochen diejenige gerade, unendlich d\"unne Linie, die zwei Punkte direkt miteinander verbindet. Man nennt diese beiden Punkt die Endpunkte der Strecke.
-\begin{itemize}
- \item Strecken sind genau diejenigen nichtleeren Punktmengen, die als Schnittmengen zweier Halbgeraden, von denen keine die jeweils andere enth\"alt, auftreten. Man beachte jedoch, dass bei dieser Definition auch einzelne Punkte als Strecken aufgefasst werden.
-\item Eine Strecke ist stets durch die Angabe ihrer Endpunkte eindeutig bestimmt. Man sagt auch, dass eine Strecke ihre Endpunkte miteinander verbindet.
- \item Strecken haben stets eine endliche L\"ange. Diese L\"ange ist genau der Abstand zwischen ihren Endpunkten.
- \item Zu jeder Strecke, die aus mehr als einem Punkt besteht, gibt es genau eine Gerade, auf der diese Strecke liegt.
-\item Zwei Strecken, die jeweils beide mehr als einen Punkt besitzen und zudem auf parallelen Geraden liegen, nennt man \MEntry{parallel}{parallel (Strecken)}.
-\end{itemize}
-\end{MInfo}  
-
-
-\MDeclareSiteUXID{VBKM05_Kreis}
-
-\begin{MInfo}
-\MLabel{VBKM05_Kreis}
-Ein \MEntry{Kreis}{Kreis} (oder eine \MEntry{Kreislinie}{Kreislinie}) mit Mittelpunkt $M$ und Radius $r>0$ ist die Menge aller Punkte der Ebene, welche zu $M$ genau den Abstand $r$ besitzen.
-\begin{itemize}
-\item Jeder Kreis l\"asst sich mathematisch als die L\"osungsmenge einer Gleichung der Form $$(x-a)^2+(y-b)^2=r^2$$ mit reellen Zahlen $a$ und $b$ beschreiben.
- \item Jeder Kreis ist durch die Angabe dreier voneinander verschiedener Punkte, die auf ihm liegen, eindeutig bestimmt.
-\item Zwei voneinander verschiedene Kreise schneiden sich entweder in keinem, in genau einem oder in genau zwei Punkten.
- \item Der \MEntry{Durchmesser}{Durchmesser} $d$ eines Kreises mit Radius $r$ ist $2r$.
-\end{itemize}
-\end{MInfo}  
-\end{MXContent}
 
 \begin{MXContent}{Winkel}{Winkel}{STD}
 
 \MDeclareSiteUXID{VBKM05_WinkelContent}
 \MLabel{VBKM05_Winkel}
-Zwei Halbgeraden ~$g$ und~$h$ in der Ebene, die von demselben Punkt ~$P$ ausgehen, bilden einen \MEntry{Winkel}{Winkel}.
+Zwei Strahlen (Halbgerade) $g$ und $h$ in der Ebene, die von demselben Punkt $S$
+ ausgehen, schlie"sen einen \MEntry{Winkel}{Winkel} ein.
 
 \begin{center}
 \MTikzAuto{%
@@ -173,46 +296,8 @@ Man beachte, dass es bei der Bedeutung des Symbols $\Mmeasuredangle \left( g, h 
 $\Mmeasuredangle \left( h, g \right)$ bezeichnet n\"amlich die L\"ange desjenigen Kreisbogens, der entsteht, wenn man von der Geraden $h$ gegen den Uhrzeigersinn zur Geraden $g$ l\"auft (im obigen Bild rot eingef\"arbt), und diese L\"ange ist in der Regel von $\Mmeasuredangle \left( g, h \right)$ verschieden!
 
 
-\begin{MHint}{griechische Buchstaben}
-Falls Sie das griechische Alphabet noch nicht so gut kennen, gibt es hier eine kleine (nach mathematischen Gesichtspunkten geordnete) \"Ubersicht,
-die auch die Gro\ss buchstaben enth\"alt:
-\begin{center}
-\begin{tabular}{|*{5}{cc|}}
-\ifttm\hline\else\firsthline\fi
-%Die Grossbuchstaben, die nicht auch vom lateinischen Alphabet genutzt
-%werden, druckt pdfLaTeX aufrecht, MathML dagegen kursiv.
-%Die Sortierung ist so geloest, dass oft zusammen verwendete Buchstaben
-%in derselben Spalte landen.
- $\alpha$,       \ifttm$A$\else$\mathrm{A}$\fi & \glqq alpha\grqq         &
- $\xi$,          $\Xi$                         & \glqq xi\grqq            &
- $\iota$,        \ifttm$I$\else$\mathrm{I}$\fi & \glqq iota\grqq          &
- $o$,            \ifttm$O$\else$\mathrm{O}$\fi & \glqq omikron\grqq       &
- $\pi$,          $\Pi$                         & \glqq pi\grqq            \\
- $\beta$,        \ifttm$B$\else$\mathrm{B}$\fi & \glqq beta\grqq          &
- $\zeta$,        \ifttm$Z$\else$\mathrm{Z}$\fi & \glqq zeta\grqq          &
- $\Mvarkappa$,   \ifttm$K$\else$\mathrm{K}$\fi & \glqq kappa\grqq         &
- $\omega$,       $\Omega$                      & \glqq omega\grqq         &
- $\Mvarphi$,     $\Phi$                        & \glqq phi\grqq           \\
- $\gamma$,       $\Gamma$                      & \glqq gamma\grqq         &
- $\eta$,         \ifttm$H$\else$\mathrm{H}$\fi & \glqq eta\grqq           &
- $\lambda$,      $\Lambda$                     & \glqq lambda\grqq        &
- $\varrho$,      \ifttm$P$\else$\mathrm{P}$\fi & \glqq rho\grqq           &
- $\psi$,         $\Psi$                        & \glqq psi\grqq           \\
- $\delta$,       $\Delta$                      & \glqq delta\grqq         &
- $\vartheta$,    $\Theta$                      & \glqq theta\grqq         &
- $\mu$,          \ifttm$M$\else$\mathrm{M}$\fi & \glqq m\"u\grqq          &
- $\sigma$,       $\Sigma$                      & \glqq sigma\grqq         &
- $\chi$,         \ifttm$X$\else$\mathrm{X}$\fi & \glqq chi\grqq           \\
- $\Mvarepsilon$, \ifttm$E$\else$\mathrm{E}$\fi & \glqq epsilon\grqq       &
- \special{html:&nbsp;}                         & \special{html:&nbsp;}    &
- $\nu$,          \ifttm$N$\else$\mathrm{N}$\fi & \glqq n\"u\grqq          &
- $\tau$,         \ifttm$T$\else$\mathrm{T}$\fi & \glqq tau\grqq           &
- $\upsilon$,     $\Upsilon$                    & \glqq \"upsilon\grqq     \\
- \ifttm\hline\else\lasthline\fi
-\end{tabular}
-
-\end{center}
-\end{MHint}
+%jgl: Griechisches Alphabet muss noch neu sortiert werden:
+%\input{z_alphabet.tex}
 
 Indem man auch noch die entgegengesetzten Halbgeraden in die Betrachtungen miteinbezieht, lassen sich weitere Winkel entdecken.
 
@@ -375,6 +460,34 @@ Je vier dieser Winkel sind gleich gro\ss .
 \end{itemize}
 
 \end{MInfo}
+\end{MXContent}
+
+%jgl: end of section 2.
+
+
+
+
+%content: section 3: Dreiecke.
+
+\MSubsection{Rund um Dreiecke}
+\MLabel{M05_Dreieck}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM05_DreieckIntro}
+
+Drei Punkte bilden die Ecken eines Dreiecks.
+
+\begin{center}
+%Beispiele von Dreiecken
+%\MTikzAuto{%
+%\begin{tikzpicture}
+%\end{tikzpicture}
+%}
+\end{center}
+\end{MIntro}
+
+
+\begin{MXContent}{Dreiecke}{Dreiecke}{STD}
 
 Eine einfache Figur mit Winkeln ist das Dreieck:
 \begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_SummeDerInnenwinkel}%
@@ -507,118 +620,201 @@ Dreiecke nach ihrem gr\"o\ss ten Winkel in drei verschiedene Klassen eingeteilt:
 \end{itemize}
 \end{MInfo}
 
-Neben Dreiecken kann man nat\"urlich auch Figuren mit mehr Ecken betrachten:
+\end{MXContent}
 
-\begin{MInfo}\MLabel{VBKM05_Vielecke}%
-Es sei $n$ eine nat\"urliche Zahl, die mindestens $3$ betrage.
-\begin{itemize}
- \item 
-Ein \MEntry{$n$-Eck}{$n$-Eck} (auch als \MEntry{Vieleck}{Vieleck} oder \MEntry{Polygon}{Polygon} bezeichnet) entsteht,
-      wenn man $n$ Punkte in der Ebene nacheinander in einer zuvor festgelegten Reihenfolge durch Strecken miteinander verbindet,
-			wobei der letzte Punkt wieder mit dem ersten Punkt verbunden wird und je drei aufeinander folgende Punkte nicht auf einer gemeinsamen Geraden
-			liegen d\"urfen.
-       
- \item Die $n$ Punkte, die verbunden werden, hei\ss en
-       \MEntry{Ecken}{Ecken ($n$-Eck)} des $n$-Ecks, und
-       die $n$ Verbindungsstrecken hei\ss en
-       \MEntry{Seiten}{Seiten ($n$-Eck)} des $n$-Ecks.
-   \item Wenn sich die Seiten eines $n$-Ecks h\"ochstens in den Ecken schneiden, so spricht man von einem \MEntry{einfachen $n$-Eck}{einfaches $n$-Eck} (bzw. von einem \MEntry{einfachen Vieleck}{einfaches Vieleck} oder \MEntry{einfachem Polygon}{einfaches Polygon}).  
- \item Je zwei Seiten eines $n$-Ecks bilden je zwei Winkel.
-Der kleinere dieser beiden Winkel hei\ss t
-\MEntry{Innenwinkel}{Innenwinkel ($n$-Eck)},
-       und der gr\"o\ss ere der beiden Winkel hei\ss t
-       \MEntry{Au\ss enwinkel}{Au\ss enwinkel ($n$-Eck)}.
-		\item Jedes einfache $n$-Eck l\"asst sich in $(n-2)$ einander nicht \"uberlappende Dreiecke zerlegen. Die Summe aller Innenwinkel eines einfachen $n$-Ecks betr\"agt daher stets $(n-2)\pi$ bzw. $(n-2)180^\circ$.
- \item Ein einfaches $n$-Eck, dessen Seiten alle die gleiche L\"ange haben und dessen Innenwinkel zudem alle gleich gro\ss\ sind, nennt man
-\MEntry{regelm\"a\ss iges $n$-Eck}{regelm\"a\ss iges $n$-Eck} (bzw. \MEntry{regelm\"a\ss iges Vieleck}{regelm\"a\ss iges Vieleck} oder \MEntry{regelm\"a\ss iges Polygon}{regelm\"a\ss iges Polygon}).
-\item Die Verbindungsstrecken zwischen je zwei Ecken, die nicht auf derselben Seite des $n$-Ecks liegen, hei\ss en die \MEntry{Diagonalen}{Diagonale ($n$-Eck)} des $n$-Ecks.
-\end{itemize}
-\end{MInfo}
 
-Unter den Vielecken nehmen die Vierecke eine besondere Stellung ein, da diese in noch feinere Klassen eingeteilt werden.
+%content: Satz des Pythagoras.
 
-\begin{MInfo}\MLabel{VBKM05_Vierecke}%
-Ein Viereck hei\ss t
-\begin{itemize}
- \item \MEntry{Trapez}{Trapez}, falls wenigstens zwei Seiten parallel sind;
- \item \MEntry{Parallelogramm}{Parallelogramm}, falls je zwei gegen\"uberliegende Seiten parallel sind;
- \item \MEntry{Raute}{Raute} oder \MEntry{gleichseitiges Viereck}{gleichseitiges Viereck} oder auch \MEntry{Rhombus}{Rhombus}, falls alle vier Seiten gleich lang sind;
- \item \MEntry{Rechteck}{Rechteck}, falls alle vier Winkel rechte Winkel sind;
- \item \MEntry{Quadrat}{Quadrat}, falls es ein Rechteck ist, bei dem alle Seiten gleich lang sind;
- \item \MEntry{Einheitsquadrat}{Einheitsquadrat}, falls es ein Quadrat mit Seitenl\"ange $1$ ist.
-\end{itemize}
-\end{MInfo}
+\begin{MXContent}{Satz des Pythagoras}{Pythagoras}{STD}
 
-Unter den gerade eingef\"uhrten speziellen Vierecken gibt es eine ganze Reihe von Zusammenh\"angen:
+Eine Aussage "uber die Seitenl"angen in einem rechtwinkligen Dreieck
+bietet der \textbf{Satz des Pythagoras}. Dieser wird hier in einer oft 
+verwendeten Formulierung angegeben.
 
-\begin{MInfo}\MLabel{VBKM05_Vierecke_Beziehungen}%
-\begin{itemize}
- \item Jedes Quadrat ist ein Rechteck.
-\item Jedes Quadrat ist eine Raute.
-\item Jedes Rechteck ist ein Parallelogramm.
-\item Jedes Parallelogramm ist ein Trapez.
-\item Jede Raute ist ein Parallelogramm.
-\end{itemize}
-\end{MInfo}
+\begin{MInfo}
+\MLabel{VBKM05_Pythagoras}
+\begin{tabular}{lr}
+\begin{minipage}{9cm}
+Ist in einem rechtwinkligen Dreieck der rechte Winkel bei $C$, $D$~der Lotfu\ss punkt der H\"ohe~$h_c$ auf~$c$,
+$p = \left| \overline{AD} \right|$ und $q = \left| \overline{BD} \right|$, so gilt:
+\vspace*{1cm}
+\end{minipage}
+&
+\begin{minipage}{7cm}
+\MTikzAuto{%
+\begin{tikzpicture}
+\coordinate[label=above:$C$]       (C) at (0,0);
+\coordinate[label=below right:$B$] (B) at ($ (C) + (2,-4) $);
+\path let \p1=($ (B) - (C) $) in 
+        coordinate[label=left:$A$] (A) at ($ (C) + ({\y1*3/4}, {-\x1*3/4}) $);
+\path let \p1=($ (B) - (A) $) in
+        coordinate                 (K) at ($ (C) + ({\y1/5}, {- \x1/5}) $);
+\coordinate[label=below:$D$]       (D) at (intersection of C--K and A--B);
+%
+\draw (B) -- node[sloped, above]{$a$} (C) -- node[sloped, above]{$b$} (A) -- cycle;
+\draw (C) -- node[sloped, right, rotate=-90]{$h_c$} (D);
+\path (A) -- node[sloped, above]{$p$} (D) -- node[sloped, above]{$q$} (B) -- node[sloped, below]{$c$} (A);
+\end{tikzpicture}
+}
+\end{minipage}
+\end{tabular}
+%\begin{itemize}
+%	\item 
+\textbf{Satz des Pythagoras}\\
+Die Summe der Quadrate \"uber den Katheten $a$ und $b$ haben den gleichen 
+Fl\"acheninhalt wie das Quadrat \"uber der Hypotenuse $c$. So gilt mit den 
+genannten Bezeichnungen (siehe auch das abgebildete Dreieck): 
+\[a^2+b^2=c^2 \MDFPeriod\]
+Werden die Seiten des Dreiecks anders bezeichnet, muss die Gleichung entsprechend angepasst werden!
 
-Ferner lassen sich diese Vierecke auf vielerlei Arten charakterisieren.
-
-\begin{MInfo}\MLabel{VBKM05_Parallelogramm}%
-Ein Viereck ist genau dann ein Parallelogramm, wenn
-\begin{itemize}
- \item es ein einfaches Viereck ist, dessen gegen\"uberliegenden Seiten jeweils gleich lang sind;
-\item gegen\"uberliegende Innenwinkel gleich gro\ss\ sind;
-\item zwei benachbarte Innenwinkel zusammen $\pi$ bzw. $180^\circ$ ergeben; 
-\item die Diagonalen einander halbieren.
-\end{itemize}
+%Siehe Zusaetzliche Inhalte:
+%	\item \textbf{Kathetensatz}\\
+%		Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus der Hypotenuse und dem anliegenden Hypotenusenabschnitt: \[a^2=c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
+%	\item \textbf{H\"ohensatz}\\
+%		Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus den beiden Hypotenusenabschnitten: \[h^2=p\cdot q \MDFPeriod\]	
+%\end{itemize}
 \end{MInfo}
 
 
-\begin{MInfo}\MLabel{VBKM05_Raute}%
-Ein Viereck ist genau dann eine Raute, wenn
-\begin{itemize}
- \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht zueinander stehen;
- \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren.
-\end{itemize}
+\begin{MCOSHZusatz}
+In einem rechtwinkligen Dreieck gelten neben dem Satz des Pythagoras weitere 
+Aussagen.
+\begin{MXInfo}{Kathetensatz}
+Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus 
+der Hypotenuse und dem anliegenden Hypotenusenabschnitt: 
+\[a^2 = c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
+\end{MXInfo}
+
+\begin{MXInfo}{H"ohensatz}
+Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus 
+den beiden Hypotenusenabschnitten: 
+\[h^2 = p\cdot q \MDFPeriod\]	
+\end{MXInfo}
+
+\end{MCOSHZusatz}
+
+\begin{MExample}
+Gegeben sei ein rechtwinkliges Dreieck mit den Kathetenl\"angen $a=3$ und $b=4$.\\
+\ \\
+Die L\"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras berechnet werden:
+\[c^2=\sqrt{a^2 + b^2}=\sqrt{9 + 16}=\sqrt{25}=5 \MDFPeriod\]
+Die einzelnen Hypotenusenabschnitte $p$ und $q$ berechnen sich gem\"a\ss\ dem Kathetensatz zu:
+\[q=\frac{a^2}{c}=\frac{9}{5} \MDFPSpace, \MDFPaSpace p=\frac{b^2}{c}=\frac{16}{5} \MDFPeriod\]
+Die H\"ohe $h_c$ erh\"alt man mit dem H\"ohensatz:
+\[h_c=\sqrt{p\cdot q}=\sqrt{\frac{9}{5}\cdot\frac{16}{5}}=\sqrt{\frac{144}{25}}=\frac{12}{5} \MDFPeriod\]
+\end{MExample}
+
+\begin{MExercise}
+Berechnen Sie f\"ur ein rechtwinkliges Dreieck mit der Hypotenuse $c=\MZahl{10}{5}$, der H\"ohe $h_c=\MZahl{5}{04}$ und dem Hypotenusenabschnitt $q=\MZahl{3}{78}$ die L\"ange der beiden Katheten.
+
+\begin{MHint}{L\"osung}
+\[\text{Kathetensatz:} \quad a=\sqrt{c\cdot q}=\sqrt{\MZahl{10}{5} \cdot \MZahl{3}{78}}=\MZahl{6}{3} \MDFPSpace;\]
+\[\text{Satz des Pythagoras:} \quad b=\sqrt{c^2-a^2} = \sqrt{{\MZahl{10}{5}}^2-{\MZahl{6}{3}}^2}=\MZahl{8}{4} \MDFPeriod\]
+\end{MHint}
+\end{MExercise}
+
+Es gibt noch einen weiteren wichtigen Satz, der f\"ur rechtwinklige Dreiecke g\"ultig ist:
+\begin{MInfo}
+\textbf{Satz des Thales}\\
+\ \\
+\begin{tabular}{lr}
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\draw[color=black, thick] (-3,0) -- (3,0);
+\draw[color=black, thick] (3,0) arc (0:180:3);
+\draw[color=red, thick] (-3,0) -- (50:3) -- (3,0);
+\draw[color=red, thick] (-3,0) -- (100:3) -- (3,0);
+\draw[color=black] (50:3) ++(295:0.6) arc (295:205:0.6);
+\draw[color=black] (100:3) ++(320:0.6) arc (320:230:0.6);
+\fill[color=black] (50:3) ++(250:0.3) circle (1.0pt);
+\fill[color=black] (100:3) ++(275:0.3) circle (1.0pt);
+\draw[color=black] (0,0) node[anchor=north] {$M$};
+\draw[color=black] (-1.5,0) node[anchor=south] {$r$};
+\draw[color=black] (1.5,0) node[anchor=south] {$r$};
+\draw (0,0) -- (50:3) (0,0) -- (100:3);
+\node[anchor=north west] at (50:1.5) {$r$};
+\node[anchor=west] at (100:1.8) {$r$};
+\end{tikzpicture}
+}
+&
+\begin{minipage}[b]{7cm}
+Hat das Dreieck $ABC$ bei $C$ einen rechten Winkel, so liegt $C$ auf einem Kreis mit der Hypotenuse $c=\overline{AB}$ als Durchmesser.
+\vspace*{1.5cm}
+\end{minipage}
+\end{tabular}
 \end{MInfo}
 
+Wenn man also \"uber einer Strecke $\overline{AB}$ einen Halbkreis konstruiert und dann $A$ und $B$ mit einem beliebigen Punkt $C$ auf dem Halbkreis verbindet, dann ist das so entstandene Dreieck immer rechtwinklig.
 
-\begin{MInfo}\MLabel{VBKM05_Rechteck}%
-Ein Viereck ist genau dann ein Rechteck, wenn
-\begin{itemize}
- \item alle Innenwinkel gleich gro\ss\ sind;
-\item es ein Parallelogramm ist, bei dem wenigstens ein Innenwinkel ein rechter Winkel ist;
-\item es ein Parallelogramm ist, bei dem die Diagonalen gleich lang sind; 
-\item die Diagonalen einander halbieren und gleich lang sind;
-\item es eine Raute mit gleich langen Diagonalen ist;
-\item die Diagonalen einander halbieren und wenigstens ein Innenwinkel ein rechter Winkel ist.
-\end{itemize}
-\end{MInfo}
+\begin{MExample}\MLabel{ThaleskreisAufgabe}
+Es soll ein rechtwinkliges Dreieck mit der Hypotenusenl\"ange $c=6\MEinheit{cm}$ und der H\"ohe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.\\
+\ \\
+\begin{tabular}{lr}
+\begin{minipage}[b]{7cm}
+  \begin{enumerate}
+    \item Zuerst zeichnet man die Hypotenuse \newline $c=\overline{AB}$.\\
+    \item Die Mitte der Hypotenuse wird nun zum Mittelpunkt eines Kreises mit der L\"ange $c/2$.\\
+    \item Nun zeichnet man eine Parallelle zur Hypotenuse im Abstand $h_c$. Es gibt zwei Schnittpunkte $C$ und $C'$ dieser Parallelen mit dem Thaleskreis. 
+  \end{enumerate}
+\end{minipage}
+&
+%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis_Konstruktion.png}{scale=1}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.2cm, y=1.2cm] 
+\draw[color=red, thick] (-3,0) -- (3,0);
+\draw[color=blue, thick] (3,0) arc (0:180:3);
+\draw[color=red, thick, dashed] (-3,2.5) -- (3,2.5);
+\fill[color=black, opacity=0.5] (0,0) circle (2.0pt);
+\draw[color=black, thick] (-3,0) -- (-1.658312395,2.5) -- (3,0);
+\draw[color=black, thick, dashed] (-3,0) -- (1.658312395,2.5) -- (3,0);
+\draw[color=black] (-1.658312395,0) -- (-1.658312395,2.5);
+\draw[color=gray, dashed] (1.658312395,0) -- (1.658312395,2.5);
+\draw[color=black] (-3,0) node[anchor=north east] {$A$};
+\draw[color=black] (3,0) node[anchor=north west] {$B$};
+\draw[color=black] (0,-2pt) node[anchor=north] {$M$};
+\draw[color=black] (-1.658312395,1.10) node[anchor=east] {$h_c$};
+\draw[color=black] (1.658312395,1.10) node[anchor=west] {$h_c$};
+\node[anchor=south east] at (-1.658312395,2.5) {$C$};
+\node[anchor=south west] at (1.658312395,2.5) {$C'$};
+\draw[color=red] (-1.5,0) node[anchor=north] {\large $\mathsf{1}$};
+\draw[color=blue] (30:3) node[anchor=west] {\large $\mathsf{2}$};
+\draw[color=red] (3,2.5) node[anchor=south east] {\large $\mathsf{3}$};
+\end{tikzpicture}
+}
+\end{tabular}\\
+Diese sind jeweils die dritte Ecke eines Dreiecks, das die geforderten Eigenschaften hat, das hei\ss t, man erh\"alt zwei L\"osungen.
+W\"urde man noch einen Thaleskreis nach unten zeichen, so erg\"aben sich noch mal zwei L\"osungen.
+\end{MExample}
 
+\begin{MExercise}
+Welche H\"ohe $h_c$ kann ein rechtwinkliges Dreieck mit der Hypotenuse $c$ maximal haben?
 
-\begin{MInfo}\MLabel{VBKM05_Quadrat}%
-Ein Viereck ist genau dann eine Quadrat, wenn
-\begin{itemize}
-\item alle Seiten gleich lang und alle Winkel gleich gro\ss\ sind;
- \item die Diagonalen einander halbieren und gleich lang sind und zudem alle Seiten gleich lang sind;
- \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht zueinander stehen und welches wenigstens einen rechten Winkel besitzt;
- \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren und welches wenigstens einen rechten Winkel besitzt;
- \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht zueinander stehen und alle Innenwinkel gleich gro\ss\ sind;
- \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren und alle Innenwinkel gleich gro\ss\ sind;
-\item es sowohl eine Raute als auch ein Rechteck ist.
-\end{itemize}
-\end{MInfo}
+\begin{MHint}{L\"osung}
+Die H\"ohe $h_c$ kann maximal so gro\ss\ werden wie der Radius des Thaleskreises \"uber der Hypotenuse, also $h_c\leq c/2$.
+\end{MHint}
+\end{MExercise}
 
 \end{MXContent}
 
+%end of content: Satz des Pythagoras.
 
 
 \begin{MXContent}{Kongruenzs\"atze}{Kongruenz}{weiterfhrg}
 \MDeclareSiteUXID{VBKM05_Kongruenzsaetze}
 
-Zu einem Dreieck geh\"oren drei Seitenl\"angen und drei Winkel, also sechs Gr\"o\ss en. Wenn bei zwei Dreiecken alle diese Gr\"o\ss en \"ubereinstimmen, so sind diese Dreiecke \textbf{kongruent} oder deckungsgleich, dabei spielt es keine Rolle, wo sich die Dreiecke befinden. Kongruente Dreiecke k\"onnen also durch Drehung, Spiegelung und Verschiebung ineinander \"uberf\"uhrt werden.\\
-Kennt man vier von den sechs Gr\"o\ss en, so ist das Dreieck eindeutig bestimmt bis auf Spielgelung oder Drehung, das hei\ss t bis auf die Lage des Dreiecks im Raum. Alle Dreiecke, die man mit diesen Angaben erh\"alt, sind dann kongruent. In einigen F\"allen gen\"ugen sogar drei Angaben, um das Dreieck eindeutig zu bestimmen.
-Diese F\"alle werden mit den \MEntry{Kongruenzs\"atzen}{Kongruenzs\"atze} beschrieben:
+Zu einem Dreieck geh\"oren drei Seitenl\"angen und drei Winkel, also sechs 
+Gr"o"sen. Wenn bei zwei Dreiecken alle diese Gr"o\"sen \"ubereinstimmen, so 
+sind diese Dreiecke \textbf{kongruent} oder deckungsgleich, dabei spielt es keine 
+Rolle, wo sich die Dreiecke befinden. Kongruente Dreiecke k\"onnen also durch 
+Drehung, Spiegelung und Verschiebung ineinander \"uberf\"uhrt werden.\\
+Kennt man vier von den sechs Gr"o"sen, so ist das Dreieck eindeutig bestimmt 
+bis auf Spielgelung oder Drehung, das hei"st bis auf die Lage des Dreiecks 
+im Raum. Alle Dreiecke, die man mit diesen Angaben erh\"alt, sind dann kongruent.
+In einigen F\"allen gen\"ugen sogar drei Angaben, um das Dreieck eindeutig 
+zu bestimmen.
+Diese F\"alle werden mit den \MEntry{Kongruenzs\"atzen}{Kongruenzs\"atze} 
+beschrieben:
 
 \begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_Satz:Kongruenzsaetze}%
 Ein Dreieck ist eindeutig bestimmt, wenn
@@ -819,6 +1015,7 @@ Eine Besonderheit gibt es bei dem rechten und dem linken Dreieck in Beispiel  \M
 
 \end{MXContent}
 
+
 \begin{MExercises}
 \MDeclareSiteUXID{VBKM05_Kongruenzsaetze_Exercises}
 \begin{MExercise}
@@ -950,30 +1147,139 @@ Da $\alpha'=\alpha\quad\text{und}\quad\beta'=\beta\quad\text{folgt}\quad\alpha+\
 \end{MExercise}
 \end{MExercises}
 
+%jgl: end of section 3.
 
 
-\MSubsection{Fl\"acheninhalt und Strahlens\"atze}
-\MLabel{M05_Flaecheninhalt}
+%content: section 4: Vielecke, Flaechen und Umfang.
+
+\MSubsection{Vielecke, Fl\"acheninhalt und Umfang}
+\MLabel{M05_Vielecke}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Flaecheninhalt_Intro}
-Das Bauamt von Ludwigshafen m\"ochte die Grundst\"ucksgr\"o\ss en des im zuvor betrachteten
-Ausschnitt des Stadtplans (Bild \MRef{Stadtplan}) abgebildeten Viertels neu berechnen.
+In der Natur kann man vielf"altige Formen entdecken. Dabei sind runde Formen
+sehr offensichtlich.  Wenn es darum geht, eine Fl"ache l"uckenlos auszuf"ullen, 
+entdeckt man auch Begrenzungen, die n"aherungsweise Strecken sind. Ein markantes
+Beispiel sind Wabenstrukturen, die von Insekten angelegt werden.
+Technische Anwendungen bauen oft auf Figuren mit geraden Begrenzungen auf.
 
+In diesem Abschnitt werden h"aufig Spezialf"alle von Vielecke betrachtet. 
+Dabei sollen zun"achst charakteristische Besonderheiten benannt werden.
+Anschlie"send wird der Frage nachgegangen, wie der Fl"acheninhalt eines 
+Vielecks einfach berechnet werden kann. 
 
-Die meisten der Grundst\"uck haben eine (ann\"ahernd) vieleckige Grundfl\"ache,
-die sich, wie man zeigen kann, in Dreiecke aufspalten l\"asst. Das Bauamt teilt diese Grundst\"ucke
-also in Dreiecke auf, berechnet die Fl\"acheninhalte der Dreiecke und erh\"alt
-so die Gesamtfl\"ache der Grundst\"ucke durch die Addition der Dreiecksfl\"acheninhalte.
-
-In diesem Abschnitt wird wiederholt, wie man den Umfang und Fl\"acheninhalt eines Dreiecks und anderer Figuren berechnet. 
-
-Im Anschluss daran werden die sogenannten Strahlens\"atze eingef\"uhrt,
-die zum Beispiel bei der Skalierung einer Zeichnung oder bei der Berechnung
-von H\"ohen bzw.\ Abst\"anden zum Einsatz kommen.
+%In diesem Abschnitt wird wiederholt, wie man den Umfang und Fl\"acheninhalt 
+%eines Dreiecks und anderer Figuren berechnet. 
 \end{MIntro}
 
 \ifttm\relax\else\newpage\fi
+
+\begin{MXContent}{Vielecke}{Vielecke}{STD}
+
+Neben Dreiecken kann man nat\"urlich auch Figuren mit mehr Ecken betrachten:
+
+\begin{MInfo}\MLabel{VBKM05_Vielecke}%
+Es sei $n$ eine nat\"urliche Zahl, die mindestens $3$ betrage.
+\begin{itemize}
+ \item 
+Ein \MEntry{$n$-Eck}{$n$-Eck} (auch als \MEntry{Vieleck}{Vieleck} oder \MEntry{Polygon}{Polygon} bezeichnet) entsteht,
+      wenn man $n$ Punkte in der Ebene nacheinander in einer zuvor festgelegten Reihenfolge durch Strecken miteinander verbindet,
+			wobei der letzte Punkt wieder mit dem ersten Punkt verbunden wird und je drei aufeinander folgende Punkte nicht auf einer gemeinsamen Geraden
+			liegen d\"urfen.
+       
+ \item Die $n$ Punkte, die verbunden werden, hei\ss en
+       \MEntry{Ecken}{Ecken ($n$-Eck)} des $n$-Ecks, und
+       die $n$ Verbindungsstrecken hei\ss en
+       \MEntry{Seiten}{Seiten ($n$-Eck)} des $n$-Ecks.
+   \item Wenn sich die Seiten eines $n$-Ecks h\"ochstens in den Ecken schneiden, so spricht man von einem \MEntry{einfachen $n$-Eck}{einfaches $n$-Eck} (bzw. von einem \MEntry{einfachen Vieleck}{einfaches Vieleck} oder \MEntry{einfachem Polygon}{einfaches Polygon}).  
+ \item Je zwei Seiten eines $n$-Ecks bilden je zwei Winkel.
+Der kleinere dieser beiden Winkel hei\ss t
+\MEntry{Innenwinkel}{Innenwinkel ($n$-Eck)},
+       und der gr\"o\ss ere der beiden Winkel hei\ss t
+       \MEntry{Au\ss enwinkel}{Au\ss enwinkel ($n$-Eck)}.
+		\item Jedes einfache $n$-Eck l\"asst sich in $(n-2)$ einander nicht \"uberlappende Dreiecke zerlegen. Die Summe aller Innenwinkel eines einfachen $n$-Ecks betr\"agt daher stets $(n-2)\pi$ bzw. $(n-2)180^\circ$.
+ \item Ein einfaches $n$-Eck, dessen Seiten alle die gleiche L\"ange haben und dessen Innenwinkel zudem alle gleich gro\ss\ sind, nennt man
+\MEntry{regelm\"a\ss iges $n$-Eck}{regelm\"a\ss iges $n$-Eck} (bzw. \MEntry{regelm\"a\ss iges Vieleck}{regelm\"a\ss iges Vieleck} oder \MEntry{regelm\"a\ss iges Polygon}{regelm\"a\ss iges Polygon}).
+\item Die Verbindungsstrecken zwischen je zwei Ecken, die nicht auf derselben Seite des $n$-Ecks liegen, hei\ss en die \MEntry{Diagonalen}{Diagonale ($n$-Eck)} des $n$-Ecks.
+\end{itemize}
+\end{MInfo}
+
+Unter den Vielecken nehmen die Vierecke eine besondere Stellung ein, da diese in noch feinere Klassen eingeteilt werden.
+
+\begin{MInfo}\MLabel{VBKM05_Vierecke}%
+Ein Viereck hei\ss t
+\begin{itemize}
+ \item \MEntry{Trapez}{Trapez}, falls wenigstens zwei Seiten parallel sind;
+ \item \MEntry{Parallelogramm}{Parallelogramm}, falls je zwei gegen\"uberliegende Seiten parallel sind;
+ \item \MEntry{Raute}{Raute} oder \MEntry{gleichseitiges Viereck}{gleichseitiges Viereck} oder auch \MEntry{Rhombus}{Rhombus}, falls alle vier Seiten gleich lang sind;
+ \item \MEntry{Rechteck}{Rechteck}, falls alle vier Winkel rechte Winkel sind;
+ \item \MEntry{Quadrat}{Quadrat}, falls es ein Rechteck ist, bei dem alle Seiten gleich lang sind;
+ \item \MEntry{Einheitsquadrat}{Einheitsquadrat}, falls es ein Quadrat mit Seitenl\"ange $1$ ist.
+\end{itemize}
+\end{MInfo}
+
+Unter den gerade eingef\"uhrten speziellen Vierecken gibt es eine ganze Reihe von Zusammenh\"angen:
+
+\begin{MInfo}\MLabel{VBKM05_Vierecke_Beziehungen}%
+\begin{itemize}
+ \item Jedes Quadrat ist ein Rechteck.
+\item Jedes Quadrat ist eine Raute.
+\item Jedes Rechteck ist ein Parallelogramm.
+\item Jedes Parallelogramm ist ein Trapez.
+\item Jede Raute ist ein Parallelogramm.
+\end{itemize}
+\end{MInfo}
+
+Ferner lassen sich diese Vierecke auf vielerlei Arten charakterisieren.
+
+\begin{MInfo}\MLabel{VBKM05_Parallelogramm}%
+Ein Viereck ist genau dann ein Parallelogramm, wenn
+\begin{itemize}
+ \item es ein einfaches Viereck ist, dessen gegen\"uberliegenden Seiten jeweils gleich lang sind;
+\item gegen\"uberliegende Innenwinkel gleich gro\ss\ sind;
+\item zwei benachbarte Innenwinkel zusammen $\pi$ bzw. $180^\circ$ ergeben; 
+\item die Diagonalen einander halbieren.
+\end{itemize}
+\end{MInfo}
+
+
+\begin{MInfo}\MLabel{VBKM05_Raute}%
+Ein Viereck ist genau dann eine Raute, wenn
+\begin{itemize}
+ \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht zueinander stehen;
+ \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren.
+\end{itemize}
+\end{MInfo}
+
+
+\begin{MInfo}\MLabel{VBKM05_Rechteck}%
+Ein Viereck ist genau dann ein Rechteck, wenn
+\begin{itemize}
+ \item alle Innenwinkel gleich gro\ss\ sind;
+\item es ein Parallelogramm ist, bei dem wenigstens ein Innenwinkel ein rechter Winkel ist;
+\item es ein Parallelogramm ist, bei dem die Diagonalen gleich lang sind; 
+\item die Diagonalen einander halbieren und gleich lang sind;
+\item es eine Raute mit gleich langen Diagonalen ist;
+\item die Diagonalen einander halbieren und wenigstens ein Innenwinkel ein rechter Winkel ist.
+\end{itemize}
+\end{MInfo}
+
+
+\begin{MInfo}\MLabel{VBKM05_Quadrat}%
+Ein Viereck ist genau dann eine Quadrat, wenn
+\begin{itemize}
+\item alle Seiten gleich lang und alle Winkel gleich gro\ss\ sind;
+ \item die Diagonalen einander halbieren und gleich lang sind und zudem alle Seiten gleich lang sind;
+ \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht zueinander stehen und welches wenigstens einen rechten Winkel besitzt;
+ \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren und welches wenigstens einen rechten Winkel besitzt;
+ \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht zueinander stehen und alle Innenwinkel gleich gro\ss\ sind;
+ \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren und alle Innenwinkel gleich gro\ss\ sind;
+\item es sowohl eine Raute als auch ein Rechteck ist.
+\end{itemize}
+\end{MInfo}
+
+\end{MXContent}
+
 
 \begin{MXContent}{Fl\"acheninhalt}{Fl\"acheninhalt}{STD}
 \MDeclareSiteUXID{VBKM05_Flaecheninhalt_Content}
@@ -1291,347 +1597,536 @@ Berechnen Sie den Fl\"acheninhalt des Polygons:\\
 
 \end{MExercises}
 
-
-\begin{MXContent}{Die Strahlens\"atze}{Strahlens\"atze}{STD}
-\MDeclareSiteUXID{VBKM05_Strahlensaetze}
-
-Die Strahlens\"atze haben etwas mit der zentrischen Streckung zu tun (siehe \MRef{Mathematik_ElementareGeometrie_zentrischeStreckung}).
-
-%\MGraphicsSolo{../Bilder/Mathematik_ElementareGeometrie/Mathematik_ElementareGeometrie_Stadtplan_Strahlensatz.png}{scale=1}
-
-\ifttm%
-\relax
-\else%
-\newcommand{\Strahlensatzfigur}[1][]
-{%
-\coordinate (S) at (0,0);
-\coordinate (A) at ($ (S) + (3,0.5) $);
-\coordinate (D) at ($ (S) + (4,2.5) $);
-\coordinate (B) at ($ (S)!1.7!(A) $);
-\coordinate (C) at ($ (S)!1.7!(D) $);
-%
-\path (S) node[left]{$S$} (A) node[below right]{$A$} (B) node[below right]{$B$}
-                          (C) node[above left] {$C$} (D) node[above left] {$D$};
-%
-\draw (S) -- ($ (S)!1.1!(B) $);
-\draw (S) -- ($ (S)!1.1!(C) $);
-%
-\draw[#1] ($ (A)!-0.2!(D) $) -- ($ (D)!-1!(A) $) node[left]{$g$};
-\draw ($ (B)!-0.2!(C) $) node[right]{$h$} -- ($ (C)!-0.1!(B) $);
-}
-\fi
-
-\begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_Satz:ErsterStrahlensatz}%
-\textbf{Strahlens\"atze}
-
-%\begin{center}
-\begin{tabular}{lc}
-\mbox{
-\MTikzAuto{%
-\begin{tikzpicture}
-\Strahlensatzfigur
-\end{tikzpicture}
-}
-}
-%\end{center}
-&
-\begin{minipage}[b]{7cm}
-F\"ur zwei Punkte~$P$ und~$Q$ seien $\overline{PQ}$ die Strecke von~$P$ nach~$Q$
-und $\left| \overline{PQ} \right|$ die L\"ange dieser Strecke.
-\vspace*{2cm}
-\end{minipage}
-\end{tabular}
+%end of content: section 4: Vielecke, Flaechen und Umfang.
 
 
-Sind in dem obigen Bild die Geraden~$g$ und~$h$ parallel, so gilt:
-\begin{itemize}
-\item
-Die Abschnitte auf einem Strahl verhalten sich wie die entsprechenden Abschnitte auf dem anderen Strahl:
-\[
-   \frac{\left| \overline{SA} \right|}{\left| \overline{SD} \right|}
- = \frac{\left| \overline{SB} \right|}{\left| \overline{SC} \right|}
- = \frac{\left| \overline{AB} \right|}{\left| \overline{CD} \right|} \MDFPeriod
-\]
-\item
-Die Abschnitte auf den Parallelen  verhalten sich wie die von $S$ ausgehenden entsprechenden Abschnitte auf einem Strahl:
-\[
-   \frac{\left| \overline{SA} \right|}{\left| \overline{SB} \right|}
- = \frac{\left| \overline{SD} \right|}{\left| \overline{SC} \right|}
- = \frac{\left| \overline{AD} \right|}{\left| \overline{BC} \right|} \MDFPeriod
-\]
-
-\end{itemize}
-\end{MInfo}
 
 
-%Im Stadtplan (Bild \MRef{Stadtplan}) findet sich noch eine Stelle, an der die Strahlens\"atze angewendet werden k\"onnen. Wo ist sie?
+%jgl: Neuer Abschnitt:
+\MSubsection{Elementargeometrische K"orper}%
+\MLabel{M05_Koerper}
 
-%\begin{MHint}{L\"osung}
-%\begin{center}
-%\MGraphicsSolo{../Bilder/Mathematik_ElementareGeometrie/Mathematik_ElementareGeometrie_Stadtplan_nochmalStrahlensatz.png}{scale=1}
-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Stadtplan_nochmalStrahlensatz.png}{scale=1}
-%\end{center}
-%\end{MHint}
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM05A_ElementareKoerper_Intro}
 
-Mit dem Strahlensatz lassen sich auch einige wichtige S\"atze herleiten, die f\"ur ein rechtwinkliges Dreieck gelten, zum Beispiel die \textbf{Satzgruppe des Pythagoras}. Diese sollen hier aber ohne Herleitung angegeben werden:
+Die Gestalt allt"aglicher Gegenst"ande wie ein Notizblock, ein Handy oder 
+auch technische Konstruktionen wie Tunnel k"onnen durch einfache Grundformen
+beschrieben werden, wenn man von {\glqq}abgerundeteten Ecken{\grqq} absieht.
+Woran liegt das?
 
-\begin{MInfo}
-\MLabel{VBKM05_Pythagoras}
-\begin{tabular}{lr}
-\begin{minipage}{9cm}
-Ist in einem rechtwinkligen Dreieck der rechte Winkel bei $C$, $D$~der Lotfu\ss punkt der H\"ohe~$h_c$ auf~$c$,
-$p = \left| \overline{AD} \right|$ und $q = \left| \overline{BD} \right|$, so gilt:
-\vspace*{1cm}
-\end{minipage}
-&
-\begin{minipage}{7cm}
-\MTikzAuto{%
-\begin{tikzpicture}
-\coordinate[label=above:$C$]       (C) at (0,0);
-\coordinate[label=below right:$B$] (B) at ($ (C) + (2,-4) $);
-\path let \p1=($ (B) - (C) $) in 
-        coordinate[label=left:$A$] (A) at ($ (C) + ({\y1*3/4}, {-\x1*3/4}) $);
-\path let \p1=($ (B) - (A) $) in
-        coordinate                 (K) at ($ (C) + ({\y1/5}, {- \x1/5}) $);
-\coordinate[label=below:$D$]       (D) at (intersection of C--K and A--B);
-%
-\draw (B) -- node[sloped, above]{$a$} (C) -- node[sloped, above]{$b$} (A) -- cycle;
-\draw (C) -- node[sloped, right, rotate=-90]{$h_c$} (D);
-\path (A) -- node[sloped, above]{$p$} (D) -- node[sloped, above]{$q$} (B) -- node[sloped, below]{$c$} (A);
-\end{tikzpicture}
-}
-\end{minipage}
-\end{tabular}
-%\begin{itemize}
-%	\item 
-\textbf{Satz des Pythagoras}\\
-Die Summe der Quadrate \"uber den Katheten $a$ und $b$ haben den gleichen 
-Fl\"acheninhalt wie das Quadrat \"uber der Hypotenuse $c$. So gilt mit den 
-genannten Bezeichnungen (siehe auch das abgebildete Dreieck): 
-\[a^2+b^2=c^2 \MDFPeriod\]
-Werden die Seiten des Dreiecks anders bezeichnet, muss die Gleichung entsprechend angepasst werden!
+Wenn man einen Besen "uber einen ebenen Boden mit Sand bewegt, wird ein 
+viereckiger Ausschnitt des Bodens sichtbar.
+Geometrisch idealisiert formuliert, entsteht aus einer Strecke (dem Besen) 
+durch Verschieben ein Viereck. Wenn man den Besen dreht, kann man eine 
+Kreisscheibe erzeugen. Auf diese Weise ergeben sich aus einfachen Objekten 
+kompliziertere, die trotzdem einfach beschrieben werden k"onnen.
+\end{MIntro}
 
-%Siehe Zusaetzliche Inhalte:
-%	\item \textbf{Kathetensatz}\\
-%		Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus der Hypotenuse und dem anliegenden Hypotenusenabschnitt: \[a^2=c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
-%	\item \textbf{H\"ohensatz}\\
-%		Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus den beiden Hypotenusenabschnitten: \[h^2=p\cdot q \MDFPeriod\]	
-%\end{itemize}
-\end{MInfo}
+\begin{MXContent}{Elementargeometrische K"orper}{Elementargeometrische K"orper}{STD}%
+\MDeclareSiteUXID{VBKM05A_ElementareKoerper_Content}
 
+Punkte sind die einfachsten grundlegenden geometrischen Objekte. Verschiebungen
+f"uhren auf Strecken, und Operationen wie das Verschieben oder Drehen von 
+Strecken in der Ebene f"uhren auf elementargeometrische Figuren. 
+Beispielsweise ergeben sich Vielecke und Kreise, wie sie oben beschrieben 
+wurden.
 
-\begin{MCOSHZusatz}
-In einem rechtwinkligen Dreieck gelten neben dem Satz des Pythagoras weitere 
-Aussagen.
-\begin{MXInfo}{Kathetensatz}
-Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus 
-der Hypotenuse und dem anliegenden Hypotenusenabschnitt: 
-\[a^2 = c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
-\end{MXInfo}
+Wenn man Figuren au"serhalb ihrer Ebene verschiebt oder dreht, entstehen neue
+Objekte, die als K"orper bezeichnet werden. Im Folgenden werden einige einfache 
+K"orper beschrieben, deren Form in vielen allt"aglichen Gegenst"anden oder 
+technischen Konstruktionen erkennbar ist.
 
-\begin{MXInfo}{H"ohensatz}
-Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus 
-den beiden Hypotenusenabschnitten: 
-\[h^2 = p\cdot q \MDFPeriod\]	
-\end{MXInfo}
-
-\end{MCOSHZusatz}
-
+%Beispiel:
 \begin{MExample}
-Gegeben sei ein rechtwinkliges Dreieck mit den Kathetenl\"angen $a=3$ und $b=4$.\\
-\ \\
-Die L\"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras berechnet werden:
-\[c^2=\sqrt{a^2 + b^2}=\sqrt{9 + 16}=\sqrt{25}=5 \MDFPeriod\]
-Die einzelnen Hypotenusenabschnitte $p$ und $q$ berechnen sich gem\"a\ss\ dem Kathetensatz zu:
-\[q=\frac{a^2}{c}=\frac{9}{5} \MDFPSpace, \MDFPaSpace p=\frac{b^2}{c}=\frac{16}{5} \MDFPeriod\]
-Die H\"ohe $h_c$ erh\"alt man mit dem H\"ohensatz:
-\[h_c=\sqrt{p\cdot q}=\sqrt{\frac{9}{5}\cdot\frac{16}{5}}=\sqrt{\frac{144}{25}}=\frac{12}{5} \MDFPeriod\]
+Es wird ein Rechteck betrachtet und senkrecht zur Zeichenebene verschoben.
+Dadurch entsteht ein Quader. Seine Oberfl"ache besteht aus dem gegebenen
+Rechteck und einer Kopie davon. Au"serdem entstanden aus den vier Seiten
+des jeweils vier weitere Rechtecke.
 \end{MExample}
 
-\begin{MExercise}
-Berechnen Sie f\"ur ein rechtwinkliges Dreieck mit der Hypotenuse $c=\MZahl{10}{5}$, der H\"ohe $h_c=\MZahl{5}{04}$ und dem Hypotenusenabschnitt $q=\MZahl{3}{78}$ die L\"ange der beiden Katheten.
+Betrachtet man irgend ein Vieleck, und verschiebt dieses senkrecht, entsteht
+ein Prisma genannter K"orper. Der Name wird auch f"ur durchsichtige physikalische
+K"orper dieser Form verwendet, mit denen Lichtwellen gebrochen werden. Die 
+einzelnen Lichtwellen von scheinbar wei"sem Licht werden in verschiedenen Farben
+sichtbar.
 
-\begin{MHint}{L\"osung}
-\[\text{Kathetensatz:} \quad a=\sqrt{c\cdot q}=\sqrt{\MZahl{10}{5} \cdot \MZahl{3}{78}}=\MZahl{6}{3} \MDFPSpace;\]
-\[\text{Satz des Pythagoras:} \quad b=\sqrt{c^2-a^2} = \sqrt{{\MZahl{10}{5}}^2-{\MZahl{6}{3}}^2}=\MZahl{8}{4} \MDFPeriod\]
-\end{MHint}
-\end{MExercise}
+\begin{MXInfo}{Prisma}
+Gegeben ist ein Vieleck $G$.
+Ein \MEntry{Prisma}{Prisma} ist ein K"orper, der aus einer senkrechten 
+Verschiebung eines Vielecks $G$ um eine Strecke der L"ange $h$ entsteht. 
+Die beiden Fl"achen, die aus dem gegebenen Vieleck und einer Kopie einen 
+Teil der Oberfl"ache bilden, werden dann als Grundfl"ache des Prismas 
+bezeichnet. Sie sind zueinander parallel. 
+Die anderen Fl"achen bilden zusammen den Mantel $M$.
 
-Es gibt noch einen weiteren wichtigen Satz, der f\"ur rechtwinklige Dreiecke g\"ultig ist:
-\begin{MInfo}
-\textbf{Satz des Thales}\\
-\ \\
-\begin{tabular}{lr}
-%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis.png}{scale=1}
-\MTikzAuto{%
-\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
-\draw[color=black, thick] (-3,0) -- (3,0);
-\draw[color=black, thick] (3,0) arc (0:180:3);
-\draw[color=red, thick] (-3,0) -- (50:3) -- (3,0);
-\draw[color=red, thick] (-3,0) -- (100:3) -- (3,0);
-\draw[color=black] (50:3) ++(295:0.6) arc (295:205:0.6);
-\draw[color=black] (100:3) ++(320:0.6) arc (320:230:0.6);
-\fill[color=black] (50:3) ++(250:0.3) circle (1.0pt);
-\fill[color=black] (100:3) ++(275:0.3) circle (1.0pt);
-\draw[color=black] (0,0) node[anchor=north] {$M$};
-\draw[color=black] (-1.5,0) node[anchor=south] {$r$};
-\draw[color=black] (1.5,0) node[anchor=south] {$r$};
-\draw (0,0) -- (50:3) (0,0) -- (100:3);
-\node[anchor=north west] at (50:1.5) {$r$};
-\node[anchor=west] at (100:1.8) {$r$};
-\end{tikzpicture}
-}
-&
-\begin{minipage}[b]{7cm}
-Hat das Dreieck $ABC$ bei $C$ einen rechten Winkel, so liegt $C$ auf einem Kreis mit der Hypotenuse $c=\overline{AB}$ als Durchmesser.
-\vspace*{1.5cm}
-\end{minipage}
-\end{tabular}
-\end{MInfo}
-
-Wenn man also \"uber einer Strecke $\overline{AB}$ einen Halbkreis konstruiert und dann $A$ und $B$ mit einem beliebigen Punkt $C$ auf dem Halbkreis verbindet, dann ist das so entstandene Dreieck immer rechtwinklig.
-
-\begin{MExample}\MLabel{ThaleskreisAufgabe}
-Es soll ein rechtwinkliges Dreieck mit der Hypotenusenl\"ange $c=6\MEinheit{cm}$ und der H\"ohe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.\\
-\ \\
-\begin{tabular}{lr}
-\begin{minipage}[b]{7cm}
-  \begin{enumerate}
-    \item Zuerst zeichnet man die Hypotenuse \newline $c=\overline{AB}$.\\
-    \item Die Mitte der Hypotenuse wird nun zum Mittelpunkt eines Kreises mit der L\"ange $c/2$.\\
-    \item Nun zeichnet man eine Parallelle zur Hypotenuse im Abstand $h_c$. Es gibt zwei Schnittpunkte $C$ und $C'$ dieser Parallelen mit dem Thaleskreis. 
-  \end{enumerate}
-\end{minipage}
-&
-%-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis_Konstruktion.png}{scale=1}
-\MTikzAuto{%
-\begin{tikzpicture}[x=1.2cm, y=1.2cm] 
-\draw[color=red, thick] (-3,0) -- (3,0);
-\draw[color=blue, thick] (3,0) arc (0:180:3);
-\draw[color=red, thick, dashed] (-3,2.5) -- (3,2.5);
-\fill[color=black, opacity=0.5] (0,0) circle (2.0pt);
-\draw[color=black, thick] (-3,0) -- (-1.658312395,2.5) -- (3,0);
-\draw[color=black, thick, dashed] (-3,0) -- (1.658312395,2.5) -- (3,0);
-\draw[color=black] (-1.658312395,0) -- (-1.658312395,2.5);
-\draw[color=gray, dashed] (1.658312395,0) -- (1.658312395,2.5);
-\draw[color=black] (-3,0) node[anchor=north east] {$A$};
-\draw[color=black] (3,0) node[anchor=north west] {$B$};
-\draw[color=black] (0,-2pt) node[anchor=north] {$M$};
-\draw[color=black] (-1.658312395,1.10) node[anchor=east] {$h_c$};
-\draw[color=black] (1.658312395,1.10) node[anchor=west] {$h_c$};
-\node[anchor=south east] at (-1.658312395,2.5) {$C$};
-\node[anchor=south west] at (1.658312395,2.5) {$C'$};
-\draw[color=red] (-1.5,0) node[anchor=north] {\large $\mathsf{1}$};
-\draw[color=blue] (30:3) node[anchor=west] {\large $\mathsf{2}$};
-\draw[color=red] (3,2.5) node[anchor=south east] {\large $\mathsf{3}$};
-\end{tikzpicture}
-}
-\end{tabular}\\
-Diese sind jeweils die dritte Ecke eines Dreiecks, das die geforderten Eigenschaften hat, das hei\ss t, man erh\"alt zwei L\"osungen.
-W\"urde man noch einen Thaleskreis nach unten zeichen, so erg\"aben sich noch mal zwei L\"osungen.
-\end{MExample}
-
-\begin{MExercise}
-Welche H\"ohe $h_c$ kann ein rechtwinkliges Dreieck mit der Hypotenuse $c$ maximal haben?
-
-\begin{MHint}{L\"osung}
-Die H\"ohe $h_c$ kann maximal so gro\ss\ werden wie der Radius des Thaleskreises \"uber der Hypotenuse, also $h_c\leq c/2$.
-\end{MHint}
-\end{MExercise}
-
-\end{MXContent}
-
-\begin{MExercises}
-\MDeclareSiteUXID{VBKM05_Strahlensaetze_Exercises}
-\begin{MExercise}
-Der Sohn des Hauses beobachtet den Baum auf des Nachbarn Grundst\"uck.
-Er stellt fest, dass der Baum von der Hecke, die die beiden Grundst\"ucke trennt,
-vollst\"andig verdeckt wird, wenn er nur nahe genug an die Hecke herantritt.
-Jetzt sucht er den Punkt, an dem der Baum gerade so nicht mehr zu sehen ist.
-
-Der $\MZahl{1}{40}$~Meter gro\ss e Junge muss $\MZahl{2}{50}$~Meter von der $\MZahl{2}{40}$~Meter hohen, $1$~Meter breiten
-und oben spitz zulaufenden Hecke
-entfernt stehen, damit der Baum vollst\"andig verdeckt ist.
-
-Wie hoch ist der Baum, wenn die Mitte des Stamms $\MZahl{14}{5}$~Meter von der Hecke entfernt steht?
-\ifttm (Angabe in Metern) \MLParsedQuestion{10}{7.4}{1}{GEO7}\else\relax\fi
-
-F\"uhren Sie die Rechnung bitte zun\"achst allgemein durch und setzen Sie erst
-am Ende die Zahlenwerte ein!
-
-\begin{MHint}{Hinweis}
-Beachten Sie die Breite der Hecke!
-\end{MHint}
-
-\begin{MHint}{L\"osung}
+%Zeichnung Prisma:
 \begin{center}
 \MTikzAuto{%
-\begin{tikzpicture}[x=0.75cm, y=0.75cm]
-\coordinate (KF) at (0,0);
-\coordinate (KK) at (0,1.4);
-\coordinate (HF) at (3,0);
-\coordinate (HK) at (3,2.4);
-\coordinate (BF) at (16.5,0);
-\coordinate (BK) at (16.5,7.4);
-\coordinate (BM) at (16.5,1.4);
+\tdplotsetmaincoords{60}{30}
+\begin{tikzpicture}[tdplot_main_coords,>=latex]
+\def\zt{3}
+\def\ticl{0.8}
+\def\dsth{0.5}
+\foreach \zc in {0,\zt} 
+% coordinate number, radius, azimuth
+\foreach \nc/\rc/\ac in {0/3/0,1/3/120,2/1/240} {
+\pgfmathparse{\rc*cos(\ac)}\let\ax=\pgfmathresult
+\pgfmathparse{\rc*sin(\ac)}\let\ay=\pgfmathresult
+\node (PC-\nc-\zc) at (\ax,\ay,\zc) {};
+}
+%,name path=level-ground
+\path[fill=gray!60,opacity=0.5] (PC-0-0.center) 
+\foreach \nc in {1,2} { -- (PC-\nc-0.center) {} } -- cycle;
+\draw[thick, black] (PC-2-0.center) -- (PC-0-0.center);
+\draw[thick, black, dashed] (PC-0-0.center) --  (PC-1-0.center) -- (PC-2-0.center) ;
+\foreach \nc in {0,2} { \draw[thick] (PC-\nc-0.center) -- (PC-\nc-\zt.center); };
+\foreach \nc in {1} { \draw[thick,dashed] (PC-\nc-0.center) -- (PC-\nc-\zt.center); };
+\path[draw=black,thick,fill=gray!30,fill opacity=0.2] (PC-0-\zt.center) 
+\foreach \nc in {1,2} { -- (PC-\nc-\zt.center) {} } -- cycle;
+\draw (PC-2-0.center) [tdplot_screen_coords] -- +(-\ticl,0);
+\draw (PC-2-\zt.center) [tdplot_screen_coords] -- +(-\ticl,0);
+\path (PC-2-0.center) [tdplot_screen_coords] ++(-\dsth,0) coordinate (BG);
+\path (PC-2-\zt.center) [tdplot_screen_coords] ++(-\dsth,0) coordinate (BT);
+\path ($ (BG)!0.5!(BT) $) node (TXT) {$h$}; % [fill=white]
+\draw[<-] (BG) -- (TXT.south);
+\draw[->] (TXT.north) -- (BT);
+%%\tdplottransformmainscreen{\ax}{\ay}{\az}
+%%\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
+\end{tikzpicture}}
+\end{center}
+
+In der Zeichnung ist ein Prisma mit einem Dreieck als Grundfl"ache gezeigt. Die
+anderen Seitenfl"achen, die an die Grundfl"ache angrenzen sind Rechtecke.
+%Ende (Zeichnung).
+
+Das Volumen $V$ des Prismas ist das Produkt aus dem Fl"acheninhalt des Vielecks 
+$G$ und der H"ohe $h$: Es ist $V = G \cdot h$.
+
+Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich aus dem doppelten Inhalt der 
+Grundfl"ache $G$ und des Mantels $M$. Wenn $U$ der Umfang des gegebenen Vielecks 
+ist, gilt $O = 2 \cdot G + M = 2 \cdot G + U \cdot h$.
+\end{MXInfo}
+
+Im einf"uhrenden Beispiel wurde ein Quader beschrieben. Mit obiger Definition
+kann er als spezielles Prisma angesehen werden, n"amlich ein Prisma mit einem 
+Rechteck als Grundfl"ache. Wenn alle Seitenfl"achen Quadrate sind, spricht man
+von einem W"urfel.
+
+Das Bauprinzip kann auf verschiedene Weisen variiert werden.
+Beispielsweise kann das Vieleck durch eine Kreisscheibe ersetzt werden, die 
+verschoben wird. Durch die senkrechte Verschiebung entsteht ein besonders 
+symmetrischer K"orper, ein Zylinder.
+Eine Tunnelbohrmaschine stellt -- vereinfacht -- eine zylinderf"ormige R"ohre her.
+
+\begin{MXInfo}{Zylinder}
+Gegeben ist eine Kreisscheibe $G$.
+Ein \MEntry{Zylinder}{Zylinder} ist ein K"orper, der aus einer senkrechten 
+Verschiebung einer Kreisscheibe $G$ um eine Strecke der L"ange $h$ entsteht. 
+Die beiden Fl"achen, die aus der gegebenen Kreisscheibe und einer Kopie einen 
+Teil der Oberfl"ache bilden, werden dann als Grundfl"ache des Zylinders
+bezeichnet. Sie sind zueinander parallel. 
+Der gekr"ummte Teil der Oberfl"ache zwischen den beiden Kreisscheiben bildet 
+den Mantel $M$ des Zylinders.
+
+%Zeichnung Zylinder:
+\begin{center}
+\MTikzAuto{%
+\tdplotsetmaincoords{60}{30}
+\begin{tikzpicture}[tdplot_main_coords,>=latex]
+\def\az{30}
+%\def\pl{60}
+\def\zt{3}
+\def\rd{2}
+\def\ticl{0.8}
+\def\dsth{0.5}
+\pgfmathparse{\rd*cos(\az)}\let\ax=\pgfmathresult
+\pgfmathparse{\rd*sin(\az)}\let\ay=\pgfmathresult
+\path[fill=gray!60,opacity=0.5] (0,0,0) circle (\rd);
+\draw[thick, black,dashed] (\ax,\ay,0) arc (\az:{\az+180}:\rd);
+\draw[thick, black] (-\ax,-\ay,0) arc ({\az+180}:{\az+360}:\rd);
+\draw (-\ax,-\ay,0) [tdplot_screen_coords] -- +(-\ticl,0);
+\draw (-\ax,-\ay,\zt) [tdplot_screen_coords] -- +(-\ticl,0);
+\path (-\ax,-\ay,0) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHB);
+\path (-\ax,-\ay,\zt) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHT);
+\draw[thin,black,dashed] (0,0,0) -- +(0,0,\zt);
+% fadings
+\shade [opacity=0.5,left color=transparent!0,right color=transparent!50]
+(\ax,\ay,0) arc ({\az+360}:{\az+180}:\rd)
+-- (-\ax,-\ay,\zt) arc ({\az+180}:{\az+360}:\rd) -- cycle;
 %
-\begin{scope}[color=black!50, every node/.style={color=black}]
-\draw (KF) -- ++ (0,-0.3) ++(0,0.15) -- node[below]{$\MZahl{2}{5}\MEinheit{m}$} ($ (HF) + (-0.5,-0.15) $) ++(0,-0.15) -- ++(0,0.3);
-\draw ($ (HF) + (0.5,0) $) -- ++ (0,-0.3) ++(0,0.15) -- node[below]{$\MZahl{14}{5}\MEinheit{m}$} ($ (BF) + (0,-0.15) $) ++(0,-0.15) -- ++(0,0.3);
- \node at (HF) [below]{$1\MEinheit{m}$};
- \draw ($ (KF)!0.5!(BF) $) -- node[right]{$h_{\mathrm{K}} = \MZahl{1}{4}\MEinheit{m}$} ($ (KK)!0.5!(BM) $) ++ (-0.15,0) -- ++(0.3,0);
- \draw (BF) -- node[right]{$h_{\mathrm{B}}$} (BK) ++ (-0.15,0) -- ++(0.3,0);
- \draw ($ (HF) + (0.75,0) $) -- node[below right]{$h_{\mathrm{H}} = \MZahl{2}{4}\MEinheit{m}$} ($ (HK) + (0.75,0) $) ++ (-0.15,0) -- ++(0.3,0);
- \draw (KK) -- ++ (0,-0.3) ++(0,0.15) -- node[below]{$d_{\mathrm{KH}}$} ($ (HF) + (KK) - (KF) + (0,-0.15) $) ++(0,-0.15) -- ++(0,0.3);
- \draw (KK) -- ++ (0,0.3) ++(0,-0.15) -- node[above]{$d_{\mathrm{KB}}$} ($ (BM) + (0,0.15) $) ++(0,0.15) -- ++(0,-0.3);
+\draw[thin,black,dashed] (\ax,\ay,0) -- +(0,0,\zt) (-\ax,-\ay,0) -- +(0,0,\zt);
+\path[fill=gray!30,fill opacity=0.2] (0,0,\zt) circle (\rd);
+\draw[thick, black] (0,0,\zt) circle (\rd);
+\path ($ (DHB)!0.5!(DHT) $) node (TXH) {$h$}; % [fill=white]
+\draw[<-] (DHB) -- (TXH.south);
+\draw[->] (TXH.north) -- (DHT);
+\path (-\ay,\ax,\zt) [tdplot_screen_coords] ++(0,\ticl) coordinate (TRL)
+++(\rd,0) coordinate (TRR);
+\path (-\ay,\ax,\zt) [tdplot_screen_coords] ++(0,\dsth) coordinate (DRL)
+++(\rd,0) coordinate (DRR);
+\draw (0,0,\zt) -- (TRL) (\ax,\ay,\zt) -- (TRR);
+\path ($ (DRL)!0.5!(DRR) $) node (TXR) {$r$}; % [fill=white]
+\draw[<-] (DRL) -- (TXR.west);
+\draw[->] (TXR.east) -- (DRR);
+\end{tikzpicture}
+}
+\end{center}
+%Ende (Zeichnung).
+
+Das Volumen $V$ des Zylinders ist das Produkt aus dem Fl"acheninhalt der 
+Kreisscheibe $G$ mit dem Radius $r$ und der H"ohe $h$: 
+Es ist $V = G \cdot h = \pi \cdot r^2 \cdot h$.
+
+Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich als Summe aus dem doppelten
+Inhalt der Kreisscheibe $K$ und dem Mantel $M$.
+Mit dem Umfang $U = 2 \cdot \pi \cdot r$ der gegebenen Kreisscheibe
+gilt 
+$O = 2 \cdot G + M = 2 \cdot \pi \cdot r^2 + 2 \cdot \pi \cdot r \cdot h %
+ = 2 \cdot \pi \cdot r \cdot (r + h)$.
+\end{MXInfo}
+
+Wenn die Kreisscheibe nicht verschoben, sondern rotiert wird, wobei die 
+Drehachse durch den Mittelpunkt und einen Randpunkt verl"auft, ergibt sich
+eine Kugel.
+
+\begin{MXInfo}{Kugel}
+Gegeben ist eine Kreisscheibe mit Mittelpunkt $M$ und Radius $r$. Rotiert die
+Kreisscheibe um $M$ und einen Randpunkt, erh"alt man eine Kugel mit 
+Radius $r$.
+
+%Zeichnung Kugel:
+\begin{center}
+\MTikzAuto{%
+\tdplotsetmaincoords{60}{30}
+\begin{tikzpicture}[tdplot_main_coords,>=latex]
+\def\az{30}
+\def\pl{60}
+\def\rd{2.5}
+\def\ticl{0.8}
+\def\dsth{0.5}
+\pgfmathparse{\rd*cos(\az)}\let\ax=\pgfmathresult
+\pgfmathparse{\rd*sin(\az)}\let\ay=\pgfmathresult
+% fadings
+\begin{scope}[tdplot_screen_coords]
+  \shade[ball color=gray!50] (0,0,0) circle (\rd);
 \end{scope}
-\draw (KF) ++ (-0.2,0) -- ++ (0.2,0.5) -- ++ (0.2,-0.5)
-      (KF) ++ (0,0.5) -- ++ (0,0.5)
-      (KK) ++ (0,-0.6) ++ (-0.2,-0.4) -- ++ (0.2,0.4) -- ++ (0.2,-0.4)
-      (KK) ++ (0,-0.2) circle (0.2);
-\draw (HK) decorate[decoration={random steps,segment length=2pt,amplitude=1pt}] {.. controls ($ (HF) + (-0.5,1.5) $) .. ($ (HF) + (-0.5,0) $)};
-\draw (HK) decorate[decoration={random steps,segment length=2pt,amplitude=1pt}] {.. controls ($ (HF) + (0.5,1.5) $) .. ($ (HF) + (0.5,0) $)};
-\draw (BK) decorate[decoration={saw,mirror}] {-- ($ (BF) + (-2.9,1) $) -- ++ (2.7,0)} -- ($ (BF) + (-0.3,0) $);
-\draw (BK) decorate[decoration={saw}] {-- ($ (BF) + (2.9,1) $) -- ++ (-2.7,0)} -- ($ (BF) + (0.3,0) $);
-\draw (KK) -- (BK) ($ (KF)!-0.05!(BF) $) -- ($ (BF)!-0.05!(KF) $);
-\draw[dashed] (KK) -- (BM);
+\draw[thin,black,dashed] (0,0,0) -- +(0,0,\rd);
+\draw[thick, black,dashed] (\ax,\ay,0) arc (\az:{\az+180}:\rd);
+\begin{scope}[tdplot_screen_coords]
+  \fill[opacity=0.5,color=white] (0,0,0) circle (\rd);
+  \draw[black,dashed] (0,0,0) circle (\rd);
+\end{scope}
+\draw[thick,black,dashed] (-\ax,-\ay,0) arc ({\az+180}:{\az+360}:\rd);
+%
+\draw (-\ax,-\ay,0) [tdplot_screen_coords] -- +(-\ticl,0);
+\draw (-\ax,-\ay,\rd) [tdplot_screen_coords] ++(-\ticl,0) 
+[tdplot_main_coords] -- (0,0,\rd);
+\path (-\ax,-\ay,0) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHB);
+\path (-\ax,-\ay,\rd) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHT);
+\path ($ (DHB)!0.5!(DHT) $) node (TXH) {$r$}; % [fill=white]
+\draw[<-] (DHB) -- (TXH.south);
+\draw[->] (TXH.north) -- (DHT);
+\end{tikzpicture}
+}
+\end{center}
+%Ende (Zeichnung).
+
+Das Volumen $V$ der Kugel ist $V = \frac{4}{3} \cdot \pi \cdot r^3$.
+
+Der Fl"acheninhalt $O$ der Oberfl"ache ist durch 
+$O = 4 \cdot \pi \cdot r^2$ gegeben.
+\end{MXInfo}
+
+Eine Kugel kann auch als der K"orper beschrieben werden, der aus allen Punkten 
+besteht, deren Abstand von $M$ kleiner oder gleich $r$ ist (siehe auch 
+Kapitel \MRef{VBKM10}).
+
+In dieser Betrachtungsweise ist ein Prisma ein K"orper aus allen Punkten, 
+die auf einer Verbindungslinie von Grundfl"ache und ihrer Kopie liegen. 
+
+Im Folgenden werden zwei Variationen dieses Vorgehens betrachtet.
+Zun"achst wird wieder von einem Vieleck als Grundfl"ache ausgegangen. 
+Anstelle einer Kopie der Grundfl"ache wird jetzt nur ein einzelner Punkt 
+vorgegeben.
+
+\begin{MXInfo}{Pyramide}
+Gegeben ist ein Vieleck $G$ und ein Punkt $S$ mit dem Abstand $h > 0$ von
+$G$.
+Eine Pyramide mit der Grundfl"ache $G$ und der Spitze $S$ ist der K"orper,
+der aus allen Punkten besteht, die auf einer Strecke von $S$ zu einem 
+Punkt auf der Grundfl"ache $G$ liegen.
+
+%Zeichnung Pyramide:
+\begin{center}
+\MTikzAuto{%
+\tdplotsetmaincoords{60}{40}
+\begin{tikzpicture}[tdplot_main_coords,>=latex]
+\def\zt{5}
+\def\rd{2.5}
+\def\ticl{0.8}
+\def\dsth{0.5}
+% coordinate number, radius, azimuth
+\foreach \nc/\rc/\ac in {0/\rd/0,1/\rd/120,2/\rd/240} {
+\pgfmathparse{\rc*cos(\ac)}\let\ax=\pgfmathresult
+\pgfmathparse{\rc*sin(\ac)}\let\ay=\pgfmathresult
+\node (PC-\nc) at (\ax,\ay,0) {};
+}
+%
+\path[fill=gray!60,opacity=0.5] (PC-0.center) 
+\foreach \nc in {1,2} { -- (PC-\nc.center) {} } -- cycle;
+\draw[thick, black] (PC-2.center) -- (PC-0.center);
+\draw[thick, black, dashed] (PC-0.center) --  (PC-1.center) -- (PC-2.center);
+\foreach \nc in {0,2} { \draw[thick] (PC-\nc.center) -- (0,0,\zt); };
+\foreach \nc in {1} { \draw[thick,dashed] (PC-\nc.center) -- (0,0,\zt); };
+\draw[thin,black,dashed] (0,0,0) -- +(0,0,\zt);
+% Legende
+\draw (0,0,0) [tdplot_screen_coords] -- ++({-\rd-\ticl},0);
+\draw (0,0,\zt) [tdplot_screen_coords] -- ++({-\rd-\ticl},0);
+\path (0,0,0) [tdplot_screen_coords] ++({-\rd-\dsth},0) coordinate (BG);
+\path (0,0,\zt) [tdplot_screen_coords] ++({-\rd-\dsth},0) coordinate (BT);
+\path ($ (BG)!0.5!(BT) $) node (TXT) {$h$}; % [fill=white]
+\draw[<-] (BG) -- (TXT.south);
+\draw[->] (TXT.north) -- (BT);
+%
+\path (PC-2.center) [tdplot_screen_coords] +(0,-\dsth) coordinate (DAL)
++(0,-\ticl) coordinate (TAL);
+\path (PC-0.center) [tdplot_screen_coords] +(0,-\dsth) coordinate (DAR)
++(0,-\ticl) coordinate (TAR);
+\draw (PC-2.center) -- (TAL) (PC-0.center) -- (TAR);
+\path ($ (DAL)!0.5!(DAR) $) node (TXA) {$a$}; % [fill=white]
+\draw[<-] (DAL) -- (TXA.west);
+\draw[->] (TXA.east) -- (DAR);
 \end{tikzpicture}
 }
 \end{center}
 
-Eine Anwendung des zweiten Strahlensatz $\left( \frac{\text{komplett}}{\text{vorne}} = \frac{\text{lang}}{\text{kurz}} \right)$
-liefert:
-\[
-\frac{d_{\mathrm{KB}}}{d_{\mathrm{KH}}}
-= \frac{h_{\mathrm{B}} - h_{\mathrm{K}}}{h_{\mathrm{H}} - h_{\mathrm{K}}}
- \qquad \text{bzw.} \qquad
- h_{\mathrm{B}} = \left( h_{\mathrm{H}} - h_{\mathrm{K}} \right) \cdot \frac{d_{\mathrm{KB}}}{d_{\mathrm{KH}}} + h_{\mathrm{K}} \MDFPeriod
-\]
+In der Zeichnung ist eine Pyramide mit einer dreieckigen Grundfl"ache 
+dargestellt.
+%Ende (Zeichnung).
 
-Nun gelten $d_{\mathrm{KH}} = \MZahl{2}{5}\MEinheit{m} + \frac{1\MEinheit{m}}{2} = 3\MEinheit{m}$
-und $d_{\mathrm{KB}} = \MZahl{2}{5}\MEinheit{m} + 1\MEinheit{m} + \MZahl{14}{5}\MEinheit{m} = 18\MEinheit{m}$.
-Damit folgt
-\[
-  h_{\mathrm{B}}
-   = \left( \MZahl{2}{4}\MEinheit{m} - \MZahl{1}{4}\MEinheit{m} \right) \cdot \frac{18\MEinheit{m}}{3\MEinheit{m}} + \MZahl{1}{4}\MEinheit{m}
-   = 1\MEinheit{m} \cdot 6 + \MZahl{1}{4}\MEinheit{m}
-   = \MZahl{7}{4}\MEinheit{m} \MDFPeriod
-\]
-\end{MHint}
+Das Volumen $V$ der Pyramide ist proportional zum Fl"acheninhalt der 
+Grundfl"ache $G$ und der H"ohe $h$. 
+Es gilt $V = \frac{1}{3} \cdot G \cdot h$.
+
+Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich als Summe aus dem Inhalt 
+der Grundfl"ache $G$ und des Mantels $M$. Dabei ist der Fl"acheninhalt des 
+Mantels die Summe seiner Dreiecksfl"achen $D_k$ ($1 \leq k \leq n$).
+Damit ist $O = G + M = G + D_1 + \ldots + D_n$.
+\end{MXInfo}
+
+In besonderen Situationen ergeben sich einfache Formeln, mit denen 
+das Volumen und die Oberfl"ache berechnet werden k"onnen. Ein Beispiel ist
+die oben abgebildete Pyramide. Dort sind alle Seitenfl"achen gleichseitige 
+Dreiecke. Die folgende Aufgabe bietet die Gelegenheit, hierf"ur eine Formel
+f"ur Volumen und Oberfl"ache mit den Eigenschaften gleichseitiger Dreiecke
+zu finden.
+
+\begin{MExercise}
+Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ einer Pyramide, deren 
+Seiten alle gleichseitige Dreiecke mit der Seitenl"ange $s$ sind.
+
+Antworten:
+\begin{MExerciseItems}
+\item \MEquationItem{$V$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05TPyr1}}
+\item \MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05TPyr2}}
+\end{MExerciseItems}
 \end{MExercise}
 
+
+Die "Uberlegungen von oben, dass Prismen und Zylinder ein gemeinsames 
+Bauprinzip bei unterschiedlichen Grundfl"achen haben, kann auf die neue 
+Situation einer Pyramide "ubertragen werden.
+Man erh"alt einen weiteren K"orper, wenn anstatt eines Vielecks wie bei der 
+Pyramide eine Kreisscheibe als Grundfl"ache verwendet wird.
+
+\begin{MXInfo}{Kegel}
+Gegeben ist eine Kreisscheibe $G$ mit Radius $r$.
+Au"serdem wird ein Punkt $S$ mit dem Abstand $h > 0$ von $G$ betrachtet.
+Ein Kegel mit der Grundfl"ache $G$ und der Spitze $S$ ist der K"orper,
+der aus allen Punkten besteht, die auf einer Strecke von $S$ zu einem 
+Punkt auf der Grundfl"ache $G$ liegen.
+
+%Zeichnung Kegel:
+\begin{center}
+\MTikzAuto{
+\def\az{30}
+\def\pl{60}
+\tdplotsetmaincoords{\pl}{\az}
+\begin{tikzpicture}[tdplot_main_coords,>=latex]
+\def\zt{4}
+\def\rd{2}
+\def\ticl{0.8}
+\def\dsth{0.5}
+\pgfmathparse{\rd*cos(\az)}\let\ax=\pgfmathresult
+\pgfmathparse{\rd*sin(\az)}\let\ay=\pgfmathresult
+\pgfmathparse{\rd/\zt/tan(\pl)}\let\stm=\pgfmathresult
+\pgfmathparse{less(abs(\stm),1)}\let\cres\pgfmathresult
+\pgfmathparse{greater(\stm,0)}\let\crsg\pgfmathresult
+\def\ccmp{1}
+%%\typeout{cres=\cres, crsg=\crsg}
+\if\cres\ccmp
+  \pgfmathparse{\rd*cos(\pl)*\stm}\let\smy=\pgfmathresult
+  \pgfmathparse{\rd*sqrt(1-\stm*\stm)}\let\smx=\pgfmathresult
+  \pgfmathparse{asin(\stm)}\let\astm=\pgfmathresult
+\else
+  \def\smy{1}\def\smx{0}\def\astm{90}
+\fi
+\pgfmathparse{\rd*cos(\az+\astm)}\let\axl=\pgfmathresult
+\pgfmathparse{\rd*sin(\az+\astm)}\let\ayl=\pgfmathresult
+\path[fill=gray!60,opacity=0.5] (0,0,0) circle (\rd);
+%%\draw[thick,black,dashed] (\ax,\ay,0) arc (\az:{\az+180}:\rd);
+%%\draw[thick,black] (-\ax,-\ay,0) arc ({\az+180}:{\az+360}:\rd);
+\if\crsg\ccmp
+  \draw[thick,black,dashed] (\axl,\ayl,0) arc ({\az+\astm}:{\az+180-\astm}:\rd);
+  \draw[thick,black] (\axl,\ayl,0) arc ({\az+360+\astm}:{\az+180-\astm}:\rd);
+\else
+  \draw[thick,black] (0,0,0) circle (\rd);
+\fi
+\draw (-\ax,-\ay,0) [tdplot_screen_coords] -- +(-\ticl,0);
+\draw (-\ax,-\ay,\zt) [tdplot_screen_coords] ++(-\ticl,0) 
+[tdplot_main_coords] -- (0,0,\zt);
+\path (-\ax,-\ay,0) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHB);
+\path (-\ax,-\ay,\zt) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHT);
+\draw[thin,black,dashed] (0,0,0) -- +(0,0,\zt);
+% fadings
+\if\cres\ccmp
+  \shade [opacity=0.5,left color=transparent!0,right color=transparent!50]
+  (\axl,\ayl,0) arc ({\az+360+\astm}:{\az+180-\astm}:\rd) -- (0,0,\zt) -- cycle;
+\else
+  \shade [opacity=0.5,left color=transparent!0,right color=transparent!50]
+  (0,0,0) circle (\rd);
+\fi
+%
+\if\cres\ccmp
+  \draw[thin,black,dashed] (0,0,\zt) [tdplot_screen_coords] -- (\smx,\smy);
+  \draw[thin,black,dashed] (0,0,\zt) [tdplot_screen_coords] -- (-\smx,\smy);
+\fi
+\path ($ (DHB)!0.5!(DHT) $) node (TXH) {$h$}; % [fill=white]
+\draw[<-] (DHB) -- (TXH.south);
+\draw[->] (TXH.north) -- (DHT);
+\path (0,0,\zt) [tdplot_screen_coords] ++(0,\ticl) coordinate (TRL)
+++(\rd,0) coordinate (TRR);
+\path (0,0,\zt) [tdplot_screen_coords] ++(0,\dsth) coordinate (DRL)
+++(\rd,0) coordinate (DRR);
+\draw (0,0,\zt) -- (TRL) (\ax,\ay,0) -- (TRR);
+\path ($ (DRL)!0.5!(DRR) $) node (TXR) {$r$}; % [fill=white]
+\draw[<-] (DRL) -- (TXR.west);
+\draw[->] (TXR.east) -- (DRR);
+\end{tikzpicture}
+}
+\end{center}
+%Ende (Zeichnung).
+
+Das Volumen $V$ des Kegels ist proportional zum Fl"acheninhalt der 
+Kreisscheibe $G$ und der H"ohe $h$. 
+Es gilt $V = \frac{1}{3} \cdot G \cdot h %
+ = \frac{1}{3} \cdot \pi \cdot r^2 \cdot h$.
+
+Der Fl"acheninhalt der Oberfl"ache ist die Summe des Inhalts der 
+Kreisscheibe $G$ und des Mantels $M$. Wenn $l$ der Abstand der 
+Kegelspitze vom Rand der Kreisscheibe ist, 
+gilt mit dem Kreisumfang $U =  2 \pi r$ dann
+$O = G + M = \pi \cdot r^2 + \pi \cdot r \cdot l %
+ = \pi \cdot r \cdot (r + l)$.
+\end{MXInfo}
+
+In obiger Zeichnung eines Kegels wird die H"ohe $h$ genannt. Die angebenen 
+Formeln enthalten jedoch den Abstand der Spitze vom Rank der Kreisscheibe.
+Wie h"angen beide Gr"o"sen zusammen?
+
+\begin{MExercise}
+Stellen Sie sich vor, der Kegel wird von der Spitze eben 
+durch den Mittelpunkt der Kreisscheibe in zwei gleiche Teile zerlegt.
+Dann ist eine Seite der beiden Teile jeweils ein Dreieck, durch dessen Seiten 
+die H"ohe $h$, der Abstand $l$ und der Radius $r$ beziehungsweise der 
+Durchmesser der Kreisscheibe bestimmt werden.
+Hierbei werden $r$ und $h$ als gegeben angesehen.
+
+\begin{MExerciseItems}
+\item
+Beschreiben Sie $l$ in Abh"angigkeit von $h$ und $r$:
+\par
+\MEquationItem{$l$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl1}}
+
+\item
+Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ des Kegels:
+\begin{MExerciseItems}
+\item %
+ \MEquationItem{$V$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl2}}
+\item %
+ \MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl3}}
+\end{MExerciseItems}
+\end{MExerciseItems}
+\end{MExercise}
+
+\end{MXContent}
+%end of subsection: ElementareKoerper.
+
+
+%Uebungen zum Abschnitt Elementare Koerper:
+\begin{MExercises}
+\MDeclareSiteUXID{VBKM05_ElementareKoerper_Exercises}
+
+\begin{MExercise}
+Berechnen Sie das Volumen eines Prismas der H"ohe $h = 8 \MEinheit{cm}$, dessen 
+Grundfl"ache ein gleichseitiges Sechseck mit Seitenl"ange $a = 3 \MEinheit{cm}$ 
+ist.
+\par
+Antwort: \MLParsedQuestion{15}{177}{10}{ExM05EK1} $\MEinheit{cm}^3$
+\end{MExercise}
+
+\begin{MExercise}
+Die Oberfl"ache eines Zylinders mit einer H"ohe von $h = 6 \MEinheit{cm}$ 
+soll mit einer Farbfolie beklebt werden. Die Oberfl"ache soll 
+$O = 200 \MEinheit{cm}^3$ gro"s sein. Berechnen Sie den Durchmesser $d$ der 
+Kreisfl"ache und das Volumen $V$ des Zylinders.
+
+Antworten:
+\begin{MExerciseItems}
+\item %
+ \MEquationItem{$d$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21}} $\MEinheit{cm}$
+\item %
+ \MEquationItem{$V$}{\MLParsedQuestion{15}{177}{10}{ExM05EK22}} $\MEinheit{cm}^3$
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Es ist ein Holzst"uck in Form eines Quaders mit dem Volumen $V_0$ gegeben. 
+Der Quader ist $h = \MZahl{120}{00}$ cm hoch, und die Grundfl"ache besteht aus 
+einem Quadrat mit einer Seitenl"ange von $s = \MZahl{40}{00}$ cm.
+Aus dem Holzst"uck wird ein zylinderf"ormiges Loch der H"ohe $h$ mit einem 
+Durchmesser von $20$ cm {\glqq}mittig{\grqq} ausgebohrt (das hei"st, der 
+Schnittpunkt der Diagonalen der quadratischen Grundfl"ache bildet den 
+Mittelpunkt der Kreisscheibe des Zylinders).
+Berechnen Sie
+\begin{MExerciseItems}
+\item das Volumen $V_Z$ des ausgebohrten Hohlraum:
+\par
+\MEquationItem{$V_Z$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21b}} $\MEinheit{cm^3}$
+%
+\item den prozentualen Anteil des Volumens $V_1$ des neuen Holzst"ucks, 
+das nach dem Ausbohren von $V_0$ noch vorhanden ist:
+\par
+Antwort: \MLParsedQuestion{15}{177}{10}{ExM05EK21c} $\%$
+\end{MExerciseItems}
+\end{MExercise}
 \end{MExercises}
+%end of exercises: Uebungen zum Abschnitt Elementare Koerper (jgl).
 
 
 
+%content: Abschnitt 6: Winkelfunktionen
 
-\MSubsection{Trigonometrie}\MLabel{Mathematik_ElementareGeometrie_Sec:Trigonometrie}
-
+\MSubsection{Winkelfunktionen: Sinus und Co.}\MLabel{M05_Trigonometrie}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Intro}
-Der vorherige Abschnitt besch\"aftigte sich unter anderem mit den Seiten rechtwinkliger Dreiecke.
-Im nun folgenden Abschnitt sollen auch die beiden anderen Winkel im rechtwinkligen Dreieck in die Betrachtung miteinbezogen und deren Beziehung zu den Seiten erhellt werden. Dies erm\"oglicht es dann auch die H\"ohe $h$ eines nicht rechtwinkligen Dreiecks zu berechnen, die man einerseits f\"ur die Fl\"achenberechnung ben\"otigt, die jedoch andererseits oftmals gar nicht explizit gegeben ist.
+Je nach Sonnenstand ist der Schatten einer Person oder eines Gegenstandes 
+unterschiedlich gro"s. Indem die Verh"altnisse in Abh"angigkeit des Winkels
+erfasst werden, kann man die zugeh"origen L"angen berechnen. Die Betrachtung
+von funktionalen Zusammenh"ange, die sich hier aus geometrischen Beobachtungen 
+ergeben und zur Definition von Sinus, Cosinus und weiteren trigonometrischer 
+Gr"o"sen f"uhren, werden im n"achsten Modul allgemein besprochen.
 \end{MIntro}
 
 \begin{MXContent}{Trigonometrie am Dreieck}{Dreieck}{STD}
@@ -2165,514 +2660,7 @@ Der richtige Winkel ist also $\alpha=230^\circ$ (rosa).
 
 \end{MExercises}
 
-
-
-%jgl: Neuer Abschnitt:
-\MSubsection{Elementargeometrische K"orper}%
-\MLabel{M05_Koerper}
-
-\begin{MIntro}
-\MDeclareSiteUXID{VBKM05A_ElementareKoerper_Intro}
-
-Die Gestalt allt"aglicher Gegenst"ande wie ein Notizblock, ein Handy oder 
-auch technische Konstruktionen wie Tunnel k"onnen durch einfache Grundformen
-beschrieben werden, wenn man von {\glqq}abgerundeteten Ecken{\grqq} absieht.
-Woran liegt das?
-
-Wenn man einen Besen "uber einen ebenen Boden mit Sand bewegt, wird ein 
-viereckiger Ausschnitt des Bodens sichtbar.
-Geometrisch idealisiert formuliert, entsteht aus einer Strecke (dem Besen) 
-durch Verschieben ein Viereck. Wenn man den Besen dreht, kann man eine 
-Kreisscheibe erzeugen. Auf diese Weise ergeben sich aus einfachen Objekten 
-kompliziertere, die trotzdem einfach beschrieben werden k"onnen.
-\end{MIntro}
-
-\begin{MXContent}{Elementargeometrische K"orper}{Elementargeometrische K"orper}{STD}%
-\MDeclareSiteUXID{VBKM05A_ElementareKoerper_Content}
-
-Punkte sind die einfachsten grundlegenden geometrischen Objekte. Verschiebungen
-f"uhren auf Strecken, und Operationen wie das Verschieben oder Drehen von 
-Strecken in der Ebene f"uhren auf elementargeometrische Figuren. 
-Beispielsweise ergeben sich Vielecke und Kreise, wie sie oben beschrieben 
-wurden.
-
-Wenn man Figuren au"serhalb ihrer Ebene verschiebt oder dreht, entstehen neue
-Objekte, die als K"orper bezeichnet werden. Im Folgenden werden einige einfache 
-K"orper beschrieben, deren Form in vielen allt"aglichen Gegenst"anden oder 
-technischen Konstruktionen erkennbar ist.
-
-%Beispiel:
-\begin{MExample}
-Es wird ein Rechteck betrachtet und senkrecht zur Zeichenebene verschoben.
-Dadurch entsteht ein Quader. Seine Oberfl"ache besteht aus dem gegebenen
-Rechteck und einer Kopie davon. Au"serdem entstanden aus den vier Seiten
-des jeweils vier weitere Rechtecke.
-\end{MExample}
-
-Betrachtet man irgend ein Vieleck, und verschiebt dieses senkrecht, entsteht
-ein Prisma genannter K"orper. Der Name wird auch f"ur durchsichtige physikalische
-K"orper dieser Form verwendet, mit denen Lichtwellen gebrochen werden. Die 
-einzelnen Lichtwellen von scheinbar wei"sem Licht werden in verschiedenen Farben
-sichtbar.
-
-\begin{MXInfo}{Prisma}
-Gegeben ist ein Vieleck $G$.
-Ein \MEntry{Prisma}{Prisma} ist ein K"orper, der aus einer senkrechten 
-Verschiebung eines Vielecks $G$ um eine Strecke der L"ange $h$ entsteht. 
-Die beiden Fl"achen, die aus dem gegebenen Vieleck und einer Kopie einen 
-Teil der Oberfl"ache bilden, werden dann als Grundfl"ache des Prismas 
-bezeichnet. Sie sind zueinander parallel. 
-Die anderen Fl"achen bilden zusammen den Mantel $M$.
-
-%Zeichnung Prisma:
-\begin{center}
-\MTikzAuto{%
-\tdplotsetmaincoords{60}{30}
-\begin{tikzpicture}[tdplot_main_coords,>=latex]
-\def\zt{3}
-\def\ticl{0.8}
-\def\dsth{0.5}
-\foreach \zc in {0,\zt} 
-% coordinate number, radius, azimuth
-\foreach \nc/\rc/\ac in {0/3/0,1/3/120,2/1/240} {
-\pgfmathparse{\rc*cos(\ac)}\let\ax=\pgfmathresult
-\pgfmathparse{\rc*sin(\ac)}\let\ay=\pgfmathresult
-\node (PC-\nc-\zc) at (\ax,\ay,\zc) {};
-}
-%,name path=level-ground
-\path[fill=gray!60,opacity=0.5] (PC-0-0.center) 
-\foreach \nc in {1,2} { -- (PC-\nc-0.center) {} } -- cycle;
-\draw[thick, black] (PC-2-0.center) -- (PC-0-0.center);
-\draw[thick, black, dashed] (PC-0-0.center) --  (PC-1-0.center) -- (PC-2-0.center) ;
-\foreach \nc in {0,2} { \draw[thick] (PC-\nc-0.center) -- (PC-\nc-\zt.center); };
-\foreach \nc in {1} { \draw[thick,dashed] (PC-\nc-0.center) -- (PC-\nc-\zt.center); };
-\path[draw=black,thick,fill=gray!30,fill opacity=0.2] (PC-0-\zt.center) 
-\foreach \nc in {1,2} { -- (PC-\nc-\zt.center) {} } -- cycle;
-\draw (PC-2-0.center) [tdplot_screen_coords] -- +(-\ticl,0);
-\draw (PC-2-\zt.center) [tdplot_screen_coords] -- +(-\ticl,0);
-\path (PC-2-0.center) [tdplot_screen_coords] ++(-\dsth,0) coordinate (BG);
-\path (PC-2-\zt.center) [tdplot_screen_coords] ++(-\dsth,0) coordinate (BT);
-\path ($ (BG)!0.5!(BT) $) node (TXT) {$h$}; % [fill=white]
-\draw[<-] (BG) -- (TXT.south);
-\draw[->] (TXT.north) -- (BT);
-%%\tdplottransformmainscreen{\ax}{\ay}{\az}
-%%\pgfpathmoveto{\pgfpoint{\tdplotresx cm}{\tdplotresy cm}}
-\end{tikzpicture}}
-\end{center}
-
-In der Zeichnung ist ein Prisma mit einem Dreieck als Grundfl"ache gezeigt. Die
-anderen Seitenfl"achen, die an die Grundfl"ache angrenzen sind Rechtecke.
-%Ende (Zeichnung).
-
-Das Volumen $V$ des Prismas ist das Produkt aus dem Fl"acheninhalt des Vielecks 
-$G$ und der H"ohe $h$: Es ist $V = G \cdot h$.
-
-Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich aus dem doppelten Inhalt der 
-Grundfl"ache $G$ und des Mantels $M$. Wenn $U$ der Umfang des gegebenen Vielecks 
-ist, gilt $O = 2 \cdot G + M = 2 \cdot G + U \cdot h$.
-\end{MXInfo}
-
-Im einf"uhrenden Beispiel wurde ein Quader beschrieben. Mit obiger Definition
-kann er als spezielles Prisma angesehen werden, n"amlich ein Prisma mit einem 
-Rechteck als Grundfl"ache. Wenn alle Seitenfl"achen Quadrate sind, spricht man
-von einem W"urfel.
-
-Das Bauprinzip kann auf verschiedene Weisen variiert werden.
-Beispielsweise kann das Vieleck durch eine Kreisscheibe ersetzt werden, die 
-verschoben wird. Durch die senkrechte Verschiebung entsteht ein besonders 
-symmetrischer K"orper, ein Zylinder.
-Eine Tunnelbohrmaschine stellt -- vereinfacht -- eine zylinderf"ormige R"ohre her.
-
-\begin{MXInfo}{Zylinder}
-Gegeben ist eine Kreisscheibe $G$.
-Ein \MEntry{Zylinder}{Zylinder} ist ein K"orper, der aus einer senkrechten 
-Verschiebung einer Kreisscheibe $G$ um eine Strecke der L"ange $h$ entsteht. 
-Die beiden Fl"achen, die aus der gegebenen Kreisscheibe und einer Kopie einen 
-Teil der Oberfl"ache bilden, werden dann als Grundfl"ache des Zylinders
-bezeichnet. Sie sind zueinander parallel. 
-Der gekr"ummte Teil der Oberfl"ache zwischen den beiden Kreisscheiben bildet 
-den Mantel $M$ des Zylinders.
-
-%Zeichnung Zylinder:
-\begin{center}
-\MTikzAuto{%
-\tdplotsetmaincoords{60}{30}
-\begin{tikzpicture}[tdplot_main_coords,>=latex]
-\def\az{30}
-%\def\pl{60}
-\def\zt{3}
-\def\rd{2}
-\def\ticl{0.8}
-\def\dsth{0.5}
-\pgfmathparse{\rd*cos(\az)}\let\ax=\pgfmathresult
-\pgfmathparse{\rd*sin(\az)}\let\ay=\pgfmathresult
-\path[fill=gray!60,opacity=0.5] (0,0,0) circle (\rd);
-\draw[thick, black,dashed] (\ax,\ay,0) arc (\az:{\az+180}:\rd);
-\draw[thick, black] (-\ax,-\ay,0) arc ({\az+180}:{\az+360}:\rd);
-\draw (-\ax,-\ay,0) [tdplot_screen_coords] -- +(-\ticl,0);
-\draw (-\ax,-\ay,\zt) [tdplot_screen_coords] -- +(-\ticl,0);
-\path (-\ax,-\ay,0) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHB);
-\path (-\ax,-\ay,\zt) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHT);
-\draw[thin,black,dashed] (0,0,0) -- +(0,0,\zt);
-% fadings
-\shade [opacity=0.5,left color=transparent!0,right color=transparent!50]
-(\ax,\ay,0) arc ({\az+360}:{\az+180}:\rd)
--- (-\ax,-\ay,\zt) arc ({\az+180}:{\az+360}:\rd) -- cycle;
-%
-\draw[thin,black,dashed] (\ax,\ay,0) -- +(0,0,\zt) (-\ax,-\ay,0) -- +(0,0,\zt);
-\path[fill=gray!30,fill opacity=0.2] (0,0,\zt) circle (\rd);
-\draw[thick, black] (0,0,\zt) circle (\rd);
-\path ($ (DHB)!0.5!(DHT) $) node (TXH) {$h$}; % [fill=white]
-\draw[<-] (DHB) -- (TXH.south);
-\draw[->] (TXH.north) -- (DHT);
-\path (-\ay,\ax,\zt) [tdplot_screen_coords] ++(0,\ticl) coordinate (TRL)
-++(\rd,0) coordinate (TRR);
-\path (-\ay,\ax,\zt) [tdplot_screen_coords] ++(0,\dsth) coordinate (DRL)
-++(\rd,0) coordinate (DRR);
-\draw (0,0,\zt) -- (TRL) (\ax,\ay,\zt) -- (TRR);
-\path ($ (DRL)!0.5!(DRR) $) node (TXR) {$r$}; % [fill=white]
-\draw[<-] (DRL) -- (TXR.west);
-\draw[->] (TXR.east) -- (DRR);
-\end{tikzpicture}
-}
-\end{center}
-%Ende (Zeichnung).
-
-Das Volumen $V$ des Zylinders ist das Produkt aus dem Fl"acheninhalt der 
-Kreisscheibe $G$ mit dem Radius $r$ und der H"ohe $h$: 
-Es ist $V = G \cdot h = \pi \cdot r^2 \cdot h$.
-
-Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich als Summe aus dem doppelten
-Inhalt der Kreisscheibe $K$ und dem Mantel $M$.
-Mit dem Umfang $U = 2 \cdot \pi \cdot r$ der gegebenen Kreisscheibe
-gilt 
-$O = 2 \cdot G + M = 2 \cdot \pi \cdot r^2 + 2 \cdot \pi \cdot r \cdot h %
- = 2 \cdot \pi \cdot r \cdot (r + h)$.
-\end{MXInfo}
-
-Wenn die Kreisscheibe nicht verschoben, sondern rotiert wird, wobei die 
-Drehachse durch den Mittelpunkt und einen Randpunkt verl"auft, ergibt sich
-eine Kugel.
-
-\begin{MXInfo}{Kugel}
-Gegeben ist eine Kreisscheibe mit Mittelpunkt $M$ und Radius $r$. Rotiert die
-Kreisscheibe um $M$ und einen Randpunkt, erh"alt man eine Kugel mit 
-Radius $r$.
-
-%Zeichnung Kugel:
-\begin{center}
-\MTikzAuto{%
-\tdplotsetmaincoords{60}{30}
-\begin{tikzpicture}[tdplot_main_coords,>=latex]
-\def\az{30}
-\def\pl{60}
-\def\rd{2.5}
-\def\ticl{0.8}
-\def\dsth{0.5}
-\pgfmathparse{\rd*cos(\az)}\let\ax=\pgfmathresult
-\pgfmathparse{\rd*sin(\az)}\let\ay=\pgfmathresult
-% fadings
-\begin{scope}[tdplot_screen_coords]
-  \shade[ball color=gray!50] (0,0,0) circle (\rd);
-\end{scope}
-\draw[thin,black,dashed] (0,0,0) -- +(0,0,\rd);
-\draw[thick, black,dashed] (\ax,\ay,0) arc (\az:{\az+180}:\rd);
-\begin{scope}[tdplot_screen_coords]
-  \fill[opacity=0.5,color=white] (0,0,0) circle (\rd);
-  \draw[black,dashed] (0,0,0) circle (\rd);
-\end{scope}
-\draw[thick,black,dashed] (-\ax,-\ay,0) arc ({\az+180}:{\az+360}:\rd);
-%
-\draw (-\ax,-\ay,0) [tdplot_screen_coords] -- +(-\ticl,0);
-\draw (-\ax,-\ay,\rd) [tdplot_screen_coords] ++(-\ticl,0) 
-[tdplot_main_coords] -- (0,0,\rd);
-\path (-\ax,-\ay,0) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHB);
-\path (-\ax,-\ay,\rd) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHT);
-\path ($ (DHB)!0.5!(DHT) $) node (TXH) {$r$}; % [fill=white]
-\draw[<-] (DHB) -- (TXH.south);
-\draw[->] (TXH.north) -- (DHT);
-\end{tikzpicture}
-}
-\end{center}
-%Ende (Zeichnung).
-
-Das Volumen $V$ der Kugel ist $V = \frac{4}{3} \cdot \pi \cdot r^3$.
-
-Der Fl"acheninhalt $O$ der Oberfl"ache ist durch 
-$O = 4 \cdot \pi \cdot r^2$ gegeben.
-\end{MXInfo}
-
-Eine Kugel kann auch als der K"orper beschrieben werden, der aus allen Punkten 
-besteht, deren Abstand von $M$ kleiner oder gleich $r$ ist (siehe auch 
-Kapitel \MRef{VBKM10}).
-
-In dieser Betrachtungsweise ist ein Prisma ein K"orper aus allen Punkten, 
-die auf einer Verbindungslinie von Grundfl"ache und ihrer Kopie liegen. 
-
-Im Folgenden werden zwei Variationen dieses Vorgehens betrachtet.
-Zun"achst wird wieder von einem Vieleck als Grundfl"ache ausgegangen. 
-Anstelle einer Kopie der Grundfl"ache wird jetzt nur ein einzelner Punkt 
-vorgegeben.
-
-\begin{MXInfo}{Pyramide}
-Gegeben ist ein Vieleck $G$ und ein Punkt $S$ mit dem Abstand $h > 0$ von
-$G$.
-Eine Pyramide mit der Grundfl"ache $G$ und der Spitze $S$ ist der K"orper,
-der aus allen Punkten besteht, die auf einer Strecke von $S$ zu einem 
-Punkt auf der Grundfl"ache $G$ liegen.
-
-%Zeichnung Pyramide:
-\begin{center}
-\MTikzAuto{%
-\tdplotsetmaincoords{60}{40}
-\begin{tikzpicture}[tdplot_main_coords,>=latex]
-\def\zt{5}
-\def\rd{2.5}
-\def\ticl{0.8}
-\def\dsth{0.5}
-% coordinate number, radius, azimuth
-\foreach \nc/\rc/\ac in {0/\rd/0,1/\rd/120,2/\rd/240} {
-\pgfmathparse{\rc*cos(\ac)}\let\ax=\pgfmathresult
-\pgfmathparse{\rc*sin(\ac)}\let\ay=\pgfmathresult
-\node (PC-\nc) at (\ax,\ay,0) {};
-}
-%
-\path[fill=gray!60,opacity=0.5] (PC-0.center) 
-\foreach \nc in {1,2} { -- (PC-\nc.center) {} } -- cycle;
-\draw[thick, black] (PC-2.center) -- (PC-0.center);
-\draw[thick, black, dashed] (PC-0.center) --  (PC-1.center) -- (PC-2.center);
-\foreach \nc in {0,2} { \draw[thick] (PC-\nc.center) -- (0,0,\zt); };
-\foreach \nc in {1} { \draw[thick,dashed] (PC-\nc.center) -- (0,0,\zt); };
-\draw[thin,black,dashed] (0,0,0) -- +(0,0,\zt);
-% Legende
-\draw (0,0,0) [tdplot_screen_coords] -- ++({-\rd-\ticl},0);
-\draw (0,0,\zt) [tdplot_screen_coords] -- ++({-\rd-\ticl},0);
-\path (0,0,0) [tdplot_screen_coords] ++({-\rd-\dsth},0) coordinate (BG);
-\path (0,0,\zt) [tdplot_screen_coords] ++({-\rd-\dsth},0) coordinate (BT);
-\path ($ (BG)!0.5!(BT) $) node (TXT) {$h$}; % [fill=white]
-\draw[<-] (BG) -- (TXT.south);
-\draw[->] (TXT.north) -- (BT);
-%
-\path (PC-2.center) [tdplot_screen_coords] +(0,-\dsth) coordinate (DAL)
-+(0,-\ticl) coordinate (TAL);
-\path (PC-0.center) [tdplot_screen_coords] +(0,-\dsth) coordinate (DAR)
-+(0,-\ticl) coordinate (TAR);
-\draw (PC-2.center) -- (TAL) (PC-0.center) -- (TAR);
-\path ($ (DAL)!0.5!(DAR) $) node (TXA) {$a$}; % [fill=white]
-\draw[<-] (DAL) -- (TXA.west);
-\draw[->] (TXA.east) -- (DAR);
-\end{tikzpicture}
-}
-\end{center}
-
-In der Zeichnung ist eine Pyramide mit einer dreieckigen Grundfl"ache 
-dargestellt.
-%Ende (Zeichnung).
-
-Das Volumen $V$ der Pyramide ist proportional zum Fl"acheninhalt der 
-Grundfl"ache $G$ und der H"ohe $h$. 
-Es gilt $V = \frac{1}{3} \cdot G \cdot h$.
-
-Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich als Summe aus dem Inhalt 
-der Grundfl"ache $G$ und des Mantels $M$. Dabei ist der Fl"acheninhalt des 
-Mantels die Summe seiner Dreiecksfl"achen $D_k$ ($1 \leq k \leq n$).
-Damit ist $O = G + M = G + D_1 + \ldots + D_n$.
-\end{MXInfo}
-
-In besonderen Situationen ergeben sich einfache Formeln, mit denen 
-das Volumen und die Oberfl"ache berechnet werden k"onnen. Ein Beispiel ist
-die oben abgebildete Pyramide. Dort sind alle Seitenfl"achen gleichseitige 
-Dreiecke. Die folgende Aufgabe bietet die Gelegenheit, hierf"ur eine Formel
-f"ur Volumen und Oberfl"ache mit den Eigenschaften gleichseitiger Dreiecke
-zu finden.
-
-\begin{MExercise}
-Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ einer Pyramide, deren 
-Seiten alle gleichseitige Dreiecke mit der Seitenl"ange $s$ sind.
-
-Antworten:
-\begin{MExerciseItems}
-\item \MEquationItem{$V$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05TPyr1}}
-\item \MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05TPyr2}}
-\end{MExerciseItems}
-\end{MExercise}
-
-
-Die "Uberlegungen von oben, dass Prismen und Zylinder ein gemeinsames 
-Bauprinzip bei unterschiedlichen Grundfl"achen haben, kann auf die neue 
-Situation einer Pyramide "ubertragen werden.
-Man erh"alt einen weiteren K"orper, wenn anstatt eines Vielecks wie bei der 
-Pyramide eine Kreisscheibe als Grundfl"ache verwendet wird.
-
-\begin{MXInfo}{Kegel}
-Gegeben ist eine Kreisscheibe $G$ mit Radius $r$.
-Au"serdem wird ein Punkt $S$ mit dem Abstand $h > 0$ von $G$ betrachtet.
-Ein Kegel mit der Grundfl"ache $G$ und der Spitze $S$ ist der K"orper,
-der aus allen Punkten besteht, die auf einer Strecke von $S$ zu einem 
-Punkt auf der Grundfl"ache $G$ liegen.
-
-%Zeichnung Kegel:
-\begin{center}
-\MTikzAuto{
-\def\az{30}
-\def\pl{60}
-\tdplotsetmaincoords{\pl}{\az}
-\begin{tikzpicture}[tdplot_main_coords,>=latex]
-\def\zt{4}
-\def\rd{2}
-\def\ticl{0.8}
-\def\dsth{0.5}
-\pgfmathparse{\rd*cos(\az)}\let\ax=\pgfmathresult
-\pgfmathparse{\rd*sin(\az)}\let\ay=\pgfmathresult
-\pgfmathparse{\rd/\zt/tan(\pl)}\let\stm=\pgfmathresult
-\pgfmathparse{less(abs(\stm),1)}\let\cres\pgfmathresult
-\pgfmathparse{greater(\stm,0)}\let\crsg\pgfmathresult
-\def\ccmp{1}
-%%\typeout{cres=\cres, crsg=\crsg}
-\if\cres\ccmp
-  \pgfmathparse{\rd*cos(\pl)*\stm}\let\smy=\pgfmathresult
-  \pgfmathparse{\rd*sqrt(1-\stm*\stm)}\let\smx=\pgfmathresult
-  \pgfmathparse{asin(\stm)}\let\astm=\pgfmathresult
-\else
-  \def\smy{1}\def\smx{0}\def\astm{90}
-\fi
-\pgfmathparse{\rd*cos(\az+\astm)}\let\axl=\pgfmathresult
-\pgfmathparse{\rd*sin(\az+\astm)}\let\ayl=\pgfmathresult
-\path[fill=gray!60,opacity=0.5] (0,0,0) circle (\rd);
-%%\draw[thick,black,dashed] (\ax,\ay,0) arc (\az:{\az+180}:\rd);
-%%\draw[thick,black] (-\ax,-\ay,0) arc ({\az+180}:{\az+360}:\rd);
-\if\crsg\ccmp
-  \draw[thick,black,dashed] (\axl,\ayl,0) arc ({\az+\astm}:{\az+180-\astm}:\rd);
-  \draw[thick,black] (\axl,\ayl,0) arc ({\az+360+\astm}:{\az+180-\astm}:\rd);
-\else
-  \draw[thick,black] (0,0,0) circle (\rd);
-\fi
-\draw (-\ax,-\ay,0) [tdplot_screen_coords] -- +(-\ticl,0);
-\draw (-\ax,-\ay,\zt) [tdplot_screen_coords] ++(-\ticl,0) 
-[tdplot_main_coords] -- (0,0,\zt);
-\path (-\ax,-\ay,0) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHB);
-\path (-\ax,-\ay,\zt) [tdplot_screen_coords] ++(-\dsth,0) coordinate (DHT);
-\draw[thin,black,dashed] (0,0,0) -- +(0,0,\zt);
-% fadings
-\if\cres\ccmp
-  \shade [opacity=0.5,left color=transparent!0,right color=transparent!50]
-  (\axl,\ayl,0) arc ({\az+360+\astm}:{\az+180-\astm}:\rd) -- (0,0,\zt) -- cycle;
-\else
-  \shade [opacity=0.5,left color=transparent!0,right color=transparent!50]
-  (0,0,0) circle (\rd);
-\fi
-%
-\if\cres\ccmp
-  \draw[thin,black,dashed] (0,0,\zt) [tdplot_screen_coords] -- (\smx,\smy);
-  \draw[thin,black,dashed] (0,0,\zt) [tdplot_screen_coords] -- (-\smx,\smy);
-\fi
-\path ($ (DHB)!0.5!(DHT) $) node (TXH) {$h$}; % [fill=white]
-\draw[<-] (DHB) -- (TXH.south);
-\draw[->] (TXH.north) -- (DHT);
-\path (0,0,\zt) [tdplot_screen_coords] ++(0,\ticl) coordinate (TRL)
-++(\rd,0) coordinate (TRR);
-\path (0,0,\zt) [tdplot_screen_coords] ++(0,\dsth) coordinate (DRL)
-++(\rd,0) coordinate (DRR);
-\draw (0,0,\zt) -- (TRL) (\ax,\ay,0) -- (TRR);
-\path ($ (DRL)!0.5!(DRR) $) node (TXR) {$r$}; % [fill=white]
-\draw[<-] (DRL) -- (TXR.west);
-\draw[->] (TXR.east) -- (DRR);
-\end{tikzpicture}
-}
-\end{center}
-%Ende (Zeichnung).
-
-Das Volumen $V$ des Kegels ist proportional zum Fl"acheninhalt der 
-Kreisscheibe $G$ und der H"ohe $h$. 
-Es gilt $V = \frac{1}{3} \cdot G \cdot h %
- = \frac{1}{3} \cdot \pi \cdot r^2 \cdot h$.
-
-Der Fl"acheninhalt der Oberfl"ache ist die Summe des Inhalts der 
-Kreisscheibe $G$ und des Mantels $M$. Wenn $l$ der Abstand der 
-Kegelspitze vom Rand der Kreisscheibe ist, 
-gilt mit dem Kreisumfang $U =  2 \pi r$ dann
-$O = G + M = \pi \cdot r^2 + \pi \cdot r \cdot l %
- = \pi \cdot r \cdot (r + l)$.
-\end{MXInfo}
-
-In obiger Zeichnung eines Kegels wird die H"ohe $h$ genannt. Die angebenen 
-Formeln enthalten jedoch den Abstand der Spitze vom Rank der Kreisscheibe.
-Wie h"angen beide Gr"o"sen zusammen?
-
-\begin{MExercise}
-Stellen Sie sich vor, der Kegel wird von der Spitze eben 
-durch den Mittelpunkt der Kreisscheibe in zwei gleiche Teile zerlegt.
-Dann ist eine Seite der beiden Teile jeweils ein Dreieck, durch dessen Seiten 
-die H"ohe $h$, der Abstand $l$ und der Radius $r$ beziehungsweise der 
-Durchmesser der Kreisscheibe bestimmt werden.
-Hierbei werden $r$ und $h$ als gegeben angesehen.
-
-\begin{MExerciseItems}
-\item
-Beschreiben Sie $l$ in Abh"angigkeit von $h$ und $r$:
-
-\MEquationItem{$l$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl1}}
-
-\item
-Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ des Kegels:
-\begin{MExerciseItems}
-\item \MEquationItem{$V$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl2}}
-\item \MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl3}}
-\end{MExerciseItems}
-\end{MExerciseItems}
-\end{MExercise}
-
-\end{MXContent}
-%end of subsection: ElementareKoerper.
-
-
-%Uebungen zum Abschnitt Elementare Koerper:
-\begin{MExercises}
-\MDeclareSiteUXID{VBKM05_ElementareKoerper_Exercises}
-
-\begin{MExercise}
-Berechnen Sie das Volumen eines Prismas der H"ohe $h = 8 \MEinheit{cm}$, dessen 
-Grundfl"ache ein gleichseitiges Sechseck mit Seitenl"ange $a = 3 \MEinheit{cm}$ 
-ist.
-
-Antwort: \MLParsedQuestion{15}{177}{10}{ExM05EK1}
-\end{MExercise}
-
-\begin{MExercise}
-Die Oberfl"ache eines Zylinders mit einer H"ohe von $h = 6 \MEinheit{cm}$ 
-soll mit einer Farbfolie beklebt werden. Die Oberfl"ache soll 
-$O = 200 \MEinheit{cm}^3$ gro"s sein. Berechnen Sie den Durchmesser $d$ der 
-Kreisfl"ache und das Volumen $V$ des Zylinders.
-
-Antworten:
-\begin{MExerciseItems}
-\item \MEquationItem{$d$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21}}
-\item \MEquationItem{$V$}{\MLParsedQuestion{15}{177}{10}{ExM05EK22}}
-\end{MExerciseItems}
-\end{MExercise}
-
-\begin{MExercise}
-Es ist ein Holzst"uck in Form eines Quaders mit dem Volumen $V_0$ gegeben. 
-Der Quader ist $h = \MZahl{120}{00}$ cm hoch, und die Grundfl"ache besteht aus 
-einem Quadrat mit einer Seitenl"ange von $s = \MZahl{40}{00}$ cm.
-Aus dem Holzst"uck wird ein zylinderf"ormiges Loch der H"ohe $h$ mit einem 
-Durchmesser von $20$ cm {\glqq}mittig{\grqq} ausgebohrt (das hei"st, der 
-Schnittpunkt der Diagonalen der quadratischen Grundfl"ache bildet den 
-Mittelpunkt der Kreisscheibe des Zylinders).
-Berechnen Sie
-\begin{MExerciseItems}
-\item das Volumen $V_Z$ des ausgebohrten Hohlraum:
-
-\MEquationItem{$V_Z$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21b}} $\MEinheit{cm^3}$
-%
-\item den prozentualen Anteil des Volumens $V_1$ des neuen Holzst"ucks, 
-das nach dem Ausbohren von $V_0$ noch vorhanden ist:
-
-\MLParsedQuestion{15}{177}{10}{ExM05EK21c} $\%$
-\end{MExerciseItems}
-\end{MExercise}
-\end{MExercises}
-%end of exercises: Uebungen zum Abschnitt Elementare Koerper (jgl).
+%end of content: section 6: Winkelfunktionen.
 
 
 
@@ -2684,7 +2672,7 @@ das nach dem Ausbohren von $V_0$ noch vorhanden ist:
 
 \begin{MExercise} %Testaufgabe
 Welche der Aussagen und Ergebnisse sind richtig?
-
+\par
 \ifttm
 \begin{MQuestionGroup}
 \begin{tabular}{|l|l|l|}
@@ -2707,7 +2695,7 @@ Welche der Aussagen und Ergebnisse sind richtig?
 \end{MQuestionGroup}
 \else
 \begin{MQuestionGroup}
-\begin{tabular}[t]{ccp{140mm}}
+\begin{tabular}[t]{ccp{120mm}}
  richtig & falsch & \\
 \MCheckbox{0}{ExM05TestAg10} & \MCheckbox{1}{ExM05TestAg11} & %
  Jedes Rechteck ist eine Raute. \\
@@ -2744,168 +2732,23 @@ $PB$ und $QC$ in Zentimeter:
 \end{MExerciseItems}
 \end{MExercise}
 
-\begin{MExercise}
-In der folgenden Tabelle sind f\"ur ein rechtwinkliges Dreieck einige Gr\"o{\ss}en gegeben, 
-berechnen Sie die \"ubrigen Gr\"o\ss en. Verwenden Sie f\"ur die Winkel stets das Bogenma\ss :\\
-\MInputHint{Geben Sie Kreiszahl einfach als Text ein, zum Beispiel tippen Sie $\frac23\pi$ ein als \texttt{2/3*pi}.}
-\ \\
-\begin{center}
-\MTikzAuto{%
-\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
-\def\anga{31}\def\angb{53}\def\lenc{6.5}
-\pgfmathparse{180-\anga-\angb}\let\angc=\pgfmathresult
-\pgfmathparse{\lenc*sin(\angb)*cos(\anga)/sin(\angc)}\let\cx=\pgfmathresult
-\pgfmathparse{\lenc*sin(\angb)*sin(\anga)/sin(\angc)}\let\cy=\pgfmathresult
-%-%\foreach \sx/\sy/\dsf/\ang in {0.0cm/0.0cm/1.0/-12} {
-\def\sx{0.0cm}\def\sy{0.0cm}\def\dsf{1.0}\def\ang{-12}
-\begin{scope}[xshift=\sx,yshift=\sy,rotate=\ang]
-\coordinate (OB) at (\lenc,0);
-\coordinate (OC) at (\cx,\cy);
-\coordinate (A) at (0,0);
-\coordinate (B) at ($ (A)!\dsf!(OB) $);
-\coordinate (C) at ($ (A)!\dsf!(OC) $);
-\coordinate (MAB) at ($ (A)!0.5!(B) $);
-\coordinate (MBC) at ($ (B)!0.5!(C) $);
-\coordinate (MCA) at ($ (C)!0.5!(A) $);
-\fill[gray] (A) -- (B) -- (C) -- cycle;
-\draw[color=black] (MBC) ++({90-\angb}:0.3) node {$a$};
-\draw[color=black] (MCA) ++({90+\anga}:0.3) node {$b$};
-\draw[color=black] (MAB) ++(270:0.3) node {$c$};
-\pgfmathparse{0.75/sin(\anga)}\let\sncia=\pgfmathresult
-\pgfmathparse{0.75/sin(\angb)}\let\sncib=\pgfmathresult
-\pgfmathparse{0.75/sin(\angc)}\let\sncic=\pgfmathresult
-\fill[color=gray!50!white] (A) -- ++(0:\sncia) arc (0:\anga:\sncia) -- cycle;
-\fill[color=gray!50!white] (B) -- ++({180-\angb}:\sncib) arc ({180-\angb}:180:\sncib) -- cycle;
-\fill[color=gray!50!white] (C) -- ++({180+\anga}:\sncic) arc ({180+\anga}:{360-\angb}:\sncic) -- cycle;
-\draw[color=black] (A) ++(0:\sncia) arc (0:\anga:\sncia);
-\draw[color=black] (B) ++({180-\angb}:\sncib) arc ({180-\angb}:180:\sncib);
-\draw[color=black] (C) ++({180+\anga}:\sncic) arc ({180+\anga}:{360-\angb}:\sncic);
-\pgfmathparse{0.50/sin(\anga)}\let\sncia=\pgfmathresult
-\pgfmathparse{0.50/sin(\angb)}\let\sncib=\pgfmathresult
-\pgfmathparse{0.50/sin(\angc)}\let\sncic=\pgfmathresult
-\draw[color=black] (A) ++({0.5*\anga}:\sncia) node {$\alpha$};
-\draw[color=black] (B) ++({180-0.5*\angb}:\sncib) node {$\beta$};
-\draw[color=black] (C) ++({270+0.5*(\anga-\angb)}:\sncic) node {$\gamma$};
-%
-\draw[black,very thick] (A) -- (B) -- (C) -- cycle;
-\end{scope}
-%%}
-\end{tikzpicture}
-}
+
+\begin{MExercise} %Testaufgabe
+Es sind die abgebildeten Figuren mit den eingetragenen Gr"o"sen gegeben.
+Beantworten Sie dazu folgende Fragen:
 \par
-Winkel erhalten die griechischen Buchstaben zu den gegen\"uberliegenden Seiten
-\end{center}
-%-%\MUGraphics{dreieck_einfach.png}{width=0.4\linewidth}{Winkel erhalten die griechischen Buchstaben zu den gegen\"uberliegenden Seiten\MCopyrightLabel{VBKM05_Abbildung_dreieck_einfach}}{width:400px}
-%-%\MCopyrightNotice{\MCCLicense}{http://commons.wikimedia.org/wiki/File:Dreieck.svg#mediaviewer/Datei:Dreieck.svg}{http://de.wikipedia.org/wiki/Benutzer:Thire}{Modifiziert mit GIMP}{VBKM05_Abbildung_dreieck_einfach}
-%\MCopyrightHTML{CC BY-SA 5.0}{http://commons.wikimedia.org/wiki/File:Dreieck.svg#mediaviewer/Datei:Dreieck.svg}{http://de.wikipedia.org/wiki/Benutzer:Thire}
-
-\ifttm
-\def\VBKMFUENFWIDTHDREIECKE{9}
-\else
-\def\VBKMFUENFWIDTHDREIECKE{5}
-\fi
-
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-\hline
-$a$ & $b$ & $c$ & $\alpha$ & $\beta$ & $\gamma$& $\sin(\alpha)$ & $\sin(\beta)$ & $\sin(\gamma)$ \\ \hline
-%Anmerkung: Folgende Angaben beschreiben kein(!) rechtwinkliges Dreieck (jgl):
-%$1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
-$1$ & $1$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(2)}{5}{WR1} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5}{WR21} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/4*pi}{5}{WR8} & $\frac12\pi$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5}{WR13} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1/sqrt(2)}{5}{PARSEDQUEST3} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5}{WR17}   \\ 
-$3$ & $4$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{5}{5}{WR2} & $*$ & $*$ & $\frac12\pi$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{4/5}{5}{WR7} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{3/5}{5}{PARSEDQUEST4} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{1}{5}{WR12} \\
-\MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(15)}{5}{WR3} & $\sqrt7$ & $\sqrt8$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/2}{5}{WR6} & $*$ & $*$ & $1$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(8/15)}{5}{WR11} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{sqrt(7/15)}{5}{WR14} \\
-\MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{9/sqrt(3)}{5}{WR4} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{9/sqrt(3)}{5}{WR5} & $9$ & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/6}{5}{WR9} & \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{pi/6}{5}{WR10}& \MLParsedQuestion{\VBKMFUENFWIDTHDREIECKE}{2/3*pi}{5}{WR15}& $\frac12$ & $\frac12$ & $*$\\
-\hline
-\end{tabular}
-\end{center}
-Die mit $*$ gekennzeichneten Felder m\"ussen nicht ausgef\"ullt werden.
-
-\begin{MHint}{L\"osung}
-Die ausgef\"ullte Tabelle lautet wie folgt:
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-\hline
-$a$ & $b$ & $c$ & $\alpha$ & $\beta$ & $\gamma$& $\sin(\alpha)$ & $\sin(\beta)$ & $\sin(\gamma)$ \\ \hline
-$1$ & $1$ & $1$ & $\frac13\pi$ & $\frac13\pi$ & $\frac13\pi$ & $\frac12\sqrt3$& $\frac12\sqrt3$& $\frac12\sqrt3$ \\
-$1$ & $1$ & $\sqrt2$ & $\frac14\pi$ & $\frac14\pi$ & $\frac12\pi$ & $\frac1{\sqrt2}$ & $\frac1{\sqrt2}$ & $1$   \\ 
-$3$ & $4$ & $5$ & $*$ & $*$ & $\frac12\pi$ & $\frac45$ & $\frac35$ & $1$ \\
-$\sqrt{15}$ & $\sqrt7$ & $\sqrt8$ & $\frac12\pi$ & $*$ & $*$ & $1$ & $\sqrt{8/15}$ & $\sqrt{7/15}$ \\
-$\frac{9}{\sqrt3}$ & $\frac{9}{\sqrt3}$ & $9$ & $\frac16\pi$ &$\frac16\pi$ & $\frac23\pi$ & $\frac12$ & $\frac12$ & $*$\\
-\hline
-\end{tabular}
-\end{center}
-In der dritten Zeile benutzt man den rechten Winkel $\gamma=\frac12\pi$, der \"uber den Satz von Pythagoras auf $c=\sqrt{a^2+b^2}=\sqrt2$ f\"uhrt.
-Das Dreieck ist gleichschenklig, also auch $\alpha=\beta$. Da die Winkelsumme
-im Dreieck $\pi$ betr\"agt, muss $\alpha=\beta=\frac14\pi$ sein. In den beiden letzten L\"osungsfeldern ist dann $\sin(\frac14\pi)=\frac{\text{Gegenkathete}}{\text{Hypotenuse}}=\frac1{\sqrt2}$.
-\ \\ \ \\
-In der vierten Zeile ist das Dreieck rechtwinklig bei $\gamma=\pi$ und der Satz des Pythagoras f\"uhrt auf $c=\sqrt{a^2+b^2}=5$. Aus den Seiten kann man die Sinuswerte der Winkel bestimmen: $\sin(\alpha)=\frac45$, $\sin(\beta)=\frac35$ und $\sin(\gamma)=1$.
-\ \\ \ \\
-In der f\"unften Zeile ist das Dreieck wieder rechtwinklig, diesmal aber bei $\alpha=\pi$, daher spielen die Seiten nun andere Rollen: $a$ ist die L\"ange der Hypotenuse.
-Der Satz des Pythagoras liefert in dieser Situation $a=\sqrt{b^2+c^2}=\sqrt{15}$. Da alle Seiten vorliegen, lassen sich die Winkel wieder bestimmen (jetzt mit $a$ als Hypotenuse): $\sin(\alpha)=1$, $\sin(\beta)=\sqrt{\frac{8}{15}}$ und $\sin(\gamma)=\sqrt{\frac{}{15}}$.
-\ \\ \ \\
-In der letzten Zeile rechnet man aus $\sin(\alpha)=\sin(\beta)=\frac12$ die Winkel $\alpha=\beta=\frac16\pi$ aus. Wegen der Winkelsumme $\alpha+\beta+\gamma=\pi$ folgt $\gamma=\pi-\frac13\pi=\frac23\pi$.
-Dieses Dreieck ist gleichschenklig, aber nicht rechtwinklig, daher d\"urfen die trigonometrischen Funktionen nicht direkt an den Seiten angesetzt werden. Als Hilfsmittel kann man die H\"ohe auf der Seite $c$
-benutzen, die das Dreieck in zwei rechtwinklige Dreiecke zerlegt:
-
-\begin{center}
-\MTikzAuto{%
-\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
-\def\anga{68}\def\angb{68}\def\lenc{3.5}\def\lenrf{0.60}\def\lenlf{0.40}
-\pgfmathparse{180-\anga-\angb}\let\angc=\pgfmathresult
-\pgfmathparse{\lenc*sin(\angb)*cos(\anga)/sin(\angc)}\let\cx=\pgfmathresult
-\pgfmathparse{\lenc*sin(\angb)*sin(\anga)/sin(\angc)}\let\cy=\pgfmathresult
-%-%\foreach \sx/\sy/\dsf/\ang in {0.0cm/0.0cm/1.0/-12} {
-\def\sx{0.0cm}\def\sy{0.0cm}\def\dsf{1.0}\def\ang{0}
-\begin{scope}[xshift=\sx,yshift=\sy,rotate=\ang]
-\coordinate (OB) at (\lenc,0);
-\coordinate (OC) at (\cx,\cy);
-\coordinate (A) at (0,0);
-\coordinate (B) at ($ (A)!\dsf!(OB) $);
-\coordinate (C) at ($ (A)!\dsf!(OC) $);
-\coordinate (MAB) at ($ (A)!0.5!(B) $);
-\coordinate (MBC) at ($ (B)!0.5!(C) $);
-\coordinate (MCA) at ($ (C)!0.5!(A) $);
-\fill[gray!6.25!white] (A) -- (B) -- (C) -- cycle;
-\draw[color=black] (MBC) ++({90-\angb}:0.3) node {$a$};
-\draw[color=black] (MCA) ++({90+\anga}:0.3) node {$b$};
-\draw[color=black] (MAB) ++(270:0.3) node {$c$};
-\pgfmathparse{\lenrf/sin(\anga)}\let\sncia=\pgfmathresult
-\pgfmathparse{\lenrf/sin(\angb)}\let\sncib=\pgfmathresult
-\pgfmathparse{\lenrf/sin(\angc)}\let\sncic=\pgfmathresult
-\fill[color=gray!25!white] (A) -- ++(0:\sncia) arc (0:\anga:\sncia) -- cycle;
-\fill[color=gray!25!white] (B) -- ++({180-\angb}:\sncib) arc ({180-\angb}:180:\sncib) -- cycle;
-\fill[color=white] (C) -- ++({180+\anga}:\sncic) arc ({180+\anga}:{360-\angb}:\sncic) -- cycle;
-\draw[color=black] (A) ++(0:\sncia) arc (0:\anga:\sncia);
-\draw[color=black] (B) ++({180-\angb}:\sncib) arc ({180-\angb}:180:\sncib);
-\draw[color=black] (C) ++({180+\anga}:\sncic) arc ({180+\anga}:{360-\angb}:\sncic);
-\pgfmathparse{\lenlf/sin(\anga)}\let\sncia=\pgfmathresult
-\pgfmathparse{\lenlf/sin(\angb)}\let\sncib=\pgfmathresult
-\pgfmathparse{\lenlf/sin(\angc)}\let\sncic=\pgfmathresult
-\draw[color=black] (A) ++({0.5*\anga}:\sncia) node {$\alpha$};
-\draw[color=black] (B) ++({180-0.5*\angb}:\sncib) node {$\beta$};
-%%\draw[color=black] (C) ++({270+0.5*(\anga-\angb)}:\sncic) node {$\gamma$};
+\begin{MQuestionGroup}
+\begin{tabular}[t]{p{100mm}cc}
+ Das Dreieck ist durch die Angaben eindeutig festgelegt. &
+ richtig \MCheckbox{0}{ExM05TestAg30} & falsch \MCheckbox{1}{ExM05TestAg31} \\
 %
-\draw[black,very thick] (A) -- (B) -- (C) -- cycle;
-\draw[black] (MAB) -- (C);
-\end{scope}
-%%}
-\end{tikzpicture}
-}
-\par
-Einteilung eines gleichschenkligen Dreiecks in zwei rechtwinklige Dreiecke.
-\end{center}
-%-%\MUGraphics{dreieck_haelfte.png}{width=0.2\linewidth}{Einteilung eines gleichschenkligen Dreiecks in zwei rechtwinklige Dreiecke.}{width:150px}
-%\MCopyrightHTML{Wikipedia ver\"andert}{<a href="http://commons.wikimedia.org/wiki/File:Isosceles-triangle-tikz.svg#mediaviewer/Datei:Isosceles-triangle-tikz.svg">Isosceles-triangle-tikz</a> von <a href="//commons.wikimedia.org/wiki/User:MartinThoma" title="User:MartinThoma">MartinThoma</a> - <span class="int-own-work">Eigenes Werk</span>. Lizenziert unter <a title="Creative Commons Attribution 3.0" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> \"uber <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>}
+ Im obigen Viereck gilt & \MEquationItem{$\alpha$}{\MLParsedQuestion{15}{beta}{10}{ExM05TestAg32}} & \\
+\end{tabular}
+\end{MQuestionGroup}
 
-Im linken Teildreieck gibt es einen rechten Winkel, dort ist nun $b$ die Hypotenuse und Ankathete von $\alpha$ besitzt die bekannte L\"ange $\frac{9}{2}$. Wegen $\cos(\frac16\pi)=\frac12\sqrt3$ kann man
-nach $b$ aufl\"osen:
-$$
-\frac12\sqrt3 \;=\; \cos(\frac16\pi) \;=\; \frac{\text{Ankathete im Teildreieck}}{\text{Hypotenuse im Teildreieck}} \;=\; \frac{\frac92}{b} \;\; \Rightarrow\;\;
-b \;=\; \frac{9}{\sqrt3} \MDFPeriod
-$$
-und weil das urspr\"ungliche Dreieck gleichschenklig ist gilt auch $a=\frac{9}{\sqrt3}$.
+\begin{MHint}{L"osung}
+
 \end{MHint}
-
 \end{MExercise}
 
 
@@ -2920,9 +2763,9 @@ den kleinstm\"oglichen Kreis, der das Quadrat enth\"alt:
 \item{Umfang des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{sqrt(2)*pi*a}{14}{a}{4}{1}{NGEOM3}}
 \item{Fl\"acheninhalt des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{NGEOM4}}
 \end{MExerciseItems}
-\ \\ \ \\
+\par
 In den Antwortfeldern d\"urfen keine Klammern oder Wurzelausdr\"ucke auftauchen, schreiben Sie beispielsweise $2^{0.5}$ statt $\sqrt{2}$ um die Wurzel zu vermeiden.
-\ \\ \ \\
+\par
 \begin{MHint}{L\"osung}
 Der mittig im Quadrat liegende Kreis besitzt den Radius $r=\frac12a$, die halbe Seitenl\"ange des Quadrats. Folglich besitzt er den Umfang $2\pi r =2\pi \cdot \frac12a = \pi a$ und den Fl\"acheninhalt
 $\pi r^2=\pi \cdot \frac14a^2 =\frac14\pi a^2$.\\
