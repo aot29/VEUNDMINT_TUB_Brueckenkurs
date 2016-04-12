@@ -505,23 +505,25 @@ tocnavsymb ul li ul li a:hover div{
     position: fixed;
 }
 
-#footerleft .tocminbutton, #footerleft .tocminbutton {
-    font-size: 12px !important;
-    line-height: 20px !important;
-    letter-spacing: 0.5px;
-    color: white !important;
-    font-family: 'open-sans-condensed' !important;
-}
-#footerleft a:hover .tocminbutton {
-    color: rgba(255,255,255,0.5) !important;
+
+.footermiddle {
+    display: flex;
 }
 
-#footerright {
+.footerleft, .footerright {
+    width: 200px;
+}
+
+
+#footerleft .tocminbutton, #footerright .tocminbutton {
     font-size: 12px !important;
     line-height: 20px !important;
     letter-spacing: 0.5px;
     color: white !important;
     font-family: 'open-sans-condensed' !important;
+}
+#footerleft a:hover .tocminbutton, #footerright a:hover .tocminbutton  {
+    color: rgba(255,255,255,0.5) !important;
 }
 
 

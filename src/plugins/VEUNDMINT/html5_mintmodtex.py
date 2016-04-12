@@ -848,20 +848,23 @@ class Plugin(basePlugin):
         jcss = ""
         ocss = ""
         
-        # parse color values (given as strings without # prefix)
+        # parse color values (given as strings without # prefix), sorting them is just to beautify git diff results
         jcss += "var COLORS = new Object();\n"
-        for ckey in self.options.colors:
-            jcss += "COLORS." + ckey + " = \"" + self.options.colors[ckey] + "\";\n"
+        c = sorted(self.options.colors.items(), key = lambda x: x[0])
+        for p in c:
+            jcss += "COLORS." + p[0] + " = \"" + p[1] + "\";\n"
    
         # parse fonts
         jcss += "var FONTS = new Object();\n"
-        for ckey in self.options.fonts:
-            jcss += "FONTS." + ckey + " = \"" + self.options.fonts[ckey] + "\";\n"
+        c = sorted(self.options.fonts.items(), key = lambda x: x[0])
+        for p in c:
+            jcss += "FONTS." + p[0] + " = \"" + p[1] + "\";\n"
         
         # parse sizes
         jcss += "var SIZES = new Object();\n"
-        for ckey in self.options.sizes:
-            jcss += "SIZES." + ckey + " = " + str(self.options.sizes[ckey]) + ";\n"
+        c = sorted(self.options.sizes.items(), key = lambda x: x[0])
+        for p in c:
+            jcss += "SIZES." + p[0] + " = " + str(p[1]) + ";\n"
   
 
         # substitute colors, fonts and sizes in css files, but generate a original css file as JS without substitutions
