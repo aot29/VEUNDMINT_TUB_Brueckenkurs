@@ -68,7 +68,6 @@ class Option(object):
         self.dozip = 0            # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
         self.consolecolors = 1    # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
         self.forceyes = 1         # =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
-        self.amendsource = 0      # =1 -> Preprocessor will amend missing items to ORIGINAL SOURCE FILES if possible
         
         # VE&MINT source/target parameters
         self.macrofilename = "mintmod"

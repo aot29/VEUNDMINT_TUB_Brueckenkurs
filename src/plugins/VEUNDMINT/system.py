@@ -291,7 +291,11 @@ class System(object):
         return glob.glob(pattern)
 
 
-    # generates a unique filenNAME hash containing only base64 letters
+    # generates a short filenname (including path) hash containing only base16 letters
     def generate_filehash(self, fname):
-        return str(base64.b32encode(bytes(fname, "utf-8")))
+        b = bytes(fname, "utf-8")
+        h = bytearray("AAAA", "us-ascii")
+        for k in range(len(b)):
+            h[k % len(h)] = (h[k % len(h)] + b[k]) % 256
+        return base64.b16encode(h).decode("utf-8")
         

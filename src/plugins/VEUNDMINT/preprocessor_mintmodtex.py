@@ -143,20 +143,26 @@ class Preprocessor(object):
 
         self.sys.message(self.sys.VERBOSEINFO, "Preprocessor working on " + str(len(fileArray)) + " texfiles")
 
+        nonpass = 0
         for texfile in fileArray:
-            tex = self.sys.readTextFile(texfile[0], self.options.stdencoding)
-            
-            if not self.checkRelease(tex, texfile[1]):
-                self.sys.message(self.sys.CLIENTWARN, "Original tex-file " + texfile[1] + " did not pass release check");
-                if (self.options.dorelease == 1):
-                    self.sys.message(self.sys.FATALERROR, "Refusing to continue with dorelease=1 after checkRelease failed, see logfile for details")
+            if re.match(".*" + self.options.macrofilename  + "\\.tex", texfile[0]):
+                self.sys.message(self.sys.VERBOSEINFO, "Preprocessing and release check ignores macro file " + texfile[0])
+            else:
+                tex = self.sys.readTextFile(texfile[0], self.options.stdencoding)
+                if not self.checkRelease(tex, texfile[1]):
+                    nonpass += 1
+                    self.sys.message(self.sys.VERBOSEINFO, "Original tex-file " + texfile[1] + " did not pass release check");
+                    if (self.options.dorelease == 1):
+                        self.sys.message(self.sys.FATALERROR, "Refusing to continue with dorelease=1 after checkRelease failed, see logfile for details")
 
             
-            tex = self.preprocess_texfile(texfile[0], tex)
-            self.sys.writeTextFile(texfile[0], tex, self.options.stdencoding)
+                tex = self.preprocess_texfile(texfile[0], tex)
+                self.sys.writeTextFile(texfile[0], tex, self.options.stdencoding)
         
         self.sys.message(self.sys.CLIENTINFO, "Preparsing of " + str(len(fileArray)) + " texfiles finished")
+        self.sys.message(self.sys.CLIENTINFO, str(nonpass) + " files did not pass the release test, see logfile for details")
         self.sys.message(self.sys.CLIENTINFO, "A total of " + str(len(self.data['DirectHTML'])) + " DirectHTML blocks created")
+        
 
         # Create copyright text file and exercise export
         self.data['copyrightcollection'] = self.data['copyrightcollection'] + "\\begin{tabular}{llll}%\n" + self.copyrightcollection + "\\end{tabular}\n"
@@ -187,9 +193,24 @@ class Preprocessor(object):
                 
 
     # Checks if given tex code from file fname (original source!) is valid for a release version
-    # Return value: boolean True if release check passed, perfom amendsource if requested
+    # Return value: boolean True if release check passed
     def checkRelease(self, tex, orgname):
         reply = True
+        
+        # check desired tex file properties
+        p = subprocess.Popen(["file", orgname], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+        (output, err) = p.communicate()
+
+        fm = re.match(re.escape(orgname) + ": (LaTeX|TeX) document,(.*)", output, re.S)
+        if fm:
+            if "with very long lines" in fm.group(2):
+                self.sys.message(self.sys.VERBOSEINFO, "tex file has very long lines, but ok for now")
+            if "with CRLF line terminators" in fm.group(2):
+                self.sys.message(self.sys.VERBOSEINFO, "tex file has windows-like CRLF line terminators, but ok for now")
+        else:
+            reply = False
+            self.sys.message(self.sys.VERBOSEINFO, "File " + orgname + " is not recognized as a TeX file by file command")
+    
         # no experimental environments
         if (re.match(r".*\\begin{MExperimental}.*", tex, re.S)):
             self.sys.message(self.sys.VERBOSEINFO, "MExperimental found in tex file");
@@ -198,29 +219,24 @@ class Preprocessor(object):
             self.sys.message(self.sys.VERBOSEINFO, "TODO comment found in tex file");
             reply = False
             
+        # MSContent is no longer valid
+        def scontent(m):
+            nonlocal reply
+            reply = False
+            self.sys.message(self.sys.VERBOSEINFO, "MSContent found but no longer supported: " + m.group(1))
+        re.sub(r"\\begin\{MSContent\}\{([^\}]*)\}\{([^\}]*)\}\{([^\}]*)\}(.*?)\\end\{MSContent\}", scontent, tex, 0, re.S)
+
         # each MXContent must have a unique content id
-        uxidprefix = "AMENDED" + self.sys.generate_autotag(tex) + self.sys.generate_filehash(orgname)
-        uxidcount = 0
         def xcontent(m):
-            nonlocal reply, uxidprefix, uxidcount
+            nonlocal reply
             xm = re.search(r"\\MDeclareSiteUXID\{([^\}]*)\}", m.group(4), re.S)
             if not xm:
                 reply = False
-                if self.options.amendsource == 1:
-                    uxid = uxidprefix + str(uxidcount)
-                    uxidcount += 1
-                    self.sys.message(self.sys.CLIENTINFO, "AMENDSOURCE: Unique id amended to MXContent " + m.group(1) + " in file " + orgname)
-                    return "\\\\begin{MXContent}{" + m.group(1) + "}{" + m.group(2) + "}{" + m.group(3) + "}\n\\MDeclareSiteUXID{" + uxid + "}" + m.group(4) + "\\end{MXContent}"
-                else:
-                    self.sys.message(self.sys.VERBOSEINFO, "MXContent found without unique id declaration: " + m.group(1) + ", consider using amendsource in options")
-                    return m.group(0) # leave it unchanged
-            
-        xcontent = re.sub(r"\\begin\{MXContent\}\{([^\}]*)\}\{([^\}]*)\}\{([^\}]*)\}(.*?)\\end\{MXContent\}", xcontent, tex, 0, re.S)
+                self.sys.message(self.sys.VERBOSEINFO, "MXContent found without unique id declaration: " + m.group(1))
+        re.sub(r"\\begin\{MXContent\}\{([^\}]*)\}\{([^\}]*)\}\{([^\}]*)\}(.*?)\\end\{MXContent\}", xcontent, tex, 0, re.S)
         
-            
         return reply
 
-        
 
     # Preprocess a tex file (given name and content as unicode strings)
     # Return value: processed tex (may be unchanged)
@@ -230,9 +246,6 @@ class Preprocessor(object):
         self.local['htmltikzscale'] = self.options.htmltikzscale # may be overwritten by pragmas
         self.local['tex'] = tex
         # Exclude special files from preprocessing
-        if re.match(".*" + self.options.macrofilename  + "\\.tex", name):
-            self.sys.message(self.sys.VERBOSEINFO, "Preprocessing ignores macro file " + name)
-            return tex
         if re.match(".*" + self.options.module, name): #  . from file expansion is read as any letter due to regex rules, but it's ok
             self.sys.message(self.sys.VERBOSEINFO, "Preprocessing ignores module main file " + name)
             return tex
@@ -251,7 +264,7 @@ class Preprocessor(object):
             self.sys.message(self.sys.VERBOSEINFO, "It is a course module: " + self.local['modulename'])
         else:
             self.local['modulename'] = ""
-            self.sys.message(self.sys.CLIENTWARN, "Unknown tex file type: " + name)
+            self.sys.message(self.sys.VERBOSEINFO, "Unspecific tex file content: " + name)
             
         m = re.match(r"(.*)/(.*?.tex)", name)
         if m:
@@ -555,7 +568,7 @@ class Preprocessor(object):
                 j = j + 1
                 
         else:
-            self.sys.message(self.sys.VERBOSEINFO, "  No section id found")
+            self.sys.message(self.sys.VERBOSEINFO, "No section id found")
 
 
         self.sys.popdir()
