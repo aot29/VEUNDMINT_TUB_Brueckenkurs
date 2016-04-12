@@ -118,6 +118,7 @@ class PageFactory(object):
         tc.html = self._append_string(tc.html, "toccaption", self.gettoccaption(tc))
         tc.html = self._substitute_string(tc.html, "navi", self.getnavi(tc))
         tc.html = self._substitute_string(tc.html, "footerright", self.options.footer_right)
+        tc.html = self._substitute_string(tc.html, "footerleft", self.options.footer_left)
         tc.html = self._substitute_string(tc.html, "footermiddle", self.options.footer_middle)
         tc.html = self._substitute_string(tc.html, "content", tc.content)
         tc.html = self._substitute_string(tc.html, "settings", self.template_settings)
@@ -359,6 +360,18 @@ class PageFactory(object):
         # we are detecting the combination <!--hbox--><br clear="all" /> followed by a table tag
         (html, n) = re.subn(r"\<!--hbox--\>\<br clear=\"all\" /\> *\<table", "<!--hbox--> <table", html, 0, re.S)
         if n > 0: self.sys.message(self.sys.VERBOSEINFO, "Postprocessing eliminated " + str(n) + " br tags in front of tables")
+        
+        # solve problem with MathML: <mi>AB</mi> is not displayed as italic, but substitute only if contained in a single mrow to keep \sin, \cos, etc. non-italic
+        def mireplace(m):
+            s = "<mrow>"
+            k = 0
+            while k < len(m.group(1)):
+                s += "<mi>" + m.group(1)[k] + "</mi>"
+                k = k + 1
+            s += "</mrow>"
+            self.sys.message(self.sys.VERBOSEINFO, "MIMI: " + m.group(0) + "  ->  " + s)
+            return s
+        html = re.sub(r"\<mrow\>\<mi\>([^\W\d_]{2,})\</mi\>\</mrow\>", mireplace, html, 0, re.S)
         
         # MStartJustify, MEndJustify  
         if "<!-- startalign;;" in html:

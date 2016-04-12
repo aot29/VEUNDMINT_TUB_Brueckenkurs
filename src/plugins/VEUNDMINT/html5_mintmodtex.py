@@ -470,7 +470,7 @@ class Plugin(basePlugin):
                     self.data['wordindexlist'].append((m.group(1), li, w))
                     self.sys.message(self.sys.VERBOSEINFO, "Found index: " + m.group(1) + ", index is " + str(idx) + ", whole group is " + m.group(0))
                 
-            return "<!-- mindexentry;;" + m.group(1) + "; //--><a class=\"label\" name=\"" + li + "\"><\/a><!-- mmlabel;;" + li + ";;" \
+            return "<!-- mindexentry;;" + m.group(1) + "; //--><a class=\"label\" name=\"" + li + "\"></a><!-- mmlabel;;" + li + ";;" \
                    + m.group(2) + ";;" + m.group(3) + ";;" + m.group(4) + ";;" + m.group(5) + ";;13; //-->"
 
         # carefull with regex, last letter of m.group(1) could be a ; because of math symbol HTML tags, on the other hand expressions have to be greedy to prevent overlaps
@@ -582,7 +582,7 @@ class Plugin(basePlugin):
             for sl in self.data['labels']:
                 if (sl[0] == lab):
                     found = True
-                    href = tc.fullname + sl[6]
+                    href = sl[6] # without tc.backpath, which will be added by the link update function
                     self.sys.message(self.sys.VERBOSEINFO, "  href = " + href)
                     fb = int(sl[1])
                     sec = sl[2]
@@ -603,7 +603,7 @@ class Plugin(basePlugin):
             # oh no, Python has no switch
             if objtype == 1:
                 # sections are module numbers, displayed as a pure number without subsection numbers, index is irrelevant
-                reftext = "$sec";
+                reftext = sec
                 ptext = self.options.strings['module_labelprefix']
 
             elif objtype == 2:
@@ -710,7 +710,7 @@ class Plugin(basePlugin):
             href = ""
             for sl in self.data['labels']:
                 if (sl[0] == lab):
-                    href = tc.fullname + sl[6]
+                    href = sl[6]  # without tc.backpath, which will be added by the link update function
                     self.sys.message(self.sys.VERBOSEINFO, "  href = " + href)
   
             if href != "":

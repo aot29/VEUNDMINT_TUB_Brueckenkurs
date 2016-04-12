@@ -157,7 +157,8 @@ class Option(object):
         self.data_server_description = "Server 3 (KIT)"        
         self.data_server_user = server + "/userdata.php"  # Absolute Angabe
         self.footer_middle = self.description
-        self.footer_right = "Lizenz: " + self.contentlicense
+        self.footer_left = "Lizenz: " + self.contentlicense
+        self.footer_right = "<a href=\"mailto:" + reply_mail + "\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>"
         self.mainlogo = "veundmint_netlogo.png" # Im Pfad files/images
         self.stdmathfont = "0" # Erzwingt Standard-Arial-Font in Text in Formeln
 

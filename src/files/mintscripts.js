@@ -1998,9 +1998,6 @@ function applyLayout(first) {
     }
   );
   
-  $('#footerleft').html("<a href=\"mailto:" + reply_mail + "\" target=\"_new\"><div style=\"display:inline-block\" class=\"tocminbutton\">Mail an Admin</div></a>");
-
-    
 
   $('.navi > ul > li').each(function(i) {
     $(this).hover(function() { $(this).css("background-color", COLORS.TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", COLORS.TOCMINBUTTON); });
