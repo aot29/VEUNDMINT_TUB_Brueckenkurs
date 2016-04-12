@@ -39,16 +39,18 @@ Dieses Modul gliedert sich in folgende Abschnitte:
 
 \end{MSectionStart}
 
-\newcommand{\MGeoAbstand}[2]{\ensuremath{\overline{#1#2}}}
+\newcommand{\MGeoAbstand}[2]{\ensuremath{[\overline{#1#2}]}}
 \newcommand{\MGeoGerade}[2]{\ensuremath{#1#2}}
-\newcommand{\MGeoStrecke}[2]{\ensuremath{[#1#2]}}
+\newcommand{\MGeoStrecke}[2]{\ensuremath{\overline{#1#2}}}
+
+\newcommand{\MGeoDreieck}[3]{\ensuremath{#1#2#3}}
 
 %jgl: section 1:
 \MSubsection{Grundbegriffe der ebenen Geometrie}
 \MLabel{M05_Grundbegriffe}
 
 \begin{MIntro}
-\MDeclareSiteUXID{VBKM05_GrundbegriffeIntro}
+\MDeclareSiteUXID{VBKM05_Grundbegriffe_Intro}
 
 F"ur den Bau eines Sportstadions werden markante Punkte im Gel"ande abgesteckt.
 
@@ -58,15 +60,24 @@ F"ur den Bau eines Sportstadions werden markante Punkte im Gel"ande abgesteckt.
 %\MGraphicsSolo{Stadtplan.png}{scale=1} \MLabel{Stadtplan}
 \end{center}
 
-
-Im ersten Abschnitt dieses Moduls wird an einige geometrische Grundbegriffe 
-erinnert. Im darauf folgenden Abschnitt werden Winkel gemessen (Bogenma"s und das Gradma"s)
+Die Zeichnung kann man als idealisiertes Abbild der Wirklichkeit ansehen.
+In diesem Sinne wird an einige geometrische Grundbegriffe erinnert. Sie sind 
+der Ausgangspunkt, um anschlie"send kompliziertere Figuren und K"orper zu 
+konstruieren.
 \end{MIntro}
 
 \begin{MXContent}{Punkte und Geraden}{Punkte und Geraden}{STD}
+\MDeclareSiteUXID{VBKM05_PunkteGeraden_Content}
+
 Punkte, Geraden, \ldots sind idealisierte Begriffe.
 
-\begin{MXInfo}{Abstand zwischen Punkten}
+\begin{MXInfo}{Bezeichnungen von Strecken und Abst"anden}
+Gegeben sind Punkte $P$ und $Q$. Dann wird die Strecke zwischen $P$ und $Q$ mit
+\MGeoStrecke{P}{Q} bezeichnet.
+
+Die L"ange der Strecke \MGeoStrecke{P}{Q} wird mit \MGeoAbstand{P}{Q} notiert.
+Die \MEntry{Streckenl"ange}{Streckenlänge} ist gleich dem Abstand zwischen den
+Punkten $P$ und $Q$.
 \end{MXInfo}
 
 \begin{MXInfo}{Gerade}
@@ -79,7 +90,7 @@ Seien $A$ und $B$ zwei Punkte. Dann bestimmen $A$ und $B$ genau eine Gerade
 %content: Strahlensatz und Pythagoras.
 
 \begin{MXContent}{Die Strahlens\"atze}{Strahlens\"atze}{STD}
-\MDeclareSiteUXID{VBKM05_Strahlensaetze}
+\MDeclareSiteUXID{VBKM05_Strahlensaetze_Content}
 
 Die Strahlens\"atze haben etwas mit der zentrischen Streckung zu tun 
 (siehe \MRef{Mathematik_ElementareGeometrie_zentrischeStreckung}).
@@ -108,8 +119,7 @@ Die Strahlens\"atze haben etwas mit der zentrischen Streckung zu tun
 }
 \fi
 
-\begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_Satz:ErsterStrahlensatz}%
-\textbf{Strahlens\"atze}
+\begin{MXInfo}{Strahlens\"atze}\MLabel{Mathematik_ElementareGeometrie_Satz:ErsterStrahlensatz}%
 
 %\begin{center}
 \begin{tabular}{lc}
@@ -123,8 +133,8 @@ Die Strahlens\"atze haben etwas mit der zentrischen Streckung zu tun
 %\end{center}
 &
 \begin{minipage}[b]{7cm}
-F\"ur zwei Punkte~$P$ und~$Q$ seien $\overline{PQ}$ die Strecke von~$P$ nach~$Q$
-und $\left| \overline{PQ} \right|$ die L\"ange dieser Strecke.
+F\"ur zwei Punkte~$P$ und~$Q$ seien $\MGeoStrecke{P}{Q}$ die Strecke von~$P$ 
+nach~$Q$ und $\MGeoAbstand{P}{Q}$ die L\"ange dieser Strecke.
 \vspace*{2cm}
 \end{minipage}
 \end{tabular}
@@ -136,21 +146,21 @@ Sind in dem obigen Bild die Geraden~$g$ und~$h$ parallel, so gilt:
 Die Abschnitte auf einem Strahl verhalten sich wie die entsprechenden 
 Abschnitte auf dem anderen Strahl:
 \[
-   \frac{\left| \overline{SA} \right|}{\left| \overline{SD} \right|}
- = \frac{\left| \overline{SB} \right|}{\left| \overline{SC} \right|}
- = \frac{\left| \overline{AB} \right|}{\left| \overline{CD} \right|} \MDFPeriod
+   \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{B}}
+ = \frac{\MGeoAbstand{A}{B}}{\MGeoAbstand{C}{D}}
+ = \frac{\MGeoAbstand{S}{D}}{\MGeoAbstand{S}{C}} \MDFPeriod
 \]
 \item
 Die Abschnitte auf den Parallelen  verhalten sich wie die von $S$ ausgehenden 
 entsprechenden Abschnitte auf einem Strahl:
 \[
-   \frac{\left| \overline{SA} \right|}{\left| \overline{SB} \right|}
- = \frac{\left| \overline{SD} \right|}{\left| \overline{SC} \right|}
- = \frac{\left| \overline{AD} \right|}{\left| \overline{BC} \right|} \MDFPeriod
+   \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{B}}
+ = \frac{\MGeoAbstand{A}{D}}{\MGeoAbstand{B}{C}}
+ = \frac{\MGeoAbstand{S}{D}}{\MGeoAbstand{S}{C}} \MDFPeriod
 \]
 
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 \end{MXContent}
 
@@ -253,16 +263,15 @@ Zur Beschreibung dieser Beobachtung wird der Begriff Winkel eingef"uhrt.
 Die Frage nach M"oglichkeiten, Winkel zu messen, wird auf verschiedene 
 Weisen beantwortet, die letztlich alle auf einer Einteilung von Kreisen 
 beruhen. 
-
+Hier werden das Gradma"s und das Bogenma"s beschrieben.
 \end{MIntro}
 
 
 \begin{MXContent}{Winkel}{Winkel}{STD}
-
-\MDeclareSiteUXID{VBKM05_WinkelContent}
+\MDeclareSiteUXID{VBKM05_Winkel_Content}
 \MLabel{VBKM05_Winkel}
-Zwei Strahlen (Halbgerade) $g$ und $h$ in der Ebene, die von demselben Punkt $S$
- ausgehen, schlie"sen einen \MEntry{Winkel}{Winkel} ein.
+Zwei Strahlen (Halbgeraden) $g$ und $h$ in der Ebene, die von demselben Punkt 
+$S$ ausgehen, schlie"sen einen \MEntry{Winkel}{Winkel} $\alpha$ ein.
 
 \begin{center}
 \MTikzAuto{%
@@ -473,7 +482,7 @@ Je vier dieser Winkel sind gleich gro\ss .
 \MLabel{M05_Dreieck}
 
 \begin{MIntro}
-\MDeclareSiteUXID{VBKM05_DreieckIntro}
+\MDeclareSiteUXID{VBKM05_Dreiecke_Intro}
 
 Drei Punkte bilden die Ecken eines Dreiecks.
 
@@ -488,6 +497,7 @@ Drei Punkte bilden die Ecken eines Dreiecks.
 
 
 \begin{MXContent}{Dreiecke}{Dreiecke}{STD}
+\MDeclareSiteUXID{VBKM05_Dreiecke_Content}
 
 Eine einfache Figur mit Winkeln ist das Dreieck:
 \begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_SummeDerInnenwinkel}%
@@ -620,103 +630,142 @@ Dreiecke nach ihrem gr\"o\ss ten Winkel in drei verschiedene Klassen eingeteilt:
 \end{itemize}
 \end{MInfo}
 
+Es wird eine einfache Konstruktion eines Wagenhebers in der Form eines
+Dreiecks betrachtet: Er besteht aus zwei St"aben, die durch ein Gelenk 
+miteinander verbunden sind. Die anderen Endpunkte der beiden St"abe k"onnen
+zusammengezogen werden k"onnen.
+Je gro"ser der Winkel eines Stabs gegen"uber der Stra"se ist, desto 
+h"oher befindet sich das Gelenk "uber dem Boden.
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt]
+\draw (0,0) -- (5,4) -- (7,0);
+\draw[style=dashed] (7,0) -- (0,0);
+\draw[style=dotted] (5,0) -- node[right] {$h_c$} (5,4);
+\node[left] at (0,0) {$A$};
+\node[right] at (7,0) {$B$};
+\node[above] at (5,4) {$C$};
+\node[below] at (5,0) {$D$};
+\draw (5.5,0) arc(0:90:0.5);
+\draw (5.2,0.2) circle(0.5pt);
+\end{tikzpicture}
+}
+\end{center}
+So wird in einem Dreieck $\MGeoDreieck{A}{B}{C}$ die k"urzeste Strecke 
+zwischen der Ecke $C$ und der Geraden, die durch die gegen"uberliegende 
+Seite $c$ bestimmt ist, die 
+\MEntry{H"ohe eines Dreiecks}{H"ohe eines Dreiecks} $h_c$ auf 
+die Seite $c$ genannt. Der andere Endpunkt $D$ der Strecke $h_c$ hei"st 
+\MEntry{H"ohenfu"spunkt}{H"ohenfu"spunkt}.
+Entsprechend werden die H"ohen $h_a$ und $h_b$ definiert.
+
+Man kann auch sagen, dass die H"ohen diejenigen Strecken sind, die senkrecht 
+auf der Geraden einer Seite stehen und bis zu einer Ecke des Dreiecks gehen.
 \end{MXContent}
 
 
 %content: Satz des Pythagoras.
-
 \begin{MXContent}{Satz des Pythagoras}{Pythagoras}{STD}
+\MDeclareSiteUXID{VBKM05_Pythagoras_Content}
 
 Eine Aussage "uber die Seitenl"angen in einem rechtwinkligen Dreieck
 bietet der \textbf{Satz des Pythagoras}. Dieser wird hier in einer oft 
 verwendeten Formulierung angegeben.
 
-\begin{MInfo}
+\begin{MXInfo}{Satz des Pythagoras}
 \MLabel{VBKM05_Pythagoras}
 \begin{tabular}{lr}
 \begin{minipage}{9cm}
-Ist in einem rechtwinkligen Dreieck der rechte Winkel bei $C$, $D$~der Lotfu\ss punkt der H\"ohe~$h_c$ auf~$c$,
-$p = \left| \overline{AD} \right|$ und $q = \left| \overline{BD} \right|$, so gilt:
+Es wird ein rechtwinkliges Dreieck betrachtet, in dem der rechte Winkel bei 
+$C$ liegt.
 \vspace*{1cm}
 \end{minipage}
 &
 \begin{minipage}{7cm}
+\begin{center}
 \MTikzAuto{%
-\begin{tikzpicture}
-\coordinate[label=above:$C$]       (C) at (0,0);
-\coordinate[label=below right:$B$] (B) at ($ (C) + (2,-4) $);
-\path let \p1=($ (B) - (C) $) in 
-        coordinate[label=left:$A$] (A) at ($ (C) + ({\y1*3/4}, {-\x1*3/4}) $);
-\path let \p1=($ (B) - (A) $) in
-        coordinate                 (K) at ($ (C) + ({\y1/5}, {- \x1/5}) $);
-\coordinate[label=below:$D$]       (D) at (intersection of C--K and A--B);
-%
-\draw (B) -- node[sloped, above]{$a$} (C) -- node[sloped, above]{$b$} (A) -- cycle;
-\draw (C) -- node[sloped, right, rotate=-90]{$h_c$} (D);
-\path (A) -- node[sloped, above]{$p$} (D) -- node[sloped, above]{$q$} (B) -- node[sloped, below]{$c$} (A);
+\begin{tikzpicture}[line width=1pt]
+\draw (30:4) ++(300:0.5) arc(300:210:0.5);
+\draw (30:4) ++(255:0.3) circle(0.5pt);
+\draw (0,0) -- node[above left] {$b$} (30:4) %
+ -- node[above right] {$a$} ++(300:2.312) -- node[below] {$c$} (0,0);
+\node[left] at (0,0) {$A$};
+\node[right] at (4.6,0) {$B$};
+\node[above] at (30:4) {$C$};
 \end{tikzpicture}
 }
+\end{center}
+%\MTikzAuto{%
+%\begin{tikzpicture}
+%\coordinate[label=above:$C$]       (C) at (0,0);
+%\coordinate[label=below right:$B$] (B) at ($ (C) + (2,-4) $);
+%\path let \p1=($ (B) - (C) $) in 
+%        coordinate[label=left:$A$] (A) at ($ (C) + ({\y1*3/4}, {-\x1*3/4}) $);
+%\path let \p1=($ (B) - (A) $) in
+%        coordinate                 (K) at ($ (C) + ({\y1/5}, {- \x1/5}) $);
+%\coordinate[label=below:$D$]       (D) at (intersection of C--K and A--B);
+%%
+%\draw (B) -- node[sloped, above]{$a$} (C) -- node[sloped, above]{$b$} (A) -- cycle;
+%\draw (C) -- node[sloped, right, rotate=-90]{$h_c$} (D);
+%\path (A) -- node[sloped, above]{$p$} (D) -- node[sloped, above]{$q$} (B) -- node[sloped, below]{$c$} (A);
+%\end{tikzpicture}
+%}
 \end{minipage}
 \end{tabular}
-%\begin{itemize}
-%	\item 
-\textbf{Satz des Pythagoras}\\
-Die Summe der Quadrate \"uber den Katheten $a$ und $b$ haben den gleichen 
-Fl\"acheninhalt wie das Quadrat \"uber der Hypotenuse $c$. So gilt mit den 
-genannten Bezeichnungen (siehe auch das abgebildete Dreieck): 
+Dann ist die Summe der Quadrate \"uber den Katheten $a$ und $b$ gleich dem
+Quadrat \"uber der Hypotenuse $c$. Mit den genannten Bezeichnungen gilt
+somit (siehe auch das abgebildete Dreieck): 
 \[a^2+b^2=c^2 \MDFPeriod\]
-Werden die Seiten des Dreiecks anders bezeichnet, muss die Gleichung entsprechend angepasst werden!
+Werden die Seiten des Dreiecks anders bezeichnet, muss die Gleichung 
+entsprechend angepasst werden!
 
 %Siehe Zusaetzliche Inhalte:
 %	\item \textbf{Kathetensatz}\\
 %		Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus der Hypotenuse und dem anliegenden Hypotenusenabschnitt: \[a^2=c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
 %	\item \textbf{H\"ohensatz}\\
-%		Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus den beiden Hypotenusenabschnitten: \[h^2=p\cdot q \MDFPeriod\]	
+%		Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus den beiden Hypotenusenabschnitten: \[h^2=p\cdot q \MDFPeriod\]
 %\end{itemize}
-\end{MInfo}
-
-
-\begin{MCOSHZusatz}
-In einem rechtwinkligen Dreieck gelten neben dem Satz des Pythagoras weitere 
-Aussagen.
-\begin{MXInfo}{Kathetensatz}
-Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus 
-der Hypotenuse und dem anliegenden Hypotenusenabschnitt: 
-\[a^2 = c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
 \end{MXInfo}
 
-\begin{MXInfo}{H"ohensatz}
-Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus 
-den beiden Hypotenusenabschnitten: 
-\[h^2 = p\cdot q \MDFPeriod\]	
-\end{MXInfo}
-
-\end{MCOSHZusatz}
 
 \begin{MExample}
-Gegeben sei ein rechtwinkliges Dreieck mit den Kathetenl\"angen $a=3$ und $b=4$.\\
-\ \\
-Die L\"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras berechnet werden:
-\[c^2=\sqrt{a^2 + b^2}=\sqrt{9 + 16}=\sqrt{25}=5 \MDFPeriod\]
-Die einzelnen Hypotenusenabschnitte $p$ und $q$ berechnen sich gem\"a\ss\ dem Kathetensatz zu:
-\[q=\frac{a^2}{c}=\frac{9}{5} \MDFPSpace, \MDFPaSpace p=\frac{b^2}{c}=\frac{16}{5} \MDFPeriod\]
-Die H\"ohe $h_c$ erh\"alt man mit dem H\"ohensatz:
-\[h_c=\sqrt{p\cdot q}=\sqrt{\frac{9}{5}\cdot\frac{16}{5}}=\sqrt{\frac{144}{25}}=\frac{12}{5} \MDFPeriod\]
+Gegeben sei ein rechtwinkliges Dreieck mit den Kathetenl\"angen $a=6$ und 
+$b=8$.
+
+Die L\"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras 
+berechnet werden:
+\[c^2 = \sqrt{a^2 + b^2} = \sqrt{36 + 64} = \sqrt{100} = 10 \MDFPeriod\]
 \end{MExample}
 
 \begin{MExercise}
-Berechnen Sie f\"ur ein rechtwinkliges Dreieck mit der Hypotenuse $c=\MZahl{10}{5}$, der H\"ohe $h_c=\MZahl{5}{04}$ und dem Hypotenusenabschnitt $q=\MZahl{3}{78}$ die L\"ange der beiden Katheten.
+Berechnen Sie f"ur ein rechtwinkliges Dreieck \MGeoDreieck{A}{B}{C} mit 
+rechtem Winkel in $C$ mit der Hypotenuse 
+$c = \frac{25}{3}$ und der H\"ohe $h_c = 4$ sowie der Strecke 
+$\MGeoStrecke{D}{B}$ mit $q = \MGeoAbstand{D}{B} = 3$ 
+die L\"ange der beiden Katheten $a$ und $b$. Dabei bezeichnet $D$ den 
+H"ohenf"uspunkt der H"ohe $h_c$.
 
 \begin{MHint}{L\"osung}
-\[\text{Kathetensatz:} \quad a=\sqrt{c\cdot q}=\sqrt{\MZahl{10}{5} \cdot \MZahl{3}{78}}=\MZahl{6}{3} \MDFPSpace;\]
-\[\text{Satz des Pythagoras:} \quad b=\sqrt{c^2-a^2} = \sqrt{{\MZahl{10}{5}}^2-{\MZahl{6}{3}}^2}=\MZahl{8}{4} \MDFPeriod\]
+Es wird wird der Satz des Pythagoras auf das Dreieck \MGeoDreieck{D}{B}{C}
+angewandt, das in $D$ einen rechten Winkel hat. Dann ist
+\[
+ a = \sqrt{h_c^2 + q^2} = \sqrt{4^2 + 3^2} = \sqrt{25} = 5 \MDFPeriod
+\]
+Nun wird der Satz des Pythagoras auf das gegebene Dreieck
+\MGeoDreieck{A}{B}{C} angewandt, woraus 
+\[
+ b = \sqrt{c^2-a^2} = \sqrt{\left(\frac{25}{3}\right)^2-5^2} %
+ = \sqrt{\frac{400}{9}} %
+ = \frac{20}{3} %%
+\]
+folgt.
 \end{MHint}
 \end{MExercise}
 
-Es gibt noch einen weiteren wichtigen Satz, der f\"ur rechtwinklige Dreiecke g\"ultig ist:
-\begin{MInfo}
-\textbf{Satz des Thales}\\
-\ \\
+Es gibt noch einen weiteren wichtigen Satz, der f\"ur rechtwinklige Dreiecke 
+g\"ultig ist:
+\begin{MXInfo}{Satz des Thales}
+\par
 \begin{tabular}{lr}
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Thaleskreis.png}{scale=1}
 \MTikzAuto{%
@@ -724,38 +773,47 @@ Es gibt noch einen weiteren wichtigen Satz, der f\"ur rechtwinklige Dreiecke g\"
 \draw[color=black, thick] (-3,0) -- (3,0);
 \draw[color=black, thick] (3,0) arc (0:180:3);
 \draw[color=red, thick] (-3,0) -- (50:3) -- (3,0);
-\draw[color=red, thick] (-3,0) -- (100:3) -- (3,0);
+%\draw[color=red, thick] (-3,0) -- (100:3) -- (3,0);
 \draw[color=black] (50:3) ++(295:0.6) arc (295:205:0.6);
-\draw[color=black] (100:3) ++(320:0.6) arc (320:230:0.6);
+%\draw[color=black] (100:3) ++(320:0.6) arc (320:230:0.6);
 \fill[color=black] (50:3) ++(250:0.3) circle (1.0pt);
-\fill[color=black] (100:3) ++(275:0.3) circle (1.0pt);
+%\fill[color=black] (100:3) ++(275:0.3) circle (1.0pt);
 \draw[color=black] (0,0) node[anchor=north] {$M$};
 \draw[color=black] (-1.5,0) node[anchor=south] {$r$};
 \draw[color=black] (1.5,0) node[anchor=south] {$r$};
-\draw (0,0) -- (50:3) (0,0) -- (100:3);
+\draw (0,0) -- (50:3);
+%\draw (0,0) -- (100:3);
 \node[anchor=north west] at (50:1.5) {$r$};
-\node[anchor=west] at (100:1.8) {$r$};
+%\node[anchor=west] at (100:1.8) {$r$};
+\node[left] at (-3, 0) {$A$};
+\node[right] at (3, 0) {$B$};
+\node[above right] at (50:3) {$C$};
 \end{tikzpicture}
 }
 &
 \begin{minipage}[b]{7cm}
-Hat das Dreieck $ABC$ bei $C$ einen rechten Winkel, so liegt $C$ auf einem Kreis mit der Hypotenuse $c=\overline{AB}$ als Durchmesser.
+Hat das Dreieck $ABC$ bei $C$ einen rechten Winkel, so liegt $C$ auf einem 
+Kreis mit Radius $r$ und der Hypotenuse $\MGeoStrecke{A}{B}$ als 
+Durchmesser der L"ange $2r$.
 \vspace*{1.5cm}
 \end{minipage}
 \end{tabular}
-\end{MInfo}
+\end{MXInfo}
 
-Wenn man also \"uber einer Strecke $\overline{AB}$ einen Halbkreis konstruiert und dann $A$ und $B$ mit einem beliebigen Punkt $C$ auf dem Halbkreis verbindet, dann ist das so entstandene Dreieck immer rechtwinklig.
+Die umgekehrte Aussage gilt ebenso. Wenn man "uber einer Strecke 
+$\MGeoStrecke{A}{B}$ einen Halbkreis konstruiert und dann $A$ und $B$ mit 
+einem beliebigen Punkt $C$ auf dem Halbkreis verbindet, dann ist das so 
+entstandene Dreieck immer rechtwinklig.
 
-\begin{MExample}\MLabel{ThaleskreisAufgabe}
+\begin{MExample}\MLabel{ThaleskreisBeispiel}
 Es soll ein rechtwinkliges Dreieck mit der Hypotenusenl\"ange $c=6\MEinheit{cm}$ und der H\"ohe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.\\
 \ \\
 \begin{tabular}{lr}
 \begin{minipage}[b]{7cm}
   \begin{enumerate}
     \item Zuerst zeichnet man die Hypotenuse \newline $c=\overline{AB}$.\\
-    \item Die Mitte der Hypotenuse wird nun zum Mittelpunkt eines Kreises mit der L\"ange $c/2$.\\
-    \item Nun zeichnet man eine Parallelle zur Hypotenuse im Abstand $h_c$. Es gibt zwei Schnittpunkte $C$ und $C'$ dieser Parallelen mit dem Thaleskreis. 
+    \item Die Mitte der Hypotenuse wird nun zum Mittelpunkt eines Kreises mit dem Radius $r = c/2$.\\
+    \item Nun zeichnet man eine Parallele zur Hypotenuse im Abstand $h_c$. Es gibt zwei Schnittpunkte $C$ und $C'$ dieser Parallelen mit dem Thaleskreis. 
   \end{enumerate}
 \end{minipage}
 &
@@ -783,28 +841,98 @@ Es soll ein rechtwinkliges Dreieck mit der Hypotenusenl\"ange $c=6\MEinheit{cm}$
 \end{tikzpicture}
 }
 \end{tabular}\\
-Diese sind jeweils die dritte Ecke eines Dreiecks, das die geforderten Eigenschaften hat, das hei\ss t, man erh\"alt zwei L\"osungen.
+Diese Schnittpunkte sind jeweils die dritte Ecke eines Dreiecks, das die geforderten Eigenschaften hat, das hei\ss t, man erh\"alt zwei L\"osungen.
 W\"urde man noch einen Thaleskreis nach unten zeichen, so erg\"aben sich noch mal zwei L\"osungen.
 \end{MExample}
 
 \begin{MExercise}
-Welche H\"ohe $h_c$ kann ein rechtwinkliges Dreieck mit der Hypotenuse $c$ maximal haben?
+Welche H\"ohe $h_c$ kann ein rechtwinkliges Dreieck mit der Hypotenuse $c$ 
+maximal haben?
 
 \begin{MHint}{L\"osung}
-Die H\"ohe $h_c$ kann maximal so gro\ss\ werden wie der Radius des Thaleskreises \"uber der Hypotenuse, also $h_c\leq c/2$.
+Die H\"ohe $h_c$ kann maximal so gro"s werden wie der Radius des 
+Thaleskreises \"uber der Hypotenuse, also $h_c \leq \frac{c}{2}$.
 \end{MHint}
 \end{MExercise}
 
-\end{MXContent}
+%Zusatz: Hoehensatz und Kathetensatz.
+\begin{MCOSHZusatz}
+In einem rechtwinkligen Dreieck gelten neben dem Satz des Pythagoras weitere 
+Aussagen.
+Dazu werden folgende Bezeichnungen verwendet:
+\begin{tabular}{lr}
+\begin{minipage}{9cm}
+Es wird ein rechtwinkliges Dreieck mit rechtem Winkel bei $C$ betrachtet. 
+Die H"ohe $h_c$ schneidet die Hypotenuse des Dreiecks \MGeoDreieck{A}{B}{C} 
+im Punkt $D$, dem H"ohenfu"spunkt. Weiter werden die Bezeichnungen
+$p = \MGeoAbstand{A}{D}$ und $q = \MGeoAbstand{B}{D}$ vereinbart.
+\vspace*{1cm}
+\end{minipage}
+&
+\begin{minipage}{7cm}
+\MTikzAuto{%
+\begin{tikzpicture}
+\coordinate[label=above:$C$]       (C) at (0,0);
+\coordinate[label=below right:$B$] (B) at ($ (C) + (2,-4) $);
+\path let \p1=($ (B) - (C) $) in 
+        coordinate[label=left:$A$] (A) at ($ (C) + ({\y1*3/4}, {-\x1*3/4}) $);
+\path let \p1=($ (B) - (A) $) in
+        coordinate                 (K) at ($ (C) + ({\y1/5}, {- \x1/5}) $);
+\coordinate[label=below:$D$]       (D) at (intersection of C--K and A--B);
+%
+\draw (B) -- node[sloped, above]{$a$} (C) -- node[sloped, above]{$b$} (A) -- cycle;
+\draw (C) -- node[sloped, right, rotate=-90]{$h_c$} (D);
+\path (A) -- node[sloped, above]{$p$} (D) -- node[sloped, above]{$q$} (B) -- node[sloped, below]{$c$} (A);
+\end{tikzpicture}
+}
+\end{minipage}
+\end{tabular}
 
+\begin{MXInfo}{H"ohensatz}
+Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus 
+den beiden Hypotenusenabschnitten: 
+\[h^2 = p\cdot q \MDFPeriod\]	
+\end{MXInfo}
+
+\begin{MXInfo}{Kathetensatz}
+Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus 
+der Hypotenuse und dem anliegenden Hypotenusenabschnitt: 
+\[a^2 = c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
+\end{MXInfo}
+
+\begin{MExample}
+Gegeben sei ein rechtwinkliges Dreieck mit den Kathetenl\"angen $a=3$ und 
+$b=4$.\\
+\ \\
+Die L\"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras berechnet 
+werden:
+\[c^2=\sqrt{a^2 + b^2}=\sqrt{9 + 16}=\sqrt{25}=5 \MDFPeriod\]
+Die einzelnen Hypotenusenabschnitte $p$ und $q$ berechnen sich gem\"a\ss\ dem Kathetensatz zu:
+\[q=\frac{a^2}{c}=\frac{9}{5} \MDFPSpace, \MDFPaSpace p=\frac{b^2}{c}=\frac{16}{5} \MDFPeriod\]
+Die H\"ohe $h_c$ erh\"alt man mit dem H\"ohensatz:
+\[h_c=\sqrt{p\cdot q}=\sqrt{\frac{9}{5}\cdot\frac{16}{5}}=\sqrt{\frac{144}{25}}=\frac{12}{5} \MDFPeriod\]
+\end{MExample}
+
+\begin{MExercise}
+Berechnen Sie f\"ur ein rechtwinkliges Dreieck mit der Hypotenuse $c=\MZahl{10}{5}$, der H\"ohe $h_c=\MZahl{5}{04}$ und dem Hypotenusenabschnitt $q=\MZahl{3}{78}$ die L\"ange der beiden Katheten.
+
+\begin{MHint}{L\"osung}
+\[\text{Kathetensatz:} \quad a=\sqrt{c\cdot q}=\sqrt{\MZahl{10}{5} \cdot \MZahl{3}{78}}=\MZahl{6}{3} \MDFPSpace;\]
+\[\text{Satz des Pythagoras:} \quad b=\sqrt{c^2-a^2} = \sqrt{{\MZahl{10}{5}}^2-{\MZahl{6}{3}}^2}=\MZahl{8}{4} \MDFPeriod\]
+\end{MHint}
+\end{MExercise}
+\end{MCOSHZusatz}
+%Ende Zusatz: Hoehensatz und Kathetensatz.
+
+\end{MXContent}
 %end of content: Satz des Pythagoras.
 
 
-\begin{MXContent}{Kongruenzs\"atze}{Kongruenz}{weiterfhrg}
-\MDeclareSiteUXID{VBKM05_Kongruenzsaetze}
+\begin{MXContent}{Kongruente und "ahnliche Dreiecke}{Kongruenz}{STD}
+\MDeclareSiteUXID{VBKM05_Kongruenzsaetze_Content}
 
 Zu einem Dreieck geh\"oren drei Seitenl\"angen und drei Winkel, also sechs 
-Gr"o"sen. Wenn bei zwei Dreiecken alle diese Gr"o\"sen \"ubereinstimmen, so 
+Gr"o"sen. Wenn bei zwei Dreiecken alle diese Gr"o"sen \"ubereinstimmen, so 
 sind diese Dreiecke \textbf{kongruent} oder deckungsgleich, dabei spielt es keine 
 Rolle, wo sich die Dreiecke befinden. Kongruente Dreiecke k\"onnen also durch 
 Drehung, Spiegelung und Verschiebung ineinander \"uberf\"uhrt werden.\\
@@ -816,7 +944,7 @@ zu bestimmen.
 Diese F\"alle werden mit den \MEntry{Kongruenzs\"atzen}{Kongruenzs\"atze} 
 beschrieben:
 
-\begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_Satz:Kongruenzsaetze}%
+\begin{MXInfo}{Kongruenzs"atze}\MLabel{Mathematik_ElementareGeometrie_Satz:Kongruenzsaetze}%
 Ein Dreieck ist eindeutig bestimmt, wenn
 \begin{itemize}
  \item von den drei Winkeln und den drei Seitenl\"angen
@@ -839,11 +967,11 @@ Ein Dreieck ist eindeutig bestimmt, wenn
         wobei das gro\ss\ geschriebene \glqq S\grqq\ signalisieren soll, dass die
         dem Winkel gegen\"uberliegende Seite die l\"angere Seite darstellt.)
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
  
-Hat man von einem Dreieck nur zwei oder drei Angaben, die 
-keinem der oben angegebenen F\"alle entsprechen, gegeben, so gibt es verschiedene
- Dreiecke, f\"ur die die Angaben zutreffen.
+Hat man von einem Dreieck nur zwei oder drei Angaben gegeben, die 
+keinem der oben angegebenen F\"alle entsprechen, so gibt es verschiedene
+Dreiecke, f\"ur die die Angaben zutreffen.
 
 %%\ifttm\relax\else\newpage\fi
 
@@ -964,9 +1092,8 @@ Es stellt sich heraus, dass es sogar unendlich viele derartige Dreiecke gibt, di
 
 Allerdings sehen diese Dreiecke irgendwie \"ahnlich aus. Solche \textbf{\"ahnlichen} Dreiecke erh\"alt man auch, wenn man zum Beispiel die Verh\"altnisse aller Seiten zueinander kennt.
 
-\begin{MInfo}%
-\textbf{\"Ahnlichkeitss\"atze f\"ur Dreiecke}\\
-\ \\
+\begin{MXInfo}{\"Ahnlichkeitss\"atze f\"ur Dreiecke}
+\par
 Zwei Dreiecke sind zueinander \"ahnlich, wenn
 \begin{itemize}
  \item	sie in zwei (und damit wegen der Winkelinnensumme in drei) Winkeln \"ubereinstimmen.
@@ -974,7 +1101,7 @@ Zwei Dreiecke sind zueinander \"ahnlich, wenn
  \item  sie in einem Winkel und im \textbf{Verh\"altnis} der anliegenden Seiten \"ubereinstimmen.
  \item  sie im \textbf{Verh\"altnis} zweier Seiten und im Gegenwinkel der gr\"o\ss eren Seite \"ubereinstimmen.
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 Eine Besonderheit gibt es bei dem rechten und dem linken Dreieck in Beispiel  \MRef{Mathematik_ElementareGeometrie_Beispiel:Aehnlichkeit}: Hier geht das eine Dreieck durch zentrische Streckung \MLabel{Mathematik_ElementareGeometrie_zentrischeStreckung} mit dem Streckzentrum $S$ und einem Streckfaktor $k$ in das andere \"uber.
 \begin{center}
@@ -1175,6 +1302,7 @@ Vielecks einfach berechnet werden kann.
 \ifttm\relax\else\newpage\fi
 
 \begin{MXContent}{Vielecke}{Vielecke}{STD}
+\MDeclareSiteUXID{VBKM05_Vielecke_Content}
 
 Neben Dreiecken kann man nat\"urlich auch Figuren mit mehr Ecken betrachten:
 
@@ -1383,7 +1511,8 @@ Je nachdem, ob die neue Linie innerhalb oder au\ss erhalb des Dreiecks liegt, er
 }
 \end{center}
 
-Links gilt also (wenn $A_{\Delta}$ den Fl\"acheninhalt des Dreiecks~$\Delta$ bezeichnet)
+Links gilt also (wenn $A_{\Delta}$ den Fl\"acheninhalt des Dreiecks~$\Delta$ 
+bezeichnet)
 \[
    A_{ABC}
  = A_{DBC} + A_{ADC}
@@ -1400,23 +1529,23 @@ Rechts gilt genauso
  = \Mtfrac{1}{2} \cdot h_w \cdot w \MDFPeriod
 \]
 
-\begin{MInfo}%
-\begin{itemize}
- \item Die \MEntry{H\"ohe eines Dreiecks auf einer Seite}{H\"ohe} ist die 
-       Strecke, die von dem der Seite gegen\"uberliegenden Punkt ausgeht und die Gerade,
-       auf der die Seite liegt, im rechten Winkel trifft. Der Punkt, auf dem die H\"ohe diese Gerade trifft, hei\ss t
-       \MEntry{Lotfu\ss punkt}{Lotfu\ss punkt} der H\"ohe.
- 
- \item Der Fl\"acheninhalt eines Dreiecks berechnet sich aus der H\"alfte des Produkts
-       der L\"ange einer Seite mit der L\"ange der zugeh\"origen H\"ohe des Dreiecks
+\begin{MXInfo}{Dreiecksfl"ache}
+Der Fl\"acheninhalt $A_{\MGeoDreieck{A}{B}{C}}$ eines Dreiecks berechnet sich 
+aus der H\"alfte des Produkts
+der L\"ange einer Seite mit der L\"ange der zugeh\"origen H\"ohe des Dreiecks:
        \[
-          A_{ABC}
-        = \frac{a \cdot h_a}{2}
-        = \frac{b \cdot h_b}{2}
-        = \frac{c \cdot h_c}{2} \MDFPeriod
+          A_{\MGeoDreieck{A}{B}{C}}
+        = \frac{1}{2} \cdot a \cdot h_a
+        = \frac{1}{2} \cdot b \cdot h_b
+        = \frac{1}{2} \cdot c \cdot h_c \MDFPeriod
        \]
-\end{itemize}
-\end{MInfo}
+Dabei ist die 
+\MEntry{H\"ohe eines Dreiecks auf einer Seite}{H\"ohe eines Dreiecks} 
+die Strecke, die von dem der Seite gegen\"uberliegenden Punkt ausgeht 
+und die Gerade, auf der die Seite liegt, im rechten Winkel trifft. 
+%Der Punkt, auf dem die H\"ohe diese Gerade trifft, hei"st
+%       \MEntry{H"ohenfu"spunkt}{H"ohenfu"spunkt} der H\"ohe.
+\end{MXInfo}
 
 
 \begin{MExample}
@@ -2242,7 +2371,7 @@ Die Tabelle k\"onnte folgenderma\ss en aussehen:
 
 Ebenso verhalten sich $\sin\left(\alpha\right)\sim a$ und $\cos\left(\alpha\right)\sim b$.
 
-\item Mit zunehmendem Winkel $\alpha$ nimmt $a$ in dem gleichen Ma\ss\ zu wie $b$ mit dem von $90^\circ$ aus fallenden Winkel $\alpha$ abnimmt. Im Thaleskreis sind die beiden Dreiecke mit den entgegengesetzten Werten f\"ur $a$ und $b$ die zwei L\"osungen f\"ur die Konstruktion eines rechtwinkligen Dreiecks mit gegebener Hypotenuse und gegebener H\"ohe (Aufgabe \MRef{ThaleskreisAufgabe}).
+\item Mit zunehmendem Winkel $\alpha$ nimmt $a$ in dem gleichen Ma\ss\ zu wie $b$ mit dem von $90^\circ$ aus fallenden Winkel $\alpha$ abnimmt. Im Thaleskreis sind die beiden Dreiecke mit den entgegengesetzten Werten f\"ur $a$ und $b$ die zwei L\"osungen f\"ur die Konstruktion eines rechtwinkligen Dreiecks mit gegebener Hypotenuse und gegebener H\"ohe (siehe auch das Beispiel \MRef{ThaleskreisBeispiel}).
 
 Ebenso verhalten sich Sinus und Kosinus zueinander: es ist also
 
@@ -2397,33 +2526,36 @@ Daraus folgt
 \end{MHint}
 \end{MExercise}
 
-In einer kleinen Tabelle k\"onnen die gefundenen Werte f\"ur markante Winkel zusammengetragen werden:
+In einer kleinen Tabelle werden die gefundenen Werte f\"ur markante Winkel 
+zusammengetragen:
+Hier wird in der mit $x$ bezeichneten ersten Zeile der Winkel im Bogenma"s und 
+in der mit $\alpha$ bezeichneten letzten Zeile der Winkel im Gradma"s notiert.
 
 \ifttm
 \begin{MDirectHTML}
 \[
 \begin{array}[t]{l|*{5}{c}}
-              & 0                          & \tfrac{\pi}{6}             & \tfrac{\pi}{4}             & \tfrac{\pi}{3}             & \tfrac{\pi}{2}             \\[1mm] \hline
+ x             & 0                          & \tfrac{\pi}{6}             & \tfrac{\pi}{4}             & \tfrac{\pi}{3}             & \tfrac{\pi}{2}             \\[1mm] \hline
          \sin & \frac{1}{2} \cdot \sqrt{0} & \frac{1}{2} \cdot \sqrt{1} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{4} \\[1mm]
          \cos & \frac{1}{2} \cdot \sqrt{4} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{1} & \frac{1}{2} \cdot \sqrt{0} \\[1mm]
-         \tan & 0                          & \frac{\sqrt{3}}{3}         & 1                          & \sqrt{3}                   & -                          \\[1mm]
-              & 0^{\circ}                  & 30^{\circ}                 & 45^{\circ}                 & 60^{\circ}                 & 90^{\circ}                
+         \tan & 0                          & \frac{\sqrt{3}}{3}         & 1                          & \sqrt{3}                   & -                          \\[1mm] \hline
+ \alpha             & 0^{\circ}                  & 30^{\circ}                 & 45^{\circ}                 & 60^{\circ}                 & 90^{\circ}                
 \end{array}
 \]
 \end{MDirectHTML}
 \else
 \begin{center}
        $\begin{array}[t]{l|*{5}{c}}
-              & 0                          & \Mtfrac{\pi}{6}             & \Mtfrac{\pi}{4}             & \Mtfrac{\pi}{3}             & \Mtfrac{\pi}{2}             \\[1mm] \hline
+ x             & 0                          & \Mtfrac{\pi}{6}             & \Mtfrac{\pi}{4}             & \Mtfrac{\pi}{3}             & \Mtfrac{\pi}{2}             \\[1mm] \hline
          \sin & \frac{1}{2} \cdot \sqrt{0} & \frac{1}{2} \cdot \sqrt{1} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{4} \\[1mm]
          \cos & \frac{1}{2} \cdot \sqrt{4} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{1} & \frac{1}{2} \cdot \sqrt{0} \\[1mm]
-         \tan & 0                          & \frac{\sqrt{3}}{3}         & 1                          & \sqrt{3}                   & -                          \\[1mm]
-              & 0^{\circ}                  & 30^{\circ}                 & 45^{\circ}                 & 60^{\circ}                 & 90^{\circ}                
+         \tan & 0                          & \frac{\sqrt{3}}{3}         & 1                          & \sqrt{3}                   & -                          \\[1mm] \hline
+ \alpha             & 0^{\circ}                  & 30^{\circ}                 & 45^{\circ}                 & 60^{\circ}                 & 90^{\circ}                
         \end{array}$
 \end{center}
 \fi
 
-Diese Werte sollte man sich merken. Die trigonometrischen Funktionen f\"ur andere Winkel sind in Tabellen bzw. im Taschenrechener gespeichert.
+Diese Werte sollte man sich merken. Die trigonometrischen Funktionen f\"ur andere Winkel sind in Tabellen bzw. im Taschenrechner gespeichert.
 
 Im Beispiel \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Beispiel:gleichseitigesDreieck} wurde mithilfe der trigonometrischen Funktionen die H\"ohe $h$ des Dreiecks berechnet. Diese Vorgehensweise gilt f\"ur alle beliebigen Dreiecke, da die H\"ohe $h$ das Dreieck immer in zwei rechtwinklige Dreiecke teilt und somit die trigonometrischen Funktionen angewandt werden k\"onnen.
 
@@ -2442,7 +2574,7 @@ Der Fl\"acheninhalt ist $A=\frac{1}{2}\cdot c \cdot h_c$.
 
 \begin{MXContent}{Trigonometrie am Einheitskreis}{Einheitskreis}{STD}
 \MLabel{VBKM05_Trigonometrie_Einheitskreis}
-\MDeclareSiteUXID{VBKM05_Trigonometrie_Einheitskreis}
+\MDeclareSiteUXID{VBKM05_TrigonometrieEinheitskreis_Content}
 
 
 Im letzten Abschnitt wurden die trigonometrischen Funktionen anhand eines rechtwinkligen Dreiecks betrachtet. Die gefundenen Erkenntnisse gelten also f\"ur einen Winkelbereich von $0$ bis $90^\circ=\frac{\pi}{2}$.
