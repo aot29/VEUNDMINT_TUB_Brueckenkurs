@@ -2047,9 +2047,10 @@ function hideNavigation(animate) {
   $('div.navi').slideUp(speed);
   $('tocnavsymb').hide();
   $('div.toc').animate({width: 'hide'}, speed);
-  $('#footerleft').slideUp(speed);
-  $('#footermiddle').slideUp(speed);
-  $('#footerright').slideUp(speed);
+  $('#footerleft').slideUp(speed / 3);
+  $('#footermiddle').slideUp(speed / 3);
+  $('#footerright').slideUp(speed / 3);
+  $('#footer').hide();
   $('#content').css("margin-left","0px");
   if (intersiteactive) intersiteobj.layout.menuactive = false;
 }
@@ -2058,13 +2059,13 @@ function showNavigation(animate) {
   var speed;
   if (animate == true) speed = animationSpeed; else speed = 0;
   $('#content').css("margin-left",SIZES.MENUWIDTH + "px");
-  $('div.navi').slideDown(speed);
-  $('tocnavsymb').hide();
+  $('#footer').show();
+  $('#footerleft').slideDown(speed / 3);
+  $('#footermiddle').slideDown(speed / 3);
+  $('#footerright').slideDown(speed / 3);
   $('div.toc').animate({width: 'show'}, speed);
   $('tocnavsymb').show();
-  $('#footerleft').slideDown(speed);
-  $('#footermiddle').slideDown(speed);
-  $('#footerright').slideDown(speed);
+  $('div.navi').slideDown(speed);
   if (intersiteactive) intersiteobj.layout.menuactive = true;
 }
 

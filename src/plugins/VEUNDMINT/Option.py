@@ -24,6 +24,7 @@
 import os.path
 import json
 import re
+import locale
 
 class Option(object):
     """
@@ -49,6 +50,8 @@ class Option(object):
         self.currentDir = os.path.abspath(currentDir) # one level above location of tex2x.py
         self.converterDir = os.path.join(self.currentDir, "src")
         self.logFilename = "conversion.log"
+        self.locale = "de_DE" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language
+        locale.setlocale(locale.LC_ALL, self.locale)
         
         # VE&MINT conversion flags, using values 0 and 1 (integers)
         self.testonly = 0
@@ -88,7 +91,7 @@ class Option(object):
         self.mathjaxtgz = "mathjax26complete.tgz"
         self.texstylefiles = ["bibgerm.sty", "maxpage.sty"]  # style files needed in local directories for local pdflatex compilation
         self.htmltikzscale = 1.3                             # scaling factor used for tikz-png scaling, can be overridden by pragmas
-        self.autotikzcopyright = 1
+        self.autotikzcopyright = 0
 
         self.generate_pdf = { "tree1_tu9onlinekurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung
 
@@ -120,6 +123,10 @@ class Option(object):
             "qexport_download_doc": "Quellcode dieser Aufgabe im Word-Format"
         }
 
+        self.knownmathcommands = [ "sin", "cos", "tan", "cot", "log", "ln" ] # these will be excluded from post-ttm modifications
+        self.mathmltags = [ "math", "mo", "mi", "mrow", "mstyle", "msub", "mn", "mtable", "msup", "mtext", "mfrac", "msqrt", "mover" ]
+        self.specialtags = [ "tocnavsymb"] + self.mathmltags # these will be excluded from libtidy error detection
+        
         self.fonts = {
             # BASICFONTFAMILY  => "Open Sans Condensed"
             "BASICFONTFAMILY": "open-sans",
@@ -157,8 +164,8 @@ class Option(object):
         self.data_server_description = "Server 3 (KIT)"        
         self.data_server_user = server + "/userdata.php"  # Absolute Angabe
         self.footer_middle = self.description
-        self.footer_left = "Lizenz: " + self.contentlicense
         # don't use \" in strings as they are being passed to JavaScript variables (and \" becomes evaluated)
+        self.footer_left = "<img src='images/ccbysa80x15.png' border='0' />"
         self.footer_right = "<a href='mailto:" + self.reply_mail + "' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a>"
         self.mainlogo = "veundmint_netlogo.png" # Im Pfad files/images
         self.stdmathfont = "0" # Erzwingt Standard-Arial-Font in Text in Formeln

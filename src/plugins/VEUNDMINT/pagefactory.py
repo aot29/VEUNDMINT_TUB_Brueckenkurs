@@ -111,7 +111,7 @@ class PageFactory(object):
             js_text += "<script src=\"" + js + "\" type=\"text/javascript\"></script>\n"
 
         tc.html = self._substitute_string(tc.html, "mathjax-header", self.template_mathjax_settings + self.template_mathjax_include)
-        tc.html = self._substitute_string(tc.html, "javascript-header", cs_text)
+        tc.html = self._append_string(tc.html, "javascript-header", cs_text)
         tc.html = self._substitute_string(tc.html, "javascript-body-header", js_text + self.template_javascriptheader)
         tc.html = self._substitute_string(tc.html, "javascript-body-footer", self.template_javascriptfooter)
 
@@ -363,14 +363,18 @@ class PageFactory(object):
         
         # solve problem with MathML: <mi>AB</mi> is not displayed as italic, but substitute only if contained in a single mrow to keep \sin, \cos, etc. non-italic
         def mireplace(m):
-            s = "<mrow>"
-            k = 0
-            while k < len(m.group(1)):
-                s += "<mi>" + m.group(1)[k] + "</mi>"
-                k = k + 1
-            s += "</mrow>"
-            self.sys.message(self.sys.VERBOSEINFO, "MIMI: " + m.group(0) + "  ->  " + s)
-            return s
+            if m.group(1) in self.options.knownmathcommands:
+                return m.group(0) # don't change anything
+            else:
+                # replace string by single mi elements
+                s = "<mrow>"
+                k = 0
+                while k < len(m.group(1)):
+                    s += "<mi>" + m.group(1)[k] + "</mi>"
+                    k = k + 1
+                s += "</mrow>"
+                return s
+            
         html = re.sub(r"\<mrow\>\<mi\>([^\W\d_]{2,})\</mi\>\</mrow\>", mireplace, html, 0, re.S)
         
         # MStartJustify, MEndJustify  

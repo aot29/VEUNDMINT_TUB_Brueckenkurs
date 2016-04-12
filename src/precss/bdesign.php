@@ -171,6 +171,14 @@ tocnavsymb ul li {
 
 /* ------------------------- neues Design ------------------------------ */
 
+/* align all img images in the center */
+img {
+    horizontal-align: middle;
+    vertical-align: middle;
+    margin-bottom: .25em;
+}
+
+
 /* Normaler xsection button */
 .xsectbutton {
     padding: 0 !important;
@@ -503,15 +511,20 @@ tocnavsymb ul li ul li a:hover div{
     line-height: 20px !important;
     letter-spacing: 0.5px;
     position: fixed;
+    display: flex;
 }
 
 
 .footermiddle {
-    display: flex;
+        display: inline-block;
+        flex-grow:100;
+        text-align:center
 }
 
 .footerleft, .footerright {
+    display: inline-block;
     width: 200px;
+    text-align:center
 }
 
 
