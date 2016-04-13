@@ -39,11 +39,6 @@ Dieses Modul gliedert sich in folgende Abschnitte:
 
 \end{MSectionStart}
 
-\newcommand{\MGeoAbstand}[2]{\ensuremath{[\overline{#1#2}]}}
-\newcommand{\MGeoGerade}[2]{\ensuremath{#1#2}}
-\newcommand{\MGeoStrecke}[2]{\ensuremath{\overline{#1#2}}}
-
-\newcommand{\MGeoDreieck}[3]{\ensuremath{#1#2#3}}
 
 %jgl: section 1:
 \MSubsection{Grundbegriffe der ebenen Geometrie}
@@ -72,16 +67,16 @@ Punkte, Geraden, \ldots sind idealisierte Begriffe.
 
 \begin{MXInfo}{Bezeichnungen von Strecken und Abst"anden}
 Gegeben sind Punkte $P$ und $Q$. Dann wird die Strecke zwischen $P$ und $Q$ mit
-\MGeoStrecke{P}{Q} bezeichnet.
+$\MGeoStrecke{P}{Q}$ bezeichnet.
 
-Die L"ange der Strecke \MGeoStrecke{P}{Q} wird mit \MGeoAbstand{P}{Q} notiert.
+Die L"ange der Strecke $\MGeoStrecke{P}{Q}$ wird mit $\MGeoAbstand{P}{Q}$ notiert.
 Die \MEntry{Streckenl"ange}{Streckenlänge} ist gleich dem Abstand zwischen den
 Punkten $P$ und $Q$.
 \end{MXInfo}
 
 \begin{MXInfo}{Gerade}
 Seien $A$ und $B$ zwei Punkte. Dann bestimmen $A$ und $B$ genau eine Gerade 
-\MGeoGerade{A}{B}.
+$\MGeoGerade{A}{B}$.
 \end{MXInfo}
 
 \end{MXContent}
@@ -747,7 +742,7 @@ berechnet werden:
 \end{MExample}
 
 \begin{MExercise}
-Berechnen Sie f"ur ein rechtwinkliges Dreieck \MGeoDreieck{A}{B}{C} mit 
+Berechnen Sie f"ur ein rechtwinkliges Dreieck $\MGeoDreieck{A}{B}{C}$ mit 
 rechtem Winkel in $C$ mit der Hypotenuse 
 $c = \frac{25}{3}$ und der H\"ohe $h_c = 4$ sowie der Strecke 
 $\MGeoStrecke{D}{B}$ mit $q = \MGeoAbstand{D}{B} = 3$ 
@@ -755,13 +750,13 @@ die L\"ange der beiden Katheten $a$ und $b$. Dabei bezeichnet $D$ den
 H"ohenf"uspunkt der H"ohe $h_c$.
 
 \begin{MHint}{L\"osung}
-Es wird wird der Satz des Pythagoras auf das Dreieck \MGeoDreieck{D}{B}{C}
+Es wird wird der Satz des Pythagoras auf das Dreieck $\MGeoDreieck{D}{B}{C}$
 angewandt, das in $D$ einen rechten Winkel hat. Dann ist
 \[
  a = \sqrt{h_c^2 + q^2} = \sqrt{4^2 + 3^2} = \sqrt{25} = 5 \MDFPeriod
 \]
 Nun wird der Satz des Pythagoras auf das gegebene Dreieck
-\MGeoDreieck{A}{B}{C} angewandt, woraus 
+$\MGeoDreieck{A}{B}{C}$ angewandt, woraus 
 \[
  b = \sqrt{c^2-a^2} = \sqrt{\left(\frac{25}{3}\right)^2-5^2} %
  = \sqrt{\frac{400}{9}} %
@@ -873,7 +868,7 @@ Dazu werden folgende Bezeichnungen verwendet:
 \begin{tabular}{lr}
 \begin{minipage}{9cm}
 Es wird ein rechtwinkliges Dreieck mit rechtem Winkel bei $C$ betrachtet. 
-Die H"ohe $h_c$ schneidet die Hypotenuse des Dreiecks \MGeoDreieck{A}{B}{C} 
+Die H"ohe $h_c$ schneidet die Hypotenuse des Dreiecks $\MGeoDreieck{A}{B}{C}$
 im Punkt $D$, dem H"ohenfu"spunkt. Weiter werden die Bezeichnungen
 $p = \MGeoAbstand{A}{D}$ und $q = \MGeoAbstand{B}{D}$ vereinbart.
 \vspace*{1cm}
