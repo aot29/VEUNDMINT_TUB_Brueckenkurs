@@ -367,15 +367,15 @@ class PageFactory(object):
                 return m.group(0) # don't change anything
             else:
                 # replace string by single mi elements
-                s = "<mrow>"
                 k = 0
+                s = ""
                 while k < len(m.group(1)):
                     s += "<mi>" + m.group(1)[k] + "</mi>"
                     k = k + 1
-                s += "</mrow>"
+                self.sys.message(self.sys.VERBOSEINFO, "ttm <mi>-correction: " + m.group(0) + "  ->  " + s)
                 return s
             
-        html = re.sub(r"\<mrow\>\<mi\>([^\W\d_]{2,})\</mi\>\</mrow\>", mireplace, html, 0, re.S)
+        html = re.sub(r"\<mi\>([^\W\d_]{2,})\</mi\>", mireplace, html, 0, re.S)
         
         # MStartJustify, MEndJustify  
         if "<!-- startalign;;" in html:

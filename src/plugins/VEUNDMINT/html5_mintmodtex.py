@@ -1039,7 +1039,7 @@ class Plugin(basePlugin):
   
         self.sys.popdir()
         
-        
+
     # performs some basic checks if html code can be released to the public
     def releaseCheck(self, html, fname):
         reply = True
@@ -1058,6 +1058,16 @@ class Plugin(basePlugin):
             if tag[0] in html:
                 reply = False
                 self.sys.message(self.sys.VERBOSEINFO, tag[1] + " in file " + fname)
+
+        # check uxid processing
+        uc = 0
+        def ucount(m):
+            nonlocal uc, reply
+            uc += 1
+            if (uc > 1):
+                reply = False
+                self.sys.message(self.sys.CLIENTWARN, "Found more then one site UXID in file " + fname + ": " + m.group(0))
+        re.sub(re.escape("<!-- mdeclaresiteuxidpost;;") + r"(.+?)" + re.escape(";; //-->"), ucount, html, 0, re.S)
                     
         # check for proper HTML syntax
         (document, tidylines) = tidy_document(html)
@@ -1090,6 +1100,7 @@ class Plugin(basePlugin):
             self.sys.message(self.sys.VERBOSEINFO, "libtidy found " + str(wrn) + " warnings and " + str(inf) + " infos in file " + fname)
         else:
             self.sys.message(self.sys.CLIENTWARN, "libtidy found no errors (or its output was somehow not parsed correctly) for file " + fname)
+            
                  
         return reply
                 

@@ -50,8 +50,7 @@ class Option(object):
         self.currentDir = os.path.abspath(currentDir) # one level above location of tex2x.py
         self.converterDir = os.path.join(self.currentDir, "src")
         self.logFilename = "conversion.log"
-        self.locale = "de_DE" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language
-        locale.setlocale(locale.LC_ALL, self.locale)
+        self.locale = "de_DE" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language, string definition depends on used system!
         
         # VE&MINT conversion flags, using values 0 and 1 (integers)
         self.testonly = 0
@@ -123,7 +122,7 @@ class Option(object):
             "qexport_download_doc": "Quellcode dieser Aufgabe im Word-Format"
         }
 
-        self.knownmathcommands = [ "sin", "cos", "tan", "cot", "log", "ln" ] # these will be excluded from post-ttm modifications
+        self.knownmathcommands = [ "sin", "cos", "tan", "cot", "log", "ln", "exp" ] # these will be excluded from post-ttm modifications
         self.mathmltags = [ "math", "mo", "mi", "mrow", "mstyle", "msub", "mn", "mtable", "msup", "mtext", "mfrac", "msqrt", "mover" ]
         self.specialtags = [ "tocnavsymb"] + self.mathmltags # these will be excluded from libtidy error detection
         
