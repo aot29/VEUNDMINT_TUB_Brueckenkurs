@@ -57,7 +57,6 @@ F"ur den Bau eines Sportstadions werden markante Punkte im Gel"ande abgesteckt.
 
 \begin{center}
 (Mess-)Punkte und Linien f"ur einen Stadionbau
-%\MGraphicsSolo{Stadtplan.png}{scale=1} \MLabel{Stadtplan}
 \end{center}
 
 Die Zeichnung kann man als idealisiertes Abbild der Wirklichkeit ansehen.
@@ -87,7 +86,7 @@ Seien $A$ und $B$ zwei Punkte. Dann bestimmen $A$ und $B$ genau eine Gerade
 
 \end{MXContent}
 
-%content: Strahlensatz und Pythagoras.
+%content: Strahlensatz.
 
 \begin{MXContent}{Die Strahlens\"atze}{Strahlens\"atze}{STD}
 \MDeclareSiteUXID{VBKM05_Strahlensaetze_Content}
@@ -95,7 +94,6 @@ Seien $A$ und $B$ zwei Punkte. Dann bestimmen $A$ und $B$ genau eine Gerade
 Die Strahlens\"atze haben etwas mit der zentrischen Streckung zu tun 
 (siehe \MRef{Mathematik_ElementareGeometrie_zentrischeStreckung}).
 
-%\MGraphicsSolo{../Bilder/Mathematik_ElementareGeometrie/Mathematik_ElementareGeometrie_Stadtplan_Strahlensatz.png}{scale=1}
 
 \ifttm%
 \relax
@@ -290,7 +288,7 @@ $S$ ausgehen, schlie"sen einen \MEntry{Winkel}{Winkel} $\alpha$ ein.
 
 Zeichnet man einen Kreis mit Radius~$1$ um~$P$, wird dieser von den beiden Halbgeraden in zwei Teile zerschnitten. Wichtig ist nun derjenige Kreisbogen, der entsteht, wenn man von der Geraden $g$ gegen den Uhrzeigersinn zur Geraden $h$ geht (im obigen Bild gr\"un eingef\"arbt):
 
-\begin{MInfo}%
+\begin{MXInfo}{Bogenmass}%
 \MLabel{VBKM05_Bogenmass}
 Der \MEntry{Kreisbogen}{Kreisbogen}, der entsteht, wenn man von der Geraden $g$ gegen den Uhrzeigersinn zur Geraden $h$ geht, bezeichnet den \MEntry{Winkel}{Winkel} von $g$ zu $h$.
   \begin{itemize}
@@ -299,7 +297,7 @@ Der \MEntry{Kreisbogen}{Kreisbogen}, der entsteht, wenn man von der Geraden $g$ 
     \item Hat man einen Punkt $A$ auf der Geraden $g$ und einen Punkt $B$ auf der Geraden $h$, so kann man auch $\Mmeasuredangle \left( A P B \right)$ statt $\Mmeasuredangle \left( g, h \right)$ schreiben.
     \item Winkel werden h\"aufig mit kleinen griechischen Buchstaben bezeichnet, z. Bsp. $\alpha$.
   \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 Man beachte, dass es bei der Bedeutung des Symbols $\Mmeasuredangle \left( g, h \right)$ wesentlich auf die Reihenfolge, in welcher $g$ und $h$ aufgef\"uhrt werden, ankommt:
 $\Mmeasuredangle \left( h, g \right)$ bezeichnet n\"amlich die L\"ange desjenigen Kreisbogens, der entsteht, wenn man von der Geraden $h$ gegen den Uhrzeigersinn zur Geraden $g$ l\"auft (im obigen Bild rot eingef\"arbt), und diese L\"ange ist in der Regel von $\Mmeasuredangle \left( g, h \right)$ verschieden!
@@ -310,7 +308,7 @@ $\Mmeasuredangle \left( h, g \right)$ bezeichnet n\"amlich die L\"ange desjenige
 
 Indem man auch noch die entgegengesetzten Halbgeraden in die Betrachtungen miteinbezieht, lassen sich weitere Winkel entdecken.
 
-\begin{MInfo}%
+\begin{MXInfo}{Bezeichnung von Winkeln an Geraden}%
 \MLabel{VBKM05_Scheitelwinkel_Nebenwinkel}%
 Es seien $g$ und $h$ zwei Halbgeraden mit gleichem Anfangspunkt $P$ und mit den entgegengesetzten Halbgeraden $g^-$ bzw. $h^-$.
   \begin{itemize}
@@ -319,7 +317,7 @@ Es seien $g$ und $h$ zwei Halbgeraden mit gleichem Anfangspunkt $P$ und mit den 
 \item Die Winkel $\Mmeasuredangle \left( g^-, h \right)$ und $\Mmeasuredangle \left( g, h^- \right)$ hei\ss en \MEntry{Nebenwinkel}{Nebenwinkel}.
 \item Die Nebenwinkel sind immer gleich gro\ss.
   \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 %\begin{MExample}
 %Ein sch\"ones Beispiel f\"ur einen Winkel sieht man im Ludwigshafener Stadtplan bei der Kurf\"urstenstra\ss e und der Saarlandstra\ss e:
@@ -340,18 +338,19 @@ Es seien $g$ und $h$ zwei Halbgeraden mit gleichem Anfangspunkt $P$ und mit den 
 
 Nun soll das Bogenma\ss\ bestimmt werden.
 
-Bereits die Griechen stellten fest, dass das Verh\"altnis des
+Bereits im antiken Babylonien, "Agypten und Griechenland stellte man fest, 
+dass das Verh\"altnis des
 Umfangs~$U$ eines Kreises zu seinem Radius~$r$ stets das gleiche ist.
-Sie definierten dieses Verh\"altnis \"uber die Kreiszahl~$\pi$: 
-\begin{MInfo}\MLabel{Kreiszahl}%
+Sie nannten dieses Verh\"altnis die Kreiszahl~$\pi$: 
+\begin{MXInfo}{Kreiszahl}\MLabel{Kreiszahl}%
 Die \textbf{Kreiszahl} ist
 \[
     \pi = \frac{U}{2r} \MDFPeriod
 \]
-
-Dabei ist $\pi$ keine rationale Zahl, sie kann nicht als endlicher oder periodischer Dezimalbruch geschrieben werden. N\"aherungsrechnungen haben ergeben, dass
-$\pi \approx \MZahl{3}{141592653589793}$ ist.
-\end{MInfo}
+Dabei ist $\pi$ keine rationale Zahl. Sie kann nicht als endlicher oder 
+periodischer Dezimalbruch geschrieben werden. Numerische Berechnungen ergeben,
+dass $\pi \approx \MZahl{3}{141592653589793}$ ist.
+\end{MXInfo}
 
 Ist der Radius des Kreises genau $1$, so hat der Kreis den Umfang $2\pi$. Die L\"ange eines Kreisbogens, also das Bogenma\ss\ des Winkels, ist dann eine Zahl zwischen $0$ und $2\pi$.
 
@@ -406,7 +405,7 @@ $\beta=$\MLParsedQuestion{10}{45}{3}{PARSEDQUEST2}$^\circ$.
 \end{MHint}
 \end{MExercise}
 
-\begin{MInfo}%
+\begin{MXInfo}{Namen f"ur Winkel}%
 Die folgenden Winkelformen bekommen spezielle Namen:
 \begin{itemize}
 \item
@@ -422,14 +421,32 @@ Ein Winkel mit einem Ma\ss\ zwischen~$\pi$ und~$2 \pi$ hei\ss t \textbf{\"uberst
  
  \item Zwei Halbgeraden \textbf{stehen senkrecht aufeinander}, wenn sie einen rechten Winkel bilden.
 \end{itemize}
-\end{MInfo}
-  
+\end{MXInfo}
 
-Als n\"achstes sollen nun drei verschiedene Geraden betrachtet werden, von denen zwei parallel sind,
-wohingegen die dritte nicht parallel zu diesen beiden ist. Es ergeben sich dann acht Schnittwinkel.
+
+\begin{MExercise}
+Geben Sie die in der folgenden Tabelle fehlenden Werte an! Dabei soll in
+einer Spalte stets der gleiche Winkel stehen.
+
+\ifttm%
+(Ein~$\pi$ geben Sie als \glqq\texttt{pi}\grqq\ ein. Bitte runden Sie Ihre Ergebnisse auf drei Nachkommastellen!)
+\fi
+
+\begin{center}
+\begin{tabular}{l*{6}{c}}
+ Bogenma\ss\ & $\pi$               &   \MLParsedQuestion{10}{9*pi/5}{3}{GEO2} &   	$\frac{2 \pi}{3}$                &\MLParsedQuestion{10}{3*pi/2}{3}{GEO3} & $\frac{11 \pi}{12}$\\
+ Gradma\ss\   & \MLParsedQuestion{10}{180}{3}{GEO4}      & $324$    & \MLParsedQuestion{10}{120}{3}{GEO5}        &    $270$    & \MLParsedQuestion{10}{165}{3}{GEO6}    \\
+\end{tabular}
+\end{center}
+\end{MExercise}
+
+Als n\"achstes sollen nun drei verschiedene Geraden betrachtet werden, 
+von denen zwei parallel sind, wohingegen die dritte nicht parallel zu diesen 
+beiden ist. Es ergeben sich dann acht Schnittwinkel.
 Je vier dieser Winkel sind gleich gro\ss .
 
-\begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_StufenwinkelWechselwinkel}%
+\begin{MXInfo}{Winkel an parallelen Geraden}%
+\MLabel{Mathematik_ElementareGeometrie_StufenwinkelWechselwinkel}%
 
 \begin{center}
 \MTikzAuto{%
@@ -468,7 +485,7 @@ Je vier dieser Winkel sind gleich gro\ss .
   \item Die Winkel $\alpha$ und $\Mvarepsilon$ hei\ss en \textbf{Stufenwinkel}, ebenso $\beta$ und $\chi$, $\delta$ und $\psi$ und $\gamma$ und $\Mvarphi$.
 \end{itemize}
 
-\end{MInfo}
+\end{MXInfo}
 \end{MXContent}
 
 %jgl: end of section 2.
@@ -500,7 +517,7 @@ Drei Punkte bilden die Ecken eines Dreiecks.
 \MDeclareSiteUXID{VBKM05_Dreiecke_Content}
 
 Eine einfache Figur mit Winkeln ist das Dreieck:
-\begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_SummeDerInnenwinkel}%
+\begin{MXInfo}{Dreieck}\MLabel{Mathematik_ElementareGeometrie_SummeDerInnenwinkel}%
 \begin{itemize}
  \item Ein \MEntry{Dreieck}{Dreieck} entsteht,
        wenn man drei Punkte, die nicht auf einer Geraden liegen, verbindet.
@@ -519,7 +536,7 @@ Eine einfache Figur mit Winkeln ist das Dreieck:
  
  \item Die Summe der drei Innenwinkel eines Dreiecks betr\"agt stets~$\pi$ bzw. $180^\circ$.
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 \begin{tabular}{lr}
 \begin{minipage}{10cm}
@@ -614,7 +631,7 @@ die Innenwinkel, nennt man die Innenwinkel eines Dreiecks auch schlicht
 Da die Summe aller Winkel in einem Dreieck~$\pi$ betr\"agt, kann h\"ochstens
 ein Winkel gleich oder gr\"o\ss er als~$\frac{\pi}{2}$ sein. Dadurch werden die
 Dreiecke nach ihrem gr\"o\ss ten Winkel in drei verschiedene Klassen eingeteilt:
-\begin{MInfo}%
+\begin{MXInfo}{Bezeichungen f"ur Dreiecke}%
 \begin{itemize}
  \item Ein Dreieck, in dem alle Winkel kleiner als~$\frac{\pi}{2}$ sind, hei\ss t \MEntry{spitzwinklig}{Spitzwinklig (Dreieck)}.
  
@@ -628,7 +645,7 @@ Dreiecke nach ihrem gr\"o\ss ten Winkel in drei verschiedene Klassen eingeteilt:
  \item Ein Dreieck, das einen Winkel mit einem Ma\ss\ von \"uber~$\frac{\pi}{2}$
        besitzt, hei\ss t \textbf{stumpfwinklig}.
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 Es wird eine einfache Konstruktion eines Wagenhebers in der Form eines
 Dreiecks betrachtet: Er besteht aus zwei St"aben, die durch ein Gelenk 
@@ -669,8 +686,8 @@ auf der Geraden einer Seite stehen und bis zu einer Ecke des Dreiecks gehen.
 \MDeclareSiteUXID{VBKM05_Pythagoras_Content}
 
 Eine Aussage "uber die Seitenl"angen in einem rechtwinkligen Dreieck
-bietet der \textbf{Satz des Pythagoras}. Dieser wird hier in einer oft 
-verwendeten Formulierung angegeben.
+bietet der \MEntry{Satz des Pythagoras}{Pythagoras (Satz)}. 
+Dieser wird hier in einer oft verwendeten Formulierung angegeben.
 
 \begin{MXInfo}{Satz des Pythagoras}
 \MLabel{VBKM05_Pythagoras}
@@ -685,31 +702,30 @@ $C$ liegt.
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[line width=1pt]
-\draw (30:4) ++(300:0.5) arc(300:210:0.5);
-\draw (30:4) ++(255:0.3) circle(0.5pt);
-\draw (0,0) -- node[above left] {$b$} (30:4) %
- -- node[above right] {$a$} ++(300:2.312) -- node[below] {$c$} (0,0);
-\node[left] at (0,0) {$A$};
-\node[right] at (4.6,0) {$B$};
-\node[above] at (30:4) {$C$};
+\coordinate[label=left:$A$] (A) at (0,0);
+\coordinate[label=right:$B$] (B) at ($ (A) + (4.6,0) $);
+\coordinate[label=above:$C$] (C) at ($ (B) + (120:2.3) $);
+%Zeichen fuer rechten Winkel:
+\draw (B) ++(120:1.8) arc(300:210:0.5);
+\draw (C) ++(255:0.3) circle(0.5pt);
+%Dreieck:
+\draw (A) -- node[below] {$c$} (B) %
+ -- node[above right] {$a$} (C) -- node[above left] {$b$} (A);
 \end{tikzpicture}
 }
-\end{center}
+%
 %\MTikzAuto{%
-%\begin{tikzpicture}
-%\coordinate[label=above:$C$]       (C) at (0,0);
-%\coordinate[label=below right:$B$] (B) at ($ (C) + (2,-4) $);
-%\path let \p1=($ (B) - (C) $) in 
-%        coordinate[label=left:$A$] (A) at ($ (C) + ({\y1*3/4}, {-\x1*3/4}) $);
-%\path let \p1=($ (B) - (A) $) in
-%        coordinate                 (K) at ($ (C) + ({\y1/5}, {- \x1/5}) $);
-%\coordinate[label=below:$D$]       (D) at (intersection of C--K and A--B);
-%%
-%\draw (B) -- node[sloped, above]{$a$} (C) -- node[sloped, above]{$b$} (A) -- cycle;
-%\draw (C) -- node[sloped, right, rotate=-90]{$h_c$} (D);
-%\path (A) -- node[sloped, above]{$p$} (D) -- node[sloped, above]{$q$} (B) -- node[sloped, below]{$c$} (A);
+%\begin{tikzpicture}[line width=1pt]
+%\draw (30:4) ++(300:0.5) arc(300:210:0.5);
+%\draw (30:4) ++(255:0.3) circle(0.5pt);
+%\draw (0,0) -- node[above left] {$b$} (30:4) %
+% -- node[above right] {$a$} ++(300:2.312) -- node[below] {$c$} (0,0);
+%\node[left] at (0,0) {$A$};
+%\node[right] at (4.6,0) {$B$};
+%\node[above] at (30:4) {$C$};
 %\end{tikzpicture}
 %}
+\end{center}
 \end{minipage}
 \end{tabular}
 Dann ist die Summe der Quadrate \"uber den Katheten $a$ und $b$ gleich dem
@@ -718,13 +734,6 @@ somit (siehe auch das abgebildete Dreieck):
 \[a^2+b^2=c^2 \MDFPeriod\]
 Werden die Seiten des Dreiecks anders bezeichnet, muss die Gleichung 
 entsprechend angepasst werden!
-
-%Siehe Zusaetzliche Inhalte:
-%	\item \textbf{Kathetensatz}\\
-%		Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus der Hypotenuse und dem anliegenden Hypotenusenabschnitt: \[a^2=c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
-%	\item \textbf{H\"ohensatz}\\
-%		Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus den beiden Hypotenusenabschnitten: \[h^2=p\cdot q \MDFPeriod\]
-%\end{itemize}
 \end{MXInfo}
 
 
@@ -762,8 +771,8 @@ folgt.
 \end{MHint}
 \end{MExercise}
 
-Es gibt noch einen weiteren wichtigen Satz, der f\"ur rechtwinklige Dreiecke 
-g\"ultig ist:
+Der \MEntry{Satz des Thales}{Thales (Satz)} ist ein weiterer wichtiger Satz, 
+der eine Aussage "uber rechtwinklige Dreiecke ausdr"uckt.
 \begin{MXInfo}{Satz des Thales}
 \par
 \begin{tabular}{lr}
@@ -771,8 +780,8 @@ g\"ultig ist:
 \MTikzAuto{%
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 \draw[color=black, thick] (-3,0) -- (3,0);
-\draw[color=black, thick] (3,0) arc (0:180:3);
-\draw[color=red, thick] (-3,0) -- (50:3) -- (3,0);
+\draw[color=blue, thick] (3,0) arc (0:180:3);
+\draw[color=black, thick] (-3,0) -- (50:3) -- (3,0);
 %\draw[color=red, thick] (-3,0) -- (100:3) -- (3,0);
 \draw[color=black] (50:3) ++(295:0.6) arc (295:205:0.6);
 %\draw[color=black] (100:3) ++(320:0.6) arc (320:230:0.6);
@@ -860,6 +869,7 @@ Thaleskreises \"uber der Hypotenuse, also $h_c \leq \frac{c}{2}$.
 In einem rechtwinkligen Dreieck gelten neben dem Satz des Pythagoras weitere 
 Aussagen.
 Dazu werden folgende Bezeichnungen verwendet:
+\par
 \begin{tabular}{lr}
 \begin{minipage}{9cm}
 Es wird ein rechtwinkliges Dreieck mit rechtem Winkel bei $C$ betrachtet. 
@@ -933,7 +943,8 @@ Berechnen Sie f\"ur ein rechtwinkliges Dreieck mit der Hypotenuse $c=\MZahl{10}{
 
 Zu einem Dreieck geh\"oren drei Seitenl\"angen und drei Winkel, also sechs 
 Gr"o"sen. Wenn bei zwei Dreiecken alle diese Gr"o"sen \"ubereinstimmen, so 
-sind diese Dreiecke \textbf{kongruent} oder deckungsgleich, dabei spielt es keine 
+sind diese Dreiecke deckungsgleich oder \MEntry{kongruent}{kongruent (Dreieck)}. 
+Dabei spielt es keine 
 Rolle, wo sich die Dreiecke befinden. Kongruente Dreiecke k\"onnen also durch 
 Drehung, Spiegelung und Verschiebung ineinander \"uberf\"uhrt werden.\\
 Kennt man vier von den sechs Gr"o"sen, so ist das Dreieck eindeutig bestimmt 
@@ -941,30 +952,32 @@ bis auf Spielgelung oder Drehung, das hei"st bis auf die Lage des Dreiecks
 im Raum. Alle Dreiecke, die man mit diesen Angaben erh\"alt, sind dann kongruent.
 In einigen F\"allen gen\"ugen sogar drei Angaben, um das Dreieck eindeutig 
 zu bestimmen.
-Diese F\"alle werden mit den \MEntry{Kongruenzs\"atzen}{Kongruenzs\"atze} 
+Sie werden in den \MEntry{Kongruenzs\"atzen}{Kongruenzs\"atze (Dreieck)} 
 beschrieben:
 
 \begin{MXInfo}{Kongruenzs"atze}\MLabel{Mathematik_ElementareGeometrie_Satz:Kongruenzsaetze}%
-Ein Dreieck ist eindeutig bestimmt, wenn
+Ein Dreieck ist eindeutig bestimmt, wenn eine der folgenden Situationen vorliegt:
 \begin{itemize}
- \item von den drei Winkeln und den drei Seitenl\"angen
-       mindestens vier Angaben gegeben sind.
+ \item Von den drei Winkeln und den drei Seitenl\"angen sind
+       mindestens vier Angaben gegeben.
  
- \item alle drei Seitenl\"angen gegeben sind.
+ \item Alle drei Seitenl\"angen sind gegeben.
        (Diesen Satz bezeichnet man gerne mit \glqq sss\grqq\ f\"ur \glqq Seite, Seite, Seite\grqq.)
  
- \item eine Seitenl\"ange und ihre Winkel zu den anderen Seiten gegeben
-       sind (\glqq wsw\grqq\ f\"ur \glqq Winkel, Seite, Winkel\grqq).
+ \item Eine Seitenl\"ange und ihre Winkel zu den anderen Seiten sind gegeben
+       (\glqq wsw\grqq\ f\"ur \glqq Winkel, Seite, Winkel\grqq).
         
- \item zwei Seitenl\"angen und der von den Seiten eingeschlossenen
-       Winkel gegeben sind (\glqq sws\grqq\ f\"ur \glqq Seite, Winkel, Seite\grqq).
+ \item Zwei Seitenl\"angen und der von den Seiten eingeschlossene Winkel 
+       sind gegeben (\glqq sws\grqq\ f\"ur \glqq Seite, Winkel, Seite\grqq).
        
              
- \item ein Winkel und zwei Seitenl\"angen so gegeben sind,
-       dass nur eine der Seiten auf einem Schenkel des Winkels liegt und die andere gegebene Seite die l\"angere der beiden gegebenen Seiten ist.
-       
-       (Diesen Satz bezeichnet man mit \glqq Ssw\grqq\ f\"ur \glqq Seite, Seite, Winkel\grqq,
-        wobei das gro\ss\ geschriebene \glqq S\grqq\ signalisieren soll, dass die
+ \item Ein Winkel und zwei Seitenl\"angen sind so gegeben, dass nur eine der 
+       Seiten auf einem Schenkel des Winkels liegt und die andere gegebene 
+       Seite die l\"angere der beiden gegebenen Seiten ist.
+
+       (Diesen Satz bezeichnet man mit \glqq Ssw\grqq\ f\"ur \glqq Seite, Seite,
+        Winkel\grqq,
+        wobei das gro"s geschriebene \glqq S\grqq\ signalisieren soll, dass die
         dem Winkel gegen\"uberliegende Seite die l\"angere Seite darstellt.)
 \end{itemize}
 \end{MXInfo}
@@ -1093,13 +1106,16 @@ Es stellt sich heraus, dass es sogar unendlich viele derartige Dreiecke gibt, di
 Allerdings sehen diese Dreiecke irgendwie \"ahnlich aus. Solche \textbf{\"ahnlichen} Dreiecke erh\"alt man auch, wenn man zum Beispiel die Verh\"altnisse aller Seiten zueinander kennt.
 
 \begin{MXInfo}{\"Ahnlichkeitss\"atze f\"ur Dreiecke}
-\par
 Zwei Dreiecke sind zueinander \"ahnlich, wenn
 \begin{itemize}
- \item	sie in zwei (und damit wegen der Winkelinnensumme in drei) Winkeln \"ubereinstimmen.
- \item  sie in allen \textbf{Verh\"altnissen} ihrer entsprechenden Seiten \"ubereinstimmen.
- \item  sie in einem Winkel und im \textbf{Verh\"altnis} der anliegenden Seiten \"ubereinstimmen.
- \item  sie im \textbf{Verh\"altnis} zweier Seiten und im Gegenwinkel der gr\"o\ss eren Seite \"ubereinstimmen.
+ \item sie in zwei (und damit wegen der Winkelinnensumme in drei) 
+   Winkeln \"ubereinstimmen,
+ \item sie in allen \textbf{Verh\"altnissen} ihrer entsprechenden Seiten 
+   \"ubereinstimmen,
+ \item sie in einem Winkel und im \textbf{Verh\"altnis} der anliegenden 
+   Seiten \"ubereinstimmen,
+ \item sie im \textbf{Verh\"altnis} zweier Seiten und im Gegenwinkel der 
+   gr"o"seren Seite \"ubereinstimmen.
 \end{itemize}
 \end{MXInfo}
 
@@ -1145,22 +1161,6 @@ Eine Besonderheit gibt es bei dem rechten und dem linken Dreieck in Beispiel  \M
 
 \begin{MExercises}
 \MDeclareSiteUXID{VBKM05_Kongruenzsaetze_Exercises}
-\begin{MExercise}
-
-Geben Sie die in der folgenden Tabelle fehlenden Werte an! Dabei soll in
-einer Spalte stets der gleiche Winkel stehen.
-
-\ifttm%
-(Ein~$\pi$ geben Sie als \glqq\texttt{pi}\grqq\ ein. Bitte runden Sie Ihre Ergebnisse auf drei Nachkommastellen!)
-\fi
-
-\begin{center}
-\begin{tabular}{l*{6}{c}}
- Bogenma\ss\ & $\pi$               &   \MLParsedQuestion{10}{9*pi/5}{3}{GEO2} &   	$\frac{2 \pi}{3}$                &\MLParsedQuestion{10}{3*pi/2}{3}{GEO3} & $\frac{11 \pi}{12}$\\
- Gradma\ss\   & \MLParsedQuestion{10}{180}{3}{GEO4}      & $324$    & \MLParsedQuestion{10}{120}{3}{GEO5}        &    $270$    & \MLParsedQuestion{10}{165}{3}{GEO6}    \\
-\end{tabular}
-\end{center}
-\end{MExercise}
 
 \begin{MExercise}
 Untersuchen Sie die folgende Figur auf Stufenwinkel und Wechselwinkel!
@@ -1238,6 +1238,11 @@ Die Winkel $\alpha'$ und $\beta$ zum Beispiel sind Wechselwinkel, ebenso $\alpha
 \begin{MExercise}
 Zeigen Sie mithilfe von Wechselwinkeln, dass die Summe der Innenwinkel in einem Dreieck stets $\pi$ betr\"agt.
 
+\begin{MHint}{Tipp}
+Zeichnen Sie zu einer Seite des Dreiecks eine parallele Gerade, die durch
+die dritte Ecke verl"auft, und betrachten Sie die Winkel an dieser Ecke.
+\end{MHint}
+
 \begin{MHint}{L\"osung}
 \begin{tabular}{lc}
 \MTikzAuto{%
@@ -1306,7 +1311,7 @@ Vielecks einfach berechnet werden kann.
 
 Neben Dreiecken kann man nat\"urlich auch Figuren mit mehr Ecken betrachten:
 
-\begin{MInfo}\MLabel{VBKM05_Vielecke}%
+\begin{MXInfo}{Vielecke}\MLabel{VBKM05_Vielecke}%
 Es sei $n$ eine nat\"urliche Zahl, die mindestens $3$ betrage.
 \begin{itemize}
  \item 
@@ -1330,11 +1335,11 @@ Der kleinere dieser beiden Winkel hei\ss t
 \MEntry{regelm\"a\ss iges $n$-Eck}{regelm\"a\ss iges $n$-Eck} (bzw. \MEntry{regelm\"a\ss iges Vieleck}{regelm\"a\ss iges Vieleck} oder \MEntry{regelm\"a\ss iges Polygon}{regelm\"a\ss iges Polygon}).
 \item Die Verbindungsstrecken zwischen je zwei Ecken, die nicht auf derselben Seite des $n$-Ecks liegen, hei\ss en die \MEntry{Diagonalen}{Diagonale ($n$-Eck)} des $n$-Ecks.
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 Unter den Vielecken nehmen die Vierecke eine besondere Stellung ein, da diese in noch feinere Klassen eingeteilt werden.
 
-\begin{MInfo}\MLabel{VBKM05_Vierecke}%
+\begin{MXInfo}{Vierecke}\MLabel{VBKM05_Vierecke}%
 Ein Viereck hei\ss t
 \begin{itemize}
  \item \MEntry{Trapez}{Trapez}, falls wenigstens zwei Seiten parallel sind;
@@ -1344,11 +1349,11 @@ Ein Viereck hei\ss t
  \item \MEntry{Quadrat}{Quadrat}, falls es ein Rechteck ist, bei dem alle Seiten gleich lang sind;
  \item \MEntry{Einheitsquadrat}{Einheitsquadrat}, falls es ein Quadrat mit Seitenl\"ange $1$ ist.
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 Unter den gerade eingef\"uhrten speziellen Vierecken gibt es eine ganze Reihe von Zusammenh\"angen:
 
-\begin{MInfo}\MLabel{VBKM05_Vierecke_Beziehungen}%
+\begin{MXInfo}{Beziehungen zwischen Vierecken}\MLabel{VBKM05_Vierecke_Beziehungen}%
 \begin{itemize}
  \item Jedes Quadrat ist ein Rechteck.
 \item Jedes Quadrat ist eine Raute.
@@ -1356,11 +1361,11 @@ Unter den gerade eingef\"uhrten speziellen Vierecken gibt es eine ganze Reihe vo
 \item Jedes Parallelogramm ist ein Trapez.
 \item Jede Raute ist ein Parallelogramm.
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 Ferner lassen sich diese Vierecke auf vielerlei Arten charakterisieren.
 
-\begin{MInfo}\MLabel{VBKM05_Parallelogramm}%
+\begin{MXInfo}{Parallelogramm}\MLabel{VBKM05_Parallelogramm}%
 Ein Viereck ist genau dann ein Parallelogramm, wenn
 \begin{itemize}
  \item es ein einfaches Viereck ist, dessen gegen\"uberliegenden Seiten jeweils gleich lang sind;
@@ -1368,19 +1373,19 @@ Ein Viereck ist genau dann ein Parallelogramm, wenn
 \item zwei benachbarte Innenwinkel zusammen $\pi$ bzw. $180^\circ$ ergeben; 
 \item die Diagonalen einander halbieren.
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 
-\begin{MInfo}\MLabel{VBKM05_Raute}%
+\begin{MXInfo}{Raute}\MLabel{VBKM05_Raute}%
 Ein Viereck ist genau dann eine Raute, wenn
 \begin{itemize}
  \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht zueinander stehen;
  \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren.
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 
-\begin{MInfo}\MLabel{VBKM05_Rechteck}%
+\begin{MXInfo}{Rechteck}\MLabel{VBKM05_Rechteck}%
 Ein Viereck ist genau dann ein Rechteck, wenn
 \begin{itemize}
  \item alle Innenwinkel gleich gro\ss\ sind;
@@ -1390,10 +1395,10 @@ Ein Viereck ist genau dann ein Rechteck, wenn
 \item es eine Raute mit gleich langen Diagonalen ist;
 \item die Diagonalen einander halbieren und wenigstens ein Innenwinkel ein rechter Winkel ist.
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 
-\begin{MInfo}\MLabel{VBKM05_Quadrat}%
+\begin{MXInfo}{Quadrat}\MLabel{VBKM05_Quadrat}%
 Ein Viereck ist genau dann eine Quadrat, wenn
 \begin{itemize}
 \item alle Seiten gleich lang und alle Winkel gleich gro\ss\ sind;
@@ -1404,7 +1409,7 @@ Ein Viereck ist genau dann eine Quadrat, wenn
  \item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren und alle Innenwinkel gleich gro\ss\ sind;
 \item es sowohl eine Raute als auch ein Rechteck ist.
 \end{itemize}
-\end{MInfo}
+\end{MXInfo}
 
 \end{MXContent}
 
@@ -1437,10 +1442,10 @@ Zuerst sollen Rechtecke betrachtet werden.
 \end{minipage}
 \end{tabular}
 
-\begin{MInfo}
+\begin{MXInfo}{Fl"ache eines Rechtecks}
  Die Fl\"ache $A$ des Rechtecks ist 
  \[A=b\cdot a=a\cdot b \MDFPeriod\]
-\end{MInfo}
+\end{MXInfo}
 
 \begin{tabular}{lr}
 \begin{minipage}{10cm}
@@ -1678,10 +1683,10 @@ Man kann das Parallelogramm in das linke rote Dreieck, einem folgenden Rechteck 
 
 Zum Schluss sollen noch Kreisfl\"achen berechnet werden. In \MRef{Kreiszahl} wurde bereits die Kreiszahl $\pi$ vorgestellt, die \"uber den Umfang des Kreises definiert ist. 
 Ebenso h\"angt die Kreiszahl mit dem Fl\"acheninhalt von Kreisen zusammen.
-\begin{MInfo}
+\begin{MXInfo}{Fl"acheninhalt eines Kreises}
 Der Fl\"acheninhalt eines Kreises mit dem Radius $r$ berechnet sich zu 
 \[A=\pi\cdot r^2 \MDFPeriod\]
-\end{MInfo}
+\end{MXInfo}
 
 \begin{MExample}
 Ein Kreis habe einen Fl\"acheninhalt von $\MZahl{12}{566}$ bei einem Radius von $r=2$. Hieraus l\"asst sich die Kreiszahl $\pi$ berechnen:
@@ -2275,8 +2280,8 @@ Es sei nun der Winkel $\gamma$ auf $\gamma\,=\,\pi/2$ festgelegt, das hei\ss t e
 $a$, $a'$, $\ldots$ als \textbf{Gegenkatheten} und die am Winkel anliegenden Seiten $b$, $b'$, $\ldots$ als \textbf{Ankatheten}.\\
 Wendet man nun die Strahlens\"atze an, so gelangt man zu folgenden Erkenntnissen: 
 
-\begin{MInfo}\MLabel{Mathematik_ElementareGeometrie_Def:Trigonometrie}%
-\textbf{Die trigonometrischen Funktionen im rechtwinkligen Dreieck}
+\begin{MXInfo}{Die trigonometrischen Funktionen im rechtwinkligen Dreieck}
+\MLabel{Mathematik_ElementareGeometrie_Def:Trigonometrie}%
 
 \begin{center}
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_TrigonometrieDefinition_1.png}{scale=1}
@@ -2318,7 +2323,7 @@ Wendet man nun die Strahlens\"atze an, so gelangt man zu folgenden Erkenntnissen
  bezeichnet man als den \textbf{Tangens} des Winkels $\alpha$.
 \end{itemize}
 
-\end{MInfo}
+\end{MXInfo}
 
 Der Tangens des Winkels $\alpha$ ist nach der Definition \[\tan\left(\alpha\right)=\frac{a}{b}=\frac{a}{b}\cdot\frac{c}{c}=\frac{a}{c}\cdot\frac{c}{b}=\frac{\sin\left(\alpha\right)}{\cos\left(\alpha\right)} \MDFPeriod\]
 
