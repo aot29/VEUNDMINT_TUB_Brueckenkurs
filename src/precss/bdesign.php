@@ -190,7 +190,7 @@ img {
     border: 0 !important;   
     font-family: 'open-sans-condensed' !important;
     font-weight: 700 !important;
-    min-height:30px !important;
+    min-height:[-HEADHEIGHT-] !important;
 }
 
 .headmiddle {
@@ -219,59 +219,59 @@ img {
 #minusbutton:before {
 	font-family: 'FontAwesome' !important;
 	content: "\f068" !important;
-	width:30px !important;
-	height:30px !important;
-	font-size: 14px !important;
-	line-height: 30px !important;
+	width: [-HEADHEIGHT-] !important;
+	height: [-HEADHEIGHT-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-HEADHEIGHT-] !important;
 }
 #plusbutton:before {
 	font-family: 'FontAwesome' !important;
 	content: "\f067" !important;
-	width:30px !important;
-	height:30px !important;
-	font-size: 14px !important;
-	line-height: 30px !important;
+	width: [-HEADHEIGHT-] !important;
+	height: [-HEADHEIGHT-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-HEADHEIGHT-] !important;
 }
 #sharebutton:before {
 	font-family: 'FontAwesome' !important;
 	content: "\f1e0" !important;
-	width:30px !important;
-	height:30px !important;
-	font-size: 14px !important;
-	line-height: 30px !important;
+	width: [-HEADHEIGHT-] !important;
+	height: [-HEADHEIGHT-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-HEADHEIGHT-] !important;
 }
 #starbutton:before {
 	font-family: 'FontAwesome' !important;
 	content: "\f005" !important;
-	width:30px !important;
-	height:30px !important;
-	font-size: 14px !important;
-	line-height: 30px !important;
+	width: [-HEADHEIGHT-] !important;
+	height: [-HEADHEIGHT-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-HEADHEIGHT-] !important;
 }
 #menubutton:before {
 	font-family: 'FontAwesome' !important;
 	content: "\f0c9" !important;
-	width:30px !important;
-	height:30px !important;
-	font-size: 14px !important;
-	line-height: 30px !important;
+	width: [-HEADHEIGHT-] !important;
+	height: [-HEADHEIGHT-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-HEADHEIGHT-] !important;
 }
 #settingsbutton:before {
 	font-family: 'FontAwesome' !important;
 	content: "\f013" !important;
-	width:30px !important;
-	height:30px !important;
-	font-size: 14px !important;
-	line-height: 30px !important;
+	width: [-HEADHEIGHT-] !important;
+	height: [-HEADHEIGHT-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-HEADHEIGHT-] !important;
 }
 #listebutton:before {
 	font-family: 'FontAwesome' !important;
 	content: "\f03a" !important;
 	font-weight: 400;
-	width:30px !important;
-	height:30px !important;
-	font-size: 14px !important;
-	line-height: 30px !important;
+	width: [-HEADHEIGHT-] !important;
+	height: [-HEADHEIGHT-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-HEADHEIGHT-] !important;
 	display: inline-block;
 	text-align: center;
 }
@@ -280,10 +280,10 @@ img {
 	font-family: 'FontAwesome' !important;
 	content: "\f015" !important;
 	font-weight: 400;
-	width:30px !important;
-	height:30px !important;
-	font-size: 14px !important;
-	line-height: 30px !important;
+	width: [-HEADHEIGHT-] !important;
+	height: [-HEADHEIGHT-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-HEADHEIGHT-] !important;
 	display: inline-block;
 	text-align: center;
 }
@@ -299,7 +299,7 @@ img {
 #loginbutton, #cdatabutton, #LOGINROW {
 	text-transform: uppercase;
 	padding: 2px 0px 2px 10px !important;
-	font-size: 14px !important;
+	font-size: [-SMALLFONTSIZE-] !important;
 	letter-spacing: 0.5px !important;
 	line-height: 26px;
 }
@@ -314,12 +314,12 @@ img {
 	font-weight: 700 !important;
     border-bottom: 0px !important;
     margin-left: 0px !important;
-    min-height:60px !important;
+    min-height: [-NAVIHEIGHT-] !important;
     padding: 10px 0 !important;
     box-sizing: border-box;
 }
 .navi ul {
-    padding: 0 30px !important;
+    padding: 0 [-HEADHEIGHT-] !important;
 }
 .navi ul li {
     background-color: transparent !important;
@@ -386,14 +386,15 @@ img {
 /* toc */ 
 
 .toc {
-    height: 100% !important;
+    overflow: auto;
     padding: 0 !important;
-    margin: 0 !important;
-	font-family: 'open-sans-condensed' !important;
-	font-weight: 700 !important;
-    top: 90px  !important;
+    margin-top: 0px !important;
+    bottom: [-FOOTERHEIGHT-];
+    top: [-TOCTOP-]  !important;
+    font-family: 'open-sans-condensed' !important;
+    font-weight: 700 !important;
     border-right: 0 !important;
-    width:160px !important;
+    width:[-MENUWIDTH-] !important;
     box-sizing: border-box !important;
     position: fixed !important;
     background-color: [-TOCBACKGROUND-] !important;
@@ -405,7 +406,7 @@ tocnavsymb {
     color: [-TOCBORDERCOLOR-];
     margin: 0 !important;
 	font-family: 'open-sans-condensed' !important;
-    font-size: 16px;
+    font-size: [-BASICFONTSIZE-];
     box-sizing: border-box !important;
 }
 
@@ -415,7 +416,7 @@ tocnavsymb {
     padding: 20px 10px !important;
     border: 0 !important;
     font-family: 'open-sans-condensed' !important;
-    font-size: 18px;
+    font-size: [-BIGFONTSIZE-];
     text-transform: uppercase;
     letter-spacing: 0.5px;
     border-bottom: 1px solid [-TOCMINCOLOR-] !important;
@@ -465,25 +466,25 @@ tocnavsymb ul li ul li a:hover div{
 	font-family: 'FontAwesome' !important;
 	content: "\f15b" !important;
 	width:auto !important;
-	height:14px !important;
-	font-size: 14px !important;
-	line-height: 14px !important;
+	height: [-SMALLFONTSIZE-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-SMALLFONTSIZE-] !important;
 }
 .xsymb.status2:before {
 	font-family: 'FontAwesome' !important;
 	content: "\f0f6" !important;
 	width:auto !important;
-	height:14px !important;
-	font-size: 14px !important;
-	line-height: 14px !important;
+	height: [-SMALLFONTSIZE-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-SMALLFONTSIZE-] !important;
 }
 .xsymb.status1:before {
 	font-family: 'FontAwesome' !important;
 	content: "\f016" !important;
 	width:auto !important;
-	height:14px !important;
-	font-size: 14px !important;
-	line-height: 14px !important;
+	height: [-SMALLFONTSIZE-] !important;
+	font-size: [-SMALLFONTSIZE-] !important;
+	line-height: [-SMALLFONTSIZE-] !important;
 }
 .xsymb.erledigt {
 	color: rgba(255,255,255,0.3) !important;
@@ -500,15 +501,15 @@ tocnavsymb ul li ul li a:hover div{
 /* footer */ 
 
 #footer {
-	font-family: 'open-sans-condensed' !important;
-	font-weight: 700 !important;
+    font-family: 'open-sans-condensed' !important;
+    font-weight: 700 !important;
     padding: 0px !important;
     color: white !important;
-    height:20px !important;
+    height: [-FOOTERHEIGHT-] !important;
     text-transform: uppercase !important;
     max-width: auto !important;
-    font-size: 12px !important;
-    line-height: 20px !important;
+    font-size: [-TINYFONTSIZE-] !important;
+    line-height: [-FOOTERHEIGHT-] !important;
     letter-spacing: 0.5px;
     position: fixed;
     display: flex;
@@ -523,14 +524,14 @@ tocnavsymb ul li ul li a:hover div{
 
 .footerleft, .footerright {
     display: inline-block;
-    width: 200px;
+    width: 150px;
     text-align:center
 }
 
 
 #footerleft .tocminbutton, #footerright .tocminbutton {
-    font-size: 12px !important;
-    line-height: 20px !important;
+    font-size: [-TINYFONTSIZE-] !important;
+    line-height: [-FOOTERHEIGHT-] !important;
     letter-spacing: 0.5px;
     color: white !important;
     font-family: 'open-sans-condensed' !important;

@@ -3812,6 +3812,11 @@ sub create_tree {
 
   # Makropaket und Modifikation im Speicher einrichten
   $macrotex = readfile("$basis/src/tex/$macrofile");
+  
+  if ($macrotex =~ m/\\MPragma{mintmodversion;(P[^}]*)}/s ) {
+      logMessage($FATALERROR, "This converter version is no longer compatible with mintmod.tex version " . $1 . ", please use tex2x.py instead!")
+  }
+  
   $modmacrotex = $macrotex;
   my $repl = "\\variant" . $variantactive . "true \% this string was added by mconvert.pl\n";
   if ($modmacrotex =~ s/\\variantstdtrue/$repl/s ) {

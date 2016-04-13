@@ -51,6 +51,9 @@ class TContent(object):
         self.title = "ROOT" # text of the html title tag for children
         self.caption = "" # used for navigation buttons, only filled in by level 4 elements
         self.modulid = ""
+        # attribute chapter set for level 1 nodes and recursively for their children
+        # attribute section only set for level 2 sectionstarts
+        # attribute subsection only set for level 4 xcontents
 
         # tree context information
         self.nr = ""

@@ -136,12 +136,19 @@ class Option(object):
         
         menuwidth = 160
         mybasicfontsize = 16
+        headheight = 30
+        naviheight = 60
         self.sizes = {
             "CONTENTMINWIDTH": 800,                # Breite unter die der content nicht geschrumpft werden kann ohne Scrollbalken zu aktivieren
             "MENUWIDTH": menuwidth,                # Breite der Menueleiste am linken Rand
             "TOCWIDTH": menuwidth - 21,
+            "HEADHEIGHT": headheight,
+            "NAVIHEIGHT": naviheight,
+            "TOCTOP": headheight + naviheight,
+            "FOOTERHEIGHT": 20,
             "STARTFONTSIZE": mybasicfontsize,      # Grundlage zur dynamischen Veraenderung der anderen fontsizes
             "BASICFONTSIZE": mybasicfontsize,
+            "TINYFONTSIZE": mybasicfontsize - 4,
             "SMALLFONTSIZE": mybasicfontsize - 2,
             "BIGFONTSIZE": mybasicfontsize + 2
         }
@@ -166,9 +173,6 @@ class Option(object):
         self.footer_middle = self.description
         # don't use \" in strings as they are being passed to JavaScript variables (and \" becomes evaluated)
         self.footer_left = "<img src='images/ccbysa80x15.png' border='0' />"
-        
-        if self.dopdf == 1:
-            self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdf.png' border='0' />"
         
         self.footer_right = "<a href='mailto:" + self.reply_mail + "' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a>"
         self.mainlogo = "veundmint_netlogo.png" # Im Pfad files/images
@@ -284,6 +288,10 @@ class Option(object):
                 
             else:
                 print("Invalid override string: " + ov)
+
+        if self.dopdf == 1:
+            self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdfmini.png' border='0' /></a>"
+
                 
         self.check_consistency()
 
