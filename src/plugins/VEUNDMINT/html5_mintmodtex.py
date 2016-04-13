@@ -128,7 +128,8 @@ class Plugin(basePlugin):
         
         self.generate_directory()
         self.generate_css()
-        
+
+        self.xidobj = None # used by global xcontent linking
         self.setup_contenttree()
         self.analyze_html() # analyzation done on raw text
         self.analyze_nodes_stage1(self.ctree) # analyzation done inside nodes
@@ -352,7 +353,7 @@ class Plugin(basePlugin):
                         self.sys.message(self.sys.CLIENTERROR, "Could not determine full path of tc element " + tc.title)
                     p.backpath = p.parent.backpath + "../" # level 4 xcontents are located in html/X.Y.Z/.
                     p.menuitem = 0
-                    p.nr = "" # actually used?
+                    p.nr = ""
                     p.level = p.parent.level + 1
                     if p.level != self.options.contentlevel:
                         self.sys.message(self.sys.CLIENTWARN, "xcontent did not get level " + str(self.options.contentlevel) + " as required by options")
@@ -363,15 +364,13 @@ class Plugin(basePlugin):
                     if re.search(r"<!-- declareexcsymb //-->", p.content, re.S):
                         p.tocsymb = "status2"
                         
-                    # create course ranged linking
-                    """
-                                        $p->{XPREV} = $XIDObj;
-                                        if ($XIDObj != -1) {
-                                        $XIDObj->{XNEXT} = $p;
-                                        }
-                                        $p->{XNEXT} = -1;
-                                        $XIDObj = $p;
-                    """
+                    # create course wide xcontent links
+                    p.xleft = self.xidobj
+                    if not self.xidobj is None:
+                        self.xidobj.xright = p
+                    p.xright = None
+                    self.xidobj = p
+
                     if testpage != 0: p.testsite = True
                     p.nr = sid
                     if i == 0:
@@ -722,6 +721,67 @@ class Plugin(basePlugin):
 
         tc.content = re.sub(r"\<!-- msref;;(.+?);;(.+?); //--\>", srefexpand, tc.content, 0, re.S)
 
+        # perform some HTML content optimizations
+    
+        # delete text "Chapter" in chapters (compatible with MINTERLINK?)
+        m = re.search(r"^\<a name=.*?\>\n(Chapter )?(.*?)\</a\>(\<br /\>|&nbsp;&nbsp;)(.*)$", tc.title, re.S)
+        if m:
+            tc.title = m.group(2) + " " + m.group(4)
+            self.sys.message(self.sys.VERBOSEINFO, "Chapter title modified to " + tc.title)
+            
+        # "," is treated like an operator by ttm
+        # decimal numbers in mn-tag
+        # care for decimal numbers with powers
+        (tc.content, n) = re.subn(r"\<mn\>([0-9]*)\</mn\>\<mo\>,\</mo\>(\n|\r)*\<msup\>\<mrow\>\<mn\>([0-9]*)\</mn\>\</mrow\>\<mrow\>\<mn\>([0-9])\</mn\>\</mrow\>(\n|\r)*\</msup\>",
+                                  "<msup><mrow><mn>\\1,\\3</mn></mrow><mrow><mn>\\4</mn></mrow>\n</msup>", tc.content, 0, re.S)
+        if n > 0:
+            self.sys.message(self.sys.VERBOSEINFO, "Performed " + str(n) + " decimal number modifications")
+                            
+    
+        # Care for a bug in MathJax 2.6 (not present in 2.4): displaystyle=true is not inherited by tables and must be declared again inside the table
+        (tc.content, n) = re.subn(r"\<mstyle displaystyle=\"true\"\>\<mrow\>\n\<mtable([^\>]+)\>", "<mstyle displaystyle=\"true\"><mrow>\n<mtable\\1><mstyle displaystyle=\"true\">", tc.content, 0, re.S)
+        if n > 0:
+            self.sys.message(self.sys.VERBOSEINFO, "Performed " + str(n) + " mstyle modifications on mtables")
+    
+        # gemerate MathML tables without width or alignment attributes (which in IE generate large spaced areas)
+        (tc.content, n) = re.subn(r"\<mtable([^\>]+)\>", "<mtable>", tc.content, 0, re.S)
+        if n > 0:
+            self.sys.message(self.sys.VERBOSEINFO, "Performed " + str(n) + " IE-mtable modifications")
+
+        # paragraph math not in tales, but in center tags
+        (tc.content, n) = re.subn(r"\<table width=\"100%\"\>\<tr\>\<td align=\"center\"\>\s*(\<math(.|\n)*?\</math\>)\s*\</td\>\</tr\>\</table\>",
+                                   "<center>\\1</center>", tc.content, 0, re.S)
+        if n > 0:
+            self.sys.message(self.sys.VERBOSEINFO, "Performed " + str(n) + " tabletag modifications")
+        
+        # \subsetneq unknown to ttm
+        tc.content = tc.content.replace("\\subsetneq", "<mtext>&subne;</mtext>")
+        
+        # mathbb set symbols
+        (tc.content, n) = re.subn(r"\\mathbb\<mi\>[A-Za-z]\</mi\>", "<mo>&\\1opf;</mo>", tc.content, 0, re.S)
+        if n > 0:
+            self.sys.message(self.sys.VERBOSEINFO, "Performed " + str(n) + " set symbol modifications")
+      
+        # reduce space lengths in formulas
+        tc.content = re.sub(r"\<mi\>&emsp;\</mi\>", "<mi>&nbsp;</mi>", tc.content, 0, re.S)
+        tc.content = re.sub(r"\<mi\>&emsp;&emsp;\</mi\>", "<mi>&nbsp;&nbsp;</mi>", tc.content, 0, re.S)
+        tc.content = re.sub(r"\<mi\>&emsp;&emsp;&emsp;\</mi\>", "<mi>&nbsp;&nbsp;&nbsp;</mi>", tc.content, 0, re.S)
+        tc.content = re.sub(r"\<mi\>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;\</mi\>", "<mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi>", tc.content, 0, re.S) # generated by two successive \quad
+
+        #\empty us not an integer, but text
+        tc.content = re.sub(r"\<mi\>&empty;\</mi\>", "<mtext>&empty;</mtext>", tc.content, 0, re.S)
+        
+        # text directly placed in front of a $-environment (especially open braces) receive a newline in HTML which turns into a space in HTML, remove it
+        tc.content = re.sub(r"\n\<math", "<math", tc.content, 0, re.S)
+        
+        # tables with borders need borders for cells too (as strict html requires all elements to have same border style, which can only be
+        # be circumvented using css or js tricks)
+
+        def repltd(m):
+            t = re.sub(r"\<td([^\>]*?)\>", "<td\\1 class=\"rahmen\">", m.group(1), 0, re.S)
+            return "<table border=\"1\" class=\"rahmen\">" + t + "</table>"
+        tc.content = re.sub(r"\<table border\=\"1\"\>((.|\s)*?)\</table\>", repltd, tc.content, 0, re.S)
+
        
         # recursively analyze children
         for c in tc.children:
@@ -756,6 +816,13 @@ class Plugin(basePlugin):
                 if "<!-- mglobal" + s + "tag -->" in tc.html:
                     self.sys.message(self.sys.CLIENTINFO, "Global " + s + "tag found in file " + f + ", locally " + tc.link)
                     self.siteredirects[s][1] = self.outputextension + "/" + tc.link + "." + self.outputextension
+            
+            # generate export files if required
+            if (len(tc.exports) != 0):
+                self.sys.message(self.sys.VERBOSEINFO, "Generating " + str(len(tc.exports)) + " additional export files")
+                for i in range(len(tc.exports)):
+                    self.sys.writeTextFile(os.path.join(tc.fullpath, tc.exports[i][0]), tc.exports[i][1], self.outputencoding)
+            
                     
             
     def write_miscfiles(self):
@@ -952,12 +1019,12 @@ class Plugin(basePlugin):
         if self.options.dozip == 1:
             self.sys.pushdir()
             os.chdir(self.options.targetpath)
-            zipfile = "tree.zip"
-            p = subprocess.Popen(["zip", "-r", zipfile, os.path.join(self.options.targetpath, "*")], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+            zipfile = self.options.output + "_" + self.options.variant + ".zip"
+            p = subprocess.Popen(["zip", "-r", os.path.join(self.options.currentDir, zipfile), ".", "-i", "*"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
             (output, err) = p.communicate()
             self.sys.popdir()
             if p.returncode == 0:
-                self.sys.message(self.sys.CLIENTINFO, "Added zip file " + zipfile)
+                self.sys.message(self.sys.CLIENTINFO, "Generated zip file " + zipfile)
             else:
                 self.sys.message(self.sys.FATALERROR, "zip command error, last lines:" + output)
                     

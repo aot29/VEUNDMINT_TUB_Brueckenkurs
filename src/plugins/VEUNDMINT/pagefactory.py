@@ -651,6 +651,8 @@ class PageFactory(object):
   }
 
         """
+
+
         
         # prepare DirectRoulette divs
         def droul(m):
@@ -672,3 +674,5 @@ class PageFactory(object):
         html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>", droul, html, 0, re.S)
   
         return html
+    
+    # end postprocessing

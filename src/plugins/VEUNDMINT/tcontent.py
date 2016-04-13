@@ -63,7 +63,7 @@ class TContent(object):
         self.display = False
         
         # other information
-        self.exports = []
+        self.exports = [] # list of pairs [ localfilename, txtcontent ]
         self.docname = ""
         self.uxid = ""
         self.myid = 0 # .id is special in python, 0 is the id of the root element
