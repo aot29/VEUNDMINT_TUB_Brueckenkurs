@@ -233,7 +233,7 @@ class PageFactory(object):
                                        divid = "idxsymb_tc" + str(p4.myid)
                                        tsec += "<a class=\"MINTERLINK\" href=\"" + p4.fullname + "\"><div id=\"" + divid + "\" class=\"xsymb " + p4.tocsymb + cl + "\"></div></a>\n"
                                        
-                                c += "    <li><a class=\"MINTERLINK\" href=\"" + p3.fullname + "\">" + tsec + "</li>\n"
+                                c += "    <li><a class=\"MINTERLINK\" href=\"" + pages4[0].fullname + "\">" + tsec + "</li>\n"
                         c += "    </ul></div>\n"
                 c += "  </li>\n"
         c += "\n" \
@@ -272,6 +272,7 @@ class PageFactory(object):
     def getnavi(self, tc):
         navi = ""
 
+        # link to previous page
         p = tc.navleft()
         icon = "nprev"
         if (tc.level == self.options.contentlevel) and (p is None):
@@ -311,14 +312,13 @@ class PageFactory(object):
         if (tc.level != self.options.contentlevel):
             # higher level: set links to module start
             pp = tc
-            if (pp.level != self.options.contentlevel):
-                sp = pp.children
-                pp = sp[0]
+            while (pp.level != self.options.contentlevel):
+                pp = pp.children[0]
             navi += "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" + pp.fullname + "\">"
             if (not pp.helpsite):
-                 navi + self.options.strings['module_starttext']
+                 navi += self.options.strings['module_starttext'] + tc.title
             else:
-                 navi + self.options.strings['module_moreinfo']
+                 navi += self.options.strings['module_moreinfo']
             navi += "</a></li>\n"
         
         parent = tc.parent

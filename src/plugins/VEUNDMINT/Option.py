@@ -106,7 +106,7 @@ class Option(object):
             "explanation_exercises": "Übungsaufgaben",
             "explanation_test": "Abschlusstest",
             "chapter": "Kapitel",
-            "module_starttext": "Modul starten",
+            "module_starttext": "Modul starten: ",
             "module_solutionlink": "Lösung ansehen",
             "module_solution": "Lösung",
             "module_solutionback": "Zurück zur Aufgabe",
@@ -166,7 +166,7 @@ class Option(object):
 
         # VE&MINT course parameters, defining values used by the online course
         server = "https://mintlx3.scc.kit.edu/dbtest"
-        self.signature_main = "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+        self.signature_main = "OBM_PTEST1" # "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE_MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
         self.do_feedback = "0"                        # Feedbackfunktionen aktivieren? DOPPLUNG MIT FLAGS
