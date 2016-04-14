@@ -51,6 +51,7 @@ class Option(object):
         self.converterDir = os.path.join(self.currentDir, "src")
         self.logFilename = "conversion.log"
         self.locale = "de_DE" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language, string definition depends on used system!
+        locale.setlocale(locale.LC_ALL, self.locale)
         
         # VE&MINT conversion flags, using values 0 and 1 (integers)
         self.testonly = 0
@@ -92,7 +93,7 @@ class Option(object):
         self.htmltikzscale = 1.3                             # scaling factor used for tikz-png scaling, can be overridden by pragmas
         self.autotikzcopyright = 0
 
-        self.generate_pdf = { "tree1_tu9onlinekurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung
+        self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
         # Settings for HTML design and typical phrases        
         self.chaptersite = "chapters.html"
@@ -165,6 +166,10 @@ class Option(object):
         self.footer_middle = self.description
         # don't use \" in strings as they are being passed to JavaScript variables (and \" becomes evaluated)
         self.footer_left = "<img src='images/ccbysa80x15.png' border='0' />"
+        
+        if self.dopdf == 1:
+            self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdf.png' border='0' />"
+        
         self.footer_right = "<a href='mailto:" + self.reply_mail + "' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a>"
         self.mainlogo = "veundmint_netlogo.png" # Im Pfad files/images
         self.stdmathfont = "0" # Erzwingt Standard-Arial-Font in Text in Formeln
@@ -241,10 +246,7 @@ class Option(object):
         self.sitetaglist = ["chapter", "config", "data", "favorites", "location", "search", "test"]
         
         # ModuleStructure
-        self.ModuleStructure=[]
-
-        
-        # ModuleStructure
+        self.ModuleStructure = []
         self.ModuleStructureClass= "xcontent" #nach dieser klasse wird gesucht, um Modulbereiche zu identifizieren. (Dann jeweils mit einer Nummer dahinter)
 
         
@@ -282,4 +284,29 @@ class Option(object):
                 
             else:
                 print("Invalid override string: " + ov)
+                
+        self.check_consistency()
 
+   
+    # checks if given option values (including overrides) are consistent
+    def check_consistency(self):
+        for p in [ self.converterCommonFiles, self.texCommonFiles, self.sourcepath_original ]:
+            if not os.path.isdir(p):
+                print("FATAL ERROR: Mandatory directory not found: " + p + ", aborting program with error code 1")
+                sys.exit(1)
+                
+        if self.docollections == 1:
+            if (self.nosols == 1) or (self.qautoexport == 1) or (self.cleanup == 1):
+                print("FATAL ERROR: Option docollections=1 cannot be used with nosols, qautoexport or cleanup flags, aborting with error code 1")
+                sys.exit(1)
+
+        if self.dorelease == 1:
+            if (self.cleanup != 1) or (self.docollections == 1) or (self.doverbose == 1) or (self.dotikz == 0) or (self.borkify == 0):
+                print("FATAL ERROR: Option dorelease=1 cannot be used with cleanup=0, docollections=1, dotikz=0, borkify=0 or doverbose=1, aborting with error code 1")
+                sys.exit(1)
+
+        if self.scormlogin == 1:
+            if self.doscorm == 0:
+                print("FATAL ERROR: Option scormlogin is detrimental if doscorm is not active, aborting with error code 1")
+                sys.exit(1)
+                
