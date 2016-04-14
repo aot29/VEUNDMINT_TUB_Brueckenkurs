@@ -815,7 +815,8 @@ einem beliebigen Punkt $C$ auf dem Halbkreis verbindet, dann ist das so
 entstandene Dreieck immer rechtwinklig.
 
 \begin{MExample}\MLabel{ThaleskreisBeispiel}
-Es soll ein rechtwinkliges Dreieck mit der Hypotenusenl\"ange $c=6\MEinheit{cm}$ und der H\"ohe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.\\
+Es soll ein rechtwinkliges Dreieck mit der Hypotenusenl\"ange $c=6\MEinheit{cm}$ 
+und der H\"ohe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.\\
 \ \\
 \begin{tabular}{lr}
 \begin{minipage}[b]{7cm}
@@ -1775,10 +1776,10 @@ technischen Konstruktionen erkennbar ist.
 Es wird ein Rechteck betrachtet und senkrecht zur Zeichenebene verschoben.
 Dadurch entsteht ein Quader. Seine Oberfl"ache besteht aus dem gegebenen
 Rechteck und einer Kopie davon. Au"serdem entstanden aus den vier Seiten
-des jeweils vier weitere Rechtecke.
+des des urspr"unglichen Rechtecks jeweils vier weitere Rechtecke.
 \end{MExample}
 
-Betrachtet man irgend ein Vieleck, und verschiebt dieses senkrecht, entsteht
+Betrachtet man irgend ein Vieleck und verschiebt dieses senkrecht, entsteht
 ein Prisma genannter K"orper. Der Name wird auch f"ur durchsichtige physikalische
 K"orper dieser Form verwendet, mit denen Lichtwellen gebrochen werden. Die 
 einzelnen Lichtwellen von scheinbar wei"sem Licht werden in verschiedenen Farben
@@ -1830,19 +1831,19 @@ Die anderen Fl"achen bilden zusammen den Mantel $M$.
 \end{center}
 
 In der Zeichnung ist ein Prisma mit einem Dreieck als Grundfl"ache gezeigt. Die
-anderen Seitenfl"achen, die an die Grundfl"ache angrenzen sind Rechtecke.
+anderen Seitenfl"achen, die an die Grundfl"ache angrenzen, sind Rechtecke.
 %Ende (Zeichnung).
 
 Das Volumen $V$ des Prismas ist das Produkt aus dem Fl"acheninhalt des Vielecks 
 $G$ und der H"ohe $h$: Es ist $V = G \cdot h$.
 
 Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich aus dem doppelten Inhalt der 
-Grundfl"ache $G$ und des Mantels $M$. Wenn $U$ der Umfang des gegebenen Vielecks 
-ist, gilt $O = 2 \cdot G + M = 2 \cdot G + U \cdot h$.
+Grundfl"ache $G$ und dem Fl"acheninhalt des Mantels $M$. Wenn $U$ der Umfang 
+des gegebenen Vielecks ist, gilt $O = 2 \cdot G + M = 2 \cdot G + U \cdot h$.
 \end{MXInfo}
 
 Im einf"uhrenden Beispiel wurde ein Quader beschrieben. Mit obiger Definition
-kann er als spezielles Prisma angesehen werden, n"amlich ein Prisma mit einem 
+kann er als spezielles Prisma angesehen werden, n"amlich als ein Prisma mit einem 
 Rechteck als Grundfl"ache. Wenn alle Seitenfl"achen Quadrate sind, spricht man
 von einem W"urfel.
 
@@ -1912,9 +1913,8 @@ Kreisscheibe $G$ mit dem Radius $r$ und der H"ohe $h$:
 Es ist $V = G \cdot h = \pi \cdot r^2 \cdot h$.
 
 Der Fl"acheninhalt $O$ der Oberfl"ache ergibt sich als Summe aus dem doppelten
-Inhalt der Kreisscheibe $K$ und dem Mantel $M$.
-Mit dem Umfang $U = 2 \cdot \pi \cdot r$ der gegebenen Kreisscheibe
-gilt 
+Inhalt der Kreisscheibe $G$ und dem Inhalt des Mantels $M$.
+Mit dem Umfang $U = 2 \cdot \pi \cdot r$ der gegebenen Kreisscheibe gilt 
 $O = 2 \cdot G + M = 2 \cdot \pi \cdot r^2 + 2 \cdot \pi \cdot r \cdot h %
  = 2 \cdot \pi \cdot r \cdot (r + h)$.
 \end{MXInfo}
@@ -2050,10 +2050,10 @@ Damit ist $O = G + M = G + D_1 + \ldots + D_n$.
 
 In besonderen Situationen ergeben sich einfache Formeln, mit denen 
 das Volumen und die Oberfl"ache berechnet werden k"onnen. Ein Beispiel ist
-die oben abgebildete Pyramide. Dort sind alle Seitenfl"achen gleichseitige 
-Dreiecke. Die folgende Aufgabe bietet die Gelegenheit, hierf"ur eine Formel
-f"ur Volumen und Oberfl"ache mit den Eigenschaften gleichseitiger Dreiecke
-zu finden.
+die oben abgebildete Pyramide. Dort ist die Grundfl"ache ein gleichseitiges 
+Dreieck. Die folgende Aufgabe bietet die Gelegenheit, f"ur einen speziellen
+Fall dieser Situation eine Formel f"ur Volumen und Oberfl"ache mit den 
+Eigenschaften gleichseitiger Dreiecke zu finden.
 
 \begin{MExercise}
 Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ einer Pyramide, deren 
@@ -2156,8 +2156,12 @@ Kreisscheibe $G$ und der H"ohe $h$.
 Es gilt $V = \frac{1}{3} \cdot G \cdot h %
  = \frac{1}{3} \cdot \pi \cdot r^2 \cdot h$.
 
-Der Fl"acheninhalt der Oberfl"ache ist die Summe des Inhalts der 
-Kreisscheibe $G$ und des Mantels $M$. Wenn $l$ der Abstand der 
+Ein Kegel in der hier betrachteten Situation, in der sich die Spitze des 
+Kegels senkrecht "uber dem Mittelpunkt der Kreisscheibe befindet, wird 
+genauer als \MEntry{gerader Kreiskegel}{Kreiskegel, gerade} bezeichnet.
+
+Der Fl"acheninhalt der Oberfl"ache eines geraden Kreiskegels ist die Summe 
+des Inhalts der Kreisscheibe $G$ und des Mantels $M$. Wenn $l$ der Abstand der 
 Kegelspitze vom Rand der Kreisscheibe ist, 
 gilt mit dem Kreisumfang $U =  2 \pi r$ dann
 $O = G + M = \pi \cdot r^2 + \pi \cdot r \cdot l %
@@ -2165,7 +2169,7 @@ $O = G + M = \pi \cdot r^2 + \pi \cdot r \cdot l %
 \end{MXInfo}
 
 In obiger Zeichnung eines Kegels wird die H"ohe $h$ genannt. Die angebenen 
-Formeln enthalten jedoch den Abstand der Spitze vom Rank der Kreisscheibe.
+Formeln enthalten jedoch den Abstand der Spitze vom Rand der Kreisscheibe.
 Wie h"angen beide Gr"o"sen zusammen?
 
 \begin{MExercise}
@@ -2202,41 +2206,42 @@ Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ des Kegels:
 \MDeclareSiteUXID{VBKM05_ElementareKoerper_Exercises}
 
 \begin{MExercise}
-Berechnen Sie das Volumen eines Prismas der H"ohe $h = 8 \MEinheit{cm}$, dessen 
-Grundfl"ache ein gleichseitiges Sechseck mit Seitenl"ange $a = 3 \MEinheit{cm}$ 
+Berechnen Sie das Volumen eines Prismas der H"ohe $h = 8\MEinheit{cm}$, dessen 
+Grundfl"ache ein gleichseitiges Sechseck mit Seitenl"ange $a = 3\MEinheit{cm}$ 
 ist.
 \par
-Antwort: \MLParsedQuestion{15}{177}{10}{ExM05EK1} $\MEinheit{cm}^3$
+Antwort: \MLParsedQuestion{15}{177}{10}{ExM05EK1}$\MEinheit{cm}^3$
 \end{MExercise}
 
 \begin{MExercise}
-Die Oberfl"ache eines Zylinders mit einer H"ohe von $h = 6 \MEinheit{cm}$ 
+Die Oberfl"ache eines Zylinders mit einer H"ohe von $h = 6\MEinheit{cm}$ 
 soll mit einer Farbfolie beklebt werden. Die Oberfl"ache soll 
-$O = 200 \MEinheit{cm}^3$ gro"s sein. Berechnen Sie den Durchmesser $d$ der 
+$O = 200\MEinheit{cm}^2$ gro"s sein. Berechnen Sie den Durchmesser $d$ der 
 Kreisfl"ache und das Volumen $V$ des Zylinders.
 
 Antworten:
 \begin{MExerciseItems}
 \item %
- \MEquationItem{$d$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21}} $\MEinheit{cm}$
+ \MEquationItem{$d$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21}}$\MEinheit{cm}$
 \item %
- \MEquationItem{$V$}{\MLParsedQuestion{15}{177}{10}{ExM05EK22}} $\MEinheit{cm}^3$
+ \MEquationItem{$V$}{\MLParsedQuestion{15}{177}{10}{ExM05EK22}}$\MEinheit{cm}^3$
 \end{MExerciseItems}
 \end{MExercise}
 
 \begin{MExercise}
 Es ist ein Holzst"uck in Form eines Quaders mit dem Volumen $V_0$ gegeben. 
-Der Quader ist $h = \MZahl{120}{00}$ cm hoch, und die Grundfl"ache besteht aus 
-einem Quadrat mit einer Seitenl"ange von $s = \MZahl{40}{00}$ cm.
+Der Quader ist $h = 120\MEinheit{cm}$ hoch, und die Grundfl"ache 
+besteht aus 
+einem Quadrat mit einer Seitenl"ange von $s = 40\MEinheit{cm}$.
 Aus dem Holzst"uck wird ein zylinderf"ormiges Loch der H"ohe $h$ mit einem 
-Durchmesser von $20$ cm {\glqq}mittig{\grqq} ausgebohrt (das hei"st, der 
-Schnittpunkt der Diagonalen der quadratischen Grundfl"ache bildet den 
+Durchmesser von $20\MEinheit{cm}$ {\glqq}mittig{\grqq} ausgebohrt (das hei"st, 
+der Schnittpunkt der Diagonalen der quadratischen Grundfl"ache bildet den 
 Mittelpunkt der Kreisscheibe des Zylinders).
 Berechnen Sie
 \begin{MExerciseItems}
-\item das Volumen $V_Z$ des ausgebohrten Hohlraum:
+\item das Volumen $V_Z$ des ausgebohrten Hohlraums:
 \par
-\MEquationItem{$V_Z$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21b}} $\MEinheit{cm^3}$
+\MEquationItem{$V_Z$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21b}}$\MEinheit{cm}^3$
 %
 \item den prozentualen Anteil des Volumens $V_1$ des neuen Holzst"ucks, 
 das nach dem Ausbohren von $V_0$ noch vorhanden ist:
@@ -2750,9 +2755,9 @@ Der richtige Winkel ist also $\alpha=230^\circ$ (rosa).
 
 \begin{MExercise}
 \begin{enumerate}
-\item F\"ur ein bei~$C$ rechtwinkliges Dreieck seien $b = \MZahl{2}{53}\MEinheit{cm}$ und
-	$c = \MZahl{3}{88}\MEinheit{cm}$ gegeben. Geben Sie $\sin \left( \alpha \right)$,
-       $\sin \left( \beta \right)$ und $a$ an!
+\item F\"ur ein bei~$C$ rechtwinkliges Dreieck seien 
+$b = \MZahl{2}{53}\MEinheit{cm}$ und $c = \MZahl{3}{88}\MEinheit{cm}$ gegeben. 
+Geben Sie $\sin \left( \alpha \right)$, $\sin \left( \beta \right)$ und $a$ an!
        
        \begin{MHint}{L\"osung}
        \[
@@ -2821,7 +2826,7 @@ Welche der Aussagen und Ergebnisse sind richtig?
  Jedes Quadrat ist ein Parallelogramm. \\
 %
 \MCheckbox{1}{ExM05TestAg14} & \MCheckbox{0}{ExM05TestAg15} & %
- Es gibt genau ein Quadrat mit einer Diagonalen von $5 \MEinheit{cm}$. \\
+ Es gibt genau ein Quadrat mit einer Diagonalen von $5\MEinheit{cm}$. \\
 %
 \MCheckbox{1}{ExM05TestAg16} & \MCheckbox{0}{ExM05TestAg17} & %
  Ein Dreieck mit den Winkeln $36^{\circ}$ und $54^{\circ}$ ist rechtwinklig. \\
@@ -2841,7 +2846,7 @@ Welche der Aussagen und Ergebnisse sind richtig?
  Jedes Quadrat ist ein Parallelogramm. \\
 %
 \MCheckbox{1}{ExM05TestAg14} & \MCheckbox{0}{ExM05TestAg15} & %
- Es gibt genau ein Quadrat mit einer Diagonalen von $5 \MEinheit{cm}$. \\
+ Es gibt genau ein Quadrat mit einer Diagonalen von $5\MEinheit{cm}$. \\
 %
 \MCheckbox{1}{ExM05TestAg16} & \MCheckbox{0}{ExM05TestAg17} & %
  Ein Dreieck mit den Winkeln $36^{\circ}$ und $54^{\circ}$ ist rechtwinklig. \\
@@ -2855,12 +2860,12 @@ Welche der Aussagen und Ergebnisse sind richtig?
 
 \begin{MExercise} %Testaufgabe: Gemeinsame Abschlussaufgabe der TU9-Brueckenkurse
 Im Dreieck ABC mit den Seitenl"angen 
-$a = 5 \MEinheit{cm}$,
-$b = 6 \MEinheit{cm}$ und
-$c = 9 \MEinheit{cm}$
+$a = 5\MEinheit{cm}$,
+$b = 6\MEinheit{cm}$ und
+$c = 9\MEinheit{cm}$
 sind auf der Seite $c$ ein Punkt $P$ und auf der Seite $b$ ein Punkt $Q$ so
 gew"ahlt, dass $PQ$ parallel zur Seite $a$ ist und 
-$PQ = \MZahl{0}{50} \MEinheit{cm}$ gilt. Bestimmen Sie die Streckenl"angen
+$PQ = \MZahl{0}{50}\MEinheit{cm}$ gilt. Bestimmen Sie die Streckenl"angen
 $PB$ und $QC$ in Zentimeter:
 
 \begin{MExerciseItems}
