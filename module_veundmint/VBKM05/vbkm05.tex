@@ -7,6 +7,7 @@
 \MSetSubject{\MINTMathematics}
 
 \begin{document}
+\newcommand{\MGrad}{{}^{\circ}}
 
 \MSection{Geometrie}
 \MLabel{VBKM05}
@@ -47,13 +48,38 @@ Dieses Modul gliedert sich in folgende Abschnitte:
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Grundbegriffe_Intro}
 
+Ein klarer Sternenhimmel vermittelt einen anschaulichen Eindruck von den 
+elementaren Objekten, den Punkten, in der Geometrie. Seit Menschengedenken
+wurden die Lichtpunkte am Himmel in Gedanken durch Linien miteinander 
+verbunden, die als Umrisse unterschiedlichster Figuren interpretiert wurden.
+Vom praktischen Nutzen der Himmelsgeometrie zeugt praktisches jedes Geb"aude
+mit seinen Ecken, Kanten, Fensterfl"achen, \ldots.
+
+Die Erfindung von best"andigen Zeichenstiften Tafeln aus Wachs, Papyrus oder 
+Papier erm"oglicht es, umgekehrt das Gesehene oder eigene Gedanken {\glqq}auf
+Papier{\grqq} zu festzuhalten und anderen zu zeigen. Verbunden mit dem Willen,
+zum Beispiel das Gezeichnete als Bauwerk zu realisieren, war die Idee eines
+Plans geboren. Der Plan ist eine Zeichnung einer idealisierten Vorstellung, 
+beispielsweise wie ein Sportstadion von oben betrachtet aussehen soll.
+
 F"ur den Bau eines Sportstadions werden markante Punkte im Gel"ande abgesteckt.
-
-
 \begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt]
+\coordinate[label=left:{$A$}] (A) at (4,0);
+\coordinate (B) at (12,0);
+\coordinate (C) at (12,6);
+\coordinate (D) at (0,6);
+%
+\draw (A) circle(0.5pt);
+\draw (B) circle(0.5pt);
+\draw (C) circle(0.5pt);
+\draw (D) circle(0.5pt);
+\end{tikzpicture}
+}
+\par
 (Mess-)Punkte und Linien f"ur einen Stadionbau
 \end{center}
-
 Die Zeichnung kann man als idealisiertes Abbild der Wirklichkeit ansehen.
 In diesem Sinne wird an einige geometrische Grundbegriffe erinnert. Sie sind 
 der Ausgangspunkt, um anschlie"send kompliziertere Figuren und K"orper zu 
@@ -63,98 +89,177 @@ konstruieren.
 \begin{MXContent}{Punkte und Geraden}{Punkte und Geraden}{STD}
 \MDeclareSiteUXID{VBKM05_PunkteGeraden_Content}
 
-Punkte, Geraden, \ldots sind idealisierte Begriffe.
+Ein Standpunkt oder eine Position in einer Ebene wird in der Geometrie zum
+einfachsten Objekt, einem Punkt, idealisiert. 
+"Uber einen einzelnen Punkten l"asst sich nichts weiter sagen.
 
-\begin{MXInfo}{Bezeichnungen von Strecken und Abst"anden}
-Gegeben sind Punkte $P$ und $Q$. Dann wird die Strecke zwischen $P$ und $Q$ mit
-$\MGeoStrecke{P}{Q}$ bezeichnet.
+Betrachtet man mehrere Punkte, kann man auf verschiedene Weise Beziehungen 
+zwischen den Punkten betrachten -- und man kann neue Objekte beschreiben.
+Mathematisch gesprochen, sind es Mengen von Punkten.
+
+Als erstes wird eine Strecke und der Abstand zwischen Punkten betrachtet.
+Dazu bedarf es noch eines Vergleichsma"sstabs.
+
+\begin{MXInfo}{Strecken und Abst"ande}
+Gegeben sind Punkte $P$ und $Q$. Die \MEntry{Strecke}{Strecke} 
+$\MGeoStrecke{P}{Q}$ zwischen $P$ und $Q$ ist der k"urzeste Weg zwischen den 
+Punkten. 
 
 Die L"ange der Strecke $\MGeoStrecke{P}{Q}$ wird mit $\MGeoAbstand{P}{Q}$ notiert.
 Die \MEntry{Streckenl"ange}{Streckenlänge} ist gleich dem Abstand zwischen den
 Punkten $P$ und $Q$.
 \end{MXInfo}
 
-\begin{MXInfo}{Gerade}
-Seien $A$ und $B$ zwei Punkte. Dann bestimmen $A$ und $B$ genau eine Gerade 
-$\MGeoGerade{A}{B}$.
-\end{MXInfo}
+Das Bild von einem Lichtstrahl, ausgesandt von einem fernen Stern oder 
+von der Sonne, ist eine passende Vorstellung f"ur einen 
+\MEntry{Strahl}{Strahl}, der in einem Punkt beginnt und in Richtung eines
+zweiten Punktes gedanklich immer weiter geht.
 
+Wenn man den Weg auf einer Strecke in beide Richtungen fortsetzt, spricht 
+man von einer Geraden.
+
+\begin{MXInfo}{Gerade}
+Seien $A$ und $B$ zwei Punkte (das hei"st, es ist $A$ ein Punkt, der vom 
+Punkt $B$ verschieden ist). Dann bestimmen $A$ und $B$ genau eine 
+\MEntry{Gerade}{Gerade} $\MGeoGerade{A}{B}$.
+\end{MXInfo}
+Wenn man zu zwei Punkten $A$ und $B$ einen weiteren Punkt $P$ betrachtet,
+kann man nach dem Abstand von $P$ zur Geraden $\MGeoGerade{A}{B}$ fragen.
+
+Wenn drei Punkte $P$, $Q$ und $S$ in der Ebene betrachtet werden, sind damit
+Geraden $\MGeoGerade{P}{S}$ und $\MGeoGerade{Q}{S}$ festgelegt.
+
+Sie haben den Punkt $S$ gemeinsam. Liegt auch der Punkt $Q$ auf der Geraden 
+$\MGeoGerade{A}{S}$, dann bezeichnen $\MGeoGerade{Q}{S}$ und $\MGeoGerade{A}{S}$
+dieselbe Gerade. 
+Wenn $Q$ nicht zur Geraden $\MGeoGerade{A}{S}$ geh"ort, sind $\MGeoGerade{A}{S}$
+und $\MGeoGerade{B}{S}$ verschiedene Geraden. Die beiden Geraden haben nur 
+den Punkt $S$, den \MEntry{Schnittpunkt}{Schnittpunkt}, gemeinsam.
+
+F"ur irgendwelche Geraden $g$ und $h$ gibt es noch den Fall, dass sie keinen 
+Punkt gemeinsam haben. Der kleinste Abstand von Punkten auf $g$ beziehungsweise
+$h$ ist der Abstand zwischen den Geraden $g$ und $h$. Somit haben $g$ und $h$
+keinen gemeinsamen Punkt, wenn ihr Abstand gr"o"ser als $0$ ist.
+Geraden hei"sen \MEntry{parallel}{parallel}, wenn jeder Punkt auf einer der 
+Geraden denselben Abstand zur anderen Geraden hat.
+
+Auch eine einzelne Gerade kann "uber den Abstand von zwei Punkten $M$ und $M'$ 
+beschrieben werden: Die Menge aller Punkte, die von zwei Punkten $M$ und $M'$ 
+gleich weit entfernt sind, ist eine Gerade.
 \end{MXContent}
 
 %content: Strahlensatz.
-
-\begin{MXContent}{Die Strahlens\"atze}{Strahlens\"atze}{STD}
+\begin{MXContent}{Strahlens\"atze}{Strahlens\"atze}{STD}
 \MDeclareSiteUXID{VBKM05_Strahlensaetze_Content}
 
-Die Strahlens\"atze haben etwas mit der zentrischen Streckung zu tun 
-(siehe \MRef{Mathematik_ElementareGeometrie_zentrischeStreckung}).
+Eine Lochkamera liefert ein kleines Bild der Umwelt. Die Gr"o"senverh"altnisse
+sind proportional zu den Abst"anden von der Lochblende.
 
 
-\ifttm%
-\relax
-\else%
-\newcommand{\Strahlensatzfigur}[1][]
-{%
-\coordinate (S) at (0,0);
-\coordinate (A) at ($ (S) + (3,0.5) $);
-\coordinate (D) at ($ (S) + (4,2.5) $);
-\coordinate (B) at ($ (S)!1.7!(A) $);
-\coordinate (C) at ($ (S)!1.7!(D) $);
-%
-\path (S) node[left]{$S$} (A) node[below right]{$A$} (B) node[below right]{$B$}
-                          (C) node[above left] {$C$} (D) node[above left] {$D$};
-%
-\draw (S) -- ($ (S)!1.1!(B) $);
-\draw (S) -- ($ (S)!1.1!(C) $);
-%
-\draw[#1] ($ (A)!-0.2!(D) $) -- ($ (D)!-1!(A) $) node[left]{$g$};
-\draw ($ (B)!-0.2!(C) $) node[right]{$h$} -- ($ (C)!-0.1!(B) $);
-}
-\fi
+Eigenschaften von Bildern einer zentrischen Streckung kann man ebenfalls
+mit den Strahlens"atzen beschreiben (siehe auch die Abbildung 
+\MRef{Mathematik_ElementareGeometrie_zentrischeStreckung}).
 
-\begin{MXInfo}{Strahlens\"atze}\MLabel{Mathematik_ElementareGeometrie_Satz:ErsterStrahlensatz}%
+Die gemeinsame Eigenschaft der Beispiele findet sich darin, dass Strahlen (oder 
+Geraden) mit einem gemeinsamen Schnittpunkt von parallelen Geraden geschnitten
+werden.
 
-%\begin{center}
+
+\begin{MXInfo}{Strahlens\"atze}%
+\MLabel{VBKM05_Satz_Strahlensatz}%
+
 \begin{tabular}{lc}
-\mbox{
-\MTikzAuto{%
-\begin{tikzpicture}
-\Strahlensatzfigur
-\end{tikzpicture}
-}
-}
-%\end{center}
-&
 \begin{minipage}[b]{7cm}
-F\"ur zwei Punkte~$P$ und~$Q$ seien $\MGeoStrecke{P}{Q}$ die Strecke von~$P$ 
-nach~$Q$ und $\MGeoAbstand{P}{Q}$ die L\"ange dieser Strecke.
+F\"ur zwei Punkte~$P$ und~$Q$ sei $\MGeoStrecke{P}{Q}$ die Strecke von~$P$ 
+nach~$Q$, und $\MGeoAbstand{P}{Q}$ bezeichne die L\"ange dieser Strecke.
 \vspace*{2cm}
 \end{minipage}
+&
+\MTikzAuto{%
+\begin{tikzpicture}
+\coordinate (S) at (0,0);
+\coordinate (A) at ($ (S) + (3,0.5) $);
+\coordinate (C) at ($ (S) + (4,2.5) $);
+\coordinate (B) at ($ (S)!1.7!(A) $);
+\coordinate (D) at ($ (S)!1.7!(C) $);
+%
+\path (S) node[left]{$S$} (A) node[below right]{$A$} (B) node[below right]{$B$}
+                          (D) node[above left] {$D$} (C) node[above left] {$C$};
+%
+\draw (S) -- ($ (S)!1.1!(B) $);
+\draw (S) -- ($ (S)!1.1!(D) $);
+%
+\draw ($ (A)!-0.2!(C) $) -- ($ (C)!-1!(A) $) node[left]{$g$};
+\draw ($ (B)!-0.2!(D) $) node[right]{$h$} -- ($ (D)!-0.1!(B) $);
+\end{tikzpicture}
+}
 \end{tabular}
-
-
-Sind in dem obigen Bild die Geraden~$g$ und~$h$ parallel, so gilt:
+\par
+Wenn die Geraden~$g$ und~$h$ parallel sind, gelten die folgenden Aussagen:
 \begin{itemize}
 \item
 Die Abschnitte auf einem Strahl verhalten sich wie die entsprechenden 
 Abschnitte auf dem anderen Strahl:
 \[
-   \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{B}}
+   \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{C}}
  = \frac{\MGeoAbstand{A}{B}}{\MGeoAbstand{C}{D}}
- = \frac{\MGeoAbstand{S}{D}}{\MGeoAbstand{S}{C}} \MDFPeriod
+ = \frac{\MGeoAbstand{S}{B}}{\MGeoAbstand{S}{D}} \MDFPeriod
+\]
+Dies kann auch so ausgedr"uckt werden:
+\[
+   \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{A}{B}}
+ = \frac{\MGeoAbstand{S}{C}}{\MGeoAbstand{C}{D}}
+\quad\text{und}\quad
+   \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{B}}
+ = \frac{\MGeoAbstand{S}{C}}{\MGeoAbstand{S}{D}} \MDFPeriod
 \]
 \item
-Die Abschnitte auf den Parallelen  verhalten sich wie die von $S$ ausgehenden 
+Die Abschnitte auf den Parallelen verhalten sich wie die von $S$ ausgehenden 
 entsprechenden Abschnitte auf einem Strahl:
 \[
    \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{B}}
- = \frac{\MGeoAbstand{A}{D}}{\MGeoAbstand{B}{C}}
- = \frac{\MGeoAbstand{S}{D}}{\MGeoAbstand{S}{C}} \MDFPeriod
+ = \frac{\MGeoAbstand{A}{C}}{\MGeoAbstand{B}{D}}
+ = \frac{\MGeoAbstand{S}{C}}{\MGeoAbstand{S}{D}} \MDFPeriod
 \]
-
+Dies kann auch so ausgedr"uckt werden:
+\[
+   \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{A}{C}}
+ = \frac{\MGeoAbstand{S}{B}}{\MGeoAbstand{B}{D}}
+\quad\text{und}\quad
+   \frac{\MGeoAbstand{S}{C}}{\MGeoAbstand{C}{A}}
+ = \frac{\MGeoAbstand{S}{D}}{\MGeoAbstand{D}{B}} \MDFPSpace,
+\]
+wobei $\MGeoAbstand{A}{C} = \MGeoAbstand{C}{A}$
+und $\MGeoAbstand{B}{D} = \MGeoAbstand{D}{B}$ gilt.
 \end{itemize}
 \end{MXInfo}
+Die Aussagen der Strahlens"atze gelten auch, wenn anstelle von Strahlen 
+zwei Geraden betrachtet werden, die sich im Punkt $S$ schneiden. Als 
+Anwendungsbeispiel ist oben eine Lochkamera genannt worden.
 
+Auf diese Weise k"onnen Entfernungen zwischen Punkten berechnet werden,
+ohne dass die Strecke direkt gemessen wird.
+
+\begin{MExample}
+Gegeben sind die Geraden $g$ und $h$ mit den Punkten $A$, $B$, $P$, $Q$ und $S$,
+wobei $\MGeoGerade{A}{P}$ und $\MGeoGerade{B}{Q}$ parallel sind. 
+Weiter sidn die Abst"ande $\MGeoAbstand{S}{A} = 17$, $\MGeoAbstand{S}{B} = 6 $ 
+und $\MGeoAbstand{S}{Q} = 3$ gegeben.
+\par
+Daraus wird berechnet, wie weit $P$ von $S$ entfernt ist:
+Mit den Strahlens"atzen gilt
+\[
+   \frac{\MGeoAbstand{S}{P}}{\MGeoAbstand{S}{Q}}
+ = \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{B}} \MDFPSpace,
+\]
+woraus
+\[
+   \MGeoAbstand{S}{P}
+ = \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{B}} \cdot \MGeoAbstand{S}{Q} %
+ = \frac{17}{6} \cdot 3 = 34
+\]
+folgt.
+\end{MExample}
 \end{MXContent}
 
 
@@ -257,6 +362,30 @@ Die Frage nach M"oglichkeiten, Winkel zu messen, wird auf verschiedene
 Weisen beantwortet, die letztlich alle auf einer Einteilung von Kreisen 
 beruhen. 
 Hier werden das Gradma"s und das Bogenma"s beschrieben.
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt]
+%\coordinate[label=below:{$P$}] (P) at (4,0);
+\coordinate (S) at (0,0);
+\coordinate (A) at (6,0);
+\coordinate (B) at (6,3);
+\coordinate (C) at (-2,0);
+\coordinate (D) at (-2,-1);
+%
+\fill[color=blue!50!white] (S) -- (A) -- (B) -- (S);
+\fill[color=blue!25!white] (S) -- (C) -- (D) -- (S);
+\fill[color=green!50!white] (S) -- (B) -- (C) -- (S);
+\fill[color=green!25!white] (S) -- (D) -- (A) -- (S);
+\draw (C) -- node[below]{$g$} (A);
+\draw (D) -- node[above]{$h$} (B);
+\node[below] at (S) {$S$};
+\end{tikzpicture}
+}
+\par
+Jeder farbige Bereich zeigt einen der verschiedenen Winkel, 
+die durch $g$ und $h$ festgelegt werden.
+\end{center}
 \end{MIntro}
 
 
@@ -264,185 +393,155 @@ Hier werden das Gradma"s und das Bogenma"s beschrieben.
 \MDeclareSiteUXID{VBKM05_Winkel_Content}
 \MLabel{VBKM05_Winkel}
 Zwei Strahlen (Halbgeraden) $g$ und $h$ in der Ebene, die von demselben Punkt 
-$S$ ausgehen, schlie"sen einen \MEntry{Winkel}{Winkel} $\alpha$ ein.
+$S$ ausgehen, schlie"sen einen \MEntry{Winkel}{Winkel} 
+$\Mmeasuredangle\left(g, h\right)$ ein.
 
 \begin{center}
 \MTikzAuto{%
-\begin{tikzpicture}[scale=0.9,line width=2pt]
- \coordinate[label=left:$P$] (P) at (0,0);
- \coordinate[label=above:$g$] (A) at ($ (P) + (-20:3) $);
- \coordinate[label=below left:$h$] (B) at ($ (P) + (110:3) $);
- %
- \draw [color=green!50!black] (P) ++ (-20:1) arc (-20:110:1);
- \draw [color=red] (P) ++ (110:1) arc (110:340:1);
- \draw (A) -- (P) -- (B);
- \draw[dashed, line width=1.5pt] (P) -- node[left]{$1$} ++ (0,-1);
+\begin{tikzpicture}[line width=1pt]
+%\coordinate[label=below:{$P$}] (P) at (4,0);
+\coordinate (S) at (0,0);
+\coordinate (A) at (6,0);
+\coordinate (B) at (6,3);
+\coordinate (C) at (-2,0);
+\coordinate (D) at (-2,-1);
+%
+\fill[color=blue!50!white] (S) -- (A) -- (B) -- (S);
+\draw (S) -- node[below]{$g$} (A);
+\draw (S) -- node[above]{$h$} (B);
+\node[left] at (S) {$S$};
+\node at (2,0.4) {$\Mmeasuredangle(g,h)$};
 \end{tikzpicture}
 }
+\par
+Winkel zwischen den Strahlen $g$ und $h$.
 \end{center}
+In der Bezeichnung des Winkels $\Mmeasuredangle \left( g, h \right)$ ist die 
+Reihenfolge wichtig ist, in der $g$ und $h$ aufgeschrieben werden.
+$\Mmeasuredangle \left( g, h \right)$ bezeichnet den oben beschriebenen, der 
+dadurch festgelegt ist, dass man die Halbgerade $g$ gegen den Uhrzeigersinn 
+zur Halbgeraden $h$ dreht.
+Mit $\Mmeasuredangle \left( g, h \right)$ wird der Winkel von $h$ zu $g$ 
+bezeichnet.
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt,scale=0.5]
+\coordinate (S) at (0,0);
+\coordinate (A) at (6,0);
+\coordinate (B) at (6,3);
+\coordinate (CC) at (-4,1);
+\coordinate (DD) at (-4,-2);
+%
+\fill[color=red!50!white] (S) -- (B) -- (CC) -- (DD) -- (A) -- (S);
+\draw (S) -- node[below]{$g$} (A);
+\draw (S) -- node[above]{$h$} (B);
+\node[left] at (S) {$S$};
+\node at (-2,-0.8) {$\Mmeasuredangle(h,g)$};
+\end{tikzpicture}
+}
+\par
+Winkel zwischen den Strahlen $h$ und $g$.
+\end{center}
+Der Punkt $S$ hei"st \MEntry{Scheitelpunkt}{Scheitelpunkt (Winkel)} des 
+Winkels, und die beiden Halbgeraden, die den Winkel bilden, hei"sen 
+\MEntry{Schenkel}{Schenkel} des Winkels.
+Wenn $A$ ein Punkt auf der Geraden $g$ und $B$ ein Punkt auf der Geraden $h$
+ist, so kann man auch $\Mmeasuredangle \left( A S B \right)$ f"ur 
+$\Mmeasuredangle \left( g, h \right)$ schreiben. 
 
-Zeichnet man einen Kreis mit Radius~$1$ um~$P$, wird dieser von den beiden Halbgeraden in zwei Teile zerschnitten. Wichtig ist nun derjenige Kreisbogen, der entsteht, wenn man von der Geraden $g$ gegen den Uhrzeigersinn zur Geraden $h$ geht (im obigen Bild gr\"un eingef\"arbt):
-
-\begin{MXInfo}{Bogenmass}%
-\MLabel{VBKM05_Bogenmass}
-Der \MEntry{Kreisbogen}{Kreisbogen}, der entsteht, wenn man von der Geraden $g$ gegen den Uhrzeigersinn zur Geraden $h$ geht, bezeichnet den \MEntry{Winkel}{Winkel} von $g$ zu $h$.
-  \begin{itemize}
-    \item Die L\"ange des Kreisbogens mit dem Radius $1$ ist das sogenannte \MEntry{Bogenma\ss }{Bogenma\ss } $\Mmeasuredangle \left( g, h \right)$.
-    \item $P$ hei\ss t \MEntry{Scheitelpunkt}{Scheitelpunkt (Winkel)} des Winkels, und die beiden Halbgeraden, die den Winkel bilden, hei\ss en \MEntry{Schenkel}{Schenkel} des Winkels.
-    \item Hat man einen Punkt $A$ auf der Geraden $g$ und einen Punkt $B$ auf der Geraden $h$, so kann man auch $\Mmeasuredangle \left( A P B \right)$ statt $\Mmeasuredangle \left( g, h \right)$ schreiben.
-    \item Winkel werden h\"aufig mit kleinen griechischen Buchstaben bezeichnet, z. Bsp. $\alpha$.
-  \end{itemize}
-\end{MXInfo}
-
-Man beachte, dass es bei der Bedeutung des Symbols $\Mmeasuredangle \left( g, h \right)$ wesentlich auf die Reihenfolge, in welcher $g$ und $h$ aufgef\"uhrt werden, ankommt:
-$\Mmeasuredangle \left( h, g \right)$ bezeichnet n\"amlich die L\"ange desjenigen Kreisbogens, der entsteht, wenn man von der Geraden $h$ gegen den Uhrzeigersinn zur Geraden $g$ l\"auft (im obigen Bild rot eingef\"arbt), und diese L\"ange ist in der Regel von $\Mmeasuredangle \left( g, h \right)$ verschieden!
-
-
+Winkel werden oft mit kleinen griechischen Buchstaben bezeichnet und sich vom
+lateinischen Alphabet unterscheiden. 
 %jgl: Griechisches Alphabet muss noch neu sortiert werden:
-%\input{z_alphabet.tex}
+\input{z_alphabet.tex}
 
-Indem man auch noch die entgegengesetzten Halbgeraden in die Betrachtungen miteinbezieht, lassen sich weitere Winkel entdecken.
+Indem man Geraden in die Betrachtungen miteinbezieht, lassen sich weitere 
+Winkel entdecken.
 
 \begin{MXInfo}{Bezeichnung von Winkeln an Geraden}%
 \MLabel{VBKM05_Scheitelwinkel_Nebenwinkel}%
-Es seien $g$ und $h$ zwei Halbgeraden mit gleichem Anfangspunkt $P$ und mit den entgegengesetzten Halbgeraden $g^-$ bzw. $h^-$.
-  \begin{itemize}
-    \item Der Winkel $\Mmeasuredangle \left( g^-, h^- \right)$ hei\ss t \MEntry{Scheitelwinkel}{Scheitelwinkel}.
-		\item Der Winkel $\Mmeasuredangle \left( g, h \right)$ und der Scheitelwinkel $\Mmeasuredangle \left( g^-, h^- \right)$ sind stets gleich gro\ss.
-\item Die Winkel $\Mmeasuredangle \left( g^-, h \right)$ und $\Mmeasuredangle \left( g, h^- \right)$ hei\ss en \MEntry{Nebenwinkel}{Nebenwinkel}.
-\item Die Nebenwinkel sind immer gleich gro\ss.
-  \end{itemize}
-\end{MXInfo}
-
-%\begin{MExample}
-%Ein sch\"ones Beispiel f\"ur einen Winkel sieht man im Ludwigshafener Stadtplan bei der Kurf\"urstenstra\ss e und der Saarlandstra\ss e:
-
-%\begin{center}
-%\MGraphicsSolo{../Bilder/Mathematik_ElementareGeometrie/Mathematik_ElementareGeometrie_Stadtplan_Radialmass.png}{scale=1}
-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Stadtplan_Radialmass.png}{scale=1}
-%\end{center}
-
-%Hat der Weg von der Kreuzung der beiden Stra\ss en
-%\"uber die Kurf\"urstenstra\ss e zur Sebastian-Bach-Stra\ss e eine L\"ange von~$1$, und geht man nun auf der Sebastian-Bach-Stra\ss e von der Kurf\"urstenstra\ss e aus bis zur Saarlandstra\ss e, so hat man genau einen Weg von
-%\[
-% \Mmeasuredangle \left( \text{Kurf\"urstenstra\ss e}, \text{\ Saarlandstra\ss e} \right)
-%\]
-%zur\"uckgelegt. (Dabei gehen wir davon aus, dass die Sebastian-Bach-Stra\ss e kreisf\"ormig um
-%die Kreuzung Kurf\"urstenstra\ss e und Saarlandstra\ss e herumf\"uhrt.)
-%\end{MExample}
-
-Nun soll das Bogenma\ss\ bestimmt werden.
-
-Bereits im antiken Babylonien, "Agypten und Griechenland stellte man fest, 
-dass das Verh\"altnis des
-Umfangs~$U$ eines Kreises zu seinem Radius~$r$ stets das gleiche ist.
-Sie nannten dieses Verh\"altnis die Kreiszahl~$\pi$: 
-\begin{MXInfo}{Kreiszahl}\MLabel{Kreiszahl}%
-Die \textbf{Kreiszahl} ist
-\[
-    \pi = \frac{U}{2r} \MDFPeriod
-\]
-Dabei ist $\pi$ keine rationale Zahl. Sie kann nicht als endlicher oder 
-periodischer Dezimalbruch geschrieben werden. Numerische Berechnungen ergeben,
-dass $\pi \approx \MZahl{3}{141592653589793}$ ist.
-\end{MXInfo}
-
-Ist der Radius des Kreises genau $1$, so hat der Kreis den Umfang $2\pi$. Die L\"ange eines Kreisbogens, also das Bogenma\ss\ des Winkels, ist dann eine Zahl zwischen $0$ und $2\pi$.
-
-\begin{MExample}
-Der Winkel zwischen zwei Halbgeraden, die einen Halbkreis ausschneiden, betr\"agt $2\pi/2=\pi$.\\
-Der Winkel zwischen zwei Halbgeraden, die einen Viertelkreis ausschneiden, betr\"agt $2\pi/4=\pi/2$.\\
-Der Winkel zwischen zwei Halbgeraden, die einen Achtelkreis ausschneiden, betr\"agt $2\pi/8=\pi/4$.
-\end{MExample}
-
-
-Wenn man den Winkel $\Mmeasuredangle \left( g, h \right)$ kennt, so kann man nun auch leicht den Winkel $\Mmeasuredangle \left( h, g \right)$ bestimmen, der ja nach dem Bild \MRef{VBKM05_Bogenmass} durch den anderen Kreisbogen bestimmt ist:
-\[
-   \Mmeasuredangle \left( h, g \right)
- = 2 \pi - \Mmeasuredangle \left( g, h \right) \MDFPeriod
-\]
-
-
-Ein anderes sehr gebr\"auchliches Winkelma\ss\ erh\"alt man, indem man den Kreis in 360~gleich
-gro\ss e Teile zerlegt und dann misst, wie viele dieser Teile
-\"uberstrichen werden, wenn~$g$ mathematisch positiv auf~$h$ gedreht wird.
-Dieses \textbf{Gradma\ss} eines Winkels kann leicht in das
-Bogenma\ss\ \"uberf\"uhrt werden:
-\[
-   \Mmeasuredangle \left( g, h \right)
- = 2 \pi \cdot \frac{\alpha}{360^{\circ}} \MDFPSpace,
-\]
-wenn $\alpha$ das Gradma\ss\ des Winkels zwischen~$g$ und~$h$ angibt.
-
-\begin{MExercise}
-Der Winkel $\Mmeasuredangle\left(g, h\right)$ betr\"agt im Gradma\ss\ $60^\circ$. Rechnen Sie den Winkel in das Bogenma\ss\ um:
-\ifttm%
-(Ein~$\pi$ geben Sie als \glqq\texttt{pi}\grqq\ ein. Bitte runden Sie Ihre Ergebnisse auf drei Nachkommastellen!)
-\fi
-
-\ \\
-$\Mmeasuredangle\left(g, h\right)=$\MLParsedQuestion{10}{pi/3}{3}{GEO1}.
-\ \\
-\begin{MHint}{L\"osung}
-\[\frac{60^\circ}{360^\circ}=\frac{\Mmeasuredangle\left(g, h\right)}{2\pi} \quad\Rightarrow\quad \Mmeasuredangle\left(g, h\right)=\frac{60^\circ}{360^\circ}\cdot 2\pi=\frac{1}{6}\cdot 2\pi=\frac{\pi}{3}\MDFPeriod\]
-\end{MHint}
-
-\end{MExercise}
-
-\begin{MExercise}
-Der Winkel $\beta$ betr\"agt im Bogenma\ss\ $\pi/4$. Wie gro\ss\ ist der Winkel im Gradma\ss ?
-
-\ \\
-$\beta=$\MLParsedQuestion{10}{45}{3}{PARSEDQUEST2}$^\circ$.
-\ \\
-\begin{MHint}{L\"osung}
-\[\frac{\pi/4}{2\pi}=\frac{\beta}{360^\circ}\quad\Rightarrow\quad \beta=\frac{\pi/4}{2\pi}\cdot 360^\circ=\frac{1}{8}\cdot 360^\circ=45^\circ \MDFPeriod\]
-\end{MHint}
-\end{MExercise}
-
-\begin{MXInfo}{Namen f"ur Winkel}%
-Die folgenden Winkelformen bekommen spezielle Namen:
+Es seien $g$ und $h$ zwei Geraden, die sich im Punkt $S$ schneiden.
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt,scale=0.5]
+%\coordinate[label=below:{$P$}] (P) at (4,0);
+\coordinate (S) at (0,0);
+\coordinate (A) at (6,0);
+\coordinate (B) at (6,3);
+\coordinate (C) at (-6,0);
+\coordinate (D) at (-6,-3);
+%
+\fill[color=blue!50!white] (S) -- (A) -- (B) -- (S);
+\fill[color=blue!25!white] (S) -- (C) -- (D) -- (S);
+\fill[color=green!50!white] (S) -- (B) -- (C) -- (S);
+\fill[color=green!25!white] (S) -- (D) -- (A) -- (S);
+\draw (C) -- (A) node[below left] {$g$};
+\draw (D) --  (B) node[above right] {$h$};
+%\node[below] at (A) {$g$};
+%\node[above] at (B) {$h$};
+\node[below] at (S) {$S$};
+\node at (3,0.6) {$\Mvarphi$};
+\node at (-3,-0.6) {$\Mvarphi'$};
+\node at (-1.5,0.6) {$\psi$};
+\node at (1.5,-0.6) {$\psi'$};
+\end{tikzpicture}
+}
+\end{center}
+%
 \begin{itemize}
-\item
-Ein Winkel mit einem Ma\ss\ zwischen~$0$ und $\frac{\pi}{2}$ hei\ss t \MEntry{spitzer Winkel}{Winkel (spitz)}.
-       
-Ein Winkel mit einem Ma\ss\ von~$\frac{\pi}{2}$ hei\ss t \textbf{rechter Winkel}.
-       
-Ein Winkel mit einem Ma\ss\ zwischen~$\frac{\pi}{2}$ und $\pi$ hei\ss t \MEntry{stumpfer Winkel}{Winkel (stumpf)}.
-       
-Ein Winkel mit einem Ma\ss\ zwischen~$\pi$ und~$2 \pi$ hei\ss t \textbf{\"uberstumpfer Winkel}.
-
- \item Zwei Halbgeraden bilden eine Gerade, wenn sie einen Winkel vom Ma\ss~$\pi$ bilden.
- 
- \item Zwei Halbgeraden \textbf{stehen senkrecht aufeinander}, wenn sie einen rechten Winkel bilden.
+\item Die Winkel $\Mvarphi$ und $\Mvarphi'$ hei"sen 
+ \MEntry{Scheitelwinkel}{Scheitelwinkel} zueinander.
+\item Die Winkel $\Mvarphi$ und $\psi$ hei"sen 
+ \MEntry{Nebenwinkel}{Nebenwinkel} bez"uglich $g$.
 \end{itemize}
 \end{MXInfo}
 
-
+In der obigen Zeichnung gibt es noch weitere Scheitelwinkel und
+Nebenwinkel.
 \begin{MExercise}
-Geben Sie die in der folgenden Tabelle fehlenden Werte an! Dabei soll in
-einer Spalte stets der gleiche Winkel stehen.
+Notieren Sie alle Scheitelwinkel und alle Nebenwinkel.
 
-\ifttm%
-(Ein~$\pi$ geben Sie als \glqq\texttt{pi}\grqq\ ein. Bitte runden Sie Ihre Ergebnisse auf drei Nachkommastellen!)
-\fi
-
-\begin{center}
-\begin{tabular}{l*{6}{c}}
- Bogenma\ss\ & $\pi$               &   \MLParsedQuestion{10}{9*pi/5}{3}{GEO2} &   	$\frac{2 \pi}{3}$                &\MLParsedQuestion{10}{3*pi/2}{3}{GEO3} & $\frac{11 \pi}{12}$\\
- Gradma\ss\   & \MLParsedQuestion{10}{180}{3}{GEO4}      & $324$    & \MLParsedQuestion{10}{120}{3}{GEO5}        &    $270$    & \MLParsedQuestion{10}{165}{3}{GEO6}    \\
-\end{tabular}
-\end{center}
+\begin{MHint}{L"osung}
+Zus"atzlich zu $\Mvarphi$ und $\Mvarphi'$ sind auch $\psi$ und $\psi'$ 
+Scheitelwinkel.
+Nebenwinkel von $g$ sind zus"atzlich zu $\Mvarphi$ und $\psi$ auch die Winkel 
+$\Mvarphi'$ und $\psi'$. Au"serdem sind $\psi$ und $\Mvarphi'$ sowie
+$\psi'$ und $\Mvarphi$ Nebenwinkel.
+\end{MHint}
 \end{MExercise}
+
+Einige besondere Winkel erhalten eigene Namen.
+Dabei ist eine Winkelhalbierende $w$ diejenige Halbgerade, deren Punkte von 
+beiden gegebenen Halbgeraden $g$ und $h$ denselben Abstand haben. Dann kann 
+man sagen, dass $w$ den Winkel zwischen $g$ und $h$ halbiert.
+
+\begin{MXInfo}{Namen besonderer Winkel}
+Seien $g$ und $h$ Halbgeraden mit dem Scheitelpunkt $S$.
+\begin{itemize}
+\item
+Der Winkel, der die gesamte Ebene "uberdeckt, hei"st 
+\MEntry{Vollwinkel}{Vollwinkel (Winkel)}.
+\item
+Wenn $g$ und $h$ eine Gerade bilden, hei"st der Winkel zwischen $g$ und $h$
+%$\Mmeasuredangle(g,h)$ gestreckter Winkel.
+gestreckter Winkel.
+\item
+Der Winkel zwischen zwei Halbgeraden, die einen gestreckten Winkel halbieren,
+hei"st \MEntry{rechter Winkel}{rechter Winkel (Winkel)}. 
+Man sagt dann auch, dass $g$ und $h$ 
+\MEntry{senkrecht aufeinander stehen}{senkrecht (Gerade)}, oder: 
+$g$ und $h$ sind \MEntry{orthogonal zueinander}{orthogonal}. 
+\end{itemize}
+\end{MXInfo}
 
 Als n\"achstes sollen nun drei verschiedene Geraden betrachtet werden, 
 von denen zwei parallel sind, wohingegen die dritte nicht parallel zu diesen 
 beiden ist. Es ergeben sich dann acht Schnittwinkel.
-Je vier dieser Winkel sind gleich gro\ss .
+Je vier dieser Winkel sind gleich gro"s.
 
 \begin{MXInfo}{Winkel an parallelen Geraden}%
 \MLabel{Mathematik_ElementareGeometrie_StufenwinkelWechselwinkel}%
-
+Gegeben sind zwei parallele Geraden $g$ und $h$, die von einer Geraden $j$ 
+geschnitten werden.
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -473,18 +572,210 @@ Je vier dieser Winkel sind gleich gro\ss .
 \end{tikzpicture}
 }
 \end{center}
-
+%
 \begin{itemize}
-  \item Die Winkel $\alpha, \gamma, \Mvarepsilon$ und $\Mvarphi$ sind gleich gro\ss , ebenso die Winkel $\beta, \delta, \chi$ und $\psi$.
-  \item Dabei nennt man $\beta$ und $\psi$ bzw. $\gamma$ und $\Mvarepsilon$ \textbf{Wechselwinkel}.
-  \item Die Winkel $\alpha$ und $\Mvarepsilon$ hei\ss en \textbf{Stufenwinkel}, ebenso $\beta$ und $\chi$, $\delta$ und $\psi$ und $\gamma$ und $\Mvarphi$.
+\item Die Winkel $\alpha$, $\gamma$, $\Mvarepsilon$ und $\Mvarphi$ sind 
+  gleich gro"s, ebenso die Winkel $\beta$, $\delta$, $\chi$ und $\psi$.
+\item Dabei nennt man $\beta$ und $\psi$ bzw. $\gamma$ und $\Mvarepsilon$ 
+  \MEntry{Wechselwinkel}{Wechselwinkel}.
+\item Die Winkel $\alpha$ und $\Mvarepsilon$ hei"sen 
+  \MEntry{Stufenwinkel}{Stufenwinkel}, ebenso $\beta$ und $\chi$, 
+  $\delta$ und $\psi$ und $\gamma$ und $\Mvarphi$.
 \end{itemize}
-
 \end{MXInfo}
 \end{MXContent}
 
-%jgl: end of section 2.
 
+\begin{MXContent}{Winkelmessung}{Winkelmessung}{STD}
+\MDeclareSiteUXID{VBKM05_Winkelmessung_Content}
+\MLabel{VBKM05_Winkelmessung}
+
+
+Die Erkl"arung zur Bezeichnung des Winkel $\Mmeasuredangle(g,h)$, der durch
+Drehung von $g$ entgegen des Uhrzeigersinns zu $h$ festgelegt wird, f"uhrt 
+zu einer Idee, Winkel zu messen, das hei"st quantitativ miteinander zu 
+vergleichen.
+
+So wie auf einem runden Ziffernblatt einer analogen Uhr die Markierungen zu den
+zw"olf Zahlen f"ur die Stunden im gleichen Abstand voneinander angebracht sind,
+kann man einen Kreis gleichm"a"sig einteilen. Auf diese Weise erh"alt man eine
+Skala f"ur Winkel. Je nach der verwendeten Skalierung ergeben sich 
+verschiedene Zahlen, mit denen die Gr"o"se eines Winkels angegeben werden kann.
+
+\paragraph{Gradma"s}
+
+Es wird eine Kreisscheibe in $360$ gleiche Segmente eingeteilt. Eine Drehung
+um ein Segment beschreibt einen Winkel um $1$ Grad.
+
+
+\paragraph{Bogenma"s}
+Bereits im antiken Babylonien, "Agypten und Griechenland stellte man fest, 
+dass das Verh\"altnis des Umfangs $U$ eines Kreises zu seinem Durchmesser 
+$D$ stets das gleiche ist, und somit Umfang und Durchmesser zueinander 
+proportional sind.
+Dieses Verh\"altnis wird die Kreiszahl $\pi$ genannt. 
+\begin{MXInfo}{Kreiszahl}\MLabel{Kreiszahl}%
+Gegeben ist ein Kreis mit Umfang $U$ und Durchmesser $D$.
+Die \textbf{Kreiszahl} ist
+\[
+\pi = \frac{U}{D} = \frac{U}{2r} %%
+\]
+mit dem Kreisradius $r = \frac{1}{2} U$.
+Dabei ist $\pi$ keine rationale Zahl. Sie kann nicht als endlicher oder 
+periodischer Dezimalbruch geschrieben werden. Numerische Berechnungen ergeben,
+dass n"aherungsweise $\pi \approx \MZahl{3}{141592653589793}$ ist.
+\end{MXInfo}
+
+Wenn der Radius des Kreises genau $1$ ist, so hat der Kreis den Umfang $2\pi$. 
+Beim \MEntry{Bogenma"s}{Bogenma"s} wird die Linie eines Kreises vom Radius $1$
+eingeteilt.
+Als Bogenma"s eines Winkels $\Mmeasuredangle(g,h)$ wird die L"ange des 
+\MEntry{Kreisbogens}{Kreisbogen} verwendet, die durch den Winkel 
+{\glqq}ausgeschnitten{\grqq} wird.
+
+Damit wird Winkeln durch das Bogenm"a"s eine Zahl zwischen $0$ und $2\pi$ 
+zugeordnet. In der Technik wird auch die Kennzeichnung rad (f"ur Radiant)
+verwendet, um explizit auszudr"ucken, dass ein Winkel im Bogenma"s gemessen
+wird.
+
+\begin{MXInfo}{Bogenmass}%
+Zeichnet man einen Kreis mit Radius~$1$ um~$S$, wird der Kreis von den beiden 
+Halbgeraden in zwei Teile zerschnitten. Wichtig ist nun derjenige Kreisbogen, 
+der entsteht, wenn man von der Halbgeraden $g$ gegen den Uhrzeigersinn zur 
+Halbgeraden $h$ geht (im Bild gr\"un eingef\"arbt):
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[scale=0.9,line width=2pt]
+ \coordinate[label=left:$S$] (S) at (0,0);
+ \coordinate[label=above:$g$] (A) at ($ (S) + (-20:3) $);
+ \coordinate[label=below left:$h$] (B) at ($ (S) + (110:3) $);
+ %
+ \draw [color=green!50!black] (S) ++ (-20:1) arc (-20:110:1);
+ \draw [color=red] (S) ++ (110:1) arc (110:340:1);
+ \draw (A) -- (S) -- (B);
+ \draw[dashed, line width=1.5pt] (S) -- node[left]{$1$} ++ (0,-1);
+\end{tikzpicture}
+}
+\end{center}
+\MLabel{VBKM05_Bogenmass}
+Die L\"ange des Kreisbogens ist das \MEntry{Bogenma"s}{Bogenma"s} 
+des Winkels $\Mmeasuredangle \left( g, h \right)$.
+\end{MXInfo}
+
+Mit einem Winkelma"s wie dem Bodenma"s oder dem zuvor eingef"uhrten Gradma"s
+kann man Winkel einfach in verschiedene Klassen einteilen und daf"ur eigene
+Namen vergeben.
+Zur Wiederholung werden auch bereits eingef"uhrte Bezeichnungen nochmals 
+mit aufgef"uhrt.
+\begin{MXInfo}{Namen f"ur verschiedene Klassen von Winkeln}
+\begin{itemize}
+\item
+Ein Winkel mit einem Ma\ss\ zwischen~$0$ und $\frac{\pi}{2}$ hei\ss t \MEntry{spitzer Winkel}{Winkel (spitz)}.
+       
+Ein Winkel mit einem Ma\ss\ von~$\frac{\pi}{2}$ hei\ss t \textbf{rechter Winkel}.
+       
+Ein Winkel mit einem Ma\ss\ zwischen~$\frac{\pi}{2}$ und $\pi$ hei\ss t \MEntry{stumpfer Winkel}{Winkel (stumpf)}.
+       
+Ein Winkel mit einem Ma\ss\ zwischen~$\pi$ und~$2 \pi$ hei\ss t \textbf{\"uberstumpfer Winkel}.
+
+ \item Zwei Halbgeraden bilden eine Gerade, wenn sie einen Winkel vom Ma\ss~$\pi$ bilden.
+ 
+ \item Zwei Halbgeraden \textbf{stehen senkrecht aufeinander}, wenn sie einen rechten Winkel bilden.
+\end{itemize}
+\end{MXInfo}
+
+
+
+Wenn man den Winkel $\Mmeasuredangle \left( g, h \right)$ kennt, so kann man 
+nun auch leicht den Winkel $\Mmeasuredangle \left( h, g \right)$ bestimmen, 
+der ja nach dem Bild \MRef{VBKM05_Bogenmass} durch den anderen Kreisbogen 
+bestimmt ist:
+\[
+   \Mmeasuredangle \left( h, g \right)
+ = 2 \pi - \Mmeasuredangle \left( g, h \right) \MDFPeriod
+\]
+Indem man die Verh"altnisse der Ma"szahl eines Winkels zu der des Vollwinkels
+betrachtet, kann der Wert vom Bogenma"s in das Gradma"s umgerechnet werden.
+
+\begin{MXInfo}{Zusammenhang zwischen Bogenma"s und Gradma"s}
+Es werden Halbgeraden $g$ und $h$ betrachtet, die den Winkel 
+$\Mmeasuredangle(g,h)$ einschlie"sen. Das Bogenma"s des Winkels wird mit $x$ 
+bezeichnet, und das Gradma"s des Winkels mit $\alpha$. 
+
+Dann ist der Anteil $x$ von $2\pi$ gleich dem Anteil $\alpha$ von 
+$360\MGrad$ und damit: 
+\[
+   \frac{x}{2\pi} = \frac{\alpha}{360\MGrad} \MDFPeriod
+\]
+Somit ist 
+\[
+x = \frac{\pi}{180\MGrad} \cdot \alpha %
+\quad\text{und}\quad
+\alpha = \frac{180\MGrad}{\pi} \cdot x \MDFPeriod
+\]
+\end{MXInfo}
+Deshalb sind die Angaben im Bogenma"s und im Gradma"s zueinander proportional,
+sodass die Umrechnung mit dem jeweiligen Proportionalit"atsfaktor 
+$\frac{\pi}{180\MGrad}$ beziehungsweise $\frac{180\MGrad}{\pi}$ 
+sehr einfach
+ist.
+\begin{MExercise}
+Der Winkel $\Mmeasuredangle\left(g, h\right)$ betr\"agt im Gradma\ss\ $60^\circ$. Rechnen Sie den Winkel in das Bogenma\ss\ um:
+\ifttm%
+(Ein~$\pi$ geben Sie als \glqq\texttt{pi}\grqq\ ein. Bitte runden Sie Ihre Ergebnisse auf drei Nachkommastellen!)
+\fi
+
+\ \\
+$\Mmeasuredangle\left(g, h\right)=$\MLParsedQuestion{10}{pi/3}{3}{GEO1}.
+\ \\
+\begin{MHint}{L\"osung}
+\[
+\frac{\Mmeasuredangle\left(g, h\right)}{2\pi} %
+= \frac{60\MGrad}{360\MGrad} %
+\quad\Rightarrow\quad
+ \Mmeasuredangle\left(g, h\right) %
+= \frac{60\MGrad}{360\MGrad}\cdot 2\pi %
+= \frac{1}{6}\cdot 2\pi=\frac{\pi}{3}\MDFPeriod 
+\]
+\end{MHint}
+
+\end{MExercise}
+
+\begin{MExercise}
+Der Winkel $\beta$ betr\"agt im Bogenma\ss\ $\pi/4$. Wie gro\ss\ ist der 
+Winkel im Gradma\ss ?
+
+\ \\
+$\beta=$\MLParsedQuestion{10}{45}{3}{PARSEDQUEST2}$\MGrad$.
+\ \\
+\begin{MHint}{L\"osung}
+\[
+\frac{\pi/4}{2\pi} = \frac{\beta}{360\MGrad}\quad\Rightarrow\quad \beta %
+ = \frac{\pi/4}{2\pi}\cdot 360\MGrad %
+ = \frac{1}{8}\cdot 360\MGrad %
+ = 45\MGrad \MDFPeriod %%
+\]
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Geben Sie die in der folgenden Tabelle fehlenden Werte an! Dabei soll in
+einer Spalte stets der gleiche Winkel stehen.
+
+\ifttm%
+(Ein~$\pi$ geben Sie als \glqq\texttt{pi}\grqq\ ein. Bitte runden Sie Ihre Ergebnisse auf drei Nachkommastellen!)
+\fi
+
+\begin{center}
+\begin{tabular}{l*{6}{c}}
+ Bogenma\ss\ & $\pi$               &   \MLParsedQuestion{10}{9*pi/5}{3}{GEO2} &   	$\frac{2 \pi}{3}$                &\MLParsedQuestion{10}{3*pi/2}{3}{GEO3} & $\frac{11 \pi}{12}$\\
+ Gradma\ss\   & \MLParsedQuestion{10}{180}{3}{GEO4}      & $324$    & \MLParsedQuestion{10}{120}{3}{GEO5}        &    $270$    & \MLParsedQuestion{10}{165}{3}{GEO6}    \\
+\end{tabular}
+\end{center}
+\end{MExercise}
+
+\end{MXContent}
+%jgl: end of section 2.
 
 
 
@@ -500,10 +791,18 @@ Drei Punkte bilden die Ecken eines Dreiecks.
 
 \begin{center}
 %Beispiele von Dreiecken
-%\MTikzAuto{%
-%\begin{tikzpicture}
-%\end{tikzpicture}
-%}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt]
+\coordinate[label=left:$A$] (A) at (-4,1);
+\coordinate[label=right:$B$] (B) at (-2,1);
+\coordinate[label=above:$C$] (C) at (-2,3);
+\coordinate[label=left:$D$] (D) at (2,-0.5);
+\coordinate[label=right:$E$] (E) at (6,2);
+\coordinate[label=above:$F$] (F) at (3,1);
+\draw (A) -- (B) -- (C) -- (A);
+\draw (D) -- (E) -- (F) -- (D);
+\end{tikzpicture}
+}
 \end{center}
 \end{MIntro}
 
@@ -572,57 +871,7 @@ die Innenwinkel, nennt man die Innenwinkel eines Dreiecks auch schlicht
 }
 \end{minipage}
 \end{tabular}
-%\qquad\qquad
-%\ifttm%
-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Winkelsumme.png}{scale=1}
-%\else%
-%\tikzsetnextfilename{Winkelsumme}
-%\begin{tikzpicture}
-%\coordinate[label=below left:$A$] (A) at (0,0);
-%\coordinate[label=right:$B$] (B)      at (4,0.5);
-%\coordinate[label=above:$C$] (C)      at (2,3);
-%\coordinate (MAB) at ($ (A)!0.5!(B) $);
-%\coordinate (MBC) at ($ (B)!0.5!(C) $);
-%\coordinate (MCA) at ($ (C)!0.5!(A) $);
-%\coordinate (Hilfspunkt) at ($ (B) - (A) $);
-%\coordinate (PA) at ($ (C) - (Hilfspunkt)!0.5!(0,0) $);
-%\coordinate (PB) at ($ (C) + (Hilfspunkt)!0.5!(0,0) $);
-%
-%\draw (A) -- (B) -- (C) -- cycle;
-%
-%\draw[dotted] (PA) -- (PB);
-%\path (C) -- node[near start]{$\delta$}      ($ (A)!0.6!(PA) $);
-%\path (C) -- node[near start]{$\Mvarepsilon$} ($ (B)!0.6!(PB) $);
-%
-%\path (A) -- node[near start]{$\alpha$} (MBC) node[above right]{$a$};
-%\path (B) -- node[near start]{$\beta$}  (MCA) node[above left] {$b$};
-%\path (C) -- node[near start]{$\gamma$} (MAB) node[below]      {$c$};
-%
-%\path let \p1 = (current bounding box.east),
-%          \p2 = (current bounding box.west),
-%          \p3 = ($ (\p1) - (\p2) $),
-%          \n3 = {veclen(\p3)} in
-%      (current bounding box.south) node [below, text width=\n3, text centered, outer sep = 0.5\baselineskip]
-%           {Skizze f\"ur den Beweis des Innenwinkelsatzes.};
-%\end{tikzpicture}
-%\fi
-%\end{center}
 
-%Der letzte Satz von Info~\MRef{Mathematik_ElementareGeometrie_SummeDerInnenwinkel}
-%ist keine Definition, sondern eine Aussage. Als solche wollen wir sie beweisen.
-%Wir rechnen die Innenwinkelsumme eines Dreiecks kurz aus.
-
-%In der rechten Skizze ist die gepunktete Linie parallel zur
-%Seite~$c$ des Dreiecks. Also sind $\alpha$ und $\delta$ bzw.\ 
-%$\beta$ und $\Mvarepsilon$ Wechselwinkel und damit gleich gro\ss .
-
-%Verl\"angert man die gepunktete Linie auf beiden Seiten ins
-%Unendliche, so erh\"alt man eine Gerade und deshalb gilt
-%\[
-% \delta + \gamma + \Mvarepsilon = \pi.
-%\]
-%Wegen $\alpha = \delta$ und $\beta = \Mvarepsilon$ folgt die Behauptung.
-\ \\
 Da die Summe aller Winkel in einem Dreieck~$\pi$ betr\"agt, kann h\"ochstens
 ein Winkel gleich oder gr\"o\ss er als~$\frac{\pi}{2}$ sein. Dadurch werden die
 Dreiecke nach ihrem gr\"o\ss ten Winkel in drei verschiedene Klassen eingeteilt:
@@ -750,7 +999,7 @@ die L\"ange der beiden Katheten $a$ und $b$. Dabei bezeichnet $D$ den
 H"ohenf"uspunkt der H"ohe $h_c$.
 
 \begin{MHint}{L\"osung}
-Es wird wird der Satz des Pythagoras auf das Dreieck $\MGeoDreieck{D}{B}{C}$
+Es wird der Satz des Pythagoras auf das Dreieck $\MGeoDreieck{D}{B}{C}$
 angewandt, das in $D$ einen rechten Winkel hat. Dann ist
 \[
  a = \sqrt{h_c^2 + q^2} = \sqrt{4^2 + 3^2} = \sqrt{25} = 5 \MDFPeriod
@@ -2824,7 +3073,7 @@ Welche der Aussagen und Ergebnisse sind richtig?
  Es gibt genau ein Quadrat mit einer Diagonalen von $5\MEinheit{cm}$. \\
 %
 \MCheckbox{1}{ExM05TestAg16} & \MCheckbox{0}{ExM05TestAg17} & %
- Ein Dreieck mit den Winkeln $36^{\circ}$ und $54^{\circ}$ ist rechtwinklig. \\
+ Ein Dreieck mit den Winkeln $36\MGrad$ und $54\MGrad$ ist rechtwinklig. \\
 %
 \MCheckbox{0}{ExM05TestAg18} & \MCheckbox{1}{ExM05TestAg19} & %
  In einem Viereck ist die Summe aller Winkel im Bogenma"s gleich $2 \pi$.
@@ -2844,7 +3093,7 @@ Welche der Aussagen und Ergebnisse sind richtig?
  Es gibt genau ein Quadrat mit einer Diagonalen von $5\MEinheit{cm}$. \\
 %
 \MCheckbox{1}{ExM05TestAg16} & \MCheckbox{0}{ExM05TestAg17} & %
- Ein Dreieck mit den Winkeln $36^{\circ}$ und $54^{\circ}$ ist rechtwinklig. \\
+ Ein Dreieck mit den Winkeln $36\MGrad$ und $54\MGrad$ ist rechtwinklig. \\
 %
 \MCheckbox{0}{ExM05TestAg18} & \MCheckbox{1}{ExM05TestAg19} & %
  In einem Viereck ist die Summe aller Winkel im Bogenma"s gleich $4 \pi$.
