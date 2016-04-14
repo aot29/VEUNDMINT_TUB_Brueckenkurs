@@ -446,7 +446,9 @@ class Preprocessor(object):
             (self.local['tex'], n) = re.subn(r"\\MTikzAuto\{", ctikz, self.local['tex'], 0, re.S)
             if (n > 0):
                 self.sys.message(self.sys.VERBOSEINFO, "Forcibly attached CC licenses to " + str(n) + " tikz pictures in this files")
-    
+        if self.options.displaycopyrightlinks != 1:
+            # force silent copyright links
+            self.local['tex'] = self.local['tex'].replace("\\MCopyrightLabel{", "\\MSilentCopyrightLabel{")
     
         def cright(part):
             authortext = ""

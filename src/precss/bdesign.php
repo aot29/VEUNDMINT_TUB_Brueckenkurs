@@ -385,9 +385,12 @@ img {
 
 /* toc */ 
 
+/* toc with 15px padding to accomodate a vertical scrollbar, 15px are included in MENUWIDTH */
 .toc {
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding: 0 !important;
+    padding-right: 15px;
     margin-top: 0px !important;
     bottom: [-FOOTERHEIGHT-];
     top: [-TOCTOP-]  !important;
@@ -458,6 +461,7 @@ tocnavsymb ul li ul li a:hover div{
 	background-color: transparent !important;
 	color: white !important;
 	padding: 0px 2px 0px 0px !important;
+    font-weight: 300 !important;
 }
 .xsymb:hover {
 	color: rgba(255,255,255,0.5) !important;
@@ -490,9 +494,10 @@ tocnavsymb ul li ul li a:hover div{
 	color: rgba(255,255,255,0.3) !important;
 }
 
-.xsymb.aktiv {
-	color: red !important;
+.xsymb.selected {
+    font-weight: 700 !important;
 }
+
 .xsymb.status3 tt,
 .xsymb.status2 tt,
 .xsymb.status1 tt {
@@ -626,4 +631,25 @@ a .tocminbutton {
 
 .roulettebutton:hover {
     background-color:rgba(215,235,255,.5) !important;
+}
+
+ul.legende {
+    display: block;
+    width:100%;
+    margin-top: [-FOOTERHEIGHT-] !important;
+    padding: 10px !important;
+    font-size: smaller;
+}
+ul.legende li {
+    color: [-TOCMINCOLOR-];
+    font-weight: 300;
+}
+ul.legende li:first-child {
+    color: [-TOCMINCOLOR-];
+    font-weight: 700;
+    text-transform: uppercase;
+}
+ul.legende li .xsymb {
+    min-width: [-TINYFONTSIZE-];
+    color: [-TOCMINCOLOR-] !important;
 }
