@@ -304,7 +304,7 @@ class System(object):
     # prints text on the console (which maybe does not understand utf8, so we encode output in ASCII)
     def _encode_print(self, txt):
         if self.doEncodeASCII == 1:
-            print(txt.encode(encoding = "us-ascii", errors = "backslashreplace"))
+            print(txt.encode(encoding = "us-ascii", errors = "backslashreplace").decode("us-ascii"))
         else:
-	    print(txt)
+            print(txt)
       

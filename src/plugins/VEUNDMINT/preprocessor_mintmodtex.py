@@ -211,11 +211,16 @@ class Preprocessor(object):
             reply = False
             self.sys.message(self.sys.VERBOSEINFO, "File " + orgname + " is not recognized as a TeX file by file command")
     
+        # no Mtikzexternalize in a comment
+        if re.search(r"\%([ \t]*)\\Mtikzexternalize", tex, re.S):
+                self.sys.message(self.sys.CLIENTWARN, "Mtikzexternalize found in a comment")
+                reply = False
+    
         # no experimental environments
-        if (re.match(r".*\\begin{MExperimental}.*", tex, re.S)):
+        if (re.search(r"\\begin\{MExperimental\}", tex, re.S)):
             self.sys.message(self.sys.VERBOSEINFO, "MExperimental found in tex file");
             reply = False
-        if (re.match(r".*\% TODO.*", tex, re.S)):
+        if (re.search(r"\% TODO", tex, re.S)):
             self.sys.message(self.sys.VERBOSEINFO, "TODO comment found in tex file");
             reply = False
             

@@ -1651,48 +1651,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \fi
 }
 
-\newcommand{\MIncludePSE}{
-% Bindet bei Chemie-Modulen das PSE ein
-% (wird nur im HTML, aber nicht im PDF erstellt)
-\ifttm
-\special{html:<!-- includepse //-->}
-\begin{MSContent}{Periodensystem der Elemente}{PSE}{table}
-\MRegisterFile{../files/pse.js}
-\MRegisterFile{../files/radio.png}
-\begin{html}
-<script src="\MMaterial/../files/pse.js" type="text/javascript"></script>
-<p id="divid"><br /><br />
-<script language="javascript" type="text/javascript">
-    startpse("divid","\MMaterial/../files"); 
-</script>
-</p>
-<br />
-<br />
-<br />
-<p>Die Farben der Elementsymbole geben an: <font style="color:Red">gasf&ouml;rmig </font> <font style="color:Blue">fl&uuml;ssig </font> fest</p>
-<p>Die Elemente der Gruppe 1 A, 2 A, 3 A usw. geh&ouml;ren zu den Hauptgruppenelementen.</p>
-<p>Die Elemente der Gruppe 1 B, 2 B, 3 B usw. geh&ouml;ren zu den Nebengruppenelementen.</p>
-<p>() kennzeichnet die Masse des stabilsten Isotops</p>
-\end{html}
-\end{MSContent}
-\fi
-}
-
-\newcommand{\MAppletArchive}[4]{
-% Bindet ein Java-Applet ein, die Parameter sind:
-% (wird nur im HTML, aber nicht im PDF erstellt)
-% #1 Dateiname der Klasse mit Appletaufruf (muss mit ".class" enden)
-% #2 Dateiname des Archivs (muss mit ".jar" enden)
-% #3 = Breite in Pixeln
-% #4 = Hoehe in Pixeln
-\ifttm
-\MRegisterFile{#2}
-\begin{html}
-<applet code="#1" archive="\end{html}\MMaterial/\MLastFile\begin{html}" codebase="." width="#3" height="#4" alt="[Java-Archiv kann nicht gestartet werden]"></applet>
-\end{html}
-\fi
-}
-
 % Bindet in der Haupttexdatei ein MINT-Modul ein. Parameter 1 ist das Verzeichnis (relativ zur Haupttexdatei), Parameter 2 ist der Dateinahme ohne Pfad.
 \newcommand{\IncludeModule}[2]{
 \renewcommand{\MDPrefix}{#1}

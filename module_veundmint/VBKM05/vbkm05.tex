@@ -2,7 +2,7 @@
 \MPragma{MathSkip}
 
 %Einkommentieren zur Erzeugung der pngs aus den tikz-Umgebungen
-%\Mtikzexternalize
+\Mtikzexternalize
 
 \MSetSubject{\MINTMathematics}
 
@@ -454,7 +454,9 @@ beschrieben.
 Winkel werden oft mit kleinen griechischen Buchstaben bezeichnet, soweit sie
 sich vom lateinischen Alphabet unterscheiden. 
 %jgl: Griechisches Alphabet muss noch neu sortiert werden:
-\input{vbkm_griechischesalphabet.tex}
+
+% auskommentiert weil Datei fehlt:
+% \input{vbkm_griechischesalphabet.tex}
 
 Indem man Geraden in die Betrachtungen miteinbezieht, lassen sich weitere 
 Winkel entdecken.
@@ -3168,11 +3170,11 @@ Adjektiv) angeben, die m"oglichst viele Eigenschaften der Figur beschreibt.
 \begin{MQuestionGroup}
 \begin{tabular}[t]{cc}
 Figur: & Klassenbeschreibung: \\
- $F_1$ & \MLParsedQuestion{32}{Viereck}{10}{ExM05TestAg10} \\
- $F_2$ & \MLParsedQuestion{32}{Quadrat}{10}{ExM05TestAg10} \\
- $F_3$ & \MLParsedQuestion{32}{Parallelogramm}{10}{ExM05TestAg10} \\
- $F_4$ & \MLParsedQuestion{32}{gleichschenkliges Dreieck}{10}{ExM05TestAg10} \\
- $F_5$ & \MLParsedQuestion{32}{Raute}{10}{ExM05TestAg10} \\
+ $F_1$ & \MLQuestion{32}{Viereck}{ExM05TestAg10b} \\
+ $F_2$ & \MLQuestion{32}{Quadrat}{ExM05TestAg10c} \\
+ $F_3$ & \MLQuestion{32}{Parallelogramm}{ExM05TestAg10d} \\
+ $F_4$ & \MLQuestion{32}{gleichschenkliges Dreieck}{ExM05TestAg10e} \\
+ $F_5$ & \MLQuestion{32}{Raute}{ExM05TestAg10f} \\
 %
 \end{tabular}
 \end{MQuestionGroup}
@@ -3199,7 +3201,7 @@ Welche der Aussagen und Ergebnisse sind richtig?
 \begin{MQuestionGroup}
 \begin{tabular}{|l|l|l|}
  richtig & falsch & \\
- \MCheckbox{0}{ExM05TestAg10} & \MCheckbox{1}{ExM05TestAg11} & %
+ \MCheckbox{0}{ExM05TestAg10g} & \MCheckbox{1}{ExM05TestAg11} & %
  Jedes Rechteck ist eine Raute. \\
 %
 \MCheckbox{1}{ExM05TestAg12} & \MCheckbox{0}{ExM05TestAg13} & %
@@ -3320,7 +3322,7 @@ Quadrats, sowie f\"ur den kleinstm\"oglichen Kreis, der das Quadrat enth\"alt:
 %
 \item{Umfang des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{sqrt(2)*pi*a}{14}{a}{4}{1}{ExM05TestAg43}}
 %
-\item{Fl\"acheninhalt des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{ExM05TestAg43}}
+\item{Fl\"acheninhalt des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{ExM05TestAg43b}}
 \end{MExerciseItems}
 \par
 In den Antwortfeldern d\"urfen keine Klammern oder Wurzelausdr\"ucke auftauchen.
