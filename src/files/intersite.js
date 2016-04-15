@@ -173,7 +173,10 @@ function objClone(obj) {
 // Initialises the intersite object, if 'update == true', existing data get's overwritten, if 'scormLogin == true' the user id is used from SCORM instead of localStorage (this doesn't include 'clearuser')
 // pulledstr = JSON-String from db for user-obj, otherwise "" if nothing needs to be pulled.
 function SetupIntersite(clearuser, pulledstr) {
-  logMessage(VERBOSEINFO,"SetupIntersite START");
+  logMessage(VERBOSEINFO, "SetupIntersite START");
+  if (forceOffline == 1) {
+      logMessage(CLIENTINFO, "Course is in OFFLINE mode");
+  }
   var s_login = "";
 
   if (pulledstr != "") {
@@ -773,6 +776,9 @@ function opensite(localurl) {
 // Should be merged with function from userdata.js
 function sendCorsRequest( url, data, success, error,async ) {
         logMessage(VERBOSEINFO, "intersite.sendCorsRequest called, type = POST, url = " + url + ", async = " + async + ", data = " + JSON.stringify(data));
+        if (forceOffline == 1) {
+            logMessage(VERBOSEINFO, "Send request omittet, course is in offline mode")
+        }
         $.ajax( url, {
                 type: 'POST',
                 async: async,

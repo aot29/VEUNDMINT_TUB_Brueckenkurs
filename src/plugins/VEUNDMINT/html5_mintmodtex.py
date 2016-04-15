@@ -92,7 +92,7 @@ class Plugin(basePlugin):
             else:
                 self.data[dat] = dict()
 
-        for dat in ['uxids', 'siteuxids', 'wordindexlist', 'labels']:
+        for dat in ['uxids', 'siteuxids', 'wordindexlist', 'labels', 'slabels']:
             if dat in self.data:
                 self.sys.message(self.sys.CLIENTWARN, dat + " list exists from another plugin, appending data to it and hoping it works out")
             else:
@@ -130,8 +130,8 @@ class Plugin(basePlugin):
         self.generate_css()
 
         self.xidobj = None # used by global xcontent linking
-        self.setup_contenttree()
         self.analyze_html() # analyzation done on raw text
+        self.setup_contenttree()
         self.analyze_nodes_stage1(self.ctree) # analyzation done inside nodes
         self.prepare_index()
         self.analyze_nodes_stage2(self.ctree) # analyzation parts using information from stage1 and the index
@@ -158,6 +158,8 @@ class Plugin(basePlugin):
         
         # we need a real object tree instead of a XML tree which can have only text fields as attribute values and no code
         # copy tree structure from tocxml up to level 3, fill in level 4 and detailed infos from content
+        
+        self.sys.timestamp("setup_contenttree start")
         
         maxlevel = 3
         root = self.ctree # the ROOT node of level 0
@@ -196,8 +198,10 @@ class Plugin(basePlugin):
 
             if lev == 1:
                 q.link = str(pos)
+                q.chapter = pos
             else:
                 q.link = q.parent.link + "." + str(pos)
+                q.chapter = q.parent.chapter
             
             q.fullname = self.outputextension + "/" + q.link
             
@@ -278,27 +282,18 @@ class Plugin(basePlugin):
                 p.ismodul = True
                 p.display = True
                 p.content = text
-                p.docname = "sectionx" + str(sec) + "." + str(ssec)
+                p.docname = "sectionx" + str(p.chapter) + "." + str(sec) + "." + str(ssec)
+                p.section = sec
                 p.link = p.docname
                 p.fullname = self.outputextension + "/" + p.link + "." + self.outputextension
                 lastcontent = None
                 pos = 1
-                
-                # move labels appearing in front into the next xcontent (should be done by preprocessor on latex level!), or labels are added before this parsing??
-                # mdeclaresection too!
-                """
-                                my $sslabels = "";
-                                if ($self->{LEVEL} eq 3) {
-                                  if ($text =~ /(.*)<!-- xcontent;-;0;-;/s ) {
-                                    my $pretext = $1;
-                                    while ($pretext =~ s/<!-- mmlabel;;(.*?)\/\/-->//s ) { $sslabels = $sslabels . "<!-- mmlabel;;$1\/\/-->"; }
-                                    while ($pretext =~ s/<a(.*?)>(.*?)<\/a>//si ) { $sslabels = $sslabels . "<a$1>$2<\/a>"; }
-                                    $text =~ s/(.*)<!-- xcontent;-;0;-;/$pretext<!-- xcontent;-;0;-;/s ;
-                                  }
-                                }
-                """
-                
-                
+
+                # grab sectionlabels stored from processing of raw xml
+                for l in self.data['slabels']:
+                    if (l[6] == "1") and (int(l[2]) == p.chapter) and (int(l[3]) == p.section):
+                        # prepend mmlabel tag and html anchor (which was created by ttm outside the xcontent block)
+                        p.content = "<a id=\"" + l[0] + "\"></a><!-- mmlabel;;" + l[0] + ";;" + l[1] + ";;" + l[2] + ";;" + l[3] + ";;" + l[4] + ";;" + l[5] + ";;" + l[6] + "; //-->" + p.content
                 
             else:
                 # level 4 xcontent coming from MXContent inside a subsection, needs a new node, tocelement points wrongly to toc father node
@@ -314,6 +309,7 @@ class Plugin(basePlugin):
                     p.myid = nid
                     nid += 1
                     p.level = p.parent.level + 1
+                    p.chapter = p.parent.chapter
                     p.title = m.group(2)
                     p.ismodul = True
                     if m.group(3) != "":
@@ -327,6 +323,9 @@ class Plugin(basePlugin):
                     p.content = m.group(5)
                     p.icon = m.group(4) # will no longer be used
                     p.display = True
+                    p.section = sec
+                    p.subsection = ssec
+
                     if i == 0:
                         pos = 1
                         lastcontent = None # it's a modstart
@@ -405,7 +404,14 @@ class Plugin(basePlugin):
                     # add numbers to MSubsubsections in MXContent
                     p.content = re.sub(r"<h4>(.+?)</h4><!-- sectioninfo;;(\w+?);;(\w+?);;(\w+?);;1;;([01]); //-->" ,r"<h4>\2.\3.\4 \1</h4>", p.content, 0, re.S)
                     
-                    p.next = None
+                    if p.pos == 1:
+                        # it's a modstart, grab subsectionlabels stored from processing of raw xml
+                        for l in self.data['slabels']:
+                            if (l[6] == "2") and (int(l[2]) == p.chapter) and (int(l[3]) == p.section) and (int(l[4]) == p.subsection):
+                                # prepend mmlabel tag and html anchor (which was created by ttm outside the xcontent block)
+                                p.content = "<a id=\"" + l[0] + "\"></a><!-- mmlabel;;" + l[0] + ";;" + l[1] + ";;" + l[2] + ";;" + l[3] + ";;" + l[4] + ";;" + l[5] + ";;" + l[6] + "; //-->" + p.content
+                    
+                    p.right = None
                     pos = pos + 1
                     
                     lastcontent = p
@@ -414,10 +420,12 @@ class Plugin(basePlugin):
                     self.sys.message(self.sys.CLIENTERROR, "xcontent element of level 4 contains no xcontent information tags, cannot parse it")
                 
         self.sys.message(self.sys.VERBOSEINFO, "Tree buildup: \n" + str(root))
+        self.sys.timestamp("setup_contenttree finished successfully")
 
 
     # scan raw html for course scope relevant information tags, note that rawxml is not used in further computations
     def analyze_html(self):
+        self.sys.timestamp("analyze_html start")
         
         # output user debug messages
         def cmessage(m):
@@ -444,7 +452,17 @@ class Plugin(basePlugin):
         else:
             self.sys.message(self.sys.CLIENTINFO, "Location declaration not found, no location button will be generated")
             
-
+        # scan raw text for section and subsection labels which will not appear in a xcontent (and therefore not in contentxml)
+        # definition from macropackage: <!-- mmlabel;;Labelbezeichner;;SubjectArea;;chapter;;section;;subsection;;Index;;Objekttyp; //-->
+        # index == -1 -> section or subsection not attached to xcontent, section: type=1, subsection: type=2
+        def slabel(m):
+            self.data['slabels'].append((m.group(1), m.group(2), m.group(3), m.group(4), m.group(5), m.group(6), m.group(7)))
+            self.sys.message(self.sys.VERBOSEINFO, "Label type " + m.group(7) + " stored: " + m.group(1))
+        re.sub(r"\<!-- mmlabel;;([^;]+);;([^;]+);;([^;]+);;([^;]+);;([^;]+);;([^;]+);;([12]); //--\>", slabel, self.rawxml, 0, re.S)
+        
+        self.sys.timestamp("analyze_html finished successfully")
+        
+        
     # scan tree content elements for course scope relevant information tags
     def analyze_nodes_stage1(self, tc):
         # extract word index information (must be extracted before stage1 label management)
@@ -471,28 +489,28 @@ class Plugin(basePlugin):
                     self.sys.message(self.sys.VERBOSEINFO, "Found index: " + m.group(1) + ", index is " + str(idx) + ", whole group is " + m.group(0))
                 
             return "<!-- mindexentry;;" + m.group(1) + "; //--><a class=\"label\" name=\"" + li + "\"></a><!-- mmlabel;;" + li + ";;" \
-                   + m.group(2) + ";;" + m.group(3) + ";;" + m.group(4) + ";;" + m.group(5) + ";;13; //-->"
+                   + m.group(2) + ";;" + m.group(3) + ";;" + m.group(4) + ";;" + m.group(5) + ";;" + m.group(6) + ";;13; //-->"
 
         # carefull with regex, last letter of m.group(1) could be a ; because of math symbol HTML tags, on the other hand expressions have to be greedy to prevent overlaps
-        tc.content = re.sub(r"\<!-- mpreindexentry;;(.+?);;([^;]+?);;([^;]+?);;([^;]+?);;([^;]+?); //--\>", windex, tc.content, 0, re.S)
+        tc.content = re.sub(r"\<!-- mpreindexentry;;(.+?);;([^;]+?);;([^;]+?);;([^;]+?);;([^;]+?);;([^;]+?); //--\>", windex, tc.content, 0, re.S)
         
-
-        # extract labels defined by the macro package: <!-- mmlabel;;LABELBEZEICHNER;;SUBJECTAREA;;SECTION;;SUBSECTION;;OBJEKTTYP;;ANCHORTAG; //-->
+        # extract labels defined by the macro package: <!-- mmlabel;;Labelbezeichner;;SubjectArea;;chapter;;section;;subsection;;Index;;Objekttyp; //-->
         def elabel(m):
             # labels defined inside math environments have data elements wrapped in an <mn>-tag
             lab = re.sub(r"\</?mn\>", "", m.group(1), 0, re.S)
-            sub = re.sub(r"\</?mn\>", "", m.group(2), 0, re.S)
-            sec = re.sub(r"\</?mn\>", "", m.group(3), 0, re.S)
-            ssec = re.sub(r"\</?mn\>", "", m.group(4), 0, re.S)
-            sssec =  re.sub(r"\</?mn\>", "", m.group(5), 0, re.S)
-            ltype =  re.sub(r"\</?mn\>", "", m.group(6), 0, re.S)
+            chap = re.sub(r"\</?mn\>", "", m.group(2), 0, re.S)
+            sub = re.sub(r"\</?mn\>", "", m.group(3), 0, re.S)
+            sec = re.sub(r"\</?mn\>", "", m.group(4), 0, re.S)
+            ssec = re.sub(r"\</?mn\>", "", m.group(5), 0, re.S)
+            sssec = re.sub(r"\</?mn\>", "", m.group(6), 0, re.S)
+            ltype = re.sub(r"\</?mn\>", "", m.group(7), 0, re.S)
 
             pl = tc.fullname + "#" + lab
-            self.data['labels'].append((lab, sub, sec, ssec, sssec, ltype, pl))
-            self.sys.message(self.sys.VERBOSEINFO, "Added label " + lab  + " in chapter " + sub + " with number " + sec + "." + ssec + "." + sssec + "  and type " + ltype + ", pagelink = " + pl)
-            return "" # remoce the label tag entirely
+            self.data['labels'].append((lab, sub, chap, sec, ssec, sssec, ltype, pl))
+            self.sys.message(self.sys.VERBOSEINFO, "Added label " + lab  + " in chapter " + chap + ", area + " + sub + " with number " + sec + "." + ssec + "." + sssec + "  and type " + ltype + ", pagelink = " + pl)
+            return "" # remove the label tag entirely
 
-        tc.content = re.sub(r"\<!-- mmlabel;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); //--\>", elabel, tc.content, 0, re.S)
+        tc.content = re.sub(r"\<!-- mmlabel;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); //--\>", elabel, tc.content, 0, re.S)
         
         # check if it is a helpsite or a child of one
         if (not tc.parent is None) and tc.parent.helpsite:
@@ -582,13 +600,14 @@ class Plugin(basePlugin):
             for sl in self.data['labels']:
                 if (sl[0] == lab):
                     found = True
-                    href = sl[6] # without tc.backpath, which will be added by the link update function
+                    href = sl[7] # without tc.backpath, which will be added by the link update function
                     self.sys.message(self.sys.VERBOSEINFO, "  href = " + href)
                     fb = int(sl[1])
-                    sec = sl[2]
-                    ssec = sl[3]
-                    refindex = sl[4]
-                    objtype = int(sl[5])
+                    chap = int(sl[2])
+                    sec = sl[3]
+                    ssec = sl[4]
+                    refindex = sl[5]
+                    objtype = int(sl[6])
 
             if not found:
                 self.sys.message(self.sys.CLIENTERROR, "Label " + lab + " has not been found by stage1, label list contains " + str(len(self.data['labels'])) + " items")
@@ -710,7 +729,7 @@ class Plugin(basePlugin):
             href = ""
             for sl in self.data['labels']:
                 if (sl[0] == lab):
-                    href = sl[6]  # without tc.backpath, which will be added by the link update function
+                    href = sl[7]  # without tc.backpath, which will be added by the link update function
                     self.sys.message(self.sys.VERBOSEINFO, "  href = " + href)
   
             if href != "":
@@ -772,7 +791,8 @@ class Plugin(basePlugin):
         tc.content = re.sub(r"\<mi\>&empty;\</mi\>", "<mtext>&empty;</mtext>", tc.content, 0, re.S)
         
         # text directly placed in front of a $-environment (especially open braces) receive a newline in HTML which turns into a space in HTML, remove it
-        tc.content = re.sub(r"\n\<math", "<math", tc.content, 0, re.S)
+        # DEACTIVATED with new ttm and mathjax 2.6
+        # tc.content = re.sub(r"\n\<math", "<math", tc.content, 0, re.S)
         
         # tables with borders need borders for cells too (as strict html requires all elements to have same border style, which can only be
         # be circumvented using css or js tricks)
@@ -860,6 +880,7 @@ class Plugin(basePlugin):
         self.sys.message(self.sys.CLIENTINFO, "Signature will be available in the HTML tree")
 
         s = "// Automatically generated by the tex2x VEUNDMINT output plugin\n" \
+          + "var forceOffline = " + str(self.options.forceoffline) + ";\n" \
           + "var scormLogin = " + str(self.options.scormlogin) + ";\n" \
           + "var isRelease = " + str(self.options.dorelease) + ";\n" \
           + "var doCollections = " + str(self.options.docollections) + ";\n" \

@@ -2,8 +2,9 @@
 {
   margin-left: [-MENUWIDTH-];
   padding: 10px;
+  padding-bottom: 20px;
   z-index: 10;
-  margin-bottom: 20px;
+  bottom: [-FOOTERHEIGHT-];
   color: [-CONTENT-];
   background-color: [-CONTENTBACKGROUND-];
   min-width: [-CONTENTMINWIDTH-];
@@ -15,9 +16,7 @@
   margin-left: [-MENUWIDTH-];
   padding: 10px;
   z-index: 10;
-  margin-bottom: 20px;
-
-
+  bottom: [-FOOTERHEIGHT-];
   color: [-CONTENT-];
   background-color: [-CONTENTBACKGROUND-];
 }

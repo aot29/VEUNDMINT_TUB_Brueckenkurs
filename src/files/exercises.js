@@ -90,6 +90,10 @@ var exercises = (function (baseURL) {
      * See more about how the data is formatted in server/exercises/Dokumentation.md
      **/
     exports.getCollection = function (id, success, error) {
+        if (forceOffline == 1) {
+            logMessage(VERBOSEINFO, "sendRequest omitted, course is in offline mode");
+	}
+
         $.ajax( url, {
             type: 'GET',
             async: true,

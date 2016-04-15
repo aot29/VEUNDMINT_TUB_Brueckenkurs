@@ -175,8 +175,28 @@ function CreateQuestionObj(uxid,c,solution,id,type,option,pnts,intest,section) {
     if (type == 2) {
       // Uebersetzen der values fuer die Loesung: tex: 0 und 1, js: 0 = noch nicht geclickt, 1 = angewaehlt, 2 = abgewaehlt
       if (ob.solution == "0") ob.solution = "2"; else ob.solution = "1";
-      ob.clear = function() { this.element.checked = false; this.value = "0"; this.message = ""; this.image.src = "../../images/questionmark.gif"; notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
-      ob.rawloadvalue = function(val) { this.element.checked = (val=="1"); this.value = val; this.message = "";  this.image.src = "../../images/questionmark.gif"; }
+      ob.clear = function() { this.element.checked = false; this.element.indeterminate = true; this.value = "0"; this.message = ""; this.image.src = "../../images/questionmark.gif"; notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
+      ob.rawloadvalue = function(val) {
+          this.value = val;
+          this.element.cval = val;
+          this.message = "";
+          this.image.src = "../../images/questionmark.gif";
+          if ((val == "0") || (val == "")) {
+              // nothing selected yet
+              this.element.checked = false;
+              this.element.indeterminate = true;
+          }
+          if (v == "1") {
+              // yes selected
+              this.element.checked = true;
+              this.element.indeterminate = false;
+          }
+          if (v == "2") {
+              // no selected
+              this.element.checked = false;
+              this.element.indeterminate = false;
+          }
+      }
     } else {
       // UNBEKANNTER TYP
     }
@@ -564,12 +584,11 @@ function check_group(input_from, input_to) {
               }
 
               case 2: {
-                // Checkbox
-                var v;
-		// Uebersetzen der checked-values in die eigenen values ("0" = noch nicht angeclickt, "1" = angewaehlt, "2" = abgewaehlt)
-                if (e.checked == true) {
+                // tristate checkbox: indeterminate, true determinate, false determinate (having intersite values "0", "1", "2"), stored in val attribute of the element
+                var v = e.cval;
+                console.log("checkboxval = " + v)
+                if (v == "1") {
                     // dirty: Eigentlich sollte der neue Wert auch durch checkgroup getestet werden, aber das fuehrt auf eine Rekursion...
-                    v = "1";
                     var j;
                     for (j = 0; j < FVAR[i].smc.length; j++) {
                         logMessage(VERBOSEINFO, "smc exclude = " + FVAR[i].smc[j]);
@@ -579,22 +598,30 @@ function check_group(input_from, input_to) {
                               FVAR[k].value = "2";
                               FVAR[k].rawinput = "2";
                               var f = d.getElementById(FVAR[k].id);
-                              if (f != null) f.checked = false;
-                              notifyPoints(k, 1, SOLUTION_TRUE);
+                              if (f != null) {
+                                  f.checked = false;
+                                  f.indeterminate = false;
+                                  f.setAttribute("data-val", "2")
+                              }
+                              notifyPoints(k, 1, SOLUTION_TRUE); // sollte das nicht false sein? Aber ist nur Bild..
                           }
                         }
                     }
-                } else {
-                    v = "2";
                 }
-		FVAR[i].value = v;
+                  
+                FVAR[i].value = v;
                 FVAR[i].rawinput = v;
                 if (v == FVAR[i].solution) {
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
                 } else {
-                  notifyPoints(i, 0, SOLUTION_FALSE);
+                    if (v != "0") {
+                        notifyPoints(i, 0, SOLUTION_FALSE);
+                    } else {
+                        notifyPoints(i, 0, SOLUTION_NEUTRAL);
+                    }
                 }
-		break;
+                
+		      break;
               }
               
               case 3: {
@@ -1235,17 +1262,33 @@ function InitResults(empty)
               }
 
               case 2: {
-                // Checkbox, v ist "1" oder "0"
-                if ((v == "0") || (v == "")) { e.checked = false; FVAR[i].clear(); }
-                if (v == "1") { e.checked = true; check_group(i,i); }
-                if (v == "2") { e.checked = false; check_group(i,i); }
+                // tristate checkbox: indeterminate, true determinate, false determinate (having intersite values "0", "1", "2")
+                e.cval = v;
+                if ((v == "0") || (v == "")) {
+                    // nothing selected yet
+                    e.checked = false;
+                    e.indeterminate = true;
+                    FVAR[i].clear();
+                }
+                if (v == "1") {
+                    // yes selected
+                    e.checked = true;
+                    e.indeterminate = false;
+                    check_group(i,i);
+                }
+                if (v == "2") {
+                    // no selected
+                    e.checked = false;
+                    e.indeterminate = false;
+                    check_group(i,i);
+                }
                 break;
               }
               
               case 3: {
                 // Eingabefeld mit reeller Loesung, geparset, exakt bis auf OPTION Stellen hinter dem Komma, Mengen moeglich, Mengen moeglich
                 e.value = v;
-		FVAR[i].rawinput = v;
+                FVAR[i].rawinput = v;
                 check_group(i,i);
                 break;
               }
@@ -2031,7 +2074,49 @@ function applyLayout(first) {
          content: { attr: 'tiptitle' },
          show: { event: "mouseenter" }
   });
+  
+  // enable tristate checkboxes (but only those used for exercises)
+  var $check = $("input[mtristate=1]"), el;
+  $check
+   .prop("mtristate", "2") // don't set function again
+   .click(function(e) {
+       
 
+        el = $(this);
+ 
+        // states are indeterminate, true determinate, false determinate (having intersite values "0", "1", "2", which we store in property "cval")
+        
+        switch(el.prop('cval')) {
+            
+            // unchecked ->  indeterminate
+            case "2":
+                console.log("2 -> 0")
+                el.prop('cval', "0");
+                el.prop('indeterminate', true);
+                el.prop('checked', false); // remember indeterminate is independent of checked
+                break;
+            
+            // checked -> unchecked
+            case "1":
+                console.log("1 -> 2")
+                el.prop('cval', "2");
+                el.prop('indeterminate', false);
+                el.prop('checked', false);
+                break;
+            
+            // indeterminate -> checked
+            default:
+                console.log("0 -> 1")
+                el.prop('cval', "1");
+                el.prop('indeterminate', false);
+                el.prop('checked', true);
+                break;
+        }
+        
+        
+});
+
+    
 }
 
 function changeFontSize(add) {

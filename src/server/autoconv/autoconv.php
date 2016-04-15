@@ -71,13 +71,12 @@ try {
   echo("</p>");
   
   
-  $reply = `src/mconvert.pl tu9onlinekurs_test.pl consolecolors=0`;
-  
-
   echo("<p>");  
   echo("<br ><strong>Die Konvertierung wurde erzeugt und ist einsehbar unter <a href=\"$linkstring\">$linkstring</a></strong><br />");
   echo("Die komplette Liste der Meldungen im Log gibt es hier: <a href=\"ve-und-mint/conversion.log\">conversion.log</a><br />");
-  simple_execute("src/mconvert.pl tu9onlinekurs_test.pl", "Konvertierungsmeldungen");
+  chdir("src")
+  simple_execute("python3 tex2x.py VEUNDMINT", "Konvertierungsmeldungen");
+  chdir("..")
   echo("</p>");
 
   echo("</body>");

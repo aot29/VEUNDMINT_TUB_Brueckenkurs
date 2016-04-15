@@ -131,6 +131,19 @@ progress[aria-valuenow]:before {
     column-count: 2;
 }
 
+button.groupbutton {
+    background-color: rgb(120,120,170);
+    color: white;
+    font-family: 'open-sans-condensed';
+    font-weight: 700;
+    display: inline-block;
+    border: 2px solid rgb(210,210,210) !important;
+    border-radius: 3px 3px 0px 0px;
+    padding: 5px 10px !important;
+    letter-spacing: 0.5px;
+    margin: 0 !important;
+}
+
 button.hintbutton_closed:after {
 	font-family: 'FontAwesome' !important;
 	content: "\f107" !important;

@@ -45,6 +45,13 @@ class PageFactory(object):
         self.outputplugin = outputplugin
         self._load_templates()
         
+        if hasattr(self.options, "tocadd"):
+            self.tocadd = self.options.tocadd
+        else:
+            self.sys.message(self.sys.CLIENTWARN, "Options do not provide toc addition template, will be omitted")
+            self.tocadd = ""
+
+        
     def _load_templates(self):
         if self.options.doscorm == 0:
             self.sys.message(self.sys.CLIENTINFO, "Using HTML5 MINTMODTEX template")
@@ -160,11 +167,7 @@ class PageFactory(object):
         c = ""
         # Nummer des gerade aktuellen Fachbereichs ermitteln
         pp = tc
-        fsubi = -1
-        while (pp.level != (self.options.contentlevel - 3)):
-            if pp.level == (self.options.contentlevel - 2):
-                fsubi = pp.myid
-            pp = pp.parent
+        fsubi = tc.chapter
         
         attr = ""
         root = tc.root
@@ -186,10 +189,14 @@ class PageFactory(object):
         attr = ""
         ff = i1 + 1
 
-        # Fachbereiche ohne Nummern anzeigen
-        ti = re.sub(r"([12345] )(.*)", "\\2", p1.title, 1, re.S)
-        c += "<li" + attr + "><a class=\"MINTERLINK\" href=\"" + p1.fullname  + "\">" + ti + "</a>\n" 
-
+        # display chapters only if required by options
+        if self.options.tocchapters == 1:
+            self.sys.message(self.sys.VERBOSEINFO, "Adding chapter link to toc")
+            ti = re.sub(r"([12345] )(.*)", "\\2", p1.title, 1, re.S)
+            c += "<li" + attr + "><a class=\"MINTERLINK\" href=\"" + p1.fullname  + "\">" + ti + "</a>\n" 
+        else:
+            self.sys.message(self.sys.VERBOSEINFO, "Omitting chapter link in toc")
+    
         pages2 = p1.children
         n2 = len(pages2)
         if (n2 > 0):
@@ -215,19 +222,26 @@ class PageFactory(object):
                             p3 = pages3[i3]
                             if (selected == 1):
                                 tsec = str(p3.nr) + p3.title
-                                tsec = re.sub(r"([0123456789]+?)\.([0123456789]+)(.*)", "<div class=\"xsymb\">\\1.\\2</div></a>&nbsp;", tsec, 1, re.S)
+                                tsec = re.sub(r"([0123456789]+?)\.([0123456789]+)(.*)", "<div class=\"xsymb selected\">\\1.\\2</div></a>&nbsp;", tsec, 1, re.S)
                                 pages4 = p3.children
                                 for a in range(len(pages4)):
                                        p4 = pages4[a]
-                                       tsec += "<a class=\"MINTERLINK\" href=\"" + p4.fullname + "\"><div class=\"xsymb " + p4.tocsymb + "\"></div></a>\n"
+                                       if p4 is tc:
+                                           cl = " selected"
+                                       else:
+                                           cl = ""
+                                       divid = "idxsymb_tc" + str(p4.myid)
+                                       tsec += "<a class=\"MINTERLINK\" href=\"" + p4.fullname + "\"><div id=\"" + divid + "\" class=\"xsymb " + p4.tocsymb + cl + "\"></div></a>\n"
                                        
-                                c += "    <li><a class=\"MINTERLINK\" href=\"" + p3.fullname + "\">" + tsec + "</li>\n"
+                                c += "    <li><a class=\"MINTERLINK\" href=\"" + pages4[0].fullname + "\">" + tsec + "</li>\n"
                         c += "    </ul></div>\n"
                 c += "  </li>\n"
         c += "\n" \
           +  "</ul></div>" \
           +  "</li>" \
-          +  "</ul></tocnavsymb>" \
+          +  "</ul>" \
+          +  self.tocadd \
+          + "</tocnavsymb>" \
           +  "<br /><br />"
   
         return c
@@ -258,6 +272,7 @@ class PageFactory(object):
     def getnavi(self, tc):
         navi = ""
 
+        # link to previous page
         p = tc.navleft()
         icon = "nprev"
         if (tc.level == self.options.contentlevel) and (p is None):
@@ -297,14 +312,13 @@ class PageFactory(object):
         if (tc.level != self.options.contentlevel):
             # higher level: set links to module start
             pp = tc
-            if (pp.level != self.options.contentlevel):
-                sp = pp.children
-                pp = sp[0]
+            while (pp.level != self.options.contentlevel):
+                pp = pp.children[0]
             navi += "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" + pp.fullname + "\">"
             if (not pp.helpsite):
-                 navi + self.options.strings['module_starttext']
+                 navi += self.options.strings['module_starttext'] + tc.title
             else:
-                 navi + self.options.strings['module_moreinfo']
+                 navi += self.options.strings['module_moreinfo']
             navi += "</a></li>\n"
         
         parent = tc.parent

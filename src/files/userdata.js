@@ -88,6 +88,9 @@ var userdata = (function (serviceURL) {
     function sendRequest(async, type, data, successCallback, errorCallback) {
 // vereinfachte Version ohne credentials
         logMessage(VERBOSEINFO, "userdata.sendRequest called, url = " + url + ", type = " + type + ", data = " + JSON.stringify(data));
+	if (forceOffline == 1) {
+	    logMessage(VERBOSEINFO, "sendRequest omitted, course is in offline mode");
+	}
         $.ajax( url, {
 		type: type,
 		async: async,

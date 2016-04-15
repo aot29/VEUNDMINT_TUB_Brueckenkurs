@@ -71,6 +71,8 @@ class Option(object):
         self.dozip = 0            # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
         self.consolecolors = 1    # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
         self.forceyes = 1         # =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
+        self.symbolexplain = 1    # =1 -> Short list explaining symbols is added to table of contents
+        self.forceoffline = 1     # =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
         
         # VE&MINT source/target parameters
         self.macrofilename = "mintmod"
@@ -91,18 +93,23 @@ class Option(object):
         self.mathjaxtgz = "mathjax26complete.tgz"
         self.texstylefiles = ["bibgerm.sty", "maxpage.sty"]  # style files needed in local directories for local pdflatex compilation
         self.htmltikzscale = 1.3                             # scaling factor used for tikz-png scaling, can be overridden by pragmas
-        self.autotikzcopyright = 0
+        self.autotikzcopyright = 1                           # includes tikz externalized images in copyright list
+        self.displaycopyrightlinks = 0                       # add copyright links to images in the entire course
 
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
         # Settings for HTML design and typical phrases        
         self.chaptersite = "chapters.html"
         self.strings = {
+            "explanation_subsection": "Einführung in Thema",
+            "explanation_xcontent": "Lernabschnitt",
+            "explanation_exercises": "Übungsaufgaben",
+            "explanation_test": "Abschlusstest",
             "chapter": "Kapitel",
-            "module_starttext": "Modul starten",
-            "module_solutionlink": "L&#246;sung ansehen",
-            "module_solution": "L&#246;sung",
-            "module_solutionback": "Zur&#252;ck zur Aufgabe",
+            "module_starttext": "Modul starten: ",
+            "module_solutionlink": "Lösung ansehen",
+            "module_solution": "Lösung",
+            "module_solutionback": "Zurück zur Aufgabe",
             "module_content": "Kursinhalt",
             "module_moreinfo": "Mehr Informationen",
             "module_helpsitetitle": "Einstiegsseite",
@@ -134,14 +141,21 @@ class Option(object):
             "STDMATHFONTFAMILY": "\'HelveticaNeue-Light\', \'Helvetica Neue Light\', \'Helvetica Neue\', Helvetica, Arial, \'Lucida Grande\', Verdana, Arial, Helvetica , sans-serif"
         }
         
-        menuwidth = 160
+        menuwidth = 160 + 15 # 160px for the table of contents, 15px to accomodate a vertical scrollbar should it appear inside toc
         mybasicfontsize = 16
+        headheight = 30
+        naviheight = 60
         self.sizes = {
             "CONTENTMINWIDTH": 800,                # Breite unter die der content nicht geschrumpft werden kann ohne Scrollbalken zu aktivieren
             "MENUWIDTH": menuwidth,                # Breite der Menueleiste am linken Rand
             "TOCWIDTH": menuwidth - 21,
+            "HEADHEIGHT": headheight,
+            "NAVIHEIGHT": naviheight,
+            "TOCTOP": headheight + naviheight,
+            "FOOTERHEIGHT": 20,
             "STARTFONTSIZE": mybasicfontsize,      # Grundlage zur dynamischen Veraenderung der anderen fontsizes
             "BASICFONTSIZE": mybasicfontsize,
+            "TINYFONTSIZE": mybasicfontsize - 4,
             "SMALLFONTSIZE": mybasicfontsize - 2,
             "BIGFONTSIZE": mybasicfontsize + 2
         }
@@ -152,7 +166,7 @@ class Option(object):
 
         # VE&MINT course parameters, defining values used by the online course
         server = "https://mintlx3.scc.kit.edu/dbtest"
-        self.signature_main = "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+        self.signature_main = "OBM_PTEST1" # "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE_MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
         self.do_feedback = "0"                        # Feedbackfunktionen aktivieren? DOPPLUNG MIT FLAGS
@@ -167,11 +181,9 @@ class Option(object):
         # don't use \" in strings as they are being passed to JavaScript variables (and \" becomes evaluated)
         self.footer_left = "<img src='images/ccbysa80x15.png' border='0' />"
         
-        if self.dopdf == 1:
-            self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdf.png' border='0' />"
-        
         self.footer_right = "<a href='mailto:" + self.reply_mail + "' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a>"
         self.mainlogo = "veundmint_netlogo.png" # Im Pfad files/images
+        self.tocchapters = 0 # =1 -> display chapter links in table of contents
         self.stdmathfont = "0" # Erzwingt Standard-Arial-Font in Text in Formeln
 
         # variables used by the OSS converter, should not be changed directly as they take input from the above definitions
@@ -284,6 +296,21 @@ class Option(object):
                 
             else:
                 print("Invalid override string: " + ov)
+
+        if self.dopdf == 1:
+            self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdfmini.png' border='0' /></a>"
+
+        if self.symbolexplain == 1:
+            self.tocadd = "<ul class=\"legende\">" \
+                        + "<li><strong>LEGENDE</strong></li>" \
+                        + "<li><div class=\"xsymb\">1.1</div>" + self.strings['explanation_subsection'] + "<br/></li>" \
+                        + "<li><div class=\"xsymb status1\"></div>" + self.strings['explanation_xcontent'] + "</li>" \
+                        + "<li><div class=\"xsymb status2\"></div>" + self.strings['explanation_exercises'] + "</li>" \
+                        + "<li><div class=\"xsymb status3\"></div>" + self.strings['explanation_test'] + "</li>" \
+                        + "</ul>"
+        else:
+            self.tocadd = ""
+
                 
         self.check_consistency()
 
@@ -301,8 +328,8 @@ class Option(object):
                 sys.exit(1)
 
         if self.dorelease == 1:
-            if (self.cleanup != 1) or (self.docollections == 1) or (self.doverbose == 1) or (self.dotikz == 0) or (self.borkify == 0):
-                print("FATAL ERROR: Option dorelease=1 cannot be used with cleanup=0, docollections=1, dotikz=0, borkify=0 or doverbose=1, aborting with error code 1")
+            if (self.cleanup != 1) or (self.docollections == 1) or (self.doverbose == 1) or (self.dotikz == 0) or (self.borkify == 0) or (self.forceoffline == 1):
+                print("FATAL ERROR: Option dorelease=1 cannot be used with cleanup=0, docollections=1, dotikz=0, borkify=0, forceoffline=1 or doverbose=1, aborting with error code 1")
                 sys.exit(1)
 
         if self.scormlogin == 1:

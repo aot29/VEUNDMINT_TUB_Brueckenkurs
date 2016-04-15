@@ -446,7 +446,9 @@ class Preprocessor(object):
             (self.local['tex'], n) = re.subn(r"\\MTikzAuto\{", ctikz, self.local['tex'], 0, re.S)
             if (n > 0):
                 self.sys.message(self.sys.VERBOSEINFO, "Forcibly attached CC licenses to " + str(n) + " tikz pictures in this files")
-    
+        if self.options.displaycopyrightlinks != 1:
+            # force silent copyright links
+            self.local['tex'] = self.local['tex'].replace("\\MCopyrightLabel{", "\\MSilentCopyrightLabel{")
     
         def cright(part):
             authortext = ""
@@ -755,18 +757,6 @@ class Preprocessor(object):
         #     while ($textex =~ s/\\begin{equation}(.*?)([\n ]*)\\MLabel{(.+?)}([\n ]*)(.*?)\\end{equation}/\\MLabel{$3}\n\\begin{equation}$1 $5\\end{equation}/s ) {;} 
         #     while ($textex =~ s/\\begin{eqnarray}(.*?)([\n ]*)\\MLabel{(.+?)}([\n ]*)(.*?)\\end{eqnarray}/\\MLabel{$3}\n\\begin{eqnarray}$1 $5\\end{eqnarray}/s ) {;} 
         
-        
-        (self.local['tex'], n) = re.subn(r"\\MSection\{([^\}]+?)\}[\s%]*\\MLabel\{([^\}]+?)\}(.*?)\\begin\{MSectionStart\}", "\\MSection{\\1}\\MOrgLabel{\\2}\n\\3\\\\begin{MSectionStart}\\MLabel{\\2}", self.local['tex'], 0, re.S)
-        if n > 0:
-            self.sys.message(self.sys.VERBOSEINFO, str(n) + " section labels have been moved to the following xcontent (MSectionStart)")
-
-        (self.local['tex'], n) = re.subn(r"\\MSubsection\{([^\}]+?)\}[\s%]*\\MLabel\{([^\}]+?)\}[\s%]*\\begin\{MIntro\}", "\\MSubsection{\\1}\\MOrgLabel{\\2}\n\\\\begin{MIntro}\\MLabel{\\2}", self.local['tex'], 0, re.S)
-        if n > 0:
-            self.sys.message(self.sys.VERBOSEINFO, str(n) + " subsection labels have been moved to the following xcontent (MIntro)")
-       
-        (self.local['tex'], n) = re.subn(r"\\MSubsection\{([^\}]+?)\}[\s%]*\\MLabel\{([^\}]+?)\}[\s%]*\\begin\{MXContent\}{([^\}]*?)}{([^\}]*?)}{([^\}]*?)}", "\\MSubsection{\\1}\\MOrgLabel{\\2}\n\\\\begin{MXContent}{\\3}{\\4}{\\5}\\MLabel{\\2}", self.local['tex'], 0, re.S)
-        if n > 0:
-            self.sys.message(self.sys.VERBOSEINFO, str(n) + " subsection labels have been moved to the following xcontent (MXContent)")
             
         return
 
