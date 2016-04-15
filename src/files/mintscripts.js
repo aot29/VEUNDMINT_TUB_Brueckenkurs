@@ -178,7 +178,7 @@ function CreateQuestionObj(uxid,c,solution,id,type,option,pnts,intest,section) {
       ob.clear = function() { this.element.checked = false; this.element.indeterminate = true; this.value = "0"; this.message = ""; this.image.src = "../../images/questionmark.gif"; notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
       ob.rawloadvalue = function(val) {
           this.value = val;
-          this.element.setAttribute("data-cval", val);
+          this.element.cval = val;
           this.message = "";
           this.image.src = "../../images/questionmark.gif";
           if ((val == "0") || (val == "")) {
@@ -585,7 +585,7 @@ function check_group(input_from, input_to) {
 
               case 2: {
                 // tristate checkbox: indeterminate, true determinate, false determinate (having intersite values "0", "1", "2"), stored in val attribute of the element
-                var v = e.getAttribute("data-val");
+                var v = e.cval;
                 console.log("checkboxval = " + v)
                 if (v == "1") {
                     // dirty: Eigentlich sollte der neue Wert auch durch checkgroup getestet werden, aber das fuehrt auf eine Rekursion...
@@ -1263,7 +1263,7 @@ function InitResults(empty)
 
               case 2: {
                 // tristate checkbox: indeterminate, true determinate, false determinate (having intersite values "0", "1", "2")
-                e.setAttribute("data-val", v)
+                e.cval = v;
                 if ((v == "0") || (v == "")) {
                     // nothing selected yet
                     e.checked = false;
@@ -2078,20 +2078,20 @@ function applyLayout(first) {
   // enable tristate checkboxes (but only those used for exercises)
   var $check = $("input[mtristate=1]"), el;
   $check
-   // .data('checked',0)
    .prop("mtristate", "2") // don't set function again
    .click(function(e) {
        
 
         el = $(this);
  
-        // states are indeterminate, true determinate, false determinate (having intersite values "0", "1", "2", which we store in data "value")
-        switch(el.data('val')) {
+        // states are indeterminate, true determinate, false determinate (having intersite values "0", "1", "2", which we store in property "cval")
+        
+        switch(el.prop('cval')) {
             
             // unchecked ->  indeterminate
             case "2":
                 console.log("2 -> 0")
-                el.data('val', "0");
+                el.prop('cval', "0");
                 el.prop('indeterminate', true);
                 el.prop('checked', false); // remember indeterminate is independent of checked
                 break;
@@ -2099,7 +2099,7 @@ function applyLayout(first) {
             // checked -> unchecked
             case "1":
                 console.log("1 -> 2")
-                el.data('val', "2");
+                el.prop('cval', "2");
                 el.prop('indeterminate', false);
                 el.prop('checked', false);
                 break;
@@ -2107,12 +2107,11 @@ function applyLayout(first) {
             // indeterminate -> checked
             default:
                 console.log("0 -> 1")
-                el.data('val', "1");
+                el.prop('cval', "1");
                 el.prop('indeterminate', false);
                 el.prop('checked', true);
                 break;
         }
-       
         
         
 });
