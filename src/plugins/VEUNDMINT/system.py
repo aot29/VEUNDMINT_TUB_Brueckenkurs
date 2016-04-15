@@ -49,6 +49,7 @@ class System(object):
 
     def __init__(self, options):
         self.logFilename = os.path.join(options.currentDir, options.logFilename)
+        self.doEncodeASCII = options.consoleascii
         self.doColors = options.consolecolors
         self.doVerbose = options.doverbose
         
@@ -60,7 +61,7 @@ class System(object):
         with open(self.logFilename, 'w', encoding='utf-8') as log:
             s = "Started logging at absolute time " + time.ctime(self.startTime)
             log.write(s + "\n")
-            print(s)
+            self._encode_print(s)
 
         self.message(self.CLIENTINFO, "Using option object: " + options.description)
         self.message(self.VERBOSEINFO, "Host = " + socket.gethostname() + ", user = " + getpass.getuser())
@@ -70,9 +71,9 @@ class System(object):
         # green verbose messages only in logfile, and on console if verbose is active
         if ((color != self.BASHCOLORGREEN) or (self.doVerbose == 1)):
             if (self.doColors == 1):
-                print(color + txt + self.BASHCOLORRESET)
+                self._encode_print(color + txt + self.BASHCOLORRESET)
             else:
-                print(txt)
+                self._encode_print(txt)
        
             
         with open(self.logFilename, 'a', encoding='utf-8') as log:
@@ -101,7 +102,7 @@ class System(object):
                             else:
                                 if (lvl == self.FATALERROR):
                                     self._printMessage(self.BASHCOLORRED, "FATAL ERROR: " + msg)
-                                    print("Program aborted with error code 1")
+                                    self._encode_print("Program aborted with error code 1")
                                     sys.exit(1)
                                 else:
                                     self._printMessage(self.BASHCOLORRED, "ERROR: Wrong error type " + lvl + ", message: " + msg)
@@ -299,3 +300,11 @@ class System(object):
             h[k % len(h)] = (h[k % len(h)] + b[k]) % 256
         return base64.b16encode(h).decode("utf-8")
         
+      
+    # prints text on the console (which maybe does not understand utf8, so we encode output in ASCII)
+    def _encode_print(self, txt):
+        if self.doEncodeASCII == 1:
+            print(txt.encode(encoding = "us-ascii", errors = "backslashreplace"))
+        else:
+	    print(txt)
+      
