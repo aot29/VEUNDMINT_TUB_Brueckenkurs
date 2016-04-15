@@ -22,7 +22,7 @@
 $branch = "develop_content";
 $bbusername = "mint_autoconverter";
 $bbpassword = "autoconv";
-$repo = "https://$bbusername:$bbpassword@bitbucket.org/dhaase/ve-und-mint.git";
+$repo = "https://USERNAME:LOGIN@bitbucket.org/dhaase/ve-und-mint.git";
 $commits = 20;
 $linkstring = "https://mintlx3.scc.kit.edu/autoconverter/ve-und-mint/tu9onlinekurstest/index.html";
 
@@ -74,9 +74,9 @@ try {
   echo("<p>");  
   echo("<br ><strong>Die Konvertierung wurde erzeugt und ist einsehbar unter <a href=\"$linkstring\">$linkstring</a></strong><br />");
   echo("Die komplette Liste der Meldungen im Log gibt es hier: <a href=\"ve-und-mint/conversion.log\">conversion.log</a><br />");
-  chdir("src")
+  chdir("src");
   simple_execute("python3 tex2x.py VEUNDMINT", "Konvertierungsmeldungen");
-  chdir("..")
+  chdir("..");
   echo("</p>");
 
   echo("</body>");
