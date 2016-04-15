@@ -2,7 +2,7 @@
 \MPragma{MathSkip}
 
 %Einkommentieren zur Erzeugung der pngs aus den tikz-Umgebungen
-\Mtikzexternalize
+%\Mtikzexternalize
 
 \MSetSubject{\MINTMathematics}
 
@@ -30,7 +30,7 @@ Dieses Modul gliedert sich in folgende Abschnitte:
 \item{\MNRef{M05_Grundbegriffe}, \MSRef{M05_Grundbegriffe}{Grundbegriffe der 
  ebenen Geometrie},}
 \item{\MNRef{M05_Winkel}, \MSRef{M05_Winkel}{Winkel und Winkelmessung},}
-\item{\MNRef{M05_Dreieck}, \MSRef{M05_Dreieck}{Rund um Dreiecke},}
+\item{\MNRef{M05_Dreiecke}, \MSRef{M05_Dreiecke}{Rund um Dreiecke},}
 \item{\MNRef{M05_Vielecke}, \MSRef{M05_Vielecke}{Vielecke, Fl"acheninhalt 
  und Umfang},}
 \item{\MNRef{M05_Koerper}, \MSRef{M05_Koerper}{Elementargeometrische K"orper},}
@@ -383,7 +383,7 @@ Hier werden das Gradma"s und das Bogenma"s beschrieben.
 \end{tikzpicture}
 }
 \par
-Jeder farbige Bereich zeigt einen der verschiedenen Winkel, 
+Jeder farbige Bereich zeigt einen der Winkel, 
 die durch $g$ und $h$ festgelegt werden.
 \end{center}
 \end{MIntro}
@@ -447,12 +447,14 @@ Winkels, und die beiden Halbgeraden, die den Winkel bilden, hei"sen
 \MEntry{Schenkel}{Schenkel} des Winkels.
 Wenn $A$ ein Punkt auf der Geraden $g$ und $B$ ein Punkt auf der Geraden $h$
 ist, so kann man auch $\Mmeasuredangle \left( A S B \right)$ f"ur 
-$\Mmeasuredangle \left( g, h \right)$ schreiben. 
+$\Mmeasuredangle \left( g, h \right)$ schreiben. In diesem Sinne werden 
+Winkel zwischen Strecken $\MGeoStrecke{S}{A}$ und $\MGeoStrecke{S}{B}$
+beschrieben.
 
-Winkel werden oft mit kleinen griechischen Buchstaben bezeichnet und sich vom
-lateinischen Alphabet unterscheiden. 
+Winkel werden oft mit kleinen griechischen Buchstaben bezeichnet, soweit sie
+sich vom lateinischen Alphabet unterscheiden. 
 %jgl: Griechisches Alphabet muss noch neu sortiert werden:
-%\input{vbkm_griechischesalphabet.tex}
+\input{vbkm_griechischesalphabet.tex}
 
 Indem man Geraden in die Betrachtungen miteinbezieht, lassen sich weitere 
 Winkel entdecken.
@@ -782,15 +784,16 @@ einer Spalte stets der gleiche Winkel stehen.
 %content: section 3: Dreiecke.
 
 \MSubsection{Rund um Dreiecke}
-\MLabel{M05_Dreieck}
+\MLabel{M05_Dreiecke}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Dreiecke_Intro}
 
-Drei Punkte bilden die Ecken eines Dreiecks.
+Technische Bauwerke wie zum Beispiel Fachwerke oder manche Br"ucken nutzen 
+Dreiecke als Konstruktionselemente.
 
 \begin{center}
-%Beispiele von Dreiecken
+%Beispiel einer Brueckenkonstruktion mit Dreieckselementen:
 \MTikzAuto{%
 \begin{tikzpicture}[line width=1pt]
 \coordinate[label=left:$A$] (A) at (-4,1);
@@ -810,36 +813,58 @@ Drei Punkte bilden die Ecken eines Dreiecks.
 \begin{MXContent}{Dreiecke}{Dreiecke}{STD}
 \MDeclareSiteUXID{VBKM05_Dreiecke_Content}
 
-Eine einfache Figur mit Winkeln ist das Dreieck:
+Viele Aussagen "uber geometrische Figuren und K"orper ergeben sich aus 
+Eigenschaften von Dreiecken, der {\glqq}einfachsten geschlossenen Figur{\grqq}, 
+die durch drei Punkte bestimmt wird, die nicht auf einer Geraden liegen. 
+
+Die Strahlens"atze k"onnen so auch als Aussagen "uber Beziehungen zwischen
+Dreiecken gesehen werden.
+
+%Eine Strecke $\MGeoStrecke{A}{B}$ ist durch ihre beiden {\glqq}Endpunkte{\grqq} 
+%$A$ und $B$ bestimmt (die hier als verschieden vorausgesetzt werden). Die 
+%{\glqq}einfachste Figur{\grqq}, in der neben einer L"ange, wie sie bei Strecken
+%als bestimmendes Merkmal vorliegt, auch mehrere Winkel vorkommen, ergibt sich,
+%wenn ein weiterer Punkt $C$ hinzugenommen wird, der nicht auf der Geraden
+%\MGeoGerade{A}{B}$ liegt.
+
+Zun"achst werden die wichtigsten Begriffe zusammengestellt, bevor Fragen 
+beantwortet werden, wann Dreiecke eindeutig bestimmt sind und wie einzelne 
+Seitenl"angen oder Winkel berechnet werden k"onnen. Funktionale Beziehungen 
+zwischen Seitenl"angen und Winkel werden dann im Abschnitt
+\MRef{M05_Trigonometrie} betrachtet, um weitergehende Fragestellungen 
+beantworten zu k"onnen, die f"ur Anwendungen relevant sind.
 \begin{MXInfo}{Dreieck}\MLabel{Mathematik_ElementareGeometrie_SummeDerInnenwinkel}%
 \begin{itemize}
  \item Ein \MEntry{Dreieck}{Dreieck} entsteht,
        wenn man drei Punkte, die nicht auf einer Geraden liegen, verbindet.
        
- \item Die drei Punkte, die verbunden werden, hei\ss en
+ \item Die drei Punkte, die verbunden werden, hei"sen
        \MEntry{Ecken}{Ecken (Dreieck)} des Dreiecks, und
-       die drei Verbindungslinien hei\ss en
+       die drei Verbindungslinien hei"sen
        \MEntry{Seiten}{Seiten (Dreieck)} des Dreiecks.
        
  \item Je zwei Seiten des Dreiecks bilden je zwei Winkel.
    
-       Der kleinere dieser beiden Winkel hei\ss t
+       Der kleinere dieser beiden Winkel hei"st
        \MEntry{Innenwinkel}{Innenwinkel},
-       und der gr\"o\ss ere der beiden Winkel hei\ss t
-       \MEntry{Au\ss enwinkel}{Au\ss enwinkel}.
+       und der gr"o"sere der beiden Winkel hei"st
+       \MEntry{Au"senwinkel}{Au"senwinkel}.
  
- \item Die Summe der drei Innenwinkel eines Dreiecks betr\"agt stets~$\pi$ bzw. $180^\circ$.
+ \item Die Summe der drei Innenwinkel eines Dreiecks ist
+ $180\MGrad$ beziehungsweise $\pi$.
 \end{itemize}
 \end{MXInfo}
 
 \begin{tabular}{lr}
 \begin{minipage}{10cm}
-Man benennt die Ecken eines Dreiecks in mathematisch positiver Richtung mit lateinischen Gro\ss buchstaben. Die einem Punkt gegen\"uberliegende
+Man benennt die Ecken eines Dreiecks typischerweise in 
+{\glqq}mathematisch positiver{\grqq}
+Richtung mit lateinischen Gro"sbuchstaben. Die einem Punkt gegen\"uberliegende
 Seite eines Dreiecks bekommt den entsprechenden Kleinbuchstaben zugeordnet, und
-der Innenwinkel in einer Ecke erh\"alt den entsprechenden Kleinbuchstaben des
+der Innenwinkel in einer Ecke erh"alt den entsprechenden Kleinbuchstaben des
 griechischen Alphabets.
 
-Da die Au\ss enwinkel eines Dreiecks wesentlich weniger interessant sind als
+Da die Au"senwinkel eines Dreiecks wesentlich weniger interessant sind als
 die Innenwinkel, nennt man die Innenwinkel eines Dreiecks auch schlicht
 \MEntry{Winkel}{Winkel (Dreieck)} des Dreiecks.
 \end{minipage}
@@ -872,22 +897,24 @@ die Innenwinkel, nennt man die Innenwinkel eines Dreiecks auch schlicht
 \end{minipage}
 \end{tabular}
 
-Da die Summe aller Winkel in einem Dreieck~$\pi$ betr\"agt, kann h\"ochstens
-ein Winkel gleich oder gr\"o\ss er als~$\frac{\pi}{2}$ sein. Dadurch werden die
-Dreiecke nach ihrem gr\"o\ss ten Winkel in drei verschiedene Klassen eingeteilt:
+Da die Summe aller Winkel in einem Dreieck $180\MGrad$ beziehungsweise $\pi$
+betr"agt, kann h"ochstens
+ein Winkel gleich oder gr"o"ser als $90\MGrad$ beziehungsweise $\frac{\pi}{2}$ 
+sein. Dadurch werden die
+Dreiecke nach ihrem gr"o"sten Winkel in drei verschiedene Klassen eingeteilt:
 \begin{MXInfo}{Bezeichungen f"ur Dreiecke}%
 \begin{itemize}
  \item Ein Dreieck, in dem alle Winkel kleiner als~$\frac{\pi}{2}$ sind, hei\ss t \MEntry{spitzwinklig}{Spitzwinklig (Dreieck)}.
  
- \item Ein Dreieck, das einen rechten Winkel enth\"alt, hei\ss t \MEntry{rechtwinklig}{Rechtwinklig (Dreieck)}.
+ \item Ein Dreieck, das einen rechten Winkel enth"alt, hei"st \MEntry{rechtwinklig}{Rechtwinklig (Dreieck)}.
  
        In einem rechtwinkligen Dreieck hei\ss en die Seiten, die auf den Schenkeln des
        rechten Winkels liegen, \MEntry{Katheten}{Kathete},
-       und die Seite, die dem rechten Winkel gegen\"uberliegt, hei\ss t
+       und die Seite, die dem rechten Winkel gegen"uberliegt, hei\ss t
        \MEntry{Hypotenuse}{Hypotenuse}.
        
- \item Ein Dreieck, das einen Winkel mit einem Ma\ss\ von \"uber~$\frac{\pi}{2}$
-       besitzt, hei\ss t \textbf{stumpfwinklig}.
+ \item Ein Dreieck, das einen Winkel mit einem Ma"s von "uber~$\frac{\pi}{2}$
+       besitzt, hei"st \textbf{stumpfwinklig}.
 \end{itemize}
 \end{MXInfo}
 
@@ -1544,9 +1571,6 @@ In diesem Abschnitt werden h"aufig Spezialf"alle von Vielecke betrachtet.
 Dabei sollen zun"achst charakteristische Besonderheiten benannt werden.
 Anschlie"send wird der Frage nachgegangen, wie der Fl"acheninhalt eines 
 Vielecks einfach berechnet werden kann. 
-
-%In diesem Abschnitt wird wiederholt, wie man den Umfang und Fl\"acheninhalt 
-%eines Dreiecks und anderer Figuren berechnet. 
 \end{MIntro}
 
 \ifttm\relax\else\newpage\fi
@@ -1661,7 +1685,8 @@ Ein Viereck ist genau dann eine Quadrat, wenn
 
 \begin{MXContent}{Fl\"acheninhalt}{Fl\"acheninhalt}{STD}
 \MDeclareSiteUXID{VBKM05_Flaecheninhalt_Content}
-Der Inhalt einer Fl\"ache ist die Zahl der Einheitsquadrate, die man ben\"otigt, um diese Fl\"ache vollst\"andig zu bedecken.\\
+Der Inhalt einer Fl\"ache ist die Zahl der Einheitsquadrate, die man ben\"otigt,
+um diese Fl\"ache vollst\"andig zu bedecken.\\
 \ \\
 Zuerst sollen Rechtecke betrachtet werden.
 %\begin{MInfo}
@@ -1688,15 +1713,18 @@ Zuerst sollen Rechtecke betrachtet werden.
 \end{tabular}
 
 \begin{MXInfo}{Fl"ache eines Rechtecks}
- Die Fl\"ache $A$ des Rechtecks ist 
- \[A=b\cdot a=a\cdot b \MDFPeriod\]
+ Die Fl\"ache $F$ des Rechtecks ist 
+ \[ F =b\cdot a=a\cdot b \MDFPeriod\]
 \end{MXInfo}
 
 \begin{tabular}{lr}
 \begin{minipage}{10cm}
-Damit l\"asst sich nun auch leicht der Fl\"acheninhalt eines rechtwinkligen Dreiecks berechnen.
-Es sei~$ABC$ ein rechtwinkliges Dreieck, welches um~$180^\circ$ gedreht werde. Legt man anschlie\ss end das urspr\"ungliche und das neue Dreieck
-entlang der beiden Hypotenusen aneinander, so erh\"alt man ein Rechteck.
+Damit l\"asst sich nun auch leicht der Fl\"acheninhalt eines rechtwinkligen 
+Dreiecks berechnen.
+Es sei~$\MGeoDreieck{A}{B}{C}$ ein rechtwinkliges Dreieck, welches 
+um~$180\MGrad$ gedreht werde. Legt man anschlie\ss end das urspr\"ungliche 
+und das neue Dreieck entlang der beiden Hypotenusen aneinander, so erh\"alt man 
+ein Rechteck.
 \end{minipage}
 &
 \begin{minipage}{5cm}
@@ -1716,22 +1744,23 @@ entlang der beiden Hypotenusen aneinander, so erh\"alt man ein Rechteck.
 \end{minipage}
 \end{tabular}
 
-Der Fl\"acheninhalt des Dreiecks ist nun die H\"alfte des Fl\"acheninhaltes des Rechtecks, also $A=\frac{1}{2}\cdot a\cdot b$
+Der Fl\"acheninhalt des Dreiecks ist nun die H\"alfte des Fl\"acheninhaltes 
+des Rechtecks, also $ F = \frac{1}{2}\cdot a\cdot b$
 
 Doch was ist zu tun,
 wenn das Dreieck nicht rechtwinklig ist?
-%Der Stadtplan gibt uns hier einen entscheidenden Tipp:
 
-%\begin{center}
-%\MGraphicsSolo{../Bilder/Mathematik_ElementareGeometrie/Mathematik_ElementareGeometrie_Stadtplan_Flaecheninhalt.png}{scale=1}
-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Stadtplan_Flaecheninhalt.png}{scale=1}
-%\end{center}
+Aus jedem beliebigen Dreieck kann man zwei rechtwinklige Dreiecke gewinnen,
+indem man von einer Ecke aus eine Linie auf die gegen\"uberliegende Seite zieht,
+so dass sie diese senkrecht trifft. Diese Linie nennt man die 
+\textbf{H\"ohe} $h_{i}$ eines Dreiecks auf die bestimmte Seite $i$, wobei 
+der Index $i$ derjenigen Seite $a$, $b$ oder $c$ entspricht, \"uber der die 
+H\"ohe bestimmt wird.
 
-%Die Sch\"utzenstra\ss e bildet mit der Rottstra\ss e und der Wittelsbachstra\ss e ein Dreieck. Durch den kurzen Weg von der Ecke Sch\"utzenstra\ss e und Rottstra\ss e auf die Wittelsbachstra\ss e wird dieses Dreieck in zwei rechtwinklige Dreiecke zerteilt.
-
-Aus jedem beliebigen Dreieck kann man zwei rechtwinklige Dreiecke gewinnen, indem man von einer Ecke aus eine Linie auf die gegen\"uberliegende Seite zieht, so dass sie diese senkrecht trifft. Diese Linie nennt man die \textbf{H\"ohe} $h_{i}$ eines Dreiecks auf die bestimmte Seite $i$, wobei der Index $i$ derjenigen Seite $a$, $b$ oder $c$ entspricht, \"uber der die H\"ohe bestimmt wird.
-
-Je nachdem, ob die neue Linie innerhalb oder au\ss erhalb des Dreiecks liegt, ergibt sich der Fl\"acheninhalt des Dreiecks dann aus der Summe oder der Differenz der Fl\"acheninhalte der beiden sich ergebenden rechtwinkligen Dreiecke:
+Je nachdem, ob die neue Linie innerhalb oder au\ss erhalb des Dreiecks liegt, 
+ergibt sich der Fl\"acheninhalt des Dreiecks dann aus der Summe oder der 
+Differenz der Fl\"acheninhalte der beiden sich ergebenden rechtwinkligen 
+Dreiecke:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -1761,30 +1790,30 @@ Je nachdem, ob die neue Linie innerhalb oder au\ss erhalb des Dreiecks liegt, er
 }
 \end{center}
 
-Links gilt also (wenn $A_{\Delta}$ den Fl\"acheninhalt des Dreiecks~$\Delta$ 
+Links gilt also (wenn $F_{\Delta}$ den Fl\"acheninhalt des Dreiecks~$\Delta$ 
 bezeichnet)
 \[
-   A_{ABC}
- = A_{DBC} + A_{ADC}
+   F_{\MGeoDreieck{A}{B}{C}}
+ = F_{\MGeoDreieck{D}{B}{C}} + F_{\MGeoDreieck{A}{D}{C}}
  = \Mtfrac{1}{2} \cdot h_c \cdot c_2 + \Mtfrac{1}{2} \cdot h_c \cdot c_1
  = \Mtfrac{1}{2} \cdot h_c \cdot \left( c_2 + c_1 \right)
  = \Mtfrac{1}{2} \cdot h_c \cdot c \MDFPeriod
 \]
 Rechts gilt genauso
 \[
-   A_{UVW}
- = A_{XVW} - A_{XUW}
+   F_{\MGeoDreieck{U}{V}{W}}
+ = F_{\MGeoDreieck{X}{V}{W}} - F_{\MGeoDreieck{X}{U}{W}}
  = \Mtfrac{1}{2} \cdot h_w \cdot w_2 - \Mtfrac{1}{2} \cdot h_w \cdot w_1
  = \Mtfrac{1}{2} \cdot h_w \cdot \left( w_2 - w_1 \right)
  = \Mtfrac{1}{2} \cdot h_w \cdot w \MDFPeriod
 \]
 
 \begin{MXInfo}{Dreiecksfl"ache}
-Der Fl\"acheninhalt $A_{\MGeoDreieck{A}{B}{C}}$ eines Dreiecks berechnet sich 
+Der Fl\"acheninhalt $F_{\MGeoDreieck{A}{B}{C}}$ eines Dreiecks berechnet sich 
 aus der H\"alfte des Produkts
 der L\"ange einer Seite mit der L\"ange der zugeh\"origen H\"ohe des Dreiecks:
        \[
-          A_{\MGeoDreieck{A}{B}{C}}
+          F_{\MGeoDreieck{A}{B}{C}}
         = \frac{1}{2} \cdot a \cdot h_a
         = \frac{1}{2} \cdot b \cdot h_b
         = \frac{1}{2} \cdot c \cdot h_c \MDFPeriod
@@ -1814,10 +1843,11 @@ und die Gerade, auf der die Seite liegt, im rechten Winkel trifft.
 }
 &
 \begin{minipage}[b]{10cm}
-Bei dem hier gezeigten Dreieck ist die H\"ohe gegeben, die zur Seite mit dem Wert $\MZahl{8}{5}$ geh\"ort.
+Bei dem hier gezeigten Dreieck ist die H\"ohe gegeben, die zur Seite mit dem 
+Wert $\MZahl{8}{5}$ geh\"ort.
 (Bei den Angaben handelt es sich jeweils um gerundete numerische Werte.)
 Der Fl\"acheninhalt des Dreiecks ist also
-\[A=\frac{\MZahl{8}{6}\cdot\MZahl{5}{5}}{2}=\MZahl{23}{65} \MDFPeriod\]
+\[ F = \frac{\MZahl{8}{6}\cdot\MZahl{5}{5}}{2}=\MZahl{23}{65} \MDFPeriod\]
 \ \\
 \end{minipage}\\
 \end{tabular}
@@ -1849,9 +1879,10 @@ Berechnen Sie den Fl\"acheninhalt des Dreiecks:\\
 \end{tikzpicture}
 }
 \begin{MHint}{L\"osung}
-An diesem Dreieck l\"asst sich die zur Seite, die auf der $x$-Achse liegt, zugeh\"orige H\"ohe ablesen:
+An diesem Dreieck l\"asst sich die zur Seite, die auf der $x$-Achse liegt, 
+zugeh\"orige H\"ohe ablesen:
 \[\text{Seite}=4, \quad \text{H\"ohe}=2\quad
-\Rightarrow\quad\ A=\frac{4\cdot 2}{2}=4 \MDFPeriod\] 
+\Rightarrow\quad\ F = \frac{4\cdot 2}{2}=4 \MDFPeriod\] 
 \end{MHint}
 \end{MExercise}
 
@@ -1877,7 +1908,7 @@ Man betrachte das links dargestellte Polygon. In diesem Beispiel kann man das Po
 \end{minipage}
 \end{tabular}
 \[
-  A   =  A_{\text{Dreieck}}+A_{\text{Rechteck}} = \frac{1}{2}\left( a-c \right)\cdot b + b\cdot c 
+  F = F_{\text{Dreieck}} + F_{\text{Rechteck}} = \frac{1}{2}\left( a-c \right)\cdot b + b\cdot c 
  = \frac{1}{2}ab-\frac{1}{2}bc+bc=\frac{1}{2}\left(a+b\right)\cdot c \MDFPeriod
 \]
 \end{MExample}
@@ -1885,8 +1916,11 @@ Man betrachte das links dargestellte Polygon. In diesem Beispiel kann man das Po
 \begin{MExercise}
 \begin{tabular}{lr}
 \begin{minipage}[b]{7cm}
-Berechnen Sie den Fl\"acheninhalt des\newline \textbf{Parallelogramms} f\"ur $a=4$ und $h=5$.\\
-Tipp: Teilen Sie es sinnvoll auf und schauen Sie sich die entstandenen Dreiecke gut an!\\
+Berechnen Sie den Fl\"acheninhalt des\newline \textbf{Parallelogramms} 
+f\"ur $a=4$ und $h=5$.
+\par
+Tipp: Teilen Sie es sinnvoll auf, und schauen Sie sich die entstandenen 
+Dreiecke genau an!\\
 \vspace*{1cm}
 \end{minipage}
 &
@@ -1905,8 +1939,11 @@ Tipp: Teilen Sie es sinnvoll auf und schauen Sie sich die entstandenen Dreiecke 
 
 \begin{tabular}{lr}
 \begin{minipage}[b]{7cm}
-Man kann das Parallelogramm in das linke rote Dreieck, einem folgenden Rechteck und das rechte Dreieck aufspalten. Schneidet man das rote Dreieck aus und setzt es von rechts an das Parallelogramm, erh\"alt man ein Rechteck mit den Seiten $a$ und $h$. Der Fl\"acheninhalt ergibt sich dann zu
-\[A=a\cdot b=4\cdot 5=20 \MDFPeriod\]
+Man kann das Parallelogramm in das linke rote Dreieck, einem folgenden 
+Rechteck und das rechte Dreieck aufspalten. Schneidet man das rote Dreieck 
+aus und setzt es von rechts an das Parallelogramm, erh\"alt man ein Rechteck 
+mit den Seiten $a$ und $h$. Der Fl\"acheninhalt ergibt sich dann zu
+\[F=a\cdot b=4\cdot 5=20 \MDFPeriod\]
 \end{minipage}
 &
 %-%\MGraphicsSolo{Mathematik_ElementareGeometrie_Polygone_Parallelogramm_Loesung.png}{scale=1}
@@ -1926,16 +1963,23 @@ Man kann das Parallelogramm in das linke rote Dreieck, einem folgenden Rechteck 
 \end{MHint}
 \end{MExercise}
 
-Zum Schluss sollen noch Kreisfl\"achen berechnet werden. In \MRef{Kreiszahl} wurde bereits die Kreiszahl $\pi$ vorgestellt, die \"uber den Umfang des Kreises definiert ist. 
+Zum Schluss sollen noch Kreisfl\"achen berechnet werden. In \MRef{Kreiszahl} 
+wurde bereits die Kreiszahl $\pi$ vorgestellt, die \"uber den Umfang des 
+Kreises definiert ist. 
 Ebenso h\"angt die Kreiszahl mit dem Fl\"acheninhalt von Kreisen zusammen.
 \begin{MXInfo}{Fl"acheninhalt eines Kreises}
 Der Fl\"acheninhalt eines Kreises mit dem Radius $r$ berechnet sich zu 
-\[A=\pi\cdot r^2 \MDFPeriod\]
+\[ F =\pi\cdot r^2 \MDFPeriod\]
 \end{MXInfo}
 
 \begin{MExample}
-Ein Kreis habe einen Fl\"acheninhalt von $\MZahl{12}{566}$ bei einem Radius von $r=2$. Hieraus l\"asst sich die Kreiszahl $\pi$ berechnen:
-\[A=\pi\cdot r^2\quad\Rightarrow\quad \pi=\frac{A}{r^2}=\frac{\MZahl{12}{566}}{4}=\MZahl{3}{1415} \MDFPeriod\]
+Ein Kreis habe einen Fl\"acheninhalt von $\MZahl{12}{566}$ bei einem Radius 
+von $r=2$. Hieraus l\"asst sich die Kreiszahl $\pi$ berechnen:
+Aus $F =\pi\cdot r^2$ folgt $\pi = \frac{F}{r^2}$.
+Mit den angegebenen Werten ergibt sich der N"aherungswert
+\[
+\pi = \frac{F}{r^2}=\frac{\MZahl{12}{566}}{4}=\MZahl{3}{1415} \MDFPeriod %%
+\]
 \end{MExample}
 
 \end{MXContent}
@@ -2296,18 +2340,21 @@ In besonderen Situationen ergeben sich einfache Formeln, mit denen
 das Volumen und die Oberfl"ache berechnet werden k"onnen. Ein Beispiel ist
 die oben abgebildete Pyramide. Dort ist die Grundfl"ache ein gleichseitiges 
 Dreieck. Die folgende Aufgabe bietet die Gelegenheit, f"ur einen speziellen
-Fall dieser Situation eine Formel f"ur Volumen und Oberfl"ache mit den 
+Fall dieser Situation eine Formel %f"ur Volumen und 
+die Oberfl"ache mit den 
 Eigenschaften gleichseitiger Dreiecke zu finden.
 
 \begin{MExercise}
-Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ einer Pyramide, deren 
-Seiten alle gleichseitige Dreiecke mit der Seitenl"ange $s$ sind.
+Berechnen Sie %das Volumen $V$ und 
+die Oberfl"ache $O$ einer Pyramide, deren 
+Seiten alle gleichseitige Dreiecke mit der Seitenl"ange $a$ sind.
 
-Antworten:
-\begin{MExerciseItems}
-\item \MEquationItem{$V$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05TPyr1}}
-\item \MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05TPyr2}}
-\end{MExerciseItems}
+Antwort: %en:
+%\begin{MExerciseItems}
+%\item \MEquationItem{$V$}{\MLSimplifyQuestion{30}{ ? }{10}{a,b,c}{4}{32}{ExM05TPyr1}}
+%\item 
+\MEquationItem{$O$}{\MLSimplifyQuestion{30}{sqrt{3}*a*a}{10}{a,b,c}{4}{32}{ExM05TPyr2}}
+%\end{MExerciseItems}
 \end{MExercise}
 
 
@@ -2428,15 +2475,15 @@ Hierbei werden $r$ und $h$ als gegeben angesehen.
 \item
 Beschreiben Sie $l$ in Abh"angigkeit von $h$ und $r$:
 \par
-\MEquationItem{$l$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl1}}
+\MEquationItem{$l$}{\MLSimplifyQuestion{30}{sqrt(r*r + h*h)}{10}{r,h}{4}{32}{ExM05Zyl1}}
 
 \item
 Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ des Kegels:
 \begin{MExerciseItems}
 \item %
- \MEquationItem{$V$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl2}}
+ \MEquationItem{$V$}{\MLSimplifyQuestion{30}{pi*r*r*h}{10}{r,h}{4}{32}{ExM05Zyl2}}
 \item %
- \MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*b*c}{10}{a,b,c}{4}{32}{ExM05Zyl3}}
+ \MEquationItem{$O$}{\MLSimplifyQuestion{30}{pi*r*(r + sqrt(r*r + h*h))}{10}{r,h}{4}{32}{ExM05Zyl3}}
 \end{MExerciseItems}
 \end{MExerciseItems}
 \end{MExercise}
@@ -2450,11 +2497,16 @@ Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ des Kegels:
 \MDeclareSiteUXID{VBKM05_ElementareKoerper_Exercises}
 
 \begin{MExercise}
+%Berechnen Sie das Volumen eines Prismas der H"ohe $h = 8\MEinheit{cm}$, dessen 
+%Grundfl"ache ein gleichseitiges Sechseck mit Seitenl"ange $a = 3\MEinheit{cm}$ 
+%ist.
+%\par
+%Hinweis: Das Sechseck kann in sechs gleichseitige Dreiecke zerlegt werden.
 Berechnen Sie das Volumen eines Prismas der H"ohe $h = 8\MEinheit{cm}$, dessen 
-Grundfl"ache ein gleichseitiges Sechseck mit Seitenl"ange $a = 3\MEinheit{cm}$ 
-ist.
+Grundfl"ache ein Dreieck ist, von dem zwei Seiten $5\MEinheit{cm}$ lang sind,
+und eine Seite $6\MEinheit{cm}$ lang ist.
 \par
-Antwort: \MLParsedQuestion{15}{177}{10}{ExM05EK1}$\MEinheit{cm}^3$
+Antwort: \MLParsedQuestion{15}{96}{10}{ExM05EK1}$\MEinheit{cm}^3$
 \end{MExercise}
 
 \begin{MExercise}
@@ -2500,7 +2552,8 @@ Antwort: \MLParsedQuestion{15}{177}{10}{ExM05EK21c} $\%$
 
 %content: Abschnitt 6: Winkelfunktionen
 
-\MSubsection{Winkelfunktionen: Sinus und Co.}\MLabel{M05_Trigonometrie}
+\MSubsection{Winkelfunktionen: Sinus und Co.}
+\MLabel{M05_Trigonometrie}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Intro}
@@ -2811,15 +2864,32 @@ in der mit $\alpha$ bezeichneten letzten Zeile der Winkel im Gradma"s notiert.
 
 Diese Werte sollte man sich merken. Die trigonometrischen Funktionen f\"ur andere Winkel sind in Tabellen bzw. im Taschenrechner gespeichert.
 
-Im Beispiel \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Beispiel:gleichseitigesDreieck} wurde mithilfe der trigonometrischen Funktionen die H\"ohe $h$ des Dreiecks berechnet. Diese Vorgehensweise gilt f\"ur alle beliebigen Dreiecke, da die H\"ohe $h$ das Dreieck immer in zwei rechtwinklige Dreiecke teilt und somit die trigonometrischen Funktionen angewandt werden k\"onnen.
+Im Beispiel 
+\MRef{Mathematik_ElementareGeometrie:Trigonometrie_Beispiel:gleichseitigesDreieck}
+ wurde mithilfe der trigonometrischen Funktionen die H\"ohe $h$ des Dreiecks 
+berechnet. Diese Vorgehensweise gilt f\"ur alle beliebigen Dreiecke, da die 
+H\"ohe $h$ das Dreieck immer in zwei rechtwinklige Dreiecke teilt und somit 
+die trigonometrischen Funktionen angewandt werden k\"onnen.
 
 \begin{MExercise}
-Berechnen Sie den Fl\"acheninhalt eines Dreiecks mit den Seiten $c=7$ und $b=3$, sowie dem Winkel $\alpha=30^\circ$.
+Berechnen Sie den Fl\"acheninhalt eines Dreiecks mit den Seiten $c=7$ und $b=3$
+sowie dem Winkel $\alpha=30\MGrad$ zwischen den Seiten $c$ und $b$.
 
 \begin{MHint}{L\"osung}
-Der Fl\"acheninhalt ist $A=\frac{1}{2}\cdot c \cdot h_c$.
-\[\sin\left(\alpha\right)=\frac{h_c}{b}\quad\Rightarrow\quad h_c=b\cdot\sin\left(\alpha\right)=3\cdot\sin\left(30^\circ\right)= 3\cdot\frac{1}{2}\]
-\[\Rightarrow\quad A=\frac{1}{2}\cdot c\cdot b\cdot\sin\left(\alpha\right)=\frac{1}{2}\cdot 7 \cdot3\cdot\frac{1}{2}=\frac{21}{4} \MDFPeriod\]
+Der Fl\"acheninhalt ist $F =\frac{1}{2}\cdot c \cdot h_c$, wobei noch $h_c$
+zu berechnen ist:
+Aus $\sin\left(\alpha\right)=\frac{h_c}{b}$
+ergibt sich
+\[
+ h_c=b\cdot\sin\left(\alpha\right) %
+  = 3\cdot\sin\left(30^\circ\right) %
+  = 3\cdot\frac{1}{2} \MDFPeriod %%
+\]
+Damit ist
+\[ 
+F =\frac{1}{2}\cdot c\cdot b\cdot\sin\left(\alpha\right) %
+  =\frac{1}{2}\cdot 7 \cdot3\cdot\frac{1}{2}=\frac{21}{4} \MDFPeriod %%
+\]
 \end{MHint}
 \end{MExercise}
 
@@ -2831,7 +2901,9 @@ Der Fl\"acheninhalt ist $A=\frac{1}{2}\cdot c \cdot h_c$.
 \MDeclareSiteUXID{VBKM05_TrigonometrieEinheitskreis_Content}
 
 
-Im letzten Abschnitt wurden die trigonometrischen Funktionen anhand eines rechtwinkligen Dreiecks betrachtet. Die gefundenen Erkenntnisse gelten also f\"ur einen Winkelbereich von $0$ bis $90^\circ=\frac{\pi}{2}$.
+Im letzten Abschnitt wurden die trigonometrischen Funktionen anhand eines 
+rechtwinkligen Dreiecks betrachtet. Die gefundenen Erkenntnisse gelten also 
+f\"ur einen Winkelbereich von $0$ bis $90\MGrad=\frac{\pi}{2}$.
 
 Um die gewonnenen Erkenntnisse auf gr\"o\ss ere Winkel als $\pi/2$ ausdehnen zu k\"onnen, erweist sich der Blick auf den sogenannten Einheitskreis als besonders n\"utzlich.
 
@@ -3050,11 +3122,75 @@ Geben Sie $\sin \left( \alpha \right)$, $\sin \left( \beta \right)$ und $a$ an!
 
 
 
+%begin of test:
 \MSubsection{Abschlusstest}
 
 \begin{MTest}{Abschlusstest Modul \arabic{section}}
 \MLabel{M05_Abschlusstest}
 \MDeclareSiteUXID{VBKM05_Abschlusstest}
+
+\begin{MExercise} %Testaufgabe
+Kennzeichnen Sie die dargestellten Figuren m"oglichst genau, indem Sie
+jeweils den Namen der Klasse (gegebenenfalls mit einem vorangestellten 
+Adjektiv) angeben, die m"oglichst viele Eigenschaften der Figur beschreibt.
+\begin{center}
+%\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt,scale=0.6]
+\begin{scope}[xshift=-8cm] %Viereck:
+\draw (-1,-1) -- (0,0) -- (1,-1) -- (0,1) -- (-1,-1);
+\node at (0,-2) {$F_1$};
+\end{scope}
+%
+\begin{scope}[xshift=-4cm] %Quadrat:
+\draw (-1.5,0)  -- (0,-1.5) -- (1.5,0) -- (0,1.5) -- (-1.5,0);
+\node at (0,-2) {$F_2$};
+\end{scope}
+%
+\begin{scope}[xshift=0cm] %Parallogramm:
+\draw (-0.5,-1)  -- (0.5,-2) -- (0.5,1) -- (-0.5,2) -- (-0.5,-1);
+\node at (-0.5,-2) {$F_3$};
+\end{scope}
+%
+\begin{scope}[xshift=4cm] %gleichschenkliges Dreieck:
+\draw (-1.3,1)  -- (0,-2) -- (1.3,1) -- (-1.3,1);
+\node at (-1,-2) {$F_4$};
+\end{scope}
+%
+\begin{scope}[xshift=8cm] %Raute
+\draw (-1.5,0)  -- (0,-1) -- (1.5,0) -- (0,1) -- (-1.5,0);
+\node at (0,-2) {$F_5$};
+\end{scope}
+%
+\end{tikzpicture}
+%}
+\end{center}
+\par
+\begin{MQuestionGroup}
+\begin{tabular}[t]{cc}
+Figur: & Klassenbeschreibung: \\
+ $F_1$ & \MLParsedQuestion{32}{Viereck}{10}{ExM05TestAg10} \\
+ $F_2$ & \MLParsedQuestion{32}{Quadrat}{10}{ExM05TestAg10} \\
+ $F_3$ & \MLParsedQuestion{32}{Parallelogramm}{10}{ExM05TestAg10} \\
+ $F_4$ & \MLParsedQuestion{32}{gleichschenkliges Dreieck}{10}{ExM05TestAg10} \\
+ $F_5$ & \MLParsedQuestion{32}{Raute}{10}{ExM05TestAg10} \\
+%
+\end{tabular}
+\end{MQuestionGroup}
+%jgl: Tests aktuell ohne Loesungen (daher auskommentiert):
+%jgl: Loesung erstellt:
+%\begin{MHint}{L"osung}
+%\begin{tabular}[t]{cc}
+%Figur & Klassenbeschreibung: \\
+% $F_1$ & ist ein Viereck (vier Seiten). \\
+% $F_2$ & ist ein Quadrat (vier gleich lange Seiten, Diagonalen gleich lang). \\
+% $F_3$ & ist ein Parallelogramm (gegen"uberliegende Seiten parallel. \\
+% $F_4$ & ist ein gleichschenkliges Dreieck (drei Seiten, davon zwei 
+%   anliegende Seiten gleich lang). \\
+% $F_5$ & ist eine Raute (vier gleich lange Seiten). \\
+%\end{tabular}
+%\end{MHint}
+\end{MExercise}
+
 
 \begin{MExercise} %Testaufgabe
 Welche der Aussagen und Ergebnisse sind richtig?
@@ -3083,86 +3219,134 @@ Welche der Aussagen und Ergebnisse sind richtig?
 \begin{MQuestionGroup}
 \begin{tabular}[t]{ccp{120mm}}
  richtig & falsch & \\
-\MCheckbox{0}{ExM05TestAg10} & \MCheckbox{1}{ExM05TestAg11} & %
+\MCheckbox{0}{ExM05TestAg20} & \MCheckbox{1}{ExM05TestAg21} & %
  Jedes Rechteck ist eine Raute. \\
 %
-\MCheckbox{1}{ExM05TestAg12} & \MCheckbox{0}{ExM05TestAg13} & %
+\MCheckbox{1}{ExM05TestAg22} & \MCheckbox{0}{ExM05TestAg23} & %
  Jedes Quadrat ist ein Parallelogramm. \\
 %
-\MCheckbox{1}{ExM05TestAg14} & \MCheckbox{0}{ExM05TestAg15} & %
+\MCheckbox{1}{ExM05TestAg24} & \MCheckbox{0}{ExM05TestAg25} & %
  Es gibt genau ein Quadrat mit einer Diagonalen von $5\MEinheit{cm}$. \\
 %
-\MCheckbox{1}{ExM05TestAg16} & \MCheckbox{0}{ExM05TestAg17} & %
+\MCheckbox{1}{ExM05TestAg26} & \MCheckbox{0}{ExM05TestAg27} & %
  Ein Dreieck mit den Winkeln $36\MGrad$ und $54\MGrad$ ist rechtwinklig. \\
 %
-\MCheckbox{0}{ExM05TestAg18} & \MCheckbox{1}{ExM05TestAg19} & %
+\MCheckbox{0}{ExM05TestAg28} & \MCheckbox{1}{ExM05TestAg29} & %
  In einem Viereck ist die Summe aller Winkel im Bogenma"s gleich $4 \pi$.
 \end{tabular}
 \end{MQuestionGroup}
 \fi
+%jgl: Tests aktuell ohne Loesungen (daher auskommentiert):
+%jgl: Loesung erstellt:
+%\begin{MHint}{L"osung}
+%\begin{itemize}
+%\item Nicht jedes Rechteck ist eine Raute, da es Rechtecke gibt, bei denen
+% nicht alle Seiten gleich lang sind.
+%\item Jedes Quadrat ist ein Parallelogramm, da bei einem Quadrat gegen"uber 
+% liegende Seiten parallel sind.
+%\item Ein Quadrat ist durch die L"ange der Diagonalen eindeutig festgelegt,
+% alle Winkel bekannt sind und die Diagonale das Quadrat in zwei Dreiecke 
+% zerlegt. Von den beiden Dreiecken sind dann alle Winkel und eine Seite 
+% bekannt sind, sodass sie eindeutig festgelegt sind.
+% Somit gibt es genau ein (kongruentes) Quadrat mit einer Diagonalen von 
+% $5\MEinheit{cm}$.
+%\item Ein Dreieck mit den Winkeln $36\MGrad$ und $54\MGrad$ ist rechtwinklig,
+% da der dritte (Innen-)Winkel $180\MGrad - (36\MGrad + 54\MGrad) = 90\MGrad$
+% misst. 
+%\item In einem Viereck ist die Summe aller Winkel im Gradma"s gleich 
+% $2 \cdot 180\MGrad = 360\MGrad$ beziehungsweise $2 \cdot \pi = 2\pi \neq 4\pi$,
+% da jedes Viereck in zwei Dreiecke zerlegt werden kann.
+%\end{itemize}
 \end{MExercise}
 
-\begin{MExercise} %Testaufgabe: Gemeinsame Abschlussaufgabe der TU9-Brueckenkurse
+
+\begin{MExercise} %Testaufgabe: Gemeinsame Abschlussaufgabe der 
+% TU9-Brueckenkurse von OMB+ und VE&MINT:
 Im Dreieck ABC mit den Seitenl"angen 
 $a = 5\MEinheit{cm}$,
 $b = 6\MEinheit{cm}$ und
 $c = 9\MEinheit{cm}$
 sind auf der Seite $c$ ein Punkt $P$ und auf der Seite $b$ ein Punkt $Q$ so
 gew"ahlt, dass $PQ$ parallel zur Seite $a$ ist und 
-$PQ = \MZahl{0}{50}\MEinheit{cm}$ gilt. Bestimmen Sie die Streckenl"angen
-$PB$ und $QC$ in Zentimeter:
-
-\begin{MExerciseItems}
-\item \MEquationItem{$PB$}{\MLParsedQuestion{15}{321}{10}{ExM05TestAg21}$\MEinheit{cm}$}
-\item \MEquationItem{$QC$}{\MLParsedQuestion{15}{321}{10}{ExM05TestAg22}$\MEinheit{cm}$}
-\end{MExerciseItems}
-\end{MExercise}
-
-
-\begin{MExercise} %Testaufgabe
-Es sind die abgebildeten Figuren mit den eingetragenen Gr"o"sen gegeben.
-Beantworten Sie dazu folgende Fragen:
+$\MGeoAbstand{P}{Q} = \MZahl{0}{50}\MEinheit{cm}$ gilt. Bestimmen Sie die 
+Streckenl"angen $\MGeoAbstand{P}{B}$ und $\MGeoAbstand{Q}{C}$ in Zentimeter:
 \par
-\begin{MQuestionGroup}
-\begin{tabular}[t]{p{100mm}cc}
- Das Dreieck ist durch die Angaben eindeutig festgelegt. &
- richtig \MCheckbox{0}{ExM05TestAg30} & falsch \MCheckbox{1}{ExM05TestAg31} \\
-%
- Im obigen Viereck gilt & \MEquationItem{$\alpha$}{\MLParsedQuestion{15}{beta}{10}{ExM05TestAg32}} & \\
-\end{tabular}
-\end{MQuestionGroup}
-
-\begin{MHint}{L"osung}
-
-\end{MHint}
+\begin{MExerciseItems}
+\item \MEquationItem{$\MGeoAbstand{P}{B}$}{\MLParsedQuestion{15}{8.1}{10}{ExM05TestAg31}$\MEinheit{cm}$}
+\item \MEquationItem{$\MGeoAbstand{Q}{C}$}{\MLParsedQuestion{15}{5.4}{10}{ExM05TestAg32}$\MEinheit{cm}$}
+\end{MExerciseItems}
+%jgl: Tests aktuell ohne Loesungen (daher auskommentiert):
+%jgl: Loesung erstellt:
+%\begin{MHint}{L"osung}
+%Mit den Strahlens"atzen werden zun"achst die Streckenl"angen
+%$\MGeoAbstand{A}{P}$ und $\MGeoAbstand{A}{Q}$ berechnet:
+%Aus
+%\[
+%\frac{\MGeoAbstand{A}{P}}{\MGeoAbstand{P}{Q}} = \frac{c}{a} %%
+%\quad\text{und}\quad
+%\frac{\MGeoAbstand{A}{Q}}{\MGeoAbstand{Q}{P}} = \frac{b}{a} %%
+%\]
+%folgt
+%\[
+% \MGeoAbstand{A}{P} = \frac{\MGeoAbstand{P}{Q} \cdot c}{a} %
+% = \frac{\MZahl{0}{5} \cdot 9\MEinheit{cm}{5\MEinheit{cm} %%
+% = \MZahl{0}{9}\MEinheit{cm} \MDFPeriod %%
+%\]
+%und
+%\[
+% \MGeoAbstand{A}{Q} = \frac{\MGeoAbstand{Q}{P} \cdot b}{a} %
+% = \frac{\MZahl{0}{5} \cdot 6\MEinheit{cm}{5\MEinheit{cm} %
+% = \MZahl{0}{6}\MEinheit{cm} \MDFPeriod %%
+%\]
+%Damit ergeben sich die gesuchten L"angen zu
+%$\MGeoAbstand{P}{B} = 9\MEinheit{cm} - \MZahl{0}{9}\MEinheit{cm} %
+% = \MZahl{8}{1}\MEinheit{cm}
+%und
+%$\MGeoAbstand{Q}{C} = 6\MEinheit{cm} - \MZahl{0}{6}\MEinheit{cm} %
+% = \MZahl{5}{4}\MEinheit{cm}
+%ergeben.
 \end{MExercise}
-
 
 
 \begin{MExercise}
 \MLabel{VBKM05_A_Quadratkreise}
-Ein Quadrat mit Seitenl\"ange $a$ sei gegeben. Geben Sie Formeln an f\"ur Fl\"acheninhalt und Umfang des gr\"o\ss tm\"oglichen Kreises innerhalb des Quadrats, sowie f\"ur
-den kleinstm\"oglichen Kreis, der das Quadrat enth\"alt:
+Ein Quadrat mit Seitenl\"ange $a$ sei gegeben. Geben Sie Formeln an f\"ur 
+Fl\"acheninhalt und Umfang des gr\"o\ss tm\"oglichen Kreises innerhalb des 
+Quadrats, sowie f\"ur den kleinstm\"oglichen Kreis, der das Quadrat enth\"alt:
 \begin{MExerciseItems}
-\item{Umfang des Kreises im Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a}{14}{a}{4}{1}{NGEOM1}}
-\item{Fl\"acheninhalt des Kreises im Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{(1/4)*pi*a*a}{14}{a}{4}{1}{NGEOM2}}
-\item{Umfang des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{sqrt(2)*pi*a}{14}{a}{4}{1}{NGEOM3}}
-\item{Fl\"acheninhalt des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{NGEOM4}}
+\item{Umfang des Kreises im Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a}{14}{a}{4}{1}{ExM05TestAg41}}
+%
+\item{Fl\"acheninhalt des Kreises im Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{(1/4)*pi*a*a}{14}{a}{4}{1}{ExM05TestAg42}}
+%
+\item{Umfang des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{sqrt(2)*pi*a}{14}{a}{4}{1}{ExM05TestAg43}}
+%
+\item{Fl\"acheninhalt des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{ExM05TestAg43}}
 \end{MExerciseItems}
 \par
-In den Antwortfeldern d\"urfen keine Klammern oder Wurzelausdr\"ucke auftauchen, schreiben Sie beispielsweise $2^{0.5}$ statt $\sqrt{2}$ um die Wurzel zu vermeiden.
-\par
-\begin{MHint}{L\"osung}
-Der mittig im Quadrat liegende Kreis besitzt den Radius $r=\frac12a$, die halbe Seitenl\"ange des Quadrats. Folglich besitzt er den Umfang $2\pi r =2\pi \cdot \frac12a = \pi a$ und den Fl\"acheninhalt
-$\pi r^2=\pi \cdot \frac14a^2 =\frac14\pi a^2$.\\
-\ \\
-Befindet sich das Quadrat dagegen mittig innerhalb des Kreises, so ist sein Radius die H\"alfte der L\"ange der Diagonalen vom Quadrat. Diese besitzt
-die L\"ange $d=\sqrt2\cdot a$. Dies folgt aus dem Satz von Pythagoras, da die halbe Quadratdiagonale ein rechtwinkliges Dreieck bildet
-mit Seitenl\"ange $d$ der Hypotenuse und den beiden Katheten mit L\"angen $\frac12a$: Also ist der Umfang $2\pi r=2\pi\cdot \sqrt2 \cdot\frac12 a=\sqrt2\cdot \pi \cdot a$,
-der Fl\"acheninhalt ist $\pi r^2=\pi \cdot (\sqrt2\cdot \frac12\cdot a)^2=\pi \cdot\frac12 a^2$.
-\end{MHint}
+In den Antwortfeldern d\"urfen keine Klammern oder Wurzelausdr\"ucke auftauchen.
+Schreiben Sie beispielsweise $2^{0.5}$ statt $\sqrt{2}$, um die Wurzel zu 
+vermeiden.
+%jgl: Tests aktuell ohne Loesungen (daher auskommentiert):
+%\par
+%\begin{MHint}{L\"osung}
+%Der mittig im Quadrat liegende Kreis besitzt den Radius $r=\frac12a$, 
+%die halbe Seitenl\"ange des Quadrats. Folglich besitzt er den Umfang 
+%$2\pi r =2\pi \cdot \frac12a = \pi a$ und den Fl\"acheninhalt
+%$\pi r^2=\pi \cdot \frac14a^2 =\frac14\pi a^2$.\\
+%\par
+%Befindet sich das Quadrat dagegen mittig innerhalb des Kreises, so ist 
+%sein Radius die H\"alfte der L\"ange der Diagonalen vom Quadrat. Diese 
+%besitzt die L\"ange $d=\sqrt2\cdot a$. Dies folgt aus dem Satz von Pythagoras,
+%da die halbe Quadratdiagonale ein rechtwinkliges Dreieck bildet mit 
+%Seitenl\"ange $d$ der Hypotenuse und den beiden Katheten mit L\"angen 
+%$\frac12a$: Also ist der Umfang 
+%$2\pi r=2\pi\cdot \sqrt2 \cdot\frac12 a=\sqrt2\cdot \pi \cdot a$, und
+%der Fl\"acheninhalt ist 
+%$\pi r^2=\pi \cdot (\sqrt2\cdot \frac12\cdot a)^2=\pi \cdot\frac12 a^2$.
+%\end{MHint}
 \end{MExercise}
 
 \end{MTest}
+%end of test.
 
 \end{document}
