@@ -2,7 +2,7 @@
 \MPragma{MathSkip}
 
 %Einkommentieren zur Erzeugung der pngs aus den tikz-Umgebungen
-%\Mtikzexternalize
+\Mtikzexternalize
 
 \MSetSubject{\MINTMathematics}
 
@@ -301,14 +301,14 @@ Dann hei"st die Menge aller Punkte, die von $M$ den Abstand $r$ haben, ein
 %
 \begin{minipage}[c]{6cm}
 \begin{center}
-%\MTikzAuto{%
+\MTikzAuto{%
 \begin{tikzpicture}[line width=1pt]
 \filldraw (0,0) circle(1pt);
 \node[below] (0,0) {$M$};
 \draw[style=dotted] (0,0) -- node[above] {$r$} (1.5,0);
 \draw[color=blue] (0,0) circle(1.5cm);
 \end{tikzpicture}
-%%}
+}
 \end{center}
 \end{minipage}
 \end{MXInfo}
