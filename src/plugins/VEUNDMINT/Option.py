@@ -25,6 +25,7 @@ import os.path
 import json
 import re
 import locale
+from git import Repo
 
 class Option(object):
     """
@@ -168,11 +169,30 @@ class Option(object):
         with open(os.path.join(self.converterDir, "plugins", "VEUNDMINT", "colorset_blue.json")) as colorfile:
             self.colors = json.load(colorfile)
 
-        # VE&MINT course parameters, defining values used by the online course
-        server = "https://mintlx3.scc.kit.edu/dbtest"
-        self.signature_main = "OBM_PTEST1" # "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+        # course signature
+        self.signature_main = "OBM_PTEST2" # "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE_MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
+        
+        repo = Repo(self.currentDir)
+        assert not repo.bare
+        
+        if repo.is_dirty():
+            self.signature_git_dirty = 1
+        else:
+            self_signature_git_dirty = 0
+        
+        
+        h = repo.head
+        hc = h.commit
+        self.signature_git_head = h.name
+        self.signature_git_committer = hc.committer.name
+        self.signature_git_message = hc.message.replace("\n", "")
+        self.signature_git_commit = hc.hexsha
+        
+        
+        # VE&MINT course parameters, defining values used by the online course
+        server = "https://mintlx3.scc.kit.edu/dbtest"
         self.do_feedback = "0"                        # Feedbackfunktionen aktivieren? DOPPLUNG MIT FLAGS
         self.do_export = "0"                          # Aufgabenexport aktivieren? DOPPLUNG MIT FLAGS
         self.reply_mail = "admin@ve-und-mint.de"      # Wird in mailto vom Admin-Button eingesetzt
@@ -332,6 +352,9 @@ class Option(object):
                 sys.exit(1)
 
         if self.dorelease == 1:
+            if (self.signature_git_dirty == 1):
+                print("FATAL ERROR: Refusing to produce release if git repository is not clean, please commit everything for a clean release")
+                sys.exit(1)
             if (self.cleanup != 1) or (self.docollections == 1) or (self.doverbose == 1) or (self.dotikz == 0) or (self.borkify == 0) or (self.forceoffline == 1):
                 print("FATAL ERROR: Option dorelease=1 cannot be used with cleanup=0, docollections=1, dotikz=0, borkify=0, forceoffline=1 or doverbose=1, aborting with error code 1")
                 sys.exit(1)

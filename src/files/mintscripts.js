@@ -1529,6 +1529,11 @@ function notifyPoints(i, points, correct) {
 
 function globalunloadHandler()
 {
+  if (timerActive) {
+      window.clearInterval(timerVar);
+      timerActive = false;
+  }
+    
   pushISO(true); // nur synchrone ajax-calls erlauben, da wir im unload-Handler sind und die callbacks sonst verschwinden bevor Aufruf beantwortet wird
  
   // VERALTET
@@ -1567,7 +1572,12 @@ function globalloadHandler(pulluserstr)
     logMessage(DEBUGINFO, "Results eingetragen");
 
   }
-  
+ 
+  if (timerActive == false) {
+      timerActive = true;
+      timerVar = window.setInterval(globalTimerHandler, timerMillis);
+  }
+ 
   logMessage(DEBUGINFO, "globalLoadHandler finish");
 }
 
@@ -1678,8 +1688,8 @@ function rerollMVar(varname) {
   return 0;
 }
 
-// Registriert ein Variablenabhängiges div das MathJax-generierten Mathematikausdrücke anzeigt
-// Variablen werden über Observablen repräsentiert, deren Änderung triggert das Update des divs
+// Registriert ein Variablenabhaengiges div das MathJax-generierten Mathematikausdrücke anzeigt
+// Variablen werden über Observablen repraesentiert, deren Änderung triggert das Update des divs
 // Eingabe: Die Formel als LaTeX-String ggf. mit \MVar-Kommandos und das observable-"Objekt"
 function registerVariables(texmath,obsobj) {
   var i = 0;
@@ -2209,73 +2219,102 @@ function updateLayoutStates() {
         // check sites and select layout state accordingly
         $('.xsymb').each(function(i) {
             el = $(this);
-                // element is not selected and will receive special states
-                ux = "SITE_" + el.attr("uxid");
-                var j;
-                var found = false;
-                for (j = 0; ((j < intersiteobj.sites.length) && !found); j++) {
-                    if (intersiteobj.sites[j].uxid == ux) {
-                        found = true;
+            ux = "SITE_" + el.attr("uxid");
+            var j;
+            var found = false;
+            for (j = 0; ((j < intersiteobj.sites.length) && !found); j++) {
+                if (intersiteobj.sites[j].uxid == ux) {
+                    found = true;
+                }
+            }
+            if (found) {
+                // check exercise points to determine state of the element
+                var k;
+                var maxpoints = 0;
+                var points = 0;
+                var sfound = false;
+                for (k = 0; k < intersiteobj.scores.length; k++) {
+                    if (intersiteobj.scores[k].siteuxid == el.attr("uxid")) {
+                        sfound = true;
+                        maxpoints += intersiteobj.scores[k].maxpoints;
+                        points += intersiteobj.scores[k].points;
                     }
                 }
-                if (found) {
-                    
-                    // check exercise points to determine state of the element
-                    var k;
-                    var maxpoints = 0;
-                    var points = 0;
-                    var sfound = false;
-                    for (k = 0; k < intersiteobj.scores.length; k++) {
-                        if (intersiteobj.scores[k].siteuxid == el.attr("uxid")) {
-                            sfound = true;
-                            maxpoints += intersiteobj.scores[k].maxpoints;
-                            points += intersiteobj.scores[k].points;
-                        }
-                    }
-                    var msg = "";
-                    if (maxpoints == 0) {
-                        // xcontent not found or offers no exercise points
-                        el.toggleClass("state_progress", false);
-                        el.toggleClass("state_done", false);
-                        el.toggleClass("state_problem", false);
-                    } else {
-                        d = (1.0 * points) / (1.0 * maxpoints);
-                        if (d < 0.5) {
-                            el.toggleClass("state_progress", false);
-                            el.toggleClass("state_done", false);
-                            el.toggleClass("state_problem", true);
-                            msg = MESSAGE_PROBLEM;
-                        } else {
-                            if (points < maxpoints) {
-                                el.toggleClass("state_progress", true);
-                                el.toggleClass("state_done", false);
-                                el.toggleClass("state_problem", false);
-                                msg = MESSAGE_PROGRESS;
-                            } else {
-                                el.toggleClass("state_progress", false);
-                                el.toggleClass("state_done", true);
-                                el.toggleClass("state_problem", false);
-                                msg = MESSAGE_DONE;
-                            }
-                        }
-                    }
-                    if (msg != "") {
-                        el.attr("tiptitle", msg);
-                        el.qtip({ 
-                            position: { target: 'mouse', adjust: { x: 5, y: 5 } },
-                            style: { classes: 'qtip-blue qtip-shadow' },
-                            content: { attr: 'tiptitle' },
-                            show: { event: "mouseenter" }
-                        });
-                    }
-                    
-                } else {
+                var msg = "";
+                if (maxpoints == 0) {
+                    // xcontent not found or offers no exercise points
                     el.toggleClass("state_progress", false);
                     el.toggleClass("state_done", false);
                     el.toggleClass("state_problem", false);
+                } else {
+                    d = (1.0 * points) / (1.0 * maxpoints);
+                    if (d < 0.5) {
+                        el.toggleClass("state_progress", false);
+                        el.toggleClass("state_done", false);
+                        el.toggleClass("state_problem", true);
+                        msg = MESSAGE_PROBLEM;
+                    } else {
+                        if (points < maxpoints) {
+                            el.toggleClass("state_progress", true);
+                            el.toggleClass("state_done", false);
+                            el.toggleClass("state_problem", false);
+                            msg = MESSAGE_PROGRESS;
+                        } else {
+                            el.toggleClass("state_progress", false);
+                            el.toggleClass("state_done", true);
+                            el.toggleClass("state_problem", false);
+                            msg = MESSAGE_DONE;
+                        }
+                    }
                 }
+                if (msg != "") {
+                    el.attr("tiptitle", msg);
+                    el.qtip({ 
+                        position: { target: 'mouse', adjust: { x: 5, y: 5 } },
+                        style: { classes: 'qtip-blue qtip-shadow' },
+                        content: { attr: 'tiptitle' },
+                        show: { event: "mouseenter" }
+                    });
+                }
+                    
+            } else {
+                el.toggleClass("state_progress", false);
+                el.toggleClass("state_done", false);
+                el.toggleClass("state_problem", false);
+            }
+
+            if (el.attr("uxid") == SITE_UXID) {
+                // it's the site the user is currently viewing, activate timer color scheme
+                var a;
+                var cfound = false;
+                for (a = 0; a < timerColors.length; a++) {
+                    if (timerColors[a][0] == SITE_UXID) {
+                        cfound = true;
+                        timerColors[a][1] = el;
+                        timerColors[a][2] = el.css("color");
+                    }
+                }
+                if (!cfound) {
+                    n = timerColors.length;
+                    timerColors[n] = [ SITE_UXID, el, el.css("color") ];
+                }
+            }
         });
     }
   }
-    
+}
+
+function globalTimerHandler() {
+    var j;
+    timerIterator++;
+    if (intersiteactive) {
+        intersiteobj.globalmillis += timerMillis;
+        var k;
+        var ux = "SITE_" + SITE_UXID;
+        for (k = 0; k < intersiteobj.sites.length; k++) {
+            if (intersiteobj.sites[k].uxid == ux) {
+                intersiteobj.sites[k].millis += timerMillis;
+            }
+        }
+    }
 }

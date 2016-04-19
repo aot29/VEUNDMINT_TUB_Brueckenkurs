@@ -1,12 +1,10 @@
 README.txt des Repositories ve-und-mint
-Autor: Daniel Haase 2015
+Autor: Daniel Haase 04/2016
 
 Dies ist der Hauptordner des Repositories ve-und-mint,
 es dient der Entwicklung der nicht-öffentlichen Version des
 VE&MINT-Onlinebrückenkurses im Rahmen einer TU9-Initiative.
 
-Der Autokonverter kann genutzt werden, um die aktuellen Änderungen im Branch develop_content
-zu konvertieren und anzuzeigen: http://mintlx3.scc.kit.edu/autoconverter/autoconv.php
 
 Beschreibung der git-Zweige (branches) im Projekt ve-und-mint:
 
@@ -16,7 +14,6 @@ Hauptzweige:
 
 Entwicklungszweige:
  - develop_software           [Arbeitsversion der Technik, hier werden Erweiterungen programmiert und Programmfehler korrigiert]
- - develop_python             [Arbeitsversion für Python-Version des Konverters, wird momentan von Stefan Born und Hans Adler bearbeitet (TU Berlin)]
  - develop_content            [Arbeitsversion der Inhalte, hier werden inhaltliche Änderungen in die TeX-Dateien eingepflegt]
  
 Abspaltungen:
@@ -31,15 +28,55 @@ Sonstige:
 Beschreibung der Ordner innerhalb der Zweige:
  - module_veundmint           [Die LaTeX-Quelldateien des Projekts, neben den TU9-Modulen noch einige Sondermodule]
  - module_hannovertest        [Quellen für den eTest der Uni Hannover]
- - converter                  [Programmcode und Konvertermaterialien]
+ - src                        [Programmcode und Konvertermaterialien]
  
  
-Jedes Kurspaket hat eine Parameterdatei im Hauptordner, z.B. tu9onlinekurs_test.pl
-in dieser stehen alle für das Kurspaket relevanten Daten (tex-Hauptdatei,
-Bezeichnung, ob PDF erstellt werden soll, Verbindungsdaten, Farbeinstellungen und vieles mehr).
+------------------------- Der Autokonverter ---------------------------------------------------------------------
 
-Der Konverter wird (unter Linux) gestartet mit
+Der Autokonverter kann genutzt werden, um die aktuellen Änderungen im Branch develop_content
+zu konvertieren und anzuzeigen: http://mintlx3.scc.kit.edu/autoconverter/autoconv.php
 
-converter/mconvert.pl <Parameterdatei>
+Dort ist immer der aktuelle Konverter hinterlegt, dies ist die bevorzugte Konvertierungsmethode für Autoren.
+ 
+------------------------- Manuelles Konvertieren der Module -----------------------------------------------------
+
+Die Einstellungen für den Kurs finden sich in der Datei src/plugins/VEUNDMINT/Option.py
+in dieser stehen alle für das Kurspaket relevanten Daten (tex-Hauptdatei, Bezeichnung,
+ob PDF erstellt werden soll, Verbindungsdaten, Farbeinstellungen und vieles mehr).
+
+Der (aktuelle) Python-Konverter wird gestartet mit
+
+python3 tex2x.py VEUNDMINT
+
+innerhalb des Verzeichnisses src
+
+Dafür muss unter Linux python3 installiert sein (mindestens Version 3.4)
+sowie die Python-Module GitPython, html5lib, lxml, pytidylib, simplejson.
+Diese kann man (als root) mit dem Kommando python3 -m pip install <name>
+automatisch installieren lassen.
+
+Beim Aufruf des Konverters können einzelne Optionen überschrieben werden, typische Zusätze sind
+python3 tex2x.py VEUNDMINT dopdf=1  [erstellt HTML und PDF gleichzeitig]
+python3 tex2x.py VEUNDMINT dotikz=1  [erstellt alle tikz-Dateien neu, auch wenn sie schon im Repository sind]
+python3 tex2x.py VEUNDMINT cleanup=0  [löscht nicht die Zwischen- und Hilfsdateien der Übersetzung]
+Die Zusätze können kombiniert werden, alle (elementaren) Variablen aus dem Optionen-Objekt
+können in dieser Form überschrieben werden.
+
+Der Konverter selbst gibt nur wichtige Fehler- und Informationsmeldungen aus,
+eine vollständige Liste aller Meldungen und Zeitangaben werden in die Datei
+conversion.log im Hauptverzeichnis geschrieben.
+
+Das Konvertierungstool an sich (tex2struct, tex2x, grundlegende Plugins) stehen unter GPL.
+Die Plugins für den VEUNDMINT-Kurs (im Ordner src/plugins/VEUNDMINT) stehen unter der LGPL.
+
+------------------------- Alter PERL-Konverter -----------------------------------------------------
+
+Der (veraltete) PERL-Konverter wird gestartet mit
+
+src/mconvert.pl <Parameterdatei>
 
 und erzeugt in der Regel ein Verzeichnis mit dem HTML-Baum.
+Er ist seit April 2016 nicht mehr kompatibel zu den Makrobefehlen in mintmod.tex !
+
+DER ALTE PERL-KONVERTER IST NICHT OPEN-SOURCE UND DARF NICHT AN DRITTE WEITERGEGEBEN WERDEN
+

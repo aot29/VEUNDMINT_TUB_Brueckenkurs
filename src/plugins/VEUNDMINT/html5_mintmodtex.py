@@ -889,7 +889,13 @@ class Plugin(basePlugin):
           + "var doCollections = " + str(self.options.docollections) + ";\n" \
           + "var isVerbose = " + str(self.options.doverbose) + ";\n" \
           + "var testOnly = " + str(self.options.testonly) + ";\n" \
-          + "var signature_CID = \"" + self.data['signature']['CID'] + "\";\n"
+          + "var signature_CID = \"" + self.data['signature']['CID'] + "\";\n" \
+          + "var signature_git_dirty = " + str(self.options.signature_git_dirty) + ";\n" \
+          + "var signature_git_head = \"" + self.options.signature_git_head + "\";\n" \
+          + "var signature_git_committer = \"" + self.options.signature_git_committer + "\";\n" \
+          + "var signature_git_message = \"" + self.options.signature_git_message + "\";\n" \
+          + "var signature_git_commit = \"" + self.options.signature_git_commit + "\";\n"
+      
 
         for vr in ["signature_main", "signature_version", "signature_localization", "do_feedback", "do_export", "reply_mail",
                    "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",

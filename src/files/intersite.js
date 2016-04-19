@@ -21,7 +21,9 @@
 
 // determines the local storage name of the intersite object
 function getObjName() {
-    return "isobj_" + signature_main; // Important: same object even for different versions
+    s = "isobj_" + signature_main;
+    logMessage(DEBUGINFO, "Loading user object with id " + s);
+    return s; // Important: same object even for different versions
 }
 
 // login types:
@@ -52,6 +54,7 @@ function createIntersiteObj() {
     scores: [],
     sites: [],
     favorites: [ createHelpFavorite() ],
+    globalmillis: 0,
     login: { type: 0, vname: "", sname: "", username: "", password: "", email: "" }
   };
   return obj;
@@ -358,6 +361,7 @@ function SetupIntersite(clearuser, pulledstr) {
         if (f == false) {
           var k = intersiteobj.sites.length;
           intersiteobj.sites[k] = { uxid: sid };
+          intersiteobj.sites[k].millis = 0;
           intersiteobj.sites[k].maxpoints = 1;
           intersiteobj.sites[k].points = 1;
           intersiteobj.sites[k].id = SITE_ID;
