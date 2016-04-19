@@ -180,7 +180,7 @@ class Option(object):
         if repo.is_dirty():
             self.signature_git_dirty = 1
         else:
-            self_signature_git_dirty = 0
+            self.signature_git_dirty = 0
         
         
         h = repo.head
