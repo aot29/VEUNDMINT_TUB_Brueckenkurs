@@ -371,6 +371,7 @@ function SetupIntersite(clearuser, pulledstr) {
   UpdateSpecials();
   confHandlerISOLoad()
   updateLoginfield();
+  // updateLayoutState will be called from applyLayout()
 
   // Has to be called after UpdateSpecials, because that creates hrefs
   if (intersitelinks != true) {

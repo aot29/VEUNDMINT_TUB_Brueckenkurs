@@ -231,7 +231,7 @@ class PageFactory(object):
                                        else:
                                            cl = ""
                                        divid = "idxsymb_tc" + str(p4.myid)
-                                       tsec += "<a class=\"MINTERLINK\" href=\"" + p4.fullname + "\"><div id=\"" + divid + "\" class=\"xsymb " + p4.tocsymb + cl + "\"></div></a>\n"
+                                       tsec += "<a class=\"MINTERLINK\" href=\"" + p4.fullname + "\"><div uxid=\"" + p4.uxid + "\" id=\"" + divid + "\" class=\"xsymb " + p4.tocsymb + cl + "\"></div></a>\n"
                                        
                                 c += "    <li><a class=\"MINTERLINK\" href=\"" + pages4[0].fullname + "\">" + tsec + "</li>\n"
                         c += "    </ul></div>\n"
@@ -314,11 +314,12 @@ class PageFactory(object):
             pp = tc
             while (pp.level != self.options.contentlevel):
                 pp = pp.children[0]
-            navi += "  <li class=\"xsectbutton\"><a class=\"MINTERLINK\" href=\"" + pp.fullname + "\">"
-            if (not pp.helpsite):
-                 navi += self.options.strings['module_starttext'] + tc.title
-            else:
+            # higher level link: is always alone and therefore selected
+            navi += "  <li class=\"xsectbutton\"><a class=\"MINTERLINK naviselected\" href=\"" + pp.fullname + "\">"
+            if pp.helpsite:
                  navi += self.options.strings['module_moreinfo']
+            else:
+                 navi += self.options.strings['module_starttext'] + tc.title
             navi += "</a></li>\n"
         
         parent = tc.parent
@@ -330,7 +331,11 @@ class PageFactory(object):
                 cap = p.caption
                 if (p.display and (tc.level == self.options.contentlevel)):
                     # normal display button
-                    navi += "  <li class=\"" + icon + "\"><a class=\"MINTERLINK\" href=\"" + p.fullname + "\">" + cap + "</a></li>\n"
+                    if p is tc:
+                        sl = " naviselected"
+                    else:
+                        sl = ""
+                    navi += "  <li class=\"" + icon + "\"><a uxid=\"" + p.uxid + "\" class=\"MINTERLINK" + sl + "\" href=\"" + p.fullname + "\">" + cap + "</a></li>\n"
                 else:
                     if (not p.display):
                         # blocked site, greyed button
@@ -356,12 +361,11 @@ class PageFactory(object):
         # read unique ids
         m = re.search(r"\<!-- mdeclaresiteuxidpost;;(.+?);; //--\>", html, re.S)
         if m:
-            tc.uxid = m.group(1)
-            self.sys.message(self.sys.VERBOSEINFO, tc.title + " -> " + tc.uxid + " (siteuxidpost)")
+            if tc.uxid != m.group(1):
+                self.sys.message(self.sys.CLIENTERROR, "Element tc.title has uxid " + tc.uxid + ", but postdeclare is " + m.group(1))
         else:
             tc.uxid = "UNKNOWNUXID"
             self.sys.message(self.sys.CLIENTWARN, "Site hat keine uxid: " + tc.title);
-            
             
         # activate pull sites and adapt JS variables
         if "<!-- pullsite //-->" in html:

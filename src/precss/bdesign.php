@@ -87,15 +87,6 @@ tocnavsymb ul li {
         transition: all 0.2s; 
 }
 
-.xsymb {
-  background-color: [-XSYMB-];
-  padding: 0px 5px 0px;
-  border: 1px solid rgb(55,180,220);
-  display: inline-block;
-  color: [-XSYMBCOLOR-];
-  font-size: [-SMALLFONTSIZE-];
-}
-
 .head
 {
   background-color: [-HEADBACKGROUND-];
@@ -337,7 +328,7 @@ img {
     color: #000090;
 }
 .navi ul li a {
-    color: white !important;
+    color: rgb(200,200,200) !important;
     display: inline-block;
     border: 2px solid rgba(255,255,255,0.5) !important;
     border-radius: 3px;
@@ -346,8 +337,13 @@ img {
     letter-spacing: 0.5px;
     margin: 0px 10px;
 }
+
 .navi ul li a:hover {
     background-color:rgba(255,255,255,.5) !important;
+}
+
+.navi ul li a.naviselected {
+    color: white !important;
 }
 
 .navi .nprev a, .navi .nprev a:before {
@@ -457,11 +453,14 @@ tocnavsymb ul li ul li a:hover div{
     box-sizing: border-box !important;
 }
 .xsymb {
-	border:0 !important;
-	background-color: transparent !important;
-	color: white !important;
-	padding: 0px 2px 0px 0px !important;
+    color: white !important;
+    background-color: [-XSYMB-];
+    display: inline-block;
+    border:0 !important;
+    background-color: transparent !important;
+    padding: 0px 2px 0px 0px !important;
     font-weight: 300 !important;
+    font-size: [-SMALLFONTSIZE-];
 }
 .xsymb:hover {
 	color: rgba(255,255,255,0.5) !important;
@@ -490,8 +489,15 @@ tocnavsymb ul li ul li a:hover div{
 	font-size: [-SMALLFONTSIZE-] !important;
 	line-height: [-SMALLFONTSIZE-] !important;
 }
-.xsymb.erledigt {
-	color: rgba(255,255,255,0.3) !important;
+
+.xsymb.state_problem {
+    color: rgba(255,20,20,0.3) !important;
+}
+.xsymb.state_progress {
+    color: rgba(255,255,20,0.3) !important;
+}
+.xsymb.state_done {
+    color: rgba(20,255,20,0.3) !important;
 }
 
 .xsymb.selected {
@@ -501,7 +507,7 @@ tocnavsymb ul li ul li a:hover div{
 .xsymb.status3 tt,
 .xsymb.status2 tt,
 .xsymb.status1 tt {
-	display: none;
+   display: none;
 }
 /* footer */ 
 

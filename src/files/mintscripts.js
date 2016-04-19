@@ -1522,6 +1522,7 @@ function notifyPoints(i, points, correct) {
       }
   }
 
+  updateLayoutStates();
  
 }
 
@@ -1966,6 +1967,8 @@ function applyLayout(first) {
   //    var cssLink = $("<link rel='stylesheet' type='text/css' href='"+href+"'>");
   //   $("head").append(cssLink);
   
+  updateLayoutStates();
+    
   var e = document.getElementById("dynamic_css");
   if (e == null) {
     e = document.createElement('style');
@@ -2090,7 +2093,6 @@ function applyLayout(first) {
             
             // unchecked ->  indeterminate
             case "2":
-                console.log("2 -> 0")
                 el.prop('cval', "0");
                 el.prop('indeterminate', true);
                 el.prop('checked', false); // remember indeterminate is independent of checked
@@ -2098,7 +2100,6 @@ function applyLayout(first) {
             
             // checked -> unchecked
             case "1":
-                console.log("1 -> 2")
                 el.prop('cval', "2");
                 el.prop('indeterminate', false);
                 el.prop('checked', false);
@@ -2106,7 +2107,6 @@ function applyLayout(first) {
             
             // indeterminate -> checked
             default:
-                console.log("0 -> 1")
                 el.prop('cval', "1");
                 el.prop('indeterminate', false);
                 el.prop('checked', true);
@@ -2200,4 +2200,82 @@ function shareFacebook() {
     'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), 
     'facebook-share-dialog', 
     'width=626,height=436'); 
+}
+
+// changes classes of toc/navi elements to show element state (element behaviour is defined in css)
+function updateLayoutStates() {
+  if (intersiteactive == true) {
+    if (intersiteobj != null) {
+        // check sites and select layout state accordingly
+        $('.xsymb').each(function(i) {
+            el = $(this);
+                // element is not selected and will receive special states
+                ux = "SITE_" + el.attr("uxid");
+                var j;
+                var found = false;
+                for (j = 0; ((j < intersiteobj.sites.length) && !found); j++) {
+                    if (intersiteobj.sites[j].uxid == ux) {
+                        found = true;
+                    }
+                }
+                if (found) {
+                    
+                    // check exercise points to determine state of the element
+                    var k;
+                    var maxpoints = 0;
+                    var points = 0;
+                    var sfound = false;
+                    for (k = 0; k < intersiteobj.scores.length; k++) {
+                        if (intersiteobj.scores[k].siteuxid == el.attr("uxid")) {
+                            sfound = true;
+                            maxpoints += intersiteobj.scores[k].maxpoints;
+                            points += intersiteobj.scores[k].points;
+                        }
+                    }
+                    var msg = "";
+                    if (maxpoints == 0) {
+                        // xcontent not found or offers no exercise points
+                        el.toggleClass("state_progress", false);
+                        el.toggleClass("state_done", false);
+                        el.toggleClass("state_problem", false);
+                    } else {
+                        d = (1.0 * points) / (1.0 * maxpoints);
+                        if (d < 0.5) {
+                            el.toggleClass("state_progress", false);
+                            el.toggleClass("state_done", false);
+                            el.toggleClass("state_problem", true);
+                            msg = MESSAGE_PROBLEM;
+                        } else {
+                            if (points < maxpoints) {
+                                el.toggleClass("state_progress", true);
+                                el.toggleClass("state_done", false);
+                                el.toggleClass("state_problem", false);
+                                msg = MESSAGE_PROGRESS;
+                            } else {
+                                el.toggleClass("state_progress", false);
+                                el.toggleClass("state_done", true);
+                                el.toggleClass("state_problem", false);
+                                msg = MESSAGE_DONE;
+                            }
+                        }
+                    }
+                    if (msg != "") {
+                        el.attr("tiptitle", msg);
+                        el.qtip({ 
+                            position: { target: 'mouse', adjust: { x: 5, y: 5 } },
+                            style: { classes: 'qtip-blue qtip-shadow' },
+                            content: { attr: 'tiptitle' },
+                            show: { event: "mouseenter" }
+                        });
+                    }
+                    
+                } else {
+                    el.toggleClass("state_progress", false);
+                    el.toggleClass("state_done", false);
+                    el.toggleClass("state_problem", false);
+                }
+        });
+    }
+  }
+    
 }

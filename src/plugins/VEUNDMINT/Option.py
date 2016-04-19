@@ -128,7 +128,10 @@ class Option(object):
             "brokenlabel": "(VERWEIS)",
             "feedback_sendit": "Meldung abschicken",
             "qexport_download_tex": "Quellcode dieser Aufgabe im LaTeX-Format",
-            "qexport_download_doc": "Quellcode dieser Aufgabe im Word-Format"
+            "qexport_download_doc": "Quellcode dieser Aufgabe im Word-Format",
+            "message_done": "Alle Aufgaben gelöst",
+            "message_progress": "Aufgaben teilweise gelöst",
+            "message_problem": "Aufgaben noch nicht gelöst"
         }
 
         self.knownmathcommands = [ "sin", "cos", "tan", "cot", "log", "ln", "exp" ] # these will be excluded from post-ttm modifications
