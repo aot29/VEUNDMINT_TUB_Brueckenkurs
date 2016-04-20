@@ -1459,7 +1459,7 @@ function reset_button()
   InitResults(true);
 }
 
-function notifyPoints(i, points, correct) {
+function notifyPoints(i, points, state) {
   FVAR[i].points = points;
   if ((isTest == true) && (FVAR[i].sync == 1)) {
     nPoints += points;
@@ -1481,6 +1481,7 @@ function notifyPoints(i, points, correct) {
                   intersiteobj.scores[j].intest = FVAR[i].intest;
                   intersiteobj.scores[j].rawinput = FVAR[i].rawinput;
                   intersiteobj.scores[j].value = FVAR[i].value;
+                  intersiteobj.scores[j].state = state;
                   logMessage(VERBOSEINFO, "Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersiteobj.scores[j].rawinput);
               }
           }
@@ -1495,6 +1496,7 @@ function notifyPoints(i, points, correct) {
             intersiteobj.scores[k].intest = FVAR[i].intest;
             intersiteobj.scores[k].value = FVAR[i].value;
             intersiteobj.scores[k].rawinput = FVAR[i].rawinput;
+            intersiteobj.scores[k].state = state;
             logMessage(VERBOSEINFO, "Points for " + FVAR[i].uxid + " ADDED at position " + k);
           }
       }
@@ -1505,7 +1507,7 @@ function notifyPoints(i, points, correct) {
   if (img == null) {
       logMessage(VERBOSEINFO, "notifyPoints warning: img=0, type = " + FVAR[i].type);
   } else {
-    switch(correct) {
+    switch(state) {
         case SOLUTION_TRUE: { img.src = "../../images/right.gif"; break; }
         case SOLUTION_FALSE: { img.src = "../../images/false.gif"; break; }
         case SOLUTION_NEUTRAL: { img.src = "../../images/questionmark.gif"; break; }
@@ -1515,7 +1517,7 @@ function notifyPoints(i, points, correct) {
   if (FVAR[i].type != 2) {
       // Normale Kombination Eingabefeld und Antworticon
       var e = document.getElementById(FVAR[i].id);
-      switch(correct) {
+      switch(state) {
           case SOLUTION_TRUE: { e.style.background = QCOLOR_TRUE; break; }
           case SOLUTION_FALSE: { e.style.background = QCOLOR_FALSE; break; }
           case SOLUTION_NEUTRAL: { e.style.background = QCOLOR_NEUTRAL; break; }
@@ -2233,40 +2235,63 @@ function updateLayoutStates() {
                 var maxpoints = 0;
                 var points = 0;
                 var sfound = false;
+                
+                
+                
+                // no exercises present or all in neutral state: no state
+                // at least one exercise in false state: problem
+                // all exercises in true state: done
+                // otherwise: progress (some exercises done, some in true state, none in false state)
+                
+                alldone = true;
+                allneutral = true;
+                prob = false;
                 for (k = 0; k < intersiteobj.scores.length; k++) {
                     if (intersiteobj.scores[k].siteuxid == el.attr("uxid")) {
                         sfound = true;
                         maxpoints += intersiteobj.scores[k].maxpoints;
                         points += intersiteobj.scores[k].points;
+                        if (intersiteobj.scores[k].state == SOLUTION_FALSE) {
+                            prob = true;
+                            alldone = false;
+                            allneutral = false;
+                        } else {
+                            if (intersiteobj.scores[k].state == SOLUTION_NEUTRAL) {
+                                alldone = false;
+                            } else {
+                                allneutral = false;
+                            }
+                        }
                     }
                 }
+                
                 var msg = "";
-                if (maxpoints == 0) {
-                    // xcontent not found or offers no exercise points
+                if ((sfound == false) || (allneutral == true) || (maxpoints == 0)) {
                     el.toggleClass("state_progress", false);
                     el.toggleClass("state_done", false);
                     el.toggleClass("state_problem", false);
                 } else {
-                    d = (1.0 * points) / (1.0 * maxpoints);
-                    if (d < 0.5) {
+                    d = Math.floor((1.0 * points) / (1.0 * maxpoints) * 100.0);
+                    if (prob) {
                         el.toggleClass("state_progress", false);
                         el.toggleClass("state_done", false);
                         el.toggleClass("state_problem", true);
-                        msg = MESSAGE_PROBLEM;
+                        msg = MESSAGE_PROBLEM  + " (" + d + "%)";
                     } else {
-                        if (points < maxpoints) {
-                            el.toggleClass("state_progress", true);
-                            el.toggleClass("state_done", false);
-                            el.toggleClass("state_problem", false);
-                            msg = MESSAGE_PROGRESS;
-                        } else {
+                        if (alldone) {
                             el.toggleClass("state_progress", false);
                             el.toggleClass("state_done", true);
                             el.toggleClass("state_problem", false);
-                            msg = MESSAGE_DONE;
+                            msg = MESSAGE_DONE + " (" + d + "%)";
+                        } else {
+                            el.toggleClass("state_progress", true);
+                            el.toggleClass("state_done", false);
+                            el.toggleClass("state_problem", false);
+                            msg = MESSAGE_PROGRESS + " (" + d + "%)";;
                         }
                     }
                 }
+                
                 if (msg != "") {
                     el.attr("tiptitle", msg);
                     el.qtip({ 
@@ -2308,7 +2333,7 @@ function globalTimerHandler() {
     var j;
     timerIterator++;
     if (intersiteactive) {
-        intersiteobj.globalmillis += timerMillis;
+        intersiteobj.history.globalmillis += timerMillis;
         var k;
         var ux = "SITE_" + SITE_UXID;
         for (k = 0; k < intersiteobj.sites.length; k++) {

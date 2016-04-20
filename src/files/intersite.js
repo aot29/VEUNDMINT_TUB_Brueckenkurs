@@ -54,9 +54,10 @@ function createIntersiteObj() {
     scores: [],
     sites: [],
     favorites: [ createHelpFavorite() ],
-    globalmillis: 0,
+    history: { globalmillis: 0, commits: [] }, // commits = array aus Arrays [ hexsha+cid, firstlogintimestamp, lastlogintimestamp ]
     login: { type: 0, vname: "", sname: "", username: "", password: "", email: "" }
   };
+  
   return obj;
 }
 
@@ -374,6 +375,9 @@ function SetupIntersite(clearuser, pulledstr) {
 
   UpdateSpecials();
   confHandlerISOLoad()
+  if (intersiteactive) {
+      updateCommits(intersiteobj);
+  }
   updateLoginfield();
   // updateLayoutState will be called from applyLayout()
 
@@ -1192,6 +1196,58 @@ function setIntersiteType(t) {
   } else {
       logMessage(DEBUGINFO, "intersiteactive == false");
   }
+}
+
+function convertTimestamp(stamp) {
+    date = new Date(stamp),
+    d = [
+       date.getUTCFullYear(),
+       date.getUTCMonth()+1,
+       date.getUTCDate(),
+       date.getUTCHours(),
+       date.getUTCMinutes(),
+       date.getUTCSeconds(),
+    ];
+    
+    for (j = 0; j < d.length; j++) {
+        d[j] = "" + d[j];
+        if (d[j].length == 1) d[j] = "0" + d[j];
+    }
+    
+    return d[2] + "." + d[1] + "." + d[0] + " - " + d[3] + ":" + d[4] + ":" + d[5];
+}
+
+// returns timestamp in milliseconds
+function getTimestamp() {
+    if (!Date.now) {
+        // happens for old IE versions
+        Date.now = function() { return new Date().getTime(); }
+    }
+    return Date.now();
+}
+
+// updates the history.commits array with present data
+function updateCommits(obj) {
+    var timestamp = getTimestamp();
+    var s = "CHEX:" + signature_git_commit + "_CID:" + signature_CID;
+    
+    var j;
+    var found = false;
+    for (j = 0; ((j < obj.history.commits.length) && (!found)); j++) {
+        if (obj.history.commits[j][0] == s) {
+            found = true;
+            obj.history.commits[j][2] = timestamp;
+        }
+    }
+    if (!found) {
+        n = obj.history.commits.length;
+        obj.history.commits[n] = [ s, timestamp, timestamp ];
+    }
+    
+    logMessage(DEBUGINFO, "Commit history:");
+    for (j = 0; j < obj.history.commits.length; j++) {
+        logMessage(DEBUGINFO, "  " + obj.history.commits[j][0] + ", " + convertTimestamp(obj.history.commits[j][1]) + ", " + convertTimestamp(obj.history.commits[j][2]));
+    }
 }
 
 // ----------------------------------- Favorites management -----------------------------------------
