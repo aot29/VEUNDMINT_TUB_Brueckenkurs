@@ -9,7 +9,7 @@
  * With the function evalMathJS() it is possible to evaluate a math.js
  * compatible string with an array of values.
  *
- * Copyright (C) 2015 KIT (www.kit.edu), Author: Max Bruckner (FSMaxB)
+ * Copyright (C) 2015 MINT-Kolleg Baden-WÃ¼rttemberg (www.mint-kolleg.de)
  *
  *  This file is part of the VE&MINT program compilation
  *  (see www.ve-und-mint.de).
@@ -142,7 +142,7 @@ var mathJSFunctions = (function (mathjsInstance) {
 	};
 
 	/*
-	 * Berechnen des Binomialkoeffizienten n über k.
+	 * Berechnen des Binomialkoeffizienten n ueber k.
 	 * calculate the binomial n over k
 	 *
 	 * As with factorial, this respects 'epsilonAbstand'.
@@ -200,7 +200,7 @@ var mathJSFunctions = (function (mathjsInstance) {
 			return 0;
 		}
 		else if (!isNonNegativeInteger(zweierexponent)) {
-			return new TypeError('broot: Der Zweierexponent muss eine natürliche Zahl sein.');
+			return new TypeError('broot: Der Zweierexponent muss eine natÃ¼rliche Zahl sein.');
 		}
 		else if (radikand < 0) {
 			return new TypeError('broot: Der Radikand muss eine positive Zahl sein.');
@@ -457,7 +457,7 @@ var mparser = (function () {
 			word: true
 		},
 		{
-			ausdruck: ["µ", "mu"],
+			ausdruck: ["Âµ", "mu"],
 			replace: {
 				"latex": "\\mu",
 				"mathjs": "mu"
@@ -513,15 +513,15 @@ var mparser = (function () {
 			word: true
 		},
 		{
-			ausdruck: ["°"],
+			ausdruck: ["Â°"],
 			replace: {
 				"latex": "^{\\circ}",
-				"mathjs": "°"
+				"mathjs": "Â°"
 			},
 			word: false
 		},
 		{
-			ausdruck: ["¹"],
+			ausdruck: ["Â¹"],
 			replace: {
 				"latex": " ^{1}",	//NOTE: the space is important
 				"mathjs": "^1"
@@ -529,7 +529,7 @@ var mparser = (function () {
 			word: false
 		},
 		{
-			ausdruck: ["²"],
+			ausdruck: ["Â²"],
 			replace: {
 				"latex": " ^{2}",	//NOTE: the space is important
 				"mathjs": "^2"
@@ -537,7 +537,7 @@ var mparser = (function () {
 			word: false
 		},
 		{
-			ausdruck: ["³"],
+			ausdruck: ["Â³"],
 			replace: {
 				"latex": " ^{3}",	//NOTE: the space is important
 				"mathjs": "^3"
@@ -814,7 +814,7 @@ var mparser = (function () {
 			}
 		},
 		{
-			ausdruck: ["factorial", "Factorial", "fakultaet", "Fakultaet", "fakultät", "Fakultät"],
+			ausdruck: ["factorial", "Factorial", "fakultaet", "Fakultaet", "fakultÃ¤t", "FakultÃ¤t"],
 			replace: {
 				"latex": {
 					1: "{($1)!}"
@@ -942,8 +942,8 @@ var mparser = (function () {
 			var ende = sucheKlammern(input, anfang);	//closing bracket
 			if (ende < 0) {
 				errorMessageObject.push({
-					nutzer: "Fehlende schließende Klammer!",
-					debug: "bracketReplace: fehlende schließende Klammer" }
+					nutzer: "Fehlende schlieÃŸende Klammer!",
+					debug: "bracketReplace: fehlende schlieÃŸende Klammer" }
 				);
 				return input;
 			}
@@ -998,7 +998,7 @@ var mparser = (function () {
 							} else {
 								errorMessageObject.push({
 									nutzer: "Fehlerhafte Klammersetzung oder anzahl an Kommata",
-									debug: "bracketReplace: es existiert keine Ersetzung für gegebenen Input"
+									debug: "bracketReplace: es existiert keine Ersetzung fÃ¼r gegebenen Input"
 								}
 								);
 								return input;
@@ -1213,7 +1213,7 @@ var mparser = (function () {
 	function preprocessDifferentials(input, klammerTyp, errorMessageObject) {
 		var klammerAuf = klammerTyp;
 		var klammerZu = klammernPaare[klammerTyp];
-		//erstellen der Regex für einfache Differentiale ( dx, dy ... )
+		//erstellen der Regex fÃ¼r einfache Differentiale ( dx, dy ... )
 		//create regular expression for simple differentials
 		var regexString = '(' + differentiale.join('|') + ')';
 
@@ -1246,16 +1246,16 @@ var mparser = (function () {
 			var obenStart = sucheKlammern(input, untenStart) + 2; // ")^" = 2
 			if (obenStart < 2) {	//0 (length of sucheKlammern) + 2 = 2
 				errorMessageObject.push({
-					nutzer: "fehlende schließende Klammer",
-					debug: "replaceConstructs: fehlende schließende Klammer"} );
+					nutzer: "fehlende schlieÃŸende Klammer",
+					debug: "replaceConstructs: fehlende schlieÃŸende Klammer"} );
 				return input;
 			}
 			var unten = input.slice( untenStart + 1, obenStart - 2 );   //lower bound
 			var inhaltStart = sucheKlammern( input, obenStart ) + 1; // ")" = 1
 			if( inhaltStart < 1 ) {	//0 + 1 = 1
 				errorMessageObject.push({
-					nutzer: "fehlende schließende Klammer",
-					debug: "replaceConstructs: fehlende schließende Klammer"} );
+					nutzer: "fehlende schlieÃŸende Klammer",
+					debug: "replaceConstructs: fehlende schlieÃŸende Klammer"} );
 				return input;
 			}
 			var oben = input.slice( obenStart + 1, inhaltStart - 1 );   //upper bound
@@ -1460,8 +1460,8 @@ var mparser = (function () {
 				klammerPos = sucheKlammern( anfang, klammerPos );	//jump to opening bracket
 				if( klammerPos < 0 ) {
 					errorMessageObject.push({
-						nutzer: "Fehlende öffnende Klammer",
-						debug: "encloseLatexPower: fehlende öffnende Klammer" } );
+						nutzer: "Fehlende Ã¶ffnende Klammer",
+						debug: "encloseLatexPower: fehlende Ã¶ffnende Klammer" } );
 					return input;
 				}
 
@@ -1478,8 +1478,8 @@ var mparser = (function () {
 				basisAnfang = klammerPos;
 			} else {
 				errorMessageObject.push({
-					nutzer: "Ungültige Basis in Potenz",
-					debug: "encloseLatexPower: ungültige Basis in Potenz" } );
+					nutzer: "UngÃ¼ltige Basis in Potenz",
+					debug: "encloseLatexPower: ungÃ¼ltige Basis in Potenz" } );
 				return input;
 			}
 
@@ -1492,8 +1492,8 @@ var mparser = (function () {
 				exponentEnde = sucheKlammern( ende, exponentEnde );
 				if( exponentEnde < 0 ) {
 					errorMessageObject.push({
-						nutzer: "Fehlende schließende Klammer",
-						debug: "encloseLatexPower: fehlende schließende Klammer"} );
+						nutzer: "Fehlende schlieÃŸende Klammer",
+						debug: "encloseLatexPower: fehlende schlieÃŸende Klammer"} );
 					return input;
 				}
 
@@ -1510,8 +1510,8 @@ var mparser = (function () {
 				}
 			} else {
 				errorMessageObject.push({
-					nutzer: "Ungültiger Exponent",
-					debug: "encloseLatexPower: ungültiger Exponent" } );
+					nutzer: "UngÃ¼ltiger Exponent",
+					debug: "encloseLatexPower: ungÃ¼ltiger Exponent" } );
 				return input;
 			}
 
@@ -1554,8 +1554,8 @@ var mparser = (function () {
 				var pos = sucheKlammern( anfang, klammerZuPos );
 				if( pos < 0 ) {
 					errorMessageObject.push({
-						nutzer: "Fehlende öffnende Klammer",
-						debug: "latexFractions: fehlende öffnende Klammer"} );
+						nutzer: "Fehlende Ã¶ffnende Klammer",
+						debug: "latexFractions: fehlende Ã¶ffnende Klammer"} );
 					return input;
 				}
 
@@ -1569,8 +1569,8 @@ var mparser = (function () {
 				anfang = replaceByPos( anfang, pos, anfang.length, "{\\frac{" + zaehler + "}" );
 			} else {
 				errorMessageObject.push({
-					nutzer: "Ungültiger Dividend",
-					debug: "latexFractions: ungültiger Dividend" } );
+					nutzer: "UngÃ¼ltiger Dividend",
+					debug: "latexFractions: ungÃ¼ltiger Dividend" } );
 				return input;
 			}
 
@@ -1582,8 +1582,8 @@ var mparser = (function () {
 				pos = sucheKlammern( ende, pos );
 				if( pos < 0 ) {
 					errorMessageObject.push({
-						nutzer: "Fehlende schließende Klammer",
-						debug: "latexFractions: fehlende schließende Klammer"} );
+						nutzer: "Fehlende schlieÃŸende Klammer",
+						debug: "latexFractions: fehlende schlieÃŸende Klammer"} );
 					return input;
 				}
 
@@ -1596,8 +1596,8 @@ var mparser = (function () {
 				ende = ende.replace( rexWert, "{$&}}" );
 			} else {
 				errorMessageObject.push({
-					nutzer: "Ungültiger Divisor",
-					debug: "latexFractions: ungültiger Divisor" } );
+					nutzer: "UngÃ¼ltiger Divisor",
+					debug: "latexFractions: ungÃ¼ltiger Divisor" } );
 				return input;
 			}
 
@@ -1629,8 +1629,8 @@ var mparser = (function () {
 			var klammerZuPos = sucheKlammern( input, klammerAufPos );
 			if( klammerZuPos == -1 ) {
 				errorMessageObject.push(
-						{ nutzer: "Fehlende schließende Klammer",
-						debug: "encloseFunctions: fehlende schließende Klammer" } );
+						{ nutzer: "Fehlende schlieÃŸende Klammer",
+						debug: "encloseFunctions: fehlende schlieÃŸende Klammer" } );
 				break;
 			}
 			var functionCall = input.slice( treffer.index + treffer[1].length, klammerZuPos + 1 );
@@ -1784,7 +1784,7 @@ var mparser = (function () {
 			result.latex = result.latex.replace(/\\right\)/g, ')');
 		}
 
-		logMessage(VERBOSEINFO, "convertMathinput Rückgabeobjekt: " + JSON.stringify(result));
+		logMessage(VERBOSEINFO, "convertMathinput Rueckgabeobjekt: " + JSON.stringify(result));
 
 		return result;
 	};
@@ -1870,7 +1870,7 @@ var mparser = (function () {
 		//process proposed solution by the user
 		var returnObject = mparser.convertMathInput( userSolution );
 		if( returnObject.fehlerListe.length != 0 ) {
-			throw "FEHLER: Parsen der vom Nutzer eingegebenen Lösung fehlgeschlagen";
+			throw "FEHLER: Parsen der vom Nutzer eingegebenen LÃ¶sung fehlgeschlagen";
 		}
 		userSolution = returnObject.mathjs;
 

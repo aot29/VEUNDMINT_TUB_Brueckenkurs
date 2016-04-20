@@ -1,3 +1,4 @@
+% ENCODING: ASCII (important as must be compatible both with utf8 and latin1 based authors)
 % MINTMOD Version P0.1.0, needs to be consistent with preprocesser object in tex2x and MPragma-Version at the end of this file
 
 % Parameter aus Konvertierungsprozess (PDF und HTML-Erzeugung wenn vom Konverter aus gestartet) werden hier eingefuegt, Preambleincludes werden am Schluss angehaengt
@@ -301,7 +302,7 @@
 \newcommand{\MWatermarkSettings}{\relax}
 \else
 \newcommand{\MWatermarkSettings}{%
-% \SetWatermarkText{(c) MINT-Kolleg Baden-Württemberg 2014}
+% \SetWatermarkText{(c) MINT-Kolleg Baden-W\"urttemberg 2014}
 % \SetWatermarkLightness{0.85}
 % \SetWatermarkScale{1.5}
 }
@@ -556,9 +557,9 @@
   \special{html:<div class="hint" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
 
   \newenvironment{MCOSHZusatz}{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" class="chintbutton_closed" id="MHint}\arabic{MHintCounter}\special{html:_button" %
-  type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}Weiterführende Inhalte\special{html:</button>}
+  type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}Weiterf\"uhrende Inhalte\special{html:</button>}
   \special{html:<div class="hintc" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:">
-  <div class="coshwarn">Diese Inhalte gehen über das Kursniveau hinaus und werden in den Aufgaben und Tests nicht abgefragt.</div><br />}
+  <div class="coshwarn">}Diese Inhalte liegen \"uber dem Kursniveau und werden in den Aufgaben und Tests nicht abgefragt.\special{html:</div><br />}
   \addtocounter{MHintCounter}{1}}{\begin{html}</div>\end{html}}
 
   
@@ -691,7 +692,7 @@
   
   \newenvironment{MExercise}{\begin{exrc}\renewcommand{\MStdPoints}{1}\MTB}{\end{exrc}}
   \newenvironment{MHint}[1]{\ \\ \underline{#1:}\\}{}
-  \newenvironment{MCOSHZusatz}{\ \\ \underline{Weiterführende Inhalte:}\\}{}
+  \newenvironment{MCOSHZusatz}{\ \\ \underline{Weiterf\"uhrende Inhalte:}\\}{}
   \newenvironment{MDefinition}{\ifnum\value{MInfoNumbers}=0\begin{defnc}\else\begin{defn}\fi\MTB}{\ifnum\value{MInfoNumbers}=0\end{defnc}\else\end{defn}\fi}
 %  \newenvironment{MExample}{\begin{exmp}}{\ \linebreak[1] \ \ \ \ $\phantom{a}$ \ \hfill $\blacklozenge$\end{exmp}}
   \newenvironment{MExample}{
@@ -989,11 +990,11 @@
 \special{html:<input mfieldtype="}#4\special{html:" name="Name_}#3\special{html:" id="}#3\special{html:" type="text" size="}#1\special{html:" maxlength="}#1%
 \special{html:" }\ifnum\value{MGroupActive}=0\special{html:onfocus="handlerFocus(}\arabic{MFieldCounter}%
 \special{html:);" onblur="handlerBlur(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,0);"/>}%
-\special{html:<img src="images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="}QM#3\special{html:"/>}
+\special{html:<img src="images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="}QM#3\special{html:"/>}
 \else%
 \special{html:onblur="handlerBlur(}\arabic{MFieldCounter}%
 \special{html:);" onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}%
-\special{html:<img src="images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="}QM#3\special{html:"/>}\fi%
+\special{html:<img src="images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="}QM#3\special{html:"/>}\fi%
 \else%
 \ifnum\value{QBoxFlag}=1\fbox{$\phantom{\MForLoop{#1}{b}}$}\else$\phantom{\MForLoop{#1}{b}}$\fi%
 \fi%
@@ -1010,7 +1011,7 @@
 <!-- mdeclarepoints;;}\arabic{section}\special{html:;;}#2\special{html:;;}#3\special{html:;;}\arabic{MTestSite}\special{html:;;}\arabic{chapter}%
 \special{html:;; //--><!-- onloadstart //-->CreateQuestionObj("}#4\special{html:",}\arabic{MFieldCounter}\special{html:,"}#1\special{html:","}#2\special{html:",2,"IMG}#2%
 \special{html:",}#3\special{html:,}\arabic{MTestSite}\special{html:,}\arabic{section}\special{html:);<!-- onloadstop //-->}%
-\special{html:<input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_}#2\special{html:" id="}#2\special{html:" onchange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/><img src="images/questionmark.gif" name="}Name_IMG#2%
+\special{html:<input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_}#2\special{html:" id="}#2\special{html:" onchange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/><img src="images/questionmark.png" name="}Name_IMG#2%
 \special{html:" width="20" height="20" border="0" align="absmiddle" id="}IMG#2\special{html:"/> }%
 \else%
 \ifnum\value{QBoxFlag}=1\fbox{$\phantom{X}$}\else$\phantom{X}$\fi%
@@ -1797,10 +1798,10 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 % ---------------------------------- Spezialbefehle fuer AD ------------------------------------------
 
-%Abkürzung für \longrightarrow:
+%Abkuerzung fuer \longrightarrow:
 \newcommand{\lto}{\ensuremath{\longrightarrow}}
 
-%Makro für Funktionen:
+%Makro fuer Funktionen:
 \newcommand{\exfunction}[5]
 {\begin{array}{rrcl}
  #1 \colon  & #2 &\lto & #3 \\[.05cm]  
@@ -1813,13 +1814,13 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
  #4 &\longmapsto  & #5 \end{array}}\right.}
 
 
-%Die Identität:
+%Die Identitaet:
 \DeclareMathOperator{\Id}{Id}
 
 %Die Signumfunktion:
 \DeclareMathOperator{\sgn}{sgn}
 
-%Zwei Betonungskommandos (können angepasst werden):
+%Zwei Betonungskommandos (koennen angepasst werden):
 \newcommand{\highlight}[1]{#1}
 \newcommand{\modstextbf}[1]{#1}
 \newcommand{\modsemph}[1]{#1}
@@ -1865,7 +1866,7 @@ Die Eingabe $]a;b[$ f"ur ein offenes Intervall wird nicht akzeptiert.
 F"ur $\infty$ kann \texttt{infty} oder \texttt{unendlich} geschrieben werden.}}
 
 \def\jHTMLHinweisEingabeFunktionen{\MInputHint{%
-Schreiben Sie Malpunkte (geschrieben als \texttt{*}) aus und setzen Sie Klammern um Argumente für Funktionen.
+Schreiben Sie Malpunkte (geschrieben als \texttt{*}) aus und setzen Sie Klammern um Argumente f\"ur Funktionen.
 Beispiele: Polynom: \texttt{3*x + 0.1}, Sinusfunktion: \texttt{sin(x)}, 
 Verkettung von cos und Wurzel: \texttt{cos(sqrt(3*x))}.}}
 
@@ -1939,10 +1940,10 @@ $\ln\left(\sqrt{x} + 3.2\right)$ durch \texttt{ln(sqrt(x) + 3.2)}.}}
 \newcommand{\MInTestHeader}{%
 Dies ist ein einreichbarer Test:
 \begin{itemize}
-\item{Im Gegensatz zu den offenen Aufgaben werden beim Eingeben keine Hinweise zur Formulierung der mathematischen Ausdrücke gegeben.}
+\item{Im Gegensatz zu den offenen Aufgaben werden beim Eingeben keine Hinweise zur Formulierung der mathematischen Ausdr\"ucke gegeben.}
 \item{Der Test kann jederzeit neu gestartet oder verlassen werden.}
-\item{Der Test kann durch die Buttons am Ende der Seite beendet und abgeschickt, oder zurückgesetzt werden.}
-\item{Der Test kann mehrfach probiert werden. Für die Statistik zählt die zuletzt abgeschickte Version.}
+\item{Der Test kann durch die Buttons am Ende der Seite beendet und abgeschickt, oder zur\"uckgesetzt werden.}
+\item{Der Test kann mehrfach probiert werden. F\"ur die Statistik z\"ahlt die zuletzt abgeschickte Version.}
 \end{itemize}
 }
 \else
@@ -1953,10 +1954,10 @@ Dies ist ein einreichbarer Test:
 
 \ifttm
 \newcommand{\MInTestFooter}{%
-\special{html:<button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('}\MTestName\special{html:');">Test auswerten</button>}%
+\special{html:<button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('}\MTestName\special{html:');" class="testsbutton">Test auswerten</button>}%
 \begin{html}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();">Test zurücksetzen</button>
+<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();" class="testsbutton">Test l&\#246;schen und neu starten</button>
 <br />
 <br />
 <div class="xreply">

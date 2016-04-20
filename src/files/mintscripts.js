@@ -18,7 +18,6 @@
  *  License along with this library; if not, write to the Free Software
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  * */
-// encoding: latin1
 
 // Ueberbleibsel aus parser.js
 function extround(zahl,n_stelle) 
@@ -72,13 +71,20 @@ function mygcd(a, b) {
 // option = Optionsstring, ggf. Einzelstrings durch Semikolon getrennt
 // points = Erreichbare Punktzahl der Aufgabe
 // section = entsprechender counter aus texfile
-function CreateQuestionObj(uxid,c,solution,id,type,option,pnts,intest,section) {
+function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, section) {
 
-  // Durch ttm geschleuste Loesungsformeln entparsen falls ttm < oder > als HTML-Code codiert hat
+  // Durch ttm geschleuste Loesungsformeln entparsen falls ttm Sonderzeichen als HTML-Code codiert hat
   
+  solution = solution.replace(/\&amp;/g,"&");
+  solution = solution.replace(/\&\#38;/g,"&");
+  solution = solution.replace(/\&\#166;/g,"|");
+  solution = solution.replace(/\&\#60;/g,"<");
   solution = solution.replace(/\&\#62\;/g,">");
   solution = solution.replace(/\&lt\;/g,"<");
+  solution = solution.replace(/\&gt\;/g,">");
 
+  // Umlauts, {, } and \ss will be given in unicode
+  
   ob = Object.create(null);
   ob.counter = c;
   ob.id = id;
@@ -153,7 +159,7 @@ function CreateQuestionObj(uxid,c,solution,id,type,option,pnts,intest,section) {
   ob.parsedinput = "";
  
   // Dynamische prepare-Funktion unabhaengig vom Fragefeldtyp einbauen
-  // Funktion bekommt das dem Feld zugewiesene DOM-Element als Parameter, clear xoder externes setting wird danach separat ausgeführt in InitResults
+  // Funktion bekommt das dem Feld zugewiesene DOM-Element als Parameter, clear xoder externes setting wird danach separat ausgefuehrt in InitResults
   ob.prepare = function() { this.element = document.getElementById(this.id); if (this.type == 2) { this.image = document.getElementById(this.option); } };
 
     // Dynamische clear-Funktion abhaengig vom Fragefeldtyp einbauen
@@ -175,12 +181,12 @@ function CreateQuestionObj(uxid,c,solution,id,type,option,pnts,intest,section) {
     if (type == 2) {
       // Uebersetzen der values fuer die Loesung: tex: 0 und 1, js: 0 = noch nicht geclickt, 1 = angewaehlt, 2 = abgewaehlt
       if (ob.solution == "0") ob.solution = "2"; else ob.solution = "1";
-      ob.clear = function() { this.element.checked = false; this.element.indeterminate = true; this.value = "0"; this.message = ""; this.image.src = "../../images/questionmark.gif"; notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
+      ob.clear = function() { this.element.checked = false; this.element.indeterminate = true; this.value = "0"; this.element.cval = "0"; this.message = ""; this.image.src = "../../images/questionmark.png"; notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
       ob.rawloadvalue = function(val) {
           this.value = val;
           this.element.cval = val;
           this.message = "";
-          this.image.src = "../../images/questionmark.gif";
+          this.image.src = "../../images/questionmark.png";
           if ((val == "0") || (val == "")) {
               // nothing selected yet
               this.element.checked = false;
@@ -289,7 +295,7 @@ function toggle_hint(div_id) {
 // 32 = Stammfunktion gefragt, input wird nur modulo Konstanten bewertet (indem die zu f(0)=0 normiert wird)
 // 64 = Keine Wurzelfunktion erlaubt (muss als x^(1/2) geschrieben werden)
 // 128 = Keine Betragsfunktion erlaubt (muss als Fallunterscheidung geschrieben werden)
-// 256 = Keine Brüche und keine Potenzen erlaubt (also kein / und kein ^ mit dem man ein ^(-1) schummeln könnte)
+// 256 = Keine Brueche und keine Potenzen erlaubt (also kein / und kein ^ mit dem man ein ^(-1) schummeln koennte)
 // 512 = Besondere Stuetzstellen (nur >1 und nur schwach rational, sonst symmetrisch um Nullpunkt und ganze Zahlen)
 // 1024 = Nur String aus Ziffern 0,..,9 in Loesung erlaubt
 // 2048 = Nur hoechstens ein ^ und kein / und * erlaubt
@@ -336,7 +342,7 @@ function checkSimplification(type, input) {
   }
   
   if ((type & 15) == 3) {
-    // Höchste Operation muss Addition/Subtraktion sein, Addition/Subtraktion darf auf tieferen Ebenen nicht vorkommen
+    // Hoechste Operation muss Addition/Subtraktion sein, Addition/Subtraktion darf auf tieferen Ebenen nicht vorkommen
     // Alle Klammern durch runde Klammern ersetzen
     var rex = new RegExp('\\[','gi');
     input = input.replace(rex,"(");
@@ -369,7 +375,7 @@ function checkSimplification(type, input) {
   }
   
   if ((type & 256) == 256) {
-    // Keine Brüche und keine Potenzen erlaubt
+    // Keine Brueche und keine Potenzen erlaubt
     if ((input.indexOf("^") != -1) | (input.indexOf("/") != -1)) {
       ret.push(new Array("L&#246;sung darf keine Nenner oder Potenzen enthalten" , 1));
     }
@@ -402,9 +408,9 @@ function checkSimplification(type, input) {
 }
 
 function isProperNumber(s) {
-  if (s.indexOf("x") != -1) return false; // schließt Hexadezimalzahlen aus    
-  if (s.indexOf("b") != -1) return false; // schließt Binaerzahlen aus    
-  if (s.indexOf("o") != -1) return false; // schließt Oktalzahlen aus    
+  if (s.indexOf("x") != -1) return false; // schliesst Hexadezimalzahlen aus    
+  if (s.indexOf("b") != -1) return false; // schliesst Binaerzahlen aus    
+  if (s.indexOf("o") != -1) return false; // schliesst Oktalzahlen aus    
     
   return $.isNumeric(s);
 }
@@ -540,33 +546,6 @@ function check_group(input_from, input_to) {
                 // Eingabefeld mit alphanumerischer Loesung, case-sensitive
                 var v = e.value;
                var sol = FVAR[i].solution;
-
-               var rex = new RegExp('&#196;','gi');
-               sol = sol.replace(rex,'Ä');
-               rex = new RegExp('&#214;','gi');
-               sol = sol.replace(rex,'Ö');
-               rex = new RegExp('&#220;','gi');
-               sol = sol.replace(rex,'Ü');
-               rex = new RegExp('&#228;','gi');
-               sol = sol.replace(rex,'ä');
-               rex = new RegExp('&#246;','gi');
-               sol = sol.replace(rex,'ö');
-               rex = new RegExp('&#252;','gi');
-               sol = sol.replace(rex,'ü');
-               rex = new RegExp('&#60;','gi');
-               sol = sol.replace(rex,'<');
-               rex = new RegExp('&lt;','gi');
-               sol = sol.replace(rex,'<');
-               rex = new RegExp('&#62;','gi');
-               sol = sol.replace(rex,'>');
-               rex = new RegExp('&gt;','gi');
-               sol = sol.replace(rex,'>');
-               rex = new RegExp('&#38;','gi');
-               sol = sol.replace(rex,'&');
-               rex = new RegExp('&#223;','gi');
-               sol = sol.replace(rex,'ß');
-               rex = new RegExp('&#166;','gi');
-               sol = sol.replace(rex,'|');
                FVAR[i].rawinput = v;
                if (v == sol) {
                   FVAR[i].message = "";
@@ -586,7 +565,12 @@ function check_group(input_from, input_to) {
               case 2: {
                 // tristate checkbox: indeterminate, true determinate, false determinate (having intersite values "0", "1", "2"), stored in val attribute of the element
                 var v = e.cval;
-                console.log("checkboxval = " + v)
+                
+                if (v == "") {
+                    logMessage(VERBOSEINFO, "cval \"\" mapped to \"0\"");
+                    v = "0";
+                }
+                
                 if (v == "1") {
                     // dirty: Eigentlich sollte der neue Wert auch durch checkgroup getestet werden, aber das fuehrt auf eine Rekursion...
                     var j;
@@ -611,13 +595,13 @@ function check_group(input_from, input_to) {
                   
                 FVAR[i].value = v;
                 FVAR[i].rawinput = v;
-                if (v == FVAR[i].solution) {
-                  notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
+                if (v == "0") {
+                    notifyPoints(i, 0, SOLUTION_NEUTRAL);
                 } else {
-                    if (v != "0") {
-                        notifyPoints(i, 0, SOLUTION_FALSE);
+                    if (v == FVAR[i].solution) {
+                        notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
                     } else {
-                        notifyPoints(i, 0, SOLUTION_NEUTRAL);
+                        notifyPoints(i, 0, SOLUTION_FALSE);
                     }
                 }
                 
@@ -634,7 +618,7 @@ function check_group(input_from, input_to) {
                 var stellen = FVAR[i].option;
                 var soluta = FVAR[i].solution.split(","); // hat nie Mengenklammern
 
-                // Mehr als eine Musterloesung (die gleich sein können): Mengenklammern werden in Eingabe verlangt, auch wenn es nur eine Loesung ist
+                // Mehr als eine Musterloesung (die gleich sein koennen): Mengenklammern werden in Eingabe verlangt, auch wenn es nur eine Loesung ist
                 // Nur eine Musterloesung: Keine Mengenklammern in Loesungseingabe erlaubt
 
                 var valuta = {};
@@ -674,7 +658,7 @@ function check_group(input_from, input_to) {
                      }
                 }
 
-                // Pruefe beide Teilmengenrelationen, d.h. doppelte Aufführungen von Elementen gelten als richtig
+                // Pruefe beide Teilmengenrelationen, d.h. doppelte Auffuehrungen von Elementen gelten als richtig
                 for (vj=0; ((vj<valuta.length) & (ok==1)); vj++) {
                    var c = 0;
                    var v = rawParse(valuta[vj]);
@@ -728,7 +712,7 @@ function check_group(input_from, input_to) {
                 var message = "";
                 var ok = true;
  
-                // FVAR[i].rawinput und andere müssen hier vor Aufruf (z.B. von handlerChange) gesetzt sein (was gefixt werden muss)
+                // FVAR[i].rawinput und andere muessen hier vor Aufruf (z.B. von handlerChange) gesetzt sein (was gefixt werden muss)
 
 		if (FVAR[i].valvalid == false) {
 		  ok = false;
@@ -875,7 +859,7 @@ function check_group(input_from, input_to) {
 		  
 		} else {
 		  
-                  // Alternativen für "infty" erkennen
+                  // Alternativen fuer "infty" erkennen
                   b = b.replace(/infinity/g, 'infty');
                   b = b.replace(/unendlich/g, 'infty');
 		  
@@ -1250,7 +1234,7 @@ function InitResults(empty)
 	v = null;
       }
             
-      if (v == null)  v = "";
+      if (v == null) v = "";
       switch(FVAR[i].type) {
               
 	      case 1: {
@@ -1263,21 +1247,24 @@ function InitResults(empty)
 
               case 2: {
                 // tristate checkbox: indeterminate, true determinate, false determinate (having intersite values "0", "1", "2")
-                e.cval = v;
+                logMessage(VERBOSEINFO, "tristate init v = " + v);
                 if ((v == "0") || (v == "")) {
                     // nothing selected yet
+                    e.cval = "0";
                     e.checked = false;
                     e.indeterminate = true;
                     FVAR[i].clear();
                 }
                 if (v == "1") {
                     // yes selected
+                    e.cval = "1";
                     e.checked = true;
                     e.indeterminate = false;
                     check_group(i,i);
                 }
                 if (v == "2") {
                     // no selected
+                    e.cval = "2";
                     e.checked = false;
                     e.indeterminate = false;
                     check_group(i,i);
@@ -1349,7 +1336,7 @@ function InitResults(empty)
 
   } else {
     // Keine geladenen Daten oder empty==true, alle Felder werden geleert
-    for (i=1; i<FVAR.length; i++) { FVAR[i].clear(); } // kein check_group weil sonst eingefärbt bzw. checkboxen ausgewertet werden, stringbasierte Felder rufen check selbst bei clear auf
+    for (i=1; i<FVAR.length; i++) { FVAR[i].clear(); } // kein check_group weil sonst eingefaerbt bzw. checkboxen ausgewertet werden, stringbasierte Felder rufen check selbst bei clear auf
   }
 
 }
@@ -1445,7 +1432,7 @@ function finish_button(name) {
         logMessage(VERBOSEINFO, "SCORM set completion " + psres);
         psres = pipwerks.SCORM.save();
         logMessage(DEBUGINFO, "SCORM save = " + psres);
-        if (psres==true) f.innerHTML += "Die Punktzahl wurde zur statistischen Auswertung übertragen\n";
+        if (psres==true) f.innerHTML += "Die Punktzahl wurde zur statistischen Auswertung Ã¼bertragen\n";
 
       }
       
@@ -1508,9 +1495,9 @@ function notifyPoints(i, points, state) {
       logMessage(VERBOSEINFO, "notifyPoints warning: img=0, type = " + FVAR[i].type);
   } else {
     switch(state) {
-        case SOLUTION_TRUE: { img.src = "../../images/right.gif"; break; }
-        case SOLUTION_FALSE: { img.src = "../../images/false.gif"; break; }
-        case SOLUTION_NEUTRAL: { img.src = "../../images/questionmark.gif"; break; }
+        case SOLUTION_TRUE: { img.src = "../../images/right.png"; break; }
+        case SOLUTION_FALSE: { img.src = "../../images/false.png"; break; }
+        case SOLUTION_NEUTRAL: { img.src = "../../images/questionmark.png"; break; }
     }
   }
   
@@ -1566,7 +1553,7 @@ function globalloadHandler(pulluserstr)
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   logMessage(DEBUGINFO, "globalLoadHandler start, pulluser = " + ((pulluserstr == "") ? ("\"\"") : ("userdata")));
   if (pulluserstr != "") {
-    SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
+    SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
     logMessage(DEBUGINFO, "SetupIntersite in loadhandler fertig");
     applyLayout(false);
     logMessage(DEBUGINFO, "Layout gesetzt in loadhandler");
@@ -1588,7 +1575,7 @@ function globalreadyHandler(pulluserstr)
   // Wird aufgerufen, wenn die Seite komplett geladen und alle Bilder/iframes gefuellt sind (VOR globalload, NACH direkt-JS-Befehlen auf html-Seite im body-Bereich oder eingebundenen js-Dateien) ODER durch pull-emit-callback wenn intersiteobj aktualisiert werden muss
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   logMessage(DEBUGINFO, "globalreadyHandler start");
-  SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite übergeben wird
+  SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
   logMessage(DEBUGINFO, "SetupIntersite fertig");
   applyLayout(true);
   logMessage(DEBUGINFO, "Layout gesetzt");
@@ -1690,8 +1677,8 @@ function rerollMVar(varname) {
   return 0;
 }
 
-// Registriert ein Variablenabhaengiges div das MathJax-generierten Mathematikausdrücke anzeigt
-// Variablen werden über Observablen repraesentiert, deren Änderung triggert das Update des divs
+// Registriert ein Variablenabhaengiges div das MathJax-generierten Mathematikausdruecke anzeigt
+// Variablen werden ueber Observablen repraesentiert, deren Aenderung triggert das Update des divs
 // Eingabe: Die Formel als LaTeX-String ggf. mit \MVar-Kommandos und das observable-"Objekt"
 function registerVariables(texmath,obsobj) {
   var i = 0;
@@ -1984,11 +1971,11 @@ function applyLayout(first) {
 
 
   showHint($('#menubutton'), "Hier klicken um Navigationsleisten ein- oder auszublenden");
-  showHint($('#plusbutton'), "Vergrößert die Schriftgröße");
-  showHint($('#minusbutton'), "Verkleinert die Schriftgröße");
+  showHint($('#plusbutton'), "VergrÃ¶ÃŸert die SchriftgrÃ¶ÃŸe");
+  showHint($('#minusbutton'), "Verkleinert die SchriftgrÃ¶ÃŸe");
   showHint($('#settingsbutton'), "Einstellungen");
 
-  var shareintext = "Diese Seite teilen über:<br /><br />";
+  var shareintext = "Diese Seite teilen Ã¼ber:<br /><br />";
   var myurl = window.location.href;
     
   shareintext += "<a href=\"#\" onclick=\"shareFacebook()\"><img src=\"" + linkPath + "images/sharetargetfacebook.png\"></a>";

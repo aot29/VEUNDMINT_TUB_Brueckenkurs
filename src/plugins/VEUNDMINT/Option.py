@@ -79,7 +79,7 @@ class Option(object):
         # VE&MINT source/target parameters
         self.macrofilename = "mintmod"
         self.macrofile = self.macrofilename + ".tex"
-        self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex files and templates
+        self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex files and templates, utf8 well be accepted too but with a warning
         self.outputencoding = "utf-8"                        # encoding of generated html files
         self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt
         self.source = "module_veundmint"                     # Quellverzeichnis, platziert in Ebene ueber tex2x.py
@@ -170,7 +170,7 @@ class Option(object):
             self.colors = json.load(colorfile)
 
         # course signature
-        self.signature_main = "OBM_PTEST6" # "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+        self.signature_main = "OBM_PTEST8" # "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE_MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
         

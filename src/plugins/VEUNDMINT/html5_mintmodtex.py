@@ -465,6 +465,7 @@ class Plugin(basePlugin):
         
     # scan tree content elements for course scope relevant information tags
     def analyze_nodes_stage1(self, tc):
+        self.sys.message(self.sys.VERBOSEINFO, "analyze_nodes_stage1 start on " + tc.title)
         # extract word index information (must be extracted before stage1 label management)
         def windex(m):
             idx = len(self.data['wordindexlist'])
@@ -528,9 +529,11 @@ class Plugin(basePlugin):
         def dpoint(m):
             if m.group(5) == "1": #  = chapter = lev1 node position, >1 => not part of course modules
                 i = str(int(m.group(1)) - 1)
+                self.sys.message(self.sys.VERBOSEINFO, "Expoints start, i = " + i + ", group = " + m.group(0))
                 if i in self.data['expoints']:
                     self.data['expoints'][i] += int(m.group(3))
                 else:
+                    self.sys.message(self.sys.VERBOSEINFO, "Expoints added, i = " + i)
                     self.data['expoints'][i] = int(m.group(3))
                 if m.group(4) == "1":
                     if i in self.data['testpoints']:

@@ -326,7 +326,7 @@ function SetupIntersite(clearuser, pulledstr) {
     // If user is online, ask for password, login and fetch data from server
     if ((intersiteobj.login.type == 2) || (intersiteobj.login.type == 3)) logMessage(VERBOSEINFO,"Type=2,3, serverget missing");
   } else {
-    alert("Ihre Benutzerdaten konnten nicht vom Server geladen werden, eine automatische eMail an den Administrator wurde verschickt. Sie können den Kurs trotzdem anonym bearbeiten, eingetragene Lösungen werden jedoch nicht gespeichert!");
+    alert("Ihre Benutzerdaten konnten nicht vom Server geladen werden, eine automatische eMail an den Administrator wurde verschickt. Sie kÃ¶nnen den Kurs trotzdem anonym bearbeiten, eingetragene LÃ¶sungen werden jedoch nicht gespeichert!");
     var timestamp = +new Date();
     var us = "(unknown)";
     if (scormLogin == 1) us = s_login;
@@ -430,7 +430,7 @@ function updateLoginfield() {
       }
       default: {
         logMessage(CLIENTERROR, "updateLoginfield, wrongtype=" + intersiteobj.login.type);
-        s = "Keine Anmeldung möglich!";
+        s = "Keine Anmeldung mÃ¶glich!";
         break;
       }
     }
@@ -970,14 +970,14 @@ function userreset_click() {
           }
       }
   }
-  s += "löschen? Dieser Vorgang kann nicht rückgängig gemacht werden!";
+  s += "lÃ¶schen? Dieser Vorgang kann nicht rÃ¼ckgÃ¤ngig gemacht werden!";
   if (confirm(s) == true) SetupIntersite(true);
 }
 
 // returns "" for valid usernames, error string otherwise
 function allowedUsername(username) {
     if ((username.length < 6) || (username.length > 18)) {
-         return "Der Loginname muss mindestens 6 und höchstens 18 Zeichen enthalten";
+         return "Der Loginname muss mindestens 6 und hÃ¶chstens 18 Zeichen enthalten";
     }
 
     if (RegExp('[^a-z0-9\\-\\+_]', 'i').test(username)) {
@@ -990,7 +990,7 @@ function allowedUsername(username) {
 // return "" for valid passwords, error string otherwise
 function allowedPassword(password) {
     if ((password.length < 6) || (password.length > 18)) {
-         return "Das Passwort muss mindestens 6 und höchstens 18 Zeichen enthalten";
+         return "Das Passwort muss mindestens 6 und hÃ¶chstens 18 Zeichen enthalten";
     }
 
     if (RegExp('[^a-z0-9\\-\\+_]', 'i').test(password)) {
@@ -1003,17 +1003,17 @@ function allowedPassword(password) {
 // type = 1 -> Create locally only, type = 2 -> create locally and immediately upgrade to server user
 function usercreatelocal_click(type) {
     if (type==2) {
-        alert("In der Korrekturversion ist das Anlegen eines Netz-Benutzers nicht möglich um eine Verzerrung der Aufgaben- und Nutzerdatenauswertung zu vermeiden, bitte registrieren Sie sich nur innerhalb Ihres Browsers mit dem Button unten.");
+        alert("In der Korrekturversion ist das Anlegen eines Netz-Benutzers nicht mÃ¶glich um eine Verzerrung der Aufgaben- und Nutzerdatenauswertung zu vermeiden, bitte registrieren Sie sich nur innerhalb Ihres Browsers mit dem Button unten.");
         return;
     }
 
     if (intersiteactive == false) {
-        alert("Keine Datenspeicherung möglich, kann Benutzer nicht anlegen!");
+        alert("Keine Datenspeicherung mÃ¶glich, kann Benutzer nicht anlegen!");
         return;
     }
 
     if (intersiteobj.configuration.CV_LOCAL == "0") {
-        alert("Keine Datenspeicherung möglich, lokale Datenspeicherung muss zuerst in den Einstellungen aktiviert werden.");
+        alert("Keine Datenspeicherung mÃ¶glich, lokale Datenspeicherung muss zuerst in den Einstellungen aktiviert werden.");
         return;
     }
 
@@ -1036,7 +1036,7 @@ function usercreatelocal_click(type) {
 
     } else {
       // normal version: password requested from user
-      pws = prompt("Geben Sie ein Passwort für den Benutzer " + una + " ein:");
+      pws = prompt("Geben Sie ein Passwort fÃ¼r den Benutzer " + una + " ein:");
       if (pws == null) return; // user has pressed abort
       rt = allowedPassword(pws);
       if (rt != "") {
@@ -1047,7 +1047,7 @@ function usercreatelocal_click(type) {
       var pws2 = prompt("Geben Sie das Passwort zur Sicherheit nochmal ein:");
       if (pws2 == null) return; // user has pressed abort
       if (pws2 != pws) {
-          alert("Die Passwörter stimmen nicht überein.");
+          alert("Die PasswÃ¶rter stimmen nicht Ã¼berein.");
           return;
       }
     }
@@ -1131,30 +1131,30 @@ function check_user_success(data) {
       if (data.user_exists == true) {
         ulreply_set(false, "Benutzername ist schon vergeben.");
       } else {
-        ulreply_set(true, "Dieser Benutzername ist verfügbar! <button type='button' style='background: #00FF00' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
+        ulreply_set(true, "Dieser Benutzername ist verfÃ¼gbar! <button type='button' style='background: #00FF00' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
       }
     } else {
         logMessage(VERBOSEINFO, "checkuser success, status=false, data = " + JSON.stringify(data));
-        ulreply_set(false, "Kommunikation mit Server (" + feedbackdesc + ") nicht möglich.");
+        ulreply_set(false, "Kommunikation mit Server (" + feedbackdesc + ") nicht mÃ¶glich.");
     }
 
 }
 
 function check_user_error(message, data) {
   logMessage(VERBOSEINFO, "checkuser error:" + message + ", data = " + JSON.stringify(data));
-  ulreply_set(false, "Kommunikation mit Server (" + feedbackdesc + ") nicht möglich.");
+  ulreply_set(false, "Kommunikation mit Server (" + feedbackdesc + ") nicht mÃ¶glich.");
 }
 
 
 function ulreply_set(ok, m) {
   var e;
   if (ok == false) {
-    var s = "../../images/false.gif";
+    var s = "../../images/false.png";
     e = document.getElementById("USER_UNAME");
     if (e == null) return; else {
         if (e.value == "") {
             e.style.backgroundColor = QCOLOR_NEUTRAL;
-            s = "../../images/questionmark.gif";
+            s = "../../images/questionmark.png";
         } else {
             e.style.backgroundColor = QCOLOR_FALSE;
         }
@@ -1165,7 +1165,7 @@ function ulreply_set(ok, m) {
     e = document.getElementById("USER_UNAME");
     if (e == null) return; else e.style.backgroundColor = QCOLOR_TRUE;
     e = document.getElementById("checkuserimg");
-    if (e == null) return; else e.src = "../../images/right.gif";
+    if (e == null) return; else e.src = "../../images/right.png";
   }
   e = document.getElementById("ulreply_p");
   if (e == null) return; else e.innerHTML = m;
@@ -1266,7 +1266,7 @@ function createHelpFavorite() {
 
 function generateShortFavoriteList() {
   if (intersiteactive == false) {
-    return "Datenspeicherung nicht möglich";
+    return "Datenspeicherung nicht mÃ¶glich";
   }
   
   if (typeof(intersiteobj.favorites) != "object") {
@@ -1285,7 +1285,7 @@ function generateShortFavoriteList() {
 
 function generateLongFavoriteList() {
   if (intersiteactive == false) {
-    return "Datenspeicherung nicht möglich";
+    return "Datenspeicherung nicht mÃ¶glich";
   }
   
   if (typeof(intersiteobj.favorites) != "object") {
