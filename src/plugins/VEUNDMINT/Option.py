@@ -62,7 +62,7 @@ class Option(object):
         self.qautoexport = 0      # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
         self.diaok = 0            # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
         self.cleanup = 1          # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
-        self.localjax = 0         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
+        self.localjax = 1         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
         self.borkify = 0          # =1 html und js-Dateien werden borkifiziert
         self.dorelease = 0        # In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
         self.doverbose = 0        # Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
@@ -132,7 +132,7 @@ class Option(object):
             "qexport_download_doc": "Quellcode dieser Aufgabe im Word-Format",
             "message_done": "Alle Aufgaben gelöst",
             "message_progress": "Aufgaben teilweise gelöst",
-            "message_problem": "Aufgaben noch nicht gelöst"
+            "message_problem": "Einige Aufgaben falsch beantwortet"
         }
 
         self.knownmathcommands = [ "sin", "cos", "tan", "cot", "log", "ln", "exp" ] # these will be excluded from post-ttm modifications

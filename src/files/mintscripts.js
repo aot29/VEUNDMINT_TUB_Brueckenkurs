@@ -679,14 +679,14 @@ function check_group(input_from, input_to) {
                    var c = 0;
                    var v = rawParse(valuta[vj]);
                    for (sj=0; ((sj<soluta.length) & (c==0)); sj++) {
-                      var s = rawParse(applyMVARValues(soluta[sj]));
+                      var s = rawParse(soluta[sj]);
                       if (Math.abs(extround(v,stellen)-extround(s,stellen)) <= Math.pow(10,(stellen+2)*(-1))) c = 1;
                    }
                    if (c==0) ok = 0;
                 }
                 for (sj=0; ((sj<soluta.length) & (ok==1)); sj++) {
                    var c = 0;
-                   var s = rawParse(applyMVARValues(soluta[sj]));
+                   var s = rawParse(soluta[sj]);
                    for (vj=0; ((vj<valuta.length) & (c==0)); vj++) {
                       var v = rawParse(valuta[vj]);
                       if (Math.abs(extround(v,stellen)-extround(s,stellen)) <= Math.pow(10,(stellen+2)*(-1))) c = 1;
@@ -899,12 +899,12 @@ function check_group(input_from, input_to) {
 		      t[0] = t[0].substring(1,t[0].length).trim();
 		      t[1] = t[1].substring(0,t[1].length-1).trim();
 		      if (typl != 3) {
-			var h = rawParse(applyMVARValues(s[0]));
-			if ((isNaN(h)) | (Math.abs(extround(h,stellen)-extround(rawParse(applyMVARValues(t[0])),stellen)) > Math.pow(10,(stellen+2)*(-1)))) ok = 0;
+			var h = rawParse(s[0]);
+			if ((isNaN(h)) | (Math.abs(extround(h,stellen)-extround(rawParse(t[0]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) ok = 0;
 		      }
 		      if (typr != 3) {
-  			var h = rawParse(applyMVARValues(s[1]));
-			if ((isNaN(h)) | (Math.abs(extround(h,stellen)-extround(rawParse(applyMVARValues(t[1])),stellen)) > Math.pow(10,(stellen+2)*(-1)))) ok = 0;
+  			var h = rawParse(s[1]);
+			if ((isNaN(h)) | (Math.abs(extround(h,stellen)-extround(rawParse(t[1]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) ok = 0;
 		      }
 		    }
 		  }
@@ -997,8 +997,8 @@ function check_group(input_from, input_to) {
 			}
 		        t[0] = t[0].substring(1,t[0].length).trim();
 		        t[1] = t[1].substring(0,t[1].length-1).trim();
-       		        var h0 = rawParse(applyMVARValues(t[0]));
-       		        var h1 = rawParse(applyMVARValues(t[1]));
+       		        var h0 = rawParse(t[0]);
+       		        var h1 = rawParse(t[1]);
                         var sl = l + " "; // Umgehung eines Fehlers wenn l nur Zahl und nicht String ist
 		        if ((sl.indexOf(",") != -1) | (sl.indexOf("[") != -1) | (sl.indexOf("]") != -1)) {
                           ok = 0; // Vektor oder Intervall vom Benutzer eingegeben, aber Zahl erwartet. Muss separat abgefangen werden da JavaScript sonst Strings vergleicht
@@ -1793,85 +1793,6 @@ function displayInputContent(id,latex) {
     
 }
 
-
-// --------------------------- Hilfsmethoden der Variablenobjekte ----------------------------------------
-
-// Mindestsatz fuer ein Variablenobject:
-// string vname : Name der Variablen, Verwendung im Dokument mit \MVar{vname}, innerhalb der JavaScript-Funktionen mit [var_vname]
-// string vtype : Typ der Variablen
-// Array deps: fuer die Abhaengigkeiten, enthalt Bare-Namen der Observablen (Matheformeldivs) die diese Variable einsetzen
-// Funktion latex()  : gibt LaTeX-String zur Darstellung des Inhalts zurueck
-// Funktion value()  : gibt fuer JavaScript-Berechnungen (z.B. den Parser) brauchbaren Datentyp zurueck (z.B. einen echten int) [Rückgabetyp hängt vom Objekt ab!]
-// Funktion reroll() : Objekt waehlt zufaellig einen neuen Wert fuer sich und gibt ihn auch zurueck 
-
-function createGlobalInteger(vn,vmi,vma,vs) {
-  v = Object.create(null);
-  v.vname = vn;
-  v.vtype = "int";
-  v.min = vmi;
-  v.max = vma;
-  v.std = vs;
-  v.val = vs;
-  v.deps = new Array();
-  v.reroll = function() { this.val = (this.min + Math.floor(Math.random()*(this.max - this.min + 1))); return this.value(); };
-  v.latex = function() { var s = ""; s = this.val; return s; };
-  v.value = function() { return this.val; };
-  return v;
-}
-
-function createGlobalFraction(vn,vmi,vma,vsa,vsb) {
-  v = Object.create(null);
-  v.vname = vn;
-  v.vtype = "frac";
-  v.min = vmi;
-  v.max = vma;
-  v.vala = vsa;
-  v.valb = vsb;
-  v.normalize = function() {if (this.valb == 0) { this.vala = 0; this.valb = 1; } };
-  v.normalize();
-  v.deps = new Array();
-  v.reroll = function() { this.vala = (this.min + Math.floor(Math.random()*(this.max - this.min + 1))); this.valb = (this.min + Math.floor(Math.random()*(this.max - this.min + 1))); this.normalize(); return [this.vala, this.valb]; };
-  v.latex = function() { var s = ""; s = "\\frac{" + this.vala + "}{" + this.valb + "}"; return s; };
-  v.value = function() { return "(" + this.vala + "*(1/" + this.valb + ")"; };
-  return v;
-}
-
-function createGlobalSqrt(vn,vmi,vma,vs) {
-  v = Object.create(null);
-  v.vname = vn;
-  v.vtype = "sqrt";
-  v.min = vmi;
-  v.max = vma;
-  v.std = vs;
-  v.val = vs;
-  v.deps = new Array();
-  v.reroll = function() { this.val = (this.min + Math.floor(Math.random()*(this.max - this.min + 1))); return this.value(); };
-  v.latex = function() { var s = ""; s = "\\sqrt{" + this.val + "}"; return s; };
-  v.value = function() { return "sqrt(" + this.val + ")"; };
-  return v;
-}
-
-// Ersetzt alle Ausdruecke der Form [var_XXX] durch die Values aus dem MVAR-Array der aktuellen Seite
-function applyMVARValues(s) {
-    var k = 0;
-    for (k=0; k<MVAR.length; k++) {
-      var p = "\\[var_"+MVAR[k].vname+"\\]";
-      var f = new RegExp(p,"g");
-      s = s.replace(f,MVAR[k].value());
-    }
-    return s;
-}
-
-// Ersetzt alle Ausdruecke der Form [var_XXX] durch die Latex-Strings aus dem MVAR-Array der aktuellen Seite
-function applyMVARLatex(s) {
-    var k = 0;
-    for (k=0; k<MVAR.length; k++) {
-      var p = "\\[var_"+MVAR[k].vname+"\\]";
-      var f = new RegExp(p,"g");
-      s = s.replace(f,MVAR[k].latex());
-    }
-    return s;
-}
 
 // --------------------------------------------- Borkifier ---------------------------------------
 
