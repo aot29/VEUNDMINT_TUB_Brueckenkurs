@@ -4,25 +4,25 @@
 \MSection{Willkommen}
 
 \begin{MSectionStart}
+\MDeclareSiteUXID{VBKM_FIRSTPAGE}
 \MGlobalStart
 \begin{html}
-<h1 class="start" >Onlinebrückenkurs Mathematik</h1>
 
+<div style="background-color:rgb(100,140,240)">
+<h1 class="start" >Onlinebrückenkurs Mathematik</h1>
+<p>
 Willkommen zum Onlinebrückenkurs Mathematik des VE&MINT-Projekts.
 Dieser Vorkurs dient der Auffrischung des Schulstoffs Mathematik
 zur Vorbereitung auf ein Studium. 
 Kursdaten werden im Browser automatisch gespeichert, eine explizite Anmeldung zum Kurs ist daher nicht erforderlich.
-
-In den Kurs kann man auf verschiedene Weisen einsteigen:
 <br />
+<center><button class="stdbutton" type="button">Kurs starten</button></center>
 <br />
-
-<center>
-<a href="stest.html" style="background: none"><img src="images/start01.png" alt="Bild Testeinstieg"></a>&nbsp;&nbsp;
-<a href="mpl/1.1.html#VBKM01" style="background: none"><img src="images/start02.png" alt="Bild Moduleinstieg"></a>&nbsp;&nbsp;
-<a href="search.html" style="background: none"><img src="images/start_s.png" alt="Bild Sucheinstieg"></a>&nbsp;&nbsp;
-</center>
+</p>
+</div>
 \end{html}
+
+Weitere Einstiegspunkte in den Kurs:\ \\ \ \\
 
 \textbf{Mit einem ausführlichen Test starten}\\
 In \MSRef{L_TEST01START}{diesem Modus} wird ein Onlinetest über die Inhalte der Module im Umfang von ca. einer Stunde bearbeitet.
@@ -60,7 +60,7 @@ Auch die Tests und die Übungsaufgaben können in beliebiger Reihenfolge und auch 
 Dazu sind einfach die Einträge im Inhaltsverzeichnis im linken Randbereich anzuklicken.
 
 \special{html:<center><a href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en" target="_new"><img src="images/cclbysa.png" alt="Bild CCL-BY-SA"></a></center>}\\
-Die Bestandteile dieses Kurses stehen unter der Creative Commons License CC BY-SY 3.0 und können
+Die Bestandteile dieses Kurses stehen unter der Creative Commons License CC BY-SA 3.0 und können
 kopiert oder nach Bearbeitung weiterverwendet werden solange der Ursprung (dieser Kurs) zitiert wird,
 weitere Informationen zur Lizenz und Weiterverwendung finden sich \MSRef{L_COPYRIGHTCOLLECTION}{hier}.
 
@@ -79,7 +79,9 @@ insbesondere kann der Kurs nicht mit veralteten Browsern (Internet Explorer 8 od
 document.write("<p>Ihr Browsertyp: " + navigator.appName + "<br />Browserkennung: " + navigator.userAgent + "</p>");
 </script>
 <br />
-Unsere Seiten verwenden aktive Inhalte, insbesondere <a class="start" href="http://www.mathjax.org" target="_new">MathJax</a>. Dazu muss JavaScript im Browser aktiviert sein.<br />
+<a href="http://www.mathjax.org"><img title="Powered by MathJax" src="images/mj_logo.png" border="0" alt="Powered by MathJax" /></a><br />
+<br />
+Unsere Seiten verwenden aktive Inhalte, insbesondere <a class="start" href="http://www.mathjax.org" target="_new">MathJax</a>. Dazu muss JavaScript im Browser aktiviert sein.
 <br />
 <script type="text/javascript">
 document.write("JavaScript ist auf diesem Browser aktiviert.");
@@ -90,7 +92,7 @@ JavaScript ist auf diesem Browser nicht aktiviert!
 </p>
 <br/>
 <p >
-Bei technischen Problemen und Fragen wenden Sie sich bitte an den <a class="start" href="mailto:daniel.haase@kit.edu">Administrator</a><br/>
+Bei technischen Problemen und Fragen wenden Sie sich bitte an den <a class="start" href="mailto:daniel.haase@kit.edu">Administrator</a>.<br/>
 <br/>
 <br/>
 </p>
@@ -119,6 +121,7 @@ Bei technischen Problemen und Fragen wenden Sie sich bitte an den <a class="star
 \MSubsection{Informationen und Impressum}
 
 \begin{MXContent}{Informationen zum Kurs}{Kursinformationen}{STD}
+\MDeclareSiteUXID{VBKM_COURSEINFORMATION}
 
 Der Onlinebrückenkurs dient Studieninteressierten zur Vorbereitung sowie zur Überprüfung des fachlichen Kenntnisstands in Mathematik
 und verweist auf geeignete Angebote der Hochschulen vor Ort. Der Kurs beinhaltet neben einem umfangreichen Lernmaterial diagnostische Tests zur Selbsteinschätzung
@@ -129,10 +132,11 @@ mit dem VEMINT-Konsortium, der Leibniz Universität Hannover und der Technischen 
 einen bundesweit frei zugänglichen Mathematik-Onlinebrückenkurs auf Basis einer freien Lizenz anzubieten und allgemein
 den Austausch von Lehr- und Lernmaterial sowie Software unter den Standorten zu fördern.
 \ \\ \ \\
-Weitere Informationen zum Onlinekurs und zum Projekt gibt es unter \MExtLink{http://www.ve-und-mint.de}{www.ve-und-mint.de}
+Weitere Informationen zum Onlinekurs und zum Projekt gibt es unter \MExtLink{http://www.ve-und-mint.de}{www.ve-und-mint.de}.
 \end{MXContent}
 
 \begin{MXContent}{Autorenliste}{Autorenliste}{STD}
+\MDeclareSiteUXID{VBKM_AUTHORS}
 An der Erstellung dieses Kurses sind folgenden Einrichtungen beteiligt gewesen:
 
 % MAIL bei stuttgartern noch inkorrekt
@@ -203,6 +207,7 @@ Zorn, Erhard & Dipl. Phys. & \MExtLink{mailto:erhard@math.tu-berlin.de}{eMail}
 \end{MXContent}
 
 \begin{MXContent}{Impressum}{Impressum}{info}
+\MDeclareSiteUXID{VBKM_IMPRESSUM}
 \MLabel{L_COPYRIGHTCOLLECTION}
 
 Sämtliche Inhalte und Materialien dieses Kurses werden unter
@@ -229,8 +234,6 @@ In den Onlinemodulen werden folgende unter einer freien Lizenz stehenden Materia
 \item{Videos, die am \MExtLink{http://www.zml.kit.edu}{Zentrum für mediales Lernen} am \MExtLink{http://www.kit.edu}{KIT} erstellt wurden.}
 \end{itemize}
 
-%\MCopyrightCollection
-
 
 Dieser Onlinekurs wurde im Rahmen des Projekts \MExtLink{http://www.ve-und-mint.de}{VE\&MINT} von den am Projekt beteiligten Partneruniversitäten erstellt
 und wird bundesweit durch das \MExtLink{http://www.kit.edu}{Karlsruher Institut für Technologie}.
@@ -238,11 +241,17 @@ und wird bundesweit durch das \MExtLink{http://www.kit.edu}{Karlsruher Institut 
 Verantwortlich für den Inhalt: \MExtLink{http://www.mint-kolleg.de}{MINT-Kolleg Baden-Württemberg}, Dr. Claudia Goll. 
 \ \\ \ \\
 Beachten Sie die Hinweise zum \MSRef{L_HAS}{Haftungsauschluss}.
+\ \\ \ \\
+Einzelnachweis der Medieninhalte in diesem Kurs:\ \\
+\MCopyrightCollection
+
+
 
 \end{MXContent}
 
 \begin{MXContent}{Haftungsauschluss}{Haftungsauschluss}{STD}
 \MLabel{L_HAS}
+\MDeclareSiteUXID{VBKM_LEGAL}
 
 \MSubsubsubsectionx{Funktionalität und Gewährleistung}
 Die im Rahmen dieses Kurses eingesetzten Materialien und Softwarebausteine unterliegen eine freien Lizenz, aber erheben keinen Anspruch auf inhaltliche oder technische Fehlerfreiheit. Die Inhalte wurden
@@ -275,6 +284,7 @@ Sollten Sie auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um ei
 \MSubsection{Formeldarstellung}
 
 \begin{MXContent}{Formeldarstellung in den Modulen}{Formeldarstellung}{STD}
+\MDeclareSiteUXID{VBKM_DISPLAYINFO}
 
 \begin{html}
 <p>
@@ -327,23 +337,13 @@ Diese Meldungen schaltet man wie folgt ab:<br />
 <br />
 
 <p>
-Bei technischen Problemen und Fragen wenden Sie sich bitte an den <a class="start" href="mailto:daniel.haase@kit.edu">Administrator</a><br/>
+Bei technischen Problemen und Fragen wenden Sie sich bitte an den <a class="start" href="mailto:daniel.haase@kit.edu">Administrator</a>.<br/>
 <br />
 <b r/>
 </p>
 \end{html}
 
 \end{MXContent}
-
-% \begin{MSContent}{Stichwortsuche}{Stichwortsuche}{genetisch}
-% \MLabel{L_SEARCHSITE}
-% 
-% (Diese Funktion ist in der Demoversion nicht vorhanden)
-% 
-% \MEntryList
-% 
-% 
-% \end{MSContent}
 
 
 \fi

@@ -1,0 +1,25 @@
+Probleme mit Cross Domain Policy:
+
+ - Direktaufruf einer Seite auf lokalem System verhindert Nachladen der Fonts in ../fonts (und ggf. anderer Materialien)
+   da außerhalb des Berechtigungsbereichs (nur lokal), starten der Seiten von index.html löst das Problem nicht, man
+   sieht es nur nicht mehr weil der Browser die Fonts gecached hat
+   
+Probleme mit MathJax:
+ - "A network error occured" in jax.js auf der JS-Konsole, scheinbar ohne Auswirkungen (hängt von mtext-Einträgen ab und bezieht sich auf fonts?)
+   Tritt lokal und von mintlx3 aus auf, nicht aber in MatheJax 2.4 mit Arialfonts
+   
+
+Probleme mit TeX-Makros:
+
+ - \displaystyle
+
+    - ttm kann die Kombination $\displaystyle$ nicht in MathML umsetzen,
+      im Preparsing wird das korrigiert und ein <mstyle> als HTML-insert eingesetzt
+      
+    - MathJax kann in der Version 2.6 displaystyle nicht von einer Matheumgebung auf mtable vererben (bug der <= 2.4 nicht da war),
+      im mathmloptimize korrigiert durch Einfuegen von <mstyle> in Kombinationen die fuer eqnarray typisch sind
+      
+      -> NICHT displaystyle mit einem eigenen Makro überladen und dieses statt displaystyle einsetzen
+
+ - \tikzsetexternalprefix darf nicht in MTikzAuto-Umgebungen benutzt werden
+

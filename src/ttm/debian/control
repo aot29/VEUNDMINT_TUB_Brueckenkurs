@@ -1,0 +1,51 @@
+Source: tth
+Section: tex
+Priority: optional
+Maintainer: Debian Tex Maintainers <debian-tex-maint@lists.debian.org>
+Uploaders: Jerome Benoit <calculus@rezozer.net>
+Build-Depends:
+ debhelper (>= 9), flex,
+ texlive-latex-recommended, texlive-fonts-recommended, texlive-latex-extra
+Standards-Version: 3.9.5
+Homepage: http://hutchinson.belmont.ma.us/tth
+Vcs-Git: git://anonscm.debian.org/debian-tex/tth.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=debian-tex/tth.git
+
+Package: ttm
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: tth-common
+Suggests: tth
+Homepage: http://hutchinson.belmont.ma.us/ttm
+Description: TeX/LaTeX to MathML converter
+ LaTeX is popular for specifying complex printed documents.
+ TtM translates Plain TeX or LaTeX sources into HTML documents
+ with their mathematics in MathML. It quickly produces web documents
+ that are compact, editable and fast viewing. TtM translates almost all
+ equations instead of converting them into images. TtM is a sister to
+ TtH in package tth which translates TeX/LaTeX mathematics to HTML.
+
+Package: tth
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: tth-common
+Suggests: ttm
+Description: TeX/LaTeX to HTML converter
+ LaTeX is popular for specifying complex printed documents.
+ TtH translates Plain TeX or LaTeX sources into HTML documents.
+ It quickly produces web documents that are compact, editable
+ and fast viewing. TtH translates most equations
+ instead of converting them into images. This HTML preserves much format
+ when imported by MS Word.
+
+Package: tth-common
+Architecture: any
+Depends:
+ texlive-latex-recommended, texlive-fonts-recommended,
+ ghostscript, netpbm,
+ ${shlibs:Depends}, ${misc:Depends}
+Description: auxiliary software material for TtH and TtM
+ TtH and TtM convert TeX or LaTeX sources into HTML and MathML documents
+ respectively: complex equations and graphics require auxiliary software
+ material built upon [La]TeX friends, in particular upon tools to convert
+ PostScript outputs into images.

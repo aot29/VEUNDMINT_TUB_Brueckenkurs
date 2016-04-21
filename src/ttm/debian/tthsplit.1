@@ -1,0 +1,105 @@
+.\" Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH TTHSPLIT 1 "February  7, 2011"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+tthsplit \- TtH gold HTML file splitting utilities
+.SH SYNOPSIS
+.B tthprep
+.IR filename .tex
+.br
+.B tthsplit
+.RI < filename {.html,.xml}
+.br
+.B ttmsplit
+.RI < filename {.html,.xml}
+.br
+.B tthrfcat
+.SH DESCRIPTION
+
+The script
+.B tthprep
+runs LaTeX to generate the auxiliary files that
+.B tth
+or
+.B ttm
+need to properly link respectively an HTML or XML web document.
+
+The programs
+.B tth
+or
+.B ttm
+for converting TeX or LaTeX documents to HTML or XML respectively
+have a
+.B -s
+option which cause them to generate a single output file split into sections
+or chapters with fixed names. The program
+.B tthsplit
+splits the single file into files with fixed names depending on the LaTeX
+source. Each document should have its own directory to avoid overwriting
+each others files.
+
+Program
+.B ttmsplit
+is just a symlink to
+.BR tthsplit .
+
+For complex documents with multiple bibliographies
+the
+.B tth
+and
+.B ttm
+programs generate references to a single file refs.html or refs.xml
+respectively. The
+.B tthrfcat
+program concatenates multiple bibliography files into such a single file
+and then deletes the multiple files.
+
+.PP
+.SH EXAMPLE
+	$ tthprep sample2e.tex
+.br
+	$ tth \-s sample2e.tex
+.br
+	$ tthsplit <sample2e.html
+.br
+	index.html
+.br
+	sec1.html
+.br
+	sec2.html
+.br
+	footnote.html
+.br
+	$
+
+produces the four cross linked HTML files listed from a copy of
+the example file sample2e.tex distributed with LaTeX 2e and present on Debian
+systems with LaTeX installed.
+
+.SH SEE ALSO
+.BR tth (1),
+.BR ttm (1).
+.br
+The programs are documented fully in
+.br
+\fI /usr/share/doc/tth-common/html/gold\_man.html\fP.
+
+.SH AUTHOR
+TtHgold was written by Ian Hutchinson <tth@hutchinson.belmont.ma.us>.
+.PP
+This manual page was written by Ian Maclaine-cross <iml@debian.org>,
+for the Debian project (and may be used by others).

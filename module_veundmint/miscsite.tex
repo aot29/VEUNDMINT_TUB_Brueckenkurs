@@ -4,6 +4,7 @@
 \MSection{Benutzereinstellungen}
 
 \begin{MSectionStart}
+\MDeclareSiteUXID{VBKM_MISCENTRY}
 Auf den folgenden Seiten finden sich
 \begin{itemize}
 \item{die \MSRef{L_CHAPTER}{Kapitelübersicht} des Kurses,}
@@ -16,6 +17,7 @@ Auf den folgenden Seiten finden sich
 
 \begin{MXContent}{Kapitelübersicht}{Kapitel}{STD}
 \MLabel{L_CHAPTER}
+\MDeclareSiteUXID{VBKM_MISCCHAPTERS}
 \MGlobalChapterTag
 Einzelne Lernmodule und deren Abschnitte können jederzeit manuell angesteuert und bearbeitet werden:
 \begin{itemize}
@@ -39,6 +41,7 @@ Dazu sind einfach die Einträge im Inhaltsverzeichnis im linken Randbereich anzuk
 \begin{MXContent}{Meine Kursdaten}{Kursdaten}{STD}
 \MLabel{L_CDATA}
 \MGlobalDataTag
+\MDeclareSiteUXID{VBKM_MISCCOURSEDATA}
 
 Die persönlichen Daten können auf der \MSRef{L_CONFIG}{Einstellungsseite} eingerichtet werden.
 
@@ -69,6 +72,7 @@ Kann nicht auf Browserdaten zugreifen!
 \begin{MXContent}{Einstellungen}{Einstellungen}{STD}
 \MLabel{L_CONFIG}
 \MGlobalConfTag
+\MDeclareSiteUXID{VBKM_MISCSETTINGS}
 
 \begin{html}
 <div class="xreply">
@@ -152,34 +156,27 @@ von einem anderen Browser oder Rechner anmelden. Technisch werden die Daten im l
 
 \end{MXContent}
 
-% \MSubsection{Lesezeichen}
-% 
-% \begin{MSContent}{Lesezeichen}{Lesezeichen}{STD}
-% \MLabel{L_FAVORITES}
-% \MGlobalFavoTag
-% 
-% ?
-% 
-% \end{MSContent}
 
 \MSubsection{Suchen}
 
-\begin{MSContent}{Suchen}{Suchen}{STD}
+\begin{MXContent}{Suchen}{Suchen}{STD}
 \MLabel{L_SEARCHSITE}
+\MDeclareSiteUXID{VBKM_MISCSEARCH}
 \MGlobalSearchTag
 
 Mit Strg-F sucht der Browser nach Schlagwörtern in der Liste. Folgende Stichwörter werden im Onlinekurs erklärt:
 
 \special{html:<!-- msearchtable //-->}
 
-\end{MSContent}
+\end{MXContent}
 
-\begin{MSContent}{Favoriten}{Favoriten}{STD}
+\begin{MXContent}{Favoriten}{Favoriten}{STD}
 \MLabel{L_FAVORITESSITE}
 \MGlobalFavoTag
+\MDeclareSiteUXID{VBKM_MISCFAVORITES}
 
 \special{html:<div id="FAVORITELISTLONG"></div>}
 
-\end{MSContent}
+\end{MXContent}
 
 \fi

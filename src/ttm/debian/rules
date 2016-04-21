@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+default:
+	@uscan --no-conf --dehs --report || true
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	dh_auto_clean -- --ignore-errors
+
+get-orig-source:
+	uscan --no-conf --download-current-version --verbose

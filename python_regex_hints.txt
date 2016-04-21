@@ -1,0 +1,103 @@
+-------------------- Ein Match prüfen ---------------------------------------------------------------------
+
+PERL: Boolescher Ausdruck (text =~ m/REGEX/s ),
+falls true enthalten $1, $2, ... die gefundenen Teilausdrücke (VORSICHT $ ist LOKAL)
+
+PYTHON: Ausdruck m mit m = re.search(r"REGEX", text, flags), can über "if m:" getestet werden,
+falls erfüllt enthält m.group(1), m.group(2), ... die gefundenen Teilausdrücke
+
+PERL-Beispiel: Prüft ob ein Kommando der Form \MSection{BLABLA} im Text ist:
+if ($textex =~ /\\MSection\{(.+?)\}/s ) {
+  # $1 waere hier BLABLA
+} else {
+  # Kein Vorkommen im String
+}
+
+PYTHON-Beispiel: Prüft ob ein Kommando der Form \MSection{BLABLA} im Text ist:
+m = re.search(r"\\MSection\{(.+?)\}", text, re.S)
+if m:
+    # m.group(1)) ist hier BLABLA
+else:
+    # Kein Vorkommen im String
+
+
+VORSICHT: Das "offensichtliche" Kommando re.match matcht den GESAMTEN STRING,
+re.search nur einen Teilstring, daher sind im Beispiel unten .* am Start und Ende eingefügt
+damit es die gleiche Wirkung hat:
+
+m = re.match(r".*\\MSection\{(.+?)\}.*", text, re.S)
+if m:
+    # m.group(1)) ist hier BLABLA
+else:
+    # Kein Match
+
+    
+ACHTUNG: Einige unproblematische Symbole in Perl sind Regex-Symbole in Python, z.B. { und } und müssen escaped werden
+    
+    
+-------------------- Suchen aller NICHT ÜBERLAPPENDEN Vorkommen von Ausdrücken ----------------------------
+
+
+PERL:   text =~ m/REGEX/sg ;          # Parameter: s -> Zeilenumbrüche zählen als Zeichen, g -> alle und nicht nur ein Vorkommen finden
+PYTHON: re.findall(r"REGEX", text, flags)
+
+
+PERL-Beispiel, liefert Liste aller Vorkommen von verb-Delimitern, also aus \verb%BLABLA% beispielsweise das %
+@verbac = ($text =~ m/\\verb(.)/sg );
+
+PYTHON-Beispiel, liefert Liste aller Vorkommen von verb-Delimitern:
+verbac = re.findall(r"\\verb(.)", text, re.S)
+
+
+-------------------- Vollständige Ersetzung von Regex-Ausdrücken ------------------------------------------
+
+
+PERL:   text =~ s/STARTREGEX/ZIELREGEX/sg ;                            # Im ZIEL sind $1, $2, $3, ... die gefundenen Teilausdrücke
+PYTHON: text =  re.sub(r"STARTREGEX", r"ZIELREGEX", text, 0, re.S)     # Im ZIEL sind \1, \2, \3, ... die gefundenen Teilausdrücke
+
+Vorsicht: r"\1" oder "\\1" im Zielausdruck!
+
+
+PERL-Beispiel, escaped % als verb-delimiter, also beispielsweise   \verb%BLABLA%  --> \verb\PERCTAGBLABLA\PERCTAG
+$text =~ s/\\verb%([^%]*?)%/\\verb\\PERCTAG$1\\PERCTAG/sg 
+
+PYTHON-Beispiel mit gleicher Wirkung:
+(text, n) = re.subn(r"\\verb\%([^\%]*?)\%", r"\\verb\\PERCTAG\1\\PERCTAG", tex, count = 0, flags = re.S)
+--> text enthaelt den modifizierten Text, n die Anzahl der gemachten Ersetzungen
+
+
+ACHTUNG: Nur Literal \ muss in ZIELREGEX escaped werden, die problematischen Symbole {, } und $ müssen NUR IN STARTREGEX escaped werden.
+         Im Gegensatz zu PERL ignoriert Python unnötige escapes nicht, d.h. in der ZIELREGEX wird aus \{ wirklich \{ in der Ersetzung!
+         Vorgehen: "" statt r"" und nur backslash escapen, dafür direkt PERL-String nehmen, Escaping von {,},/,$ etc rückgängig machen aber nicht \\,
+         in Startregex dagegen r"" für den PERL-String nehmen und {,} zusätzlich escapen, / dagegen nicht
+         
+         \f und \n werden teilweise (EINZELFALL IMMER GEGENPRÜFEN) auch ausgewertet
+
+-------------------- Kombiniertes Ersetzen und Code ausführen ---------------------------------------------
+
+In Python kann Termersetzung über Funktionen ausgeführt werden:
+
+PERL:   while (text =~ s/STARTREGEX/ZIELREGEX/sg ) {  Code der $1, $2, ... benutzt }
+
+PYTHON:
+    
+    def func(part):
+        Code der part.group(1), part.group(2), ... benutzt
+        return "ZIELREGEX" # hier aber part statt \1, \2, etc.
+    text =  re.sub(r"STARTREGEX", func, text, 0, re.S) 
+
+Damit wird die Ersetzung wesentlich flexibler.     
+         
+-------------------- Nur-String-Suche ---------------------------------------------------------------------
+
+if "teilstring" in "string":
+    ....
+         
+-------------------- Nur-String-Ersetzung (schneller als Regex-Ersetzung) ---------------------------------
+
+text = text.replace(TEILSTRING, ZIELSTRING, MAXANZAHL)
+
+Beispiel, löscht EINE Aufgabenumgebung mit content als Inhalt: rtext = rtext.replace(r"\begin{MExercise}" + content + r"\end{MExercise}", "", 1)
+
+VORSICHT: Bei re.sub bedeut count=0 dass alle Vorkommen ersetzt werden sollen, bei string.replace
+muss man das Argument count weglassen. MAXANZAHL=0 führt zu NULL Ersetzungen.

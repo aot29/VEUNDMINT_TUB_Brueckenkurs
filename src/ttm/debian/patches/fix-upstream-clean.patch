@@ -1,0 +1,16 @@
+fix for the `make clean' machinery that must be submitted to the upstream maintainer
+--- a/manual/makefile
++++ b/manual/makefile
+@@ -21,7 +21,9 @@
+ 	make -C split
+ 
+ tidy :
+-	rm -f *.log *.idx *.ilg *.toc *.out *.dvi *.lyx *.tms *.tid *.tin *.ind
++	make -C split tidy
++	rm -f *.log *.tlg *.idx *.ilg *.toc *.out *.dvi *.lyx *.tms *.tid *.tin *.ind
+ 
+ clean :
+-	rm -f *.log *.idx *.ilg *.html *.toc *.out *.dvi *.lyx *.tms *.tid *.tin *.ind *.aux
+\ No newline at end of file
++	make -C split clean
++	rm -f *.log *.tlg *.idx *.ilg *.html *.toc *.out *.dvi *.lyx *.tms *.tid *.tin *.ind *.aux

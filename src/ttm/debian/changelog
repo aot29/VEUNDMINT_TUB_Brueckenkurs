@@ -1,0 +1,348 @@
+tth (4.05+ds-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Workaround for the outside parent directory writing restriction
+    imposed by texlive by default (`openout_any = p' in texmf.cnf).
+
+ -- Jerome Benoit <calculus@rezozer.net>  Wed, 20 Aug 2014 06:25:41 +0000
+
+tth (4.04+ds-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Debianization:
+    - Standards Version, bump to 3.9.5;
+    - debian/control:
+      - source Build-Depends field, revisit;
+      - tth-common Depends field, revisit;
+      - Vcs-* fields, canonize;
+    - debian/copyright, refresh;
+    - debian/repack, improve;
+    - gpg-signature check support, neutralize (the upstream maintainer
+      kindly provided a gpg signature, but unfortunately at the packaging
+      time the sf redirector experiences troubles (#752384)).
+
+ -- Jerome Benoit <calculus@rezozer.net>  Sat, 09 Aug 2014 14:34:55 +0000
+
+tth (4.03+ds-3) unstable; urgency=low
+
+  * Bump Standards Version to 3.9.4.
+  * debian/control:
+    - Vcs-* headers added;
+    - unduplicate homepage field in packages tth and tth-common;
+    - correct a spelling error revealed by lintian.
+  * debian/copyright:
+    - unduplicate copyright field.
+  * debian/rules:
+    - default target, add the option --report to uscan: no more download
+      is now performed;
+    - override dh_auto_clean for passing the option --ignore-errors :
+      debuild now bypasses the cleaning stage.
+  * debian/*:
+    - clean triming whitespaces.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Fri, 17 May 2013 01:09:28 +0000
+
+tth (4.03+ds-2) unstable; urgency=low
+
+  * Bump debhelper build-dep to >= 9.
+  * Bump Standards Version to 3.9.3.
+  * Hardened.
+  * Gather debian samples into debian/samples.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Thu, 01 Mar 2012 21:55:25 +0000
+
+tth (4.03+ds-1) unstable; urgency=low
+
+  * New upstream version.
+  * New maintainer (Closes: #652131).
+  * Repack the source to reduce drastically its weight by cleaning up and
+    by wiping out material not meant for UN*X source.
+  * Add the optional get-orig-source target in debian/rules to get the currently
+    packaged upstream tarball and to repack it.
+  * Various lintian warning fixes.
+  * Various C compiler warning fixes.
+  * All shell scripts have now /bin/sh as shebang.
+  * Rename gold_man.html to tthgold_manual.html for consistency.
+  * Add doc-base data for tthgold_manual.html.
+  * Bump debhelper build-dep to >= 8.
+  * Convert debian/copyright to DEP-5 format.
+  * Debianize makefile to enable a minimal debian/rules.
+  * Cleanup debian/rules.
+  * Cleanup debian/control.
+  * Cleanup watch file.
+  * Cleanup man pages.
+  * Gather debian samples into debian/examples.
+  * Add a default target in debian/rules which basically queries package status
+    with uscan; output in DEHS format.
+  * Update debian/copyright wrt repacking.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Mon, 27 Feb 2012 01:21:48 +0000
+
+tth (4.01-5) unstable; urgency=low
+
+  * tth orphaned.
+
+ -- Ian Maclaine-cross <iml@debian.org>  Thu, 24 Nov 2011 11:57:55 +1100
+
+tth (4.01-4) unstable; urgency=low
+
+  * Remove debian/<package>.menu files (Closes: #648986).
+  * Various lintian warning fixes.
+
+ -- Ian Maclaine-cross <iml@debian.org>  Thu, 24 Nov 2011 09:35:21 +1100
+
+tth (4.01-3) unstable; urgency=low
+
+  * Initial release (Closes: #611236, #489183, #533027)
+    Source tth has been split into 2 binary packages, tth and ttm, and
+    one tth utility package, tth-common, used by both.
+  * Release 4.01 has copyright license GPL-2 and complete source code
+    so tth now satisfies the DFSG.
+
+ -- Ian Maclaine-cross <iml@debian.org>  Wed, 9 Feb 2011 17:30:00 +1100
+
+tth (3.67-4) unstable; urgency=low
+
+  * tth executable tests added to package build scripts.
+  * debian/rules modified to compile without optimization
+    for powerpc as requested by Frank.
+
+ -- Ian Maclaine-cross <iml@debian.org>  Fri, 18 Mar 2005 21:13:57 +1100
+
+tth (3.67-3) unstable; urgency=low
+
+  * Frank's patch removed.
+
+ -- Ian Maclaine-cross <iml@debian.org>  Fri, 18 Mar 2005 01:42:29 +1100
+
+tth (3.67-2) unstable; urgency=low
+
+  * patch for powerpc segfault from Frank Lichtenheld <djpig@debian.org>
+    (Closes: #298149)
+
+ -- Ian Maclaine-cross <iml@debian.org>  Tue, 15 Mar 2005 03:03:05 +1100
+
+tth (3.67-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sun, 20 Feb 2005 10:21:16 +1100
+
+tth (3.60-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Fri, 21 May 2004 10:21:40 +1000
+
+tth (3.59-1) unstable; urgency=low
+
+  * New upstream release (Closes: #236238)
+
+ -- Ian Maclaine-cross <iml@debian.org>  Mon,  2 Feb 2004 10:21:26 +1100
+
+tth (3.57-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sun, 25 Jan 2004 10:21:29 +1100
+
+tth (3.52-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Fri,  2 Jan 2004 10:21:21 +1100
+
+tth (3.45-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Tue,  4 Nov 2003 10:21:23 +1100
+
+tth (3.40-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sat,  7 Jun 2003 13:00:29 +1000
+
+tth (3.38-3) unstable; urgency=low
+
+  * Fixed index.html
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sun,  1 Jun 2003 18:27:05 +1000
+
+tth (3.38-2) unstable; urgency=low
+
+  * Converted from debmake to debhelper.
+    No differences found by debdiff and tests.
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sun,  1 Jun 2003 16:26:27 +1000
+
+tth (3.38-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/update script added to diff.
+  * Build-Depends in debian/control removed.
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sun,  1 Jun 2003 14:09:22 +1000
+
+tth (3.37-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Mon, 26 May 2003 10:21:22 +1000
+
+tth (3.34-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sun, 13 Apr 2003 10:21:22 +1000
+
+tth (3.33-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Mon, 24 Feb 2003 10:21:25 +1100
+
+tth (3.13-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Tue,  8 Oct 2002 21:10:14 +1000
+
+tth (3.12-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Fri, 19 Jul 2002 16:32:02 +1000
+
+tth (3.11-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Thu,  6 Jun 2002 10:56:13 +1000
+
+tth (3.08-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Mon, 15 Apr 2002 21:10:17 +1000
+
+tth (3.07-2) unstable; urgency=low
+
+  * Corrected upstream version number to 3.07 in tth
+
+ -- Ian Maclaine-cross <iml@debian.org>  Mon,  8 Apr 2002 19:58:35 +1000
+
+tth (3.07-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Fri,  5 Apr 2002 21:10:25 +1000
+
+tth (3.06-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Mon, 25 Mar 2002 21:10:16 +1100
+
+tth (3.05-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Tue, 15 Jan 2002 21:10:26 +1100
+
+tth (3.03-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sun,  2 Dec 2001 21:10:26 +1100
+
+tth (3.02-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sat, 20 Oct 2001 21:01:30 +1000
+
+tth (3.01-4) unstable; urgency=low
+
+  * Another correction to Build-Depends in debian/control
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sun,  9 Sep 2001 15:36:04 +1000
+
+tth (3.01-3) unstable; urgency=low
+
+  * Correction to Build-Depends in debian/control
+
+ -- Ian Maclaine-cross <iml@debian.org>  Wed, 29 Aug 2001 12:28:53 +1000
+
+tth (3.01-2) unstable; urgency=low
+
+  * Build-Depends added to debian/control (Closes: #110218)
+
+ -- Ian Maclaine-cross <iml@debian.org>  Tue, 28 Aug 2001 13:26:32 +1000
+
+tth (3.01-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@ilm.mech.unsw.edu.au>  Sun, 24 Jun 2001 21:01:42 +1000
+
+tth (3.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@ilm.mech.unsw.edu.au>  Tue, 29 May 2001 21:01:45 +1000
+
+tth (2.92-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@ilm.mech.unsw.edu.au>  Sat,  7 Apr 2001 21:01:44 +1000
+
+tth (2.91-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@ilm.mech.unsw.edu.au>  Tue,  3 Apr 2001 21:01:43 +1000
+
+tth (2.90-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Wed, 28 Mar 2001 12:13:15 +1000
+
+tth (2.89-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Mon, 26 Feb 2001 21:01:43 +1100
+
+tth (2.88-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sat, 13 Feb 2001 21:01:28 +1100
+
+tth (2.87-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ian Maclaine-cross <iml@debian.org>  Thu, 25 Jan 2001 21:01:39 +1100
+
+tth (2.86-3) unstable; urgency=low
+
+  * Section corrected to non-free/tex
+
+ -- Ian Maclaine-cross <iml@debian.org>  Sat, 20 Jan 2001 14:29:10 +1100
+
+tth (2.86-2) unstable; urgency=low
+
+  * Obsolete l2h deleted.
+
+ -- Ian Maclaine-cross <iml@debian.org>  Fri, 19 Jan 2001 15:00:56 +1100
+
+tth (2.86-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Ian Maclaine-cross <iml@debian.org>  Thu, 18 Jan 2001 01:15:39 +1100

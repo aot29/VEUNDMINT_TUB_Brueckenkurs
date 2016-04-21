@@ -1,0 +1,95 @@
+fix that must be submitted to the upstream maintainer
+--- a/tth.1
++++ b/tth.1
+@@ -84,7 +84,7 @@
+ thebibliography, [raw]html, index [as description].
+ .in
+ .fi
+-and Latex commands:
++and LaTeX commands:
+ .in 1i
+ [re]newcommand, newenvironment [optional arg not permitted], chapter,
+ section, subsection, subsubsection, caption, label, ref, pageref [no
+@@ -122,7 +122,7 @@
+ If you want \fItth\fP to use LaTeX constructs (e.g. tableofcontents,
+ bibliographic commands, etc.) that depend on auxiliary files, then
+ you do need to run LaTeX on the code so that these files are
+-generated. Alternatively, the \fItth\fP switch -a
++generated. Alternatively, the \fItth\fP switch \-a
+ causes \fItth\fP automatically to attempt to run \fIlatex\fP on the file,
+ if no auxiliary file .aux exists.
+ .PP
+@@ -130,13 +130,13 @@
+ x \fItth\fP constructs the name of the expected auxiliary LaTeX files in the
+ usual way and looks for them in the same directory as the file. 
+ If you are using \fItth\fP  as a filter, you must tell \fItth\fP , using the
+-switch -Lfilename, the base file name of these auxiliary files
++switch \-Lfilename, the base file name of these auxiliary files
+ (which is the name of the original file omitting the extension). If
+ \fItth\fP  cannot find the relevant auxiliary file because you didn't 
+ run LaTeX and generate the files or didn't include the switch, then it
+ will omit the construct and warn you.
+ Forward references via ref will not work if the .aux file is
+-unavailable, but backward references will. The -L switch with no
++unavailable, but backward references will. The \-L switch with no
+ filename may be used to tell \fItth\fP  that the document being translated
+ is to be interpreted as a LaTeX file even though it lacks the usual
+ LaTeX header commands. This may be useful for translating single
+@@ -157,7 +157,7 @@
+ want \fItth\fP to get your bibliography right). If you don't create the
+  .bbl file, or if you create it somewhere else that  \fItth\fP does not
+ search, then naturally  \fItth\fP won't find it. Since the BibTeX process
+-is relatively tortuous,  \fItth\fP offers an alternative. Using the -a
++is relatively tortuous,  \fItth\fP offers an alternative. Using the \-a
+ switch with  \fItth\fP will cause it to attempt to generate the required .bbl 
+ file automatically using \fIbibtex\fP and \fIlatex\fP.
+ .PP
+@@ -203,15 +203,15 @@
+ or
+ .I ps2png
+ to convert the postscript file to a png or gif file, "file.png" or file.gif" 
+-When the switch -e1 or -e2 is specified, if
++When the switch \-e1 or \-e2 is specified, if
+ ``file.png'', ``file.gif'' or ``file.jpg'' already exists in the same
+ directory as implied by the reference to ``file.ps'' then no
+ conversion is done and the file found is used instead.  That graphics
+-file is then automatically either linked (-e1) or inlined (-e2) in the
++file is then automatically either linked (\-e1) or inlined (\-e2) in the
+ document. If no such file is found, TTH tries to find a postscript
+ file with extension that starts either .ps or .eps and convert it,
+-first using ps2png then, if unsuccessful, ps2gif. By popular request, 
+-a third graphics option -e3 for generating icons is now available. 
++first using ps2png then, if unsuccessful, ps2gif. By popular request,
++a third graphics option \-e3 for generating icons is now available.
+ .PP
+ The LaTeX command \\includegraphics{...} and the older
+ \\[e]psfig{file=...} are treated the same as \\epsfbox.
+@@ -219,7 +219,7 @@
+ .SH "Picture Environments"
+ The picture environment cannot be translated to HTML. Pictures using
+ the built-in LaTeX commands must be converted to a graphics file such
+-as a gif or png, and then included using \\includegraphics. The switch -a,
++as a gif or png, and then included using \\includegraphics. The switch \-a,
+ causes \fItth\fP to attempt automatic picture conversion using 
+ \fIlatex2gif\fP.
+ .SH OPTIONS
+@@ -265,7 +265,7 @@
+ use italic font for equations (like TeX). Default roman.
+ .TP
+ .B -j?
+-use index page length ?. Default 20 lines. -j single column.
++use index page length ?. Default 20 lines. \-j single column.
+ .TP
+ .B -Lfile
+ tells \fItth\fP the base file (no extension) for LaTeX auxiliary input.
+@@ -292,8 +292,8 @@
+ even more verbose (for debugging).
+ .TP
+ .B -w?
+-HTML writing style. Default no head/body tags. -w -w0 no title.
+--w1 single title only, head/body tags. -w2 XHTML.
++HTML writing style. Default no head/body tags. \-w \-w0 no title.
++\-w1 single title only, head/body tags. \-w2 XHTML.
+ .TP
+ .B -xmakindxcmd
+ specify a non-standard makeindex command line.

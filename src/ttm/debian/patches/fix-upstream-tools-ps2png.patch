@@ -1,0 +1,12 @@
+fix for tools/ps2png that must be submitted to the upstrema maintainer
+--- a/tools/ps2png
++++ b/tools/ps2png
+@@ -2,7 +2,7 @@
+ #ps2png script by Ian Hutchinson 1999; use at your own risk.
+ #You need Ghostscript and the netpbm utilities installed. 
+ if [ $# -lt 2 ] ; then
+-       echo " Usage: ps2png <file.ps> <file.gif> [<icon.gif>]" 1>&2
++       echo " Usage: ps2png <file.ps> <file.png> [<icon.png>]" 1>&2
+        exit 1
+ else 
+     echo "Calling ghostscript to convert, please wait ..." >&2
