@@ -737,7 +737,7 @@ class Structure(object):
                     anl += 1
                 else:
                     if "Error: Fatal" in ttmlines[i]:
-                        self.sys.message(self.sys.FATALERROR, "ttm exited with fatal error, aborting")
+                        self.sys.message(self.sys.FATALERROR, "ttm exit with fatal error: " + ttmlines[i] + ", aborting")
                         
 
         if anl > 0:

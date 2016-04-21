@@ -426,6 +426,7 @@ class Preprocessor(object):
       # MDirectMath processing (as DirectHTML)
       def dmath(part):
           self.data['DirectHTML'].append("\\[" + part.group(1) + "\\]")
+          self.sys.message(self.sys.CLIENTWARN, "DirectMath does not behave well with MathJax 2.6 rendering, TeXCode will be displayed in raw HTML")
           return "\\ifttm\\special{html:<!-- directhtml;;" + str(len(self.data['DirectHTML']) - 1) + "; //-->}\\fi"
       self.local['tex'] = re.sub(r"\\begin\{MDirectMath\}(.+?)\\end\{MDirectMath}", dmath, self.local['tex'], 0, re.S)
       
