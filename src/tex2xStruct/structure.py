@@ -32,7 +32,7 @@ import imp
 import json
 import traceback
 import sys
-
+import subprocess
 
 
 import plugins
@@ -252,8 +252,10 @@ class Structure(object):
             xmlfile = open(self.options.ttmFile, "rb")
             xmltext = xmlfile.read().decode()
             xmlfile.close()
+            self.sys.message(self.sys.VERBOSE, "Successfully decoded xml output")
         except:
             # old ttm produces latin1 encoded xml if given tex was latin1
+            self.sys.message(self.sys.CLIENTWARN, "Could not decode xml output, trying encoding " + self.options.stdencoding)
             xmltext = self.sys.readTextFile(self.options.ttmFile, self.options.stdencoding)
         
         #MathML manuell optimieren, da die Ausgabe des ttm nicht ausreichend ist
@@ -283,6 +285,8 @@ class Structure(object):
         #self.xmltree_raw = html5parser.fromstring(xmltext)
         #self.xmltree_raw = html5parser.document_fromstring(xmlfile.read())
         
+        self.sys.timestamp("XMLTree parsed")
+
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
@@ -297,6 +301,7 @@ class Structure(object):
             
             
         self.create_toc_and_disect_content()
+        self.sys.timestamp("toc/content created")
         
         if verbose:
             time_end = time.time()
@@ -374,6 +379,10 @@ class Structure(object):
             
         if verbose:
             print("Total time: " + str(total_time))
+            
+        # stop program execution and return proper error level as return value
+        self.sys.finish_program()
+
        
     def create_toc_and_disect_content(self):
         """
@@ -494,9 +503,6 @@ class Structure(object):
         #Objetkvariable setzen
         self.tocxml = toc
         self.content = content
-
-        
-    
 
 
     def get_required_images(self, content):
@@ -672,10 +678,7 @@ class Structure(object):
         #Wenn der ttm nicht als ausführbar markiert wurde, kann es zu Problemen kommen
         #also checken wir das vorher
         if not os.access(os.path.join(self.options.ttmPath, "ttm"), os.X_OK):
-            print("######################")
-            print("Achtung: die ttm-Datei wurde nicht als ausführbar gekennzeichnet!")
-            print("######################")
-            exit()
+            self.sys.message(self.sys.FATALERROR, "ttm program file is not marked as executable, aborting")
 
         #Sicherstellen, dass Outputdirecotry existiert
         if not os.path.exists(self.options.targetpath):
@@ -685,16 +688,65 @@ class Structure(object):
 
         #ttm starten
         self.sys.pushdir()
+        os.chdir(self.options.sourceTEX)
         texStartFile = self.options.sourceTEXStartFile
         ttmStartFolder = self.options.ttmPath
         xmlFileName = self.options.ttmFile
-        os.chdir(ttmStartFolder)
-        print("Ausgabe von ttm:")
+        
         if is_64bits:
-            subprocess.call("./ttm -p" + self.options.sourceTEX  + " < " + texStartFile + " > " + xmlFileName, shell = True)
+            ttms = os.path.join(ttmStartFolder, "ttm")
         else:
-            subprocess.call("./ttm32 -p" + self.options.sourceTEX  + " < " + texStartFile + " > " + xmlFileName, shell = True)
+            ttms = os.path.join(ttmStartFolder, "ttm32")
+        
+        
+        try:
+            with open(xmlFileName, "wb") as outfile, open(texStartFile, "rb") as infile:
+                pr = subprocess.Popen([ttms, "-p", self.options.sourceTEX], stdout = outfile, stdin = infile, stderr = subprocess.PIPE, shell = True, universal_newlines = True)
+                (output, err) = pr.communicate()
+        except:
+            self.sys.popdir()
+            self.sys.message(self.sys.FATALERROR, "ttm call exception")
+            
+        # ttm streams its messages to stderr
+        
         self.sys.popdir()
+
+        if pr.returncode < 0:
+            self.sys.message(self.sys.FATALERROR, "Call to " + ttms + " for file " + textStartFile + " was terminated by a signal (POSIX return code " + p.returncode + ")")
+        else:
+            if pr.returncode > 0:
+                self.sys.message(self.sys.CLIENTERROR, ttms + " reported an error in file " + textStartFile + ", error lines have been written to logfile")
+                s = output[-512:]
+                s = s.replace("\n",", ")
+                self.sys.message(self.sys.VERBOSEINFO, "Last lines: " + s)
+            else:
+                self.sys.timestamp(ttms + " finished successfully")
+
+        # process output of ttm
+        anl = 0 # abnormal newlines found by ttm
+        cm = 0 # unknown latex commands
+        ttmlines = err.split("\n")
+        for i in range(len(ttmlines)):
+            self.sys.message(self.sys.VERBOSEINFO, "(ttm) " + ttmlines[i])
+            m = re.search(r"\*\*\*\* Unknown command (.+?), ", ttmlines[i])
+            if m:
+                self.sys.message(self.sys.CLIENTWARN, "ttm does not know LaTeX command " + m.group(1))
+                cm += 1
+            else:
+                if "Abnormal NL, removespace" in ttmlines[i]:
+                    anl += 1
+                else:
+                    if "Error: Fatal" in ttmlines[i]:
+                        self.sys.message(self.sys.FATALERROR, "ttm exited with fatal error, aborting")
+                        
+
+        if anl > 0:
+            self.sys.message(self.sys.CLIENTWARN, "ttm found " + str(anl) + " abnormal newlines")
+                
+        if (cm > 0) and (self.options.dorelease == 1):
+            self.sys.message(self.sys.FATALERROR, "ttm found " + str(cm) + " unknown commands, refusing to continue on release version")
+        
+
 
     def prepare_xml_file(self):
         """

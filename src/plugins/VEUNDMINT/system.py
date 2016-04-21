@@ -52,11 +52,13 @@ class System(object):
         self.doEncodeASCII = options.consoleascii
         self.doColors = options.consolecolors
         self.doVerbose = options.doverbose
+        self.beQuiet = options.quiet
         
         self.dirstack = []
         
         self.startTime = time.time()
         self.checkTime = self.startTime
+        self.errorlevel = 0 # highest error level that occured: 1 = warning, 2 = error, 3 = fatal error, will be returned by sys.exit
 
         with open(self.logFilename, 'w', encoding='utf-8') as log:
             s = "Started logging at absolute time " + time.ctime(self.startTime)
@@ -87,9 +89,11 @@ class System(object):
         else: 
             if (lvl == self.CLIENTERROR):
                 self._printMessage(self.BASHCOLORRED, "ERROR:   " + msg)
+                self.errorlevel = max(self.errorlevel, 2)
             else:
                 if (lvl == self.CLIENTWARN):
                     self._printMessage(self.BASHCOLORRED, "WARNING: " + msg)
+                    self.errorlevel = max(self.errorlevel, 1)
                 else:
                     if (lvl == self.DEBUGINFO):
                         self._printMessage(self.BASHCOLORGREEN, "DEBUG:   " + msg)
@@ -103,7 +107,7 @@ class System(object):
                                 if (lvl == self.FATALERROR):
                                     self._printMessage(self.BASHCOLORRED, "FATAL ERROR: " + msg)
                                     self._encode_print("Program aborted with error code 1")
-                                    sys.exit(1)
+                                    sys.exit(3) # highest possible error level
                                 else:
                                     self._printMessage(self.BASHCOLORRED, "ERROR: Wrong error type " + lvl + ", message: " + msg)
             
@@ -301,10 +305,15 @@ class System(object):
         return base64.b16encode(h).decode("utf-8")
         
       
-    # prints text on the console (which maybe does not understand utf8, so we encode output in ASCII)
+    # prints text on the console (which maybe does not understand utf8, so we encode output in ASCII), and only if not in quiet mode
     def _encode_print(self, txt):
-        if self.doEncodeASCII == 1:
-            print(txt.encode(encoding = "us-ascii", errors = "backslashreplace").decode("us-ascii"))
-        else:
-            print(txt)
-      
+        if not self.beQuiet:
+            if self.doEncodeASCII == 1:
+                print(txt.encode(encoding = "us-ascii", errors = "backslashreplace").decode("us-ascii"))
+            else:
+                print(txt)
+                
+                
+    # ends the program, returning the maximum error level reached during execution
+    def finish_program(self):
+        sys.exit(self.errorlevel)

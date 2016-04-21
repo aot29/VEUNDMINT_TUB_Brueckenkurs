@@ -26,6 +26,7 @@ import json
 import re
 import locale
 from git import Repo
+import sys
 
 class Option(object):
     """
@@ -75,6 +76,7 @@ class Option(object):
         self.forceyes = 1         # =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
         self.symbolexplain = 1    # =1 -> Short list explaining symbols is added to table of contents
         self.forceoffline = 1     # =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
+        self.quiet = 0            # =1 -> Absolutely no print messages, caller must deduce outcome by return value of sys.exit
         
         # VE&MINT source/target parameters
         self.macrofilename = "mintmod"
