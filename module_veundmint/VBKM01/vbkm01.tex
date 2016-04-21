@@ -342,6 +342,50 @@ aufbauen. Dabei ist beispielsweise $b+4$ ein Term, $b$ selbst ist eine Variable 
 der linken und einer Zahl auf der rechten Seite.
 \end{MExample}
 
+Variablen (und manchmal Terme) werden statt mit kleinen lateinischen Buchstaben $x$, $y$, $z$, usw. oft auch mit griechischen Buchstaben
+bezeichnet, zum Beispiel wenn Winkel von Zahlen unterschieden werden sollen.
+
+\begin{MInfo}
+\MLabel{VBKM01_Griechisch}
+Hier werden die Buchstaben des griechischen Alphabets in einer "Ubersicht
+gezeigt, die auch die Gro"sbuchstaben enth\"alt, sortiert nach dem griechischen Alphabet:
+\ \\ \ \\
+\begin{tabular}{|*{5}{cc|}}
+\ifttm\hline\else\firsthline\fi
+%Die Grossbuchstaben, die nicht auch vom lateinischen Alphabet genutzt
+%werden, druckt pdfLaTeX aufrecht, MathML dagegen kursiv.
+ $\alpha$,       \ifttm$A$\else$\mathrm{A}$\ \ \ \ \  \ \ \fi & \glqq alpha\grqq\ \ \ \ \ \ \ &
+ $\beta$,        \ifttm$B$\else$\mathrm{B}$\fi & \glqq beta\grqq          &
+ $\gamma$,       $\Gamma$                      & \glqq gamma\grqq         &
+ $\delta$,       $\Delta$                      & \glqq delta\grqq         &
+ $\Mvarepsilon$, \ifttm$E$\else$\mathrm{E}$\fi & \glqq epsilon\grqq       \\
+ $\zeta$,        \ifttm$Z$\else$\mathrm{Z}$\fi & \glqq zeta\grqq          &
+ $\eta$,         \ifttm$H$\else$\mathrm{H}$\fi & \glqq eta\grqq           &
+ $\vartheta$,    $\Theta$                      & \glqq theta\grqq         &
+ $\iota$,        \ifttm$I$\else$\mathrm{I}$\fi & \glqq iota\grqq          &
+ $\Mvarkappa$,   \ifttm$K$\else$\mathrm{K}$\fi & \glqq kappa\grqq         \\
+ $\lambda$,      $\Lambda$                     & \glqq lambda\grqq        &
+ $\mu$,          \ifttm$M$\else$\mathrm{M}$\fi & \glqq m\"u\grqq          &
+ $\nu$,          \ifttm$N$\else$\mathrm{N}$\fi & \glqq n\"u\grqq          &
+ $\xi$,          $\Xi$                         & \glqq xi\grqq            &
+ $o$,            \ifttm$O$\else$\mathrm{O}$\fi & \glqq omikron\grqq       \\
+ $\pi$,          $\Pi$                         & \glqq pi\grqq            &
+ $\varrho$,      \ifttm$P$\else$\mathrm{P}$\fi & \glqq rho\grqq           &
+ $\sigma$,       $\Sigma$                      & \glqq sigma\grqq         &
+% $\varsigma$,                                  & \glqq sigma\grqq         &
+ $\tau$,         \ifttm$T$\else$\mathrm{T}$\fi & \glqq tau\grqq           &
+ $\upsilon$,     $\Upsilon$                    & \glqq \"upsilon\grqq     \\
+ $\Mvarphi$,     $\Phi$                        & \glqq phi\grqq           &
+ $\chi$,         \ifttm$X$\else$\mathrm{X}$\fi & \glqq chi\grqq           &
+ $\psi$,         $\Psi$                        & \glqq psi\grqq           &
+ $\omega$,       $\Omega$                      & \glqq omega\grqq         &
+ \special{html:&nbsp;}                         & \special{html:&nbsp;}    \\
+ \ifttm\hline\else\lasthline\fi
+\end{tabular}
+\ \\
+\MInputHint{Griechische Buchstaben können in Aufgaben mit Ihrer Bezeichnung eingegeben werden, z.~B.~\texttt{alpha} statt $\alpha$.}
+\end{MInfo}
+
 Bei einem Term ist wesentlich, dass er zu einem konkreten Zahlenwert ausgewertet werden kann,
 wenn man Zahlen für die im Term auftretenden Variablen einsetzt:
 
@@ -349,6 +393,7 @@ wenn man Zahlen für die im Term auftretenden Variablen einsetzt:
 Die folgenden Ausdrücke sind Terme:
 \begin{itemize}
 \item{$x\cdot (y+z)-1$, für $x=1$, $y=2$ und $z=0$ erhält man beispielsweise den Wert $1$ des Terms.}
+\item{$\sin(\alpha)+\cos(\alpha)$, für $\alpha=0^\circ$ und $\beta=0^\circ$ erhält man beispielsweise den Wert $1$ (für die Berechnung von Sinus und Kosinus sei auf das Kapitel \MNRef{VBKM05} verwiesen).}
 \item{$1+2+3+4$, es treten keine Variablen auf, trotzdem handelt es sich um einen Term (der immer den Wert $10$ ergibt).}
 \item{$\Mtfrac{\alpha+\beta}{1+\gamma}$, beispielsweise erhält man für $\alpha=1$, $\beta=2$ und $\gamma=3$ den Wert $\Mtfrac{3}{4}$ für den Term.
 Hier darf man aber nicht $\gamma=-1$ einsetzen.}
@@ -364,7 +409,7 @@ Diese Ausdrücke sind keine Terme im Sinne der Mathematik:
 \item{$a+b=20$, ist eine Gleichung (Einsetzen von Werten für $a$ und $b$ ergibt keine Zahl, sondern die Gleichung ist eben wahr oder falsch).}
 \item{$a\cdot (b+c$ ist nicht richtig geklammert,}
 \item{\glqq\textit{Anteil der Mädchen in der Schulklasse}\grqq\ ist kein Term, kann aber durch den Term $\Mtfrac{a}{a+b}$ formalisiert werden,}
-\item{$\sin$ ist kein Term sondern ein Funktionsname, dagegen ist $\sin(x)$ ein Term (der bei Einsetzen einer Zahl für $x$ ausgewertet werden kann).}
+\item{$\sin$ ist kein Term sondern ein Funktionsname, dagegen ist $\sin(\alpha)$ ein Term (der bei Einsetzen eines Winkels für $\alpha$ ausgewertet werden kann).}
 \end{itemize}
 \end{MExample}
 
@@ -560,7 +605,7 @@ $$
 
 \MSubsection{Bruchrechnung}
 \MLabel{M01_Bruchrechnung}
-\begin{MXContent}{Bruchrechnung}{Bruchrechnung}{STD}
+\begin{MXContent}{Mit Brüchen rechnen}{Mit Brüchen rechnen}{STD}
 \MDeclareSiteUXID{VBKM01_Bruchrechnung}
 
 Ein Bruch ist eine rationale Zahl der Form $\displaystyle \Mtfrac{\mbox{Z"ahler}}{\mbox{Nenner}}$, wobei Z"ahler und Nenner ganze Zahlen sind und der Nenner $\neq 0$ ist. 
@@ -711,6 +756,11 @@ $$\Mdfrac23\cdot \Mdfrac45 = \Mdfrac{2\cdot 4}{3\cdot 5} = \Mdfrac{8}{15}\MDFPSp
 \end{MExample}
 
 
+\end{MXContent}
+
+\begin{MXContent}{Umwandeln von Brüchen}{Umwandeln von Brüchen}{STD}
+\MDeclareSiteUXID{VBKM01_USBrueche}
+
 Wird ein Bruch ausdividiert, so erhält man einen \MEntry{Dezimalbruch}{Dezimalbruch} bzw. eine Dezimalzahl, zum Beispiel
 $$\Mdfrac{1}{2} = \MZahl{0}{5} \MDFPSpace, \MDFPaSpace \Mdfrac{1}{3} = \MZahl{0}{33333}\ldots= \MZahl{0}{}\bar{3} \MDFPSpace, \MDFPaSpace \Mdfrac{1}{7} = \MZahl{0}{}\overline{142857} \MDFPSpace, \MDFPaSpace \Mdfrac{1}{8} = \MZahl{0}{125} \MDFPeriod$$
 Schon an diesen Beispielen zeigt sich, dass die Division entweder aufgehen kann und man
@@ -792,6 +842,45 @@ $$
 10x-x=\MZahl{4}{1}\;\Rightarrow\; 9x=\Mdfrac{41}{10}\;\Rightarrow\;x=\Mdfrac{41}{90} \MDFPeriod
 $$
 Dieser Bruch ist auch schon maximal gekürzt.
+\end{MHint}
+\end{MExercise}
+
+Beim \MEntry{überschlägigen Rechnen}{Überschlägiges Rechnen} (wenn man also nur ungefähr die Größe oder das Verhältnis einer Zahl zu anderen Zahlen abschätzen möchte ohne
+den exakten Wert als Dezimalbruch zu kennen) ist es dagegen hilfreich, statt einer Umwandlung mit dem Hauptnenner zu multiplizieren:
+
+\begin{MExample}
+\MLabel{VBKM01_Bsp_Anordnung}
+Die Brüche $\frac23$, $\frac{32}{12}$ und $\frac{12}{15}$ sollen der Größe nach angeordnet werden. Dazu multipliziert man die Brüche mit dem Hauptnenner (hier ist das $60$).
+Die Nenner verschwinden und es entstehen die ganzen Zahlen
+$$
+\frac23\cdot 60\;=\; 2\cdot 20\;=\; 40 \;\; ,\;\;
+\frac{32}{12}\cdot 60 \;=\; 32\cdot 5\;=\; 160 \;\; , \;\;
+\frac{12}{15}\cdot 60 \;=\; 12\cdot 4 \;=\; 48 \MDFPeriod
+$$
+Anordnen nach Größe ergibt $40<48<160$. Damit ist dann $\frac23<\frac{12}{15}<\frac{32}{12}$ da die Multiplikation der Brüche mit der gleichen Zahl $60$
+die Anordnung der Brüche nicht verändert (im Abschnitt \MNRef{M03_Ungleichungen} über Ungleichungen und wie man diese umformt).
+\end{MExample}
+
+\begin{MExercise}
+Wie lautet die Anordnung der Brüche $\frac{16}{15}$, $\frac12$, $\frac23$, $\frac2{-3}$, $\frac{60}{90}$ und $\frac43$ der Größe nach?
+\ \\
+\MLParsedQuestion{7}{2/(-3)}{5}{VBKM01_USR1}\ $<$\ 
+\MLParsedQuestion{7}{2/3}{5}{VBKM01_USR2}\ $=$\ 
+\MLParsedQuestion{7}{60/90}{5}{VBKM01_USR3}\ $<$\ 
+\MLParsedQuestion{7}{1/2}{5}{VBKM01_USR4}\ $<$\ 
+\MLParsedQuestion{7}{16/15}{5}{VBKM01_USR5} \ $<$\ 
+\MLParsedQuestion{7}{4/3}{5}{VBKM01_USR6} .
+\ \\
+\begin{MHint}{Lösung}
+Durchmultiplizieren mit dem Hauptnenner $180$ ergibt die Zahlen $90$, $60$, $-60$, $270$ und $60$, was auf die Anordnung
+$$
+-60\; < \; 60 \; = \; 60 \; < \; 90\; < \; 96 \; < \; 120
+$$
+und damit auf
+$$
+\frac2{-3} \; < \; \frac23 \;=\; \frac{60}{90} \; <\; \frac12\; < \; \frac{16}{15} \; < \; \frac{4}{3}
+$$
+führt.
 \end{MHint}
 \end{MExercise}
 
@@ -1236,9 +1325,8 @@ Am einfachsten multipliziert man jeden Summanden links mit jedem Summanden recht
 \MSubsection{Potenzen und Wurzeln}
 \MLabel{M01_Potenzenwurzeln}
 
-\begin{MXContent}{Potenzrechnung und Wurzeln}{Potenzen/Wurzeln}{STD}
+\begin{MXContent}{Potenzrechnung und Wurzeln}{Potenzen und Wurzeln}{STD}
 \MDeclareSiteUXID{VBKM01_PotenzenWurzeln}
-
 
 Der folgende Abschnitt beschäftigt sich mit Ausdr"ucken der Form $\displaystyle a^s$. Hierbei sei $a\in\R$. Aber f"ur welche Zahlen $s$ kann die Potenz sinnvoll definiert werden?
 
@@ -1253,8 +1341,20 @@ a^n & =&  a\cdot a\cdot a\cdot\dots\cdot a\: .\\ && \;\;(n\:\text{Faktoren})
 $$a^n = \underbrace{a\cdot a\cdot a\cdot\dots\cdot a}_{\mbox{$n$ Faktoren}} \MDFPeriod$$
 \fi
 $a$ wird als \MEntry{Basis}{Basis} und $n$ als \MEntry{Exponent}{Exponent} bezeichnet.\\
-Ferner ist $\displaystyle a^0 = 1$.
 \end{MInfo}
+
+Dabei gibt es einige besondere Fälle, die man am besten auswendig können sollte:
+
+\begin{MInfo}
+Ist der Exponent Null, so ist der Wert der Potenz gleich Eins, also beispielsweise $4^0=1$ aber auch $0^0=1$.
+Ist dagegen die Basis Null und der Exponent $n>0$, so ist $0^n=0$. Ist die Basis $-1$, so ist
+$$
+(-1)^n \;=\; -1 \;\text{falls Exponent ungerade} \;\; , \;\;
+(-1)^n \;=\; 1 \;\text{falls Exponent gerade}\MDFPeriod
+$$
+\end{MInfo}
+
+
 \begin{MExample}
  $$3^2 = 3\cdot 3 = 9 \MDFPSpace, \MDFPaSpace (-2)^3 = (-2)\cdot(-2)\cdot(-2) = -8 \MDFPSpace, \MDFPaSpace \left(\Mdfrac12\right)^4 = \Mdfrac12\cdot\Mdfrac12\cdot\Mdfrac12\cdot\Mdfrac12=\Mdfrac{1}{16} \MDFPeriod$$
 \end{MExample}
@@ -1264,6 +1364,18 @@ Potenzen mit negativen nat"urlichen Exponenten werden definiert durch die Formel
  $a^{-n} = \Mtfrac{1}{a^n}, n\in\N, a\neq 0.$ 
 \end{MInfo}
 Folglich berechnet sich $\displaystyle 2^{-2} = \Mtfrac{1}{2^2}=\Mtfrac14$. Analog ergibt sich $\displaystyle (-2)^{-2} = \Mtfrac{1}{(-2)^2} = \Mtfrac14$.
+
+
+\begin{MExercise}
+Welche Zahlenwerte haben diese Potenzen?
+\begin{MExerciseItems}
+\item{\MEquationItem{$\displaystyle 5^3$}{\MLSimplifyQuestion{8}{5^3}{5}{}{5}{256}{PPP1}}.\\\begin{MHint}{L"osung} $$5^3 =5\cdot5\cdot5=25\cdot 5= 125 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle (-1)^{1001}$}{\MLSimplifyQuestion{8}{-1}{5}{}{5}{256}{PPP2}}.\\\begin{MHint}{L"osung} $$(-1)^{1001}=-1 \;\text{da Exponent ungerade}\MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \left({-\Mdfrac12}\right)^{-3}$}{\MLSimplifyQuestion{8}{-8}{5}{}{5}{256}{PPP2b}}.\\\begin{MHint}{L"osung} $$(-\frac12)^{-3}=\frac1{(-\frac12)^3}=\frac1{-\frac18}=-8\MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \left((-3)^2\right)^3$}{\MLSimplifyQuestion{8}{9^3}{5}{}{5}{256}{PPP3}}.\\\begin{MHint}{L"osung} $$\left((-3)^2\right)^3=9^3=729 \MDFPeriod$$\end{MHint}}
+\end{MExerciseItems}
+\end{MExercise}
+
 
 Aber schon bei einem rationalen Exponenten der Form $\displaystyle \Mtfrac{1}{n}, n\in\N$, muss die Definition wieder erweitert werden, um zum Beispiel $\displaystyle 4^{\Mtfrac12}$ berechnen zu k"onnen. Diese Potenz l"asst sich auch in Wurzelschreibweise umwandeln und man erhält $\displaystyle 4^{\Mtfrac12} = \sqrt{4} =2$. Allgemein gilt:
 \begin{MInfo}
@@ -1315,6 +1427,20 @@ $$\left(\Mdfrac14\right)^{-\Mtfrac23} = \sqrt[3]{\left(\Mdfrac14\right)^{-2}} = 
 Die f"ur Potenzen mit reeller Basis und rationalem Exponenten g"ultigen Rechenregeln werden unter der Bezeichnung Potenzgesetze zusammengefasst.
 Die Regeln differieren in Abh"angigkeit von der Betrachtung von Potenzen mit derselben Basis bzw. demselben Exponenten.
 
+\begin{MExercise}
+Berechnen Sie die folgenden Wurzeln (es kommen hier stets ganze Zahlen heraus):
+\begin{MExerciseItems}
+\item{\MEquationItem{$\displaystyle \left(\sqrt[5]{3}\right)^5$}{\MLSimplifyQuestion{15}{3}{5}{}{5}{1024}{PPP13}}.\\\begin{MHint}{L"osung} $$\left(\sqrt[5]{3}\right)^5=(3^5)^{\Mtfrac15}=3^{5\cdot \Mdfrac15}=3 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle \sqrt[4]{256}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{1024}{PPP14}}.\\\begin{MHint}{L"osung} $$\sqrt[4]{256}=\left({2^8}\right)^{\Mtfrac14}=2^2=4 \MDFPeriod$$\end{MHint}}
+\end{MExerciseItems}
+\end{MExercise}
+
+\end{MXContent}
+
+\begin{MXContent}{Rechnen mit Potenzen}{Rechnen mit Potenzen}{STD}
+\MDeclareSiteUXID{VBKM01_RPW}
+
+Die folgenden Rechenregeln ermöglichen das Umformen und Vereinfachen von Ausdrücken, die Potenzen oder Wurzeln enthalten:
 
 \begin{MInfo}
 \MLabel{VBKM01_Potenzgesetze}
@@ -1322,9 +1448,87 @@ F"ur $a,b \in \R, a,b>0, p,q\in\Q$ gelten die \MEntry{Potenzgesetze}{Potenzgeset
 $$a^p\cdot b^p = (a\cdot b)^p \MDFPSpace, \MDFPaSpace \Mdfrac{a^p}{b^p} = \left(\Mdfrac{a}{b}\right)^p \MDFPSpace,  \MDFPaSpace a^p\cdot a^q = a^{p+q} \MDFPSpace, \MDFPaSpace \Mdfrac{a^p}{a^q} = a^{p-q} \MDFPSpace, \MDFPaSpace (a^p)^q = a^{p\cdot q} \MDFPeriod$$ 
 \end{MInfo}
 
-Insbesondere ist zu beachten, dass im Allgemeinen $\displaystyle (a^p)^q \neq a^{p^q}$, d.~h. bei mehrfachem Potenzieren sollten Klammern gesetzt werden.
+Insbesondere ist zu beachten, dass im Allgemeinen $\displaystyle (a^p)^q \neq a^{p^q}$ ist, d.~h. bei mehrfachem Potenzieren sollten Klammern gesetzt werden.
 Zum Beispiel ist $\displaystyle \left(2^3\right)^2 = 8^2 = 64$, aber $\displaystyle 2^{\left(3^2\right)} = 2^9 = 512$.
-Sind keine Klammern gesetzt, so wird $a^{p^q}$ als $a^{(p^q)}$ interpretiert.
+\ \\ \ \\
+\MFormelZoomHint
+\ \\
+\begin{MExample}
+Sind keine Klammern gesetzt, so wird $a^{p^q}$ als $a^{(p^q)}$ interpretiert, also beispielsweise
+\begin{eqnarray*}
+2^{3^4} & =& 2^{3\cdot3\cdot3\cdot 3} \;=\; 2^{81} \;=\; 2417851639229258349412352\;\; \text{(Exponent zuerst ausgewertet)}\\
+(2^3)^4 &=& 8^4 \;=\; 4096 \;\; \text{(Klammer zuerst ausgewertet)}\MDFPeriod
+\end{eqnarray*}
+Alternativ könnte man auch mit den Potenzgesetzen $(2^3)^4=2^{(3\cdot 4)}=2^{12}=4096$ ausrechnen.
+\end{MExample}
+
+\begin{MExercise}
+Die folgenden Ausdrücke kann man mit Hilfe der Potenzgesetze vereinfachen:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\displaystyle 3^3\cdot 3^5\cdot 3^{-1}$}{\MLSimplifyQuestion{15}{3^7}{5}{}{5}{2048}{PPP7}}.\\\begin{MHint}{L"osung} $$3^3\cdot 3^5\cdot 3^{-1}=3^{3+5-1}=3^7 \MDFPeriod$$\end{MHint}}
+\item{\MEquationItem{$\displaystyle 4^2\cdot 3^2$}{\MLSimplifyQuestion{15}{12^2}{5}{}{5}{2048}{PPP8}}.\\\begin{MHint}{L"osung} $$4^2\cdot 3^2=(4\cdot 3)^2=12^2 \MDFPeriod$$\end{MHint}}
+\end{MExerciseItems}
+\end{MExercise}
+
+Beim Vergleichen von Potenzen und Wurzeln ist Vorsicht geboten: Nicht nur die Zahlenwerte, auch die Vorzeichen von Exponent und Basis haben einen Einfluss darauf,
+ob der Wert der Potenz groß oder klein ist:
+
+\begin{MExample}
+Bei positiver Basis und negativen Exponenten nimmt der Wert der Potenz ab, wenn man die Basis vergrößert:
+\begin{eqnarray*}
+2^{-1} &=& \frac12\;=\; \MZahl{0}{5}\ \\
+3^{-1} &=& \frac13\;=\; \MZahl{0}{}\bar 3\ \\
+4^{-1} &=& \frac14\;=\; \MZahl{0}{25}\; \text{usw.}
+\end{eqnarray*}
+
+Bei negativer Basis wechselt dagegen das Vorzeichen der Potenz, wenn man den Exponenten erhöht:
+\begin{eqnarray*}
+(-2)^1 &=& -2\\
+(-2)^2 &=& 4\\
+(-2)^3 &=& -8\\
+(-2)^4 &=& 16 \; \text{usw.}
+\end{eqnarray*}
+
+Das Ziehen von Wurzeln (bzw. Potenzieren mit einer positiven Zahl kleiner Eins) verkleinert eine Basis $>1$, aber vergrößert eine Basis $<1$:
+\begin{eqnarray*}
+\sqrt{2} &=& \MZahl{1}{414}\ldots\;\; < \;\; 2\\
+\sqrt{3} &=& \MZahl{1}{732}\ldots\;\; < \;\; 3\\
+\sqrt{\MZahl{0}{5}} &=& \MZahl{0}{707}\ldots\;\; > \;\; \MZahl{0}{5}\\
+\sqrt{\MZahl{0}{}\bar 3} &=& \MZahl{0}{577}\ldots\;\; > \;\; \MZahl{0}{}\bar 3\;\text{usw.}
+\end{eqnarray*}
+
+\end{MExample}
+
+\begin{MExercise}
+Ordnen Sie diese Potenzen der Größe nach an unter Beachtung der Vorzeichen von Basen und Exponenten: $2^3$, $2^{-3}$, $3^2$, $(-3)^2$, $(-3)^{-2}$, $3^{\frac12}$, $2^{\frac13}$:
+\ \\
+\MLParsedQuestion{9}{(-3)^(-2)}{5}{VBKM01_USR7}\ $<$\ 
+\MLParsedQuestion{9}{2^(-3)}{5}{VBKM01_USR8}\ $<$\ 
+\MLParsedQuestion{9}{2^(1/3)}{5}{VBKM01_USR9}\ $<$\ 
+\MLParsedQuestion{9}{3^(1/2)}{5}{VBKM01_USR10}\ $<$\ 
+\MLParsedQuestion{9}{2^3}{5}{VBKM01_USR11} \ $<$\ 
+\MLParsedQuestion{9}{3^2}{5}{VBKM01_USR12} \ $=$\ 
+\MLParsedQuestion{9}{(-3)^2}{5}{VBKM01_USR13}\ .
+\ \\
+\begin{MHint}{Lösung}
+Hier gibt es mehrere Wege zur richtigen Lösung. Beispielsweise lohnt es sich, zunächst alle Potenzen mit Drei zu potenzieren (analog zur Rechnung in Beispiel \MRef{VBKM01_Bsp_Anordnung}).
+Potenzieren mit der Drei ist dabei erlaubt, weil es eine ungerade Zahl ist, die als Exponent das Vorzeichen nicht aufhebt. Potenzieren mit der Zwei würde dagegen die richtige
+Anordnung der Zahlen aufheben. Es ergibt sich
+\begin{eqnarray*}
+(2^3)^3 &=& 2^{3\cdot 3} \;=\; 2^9 \;=\; 512\\
+(2^{-3})^3 &=& 2^{(-3)\cdot 3}\;=\; 2^{-9} \;=\; \frac1{512}\;\text{da Exponent negativ}\\
+(3^2)^3 &=& 9^3 \;=\; 81\cdot9 \;=\; 729\\
+((-3)^2)^3 &=& 9^3 \;=\; 729\;\text{da Exponent gerade}\\
+((-3)^{-2})^3 &=& \frac1{((-3)^2)^3} \;=\; \frac1{729}\\
+(3^{\frac12})^3 &=& 3^{\frac32}\; >\; 3 \;\text{(da Exponent größer als Eins)}\\
+(2^{\frac13})^3 &=& 2\: .
+\end{eqnarray*}
+Vergleichen dieser Werte führt auf die Anordnung
+$$
+(-3)^{-2}\;<\;2^{-3}\;<\;2^{\frac13}\;<\;3^{\frac12}\; < \; 2^3\; < \; 3^2 \;=\; (-3)^2\MDFPeriod
+$$
+\end{MHint}
+\end{MExercise}
 
 \end{MXContent}
 
@@ -1334,9 +1538,6 @@ Sind keine Klammern gesetzt, so wird $a^{p^q}$ als $a^{(p^q)}$ interpretiert.
 \begin{MExercise}
 Berechnen Sie die folgenden Potenzen:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle 5^3$}{\MLSimplifyQuestion{15}{5^3}{5}{}{5}{256}{PPP1}}.\\\begin{MHint}{L"osung} $$5^3 = 125 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle (-1)^{1001}$}{\MLSimplifyQuestion{15}{-1}{5}{}{5}{256}{PPP2}}.\\\begin{MHint}{L"osung} $$(-1)^{1001}=-1 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \left((-3)^2\right)^3$}{\MLSimplifyQuestion{15}{9^3}{5}{}{5}{256}{PPP3}}.\\\begin{MHint}{L"osung} $$\left((-3)^2\right)^3=9^3=729 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \left(-\Mdfrac{3}{5}\right)^4$}{\MLSpecialQuestion{10}{81/625}{5}{0}{0}{exactfraction}{PPP4}}.\\\begin{MHint}{L"osung} $$\left(-\Mdfrac{3}{5}\right)^4=\Mdfrac{3^4}{5^4}=\Mdfrac{81}{625} \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \left(2^{-2}\right)^{-3}$}{\MLSimplifyQuestion{15}{2^6}{5}{}{5}{256}{PPP5}}.\\\begin{MHint}{L"osung} $$\left(2^{-2}\right)^{-3}=2^{(-2)\cdot(-3)}=2^6=64 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle\left(-\Mdfrac{1}{2}\right)^0 $}{\MLSimplifyQuestion{15}{1}{5}{}{5}{256}{PPP6}}.\\\begin{MHint}{L"osung} $$\left(-\Mdfrac{1}{2}\right)^0=1 \MDFPeriod$$\end{MHint}}
@@ -1346,8 +1547,6 @@ Berechnen Sie die folgenden Potenzen:
 \begin{MExercise}
 Vereinfachen Sie die folgenden Ausdr"ucke mit den Potenzregeln und durch Kürzen, die Potenzen brauchen Sie dabei nicht auszuwerten:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle 3^3\cdot 3^5\cdot 3^{-1}$}{\MLSimplifyQuestion{15}{3^7}{5}{}{5}{2048}{PPP7}}.\\\begin{MHint}{L"osung} $$3^3\cdot 3^5\cdot 3^{-1}=3^{3+5-1}=3^7 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle 4^2\cdot 3^2$}{\MLSimplifyQuestion{15}{12^2}{5}{}{5}{2048}{PPP8}}.\\\begin{MHint}{L"osung} $$4^2\cdot 3^2=(4\cdot 3)^2=12^2 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \Mdfrac{(-2)^7}{(-2)^5}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{2048}{PPP9}}.\\\begin{MHint}{L"osung} $$\Mdfrac{(-2)^7}{(-2)^5}=(-2)^{7-5}=(-2)^2 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle 6^2\cdot 3^{-2}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{2048}{PPP10}}.\\\begin{MHint}{L"osung} $$6^2\cdot 3^{-2}=6^2\cdot \left({\Mdfrac13}\right)^{2}=\left({6\cdot\Mdfrac13}\right)^2=2^2 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \Mdfrac{64^3}{8^3}$}{\MLSimplifyQuestion{15}{8^3}{5}{}{5}{2048}{PPP11}}.\\\begin{MHint}{L"osung} $$\Mdfrac{64^3}{8^3}=\left({\Mdfrac{64}{8}}\right)^3=8^3 \MDFPeriod$$\end{MHint}}
@@ -1363,8 +1562,6 @@ $$
 \begin{MExercise}
 Berechnen Sie die folgenden Wurzeln (es kommen hier stets ganze Zahlen heraus):
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle \left(\sqrt[5]{3}\right)^5$}{\MLSimplifyQuestion{15}{3}{5}{}{5}{1024}{PPP13}}.\\\begin{MHint}{L"osung} $$\left(\sqrt[5]{3}\right)^5=(3^5)^{\Mtfrac15}=3^{5\cdot \Mdfrac15}=3 \MDFPeriod$$\end{MHint}}
-\item{\MEquationItem{$\displaystyle \sqrt[4]{256}$}{\MLSimplifyQuestion{15}{4}{5}{}{5}{1024}{PPP14}}.\\\begin{MHint}{L"osung} $$\sqrt[4]{256}=\left({2^8}\right)^{\Mtfrac14}=2^2=4 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \sqrt[3]{3}\cdot \sqrt[3]{9}$}{\MLSimplifyQuestion{15}{3}{5}{}{5}{1024}{PPP15}}.\\\begin{MHint}{L"osung} $$\sqrt[3]{3}\cdot \sqrt[3]{9}=\sqrt[3]{3\cdot 3\cdot 3}=3 \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle \sqrt[3]{343}$}{\MLSimplifyQuestion{15}{7}{5}{}{5}{1024}{PPP16}}.\\\begin{MHint}{L"osung} $$\sqrt[3]{343}=\sqrt[3]{7^3}=7 \MDFPeriod$$\end{MHint}}
 \end{MExerciseItems}
