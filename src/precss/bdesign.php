@@ -676,3 +676,12 @@ ul.legende li .xsymb {
     min-width: [-TINYFONTSIZE-];
     color: [-TOCMINCOLOR-] !important;
 }
+
+.modstartbox {
+    width: 100%;
+    padding: 5px;
+    background-color: [-MODSTARTBOXBACKGROUND-];
+    color: [-MODSTARTBOXCOLOR-];
+    border: 0 !important;
+    border-radius: 3px !important;
+}

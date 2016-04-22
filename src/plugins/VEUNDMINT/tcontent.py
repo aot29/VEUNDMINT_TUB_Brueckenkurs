@@ -61,6 +61,7 @@ class TContent(object):
         self.link = "" # for level <=3: section combination, level4: sectioncombo/docname (without html extension)
         self.backpath = "../" # level <=3: located in targetDir/html, should be used as backpath + link, never use os.path.join here as this is evaluated in JavaScript only!
         self.fullname = "" # if display==True, this contains the full path/filename relative to the top directory
+        self.contentlabel = "" # will be set by node management and processed by label management, can be used with mmref and msref tags
         self.savepage = False
         self.menuitem = True
         self.display = False

@@ -134,9 +134,10 @@ class Option(object):
             "qexport_download_doc": "Quellcode dieser Aufgabe im Word-Format",
             "message_done": "Alle Aufgaben gelöst",
             "message_progress": "Aufgaben teilweise gelöst",
-            "message_problem": "Einige Aufgaben falsch beantwortet"
+            "message_problem": "Einige Aufgaben falsch beantwortet",
+            "modstartbox_tocline": "Dieses Modul gliedert sich in folgende Abschnitte:"
         }
-
+        
         self.knownmathcommands = [ "sin", "cos", "tan", "cot", "log", "ln", "exp" ] # these will be excluded from post-ttm modifications
         self.mathmltags = [ "math", "mo", "mi", "mrow", "mstyle", "msub", "mn", "mtable", "msup", "mtext", "mfrac", "msqrt", "mover" ]
         self.specialtags = [ "tocnavsymb"] + self.mathmltags # these will be excluded from libtidy error detection

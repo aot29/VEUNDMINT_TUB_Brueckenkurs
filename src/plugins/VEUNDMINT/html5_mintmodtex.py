@@ -255,6 +255,7 @@ class Plugin(basePlugin):
             contentelement = tupel[1]
             text = etree.tostring(contentelement, pretty_print = True, encoding = "unicode")
             
+            
             if re.search(r"<!-- scontent;-", text, re.S):
                 self.sys.message(self.sys.CLIENTERROR, "scontent environments no longer supported, consider turning them into xcontents")
 
@@ -282,6 +283,11 @@ class Plugin(basePlugin):
                 p.ismodul = True
                 p.display = True
                 p.content = text
+                # first label appearing in content becomes contentlabel
+                lms = re.search(r"<!-- mmlabel;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); //-->", text, re.S)
+                if lms:
+                    p.contentlabel = lms.group(1)
+                    self.sys.message(self.sys.VERBOSEINFO, "tc receives contenttitle " + lms.group(1))
                 p.docname = "sectionx" + str(p.chapter) + "." + str(sec) + "." + str(ssec)
                 p.section = sec
                 p.link = p.docname
@@ -321,6 +327,14 @@ class Plugin(basePlugin):
                         self.sys.message(self.sys.CLIENTERROR, "start end end of xcontent " + i + " do not match")
                     
                     p.content = m.group(5)
+                    # first label appearing in content becomes contentlabel
+                    lms = re.search(r"<!-- mmlabel;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); //-->", text, re.S)
+                    if lms:
+                        p.contentlabel = lms.group(1)
+                        self.sys.message(self.sys.VERBOSEINFO, "tc receives contenttitle " + lms.group(1))
+                    else:
+                        p.contentlabel = "_UNSETNODELABEL" + str(p.myid)
+                        self.sys.message(self.sys.VERBOSEINFO, "Element " + p.title + " has no contentlabel, not a problem, will be substituted later")
                     p.icon = m.group(4) # will no longer be used
                     p.display = True
                     p.section = sec
@@ -410,6 +424,7 @@ class Plugin(basePlugin):
                             if (l[6] == "2") and (int(l[2]) == p.chapter) and (int(l[3]) == p.section) and (int(l[4]) == p.subsection):
                                 # prepend mmlabel tag and html anchor (which was created by ttm outside the xcontent block)
                                 p.content = "<a id=\"" + l[0] + "\"></a><!-- mmlabel;;" + l[0] + ";;" + l[1] + ";;" + l[2] + ";;" + l[3] + ";;" + l[4] + ";;" + l[5] + ";;" + l[6] + "; //-->" + p.content
+                                p.contentlabel = l[0] # subsection label will be new contentlabel, no matter what
                     
                     p.right = None
                     pos = pos + 1
@@ -466,6 +481,41 @@ class Plugin(basePlugin):
     # scan tree content elements for course scope relevant information tags
     def analyze_nodes_stage1(self, tc):
         self.sys.message(self.sys.VERBOSEINFO, "analyze_nodes_stage1 start on " + tc.title)
+
+        # initialize modstart boxes
+        def modsb(m):
+            self.sys.message(self.sys.VERBOSEINFO, "Setting up modstart box (" + tc.title + ", " + str(tc.level) + ", " + str(tc.nr) + ")")
+            if len(tc.children) == 0:
+                self.sys.message(self.sys.CLIENTWARN, "A modstart box appears in a content node without children, so it will be empty")
+                return "" # don't generate the box
+            s = "<div class=\"modstartbox\">\n"
+            s += self.options.strings['modstartbox_tocline'] + "<br /><br />"
+            # iterate children (MSubsection nodes) to get local toc
+            s += "<ul>\n"
+            for k in range(len(tc.children)):
+                p = tc.children[k]
+                # descend into the tree until a label is found
+                while ((p.contentlabel == "") and (len(p.children) > 0)):
+                    p = p.children[0]
+                
+                if p.contentlabel == "":
+                    self.sys.message(self.sys.CLIENTERROR, "ModstartBox requested for content element " + tc.title + ", but child " + p.title + " misses contentlabels")
+                else:
+                    # simulate \MNRref and MSRef from mintmod.tex
+                    s += "<li>Abschnitt <!-- mmref;;" + p.contentlabel + ";;0; //-->, <!-- msref;;" + p.contentlabel + ";;" + p.caption + "; //-->"
+                    if (k < len(tc.children) - 1):
+                        s += ","
+                    s += "<br clear=\"all\"/><br clear=\"all\"/>"
+                    s += "</li>\n"
+            s += "</ul>\n"
+            s += "</div\n>"
+            return s # replace the tag in html
+            
+        (tc.content, n) = re.subn(r"\<!-- modstartbox //--\>", modsb, tc.content, 0, re.S)
+        if (tc.level == 2) and (tc.nr == "1") and (n == 0):
+            self.sys.message(self.sys.CLIENTWARN, "Module start content " + tc.title + " has no modstart box")
+
+
         # extract word index information (must be extracted before stage1 label management)
         def windex(m):
             idx = len(self.data['wordindexlist'])
@@ -1207,7 +1257,5 @@ class Plugin(basePlugin):
             
                  
         return reply
-                
-            
-            
-    
+
+

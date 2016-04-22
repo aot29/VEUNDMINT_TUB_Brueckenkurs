@@ -1826,6 +1826,13 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\modsemph}[1]{#1}
 
 
+\ifttm%
+\newcommand{\MModstartBox}{\special{html:<!-- modstartbox //-->}}
+\else%
+\relax
+\fi
+
+
 % ---------------------------------- Spezialbefehle fuer JL ------------------------------------------
 
 
@@ -2176,6 +2183,7 @@ Hier erscheint die Testauswertung!
 
 
 % ----------------------------------- Spezialelemente fuer Konfigurationsseite, werden nicht von mintscripts.js verwaltet --
+
 
 % #1 = DOM-id der Box
 \ifttm\newcommand{\MConfigbox}[1]{\special{html:<input cfieldtype="2" type="checkbox" name="Name_}#1\special{html:" id="}#1\special{html:" onchange="confHandlerChange('}#1\special{html:');"/>}}\fi % darf im PDF nicht aufgerufen werden!

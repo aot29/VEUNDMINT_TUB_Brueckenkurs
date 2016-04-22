@@ -356,8 +356,6 @@ class PageFactory(object):
     
     
     def postprocessing(self, html, tc):
-        # orgpage = tc
-      
         # read unique ids
         m = re.search(r"\<!-- mdeclaresiteuxidpost;;(.+?);; //--\>", html, re.S)
         if m:
@@ -378,7 +376,7 @@ class PageFactory(object):
         # we are detecting the combination <!--hbox--><br clear="all" /> followed by a table tag
         (html, n) = re.subn(r"\<!--hbox--\>\<br clear=\"all\" /\> *\<table", "<!--hbox--> <table", html, 0, re.S)
         if n > 0: self.sys.message(self.sys.VERBOSEINFO, "Postprocessing eliminated " + str(n) + " br tags in front of tables")
-        
+
         # solve problem with MathML: <mi>AB</mi> is not displayed as italic, but substitute only if contained in a single mrow to keep \sin, \cos, etc. non-italic
         def mireplace(m):
             if m.group(1) in self.options.knownmathcommands:
@@ -690,6 +688,7 @@ class PageFactory(object):
             return "<div style=\"display:" + vis + "\" id=\"DROULETTE" + rid + "." + str(myid) + "\">" + bt + m.group(3) + "</div></div>"
   
         html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>", droul, html, 0, re.S)
+  
   
         return html
     
