@@ -1829,7 +1829,13 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \ifttm%
 \newcommand{\MModstartBox}{\special{html:<!-- modstartbox //-->}}
 \else%
-\relax
+\newcommand{\MModstartBox}{%
+\begin{framed}
+\begin{center}
+--- Hier erscheint im HTML eine Auflistung der Abschnitte mit Punktezahlen ---
+\end{center}
+\end{framed}
+}
 \fi
 
 
@@ -1988,6 +1994,8 @@ Hier erscheint die Testauswertung!
 % ---------------------------------- Notationsmakros -------------------------------------------------------------
 
 % Notationsmakros die nicht von der Kursvariante abhaengig sind
+
+\newcommand{\MGrad}{{}^{\circ}} % Fuer Winkel im Gradmass
 
 \newcommand{\MZahltrennzeichen}[1]{\renewcommand{\MZXYZhltrennzeichen}{#1}}
 

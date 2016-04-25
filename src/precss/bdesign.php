@@ -678,7 +678,6 @@ ul.legende li .xsymb {
 }
 
 .modstartbox {
-    width: 100%;
     padding: 5px;
     background-color: [-MODSTARTBOXBACKGROUND-];
     color: [-MODSTARTBOXCOLOR-];
