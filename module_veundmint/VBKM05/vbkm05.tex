@@ -800,8 +800,39 @@ verschiedene Zahlen, mit denen die Gr"o"se eines Winkels angegeben werden kann.
 \paragraph{Gradma"s}
 
 Es wird eine Kreisscheibe in $360$ gleiche Segmente eingeteilt. Eine Drehung
-um ein Segment beschreibt einen Winkel um $1$ Grad.
+um ein Segment beschreibt einen Winkel um $1$ Grad. Hierf"ur wird $1\MGrad$ 
+geschrieben. In der folgenden Zeichnung sind Winkel mit einem Gradma"s von 
+$30\MGrad$ und Vielfachen davon dargestellt.
 
+%Winkel im Gradmass:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt]
+\coordinate (M) at (0,0);
+\coordinate (A) at (2,0);
+ \draw (M) -- (0:2cm);
+\foreach \x in {30, 60, 120, 150, 210, 240, 300, 330}
+ \draw[style=dotted] (M) -- ({\x}:2);
+%\foreach \x in {0, 90, 180, 270}
+% \draw (M) -- ({\x}:2cm);
+% \draw[color=black!8!white] (M) -- (0:2cm) node[right,color=black] {$0\MGrad$};
+ \draw (M) -- (0:2cm) node[right] {$0\MGrad$};
+ \draw (M) -- (90:2cm) node[above] {$90\MGrad$};
+ \draw (M) -- (180:2cm) node[left] {$180\MGrad$};
+ \draw (M) -- (270:2cm) node[below] {$270\MGrad$};
+\node at (30:2.4cm) {$30\MGrad$};
+\node at (60:2.4cm) {$60\MGrad$};
+\node at (120:2.4cm) {$120\MGrad$};
+\node at (150:2.4cm) {$150\MGrad$};
+\node at (210:2.4cm) {$210\MGrad$};
+\node at (240:2.4cm) {$240\MGrad$};
+\node at (300:2.4cm) {$300\MGrad$};
+\node at (330:2.4cm) {$330\MGrad$};
+%Kreis:
+\draw (M) circle(2cm);
+\end{tikzpicture}
+}
+\end{center}
 
 \paragraph{Bogenma"s}
 Bereits im antiken Babylonien, "Agypten und Griechenland stellte man fest, 
@@ -1803,7 +1834,7 @@ entdeckt man auch Begrenzungen, die n"aherungsweise Strecken sind. Ein markantes
 Beispiel sind Wabenstrukturen, die von Insekten angelegt werden.
 Technische Anwendungen bauen oft auf Figuren mit geraden Begrenzungen auf.
 
-In diesem Abschnitt werden h"aufig Spezialf"alle von Vielecke betrachtet. 
+In diesem Abschnitt werden einige Spezialf"alle von Vielecken betrachtet. 
 Dabei sollen zun"achst charakteristische Besonderheiten benannt werden.
 Anschlie"send wird der Frage nachgegangen, wie der Fl"acheninhalt eines 
 Vielecks einfach berechnet werden kann. 
@@ -1814,7 +1845,8 @@ Vielecks einfach berechnet werden kann.
 \begin{MXContent}{Vielecke}{Vielecke}{STD}
 \MDeclareSiteUXID{VBKM05_Vielecke_Content}
 
-Neben Dreiecken kann man nat\"urlich auch Figuren mit mehr Ecken betrachten:
+Neben den oben betrachteten Dreiecken kann man nat\"urlich auch Figuren mit 
+mehr Ecken betrachten. 
 
 \begin{MXInfo}{Vielecke}\MLabel{VBKM05_Vielecke}%
 Es sei $n$ eine nat\"urliche Zahl, die mindestens $3$ betrage.
@@ -1842,19 +1874,65 @@ Der kleinere dieser beiden Winkel hei\ss t
 \end{itemize}
 \end{MXInfo}
 
-Unter den Vielecken nehmen die Vierecke eine besondere Stellung ein, da diese in noch feinere Klassen eingeteilt werden.
+Unter den Vielecken nehmen die Vierecke eine besondere Stellung ein, da 
+diese in technischen Anwendungen oft verwendet werden. Dadurch haben sich 
+weitere allt"agliche Namen entwickelt, die verschiedene Klassen von Vierecken 
+bezeichnen.
 
 \begin{MXInfo}{Vierecke}\MLabel{VBKM05_Vierecke}%
-Ein Viereck hei\ss t
+Ein Viereck hei"st
 \begin{itemize}
- \item \MEntry{Trapez}{Trapez}, falls wenigstens zwei Seiten parallel sind;
- \item \MEntry{Parallelogramm}{Parallelogramm}, falls je zwei gegen\"uberliegende Seiten parallel sind;
- \item \MEntry{Raute}{Raute} oder \MEntry{gleichseitiges Viereck}{gleichseitiges Viereck} oder auch \MEntry{Rhombus}{Rhombus}, falls alle vier Seiten gleich lang sind;
  \item \MEntry{Rechteck}{Rechteck}, falls alle vier Winkel rechte Winkel sind;
- \item \MEntry{Quadrat}{Quadrat}, falls es ein Rechteck ist, bei dem alle Seiten gleich lang sind;
- \item \MEntry{Einheitsquadrat}{Einheitsquadrat}, falls es ein Quadrat mit Seitenl\"ange $1$ ist.
+ \item \MEntry{Trapez}{Trapez}, falls wenigstens zwei Seiten parallel sind;
+ \item \MEntry{Parallelogramm}{Parallelogramm}, falls je zwei 
+  gegen\"uberliegende Seiten parallel sind;
+ \item \MEntry{Raute}{Raute} oder \MEntry{gleichseitiges Viereck}{gleichseitiges Viereck} oder 
+  auch \MEntry{Rhombus}{Rhombus}, falls alle vier Seiten gleich lang sind;
+ \item \MEntry{Quadrat}{Quadrat}, falls es ein Rechteck ist, bei dem alle 
+  Seiten gleich lang sind;
+ \item \MEntry{Einheitsquadrat}{Einheitsquadrat}, falls es ein Quadrat mit 
+  Seitenl\"ange $1$ ist.
 \end{itemize}
 \end{MXInfo}
+
+%Rechteck:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt]
+%\coordinate (A) at (0,0);
+%Rechteck:
+\begin{scope}[xshift=-6.6cm]
+\draw (0,0) -- ++(2.4,0) -- ++(0,1.8) -- ++(-2.4,0) -- cycle;
+\node at (1.2,-1) {Rechteck};
+\end{scope}
+%
+%Trapez:
+\begin{scope}[xshift=-3.2cm]
+\draw (0,0) -- ++(2.4,0) -- ++(-0.3,1.8) -- ++(-1.2,0) -- cycle;
+\node at (1.2,-1) {Trapez};
+\end{scope}
+%
+%Parallelogramm:
+\begin{scope}[xshift=0cm]
+\draw (0,0) -- ++(2.4,0) -- ++(0.4,1.8) -- ++(-2.4,0) -- cycle;
+\node at (1.3,-1) {Parallelogramm};
+\end{scope}
+%
+%Raute:
+\begin{scope}[xshift=4.6cm]
+\draw (0,-0.2) -- (0.8,1) -- (0,2.2) -- (-0.8,1) -- cycle;
+\node at (0,-1) {Raute};
+\end{scope}
+%
+%Quadrat:
+\begin{scope}[xshift=6.6cm]
+\draw (0,0) -- ++(1.8,0) -- ++(0,1.8) -- ++(-1.8,0) -- cycle;
+\node at (1,-1) {Quadrat};
+\end{scope}
+\end{tikzpicture}
+}
+\end{center}
+
 
 Unter den gerade eingef\"uhrten speziellen Vierecken gibt es eine ganze Reihe von Zusammenh\"angen:
 
@@ -2837,30 +2915,66 @@ Holzst"ucks im Vergleich zum urspr"unglichen Holzquader.
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Intro}
-Je nach Sonnenstand ist der Schatten einer Person oder eines Gegenstandes 
-unterschiedlich gro"s. Indem die Verh"altnisse in Abh"angigkeit des Winkels
-erfasst werden, kann man die zugeh"origen L"angen berechnen. Die Betrachtung
-von funktionalen Zusammenh"ange, die sich hier aus geometrischen Beobachtungen 
-ergeben und zur Definition von Sinus, Cosinus und weiteren trigonometrischer 
-Gr"o"sen f"uhren, werden im n"achsten Modul allgemein besprochen.
+%Je nach Sonnenstand ist der Schatten einer Person oder eines Gegenstandes 
+%unterschiedlich gro"s. Indem die Verh"altnisse in Abh"angigkeit des Winkels
+%erfasst werden, kann man die zugeh"origen L"angen berechnen. Die Betrachtung
+%von funktionalen Zusammenh"ange, die sich hier aus geometrischen Beobachtungen 
+%ergeben und zur Definition von Sinus, Cosinus und weiteren trigonometrischer 
+%Gr"o"sen f"uhren, werden im n"achsten Modul allgemein besprochen.
+
+An Bergstra"sen werden Schilder aufgestellt, wenn es sehr steil bergab geht.
+Mit einer Prozentzahl wird beschrieben, wie stark das Gel"ande relativ 
+zu einer horizontalen Bewegung abf"allt.
+Systematisch wurden Fragen nach den Bedingungen von Bewegungen an einer 
+{\glqq}schiefen Ebene{\grqq} in der Physik von Galileo Galilei untersucht.
+Die Ergebnisse sind auch f"ur technische Konstruktionen relevant. 
+
+Als mathematisches Hilfsmittel dienen Winkelfunktionen. Sie beschreiben einen
+geometrischen Sachverhalt mittels eines rechnerischen Ausdrucks.
+%Im Bild von oben ausgedr"uckt, wird in diesem Abschnitt "uber Winkelfunktionen
+%beschrieben, wie der Zusammenhang zwischen der prozentualen Angabe des 
+Wie dieser Zusammenhang zwischen der prozentualen Angabe des Gef"alles und 
+dem zugeh"origen Winkel formuliert werden kann, wird in diesem Abschnitt
+beschrieben. Eine erste Untersuchung der Eigenschaften von Winkelfunktionen
+gibt einen Eindruck von den vielf"altigen Anwendungsm"oglichkeiten, die
+weit "uber die Geometrie hinausreichen und in den kommenden Abschnitten 
+immer wieder aufgegriffen werden.
+
 \end{MIntro}
 
 \begin{MXContent}{Trigonometrie am Dreieck}{Dreieck}{STD}
 \MLabel{Abschnitt:TrigonometrieAmDreieck}
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Content}
 
-Mithilfe der Strahlens\"atze konnte gezeigt werden, dass die Verh\"altnisse der
-Seiten in einem Dreieck lediglich von den Winkeln des Dreiecks abh\"angen. \"Andert man
-in einem Strahlensatz den Winkel bei~$S$ oder den Winkel, in dem die
-parallelen Geraden einen Strahl schneiden, so \"andern sich nat\"urlich
-auch die Verh\"altnisse.
-Legt man hingegen einen der beiden Winkel fest, so kann man die
-Verh\"altnisse in Abh\"angigkeit von dem anderen Winkel als Funktion
-von einer Variablen darstellen.\\
-\ \\
-Es sei nun der Winkel $\gamma$ auf $\gamma\,=\,\pi/2$ festgelegt, das hei\ss t es werde ein rechtwinkliges Dreieck betrachtet mit rechtem Winkel bei $\gamma$. Nun sind die Seitenverh\"altnisse nur vom Winkel $\alpha$ abh\"angig, der Winkel $\beta$ ergibt sich n\"amlich aus der Winkelinnensumme des Dreiecks. Dies f\"uhrt zu einer ganzen Schar von \"ahnlichen Dreiecken, wobei die Seiten $c$, $c'$, $\ldots$ die Hypotenusen sind. Im Hinblick auf den betrachteten Winkel $\alpha$ bezeichnet man die dem Winkel gegen\"uberliegen Seiten
-$a$, $a'$, $\ldots$ als \textbf{Gegenkatheten} und die am Winkel anliegenden Seiten $b$, $b'$, $\ldots$ als \textbf{Ankatheten}.\\
-Wendet man nun die Strahlens\"atze an, so gelangt man zu folgenden Erkenntnissen: 
+%Mithilfe der Strahlens\"atze konnte gezeigt werden, dass die Verh\"altnisse der
+%Seiten in einem Dreieck lediglich von den Winkeln des Dreiecks abh\"angen. \"Andert man
+%in einem Strahlensatz den Winkel bei~$S$ oder den Winkel, in dem die
+%parallelen Geraden einen Strahl schneiden, so \"andern sich nat\"urlich
+%auch die Verh\"altnisse.
+%Legt man hingegen einen der beiden Winkel fest, so kann man die
+%Verh\"altnisse in Abh\"angigkeit von dem anderen Winkel als Funktion
+%von einer Variablen darstellen.\\
+%\ \\
+%Es sei nun der Winkel $\gamma$ auf $\gamma\,=\,\pi/2$ festgelegt, das hei\ss t es werde ein rechtwinkliges Dreieck betrachtet mit rechtem Winkel bei $\gamma$. Nun sind die Seitenverh\"altnisse nur vom Winkel $\alpha$ abh\"angig, der Winkel $\beta$ ergibt sich n\"amlich aus der Winkelinnensumme des Dreiecks. Dies f\"uhrt zu einer ganzen Schar von \"ahnlichen Dreiecken, wobei die Seiten $c$, $c'$, $\ldots$ die Hypotenusen sind. Im Hinblick auf den betrachteten Winkel $\alpha$ bezeichnet man die dem Winkel gegen\"uberliegen Seiten
+%$a$, $a'$, $\ldots$ als \textbf{Gegenkatheten} und die am Winkel anliegenden Seiten $b$, $b'$, $\ldots$ als \textbf{Ankatheten}.\\
+%Wendet man nun die Strahlens\"atze an, so gelangt man zu folgenden Erkenntnissen: 
+
+F"ahrt man eine Stra"se mit einem Gef"alle von f"unf Prozent bergab, 
+nimmt die H"ohe alle hundert Meter um f"unf Meter ab. Dabei wird der 
+H"ohenunterschied im Vergleich zur Horizontalen betrachtet.
+
+Demnach betr"agt das Gef"alle $100\%$, wenn der H"ohenunterschied
+$100\MEinheit{m}$ zwischen zwei Positionen betr"agt, deren horizontaler 
+Abstand $100\MEinheit{m}$ betr"agt. Geometrisch formuliert, ist 
+die Verbindungsstrecke zwischen den beiden Punkte eine Diagonale 
+eines Quadrats. Damit hat der Winkel zwischen der horizontalen 
+Vergleichsstrecke und der Diagonalen, auf der man sich bewegt, das
+Winkelma"s von $45\MGrad$. 
+Schon die Berechnung, dass zu einem Gef"alle oder einer Steigung von $50\%$ 
+der Winkel $30\MGrad$ gro"s ist, ist bereits nicht mehr so einfach.
+Vor der Zeit von Taschenrechnern und Computern wurden die aufw"andig 
+bestimmten Werte in gro"sen Tafelwerken aufgeschrieben, um dann einfach
+nachgeschlagen werden zu k"onnen.
 
 \begin{MXInfo}{Die trigonometrischen Funktionen im rechtwinkligen Dreieck}
 \MLabel{Mathematik_ElementareGeometrie_Def:Trigonometrie}%
