@@ -509,11 +509,13 @@ Der $\MZahl{1}{40}$~Meter gro\ss e Junge muss $\MZahl{2}{50}$~Meter von der
 $\MZahl{2}{40}$~Meter hohen, $1$~Meter breiten und oben spitz zulaufenden 
 Hecke entfernt stehen, damit der Baum vollst\"andig verdeckt ist.
 
-Wie hoch ist der Baum, wenn die Mitte des Stamms $\MZahl{14}{5}$~Meter von der Hecke entfernt steht?
-\ifttm (Angabe in Metern) \MLParsedQuestion{10}{7.4}{1}{GEO7}\else\relax\fi
+Wie hoch ist der Baum, wenn die Mitte des Stamms $\MZahl{14}{5}$~Meter von 
+der Hecke entfernt steht?
 
 F\"uhren Sie die Rechnung bitte zun\"achst allgemein durch und setzen Sie erst
 am Ende die Zahlenwerte ein!
+
+Ergebnis: \MLParsedQuestion{10}{7.4}{1}{GEO7} $\MEinheit{m}$.
 
 \begin{MHint}{Hinweis}
 Beachten Sie die Breite der Hecke!
@@ -1080,7 +1082,7 @@ dass es um die Berechnung eines Wertes in einem bestimmten Winkelma"s geht.
 
 \begin{MXInfo}{Konvention}\MLabel{VBKM05_Konvention_Winkel}
 Wenn eine Berechnung unabh"angig von einem bestimmten Winkelma"s ist oder 
-dieses vorab festgelegt wurde, wird in Rechnung auch kurz vom Winkel 
+dieses vorab festgelegt wurde, wird in Rechnungen auch kurz vom Winkel 
 gesprochen und dieselbe Bezeichnung f"ur den Winkel und seinen Wert im 
 gew"ahlten Winkelma"s verwendet.
 \end{MXInfo}
@@ -1119,13 +1121,11 @@ sehr einfach ist.
 \begin{MExercise}
 Der Winkel $\Mmeasuredangle\left(g, h\right)$ betr\"agt im Gradma"s $60\MGrad$.
 Rechnen Sie den Winkel in das Bogenma\ss\ um:
-\ifttm%
-(Ein~$\pi$ geben Sie als \glqq\texttt{pi}\grqq\ ein. Sie k"onnen Ihr Ergebnis
-auch auf drei Nachkommastellen gerundet angeben.)
-\fi
-
 \par
 $\Mmeasuredangle\left(g, h\right)=$\MLParsedQuestion{10}{pi/3}{3}{M05ExAngle}.
+\par
+\MInputHint{Ein~$\pi$ geben Sie als \texttt{pi} ein. Sie k"onnen 
+Ihr Ergebnis auch auf drei Nachkommastellen gerundet angeben.}
 \par
 \begin{MHint}{L\"osung}
 Aus
@@ -1170,11 +1170,6 @@ Es werden sechs Winkel $\alpha_1$ bis $\alpha_6$ betrachtet, von denen jeweils
 der Wert im angegebenen Winkelma"s bekannt ist. Berechnen Sie den Wert im 
 anderen genannten Winkelma"s.
 
-\ifttm%
-Ein~$\pi$ geben Sie als {\glqq\}texttt{pi}{\grqq} ein. Sie k"onnen Ihr Ergebnis
-auch auf drei Nachkommastellen gerundet angeben.
-\fi
-
 \begin{center}
 \begin{tabular}{l*{6}{c}}
  & $\alpha_1$ & $\alpha_2$ & $\alpha_3$ & $\alpha_4$ & $\alpha_5$ & $\alpha_6$ \\
@@ -1182,6 +1177,9 @@ auch auf drei Nachkommastellen gerundet angeben.
  Gradma\ss\   & \MLParsedQuestion{10}{180}{3}{GEO4}      & $324$    & \MLParsedQuestion{10}{120}{3}{GEO5}        &    $270$    & \MLParsedQuestion{10}{165}{3}{GEO6} & $30$ \\
 \end{tabular}
 \end{center}
+\par
+\MInputHint{Ein $\pi$ geben Sie als \texttt{pi} ein. 
+Sie k"onnen Ihr Ergebnis auch auf drei Nachkommastellen gerundet angeben.}
 \end{MExercise}
 
 \end{MXContent}
@@ -3723,14 +3721,16 @@ Geben Sie $\sin \left( \alpha \right)$, $\sin \left( \beta \right)$ und $a$ an!
        $a \approx \MZahl{2}{9417}\MEinheit{cm}$, $\sin \left( \alpha \right) \approx \MZahl{0}{7587}$
        und $\sin \left( \beta \right) \approx \MZahl{0}{65201}$.
        \end{MHint}
- \item Berechnen Sie den Fl\"acheninhalt eines Dreiecks mit $\beta = \frac{11 \pi}{36}$,
-       $a = 4\MEinheit{m}$ und $c = 60\MEinheit{cm}$!
+\item Berechnen Sie den Fl\"acheninhalt eines Dreiecks mit den Seiten
+$a = 4\MEinheit{m}$ und $c = 60\MEinheit{cm}$
+und dem Winkel $\beta = \Mmeasuredangle(a,c) = \frac{11 \pi}{36}$!
+
+Ergebnis: \MLParsedQuestion{25}{4*sin(11*pi/36)*6/20}{3}{GEO8} $\MEinheit{m}^2$
        
-       \ifttm(Geben Sie Ihr Ergebnis auf drei Nachkommastellen genau oder als Ausdruck an!
-              Dabei wird der Sinus eines Winkels~$\Mvarphi$ als \glqq\texttt{sin(}$\Mvarphi$\texttt{)}\grqq\ 
-              und die Zahl~$\pi$ als \glqq\texttt{pi}\grqq\ geschrieben.)
-	      Anzahl der $\MEinheit{m}^2$: \MLParsedQuestion{25}{4*sin(11*pi/36)*6/20}{3}{GEO8}
-       \else\relax\fi
+\MInputHint{Geben Sie Ihr Ergebnis bitte auf drei Nachkommastellen gerundet 
+oder als Ausdruck an. Dabei wird der Sinus eines Winkels~$x$ als 
+\texttt{sin(x)} und die Zahl~$\pi$ als \texttt{pi} geschrieben.}
+ 
        \begin{MHint}{L\"osung}
        \[
                 \frac{\left( a \cdot \sin \left( \beta \right) \right) \cdot c}{2}
