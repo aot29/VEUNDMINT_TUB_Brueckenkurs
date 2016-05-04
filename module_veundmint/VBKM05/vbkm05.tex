@@ -1592,14 +1592,18 @@ entstandene Dreieck immer rechtwinklig.
 \begin{MExample}\MLabel{ThaleskreisBeispiel}
 Es soll ein rechtwinkliges Dreieck mit der Hypotenusenl\"ange $c=6\MEinheit{cm}$ 
 und der H\"ohe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.\\
-\ \\
+
 \begin{tabular}{lr}
 \begin{minipage}[b]{7cm}
-  \begin{enumerate}
-    \item Zuerst zeichnet man die Hypotenuse \newline $c=\overline{AB}$.\\
-    \item Die Mitte der Hypotenuse wird nun zum Mittelpunkt eines Kreises mit dem Radius $r = c/2$.\\
-    \item Nun zeichnet man eine Parallele zur Hypotenuse im Abstand $h_c$. Es gibt zwei Schnittpunkte $C$ und $C'$ dieser Parallelen mit dem Thaleskreis. 
-  \end{enumerate}
+ \begin{enumerate}
+  \item Zuerst zeichnet man die Hypotenuse \[c=\MGeoStrecke{A}{B} \MDFPeriod \]
+
+  \item Die Mitte der Hypotenuse wird nun zum Mittelpunkt eines 
+  Kreises mit dem Radius $r = c/2$.
+
+  \item Nun zeichnet man eine Parallele zur Hypotenuse im Abstand $h_c$. 
+  Es gibt zwei Schnittpunkte $C$ und $C'$ dieser Parallelen mit dem Thaleskreis. 
+ \end{enumerate}
 \end{minipage}
 &
 \MTikzAuto{%
@@ -2616,7 +2620,7 @@ Berechnen Sie den Fl\"acheninhalt des Polygons:\\
 \draw[color=blue] (1.1,0.8) node {\large $F_1$};
 \draw[color=blue] (2.75,1.2) node {\large $F_2$};
 \draw[color=blue] (4.4,0.9) node {\large $F_3$};
-\draw[color=blue] (3.0,-0.5) node {\large $F_4$};
+\draw[color=blue] (3.0,-0.5) node[fill=white] {\large $F_4$};
 \draw[color=black] (0.75,0.0) node[anchor=south] {\large $15$};
 \draw[color=black] (2.75,0.0) node[anchor=south] {\large $25$};
 \draw[color=black] (4.7,0.0) node[anchor=south] {\large $14$};
