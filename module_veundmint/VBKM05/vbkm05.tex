@@ -38,10 +38,10 @@ Ein klarer Sternenhimmel vermittelt einen anschaulichen Eindruck von den
 elementaren Objekten, den Punkten, in der Geometrie. Seit Menschengedenken
 wurden die Lichtpunkte am Himmel in Gedanken durch Linien miteinander 
 verbunden, die als Umrisse unterschiedlichster Figuren interpretiert wurden.
-Vom praktischen Nutzen der Himmelsgeometrie zeugt praktisches jedes Geb"aude
+Vom praktischen Nutzen der Himmelsgeometrie zeugt praktisch jedes Geb"aude
 mit seinen Ecken, Kanten, Fensterfl"achen, \ldots.
 
-Die Erfindung von best"andigen Zeichenstiften Tafeln aus Wachs, Papyrus oder 
+Die Erfindung von best"andigen Zeichenstiften, Tafeln aus Wachs, Papyrus oder 
 Papier erm"oglicht es, umgekehrt das Gesehene oder eigene Gedanken {\glqq}auf
 Papier{\grqq} zu festzuhalten und anderen zu zeigen. Verbunden mit dem Willen,
 zum Beispiel das Gezeichnete als Bauwerk zu realisieren, war die Idee eines
@@ -50,7 +50,7 @@ beispielsweise wie ein Sportstadion von oben betrachtet aussehen soll.
 
 F"ur den Bau eines Sportstadions werden markante Punkte im Gel"ande abgesteckt.
 Den aktuellen Stand der Arbeiten zeigt die folgende Ansicht, in die die Umrisse 
-des aus einem Plan projeziert sind.
+aus einem Plan projiziert sind.
 \begin{center}
 %Stadion:
 \MTikzAuto{%
@@ -154,6 +154,7 @@ des aus einem Plan projeziert sind.
 \par
 (Mess-)Punkte und Linien aus dem Plan f"ur einen Stadionbau.
 \end{center}
+
 Die Zeichnung kann man als idealisiertes Abbild der Wirklichkeit ansehen.
 In diesem Sinne wird an einige geometrische Grundbegriffe erinnert. Sie sind 
 der Ausgangspunkt, um anschlie"send kompliziertere Figuren und K"orper zu 
@@ -186,31 +187,31 @@ Mathematisch gesprochen, sind es Mengen von Punkten.
 %\coordinate (HD) at ($(B) + (1,0.5)$);
 %Punkte:
 \begin{scope}[xshift=-5cm]
-\draw (-1,-0.5) circle(1pt);
-\draw (1,0.5) circle(1pt);
+\filldraw (-1,-0.5) circle(1pt);
+\filldraw (1,0.5) circle(1pt);
 \node at (0,-1.5) {Punkte};
 \end{scope}
 %Strecke:
 \begin{scope}[xshift=-2cm]
 \draw[color=blue!70!white] (-1,-0.5) -- (1,0.5);
-\draw (-1,-0.5) circle(1pt);
-\draw (1,0.5) circle(1pt);
+\filldraw (-1,-0.5) circle(1pt);
+\filldraw (1,0.5) circle(1pt);
 \node at (0,-1.5) {Strecke};
 \end{scope}
 %Gerade:
 \begin{scope}[xshift=2cm]
 \draw[color=blue!50!white] (-2,-1) -- (2,1);
 \draw[color=blue!70!white] (-1,-0.5) -- (1,0.5);
-\draw (-1,-0.5) circle(1pt);
-\draw (1,0.5) circle(1pt);
+\filldraw (-1,-0.5) circle(1pt);
+\filldraw (1,0.5) circle(1pt);
 \node at (0,-1.5) {Gerade};
 \end{scope}
 %Parallele Geraden:
 \begin{scope}[xshift=7cm]
 \draw[color=blue!50!white] (-2,-1) -- (2,1);
 \draw[color=blue!70!white] (-1,-0.5) -- (1,0.5);
-\draw (-1,-0.5) circle(1pt);
-\draw (1,0.5) circle(1pt);
+\filldraw (-1,-0.5) circle(1pt);
+\filldraw (1,0.5) circle(1pt);
 \draw[color=green!50!white] (-1.5,-1) -- (2.5,1);
 %\draw (-0.5,-0.5) circle(1pt);
 %\draw (1.5,0.5) circle(1pt);
@@ -220,7 +221,7 @@ Mathematisch gesprochen, sind es Mengen von Punkten.
 }
 \end{center}
 
-Als erstes wird eine Strecke und der Abstand zwischen Punkten betrachtet.
+Als Erstes wird eine Strecke und der Abstand zwischen Punkten betrachtet.
 Dazu bedarf es noch eines Vergleichsma"sstabs, um den Abstand messen zu
 k"onnen. In der Mathematik wird dazu eine Vergleichsstecke ausgew"ahlt, 
 deren L"ange als Einheitsl"ange bezeichnet wird. F"ur Anwendungen wird 
@@ -228,9 +229,9 @@ man entsprechend der Aufgabe passende Einheiten wie zum Beispiel Meter
 oder Zentimeter als L"angeneinheit festlegen.
 
 \begin{MXInfo}{Strecken und Abst"ande}
-Gegeben sind Punkte $P$ und $Q$. Die \MEntry{Strecke}{Strecke} 
-$\MGeoStrecke{P}{Q}$ zwischen $P$ und $Q$ ist der k"urzeste Weg zwischen den 
-Punkten. 
+Gegeben sind Punkte $A$ und $B$. Die \MEntry{Strecke}{Strecke} 
+$\MGeoStrecke{A}{B}$ zwischen $A$ und $B$ ist der k"urzeste Weg zwischen den 
+Punkten $A$ und $B$. 
 
 %Strecke:
 \begin{center}
@@ -238,57 +239,57 @@ Punkten.
 \begin{tikzpicture}[line width=1pt,scale=1];
 \begin{scope}[xshift=-3cm]
 \draw[color=blue] (-1,-0.5) -- (1,0.5);
-\draw (-1,-0.5) circle(1pt);
-\node[below] at (-1,-0.5) {$P$};
-\draw (1,0.5) circle(1pt);
-\node[below] at (1,0.5) {$Q$};
+\filldraw (-1,-0.5) circle(1pt);
+\node[below] at (-1,-0.5) {$A$};
+\filldraw (1,0.5) circle(1pt);
+\node[below] at (1,0.5) {$B$};
 \end{scope}
 \end{tikzpicture}
 }
 \end{center}
 
-Die L"ange der Strecke $\MGeoStrecke{P}{Q}$ wird mit $\MGeoAbstand{P}{Q}$ notiert.
-Die \MEntry{Streckenl"ange}{Streckenlänge} ist gleich dem Abstand zwischen den
-Punkten $P$ und $Q$.
+Die L"ange der Strecke $\MGeoStrecke{A}{B}$ wird mit $\MGeoAbstand{A}{B}$ 
+notiert.  Die \MEntry{Streckenl"ange}{Streckenlänge} ist gleich dem Abstand 
+zwischen den Punkten $A$ und $B$.
 \end{MXInfo}
 
 Das Bild von einem Lichtstrahl, ausgesandt von einem fernen Stern oder 
 von der Sonne, ist eine passende Vorstellung f"ur einen 
-\MEntry{Strahl}{Strahl}, der in einem Punkt $P$ beginnt und in Richtung eines
-zweiten Punktes $Q$ gedanklich immer weiter geht. Ein Strahl wird auch
+\MEntry{Strahl}{Strahl}, der in einem Punkt $A$ beginnt und in Richtung eines
+zweiten Punktes $A$ gedanklich immer weiter geht. Ein Strahl wird auch
 \MEntry{Halbgerade}{Halbgerade} genannt.
 
 %Strahlen und Geraden:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[line width=1pt,scale=1];
-%\coordinate (P) at (-1,-0.5);
-%\coordinate (Q) at (1,0.5);
-%\coordinate (GP) at ($(A) + (-1,-0.5)$);
-%\coordinate (GQ) at ($(B) + (1,0.5)$);
+%\coordinate (A) at (-1,-0.5);
+%\coordinate (B) at (1,0.5);
+%\coordinate (GA) at ($(A) + (-1,-0.5)$);
+%\coordinate (GB) at ($(B) + (1,0.5)$);
 %Strahl:
 \begin{scope}[xshift=-3cm]
 \draw (-1,-0.5) -- (2,1);
-\draw (-1,-0.5) circle(1pt);
-\node[below] at (-1,-0.5) {$P$};
-\draw (1,0.5) circle(1pt);
-\node[below] at (1,0.5) {$Q$};
+\filldraw (-1,-0.5) circle(1pt);
+\node[below] at (-1,-0.5) {$A$};
+\filldraw (1,0.5) circle(1pt);
+\node[below] at (1,0.5) {$B$};
 \node at (0,-1.5) {Strahl};
 \end{scope}
 %Gerade:
 \begin{scope}[xshift=3cm]
 \draw (-2,-1) -- (2,1);
-\draw (-1,-0.5) circle(1pt);
-\node[below] at (-1,-0.5) {$P$};
-\draw (1,0.5) circle(1pt);
-\node[below] at (1,0.5) {$Q$};
+\filldraw (-1,-0.5) circle(1pt);
+\node[below] at (-1,-0.5) {$A$};
+\filldraw (1,0.5) circle(1pt);
+\node[below] at (1,0.5) {$B$};
 \node at (0,-1.5) {Gerade};
 \end{scope}
 \end{tikzpicture}
 }
 \end{center}
 
-Wenn man den Weg auf einer Strecke $\MGeoStrecke{P}{Q}$ in beide Richtungen 
+Wenn man den Weg auf einer Strecke $\MGeoStrecke{A}{B}$ in beide Richtungen 
 fortsetzt, spricht man von einer Geraden.
 
 \begin{MXInfo}{Gerade}
@@ -297,16 +298,39 @@ Punkt $B$ verschieden ist). Dann bestimmen $A$ und $B$ genau eine
 \MEntry{Gerade}{Gerade} $\MGeoGerade{A}{B}$.
 \end{MXInfo}
 Wenn man zu zwei Punkten $A$ und $B$ einen weiteren Punkt $P$ betrachtet,
-kann man nach dem Abstand von $P$ zur Geraden $\MGeoGerade{A}{B}$ fragen.
+kann man nach dem Abstand $d$ von $P$ zur Geraden $\MGeoGerade{A}{B}$ fragen.
+Dies ist die kleinste Entfernung zwischen $P$ und den Punkten der Geraden
+$\MGeoGerade{A}{B}$.
+
+%Abstand zu einer Geraden:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt,scale=1];
+\coordinate (A) at (0,0);
+\coordinate (B) at (2,1);
+\coordinate (P) at ($(A) + (-0.5,1)$);
+%Abstand von einer Geraden:
+\begin{scope}[xshift=3cm]
+\draw ($ (A)!-0.4!(B) $) -- ($ (A)!1.6!(B) $);
+\draw[style=dotted] (A) -- node[above right]{$d$} (P);
+\filldraw (P) circle(1pt);
+%Beschriftung:
+\node[above left] at (P) {$P$};
+\filldraw (A) circle(1pt);
+\node[below right] at (B) {Gerade};
+\end{scope}
+\end{tikzpicture}
+}
+\end{center}
 
 Wenn drei Punkte $P$, $Q$ und $S$ in der Ebene betrachtet werden, sind damit
-Geraden $\MGeoGerade{P}{S}$ und $\MGeoGerade{Q}{S}$ festgelegt.
+Geraden $\MGeoGerade{S}{P}$ und $\MGeoGerade{S}{Q}$ festgelegt.
 
 Sie haben den Punkt $S$ gemeinsam. Liegt auch der Punkt $Q$ auf der Geraden 
-$\MGeoGerade{A}{S}$, dann bezeichnen $\MGeoGerade{Q}{S}$ und $\MGeoGerade{A}{S}$
+$\MGeoGerade{S}{P}$, dann bezeichnen $\MGeoGerade{S}{Q}$ und $\MGeoGerade{S}{P}$
 dieselbe Gerade. 
-Wenn $Q$ nicht zur Geraden $\MGeoGerade{A}{S}$ geh"ort, sind $\MGeoGerade{A}{S}$
-und $\MGeoGerade{B}{S}$ verschiedene Geraden. Die beiden Geraden haben nur 
+Wenn $Q$ nicht zur Geraden $\MGeoGerade{S}{P}$ geh"ort, sind $\MGeoGerade{S}{P}$
+und $\MGeoGerade{S}{P}$ verschiedene Geraden. Die beiden Geraden haben nur 
 den Punkt $S$, den \MEntry{Schnittpunkt}{Schnittpunkt}, gemeinsam.
 
 F"ur irgendwelche Geraden $g$ und $h$ gibt es noch den Fall, dass sie keinen 
@@ -475,22 +499,45 @@ Auf diese Weise k"onnen Entfernungen zwischen Punkten berechnet werden,
 ohne dass die Strecke direkt gemessen wird.
 
 \begin{MExample}
-Gegeben sind die Geraden $g$ und $h$ mit den Punkten $A$, $B$, $P$, $Q$ und $S$,
-wobei $\MGeoGerade{A}{P}$ und $\MGeoGerade{B}{Q}$ parallel sind. 
-Weiter sidn die Abst"ande $\MGeoAbstand{S}{A} = 17$, $\MGeoAbstand{S}{B} = 6 $ 
-und $\MGeoAbstand{S}{Q} = 3$ gegeben.
+Die gegebenen Punkte $A$, $B$, $C$ und $D$ bestimmen die Geraden 
+$\MGeoGerade{A}{B}$ und $\MGeoGerade{C}{D}$, die sich im Punkt $S$
+schneiden. Weiter ist bekannt, dass die Geraden $\MGeoGerade{A}{C}$ und 
+$\MGeoGerade{B}{D}$ parallel sind. Zwischen den Punkten wurden die 
+Abst"ande $\MGeoAbstand{A}{B} = 51$, $\MGeoAbstand{S}{C} = 12 $ und 
+$\MGeoAbstand{C}{D} = 18$ gemessen.
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+\coordinate (S) at (0,0);
+\coordinate (A) at (20:3.4);
+\coordinate (B) at (20:8.5);
+\coordinate (C) at (60:1.2);
+\coordinate (D) at (60:3.0);
+%
+\path %
+ (S) node[below right]{$S$} (A) node[below right]{$A$} %
+     (20:1.7) node[below right]{$x$} (B) node[below right]{$B$} %
+          (D) node[above left] {$D$} (C) node[above left] {$C$};
+%
+\draw ($ (S)!-0.1!(B) $) -- ($ (S)!1.1!(B) $);
+\draw ($ (S)!-0.1!(D) $) -- ($ (S)!1.1!(D) $);
+%
+\draw ($ (A)!-0.2!(C) $) -- ($ (C)!-0.1!(A) $);
+\draw ($ (B)!-0.2!(D) $) -- ($ (D)!-0.1!(B) $);
+\end{tikzpicture}
+}
+\end{center}
 \par
-Daraus wird berechnet, wie weit $P$ von $S$ entfernt ist:
-Mit den Strahlens"atzen gilt
+Daraus wird berechnet, wie weit $A$ von $S$ entfernt ist. Wenn der gesuchte
+Abstand mit $x$ bezeichnet wird, gilt mit den Strahlens"atzen dann
 \[
-   \frac{\MGeoAbstand{S}{P}}{\MGeoAbstand{S}{Q}}
- = \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{B}} \MDFPSpace,
+   \frac{x}{\MGeoAbstand{A}{B}}
+ = \frac{\MGeoAbstand{S}{C}}{\MGeoAbstand{C}{D}} \MDFPSpace,
 \]
 woraus
 \[
-   \MGeoAbstand{S}{P}
- = \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{B}} \cdot \MGeoAbstand{S}{Q} %
- = \frac{17}{6} \cdot 3 = 34
+x = \frac{\MGeoAbstand{S}{C}}{\MGeoAbstand{C}{D}} \cdot \MGeoAbstand{A}{B} %
+ = \frac{12}{18} \cdot 51 = \frac{2}{3} \cdot 51 = 34 %%
 \]
 folgt.
 \end{MExample}
@@ -655,11 +702,11 @@ $\Mmeasuredangle\left(g, h\right)$ ein.
 Winkel zwischen den Strahlen $g$ und $h$.
 \end{center}
 In der Bezeichnung des Winkels $\Mmeasuredangle \left( g, h \right)$ ist die 
-Reihenfolge wichtig ist, in der $g$ und $h$ aufgeschrieben werden.
-$\Mmeasuredangle \left( g, h \right)$ bezeichnet den oben beschriebenen, der 
-dadurch festgelegt ist, dass man die Halbgerade $g$ gegen den Uhrzeigersinn 
-zur Halbgeraden $h$ dreht.
-Mit $\Mmeasuredangle \left( g, h \right)$ wird der Winkel von $h$ zu $g$ 
+Reihenfolge wichtig, in der $g$ und $h$ aufgeschrieben werden.
+$\Mmeasuredangle \left( g, h \right)$ bezeichnet den oben beschriebenen 
+Winkel, der dadurch festgelegt ist, dass man die Halbgerade $g$ gegen 
+den Uhrzeigersinn zur Halbgeraden $h$ dreht.
+Mit $\Mmeasuredangle \left( h, g \right)$ wird der Winkel von $h$ zu $g$ 
 bezeichnet.
 \begin{center}
 \MTikzAuto{%
@@ -926,7 +973,7 @@ verschiedene Zahlen, mit denen die Gr"o"se eines Winkels angegeben werden kann.
 \paragraph{Gradma"s}
 
 Es wird eine Kreisscheibe in $360$ gleiche Segmente eingeteilt. Eine Drehung
-um ein Segment beschreibt einen Winkel um $1$ Grad. Hierf"ur wird $1\MGrad$ 
+um ein Segment beschreibt einen Winkel von $1$ Grad. Hierf"ur wird $1\MGrad$ 
 geschrieben. In der folgenden Zeichnung sind Winkel mit einem Gradma"s von 
 $30\MGrad$ und Vielfachen davon dargestellt.
 
@@ -1025,7 +1072,7 @@ Die L\"ange des Kreisbogens $x$ ist das \MEntry{Bogenma"s}{Bogenma"s}
 des Winkels $\Mmeasuredangle \left( g, h \right)$.
 \end{MXInfo}
 
-Mit einem Winkelma"s wie dem Bodenma"s oder dem zuvor eingef"uhrten Gradma"s
+Mit einem Winkelma"s wie dem Bogenma"s oder dem zuvor eingef"uhrten Gradma"s
 kann man Winkel einfach in verschiedene Klassen einteilen und daf"ur eigene
 Namen vergeben.
 Zur Wiederholung werden auch bereits eingef"uhrte Bezeichnungen nochmals 
@@ -2092,7 +2139,7 @@ Der kleinere dieser beiden Winkel hei\ss t
        und der gr\"o\ss ere der beiden Winkel hei\ss t
        \MEntry{Au\ss enwinkel}{Au\ss enwinkel ($n$-Eck)}.
 
-\item Jedes einfache $n$-Eck l\"asst sich in $(n-2)$ einander nicht \"uberlappende Dreiecke zerlegen. Die Summe aller Innenwinkel eines einfachen $n$-Ecks betr\"agt daher stets $(n-2)\pi$ bzw. $(n-2)180^\circ$.
+\item Jedes einfache $n$-Eck l\"asst sich in $(n-2)$ einander nicht \"uberlappende Dreiecke zerlegen. Die Summe aller Innenwinkel eines einfachen $n$-Ecks betr\"agt daher stets $(n-2)\pi$ bzw. $(n-2)180\MGrad$.
 
  \item Ein einfaches $n$-Eck, dessen Seiten alle die gleiche L\"ange haben und dessen Innenwinkel zudem alle gleich gro\ss\ sind, nennt man
 \MEntry{regelm\"a\ss iges $n$-Eck}{regelm\"a\ss iges $n$-Eck} (bzw. \MEntry{regelm\"a\ss iges Vieleck}{regelm\"a\ss iges Vieleck} oder \MEntry{regelm\"a\ss iges Polygon}{regelm\"a\ss iges Polygon}).
@@ -2180,7 +2227,7 @@ Ein Viereck ist genau dann ein Parallelogramm, wenn
 \begin{itemize}
  \item es ein einfaches Viereck ist, dessen gegen\"uberliegenden Seiten jeweils gleich lang sind;
 \item gegen\"uberliegende Innenwinkel gleich gro\ss\ sind;
-\item zwei benachbarte Innenwinkel zusammen $\pi$ bzw. $180^\circ$ ergeben; 
+\item zwei benachbarte Innenwinkel zusammen $\pi$ bzw. $180\MGrad$ ergeben; 
 \item die Diagonalen einander halbieren.
 \end{itemize}
 \end{MXInfo}
@@ -2441,12 +2488,14 @@ Nun lassen sich auch die Fl\"achen von anderen Vielecken, auch \textbf{Polygone}
 &
 \begin {minipage}[b]{10cm}
 Man betrachte das links dargestellte Polygon. In diesem Beispiel kann man das Polygon in ein rechtwinkliges Dreieck mit den Katheten $\left(a-c\right)$ und $b$ und der Hypotenuse $d$ sowie ein Rechteck mit den Seiten $b$ und $c$ unterteilen. Der Fl\"acheninhalt des Polygons ist dann:
-\ \\
+\par
 \end{minipage}
 \end{tabular}
 \[
-  F = F_{\text{Dreieck}} + F_{\text{Rechteck}} = \frac{1}{2}\left( a-c \right)\cdot b + b\cdot c 
- = \frac{1}{2}ab-\frac{1}{2}bc+bc=\frac{1}{2}\left(a+b\right)\cdot c \MDFPeriod
+F = F_{\text{Dreieck}} + F_{\text{Rechteck}} %
+  = \frac{1}{2}\left( a-c \right)\cdot b + b\cdot c %
+  = \frac{1}{2}ab-\frac{1}{2}bc+bc %
+  =\frac{1}{2}\left(a+c\right)\cdot b \MDFPeriod
 \]
 \end{MExample}
 
@@ -2456,8 +2505,11 @@ Man betrachte das links dargestellte Polygon. In diesem Beispiel kann man das Po
 Berechnen Sie den Fl\"acheninhalt des\newline \textbf{Parallelogramms} 
 f\"ur $a=4$ und $h=5$.
 \par
-Tipp: Teilen Sie es sinnvoll auf, und schauen Sie sich die entstandenen 
-Dreiecke genau an!\\
+\begin{MHint}{Tipp}
+Teilen Sie das Parallelogramm sinnvoll auf, und schauen Sie sich die 
+entstandenen Dreiecke genau an!
+\end{MHint}
+\par
 \vspace*{1cm}
 \end{minipage}
 &
@@ -2533,20 +2585,19 @@ Berechnen Sie den Fl\"acheninhalt des Polygons:\\
 \MTikzAuto{%
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 \draw[color=black, thick] (0.0,0.0) -- (3.0,-1.8) -- (5.4,0.0) -- 
-(4.0,2.6) -- (1.5,2.2)-- cycle 
-(0.0,0.0) -- (5.4,0.0) (1.5,0.0) -- (1.5,2.2)
+(4.0,2.6) -- (1.5,2.2)-- cycle; 
+\draw[color=black,style=dotted] (0.0,0.0) -- (5.4,0.0) (1.5,0.0) -- (1.5,2.2)
 (4.0,0.0) -- (4.0,2.6) (3.0,0.0) -- (3.0,-1.8);
-\draw[color=black] (1.1,0.8) node {\large $A_1$};
-\draw[color=black] (2.75,1.2) node {\large $A_2$};
-\draw[color=black] (4.4,0.9) node {\large $A_3$};
-\draw[color=black] (2.2,-0.6) node {\large $A_4$};
-\draw[color=black] (3.9,-0.5) node {\large $A_5$};
+\draw[color=blue] (1.1,0.8) node {\large $F_1$};
+\draw[color=blue] (2.75,1.2) node {\large $F_2$};
+\draw[color=blue] (4.4,0.9) node {\large $F_3$};
+\draw[color=blue] (3.0,-0.5) node {\large $F_4$};
 \draw[color=black] (0.75,0.0) node[anchor=south] {\large $15$};
 \draw[color=black] (2.75,0.0) node[anchor=south] {\large $25$};
 \draw[color=black] (4.7,0.0) node[anchor=south] {\large $14$};
 \draw[color=black] (1.5,1.5) node[anchor=west] {\large $22$};
 \draw[color=black] (4.0,1.8) node[anchor=east] {\large $26$};
-\draw[color=black] (3.0,-0.9) node[anchor=west] {\large $18$};
+\draw[color=black] (3.0,-1.1) node[anchor=west] {\large $18$};
 \end{tikzpicture}
 }
 \end{tabular}
@@ -2554,21 +2605,18 @@ Berechnen Sie den Fl\"acheninhalt des Polygons:\\
 Die Fl"acheninhalte der angegebenen Teilfl"achen werden separat bestimmt.
 \begin{itemize}
 \item
-$A_1$ ist ein Dreieck: $A_1=\frac{15\cdot 22}{2}=165$.
+$F_1$ ist ein Dreieck: $F_1=\frac{15\cdot 22}{2}=165$.
 \item
-$A_2$ ist ein Trapez, welches in zwei Dreiecke mit der H"ohe 25 zerlegt 
-werden kann: $A_2=\frac{22\cdot 25}{2}+\frac{26\cdot 25}{2}=275+325=600$.
+$F_2$ ist ein Trapez, welches in zwei Dreiecke mit der H"ohe 25 zerlegt 
+werden kann: $F_2 = \frac{22\cdot 25}{2}+\frac{26\cdot 25}{2} = 275+325 = 600$.
 \item
-$A_3$ ist ein Dreieck: $A_3=\frac{14\cdot 26}{2}=182$.
+$F_3$ ist ein Dreieck: $F_3=\frac{14\cdot 26}{2}=182$.
 \item
-Da die Grundlinien von $A_4$ und $A_5$ nicht einzeln angegeben sind,
-beide Dreiecke zusammen aber ein Dreieck mit den notwendigerweise 
-bekannten Abmessungen bilden, ergibt sich die Summe zu
-$A_4+A_5=\frac{(15+25+14)\cdot 18}{2}=486$.
+Auch $F_4$ ist ein Dreieck: $F_4 = \frac{(15+25+14)\cdot 18}{2} = 486$.
 \end{itemize}
 Damit erh"alt man den Fl"acheninhalt des gesamten Polygons als Summe der 
 Fl"acheninhalte der Teilfl"achen: 
-$A_1+A_2+A_3+(A_4+A_5)= 165+600+182+486=1433$.
+$F_1+F_2+F_3+F_4 = 165+600+182+486 = 1433$.
 \end{MHint}
 \end{MExercise}
 
@@ -2618,7 +2666,7 @@ technischen Konstruktionen erkennbar ist.
 Es wird ein Rechteck betrachtet und senkrecht zur Zeichenebene verschoben.
 Dadurch entsteht ein Quader. Seine Oberfl"ache besteht aus dem gegebenen
 Rechteck und einer Kopie davon. Au"serdem entstanden aus den vier Seiten
-des des urspr"unglichen Rechtecks jeweils vier weitere Rechtecke.
+des urspr"unglichen Rechtecks jeweils vier weitere Rechtecke.
 \end{MExample}
 
 Betrachtet man irgend ein Vieleck und verschiebt dieses senkrecht, entsteht
@@ -3173,19 +3221,6 @@ immer wieder aufgegriffen werden.
 \MLabel{Abschnitt:TrigonometrieAmDreieck}
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Content}
 
-%Mithilfe der Strahlens\"atze konnte gezeigt werden, dass die Verh\"altnisse der
-%Seiten in einem Dreieck lediglich von den Winkeln des Dreiecks abh\"angen. \"Andert man
-%in einem Strahlensatz den Winkel bei~$S$ oder den Winkel, in dem die
-%parallelen Geraden einen Strahl schneiden, so \"andern sich nat\"urlich
-%auch die Verh\"altnisse.
-%Legt man hingegen einen der beiden Winkel fest, so kann man die
-%Verh\"altnisse in Abh\"angigkeit von dem anderen Winkel als Funktion
-%von einer Variablen darstellen.\\
-%\ \\
-%Es sei nun der Winkel $\gamma$ auf $\gamma\,=\,\pi/2$ festgelegt, das hei\ss t es werde ein rechtwinkliges Dreieck betrachtet mit rechtem Winkel bei $\gamma$. Nun sind die Seitenverh\"altnisse nur vom Winkel $\alpha$ abh\"angig, der Winkel $\beta$ ergibt sich n\"amlich aus der Winkelinnensumme des Dreiecks. Dies f\"uhrt zu einer ganzen Schar von \"ahnlichen Dreiecken, wobei die Seiten $c$, $c'$, $\ldots$ die Hypotenusen sind. Im Hinblick auf den betrachteten Winkel $\alpha$ bezeichnet man die dem Winkel gegen\"uberliegen Seiten
-%$a$, $a'$, $\ldots$ als \textbf{Gegenkatheten} und die am Winkel anliegenden Seiten $b$, $b'$, $\ldots$ als \textbf{Ankatheten}.\\
-%Wendet man nun die Strahlens\"atze an, so gelangt man zu folgenden Erkenntnissen: 
-
 F"ahrt man eine Stra"se mit einem Gef"alle von f"unf Prozent bergab, 
 nimmt die H"ohe alle hundert Meter um f"unf Meter ab. Dabei wird der 
 H"ohenunterschied im Vergleich zur Horizontalen betrachtet.
@@ -3198,7 +3233,8 @@ eines Quadrats. Damit hat der Winkel zwischen der horizontalen
 Vergleichsstrecke und der Diagonalen, auf der man sich bewegt, das
 Winkelma"s von $45\MGrad$. 
 Schon die Berechnung, dass zu einem Gef"alle oder einer Steigung von $50\%$ 
-der Winkel $30\MGrad$ gro"s ist, ist bereits nicht mehr so einfach.
+der Winkel rund $\MZahl{26}{565}\MGrad$ gro"s ist, ist bereits nicht mehr 
+so einfach.
 Vor der Zeit von Taschenrechnern und Computern wurden die aufw"andig 
 bestimmten Werte in gro"sen Tafelwerken aufgeschrieben, um dann einfach
 nachgeschlagen werden zu k"onnen.
@@ -3250,7 +3286,7 @@ nachgeschlagen werden zu k"onnen.
 Der Tangens des Winkels $\alpha$ ist nach der Definition \[\tan\left(\alpha\right)=\frac{a}{b}=\frac{a}{b}\cdot\frac{c}{c}=\frac{a}{c}\cdot\frac{c}{b}=\frac{\sin\left(\alpha\right)}{\cos\left(\alpha\right)} \MDFPeriod\]
 
 \begin{MExample}
-Von einem Dreieck ist bekannt, dass es einen rechten Winkel $\gamma=\frac{\pi}{2}=90^\circ$ hat. Die Seite $c$ ist $5\MEinheit{cm}$, die Seite $a$ ist $\MZahl{2}{5}\MEinheit{cm}$ lang. Es sollen jeweils der Sinus, Kosinus und Tangens des Winkels $\alpha$ bestimmt werden:
+Von einem Dreieck ist bekannt, dass es einen rechten Winkel $\gamma=\frac{\pi}{2}=90\MGrad$ hat. Die Seite $c$ ist $5\MEinheit{cm}$, die Seite $a$ ist $\MZahl{2}{5}\MEinheit{cm}$ lang. Es sollen jeweils der Sinus, Kosinus und Tangens des Winkels $\alpha$ bestimmt werden:
 
 Der Sinus l\"asst sich sofort aus den Angaben berechnen:
 \[\sin\left(\alpha\right)=\frac{a}{c}=\frac{\MZahl{2}{5}\MEinheit{cm}}{5\MEinheit{cm}}=\MZahl{0}{5} \MDFPeriod\]
@@ -3261,10 +3297,10 @@ Daraus folgt f\"ur den Tangens
 \end{MExample}
 
 
-\begin{MExercise}\MLabel{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle}
+\begin{MExercise}\MLabel{VBKM05_TrigonometrieAufgabeTabelle}
 Die Hypotenuse $c=5$ ist vorgegeben. Zeichnen Sie mithilfe des Thaleskreises (Ma\ss stab $ 1\hat{=}2\MEinheit{cm}$
-die rechtwinkligen Dreiecke f\"ur die Winkel $\alpha\in\left\{0^\circ\MElSetSep 10^\circ\MElSetSep 20^\circ\MElSetSep 30^\circ\MElSetSep 40^\circ\MElSetSep 45^\circ\MElSetSep
-50^\circ\MElSetSep 60^\circ\MElSetSep 70^\circ\MElSetSep 80^\circ\MElSetSep 90^\circ\right\}$.
+die rechtwinkligen Dreiecke f\"ur die Winkel $\alpha\in\left\{0\MGrad\MElSetSep 10\MGrad\MElSetSep 20\MGrad\MElSetSep 30\MGrad\MElSetSep 40\MGrad\MElSetSep 45\MGrad\MElSetSep
+50\MGrad\MElSetSep 60\MGrad\MElSetSep 70\MGrad\MElSetSep 80\MGrad\MElSetSep 90\MGrad\right\}$.
 
 Messen Sie die Seiten $a$ und $b$ und schreiben Sie sie in eine Tabelle. Berechnen Sie zu jedem Dreieck den Sinus, Kosinus und Tangens.
 
@@ -3280,16 +3316,16 @@ Die Tabelle k\"onnte folgenderma\ss en aussehen:
 \begin{tabular}{r|r|r|r|r|r}\hline
 	$\alpha$ 		& $a$ 				& $b$ 				& $\sin\left(\alpha\right)$ & $\cos\left(\alpha\right)$ & $\tan\left(\alpha\right)$\\ \hline\hline
 	0 						& $\MZahl{0}{0}$		& $\MZahl{5}{0}$ 	& $\MZahl{0}{0}$		& $\MZahl{1}{0}$	& $\MZahl{0}{0}$\\ \hline
-	$10^\circ$		& $\MZahl{0}{8}$	& $\MZahl{4}{9}$	& $\MZahl{0}{160}$	& $\MZahl{0}{98}$	& $\MZahl{0}{1633}$\\ \hline
-	$20^\circ$		& $\MZahl{1}{7}$	& $\MZahl{4}{7}$	& $\MZahl{0}{34}$	& $\MZahl{0}{94}$	& $\MZahl{0}{3617}$\\ \hline
-	$30^\circ$		& $\MZahl{2}{5}$	& $\MZahl{4}{3}$	& $\MZahl{0}{5}$	& $\MZahl{0}{86}$	& $\MZahl{0}{5814}$\\ \hline
-	$40^\circ$		& $\MZahl{3}{2}$	& $\MZahl{3}{8}$	& $\MZahl{0}{64}$	& $\MZahl{0}{76}$	& $\MZahl{0}{8421}$\\ \hline
-	$45^\circ$		& $\MZahl{3}{5}$	& $\MZahl{3}{5}$	& $\MZahl{0}{7}$	& $\MZahl{0}{7}$	& $\MZahl{1}{0}$\\ \hline
-	$50^\circ$		& $\MZahl{3}{8}$	& $\MZahl{3}{27}$	& $\MZahl{0}{76}$	& $\MZahl{0}{64}$	& $\MZahl{1}{1875}$\\ \hline
-	$60^\circ$		& $\MZahl{4}{3}$	& $\MZahl{2}{5}$	& $\MZahl{0}{86}$	& $\MZahl{0}{5}$	& $\MZahl{1}{7200}$\\ \hline
-	$70^\circ$		& $\MZahl{4}{7}$	& $\MZahl{1}{7}$	& $\MZahl{0}{94}$	& $\MZahl{0}{34}$	& $\MZahl{2}{7647}$\\ \hline
-	$80^\circ$		& $\MZahl{4}{9}$	& $\MZahl{0}{8}$	& $\MZahl{0}{98}$	& $\MZahl{0}{160}$	& $\MZahl{6}{1250}$\\ \hline
-	$90^\circ$		& $\MZahl{5}{0}$		& $\MZahl{0}{0}$	& $\MZahl{1}{0}$	& $\MZahl{0}{0}$	& $\rightarrow\infty$\\ \hline
+	$10\MGrad$		& $\MZahl{0}{8}$	& $\MZahl{4}{9}$	& $\MZahl{0}{160}$	& $\MZahl{0}{98}$	& $\MZahl{0}{1633}$\\ \hline
+	$20\MGrad$		& $\MZahl{1}{7}$	& $\MZahl{4}{7}$	& $\MZahl{0}{34}$	& $\MZahl{0}{94}$	& $\MZahl{0}{3617}$\\ \hline
+	$30\MGrad$		& $\MZahl{2}{5}$	& $\MZahl{4}{3}$	& $\MZahl{0}{5}$	& $\MZahl{0}{86}$	& $\MZahl{0}{5814}$\\ \hline
+	$40\MGrad$		& $\MZahl{3}{2}$	& $\MZahl{3}{8}$	& $\MZahl{0}{64}$	& $\MZahl{0}{76}$	& $\MZahl{0}{8421}$\\ \hline
+	$45\MGrad$		& $\MZahl{3}{5}$	& $\MZahl{3}{5}$	& $\MZahl{0}{7}$	& $\MZahl{0}{7}$	& $\MZahl{1}{0}$\\ \hline
+	$50\MGrad$		& $\MZahl{3}{8}$	& $\MZahl{3}{27}$	& $\MZahl{0}{76}$	& $\MZahl{0}{64}$	& $\MZahl{1}{1875}$\\ \hline
+	$60\MGrad$		& $\MZahl{4}{3}$	& $\MZahl{2}{5}$	& $\MZahl{0}{86}$	& $\MZahl{0}{5}$	& $\MZahl{1}{7200}$\\ \hline
+	$70\MGrad$		& $\MZahl{4}{7}$	& $\MZahl{1}{7}$	& $\MZahl{0}{94}$	& $\MZahl{0}{34}$	& $\MZahl{2}{7647}$\\ \hline
+	$80\MGrad$		& $\MZahl{4}{9}$	& $\MZahl{0}{8}$	& $\MZahl{0}{98}$	& $\MZahl{0}{160}$	& $\MZahl{6}{1250}$\\ \hline
+	$90\MGrad$		& $\MZahl{5}{0}$		& $\MZahl{0}{0}$	& $\MZahl{1}{0}$	& $\MZahl{0}{0}$	& $\rightarrow\infty$\\ \hline
 \end{tabular}
 \end{center}
 
@@ -3331,7 +3367,7 @@ Das Diagramm sieht folgenderma"sen aus:
 %%\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
 \draw[-stealth',color=black] (-5,0) -- (xMAX);
 \foreach \x in {10, 20, 30, 40, 50, 60, 70, 80, 90}
-\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\normalsize $\x^\circ$};
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\normalsize $\x\MGrad$};
 \draw[-stealth',color=black] (0,-0.12) -- (yMAX);
 \foreach \y in {0.25, 0.5, 0.75, 1}
 \draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-6pt,0pt)  node[left] {\normalsize $\pgfmathprintnumber{\y}$};
@@ -3373,7 +3409,9 @@ Das Diagramm sieht folgenderma"sen aus:
 
 
 \begin{MExample}
-Es soll der Sinus des Winkels $\alpha=45\MGrad$ nun exakt berechnet, also nicht wie in Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle} aus gemessenen (und damit fehlerbehafteten) Werten bestimmt werden.
+Es soll der Sinus des Winkels $\alpha=45\MGrad$ nun exakt berechnet, also 
+nicht wie in Aufgabe \MRef{VBKM05_TrigonometrieAufgabeTabelle} aus 
+gemessenen (und damit fehlerbehafteten) Werten bestimmt werden.
 
 Wenn im rechtwinkligen Dreieck mit $\gamma=90\MGrad$ der Winkel $\alpha$ gleich $45\MGrad$ ist, so muss wegen der Innenwinkelsumme $\alpha+\beta+\gamma=\pi=180\MGrad$ der Winkel $\beta$ auch gleich $45\MGrad=\pi/4$ sein, und die beiden Katheten $a$ und $b$ sind gleich lang. Ein Dreieck mit zwei gleich langen Seiten nennt man \textbf{gleichschenklig}:
 
@@ -3395,23 +3433,33 @@ Wenn im rechtwinkligen Dreieck mit $\gamma=90\MGrad$ der Winkel $\alpha$ gleich 
 }
 &
 \begin{minipage}[b]{10cm}
-Es gilt: \[\sin\left(\alpha\right) = \sin\left(45^\circ\right) = \frac{a}{c} \MDFPeriod\]
+Es gilt: \[\sin\left(\alpha\right) = \sin\left(45\MGrad\right) = \frac{a}{c} \MDFPeriod\]
 Au\ss erdem gilt: \[a^2+b^2 = 2a^2 = c^2\quad\Rightarrow\quad c=\sqrt{2}\cdot a\]
-\[\Rightarrow\quad \sin\left(45^\circ\right) = \sin\left(\pi/4\right)=\frac{a}{\sqrt{2}\cdot a} = \frac{1}{2}\cdot \sqrt{2} \MDFPeriod\]
+\[\Rightarrow\quad \sin\left(45\MGrad\right) = \sin\left(\pi/4\right)=\frac{a}{\sqrt{2}\cdot a} = \frac{1}{2}\cdot \sqrt{2} \MDFPeriod\]
 \end{minipage}
 \end{tabular}
-In der Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle} wurde der Sinus von $45^\circ$ durch einen Wert von $\MZahl{0}{7}$ angen\"hert, was dem tats\"achlichen Wert von $\frac{1}{2}\cdot \sqrt{2}$ schon recht nahe kommt.
+In der Aufgabe \MRef{VBKM05_TrigonometrieAufgabeTabelle} wurde der Sinus 
+von $45\MGrad$ durch einen Wert von $\MZahl{0}{7}$ angen"ahert, was dem 
+tats"achlichen Wert von $\frac{1}{2}\cdot \sqrt{2}$ schon recht nahe kommt.
 \end{MExample}
 
 \begin{MExample}\MLabel{Mathematik_ElementareGeometrie:Trigonometrie_Beispiel:gleichseitigesDreieck}%
-In diesem Beispiel soll ein \textbf{gleichseitiges} Dreieck betrachtet werden. Wie der Name sagt, sind in diesem Dreieck alle Seiten gleich lang, und auch die Winkel sind alle gleich gro\ss , n\"amlich $\alpha=\beta=\gamma = \frac{180^\circ}{3} = 60^\circ = \frac{\pi}{3}$.
-Das Dreieck ist nach dem Kongruenzsatz "`sss"' mit der Angabe einer Seite $a$ eindeutig bestimmt, und man erh\"alten dieses, indem man die Seite $a$ zeichnet und mit dem Zirkel einen Kreis vom Radius $a$ um jede Ecke schl\"agt. Der Schnittpunkt der Kreise ist nun die dritte Ecke.
+In diesem Beispiel soll ein \textbf{gleichseitiges} Dreieck betrachtet werden. 
+Wie der Name sagt, sind in diesem Dreieck alle Seiten gleich lang, und auch 
+die Winkel sind alle gleich gro"s, n\"amlich 
+$\alpha=\beta=\gamma = \frac{180\MGrad}{3} = 60\MGrad = \frac{\pi}{3}$.
+Das Dreieck ist nach dem Kongruenzsatz "`sss"' mit der Angabe einer Seite $a$ 
+eindeutig bestimmt, und man erh\"alt dieses, indem man die Seite $a$ 
+zeichnet und mit dem Zirkel einen Kreis vom Radius $a$ um jede Ecke schl\"agt.
+Der Schnittpunkt der Kreise ist nun die dritte Ecke.
 
 \begin{tabular}{lr}
 \begin{minipage}[b]{10.5cm}
-Dieses Dreieck hat keinen rechten Winkel. Zeichnet man eine H\"ohe $h$ auf eine der Seiten $a$ ein, so erh\"alt man zwei kongruente Dreiecke mit je einem rechten Winkel.
+Dieses Dreieck hat keinen rechten Winkel. Zeichnet man eine H\"ohe $h$ auf 
+eine der Seiten $a$ ein, so erh\"alt man zwei kongruente Dreiecke mit je 
+einem rechten Winkel.
 
-Es gilt nun: \[\sin\left(\alpha\right)=\sin\left(60^\circ\right)=\frac{h}{a} \MDFPeriod\]
+Es gilt nun: \[\sin\left(\alpha\right)=\sin\left(60\MGrad\right)=\frac{h}{a} \MDFPeriod\]
 Nach dem Satz von Pythagoras ist \[\left(\frac{a}{2}\right)^2+h^2=a^2 \quad\Rightarrow\quad h^2=\frac{3}{4}a^2 \Rightarrow\quad h=\frac{1}{2}\sqrt{3}\cdot a\]
 \end{minipage}
 &
@@ -3438,23 +3486,27 @@ Nach dem Satz von Pythagoras ist \[\left(\frac{a}{2}\right)^2+h^2=a^2 \quad\Righ
 \end{tikzpicture}
 }
 \end{tabular}
- \[\Rightarrow\quad\sin\left(60^\circ\right)=\sin\left(\frac{\pi}{3}\right)=\frac{1}{2}\cdot \sqrt{3} \MDFPeriod\]
+ \[\Rightarrow\quad\sin\left(60\MGrad\right)=\sin\left(\frac{\pi}{3}\right)=\frac{1}{2}\cdot \sqrt{3} \MDFPeriod\]
  \ \\
 Aus diesem Dreieck kann man noch den Sinus eines weiteren Winkels berechnen: 
-Die H\"ohe $h$ teilt den oberen Winkel in zwei gleiche Teile, sodass man in den beiden kleinen kongruenten Dreiecken jeweils den Winkel $30^\circ = \frac{\pi}{6}$ erh\"alt.
-Es ist nun \[\sin\left(30^\circ\right)=\sin\left(\frac{\pi}{6}\right)=\frac{a/2}{a}=\frac{1}{2} \MDFPeriod\]
+Die H\"ohe $h$ teilt den oberen Winkel in zwei gleiche Teile, sodass man in den beiden kleinen kongruenten Dreiecken jeweils den Winkel $30\MGrad = \frac{\pi}{6}$ erh\"alt.
+Es ist nun \[\sin\left(30\MGrad\right)=\sin\left(\frac{\pi}{6}\right)=\frac{a/2}{a}=\frac{1}{2} \MDFPeriod\]
 \end{MExample}
 
 \begin{MExercise}
-Berechnen Sie, auf die vorher gezeigten Beispiele Bezug nehmend, den exakten Wert des Kosinus f\"ur die Winkel $\alpha_1=30^\circ, \alpha_2=45^\circ$ und $\alpha_3=60^\circ$. Verwenden Sie die Erkenntnisse aus Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle}.
+Berechnen Sie den exakten Wert des Kosinus f\"ur die Winkel 
+$\alpha_1=30\MGrad$, $\alpha_2=45\MGrad$ und $\alpha_3=60\MGrad$. 
+Verwenden Sie dazu die Ergebnisse aus dem vorherigen Beispiel und aus der
+Aufgabe \MRef{VBKM05_TrigonometrieAufgabeTabelle}.
 
 \begin{MHint}{L\"osung}
-Aus der Aufgabe \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Aufgabe:Tabelle} ist bekannt, dass $\cos\left(\alpha\right)= \sin\left(90^\circ-\alpha\right)$.
+Aus der Aufgabe \MRef{VBKM05_TrigonometrieAufgabeTabelle} ist bekannt, 
+dass $\cos\left(\alpha\right)= \sin\left(90\MGrad-\alpha\right)$.
 Daraus folgt
 \[
-\cos\left(30^\circ\right)=\sin\left(90^\circ-30^\circ\right)=\sin\left(60^\circ\right)=\frac{1}{2}\cdot\sqrt{3} \MDFPSpace, \]
-\[\cos\left(45^\circ\right)=\sin\left(90^\circ-45^\circ\right)=\sin\left(45^\circ\right)=\frac{1}{2}\cdot\sqrt{2} \MDFPSpace, \]
-\[\cos\left(60^\circ\right)=\sin\left(90^\circ-60^\circ\right)=\sin\left(30^\circ\right)=\frac{1}{2} \MDFPeriod\]
+\cos\left(30\MGrad\right)=\sin\left(90\MGrad-30\MGrad\right)=\sin\left(60\MGrad\right)=\frac{1}{2}\cdot\sqrt{3} \MDFPSpace, \]
+\[\cos\left(45\MGrad\right)=\sin\left(90\MGrad-45\MGrad\right)=\sin\left(45\MGrad\right)=\frac{1}{2}\cdot\sqrt{2} \MDFPSpace, \]
+\[\cos\left(60\MGrad\right)=\sin\left(90\MGrad-60\MGrad\right)=\sin\left(30\MGrad\right)=\frac{1}{2} \MDFPeriod\]
 \end{MHint}
 \end{MExercise}
 
@@ -3507,7 +3559,7 @@ Aus $\sin\left(\alpha\right)=\frac{h_c}{b}$
 ergibt sich
 \[
  h_c=b\cdot\sin\left(\alpha\right) %
-  = 3\cdot\sin\left(30^\circ\right) %
+  = 3\cdot\sin\left(30\MGrad\right) %
   = 3\cdot\frac{1}{2} \MDFPeriod %%
 \]
 Damit ist
@@ -3565,7 +3617,7 @@ Um die gewonnenen Erkenntnisse auf gr\"o\ss ere Winkel als $\pi/2$ ausdehnen zu 
 %%\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
 \draw[-stealth',color=black] (-20,0) -- (xMAX);
 \foreach \x in {30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360}
-\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\scriptsize $\x^\circ$};
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\scriptsize $\x\MGrad$};
 \draw[-stealth',color=black] (0,-1.4) -- (yMAX);
 \foreach \y in {1}
 \draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-6pt,0pt)  node[left] {\normalsize $\pgfmathprintnumber{\y}$};
@@ -3587,7 +3639,7 @@ Um die gewonnenen Erkenntnisse auf gr\"o\ss ere Winkel als $\pi/2$ ausdehnen zu 
 %%\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
 \draw[-stealth',color=black] (-20,0) -- (xMAX);
 \foreach \x in {30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360}
-\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\scriptsize $\x^\circ$};
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\scriptsize $\x\MGrad$};
 \draw[-stealth',color=black] (0,-1.4) -- (yMAX);
 \foreach \y in {1}
 \draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-6pt,0pt)  node[left] {\normalsize $\pgfmathprintnumber{\y}$};
@@ -3622,9 +3674,9 @@ Setzt man hier die Beziehungen f\"ur $x_{\alpha}$ und $y_{\alpha}$ mit den Winke
 
 
 \begin{MExample}
-Gesucht sind jeweils die Werte des Sinus, Kosinus und Tangens des Winkels $\alpha=315^\circ$.\\
+Gesucht sind jeweils die Werte des Sinus, Kosinus und Tangens des Winkels $\alpha=315\MGrad$.\\
 
-F\"ur $\alpha=315^\circ$ liegt der Punkt $P_\alpha$ im 4. Quadranten, der zugeh\"orige Vektor bildet mit den zugeh\"origen Achsenabschnitten ein gleichschenkliges Dreieck. Es gilt: \[\left|x_\alpha\right|=\left|y_\alpha\right|\quad\Rightarrow\quad \left|x_\alpha\right|^2+\left|y_\alpha\right|^2=2\cdot\left|x_\alpha\right|^2=1\]
+F\"ur $\alpha=315\MGrad$ liegt der Punkt $P_\alpha$ im 4. Quadranten, der zugeh\"orige Vektor bildet mit den zugeh\"origen Achsenabschnitten ein gleichschenkliges Dreieck. Es gilt: \[\left|x_\alpha\right|=\left|y_\alpha\right|\quad\Rightarrow\quad \left|x_\alpha\right|^2+\left|y_\alpha\right|^2=2\cdot\left|x_\alpha\right|^2=1\]
 \[\Rightarrow\quad \left|x_\alpha\right|=\left|y_\alpha\right|=\frac{1}{\sqrt 2}=\frac{1}{2}\sqrt 2 \MDFPSpace,\]
 \[\cos\left(\alpha\right)=x_\alpha=\frac{1}{2}\sqrt 2 \MDFPSpace,	\MDFPaSpace	\sin\left(\alpha\right)=y_\alpha=-\frac{1}{2}\sqrt 2 \MDFPSpace,	\MDFPaSpace	\tan\left(\alpha\right)=\frac{y_\alpha}{x_\alpha}=-1 \MDFPeriod\]
 \end{MExample}
@@ -3644,9 +3696,9 @@ Verwenden Sie dazu den Taschenrechner, aber vertrauen Sie ihm nicht blind!
 Aus den Koordinaten des Punktes $P_\alpha$ ergibt sich:
 \[\sin\left(\alpha\right)=-\MZahl{0}{766}\quad	\text{und}	\quad\cos\left(\alpha\right)=-\MZahl{0}{643} \MDFPeriod\]
 Tippen Sie in den Taschenrechner:\\
-invers(sin(-\MZahl{0}{766})) bzw. $\sin^{-1}$(-\MZahl{0}{766}), so erhalten Sie ungef\"ahr $-50^\circ$, und \\
-invers(cos(-\MZahl{0}{643})) bzw. $\sin^{-1}$(-\MZahl{0}{643}), so erhalten Sie ungef\"ahr $130^\circ$.\\
-Au\ss erdem wissen Sie, dass der Punkt im 3. Quadranten ist, also ein Winkel im Bereich zwischen $180^\circ$ und $270^\circ$ herauskommen muss.
+invers(sin(-\MZahl{0}{766})) bzw. $\sin^{-1}$(-\MZahl{0}{766}), so erhalten Sie ungef\"ahr $-50\MGrad$, und \\
+invers(cos(-\MZahl{0}{643})) bzw. $\sin^{-1}$(-\MZahl{0}{643}), so erhalten Sie ungef\"ahr $130\MGrad$.\\
+Au\ss erdem wissen Sie, dass der Punkt im 3. Quadranten ist, also ein Winkel im Bereich zwischen $180\MGrad$ und $270\MGrad$ herauskommen muss.
 
 \MTikzAuto{%
 \begin{tikzpicture}[x=2.6cm, y=2.6cm] 
@@ -3668,8 +3720,8 @@ Au\ss erdem wissen Sie, dass der Punkt im 3. Quadranten ist, also ein Winkel im 
 \draw[thick,color=black] (0,0) -- (1,0);
 \draw[thick,color=black] (0,0) -- ({-\cRad*cos(\cAng)},{\cRad*sin(\cAng)});
 \draw[color=black, thin] (0,0) ++({-\cAng}:0.5) arc ({-\cAng}:{180-\cAng}:0.5);
-\draw[color=black] (0,0) ++({-0.5*\cAng}:0.35) node {$-\cAng^\circ$};
-\draw[color=black] (0,0) ++(45:0.30) node {$130^\circ$}; %({90-0.5*\cAng}:0.35)
+\draw[color=black] (0,0) ++({-0.5*\cAng}:0.35) node {$-\cAng\MGrad$};
+\draw[color=black] (0,0) ++(45:0.30) node {$130\MGrad$}; %({90-0.5*\cAng}:0.35)
 \draw[color=magenta, thin] (0,0) ++({-\cAng}:0.60) arc ({-\cAng}:{180+\cAng}:0.60);
 \draw[thick,color=magenta] (0,0) -- ({-cos(\cAng)},{-sin(\cAng)});
 \draw[thick,color=red] ({cos(\cAng)},0) -- ({cos(\cAng)},{-sin(\cAng)});
@@ -3680,11 +3732,11 @@ Au\ss erdem wissen Sie, dass der Punkt im 3. Quadranten ist, also ein Winkel im 
 \end{tikzpicture}
 }
 \begin{minipage}[b]{10cm}
-Anhand des Bildes kann man erkennen, dass der negative Sinuswert zwar zum Winkel $-50^\circ$, aber auch zu $\alpha=\left(180^\circ+50^\circ\right)=230^\circ$ geh\"ort.\\
-\ \\
-Ebenso kann der negative Kosinuswert zu $130^\circ$, aber auch zu $\alpha=-130^\circ=\left(360^\circ-130^\circ\right)=230^\circ$ geh\"oren.\\
-\ \\
-Der richtige Winkel ist also $\alpha=230^\circ$ (rosa).
+Anhand des Bildes kann man erkennen, dass der negative Sinuswert zwar zum Winkel $-50\MGrad$, aber auch zu $\alpha=\left(180\MGrad+50\MGrad\right)=230\MGrad$ geh\"ort.\\
+\par
+Ebenso kann der negative Kosinuswert zu $130\MGrad$, aber auch zu $\alpha=-130\MGrad=\left(360\MGrad-130\MGrad\right)=230\MGrad$ geh\"oren.\\
+\par
+Der richtige Winkel ist also $\alpha=230\MGrad$ (rosa).
 \vspace*{2cm}
 \end{minipage}
 \end{MHint}
