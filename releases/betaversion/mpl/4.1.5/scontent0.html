@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Suchen</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+
+SITE_ID = "4.1.5.1";
+SITE_UXID = "(unknown)";
+SECTION_ID = 1;
+var docName = "scontent0";
+var fullName = "mpl/4.1.5/scontent0.html";
+var fullNamePath = "../out/tmp/mpl/4.1.5/scontent0.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprevg">Zur&#252;ck</div>
+<div class="nnextg">Weiter</div>
+<ul>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../4.1.5/scontent0.html">Suchen</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprevg">Zur&#252;ck</div>
+<div class="nnextg">Weiter</div>
+<ul>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../4.1.5/scontent0.html">Suchen</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+
+
+
+
+
+
+
+
+
+<h4>Suchen</h4><!-- sectioninfo;;1;;5;;0;;0;;0; //-->
+
+
+
+<a class="label" name="L_SEARCHSITE">
+</a>
+<!-- mglobalsearchtag -->
+
+<br clear="all"/><br clear="all"/>
+Mit Strg-F sucht der Browser nach Schlagwörtern in der Liste. Folgende Stichwörter werden im Onlinekurs erklärt:
+
+<br clear="all"/><br clear="all"/>
+<div class='searchtable'>
+<br />Abbildung: <a class="MINTERLINK" href="../../mpl/1.6.1/modstart.html#ELI_SW101">Modul 6.1</a><br />Abstand: <a class="MINTERLINK" href="../../mpl/1.9.2/modstart.html#ELI_SW147">Modul 9.2</a><br />Achsenabschnitt: <a class="MINTERLINK" href="../../mpl/1.9.1/xcontent1.html#ELI_SW142">Modul 9.1</a><br />Addition (Bruch): <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW15">Modul 1.2</a><br />Additionsmethode: <a class="MINTERLINK" href="../../mpl/1.4.3/xcontent3.html#ELI_SW79">Modul 4.3</a><br />Additionsverfahren: <a class="MINTERLINK" href="../../mpl/1.4.3/xcontent1.html#ELI_SW78">Modul 4.3</a><br />Äquivalenz: <a class="MINTERLINK" href="../../mpl/1.2.1/modstart.html#ELI_SW41">Modul 2.1</a><br />Äquivalenzumformung: <a class="MINTERLINK" href="../../mpl/1.2.1/modstart.html#ELI_SW42">Modul 2.1</a><br />Äquivalenzumformung (Notation): <a class="MINTERLINK" href="../../mpl/1.2.1/modstart.html#ELI_SW43">Modul 2.1</a><br />Äquivalenzumformung (Ungleichung): <a class="MINTERLINK" href="../../mpl/1.3.1/xcontent1.html#ELI_SW56">Modul 3.1</a><br />Allgemeine Geradengleichung: <a class="MINTERLINK" href="../../mpl/1.9.1/xcontent3.html#ELI_SW144">Modul 9.1</a><br />Allgemeine Kreisgleichung: <a class="MINTERLINK" href="../../mpl/1.9.2/xcontent1.html#ELI_SW149">Modul 9.2</a><br />Au&#223;enwinkel: <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW91">Modul 5.1</a><br />Ausmultiplizieren: <a class="MINTERLINK" href="../../mpl/1.1.3/xcontent3.html#ELI_SW27">Modul 1.3</a><br />Basis: <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW29">Modul 1.4</a><br />Betragsfunktion: <a class="MINTERLINK" href="../../mpl/1.6.2/xcontent4.html#ELI_SW106">Modul 6.2</a><br />Betragsgleichung: <a class="MINTERLINK" href="../../mpl/1.2.2/xcontent1.html#ELI_SW51">Modul 2.2</a><br />Binomische Formeln: <a class="MINTERLINK" href="../../mpl/1.1.3/xcontent1.html#ELI_SW24">Modul 1.3</a><br />Bogenmaß: <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW82">Modul 5.1</a><br />Bruch: <a class="MINTERLINK" href="../../mpl/1.1.1/modstart.html#ELI_SW2">Modul 1.1</a><br />Definitionsbereich: <a class="MINTERLINK" href="../../mpl/1.6.1/xcontent1.html#ELI_SW102">Modul 6.1</a><br />Definitionsmenge: <a class="MINTERLINK" href="../../mpl/1.4.1/xcontent1.html#ELI_SW68">Modul 4.1</a><br />Dezimalbruch: <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW18">Modul 1.2</a><br />Dezimalbruch (endlich): <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW19">Modul 1.2</a><br />Dezimalbruch (periodisch): <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW20">Modul 1.2</a><br />Division (Bruch): <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW17">Modul 1.2</a><br />Dreieck: <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW87">Modul 5.1</a><br />e-Funktion: <a class="MINTERLINK" href="../../mpl/1.6.4/xcontent2.html#ELI_SW110">Modul 6.4</a><br />Ebenengleichung: <a class="MINTERLINK" href="../../mpl/1.4.3/xcontent1.html#ELI_SW76">Modul 4.3</a><br />Ecken (Dreieck): <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW88">Modul 5.1</a><br />Einheitskreis: <a class="MINTERLINK" href="../../mpl/1.6.5/xcontent1.html#ELI_SW118">Modul 6.5</a><br />Einsetzen (Terme): <a class="MINTERLINK" href="../../mpl/1.1.1/xcontent1.html#ELI_SW8">Modul 1.1</a><br />Einsetzmethode: <a class="MINTERLINK" href="../../mpl/1.4.2/xcontent1.html#ELI_SW74">Modul 4.2</a><br />Erweitern: <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW11">Modul 1.2</a><br />Eulersche Zahl: <a class="MINTERLINK" href="../../mpl/1.6.4/xcontent2.html#ELI_SW109">Modul 6.4</a><br />Exponent: <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW30">Modul 1.4</a> , <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW34">Modul 1.4</a><br />Exponentialfunktion: <a class="MINTERLINK" href="../../mpl/1.6.4/modstart.html#ELI_SW107">Modul 6.4</a><br />Exponentialfunktion (natürlich): <a class="MINTERLINK" href="../../mpl/1.6.4/xcontent2.html#ELI_SW111">Modul 6.4</a><br />Flächeninhalt (Integral): <a class="MINTERLINK" href="../../mpl/1.8.3/xcontent1.html#ELI_SW135">Modul 8.3</a><br />Funktion: <a class="MINTERLINK" href="../../mpl/1.6.1/modstart.html#ELI_SW100">Modul 6.1</a><br />Funktionsgleichung (Gerade): <a class="MINTERLINK" href="../../mpl/1.9.1/xcontent1.html#ELI_SW140">Modul 9.1</a><br />Ganze Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Zopf;</mo></mrow></math>: <a class="MINTERLINK" href="../../mpl/1.1.1/modstart.html#ELI_SW0">Modul 1.1</a><br />Gerade: <a class="MINTERLINK" href="../../mpl/1.9.1/modstart.html#ELI_SW139">Modul 9.1</a><br />ggT: <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW14">Modul 1.2</a><br />Gleichheit (Terme): <a class="MINTERLINK" href="../../mpl/1.1.3/xcontent1.html#ELI_SW23">Modul 1.3</a><br />Gleichsetzmethode: <a class="MINTERLINK" href="../../mpl/1.4.2/xcontent1.html#ELI_SW75">Modul 4.2</a><br />Gleichung: <a class="MINTERLINK" href="../../mpl/1.2.1/modstart.html#ELI_SW40">Modul 2.1</a><br />Gleichung (linear): <a class="MINTERLINK" href="../../mpl/1.2.1/xcontent2.html#ELI_SW44">Modul 2.1</a><br />Gleichung (quadratisch): <a class="MINTERLINK" href="../../mpl/1.2.1/xcontent3.html#ELI_SW45">Modul 2.1</a><br />Gleichungssystem: <a class="MINTERLINK" href="../../mpl/1.4.1/xcontent1.html#ELI_SW62">Modul 4.1</a><br />Gleichungssystem (linear): <a class="MINTERLINK" href="../../mpl/1.4.1/xcontent1.html#ELI_SW63">Modul 4.1</a><br />Gleichungssystem (quadratisch): <a class="MINTERLINK" href="../../mpl/1.4.1/xcontent1.html#ELI_SW65">Modul 4.1</a><br />Grundmenge: <a class="MINTERLINK" href="../../mpl/1.4.1/xcontent1.html#ELI_SW67">Modul 4.1</a><br />H&#246;he: <a class="MINTERLINK" href="../../mpl/1.5.2/xcontent1.html#ELI_SW98">Modul 5.2</a><br />Hauptnenner: <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW12">Modul 1.2</a><br />Hauptsatz: <a class="MINTERLINK" href="../../mpl/1.8.2/xcontent1.html#ELI_SW132">Modul 8.2</a><br />Hypotenuse: <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW96">Modul 5.1</a><br />Innenwinkel: <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW90">Modul 5.1</a><br />Integral (bestimmt): <a class="MINTERLINK" href="../../mpl/1.8.2/xcontent1.html#ELI_SW131">Modul 8.2</a><br />Integral (unbestimmt): <a class="MINTERLINK" href="../../mpl/1.8.1/xcontent1.html#ELI_SW128">Modul 8.1</a><br />Integral!Riemann: <a class="MINTERLINK" href="../../mpl/1.8.2/modstart.html#ELI_SW130">Modul 8.2</a><br />Intervall: <a class="MINTERLINK" href="../../mpl/1.3.1/xcontent1.html#ELI_SW54">Modul 3.1</a><br />Kathete: <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW95">Modul 5.1</a><br />kgV: <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW13">Modul 1.2</a><br />Kongruenzsätze: <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent2.html#ELI_SW97">Modul 5.1</a><br />Koordinaten: <a class="MINTERLINK" href="../../mpl/1.9.1/modstart.html#ELI_SW137">Modul 9.1</a><br />Kosinusfunktion: <a class="MINTERLINK" href="../../mpl/1.6.5/xcontent2.html#ELI_SW120">Modul 6.5</a><br />Kreis: <a class="MINTERLINK" href="../../mpl/1.9.2/modstart.html#ELI_SW145">Modul 9.2</a><br />Kreisbogen: <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW80">Modul 5.1</a><br />Kreisgleichung: <a class="MINTERLINK" href="../../mpl/1.9.2/xcontent1.html#ELI_SW148">Modul 9.2</a><br />Kubikwurzel: <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW36">Modul 1.4</a><br />Kürzen: <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW10">Modul 1.2</a><br />LGS: <a class="MINTERLINK" href="../../mpl/1.4.1/xcontent1.html#ELI_SW64">Modul 4.1</a><br />Lineares Gleichungssystem (homogen): <a class="MINTERLINK" href="../../mpl/1.4.2/modstart.html#ELI_SW71">Modul 4.2</a><br />Lineares Gleichungssystem (inhomogen): <a class="MINTERLINK" href="../../mpl/1.4.2/modstart.html#ELI_SW70">Modul 4.2</a><br />Lösbarkeit: <a class="MINTERLINK" href="../../mpl/1.4.2/xcontent1.html#ELI_SW73">Modul 4.2</a><br />Lösung eines Gleichungssystems: <a class="MINTERLINK" href="../../mpl/1.4.1/xcontent1.html#ELI_SW66">Modul 4.1</a><br />Lösungsformeln: <a class="MINTERLINK" href="../../mpl/1.2.1/xcontent3.html#ELI_SW46">Modul 2.1</a><br />Lösungsmenge: <a class="MINTERLINK" href="../../mpl/1.4.1/xcontent1.html#ELI_SW69">Modul 4.1</a><br />Logarithmengesetze: <a class="MINTERLINK" href="../../mpl/1.6.4/xcontent4.html#ELI_SW114">Modul 6.4</a><br />Logarithmusfunktion (allgemein): <a class="MINTERLINK" href="../../mpl/1.6.4/xcontent3.html#ELI_SW113">Modul 6.4</a><br />Logarithmusfunktion (natürlich): <a class="MINTERLINK" href="../../mpl/1.6.4/xcontent3.html#ELI_SW112">Modul 6.4</a><br />Lotfu&#223;punkt: <a class="MINTERLINK" href="../../mpl/1.5.2/xcontent1.html#ELI_SW99">Modul 5.2</a><br />Maximierungsaufgabe: <a class="MINTERLINK" href="../../mpl/1.7.5/xcontent2.html#ELI_SW124">Modul 7.5</a><br />Minimierungsaufgabe: <a class="MINTERLINK" href="../../mpl/1.7.5/xcontent2.html#ELI_SW123">Modul 7.5</a><br />Multiplikation (Bruch): <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW16">Modul 1.2</a><br />Nebenbedingung: <a class="MINTERLINK" href="../../mpl/1.7.5/xcontent2.html#ELI_SW126">Modul 7.5</a><br />Nenner: <a class="MINTERLINK" href="../../mpl/1.1.1/modstart.html#ELI_SW4">Modul 1.1</a><br />Optimierungsaufgabe: <a class="MINTERLINK" href="../../mpl/1.7.5/xcontent2.html#ELI_SW122">Modul 7.5</a><br />Partielle Integration: <a class="MINTERLINK" href="../../mpl/1.8.2/xcontent2.html#ELI_SW134">Modul 8.2</a><br />Periode (Sinus): <a class="MINTERLINK" href="../../mpl/1.6.5/xcontent1.html#ELI_SW119">Modul 6.5</a><br />Potenz: <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW28">Modul 1.4</a><br />Potenzgesetze: <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW39">Modul 1.4</a><br />pq-Formel: <a class="MINTERLINK" href="../../mpl/1.2.1/xcontent3.html#ELI_SW47">Modul 2.1</a><br />Produktdarstellung: <a class="MINTERLINK" href="../../mpl/1.1.3/xcontent3.html#ELI_SW25">Modul 1.3</a><br />Punkt: <a class="MINTERLINK" href="../../mpl/1.9.1/modstart.html#ELI_SW136">Modul 9.1</a><br />Quadratische Ergänzung: <a class="MINTERLINK" href="../../mpl/1.2.1/xcontent3.html#ELI_SW50">Modul 2.1</a><br />Quadratische Ergänzung (Ungleichungen): <a class="MINTERLINK" href="../../mpl/1.3.3/xcontent1.html#ELI_SW60">Modul 3.3</a><br />Quadratwurzel: <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW35">Modul 1.4</a><br />Radikand: <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW33">Modul 1.4</a><br />Radius: <a class="MINTERLINK" href="../../mpl/1.9.2/modstart.html#ELI_SW146">Modul 9.2</a><br />Radizieren: <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW38">Modul 1.4</a><br />Rationale Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Qopf;</mo></mrow></math>: <a class="MINTERLINK" href="../../mpl/1.1.1/modstart.html#ELI_SW1">Modul 1.1</a><br />Rechenregeln (Wurzel): <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW37">Modul 1.4</a><br />Rechtwinklig (Dreieck): <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW94">Modul 5.1</a><br />Reelle Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Ropf;</mo></mrow></math>: <a class="MINTERLINK" href="../../mpl/1.1.1/modstart.html#ELI_SW5">Modul 1.1</a><br />Scheitelpunkt (Parabel): <a class="MINTERLINK" href="../../mpl/1.2.1/xcontent3.html#ELI_SW49">Modul 2.1</a><br />Scheitelpunkt (Winkel): <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW83">Modul 5.1</a><br />Scheitelpunktform: <a class="MINTERLINK" href="../../mpl/1.2.1/xcontent3.html#ELI_SW48">Modul 2.1</a><br />Schenkel: <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW84">Modul 5.1</a><br />Schnittgerade: <a class="MINTERLINK" href="../../mpl/1.4.3/xcontent1.html#ELI_SW77">Modul 4.3</a><br />Seiten (Dreieck): <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW89">Modul 5.1</a><br />Sinusfunktion: <a class="MINTERLINK" href="../../mpl/1.6.5/xcontent1.html#ELI_SW117">Modul 6.5</a><br />Spitzwinklig (Dreieck): <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW93">Modul 5.1</a><br />Stammfunktion: <a class="MINTERLINK" href="../../mpl/1.8.1/xcontent1.html#ELI_SW127">Modul 8.1</a><br />Steigung: <a class="MINTERLINK" href="../../mpl/1.9.1/xcontent1.html#ELI_SW141">Modul 9.1</a><br />Stummfunktionen (Tabelle): <a class="MINTERLINK" href="../../mpl/1.8.1/xcontent1.html#ELI_SW129">Modul 8.1</a><br />Summendarstellung: <a class="MINTERLINK" href="../../mpl/1.1.3/xcontent3.html#ELI_SW26">Modul 1.3</a><br />Summenregel (Integral): <a class="MINTERLINK" href="../../mpl/1.8.2/xcontent2.html#ELI_SW133">Modul 8.2</a><br />Tangensfunktion: <a class="MINTERLINK" href="../../mpl/1.6.5/xcontent2.html#ELI_SW121">Modul 6.5</a><br />Term: <a class="MINTERLINK" href="../../mpl/1.1.1/xcontent1.html#ELI_SW7">Modul 1.1</a><br />Terme: <a class="MINTERLINK" href="../../mpl/1.1.3/modstart.html#ELI_SW22">Modul 1.3</a><br />Trigonometrie: <a class="MINTERLINK" href="../../mpl/1.6.5/modstart.html#ELI_SW115">Modul 6.5</a><br />Trigonometrische Funktionen: <a class="MINTERLINK" href="../../mpl/1.6.5/modstart.html#ELI_SW116">Modul 6.5</a><br />Triviale Lösung (LGS): <a class="MINTERLINK" href="../../mpl/1.4.2/modstart.html#ELI_SW72">Modul 4.2</a><br />Umformung: <a class="MINTERLINK" href="../../mpl/1.1.1/xcontent2.html#ELI_SW9">Modul 1.1</a><br />Umwandlung (Dezimalbrüche): <a class="MINTERLINK" href="../../mpl/1.1.2/modstart.html#ELI_SW21">Modul 1.2</a><br />Unendlich: <a class="MINTERLINK" href="../../mpl/1.3.1/xcontent1.html#ELI_SW55">Modul 3.1</a><br />Ungleichung (Brüche): <a class="MINTERLINK" href="../../mpl/1.3.3/xcontent2.html#ELI_SW61">Modul 3.3</a><br />Ungleichung (linear): <a class="MINTERLINK" href="../../mpl/1.3.1/xcontent1.html#ELI_SW57">Modul 3.1</a><br />Ungleichung (quadratisch): <a class="MINTERLINK" href="../../mpl/1.3.3/xcontent1.html#ELI_SW59">Modul 3.3</a><br />Ungleichungen (aufgelöst): <a class="MINTERLINK" href="../../mpl/1.3.1/xcontent1.html#ELI_SW53">Modul 3.1</a><br />Ungleichungen (Beträge): <a class="MINTERLINK" href="../../mpl/1.3.3/modstart.html#ELI_SW58">Modul 3.3</a><br />Variable: <a class="MINTERLINK" href="../../mpl/1.1.1/xcontent1.html#ELI_SW6">Modul 1.1</a><br />Vektorschreibweise: <a class="MINTERLINK" href="../../mpl/1.9.1/modstart.html#ELI_SW138">Modul 9.1</a><br />Veränderliche: <a class="MINTERLINK" href="../../mpl/1.6.1/xcontent1.html#ELI_SW103">Modul 6.1</a><br />Vergleichssymbole: <a class="MINTERLINK" href="../../mpl/1.3.1/modstart.html#ELI_SW52">Modul 3.1</a><br />Wachstumsrate: <a class="MINTERLINK" href="../../mpl/1.6.4/xcontent1.html#ELI_SW108">Modul 6.4</a><br />Wertebereich: <a class="MINTERLINK" href="../../mpl/1.6.1/xcontent1.html#ELI_SW104">Modul 6.1</a><br />Wertetabelle: <a class="MINTERLINK" href="../../mpl/1.6.1/xcontent1.html#ELI_SW105">Modul 6.1</a><br />Winkel: <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW81">Modul 5.1</a><br />Winkel (Dreieck): <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW92">Modul 5.1</a><br />Winkel (spitz): <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW85">Modul 5.1</a><br />Winkel (stumpf): <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#ELI_SW86">Modul 5.1</a><br />Wurzel: <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW31">Modul 1.4</a><br />Wurzelbasis: <a class="MINTERLINK" href="../../mpl/1.1.4/modstart.html#ELI_SW32">Modul 1.4</a><br />Zähler: <a class="MINTERLINK" href="../../mpl/1.1.1/modstart.html#ELI_SW3">Modul 1.1</a><br />Zielfunktion: <a class="MINTERLINK" href="../../mpl/1.7.5/xcontent2.html#ELI_SW125">Modul 7.5</a><br />Zwei-Punkte-Form: <a class="MINTERLINK" href="../../mpl/1.9.1/xcontent2.html#ELI_SW143">Modul 9.1</a></div>
+
+
+<br clear="all"/><br clear="all"/>
+<br />
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

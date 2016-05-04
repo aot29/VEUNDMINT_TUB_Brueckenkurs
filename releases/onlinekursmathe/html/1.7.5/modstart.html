@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 7.5.1 Kurvendiskussion</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+// onload blocks start
+// onload blocks stop
+var SITE_ID = "1.7.5.1";
+var SITE_UXID = "VBKM07_Kurvendiskussion";
+var SECTION_ID = 7;
+var docName = "modstart";
+var fullName = "html/1.7.5/modstart.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.7.1/modstart.html"><div class="xsymb selected">7.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.1/modstart.html"><div uxid="VBKM07_Ableitung_Intro" id="idxsymb_tc174" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.1/xcontent1.html"><div uxid="VBKM07_Ableitung_Aenderungsrate" id="idxsymb_tc175" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.1/xcontent2.html"><div uxid="VBKM07_Ableitung_Ableitung" id="idxsymb_tc176" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.1/xcontent3.html"><div uxid="VBKM07_Ableitung_Exercises" id="idxsymb_tc177" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.7.2/modstart.html"><div class="xsymb selected">7.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.2/modstart.html"><div uxid="VBKM07_StdAbleitungen_Intro" id="idxsymb_tc178" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.2/xcontent1.html"><div uxid="VBKM07_StdAbleitungen_Polynome" id="idxsymb_tc179" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.2/xcontent2.html"><div uxid="VBKM07_SpezielleFunktionen" id="idxsymb_tc180" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.2/xcontent3.html"><div uxid="VBKM07_Ableitung_Speziell_Exercises" id="idxsymb_tc181" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.7.3/modstart.html"><div class="xsymb selected">7.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.3/modstart.html"><div uxid="VBKM07_Rechenregeln_Intro" id="idxsymb_tc182" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.3/xcontent1.html"><div uxid="VBKM07_Rechenregeln_Summen" id="idxsymb_tc183" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.3/xcontent2.html"><div uxid="VBKM07_Produktregel" id="idxsymb_tc184" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.3/xcontent3.html"><div uxid="VBKM07_Verkettung" id="idxsymb_tc185" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.3/xcontent4.html"><div uxid="VBKM07_Rechenregeln_Exercises" id="idxsymb_tc186" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.7.4/modstart.html"><div class="xsymb selected">7.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.4/modstart.html"><div uxid="VBKM07_Eigenschaften_Intro" id="idxsymb_tc187" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.4/xcontent1.html"><div uxid="VBKM07_Monotonie" id="idxsymb_tc188" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.4/xcontent2.html"><div uxid="VBKM07_Kruemmungseigenschaften" id="idxsymb_tc189" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.4/xcontent3.html"><div uxid="VBKM07_Verhalten_Exercises" id="idxsymb_tc190" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.7.5/modstart.html"><div class="xsymb selected">7.5</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.5/modstart.html"><div uxid="VBKM07_Kurvendiskussion" id="idxsymb_tc191" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.5/xcontent1.html"><div uxid="VBKM07_Kurvendiskussion_Exercises" id="idxsymb_tc192" class="xsymb status2"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.5/xcontent2.html"><div uxid="VBKM07_Optimierungsaufgaben" id="idxsymb_tc193" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.5/xcontent3.html"><div uxid="VBKM07_WeitereBeispiele" id="idxsymb_tc194" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.7.6/modstart.html"><div class="xsymb selected">7.6</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.6/modstart.html"><div uxid="VBKM07_Abschlusstest" id="idxsymb_tc195" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.7.4/xcontent3.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/1.7.5/xcontent1.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM07_Kurvendiskussion" class="MINTERLINK naviselected" href="../../html/1.7.5/modstart.html">Kurvendiskussion</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_Kurvendiskussion_Exercises" class="MINTERLINK" href="../../html/1.7.5/xcontent1.html">Aufgaben</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_Optimierungsaufgaben" class="MINTERLINK" href="../../html/1.7.5/xcontent2.html">Optimierungsaufgaben</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_WeitereBeispiele" class="MINTERLINK" href="../../html/1.7.5/xcontent3.html">Beispiel</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREEN);">Grün</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.7.1/modstart.html"><div class="xsymb selected">7.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.1/modstart.html"><div uxid="VBKM07_Ableitung_Intro" id="idxsymb_tc174" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.1/xcontent1.html"><div uxid="VBKM07_Ableitung_Aenderungsrate" id="idxsymb_tc175" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.1/xcontent2.html"><div uxid="VBKM07_Ableitung_Ableitung" id="idxsymb_tc176" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.1/xcontent3.html"><div uxid="VBKM07_Ableitung_Exercises" id="idxsymb_tc177" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.7.2/modstart.html"><div class="xsymb selected">7.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.2/modstart.html"><div uxid="VBKM07_StdAbleitungen_Intro" id="idxsymb_tc178" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.2/xcontent1.html"><div uxid="VBKM07_StdAbleitungen_Polynome" id="idxsymb_tc179" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.2/xcontent2.html"><div uxid="VBKM07_SpezielleFunktionen" id="idxsymb_tc180" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.2/xcontent3.html"><div uxid="VBKM07_Ableitung_Speziell_Exercises" id="idxsymb_tc181" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.7.3/modstart.html"><div class="xsymb selected">7.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.3/modstart.html"><div uxid="VBKM07_Rechenregeln_Intro" id="idxsymb_tc182" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.3/xcontent1.html"><div uxid="VBKM07_Rechenregeln_Summen" id="idxsymb_tc183" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.3/xcontent2.html"><div uxid="VBKM07_Produktregel" id="idxsymb_tc184" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.3/xcontent3.html"><div uxid="VBKM07_Verkettung" id="idxsymb_tc185" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.3/xcontent4.html"><div uxid="VBKM07_Rechenregeln_Exercises" id="idxsymb_tc186" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.7.4/modstart.html"><div class="xsymb selected">7.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.4/modstart.html"><div uxid="VBKM07_Eigenschaften_Intro" id="idxsymb_tc187" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.4/xcontent1.html"><div uxid="VBKM07_Monotonie" id="idxsymb_tc188" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.4/xcontent2.html"><div uxid="VBKM07_Kruemmungseigenschaften" id="idxsymb_tc189" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.4/xcontent3.html"><div uxid="VBKM07_Verhalten_Exercises" id="idxsymb_tc190" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.7.5/modstart.html"><div class="xsymb selected">7.5</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.5/modstart.html"><div uxid="VBKM07_Kurvendiskussion" id="idxsymb_tc191" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.5/xcontent1.html"><div uxid="VBKM07_Kurvendiskussion_Exercises" id="idxsymb_tc192" class="xsymb status2"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.5/xcontent2.html"><div uxid="VBKM07_Optimierungsaufgaben" id="idxsymb_tc193" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.7.5/xcontent3.html"><div uxid="VBKM07_WeitereBeispiele" id="idxsymb_tc194" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.7.6/modstart.html"><div class="xsymb selected">7.6</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.7.6/modstart.html"><div uxid="VBKM07_Abschlusstest" id="idxsymb_tc195" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.7.4/xcontent3.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/1.7.5/xcontent1.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM07_Kurvendiskussion" class="MINTERLINK naviselected" href="../../html/1.7.5/modstart.html">Kurvendiskussion</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_Kurvendiskussion_Exercises" class="MINTERLINK" href="../../html/1.7.5/xcontent1.html">Aufgaben</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_Optimierungsaufgaben" class="MINTERLINK" href="../../html/1.7.5/xcontent2.html">Optimierungsaufgaben</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_WeitereBeispiele" class="MINTERLINK" href="../../html/1.7.5/xcontent3.html">Beispiel</a></li>
+</ul>
+</div>
+  <div id="content" class="content"><a id="M07_Anwendungen"></a>
+
+
+
+
+
+
+
+<h4>7.5.2 1  - 1.7</h4><br /><h4>7.5.1 Kurvendiskussion</h4>
+
+
+
+<a id="VBKM07_Kurvendiskussion">
+</a>
+<!-- mdeclaresiteuxidpost;;VBKM07_Kurvendiskussion;; //-->
+
+<br clear="all"/><br clear="all"/>
+Gegeben ist eine differenzierbare Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo>
+<mtext/>
+<mo stretchy="false">]</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">[</mo>
+<mtext/>
+<mo>→</mo><mo>ℝ</mo></mrow></math> 
+mit Abbildungsvorschrift <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>→</mo><mi>y</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>∈</mo>
+<mtext/>
+<mo stretchy="false">]</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math>.
+Eine vollständige Kurvendiskussion für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> besteht in diesem Kurs aus folgenden Angaben:
+
+<br clear="all"/><br clear="all"/>
+
+<ul>
+<li> Maximaler Definitionsbereich
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Achsenschnittpunkte des Graphen
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Symmetrie des Graphen
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Grenzverhalten/Asymptoten
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die ersten Ableitungen
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Extremwerte
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Monotonieverhalten
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Wendestellen
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Krümmungsverhalten
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Skizze des Graphen
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+
+<br clear="all"/><br clear="all"/>
+Viele dieser Punkte wurden bereits in Modul <a class="MINTERLINK" href="../../html/sectionx1.6.0.html#VBKM06">6</a> behandelt. Daher
+wiederholt das Folgende nur kurz, was unter den einzelnen
+Schritten der Kurvendiskussion zu verstehen ist. Im Anschluss wird
+eine Kurvendiskussion detailliert an einem Beispiel durchgesprochen.
+
+<br clear="all"/><br clear="all"/>
+Der erste Teil der Kurvendiskussion besteht aus algebraischen und geometrischen Aspekten von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>:
+
+<br clear="all"/><br clear="all"/>
+
+<dl>
+ <dt><b>Maximaler Definitionsbereich</b></dt>
+	<dd>
+Es werden alle reellen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> bestimmt, für die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> existiert. Die 
+Menge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>D</mi></mrow></math> all dieser Zahlen wird maximaler Definitionsbereich genannt.</dd>
+ <dt><b>Schnittpunkte mit den Achsen</b></dt>
+	<dd>  
+
+<ul>
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse: Alle Nullstellen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> werden bestimmt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achse: Der Funktionswert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math> (falls <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>∈</mo><mi>D</mi></mrow></math>) wird berechnet.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul></dd>
+ <dt><b>Symmetrie des Graphen</b></dt>
+	<dd>
+Der Graph der Funktion ist symmetrisch zur <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achse, wenn <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> für
+alle <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>∈</mo><mi>D</mi></mrow></math> ist. Dann heißt die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> auch <b>gerade</b>.
+Ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> für alle <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>∈</mo><mi>D</mi></mrow></math>, so ist der Graph
+zum Ursprung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math> des Koordinatensystems punktsymmetrisch.
+In diesem Falle nennt man die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> auch <b>ungerade</b>.</dd>
+ <dt><b>Asymptotisches Verhalten an den Rändern des Definitionsbereichs</b></dt>
+	<dd>
+Die Grenzwerte der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> an den Grenzen ihres Definitionsbereichs werden untersucht.</dd>
+</dl> 
+
+<br clear="all"/><br clear="all"/>
+Im zweiten Teil wird die Funktion mittels Folgerungen aus der Ableitung 
+analytisch untersucht. Dazu müssen natürlich zunächst die erste und die zweite Ableitung 
+berechnet werden, sofern diese existieren.
+
+<br clear="all"/><br clear="all"/>
+
+<dl>
+ <dt><b>Ableitungen</b></dt>
+	<dd>
+Berechnung der ersten und zweiten Ableitung (soweit vorhanden).</dd>
+ <dt><b>Extremwerte und Monotonie</b></dt>
+	<dd>
+Notwendige Bedingung für Extremstellen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> (sofern <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>∈</mo><mi>D</mi></mrow></math> kein Randpunkt von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>D</mi></mrow></math> ist): <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math>
+<br clear="all"/><br clear="all"/>
+Wir berechnen also diejenigen Stellen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+</mrow></math>, an denen die Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo></mrow></math> den Wert Null annimmt. Wenn an diesen Stellen auch die zweite
+Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo></mrow></math> existiert, gilt:
+
+<ul>
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn></mrow></math>: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+</mrow></math> ist eine Minimalstelle von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo stretchy="false">)</mo><mo>&lt;</mo><mn>0</mn></mrow></math>: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+</mrow></math> ist eine Maximalstelle von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf denjenigen Intervallen des Definitionsbereichs monoton
+wachsend, auf denen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≥</mo><mn>0</mn></mrow></math> gilt. Sie ist dort monoton fallend, wo <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≤</mo><mn>0</mn></mrow></math> 
+ist.</dd>
+ <dt><b>Wendestellen und Krümmungseigenschaften</b></dt>
+	<dd>
+Notwendige Bedingung für Wendestellen (sofern die zweite Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo></mrow></math> existiert): <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math>
+<br clear="all"/><br clear="all"/>
+Wenn <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>f</mi></mrow><mrow><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo></mrow>
+</msup>
+<mo stretchy="false">(</mo>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo stretchy="false">)</mo><mo>≠</mo><mn>0</mn></mrow></math> ist, dann ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+</mrow></math> eine Wendestelle, d.h. <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ändert an dieser Stelle das Krümmungsverhalten.
+<br clear="all"/><br clear="all"/>
+Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf denjenigen Intervallen des Definitionsbereichs konvex
+(linksgekrümmt), auf denen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>f</mi></mrow><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow>
+</msup>
+<mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≥</mo><mn>0</mn></mrow></math> gilt. Sie ist konkav (rechtsgekrümmt) dort, 
+wo <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>f</mi></mrow><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow>
+</msup>
+<mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≤</mo><mn>0</mn></mrow></math> ist.</dd>
+ <dt><b>Skizze des Graphen</b></dt>
+	<dd> Eine Skizze des Graphen in einem geeigneten Koordinatensystem wird angefertigt, und zwar unter
+Berücksichtigung der während der Kurvendiskussion gewonnenen Daten.</dd>
+</dl>
+
+<br clear="all"/><br clear="all"/>
+
+<h4>Ausführliches Beispiel</h4>
+Es soll eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> mit dem Funktionsterm
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi>
+<mfrac><mrow><mn>4</mn><mi>x</mi></mrow>
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn></mrow>
+</mfrac>
+<br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+untersucht werden.
+
+<br clear="all"/><br clear="all"/>
+<b>Maximaler Definitionsbereich</b><br/>
+Der maximale Definitionsbereich dieser Funktion ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>f</mi></mrow>
+</msub>
+<mo>=</mo><mo>ℝ</mo></mrow></math>, da der Nenner der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>≥</mo><mn>2</mn></mrow></math> ist, also niemals Null wird,
+und daher keine Stellen ausgeschlossen werden müssen.
+ <br/> <br/>
+<b>Achsenschnittpunkte</b><br/>
+Die Nullstellen der Funktion entsprechen den Nullstellen des Zählers. Daher schneidet der Graph von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse nur
+im Nullpunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math>, denn der Zähler wird nur für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math> zu Null. Dies ist auch der einzige Schnittpunkt mit der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achse, da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math> ist.
+ <br/> <br/>
+<b>Symmetrie</b><br/>
+Um das Symmetrieverhalten zu untersuchen, wird das Argument <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> durch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> ersetzt. Es gilt
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo stretchy="false">(</mo><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi>
+<mfrac><mrow><mn>4</mn><mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+<mrow><mo stretchy="false">(</mo><mo>-</mo><mi>x</mi>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn></mrow>
+</mfrac>
+<mi>  </mi><mo>=</mo><mi>  </mi><mo>-</mo>
+<mfrac><mrow><mn>4</mn><mi>x</mi></mrow>
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn></mrow>
+</mfrac>
+<mi>  </mi><mo>=</mo><mi>  </mi><mo>-</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+für alle <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>∈</mo><mo>ℝ</mo></mrow></math>. Der Graph von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist folglich punktsymmetrisch zum Ursprung.
+ <br/> <br/>
+<b>Grenzverhalten</b><br/>
+Die Funktion ist auf ganz <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>ℝ</mo></mrow></math> definiert, daher ist nur das Grenzverhalten für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>→</mo><mi>∞</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>→</mo><mo>-</mo><mi>∞</mi></mrow></math> zu untersuchen.
+Da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> ein Bruch aus zwei Polynomen ist und der Nenner die höhere Potenz besitzt, ist die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse die waagerechte Asymptote in beide Richtungen:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<munder><mo>lim</mo><mrow><mi>x</mi><mo>→</mo><mo>±</mo><mi>∞</mi></mrow>
+</munder>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+ <br/> <br/>
+<b>Ableitungen</b><br/>
+Die ersten beiden Ableitungen der Funktion folgen mit Hilfe der Quotientenregel:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mn>4</mn><mo>·</mo>
+<mfrac><mrow><mn>1</mn><mo>·</mo><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo stretchy="false">)</mo><mo>-</mo><mi>x</mi><mo>·</mo><mn>2</mn><mi>x</mi></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mi>  </mi><mo>=</mo><mi>  </mi><mn>4</mn><mo>·</mo>
+<mfrac><mrow><mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mi> </mi><mo>.</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+Erneutes Ableiten und Vereinfachen ergibt
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>4</mn><mo>·</mo>
+<mfrac><mrow><mo>-</mo><mn>2</mn><mi>x</mi><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mo stretchy="false">(</mo><mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo stretchy="false">)</mo><mo>·</mo><mn>2</mn><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo stretchy="false">)</mo><mo>·</mo><mn>2</mn><mi>x</mi></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>4</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>4</mn><mo>·</mo>
+<mfrac><mrow><mo>-</mo><mn>2</mn><mi>x</mi><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo stretchy="false">)</mo><mo>-</mo><mo stretchy="false">(</mo><mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo stretchy="false">)</mo><mo>·</mo><mn>4</mn><mi>x</mi></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>4</mn><mo>·</mo>
+<mfrac><mrow><mo>-</mo><mn>2</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo>-</mo><mn>4</mn><mi>x</mi><mo>+</mo><mn>4</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo>-</mo><mn>8</mn><mi>x</mi></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>4</mn><mo>·</mo>
+<mfrac><mrow><mn>2</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo>-</mo><mn>12</mn><mi>x</mi></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>8</mn><mo>·</mo>
+<mfrac><mrow><mi>x</mi><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>6</mn><mo stretchy="false">)</mo></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mi> </mi><mo>.</mo>
+</mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+ <br/>
+<b>Extremwerte</b><br/>
+Die notwendige Bedingung für eine Extremstelle, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math>, ist hier gleichbedeutend mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>=</mo><mn>0</mn></mrow></math>.
+Man erhält also <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></math>. Es muss noch das Verhalten der zweiten Ableitung an diesen Stellen untersucht werden:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mn>8</mn>
+<mfrac><mrow><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>·</mo><mo stretchy="false">(</mo><mn>2</mn><mo>-</mo><mn>6</mn><mo stretchy="false">)</mo></mrow>
+<mrow><mo stretchy="false">(</mo><mn>2</mn><mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>&lt;</mo><mn>0</mn><mi> </mi><mo>,</mo><mi> </mi><mi> </mi>
+<mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mn>8</mn>
+<mfrac><mrow><mo stretchy="false">(</mo><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mn>2</mn><mo>-</mo><mn>6</mn><mo stretchy="false">)</mo></mrow>
+<mrow><mo stretchy="false">(</mo><mn>2</mn><mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>&gt;</mo><mn>0</mn><mi> </mi><mo>.</mo>
+<br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+Folglich ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> eine Maximalstelle und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> eine Minimalstelle von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>. Durch Einsetzen in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> resultieren das
+Maximum <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>;</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>)</mo></mrow></mrow></math> und das Minimum <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>;</mo><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>.
+ <br/> <br/>
+<b>Monotonieverhalten</b><br/>
+Da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> auf ganz <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>ℝ</mo></mrow></math> definiert ist,
+kann das Monotonieverhalten aus der Lage der Extremstellen und aus deren Typ abgelesen werden: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist monoton fallend auf
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo>]</mo><mo>-</mo><mi>∞</mi><mo>;</mo><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>[</mo></mrow>
+<mtext/>
+</mrow></math>, monoton wachsend auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo>]</mo><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>;</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>[</mo></mrow>
+<mtext/>
+</mrow></math>
+und monoton fallend auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo>]</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>;</mo><mi>∞</mi><mo>[</mo></mrow>
+<mtext/>
+</mrow></math>. Monotonieintervalle werden stets in offener Form angegeben.
+ <br/> <br/>
+<b>Wendestellen</b><br/>
+Aus der notwendigen Bedingung für Wendestellen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math> erhält man die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>8</mn><mi>x</mi><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>6</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math>.
+Somit sind <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><msqrt><mrow><mn>6</mn></mrow></msqrt></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo><mo>-</mo><msqrt><mrow><mn>6</mn></mrow></msqrt></mrow></math> die einzigen Lösungen.
+Das Polynom im Nenner von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo></mrow></math> ist stets größer als Null. Da das Zählerpolynom nur einfache Nullstellen besitzt, ändert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>
+in allen diesen Stellen das Vorzeichen. Es handelt sich
+daher um Wendestellen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>. Die Wendepunkte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo><msqrt><mrow><mn>6</mn></mrow></msqrt><mo>;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<msqrt><mrow><mn>6</mn></mrow></msqrt><mo>)</mo></mrow></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo><mo>-</mo><msqrt><mrow><mn>6</mn></mrow></msqrt><mo>;</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<msqrt><mrow><mn>6</mn></mrow></msqrt><mo>)</mo></mrow></mrow></math> ergeben sich durch
+Einsetzen der Wendestellen in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>.
+ <br/> <br/>
+<b>Krümmungsverhalten</b><br/>
+Die zweimal differenzierbare Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist konvex, wenn die zweite Ableitung größer oder gleich Null ist. Sie ist konkav,
+wenn die zweite Ableitung kleiner oder gleich Null ist.
+Da das Polynom im Nenner von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> stets positiv ist, genügt es, das Vorzeichen des Polynoms <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>8</mn><mi>x</mi><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><msqrt><mrow><mn>6</mn></mrow></msqrt><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><msqrt><mrow><mn>6</mn></mrow></msqrt><mo stretchy="false">)</mo></mrow></math> im Zähler
+zu untersuchen. Für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><msqrt><mrow><mn>6</mn></mrow></msqrt></mrow></math> ist es negativ (dort ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> konkav). Für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&gt;</mo><msqrt><mrow><mn>6</mn></mrow></msqrt></mrow></math> ist es positiv (dort ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> konvex).
+Da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> punktsymmetrisch ist, folgt, dass <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> auf den Intervallen  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo>]</mo><mo>-</mo><msqrt><mrow><mn>6</mn></mrow></msqrt><mo>;</mo><mn>0</mn><mo>[</mo></mrow>
+<mtext/>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo>]</mo><msqrt><mrow><mn>6</mn></mrow></msqrt><mo>;</mo><mi>∞</mi><mo>[</mo></mrow>
+<mtext/>
+</mrow></math> konvex
+sowie auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo>]</mo><mo>-</mo><mi>∞</mi><mo>;</mo><mo>-</mo><msqrt><mrow><mn>6</mn></mrow></msqrt><mo>[</mo></mrow>
+<mtext/>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo>]</mo><mn>0</mn><mo>;</mo><msqrt><mrow><mn>6</mn></mrow></msqrt><mo>[</mo></mrow>
+<mtext/>
+</mrow></math> konkav ist.
+ <br/> <br/>
+<b>Skizze des Graphen</b><br/>
+
+<div class="imagecenter">
+<center>
+<div>
+<img src="./BildKurvendiskussion1.png" style="width:600px" alt="./BildKurvendiskussion1.png"/>
+</div>
+<div class="bildtext">
+
+
+
+
+
+<b>Abbildung 1:</b> Der Graph der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>, skizziert auf dem Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mo>-</mo><mn>8</mn><mo>;</mo><mn>8</mn><mo stretchy="false">]</mo></mrow></math>.
+
+
+
+</div>
+</center>
+</div>
+<br/>
+
+
+<br clear="all"/><br clear="all"/>
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>

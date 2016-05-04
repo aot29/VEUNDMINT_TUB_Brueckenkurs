@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 6.2.0 Einf&#252;hrung - MINT-Module Abschnitt 6.2.4 Betragsfunktionen</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+
+SITE_ID = "1.6.2.5";
+SITE_UXID = "VBKM06_EinfacheFunktionen_Betrag";
+SECTION_ID = 6;
+var docName = "xcontent4";
+var fullName = "mpl/1.6.2/xcontent4.html";
+var fullNamePath = "../out/tmp/mpl/1.6.2/xcontent4.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.6.2/xcontent3.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.6.2/xcontent5.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.6.2/modstart.html">Einf&#252;hrung</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent1.html">Konstanten und Identität</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent2.html">Linear</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent3.html">Affin</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent4.html">Betrag</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent5.html">Monome</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent6.html">Nullstellen</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent7.html">Hyperbeln</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent8.html">Gebrochenrational</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent9.html">Asymptoten</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.6.2/xcontent3.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.6.2/xcontent5.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.6.2/modstart.html">Einf&#252;hrung</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent1.html">Konstanten und Identität</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent2.html">Linear</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent3.html">Affin</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent4.html">Betrag</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent5.html">Monome</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent6.html">Nullstellen</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent7.html">Hyperbeln</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent8.html">Gebrochenrational</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.2/xcontent9.html">Asymptoten</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+
+
+
+
+
+
+
+
+
+
+<h4> Onlinekurs Mathematik  - Elementare Funktionen  - Lineare Funktionen und Polynome</h4><br /><h4>6.2.4 Betragsfunktionen</h4>
+
+
+<a class="label" name="sec:betrag">
+</a>
+
+
+
+<a class="label" name="VBKM06_sec:betrag">
+</a>
+<!-- mdeclaresiteuxidpost;;VBKM06_EinfacheFunktionen_Betrag;; //-->
+In Modul <a class="MINTERLINK" href="../../mpl/1.2.html#VBKM02">2</a> wurde der <a class="MINTERLINK" href="../../mpl/1.2.2/modstart.html#VBKM02_Betrag">Betrag</a> einer reellen Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> auf folgende Art eingeführt:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo stretchy="false">&verbar;</mo><mi>x</mi><mo stretchy="false">&verbar;</mo><mo>=</mo><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;&ensp;</mi><mi>x</mi><mo>&ge;</mo><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mo>-</mo><mi>x</mi></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;&ensp;</mi><mi>x</mi><mo>&lt;</mo><mn>0</mn><mo>.</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+Im Kontext dieses Moduls kann der Betrag nun als Funktion aufgefasst werden. Man erh&#228;lt die <b>Betragsfunktion</b><!-- mindexentry;;Betragsfunktion; //--><a class="label" name="ELI_SW106"></a>
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>b</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo>&Ropf;</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo stretchy="false">&verbar;</mo><mi>x</mi><mo stretchy="false">&verbar;</mo><mo>.</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_6.2.6">  <b>Aufgabe 6.2.6
+</b> &nbsp;<br />
+Was ist die Wertemenge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>W</mi></mrow><mrow><mi>b</mi></mrow>
+</msub>
+</mrow></math> der Betragsfunktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math>?
+  <button name="Name_MHint1" id="MHintButton1"   type="button" onclick="toggle_hint('MHint1');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+Da für alle Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> aus <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>b</mi></mrow>
+</msub>
+<mo>=</mo><mo>&Ropf;</mo></mrow></math> gilt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">&verbar;</mo><mi>x</mi><mo stretchy="false">&verbar;</mo><mo>&ge;</mo><mn>0</mn></mrow></math>, ergibt sich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>W</mi></mrow><mrow><mi>b</mi></mrow>
+</msub>
+<mo>=</mo><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mi>&infin;</mi><mo stretchy="false">)</mo></mrow></math>. 
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+Durch die Fallunterscheidung
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>b</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">&verbar;</mo><mi>x</mi><mo stretchy="false">&verbar;</mo><mo>=</mo><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;&ensp;</mi><mi>x</mi><mo>&ge;</mo><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mo>-</mo><mi>x</mi></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;&ensp;</mi><mi>x</mi><mo>&lt;</mo><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+ist die Betragsfunktion ein Beispiel für eine abschnittsweise definierte Funktion. Schreibt man Beträge mit Hilfe dieser Fallunterscheidung um, so spricht man auch vom Auflösen des Betrags. Der Graph der Betragsfunktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> sieht dann so aus:
+
+<br clear="all"/><br clear="all"/>
+
+
+<img src="./elfunktionenmtikzauto_27.png" style="" alt="./elfunktionenmtikzauto_27.png"/>
+
+
+<br clear="all"/><br clear="all"/>
+Eine Eigenschaft des Graphen der Betragsfunktion, die auch bei den meisten allgemeineren Funktionen auftritt in denen ein Betrag vorkommt, ist der ,,Knick" an der Stelle <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>. 
+Die oben definierte Betragsfunktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> ist nur der einfachste Fall einer Funktion, in der der Betrag vorkommt. Man kann sich kompliziertere Beispiele von Funktionen überlegen in denen ein Betrag oder mehrere Beträge vorkommen. So etwa
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo>&Ropf;</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo stretchy="false">&verbar;</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">&verbar;</mo><mo>.</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+
+<br clear="all"/><br clear="all"/>
+Eine wichtige Aufgabe bei solchen gegebenen Funktionen ist, eine Vorstellung von deren Graphen zu bekommen. Dabei benutzt man die abschnittsweise Definition des Betrags und geht ähnlich vor wie beim Lösen von <a class="MINTERLINK" href="../../mpl/1.2.2/xcontent1.html#VBKM02_FallBetrag">Betragsgleichungen</a> und -ungleichungen. Wir zeigen dies hier am Beispiel obiger Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  6.2.7
+  
+  </b> &nbsp;<br />
+Die Funktion
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo>&Ropf;</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo stretchy="false">&verbar;</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">&verbar;</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+ist gegeben. Wie sieht ihr Graph aus?
+
+<br clear="all"/><br clear="all"/>
+Wir berechnen:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">&verbar;</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">&verbar;</mo><mo>=</mo><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;</mi><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo>&ge;</mo><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mo>-</mo><mo stretchy="false">(</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;</mi><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo>&lt;</mo><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow><mo>=</mo><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;</mi><mi>x</mi><mo>&ge;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mo>-</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;</mi><mi>x</mi><mo>&lt;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>.</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+Somit erhalten wir eine abschnittsweise definierte Funktion, deren Graph eine steigende Gerade mit Steigung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn></mrow></math> und Achsenabschnitt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo><mn>1</mn></mrow></math> im Bereich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&ge;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> und eine fallende Gerade mit Steigung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo><mn>2</mn></mrow></math> und Achsenabschnitt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn></mrow></math> im Bereich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&lt;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> ist. Mit diesen Informationen können wir den Graphen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> zeichnen:
+
+<br clear="all"/><br clear="all"/>
+
+
+<img src="./elfunktionenmtikzauto_28.png" style="" alt="./elfunktionenmtikzauto_28.png"/>
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+6.2.8
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+<font color="#FF0000">WICHTIG!</font> Beim Auflösen von Beträgen wie in der Rechnung in obigem Beispiel sind folgende zwei wichtige Rechengesetze zu beachten:
+
+<ol type="1">
+<li> Die Bereiche der Fallunterscheidung des Betrags ergeben sich als Ungleichungen für den gesamten Ausdruck im Betrag, hier also <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo>&ge;</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo>&lt;</mo><mn>0</mn></mrow></math> und nicht etwa nur <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&ge;</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&lt;</mo><mn>0</mn></mrow></math>. Dies funktioniert beim Auflösen von Beträgen immer so.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Im Fall <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&lt;</mo><mn>0</mn></mrow></math> erhält der gesamte Ausdruck im Betrag ein Minuszeichen. Hier muss also auf das setzen einer Klammer geachtet werden. Im obigen Beispiel ergibt sich deshalb <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo><mo stretchy="false">(</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn></mrow></math> und nicht etwa <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math>. Auch dies funktioniert beim Auflösen von Beträgen immer so.
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+<br clear="all"/><br clear="all"/>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_6.2.9">  <b>Aufgabe 6.2.9
+</b> &nbsp;<br />
+Wie sieht der Graph der Funktion
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>&alpha;</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo>&Ropf;</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo stretchy="false">&verbar;</mo><mo>-</mo><mn>8</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">&verbar;</mo><mo>-</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+aus? Geben Sie außerdem <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>W</mi></mrow><mrow><mi>&alpha;</mi></mrow>
+</msub>
+</mrow></math> an.
+  <button name="Name_MHint2" id="MHintButton2"   type="button" onclick="toggle_hint('MHint2');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+Es gilt
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>&alpha;</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">&verbar;</mo><mo>-</mo><mn>8</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">&verbar;</mo><mo>-</mo><mn>1</mn><mo>=</mo><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo>-</mo><mn>8</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo>-</mo><mn>1</mn></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;</mi><mo>-</mo><mn>8</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo>&ge;</mo><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mo>-</mo><mo stretchy="false">(</mo><mo>-</mo><mn>8</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>-</mo><mn>1</mn></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;</mi><mo>-</mo><mn>8</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo>&lt;</mo><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow><mo>=</mo><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo>-</mo><mn>8</mn><mi>x</mi></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;</mi><mi>x</mi><mo>&le;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mn>8</mn><mi>x</mi><mo>-</mo><mn>2</mn></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;</mi><mi>x</mi><mo>&gt;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+<mo>,</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+folglich: 
+
+<br clear="all"/><br clear="all"/>
+
+
+<img src="./elfunktionenmtikzauto_29.png" style="" alt="./elfunktionenmtikzauto_29.png"/>
+
+
+<br clear="all"/><br clear="all"/>
+Da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">&verbar;</mo><mo>-</mo><mn>8</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">&verbar;</mo><mo>&ge;</mo><mn>0</mn></mrow></math> gilt, folgt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">&verbar;</mo><mo>-</mo><mn>8</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">&verbar;</mo><mo>-</mo><mn>1</mn><mo>&ge;</mo><mo>-</mo><mn>1</mn></mrow></math> und damit ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>W</mi></mrow><mrow><mi>&alpha;</mi></mrow>
+</msub>
+<mo>=</mo><mo stretchy="false">[</mo><mo>-</mo><mn>1</mn><mo>,</mo><mi>&infin;</mi><mo stretchy="false">)</mo></mrow></math>.
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+<br />
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

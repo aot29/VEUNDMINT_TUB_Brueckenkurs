@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 7.5.1 Kurvendiskussion - MINT-Module Abschnitt 7.5.2 Aufgaben</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("(-infty,infty)56.r783.26(,r+a40;8-s1c1;5-8s",14);}if(c==2){str=debork("07s3q(4;y;s5c8y8c1c,y+r3c076b7t9q4+/*-2cyb.",3);}if(c==3){str=debork("0s,bs)r)3ca*1b(15q54xb0.*b*;2r69t345s445qx)",1);}if(c==4){str=debork("0-45;,94c;)6,a*s--rc/c700xs0abt*+sr36saqc4q",1);}if(c==5){str=debork("0/+sc),sb;1+b;c(096r217+.)5cbt.3,23)rt1b67b",1);}if(c==6){str=debork("-rc,8r,f5tb+yb*bs,rnr+9xxay.q*2iq+6acrtax7a",6);}if(c==7){str=debork("0.)2,51cs;*555(.5+b7+aarc6q*9(;0+tc0++9.,8/",1);}if(c==8){str=debork("--6-)yttx0+08t-xpe)-^(7;8/r933b8,rb0)(x*22x",15);}if(c==9){str=debork("-/p()(x*x^6)2q0+a;2*x*;1x9r-;52)b)/1*x-e4-x",19);}if(c==10){str=debork("(4bs29/,b7.)5xr2+y)(b9)t.r2r+r(q+.tsx6r-84q",18);}if(c==11){str=debork("-0262t*t/(8ab2r9r2y);s;)/q7/3-(c2(s.-132,(a",8);}if(c==12){str=debork("stqtrtt6(729)2x518r1q5/88q848xca7y578+ta,.x",7);}if(c==13){str=debork("-ysyts)51cq5(c31*q2(6,1+,r839t-xr+3/-,s3t3)",21);}return str;}
+
+__CQJ("DXG18",1,GSLS(1),"QFELD_7.5.3.QF1",6,"5",4,0,7);__CQJ("DXG1",2,GSLS(2),"QFELD_7.5.3.QF2",3,"5",4,0,7);__CQJ("DXG2",3,GSLS(3),"QFELD_7.5.3.QF3",3,"5",4,0,7);__CQJ("JCA1",4,GSLS(4),"QFELD_7.5.3.QF4",2,"IMGQFELD_7.5.3.QF4",4,0,7);__CQJ("JCA2",5,GSLS(5),"QFELD_7.5.3.QF5",2,"IMGQFELD_7.5.3.QF5",4,0,7);__CQJ("DXG3",6,GSLS(6),"QFELD_7.5.3.QF6",4,"4;infty;4;0",4,0,7);__CQJ("DXG5",7,GSLS(7),"QFELD_7.5.3.QF7",3,"3",4,0,7);__CQJ("DXG6",8,GSLS(8),"QFELD_7.5.3.QF8",4,"4;x;4;0",4,0,7);__CQJ("DXG7",9,GSLS(9),"QFELD_7.5.3.QF9",4,"5;x;5;0",4,0,7);__CQJ("DXG8",10,GSLS(10),"QFELD_7.5.3.QF10",6,"4",4,0,7);__CQJ("DXG9",11,GSLS(11),"QFELD_7.5.3.QF11",3,"3",4,0,7);__CQJ("DXG10",12,GSLS(12),"QFELD_7.5.3.QF12",3,"3",4,0,7);__CQJ("DXG11",13,GSLS(13),"QFELD_7.5.3.QF13",3,"3",4,0,7);
+SITE_ID = "1.7.5.2";
+SITE_UXID = "VBKM07_Kurvendiskussion_Exercises";
+SECTION_ID = 7;
+var docName = "xcontent1";
+var fullName = "mpl/1.7.5/xcontent1.html";
+var fullNamePath = "../out/tmp/mpl/1.7.5/xcontent1.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.7.5/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.7.5/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.7.5/modstart.html">Kurvendiskussion</a></li>
+  <li class="iselectedbutton_check"><a class="MINTERLINK" href="../1.7.5/xcontent1.html">Aufgaben</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.7.5/xcontent2.html">Optimierungsaufgaben</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.7.5/xcontent3.html">Beispiel</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.7.5/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.7.5/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.7.5/modstart.html">Kurvendiskussion</a></li>
+  <li class="iselectedbutton_check"><a class="MINTERLINK" href="../1.7.5/xcontent1.html">Aufgaben</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.7.5/xcontent2.html">Optimierungsaufgaben</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.7.5/xcontent3.html">Beispiel</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+
+
+
+
+
+
+
+
+
+
+<h4> Onlinekurs Mathematik  - Differentialrechnung  - Anwendungen</h4><br /><h4>Aufgaben</h4>
+<!-- mdeclaresiteuxidpost;;VBKM07_Kurvendiskussion_Exercises;; //-->
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_7.5.1">  <b>Aufgabe 7.5.1
+</b> &nbsp;<br />
+Führen Sie eine vollständige Kurvendiskussion für die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mi>x</mi><mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+</mrow></math> und füllen Sie die Eingabefelder mit Ihren Ergebnissen aus:
+&nbsp;<br />&nbsp;<br />
+Definitionsbereich: 
+
+
+<input mfieldtype="6" name="Name_QFELD_7.5.3.QF1" id="QFELD_7.5.3.QF1" type="text" size="25" maxlength="25" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF1"/>
+
+
+ <font color="#0000FF">(in Intervallschreibweise <tt>(a;b)</tt>)</font>.<br />
+&nbsp;<br />
+Menge der Schnittpunkte mit der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse (Nullstellen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>): 
+
+
+<input mfieldtype="3" name="Name_QFELD_7.5.3.QF2" id="QFELD_7.5.3.QF2" type="text" size="5" maxlength="5" onfocus="handlerFocus(2);" onblur="handlerBlur(2);" onkeyup="handlerChange(2,0);" onpaste="handlerChange(2,0);" oninput="handlerChange(2,0);" onpropertychange="handlerChange(2,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF2"/>
+
+
+ <font color="#0000FF">(in Mengenschreibweise <tt><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">{</mo></mrow></math>a;b;c<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">}</mo></mrow></math></tt>, nur <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Komponenten)</font>.<br />
+&nbsp;<br />
+Einziger Schnittpunkt mit der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achse ist bei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_7.5.3.QF3" id="QFELD_7.5.3.QF3" type="text" size="5" maxlength="5" onfocus="handlerFocus(3);" onblur="handlerBlur(3);" onkeyup="handlerChange(3,0);" onpaste="handlerChange(3,0);" oninput="handlerChange(3,0);" onpropertychange="handlerChange(3,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF3"/>
+
+
+.<br />
+&nbsp;<br />
+
+
+
+Symmetrie: 
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_7.5.3.QF4" id="QFELD_7.5.3.QF4" onchange="handlerChange(4,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_7.5.3.QF4" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_7.5.3.QF4"/> 
+
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achsensymmtrisch&nbsp;&nbsp;&nbsp;
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_7.5.3.QF5" id="QFELD_7.5.3.QF5" onchange="handlerChange(5,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_7.5.3.QF5" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_7.5.3.QF5"/> 
+
+ Punktsymmetrisch zum Ursprung
+
+
+
+
+
+
+
+<button name="Name_Group4to5" id="Group4to5" type="button" onclick="group_button(4,5);">Auswahl überprüfen</button>
+
+
+<br clear="all"/><br clear="all"/>
+&nbsp;<br />
+Grenzverhalten: Die Asymptoten am Rand sind 
+
+
+<input mfieldtype="4" name="Name_QFELD_7.5.3.QF6" id="QFELD_7.5.3.QF6" type="text" size="20" maxlength="20" onfocus="handlerFocus(6);" onblur="handlerBlur(6);" onkeyup="handlerChange(6,0);" onpaste="handlerChange(6,0);" oninput="handlerChange(6,0);" onpropertychange="handlerChange(6,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF6"/>
+
+
+ am für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&rarr;</mo><mi>&infin;</mi></mrow></math> und 
+
+
+<input mfieldtype="3" name="Name_QFELD_7.5.3.QF7" id="QFELD_7.5.3.QF7" type="text" size="15" maxlength="15" onfocus="handlerFocus(7);" onblur="handlerBlur(7);" onkeyup="handlerChange(7,0);" onpaste="handlerChange(7,0);" oninput="handlerChange(7,0);" onpropertychange="handlerChange(7,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF7"/>
+
+
+ für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&rarr;</mo><mo>-</mo><mi>&infin;</mi></mrow></math>.<br />
+&nbsp;<br />
+Ableitungen: Es ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_7.5.3.QF8" id="QFELD_7.5.3.QF8" type="text" size="20" maxlength="20" onfocus="handlerFocus(8);" onblur="handlerBlur(8);" onkeyup="handlerChange(8,0);" onpaste="handlerChange(8,0);" oninput="handlerChange(8,0);" onpropertychange="handlerChange(8,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF8"/>
+
+
+ sowie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_7.5.3.QF9" id="QFELD_7.5.3.QF9" type="text" size="30" maxlength="30" onfocus="handlerFocus(9);" onblur="handlerBlur(9);" onkeyup="handlerChange(9,0);" onpaste="handlerChange(9,0);" oninput="handlerChange(9,0);" onpropertychange="handlerChange(9,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF9"/>
+
+
+ .<br />
+&nbsp;<br />
+Monotonieverhalten: Die Funktion ist auf dem Intervall 
+
+
+<input mfieldtype="6" name="Name_QFELD_7.5.3.QF10" id="QFELD_7.5.3.QF10" type="text" size="26" maxlength="26" onfocus="handlerFocus(10);" onblur="handlerBlur(10);" onkeyup="handlerChange(10,0);" onpaste="handlerChange(10,0);" oninput="handlerChange(10,0);" onpropertychange="handlerChange(10,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF10"/>
+
+
+ monoton wachsend und ansonsten monoton fallend.<br />
+&nbsp;<br />
+Extremwerte: Die Stelle <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> = 
+
+
+<input mfieldtype="3" name="Name_QFELD_7.5.3.QF11" id="QFELD_7.5.3.QF11" type="text" size="13" maxlength="13" onfocus="handlerFocus(11);" onblur="handlerBlur(11);" onkeyup="handlerChange(11,0);" onpaste="handlerChange(11,0);" oninput="handlerChange(11,0);" onpropertychange="handlerChange(11,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF11"/>
+
+
+ ist ein Minimum und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> = 
+
+
+<input mfieldtype="3" name="Name_QFELD_7.5.3.QF12" id="QFELD_7.5.3.QF12" type="text" size="13" maxlength="13" onfocus="handlerFocus(12);" onblur="handlerBlur(12);" onkeyup="handlerChange(12,0);" onpaste="handlerChange(12,0);" oninput="handlerChange(12,0);" onpropertychange="handlerChange(12,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF12"/>
+
+
+ ist ein Maximum.<br />
+&nbsp;<br />
+Wendepunkte: Die Menge der Wendepunkte (nur <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Komponente) ist 
+
+
+<input mfieldtype="3" name="Name_QFELD_7.5.3.QF13" id="QFELD_7.5.3.QF13" type="text" size="30" maxlength="30" onfocus="handlerFocus(13);" onblur="handlerBlur(13);" onkeyup="handlerChange(13,0);" onpaste="handlerChange(13,0);" oninput="handlerChange(13,0);" onpropertychange="handlerChange(13,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.5.3.QF13"/>
+
+
+<br /><font color="#0000FF">(in Mengenschreibweise, Wurzeln dürfen stehenbleiben)</font>.<br />
+&nbsp;<br />
+Skizzieren Sie den Graph und vergleichen Sie ihn anschließend mit der Musterlösung:
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint1" id="MHintButton1"   type="button" onclick="toggle_hint('MHint1');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+<b>Definitionsbereich</b><br />
+Es gilt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mi>x</mi><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mo>&gt;</mo><mn>0</mn></mrow></math> f&#252;r alle  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&isin;</mo><mo>&Ropf;</mo></mrow></math>, damit ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>f</mi></mrow>
+</msub>
+<mo>=</mo><mo>&Ropf;</mo></mrow></math> der maximale Definitionsbereich.
+&nbsp;<br />&nbsp;<br />
+<b>Achsenschnittpunkte</b><br />
+Schnittpunkte mit der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse (Nullstellen der Funktion) liegen bei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>2</mn></mrow></math>, was auf die Punkte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math> führt. Der Schnittpunkt mit der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achse ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math>.
+&nbsp;<br />&nbsp;<br />
+<b>Symmetrie</b><br />
+Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist weder gerade noch ungerade und damit der Graph von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> weder <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-achsensymmetrisch noch punktsymmetrisch bzgl. des Ursprungs.
+&nbsp;<br />&nbsp;<br />
+<b>Grenzverhalten</b><br />
+Da die Funktion für alle reellen Zahlen definiert ist, müssen nur die Asymptoten bei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&PlusMinus;</mo><mi>&infin;</mi></mrow></math> untersucht werden:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<munder><mo>lim</mo><mrow><mi>x</mi><mo>&rarr;</mo><mi>&infin;</mi></mrow>
+</munder>
+<mo>-</mo><mi>x</mi><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mo>-</mo><mi>&infin;</mi><mi>&ensp;&ensp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">und</mtext>
+<mi>&ensp;&ensp;</mi>
+<munder><mo>lim</mo><mrow><mi>x</mi><mo>&rarr;</mo><mo>-</mo><mi>&infin;</mi></mrow>
+</munder>
+<mo>-</mo><mi>x</mi><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mn>0</mn><mi>&ensp;</mi><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+Somit ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mn>0</mn></mrow></math> f&#252;r <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&rarr;</mo><mo>-</mo><mi>&infin;</mi></mrow></math> eine Asymptote.
+&nbsp;<br />&nbsp;<br />
+<b>Ableitungen</b><br />
+Die ersten beiden Ableitungen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> sind
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo stretchy="false">(</mo><mn>2</mn><mo>-</mo><mn>2</mn><mi>x</mi><mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mo>+</mo><mo stretchy="false">(</mo><mn>2</mn><mi>x</mi><mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mo>=</mo><mo>-</mo><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mi>&ensp;</mi><mo>,</mo></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>-</mo><mn>2</mn><mi>x</mi><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mo>+</mo><mo stretchy="false">(</mo><mn>2</mn><mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mo>=</mo><mo>-</mo><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mi>&ensp;</mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+&nbsp;<br />
+<b>Monotonieverhalten und Extremwerte</b><br />
+L&#246;sungen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math> sind <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></math>. 
+Weiter ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>&lt;</mo>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> und 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mo>-</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo stretchy="false">)</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mi>&ensp;</mi><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+Auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mo>-</mo><mi>&infin;</mi><mo>,</mo><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo stretchy="false">)</mo></mrow></math> ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo></mrow></math> negativ und damit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> monoton fallend.
+Auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>,</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo stretchy="false">)</mo></mrow></math> ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo></mrow></math> positiv und damit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> monoton wachsend.
+Auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>,</mo><mi>&infin;</mi><mo stretchy="false">)</mo></mrow></math> ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo></mrow></math> negativ und damit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> monoton fallend.
+Somit ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></math> Minimalstelle und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></math> Maximalstelle.
+&nbsp;<br />&nbsp;<br />
+<b>Wendepunkte</b><br />
+Die notwendige Bedingung f&#252;r Wendepunkte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math> f&#252;hrt auf die quadratische Gleichung
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>2</mn><mo>=</mo><mn>0</mn></mrow></math>. Die L&#246;sungen sind <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo>
+<mfrac><mrow><mo>-</mo><mn>2</mn><mo>-</mo><msqrt><mrow><mn>4</mn><mo>+</mo><mn>8</mn></mrow></msqrt></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>=</mo><mo>-</mo><mn>1</mn><mo>-</mo><msqrt><mrow><mn>3</mn></mrow></msqrt></mrow></math>
+und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo>
+<mfrac><mrow><mo>-</mo><mn>2</mn><mo>+</mo><msqrt><mrow><mn>4</mn><mo>+</mo><mn>8</mn></mrow></msqrt></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>=</mo><mo>-</mo><mn>1</mn><mo>+</mo><msqrt><mrow><mn>3</mn></mrow></msqrt></mrow></math>.
+&nbsp;<br />&nbsp;<br />
+<b>Skizze des Graphen</b><br />
+
+<div class="imagecenter">
+<center>
+<div>
+<img src="./BildKurvendiskussion3.png" style="width:400px" alt="./BildKurvendiskussion3.png"/>
+</div>
+<div class="bildtext">
+
+
+
+
+
+<b>Abbildung 2:</b> Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> skizziert auf dem Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mo>-</mo><mn>6</mn><mo>,</mo><mn>2</mn><mo>.</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math>.
+
+
+
+</div>
+</center>
+</div>
+<br />
+
+</div>
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+<br />
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

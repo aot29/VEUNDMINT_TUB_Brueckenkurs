@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 10.3.1 Abschlusstest Kapitel 10</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+isTest = true;
+var nMaxPoints = 0;
+var nPoints = 0;
+// onload blocks start
+CreateQuestionObj("OR20",1,"(1,2)","QFELD_10.3.2.QF1",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR20b",2,"(-1,2)","QFELD_10.3.2.QF2",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR21",3,"(2,2)","QFELD_10.3.2.QF3",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR22",4,"(1,1)","QFELD_10.3.2.QF4",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR23",5,"(1,1)","QFELD_10.3.2.QF5",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR0",6,"(0,-150)","QFELD_10.3.2.QF6",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR3",7,"(30,0)","QFELD_10.3.2.QF7",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR1",8,"(30,-150)","QFELD_10.3.2.QF8",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR2",9,"sqrt(30*30+150*150)","QFELD_10.3.2.QF9",3,"5",4,1,10);
+CreateQuestionObj("OR4",10,"(-2,-4)","QFELD_10.3.2.QF10",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR4a",11,"(-3,1)","QFELD_10.3.2.QF11",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR4b",12,"(0,0)","QFELD_10.3.2.QF12",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR4c",13,"(2,4)","QFELD_10.3.2.QF13",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("OR4d",14,"(5,3)","QFELD_10.3.2.QF14",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("FKT1",15,"(2,-2,-3)","QFELD_10.3.2.QF15",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("FKT2",16,"(4,-2,-2)","QFELD_10.3.2.QF16",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("FKT3",17,"(0,2,2.5)","QFELD_10.3.2.QF17",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("FKT4",18,"(-1,-1,0)","QFELD_10.3.2.QF18",4,"5;x;5;0",4,1,10);
+CreateQuestionObj("PARSEDQUEST10",19,"-2","QFELD_10.3.2.QF19",3,"3",4,1,10);
+CreateQuestionObj("PARSEDQUEST11",20,"1/2","QFELD_10.3.2.QF20",3,"3",4,1,10);
+// onload blocks stop
+var SITE_ID = "1.10.3.1";
+var SITE_UXID = "VBKM10_Abschlusstest";
+var SECTION_ID = 10;
+var docName = "modstart";
+var fullName = "html/1.10.3/modstart.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.10.1/modstart.html"><div class="xsymb selected">10.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.1/modstart.html"><div uxid="VBKM10_PfeilVektor_Intro" id="idxsymb_tc221" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent1.html"><div uxid="VBKM10_Raumkoordinaten" id="idxsymb_tc222" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent2.html"><div uxid="VBKM10_Vektoren" id="idxsymb_tc223" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent3.html"><div uxid="VBKM10_Vektorrechnung" id="idxsymb_tc224" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.10.2/modstart.html"><div class="xsymb selected">10.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.2/modstart.html"><div uxid="VBKM10_GeradenEbenen_Intro" id="idxsymb_tc225" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent1.html"><div uxid="VBKM10_GeradenEbene" id="idxsymb_tc226" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent2.html"><div uxid="VBKM10_EbenenRaum" id="idxsymb_tc227" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent3.html"><div uxid="VBKM10_Lagebeziehung" id="idxsymb_tc228" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.10.3/modstart.html"><div class="xsymb selected">10.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.3/modstart.html"><div uxid="VBKM10_Abschlusstest" id="idxsymb_tc229" class="xsymb status3 selected"></div></a>
+</li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.10.2/xcontent3.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/2.1.1/modstart.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM10_Abschlusstest" class="MINTERLINK naviselected" href="../../html/1.10.3/modstart.html">Abschlusstest Kapitel 10</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREEN);">Grün</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.10.1/modstart.html"><div class="xsymb selected">10.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.1/modstart.html"><div uxid="VBKM10_PfeilVektor_Intro" id="idxsymb_tc221" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent1.html"><div uxid="VBKM10_Raumkoordinaten" id="idxsymb_tc222" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent2.html"><div uxid="VBKM10_Vektoren" id="idxsymb_tc223" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent3.html"><div uxid="VBKM10_Vektorrechnung" id="idxsymb_tc224" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.10.2/modstart.html"><div class="xsymb selected">10.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.2/modstart.html"><div uxid="VBKM10_GeradenEbenen_Intro" id="idxsymb_tc225" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent1.html"><div uxid="VBKM10_GeradenEbene" id="idxsymb_tc226" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent2.html"><div uxid="VBKM10_EbenenRaum" id="idxsymb_tc227" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent3.html"><div uxid="VBKM10_Lagebeziehung" id="idxsymb_tc228" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.10.3/modstart.html"><div class="xsymb selected">10.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.3/modstart.html"><div uxid="VBKM10_Abschlusstest" id="idxsymb_tc229" class="xsymb status3 selected"></div></a>
+</li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.10.2/xcontent3.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/2.1.1/modstart.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM10_Abschlusstest" class="MINTERLINK naviselected" href="../../html/1.10.3/modstart.html">Abschlusstest Kapitel 10</a></li>
+</ul>
+</div>
+  <div id="content" class="content">
+
+
+
+
+
+
+
+<h4>1  - 1.10</h4><br /><h4>10.3.1 Abschlusstest Kapitel 10</h4> <!-- declaretestsymb //-->
+
+
+
+Dies ist ein einreichbarer Test:
+
+<ul>
+<li>Im Gegensatz zu den offenen Aufgaben werden beim Eingeben keine Hinweise zur Formulierung der mathematischen Ausdrücke gegeben.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann jederzeit neu gestartet oder verlassen werden.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann durch die Buttons am Ende der Seite beendet und abgeschickt, oder zurückgesetzt werden.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann mehrfach probiert werden. Für die Statistik zählt die zuletzt abgeschickte Version.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+
+
+
+<a id="VBKM10_Abschlusstest">
+</a>
+<!-- mdeclaresiteuxidpost;;VBKM10_Abschlusstest;; //-->
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.3.1">  <b>Aufgabe 10.3.1
+</b>  <br/>
+Geben Sie die im Diagramm dargestellten Pfeilklassen als Vektoren an: 
+
+<br clear="all"/><br clear="all"/>
+
+<div style="text-align:center"><a id="L_SOURCEAUTOLABEL_37">
+</a>
+
+<img src="./VBKM10mtikzauto_30.4x.png" style="width:431px;height:248px" alt="./VBKM10mtikzauto_30.4x.png"/>
+  
+</div>
+
+<br clear="all"/><br clear="all"/>
+
+<br clear="all"/><br clear="all"/>
+
+<ol type="1">
+<li>Roter Vektor: 
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF1" id="QFELD_10.3.2.QF1" type="text" size="15" maxlength="15" onblur="handlerBlur(1);" onfocus="handlerFocus(1);" onkeyup="handlerChange(1,1);" onpaste="handlerChange(1,1);" oninput="handlerChange(1,1);" onpropertychange="handlerChange(1,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF1"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Violetter Vektor: 
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF2" id="QFELD_10.3.2.QF2" type="text" size="15" maxlength="15" onblur="handlerBlur(2);" onfocus="handlerFocus(2);" onkeyup="handlerChange(2,1);" onpaste="handlerChange(2,1);" oninput="handlerChange(2,1);" onpropertychange="handlerChange(2,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF2"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Blauer Vektor: 
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF3" id="QFELD_10.3.2.QF3" type="text" size="15" maxlength="15" onblur="handlerBlur(3);" onfocus="handlerFocus(3);" onkeyup="handlerChange(3,1);" onpaste="handlerChange(3,1);" oninput="handlerChange(3,1);" onpropertychange="handlerChange(3,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF3"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Grüner Vektor: 
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF4" id="QFELD_10.3.2.QF4" type="text" size="15" maxlength="15" onblur="handlerBlur(4);" onfocus="handlerFocus(4);" onkeyup="handlerChange(4,1);" onpaste="handlerChange(4,1);" oninput="handlerChange(4,1);" onpropertychange="handlerChange(4,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF4"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Schwarzer Vektor: 
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF5" id="QFELD_10.3.2.QF5" type="text" size="15" maxlength="15" onblur="handlerBlur(5);" onfocus="handlerFocus(5);" onkeyup="handlerChange(5,1);" onpaste="handlerChange(5,1);" oninput="handlerChange(5,1);" onpropertychange="handlerChange(5,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF5"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<span style="color:#0000FF">Vektoren können in der Form <tt>(a;b)</tt> eingegeben werden, zum Beispiel <tt>(8;-9)</tt> für den Vektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>9</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math>.</span> 
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.3.2">  <b>Aufgabe 10.3.2
+</b>  <br/>
+Ein Sportflugzeug würde bei Windstille mit einer Geschwindigkeit von
+150 Kilometer pro Stunde genau nach Süden fliegen. Es wird jedoch von einem Wind,
+der mit der Geschwindigkeit 30 Kilometer pro Stunde aus Richtung Westen weht,
+abgetrieben. Stellen Sie die Geschwindigkeit des Flugzeugs als Summe von zwei Vektoren in der Ebene dar, wobei
+die zweite Komponente zur Nord-Süd-Achse (positive Werte für Norden) und die erste Komponente
+zur Ost-West-Achse gehört (positive Werte für Osten). Lassen Sie die Einheit (Kilometer pro Stunde)
+in der Rechnung weg:
+
+<ol type="1">
+<li>Bei Windstille ist die Geschwindigkeit 
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF6" id="QFELD_10.3.2.QF6" type="text" size="15" maxlength="15" onblur="handlerBlur(6);" onfocus="handlerFocus(6);" onkeyup="handlerChange(6,1);" onpaste="handlerChange(6,1);" oninput="handlerChange(6,1);" onpropertychange="handlerChange(6,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF6"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Wind verursacht eine zusätzliche Geschwindigkeit von 
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF7" id="QFELD_10.3.2.QF7" type="text" size="15" maxlength="15" onblur="handlerBlur(7);" onfocus="handlerFocus(7);" onkeyup="handlerChange(7,1);" onpaste="handlerChange(7,1);" oninput="handlerChange(7,1);" onpropertychange="handlerChange(7,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF7"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Das abgetriebene Flugzeug hat insgesamt den Geschwindigkeitsvektor 
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF8" id="QFELD_10.3.2.QF8" type="text" size="15" maxlength="15" onblur="handlerBlur(8);" onfocus="handlerFocus(8);" onkeyup="handlerChange(8,1);" onpaste="handlerChange(8,1);" oninput="handlerChange(8,1);" onpropertychange="handlerChange(8,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF8"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Die Länge dieses Vektors (der Betrag der Geschwindigkeit) ist 
+
+
+<input mfieldtype="3" name="Name_QFELD_10.3.2.QF9" id="QFELD_10.3.2.QF9" type="text" size="15" maxlength="15" onblur="handlerBlur(9);" onfocus="handlerFocus(9);" onkeyup="handlerChange(9,1);" onpaste="handlerChange(9,1);" oninput="handlerChange(9,1);" onpropertychange="handlerChange(9,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF9"/>
+
+.<br/>
+<span style="color:#0000FF">Wurzelausdrücke müssen Sie nicht auswerten.</span>
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<span style="color:#0000FF">Vektoren können in der Form <tt>(a;b)</tt> eingegeben werden, zum Beispiel <tt>(8;-9)</tt> für den Vektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>9</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math>.</span> 
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.3.3">  <b>Aufgabe 10.3.3
+</b>  <br/>
+Gegeben sind die Punkte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mn>3</mn><mo>;</mo><mn>4</mn><mo stretchy="false">)</mo></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>Q</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>R</mi><mo>=</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> in der Ebene. Berechnen Sie die folgenden Vektoren:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>P</mi><mi>Q</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF10" id="QFELD_10.3.2.QF10" type="text" size="15" maxlength="15" onblur="handlerBlur(10);" onfocus="handlerFocus(10);" onkeyup="handlerChange(10,1);" onpaste="handlerChange(10,1);" oninput="handlerChange(10,1);" onpropertychange="handlerChange(10,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF10"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>Q</mi><mi>R</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF11" id="QFELD_10.3.2.QF11" type="text" size="15" maxlength="15" onblur="handlerBlur(11);" onfocus="handlerFocus(11);" onkeyup="handlerChange(11,1);" onpaste="handlerChange(11,1);" oninput="handlerChange(11,1);" onpropertychange="handlerChange(11,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF11"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>R</mi><mi>R</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF12" id="QFELD_10.3.2.QF12" type="text" size="15" maxlength="15" onblur="handlerBlur(12);" onfocus="handlerFocus(12);" onkeyup="handlerChange(12,1);" onpaste="handlerChange(12,1);" oninput="handlerChange(12,1);" onpropertychange="handlerChange(12,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF12"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>Q</mi><mi>P</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF13" id="QFELD_10.3.2.QF13" type="text" size="15" maxlength="15" onblur="handlerBlur(13);" onfocus="handlerFocus(13);" onkeyup="handlerChange(13,1);" onpaste="handlerChange(13,1);" oninput="handlerChange(13,1);" onpropertychange="handlerChange(13,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF13"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>R</mi><mi>P</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF14" id="QFELD_10.3.2.QF14" type="text" size="15" maxlength="15" onblur="handlerBlur(14);" onfocus="handlerFocus(14);" onkeyup="handlerChange(14,1);" onpaste="handlerChange(14,1);" oninput="handlerChange(14,1);" onpropertychange="handlerChange(14,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF14"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.3.4">  <b>Aufgabe 10.3.4
+</b>  <br/>
+Gegeben sind die Punkte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mn>2</mn><mo>;</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>Q</mi><mo>=</mo><mo stretchy="false">(</mo><mn>3</mn><mo>;</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>R</mi><mo>=</mo><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo>;</mo><mn>2</mn><mo>;</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math> im Raum. Berechnen Sie die folgenden Vektoren:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>P</mi><mi>Q</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF15" id="QFELD_10.3.2.QF15" type="text" size="15" maxlength="15" onblur="handlerBlur(15);" onfocus="handlerFocus(15);" onkeyup="handlerChange(15,1);" onpaste="handlerChange(15,1);" oninput="handlerChange(15,1);" onpropertychange="handlerChange(15,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF15"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>R</mi><mi>Q</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF16" id="QFELD_10.3.2.QF16" type="text" size="15" maxlength="15" onblur="handlerBlur(16);" onfocus="handlerFocus(16);" onkeyup="handlerChange(16,1);" onpaste="handlerChange(16,1);" oninput="handlerChange(16,1);" onpropertychange="handlerChange(16,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF16"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+<br clear="all"/><br clear="all"/>
+Bestimmen Sie den Ortsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>M</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math> des Mittelpunkts <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>M</mi></mrow></math> der Strecke <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>P</mi><mi>R</mi></mrow>
+<mo stretchy="true">‾</mo></mover>
+</mrow></math>: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>M</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF17" id="QFELD_10.3.2.QF17" type="text" size="15" maxlength="15" onblur="handlerBlur(17);" onfocus="handlerFocus(17);" onkeyup="handlerChange(17,1);" onpaste="handlerChange(17,1);" oninput="handlerChange(17,1);" onpropertychange="handlerChange(17,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF17"/>
+
+.
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.3.5">  <b>Aufgabe 10.3.5
+</b>  <br/>
+Finden Sie den Schnittpunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>S</mi></mrow></math> der beiden in Punkt-Richtungsform gegebenen Geraden
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mi>  </mi><mo>=</mo><mi>  </mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>α</mi><mo>·</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>α</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mi> </mi>
+<mtext>und</mtext>
+<mi> </mi><mi> </mi>
+
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mi>  </mi><mo>=</mo><mi>  </mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>β</mi><mo>·</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>β</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>.</mo>
+<br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+
+<ol type="1">
+<li>Der Ortsvektor des Schnittpunkts ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>S</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.3.2.QF18" id="QFELD_10.3.2.QF18" type="text" size="15" maxlength="15" onblur="handlerBlur(18);" onfocus="handlerFocus(18);" onkeyup="handlerChange(18,1);" onpaste="handlerChange(18,1);" oninput="handlerChange(18,1);" onpropertychange="handlerChange(18,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF18"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Man erhält ihn als Punkt der ersten Geraden für den Parameter <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>α</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_10.3.2.QF19" id="QFELD_10.3.2.QF19" type="text" size="7" maxlength="7" onblur="handlerBlur(19);" onfocus="handlerFocus(19);" onkeyup="handlerChange(19,1);" onpaste="handlerChange(19,1);" oninput="handlerChange(19,1);" onpropertychange="handlerChange(19,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF19"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Man erhält ihn als Punkt der zweiten Geraden für den Parameter <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>β</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_10.3.2.QF20" id="QFELD_10.3.2.QF20" type="text" size="7" maxlength="7" onblur="handlerBlur(20);" onfocus="handlerFocus(20);" onkeyup="handlerChange(20,1);" onpaste="handlerChange(20,1);" oninput="handlerChange(20,1);" onpropertychange="handlerChange(20,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.3.2.QF20"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+ <br/> <br/><button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('Abschlusstest Kapitel 10');" class="testsbutton">Test auswerten</button>
+        
+<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();" class="testsbutton">Test löschen und neu starten</button>
+<br/>
+<br/>
+<div class="xreply">
+<p name="Name_TESTEVAL" id="TESTEVAL">
+Hier erscheint die Testauswertung!
+<br/>
+</p>
+</div>
+
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>

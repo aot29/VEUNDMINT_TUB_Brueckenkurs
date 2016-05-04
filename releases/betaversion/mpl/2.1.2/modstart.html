@@ -1,0 +1,2162 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 1.2.0 Eingangstest für den Onlinekurs</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+
+isTest = true;
+var nMaxPoints = 0;
+var nPoints = 0;
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("0ra(xx;/-(69)31ttsq68t969cx,7/x272yb(;47--9q-y;cx97rxq50+(aty,bya34",1);}if(c==2){str=debork("09/7qs)1cr,c/t56+3y6;a;2xr67t7(-x4(5,yrry**;c2)57q,5*/1b./+r7.-x;s7",1);}if(c==3){str=debork("1-8r0cx4*94((trb31.,;rq,s373,rq0qsst/q,s;64q.s-*)67tx;y2xxt006)8q7t",1);}if(c==4){str=debork("1/7-/,c200;35/88,a(7/)*28/9tq/x27)---t,0b4b9(91tx67s/7,;3023r5/)y(9",1);}if(c==5){str=debork("0y)*7axsa5c)c;6a)q8/(*.9y/sxs87612;2*9+7;,x)1+r-b22-28t86a506/394+s",1);}if(c==6){str=debork("02.b2.59,yc9-s2*7.)*61,+r12;)45ba5x(,22.a(9,.)1q77xt7;980y6c77s)2;0",1);}if(c==7){str=debork("1q/x2s+-c.9/,*67b,3y956s3/-ct8(st619/-1qt-4*qx0.(1s.;y2s;93+b1x)..c",1);}if(c==8){str=debork("0q6q.y--x6;6q42r.4+s.97*4.6y;s+/ary8b8+9),5c5a.+,7ac*/bx;;,9ba2/2ya",1);}if(c==9){str=debork("17;r,;t8r-0b)tr-,8506qa1567,391q;-/(3,.r-s3(3x)6y--yt1x5x*41.y;b1sc",1);}if(c==10){str=debork("0rs+./);at;ty9a,/)4.y;,6)9)9a/,y,7qyb4;8.,*(2(/61a;083,xsa;535+6-5+",1);}if(c==11){str=debork("0*,ac.*21*t*b1r..yx.qba;66q557.x863/2q9*c(5s4.tqr1),t9)+q800(c9,bqr",1);}if(c==12){str=debork("0a8+q5*2q6b(3;7(9+;r1704+)x.59a;6bqb+36*)9x2rqt7;3)40s6r*)2597(94q7",1);}if(c==13){str=debork("09)bq5(/(.t2/)07y61y,s*ax/)c(r7*s;y;*qsx/696))8b4)+x69y(3rr,x7*y-a2",1);}if(c==14){str=debork("1/7*b,q*7asat/a6)0y8**y3aaa45rr01-rbt.9+-r.-(56)+*/58)x60a894y9;-3)",1);}if(c==15){str=debork("0rx6tt(r)*68b+7(y;.*/+/y514q8t2y9ay)76113c.q69y*24/;/ts)y7-1a4-s;16",1);}if(c==16){str=debork("0ss11x9*7a9c*,71t.t92.(.2t3tt,7(310q7)735)7q-+24;a3,s2a71*.547*(6r3",1);}if(c==17){str=debork("0+.5+btsa,1-/48t8r,98)27c(8.168t)*/q+;8+c3554c+aqc7aa1r1*a70bs(1y8,",1);}if(c==18){str=debork("00-8,5bstx1(346))1;a7a5-9(x1,sy3/b9qa/b2a.1q;.y)46r;a5.b/7;s6,0c;;8",1);}if(c==19){str=debork("0t7q8y9sby88b1(s/y+4a8)*b3a6a(8(115-r)a5-/x4a(r0b8.c6./0.7.))9xq,c1",1);}if(c==20){str=debork("0x5r9-(1a.35818x.sr32+ct-qta/qaq(.2+t8a1,3,r1rq()9-t23)qb)0*80a34rc",1);}if(c==21){str=debork("0rt+tsy+a18s0c0t.y2,ba9q(3*/,/6s+y6br;bb+38tbt2r3atq1x32sy.y767.y)q",1);}if(c==22){str=debork("1,0c4y*-8+t6c/3a*38a11c6t-;(*b,a8++-4(7b08)rx,8c.bst780,y7.1;+s8axy",1);}if(c==23){str=debork("0cbtq7007;+.b-;2;7xa517rq00q53174c/tc3q-2478.;c56-r-1t/91(rbq(*)(,/",1);}if(c==24){str=debork("0(x.*44(9xc,-2)c-75r,440(-224;;439axr3*3aa06s-y9,11x101c*,+t8r7t*c4",1);}if(c==25){str=debork("7cayay..*r31*6(st,,s2s6xb*(*c4;4.62(/4)/42(y011x.52saq+5*ts46t872c7",4);}if(c==26){str=debork("x/1+.9430+0qbx75)7yrx,r279*07/5/s0(8-1,s(2s/q-5y-/7c+r0*c5;4/,1-0-;",3);}if(c==27){str=debork("(96q/(ys/;))at/yq2*1.x++-(-s0*6a4423b*t.)c0a*761)q52x+98-)(9**t.(dx",13);}if(c==28){str=debork("(6/a6b7s1;-x-+3ra4b-3(7^)(rsx)(rs2,q5ct+768*)-,1a0;b)b,b2)3tq*+3tq*",23);}if(c==29){str=debork("(b3;*aa6-/4(*.b*)(^)2,;3;*y-c(/sb09)0()xabs7tcb1t,x21s42845ysy7-8-6",11);}if(c==30){str=debork("axa+(3-0-2s2(^.1r6,tx+c()((201ac8-aq.*7-y7s;)8(c;(br1(b90cy13ys^c/x",12);}if(c==31){str=debork("as*ts+3sx2^/*(0aas4x4c*-)^/br/a24x0(/c1)^+;s5bx,.)(4b1)b;;+qc)x1*(8",24);}if(c==32){str=debork("496r.r/r94201qqa;a*6/+(-3yb)9+1,39c(3(.cxbt+y+xr7(.9q;.2/s+x13*;41(",9);}if(c==33){str=debork("s+8-46b3ax;(9y8aqq/.+75./8(1c5sa-67y9)41q9x*72y(/q(5t(8+/r8a1xq9+77",9);}if(c==34){str=debork("u)q94)a)suq7x(y99q-16*3(1q-r13+tt1ucb2rxs+(09231s)416-+*+t(t,7bs)+q",17);}if(c==35){str=debork("26)r24)yq46+a30y/;*6b-cc/bt7a7)14(4q9x*.+x4;ar3402y,y/.b(3+6ccbt4+x",5);}if(c==36){str=debork(";4(x2338q5ccts0s)3.c-+6r,7c3-axtx(76c1,st52q,82--4/*y/6./s--4s+ss+7",0);}if(c==37){str=debork("053bb8889)3;t*,b4.s8cy+t59*82+b3sbq+c22,,42/;0,cy1;09.7*-2,9y7;25s1",5);}if(c==38){str=debork("19*/xsa4*)7s*4r01t9x4b/9axs7)42+/(1c508);q)r;x-7;b+2,x0a0+aay17c+t6",3);}if(c==39){str=debork("5)1ys355-tx2+s*0r/1,q,)8q./3,(((qsqxba2/cy-,)t548tr3qx;r24b-as;55s-",17);}if(c==40){str=debork("(/(-a3*t/932466bt6c,6)yy3/b2bx1(90)3-8)s0c5c7q1/,2t-2y2-9(sqr74)0)1",7);}if(c==41){str=debork("(t2q/9s2t))3/-1,*cr25q836-/20q2(1,821/bsst2)bx/61s**r(5-3r+a2rq2(3)",33);}if(c==42){str=debork("[51.,6;9;t5949xxr,)8aca6-+7)bs91yc8,6t)0q1f+q0*nt011ib1.9,+4at148.a",9);}if(c==43){str=debork("0**.69.-2t4+cs.++0.(.rx**8qs7*65c6.ssa+;3/r7-59s1b374;t;,*8a4-.yr,,",1);}if(c==44){str=debork("1a226/b*6q+s;xc6+y75y(6y6b3/.ras)c6*9/yys*5-1;12txa2sx;9138qx)905s-",1);}if(c==45){str=debork("1t8(yyx390tx8503ry;0as(sxq0sa86.89+r;*..8,qt/).897,xa0/2s5r8,+(42b0",1);}if(c==46){str=debork("-*r37)r846a29brx5qs5081q8(ac.1s7136axr4.;xts-q(-+-.,+//1cy)-04cs2y;",2);}if(c==47){str=debork("02-s307s,-4c7qb(3,773309-qtcy4a8a7,-6r4)ra1ryyx(,0335bt.5x2)1xac/0x",1);}if(c==48){str=debork("4b+)rs*8-+*2462/;-cr/q54r,)7a9b-).-5(9+qt398,ty3)t;;r2c+***.33*;/x2",2);}if(c==49){str=debork("6/2.artx)*99*a08-)a+0qt2/5.8x-*48a3t-rxy7b.8c67,1/bt3y.3*xt7t64+)bx",1);}if(c==50){str=debork("19q*44ry/y*/8/0*.y2s63(1cs21q/1q-(*8;)8,,6x/*,1*s34(2-1at(2(76/ca0b",9);}if(c==51){str=debork("1a7x,;8ct3*.+2s9*)**+;0,4553;4r9;0*22t1q4q2a4(687(x/.s-.ca*q0qyc60*",7);}if(c==52){str=debork("e570q*.4brx(6+9.1by,r-ysc*x/.+;-c3*3ax+6)sx-+(39t74spbtq*7,a2,/)(1x",6);}if(c==53){str=debork("sqb((+552.*5qcc*q2;tx3)+1-+.-s9s1x(r1c)a4(bq+5q7(9+qq(x8t/158.6895;",7);}if(c==54){str=debork("l4a+.9/,sa60xbr3btrt2-4,08stqq0)sx)yq5)txc9/5+;0b(**,7/r/rnr73a.7bs",5);}if(c==55){str=debork("-b9t6/.(24b1)s,9762q72y,05x6a.;3/,x-545a62s,xa9c40r00+qa72qs),*7+-2",2);}if(c==56){str=debork("-(ts6)+sx*y+yar(22,)/bat/)18aa4qy-;04 8+2/48.-,429s+ 7t50c).;b2xs.*",6);}if(c==57){str=debork("26;2q(1,)9*5c-t(83. .*-t59*,,78.0+7-y-x9acyx-asc)7t 64*q,y8r69ta0y0",7);}if(c==58){str=debork("0+))3tt+qt2t*)cq*a9r+xa7.r5(14,.65rbsba*.b38028s7)tt3;;4cr88+6+xa)+",1);}if(c==59){str=debork("1.949s92/6.4bs.;,+12;7ccx,y67t7*yr,)(xc44xxy/*a(rqctb(y*b0344r7cs6-",1);}if(c==60){str=debork("07rxxx06s03+a.x69)(.7+x6-;b49x.7;405+)9q3tbc.r,b10q082-92*1bt4,,)6c",1);}if(c==61){str=debork("0b19sc+)/5*63*;*+86stb-b6x+4808qb39*9*)y44/c,t/r+qx-,7y.+0.a;y-b8x6",1);}if(c==62){str=debork("1-,34q9yc)/q1;,37c--q23a7q8x8(r02sy/9)2/3),)a/902t9647ct);.),s7315c",1);}if(c==63){str=debork("11/,yasx.5yr01*s21.6a1cr38)5s9qxrs.0,;458)7cyab7-6-xtq6tt(.1*q*r+/a",1);}if(c==64){str=debork("15a)57,y)yrt290+./96/86c7,9ta08at57rx;x1./s+264,a/,4cx95/(;/+2cb965",1);}if(c==65){str=debork("1*(89rx4)s5s.-/x;93+20+syb88a7-.t-8(syx85s2.7).14c(r*q70r62/131a(r5",1);}if(c==66){str=debork("02ats63,qtstx,y*4989+)*0/24(04y;,8,+-/8-r;a,r5;13b70,xb0r/)(,8y24y(",1);}if(c==67){str=debork("-2++ctr4xx9*6-7.q446*rbqbxs34-077,*2/s--0/0tscrtax82r+6s7771a1*s47r",1);}if(c==68){str=debork("2(15*y6)*240a.2aq(qtr(,67,30;128b-509c);,*9q62rb36b763*.6,/00(r5,qr",2);}if(c==69){str=debork("/)48-r709-1yc4(q*0(8-t*;(0xcca,c3a,555srq4q1c61.4a,)a(1s2-q)3-t5s)9",1);}if(c==70){str=debork("1sy-bx49x,40x/,-8x*/q.3*8)(/b26(0*t/+(a2,*c;(b()8/*,;8(tc*(728ay5,4",2);}if(c==71){str=debork("6bx8+a+,y3r5/3y2sx+13q/.724,8y4x**/5/bs7(rs,qx63(3.b.caq4*71(43qs0.",2);}if(c==72){str=debork("0a7q52*.cb7-y61;29b;xq)7-02.4;0-80(61sr*3-2r1c2qt/8(+9r2/54xc434+1+",1);}if(c==73){str=debork("1,/-rs4sbx-(6r,)458-7487.b.y+0t2t6xy.(8q*0s86r*cyrt;c,9.*8t-2-b(,.0",1);}if(c==74){str=debork("0-c*47b8a0a0)21r7y;37r19r(.x.s5r24-;+*q;r69/+338--2-688218,s8;(;(-a",1);}if(c==75){str=debork("1,q6cr02s5(4;x.;q9b9.r94r2c919qt9r850.c4a.4;-,6x;9,*-)t)s-,,96t+0s/",1);}if(c==76){str=debork("0(+;cbr-q4q;*;q2+;7720)2b;s38s8s61+58*sc)/-/tt0/8)959/;)93aya94c28r",1);}if(c==77){str=debork("06st86xa)a./t,3t4/xq53b7-c+7;r87-/.sy1c+y;cb)7t,q(,q2(.0.r*.)9*rxy0",1);}if(c==78){str=debork("597^24s.^ y,9+370r(*52a /yc)^x9.x-496 (ct+  +32))ya2xsxy  7t93 53b/",27);}if(c==79){str=debork("12(+ r^qc*+9q 2yxx-- *r*a2c(5^0axs/427* 7)9xrb q 6+-* 6 ,3.3 ,^. y)",32);}if(c==80){str=debork("(9/6t41s;a18t5a./37(c1s1q(a4+y,)/s6(658-e/ra;0b3s,4b0y7r-50+x5;s/5q",5);}if(c==81){str=debork("(b1/ac+1(0/r.rc5x81aqq5x6q,)trsqy.*s;t*88,fr,a)n(0*0i*)ya,(5c+eq,/4",9);}if(c==82){str=debork("6-tsa805;8cs*b88/;/(x87+*.106;;aq4b46b-r//0ybq3y3+.7r8,q5-*-22rt5,(",1);}if(c==83){str=debork("x3^a5s a+7 x41*(x4^02-bty+rt,281(34r,r-cqtqr2x+,73)bryt+170*b*2-,9/",11);}if(c==84){str=debork("(;b7/58/t4c7sb28y71b5(1b,)crx4x*-)241(0/s(to*0c.1 /5*c2 75);23ct-52",15);}if(c==85){str=debork("2+3y+4)bc859)r.80t23+t*3rb-/*/8t.;x-.c0.0*8-9-(87q9,874q1bx*4s(67*9",1);}if(c==86){str=debork("6)+3t,-9b.-//3.-3.atcbs+a;rc8/(x44.;38*2,sx//*9x3*5qxcc(*b;07*/*x7*",4);}if(c==87){str=debork("s+y)m,m6ebt;rxiys)c)h*+c/xr945.q7*6xx0ra4x(+05/725+905c6by54,6a06(1",11);}if(c==88){str=debork("u/8+9-921t9r09,9xy)7+40)2ea+5,999*b+et9g*+1c2(3y;.d9snb,(a943ry3at0",8);}if(c==89){str=debork("8t2.,xyy6(b*a39*);**trx*x;c0(5/*ax,s)85)-16)1ycxc735r**yq+a;r87rq9-",1);}if(c==90){str=debork("(/;-.6t)8+q5q965949,11)6384bt+21a6739))+*a)5)/tqb()-*(6;.71//892qy+",7);}if(c==91){str=debork("s9+(/2q8q4yyrt;*1*ctcb)/0;.t4-2(.40r(5)5,.6a6rr4q;(qb)d0t)q5b;a62cy",7);}if(c==92){str=debork("(a/)*964b)3-42y21c8()22)x/15*2xb(5*b;1c8*b4-)b)x)6rc,xy9rr);*tr)1r5",6);}if(c==93){str=debork("00t/9b9(-5*6c58y30,c8-qr1)1c192bb80.*.6.,,557y.c81a8-(bs9)rb/4t-s(*",1);}if(c==94){str=debork("1a)6b2x69t*8s3b2x(2/+2,6+.1s-8b6x+(;t(r8y/,0s+-bs383857q*7/)q36yq-b",1);}if(c==95){str=debork("01c.c9*q,t2+;a*)c./(61.q595b5y92956(s(+,r0(t(6/80+,8y;8t250a46b1y0-",1);}if(c==96){str=debork("0c),q451c353/qq.;/,rtbcx.7y+(c+7*(6b,;4922q*47)*xr*(-2scrs,1t/c9-7*",1);}if(c==97){str=debork("036((6(asy)0abxyy;.)5a6tyrq,*2..ss7,-810stx66x28c1a06qa9(;,tc)/c4y2",1);}if(c==98){str=debork("(x6-3t-7-)*q,)4c297,)x(()x;1,/9,49(1/.)4;x.6-c+t0/s-x/4418s-25-b645",7);}if(c==99){str=debork("(*y-9;;,q-655s*5+ta)2tyryx0,3c2)c+tb091a6;s4a8bbt,-c88717x2sqt6c4b5",5);}if(c==100){str=debork("(0r*5x4yts;1ts.8+(c1+6b-8q7t,rx;10(0*8(3a30.r0r5yc97,9,8t;;*t5q)s7-",6);}return str;}
+
+__CQJ("VX11",1,GSLS(1),"QFELD_1.2.2.QF1",2,"IMGQFELD_1.2.2.QF1",1,1,1);__CQJ("VX12",2,GSLS(2),"QFELD_1.2.2.QF2",2,"IMGQFELD_1.2.2.QF2",1,1,1);__CQJ("VX13",3,GSLS(3),"QFELD_1.2.2.QF3",2,"IMGQFELD_1.2.2.QF3",1,1,1);__CQJ("VX14",4,GSLS(4),"QFELD_1.2.2.QF4",2,"IMGQFELD_1.2.2.QF4",1,1,1);__CQJ("VX21",5,GSLS(5),"QFELD_1.2.2.QF5",2,"IMGQFELD_1.2.2.QF5",1,1,1);__CQJ("VX22",6,GSLS(6),"QFELD_1.2.2.QF6",2,"IMGQFELD_1.2.2.QF6",1,1,1);__CQJ("VX23",7,GSLS(7),"QFELD_1.2.2.QF7",2,"IMGQFELD_1.2.2.QF7",1,1,1);__CQJ("VX24",8,GSLS(8),"QFELD_1.2.2.QF8",2,"IMGQFELD_1.2.2.QF8",1,1,1);__CQJ("VX31",9,GSLS(9),"QFELD_1.2.2.QF9",2,"IMGQFELD_1.2.2.QF9",1,1,1);__CQJ("VX32",10,GSLS(10),"QFELD_1.2.2.QF10",2,"IMGQFELD_1.2.2.QF10",1,1,1);__CQJ("VX33",11,GSLS(11),"QFELD_1.2.2.QF11",2,"IMGQFELD_1.2.2.QF11",1,1,1);__CQJ("VX34",12,GSLS(12),"QFELD_1.2.2.QF12",2,"IMGQFELD_1.2.2.QF12",1,1,1);__CQJ("VX41",13,GSLS(13),"QFELD_1.2.2.QF13",2,"IMGQFELD_1.2.2.QF13",1,1,1);__CQJ("VX42",14,GSLS(14),"QFELD_1.2.2.QF14",2,"IMGQFELD_1.2.2.QF14",1,1,1);__CQJ("VX43",15,GSLS(15),"QFELD_1.2.2.QF15",2,"IMGQFELD_1.2.2.QF15",1,1,1);__CQJ("VX44",16,GSLS(16),"QFELD_1.2.2.QF16",2,"IMGQFELD_1.2.2.QF16",1,1,1);__CQJ("VX51",17,GSLS(17),"QFELD_1.2.2.QF17",2,"IMGQFELD_1.2.2.QF17",1,1,1);__CQJ("VX52",18,GSLS(18),"QFELD_1.2.2.QF18",2,"IMGQFELD_1.2.2.QF18",1,1,1);__CQJ("VX53",19,GSLS(19),"QFELD_1.2.2.QF19",2,"IMGQFELD_1.2.2.QF19",1,1,1);__CQJ("VX54",20,GSLS(20),"QFELD_1.2.2.QF20",2,"IMGQFELD_1.2.2.QF20",1,1,1);__CQJ("VX61",21,GSLS(21),"QFELD_1.2.2.QF21",2,"IMGQFELD_1.2.2.QF21",1,1,1);__CQJ("VX62",22,GSLS(22),"QFELD_1.2.2.QF22",2,"IMGQFELD_1.2.2.QF22",1,1,1);__CQJ("VX63",23,GSLS(23),"QFELD_1.2.2.QF23",2,"IMGQFELD_1.2.2.QF23",1,1,1);__CQJ("VX64",24,GSLS(24),"QFELD_1.2.2.QF24",2,"IMGQFELD_1.2.2.QF24",1,1,1);__CQJ("TTXT13",25,GSLS(25),"QFELD_1.2.2.QF25",4,"5;x;5;16",4,1,1);__CQJ("TTXT14",26,GSLS(26),"QFELD_1.2.2.QF26",4,"5;x;5;1",4,1,1);__CQJ("TTXT15",27,GSLS(27),"QFELD_1.2.2.QF27",4,"5;a,b,c,d;5;1",4,1,1);__CQJ("TTXT16",28,GSLS(28),"QFELD_1.2.2.QF28",4,"10;x;5;1",4,1,1);__CQJ("TTXT17",29,GSLS(29),"QFELD_1.2.2.QF29",4,"10;a,b;5;1",4,1,1);__CQJ("TTXT18",30,GSLS(30),"QFELD_1.2.2.QF30",4,"1;a,b;10;64",4,1,1);__CQJ("TTXT19",31,GSLS(31),"QFELD_1.2.2.QF31",4,"1;a,b,c;10;64",4,1,1);__CQJ("TTXT20",32,GSLS(32),"QFELD_1.2.2.QF32",4,"12;x;10;256",4,1,1);__CQJ("TTXT21",33,GSLS(33),"QFELD_1.2.2.QF33",4,"1;x;10;256",4,1,1);__CQJ("TTXT22",34,GSLS(34),"QFELD_1.2.2.QF34",4,"5;u;10;256",4,1,1);__CQJ("MINIFUENF",35,GSLS(35),"QFELD_1.2.2.QF35",3,"5",4,1,1);__CQJ("LGSLGS1",36,GSLS(36),"QFELD_1.2.2.QF36",3,"10",4,1,1);__CQJ("LGSLGS2",37,GSLS(37),"QFELD_1.2.2.QF37",3,"10",4,1,1);__CQJ("LGSLGS3",38,GSLS(38),"QFELD_1.2.2.QF38",3,"10",4,1,1);__CQJ("LGSLGS4",39,GSLS(39),"QFELD_1.2.2.QF39",3,"4",4,1,1);__CQJ("SPECIALIN",40,GSLS(40),"QFELD_1.2.2.QF40",6,"3",4,1,1);__CQJ("FINA1",41,GSLS(41),"QFELD_1.2.2.QF41",6,"4",4,1,1);__CQJ("FINA2",42,GSLS(42),"QFELD_1.2.2.QF42",6,"3",4,1,1);__CQJ("M04C1",43,GSLS(43),"QFELD_1.2.2.QF43",2,"IMGQFELD_1.2.2.QF43",4,1,1);__CQJ("M04C2",44,GSLS(44),"QFELD_1.2.2.QF44",2,"IMGQFELD_1.2.2.QF44",4,1,1);__CQJ("LGSMU1",45,GSLS(45),"QFELD_1.2.2.QF45",3,"5",4,1,1);__CQJ("LGSMU2",46,GSLS(46),"QFELD_1.2.2.QF46",3,"5",4,1,1);__CQJ("M04C3",47,GSLS(47),"QFELD_1.2.2.QF47",2,"IMGQFELD_1.2.2.QF47",4,1,1);__CQJ("ALGS42",48,GSLS(48),"QFELD_1.2.2.QF48",3,"5",4,1,1);__CQJ("ALGS0",49,GSLS(49),"QFELD_1.2.2.QF49",3,"5",4,1,1);__CQJ("TXF1",50,GSLS(50),"QFELD_1.2.2.QF50",4,"5;x;5;512",4,1,1);__CQJ("TXF2",51,GSLS(51),"QFELD_1.2.2.QF51",4,"5;x;5;512",4,1,1);__CQJ("TXF3",52,GSLS(52),"QFELD_1.2.2.QF52",4,"5;x;5;512",4,1,1);__CQJ("TXF4",53,GSLS(53),"QFELD_1.2.2.QF53",4,"5;x;5;512",4,1,1);__CQJ("TXF5",54,GSLS(54),"QFELD_1.2.2.QF54",4,"5;x;5;512",4,1,1);__CQJ("TEP1",55,GSLS(55),"QFELD_1.2.2.QF55",3,"10",4,1,1);__CQJ("ALGSK1A",56,GSLS(56),"QFELD_1.2.2.QF56",4,"2;x;5;0",4,1,1);__CQJ("ALGSK2A",57,GSLS(57),"QFELD_1.2.2.QF57",4,"2;x;5;0",4,1,1);__CQJ("M04C4",58,GSLS(58),"QFELD_1.2.2.QF58",2,"IMGQFELD_1.2.2.QF58",4,1,1);__CQJ("M04C5",59,GSLS(59),"QFELD_1.2.2.QF59",2,"IMGQFELD_1.2.2.QF59",4,1,1);__CQJ("M04C6",60,GSLS(60),"QFELD_1.2.2.QF60",2,"IMGQFELD_1.2.2.QF60",4,1,1);__CQJ("M04C7",61,GSLS(61),"QFELD_1.2.2.QF61",2,"IMGQFELD_1.2.2.QF61",4,1,1);__CQJ("M04C8",62,GSLS(62),"QFELD_1.2.2.QF62",2,"IMGQFELD_1.2.2.QF62",4,1,1);__CQJ("ALGS1",63,GSLS(63),"QFELD_1.2.2.QF63",3,"5",4,1,1);__CQJ("ALGS2",64,GSLS(64),"QFELD_1.2.2.QF64",3,"5",4,1,1);__CQJ("ALGS3",65,GSLS(65),"QFELD_1.2.2.QF65",3,"5",4,1,1);__CQJ("M04C9",66,GSLS(66),"QFELD_1.2.2.QF66",2,"IMGQFELD_1.2.2.QF66",4,1,1);__CQJ("MINUS1",67,GSLS(67),"QFELD_1.2.2.QF67",1,"0",4,1,1);__CQJ("DG1",68,GSLS(68),"QFELD_1.2.2.QF68",3,"3",4,1,1);__CQJ("DFA3",69,GSLS(69),"QFELD_1.2.2.QF69",1,"0",4,1,1);__CQJ("DG4",70,GSLS(70),"QFELD_1.2.2.QF70",3,"3",4,1,1);__CQJ("DG2",71,GSLS(71),"QFELD_1.2.2.QF71",3,"3",4,1,1);__CQJ("JC1",72,GSLS(72),"QFELD_1.2.2.QF72",2,"IMGQFELD_1.2.2.QF72",4,1,1);__CQJ("JC2",73,GSLS(73),"QFELD_1.2.2.QF73",2,"IMGQFELD_1.2.2.QF73",4,1,1);__CQJ("JC2x",74,GSLS(74),"QFELD_1.2.2.QF74",2,"IMGQFELD_1.2.2.QF74",4,1,1);__CQJ("JC3",75,GSLS(75),"QFELD_1.2.2.QF75",2,"IMGQFELD_1.2.2.QF75",4,1,1);__CQJ("JC4",76,GSLS(76),"QFELD_1.2.2.QF76",2,"IMGQFELD_1.2.2.QF76",4,1,1);__CQJ("JC5",77,GSLS(77),"QFELD_1.2.2.QF77",2,"IMGQFELD_1.2.2.QF77",4,1,1);__CQJ("TTXT24",78,GSLS(78),"QFELD_1.2.2.QF78",4,"10;x;4;0",4,1,1);__CQJ("TTXT25",79,GSLS(79),"QFELD_1.2.2.QF79",4,"10;x;4;0",4,1,1);__CQJ("DXG14",80,GSLS(80),"QFELD_1.2.2.QF80",6,"4",4,1,1);__CQJ("DXG15",81,GSLS(81),"QFELD_1.2.2.QF81",6,"4",4,1,1);__CQJ("DG9",82,GSLS(82),"QFELD_1.2.2.QF82",3,"3",4,1,1);__CQJ("TTXT26",83,GSLS(83),"QFELD_1.2.2.QF83",4,"10;x;4;32",4,1,1);__CQJ("TTXT27",84,GSLS(84),"QFELD_1.2.2.QF84",4,"10;x;4;32",4,1,1);__CQJ("IG16",85,GSLS(85),"QFELD_1.2.2.QF85",3,"4",4,1,1);__CQJ("TTXT2",86,GSLS(86),"QFELD_1.2.2.QF86",3,"4",4,1,1);__CQJ("IG1",87,GSLS(87),"QFELD_1.2.2.QF87",1,"0",4,1,1);__CQJ("IG2",88,GSLS(88),"QFELD_1.2.2.QF88",1,"0",4,1,1);__CQJ("IG20",89,GSLS(89),"QFELD_1.2.2.QF89",3,"4",4,1,1);__CQJ("TESTGR1",90,GSLS(90),"QFELD_1.2.2.QF90",4,"5;x;5;0",6,1,1);__CQJ("VBNT20x",91,GSLS(91),"QFELD_1.2.2.QF91",4,"4;d;4;512",4,1,1);__CQJ("VBNT21x",92,GSLS(92),"QFELD_1.2.2.QF92",4,"5;x;5;0",4,1,1);__CQJ("VBNT22x",93,GSLS(93),"QFELD_1.2.2.QF93",2,"IMGQFELD_1.2.2.QF93",1,1,1);__CQJ("VBNT23x",94,GSLS(94),"QFELD_1.2.2.QF94",2,"IMGQFELD_1.2.2.QF94",1,1,1);__CQJ("VBNT24x",95,GSLS(95),"QFELD_1.2.2.QF95",2,"IMGQFELD_1.2.2.QF95",1,1,1);__CQJ("VBNT25x",96,GSLS(96),"QFELD_1.2.2.QF96",2,"IMGQFELD_1.2.2.QF96",1,1,1);__CQJ("VBNT26x",97,GSLS(97),"QFELD_1.2.2.QF97",2,"IMGQFELD_1.2.2.QF97",1,1,1);__CQJ("OR8",98,GSLS(98),"QFELD_1.2.2.QF98",4,"5;x;5;0",4,1,1);__CQJ("OR9",99,GSLS(99),"QFELD_1.2.2.QF99",4,"5;x;5;0",4,1,1);__CQJ("OR10",100,GSLS(100),"QFELD_1.2.2.QF100",4,"5;x;5;0",4,1,1);
+SITE_ID = "2.1.2.1";
+SITE_UXID = "VBKMT_AbgebeTest";
+SECTION_ID = 1;
+var docName = "modstart";
+var fullName = "mpl/2.1.2/modstart.html";
+var fullNamePath = "../out/tmp/mpl/2.1.2/modstart.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="xnprev"><a class="MINTERLINK" href="../2.1.1/modstart.html">Zur&#252;ck</a></div>
+<div class="xnnext"><a class="MINTERLINK" href="../3.1.1/modstart.html">Weiter</a></div>
+<ul>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../2.1.2/modstart.html">Eingangstest für den Onlinekurs</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="xnprev"><a class="MINTERLINK" href="../2.1.1/modstart.html">Zur&#252;ck</a></div>
+<div class="xnnext"><a class="MINTERLINK" href="../3.1.1/modstart.html">Weiter</a></div>
+<ul>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../2.1.2/modstart.html">Eingangstest für den Onlinekurs</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+
+
+
+
+
+
+
+
+
+
+<h4> Einführungstest  - Eingangstest  - Test 1: Abzugebender Teil</h4><br /><h4>Eingangstest für den Onlinekurs</h4> 
+
+
+Dies ist ein einreichbarer Test:
+
+<ul>
+<li>Im Gegensatz zu den offenen Aufgaben werden beim Eingeben keine Hinweise zur Formulierung der mathematischen Ausdrücke gegeben.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann jederzeit neu gestartet oder verlassen werden.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann durch die Buttons am Ende der Seite beendet und abgeschickt, oder zurückgesetzt werden.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann mehrfach probiert werden, für die Statistik zählt die zuletzt abgeschickte Version.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+
+
+
+<a class="label" name="L_TEST02">
+</a>
+<!-- mdeclaresiteuxidpost;;VBKMT_AbgebeTest;; //-->
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.1">  <b>Aufgabe 1.2.1
+</b> &nbsp;<br />
+Kreuzen Sie an, ob diese mathematischen Ausdrücke jeweils Gleichungen, Ungleichungen, Terme oder Zahlen darstellen (Mehrfachnennung ist möglich):
+&nbsp;<br />
+
+<table border="1" class="rahmen">
+<tr><td  align="left" class="rahmen">Mathematischer Ausdruck   </td><td  align="center" class="rahmen">Gleichung </td><td  align="center" class="rahmen">Ungleichung </td><td  align="center" class="rahmen">Term </td><td  align="center" class="rahmen">Zahl </td></tr>
+<tr><td  align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><mn>3</mn><mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></msqrt></mrow></math>      </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF1" id="QFELD_1.2.2.QF1" onchange="handlerChange(1,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF1" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF1"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF2" id="QFELD_1.2.2.QF2" onchange="handlerChange(2,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF2" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF2"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF3" id="QFELD_1.2.2.QF3" onchange="handlerChange(3,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF3" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF3"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF4" id="QFELD_1.2.2.QF4" onchange="handlerChange(4,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF4" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF4"/> 
+
+ </td></tr>
+<tr><td  align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>5</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math>                    </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF5" id="QFELD_1.2.2.QF5" onchange="handlerChange(5,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF5" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF5"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF6" id="QFELD_1.2.2.QF6" onchange="handlerChange(6,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF6" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF6"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF7" id="QFELD_1.2.2.QF7" onchange="handlerChange(7,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF7" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF7"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF8" id="QFELD_1.2.2.QF8" onchange="handlerChange(8,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF8" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF8"/> 
+
+ </td></tr>
+<tr><td  align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>32</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>y</mi></mrow>
+</mfrac>
+</mrow></math>       </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF9" id="QFELD_1.2.2.QF9" onchange="handlerChange(9,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF9" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF9"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF10" id="QFELD_1.2.2.QF10" onchange="handlerChange(10,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF10" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF10"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF11" id="QFELD_1.2.2.QF11" onchange="handlerChange(11,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF11" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF11"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF12" id="QFELD_1.2.2.QF12" onchange="handlerChange(12,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF12" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF12"/> 
+
+ </td></tr>
+<tr><td  align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>32</mn><mo>&gt;</mo>
+<msup><mrow><mn>2</mn></mrow><mrow><mi>x</mi></mrow>
+</msup>
+</mrow></math>                 </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF13" id="QFELD_1.2.2.QF13" onchange="handlerChange(13,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF13" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF13"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF14" id="QFELD_1.2.2.QF14" onchange="handlerChange(14,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF14" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF14"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF15" id="QFELD_1.2.2.QF15" onchange="handlerChange(15,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF15" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF15"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF16" id="QFELD_1.2.2.QF16" onchange="handlerChange(16,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF16" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF16"/> 
+
+ </td></tr>
+<tr><td  align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&isin;</mo><mo stretchy="false">{</mo><mn>1</mn><mo>;</mo><mn>2</mn><mo>;</mo><mn>3</mn><mo stretchy="false">}</mo></mrow></math></td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF17" id="QFELD_1.2.2.QF17" onchange="handlerChange(17,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF17" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF17"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF18" id="QFELD_1.2.2.QF18" onchange="handlerChange(18,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF18" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF18"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF19" id="QFELD_1.2.2.QF19" onchange="handlerChange(19,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF19" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF19"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF20" id="QFELD_1.2.2.QF20" onchange="handlerChange(20,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF20" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF20"/> 
+
+ </td></tr>
+<tr><td  align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>4</mn><mi>a</mi><mi>c</mi><mo>&ge;</mo><mn>0</mn></mrow></math>          </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF21" id="QFELD_1.2.2.QF21" onchange="handlerChange(21,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF21" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF21"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF22" id="QFELD_1.2.2.QF22" onchange="handlerChange(22,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF22" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF22"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF23" id="QFELD_1.2.2.QF23" onchange="handlerChange(23,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF23" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF23"/> 
+
+ </td><td  align="center" class="rahmen">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF24" id="QFELD_1.2.2.QF24" onchange="handlerChange(24,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF24" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF24"/> 
+
+ </td></tr></table>
+
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.2">  <b>Aufgabe 1.2.2
+</b> &nbsp;<br />
+Vereinfachen Sie diese Mehrfachbrüche so weit wie möglich:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+</mrow></math> ist vereinfacht das Gleiche wie 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF25" id="QFELD_1.2.2.QF25" type="text" size="20" maxlength="20" onblur="handlerBlur(25);" onfocus="handlerFocus(25);" onkeyup="handlerChange(25,1);" onpaste="handlerChange(25,1);" oninput="handlerChange(25,1);" onpropertychange="handlerChange(25,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF25"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>x</mi><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow>
+<mrow><mn>1</mn><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow>
+</mfrac>
+</mrow></math> ist vereinfacht das Gleiche wie 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF26" id="QFELD_1.2.2.QF26" type="text" size="20" maxlength="20" onblur="handlerBlur(26);" onfocus="handlerFocus(26);" onkeyup="handlerChange(26,1);" onpaste="handlerChange(26,1);" oninput="handlerChange(26,1);" onpropertychange="handlerChange(26,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF26"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.3">  <b>Aufgabe 1.2.3
+</b> &nbsp;<br />
+Multiplizieren Sie diesen Term vollständig aus und fassen Sie zusammen:
+
+<br clear="all"/><br clear="all"/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>a</mi><mo>-</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>2</mn><mi>c</mi><mo>+</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF27" id="QFELD_1.2.2.QF27" type="text" size="30" maxlength="30" onblur="handlerBlur(27);" onfocus="handlerFocus(27);" onkeyup="handlerChange(27,1);" onpaste="handlerChange(27,1);" oninput="handlerChange(27,1);" onpropertychange="handlerChange(27,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF27"/>
+
+.
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.4">  <b>Aufgabe 1.2.4
+</b> &nbsp;<br />
+Wenden Sie jeweils eine binomische Formel an, um den Term umzuformen, so dass keine Klammerungen oder Wurzeln mehr auftreten:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>2</mn><msqrt><mrow><mn>3</mn></mrow></msqrt><mo>+</mo><mi>x</mi><msqrt><mrow><mn>3</mn></mrow></msqrt>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF28" id="QFELD_1.2.2.QF28" type="text" size="38" maxlength="38" onblur="handlerBlur(28);" onfocus="handlerFocus(28);" onkeyup="handlerChange(28,1);" onpaste="handlerChange(28,1);" oninput="handlerChange(28,1);" onpropertychange="handlerChange(28,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF28"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>3</mn><mi>a</mi><mo>-</mo><mn>4</mn><mi>b</mi>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF29" id="QFELD_1.2.2.QF29" type="text" size="38" maxlength="38" onblur="handlerBlur(29);" onfocus="handlerFocus(29);" onkeyup="handlerChange(29,1);" onpaste="handlerChange(29,1);" oninput="handlerChange(29,1);" onpropertychange="handlerChange(29,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF29"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.5">  <b>Aufgabe 1.2.5
+</b> &nbsp;<br />
+Schreiben Sie diese Potenz- und Wurzelausdrücke als einfache Potenz mit einem rationalen Exponenten ohne das Wurzelzeichen zu verwenden:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><mi>a</mi><mi>b</mi></mrow></msqrt><mo>&middot;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>a</mi></mrow>
+</mfrac>
+<mo>&middot;</mo><msqrt><mrow>
+<msup><mrow><mi>b</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow></msqrt></mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF30" id="QFELD_1.2.2.QF30" type="text" size="40" maxlength="40" onblur="handlerBlur(30);" onfocus="handlerFocus(30);" onkeyup="handlerChange(30,1);" onpaste="handlerChange(30,1);" oninput="handlerChange(30,1);" onpropertychange="handlerChange(30,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF30"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><msqrt><mrow><msqrt><mrow><mi>a</mi></mrow></msqrt><mo>&middot;</mo><mi>b</mi></mrow></msqrt><mo>&middot;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>c</mi></mrow>
+</mfrac>
+</mrow></msqrt></mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF31" id="QFELD_1.2.2.QF31" type="text" size="40" maxlength="40" onblur="handlerBlur(31);" onfocus="handlerFocus(31);" onkeyup="handlerChange(31,1);" onpaste="handlerChange(31,1);" oninput="handlerChange(31,1);" onpropertychange="handlerChange(31,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF31"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.6">  <b>Aufgabe 1.2.6
+</b> &nbsp;<br />
+Formen Sie die Brüche so um, dass der Nenner verschwindet. In der Lösung dürfen keine Brüche und keine Potenzzeichen auftreten:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>12</mn></mrow>
+<mrow><msqrt><mrow><mn>3</mn></mrow></msqrt></mrow>
+</mfrac>
+</mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF32" id="QFELD_1.2.2.QF32" type="text" size="30" maxlength="30" onblur="handlerBlur(32);" onfocus="handlerFocus(32);" onkeyup="handlerChange(32,1);" onpaste="handlerChange(32,1);" oninput="handlerChange(32,1);" onpropertychange="handlerChange(32,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF32"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn><mo>+</mo><mi>x</mi><mo>-</mo><msqrt><mrow><mn>4</mn><mi>x</mi></mrow></msqrt></mrow>
+<mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mo>-</mo><mn>1</mn></mrow>
+</mfrac>
+</mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF33" id="QFELD_1.2.2.QF33" type="text" size="30" maxlength="30" onblur="handlerBlur(33);" onfocus="handlerFocus(33);" onkeyup="handlerChange(33,1);" onpaste="handlerChange(33,1);" oninput="handlerChange(33,1);" onpropertychange="handlerChange(33,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF33"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow>
+<msup><mrow><mi>u</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+<mrow><msqrt><mrow>
+<msup><mrow><mi>u</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn></mrow></msqrt><mo>+</mo><mn>1</mn></mrow>
+</mfrac>
+</mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF34" id="QFELD_1.2.2.QF34" type="text" size="30" maxlength="30" onblur="handlerBlur(34);" onfocus="handlerFocus(34);" onkeyup="handlerChange(34,1);" onpaste="handlerChange(34,1);" oninput="handlerChange(34,1);" onpropertychange="handlerChange(34,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF34"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<font color="#0000FF">Schreiben Sie hier ggf. <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>u</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow></math> als <tt>u*u*u</tt> um die Verwendung von Potenzen zu vermeiden. Wurzeln <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><mi>x</mi></mrow></msqrt></mrow></math> können als <tt>sqrt(x)</tt> geschrieben werden.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.7">  <b>Aufgabe 1.2.7
+</b> &nbsp;<br />
+Die einzige Lösung der Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>x</mi><mo>-</mo><mn>2</mn></mrow>
+<mrow><mo stretchy="false">&verbar;</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">&verbar;</mo></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> = 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF35" id="QFELD_1.2.2.QF35" type="text" size="5" maxlength="5" onblur="handlerBlur(35);" onfocus="handlerFocus(35);" onkeyup="handlerChange(35,1);" onpaste="handlerChange(35,1);" oninput="handlerChange(35,1);" onpropertychange="handlerChange(35,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF35"/>
+
+. 
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+           </div><div class="aufgabe" id="ADIV_1.2.8">  <b>Aufgabe 1.2.8
+</b> &nbsp;<br />
+Geben Sie die Lösungsmengen dieser Gleichungen an:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+<mo>+</mo><mn>2</mn><mi>x</mi><mo>=</mo><mn>2</mn><mo>-</mo><mi>x</mi></mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF36" id="QFELD_1.2.2.QF36" type="text" size="20" maxlength="20" onblur="handlerBlur(36);" onfocus="handlerFocus(36);" onkeyup="handlerChange(36,1);" onpaste="handlerChange(36,1);" oninput="handlerChange(36,1);" onpropertychange="handlerChange(36,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF36"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>1</mn><mo>=</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF37" id="QFELD_1.2.2.QF37" type="text" size="20" maxlength="20" onblur="handlerBlur(37);" onfocus="handlerFocus(37);" onkeyup="handlerChange(37,1);" onpaste="handlerChange(37,1);" oninput="handlerChange(37,1);" onpropertychange="handlerChange(37,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF37"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mroot><mrow><mi>r</mi></mrow><mrow><mn>7</mn></mrow></mroot><mo>=</mo>
+<msup><mrow><mi>r</mi></mrow><mrow><mn>5</mn></mrow>
+</msup>
+</mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF38" id="QFELD_1.2.2.QF38" type="text" size="20" maxlength="20" onblur="handlerBlur(38);" onfocus="handlerFocus(38);" onkeyup="handlerChange(38,1);" onpaste="handlerChange(38,1);" oninput="handlerChange(38,1);" onpropertychange="handlerChange(38,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF38"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.9">  <b>Aufgabe 1.2.9
+</b> &nbsp;<br />
+Bestimmen Sie s&#228;mtliche L&#246;sungen der Betragsgleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">&verbar;</mo><mn>5</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">&verbar;</mo><mo>=</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>1</mn></mrow></math>.
+&nbsp;<br />&nbsp;<br />
+Antwort: Die L&#246;sungsmenge ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>L</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF39" id="QFELD_1.2.2.QF39" type="text" size="30" maxlength="30" onblur="handlerBlur(39);" onfocus="handlerFocus(39);" onkeyup="handlerChange(39,1);" onpaste="handlerChange(39,1);" oninput="handlerChange(39,1);" onpropertychange="handlerChange(39,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF39"/>
+
+.<br />
+&nbsp;<br />&nbsp;<br />
+Benutzen Sie keinen Taschenrechner! Wurzel- und Bruchterme dürfen in der Lösung auftreten.
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.10">  <b>Aufgabe 1.2.10
+</b> &nbsp;<br />
+Geben Sie die Lösungsmenge der Ungleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>6</mn><mo>&lt;</mo><mo>-</mo><mn>5</mn><mi>x</mi></mrow></math> in Intervallschreibweise an.<br />&nbsp;<br />
+Antwort: Das Lösungsintervall ist 
+
+
+<input mfieldtype="6" name="Name_QFELD_1.2.2.QF40" id="QFELD_1.2.2.QF40" type="text" size="20" maxlength="20" onblur="handlerBlur(40);" onfocus="handlerFocus(40);" onkeyup="handlerChange(40,1);" onpaste="handlerChange(40,1);" oninput="handlerChange(40,1);" onpropertychange="handlerChange(40,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF40"/>
+
+.
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.11">  <b>Aufgabe 1.2.11
+</b> &nbsp;<br />
+Geben Sie die Lösungsmengen dieser Ungleichungen als Intervalle an, achten Sie dabei auf die Randpunkte:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>&lt;</mo><mi>x</mi></mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="6" name="Name_QFELD_1.2.2.QF41" id="QFELD_1.2.2.QF41" type="text" size="40" maxlength="40" onblur="handlerBlur(41);" onfocus="handlerFocus(41);" onkeyup="handlerChange(41,1);" onpaste="handlerChange(41,1);" oninput="handlerChange(41,1);" onpropertychange="handlerChange(41,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF41"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>1</mn></mrow></msqrt><mo>&lt;</mo><mi>x</mi></mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="6" name="Name_QFELD_1.2.2.QF42" id="QFELD_1.2.2.QF42" type="text" size="40" maxlength="40" onblur="handlerBlur(42);" onfocus="handlerFocus(42);" onkeyup="handlerChange(42,1);" onpaste="handlerChange(42,1);" oninput="handlerChange(42,1);" onpropertychange="handlerChange(42,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF42"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.12">  <b>Aufgabe 1.2.12
+</b> &nbsp;<br />
+Bestimmen Sie die Lösungsmenge für folgendes Lineares Gleichungssystem:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>-</mo><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>-</mo><mn>5</mn></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mn>3</mn><mi>x</mi><mo>+</mo><mi>y</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>1</mn></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+Die Lösungsmenge
+
+<table>
+<tr><td align="left">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF43" id="QFELD_1.2.2.QF43" onchange="handlerChange(43,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF43" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF43"/> 
+
+ </td><td align="left">ist leer,</td></tr>
+<tr><td align="left">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF44" id="QFELD_1.2.2.QF44" onchange="handlerChange(44,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF44" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF44"/> 
+
+ </td><td align="left">enthält genau eine Lösung: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo></mrow></math> 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF45" id="QFELD_1.2.2.QF45" type="text" size="5" maxlength="5" onblur="handlerBlur(45);" onfocus="handlerFocus(45);" onkeyup="handlerChange(45,1);" onpaste="handlerChange(45,1);" oninput="handlerChange(45,1);" onpropertychange="handlerChange(45,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF45"/>
+
+ , <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo></mrow></math> 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF46" id="QFELD_1.2.2.QF46" type="text" size="5" maxlength="5" onblur="handlerBlur(46);" onfocus="handlerFocus(46);" onkeyup="handlerChange(46,1);" onpaste="handlerChange(46,1);" oninput="handlerChange(46,1);" onpropertychange="handlerChange(46,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF46"/>
+
+ ,</td></tr>
+<tr><td align="left">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF47" id="QFELD_1.2.2.QF47" onchange="handlerChange(47,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF47" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF47"/> 
+
+ </td><td align="left">enthält unendlich viele Lösungspaare <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></math>.
+</td></tr></table>
+
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.13">  <b>Aufgabe 1.2.13
+</b> &nbsp;<br />
+Geben Sie diejenige zweistellige Zahl an, die bei Vertauschen von Einer- und Zehnerziffer auf eine um 18 kleinere Zahl
+führt und deren Quersumme 6 ist.
+
+<br clear="all"/><br clear="all"/>
+Antwort: 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF48" id="QFELD_1.2.2.QF48" type="text" size="5" maxlength="5" onblur="handlerBlur(48);" onfocus="handlerFocus(48);" onkeyup="handlerChange(48,1);" onpaste="handlerChange(48,1);" oninput="handlerChange(48,1);" onpropertychange="handlerChange(48,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF48"/>
+
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.14">  <b>Aufgabe 1.2.14
+</b> &nbsp;<br />
+Für welchen Wert des reellen Parameters <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&alpha;</mi></mrow></math> besitzt das Lineare Gleichungssystem
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mi>y</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>3</mn></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mn>4</mn><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mi>&alpha;</mi></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+unendlich viele Lösungen?
+
+<br clear="all"/><br clear="all"/>
+Antwort: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&alpha;</mi><mo>=</mo></mrow></math> 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF49" id="QFELD_1.2.2.QF49" type="text" size="5" maxlength="5" onblur="handlerBlur(49);" onfocus="handlerFocus(49);" onkeyup="handlerChange(49,1);" onpaste="handlerChange(49,1);" oninput="handlerChange(49,1);" onpropertychange="handlerChange(49,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF49"/>
+
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.15">  <b>Aufgabe 1.2.15
+</b> &nbsp;<br />
+Ordnen Sie den folgenden Graphen die richtigen Abbildungsvorschriften der zugehörigen Funktionen zu:
+
+<ul>
+<br />a) 
+
+<center>
+
+
+<img src="./testkit1mtikzauto_1.png" style="" alt="./testkit1mtikzauto_1.png"/>
+
+</center>
+<br />b) 
+
+<center>
+
+
+<img src="./testkit1mtikzauto_2.png" style="" alt="./testkit1mtikzauto_2.png"/>
+
+</center>
+<br />c) 
+
+<center>
+
+
+<img src="./testkit1mtikzauto_3.png" style="" alt="./testkit1mtikzauto_3.png"/>
+
+</center>
+<br />d) 
+
+<center>
+
+
+<img src="./testkit1mtikzauto_4.png" style="" alt="./testkit1mtikzauto_4.png"/>
+
+</center>
+<br />e) 
+
+<center>
+
+
+<img src="./testkit1mtikzauto_5.png" style="" alt="./testkit1mtikzauto_5.png"/>
+
+</center></ul>
+
+<br clear="all"/><br clear="all"/>
+
+<ol type="1">
+<li>Graph a) gehört zur Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF50" id="QFELD_1.2.2.QF50" type="text" size="30" maxlength="30" onblur="handlerBlur(50);" onfocus="handlerFocus(50);" onkeyup="handlerChange(50,1);" onpaste="handlerChange(50,1);" oninput="handlerChange(50,1);" onpropertychange="handlerChange(50,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF50"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Graph b) gehört zur Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF51" id="QFELD_1.2.2.QF51" type="text" size="30" maxlength="30" onblur="handlerBlur(51);" onfocus="handlerFocus(51);" onkeyup="handlerChange(51,1);" onpaste="handlerChange(51,1);" oninput="handlerChange(51,1);" onpropertychange="handlerChange(51,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF51"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Graph c) gehört zur Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF52" id="QFELD_1.2.2.QF52" type="text" size="30" maxlength="30" onblur="handlerBlur(52);" onfocus="handlerFocus(52);" onkeyup="handlerChange(52,1);" onpaste="handlerChange(52,1);" oninput="handlerChange(52,1);" onpropertychange="handlerChange(52,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF52"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Graph d) gehört zur Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF53" id="QFELD_1.2.2.QF53" type="text" size="30" maxlength="30" onblur="handlerBlur(53);" onfocus="handlerFocus(53);" onkeyup="handlerChange(53,1);" onpaste="handlerChange(53,1);" oninput="handlerChange(53,1);" onpropertychange="handlerChange(53,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF53"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Graph e) gehört zur Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF54" id="QFELD_1.2.2.QF54" type="text" size="30" maxlength="30" onblur="handlerBlur(54);" onfocus="handlerFocus(54);" onkeyup="handlerChange(54,1);" onpaste="handlerChange(54,1);" oninput="handlerChange(54,1);" onpropertychange="handlerChange(54,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF54"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+Wählen Sie dazu aus den folgenden Funktionsvorschriften und Eingabetermen aus (nicht alle kommen vor):
+
+<table>
+<tr><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msqrt><mrow><mi>x</mi></mrow></msqrt></mrow></math> </td><td align="left">&nbsp;&nbsp;<font color="#0000FF"><tt>sqrt(x)</tt></font> </td></tr>
+<tr><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>x</mi><mo>-</mo><mn>1</mn></mrow></math></td><td align="left">&nbsp;&nbsp;<font color="#0000FF"><tt>(1/2)*x-1</tt></font> </td></tr>
+<tr><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ln</mi><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> </td><td align="left">&nbsp;&nbsp;<font color="#0000FF"><tt>ln(1-x)</tt></font> </td></tr>
+<tr><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ln</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> </td><td align="left">&nbsp;&nbsp;<font color="#0000FF"><tt>ln(x)</tt></font> </td></tr>
+<tr><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>1</mn><mo>,</mo><mn>5</mn></mrow>
+</msup>
+</mrow></math> </td><td align="left">&nbsp;&nbsp;<font color="#0000FF"><tt>x^(1,5)</tt></font> </td></tr>
+<tr><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>exp</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<msup><mrow><mi>e</mi></mrow><mrow><mi>x</mi></mrow>
+</msup>
+</mrow></math> </td><td align="left">&nbsp;&nbsp;<font color="#0000FF"><tt>exp(x)</tt></font> </td></tr>
+<tr><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>5</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mi>x</mi></mrow>
+</msup>
+</mrow></math> </td><td align="left">&nbsp;&nbsp;<font color="#0000FF"><tt>(0,5)^x</tt></font> </td></tr>
+<tr><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></math> </td><td align="left">&nbsp;&nbsp;<font color="#0000FF"><tt>1/x</tt></font> </td></tr>
+<tr><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn><mi>x</mi></mrow>
+</mfrac>
+<mo>-</mo><mn>1</mn></mrow></math> </td><td align="left">&nbsp;&nbsp;<font color="#0000FF"><tt>1/(2*x)-1</tt></font> </td></tr>
+<tr><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>-</mo><mi>x</mi></mrow></math> </td><td align="left">&nbsp;&nbsp;<font color="#0000FF"><tt>1/x-x</tt></font> </td></tr></table>
+
+&nbsp;<br />
+<font color="#0000FF">Sie können Eingabeterme markieren und in die Antwortfelder ziehen.</font>
+
+<br clear="all"/><br clear="all"/>
+Geben Sie die Asymptote der Funktion mit der Abbildungsvorschrift a) an:&nbsp;<br />&nbsp;<br />
+Es ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<munder><mo>lim</mo><mrow><mi>x</mi><mo>&rarr;</mo><mi>&infin;</mi></mrow>
+</munder>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF55" id="QFELD_1.2.2.QF55" type="text" size="10" maxlength="10" onblur="handlerBlur(55);" onfocus="handlerFocus(55);" onkeyup="handlerChange(55,1);" onpaste="handlerChange(55,1);" oninput="handlerChange(55,1);" onpropertychange="handlerChange(55,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF55"/>
+
+.
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.16">  <b>Aufgabe 1.2.16
+</b> &nbsp;<br />
+Die Abbildung zeigt zwei Geraden im 2-dimensionalen Raum.
+
+<center>
+
+<img src="./LGS_schneidende_Geraden.png" style="" alt="./LGS_schneidende_Geraden.png"/>
+
+</center>
+Stellen Sie die beiden Geradengleichungen auf:
+
+<br clear="all"/><br clear="all"/>
+Gerade 1: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo></mrow></math> 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF56" id="QFELD_1.2.2.QF56" type="text" size="15" maxlength="15" onblur="handlerBlur(56);" onfocus="handlerFocus(56);" onkeyup="handlerChange(56,1);" onpaste="handlerChange(56,1);" oninput="handlerChange(56,1);" onpropertychange="handlerChange(56,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF56"/>
+
+
+<br clear="all"/><br clear="all"/>
+Gerade 2: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo></mrow></math> 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF57" id="QFELD_1.2.2.QF57" type="text" size="15" maxlength="15" onblur="handlerBlur(57);" onfocus="handlerFocus(57);" onkeyup="handlerChange(57,1);" onpaste="handlerChange(57,1);" oninput="handlerChange(57,1);" onpropertychange="handlerChange(57,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF57"/>
+
+
+<br clear="all"/><br clear="all"/>
+Wieviele Lösungen besitzt das zugehörige Lineare Gleichungssystem?
+
+<br clear="all"/><br clear="all"/>
+Es besitzt
+
+<table>
+<tr><td align="left">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF58" id="QFELD_1.2.2.QF58" onchange="handlerChange(58,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF58" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF58"/> 
+
+ </td><td align="left">keine Lösung,</td></tr>
+<tr><td align="left">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF59" id="QFELD_1.2.2.QF59" onchange="handlerChange(59,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF59" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF59"/> 
+
+ </td><td align="left">genau eine Lösung oder</td></tr>
+<tr><td align="left">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF60" id="QFELD_1.2.2.QF60" onchange="handlerChange(60,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF60" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF60"/> 
+
+ </td><td align="left">unendlich viele Lösungen.
+</td></tr></table>
+
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.17">  <b>Aufgabe 1.2.17
+</b> &nbsp;<br />
+Geben Sie die Lösungsmenge für folgendes Lineare Gleichungssystem, bestehend aus drei Gleichungen mit drei Unbekannten, an:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>x</mi><mo>+</mo><mn>2</mn><mi>z</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>3</mn></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>-</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>1</mn></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mn>2</mn><mi>y</mi><mo>+</mo><mn>3</mn><mi>z</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>5</mn></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+Die Lösungsmenge
+
+<table>
+<tr><td align="left">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF61" id="QFELD_1.2.2.QF61" onchange="handlerChange(61,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF61" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF61"/> 
+
+ </td><td align="left">ist leer,</td></tr>
+<tr><td align="left">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF62" id="QFELD_1.2.2.QF62" onchange="handlerChange(62,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF62" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF62"/> 
+
+ </td><td align="left">enthält genau eine Lösung: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo></mrow></math> 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF63" id="QFELD_1.2.2.QF63" type="text" size="5" maxlength="5" onblur="handlerBlur(63);" onfocus="handlerFocus(63);" onkeyup="handlerChange(63,1);" onpaste="handlerChange(63,1);" oninput="handlerChange(63,1);" onpropertychange="handlerChange(63,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF63"/>
+
+ , <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo></mrow></math> 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF64" id="QFELD_1.2.2.QF64" type="text" size="5" maxlength="5" onblur="handlerBlur(64);" onfocus="handlerFocus(64);" onkeyup="handlerChange(64,1);" onpaste="handlerChange(64,1);" oninput="handlerChange(64,1);" onpropertychange="handlerChange(64,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF64"/>
+
+, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi><mo>=</mo></mrow></math> 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF65" id="QFELD_1.2.2.QF65" type="text" size="5" maxlength="5" onblur="handlerBlur(65);" onfocus="handlerFocus(65);" onkeyup="handlerChange(65,1);" onpaste="handlerChange(65,1);" oninput="handlerChange(65,1);" onpropertychange="handlerChange(65,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF65"/>
+
+ ,</td></tr>
+<tr><td align="left">
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF66" id="QFELD_1.2.2.QF66" onchange="handlerChange(66,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF66" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF66"/> 
+
+ </td><td align="left">enthält unendlich viele Lösungen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></math>.
+</td></tr></table>
+
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.18">  <b>Aufgabe 1.2.18
+</b> &nbsp;<br />Ein Lieferwagen, dessen Kilometerz&#228;hler <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>20</mn></mrow></math> km anzeigt, startet seine Tour 
+um sechs Uhr. Er erreicht sein Ziel vier Stunden sp&#228;ter. Der Kilometerz&#228;hler
+zeigt jetzt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>280</mn></mrow></math> km.
+Berechnen Sie die mittlere Geschwindigkeit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi></mrow></math> , also die mittlere &#196;nderungsrate 
+zwischen Start- und Zielort. Setzten Sie dazu die fehlenden Zahlen und 
+mathematischen Symbole <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>+</mo></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&middot;</mo></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">/</mo></mrow></math> in die folgende Rechnung ein:
+
+
+<center>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>=</mo><mrow><mo> </mo><mo>(</mo></mrow><mn>280</mn><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="1" name="Name_QFELD_1.2.2.QF67" id="QFELD_1.2.2.QF67" type="text" size="2" maxlength="2" onblur="handlerBlur(67);" onfocus="handlerFocus(67);" onkeyup="handlerChange(67,1);" onpaste="handlerChange(67,1);" oninput="handlerChange(67,1);" onpropertychange="handlerChange(67,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF67"/>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF68" id="QFELD_1.2.2.QF68" type="text" size="6" maxlength="6" onblur="handlerBlur(68);" onfocus="handlerFocus(68);" onkeyup="handlerChange(68,1);" onpaste="handlerChange(68,1);" oninput="handlerChange(68,1);" onpropertychange="handlerChange(68,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF68"/>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo> </mo><mo>)</mo></mrow><mi>&ensp;&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="1" name="Name_QFELD_1.2.2.QF69" id="QFELD_1.2.2.QF69" type="text" size="2" maxlength="2" onblur="handlerBlur(69);" onfocus="handlerFocus(69);" onkeyup="handlerChange(69,1);" onpaste="handlerChange(69,1);" oninput="handlerChange(69,1);" onpropertychange="handlerChange(69,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF69"/>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;&ensp;</mi><mrow><mo> </mo><mo>(</mo></mrow></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF70" id="QFELD_1.2.2.QF70" type="text" size="6" maxlength="6" onblur="handlerBlur(70);" onfocus="handlerFocus(70);" onkeyup="handlerChange(70,1);" onpaste="handlerChange(70,1);" oninput="handlerChange(70,1);" onpropertychange="handlerChange(70,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF70"/>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>-</mo><mi>&ensp;</mi><mn>6</mn><mrow><mo> </mo><mo>)</mo></mrow><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF71" id="QFELD_1.2.2.QF71" type="text" size="6" maxlength="6" onblur="handlerBlur(71);" onfocus="handlerFocus(71);" onkeyup="handlerChange(71,1);" onpaste="handlerChange(71,1);" oninput="handlerChange(71,1);" onpropertychange="handlerChange(71,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF71"/>
+
+</center>
+
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.19">  <b>Aufgabe 1.2.19
+</b> &nbsp;<br />Gegeben ist die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mo>-</mo><mn>3</mn><mo>;</mo><mn>4</mn><mo stretchy="false">]</mo><mo>&rarr;</mo><mo>&Ropf;</mo></mrow></math>, deren Graph hier gezeichnet ist.
+
+<br clear="all"/><br clear="all"/>
+
+<center>
+
+
+<img src="./testkit1mtikzauto_6.png" style="" alt="./testkit1mtikzauto_6.png"/>
+
+
+<br clear="all"/><br clear="all"/>
+</center>
+<ol type="1">
+<li> In <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mn>4</mn></mrow></math> ist die Ableitung
+
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF72" id="QFELD_1.2.2.QF72" onchange="handlerChange(72,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF72" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF72"/> 
+
+ gleich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn></mrow></math>,
+
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF73" id="QFELD_1.2.2.QF73" onchange="handlerChange(73,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF73" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF73"/> 
+
+ nicht definiert,
+
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF74" id="QFELD_1.2.2.QF74" onchange="handlerChange(74,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF74" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF74"/> 
+
+ unendlich.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> In <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn></mrow></math> ist die Ableitung
+
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF75" id="QFELD_1.2.2.QF75" onchange="handlerChange(75,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF75" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF75"/> 
+
+ positiv,
+
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF76" id="QFELD_1.2.2.QF76" onchange="handlerChange(76,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF76" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF76"/> 
+
+ gleich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn></mrow></math>,
+
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF77" id="QFELD_1.2.2.QF77" onchange="handlerChange(77,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF77" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF77"/> 
+
+ negativ.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.20">  <b>Aufgabe 1.2.20
+</b> &nbsp;<br />
+Berechnen Sie die erste und zweite Ableitung der Funktion
+
+<br clear="all"/><br clear="all"/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo><mo>&Ropf;</mo><mo>&rarr;</mo><mo>&Ropf;</mo><mo>,</mo><mi>x</mi><mo>&rarr;</mo>
+<mfrac><mrow><mn>5</mn><mi>x</mi></mrow>
+<mrow><mn>3</mn><mo>+</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+</mrow></math>,
+und geben Sie Ihr Resultat gek&#252;rzt und zusammengefasst an:
+
+<ol type="1">
+<li> Erste Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF78" id="QFELD_1.2.2.QF78" type="text" size="40" maxlength="40" onblur="handlerBlur(78);" onfocus="handlerFocus(78);" onkeyup="handlerChange(78,1);" onpaste="handlerChange(78,1);" oninput="handlerChange(78,1);" onpropertychange="handlerChange(78,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF78"/>
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Zweite Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF79" id="QFELD_1.2.2.QF79" type="text" size="40" maxlength="40" onblur="handlerBlur(79);" onfocus="handlerFocus(79);" onkeyup="handlerChange(79,1);" onpaste="handlerChange(79,1);" oninput="handlerChange(79,1);" onpropertychange="handlerChange(79,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF79"/>
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<font color="#0000FF">Klammern Sie die Terme um Missverständnisse zu vermeiden, z.B. schreiben Sie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow>
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+</mrow></math> als <tt>(x+1)/((x+2)^2)</tt>.</font> 
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.21">  <b>Aufgabe 1.2.21
+</b> &nbsp;<br />In welchen Bereichen ist die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo>
+<mfrac><mrow><mi>ln</mi><mi>x</mi></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></math> f&#252;r
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow></math> monoton fallend beziehungsweise monoton wachsend?
+Geben Sie Ihre Antwort in Form m&#246;glichst gro&#223;er offener Intervalle <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>r</mi><mo>,</mo><mi>s</mi><mo stretchy="false">)</mo></mrow></math> an:
+
+<ol type="1">
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf 
+
+
+<input mfieldtype="6" name="Name_QFELD_1.2.2.QF80" id="QFELD_1.2.2.QF80" type="text" size="20" maxlength="20" onblur="handlerBlur(80);" onfocus="handlerFocus(80);" onkeyup="handlerChange(80,1);" onpaste="handlerChange(80,1);" oninput="handlerChange(80,1);" onpropertychange="handlerChange(80,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF80"/>
+
+ monoton wachsend.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf 
+
+
+<input mfieldtype="6" name="Name_QFELD_1.2.2.QF81" id="QFELD_1.2.2.QF81" type="text" size="20" maxlength="20" onblur="handlerBlur(81);" onfocus="handlerFocus(81);" onkeyup="handlerChange(81,1);" onpaste="handlerChange(81,1);" oninput="handlerChange(81,1);" onpropertychange="handlerChange(81,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF81"/>
+
+ monoton fallend.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<font color="#0000FF">Offene Intervalle können in der Form <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> oder <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> eingetippt werden, geschlossene Intervalle als <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math> oder <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> dürfen beliebige Ausdrücke sein.
+Verwenden Sie bei der Intervalleingabe nicht die Notation <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">]</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">[</mo></mrow></math> für offene Intervalle.</font>
+
+<br clear="all"/><br clear="all"/>
+Welche der Stellen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mn>1</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo><mn>2</mn></mrow></math> oder <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msub>
+<mo>=</mo><mn>6</mn></mrow></math> geh&#246;ren zu einem
+Bereich, in dem <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> konvex ist?
+
+<br clear="all"/><br clear="all"/>
+Antwort: 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF82" id="QFELD_1.2.2.QF82" type="text" size="8" maxlength="8" onblur="handlerBlur(82);" onfocus="handlerFocus(82);" onkeyup="handlerChange(82,1);" onpaste="handlerChange(82,1);" oninput="handlerChange(82,1);" onpropertychange="handlerChange(82,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF82"/>
+
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.22">  <b>Aufgabe 1.2.22
+</b> &nbsp;<br />Bestimmen Sie jeweils eine Stammfunktion:
+
+<ol type="1">
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&int;</mo><mrow><mo>(</mo><mn>5</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow>
+</msup>
+<mo>+</mo><mn>8</mn><mi>x</mi><mo>)</mo></mrow><mi>&ensp;</mi><mi>d</mi><mi>x</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF83" id="QFELD_1.2.2.QF83" type="text" size="30" maxlength="30" onblur="handlerBlur(83);" onfocus="handlerFocus(83);" onkeyup="handlerChange(83,1);" onpaste="handlerChange(83,1);" oninput="handlerChange(83,1);" onpropertychange="handlerChange(83,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF83"/>
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&int;</mo><mn>6</mn><mi>sin</mi><mo stretchy="false">(</mo><mn>2</mn><mi>x</mi><mo stretchy="false">)</mo><mi>&ensp;</mi><mi>d</mi><mi>x</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF84" id="QFELD_1.2.2.QF84" type="text" size="30" maxlength="30" onblur="handlerBlur(84);" onfocus="handlerFocus(84);" onkeyup="handlerChange(84,1);" onpaste="handlerChange(84,1);" oninput="handlerChange(84,1);" onpropertychange="handlerChange(84,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF84"/>
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<font color="#0000FF">Schreiben Sie Malpunkte (geschrieben als <tt>*</tt>) aus und setzen Sie Klammern um Argumente für Funktionen.
+Beispiele: Polynom: <tt>3*x + 0.1</tt>, Sinusfunktion: <tt>sin(x)</tt>, 
+Verkettung von cos und Wurzel: <tt>cos(sqrt(3*x))</tt>.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.23">  <b>Aufgabe 1.2.23
+</b> &nbsp;<br />
+Berechnen Sie die Integrale:
+
+<center>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msubsup><mrow><mo>&int;</mo></mrow><mrow><mo>-</mo>
+<mfrac><mrow><mi>&pi;</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+ </mrow>
+<mrow>
+<mfrac><mrow><mi>&pi;</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></msubsup>
+<mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo>+</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>)</mo></mrow><mi>d</mi><mi>x</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF85" id="QFELD_1.2.2.QF85" type="text" size="10" maxlength="10" onblur="handlerBlur(85);" onfocus="handlerFocus(85);" onkeyup="handlerChange(85,1);" onpaste="handlerChange(85,1);" oninput="handlerChange(85,1);" onpropertychange="handlerChange(85,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF85"/>
+
+ und
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msubsup><mrow><mo>&int;</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>4</mn></mrow></msubsup>
+<mi>x</mi><mo>&middot;</mo><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>d</mi><mi>x</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF86" id="QFELD_1.2.2.QF86" type="text" size="10" maxlength="10" onblur="handlerBlur(86);" onfocus="handlerFocus(86);" onkeyup="handlerChange(86,1);" onpaste="handlerChange(86,1);" oninput="handlerChange(86,1);" onpropertychange="handlerChange(86,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF86"/>
+
+
+<br clear="all"/><br clear="all"/>
+</center>
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.24">  <b>Aufgabe 1.2.24
+</b> &nbsp;<br />Es ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msubsup><mrow><mo>&int;</mo></mrow><mrow><mo>-</mo><mn>5</mn> </mrow>
+<mrow><mn>5</mn></mrow></msubsup>
+<mi>x</mi><mo>&middot;</mo><mi>cos</mi><mo stretchy="false">(</mo><mn>4</mn><mi>x</mi><mo stretchy="false">)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>, da das Integrationsintervall
+
+
+
+<input mfieldtype="1" name="Name_QFELD_1.2.2.QF87" id="QFELD_1.2.2.QF87" type="text" size="20" maxlength="20" onblur="handlerBlur(87);" onfocus="handlerFocus(87);" onkeyup="handlerChange(87,1);" onpaste="handlerChange(87,1);" oninput="handlerChange(87,1);" onpropertychange="handlerChange(87,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF87"/>
+
+ bez&#252;glich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn></mrow></math> ist und der Integrand eine 
+
+
+
+<input mfieldtype="1" name="Name_QFELD_1.2.2.QF88" id="QFELD_1.2.2.QF88" type="text" size="20" maxlength="20" onblur="handlerBlur(88);" onfocus="handlerFocus(88);" onkeyup="handlerChange(88,1);" onpaste="handlerChange(88,1);" oninput="handlerChange(88,1);" onpropertychange="handlerChange(88,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF88"/>
+
+ Funktion ist.
+
+<br clear="all"/><br clear="all"/>
+<font color="#0000FF">Geben Sie in den Felder mit einem Adjektiv passende Eigenschaften 
+an, sodass sich eine richtige Aussage ergibt.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.25">  <b>Aufgabe 1.2.25
+</b> &nbsp;<br />Der Graph der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mo>-</mo><mn>1</mn><mo>;</mo><mn>3</mn><mo stretchy="false">]</mo><mo>&rarr;</mo><mo>&Ropf;</mo></mrow></math> mit 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo>-</mo><mn>3</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mi>x</mi><mo>+</mo><mn>3</mn></mrow></math> 
+f&#252;r <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo><mn>1</mn><mo>&le;</mo><mi>x</mi><mo>&le;</mo><mn>3</mn></mrow></math> und die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse schlie&#223;en eine Fl&#228;che <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>A</mi></mrow></math> ein.
+Berechnen Sie die Schnittpunkte des Graphen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> und der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse, und
+bestimmen Sie den Fl&#228;cheninhalt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>I</mi></mrow><mrow><mi>A</mi></mrow>
+</msub>
+</mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>A</mi></mrow></math>.
+Antwort: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>I</mi></mrow><mrow><mi>A</mi></mrow>
+</msub>
+<mo>=</mo></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_1.2.2.QF89" id="QFELD_1.2.2.QF89" type="text" size="10" maxlength="10" onblur="handlerBlur(89);" onfocus="handlerFocus(89);" onkeyup="handlerChange(89,1);" onpaste="handlerChange(89,1);" oninput="handlerChange(89,1);" onpropertychange="handlerChange(89,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF89"/>
+
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.26">  <b>Aufgabe 1.2.26
+</b> &nbsp;<br />
+Berechnen Sie den Schnittpunkt der folgenden beiden Geraden:
+
+<ul>
+<li>Die Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mn>3</mn><mi>x</mi><mo>+</mo><mn>3</mn></mrow></math>,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>die Gerade mit der allgemeinen Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>2</mn><mi>y</mi><mo>=</mo><mn>6</mn></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+
+<br clear="all"/><br clear="all"/>
+Antwort: Der Schnittpunkt ist 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF90" id="QFELD_1.2.2.QF90" type="text" size="15" maxlength="15" onblur="handlerBlur(90);" onfocus="handlerFocus(90);" onkeyup="handlerChange(90,1);" onpaste="handlerChange(90,1);" oninput="handlerChange(90,1);" onpropertychange="handlerChange(90,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF90"/>
+
+.<br />
+<font color="#0000FF">Geben Sie Punkte in der Form <tt>(a;b)</tt> ein.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.27">  <b>Aufgabe 1.2.27
+</b> &nbsp;<br />
+Ein Kreis habe die allgemeine Kreisgleichung
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mo stretchy="false">(</mo><mi>y</mi><mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mi>d</mi><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+wobei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>d</mi></mrow></math> eine unbekannte positive Konstante ist.
+Welche Eigenschaften besitzt dieser Kreis?
+
+<ol type="1">
+<li>Sein Radius ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>r</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF91" id="QFELD_1.2.2.QF91" type="text" size="15" maxlength="15" onblur="handlerBlur(91);" onfocus="handlerFocus(91);" onkeyup="handlerChange(91,1);" onpaste="handlerChange(91,1);" oninput="handlerChange(91,1);" onpropertychange="handlerChange(91,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF91"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Sein Mittelpunkt ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF92" id="QFELD_1.2.2.QF92" type="text" size="15" maxlength="15" onblur="handlerBlur(92);" onfocus="handlerFocus(92);" onkeyup="handlerChange(92,1);" onpaste="handlerChange(92,1);" oninput="handlerChange(92,1);" onpropertychange="handlerChange(92,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF92"/>
+
+.
+<font color="#0000FF">Geben Sie Punkte in der Form <tt>(a;b)</tt> ein.</font>
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Er schneidet die durch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mo>-</mo><mn>3</mn><mo>;</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>Q</mi><mo>=</mo><mo stretchy="false">(</mo><mn>3</mn><mo>;</mo><mo>-</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math> verlaufende Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>P</mi><mi>Q</mi></mrow>
+<mo stretchy="true">&OverBar;</mo></mover>
+</mrow></math><br />
+
+<ul>
+<li>
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF93" id="QFELD_1.2.2.QF93" onchange="handlerChange(93,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF93" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF93"/> 
+
+ in einem Punkt,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF94" id="QFELD_1.2.2.QF94" onchange="handlerChange(94,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF94" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF94"/> 
+
+ in zwei Punkten,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF95" id="QFELD_1.2.2.QF95" onchange="handlerChange(95,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF95" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF95"/> 
+
+ in drei Punkten,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF96" id="QFELD_1.2.2.QF96" onchange="handlerChange(96,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF96" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF96"/> 
+
+ überhaupt nicht,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.2.2.QF97" id="QFELD_1.2.2.QF97" onchange="handlerChange(97,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.2.2.QF97" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.2.2.QF97"/> 
+
+ das hängt von der Konstanten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>d</mi></mrow></math> ab.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.28">  <b>Aufgabe 1.2.28
+</b> &nbsp;<br />
+Es seien die Vektoren
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>x</mi></mrow>
+<mo>&rarr;</mo></mover>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mo>,</mo><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi>
+<mover><mrow><mi>y</mi></mrow>
+<mo>&rarr;</mo></mover>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mo>,</mo><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi>
+<mover><mrow><mi>z</mi></mrow>
+<mo>&rarr;</mo></mover>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+gegeben. Berechnen Sie daraus die folgenden Vektoren:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>x</mi></mrow>
+<mo>&rarr;</mo></mover>
+<mo>+</mo>
+<mover><mrow><mi>y</mi></mrow>
+<mo>&rarr;</mo></mover>
+<mo>-</mo>
+<mover><mrow><mi>z</mi></mrow>
+<mo>&rarr;</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF98" id="QFELD_1.2.2.QF98" type="text" size="15" maxlength="15" onblur="handlerBlur(98);" onfocus="handlerFocus(98);" onkeyup="handlerChange(98,1);" onpaste="handlerChange(98,1);" oninput="handlerChange(98,1);" onpropertychange="handlerChange(98,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF98"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn>
+<mover><mrow><mi>x</mi></mrow>
+<mo>&rarr;</mo></mover>
+<mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<mover><mrow><mi>y</mi></mrow>
+<mo>&rarr;</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF99" id="QFELD_1.2.2.QF99" type="text" size="15" maxlength="15" onblur="handlerBlur(99);" onfocus="handlerFocus(99);" onkeyup="handlerChange(99,1);" onpaste="handlerChange(99,1);" oninput="handlerChange(99,1);" onpropertychange="handlerChange(99,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF99"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mo stretchy="false">(</mo>
+<mover><mrow><mi>x</mi></mrow>
+<mo>&rarr;</mo></mover>
+<mo>-</mo>
+<mover><mrow><mi>y</mi></mrow>
+<mo>&rarr;</mo></mover>
+<mo stretchy="false">)</mo><mo>+</mo><mn>3</mn>
+<mover><mrow><mi>z</mi></mrow>
+<mo>&rarr;</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF100" id="QFELD_1.2.2.QF100" type="text" size="15" maxlength="15" onblur="handlerBlur(100);" onfocus="handlerFocus(100);" onkeyup="handlerChange(100,1);" onpaste="handlerChange(100,1);" oninput="handlerChange(100,1);" onpropertychange="handlerChange(100,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF100"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+&nbsp;<br />&nbsp;<br /><button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('Eingangstest für den Onlinekurs');">Test auswerten</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();">Test zurücksetzen</button>
+<br />
+<br />
+<div class="xreply">
+<p name="Name_TESTEVAL" id="TESTEVAL">
+Hier erscheint die Testauswertung!
+<br />
+</p>
+</div>
+
+<br />
+
+
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

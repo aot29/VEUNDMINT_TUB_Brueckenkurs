@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 5.2.0 Einf&#252;hrung - MINT-Module Abschnitt 5.2.1 Fl&#228;cheninhalt</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+
+SITE_ID = "1.5.2.2";
+SITE_UXID = "VBKM05_Flaecheninhalt_Content";
+SECTION_ID = 5;
+var docName = "xcontent1";
+var fullName = "mpl/1.5.2/xcontent1.html";
+var fullNamePath = "../out/tmp/mpl/1.5.2/xcontent1.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.5.2/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.5.2/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.5.2/modstart.html">Einf&#252;hrung</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.5.2/xcontent1.html">Fl&#228;cheninhalt</a></li>
+  <li class="inormalbutton_check"><a class="MINTERLINK" href="../1.5.2/xcontent2.html">Aufgaben</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.5.2/xcontent3.html">Strahlens&#228;tze</a></li>
+  <li class="inormalbutton_check"><a class="MINTERLINK" href="../1.5.2/xcontent4.html">Aufgaben</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.5.2/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.5.2/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.5.2/modstart.html">Einf&#252;hrung</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.5.2/xcontent1.html">Fl&#228;cheninhalt</a></li>
+  <li class="inormalbutton_check"><a class="MINTERLINK" href="../1.5.2/xcontent2.html">Aufgaben</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.5.2/xcontent3.html">Strahlens&#228;tze</a></li>
+  <li class="inormalbutton_check"><a class="MINTERLINK" href="../1.5.2/xcontent4.html">Aufgaben</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+
+
+
+
+
+
+
+
+
+
+<h4> Onlinekurs Mathematik  - Geometrie  - Fl&#228;cheninhalt und Strahlens&#228;tze</h4><br /><h4>5.2.1 Fl&#228;cheninhalt</h4>
+<!-- mdeclaresiteuxidpost;;VBKM05_Flaecheninhalt_Content;; //-->
+Der Inhalt einer Fläche ist die Zahl der Einheitsquadrate, die man benötigt, um diese Fläche vollständig zu bedecken.<br />
+&nbsp;<br />
+Zuerst wollen wir uns ein Rechteck ansehen.
+
+  
+  
+  
+  
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+5.2.1
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Ein Rechteck ist ein Viereck, bei dem alle vier Innenwinkel rechte Winkel sind.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+
+<table>
+<tr><td align="left">
+<img src="./Mathematik_ElementareGeometrie_Flaecheninhalt_Rechteck.png" style="" alt="./Mathematik_ElementareGeometrie_Flaecheninhalt_Rechteck.png"/>
+
+</td><td align="center"><br /><table border="0" align="left"><tr><td></td><td width="395">
+
+ Wenn ein Rechteck eine Seite der Länge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und eine Seite der Länge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> hat, dann gibt es <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> Reihen mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> Einheitsquadraten, also <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>&middot;</mo><mi>b</mi></mrow></math> Einheitsquadrate.</td></tr>
+<tr><td align="left">&nbsp;</td></tr>
+<tr><td align="left">
+</td></tr></table><!--vbox--><!--hbox--><br clear="all" /></td></tr></table>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+5.2.2
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Die Fläche <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>A</mi></mrow></math> des Rechtecks ist 
+ <br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>A</mi><mo>=</mo><mi>b</mi><mo>&middot;</mo><mi>a</mi><mo>=</mo><mi>a</mi><mo>&middot;</mo><mi>b</mi></mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+
+<table>
+<tr><td align="left"><table border="0"><tr><td></td><td><table border="0"><tr><td></td><td width="395">
+
+Damit können wir auch leicht den Flächeninhalt eines rechtwinkligen Dreiecks berechnen.
+Wir nehmen ein rechtwinkliges Dreieck&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ABC</mi></mrow></math>, drehen es um&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mn>180</mn></mrow><mrow><mo>&SmallCircle;</mo></mrow>
+</msup>
+</mrow></math> und
+legen die beiden Hypotenusen des Dreiecks&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ABC</mi></mrow></math> und des gedrehten
+Dreiecks aufeinander. Damit erhalten wir ein Rechteck.
+
+</td></tr></table><!--vbox-->
+</td><td></td></tr></table><!--hboxt--></td><td align="right"><table border="0"><tr><td></td><td><table border="0"><tr><td></td><td width="197">
+
+
+<img src="./Mathematik_ElementareGeometrie_FlaecheninhaltRechteck.png" style="" alt="./Mathematik_ElementareGeometrie_FlaecheninhaltRechteck.png"/>
+
+
+
+</td></tr></table><!--vbox-->
+</td><td></td></tr></table><!--hboxt--></td></tr></table>
+Der Flächeninhalt des Dreiecks ist nun die Hälfte des Flächeninhaltes des Rechtecks, also <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>A</mi><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo><mi>a</mi><mo>&middot;</mo><mi>b</mi></mrow></math>
+
+<br clear="all"/><br clear="all"/>
+Doch was ist zu tun,
+wenn das Dreieck nicht rechtwinklig ist?
+
+<br clear="all"/><br clear="all"/>
+
+<br clear="all"/><br clear="all"/>
+Aus jedem beliebigen Dreieck kann man zwei rechtwinklige Dreiecke gewinnen, indem man von einer Ecke aus eine Linie auf die gegen&#252;berliegende Seite zieht, so dass sie diese senkrecht trifft. Diese Linie nennt man die <b>Höhe</b> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>i</mi></mrow>
+</msub>
+</mrow></math> eines Dreiecks auf die bestimmte Seite <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math>, wobei der Index <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math> derjenigen Seite <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> oder <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi></mrow></math> entspricht, über der die Höhe bestimmt wird.
+
+<br clear="all"/><br clear="all"/>
+Je nachdem, ob die neue Linie innerhalb oder au&#223;erhalb des Dreiecks liegt, ergibt sich der Fl&#228;cheninhalt des Dreiecks dann aus der Summe oder der Differenz der Fl&#228;cheninhalte der beiden sich ergebenden rechtwinkligen Dreiecke:
+
+<center>
+
+<img src="./Mathematik_ElementareGeometrie_FlaecheninhaltDreieckSpitz.png" style="" alt="./Mathematik_ElementareGeometrie_FlaecheninhaltDreieckSpitz.png"/>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<img src="./Mathematik_ElementareGeometrie_FlaecheninhaltDreieckStumpf.png" style="" alt="./Mathematik_ElementareGeometrie_FlaecheninhaltDreieckStumpf.png"/>
+
+
+</center>
+
+<br clear="all"/><br clear="all"/>
+Links gilt also (wenn <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>A</mi></mrow><mrow><mi>&Delta;</mi></mrow>
+</msub>
+</mrow></math> den Fl&#228;cheninhalt des Dreiecks&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&Delta;</mi></mrow></math> bezeichnet)
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msub><mrow><mi>A</mi></mrow><mrow><mi>ABC</mi></mrow>
+</msub>
+<mo>=</mo>
+<msub><mrow><mi>A</mi></mrow><mrow><mi>DBC</mi></mrow>
+</msub>
+<mo>+</mo>
+<msub><mrow><mi>A</mi></mrow><mrow><mi>ADC</mi></mrow>
+</msub>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>c</mi></mrow>
+</msub>
+<mo>&middot;</mo>
+<msub><mrow><mi>c</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>c</mi></mrow>
+</msub>
+<mo>&middot;</mo>
+<msub><mrow><mi>c</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>c</mi></mrow>
+</msub>
+<mo>&middot;</mo><mrow><mo>(</mo>
+<msub><mrow><mi>c</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>+</mo>
+<msub><mrow><mi>c</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>)</mo></mrow><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>c</mi></mrow>
+</msub>
+<mo>&middot;</mo><mi>c</mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+Rechts gilt genauso
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msub><mrow><mi>A</mi></mrow><mrow><mi>UVW</mi></mrow>
+</msub>
+<mo>=</mo>
+<msub><mrow><mi>A</mi></mrow><mrow><mi>XVW</mi></mrow>
+</msub>
+<mo>-</mo>
+<msub><mrow><mi>A</mi></mrow><mrow><mi>XUW</mi></mrow>
+</msub>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>w</mi></mrow>
+</msub>
+<mo>&middot;</mo>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>w</mi></mrow>
+</msub>
+<mo>&middot;</mo>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>w</mi></mrow>
+</msub>
+<mo>&middot;</mo><mrow><mo>(</mo>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>-</mo>
+<msub><mrow><mi>w</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>)</mo></mrow><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>w</mi></mrow>
+</msub>
+<mo>&middot;</mo><mi>w</mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+5.2.3
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+<ul>
+<li> Die <b>H&#246;he eines Dreiecks auf einer Seite</b><!-- mindexentry;;H&#246;he; //--><a class="label" name="ELI_SW98"></a> ist die 
+       Strecke, die von dem der Seite gegen&#252;berliegenden Punkt ausgeht und die Gerade,
+       auf der die Seite liegt, im rechten Winkel trifft. Der Punkt, auf dem die H&#246;he diese Gerade trifft, hei&#223;t
+       <b>Lotfu&#223;punkt</b><!-- mindexentry;;Lotfu&#223;punkt; //--><a class="label" name="ELI_SW99"></a> der H&#246;he.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Der Fl&#228;cheninhalt eines Dreiecks berechnet sich aus der H&#228;lfte des Produkts
+       der L&#228;nge einer Seite mit der L&#228;nge der zugeh&#246;rigen H&#246;he des Dreiecks
+       <br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msub><mrow><mi>A</mi></mrow><mrow><mi>ABC</mi></mrow>
+</msub>
+<mo>=</mo>
+<mfrac><mrow><mi>a</mi><mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>a</mi></mrow>
+</msub>
+</mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mi>b</mi><mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>b</mi></mrow>
+</msub>
+</mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mi>c</mi><mo>&middot;</mo>
+<msub><mrow><mi>h</mi></mrow><mrow><mi>c</mi></mrow>
+</msub>
+</mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>.</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  5.2.4
+  
+  </b> &nbsp;<br />
+
+<table>
+<tr><td align="left">
+<img src="./Mathematik_ElementareGeometrie_DreieckFlaeche_Bsp.png" style="" alt="./Mathematik_ElementareGeometrie_DreieckFlaeche_Bsp.png"/>
+
+</td><td align="center"><br /><table border="0" align="left"><tr><td></td><td width="395">
+
+Bei dem hier gezeigten Dreieck ist die Höhe gegeben, die zur Seite mit dem Wert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>8</mn><mo>.</mo><mn>5</mn></mrow></math> gehört. Der Flächeninhalt des Dreiecks ist also
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>A</mi><mo>=</mo>
+<mfrac><mrow><mn>8</mn><mo>.</mo><mn>5</mn><mo>&middot;</mo><mn>5</mn><mo>.</mo><mn>5</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>=</mo><mn>23</mn><mo>.</mo><mn>375</mn></mrow>
+    </mstyle></math></center>
+<br />
+
+&nbsp;</td></tr>
+<tr><td align="left">
+</td></tr></table><!--vbox--><!--hbox--><br clear="all" /></td></tr></table>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_5.2.5">  <b>Aufgabe 5.2.5
+</b> &nbsp;<br />
+Berechnen Sie den Flächeninhalt des Dreiecks:<br />
+&nbsp;<br />
+
+<img src="./Mathematik_ElementareGeometrie_DreieckFlaeche_Aufgabe.png" style="" alt="./Mathematik_ElementareGeometrie_DreieckFlaeche_Aufgabe.png"/>
+
+  <button name="Name_MHint1" id="MHintButton1"   type="button" onclick="toggle_hint('MHint1');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+An diesem Dreieck lässt sich die zur Seite, die auf der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>-</mo></mrow></math>Achse liegt, zugehörige Höhe ablesen:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Seite</mtext>
+<mo>=</mo><mn>4</mn><mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Höhe</mtext>
+<mo>=</mo><mn>2</mn><mi>&nbsp;&nbsp;&nbsp;</mi><mo>&rArr;</mo><mi>&nbsp;&nbsp;&nbsp;</mi><mi>&ensp;</mi><mi>A</mi><mo>=</mo>
+<mfrac><mrow><mn>4</mn><mo>&middot;</mo><mn>2</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>=</mo><mn>4</mn></mrow>
+    </mstyle></math></center>
+<br />
+ 
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+Nun können wir auch die Flächen von anderen Vielecken, auch <b>Polygone</b> genannt, bestimmen. Wir werden uns jedoch auf einige einfache Formen beschränken. Polygone können in Dreiecke unterteilt werden. Die Summe der Flächeninhalte dieser Dreiecke ergibt den Flächeninhalt des Polygons.
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  5.2.6
+  
+  </b> &nbsp;<br />
+
+<table>
+<tr><td align="left">
+<img src="./Mathematik_ElementareGeometrie_Polygone.png" style="" alt="./Mathematik_ElementareGeometrie_Polygone.png"/>
+
+</td><td align="center"><br /><table border="0" align="left"><tr><td></td><td width="395">
+
+Sehen wir uns das links dargestellte Polygon an. Bei unserem Beispiel kann man das Polygon in ein rechtwinkliges Dreieck mit den Katheten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo><mi>a</mi><mo>-</mo><mi>c</mi><mo>)</mo></mrow></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> und der Hypotenuse <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>d</mi></mrow></math> sowie ein Rechteck mit den Seiten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi></mrow></math> unterteilen. Der Flächeninhalt des Polygons ist dann:
+&nbsp;</td></tr>
+<tr><td align="left">
+</td></tr></table><!--vbox--><!--hbox--><br clear="all" /></td></tr></table>
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>A</mi><mo>=</mo>
+<msub><mrow><mi>A</mi></mrow><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Dreieck</mtext>
+</mrow>
+</msub>
+<mo>+</mo>
+<msub><mrow><mi>A</mi></mrow><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Rechteck</mtext>
+</mrow>
+</msub>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mrow><mo>(</mo><mi>a</mi><mo>-</mo><mi>c</mi><mo>)</mo></mrow><mo>&middot;</mo><mi>b</mi><mo>+</mo><mi>b</mi><mo>&middot;</mo><mi>c</mi><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>ab</mi><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>bc</mi><mo>+</mo><mi>bc</mi><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mrow><mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>)</mo></mrow><mo>&middot;</mo><mi>c</mi></mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_5.2.7">  <b>Aufgabe 5.2.7
+</b> &nbsp;<br />
+
+<table>
+<tr><td align="left"><br /><table border="0" align="left"><tr><td></td><td width="276">
+
+Berechnen Sie den Flächeninhalt des
+<br clear="all"/><br clear="all"/>
+ <b>Parallelogramms</b> für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mn>4</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi><mo>=</mo><mn>5</mn></mrow></math>.</td></tr>
+<tr><td align="left">Tipp: Teilen Sie es sinnvoll auf und schauen Sie sich die entstandenen Dreiecke gut an!</td></tr>
+<tr><td align="left"><br /><br />
+
+</td></tr></table><!--vbox--><!--hbox--><br clear="all" /></td><td align="right">
+<img src="./Mathematik_ElementareGeometrie_Polygone_Parallelogramm.png" style="" alt="./Mathematik_ElementareGeometrie_Polygone_Parallelogramm.png"/>
+
+</td></tr></table>
+
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint2" id="MHintButton2"   type="button" onclick="toggle_hint('MHint2');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+
+<br clear="all"/><br clear="all"/>
+
+<table>
+<tr><td align="left"><table border="0"><tr><td></td><td><table border="0"><tr><td></td><td width="276">
+
+Man kann das Parallelogramm in das linke rote Dreieck, einem folgenden Rechteck und das rechte Dreieck aufspalten. Schneidet man das rote Dreieck aus und setzt es von rechts an das Parallelogramm, erhält man ein Rechteck mit den Seiten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math>. Der Flächeninhalt ergibt sich dann zu
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>A</mi><mo>=</mo><mi>a</mi><mo>&middot;</mo><mi>b</mi><mo>=</mo><mn>4</mn><mo>&middot;</mo><mn>5</mn><mo>=</mo><mn>20</mn></mrow>
+    </mstyle></math></center>
+<br />
+
+
+</td></tr></table><!--vbox-->
+</td><td></td></tr></table><!--hboxt--></td><td align="right">
+<img src="./Mathematik_ElementareGeometrie_Polygone_Parallelogramm_Loesung.png" style="" alt="./Mathematik_ElementareGeometrie_Polygone_Parallelogramm_Loesung.png"/>
+
+</td></tr></table>
+
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+Zum Schluss wollen wir noch Kreisflächen berechnen. Wir haben zu Beginn bei <a class="MINTERLINK" href="../../mpl/1.5.1/xcontent1.html#Kreiszahl">5.1.2</a> schon die Kreiszahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&pi;</mi></mrow></math> kennengelernt, die über den Umfang des Kreises definiert ist. 
+Ebenso hängt die Kreiszahl mit dem Flächeninhalt von Kreisen zusammen.
+
+  
+  
+  
+  
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+5.2.8
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Der Flächeninhalt eines Kreises mit dem Radius <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>r</mi></mrow></math> berechnet sich zu 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>A</mi><mo>=</mo><mi>&pi;</mi><mo>&middot;</mo>
+<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  5.2.9
+  
+  </b> &nbsp;<br />
+Ein Kreis hat einen Flächeninhalt von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>12</mn><mo>.</mo><mn>566</mn></mrow></math> bei einem Radius von ungefähr <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>r</mi><mo>=</mo><mn>2</mn></mrow></math>. Wir können daraus die Kreiszahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&pi;</mi></mrow></math> berechnen:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>A</mi><mo>=</mo><mi>&pi;</mi><mo>&middot;</mo>
+<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mi>&nbsp;&nbsp;&nbsp;</mi><mo>&rArr;</mo><mi>&nbsp;&nbsp;&nbsp;</mi><mi>&pi;</mi><mo>=</mo>
+<mfrac><mrow><mi>A</mi></mrow>
+<mrow>
+<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>12</mn><mo>.</mo><mn>566</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mo>=</mo><mn>3</mn><mo>.</mo><mn>1415</mn></mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+<br />
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

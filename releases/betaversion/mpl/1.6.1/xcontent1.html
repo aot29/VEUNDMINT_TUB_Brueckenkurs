@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 6.1.0 Einf&#252;hrung - MINT-Module Abschnitt 6.1.1 Zuordnungen zwischen Mengen</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+
+SITE_ID = "1.6.1.2";
+SITE_UXID = "VBKM06_Zuordnungen";
+SECTION_ID = 6;
+var docName = "xcontent1";
+var fullName = "mpl/1.6.1/xcontent1.html";
+var fullNamePath = "../out/tmp/mpl/1.6.1/xcontent1.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.6.1/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.6.1/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.6.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.6.1/xcontent1.html">Zuordnungen</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.1/xcontent2.html">Mathe und Anwendungen</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.1/xcontent3.html">Umkehrbarkeit</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.6.1/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.6.1/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.6.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.6.1/xcontent1.html">Zuordnungen</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.1/xcontent2.html">Mathe und Anwendungen</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.6.1/xcontent3.html">Umkehrbarkeit</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+
+
+
+
+
+
+
+
+
+
+<h4> Onlinekurs Mathematik  - Elementare Funktionen  - Grundlegendes zu Funktionen</h4><br /><h4>6.1.1 Zuordnungen zwischen Mengen</h4>
+
+
+<a class="label" name="sec:zuordnungen">
+</a>
+<!-- mdeclaresiteuxidpost;;VBKM06_Zuordnungen;; //-->
+
+<br clear="all"/><br clear="all"/>
+Wir beginnen mit einem ersten Beispiel einer Funktion als Zuordnung zwischen zwei Mengen.
+Dazu betrachten wir die Menge der natürlichen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Nopf;</mo></mrow></math> sowie die Menge der rationalen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Qopf;</mo></mrow></math>
+und veranschaulichen uns diese als zwei ,,Container" mit Zahlen.
+
+<br clear="all"/><br clear="all"/>
+
+<img src="./elfunktionenmtikzauto_4.png" style="" alt="./elfunktionenmtikzauto_4.png"/>
+
+
+<br clear="all"/><br clear="all"/>
+Nun wollen wir eine Zuordnung zwischen den Elementen dieser beiden Mengen auf folgende Art durchführen. Jeder beliebigen Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi><mo>&isin;</mo><mo>&Nopf;</mo></mrow></math> wird die Hälfte dieser Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&isin;</mo><mo>&Qopf;</mo></mrow></math> zugeordnet. Also der Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>&isin;</mo><mo>&Nopf;</mo></mrow></math>, die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&isin;</mo><mo>&Qopf;</mo></mrow></math>, der Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mo>&isin;</mo><mo>&Nopf;</mo></mrow></math>, die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>&isin;</mo><mo>&Qopf;</mo></mrow></math> und immer so weiter. Dies können wir im Bild durch Pfeile veranschaulichen, die andeuten welche Zahlen in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Nopf;</mo></mrow></math> welchen Zahlen in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Qopf;</mo></mrow></math> zugeordnet werden.
+
+<br clear="all"/><br clear="all"/>
+
+<img src="./elfunktionenmtikzauto_5.png" style="" alt="./elfunktionenmtikzauto_5.png"/>
+
+
+<br clear="all"/><br clear="all"/>
+Wir benutzen für die Zuordnung der einzelnen Elemente der Mengen, die wir oben in Worten beschrieben haben, den sogenannten Zuordnungspfeil. Dies ist ein Pfeil der auf einer Seite einen senkrechten Strich als Abschluss hat: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&longmapsto;</mo></mrow></math>. Er bedeutet, dass die Zahl auf der Seite mit dem senkrechten Strich die Zahl auf der Seite der Pfeilspitze zugeordnet wird: 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>&Nopf;</mo><mo>&ni;</mo><mn>1</mn><mo>&longmapsto;</mo><mn>0</mn><mo>.</mo><mn>5</mn><mo>&isin;</mo><mo>&Qopf;</mo><mo>,</mo><mi>&ensp;</mi><mo>&Nopf;</mo><mo>&ni;</mo><mn>2</mn><mo>&longmapsto;</mo><mn>1</mn><mo>&isin;</mo><mo>&Qopf;</mo><mo>,</mo><mi>&ensp;&ensp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">usw.</mtext>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+Mit diesen Zuordnungen haben wir nun eine Funktion von den natürlichen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Nopf;</mo></mrow></math> in die rationalen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Qopf;</mo></mrow></math> konstruiert. In der Mathematik gibt man dieser Zuordnung nun einen Namen, d.h.&nbsp;man reserviert ein Symbol (oft <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> für Funktion), das genau diese Zuordnung beschreiben soll. Dazu muss man die Zahlenmengen notieren, aus denen und in die zugeordnet werden soll. In diesem Fall werden den Elementen der natürlichen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Nopf;</mo></mrow></math> rationale Zahlen zugeordnet. Dies schreibt man mathematisch mit einem sogenannten Abbildungspfeil <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow></mrow></math> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow></mrow></math> an dessen Spitze die Menge auftaucht, die das Ziel der Zuordnung ist und an dessen Basis die Menge steht, deren Elemente zugeordnet werden. In diesem Fall also
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>:</mo><mo>&Nopf;</mo><mo>&rarr;</mo><mo>&Qopf;</mo><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+Man liest dies als ,,die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> bildet von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Nopf;</mo></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Qopf;</mo></mrow></math> ab". 
+
+<br clear="all"/><br clear="all"/>
+Weiterhin können wir uns nun die Frage stellen, ob wir die Zuordnungen dieser Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>&longmapsto;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>,</mo><mi>&ensp;</mi><mn>2</mn><mo>&longmapsto;</mo><mn>1</mn><mo>,</mo><mi>&ensp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">usw.,</mtext>
+</mrow></math> kürzer
+aufschreiben können. Dazu erinnern wir uns an den Beginn dieses Beispiels. Wir haben haben uns überlegt, jeder natürlichen Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math> ihre Hälfte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> zuzuordnen.
+Damit können wir links und rechts des Zuordnungspfeils nun einfach diese beliebige natürliche Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math> bzw.&nbsp;die sich daraus ergebende rationale Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math>
+hinschreiben:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>n</mi><mo>&longmapsto;</mo>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>.</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+Man liest dies als ,,<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math> wird auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> abgebildet". Diese Schreibweise bezeichnet man auch als Abbildungsvorschrift der Funktion.
+Eine weitere Schreibweise für die Abbildungsvorschrift benutzt den Namen der Funktion:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>.</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+Man liest dies als ,,<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math> ist gleich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math>".  Wir können also die hier
+betrachtete Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> nun zusammengefasst folgendermaßen schreiben:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo>&Nopf;</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Qopf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>n</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>.</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+Man liest dies nun als ,,die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> bildet von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Nopf;</mo></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Qopf;</mo></mrow></math> ab, jedes <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi><mo>&isin;</mo><mo>&Nopf;</mo></mrow></math> wird auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&isin;</mo><mo>&Qopf;</mo></mrow></math> abgebildet".
+Diese zusammenfassende Schreibweise werden wir im Rest diese Moduls für Funktionen weiter verwenden.
+
+<br clear="all"/><br clear="all"/>
+Wir betrachten einige weitere einfache Beispiele für Funktionen:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  6.1.4
+  
+  </b> &nbsp;<br />
+
+
+<a class="label" name="bsp1:grundlagen">
+</a>
+
+<ul>
+<li> Eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> soll jeder reellen Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> ihr Quadrat <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&middot;</mo><mi>x</mi><mo>=</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> zuordnen. Dies ergibt die sogenannte Standardparabel (siehe <a class="MINTERLINK" href="../../mpl/1.6.2/xcontent5.html#sec:monome">6.2.5</a>):
+ <br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo>&Ropf;</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>.</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+ Die Abbildungsvorschrift von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> lautet damit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math>. Man kann dann die Zuordnungen für konkrete Zahlen ausrechnen. Zum Beispiel <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo><mo>=</mo>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>4</mn></mrow></math> oder <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi><mo stretchy="false">(</mo><mo>-</mo><mi>&pi;</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mo>-</mo><mi>&pi;</mi>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo>
+<msup><mrow><mi>&pi;</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math>, usw.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&phiv;</mi></mrow></math> soll jeder reellen Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> zwischen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn></mrow></math> ihren dreifachen Wert plus <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn></mrow></math> zuordnen. Dies ist ein Beispiel für eine sogenannte linear-affine Funktion (siehe <a class="MINTERLINK" href="../../mpl/1.6.2/xcontent3.html#sec:linear-affin">6.2.3</a>):
+ <br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>&phiv;</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>3</mn><mi>y</mi><mo>+</mo><mn>1</mn><mo>.</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+ Die Abbildungsvorschrift von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&phiv;</mi></mrow></math> lautet damit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&phiv;</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><mi>y</mi><mo>+</mo><mn>1</mn></mrow></math>. Somit errechnet man beispielsweise <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&phiv;</mi><mo stretchy="false">(</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><mo>&middot;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>+</mo><mn>1</mn><mo>=</mo><mn>2</mn></mrow></math>, usw. Allerdings kann man in diesem Fall <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&phiv;</mi><mo stretchy="false">(</mo><mn>8</mn><mo stretchy="false">)</mo></mrow></math> oder auch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&phiv;</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> nicht angeben, da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>8</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn></mrow></math> keine Elemente der Menge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> sind.  
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+
+<br clear="all"/><br clear="all"/>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_6.1.5">  <b>Aufgabe 6.1.5
+</b> &nbsp;<br />
+
+
+<a class="label" name="ex1:grundlagen">
+</a>
+
+<ul>
+<br />(i) Geben Sie eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> an, die jeder positiven reellen Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> ihren Kehrwert zuordnet. Berechnen Sie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>. Vervollständigen Sie die beiden Zuordnungen
+ <br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>3</mn><mo>&longmapsto;</mo><mi>&ensp;&ensp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">?</mtext>
+<mi>&nbsp;&nbsp;&nbsp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">und</mtext>
+<mi>&nbsp;&nbsp;&nbsp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">?</mtext>
+<mi>&ensp;&ensp;</mi><mo>&longmapsto;</mo><mn>2</mn></mrow>
+    </mstyle></math></center>
+<br />
+
+ von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math>.
+<br />(ii) Beschreiben Sie in Worten die Zuordnung, die von folgender Funktion ausgeführt wird:
+ <br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>w</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo stretchy="false">[</mo><mn>4</mn><mo>;</mo><mn>9</mn><mo stretchy="false">]</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>&alpha;</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><msqrt><mrow><mi>&alpha;</mi></mrow></msqrt><mo>.</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+ Berechnen Sie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>w</mi><mo stretchy="false">(</mo><mn>9</mn><mo stretchy="false">)</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>w</mi><mo stretchy="false">(</mo><mn>5</mn><mo stretchy="false">)</mo></mrow></math>. Kann man auch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>w</mi><mo stretchy="false">(</mo><mn>10</mn><mo stretchy="false">)</mo></mrow></math> angeben?</ul>
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint1" id="MHintButton1"   type="button" onclick="toggle_hint('MHint1');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+ 
+<ul>
+<br />(i) Der Kehrwert von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></math>. Die positiven reellen Zahlen sind die Menge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mi>&infin;</mi><mo stretchy="false">)</mo></mrow></math>. Damit kann man die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> schreiben als
+  <br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mi>&infin;</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+<mo>.</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+  Dies ist ein Beispiel für eine Funktion vom hyperbolischen Typ und wird in Abschnitt <a class="MINTERLINK" href="../../mpl/1.6.3/modstart.html#M06_Abschnitt5">6.3</a> genauer behandelt. Die Abbildungsvorschrift von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></math>, womit gilt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>1</mn></mrow>
+</mfrac>
+<mo>=</mo><mn>1</mn></mrow></math>. Außerdem berechnet man <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow></math>, womit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>3</mn><mo>&longmapsto;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow></math> gilt. Weiterhin führt die Überlegung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi><mo stretchy="false">(</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow>
+</mfrac>
+<mo>=</mo><mn>2</mn></mrow></math> auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&longmapsto;</mo><mn>2</mn></mrow></math>.
+<br />(ii) Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>w</mi></mrow></math> ordnet jeder reellen Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&alpha;</mi></mrow></math>, die größer oder gleich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>4</mn></mrow></math> und kleiner oder gleich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>9</mn></mrow></math> ist, ihre Quadratwurzel <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><mi>&alpha;</mi></mrow></msqrt></mrow></math> zu. Die Abbildungsvorschrift lautet <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>w</mi><mo stretchy="false">(</mo><mi>&alpha;</mi><mo stretchy="false">)</mo><mo>=</mo><msqrt><mrow><mi>&alpha;</mi></mrow></msqrt></mrow></math>, womit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>w</mi><mo stretchy="false">(</mo><mn>9</mn><mo stretchy="false">)</mo><mo>=</mo><msqrt><mrow><mn>9</mn></mrow></msqrt><mo>=</mo><mn>3</mn></mrow></math> sowie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>w</mi><mo stretchy="false">(</mo><mn>5</mn><mo stretchy="false">)</mo><mo>=</mo><msqrt><mrow><mn>5</mn></mrow></msqrt></mrow></math> gilt. <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>w</mi><mo stretchy="false">(</mo><mn>10</mn><mo stretchy="false">)</mo></mrow></math> kann nicht angegeben werden, da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>10</mn><mo>&notin;</mo><mo stretchy="false">[</mo><mn>4</mn><mo>,</mo><mn>9</mn><mo stretchy="false">]</mo></mrow></math>.</ul>
+
+<br clear="all"/><br clear="all"/>
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+Die obigen Beispiele zeigen einige Grundeigenschaften von Funktionen für die wir nun spezielle Begriffe einführen wollen: 
+
+  
+  
+  
+  
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+6.1.6
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Beim Aufschreiben einer Funktion gibt man eine Menge von Zahlen an, deren Elemente von der Funktion anderen Zahlen zugeordnet werden sollen.
+Diese Menge heißt <b>Definitionsbereich</b><!-- mindexentry;;Definitionsbereich; //--><a class="label" name="ELI_SW102"></a> oder Definitionsmenge der Funktion.
+Hat die Funktion einen Namen, etwa <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>, so wird der Definitionsbereich mit dem Symbol <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>f</mi></mrow>
+</msub>
+</mrow></math> bezeichnet. So ist zum Beispiel die Definitionsmenge der Funktion
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mi>&infin;</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+aus Aufgabe <a class="MINTERLINK" href="../../mpl/1.6.1/xcontent1.html#ex1:grundlagen">6.1.5</a>, die Menge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>h</mi></mrow>
+</msub>
+<mo>=</mo><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mi>&infin;</mi><mo stretchy="false">)</mo></mrow></math>. Auch für die Elemente des Definitionsbereichs gibt es eine spezielle Bezeichnung.
+In diesem Fall werden die Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&isin;</mo>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>h</mi></mrow>
+</msub>
+</mrow></math> mittels der Abbildungsvorschrift <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></math> zugeordnet.
+Hierbei wird die Variable <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> als die <b>Veränderliche</b><!-- mindexentry;;Veränderliche; //--><a class="label" name="ELI_SW103"></a> der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> bezeichnet. 
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_6.1.7">  <b>Aufgabe 6.1.7
+</b> &nbsp;<br />
+Geben Sie die Definitionsbereiche der Funktionen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>w</mi></mrow></math> aus Aufgabe <a class="MINTERLINK" href="../../mpl/1.6.1/xcontent1.html#ex1:grundlagen">6.1.5</a> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> aus Beispiel <a class="MINTERLINK" href="../../mpl/1.6.1/xcontent1.html#bsp1:grundlagen">6.1.4</a> an.
+  <button name="Name_MHint2" id="MHintButton2"   type="button" onclick="toggle_hint('MHint2');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+Es gilt
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>w</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo stretchy="false">[</mo><mn>4</mn><mo>,</mo><mn>9</mn><mo stretchy="false">]</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>&alpha;</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><msqrt><mrow><mi>&alpha;</mi></mrow></msqrt></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+und 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo>&Ropf;</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>,</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+womit man <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>w</mi></mrow>
+</msub>
+<mo>=</mo><mo stretchy="false">[</mo><mn>4</mn><mo>,</mo><mn>9</mn><mo stretchy="false">]</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>g</mi></mrow>
+</msub>
+<mo>=</mo><mo>&Ropf;</mo></mrow></math> erhält.
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+Betrachten wir die Abbildungsvorschrift <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></math> der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math>, so sehen wir, dass eigentlich nichts dagegen spricht,
+jede beliebige reelle Zahl für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></math> einzusetzen außer der
+Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>, da die Rechenoperation ,,<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>0</mn></mrow>
+</mfrac>
+</mrow></math>" kein Ergebnis liefert. Man kann bei der Angabe einer
+Definitionsmenge also unterscheiden zwischen Zahlen die ausgeschlossen sind, da man sie überhaupt nicht in die Abbildungsvorschrift einsetzen darf und
+solchen die ausgeschlossen sind weil die Funktion eben so definiert ist. Dies führt nun auf den Begriff des größtmöglichen Definitionsbereichs
+einer Funktion, die größtmögliche Teilmenge der reellen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Ropf;</mo></mrow></math>, die man als Definitionsmenge einer Funktion mit bekannter Abbildungsvorschrift benutzen
+kann.     
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  6.1.8
+  
+  </b> &nbsp;<br />
+Der größtmögliche Definitionsbereich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>h</mi></mrow>
+</msub>
+<mo>&sub;</mo><mo>&Ropf;</mo></mrow></math> der Funktion
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>h</mi></mrow>
+</msub>
+</mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+<mo>,</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>h</mi></mrow>
+</msub>
+<mo>=</mo><mo>&Ropf;</mo><mo>&setminus;</mo><mo stretchy="false">{</mo><mn>0</mn><mo stretchy="false">}</mo></mrow></math>.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_6.1.9">  <b>Aufgabe 6.1.9
+</b> &nbsp;<br />
+Geben Sie den größtmöglichen Definitionsbereich der Funktion
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>w</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>w</mi></mrow>
+</msub>
+</mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>&alpha;</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><msqrt><mrow><mi>&alpha;</mi></mrow></msqrt></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+an.
+  <button name="Name_MHint3" id="MHintButton3"   type="button" onclick="toggle_hint('MHint3');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint3"> 
+Die Wurzel liefert für alle nicht-negativen reellen Zahlen ein sinnvolles reelles Ergebnis. Somit gilt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>w</mi></mrow>
+</msub>
+<mo>=</mo><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mi>&infin;</mi><mo stretchy="false">)</mo></mrow></math>.  
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+Beim Aufschreiben von Funktionen ist neben dem Definitionsbereich noch eine zweite Menge notwendig, nämlich diejenige Menge, die das Ziel der durch die Funktion
+beschriebenen Zuordnung ist. Diese wird als Zielmenge oder Zielbereich
+bezeichnet. Betrachten wir nochmal die Funktion 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>&phiv;</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>3</mn><mi>y</mi><mo>+</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+aus Beispiel <a class="MINTERLINK" href="../../mpl/1.6.1/xcontent1.html#bsp1:grundlagen">6.1.4</a>. Deren Zielmenge sind die reellen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Ropf;</mo></mrow></math>. Die Zielmenge der Funktion
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo>&Nopf;</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Qopf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>n</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+aus dem einführenden Beispiel dieses Abschnitts sind die rationalen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&Qopf;</mo></mrow></math>. Wir erkennen hier einen wichtigen Unterschied zwischen der Definitionsmenge
+und der Zielmenge einer Funktion. Die Definitionsmenge enthält alle Zahlen, und nur diese, die man in die Abbildungsvorschrift der Funktion einsetzen darf
+und möchte. Wohingegen die Zielmenge alle Zahlen enthalten kann, die potentiell als Ergebnis der Abbildungsvorschrift auftauchen können. 
+
+<br clear="all"/><br clear="all"/>
+In diesem Zusammenhang stellen wir uns die Frage, was denn der kleinstmögliche Zielbereich ist, den man für eine Funktion mit gegebenem
+Definitionsbereich und bekannter Abbildungsvorschrift benutzen kann. Unter dem kleinstmöglichen Zielbereich verstehen wir all diejenigen Zahlen,
+die - bei gegebener Definitionsmenge und Abbildungsvorschrift - tatsächlich als Ziele der Zuordnung auftauchen. Diese Menge bezeichnet man
+als <b>Wertebereich</b><!-- mindexentry;;Wertebereich; //--><a class="label" name="ELI_SW104"></a> oder Wertemenge und dessen Elemente als Werte der Funktion. Für eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> benutzt man
+das Symbol <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>W</mi></mrow><mrow><mi>f</mi></mrow>
+</msub>
+</mrow></math> für die Wertemenge. Für die Werte einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> mit Veränderlicher <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>
+schreibt man allgemein meist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&isin;</mo>
+<msub><mrow><mi>W</mi></mrow><mrow><mi>f</mi></mrow>
+</msub>
+</mrow></math>, wie in der Abbildungsvorschrift oder führt eine weitere Variable ein, zum Beispiel <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&isin;</mo>
+<msub><mrow><mi>W</mi></mrow><mrow><mi>f</mi></mrow>
+</msub>
+</mrow></math>. 
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  6.1.10
+  
+  </b> &nbsp;<br />Betrachten wir hierzu nochmal das Beispiel 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>&phiv;</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>3</mn><mi>y</mi><mo>+</mo><mn>1</mn><mo>.</mo></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+Der Wertebereich dieser Funktion ist
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msub><mrow><mi>W</mi></mrow><mrow><mi>&phiv;</mi></mrow>
+</msub>
+<mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mn>4</mn><mo stretchy="false">)</mo><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+Dies sieht man ein, indem man einige Werte aus <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>&phiv;</mi></mrow>
+</msub>
+<mo>=</mo><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> in die Abbildungsvorschrift einsetzt und die Ergebnisse berechnet.
+Dies führt auf eine sogenannte <b>Wertetabelle</b><!-- mindexentry;;Wertetabelle; //--><a class="label" name="ELI_SW105"></a>:
+
+<br clear="all"/><br clear="all"/>
+
+<center>
+<table border="1" class="rahmen">
+<tr><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> </td><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></math> </td><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>3</mn></mrow></math> </td><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>5</mn></mrow></math> </td><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>7</mn></mrow></math> </td><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>9</mn></mrow></math> </td></tr>
+<tr><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&phiv;</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></math> </td><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>,</mo><mn>3</mn></mrow></math> </td><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>,</mo><mn>9</mn></mrow></math> </td><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mo>,</mo><mn>5</mn></mrow></math> </td><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>3</mn><mo>,</mo><mn>1</mn></mrow></math> </td><td  align="center" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>3</mn><mo>,</mo><mn>7</mn></mrow></math> </td></tr></table>
+
+</center>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Solche Wertetabellen sind sinnvoll, um sich einen Überblick über die Werte einer Funktion zu verschaffen. Sie reichen aber nicht aus, um mathematisch ganz sicher zu sein, was der tatsächliche Wertebereich einer Funktion ist. Eine Methode, den Wertebereich einer Funktion zu bestimmen, benutzt das Lösen von Ungleichungen:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  6.1.11
+  
+  </b> &nbsp;<br />
+In der Funktion 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>&phiv;</mi><mo>:</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>&rarr;</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>&longmapsto;</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>3</mn><mi>y</mi><mo>+</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow></mrow>
+    </mstyle></math></center>
+<br />
+
+gilt aufgrund des Definitionsbereichs <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>D</mi></mrow><mrow><mi>&phiv;</mi></mrow>
+</msub>
+<mo>=</mo><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> für die Veränderliche:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>0</mn><mo>&lt;</mo><mi>y</mi><mo>&lt;</mo><mn>1</mn><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+Nun benutzen wir Äquivalenzumformungen um in diesen Ungleichungen die Abbildungsvorschrift <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&phiv;</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><mi>y</mi><mo>+</mo><mn>1</mn></mrow></math> zu erzeugen:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>0</mn><mo>&lt;</mo><mi>y</mi><mo>&lt;</mo><mn>1</mn><mi>&ensp;</mi><mo stretchy="false">&verbar;</mo><mo>&middot;</mo><mn>3</mn><mi>&nbsp;&nbsp;&nbsp;</mi><mo>&Leftrightarrow;</mo><mi>&nbsp;&nbsp;&nbsp;</mi><mn>0</mn><mo>&lt;</mo><mn>3</mn><mi>y</mi><mo>&lt;</mo><mn>3</mn><mi>&ensp;</mi><mo stretchy="false">&verbar;</mo><mo>+</mo><mn>1</mn><mi>&nbsp;&nbsp;&nbsp;</mi><mo>&Leftrightarrow;</mo><mi>&nbsp;&nbsp;&nbsp;</mi><mn>1</mn><mo>&lt;</mo><mn>3</mn><mi>y</mi><mo>+</mo><mn>1</mn><mo>&lt;</mo><mn>4</mn><mi>&nbsp;&nbsp;&nbsp;</mi><mo>&Leftrightarrow;</mo><mi>&nbsp;&nbsp;&nbsp;</mi><mn>1</mn><mo>&lt;</mo><mi>&phiv;</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>&lt;</mo><mn>4</mn><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+Somit gilt für die Werte der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&phiv;</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>&isin;</mo><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mn>4</mn><mo stretchy="false">)</mo></mrow></math> und deshalb <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>W</mi></mrow><mrow><mi>&phiv;</mi></mrow>
+</msub>
+<mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mn>4</mn><mo stretchy="false">)</mo></mrow></math>.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+<br />
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

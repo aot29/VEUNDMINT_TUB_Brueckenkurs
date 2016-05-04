@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 1.2.1 Bruchrechnung</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("-+*q+-y-+978b4/2sx/b(,/)*1brq1a(",8);}if(c==2){str=debork("1-cbay7-q86q-5r*;88y-a6/1+5/1+3/",11);}if(c==3){str=debork("50(/b;(9/6)4*byx),)x9c0sas2/6c31",7);}if(c==4){str=debork("5s1syr1/c-/qq,67964xy,(1ayb4a1)5",3);}if(c==5){str=debork("16b3a+c/4a(05350b/t;4a3r0)45t6qr",3);}if(c==6){str=debork("3,a.br*622;aa493ys)+(5q1sx1ya//a",4);}if(c==7){str=debork("1,7/t657a+c-27x/xt6(5)8-r8yts8cq",7);}if(c==8){str=debork("40/-0*s8r0qqqr-bt199896-9595-x6c",5);}return str;}
+
+__CQJ("HN1",1,GSLS(1),"QFELD_1.2.2.QF1",4,"4;;4;16",4,0,1);__CQJ("HN2",2,GSLS(2),"QFELD_1.2.2.QF2",4,"4;;4;416",4,0,1);__CQJ("HN3",3,GSLS(3),"QFELD_1.2.2.QF3",4,"4;x;4;528",4,0,1);__CQJ("GLN1",4,GSLS(4),"QFELD_1.2.2.QF4",4,"4;;4;16",4,0,1);__CQJ("GLN2",5,GSLS(5),"QFELD_1.2.2.QF5",4,"4;;4;16",4,0,1);__CQJ("GLN3",6,GSLS(6),"QFELD_1.2.2.QF6",4,"4;;4;16",4,0,1);__CQJ("GLN4",7,GSLS(7),"QFELD_1.2.2.QF7",4,"4;;4;16",4,0,1);__CQJ("BRZ3",8,GSLS(8),"QFELD_1.2.2.QF8",7,"5;0;0;exactfraction",4,0,1);
+SITE_ID = "1.1.2.1";
+SITE_UXID = "VBKM01_Bruchrechnung";
+SECTION_ID = 1;
+var docName = "modstart";
+var fullName = "mpl/1.1.2/modstart.html";
+var fullNamePath = "../out/tmp/mpl/1.1.2/modstart.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="xnprev"><a class="MINTERLINK" href="../1.1.1/xcontent2.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.1.2/xcontent1.html">Weiter</a></div>
+<ul>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.1.2/modstart.html">Bruchrechnung</a></li>
+  <li class="inormalbutton_check"><a class="MINTERLINK" href="../1.1.2/xcontent1.html">Aufgaben</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="xnprev"><a class="MINTERLINK" href="../1.1.1/xcontent2.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.1.2/xcontent1.html">Weiter</a></div>
+<ul>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.1.2/modstart.html">Bruchrechnung</a></li>
+  <li class="inormalbutton_check"><a class="MINTERLINK" href="../1.1.2/xcontent1.html">Aufgaben</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+<a class="label" name="M01_Bruchrechnung">
+</a>
+
+
+
+
+
+
+
+
+
+<h4> Onlinekurs Mathematik  - Elementares Rechnen  - Bruchrechnung</h4><br /><h4>1.2.1 Bruchrechnung</h4>
+<!-- mdeclaresiteuxidpost;;VBKM01_Bruchrechnung;; //-->
+
+<br clear="all"/><br clear="all"/>
+Ein Bruch ist eine rationale Zahl der Form <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Z&#228;hler</mtext>
+</mrow>
+<mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Nenner</mtext>
+</mrow>
+</mfrac>
+</mrow></math>, wobei Z&#228;hler und Nenner ganze Zahlen sind und der Nenner <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&ne;</mo><mn>0</mn></mrow></math> ist. 
+Beispiele hierf&#252;r sind:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>10</mn></mrow>
+</mfrac>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow><mn>17</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>23</mn></mrow>
+</mfrac>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>,</mo><mo>.</mo><mo>.</mo><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+Sehr schnell erkennt man, dass ein und dieselbe rationale Zahl beliebig viele &#228;quivalente Darstellungen haben kann. Zum Beispiel gilt:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mn>12</mn></mrow>
+<mrow><mn>36</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>24</mn></mrow>
+<mrow><mn>72</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mo>-</mo><mn>12</mn></mrow>
+<mrow><mo>-</mo><mn>36</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>9</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>120</mn></mrow>
+<mrow><mn>360</mn></mrow>
+</mfrac>
+<mo>=</mo><mo>&#x2026;</mo><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+Die verschiedenen Darstellungen gehen durch <b>K&#252;rzen</b> bzw. <b>Erweitern</b> ineinander &#252;ber.
+
+  
+  
+  
+  
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.2.1
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Br&#252;che werden <b>gek&#252;rzt</b><!-- mindexentry;;Kürzen; //--><a class="label" name="ELI_SW10"></a>, indem Z&#228;hler und Nenner durch dieselbe ganze Zahl dividiert werden.
+
+<br clear="all"/><br clear="all"/>
+Br&#252;che werden <b>erweitert</b><!-- mindexentry;;Erweitern; //--><a class="label" name="ELI_SW11"></a>, indem Z&#228;hler und Nenner mit derselben ganzen Zahl multipliziert werden.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.2.2
+  
+  </b> &nbsp;<br />
+Drei Freunde m&#246;chten sich eine Pizza teilen. Tom isst <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+</mrow></math> der Pizza, Tim <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow></math> der Pizza. Wieviel Pizza ist noch f&#252;r ihren Freund Sven &#252;brig, der eigentlich immer den meisten Hunger hat? <br />
+Jetzt m&#252;ssen wir zum ersten Mal mit Br&#252;chen rechnen. Zun&#228;chst m&#252;ssen zwei Br&#252;che addiert werden, um festzustellen, wieviel Tim und Tom schon von der Pizza gegessen haben: 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn><mo>&middot;</mo><mn>3</mn></mrow>
+<mrow><mn>4</mn><mo>&middot;</mo><mn>3</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn><mo>&middot;</mo><mn>4</mn></mrow>
+<mrow><mn>3</mn><mo>&middot;</mo><mn>4</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>7</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+<mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+Hier erkennen wir schon die beiden wichtigsten Schritte: zun&#228;chst m&#252;ssen die beiden Br&#252;che durch Erweitern auf den sogenannten <b>Hauptnenner</b> gebracht oder man sagt auch <b>gleichnamig</b> gemacht werden. Wenn die Br&#252;che dann denselben Nenner besitzen, k&#246;nnen sie addiert werden, indem ihre Z&#228;hler addiert und der gemeinsame Nenner &#252;bernommen wird.
+Nun wissen wir also, dass Tim und Tom <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>7</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+</mrow></math> der Pizza gegessen haben, aber wieviel bleibt nun f&#252;r Sven &#252;brig? Nun m&#252;ssen wir subtrahieren: 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>1</mn><mo>-</mo>
+<mfrac><mrow><mn>7</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>12</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+<mo>-</mo>
+<mfrac><mrow><mn>7</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+<mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+Auch hier werden die Br&#252;che wieder auf den Hauptnenner gebracht und anschlie&#223;end die Z&#228;hler subtrahiert. Die beiden Freunde haben also f&#252;r den immer hungrigen Sven tats&#228;chlich die meiste Pizza &#252;briggelassen. 
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.2.3
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Der <b>Hauptnenner</b><!-- mindexentry;;Hauptnenner; //--><a class="label" name="ELI_SW12"></a> von zwei Br&#252;chen ist das kleinste gemeinsame Vielfache (kgV) der beiden Nenner.
+
+<br clear="all"/><br clear="all"/>
+Das <b>kleinste gemeinsame Vielfache</b><!-- mindexentry;;kgV; //--><a class="label" name="ELI_SW13"></a> (kgV) zweier Zahlen ist die kleinste Zahl, die beide Zahlen als Teiler besitzt.
+Der <b>größte gemeinsame Teiler</b><!-- mindexentry;;ggT; //--><a class="label" name="ELI_SW14"></a> (ggT) zweier Zahlen ist die größte Zahl, die beide Zahlen als Vielfache besitzt.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Ist die Bestimmung des kgV bei den folgenden Rechenregeln zu kompliziert, so kann an seiner Stelle auch das einfache Produkt der Nenner benutzt werden:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.2.4
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Br&#252;che werden <b>addiert/subtrahiert</b><!-- mindexentry;;Addition (Bruch); //--><a class="label" name="ELI_SW15"></a>, indem man sie auf den gleichen Nenner bringt und die Z&#228;hler anschlie&#223;end addiert/subtrahiert, d.&nbsp;h.
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>b</mi></mrow>
+</mfrac>
+<mo>&PlusMinus;</mo>
+<mfrac><mrow><mi>c</mi></mrow>
+<mrow><mi>d</mi></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mi>a</mi><mi>d</mi><mo>&PlusMinus;</mo><mi>b</mi><mi>c</mi></mrow>
+<mrow><mi>b</mi><mi>d</mi></mrow>
+</mfrac>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi><mi>b</mi><mi>d</mi><mo>&ne;</mo><mn>0</mn><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+&#220;blicherweise werden die Br&#252;che auf den Hauptnenner erweitert. 
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Beispielsweise ist das kleinste gemeinsame Vielfache von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>6</mn><mo>=</mo><mn>2</mn><mo>&middot;</mo><mn>3</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>15</mn><mo>=</mo><mn>3</mn><mo>&middot;</mo><mn>5</mn></mrow></math> die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mo>&middot;</mo><mn>3</mn><mo>&middot;</mo><mn>5</mn><mo>=</mo><mn>30</mn></mrow></math>, das Produkt ist dagegen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>6</mn><mo>&middot;</mo><mn>15</mn><mo>=</mo><mn>90</mn></mrow></math>. Man kann also
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>15</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>7</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<br /></mrow>
+    </mstyle></math></center>
+<br />
+
+aber auch
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>15</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>15</mn></mrow>
+<mrow><mn>90</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>6</mn></mrow>
+<mrow><mn>90</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>21</mn></mrow>
+<mrow><mn>90</mn></mrow>
+</mfrac>
+<br /></mrow>
+    </mstyle></math></center>
+<br />
+
+rechnen und den letzten Bruch dann noch zu <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>7</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+</mrow></math> kürzen.
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.2.5
+  
+  </b> &nbsp;<br />
+Das kleinste gemeinsame Vielfache für den Hauptnenner ist die kleinste Zahl,
+die von allen beteiligten Nennern geteilt wird. Falls die Zahlen keine gemeinsamen Faktoren haben,
+ist es einfach das Produkt der beiden Zahlen:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>10</mn></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>8</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>15</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>,</mo><mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>10</mn></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>10</mn></mrow>
+<mrow><mn>60</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>6</mn></mrow>
+<mrow><mn>60</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>16</mn></mrow>
+<mrow><mn>60</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>15</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">(auch richtig)</mtext>
+<mo>,</mo><mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>15</mn></mrow>
+</mfrac>
+<mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>8</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mo>-</mo>
+<mfrac><mrow><mn>15</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>8</mn><mo>-</mo><mn>15</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mo>-</mo>
+<mfrac><mrow><mn>7</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>,</mo><mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>9</mn></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>9</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>9</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>9</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>,</mo><mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>4</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+<mrow>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>4</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>4</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>16</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>,</mo><mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>7</mn></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>21</mn></mrow>
+<mrow><mn>42</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>14</mn></mrow>
+<mrow><mn>42</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>6</mn></mrow>
+<mrow><mn>42</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>41</mn></mrow>
+<mrow><mn>42</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Bei der Bildung von Hauptnennern können auch Terme mit Variablen zum Einsatz kommen.
+Da die Bruchumformungen für alle Werte dieser Variablen richtig sein sollen,
+müssen diese wie Zahlen ohne gemeinsame Faktoren behandelt werden:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.2.6
+  
+  </b> &nbsp;<br />
+Sind <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> eine Variablen, so gilt
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mi>x</mi></mrow>
+<mrow><mn>3</mn><mo>&middot;</mo><mi>x</mi></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>3</mn><mo>&middot;</mo><mi>x</mi></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>3</mn><mo>+</mo><mi>x</mi></mrow>
+<mrow><mn>3</mn><mo>&middot;</mo><mi>x</mi></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>,</mo></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>y</mi></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mi>y</mi></mrow>
+<mrow><mi>x</mi><mo>&middot;</mo><mi>y</mi></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mi>x</mi></mrow>
+<mrow><mi>x</mi><mo>&middot;</mo><mi>y</mi></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow>
+<mrow><mi>x</mi><mo>&middot;</mo><mi>y</mi></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>,</mo><mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow>
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mi>x</mi><mo>+</mo><mn>2</mn></mrow>
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.7">  <b>Aufgabe 1.2.7
+</b> &nbsp;<br />
+Diese Summen sollen über Hauptnenner (oder das Produkt der Nenner) ausgerechnet werden:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF1" id="QFELD_1.2.2.QF1" type="text" size="20" maxlength="20" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF1"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>5</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF2" id="QFELD_1.2.2.QF2" type="text" size="20" maxlength="20" onfocus="handlerFocus(2);" onblur="handlerBlur(2);" onkeyup="handlerChange(2,0);" onpaste="handlerChange(2,0);" oninput="handlerChange(2,0);" onpropertychange="handlerChange(2,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF2"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn><mi>x</mi></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn><mi>x</mi></mrow>
+</mfrac>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF3" id="QFELD_1.2.2.QF3" type="text" size="20" maxlength="20" onfocus="handlerFocus(3);" onblur="handlerBlur(3);" onkeyup="handlerChange(3,0);" onpaste="handlerChange(3,0);" oninput="handlerChange(3,0);" onpropertychange="handlerChange(3,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF3"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<font color="#0000FF">Bei dieser Aufgabe dürfen keine Rechenoperationen bis auf Multiplikation <tt>*</tt> und den Divisonsstrich <tt>/</tt> eingegeben werden.</font>
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint1" id="MHintButton1"   type="button" onclick="toggle_hint('MHint1');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+Bilden des Hauptnenners und Zusammenfassen/Kürzen ergibt
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+<mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>,</mo></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>5</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>10</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>6</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>21</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>7</mn></mrow>
+<mrow><mn>10</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>,</mo></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn><mi>x</mi></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn><mi>x</mi></mrow>
+</mfrac>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>6</mn><mi>x</mi></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>6</mn><mi>x</mi></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>6</mn><mi>x</mi></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.8">  <b>Aufgabe 1.2.8
+</b> &nbsp;<br />
+Bei gleichnamigen Brüchen darf man nur die Zähler addieren bzw. zerlegen, für den Nenner gibt es keine solche Regel.
+Berechnen Sie zum Nachweis die folgenden Zahlenwerte, indem Sie den Hauptnenner bilden:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF4" id="QFELD_1.2.2.QF4" type="text" size="10" maxlength="10" onfocus="handlerFocus(4);" onblur="handlerBlur(4);" onkeyup="handlerChange(4,0);" onpaste="handlerChange(4,0);" oninput="handlerChange(4,0);" onpropertychange="handlerChange(4,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF4"/>
+
+
+ aber <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn><mo>+</mo><mn>3</mn></mrow>
+</mfrac>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF5" id="QFELD_1.2.2.QF5" type="text" size="10" maxlength="10" onfocus="handlerFocus(5);" onblur="handlerBlur(5);" onkeyup="handlerChange(5,0);" onpaste="handlerChange(5,0);" oninput="handlerChange(5,0);" onpropertychange="handlerChange(5,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF5"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn><mo>+</mo><mn>2</mn></mrow>
+<mrow><mn>5</mn><mo>+</mo><mn>6</mn></mrow>
+</mfrac>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF6" id="QFELD_1.2.2.QF6" type="text" size="10" maxlength="10" onfocus="handlerFocus(6);" onblur="handlerBlur(6);" onkeyup="handlerChange(6,0);" onpaste="handlerChange(6,0);" oninput="handlerChange(6,0);" onpropertychange="handlerChange(6,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF6"/>
+
+
+ aber <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>5</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.2.2.QF7" id="QFELD_1.2.2.QF7" type="text" size="10" maxlength="10" onfocus="handlerFocus(7);" onblur="handlerBlur(7);" onkeyup="handlerChange(7,0);" onpaste="handlerChange(7,0);" oninput="handlerChange(7,0);" onpropertychange="handlerChange(7,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF7"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+  <button name="Name_MHint2" id="MHintButton2"   type="button" onclick="toggle_hint('MHint2');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+Summen von Nennern darf man nicht zusammenfassen, auch nicht bei gleichem Zähler, hier ist
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">aber</mtext>
+<mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn><mo>+</mo><mn>3</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>5</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+Auch das einfache &bdquo;Auseinandernehmen&ldquo;&nbsp;von Bestandteilen der Brüche ist nicht erlaubt, hier ist
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mn>1</mn><mo>+</mo><mn>2</mn></mrow>
+<mrow><mn>5</mn><mo>+</mo><mn>6</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>11</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">aber</mtext>
+<mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>5</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>6</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>10</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>16</mn></mrow>
+<mrow><mn>30</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi>
+<mfrac><mrow><mn>8</mn></mrow>
+<mrow><mn>15</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.2.9
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Br&#252;che werden <b>multipliziert</b><!-- mindexentry;;Multiplikation (Bruch); //--><a class="label" name="ELI_SW16"></a>, indem Z&#228;hler mit Z&#228;hler und Nenner mit Nenner multipliziert werden, d.&nbsp;h. 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>b</mi></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<mfrac><mrow><mi>c</mi></mrow>
+<mrow><mi>d</mi></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mi>a</mi><mo>&middot;</mo><mi>c</mi></mrow>
+<mrow><mi>b</mi><mo>&middot;</mo><mi>d</mi></mrow>
+</mfrac>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi><mi>b</mi><mi>d</mi><mo>&ne;</mo><mn>0</mn><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Die Division zweier Br&#252;che wird auf die Multiplikation zur&#252;ckgef&#252;hrt:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.2.10
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Br&#252;che werden <b>dividiert</b><!-- mindexentry;;Division (Bruch); //--><a class="label" name="ELI_SW17"></a>, indem der erste Bruch mit dem Kehrwert des zweiten Bruchs multipliziert wird, d.h.
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>b</mi></mrow>
+</mfrac>
+<mo>:</mo>
+<mfrac><mrow><mi>c</mi></mrow>
+<mrow><mi>d</mi></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>b</mi></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<mfrac><mrow><mi>d</mi></mrow>
+<mrow><mi>c</mi></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mi>a</mi><mo>&middot;</mo><mi>d</mi></mrow>
+<mrow><mi>b</mi><mo>&middot;</mo><mi>c</mi></mrow>
+</mfrac>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>&ne;</mo><mn>0</mn><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+Die Division zweier Br&#252;che kann auch als <b>Doppelbruch</b> geschrieben werden:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>b</mi></mrow>
+</mfrac>
+<mo>:</mo>
+<mfrac><mrow><mi>c</mi></mrow>
+<mrow><mi>d</mi></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>b</mi></mrow>
+</mfrac>
+</mrow>
+<mrow>
+<mfrac><mrow><mi>c</mi></mrow>
+<mrow><mi>d</mi></mrow>
+</mfrac>
+</mrow>
+</mfrac>
+<mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.2.11
+  
+  </b> &nbsp;<br />
+Die Multiplikation bzw. Division zweier Br&#252;che sieht unter Ber&#252;cksichtigung von eventuellem K&#252;rzen folgenderma&#223;en aus:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>5</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>2</mn><mo>&middot;</mo><mn>4</mn></mrow>
+<mrow><mn>3</mn><mo>&middot;</mo><mn>5</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>8</mn></mrow>
+<mrow><mn>15</mn></mrow>
+</mfrac>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>:</mo>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>5</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>10</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+<mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Wird ein Bruch ausdividiert, so erhalten wir einen <b>Dezimalbruch</b><!-- mindexentry;;Dezimalbruch; //--><a class="label" name="ELI_SW18"></a> bzw. eine Dezimalzahl, zum Beispiel
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>=</mo><mn>0</mn><mo>.</mo><mn>5</mn><mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>=</mo><mn>0</mn><mo>.</mo><mn>33333</mn><mo>.</mo><mo>.</mo><mo>.</mo><mo>=</mo><mn>0</mn><mo>.</mo>
+<mover><mrow><mn>3</mn></mrow>
+<mo>&OverBar;</mo></mover>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>7</mn></mrow>
+</mfrac>
+<mo>=</mo><mn>0</mn><mo>.</mo>
+<mover><mrow><mn>142857</mn></mrow>
+<mo stretchy="true">&OverBar;</mo></mover>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+<mo>=</mo><mn>0</mn><mo>.</mo><mn>125</mn><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+Schon an diesen Beispielen zeigt sich, dass die Division entweder aufgehen kann und man einen <b>endlichen Dezimalbruch</b><!-- mindexentry;;Dezimalbruch (endlich); //--><a class="label" name="ELI_SW19"></a> erh&#228;lt oder aber die Ziffern wiederholen sich in einer bestimmten Reihenfolge, dann liegt ein <b>unendlicher periodischer Dezimalbruch</b><!-- mindexentry;;Dezimalbruch (periodisch); //--><a class="label" name="ELI_SW20"></a> vor.
+
+<br clear="all"/><br clear="all"/>
+Die Umwandlung von endlichen Dezimalbr&#252;chen in Br&#252;che geschieht mit der Stellentafel. Jeder Dezimalbruch hat die Form:
+
+<center>
+&nbsp;
+<table border="1" class="rahmen">
+<tr><td  align="center" class="rahmen">1</td><td  align="center" class="rahmen">2</td><td  align="center" class="rahmen">3</td><td  align="center" class="rahmen">4</td><td  align="center" class="rahmen">5</td><td  align="center" class="rahmen">,</td><td  align="center" class="rahmen">6</td><td  align="center" class="rahmen">7</td><td  align="center" class="rahmen">8</td><td  align="center" class="rahmen">9</td></tr>
+<tr><td  align="center" class="rahmen">ZT</td><td  align="center" class="rahmen">T</td><td  align="center" class="rahmen">H</td><td  align="center" class="rahmen">Z</td><td  align="center" class="rahmen">E</td><td  align="center" class="rahmen">,</td><td  align="center" class="rahmen">z</td><td  align="center" class="rahmen">h</td><td  align="center" class="rahmen">t</td><td  align="center" class="rahmen">zt</td></tr></table>
+&nbsp;
+</center>
+<br />
+
+<br clear="all"/><br clear="all"/>
+wobei ZT ... Zehntausender, T ... Tausender, H ... Hunderter, Z ... Zehner, E ... Einer, z ... Zehntel, h ... Hundertstel, t ... Tausendstel, zt ... Zehntausendstel u.s.w. beschreiben.<br />
+Die Umwandlung sieht dann folgenderma&#223;en aus:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mn>4</mn><mo>,</mo><mn>375</mn></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>4</mn><mo>+</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>10</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>7</mn></mrow>
+<mrow><mn>100</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>1000</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>4</mn><mo>+</mo>
+<mfrac><mrow><mn>300</mn><mo>+</mo><mn>70</mn><mo>+</mo><mn>5</mn></mrow>
+<mrow><mn>1000</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>4</mn><mo>+</mo>
+<mfrac><mrow><mn>375</mn></mrow>
+<mrow><mn>1000</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>4</mn><mo>+</mo>
+<mfrac><mrow><mn>75</mn></mrow>
+<mrow><mn>200</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>4</mn><mo>+</mo>
+<mfrac><mrow><mn>15</mn></mrow>
+<mrow><mn>40</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>35</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+<mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+Aber wie sieht es bei periodischen Dezimalbr&#252;chen aus? Anscheinend m&#252;ssten wir unendlich viele Br&#252;che aufsummieren, was in der Praxis nat&#252;rlich wenig Sinn macht. Daher bedienen wir uns bei der <b>Umwandlung unendlicher periodischer Dezimalbr&#252;che in Br&#252;che</b> eines Tricks:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.2.12
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+
+
+
+<a class="label" name="Mathematik_Grundlagen_UDB">
+</a>
+Die <b>Umwandlung</b><!-- mindexentry;;Umwandlung (Dezimalbrüche); //--><a class="label" name="ELI_SW21"></a> periodischer Dezimalbrüche in Brüche geschieht, indem man durch Multiplikation mit einer Zehnerpotenz
+die periodischen Nachkommastellen vor das Komma holt. Dies ergibt eine Gleichung der Form <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mn>10</mn></mrow><mrow><mi>k</mi></mrow>
+</msup>
+<mo>&middot;</mo><mi>x</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>n</mi></mrow></math>
+für den Dezimalbruch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>, der zu <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo>
+<mfrac><mrow><mi>n</mi></mrow>
+<mrow>
+<msup><mrow><mn>10</mn></mrow><mrow><mi>k</mi></mrow>
+</msup>
+<mo>-</mo><mn>1</mn></mrow>
+</mfrac>
+</mrow></math> (ein gewöhnlicher Bruch) aufgelöst werden kann.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.2.13
+  
+  </b> &nbsp;<br />
+Die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo>
+<mover><mrow><mn>6</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math> soll in einen Bruch umgewandelt werden. Hierzu multipliziert man die Zahl mit 10 und subtrahiert vom Ergebnis die Ausgangszahl, um die unendliche Periode
+zu eliminieren:
+
+<center>
+
+<table>
+<tr><td align="center"></td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>10</mn></mrow></math> </td><td align="center"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&middot;</mo></mrow></math> </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo>
+<mover><mrow><mn>6</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math> </td><td align="center">= </td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>6</mn><mo>,</mo>
+<mover><mrow><mn>6</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math></td></tr>
+<tr><td align="center">- </td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn></mrow></math> </td><td align="center"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&middot;</mo></mrow></math> </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo>
+<mover><mrow><mn>6</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math> </td><td align="center">= </td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo>
+<mover><mrow><mn>6</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math></td></tr>
+<tr><td align="center"></td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>9</mn></mrow></math> </td><td align="center"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&middot;</mo></mrow></math> </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo>
+<mover><mrow><mn>6</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math> </td><td align="center">= </td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>6</mn><mo>,</mo><mn>0</mn></mrow></math></td></tr></table>
+
+</center>
+Aus der letzten Beziehung folgt nach Division durch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>9</mn></mrow></math> sofort:&nbsp;&nbsp;&nbsp; <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo>
+<mover><mrow><mn>6</mn></mrow>
+<mo>&OverBar;</mo></mover>
+<mo>=</mo>
+<mfrac><mrow><mn>6</mn></mrow>
+<mrow><mn>9</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>.</mo></mrow></math>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Dieses Vorgehen funktioniert auch, wenn sich nicht alle Ziffern hinter dem Komma periodisch wiederholen:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.2.14
+  
+  </b> &nbsp;<br />
+Der Dezimalbruch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>8</mn>
+<mover><mrow><mn>3</mn></mrow>
+<mo>&OverBar;</mo></mover>
+<mo>=</mo><mn>0</mn><mo>,</mo><mn>83333</mn><mo>&#x2026;</mo></mrow></math> soll in einen Bruch umgewandelt werden:
+
+<center>
+
+<table>
+<tr><td align="center"></td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>100</mn></mrow></math> </td><td align="center"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&middot;</mo></mrow></math> </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>8</mn>
+<mover><mrow><mn>3</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math> </td><td align="center">= </td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>83</mn><mo>,</mo>
+<mover><mrow><mn>3</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math></td></tr>
+<tr><td align="center">-</td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>10</mn></mrow></math> </td><td align="center"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&middot;</mo></mrow></math> </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>8</mn>
+<mover><mrow><mn>3</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math> </td><td align="center">= </td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>8</mn><mo>,</mo>
+<mover><mrow><mn>3</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math></td></tr>
+<tr><td align="center"></td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>90</mn></mrow></math> </td><td align="center"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>&middot;</mo></mrow></math> </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>8</mn>
+<mover><mrow><mn>3</mn></mrow>
+<mo>&OverBar;</mo></mover>
+</mrow></math> </td><td align="center">= </td><td align="right"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>75</mn><mo>,</mo><mn>0</mn></mrow></math></td></tr></table>
+
+</center>
+Division durch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>90</mn></mrow></math> liefert das Ergebnis: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>8</mn>
+<mover><mrow><mn>3</mn></mrow>
+<mo>&OverBar;</mo></mover>
+<mo>=</mo>
+<mfrac><mrow><mn>75</mn></mrow>
+<mrow><mn>90</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>6</mn></mrow>
+</mfrac>
+</mrow></math>.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Die Vorgehensweise ist also immer dieselbe: durch geeignete Multiplikation mit Zehnerpotenzen und anschlie&#223;ender Subtraktion wird die unendliche Periode entfernt.
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.2.15">  <b>Aufgabe 1.2.15
+</b> &nbsp;<br />
+Berechnen Sie mit dem obigen Verfahren einen gewöhnlichen und gekürzten Bruch, der den Wert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>45555</mn><mo>&#x2026;</mo></mrow></math> darstellt.
+&nbsp;<br />&nbsp;<br />
+Antwort: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>,</mo><mn>4</mn>
+<mover><mrow><mn>5</mn></mrow>
+<mo stretchy="true">&OverBar;</mo></mover>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="7" name="Name_QFELD_1.2.2.QF8" id="QFELD_1.2.2.QF8" type="text" size="12" maxlength="12" onfocus="handlerFocus(8);" onblur="handlerBlur(8);" onkeyup="handlerChange(8,0);" onpaste="handlerChange(8,0);" oninput="handlerChange(8,0);" onpropertychange="handlerChange(8,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.2.2.QF8"/>
+
+
+.
+&nbsp;<br />
+<font color="#0000FF">Geben Sie den Bruch in der Form <tt>Zähler/Nenner</tt> maximal gekürzt und mit positivem Nenner ein.</font>
+&nbsp;<br />
+  <button name="Name_MHint3" id="MHintButton3"   type="button" onclick="toggle_hint('MHint3');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint3"> 
+Multiplikation von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>4</mn>
+<mover><mrow><mn>5</mn></mrow>
+<mo stretchy="true">&OverBar;</mo></mover>
+</mrow></math> mit einer geeigneten Zehnerpotenz ergibt
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>10</mn><mi>x</mi><mo>-</mo><mi>x</mi><mo>=</mo><mn>4</mn><mo>,</mo><mn>1</mn><mi>&ensp;&ensp;</mi><mo>&rArr;</mo><mi>&ensp;&ensp;</mi><mn>9</mn><mi>x</mi><mo>=</mo>
+<mfrac><mrow><mn>41</mn></mrow>
+<mrow><mn>10</mn></mrow>
+</mfrac>
+<mi>&ensp;&ensp;</mi><mo>&rArr;</mo><mi>&ensp;&ensp;</mi><mi>x</mi><mo>=</mo>
+<mfrac><mrow><mn>41</mn></mrow>
+<mrow><mn>90</mn></mrow>
+</mfrac>
+<mi>&ensp;</mi><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+Dieser Bruch ist auch schon maximal gekürzt.
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+<br />
+
+
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

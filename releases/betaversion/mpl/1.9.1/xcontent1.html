@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 9.1.0 Einf&#252;hrung - MINT-Module Abschnitt 9.1.1 Funktionsgleichung</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("0)q)(3x7a;,7bbby4*9r,xx79q3b()*a",1);}if(c==2){str=debork("0a6y3((,22*r(y7*cc))+456-7)rcqry",1);}if(c==3){str=debork("14;*5c*1q*c7x)b36)5a0/13a)x/0s+,",1);}if(c==4){str=debork("08y0131.2*32c388a-;t99-b-q8b/5,-",1);}if(c==5){str=debork("0ysqy0*-c-1761+5/c4+))/-2748*(x8",1);}if(c==6){str=debork("1.q521t4s6s443,665a01(9,)b80sx,b",1);}if(c==7){str=debork("189qyb0,)q7;c3rr1,4c16;;qbc2(a.5",1);}if(c==8){str=debork("061;2b52c7t**r+/tx,)0*c*(sx5cba8",1);}if(c==9){str=debork("0.ta338(.05)xx6;3)s+53,q8;b6)367",1);}if(c==10){str=debork("017rrq4r4*a9*,;;as*0-1.5q7bq06c0",1);}if(c==11){str=debork("1c7;b07sqx0ys(;r-s+c2+7x)2r8t4+(",1);}if(c==12){str=debork("0s01-r443a0-8).69.3)bx4)t5567bb8",1);}if(c==13){str=debork("(2,x)6c+2ay)55*5)2005/49t3,bs.s)",5);}if(c==14){str=debork("(a,,),c6//y5x*q;s2-0*.ac--6/7b.4",5);}return str;}
+
+__CQJ("VEBC11",1,GSLS(1),"QFELD_9.1.3.QF1",2,"IMGQFELD_9.1.3.QF1",4,0,9);__CQJ("VEBC12",2,GSLS(2),"QFELD_9.1.3.QF2",2,"IMGQFELD_9.1.3.QF2",4,0,9);__CQJ("VEBC13",3,GSLS(3),"QFELD_9.1.3.QF3",2,"IMGQFELD_9.1.3.QF3",4,0,9);__CQJ("VEBC21",4,GSLS(4),"QFELD_9.1.3.QF4",2,"IMGQFELD_9.1.3.QF4",4,0,9);__CQJ("VEBC22",5,GSLS(5),"QFELD_9.1.3.QF5",2,"IMGQFELD_9.1.3.QF5",4,0,9);__CQJ("VEBC23",6,GSLS(6),"QFELD_9.1.3.QF6",2,"IMGQFELD_9.1.3.QF6",4,0,9);__CQJ("VEBC31",7,GSLS(7),"QFELD_9.1.3.QF7",2,"IMGQFELD_9.1.3.QF7",4,0,9);__CQJ("VEBC32",8,GSLS(8),"QFELD_9.1.3.QF8",2,"IMGQFELD_9.1.3.QF8",4,0,9);__CQJ("VEBC33",9,GSLS(9),"QFELD_9.1.3.QF9",2,"IMGQFELD_9.1.3.QF9",4,0,9);__CQJ("VEBC41",10,GSLS(10),"QFELD_9.1.3.QF10",2,"IMGQFELD_9.1.3.QF10",4,0,9);__CQJ("VEBC42",11,GSLS(11),"QFELD_9.1.3.QF11",2,"IMGQFELD_9.1.3.QF11",4,0,9);__CQJ("VEBC43",12,GSLS(12),"QFELD_9.1.3.QF12",2,"IMGQFELD_9.1.3.QF12",4,0,9);__CQJ("VEBC14",13,GSLS(13),"QFELD_9.1.3.QF13",4,"5;x;5;0",4,0,9);__CQJ("VEBC14b",14,GSLS(14),"QFELD_9.1.3.QF14",4,"5;x;5;0",4,0,9);
+SITE_ID = "1.9.1.2";
+SITE_UXID = "VBKM09_Funktionsgleichung";
+SECTION_ID = 9;
+var docName = "xcontent1";
+var fullName = "mpl/1.9.1/xcontent1.html";
+var fullNamePath = "../out/tmp/mpl/1.9.1/xcontent1.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.9.1/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.9.1/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.9.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.9.1/xcontent1.html">Funktionsgleichung</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.9.1/xcontent2.html">Zwei-Punkte-Form</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.9.1/xcontent3.html">Allgemeine Form</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.9.1/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.9.1/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.9.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.9.1/xcontent1.html">Funktionsgleichung</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.9.1/xcontent2.html">Zwei-Punkte-Form</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.9.1/xcontent3.html">Allgemeine Form</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+
+
+
+
+
+
+
+
+
+
+<h4> Onlinekurs Mathematik  - Orientierung im zweidimensionalen Koordinatensystem  - Punkte und Geraden in der Ebene</h4><br /><h4>9.1.1 Funktionsgleichung</h4>
+
+
+
+<a class="label" name="VBKM09_Funktionsgleichung">
+</a>
+<!-- mdeclaresiteuxidpost;;VBKM09_Funktionsgleichung;; //-->
+
+<br clear="all"/><br clear="all"/>
+Die einfachste Möglichkeit zur Beschreibung einer Geraden ist eine Funktionsgleichung. Dabei benutzt man, dass <a class="MINTERLINK" href="../../mpl/1.6.2/xcontent3.html#VBKM06_sec:linear-affin">linear-affine Funktionen</a>
+eine Gerade als Graph besitzen und schreibt einfach die Funktionsgleichung auf.
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+9.1.5
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Die <b>Funktionsgleichung</b><!-- mindexentry;;Funktionsgleichung (Gerade); //--><a class="label" name="ELI_SW140"></a> einer Geraden in der Ebene lautet
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>y</mi><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mi>m</mi><mo>&middot;</mo><mi>x</mi><mo>+</mo><mi>b</mi><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+mit
+
+<ul>
+<li>der <b>Steigung</b><!-- mindexentry;;Steigung; //--><a class="label" name="ELI_SW141"></a> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>m</mi></mrow></math>,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>dem <b>Achsenabschnitt</b><!-- mindexentry;;Achsenabschnitt; //--><a class="label" name="ELI_SW142"></a> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math>,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>und den Koordinaten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> der Geraden.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Bei dieser Schreibweise beschreibt man die Gerade durch den funktionalen Zusammenhang zwischen den beiden Koordinaten: Ist der Wert für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> bekannt,
+so kann man über die Gleichung den Wert von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> ausrechnen.
+Über die Funktionsgleichung kann man beispielsweise Schnittpunkte ausrechnen, indem man die entsprechenden Gleichungen gleichsetzt.
+Funktionsgleichungen für Geraden sind <a class="MINTERLINK" href="../../mpl/1.2.1/xcontent2.html#VBKM02_LineareGleichungenLoesen">linear</a>, daher treten
+wie in Modul <a class="MINTERLINK" href="../../mpl/1.2.html#VBKM02">2</a> die drei möglichen Lösungstypen auf:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+9.1.6
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Zwei durch Funktionsgleichungen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>c</mi><mi>x</mi><mo>+</mo><mi>d</mi></mrow></math> gegebene Geraden haben
+
+<ul>
+<li>keinen Schnittpunkt, falls die lineare Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> keine Lösung für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> besitzt,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>genau einen Schnittpunkt, falls die lineare Gleichung genau eine Lösung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> besitzt. Dann ist der Schnittpunkt gegeben durch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mi>x</mi><mo>;</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> oder <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mi>x</mi><mo>;</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math>,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>unendlich viele Schnittpunkte, falls <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> alle reellen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> als Lösung besitzt. In diesem Fall sind die beiden Geraden gleich.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Auflösen nach <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> geschieht wie in Modul <a class="MINTERLINK" href="../../mpl/1.2.html#VBKM02">2</a> durch Isolierung der Unbestimmten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  9.1.7
+  
+  </b> &nbsp;<br />
+Gesucht sei der Schnittpunkt der Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mi>x</mi><mo>-</mo><mn>2</mn></mrow></math>. Gleichsetzen und Isolieren von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> ergibt
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Start:</mtext>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mo>-</mo><mi>x</mi><mo>-</mo><mn>2</mn><mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>&Leftrightarrow;</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>3</mn><mi>x</mi><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mo>-</mo><mn>3</mn><mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>&ensp;</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>&Leftrightarrow;</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mi>x</mi><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mo>-</mo><mn>1</mn><mi>&ensp;</mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+Die Lösungsmenge der Gleichung ist also <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mo>-</mo><mn>1</mn><mo stretchy="false">}</mo></mrow></math>. Einsetzen der gefundenen Koordinate in eine der beiden Funktionsgleichungen ergibt
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math>. Also ist der gesuchte Schnittpunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo>;</mo><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>:
+
+<center>
+
+
+<img src="./VBKM09mtikzauto_3.png" style="" alt="./VBKM09mtikzauto_3.png"/>
+
+</center>
+Dabei ist der Graph <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>G</mi></mrow><mrow><mi>f</mi></mrow>
+</msub>
+</mrow></math> der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn></mrow></math> die Gerade. Im Folgenden trennen wir beide Objekte aber nicht mehr voneinander.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Dabei treten die drei Lösungstypen in den folgenden Fällen auf:
+
+<ul>
+<li>Falls zwei durch Funktionsgleichungen gegebene Geraden verschiedene Steigungen besitzen, so gibt es genau einen Schnittpunkt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Falls zwei Geraden gleiche Steigungen und gleiche Achsenabschnitte besitzen, so handelt es sich um die gleiche Gerade.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Falls die Steigungen gleich und die Achsenabschnitte aber verschieden sind, so gibt es keinen Schnittpunkt.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_9.1.8">  <b>Aufgabe 9.1.8
+</b> &nbsp;<br />
+Entscheiden Sie jeweils durch Rechnung, wie die gegebenen Geraden sich schneiden. Kreuzen Sie entsprechend an und tragen Sie die beiden vorhandenen Schnittpunkte der vier Aufgabenteile ein.
+Skizzieren Sie die Geradenpaare grob.
+
+
+
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo>-</mo><mn>2</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>2</mn><mo>-</mo><mi>x</mi></mrow></math>:<br />
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF1" id="QFELD_9.1.3.QF1" onchange="handlerChange(1,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF1" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF1"/> 
+
+ Keinen Schnittpunkt, 
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF2" id="QFELD_9.1.3.QF2" onchange="handlerChange(2,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF2" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF2"/> 
+
+ gleiche Geraden, 
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF3" id="QFELD_9.1.3.QF3" onchange="handlerChange(3,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF3" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF3"/> 
+
+ einen Schnittpunkt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>-</mo><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>4</mn><mo>&middot;</mo><mo stretchy="false">(</mo><mn>3</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>-</mo><mi>x</mi><mo>-</mo><mn>3</mn></mrow></math>:<br />
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF4" id="QFELD_9.1.3.QF4" onchange="handlerChange(4,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF4" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF4"/> 
+
+ Keinen Schnittpunkt, 
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF5" id="QFELD_9.1.3.QF5" onchange="handlerChange(5,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF5" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF5"/> 
+
+ gleiche Geraden, 
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF6" id="QFELD_9.1.3.QF6" onchange="handlerChange(6,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF6" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF6"/> 
+
+ einen Schnittpunkt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>4</mn><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>-</mo><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><mi>x</mi><mo>-</mo><mn>3</mn></mrow></math>:<br />
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF7" id="QFELD_9.1.3.QF7" onchange="handlerChange(7,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF7" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF7"/> 
+
+ Keinen Schnittpunkt, 
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF8" id="QFELD_9.1.3.QF8" onchange="handlerChange(8,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF8" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF8"/> 
+
+ gleiche Geraden, 
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF9" id="QFELD_9.1.3.QF9" onchange="handlerChange(9,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF9" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF9"/> 
+
+ einen Schnittpunkt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mi>x</mi><mo>-</mo><mn>2</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>3</mn><mi>x</mi><mo>-</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math>:<br />
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF10" id="QFELD_9.1.3.QF10" onchange="handlerChange(10,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF10" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF10"/> 
+
+ Keinen Schnittpunkt, 
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF11" id="QFELD_9.1.3.QF11" onchange="handlerChange(11,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF11" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF11"/> 
+
+ gleiche Geraden, 
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_9.1.3.QF12" id="QFELD_9.1.3.QF12" onchange="handlerChange(12,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_9.1.3.QF12" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.1.3.QF12"/> 
+
+ einen Schnittpunkt.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+Der erste Schnittpunkt ist 
+
+
+<input mfieldtype="4" name="Name_QFELD_9.1.3.QF13" id="QFELD_9.1.3.QF13" type="text" size="10" maxlength="10" onblur="handlerBlur(13);" onfocus="handlerFocus(13);" onkeyup="handlerChange(13,1);" onpaste="handlerChange(13,1);" oninput="handlerChange(13,1);" onpropertychange="handlerChange(13,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_9.1.3.QF13"/>
+
+, der zweite Schnittpunkt ist 
+
+
+<input mfieldtype="4" name="Name_QFELD_9.1.3.QF14" id="QFELD_9.1.3.QF14" type="text" size="10" maxlength="10" onblur="handlerBlur(14);" onfocus="handlerFocus(14);" onkeyup="handlerChange(14,1);" onpaste="handlerChange(14,1);" oninput="handlerChange(14,1);" onpropertychange="handlerChange(14,1);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_9.1.3.QF14"/>
+
+.
+
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+<button name="Name_Group1to14" id="Group1to14" type="button" onclick="group_button(1,14);">Eingaben kontrollieren</button>
+
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint1" id="MHintButton1"   type="button" onclick="toggle_hint('MHint1');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+Gleichsetzen der beiden Funktionsgleichungen ergibt:
+
+<ol type="1">
+<li>Einen Schnittpunkt über
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>x</mi><mo>-</mo><mn>2</mn><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mn>2</mn><mo>-</mo><mi>x</mi><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mo>&Leftrightarrow;</mo><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mn>2</mn><mi>x</mi><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mn>4</mn><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mo>&Leftrightarrow;</mo><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mi>x</mi><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mn>2</mn><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mi>f</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Einen Schnittpunkt über
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>1</mn><mo>-</mo><mi>x</mi><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mn>4</mn><mo stretchy="false">(</mo><mn>3</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>-</mo><mi>x</mi><mo>-</mo><mn>3</mn><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mo>&Leftrightarrow;</mo><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mn>12</mn><mi>x</mi><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mn>0</mn><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mo>&Leftrightarrow;</mo><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mi>x</mi><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mn>0</mn><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mi>f</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Diese Geraden besitzen keinen Schnittpunkt, da die Gleichung
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>4</mn><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>-</mo><mi>x</mi><mo>-</mo><mn>1</mn><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mn>3</mn><mi>x</mi><mo>-</mo><mn>3</mn><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mo>&Leftrightarrow;</mo><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mn>0</mn><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mo>-</mo><mn>6</mn><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+unslösbar ist.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Diese Geraden stimmen überein, da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>3</mn><mi>x</mi><mo>-</mo><mn>3</mn><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mi>x</mi><mo>-</mo><mn>2</mn></mrow></math> ist.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+</div>
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint2" id="MHintButton2"   type="button" onclick="toggle_hint('MHint2');">Skizze 1</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+
+<center>
+
+
+<img src="./VBKM09mtikzauto_4.png" style="" alt="./VBKM09mtikzauto_4.png"/>
+
+</center>
+</div>
+  <button name="Name_MHint3" id="MHintButton3"   type="button" onclick="toggle_hint('MHint3');">Skizze 2</button>
+  <div class="hint" style="display:none" id="MHint3"> 
+
+<center>
+
+
+<img src="./VBKM09mtikzauto_5.png" style="" alt="./VBKM09mtikzauto_5.png"/>
+
+</center>
+</div>
+  <button name="Name_MHint4" id="MHintButton4"   type="button" onclick="toggle_hint('MHint4');">Skizze 3</button>
+  <div class="hint" style="display:none" id="MHint4"> 
+
+<center>
+
+
+<img src="./VBKM09mtikzauto_6.png" style="" alt="./VBKM09mtikzauto_6.png"/>
+
+</center>
+</div>
+  <button name="Name_MHint5" id="MHintButton5"   type="button" onclick="toggle_hint('MHint5');">Skizze 4</button>
+  <div class="hint" style="display:none" id="MHint5"> 
+
+<center>
+
+
+<img src="./VBKM09mtikzauto_7.png" style="" alt="./VBKM09mtikzauto_7.png"/>
+
+</center>
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+<br />
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

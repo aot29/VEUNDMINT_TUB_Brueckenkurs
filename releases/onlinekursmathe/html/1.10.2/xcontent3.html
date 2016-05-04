@@ -1,0 +1,4162 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 10.2.4 Lagebeziehung von Geraden und Ebenen im Raum</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+// onload blocks start
+CreateQuestionObj("INTER1",1,"0","QFELD_10.2.5.QF1",2,"IMGQFELD_10.2.5.QF1",4,0,10);
+CreateQuestionObj("INTER2",2,"0","QFELD_10.2.5.QF2",2,"IMGQFELD_10.2.5.QF2",4,0,10);
+CreateQuestionObj("INTER3",3,"0","QFELD_10.2.5.QF3",2,"IMGQFELD_10.2.5.QF3",4,0,10);
+CreateQuestionObj("INTER4",4,"1","QFELD_10.2.5.QF4",2,"IMGQFELD_10.2.5.QF4",4,0,10);
+CreateQuestionObj("INTER5",5,"0","QFELD_10.2.5.QF5",2,"IMGQFELD_10.2.5.QF5",4,0,10);
+CreateQuestionObj("INTER0",6,"(1,2,4)","QFELD_10.2.5.QF6",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("INTER0a",7,"0","QFELD_10.2.5.QF7",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("INTER0b",8,"-1","QFELD_10.2.5.QF8",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("PAR1",9,"-10","QFELD_10.2.5.QF9",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("PAR2",10,"10","QFELD_10.2.5.QF10",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("PAR3",11,"1","QFELD_10.2.5.QF11",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("BLUBB1",12,"1","QFELD_10.2.5.QF12",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("BLUBB2x",13,"0","QFELD_10.2.5.QF13",4,"5;c;5;0",4,0,10);
+CreateQuestionObj("BLUBB2y",14,"2+40/(1-c)","QFELD_10.2.5.QF14",4,"5;c;5;0",4,0,10);
+CreateQuestionObj("BLUBB2z",15,"1+10*c/(1-c)","QFELD_10.2.5.QF15",4,"5;c;5;0",4,0,10);
+CreateQuestionObj("BLAA1",16,"-1","QFELD_10.2.5.QF16",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("BLAA2",17,"3/8","QFELD_10.2.5.QF17",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("BLAA3",18,"-2/9","QFELD_10.2.5.QF18",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("GNATZ1",19,"0","QFELD_10.2.5.QF19",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("GNATZ2",20,"-6","QFELD_10.2.5.QF20",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("GNATZ3",21,"-5","QFELD_10.2.5.QF21",4,"5;x;5;0",4,0,10);
+CreateQuestionObj("GNATZ4",22,"-4","QFELD_10.2.5.QF22",4,"5;x;5;0",4,0,10);
+// onload blocks stop
+var SITE_ID = "1.10.2.4";
+var SITE_UXID = "VBKM10_Lagebeziehung";
+var SECTION_ID = 10;
+var docName = "xcontent3";
+var fullName = "html/1.10.2/xcontent3.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.10.1/modstart.html"><div class="xsymb selected">10.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.1/modstart.html"><div uxid="VBKM10_PfeilVektor_Intro" id="idxsymb_tc221" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent1.html"><div uxid="VBKM10_Raumkoordinaten" id="idxsymb_tc222" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent2.html"><div uxid="VBKM10_Vektoren" id="idxsymb_tc223" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent3.html"><div uxid="VBKM10_Vektorrechnung" id="idxsymb_tc224" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.10.2/modstart.html"><div class="xsymb selected">10.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.2/modstart.html"><div uxid="VBKM10_GeradenEbenen_Intro" id="idxsymb_tc225" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent1.html"><div uxid="VBKM10_GeradenEbene" id="idxsymb_tc226" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent2.html"><div uxid="VBKM10_EbenenRaum" id="idxsymb_tc227" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent3.html"><div uxid="VBKM10_Lagebeziehung" id="idxsymb_tc228" class="xsymb status1 selected"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.10.3/modstart.html"><div class="xsymb selected">10.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.3/modstart.html"><div uxid="VBKM10_Abschlusstest" id="idxsymb_tc229" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.10.2/xcontent2.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/1.10.3/modstart.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM10_GeradenEbenen_Intro" class="MINTERLINK" href="../../html/1.10.2/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_GeradenEbene" class="MINTERLINK" href="../../html/1.10.2/xcontent1.html">Geraden Ebene Raum</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_EbenenRaum" class="MINTERLINK" href="../../html/1.10.2/xcontent2.html">Ebenen Raum</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_Lagebeziehung" class="MINTERLINK naviselected" href="../../html/1.10.2/xcontent3.html">Lagebeziehung</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREEN);">Grün</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.10.1/modstart.html"><div class="xsymb selected">10.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.1/modstart.html"><div uxid="VBKM10_PfeilVektor_Intro" id="idxsymb_tc221" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent1.html"><div uxid="VBKM10_Raumkoordinaten" id="idxsymb_tc222" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent2.html"><div uxid="VBKM10_Vektoren" id="idxsymb_tc223" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.1/xcontent3.html"><div uxid="VBKM10_Vektorrechnung" id="idxsymb_tc224" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.10.2/modstart.html"><div class="xsymb selected">10.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.2/modstart.html"><div uxid="VBKM10_GeradenEbenen_Intro" id="idxsymb_tc225" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent1.html"><div uxid="VBKM10_GeradenEbene" id="idxsymb_tc226" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent2.html"><div uxid="VBKM10_EbenenRaum" id="idxsymb_tc227" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.10.2/xcontent3.html"><div uxid="VBKM10_Lagebeziehung" id="idxsymb_tc228" class="xsymb status1 selected"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.10.3/modstart.html"><div class="xsymb selected">10.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.10.3/modstart.html"><div uxid="VBKM10_Abschlusstest" id="idxsymb_tc229" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.10.2/xcontent2.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/1.10.3/modstart.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM10_GeradenEbenen_Intro" class="MINTERLINK" href="../../html/1.10.2/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_GeradenEbene" class="MINTERLINK" href="../../html/1.10.2/xcontent1.html">Geraden Ebene Raum</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_EbenenRaum" class="MINTERLINK" href="../../html/1.10.2/xcontent2.html">Ebenen Raum</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_Lagebeziehung" class="MINTERLINK naviselected" href="../../html/1.10.2/xcontent3.html">Lagebeziehung</a></li>
+</ul>
+</div>
+  <div id="content" class="content">
+
+
+
+
+
+
+
+<h4>1  - 1.10</h4><br /><h4>10.2.4 Lagebeziehung von Geraden und Ebenen im Raum</h4>
+
+
+
+<a id="VBKM10_Lagebeziehung">
+</a>
+<!-- mdeclaresiteuxidpost;;VBKM10_Lagebeziehung;; //-->
+Während es für die Lagebeziehung zweier Geraden in der Ebene nur drei Möglichkeiten gibt (die Geraden sind parallel, identisch oder sie schneiden sich, vgl. Abschnitt <a class="MINTERLINK" href="../../html/1.9.2/xcontent2.html#VBKM09_Lagebeziehungen">9.2.3</a>), existieren für zwei Geraden im Raum vier Möglichkeiten. Diese werden in der folgenden Infobox zusammengefasst. 
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+10.2.13
+    
+  
+  </b>  <br/> <br/>
+
+
+<a id="info:schnitti">
+</a>
+Gegeben sind zwei Geraden im Raum in Punkt-Richtungsform, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> mit Aufpunktvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>a</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und Richtungsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> sowie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> mit Aufpunktvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>b</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und Richtungsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math>:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo>
+<mover><mrow><mi>a</mi></mrow>
+<mo>→</mo></mover>
+<mo>+</mo><mi>s</mi>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+<mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>s</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo>
+<mover><mrow><mi>b</mi></mrow>
+<mo>→</mo></mover>
+<mo>+</mo><mi>t</mi>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+<mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>t</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+Für die relative Lage von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> gibt es genau vier Möglichkeiten:
+
+<ol type="1">
+<li> Die Geraden sind <b>identisch</b>. In diesem Fall haben <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> alle Punkte gemeinsam, fallen also zusammen. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> kollinear sind und es einen gemeinsamen Punkt gibt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die Geraden sind <b>parallel</b><!-- mindexentry;;Parallelität (zweier Geraden im Raum); //--><a class="label" name="ELI_SW271"></a>. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> kollinear sind und es <i>keinen</i> gemeinsamen Punkt gibt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die Geraden schneiden sich. In diesem Fall haben <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> genau einen gemeinsamen Punkt, der <b>Schnittpunkt</b><!-- mindexentry;;Schnittpunkt (zweier Geraden im Raum); //--><a class="label" name="ELI_SW272"></a> genannt wird. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> <i>nicht</i> kollinear sind und es einen gemeinsamen Punkt gibt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Geraden, die weder identisch noch parallel sind und sich auch nicht schneiden, heißen <b>windschief</b><!-- mindexentry;;windschief; //--><a class="label" name="ELI_SW273"></a>. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> <i>nicht</i> kollinear sind und es <i>keinen</i> gemeinsamen Punkt gibt.
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+<br clear="all"/><br clear="all"/>
+(Diese Abbildung erscheint in Kürze.)
+
+<br clear="all"/><br clear="all"/>
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Nach den Kriterien, die in obiger Infobox für die vier Möglichkeiten der relativen Lage zweier Geraden aufgeführt sind, geht man in der Praxis so vor, dass man zunächst die beiden Richtungsvektoren auf Kollinearität prüft und dann nach möglichen gemeinsamen Punkten der beiden Geraden sucht. Dies legt schließlich einen der vier Fälle eindeutig fest. Das folgende Beispiel zeigt Anwendungen dieses Vorgehens für alle vier Fälle.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  10.2.14
+  
+  </b>  <br/>
+Gegeben sind die vier Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>j</mi></mrow></math> in Parameterform:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>s</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>t</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>i</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>u</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>6</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>u</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>j</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>v</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>v</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+
+<ul>
+<li> Die Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> sind identisch. Die beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> sind kollinear. Es gilt
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mo>-</mo><mn>2</mn><mo>·</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Außerdem ist der Punkt, welcher durch den Ortvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> beschrieben wird, in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> (als Aufpunkt) und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> enthalten, denn für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> gilt:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn><mo>-</mo><mn>2</mn><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn><mo>-</mo><mn>4</mn><mi>s</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>⇔</mo><mi> </mi><mi>s</mi><mo>=</mo><mo>-</mo><mn>1</mn><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Also ergibt sich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> für den Parameterwert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math> (und damit natürlich auch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math>) sind parallel. Die beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>6</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math> sind kollinear. Es gilt
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>6</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mo>-</mo><mn>3</mn><mo>·</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Allerdings haben <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math> keine Punkte gemeinsam. Dies sieht man in diesem Fall folgendermaßen: Der Aufpunkt einer der beiden Geraden ist kein Punkt auf der anderen Geraden. Dann haben die beiden Geraden gar keine gemeinsamen Punkte. Hier kann man zum Beispiel testen, ob sich der Aufpunktvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> der Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math> als Ortsvektor der Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> ergeben kann:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn><mo>+</mo><mi>t</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn><mo>-</mo><mi>t</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn><mo>+</mo><mn>2</mn><mi>t</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+In dieser Vektorgleichung ergäbe sich in der ersten Komponente <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi><mo>=</mo><mn>3</mn></mrow></math> und in der zweiten Komponente <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math>, was bereits ein Widerspruch ist. Folglich haben die beiden Geraden keine gemeinsamen Punkte.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>j</mi></mrow></math> schneiden sich. Zunächst sind für diese beiden Geraden die Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>6</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> nicht kollinear. Es gibt keine Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>∈</mo><mo>ℝ</mo></mrow></math>, so dass
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>6</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+gilt, denn für die erste Komponente müsste <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mo>-</mo><mn>3</mn></mrow></math> und für die zweite Komponente <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow></math> gelten, was bereits ein Widerspruch ist. Allerdings haben die beiden Geraden einen gemeinsamen Punkt, den man durch Gleichsetzen der Ortsvektoren für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>j</mi></mrow></math> findet:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>u</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>6</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn><mo>-</mo><mn>3</mn><mi>u</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn><mi>u</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn><mo>-</mo><mn>6</mn><mi>u</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn><mo>+</mo><mi>v</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn><mo>+</mo><mn>3</mn><mi>v</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>-</mo><mn>3</mn><mi>v</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>v</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Hier führen die ersten beiden Komponenten zu den Gleichungen
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>3</mn><mo>-</mo><mn>3</mn><mi>u</mi><mo>=</mo><mi>v</mi><mi> </mi><mi> </mi>
+<mtext>und</mtext>
+<mi> </mi><mi> </mi><mi>u</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>v</mi></mrow>
+    </mstyle></math></center>
+<br/>
+
+für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi></mrow></math>, woraus man <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>=</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>=</mo><mn>1</mn></mrow></math> berechnet. Dies eingesetzt in die dritte Komponente ergibt
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>8</mn><mo>-</mo><mn>6</mn><mo>·</mo><mn>1</mn><mo>=</mo><mn>2</mn><mo>-</mo><mn>3</mn><mo>·</mo><mn>0</mn><mi> </mi><mo>⇔</mo><mi> </mi><mn>2</mn><mo>=</mo><mn>2</mn><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Die Vektorgleichung für die Ortsvektoren ist also für die Parameterwerte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>=</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>=</mo><mn>0</mn></mrow></math> erfüllt. Folglich ergibt sich der Ortsvektor des Schnittpunkts für den Parameterwert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>=</mo><mn>1</mn></mrow></math> in der Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>i</mi></mrow></math> oder auch für den Parameterwert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>=</mo><mn>0</mn></mrow></math> in der Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>j</mi></mrow></math>. Man erhält als  Schnittpunkt den Punkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mn>3</mn><mo>;</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>j</mi></mrow></math> (und damit natürlich auch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>j</mi></mrow></math>) sind windschief. Auch in diesem Fall erhält man analog zum Fall mit Schnittpunkt oben recht schnell, dass die beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>j</mi></mrow></math> nicht kollinear sind. Nun haben die beiden Geraden aber keinen gemeinsamen Punkt, was man wieder durch Gleichsetzen der Ortsvektoren findet:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn><mo>-</mo><mn>2</mn><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn><mo>-</mo><mn>4</mn><mi>s</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn><mo>+</mo><mi>v</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn><mo>+</mo><mn>3</mn><mi>v</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>-</mo><mn>3</mn><mi>v</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>v</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Diese Vektorgleichung ist widersprüchlich, das heißt man findet keine Parameterwerte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi></mrow></math>, die sie erfüllen, und folglich haben <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>j</mi></mrow></math> keine gemeinsamen Punkte. Die erste und die zweite Komponente führen auf die beiden Gleichungen
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>-</mo><mn>2</mn><mi>s</mi><mo>=</mo><mn>2</mn><mo>+</mo><mi>v</mi><mi> </mi><mi> </mi>
+<mtext>und</mtext>
+<mi> </mi><mi> </mi><mn>2</mn><mi>s</mi><mo>=</mo><mn>3</mn><mo>+</mo><mn>3</mn><mi>v</mi><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+woraus man <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+</mrow></math> berechnet. Setzt man dies aber in die dritte Komponente ein, so ergibt sich der Widerspruch
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>3</mn><mo>-</mo><mn>4</mn><mo stretchy="false">(</mo><mo>-</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+<mo stretchy="false">)</mo><mo>=</mo><mn>2</mn><mo>-</mo><mn>3</mn><mo stretchy="false">(</mo><mo>-</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mo stretchy="false">)</mo><mi> </mi><mo>⇔</mo><mi> </mi>
+<mfrac><mrow><mn>9</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>23</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+
+<br clear="all"/><br clear="all"/>
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.2.15">  <b>Aufgabe 10.2.15
+</b>  <br/>
+
+
+<a id="ex:twolines">
+</a>
+Die beiden Geraden 
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>x</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>15</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>x</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>y</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>y</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+schneiden sich, da 
+
+<br clear="all"/><br clear="all"/>
+
+<table>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_10.2.5.QF1" id="QFELD_10.2.5.QF1" onchange="handlerChange(1,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_10.2.5.QF1" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_10.2.5.QF1"/> 
+
+ </td><td align="left"> </td><td align="left">die beiden Richtungsvektoren kollinear sind,</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_10.2.5.QF2" id="QFELD_10.2.5.QF2" onchange="handlerChange(2,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_10.2.5.QF2" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_10.2.5.QF2"/> 
+
+ </td><td align="left"> </td><td align="left">die beiden Richtungsvektoren nicht kollinear sind,</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_10.2.5.QF3" id="QFELD_10.2.5.QF3" onchange="handlerChange(3,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_10.2.5.QF3" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_10.2.5.QF3"/> 
+
+ </td><td align="left"> </td><td align="left">die beiden Richtungsvektoren kollinear sind und die Geraden einen gemeinsamen Punkt besitzen,</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_10.2.5.QF4" id="QFELD_10.2.5.QF4" onchange="handlerChange(4,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_10.2.5.QF4" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_10.2.5.QF4"/> 
+
+ </td><td align="left"> </td><td align="left">die beiden Richtungsvektoren nicht kollinear sind und die Geraden einen gemeinsamen Punkt besitzen,</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_10.2.5.QF5" id="QFELD_10.2.5.QF5" onchange="handlerChange(5,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_10.2.5.QF5" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_10.2.5.QF5"/> 
+
+ </td><td align="left"> </td><td align="left">die beiden Richtungsvektoren nicht kollinear sind und die Geraden keinen gemeinsamen Punkt besitzen.</td></tr></table>
+
+
+
+
+
+
+
+
+<button name="Name_Group1to5" class="groupbutton" id="Group1to5" type="button" onclick="group_button(1,5);">Antworten kontrollieren</button>
+
+
+<br clear="all"/><br clear="all"/>
+Berechnen Sie den Schnittpunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>S</mi></mrow></math> der beiden Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math>.<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>S</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF6" id="QFELD_10.2.5.QF6" type="text" size="15" maxlength="15" onfocus="handlerFocus(6);" onblur="handlerBlur(6);" onkeyup="handlerChange(6,0);" onpaste="handlerChange(6,0);" oninput="handlerChange(6,0);" onpropertychange="handlerChange(6,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF6"/>
+
+
+
+<br clear="all"/><br clear="all"/>
+Der Ortsvektor des Schnittpunkts <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>S</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math> ergibt sich in den Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> jeweils für die Parameterwerte<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF7" id="QFELD_10.2.5.QF7" type="text" size="10" maxlength="10" onfocus="handlerFocus(7);" onblur="handlerBlur(7);" onkeyup="handlerChange(7,0);" onpaste="handlerChange(7,0);" oninput="handlerChange(7,0);" onpropertychange="handlerChange(7,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF7"/>
+
+
+ und<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF8" id="QFELD_10.2.5.QF8" type="text" size="10" maxlength="10" onfocus="handlerFocus(8);" onblur="handlerBlur(8);" onkeyup="handlerChange(8,0);" onpaste="handlerChange(8,0);" oninput="handlerChange(8,0);" onpropertychange="handlerChange(8,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF8"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint1" class="hintbutton_closed" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+Die beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>15</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> sind nicht kollinear, da es keine Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>∈</mo><mo>ℝ</mo></mrow></math> gibt, so dass
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>15</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+erfüllt ist. Denn betrachtet man die zweite Komponente dieser Vektorgleichung, so müsste <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mo>-</mo><mn>5</mn></mrow></math> gelten, aus der ersten Komponente müsste allerdings <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow></math> folgen; ein Widerspruch. Weiterhin besitzen die Geraden einen gemeinsamen Punkt, den Schnittpunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>S</mi></mrow></math>, der unten berechnet wird. Diese beiden Tatsachen, und nur diese, sind nach Infobox <a class="MINTERLINK" href="../../html/1.10.2/xcontent3.html#info:schnitti">10.2.13</a> hinreichend dafür, dass die beiden Geraden sich schneiden. 
+
+<br clear="all"/><br clear="all"/>
+Der Schnittpunkt ergibt sich durch Gleichsetzen der beiden Ortsvektoren:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>x</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>15</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn><mo>-</mo><mn>5</mn><mi>x</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>+</mo><mn>10</mn><mi>x</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn><mo>-</mo><mn>15</mn><mi>x</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn><mo>+</mo><mn>3</mn><mi>y</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn><mi>y</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn><mo>+</mo><mn>3</mn><mi>y</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>y</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Die ersten beiden Komponenten dieser Vektorgleichung liefern die Gleichungen
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>-</mo><mn>5</mn><mi>x</mi><mo>=</mo><mn>3</mn><mo>+</mo><mn>3</mn><mi>y</mi><mi> </mi><mi> </mi>
+<mtext>und</mtext>
+<mi> </mi><mi> </mi><mn>2</mn><mo>+</mo><mn>10</mn><mi>x</mi><mo>=</mo><mo>-</mo><mn>2</mn><mi>y</mi><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+woraus man <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> berechnet. Setzt man diese Werte in die dritte Komponente ein, so ergibt sich
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>4</mn><mo>-</mo><mn>15</mn><mo>·</mo><mn>0</mn><mo>=</mo><mn>7</mn><mo>+</mo><mn>3</mn><mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mi> </mi><mo>⇔</mo><mi> </mi><mn>4</mn><mo>=</mo><mn>4</mn><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Somit ist die Vektorgleichung für diese Parameterwerte erfüllt, und es existiert ein gemeinsamer Punkt der beiden Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math>. Dessen Ortsvektor ergibt sich zum Beispiel durch Einsetzen des Parameterwerts <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math> in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math>:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>S</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mn>0</mn><mo>·</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>15</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+</div>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.2.16">  <b>Aufgabe 10.2.16
+</b>  <br/>
+
+
+<a id="ex:twolines2">
+</a>
+Die beiden Geraden
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>γ</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>s</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>κ</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mi>a</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>b</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>c</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>t</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+sind parallel. Bestimmen Sie den fehlenden Eintrag <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi></mrow></math> und geben Sie an, welche Werte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> für die Parallelität <b>nicht</b> gleichzeitig annehmen dürfen. 
+
+<br clear="all"/><br clear="all"/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>≠</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF9" id="QFELD_10.2.5.QF9" type="text" size="10" maxlength="10" onfocus="handlerFocus(9);" onblur="handlerBlur(9);" onkeyup="handlerChange(9,0);" onpaste="handlerChange(9,0);" oninput="handlerChange(9,0);" onpropertychange="handlerChange(9,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF9"/>
+
+
+<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>≠</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF10" id="QFELD_10.2.5.QF10" type="text" size="10" maxlength="10" onfocus="handlerFocus(10);" onblur="handlerBlur(10);" onkeyup="handlerChange(10,0);" onpaste="handlerChange(10,0);" oninput="handlerChange(10,0);" onpropertychange="handlerChange(10,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF10"/>
+
+
+<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF11" id="QFELD_10.2.5.QF11" type="text" size="10" maxlength="10" onfocus="handlerFocus(11);" onblur="handlerBlur(11);" onkeyup="handlerChange(11,0);" onpaste="handlerChange(11,0);" oninput="handlerChange(11,0);" onpropertychange="handlerChange(11,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF11"/>
+
+
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint2" class="hintbutton_closed" id="MHint2_button" type="button" onclick="toggle_hint('MHint2');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+Für Parallelität müssen die beiden Richtungsvektoren kollinear sein. Man findet aus der Bedingung
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>c</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+den Wert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> und damit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow></math>. Damit die Geraden wirklich parallel und nicht identisch sind, darf der Aufpunkt von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>κ</mi></mrow></math> nicht auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>γ</mi></mrow></math> liegen, die Werte für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> müssen also so sein, dass die Vektorgleichung
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mi>a</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>b</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn><mo>+</mo><mn>3</mn><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn><mo>-</mo><mn>2</mn><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn><mi>s</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+für keinen Parameterwert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi></mrow></math> erfüllbar ist. Die dritte Komponente liefert sofort <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math> für die Erfüllbarkeit der Gleichung. Dies eingesetzt in die erste und zweite Komponente ergibt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mo>-</mo><mn>10</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>=</mo><mn>10</mn></mrow></math>. Folglich muss für echte Parallelität <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>≠</mo><mo>-</mo><mn>10</mn></mrow></math> oder <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>≠</mo><mn>10</mn></mrow></math> gelten.
+</div>
+
+<br clear="all"/><br clear="all"/>
+Hat man zwei Geraden im Raum gegeben, die echt parallel sind oder sich schneiden, so stellt man fest, dass auch diese jeweils eine Ebene eindeutig festlegen:
+
+<br clear="all"/><br clear="all"/>
+(Diese Abbildung erscheint in Kürze.)
+
+<br clear="all"/><br clear="all"/>
+Es handelt sich dabei jeweils um diejenige Ebene, die beide Geraden beinhaltet.
+
+<br clear="all"/><br clear="all"/>
+Das folgende Beispiel zeigt, wie man aus zwei echt parallelen oder sich schneidenden Geraden die Parameterform der Ebene bekommt, die durch diese eindeutig festgelegt wird.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  10.2.17
+  
+  </b>  <br/>
+
+<ul>
+<li> Die beiden Geraden 
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>15</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>s</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>t</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+schneiden sich im Punkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>S</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mn>2</mn><mo>;</mo><mn>4</mn><mo stretchy="false">)</mo></mrow></math> (vgl. Aufgabe <a class="MINTERLINK" href="../../html/1.10.2/xcontent3.html#ex:twolines">10.2.15</a>). Dadurch wird eine Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> eindeutig festgelegt, die sowohl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> als auch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> beinhaltet. Für eine Parameterform von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> benutzt man die Ortsvektoren von drei geeigneten Punkten, die man aus den Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> berechnet. Der Schnittpunkt eignet sich als Aufpunkt von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> mit dem Aufpunktvektor
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>S</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Dann ergeben sich noch Ortsvektoren von zwei Punkten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>Q</mi></mrow></math> dadurch, dass man zum Beispiel die Parameterwerte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow></math> in die Parameterformen der Geraden einsetzt:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>P</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mn>1</mn><mo>·</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>15</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>12</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>11</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>Q</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mn>1</mn><mo>·</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+Dies ergibt die Richtungsvektoren
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>S</mi><mi>P</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo>
+<mover><mrow><mi>P</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>-</mo>
+<mover><mrow><mi>S</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>12</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>11</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>-</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>15</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>S</mi><mi>Q</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo>
+<mover><mrow><mi>Q</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>-</mo>
+<mover><mrow><mi>S</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>7</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>-</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>11</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+Somit ist eine mögliche Parameterform von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> durch
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>E</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>μ</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>15</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>ν</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>11</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>μ</mi><mo>,</mo><mi>ν</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+gegeben.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die beiden Geraden
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>s</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>t</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+sind parallel (vgl. Aufgabe <a class="MINTERLINK" href="../../html/1.10.2/xcontent3.html#ex:twolines2">10.2.16</a>). Dadurch wird eine Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> eindeutig festgelegt, die sowohl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> als auch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> beinhaltet. Für eine Parameterform von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> benutzt man die Ortsvektoren von drei geeigneten Punkten, die man aus den Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> berechnet. Es eignen sich die Ortsvektoren von Punkten auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> bzw. <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math>, die sich für drei Parameterwerte ergeben, zum Beispiel <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mn>0</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow></math>:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>A</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mn>0</mn><mo>·</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+dient als Aufpunktvektor. Dann erhält man sofort unter Benutzung von 
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>B</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mn>1</mn><mo>·</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+dass für den ersten Richtungsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>A</mi><mi>B</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+</mrow></math> der Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> genau der Richtungsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> benutzt werden kann. Der zweite Richtungsvektor der Ebene ergibt sich aus dem Ortsvektor eines Punktes <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>B</mi></mrow></math> auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> für den Parameterwert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow></math>, also den Aufpunkt von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math>:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>B</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+Und folglich ist
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>A</mi><mi>B</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo>
+<mover><mrow><mi>B</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>-</mo>
+<mover><mrow><mi>A</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>-</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+der zweite Richtungsvektor von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math>. Eine Parameterform von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> ist also gegeben durch 
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>F</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>6</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>λ</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>μ</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>λ</mi><mo>,</mo><mi>μ</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+
+<br clear="all"/><br clear="all"/>
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Für die Lagebeziehung einer Geraden und einer Ebene im Raum gibt es wieder nur drei Möglichkeiten. Diese sind in der folgenden Infobox zusammengefasst.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+10.2.18
+    
+  
+  </b>  <br/> <br/>
+
+
+<a id="info:plane_line">
+</a>
+Sind eine Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> mit Aufpunktvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>a</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und Richtungsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> sowie eine Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> mit Aufpunktvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>b</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>w</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> im Raum in Parameterform gegeben durch
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo>
+<mover><mrow><mi>a</mi></mrow>
+<mo>→</mo></mover>
+<mo>+</mo><mi>λ</mi>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+<mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>λ</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>E</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo>
+<mover><mrow><mi>b</mi></mrow>
+<mo>→</mo></mover>
+<mo>+</mo><mi>μ</mi>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+<mo>+</mo><mi>ν</mi>
+<mover><mrow><mi>w</mi></mrow>
+<mo>→</mo></mover>
+<mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>μ</mi><mo>,</mo><mi>ν</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+so gibt es für die relative Lage von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> genau drei Möglichkeiten:
+
+<ol type="1">
+<li> Die Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> liegt in der Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math>. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>w</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> komplanar sind und der Aufpunkt der Geraden in der Ebene liegt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> liegt parallel zur Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math>. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>w</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> komplanar sind und der Aufpunkt der Geraden <i>nicht</i> in der Ebene liegt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und die Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> schneiden sich. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover><mrow><mi>w</mi></mrow>
+<mo>→</mo></mover>
+</mrow></math> nicht komplanar sind.
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+<br clear="all"/><br clear="all"/>
+(Diese Abbildung erscheint in Kürze.)
+
+<br clear="all"/><br clear="all"/>
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Hat man eine Gerade und eine Ebene gegeben und möchte man deren Lagebeziehung bestimmen, so überprüft man zunächst die drei Richtungsvektoren auf Komplanarität. Ist diese gegeben, so untersucht man den Aufpunkt der Geraden darauf hin, ob er in der Ebene enthalten ist. Dies legt letztlich einen der drei möglichen Fälle eindeutig fest. Falls sich Gerade und Ebene schneiden, kann man dann noch den Schnittpunkt berechnen. Das folgende Beispiel zeigt einige dafür benutzte Vorgehensweisen.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  10.2.19
+  
+  </b>  <br/>
+Gegeben ist eine Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> in Parameterform durch
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>E</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>s</mi><mo>,</mo><mi>t</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+
+<ul>
+<li> Eine Gerade, die den Vektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> als Richtungsvektor aufweist, liegt entweder in der Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> oder ist zu dieser parallel, da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> zu den beiden Richtungsvektoren von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> komplanar ist. Man findet aus der Bedingung
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+ die Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math>. Folglich liegt die Gerade
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>x</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>x</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+ in der Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math>, denn der Aufpunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo>;</mo><mn>3</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math> liegt in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math>, da man berechnet:
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>+</mo><mn>3</mn><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>-</mo><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>+</mo><mn>2</mn><mi>t</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>⇔</mo><mi> </mi><mi>s</mi><mo>=</mo><mi>t</mi><mo>=</mo><mo>-</mo><mn>1</mn><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+ Der Ortsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> der Geraden ergibt sich also für die Parameterwerte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mi>t</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> in der Ebene. Demhingegen ist die Gerade
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mi>y</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>y</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+ parallel zu Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math>, denn <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> weist als Aufpunkt den Ursprung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math> auf. Der Ursprung liegt aber nicht in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math>, denn für die Vektorgleichung
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>+</mo><mn>3</mn><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>-</mo><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>+</mo><mn>2</mn><mi>t</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+ gibt es keine Parameterwerte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi></mrow></math>, die diese erfüllen. Die erste Komponente würde <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow></math> implizieren und die zweite Komponente <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mn>2</mn></mrow></math>; ein Widerspruch.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Jede Gerade mit einem Richtungsvektor, der nicht komplanar zu den beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> ist, schneidet die Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> in genau einem Punkt. Ein Beispiel einer solchen Geraden ist
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>k</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>μ</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>μ</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+ Der Richtungsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> ist nicht komplanar zu <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math>, denn die Bedingung
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn><mi>a</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mi>a</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mi>b</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+ ist durch keine Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>∈</mo><mo>ℝ</mo></mrow></math> erfüllbar. Die erste Komponente würde <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow></math> und die zweite <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> implizieren; ein Widerspruch. Nun kann durch Gleichsetzen der Ortsvektoren der Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>k</mi></mrow></math> und der Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> der Schnittpunkt der beiden berechnet werden:
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>μ</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn><mo>+</mo><mi>μ</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn><mo>+</mo><mi>μ</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>μ</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>+</mo><mn>3</mn><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>-</mo><mi>s</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>+</mo><mn>2</mn><mi>t</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+ Interessiert man sich nur für den Schnittpunkt, so genügt es den Parameterwert der Geraden zu bestimmen, für den diese Vektorgleichung erfüllt ist. Der Ortsvektor des Schnittpunkts ergibt sich dann durch Einsetzen des bestimmten Parameterwerts in die Gerade. Die ersten beiden Komponenten dieser Vektorgleichung liefern zwei Gleichungen für die Unbekannten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>μ</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi></mrow></math>:
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>μ</mi><mo>=</mo><mn>5</mn><mo>+</mo><mn>3</mn><mi>s</mi><mi> </mi><mi> </mi>
+<mtext>und</mtext>
+<mi> </mi><mi> </mi><mi>μ</mi><mo>=</mo><mn>1</mn><mo>-</mo><mi>s</mi><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+ woraus man <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>μ</mi><mo>=</mo><mn>2</mn></mrow></math> erhält. Damit hat der Schnittpunkt den Ortsvektor
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mn>2</mn><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.2.20">  <b>Aufgabe 10.2.20
+</b>  <br/>
+Gegeben ist die Ebene
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>E</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>s</mi><mo>,</mo><mi>t</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und die Gerade 
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>u</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>c</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>u</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+deren Aufpunkt nicht in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> liegt.
+
+<br clear="all"/><br clear="all"/>
+Bestimmen Sie den fehlenden Eintrag <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi></mrow></math>, so dass <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> parallel zu <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> ist.<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF12" id="QFELD_10.2.5.QF12" type="text" size="10" maxlength="10" onfocus="handlerFocus(12);" onblur="handlerBlur(12);" onkeyup="handlerChange(12,0);" onpaste="handlerChange(12,0);" oninput="handlerChange(12,0);" onpropertychange="handlerChange(12,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF12"/>
+
+
+
+<br clear="all"/><br clear="all"/>
+Berechnen Sie für alle anderen Werte von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi></mrow></math> den Schnittpunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>S</mi><mo>=</mo><mo stretchy="false">(</mo><mi>x</mi><mo>;</mo><mi>y</mi><mo>;</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></math> in Abhängigkeit von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi></mrow></math>. Geben Sie die drei Komponenten von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>S</mi></mrow></math> getrennt an.<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF13" id="QFELD_10.2.5.QF13" type="text" size="20" maxlength="20" onfocus="handlerFocus(13);" onblur="handlerBlur(13);" onkeyup="handlerChange(13,0);" onpaste="handlerChange(13,0);" oninput="handlerChange(13,0);" onpropertychange="handlerChange(13,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF13"/>
+
+
+<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF14" id="QFELD_10.2.5.QF14" type="text" size="20" maxlength="20" onfocus="handlerFocus(14);" onblur="handlerBlur(14);" onkeyup="handlerChange(14,0);" onpaste="handlerChange(14,0);" oninput="handlerChange(14,0);" onpropertychange="handlerChange(14,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF14"/>
+
+
+<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF15" id="QFELD_10.2.5.QF15" type="text" size="20" maxlength="20" onfocus="handlerFocus(15);" onblur="handlerBlur(15);" onkeyup="handlerChange(15,0);" onpaste="handlerChange(15,0);" oninput="handlerChange(15,0);" onpropertychange="handlerChange(15,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF15"/>
+
+
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint3" class="hintbutton_closed" id="MHint3_button" type="button" onclick="toggle_hint('MHint3');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint3"> 
+Damit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> parallel sind, muss der Richtungsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>c</mi></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> zu den beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> komplanar sein. Die Bedingung
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>c</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+ist nur für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow></math> erfüllbar, denn die erste und zweite Komponente liefern das lineare Gleichungssystem 
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>s</mi><mo>-</mo><mi>t</mi><mo>=</mo><mn>0</mn><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mn>3</mn><mi>s</mi><mo>+</mo><mi>t</mi><mo>=</mo><mn>4</mn></mrow>
+    </mstyle></math></center>
+<br/>
+
+für die Unbekannten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi></mrow></math>, das die Lösung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi><mo>=</mo><mi>t</mi><mo>=</mo><mn>1</mn></mrow></math> besitzt. Dies erzwingt in der dritten Komponente
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>c</mi><mo>=</mo><mn>2</mn><mo>·</mo><mn>1</mn><mo>-</mo><mn>1</mn><mo>=</mo><mn>1</mn><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Für den Schnittpunkt werden die Ortsvektoren von Gerade und Ebene gleichgesetzt:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>u</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>c</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>+</mo><mn>4</mn><mi>u</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn><mo>+</mo><mi>c</mi><mi>u</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn><mo>+</mo><mi>s</mi><mo>-</mo><mi>t</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn><mo>+</mo><mn>3</mn><mi>s</mi><mo>+</mo><mi>t</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mi>s</mi><mo>-</mo><mi>t</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>s</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>t</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Diese Vektorgleichung entspricht einem linearen Gleichungssystem in den Variablen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> mit dem Parameter <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi></mrow></math>, das mit den Methoden aus Abschnitt <a class="MINTERLINK" href="../../html/1.4.4/modstart.html#M04_freier_Parameter">4.4</a> gelöst werden kann. Man erhält für die Unbekannte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math>:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>u</mi><mo>=</mo>
+<mfrac><mrow><mn>10</mn></mrow>
+<mrow><mn>1</mn><mo>-</mo><mi>c</mi></mrow>
+</mfrac>
+<mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Damit ergibt sich der Ortsvektor zum Schnittpunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>S</mi></mrow></math> durch Einsetzen in die Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math>:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mover><mrow><mi>S</mi></mrow>
+<mo stretchy="true">→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo>
+<mfrac><mrow><mn>10</mn></mrow>
+<mrow><mn>1</mn><mo>-</mo><mi>c</mi></mrow>
+</mfrac>
+<mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>c</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>+</mo>
+<mfrac><mrow><mn>40</mn></mrow>
+<mrow><mn>1</mn><mo>-</mo><mi>c</mi></mrow>
+</mfrac>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn><mo>+</mo>
+<mfrac><mrow><mn>10</mn><mi>c</mi></mrow>
+<mrow><mn>1</mn><mo>-</mo><mi>c</mi></mrow>
+</mfrac>
+</mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+
+<br clear="all"/><br clear="all"/>
+</div>
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.2.21">  <b>Aufgabe 10.2.21
+</b>  <br/>
+Gegeben ist die Gerade
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>ρ</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>8</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>9</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>ρ</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+Bestimmen Sie folgende Werte des Parameters <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ρ</mi></mrow></math>:
+
+<ol type="1">
+<li>Wert des Parameters <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ρ</mi></mrow></math> für den <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mi>y</mi></mrow></math>-Ebene schneidet: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ρ</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF16" id="QFELD_10.2.5.QF16" type="text" size="10" maxlength="10" onfocus="handlerFocus(16);" onblur="handlerBlur(16);" onkeyup="handlerChange(16,0);" onpaste="handlerChange(16,0);" oninput="handlerChange(16,0);" onpropertychange="handlerChange(16,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF16"/>
+
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Wert des Parameters <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ρ</mi></mrow></math> für den <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mi>z</mi></mrow></math>-Ebene schneidet: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ρ</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF17" id="QFELD_10.2.5.QF17" type="text" size="10" maxlength="10" onfocus="handlerFocus(17);" onblur="handlerBlur(17);" onkeyup="handlerChange(17,0);" onpaste="handlerChange(17,0);" oninput="handlerChange(17,0);" onpropertychange="handlerChange(17,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF17"/>
+
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Wert des Parameters <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ρ</mi></mrow></math> für den <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mi>z</mi></mrow></math>-Ebene schneidet: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ρ</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF18" id="QFELD_10.2.5.QF18" type="text" size="10" maxlength="10" onfocus="handlerFocus(18);" onblur="handlerBlur(18);" onkeyup="handlerChange(18,0);" onpaste="handlerChange(18,0);" oninput="handlerChange(18,0);" onpropertychange="handlerChange(18,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF18"/>
+
+
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint4" class="hintbutton_closed" id="MHint4_button" type="button" onclick="toggle_hint('MHint4');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint4"> 
+
+<ol type="1">
+<li>In der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mi>y</mi></mrow></math>-Ebene ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi><mo>=</mo><mn>0</mn></mrow></math>, also muss die dritte Komponente des Ortsvektors von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> gleich Null sein:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>1</mn><mo>+</mo><mi>ρ</mi><mo>=</mo><mn>0</mn><mi> </mi><mo>⇔</mo><mi> </mi><mi>ρ</mi><mo>=</mo><mo>-</mo><mn>1</mn><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>In der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mi>z</mi></mrow></math>-Ebene ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math>, also muss die erste Komponente des Ortsvektors von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> gleich Null sein:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>3</mn><mo>-</mo><mn>8</mn><mi>ρ</mi><mo>=</mo><mn>0</mn><mi> </mi><mo>⇔</mo><mi> </mi><mi>ρ</mi><mo>=</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+<mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>In der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mi>z</mi></mrow></math>-Ebene ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mn>0</mn></mrow></math>, also muss die zweite Komponente des Ortsvektors von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math> gleich Null sein:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mn>2</mn><mo>+</mo><mn>9</mn><mi>ρ</mi><mo>=</mo><mn>0</mn><mi> </mi><mo>⇔</mo><mi> </mi><mi>ρ</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>9</mn></mrow>
+</mfrac>
+<mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+ 
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+<br clear="all"/><br clear="all"/>
+</div>
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Betrachtet man zwei Ebenen im Raum, so gibt es für ihre Lagebeziehung drei Fälle, die sich analog zu den drei möglichen relativen Lagen zweier Geraden in der Ebene aus Abschnitt <a class="MINTERLINK" href="../../html/1.9.2/xcontent2.html#VBKM09_Lagebeziehungen">9.2.3</a> verhalten. Die folgende Infobox stellt diese Fälle zusammen.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+10.2.22
+    
+  
+  </b>  <br/> <br/>
+Gegeben sind zwei Ebenen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> mit dem Aufpunktvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>a</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> und den beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> sowie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> mit dem Aufpunktvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>a</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> und den beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> durch
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo>
+<msub><mrow>
+<mover><mrow><mi>a</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>+</mo><mi>μ</mi>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>+</mo><mi>ν</mi>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>μ</mi><mo>,</mo><mi>ν</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo>
+<msub><mrow>
+<mover><mrow><mi>a</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>+</mo><mi>ρ</mi>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>+</mo><mi>σ</mi>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>ρ</mi><mo>,</mo><mi>σ</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+Für die relative Lage von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> gibt es genau drei Möglichkeiten:
+
+<ol type="1">
+<li> Die Ebenen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> sind identisch, falls sie alle Punkte gemeinsam haben. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> sowie die drei Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> komplanar sind und der Aufpunkt von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> enthalten ist.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die Ebenen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> sind parallel, falls sie keine Punkte gemeinsam haben. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> sowie die drei Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> komplanar sind und der Aufpunkt von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> <i>nicht</i> in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> enthalten ist.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die Ebenen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> schneiden sich, falls ihre gemeinsamen Punkte eine Gerade bilden. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> <i>oder</i> die drei Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>u</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow>
+<mover><mrow><mi>v</mi></mrow>
+<mo>→</mo></mover>
+</mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> <i>nicht</i> komplanar sind.
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+<br clear="all"/><br clear="all"/>
+(Diese Abbildung erscheint in Kürze.)
+
+<br clear="all"/><br clear="all"/>
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Natürlich sind in den Bedingungen für die drei Fälle, die in obiger Infobox angegeben sind, die Rollen der beiden Ebenen auch vertauschbar; man kann also beispielsweise auch überprüfen, ob der Aufpunkt von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>E</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> enthalten ist; dies macht keinen Unterschied. Falls die Ebenen sich schneiden, kann die Schnittgerade berechnet werden. Schnittmengen von Ebenen wurden bereits in Abschnitt <a class="MINTERLINK" href="../../html/1.4.3/modstart.html#M04_3_Unbekannte">4.3</a> im Rahmen der geometrischen Interpretation der Lösbarkeit linearer Gleichungssysteme mit drei Unbekannten behandelt. Die Vertrautheit mit diesem Abschnitt wird im Folgenden vorausgesetzt und dessen kurze Wiederholung wird wärmstens empfohlen. Das folgende Beispiel zeigt die Vorgehensweise bei der Untersuchung der relativen Lage zweier Ebenen.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  10.2.23
+  
+  </b>  <br/>
+Gegeben sind die drei Ebenen
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>E</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>a</mi><mo>,</mo><mi>b</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>F</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>c</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>d</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>c</mi><mo>,</mo><mi>d</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>G</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>x</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>y</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>x</mi><mo>,</mo><mi>y</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+
+<ul>
+<li> Die Ebenen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> sind parallel. Die Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> und der erste Richtungsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> sind komplanar, denn die Bedingung
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+ ist durch die Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mi>b</mi><mo>=</mo><mn>1</mn></mrow></math> erfüllt. Genauso sind die Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> und der zweite Richtungsvektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> sind komplanar, denn die Bedingung
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+ ist durch die Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> erfüllt. Weiterhin ist der Aufpunkt von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> nicht in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> enthalten, denn die Bedingung
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mi>a</mi><mo>+</mo><mn>4</mn><mi>b</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>-</mo><mn>2</mn><mi>a</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn><mo>+</mo><mi>a</mi><mo>-</mo><mn>2</mn><mi>b</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+ ist für keine Parameterwerte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> erfüllbar. Aus der zweiten Komponente würde <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> folgen, was eingesetzt in die erste Komponente auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>=</mo>
+<mfrac><mrow><mn>9</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+</mrow></math> führt. Dies ergibt aber in der dritten Komponente den Widerspruch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>=</mo><mo>-</mo><mn>2</mn><mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>-</mo>
+<mfrac><mrow><mn>9</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+</mrow></math>. Würde man allerdings in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> einen anderen Aufpunkt wählen, der in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> enthalten ist, zum Beispiel den gleichen Aufpunkt wie in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math>, so würde man eine zu <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> identische Ebene erhalten, also eine andere Parameterdarstellung der gleichen Ebene. Zum Beispiel ist
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msup><mrow><mi>F</mi></mrow><mrow><mo>'</mo></mrow>
+</msup>
+<mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>α</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>β</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>α</mi><mo>,</mo><mi>β</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+ eine solche Ebene.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die Ebenen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi></mrow></math> schneiden sich. Beide Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi></mrow></math> sind nicht komplanar zu den beiden Richtungsvektoren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math>. Zum Beispiel gilt für den zweiten Richtungsvektor von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi></mrow></math>, dass die Bedingung
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+ durch keine Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> erfüllbar ist. Die ersten beiden Komponenten würden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mi>b</mi><mo>=</mo><mn>0</mn></mrow></math> erzwingen, was der dritten Komponente widerspricht. Die Schnittgerade der beiden Ebenen berechnet man durch Gleichsetzen der Ortsvektoren. Man erhält hier:
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mi>a</mi><mo>+</mo><mn>4</mn><mi>b</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mo>-</mo><mn>2</mn><mi>a</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn><mo>+</mo><mi>a</mi><mo>-</mo><mn>2</mn><mi>b</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn><mo>+</mo><mi>x</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn><mi>x</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn><mo>+</mo><mn>3</mn><mi>y</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>x</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>y</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+ Diese Vektorgleichung entspricht einem System von drei linearen Gleichungen mit den vier Unbekannten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math>. Dies wird nun mit den Methoden aus Abschnitt <a class="MINTERLINK" href="../../html/1.4.4/modstart.html#M04_freier_Parameter">4.4</a> gelöst, indem man eine der Unbekannten als Parameter auffasst und die anderen Unbekannten in Abhängigkeit von diesem berechnet. Dieser übrige Parameter wird am Ende der Parameter in der Punkt-Richtungsform der zu bestimmenden Schnittgeraden werden. Welche der Unbekannten man als Parameter auffasst, ist egal. Hier wird nun <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> als Parameter benutzt. Dann führen die ersten beiden Komponenten der Vektorgleichung auf die beiden Gleichungen
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>a</mi><mo>+</mo><mn>4</mn><mi>b</mi><mo>=</mo><mn>5</mn><mo>+</mo><mi>x</mi><mi> </mi><mi> </mi>
+<mtext>und</mtext>
+<mi> </mi><mi> </mi><mn>2</mn><mo>-</mo><mn>2</mn><mi>a</mi><mo>=</mo><mo>-</mo><mn>2</mn><mi>x</mi><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+ aus denen man <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>=</mo><mn>1</mn></mrow></math> berechnet. Dies in die dritte Komponente eingesetzt ergibt
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>-</mo><mn>2</mn><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>x</mi><mo stretchy="false">)</mo><mo>-</mo><mn>2</mn><mo>·</mo><mn>1</mn><mo>=</mo><mn>1</mn><mo>+</mo><mn>3</mn><mi>y</mi><mi> </mi><mo>⇔</mo><mi> </mi><mi>y</mi><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mi>x</mi><mo>-</mo>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+ Nun kann <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mi>x</mi><mo>-</mo>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow></math> oder <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>=</mo><mn>1</mn></mrow></math> in die Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi></mrow></math> oder <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> eingesetzt werden; dies führt - bei gleicher Parameterwahl - auf dieselbe Parameterdarstellung der Geraden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>h</mi></mrow></math>, nämlich der Schnittgeraden der beiden Ebenen. Für das Einsetzen in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi></mrow></math> ergibt sich:
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>x</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mo stretchy="false">(</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mi>x</mi><mo>-</mo>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo stretchy="false">)</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>3</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>x</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>x</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>.</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+
+<br clear="all"/><br clear="all"/>
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.2.24">  <b>Aufgabe 10.2.24
+</b>  <br/>
+Gegeben sind die beiden Ebenen 
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>E</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>a</mi><mo>,</mo><mi>b</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>F</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>c</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>x</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>d</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>y</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>12</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>c</mi><mo>,</mo><mi>d</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+wobei der Aufpunkt von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> nicht in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> liegt.
+
+<br clear="all"/><br clear="all"/>
+Bestimmen Sie die fehlenden Komponenten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math>, so dass <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> parallel sind.<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF19" id="QFELD_10.2.5.QF19" type="text" size="10" maxlength="10" onfocus="handlerFocus(19);" onblur="handlerBlur(19);" onkeyup="handlerChange(19,0);" onpaste="handlerChange(19,0);" oninput="handlerChange(19,0);" onpropertychange="handlerChange(19,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF19"/>
+
+
+<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF20" id="QFELD_10.2.5.QF20" type="text" size="10" maxlength="10" onfocus="handlerFocus(20);" onblur="handlerBlur(20);" onkeyup="handlerChange(20,0);" onpaste="handlerChange(20,0);" oninput="handlerChange(20,0);" onpropertychange="handlerChange(20,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF20"/>
+
+
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint5" class="hintbutton_closed" id="MHint5_button" type="button" onclick="toggle_hint('MHint5');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint5"> 
+Für Parallelität ist erforderlich, dass beiden Richtungsvektoren von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> jeweils zu den beiden Richtungsvektoren von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>E</mi></mrow></math> komplanar sind. Für den ersten Richtungsvektor von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> liefert dies die Bedingung
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>x</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Hier berechnet man aus der ersten und zweiten Komponente die Werte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>=</mo><mn>2</mn></mrow></math>, was in der dritten Komponente den Wert
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>x</mi><mo>=</mo><mo>-</mo><mn>8</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>4</mn><mo>=</mo><mn>0</mn></mrow>
+    </mstyle></math></center>
+<br/>
+
+erzwingt. Für den zweiten Richtungsvektor von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> liefert dies die Bedingung
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>y</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>12</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Hier berechnet man aus der ersten und dritten Komponente die Werte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mi>b</mi><mo>=</mo><mn>1</mn></mrow></math>, was in der zweiten Komponente den Wert
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>y</mi><mo>=</mo><mo>-</mo><mn>5</mn><mo>-</mo><mn>1</mn><mo>=</mo><mo>-</mo><mn>6</mn></mrow>
+    </mstyle></math></center>
+<br/>
+
+erzwingt. 
+</div>
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.2.25">  <b>Aufgabe 10.2.25
+</b>  <br/>
+Gegeben sind die beiden Ebenen 
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>E</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>a</mi><mo>,</mo><mi>b</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+und
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>F</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mi>c</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>d</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>c</mi><mo>,</mo><mi>d</mi><mo>∈</mo><mo>ℝ</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+welche sich schneiden und die Schnittgerade
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo>
+<mover><mrow><mi>r</mi></mrow>
+<mo>→</mo></mover>
+<mo>=</mo><mi>ξ</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>x</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mi>y</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>;</mo><mi> </mi><mi> </mi><mi>ξ</mi><mo>∈</mo><mo>ℝ</mo>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+besitzen.
+
+<br clear="all"/><br clear="all"/>
+Bestimmen Sie die fehlenden Komponenten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> des Richtungsvektors der Schnittgerade.<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF21" id="QFELD_10.2.5.QF21" type="text" size="10" maxlength="10" onfocus="handlerFocus(21);" onblur="handlerBlur(21);" onkeyup="handlerChange(21,0);" onpaste="handlerChange(21,0);" oninput="handlerChange(21,0);" onpropertychange="handlerChange(21,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF21"/>
+
+
+<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.2.5.QF22" id="QFELD_10.2.5.QF22" type="text" size="10" maxlength="10" onfocus="handlerFocus(22);" onblur="handlerBlur(22);" onkeyup="handlerChange(22,0);" onpaste="handlerChange(22,0);" oninput="handlerChange(22,0);" onpropertychange="handlerChange(22,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.2.5.QF22"/>
+
+
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint6" class="hintbutton_closed" id="MHint6_button" type="button" onclick="toggle_hint('MHint6');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint6"> 
+Gleichsetzen der Ortsvektoren der beiden Ebenen führt auf
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>a</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>b</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mi>a</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn><mi>a</mi><mo>-</mo><mi>b</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>8</mn><mi>a</mi><mo>+</mo><mn>4</mn><mi>b</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn><mi>d</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn><mi>c</mi><mo>-</mo><mi>d</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn><mi>c</mi></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>c</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>d</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Lösen des zugehörigen Gleichungssystems mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>d</mi></mrow></math> als Parameter führt auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mi>d</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>d</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>d</mi></mrow></math>. Die Bedingung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>c</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>d</mi></mrow></math> in die Ebene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> eingesetzt führt auf
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>d</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>+</mo><mi>d</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mn>0</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mo>=</mo><mi>d</mi><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Ein geeigneter Richtungsvektor für die Schnittgerade ist also <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math>. Der Richtungsvektor in der angegebenen Parameterform von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> hat als erste Komponente allerdings eine <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>4</mn></mrow></math> und ist zu diesem Vektor also kollinear; dies führt auf den Vektor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>(</mo>
+<mtable>
+<mtr><mtd columnalign="center"><mrow><mn>4</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>5</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="center"><mrow><mo>-</mo><mn>4</mn></mrow></mtd></mtr></mtable>
+<mo>)</mo></mrow></mrow></math> als Richtungsvektor, also <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mo>-</mo><mn>5</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mo>-</mo><mn>4</mn></mrow></math>. 
+</div>
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>

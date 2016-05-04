@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 1.4.1 Potenzrechnung und Wurzeln</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+
+SITE_ID = "1.1.4.1";
+SITE_UXID = "VBKM01_PotenzenWurzeln";
+SECTION_ID = 1;
+var docName = "modstart";
+var fullName = "mpl/1.1.4/modstart.html";
+var fullNamePath = "../out/tmp/mpl/1.1.4/modstart.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="xnprev"><a class="MINTERLINK" href="../1.1.3/xcontent3.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.1.4/xcontent1.html">Weiter</a></div>
+<ul>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.1.4/modstart.html">Potenzen/Wurzeln</a></li>
+  <li class="inormalbutton_check"><a class="MINTERLINK" href="../1.1.4/xcontent1.html">Aufgaben</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="xnprev"><a class="MINTERLINK" href="../1.1.3/xcontent3.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.1.4/xcontent1.html">Weiter</a></div>
+<ul>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.1.4/modstart.html">Potenzen/Wurzeln</a></li>
+  <li class="inormalbutton_check"><a class="MINTERLINK" href="../1.1.4/xcontent1.html">Aufgaben</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+<a class="label" name="M01_Potenzenwurzeln">
+</a>
+
+
+
+
+
+
+
+
+
+<h4> Onlinekurs Mathematik  - Elementares Rechnen  - Potenzen und Wurzeln</h4><br /><h4>1.4.1 Potenzrechnung und Wurzeln</h4>
+<!-- mdeclaresiteuxidpost;;VBKM01_PotenzenWurzeln;; //-->
+
+<br clear="all"/><br clear="all"/>
+Im folgenden Abschnitt wollen wir uns mit Ausdr&#252;cken der Form <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>s</mi></mrow>
+</msup>
+</mrow></math> besch&#228;ftigen. Hierbei sei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>&isin;</mo><mo>&Ropf;</mo></mrow></math>, aber f&#252;r welche Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>s</mi></mrow></math> k&#246;nnen wir die Potenz sinnvoll definieren?
+
+<br clear="all"/><br clear="all"/>
+Potenzen mit nat&#252;rlichem Exponenten werden folgenderma&#223;en definiert:
+
+  
+  
+  
+  
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.4.1
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Sei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi><mo>&isin;</mo><mo>&Nopf;</mo></mrow></math>. Die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math>-te <b>Potenz</b><!-- mindexentry;;Potenz; //--><a class="label" name="ELI_SW28"></a> einer Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>&isin;</mo><mo>&Ropf;</mo></mrow></math> ist das <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math>-fache Produkt der Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> mit sich selbst:
+
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow>
+</msup>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mi>a</mi><mo>&middot;</mo><mi>a</mi><mo>&middot;</mo><mi>a</mi><mo>&middot;</mo><mo>&#x2026;</mo><mo>&middot;</mo><mi>a</mi><mi>&ensp;</mi><mo>.</mo></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow></mrow>
+</mtd><mtd columnalign="left">
+<mrow></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mo stretchy="false">(</mo><mi>n</mi><mi>&ensp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Faktoren</mtext>
+<mo stretchy="false">)</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> wird als <b>Basis</b><!-- mindexentry;;Basis; //--><a class="label" name="ELI_SW29"></a> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math> als <b>Exponent</b><!-- mindexentry;;Exponent; //--><a class="label" name="ELI_SW30"></a> bezeichnet.<br />
+Ferner gelte: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mn>0</mn></mrow>
+</msup>
+<mo>=</mo><mn>1</mn><mo>,</mo><mi>a</mi><mo>&ne;</mo><mn>0</mn><mo>.</mo></mrow></math>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+  
+  
+  
+  
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.4.2
+  
+  </b> &nbsp;<br />
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msup><mrow><mn>3</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>3</mn><mo>&middot;</mo><mn>3</mn><mo>=</mo><mn>9</mn><mo>,</mo><mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo>=</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo>&middot;</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo>&middot;</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mn>8</mn><mo>,</mo><mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi>
+<msup><mrow><mo>(</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>)</mo></mrow><mrow><mn>4</mn></mrow>
+</msup>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>16</mn></mrow>
+</mfrac>
+<mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+Viele Potenzen k&#246;nnen mit obiger Rechenregel berechnet werden - aber wie sieht es mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mn>2</mn></mrow><mrow><mo>-</mo><mn>2</mn></mrow>
+</msup>
+</mrow></math> aus?
+
+  
+  
+  
+  
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.4.3
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Potenzen mit negativen nat&#252;rlichen Exponenten werden definiert durch die Formel
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mo>-</mo><mi>n</mi></mrow>
+</msup>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>,</mo><mi>n</mi><mo>&isin;</mo><mo>&Nopf;</mo><mo>,</mo><mi>a</mi><mo>&ne;</mo><mn>0</mn><mo>.</mo></mrow></math> 
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+Folglich berechnet sich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mn>2</mn></mrow><mrow><mo>-</mo><mn>2</mn></mrow>
+</msup>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+</mrow></math>. Analog ergibt sich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow>
+</msup>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+</mrow></math>.
+
+<br clear="all"/><br clear="all"/>
+Aber schon bei einem rationalen Exponenten der Form <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>n</mi></mrow>
+</mfrac>
+<mo>,</mo><mi>n</mi><mo>&isin;</mo><mo>&Nopf;</mo></mrow></math>, m&#252;ssen wir unsere Definition wieder erweitern, um zum Beispiel <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mn>4</mn></mrow><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow>
+</msup>
+</mrow></math> berechnen zu k&#246;nnen. Diese Potenz l&#228;sst sich auch in Wurzelschreibweise umwandeln und wir erhalten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mn>4</mn></mrow><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow>
+</msup>
+<mo>=</mo><msqrt><mrow><mn>4</mn></mrow></msqrt><mo>=</mo><mn>2</mn></mrow></math>. Allgemein gilt:
+
+  
+  
+  
+  
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.4.4
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Sei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi><mo>&isin;</mo><mo>&Nopf;</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>&isin;</mo><mo>&Ropf;</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>&ge;</mo><mn>0</mn><mo>.</mo></mrow></math> Die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math>-te Wurzel besitzt die Potenzschreibweise 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mroot><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></mroot><mo>=</mo>
+<msup><mrow><mi>a</mi></mrow><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>n</mi></mrow>
+</mfrac>
+</mrow>
+</msup>
+</mrow></math>.
+</div>
+  </div>
+  <div class="text">
+  
+  
+   
+Dies f&#252;hrt uns auf die Umkehrung der Potenzrechnung, das Wurzelziehen.
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.4.5
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math>-te <b>Wurzel</b><!-- mindexentry;;Wurzel; //--><a class="label" name="ELI_SW31"></a> einer Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>&isin;</mo><mo>&Ropf;</mo><mo>,</mo><mi>a</mi><mo>&ge;</mo><mn>0</mn><mo>,</mo></mrow></math> ist diejenige Zahl, deren <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math>-te Potenz gleich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> ist:
+<br />
+<br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msup><mrow><mi>a</mi></mrow><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>n</mi></mrow>
+</mfrac>
+</mrow>
+</msup>
+<mo>=</mo><mroot><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></mroot><mo>=</mo><mi>b</mi><mo>&rArr;</mo>
+<msup><mrow><mi>b</mi></mrow><mrow><mi>n</mi></mrow>
+</msup>
+<mo>=</mo><mi>a</mi><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> wird als <b>Wurzelbasis</b><!-- mindexentry;;Wurzelbasis; //--><a class="label" name="ELI_SW32"></a> oder <b>Radikand</b><!-- mindexentry;;Radikand; //--><a class="label" name="ELI_SW33"></a> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math> als <b>Wurzelexponent</b><!-- mindexentry;;Exponent; //--><a class="label" name="ELI_SW34"></a> bezeichnet.<br />
+Es gilt 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mroot><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></mroot><mo>=</mo><mi>a</mi></mrow></math> und es hei&#223;en 
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mroot><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></mroot><mo>=</mo><msqrt><mrow><mi>a</mi></mrow></msqrt></mrow></math> die <b>Quadratwurzel</b><!-- mindexentry;;Quadratwurzel; //--><a class="label" name="ELI_SW35"></a> und 
+ 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mroot><mrow><mi>a</mi></mrow><mrow><mn>3</mn></mrow></mroot></mrow></math> die <b>Kubikwurzel</b><!-- mindexentry;;Kubikwurzel; //--><a class="label" name="ELI_SW36"></a> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math>.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.4.6
+  
+  </b> &nbsp;<br />
+<br />
+
+<br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msup><mrow><mn>16</mn></mrow><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow>
+</msup>
+<mo>=</mo><mroot><mrow><mn>16</mn></mrow><mrow><mn>2</mn></mrow></mroot><mo>=</mo><msqrt><mrow><mn>16</mn></mrow></msqrt><mo>=</mo><mn>4</mn><mo>,</mo><mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi>
+<msup><mrow><mn>27</mn></mrow><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow>
+</msup>
+<mo>=</mo><mroot><mrow><mn>27</mn></mrow><mrow><mn>3</mn></mrow></mroot><mo>=</mo><mn>3</mn><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.4.7
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+F&#252;r <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi><mo>&isin;</mo><mo>&Nopf;</mo><mo>,</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>&isin;</mo><mo>&Ropf;</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>&ge;</mo><mn>0</mn></mrow></math> gelten die folgenden <b>Wurzelrechenregeln</b><!-- mindexentry;;Rechenregeln (Wurzel); //--><a class="label" name="ELI_SW37"></a>:
+
+<ol type="1">
+<li> Zwei Wurzeln mit gleichem Exponenten werden multipliziert, indem die Wurzel aus dem Produkt der Radikanden gezogen wird, der Wurzelexponent bleibt unver&#228;ndert:
+<br />
+
+
+<br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mroot><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></mroot><mo>&middot;</mo><mroot><mrow><mi>b</mi></mrow><mrow><mi>n</mi></mrow></mroot><mo>=</mo><mroot><mrow><mi>a</mi><mo>&middot;</mo><mi>b</mi></mrow><mrow><mi>n</mi></mrow></mroot><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Zwei Wurzeln mit gleichem Exponenten werden dividiert, indem die Wurzel aus dem Quotienten der Radikanden gezogen wird, der Wurzelexponent bleibt unver&#228;ndert:
+<br />
+
+
+<br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mfrac><mrow><mroot><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></mroot></mrow>
+<mrow><mroot><mrow><mi>b</mi></mrow><mrow><mi>n</mi></mrow></mroot></mrow>
+</mfrac>
+<mo>=</mo><mroot><mrow>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>b</mi></mrow>
+</mfrac>
+</mrow><mrow><mi>n</mi></mrow></mroot><mo>,</mo><mi>b</mi><mo>&ne;</mo><mn>0</mn><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+Aber wie kann die Zahl 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mo>(</mo><mroot><mrow><mn>4</mn></mrow><mrow><mn>10</mn></mrow></mroot><mo>)</mo></mrow><mrow><mn>5</mn></mrow>
+</msup>
+</mrow></math> berechnet werden?
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.4.8
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Seien <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>m</mi><mo>,</mo><mi>n</mi><mo>&isin;</mo><mo>&Nopf;</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>&isin;</mo><mo>&Ropf;</mo><mo>,</mo><mi>a</mi><mo>&ge;</mo><mn>0</mn><mo>.</mo></mrow></math>
+
+<ol type="1">
+<li> Die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>m</mi></mrow></math>-te Potenz einer Wurzel bildet man, indem die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>m</mi></mrow></math>-te Potenz des Radikanden gebildet wird, der Wurzelexponent bleibt unver&#228;ndert:
+<br />
+
+<br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msup><mrow><mo>(</mo><mroot><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></mroot><mo>)</mo></mrow><mrow><mi>m</mi></mrow>
+</msup>
+<mo>=</mo><mroot><mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>m</mi></mrow>
+</msup>
+</mrow><mrow><mi>n</mi></mrow></mroot><mo>=</mo>
+<msup><mrow><mi>a</mi></mrow><mrow>
+<mfrac><mrow><mi>m</mi></mrow>
+<mrow><mi>n</mi></mrow>
+</mfrac>
+</mrow>
+</msup>
+<mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Die <b><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>m</mi></mrow></math>-te Wurzel aus einer Wurzel</b> bildet man, indem die Wurzelexponenten multipliziert werden und die Basis gleich bleibt (<b>Radizieren einer Wurzel</b><!-- mindexentry;;Radizieren; //--><a class="label" name="ELI_SW38"></a>).
+<br />
+
+
+<br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mroot><mrow><mroot><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></mroot></mrow><mrow><mi>m</mi></mrow></mroot><mo>=</mo><mroot><mrow><mi>a</mi></mrow><mrow><mi>m</mi><mo>&middot;</mo><mi>n</mi></mrow></mroot><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+Somit erhalten wir
+<br />
+
+<br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mroot><mrow>
+<msup><mrow><mn>4</mn></mrow><mrow><mn>5</mn></mrow>
+</msup>
+</mrow><mrow><mn>10</mn></mrow></mroot><mo>=</mo><mo stretchy="false">(</mo>
+<msup><mrow><mn>4</mn></mrow><mrow><mn>5</mn></mrow>
+</msup>
+
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>10</mn></mrow>
+</mfrac>
+</mrow>
+</msup>
+<mo>=</mo>
+<msup><mrow><mn>4</mn></mrow><mrow>
+<mfrac><mrow><mn>5</mn></mrow>
+<mrow><mn>10</mn></mrow>
+</mfrac>
+</mrow>
+</msup>
+<mo>=</mo>
+<msup><mrow><mn>4</mn></mrow><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow>
+</msup>
+<mo>=</mo><mroot><mrow><mn>4</mn></mrow><mrow><mn>2</mn></mrow></mroot><mo>=</mo><mn>2</mn><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.4.9
+  
+  </b> &nbsp;<br />
+Die Berechnung einer allgemeinen Potenz mit rationalem Exponenten sieht dann folgenderma&#223;en aus:
+<br />
+
+
+
+
+
+<br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msup><mrow><mo>(</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mo>)</mo></mrow><mrow><mo>-</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow>
+</msup>
+<mo>=</mo><mroot><mrow>
+<msup><mrow><mo>(</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mo>)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow>
+</msup>
+</mrow><mrow><mn>3</mn></mrow></mroot><mo>=</mo><mroot><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<msup><mrow><mo>(</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mo>)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+</mrow><mrow><mn>3</mn></mrow></mroot><mo>=</mo><mroot><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>16</mn></mrow>
+</mfrac>
+</mrow>
+</mfrac>
+</mrow><mrow><mn>3</mn></mrow></mroot><mo>=</mo><mroot><mrow><mn>16</mn></mrow><mrow><mn>3</mn></mrow></mroot><mo>=</mo><mroot><mrow>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo>&middot;</mo><mn>2</mn></mrow><mrow><mn>3</mn></mrow></mroot><mo>=</mo><mn>2</mn><mroot><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow></mroot><mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+ 
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Die f&#252;r Potenzen mit reeller Basis und rationalem Exponenten g&#252;ltigen Rechenregeln werden unter der Bezeichnung Potenzgesetze zusammengefasst.
+Die Regeln differieren in Abh&#228;ngigkeit von der Betrachtung von Potenzen mit derselben Basis bzw. demselben Exponenten.
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.4.10
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+
+
+
+<a class="label" name="VBKM01_Potenzgesetze">
+</a>
+F&#252;r <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>&isin;</mo><mo>&Ropf;</mo><mo>,</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>&gt;</mo><mn>0</mn><mo>,</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo>&isin;</mo><mo>&Qopf;</mo></mrow></math> gelten die <b>Potenzgesetze</b><!-- mindexentry;;Potenzgesetze; //--><a class="label" name="ELI_SW39"></a>:
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>p</mi></mrow>
+</msup>
+<mo>&middot;</mo>
+<msup><mrow><mi>b</mi></mrow><mrow><mi>p</mi></mrow>
+</msup>
+<mo>=</mo><mo stretchy="false">(</mo><mi>a</mi><mo>&middot;</mo><mi>b</mi>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mi>p</mi></mrow>
+</msup>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>p</mi></mrow>
+</msup>
+</mrow>
+<mrow>
+<msup><mrow><mi>b</mi></mrow><mrow><mi>p</mi></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>=</mo>
+<msup><mrow><mo>(</mo>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>b</mi></mrow>
+</mfrac>
+<mo>)</mo></mrow><mrow><mi>p</mi></mrow>
+</msup>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>p</mi></mrow>
+</msup>
+<mo>&middot;</mo>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>q</mi></mrow>
+</msup>
+<mo>=</mo>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>p</mi><mo>+</mo><mi>q</mi></mrow>
+</msup>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi>
+<mfrac><mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>p</mi></mrow>
+</msup>
+</mrow>
+<mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>q</mi></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>=</mo>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>p</mi><mo>-</mo><mi>q</mi></mrow>
+</msup>
+<mo>,</mo><mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi><mo stretchy="false">(</mo>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>p</mi></mrow>
+</msup>
+
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mi>q</mi></mrow>
+</msup>
+<mo>=</mo>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>p</mi><mo>&middot;</mo><mi>q</mi></mrow>
+</msup>
+<mo>.</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+ 
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Insbesondere ist zu beachten, dass im Allgemeinen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>a</mi></mrow><mrow><mi>p</mi></mrow>
+</msup>
+
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mi>q</mi></mrow>
+</msup>
+<mo>&ne;</mo>
+<msup><mrow><mi>a</mi></mrow><mrow>
+<msup><mrow><mi>p</mi></mrow><mrow><mi>q</mi></mrow>
+</msup>
+</mrow>
+</msup>
+</mrow></math>, d.&nbsp;h. bei mehrfachem Potenzieren sollten Klammern gesetzt werden.
+Zum Beispiel ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mo>(</mo>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo>)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo>
+<msup><mrow><mn>8</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>64</mn></mrow></math>, aber <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mn>2</mn></mrow><mrow><mrow><mo>(</mo>
+<msup><mrow><mn>3</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>)</mo></mrow></mrow>
+</msup>
+<mo>=</mo>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>9</mn></mrow>
+</msup>
+<mo>=</mo><mn>512</mn></mrow></math>.
+Sind keine Klammern gesetzt, so wird <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>a</mi></mrow><mrow>
+<msup><mrow><mi>p</mi></mrow><mrow><mi>q</mi></mrow>
+</msup>
+</mrow>
+</msup>
+</mrow></math> als <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>a</mi></mrow><mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>p</mi></mrow><mrow><mi>q</mi></mrow>
+</msup>
+<mo stretchy="false">)</mo></mrow>
+</msup>
+</mrow></math> interpretiert.
+
+<br clear="all"/><br clear="all"/>
+<br />
+
+
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 4.2.1 Einf&amp;#252;hrung</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+// onload blocks start
+// onload blocks stop
+var SITE_ID = "1.4.2.1";
+var SITE_UXID = "VBKM04_ZweiUnbekannte";
+var SECTION_ID = 4;
+var docName = "modstart";
+var fullName = "html/1.4.2/modstart.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.4.1/modstart.html"><div class="xsymb selected">4.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.4.1/modstart.html"><div uxid="VBKM04_LGSIntro" id="idxsymb_tc107" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.1/xcontent1.html"><div uxid="VBKM04_LGSContent" id="idxsymb_tc108" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.4.2/modstart.html"><div class="xsymb selected">4.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.4.2/modstart.html"><div uxid="VBKM04_ZweiUnbekannte" id="idxsymb_tc109" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.2/xcontent1.html"><div uxid="VBKM04_Einsetzmethode" id="idxsymb_tc110" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.2/xcontent2.html"><div uxid="VBKM04_Additionsmethode" id="idxsymb_tc111" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.2/xcontent3.html"><div uxid="VBKM04_Additionsmethode_Exercises" id="idxsymb_tc112" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.4.3/modstart.html"><div class="xsymb selected">4.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.4.3/modstart.html"><div uxid="VBKM04_DreiUnbekannte_Intro" id="idxsymb_tc113" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.3/xcontent1.html"><div uxid="VBKM04_LoesbarkeitUndLoesungen3" id="idxsymb_tc114" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.3/xcontent2.html"><div uxid="VBKM04_Einsetzmethode3" id="idxsymb_tc115" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.3/xcontent3.html"><div uxid="VBKM04_Additionsmethode3" id="idxsymb_tc116" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.3/xcontent4.html"><div uxid="VBKM04_Additionsmethode3_Exercises" id="idxsymb_tc117" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.4.4/modstart.html"><div class="xsymb selected">4.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.4.4/modstart.html"><div uxid="VBKM04_AllgemeineLGS_Intro" id="idxsymb_tc118" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.4/xcontent1.html"><div uxid="VBKM04_FreieParameter" id="idxsymb_tc119" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.4/xcontent2.html"><div uxid="VBKM04_FreieParameter_Exercises" id="idxsymb_tc120" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.4.5/modstart.html"><div class="xsymb selected">4.5</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.4.5/modstart.html"><div uxid="VBKM04_Abschlusstest" id="idxsymb_tc121" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.4.1/xcontent1.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/1.4.2/xcontent1.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM04_ZweiUnbekannte" class="MINTERLINK naviselected" href="../../html/1.4.2/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM04_Einsetzmethode" class="MINTERLINK" href="../../html/1.4.2/xcontent1.html">Einsetz- und Gleichsetzmethode</a></li>
+  <li class="xsectbutton"><a uxid="VBKM04_Additionsmethode" class="MINTERLINK" href="../../html/1.4.2/xcontent2.html">Additionsmethode</a></li>
+  <li class="xsectbutton"><a uxid="VBKM04_Additionsmethode_Exercises" class="MINTERLINK" href="../../html/1.4.2/xcontent3.html">Aufgaben</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREEN);">Grün</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.4.1/modstart.html"><div class="xsymb selected">4.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.4.1/modstart.html"><div uxid="VBKM04_LGSIntro" id="idxsymb_tc107" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.1/xcontent1.html"><div uxid="VBKM04_LGSContent" id="idxsymb_tc108" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.4.2/modstart.html"><div class="xsymb selected">4.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.4.2/modstart.html"><div uxid="VBKM04_ZweiUnbekannte" id="idxsymb_tc109" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.2/xcontent1.html"><div uxid="VBKM04_Einsetzmethode" id="idxsymb_tc110" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.2/xcontent2.html"><div uxid="VBKM04_Additionsmethode" id="idxsymb_tc111" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.2/xcontent3.html"><div uxid="VBKM04_Additionsmethode_Exercises" id="idxsymb_tc112" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.4.3/modstart.html"><div class="xsymb selected">4.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.4.3/modstart.html"><div uxid="VBKM04_DreiUnbekannte_Intro" id="idxsymb_tc113" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.3/xcontent1.html"><div uxid="VBKM04_LoesbarkeitUndLoesungen3" id="idxsymb_tc114" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.3/xcontent2.html"><div uxid="VBKM04_Einsetzmethode3" id="idxsymb_tc115" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.3/xcontent3.html"><div uxid="VBKM04_Additionsmethode3" id="idxsymb_tc116" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.3/xcontent4.html"><div uxid="VBKM04_Additionsmethode3_Exercises" id="idxsymb_tc117" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.4.4/modstart.html"><div class="xsymb selected">4.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.4.4/modstart.html"><div uxid="VBKM04_AllgemeineLGS_Intro" id="idxsymb_tc118" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.4/xcontent1.html"><div uxid="VBKM04_FreieParameter" id="idxsymb_tc119" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.4.4/xcontent2.html"><div uxid="VBKM04_FreieParameter_Exercises" id="idxsymb_tc120" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.4.5/modstart.html"><div class="xsymb selected">4.5</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.4.5/modstart.html"><div uxid="VBKM04_Abschlusstest" id="idxsymb_tc121" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.4.1/xcontent1.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/1.4.2/xcontent1.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM04_ZweiUnbekannte" class="MINTERLINK naviselected" href="../../html/1.4.2/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM04_Einsetzmethode" class="MINTERLINK" href="../../html/1.4.2/xcontent1.html">Einsetz- und Gleichsetzmethode</a></li>
+  <li class="xsectbutton"><a uxid="VBKM04_Additionsmethode" class="MINTERLINK" href="../../html/1.4.2/xcontent2.html">Additionsmethode</a></li>
+  <li class="xsectbutton"><a uxid="VBKM04_Additionsmethode_Exercises" class="MINTERLINK" href="../../html/1.4.2/xcontent3.html">Aufgaben</a></li>
+</ul>
+</div>
+  <div id="content" class="content"><a id="M04_2_Unbekannte"></a>
+
+
+
+
+
+
+
+<h4>1  - 1.4</h4><br /><h4>4.2.1 Einführung</h4>
+<!-- mdeclaresiteuxidpost;;VBKM04_ZweiUnbekannte;; //-->
+Man beschränkt sich zunächst auf Lineare Gleichungssysteme in <b>zwei</b>
+Unbekannten.
+
+  
+  
+  
+  
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+4.2.1
+    
+  
+  </b>  <br/> <br/>
+
+
+
+<a id="M04_2x2_system">
+</a>
+Allgemein hat ein Lineares Gleichungssystem (LGS), bestehend aus zwei
+Gleichungen in den Unbekannten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>, folgende Gestalt:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>	</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+<mo>·</mo><mi>x</mi><mo>+</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+<mo>·</mo><mi>y</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mi> </mi><mo>,</mo></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>	</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>21</mn></mrow>
+</msub>
+<mo>·</mo><mi>x</mi><mo>+</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>22</mn></mrow>
+</msub>
+<mo>·</mo><mi>y</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mi> </mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+Dabei sind <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+<mo>,</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+<mo>,</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>21</mn></mrow>
+</msub>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>22</mn></mrow>
+</msub>
+</mrow></math> die sogenannten Koeffizienten des
+Linearen Gleichungssystems,
+die ebenso wie die rechten Seiten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> der Gleichungen meist aus den reellen Zahlen stammen und
+aufgrund der Problemstellung (weitgehend) vorgegeben sind.
+
+<br clear="all"/><br clear="all"/>
+Sind die rechten Seiten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math> beide gleich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn><mo>=</mo>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math>), so spricht man von einem
+<b>homogenen</b>, andernfalls von einem <b>inhomogenen</b> Linearen Gleichungssystem.
+
+<br clear="all"/><br clear="all"/>
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Aufgrund der Linearität kann jede der beiden Gleichungen des Systems in Infobox <a class="MINTERLINK" href="../../html/1.4.2/modstart.html#M04_2x2_system">4.2.1</a> für sich als Gleichung
+einer Geraden in der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Ebene interpretiert werden: Löst man z.B. die erste Gleichung nach <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> auf,
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>y</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+</mrow>
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+</mrow>
+</mfrac>
+<mi>x</mi><mo>+</mo>
+<mfrac><mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow>
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+</mrow>
+</mfrac>
+<mi> </mi><mo>,</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+so kann man aus dieser expliziten Form direkt ablesen, dass eine Gerade mit der Steigung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>m</mi><mo>=</mo><mo>-</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+<mo stretchy="false">/</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+</mrow></math>
+und dem <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achsenabschnitt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>y</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo>=</mo>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo stretchy="false">/</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+</mrow></math> beschrieben wird.
+
+<br clear="all"/><br clear="all"/>
+Am Rande wird festgehalten, dass das eben erwähnte Freistellen nach <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> natürlich
+nur funktioniert, falls <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+<mo>≠</mo><mn>0</mn></mrow></math> ist. Ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn></mrow></math>,
+so lautet die erste Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+<mo>·</mo><mi>x</mi><mo>=</mo>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>; diese ist für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+<mo>≠</mo><mn>0</mn></mrow></math> äquivalent zu
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mo stretchy="false">(</mo>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo stretchy="false">/</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+<mo stretchy="false">)</mo></mrow></math>, was bedeutet, dass <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> einen konstanten Wert annimmt; dies stellt ebenfalls eine Gerade dar,
+nämlich eine Gerade parallel zur <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achse im Abstand <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo stretchy="false">/</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+<mo stretchy="false">)</mo></mrow></math>.<br/>
+Und was, wenn sowohl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn></mrow></math> als auch
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn></mrow></math> gilt? Nun, dann muss ebenfalls <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn></mrow></math> sein, da ansonsten die erste Gleichung von vornherein
+einen Widerspruch ergeben würde. Für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+<mo>=</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+<mo>=</mo>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn></mrow></math> ist aber die erste Gleichung (für alle
+Werte von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>) immer identisch erfüllt (<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn><mo>=</mo><mn>0</mn></mrow></math>) und somit wertlos.
+
+<br clear="all"/><br clear="all"/>
+Im Fall der zweiten Gleichung in Infobox <a class="MINTERLINK" href="../../html/1.4.2/modstart.html#M04_2x2_system">4.2.1</a> geht man ganz entsprechend vor:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>y</mi><mo>=</mo><mo>-</mo>
+<mfrac><mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>21</mn></mrow>
+</msub>
+</mrow>
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>22</mn></mrow>
+</msub>
+</mrow>
+</mfrac>
+<mi>x</mi><mo>+</mo>
+<mfrac><mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow>
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>22</mn></mrow>
+</msub>
+</mrow>
+</mfrac>
+<mi> </mi><mo>.</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+Insgesamt erhält man zwei Geraden als Repräsentanten der beiden linearen Gleichungen, und die Frage nach Lösbarkeit und Lösung
+des Linearen Gleichungssystems, also die <b>Frage nach der
+gleichzeitigen Gültigkeit beider Gleichungen</b>, liest sich als <b>Frage nach Existenz und 
+Lage des Schnittpunkts der beiden Geraden</b>. Dazu schaut man sich ein konkretes Beispiel an:
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  4.2.2
+  
+  </b>  <br/>
+Das Lineare Gleichungssystem aus dem einführenden Beispiel <a class="MINTERLINK" href="../../html/1.4.1/modstart.html#M04_einfuehrendes_Bsp">4.1.1</a> lautet:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo> </mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>13</mn></mrow></mtd></mtr></mtable>
+
+<mo>}</mo></mrow><mo>⇔</mo><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>-</mo><mi>x</mi><mo>+</mo><mn>10</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>x</mi><mo>+</mo>
+<mfrac><mrow><mn>13</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow><mi> </mi><mo>.</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+(Hier nehmen die allgemeinen Koeffizienten und rechten Seiten des Systems <a class="MINTERLINK" href="../../html/1.4.2/modstart.html#M04_2x2_system">4.2.1</a> somit die
+Werte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>11</mn></mrow>
+</msub>
+<mo>=</mo><mn>1</mn><mo>,</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>12</mn></mrow>
+</msub>
+<mo>=</mo><mn>1</mn><mo>,</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>21</mn></mrow>
+</msub>
+<mo>=</mo><mn>1</mn><mo>,</mo>
+<msub><mrow><mi>a</mi></mrow><mrow><mn>22</mn></mrow>
+</msub>
+<mo>=</mo><mn>2</mn><mo>,</mo>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mn>10</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo><mn>13</mn></mrow></math> an.)<br/>
+Es werden zwei Geraden mit den Steigungen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>m</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> bzw. <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>m</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> und den <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achsenabschnitten
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>y</mi></mrow><mrow><mn>0,1</mn></mrow>
+</msub>
+<mo>=</mo><mn>10</mn></mrow></math> bzw. <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>y</mi></mrow><mrow><mn>0,2</mn></mrow>
+</msub>
+<mo>=</mo>
+<mfrac><mrow><mn>13</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> beschrieben:
+
+<div style="text-align:center">
+
+
+
+<a id="L_SOURCEAUTOLABEL_109">
+</a>
+
+<img src="./lgsmtikzauto_1.4x.png" style="width:551px;height:364px" alt="./lgsmtikzauto_1.4x.png"/>
+ </div>
+Man erkennt aus dem Schaubild, dass sich die beiden Geraden in der Tat schneiden, und liest
+die Koordinaten des Schnittpunktes zu <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mn>7</mn><mo>;</mo><mi>y</mi><mo>=</mo><mn>3</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> ab. Dementsprechend besitzt
+das hier betrachtete Lineare Gleichungssystem eine eindeutige Lösung; die
+Lösungsmenge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>L</mi></mrow></math> enthält genau ein Zahlenpaar, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mn>7</mn><mo>;</mo><mi>y</mi><mo>=</mo><mn>3</mn><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow></math>.
+</div>
+  </div>
+  
+  
+  
+Diese anschauliche Betrachtungsweise eignet sich hervorragend, alle Fälle zu
+diskutieren, die überhaupt nur auftreten können: Denn entweder schneiden sich zwei Geraden in der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Ebene -
+und dann ist der Schnittpunkt zwangsläufig <b>eindeutig</b> -, oder aber zwei solche Geraden verlaufen parallel -
+und besitzen somit keinen Schnittpunkt -, oder aber die beiden Geraden sind deckungsgleich -
+und schneiden sich daher sozusagen in unendlich vielen Punkten. Andere Möglichkeiten sind nicht denkbar.
+Demzufolge kann man im Hinblick auf die Mächtigkeit der Lösungsmenge des
+zugehörigen linearen Gleichungssystems Folgendes festhalten:
+
+  
+  
+  
+  
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+4.2.3
+    
+  
+  </b>  <br/> <br/>
+Ein <b>inhomogenes Lineares Gleichungssystem</b><!-- mindexentry;;Lineares Gleichungssystem (inhomogen); //--><a class="label" name="ELI_SW79"></a> besitzt entweder eine
+eindeutige Lösung oder aber keine Lösung oder
+aber unendlich viele Lösungen.
+
+<br clear="all"/><br clear="all"/>
+Ein <b>homogenes Lineares Gleichungssystem</b><!-- mindexentry;;Lineares Gleichungssystem (homogen); //--><a class="label" name="ELI_SW80"></a> weist <b>immer
+eine Lösung</b> auf, nämlich die sogenannte <b>triviale Lösung</b><!-- mindexentry;;Triviale Lösung (LGS); //--><a class="label" name="ELI_SW81"></a> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mn>0</mn></mrow></math>.
+Darüber hinaus <b>kann</b> ein solches homogenes System auch <b>unendlich viele Lösungen</b> besitzen.
+</div>
+  </div>
+  
+  
+  
+Das Gesagte soll an zwei weiteren Beispielen, bei denen man direkt mit den
+Linearen Gleichungssystemen startet, verdeutlicht werden:
+
+  
+  
+  
+  
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  4.2.4
+  
+  </b>  <br/>
+
+
+
+<a id="M04_2x2_nicht_eindeutige_lsg">
+</a>
+In beiden Fällen wählt man als <b>Grundmenge</b> die Menge der reellen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>ℝ</mo></mrow></math>.
+
+<div style="text-align:center">
+
+<table>
+<tr><td align="left"><br/><table border="0" align="left"><tr><td/><td width="296">
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo> </mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo>}</mo></mrow><mo>⇔</mo><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>-</mo><mi>x</mi><mo>+</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>-</mo><mi>x</mi><mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow><mi> </mi><mo>.</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+
+</td></tr></table><!--vbox--><!--hbox--><br clear="all"/> </td><td align="left"><table border="0"><tr><td/><td><table border="0"><tr><td/><td width="296">
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo> </mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>4</mn></mrow></mtd></mtr></mtable>
+
+<mo>}</mo></mrow><mo>⇔</mo><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>-</mo><mi>x</mi><mo>+</mo><mn>2</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>-</mo><mi>x</mi><mo>+</mo><mn>2</mn></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow><mi> </mi><mo>.</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+
+</td></tr></table><!--vbox-->
+</td><td/></tr></table><!--hboxt--> </td></tr><a id="L_SOURCEAUTOLABEL_110">
+</a>
+<tr><td align="left">
+
+<img src="./lgsmtikzauto_2.4x.png" style="width:377px;height:266px" alt="./lgsmtikzauto_2.4x.png"/>
+ 
+<a id="L_SOURCEAUTOLABEL_111">
+</a></td><td align="left">
+
+<img src="./lgsmtikzauto_3.4x.png" style="width:336px;height:266px" alt="./lgsmtikzauto_3.4x.png"/>
+ 
+</td></tr>
+<tr><td align="left"><br/><table border="0" align="left"><tr><td/><td width="296">
+
+Die beiden Geraden besitzen dieselbe Steigung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>m</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math>, aber verschiedene <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achsenabschnitte (<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>y</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo>=</mo><mn>2</mn></mrow></math>
+bzw. <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>y</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo>=</mo><mn>1</mn><mo stretchy="false">/</mo><mn>2</mn></mrow></math>); sie verlaufen parallel; das Lineare Gleichungssystem besitzt <b>keine</b>
+Lösung: <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>L</mi><mo>=</mo><mtext>∅</mtext><mi> </mi><mo>.</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+
+</td></tr></table><!--vbox--><!--hbox--><br clear="all"/> </td><td align="left"><table border="0"><tr><td/><td><table border="0"><tr><td/><td width="296">
+
+Die beiden Geraden besitzen sowohl dieselbe Steigung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>m</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> als auch denselben
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achsenabschnitt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>y</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo>=</mo><mn>2</mn></mrow></math>; sie sind deckungsgleich; das Lineare Gleichungssystem besitzt
+unendlich viele Lösungen, die z.B. wie folgt angegeben werden können:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>t</mi><mo>;</mo><mo>-</mo><mi>t</mi><mo>+</mo><mn>2</mn><mo stretchy="false">)</mo><mi> </mi><mo>:</mo><mi> </mi><mi>t</mi><mo>∈</mo><mo>ℝ</mo><mo stretchy="false">}</mo><mi> </mi><mo>.</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+
+</td></tr></table><!--vbox-->
+</td><td/></tr></table><!--hboxt--></td></tr></table>
+</div></div>
+  </div>
+  
+  
+  
+Im Falle des Beispiels in der rechten Spalte sind andere Parametrisierungen der Lösungsmenge möglich und
+erlaubt. Es kommt im Grunde nur darauf an, die Punkte der (deckungsgleichen) Geraden geeignet zu beschreiben.
+Bei der obigen Angabe von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>L</mi></mrow></math> wurde einfach die Geradengleichung selbst verwendet und die
+Laufvariable <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi></mrow></math> statt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> genannt.
+
+<br clear="all"/><br clear="all"/>
+Und was hat es mit den oben erwähnten möglichen Einschränkungen wegen der Grundmenge auf sich? Auch hierzu ein Beispiel:
+
+  
+  
+  
+  
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  4.2.5
+  
+  </b>  <br/>
+Auf einem Volksfest verspricht ein besonders pfiffiger Standbesitzer geradezu traumhafte Preise und das gegen einen
+lächerlich geringen Spieleinsatz, wenn, ja wenn einer der Passanten ihm nur folgendes kleine Rätsel löst:
+<i>Ich habe mit einem Würfel zweimal gewürfelt. Ziehe ich vom Sechsfachen der zweiten Augenzahl das
+Zweifache der ersten ab, so erhalte ich die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>3</mn></mrow></math>. Addiere ich andererseits zum Vierfachen der ersten
+Augenzahl die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>6</mn></mrow></math>, so bekomme ich das Zwölffache der zweiten Augenzahl. Welche beiden Zahlen habe ich gewürfelt?</i>
+
+<br clear="all"/><br clear="all"/>
+Bezeichnet man die Augenzahl des ersten Würfelwurfs mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>, diejenige des zweiten mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>, so kann man die
+Aussagen des Standbesitzers sehr schnell in Gleichungen übersetzen:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mrow><mo> </mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mn>6</mn><mi>y</mi><mo>-</mo><mn>2</mn><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>3</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mn>4</mn><mi>x</mi><mo>+</mo><mn>6</mn></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>12</mn><mi>y</mi></mrow></mtd></mtr></mtable>
+
+<mo>}</mo></mrow><mo>⇔</mo><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mi>x</mi><mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mi>x</mi><mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow><mi> </mi><mo>.</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+Man stellt fest, dass das entstehende Lineare Gleichungssystem - anschaulich interpretiert - auf zwei
+deckungsgleiche Geraden führt. Vordergründig scheint es daher unendlich viele Lösungen zu geben.
+
+<br clear="all"/><br clear="all"/>
+Hier kommt jetzt allerdings die Grundmenge ins Spiel: Da sowohl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> als auch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> Augenzahlen
+eines Würfels repräsentieren, können beide Unbekannte jeweils nur einen Wert aus der Menge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">{</mo><mn>1</mn><mo>;</mo><mn>2</mn><mo>;</mo><mn>3</mn><mo>;</mo><mn>4</mn><mo>;</mo><mn>5</mn><mo>;</mo><mn>6</mn><mo stretchy="false">}</mo></mrow></math>
+annehmen. Betrachtet man die Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mi>x</mi><mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow></math> in der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Ebene,
+
+<div style="text-align:center">
+
+
+
+<a id="L_SOURCEAUTOLABEL_112">
+</a>
+
+<img src="./lgsmtikzauto_4.4x.png" style="width:704px;height:419px" alt="./lgsmtikzauto_4.4x.png"/>
+ </div>
+so erkennt man, dass
+kein mögliches Augenzahlpaar auf dieser Geraden liegt; daher ist die Lösungsmenge hier tatsächlich leer,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>L</mi><mo>=</mo><mtext>∅</mtext></mrow></math>.
+</div>
+  </div>
+  
+  
+  
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>

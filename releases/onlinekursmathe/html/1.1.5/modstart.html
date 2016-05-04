@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 1.5.1 Abschlusstest Kapitel 1</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+isTest = true;
+var nMaxPoints = 0;
+var nPoints = 0;
+// onload blocks start
+CreateQuestionObj("TX11",1,"0","QFELD_1.5.2.QF1",2,"IMGQFELD_1.5.2.QF1",1,1,1);
+CreateQuestionObj("TX12",2,"0","QFELD_1.5.2.QF2",2,"IMGQFELD_1.5.2.QF2",1,1,1);
+CreateQuestionObj("TX13",3,"1","QFELD_1.5.2.QF3",2,"IMGQFELD_1.5.2.QF3",1,1,1);
+CreateQuestionObj("TX14",4,"1","QFELD_1.5.2.QF4",2,"IMGQFELD_1.5.2.QF4",1,1,1);
+CreateQuestionObj("TX21",5,"0","QFELD_1.5.2.QF5",2,"IMGQFELD_1.5.2.QF5",1,1,1);
+CreateQuestionObj("TX22",6,"0","QFELD_1.5.2.QF6",2,"IMGQFELD_1.5.2.QF6",1,1,1);
+CreateQuestionObj("TX23",7,"1","QFELD_1.5.2.QF7",2,"IMGQFELD_1.5.2.QF7",1,1,1);
+CreateQuestionObj("TX24",8,"0","QFELD_1.5.2.QF8",2,"IMGQFELD_1.5.2.QF8",1,1,1);
+CreateQuestionObj("TX41",9,"0","QFELD_1.5.2.QF9",2,"IMGQFELD_1.5.2.QF9",1,1,1);
+CreateQuestionObj("TX42",10,"1","QFELD_1.5.2.QF10",2,"IMGQFELD_1.5.2.QF10",1,1,1);
+CreateQuestionObj("TX43",11,"0","QFELD_1.5.2.QF11",2,"IMGQFELD_1.5.2.QF11",1,1,1);
+CreateQuestionObj("TX44",12,"0","QFELD_1.5.2.QF12",2,"IMGQFELD_1.5.2.QF12",1,1,1);
+CreateQuestionObj("TX31",13,"0","QFELD_1.5.2.QF13",2,"IMGQFELD_1.5.2.QF13",1,1,1);
+CreateQuestionObj("TX32",14,"0","QFELD_1.5.2.QF14",2,"IMGQFELD_1.5.2.QF14",1,1,1);
+CreateQuestionObj("TX33",15,"1","QFELD_1.5.2.QF15",2,"IMGQFELD_1.5.2.QF15",1,1,1);
+CreateQuestionObj("TX34",16,"0","QFELD_1.5.2.QF16",2,"IMGQFELD_1.5.2.QF16",1,1,1);
+CreateQuestionObj("TX51",17,"1","QFELD_1.5.2.QF17",2,"IMGQFELD_1.5.2.QF17",1,1,1);
+CreateQuestionObj("TX52",18,"0","QFELD_1.5.2.QF18",2,"IMGQFELD_1.5.2.QF18",1,1,1);
+CreateQuestionObj("TX53",19,"0","QFELD_1.5.2.QF19",2,"IMGQFELD_1.5.2.QF19",1,1,1);
+CreateQuestionObj("TX54",20,"0","QFELD_1.5.2.QF20",2,"IMGQFELD_1.5.2.QF20",1,1,1);
+CreateQuestionObj("ER6",21,"27/2","QFELD_1.5.2.QF21",3,"5",4,1,1);
+CreateQuestionObj("SMPPOLY",22,"(x-1)*(x+1)*(x-2)","QFELD_1.5.2.QF22",4,"10;x;5;1",4,1,1);
+CreateQuestionObj("VBK1",23,"(x-3)*(x+3)","QFELD_1.5.2.QF23",4,"10;x;5;1",4,1,1);
+CreateQuestionObj("VBK2",24,"(x-1)*(x-1)","QFELD_1.5.2.QF24",4,"10;x;5;1",4,1,1);
+CreateQuestionObj("VBK3",25,"(2*x+4)*(2*x+4)","QFELD_1.5.2.QF25",4,"10;x;5;1",4,1,1);
+CreateQuestionObj("VBK4",26,"x^(3/2)","QFELD_1.5.2.QF26",4,"10;x;5;576",4,1,1);
+// onload blocks stop
+var SITE_ID = "1.1.5.1";
+var SITE_UXID = "VBKM01_Abschlusstest";
+var SECTION_ID = 1;
+var docName = "modstart";
+var fullName = "html/1.1.5/modstart.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.1.1/modstart.html"><div class="xsymb selected">1.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.1.1/modstart.html"><div uxid="VBKM01_ZahlenIntro" id="idxsymb_tc75" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.1/xcontent1.html"><div uxid="VBKM01_VariablenTerme" id="idxsymb_tc76" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.1/xcontent2.html"><div uxid="VBKM01_TermeUmformen" id="idxsymb_tc77" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.1.2/modstart.html"><div class="xsymb selected">1.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.1.2/modstart.html"><div uxid="VBKM01_Bruchrechnung" id="idxsymb_tc78" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.2/xcontent1.html"><div uxid="VBKM01_USBrueche" id="idxsymb_tc79" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.2/xcontent2.html"><div uxid="VBKM01_Bruchrechnung_Exercises" id="idxsymb_tc80" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.1.3/modstart.html"><div class="xsymb selected">1.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.1.3/modstart.html"><div uxid="VBKM01_UmformenIntro" id="idxsymb_tc81" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.3/xcontent1.html"><div uxid="VBKM01_Termumformungen" id="idxsymb_tc82" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.3/xcontent2.html"><div uxid="VBKM01_Termumformungen_Exercises" id="idxsymb_tc83" class="xsymb status2"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.3/xcontent3.html"><div uxid="VBKM01_SummenProdukte" id="idxsymb_tc84" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.1.4/modstart.html"><div class="xsymb selected">1.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.1.4/modstart.html"><div uxid="VBKM01_PotenzenWurzeln" id="idxsymb_tc85" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.4/xcontent1.html"><div uxid="VBKM01_RPW" id="idxsymb_tc86" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.4/xcontent2.html"><div uxid="VBKM01_PotenzenWurzeln_Exercises" id="idxsymb_tc87" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.1.5/modstart.html"><div class="xsymb selected">1.5</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.1.5/modstart.html"><div uxid="VBKM01_Abschlusstest" id="idxsymb_tc88" class="xsymb status3 selected"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.1.4/xcontent2.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/1.2.1/modstart.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM01_Abschlusstest" class="MINTERLINK naviselected" href="../../html/1.1.5/modstart.html">Abschlusstest Kapitel 1</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREEN);">Grün</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.1.1/modstart.html"><div class="xsymb selected">1.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.1.1/modstart.html"><div uxid="VBKM01_ZahlenIntro" id="idxsymb_tc75" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.1/xcontent1.html"><div uxid="VBKM01_VariablenTerme" id="idxsymb_tc76" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.1/xcontent2.html"><div uxid="VBKM01_TermeUmformen" id="idxsymb_tc77" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.1.2/modstart.html"><div class="xsymb selected">1.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.1.2/modstart.html"><div uxid="VBKM01_Bruchrechnung" id="idxsymb_tc78" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.2/xcontent1.html"><div uxid="VBKM01_USBrueche" id="idxsymb_tc79" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.2/xcontent2.html"><div uxid="VBKM01_Bruchrechnung_Exercises" id="idxsymb_tc80" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.1.3/modstart.html"><div class="xsymb selected">1.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.1.3/modstart.html"><div uxid="VBKM01_UmformenIntro" id="idxsymb_tc81" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.3/xcontent1.html"><div uxid="VBKM01_Termumformungen" id="idxsymb_tc82" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.3/xcontent2.html"><div uxid="VBKM01_Termumformungen_Exercises" id="idxsymb_tc83" class="xsymb status2"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.3/xcontent3.html"><div uxid="VBKM01_SummenProdukte" id="idxsymb_tc84" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.1.4/modstart.html"><div class="xsymb selected">1.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.1.4/modstart.html"><div uxid="VBKM01_PotenzenWurzeln" id="idxsymb_tc85" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.4/xcontent1.html"><div uxid="VBKM01_RPW" id="idxsymb_tc86" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.1.4/xcontent2.html"><div uxid="VBKM01_PotenzenWurzeln_Exercises" id="idxsymb_tc87" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.1.5/modstart.html"><div class="xsymb selected">1.5</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.1.5/modstart.html"><div uxid="VBKM01_Abschlusstest" id="idxsymb_tc88" class="xsymb status3 selected"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.1.4/xcontent2.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/1.2.1/modstart.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM01_Abschlusstest" class="MINTERLINK naviselected" href="../../html/1.1.5/modstart.html">Abschlusstest Kapitel 1</a></li>
+</ul>
+</div>
+  <div id="content" class="content"><a id="M01_Ausgangstest"></a>
+
+
+
+
+
+
+
+<h4>1  - 1.1</h4><br /><h4>1.5.1 Abschlusstest Kapitel 1</h4> <!-- declaretestsymb //-->
+
+
+
+Dies ist ein einreichbarer Test:
+
+<ul>
+<li>Im Gegensatz zu den offenen Aufgaben werden beim Eingeben keine Hinweise zur Formulierung der mathematischen Ausdrücke gegeben.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann jederzeit neu gestartet oder verlassen werden.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann durch die Buttons am Ende der Seite beendet und abgeschickt, oder zurückgesetzt werden.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann mehrfach probiert werden. Für die Statistik zählt die zuletzt abgeschickte Version.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+<!-- mdeclaresiteuxidpost;;VBKM01_Abschlusstest;; //-->
+
+            <div class="aufgabe" id="ADIV_1.5.1">  <b>Aufgabe 1.5.1
+</b>  <br/>
+Kreuzen Sie an, ob diese mathematischen Ausdrücke jeweils Gleichungen, Ungleichungen, Terme oder Zahlen darstellen (Mehrfachnennung ist möglich):
+ <br/>
+
+<table border="1" class="rahmen">
+<tr><td align="left" class="rahmen">Mathematischer Ausdruck  </td><td align="center" class="rahmen">Gleichung </td><td align="center" class="rahmen">Ungleichung </td><td align="center" class="rahmen">Term </td><td align="center" class="rahmen">Zahl </td></tr>
+<tr><td align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>-</mo><mn>3</mn><mo stretchy="false">(</mo><mn>3</mn><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo stretchy="false">)</mo></mrow></math> </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF1" id="QFELD_1.5.2.QF1" onchange="handlerChange(1,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF1" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF1"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF2" id="QFELD_1.5.2.QF2" onchange="handlerChange(2,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF2" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF2"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF3" id="QFELD_1.5.2.QF3" onchange="handlerChange(3,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF3" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF3"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF4" id="QFELD_1.5.2.QF4" onchange="handlerChange(4,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF4" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF4"/> 
+
+ </td></tr>
+<tr><td align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mn>5</mn></mrow><mrow><mi>x</mi></mrow>
+</msup>
+<mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>5</mn></mrow>
+</msup>
+</mrow></math>                </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF5" id="QFELD_1.5.2.QF5" onchange="handlerChange(5,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF5" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF5"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF6" id="QFELD_1.5.2.QF6" onchange="handlerChange(6,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF6" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF6"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF7" id="QFELD_1.5.2.QF7" onchange="handlerChange(7,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF7" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF7"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF8" id="QFELD_1.5.2.QF8" onchange="handlerChange(8,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF8" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF8"/> 
+
+ </td></tr>
+<tr><td align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>&lt;</mo><msqrt><mrow><mi>x</mi></mrow></msqrt></mrow></math>           </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF9" id="QFELD_1.5.2.QF9" onchange="handlerChange(9,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF9" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF9"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF10" id="QFELD_1.5.2.QF10" onchange="handlerChange(10,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF10" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF10"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF11" id="QFELD_1.5.2.QF11" onchange="handlerChange(11,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF11" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF11"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF12" id="QFELD_1.5.2.QF12" onchange="handlerChange(12,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF12" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF12"/> 
+
+ </td></tr>
+<tr><td align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mi>y</mi><mi>z</mi><mo>-</mo><mn>1</mn></mrow></math>                  </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF13" id="QFELD_1.5.2.QF13" onchange="handlerChange(13,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF13" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF13"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF14" id="QFELD_1.5.2.QF14" onchange="handlerChange(14,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF14" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF14"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF15" id="QFELD_1.5.2.QF15" onchange="handlerChange(15,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF15" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF15"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF16" id="QFELD_1.5.2.QF16" onchange="handlerChange(16,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF16" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF16"/> 
+
+ </td></tr>
+<tr><td align="left" class="rahmen"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></math>               </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF17" id="QFELD_1.5.2.QF17" onchange="handlerChange(17,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF17" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF17"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF18" id="QFELD_1.5.2.QF18" onchange="handlerChange(18,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF18" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF18"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF19" id="QFELD_1.5.2.QF19" onchange="handlerChange(19,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF19" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF19"/> 
+
+ </td><td align="center" class="rahmen">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_1.5.2.QF20" id="QFELD_1.5.2.QF20" onchange="handlerChange(20,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_1.5.2.QF20" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.5.2.QF20"/> 
+
+ </td></tr></table>
+
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_1.5.2">  <b>Aufgabe 1.5.2
+</b>  <br/>
+Vereinfachen Sie den Doppelbruch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>3</mn><mo>+</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow>
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+</mrow>
+</mfrac>
+</mrow></math> zu einem gekürzten Einfachbruch: 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.5.2.QF21" id="QFELD_1.5.2.QF21" type="text" size="5" maxlength="5" onblur="handlerBlur(21);" onfocus="handlerFocus(21);" onkeyup="handlerChange(21,1);" onpaste="handlerChange(21,1);" oninput="handlerChange(21,1);" onpropertychange="handlerChange(21,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.5.2.QF21"/>
+
+
+<br clear="all"/><br clear="all"/>
+<span style="color:#0000FF">Tippen Sie beispielsweise <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>11</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+</mrow></math> als <tt>11/12</tt> ein.</span>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_1.5.3">  <b>Aufgabe 1.5.3
+</b>  <br/>
+Multiplizieren Sie diesen Term vollständig aus und fassen Sie zusammen:
+
+<br clear="all"/><br clear="all"/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.5.2.QF22" id="QFELD_1.5.2.QF22" type="text" size="40" maxlength="40" onblur="handlerBlur(22);" onfocus="handlerFocus(22);" onkeyup="handlerChange(22,1);" onpaste="handlerChange(22,1);" oninput="handlerChange(22,1);" onpropertychange="handlerChange(22,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.5.2.QF22"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+<span style="color:#0000FF">Beispielsweise tippen Sie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math> = <tt>x^2+3*x+2</tt> oder auch <tt>x*x+3*x+2</tt>.</span>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_1.5.4">  <b>Aufgabe 1.5.4
+</b>  <br/>
+Wenden Sie jeweils eine binomische Formel an, um den Term umzuformen:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>3</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.5.2.QF23" id="QFELD_1.5.2.QF23" type="text" size="14" maxlength="14" onblur="handlerBlur(23);" onfocus="handlerFocus(23);" onkeyup="handlerChange(23,1);" onpaste="handlerChange(23,1);" oninput="handlerChange(23,1);" onpropertychange="handlerChange(23,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.5.2.QF23"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.5.2.QF24" id="QFELD_1.5.2.QF24" type="text" size="14" maxlength="14" onblur="handlerBlur(24);" onfocus="handlerFocus(24);" onkeyup="handlerChange(24,1);" onpaste="handlerChange(24,1);" oninput="handlerChange(24,1);" onpropertychange="handlerChange(24,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.5.2.QF24"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>4</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.5.2.QF25" id="QFELD_1.5.2.QF25" type="text" size="14" maxlength="14" onblur="handlerBlur(25);" onfocus="handlerFocus(25);" onkeyup="handlerChange(25,1);" onpaste="handlerChange(25,1);" oninput="handlerChange(25,1);" onpropertychange="handlerChange(25,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.5.2.QF25"/>
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<span style="color:#0000FF">Beispielsweise tippen Sie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> = <tt>x^2+2*x+1</tt> oder auch <tt>x*x+2*x+1</tt>.</span>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_1.5.5">  <b>Aufgabe 1.5.5
+</b>  <br/>
+Schreiben Sie diesen Potenz- und Wurzelausdruck als einfache Potenz mit einem rationalen Exponenten:
+ <br/> <br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+<mrow>
+<msup><mrow><mo>(</mo><msqrt><mrow><mi>x</mi></mrow></msqrt><mo>)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.5.2.QF26" id="QFELD_1.5.2.QF26" type="text" size="10" maxlength="10" onblur="handlerBlur(26);" onfocus="handlerFocus(26);" onkeyup="handlerChange(26,1);" onpaste="handlerChange(26,1);" oninput="handlerChange(26,1);" onpropertychange="handlerChange(26,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.5.2.QF26"/>
+
+.<br/>
+<span style="color:#0000FF">Beispielsweise tippen Sie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mo>·</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> = <tt>x^(5/2)</tt> oder auch <tt>x^(2.5)</tt>,<br/>vergessen Sie die Klammern um den Bruch nicht.</span>
+
+  </div>
+  
+  
+
+
+
+
+ <br/> <br/><button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('Abschlusstest Kapitel 1');" class="testsbutton">Test auswerten</button>
+        
+<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();" class="testsbutton">Test löschen und neu starten</button>
+<br/>
+<br/>
+<div class="xreply">
+<p name="Name_TESTEVAL" id="TESTEVAL">
+Hier erscheint die Testauswertung!
+<br/>
+</p>
+</div>
+
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>

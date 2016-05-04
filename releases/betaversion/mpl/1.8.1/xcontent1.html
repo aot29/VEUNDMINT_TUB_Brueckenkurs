@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 8.1.0 Einf&#252;hrung - MINT-Module Abschnitt 8.1.0 Inhalt</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+
+SITE_ID = "1.8.1.2";
+SITE_UXID = "VBKM08_Stammfunktionen_Content";
+SECTION_ID = 8;
+var docName = "xcontent1";
+var fullName = "mpl/1.8.1/xcontent1.html";
+var fullNamePath = "../out/tmp/mpl/1.8.1/xcontent1.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.8.1/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.8.1/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.8.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.8.1/xcontent1.html">Inhalt</a></li>
+  <li class="inormalbutton_check"><a class="MINTERLINK" href="../1.8.1/xcontent2.html">Aufgaben</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.8.1/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.8.1/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.8.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.8.1/xcontent1.html">Inhalt</a></li>
+  <li class="inormalbutton_check"><a class="MINTERLINK" href="../1.8.1/xcontent2.html">Aufgaben</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+
+
+
+
+
+
+
+
+
+
+<h4> Onlinekurs Mathematik  - Integralrechnung  - Stammfunktionen</h4><br /><h4>Inhalt</h4>
+<!-- mdeclaresiteuxidpost;;VBKM08_Stammfunktionen_Content;; //-->
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Stammfunktion
+  
+8.1.1
+    
+  
+  </b> &nbsp;<br /> 
+Gegeben ist eine Teilmenge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>D</mi><mo>&sube;</mo><mo>&Ropf;</mo></mrow></math> und eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo><mi>D</mi><mo>&rarr;</mo><mo>&Ropf;</mo></mrow></math>. 
+Wenn es eine differenzierbare Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi><mo>:</mo><mi>D</mi><mo>&rarr;</mo><mo>&Ropf;</mo></mrow></math> gibt, deren 
+Ableitung gleich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist, f&#252;r die also <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> f&#252;r alle <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&isin;</mo><mi>D</mi></mrow></math> gilt, 
+dann hei&#223;t <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> eine <b>Stammfunktion</b><!-- mindexentry;;Stammfunktion; //--><a class="label" name="ELI_SW127"></a> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Eine Stammfunktion wird auch 
+<b>unbestimmtes Integral</b><!-- mindexentry;;Integral (unbestimmt); //--><a class="label" name="ELI_SW128"></a> genannt und in der Form 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>&int;</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+notiert. Die Sprechweise ist hier: ,,<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> ist das Integral über <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>.'' Der Zusammenhang zum Integral wird in der Infobox <a class="MINTERLINK" href="../../mpl/1.8.2/xcontent1.html#HSDDIR">8.2.3</a> 
+zum Hauptsatz der Differential- und Integralrechnung beschrieben.
+
+<br clear="all"/><br clear="all"/>
+Sehen wir uns zun&#228;chst einige Beispiele an.
+
+  
+  
+  
+  
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  8.1.2
+  
+  </b> &nbsp;<br />
+Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> hat die Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mo stretchy="false">(</mo><mo>-</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>. 
+Somit ist 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>&int;</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mo>-</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+eine Stammfunktion von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  8.1.3
+  
+  </b> &nbsp;<br />
+Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi></mi><mrow><mn>3</mn><mi>x</mi><mo>+</mo><mn>7</mn></mrow></msup>
+</mrow></math> hat die Ableitung 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><mo>&middot;</mo><mi>e</mi><msup><mi></mi><mrow><mn>3</mn><mi>x</mi><mo>+</mo><mn>7</mn></mrow></msup>
+</mrow></math>.
+Deshalb ist
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>&int;</mo><mn>3</mn><mo>&middot;</mo><mi>e</mi><msup><mi></mi><mrow><mn>3</mn><mi>x</mi><mo>+</mo><mn>7</mn></mrow></msup>
+<mi>d</mi><mi>x</mi><mo>=</mo><mi>e</mi><msup><mi></mi><mrow><mn>3</mn><mi>x</mi><mo>+</mo><mn>7</mn></mrow></msup>
+</mrow>
+    </mstyle></math></center>
+<br />
+
+eine Stammfunktion von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><mi>e</mi><msup><mi></mi><mrow><mn>3</mn><mi>x</mi><mo>+</mo><mn>7</mn></mrow></msup>
+</mrow></math>.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Notieren wir die Beziehung zwischen Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>=</mo><mi>F</mi><mo>'</mo></mrow></math> und Stammfunktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> in der eben besprochenen umgekehrten Sichtweise f&#252;r die bisher betrachteten Funktionsklassen, ergibt sich die folgende Tabelle:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Eine kleine Tabelle von Stammfunktionen
+  
+8.1.4
+    
+  
+  </b> &nbsp;<br />
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Funktion &nbsp;</mtext>
+<mi>f</mi></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Eine Stammfunktion &nbsp;</mtext>
+<mi>F</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">&nbsp;dazu ist:</mtext>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">&nbsp;f&#252;r eine Zahl &nbsp;</mtext>
+<mi>C</mi><mo>&isin;</mo><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mi>n</mi></mrow>
+</msup>
+</mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow>
+</msup>
+<mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mo>,</mo><mi>&ensp;&ensp;</mi><mi>&ensp;&ensp;</mi><mi>n</mi><mo>&ne;</mo><mo>-</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>k</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>k</mi></mrow>
+</mfrac>
+<mi>&ensp;</mi><mi>cos</mi><mo stretchy="false">(</mo><mi>k</mi><mi>x</mi><mo stretchy="false">)</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">&nbsp;f&#252;r eine Zahl &nbsp;</mtext>
+<mi>k</mi><mo>&isin;</mo><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>k</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>k</mi></mrow>
+</mfrac>
+<mi>&ensp;</mi><mi>sin</mi><mo stretchy="false">(</mo><mi>k</mi><mi>x</mi><mo stretchy="false">)</mo><mi>&nbsp;&nbsp;&nbsp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">&nbsp;f&#252;r eine Zahl &nbsp;</mtext>
+<mi>k</mi><mo>&isin;</mo><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>+</mo>
+<msup><mrow><mi>tan</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<msup><mrow><mi>cos</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</mfrac>
+</mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>tan</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+</mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi></mi><mrow><mi>k</mi><mi>x</mi></mrow></msup>
+</mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>k</mi></mrow>
+</mfrac>
+<mi>&ensp;</mi><mi>e</mi><msup><mi></mi><mrow><mi>k</mi><mi>x</mi></mrow></msup>
+<mi>&nbsp;&nbsp;&nbsp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">&nbsp;f&#252;r eine Zahl &nbsp;</mtext>
+<mi>k</mi><mo>&isin;</mo><mo>&Ropf;</mo></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ln</mi><mo stretchy="false">&verbar;</mo><mi>x</mi><mo stretchy="false">&verbar;</mo></mrow></mtd></mtr></mtable>
+
+</mrow>
+    </mstyle></math></center>
+<br />
+
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+
+<br clear="all"/><br clear="all"/>
+In der ersten Zeile in obiger Tabelle steht, dass <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi></mrow></math> eine Stammfunktion 
+zu <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math> ist. Klar, denn die Ableitung einer konstanten Funktion ist die Nullfunktion.
+Aber woher kennen wir den Wert dieser Konstanten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>C</mi></mrow></math>? Schließlich ist die Ableitung jeder beliebigen
+konstanten Funktion die Null. So gilt z.B. für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn></mrow></math> und für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn></mrow></math>, dass <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi><mo>'</mo><mo>=</mo><mi>G</mi><mo>'</mo><mo>=</mo><mn>0</mn></mrow></math> ist.
+Ist nur nach einer Stammfunktion von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math> gefragt, ohne dass weitere Forderungen getroffen werden,
+ist die Stammfunktion eine ganz beliebige Konstante <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>C</mi></mrow></math>. Andere M&#246;glichkeiten, als dass es sich um
+irgendeine konstante Funktion handelt, gibt es nicht.
+
+<br clear="all"/><br clear="all"/>
+Haben die Funktionen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi></mrow></math> dieselbe Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>=</mo><mi>F</mi><mo>'</mo><mo>=</mo><mi>G</mi><mo>'</mo></mrow></math>, dann ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>-</mo><mi>F</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math>. Bilden wir nun
+auf beiden Seiten der Gleichung die Stammfunktion, dann erhalten wir den Zusammenhang <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>-</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi></mrow></math>. Somit
+ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>C</mi></mrow></math>. Haben wir also mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> eine Stammfunktion von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> gefunden, dann ist auch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>C</mi></mrow></math>
+eine Stammfunktion von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>.
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Aussage &#252;ber Stammfunktionen
+  
+8.1.5
+    
+  
+  </b> &nbsp;<br />
+Wenn <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi></mrow></math> Stammfunktionen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo><mi>D</mi><mo>&rarr;</mo><mo>&Ropf;</mo></mrow></math> sind, dann gibt es 
+eine Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>C</mi></mrow></math>, sodass
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>G</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>C</mi><mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">f&#252;r alle</mtext>
+<mi>&ensp;&ensp;</mi><mi>x</mi><mo>&isin;</mo><mi>D</mi><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+gilt. Hierf&#252;r schreibt man auch
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>&int;</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>C</mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br />
+
+um auszudr&#252;cken, wie s&#228;mtliche Stammfunktionen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> aussehen.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  8.1.6
+  
+  </b> &nbsp;<br />
+Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>6</mn><mi>x</mi></mrow></math> hat die Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>F</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>10</mn><mi>x</mi><mo>-</mo><mn>6</mn></mrow></math>. 
+Somit wird durch 
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>&int;</mo><mo stretchy="false">(</mo><mn>10</mn><mi>x</mi><mo>-</mo><mn>6</mn><mo stretchy="false">)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mn>5</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>6</mn><mi>x</mi><mo>+</mo><mi>C</mi></mrow>
+    </mstyle></math></center>
+<br />
+
+die Gesamtheit der Stammfunktionen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>10</mn><mi>x</mi><mo>-</mo><mn>6</mn></mrow></math> beschrieben,
+wobei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>C</mi></mrow></math> f&#252;r eine beliebige reelle Zahl steht.
+
+<br clear="all"/><br clear="all"/>
+Beispielsweise ist auch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mn>5</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>6</mn><mi>x</mi><mo>-</mo><mn>7</mn></mrow></math> eine Stammfunktion 
+von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>10</mn><mi>x</mi><mo>-</mo><mn>6</mn></mrow></math>, denn es ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>G</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mo>&middot;</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>6</mn><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Aus der obigen Tabelle zu Stammfunktionen ergibt sich die Gesamtheit aller 
+L&#246;sungen dann jeweils durch die Addition einer Konstanten:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Eine kleine Tabelle von Stammfunktionen - zweite Version
+  
+8.1.7
+    
+  
+  </b> &nbsp;<br />
+<!-- mindexentry;;Stummfunktionen (Tabelle); //--><a class="label" name="ELI_SW129"></a><br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Funktion</mtext>
+</mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">Stammfunktionen</mtext>
+</mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>&int;</mo><mn>0</mn><mi>d</mi><mi>x</mi><mo>=</mo><mi>C</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mi>n</mi></mrow>
+</msup>
+</mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>&int;</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mi>n</mi></mrow>
+</msup>
+<mi>d</mi><mi>x</mi><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow>
+</mfrac>
+<mo>&middot;</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow>
+</msup>
+<mo>+</mo><mi>C</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>&int;</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mo>-</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>C</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>k</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>k</mi></mrow>
+</mfrac>
+<mi>&ensp;</mi><mi>cos</mi><mo stretchy="false">(</mo><mi>k</mi><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>C</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>&int;</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>C</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>k</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>k</mi></mrow>
+</mfrac>
+<mi>&ensp;</mi><mi>sin</mi><mo stretchy="false">(</mo><mi>k</mi><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>C</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>+</mo>
+<msup><mrow><mi>tan</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<msup><mrow><mi>cos</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</mfrac>
+</mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>&int;</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo>
+<msup><mrow><mi>tan</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mi>tan</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>C</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+</mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>&int;</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mi>d</mi><mi>x</mi><mo>=</mo><mi>e</mi><msup><mi></mi><mrow><mi>x</mi></mrow></msup>
+<mo>+</mo><mi>C</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi></mi><mrow><mi>k</mi><mi>x</mi></mrow></msup>
+</mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>k</mi></mrow>
+</mfrac>
+<mi>&ensp;</mi><mi>e</mi><msup><mi></mi><mrow><mi>k</mi><mi>x</mi></mrow></msup>
+<mo>+</mo><mi>C</mi></mrow></mtd></mtr>
+<mtr><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></mtd><mtd columnalign="left"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>&int;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+<mi>d</mi><mi>x</mi><mo>=</mo><mi>ln</mi><mo stretchy="false">&verbar;</mo><mi>x</mi><mo stretchy="false">&verbar;</mo><mo>+</mo><mi>C</mi></mrow></mtd></mtr></mtable>
+
+</mrow>
+    </mstyle></math></center>
+<br />
+
+Hier bezeichnen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>k</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>C</mi></mrow></math> beliebige reelle Zahlen.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+
+<br clear="all"/><br clear="all"/>
+In Tabellenwerken wird auf die Angaben der Konstanten oft verzichtet. In 
+einer Rechnung ist es allerdings wichtig, anzugeben, dass es mehrere 
+L&#246;sungen geben kann. Bei der Lösung anwendungsbezogener Probleme wird die
+Integrationskonstante <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>C</mi></mrow></math> häufig durch die Angabe weiterer Bedingungen festgelegt.
+
+<br clear="all"/><br clear="all"/>
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Ein praktischer Hinweis
+  
+8.1.8
+    
+  
+  </b> &nbsp;<br />
+Die Überprüfung, ob wir die Stammfunktion einer vorgegebenen Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> richtig gebildet haben, ist sehr einfach. Wir bestimmen die Ableitung unserer gefundenen Stammfunktion und vergleichen diese mit der ursprünglich vorgegebenen Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>. Stimmen beide überein, war unsere Rechnung richtig. Stimmt das Ergebnis der Probe nicht mit der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> überein, müssen wir unsere Stammfunktion noch einmal überprüfen.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+<br />
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

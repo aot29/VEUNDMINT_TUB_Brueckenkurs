@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 1.1.0 Einf&#252;hrung - MINT-Module Abschnitt 1.1.1 Variablen und Terme</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("5s9);9bcry-;r;6c*6/.66xb06xq6.y,;5.8/ar0.*,qq",1);}if(c==2){str=debork("2qa33t9*2q)ys5+72-)+s;r+y*5.94c5bq*yxs;q0s)7)",1);}if(c==3){str=debork("2y*xtssa00+1qtx2c;0*);-q.c-)7c(/5r)*7()c69;.+",2);}if(c==4){str=debork("a7;r)22(2007x2+5(-a+)),4t)/t8qsb-a);s946b-r36",7);}if(c==5){str=debork("b6q+(y/(1.bq-s+-r+67*)q-x//.4/0+5a-97b,sb30.;",7);}if(c==6){str=debork("2x;++h,/rt;bl0c,.26*;q+7a+t/*05p79b.1,a37;b^y",9);}if(c==7){str=debork("4,;(,1/sqt5)t15(b2,+/073)899t.0+1x030q(a3+s^7",9);}if(c==8){str=debork("259.)bcz+bq3;8zx4*0as2qcq/*7c925/*-0046y+r*/q",7);}if(c==9){str=debork("2t9r*..5t-tx)9/0s/*6/4s0xxb/*85ay8xpt,8-b7ia4",11);}if(c==10){str=debork("1a4*8/*)(x5-b93x247aic9*70y.t/,//*p1)x/a+),q7",10);}if(c==11){str=debork("(si0i+x5+1r3xr4x29*q7p9p1*2s-+-r(/t/b))x*q*yx",22);}return str;}
+
+__CQJ("ER1",1,GSLS(1),"QFELD_1.1.3.QF1",3,"3",4,0,1);__CQJ("ER2",2,GSLS(2),"QFELD_1.1.3.QF2",3,"3",4,0,1);__CQJ("ER3",3,GSLS(3),"QFELD_1.1.3.QF3",3,"3",4,0,1);__CQJ("a/(a+b)",4,GSLS(4),"QFELD_1.1.3.QF4",4,"5;a,b;5;512",4,0,1);__CQJ("b/(a+b)",5,GSLS(5),"QFELD_1.1.3.QF5",4,"5;a,b;5;512",4,0,1);__CQJ("ERX1",6,GSLS(6),"QFELD_1.1.3.QF6",4,"5;alpha;5;0",4,0,1);__CQJ("ERX2",7,GSLS(7),"QFELD_1.1.3.QF7",4,"5;t;5;0",4,0,1);__CQJ("ERX3",8,GSLS(8),"QFELD_1.1.3.QF8",4,"5;z;5;0",4,0,1);__CQJ("ERX11",9,GSLS(9),"QFELD_1.1.3.QF9",4,"5;x;5;0",4,0,1);__CQJ("ERX12",10,GSLS(10),"QFELD_1.1.3.QF10",4,"5;x;5;0",4,0,1);__CQJ("ERX13",11,GSLS(11),"QFELD_1.1.3.QF11",4,"5;x;5;0",4,0,1);
+SITE_ID = "1.1.1.2";
+SITE_UXID = "VBKM01_VariablenTerme";
+SECTION_ID = 1;
+var docName = "xcontent1";
+var fullName = "mpl/1.1.1/xcontent1.html";
+var fullNamePath = "../out/tmp/mpl/1.1.1/xcontent1.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.1.1/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.1.1/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.1.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.1.1/xcontent1.html">Variablen und Terme</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.1.1/xcontent2.html">Terme umformen</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="nprev"><a class="MINTERLINK" href="../1.1.1/modstart.html">Zur&#252;ck</a></div>
+<div class="nnext"><a class="MINTERLINK" href="../1.1.1/xcontent2.html">Weiter</a></div>
+<ul>
+  <li class="inormalbutton_booki"><a class="MINTERLINK" href="../1.1.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="iselectedbutton_book"><a class="MINTERLINK" href="../1.1.1/xcontent1.html">Variablen und Terme</a></li>
+  <li class="inormalbutton_book"><a class="MINTERLINK" href="../1.1.1/xcontent2.html">Terme umformen</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+
+
+
+
+
+
+
+
+
+
+<h4> Onlinekurs Mathematik  - Elementares Rechnen  - Zahlen, Variablen, Terme</h4><br /><h4>1.1.1 Variablen und Terme</h4>
+<!-- mdeclaresiteuxidpost;;VBKM01_VariablenTerme;; //-->
+
+<br clear="all"/><br clear="all"/>
+Die Verwendung von Variablen, Termen und Gleichungen ist notwendig, um Aussagen mit noch unbestimmten Werten zu formalisieren.
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.1.4
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Eine <b>Variable</b><!-- mindexentry;;Variable; //--><a class="label" name="ELI_SW6"></a> ist ein Symbol (typischerweise ein Buchstabe), dass als Platzhalter für einen unbestimmten Wert
+eingesetzt wird. Ein <b>Term</b><!-- mindexentry;;Term; //--><a class="label" name="ELI_SW7"></a> ist ein mathematischer Ausdruck, der Variablen, Rechenoperationen und weitere Symbole enthalten kann,
+und der nach Einsetzung von Zahlen für die Variablen einen konkreten Zahlenwert ergibt. Terme können zu Gleichungen bzw. Ungleichungen
+kombiniert oder in Funktionsbeschreibungen eingesetzt werden, dazu kommen wir aber erst später.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.1.5
+  
+  </b> &nbsp;<br />
+Die textuelle Frage
+
+<br clear="all"/><br clear="all"/>
+<i>In einer Schulklasse gibt es vier Mädchen mehr als Jungs und insgesamt 20 Kinder, wieviele Mädchen bzw. Jungs sind in der Klasse?</i>
+
+<br clear="all"/><br clear="all"/>
+kann man beispielsweise formalisieren, indem man Variablen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> (für die Anzahl der Mädchen) und
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> (für die Anzahl der Jungs) in der Schulklasse einführt und damit die beiden Gleichungen
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mi>b</mi><mo>+</mo><mn>4</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>+</mo><mi>b</mi><mo>=</mo><mn>20</mn></mrow></math> aufstellt. Diese kann man durch Einsetzen nun auflösen zu <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>=</mo><mn>12</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>=</mo><mn>8</mn></mrow></math>
+und daraus den textuellen Antwortsatz
+
+<br clear="all"/><br clear="all"/>
+<i>In der Schulklasse befinden sich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>12</mn></mrow></math> Mädchen und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>8</mn></mrow></math> Jungs</i>
+
+<br clear="all"/><br clear="all"/>
+aufbauen. Dabei ist beispielsweise <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi><mo>+</mo><mn>4</mn></mrow></math> ein Term, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> selbst ist eine Variable und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>+</mo><mi>b</mi><mo>=</mo><mn>20</mn></mrow></math> ist eine Gleichung mit einem Term auf
+der linken und einer Zahl auf der rechten Seite.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Bei einem Term ist wesentlich, dass er zu einem konkreten Zahlenwert ausgewertet werden kann,
+wenn man Zahlen für die im Term auftretenden Variablen einsetzt:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.1.6
+  
+  </b> &nbsp;<br />
+Die folgenden Ausdrücke sind Terme:
+
+<ul>
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&middot;</mo><mo stretchy="false">(</mo><mi>y</mi><mo>+</mo><mi>z</mi><mo stretchy="false">)</mo><mo>-</mo><mn>1</mn></mrow></math>, für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mn>2</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi><mo>=</mo><mn>0</mn></mrow></math> erhält man beispielsweise den Wert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn></mrow></math> des Terms.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>4</mn></mrow></math>, es treten keine Variablen auf, trotzdem handelt es sich um einen Term (der immer den Wert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>10</mn></mrow></math> ergibt).
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>&alpha;</mi><mo>+</mo><mi>&beta;</mi></mrow>
+<mrow><mn>1</mn><mo>+</mo><mi>&gamma;</mi></mrow>
+</mfrac>
+</mrow></math>, beispielsweise erhält man für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&alpha;</mi><mo>=</mo><mn>1</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&beta;</mi><mo>=</mo><mn>2</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&gamma;</mi><mo>=</mo><mn>3</mn></mrow></math> den Wert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+</mrow></math> für den Term.
+Hier darf man aber nicht <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&gamma;</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> einsetzen.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>sin</mi><mo stretchy="false">(</mo><mi>&pi;</mi><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math>, beispielsweise ergibt der Term den Wert Null wenn man für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> eine ganze Zahl einsetzt.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi></mrow></math>, eine Variable für sich allein ist auch ein Term.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mo>&#x2026;</mo><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>n</mi></mrow></math> ist ein Term, bei dem die Variable <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi></mrow></math> im Term auftritt und gleichzeitig seine Länge festlegt.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.1.7
+  
+  </b> &nbsp;<br />
+Diese Ausdrücke sind keine Terme im Sinne der Mathematik:
+
+<ul>
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>+</mo><mi>b</mi><mo>=</mo><mn>20</mn></mrow></math>, ist eine Gleichung (Einsetzen von Werten für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> ergibt keine Zahl, sondern die Gleichung ist eben wahr oder falsch).
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>&middot;</mo><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>c</mi></mrow></math> ist nicht richtig geklammert,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>&bdquo;<i>Anteil der Mädchen in der Schulklasse</i>&ldquo;&nbsp;ist kein Term, kann aber durch den Term <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow>
+</mfrac>
+</mrow></math> formalisiert werden,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>sin</mi></mrow></math> ist kein Term sondern ein Funktionsname, dagegen ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> ein Term (der bei Einsetzen einer Zahl für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> ausgewertet werden kann).
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.8">  <b>Aufgabe 1.1.8
+</b> &nbsp;<br />
+Gegeben sind jeweils ein Term und Zahlenwerte für die im Term auftretenden Variablen, wie lautet die Auswertung des Terms?
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>&alpha;</mi><mo>+</mo><mi>&beta;</mi></mrow>
+<mrow><mi>&alpha;</mi><mo>-</mo><mi>&beta;</mi></mrow>
+</mfrac>
+</mrow></math> nimmt den Wert 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.3.QF1" id="QFELD_1.1.3.QF1" type="text" size="10" maxlength="10" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF1"/>
+
+
+ an für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&alpha;</mi><mo>=</mo><mn>6</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&beta;</mi><mo>=</mo><mn>4</mn></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> nimmt den Wert 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.3.QF2" id="QFELD_1.1.3.QF2" type="text" size="10" maxlength="10" onfocus="handlerFocus(2);" onblur="handlerBlur(2);" onkeyup="handlerChange(2,0);" onpaste="handlerChange(2,0);" oninput="handlerChange(2,0);" onpropertychange="handlerChange(2,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF2"/>
+
+
+ an für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mo>&#x2026;</mo><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>n</mi></mrow></math> nimmt den Wert 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.3.QF3" id="QFELD_1.1.3.QF3" type="text" size="10" maxlength="10" onfocus="handlerFocus(3);" onblur="handlerBlur(3);" onkeyup="handlerChange(3,0);" onpaste="handlerChange(3,0);" oninput="handlerChange(3,0);" onpropertychange="handlerChange(3,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF3"/>
+
+
+ and für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>n</mi><mo>=</mo><mn>6</mn></mrow></math>.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+  <button name="Name_MHint1" id="MHintButton1"   type="button" onclick="toggle_hint('MHint1');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+Einsetzen der gegebenen Werte für die Variablen ergibt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>&alpha;</mi><mo>+</mo><mi>&beta;</mi></mrow>
+<mrow><mi>&alpha;</mi><mo>-</mo><mi>&beta;</mi></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>6</mn><mo>+</mo><mn>4</mn></mrow>
+<mrow><mn>6</mn><mo>-</mo><mn>4</mn></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>10</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>=</mo><mn>5</mn></mrow></math> in Teil 1),
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>2</mn></mrow></math> in Teil 2) und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>4</mn><mo>+</mo><mn>5</mn><mo>+</mo><mn>6</mn><mo>=</mo><mn>21</mn></mrow></math> in Teil 3).
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.9">  <b>Aufgabe 1.1.9
+</b> &nbsp;<br />
+Formalisieren Sie diese Aussagen mit den vorgegebenen Variablen:
+
+<ol type="1">
+<li>Anteil der Mädchen (Variable <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math>) sowie der Jungen (Variable <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math>) an der Gesamtzahl Kindern:
+
+<br clear="all"/><br clear="all"/>
+Anteil Mädchen ist 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.3.QF4" id="QFELD_1.1.3.QF4" type="text" size="20" maxlength="20" onfocus="handlerFocus(4);" onblur="handlerBlur(4);" onkeyup="handlerChange(4,0);" onpaste="handlerChange(4,0);" oninput="handlerChange(4,0);" onpropertychange="handlerChange(4,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF4"/>
+
+
+ und Anteil der Jungen ist 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.3.QF5" id="QFELD_1.1.3.QF5" type="text" size="20" maxlength="20" onfocus="handlerFocus(5);" onblur="handlerBlur(5);" onkeyup="handlerChange(5,0);" onpaste="handlerChange(5,0);" oninput="handlerChange(5,0);" onpropertychange="handlerChange(5,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF5"/>
+
+
+.<br />
+<font color="#0000FF">Brüche können mit dem Strich (über der 7-Taste auf den meisten Tastaturen) eingegeben werden,
+dabei sollten Zähler bzw. Nenner geklammert werden wenn Rechenoperationen auftreten. Beispielsweise kann
+man den Bruch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn><mo>+</mo><mi>x</mi></mrow>
+<mrow><mn>2</mn><mo>+</mo><mi>y</mi></mrow>
+</mfrac>
+</mrow></math> eingeben als <tt>(1+x)/(2+y)</tt>.</font>
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+  <button name="Name_MHint2" id="MHintButton2"   type="button" onclick="toggle_hint('MHint2');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+Die Gesamtanzahl der Kinder ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow></math>, der Mädchenanteil ist daher <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow>
+</mfrac>
+</mrow></math> und der Jungenanteil ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>a</mi></mrow>
+<mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow>
+</mfrac>
+</mrow></math>.
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+Terme können auch ineinander eingesetzt werden:
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+1.1.10
+    
+  
+  </b> &nbsp;<br />&nbsp;<br />
+Beim <b>Einsetzen</b><!-- mindexentry;;Einsetzen (Terme); //--><a class="label" name="ELI_SW8"></a> von Termen wird ein Term anstelle eines Symbols in einem anderen Term eingesetzt,
+wobei das ersetzte Symbol ggf. vorher geklammert werden muss, wenn der einzusetzende Term mehrere Ausdrücke enthält.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  </div>
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  1.1.11
+  
+  </b> &nbsp;<br />
+Setzt man in den Term <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> beispielsweise den Wert <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>=</mo><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn></mrow></math> ein, so so entsteht der neue Term <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>36</mn><mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math>, und nicht etwa
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo>
+<msup><mrow><mn>3</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>12</mn><mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math>.
+</div>
+  </div>
+  <div class="text">
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.12">  <b>Aufgabe 1.1.12
+</b> &nbsp;<br />
+Welcher Term entsteht, wenn man in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> Folgendes einsetzt:
+
+<ol type="1">
+<li>Der Winkel <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&alpha;</mi></mrow></math> sowohl für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> wie auch für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>: Dann ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.3.QF6" id="QFELD_1.1.3.QF6" type="text" size="15" maxlength="15" onfocus="handlerFocus(6);" onblur="handlerBlur(6);" onkeyup="handlerChange(6,0);" onpaste="handlerChange(6,0);" oninput="handlerChange(6,0);" onpropertychange="handlerChange(6,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF6"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> und der Term <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>: Dann ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.3.QF7" id="QFELD_1.1.3.QF7" type="text" size="15" maxlength="15" onfocus="handlerFocus(7);" onblur="handlerBlur(7);" onkeyup="handlerChange(7,0);" onpaste="handlerChange(7,0);" oninput="handlerChange(7,0);" onpropertychange="handlerChange(7,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF7"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Term <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi><mo>+</mo><mn>1</mn></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> und der Term <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi><mo>-</mo><mn>1</mn></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>: Dann ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.3.QF8" id="QFELD_1.1.3.QF8" type="text" size="15" maxlength="15" onfocus="handlerFocus(8);" onblur="handlerBlur(8);" onkeyup="handlerChange(8,0);" onpaste="handlerChange(8,0);" oninput="handlerChange(8,0);" onpropertychange="handlerChange(8,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF8"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<font color="#0000FF">Der griechische Buchstabe <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&alpha;</mi></mrow></math> kann als <tt>alpha</tt> eingetippt werden.</font>
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint3" id="MHintButton3"   type="button" onclick="toggle_hint('MHint3');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint3"> 
+Am sichersten ist es, die Variablen vor der Termeinsetzung zu klammern, wenn der neue Term mehrere Symbole enthält:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo>
+<msup><mrow><mi>&alpha;</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>&alpha;</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>2</mn>
+<msup><mrow><mi>&alpha;</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mo stretchy="false">(</mo><mi>x</mi>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mo stretchy="false">(</mo><mi>t</mi><mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo>
+<msup><mrow><mi>t</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mi>t</mi><mo>+</mo><mn>5</mn></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mo stretchy="false">(</mo><mi>x</mi>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mo stretchy="false">(</mo><mi>y</mi>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mo stretchy="false">(</mo><mi>z</mi><mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mo stretchy="false">(</mo><mi>z</mi><mo>-</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo>
+<msup><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mi>z</mi><mo>+</mo><mn>1</mn><mo>+</mo>
+<msup><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>2</mn><mi>z</mi><mo>+</mo><mn>1</mn><mo>=</mo><mn>2</mn>
+<msup><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn></mrow></math>.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.13">  <b>Aufgabe 1.1.13
+</b> &nbsp;<br />
+In dieser Figur habe ein Kästchen auf dem Papier die Seitenlänge <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>, welchen Flächeninhalt (als Term in der Variablen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>) besitzt
+die Figur?
+
+<br clear="all"/><br clear="all"/>
+
+<center>
+
+<div class="imagecenter">
+<center>
+<div>
+<img src="./tikz01.png" style="" alt="./tikz01.png"/>
+</div>
+<div class="bildtext">
+
+
+
+
+
+<b>Abbildung 1:</b> Eine Figur auf kariertem Papier.
+
+
+
+</div>
+</center>
+</div>
+<br />
+
+</center>
+
+
+<br clear="all"/><br clear="all"/>
+Antwort:
+
+<ul>
+<li>Der große Kreis hat insgesamt den Flächeninhalt 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.3.QF9" id="QFELD_1.1.3.QF9" type="text" size="25" maxlength="25" onfocus="handlerFocus(9);" onblur="handlerBlur(9);" onkeyup="handlerChange(9,0);" onpaste="handlerChange(9,0);" oninput="handlerChange(9,0);" onpropertychange="handlerChange(9,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF9"/>
+
+
+,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>je ein kleiner Kreis hat den Flächeninhalt 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.3.QF10" id="QFELD_1.1.3.QF10" type="text" size="25" maxlength="25" onfocus="handlerFocus(10);" onblur="handlerBlur(10);" onkeyup="handlerChange(10,0);" onpaste="handlerChange(10,0);" oninput="handlerChange(10,0);" onpropertychange="handlerChange(10,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF10"/>
+
+
+,
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>die Figur insgesamt hat den Flächeninhalt 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.3.QF11" id="QFELD_1.1.3.QF11" type="text" size="40" maxlength="40" onfocus="handlerFocus(11);" onblur="handlerBlur(11);" onkeyup="handlerChange(11,0);" onpaste="handlerChange(11,0);" oninput="handlerChange(11,0);" onpropertychange="handlerChange(11,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.3.QF11"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+<font color="#0000FF">Die Kreiszahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&pi;</mi></mrow></math> kann als <tt>pi</tt> eingegeben werden.</font>
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint4" id="MHintButton4"   type="button" onclick="toggle_hint('MHint4');">Tipp zur Fl&#228;chenberechnung</button>
+  <div class="hint" style="display:none" id="MHint4"> 
+In späteren Kapiteln wird die Berechnung von Flächen vorgestellt. Für diese Aufgabe benötigt man davon nur, dass 
+ein Rechteck mit Seitenlängen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> den Flächeninhalt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>&middot;</mo><mi>b</mi></mrow></math> (geschrieben <tt>a*b</tt>) besitzt,
+und dass ein Kreis mit Radius <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>r</mi></mrow></math> den Flächeninhalt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&pi;</mi>
+<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> (geschrieben <tt>pi*r^2</tt>) besitzt.
+</div>
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint5" id="MHintButton5"   type="button" onclick="toggle_hint('MHint5');">L&#246;sung</button>
+  <div class="hint" style="display:none" id="MHint5"> 
+Der große Kreis hat insgesamt den Flächeninhalt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>25</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mi>&pi;</mi>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> (oder getippt <tt>25/4*pi*x*x</tt>).
+Je ein kleiner Kreis hat den Flächeninhalt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mi>&pi;</mi>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> und
+die Figur insgesamt hat den Flächeninhalt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo>
+<mfrac><mrow><mn>25</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mi>&pi;</mi><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>&pi;</mi><mo>-</mo><mn>3</mn><mo stretchy="false">)</mo><mo>&middot;</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math>.
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+<br />
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINT-Module Abschnitt 1.1.1 Neustart</title>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=de"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  config: ["TeX-AMS-MML_HTMLorMML.js"],
+  jax: ["input/MathML","input/TeX","output/HTML-CSS","output/NativeMML"],
+  extensions: ["mml2jax.js","MathMenu.js","MathZoom.js"],
+  "HTML-CSS": {
+      scale: 100,
+      minScaleAdjust: 80,
+      mtextFontInherit: true,
+      styles: {},
+      noReflows: true
+   },
+  MMLorHTML: {
+   prefer: {
+    MSIE: "HTML",
+    Firefox: "HTML",
+    Safari: "HTML",
+    Chrome: "HTML",
+    Opera: "HTML",
+    other: "HTML"
+      }
+    }
+});
+</script>
+<!-- Headerversion MPL/netservicejax -->
+<link rel="stylesheet" type="text/css" href="../../css/grundlagen.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/dynicons.css"/>
+<link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../parser.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var currentUser = "";
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1;
+var SOLUTION_FALSE = 2;
+var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33";
+var QCOLOR_FALSE = "#F0A4A4";
+var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("2q8t1//;/+6,46q2/26ct9y6;bqqr0.,44+;457x14a8a",4);}if(c==2){str=debork("35*+.0s*1810,ct0*)ry*7-r446s7*ryxscyqx).(q6sy",5);}if(c==3){str=debork("(xb7.,0)*30cyx+c1;c1*x3cr5-1/*9,-((51y32)78sr",13);}if(c==4){str=debork("((t5b3q33-s05--t71cx)))r,)xxt/071*7y;qb-++.4y",13);}if(c==5){str=debork("(84yt.cs18,)7)+r5+^932a6*2-4*3cy29br/r6xq,+**",11);}if(c==6){str=debork("xrs*-;1(855c61/,(418()0*yr^q+q5;23c)yb904*y,(",7);}if(c==7){str=debork("-*q1s.)*4t5ra+*62)()6sy+a)2;r.q7(x)(-t3((()*3",22);}if(c==8){str=debork("s*2q/5)rt-nq0(36y9a(s+ryst90c4nq1t.t5q4(/)r)(",17);}if(c==9){str=debork("-qq,qsb+,1s4+bb6qbcr)2y;,,at1qb-(a06)19rsbq1r",2);}if(c==10){str=debork("2t*8,4/r-b915x)6bc8)ac+(8c,y9b,79;0(85-*+s32y",4);}if(c==11){str=debork("q1c-b2c(,+/(7x6;)9r72x+t;4089t,q1--79xtctx)aa",0);}if(c==12){str=debork("0s3tqs+aa0q03(;q95s3;0s+4185,1b.+1t62r9,1((s,",3);}if(c==13){str=debork("1).s+37qs-brq./tr0((tx12(2;)2/b3)9c5,.671xx/-",19);}if(c==14){str=debork(",4r7rc8x2;0((c1x7)3;3c29+(q173rs(6s13a,;xb+bq",0);}if(c==15){str=debork("1,rs/50qsb7rq05tr,q(t,s7()t)7)4a),/+,a9+1rc//",19);}if(c==16){str=debork("08;;6,.,q/76acx++.*)2;*;32/;6x3y;(2.6y+s6.cb2",1);}if(c==17){str=debork("1)r,+xr-.s6yy1-///74)qsc4./x61-+2a/b1,-r7-5ts",1);}if(c==18){str=debork("0r*a5y1*a0a-x8/t85y6a.6syb196ay0+rc68*46t186;",1);}if(c==19){str=debork("0as9;;;r9(*6497,,r6)-b+b7/+y+.1/56bs1.c.08q15",1);}if(c==20){str=debork("a21*7*6656-r(-39)a();yssx-*r;/+8c,b*)x90ya..,",14);}if(c==21){str=debork("5q.4.b64)()3b((6a8tt+8;,33,y,(ycss97.90r12x4.",3);}if(c==22){str=debork("(q+b7)+,7ass)143)q16y,1-)x4tq5/969(36-3/9.xya",6);}if(c==23){str=debork("[br9,f4qy7c*ia5b,)806;xtt0;9)a0n94+t(b,qy28yq",9);}if(c==24){str=debork("(cy1xx80182t63;)0a,)y-ax-c4;7cs2,6+;s4c*/*(2.",5);}if(c==25){str=debork("[b71xf-c0y41i42,3)312r--t/135x9n,2s2;(,.yx0y8",9);}if(c==26){str=debork("(7*26*5s,*s643*,1(+)rr,(-*x)q40y,11q065s;5627",5);}return str;}
+
+__CQJ("TTXT1",1,GSLS(1),"QFELD_1.1.2.QF1",3,"5",4,0,1);__CQJ("TTXT3",2,GSLS(2),"QFELD_1.1.2.QF2",4,"6;x,y;3;1",4,0,1);__CQJ("TTXT4",3,GSLS(3),"QFELD_1.1.2.QF3",4,"10;x;5;1",4,0,1);__CQJ("TTXT5",4,GSLS(4),"QFELD_1.1.2.QF4",4,"10;x;5;1",4,0,1);__CQJ("TTXT6",5,GSLS(5),"QFELD_1.1.2.QF5",4,"10;s,r,t;5;1",4,0,1);__CQJ("TTXT7",6,GSLS(6),"QFELD_1.1.2.QF6",4,"1;x;10;576",4,0,1);__CQJ("TTXT8",7,GSLS(7),"QFELD_1.1.2.QF7",4,"12;x;10;256",4,0,1);__CQJ("TTXT9",8,GSLS(8),"QFELD_1.1.2.QF8",4,"1;n;10;256",4,0,1);__CQJ("TTXT10",9,GSLS(9),"QFELD_1.1.2.QF9",4,"10;t;10;1",4,0,1);__CQJ("AKK1",10,GSLS(10),"QFELD_1.1.2.QF10",3,"10",4,0,1);__CQJ("AKK2",11,GSLS(11),"QFELD_1.1.2.QF11",3,"10",4,0,1);__CQJ("AKK3",12,GSLS(12),"QFELD_1.1.2.QF12",3,"10",4,0,1);__CQJ("AKB1",13,GSLS(13),"QFELD_1.1.2.QF13",3,"10",4,0,1);__CQJ("AKB2",14,GSLS(14),"QFELD_1.1.2.QF14",3,"10",4,0,1);__CQJ("AKB3",15,GSLS(15),"QFELD_1.1.2.QF15",3,"10",4,0,1);__CQJ("RX1",16,GSLS(16),"QFELD_1.1.2.QF16",2,"IMGQFELD_1.1.2.QF16",4,0,1);__CQJ("RX2",17,GSLS(17),"QFELD_1.1.2.QF17",2,"IMGQFELD_1.1.2.QF17",4,0,1);__CQJ("RX3",18,GSLS(18),"QFELD_1.1.2.QF18",2,"IMGQFELD_1.1.2.QF18",4,0,1);__CQJ("RX4",19,GSLS(19),"QFELD_1.1.2.QF19",2,"IMGQFELD_1.1.2.QF19",4,0,1);__CQJ("TTXT11",20,GSLS(20),"QFELD_1.1.2.QF20",4,"8;x;3;128",4,0,1);__CQJ("AKY",21,GSLS(21),"QFELD_1.1.2.QF21",3,"4",4,0,1);__CQJ("(-5,1)",22,GSLS(22),"QFELD_1.1.2.QF22",6,"3",4,0,1);__CQJ("DBX1",23,GSLS(23),"QFELD_1.1.2.QF23",6,"3",4,0,1);__CQJ("DBX2",24,GSLS(24),"QFELD_1.1.2.QF24",6,"3",4,0,1);__CQJ("DBX3",25,GSLS(25),"QFELD_1.1.2.QF25",6,"3",4,0,1);__CQJ("DBX4",26,GSLS(26),"QFELD_1.1.2.QF26",6,"3",4,0,1);
+SITE_ID = "2.1.1.1";
+SITE_UXID = "VBKMT_OffenerTest";
+SECTION_ID = 1;
+var docName = "modstart";
+var fullName = "mpl/2.1.1/modstart.html";
+var fullNamePath = "../out/tmp/mpl/2.1.1/modstart.html";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler();
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+<script>
+var feedbackserver = "http://mintlx3.scc.kit.edu/dbtest/feedback.php"; var feedbackdesc = "Betaphasenserver 3 (KIT)";
+</script>
+<div id="fixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="xnprev"><a class="MINTERLINK" href="../1.10.1/modstart.html">Zur&#252;ck</a></div>
+<div class="xnnext"><a class="MINTERLINK" href="../2.1.2/modstart.html">Weiter</a></div>
+<ul>
+  <li class="iselectedbutton_exclam"><a class="MINTERLINK" href="../2.1.1/modstart.html">Neustart</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="footer">
+<div id="footerleft">Lizenz: CC BY-SA 3</div><div id="footerright"></div><div id="footermiddle">- BETAVERSION -</div>
+</div>
+</div>
+<div id="notfixed">
+<div class="head">
+<div class="headleft">Version 0.9943 (Beta)</div><div class="headright">www.ve-und-mint.de</div><div class="headmiddle">Onlinevorkurs Mathematik (Betaversion) </div>
+</div>
+<div class="toc">
+<div class="toccaption"><img alt="MINT-Logo" style="width:205px" src="../../images/veundmintlogo2.png"><br /><br /></div>
+<tocnav><ul><li><a class="MINTERLINK" href="../../chapters.html" target="_new"><img src="../../images/chab.png" style="border: none"> Kursinhalt</a><div><ul>
+  <li><a class="MINTERLINK" href="../1.1.html">1. Elementares Rechnen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.1.1/modstart.html">1.1 Zahlen, Variablen, Terme</a></li>
+    <li><a class="MINTERLINK" href="../1.1.2/modstart.html">1.2 Bruchrechnung</a></li>
+    <li><a class="MINTERLINK" href="../1.1.3/modstart.html">1.3 Umformen von Termen</a></li>
+    <li><a class="MINTERLINK" href="../1.1.4/modstart.html">1.4 Potenzen und Wurzeln</a></li>
+    <li><a class="MINTERLINK" href="../1.1.5/modstart.html">1.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.2.html">2. Gleichungen mit einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.2.1/modstart.html">2.1 Einfache Gleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.2/modstart.html">2.2 Betragsgleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.2.3/modstart.html">2.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.3.html">3. Ungleichungen in einer Unbekannten</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.3.1/modstart.html">3.1 Ungleichungen und ihre Lösungsmengen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.2/modstart.html">3.2 Umformen von Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.3/modstart.html">3.3 Betragsungleichungen und quadratische Ungleichungen</a></li>
+    <li><a class="MINTERLINK" href="../1.3.4/modstart.html">3.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.4.html">4. Lineare Gleichungssysteme</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.4.1/modstart.html">4.1 Was sind Lineare Gleichungssysteme?</a></li>
+    <li><a class="MINTERLINK" href="../1.4.2/modstart.html">4.2 LGS mit zwei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.3/modstart.html">4.3 LGS mit drei Unbekannten</a></li>
+    <li><a class="MINTERLINK" href="../1.4.4/modstart.html">4.4 Allgemeinere Systeme</a></li>
+    <li><a class="MINTERLINK" href="../1.4.5/modstart.html">4.5 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.5.html">5. Geometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.5.1/modstart.html">5.1 Winkel, Kongruenz und Ähnlichkeit</a></li>
+    <li><a class="MINTERLINK" href="../1.5.2/modstart.html">5.2 Fl&#228;cheninhalt und Strahlens&#228;tze</a></li>
+    <li><a class="MINTERLINK" href="../1.5.3/modstart.html">5.3 Trigonometrie</a></li>
+    <li><a class="MINTERLINK" href="../1.5.4/modstart.html">5.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.6.html">6. Elementare Funktionen</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.6.1/modstart.html">6.1 Grundlegendes zu Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.2/modstart.html">6.2 Lineare Funktionen und Polynome</a></li>
+    <li><a class="MINTERLINK" href="../1.6.3/modstart.html">6.3 Potenzfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.4/modstart.html">6.4 Exponentialfunktion und Logarithmus</a></li>
+    <li><a class="MINTERLINK" href="../1.6.5/modstart.html">6.5 Trigonometrische Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.6/modstart.html">6.6 Eigenschaften und Konstruktion elementarer Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.6.7/modstart.html">6.7 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.7.html">7. Differentialrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.7.1/modstart.html">7.1 Ableitung</a></li>
+    <li><a class="MINTERLINK" href="../1.7.2/modstart.html">7.2 Standardableitungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.3/modstart.html">7.3 Rechenregeln</a></li>
+    <li><a class="MINTERLINK" href="../1.7.4/modstart.html">7.4 Eigenschaften von Funktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.5/modstart.html">7.5 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.7.6/modstart.html">7.6 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.8.html">8. Integralrechnung</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.8.1/modstart.html">8.1 Stammfunktionen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.2/modstart.html">8.2 Bestimmtes Integral</a></li>
+    <li><a class="MINTERLINK" href="../1.8.3/modstart.html">8.3 Anwendungen</a></li>
+    <li><a class="MINTERLINK" href="../1.8.4/modstart.html">8.4 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.9.html">9. Orientierung im zweidimensionalen Koordinatensystem</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.9.1/modstart.html">9.1 Punkte und Geraden in der Ebene</a></li>
+    <li><a class="MINTERLINK" href="../1.9.2/modstart.html">9.2 Kreise</a></li>
+    <li><a class="MINTERLINK" href="../1.9.3/modstart.html">9.3 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../1.10.html">10. Grundlagen der anschaulichen Vektorgeometrie</a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../1.10.1/modstart.html">10.1 Abschlusstest</a></li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul></tocnav><br /><br /><tocnav><ul><li><a class="MINTERLINK" href="../../index.html" target="_new"><img src="../../images/startsiteb.png" style="border: none"> Einführung</a></li><li><a class="MINTERLINK" href="../../cdata.html" target="_new"><img src="../../images/datab.png" style="border: none"> Mein Kurs</a></li><li><a class="MINTERLINK" href="../../config.html" target="_new"><img src="../../images/confb.png" style="border: none"> Einstellungen</a></li><li><a class="MINTERLINK" href="../../stest.html" target="_new"><img src="../../images/stestsiteb.png" style="border: none"> Eingangstest</a></li><li><a class="MINTERLINK" href="../../search.html" target="_new"><img src="../../images/searchb.png" style="border: none"> Suche</a></li><li><a class="MINTERLINK" href="../../location.html" target="_new"><img src="../../images/location_common.png" style="border: none">Das KIT</a></li></ul></tocnav><br /><tocnav><ul><li><a href="mailto:daniel.haase@kit.edu"><img src="../../images/mailb.png" style="border: none"> Feedback</a></li></ul></tocnav><br /><tocnav><ul><li><a class="MINTERLINK" href="../../betasite.html" target="_new"><img src="../../images/betab.png" style="border: none"> Beta-Version</a></li></ul></tocnav></div>
+<div class="navi">
+<!--ZOOMSTOP-->
+<div class="xnprev"><a class="MINTERLINK" href="../1.10.1/modstart.html">Zur&#252;ck</a></div>
+<div class="xnnext"><a class="MINTERLINK" href="../2.1.2/modstart.html">Weiter</a></div>
+<ul>
+  <li class="iselectedbutton_exclam"><a class="MINTERLINK" href="../2.1.1/modstart.html">Neustart</a></li>
+</ul>
+<!--ZOOMRESTART-->
+</div>
+<div id="content"><div id="text"><div class="text">
+<hr />
+
+
+
+
+
+
+
+
+
+
+<h4> Einführungstest  - Eingangstest  - Test 1 Einführender Teil</h4><br /><h4>1.1.1 Neustart</h4>
+
+
+
+<a class="label" name="L_TEST01">
+</a>
+<!-- mdeclaresiteuxidpost;;VBKMT_OffenerTest;; //-->
+
+<br clear="all"/><br clear="all"/>
+Lesen Sie die <a class="MINTERLINK" href="../../mpl/2.1.html#L_TEST01START">Hinweise zum Testablauf</a>.
+&nbsp;<br />&nbsp;<br />
+Der einführende Teil des Tests ist frei ausfüllbar und wird nicht gewertet. Er dient dazu, den Umgang mit den Eingabefeldern zu erlernen.
+&nbsp;<br />&nbsp;<br />
+Wichtig: Die Aufgaben sollen auf einem Blatt Papier ohne Taschenrechner gelöst werden. Die Eingabefelder dienen der Überprüfung Ihrer Lösung.
+Sobald Sie sich sicher im Umgang mit den Eingabefeldern fühlen können Sie oben rechts auf &bdquo;Weiter &ldquo;&nbsp;klicken und den gewerteten Test bearbeiten.
+&nbsp;<br />&nbsp;<br />
+
+<br clear="all"/><br clear="all"/>
+<font color="#0000FF">Unter vielen Aufgaben finden sich blaue Infotexte die Tipps zum Umgang mit den interaktiven Eingabefeldern geben. Bei komplexeren Termen erscheint während der Eingabe
+ein blaues Infofenster, in dem der mathematische Term aufgebaut wird während Sie eintippen. Schließen Sie die Eingabe erst ab, wenn im Fenster die von Ihnen gewünschte Lösung
+dargestellt wird.</font>
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.1">  <b>Aufgabe 1.1.1
+</b> &nbsp;<br />
+Vereinfachen Sie diese Mehrfachbrüche, so dass höchstens ein einfacher Bruch übrig bleibt:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>2</mn><mo>+</mo>
+<mfrac><mrow><mn>3</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+</mrow>
+<mrow><mn>1</mn><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+</mrow>
+</mfrac>
+</mrow></math> ist vereinfacht das Gleiche wie 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.2.QF1" id="QFELD_1.1.2.QF1" type="text" size="5" maxlength="5" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF1"/>
+
+
+.<br /><font color="#0000FF">Tippen Sie beispielsweise <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>11</mn></mrow>
+<mrow><mn>12</mn></mrow>
+</mfrac>
+</mrow></math> als <tt>11/12</tt> ein.</font>
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>4</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+<mrow><mn>3</mn><mi>x</mi><mo>-</mo><mi>y</mi></mrow>
+</mfrac>
+<mo>-</mo>
+<mfrac><mrow><mn>5</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>2</mn>
+<msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+<mrow><mi>y</mi><mo>-</mo><mn>3</mn><mi>x</mi></mrow>
+</mfrac>
+</mrow></math> ist vereinfacht das Gleiche wie 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.2.QF2" id="QFELD_1.1.2.QF2" type="text" size="15" maxlength="15" onfocus="handlerFocus(2);" onblur="handlerBlur(2);" onkeyup="handlerChange(2,0);" onpaste="handlerChange(2,0);" oninput="handlerChange(2,0);" onpropertychange="handlerChange(2,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF2"/>
+
+
+.<br /><font color="#0000FF">Die Eingabe darf keine Klammern enthalten.</font>
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.2">  <b>Aufgabe 1.1.2
+</b> &nbsp;<br />
+Multiplizieren Sie diesen Term vollständig aus und fassen Sie zusammen:
+
+<br clear="all"/><br clear="all"/>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>&middot;</mo><mi>x</mi></mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.2.QF3" id="QFELD_1.1.2.QF3" type="text" size="30" maxlength="30" onfocus="handlerFocus(3);" onblur="handlerBlur(3);" onkeyup="handlerChange(3,0);" onpaste="handlerChange(3,0);" oninput="handlerChange(3,0);" onpropertychange="handlerChange(3,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF3"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+<font color="#0000FF">Beispielsweise tippen Sie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math> = <tt>x^2+3*x+2</tt> oder auch <tt>x*x+3*x+2</tt>.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.3">  <b>Aufgabe 1.1.3
+</b> &nbsp;<br />
+Wenden Sie jeweils eine binomische Formel an, um den Term umzuformen:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mo>-</mo><mi>x</mi><mo>-</mo><mn>3</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mo>-</mo><mi>x</mi><mo>+</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.2.QF4" id="QFELD_1.1.2.QF4" type="text" size="34" maxlength="34" onfocus="handlerFocus(4);" onblur="handlerBlur(4);" onkeyup="handlerChange(4,0);" onpaste="handlerChange(4,0);" oninput="handlerChange(4,0);" onpropertychange="handlerChange(4,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF4"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>s</mi><mo>+</mo><mn>2</mn><mi>r</mi><mo>+</mo><mi>t</mi>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.2.QF5" id="QFELD_1.1.2.QF5" type="text" size="34" maxlength="34" onfocus="handlerFocus(5);" onblur="handlerBlur(5);" onkeyup="handlerChange(5,0);" onpaste="handlerChange(5,0);" oninput="handlerChange(5,0);" onpropertychange="handlerChange(5,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF5"/>
+
+
+.<br />  <button name="Name_MHint1" id="MHintButton1"   type="button" onclick="toggle_hint('MHint1');">Tipp</button>
+  <div class="hint" style="display:none" id="MHint1"> Wenden Sie die binomische Formel zuerst auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>s</mi><mi>&ensp;</mi><mo>+</mo><mi>&ensp;</mi><mo stretchy="false">(</mo><mn>2</mn><mi>r</mi><mo>+</mo><mi>t</mi>
+<msup><mrow><mo stretchy="false">))</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> an.</div>
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<font color="#0000FF">Beispielsweise tippen Sie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> = <tt>x^2+2*x+1</tt> oder auch <tt>x*x+2*x+1</tt>, aber Ihre Eingabe darf keine Klammerprodukte mehr enthalten.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.4">  <b>Aufgabe 1.1.4
+</b> &nbsp;<br />
+Schreiben Sie diesen Potenz- und Wurzelausdruck als einfache Potenz mit einem rationalen Exponenten ohne das Wurzelzeichen zu verwenden:
+&nbsp;<br />&nbsp;<br />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mo>&middot;</mo><mi>x</mi></mrow></msqrt></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.2.QF6" id="QFELD_1.1.2.QF6" type="text" size="20" maxlength="20" onfocus="handlerFocus(6);" onblur="handlerBlur(6);" onkeyup="handlerChange(6,0);" onpaste="handlerChange(6,0);" oninput="handlerChange(6,0);" onpropertychange="handlerChange(6,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF6"/>
+
+
+.<br />
+<font color="#0000FF">Beispielsweise tippen Sie <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mo>&middot;</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> = <tt>x^(5/2)</tt> oder auch <tt>x^(2.5)</tt>,<br />vergessen Sie die Klammern um den Bruch im Exponenten nicht.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.5">  <b>Aufgabe 1.1.5
+</b> &nbsp;<br />
+Formen Sie die Brüche so um, dass der Nenner verschwindet:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>2</mn><mi>x</mi></mrow>
+<mrow><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>-</mo><msqrt><mrow><mn>3</mn></mrow></msqrt></mrow>
+</mfrac>
+</mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.2.QF7" id="QFELD_1.1.2.QF7" type="text" size="30" maxlength="30" onfocus="handlerFocus(7);" onblur="handlerBlur(7);" onkeyup="handlerChange(7,0);" onpaste="handlerChange(7,0);" oninput="handlerChange(7,0);" onpropertychange="handlerChange(7,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF7"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><msqrt><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msqrt><mo>+</mo><msqrt><mrow><mi>n</mi></mrow></msqrt></mrow>
+</mfrac>
+</mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.2.QF8" id="QFELD_1.1.2.QF8" type="text" size="30" maxlength="30" onfocus="handlerFocus(8);" onblur="handlerBlur(8);" onkeyup="handlerChange(8,0);" onpaste="handlerChange(8,0);" oninput="handlerChange(8,0);" onpropertychange="handlerChange(8,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF8"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<font color="#0000FF">Bei dieser Aufgabe dürfen die Antworten keine Brüche und keine Potenzen enthalten, Wurzeln sind dagegen erlaubt. Die Wurzel <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><mi>x</mi><mi>y</mi><mi>z</mi></mrow></msqrt></mrow></math> kann beispielsweise als
+<tt>sqrt(x*y*z)</tt> eingegeben werden.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.6">  <b>Aufgabe 1.1.6
+</b> &nbsp;<br />
+L&#246;sen Sie die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mi>t</mi><mo>-</mo><mn>2</mn></mrow>
+<mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow>
+</mfrac>
+<mo>=</mo><mn>2</mn></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi></mrow></math> auf.&nbsp;<br />
+Antwort: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>t</mi></mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.2.QF9" id="QFELD_1.1.2.QF9" type="text" size="5" maxlength="5" onfocus="handlerFocus(9);" onblur="handlerBlur(9);" onkeyup="handlerChange(9,0);" onpaste="handlerChange(9,0);" oninput="handlerChange(9,0);" onpropertychange="handlerChange(9,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF9"/>
+
+
+&nbsp;.
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.7">  <b>Aufgabe 1.1.7
+</b> &nbsp;<br />
+Geben Sie die Lösungsmengen dieser quadratischen Gleichungen an:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>3</mn><mi>x</mi><mo>-</mo><mn>10</mn><mo>=</mo><mn>0</mn></mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.2.QF10" id="QFELD_1.1.2.QF10" type="text" size="20" maxlength="20" onfocus="handlerFocus(10);" onblur="handlerBlur(10);" onkeyup="handlerChange(10,0);" onpaste="handlerChange(10,0);" oninput="handlerChange(10,0);" onpropertychange="handlerChange(10,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF10"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>3</mn><mo>=</mo><mn>0</mn></mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.2.QF11" id="QFELD_1.1.2.QF11" type="text" size="20" maxlength="20" onfocus="handlerFocus(11);" onblur="handlerBlur(11);" onkeyup="handlerChange(11,0);" onpaste="handlerChange(11,0);" oninput="handlerChange(11,0);" onpropertychange="handlerChange(11,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF11"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>0</mn></mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.2.QF12" id="QFELD_1.1.2.QF12" type="text" size="20" maxlength="20" onfocus="handlerFocus(12);" onblur="handlerBlur(12);" onkeyup="handlerChange(12,0);" onpaste="handlerChange(12,0);" oninput="handlerChange(12,0);" onpropertychange="handlerChange(12,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF12"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<font color="#0000FF">Die Lösungen sollen als Menge geschrieben werden, die Mengenklammern bekommt man auf einer deutschsprachigen Tastatur mit AltGr+7 bzw. AltGr+0. Mengen können in der Form
+<tt>{1;2;3}</tt> eingegeben werden. Die leere Menge kann man als <tt>{}</tt> schreiben.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.8">  <b>Aufgabe 1.1.8
+</b> &nbsp;<br />
+Geben Sie die Lösungsmengen dieser Gleichungen an:
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+<mo>+</mo><mn>1</mn><mo>=</mo><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.2.QF13" id="QFELD_1.1.2.QF13" type="text" size="30" maxlength="30" onfocus="handlerFocus(13);" onblur="handlerBlur(13);" onkeyup="handlerChange(13,0);" onpaste="handlerChange(13,0);" oninput="handlerChange(13,0);" onpropertychange="handlerChange(13,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF13"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac><mrow><mn>2</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>4</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.2.QF14" id="QFELD_1.1.2.QF14" type="text" size="30" maxlength="30" onfocus="handlerFocus(14);" onblur="handlerBlur(14);" onkeyup="handlerChange(14,0);" onpaste="handlerChange(14,0);" oninput="handlerChange(14,0);" onpropertychange="handlerChange(14,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF14"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><mn>2</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn></mrow></msqrt><mo>=</mo><mn>3</mn><mi>x</mi></mrow></math> hat die Lösungsmenge 
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.2.QF15" id="QFELD_1.1.2.QF15" type="text" size="30" maxlength="30" onfocus="handlerFocus(15);" onblur="handlerBlur(15);" onkeyup="handlerChange(15,0);" onpaste="handlerChange(15,0);" oninput="handlerChange(15,0);" onpropertychange="handlerChange(15,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF15"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<font color="#0000FF">In den Lösungsmengen dürfen auch Wurzeln auftreten, Vorzeichenunterscheidungen muss man aber ausschreiben. Beispielsweise kann man <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">{</mo><mn>1</mn><mo>&PlusMinus;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<msqrt><mrow><mn>3</mn></mrow></msqrt><mo stretchy="false">}</mo></mrow></math> schreiben als
+<tt>{1+1/2*sqrt(3);1-1/2*sqrt(3)}</tt>.</font>
+
+<br clear="all"/><br clear="all"/>
+Wieviele Lösungen hat die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>b</mi><mo>-</mo><mi>a</mi>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>100</mn></mrow>
+</msup>
+<mo>+</mo><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>a</mi>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>100</mn></mrow>
+</msup>
+<mo>=</mo><mn>0</mn></mrow></math> wenn <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> voneinander unabhängige Lösungsvariablen sind?<br />
+
+
+
+
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.1.2.QF16" id="QFELD_1.1.2.QF16" onchange="handlerChange(16,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.1.2.QF16" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.1.2.QF16"/> 
+
+ Keine Lösung&nbsp;<br />
+
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.1.2.QF17" id="QFELD_1.1.2.QF17" onchange="handlerChange(17,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.1.2.QF17" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.1.2.QF17"/> 
+
+ Genau eine Möglichkeit sowohl für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> wie auch für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math>&nbsp;<br />
+
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.1.2.QF18" id="QFELD_1.1.2.QF18" onchange="handlerChange(18,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.1.2.QF18" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.1.2.QF18"/> 
+
+ Eine Möglichkeit für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und unendlich viele Möglichkeiten für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math>&nbsp;<br />
+
+
+
+
+ <input mfieldtype="2" type="checkbox" name="Name_QFELD_1.1.2.QF19" id="QFELD_1.1.2.QF19" onchange="handlerChange(19,1);"/><img src="../../images/questionmark.gif" name="Name_IMGQFELD_1.1.2.QF19" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_1.1.2.QF19"/> 
+
+ Unendlich viele Möglichkeiten für beide Variablen
+
+
+
+
+&nbsp;<br />
+
+
+<button name="Name_Group16to19" id="Group16to19" type="button" onclick="group_button(16,19);">Eingabe überprüfen</button>
+
+
+<br clear="all"/><br clear="all"/>
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.9">  <b>Aufgabe 1.1.9
+</b> &nbsp;<br />
+Drücken Sie den Betragsausdruck <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">&verbar;</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">&verbar;</mo><mo>-</mo><mn>3</mn><mi>x</mi></mrow></math> mit Hilfe einer Fallunterscheidung durch zwei Ausdrücke ohne Betragsstriche aus.<br />
+Antwort: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">&verbar;</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">&verbar;</mo><mo>-</mo><mn>3</mn><mi>x</mi></mrow></math> = 
+
+
+<input mfieldtype="4" name="Name_QFELD_1.1.2.QF20" id="QFELD_1.1.2.QF20" type="text" size="40" maxlength="40" onfocus="handlerFocus(20);" onblur="handlerBlur(20);" onkeyup="handlerChange(20,0);" onpaste="handlerChange(20,0);" oninput="handlerChange(20,0);" onpropertychange="handlerChange(20,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF20"/>
+
+
+.<br />
+<font color="#0000FF">Eine Fallunterscheidung in Kurzschreibweise tippt man in der Form <tt>falls(Bedingung,Wert1,Wert2)</tt> ein.</font>
+&nbsp;<br />&nbsp;<br />
+  <button name="Name_MHint2" id="MHintButton2"   type="button" onclick="toggle_hint('MHint2');">Was soll ich hier machen?</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+Beträge sind durch eine Fallunterscheidung definiert.
+Den Betragsausdruck <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">&verbar;</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">&verbar;</mo></mrow></math> kann man beispielsweise als mathematische Fallunterscheidung
+<br /><br />
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo stretchy="false">&verbar;</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">&verbar;</mo><mi>&ensp;&ensp;</mi><mo>=</mo><mi>&ensp;&ensp;</mi><mrow><mo>{</mo>
+<mtable>
+<mtr><mtd columnalign="right"><mrow><mi>x</mi><mo>-</mo><mn>1</mn></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;&ensp;</mi><mi>x</mi><mo>&ge;</mo><mn>1</mn></mrow></mtd></mtr>
+<mtr><mtd columnalign="right"><mrow><mo>-</mo><mi>x</mi><mo>+</mo><mn>1</mn></mrow></mtd><mtd columnalign="left"><mrow>
+<mtext fontfamily="Verdana, Arial, Helvetica , sans-serif" fontstyle="normal">falls</mtext>
+<mi>&ensp;&ensp;</mi><mi>x</mi><mo>&lt;</mo><mn>1</mn></mrow></mtd></mtr></mtable>
+
+<mo> </mo></mrow><br /></mrow>
+    </mstyle></math></center>
+<br />
+
+schreiben.<br />
+<font color="#0000FF">In einem Eingabefeld würde man diesen Ausdruck schreiben als <tt>falls(x&#62;=1;x-1;-x+1)</tt>. Beachten Sie dass es mehrere richtige Möglichkeiten gibt, diese Ausdrücke aufzuschreiben.</font>
+</div>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.10">  <b>Aufgabe 1.1.10
+</b> &nbsp;<br />
+Bestimmen Sie s&#228;mtliche L&#246;sungen der Betragsgleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">&verbar;</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>7</mn><mo stretchy="false">&verbar;</mo><mo>=</mo><mi>x</mi><mo>-</mo><mn>2</mn></mrow></math>.
+&nbsp;<br />&nbsp;<br />
+Antwort: Die L&#246;sungsmenge ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>L</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_1.1.2.QF21" id="QFELD_1.1.2.QF21" type="text" size="30" maxlength="30" onfocus="handlerFocus(21);" onblur="handlerBlur(21);" onkeyup="handlerChange(21,0);" onpaste="handlerChange(21,0);" oninput="handlerChange(21,0);" onpropertychange="handlerChange(21,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF21"/>
+
+
+.<br />
+<font color="#0000FF">Die Lösungen sollen als Menge geschrieben werden, die Mengenklammern bekommt man auf einer deutschsprachigen Tastatur mit AltGr+7 bzw. AltGr+0.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.11">  <b>Aufgabe 1.1.11
+</b> &nbsp;<br />
+Geben Sie die Lösungsmenge der Ungleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>4</mn><mi>x</mi><mo>&lt;</mo><mn>5</mn></mrow></math> als Intervall an.<br />&nbsp;<br />
+Antwort: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>L</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&ensp;</mi><mo>=</mo><mi>&ensp;</mi></mrow></math>
+
+
+<input mfieldtype="6" name="Name_QFELD_1.1.2.QF22" id="QFELD_1.1.2.QF22" type="text" size="20" maxlength="20" onfocus="handlerFocus(22);" onblur="handlerBlur(22);" onkeyup="handlerChange(22,0);" onpaste="handlerChange(22,0);" oninput="handlerChange(22,0);" onpropertychange="handlerChange(22,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF22"/>
+
+
+.&nbsp;<br />
+<font color="#0000FF">Typische Intervalleingaben sind zum Beispiel <tt>(-3;2)</tt> oder <tt>[5;infty)</tt> und auch <tt>(-infty;infty)</tt>. Für das Symbol <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>&infin;</mi></mrow></math> kann man
+<tt>unendlich</tt>, <tt>infinity</tt> oder kurz <tt>infty</tt> schreiben. Verwenden Sie nicht die Notation <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">]</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">[</mo></mrow></math> für offene Intervalle, sondern <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math>.</font>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+          </div><div class="aufgabe" id="ADIV_1.1.12">  <b>Aufgabe 1.1.12
+</b> &nbsp;<br />
+Geben Sie jeweils Definitionsbereich und Lösungsmenge dieser Ungleichungen in Intervallschreibweise an:
+
+<ol type="1">
+<li>Die Ungleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mo>&gt;</mo><mi>x</mi></mrow></math> besitzt den Definitionsbereich 
+
+
+<input mfieldtype="6" name="Name_QFELD_1.1.2.QF23" id="QFELD_1.1.2.QF23" type="text" size="20" maxlength="20" onfocus="handlerFocus(23);" onblur="handlerBlur(23);" onkeyup="handlerChange(23,0);" onpaste="handlerChange(23,0);" oninput="handlerChange(23,0);" onpropertychange="handlerChange(23,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF23"/>
+
+
+ und die Lösungsmenge 
+
+
+<input mfieldtype="6" name="Name_QFELD_1.1.2.QF24" id="QFELD_1.1.2.QF24" type="text" size="20" maxlength="20" onfocus="handlerFocus(24);" onblur="handlerBlur(24);" onkeyup="handlerChange(24,0);" onpaste="handlerChange(24,0);" oninput="handlerChange(24,0);" onpropertychange="handlerChange(24,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF24"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Die Ungleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt><mrow><msqrt><mrow><mi>x</mi><mo>-</mo><mn>1</mn></mrow></msqrt><mo>+</mo><mn>2</mn></mrow></msqrt><mo>&gt;</mo><msqrt><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow></msqrt></mrow></math> besitzt den Definitionsbereich 
+
+
+<input mfieldtype="6" name="Name_QFELD_1.1.2.QF25" id="QFELD_1.1.2.QF25" type="text" size="20" maxlength="20" onfocus="handlerFocus(25);" onblur="handlerBlur(25);" onkeyup="handlerChange(25,0);" onpaste="handlerChange(25,0);" oninput="handlerChange(25,0);" onpropertychange="handlerChange(25,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF25"/>
+
+
+ und die Lösungsmenge 
+
+
+<input mfieldtype="6" name="Name_QFELD_1.1.2.QF26" id="QFELD_1.1.2.QF26" type="text" size="20" maxlength="20" onfocus="handlerFocus(26);" onblur="handlerBlur(26);" onkeyup="handlerChange(26,0);" onpaste="handlerChange(26,0);" oninput="handlerChange(26,0);" onpropertychange="handlerChange(26,0);"/><img src="../../images/questionmark.gif" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_1.1.2.QF26"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  <div class="text">
+  
+  
+
+
+
+
+
+<br clear="all"/><br clear="all"/>
+Sobald Sie sich sicher im Umgang mit den Eingabefeldern fühlen, können Sie oben rechts auf Weiter klicken und den gewerteten Test bearbeiten.
+
+<br clear="all"/><br clear="all"/>
+<br />
+
+
+<hr />
+</div></div></div>
+</div>
+<script>
+viewmodel = {
+  // <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+	var mathelement = MathJax.Hub.getAllJax(element)[0];
+	MathJax.Hub.Queue(["Text",mathelement,latex]);
+	// setScrollY(sy);
+      } else {
+	// while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+	var s = document.createElement('script');
+	s.type = "math/tex; mode=display";
+	try {
+	  s.appendChild(document.createTextNode(latex));
+	  element.appendChild(s);
+	} catch (e) {
+	  s.text = latex;
+	  element.appendChild(s);
+	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler();   
+});
+
+  // <JSCRIPTPOSTMODEL>
+
+</script>
+
+</body>
+</html>
