@@ -65,6 +65,13 @@ class Preprocessor(object):
             self.data['modmacrotex'] = self.data['macrotex']
 
 
+        # append signature values as LaTeX macros
+        self._addTeXMacro("MSignatureMain", self.options.signature_main)
+        self._addTeXMacro("MSignatureVersion", self.options.signature_version)
+        self._addTeXMacro("MSignatureLocalization", self.options.signature_localization)
+        self._addTeXMacro("MSignatureVariant", self.options.variant)
+        self._addTeXMacro("MSignatureDate", self.options.signature_date)
+
         if 'DirectHTML' in self.data:
             sys.message(sys.CLIENTWARN, "Another plugin has been using DirectHTML, appending existing values")
         else:
@@ -781,3 +788,8 @@ class Preprocessor(object):
         for f in self.options.texstylefiles:
             self.sys.removeFile(f)
         self.sys.removeFile(self.options.macrofile)
+
+ 
+    def _addTeXMacro(self, macro, tex):
+        self.data['modmacrotex'] += "\\newcommand{\\" + macro + "}{" + tex + "}\n"
+        

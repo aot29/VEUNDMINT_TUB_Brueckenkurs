@@ -1830,11 +1830,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\MModstartBox}{\special{html:<!-- modstartbox //-->}}
 \else%
 \newcommand{\MModstartBox}{%
-\begin{framed}
-\begin{center}
---- Hier erscheint im HTML eine Auflistung der Abschnitte mit Punktezahlen ---
-\end{center}
-\end{framed}
+\relax
 }
 \fi
 
@@ -2195,3 +2191,5 @@ Hier erscheint die Testauswertung!
 
 % #1 = DOM-id der Box
 \ifttm\newcommand{\MConfigbox}[1]{\special{html:<input cfieldtype="2" type="checkbox" name="Name_}#1\special{html:" id="}#1\special{html:" onchange="confHandlerChange('}#1\special{html:');"/>}}\fi % darf im PDF nicht aufgerufen werden!
+
+% ----------------------------------- Konverter fuegt automatisierte Makros am Schluss an ---------------------------
