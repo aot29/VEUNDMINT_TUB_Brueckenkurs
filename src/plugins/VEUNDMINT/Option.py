@@ -263,6 +263,16 @@ class Option(object):
             "servicescripts.js"
         ]
 
+        # javascript files to be minimized if borkify is active, relative to converterDir
+        self.jstominimize = [
+            self.convinfofile,
+            "userdata.js",
+            "intersite.js",
+            "exercises.js",
+            "mintscripts.js",
+            "servicescripts.js"
+        ]
+
         # ttm-file
         self.ttmExecute = True
         self.ttmPath = os.path.join(self.converterDir, "ttm")

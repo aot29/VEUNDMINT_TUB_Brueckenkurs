@@ -212,6 +212,8 @@ class System(object):
         text = ""
         if (os.path.isfile(name) == False):
             self.message(self.FATALERROR, "File " + name + " not found")
+        else:
+            self.message(self.VERBOSEINFO, "File " + name + " found")
         p = subprocess.Popen(["file", "-i", name], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
         (output, err) = p.communicate()
         m = re.match(r".*?; charset=([^\n ]+)", output, re.S)
@@ -220,8 +222,14 @@ class System(object):
                 self.message(self.FATALERROR, "File " + name + " appears to be binary, not a text file")
             if ((m.group(1) != enc) and (m.group(1) != "us-ascii")):
                 self.message(self.CLIENTWARN, "File " + name + " is encoded in " + m.group(1) + " instead of requested " + enc + " or us-ascii, doing implicit conversion")
-            with open(name, "r", encoding = m.group(1)) as file:
-                text = file.read()
+            enc = m.group(1)
+            if enc == "us-ascii":
+                # Pythons ascii decoder cannot handle ASCII values >127, presume iso-8859-1 encoding for those
+                self.message(self.VERBOSEINFO, "Switched ASCII encoding to latin1")
+                enc = "iso-8859-1"
+            
+            with open(name, "r", encoding = enc) as f:
+                text = f.read()
             self.message(self.VERBOSEINFO, "Read string of length " + str(len(text)) + " from file " + name + " encoded in " + m.group(1) + ", converted to python3 unicode string")
     
         else:

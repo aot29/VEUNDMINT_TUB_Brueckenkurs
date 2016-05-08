@@ -1076,15 +1076,12 @@ class Plugin(basePlugin):
 
 
     def finishing(self):
-        # set linux usage flags for all files
-        
         # perform borkification if requested
         if self.options.borkify == 1:
-            self.sys.message(self.sys.CLIENTERROR, "Borkification procedures not implemented yet")
-            # self.borkifyHTML()
-            # self.minimizeJS()
+            self.borkifyHTML()
+            self.minimizeJS()
         
-        # set access rights
+        # set linux usage flags for all files
         p = subprocess.Popen(["chmod", "-R", self.options.accessflags, self.options.targetpath], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
         (chmod, err) = p.communicate()
         if p.returncode != 0:
@@ -1260,4 +1257,34 @@ class Plugin(basePlugin):
                  
         return reply
 
+
+    def minimizeJS(self):
+        self.sys.pushdir()
+        os.chdir(self.options.targetpath)
+        fdi = 0
+        
+        fs = ""
+        for f in self.options.jstominimize:
+            jcontent = self.sys.readTextFile(f, "utf-8")
+            # perform some checks on the JS code
+            if "console.log" in jcontent:
+                self.sys.message(self.sys.CLIENTWARN, "There are console.log commands in js file " + f + ", these should be replaced by logMessage commands")
+        
+            p = subprocess.Popen(["java", "-jar", os.path.join(self.options.converterDir, "yuicompressor-2.4.8.jar"), f, "-o", f], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+            (output, err) = p.communicate()
+            if p.returncode < 0:
+                self.sys.message(self.sys.FATALERROR, "Call to java for jar yuicompressor on file " + f + " was terminated by a signal (POSIX return code " + p.returncode + ")")
+            else:
+                if p.returncode > 0:
+                    self.sys.message(self.sys.CLIENTERROR, "java yuicompressor could not process javascript file " + f + ", error lines have been written to logfile")
+                    s = output[-256:]
+                    s = s.replace("\n",", ")
+                    self.sys.message(self.sys.VERBOSEINFO, "Last yuicompressor lines: " + s)
+                    fs += " [" + f + "]"
+                else:
+                    fs += " " + f
+
+        self.sys.message(self.sys.VERBOSEINFO, "Minimized JS files:" + fs)
+        self.sys.popdir()
+        self.sys.message(self.sys.CLIENTINFO, "Minimized " + str(len(self.options.jstominimize)) + " javascript files")
 
