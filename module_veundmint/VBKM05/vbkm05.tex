@@ -348,14 +348,16 @@ gleich weit entfernt sind, ist eine Gerade.
 Dies ist ein typische Vorgehensweise in der Geometrie, mit Hilfe von 
 Eigenschaften wie einem Abstand neue Objekte zu definieren. Auf diese Weise
 kann auch ein Kreis ganz einfach beschrieben werden.
+
 \begin{MXInfo}{Kreis}
 Gegeben ist ein Punkt $M$ und eine positive reelle Zahl $r$.
 \par
+\begin{tabular}{ll}
 \begin{minipage}[c]{6cm}
 Dann hei"st die Menge aller Punkte, die von $M$ den Abstand $r$ haben, ein 
 \MEntry{Kreis}{Kreis} um $M$ mit \MEntry{Radius}{Radius} $r$.
 \end{minipage}
-%
+&
 \begin{minipage}[c]{6cm}
 \begin{center}
 \MTikzAuto{%
@@ -368,6 +370,7 @@ Dann hei"st die Menge aller Punkte, die von $M$ den Abstand $r$ haben, ein
 }
 \end{center}
 \end{minipage}
+\end{tabular}
 \end{MXInfo}
 \end{MXContent}
 
@@ -1268,18 +1271,58 @@ Dreiecke als Konstruktionselemente.
 \coordinate (B) at (6,0);
 \coordinate (C) at ($(-6,0) + (60:3)$);
 \coordinate (D) at ($(6,0) + (120:3)$);
-%for \x in (3) do
+%Bruecke:
 \draw (-6,0) -- ++(60:3) -- ++(-60:3) -- ++(60:3) -- ++(-60:3) %
  -- ++(60:3) -- ++(-60:3) -- ++(60:3) -- ++(-60:3);
-\draw (A) -- (B);
-\draw (C) -- (D);
-\draw (-6,-0.2) -- ++(0.4,0);
-\draw (6,-0.2) -- ++(-0.4,0);
-\draw (-6.0,-0.2) -- ++(-60:0.2);
-\draw (-5.9,-0.2) -- ++(-60:0.2);
-\draw (-5.8,-0.2) -- ++(-60:0.2);
-\draw (-5.7,-0.2) -- ++(-60:0.2);
-\draw (5.8,-0.4) circle(0.2);
+\draw[line width=2pt] (A) -- (B);
+\draw[line width=2pt] (C) -- (D);
+\coordinate (LA) at (-0.2,0);
+\coordinate (LAA) at (-0.3,0);
+\coordinate (LAU) at (-0.3,-0.1);
+\coordinate (LB) at (0.2,0);
+\coordinate (LBB) at (0.3,0);
+\coordinate (LBU) at (0.3,-0.1);
+\coordinate (LC) at ($ (LA) + (60:0.4) $);
+\coordinate (LM) at ($ (LC) + (0,0.08) $);
+%Lager:
+\begin{scope}[xshift=-6cm,yshift=-0.5cm]
+\coordinate (LA) at (-0.2,0);
+\coordinate (LAA) at (-0.3,0);
+\coordinate (LB) at (0.2,0);
+\coordinate (LBB) at (0.3,0);
+\coordinate (LC) at ($ (LA) + (60:0.4) $);
+\coordinate (LM) at ($ (LC) + (0,0.08) $);
+\draw (LAA) -- (LBB);
+\draw (LA) -- (LC) -- (LB);
+\draw (LM) circle(0.07);
+\draw (-0.2,0) -- ++(-120:0.2);
+\draw (-0.1,0) -- ++(-120:0.2);
+\draw (0.0,0) -- ++(-120:0.2);
+\draw (0.1,0) -- ++(-120:0.2);
+\draw (0.2,0) -- ++(-120:0.2);
+\draw (0.3,0) -- ++(-120:0.2);
+\end{scope}
+%
+\begin{scope}[xshift=6cm,yshift=-0.5cm]
+\coordinate (LA) at (-0.2,0);
+\coordinate (LAA) at (-0.3,0);
+\coordinate (LAU) at (-0.3,-0.1);
+\coordinate (LB) at (0.2,0);
+\coordinate (LBB) at (0.3,0);
+\coordinate (LBU) at (0.3,-0.1);
+\coordinate (LC) at ($ (LA) + (60:0.4) $);
+\coordinate (LM) at ($ (LC) + (0,0.08) $);
+\draw (LAA) -- (LBB);
+\draw (LA) -- (LC) -- (LB);
+\draw (LM) circle(0.07);
+\draw (LAU) -- (LBU);
+\draw (-0.2,-0.1) -- ++(-120:0.2);
+\draw (-0.1,-0.1) -- ++(-120:0.2);
+\draw (0.0,-0.1) -- ++(-120:0.2);
+\draw (0.1,-0.1) -- ++(-120:0.2);
+\draw (0.2,-0.1) -- ++(-120:0.2);
+\draw (0.3,-0.1) -- ++(-120:0.2);
+\end{scope}
 \end{tikzpicture}
 }
 \end{center}
@@ -1413,7 +1456,7 @@ Dreiecke werden folgenderma"sen nach ihren Winkeln benannt:
   \MEntry{Hypotenuse}{Hypotenuse}.
        
  \item Ein Dreieck, das einen Winkel mit einem Ma"s von "uber~$\frac{\pi}{2}$
-  besitzt, hei"st \MEntry{stumpfwinklig}{Dreieck (stumpfwinklig)}.
+  besitzt, hei"st \MEntry{stumpfwinklig}{Stumpfwinklig (Dreieck)}.
 \end{itemize}
 \end{MXInfo}
 
@@ -1481,22 +1524,12 @@ $C$ liegt.
 \draw (B) ++(120:1.8) arc(300:210:0.5);
 \draw (C) ++(255:0.3) circle(0.5pt);
 %Dreieck:
-\draw (A) -- node[below] {$c$} (B) %
+\draw (A) -- (B) -- (C) -- cycle;
+%Beschriftung des Dreiecks:
+\path (A) -- node[below] {$c$} (B) %
  -- node[above right] {$a$} (C) -- node[above left] {$b$} (A);
 \end{tikzpicture}
 }
-%
-%\MTikzAuto{%
-%\begin{tikzpicture}[line width=1pt]
-%\draw (30:4) ++(300:0.5) arc(300:210:0.5);
-%\draw (30:4) ++(255:0.3) circle(0.5pt);
-%\draw (0,0) -- node[above left] {$b$} (30:4) %
-% -- node[above right] {$a$} ++(300:2.312) -- node[below] {$c$} (0,0);
-%\node[left] at (0,0) {$A$};
-%\node[right] at (4.6,0) {$B$};
-%\node[above] at (30:4) {$C$};
-%\end{tikzpicture}
-%}
 \end{center}
 \end{minipage}
 \end{tabular}
@@ -1694,8 +1727,8 @@ der Hypotenuse und dem anliegenden Hypotenusenabschnitt:
 
 \begin{MExample}
 Gegeben sei ein rechtwinkliges Dreieck mit den Kathetenl\"angen $a=3$ und 
-$b=4$.\\
-\ \\
+$b=4$.
+
 Die L\"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras berechnet 
 werden:
 \[c^2=\sqrt{a^2 + b^2}=\sqrt{9 + 16}=\sqrt{25}=5 \MDFPeriod\]
@@ -3254,6 +3287,19 @@ F"ahrt man eine Stra"se mit einem Gef"alle von f"unf Prozent bergab,
 nimmt die H"ohe alle hundert Meter um f"unf Meter ab. Dabei wird der 
 H"ohenunterschied im Vergleich zur Horizontalen betrachtet.
 
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt]
+\coordinate (A) at (0,0);
+\coordinate (B) at (10,0);
+\coordinate (C) at (10,0.5);
+\path (A) -- node[below] {$a = 100\MEinheit{m}$} (B) %
+ -- node[right] {$b = 5\MEinheit{m}$} (C) -- node[above] {Steigung $5\%$} (A);
+\draw (A) -- (B) -- (C) -- cycle;
+\end{tikzpicture}
+}
+\end{center}
+
 Demnach betr"agt das Gef"alle $100\%$, wenn der H"ohenunterschied
 $100\MEinheit{m}$ zwischen zwei Positionen betr"agt, deren horizontaler 
 Abstand $100\MEinheit{m}$ betr"agt. Geometrisch formuliert, ist 
@@ -3261,81 +3307,152 @@ die Verbindungsstrecke zwischen den beiden Punkte eine Diagonale
 eines Quadrats. Damit hat der Winkel zwischen der horizontalen 
 Vergleichsstrecke und der Diagonalen, auf der man sich bewegt, das
 Winkelma"s von $45\MGrad$. 
-Schon die Berechnung, dass zu einem Gef"alle oder einer Steigung von $50\%$ 
-der Winkel rund $\MZahl{26}{565}\MGrad$ gro"s ist, ist bereits nicht mehr 
-so einfach.
-Vor der Zeit von Taschenrechnern und Computern wurden die aufw"andig 
-bestimmten Werte in gro"sen Tafelwerken aufgeschrieben, um dann einfach
-nachgeschlagen werden zu k"onnen.
-
-\begin{MXInfo}{Die trigonometrischen Funktionen im rechtwinkligen Dreieck}
-\MLabel{Mathematik_ElementareGeometrie_Def:Trigonometrie}%
 
 \begin{center}
 \MTikzAuto{%
-\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
-\pgfmathparse{sin(39)/sin(91)}\let\laf\pgfmathresult
-\pgfmathparse{sin(50)/sin(91)}\let\lbf\pgfmathresult
-\draw[color=black, thick] (0,0) -- (23:9) (0,0) -- (62:7);
-\draw[color=black, thick] (23:5.4) -- +(153:{5.4*\laf});
-\draw[color=black, thin] (0,0) ++(23:1.2) arc (23:62:1.2);
-\draw[color=black] (0,0) ++(42.5:0.8) node {$\alpha$};
-\draw[color=black, thin] (23:5.4) ++(153:1.2) arc (153:203:1.2);
-\draw[color=black] (23:5.4) ++(178:0.8) node {$\beta$};
-\draw[color=black, thin] (23:5.4) ++(153:{5.4*\laf}) ++(242:0.9) arc (242:333:0.9);
-\draw[color=black] (23:5.4) ++(153:{5.4*\laf}) ++(287.5:0.6) node {$\gamma$};
-\path (23:5.4) ++(153:{5.4*0.5*\laf}) node[anchor=south west] {$a$};
-\path (62:{5.4*0.5*\lbf}) node[anchor=south east] {$b$};
-\path (23:{5.4*0.5}) node[anchor=north west] {$c$};
-\draw[color=black, thick, loosely dashed] (23:7.0) -- +(153:{7.0*\laf});
-\path (23:7.0) ++(153:{7.0*0.5*\laf}) node[anchor=south west] {$a'$};
-\path (62:{6.4*\lbf}) node[anchor=south east] {$b'$};
-\path (23:{6.4}) node[anchor=north west] {$c'$};
-\draw[color=black, thick, loosely dotted] (23:8.4) -- +(153:{8.4*\laf});
-\path (23:8.4) ++(153:{8.4*0.5*\laf}) node[anchor=south west] {${a'}'$};
-\path (62:{7.7*\lbf}) node[anchor=south east] {${b'}'$};
-\path (23:{7.7}) node[anchor=north west] {${c'}'$};
+\begin{tikzpicture}
+\coordinate (A) at (0,0);
+\coordinate (B) at (4,0);
+\coordinate (C) at (4,4);
+\coordinate (D) at (0,4);
+\draw (A) -- (B) -- (C) -- cycle;
+\draw[style=dotted] (C) -- (D) -- (A);
+\draw (1,0) arc(0:45:1);
+\draw[style=dotted] (0,1) arc(90:45:1);
+\end{tikzpicture}
+}
+\end{center}
+
+Dies kann man auch so formulieren: Einem Winkel von $45\MGrad$ entspricht
+eine Steigung von $\frac{100\MEinheit{m}}{100\MEinheit{m}} = 1$, das hei"st 
+ein Streckenverh"altnis von $1$ von vertikaler zu horizontaler Strecke.
+Wenn diese Zuordnung zwischen Winkel und Streckenverh"altnis auch f"ur andere
+Winkel bekannt ist, kann man damit viele konstruktive Aufgabenstellungen 
+l"osen. 
+Beispielsweise kann die H"ohe zu einem gegebenen Winkel bestimmt werden.
+
+Schon die Frage, welches Verh"altnis zu einem Winkel von $30\MGrad$ geh"ort,
+zeigt allerdings, dass die Bestimmung der Zuordung zwischen Winkel und 
+Streckenverh"altnis im Allgemeinen jedoch nicht so einfach ist.
+%Schon die Berechnung, dass zu einem Gef"alle oder einer Steigung von 
+%$\MZahl{57}{7}\%$ der Winkel rund $30\MGrad$ gro"s ist, ist bereits nicht 
+%mehr so einfach.
+%Schon die Berechnung, dass zu einem Gef"alle oder einer Steigung von $50\%$ 
+%der Winkel rund $\MZahl{26}{565}\MGrad$ gro"s ist, ist bereits nicht mehr 
+%so einfach.
+Deshalb wurden die aufw"andig bestimmten Werte anfangs in gro"sen Tafelwerken 
+aufgeschrieben, um dann einfach nachgeschlagen werden zu k"onnen.
+Inzwischen sind die Werte mittels Taschenrechner und Computer praktisch 
+"uberall verf"ugbar. Die gebr"auchlichsten Zuordnungen von Winkel zu einem 
+Streckenverh"altnis werden im Folgenden vorgestellt. 
+Sie werden Winkelfunktionen oder trigonometrische Funktionen genannt, und 
+das mathematische Gebiet, das sich mit ihren Eigenschaften befasst, hei"st
+\MEntry{Trigonometrie}{Trigonometrie}.
+
+\begin{MXInfo}{Die trigonometrischen Funktionen im rechtwinkligen Dreieck}%
+\MLabel{M05_DefinitionWinkelfunktionen}
+Es werden die gebr"auchlichsten \MEntry{Winkelfunktionen}{Winkelfunktionen}
+als Zuordnungen zwischen Winkel und Seitenverh"altnissen im Dreieck beschrieben.
+Die Winkelfunktionen hei"sen auch 
+\MEntry{trigonometrische Funktionen}{trigonometrische Funktion}.
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1pt]
+\coordinate (A) at (0,0);
+\coordinate (B) at ({3*sqrt(3)},0);
+\coordinate (C) at ({3*sqrt(3)},3);
+\path (A) -- node[below] {Ankathete $b$} (B) %
+ -- node[right] {Gegenkathete $a$} (C) %
+ -- node[above left] {Hyptenuse $c$} (A);
+\draw (A) -- (B) -- (C) -- cycle;
+\draw ($ (B) + (0,0.5) $) arc(90:180:0.5);
+\filldraw ($ (B) + (135:0.25) $) circle(0.5pt);
+\draw ($ (A) + (1.2,0) $) arc(0:30:1.2);
+\path ($ (A) + (1.2,0) $) arc(0:15:1.2) node[right] {$x$};
 \end{tikzpicture}
 }
 \end{center}
 
 \begin{itemize}
- \item Das Verh\"altnis \[\frac{a}{c}=\frac{a'}{c'}=\frac{  {a'}'}{{c'}'}=\ldots=\frac{\text{Gegenkathete}}{\text{Hypotenuse}}:=\sin\left(\alpha\right)\]
- bezeichnet man als den \textbf{Sinus} des Winkels $\alpha$.
- 
- \item  Das Verh\"altnis \[\frac{b}{c}=\frac{b'}{c'}=\frac{{b'}'}{{c'}'}=\ldots=\frac{\text{Ankathete}}{\text{Hypotenuse}}:=\cos\left(\alpha\right)\]
- bezeichnet man als den \textbf{Kosinus} des Winkels $\alpha$.
- 
- \item Das Verh\"altnis \[\frac{a}{b}=\frac{a'}{b'}=\frac{{a'}'}{{b'}'}=\ldots=\frac{\text{Gegenkathete}}{\text{Ankathete}}:=\tan\left(\alpha\right)\]
- bezeichnet man als den \textbf{Tangens} des Winkels $\alpha$.
+\item
+Die Zuordnung zwischen Winkel $x$ und dem Verh"altnis zwischen Gegenkathete $a$ 
+und Ankathete $b$ wird als Tangens bezeichnet:
+\[
+\tan(x) := \frac{\text{Gegenkathete}}{\text{Ankathete}} = \frac{a}{b} %%
+\]
+%
+\item
+Die Zuordnung zwischen Winkel $x$ und dem Verh"altnis zwischen Ankathete $b$ und 
+Hypotenuse $c$ wird als Kosinus bezeichnet:
+\[
+\cos(x) := \frac{\text{Ankathete}}{\text{Hyptenuse}} = \frac{b}{c} %%
+\]
+%
+\item
+Die Zuordnung zwischen Winkel $x$ und dem Verh"altnis zwischen Gegenkathete $a$ 
+und Hypotenuse $c$ wird als Sinus bezeichnet:
+\[
+\sin(x) := \frac{\text{Gegenkathete}}{\text{Hyptenuse}} = \frac{a}{c} %%
+\]
 \end{itemize}
-
 \end{MXInfo}
 
-Der Tangens des Winkels $\alpha$ ist nach der Definition \[\tan\left(\alpha\right)=\frac{a}{b}=\frac{a}{b}\cdot\frac{c}{c}=\frac{a}{c}\cdot\frac{c}{b}=\frac{\sin\left(\alpha\right)}{\cos\left(\alpha\right)} \MDFPeriod\]
+Demnach beschreibt der Tangens die Zuordnung zwischen dem Neigungswinkel und 
+dem Verh"altnis zwischen H"ohe und Breite, also der Steigung. Dies ist auch 
+im Kapitel \MRef{VBKM08} im Kontext der geometrischen Interpretation der 
+Ableitung von Bedeutung.
+
+Der Tangens des Winkels $\alpha$ ist nach der Definition 
+\[
+\tan\left(\alpha\right)=\frac{a}{b}=\frac{a}{b}\cdot\frac{c}{c} %
+ =\frac{a}{c}\cdot\frac{c}{b} %
+ =\frac{\sin\left(\alpha\right)}{\cos\left(\alpha\right)} \MDFPeriod %%
+\]
+Somit gen"ugt es, die Werte von Sinus und Kosinus zu kennen, um auch den 
+Tangens berechnen zu k"onnen.
 
 \begin{MExample}
-Von einem Dreieck ist bekannt, dass es einen rechten Winkel $\gamma=\frac{\pi}{2}=90\MGrad$ hat. Die Seite $c$ ist $5\MEinheit{cm}$, die Seite $a$ ist $\MZahl{2}{5}\MEinheit{cm}$ lang. Es sollen jeweils der Sinus, Kosinus und Tangens des Winkels $\alpha$ bestimmt werden:
+Von einem Dreieck ist bekannt, dass es einen rechten Winkel 
+$\gamma=\frac{\pi}{2}=90\MGrad$ hat. Die Seite $c$ ist $5\MEinheit{cm}$, 
+die Seite $a$ ist $\MZahl{2}{5}\MEinheit{cm}$ lang. Es sollen jeweils der Sinus,
+Kosinus und Tangens des Winkels $\alpha$ bestimmt werden:
 
 Der Sinus l\"asst sich sofort aus den Angaben berechnen:
-\[\sin\left(\alpha\right)=\frac{a}{c}=\frac{\MZahl{2}{5}\MEinheit{cm}}{5\MEinheit{cm}}=\MZahl{0}{5} \MDFPeriod\]
-F\"ur den Kosinus wird die L\"ange der Seite $b$ ben\"otigt, welche man mithilfe des Satzes von Pythagoras erh\"alt:
-\[b^2=c^2-a^2\quad\Rightarrow\quad\cos\left(\alpha\right)=\frac{b}{c}=\frac{\sqrt{c^2-a^2}}{c}=\frac{\sqrt{\left(5\MEinheit{cm}\right)^2-\left(\MZahl{2}{5}\MEinheit{cm}\right)^2}}{5\MEinheit{cm}}=\MZahl{0}{866} \MDFPeriod\]
-Daraus folgt f\"ur den Tangens
-\[\tan\left(\alpha\right)=\frac{\sin\left(\alpha\right)}{\cos\left(\alpha\right)}=\frac{\MZahl{0}{5}}{\MZahl{0}{866}}=\MZahl{0}{5773} \MDFPeriod\]
+\[
+\sin\left(\alpha\right)=\frac{a}{c}
+ =\frac{\MZahl{2}{5}\MEinheit{cm}}{5\MEinheit{cm}}=\MZahl{0}{5} \MDFPeriod\]
+F\"ur den Kosinus wird die L\"ange der Seite $b$ ben\"otigt, welche man 
+mithilfe des Satzes von Pythagoras erh\"alt:
+\[
+b^2=c^2-a^2
+\]
+Daraus folgt:
+\[
+\cos\left(\alpha\right)=\frac{b}{c}=\frac{\sqrt{c^2-a^2}}{c} %
+ =\frac{\sqrt{\left(5\MEinheit{cm}\right)^2 - \left(\MZahl{2}{5}\MEinheit{cm}\right)^2}}{5\MEinheit{cm}}=\MZahl{0}{866} \MDFPeriod %%
+\]
+Damit ergibt sich f\"ur den Tangens
+\[
+\tan\left(\alpha\right) %
+ =\frac{\sin\left(\alpha\right)}{\cos\left(\alpha\right)} %
+ =\frac{\MZahl{0}{5}}{\MZahl{0}{866}}=\MZahl{0}{5773} \MDFPeriod
+\]
 \end{MExample}
 
 
 \begin{MExercise}\MLabel{VBKM05_TrigonometrieAufgabeTabelle}
-Die Hypotenuse $c=5$ ist vorgegeben. Zeichnen Sie mithilfe des Thaleskreises (Ma\ss stab $ 1\hat{=}2\MEinheit{cm}$
-die rechtwinkligen Dreiecke f\"ur die Winkel $\alpha\in\left\{0\MGrad\MElSetSep 10\MGrad\MElSetSep 20\MGrad\MElSetSep 30\MGrad\MElSetSep 40\MGrad\MElSetSep 45\MGrad\MElSetSep
-50\MGrad\MElSetSep 60\MGrad\MElSetSep 70\MGrad\MElSetSep 80\MGrad\MElSetSep 90\MGrad\right\}$.
+Die Hypotenuse $c=5$ ist vorgegeben. Zeichnen Sie mithilfe des Thaleskreises 
+die rechtwinkligen Dreiecke f\"ur die Winkel 
+$\alpha\in\left\{0\MGrad\MElSetSep 10\MGrad\MElSetSep 20\MGrad\MElSetSep %
+30\MGrad\MElSetSep 40\MGrad\MElSetSep 45\MGrad\MElSetSep 50\MGrad\MElSetSep %
+60\MGrad\MElSetSep 70\MGrad\MElSetSep 80\MGrad\MElSetSep 90\MGrad\right\}$
+(Ma"sstab $1\MEinheit{L"angeneinheit} \hat{=} 2\MEinheit{cm}$).
 
-Messen Sie die Seiten $a$ und $b$ und schreiben Sie sie in eine Tabelle. Berechnen Sie zu jedem Dreieck den Sinus, Kosinus und Tangens.
-
-Schauen Sie sich die Werte genauer an und versuchen Sie, sie zu interpretieren.
-
-Tragen Sie die Werte von Sinus, Kosinus und Tangens in Abh\"angigkeit des Winkels $\alpha$ in ein Diagramm.
+Messen Sie die Seiten $a$ und $b$ und schreiben Sie diese in eine Tabelle. 
+Berechnen Sie zu jedem Dreieck den Sinus, Kosinus und Tangens.
+Tragen Sie anschlie"send die Werte von Sinus, Kosinus und Tangens in 
+Abh\"angigkeit des Winkels $\alpha$ in ein Diagramm ein.
 
 \begin{MHint}{L\"osung}
 Beim Messen entstehen immer Messfehler!
@@ -3354,43 +3471,16 @@ Die Tabelle k\"onnte folgenderma\ss en aussehen:
 	$60\MGrad$		& $\MZahl{4}{3}$	& $\MZahl{2}{5}$	& $\MZahl{0}{86}$	& $\MZahl{0}{5}$	& $\MZahl{1}{7200}$\\ \hline
 	$70\MGrad$		& $\MZahl{4}{7}$	& $\MZahl{1}{7}$	& $\MZahl{0}{94}$	& $\MZahl{0}{34}$	& $\MZahl{2}{7647}$\\ \hline
 	$80\MGrad$		& $\MZahl{4}{9}$	& $\MZahl{0}{8}$	& $\MZahl{0}{98}$	& $\MZahl{0}{160}$	& $\MZahl{6}{1250}$\\ \hline
-	$90\MGrad$		& $\MZahl{5}{0}$		& $\MZahl{0}{0}$	& $\MZahl{1}{0}$	& $\MZahl{0}{0}$	& $\rightarrow\infty$\\ \hline
+	$90\MGrad$		& $\MZahl{5}{0}$		& $\MZahl{0}{0}$	& $\MZahl{1}{0}$	& $\MZahl{0}{0}$	& -- \\ \hline
 \end{tabular}
 \end{center}
-
-\begin{itemize}
-\item Mit zunehmendem Winkel $\alpha$ nimmt die Gegenkathete $a$ zu und die 
-Ankathete $b$ ab.
-
-Ebenso verhalten sich $\sin\left(\alpha\right)\sim a$ und $\cos\left(\alpha\right)\sim b$.
-
-\item Mit zunehmendem Winkel $\alpha$ nimmt $a$ in dem gleichen Ma\ss\ zu 
-wie $b$ mit dem von $90\MGrad$ aus fallenden Winkel $\alpha$ abnimmt. Im 
-Thaleskreis sind die beiden Dreiecke mit den entgegengesetzten Werten 
-f\"ur $a$ und $b$ die zwei L\"osungen f\"ur die Konstruktion eines 
-rechtwinkligen Dreiecks mit gegebener Hypotenuse und gegebener H\"ohe 
-(siehe auch das Beispiel \MRef{ThaleskreisBeispiel}).
-
-Ebenso verhalten sich Sinus und Kosinus zueinander: es ist also
-
-$\sin\left(\alpha\right)=\cos\left(90\MGrad-\alpha\right)=\cos\left(\pi/2-\alpha\right)$
-bzw. 
-
-$\cos\left(\alpha\right)=\sin\left(90\MGrad-\alpha\right)=\sin\left(\pi/2-\alpha\right)$.
-
-\item Bei $\alpha=45\MGrad$ sind die Katheten und damit auch Sinus und Kosinus 
-von $\alpha$ gleich.
-
-\item Der Tangens, also das Verh\"altnis von $a$ zu $b$, steigt mit zunehmendem 
-Winkel $\alpha$ von Null ins Unendliche. 
-\end{itemize}
 
 Das Diagramm sieht folgenderma"sen aus:
 
 \begin{center}
 \MTikzAuto{%
 \pgfkeys{/pgf/number format/set decimal separator={{{\MZXYZhltrennzeichen}}}}
-\begin{tikzpicture}[x=0.1cm, y=5.4cm] 
+\begin{tikzpicture}[x=0.1cm, y=5.4cm,scale=0.7] 
 %Koordinatensystem
 \node (xMAX) at (102.0,0){};
 \node (yMAX) at (0,1.15){};
@@ -3436,6 +3526,42 @@ Das Diagramm sieht folgenderma"sen aus:
 \end{center}
 \end{MHint}
 \end{MExercise}
+
+Wenn man sich die Ergebnisse aus der letzten Aufgabe nochmals genauer ansieht,
+kann man auf verschiedene Ideen kommen, sie zu interpretieren, und dann einige
+Zusammenh"ange erkennen. 
+
+\begin{itemize}
+\item Mit zunehmendem Winkel $\alpha$ nimmt die Gegenkathete $a$ zu und die 
+Ankathete $b$ ab.
+
+Ebenso verhalten sich $\sin\left(\alpha\right)\sim a$ und 
+$\cos\left(\alpha\right)\sim b$.
+
+\item Mit zunehmendem Winkel $\alpha$ nimmt $a$ in dem gleichen Ma\ss\ zu 
+wie $b$ mit dem von $90\MGrad$ aus fallenden Winkel $\alpha$ abnimmt. Im 
+Thaleskreis sind die beiden Dreiecke mit den entgegengesetzten Werten 
+f\"ur $a$ und $b$ die zwei L\"osungen f\"ur die Konstruktion eines 
+rechtwinkligen Dreiecks mit gegebener Hypotenuse und gegebener H\"ohe 
+(siehe auch das Beispiel \MRef{ThaleskreisBeispiel}).
+
+Ebenso verhalten sich Sinus und Kosinus zueinander: es ist also
+\[
+\sin\left(\alpha\right)=\cos\left(90\MGrad-\alpha\right) %
+ =\cos\left(\pi/2-\alpha\right) %%
+\]
+bzw. 
+\[
+\cos\left(\alpha\right)=\sin\left(90\MGrad-\alpha\right)=\sin\left(\pi/2-\alpha\right) \MDFPeriod %%
+\]
+%
+\item Bei $\alpha=45\MGrad$ sind die Katheten und damit auch Sinus und Kosinus 
+von $\alpha$ gleich. Diese Beobachtung f"uhrte eingangs umgekehrt zur Bestimmung
+des Steigungswinkels.
+
+\item Der Tangens, also das Verh\"altnis von $a$ zu $b$, steigt mit zunehmendem 
+Winkel $\alpha$ von Null ins {\glqq}Unendliche{\grqq}. 
+\end{itemize}
 
 
 \begin{MExample}
@@ -3489,8 +3615,23 @@ Dieses Dreieck hat keinen rechten Winkel. Zeichnet man eine H\"ohe $h$ auf
 eine der Seiten $a$ ein, so erh\"alt man zwei kongruente Dreiecke mit je 
 einem rechten Winkel.
 
-Es gilt nun: \[\sin\left(\alpha\right)=\sin\left(60\MGrad\right)=\frac{h}{a} \MDFPeriod\]
-Nach dem Satz von Pythagoras ist \[\left(\frac{a}{2}\right)^2+h^2=a^2 \quad\Rightarrow\quad h^2=\frac{3}{4}a^2 \Rightarrow\quad h=\frac{1}{2}\sqrt{3}\cdot a\]
+Es gilt nun: 
+\[
+\sin\left(\alpha\right) %
+ = \sin\left(60\MGrad\right) %
+ = \frac{h}{a} \MDFPeriod %%
+\]
+Nach dem Satz von Pythagoras ist 
+\[
+\left(\frac{a}{2}\right)^2+h^2 %
+ = a^2 
+\]
+Daraus folgt 
+\[
+h^2 = \frac{3}{4}a^2 
+\quad \text{und damit} \quad
+h = \frac{1}{2}\sqrt{3}\cdot a \MDFPeriod
+\]
 \end{minipage}
 &
 \MTikzAuto{%
@@ -3516,11 +3657,24 @@ Nach dem Satz von Pythagoras ist \[\left(\frac{a}{2}\right)^2+h^2=a^2 \quad\Righ
 \end{tikzpicture}
 }
 \end{tabular}
- \[\Rightarrow\quad\sin\left(60\MGrad\right)=\sin\left(\frac{\pi}{3}\right)=\frac{1}{2}\cdot \sqrt{3} \MDFPeriod\]
- \ \\
+
+Somit ist
+\[
+\sin\left(60\MGrad\right) %
+ = \sin\left(\frac{\pi}{3}\right) %
+ =\frac{1}{2}\cdot \sqrt{3} \MDFPeriod
+\]
 Aus diesem Dreieck kann man noch den Sinus eines weiteren Winkels berechnen: 
-Die H\"ohe $h$ teilt den oberen Winkel in zwei gleiche Teile, sodass man in den beiden kleinen kongruenten Dreiecken jeweils den Winkel $30\MGrad = \frac{\pi}{6}$ erh\"alt.
-Es ist nun \[\sin\left(30\MGrad\right)=\sin\left(\frac{\pi}{6}\right)=\frac{a/2}{a}=\frac{1}{2} \MDFPeriod\]
+Die H\"ohe $h$ teilt den oberen Winkel in zwei gleiche Teile, sodass man 
+in den beiden kleinen kongruenten Dreiecken jeweils den Winkel 
+$30\MGrad = \frac{\pi}{6}$ erh\"alt.
+Es ist nun 
+\[
+\sin\left(30\MGrad\right) %
+ = \sin\left(\frac{\pi}{6}\right) %
+ = \frac{a/2}{a} %
+ = \frac{1}{2} \MDFPeriod
+\]
 \end{MExample}
 
 \begin{MExercise}
@@ -3531,12 +3685,24 @@ Aufgabe \MRef{VBKM05_TrigonometrieAufgabeTabelle}.
 
 \begin{MHint}{L\"osung}
 Aus der Aufgabe \MRef{VBKM05_TrigonometrieAufgabeTabelle} ist bekannt, 
-dass $\cos\left(\alpha\right)= \sin\left(90\MGrad-\alpha\right)$.
+dass $\cos\left(\alpha\right)= \sin\left(90\MGrad-\alpha\right)$ gilt.
 Daraus folgt
-\[
-\cos\left(30\MGrad\right)=\sin\left(90\MGrad-30\MGrad\right)=\sin\left(60\MGrad\right)=\frac{1}{2}\cdot\sqrt{3} \MDFPSpace, \]
-\[\cos\left(45\MGrad\right)=\sin\left(90\MGrad-45\MGrad\right)=\sin\left(45\MGrad\right)=\frac{1}{2}\cdot\sqrt{2} \MDFPSpace, \]
-\[\cos\left(60\MGrad\right)=\sin\left(90\MGrad-60\MGrad\right)=\sin\left(30\MGrad\right)=\frac{1}{2} \MDFPeriod\]
+\begin{eqnarray*}
+\cos\left(30\MGrad\right) %
+ & = & \sin\left(90\MGrad-30\MGrad\right) %
+ =\sin\left(60\MGrad\right) %
+ =\frac{1}{2}\cdot\sqrt{3} \MDFPSpace, \\
+%
+\cos\left(45\MGrad\right)
+ & = & \sin\left(90\MGrad-45\MGrad\right) %
+ =\sin\left(45\MGrad\right) %
+ =\frac{1}{2}\cdot\sqrt{2} \MDFPSpace, \\
+%
+\cos\left(60\MGrad\right) %
+ & = & \sin\left(90\MGrad-60\MGrad\right) %
+ =\sin\left(30\MGrad\right) %
+ =\frac{1}{2} \MDFPeriod \\
+\end{eqnarray*}
 \end{MHint}
 \end{MExercise}
 
@@ -3569,7 +3735,8 @@ in der mit $\alpha$ bezeichneten letzten Zeile der Winkel im Gradma"s notiert.
 \end{center}
 \fi
 
-Diese Werte sollte man sich merken. Die trigonometrischen Funktionen f\"ur andere Winkel sind in Tabellen bzw. im Taschenrechner gespeichert.
+Diese Werte sollte man sich merken. Die Werte der trigonometrischen Funktionen 
+f\"ur andere Winkel sind in Tabellen bzw. im Taschenrechner gespeichert.
 
 Im Beispiel 
 \MRef{Mathematik_ElementareGeometrie:Trigonometrie_Beispiel:gleichseitigesDreieck}
@@ -3609,10 +3776,12 @@ F =\frac{1}{2}\cdot c\cdot b\cdot\sin\left(\alpha\right) %
 
 
 Im letzten Abschnitt wurden die trigonometrischen Funktionen anhand eines 
-rechtwinkligen Dreiecks betrachtet. Die gefundenen Erkenntnisse gelten also 
-f\"ur einen Winkelbereich von $0$ bis $90\MGrad=\frac{\pi}{2}$.
+rechtwinkligen Dreiecks eingef"uhrt. Die beschriebenen Eigenschaften gelten 
+also f\"ur einen Winkelbereich von $0$ bis $90\MGrad=\frac{\pi}{2}$.
 
-Um die gewonnenen Erkenntnisse auf gr\"o\ss ere Winkel als $\pi/2$ ausdehnen zu k\"onnen, erweist sich der Blick auf den sogenannten Einheitskreis als besonders n\"utzlich.
+Um die gewonnenen Erkenntnisse auf gr"o"sere Winkel als $\pi/2$ ausdehnen zu 
+k"onnen, erweist sich der Blick auf den sogenannten Einheitskreis als 
+besonders n"utzlich.
 
 %\ifttm\else\newpage\fi
 
@@ -3684,31 +3853,97 @@ Um die gewonnenen Erkenntnisse auf gr\"o\ss ere Winkel als $\pi/2$ ausdehnen zu 
 }
 \end{center}
 
-Der Einheitskreis ist ein Kreis mit Radius $1$ und Mittelpunkt im Ursprung des kartesischen Koordinatensystems.\\
-\ \\
- Es werde ein Vektor vom Ursprung aus mit der L\"ange $1$ betrachtet. Dieser Vektor werde nun von seiner Ausgangslage auf der positiven $x$-Achse gegen den Uhrzeigersinn, also im mathematisch positiven Sinn um den Nullpunkt rotiert. Dabei \"uberstreicht seine Spitze den Einheitskreis, und er bildet mit der positiven $x$-Achse den Winkel $\alpha$, der bei der Rotation von $0$ bis $2\pi$ bzw. $360\MGrad$ w\"achst. Zu jedem Winkel $\alpha$ geh\"ort also ein Punkt $P_\alpha$ mit den Koordinaten $x_\alpha$ und $y_\alpha$ auf dem Einheitskreis.
-\ \\
-F\"ur $\alpha\in\left[0\MIntvlSep \pi/2\right]$ kann man den Vektor, den zugeh\"origen $x$-Achsenabschnitt und den zugeh\"origen $y$-Achsenabschnitt als rechtwinkliges Dreieck ansehen, wie es vom letzten Kapitel her bekannt ist. Die Hypotenuse ist der Vektor mit der L\"ange $1$, der $x$-Achsenabschnitt ist die Ankathete und der $y$-Achsenabschnitt die Gegenkathete.\\
-\ \\
+Der Einheitskreis ist ein Kreis mit Radius $1$.
+Sein Mittelpunkt wird im Nullpunkt eines kartesischen Koordinatensystems 
+positioniert.
+Hier wird eine Strecke vom Mittelpunkt aus mit der L\"ange $1$ betrachtet. 
+Diese Strecke wird nun von ihrer horizontalen Ausgangslage auf der positiven 
+$x$-Achse gegen den Uhrzeigersinn, also im mathematisch positiven Sinn, um den 
+Nullpunkt rotiert. 
+Dabei \"uberstreicht ihre Spitze den Einheitskreis, und sie bildet mit der 
+positiven $x$-Achse den Winkel $\alpha$, der bei der Rotation von $0$ bis 
+$2\pi$ bzw. $360\MGrad$ w\"achst. Zu jedem Winkel $\alpha$ geh\"ort also ein 
+Punkt $P_\alpha$ mit den Koordinaten $x_\alpha$ und $y_\alpha$ auf dem 
+Einheitskreis.
+
+F\"ur $\alpha\in\left[0\MIntvlSep \pi/2\right]$ kann man die Strecke, den 
+zugeh\"origen $x$-Achsenabschnitt und den zugeh\"origen $y$-Achsenabschnitt 
+als rechtwinkliges Dreieck ansehen, wie es vom letzten Kapitel her bekannt ist.
+Die Hypotenuse ist die Strecke mit der L\"ange $1$, der $x$-Achsenabschnitt 
+ist die Ankathete und der $y$-Achsenabschnitt die Gegenkathete.
+\par
 Der Sinus des Winkels $\alpha$ ist also
-\[\sin\left(\alpha\right)=\frac{y_\alpha}{1}=y_\alpha\]
+\[
+\sin\left(\alpha\right)=\frac{y_\alpha}{1}=y_\alpha
+\]
 und der Kosinus ist
-\[\cos\left(\alpha\right)=\frac{x_\alpha}{1}=x_\alpha \MDFPeriod\]
+\[
+\cos\left(\alpha\right)=\frac{x_\alpha}{1}=x_\alpha \MDFPeriod
+\]
 
-Diese Definitionen gelten auch f\"ur die Winkel $\alpha>\pi/2$. Dabei k\"onnen die Werte f\"ur $x_\alpha$ und $y_\alpha$ auch negativ werden und damit auch der Kosinus bzw. Sinus. Tr\"agt man die $y$-Werte in Abh\"angigkeit vom Winkel $\alpha$ in ein Diagramm, so erh\"alt man die rote Kurve, f\"ur die $x$-Werte erh\"alt man die blaue Kurve.
-\ \\
-Mit dem Satz von Pythagoras gilt au\ss erdem
-\[x_{\alpha}^{2}+y_{\alpha}^{2}=1 \MDFPeriod\]
-Setzt man hier die Beziehungen f\"ur $x_{\alpha}$ und $y_{\alpha}$ mit den Winkelfunktionen ein, so ergibt sich f\"ur beliebige Winkel $\alpha$ die wichtige Beziehung
-\[\sin^2\left(\alpha\right)+\cos^2\left(\alpha\right)=1 \MDFPeriod\]
-
+Diese Definitionen gelten auch f\"ur die Winkel $\alpha>\pi/2$. Dabei k\"onnen 
+die Werte f\"ur $x_\alpha$ und $y_\alpha$ auch negativ werden und damit auch 
+der Kosinus bzw. Sinus. Tr\"agt man die $y$-Werte in Abh\"angigkeit vom 
+Winkel $\alpha$ in ein Diagramm, so erh\"alt man die rote Kurve, f\"ur die 
+$x$-Werte erh\"alt man die blaue Kurve.
+\par
+Mit dem Satz von Pythagoras gilt au"serdem
+\[
+x_{\alpha}^{2}+y_{\alpha}^{2}=1 \MDFPeriod
+\]
+Setzt man hier die Beziehungen f\"ur $x_{\alpha}$ und $y_{\alpha}$ mit den 
+Winkelfunktionen ein, so ergibt sich f\"ur beliebige Winkel $\alpha$ die 
+wichtige Beziehung
+\[
+\sin^2\left(\alpha\right)+\cos^2\left(\alpha\right)=1 \MDFPeriod
+\]
+Aus obiger Zeichnung wird zudem ersichtlich, dass sich die Kosinuswerte bei 
+Spiegelung an der $y$-Achse nicht "andern.
+Eine Spiegelung an der $x$-Achse f"uhrt zur "Anderung des Vorzeichens des 
+Sinuswertes.  
+Formelm"a"sig ausgedr"uckt, gilt
+\[
+\cos(-x) = \cos(x)
+\qquad \text{und} \qquad
+\sin(-x) = -\sin(x)
+\]
+f"ur jeden Winkel $x$. 
+Diese Symmetrieeigenschaften sind f"ur viele Rechnungen hilfreich. 
+Ein Beispiel ist die Berechnung des Winkels zwischen $x$-Achse und der 
+Verbindungsstrecke vom Nullpunkt zu einem gegebenen Punkt im kartesischen 
+Koordinatensystem (siehe 
+auch \MRef{VBKM05_TrigonometrieAufgabeArcsinArccos}).
 
 \begin{MExample}
-Gesucht sind jeweils die Werte des Sinus, Kosinus und Tangens des Winkels $\alpha=315\MGrad$.\\
+Gesucht sind jeweils die Werte des Sinus, Kosinus und Tangens des 
+Winkels $\alpha=315\MGrad$.
 
-F\"ur $\alpha=315\MGrad$ liegt der Punkt $P_\alpha$ im 4. Quadranten, der zugeh\"orige Vektor bildet mit den zugeh\"origen Achsenabschnitten ein gleichschenkliges Dreieck. Es gilt: \[\left|x_\alpha\right|=\left|y_\alpha\right|\quad\Rightarrow\quad \left|x_\alpha\right|^2+\left|y_\alpha\right|^2=2\cdot\left|x_\alpha\right|^2=1\]
-\[\Rightarrow\quad \left|x_\alpha\right|=\left|y_\alpha\right|=\frac{1}{\sqrt 2}=\frac{1}{2}\sqrt 2 \MDFPSpace,\]
-\[\cos\left(\alpha\right)=x_\alpha=\frac{1}{2}\sqrt 2 \MDFPSpace,	\MDFPaSpace	\sin\left(\alpha\right)=y_\alpha=-\frac{1}{2}\sqrt 2 \MDFPSpace,	\MDFPaSpace	\tan\left(\alpha\right)=\frac{y_\alpha}{x_\alpha}=-1 \MDFPeriod\]
+F"ur $\alpha=315\MGrad$ liegt der Punkt $P_\alpha$ im vierten Quadranten. 
+Die zugeh"orige Strecke bildet mit den zugeh"origen Achsenabschnitten 
+ein gleichschenkliges Dreieck. Somit gilt 
+$\left|x_\alpha\right|=\left|y_\alpha\right|$,
+woraus 
+$2\cdot\left|x_\alpha\right|^2 %
+ = \left|x_\alpha\right|^2+\left|y_\alpha\right|^2
+ = 1$ 
+und somit
+$\left|x_\alpha\right| %
+ =\left|y_\alpha\right| %
+ =\frac{1}{\sqrt 2} %
+ =\frac{1}{2}\sqrt 2$
+folgt. Damit ist
+\[
+\cos\left(315\MGrad\right) %
+ =x_\alpha
+ =\frac{1}{2}\sqrt 2 \MDFPSpace,
+\MDFPaSpace
+\sin\left(315\MGrad\right) %
+ =y_\alpha %
+ = -\frac{1}{2}\sqrt 2 \MDFPSpace,
+\MDFPaSpace
+\tan\left(315\MGrad\right) %
+ =\frac{y_\alpha}{x_\alpha}=-1 \MDFPeriod
+\]
 \end{MExample}
 
 \end{MXContent}
@@ -3716,7 +3951,7 @@ F\"ur $\alpha=315\MGrad$ liegt der Punkt $P_\alpha$ im 4. Quadranten, der zugeh\
 
 \begin{MExercises}
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Exercises}
-\begin{MExercise}
+\begin{MExercise}\MLabel{VBKM05_TrigonometrieAufgabeArcsinArccos}
 Welcher Winkel geh\"ort zu dem Punkt $P_\alpha\left(-\MZahl{0}{643}, -\MZahl{0}{766}\right)$? 
 \begin{MHint}{Hinweis}
 Verwenden Sie dazu den Taschenrechner, aber vertrauen Sie ihm nicht blind!
@@ -3724,11 +3959,18 @@ Verwenden Sie dazu den Taschenrechner, aber vertrauen Sie ihm nicht blind!
 
 \begin{MHint}{L\"osung}
 Aus den Koordinaten des Punktes $P_\alpha$ ergibt sich:
-\[\sin\left(\alpha\right)=-\MZahl{0}{766}\quad	\text{und}	\quad\cos\left(\alpha\right)=-\MZahl{0}{643} \MDFPeriod\]
+\[
+\sin\left(\alpha\right)=-\MZahl{0}{766}
+ \quad \text{und} \quad
+\cos\left(\alpha\right)=-\MZahl{0}{643} \MDFPeriod %%
+\]
 Tippen Sie in den Taschenrechner:\\
-invers(sin(-\MZahl{0}{766})) bzw. $\sin^{-1}$(-\MZahl{0}{766}), so erhalten Sie ungef\"ahr $-50\MGrad$, und \\
-invers(cos(-\MZahl{0}{643})) bzw. $\sin^{-1}$(-\MZahl{0}{643}), so erhalten Sie ungef\"ahr $130\MGrad$.\\
-Au\ss erdem wissen Sie, dass der Punkt im 3. Quadranten ist, also ein Winkel im Bereich zwischen $180\MGrad$ und $270\MGrad$ herauskommen muss.
+invers(sin(-\MZahl{0}{766})) bzw. $\sin^{-1}$(-\MZahl{0}{766}), so erhalten 
+Sie ungef\"ahr $-50\MGrad$, und \\
+invers(cos(-\MZahl{0}{643})) bzw. $\cos^{-1}$(-\MZahl{0}{643}), so erhalten 
+Sie ungef\"ahr $130\MGrad$.\\
+Au\ss erdem wissen Sie, dass der Punkt im 3. Quadranten ist, also ein Winkel 
+im Bereich zwischen $180\MGrad$ und $270\MGrad$ herauskommen muss.
 
 \MTikzAuto{%
 \begin{tikzpicture}[x=2.6cm, y=2.6cm] 
