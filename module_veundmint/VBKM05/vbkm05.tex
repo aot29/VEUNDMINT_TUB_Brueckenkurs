@@ -2161,7 +2161,8 @@ entdeckt man auch Begrenzungen, die n"aherungsweise Strecken sind. Ein markantes
 Beispiel sind Wabenstrukturen, die von Insekten angelegt werden.
 Technische Anwendungen bauen oft auf Figuren mit geraden Begrenzungen auf.
 
-In diesem Abschnitt werden einige Spezialf"alle von Vielecken betrachtet. 
+In diesem Abschnitt werden einige Spezialf"alle von Vielecken betrachtet, mit
+denen geradlinig begrenzte Fl"achen beschrieben werden k"onnen. 
 Dabei sollen zun"achst charakteristische Besonderheiten benannt werden.
 Anschlie"send wird der Frage nachgegangen, wie der Fl"acheninhalt eines 
 Vielecks einfach berechnet werden kann. 
@@ -2172,41 +2173,20 @@ Vielecks einfach berechnet werden kann.
 \begin{MXContent}{Vielecke}{Vielecke}{STD}
 \MDeclareSiteUXID{VBKM05_Vielecke_Content}
 
-Neben den oben betrachteten Dreiecken kann man nat\"urlich auch Figuren mit 
-mehr Ecken betrachten. 
+Vielecke werden wie Dreiecke durch gegebene Punkte und geradlinige Verbindungen
+zwischen den Punkten festgelegt. Von den Punkten sollen keine drei Punkte auf
+einer Geraden liegen. Verbindet man drei solche Punkte durch alle m"oglichen 
+Strecken zwischen zwei der drei Punkte, ergibt sich immer ein geschlossener Weg,
+in dem jeder gegebene Punkt genau zwei Strecken verbindet. 
+Dabei haben die Strecken nur ihre Endpunkte mit andern Strecken gemeinsam. 
+Au"serdem gibt es keine Kreuzungspunkte.
 
-\begin{MXInfo}{Vielecke}\MLabel{VBKM05_Vielecke}%
-Es sei $n$ eine nat\"urliche Zahl, die mindestens $3$ betrage.
-\begin{itemize}
- \item 
-Ein \MEntry{$n$-Eck}{$n$-Eck} (auch als \MEntry{Vieleck}{Vieleck} oder 
-\MEntry{Polygon}{Polygon} bezeichnet) entsteht,
-wenn man $n$ Punkte in der Ebene nacheinander in einer zuvor festgelegten 
-Reihenfolge durch Strecken miteinander verbindet,
-wobei der letzte Punkt wieder mit dem ersten Punkt verbunden wird und je drei 
-aufeinander folgende Punkte nicht auf einer gemeinsamen Geraden liegen d\"urfen.
-       
- \item Die $n$ Punkte, die verbunden werden, hei"sen 
-  \MEntry{Ecken}{Ecken ($n$-Eck)} des $n$-Ecks, und
-  die $n$ Verbindungsstrecken hei"sen
-  \MEntry{Seiten}{Seiten ($n$-Eck)} des $n$-Ecks.
+Bei mehr als drei Punkten ist dies nicht immer der Fall. Bereits vier Punkte 
+k"onnen so verbunden werden, dass sich die Verbindungsstrecken kreuzen oder 
+dass sich mehrere geschlossene Wege ergeben.
 
- \item Wenn sich die Seiten eines $n$-Ecks h\"ochstens in den Ecken schneiden, so spricht man von einem \MEntry{einfachen $n$-Eck}{einfaches $n$-Eck} (bzw. von einem \MEntry{einfachen Vieleck}{einfaches Vieleck} oder \MEntry{einfachem Polygon}{einfaches Polygon}).  
-
- \item Je zwei Seiten eines $n$-Ecks bilden je zwei Winkel.
-Der kleinere dieser beiden Winkel hei\ss t
-\MEntry{Innenwinkel}{Innenwinkel ($n$-Eck)},
-       und der gr\"o\ss ere der beiden Winkel hei\ss t
-       \MEntry{Au\ss enwinkel}{Au\ss enwinkel ($n$-Eck)}.
-
-\item Jedes einfache $n$-Eck l\"asst sich in $(n-2)$ einander nicht \"uberlappende Dreiecke zerlegen. Die Summe aller Innenwinkel eines einfachen $n$-Ecks betr\"agt daher stets $(n-2)\pi$ bzw. $(n-2)180\MGrad$.
-
- \item Ein einfaches $n$-Eck, dessen Seiten alle die gleiche L\"ange haben und dessen Innenwinkel zudem alle gleich gro\ss\ sind, nennt man
-\MEntry{regelm\"a\ss iges $n$-Eck}{regelm\"a\ss iges $n$-Eck} (bzw. \MEntry{regelm\"a\ss iges Vieleck}{regelm\"a\ss iges Vieleck} oder \MEntry{regelm\"a\ss iges Polygon}{regelm\"a\ss iges Polygon}).
-
-\item Die Verbindungsstrecken zwischen je zwei Ecken, die nicht auf derselben Seite des $n$-Ecks liegen, hei\ss en die \MEntry{Diagonalen}{Diagonale ($n$-Eck)} des $n$-Ecks.
-\end{itemize}
-\end{MXInfo}
+Hier sollen die Strecken alle gegebenen Punkte durch einen einzigen 
+geschlossenen Weg miteinander verbinden, der kreuzungsfrei verl"auft.
 
 Unter den Vielecken nehmen die Vierecke eine besondere Stellung ein, da 
 diese in technischen Anwendungen oft verwendet werden. Dadurch haben sich 
@@ -2328,14 +2308,57 @@ Ein Viereck ist genau dann ein Quadrat, wenn
 \end{itemize}
 \end{MXInfo}
 
+
+\begin{MXInfo}{Vielecke}\MLabel{VBKM05_Vielecke}%
+Es sei $n$ eine nat\"urliche Zahl, die mindestens $3$ betrage.
+\begin{itemize}
+ \item 
+Ein \MEntry{$n$-Eck}{$n$-Eck} (auch als \MEntry{Vieleck}{Vieleck} oder 
+\MEntry{Polygon}{Polygon} bezeichnet) entsteht,
+wenn man $n$ Punkte in der Ebene nacheinander in einer zuvor festgelegten 
+Reihenfolge durch Strecken miteinander verbindet,
+wobei der letzte Punkt wieder mit dem ersten Punkt verbunden wird und je drei 
+aufeinander folgende Punkte nicht auf einer gemeinsamen Geraden liegen d\"urfen.
+       
+ \item Die $n$ Punkte, die verbunden werden, hei"sen 
+  \MEntry{Ecken}{Ecken ($n$-Eck)} des $n$-Ecks, und
+  die $n$ Verbindungsstrecken hei"sen
+  \MEntry{Seiten}{Seiten ($n$-Eck)} des $n$-Ecks.
+
+ \item Wenn sich die Seiten eines $n$-Ecks h\"ochstens in den Ecken schneiden, so spricht man von einem \MEntry{einfachen $n$-Eck}{einfaches $n$-Eck} (bzw. von einem \MEntry{einfachen Vieleck}{einfaches Vieleck} oder \MEntry{einfachem Polygon}{einfaches Polygon}).  
+
+ \item Je zwei Seiten eines $n$-Ecks bilden je zwei Winkel.
+Der kleinere dieser beiden Winkel hei\ss t
+\MEntry{Innenwinkel}{Innenwinkel ($n$-Eck)},
+       und der gr\"o\ss ere der beiden Winkel hei\ss t
+       \MEntry{Au\ss enwinkel}{Au\ss enwinkel ($n$-Eck)}.
+
+\item Jedes einfache $n$-Eck l\"asst sich in $(n-2)$ einander nicht \"uberlappende Dreiecke zerlegen. Die Summe aller Innenwinkel eines einfachen $n$-Ecks betr\"agt daher stets $(n-2)\pi$ bzw. $(n-2)180\MGrad$.
+
+ \item Ein einfaches $n$-Eck, dessen Seiten alle die gleiche L\"ange haben und dessen Innenwinkel zudem alle gleich gro\ss\ sind, nennt man
+\MEntry{regelm\"a\ss iges $n$-Eck}{regelm\"a\ss iges $n$-Eck} (bzw. \MEntry{regelm\"a\ss iges Vieleck}{regelm\"a\ss iges Vieleck} oder \MEntry{regelm\"a\ss iges Polygon}{regelm\"a\ss iges Polygon}).
+
+\item Die Verbindungsstrecken zwischen je zwei Ecken, die nicht auf derselben Seite des $n$-Ecks liegen, hei\ss en die \MEntry{Diagonalen}{Diagonale ($n$-Eck)} des $n$-Ecks.
+\end{itemize}
+\end{MXInfo}
+
+\end{MXContent}
+
+
+\begin{MXContent}{Umfang}{Umfang}{STD}
+\MDeclareSiteUXID{VBKM05_Umfang_Content}
+Der Umfang eines Vielecks ist die Summe der L"angen aller Verbindungsstecken.
+
+Bei regelm"a"sigen Vielecken ist die L"ange der Verbindungsstrecken durch die
+Anahl der Ecken festgelegt.
 \end{MXContent}
 
 
 \begin{MXContent}{Fl\"acheninhalt}{Fl\"acheninhalt}{STD}
 \MDeclareSiteUXID{VBKM05_Flaecheninhalt_Content}
 Der Inhalt einer Fl\"ache ist die Zahl der Einheitsquadrate, die man ben\"otigt,
-um diese Fl\"ache vollst\"andig zu bedecken.\\
-\ \\
+um diese Fl\"ache vollst\"andig zu bedecken.
+
 Zuerst sollen Rechtecke betrachtet werden.
 
 \begin{tabular}{lc}
@@ -2352,8 +2375,9 @@ Zuerst sollen Rechtecke betrachtet werden.
 }
 &
 \begin{minipage}[b]{10cm}
- Wenn ein Rechteck eine Seite der L\"ange $a$ und eine Seite der L\"ange $b$ hat, dann gibt es $b$ Reihen mit $a$ Einheitsquadraten, also $a\cdot b$ Einheitsquadrate.\\
- \ \\
+Wenn ein Rechteck eine Seite der L\"ange $a$ und eine Seite der L\"ange $b$ 
+hat, dann gibt es $b$ Reihen mit $a$ Einheitsquadraten, also $a\cdot b$ 
+Einheitsquadrate.
 \end{minipage}
 \end{tabular}
 
@@ -3294,7 +3318,8 @@ H"ohenunterschied im Vergleich zur Horizontalen betrachtet.
 \coordinate (B) at (10,0);
 \coordinate (C) at (10,0.5);
 \path (A) -- node[below] {$a = 100\MEinheit{m}$} (B) %
- -- node[right] {$b = 5\MEinheit{m}$} (C) -- node[above] {Steigung $5\%$} (A);
+ -- node[right] {$b = 5\MEinheit{m}$} (C) %
+ -- node[above,rotate={atan(0.05)}] {Steigung $5\%$} (A);
 \draw (A) -- (B) -- (C) -- cycle;
 \end{tikzpicture}
 }
@@ -3310,13 +3335,15 @@ Winkelma"s von $45\MGrad$.
 
 \begin{center}
 \MTikzAuto{%
-\begin{tikzpicture}
+\begin{tikzpicture}[line width=1pt]
 \coordinate (A) at (0,0);
-\coordinate (B) at (4,0);
-\coordinate (C) at (4,4);
-\coordinate (D) at (0,4);
+\coordinate (B) at (3,0);
+\coordinate (C) at (3,3);
+\coordinate (D) at (0,3);
+\path (A) -- node[below] {$100\MEinheit{m}$} (B) -- %
+ node[below,rotate=90] {$100\MEinheit{m}$}(C);
 \draw (A) -- (B) -- (C) -- cycle;
-\draw[style=dotted] (C) -- (D) -- (A);
+\draw[style=dotted] (C) -- (D) -- (A) -- cycle;
 \draw (1,0) arc(0:45:1);
 \draw[style=dotted] (0,1) arc(90:45:1);
 \end{tikzpicture}
@@ -3325,7 +3352,10 @@ Winkelma"s von $45\MGrad$.
 
 Dies kann man auch so formulieren: Einem Winkel von $45\MGrad$ entspricht
 eine Steigung von $\frac{100\MEinheit{m}}{100\MEinheit{m}} = 1$, das hei"st 
-ein Streckenverh"altnis von $1$ von vertikaler zu horizontaler Strecke.
+ein Streckenverh"altnis von $1$ von vertikaler zu horizontaler Strecke. 
+Aufgrund der Strahlens"atze ist das Streckenverh"altnis von den L"angen der 
+einzelnen Strecken unabh"angig. Es h"angt nur davon ab, wie die Strahlen
+zueinander verlaufen, also wie gro"s der Winkel zwischen ihnen ist.
 Wenn diese Zuordnung zwischen Winkel und Streckenverh"altnis auch f"ur andere
 Winkel bekannt ist, kann man damit viele konstruktive Aufgabenstellungen 
 l"osen. 
@@ -3352,9 +3382,14 @@ das mathematische Gebiet, das sich mit ihren Eigenschaften befasst, hei"st
 \begin{MXInfo}{Die trigonometrischen Funktionen im rechtwinkligen Dreieck}%
 \MLabel{M05_DefinitionWinkelfunktionen}
 Es werden die gebr"auchlichsten \MEntry{Winkelfunktionen}{Winkelfunktionen}
-als Zuordnungen zwischen Winkel und Seitenverh"altnissen im Dreieck beschrieben.
-Die Winkelfunktionen hei"sen auch 
+als Zuordnungen zwischen Winkel und Seitenverh"altnissen in einem rechtwinkligen 
+Dreieck beschrieben. Die Winkelfunktionen hei"sen auch 
 \MEntry{trigonometrische Funktionen}{trigonometrische Funktion}.
+Dabei bezeichnet $x$ einen Winkel in einem rechtwinkligen Dreieck, der 
+kein rechter Winkel ist.
+Die \MEntry{Gegenkathete}{Gegenkathete} ist die Seite, die dem Winkel $x$ 
+gegen"uberliegt, und die andere Kathete wird \MEntry{Ankathete}{Ankathete} 
+genannt.
 
 \begin{center}
 \MTikzAuto{%
@@ -3363,8 +3398,8 @@ Die Winkelfunktionen hei"sen auch
 \coordinate (B) at ({3*sqrt(3)},0);
 \coordinate (C) at ({3*sqrt(3)},3);
 \path (A) -- node[below] {Ankathete $b$} (B) %
- -- node[right] {Gegenkathete $a$} (C) %
- -- node[above left] {Hyptenuse $c$} (A);
+ -- node[below,rotate=90] {Gegenkathete $a$} (C) %
+ -- node[above,rotate=30] {Hypotenuse $c$} (A);
 \draw (A) -- (B) -- (C) -- cycle;
 \draw ($ (B) + (0,0.5) $) arc(90:180:0.5);
 \filldraw ($ (B) + (135:0.25) $) circle(0.5pt);
@@ -3425,7 +3460,7 @@ Der Sinus l\"asst sich sofort aus den Angaben berechnen:
 F\"ur den Kosinus wird die L\"ange der Seite $b$ ben\"otigt, welche man 
 mithilfe des Satzes von Pythagoras erh\"alt:
 \[
-b^2=c^2-a^2
+b^2 = c^2 - a^2 %%
 \]
 Daraus folgt:
 \[
@@ -3442,22 +3477,30 @@ Damit ergibt sich f\"ur den Tangens
 
 
 \begin{MExercise}\MLabel{VBKM05_TrigonometrieAufgabeTabelle}
-Die Hypotenuse $c=5$ ist vorgegeben. Zeichnen Sie mithilfe des Thaleskreises 
-die rechtwinkligen Dreiecke f\"ur die Winkel 
-$\alpha\in\left\{0\MGrad\MElSetSep 10\MGrad\MElSetSep 20\MGrad\MElSetSep %
+Es sollen einige Werte der Winkelfunktionen Sinus, Kosinus und Tangens
+n"aherungsweise grafisch bestimmt werden. Gehen Sie von rechtwinkligen 
+Dreiecken mit einer Hypotenuse $c=5$ aus. Zeichnen Sie mithilfe des 
+Thaleskreises rechtwinklige Dreiecke f\"ur die Winkel
+\[ 
+\alpha \in \left\{10\MGrad\MElSetSep 20\MGrad\MElSetSep %
 30\MGrad\MElSetSep 40\MGrad\MElSetSep 45\MGrad\MElSetSep 50\MGrad\MElSetSep %
-60\MGrad\MElSetSep 70\MGrad\MElSetSep 80\MGrad\MElSetSep 90\MGrad\right\}$
-(Ma"sstab $1\MEinheit{L"angeneinheit} \hat{=} 2\MEinheit{cm}$).
+60\MGrad\MElSetSep 70\MGrad\MElSetSep 80\MGrad\MElSetSep \right\} \MDFPeriod %%
+\]
+Fertigen Sie Ihre Zeichnungen im Ma"sstab 
+$1\MEinheit{L"angeneinheit} \hat{=} 2\MEinheit{cm}$ an, und schreiben Sie 
+die Messwerte zu den Seiten $a$ und $b$ in eine Tabelle. 
 
-Messen Sie die Seiten $a$ und $b$ und schreiben Sie diese in eine Tabelle. 
-Berechnen Sie zu jedem Dreieck den Sinus, Kosinus und Tangens.
-Tragen Sie anschlie"send die Werte von Sinus, Kosinus und Tangens in 
-Abh\"angigkeit des Winkels $\alpha$ in ein Diagramm ein.
+Berechnen Sie zu jedem Winkel mit den gemessenen Werten den Sinus, Kosinus 
+und Tangens, und "uberlegen Sie sich anschlie"send, wo auch Werte zu 
+$\alpha = 0\MGrad$ und zu $\alpha = 90\MGrad$ existieren.
+Tragen Sie anschlie"send die Werte von Sinus und Kosinus in 
+Abh"angigkeit des Winkels $\alpha$ in ein Diagramm ein.
 
 \begin{MHint}{L\"osung}
-Beim Messen entstehen immer Messfehler!
-Die Tabelle k\"onnte folgenderma\ss en aussehen:
+Beim Messen entstehen immer Messfehler! Deshalb wird Ihre Tabelle teilweise
+etwas andere Werte enthalten. Die Tabelle k\"onnte folgenderma"sen aussehen:
 
+%\ifttm\relax\else\begin{small}\fi
 \begin{center}
 \begin{tabular}{r|r|r|r|r|r}\hline
 	$\alpha$ 		& $a$ 				& $b$ 				& $\sin\left(\alpha\right)$ & $\cos\left(\alpha\right)$ & $\tan\left(\alpha\right)$\\ \hline\hline
@@ -3474,8 +3517,9 @@ Die Tabelle k\"onnte folgenderma\ss en aussehen:
 	$90\MGrad$		& $\MZahl{5}{0}$		& $\MZahl{0}{0}$	& $\MZahl{1}{0}$	& $\MZahl{0}{0}$	& -- \\ \hline
 \end{tabular}
 \end{center}
+%\ifttm\relax\else\end{small}\fi
 
-Das Diagramm sieht folgenderma"sen aus:
+Das zugeh"orige Diagramm sieht dann folgenderma"sen aus:
 
 \begin{center}
 \MTikzAuto{%
@@ -3494,7 +3538,7 @@ Das Diagramm sieht folgenderma"sen aus:
 %Achsenbeschriftung
 \draw (xMAX) node[anchor=north east] {$\alpha$};
 \draw[color=blue] (yMAX) ++(0.,-16pt) node[anchor=south east] {$\cos(\alpha)$};
-\draw[color=red] (yMAX) ++(0.,-5pt) node[anchor=south east] {$\sin(\alpha)$};
+\draw[color=red] (yMAX) ++(102.0,-16pt) node[anchor=south east] {$\sin(\alpha)$};
 \fill[color=red] (90,1.0) circle (2.0pt);
 \fill[color=red] (80,0.98) circle (2.0pt);
 \fill[color=red] (70,0.94) circle (2.0pt);
@@ -3545,14 +3589,18 @@ f\"ur $a$ und $b$ die zwei L\"osungen f\"ur die Konstruktion eines
 rechtwinkligen Dreiecks mit gegebener Hypotenuse und gegebener H\"ohe 
 (siehe auch das Beispiel \MRef{ThaleskreisBeispiel}).
 
-Ebenso verhalten sich Sinus und Kosinus zueinander: es ist also
+\item
+F"ur den Winkel $\beta = 90\MGrad - \alpha$ ist die Ankathete die Seite im
+rechtwinkligen Dreieck, die aus Sicht des Winkels $\alpha$ als Gegenkathete
+bezeichnet wird (und umgekehrt). Somit gilt
 \[
 \sin\left(\alpha\right)=\cos\left(90\MGrad-\alpha\right) %
- =\cos\left(\pi/2-\alpha\right) %%
+ = \cos\left(\frac{\pi}{2}-\alpha\right) %%
 \]
-bzw. 
+und 
 \[
-\cos\left(\alpha\right)=\sin\left(90\MGrad-\alpha\right)=\sin\left(\pi/2-\alpha\right) \MDFPeriod %%
+\cos\left(\alpha\right) = \sin\left(90\MGrad-\alpha\right) %
+ = \sin\left(\frac{\pi}{2}-\alpha\right) \MDFPeriod %%
 \]
 %
 \item Bei $\alpha=45\MGrad$ sind die Katheten und damit auch Sinus und Kosinus 
@@ -3563,6 +3611,9 @@ des Steigungswinkels.
 Winkel $\alpha$ von Null ins {\glqq}Unendliche{\grqq}. 
 \end{itemize}
 
+Im folgenden Beispiel wird an die "Uberlegung aus der Einleitung fortgesetzt, 
+die auf ein Dreieck mit einem Winkel von $45\MGrad$ f"uhrte, um de zugeh"origen
+Sinuswert exakt zu berechnen.
 
 \begin{MExample}
 Es soll der Sinus des Winkels $\alpha=45\MGrad$ nun exakt berechnet, also 
@@ -3599,12 +3650,20 @@ von $45\MGrad$ durch einen Wert von $\MZahl{0}{7}$ angen"ahert, was dem
 tats"achlichen Wert von $\frac{1}{2}\cdot \sqrt{2}$ schon recht nahe kommt.
 \end{MExample}
 
-\begin{MExample}\MLabel{Mathematik_ElementareGeometrie:Trigonometrie_Beispiel:gleichseitigesDreieck}%
-In diesem Beispiel soll ein \textbf{gleichseitiges} Dreieck betrachtet werden. 
+Im n"achsten Beispiel wird der Sinuswert zum Winkel $\alpha = 60\MGrad$ 
+berechnet. Hierf"ur wird zun"achst nicht ein rechtwinkliges Dreieck sondern 
+ein Dreieck mit drei gleich langen Seiten betrachtet. Mit einer geschickten
+Zerlegung und Berechnung einer weiteren {\glqq}Hilfsgr"o"se{\grqq} erh"alt man
+daraus das gesuchte Ergebnis.
+
+\begin{MExample}\MLabel{M05_TrigonometrieBeispiel:gleichseitigesDreieck}%
+In diesem Beispiel soll ein \textbf{gleichseitiges} Dreieck betrachtet werden,
+um $\sin\left(60\MGrad\right)$ zu berechnen. 
 Wie der Name sagt, sind in diesem Dreieck alle Seiten gleich lang, und auch 
 die Winkel sind alle gleich gro"s, n\"amlich 
 $\alpha=\beta=\gamma = \frac{180\MGrad}{3} = 60\MGrad = \frac{\pi}{3}$.
-Das Dreieck ist nach dem Kongruenzsatz "`sss"' mit der Angabe einer Seite $a$ 
+Das Dreieck ist nach dem Kongruenzsatz {\glqq}sss{\grqq} mit der Angabe einer 
+Seite $a$ 
 eindeutig bestimmt, und man erh\"alt dieses, indem man die Seite $a$ 
 zeichnet und mit dem Zirkel einen Kreis vom Radius $a$ um jede Ecke schl\"agt.
 Der Schnittpunkt der Kreise ist nun die dritte Ecke.
@@ -3624,12 +3683,12 @@ Es gilt nun:
 Nach dem Satz von Pythagoras ist 
 \[
 \left(\frac{a}{2}\right)^2+h^2 %
- = a^2 
+ = a^2 \MDFPeriod %%
 \]
 Daraus folgt 
 \[
 h^2 = \frac{3}{4}a^2 
-\quad \text{und damit} \quad
+\quad \text{und somit} \quad
 h = \frac{1}{2}\sqrt{3}\cdot a \MDFPeriod
 \]
 \end{minipage}
@@ -3658,11 +3717,12 @@ h = \frac{1}{2}\sqrt{3}\cdot a \MDFPeriod
 }
 \end{tabular}
 
-Somit ist
+Damit erh"alt man den gesuchten Wert
 \[
 \sin\left(60\MGrad\right) %
  = \sin\left(\frac{\pi}{3}\right) %
- =\frac{1}{2}\cdot \sqrt{3} \MDFPeriod
+ = \frac{h}{a} %
+ =\frac{1}{2}\cdot \sqrt{3} \MDFPeriod %%
 \]
 Aus diesem Dreieck kann man noch den Sinus eines weiteren Winkels berechnen: 
 Die H\"ohe $h$ teilt den oberen Winkel in zwei gleiche Teile, sodass man 
@@ -3686,7 +3746,7 @@ Aufgabe \MRef{VBKM05_TrigonometrieAufgabeTabelle}.
 \begin{MHint}{L\"osung}
 Aus der Aufgabe \MRef{VBKM05_TrigonometrieAufgabeTabelle} ist bekannt, 
 dass $\cos\left(\alpha\right)= \sin\left(90\MGrad-\alpha\right)$ gilt.
-Daraus folgt
+Mit den Ergebnissen aus den obigen Beispielen folgt daraus
 \begin{eqnarray*}
 \cos\left(30\MGrad\right) %
  & = & \sin\left(90\MGrad-30\MGrad\right) %
@@ -3715,22 +3775,22 @@ in der mit $\alpha$ bezeichneten letzten Zeile der Winkel im Gradma"s notiert.
 \begin{MDirectHTML}
 \[
 \begin{array}[t]{l|*{5}{c}}
- x             & 0                          & \tfrac{\pi}{6}             & \tfrac{\pi}{4}             & \tfrac{\pi}{3}             & \tfrac{\pi}{2}             \\[1mm] \hline
-         \sin & \frac{1}{2} \cdot \sqrt{0} & \frac{1}{2} \cdot \sqrt{1} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{4} \\[1mm]
-         \cos & \frac{1}{2} \cdot \sqrt{4} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{1} & \frac{1}{2} \cdot \sqrt{0} \\[1mm]
+ x            & 0                          & \tfrac{\pi}{6}             & \tfrac{\pi}{4}             & \tfrac{\pi}{3}             & \tfrac{\pi}{2}             \\[1mm] \hline
+         \sin & 0 = \frac{1}{2} \cdot \sqrt{0} & \frac{1}{2} = \frac{1}{2} \cdot \sqrt{1} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{4} = 1 \\[1mm]
+         \cos & 1 = \frac{1}{2} \cdot \sqrt{4} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{1} = \frac{1}{2} & \frac{1}{2} \cdot \sqrt{0} = 0 \\[1mm]
          \tan & 0                          & \frac{\sqrt{3}}{3}         & 1                          & \sqrt{3}                   & -                          \\[1mm] \hline
- \alpha             & 0^{\circ}                  & 30^{\circ}                 & 45^{\circ}                 & 60^{\circ}                 & 90^{\circ}                
+ \alpha       & 0\MGrad                    & 30\MGrad                   & 45\MGrad                   & 60\MGrad                   & 90\MGrad %% 
 \end{array}
 \]
 \end{MDirectHTML}
 \else
 \begin{center}
        $\begin{array}[t]{l|*{5}{c}}
- x             & 0                          & \Mtfrac{\pi}{6}             & \Mtfrac{\pi}{4}             & \Mtfrac{\pi}{3}             & \Mtfrac{\pi}{2}             \\[1mm] \hline
-         \sin & \frac{1}{2} \cdot \sqrt{0} & \frac{1}{2} \cdot \sqrt{1} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{4} \\[1mm]
-         \cos & \frac{1}{2} \cdot \sqrt{4} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{1} & \frac{1}{2} \cdot \sqrt{0} \\[1mm]
+ x            & 0                          & \Mtfrac{\pi}{6}             & \Mtfrac{\pi}{4}             & \Mtfrac{\pi}{3}             & \Mtfrac{\pi}{2}         \\[1mm] \hline
+         \sin & 0 = \frac{1}{2} \cdot \sqrt{0} & \frac{1}{2} = \frac{1}{2} \cdot \sqrt{1} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{4} = 1 \\[1mm]
+         \cos & 1 = \frac{1}{2} \cdot \sqrt{4} & \frac{1}{2} \cdot \sqrt{3} & \frac{1}{2} \cdot \sqrt{2} & \frac{1}{2} \cdot \sqrt{1} = \frac{1}{2} & \frac{1}{2} \cdot \sqrt{0} = 0 \\[1mm]
          \tan & 0                          & \frac{\sqrt{3}}{3}         & 1                          & \sqrt{3}                   & -                          \\[1mm] \hline
- \alpha             & 0^{\circ}                  & 30^{\circ}                 & 45^{\circ}                 & 60^{\circ}                 & 90^{\circ}                
+ \alpha       & 0\MGrad                  & 30\MGrad                 & 45\MGrad                 & 60\MGrad                 & 90\MGrad %% 
         \end{array}$
 \end{center}
 \fi
@@ -3738,20 +3798,35 @@ in der mit $\alpha$ bezeichneten letzten Zeile der Winkel im Gradma"s notiert.
 Diese Werte sollte man sich merken. Die Werte der trigonometrischen Funktionen 
 f\"ur andere Winkel sind in Tabellen bzw. im Taschenrechner gespeichert.
 
-Im Beispiel 
-\MRef{Mathematik_ElementareGeometrie:Trigonometrie_Beispiel:gleichseitigesDreieck}
- wurde mithilfe der trigonometrischen Funktionen die H\"ohe $h$ des Dreiecks 
-berechnet. Diese Vorgehensweise gilt f\"ur alle beliebigen Dreiecke, da die 
-H\"ohe $h$ das Dreieck immer in zwei rechtwinklige Dreiecke teilt und somit 
-die trigonometrischen Funktionen angewandt werden k\"onnen.
+Damit kann man dann aus einem Winkel und einem Abstand ganz einfach eine H"ohe 
+berechnen. 
+Ist n"amlich $s$ der Abstand zu einem Geb"aude mit Flachdach, das unter einem 
+Winkel $x$ beobachtet wird, ergibt sich aus $\tan(x) = \frac{h}{s}$ n"amlich 
+$h = s \cdot \tan(x)$. Ebenso k"onnen auch $\cos$ und $\sin$ verwendet werden, 
+um L"angen zu bereichnen. Dieser Zusammenhang zwischen Winkeln und L"angen wird
+oft verwendet.
+
+Beispielsweise kann man so einen Fl"acheninhalt berechnen, auch wenn eine 
+ben"otigte L"ange nicht unmittelbar gegeben ist. Im folgenden Beispiel ist es 
+eine H"ohe $h$ in einem Dreieck, die zu berechnen ist.
+Da $h$, ausgehend von einer Ecke, hier $C$ genannt, senkrecht auf der Geraden 
+der gegen"uberliegenden Seite $c = \MGeoStrecke{A}{B}$ steht, bilden 
+die Ecken von $h$ und $A$ bzw. $B$ ein rechtwinkliges Dreieck.
+Mit einer Angabe zu einem Winkel und der entsprechenden Seite kann 
+dann die H"ohe aus $\sin(\alpha) = \frac{h}{b}$ oder aus 
+$\sin(\beta) = \frac{h}{a}$ berechnet werden, wobei von den konventionellen
+Bezeichnungen ausgegangen wurde.
 
 \begin{MExercise}
-Berechnen Sie den Fl\"acheninhalt eines Dreiecks mit den Seiten $c=7$ und $b=3$
-sowie dem Winkel $\alpha=30\MGrad$ zwischen den Seiten $c$ und $b$.
+Berechnen Sie den Fl\"acheninhalt $F$ eines Dreiecks mit den Seiten $c = 7$ 
+und $b = 3$ sowie dem Winkel $\alpha = 30\MGrad$ zwischen den Seiten $c$ und $b$.
+
+Ergebnis: %
+ \MEquationItem{$F$}{\MLParsedQuestion{20}{21/4}{4}{ExM05Sec6DFlaeche}}
 
 \begin{MHint}{L\"osung}
-Der Fl\"acheninhalt ist $F =\frac{1}{2}\cdot c \cdot h_c$, wobei noch $h_c$
-zu berechnen ist:
+Der Fl\"acheninhalt $F$ kann gem"a"s $F =\frac{1}{2}\cdot c \cdot h_c$ 
+berechnet werden, wobei noch $h_c$ zu bestimmen ist:
 Aus $\sin\left(\alpha\right)=\frac{h_c}{b}$
 ergibt sich
 \[
@@ -3774,84 +3849,154 @@ F =\frac{1}{2}\cdot c\cdot b\cdot\sin\left(\alpha\right) %
 \MLabel{VBKM05_Trigonometrie_Einheitskreis}
 \MDeclareSiteUXID{VBKM05_TrigonometrieEinheitskreis_Content}
 
-
-Im letzten Abschnitt wurden die trigonometrischen Funktionen anhand eines 
+Im vorherigen Abschnitt wurden die trigonometrischen Funktionen anhand eines 
 rechtwinkligen Dreiecks eingef"uhrt. Die beschriebenen Eigenschaften gelten 
-also f\"ur einen Winkelbereich von $0$ bis $90\MGrad=\frac{\pi}{2}$.
+also f\"ur einen Winkelbereich von $0\MGrad$ bis $90\MGrad$ beziehungsweise 
+$0$ bis $\frac{\pi}{2}$.
 
 Um die gewonnenen Erkenntnisse auf gr"o"sere Winkel als $\pi/2$ ausdehnen zu 
 k"onnen, erweist sich der Blick auf den sogenannten Einheitskreis als 
 besonders n"utzlich.
 
-%\ifttm\else\newpage\fi
-
 \begin{center}
 \MTikzAuto{%
-\begin{tikzpicture}[x=0.024cm, y=2.4cm] 
-\begin{scope}[xshift=-4cm,xscale=100]
-%Koordinatensystem
-\node (xMAX) at (1.3,0){};
-\node (yMAX) at (0,1.4){};
-\draw[color=black] (0,0) circle (1);
-\draw[-stealth',color=black] (-1.2,0) -- (1.3,0);
-\draw[-stealth',color=black] (0,-1.4) -- (0,1.4);
-\draw (xMAX) node[anchor=north] {$x$};
-\draw (yMAX) node[anchor=north east] {$y$};
-\foreach \x in {-1, 1}
-\draw[shift={(\x,0)},thick,color=black] (0,-0.05) -- (0,0.05) (0,0) node[anchor=north west] {\normalsize $\x$};
-\foreach \y in {-1, 1}
-\draw[shift={(0,\y)},thick,color=black] (0.05,0) -- (-0.05,0) (0,0) node[anchor=north west] {\normalsize $\y$};
-\def\cAng{38}
-\draw[-stealth',thick,color=black] (0,0) -- ({cos(\cAng)},{sin(\cAng)}) node[anchor=south west] {$P$};
-\draw[shift={({cos(\cAng)},0)},very thick,color=blue] (0,0.05) -- (0,-0.05) node[anchor=north east] {\normalsize $\cos(\alpha)$};
-\draw[shift={(0,{sin(\cAng)})},very thick,color=red] (0.05,0) -- (-0.05,0) node[anchor=east] {\normalsize $\sin(\alpha)$};
-\draw[thick,color=blue] (0,0) -- ({cos(\cAng)},0.0);
-\draw[thick,color=red] ({cos(\cAng)},0) -- ({cos(\cAng)},{sin(\cAng)});
-\draw[color=black, thin] (0,0) ++(0:0.5) arc (0:\cAng:0.5);
-\draw[color=black] (0,0) ++({0.5*\cAng}:0.35) node {$\alpha$};
+\begin{tikzpicture}[line width=1.5pt,scale=1.5]
+\coordinate (P) at (30:1);
+\coordinate (Px) at ($(P) + (-90:{1/2}) $);
+\draw[style=dotted] ($(P) + (-1.6,0) $) -- ($ ({pi/6},{1/2}) + (0.3,0) $);
+\draw[style=dotted] %
+ ($(Px) + (-1.6,0) $) -- ($ ({sqrt(3)/2},{-pi/6}) + (-1.6,-1.9) $);
+\begin{scope}[xshift=-1.6cm]
+\coordinate (M) at (0,0);
+\coordinate (P) at (30:1);
+\coordinate (Px) at ($(P) + (-90:{1/2}) $);
+\coordinate (Py) at ($(P) + (180:{1/2}) $);
+\draw (-1.3,0) -- (0,0);
+\draw[->] (Px)  -- (1.3,0) node[below left] {$x$};
+\draw[->] (0,-1.3) -- (0,1.3) node[below left] {$y$};
+\draw[color=black!50!white] (M) circle(1);
+\draw (M) -- node[above,rotate=30] {$r=1$} (P);
+\draw[color=green] (M) -- (Px);
+\draw[color=blue] (P) -- (Px);
+\draw (1,0) arc(0:30:1);
+\node[right] at (15:1) {$\Mvarphi$};
+\filldraw (M) circle(1pt);
+\filldraw (P) circle(1pt);
 \end{scope}
-%Koordinatensystem
-\node (xMAX) at (400.0,0){};
-\node (yMAX) at (0,1.4){};
-%%\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
-\draw[-stealth',color=black] (-20,0) -- (xMAX);
-\foreach \x in {30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360}
-\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\scriptsize $\x\MGrad$};
-\draw[-stealth',color=black] (0,-1.4) -- (yMAX);
-\foreach \y in {1}
-\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-6pt,0pt)  node[left] {\normalsize $\pgfmathprintnumber{\y}$};
-%Achsenbeschriftung
-\draw (xMAX) node[anchor=north east] {$\alpha$};
-\draw[color=red] (yMAX) node[anchor=north west] {$y=\sin(\alpha)$};
-\draw[smooth,samples=73,domain=0:360, line width=1pt,color=red] plot(\x,{sin(\x)}); %{cos(\x r)}
-%Beschriftung und Graphen
-%%\clip(-2.8,-0.5) rectangle (6,3);
-%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
-\end{tikzpicture}
-}
 %
-\MTikzAuto{%
-\begin{tikzpicture}[x=0.024cm, y=2.4cm] 
-%Koordinatensystem
-\node (xMAX) at (400.0,0){};
-\node (yMAX) at (0,1.4){};
-%%\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
-\draw[-stealth',color=black] (-20,0) -- (xMAX);
-\foreach \x in {30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360}
-\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\scriptsize $\x\MGrad$};
-\draw[-stealth',color=black] (0,-1.4) -- (yMAX);
-\foreach \y in {1}
-\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-6pt,0pt)  node[left] {\normalsize $\pgfmathprintnumber{\y}$};
-%Achsenbeschriftung
-\draw (xMAX) node[anchor=north east] {$\alpha$};
-\draw[color=blue] (yMAX) node[anchor=north west] {$x=\cos(\alpha)$};
-\draw[smooth,samples=73,domain=0:360, line width=1pt,color=blue] plot(\x,{cos(\x)}); %{cos(\x r)}
-%Beschriftung und Graphen
-%%\clip(-2.8,-0.5) rectangle (6,3);
-%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+\begin{scope}[xshift=0.3cm]
+\coordinate (M) at (0,0);
+\coordinate (P) at (30:1);
+\coordinate (Px) at ($(P) + (-90:{1/2}) $);
+\coordinate (Py) at ($(P) + (180:{1/2}) $);
+\draw[->,color=black!50!white] (-0.3,0) -- (6.6,0) node[above left] {$\xi$};
+\draw[->] (0,-1.3) -- (0,1.3) node[below left] {$y=\sin(\xi)$};
+%\draw[->] (0,-1.3) -- (0,1.3) node[below left] {$y$};
+\node[below left] at (M) {$0$};
+\foreach \x/\xt in {1/{\frac{\pi}{2}}, 2/{\pi}, 3/{\frac{3\pi}{2}}, 4/{2\pi}}
+ \draw[color=black!50!white] ({\x*pi/2},0) -- ++(0,-0.1) node[below] {$\xt$};
+\draw[domain=0:{2*pi},samples=200,color=blue!50!white] 
+ plot (\x,{sin(\x r)});
+\draw[color=black] (M) -- node[below] {$\Mvarphi$} ({pi/6},0);
+\draw[color=blue] ({pi/6},0) -- node[right] {$\sin(\Mvarphi)$} ++(0,{1/2});
+\filldraw (M) circle(1pt);
+\filldraw ({pi/6}, {1/2}) circle(1pt);
+\end{scope}
+%
+\begin{scope}[xshift=-1.6cm,yshift=-1.9cm,rotate=-90]
+\coordinate (M) at (0,0);
+\coordinate (P) at (30:1);
+\coordinate (Px) at ($(P) + (-90:{1/2}) $);
+\coordinate (Py) at ($(P) + (180:{1/2}) $);
+\draw[->,color=black!50!white] (-0.3,0) -- (6.6,0) node[above right] {$\xi$};
+\draw[->] (0,-1.3) -- (0,1.3); % node[above left] {$x$}; 
+  % node[above right] {$x=\cos(\xi)$};
+\node[above left] at (M) {$0$};
+%\path[->] (M) -- node[above,fill=white] {$x=\cos(\xi)$} (0,1.3);
+\node [above right] at (0,{sqrt(3)/2}) {$x=\cos(\xi)$};
+\foreach \x/\xt in {1/{\frac{\pi}{2}}, 2/{\pi}, 3/{\frac{3\pi}{2}}, 4/{2\pi}}
+ \draw[color=black!50!white] ({\x*pi/2},0) -- ++(0,-0.1) node[left] {$\xt$};
+\draw[domain=0:{2*pi},samples=200,color=green!50!white] 
+plot (\x,{cos(\x r)});
+\draw[color=black] (M) -- node[left] {$\Mvarphi$} ({pi/6},0);
+\draw[color=green] %
+ ({pi/6},0) -- node[above] {$\cos(\Mvarphi)$} ({pi/6},{sqrt(3)/2});
+\filldraw (M) circle(1pt);
+\filldraw ({pi/6}, {sqrt(3)/2}) circle(1pt);
+\end{scope}
 \end{tikzpicture}
 }
 \end{center}
+
+%\ifttm\else\clearpage\fi
+
+%%%\begin{center}
+%%%\MTikzAuto{%
+%%%\begin{tikzpicture}[x=0.024cm, y=2.4cm] 
+%%%\begin{scope}[xshift=-4cm,xscale=100]
+%%%%Koordinatensystem
+%%%\node (xMAX) at (1.3,0){};
+%%%\node (yMAX) at (0,1.4){};
+%%%\draw[color=black] (0,0) circle (1);
+%%%\draw[-stealth',color=black] (-1.2,0) -- (1.3,0);
+%%%\draw[-stealth',color=black] (0,-1.4) -- (0,1.4);
+%%%\draw (xMAX) node[anchor=north] {$x$};
+%%%\draw (yMAX) node[anchor=north east] {$y$};
+%%%\foreach \x in {-1, 1}
+%%%\draw[shift={(\x,0)},thick,color=black] (0,-0.05) -- (0,0.05) (0,0) node[anchor=north west] {\normalsize $\x$};
+%%%\foreach \y in {-1, 1}
+%%%\draw[shift={(0,\y)},thick,color=black] (0.05,0) -- (-0.05,0) (0,0) node[anchor=north west] {\normalsize $\y$};
+%%%\def\cAng{38}
+%%%\draw[-stealth',thick,color=black] (0,0) -- ({cos(\cAng)},{sin(\cAng)}) node[anchor=south west] {$P$};
+%%%\draw[shift={({cos(\cAng)},0)},very thick,color=blue] (0,0.05) -- (0,-0.05) node[anchor=north east] {\normalsize $\cos(\alpha)$};
+%%%\draw[shift={(0,{sin(\cAng)})},very thick,color=red] (0.05,0) -- (-0.05,0) node[anchor=east] {\normalsize $\sin(\alpha)$};
+%%%\draw[thick,color=blue] (0,0) -- ({cos(\cAng)},0.0);
+%%%\draw[thick,color=red] ({cos(\cAng)},0) -- ({cos(\cAng)},{sin(\cAng)});
+%%%\draw[color=black, thin] (0,0) ++(0:0.5) arc (0:\cAng:0.5);
+%%%\draw[color=black] (0,0) ++({0.5*\cAng}:0.35) node {$\alpha$};
+%%%\end{scope}
+%%%%Koordinatensystem
+%%%\node (xMAX) at (400.0,0){};
+%%%\node (yMAX) at (0,1.4){};
+%%%%%\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
+%%%\draw[-stealth',color=black] (-20,0) -- (xMAX);
+%%%\foreach \x in {30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360}
+%%%\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\scriptsize $\x\MGrad$};
+%%%\draw[-stealth',color=black] (0,-1.4) -- (yMAX);
+%%%\foreach \y in {1}
+%%%\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-6pt,0pt)  node[left] {\normalsize $\pgfmathprintnumber{\y}$};
+%%%%Achsenbeschriftung
+%%%\draw (xMAX) node[anchor=north east] {$\alpha$};
+%%%\draw[color=red] (yMAX) node[anchor=north west] {$y=\sin(\alpha)$};
+%%%\draw[smooth,samples=73,domain=0:360, line width=1pt,color=red] plot(\x,{sin(\x)}); %{cos(\x r)}
+%%%%Beschriftung und Graphen
+%%%%%\clip(-2.8,-0.5) rectangle (6,3);
+%%%%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+%%%\end{tikzpicture}
+%%%}
+%%%%
+%%%\MTikzAuto{%
+%%%\begin{tikzpicture}[x=0.024cm, y=2.4cm] 
+%%%%Koordinatensystem
+%%%\node (xMAX) at (400.0,0){};
+%%%\node (yMAX) at (0,1.4){};
+%%%%%\draw[help lines, gray, dashed, xstep=1, ystep=1] (0,0) grid (5.5,2.8);
+%%%\draw[-stealth',color=black] (-20,0) -- (xMAX);
+%%%\foreach \x in {30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360}
+%%%\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-6pt) node[below] {\scriptsize $\x\MGrad$};
+%%%\draw[-stealth',color=black] (0,-1.4) -- (yMAX);
+%%%\foreach \y in {1}
+%%%\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-6pt,0pt)  node[left] {\normalsize $\pgfmathprintnumber{\y}$};
+%%%%Achsenbeschriftung
+%%%\draw (xMAX) node[anchor=north east] {$\alpha$};
+%%%\draw[color=blue] (yMAX) node[anchor=north west] {$x=\cos(\alpha)$};
+%%%\draw[smooth,samples=73,domain=0:360, line width=1pt,color=blue] plot(\x,{cos(\x)}); %{cos(\x r)}
+%%%%Beschriftung und Graphen
+%%%%%\clip(-2.8,-0.5) rectangle (6,3);
+%%%%%\draw[color=black] (7,3) node[anchor=south west] {$\MPointTwo{7}{3}$};
+%%%\end{tikzpicture}
+%%%}
+%%%\end{center}
 
 Der Einheitskreis ist ein Kreis mit Radius $1$.
 Sein Mittelpunkt wird im Nullpunkt eines kartesischen Koordinatensystems 
@@ -3859,91 +4004,155 @@ positioniert.
 Hier wird eine Strecke vom Mittelpunkt aus mit der L\"ange $1$ betrachtet. 
 Diese Strecke wird nun von ihrer horizontalen Ausgangslage auf der positiven 
 $x$-Achse gegen den Uhrzeigersinn, also im mathematisch positiven Sinn, um den 
-Nullpunkt rotiert. 
-Dabei \"uberstreicht ihre Spitze den Einheitskreis, und sie bildet mit der 
+Nullpunkt gedreht. 
+Dabei \"uberstreicht ihr rotierendes Ende den Einheitskreis und bildet mit der 
 positiven $x$-Achse den Winkel $\alpha$, der bei der Rotation von $0$ bis 
-$2\pi$ bzw. $360\MGrad$ w\"achst. Zu jedem Winkel $\alpha$ geh\"ort also ein 
-Punkt $P_\alpha$ mit den Koordinaten $x_\alpha$ und $y_\alpha$ auf dem 
+$2\pi$ bzw. $360\MGrad$ w\"achst. Zu jedem Winkel $\Mvarphi$ geh\"ort also ein 
+Punkt $P_\Mvarphi$ mit den Koordinaten $x_\Mvarphi$ und $y_\Mvarphi$ auf dem 
 Einheitskreis.
 
-F\"ur $\alpha\in\left[0\MIntvlSep \pi/2\right]$ kann man die Strecke, den 
-zugeh\"origen $x$-Achsenabschnitt und den zugeh\"origen $y$-Achsenabschnitt 
-als rechtwinkliges Dreieck ansehen, wie es vom letzten Kapitel her bekannt ist.
+F\"ur $\Mvarphi$ zwischen $0$ und $\frac{\pi}{2}$ kann man die Strecke, den 
+zugeh\"origen Abschnitt auf der $x$-Achse und den zugeh\"origen 
+$y$-Achsenabschnitt als rechtwinkliges Dreieck ansehen. 
 Die Hypotenuse ist die Strecke mit der L\"ange $1$, der $x$-Achsenabschnitt 
 ist die Ankathete und der $y$-Achsenabschnitt die Gegenkathete.
+Dies entspricht der Situation aus dem vorherigen Abschnitt.
 \par
-Der Sinus des Winkels $\alpha$ ist also
+Der Sinus des Winkels $\Mvarphi$ ist also
 \[
-\sin\left(\alpha\right)=\frac{y_\alpha}{1}=y_\alpha
+\sin\left(\Mvarphi\right)=\frac{y_\Mvarphi}{1}=y_\Mvarphi
 \]
 und der Kosinus ist
 \[
-\cos\left(\alpha\right)=\frac{x_\alpha}{1}=x_\alpha \MDFPeriod
+\cos\left(\Mvarphi\right)=\frac{x_\Mvarphi}{1}=x_\Mvarphi \MDFPeriod
 \]
-
-Diese Definitionen gelten auch f\"ur die Winkel $\alpha>\pi/2$. Dabei k\"onnen 
-die Werte f\"ur $x_\alpha$ und $y_\alpha$ auch negativ werden und damit auch 
-der Kosinus bzw. Sinus. Tr\"agt man die $y$-Werte in Abh\"angigkeit vom 
-Winkel $\alpha$ in ein Diagramm, so erh\"alt man die rote Kurve, f\"ur die 
-$x$-Werte erh\"alt man die blaue Kurve.
+Anhand der obigen Beschreibung am Einheitskreis gelten diese Definitionen jetzt 
+auch f\"ur Winkel $\Mvarphi > \pi/2$. 
+Dabei k\"onnen die Werte f\"ur $x_{\Mvarphi}$ und $y_{\Mvarphi}$ auch negativ 
+werden und damit auch Sinus und Kosinus. Tr\"agt man die $y$-Werte in 
+Abh\"angigkeit vom Winkel $\Mvarphi$ in ein Diagramm ein, so erh\"alt man die 
+blaue Kurve f"ur die Sinusfunktion. F\"ur die $x$-Werte erh\"alt man die 
+gr"une Kurve f"ur die Kosinusfunktion.
+Indem man die Strecke in umgekehrter Richtung dreht, kann man entsprechend 
+Werte f"ur negative Winkel definieren.
 \par
 Mit dem Satz von Pythagoras gilt au"serdem
 \[
-x_{\alpha}^{2}+y_{\alpha}^{2}=1 \MDFPeriod
+x_{\Mvarphi}^{2}+y_{\Mvarphi}^{2}=1 \MDFPeriod
 \]
-Setzt man hier die Beziehungen f\"ur $x_{\alpha}$ und $y_{\alpha}$ mit den 
-Winkelfunktionen ein, so ergibt sich f\"ur beliebige Winkel $\alpha$ die 
+Setzt man hier die Beziehungen f\"ur $x_{\Mvarphi}$ und $y_{\Mvarphi}$ mit den 
+Winkelfunktionen ein, so ergibt sich f\"ur beliebige Winkel $\Mvarphi$ die 
 wichtige Beziehung
 \[
-\sin^2\left(\alpha\right)+\cos^2\left(\alpha\right)=1 \MDFPeriod
+\sin^2\left(\Mvarphi\right)+\cos^2\left(\Mvarphi\right)=1 \MDFPeriod
 \]
-Aus obiger Zeichnung wird zudem ersichtlich, dass sich die Kosinuswerte bei 
-Spiegelung an der $y$-Achse nicht "andern.
-Eine Spiegelung an der $x$-Achse f"uhrt zur "Anderung des Vorzeichens des 
-Sinuswertes.  
-Formelm"a"sig ausgedr"uckt, gilt
+Aus der Beschreibung von Sinus und Kosinus am Einheitskreis wird zudem 
+ersichtlich, dass sich die Kosinuswerte bei Spiegelung an der $x$-Achse 
+nicht "andern. Somit ist der Wert von $\cos$ zum Winkel $\Mvarphi$ gleich
+dem Kosinuswert zum Winkel $-\Mvarphi$ (in der Zeichnung gr"un dargestellt).
+Beim Sinus f"uhrt eine Spiegelung an der $x$-Achse zur "Anderung des 
+Vorzeichens des Sinuswertes (in der Zeichnung blau beziehungsweise violett
+dargestellt). 
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1.5pt]
+\begin{scope}[xshift=-4cm]
+\draw[->] (-3,0) -- (3.5,0) node[below left] {$x$};
+\draw[->] (0,-3) -- (0,3) node[below left] {$y$};
+\draw[color=black!50!white] (0,0) circle(2);
+\draw (0,0) -- (30:2);
+%\draw[color=green] (0,0) -- node[below] {$\cos(\Mvarphi)$} ({sqrt(3)},0);
+\draw[color=green] (0,0) -- ({sqrt(3)},0);
+\draw[style=dashed,color=blue] (30:2) -- ++(-90:1);
+\draw[style=dotted] (0,0) -- (-30:2);
+\draw[style=dotted,color=blue] (-30:2) -- ++(90:1);
+%Winkel:
+\draw (2,0) arc(0:30:2);
+\node[right] at (15:2) {$\Mvarphi$};
+\draw[style=dotted] (2,0) arc(0:-30:2);
+\node[right] at (-15:2) {$-\Mvarphi$};
+%Punkte:
+\filldraw (0,0) circle(1pt);
+\filldraw (30:2) circle(1pt);
+\filldraw (-30:2) circle(1pt);
+\end{scope}
+%
+\begin{scope}[xshift=4cm]
+\draw (-3,0) -- (0,0);
+\draw[->] ({sqrt(3)},0) -- (3.5,0) node[below left] {$x$};
+\draw[->] (0,-3) -- (0,3) node[below left] {$y$};
+\draw[color=black!50!white] (0,0) circle(2);
+\draw (0,0) -- (30:2);
+%\draw[color=green] (0,0) -- node[below] {$\cos(\Mvarphi)$} ({sqrt(3)},0);
+\draw[style=dashed,color=green] (0,0) -- ({sqrt(3)},0);
+\draw[color=blue] (30:2) -- ++(-90:1);
+\draw[style=dotted] (0,0) -- (-30:2);
+\draw[color=blue!70!red] (-30:2) -- ++(90:1);
+%Winkel:
+\draw (2,0) arc(0:30:2);
+\node[right] at (15:2) {$\Mvarphi$};
+\draw[style=dotted] (2,0) arc(0:-30:2);
+\node[right] at (-15:2) {$-\Mvarphi$};
+%Punkte:
+\filldraw (0,0) circle(1pt);
+\filldraw (30:2) circle(1pt);
+\filldraw (-30:2) circle(1pt);
+\end{scope}
+\end{tikzpicture}
+}
+\end{center}
+
+Formelm"a"sig ausgedr"uckt, bedeutet dies
 \[
-\cos(-x) = \cos(x)
+\cos(-\Mvarphi) = \cos(\Mvarphi)
 \qquad \text{und} \qquad
-\sin(-x) = -\sin(x)
+\sin(-\Mvarphi) = -\sin(\Mvarphi)
 \]
-f"ur jeden Winkel $x$. 
+f"ur jeden Winkel $\Mvarphi$. 
 Diese Symmetrieeigenschaften sind f"ur viele Rechnungen hilfreich. 
-Ein Beispiel ist die Berechnung des Winkels zwischen $x$-Achse und der 
-Verbindungsstrecke vom Nullpunkt zu einem gegebenen Punkt im kartesischen 
-Koordinatensystem (siehe 
-auch \MRef{VBKM05_TrigonometrieAufgabeArcsinArccos}).
+Ein elementares Beispiel ist die Berechnung des Winkels zwischen $x$-Achse und 
+der Verbindungsstrecke vom Nullpunkt zu einem Punkt im kartesischen 
+Koordinatensystem (siehe auch 
+Aufgabe \MRef{VBKM05_TrigonometrieAufgabeArcsinArccos}).
 
 \begin{MExample}
 Gesucht sind jeweils die Werte des Sinus, Kosinus und Tangens des 
 Winkels $\alpha=315\MGrad$.
 
 F"ur $\alpha=315\MGrad$ liegt der Punkt $P_\alpha$ im vierten Quadranten. 
-Die zugeh"orige Strecke bildet mit den zugeh"origen Achsenabschnitten 
-ein gleichschenkliges Dreieck. Somit gilt 
-$\left|x_\alpha\right|=\left|y_\alpha\right|$,
-woraus 
-$2\cdot\left|x_\alpha\right|^2 %
- = \left|x_\alpha\right|^2+\left|y_\alpha\right|^2
- = 1$ 
-und somit
-$\left|x_\alpha\right| %
- =\left|y_\alpha\right| %
- =\frac{1}{\sqrt 2} %
- =\frac{1}{2}\sqrt 2$
-folgt. Damit ist
-\[
-\cos\left(315\MGrad\right) %
- =x_\alpha
- =\frac{1}{2}\sqrt 2 \MDFPSpace,
-\MDFPaSpace
-\sin\left(315\MGrad\right) %
- =y_\alpha %
- = -\frac{1}{2}\sqrt 2 \MDFPSpace,
-\MDFPaSpace
-\tan\left(315\MGrad\right) %
- =\frac{y_\alpha}{x_\alpha}=-1 \MDFPeriod
-\]
+Er wird auf dem Einheitskreis auch durch den negativen Winkel 
+$\Mvarphi = 315\MGrad - 360\MGrad = -45\MGrad$ beschrieben.
+Damit ist
+$\sin(315\MGrad) = \sin(-45\MGrad) = -\sin(45\MGrad)=\frac{1}{2} \sqrt{2}$
+und
+$\cos(315\MGrad) = \cos(-45\MGrad) = \cos(45\MGrad)=\frac{1}{2} \sqrt{2}$
+sowie $\tan(315\MGrad) = \tan(-45\MGrad) = -1$.
+%Die zugeh"orige Strecke bildet mit den zugeh"origen Achsenabschnitten 
+%ein gleichschenkliges Dreieck. Somit gilt 
+%$\left|x_\alpha\right|=\left|y_\alpha\right|$,
+%woraus 
+%$2\cdot\left|x_\alpha\right|^2 %
+% = \left|x_\alpha\right|^2+\left|y_\alpha\right|^2
+% = 1$ 
+%und somit
+%$\left|x_\alpha\right| %
+% =\left|y_\alpha\right| %
+% =\frac{1}{\sqrt 2} %
+% =\frac{1}{2}\sqrt 2$
+%folgt. Damit ist
+%\[
+%\cos\left(315\MGrad\right) %
+% =x_\alpha
+% =\frac{1}{2}\sqrt 2 \MDFPSpace,
+%\MDFPaSpace
+%\sin\left(315\MGrad\right) %
+% =y_\alpha %
+% = -\frac{1}{2}\sqrt 2 \MDFPSpace,
+%\MDFPaSpace
+%\tan\left(315\MGrad\right) %
+% =\frac{y_\alpha}{x_\alpha}=-1 \MDFPeriod
+%\]
 \end{MExample}
 
 \end{MXContent}
@@ -3952,28 +4161,34 @@ folgt. Damit ist
 \begin{MExercises}
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Exercises}
 \begin{MExercise}\MLabel{VBKM05_TrigonometrieAufgabeArcsinArccos}
-Welcher Winkel geh\"ort zu dem Punkt $P_\alpha\left(-\MZahl{0}{643}, -\MZahl{0}{766}\right)$? 
-\begin{MHint}{Hinweis}
+Wie gro"s ist der Winkel $\Mvarphi$ im Gradma"s, den der Punkt 
+$P_{\Mvarphi} = \MPointTwo{-\MZahl{0}{643}}{-\MZahl{0}{766}}$ auf dem 
+Einheitskreis mit dem Nullpunkt im kartesischen Koordinatensystem einschlie"st? 
 Verwenden Sie dazu den Taschenrechner, aber vertrauen Sie ihm nicht blind!
-\end{MHint}
+
+Ergebnis: \MEquationItem{$\Mvarphi$}{\MLParsedQuestion{15}{230}{4}{ExM05Sec6TrigFktWinkel}$\MEinheit{\MGrad}$}
 
 \begin{MHint}{L\"osung}
-Aus den Koordinaten des Punktes $P_\alpha$ ergibt sich:
+Aus den Koordinaten des Punktes $P_{\Mvarphi}$ ergibt sich:
 \[
-\sin\left(\alpha\right)=-\MZahl{0}{766}
+\cos\left(\alpha\right)=-\MZahl{0}{643} 
  \quad \text{und} \quad
-\cos\left(\alpha\right)=-\MZahl{0}{643} \MDFPeriod %%
+\sin\left(\alpha\right)=-\MZahl{0}{766}
+\MDFPeriod %%
 \]
-Tippen Sie in den Taschenrechner:\\
-invers(sin(-\MZahl{0}{766})) bzw. $\sin^{-1}$(-\MZahl{0}{766}), so erhalten 
-Sie ungef\"ahr $-50\MGrad$, und \\
-invers(cos(-\MZahl{0}{643})) bzw. $\cos^{-1}$(-\MZahl{0}{643}), so erhalten 
-Sie ungef\"ahr $130\MGrad$.\\
-Au\ss erdem wissen Sie, dass der Punkt im 3. Quadranten ist, also ein Winkel 
-im Bereich zwischen $180\MGrad$ und $270\MGrad$ herauskommen muss.
+Wenn Sie in den Taschenrechner
+\begin{itemize}
+\item \texttt{invers(cos(-\MZahl{0}{643}))} bzw. $\cos^{-1}$(-\MZahl{0}{643}) 
+eingeben, erhalten Sie ungef\"ahr $130\MGrad$, und
+\item bei Eingabe von 
+\texttt{invers(sin(-\MZahl{0}{766}))} bzw. $\sin^{-1}$(-\MZahl{0}{766})
+erhalten Sie ungef\"ahr $-50\MGrad$.
+\end{itemize}
+Au"serdem wissen Sie, dass der Punkt im dritten Quadranten liegt. Somit muss
+der Wert f"ur den Winkel im Bereich zwischen $180\MGrad$ und $270\MGrad$ liegen.
 
 \MTikzAuto{%
-\begin{tikzpicture}[x=2.6cm, y=2.6cm] 
+\begin{tikzpicture}[x=2.6cm, y=2.6cm,line width=0.7pt] 
 %Koordinatensystem
 \node (xMAX) at (1.3,0){};
 \node (yMAX) at (0,1.3){};
@@ -3996,19 +4211,23 @@ im Bereich zwischen $180\MGrad$ und $270\MGrad$ herauskommen muss.
 \draw[color=black] (0,0) ++(45:0.30) node {$130\MGrad$}; %({90-0.5*\cAng}:0.35)
 \draw[color=magenta, thin] (0,0) ++({-\cAng}:0.60) arc ({-\cAng}:{180+\cAng}:0.60);
 \draw[thick,color=magenta] (0,0) -- ({-cos(\cAng)},{-sin(\cAng)});
-\draw[thick,color=red] ({cos(\cAng)},0) -- ({cos(\cAng)},{-sin(\cAng)});
+\draw[thick,color=blue] ({cos(\cAng)},0) -- ({cos(\cAng)},{-sin(\cAng)});
 \draw[thick,color=black,dashed] ({-cos(\cAng)},0) -- ({-cos(\cAng)},{sin(\cAng)});
-\draw[color=black,dashed] ({-cos(\cAng)},0) -- ({-cos(\cAng)},{-sin(\cAng)-0.1});
+\draw[color=blue,dashed] ({-cos(\cAng)},0) -- ({-cos(\cAng)},{-sin(\cAng)-0.1});
 \draw[color=black,dashed] ({-cos(\cAng)-0.1},{-sin(\cAng)}) -- (0,{-sin(\cAng)});
-\draw[thick,color=black,red] (-0.05,{-sin(\cAng)}) -- (0.05,{-sin(\cAng)});
+\draw[thick,color=black,blue] (-0.05,{-sin(\cAng)}) -- (0.05,{-sin(\cAng)});
 \end{tikzpicture}
 }
 \begin{minipage}[b]{10cm}
-Anhand des Bildes kann man erkennen, dass der negative Sinuswert zwar zum Winkel $-50\MGrad$, aber auch zu $\alpha=\left(180\MGrad+50\MGrad\right)=230\MGrad$ geh\"ort.\\
+Anhand der Zeichnung erkennt man, dass der negative Kosinuswert zum 
+Winkel $-130\MGrad$ und zu
+$\Mvarphi = -130\MGrad= -130\MGrad+360\MGrad = 230\MGrad$ geh"ort.
 \par
-Ebenso kann der negative Kosinuswert zu $130\MGrad$, aber auch zu $\alpha=-130\MGrad=\left(360\MGrad-130\MGrad\right)=230\MGrad$ geh\"oren.\\
+Ebenso kann der negative Sinuswert zu $-50\MGrad$ und zu
+$\Mvarphi = -(-50\MGrad) + 180\MGrad = 230\MGrad$ geh\"oren.
 \par
-Der richtige Winkel ist also $\alpha=230\MGrad$ (rosa).
+Da dieser Wert im oben genannten Bereich liegt, ist $\Mvarphi=230\MGrad$ der 
+gesuchte Wert des Winkels, der in der Zeichnung rosa gekennzeichnet ist.
 \vspace*{2cm}
 \end{minipage}
 \end{MHint}
@@ -4021,47 +4240,55 @@ Der richtige Winkel ist also $\alpha=230\MGrad$ (rosa).
 \item F\"ur ein bei~$C$ rechtwinkliges Dreieck seien 
 $b = \MZahl{2}{53}\MEinheit{cm}$ und $c = \MZahl{3}{88}\MEinheit{cm}$ gegeben. 
 Geben Sie $\sin \left( \alpha \right)$, $\sin \left( \beta \right)$ und $a$ an!
+
+Ergebnisse:
+\begin{itemize}
+\item \MEquationItem{$\sin \left( \alpha \right)$}{\MLParsedQuestion{15}{0.7587}{4}{ExM05Sec6TrigFktWerteAlpha}}
+\item \MEquationItem{$\sin \left( \beta \right)$}{\MLParsedQuestion{15}{0.65201}{4}{ExM05Sec6TrigFktWerteBeta}}
+\item \MEquationItem{$a$}{\MLParsedQuestion{15}{2.9417}{4}{ExM05Sec6TrigFktWerteLaenge}}
+\end{itemize}
        
-       \begin{MHint}{L\"osung}
-       \[
-          a
-        = \sqrt{c^2 - b^2}
-	= \sqrt{\left( \MZahl{3}{88}\MEinheit{cm} \right)^2 - \left( \MZahl{2}{53}\MEinheit{cm} \right)^2}
-	= \sqrt{\MZahl{15}{0544}\MEinheit{cm}^2 - \MZahl{6}{4009}\MEinheit{cm}^2}
-	= \sqrt{\MZahl{8}{6535}}\MEinheit{cm} \MDFPSpace,
-       \]
-       \[
-          \sin \left( \alpha \right)
-        = \frac{a}{c}
-	= \frac{\sqrt{\MZahl{8}{6535}}\MEinheit{cm}}{\MZahl{3}{88}\MEinheit{cm}}
-        = \frac{\sqrt{86535}}{388}
-        \qquad \text{und} \qquad
+\begin{MHint}{L\"osung}
+Es ist
+\[
+a = \sqrt{c^2 - b^2}
+= \sqrt{\left( \MZahl{3}{88}\MEinheit{cm} \right)^2 - \left( \MZahl{2}{53}\MEinheit{cm} \right)^2}
+= \sqrt{\MZahl{15}{0544}\MEinheit{cm}^2 - \MZahl{6}{4009}\MEinheit{cm}^2}
+= \sqrt{\MZahl{8}{6535}}\MEinheit{cm} \MDFPSpace,
+\]
+und
+\[
+\sin \left( \alpha \right)
+= \frac{a}{c}
+= \frac{\sqrt{\MZahl{8}{6535}}\MEinheit{cm}}{\MZahl{3}{88}\MEinheit{cm}}
+= \frac{\sqrt{86535}}{388}
+\qquad \text{und} \qquad
           \sin \left( \beta \right)
-        = \frac{b}{c}
-	= \frac{\MZahl{2}{53}\MEinheit{cm}}{\MZahl{3}{88}\MEinheit{cm}}
-        = \frac{253}{388} \MDFPeriod
-       \]
-       Numerisch ergibt sich
-       $a \approx \MZahl{2}{9417}\MEinheit{cm}$, $\sin \left( \alpha \right) \approx \MZahl{0}{7587}$
-       und $\sin \left( \beta \right) \approx \MZahl{0}{65201}$.
-       \end{MHint}
-\item Berechnen Sie den Fl\"acheninhalt eines Dreiecks mit den Seiten
+= \frac{b}{c}
+= \frac{\MZahl{2}{53}\MEinheit{cm}}{\MZahl{3}{88}\MEinheit{cm}}
+= \frac{253}{388} \MDFPeriod
+\]
+Numerisch ergibt sich
+$a \approx \MZahl{2}{9417}\MEinheit{cm}$, $\sin \left( \alpha \right) \approx \MZahl{0}{7587}$
+und $\sin \left( \beta \right) \approx \MZahl{0}{65201}$.
+\end{MHint}
+\item Berechnen Sie den Fl\"acheninhalt $F$ eines Dreiecks mit den Seiten
 $a = 4\MEinheit{m}$ und $c = 60\MEinheit{cm}$
 und dem Winkel $\beta = \Mmeasuredangle(a,c) = \frac{11 \pi}{36}$!
 
-Ergebnis: \MLParsedQuestion{25}{4*sin(11*pi/36)*6/20}{3}{GEO8} $\MEinheit{m}^2$
-       
+Ergebnis: \MEquationItem{$F$}{\MLParsedQuestion{25}{4*sin(11*pi/36)*6/20}{3}{GEO8}$\MEinheit{m}^2$}
+ 
 \MInputHint{Geben Sie Ihr Ergebnis bitte auf drei Nachkommastellen gerundet 
 oder als Ausdruck an. Dabei wird der Sinus eines Winkels~$x$ als 
 \texttt{sin(x)} und die Zahl~$\pi$ als \texttt{pi} geschrieben.}
  
-       \begin{MHint}{L\"osung}
-       \[
-                \frac{\left( a \cdot \sin \left( \beta \right) \right) \cdot c}{2}
-	=    \sin \left( \Mtfrac{11 \pi}{36} \right) \cdot \MZahl{1}{2}\MEinheit{m}^2
-	\approx \MZahl{0}{98298}\MEinheit{m}^2 \MDFPeriod
-       \]
-       \end{MHint}
+\begin{MHint}{L\"osung}
+\[
+\frac{\left( a \cdot \sin \left( \beta \right) \right) \cdot c}{2}
+= \sin \left( \Mtfrac{11 \pi}{36} \right) \cdot \MZahl{1}{2}\MEinheit{m}^2
+\approx \MZahl{0}{98298}\MEinheit{m}^2 \MDFPeriod
+\]
+\end{MHint}
 \end{enumerate}
 \end{MExercise}
 
