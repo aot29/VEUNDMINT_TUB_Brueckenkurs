@@ -1812,6 +1812,22 @@ function debork(str, l) {
 
 function selectVariant(v) {
   logMessage(DEBUGINFO, "Variant selected: " + v);
+  
+  s = window.location.href;
+  ex1 = "_" + variant;
+  if (variant == "std") {
+      ex1 = "";
+  }
+  ex1 = outputExtension + ex1;
+  
+  ex2 = "_" + v;
+  if (v == "std") {
+      ex2 = "";
+  }
+  ex2 = outputExtension + ex2;
+  
+  s = s.replace("/" + ex1 + "/", "/" + ex2 + "/");
+  opensite(s); // same site in different output directory
 }
 
 // ----------------------------------------------- Roulette-Fragen ------------------------------
