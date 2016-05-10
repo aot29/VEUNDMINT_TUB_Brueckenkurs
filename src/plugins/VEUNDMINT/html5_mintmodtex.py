@@ -29,6 +29,7 @@ from lxml import etree
 from lxml import html
 from tidylib import tidy_document
 from copy import deepcopy
+from random import randint
 import locale
 
 from plugins.exceptions import PluginException
@@ -49,6 +50,7 @@ class Plugin(basePlugin):
         self.version ="P0.1.0"
         self.outputextension = "html"
         self.pagefactory = PageFactory(interface, self)
+        self.randcharstr = "0123456789,.;abcxysqrt()/*+-"
         self.sys.message(self.sys.VERBOSEINFO, "Output plugin " + self.name + " of version " + self.version + " constructed")
 
     def _prepareData(self):
@@ -1261,7 +1263,6 @@ class Plugin(basePlugin):
     def minimizeJS(self):
         self.sys.pushdir()
         os.chdir(self.options.targetpath)
-        fdi = 0
         
         fs = ""
         for f in self.options.jstominimize:
@@ -1288,3 +1289,71 @@ class Plugin(basePlugin):
         self.sys.popdir()
         self.sys.message(self.sys.CLIENTINFO, "Minimized " + str(len(self.options.jstominimize)) + " javascript files")
 
+
+    def borkifyHTML(self):
+        self.sys.pushdir()
+        os.chdir(self.options.targetpath)
+
+        hfiles = self.sys.listFiles("**/*." + self.outputextension)
+        for f in hfiles:
+            lan = 32;
+            st = list()
+            GSLS = "__CQJ = CreateQuestionObj; function GSLS(c) {\n  var str = \"\";\n"
+            html = self.sys.readTextFile(f, self.options.outputencoding)
+            # borkify the content
+            def dobork(m):
+                nonlocal st, lan
+                b = "__CQJ(" + m.group(1) + "," + m.group(2) + ",GSLS(" + m.group(2) + ")"
+                s = m.group(3)
+                st.append((m.group(2), s, len(s)))
+                if (lan <= 2*len(s)):
+                    lan = 2*len(s) + 1
+                return b
+            (html, n) = re.subn(r"[ \n\t]*CreateQuestionObj\((\".*?\"),(\d+?),\"(.*?)\"", dobork, html, 0, re.S)
+            self.sys.message(self.sys.VERBOSEINFO, "Borkifying " + f + " with " + str(n) + " CreateQuestionObj calls and " + str(len(st)) + " borkstrings")
+            for p in st:
+                GSLS += "if(c==" + p[0] + "){str=debork(\"" + self.borkString(lan, p[1]) + "\"," + str(p[2]) + ");}"
+    
+            GSLS += "return str;}\n"
+            html = re.sub(r"__CQJ", "\n" + GSLS + "\n__CQJ", html, 1, re.S)
+            self.sys.writeTextFile(f, html, self.options.outputencoding)    
+  
+        self.sys.message(self.sys.CLIENTINFO, "Borkified " + str(len(hfiles)) + " " + self.outputextension + " files")
+        self.sys.popdir()
+        
+
+    def randomChar(self):
+        r = randint(0,len(self.randcharstr) - 1)
+        return self.randcharstr[r]
+    
+    
+    def permuteString(self, str, u):
+        n = len(str)
+        t = ""
+        for i in range(n):
+            t += str[(u*i) % n]
+        
+        return t
+    
+    
+    def borkString(self, lan, str):
+        t = ""
+        for i in range(lan):
+            if i < len(str):
+                t += str[i]
+            else:
+                t += self.randomChar()
+        u = (((5*lan) - (3*len(str))) % lan)
+        while (self.gcd(u, lan) != 1):
+            u = ((u + 1) % lan)
+        
+        t2 = self.permuteString(t, u)
+        return t2
+
+
+    def gcd(self, u, v):
+        while (v != 0):
+            (u, v) = (v, u % v)
+        return abs(u)
+
+        
