@@ -187,13 +187,19 @@ class Plugin(basePlugin):
             if hasattr(node, "name"): q.nr = node.name
             q.title = node.text
             
-            # optimizations to make tree identical to one from the old converter
-            # remove chapter prefix from ttm and add a space for level 1
-            if lev == 1: q.title = re.sub(r"Chapter (.)(.+)", r"\1 \2", q.title, 1, re.S)
-            # remove the two utf8 characters where a space should be for level 2, what the hell is ttm doing there?
-            if lev == 2: q.title = re.sub(r"(\d+\.\d+)..(.*)", r"\1 \2", q.title, 1, re.S)
-            # add a space, don't know why it works
-            if lev == 3: q.title = " " + q.title
+            # create titles and captions for level 1..3, level 4 nodes appear later
+            if lev == 1: 
+                # remove chapter prefix from ttm and add a space for level 1, extract text title into caption
+                q.caption = re.sub(r"Chapter (.)(.+)", r"\2", q.title, 1, re.S)
+                q.title = re.sub(r"Chapter (.)(.+)", r"\1 \2", q.title, 1, re.S)
+            if lev == 2:
+                # remove the two utf8 characters where a space should be for level 2, what the hell is ttm doing there?
+                q.caption = re.sub(r"(\d+\.\d+)..(.*)", r"\2", q.title, 1, re.S)
+                q.title = re.sub(r"(\d+\.\d+)..(.*)", r"\1 \2", q.title, 1, re.S)
+            if lev == 3:
+                # add a space, don't know why it works
+                q.caption = q.title
+                q.title = " " + q.title
                 
             q.parent = parent
             parent.children.append(q)
@@ -492,11 +498,12 @@ class Plugin(basePlugin):
                 return "" # don't generate the box
             s = "<div class=\"modstartbox\">\n"
             s += self.options.strings['modstartbox_tocline'] + "<br /><br />"
-            # iterate children (MSubsection nodes) to get local toc
+            # iterate children (MSubsection nodes if tc.level==2) to get local toc
             s += "<ul>\n"
             for k in range(len(tc.children)):
                 p = tc.children[k]
                 # descend into the tree until a label is found
+                t = p.caption # caption is taken from the node, contentlabel from the node or the first fitting child
                 while ((p.contentlabel == "") and (len(p.children) > 0)):
                     p = p.children[0]
                 
@@ -504,7 +511,7 @@ class Plugin(basePlugin):
                     self.sys.message(self.sys.CLIENTERROR, "ModstartBox requested for content element " + tc.title + ", but child " + p.title + " misses contentlabels")
                 else:
                     # simulate \MNRref and MSRef from mintmod.tex
-                    s += "<li>Abschnitt <!-- mmref;;" + p.contentlabel + ";;0; //-->: <!-- msref;;" + p.contentlabel + ";;" + p.caption + "; //-->"
+                    s += "<li>Abschnitt <!-- mmref;;" + p.contentlabel + ";;0; //-->: <!-- msref;;" + p.contentlabel + ";;" + t + "; //-->"
                     if (k < len(tc.children) - 1):
                         s += ","
                     else:
@@ -517,7 +524,9 @@ class Plugin(basePlugin):
             
         (tc.content, n) = re.subn(r"\<!-- modstartbox //--\>", modsb, tc.content, 0, re.S)
         if (tc.level == 2) and (tc.nr == "1") and (n == 0):
-            self.sys.message(self.sys.CLIENTWARN, "Module start content " + tc.title + " has no modstart box")
+            if (tc.parent.nr == 1):
+                # only course modules need these boxes
+                self.sys.message(self.sys.CLIENTWARN, "Module start content " + tc.title + " has no modstart box")
 
 
         # extract word index information (must be extracted before stage1 label management)

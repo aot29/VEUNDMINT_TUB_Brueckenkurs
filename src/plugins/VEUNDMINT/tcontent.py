@@ -48,8 +48,8 @@ class TContent(object):
         self.helpsite = False
         self.testsite = False
         self.tocsymb = "?"
-        self.title = "ROOT" # text of the html title tag for children
-        self.caption = "" # used for navigation buttons, only filled in by level 4 elements
+        self.title = "ROOT" # text of the html title tag for children, contains online course description and item name, not suited for buttons
+        self.caption = "" # used for navigation buttons, contains a short title description
         self.modulid = ""
         # attribute chapter set for level 1 nodes and recursively for their children
         # attribute section only set for level 2 sectionstarts
