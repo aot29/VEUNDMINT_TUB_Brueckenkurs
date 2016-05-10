@@ -27,7 +27,7 @@ import sys
 import time
 import getpass
 import socket
-import glob
+import glob2
 import base64
 
 class System(object):
@@ -301,7 +301,7 @@ class System(object):
     
     
     def listFiles(self, pattern):
-        return glob.glob(pattern)
+        return glob2.glob(pattern)
 
 
     # generates a short filenname (including path) hash containing only base16 letters
@@ -325,3 +325,4 @@ class System(object):
     # ends the program, returning the maximum error level reached during execution
     def finish_program(self):
         sys.exit(self.errorlevel)
+    
