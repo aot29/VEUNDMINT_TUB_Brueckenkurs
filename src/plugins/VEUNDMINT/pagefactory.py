@@ -73,6 +73,7 @@ class PageFactory(object):
             self.template_mathjax_include = self.sys.readTextFile(self.options.template_mathjax_cdn, self.options.stdencoding)
             
         self.template_settings = self.sys.readTextFile(self.options.template_settings, self.options.stdencoding)
+
             
     def _substitute_string(self, html, cstr, insertion):
         # carefull: parser turns <div ....></div> into <div ... /> but not if a whitespace is inside
@@ -88,6 +89,7 @@ class PageFactory(object):
         if n <= 0:
             self.sys.message(self.sys.CLIENTERROR, "div append (class=\"" + cstr + "\") happened " + str(n) + " times")
         return html
+
             
     # generates a html page as a string using loaded templates and the given TContent object
     def generate_html(self, tc):
@@ -153,7 +155,7 @@ class PageFactory(object):
            +  "var SITE_UXID = \"" + tc.uxid + "\";\n" \
            +  "var SECTION_ID = " + ssn + ";\n" \
            +  "var docName = \"" + tc.docname + "\";\n" \
-           +  "var fullName = \"" + self.outputplugin.outputextension + "/" + tc.link + "." + self.outputplugin.outputextension + "\";\n" \
+           +  "var fullName = \"" + self.outputplugin.outputsubdir + "/" + tc.link + "." + self.outputplugin.outputextension + "\";\n" \
            +  "var linkPath = \"" + tc.backpath + "\";\n"
        
         tc.html = tc.html.replace("// <JSCRIPTPRELOADTAG>", js + "// <JSCRIPTPRELOADTAG>")
@@ -161,7 +163,6 @@ class PageFactory(object):
         
         tc.html = self.update_links(tc.html, tc.backpath)
 
-        
         
     def gettoccaption(self, tc):
         c = ""
