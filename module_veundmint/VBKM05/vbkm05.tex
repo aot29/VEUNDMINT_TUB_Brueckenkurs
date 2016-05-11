@@ -2133,12 +2133,16 @@ die dritte Ecke verl"auft, und betrachten Sie die Winkel an dieser Ecke.
 }
 &
 \begin{minipage}[b]{9cm}
-Zeichnet man parallel zur Seite $c$ eine Gerade durch die obere Ecke des Dreiecks, so erh\"alt man jeweils einen Wechselwinkel $\alpha'$ zu $\alpha$ und $\beta'$ zu $\beta$. \\
-\ \\
+Zeichnet man parallel zur Seite $c$ eine Gerade durch die obere Ecke des 
+Dreiecks, so erh\"alt man jeweils einen Wechselwinkel $\alpha'$ zu $\alpha$ 
+und $\beta'$ zu $\beta$. 
+
 An der Geraden gilt
-\[\alpha'+\gamma+\beta'=\pi\MDFPeriod\]
-Da $\alpha'=\alpha\quad\text{und}\quad\beta'=\beta\quad\text{folgt}\quad\alpha+\gamma+\beta=\pi$.
-\ \\
+\[
+\alpha'+\gamma+\beta' = \pi\MDFPeriod %%
+\]
+Weiter ist $\alpha'=\alpha$ und $\beta'=\beta$. Damit folgt 
+$\alpha+\gamma+\beta=\pi$.
 \end{minipage}
 \end{tabular}
 \end{MHint} 
@@ -2170,8 +2174,8 @@ Vielecks einfach berechnet werden kann.
 
 %\ifttm\relax\else\newpage\fi
 
-\begin{MXContent}{Vielecke}{Vielecke}{STD}
-\MDeclareSiteUXID{VBKM05_Vielecke_Content}
+\begin{MXContent}{Vierecke}{Vierecke}{STD}
+\MDeclareSiteUXID{VBKM05_Vierecke_Content}
 
 Vielecke werden wie Dreiecke durch gegebene Punkte und geradlinige Verbindungen
 zwischen den Punkten festgelegt. Von den Punkten sollen keine drei Punkte auf
@@ -2307,39 +2311,49 @@ Ein Viereck ist genau dann ein Quadrat, wenn
 \item es sowohl eine Raute als auch ein Rechteck ist.
 \end{itemize}
 \end{MXInfo}
+\end{MXContent}
 
+
+\begin{MXContent}{Vielecke}{Vielecke}{STD}
+\MDeclareSiteUXID{VBKM05_Vielecke_Content}
 
 \begin{MXInfo}{Vielecke}\MLabel{VBKM05_Vielecke}%
-Es sei $n$ eine nat\"urliche Zahl, die mindestens $3$ betrage.
-\begin{itemize}
- \item 
-Ein \MEntry{$n$-Eck}{$n$-Eck} (auch als \MEntry{Vieleck}{Vieleck} oder 
-\MEntry{Polygon}{Polygon} bezeichnet) entsteht,
-wenn man $n$ Punkte in der Ebene nacheinander in einer zuvor festgelegten 
-Reihenfolge durch Strecken miteinander verbindet,
-wobei der letzte Punkt wieder mit dem ersten Punkt verbunden wird und je drei 
-aufeinander folgende Punkte nicht auf einer gemeinsamen Geraden liegen d\"urfen.
+Es seien $n$ Punkte in der Ebene gegeben, wobei $n$ eine nat\"urliche Zahl mit 
+$n \geq 3$ sei.
+Hier werden \MEntry{$n$-Ecke}{$n$-Eck} betrachtet, die dadurch entstehne, dass
+die Punkte nacheinander durch Strecken miteinander verbunden werden, sodass 
+ein geschlossener Weg ohne Kreuzungspunkte entsteht und jeder der gegebenen 
+Punkte zu genau zwei Strecken geh"ort. 
+Dabei sollen je drei Punkte, die durch aufeinander folgende Strecken verbunden
+sind, nicht auf einer gemeinsamen Geraden liegen.
+
+Ein $n$-Eck wird auch als \MEntry{Vieleck}{Vieleck} oder 
+\MEntry{Polygon}{Polygon} bezeichnet.
        
+\begin{itemize}
  \item Die $n$ Punkte, die verbunden werden, hei"sen 
   \MEntry{Ecken}{Ecken ($n$-Eck)} des $n$-Ecks, und
   die $n$ Verbindungsstrecken hei"sen
-  \MEntry{Seiten}{Seiten ($n$-Eck)} des $n$-Ecks.
+  \MEntry{Seiten}{Seite ($n$-Eck)} des $n$-Ecks.
 
- \item Wenn sich die Seiten eines $n$-Ecks h\"ochstens in den Ecken schneiden, so spricht man von einem \MEntry{einfachen $n$-Eck}{einfaches $n$-Eck} (bzw. von einem \MEntry{einfachen Vieleck}{einfaches Vieleck} oder \MEntry{einfachem Polygon}{einfaches Polygon}).  
+\item Jedes $n$-Eck kann man in $(n-2)$ einander nicht \"uberlappende 
+Dreiecke zerlegen. Die Summe aller Innenwinkel eines $n$-Ecks betr\"agt daher 
+$(n-2) \cdot \pi$ beziehungsweise $(n-2) \cdot 180\MGrad$.
 
- \item Je zwei Seiten eines $n$-Ecks bilden je zwei Winkel.
-Der kleinere dieser beiden Winkel hei\ss t
-\MEntry{Innenwinkel}{Innenwinkel ($n$-Eck)},
-       und der gr\"o\ss ere der beiden Winkel hei\ss t
-       \MEntry{Au\ss enwinkel}{Au\ss enwinkel ($n$-Eck)}.
-
-\item Jedes einfache $n$-Eck l\"asst sich in $(n-2)$ einander nicht \"uberlappende Dreiecke zerlegen. Die Summe aller Innenwinkel eines einfachen $n$-Ecks betr\"agt daher stets $(n-2)\pi$ bzw. $(n-2)180\MGrad$.
-
- \item Ein einfaches $n$-Eck, dessen Seiten alle die gleiche L\"ange haben und dessen Innenwinkel zudem alle gleich gro\ss\ sind, nennt man
-\MEntry{regelm\"a\ss iges $n$-Eck}{regelm\"a\ss iges $n$-Eck} (bzw. \MEntry{regelm\"a\ss iges Vieleck}{regelm\"a\ss iges Vieleck} oder \MEntry{regelm\"a\ss iges Polygon}{regelm\"a\ss iges Polygon}).
-
-\item Die Verbindungsstrecken zwischen je zwei Ecken, die nicht auf derselben Seite des $n$-Ecks liegen, hei\ss en die \MEntry{Diagonalen}{Diagonale ($n$-Eck)} des $n$-Ecks.
+\item Die Verbindungsstrecken zwischen je zwei Ecken, die nicht auf derselben 
+Seite des $n$-Ecks liegen, hei"sen die \MEntry{Diagonalen}{Diagonale ($n$-Eck)} 
+des $n$-Ecks.
 \end{itemize}
+\end{MXInfo}
+
+Weitere Aussagen ergeben sich f"ur $n$-Ecke mit gleich langen Seiten und 
+gleich gro"sen Innenwinkeln. F"ur $n = 3$ sind dies die gleichseitigen 
+Dreiecke, und von den Vierecken geh"oren die Quadrate dazu.
+
+\begin{MXInfo}{Regelm"a"sige $n$-Ecke}
+ Ein $n$-Eck, dessen Seiten alle die gleiche L\"ange haben und dessen 
+Innenwinkel zudem alle gleich gro"s sind, nennt man
+\MEntry{regelm"a"siges $n$-Eck}{regelm"a"siges $n$-Eck}.
 \end{MXInfo}
 
 \end{MXContent}
@@ -3028,7 +3042,7 @@ In besonderen Situationen ergeben sich einfache Formeln, mit denen
 das Volumen und die Oberfl"ache berechnet werden k"onnen. Ein Beispiel ist
 die oben abgebildete Pyramide. Dort ist die Grundfl"ache ein gleichseitiges 
 Dreieck. Die folgende Aufgabe bietet die Gelegenheit, f"ur einen speziellen
-Fall dieser Situation eine Formel %f"ur Volumen und 
+Fall dieser Situation eine Formel f"ur %das Volumen und 
 die Oberfl"ache mit den 
 Eigenschaften gleichseitiger Dreiecke zu finden.
 
@@ -3037,12 +3051,31 @@ Berechnen Sie %das Volumen $V$ und
 die Oberfl"ache $O$ einer Pyramide, deren 
 Seiten alle gleichseitige Dreiecke mit der Seitenl"ange $a$ sind.
 
-Antwort: %en:
+Antwort: 
 %\begin{MExerciseItems}
-%\item \MEquationItem{$V$}{\MLSimplifyQuestion{30}{ ? }{10}{a,b,c}{4}{32}{ExM05TPyr1}}
+%\item \MEquationItem{$V$}{\MLSimplifyQuestion{30}{ ? }{10}{a}{4}{32}{ExM05TPyr1}}
 %\item 
-\MEquationItem{$O$}{\MLSimplifyQuestion{30}{sqrt{3}*a*a}{10}{a,b,c}{4}{32}{ExM05TPyr2}}
+\MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*a*sqrt(3)}{10}{a}{4}{32}{ExM05TPyr2}}
 %\end{MExerciseItems}
+
+\begin{MHint}{L"osung}
+Eine Pyramide, deren Seiten alle gleichseitige Dreiecke sind, hat insgesamt 
+vier Seiten: eine dreieckige Grundfl"ache, an die drei weitere Seitenfl"achen 
+grenzen. Da alle Seitenfl"achen gleich sind, ist die Oberfl"ache der Pyramide
+durch $O = 4 \cdot F$ gegeben, wobei $F$ den Fl"acheninhalt eines gleichseitigen
+Dreiecks angibt. Die H"ohe $\ell$ eines gleichseitigen Dreiecks mit Seitenl"ange 
+$a$ ergibt sich mit dem Satz des Pythagoras aus 
+\[
+a^2 = \ell^2 + \left(\frac{a}{2}\right)^2 %%
+\]
+zu 
+$\ell = \sqrt{a^2 - \frac{1}{4} \cdot a^2} %
+ = \frac{1}{2} \cdot a \cdot \sqrt{3}$.
+Damit ist 
+$F = \frac{1}{2} \cdot a \cdot \ell = \frac{1}{4} \cdot a^2 \cdot \sqrt{3}$, 
+sodass
+$O = 4 \cdot F = a^2 \cdot \sqrt{3}$ gilt.
+\end{MHint}
 \end{MExercise}
 
 
@@ -3140,11 +3173,11 @@ Kegels senkrecht "uber dem Mittelpunkt der Kreisscheibe befindet, wird
 genauer als \MEntry{gerader Kreiskegel}{Kreiskegel, gerade} bezeichnet.
 
 Der Fl"acheninhalt der Oberfl"ache eines geraden Kreiskegels ist die Summe 
-des Inhalts der Kreisscheibe $G$ und des Mantels $M$. Wenn $l$ der Abstand der 
-Kegelspitze vom Rand der Kreisscheibe ist, 
+des Inhalts der Kreisscheibe $G$ und des Mantels $M$. Wenn $\ell$ der Abstand 
+der Kegelspitze vom Rand der Kreisscheibe ist, 
 gilt mit dem Kreisumfang $U =  2 \pi r$ dann
-$O = G + M = \pi \cdot r^2 + \pi \cdot r \cdot l %
- = \pi \cdot r \cdot (r + l)$.
+$O = G + M = \pi \cdot r^2 + \pi \cdot r \cdot \ell %
+ = \pi \cdot r \cdot (r + \ell)$.
 \end{MXInfo}
 
 In obiger Zeichnung eines Kegels wird die H"ohe $h$ genannt. Die angebenen 
@@ -3152,27 +3185,42 @@ Formeln enthalten jedoch den Abstand der Spitze vom Rand der Kreisscheibe.
 Wie h"angen beide Gr"o"sen zusammen?
 
 \begin{MExercise}
-Stellen Sie sich vor, der Kegel wird von der Spitze eben 
+Stellen Sie sich vor, der gerade Kegel wird von der Spitze eben 
 durch den Mittelpunkt der Kreisscheibe in zwei gleiche Teile zerlegt.
 Dann ist eine Seite der beiden Teile jeweils ein Dreieck, durch dessen Seiten 
-die H"ohe $h$, der Abstand $l$ und der Radius $r$ beziehungsweise der 
+die H"ohe $h$, der Abstand $\ell$ und der Radius $r$ beziehungsweise der 
 Durchmesser der Kreisscheibe bestimmt werden.
 Hierbei werden $r$ und $h$ als gegeben angesehen.
 
 \begin{MExerciseItems}
 \item
-Beschreiben Sie $l$ in Abh"angigkeit von $h$ und $r$:
+Beschreiben Sie $\ell$ in Abh"angigkeit von $h$ und $r$:
 \par
-\MEquationItem{$l$}{\MLSimplifyQuestion{30}{sqrt(r*r + h*h)}{10}{r,h}{4}{32}{ExM05Zyl1}}
+\MEquationItem{$\ell$}{\MLSimplifyQuestion{30}{sqrt(r*r + h*h)}{10}{r,h}{4}{32}{ExM05Zyla}}
+
+\begin{MHint}{L"osung}
+Die L"ange $\ell$ ist die Hypotenuse des Dreiecks, dessen Katheten die H"ohe
+$h$ des geraden Kegels und der Radius $r$ der Kreisschreibe sind. Aus dem Satz
+des Pythagoras ergibt sich $\ell = \sqrt{r^2 + h^2}$.
+\end{MHint}
 
 \item
-Berechnen Sie das Volumen $V$ und die Oberfl"ache $O$ des Kegels:
-\begin{MExerciseItems}
-\item %
- \MEquationItem{$V$}{\MLSimplifyQuestion{30}{pi*r*r*h}{10}{r,h}{4}{32}{ExM05Zyl2}}
-\item %
- \MEquationItem{$O$}{\MLSimplifyQuestion{30}{pi*r*(r + sqrt(r*r + h*h))}{10}{r,h}{4}{32}{ExM05Zyl3}}
-\end{MExerciseItems}
+Geben Sie die Oberfl"ache $O$ des Kegels in Abh"angigkeit von $h$ und $r$ an:
+\par
+ \MEquationItem{$O$}{\MLSimplifyQuestion{30}{pi*r*(r + sqrt(r*r + h*h))}{10}{r,h}{4}{32}{ExM05Zylb}}
+
+\begin{MHint}{L"osung}
+Es wird das Ergebnis $\ell = \sqrt{r^2 + h^2}$ der ersten Teilaufgabe in die 
+oben angegebene Formel f"ur die Oberfl"ache $O$ eingesetzt. Damit erh"alt man
+\[
+O = \pi \cdot r \cdot (r + \ell) %
+ = \pi \cdot r \cdot \left(r + \sqrt{r^2 + h^2}\right) %
+ = \pi \cdot r^2 \cdot \left(1 + \sqrt{1 + \left(\frac{h}{r}\right)} \right). %%
+\]
+Mit der zuletzt genannten Formel sieht man, wie sich die Oberfl"ache $O$ im 
+Vergleich zur Kreisfl"ache $G = \pi \cdot r^2$ mit dem Verh"altnis von H"ohe $h$
+zu Radius $r$ "andert.
+\end{MHint}
 \end{MExerciseItems}
 \end{MExercise}
 
@@ -3484,10 +3532,10 @@ Thaleskreises rechtwinklige Dreiecke f\"ur die Winkel
 \[ 
 \alpha \in \left\{10\MGrad\MElSetSep 20\MGrad\MElSetSep %
 30\MGrad\MElSetSep 40\MGrad\MElSetSep 45\MGrad\MElSetSep 50\MGrad\MElSetSep %
-60\MGrad\MElSetSep 70\MGrad\MElSetSep 80\MGrad\MElSetSep \right\} \MDFPeriod %%
+60\MGrad\MElSetSep 70\MGrad\MElSetSep 80\MGrad \right\} \MDFPeriod %%
 \]
 Fertigen Sie Ihre Zeichnungen im Ma"sstab 
-$1\,\text{L"angeneinheit}\,\hat{=}\,2\MEinheit{cm}$ an, und schreiben Sie 
+$1 \text{ L"angeneinheit} \hat{=} 2\MEinheit{cm}$ an, und schreiben Sie 
 die Messwerte zu den Seiten $a$ und $b$ in eine Tabelle. 
 
 Berechnen Sie zu jedem Winkel mit den gemessenen Werten den Sinus, Kosinus 
