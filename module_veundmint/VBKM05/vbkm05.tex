@@ -330,7 +330,7 @@ Geraden $\MGeoGerade{S}{P}$ und $\MGeoGerade{S}{Q}$ festgelegt.
 Sie haben den Punkt $S$ gemeinsam. Liegt auch der Punkt $Q$ auf der Geraden 
 $\MGeoGerade{S}{P}$, dann bezeichnen $\MGeoGerade{S}{Q}$ und $\MGeoGerade{S}{P}$
 dieselbe Gerade. 
-Wenn $Q$ nicht zur Geraden $\MGeoGerade{S}{P}$ geh"ort, sind $\MGeoGerade{S}{P}$
+Wenn $Q$ nicht zur Geraden $\MGeoGerade{S}{P}$ geh"ort, sind $\MGeoGerade{S}{Q}$
 und $\MGeoGerade{S}{P}$ verschiedene Geraden. Die beiden Geraden haben nur 
 den Punkt $S$, den \MEntry{Schnittpunkt}{Schnittpunkt}, gemeinsam.
 
@@ -830,7 +830,7 @@ $g$ und $h$ \MEntry{orthogonal zueinander}{orthogonal} sind.
 \end{itemize}
 \end{MXInfo}
 
-Als n\"achstes sollen nun drei verschiedene Geraden betrachtet werden, 
+Als N"achstes sollen nun drei verschiedene Geraden betrachtet werden, 
 von denen zwei parallel sind, wohingegen die dritte nicht parallel zu diesen 
 beiden ist. Es ergeben sich dann acht Schnittwinkel.
 Je vier dieser Winkel sind gleich gro"s.
@@ -1034,7 +1034,7 @@ Die \textbf{Kreiszahl} ist
 \[
 \pi = \frac{U}{D} = \frac{U}{2r} %%
 \]
-mit dem Kreisradius $r = \frac{1}{2} U$.
+mit dem Kreisradius $r = \frac{1}{2} D$.
 Dabei ist $\pi$ keine rationale Zahl. Sie kann nicht als endlicher oder 
 periodischer Dezimalbruch geschrieben werden. Numerische Berechnungen ergeben,
 dass n"aherungsweise $\pi \approx \MZahl{3}{141592653589793}$ ist.
@@ -1047,7 +1047,7 @@ Als Bogenma"s eines Winkels $\Mmeasuredangle(g,h)$ wird die L"ange des
 \MEntry{Kreisbogens}{Kreisbogen} verwendet, die durch den Winkel 
 {\glqq}ausgeschnitten{\grqq} wird.
 
-Damit wird Winkeln durch das Bogenm"a"s eine Zahl zwischen $0$ und $2\pi$ 
+Damit wird Winkeln durch das Bogenma"s eine Zahl zwischen $0$ und $2\pi$ 
 zugeordnet. In der Technik wird auch die Kennzeichnung rad (f"ur Radiant)
 verwendet, um explizit auszudr"ucken, dass ein Winkel im Bogenma"s gemessen
 wird.
@@ -1144,7 +1144,7 @@ Eine solche Vereinbarung, auch Konvention genannt, wird im Zusammenhang mit
 Winkeln ebenfalls oft verwendet, wenn aus dem Zusammenhang verst"andlich wird,
 dass es um die Berechnung eines Wertes in einem bestimmten Winkelma"s geht.
 
-\begin{MXInfo}{Konvention}\MLabel{VBKM05_Konvention_Winkel}
+\begin{MXInfo}{Konvention}\MLabel{VBKM05_Konvention_Winkel}%
 Wenn eine Berechnung unabh"angig von einem bestimmten Winkelma"s ist oder 
 dieses vorab festgelegt wurde, wird in Rechnungen auch kurz vom Winkel 
 gesprochen und dieselbe Bezeichnung f"ur den Winkel und seinen Wert im 
@@ -1396,7 +1396,7 @@ $\MGeoDreieck{A}{B}{C}$ bezeichnet.
 
 \begin{tabular}{@{}lr@{}}
 \begin{minipage}{10cm}
-Eine oft verwendet Art, die Gr"o"sen eines Dreiecks zu bezeichnen, ist 
+Eine oft verwendete Art, die Gr"o"sen eines Dreiecks zu bezeichnen, ist 
 folgende:
 Man benennt die Ecken eines Dreiecks in {\glqq}mathematisch positiver{\grqq}
 Richtung (gegen den Uhrzeigersinn) mit lateinischen Gro"sbuchstaben. 
@@ -1506,7 +1506,7 @@ Dieser wird hier in einer oft verwendeten Formulierung angegeben.
 
 \begin{MXInfo}{Satz des Pythagoras}
 \MLabel{VBKM05_Pythagoras}
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}{9cm}
 Es wird ein rechtwinkliges Dreieck betrachtet, in dem der rechte Winkel bei 
 $C$ liegt.
@@ -1552,7 +1552,7 @@ $b=8$.
 Die L\"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras 
 berechnet werden:
 \[
-c^2 = \sqrt{a^2 + b^2} = \sqrt{36 + 64} = \sqrt{100} = 10 \MDFPeriod 
+c = \sqrt{c^2} = \sqrt{a^2 + b^2} = \sqrt{36 + 64} = \sqrt{100} = 10 \MDFPeriod 
 \]
 \end{MExample}
 
@@ -1584,7 +1584,7 @@ Der \MEntry{Satz des Thales}{Thales (Satz)} ist ein weiterer wichtiger Satz,
 der eine Aussage "uber rechtwinklige Dreiecke ausdr"uckt.
 \begin{MXInfo}{Satz des Thales}
 \par
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \MTikzAuto{%
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 \draw[color=black, thick] (-3,0) -- (3,0);
@@ -1622,11 +1622,11 @@ $\MGeoStrecke{A}{B}$ einen Halbkreis konstruiert und dann $A$ und $B$ mit
 einem beliebigen Punkt $C$ auf dem Halbkreis verbindet, dann ist das so 
 entstandene Dreieck immer rechtwinklig.
 
-\begin{MExample}\MLabel{ThaleskreisBeispiel}
+\begin{MExample}\MLabel{ThaleskreisBeispiel}%
 Es soll ein rechtwinkliges Dreieck mit der Hypotenusenl\"ange $c=6\MEinheit{cm}$ 
-und der H\"ohe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.\\
+und der H\"ohe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.
 
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}[b]{7cm}
  \begin{enumerate}
   \item Zuerst zeichnet man die Hypotenuse \[c=\MGeoStrecke{A}{B} \MDFPeriod \]
@@ -1661,9 +1661,12 @@ und der H\"ohe $h_c=\MZahl{2}{5}\MEinheit{cm}$ konstruiert werden.\\
 \draw[color=red] (3,2.5) node[anchor=south east] {\large $\mathsf{3}$};
 \end{tikzpicture}
 }
-\end{tabular}\\
-Diese Schnittpunkte sind jeweils die dritte Ecke eines Dreiecks, das die geforderten Eigenschaften hat, das hei\ss t, man erh\"alt zwei L\"osungen.
-W\"urde man noch einen Thaleskreis nach unten zeichen, so erg\"aben sich noch mal zwei L\"osungen.
+\end{tabular}
+
+Diese Schnittpunkte sind jeweils die dritte Ecke eines Dreiecks, das die 
+geforderten Eigenschaften hat, das hei\ss t, man erh\"alt zwei L\"osungen.
+W\"urde man noch einen Thaleskreis nach unten zeichen, so erg\"aben sich 
+noch mal zwei L\"osungen.
 Wenn es nicht um die Lage, sondern nur um die {\glqq}Form{\grqq} der Dreiecke
 geht, dann sind alle diese Dreiecke {\glqq}deckungsgleich{\grqq} (siehe auch
 \MRef{VBKM05_DreieckeKongruenzsaetze}). 
@@ -1685,7 +1688,7 @@ In einem rechtwinkligen Dreieck gelten neben dem Satz des Pythagoras weitere
 Aussagen.
 Dazu werden folgende Bezeichnungen verwendet:
 \par
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}{9cm}
 Es wird ein rechtwinkliges Dreieck mit rechtem Winkel bei $C$ betrachtet. 
 Die H"ohe $h_c$ schneidet die Hypotenuse des Dreiecks $\MGeoDreieck{A}{B}{C}$
@@ -1731,8 +1734,10 @@ $b=4$.
 
 Die L\"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras berechnet 
 werden:
-\[c^2=\sqrt{a^2 + b^2}=\sqrt{9 + 16}=\sqrt{25}=5 \MDFPeriod\]
-Die einzelnen Hypotenusenabschnitte $p$ und $q$ berechnen sich gem\"a\ss\ dem 
+\[
+c = \sqrt{a^2 + b^2}=\sqrt{9 + 16}=\sqrt{25}=5 \MDFPeriod %%
+\]
+Die einzelnen Hypotenusenabschnitte $p$ und $q$ berechnen sich gem"a"s dem 
 Kathetensatz zu:
 \[
 q=\frac{a^2}{c}=\frac{9}{5} = \MZahl{1}{8} \quad \text{und} \quad 
@@ -1824,7 +1829,7 @@ gegeben sind und somit keine der obigen Bedingungen erf"ullt ist.
 %%\ifttm\relax\else\newpage\fi
 
 \begin{MExample}
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}{10cm}
 Gegeben seien die Seiten $b$ und~$c$ und der Winkel~$\alpha$.
 Das Dreieck \glqq sws\grqq\ erh\"alt man, indem man zun\"achst eine Seite, 
@@ -1860,7 +1865,7 @@ $\alpha=30\MGrad$ und $\beta=120\MGrad$, wobei die oben eingef"uhrte Notation
 verwendet wird.
 
 \begin{MHint}{L\"osung}
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}{9cm}
 Man zeichnet zuerst die gegebene Strecke $c$.
 Dann tr\"agt man an den beiden Enden der Strecke die zwei der Bezeichnungskonvention entsprechenden Winkel an.
@@ -1881,11 +1886,10 @@ Der Schnittpunkt $C$ der beiden neuen Schenkel ist die dritte Ecke des Dreiecks.
 }
 \end{minipage}
 \end{tabular}
-
 \end{MHint}
 \end{MExercise}
 
-\begin{MExample}\MLabel{VBKM05_BeispielAehnlichkeit}
+\begin{MExample}\MLabel{VBKM05_BeispielAehnlichkeit}%
 Gegeben seien nun die drei Winkel $\alpha=77\MGrad$, $\beta=44\MGrad$ und 
 $\gamma=59\MGrad$, deren Summe $180\MGrad$ ist.
 Diese Auswahl von drei Winkeln ohne Angabe zu einer Seite findet man nicht bei 
@@ -1984,7 +1988,8 @@ Streckzentrum $S$ und einem Streckfaktor $k$ in das andere \"uber.
 
 \begin{center}
 \MTikzAuto{%
-\begin{tikzpicture}[x=0.8cm, y=0.8cm] 
+\def\sxyc{0.8cm}
+\begin{tikzpicture}[x=\sxyc, y=\sxyc] 
 \pgfmathparse{5*sin(44)*cos(77)/sin(59)}\let\cx=\pgfmathresult
 \pgfmathparse{5*sin(44)*sin(77)/sin(59)}\let\cy=\pgfmathresult
 \pgfmathparse{cos(15)}\let\rc=\pgfmathresult
@@ -1997,7 +2002,7 @@ Streckzentrum $S$ und einem Streckfaktor $k$ in das andere \"uber.
   \draw[gray, dashed] (\cax,\cay) -- (\cbx,\cby);
 }
 \node[anchor=south] at (12,0) {$S$};
-\foreach \sx/\sy/\dsf/\ang in {0.0cm/0.0cm/1.0/-15,4.8cm/0.0cm/0.60/-15} {
+\foreach \sx/\sy/\dsf/\ang in {0.0cm/0.0cm/1.0/-15,4.8*\sxyc/0.0cm/0.60/-15} {
   \begin{scope}[xshift=\sx,yshift=\sy,rotate=\ang]
   \coordinate (OB) at (5,0);
   \coordinate (OC) at (\cx,\cy);
@@ -2134,7 +2139,7 @@ die dritte Ecke verl"auft, und betrachten Sie die Winkel an dieser Ecke.
 &
 \begin{minipage}[b]{9cm}
 Zeichnet man parallel zur Seite $c$ eine Gerade durch die obere Ecke des 
-Dreiecks, so erh\"alt man jeweils einen Wechselwinkel $\alpha'$ zu $\alpha$ 
+Dreiecks, so erh"alt man jeweils einen Wechselwinkel $\alpha'$ zu $\alpha$ 
 und $\beta'$ zu $\beta$. 
 
 An der Geraden gilt
@@ -2400,7 +2405,7 @@ Einheitsquadrate.
  \[ F =b\cdot a=a\cdot b \MDFPeriod\]
 \end{MXInfo}
 
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}{10cm}
 Damit l\"asst sich nun auch leicht der Fl\"acheninhalt eines rechtwinkligen 
 Dreiecks berechnen.
@@ -2600,7 +2605,7 @@ F = F_{\text{Dreieck}} + F_{\text{Rechteck}} %
 \end{MExample}
 
 \begin{MExercise}
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}[b]{7cm}
 Berechnen Sie den Fl\"acheninhalt des\newline \textbf{Parallelogramms} 
 f\"ur $a=4$ und $h=5$.
@@ -2625,7 +2630,7 @@ entstandenen Dreiecke genau an!
 
 \begin{MHint}{L\"osung}
 
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}[b]{7cm}
 Man kann das Parallelogramm in das linke rote Dreieck, einem folgenden 
 Rechteck und das rechte Dreieck aufspalten. Schneidet man das rote Dreieck 
@@ -2676,7 +2681,7 @@ Mit den angegebenen Werten ergibt sich der N"aherungswert
 \MDeclareSiteUXID{VBKM05_Flaecheninhalt_Exercises}
 
 \begin{MExercise}
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}[b]{8cm}
 Berechnen Sie den Fl\"acheninhalt des Polygons:\\
 \vspace{3.5cm}
@@ -3428,7 +3433,7 @@ das mathematische Gebiet, das sich mit ihren Eigenschaften befasst, hei"st
 \MEntry{Trigonometrie}{Trigonometrie}.
 
 \begin{MXInfo}{Die trigonometrischen Funktionen im rechtwinkligen Dreieck}%
-\MLabel{M05_DefinitionWinkelfunktionen}
+\MLabel{M05_DefinitionWinkelfunktionen}%
 Es werden die gebr"auchlichsten \MEntry{Winkelfunktionen}{Winkelfunktionen}
 als Zuordnungen zwischen Winkel und Seitenverh"altnissen in einem rechtwinkligen 
 Dreieck beschrieben. Die Winkelfunktionen hei"sen auch 
@@ -3659,8 +3664,8 @@ des Steigungswinkels.
 Winkel $\alpha$ von Null ins {\glqq}Unendliche{\grqq}. 
 \end{itemize}
 
-Im folgenden Beispiel wird an die "Uberlegung aus der Einleitung fortgesetzt, 
-die auf ein Dreieck mit einem Winkel von $45\MGrad$ f"uhrte, um de zugeh"origen
+Im folgenden Beispiel wird die "Uberlegung aus der Einleitung fortgesetzt, 
+die auf ein Dreieck mit einem Winkel von $45\MGrad$ f"uhrte, um den zugeh"origen
 Sinuswert exakt zu berechnen.
 
 \begin{MExample}
@@ -3670,7 +3675,7 @@ gemessenen (und damit fehlerbehafteten) Werten bestimmt werden.
 
 Wenn im rechtwinkligen Dreieck mit $\gamma=90\MGrad$ der Winkel $\alpha$ gleich $45\MGrad$ ist, so muss wegen der Innenwinkelsumme $\alpha+\beta+\gamma=\pi=180\MGrad$ der Winkel $\beta$ auch gleich $45\MGrad=\pi/4$ sein, und die beiden Katheten $a$ und $b$ sind gleich lang. Ein Dreieck mit zwei gleich langen Seiten nennt man \textbf{gleichschenklig}:
 
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \MTikzAuto{%
 \begin{tikzpicture}[x=1.0cm, y=1.0cm] 
 %%\draw[help lines, gray!50, xstep=0.5, ystep=0.5] (0,0) grid (9,8);
@@ -3716,7 +3721,7 @@ eindeutig bestimmt, und man erh\"alt dieses, indem man die Seite $a$
 zeichnet und mit dem Zirkel einen Kreis vom Radius $a$ um jede Ecke schl\"agt.
 Der Schnittpunkt der Kreise ist nun die dritte Ecke.
 
-\begin{tabular}{lr}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}[b]{10.5cm}
 Dieses Dreieck hat keinen rechten Winkel. Zeichnet man eine H\"ohe $h$ auf 
 eine der Seiten $a$ ein, so erh\"alt man zwei kongruente Dreiecke mit je 
