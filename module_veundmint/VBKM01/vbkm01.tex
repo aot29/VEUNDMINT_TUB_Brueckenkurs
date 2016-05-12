@@ -342,35 +342,37 @@ bezeichnet, zum Beispiel wenn Winkel von Zahlen unterschieden werden sollen.
 Hier werden die Buchstaben des griechischen Alphabets in einer "Ubersicht
 gezeigt, die auch die Gro"sbuchstaben enth\"alt, sortiert nach dem griechischen Alphabet:
 \ \\ \ \\
-\begin{tabular}{|*{5}{cc|}}
+\begin{tabular}{|*{4}{cc|@{}c@{}|}{cc|}}
 \ifttm\hline\else\firsthline\fi
 %Die Grossbuchstaben, die nicht auch vom lateinischen Alphabet genutzt
 %werden, druckt pdfLaTeX aufrecht, MathML dagegen kursiv.
- $\alpha$,       \ifttm$A$\else$\mathrm{A}$\ \ \ \ \  \ \ \fi & \glqq alpha\grqq\ \ \ \ \ \ \ &
- $\beta$,        \ifttm$B$\else$\mathrm{B}$\fi & \glqq beta\grqq          &
- $\gamma$,       $\Gamma$                      & \glqq gamma\grqq         &
- $\delta$,       $\Delta$                      & \glqq delta\grqq         &
- $\Mvarepsilon$, \ifttm$E$\else$\mathrm{E}$\fi & \glqq epsilon\grqq       \\
- $\zeta$,        \ifttm$Z$\else$\mathrm{Z}$\fi & \glqq zeta\grqq          &
- $\eta$,         \ifttm$H$\else$\mathrm{H}$\fi & \glqq eta\grqq           &
- $\vartheta$,    $\Theta$                      & \glqq theta\grqq         &
- $\iota$,        \ifttm$I$\else$\mathrm{I}$\fi & \glqq iota\grqq          &
- $\Mvarkappa$,   \ifttm$K$\else$\mathrm{K}$\fi & \glqq kappa\grqq         \\
- $\lambda$,      $\Lambda$                     & \glqq lambda\grqq        &
- $\mu$,          \ifttm$M$\else$\mathrm{M}$\fi & \glqq m\"u\grqq          &
- $\nu$,          \ifttm$N$\else$\mathrm{N}$\fi & \glqq n\"u\grqq          &
- $\xi$,          $\Xi$                         & \glqq xi\grqq            &
- $o$,            \ifttm$O$\else$\mathrm{O}$\fi & \glqq omikron\grqq       \\
- $\pi$,          $\Pi$                         & \glqq pi\grqq            &
- $\varrho$,      \ifttm$P$\else$\mathrm{P}$\fi & \glqq rho\grqq           &
- $\sigma$,       $\Sigma$                      & \glqq sigma\grqq         &
+%Kursive griechische Grossbuchstaben erhaelt man mit den momentanen
+%Einstellungen in pdfLaTeX bzw. mintmod mit "\var...".
+$\alpha$,       $A$  & \glqq alpha\grqq         & \MTSP &
+$\beta$,        $B$  & \glqq beta\grqq          & \MTSP &
+$\gamma$,       \ifttm$\Gamma$\else$\varGamma$\fi   & \glqq gamma\grqq        & \MTSP &
+$\delta$,       \ifttm$\Delta$\else$\varDelta$\fi   & \glqq delta\grqq        & \MTSP &
+$\Mvarepsilon$, $E$  & \glqq epsilon\grqq       \\
+$\zeta$,        $Z$  & \glqq zeta\grqq          & \MTSP &
+$\eta$,         $H$  & \glqq eta\grqq           & \MTSP &
+$\vartheta$,    \ifttm$\Theta$\else$\varTheta$\fi   & \glqq theta\grqq        & \MTSP &
+$\iota$,        $I$  & \glqq iota\grqq          & \MTSP &
+$\Mvarkappa$,   $K$  & \glqq kappa\grqq         \\
+$\lambda$,      \ifttm$\Lambda$\else$\varLambda$\fi & \glqq lambda\grqq       & \MTSP &
+$\mu$,          $M$  & \glqq m\"u\grqq          & \MTSP &
+$\nu$,          $N$  & \glqq n\"u\grqq          & \MTSP &
+$\xi$,          \ifttm$\Xi$\else$\varXi$\fi         & \glqq xi\grqq           & \MTSP &
+$o$,            $O$  & \glqq omikron\grqq       \\
+$\pi$,          \ifttm$\Pi$\else$\varPi$\fi         & \glqq pi\grqq           & \MTSP &
+$\varrho$,      $P$  & \glqq rho\grqq               & \MTSP &
+$\sigma$,       \ifttm$\Sigma$\else$\varSigma$\fi   & \glqq sigma\grqq        & \MTSP &
 % $\varsigma$,                                  & \glqq sigma\grqq         &
- $\tau$,         \ifttm$T$\else$\mathrm{T}$\fi & \glqq tau\grqq           &
- $\upsilon$,     $\Upsilon$                    & \glqq \"upsilon\grqq     \\
- $\Mvarphi$,     $\Phi$                        & \glqq phi\grqq           &
- $\chi$,         \ifttm$X$\else$\mathrm{X}$\fi & \glqq chi\grqq           &
- $\psi$,         $\Psi$                        & \glqq psi\grqq           &
- $\omega$,       $\Omega$                      & \glqq omega\grqq         &
+$\tau$,         $T$  & \glqq tau\grqq               & \MTSP &
+$\upsilon$,     \ifttm$\Upsilon$\else$\varUpsilon$\fi & \glqq \"upsilon\grqq     \\
+$\Mvarphi$,     \ifttm$\Phi$\else$\varPhi$\fi       & \glqq phi\grqq          & \MTSP &
+$\chi$,         $X$  & \glqq chi\grqq          & \MTSP &
+$\psi$,         \ifttm$\Psi$\else$\varPsi$\fi       & \glqq psi\grqq          & \MTSP &
+$\omega$,       \ifttm$\Omega$\else$\varOmega$\fi   & \glqq omega\grqq        & \MTSP &
  \special{html:&nbsp;}                         & \special{html:&nbsp;}    \\
  \ifttm\hline\else\lasthline\fi
 \end{tabular}
