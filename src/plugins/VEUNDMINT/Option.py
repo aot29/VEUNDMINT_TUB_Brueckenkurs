@@ -108,7 +108,7 @@ class Option(object):
         self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
         self.signature_date = "05/2015"
 
-        # ! ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------ !
+        # ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------ 
         self.overrides = list()
         for ov in override:
             m = re.match(r"(.+?)=(.+)", ov) 
@@ -210,7 +210,6 @@ class Option(object):
             self.colors = json.load(colorfile)
 
         # course signature, repository part
-        
         repo = Repo(self.currentDir)
         assert not repo.bare
         
@@ -219,11 +218,10 @@ class Option(object):
         else:
             self.signature_git_dirty = 0
         
-        
         h = repo.head
         hc = h.commit
         self.signature_git_head = h.name
-        self.signature_git_branch = h.active_branch
+        self.signature_git_branch = repo.active_branch.name
         self.signature_git_committer = hc.committer.name
         self.signature_git_message = hc.message.replace("\n", "")
         self.signature_git_commit = hc.hexsha
