@@ -16,7 +16,8 @@ if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
     print("compile_variants must be called in its own directory, typically src in the converter tree")
     sys.exit(1)
 
-
+repo = Repo("..")
+assert not repo.bare
 h = repo.head
 hc = h.commit
 
