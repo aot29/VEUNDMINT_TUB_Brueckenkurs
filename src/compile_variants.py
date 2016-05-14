@@ -25,7 +25,7 @@ if socket.gethostname() != pubserver:
     print("Not on publication server " + pubserver + ", refusing to do anything!")
     sys.exit(1)
 
-if repo.active_branch != mdb:
+if repo.active_branch.name != mdb:
     print("Not on branch " + mdb + ", refusing to do anything!")
     sys.exit(1)
 
