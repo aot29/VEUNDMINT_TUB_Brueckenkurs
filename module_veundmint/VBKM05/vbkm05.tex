@@ -429,7 +429,7 @@ liegt auf dem Strahl $s_1$ und $D$ liegt auf dem Strahl $s_2$. Zuerst
 werden die Strecken zwischen den Punkten auf den beiden Strahlen betrachtet,
 dann auch zwischen den Strahlen.
 \par
-\begin{tabular}{lc}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}[b]{7cm}
 %Auf dem Strahl $s_1$ werden die Strecken $\MGeoStrecke{S}{A}$ und 
 %$\MGeoStrecke{S}{B}$ sowie $\MGeoStrecke{A}{B}$ betrachtet.
@@ -2059,7 +2059,7 @@ Untersuchen Sie die folgende Figur auf Stufenwinkel und Wechselwinkel!
 \end{center}
 
 \begin{MHint}{L\"osung}
-\begin{tabular}{lc}
+\begin{tabular}{@{}lr@{}}
 \begin{minipage}[b]{9cm}
 Die Winkel $\alpha$ und $\alpha'$ zum Beispiel sind Stufenwinkel, ebenso 
 $\beta$ und $\beta'$.
@@ -2115,7 +2115,7 @@ die dritte Ecke verl"auft, und betrachten Sie die Winkel an dieser Ecke.
 \end{MHint}
 
 \begin{MHint}{L\"osung}
-\begin{tabular}{lc}
+\begin{tabular}{@{}lr@{}}
 \MTikzAuto{%
 \begin{tikzpicture}[x=1.0cm, y=1.0cm, scale=0.8] 
 %%\draw[help lines, gray!50, xstep=0.5, ystep=0.5] (0,0) grid (9,8);
@@ -3684,9 +3684,16 @@ Thaleskreises rechtwinklige Dreiecke f\"ur die Winkel
 30\MGrad\MElSetSep 40\MGrad\MElSetSep 45\MGrad\MElSetSep 50\MGrad\MElSetSep %
 60\MGrad\MElSetSep 70\MGrad\MElSetSep 80\MGrad \right\} \MDFPeriod %%
 \]
+%jgl: Anmerkung: Befehl \MEinheit nicht f"ur Umlaute geeignet.
+\ifttm
 Fertigen Sie Ihre Zeichnungen im Ma"sstab 
-$1 \text{ L"angeneinheit} \hat{=} 2\MEinheit{cm}$ an, und schreiben Sie 
+$1$ L"angeneinheit $\hat{=} 2\MEinheit{cm}$ an, und schreiben Sie 
 die Messwerte zu den Seiten $a$ und $b$ in eine Tabelle. 
+\else
+Fertigen Sie Ihre Zeichnungen im Ma"sstab 
+$1\,\text{L"angeneinheit} \,\hat{=}\, 2\MEinheit{cm}$ an, und schreiben Sie 
+die Messwerte zu den Seiten $a$ und $b$ in eine Tabelle. 
+\fi
 
 Berechnen Sie zu jedem Winkel mit den gemessenen Werten den Sinus, Kosinus 
 und Tangens, und "uberlegen Sie sich anschlie"send, wo auch Werte zu 
@@ -4573,23 +4580,40 @@ Welche der Aussagen und Ergebnisse sind richtig?
 \par
 \ifttm
 \begin{MQuestionGroup}
-\begin{tabular}{|l|l|l|}
- richtig & falsch & \\
- \MCheckbox{0}{ExM05TestAg20g} & \MCheckbox{1}{ExM05TestAg21} & %
+\begin{tabular}{|l|l|}
+ richtig? & \\
+ \MCheckbox{0}{ExM05TestAg20g} & % \MCheckbox{1}{ExM05TestAg21} & %
  Jedes Rechteck ist eine Raute. \\
 %
-\MCheckbox{1}{ExM05TestAg22} & \MCheckbox{0}{ExM05TestAg23} & %
+\MCheckbox{1}{ExM05TestAg22} & % \MCheckbox{0}{ExM05TestAg23} & %
  Jedes Quadrat ist ein Parallelogramm. \\
 %
-\MCheckbox{1}{ExM05TestAg24} & \MCheckbox{0}{ExM05TestAg25} & %
+\MCheckbox{1}{ExM05TestAg24} & % \MCheckbox{0}{ExM05TestAg25} & %
  Es gibt genau ein Quadrat mit einer Diagonalen von $5\MEinheit{cm}$. \\
 %
-\MCheckbox{1}{ExM05TestAg26} & \MCheckbox{0}{ExM05TestAg27} & %
+\MCheckbox{1}{ExM05TestAg26} & % \MCheckbox{0}{ExM05TestAg27} & %
  Ein Dreieck mit den Winkeln $36\MGrad$ und $54\MGrad$ ist rechtwinklig. \\
 %
-\MCheckbox{0}{ExM05TestAg28} & \MCheckbox{1}{ExM05TestAg29} & %
+\MCheckbox{0}{ExM05TestAg28} & % \MCheckbox{1}{ExM05TestAg29} & %
  In einem Viereck ist die Summe aller (Innen-)Winkel im Bogenma"s gleich $4 \pi$.
 \end{tabular}
+%%%\begin{tabular}{|l|l|l|}
+%%% richtig & falsch & \\
+%%% \MCheckbox{0}{ExM05TestAg20g} & \MCheckbox{1}{ExM05TestAg21} & %
+%%% Jedes Rechteck ist eine Raute. \\
+%%%%
+%%%\MCheckbox{1}{ExM05TestAg22} & \MCheckbox{0}{ExM05TestAg23} & %
+%%% Jedes Quadrat ist ein Parallelogramm. \\
+%%%%
+%%%\MCheckbox{1}{ExM05TestAg24} & \MCheckbox{0}{ExM05TestAg25} & %
+%%% Es gibt genau ein Quadrat mit einer Diagonalen von $5\MEinheit{cm}$. \\
+%%%%
+%%%\MCheckbox{1}{ExM05TestAg26} & \MCheckbox{0}{ExM05TestAg27} & %
+%%% Ein Dreieck mit den Winkeln $36\MGrad$ und $54\MGrad$ ist rechtwinklig. \\
+%%%%
+%%%\MCheckbox{0}{ExM05TestAg28} & \MCheckbox{1}{ExM05TestAg29} & %
+%%% In einem Viereck ist die Summe aller (Innen-)Winkel im Bogenma"s gleich $4 \pi$.
+%%%\end{tabular}
 \end{MQuestionGroup}
 \else
 \begin{MQuestionGroup}
