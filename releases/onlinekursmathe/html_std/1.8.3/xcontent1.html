@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 8.3.2 Fl&amp;#228;chenberechnung</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+// onload blocks start
+// onload blocks stop
+var SITE_ID = "1.8.3.2";
+var SITE_UXID = "VBKM08_Anwendungen_Flaechenberechnung";
+var SECTION_ID = 8;
+var docName = "xcontent1";
+var fullName = "html_std/1.8.3/xcontent1.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.1/modstart.html"><div class="xsymb selected">8.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.1/modstart.html"><div uxid="VBKM08_Stammfunktionen_Intro" id="idxsymb_tc198" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.1/xcontent1.html"><div uxid="VBKM08_Stammfunktionen_Content" id="idxsymb_tc199" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.1/xcontent2.html"><div uxid="VBKM08_Stammfunktionen_Exercises" id="idxsymb_tc200" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.2/modstart.html"><div class="xsymb selected">8.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.2/modstart.html"><div uxid="VBKM08_Integral_Intro" id="idxsymb_tc201" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent1.html"><div uxid="VBKM08_Integral_Content" id="idxsymb_tc202" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent2.html"><div uxid="VBKM08_Rechenregeln" id="idxsymb_tc203" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent3.html"><div uxid="VBKM08_Eigenschaften_Integral" id="idxsymb_tc204" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent4.html"><div uxid="VBKM08_BestimmtesIntegral_Exercises" id="idxsymb_tc205" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html"><div class="xsymb selected">8.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html"><div uxid="VBKM08_Anwendungen_Intro" id="idxsymb_tc206" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent1.html"><div uxid="VBKM08_Anwendungen_Flaechenberechnung" id="idxsymb_tc207" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent2.html"><div uxid="VBKM08_Anwendungen_Naturwissenschaften" id="idxsymb_tc208" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent3.html"><div uxid="VBKM08_Anwendungen_Exercises" id="idxsymb_tc209" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.4/modstart.html"><div class="xsymb selected">8.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.4/modstart.html"><div uxid="VBKM08_Abschlusstest" id="idxsymb_tc210" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html_std/1.8.3/xcontent2.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM08_Anwendungen_Intro" class="MINTERLINK" href="../../html_std/1.8.3/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Anwendungen_Flaechenberechnung" class="MINTERLINK naviselected" href="../../html_std/1.8.3/xcontent1.html">Fl&#228;chenberechnung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Anwendungen_Naturwissenschaften" class="MINTERLINK" href="../../html_std/1.8.3/xcontent2.html">Naturwissenschaftliche Anwenungen</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Anwendungen_Exercises" class="MINTERLINK" href="../../html_std/1.8.3/xcontent3.html">Aufgaben</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREEN);">Grün</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.1/modstart.html"><div class="xsymb selected">8.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.1/modstart.html"><div uxid="VBKM08_Stammfunktionen_Intro" id="idxsymb_tc198" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.1/xcontent1.html"><div uxid="VBKM08_Stammfunktionen_Content" id="idxsymb_tc199" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.1/xcontent2.html"><div uxid="VBKM08_Stammfunktionen_Exercises" id="idxsymb_tc200" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.2/modstart.html"><div class="xsymb selected">8.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.2/modstart.html"><div uxid="VBKM08_Integral_Intro" id="idxsymb_tc201" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent1.html"><div uxid="VBKM08_Integral_Content" id="idxsymb_tc202" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent2.html"><div uxid="VBKM08_Rechenregeln" id="idxsymb_tc203" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent3.html"><div uxid="VBKM08_Eigenschaften_Integral" id="idxsymb_tc204" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent4.html"><div uxid="VBKM08_BestimmtesIntegral_Exercises" id="idxsymb_tc205" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html"><div class="xsymb selected">8.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html"><div uxid="VBKM08_Anwendungen_Intro" id="idxsymb_tc206" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent1.html"><div uxid="VBKM08_Anwendungen_Flaechenberechnung" id="idxsymb_tc207" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent2.html"><div uxid="VBKM08_Anwendungen_Naturwissenschaften" id="idxsymb_tc208" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent3.html"><div uxid="VBKM08_Anwendungen_Exercises" id="idxsymb_tc209" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.4/modstart.html"><div class="xsymb selected">8.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.4/modstart.html"><div uxid="VBKM08_Abschlusstest" id="idxsymb_tc210" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html_std/1.8.3/xcontent2.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM08_Anwendungen_Intro" class="MINTERLINK" href="../../html_std/1.8.3/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Anwendungen_Flaechenberechnung" class="MINTERLINK naviselected" href="../../html_std/1.8.3/xcontent1.html">Fl&#228;chenberechnung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Anwendungen_Naturwissenschaften" class="MINTERLINK" href="../../html_std/1.8.3/xcontent2.html">Naturwissenschaftliche Anwenungen</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Anwendungen_Exercises" class="MINTERLINK" href="../../html_std/1.8.3/xcontent3.html">Aufgaben</a></li>
+</ul>
+</div>
+  <div id="content" class="content">
+
+
+
+
+
+
+
+<h4>1  - 1.8</h4><br /><h4>8.3.2 Flächenberechnung</h4>
+<!-- mdeclaresiteuxidpost;;VBKM08_Anwendungen_Flaechenberechnung;; //-->
+Eine erste Anwendung der Integrationsrechnung ist die Berechnung von 
+<b>Flächeninhalten</b><!-- mindexentry;;Flächeninhalt (Integral); //--><a class="label" name="ELI_SW198"></a>, deren Ränder von 
+mathematischen Funktionen beschrieben werden können.
+Zur Veranschaulichung ist in der folgenden Abbildung (linkes Bild) die 
+Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow></math> auf dem Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></math> 
+dargestellt. Das Ziel ist die Berechnung des Flächeninhalts, der vom Graphen 
+der Funktion und der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse eingeschlossen wird. Die bisherigen 
+Untersuchungen ergeben, dass das Integral über diese ungerade Funktion in 
+den Grenzen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo><mn>2</mn></mrow></math> bis <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn></mrow></math> genau Null ergeben wird, da die linke und rechte 
+Teilfläche gleich groß sind, aber bei der Integration unterschiedliche 
+Vorzeichen erhalten. Das Integral entspricht hier also nicht dem Wert des 
+Flächeninhalts.
+Spiegelt man jedoch die ,,negative'' Fläche an der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse, gibt man der 
+Funktion also ein positives Vorzeichen (rechtes Bild), dann kann man den 
+Flächeninhalt richtig bestimmen. Mathematisch bedeutet das, dass man nicht 
+das Integral der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> berechnet, sondern das Integral des Betrags 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo>|</mo><mi>f</mi><mo>|</mo></mrow></mrow></math>.
+
+<br clear="all"/><br clear="all"/>
+
+<div style="text-align:center"><a id="L_SOURCEAUTOLABEL_159">
+</a>
+
+<img src="./VBKM08mtikzauto_6.4x.png" style="width:735px;height:435px" alt="./VBKM08mtikzauto_6.4x.png"/>
+ 
+</div>
+
+<br clear="all"/><br clear="all"/>
+Durch die Bildung des Betrags der Funktion benötigt man eine Aufteilung des 
+Integrals in die Bereiche mit positivem und negativem Vorzeichen.
+Für die Berechnung heißt dies, dass man das Integrationsintervall in 
+Abschnitte zu unterteilt, in denen die Funktionswerte dasselbe Vorzeichen haben.
+Für stetige Funktionen ergeben sich diese durch die Nullstellen der Funktion.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Flächenberechnung
+  
+8.3.1
+    
+  
+  </b>  <br/> 
+Gegeben ist eine stetige Funktionen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> auf 
+einem Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>. 
+Weiter seien <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> bis <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>m</mi></mrow>
+</msub>
+</mrow></math> die Nullstellen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> mit 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>&lt;</mo>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>&lt;</mo><mo>…</mo><mo>&lt;</mo>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>m</mi></mrow>
+</msub>
+</mrow></math>. 
+Es werden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo>:</mo><mo>=</mo><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow>
+</msub>
+<mo>:</mo><mo>=</mo><mi>b</mi></mrow></math> gesetzt.
+
+<br clear="all"/><br clear="all"/>
+Dann ist der Flächeninhalt zwischen dem Graphen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> und der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse gleich
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mo stretchy="false">|</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo>
+<munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn> </mrow>
+<mrow><mi>m</mi></mrow></munderover><mrow><mo>|</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
+</msub>
+ </mrow>
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
+</msub>
+</mrow></msubsup>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>|</mo></mrow><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Dies soll für das oben dargestellte Beispiel etwas genauer erörtert werden.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  8.3.2
+  
+  </b>  <br/>
+Zu berechnen ist der Flächeninhalt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>I</mi></mrow><mrow><mi>A</mi></mrow>
+</msub>
+</mrow></math> der Fläche, den die stetige Funktion
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow></math> im Bereich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></math> mit der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Ache 
+einschließt. Die einzige Nullstelle der gegebenen Funktion befindet sich bei 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn></mrow></math>. Man teilt den Integrationsbereich also in die beiden Teilintervalle
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>0</mn><mo stretchy="false">]</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></math> auf und berechnet mit
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<msub><mrow><mi>I</mi></mrow><mrow><mi>A</mi></mrow>
+</msub>
+<mo>=</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mo>-</mo><mn>2</mn> </mrow>
+<mrow><mn>2</mn></mrow></msubsup>
+<mrow><mo>|</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo>|</mo></mrow><mi>d</mi><mi>x</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mrow><mo>|</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mo>-</mo><mn>2</mn> </mrow>
+<mrow><mn>0</mn></mrow></msubsup>
+
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mi> </mi><mi>d</mi><mi>x</mi><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mn>2</mn></mrow></msubsup>
+
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mi> </mi><mi>d</mi><mi>x</mi><mo>|</mo></mrow></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mrow><mo>|</mo>
+<msubsup><mrow><mo>[</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow>
+</msup>
+<mo>]</mo></mrow><mrow><mo>-</mo><mn>2</mn> </mrow>
+<mrow><mn>0</mn></mrow></msubsup>
+<mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo>
+<msubsup><mrow><mo>[</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>8</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow>
+</msup>
+<mo>]</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mn>2</mn></mrow></msubsup>
+<mo>|</mo></mrow></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mrow><mo>|</mo><mn>0</mn><mo>-</mo><mn>2</mn><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo><mn>2</mn><mo>-</mo><mn>0</mn><mo>|</mo></mrow></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>4</mn></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+den Flächeninhalt zwischen Kurve und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse zu <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>I</mi></mrow><mrow><mi>A</mi></mrow>
+</msub>
+<mo>=</mo><mn>4</mn></mrow></math>.
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Man kann nicht nur Flächeninhalte zwischen einer Kurve und der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse 
+bestimmen, sondern auch den Inhalt einer Fläche, die von zwei Kurven 
+eingeschlossen wird, wie in der folgenden Abbildung veranschaulicht wird.
+Dort zeigt das rechte Bild die gesuchte Fläche, deren Flächeninhalt als
+die Differenz der Flächeninhalte aus dem linken und dem mittleren Bild 
+berechnet wird.
+
+<br clear="all"/><br clear="all"/>
+
+<div style="text-align:center"><a id="L_SOURCEAUTOLABEL_160">
+</a>
+
+<img src="./VBKM08mtikzauto_7.4x.png" style="width:828px;height:209px" alt="./VBKM08mtikzauto_7.4x.png"/>
+ 
+</div>
+
+<br clear="all"/><br clear="all"/>
+Dieses Prinzip soll ebenfalls zuerst formal vorgestellt und danach an einem 
+Beispiel erläutert werden.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Flächenberechnung zwischen den Graphen zweier Funktionen
+  
+8.3.3
+    
+  
+  </b>  <br/> 
+Gegeben sind zwei stetige Funktionen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>,</mo><mi>g</mi><mo>:</mo><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> 
+auf einem Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>. Weiter seien <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math> bis <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>m</mi></mrow>
+</msub>
+</mrow></math> die 
+Nullstellen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>-</mo><mi>g</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>&lt;</mo>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>&lt;</mo><mo>…</mo><mo>&lt;</mo>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>m</mi></mrow>
+</msub>
+</mrow></math>. Es werden <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo>:</mo><mo>=</mo><mi>a</mi></mrow></math> 
+und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow>
+</msub>
+<mo>:</mo><mo>=</mo><mi>b</mi></mrow></math> gesetzt.
+
+<br clear="all"/><br clear="all"/>
+Dann kann der Flächeninhalt zwischen dem Graphen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> und dem von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> durch
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mo stretchy="false">|</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>-</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo>
+<munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn> </mrow>
+<mrow><mi>m</mi></mrow></munderover><mrow><mo>|</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
+</msub>
+ </mrow>
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
+</msub>
+</mrow></msubsup>
+<mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>-</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>|</mo></mrow></mrow>
+    </mstyle></math></center>
+<br/>
+
+berechnet werden.
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Dazu soll nun ein Beispiel betrachtet werden.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  8.3.4
+  
+  </b>  <br/>
+Berechnet werden soll der Inhalt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>I</mi></mrow><mrow><mi>A</mi></mrow>
+</msub>
+</mrow></math> der Fläche zwischen den Graphen von 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>8</mn><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow>
+</msup>
+</mrow></math> für 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>∈</mo><mo stretchy="false">[</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></math>.
+Zunächst untersucht man die Differenz <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>-</mo><mi>g</mi></mrow></math> der Funktionen auf
+ihre Nullstellen. Mit
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>-</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>8</mn></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow>
+</msup>
+<mo>+</mo><mn>4</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>32</mn><mo>)</mo></mrow></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow>
+</msup>
+<mo>+</mo><mn>4</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>32</mn><mo>)</mo></mrow></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mrow><mo>(</mo>
+<msup><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>36</mn><mo>)</mo></mrow></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+kann man die reellen Nullstellen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>-</mo><mi>g</mi></mrow></math> berechnen:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow>
+<msup><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>36</mn><mo>=</mo><mn>0</mn></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msup><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>36</mn></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>=</mo><mn>6</mn></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mn>4</mn></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mi>x</mi><mo>=</mo><mo>±</mo><mn>2</mn></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+oder mit der dritten binomischen Formel:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mn>0</mn></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msup><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>36</mn><mo>=</mo>
+<msup><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo>
+<msup><mrow><mn>6</mn></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>-</mo><mn>6</mn><mo>)</mo></mrow><mo>·</mo><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>+</mo><mn>6</mn><mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>4</mn><mo>)</mo></mrow><mo>·</mo><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>+</mo><mn>6</mn><mo>)</mo></mrow><mo>=</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false">)</mo><mo>·</mo><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>8</mn><mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+In der ersten Rechnung wurde nach dem Ziehen der ersten Wurzel auf eine nähere 
+Betrachtung des Falls <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>2</mn><mo>=</mo><mo>-</mo><mn>6</mn></mrow></math> verzichtet, da man
+aus der daraus folgenden Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo><mo>-</mo><mn>8</mn></mrow></math> keine reellen Nullstellen erhält.
+Die reellen Nullstellen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>-</mo><mi>g</mi></mrow></math> sind <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo><mn>2</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn></mrow></math>.
+Dies sind gleichzeitig auch die Randstellen des Intervalls <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></math>.
+Eine Aufteilung des Integrals in verschiedene Bereiche ist also nicht nötig. 
+Die Werte von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> sind kleiner als die von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> auf diesem Intervall. Damit
+erhält man den Flächeninhalt 
+
+<br clear="all"/><br clear="all"/>
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<msub><mrow><mi>I</mi></mrow><mrow><mi>A</mi></mrow>
+</msub>
+</mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mo>-</mo><mn>2</mn> </mrow>
+<mrow><mn>2</mn></mrow></msubsup>
+<mrow><mo>|</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>-</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>|</mo></mrow><mi>d</mi><mi>x</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mo>-</mo><mn>2</mn> </mrow>
+<mrow><mn>2</mn></mrow></msubsup>
+<mrow><mo>(</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>-</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>)</mo></mrow><mi>d</mi><mi>x</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mo>-</mo><mn>2</mn> </mrow>
+<mrow><mn>2</mn></mrow></msubsup>
+<mrow><mo>(</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow>
+</msup>
+<mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>8</mn><mo>)</mo></mrow><mi>d</mi><mi>x</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>2</mn>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mn>2</mn></mrow></msubsup>
+<mrow><mo>(</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow>
+</msup>
+<mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>8</mn><mo>)</mo></mrow><mi>d</mi><mi>x</mi><mi> </mi><mo>,</mo><mi>      </mi>
+<mtext>da der Integrand gerade ist</mtext>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>[</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>20</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>5</mn></mrow>
+</msup>
+<mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo>+</mo><mn>8</mn><mi>x</mi><mo>]</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mn>2</mn></mrow></msubsup>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>2</mn><mo>·</mo><mrow><mo>(</mo><mo>-</mo>
+<mfrac><mrow><mn>32</mn></mrow>
+<mrow><mn>20</mn></mrow>
+</mfrac>
+<mo>-</mo>
+<mfrac><mrow><mn>8</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>+</mo><mn>16</mn><mo>)</mo></mrow></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>352</mn></mrow>
+<mrow><mn>15</mn></mrow>
+</mfrac>
+<mi> </mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>

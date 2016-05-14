@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 8.2.3 Rechenregeln</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+// onload blocks start
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("34eb40*-a/t3q(+2t*)^a3026yx,.62s",5);}if(c==2){str=debork("9;2y1r9(4+r7na6r+lr1ra*--846y)9/",15);}return str;}
+
+__CQJ("M08ZEx01",1,GSLS(1),"QFELD_8.2.4.QF1",3,"4",4,0,8);__CQJ("M08ZEx02",2,GSLS(2),"QFELD_8.2.4.QF2",3,"4",4,0,8);
+// onload blocks stop
+var SITE_ID = "1.8.2.3";
+var SITE_UXID = "VBKM08_Rechenregeln";
+var SECTION_ID = 8;
+var docName = "xcontent2";
+var fullName = "html_std/1.8.2/xcontent2.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.1/modstart.html"><div class="xsymb selected">8.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.1/modstart.html"><div uxid="VBKM08_Stammfunktionen_Intro" id="idxsymb_tc198" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.1/xcontent1.html"><div uxid="VBKM08_Stammfunktionen_Content" id="idxsymb_tc199" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.1/xcontent2.html"><div uxid="VBKM08_Stammfunktionen_Exercises" id="idxsymb_tc200" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.2/modstart.html"><div class="xsymb selected">8.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.2/modstart.html"><div uxid="VBKM08_Integral_Intro" id="idxsymb_tc201" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent1.html"><div uxid="VBKM08_Integral_Content" id="idxsymb_tc202" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent2.html"><div uxid="VBKM08_Rechenregeln" id="idxsymb_tc203" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent3.html"><div uxid="VBKM08_Eigenschaften_Integral" id="idxsymb_tc204" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent4.html"><div uxid="VBKM08_BestimmtesIntegral_Exercises" id="idxsymb_tc205" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html"><div class="xsymb selected">8.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html"><div uxid="VBKM08_Anwendungen_Intro" id="idxsymb_tc206" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent1.html"><div uxid="VBKM08_Anwendungen_Flaechenberechnung" id="idxsymb_tc207" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent2.html"><div uxid="VBKM08_Anwendungen_Naturwissenschaften" id="idxsymb_tc208" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent3.html"><div uxid="VBKM08_Anwendungen_Exercises" id="idxsymb_tc209" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.4/modstart.html"><div class="xsymb selected">8.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.4/modstart.html"><div uxid="VBKM08_Abschlusstest" id="idxsymb_tc210" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html_std/1.8.2/xcontent1.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html_std/1.8.2/xcontent3.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM08_Integral_Intro" class="MINTERLINK" href="../../html_std/1.8.2/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Integral_Content" class="MINTERLINK" href="../../html_std/1.8.2/xcontent1.html">Integral</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Rechenregeln" class="MINTERLINK naviselected" href="../../html_std/1.8.2/xcontent2.html">Rechenregeln</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Eigenschaften_Integral" class="MINTERLINK" href="../../html_std/1.8.2/xcontent3.html">Eigenschaften des Integrals</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_BestimmtesIntegral_Exercises" class="MINTERLINK" href="../../html_std/1.8.2/xcontent4.html">Aufgaben</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREEN);">Grün</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.1/modstart.html"><div class="xsymb selected">8.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.1/modstart.html"><div uxid="VBKM08_Stammfunktionen_Intro" id="idxsymb_tc198" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.1/xcontent1.html"><div uxid="VBKM08_Stammfunktionen_Content" id="idxsymb_tc199" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.1/xcontent2.html"><div uxid="VBKM08_Stammfunktionen_Exercises" id="idxsymb_tc200" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.2/modstart.html"><div class="xsymb selected">8.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.2/modstart.html"><div uxid="VBKM08_Integral_Intro" id="idxsymb_tc201" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent1.html"><div uxid="VBKM08_Integral_Content" id="idxsymb_tc202" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent2.html"><div uxid="VBKM08_Rechenregeln" id="idxsymb_tc203" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent3.html"><div uxid="VBKM08_Eigenschaften_Integral" id="idxsymb_tc204" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.2/xcontent4.html"><div uxid="VBKM08_BestimmtesIntegral_Exercises" id="idxsymb_tc205" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html"><div class="xsymb selected">8.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html"><div uxid="VBKM08_Anwendungen_Intro" id="idxsymb_tc206" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent1.html"><div uxid="VBKM08_Anwendungen_Flaechenberechnung" id="idxsymb_tc207" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent2.html"><div uxid="VBKM08_Anwendungen_Naturwissenschaften" id="idxsymb_tc208" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.8.3/xcontent3.html"><div uxid="VBKM08_Anwendungen_Exercises" id="idxsymb_tc209" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.8.4/modstart.html"><div class="xsymb selected">8.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.8.4/modstart.html"><div uxid="VBKM08_Abschlusstest" id="idxsymb_tc210" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html_std/1.8.2/xcontent1.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html_std/1.8.2/xcontent3.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM08_Integral_Intro" class="MINTERLINK" href="../../html_std/1.8.2/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Integral_Content" class="MINTERLINK" href="../../html_std/1.8.2/xcontent1.html">Integral</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Rechenregeln" class="MINTERLINK naviselected" href="../../html_std/1.8.2/xcontent2.html">Rechenregeln</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_Eigenschaften_Integral" class="MINTERLINK" href="../../html_std/1.8.2/xcontent3.html">Eigenschaften des Integrals</a></li>
+  <li class="xsectbutton"><a uxid="VBKM08_BestimmtesIntegral_Exercises" class="MINTERLINK" href="../../html_std/1.8.2/xcontent4.html">Aufgaben</a></li>
+</ul>
+</div>
+  <div id="content" class="content">
+
+
+
+
+
+
+
+<h4>1  - 1.8</h4><br /><h4>8.2.3 Rechenregeln</h4>
+<!-- mdeclaresiteuxidpost;;VBKM08_Rechenregeln;; //-->
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Zerlegung des Integrationsintervalls eines Integrals
+  
+8.2.5
+    
+  
+  </b>  <br/>
+Sei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> eine integrierbare Funktion. Dann gilt 
+für jede Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi></mrow></math> zwischen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math>
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>z</mi></mrow></msubsup>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>+</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>z</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mi> </mi><mo>.</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Mit der Festlegung
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>d</mi> </mrow>
+<mrow><mi>c</mi></mrow></msubsup>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>:</mo><mo>=</mo><mo>-</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>c</mi> </mrow>
+<mrow><mi>d</mi></mrow></msubsup>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+gilt die obige Regel für alle reellen Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi></mrow></math>, für die die beiden rechts 
+stehenden Integrale existieren, auch wenn <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi></mrow></math> nicht zwischen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> liegt.
+Bevor obige Rechenregel an einem Beispiel erläutert wird, wird die genannte
+Festlegung noch ausführlich notiert.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Vertauschung der Grenzen eines Integrals
+  
+8.2.6
+    
+  
+  </b>  <br/>
+Sei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> eine integrierbare Funktion. Dann wird
+das Integral der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> bis <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> gemäß 
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>b</mi> </mrow>
+<mrow><mi>a</mi></mrow></msubsup>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo><mo>-</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi></mrow>
+    </mstyle></math></center>
+<br/>
+
+berechnet.
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Die oben beschriebene Rechenregel ist praktisch, um Funktionen mit Beträgen 
+oder andere abschnittsweise definierte Funktionen zu integrieren.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  8.2.7
+  
+  </b>  <br/>
+Das Integral der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mo>-</mo><mn>4</mn><mo>;</mo><mn>6</mn><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo><mo>,</mo><mi>x</mi><mi>↦</mi><mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">|</mo></mrow></math> ist
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mo>-</mo><mn>4</mn> </mrow>
+<mrow><mn>6</mn></mrow></msubsup>
+<mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">|</mo><mi> </mi><mi>d</mi><mi>x</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mo>-</mo><mn>4</mn> </mrow>
+<mrow><mn>0</mn></mrow></msubsup>
+<mo stretchy="false">(</mo><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>+</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mn>6</mn></mrow></msubsup>
+<mi>x</mi><mi> </mi><mi>d</mi><mi>x</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>[</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>]</mo></mrow><mrow><mo>-</mo><mn>4</mn> </mrow>
+<mrow><mn>0</mn></mrow></msubsup>
+<mo>+</mo>
+<msubsup><mrow><mo>[</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>]</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mn>6</mn></mrow></msubsup>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>-</mo><mo stretchy="false">(</mo><mo>-</mo><mn>8</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>18</mn><mo>-</mo><mn>0</mn><mo stretchy="false">)</mo></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>26</mn><mi> </mi><mo>.</mo>
+</mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Die Integration über die Summe zweier Funktionen kann ebenfalls in zwei 
+Integrale zerlegt werden: 
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Summen- und Faktorregel
+  
+8.2.8
+    
+  
+  </b>  <br/>
+<!-- mindexentry;;Summenregel (Integral); //--><a class="label" name="ELI_SW196"></a>
+Seien <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>g</mi></mrow></math> auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math> integrierbare Funktionen und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>r</mi></mrow></math> eine 
+reelle Zahl. Dann gilt
+<br/>
+<br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>+</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></td><td width="1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo stretchy="false">(</mo><mn>8</mn><mo>.</mo><mn>2</mn><mo>.</mo><mn>2</mn><mo stretchy="false">)</mo></mrow>
+    </mstyle></math></center>
+
+
+
+
+<br clear="all"/><br clear="all"/>
+Für Vielfache einer Funktion gilt
+<br/>
+<br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mi>r</mi><mo>·</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo><mi>r</mi><mo>·</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></td><td width="1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo stretchy="false">(</mo><mn>8</mn><mo>.</mo><mn>2</mn><mo>.</mo><mn>3</mn><mo stretchy="false">)</mo></mrow>
+    </mstyle></math></center>
+
+
+
+
+<br clear="all"/><br clear="all"/>
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint1" class="chintbutton_closed" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Weiterführende Inhalte</button>
+  <div class="hintc" style="display:none" id="MHint1">
+  <div class="coshwarn">Diese Inhalte liegen über dem Kursniveau und werden in den Aufgaben und Tests nicht abgefragt.</div><br/>
+  
+Auch für die Berechnung eines Produktes zweier Funktionen gibt es eine 
+Rechenregel. Sie ergibt sich aus der Produktregel der Ableitung.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Partielle Integration
+  
+8.2.9
+    
+  
+  </b>  <br/>
+Seien <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi></mrow></math> auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math> differenzierbare Funktionen mit 
+stetigen Ableitungen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>'</mo></mrow></math> beziehungsweise <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>'</mo></mrow></math>. 
+Für das Integral der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>·</mo><mi>v</mi><mo>'</mo></mrow></math> gilt dann
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>·</mo><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo>
+<msubsup><mrow><mo>[</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>·</mo><mi>v</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>]</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mo>-</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
+<mrow><mi>b</mi></mrow></msubsup>
+<mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>·</mo><mi>v</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mi> </mi><mo>,</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+wobei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>'</mo></mrow></math> die Ableitung von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> ist und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi></mrow></math> eine Stammfunktion von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>'</mo></mrow></math> ist.
+Diese Rechenregel wird <b>partielle Integration</b><!-- mindexentry;;Integration (partielle); //--><a class="label" name="ELI_SW197"></a> 
+genannt.
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Auch zu dieser Regel wird ein Beispiel betrachtet:
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  8.2.10
+  
+  </b>  <br/>
+Es wird das Integral
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mi>π</mi></mrow></msubsup>
+<mi>x</mi><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+mit Hilfe der partiellen Integration berechnet. Dazu werden die Funktionen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> 
+und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>'</mo></mrow></math> mit
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mi>   </mi>
+<mtext>und</mtext>
+<mi>   </mi><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+gewählt. Damit erhält man 
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mi>   </mi>
+<mtext>und</mtext>
+<mi>   </mi><mi>v</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mi>cos</mi><mi>x</mi><mi> </mi><mo>.</mo>
+</mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+So kann man das gesuchte Integral mit partieller Integration berechnen:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mi>π</mi></mrow></msubsup>
+<mi>x</mi><mi>sin</mi><mi>x</mi><mi> </mi><mi>d</mi><mi>x</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>[</mo><mi>x</mi><mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>]</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mi>π</mi></mrow></msubsup>
+<mo>-</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mi>π</mi></mrow></msubsup>
+<mn>1</mn><mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mi>cos</mi><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mi>π</mi><mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>π</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>-</mo><mn>0</mn><mo>+</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mi>π</mi></mrow></msubsup>
+<mi>cos</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mi>π</mi><mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>+</mo>
+<msubsup><mrow><mo>[</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>]</mo></mrow><mrow><mn>0</mn> </mrow>
+<mrow><mi>π</mi></mrow></msubsup>
+<mo>=</mo><mi>π</mi><mi> </mi><mo>.</mo>
+</mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+Die Zuordnung der Funktionen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>'</mo></mrow></math> muss zielführend erfolgen. Dies wird 
+am obigen Beispiel deutlich, wenn die Rollen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>'</mo></mrow></math> vertauscht werden. 
+Die Leserin bzw. der Leser mag probieren, dieses Beispiel zu lösen, indem <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> 
+und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>'</mo></mrow></math> anders herum gewählt werden!
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Anhand der folgenden beiden Übungsaufgaben kann man die Regel zur 
+partiellen Integration selbst anwenden lernen.
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_8.2.11">  <b>Aufgabe 8.2.11
+</b>  <br/>
+Es soll das Integral <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mstyle displaystyle="true"><mi>I</mi><mo>=</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>4</mn></mrow></msubsup>
+<mi>x</mi><mo>·</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+<mi> </mi><mi>d</mi><mi>x</mi></mstyle></mrow></math>
+berechnet werden: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>I</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_8.2.4.QF1" id="QFELD_8.2.4.QF1" type="text" size="10" maxlength="10" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_8.2.4.QF1"/>
+
+
+. 
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint2" class="hintbutton_closed" id="MHint2_button" type="button" onclick="toggle_hint('MHint2');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+Der Integrand <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo>·</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+</mrow></math> ist ein Produkt einer 
+Polynomfunktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi></mrow></math> und einer Exponentialfunktion. Die 
+Ableitung von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></math>, also eine konstante Funktion. Außerdem 
+ist zur Exponentialfunktion eine Stammfunktion bekannt: Zu <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>'</mo></mrow></math> mit 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+</mrow></math> ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+</mrow></math> eine Stammfunktion. 
+Damit erhält man mit partieller Integration
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>4</mn></mrow></msubsup>
+<mi>x</mi><mo>·</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+<mi> </mi><mi>d</mi><mi>x</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>[</mo><mi>x</mi><mo>·</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+<mo>]</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>4</mn></mrow></msubsup>
+<mo>-</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>4</mn></mrow></msubsup>
+<mn>1</mn><mo>·</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+<mi> </mi><mi>d</mi><mi>x</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>[</mo><mi>x</mi><mo>·</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+<mo>]</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>4</mn></mrow></msubsup>
+<mo>-</mo>
+<msubsup><mrow><mo>[</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+<mo>]</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>4</mn></mrow></msubsup>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>[</mo><mi>x</mi><mo>·</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+<mo>-</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+<mo>]</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>4</mn></mrow></msubsup>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>[</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>·</mo><mi>e</mi><msup><mi/><mrow><mi>x</mi></mrow></msup>
+<mo>]</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>4</mn></mrow></msubsup>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>3</mn><mi>e</mi><msup><mi/><mrow><mn>4</mn></mrow></msup>
+<mi> </mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+</div>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_8.2.12">  <b>Aufgabe 8.2.12
+</b>  <br/>
+Es soll das Integral <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>I</mi><mo>=</mo><mstyle displaystyle="true">
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>8</mn></mrow></msubsup>
+<mi>x</mi><mo>·</mo><mi>ln</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi></mstyle></mrow></math>
+berechnet werden: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>I</mi><mo>=</mo></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_8.2.4.QF2" id="QFELD_8.2.4.QF2" type="text" size="25" maxlength="25" onfocus="handlerFocus(2);" onblur="handlerBlur(2);" onkeyup="handlerChange(2,0);" onpaste="handlerChange(2,0);" oninput="handlerChange(2,0);" onpropertychange="handlerChange(2,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_8.2.4.QF2"/>
+
+
+. 
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint3" class="hintbutton_closed" id="MHint3_button" type="button" onclick="toggle_hint('MHint3');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint3"> 
+Der Integrand <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo>·</mo><mi>ln</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ln</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>·</mo><mi>x</mi></mrow></math> für 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>≤</mo><mi>x</mi><mo>≤</mo><mn>8</mn></mrow></math> ist ein Produkt einer Polynomfunktion und einer 
+Logarithmusfunktion. Die Ableitung der Logarithmusfunktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi></mrow></math> mit 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ln</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> ergibt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+</mrow></math>.
+Somit ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>'</mo></mrow></math> eine ,,einfache'' rationale Funktion. Weiter ist zur 
+Polynomfunktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>'</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi></mrow></math> eine Stammfunktion bekannt,
+nämlich <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>v</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>·</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow></math>. 
+
+<br clear="all"/><br clear="all"/>
+Das Produkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>'</mo><mo>·</mo><mi>v</mi></mrow></math> mit 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>·</mo><mi>v</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+<mo>·</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>=</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>x</mi></mrow></math> 
+für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>1</mn><mo>≤</mo><mi>x</mi><mo>≤</mo><mn>8</mn></mrow></math> ist eine stetige Funktion, zu der ebenfalls eine 
+Stammfunktion bekannt ist. Damit kann das gesuchte Integral mittels 
+partieller Integration gemäß
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>8</mn></mrow></msubsup>
+<mi>x</mi><mo>·</mo><mi>ln</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>8</mn></mrow></msubsup>
+<mi>ln</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>·</mo><mi>x</mi><mi> </mi><mi>d</mi><mi>x</mi></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>[</mo><mi>ln</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>·</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>]</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>8</mn></mrow></msubsup>
+<mo>-</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>8</mn></mrow></msubsup>
+
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mi>x</mi></mrow>
+</mfrac>
+<mo>·</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mi> </mi><mi>d</mi><mi>x</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>[</mo><mi>ln</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>·</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>]</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>8</mn></mrow></msubsup>
+<mo>-</mo>
+<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>8</mn></mrow></msubsup>
+
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mi>x</mi><mi> </mi><mi>d</mi><mi>x</mi></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<msubsup><mrow><mo>[</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>·</mo><mi>ln</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>]</mo></mrow><mrow><mn>1</mn> </mrow>
+<mrow><mn>8</mn></mrow></msubsup>
+</mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mrow><mo>(</mo><mn>32</mn><mi>ln</mi><mo stretchy="false">(</mo><mn>8</mn><mo stretchy="false">)</mo><mo>-</mo><mn>16</mn><mo>)</mo></mrow><mo>-</mo><mrow><mo>(</mo><mn>1</mn><mo>·</mo><mi>ln</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>-</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mo>)</mo></mrow></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow/>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mn>96</mn><mi>ln</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo><mo>-</mo><mn>16</mn><mo>+</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><mn>4</mn></mrow>
+</mfrac>
+<mi> </mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+berechnet werden, wobei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ln</mi><mo stretchy="false">(</mo><mn>8</mn><mo stretchy="false">)</mo><mo>=</mo><mi>ln</mi><mo stretchy="false">(</mo>
+<msup><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow>
+</msup>
+<mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><mo>·</mo><mi>ln</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ln</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math> 
+verwendet wurde.
+</div>
+
+  </div>
+  
+  
+</div>
+
+<br clear="all"/><br clear="all"/>
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 9.5.1 Abschlusstest Kapitel 9</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+isTest = true;
+var nMaxPoints = 0;
+var nPoints = 0;
+// onload blocks start
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("-9a.b)r).c(5*xs2()(.s79++;1c+7*a",6);}if(c==2){str=debork("2+3yx/4c.)tat)t7c-t*4)/bytb(*)y,",5);}if(c==3){str=debork("0-+19ys9/+65sss1y2,1(x+rq10),s.2",1);}if(c==4){str=debork("1x,yq/7x*.q8068s4806,y2(x7y).sy)",1);}if(c==5){str=debork("0y4,;1+ty,;x,a/50q/-ar993q+7,23,",1);}if(c==6){str=debork("(.,.)q8xb;09(5/5s3)8.5r;+b609/2x",5);}if(c==7){str=debork("0;t,;1873y7/0+17,t)sysx+0)2422/9",1);}if(c==8){str=debork("1q72s83cb/(-(6)-7(1y01x*ss/a13-c",1);}if(c==9){str=debork("0++,89+tc6.4776x0/3sc;++*1;74t2)",1);}if(c==10){str=debork("08)/06.9/y80q987-(5)ab+51y3x*r.7",1);}if(c==11){str=debork("16r(87bt7(t5br84/)11-36q/)2q//2+",1);}if(c==12){str=debork("1rb1(a529*+y;9(9(sty/*9(+/)/)c(t",1);}if(c==13){str=debork("049s-cr)*6a*754xt.cq6)1(1s.(t*6s",1);}if(c==14){str=debork("11()c10tty8.)y863.62/00ytssr/,bt",1);}if(c==15){str=debork("0/b,q495;16q62a/s80.7ab71*r/2tyt",1);}if(c==16){str=debork("1rbcacc581r3,ya5y8tcr9a1-ar8ay;x",1);}if(c==17){str=debork("068.cb;/as2q-(7902-6r;ct26xr)*a)",1);}if(c==18){str=debork("0y23b0r*2y(3,*c8b5c*2995/t270.8y",1);}if(c==19){str=debork("34,25)4qsx*60/.)*51((07(63t3a)1*",1);}if(c==20){str=debork("(18r-,(c14y)4-+2-259)q*c79x83y,+",6);}if(c==21){str=debork("0/(8132b,3,5;a(s,,scq5yc-/.0)86,",1);}if(c==22){str=debork("140.(y3,cyas)6stb/)0244;6sa1)./-",1);}if(c==23){str=debork("090x)9(.;1a80b(;t361b40ar.x0tqqt",1);}if(c==24){str=debork("0628rx)6876c*c5/*y461*ta98194*4r",1);}return str;}
+
+__CQJ("VBNT1",1,GSLS(1),"QFELD_9.5.2.QF1",4,"5;x;5;1",8,1,9);__CQJ("VBNT2",2,GSLS(2),"QFELD_9.5.2.QF2",4,"5;x;5;1",8,1,9);__CQJ("VBNT3",3,GSLS(3),"QFELD_9.5.2.QF3",2,"IMGQFELD_9.5.2.QF3",2,1,9);__CQJ("VBNT4",4,GSLS(4),"QFELD_9.5.2.QF4",2,"IMGQFELD_9.5.2.QF4",2,1,9);__CQJ("VBNT5",5,GSLS(5),"QFELD_9.5.2.QF5",2,"IMGQFELD_9.5.2.QF5",2,1,9);__CQJ("VBNT6",6,GSLS(6),"QFELD_9.5.2.QF6",4,"5;x;5;0",4,1,9);__CQJ("VBNT7",7,GSLS(7),"QFELD_9.5.2.QF7",2,"IMGQFELD_9.5.2.QF7",1,1,9);__CQJ("VBNT8",8,GSLS(8),"QFELD_9.5.2.QF8",2,"IMGQFELD_9.5.2.QF8",1,1,9);__CQJ("VBNT9",9,GSLS(9),"QFELD_9.5.2.QF9",2,"IMGQFELD_9.5.2.QF9",1,1,9);__CQJ("VBNT10",10,GSLS(10),"QFELD_9.5.2.QF10",2,"IMGQFELD_9.5.2.QF10",1,1,9);__CQJ("VBNT11",11,GSLS(11),"QFELD_9.5.2.QF11",2,"IMGQFELD_9.5.2.QF11",1,1,9);__CQJ("VBNT12",12,GSLS(12),"QFELD_9.5.2.QF12",2,"IMGQFELD_9.5.2.QF12",1,1,9);__CQJ("VBNT13",13,GSLS(13),"QFELD_9.5.2.QF13",2,"IMGQFELD_9.5.2.QF13",1,1,9);__CQJ("VBNT15",14,GSLS(14),"QFELD_9.5.2.QF14",2,"IMGQFELD_9.5.2.QF14",2,1,9);__CQJ("VBNT17",15,GSLS(15),"QFELD_9.5.2.QF15",2,"IMGQFELD_9.5.2.QF15",2,1,9);__CQJ("VBNT16",16,GSLS(16),"QFELD_9.5.2.QF16",2,"IMGQFELD_9.5.2.QF16",2,1,9);__CQJ("VBNT18",17,GSLS(17),"QFELD_9.5.2.QF17",2,"IMGQFELD_9.5.2.QF17",2,1,9);__CQJ("VBNT19",18,GSLS(18),"QFELD_9.5.2.QF18",2,"IMGQFELD_9.5.2.QF18",2,1,9);__CQJ("VBNT20",19,GSLS(19),"QFELD_9.5.2.QF19",3,"4",2,1,9);__CQJ("VBNT21",20,GSLS(20),"QFELD_9.5.2.QF20",4,"5;x;5;0",2,1,9);__CQJ("VBNT22",21,GSLS(21),"QFELD_9.5.2.QF21",2,"IMGQFELD_9.5.2.QF21",1,1,9);__CQJ("VBNT23",22,GSLS(22),"QFELD_9.5.2.QF22",2,"IMGQFELD_9.5.2.QF22",1,1,9);__CQJ("VBNT24",23,GSLS(23),"QFELD_9.5.2.QF23",2,"IMGQFELD_9.5.2.QF23",1,1,9);__CQJ("VBNT25",24,GSLS(24),"QFELD_9.5.2.QF24",2,"IMGQFELD_9.5.2.QF24",1,1,9);
+// onload blocks stop
+var SITE_ID = "1.9.5.1";
+var SITE_UXID = "VBKM09_5Abschlusstest";
+var SECTION_ID = 9;
+var docName = "modstart";
+var fullName = "html_std/1.9.5/modstart.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html_std/1.9.1/modstart.html"><div class="xsymb selected">9.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.9.1/modstart.html"><div uxid="VBKM09_Koordinaten_Intro" id="idxsymb_tc211" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.1/xcontent1.html"><div uxid="VBKM09_Punkte" id="idxsymb_tc212" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.9.2/modstart.html"><div class="xsymb selected">9.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.9.2/modstart.html"><div uxid="VBKM09_Geraden_Intro" id="idxsymb_tc213" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.2/xcontent1.html"><div uxid="VBKM09_Koordinatengleichungen" id="idxsymb_tc214" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.2/xcontent2.html"><div uxid="VBKM09_Lagebeziehungen" id="idxsymb_tc215" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.9.3/modstart.html"><div class="xsymb selected">9.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.9.3/modstart.html"><div uxid="VBKM09_Kreise_Intro" id="idxsymb_tc216" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.3/xcontent1.html"><div uxid="VBKM09_Abstand_Strecken" id="idxsymb_tc217" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.3/xcontent2.html"><div uxid="VBKM09_Kreise_Koordinaten" id="idxsymb_tc218" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.3/xcontent3.html"><div uxid="VBKM09_Kreise_Lage" id="idxsymb_tc219" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.9.4/modstart.html"><div class="xsymb selected">9.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.9.4/modstart.html"><div uxid="VBKM09_Bereiche_Intro" id="idxsymb_tc220" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.4/xcontent1.html"><div uxid="VBKM09_Bereiche_Geraden_Kreise" id="idxsymb_tc221" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.9.5/modstart.html"><div class="xsymb selected">9.5</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.9.5/modstart.html"><div uxid="VBKM09_5Abschlusstest" id="idxsymb_tc222" class="xsymb status3 selected"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html_std/1.9.4/xcontent1.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html_std/1.10.1/modstart.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM09_5Abschlusstest" class="MINTERLINK naviselected" href="../../html_std/1.9.5/modstart.html">Abschlusstest Kapitel 9</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREEN);">Grün</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html_std/1.9.1/modstart.html"><div class="xsymb selected">9.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.9.1/modstart.html"><div uxid="VBKM09_Koordinaten_Intro" id="idxsymb_tc211" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.1/xcontent1.html"><div uxid="VBKM09_Punkte" id="idxsymb_tc212" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.9.2/modstart.html"><div class="xsymb selected">9.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.9.2/modstart.html"><div uxid="VBKM09_Geraden_Intro" id="idxsymb_tc213" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.2/xcontent1.html"><div uxid="VBKM09_Koordinatengleichungen" id="idxsymb_tc214" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.2/xcontent2.html"><div uxid="VBKM09_Lagebeziehungen" id="idxsymb_tc215" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.9.3/modstart.html"><div class="xsymb selected">9.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.9.3/modstart.html"><div uxid="VBKM09_Kreise_Intro" id="idxsymb_tc216" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.3/xcontent1.html"><div uxid="VBKM09_Abstand_Strecken" id="idxsymb_tc217" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.3/xcontent2.html"><div uxid="VBKM09_Kreise_Koordinaten" id="idxsymb_tc218" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.3/xcontent3.html"><div uxid="VBKM09_Kreise_Lage" id="idxsymb_tc219" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.9.4/modstart.html"><div class="xsymb selected">9.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.9.4/modstart.html"><div uxid="VBKM09_Bereiche_Intro" id="idxsymb_tc220" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.9.4/xcontent1.html"><div uxid="VBKM09_Bereiche_Geraden_Kreise" id="idxsymb_tc221" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.9.5/modstart.html"><div class="xsymb selected">9.5</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.9.5/modstart.html"><div uxid="VBKM09_5Abschlusstest" id="idxsymb_tc222" class="xsymb status3 selected"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html_std/1.9.4/xcontent1.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html_std/1.10.1/modstart.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM09_5Abschlusstest" class="MINTERLINK naviselected" href="../../html_std/1.9.5/modstart.html">Abschlusstest Kapitel 9</a></li>
+</ul>
+</div>
+  <div id="content" class="content"><a id="VBKM09_Abschlusstest"></a>
+
+
+
+
+
+
+
+<h4>1  - 1.9</h4><br /><h4>9.5.1 Abschlusstest Kapitel 9</h4> <!-- declaretestsymb //-->
+
+
+
+Dies ist ein einreichbarer Test:
+
+<ul>
+<li>Im Gegensatz zu den offenen Aufgaben werden beim Eingeben keine Hinweise zur Formulierung der mathematischen Ausdrücke gegeben.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann jederzeit neu gestartet oder verlassen werden.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann durch die Buttons am Ende der Seite beendet und abgeschickt, oder zurückgesetzt werden.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Der Test kann mehrfach probiert werden. Für die Statistik zählt die zuletzt abgeschickte Version.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+<!-- mdeclaresiteuxidpost;;VBKM09_5Abschlusstest;; //-->
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_9.5.1">  <b>Aufgabe 9.5.1
+</b>  <br/>
+Wie lautet die Normalform der Gleichung für die Gerade <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mi>Q</mi></mrow></math>, welche durch die beiden Punkte <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>Q</mi><mo>=</mo><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo>;</mo><mn>7</mn><mo stretchy="false">)</mo></mrow></math> verläuft?
+ <br/> <br/>
+Antwort: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_9.5.2.QF1" id="QFELD_9.5.2.QF1" type="text" size="20" maxlength="20" onblur="handlerBlur(1);" onfocus="handlerFocus(1);" onkeyup="handlerChange(1,1);" onpaste="handlerChange(1,1);" oninput="handlerChange(1,1);" onpropertychange="handlerChange(1,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_9.5.2.QF1"/>
+
+.
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_9.5.2">  <b>Aufgabe 9.5.2
+</b>  <br/>
+Gegeben ist eine Gerade durch die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>6</mn><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi><mo>=</mo><mn>4</mn></mrow></math>.
+
+<br clear="all"/><br clear="all"/>
+
+<ol type="1">
+<li>Die Normalform dieser Geradengleichung lautet <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_9.5.2.QF2" id="QFELD_9.5.2.QF2" type="text" size="20" maxlength="20" onblur="handlerBlur(2);" onfocus="handlerFocus(2);" onkeyup="handlerChange(2,1);" onpaste="handlerChange(2,1);" oninput="handlerChange(2,1);" onpropertychange="handlerChange(2,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_9.5.2.QF2"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Wie liegt diese Gerade im Verhältnis zu der durch die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mn>3</mn><mi>x</mi><mo>-</mo><mn>2</mn></mrow></math> beschriebenen Geraden?<br/>
+
+<table>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF3" id="QFELD_9.5.2.QF3" onchange="handlerChange(3,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF3" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF3"/> 
+
+ </td><td align="left">  </td><td align="left">Es gibt keinen Schnittpunkt.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF4" id="QFELD_9.5.2.QF4" onchange="handlerChange(4,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF4" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF4"/> 
+
+ </td><td align="left">  </td><td align="left">Es gibt genau einen Schnittpunkt.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF5" id="QFELD_9.5.2.QF5" onchange="handlerChange(5,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF5" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF5"/> 
+
+ </td><td align="left">  </td><td align="left">Die Geraden sind identisch.
+</td></tr></table>
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_9.5.3">  <b>Aufgabe 9.5.3
+</b>  <br/>
+Bestimmen Sie den Schnittpunkt der Geraden, die durch die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi><mo>=</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn></mrow></math> beschriebenen wird, mit der Geraden, die durch die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mi>x</mi><mo>=</mo><mn>6</mn></mrow></math> beschrieben wird.
+ <br/> <br/>
+Antwort: Der Schnittpunkt ist 
+
+
+<input mfieldtype="4" name="Name_QFELD_9.5.2.QF6" id="QFELD_9.5.2.QF6" type="text" size="15" maxlength="15" onblur="handlerBlur(6);" onfocus="handlerFocus(6);" onkeyup="handlerChange(6,1);" onpaste="handlerChange(6,1);" oninput="handlerChange(6,1);" onpropertychange="handlerChange(6,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_9.5.2.QF6"/>
+
+.<br/>
+<span style="color:#0000FF">Geben Sie Punkte in der Form <tt>(a;b)</tt> ein.</span>
+ <br/> <br/>
+Kreuzen Sie mögliche Gründe an, warum die Geradengleichung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mi>x</mi><mo>=</mo><mn>6</mn></mrow></math> der zweiten Geraden nicht auf Normalform gebracht werden kann. (Mehrere Aussagen können richtig sein.)<br/>
+
+<table>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF7" id="QFELD_9.5.2.QF7" onchange="handlerChange(7,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF7" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF7"/> 
+
+ </td><td align="left">  </td><td align="left">Die Geradengleichung kann nicht nach <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math> aufgelöst werden.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF8" id="QFELD_9.5.2.QF8" onchange="handlerChange(8,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF8" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF8"/> 
+
+ </td><td align="left">  </td><td align="left">Die Geradengleichung kann nicht nach <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math> aufgelöst werden.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF9" id="QFELD_9.5.2.QF9" onchange="handlerChange(9,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF9" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF9"/> 
+
+ </td><td align="left">  </td><td align="left">Die Geradengleichung ist noch nicht gekürzt.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF10" id="QFELD_9.5.2.QF10" onchange="handlerChange(10,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF10" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF10"/> 
+
+ </td><td align="left">  </td><td align="left">Die Gerade ist parallel zur <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF11" id="QFELD_9.5.2.QF11" onchange="handlerChange(11,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF11" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF11"/> 
+
+ </td><td align="left">  </td><td align="left">Die Gerade ist parallel zur <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achse.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF12" id="QFELD_9.5.2.QF12" onchange="handlerChange(12,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF12" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF12"/> 
+
+ </td><td align="left">  </td><td align="left">Die Gerade besitzt keine endliche Steigung.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF13" id="QFELD_9.5.2.QF13" onchange="handlerChange(13,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF13" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF13"/> 
+
+ </td><td align="left">  </td><td align="left">Die Gerade schneidet die <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse nicht.</td></tr></table>
+
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_9.5.4">  <b>Aufgabe 9.5.4
+</b>  <br/>
+Entscheiden Sie, welche der folgenden Punkte auf dem Kreis mit Mittelpunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mn>3</mn><mo>;</mo><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> und Radius <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>r</mi><mo>=</mo><msqrt><mrow><mn>10</mn></mrow></msqrt></mrow></math> liegen:<br/>
+
+<table>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF14" id="QFELD_9.5.2.QF14" onchange="handlerChange(14,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF14" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF14"/> 
+
+ </td><td align="left">  </td><td align="left">Der Ursprung.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF15" id="QFELD_9.5.2.QF15" onchange="handlerChange(15,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF15" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF15"/> 
+
+ </td><td align="left">  </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math>.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF16" id="QFELD_9.5.2.QF16" onchange="handlerChange(16,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF16" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF16"/> 
+
+ </td><td align="left">  </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>4</mn><mo>;</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math>.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF17" id="QFELD_9.5.2.QF17" onchange="handlerChange(17,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF17" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF17"/> 
+
+ </td><td align="left">  </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>3</mn><mo>;</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math>.</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF18" id="QFELD_9.5.2.QF18" onchange="handlerChange(18,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF18" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF18"/> 
+
+ </td><td align="left">  </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><msqrt><mrow><mn>10</mn></mrow></msqrt><mo stretchy="false">)</mo></mrow></math>.
+</td></tr></table>
+
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_9.5.5">  <b>Aufgabe 9.5.5
+</b>  <br/>
+Ein Kreis wird durch die folgende Kreisgleichung beschrieben:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>2</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mo stretchy="false">(</mo><mi>y</mi><mo>+</mo><mn>3</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mi>  </mi><mo>=</mo><mi>  </mi><mn>9</mn><mi> </mi><mo>.</mo><br/></mrow>
+    </mstyle></math></center>
+<br/>
+
+Welche Eigenschaften besitzt dieser Kreis?
+
+<ol type="1">
+<li>Sein Radius ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>r</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_9.5.2.QF19" id="QFELD_9.5.2.QF19" type="text" size="5" maxlength="5" onblur="handlerBlur(19);" onfocus="handlerFocus(19);" onkeyup="handlerChange(19,1);" onpaste="handlerChange(19,1);" oninput="handlerChange(19,1);" onpropertychange="handlerChange(19,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_9.5.2.QF19"/>
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Sein Mittelpunkt ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>M</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_9.5.2.QF20" id="QFELD_9.5.2.QF20" type="text" size="15" maxlength="15" onblur="handlerBlur(20);" onfocus="handlerFocus(20);" onkeyup="handlerChange(20,1);" onpaste="handlerChange(20,1);" oninput="handlerChange(20,1);" onpropertychange="handlerChange(20,1);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_9.5.2.QF20"/>
+
+.<br/>
+<span style="color:#0000FF">Geben Sie Punkte in der Form <tt>(a;b)</tt> ein.</span>
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Er schneidet die durch <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>M</mi></mrow></math> und einen unbekannten weiteren Punkt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi></mrow></math> verlaufende Gerade<br/>
+
+<table>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF21" id="QFELD_9.5.2.QF21" onchange="handlerChange(21,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF21" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF21"/> 
+
+ </td><td align="left">  </td><td align="left">in einem Punkt,</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF22" id="QFELD_9.5.2.QF22" onchange="handlerChange(22,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF22" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF22"/> 
+
+ </td><td align="left">  </td><td align="left">in zwei Punkten,</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF23" id="QFELD_9.5.2.QF23" onchange="handlerChange(23,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF23" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF23"/> 
+
+ </td><td align="left">  </td><td align="left">in drei Punkten,</td></tr>
+<tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_9.5.2.QF24" id="QFELD_9.5.2.QF24" onchange="handlerChange(24,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_9.5.2.QF24" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_9.5.2.QF24"/> 
+
+ </td><td align="left">  </td><td align="left">überhaupt nicht.
+</td></tr></table>
+
+
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+ <br/> <br/><button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('Abschlusstest Kapitel 9');" class="testsbutton">Test auswerten</button>
+        
+<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();" class="testsbutton">Test löschen und neu starten</button>
+<br/>
+<br/>
+<div class="xreply">
+<p name="Name_TESTEVAL" id="TESTEVAL">
+Hier erscheint die Testauswertung!
+<br/>
+</p>
+</div>
+
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>

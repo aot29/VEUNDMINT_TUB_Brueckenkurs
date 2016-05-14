@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 7.4.4 Aufgaben</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+// onload blocks start
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("f57)42)4ye5a868)4-q)nrl5as14+)(d/lb",7);}if(c==2){str=debork("wy7;*.8d-1et,h38a(b;rr5)2/ny5sq+cy1",8);}if(c==3){str=debork("(y.+3/q22q(1-5a(t 3sc7r,2y4)q0;s.)s",14);}if(c==4){str=debork("(2satb)sn0y17/,r23,i-t0c1sq0(t,)f2)",17);}if(c==5){str=debork("-;+t;)ac6rt,*2;,a*5,)*,*5)65x4088q.",2);}if(c==6){str=debork("w8.8bcrd;/er0ht4a.+05754s5n,,s92c29",8);}if(c==7){str=debork("-738b359/.9-0-6.204(r*q.*a)s1484*;/",2);}if(c==8){str=debork("f8*raq;36e(a04t*r8r(n0l+6+.,)9;d6lc",7);}if(c==9){str=debork("w59-;2sdxqecth-ra(+b*,-6/5n5+s+;ctq",8);}if(c==10){str=debork("w.;qb6qd0qe0rh+xa;,8s,9rs-n**s3qc8,",8);}if(c==11){str=debork("-b8/)-0tx)9s*q)9yc86s6ya2;*;2494y23",2);}if(c==12){str=debork("06*(9-.,*,75r.xy4b4,81r0b(x0t;r9*;t",1);}return str;}
+
+__CQJ("DFA1",1,GSLS(1),"QFELD_7.4.5.QF1",1,"0",4,0,7);__CQJ("DFA2",2,GSLS(2),"QFELD_7.4.5.QF2",1,"0",4,0,7);__CQJ("DEG1",3,GSLS(3),"QFELD_7.4.5.QF3",6,"4",4,0,7);__CQJ("DEG2",4,GSLS(4),"QFELD_7.4.5.QF4",6,"4",4,0,7);__CQJ("DEG3",5,GSLS(5),"QFELD_7.4.5.QF5",3,"4",4,0,7);__CQJ("DFA6",6,GSLS(6),"QFELD_7.4.5.QF6",1,"0",4,0,7);__CQJ("DEG4",7,GSLS(7),"QFELD_7.4.5.QF7",3,"4",4,0,7);__CQJ("DFA7",8,GSLS(8),"QFELD_7.4.5.QF8",1,"0",4,0,7);__CQJ("DEG5",9,GSLS(9),"QFELD_7.4.5.QF9",1,"0",4,0,7);__CQJ("DEG6",10,GSLS(10),"QFELD_7.4.5.QF10",1,"0",4,0,7);__CQJ("DEG7",11,GSLS(11),"QFELD_7.4.5.QF11",3,"4",4,0,7);__CQJ("DEG8",12,GSLS(12),"QFELD_7.4.5.QF12",3,"4",4,0,7);
+// onload blocks stop
+var SITE_ID = "1.7.4.4";
+var SITE_UXID = "VBKM07_Verhalten_Exercises";
+var SECTION_ID = 7;
+var docName = "xcontent3";
+var fullName = "html_std/1.7.4/xcontent3.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.1/modstart.html"><div class="xsymb selected">7.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.1/modstart.html"><div uxid="VBKM07_Ableitung_Intro" id="idxsymb_tc176" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.1/xcontent1.html"><div uxid="VBKM07_Ableitung_Aenderungsrate" id="idxsymb_tc177" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.1/xcontent2.html"><div uxid="VBKM07_Ableitung_Ableitung" id="idxsymb_tc178" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.1/xcontent3.html"><div uxid="VBKM07_Ableitung_Exercises" id="idxsymb_tc179" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.2/modstart.html"><div class="xsymb selected">7.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.2/modstart.html"><div uxid="VBKM07_StdAbleitungen_Intro" id="idxsymb_tc180" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.2/xcontent1.html"><div uxid="VBKM07_StdAbleitungen_Polynome" id="idxsymb_tc181" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.2/xcontent2.html"><div uxid="VBKM07_SpezielleFunktionen" id="idxsymb_tc182" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.2/xcontent3.html"><div uxid="VBKM07_Ableitung_Speziell_Exercises" id="idxsymb_tc183" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.3/modstart.html"><div class="xsymb selected">7.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.3/modstart.html"><div uxid="VBKM07_Rechenregeln_Intro" id="idxsymb_tc184" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.3/xcontent1.html"><div uxid="VBKM07_Rechenregeln_Summen" id="idxsymb_tc185" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.3/xcontent2.html"><div uxid="VBKM07_Produktregel" id="idxsymb_tc186" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.3/xcontent3.html"><div uxid="VBKM07_Verkettung" id="idxsymb_tc187" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.3/xcontent4.html"><div uxid="VBKM07_Rechenregeln_Exercises" id="idxsymb_tc188" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.4/modstart.html"><div class="xsymb selected">7.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.4/modstart.html"><div uxid="VBKM07_Eigenschaften_Intro" id="idxsymb_tc189" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.4/xcontent1.html"><div uxid="VBKM07_Monotonie" id="idxsymb_tc190" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.4/xcontent2.html"><div uxid="VBKM07_Kruemmungseigenschaften" id="idxsymb_tc191" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.4/xcontent3.html"><div uxid="VBKM07_Verhalten_Exercises" id="idxsymb_tc192" class="xsymb status2 selected"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.5/modstart.html"><div class="xsymb selected">7.5</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.5/modstart.html"><div uxid="VBKM07_Kurvendiskussion" id="idxsymb_tc193" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.5/xcontent1.html"><div uxid="VBKM07_Kurvendiskussion_Exercises" id="idxsymb_tc194" class="xsymb status2"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.5/xcontent2.html"><div uxid="VBKM07_Optimierungsaufgaben" id="idxsymb_tc195" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.5/xcontent3.html"><div uxid="VBKM07_WeitereBeispiele" id="idxsymb_tc196" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.6/modstart.html"><div class="xsymb selected">7.6</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.6/modstart.html"><div uxid="VBKM07_Abschlusstest" id="idxsymb_tc197" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html_std/1.7.4/xcontent2.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html_std/1.7.5/modstart.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM07_Eigenschaften_Intro" class="MINTERLINK" href="../../html_std/1.7.4/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_Monotonie" class="MINTERLINK" href="../../html_std/1.7.4/xcontent1.html">Monotonie</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_Kruemmungseigenschaften" class="MINTERLINK" href="../../html_std/1.7.4/xcontent2.html">Zweite Ableitung und Krümmungseigenschaften</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_Verhalten_Exercises" class="MINTERLINK naviselected" href="../../html_std/1.7.4/xcontent3.html">Aufgaben</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREEN);">Grün</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.1/modstart.html"><div class="xsymb selected">7.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.1/modstart.html"><div uxid="VBKM07_Ableitung_Intro" id="idxsymb_tc176" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.1/xcontent1.html"><div uxid="VBKM07_Ableitung_Aenderungsrate" id="idxsymb_tc177" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.1/xcontent2.html"><div uxid="VBKM07_Ableitung_Ableitung" id="idxsymb_tc178" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.1/xcontent3.html"><div uxid="VBKM07_Ableitung_Exercises" id="idxsymb_tc179" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.2/modstart.html"><div class="xsymb selected">7.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.2/modstart.html"><div uxid="VBKM07_StdAbleitungen_Intro" id="idxsymb_tc180" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.2/xcontent1.html"><div uxid="VBKM07_StdAbleitungen_Polynome" id="idxsymb_tc181" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.2/xcontent2.html"><div uxid="VBKM07_SpezielleFunktionen" id="idxsymb_tc182" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.2/xcontent3.html"><div uxid="VBKM07_Ableitung_Speziell_Exercises" id="idxsymb_tc183" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.3/modstart.html"><div class="xsymb selected">7.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.3/modstart.html"><div uxid="VBKM07_Rechenregeln_Intro" id="idxsymb_tc184" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.3/xcontent1.html"><div uxid="VBKM07_Rechenregeln_Summen" id="idxsymb_tc185" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.3/xcontent2.html"><div uxid="VBKM07_Produktregel" id="idxsymb_tc186" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.3/xcontent3.html"><div uxid="VBKM07_Verkettung" id="idxsymb_tc187" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.3/xcontent4.html"><div uxid="VBKM07_Rechenregeln_Exercises" id="idxsymb_tc188" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.4/modstart.html"><div class="xsymb selected">7.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.4/modstart.html"><div uxid="VBKM07_Eigenschaften_Intro" id="idxsymb_tc189" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.4/xcontent1.html"><div uxid="VBKM07_Monotonie" id="idxsymb_tc190" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.4/xcontent2.html"><div uxid="VBKM07_Kruemmungseigenschaften" id="idxsymb_tc191" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.4/xcontent3.html"><div uxid="VBKM07_Verhalten_Exercises" id="idxsymb_tc192" class="xsymb status2 selected"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.5/modstart.html"><div class="xsymb selected">7.5</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.5/modstart.html"><div uxid="VBKM07_Kurvendiskussion" id="idxsymb_tc193" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.5/xcontent1.html"><div uxid="VBKM07_Kurvendiskussion_Exercises" id="idxsymb_tc194" class="xsymb status2"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.5/xcontent2.html"><div uxid="VBKM07_Optimierungsaufgaben" id="idxsymb_tc195" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.7.5/xcontent3.html"><div uxid="VBKM07_WeitereBeispiele" id="idxsymb_tc196" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.7.6/modstart.html"><div class="xsymb selected">7.6</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.7.6/modstart.html"><div uxid="VBKM07_Abschlusstest" id="idxsymb_tc197" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html_std/1.7.4/xcontent2.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html_std/1.7.5/modstart.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM07_Eigenschaften_Intro" class="MINTERLINK" href="../../html_std/1.7.4/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_Monotonie" class="MINTERLINK" href="../../html_std/1.7.4/xcontent1.html">Monotonie</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_Kruemmungseigenschaften" class="MINTERLINK" href="../../html_std/1.7.4/xcontent2.html">Zweite Ableitung und Krümmungseigenschaften</a></li>
+  <li class="xsectbutton"><a uxid="VBKM07_Verhalten_Exercises" class="MINTERLINK naviselected" href="../../html_std/1.7.4/xcontent3.html">Aufgaben</a></li>
+</ul>
+</div>
+  <div id="content" class="content">
+
+
+
+
+
+
+
+<h4>1  - 1.7</h4><br /><h4>7.4.4 Aufgaben</h4><!-- declareexcsymb //-->
+<!-- mdeclaresiteuxidpost;;VBKM07_Verhalten_Exercises;; //-->
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_7.4.5">  <b>Aufgabe 7.4.5
+</b>  <br/>
+In welchen möglichst großen offenen Intervallen ist die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> mit
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo>
+<mfrac><mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>1</mn></mrow>
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn></mrow>
+</mfrac>
+</mrow></math>
+monoton wachsend beziehungsweise monoton fallend?
+
+<br clear="all"/><br clear="all"/>
+Antwort:
+
+<ul>
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mo>-</mo><mi>∞</mi><mo>;</mo><mn>0</mn><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math> monoton 
+
+
+<input mfieldtype="1" name="Name_QFELD_7.4.5.QF1" id="QFELD_7.4.5.QF1" type="text" size="12" maxlength="12" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF1"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mn>0</mn><mo>;</mo><mi>∞</mi><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math> monoton 
+
+
+<input mfieldtype="1" name="Name_QFELD_7.4.5.QF2" id="QFELD_7.4.5.QF2" type="text" size="12" maxlength="12" onfocus="handlerFocus(2);" onblur="handlerBlur(2);" onkeyup="handlerChange(2,0);" onpaste="handlerChange(2,0);" oninput="handlerChange(2,0);" onpropertychange="handlerChange(2,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF2"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+  <button name="Name_MHint1" class="hintbutton_closed" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+ Die Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo></mrow></math> der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> besitzt den Funktionsterm
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+<mfrac><mrow><mn>2</mn><mi>x</mi><mo>·</mo><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>-</mo><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>·</mo><mn>2</mn><mi>x</mi></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>2</mn><mi>x</mi><mrow><mo>(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn><mo>-</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn><mo>)</mo></mrow></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>4</mn><mi>x</mi></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+ Da der Nenner von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> immer positiv ist, bestimmt ausschließlich der Zähler das Vorzeichen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>: Für alle negativen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>∈</mo><mo>ℝ</mo></mrow></math> ist
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&lt;</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> daher dort monoton fallend; für alle positiven <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>∈</mo><mo>ℝ</mo></mrow></math> dagegen ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> daher dort monoton wachsend.
+</div>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_7.4.6">  <b>Aufgabe 7.4.6
+</b>  <br/>
+In welchen möglichst großen offenen Intervallen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mi>c</mi><mo>;</mo><mi>d</mi><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math> ist die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> mit
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo>
+<mfrac><mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>1</mn></mrow>
+<mrow>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn></mrow>
+</mfrac>
+</mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow></math>
+konvex beziehungsweise konkav?
+Antwort:
+
+<ul>
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf 
+
+
+<input mfieldtype="6" name="Name_QFELD_7.4.5.QF3" id="QFELD_7.4.5.QF3" type="text" size="35" maxlength="35" onfocus="handlerFocus(3);" onblur="handlerBlur(3);" onkeyup="handlerChange(3,0);" onpaste="handlerChange(3,0);" oninput="handlerChange(3,0);" onpropertychange="handlerChange(3,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF3"/>
+
+
+ konvex.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf 
+
+
+<input mfieldtype="6" name="Name_QFELD_7.4.5.QF4" id="QFELD_7.4.5.QF4" type="text" size="35" maxlength="35" onfocus="handlerFocus(4);" onblur="handlerBlur(4);" onkeyup="handlerChange(4,0);" onpaste="handlerChange(4,0);" oninput="handlerChange(4,0);" onpropertychange="handlerChange(4,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF4"/>
+
+
+ konkav.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+<span style="color:#0000FF">Offene Intervalle können in der Form <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> eingetippt werden, geschlossene Intervalle als <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>b</mi></mrow></math> dürfen
+beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notation <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">]</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">[</mo></mrow></math> für offene Intervalle. Schreiben Sie <tt>infty</tt> oder
+<tt>unendlich</tt> für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>∞</mi></mrow></math> in Ihrer Antwort.</span>
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint2" class="hintbutton_closed" id="MHint2_button" type="button" onclick="toggle_hint('MHint2');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+ Man berechnet für die erste und die zweite Ableitung von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> mit Hilfe der Quotientenregel
+ <br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow>
+<mtable>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>4</mn><mi>x</mi></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mi> </mi><mo>,</mo></mrow>
+</mtd></mtr>
+<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow><mo>=</mo></mrow>
+</mtd><mtd columnalign="left">
+<mrow>
+<mfrac><mrow><mn>4</mn><mo>·</mo><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>-</mo><mn>4</mn><mi>x</mi><mo>·</mo><mn>2</mn><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>·</mo><mn>2</mn><mi>x</mi></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>4</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>4</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>4</mn><mo>-</mo><mn>16</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+</mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac><mrow><mn>4</mn><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><mn>3</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">)</mo></mrow>
+<mrow><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow>
+</mfrac>
+<mi> </mi><mo>.</mo></mrow>
+</mtd></mtr>
+</mtable>
+</mrow>
+    </mstyle></math></center>
+<br/>
+
+ Da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>4</mn><mo stretchy="false">/</mo><mo stretchy="false">(</mo>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo>+</mo><mn>1</mn>
+<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>3</mn></mrow>
+</msup>
+</mrow></math> stets positiv ist, wird das Vorzeichen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> einzig durch den Faktor <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><mn>3</mn>
+<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msup>
+<mo stretchy="false">)</mo></mrow></math> bestimmt. Die einfachen
+ Nullstellen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> liegen bei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
+</msub>
+<mo>=</mo><mo>±</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><msqrt><mrow><mn>3</mn></mrow></msqrt></mrow>
+</mfrac>
+</mrow></math>. Daher ist für <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow></math> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> auf dem
+ offenen Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo>]</mo><mn>0</mn><mo>;</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><msqrt><mrow><mn>3</mn></mrow></msqrt></mrow>
+</mfrac>
+<mo>[</mo></mrow>
+<mtext/>
+</mrow></math>
+ echt größer <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> daher dort linksgekrümmt (konvex). Auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo>]</mo>
+<mfrac><mrow><mn>1</mn></mrow>
+<mrow><msqrt><mrow><mn>3</mn></mrow></msqrt></mrow>
+</mfrac>
+<mo>;</mo><mi>∞</mi><mo>[</mo></mrow>
+<mtext/>
+</mrow></math> gilt <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&lt;</mo><mn>0</mn></mrow></math>; somit ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> dort
+ rechtsgekrümmt (konkav).
+ </div>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_7.4.7">  <b>Aufgabe 7.4.7
+</b>  <br/>
+Gegeben ist eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mo>-</mo><mn>4,5</mn><mo>;</mo><mn>4</mn><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mn>2</mn></mrow></math>; deren 
+Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo></mrow></math> besitze folgenden Graphen:
+
+<br clear="all"/><br clear="all"/>
+
+<div style="text-align:center"><a id="L_SOURCEAUTOLABEL_152">
+</a>
+
+<img src="./VBKM07mtikzauto_7.4x.png" style="width:348px;height:262px" alt="./VBKM07mtikzauto_7.4x.png"/>
+ 
+</div>
+
+<br clear="all"/><br clear="all"/>
+
+<ol type="1">
+<li> Wo ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> monoton wachsend, wo monoton fallend? 
+Gesucht sind jeweils möglichst große offene Intervalle <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mi>c</mi><mo>;</mo><mi>d</mi><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math>, auf 
+denen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> diese Eigenschaft hat.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Welche Aussagen erhalten 
+Sie über die Maximal- beziehungsweise Minimalstellen der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math>?
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+
+<br clear="all"/><br clear="all"/>
+Antwort:
+
+<ul>
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo> </mo><mo>]</mo></mrow><mo>-</mo><mn>4,5</mn><mo>;</mo></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_7.4.5.QF5" id="QFELD_7.4.5.QF5" type="text" size="8" maxlength="8" onfocus="handlerFocus(5);" onblur="handlerBlur(5);" onkeyup="handlerChange(5,0);" onpaste="handlerChange(5,0);" oninput="handlerChange(5,0);" onpropertychange="handlerChange(5,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF5"/>
+
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mrow><mo> </mo><mo>[</mo></mrow>
+<mtext/>
+</mrow></math> monoton
+
+
+
+<input mfieldtype="1" name="Name_QFELD_7.4.5.QF6" id="QFELD_7.4.5.QF6" type="text" size="16" maxlength="16" onfocus="handlerFocus(6);" onblur="handlerBlur(6);" onkeyup="handlerChange(6,0);" onpaste="handlerChange(6,0);" oninput="handlerChange(6,0);" onpropertychange="handlerChange(6,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF6"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mrow><mo> </mo><mo>]</mo></mrow></mrow></math>
+
+
+<input mfieldtype="3" name="Name_QFELD_7.4.5.QF7" id="QFELD_7.4.5.QF7" type="text" size="16" maxlength="16" onfocus="handlerFocus(7);" onblur="handlerBlur(7);" onkeyup="handlerChange(7,0);" onpaste="handlerChange(7,0);" oninput="handlerChange(7,0);" onpropertychange="handlerChange(7,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF7"/>
+
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>;</mo><mn>0</mn><mrow><mo> </mo><mo>[</mo></mrow>
+<mtext/>
+</mrow></math> monoton 
+
+
+
+<input mfieldtype="1" name="Name_QFELD_7.4.5.QF8" id="QFELD_7.4.5.QF8" type="text" size="16" maxlength="16" onfocus="handlerFocus(8);" onblur="handlerBlur(8);" onkeyup="handlerChange(8,0);" onpaste="handlerChange(8,0);" oninput="handlerChange(8,0);" onpropertychange="handlerChange(8,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF8"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mn>0</mn><mo>;</mo><mn>3</mn><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math> monoton 
+
+
+<input mfieldtype="1" name="Name_QFELD_7.4.5.QF9" id="QFELD_7.4.5.QF9" type="text" size="16" maxlength="16" onfocus="handlerFocus(9);" onblur="handlerBlur(9);" onkeyup="handlerChange(9,0);" onpaste="handlerChange(9,0);" oninput="handlerChange(9,0);" onpropertychange="handlerChange(9,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF9"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mn>3</mn><mo>;</mo><mn>4</mn><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math> monoton 
+
+
+<input mfieldtype="1" name="Name_QFELD_7.4.5.QF10" id="QFELD_7.4.5.QF10" type="text" size="16" maxlength="16" onfocus="handlerFocus(10);" onblur="handlerBlur(10);" onkeyup="handlerChange(10,0);" onpaste="handlerChange(10,0);" oninput="handlerChange(10,0);" onpropertychange="handlerChange(10,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF10"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+Die Maximalstelle von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist bei 
+
+
+<input mfieldtype="3" name="Name_QFELD_7.4.5.QF11" id="QFELD_7.4.5.QF11" type="text" size="8" maxlength="8" onfocus="handlerFocus(11);" onblur="handlerBlur(11);" onkeyup="handlerChange(11,0);" onpaste="handlerChange(11,0);" oninput="handlerChange(11,0);" onpropertychange="handlerChange(11,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF11"/>
+
+
+.
+Die Minimalstelle von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> ist bei 
+
+
+<input mfieldtype="3" name="Name_QFELD_7.4.5.QF12" id="QFELD_7.4.5.QF12" type="text" size="8" maxlength="8" onfocus="handlerFocus(12);" onblur="handlerBlur(12);" onkeyup="handlerChange(12,0);" onpaste="handlerChange(12,0);" oninput="handlerChange(12,0);" onpropertychange="handlerChange(12,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_7.4.5.QF12"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint3" class="hintbutton_closed" id="MHint3_button" type="button" onclick="toggle_hint('MHint3');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint3"> 
+ Das Monotonieverhalten wird durch die Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo></mrow></math> der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> bestimmt. Da der Graph der Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo></mrow></math> in der Aufgabenstellung
+ als Schaubild gegeben ist, muss man nur ablesen, in welchen Intervallen der Graph oberhalb (bzw. unterhalb) der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse verläuft:
+ Auf den Intervallen <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">[</mo>
+<mtext/>
+<mo>-</mo><mn>4,5</mn><mo>;</mo><mo>-</mo><mn>4</mn><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mn>0</mn><mo>;</mo><mn>3</mn><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mn>3</mn><mo>;</mo><mn>4</mn><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math> ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> daher dort monoton wachsend;
+ auf dem Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mo>-</mo><mn>4</mn><mo>;</mo><mn>0</mn><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math> dagegen ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&lt;</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> daher dort monoton fallend.
+<br clear="all"/><br clear="all"/>
+ An einer Extremstelle <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>e</mi></mrow>
+</msub>
+</mrow></math> (Maximal- oder Minimalstelle) einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> (die nicht auf dem Rand des Definitionsbereichs liegt)
+ verschwindet die erste Ableitung: <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo>
+<msub><mrow><mi>x</mi></mrow><mrow><mi>e</mi></mrow>
+</msub>
+<mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math>. Anschaulich bedeutet dies, dass an einer solchen Stelle die Tangente an den Graphen
+ von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> waagrecht verläuft. Die Nullstellen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> liegen laut Aufgabenstellung bei  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mo>-</mo><mn>4</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msub>
+<mo>=</mo><mn>3</mn></mrow></math>. Da <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>f</mi></mrow></math> auf
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mo>-</mo><mn>4,5</mn><mo>;</mo><mo>-</mo><mn>4</mn><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math> monoton wächst und auf <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext/>
+<mo stretchy="false">]</mo><mo>-</mo><mn>4</mn><mo>;</mo><mn>0</mn><mo stretchy="false">[</mo>
+<mtext/>
+</mrow></math> monoton fällt, ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+<mo>=</mo><mo>-</mo><mn>4</mn></mrow></math> eine Maximalstelle.
+ Analog begründet man, dass bei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+<mo>=</mo><mn>0</mn></mrow></math> eine Minimalstelle vorliegt. (Bei <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msub>
+<mo>=</mo><mn>3</mn></mrow></math> handelt es sich um eine Sattelstelle.)
+</div>
+
+  </div>
+  
+  
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 10.1.2 Koordinatensysteme im Raum</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+// onload blocks start
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("(1/224,2809,,x10qr)r(26y9+ytr;6*",7);}if(c==2){str=debork("(-a2;9,xq1ab,120);)6cc(brx+;2ba0",7);}if(c==3){str=debork("(a,,29c6**.-02t)(c,y.b03a2c*q,t/",8);}if(c==4){str=debork("(.)/2++;,2(-(t4)cy,-8/1122.43,r2",8);}if(c==5){str=debork("(,bx-37,)4y8a--./26*19b/x121/524",9);}return str;}
+
+__CQJ("Point1",1,GSLS(1),"QFELD_10.1.3.QF1",4,"5;x;5;0",4,0,10);__CQJ("Point2",2,GSLS(2),"QFELD_10.1.3.QF2",4,"5;x;5;0",4,0,10);__CQJ("Point3",3,GSLS(3),"QFELD_10.1.3.QF3",4,"5;x;5;0",4,0,10);__CQJ("Point4",4,GSLS(4),"QFELD_10.1.3.QF4",4,"5;x;5;0",4,0,10);__CQJ("Point5",5,GSLS(5),"QFELD_10.1.3.QF5",4,"5;x;5;0",4,0,10);
+// onload blocks stop
+var SITE_ID = "1.10.1.2";
+var SITE_UXID = "VBKM10_Raumkoordinaten";
+var SECTION_ID = 10;
+var docName = "xcontent1";
+var fullName = "html_std/1.10.1/xcontent1.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html_std/1.10.1/modstart.html"><div class="xsymb selected">10.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.10.1/modstart.html"><div uxid="VBKM10_PfeilVektor_Intro" id="idxsymb_tc223" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.1/xcontent1.html"><div uxid="VBKM10_Raumkoordinaten" id="idxsymb_tc224" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.1/xcontent2.html"><div uxid="VBKM10_Vektoren" id="idxsymb_tc225" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.1/xcontent3.html"><div uxid="VBKM10_Vektorrechnung" id="idxsymb_tc226" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.10.2/modstart.html"><div class="xsymb selected">10.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.10.2/modstart.html"><div uxid="VBKM10_GeradenEbenen_Intro" id="idxsymb_tc227" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.2/xcontent1.html"><div uxid="VBKM10_GeradenEbene" id="idxsymb_tc228" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.2/xcontent2.html"><div uxid="VBKM10_EbenenRaum" id="idxsymb_tc229" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.2/xcontent3.html"><div uxid="VBKM10_Lagebeziehung" id="idxsymb_tc230" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.10.3/modstart.html"><div class="xsymb selected">10.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.10.3/modstart.html"><div uxid="VBKM10_Abschlusstest" id="idxsymb_tc231" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html_std/1.10.1/modstart.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html_std/1.10.1/xcontent2.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM10_PfeilVektor_Intro" class="MINTERLINK" href="../../html_std/1.10.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_Raumkoordinaten" class="MINTERLINK naviselected" href="../../html_std/1.10.1/xcontent1.html">Raumkoordinaten</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_Vektoren" class="MINTERLINK" href="../../html_std/1.10.1/xcontent2.html">Vektoren</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_Vektorrechnung" class="MINTERLINK" href="../../html_std/1.10.1/xcontent3.html">Vektorrechnung</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas für den Onlinekurs</b><br />
+<ul style="width:75%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREEN);">Grün</button></center></li>
+<li style="padding:20px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:150px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('std');">Diese Notation festlegen</button> &nbsp;
+  <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation)<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  </li>
+  <li>
+  <button type="button" class="stdbutton" onclick="selectVariant('unotation');">Diese Notation festlegen</button> &nbsp;
+  Alternative Notation, die in vielen technischen Studiengängen eingesetzt wird<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zurück zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html_std/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html_std/1.10.1/modstart.html"><div class="xsymb selected">10.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.10.1/modstart.html"><div uxid="VBKM10_PfeilVektor_Intro" id="idxsymb_tc223" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.1/xcontent1.html"><div uxid="VBKM10_Raumkoordinaten" id="idxsymb_tc224" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.1/xcontent2.html"><div uxid="VBKM10_Vektoren" id="idxsymb_tc225" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.1/xcontent3.html"><div uxid="VBKM10_Vektorrechnung" id="idxsymb_tc226" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.10.2/modstart.html"><div class="xsymb selected">10.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.10.2/modstart.html"><div uxid="VBKM10_GeradenEbenen_Intro" id="idxsymb_tc227" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.2/xcontent1.html"><div uxid="VBKM10_GeradenEbene" id="idxsymb_tc228" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.2/xcontent2.html"><div uxid="VBKM10_EbenenRaum" id="idxsymb_tc229" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html_std/1.10.2/xcontent3.html"><div uxid="VBKM10_Lagebeziehung" id="idxsymb_tc230" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html_std/1.10.3/modstart.html"><div class="xsymb selected">10.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html_std/1.10.3/modstart.html"><div uxid="VBKM10_Abschlusstest" id="idxsymb_tc231" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html_std/1.10.1/modstart.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html_std/1.10.1/xcontent2.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM10_PfeilVektor_Intro" class="MINTERLINK" href="../../html_std/1.10.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_Raumkoordinaten" class="MINTERLINK naviselected" href="../../html_std/1.10.1/xcontent1.html">Raumkoordinaten</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_Vektoren" class="MINTERLINK" href="../../html_std/1.10.1/xcontent2.html">Vektoren</a></li>
+  <li class="xsectbutton"><a uxid="VBKM10_Vektorrechnung" class="MINTERLINK" href="../../html_std/1.10.1/xcontent3.html">Vektorrechnung</a></li>
+</ul>
+</div>
+  <div id="content" class="content">
+
+
+
+
+
+
+
+<h4>1  - 1.10</h4><br /><h4>10.1.2 Koordinatensysteme im Raum</h4>
+
+
+
+<a id="VBKM10_Raumkoordinaten">
+</a>
+<!-- mdeclaresiteuxidpost;;VBKM10_Raumkoordinaten;; //-->
+Im vorhergehenden Kapitel <a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html#VBKM09">9</a> wurden im Abschnitt <a class="MINTERLINK" href="../../html_std/1.9.1/modstart.html#M09_1kartesisch">9.1</a> kartesische Koordinatensysteme und Punkte in der Ebene mit Koordinaten bezüglich dieser Systeme eingeführt. Ein sicherer Umgang mit diesen Konzepten wird hier nun vorausgesetzt. Zur eindeutigen Beschreibung eines <b>Punktes im Raum</b><!-- mindexentry;;Punkt (3-D); //--><a class="label" name="ELI_SW229"></a> braucht man drei - statt nur zwei - <b>Koordinaten</b><!-- mindexentry;;Koordinaten (3-D); //--><a class="label" name="ELI_SW230"></a>. Damit benötigt ein <b>Koordinatensystem</b><!-- mindexentry;;Koordinatensystem (3-D); //--><a class="label" name="ELI_SW231"></a> im Raum ebenfalls drei <b>Achsen</b><!-- mindexentry;;Achsen (3-D); //--><a class="label" name="ELI_SW232"></a>, die als <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>- und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi></mrow></math>-Achse (oder manchmal auch als <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
+</msub>
+</mrow></math>-, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
+</msub>
+</mrow></math>- und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
+</msub>
+</mrow></math>-Achse) bezeichnet werden. Für Punkte werden wieder üblicherweise Großbuchstaben <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi><mo>,</mo><mi>Q</mi><mo>,</mo><mi>R</mi><mo>,</mo><mi>…</mi></mrow></math> und für ihre Koordinaten Kleinbuchstaben <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>,</mo><mi>…</mi></mrow></math> als Variablen verwendet. In Erweiterung der Schreibweise aus Kapitel <a class="MINTERLINK" href="../../html_std/sectionx1.9.0.html#VBKM09">9</a> werden die Koordinaten von Punkten zum Beispiel wie folgt notiert:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mn>3</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+oder
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>Q</mi><mo>=</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>2</mn><mo>;</mo><mn>3</mn><mo stretchy="false">)</mo><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Hier ist <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>Q</mi></mrow></math> beispielsweise ein Punkt mit der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Koordinate <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo><mn>2</mn></mrow></math>, der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Koordinate <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn></mrow></math> und der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi></mrow></math>-Koordinate <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>3</mn></mrow></math>. Für den Punkt mit den Koordinaten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></math> ist die Bezeichnung <b>Ursprung</b> und das Symbol <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>O</mi></mrow></math> (vom englischen <i>origin</i>) reserviert. Alle diese Punkte sind im folgenden Bild dargestellt:  
+
+<br clear="all"/><br clear="all"/>
+
+<div style="text-align:center"><a id="L_SOURCEAUTOLABEL_249">
+</a>
+
+<img src="./VBKM10mtikzauto_2.4x.png" style="width:525px;height:416px" alt="./VBKM10mtikzauto_2.4x.png"/>
+ 
+</div>
+Die gestrichelten Hilfslinien in diesem Bild geben einen Hinweis darauf, wie in einer solchen dreidimensionalen Darstellung die Koordinaten von Punkten korrekt eingezeichnet und abgelesen werden können. Man beachte, dass die Hilfslinien alle parallel zu den Koordinatenachsen verlaufen.
+
+<br clear="all"/><br clear="all"/>
+Es werden nur Koordinatensysteme im Raum betrachtet, deren Achsen alle senkrecht aufeinander stehen. Diese heißen auch <b>kartesische Koordinatensysteme</b><!-- mindexentry;;kartesisches Koordinatensystem (3-D); //--><a class="label" name="ELI_SW233"></a>. Es wird hier außerdem die übliche mathematische Konvention benutzt, dass die Koordinatensysteme im Raum <b>rechtshändig</b> oder sogenannte <b>Rechtssysteme</b> sein sollen. Dies bedeutet, dass die positiven Achsenrichtungen von <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>- und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi></mrow></math>-Achse durch die Drei-Finger-Regel der <i>rechten</i> Hand bestimmt werden:
+
+<br clear="all"/><br clear="all"/>
+
+<div style="text-align:center">
+<img src="./rechtehand.png" style="width:368px" alt="./rechtehand.png"/>
+
+</div>
+
+<br clear="all"/><br clear="all"/>
+Trotzdem gibt es hier noch unterschiedliche mögliche Darstellungsformen: zum Beispiel ein Verlauf der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse nach rechts, der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achse nach oben und der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi></mrow></math>-Achse nach vorne aus der Zeichenebene heraus - wie im Koordinatensystem mit den Punkten <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>Q</mi></mrow></math> oben - oder ein Verlauf der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Achse nach rechts, der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Achse nach hinten in die Zeichenebene hinein und der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi></mrow></math>-Achse nach oben - wie im Drei-Finger-Bild oben. Die Rechtshändigkeit ist aber in beiden Fällen gegeben.  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_10.1.1">  <b>Aufgabe 10.1.1
+</b>  <br/>
+Geben Sie die Koordinaten der im folgenden Bild eingezeichneten Punkte an. Überlegen Sie sich außerdem, wie man alle eingezeichneten Punkte zu einem mathematischen Objekt zusammenfassen kann.
+
+<div style="text-align:center">
+
+
+
+<a id="L_SOURCEAUTOLABEL_250">
+</a>
+
+<img src="./VBKM10mtikzauto_3.4x.png" style="width:416px;height:416px" alt="./VBKM10mtikzauto_3.4x.png"/>
+ 
+</div>
+
+<br clear="all"/><br clear="all"/>
+
+<ol type="1">
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>A</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.1.3.QF1" id="QFELD_10.1.3.QF1" type="text" size="15" maxlength="15" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.1.3.QF1"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>B</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.1.3.QF2" id="QFELD_10.1.3.QF2" type="text" size="15" maxlength="15" onfocus="handlerFocus(2);" onblur="handlerBlur(2);" onkeyup="handlerChange(2,0);" onpaste="handlerChange(2,0);" oninput="handlerChange(2,0);" onpropertychange="handlerChange(2,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.1.3.QF2"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>C</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.1.3.QF3" id="QFELD_10.1.3.QF3" type="text" size="15" maxlength="15" onfocus="handlerFocus(3);" onblur="handlerBlur(3);" onkeyup="handlerChange(3,0);" onpaste="handlerChange(3,0);" oninput="handlerChange(3,0);" onpropertychange="handlerChange(3,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.1.3.QF3"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>D</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.1.3.QF4" id="QFELD_10.1.3.QF4" type="text" size="15" maxlength="15" onfocus="handlerFocus(4);" onblur="handlerBlur(4);" onkeyup="handlerChange(4,0);" onpaste="handlerChange(4,0);" oninput="handlerChange(4,0);" onpropertychange="handlerChange(4,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.1.3.QF4"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>P</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math>
+
+
+<input mfieldtype="4" name="Name_QFELD_10.1.3.QF5" id="QFELD_10.1.3.QF5" type="text" size="15" maxlength="15" onfocus="handlerFocus(5);" onblur="handlerBlur(5);" onkeyup="handlerChange(5,0);" onpaste="handlerChange(5,0);" oninput="handlerChange(5,0);" onpropertychange="handlerChange(5,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_10.1.3.QF5"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol>
+<span style="color:#0000FF">Geben Sie Punkte in der Form <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>;</mo><mi>y</mi><mo>;</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></math> ein, beispielsweise <tt>(8;-4;15)</tt> für den Punkt mit der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>x</mi></mrow></math>-Koordinate <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>8</mn></mrow></math>, der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>y</mi></mrow></math>-Koordinate <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>-</mo><mn>4</mn></mrow></math> und der <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>z</mi></mrow></math>-Koordinate <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>15</mn></mrow></math>.</span>
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint1" class="hintbutton_closed" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+Die Koordinatentripel der gefragten Punkte lauten:
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>A</mi><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mn>1</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>C</mi><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>D</mi><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>1</mn><mo stretchy="false">)</mo><mi> </mi><mo>,</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>1</mn><mo>;</mo><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+Die Menge aller im obigen Bild eingezeichneten Punkte ist
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo stretchy="false">{</mo><mi>A</mi><mo>;</mo><mi>B</mi><mo>;</mo><mi>C</mi><mo>;</mo><mi>D</mi><mo>;</mo><mi>P</mi><mo stretchy="false">}</mo><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo><mo>;</mo><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mn>1</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo><mo>;</mo><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>0</mn><mo stretchy="false">)</mo><mo>;</mo><mo stretchy="false">(</mo><mn>2</mn><mo>;</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>1</mn><mo stretchy="false">)</mo><mo>;</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>1</mn><mo>;</mo><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">}</mo><mi> </mi><mo>.</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+
+<br clear="all"/><br clear="all"/>
+</div>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Analog zum zweidimensionalen Fall in Abschnitt <a class="MINTERLINK" href="../../html_std/1.9.1/xcontent1.html#VBKM09_Punkte">9.1.2</a> kann man also auch hier im dreidimensionalen Fall eine beliebige Anzahl von Punkten im Raum wieder zu einer <b>Punktmenge</b><!-- mindexentry;;Punktmenge (3-D); //--><a class="label" name="ELI_SW234"></a> zusammenfassen. Insbesondere gibt es auch hier wieder die folgende Bezeichnung:
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+10.1.2
+    
+  
+  </b>  <br/> <br/>
+Die Menge aller Punkte im Raum, als Koordinatentripel bezüglich eines gegebenen kartesischen Koordinatensystems, wird mit
+<br/><br/>
+<center><math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mstyle displaystyle="true"><mrow><mo>ℝ</mo><msup><mi/><mrow><mn>3</mn></mrow></msup>
+<mo>:</mo><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>x</mi><mo>;</mo><mi>y</mi><mo>;</mo><mi>z</mi><mo stretchy="false">)</mo><mi> </mi><mo>:</mo><mi> </mi><mi>x</mi><mo>∈</mo><mo>ℝ</mo><mo>∧</mo><mi>y</mi><mo>∈</mo><mo>ℝ</mo><mo>∧</mo><mi>z</mi><mo>∈</mo><mo>ℝ</mo><mo stretchy="false">}</mo></mrow>
+    </mstyle></math></center>
+<br/>
+
+bezeichnet. Das Symbol <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>ℝ</mo><msup><mi/><mrow><mn>3</mn></mrow></msup>
+</mrow></math> wird dabei als „<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>ℝ</mo></mrow></math> drei“oder „<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>ℝ</mo></mrow></math> hoch drei“ gesprochen. Dies spiegelt wieder, dass jeder Punkt eindeutig durch ein Koordinatentripel, bestehend aus drei reellen Zahlen, beschrieben werden kann.    
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>
