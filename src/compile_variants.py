@@ -34,8 +34,8 @@ if repo.is_dirty():
     print("Local workspace for branch " + mdb + " is dirty !!")
 
 
-tagn = 2 # publish 01 was done in branch develop_software
-while ("AUTOPUBLISH " + str(tagn)) in repo.tags:
+tagn = 2 # publish1 was done in branch develop_software
+while ("AUTOPUBLISH" + str(tagn)) in repo.tags:
     tagn += 1
 print("Next autopublish number will be " + str(tagn))
 print("This program will automatically compile and release the current commit of branch " + mdb + ", ARE YOU SURE (type YES if your dare)?")
@@ -105,7 +105,7 @@ os.chdir("..")
 os.chdir("releases")
 
 
-commsg = "AUTOPUBLISH " + str(tagn) + " using compile_variants.py on machine " + socket.gethostname() + " by user " + getpass.getuser()
+commsg = "AUTOPUBLISH" + str(tagn) + " using compile_variants.py on machine " + socket.gethostname() + " by user " + getpass.getuser()
 hc = repo.head.commit
 infomsg = commsg + "\n" \
         + "Timestamp: " + time.ctime(time.time()) + "\n" \
@@ -131,7 +131,7 @@ os.chdir("..")
 repo.git.add("releases/" + rifile)
 repo.git.add("releases/" + dname + "/")
 repo.index.commit(commsg)
-repo.create_tag("AUTOPUBLISH " + str(tagn))
+repo.create_tag("AUTOPUBLISH" + str(tagn))
 print("-- VARIANT std COMMIT TO RELEASE GIT HISTORY, TAGNR = " + str(tagn))
 print("PLEASE PUSH THE COMMIT RIGHT NOW!")
     
