@@ -102,6 +102,43 @@ class Option(object):
 
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
+        # course signature, course part
+        self.signature_main = "OBMLGAMMA1" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+        self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
+        self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
+        self.signature_date = "05/2015"
+
+        # ! ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------ !
+        self.overrides = list()
+        for ov in override:
+            m = re.match(r"(.+?)=(.+)", ov) 
+            if m:
+                self.overrides.append([m.group(1), m.group(2)])
+                if hasattr(self, m.group(1)):
+                    vr = getattr(self, m.group(1))
+                    if (type(vr).__name__ == "int"):
+                        setattr(self, m.group(1), int(m.group(2)))
+                    else:
+                        if (type(vr).__name__ == "str"):
+                            setattr(self, m.group(1), m.group(2))
+                        else:
+                            if (type(vr).__name__ == "float"):
+                                setattr(self, m.group(1), float(m.group(2)))
+                            else:
+                                if (type(vr).__name__ == "bool"):
+                                    if (m.group(2) == "0"):
+                                        setattr(self, m.group(1), False)
+                                    else:
+                                        setattr(self, m.group(1), True)
+                                else:
+                                    print("Option type " + type(vr).__name__ + " not acceptable")
+                else:
+                    print("Option " + m.group(1) + " does not exist, cannot override")
+                
+            else:
+                print("Invalid override string: " + ov)
+
+
         # Settings for HTML design and typical phrases        
         self.chaptersite = "chapters.html"
         self.strings = {
@@ -172,11 +209,7 @@ class Option(object):
         with open(os.path.join(self.converterDir, "plugins", "VEUNDMINT", "colorset_blue.json")) as colorfile:
             self.colors = json.load(colorfile)
 
-        # course signature
-        self.signature_main = "OBMLGAMMA1" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
-        self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
-        self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
-        self.signature_date = "05/2015"
+        # course signature, repository part
         
         repo = Repo(self.currentDir)
         assert not repo.bare
@@ -190,6 +223,7 @@ class Option(object):
         h = repo.head
         hc = h.commit
         self.signature_git_head = h.name
+        self.signature_git_branch = h.active_branch
         self.signature_git_committer = hc.committer.name
         self.signature_git_message = hc.message.replace("\n", "")
         self.signature_git_commit = hc.hexsha
@@ -308,33 +342,6 @@ class Option(object):
             "HTML5_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "html5_mintmodtex.py")
         }
         
-        for ov in override:
-            m = re.match(r"(.+?)=(.+)", ov) 
-            if m:
-                if hasattr(self, m.group(1)):
-                    vr = getattr(self, m.group(1))
-                    if (type(vr).__name__ == "int"):
-                        setattr(self, m.group(1), int(m.group(2)))
-                    else:
-                        if (type(vr).__name__ == "str"):
-                            setattr(self, m.group(1), m.group(2))
-                        else:
-                            if (type(vr).__name__ == "float"):
-                                setattr(self, m.group(1), float(m.group(2)))
-                            else:
-                                if (type(vr).__name__ == "bool"):
-                                    if (m.group(2) == "0"):
-                                        setattr(self, m.group(1), False)
-                                    else:
-                                        setattr(self, m.group(1), True)
-                                else:
-                                    print("Option type " + type(vr).__name__ + " not acceptable")
-                else:
-                    print("Option " + m.group(1) + " does not exist, cannot override")
-                
-            else:
-                print("Invalid override string: " + ov)
-
         if self.dopdf == 1:
             self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdfmini.png' border='0' /></a>"
 

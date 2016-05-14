@@ -204,7 +204,9 @@ class Structure(object):
         # --------------------- END DEFINITION OF THE MODULE INTERFACE ------------------------------------------------------
 
 
-
+        if hasattr(self.options, "overrides"):
+            for ov in self.options.overrides:
+                self.sys.message(self.sys.VERBOSEINFO, "tex2x called with override option: " + ov[0] + " -> " + ov[1])
        
         
         schritt = 1
