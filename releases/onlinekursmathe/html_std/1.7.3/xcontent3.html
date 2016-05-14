@@ -346,19 +346,10 @@ function unloadHandler() {
 
 <br clear="all"/><br clear="all"/>
 Zum Abschluss wird die Verkettung (Modul <a class="MINTERLINK" href="../../html_std/sectionx1.6.0.html#VBKM06">6</a>, Abschnitt <a class="MINTERLINK" href="../../html_std/1.6.6/xcontent2.html#Verkettung">6.6.3</a>) von Funktionen untersucht:
-Was passiert, wenn eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi></mrow></math> (die innere Funktion) in eine andere Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi></mrow></math>
-(die äußere Funktion) sozusagen eingesetzt wird? Eine solche Verkettung wird in der Mathematik durch die Schreibweise <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo>:</mo><mo>=</mo><mi>v</mi><mo>∘</mo><mi>u</mi></mrow></math> mit
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>v</mi><mo>∘</mo><mi>u</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> dargestellt. Dies bedeutet, dass zunächst der Wert einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi></mrow></math> in Abhängigkeit von der Variable <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi></mrow></math> bestimmt wird.
-Dieser so berechnete Wert <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>  wird dann als Argument der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi></mrow></math> verwendet. Auf diese Weise entsteht der endgültige Funktionswert <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math>.
+Was passiert, wenn eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi></mrow></math> (die innere Funktion) in eine andere Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi></mrow></math>
+(die äußere Funktion) sozusagen eingesetzt wird? Eine solche Verkettung wird in der Mathematik durch die Schreibweise <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>:</mo><mo>=</mo><mi>v</mi><mo>∘</mo><mi>u</mi></mrow></math> mit
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>v</mi><mo>∘</mo><mi>u</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> dargestellt. Dies bedeutet, dass zunächst der Wert einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi></mrow></math> in Abhängigkeit von der Variable <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> bestimmt wird.
+Dieser so berechnete Wert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>  wird dann als Argument der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi></mrow></math> verwendet. Auf diese Weise entsteht der endgültige Funktionswert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math>.
 
 <br clear="all"/><br clear="all"/>
         
@@ -370,23 +361,11 @@ Dieser so berechnete Wert <math xmlns="http://www.w3.org/1998/Math/MathML">
     
   
   </b>  <br/>
-Die Ableitung der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo>:</mo><mo>=</mo><mi>v</mi><mo>∘</mo><mi>u</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>v</mi><mo>∘</mo><mi>u</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> kann mit der <b>Kettenregel</b> bestimmt werden; es gilt:
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>·</mo><mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mo>.</mo><br/></mrow>
-    </mstyle></math></center>
-<br/>
+Die Ableitung der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>:</mo><mo>=</mo><mi>v</mi><mo>∘</mo><mi>u</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>v</mi><mo>∘</mo><mi>u</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> kann mit der <b>Kettenregel</b> bestimmt werden; es gilt:
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>·</mo><mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>
 
-Hierbei ist <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> so zu verstehen, dass man <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi></mrow></math> als Funktion von <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi></mrow></math> auffasst und dementsprechend nach <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi></mrow></math> differenziert; anschließend wertet man
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi><mo>=</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> aus.<br/>
+Hierbei ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> so zu verstehen, dass man <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi></mrow></math> als Funktion von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi></mrow></math> auffasst und dementsprechend nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi></mrow></math> differenziert; anschließend wertet man
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi><mo>=</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> aus.<br/>
 Hilfreich ist der Merksatz: Ableitung der Verkettung ist äußere Ableitung mal innere Ableitung.
 </div>
   </div>
@@ -405,114 +384,28 @@ Diese Ableitungsregel soll anhand einiger Beispiele verdeutlicht werden:
   7.3.8
   
   </b>  <br/>
-Gesucht wird die Ableitung der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo>:</mo><mo>ℝ</mo><mo>→</mo><mo>ℝ</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>3</mn><mo>-</mo><mn>2</mn><mi>x</mi>
-<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>5</mn></mrow>
-</msup>
-</mrow></math>.
+Gesucht wird die Ableitung der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>:</mo><mo>ℝ</mo><mo>→</mo><mo>ℝ</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>3</mn><mo>-</mo><mn>2</mn><mi>x</mi><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>5</mn></mrow></msup></mrow></math>.
 Soll die Kettenregel angewendet werden, sind eine innere und eine äußere Funktion zu identifizieren.
-Setzt man für die innere Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi></mrow></math> den Funktionsterm <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><mo>-</mo><mn>2</mn><mi>x</mi></mrow></math>, dann ist die äußere Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi></mrow></math> durch <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo>
-<msup><mrow><mi>u</mi></mrow><mrow><mn>5</mn></mrow>
-</msup>
-</mrow></math> gegeben.
-Damit gilt wie verlangt <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>.
+Setzt man für die innere Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi></mrow></math> den Funktionsterm <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><mo>-</mo><mn>2</mn><mi>x</mi></mrow></math>, dann ist die äußere Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi></mrow></math> durch <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mrow><mi>u</mi></mrow><mrow><mn>5</mn></mrow></msup></mrow></math> gegeben.
+Damit gilt wie verlangt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>.
 
 <br clear="all"/><br clear="all"/>
-Ableiten der inneren Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi></mrow></math> liefert <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math>.
-Für die äußere Ableitung differenziert man <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi></mrow></math> und findet <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn>
-<msup><mrow><mi>u</mi></mrow><mrow><mn>4</mn></mrow>
-</msup>
-</mrow></math>.
-Einsetzen dieser Zwischenergebnisse in die Kettenregel führt auf die Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo>'</mo></mrow></math> der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi></mrow></math> mit:
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi>
-<msup><mrow><mo stretchy="false">))</mo></mrow><mrow><mn>4</mn></mrow>
-</msup>
-<mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mo stretchy="false">(</mo><mn>3</mn><mo>-</mo><mn>2</mn><mi>x</mi>
-<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>4</mn></mrow>
-</msup>
-<mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mn>10</mn><mo stretchy="false">(</mo><mn>3</mn><mo>-</mo><mn>2</mn><mi>x</mi>
-<msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>4</mn></mrow>
-</msup>
-<mi> </mi><mo>.</mo></mrow>
-    </mstyle></math></center>
-<br/>
-
-
-<br clear="all"/><br clear="all"/>
-Als zweites Beispiel soll die Ableitung von <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>g</mi><mo>:</mo><mo>ℝ</mo><mo>→</mo><mo>ℝ</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi/><mrow>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
-</msup>
-</mrow></msup>
-</mrow></math> berechnet werden.
-Dazu bieten sich die Zuordnungen <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi><mo>→</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
-</msup>
-</mrow></math> für die innere Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi><mo>→</mo><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi/><mrow><mi>u</mi></mrow></msup>
-</mrow></math> für die äußere Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi></mrow></math> an.
-Die Bestimmung der inneren und der äußeren Ableitung führt auf <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi/><mrow><mi>u</mi></mrow></msup>
-</mrow></math>.
-Setzt man beides in die Kettenregel ein, erhält man die Ableitung der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>g</mi></mrow></math>:
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow><mi>g</mi><mo>'</mo><mo>:</mo><mo>ℝ</mo><mo>→</mo><mo>ℝ</mo><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mi>x</mi><mo>→</mo><mi>g</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi/><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></msup>
-<mo>·</mo><mn>3</mn>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>=</mo><mi>e</mi><msup><mi/><mrow>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
-</msup>
-</mrow></msup>
-<mo>·</mo><mn>3</mn>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>=</mo><mn>3</mn>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mi>e</mi><msup><mi/><mrow>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
-</msup>
-</mrow></msup>
-<mi> </mi><mo>.</mo></mrow>
-    </mstyle></math></center>
-<br/>
-
-</div>
+Ableiten der inneren Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> liefert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math>.
+Für die äußere Ableitung differenziert man <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi></mrow></math> und findet <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><msup><mrow><mi>u</mi></mrow><mrow><mn>4</mn></mrow></msup></mrow></math>.
+Einsetzen dieser Zwischenergebnisse in die Kettenregel führt auf die Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>'</mo></mrow></math> der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> mit:
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>f</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><msup><mrow><mo stretchy="false">))</mo></mrow><mrow><mn>4</mn></mrow></msup><mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mo stretchy="false">(</mo><mn>3</mn><mo>-</mo><mn>2</mn><mi>x</mi><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>4</mn></mrow></msup><mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo>=</mo><mo>-</mo><mn>10</mn><mo stretchy="false">(</mo><mn>3</mn><mo>-</mo><mn>2</mn><mi>x</mi><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>4</mn></mrow></msup><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/><br clear="all"/><br clear="all"/>
+Als zweites Beispiel soll die Ableitung von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>g</mi><mo>:</mo><mo>ℝ</mo><mo>→</mo><mo>ℝ</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi/><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></msup></mrow></math> berechnet werden.
+Dazu bieten sich die Zuordnungen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>→</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></math> für die innere Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi><mo>→</mo><mi>v</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi/><mrow><mi>u</mi></mrow></msup></mrow></math> für die äußere Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi></mrow></math> an.
+Die Bestimmung der inneren und der äußeren Ableitung führt auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>u</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi><mo>'</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi/><mrow><mi>u</mi></mrow></msup></mrow></math>.
+Setzt man beides in die Kettenregel ein, erhält man die Ableitung der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>g</mi></mrow></math>:
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>g</mi><mo>'</mo><mo>:</mo><mo>ℝ</mo><mo>→</mo><mo>ℝ</mo><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mi>x</mi><mo>→</mo><mi>g</mi><mo>'</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><msup><mi/><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></msup><mo>·</mo><mn>3</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mi>e</mi><msup><mi/><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></msup><mo>·</mo><mn>3</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>3</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mi>e</mi><msup><mi/><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></msup><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/></div>
   </div>
   
   
   
 
 <br clear="all"/><br clear="all"/>
-<br/>
-</div>
+<br/></div>
 </div>
 <div class="javascript-body-footer"><script>
 viewmodel = {

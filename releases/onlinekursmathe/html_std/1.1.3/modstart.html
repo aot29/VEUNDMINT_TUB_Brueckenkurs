@@ -331,8 +331,7 @@ Was genau sind Terme?
 1.3.1
     
   
-  </b>  <br/> <br/>
-<b>Terme</b><!-- mindexentry;;Terme; //--><a class="label" name="ELI_SW26"></a> sind Rechenausdrücke, die eine Kombination von Zahlen, Variablen, Klammern und geeigneten Rechenoperationen darstellen.
+  </b>  <br/> <br/><b>Terme</b><!-- mindexentry;;Terme; //--><a class="label" name="ELI_SW26"></a> sind Rechenausdrücke, die eine Kombination von Zahlen, Variablen, Klammern und geeigneten Rechenoperationen darstellen.
 </div>
   </div>
   
@@ -342,52 +341,25 @@ Was genau sind Terme?
 <br clear="all"/><br clear="all"/>
 Terme kann man auf zwei Arten interpretieren:
 
-<ul>
-<li>Als funktionale Ausdrücke: Wenn man für die im Term auftretenden Variablen konkrete Zahlen einsetzt, so ergibt der Term einen Zahlenwert.
-Beispielsweise ist <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi><mo>+</mo><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> ein Term; sobald man <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi><mo>=</mo><mn>2</mn></mrow></math> einsetzt erhält man den Wert <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>3</mn></mrow></math>. Auch <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> ist ein Term, dieser Term
-kann zu <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi><mo>+</mo><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> umgeformt werden und ergibt daher den gleichen Wert, wenn man <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi><mo>=</mo><mn>2</mn></mrow></math> einsetzt. Als symbolischer Ausdruck an sich ist <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi><mo>+</mo><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> verschieden von
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math>, als funktionaler Ausdruck sind beide aber gleich: Egal welchen Wert man für <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi></mrow></math> einsetzt, beide Terme ergeben immer das gleiche Endergebnis.
-Ein Term kann auch an sich einen Wert darstellen, wenn keine Variablen auftreten. Beispielsweise ist <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>3</mn><mo>·</mo><mo stretchy="false">(</mo><mn>2</mn><mo>+</mo><mn>4</mn><mo stretchy="false">)</mo></mrow></math> ein Term mit Wert
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>18</mn></mrow></math>.
+<ul><li>Als funktionale Ausdrücke: Wenn man für die im Term auftretenden Variablen konkrete Zahlen einsetzt, so ergibt der Term einen Zahlenwert.
+Beispielsweise ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>+</mo><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> ein Term; sobald man <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>2</mn></mrow></math> einsetzt erhält man den Wert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn></mrow></math>. Auch <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> ist ein Term, dieser Term
+kann zu <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>+</mo><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> umgeformt werden und ergibt daher den gleichen Wert, wenn man <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>2</mn></mrow></math> einsetzt. Als symbolischer Ausdruck an sich ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>+</mo><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> verschieden von
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math>, als funktionaler Ausdruck sind beide aber gleich: Egal welchen Wert man für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> einsetzt, beide Terme ergeben immer das gleiche Endergebnis.
+Ein Term kann auch an sich einen Wert darstellen, wenn keine Variablen auftreten. Beispielsweise ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mo>·</mo><mo stretchy="false">(</mo><mn>2</mn><mo>+</mo><mn>4</mn><mo stretchy="false">)</mo></mrow></math> ein Term mit Wert
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>18</mn></mrow></math>.
 <br clear="all"/><br clear="all"/>
 </li>
 
 <li>Als Auswertungsvorschrift: Ein Term kann als eine Art Anleitung interpretiert werden, wie man aus gegebenen Werten (in den Variablen)
-einen neuen Wert berechnet. Beispielsweise kann man den Term <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>-</mo><mn>1</mn></mrow></math> lesen als „Quadriere den Wert in <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi></mrow></math> und ziehe Eins ab“.
-Er ist verschieden von dem Term <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>, auch wenn gleiche Werte herauskommen. Der zweite Term beschreibt die Auswertung als
-„Addiere Eins zu <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi></mrow></math> und multipliziere mit dem Wert, der entsteht, wenn man von <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi></mrow></math> Eins abzieht“.
-Beide Terme sind mathematisch gleich. Man schreibt <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>-</mo><mn>1</mn><mo>=</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>, stellt aber zwei verschiedene Möglichkeiten dar,
+einen neuen Wert berechnet. Beispielsweise kann man den Term <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>1</mn></mrow></math> lesen als „Quadriere den Wert in <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> und ziehe Eins ab“.
+Er ist verschieden von dem Term <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>, auch wenn gleiche Werte herauskommen. Der zweite Term beschreibt die Auswertung als
+„Addiere Eins zu <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> und multipliziere mit dem Wert, der entsteht, wenn man von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> Eins abzieht“.
+Beide Terme sind mathematisch gleich. Man schreibt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>1</mn><mo>=</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>, stellt aber zwei verschiedene Möglichkeiten dar,
 den Wert auszurechnen. Je nach Problemstellung kann einer der beiden Terme besser geeignet sein, um das Problem zu lösen.
 <br clear="all"/><br clear="all"/>
 </li>
-</ul>
-
-<br clear="all"/><br clear="all"/>
-<br/>
-</div>
+</ul><br clear="all"/><br clear="all"/>
+<br/></div>
 </div>
 <div class="javascript-body-footer"><script>
 viewmodel = {

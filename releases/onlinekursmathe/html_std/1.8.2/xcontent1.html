@@ -318,9 +318,7 @@ function unloadHandler() {
 <!-- mdeclaresiteuxidpost;;VBKM08_Integral_Content;; //-->
 
 <br clear="all"/><br clear="all"/>
-Das Integral einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≥</mo><mn>0</mn></mrow></math> kann als 
+Das Integral einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≥</mo><mn>0</mn></mrow></math> kann als 
 „Fläche unter der Kurve“ interpretiert werden. In dem nach 
 Riemann benannten Integral wird der Funktionsverlauf durch 
 eine Treppenfunktion angenähert, und deren Funktionswerte werden, gewichtet 
@@ -331,203 +329,37 @@ aufsummiert. Dies ist in der unten gezeigten Abbildung beispielhaft dargestellt.
 
 
 
-<a id="L_SOURCEAUTOLABEL_154">
+<a id="L_SOURCEAUTOLABEL_276">
 </a>
 
-<img src="./VBKM08mtikzauto_1.4x.png" style="width:556px;height:325px" alt="./VBKM08mtikzauto_1.4x.png"/>
- 
-
-<br clear="all"/><br clear="all"/>
+<img src="./VBKM08mtikzauto_1.4x.png" style="width:556px;height:325px" alt="./VBKM08mtikzauto_1.4x.png"/><br clear="all"/><br clear="all"/>
 Zur Definition des Integrals: Funktion angenähert durch eine Treppenfunktion,<br/>
 unterteilt in vier Teilintervalle.
 
 </div>
 Man erkennt, dass die Fläche unter der Kurve zunächst durch Rechtecke
 angenähert wird, deren eine (horizontale) Seitenlänge durch ein Intervall 
-auf der <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi></mrow></math>-Achse bestimmt wird, während die Länge der zweiten (vertikalen) 
-Seite durch einen Funktionswert <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo></mrow></math> an der Stelle <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-</mrow></math> innerhalb des 
-dazu gehörenden <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi></mrow></math>-Intervalls beschrieben wird. Man bestimmt nun die Flächen 
+auf der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>-Achse bestimmt wird, während die Länge der zweiten (vertikalen) 
+Seite durch einen Funktionswert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo></mrow></math> an der Stelle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow></msub></mrow></math> innerhalb des 
+dazu gehörenden <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>-Intervalls beschrieben wird. Man bestimmt nun die Flächen 
 dieser Rechtecke und summiert diese Teilflächen auf.
-Je kleiner die Intervalle auf der <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>x</mi></mrow></math>-Achse werden, umso mehr nähert sich die 
+Je kleiner die Intervalle auf der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>-Achse werden, umso mehr nähert sich die 
 so berechnete Summe dem „wahren“ Wert der Fläche unter der Kurve, 
 also dem Integral der Funktion, an.
 
 <br clear="all"/><br clear="all"/>
-Formal heißt das, dass man eine Summe <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>S</mi></mrow><mrow><mi>n</mi></mrow>
-</msub>
-</mrow></math> der Form
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<msub><mrow><mi>S</mi></mrow><mrow><mi>n</mi></mrow>
-</msub>
-<mo>=</mo>
-<munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn> </mrow>
-<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mi>Δ</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mi>      </mi>
-<mtext>mit</mtext>
-<mi>  </mi><mi>Δ</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>=</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
-</msub>
-<mo>-</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-</mrow>
-    </mstyle></math></center>
-<br/>
+Formal heißt das, dass man eine Summe <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>S</mi></mrow><mrow><mi>n</mi></mrow></msub></mrow></math> der Form
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>S</mi></mrow><mrow><mi>n</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mi>Δ</mi><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mi>      </mi><mtext>mit</mtext><mi>  </mi><mi>Δ</mi><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub></mrow></mstyle></math></center><br/>
 
-bestimmt. Im betrachteten Beispiel wird das Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>8</mn><mo stretchy="false">]</mo></mrow></math> in 
-vier Teile eingeteilt. Dabei sind <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
-</msub>
-<mo>=</mo><mn>1</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
-</msub>
-<mo>=</mo><mn>2</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msub>
-<mo>=</mo><mn>4</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
-</msub>
-<mo>=</mo><mn>7</mn></mrow></math>. 
+bestimmt. Im betrachteten Beispiel wird das Intervall <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>8</mn><mo stretchy="false">]</mo></mrow></math> in 
+vier Teile eingeteilt. Dabei sind <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>=</mo><mn>1</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><mn>2</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>=</mo><mn>4</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msub><mo>=</mo><mn>7</mn></mrow></math>. 
 Wendet man darauf diese Summenformel an, so erhält man
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<mtable>
-<mtr><mtd columnalign="right" columnspan="1"><mrow>
-<msub><mrow><mi>S</mi></mrow><mrow><mn>4</mn></mrow>
-</msub>
-</mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>0</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
-</msub>
-<mo>-</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>1</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msub>
-<mo>-</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
-</msub>
-<mo>-</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow>
-</msub>
-<mo>-</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo></mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow/>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>0</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mn>2</mn><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>1</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mn>4</mn><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mn>7</mn><mo>-</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mn>8</mn><mo>-</mo><mn>7</mn><mo stretchy="false">)</mo></mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow/>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>0</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mn>1</mn><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>1</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mn>2</mn><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mn>3</mn><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mn>1</mn><mi> </mi><mo>.</mo></mrow>
-</mtd></mtr>
-</mtable>
-</mrow>
-    </mstyle></math></center>
-<br/>
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><msub><mrow><mi>S</mi></mrow><mrow><mn>4</mn></mrow></msub></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>0</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow></msub><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>0</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mn>2</mn><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mn>4</mn><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mn>7</mn><mo>-</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mn>8</mn><mo>-</mo><mn>7</mn><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>0</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mn>1</mn><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mn>2</mn><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mn>3</mn><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mn>1</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
 
 Offensichtlich genügt es nicht, nur einige wenige Teilintervalle zu 
 betrachten. Im Allgemeinen wird man die maximale Länge der Teilintervalle 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
-</msub>
-<mo>-</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-</mrow></math> immer kleiner wählen müssen und damit für immer mehr 
-Teilintervalle die Summanden <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
-</msub>
-<mo>-</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo></mrow></math> berechnen und 
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub></mrow></math> immer kleiner wählen müssen und damit für immer mehr 
+Teilintervalle die Summanden <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo></mrow></math> berechnen und 
 addieren, um einen möglichst genauen Wert der Fläche zu berechnen. Deshalb
 betrachtet man den Grenzwert, dass die maximale Intervalllänge der 
 Teilintervalle gegen Null geht.
@@ -551,76 +383,16 @@ Literatur verwiesen.
     
   
   </b>  <br/>
-Gegeben ist eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> auf einem reellen 
-Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>. Zu „feiner werdenden“ Unterteilungen 
-des Intervalls, sodass <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
-</msub>
-<mo>-</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-</mrow></math> gegen <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>0</mn></mrow></math> geht, nennt man
-<br/>
-<br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
-<mrow><mi>b</mi></mrow></msubsup>
-<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo>
-<munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow>
-</munder>
-
-<msub><mrow><mi>S</mi></mrow><mrow><mi>n</mi></mrow>
-</msub>
-<mo>=</mo>
-<munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow>
-</munder>
-
-<munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn> </mrow>
-<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
-</msub>
-<mo>-</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mi>   </mi>
-<mtext>mit</mtext>
-<mi>  </mi>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo>≤</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo>≤</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
-</msub>
-</mrow>
-    </mstyle></math></td><td width="1">
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow><mo stretchy="false">(</mo><mn>8</mn><mo>.</mo><mn>2</mn><mo>.</mo><mn>1</mn><mo stretchy="false">)</mo></mrow>
-    </mstyle></math></center>
-
-
-
-
-<br clear="all"/><br clear="all"/>
-das <b>bestimmte Integral</b><!-- mindexentry;;Integral (bestimmt); //--><a class="label" name="ELI_SW192"></a> von <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi></mrow></math> mit der 
-Untergrenze <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>a</mi></mrow></math> und der Obergrenze <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>b</mi></mrow></math> (wenn der Grenzwert existiert und 
-unabhängig von der jeweiligen Unterteilung ist), und die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi></mrow></math> 
+Gegeben ist eine Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> auf einem reellen 
+Intervall <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>. Zu „feiner werdenden“ Unterteilungen 
+des Intervalls, sodass <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub></mrow></math> gegen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0</mn></mrow></math> geht, nennt man
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></msubsup><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo><munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow></munder><msub><mrow><mi>S</mi></mrow><mrow><mi>n</mi></mrow></msub><mo>=</mo><munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow></munder><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mi>   </mi><mtext>mit</mtext><mi>  </mi><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo>≤</mo><msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow></msub><mo>≤</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></mstyle></math></td><td width="1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mo stretchy="false">(</mo><mn>8</mn><mo>.</mo><mn>2</mn><mo>.</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle></math></center><br clear="all"/><br clear="all"/>
+das <b>bestimmte Integral</b><!-- mindexentry;;Integral (bestimmt); //--><a class="label" name="ELI_SW192"></a> von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> mit der 
+Untergrenze <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> und der Obergrenze <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi></mrow></math> (wenn der Grenzwert existiert und 
+unabhängig von der jeweiligen Unterteilung ist), und die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> 
 heißt dann <b>integrierbar</b><!-- mindexentry;;integrierbar; //--><a class="label" name="ELI_SW193"></a>.
-Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi></mrow></math> wird in diesem Kontext auch <b>Integrand</b><!-- mindexentry;;Integrand; //--><a class="label" name="ELI_SW194"></a> 
+Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> wird in diesem Kontext auch <b>Integrand</b><!-- mindexentry;;Integrand; //--><a class="label" name="ELI_SW194"></a> 
 genannt.
 </div>
   </div>
@@ -634,8 +406,7 @@ berechnet werden kann, das Integral also nicht exisitert.
 Weiterführende Überlegungen zeigen, dass jedenfalls für jede stetige 
 Funktion das Integral existiert.
 Als Beispiel wird das Integral von 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo><mo>,</mo><mi> </mi><mi>x</mi><mi>↦</mi><mi>x</mi></mrow></math> 
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo><mo>,</mo><mi> </mi><mi>x</mi><mi>↦</mi><mi>x</mi></mrow></math> 
 berechnet, wobei die Berechnung des Grenzwertes im Vordergrund steht.
 
 <br clear="all"/><br clear="all"/>
@@ -646,237 +417,33 @@ berechnet, wobei die Berechnung des Grenzwertes im Vordergrund steht.
   8.2.2
   
   </b>  <br/>
-Es soll das Integral von <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo><mo>,</mo><mi> </mi><mi>x</mi><mi>↦</mi><mi>x</mi></mrow></math> 
+Es soll das Integral von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo><mo>,</mo><mi> </mi><mi>x</mi><mi>↦</mi><mi>x</mi></mrow></math> 
 berechnet werden.
-Dazu teilt man das Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math> am einfachsten in gleich breite
-Teilintervalle <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mo stretchy="false">[</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo>;</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
-</msub>
-<mo stretchy="false">]</mo></mrow></math> mit 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
-</msub>
-<mo>:</mo><mo>=</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo>:</mo><mo>=</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow>
-</msub>
-<mo>+</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mi>n</mi></mrow>
-</mfrac>
-</mrow></math> ein. Die Intervalllänge ist also
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>Δ</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>=</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
-</msub>
-<mo>-</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo>=</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mi>n</mi></mrow>
-</mfrac>
-</mrow></math>.
+Dazu teilt man das Intervall <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math> am einfachsten in gleich breite
+Teilintervalle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo>;</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">]</mo></mrow></math> mit 
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>:</mo><mo>=</mo><mn>0</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo>:</mo><mo>=</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>n</mi></mrow></mfrac></mrow></math> ein. Die Intervalllänge ist also
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Δ</mi><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>n</mi></mrow></mfrac></mrow></math>.
 
 <br clear="all"/><br clear="all"/>
-Untersucht man die Intervalllänge auf ihr Verhalten für <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>n</mi></mrow></math> gegen unendlich, 
-dann sieht man, dass <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>Δ</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo></mrow></math> immer kleiner wird und gegen Null strebt. 
+Untersucht man die Intervalllänge auf ihr Verhalten für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math> gegen unendlich, 
+dann sieht man, dass <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Δ</mi><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo></mrow></math> immer kleiner wird und gegen Null strebt. 
 Die Voraussetzung für die Berechnung eines bestimmten Integrals ist also gegeben.
 
 <br clear="all"/><br clear="all"/>
-Für die Werte <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-</mrow></math> findet man unter Zuhilfenahme der Intervalllänge außerdem 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo>=</mo>
-<mfrac><mrow><mi>k</mi></mrow>
-<mrow><mi>n</mi></mrow>
-</mfrac>
-</mrow></math>. Wählt man <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo>=</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-</mrow></math> für die Zwischenstellen, ergibt 
-sich <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>=</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo>=</mo>
-<mfrac><mrow><mi>k</mi></mrow>
-<mrow><mi>n</mi></mrow>
-</mfrac>
-</mrow></math>.
+Für die Werte <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub></mrow></math> findet man unter Zuhilfenahme der Intervalllänge außerdem 
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>k</mi></mrow><mrow><mi>n</mi></mrow></mfrac></mrow></math>. Wählt man <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow></msub><mo>=</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub></mrow></math> für die Zwischenstellen, ergibt 
+sich <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>z</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>k</mi></mrow><mrow><mi>n</mi></mrow></mfrac></mrow></math>.
 
 <br clear="all"/><br clear="all"/>
 Setzt man diese Ergebnisse in die Summenformel ein, dann erhält man unter der 
-Verwendung der Formel <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn> </mrow>
-<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>k</mi><mo>=</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>2</mn></mrow>
-</mfrac>
-<mi> </mi><mi>n</mi><mo stretchy="false">(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>, die 
+Verwendung der Formel <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>k</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi> </mi><mi>n</mi><mo stretchy="false">(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>, die 
 nach C. F. Gauß auch als „kleiner Gauß“ bezeichnet wird, die
 Gleichung
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<mtable>
-<mtr><mtd columnalign="right" columnspan="1"><mrow>
-<msub><mrow><mi>S</mi></mrow><mrow><mi>n</mi></mrow>
-</msub>
-</mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow>
-<munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn> </mrow>
-<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>·</mo><mi>Δ</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo stretchy="false">)</mo><mo>=</mo>
-<munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn> </mrow>
-<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover>
-<msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow>
-</msub>
-<mo>·</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mi>n</mi></mrow>
-</mfrac>
-<mo>=</mo>
-<munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn> </mrow>
-<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover>
-<mfrac><mrow><mi>k</mi></mrow>
-<mrow><mi>n</mi></mrow>
-</mfrac>
-<mo>·</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mi>n</mi></mrow>
-</mfrac>
-<mo>=</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow>
-<msup><mrow><mi>n</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow>
-</mfrac>
-<mo>·</mo>
-<munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn> </mrow>
-<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>k</mi><mo>=</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow>
-<msup><mrow><mi>n</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow>
-</mfrac>
-<mo>·</mo>
-<munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn> </mrow>
-<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>k</mi></mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow/>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow>
-<msup><mrow><mi>n</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow>
-</mfrac>
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><msub><mrow><mi>S</mi></mrow><mrow><mi>n</mi></mrow></msub></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mo>·</mo><mi>Δ</mi><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><msub><mrow><mi>x</mi></mrow><mrow><mi>k</mi></mrow></msub><mo>·</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>n</mi></mrow></mfrac><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mfrac><mrow><mi>k</mi></mrow><mrow><mi>n</mi></mrow></mfrac><mo>·</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>n</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mi>n</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>k</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mi>n</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></munderover><mi>k</mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mi>n</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mfrac><mrow><mi>n</mi><mo stretchy="false">(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>·</mo><mfrac><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mrow><mi>n</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>·</mo><mrow><mo>(</mo><mn>1</mn><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>n</mi></mrow></mfrac><mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
 
-<mfrac><mrow><mi>n</mi><mo stretchy="false">(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo></mrow>
-<mrow><mn>2</mn></mrow>
-</mfrac>
-<mo>=</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>2</mn></mrow>
-</mfrac>
-<mo>·</mo>
-<mfrac><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow>
-<mrow><mi>n</mi></mrow>
-</mfrac>
-<mo>=</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>2</mn></mrow>
-</mfrac>
-<mo>·</mo><mrow><mo>(</mo><mn>1</mn><mo>-</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mi>n</mi></mrow>
-</mfrac>
-<mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
-</mtd></mtr>
-</mtable>
-</mrow>
-    </mstyle></math></center>
-<br/>
-
-Und mit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mstyle displaystyle="true">
-<munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow>
-</munder>
-
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mi>n</mi></mrow>
-</mfrac>
-<mo>=</mo><mn>0</mn></mstyle></mrow></math> ergibt 
+Und mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mstyle displaystyle="true"><munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow></munder><mfrac><mrow><mn>1</mn></mrow><mrow><mi>n</mi></mrow></mfrac><mo>=</mo><mn>0</mn></mstyle></mrow></math> ergibt 
 sich für das Integral
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
-<mrow><mn>1</mn></mrow></msubsup>
-<mi>x</mi><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo>
-<munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow>
-</munder>
-
-<msub><mrow><mi>S</mi></mrow><mrow><mi>n</mi></mrow>
-</msub>
-<mo>=</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>2</mn></mrow>
-</mfrac>
-<mi> </mi><mo>.</mo></mrow>
-    </mstyle></math></center>
-<br/>
-
-</div>
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn></mrow><mrow><mn>1</mn></mrow></msubsup><mi>x</mi><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo><munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow></munder><msub><mrow><mi>S</mi></mrow><mrow><mi>n</mi></mrow></msub><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/></div>
   </div>
   
   
@@ -904,48 +471,20 @@ Funktion und deren Integral.
 8.2.3
     
   
-  </b>  <br/>
-
-
-
-<a id="HSDDIR">
+  </b>  <br/><a id="HSDDIR">
 </a>
-Gegeben ist eine stetige Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> auf 
-einem reellen Intervall <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>. Dann besitzt <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi></mrow></math> eine Stammfunktion, 
-und für jede Stammfunktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>F</mi></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi></mrow></math> gilt
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
-<mrow><mi>b</mi></mrow></msubsup>
-<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mi>  </mi><mo>=</mo><mi>  </mi>
-<msubsup><mrow><mo>[</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>]</mo></mrow><mrow><mi>a</mi> </mrow>
-<mrow><mi>b</mi></mrow></msubsup>
-<mi>  </mi><mo>=</mo><mi>  </mi><mi>F</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>-</mo><mi>F</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mi> </mi><mo>.</mo></mrow>
-    </mstyle></math></center>
-<br/>
-
-</div>
+Gegeben ist eine stetige Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> auf 
+einem reellen Intervall <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>. Dann besitzt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> eine Stammfunktion, 
+und für jede Stammfunktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> gilt
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></msubsup><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi><mi>  </mi><mo>=</mo><mi>  </mi><msubsup><mrow><mo>[</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>]</mo></mrow><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></msubsup><mi>  </mi><mo>=</mo><mi>  </mi><mi>F</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>-</mo><mi>F</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/></div>
   </div>
   
   
   
 
 <br clear="all"/><br clear="all"/>
-Als einfaches Beispiel wird das bestimmte Integral der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi></mrow></math> mit 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow></math> zwischen <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>b</mi><mo>=</mo><mn>2</mn></mrow></math> berechnet. Mit den Regeln für die 
+Als einfaches Beispiel wird das bestimmte Integral der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> mit 
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math> zwischen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi><mo>=</mo><mn>2</mn></mrow></math> berechnet. Mit den Regeln für die 
 Bestimmung von Stammfunktionen und dem Hauptsatz der Differential- und 
 Integralrechnung kann man diese Aufgabe sehr leicht lösen.
 
@@ -957,70 +496,16 @@ Integralrechnung kann man diese Aufgabe sehr leicht lösen.
   8.2.4
   
   </b>  <br/>
-Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mn>1</mn><mo>;</mo><mn>2</mn><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo>
-<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow></math> hat nach 
-der Tabelle aus dem ersten Abschnitt eine Stammfunktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>F</mi></mrow></math> mit 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>3</mn></mrow>
-</mfrac>
-
-<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
-</msup>
-<mo>+</mo><mi>C</mi></mrow></math> für eine reelle Zahl <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>C</mi></mrow></math>.
+Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>:</mo><mo stretchy="false">[</mo><mn>1</mn><mo>;</mo><mn>2</mn><mo stretchy="false">]</mo><mo>→</mo><mo>ℝ</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math> hat nach 
+der Tabelle aus dem ersten Abschnitt eine Stammfunktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math> mit 
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msup><mo>+</mo><mi>C</mi></mrow></math> für eine reelle Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>C</mi></mrow></math>.
 Mit dem Hauptsatz ergibt sich
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>1</mn> </mrow>
-<mrow><mn>2</mn></mrow></msubsup>
-
-<msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo>
-<msubsup><mrow><mo>[</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>3</mn></mrow>
-</mfrac>
-
-<msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow>
-</msup>
-<mi> </mi><mo>+</mo><mi> </mi><mi>C</mi><mo>]</mo></mrow><mrow><mn>1</mn> </mrow>
-<mrow><mn>2</mn></mrow></msubsup>
-<mo>=</mo><mrow><mo>(</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>3</mn></mrow>
-</mfrac>
-<mi> </mi>
-<msup><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow>
-</msup>
-<mi> </mi><mo>+</mo><mi> </mi><mi>C</mi><mo>)</mo></mrow><mo>-</mo><mrow><mo>(</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>3</mn></mrow>
-</mfrac>
-<mi> </mi>
-<msup><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow>
-</msup>
-<mi> </mi><mo>+</mo><mi> </mi><mi>C</mi><mo>)</mo></mrow><mo>=</mo>
-<mfrac><mrow><mn>7</mn></mrow>
-<mrow><mn>3</mn></mrow>
-</mfrac>
-<mi> </mi><mo>.</mo></mrow>
-    </mstyle></math></center>
-<br/>
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msubsup><mrow><mo>∫</mo></mrow><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></msubsup><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mi> </mi><mi>d</mi><mi>x</mi><mo>=</mo><msubsup><mrow><mo>[</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msup><mi> </mi><mo>+</mo><mi> </mi><mi>C</mi><mo>]</mo></mrow><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></msubsup><mo>=</mo><mrow><mo>(</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi> </mi><msup><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow></msup><mi> </mi><mo>+</mo><mi> </mi><mi>C</mi><mo>)</mo></mrow><mo>-</mo><mrow><mo>(</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi> </mi><msup><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></msup><mi> </mi><mo>+</mo><mi> </mi><mi>C</mi><mo>)</mo></mrow><mo>=</mo><mfrac><mrow><mn>7</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/>
 
 Wie man sieht, fällt die Konstante nach dem Einsetzen der Grenzen weg, sodass 
 man sie in der Praxis bei der Berechnung von bestimmten Integralen bereits bei 
 der Bildung der Stammfunktion ,,unterschlagen'' kann. 
-Das heißt, man kann für die Berechnung des bestimmten Integrals <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>C</mi><mo>=</mo><mn>0</mn></mrow></math> wählen.
+Das heißt, man kann für die Berechnung des bestimmten Integrals <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>C</mi><mo>=</mo><mn>0</mn></mrow></math> wählen.
 </div>
   </div>
   
@@ -1029,31 +514,16 @@ Das heißt, man kann für die Berechnung des bestimmten Integrals <math xmlns="h
 
 <br clear="all"/><br clear="all"/>
 Die Gleichung im Hauptsatz gilt auch für jeden Zwischenwert 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>z</mi><mo>∈</mo><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>, sodass man gemäß
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>-</mo><mi>F</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi> </mrow>
-<mrow><mi>z</mi></mrow></msubsup>
-<mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi></mrow>
-    </mstyle></math></center>
-<br/>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>z</mi><mo>∈</mo><mo stretchy="false">[</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>, sodass man gemäß
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>-</mo><mi>F</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mrow><mo>∫</mo></mrow><mrow><mi>a</mi></mrow><mrow><mi>z</mi></mrow></msubsup><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>x</mi></mrow></mstyle></math></center><br/>
 
-damit alle Funktionswerte <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>F</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></math> berechnen kann, wenn die Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>F</mi><mo>'</mo><mo>=</mo><mi>f</mi></mrow></math>
-und ein Funktionswert, beispielsweise <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>F</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></math>, bekannt sind. Hierfür sagt man 
-auch, dass <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>F</mi></mrow></math> aus der Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>F</mi><mo>'</mo><mo>=</mo><mi>f</mi></mrow></math> rekonstruiert wird. 
+damit alle Funktionswerte <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></math> berechnen kann, wenn die Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mo>'</mo><mo>=</mo><mi>f</mi></mrow></math>
+und ein Funktionswert, beispielsweise <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></math>, bekannt sind. Hierfür sagt man 
+auch, dass <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math> aus der Ableitung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mo>'</mo><mo>=</mo><mi>f</mi></mrow></math> rekonstruiert wird. 
 
 <br clear="all"/><br clear="all"/>
-Anwendungsbeispiele zur Rekonstruktion einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>F</mi></mrow></math> aus ihrer Ableitung
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>F</mi><mo>'</mo><mo>=</mo><mi>f</mi></mrow></math> werden am Ende des Abschnitts <a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html#M08A_Anwendung">8.3</a> vorgestellt.
+Anwendungsbeispiele zur Rekonstruktion einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math> aus ihrer Ableitung
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mo>'</mo><mo>=</mo><mi>f</mi></mrow></math> werden am Ende des Abschnitts <a class="MINTERLINK" href="../../html_std/1.8.3/modstart.html#M08A_Anwendung">8.3</a> vorgestellt.
 
 <br clear="all"/><br clear="all"/>
 
@@ -1062,8 +532,7 @@ Anwendungsbeispiele zur Rekonstruktion einer Funktion <math xmlns="http://www.w3
 <br clear="all"/><br clear="all"/>
 
 <br clear="all"/><br clear="all"/>
-<br/>
-</div>
+<br/></div>
 </div>
 <div class="javascript-body-footer"><script>
 viewmodel = {

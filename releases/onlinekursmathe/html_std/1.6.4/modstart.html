@@ -356,22 +356,7 @@ function unloadHandler() {
 <br clear="all"/><br clear="all"/>
 Bei <b>Exponentialfunktionen</b><!-- mindexentry;;Exponentialfunktion; //--><a class="label" name="ELI_SW165"></a> stellt die Veränderliche im Gegensatz zu den Potenzfunktionen
 nicht die Basis des Exponentialausdrucks dar, sondern sie bildet den Exponenten. Dementsprechend werden wir Zuordnungsvorschriften betrachten wie z.B.:
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow><mi>x</mi><mo>⟼</mo>
-<msup><mrow><mn>2</mn></mrow><mrow><mi>x</mi></mrow>
-</msup>
-<mi>  </mi>
-<mtext>oder</mtext>
-<mi>  </mi><mi>x</mi><mo>⟼</mo>
-<msup><mrow><mn>10</mn></mrow><mrow><mi>x</mi></mrow>
-</msup>
-<mi> </mi><mo>.</mo><br/></mrow>
-    </mstyle></math></center>
-<br/>
-
-
-<br clear="all"/><br clear="all"/>
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>x</mi><mo>⟼</mo><msup><mrow><mn>2</mn></mrow><mrow><mi>x</mi></mrow></msup><mi>  </mi><mtext>oder</mtext><mi>  </mi><mi>x</mi><mo>⟼</mo><msup><mrow><mn>10</mn></mrow><mrow><mi>x</mi></mrow></msup><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/><br clear="all"/><br clear="all"/>
  <br/> <br/>
 Exponentialfunktionen spielen in vielen unterschiedlichen Bereichen eine wichtige Rolle, so etwa bei der Beschreibung biologischer
 Wachstumsprozesse - diverse Modelle zur Bevölkerungsentwicklung eingeschlossen -, bei Prozessen des radioaktiven Zerfalls
@@ -386,90 +371,45 @@ oder bei einer bestimmten Form der Zinseszinsberechnung. Betrachten wir ein Beis
   <b>Beispiel
   6.4.1
   
-  </b>  <br/>
-
-
-
-<a id="M06_bsp_bak_pop">
+  </b>  <br/><a id="M06_bsp_bak_pop">
 </a>
-Eine Bakterienkultur enthält zu Versuchsbeginn <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>500</mn></mrow></math> Bakterien und verdoppelt ihre Population alle <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>13</mn></mrow></math> Minuten. Wir möchten gerne
-wissen, wieviele Bakterien nach <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>1</mn></mrow></math> Stunde und <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>15</mn></mrow></math> Minuten (also nach <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>75</mn></mrow></math> Minuten) in der Kultur vorhanden sind?
+Eine Bakterienkultur enthält zu Versuchsbeginn <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>500</mn></mrow></math> Bakterien und verdoppelt ihre Population alle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>13</mn></mrow></math> Minuten. Wir möchten gerne
+wissen, wieviele Bakterien nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math> Stunde und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>15</mn></mrow></math> Minuten (also nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>75</mn></mrow></math> Minuten) in der Kultur vorhanden sind?
 
 <br clear="all"/><br clear="all"/>
-In einem ersten Anlauf können wir eine einfache Wertetabelle erstellen, die uns die Bakterienpopulation zu Beginn (<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow></math> min),
-nach <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>t</mi><mo>=</mo><mn>13</mn></mrow></math> min, nach <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>t</mi><mo>=</mo><mn>26</mn></mrow></math> min usw., also zu Vielfachen der <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>13</mn></mrow></math>-Minuten-Verdopplungszeitspanne, angibt:
+In einem ersten Anlauf können wir eine einfache Wertetabelle erstellen, die uns die Bakterienpopulation zu Beginn (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow></math> min),
+nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi><mo>=</mo><mn>13</mn></mrow></math> min, nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi><mo>=</mo><mn>26</mn></mrow></math> min usw., also zu Vielfachen der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>13</mn></mrow></math>-Minuten-Verdopplungszeitspanne, angibt:
 
 <div style="text-align:center">
  
-<table border="1" class="rahmen">
-<tr><td align="center" class="rahmen">Zeit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>t</mi></mrow></math> in min </td><td align="right" class="rahmen">0 </td><td align="right" class="rahmen">13 </td><td align="right" class="rahmen">26 </td><td align="right" class="rahmen">39 </td><td align="right" class="rahmen">52 </td><td align="right" class="rahmen">65 </td><td align="right" class="rahmen">78 </td><td align="right" class="rahmen">91 </td><td align="center" class="rahmen">usw. </td></tr>
-<tr><td align="center" class="rahmen">Anzahl Bakterien </td><td align="right" class="rahmen">500 </td><td align="right" class="rahmen">1000 </td><td align="right" class="rahmen">2000 </td><td align="right" class="rahmen">4000 </td><td align="right" class="rahmen">8000 </td><td align="right" class="rahmen">16000 </td><td align="right" class="rahmen">32000 </td><td align="right" class="rahmen">64000 </td><td align="center" class="rahmen">usw. </td></tr></table>
-
-</div>
+<table border="1" class="rahmen"><tr><td align="center" class="rahmen">Zeit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math> in min </td><td align="right" class="rahmen">0 </td><td align="right" class="rahmen">13 </td><td align="right" class="rahmen">26 </td><td align="right" class="rahmen">39 </td><td align="right" class="rahmen">52 </td><td align="right" class="rahmen">65 </td><td align="right" class="rahmen">78 </td><td align="right" class="rahmen">91 </td><td align="center" class="rahmen">usw. </td></tr><tr><td align="center" class="rahmen">Anzahl Bakterien </td><td align="right" class="rahmen">500 </td><td align="right" class="rahmen">1000 </td><td align="right" class="rahmen">2000 </td><td align="right" class="rahmen">4000 </td><td align="right" class="rahmen">8000 </td><td align="right" class="rahmen">16000 </td><td align="right" class="rahmen">32000 </td><td align="right" class="rahmen">64000 </td><td align="center" class="rahmen">usw. </td></tr></table></div>
 Aus der Tabelle können wir abschätzen, dass die Antwort auf unsere Frage zwischen
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>16000</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>32000</mn></mrow></math>, wahrscheinlich näher bei <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>32000</mn></mrow></math>, liegen wird. Doch wie sieht es mit einer präzis(er)en Antwort aus?
-Dazu müssen wir den funktionalen Zusammenhang zwischen allgemeinen <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>t</mi></mrow></math>-Werten und Bakterienanzahl kennen. In der
-unten stehenden Abbildung ist auch der Graph einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>p</mi></mrow></math> wiedergegeben; dieser Funktionsgraph füllt sozusagen die
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>16000</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>32000</mn></mrow></math>, wahrscheinlich näher bei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>32000</mn></mrow></math>, liegen wird. Doch wie sieht es mit einer präzis(er)en Antwort aus?
+Dazu müssen wir den funktionalen Zusammenhang zwischen allgemeinen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math>-Werten und Bakterienanzahl kennen. In der
+unten stehenden Abbildung ist auch der Graph einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi></mrow></math> wiedergegeben; dieser Funktionsgraph füllt sozusagen die
 Lücken zwischen den isolierten Punkten, die den Wertepaaren aus der Tabelle entsprechen und die ebenfalls eingezeichnet
 sind. Die zugehörige Abbildungsvorschrift ordnet jedem reellen Zeitpunkt eine Populationsgröße zu. Wie wir sehen werden,
 handelt es sich bei der Funktion um eine Exponentialfunktion.
 
 <div style="text-align:center">
 
-<img src="./bak_pop.png" style="width:400px" alt="./bak_pop.png"/>
-
-</div>
+<img src="./bak_pop.png" style="width:400px" alt="./bak_pop.png"/></div>
 Aus der graphischen Darstellung können wir die gesuchte Anzahl an Bakterien schon etwas genauer ablesen. Aber für die
 exakte Angabe benötigen wir die Abbildungsvorschrift, die hinter dem Graphen aus der Abbildung steht und die wir hier
 zunächst nur angeben:
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow><mi>p</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mi>∞</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mi>∞</mi><mo stretchy="false">)</mo><mi>  </mi>
-<mtext>mit</mtext>
-<mi>  </mi><mi>t</mi><mo>⟼</mo><mi>p</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>500</mn><mo>·</mo>
-<msup><mrow><mn>2</mn></mrow><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">/</mo><mn>13</mn><mo stretchy="false">)</mo></mrow>
-</msup>
-<mi> </mi><mo>.</mo><br/></mrow>
-    </mstyle></math></center>
-<br/>
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>p</mi><mo>:</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mi>∞</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mn>0</mn><mo>;</mo><mi>∞</mi><mo stretchy="false">)</mo><mi>  </mi><mtext>mit</mtext><mi>  </mi><mi>t</mi><mo>⟼</mo><mi>p</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>500</mn><mo>·</mo><msup><mrow><mn>2</mn></mrow><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">/</mo><mn>13</mn><mo stretchy="false">)</mo></mrow></msup><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>
 
 (In Aufgabe <a class="MINTERLINK" href="../../html_std/1.6.4/xcontent1.html#M06_bsp_bak_pop_exercise">6.4.3</a> werden wir diesen funktionalen Zusammenhang begründen.)<br/>
-Damit erhalten wir für <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>t</mi><mo>=</mo><mn>75</mn></mrow></math> (gemessen in Minuten) den Funktionswert
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow><mi>p</mi><mo stretchy="false">(</mo><mn>75</mn><mo stretchy="false">)</mo><mo>=</mo><mn>500</mn><mo>·</mo>
-<msup><mrow><mn>2</mn></mrow><mrow><mo stretchy="false">(</mo><mn>75</mn><mo stretchy="false">/</mo><mn>13</mn><mo stretchy="false">)</mo></mrow>
-</msup>
-<mo>≈</mo><mn>500</mn><mo>·</mo><mn>54,539545</mn><mo>≈</mo><mn>27270</mn><mi> </mi><mo>.</mo><br/></mrow>
-    </mstyle></math></center>
-<br/>
+Damit erhalten wir für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi><mo>=</mo><mn>75</mn></mrow></math> (gemessen in Minuten) den Funktionswert
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>p</mi><mo stretchy="false">(</mo><mn>75</mn><mo stretchy="false">)</mo><mo>=</mo><mn>500</mn><mo>·</mo><msup><mrow><mn>2</mn></mrow><mrow><mo stretchy="false">(</mo><mn>75</mn><mo stretchy="false">/</mo><mn>13</mn><mo stretchy="false">)</mo></mrow></msup><mo>≈</mo><mn>500</mn><mo>·</mo><mn>54,539545</mn><mo>≈</mo><mn>27270</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>
 
-Also leben nach <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>75</mn></mrow></math> Minuten <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>27270</mn></mrow></math> Bakterien in der fraglichen Population.
+Also leben nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>75</mn></mrow></math> Minuten <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>27270</mn></mrow></math> Bakterien in der fraglichen Population.
 </div>
   </div>
   
   
   
-<br/>
-</div>
+<br/></div>
 </div>
 <div class="javascript-body-footer"><script>
 viewmodel = {

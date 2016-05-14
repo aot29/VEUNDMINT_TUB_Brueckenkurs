@@ -340,268 +340,40 @@ function unloadHandler() {
 <br clear="all"/><br clear="all"/>
 Das obige Beispiel soll etwas genauer betrachtet werden: Es geht also um die Minimierung der Oberfläche einer zylinderförmigen Dose bei einem vorgegebenen Volumen
 (Grundfläche mal Höhe)
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<mtable>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>V</mi><mo>=</mo><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mi>h</mi><mo>=</mo><mn>1</mn><mi> </mi><mo>,</mo></mrow>
-</mtd></mtr>
-</mtable>
-</mrow>
-    </mstyle></math></center>
-<br/>
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>V</mi><mo>=</mo><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup><mi>h</mi><mo>=</mo><mn>1</mn><mi> </mi><mo>,</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
 
-wobei <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>r</mi></mrow></math> der Radius der Grundfläche und <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>h</mi></mrow></math> die Höhe der Dose sind. Die Oberfläche setzt sich aus dem Deckel und dem Boden
-(jeweils mit einer Fläche der Größe <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow></math>) und der Mantelfläche (der Größe <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mn>2</mn><mi>π</mi><mi>r</mi><mi>h</mi></mrow></math>) zusammen,
-und man erhält <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>O</mi><mo>=</mo><mn>2</mn><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>+</mo><mn>2</mn><mi>π</mi><mi>r</mi><mi>h</mi></mrow></math>. Die Oberfläche der Dose ist eine Funktion vom Radius <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>r</mi></mrow></math> und von der Höhe <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>h</mi></mrow></math>.
+wobei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi></mrow></math> der Radius der Grundfläche und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>h</mi></mrow></math> die Höhe der Dose sind. Die Oberfläche setzt sich aus dem Deckel und dem Boden
+(jeweils mit einer Fläche der Größe <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math>) und der Mantelfläche (der Größe <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mi>π</mi><mi>r</mi><mi>h</mi></mrow></math>) zusammen,
+und man erhält <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>O</mi><mo>=</mo><mn>2</mn><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>2</mn><mi>π</mi><mi>r</mi><mi>h</mi></mrow></math>. Die Oberfläche der Dose ist eine Funktion vom Radius <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi></mrow></math> und von der Höhe <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>h</mi></mrow></math>.
 Im Gegensatz dazu wird dem Volumen ein fester Wert zugeordnet (Nebenbedingung). Es kann also geschrieben werden:
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<mtable>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>O</mi><mrow><mo>(</mo><mi>r</mi><mo>,</mo><mi>h</mi><mo>)</mo></mrow><mo>=</mo><mn>2</mn><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>+</mo><mn>2</mn><mi>π</mi><mi>r</mi><mi>h</mi><mi> </mi><mo>.</mo></mrow>
-</mtd></mtr>
-</mtable>
-</mrow>
-    </mstyle></math></center>
-<br/>
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>O</mi><mrow><mo>(</mo><mi>r</mi><mo>,</mo><mi>h</mi><mo>)</mo></mrow><mo>=</mo><mn>2</mn><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>2</mn><mi>π</mi><mi>r</mi><mi>h</mi><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
 
-Wegen der Nebenbedingung, dass <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>V</mi><mo>=</mo><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mi>h</mi><mo>=</mo><mn>1</mn></mrow></math> sein soll, kann man dieses Problem in ursprünglich zwei Variablen (<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>r</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>h</mi></mrow></math>)
+Wegen der Nebenbedingung, dass <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>V</mi><mo>=</mo><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup><mi>h</mi><mo>=</mo><mn>1</mn></mrow></math> sein soll, kann man dieses Problem in ursprünglich zwei Variablen (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>h</mi></mrow></math>)
 auf ein Problem mit nur noch einer Variablen reduzieren. Umformen des Volumens nach der Höhe der Dose führt auf:
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<mtable>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mi>h</mi></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mn>1</mn></mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>   </mi><mi>h</mi></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow>
-</mfrac>
-<mi> </mi><mo>.</mo></mrow>
-</mtd></mtr>
-</mtable>
-</mrow>
-    </mstyle></math></center>
-<br/>
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup><mi>h</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>   </mi><mi>h</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
 
-Nach dem Einsetzen dieser Formel in die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>O</mi><mo stretchy="false">(</mo><mi>r</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></math> resultiert eine Funktion, die nur noch von einer Variablen abhängt und die <b>der
- Einfachheit halber</b> ebenfalls <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>O</mi></mrow></math> genannt werde:
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<mtable>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>O</mi><mrow><mo>(</mo><mi>r</mi><mo>,</mo><mi>h</mi><mo>)</mo></mrow><mo>=</mo><mn>2</mn><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>+</mo><mn>2</mn><mi>π</mi><mi>r</mi><mi>h</mi><mo>=</mo><mn>2</mn><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>+</mo><mn>2</mn><mi>π</mi><mi>r</mi>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow>
-</mfrac>
-<mo>=</mo><mn>2</mn><mrow><mo>(</mo><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>+</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mi>r</mi></mrow>
-</mfrac>
-<mo>)</mo></mrow><mo>=</mo><mi>O</mi><mrow><mo>(</mo><mi>r</mi><mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow>
-</mtd></mtr>
-</mtable>
-</mrow>
-    </mstyle></math></center>
-<br/>
+Nach dem Einsetzen dieser Formel in die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>r</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></math> resultiert eine Funktion, die nur noch von einer Variablen abhängt und die <b>der
+ Einfachheit halber</b> ebenfalls <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>O</mi></mrow></math> genannt werde:
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>O</mi><mrow><mo>(</mo><mi>r</mi><mo>,</mo><mi>h</mi><mo>)</mo></mrow><mo>=</mo><mn>2</mn><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>2</mn><mi>π</mi><mi>r</mi><mi>h</mi><mo>=</mo><mn>2</mn><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>2</mn><mi>π</mi><mi>r</mi><mfrac><mrow><mn>1</mn></mrow><mrow><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>=</mo><mn>2</mn><mrow><mo>(</mo><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>r</mi></mrow></mfrac><mo>)</mo></mrow><mo>=</mo><mi>O</mi><mrow><mo>(</mo><mi>r</mi><mo>)</mo></mrow><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
 
 Nach dieser Manipulation kann die Frage nach der minimalen Oberfläche der Dose ganz analog zu den Extremwertaufgaben von Funktionen bearbeitet werden.
-Es wird also die erste Ableitung der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>O</mi></mrow></math> nach der Variablen <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>r</mi></mrow></math> gebildet und diese gleich Null gesetzt:
-<br/>
-<br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<mtable>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>O</mi><mo>'</mo><mrow><mo>(</mo><mi>r</mi><mo>)</mo></mrow><mo>=</mo><mn>2</mn><mrow><mo>(</mo><mn>2</mn><mi>π</mi><mi>r</mi><mo>-</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow>
-</mfrac>
-<mo>)</mo></mrow></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mn>0</mn></mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>   </mi><mn>2</mn><mi>π</mi><mi>r</mi></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow>
-</mfrac>
-</mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>   </mi><mn>2</mn><mi>π</mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>3</mn></mrow>
-</msup>
-</mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mn>1</mn></mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>   </mi>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>3</mn></mrow>
-</msup>
-</mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>2</mn><mi>π</mi></mrow>
-</mfrac>
-</mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>   </mi><mi>r</mi></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mroot><mrow>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>2</mn><mi>π</mi></mrow>
-</mfrac>
-</mrow><mrow><mn>3</mn></mrow></mroot><mi> </mi><mo>.</mo>
-</mrow>
-</mtd></mtr>
-</mtable>
-</mrow>
-    </mstyle></math></center>
-<br/>
+Es wird also die erste Ableitung der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>O</mi></mrow></math> nach der Variablen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi></mrow></math> gebildet und diese gleich Null gesetzt:
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>O</mi><mo>'</mo><mrow><mo>(</mo><mi>r</mi><mo>)</mo></mrow><mo>=</mo><mn>2</mn><mrow><mo>(</mo><mn>2</mn><mi>π</mi><mi>r</mi><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>)</mo></mrow></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>0</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>   </mi><mn>2</mn><mi>π</mi><mi>r</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mi>r</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>   </mi><mn>2</mn><mi>π</mi><msup><mrow><mi>r</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>   </mi><msup><mrow><mi>r</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>π</mi></mrow></mfrac></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>   </mi><mi>r</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mroot><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>π</mi></mrow></mfrac></mrow><mrow><mn>3</mn></mrow></mroot><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
 
-Für die letzte Äquivalenzumformung wurde verwendet, dass der Radius <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>r</mi></mrow></math> keine negativen Werte annehmen kann.
-Einsetzen dieses Ergebnisses in die zweite Ableitung von <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>O</mi></mrow></math>  dient der Überprüfung, ob wirklich ein Minimum gefunden wurde
-(<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>O</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo><mo>=</mo><mn>4</mn><mi>π</mi><mo>+</mo><mn>4</mn><mo stretchy="false">/</mo>
-<msup><mrow><mi>r</mi></mrow><mrow><mn>3</mn></mrow>
-</msup>
-</mrow></math>):
-<br/>
-
-<br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<mtable>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>O</mi><mo>'</mo><mo>'</mo><mrow><mo>(</mo><mroot><mrow>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>2</mn><mi>π</mi></mrow>
-</mfrac>
-</mrow><mrow><mn>3</mn></mrow></mroot><mo>)</mo></mrow><mo>=</mo><mn>4</mn><mi>π</mi><mo>+</mo>
-<mfrac><mrow><mn>4</mn></mrow>
-<mrow>
-<msup><mrow><mo>(</mo><mroot><mrow>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>2</mn><mi>π</mi></mrow>
-</mfrac>
-</mrow><mrow><mn>3</mn></mrow></mroot><mo>)</mo></mrow><mrow><mn>3</mn></mrow>
-</msup>
-</mrow>
-</mfrac>
-<mo>=</mo><mn>12</mn><mi>π</mi><mo>&gt;</mo><mn>0</mn><mi> </mi><mo>.</mo>
-</mrow>
-</mtd></mtr>
-</mtable>
-</mrow>
-    </mstyle></math></center>
-<br/>
+Für die letzte Äquivalenzumformung wurde verwendet, dass der Radius <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi></mrow></math> keine negativen Werte annehmen kann.
+Einsetzen dieses Ergebnisses in die zweite Ableitung von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>O</mi></mrow></math>  dient der Überprüfung, ob wirklich ein Minimum gefunden wurde
+(<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>O</mi><mo>'</mo><mo>'</mo><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo><mo>=</mo><mn>4</mn><mi>π</mi><mo>+</mo><mn>4</mn><mo stretchy="false">/</mo><msup><mrow><mi>r</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></math>):
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>O</mi><mo>'</mo><mo>'</mo><mrow><mo>(</mo><mroot><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>π</mi></mrow></mfrac></mrow><mrow><mn>3</mn></mrow></mroot><mo>)</mo></mrow><mo>=</mo><mn>4</mn><mi>π</mi><mo>+</mo><mfrac><mrow><mn>4</mn></mrow><mrow><msup><mrow><mo>(</mo><mroot><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>π</mi></mrow></mfrac></mrow><mrow><mn>3</mn></mrow></mroot><mo>)</mo></mrow><mrow><mn>3</mn></mrow></msup></mrow></mfrac><mo>=</mo><mn>12</mn><mi>π</mi><mo>&gt;</mo><mn>0</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
 
 Für den Radius 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>r</mi><mo>=</mo><mroot><mrow>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>2</mn><mi>π</mi></mrow>
-</mfrac>
-</mrow><mrow><mn>3</mn></mrow></mroot></mrow></math> wird die Oberfläche der zylindrischen Dose mit dem gegebenen Volumen <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>V</mi><mo>=</mo><mn>1</mn></mrow></math> minimal.
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi><mo>=</mo><mroot><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>π</mi></mrow></mfrac></mrow><mrow><mn>3</mn></mrow></mroot></mrow></math> wird die Oberfläche der zylindrischen Dose mit dem gegebenen Volumen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>V</mi><mo>=</mo><mn>1</mn></mrow></math> minimal.
 Die Höhe erhält man in diesem Fall zu 
 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>h</mi><mo>=</mo>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mi>π</mi>
-<msup><mrow><mo>(</mo><mroot><mrow>
-<mfrac><mrow><mn>1</mn></mrow>
-<mrow><mn>2</mn><mi>π</mi></mrow>
-</mfrac>
-</mrow><mrow><mn>3</mn></mrow></mroot><mo>)</mo></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow>
-</mfrac>
-<mo>=</mo><mroot><mrow>
-<mfrac><mrow><mn>4</mn></mrow>
-<mrow><mi>π</mi></mrow>
-</mfrac>
-</mrow><mrow><mn>3</mn></mrow></mroot></mrow></math>.
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>h</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>π</mi><msup><mrow><mo>(</mo><mroot><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>π</mi></mrow></mfrac></mrow><mrow><mn>3</mn></mrow></mroot><mo>)</mo></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>=</mo><mroot><mrow><mfrac><mrow><mn>4</mn></mrow><mrow><mi>π</mi></mrow></mfrac></mrow><mrow><mn>3</mn></mrow></mroot></mrow></math>.
 Wird eine Dose mit diesen Maßen hergestellt, wird für das im Beispiel vorgegebene Volumen der Materialverbrauch minimiert.
 
 <br clear="all"/><br clear="all"/>
-<br/>
-</div>
+<br/></div>
 </div>
 <div class="javascript-body-footer"><script>
 viewmodel = {

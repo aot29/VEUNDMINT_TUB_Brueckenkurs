@@ -316,139 +316,29 @@ function unloadHandler() {
 <!-- mdeclaresiteuxidpost;;VBKM08_Anwendungen_Naturwissenschaften;; //-->
 
 <br clear="all"/><br clear="all"/>
-Die Geschwindigkeit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi></mrow></math> beschreibt die momentane Änderungsrate des Ortes 
-zur Zeit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>t</mi></mrow></math>. Es gilt also <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi><mo>=</mo>
-<mfrac><mrow><mi>d</mi><mi>s</mi></mrow>
-<mrow><mi>d</mi><mi>t</mi></mrow>
-</mfrac>
-</mrow></math>, wenn man <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>v</mi><mo>=</mo><mi>v</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math> 
-und <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>s</mi><mo>=</mo><mi>s</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math> als Funktionen der Zeit auffasst.
-Der aktuelle Aufenthaltsort <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>s</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo></mrow></math> ergibt sich durch die Umkehrung der 
+Die Geschwindigkeit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi></mrow></math> beschreibt die momentane Änderungsrate des Ortes 
+zur Zeit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math>. Es gilt also <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi><mo>=</mo><mfrac><mrow><mi>d</mi><mi>s</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mrow></math>, wenn man <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi><mo>=</mo><mi>v</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math> 
+und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi><mo>=</mo><mi>s</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math> als Funktionen der Zeit auffasst.
+Der aktuelle Aufenthaltsort <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo></mrow></math> ergibt sich durch die Umkehrung der 
 Ableitung, also durch die Integration der Geschwindigkeit über die Zeit. 
-Mit dem Anfangswert <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>s</mi><mo stretchy="false">(</mo><mi>t</mi><mo>=</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo>
-<msub><mrow><mi>s</mi></mrow><mrow><mn>0</mn></mrow>
-</msub>
-</mrow></math> zur Zeit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow></math> erhält man damit
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<mtable>
-<mtr><mtd columnalign="right" columnspan="1"><mrow>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
-<mrow><mi>T</mi></mrow></msubsup>
-
-<mfrac><mrow><mi>d</mi><mi>s</mi></mrow>
-<mrow><mi>d</mi><mi>t</mi></mrow>
-</mfrac>
-<mi> </mi><mi>d</mi><mi>t</mi></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
-<mrow><mi>T</mi></mrow></msubsup>
-<mi>v</mi><mi> </mi><mi>d</mi><mi>t</mi></mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>  </mi><mi>  </mi>
-<msubsup><mrow><mo>[</mo><mi>s</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>]</mo></mrow><mrow><mn>0</mn> </mrow>
-<mrow><mi>T</mi></mrow></msubsup>
-</mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
-<mrow><mi>T</mi></mrow></msubsup>
-<mi>v</mi><mi> </mi><mi>d</mi><mi>t</mi></mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>  </mi><mi>  </mi><mi>s</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>-</mo><mi>s</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
-<mrow><mi>T</mi></mrow></msubsup>
-<mi>v</mi><mi> </mi><mi>d</mi><mi>t</mi></mrow>
-</mtd></mtr>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>  </mi><mi>  </mi><mi>s</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow><mo>=</mo></mrow>
-</mtd><mtd columnalign="left">
-<mrow>
-<msub><mrow><mi>s</mi></mrow><mrow><mn>0</mn></mrow>
-</msub>
-<mo>+</mo>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
-<mrow><mi>T</mi></mrow></msubsup>
-<mi>v</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>t</mi><mi> </mi><mo>.</mo>
-</mrow>
-</mtd></mtr>
-</mtable>
-</mrow>
-    </mstyle></math></center>
-<br/>
+Mit dem Anfangswert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi><mo stretchy="false">(</mo><mi>t</mi><mo>=</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><msub><mrow><mi>s</mi></mrow><mrow><mn>0</mn></mrow></msub></mrow></math> zur Zeit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow></math> erhält man damit
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn></mrow><mrow><mi>T</mi></mrow></msubsup><mfrac><mrow><mi>d</mi><mi>s</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mi> </mi><mi>d</mi><mi>t</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn></mrow><mrow><mi>T</mi></mrow></msubsup><mi>v</mi><mi> </mi><mi>d</mi><mi>t</mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>  </mi><mi>  </mi><msubsup><mrow><mo>[</mo><mi>s</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>]</mo></mrow><mrow><mn>0</mn></mrow><mrow><mi>T</mi></mrow></msubsup></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn></mrow><mrow><mi>T</mi></mrow></msubsup><mi>v</mi><mi> </mi><mi>d</mi><mi>t</mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>  </mi><mi>  </mi><mi>s</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>-</mo><mi>s</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn></mrow><mrow><mi>T</mi></mrow></msubsup><mi>v</mi><mi> </mi><mi>d</mi><mi>t</mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo><mi>  </mi><mi>  </mi><mi>s</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><msub><mrow><mi>s</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>+</mo><msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn></mrow><mrow><mi>T</mi></mrow></msubsup><mi>v</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>t</mi><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
 
 Die Situation kann man mathematisch so zusammenfassen: Wenn die 
-<em>Ableitung</em> <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo>'</mo></mrow></math> einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi></mrow></math> und ein einzelner 
-Funktionswert <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>f</mi><mo stretchy="false">(</mo>
-<msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow>
-</msub>
-<mo stretchy="false">)</mo></mrow></math> bekannt ist, kann die Funktion mit Hilfe des Integrals 
+<em>Ableitung</em> <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>'</mo></mrow></math> einer Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> und ein einzelner 
+Funktionswert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>0</mn></mrow></msub><mo stretchy="false">)</mo></mrow></math> bekannt ist, kann die Funktion mit Hilfe des Integrals 
 berechnet werden. Hierfür sagt man auch, dass die Funktionswerte aus der 
 Ableitung rekonstruiert werden.
 
 <br clear="all"/><br clear="all"/>
 Wenn sich beispielsweise eine Bakterienpopulation näherungsweise 
-gemäß <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>B</mi><mo>'</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>B</mi><mo>'</mo><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0,6</mn><mi>t</mi></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>t</mi><mo>≥</mo><mn>0</mn></mrow></math> vermehrt 
-und zu Beginn <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>B</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>100</mn></mrow></math> Bakterien vorhanden sind, wird der Bestand <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>B</mi></mrow></math> 
-zur Zeit <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>T</mi></mrow></math> durch
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>-</mo><mi>B</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
-<mrow><mi>T</mi></mrow></msubsup>
-<mn>0,6</mn><mi>t</mi><mi> </mi><mi>d</mi><mi>t</mi></mrow>
-    </mstyle></math></center>
-<br/>
+gemäß <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>B</mi><mo>'</mo></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>B</mi><mo>'</mo><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0,6</mn><mi>t</mi></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi><mo>≥</mo><mn>0</mn></mrow></math> vermehrt 
+und zu Beginn <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>B</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>100</mn></mrow></math> Bakterien vorhanden sind, wird der Bestand <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>B</mi></mrow></math> 
+zur Zeit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>T</mi></mrow></math> durch
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>-</mo><mi>B</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn></mrow><mrow><mi>T</mi></mrow></msubsup><mn>0,6</mn><mi>t</mi><mi> </mi><mi>d</mi><mi>t</mi></mrow></mstyle></math></center><br/>
 
 und damit durch
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>=</mo><mi>B</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>+</mo>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
-<mrow><mi>T</mi></mrow></msubsup>
-<mn>0,6</mn><mi>t</mi><mi> </mi><mi>d</mi><mi>t</mi><mo>=</mo><mn>100</mn><mo>+</mo><mn>0,6</mn>
-<msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn> </mrow>
-<mrow><mi>T</mi></mrow></msubsup>
-<mi>t</mi><mi> </mi><mi>d</mi><mi>t</mi><mo>=</mo><mn>100</mn><mo>+</mo><mn>0,3</mn><mrow><mo>(</mo>
-<msup><mrow><mi>T</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>-</mo>
-<msup><mrow><mn>0</mn></mrow><mrow><mn>2</mn></mrow>
-</msup>
-<mo>)</mo></mrow><mo>=</mo><mn>100</mn><mo>+</mo><mn>0,3</mn>
-<msup><mrow><mi>T</mi></mrow><mrow><mn>2</mn></mrow>
-</msup>
-</mrow>
-    </mstyle></math></center>
-<br/>
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>=</mo><mi>B</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>+</mo><msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn></mrow><mrow><mi>T</mi></mrow></msubsup><mn>0,6</mn><mi>t</mi><mi> </mi><mi>d</mi><mi>t</mi><mo>=</mo><mn>100</mn><mo>+</mo><mn>0,6</mn><msubsup><mrow><mo>∫</mo></mrow><mrow><mn>0</mn></mrow><mrow><mi>T</mi></mrow></msubsup><mi>t</mi><mi> </mi><mi>d</mi><mi>t</mi><mo>=</mo><mn>100</mn><mo>+</mo><mn>0,3</mn><mrow><mo>(</mo><msup><mrow><mi>T</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><msup><mrow><mn>0</mn></mrow><mrow><mn>2</mn></mrow></msup><mo>)</mo></mrow><mo>=</mo><mn>100</mn><mo>+</mo><mn>0,3</mn><msup><mrow><mi>T</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mstyle></math></center><br/>
 
 beschrieben. Der Hauptsatz der Differential- und Integralrechnung bietet für 
 solche Fragestellungen ein wichtiges Hilfsmittel, eine Funktion zu rekonstruieren,
@@ -459,58 +349,19 @@ Verknüpfungen mit Exponentialfunktionen bestehen.
 <br clear="all"/><br clear="all"/>
 Ein weiteres Beispiel aus der Physik, das der Leserin oder dem Leser bekannt 
 sein könnte, ist die Bestimmung der Arbeit als Produkt aus Kraft und Weg:
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>W</mi><mo>=</mo>
-<msub><mrow><mi>F</mi></mrow><mrow><mi>s</mi></mrow>
-</msub>
-<mo>·</mo><mi>s</mi></mrow></math>. Dabei ist <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>F</mi></mrow><mrow><mi>s</mi></mrow>
-</msub>
-</mrow></math> die Projektion der Kraft auf die Wegrichtung.
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>W</mi><mo>=</mo><msub><mrow><mi>F</mi></mrow><mrow><mi>s</mi></mrow></msub><mo>·</mo><mi>s</mi></mrow></math>. Dabei ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>F</mi></mrow><mrow><mi>s</mi></mrow></msub></mrow></math> die Projektion der Kraft auf die Wegrichtung.
 Ist die Kraft jedoch wegabhängig, gilt dieses Gesetz nicht mehr in seiner 
 einfachen Form. Um die Arbeit, die z.B. beim Verschieben eines massiven 
 Körpers entlang eines Weges verrichtet wird, zu bestimmen, muss man die 
-aufgewendete Kraft dann entlang des Weges vom Anfangspunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>s</mi></mrow><mrow><mn>1</mn></mrow>
-</msub>
-</mrow></math> bis zum 
-Endpunkt <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow>
-<msub><mrow><mi>s</mi></mrow><mrow><mn>2</mn></mrow>
-</msub>
-</mrow></math> integrieren:
-<br/><br/>
-<center><math xmlns="http://www.w3.org/1998/Math/MathML">
-    <mstyle displaystyle="true"><mrow>
-<mtable>
-<mtr><mtd columnalign="right" columnspan="1"><mrow><mi>W</mi><mo>=</mo>
-<msubsup><mrow><mo>∫</mo></mrow><mrow>
-<msub><mrow><mi>s</mi></mrow><mrow><mn>1</mn></mrow>
-</msub>
- </mrow>
-<mrow>
-<msub><mrow><mi>s</mi></mrow><mrow><mn>2</mn></mrow>
-</msub>
-</mrow></msubsup>
-
-<msub><mrow><mi>F</mi></mrow><mrow><mi>s</mi></mrow>
-</msub>
-<mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>s</mi><mi> </mi><mo>.</mo>
-</mrow>
-</mtd></mtr>
-</mtable>
-</mrow>
-    </mstyle></math></center>
-<br/>
+aufgewendete Kraft dann entlang des Weges vom Anfangspunkt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>s</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> bis zum 
+Endpunkt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>s</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math> integrieren:
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>W</mi><mo>=</mo><msubsup><mrow><mo>∫</mo></mrow><mrow><msub><mrow><mi>s</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><msub><mrow><mi>s</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></msubsup><msub><mrow><mi>F</mi></mrow><mrow><mi>s</mi></mrow></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mi> </mi><mi>d</mi><mi>s</mi><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
 
 Dies sollen nur drei Beispiele aus dem naturwissenschaftlich-technischen 
 Bereich sein, in denen der Integralbegriff hilfreich ist. 
 Im Verlauf des Studiums werden je nach Fachrichtung eine ganze Reihe weiterer 
 Anwendungen der Integration auftauchen.
-<br/>
-</div>
+<br/></div>
 </div>
 <div class="javascript-body-footer"><script>
 viewmodel = {
