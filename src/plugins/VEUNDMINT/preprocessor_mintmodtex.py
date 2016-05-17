@@ -215,7 +215,7 @@ class Preprocessor(object):
             if "with CRLF line terminators" in fm.group(2):
                 self.sys.message(self.sys.VERBOSEINFO, "tex file has windows-like CRLF line terminators, but ok for now")
         else:
-            reply = False
+            # does not prevent release, but should be mentioned, happens for example if texfile consists of input commands only
             self.sys.message(self.sys.VERBOSEINFO, "File " + orgname + " is not recognized as a TeX file by file command")
     
         # no Mtikzexternalize in a comment

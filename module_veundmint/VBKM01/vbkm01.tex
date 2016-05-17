@@ -1,7 +1,7 @@
 \input{mintmod.tex}
 \MPragma{MathSkip}
 
-%\Mtikzexternalize
+\Mtikzexternalize
 
 \begin{document}
 
@@ -193,7 +193,11 @@ Betrachtet man zum Beispiel ein Quadrat mit der Seitenl"ange 1 und will die Läng
 
 \vspace*{5mm}
 
+\ifttm
+\begin{minipage}{6cm}
+\else
 \begin{minipage}{0.45\linewidth}
+\fi
 \begin{center}
 %-%\MGraphicsSolo{quadrat.png}{width=3cm}
 \MTikzAuto{%
@@ -208,7 +212,11 @@ Betrachtet man zum Beispiel ein Quadrat mit der Seitenl"ange 1 und will die Läng
 }
 \end{center}
 \end{minipage}
+\ifttm
+\begin{minipage}{7cm}
+\else
 \begin{minipage}{0.55\linewidth}
+\fi
 \begin{center}
 $$d^2 = 1^2+1^2 = 2, \;\mbox{also formal}\; d=\sqrt{2}.$$
 \end{center}
@@ -1262,7 +1270,6 @@ t\cdot (t+1)\cdot (t^2+t+1) & = & t\cdot(t^3+2t^2+2t+1) \;=\; t^4+2t^3+2t^2+t \M
 \begin{MExercise}
 Dieser Graph gehört zu einem Polynom $g(x)$ zweiten Grades:
 
-%%\MUGraphics{graph1.png}{width=0.3\linewidth}{Graph von $g(x)$.}{width:60\%}
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[x=1.0cm, y=0.2cm, scale=0.80] 

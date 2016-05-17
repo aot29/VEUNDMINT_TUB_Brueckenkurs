@@ -55,7 +55,7 @@ function createIntersiteObj() {
     sites: [],
     favorites: [ createHelpFavorite() ],
     history: { globalmillis: 0, commits: [] }, // commits = array aus Arrays [ hexsha+cid, firstlogintimestamp, lastlogintimestamp ]
-    login: { type: 0, vname: "", sname: "", username: "", password: "", email: "" }
+    login: { type: 0, vname: "", sname: "", username: "", password: "", email: "", variant: "std" }
   };
   
   return obj;

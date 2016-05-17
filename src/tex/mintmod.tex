@@ -215,6 +215,9 @@
 \fi
 \fi
 
+\ifttm
+\relax% ttm can't handle DeclareGraphicsExtension, graphics includes will be done by preprocessing anyway
+\else
 \ifnum\value{MOutput}=\MOutputPDF
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 \fi
@@ -226,6 +229,7 @@
 \ifnum\value{MOutput}=\MOutputHTML
 % Wird vom Konverter leider nicht erkannt und daher in split.pm hardcodiert!
 \DeclareGraphicsExtensions{.png,.jpg,.gif}
+\fi
 \fi
 
 % Umdefinition der hyperref-Nummerierung im PDF-Modus
@@ -872,14 +876,6 @@
 \newcounter{MSiteCounter}
 \newcounter{MFieldCounter} % Kombination section.subsection.site.field ist eindeutig in allen Modulen, field alleine nicht
 
-\newcounter{MiniMarkerCounter}
-
-\ifttm
-\newenvironment{MMiniPageP}[1]{\begin{minipage}{#1\linewidth}\special{html:<!-- minimarker;;}\arabic{MiniMarkerCounter}\special{html:;;#1; //-->}}{\end{minipage}\addtocounter{MiniMarkerCounter}{1}}
-\else
-\newenvironment{MMiniPageP}[1]{\begin{minipage}{#1\linewidth}}{\end{minipage}\addtocounter{MiniMarkerCounter}{1}}
-\fi
-
 \newcounter{AlignCounter}
 
 \newcommand{\MStartJustify}{\ifttm\special{html:<!-- startalign;;}\arabic{AlignCounter}\special{html:;;justify; //-->}\fi}
@@ -1406,7 +1402,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \setcounter{verc}{0}
 \setcounter{infoc}{0}
 \fi
-\setcounter{MiniMarkerCounter}{1}
 \setcounter{AlignCounter}{1}
 \setcounter{MXCTest}{0}
 \setcounter{MCodeCounter}{0}
@@ -1494,7 +1489,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 <div class="imagecenter">
 <center>
 <div>
-<video width="95\%" controls="controls"><source src="\end{html}\MMaterial/#1.mp4\begin{html}" type="video/mp4">Ihr Browser kann keine MP4-Videos abspielen!</video>
+<video width="95\%" controls="controls"><source src="\end{html}\MMaterial/\MLastFile\begin{html}" type="video/mp4">Ihr Browser kann keine MP4-Videos abspielen!</video>
 </div>
 <div class="bildtext">
 \end{html}

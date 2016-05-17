@@ -46,7 +46,7 @@ if rp != "YES":
 
 for vr in variants:
     print("-- GENERATING VARIANT " + vr)
-    p = subprocess.Popen(["python3", "tex2x.py", "VEUNDMINT", "dotikz=1", "cleanup=0", "dopdf=1", "borkify=1", "variant=" + vr, "output=" + vtmp], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+    p = subprocess.Popen(["python3", "tex2x.py", "VEUNDMINT", "dorelease=1", "dotikz=1", "cleanup=1", "dopdf=1", "borkify=1", "forceoffline=0", "variant=" + vr, "output=" + vtmp], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
     (output, err) = p.communicate()
     if (p.returncode > 1) or (p.returncode < 0):
         print("-- QUITTING VARIANT " + vr + " WITH ERROR " + str(p.returncode))

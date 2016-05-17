@@ -221,7 +221,7 @@ class System(object):
             if (m.group(1) == "binary"):
                 self.message(self.FATALERROR, "File " + name + " appears to be binary, not a text file")
             if ((m.group(1) != enc) and (m.group(1) != "us-ascii")):
-                self.message(self.CLIENTWARN, "File " + name + " is encoded in " + m.group(1) + " instead of requested " + enc + " or us-ascii, doing implicit conversion")
+                self.message(self.CLIENTINFO, "File " + name + " is encoded in " + m.group(1) + " instead of requested " + enc + " or us-ascii, doing implicit conversion")
             enc = m.group(1)
             if enc == "us-ascii":
                 # Pythons ascii decoder cannot handle ASCII values >127, presume iso-8859-1 encoding for those

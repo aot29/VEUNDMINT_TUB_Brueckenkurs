@@ -257,7 +257,7 @@ class Structure(object):
             self.sys.message(self.sys.VERBOSE, "Successfully decoded xml output")
         except:
             # old ttm produces latin1 encoded xml if given tex was latin1
-            self.sys.message(self.sys.CLIENTWARN, "Could not decode xml output, trying encoding " + self.options.stdencoding)
+            self.sys.message(self.sys.CLIENTINFO, "Could not decode xml output as utf8, trying encoding " + self.options.stdencoding)
             xmltext = self.sys.readTextFile(self.options.ttmFile, self.options.stdencoding)
         
         #MathML manuell optimieren, da die Ausgabe des ttm nicht ausreichend ist
@@ -743,7 +743,7 @@ class Structure(object):
                         
 
         if anl > 0:
-            self.sys.message(self.sys.CLIENTWARN, "ttm found " + str(anl) + " abnormal newlines")
+            self.sys.message(self.sys.CLIENTINFO, "ttm found " + str(anl) + " abnormal newlines")
                 
         if (cm > 0) and (self.options.dorelease == 1):
             self.sys.message(self.sys.FATALERROR, "ttm found " + str(cm) + " unknown commands, refusing to continue on release version")

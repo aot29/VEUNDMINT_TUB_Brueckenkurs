@@ -1555,6 +1555,14 @@ function globalloadHandler(pulluserstr)
   if (pulluserstr != "") {
     SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
     logMessage(DEBUGINFO, "SetupIntersite in loadhandler fertig");
+    
+    if (intersiteactive == true) {
+      if (variant != intersiteobj.login.variant) {
+        // abort site setup, switch to needed variant tree
+        selectVariant(intersiteobj.login.variant);
+      }
+    }
+    
     applyLayout(false);
     logMessage(DEBUGINFO, "Layout gesetzt in loadhandler");
     InitResults(false);
@@ -1576,6 +1584,12 @@ function globalreadyHandler(pulluserstr)
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   logMessage(DEBUGINFO, "globalreadyHandler start");
   SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
+  if (intersiteactive == true) {
+    if (variant != intersiteobj.login.variant) {
+      // abort site setup, switch to needed variant tree
+      selectVariant(intersiteobj.login.variant);
+    }
+  }
   logMessage(DEBUGINFO, "SetupIntersite fertig");
   applyLayout(true);
   logMessage(DEBUGINFO, "Layout gesetzt");
@@ -1813,20 +1827,24 @@ function debork(str, l) {
 function selectVariant(v) {
   logMessage(DEBUGINFO, "Variant selected: " + v);
   
+  var ex1 = outputWebdir;
+  var raw = outputWebdir;
+  if (ex1.indexOf("_") != -1) {
+      raw = ex1.substr(0, ex1.indexOf("_"));
+  }
+  
+  var ex2 = raw;
+  if (v != "std") {
+      ex2 = ex2 + "_" + v;
+  }
+  
   s = window.location.href;
-  ex1 = "_" + variant;
-  if (variant == "std") {
-      ex1 = "";
-  }
-  ex1 = outputExtension + ex1;
-  
-  ex2 = "_" + v;
-  if (v == "std") {
-      ex2 = "";
-  }
-  ex2 = outputExtension + ex2;
-  
   s = s.replace("/" + ex1 + "/", "/" + ex2 + "/");
+  
+  if (intersiteactive) {
+      intersiteobj.login.variant = v;
+  }
+  
   opensite(s); // same site in different output directory
 }
 

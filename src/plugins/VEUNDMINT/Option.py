@@ -83,7 +83,7 @@ class Option(object):
         self.macrofile = self.macrofilename + ".tex"
         self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex files and templates, utf8 well be accepted too but with a warning
         self.outputencoding = "utf-8"                        # encoding of generated html files
-        self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt
+        self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
         self.source = "module_veundmint"                     # Quellverzeichnis, platziert in Ebene ueber tex2x.py
         self.module = "tree_tu9onlinekurs.tex"               # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
         self.outtmp = "_tmp"                                 # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
@@ -103,7 +103,7 @@ class Option(object):
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
         # course signature, course part
-        self.signature_main = "OBMLGAMMA1" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+        self.signature_main = "OBMLGAMMA2" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
         self.signature_date = "05/2015"
@@ -372,8 +372,7 @@ class Option(object):
 
         if self.dorelease == 1:
             if (self.signature_git_dirty == 1):
-                print("FATAL ERROR: Refusing to produce release if git repository is not clean, please commit everything for a clean release")
-                sys.exit(1)
+                print("INFO:    git repository is not clean, please commit everything for a clean release")
             if (self.cleanup != 1) or (self.docollections == 1) or (self.doverbose == 1) or (self.dotikz == 0) or (self.borkify == 0) or (self.forceoffline == 1):
                 print("FATAL ERROR: Option dorelease=1 cannot be used with cleanup=0, docollections=1, dotikz=0, borkify=0, forceoffline=1 or doverbose=1, aborting with error code 1")
                 sys.exit(1)
