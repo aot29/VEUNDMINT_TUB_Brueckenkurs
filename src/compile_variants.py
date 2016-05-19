@@ -10,7 +10,6 @@ import time
 docommit = True # True -> release will be committed automatically to git repository and receives a name tag
 variants = ["std", "unotation"]
 wwwdirname = "onlinekursmathe" # relative to /var/www on mintlx3.scc.kit.edu
-vtmp = "__vctmp" # directory to store the compiled tree for zipping, relative to src/.., will be removed afterwards
 mdb = "TU9Onlinekurs" # mandatory branch for a release
 pubserver = "mintlx3" # server for publication
 rifile = "release_info.txt" # will be updated
@@ -34,7 +33,7 @@ if repo.is_dirty():
     print("Local workspace for branch " + mdb + " is dirty !!")
 
 
-tagn = 2 # publish1 was done in branch develop_software
+tagn = 3 # publish1 was done in branch develop_software (tags 1,2,3 have been used by test runs)
 while ("AUTOPUBLISH" + str(tagn)) in repo.tags:
     tagn += 1
 print("Next autopublish number will be " + str(tagn))
@@ -49,7 +48,11 @@ else:
 
 for vr in variants:
     print("-- GENERATING VARIANT " + vr)
-    p = subprocess.Popen(["python3", "tex2x.py", "VEUNDMINT", "dorelease=1", "dotikz=1", "cleanup=1", "dopdf=1", "borkify=1", "forceoffline=0", "variant=" + vr, "output=" + vtmp], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+    dname = wwwdirname
+    if vr != "std":
+        dname += "_" + vr
+    fname = dname + ".tgz"
+    p = subprocess.Popen(["python3", "tex2x.py", "VEUNDMINT", "dorelease=1", "dotikz=1", "cleanup=1", "dopdf=1", "borkify=1", "forceoffline=0", "variant=" + vr, "output=" + dname], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
     (output, err) = p.communicate()
     if (p.returncode > 1) or (p.returncode < 0):
         print("-- QUITTING VARIANT " + vr + " WITH ERROR " + str(p.returncode))
@@ -58,14 +61,10 @@ for vr in variants:
         if (p.returncode == 1):
             print("-- VARIANT " + vr + " OK WITH WARNINGS")
         else:
-            print("-- VARIANT " + vr + " STD OK")
+            print("-- VARIANT " + vr + " OK")
 
         os.chdir("..")
-        os.chdir(vtmp)
-        dname = wwwdirname
-        if vr != "std":
-            dname += "_" + vr
-        fname = dname + ".tgz"
+        os.chdir(dname)
         pz = subprocess.Popen(["tar", "-c", "-v", "-z", "-f", os.path.join("..", fname), "."], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
         (output, err) = pz.communicate()
         if pz.returncode != 0:
@@ -75,7 +74,7 @@ for vr in variants:
             print("-- ZIPPING OF VARIANT " + vr + " COMPLETE: " + fname)
 
         os.chdir("..")
-        shutil.rmtree(vtmp)
+        shutil.rmtree(dname)
         os.chdir("src")
         
 # actual publishing of the files, requests user priviliges from user

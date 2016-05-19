@@ -49,7 +49,7 @@ class Plugin(basePlugin):
         self.name = "HTML5_MINTMODTEX"
         self.version ="P0.1.0"
         self.outputextension = "html"
-        self.outputsubdir = self.outputextension + "_" + self.options.variant
+        self.outputsubdir = self.outputextension
         self.pagefactory = PageFactory(interface, self)
         self.randcharstr = "0123456789,.;abcxysqrt()/*+-"
         self.sys.message(self.sys.VERBOSEINFO, "Output plugin " + self.name + " of version " + self.version + " constructed")
@@ -1122,7 +1122,7 @@ class Plugin(basePlugin):
         if self.options.dozip == 1:
             self.sys.pushdir()
             os.chdir(self.options.targetpath)
-            zipfile = self.options.output + "_" + self.options.variant + ".zip"
+            zipfile = self.options.output + ".zip"
             p = subprocess.Popen(["zip", "-r", os.path.join(self.options.currentDir, zipfile), ".", "-i", "*"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
             (output, err) = p.communicate()
             self.sys.popdir()
