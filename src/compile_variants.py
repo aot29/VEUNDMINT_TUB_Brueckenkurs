@@ -7,7 +7,7 @@ import shutil
 import getpass
 import time
 
-
+docommit = True # True -> release will be committed automatically to git repository and receives a name tag
 variants = ["std", "unotation"]
 wwwdirname = "onlinekursmathe" # relative to /var/www on mintlx3.scc.kit.edu
 vtmp = "__vctmp" # directory to store the compiled tree for zipping, relative to src/.., will be removed afterwards
@@ -38,11 +38,14 @@ tagn = 2 # publish1 was done in branch develop_software
 while ("AUTOPUBLISH" + str(tagn)) in repo.tags:
     tagn += 1
 print("Next autopublish number will be " + str(tagn))
-print("This program will automatically compile and release the current commit of branch " + mdb + ", ARE YOU SURE (type YES if your dare)?")
+print("This program will automatically compile and release the current commit of branch " + mdb + ", ARE YOU SURE (type YES if your dare, NOCOMMIT if you want a dry run)?")
 rp = input()
-if rp != "YES":
-    print("...aborting")
-    sys.exit(1)
+if rp == "NOCOMMIT":
+    docommit = False
+else:
+    if rp != "YES":
+        print("...aborting")
+        sys.exit(1)
 
 for vr in variants:
     print("-- GENERATING VARIANT " + vr)
@@ -128,12 +131,17 @@ else:
     print("-- VARIANT std WRITTEN TO RELEASE DIRECTORY")
 
 os.chdir("..")
-repo.git.add("releases/" + rifile)
-repo.git.add("releases/" + dname + "/")
-repo.index.commit(commsg)
-repo.create_tag("AUTOPUBLISH" + str(tagn))
-print("-- VARIANT std COMMIT TO RELEASE GIT HISTORY, TAGNR = " + str(tagn))
-print("PLEASE PUSH THE COMMIT RIGHT NOW!")
+
+if docommit:
+    repo.git.add("releases/" + rifile)
+    repo.git.add("releases/" + dname + "/")
+    repo.index.commit(commsg)
+    repo.create_tag("AUTOPUBLISH" + str(tagn))
+    print("-- VARIANT std COMMIT TO RELEASE GIT HISTORY, TAGNR = " + str(tagn))
+    print("PLEASE PUSH THE COMMIT RIGHT NOW!")
+else:
+    print("-- VARIANT std NOT COMMITTED TO RELEASE GIT, TAGNR WOULD HAVE BEEN " + str(tagn))
+    print("PLEASE CONSIDER A FULL RUN OF THIS PROGRAM WITH COMMIT TO ENSURE INTEGRITY OF THE REPOSITORY")
     
 sys.exit(0)
  
