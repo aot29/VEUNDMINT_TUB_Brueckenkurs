@@ -49,7 +49,7 @@ class Plugin(basePlugin):
         self.name = "HTML5_MINTMODTEX"
         self.version ="P0.1.0"
         self.outputextension = "html"
-        self.outputsubdir = self.outputextension + "_" + self.options.variant
+        self.outputsubdir = self.outputextension
         self.pagefactory = PageFactory(interface, self)
         self.randcharstr = "0123456789,.;abcxysqrt()/*+-"
         self.sys.message(self.sys.VERBOSEINFO, "Output plugin " + self.name + " of version " + self.version + " constructed")
@@ -140,8 +140,11 @@ class Plugin(basePlugin):
         self.analyze_nodes_stage2(self.ctree) # analyzation parts using information from stage1 and the index
         
         for i in self.data['sections']:
-            self.sys.message(self.sys.VERBOSEINFO, "Points in section " + i + " (" + self.data['sections'][i] + "): " + str(self.data['expoints'][i]) + ", of which " + str(self.data['testpoints'][i]) + " are in tests")
-            self.sys.message(self.sys.VERBOSEINFO, "Sites in section " + i + ": " +  str(self.data['sitepoints'][i]))
+            if i in self.data['expoints'] and i in self.data['sitepoints'] and i in self.data['testpoints']:
+                self.sys.message(self.sys.VERBOSEINFO, "Points in section " + i + " (" + self.data['sections'][i] + "): " + str(self.data['expoints'][i]) + ", of which " + str(self.data['testpoints'][i]) + " are in tests")
+                self.sys.message(self.sys.VERBOSEINFO, "Sites in section " + i + ": " +  str(self.data['sitepoints'][i]))
+            else:
+                self.sys.message(self.sys.CLIENTERROR, "Section index " + i + " not found in test data, final test subsection is missing")
         
         self.generate_html(self.ctree)
         self.generate_pdf()
@@ -421,7 +424,7 @@ class Plugin(basePlugin):
                     if printnr == 1: pref = sid + " "
                     (p.content, n) = re.subn(r"<h4>(.*?)</h4><!-- sectioninfo;;" + str(sec) + ";;" + str(ssec) + ";;" + str(sssec) + ";;" + str(printnr) + ";;" + str(testpage) + r"; //-->", "<h4>" + secprefix + "</h4><br /><h4>" + pref + r"\1</h4>", p.content, 0, re.S)
                     if (n != 1):
-                        self.sys.message(self.sys.CLIENTERROR, "Could not substitute sectioninfo in xcontent " + p.title + ", n = " + n)
+                        self.sys.message(self.sys.CLIENTERROR, "Could not substitute sectioninfo in xcontent " + p.title + ", n = " + str(n))
                                         
                     
                     # add numbers to MSubsubsections in MXContent
@@ -1122,7 +1125,7 @@ class Plugin(basePlugin):
         if self.options.dozip == 1:
             self.sys.pushdir()
             os.chdir(self.options.targetpath)
-            zipfile = self.options.output + "_" + self.options.variant + ".zip"
+            zipfile = self.options.output + ".zip"
             p = subprocess.Popen(["zip", "-r", os.path.join(self.options.currentDir, zipfile), ".", "-i", "*"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
             (output, err) = p.communicate()
             self.sys.popdir()

@@ -1,0 +1,2117 @@
+\input{mintmod}
+%\MSetSubject{\MINTPhysics}
+\begin{document}
+\MSection{Rotation starrer Körper} % Modul 7 
+\begin{MSectionStart}
+Im Modul 6 haben Sie die Kreisbewegungen eines Massenpunktes kennengelernt. Nun wenden wir uns räumlich ausgedehnten Körpern zu. Eine Tür dreht sich um eine Angel, eine Schallplatte dreht sich auf dem Plattenteller um ihre eigene Achse $\ldots$, mit dem Modell des Massenpunktes kommt man da nicht mehr weiter.
+\\
+
+In diesem Modul führen wir als weiteres Modell den {\bf starren Körper} ein, anhand dessen Sie kennenlernen werden:
+
+\begin{itemize}
+\item das Drehmoment
+\item das Trägheitsmoment
+\item den Drehimpuls
+\item das 2. Newtonsche Gesetz für Drehbewegungen
+\item den Steinerschen Satz
+\item den Satz über senkrechte Achsen
+\end{itemize}
+
+Des Weiteren werden wir Energiebetrachtungen anstellen und Rollbewegungen untersuchen.
+
+\vspace{5cm}
+Folgende (allgemeine) Lehrbücher wurden als Quelle benutzt bzw. werden zum Vertiefen des Stoffes empfohlen:
+\begin{itemize}
+\item Physik, Paul A. Tipler, Spektrum Akademischer Verlag Heidelberg$\cdot$Berlin$\cdot$Oxford 1998
+\item Physik, Douglas C. Giancoli, Pearson Studium 2006
+\item Halliday Physik, D.Halliday, R. Resnick, J. Walker WILEY-VCH Verlag GmbH \& Co. KGaA
+\end{itemize}
+\end{MSectionStart}
+
+\MSubsection{Der starre Körper}\MLabel{Physik_Rotation_starrer Koerper}   
+\begin{MIntro}
+Im ersten Abschnitt werden wir nun also das Modell des starren Körpers einführen und seine Bewegungsgleichungen herleiten. 
+
+\end{MIntro}
+
+\begin{MContent}
+Wenn ein Körper um eine Achse rotiert, die womöglich auch noch durch den Körpers selber hindurchgeht, kann man ihn nicht mehr mit dem Modell des Massenpunktes betrachten, sondern muss seine gesamte Ausdehnung berücksichtigen. Wieder kann man dazu ein Modell heranziehen, nämlich das des {\bf starren Körpers}. 
+
+\begin{MInfo}
+Ein {\bf starrer Körper} ist ein System von Massenpunkten, die fest miteinander verbunden sind. Der starre Körper
+\begin{itemize}
+\item hat einen Schwerpunkt
+\item ist nicht verformbar (unabhängig von auf ihn wirkenden Kräften)
+\item unterliegt keinen Reibungs- oder thermischen Einflüssen
+\end{itemize}
+\end{MInfo}
+%
+Dass auch der starre Körper nur ein Modell ist, ist leicht einzusehen, wenn man bedenkt, dass ein realer Körper aus Atomen und Molekülen besteht, die selbst schwingen und die mehr oder weniger gegeneinander verschiebbar sind. Dadurch ist der reale Körper nicht homogen und wird bei Krafteinwirkung, Reibung oder durch thermische Einflüsse verändert. Für die Grundlagen der Rotation genügt aber das Modell. Wir beschränken uns dabei auf starre Körper mit homogener Massenverteilung. 
+
+Für die Drehbewegung eines starren Körpers können wir die Betrachtungen aus Modul 5 (Kreisbewegungen) heranziehen. Im untenstehenden Bild soll sich eine kreisförmige Scheibe um ihren Mittelpunkt drehen. Jedes einzelne Masseteilchen $m_i$ des Körpers kann als Punktmasse betrachtet werden, für das gilt:
+
+\begin{center}
+\begin{tabular}{ll}
+\begin{minipage}{7.2cm}
+\MGraphicsSolo{Rotationskreis1}{scale=1}\ \ \ \ 
+\end{minipage}
+&
+\begin{minipage}{9.8cm}
+\begin{tabular}{l}
+Strecke $\MD s_i=v_i \MD t$ \\ \ \\
+%Zeilenumbruch
+Drehwinkel $\MD\theta=\frac{\MD s_i}{r_i}$ \hspace{1cm} aus $\frac{\MD\theta}{2\pi}=\frac{\MD s_i}{2\pi r_i}$ \\ \ \\
+Winkelgeschwindigkeit $\omega=\frac{\MD\theta}{\MD t}=\dot{\theta}$ \\ \ \\
+Winkelbeschleunigung $\alpha=\frac{\MD\omega}{\MD t}=\dot{\omega}=\frac{\MD ^2\theta}{\MD t^2}=\ddot{\theta}$
+\end{tabular}
+\end{minipage}
+\end{tabular}
+\end{center}
+
+Dabei überstreicht jeder Massenpunkt $m_i$ in derselben Zeit $\MD t$ den gleichen Winkel $\MD \theta$, da die Masseteilchen ja laut Definition starr miteinander verbunden sind, und hat dieselbe Winkelgeschwindigkeit $\omega\left(t\right)$ und Winkelbeschleunigung $\alpha\left(t\right)$.
+
+Jedes Masseteilchen $m_i$, das den gleichen Abstand $r_i$ vom Drehpunkt entfernt ist, legt in derselben Zeit den gleichen Weg $s_i\left(t\right)$ zurück und besitzt somit dieselbe Tangentialgeschwindigkeit $v_i\left(t\right)=r_i\omega\left(t\right)$ und dieselbe Tangentialbeschleunigung $a_i\left(t\right)=r_i\alpha\left(t\right)$.
+
+Im diesem Modul wird es nur konstante Beschleunigungen geben, so dass wir immer $\alpha\left(t\right)=\alpha=\,$const. setzen können. Damit können wir die Bewegungsgleichungen schreiben, die für jeden einzelnen Massenpunkt gelten:
+\[\omega(t)=\int\alpha\ \MD t=\omega_0+\alpha\cdot t \]
+\[\theta(t)=\int\omega\ \MD t=\theta_0+\omega_0\cdot t+\frac{1}{2}\alpha\cdot t^2\]
+
+\vspace{1cm}
+\textbf{Kontrollfragen}
+\ \\ \ \\
+Dreht sich ein starrer Körper um eine (beliebige) Achse, so ist
+
+\vspace{0.5cm}
+\begin{MQuestionGroup}
+\MCheckbox{0} die Tangentialgeschwindigkeit für alle Massepunkte gleich
+
+\MCheckbox{1} die Winkelgeschwindigkeit für alle Massenpunkte gleich
+
+\MCheckbox{0} der zurückgelegte Weg für alle Massenpunkte gleich
+
+\MCheckbox{0} die Tangentialbeschleunigung für alle Masseteilchen verschieden
+
+\MCheckbox{1} die Winkelbeschleunigung für alle Massenpunkte gleich
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+
+\end{MContent}
+
+% 
+% 
+
+\MSubsection{Ursache der Rotation -- das Drehmoment}\MLabel{Physik_Rotation_Drehmoment}   % 
+\begin{MIntro}
+Bisher wurden nur die Drehbewegungen eines Körpers beschrieben. Was aber bringt einen Körper dazu, sich zu drehen? In Modul 3 (Translation, 2. Newtonsches Gesetz) haben wir gesehen, dass man eine Kraft benötigt, um einen Körper in Bewegung zu setzen. Dies gilt natürlich auch für eine Rotationsbewegung. Aber das reicht bei der Rotation nicht aus $\ldots$
+
+\end{MIntro}
+
+\begin{MContent}
+
+Schauen wir uns eine Tür an, die sich um eine Achse am Seitenrand drehen kann:
+%
+\begin{center}
+\begin{tabular}{cl}
+\parbox[b]{7.2cm}
+{\MGraphicsSolo{Rotation-Tuer}{scale=1}}
+&
+\parbox[b]{9.2cm}
+{Drückt man mit einer Kraft $F$ gegen die Tür wie in Abbildung a.), so wird sie sich um ihre Achse drehen. \\ 
+
+\vspace{1.0cm}
+%Zeilenumbruch
+Drückt man aber mit einer gleichgroßen Kraft gegen die Tür in Richtung der Drehachse wie in Abbildung b.), so wird sich die Tür nicht bewegen!\\
+
+\vspace{0.5cm}
+Werden gleichgroße Kräfte wie in Abbildung c.) dargestellt in gleicher Richtung, aber an verschiedenen Angriffspunkten eingesetzt, so wird sich die Tür schneller beschleunigen, wenn man weiter weg von der Drehachse angreift ($r_2$), als nahe an der Türangel ($r_1$). Ebenso wird sie sich schneller beschleunigen, wenn man senkrecht zum Türblatt drückt als am selben Angriffspunkt, aber schräg zum Türblatt.}
+\end{tabular}
+\end{center}
+%
+
+Die Drehbeschleunigung, die die Tür erfährt, hängt also sowohl vom Abstand $r$ des Angriffspunktes von der Drehachse als auch von der Stärke der Kraft ab:
+\[\alpha\sim r \hspace{1cm} \;\;\; \mbox{und}\;\;\; \hspace{1cm} \alpha\sim F\]
+Außerdem ist auch die Kraftrichtung von Bedeutung: nach Bild c.) erfährt die Tür die größte Beschleunigung, wenn die Kraft senkrecht zum Türblatt, also auch zu der Verbindungslinie zwischen Kraft und Drehachse, steht. Dies können wir durch das Kreuzprodunkt der beiden Vektoren $\vec{r}$ und $\vec{F}$ ausdrücken:
+\[\vec\alpha\sim\left(\vec{r}\times\vec{F}\right)\]
+Dieses Kreuzproukt $\vec{r}\times\vec{F}$ bewirkt für die Rotation das gleiche wie eine Kraft bei der translatorischen Bewegung, nämlich die Beschleunigung. Es wird das {\bf Drehmoment} genannt.
+%
+\begin{MInfo}
+\vspace{0.1cm}
+Ursache für die Drehung eines starren Körpers um eine Drehachse ist das {\bf Drehmoment}
+\begin{center}
+$\vec{M}=\vec{r}\times\vec{F}$
+\end{center}
+mit dem Betrag
+\begin{center}
+$M=r\cdot F\cdot\sin\phi$
+\end{center}
+Dabei ist $\vec{r}$ der Abstandsvektor zwischen Drehachse und Angriffspunkt der Kraft und wird {\bf Hebelarm} oder {\bf Kraftarm} genannt. $\phi$ ist der zwischen Hebelarm und Kraft eingeschlossene Winkel.
+
+Die Einheit des Drehmomentes ist
+\begin{center}
+$\left[M\right]=\mbox{N\,m}=\mathrm{\frac{kg\ m^2}{s^2}}$
+\end{center}
+\end{MInfo} 
+%
+Das Drehmoment ist wieder ein Vektor in Richtung längs der Drehachse. Man legt fest:
+\begin{MInfo}
+\vspace{0.1cm}
+Bewirkt ein Drehmoment eine Drehung gegen den Uhrzeigersinn, so ist es positiv. Führt es zu einer Drehung im Uhrzeigersinn, so ist es negativ.
+\end{MInfo}
+%
+Wirken mehrere Drehmomente auf einen Körper, so können sie vektoriell addiert werden. Doch genügt es meist, die Beträge zu addieren und dabei die Richtung zu berücksichtigen, wenn die Drehmomente parallel bzw. antiparallell sind.
+
+\begin{MExample}\mbox{}\vspace{-\baselineskip}
+%
+\begin{center}
+\begin{tabular}[t]{cl}
+\parbox[b]{6.7cm}
+{\MGraphicsSolo{Drehmoment-Addition}{scale=1}}
+&
+\parbox[b]{9cm}
+{Drücken zwei Personen gegen die Tür gemäß Bild a.), das heißt, die eine Person drückt senkrecht zum Türblatt mit der Kraft $F_1$ und die andere Person unter dem Winkel $\phi$ mit der Kraft $F_2$, so kann das Gesamtdrehmoment berechnet werden zu:
+\begin{center}
+$M_{\rm{ges}}=M_1+M_2=F_1\cdot r_1+F_2\cdot r_2\cdot\sin\phi$
+\end{center}
+Dabei wird das "`+"'-Zeichen verwendet, da beide Drehmomente eine Drehung gegen den Uhrzeigersinn bewirken.
+\vspace{0.7cm}
+}
+\end{tabular}
+\end{center}
+
+In Bild b.) drücken beide Personen zwar senkrecht gegen die Tür, aber in entgegengesetzter Richtung. Das Gesamtdrehmoment ist nun
+\begin{center}
+$M_{\rm{ges}}=M_1+M_2=F_1\cdot r_1-F_2\cdot r_2$
+\end{center}
+\end{MExample} 
+%
+\MEntry {Kontrollfragen}{}
+
+
+\begin{itemize}
+\item
+\begin{MQuestionGroup}
+Für einen Körper mit einer Drehachse gilt:
+
+\begin{tabular}[t]{lm{14.5cm}}
+\MCheckbox{0}
+&
+nur eine senkrecht zur Verbindungslinie mit der Drehachse angreifende Kraft bewirkt eine Rotation\\ 
+\MCheckbox{0}
+&
+eine Kraft bewirkt immer eine Rotation\\
+\MCheckbox{0}
+&
+eine Kraft, die nicht parallell zur Verbindungslinie mit der Drehachse angreift, bewirkt eine Rotation\\
+\MCheckbox{1}
+&
+zwei senkrecht zur Verbindungslinie mit der Drehachse angreifende Kräfte bewirken immer eine Rotation\\
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+\item
+\begin{MQuestionGroup}
+Eine Kraft $F$ wirkt senkrecht zur Verbindungslinie der Länge $r$ mit der Drehachse auf einen Körper.
+
+Verdoppelt man die Kraft, wird das Drehmoment
+
+\begin{tabular}{ll}
+\MCheckbox{0} & halbiert\\
+
+\MCheckbox{1} & verdoppelt\\
+
+\MCheckbox{0} & bleibt gleich\\
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+
+verdoppelt man die Kraft und halbiert zusätzlich $r$, wird das Drehmoment
+
+\begin{MQuestionGroup}
+\begin{tabular}{ll}
+\MCheckbox{0} & halbiert\\
+
+\MCheckbox{0} & verdoppelt\\
+
+\MCheckbox{1} & bleibt gleich\\
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+\end{itemize}
+
+
+\end{MContent}
+
+% 
+\begin{MExercises}
+Ein schönes Beispiel zur Veranschaulichung von Drehmomenten ist das Wellrad. Dazu sind (mindestens) 2 Scheiben bzw. Zylinder aneinander befestigt und haben eine gemeinsame Drehachse. Als Grundelement für Winden und Kräne war das Wellrad schon in der Antike bekannt.
+
+\begin{center}
+\MGraphics{Wellrad1}{scale=1}{Anwendung des Wellrades; Quelle: wikipedia}%[h!]
+\end{center}
+
+\begin{MExercise}
+
+An einem Wellrad greifen zwei Kräfte an wie folgt:
+
+\begin{tabular}{cc}
+\MGraphicsSolo{Wellrad2}{scale=1}
+&
+\parbox[b]{10cm}
+{\begin{tabular}{cc}
+$F_1=50$ N & $r_1=30$ cm\\
+$F_2=50$ N & $r_2=50$ cm\\
+$\alpha=30°$ & \\
+\end{tabular}
+\vspace{1cm}
+
+Berechnen Sie das Gesamtdrehmoment, das auf das Wellrad wirkt.
+Geben Sie die Lösung auf zwei Nachkommastellen gerundet mit Einheit an:
+
+\vspace{0.5cm}
+$M_{\rm{ges}}=$\MQuestion{7}{-6{,}65N\,m}
+}
+\end{tabular}
+
+\vspace{5cm}
+\begin{MHint}{Lösung}
+
+\begin{tabular}{cc}
+\MGraphicsSolo{Wellrad2_Loesung}{scale=1}
+&
+\parbox[b]{10cm}
+{$\vec{F}_1$ bewirkt eine Drehung in positiver Richtung, der von der Kraft und dem Hebelarm eingeschlossene Winkel $\phi_1$ ist 90°:
+
+\[M_1=F_1\cdot r_1\cdot\sin\phi_1=50\ \mathrm{N}\cdot0{,}3\ \mathrm{m}\cdot1=15\ \mathrm{N\,m}\]
+$\vec{F}_2$ bewirkt eine Drehung in negativer Richtung mit $\phi_2=120°$:
+\[M_2=-F_2\cdot r_2\cdot\sin\phi_2=-50\ \mathrm{N}\cdot0{,}5\ \mathrm{m}\cdot\sin60°=-21{,}65\ \mathrm{N\,m}\]
+\[M_{\rm{ges}}=M_1+M_2=15\ \rm{N\,m}-21{,}65\ \mathrm{N\,m}=\underline{-6{,}65\ \mathrm{N\,m}}\]
+}
+\end{tabular}
+\end{MHint}
+\end{MExercise}
+
+\vspace{0.5cm}
+\begin{MExercise}
+
+\begin{tabular}{cc}
+\parbox[b]{8cm}
+{An der Welle eines (Brunnen-)Wellrades hängt über ein Seil ein Wassereimer mit $10\ \rm l$ Wasser.
+Der Radius der Welle beträgt $r_1=20$ cm, der des Rades ist $r_2=1$ m.
+
+\vspace{0.5cm}
+Mit welcher Kraft $F$ muss der kleine Moritz an seinem Seil ziehen, um den Wassereimer in der Schwebe zu halten?
+
+\vspace{0.5cm}
+Die Seile und der Eimer seien masselos; rechnen Sie mit $g=10\ \mathrm{\frac{m}{s^2}}$. Geben Sie das Ergebnis ohne Nachkommastelle mit Einheit an:
+
+\vspace{0.5cm}
+$F=$\MQuestion{3}{20N}
+}
+&
+\MGraphicsSolo{Wellrad3}{scale=1} 
+\end{tabular}
+
+\vspace{6cm}
+\begin{MHint}{Lösung}
+
+\begin{tabular}{cc}
+\MGraphicsSolo{Wellrad3_Loesung}{scale=1}
+&
+\parbox[b]{10cm}
+{Ein Seil, das an einem kreisförmigen Körper angreift, geht immer tangential vom Körper ab, daher ist sowohl $\phi_1$ als auch $\phi_2$ ein rechter Winkel. Die Gewichtskraft des Eimers mit Wasser $\vec{F}_{\rm{g,Eimer}}$ erzeugt ein Drehmoment in positiver Richtung. Damit der Eimer in Schwebe bleibt, sich also nicht bewegt, muss Moritz ein genau gleich großes Drehmoment in entgegengesetzter Richtung bewirken. Für die Beträge  gilt also:
+\[M_{\rm{Moritz}}=M_{\rm{Eimer}}\]
+\[\Leftrightarrow F\cdot r_2\cdot\sin\phi_2=F_{\rm{g,Eimer}}\cdot r_1\cdot\sin\phi_1\]
+\[\Rightarrow F=\frac{r_1\cdot\sin\phi_1}{r_2\cdot\sin\phi_2}\cdot F_{\rm{g,Eimer}}\]
+}
+\end{tabular}
+
+\vspace{0.5cm}
+Mit \hspace{2cm} $\sin\phi_1=\sin\phi_2=1$
+
+und dem Wissen, dass die Masse von 1 l Wasser 1 kg beträgt
+
+und \hspace{2cm} $F_{\rm{g,Eimer}}=m_{\rm{Wasser}}\cdot g=10\ \mathrm{kg}\cdot10\ \mathrm{\frac{m}{s^2}}=100\ \mathrm{N}$
+
+erhält man \hspace{1cm} $F=\frac{0{,}2\ \mathrm{m}}{1\ \mathrm{m}}\cdot100\ \mathrm{N}=\underline{20\ \mathrm{N}}$
+\end{MHint}
+\end{MExercise}
+
+
+\end{MExercises}
+
+
+\MSubsection{Das Trägheitsmoment}
+\begin{MIntro}
+Bei der linearen Beschleunigung spielt die träge Masse als Proportionalitätsfaktor eine große Rolle. Bei der beschleunigten Rotation auch, aber hier muss man noch etwas weiter gehen und -- wie schon aus den vorhergegangenen Abschnitten bekannt -- den Abstand der einzelnen Masseteilchen von der Drehachse mit berücksichtigen. Wie, das wird hier in diesem Abschnitt hergeleitet. 
+
+\end{MIntro}
+
+\begin{MContent}
+\MLabel{Physik_Rotation_GL}
+Betrachten wir noch einmal die Scheibe aus dem Abschnitt "`Der starre Körper"' \MRef{Physik_Rotation_starrer Koerper}.
+
+\begin{center}
+\begin{tabular}{cl}
+\parbox[b]{6.2cm}
+{\MGraphicsSolo{Rotationskreis2}{scale=1}}
+&
+\parbox[b]{10cm}
+{$m_i$ ist wieder der einzelne Masssenpunkt; die Scheibe soll jetzt beschleunigt werden. Dazu greift eine Kraft $\vec{F}$ an dem Massepunkt $m_i$ tangential zu dem Umlaufradius $r_i$ des Massenpunktes an. Es gilt das 2. newtonsche Gesetz:
+\[F=m_i\cdot a_i=m_i\cdot r_i\cdot\alpha\]
+Wie wir im Abschnitt \MRef{Physik_Rotation_Drehmoment} gesehen haben, reicht es aber bei der Rotation nicht, eine Kraft als Ursache anzugeben, sondern wir benötigen das Drehmoment.} 
+\end{tabular}
+\end{center}
+
+Dies erhält man, indem man $F$ -- und somit die Gleichung -- mit dem der Kraft zugehörigen Hebelarm $r_i$ multipliziert:
+\[M_i=F\cdot r_i=m_i\cdot{r_i}^2\cdot \alpha\]
+Damit haben wir nun eine Proportionalität von dem Drehmoment $M$ und der Winkelbeschleunigung $\alpha$ für den Massenpunkt  $m_i$:
+\[M_i=\left(m_i\cdot{r_i}^2\right)\cdot\alpha\]
+Der Proportionalitätsfaktor $\left(m_i\cdot{r_i}^2\right)$ ist das {\bf Trägheitsmoment $J_i$} eines Massenpunktes. Das Träg\-heits\-moment ist der "`Widerstand"' des Massenpunktes gegenüber der Änderung seiner Rotationsbewegung.
+Diese Beziehung ist ganz ähnlich wie bei der Translation $F=m\cdot a$, bei der die träge Masse $m$ den "`Widerstand"' gegen die Beschleunigung darstellt. Allerdings spielt für das Trägheitsmoment zusätzlich der Abstand $r_i$ des Massenpunktes von der Drehachse eine Rolle, so dass nur die Massenpunkte gleicher Masse eines Drehkörpers das gleiche $J_i$ haben, die denselben Abstand von der Drehachse haben.
+
+Wenn man aber nun den gesamten Körper, hier die Scheibe, betrachtet, so tragen alle einzelnen Massenpunkte zu diesem "`Widerstand"' gegen die Beschleunigung bei:
+\[\sum M_i=\left(\sum m_i\cdot {r_i}^2\right)\cdot\alpha\]
+Dabei ist $\sum{M_i}$ gerade das Nettodrehmoment an dem gesamten Körper, das die Summe aller äußeren und inneren (von jedem Massenpunkt auf einen anderen ausgeübten) Drehmomente ist, und $\sum{m_i\cdot {r_i}^2}$ ist das Trägheitsmoment des gesamten Körpers:
+
+\begin{MInfo}
+Jeder Körper besitzt ein Trägheitsmoment $J$ bezüglich einer bestimmten Drehachse:
+$$
+J=\sum{m_i\cdot {r_i}^2}\hspace{0.5cm}\mathrm{bzw.}\hspace{0.5cm}J=\int{r^2 \MD m}
+$$
+Das Trägheitsmoment $J$ gibt an, wie die einzelnen Massenpunkte $m_i$ um die Drehachse verteilt sind. 
+
+Die Einheit des Trägheitsmomentes ist
+\begin{center}
+$\left[J\right]=\mathrm{kg\ m^2}$
+\end{center}
+\end{MInfo}
+%
+Es ist ganz wichtig zu beachten, dass ein Trägheitsmoment eines Körpers immer nur für eine bestimmte Drehachse gilt, da der Abstand jedes einzelnen Massenpunktes des Körpers von dieser Drehachse in das Trägheitsmoment mit eingeht! Ein einzelner Körper hat im Allgemeinen für verschiedene Drehachsen verschiedene Trägheitsmomente!
+
+Damit erhalten wir die Gleichung
+\[M_{\rm{ges}}=J\cdot\alpha\]
+die äquivalent ist zu $F=m\cdot a$ und deshalb auch als das \MEntry{2. Newtonsche Gesetz für Drehbewegungen}{2. Newtonsche Gesetz für Drehbewegungen} genannt wird.
+
+\begin{MExample}
+a.) Zwei Gewichte sind über eine (masselose) Stange miteinander verbunden und wie im Bild an einer Drehachse angebracht.
+
+\begin{center}
+\begin{tabular}{cl}
+\parbox[b]{5.7cm}
+{\MGraphicsSolo{zwei_Gewichte_an_Drehachse_1}{scale=1}}
+&
+\parbox[b]{10cm}
+{Die Massen der Gewichte betragen $m_1=6\ \mbox{kg}$ und \\
+$m_2=4\ \mbox{kg}$, die Abstände der Gewichte von der Drehachse sind $r_1=r_2=0{,}5\ \mbox{m}$. Die Gewichte können als Punktmassen angesehen werden. Gesucht ist das Trägheitsmoment des Systems.
+\[J=\sum{m_i\cdot{r_i}^2}=m_1\cdot{r_1}^2+m_2\cdot{r_2}^2=\]
+\[=6\ \mbox{kg}\cdot \left(0{,}5\ \mbox{m}\right)^2+4\ \mbox{kg}\cdot\left(0{,}5\ \mbox{m}\right)^2=\underline{2{,}5\ \mathrm{kg\ m^2}}   \]
+}
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+b.) Jetzt sei die Drehachse um $d=0{,}1\ \mbox{m}$ außerhalb desselben Systems angebracht:
+
+\begin{center}
+\begin{tabular}{cl}
+\parbox[b]{5.7cm}
+{\MGraphicsSolo{zwei_Gewichte_an_Drehachse_2}{scale=1}}
+&
+\parbox[b]{10cm}
+{Nun beträgt das Trägheitsmoment
+\[J=\sum{m_i\cdot{r_i}^2}=m_1\cdot d^2+m_2\cdot\left(d+r_1+r_2\right)^2=\]
+\[=6\ \mbox{kg}\cdot\left(0{,}1\ \mbox{m}\right)^2+4\ \mbox{kg}\cdot\left(1{,}1\ \mbox{m}\right)^2=\underline{4{,}9\ \mathrm{kg\ m^2}}\]
+\vspace{1cm}
+}
+\end{tabular}
+\end{center}
+
+Wie man sieht, ist das Trägheitsmoment im zweiten Fall deutlich größer, da zwar der Abstand $r_1$ der Masse $m_1$ zur Drehachse etwas kleiner als im ersten Fall ist, der Abstand $r_2$ der Masse $m_2$ aber viel größer.
+\end{MExample}
+
+\end{MContent}
+
+% 
+% 
+
+\MSubsection{Bestimmung von Trägheitsmomenten}%\MLabel{}
+\begin{MIntro}
+Für Anordnungen mit Massenpunkten ist die Berechnung des Trägheitsmomentes bezüglich einer Drehachse mit der Summenformel $J=\sum{m_i\cdot {r_i}^2}$ einfach zu lösen. Aber für einen starren Körper, bei dem die Masse kontinuierlich verteilt ist, wird es schon schwieriger. Die Berechnung muss dann über das Integral $J=\int{r^2 \MD m}$ erfolgen. Hat man allerdings ein Trägheitsmoment eines Körpers bezüglich einer bestimmten Drehachse berechnet, gibt es ein paar "`Tricks"', daraus ein Trägheitsmoment bezüglich einer anderen Drehachse zu erhalten. 
+
+\end{MIntro}
+
+\begin{MXContent}{Berechnung von Trägheitsmomenten}{Berechnung}{STD}
+%
+\MSubsubsectionx{Berechnung des Trägheitsmoments über Integrale}\MLabel{Physik_Rotation_Best_von_J_Integrale}
+Die Berechnung von Trägheitsmomenten werden wir nur an einfachen oder symmetrischen Körpern vornehmen. Ein einfaches Beispiel ist ein langer dünner Stab, der eine homogene Massenverteilung hat und dessen Dicke vernachlässigbar klein sein soll.
+
+%\begin{center}
+\begin{tabular}{cl}
+%\parbox[b]{9.2cm}
+\MGraphicsSolo{duenner_Stab_1}{scale=1}
+&
+\parbox[b]{7.7cm}
+{Der Stab soll sich um eine Achse drehen, die durch seine Mitte geht und senkrecht zu dem Stab ist. An den Stab wird das Koordinatensystem so gelegt, dass sich die Drehachse auf der $z$-Achse befindet.
+
+Jedes einzelne Masseteilchen d$m$ befindet sich irgendwo zwischen $r=-l/2$ und $r=+l/2$. Da die Masseverteilung des Stabes homogen ist, ist das Verhältnis der Masse eines einzelnen Teilchens $\MD m$ zur Gesamtmasse $m$ gerade so groß wie das Verhältnis seines Längenstückes d$r$ zur Gesamtlänge $l$:
+}
+\end{tabular}
+%\end{center}
+\[\frac{\MD m}{m}=\frac{\MD r}{l}\]
+Daraus erhält man d$m=\frac{m}{l}\cdot \MD r$ und kann das Trägheitsmoment folgendermaßen berechnen:
+\[
+J=\int r^2 \MD m=\int_{-\frac{l}{2}}^{\frac{l}{2}}\frac{m}{l}\cdot r^2 \ \MD r=\frac{m}{l}\left[\frac{1}{3}\cdot r^3\right]_{-{\frac{l}{2}}}^{{\ \frac{l}{2}}}=\frac{m}{l}\left(\frac{1}{3}\cdot\frac{l^3}{8}+\frac{1}{3}\cdot\frac{l^3}{8}\right)=\frac{m}{l}\cdot\frac{2}{24}\cdot l^3=\underline{\frac{1}{12}m l^2} 
+\]
+
+\begin{center}
+\begin{tabular}{cl}
+\parbox[b]{9.2cm}
+{\MGraphicsSolo{duenner_Stab_2}{scale=1}}
+&
+\parbox[b]{6.8cm}
+{Nun lässt man denselben Stab um eine Achse drehen, die wieder senkrecht zum Stab ist, sich aber an seinem Ende befindet. Es gilt wieder $\MD m=\frac{m}{l}\cdot \MD r$, doch diesmal muss von $r=0$ bis $r=l$ integriert werden:
+\[ J=\int r^2 \MD m=\int_{0}^{l}\frac{m}{l}\cdot r^2 \ \MD r=\]
+\[=\frac{m}{l}\left[\frac{1}{3}\cdot r^3\right]_0^l=\frac{m}{l}\left(\frac{1}{3}\cdot l^3-0\right)=\]
+\[=\underline{\frac{1}{3}\cdot m\cdot l^2}\]
+}
+\end{tabular}
+\end{center}
+%
+Wie man sieht, ist das Trägheitsmoment für diesen Fall sehr viel größer.
+
+Weitere Berechnungen von Trägheitsmomenten rotationssymmetrischer Körper über Integrale finden Sie bei den "`Extras"' \MRef{Physik_Rotation_extra}.
+
+\MSubsubsectionx{"`Zusammengesetzte"' Trägheitsmomente}\MLabel{Physik_Rotation_zusammengesetzte_J}
+
+Kennt man das Trägheitsmoment eines flachen Körpers, das heißt eines Körpers, der in guter Näherung nur in zwei Dimensionen ausgedehnt ist, so erhält man das Trägheitsmoment eines Körpers, der als Grundläche diesen flachen Körper hat, aber in die dritte Dimension ausgedehnt ist, mit Hilfe der Summenformel $J=\sum{m_i\cdot {r_i}^2}$.
+
+%\begin{center}
+\begin{tabular}{cl}
+\MGraphicsSolo{Zylinder}{scale=1}
+&
+\parbox[b]{7.7cm}
+{Einen Zylinder kann man sich aus lauter hintereinandergesetzten dünnen Scheiben zusammengesetzt denken. Es wird angenommen, dass man weiß, dass das Trägheitsmoment einer homogenen dünnen Scheibe mit dem Radius $r_0$, die sich um eine Achse dreht, die senkrecht zu ihrer Ausdehnungsebene ist und durch ihren Mittelpunkt geht, sich zu $J=\frac{1}{2}\cdot m\cdot{r_0}^2$ berechnet (s. \MRef{Physik_Rotation_extra}).
+Beim homogenen Zylinder trägt also jede dünne Scheibe mit der Teilmasse $m_i$ und einem Trägheitsmoment von $J_i=\frac{1}{2}\cdot m_i\cdot {r_0}^2$ zum Gesamtträgheitsmoment bei:}
+\end{tabular}
+%\end{center}
+
+\[J=\sum{m_i\cdot{r_i}^2}=\sum{J_i}=\sum\frac{1}{2}\cdot m_i\cdot{r_0}^2=\frac{1}{2}\cdot{r_0}^2\sum{m_i}\]
+
+Da die Aufsummierung aller Teilmassen $\sum{m_i}$ gleich der Gesamtmasse $m$ ist, ergibt sich:
+\[J=\frac{1}{2}\cdot m\cdot  {r_0}^2\]
+
+Wie man sieht, spielt es für das Trägheitsmoment keine Rolle, welche Länge der Zylinder hat oder ob er nur eine dünne Scheibe ohne nennenswerte Dicke ist. Dasselbe gilt bei allen Trägheitsmomenten von Körpern, die sich um ihre Symmetrieachse längs ihrer Ausdehnung drehen. 
+\end{MXContent}
+%
+%
+%
+%
+
+\begin{MXContent}{Zusammenstellung einiger wichtiger Trägheitsmomente}{Zusammenstellung}{STD}\MLabel{Physik_Rotation_Traegheitsmomente_Zusammenstellung}
+Im Folgenden sind die Trägheitsmomente einiger wichtiger Körper bezüglich verschiedener Drehachsen dargestellt:
+\begin{center}
+\begin{tabular}{ccc}
+\MUGraphicsSolo{VZylinder_Tab}{scale=0.58}{width:250px} & \MUGraphicsSolo{HZylinder_Tab}{scale=0.58}{width:250px} & \MUGraphicsSolo{ZylinderM_Tab}{scale=0.58}{width:250px}\\
+%
+\parbox[b]{4cm}
+{$J=\frac{1}{2}m{r_0}^2$} &
+\parbox[b]{4cm}
+{$J=\frac{1}{2}m\left({r_{\rm i}}^2+{r_{\rm a}}^2\right)$} &
+\parbox[b]{4cm}
+{$J=m{r_0}^2$}\\
+%
+\ &\ &\ \\
+\ &\ &\ \\
+%
+\MUGraphicsSolo{VZylinder_Tab2}{scale=0.58}{width:250px} & \MUGraphicsSolo{ZylinderM_Tab2}{scale=0.58}{width:250px} & \MUGraphicsSolo{Quader_Tab}{scale=0.58}{width:250px}\\
+%
+\parbox[b]{4cm}
+{$J=\frac{1}{4}m{r_0}^2+\frac{1}{12}m l^2$} &
+\parbox[b]{4cm}
+{$J=\frac{1}{2}m{r_0}^2+\frac{1}{12}m l^2$} &
+\parbox[b]{4cm}
+{$J=\frac{1}{12}m\left(a^2+b^2\right)$}\\
+%
+\ &\ &\ \\
+\ &\ &\ \\
+%
+\begin{tabular}{cc}
+\MUGraphicsSolo{Kugel_Tab}{scale=0.58}{width:110px} &
+\MUGraphicsSolo{HKugel_Tab}{scale=0.58}{width:130px}
+\end{tabular}
+&
+\MUGraphicsSolo{duenner_Stab_Tabx}{scale=0.58}{width:200px} & \MUGraphicsSolo{duenner_Stab_Tab2}{scale=0.58}{width:200px}\\
+%
+\parbox[b]{5cm}
+{\begin{tabular}{ll}
+$J=\frac{2}{5}m{r_0}^2$ \ifttm\else\ \ \ \ \ \fi
+&
+$\;\;J=\frac{2}{3}m{r_0}^2$
+\end{tabular}}
+\ifttm\else\ \ \ \ \ \ \ \ \fi
+&
+\parbox[b]{4cm}
+{$J=\frac{1}{12}m l^2$} &
+\parbox[b]{4cm}
+{$J=\frac{1}{3}m l^2$}
+%
+\end{tabular}
+\end{center}
+\end{MXContent}
+
+%
+%
+%
+%
+%
+\vspace{1cm}
+\begin{MXContent}{Hilfreiche Sätze}{hilfreiche Sätze}{STD}
+\MSubsubsectionx{Steinerscher Satz}
+Bisher haben wir -- bis auf den dünnen Stab -- nur Trägheitsmomente für Körper berechnet und betrachtet, die um eine Drehachse rotieren, die durch ihren Schwerpunkt geht. Nun schauen wir uns einen beliebigen starren Körper an, dessen Drehachse irgendwo außerhalb seines Schwerpunktes liegt.
+
+\begin{center}
+\begin{tabular}{ll}
+\MGraphicsSolo{Rotationskoerper}{scale=1}
+&
+\parbox[b]{11.5cm}
+{In der Abbildung ist der Schnitt durch den Körper gezeigt, der den Schwerpunkt $S$ enthält. Der Ursprung des Koordinatensystems wird in den Schwerpunkt gelegt. Der Körper soll um eine Achse rotieren, die senkrecht zur Schnittebene durch den Punkt $P(a,b)$ verläuft. Dieser befindet sich im Abstand $h$ vom Schwerpunkt.
+
+Um das Trägheitsmoment des gesamten Körpers berechnen zu können, benötigt man die Trägheitsmomente der einzelnen Massenpunkte.
+\vspace{0.5cm}
+}
+\end{tabular}
+\end{center}
+Ein Massenpunkt $m_i$ mit den Koordinaten $(x_i,y_i)$ hat den Abstand $r_i$ zur Drehachse mit
+\[r{_i}^2=\left(x_i-a\right)^2+\left(y_i-b\right)^2\]
+Damit berechnet sich das Trägheitsmoment des Körpers zu
+
+\ifttm  % Vereinfachte underbraces fuer das HTML
+\begin{align*}
+J &= \sum m_i\left(\left(x_i-a\right)^2+\left(y_i-b\right)^2\right)= \\
+  &=\sum m_i\left({x_i}^2-2ax_i+a^2+{y_i}^2-2by_i+b^2\right)= \\
+  &=\underbrace{\sum m_i\left({x_i}^2+{y_i}^2\right)}_{=J_S}-2a\underbrace{\sum m_i x_i}_{=0}-2b\underbrace{\sum m_i y_i}_{=0}+\sum m_i\underbrace{\left(a^2+b^2\right)}_{=h^2=const.}
+\end{align*}
+\else
+\begin{align*}
+J &= \sum m_i\left(\left(x_i-a\right)^2+\left(y_i-b\right)^2\right)= \\
+  &=\sum m_i\left({x_i}^2-2ax_i+a^2+{y_i}^2-2by_i+b^2\right)= \\
+  &=\underbrace{\sum m_i\underbrace{\left({x_i}^2+{y_i}^2\right)}_{{r_i}^2}}_{J_S}-2a\underbrace{\sum m_i x_i}_{0}-2b\underbrace{\sum m_i y_i}_{0}+\sum m_i\underbrace{\left(a^2+b^2\right)}_{h^2=\rm{const.}}
+\end{align*}
+\fi
+%
+Dabei ist $\left({x_i}^2+{y_i}^2\right)$ gerade der Abstand ${r_i}^2$ des Massenpunktes vom Schwerpunkt und $\sum m_i{r_i}^2$ ist das Trägheitsmoment des Körpers, das er bezüglich der Drehachse durch den Schwerpunkt hätte.
+$\left(a^2+b^2\right)$ ist das Quadrat des Abstandes $h$ der Drehachse vom Schwerpunkt und somit konstant.
+
+Die Terme $\sum m_i x_i$ und $\sum m_i y_i$ sind die (mit der 
+Gesamtmasse $m$ multiplizierten) Koordinaten des Schwerpunkts und somit gerade null. 
+Damit wird
+\[J=J_S+h^2\sum m_i=J_S+h^2\cdot m_{\rm{ges}}\]
+Diese Erkenntnis geht auf den schweizer Mathematiker Jakob Steiner (1796--1863) zurück:
+\begin{MInfo}
+\MEntry{Steinerscher Satz}{Steinerscher Satz} 
+(\MEntry{Parallel-Axis-Theorem}{Parallel-Axis-Theorem})
+
+Kennt man das Trägheitsmoment $J_S$ eines Körpers der Masse $m$ bezüglich einer Drehachse durch seinen Schwerpunkt $S$, so kann man das Trägheitsmoment bezüglich einer beliebigen Achse parallel dazu mit dem senkrechten Abstand $h$ berechnen mit
+\[J=J_S+h^2\cdot m\]
+\end{MInfo}
+%
+\begin{MExample}
+Als Beispiel, an dem wir sofort die Richtigkeit des Satzes nachvollziehen können, nehmen wir wieder den langen dünnen Stab. In \MRef{Physik_Rotation_Best_von_J_Integrale} haben wir das Trägheitsmoment des Stabes bezüglich der Drehachse durch den Schwerpunkt und senkrecht zum Stab mit 
+\[J_S=\frac{1}{12}m l^2\] berechnet.
+Nun wollen wir das Trägheitsmoment des Stabes bezüglich der nun ans Ende des Stabes verschobenen Drehachse mit Hilfe des Steinerschen Satzes berechnen:
+
+Mit $h=\frac{l}{2}$ gilt:
+\[J=J_S+h^2m=\frac{1}{12}m l^2+\frac{l^2}{4}m=\frac{1+3}{12}m l^2=\underline{\frac{1}{3}m l^2}\]
+Dieses Ergebnis ist gleich dem aus der Berechnung durch Integration in \MRef{Physik_Rotation_Best_von_J_Integrale}.
+\end{MExample}
+
+
+
+\MSubsubsectionx{Satz über senkrechte Achsen bei flachen Körpern}
+Ist ein Körper ein \MEntry{flacher Körper}{flacher Körper}, das heißt, er ist nur in einer Ebene ausgedehnt bzw. seine (gleichmäßige) Dicke ist vernachlässigbar gegenüber den Abmessungen in die anderen beiden Raumrichtungen, so kann man einen weiteren Satz zur Berechnung von Trägheitsmomenten herleiten.
+%
+
+\begin{tabular}{ll}
+\parbox[b]{10cm}
+{Wir wollen nun das Trägheitsmoment des Körpers bezüglich der $z$-Achse als Drehachse betrachten:
+\ifttm % Vereinfachte underbraces fuer HTML
+\[J_z=\int r^2\MD m=\int\left(x^2+y^2\right)\MD m=\underbrace{\int x^2\MD m}_{=J_y}+\underbrace{\int y^2\MD m}_{=J_x}\]
+\else
+\[J_z=\int r^2\MD m=\int\left(x^2+y^2\right)\MD m=\underbrace{\int x^2\MD m}_{J_y}+\underbrace{\int y^2\MD m}_{J_x}\]
+\fi
+Dabei ist in $\int x^2\ \MD m$ der Betrag von $x$ der Abstand von $\MD m$ von der $y$-Achse und das Integral somit das Trägheitsmoment des Körpers um die $y$-Achse, und ebenso ist der Betrag von $y$ in $\int y^2\ \MD m$ der Abstand von $\MD m$ von der $x$-Achse und das Integral das Trägheitsmoment des Körpers um die $x$-Achse.}
+&
+\MGraphicsSolo{Rotationskoerper_flach}{scale=1}
+\end{tabular}
+
+Damit erhalten wir:
+%
+\begin{MInfo}
+Für einen flachen Körper, der in der $x$-$y$-Ebene ausgedehnt ist, gilt für die Trägheitsmomente bezüglich der $x$-Achse, der $y$-Achse und der $z$-Achse als Drehachsen der Zusammenhang
+\[J_z=J_x+J_y\]
+\end{MInfo}
+%
+%
+\begin{MExample}\MLabel{Physik_Rotation_Bestimmung_Bsp}
+\begin{tabular}{ll}
+\MGraphicsSolo{Rotationsring}{scale=1}
+&
+\parbox[b]{10cm}
+{Ein dünner Ring, der in der $x$-$z$-Ebene ausgedehnt mit seinem Mittelpunkt im Ursprung liegt, hat nach der Übersicht in \MRef{Physik_Rotation_Traegheitsmomente_Zusammenstellung} für die Rotation um die $y$-Achse das Trägheitsmoment
+\[J_y=m\cdot r^2\]
+Nun soll er um die $z$-Achse rotieren. Um das Trägheitsmoment dazu zu berechnen, kann man den Satz für flache Körper anwenden.
+}
+\end{tabular}
+
+Dabei muss man aber beachten, dass der Körper in der $x$-$z$-Ebene liegt und die Gleichung nun folgendermaßen lautet:
+\[J_y=J_x+J_z\]
+Aufgrund der Symmetrie des Ringes ist das Trägheitsmoment des Körpers um die $x$-Achse genau so groß wie das Trägheitsmoment des Körpers um die $z$-Achse:
+\[J_x=J_z\]
+Daraus folgt:
+\[J_y=2J_z \hspace {0.5cm}\Rightarrow \hspace{0.5cm} J_z=\frac{1}{2}J_y=\underline{\frac{1}{2}m r^2}\]
+
+\end{MExample}
+\end{MXContent}
+
+\begin{MExercises}
+%
+\begin{MExercise}
+Ein 4,5 kg schwerer Wetterhahn auf dem Kirchturm  sitzt am Ende einer horizontalen masselosen dünnen Stange, die reibungsfrei drehbar an der 1 m entfernten Kirchturmspitze (Drehachse) befestigt ist.
+
+a.) Wie groß ist das Trägheitsmoment des Wetterhahnes bezüglich der Kirchturmspitze?
+
+b.) Wie groß ist die Winkelbeschleunigung des Hahnes im ersten Moment, wenn er nun aufgrund des Windes eine Kraft von 0,1 N senkrecht zur Stange erfährt?
+
+c.) Wie groß ist die Winkelbeschleunigung aus b.), wenn das Reibungsmoment 0,01 N$\,$m beträgt?
+%
+
+\begin{MHint}{Hinweis}
+Der Wetterhahn kann als Punktmasse betrachtet werden.
+\end{MHint}
+%
+\begin{MHint}{Lösung}
+a.) geg: \hspace{0.5cm}$m=4{,}5$ kg\hspace{0.5cm}$r=1$ m
+
+\hspace{0.6cm}ges: \hspace{0.5cm}$J$
+
+\[J=\sum m_i{r_i}^2=m\cdot r^2=4{,}5\ \mathrm {kg}\cdot 1\ \mathrm {m^2}=\underline{\underline{4{,}5\ \mathrm {kg\ m^2}}}\]
+
+\vspace{0.5cm}
+b.) geg: \hspace{0.5cm}$F=0{,}1$ N
+
+\hspace{0.6cm}ges: \hspace{0.5cm}$\alpha$
+
+Es gilt: 
+\[\vec{M}=J\cdot\vec{\alpha} \hspace{0.5cm}\Leftrightarrow\hspace{0.5cm} \vec{r}\times\vec{F}=J\cdot\vec{\alpha}\]
+bzw. für die Beträge
+\[r\cdot F\cdot \sin{\phi}=J\cdot\alpha\]
+Wenn der Wind plötzlich senkrecht zur Stange weht, kann man -- nur für den ersten Moment ($t\equiv0\ \mathrm s$) -- $\sin\phi=1$ setzten:
+\[r\cdot F=J\cdot\alpha\hspace{0.5cm}\Rightarrow\hspace{0.5cm}\alpha=\frac{r\cdot F}{J}=\frac{1\ \mathrm m\cdot 0{,}1\ \mathrm N}{4{,}5\ \mathrm{kg\ m^2}}=\underline{\underline{0{,}022\ \mathrm{\frac{1}{s^2}}}}\]
+Damit beginnt der Wetterhahn, sich zu drehen,  und  der Winkel $\phi$ zwischen der Stange und der Richtung der Kraft des Windes verändert sich. Man erhält dann eine Differentialgleichung, die nicht trivial zu lösen ist.
+
+\vspace{0.3cm}
+c.) geg: \hspace{0.5cm}$M_{\rm{reib}}=-0{,}01\ \mathrm{Nm}$
+
+\hspace{0.6cm}ges: \hspace{0.5cm}$\alpha_1$
+
+Das Reibungsmoment wirkt immer entgegen der Drehbewegung, deshalb erhält es ein Minuszeichen. Das Gesamtdrehmoment reduziert sich nun auf
+\[M_{\rm{ges}}=M+M_{\rm{reib}}=F\cdot r+M_{\rm{reib}}=0{,}1\ \mathrm N\cdot 1\ \mathrm m-0{,}01\ \mathrm {N\,m}=0{,}09\ \mathrm{N\,m}\]
+und die Winkelbeschleunigung im ersten Moment ist
+\[\alpha_1=\frac{M_{\rm{ges}}}{J}=\frac{0{,}09\ \mathrm{N\,m}}{4{,}5\ \mathrm{kg\ m^2}}=\underline{\underline{0{,}02\ \mathrm{\frac{1}{s^2}}}}\]
+\end{MHint}
+\end{MExercise}
+
+%
+%
+\begin{MExercise}
+In den Ecken eines Quadrats mit einer Seitenlänge von 2,0 m befinden sich identische Kugeln mit einer Masse von je 0,5 kg, befestigt an masselosen Stäben, welche die Seiten des Quadrats bilden. Geben Sie das Trägheitsmoment der Anordnung bei der Rotation um eine Achse an, die
+
+a.) durch die Mittelpunkte gegenüberliegender Seiten verläuft und in der Ebene des Quadrats liegt
+
+b.)
+durch den Mittelpunkt einer Seite verläuft und senkrecht auf der Ebene des Quadrats steht.
+
+\begin{MHint}{Lösung}
+geg: \hspace{0.5cm}$a=2{,}0$ m\hspace{0.5cm}$m=0{,}5$ kg
+
+ges: \hspace{0.5cm}$J$
+
+a.)
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Rotation_Quadrat1}{scale=1}
+&
+\parbox[b]{10cm}
+{Mit den Abständen $r_i=\frac{a}{2}$ aller Kugeln von der Drehachse ergibt sich für das Trägheitsmoment
+\[J=\sum{m_i\cdot {r_i}^2}=4\cdot m\cdot\frac{a^2}{4}=m\cdot a^2=0{,}5\ \mathrm {kg}\cdot 4{,}0\ \mathrm{m^2}=\underline{\underline{2\ \mathrm{kg\ m^2}}}\]
+}
+\end{tabular}
+
+b.)
+
+\begin{tabular}{ll}
+\parbox[b]{9cm}
+{Für die oberen Kugeln beträgt der Abstand von der Drehachse weiterhin $\frac{a}{2}$. Für die beiden unteren Kugeln gilt:
+\[r'^2={\frac{a}{2}}^2+a^2=\frac{5}{4}a^2\]
+\begin{eqnarray*}
+\Rightarrow \;\; J &=& \sum{m_ir_i^2}=2m\cdot\frac{a^2}{4}+2m\cdot\frac{5}{4}a^2=\\
+&=&3m a^2=\\
+\\
+&=&3\cdot0{,}5\ \mathrm{kg}\cdot4{,}0\ \mathrm{m^2}=\underline{\underline{6\ \mathrm{kg\ m^2}}}
+\end{eqnarray*}
+}
+&
+\MGraphicsSolo{Rotation_Quadrat2}{scale=1}
+\end{tabular}
+\end{MHint}
+\end{MExercise}
+
+%
+%
+\begin{MExercise}
+Das Trägheitsmoment eines dünnen Reifens der Masse $m$ und des Radius $r_0$ bezüglich einer Drehachse senkrecht zur Reifenebene und durch den Mittelpunkt des Reifens berechnet sich aus $J=m\cdot {r_0}^2$. Berechnen Sie daraus das Trägheitsmoment eines dünnen Zylindermantels der Masse $M$ und des Radius $r_0$ mit seiner Symmetrieachse als Drehachse.
+
+\begin{MHint}{Lösung}
+Den Zylindermantel kann man sich aus vielen dünnen hintereinander liegenden Reifen zusammengesetzt denken, wobei die Gesamtmasse $M$ des Zylindermantels die Summe aller Massen $m_i$ der einzelnen Reifen ist:
+\[J=\sum{m_i\cdot{r_i}^2}=\sum J_i=\sum{m_i\cdot{r_0}^2}={r_0}^2\sum m_i=\underline{\underline{{r_0}^2\cdot M}}\]
+\end{MHint}
+\end{MExercise}
+
+%
+%
+\begin{MExercise}
+Zwei homogene massive Kugeln mit der Masse $m$ und dem Radius $r_0$ sind durch eine dünne masselose Stange mit der Länge $r_0$ so miteinander verbunden, dass ihre Mittelpunkte $3r_0$ voneinander entfernt sind.
+
+a.) Bestimmen Sie das Trägheitsmoment dieses Systems um eine Drehachse, die senkrecht zu der Stange und durch ihren Mittelpunkt verläuft.
+
+b.) Wie groß wäre der relative Fehler, wenn man annehmen würde, dass die Masse jeder Kugel jeweils in ihrem Mittelpunkt konzentriert wäre und eine sehr einfache Rechnung durchgeführt würde?
+
+c.) Nun wirkt für eine Zeit von 2 s ein Drehmoment von 5,3 N$\,$m auf das System und bringt es zum Rotieren. Berechnen Sie die Geschwindigkeit, die die beiden äußersten Punkte der Kugeln nach dieser Zeit haben, wenn die Kugeln jeweils 1 kg schwer sind und ihr Radius $r_0=0{,}5$ m ist (vernachlässigen Sie die Reibung). 
+
+\begin{MHint}{Lösung}
+geg: \hspace{0.5cm}$m$,\hspace{0.5cm}$r_0$
+
+ges:\hspace{0.5cm}$J$
+
+\begin{tabular}{ll}
+\MGraphicsSolo{zwei_Kugeln_an_Drehachse}{scale=1}
+&
+\parbox[b]{8cm}
+{a.) Das Gesamtträgheitsmoment wird aus
+\[J=\sum J_i\] berechnet.
+Wir kennen das Trägheitsmoment einer Kugel, die um ihre Symmetrieachse rotiert, aus \MRef{Physik_Rotation_Traegheitsmomente_Zusammenstellung}:
+\[J_S=\frac{2}{5}mr^2\]
+}
+\end{tabular}
+
+Wir benötigen aber nun das Trägheitsmoment der Kugeln um eine Achse, die $h=\frac{3}{2}r_0$ von der Symmetrieachse entfernt ist. Dazu verwenden wir den Steinerschen Satz:
+\[J_{\rm K}= J_{S_{\rm{Kugel}}}+h^2m=\frac{2}{5}mr_0^2+\frac{9}{4}r_0^2m=\frac{53}{20}mr_0^2\]
+Für das Gesamtträgheitsmoment erhält man damit:
+\[J=2J_{\rm K}=\frac{53}{10}m{r_0}^2=\underline{\underline{5{,}3\,m{r_0}^2}}\]
+
+b.) Unter der Annahme, dass die beiden Kugeln jeweils als Punktmassen angesehen werden können, deren Masse in ihrem Mittelpunkt konzentriert wäre, wäre der Abstand der Massen jeweils $h=\frac{3}{2}r_0$, und es ergäbe sich:
+\[J'=\sum{m_i{r_i}}^2=2m\left(\frac{3}{2}{r_0}\right)^2=\frac{9}{2}m{r_0}^2=4{,}5\,m{r_0}^2\]
+\[\Rightarrow\hspace{0.5cm}\frac{J'}{J}=\frac{4{,}5}{5{,}3}=0{,}85\]
+\begin{center}
+$\Rightarrow$\hspace{0.5cm}\underline{\underline{Abweichung = $-15\%$}}
+\end{center}
+
+
+\begin{tabular}{llll}
+c.) &geg:\hspace{0.5cm}&$M=5{,}3$ N$\,$m \hspace{0.5cm}&$t_1=2$ s\\
+\ &\ &$m=1$ kg & $r_0=0{,}5$ m\\
+\ &\ \\
+\ &ges:\hspace{0.5cm}&$v\left(t_1\right)$ bei $r=2{,}5\,r_0$
+\end{tabular}
+
+\[v\left(t_1\right)=r\omega\left(t_1\right)\]
+\[\omega\left(t\right)=\omega_0+\alpha t\]
+Die Winkelbeschleunigung $\omega_0$ zu Beginn ist null, und $\alpha$ erhält man aus $M=J\alpha$:
+\[\omega\left(t_1\right)=\frac{M}{J}t_1\]
+\[\Rightarrow\hspace{0.5cm}v\left(t_1\right)=r\cdot\frac{M}{J}t_1 =2{,}5\,r_0\cdot\frac{M}{5{,}3\,m\cdot{r_0}^2}\cdot t_1=\frac{2{,}5\cdot5{,}3\ \mathrm{N\,m}\cdot 2\ \mathrm{s}}{5{,}3\cdot1\ \mathrm{kg}\cdot0{,}5\ \mathrm{m}}=\underline{\underline{10\ \mathrm{\frac{m}{s}}}}\]
+\end{MHint}
+
+\end{MExercise}
+
+%
+%
+\begin{MExercise}
+Ein Vater schlingt ein Seil um den äußeren Rand eines Spielplatzkarussells und zieht mit einer konstanten Kraft. Dadurch beschleunigt das Karussell aus dem Stillstand in 5 s auf 2,5 rad/s. Das Karussell kann als homogene Scheibe mit einem Durchmesser  von 2 m und einer Masse von 200 kg angesehen werden. Berechnen Sie das Nettodrehmoment, das erforderlich ist, um das Karussell zu beschleunigen.
+
+\begin{MHint}{Lösung}
+\begin{tabular}{llll}
+geg:\hspace{0.5cm}&zur Zeit &$t_0=0$ s&$\omega_0=0$\\
+\ &zur Zeit&$t_1=5$ s&$\omega_1=2{,}5\ \mathrm{\frac{rad}{s}}$\\
+\ &Karussell: &$m=200$ kg&$d=2$ m\\
+\ &\ &\ &\ \\
+ges:&$M$\ 
+\end{tabular}
+
+\[M=J\cdot\alpha\]
+$J$ erhält man aus der Übersicht in \MRef{Physik_Rotation_Traegheitsmomente_Zusammenstellung} für homogene Scheiben: $J=\frac{1}{2}mr^2$, und $\alpha$ aus der Bewegungsgleichung:
+$\omega\left(t\right)=\omega_0+\alpha t$ für $t=t_1$:
+\[\alpha=\frac{\omega_1-\omega_0}{t_1}\]
+\[\Rightarrow\hspace{0.5cm}M=\frac{1}{2}mr^2\cdot\frac{\omega_1-\omega_0}{t_1}=\frac{1}{2}\cdot200\ \mathrm{kg}\cdot 1\ \mathrm{m^2}\cdot\frac{2{,}5\ \mathrm{\frac{rad}{s}}}{5\ \mathrm{s}}=\underline{\underline{50\ \mathrm{N\,m}}}\]
+\end{MHint}
+\end{MExercise}
+
+%
+%
+\begin{MExercise}
+\begin{tabular}{ll}
+\parbox[b]{7cm}
+{Berechnen Sie das Trägheitsmoment eines sehr dünnen Quaders der Masse $m$ mit den Kantenlängen in $x$-Richtung und in $y$-Richtung von $a$ und vernachlässigbarer Kantenlänge in $z$-Richtung für eine Drehachse  parallel zur $x$-Achse entlang der Seitenkante.
+
+\begin{MHint}{Hinweis}
+Verwenden Sie das Trägheitsmoment aus der Übersicht in \MRef{Physik_Rotation_Traegheitsmomente_Zusammenstellung}.
+\end{MHint}
+\begin{MHint}{Hinweis}
+Verwenden Sie den Steinerschen Satz und den Satz über senkrechte Achsen!
+\end{MHint}
+}
+&
+\MGraphicsSolo{Quader_flach}{scale=1}
+\end{tabular}
+
+\begin{MHint}{Lösung}
+Aus der Übersicht kann man das Trägheitsmoment für einen Quader für eine Drehachse durch den Schwerpunkt und senkrecht zur größten Fläche, was in unserer Aufgabe der $z$-Achse entspricht, entnehmen.
+Man kann nun über den Satz über senkrechte Achsen das Trägheitsmoment des Quaders für eine Rotation um die $x$-Achse berechnen und daraus mit Hilfe des Steinerschen Satzes das Trägheitsmoment bezüglich der gegebenen Rotationsachse:
+\[J_z=\frac{1}{12}m\left(a^2+a^2\right)=J_x+J_y\]
+Wegen der Symmetrie ist $J_x=J_y$, damit erhält man
+\[J_x=\frac{1}{2}J_z=\frac{1}{24}m\cdot 2a^2=\frac{1}{12}m a^2\]
+Mit $h=\frac{a}{2}$ ergibt sich aus dem Steinerschen Satz
+\[J=J_x+m h^2=\frac{1}{12}m a^2+m\frac{a^2}{4}=\underline{\underline{\frac{1}{3}m a^2}}\]
+\end{MHint}
+\end{MExercise}
+%
+%
+
+\begin{MExercise}
+Über eine Umlenkrolle unbekannter Masse ist ein ideales Seil gehängt, an dessen Enden je ein Gewicht befestigt ist. Die Massen der beiden Gewichte betragen $m_1=540$ g und $m_2=420$ g, der Radius der Umlenkrolle ist $r=6$ cm. Wenn die Gewichte losgelassen  werden, legen sie innerhalb von 4 s einen Weg von  80 cm zurück (zwischen Rolle und Seil tritt kein Schlupf auf).
+
+\begin{tabular}{ll}
+\parbox[b]{12cm}
+{a.) Wie groß ist der Betrag der konstanten Beschleunigung der Gewichte?
+\vspace{0.5cm}
+
+b.) Wie groß ist die Zugkraft in dem Abschnitt des Seils, an dem das schwerere Gewicht hängt?
+\vspace{0.5cm}
+
+c.) Wie groß ist die Zugkraft in dem Abschnitt des Seils, an dem das leichtere Gewicht hängt?
+\vspace{0.5cm}
+
+d.) Wie groß ist die Winkelbeschleunigung der Rolle?
+\vspace{0.5cm}
+
+e.) Wie groß ist das Trägheitsmoment der Rolle bei dieser Rotation?
+\vspace{0.5cm}
+}
+&
+\MGraphicsSolo{Umlenkrolle}{scale=1}
+\end{tabular}
+
+\begin{MHint}{Hinweis}
+Zeichnen Sie zuerst alle Kräfte ein!
+\end{MHint}
+
+\begin{MHint}{Lösung}
+\begin{tabular}{ll}
+\parbox[b]{4cm}
+{
+\begin{MHint}{Kräfte}
+\MGraphicsSolo{Umlenkrolle_Kraefte}{scale=1}
+\end{MHint}
+}
+&
+\parbox[b]{12cm}
+{
+\begin{tabular}{llll}
+geg:&$m_1=540$ g&$m_2=420$ g&$r=6$ cm\\
+&$t_0=0$&$s_0=0$\\
+&$t_1=4$ s&$s_1=80$cm
+\end{tabular}
+
+\vspace{1cm}
+a.) ges:\hspace{0.5cm}$a$
+
+\[s_1=\frac{1}{2}at^2\hspace{0.5cm}\Rightarrow\hspace{0.5cm}a=\frac{2s_1}{{t_1}^2}=\frac{2\cdot 0{,}8\ \mathrm m}{16\ \mathrm{s^2}}=\underline{\underline{0{,}1\ \mathrm{\frac{m}{s^2}}}}\]
+
+b.) ges:\hspace{0.5cm}$F_{\rm{Z}1}$
+
+\[m_1\cdot a=m_1\cdot g-F_{\rm{Z}1}\]
+\[\Rightarrow\hspace{0.5cm}
+F_{\rm{Z}1}=m_1\left(g-a\right)=0{,}540\ \mathrm{kg}\left(9{,}81\ \mathrm{\frac{m}{s^2}}-0{,}1\ \mathrm{\frac{m}{s^2}}\right)=\underline{\underline{5{,}26\ \mathrm N}}\] 
+
+}
+\end{tabular}
+
+c.) ges:\hspace{0.5cm}$F_{\rm{Z}2}$
+\[-m_2\cdot a=m_2\cdot g-F_{\rm{Z}2}\]
+\[\Rightarrow\hspace{0.5cm}
+F_{\rm{Z}2}=m_2\left(g+a\right)=0{,}420\ \mathrm{kg}\left(9{,}81\ \mathrm{\frac{m}{s^2}}+0{,}1\ \mathrm{\frac{m}{s^2}}\right)=\underline{\underline{4{,}16\ \mathrm N}}\] 
+
+d.) ges:\hspace{0.5cm}$\alpha$
+
+Die Beschleunigung $a$ der Gewichte ist auch die Tangentialbeschleunigung außen an der Rolle:
+\[a=a_{\rm t}=\alpha r\]
+\[\Rightarrow\hspace{0.5cm}\alpha=\frac{a_{\rm t}}{r}=\frac{0{,}1\ \mathrm{\frac{m}{s^2}}}{0{,}06\ \mathrm m}=\underline{\underline{1{,}67\ \mathrm{\frac{rad}{s^2}}}}\]
+
+e.) ges:\hspace{0.5cm}$J$
+
+\[J\alpha=M_{\rm{ges}}=\left(F_{\rm{Z}1}-F_{\rm{Z}2}\right)\cdot r\]
+\[\Rightarrow\hspace{0.5cm}J=\frac{r}{\alpha}\left(F_{\rm{Z}1}-F_{\rm{Z}2}\right)=\frac{0{,}06\ \mathrm m}{1{,}67\ \mathrm{\frac{rad}{s^2}}}\cdot\left(5{,}26\ \mathrm N -4{,}16\ \mathrm N\right)=\underline{\underline{0{,}040\ \mathrm{kg\,m^2}}}\]
+\end{MHint}
+\end{MExercise}
+% Aufgabe mit schiefer Ebene, ...
+
+\end{MExercises}
+
+\begin{MExtra}
+\MLabel{Physik_Rotation_extra}
+\MSubsubsectionx{Berechnung einiger Trägheitsmomente einiger rotationssymmetrischer Körper}
+Die Gleichung $J=\int{r^2\MD m}$ zur Berechnung von Trägheitsmomenten aus Abschnitt \MRef{Physik_Rotation_GL} ist mathematisch nicht ganz korrekt, da man für die Masse keine Integrationsgrenzen angeben und somit nicht über die Masse integrieren kann. Für unsere Zwecke kann man die Gleichung aber so angeben, das $\MD m$ muss aber substituiert werden, wie wir es in Abschnitt \MRef{Physik_Rotation_Best_von_J_Integrale} auch schon getan haben. Im Folgenden sollen einige Trägheitsmomente mit Hilfe des Integrals berechnet werden.
+
+\begin{enumerate}
+\item\MEntry{Dünner Ring}{}
+\begin{enumerate}
+\item
+Wir betrachten einen dünnen Ring oder Reifen mit der kontinuierlich verteilten Masse $m$. Er soll um eine Achse rotieren, die senkrecht zu seiner Ausdehnungsebene ist und durch seinen Mittelpunkt geht.
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Rotationsring_a}{scale=1}
+&
+\parbox[b]{10.4cm}
+{Für ein Masseteilchen $\MD m$ auf dem Ring ist das Verhältnis seiner Masse zur Gesamtmasse des Ringes gerade so groß wie das Verhältnis des Winkelstückes $\MD \phi$ zum Gesamtwinkel $2\pi$:
+\[\frac{\MD m}{m}=\frac{\MD \phi}{2\pi}\hspace{0.5cm}\Rightarrow\hspace{0.5cm}\MD m=\frac{m}{2\pi}\cdot \MD \phi\]
+}
+\end{tabular}
+Da $r=r_0=$const., wird
+\[J=\int r^2\MD m=\int_{0}^{2\pi}{r_0}^2\frac{m}{2\pi}\MD \phi=\left[{r_0}^2\,\frac{m}{2\pi}\cdot \phi\right]_{0}^{2\pi}=\underline{\underline{m{r_0}^2}}\]
+
+Um daraus auf das Trägheitsmoment eines Zylindermantels zu kommen, kann man nun analog zu der Berechnung in \MRef{Physik_Rotation_zusammengesetzte_J} die Summe aus lauter dünnen Ringen mit der Teilmasse $m_i$ und den jeweiligen Trägheitsmomenten $m_i\,{r_0}^2 $ bilden und erhält:
+\[J=\sum m_i\,{r_0}^2={r_0}^2\sum m_i=\underline{\underline{m{r_0}^2}}\]
+%
+\item
+Nun soll derselbe Ring um eine Achse rotieren, die in der Ausdehnungsebene des Ringes liegt und durch dessen Mittelpunkt geht.
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Rotationsring_b}{scale=1}
+&
+\parbox[b]{9.7cm}
+{Auch hier ist wieder
+$\MD m=\frac{m}{2\pi}\cdot \MD \phi$.
+
+\vspace{0.5cm}
+Außerdem ist der Abstand $r$ des Massenpunktes  von der Drehachse
+\[r=r_0\cdot\left|\cos\phi\right| \hspace{0.5cm}\mathrm{mit}\hspace{0.5cm}0\leq\phi\leq2\pi\]
+\vspace{0.5cm}
+}
+\end{tabular}
+
+Damit wird
+\[J=\int r^2\MD m=\int_{0}^{2\pi}{r_0}^2\cos^2\phi\cdot\frac{m}{2\pi}\,\MD \phi=\frac{m\,{r_0}^2}{2\pi}\int_{0}^{2\pi}\frac{1}{2}\left(1+\cos2\phi\right)\,\MD \phi=\]
+\[=\frac{m\,{r_0}^2}{4\pi}\left[\phi+\frac{1}{2}\sin2\phi\right]_{0}^{2\pi}=\frac{m\,{r_0}^2}{4\pi}\left(2\pi-0-\frac{1}{2}\sin4\pi+\frac{1}{2}\sin0\right)=\underline{\underline{\frac{1}{2}m\,{r_0}^2}}\]
+%
+\item
+Derselbe Reifen rotiert nun um eine Drehachse, die wiederum in der Ausdehnungsebene des Reifens liegt, aber den Reifenrand tangiert.
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Rotationsring_c}{scale=1}
+&
+\parbox[b]{9.7cm}
+{Es ist
+$\MD m=\frac{m}{2\pi}\cdot \MD \phi$
+\[\mathrm{und}\hspace{0.5cm}r=r_0+s=r_0+r_0\cos\phi\hspace{0.5cm}\;\mathrm{mit}\;\hspace{0.5cm}0\leq\phi\leq2\pi.\]
+
+\vspace{0.3cm}
+Damit wird
+\[J=\int r^2\,\MD m=\int_{0}^{2\pi}{r_0}^2\left(1+\cos\phi\right)^2\cdot\frac{m}{2\pi}\,\MD \phi=\]
+
+}
+\end{tabular}
+\begin{eqnarray*}
+\;\;\;\;&=&\frac{m\,{r_0}^2}{2\pi}\int_{0}^{2\pi}\left(1+2\cos\phi+\cos^2\phi\right)\,\MD \phi=\\
+& =& 
+\frac{m\,{r_0}^2}{2\pi}\int_{0}^{2\pi}\left(1+2\cos\phi+\frac{1}{2}\left(1+\cos2\phi\right)\right)\,\MD \phi=\\
+&= & \frac{m\,{r_0}^2}{2\pi}\left[\phi+2\sin\phi+\frac{1}{2}\phi+\frac{1}{4}\sin2\phi\right]_{0}^{2\pi}=\\
+&=&\frac{m\,{r_0}^2}{2\pi}\left(2\pi+2\sin2\pi-2\sin0+\pi+\frac{1}{4}\left(\sin4\pi-\sin0\right)\right)=\\
+&=&\frac{m\,{r_0}^2}{2\pi}\cdot 3\pi=\underline{\underline{\frac{3}{2}\,{m{r_0}^2}}}
+\end{eqnarray*}
+
+Dieses Ergebnis erhält man allerdings einfacher mit dem Ergebnis aus b) und dem Steinerschen Satz:
+\begin{eqnarray*}
+J & =& J_S+m h^2\hspace{0.5cm}\mathrm{mit}\hspace{0.5cm}h=r_0:\\
+J & =& \frac{1}{2}m{r_0}^2+m{r_0}^2=\frac{3}{2}m{r_0}^2
+\end{eqnarray*}
+
+\end{enumerate}
+
+
+\item\MEntry{Homogene Scheibe}{}
+
+Zur Berechnung des Trägheitsmomentes einer homogenen dünnen Scheibe bezüglich der Rotation um eine Achse senkrecht zur Scheibe durch ihren Mittelpunkt kann man mit der Vorstellung herangehen, dass diese Scheibe aus lauter konzentrisch aneinandergereihten dünnen Ringen besteht.
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Rotationsscheibe}{scale=1}
+&
+\parbox[b]{10cm}
+{Für einen einzelnen Ring mit dem Masseanteil $\MD m$ und dem Flächenanteil $\MD A$ gilt:
+\[\frac{\MD m}{m}=\frac{\MD A}{A}\hspace{0.5cm}\Rightarrow\hspace{0.5cm}\MD m=\frac{m}{A}\,\MD A\]
+\[\mathrm{Mit}\  A=\pi\,{r_0}^2\hspace{0.5cm}\mathrm{und}\hspace{0.5cm}\MD A=2\pi\,r\cdot\MD r\] 
+erhält man
+}
+\end{tabular}
+
+\[\MD m=\frac{m}{\pi\,{r_0}^2}\cdot2\pi\,r\cdot\MD r=\frac{2m}{{r_0}^2}\cdot r\cdot\MD r\]
+Damit wird
+\[J=\int r^2\,\MD m=\int_{0}^{r_0}r^2\cdot\frac{m}{\pi\,{r_0}^2}\cdot2\pi\,r\cdot\MD r=\frac{2m}{{r_0}^2}\int_{0}^{r_0}r^3\,\MD r=\frac{2m}{{r_0}^2}\left[\frac{1}{4}\,r^4\right]_0^{r_0}=\]
+\[=\frac{2m}{{r_0}^2}\cdot\frac{1}{4}{r_0}^4=\underline{\underline{\frac{1}{2}m\,{r_0}^2}}\] 
+%
+
+\item\MEntry{Kugel}{}
+
+Zum Schluss soll das Trägheitsmoment einer Kugel mit dem Radius $r_0$, die um eine Achse durch ihren Mittelpunkt rotieren kann, bestimmt werden.
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Rotationskugel}{scale=1}
+&
+\parbox[b]{11cm}
+{Dazu betrachten wir eine Scheibe dieser Kugel mit dem Radius
+\[r=\sqrt{{r_0}^2-z^2}\]
+mit\hspace{0.5cm}$0\leq z\leq r_0$ für die obere Halbkugel, der Dicke $\MD z$
+
+und dem Trägheitsmoment $\MD J=\frac{1}{2}\ r^2 \MD m$.
+
+\vspace{0.5cm}
+Es verhält sich der Massenanteil $\MD m$ zur Gesamtmasse $m$ wie ihr Volumenanteil $\MD V$ zum Gesamtvolumen der Kugel:
+\[\frac{\MD m}{m}=\frac{\MD V}{V}\]
+}
+\end{tabular}
+
+\begin{tabular}{lll}
+Dabei ist
+&
+$\MD V$
+&
+$=A\cdot\MD z=\pi\,r^2\cdot\MD z=\pi\left({r_0}^2-z^2\right)\,\MD z$\\
+\\
+und&$V$&$=\frac{4}{3}\,\pi {r_0}^3$.\\
+\\
+Damit wird&
+$\MD m$&$=\frac{m}{\frac{4}{3}\pi\,{r_0}^3}\,\pi\left({r_0}^2-z^2\right)\,\MD z=\frac{3}{4}\frac{m}{{r_0}^3}\left({r_0}^2-z^2\right)\,\MD z$
+\end{tabular}
+
+\vspace{0.5cm}
+und für beide Halbkugeln
+\[J=\int\MD J=2\int\frac{1}{2}\,r^2\,\MD m=\int_{0}^{r_0}\left({r_0}^2-z^2\right)\,\frac{3}{4}\frac{m}{{r_0}^3}\left({r_0}^2-z^2\right)\,\MD z=\]
+\[=\frac{3}{4}\,\frac{m}{{r_0}^3}\int_{0}^{r_0}\left({r_0}^4-2{r_0}^2\,z^2+z^4\right)\MD z=\frac{3}{4}\,\frac{m}{{r_0}^3}\left[{r_0}^4\,z-\frac{2}{3}\,{r_0}^2\,z^3+\frac{1}{5}z^5\right]_{0}^{r_0}=\]
+\[=\frac{3}{4}\,\frac{m}{{r_0}^3}\left({r_0}^5-\frac{2}{3}{r_0}^5+\frac{1}{5}{r_0}^5\right)=\frac{3}{4}\cdot\frac{m}{{r_0}^3}\cdot\frac{8}{15}\,{r_0}^5=\underline{\underline{\frac{2}{5}\,m\,{r_0}^2}}\]
+\end{enumerate}
+
+\end{MExtra}
+
+
+\MSubsection{Kinetische Energie und Leistung der Drehbewegung}%\MLabel{}
+\begin{MIntro}
+Ein sich linear bewegender Körper speichert Bewegungsenergie. Ebenso speichert ein sich drehender Körper kinetische Energie, nämlich die Rotationsenergie. Wie groß ist nun zum Beispiel die Energie, die ein Schwungrad speichert, wie groß ist die Leistung, die ein rotierender Motor  abgeben kann?
+
+\end{MIntro}
+
+\begin{MContent}
+Bringt man einen Körper mit einer an ihm angreifenden Kraft $\vec{F}$ dazu, um eine Drehachse zu rotieren, wird an ihm mit dieser Kraft Arbeit verrichtet:
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Rotationskreis_Energie_alternat}{scale=1}
+&
+\parbox[b]{10cm}
+{\[\MD W=\vec{F}\cdot\MD \vec{s}=F\cdot \MD s\cdot\cos\gamma\]
+
+\hspace{1cm}Mit
+\[\cos\gamma=\sin\left(\gamma+90^{\circ}\right)=\sin\phi,\]
+\hspace{1cm}wobei $\phi$ der Winkel zwischen $\vec{r}$ und $\vec{F}$ ist,
+
+\vspace{0.5cm}
+\hspace{1cm}und dem Betrag $\MD s=r \MD{\theta}$ ergibt sich
+\ifttm % Ohne underbrace fuer das HTML
+\[\MD W=F\cdot r\cdot\sin\phi\cdot\MD{\theta}=M\MD{\theta}\]
+\else
+\[\MD W=\underbrace{F\cdot r\cdot\sin\phi}_{M}\cdot\MD{\theta}=M\MD{\theta}\]
+\fi
+}
+\end{tabular}
+
+\begin{MInfo}
+Die an dem Körper verrichtete Arbeit $\MD W$ ist gleich dem  Produkt aus dem Drehmoment $M$ und dem Drehwinkel $\MD{\theta}$:
+\[\MD W=M\MD{\theta}\]
+\end{MInfo}
+
+Dies ist also ganz analog der einem Körper zugeführten Arbeit bei der Translation, wobei der Kraft $F$ das Drehmoment $M$ und der Strecke $\MD s$ der Drehwinkel $\MD{\theta}$ entspicht.
+
+Die so dem Körper zugeführte Energie wird in kinetische Energie umgewandelt. Es gilt für ein einzelnes Masseteilchen ${m_i}$:
+\[E_{\mathrm{kin},i}=\frac{1}{2}m_i {v_i}^2=\frac{1}{2}m_i\left(r_i\omega\right)^2\]
+Für den gesamten starren Körper gilt:
+\ifttm % Vereinfachte underbraces fuer das HTML
+\[E_{\mathrm{kin}}=\sum{E_{\mathrm{kin},i}}=\sum{\frac{1}{2}\underbrace{m_i{r_i}^2}_{=J_i}\omega^2}=\sum{\frac{1}{2}J_i\omega^2}=\frac{1}{2}\omega^2\sum J_i=\frac{1}{2}J\omega^2\]
+\else
+\[E_{\rm{kin}}=\sum{E_{\mathrm{kin},i}}=\sum{\frac{1}{2}\underbrace{m_i{r_i}^2}_{J_i}\omega^2}=\sum{\frac{1}{2}J_i\omega^2}=\frac{1}{2}\omega^2\sum J_i=\frac{1}{2}J\omega^2\]
+\fi
+
+\begin{MInfo}
+Die kinetische Energie der Rotation ist bestimmt durch das Trägheitsmoment des Körpers bezüglich seiner Drehachse und seiner Winkelgeschwindigkeit:
+\[E_{\rm{rot}}=\frac{1}{2}J\omega^2\]
+\end{MInfo}
+
+Auch hier erkennt man die Analogie zur kinetischen Energie bei der Translation: das Trägheitsmoment $J$ entspricht der trägen Masse $m$, und die Winkelgeschwindigkeit $\omega$ der Geschwindigkeit $v$. Die Rotationsenergie eines starren Körpers ist also um so größer, je größer sein Trägheitsmoment ist. Das heißt, man muss an einem Körper um so mehr Arbeit verrichten, um ihn auf eine bestimmte Winkelgeschwindigkeit zu bringen, je weiter die Massenpunkte von seiner Drehachse entfernt sind. Dies nutzt man zum Beispiel zur Energiespeicherung bei einem Schwungrad aus, das die gespeicherte Energie auch wieder als Arbeit abgeben kann. 
+Für die dabei aufgenommene oder abgegebene Leistung gilt:
+
+\begin{MInfo}
+Die an einem Körper verrichtete  oder von dem Körper abgegebene Arbeit in einer bestimmten Zeit wird als Leistung definiert:
+\[P=\frac{\MD W}{\MD t}=\frac{M\MD \theta}{\MD t}=M\frac{\MD \theta}{\MD t}=M\cdot\dot{\theta}=M\omega\]
+\end{MInfo}
+
+\begin{MExample}
+Eine homogene Scheibe mit einer Masse von $m=3$ kg und einem Radius von $r=12$ cm rotiert mit 480 U/min um eine zu ihr senkrechte Achse durch ihren Mittelpunkt. 
+
+Ihre kinetische Energie beträgt
+\[E_{\rm{rot}}=\frac{1}{2}J\omega^2\]
+Das Trägheitsmoment der Scheibe berechnet sich zu
+\[J_{\rm{Scheibe}}=\frac{1}{2}mr^2=\frac{1}{2}\cdot 3\ \mathrm{kg}\cdot\left(0{,}12\ \mathrm m\right)^2=0{,}0216\mathrm{kg\,m^2}\]
+Die Winkelgeschwindigkeit ist
+\[\omega=2\pi f=2\pi\cdot480\frac{1}{\mathrm{min}}=2\pi\cdot\frac{480}{60\ \mathrm s}=50{,}3\ \mathrm{\frac{rad}{s}}\]
+Damit wird die Rotationsenergie
+\[E_{\rm{rot}}=\frac{1}{2}J\omega^2=\frac{1}{2}\cdot 0{,}0216\ \mathrm{kg\,m^2}\cdot\left(50{,}3\ \mathrm{\frac{rad}{s}}\right)^2=\underline{\underline{27{,}3\ \mathrm J}}\]
+\end{MExample}
+%
+%
+\begin{MExample}
+Ein Dieselmotor hat bei 1910 U/min ein Drehmoment von 200 N$\,$m. Gesucht ist die Leistung des Motors.
+Mit
+\[\omega=2\pi f=2\pi\frac{1910}{60\ \mathrm s}=200\ \mathrm{\frac{rad}{s}}\]
+wird die Leistung
+\[P=M\omega=200\ \mathrm{N\,m}\cdot200\ \mathrm{\frac{rad}{s}}=40\,000\ \mathrm{kg\frac{m^2}{s^2}}=\underline{\underline{40\ \mathrm{kW}}}\]
+\end{MExample}
+%
+%
+\begin{MExample}\MLabel{Rotation_Energie_Beispiel}
+\begin{tabular}{ll}
+\MGraphicsSolo{Rolle_Gewichte_1}{scale=1}
+&
+\parbox[b]{12cm}
+{Um eine homogene Scheibe der Masse $m_1=2{,}5$ kg und einem Radius von $r=20$ cm, die um ihre Symmetrieachse rotieren kann, ist ein ideales masseloses Seil gewickelt. Daran hängt ein Gewicht der Masse $m_2=1{,}2$ kg. Zuerst ist die Scheibe in Ruhe. Zum Zeitpunkt $t=0$ wird $m_2$ losgelassen, und die Scheibe beginnt sich zu drehen, da $m_2$ über das Seil ein Drehmoment auf die Scheibe bewirkt. Das Seil wickelt sich ab und $m_2$ bewegt sich in Richtung Erdboden. Die dabei abgegebene potentielle Energie wird sowohl in kinetische Energie des Gewichts $m_2$ als auch in Rotationsenergie der Scheibe umgewandelt. Es soll nun die Rotationsenergie, die die Scheibe nach 2,5 s hat, berechnet werden.
+}
+\end{tabular}
+
+\begin{tabular}{llll}
+geg:&$m_1=2{,}5$ kg&$r=20 \mathrm{cm}$ &\hspace{2cm}ges:\hspace{0.5cm}$E_{\rm{rot}}\left(t_1\right)$\\
+\ &$m_2=1{,}2$ kg\\
+\ &$t_0=0$&$\omega_0=0$\\
+\ &$t_1=2{,}5$ s\\
+\end{tabular}
+
+\begin{tabular}{ll}
+\parbox[b]{3.3cm}
+{
+\begin{MHint}{Kräfte}
+\MGraphicsSolo{Rolle_Gewichte_2}{scale=1}
+\end{MHint}
+}
+&
+\parbox[b]{12cm}
+{
+\[E_{\rm{rot}}=\frac{1}{2}J{\omega_1}^2\]
+\[J=\frac{1}{2}m_1 r^2\]
+\[\omega_1=\omega_0+\alpha t_1=\alpha t_1\]
+Zur Bestimmung der Winkelbeschleunigung $\alpha$ schauen wir uns die Kräfte an, die in dem System wirken:
+
+Aus dem 2. Newtonschen Gesetz (Modul 3,  Translationen) folgt für die Beschleunigung von $m_2$:
+\[F=m_2\cdot a=m_2\cdot g-F_{\rm Z},\]
+wobei $F_{\rm Z}$ die Zugkraft in dem Seil ist. Außerdem ist
+\[M=F_{\rm Z}\cdot r=J\alpha\hspace{0.5cm}\Rightarrow\hspace{0.5cm}F_{\rm Z}=J\frac{\alpha}{r},\]
+und da der äußerste Rand der Rolle dieselbe Beschleunigung erfährt wie die Masse $m_2$, ist
+\[a=\alpha r.\] 
+Damit wird
+\[F=m_2\cdot\alpha r=m_2\cdot g-J\frac{\alpha}{r}\]
+\[\alpha\left(m_2 r+\frac{1}{2}m_1 r\right)=m_2 g\]
+}
+\end{tabular}
+
+\[\Rightarrow\hspace{0.5cm}\alpha=\frac{m_2\cdot g}{r\left(m_2+\frac{1}{2}m_1\right)}\]
+\[\Rightarrow\hspace{0.5cm}\omega_1=\frac{m_2\cdot g}{r\left(m_2+\frac{1}{2}m_1\right)} t_1\]
+Für die Rotationsenergie erhält man also
+\[E_{\rm{rot}}=\frac{1}{2}\cdot\frac{1}{2}m_1 r^2\frac{{m_2}^2\cdot g^2\cdot  {t_1}^2}{r^2\left(m_2+\frac{1}{2}m_1\right)^2}=
+\frac{1}{4}\cdot 2{,}5\ \mathrm{kg}\frac{\left(1{,}2\ \mathrm{kg}\right)^2\cdot\left(9{,}81\ \mathrm{\frac{m}{s^2}}\right)^2\cdot\left(2{,}5\ \mathrm s\right)^2}{\left(2{,}45\ \mathrm{kg}\right)^2}\]
+\[E_{rot}=\underline{\underline{90\ \mathrm J}}\]
+
+\end{MExample}
+
+ 
+
+
+
+
+
+\end{MContent}
+
+% 
+\begin{MExercises}
+
+\begin{MExercise}
+\begin{tabular}{ll}
+\parbox[b]{12cm}
+{Zwei Massen $m_1=20$ kg und $m_2=26$ kg sind durch ein ideales Seil, das über einer Rolle hängt, miteinander verbunden. Die Rolle besteht aus einem homogenen Zylinder mit einem Radius von $0{,}25$ m und einer Masse von 4,5 kg. Zuerst befindet sich die Masse $m_1$ auf dem Boden, $m_2$ ruht 2,0 m über dem Boden. Dann wird $m_1$ losgelassen. Wie groß ist die Geschwindigkeit von $m_2$ direkt vor dem Auftreffen auf dem Boden? Verwenden Sie die Energieerhaltung.
+\vspace{2cm}
+}
+&
+\MGraphicsSolo{Umlenkrolle_Energie}{scale=1}
+\end{tabular}
+
+\begin{MHint}{Lösung}
+\begin{tabular}{llll}
+geg:&$m_1=20$ kg&\hspace{0.5cm}Rolle:&$r=0{,}25$ m\\
+\ &$m_2=26$ kg&\ &$m_{\rm R}=4{,}5$ kg\\
+\ &$h=2{,}0$ m\\
+\ &$t_0=0$&$v_0=0$\\
+\ &\ \\
+ges:&$v_1$\\ 
+\end{tabular}
+
+Zur Zeit $t_0=0$: $E_{\rm{ges}}=E_{\rm{pot},2}=m_2\cdot g\cdot h$
+
+Nach dem Loslassen bewegen sich $m_1$ und $m_2$ mit $v\left(t\right)$ und haben jeweils die kinetische Energie  $E_{\rm{kin},1}$ und $E_{\rm{kin},2}$. $m_2$ verringert seine Höhe um einen Strecke $s\left(t\right)$ und verliert somit an potentieller Energie, $m_1$ gewinnt an Höhe um die Strecke $s\left(t\right)$ und gewinnt potentielle Energie. Die Rolle dreht sich und erhält Rotationsenergie $E_{\rm{rot}}$. Also ist die Gesamtenergie
+\[E_{\rm{ges}}=E_{\rm{kin},1}+E_{\rm{kin},2}+E_{\rm{pot},1}+E_{\rm{pot},2}+E_{\rm{rot}}=\]
+\[=\frac{1}{2}m_1 {v\left(t\right)}^2+\frac{1}{2}m_2{v\left(t\right)}^2+m_1\cdot g\cdot s\left(t\right)+m_2\cdot g\left(h-s\left(t\right)\right)+\frac{1}{2}J{\omega\left(t\right)}^2\]
+Dabei ist $\omega\left(t\right)=\frac{v\left(t\right)}{r}$ und $J=\frac{1}{2}m_{\rm R} r^2$.
+
+Nach einer Zeit $t_1$ ist $s=h$, die Masse $m_2$ befindet sich  direkt vor dem Auftreffen auf den Boden, ihre potentielle Energie ist null. Nach dem Energieerhaltungssatz kann man schreiben:
+\[E_{\rm{ges}}=\frac{1}{2}\left(m_1+m_2+\frac{1}{2}m_{\rm R}\right){v_1}^2+m_1\cdot g\cdot h=m_2\cdot g\cdot h\]
+\[\Rightarrow \hspace{0.5cm}v_1=\sqrt[]{2\frac{\left(m_2-m_1\right)g\cdot h}{m_1+m_2+\frac{1}{2}m_{\rm R}}}=\]
+\[=\sqrt{2\cdot\frac{\left(26\ \mathrm{kg}-20\ \mathrm{kg}\right)\cdot9{,}81\ \mathrm{\frac{m}{s^2}}\cdot2\ \mathrm{m}}{20\ \mathrm{kg}+26\ \mathrm{kg}+\frac{1}{2}\cdot4{,}5\ \mathrm{kg}}}=\underline{\underline{2{,}2\ \mathrm{\frac{m}{s}}}}\]
+\end{MHint}
+
+\end{MExercise}
+
+\begin{MExercise}
+\begin{tabular}{ll}
+\MGraphicsSolo{Ring_mit_Stab}{scale=1}
+&
+\parbox[b]{10,5cm}
+{Die nebenstehende Anordnung zeigt einen dünnen Ring mit der Masse $m$ und dem Radius $r=0{,}15$ m, und einen dünnen, radial angebrachten Stab mit der gleichen Masse $m$ und der Länge $2r$. Sie dreht sich um eine waagrechte Achse, die in der Ebene des Ringes liegt und durch dessen Mittelpunkt verläuft.
+
+\vspace{0.5cm}
+a.) Wie groß ist das Trägheitsmoment der Anordnung als Funktion von $m$ und $r$ bezüglich der angegebenen Drehachse?
+
+\vspace{0.5cm}
+b.) Zuerst ruht diese Skulptur. Plötzlich beginnt sie  sich zu drehen. Wie groß ist ihre Winkelgeschwindigkeit, wenn sie sich um 180° gedreht hat?
+\vspace{0.5cm}
+}
+\end{tabular}
+
+\begin{MHint}{Lösung}
+\begin{tabular}{lllll}
+\  &geg:&Reifen:&$m$\hspace{0.5cm}&$r=0{,}15$ m\\
+\ &\ &Stab:&$m$&$l=2r=0{,}3\:\mathrm{m}$\\
+\ \\
+a.) &ges:&$J$
+\end{tabular}
+
+\[J=\sum{J_i}=J_{\rm R}+J_{\rm{Stab}}\]
+Nach dem Beispiel \MRef{Physik_Rotation_Bestimmung_Bsp} hat der Reifen bezüglich der $x$-Achse als Drehachse ein Trägheitsmoment von
+\[J_{\rm R}=\frac{1}{2}mr^2\]
+Das Trägheitsmoment des Stabes bezüglich dieser Drehachse erhält man aus der Übersicht \MRef{Physik_Rotation_Traegheitsmomente_Zusammenstellung} und dem Steinerschen Satz:
+\[J_{\rm{Stab}}=\frac{1}{12}m\cdot l^2+\left(\frac{l}{2}+r\right)^2 m=\frac{1}{12}m\cdot4\cdot r^2+m\cdot4\cdot r^2=4{,}33\cdot m\cdot r^2\]
+\[\Rightarrow\hspace{0.5cm}J=J_{\rm R}+J_{\rm{Stab}}=\frac{1}{2}m\cdot r^2+4{,}33\cdot m\cdot r^2=\underline{\underline{4{,}83\cdot m\cdot r^2}}\]
+
+\begin{tabular}{lll}
+b.) &ges:\hspace{0.5cm}&$\omega_1$\\
+\end{tabular}
+
+Zuerst besteht die Gesamtenergie $E_{\rm{ges}}$ nur aus der potentiellen Energie der Skulptur. Zur Berechnung dieser Energie kann man sich die gesamte Masse im Schwerpunkt konzentriert denken.
+
+Aus Symmetriegründen liegt die $x$- Koordinate des Schwerpunkts bei $x_{\rm S}=r$. Für die $y$- Koordinate gilt:
+\[y_{\rm S}=\frac{m_{\rm R} \cdot y_{\rm{S_R}}+m_{\rm{Stab}}\cdot y_{\rm{S_{Stab}}}}{m_{\rm R}+m_{\rm{Stab}}}=\frac{m_{\rm R}\cdot 0+m_{\rm{Stab}}\left(r+\frac{l}{2}\right)}{m_{\rm R}+m_{\rm{Stab}}}=\frac{m}{2m}\left(r+r\right)=r\]
+
+Nach der Drehung liegt der Schwerpunkt bei $y_{\rm S}=-r$, die Abnahme der potentiellen Energie der Skulptur ist:
+\[\Delta E_{\rm{pot}}=\left(2m\right)\cdot g\cdot \Delta y_{\rm S}=2m\cdot g\cdot 2r=4m\cdot g\cdot r\]
+
+Diese potentielle Energie hat sich nun in Rotationsenergie umgewandelt:
+\[4m\cdot g\cdot r=\frac{1}{2}J\omega^2\]
+\[4m\cdot g\cdot r=\frac{1}{2}\cdot 4{,}83\cdot m\cdot r^2\omega^2\]
+\[\Rightarrow\hspace{0.5cm}\omega=\sqrt{\frac{8\cdot g}{4{,}83\cdot r}}=\sqrt{\frac{8\cdot9{,}81\ \mathrm{\frac{m}{s^2}}}{7{,}83\cdot 0{,}15\ \mathrm m}}=\underline{\underline{10{,}4\ \mathrm{\frac{1}{s}}}}\]
+%
+\end{MHint}
+\end{MExercise}
+
+%
+%
+\begin{MExercise}
+Ein homogener Zylinder mit einer Masse von $300$ kg und einem Radius von $5$ m rotiert mit $3{,}5\ \mathrm{\frac{U}{s}}$ um seine Symmetrieachse. Schaltet man den Antriebsmotor aus, so kommt der Zylinder in $20$ s zum Stehen. Wie groß ist die Leistungsabgabe des Motors in PS, die erforderlich ist, um eine konstante Drehzahl von $3{,}5\ \mathrm{\frac{U}{s}}$ beizubehalten?
+
+\begin{MHint}{Hinweis}
+$1\ \mathrm{PS}=735$ W
+\end{MHint}
+
+\begin{MHint}{Lösung}
+\begin{tabular}{llll}
+geg:\hspace{0.5cm}&Zylinder:&$m=300$  kg&\ \\
+\ &\ &$r=5$ m\\
+\ &$t_0=0$&$f_0=3{,}5\ \mathrm{\frac{U}{s}}$\hspace{0.5cm}&$\Rightarrow\hspace{0.5cm}\omega_0=2\pi\cdot f_0=22{,}0\ \mathrm{\frac{rad}{s}}$\\
+\ &$t_1=20$ s&$f_1=0$\\
+\ \\
+ges:&$P_{\rm{ab}}$
+\end{tabular}
+
+Der Zylinder erfährt durch Reibung etc. ein negatives Drehmoment $M=J\alpha$. Nur deshalb muss bei konstanter Umdrehung Energie zugeführt werden.
+\[J=\frac{1}{2}mr^2=\frac{1}{2}\cdot 300\ \mathrm{kg}\cdot\left(5\ \mathrm m\right)^2=3750\ \mathrm{kg\,m^2}\]
+Die Bremsbeschleunigung $\alpha$ erhält man aus der Winkelgeschwindigkeits-Zeit-Funktion
+\[\omega\left(t_1\right)=\omega_0+\alpha\cdot t_1=0\]
+\[\Rightarrow\hspace{0.5cm}\alpha=-\frac{\omega_0}{t_1}=-\frac{22{,}0\ \mathrm{\frac{rad}{s}}}{20\ \mathrm s}=-1{,}1\ \mathrm{\frac{rad}{s^2}}.\]
+Damit wird \[M=J\alpha=-3750\ \mathrm{kg\,m^2}\cdot1{,}1\ \mathrm{\frac{rad}{s^2}}=-4125\ \mathrm{N\,m}\]
+Die vom Motor abzugebende Leistung wird damit 
+\[P=|M|\omega_0=4125\ \mathrm{N\,m}\cdot22{,}0\ \mathrm{\frac{rad}{s}}=90{,}75\ \mathrm{kW}=\underline{\underline{123{,}5\ \mathrm{PS}}}\]
+
+\end{MHint}
+
+\end{MExercise}
+
+\end{MExercises}
+
+
+\MSubsection{Drehimpuls}%\MLabel{}
+\begin{MIntro}
+Analog dem Impuls bei der Translationsbewegung ist der Drehimpuls bei der Rotationsbewegung eine physikalische Erhaltungsgröße. In diesem Abschnitt wird der Drehimpuls anhand des linearen Impulses eingeführt. 
+
+\end{MIntro}
+
+\begin{MContent}
+So wie ein Körper, der sich geradlinig bewegt, Impuls speichert (s. auch Modul 6, Erhaltungssätze), speichert ein rotierender Körper \MEntry{Drehimpuls}{Drehimpuls}.
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Rotationskreis_Drehimpuls}{scale=1}
+&
+\parbox[b]{10cm}
+{Für einen Massenpunkt berechnet sich  analog zum linearen Impuls  $\vec{p}=m\cdot \vec{v}$ der Drehimpuls zu
+\[\vec{L}=J\cdot\vec{\omega}\]
+Mit $J=m\cdot r^2$ für eine Punktmasse und $\omega=\frac{v_{\rm t}}{r}$ wird der Betrag des Drehimpulses
+\[L=J\cdot\omega=m\cdot r^2\cdot\frac{v_{\rm t}}{r}=m\cdot r\cdot v_{\rm t}=r\cdot p,\]
+wobei $p$ der momentane lineare Impuls ist.
+}
+\end{tabular} 
+
+Der Drehimpuls ist also abhängig von der Masse $m$ des Teilchens und von seiner Geschwindigkeit $v_t$, aber auch von seinem Abstand $r$ zu einem Bezugs\MEntry{punkt}{}. Dabei ist dieser Bezugspunkt beliebig; meist nimmt man jedoch den Mittelpunkt der Rotation.
+
+\vspace{0.5cm}
+Der Vektor $\vec{L}$ ist dem Vektor $\vec{\omega}$ gleichgerichtet, er ist das Kreuzprodukt aus $\vec{r}$ und $\vec{p}$:
+\[\vec{L}=\vec{r}\times\vec{p}=m\left(\vec{r}\times\vec{v}\right)\]
+Bei der Rotation eines Masseteilchens stehen $\vec{r}$ und $\vec{v}$ immer senkrecht aufeinander. Allerdings hat ein Masseteilchen relativ zu jedem beliebigen Punkt im Raum einen Drehimpuls, auch wenn es sich nicht auf einer Kreisbahn um diesen Punkt bewegt.
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Drehimpuls_Massepunkt}{scale=1}
+&
+\parbox[b]{10cm}
+{Die Punktmasse $m$ in der Abbildung bewegt sich geradlinig längs $y_0$. Ihr Drehimpuls bezüglich des Ursprungs berechnet sich zu
+\[\vec{L}=m\cdot\left(\vec{r}\times\vec{v}\right)\]
+\[\Rightarrow\hspace{0.5cm}L=m\cdot r_{\bot}\cdot v=m\cdot r\cdot v\cdot \sin\zeta
+\vspace{1cm}\]
+}
+\end{tabular}
+
+Bewegt sich die Punktmasse wie in unserem Beispiel nur in einer Ebene, in der auch der Bezugspunkt liegt, hat der Drehimpuls nur eine Komponente in die auf dieser Ebene senkrechte Richtung. Meist rechnet man dann nur mit den Beträgen von $\vec{L}$. Dann erhält der Drehimpuls aber ein Vorzeichen, nämlich er ist positiv, wenn das Masseteilchen eine Bewegung gegen den Uhrzeigersinn um den Beszugspunkt, und negativ, wenn es eine Bewegung im Uhrzeigersinn macht. Im obigen Beispiel ist der Drehimpuls negativ.
+
+\vspace{1cm}
+\MEntry{Kontrollfragen}{}
+
+\begin{tabular}{ll}
+\parbox[b]{9cm}
+{Gegeben sind 5 Massenpunkte der gleichen Masse $m$, die sich alle mit dem gleichen Geschwindigkeitsbetrag $v$ linear in die jeweils  angegebene Richtung bewegen. Der Drehimpuls $L_1$ der Masse $m_1$ bezüglich des Ursprungs $0$ beträgt $L_1=m v 2r$.
+
+\ifttm
+Berechnen Sie die Drehimpulse $L_2$ bis $L_5$ analog und geben Sie die Ergebnisse ohne Multiplikationspunkt ein.
+\else
+Berechnen Sie die Drehimpulse $L_2$ bis $L_5$ analog.
+\fi} 
+&
+\MGraphicsSolo{Drehimpuls_Massepunkt_A1}{scale=1}  
+\end{tabular}
+
+\begin{MHint}{Hinweis}
+Vergessen Sie etwaige Minuszeichen nicht!
+\end{MHint}
+
+$L_2=$\MQuestion{4}{-mvr}
+
+$L_3=$\MQuestion{5}{-mv2r}
+
+$L_4=$\MQuestion{1}{0}
+
+$L_5=$\MQuestion{3}{mvr}
+
+\vspace{1cm}
+In einem starren Körper hat jedes Masseteilchen $m_i$ den Drehimpuls $\vec L_i$ bezüglich eines beliebigen, aber festen Punktes. Je nach Lage des Masseteilchens haben diese Vektoren verschiedene Richtungen. 
+Ist der Körper rotationssymmetrisch und dreht sich um seine Symmetrieachse, dann hat die {\bf Summe} aller Drehimpulse $\vec L_i$ aller Massenpunkte {\bf bezüglich eines beliebigen Punktes auf der Symmetrieachse} (ohne Herleitung) nur eine einzige Komponente, nämlich in Richtung der Winkelgeschwindigkeit $\omega$ parallel zur Drehachse. Der Drehimpuls eines Systems von $i$ Masseteilchen berechnet sich dann aus der Summe aller Einzeldrehimpulskomponenten in $\omega$-Richtung, die sich (wieder ohne Herleitung) zu $L_i=J_i\omega$ berechnen.
+%\[L=\sum L_i=\sum{J_i\omega}\]
+
+\begin{MInfo}{}
+Für einen rotationssymmetrischen starren Körper, der um seine Symmetrieachse rotiert, gilt bezüglich eines Punktes auf der Symmetrieachse:
+\[\vec L=\sum{J_i\vec{\omega}}=J\vec{\omega}\]
+Dies gilt sowohl für eine Drehung um eine raumfeste Achse als auch um eine sich bewegende Achse, wenn sie immer parallel zu sich selbst ist.
+\end{MInfo}
+Beispiel für die Rotation um eine sich bewegende Achse, die immer parallel zu sich ist, ist ein rollender Zylinder.
+
+\vspace{1cm}
+Eine am Körper angreifende Kraft $F$ ändert dessen linearen Impuls: $F=\frac{\MD p}{\MD t}$. Analog dazu wird ein Drehimpuls eines Körpers durch ein Drehmoment geändert:
+\begin{MInfo}{}
+Das resultierende, auf ein System einwirkende Drehmoment ist gleich der Änderung des Drehimpulses des Systems:
+\[M=\frac{\MD L}{\MD t}=\frac{\MD J\omega}{\MD t}\]
+\end{MInfo}
+Beim starren Körper ist das Trägheitsmoment $J$ bezüglich einer Drehachse konstant, damit wird wieder
+\[M=J\frac{\MD \omega}{\MD t}=J\alpha\]
+
+%
+\begin{MExample}
+\begin{tabular}{ll}
+\parbox[b]{12cm}
+{Wir gehen noch einmal zum Beispiel \MRef{Rotation_Energie_Beispiel}. Dort haben wir unter anderem die Winkelbeschleunigung $\alpha$ anhand der Kräftebetrachtung berechnet. Nun soll die Winkelbeschleunigung mit Hilfe des Drehimpulses berechnet werden. Gegeben sei wieder die Masse $m_1$ der Scheibe und ihr Radius $r$, ferner die (Punkt-)Masse $m_2$.
+
+Das Drehmoment $M$ auf das Gesamtsystem bezüglich des Scheibenmittelpunktes ist
+\[M=m_2\cdot g\cdot r\]
+Der Drehimpuls der Scheibe beträgt
+\[L_{\rm S}=J\cdot\omega=\frac{1}{2}\cdot m_1\cdot r^2\omega,\]
+}
+&
+\MGraphicsSolo{Rolle_Gewichte_1}{scale=1}
+\end{tabular}
+
+und der Drehimpuls der Punktmasse bezüglich des Scheibenmittelpunktes ist
+\[L_{\rm P}=m_2\cdot v\cdot r=m_2\cdot r^2\cdot \omega.\]
+Damit wird der Gesamtdrehimpuls des Systems
+\[L=L_{\rm S}+L_{\rm P}=\left(\frac{1}{2} m_1+m_2\right) r^2\omega\]
+Aus $M=\frac{\MD L}{\MD t}$ erhält man
+\[m_2\cdot g\cdot r=\frac{\MD}{\MD t}\left(\left(\frac{1}{2} m_1+m_2\right) r^2\omega\right)=\left(\frac{1}{2} m_1+m_2\right) r^2\cdot\frac{\MD \omega}{\MD t}=\left(\frac{1}{2} m_1+m_2\right) r^2\cdot\alpha\]
+\[\Rightarrow\hspace{0.5cm}\alpha=\frac{m_2\cdot g}{\left(\frac{1}{2} m_1+m_2\right)r}\]
+Damit sind wir zum selben Ergebnis gekommen wie bei der Rechnung in Beispiel \MRef{Rotation_Energie_Beispiel}.
+
+\end{MExample}
+%
+%
+Umgekehrt heißt das aber auch, dass, wenn keine äußere Kraft auf den Körper einwirkt oder wenn das angreifende Nettodrehmoment null ist, dass der Drehimpuls sich nicht ändert:
+\begin{MInfo}
+\MEntry{Drehimpulserhaltungssatz}{Drehimpulserhaltungssatz}
+
+Wenn das resultierende Drehmoment, das von außen auf ein System wirkt, gleich null ist, dann ist der Gesamtdrehimpuls des Systems konstant:
+\[M=\frac{\MD L}{\MD t}=0\hspace{0.5cm}\Rightarrow\hspace{0.5cm}L=\rm{const.}\] 
+\end{MInfo}
+
+
+\begin{MExample}
+\newcommand{\parboxtext}
+{Ist das Trägheitsmoment eines Körpers bezüglich seiner Drehachse konstant, so bleibt auch die Winkelgeschwindigkeit konstant. In der Realität kann sich das Trägheitsmoment aber verändern. Dann ändert sich auch die Winkelgeschwindigkeit: Je größer das Trägheitsmoment des Körpers wird, umso kleiner muss $\omega$ werden und umgekehrt. Gewollt ist dies zum Beispiel im Ballett oder beim Eiskunstlauf, wenn man eine Pirouette drehen will:
+\\
+\\
+Beim Abstoßen mit dem einen Fuß (Drehmoment) hält man die Arme waagrecht. Dann wird das Drehmoment weggenommen, der Drehimpuls $L=J\omega$ bleibt nun erhalten (keine Reibungsverluste vorausgesetzt). Zieht die Tänzerin nun die Arme an den Körper, verringert sich ihr Trägheitsmoment und ihre Winkelgeschwindigkeit wird größer. Zum Abbremsen muss sie wieder die Arme ausbreiten, so dass das Trägheitsmoment wieder größer wird und somit die Winkelgeschwindigkeit wieder kleiner.
+}
+
+\begin{tabular}{ll}
+\ifttm\parbox[b]{10cm}{\parboxtext}\else\parbox{10cm}{\parboxtext}\fi
+&
+\ifttm
+\MGraphicsSolo{eislauf2}{scale=1}
+\else
+\begin{tabular}{l}
+\MGraphicsSolo{Eislauf_offen}{scale=1}\\
+\MGraphicsSolo{Eislauf_geschlossen}{scale=1}
+\end{tabular}
+\fi
+\end{tabular}
+
+\end{MExample}
+
+\end{MContent}
+
+% 
+\begin{MExercises}
+
+\begin{MExercise}%1. Aufgabe
+Zwei Teilchen bewegen sich mit konstanter Geschwindigkeit in einer Ebene. Teilchen 1 hat einen linearen Impuls mit dem Betrag $|p_1|=4\ \mathrm{kg\frac{m}{s}}$ und kommt dem Ursprungspunkt $0$ auf $1\ \mathrm m$ nahe, Teilchen 2 mit einem linearen Impuls von $|p_2|=3\ \mathrm{kg\frac{m}{s}}$ nähert sich dem Ursprung bis auf $3\ \mathrm m$. Gesucht ist der Drehimpuls $L$ des Zwei-Teilchen-Systems bezüglich des Ursprungs.
+
+\begin{MHint}{Hinweis}
+Es gibt mehrere Lösungen, da die Aufgabe nicht eineindeutig gestellt ist. 
+\end{MHint}
+
+\begin{MHint}{Lösung}
+1. Möglichkeit: beide Teilchen bewegen sich gegenüber dem Ursprungspunkt in positiver Drehrichtung.
+
+2. Möglichkeit: Teilchen 1 bewegt sich gegenüber dem Ursprung in positiver, Teilchen 2 in negativer Richtung (s. Bild).
+
+3. Möglichkeit: Teilchen 1 bewegt sich gegenüber dem Ursprung in negativer, Teilchen 2 in positiver Richtung.
+
+4. Möglichkeit: beide Teilchen bewegen sich gegenüber dem Ursprung in negativer Drehrichtung.
+
+Rechnung für Möglichkeit 2:
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Drehimpuls_Massepunkt_A2}{scale=1}
+&
+\parbox[b]{9cm}
+{\[L_1=m_1\cdot r_{1_\bot}\cdot v_1=r_{1_\bot}\cdot p_1\]
+\[L_2=m_1\cdot r_{2_\bot}\cdot v_2=r_{2_\bot}\cdot p_2\]
+
+Dabei ist $r_{i_\bot}$ jeweils der nächste Abstand des  jeweiligen Teilchens zum Ursprung, also $r_{1_\bot}=1\ \mathrm m$ und $r_{2_\bot}=3\ \mathrm m$.
+
+Damit wird
+\[L_1=1\ \mathrm m \cdot 4\ \mathrm{kg\frac{m}{s}}=4\ \mathrm{kg\frac{m^2}{s}}\]
+und
+\[L_2=3\ \mathrm m \cdot \left(-3\ \mathrm{kg\frac{m}{s}}\right)=-9\ \mathrm{kg\frac{m^2}{s}}\]
+}
+\end{tabular}
+
+Der Gesamtdrehimpuls berechnet sich daher zu
+\[L=\sum{L_i}=4\ \mathrm{kg\frac{m^2}{s}}-9\ \mathrm{kg\frac{m^2}{s}}=\underline{\underline{-5\ \mathrm{kg\frac{m^2}{s}}}}\]
+
+Analog berechnen sich die anderen Möglichkeiten:
+
+1. Möglichkeit: 
+\[L_1=4\ \mathrm{kg\frac{m^2}{s}},\hspace{0.5cm}L_2=9\ \mathrm{kg\frac{m^2}{s}}\hspace{0.5cm}\Rightarrow\hspace{0.5cm}L=13\ \mathrm{kg\frac{m^2}{s}}\]
+
+3. Möglichkeit:
+\[L_1=-4\ \mathrm{kg\frac{m^2}{s}},\hspace{0.5cm}L_2=9\ \mathrm{kg\frac{m^2}{s}}\hspace{0.5cm}\Rightarrow\hspace{0.5cm}L=5\ \mathrm{kg\frac{m^2}{s}}\]
+
+4. Möglichkeit:
+\[L_1=-4\ \mathrm{kg\frac{m^2}{s}},\hspace{0.5cm}L_2=-9\ \mathrm{kg\frac{m^2}{s}}\hspace{0.5cm}\Rightarrow\hspace{0.5cm}L=-13\ \mathrm{kg\frac{m^2}{s}}\]
+
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}%2. Aufgabe
+Eine Eiskunstläuferin dreht eine Pirouette. Nähern Sie den Körper der Tänzerin folgendermaßen:  Kopf und Beine seien ein Zylinder mit einer Masse von 50 kg, einem Radius von 15 cm und einer Länge von 1,70 m. Die Arme seien jeweils ein dünner Stab mit einer Masse von 5 kg und einer Länge von 60 cm.
+
+a.) Berechnen Sie das Trägheitsmoment der Tänzerin mit ausgebreiteten Armen bezüglich ihrer Drehachse.
+
+b.) Berechnen Sie das Trägheitsmoment der Tänzerin mit an den Körper angelegten Armen bezüglich ihrer Drehachse.
+
+c.) Mit angelegten Armen dauert eine Umdrehung der Pirouette 0,4 s. Wie lange dauert eine Umdrehung mit ausgebreiteten Armen?
+
+d.) Wie groß ist die Änderung der kinetischen Energie, wenn die Tänzerin ihre Arme aus der ausgebreiteten Position heraus an den Körper legt?
+
+\begin{MHint}{Lösung}
+\begin{tabular}{llllll}
+geg:&Körper:&Zylinder:&$m_1=50\ \mathrm{kg},$&$r=0{,}15\ \mathrm m,$&$l_1=1{,}70\ \mathrm m$\\
+\ &Arm:&dünner Stab:&$m_2=5\ \mathrm {kg},$&\ &$l_2=0{,}60\ \mathrm m$
+\end{tabular}
+
+a.) ges:\hspace{0.5cm}$J_1$
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Taenzerin_Modell_Arme_aus}{scale=1}
+&
+\parbox[b]{11cm}
+{\[J_1=\sum J_i\]
+Das Trägheitsmoment des Körpers/Zylinders erhalten wir aus der Zusammenstellung \MRef{Physik_Rotation_Traegheitsmomente_Zusammenstellung}:
+\[J_{\rm K}=\frac{1}{2}m_1\cdot r^2=\frac{1}{2}\cdot50\ \mathrm{kg}\cdot\left(0{,}15\ \mathrm m\right)^2=0{,}56\ \mathrm{kg\,m^2}\]
+Für das Trägheitsmoment eines Armes benötigt man noch zusätzlich den Steinerschen Satz:
+\[J_{\rm A}=J_{\rm{S_A}}+m_2\cdot h^2=\frac{1}{12}m_2\cdot l^2+m_2\left(\frac{1}{2}l+r\right)^2=\]
+\[=\frac{1}{12}\cdot5\ \mathrm{kg}\cdot\left(0{,}6\ \mathrm m\right)^2+5\ \mathrm{kg}\cdot\left(0{,}45\ \mathrm m\right)^2=1{,}16\ \mathrm{kg\,m^2}\]
+}
+\end{tabular}
+
+Das Gesamtträgheitsmoment berechnet sich damit zu
+\[J_1=J_{\rm K}+2\cdot J_{\rm A}=0{,}56\ \mathrm{kg\,m^2}+2\cdot1{,}16\ \mathrm{kg\,m^2}=\underline{\underline{2{,}88\ \mathrm{kg\,m^2}}}\]
+
+b.) ges:\hspace{0.5cm}$J_2$
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Taenzerin_Modell_Arme_an}{scale=1}
+&
+\parbox[b]{13cm}
+{Nun befindet sich die gesamte Masse der Arme $r=0{,}15\ \mathrm{cm}$ von der Drehachse entfernt. Man erhält für das Trägheitsmoment eines Armes:
+\[J_{\rm A}=m\cdot r^2=5\ \mathrm{kg}\cdot\left(0{,}15\ \mathrm{m}\right)^2=0{,}11\ \mathrm{kg\,m^2}\]
+Damit wird das Gesamtträgheitsmoment
+\[J_2=J_{\rm K}+2\cdot J_{\rm A}=0{,}56\ \mathrm{kg\,m^2}+2\cdot0{,}11\ \mathrm{kg\,m^2}=\underline{\underline{0{,}78\ \mathrm{kg\,m^2}}}\]
+\vspace{2cm}
+}
+\end{tabular}
+
+\begin{tabular}{llll}
+c.)&geg.&$T_2=0{,}4\ \mathrm s$&bei angelegten Armen\\
+\ &ges:&$T_1$&bei ausgestreckten Armen 
+\end{tabular}
+
+Es gilt die Drehimpulserhaltung:
+\[L_1=J_1\omega_1=J_1\cdot\frac{2\pi}{T_1}=J_2\cdot\frac{2\pi}{T_2}=J_2\omega_2=L_2\]
+\[\Rightarrow\hspace{0.5cm}T_1=\frac{J_1}{J_2}\cdot T_2=\frac{2{,}88\ \mathrm{kg\,m^2}}{0{,}78\ \mathrm{kg\,m^2}}\cdot0{,}4\ \mathrm s=\underline{\underline{1{,}45\ \mathrm s}}\]
+
+d.) Bei ausgestreckten Armen:
+\[E_{{\rm{rot}}_1}=\frac{1}{2}J_1\cdot{\omega_1}^2=\frac{1}{2}J_1\cdot\frac{4\pi^2}{{T_1}^2}=\frac{1}{2}\cdot2{,}88\ \mathrm{kg\,m^2}\cdot\frac{4\pi^2}{\left(1{,}45\ \mathrm s\right)^2}=27{,}04\ \mathrm J\]
+\hspace{0.6cm}Bei angelegten Armen:
+\[E_{{\rm{rot}}_2}=\frac{1}{2}J_2\cdot{\omega_2}^2=\frac{1}{2}J_2\cdot\frac{4\pi^2}{{T_2}^2}=\frac{1}{2}\cdot0{,}78\ \mathrm{kg\,m^2}\cdot\frac{4\pi^2}{\left(0{,}4\ \mathrm s\right)^2}=96{,}23\ \mathrm J\]
+\hspace{0.6cm}Die kinetische Energie nimmt also zu um
+\[\Delta E_{\rm{rot}}=E_{{\rm{rot}}_2}-E_{{\rm{rot}}_1}=96{,}23\ \mathrm J-27{,}04\ \mathrm J=\underline{\underline{69{,}19\ \mathrm J}}.\]
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}\MLabel{Rotation_Drehimpuls_Aufgabe3}%3. Aufgabe
+Auf dem Spielplatz steht ein Kind mit einer Masse von 20 kg am Rande eines Kinderkarussells. Dieses ist eine homogene Scheibe mit einer Masse von 400 kg und einen Radius von 1,7 m und dreht sich um eine reibungsfreie Achse mit einer Umdrehung pro Sekunde. Dann geht das Kind in die Mitte des Karussells und bleibt dort stehen. Berechnen Sie die neue Drehfrequenz des Karussells. Sehen Sie das Kind als Punktmasse an.
+
+\begin{MHint}{Lösung}
+\begin{tabular}{llll}
+geg:&Karussell:&$m_{\rm{Ka}}=400\ \mathrm{kg}$&$r=1{,}7\ \mathrm m$\\
+&Kind:&$m_{\rm{Ki}}=20\ \mathrm{kg}$\\
+&&$f_1=1\ \mathrm{\frac{1}{s}}$
+\end{tabular}
+
+Da keine Kräfte von außen auf das System Kind-Karussell wirken, gilt die Drehimpulserhaltung.
+
+Das Karussell hat ein Trägheitsmoment von
+\[J_{{\rm{Ka}}}=\frac{1}{2}m_{\rm{Ka}}\cdot r^2=\frac{1}{2}\cdot 400\ \mathrm{kg}\cdot \left(1{,}7\ \mathrm m\right)^2=578{,}0\ \mathrm{kg\,m^2}\]
+Das Trägheitsmoment des Kindes zum Anfang berechnet sich zu
+\[J_{\rm{Ki}}=m_{\rm{Ki}}\cdot r^2=20\ \mathrm{kg}\cdot \left(1{,}7\ \mathrm m\right)^2=57{,}8\ \mathrm{kg\,m^2}\]
+Damit wird der Drehimpuls des Systems zu Beginn
+\[L=\sum L_i= L_{\rm{Ka}}+L_{\rm{Ki}}=J_{\rm{Ka}}\cdot\omega_1+J_{\rm{Ki}}\cdot\omega_1=\left(J_{\rm{Ka}}+J_{\rm{Ki}}\right)\omega_1\]
+mit $\omega_1=2\pi\cdot f_1$.
+
+Wenn sich das Kind in der Mitte des Karussells befindet, ist sein Trägheitsmoment null, da der Abstand des Kindes zur Drehachse null ist. Der Drehimpuls berechnet sich nun zu
+\[L=\sum L_i=L_{\rm{Ka}}=J_{\rm{Ka}}\cdot\omega_2.\]
+Mit der Drehimpulserhaltung erhält man
+\[L=J_{\rm{Ka}}\cdot2\pi f_2=\left(J_{\rm{Ka}}+J_{\rm{Ki}}\right)2\pi f_1\]
+\[\Rightarrow\hspace{0.5cm}f_2=\frac{J_{\rm{Ka}}+J_{\rm{Ki}}}{J_{\rm{Ka}}}\cdot f_1=\frac{578{,}0\ \mathrm{kg\,m^2}+57{,}8\ \mathrm{kg\,m^2}}{578{,}0\ \mathrm{kg\,m^2}}\cdot1\ \frac{1}{\mathrm s}=\underline{\underline{1{,}1\ \frac{1}{\mathrm s}}}\]
+Das Karussell dreht sich nun also etwas schneller.
+
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}%4. Aufgabe
+\begin{tabular}{ll}
+\MGraphicsSolo{Karussell}{scale=1}
+&
+\parbox[b]{13cm}
+{Das Karussell aus der Aufgabe \MRef{Rotation_Drehimpuls_Aufgabe3} ist nun in Ruhe. Das Kind läuft entlang einem zum Rand vom Karussell tangentialen Weg mit einer Geschwindigkeit von $2{,}5\ \mathrm{\frac{m}{s}}$ und springt auf den Rand des Karussells auf. Wie groß ist nun die Drehfrequenz des Systems Kind-Karussell?
+\vspace{2.5cm}
+}
+\end{tabular}
+
+\begin{MHint}{Lösung}
+Auch hier gilt der Drehimpulserhaltungssatz.
+
+Zu Beginn ruht das Karussell, sein Drehimpuls ist null.
+
+Der Drehimpuls des Kindes ist
+\[L_{\rm{Ki}}=m_{\rm{Ki}}\cdot|\vec{r}\times\vec{v}|=m_{\rm{Ki}}\cdot r_{\bot}\cdot v\]
+Der Abstand $r_{\bot}$ ist immer gleich dem $r$ des Karussells, da das Kind tangential zum Karussellrand läuft. Damit wird der Gesamtdrehimpuls zu Beginn
+\[L=L_{\rm{Ka}}+L_{\rm{Ki}}=m_{\rm{Ki}}\cdot r\cdot v.\]
+Nach dem Aufspringen wird sich das Karussell mitsamt dem Kind mit einer Drehfrequenz $f$ drehen, der Gesamtdrehimpuls berechnet sich zu
+\[L=\left(J_{\rm{Ka}}+J_{\rm{Ki}}\right)\cdot2\pi f.\]
+Mit den Trägheitsmomenten aus Aufgabe \MRef{Rotation_Drehimpuls_Aufgabe3} und dem Drehimpulserhaltungssatz erhält man
+\[m_{\rm{Ki}}\cdot r\cdot v=\left(J_{\rm{Ka}}+J_{\rm{Ki}}\right)\cdot2\pi f\]
+\[\Rightarrow\hspace{0.5cm}f=\frac{m_{\rm{Ki}}\cdot r\cdot v}{2\pi\left(J_{\rm{Ka}}+J_{\rm{Ki}}\right)}=\frac{20\ \mathrm{kg}\cdot1{,}7\ \mathrm m\cdot2{,}5\ \mathrm{\frac{m}{s}}}{2\pi\left(578\ \mathrm{kg\,m^2}+57{,}8\ \mathrm{kg\,m^2}\right)}=\underline{\underline{0{,}021\ \mathrm{\frac{1}{s}}}}\]
+
+\end{MHint}
+\end{MExercise}
+
+%
+\begin{MExercise}%5. Aufgabe
+\begin{tabular}{ll}
+\parbox[b]{4cm}
+{Auf einer Welle befinden sich wie in nebenstehender Anordnung gezeigt zwei homogene Scheiben mit den Trägheitsmomenten $J_1$ und $J_2$, die reibungsfrei rotieren können. Am Anfang rotiert Scheibe 1 mit einer konstanten Winkelgeschwindigkeit $\omega_{\rm a}$, Scheibe 2 ruht. Dann wird Scheibe 1 auf Scheibe 2 gebracht, und beide Scheiben
+}
+&
+\MGraphicsSolo{Drehimpuls_Kupplung}{scale=1}
+\end{tabular}
+
+rotieren ohne Schlupf gemeinsam um die Welle. Berechnen Sie die Winkelgeschwindigkeit $\omega_{\rm e}$, die sich nun einstellt.
+
+\begin{MHint}{Lösung}
+Da kein äußeres Drehmoment wirkt, gilt der Drehimpulserhaltungssatz.
+
+Zu Beginn ist der Gesamtdrehimpuls der Scheiben
+\[L=L_1+L_2=J_1\omega_{\rm a}+0=J_1\omega_{\rm a}\]
+Nach dem Zusammenbringen der Scheiben ist
+\[L=L_1+L_2=J_1\omega_{\rm e}+J_2\omega_{\rm e}=\left(J_1+J_2\right)\omega_{\rm e}\]
+Mit dem Drehimpulserhaltungssatz erhält man
+\[J_1\omega_{\rm a}=\left(J_1+J_2\right)\omega_{\rm e}\]
+\[\Rightarrow\hspace{0.5cm}\omega_{\rm e}=\underline{\underline{\frac{J_1}{J_1+J_2}\omega_{\rm a}}}\]
+\end{MHint}
+\end{MExercise}
+
+\end{MExercises}
+
+
+\MSubsection{Rollbewegung}%\MLabel{}
+\begin{MIntro}
+Bis jetzt wurden nur Rotationsbewegungen betrachtet, bei denen sich ein Körper um eine feststehende Achse gedreht hat. Doch bei einem Ball, der rollt, oder einem Rad eines Fahrrades dreht sich der Körper um seine Achse, während diese eine Translationsbewegung ausführt. In diesem Abschnitt werden solche superponierten Bewegungen behandelt und Gesetzmäßigkeiten dafür aufgezeigt.
+\end{MIntro}
+
+
+%\begin{MContent}
+\begin{MXContent}{Rollen auf horizontaler Ebene}{Rollen_horizontal}{STD}
+Wir betrachten ein auf einer horizontalen Unterlage rollendes Rad eines Fahrrades.
+
+\MGraphicsSolo{Rollen_1}{scale=1}
+
+Sowohl der Mittelpunkt $S$ als auch der Kontaktpunkt $P$ haben nach einer Zeit $\MD t$ die Strecke $\MD s$ zurückgelegt. Auch der Endpunkt $Q$ der betrachteten Speiche hat -- aus der Sicht des Radfahrers -- in derselben Zeit  $\MD t$ die gleiche Strecke zurückgelegt mit $\MD s=r_0\,\MD \phi$.
+
+Die Geschwindigkeit $v_S$ der Achse ist
+$v_S=\frac{\MD s}{\MD t}$.
+
+Ebenso ist die Geschwindigkeit des Punktes $Q$ bezüglich des Mittelpunktes
+\[\frac{\MD s}{\MD t}=r_0\,\frac{\MD \phi}{\MD t}=r_0\,\omega,\]
+das heißt, für einen rollenden Körper gilt $v_S=r_0\,\omega$. Diese Beziehung heißt
+
+\begin{MInfo}{}
+\MEntry{Rollbedingung}{Rollbedingung}
+
+Wenn ein Körper auf einer Unterlage rollt ohne zu gleiten, gilt
+\[v_S=r_0\,\omega\]
+\end{MInfo}
+
+Gleitet der Körper noch zusätzlich zum Rollen, ist leicht einzusehen, dass diese Bedingung nicht mehr gilt, sondern die Achse eine größere Geschwindigkeit hat als ein betrachteter Punkt auf der Radaußenseite.
+
+Von außen betrachtet sieht man die Bewegung als eine Superposition der Translationsbewegung des Rades und seiner Rotationsbewegung:
+
+\begin{tabular}{lll}
+\parbox[b]{5.3cm}
+{Translation ohne Rotation
+
+\vspace{0.5cm}} &
+\parbox[b]{5.3cm}
+{Rotation ohne Translation
+
+\vspace{0.5cm}} &
+\parbox[b]{5.3cm}
+{Rotation+Translation
+
+=Rollen}\\
+\MGraphicsSolo{Rollen_2a}{scale=1} & \MGraphicsSolo{Rollen_2b}{scale=1} & \MGraphicsSolo{Rollen_2c}{scale=1}\\ 
+\parbox[b]{5.3cm}
+{Jeder einzelne Punkt auf dem Rad hat dieselbe Geschwindigkeit.
+
+\vspace{2.8cm}} &
+\parbox[b]{5.3cm}
+{Der oberste Punkt bewegt sich mit $v=\omega\,r$ nach rechts, der unterste Punkt mit dem gleichen Geschwindigkeitsbetrag nach links, der Mittelpunkt ruht.
+
+\vspace{1.8cm}} &
+\parbox[b]{5.3cm}
+{Der oberste Punkt bewegt sich wie der Schwerpunkt nach rechts mit $v_S$, hat aber eine zusätzliche Geschwindigkeit $\omega\,r=v_S$ der Rotation.
+
+Der unterste Punkt hat auch die Geschwindigkeit $v_S$ nach rechts, aber zusätzlich die Geschwindigkeit $\omega\,r=v_S$ nach links.}
+\end{tabular}
+
+\vspace{1cm}
+\MEntry{Kontrollfragen}{}
+
+Ein Artist fährt auf einem Fahrrad, dessen hinteres Rad nur einen halb so großen Radius hat wie das vordere Rad.
+
+\begin{itemize}
+\item
+\begin{MQuestionGroup}
+Die Geschwindigkeit des höchsten Punktes des Hinterrades ist
+
+\MCheckbox{0}\hspace{0.5cm}kleiner
+
+\MCheckbox{1}\hspace{0.5cm}gleich
+
+\MCheckbox{0}\hspace{0.5cm}größer
+
+als die Geschwindigkeit des obersten Punktes des Vorderrades,
+\end{MQuestionGroup}
+
+und zwar \MQuestion{1}{1}$\cdot \ v_{\rm{vorne,o}}$
+%
+\item
+\begin{MQuestionGroup}
+Die Winkelgeschwindigkeit des Hinterrades ist
+
+\MCheckbox{0}\hspace{0.5cm}kleiner
+
+\MCheckbox{0}\hspace{0.5cm}gleich
+
+\MCheckbox{1}\hspace{0.5cm}größer
+
+als die Winkelgeschwindigkeit des Vorderrades,
+\end{MQuestionGroup}
+
+und zwar \MQuestion{1}{2}$\cdot\ \omega_{\rm{vorne}}$
+
+\end{itemize}
+
+%\vspace{2cm}
+\newpage
+Ein schönes Beispiel ist das "`Schieben"' einer Kugel beim Kegeln oder Bowling:
+\begin{MExample}
+Eine Kugel der Masse $m$ und dem Radius $r$ wird so geworfen, dass sie sich nach dem Auftreffen auf der Bahn ohne zu rotieren horizontal mit einer Geschwindigkeit von $v_0=5\ \mathrm{\frac{m}{s}}$ bewegt. Die Gleitreibungszahl zwischen der Kugel und der Bahn beträgt $f_{\rm{gl}}=0{,}3$.
+
+a.) 
+Bestimmen Sie die Zeit vom Auftreffen der Kugel bis zu dem Zeitpunkt, an dem die Kugel
+\hspace{0.3cm} zur reinen Rollbewegung übergeht.
+
+b.) Bestimmen Sie die Strecke auf der Bahn, die die Kugel bis dahin zurücklegt.
+
+\vspace{0.5cm}
+Beschreiben wir zuerst einmal, was mit der Kugel geschieht:
+
+Die Kugel gleitet. Die Gleitreibungskraft wirkt ihrer Bewegung entgegen und verringert die lineare Geschwindigkeit des Kugelmittelpunktes. Gleichzeitig wirkt sie als Drehmoment auf die Kugel und zwingt diese zur Rotation. Die lineare Geschwindigkeit $v_S$ nimmt ab, während die Winkelgeschwindigkeit $\omega$ zunimmt, und zwar so lange, bis die Rollbedingung $v_S=r\,\omega$ erfüllt ist. Danach rollt die Kugel friedlich weiter ohne zu gleiten, so dass es keine Gleitreibungskraft mehr gibt und somit auch kein Drehmoment mehr auf die Kugel wirkt.
+
+Kugel gleitet:
+\[F_{\rm{gl}}=f_{\rm{gl}}\cdot F_{\rm N}=f_{\rm{gl}}\cdot m\cdot g,\]
+
+sie erfährt eine negative Beschleunigung des Massemittelpunktes:
+\[a_S=-\frac{F_{\rm{gl}}}{m}=-f_{\rm{gl}}\cdot g.\]
+Damit wird ihre Geschwindigkeit
+\[v_S\left(t\right)=v_0+a_S\cdot t=v_0-f_{\rm{gl}}\cdot g\cdot t.\]
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Bowlingkugel}{scale=1}
+&
+\parbox[b]{12cm}
+{$F_{\rm{gl}}$ bewirkt ein Drehmoment:
+\[M=r\cdot F_{\rm{gl}}=r\cdot f_{\rm{gl}}\,m\,g=J\,\alpha\]
+}
+\end{tabular}
+
+mit $J=\frac{2}{5}\,m\,r^2$ erhält man
+\[\alpha=\frac{M}{J}=\frac{r\,f_{\rm{gl}}\,m\,g}{\frac{2}{5}\,m\,r^2}=\frac{5}{2}\cdot\frac{f_{\rm{gl}}\,g}{r}\]
+und damit
+\[\omega\left(t\right)=\alpha\,t=\frac{5}{2}\,\frac{f_{\rm{gl}}\,g}{r}\,t\]
+bis zum Zeitpunkt $t_1$, an dem die Rollbedingung erfüllt ist:
+\[v_S\left(t_1\right)=r\,\omega\left(t_1\right)\hspace{0.5cm}\Leftrightarrow\]
+\[v_0-f_{\rm{gl}}\cdot g\cdot t_1=\frac{5}{2}\cdot f_{\rm{gl}}\,g\,t_1\]
+\[v_0=f_{\rm{gl}}\,g\,t_1\,\left(\frac{5}{2}+1\right)\]
+\[\Rightarrow\hspace{0.5cm}t_1=\frac{2}{7}\,\frac{v_0}{f_{\rm{gl}}\,g}=\frac{2}{7}\cdot\frac{5\ \mathrm{\frac{m}{s}}}{0{,}3\cdot9{,}81\ \mathrm{\frac{m}{s^2}}}=\underline{\underline{0{,}485\ \mathrm s}}\]
+
+Der Kugelmittelpunkt erfährt bis zum Zeitpunkt des Rollens die konstante Beschleunigung $a_S$, daraus folgt für die zurückgelegte Strecke
+\[s=s_0+v_0\,t_1+\frac{1}{2}\,a_S\,{t_1}^2=v_0\,t_1-\frac{1}{2}\,f_{\rm{gl}}\,g\,{t_1}^2=\]
+\[=5\ \mathrm{\frac{m}{s}}\cdot0{,}485\ \mathrm s-\frac{1}{2}\cdot0{,}3\cdot9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\left(0{,}485\ \mathrm s\right)^2=\underline{\underline{2{,}08\ \mathrm m}}\]
+
+\end{MExample}
+
+Welche Energie hat nun ein rollender Körper?
+
+Da es sich um eine Superposition zweier Bewegungen handelt, können wir auch die Energie superponieren:
+\begin{MInfo}
+Die kinetische Energie eines rollenden Körpers ist die Summe der kinetischen Energie der Translation des Massenmittelpunktes und der kinetischen Rotationsenergie des Körpers:
+\[E_{\rm{kin}}=\frac{1}{2}\,m\,{v_S}^2+\frac{1}{2}\,J_S\,\omega^2\]
+\end{MInfo}
+
+\begin{MExample}
+Ein Vollzylinder mit einer Masse von 20 kg und einem Radius von 10 cm rollt ohne zu gleiten auf horizontaler Fläche mit einer Geschwindigkeit von 5 $\mathrm{\frac{m}{s}}$. Wieviel Bewegungsenergie steckt in dem Zylinder?
+
+\[E_{kin}=\frac{1}{2}\,m\,v^2+\frac{1}{2}\ J\,\omega^2=\frac{1}{2}\,m\,v^2+\frac{1}{2}\cdot\left(\frac{1}{2}\,m\,r^2\right)\cdot\left(\frac{v^2}{r^2}\right)=\]
+\[=\frac{3}{4}\,m\,v^2=\frac{3}{4}\cdot20\ \mathrm{kg}\cdot25\ \mathrm{\frac{m^2}{s^2}}=\underline{\underline{375\ \mathrm J}}\]
+\end{MExample}
+
+\end{MXContent}
+%
+%
+%
+\begin{MXContent}{Rollen auf schiefer Ebene}{Rollen_schiefe_Ebene}{STD}
+Stellen Sie sich folgenden Versuch vor:
+
+Auf einer schiefen Ebene werden gleichzeitig ein Vollzylinder, eine Kugel und ein dünner Hohlzylinder, die alle den gleichen Radius haben, von gleicher Höhe herab aus der Ruhe heraus rollen gelassen.
+
+\ifttm
+Welcher Körper ist zuerst unten? 
+Tippen sie für den ersten eine "`1"', für den zweiten eine "'2"' und für den letzten eine "`3"' ein, oder klicken sie auf das letzte Eingabefeld.
+
+\begin{MQuestionGroup}
+\MQuestion{1}{2} Vollzylinder
+
+\MQuestion{1}{1} Kugel
+
+\MQuestion{1}{3} Hohlzylinder
+
+\MCheckbox{0} alle gleichzeitig
+\end{MQuestionGroup} 
+
+\else
+{Wir würden sehen, dass zuerst die Kugel, dann der Vollzylinder und zuletzt der Zylindermantel unten ankommen.
+Dann wiederholen wir den Versuch mit zwei Kugeln mit verschiedenen Radien: beide würden zu gleicher Zeit unten ankommen.
+}
+\fi
+
+\ifttm
+Dann wiederholen wir den Versuch mit zwei Kugeln mit verschiedenen Radien:
+welche ist zuerst unten?
+
+\begin{MQuestionGroup}
+\MCheckbox{0} die größere
+
+\MCheckbox{0} die kleinere
+
+\MCheckbox{1} beide gleichzeitig
+\end{MQuestionGroup} 
+\else
+{}
+\fi
+
+Auch bei zwei Kugeln verschiedener Masse würden wir dasselbe beobachten.
+
+Welcher Körper die größere Beschleunigung erfährt, hängt also offensichtlich nicht von der Masse oder dem Radius des Körpers ab, doch die Geometrie, also die Art des Körpers, scheint eine Rolle zu
+spielen.
+
+Schauen wir uns die Situation anhand der auftretenden Kräfte an:
+
+\begin{tabular}{ll}
+\MGraphicsSolo{Rollen_schiefe_Ebene}{scale=1}
+&
+\parbox[b]{8.7cm}
+{Es wirkt die Gewichtskraft $m\vec{g}$ des Körpers, aufge-
+teilt in die Hangabtriebskraft $\vec{F}_{\rm{HA}}$  und die Normal-
+kraft $\vec{F}_{\rm N}$, die sich aber mit der Normalkraft der Ebe-
+ne auf den Körper zu null addiert. Außerdem gibt es die Reibkraft
+$\vec{F}_{\rm R}$, die bewirkt, dass der Körper nicht ins Rutschen kommt, sondern an seinem Auflagepunkt haftet. Dadurch entsteht aber ein Drehmoment auf den Körper mit
+\begin{equation}
+M=r\cdot F_R=J_S\,\alpha.	\MLabel{GL1}
+\end{equation}
+}
+\end{tabular}
+
+Als Zweites gilt die Rollbedingung $v_S=r\,\omega$, und da die Bewegung beschleunigt ist, erhalten wir
+\begin{equation}
+\frac{\MD v_S}{\MD t}=r\,\frac{\MD \omega}{\MD t}\hspace{0.5cm}\Leftrightarrow\hspace{0.5cm}a_S=r\cdot\alpha.\MLabel{GL2}
+\end{equation}
+Zum Dritten gilt für die Verschiebung des Körpers parallel zur schiefen Ebene (Translation):
+\begin{equation}
+m\cdot a_S=F_{\rm{HA}}-F_{\rm R}=m\,g\,\sin\Mphi-F_{\rm R}.\MLabel{GL3}
+\end{equation}
+Einsetzen der Gleichung (\MRef{GL2}) in Gleichung (\MRef{GL1}) und Auflösen nach $F_{\rm R}$ ergibt
+\begin{equation}
+F_{\rm R}=J_S\cdot\frac{a_S}{r^2}. \MLabel{GL4}
+\end{equation}
+Ebenso wird Gleichung (\MRef{GL3}) nach $F_{\rm R}$ aufgelöst und Gleichung (\MRef{GL4}) gleichgesetzt:
+\[m\cdot\left(g\cdot\sin\Mphi-a_S\right)=J_S\cdot\frac{a_S}{r^2}.\]
+Nach der Beschleunigung $a_S$ aufgellöst ergibt
+\[a_S=\frac {m\,g\,\sin\Mphi}{\frac{J_S}{r^2}+m}.\]
+Bei genauem Hinsehen stellt man fest, dass sich beim Einsetzen des Trägheitsmomentes $J_S$ eines rotationssymmetrischen Körpers die Masse und der Radius wegkürzen und die Beschleunigung des Massenmittelpunktes
+\[a_S=C\cdot g\,\sin\Mphi\]
+ergibt, wobei $C$ für eine konstante Zahl abhängig von der Geometrie des Körpers steht.
+
+Für die Kugel ergibt sich $C_{\rm K}=\Mdfrac{5}{7},$
+
+für den Vollzylinder ist $C_{\rm Z}=\Mdfrac{2}{3}$
+
+und für den Zylindermantel $C_{\rm{ZM}}=\Mdfrac{1}{2}$.
+
+Wie man sieht, ist $C_{\rm K}>C_{\rm Z}>C_{\rm{ZM}}$, also ist die Beschleunigung einer Kugel immer größer als die des Vollzylinders, und dessen Beschleunigung ist immer größer als die eines Zylindermantels, unabhängig von Masse und Ausdehnung der Körper!
+
+Nun kann man auch nach Gleichung (\MRef{GL4}) die Reibkraft berechnen, die auf den Körper wirkt. Auch hier erhält man eine Gleichung mit einer Konstanten abhängig von der Geometrie des Körpers, allerdings spielt bei der Reibkraft noch die Masse des Körpers eine Rolle:
+\[F_{\rm R}=K\cdot m\,g\,\sin\Mphi\]
+mit $K_{\rm K}=\Mdfrac{2}{7},\ K_{\rm Z}=\Mdfrac{1}{3}$ und $K_{\rm{ZM}}=\Mdfrac{1}{2}.$
+
+Die Reibkraft ist unabhängig von den Reibungskoeffizienten! Da der Körper rollt ohne zu gleiten, tritt nur eine Haftreibung auf, die im Allgemeinen kleiner ist als die maximale Haftreibung:
+
+\begin{center}
+\begin{tabular}{rll}
+$F_{\rm R}$ & $\leq$ & $F_{\rm{h,max}}$\\
+\\
+$K\cdot m\,g\sin\Mphi$ & $\leq$ & $f_{\rm h}\,m\,g\,\cos\Mphi$\\
+\\
+$\Mdfrac{\sin\Mphi}{\cos\Mphi}=\tan\Mphi$ & $\leq$ & $\Mdfrac{f_{\rm h}}{K}$
+\end{tabular}
+\end{center}
+
+\begin{MInfo}
+Auf der schiefen Ebene mit dem Neigungswinkel $\Mphi$ rollt ein Körper ohne zu gleiten, solange gilt:
+\[\tan\Mphi\leq\frac{f_{\rm h}}{K}.\]
+\end{MInfo}
+Umgekehrt heißt das aber auch, dass der Körper zu gleiten beginnt, wenn der Winkel der schiefen Ebene so groß ist, dass sein Tangens größer als $\Mdfrac{f_{\rm h}}{K}$ wird.
+%
+\begin{MExample}
+Auf einer schiefen Ebene mit einem Neigungswinkel von $\Mphi = 50°$  soll ein Zylinder herunterrollen.
+Wie  groß  muss  der  Haftreibungskoeffizient  mindestens  sein,  damit  der  Zylinder  rollt  ohne  zu gleiten?
+
+Für den Zylinder muss gelten:
+\[\tan\Mphi\leq\frac{f_{\rm h}}{\frac{1}{3}}\]
+\[\Rightarrow\hspace{0.5cm} f_{\rm h}\geq\frac{1}{3}\tan50°=0{,}4\]
+Das heißt, $f_{\rm h}$  muss mindestens 0,4 betragen, damit der Zylinder nicht ins Rutschen kommt. Das ist ungefähr der Haftreibungskoeffizient für Gummireifen auf nasser Straße.
+\end{MExample}
+%
+Da der rollende Körper nur eine Haftkraft am Kontaktpunkt mit der Unterlage erfährt und keine Gleitreibungskraft auftritt, wird auch keine Energie in Wärme etc. umgewandelt, das heißt, es geht keine mechanische Energie
+"`verloren"'. Es gilt also auch hier der Energieerhaltungssatz:
+%
+\begin{MInfo}
+Beim Rollen auf der schiefen Ebene gilt die Energieerhaltung, und die Gesamtenergie zu allen Zeiten ist
+\[E_{\rm{ges}}=E_{\rm{pot}}+E_{\rm{trans}}+E_{\rm{rot}}=m\,g\,h\left(t\right)+\frac{1}{2}\,m\left(v_S\left(t\right)\right)^2+\frac{1}{2}\,J\left(\omega\left(t\right)\right)^2.\]
+\end{MInfo}
+
+\end{MXContent}
+
+%\end{MContent}
+
+
+
+% 
+\begin{MExercises}
+Ein Zylinder rollt eine schiefe Ebene mit einem Neigungswinkel von $50°$ aus einer Höhe von $h=0{,}5$ m herab. Wie groß ist seine Geschwindigkeit am Fußpunkt der Ebene?
+\begin{center}
+\MGraphicsSolo{Rollen_schiefe_Ebene_A1}{scale=1}
+\end{center}
+
+\begin{MHint}{Lösung}
+Diese Aufgabe lässt sich auf zwei Arten lösen. Zuerst verwenden wir den Energieerhaltungssatz:
+\begin{itemize}
+\item
+Zu Beginn des Rollens hat der Zylinder potentielle Energie gegenüber dem Fußpunkt, aber weder kinetische Energie der Translations- noch der Rotationsbewegung. Also ist die Gesamtenergie gegeben durch
+\[E_{\rm{ges}}=m\,g\,h\]
+Am Fußpunkt ist seine potentielle Energie nach unserer Definition gleich null, und seine Gesamtenergie ist 
+\[E_{\rm{ges}}=\frac{1}{2}\,m\,{v_F}^2+\frac{1}{2}\,J\,{\omega_F}^2\]
+Mit der Rollbedingung $v_S=\omega\,r$ und dem Trägheitsmoment des Zylinders $J=\Mdfrac{1}{2}\,m\,r^2$ erhält man
+\[E_{\rm{ges}}=\frac{1}{2}\,m\,{v_F}^2+\frac{1}{2}\cdot\frac{1}{2}\,m\,r^2\cdot\frac{{v_F}^2}{r^2}=\frac{3}{4}\,m\,{v_F}^2\]
+Aus der Energieerhaltung folgt
+\[m\,g\,h=\frac{3}{4}\,m\,{v_F}^2\]
+\[\Rightarrow\hspace{0.5cm}v_F=\sqrt{\frac{4}{3}\,g\,h}=\sqrt{\frac{4}{3}\cdot9{,}81\,\mathrm{\frac{m}{s^2}}\cdot0{,}5\,\mathrm m}=\underline{\underline{2{,}56\,\mathrm{\frac{m}{s}}}}\]
+
+\vspace{1cm}
+\item
+Eine weitere Möglichkeit ist die Verwendung der kinematischen Beziehungen:
+\[v_F=v_0+a_S\cdot t_1\]
+und\[s=s_0+v_0\cdot t_1+\frac{1}{2}a_{\rm S}\cdot t_1^2\]
+Für den Zylinder ist $a_S=\Mdfrac{2}{3}\,g\,\sin\Mphi$, und $s_0=\frac{h}{\sin\Mphi}$. Die Anfangsgeschwindigkeit $v_0$ ist null.
+Dadurch erhält man für $t_1$:
+\[t_1=\sqrt{\frac{3h}{g\,\sin^2\Mphi}}=\frac{1}{\sin\Mphi}\sqrt{\frac{3h}{g}},\]
+und damit wird 
+\[v_F=\frac{2}{3}\,g\sin\Mphi\cdot\frac{1}{\sin\Mphi}\sqrt{\frac{3h}{g}}=\sqrt{\frac{4}{3}\,g\,h}=\underline{\underline{2{,}56\,\mathrm{\frac{m}{s}}}}\]
+\end{itemize}
+\end{MHint}
+
+\end{MExercises}
+
+
+\MSubsection{Gegenüberstellung von Gleichungen der Translation und der Rotation }%\MLabel{}
+\begin{MIntro}
+Zum Abschluss werden die erarbeiteten Gleichungen für die Rotationsbewegung starrer Körper den äquivalenten Gleichungen bei der translatorischen Bewegung eines Körpers in Tabellenform gegenübergestellt.
+
+\end{MIntro}
+
+\begin{MContent}
+\begin{center}
+\begin{tabular}{|l|c|c|l|}
+\hline
+\ &\MEntry{Translation}{}	&	\MEntry{Rotation}{}	&\\[2mm]
+\hline\hline
+
+Ort							&	$s_0$										&	$\theta_0$											&	Winkelposition\\[4mm]
+Strecke					&	$\MD s$									&	$\MD \theta$										& Drehwinkel\\[4mm]
+Geschwindigkeit	& $\displaystyle v=\frac{\MD s}{\MD t}$	& $\displaystyle\omega=\frac{\MD\theta}{\MD t}$& Winkelgeschwindigkeit\\[4mm]
+%\ 							&				& &				\\
+Beschleunigung	&	$\displaystyle a=\frac{\MD v}{\MD t}=\frac{\MD^2 s}{\MD t^2}$ & $\displaystyle\alpha=\frac{\MD \omega}{\MD t}=\frac{\MD^2 \theta}{\MD t^2}$	& Winkelbeschleunigung \\ [4mm]
+%\ & \\ \hline
+Kraft						&	$\vec{F}$								&	$\vec{M}=\vec{r}\times \vec{F}$	& Drehmoment \\[4mm]
+Masse						&	$m$											&	$\displaystyle J=\sum m_i\,{r_i}^2$						&	Trägheitsmoment \\[4mm]
+\ 							&\ 												& $\displaystyle J=\int r^2\,\MD m$							&			\\[4mm]
+kinetische Energie & $\displaystyle E_{\rm{kin}}=\frac{1}{2}\,m\,v^2$ & $\displaystyle E_{\rm{rot}}=\frac{1}{2}\,J\,\omega^2$ & kinetische Energie der \\
+& & &  Drehbewegung (Rotationsenergie)\\[4mm]
+Leistung 				& $\displaystyle P=\frac{\MD W}{\MD t}=F_s\cdot v_s$ &$\displaystyle P=\frac{\MD W}{\MD t}=M\cdot\omega$ & Leistung\\[4mm]
+Impuls					&	$\vec{p}=m\cdot \vec{v}$	&	$\vec{L}=J\cdot\vec{\omega}$	&	Drehimpuls\\[4mm]
+\ 							&													&	$\vec{L}=m\left(\vec{r}\times\vec{v}\right)$	&\\[4mm]
+Impulsänderung	&	$\displaystyle \vec F=\frac{\MD\vec p}{\MD t}$	&	$\displaystyle \vec M=\frac{\MD\vec L}{\MD t}$	&	Drehimpulsänderung\\[4mm]
+
+2. Newtonsches Gesetz &$\vec{F}=m\cdot\vec{a}$ & $\vec{M}=J\cdot\vec{\alpha}$ & 2. Newtonsches Gesetz für\\
+								&	&	&	  Drehbewegungen\\[4mm]
+\hline
+\end{tabular}
+\end{center}
+\end{MContent}
+
+% 
+% 
+
+
+\end{document}
