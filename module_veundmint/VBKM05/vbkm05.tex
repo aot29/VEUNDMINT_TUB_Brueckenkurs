@@ -2210,7 +2210,7 @@ Ein Viereck hei"st
 \item \MEntry{Raute}{Raute} oder 
  \MEntry{gleichseitiges Viereck}{gleichseitiges Viereck} oder 
  auch \MEntry{Rhombus}{Rhombus}, falls alle vier Seiten gleich lang sind;
-\item \MEntry{Rechteck}{Rechteck}, falls alle vier Winkel rechte Winkel sind;
+\item \MEntry{Rechteck}{Rechteck}, falls alle vier Innenwinkel rechte Winkel sind;
 \item \MEntry{Quadrat}{Quadrat}, falls es ein Rechteck ist, bei dem alle 
  Seiten gleich lang sind;
 \item \MEntry{Einheitsquadrat}{Einheitsquadrat}, falls es ein Quadrat mit 
@@ -2482,12 +2482,16 @@ Ein Viereck ist genau dann ein Rechteck, wenn
 \foreach \Punkt in {(A), (B), (C), (D)} do
 \filldraw \Punkt circle(2pt);
 \end{scope}
+%%
 \begin{scope}[yshift=-1.6cm]
 \coordinate (A) at (0,0);
 \coordinate (B) at ($ (A) + (10:5cm) $);
 \coordinate (D) at ($ (A) + (100:2.5cm) $);
 \coordinate (C) at ($ (D) + (A)!1!(B) $);
 \coordinate (S) at ($ (A)!0.5!(C) $);
+%
+\draw[color=red!50!yellow] ($ (A)!0.1!(B) $) arc(10:100:0.5cm);
+\filldraw[color=red!50!yellow] ($ (A) + (70:0.3cm) $) circle(0.3pt);
 %
 \draw[color=black!60!white] (A) -- (B) -- (C) -- (D) -- cycle;
 %\draw[color=blue] (A) -- ($ (A)!0.5!(C) $);
@@ -2512,9 +2516,9 @@ Ein Viereck ist genau dann ein Rechteck, wenn
 \begin{minipage}{9.6cm}
 Ein Viereck ist genau dann ein Quadrat, wenn
 \begin{itemize}
-\item alle Seiten gleich lang und alle Winkel gleich gro"s sind oder 
- wenigstens ein Winkel ein rechter Winkel ist;
-\item die Diagonalen einander halbieren und gleich lang sind und zudem 
+\item alle Seiten gleich lang und alle Innenwinkel gleich gro"s sind 
+ oder wenigstens ein Innenwinkel ein rechter Winkel ist;
+\item die Diagonalen gleich lang sind und zudem 
 alle Seiten gleich lang sind;
 %jgl: Aussage falsch (auch von Rechtecken erf"ullt):
 %\item es ein Parallelogramm ist, in welchem die Diagonalen einander 
@@ -2523,12 +2527,11 @@ alle Seiten gleich lang sind;
 %  \item alle Innenwinkel gleich gro"s sind oder
 %  \item welches wenigstens einen rechten Winkel besitzt;
 %\end{itemize}
-%jgl: Bedingung des Parallelogramms folgt aus den anderen Bedingungen:
-%\item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht 
+%jgl: Vorschlag fuer eine weitere Charakerisierung:
 \item die Diagonalen senkrecht zueinander stehen und 
  \begin{itemize}
-  \item alle Innenwinkel gleich gro"s sind oder
-  \item welches wenigstens einen rechten Winkel hat;
+  \item sich halbieren und gleich lang sind oder
+  \item alle Innenwinkel gleich gro"s sind;
  \end{itemize}
 \item es eine Raute mit gleich langen Diagonalen ist;
 \item es sowohl eine Raute als auch ein Rechteck ist.
@@ -2562,19 +2565,12 @@ alle Seiten gleich lang sind;
 \coordinate (B) at ($ (A) + (10:2.5cm) $);
 \coordinate (D) at ($ (A) + (100:2.5cm) $);
 \coordinate (C) at ($ (D) + (A)!1!(B) $);
-\coordinate (S) at ($ (A)!0.5!(C) $);
+%\coordinate (S) at ($ (A)!0.5!(C) $);
 %
 \draw[color=green!50!black] (A) -- (B) -- (C) -- (D) -- cycle;
 %
-%jgl: Diagonalen halbieren sich und sind gleich lang, was durch den 
-%blauen Schnittpunkt angedeutet werden soll:
-\draw[color=blue!50!white] (A) -- (C);
-\draw[color=blue!50!white] (D) -- (B);
-%\draw[color=blue!60!white] (A) -- (S);
-%\draw[color=blue!60!white] (S) -- (C);
-%\draw[color=blue!60!white] (D) -- (S);
-%\draw[color=blue!60!white] (S) -- (B);
-\filldraw[color=blue] (S) circle(0.3pt);
+\draw[color=blue] (A) -- (C);
+\draw[color=blue] (D) -- (B);
 \foreach \Punkt in {(A), (B), (C), (D)} do
 \filldraw \Punkt circle(2pt);
 \end{scope}
@@ -2589,20 +2585,24 @@ alle Seiten gleich lang sind;
 \draw[color=red] ($ (S) + (55:0.5cm) $) arc(55:145:0.5cm);
 \filldraw[color=red] ($ (S) + (100:0.25cm) $) circle(0.3pt);
 %
-%\draw[color=red!80!yellow] ($ (A) + (10:0.6cm) $) arc(10:100:0.6cm);
-\draw[color=red!80!yellow] ($ (A)!0.2!(B) $) arc(10:100:0.5cm);
-\draw[color=red!80!yellow] ($ (B)!0.2!(C) $) arc(100:190:0.5cm);
-\draw[color=red!80!yellow] ($ (C)!0.2!(D) $) arc(190:280:0.5cm);
-\draw[color=red!80!yellow] ($ (D)!0.2!(A) $) arc(280:370:0.5cm);
-\filldraw[color=red!50!yellow] ($ (A) + (75:0.3cm) $) circle(0.3pt);
+%\draw[color=red!60!yellow] ($ (A) + (10:0.6cm) $) arc(10:100:0.6cm);
+\draw[color=red!60!yellow] ($ (A)!0.2!(B) $) arc(10:100:0.5cm);
+\draw[color=red!60!yellow] ($ (B)!0.2!(C) $) arc(100:190:0.5cm);
+\draw[color=red!60!yellow] ($ (C)!0.2!(D) $) arc(190:280:0.5cm);
+\draw[color=red!60!yellow] ($ (D)!0.2!(A) $) arc(280:370:0.5cm);
 %
-\draw[color=green!50!black] (A) -- (B);
-\draw[color=green!50!black] (D) -- (C);
-\draw[color=green] (A) -- (D);
-\draw[color=green] (B) -- (C);
+%jgl: Dass die Diagonalen gleich lang sind, wird durch die gleiche Farbe
+%angedeutet:
+\draw[color=blue!50!white] (A) -- (C);
+\draw[color=blue!50!white] (D) -- (B);
+%jgl: Dass die Diagonalen sich halbieren, wird durch den hervorgehobenen
+%Schnittpunkt angedeutet:
+\filldraw[color=blue] (S) circle(0.3pt);
 %
-\draw[color=blue] (A) -- (C);
-\draw[color=blue!60!white] (D) -- (B);
+%\filldraw[color=red!50!yellow] (S) circle(0.3pt);
+%
+\draw[color=black!50!white] (A) -- (B) -- (C) -- (D) -- cycle;
+%
 \foreach \Punkt in {(A), (B), (C), (D)} do
 \filldraw \Punkt circle(2pt);
 \end{scope}
