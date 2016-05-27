@@ -2278,9 +2278,11 @@ Ferner lassen sich diese Vierecke auf vielerlei Arten charakterisieren.
 \begin{minipage}{9.6cm}
 Ein Viereck ist genau dann ein Parallelogramm, wenn
 \begin{itemize}
-\item es ein einfaches Viereck ist, dessen gegen"uberliegenden Seiten 
- jeweils gleich lang sind;
-\item gegen\"uberliegende Innenwinkel gleich gro"s sind;
+\item gegen"uberliegende Seiten parallel sind;
+%jgl: Es werden hier nur einfache Vierecke betrachtet:
+%\item es ein einfaches Viereck ist, dessen gegen"uberliegenden Seiten 
+\item gegen"uberliegende Seiten jeweils gleich lang sind;
+\item gegen"uberliegende Innenwinkel gleich gro"s sind;
 \item zwei benachbarte Innenwinkel zusammen $\pi$ bzw. $180\MGrad$ ergeben; 
 \item die Diagonalen einander halbieren.
 \end{itemize}
@@ -2332,7 +2334,7 @@ Ein Viereck ist genau dann ein Parallelogramm, wenn
 \coordinate (B) at ($ (A) + (10:4.5cm) $);
 \coordinate (D) at ($ (A) + (60:1.6cm) $);
 \coordinate (C) at ($ (D) + (A)!1!(B) $);
-\coordinate (S) at ($ (A) + (A)!0.5!(C) $);
+\coordinate (S) at ($ (A)!0.5!(C) $);
 %
 \draw[color=black!60!white] (A) -- (B) -- (C) -- (D) -- cycle;
 \draw[color=blue] (A) -- ($ (A)!0.5!(C) $);
@@ -2363,7 +2365,11 @@ Ein Viereck ist genau dann eine Raute, wenn
 \item alle Seiten gleich lang sind;
 \item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht 
  zueinander stehen;
-\item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren.
+%jgl: Folgende Aussage gilt in jedem(!) Parallelogramm:
+%\item es ein Parallelogramm ist, in welchem die Diagonalen einander halbieren.
+%jgl: neue Charakterisierung:
+\item wenigstens zwei benachbarte Seiten gleich lang sind und sich die 
+Diagonalen einander halbieren.
 \end{itemize}
 \end{minipage}
 &
@@ -2372,7 +2378,7 @@ Ein Viereck ist genau dann eine Raute, wenn
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[line width=2pt]
-\begin{scope}[yshift=1.2cm]
+\begin{scope}[yshift=1.8cm]
 \coordinate (A) at (0,0);
 \coordinate (B) at ($ (A) + (10:2.5cm) $);
 \coordinate (D) at ($ (A) + (40:2.5cm) $);
@@ -2382,23 +2388,44 @@ Ein Viereck ist genau dann eine Raute, wenn
 \foreach \Punkt in {(A), (B), (C), (D)} do
 \filldraw \Punkt circle(2pt);
 \end{scope}
-\begin{scope}[yshift=-1.2cm]
+%%
+\begin{scope}[yshift=0cm]
 \coordinate (A) at (0,0);
 \coordinate (B) at ($ (A) + (10:2.5cm) $);
 \coordinate (D) at ($ (A) + (40:2.5cm) $);
 \coordinate (C) at ($ (D) + (A)!1!(B) $);
-\coordinate (S) at ($ (A) + (A)!0.5!(C) $);
+\coordinate (S) at ($ (A)!0.5!(C) $);
 %
 \draw[color=red] ($ (S) + (25:0.4cm) $) arc(25:110:0.4cm);
-\draw[color=red] ($ (S) + (70:0.2cm) $) circle(0.3pt);
+\filldraw[color=red] ($ (S) + (70:0.2cm) $) circle(0.3pt);
 %
-\draw[color=black!60!white] (A) -- (B) -- (C) -- (D) -- cycle;
+\draw[color=black] (A) -- (B);
+\draw[color=black] (D) -- (C);
+\draw[color=black!60!white] (B) -- (C);
+\draw[color=black!60!white] (A) -- (D);
+%
+\draw[color=blue] (A) -- (C);
+\draw[color=green] (D) -- (B);
+\foreach \Punkt in {(A), (B), (C), (D)} do
+\filldraw \Punkt circle(2pt);
+\end{scope}
+%%
+\begin{scope}[yshift=-1.8cm]
+\coordinate (A) at (0,0);
+\coordinate (B) at ($ (A) + (10:2.5cm) $);
+\coordinate (D) at ($ (A) + (40:2.5cm) $);
+\coordinate (C) at ($ (D) + (A)!1!(B) $);
+\coordinate (S) at ($ (A)!0.5!(C) $);
+%
+\draw[color=black] (D) -- (A) -- (B);
+\draw[color=black!60!white] (B) -- (C);
+\draw[color=black!40!white] (C) -- (D);
 %
 %\draw[color=blue] (A) -- ($ (A)!0.5!(C) $);
 \draw[color=blue] (A) -- (S);
 \draw[color=blue!60!white] (S) -- (C);
-\draw[color=green] (D) -- (S);
-\draw[color=green!60!white] (S) -- (B);
+\draw[color=green!50!black] (D) -- (S);
+\draw[color=green] (S) -- (B);
 \foreach \Punkt in {(A), (B), (C), (D)} do
 \filldraw \Punkt circle(2pt);
 \end{scope}
@@ -2420,7 +2447,9 @@ Ein Viereck ist genau dann ein Rechteck, wenn
  rechter Winkel ist;
 \item es ein Parallelogramm ist, bei dem die Diagonalen gleich lang sind; 
 \item die Diagonalen einander halbieren und gleich lang sind;
-\item es eine Raute mit gleich langen Diagonalen ist;
+%jgl: Folgende Aussage beschreibt ein spezielles(!) Recheck: ein Quadrat, sodass
+%die Aequivalenz hier falsch ist:
+%\item es eine Raute mit gleich langen Diagonalen ist;
 \item die Diagonalen einander halbieren und wenigstens ein Innenwinkel 
  ein rechter Winkel ist.
 \end{itemize}
@@ -2441,7 +2470,7 @@ Ein Viereck ist genau dann ein Rechteck, wenn
 \draw[color=red] ($ (B)!0.2!(C) $) arc(100:190:0.5cm);
 \draw[color=red] ($ (C)!0.1!(D) $) arc(190:280:0.5cm);
 \draw[color=red] ($ (D)!0.2!(A) $) arc(280:370:0.5cm);
-\draw[color=red!50!yellow] ($ (A) + (55:0.3cm) $) circle(0.3pt);
+\filldraw[color=red!50!yellow] ($ (A) + (55:0.3cm) $) circle(0.3pt);
 %
 %\draw[color=red] ($ (A) + (10:0.6cm) $) arc(10:100:0.6cm);
 %\draw[color=red] ($ (A) + (55:0.3cm) $) circle(0.4pt);
@@ -2458,7 +2487,7 @@ Ein Viereck ist genau dann ein Rechteck, wenn
 \coordinate (B) at ($ (A) + (10:5cm) $);
 \coordinate (D) at ($ (A) + (100:2.5cm) $);
 \coordinate (C) at ($ (D) + (A)!1!(B) $);
-\coordinate (S) at ($ (A) + (A)!0.5!(C) $);
+\coordinate (S) at ($ (A)!0.5!(C) $);
 %
 \draw[color=black!60!white] (A) -- (B) -- (C) -- (D) -- cycle;
 %\draw[color=blue] (A) -- ($ (A)!0.5!(C) $);
@@ -2494,12 +2523,14 @@ alle Seiten gleich lang sind;
 %  \item alle Innenwinkel gleich gro"s sind oder
 %  \item welches wenigstens einen rechten Winkel besitzt;
 %\end{itemize}
-\item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht 
- zueinander stehen und 
+%jgl: Bedingung des Parallelogramms folgt aus den anderen Bedingungen:
+%\item es ein Parallelogramm ist, in welchem die Diagonalen senkrecht 
+\item die Diagonalen senkrecht zueinander stehen und 
  \begin{itemize}
   \item alle Innenwinkel gleich gro"s sind oder
   \item welches wenigstens einen rechten Winkel hat;
  \end{itemize}
+\item es eine Raute mit gleich langen Diagonalen ist;
 \item es sowohl eine Raute als auch ein Rechteck ist.
 \end{itemize}
 \end{minipage}
@@ -2519,7 +2550,7 @@ alle Seiten gleich lang sind;
 \draw[color=red] ($ (B)!0.2!(C) $) arc(100:190:0.5cm);
 \draw[color=red] ($ (C)!0.2!(D) $) arc(190:280:0.5cm);
 \draw[color=red] ($ (D)!0.2!(A) $) arc(280:370:0.5cm);
-\draw[color=red!50!yellow] ($ (A) + (55:0.3cm) $) circle(0.3pt);
+\filldraw[color=red!50!yellow] ($ (A) + (55:0.3cm) $) circle(0.3pt);
 %
 \draw[color=blue] (A) -- (B) -- (C) -- (D) -- cycle;
 \foreach \Punkt in {(A), (B), (C), (D)} do
@@ -2535,10 +2566,15 @@ alle Seiten gleich lang sind;
 %
 \draw[color=green!50!black] (A) -- (B) -- (C) -- (D) -- cycle;
 %
-\draw[color=blue] (A) -- (S);
-\draw[color=blue!80!white] (S) -- (C);
-\draw[color=blue!60!white] (D) -- (S);
-\draw[color=blue!30!white] (S) -- (B);
+%jgl: Diagonalen halbieren sich und sind gleich lang, was durch den 
+%blauen Schnittpunkt angedeutet werden soll:
+\draw[color=blue!50!white] (A) -- (C);
+\draw[color=blue!50!white] (D) -- (B);
+%\draw[color=blue!60!white] (A) -- (S);
+%\draw[color=blue!60!white] (S) -- (C);
+%\draw[color=blue!60!white] (D) -- (S);
+%\draw[color=blue!60!white] (S) -- (B);
+\filldraw[color=blue] (S) circle(0.3pt);
 \foreach \Punkt in {(A), (B), (C), (D)} do
 \filldraw \Punkt circle(2pt);
 \end{scope}
@@ -2548,16 +2584,17 @@ alle Seiten gleich lang sind;
 \coordinate (B) at ($ (A) + (10:2.5cm) $);
 \coordinate (D) at ($ (A) + (100:2.5cm) $);
 \coordinate (C) at ($ (D) + (A)!1!(B) $);
+\coordinate (S) at ($ (A)!0.5!(C) $);
 %
 \draw[color=red] ($ (S) + (55:0.5cm) $) arc(55:145:0.5cm);
-\draw[color=red] ($ (S) + (100:0.25cm) $) circle(0.3pt);
+\filldraw[color=red] ($ (S) + (100:0.25cm) $) circle(0.3pt);
 %
 %\draw[color=red!80!yellow] ($ (A) + (10:0.6cm) $) arc(10:100:0.6cm);
 \draw[color=red!80!yellow] ($ (A)!0.2!(B) $) arc(10:100:0.5cm);
 \draw[color=red!80!yellow] ($ (B)!0.2!(C) $) arc(100:190:0.5cm);
 \draw[color=red!80!yellow] ($ (C)!0.2!(D) $) arc(190:280:0.5cm);
 \draw[color=red!80!yellow] ($ (D)!0.2!(A) $) arc(280:370:0.5cm);
-\draw[color=red!50!yellow] ($ (A) + (75:0.3cm) $) circle(0.3pt);
+\filldraw[color=red!50!yellow] ($ (A) + (75:0.3cm) $) circle(0.3pt);
 %
 \draw[color=green!50!black] (A) -- (B);
 \draw[color=green!50!black] (D) -- (C);
