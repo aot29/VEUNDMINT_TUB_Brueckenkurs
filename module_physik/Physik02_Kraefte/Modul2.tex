@@ -1,0 +1,1194 @@
+\input{mintmod}
+\begin{document}
+\MSection{Kräfte} % Modul Kräfte
+\begin{MSectionStart}
+Ein Aufzug setzt sich nach oben in Bewegung, ein Auto fährt in die Kurve, ein Karussell dreht sich im Kreis, ein Kinderwagen wird geschoben, ein Gummiband schnalzt zurück, ein Kartoffelsack fällt um, $\ldots$, das sind alles Beispiele, in denen sich Geschwindigkeiten  oder Bewegungsrichtungen  ändern, weil Kräfte wirken.
+\\
+
+In diesem Modul wird die physikalische Kraft anhand ihrer Wirkungen und ihre Darstellung als Vektor eingeführt.
+
+Folgende besonderen Kräfte und Gesetze lernen Sie kennen:
+\begin{itemize}
+\item Rückstellkraft der Feder
+\item Gewichtskraft (Gravitationskraft)
+\item Normalkraft
+\item Hangabtriebskraft
+\item Reibungskraft
+\item Hookesches Gesetz
+\item Newtonsches Gravitationsgesetz
+\item das 1. Newtonsche Gesetz
+\item das 3. Newtonsche Gesetz
+\end{itemize}
+
+Kräfte, die zu Kreisbewegungen nötig sind, werden Sie im Physikmodul 4 "`Kreisbewegungen"' kennenlernen.
+
+Das 2. Newtonsche Gesetz wird im Physikmodul 3 "`Translationen"' behandelt.
+
+\vspace{1cm}
+Folgende (allgemeine) Lehrbücher wurden als Quelle benutzt bzw. werden zum Vertiefen des Stoffes empfohlen:
+\begin{itemize}
+\item Physik, Paul A. Tipler, Spektrum Akademischer Verlag Heidelberg$\cdot$Berlin$\cdot$Oxford 1998
+\item Physik, Douglas C. Giancoli, Pearson Studium 2006
+\item Halliday Physik, D.Halliday, R. Resnick, J. Walker WILEY-VCH Verlag GmbH \& Co. KGaA
+\item Physik 11 Ausgabe A$\cdot$Gymnasium Sek II, Dorn, Bader, Schroedel-Verlag 2008
+\end{itemize}
+\end{MSectionStart}
+
+\MSubsection{Wirkung von Kräften und ihre Darstellung als Vektoren}   % ein Durchlauf über XXX
+\begin{MIntro}
+In diesem einleitenden Abschnitt werden Kräfte anhand ihrer Wirkungen beschrieben und ihre Darstellung durch Vektoren aufgezeigt.
+Sie lernen das Zusammenspiel mehrerer Kräfte und das Zerlegen einer Kraft in verschiedene Komponenten kennen.
+
+\end{MIntro}
+
+
+% 
+\begin{MContent}\MLabel{Physik_Kraefte_Wirkung}
+Auf einen Gegenstand, zum Beispiel eine Spielzeuglokomotive, kann man auf verschiedene Arten Kräfte einwirken lassen. Zieht das Kind an der Schnur in Fahrtrichtung der Lokomotive wie im Bild 1 gezeigt, wird die Lokomotive aus der Ruhe heraus anfahren oder, falls sie schon fährt, schneller werden.
+Zieht das Kind gemäß Bild 2 entgegen der Fahrtrichtung, wird die Lokomotive abgebremst werden. Zieht das Kind nicht in der Ebene Lokomotive-Fahrtrichtung, sondern quer dazu wie in Bild 3, so erfährt die Lokomotive eine Richtungsänderung und wird in eine Kurve gezwungen.
+%
+\begin{center}
+\begin{tabular}{ccc}
+\MGraphicsSolo{Kind_Lok_1}{scale=1}
+&
+\MGraphicsSolo{Kind_Lok_2}{scale=1}
+&
+\MGraphicsSolo{Kind_Lok_3}{scale=1}
+\\
+Bild 1 & Bild 2 & Bild 3
+\end{tabular}
+\end{center}
+\setcounter{MGraphicsCounter}{3}
+%
+Würde das Kind von oben auf die Lokomotive drücken, würde sie deformiert werden.
+%
+\begin{MInfo}
+\vspace{0.1cm}
+Wird ein Körper verformt oder wird sein Bewegungszustand geändert, so greifen Kräfte an ihm an.
+\vspace{0.3cm}
+\end{MInfo}
+%
+Allerdings nimmt es der Mensch nicht immer wahr, wenn eine Kraft wirkt. Man kann zum Beispiel gegen einen Schrank drücken, ohne dass er sich bewegt oder man eine Deformation erkennen könnte. Mehr dazu im Kapitel "`Normalkraft und Kräfte an der schiefen Ebene"' \MRef{Physik_Kraefte_Normalkraft}.
+
+Dabei muss man beachten, wo eine Kraft angreift, in welche Richtung sie wirkt und natürlich, wie stark sie ist, das heißt, wie groß ihr Betrag ist. Zieht das Kind mit größerer Kraft an der Lokomotive,
+wird die Geschwindigkeit der Lokomotive schneller zunehmen als wenn es nur mit geringer Kraft zieht.
+Genauso ist es mit einer Kraft, die  -- schiebend -- auf einen Pappkarton wirkt (Abbildung 4 a): je größer die Kraft ist, um so mehr beschleunigt sich der Karton.
+Greift die Kraft oberhalb des Schwerpunktes an den Karton an, wird sie jedoch ab einer bestimmter Stärke den Karton nicht mehr beschleunigen, sondern umwerfen (b).
+Kommt die gleiche Kraft von oben, wird sie den Karton überhaupt nicht wegbewegen, sondern zusammendrücken (c).
+%
+\newpage
+\begin{center}
+\MGraphics{Kraft_Karton}{scale=1}{Kräfte wirken auf einen Karton}
+\MLabel{Physik_Karton}
+\end{center}
+
+\begin{MInfo}
+Die Wirkung einer Kraft hängt ab von
+\begin{itemize}
+\item ihrer Richtung
+\item ihrer Größe (Stärke / Betrag)
+\item ihrem Angriffspunkt
+\end{itemize}
+\end{MInfo}
+Anhand dieser drei bestimmenden Größen erkennt man, dass sich die Kraft als Vektor darstellen lässt. Dieser beginnt an dem Punkt des Körpers, an dem die Kraft angreift. Die Spitze des Vektorpfeils weist in die Kraftrichtung, die Stärke der Kraft wird durch die Pfeillänge dargestellt.
+%
+\begin{MInfo}
+Die Kraft ist eine gerichtete Größe (Vektorgröße). Sie wird mit $\vec{F}$ bezeichnet. Ihre Einheit ist
+\begin{center}
+$\left[F\right]=\mathrm N=\mathrm{\frac{kg\ m}{s^2}}$. 
+\end{center}
+\end{MInfo}
+Es gelten die Rechenregeln für Vektoren; vor allem wird die Vektoraddition benötigt. Greifen mehrere Kräfte an einem Körper an, so werden sie vektoriell addiert zur resultierenden Kraft, der Gesamtkraft.
+%
+%\newpage
+\begin{MExample}\MLabel{Physik_Kraefte_BeispielTanker}
+
+Wird ein großes Tankschiff von zwei Lotsenbooten in den Hafen geschleppt, so greift deren Kraft jeweils über ein Zugseil an dem Tanker an. Die beiden Zugkräfte sind dabei nicht parallel, man kann also ihre Beträge nicht einfach addieren. Vielmehr müssen die Kräfte vektoriell addiert werden, der Betrag der resultierenden Kraft ist kleiner als die Summe der Beträge. 
+\begin{center}
+\begin{tabular}{lr}
+\MGraphicsSolo{Tanker_Lotsenschiff}{scale=1}
+&
+\MGraphicsSolo{Tanker_Lotsenschiff_2.png}{scale=1}
+\end{tabular}
+\end{center}
+\end{MExample}
+%
+\newpage
+Oft ist es aber auch hilfreich, wenn man gegebene Kraftvektoren zerlegt. Es gibt beliebig viele Möglichkeiten, eine Kraft in zwei Komponenten zu zerlegen. Im untenstehenden Bild sind drei Varianten, die Kraft $\vec{F}$ in zwei Komponenten zu zerlegen, dargestellt: 
+\begin{center}
+\MGraphicsSolo{Kraefteparallelogramm1}{scale=1}
+\end{center}
+Meist benötigt man aber zwei zueinander senkrecht stehende Kraftkomponenten, zum Beispiel die eine in $x$-Richtung und die andere in $y$-Richtung. Im folgenden Bild wird die Kraft $\vec{F}$ in die beiden Vektoren $\vec{F_x}$ und $\vec{F_y}$ zerlegt:
+\begin{center}
+\MGraphicsSolo{Kraefteparallelogramm2}{scale=1}
+\end{center}
+Man erhält für den Vektor in $x$-Richtung \ifttm \ \  \else  \hspace{1cm} \fi
+$\vec{F_x}=\left(
+\begin{array}{c}F\cdot\cos\alpha\\0\end{array}\right)
+=\left(\begin{array}{c}F_x\\0\end{array}\right)
+$
+
+und für den Vektor in $y$-Richtung \ifttm \ \ \ \  \else  \hspace{2.3cm} \fi
+$\vec{F_y}=\left(
+\begin{array}{c}0\\F\cdot\sin\alpha\end{array}\right)
+=\left(\begin{array}{c}0\\F_y\end{array}\right)
+$
+
+Im Folgenden werden wir oft nur mit den (vorzeichenbehafteten) Komponenten $F_x$ bzw. $F_y$ arbeiten. Dabei bedeutet dann z. Bsp. $F_x>0$ eine Kraft in positiver Bewegungsrichtung und $F_x<0$ eine Kraft in negativer Bewegungsrichtung. 
+
+\vspace{0.5cm}
+In dem Beispiel~\MRef{Physik_Kraefte_BeispielTanker} sei der Betrag der Kraft $F_1=5000\  \mathrm{N}$ und ziehe unter dem Winkel $\alpha=35^{\circ}$ zur $x$-Achse, die Kraft $F_2$ sei $4000\ \mathrm{N}$ bei einem Winkel von $\beta=-60^{\circ}$.
+Man zerlegt nun die beiden Kräfte jeweils in ihre $x$-Komponenten (parallel zur Bewegungsrichtung) und ihre $y$-Komponenten:
+
+\begin{align*}
+{F_1}_x & =F_1\ \cos\alpha =5000\,\mathrm{N}\cdot\cos35^{\circ}=4096\,\mathrm{N}\\
+{F_1}_y & =F_1\ \sin\alpha =5000\,\mathrm{N}\cdot\sin35^{\circ}=2868\,\mathrm{N}\\
+{F_2}_x & =F_2\ \cos\beta =4000\,\mathrm{N}\cdot\cos\left(-60^{\circ}\right)=2000\;\mathrm{N}\\
+{F_2}_y & =F_2\ \sin\beta =4000\,\mathrm{N}\cdot\sin\left(-60^{\circ}\right)=-3464\,\mathrm{N}\\
+\end{align*}
+
+Zum Berechnen der resultierenden Kraft $\vec{F}_{\mathrm{res}}$ berechnet man zuerst die Komponenten:
+
+\[{F_{\mathrm{res}}}_x={F_1}_x+{F_2}_x= 4096\,\mathrm{N}+2000\ \mathrm{N}=6096\,\mathrm{N}\]
+\[{F_{\mathrm{res}}}_y={F_1}_y+{F_2}_y= 2868\,\mathrm{N}-3464\ \mathrm{N}=-596\,\mathrm{N}\] 
+
+Den Betrag von $\vec{F}_{\mathrm{res}}$ erhält man mit Hilfe des Satzes von Pythagoras:
+
+\[\left|F_{\mathrm{res}}\right|=\sqrt{{{F^2}_{\mathrm{res}}}_x+{{F^2}_{\mathrm{res}}}_y}=\sqrt{(6096\,\mathrm{N})^2+(-596\,\mathrm{N})^2}=\underline{6125\,\mathrm{N}}
+\]
+und der Winkel zur $x$-Achse $\gamma$ berechnet sich aus
+\[\tan\gamma=\frac{{F_{{\mathrm{res}}}}_y}{{F_{{\mathrm{res}}}}_x}=\frac{-596\,\mathrm{N}}{6096\,\mathrm{N}}=-0{,}098
+\]
+zu
+\[\gamma=\arctan(-0{,}0989)=\underline{-5{,}6^{\circ}}\]
+\\
+
+{\bf Kontrollfragen}
+\begin{itemize}
+\item
+Sie hängen an einem Reck: bei welcher Position müssen Sie mehr Haltekraft aufbringen? 
+
+\MGraphicsSolo{Reck}{scale=1}
+
+\begin{MQuestionGroup}
+a.)\MCheckbox{1}
+b.)\MCheckbox{0}
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+\\
+
+\item
+Wie ändert sich bei zwei betragsgleichen Kräften $F_1=F_2=50\ \mathrm{N}$ der Betrag der resultierenden Kraft, wenn der Winkel zwischen ihnen von $0^{\circ}$ auf $180^{\circ}$ wächst?
+
+\begin{MQuestionGroup}
+Die resultierende Kraft wird
+größer\MCheckbox{0}
+kleiner\MCheckbox{1}
+
+und zwar von
+\MQuestion{3}{100}N bis \MQuestion{1}{0}N
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+\\
+
+\item
+Bei welchen Winkeln ist der Betrag der Resultierenden bei der vorhergehenden Frage größer bzw. kleiner als der Betrag einer Komponente?
+
+\begin{MQuestionGroup}
+Resultierende ist größer von
+\MQuestion{1}{0}° bis \MQuestion{3}{120}° 
+
+und kleiner von
+\MQuestion{3}{120}° bis \MQuestion{3}{180}°
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+\end{itemize}
+\end{MContent}
+
+% 
+\begin{MExercises}
+\begin{MExercise}
+Von einem Bogen mit einer gespannten Sehne soll ein Pfeil abgeschossen werden. Die Beträge der Kräfte in der Sehne sind jeweils $F_1=F_2=100\,\mathrm{N}$. Die Winkel $\alpha=\beta$ sind bei Aufgabe a.) jeweils 90°, bei b.) jeweils 60°. Bestimmen Sie die resultierende Kraft, die auf den Pfeil wirkt.
+
+%\bigskip
+\vspace{0.5cm}
+\begin{center}
+\begin{tabular}{cc}
+\begin{minipage}[b]{4cm}
+{Lösungen (ganze Zahl)
+
+mit Einheit:
+
+\vspace{0.5cm}
+a.) \MQuestion{2}{0N}
+
+\vspace{0.5cm}
+b.) \MQuestion{4}{100N}}
+\end{minipage}
+&
+\MGraphicsSolo{Pfeil_Bogen}{scale=1}
+%
+\end{tabular}
+\end{center}
+%
+\end{MExercise}
+%
+%2. Aufgabe
+%
+\begin{MExercise}\MLabel{Physik_Kraefte_Wirkung_Strassenlaterne} 
+Eine Straßenlaterne hängt an einem Seil genau in der Mitte von zwei Masten, die $30\,\mathrm{m}$ voneinander entfernt stehen. Die Laterne zieht mit einer Kraft von $200\,\mathrm{N}$ nach unten und hängt deswegen $50\,\mathrm{cm}$ durch. Berechnen Sie den Betrag der Kraft, mit der die Laterne jeweils an den beiden Seilstücken zieht.
+
+\MGraphicsSolo{Strassenlaterne}{scale=1}
+%
+\begin{MHint}{Lösung}
+gegeben:
+$F=200\,\mathrm{N} \hspace{1cm}
+l=30\,\mathrm{m} \hspace{1cm}
+h=0{,}5\,\mathrm{m}$
+
+
+\begin{center}
+\MGraphicsSolo{Strassenlaterne_Loesung}{scale=1}
+\end{center}
+
+Die Kraft $\vec{F}$ lässt sich in zwei Teilkräfte $\vec{F}_1$ und $\vec{F}_2$ aufteilen, die längs der Seilstücke gerichtet sind. Das sind die gesuchten Kräfte, wobei aus Symmetriegründen die Beträge von $\vec{F}_1$ und $\vec{F}_2$ gleich sind.
+Zuerst berechnet man den Winkel $\phi$:
+\[\phi=\arctan\frac{h}{\frac{l}{2}}=\arctan\frac{0{,}5\,\mathrm{m}}{15\,\mathrm{m}}=1{,}91^{\circ}
+\]
+Dieser Winkel kommt auch im Kräfteparallelogramm vor. Damit können wir nun die Beträge von $\vec{F}_i$ berechnen:
+\[\sin\phi=\frac{\frac{F}{2}}{F_i} \hspace{1cm} \Longrightarrow \hspace{1cm} F_i=\frac{F}{2}\cdot\frac{1}{\sin\phi}=100\,\mathrm{N}\cdot\frac{1}{\sin1{,}91^{\circ}}=\underline{3000\,\mathrm{N}}
+\]
+Wie man sieht, sind die Kräfte $F_1$ bzw. $F_2$, die das Seil aufnehmen muss, sehr viel größer die Kraft, mit der die Lampe eigentlich zieht.
+\end{MHint}
+\end{MExercise}
+%
+
+\begin{MExercise}
+Ein Wasserskifahrer wird von einem Seil mit einer Kraft von $F=400\ \mathrm{N}$ über eine Schanze gezogen (Neigung $20^{\circ}$).
+\\
+\begin{tabular}{lc}
+\MGraphicsSolo{Wasserski}{scale=1}
+&
+\begin{minipage}[b]{12cm}
+\begin{enumerate}
+\item Zeichnen Sie in einer Skizze mit geeignetem Maßstab die Komponenten der Kraft ein, die parallel bzw. senkrecht zur Schanze wirken, und lesen Sie sie ab. 
+
+\item Berechnen Sie die beiden o.g. Kraftkomponenten und vergleichen Sie sie mit den abgelesenen Werten von 1. 
+\end{enumerate}
+\end{minipage}
+\end{tabular}
+%
+
+\begin{MHint}{Lösung}
+\begin{enumerate}
+\item
+$\ $
+
+\parbox[c]{5cm}%
+{abgelesen:
+
+\vspace{0.2cm}
+$\begin{array}{l}
+F_{\|}\approx380\ \mathrm{N} \\
+F_{\bot}\approx130\ \mathrm{N}
+\end{array}$}%
+\parbox[c]{6cm}
+{\MGraphicsSolo{Wasserski_Loesung}{scale=1}}
+\vspace{0.2cm}
+\\
+
+\item
+geg: $F=400\ \mathrm{N} \hspace{0.5cm} \phi=20^{\circ}$
+
+$F_{\|}=F\cdot\cos\phi=400\ \mathrm{N}\cdot\cos 20^{\circ}=\underline{376\ \mathrm{N}}$
+
+$F_{\bot}=F\cdot\sin\phi=400\ \mathrm{N}\cdot\sin 20^{\circ}=\underline{137\ \mathrm{N}}$
+\end{enumerate}
+\end{MHint}
+\end{MExercise}
+
+\ifttm
+\relax
+\else
+\clearpage
+\fi
+\begin{MExercise}
+Eine Kugel, die an einem Faden hängt, wird mit einer unbekannten Kraft $\vec{F}$ um den Winkel $\beta$ ausgelenkt. Die Kugel selbst zieht mit ihrer Gewichtskraft $F_g$ senkrecht nach unten. Zeichnen Sie die Kraft $\vec{F}_Z$ ein, die der Faden aufbringen muss, und geben sie einen Rechenausdruck für den Betrag $F_Z$ an.
+
+\MGraphicsSolo{Faden_Kugel}{scale=1}
+
+\begin{MHint}{Lösung}
+\begin{tabular}{lc}
+\MGraphicsSolo{Faden_Kugel_Loesung}{scale=1}
+&
+\begin{minipage}[b]{8cm}
+An dem Faden ziehen sowohl die Kugel mit $F_g$ als auch die auslenkende Kraft $F$. Der Faden muss also die Resultierende der beiden Kräfte aufbringen. Der Betrag der auslenkenden Kraft ist zwar unbekannt, aber dafür kennt man den Winkel $\beta$ der Auslenkung. Die Resultierende muss die gleiche Richtung haben wie das Seil selbst, also im Winkel $\beta$ von der senkrechten Kraft $F_g$ abweichen. Auch die Richtung der auslenkenden Kraft ist bekannt, nämlich senkrecht zu $F_g$. Nun kann man das Kräfteparallelogramm wie im Bild einzeichnen und erhält die resultierende Kraft $F_Z$.
+\end{minipage}
+\end{tabular}
+
+Wie aus dem Bild ersichtlich berechnet sich $F_Z$ dann zu:
+
+\[F_Z=\frac{F_g}{\cos\beta}\]
+\end{MHint}
+\end{MExercise}
+\end{MExercises}
+
+
+
+
+
+\MSubsection{Kraftmessung und Hookesches Gesetz}   % 
+\begin{MIntro}
+Kraft kann man nicht anfassen, eine Kraft kann man höchstens an ihrer Wirkung erkennen. Wie kann man sie dann überhaupt messen?
+
+In diesem Abschnitt wird die Kraftmessung mithilfe einer Feder aufgezeigt. Dabei lernen wir das Hookesche Gesetz kennen.
+\end{MIntro}
+
+% 
+\begin{MContent}
+Im vorhergehenden Abschnitt haben wir schon mit Kräften gerechnet. Aber woher weiß man, wie groß eine Kraft ist?
+Um herauszufinden, welcher von zwei Studenten stärker ist, also eine größere Kraft aufbringen kann, können diese ein Tauziehen oder "`Armdrücken"' veranstalten. Allerdings hat man dann nur den Vergleich zwischen zwei Kräften, aber einen Kraftwert kann man dadurch nicht angeben.
+
+Eine Möglichkeit ist, jeden an einem Ende eines starken Gummibandes ziehen zu lassen, das an seinem anderen Ende irgendwo befestigt ist, und dann die Längen des gedehnten Gummibandes zu vergleichen. Aus der alltäglichen Erfahrung weiß man, dass das Gummiband stärker gedehnt wird, je stärker die Kraft ist, mit der man daran zieht. Die Dehnung (oder auch Auslenkung) $\Delta s$, das heißt die Differenz zwischen der Gummibandlänge im ungedehnten Zustand $s_0$ und der Länge $s_1$ bei angreifender Kraft $F$, ist größer, wenn diese Kraft größer ist. Allerdings ist beim Gummiband die Dehnung $\Delta s$ nicht proportional zur Kraft $F$, so dass man die Größe der Kraft nur abschätzen kann. 
+
+Ein besseres Hilfsmittel ist eine Spiralfeder. Sowohl beim Auseinanderziehen als auch beim Zusammendrücken ist die Auslenkung $\Delta s$ innerhalb einer bestimmten Grenze nahezu proportional zu der Kraft $F$, die diese Auslenkung bewirkt. Tatsächlich verwendet man geeichte Spiralfedern als Kraftmesser.
+
+\MGraphicsSolo{Federmesser}{scale=1}
+
+Die Schutzhülse ist mit dem Federanfang verbunden, die Skalenhülse mit dem Federende. Auf ihr befinden sich die Einheitsstriche, zum Bsp. 1 Einheitsstrich $\widehat{=}\ 1\ \mathrm{N}$.
+\\
+
+Der von außen angreifenden Kraft wird von der Feder eine sogenannte {\MEntry {Rückstellkraft}{Rückstellkraft}} $\vec{F}_{\mathrm r}$ entgegengehalten, die entgegen der Auslenkung wirkt und deren Betrag gleich der auslenkenden Kraft ist: $-F_{\mathrm r}=F\sim \Delta s$. Diese Rückstellkraft lässt die Feder nach Wegnahme der äußeren Kraft $\vec{F}$ wieder in ihre Ruhelage zurückkehren.
+Die Proportionalität zwischen der Rückstellkraft und der Auslenkung wird im Hookeschen Gesetz zusammengefasst:
+%
+\newpage
+\begin{MInfo}
+\vspace{0.1cm}
+{\MEntry {Hookesches Gesetz}{Hookesches Gesetz}}
+
+Die Rückstellkraft einer Feder ist innerhalb eines gewissen Bereiches ihrer Auslenkung proportional:
+\[\vec{F_{\mathrm r}}=-D\cdot\vec{\Delta s}\]
+\begin{center}
+bzw.
+\end{center}
+\[F_{\mathrm r}=-D\cdot \Delta s\]
+Dabei ist der Proportionalitätsfaktor $D$ die {\MEntry {Federkonstante}{Federkonstante}} oder {\MEntry {Federhärte}{Federhärte}} mit der Einheit
+\[\left[D \right]=\frac{\mathrm{N}}{\mathrm{m}}= \frac{\mathrm{kg}}{\mathrm{s^2}}\]
+\end{MInfo}
+Die Federhärte $D$ ist eine Materialeigenschaft und somit jeweils für eine bestimmte Feder konstant innerhalb eines gewissen Bereiches, der Elastizitätsbereich genannt wird.
+
+\vspace{0.8cm}
+
+{\bf Kontrollfrage:}
+\begin{itemize}
+\item
+Eine Feder mit der Federkonstanten $D=100\ \frac{\mathrm{N}}{\mathrm{m}}$ wird von einer Kraft $F=1$ N ausgelenkt. Wie groß ist diese Auslenkung? Geben Sie den Wert auf zwei Kommastellen gerundet an.
+
+Auslenkung $\Delta x=$ \MQuestion{4}{0,01}m
+
+Eine solche Feder eignet sich gut als Kraftmesser.
+%
+\item
+Eine Feder wird durch eine Kraft $F=50$ N um $\Delta s_1=5$ cm ausgelenkt, eine zweite Feder durch die selbe Kraft um $\Delta s_2=10$ cm. Welche Federhärte ist größer?
+
+\begin{MQuestionGroup}
+$D_1$\MCheckbox{1} \hspace{0.5cm}
+$D_2$\MCheckbox{0}
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+
+\end{itemize}
+\vspace{1.5cm}
+Werden zwei Federn aneinander gehängt, das heißt in Reihe geschaltet (Abbildung a.)), so wirkt eine daran angreifende Kraft auf beide Federn so, als ob an jeder Feder einzeln die Kraft angreifen würde:
+\[F=D_1\cdot \Delta x_1 \hspace{1cm}\mathrm{und}\hspace{1cm} F=D_2\cdot \Delta x_2\]
+\hspace{5cm}Für die Gesamtanordnung gilt:
+%\end{center}
+\[F=D_{\mathrm{ges}}\cdot\left(\Delta x_1+\Delta x_2\right)\]
+%
+\begin{center}
+\begin{tabular}{ccc}
+\MGraphicsSolo{Feder_in_Serie}{scale=1}
+&
+\begin{minipage}[b]{8cm}
+und damit für die Federkonstante $D_{\mathrm{ges}}$ der Gesamtanordnung:
+\[D_{\mathrm{ges}}=\frac{F}{\left(\Delta x_1+\Delta x_2\right)}\]
+Damit ergibt sich also für die {\MEntry {Serienschaltung}{Serienschaltung von Federn}}
+\[D_{\mathrm{ges}}=\frac{F}{\frac{F}{D_1}+\frac{F}{D_2}}=\underline{\frac{1}{\frac{1}{D_1}+\frac{1}{D_2}}}\]
+
+
+\vspace{0.8cm}
+Schaltet man zwei Federn {\MEntry {parallel}{Parallelschaltung von Federn}} (Abbildung b.)), so greift die Kraft gleichzeitig an beiden Federn an und teilt sich auf:
+\[F=F_1+F_2=D_1\cdot \Delta x_1+D_2\cdot\Delta x_2=\]
+\[=\left(D_1+D_2\right)\cdot\Delta x=D_{\mathrm{ges}}\cdot\Delta x\]
+\[\Rightarrow \hspace{0.5cm}\underline{D_{\mathrm{ges}}=D_1+D_2}\]
+\end{minipage}
+&
+\MGraphicsSolo{Feder_parallel}{scale=1}
+\\
+Abbildung a.)
+&
+\ 
+&
+Abbildung b.)
+
+\end{tabular}
+\end{center}
+%
+%
+{\bf Kontrollfrage:}
+\begin{itemize}
+\item
+\begin{MQuestionGroup}
+Die Federkonstante $D_{\mathrm{ges}}$ einer Serienschaltung von zwei Federn ist immer 
+
+\MCheckbox{0} größer als die größte der Einzelfederkonstanten
+
+\MCheckbox{0} größer als die kleinste der Einzelfederkonstanten
+
+\MCheckbox{1} kleiner als die größte der Einzelfederkonstanten
+
+\MCheckbox {1} kleiner als die kleinste der Einzelfederkonstanten
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+%
+
+\vspace{0.5cm}
+\item
+\begin{MQuestionGroup}
+Die Federkonstante $D_{\mathrm{ges}}$ einer Parallelschaltung von zwei Federn ist immer 
+
+\MCheckbox{1} größer als die größte der Einzelfederkonstanten
+
+\MCheckbox{1} größer als die kleinste der Einzelfederkonstanten
+
+\MCheckbox{0} kleiner als die größte der Einzelfederkonstanten
+
+\MCheckbox {0} kleiner als die kleinste der Einzelfederkonstanten
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+\end{itemize}
+
+
+\end{MContent}
+
+% 
+\begin{MExercises}
+\begin{MExercise}
+\ 
+\begin{center}
+\begin{tabular}{lc}
+\MGraphicsSolo{Doppelfeder}{scale=0.6}
+&
+\begin{minipage}[b]{9cm}
+In einen Kolben sind zwei Federn eingebaut. Zieht man an der Schnur mit der Kraft $\vec{F}$, so wird bis zur Strecke $\Delta x=3{,}5$ cm nur die Zugfeder gedehnt. Von $\Delta x=3{,}5\ \mathrm{cm}$ an wird zusätzlich durch die Scheibe die Druckfeder zusammengedrückt.
+
+\vspace{0.5cm}
+Die Federkonstanten betragen $D_{\mathrm z}=0{,}8\ \mathrm{\frac{N}{cm}}$ und $D_{\mathrm d}=1{,}0\ \mathrm{\frac{N}{cm}}$.
+
+\vspace{0.8cm}
+Zeichnen Sie das $\Delta x$-$F$-Diagramm im Intervall
+
+$0\leq \Delta x\leq 7{,}0$ cm.
+ 
+\vspace{0.3cm} 
+Welche Federhärte hat die "`Gesamtfeder"' bei $\Delta x_1=3$ cm bzw. bei $\Delta x_2=5$ cm? \end{minipage}
+\end{tabular}
+\end{center}
+
+\begin{MHint}{Lösung}
+
+Für $0\leq \Delta x\leq3{,}5$ cm wird nur die Zugfeder gedehnt:
+%Achtung!hier sind noch nicht alle Änderungen rückgangig gemacht worden!
+\begin{center}
+$F=F_{\mathrm z}=D_{\mathrm z}\cdot \Delta x$
+
+$F\left(\Delta x=3{,}5\ \mathrm{cm}\right)=D_{\mathrm z}\cdot \Delta x=0{,}8\ \mathrm{\frac{N}{cm}}\cdot 3{,}5\ \mathrm{cm}=2{,}8$ N
+\end{center}
+Die Kraft $F$ muss also linear von $0\leq F\leq2{,}8$ N eingezeichnet werden.
+
+Für $3{,}5\ \mathrm{cm}\leq \Delta x\leq7$ cm benötigt man zusätzlich zur Kraft $F_{\mathrm z}$ zur Dehnung der Zugfeder eine Kraft $F_{\mathrm d}$ zur Stauchung der Druckfeder:
+\begin{center}
+$F_{\mathrm z}\left(\Delta x=7\ \mathrm{cm}\right)=D_z\cdot \Delta x=0{,}8\ \mathrm{\frac{N}{cm}}\cdot{7\ \mathrm{cm}}=5{,}6$ N
+
+$F_{\mathrm d}\left(\Delta x=7\ \mathrm{cm}\right)=D_{\mathrm d}\cdot \left(\Delta x-3{,}5\ \mathrm{cm}\right)=1\ \mathrm{\frac{N}{cm}}\cdot{3{,}5\ \mathrm{cm}}=3{,}5$ N
+
+$\Rightarrow F_{\mathrm{ges}}\left(7\ \mathrm{cm}\right)=F_{\mathrm z}+F_{\mathrm  d}=5{,}6\ \mathrm{N}+3{,}5\ \mathrm{N}=9{,}1$ N
+\end{center}
+Dadurch ergibt sich das $\Delta x$-$F$-Diagramm:
+
+\begin{center}
+\begin{tabular}{lc}
+\MGraphicsSolo{Doppelfeder_Diagramm}{scale=1}
+&
+\begin{minipage}[b]{8cm}
+
+Die Federhärte bei $\Delta x_1=3$ cm ist
+
+$D_1=D_{\mathrm z}=\underline{0{,}8\mathrm{\frac{N}{cm}}}$.
+\\
+
+Die Federhärte bei $\Delta x_2=5$ cm berechnet sich aus:
+\\
+
+$D_2= D_{\mathrm z}+D_{\mathrm d}=0{,}8\ \mathrm{\frac{N}{cm}}+1\ \mathrm{\frac{N}{cm}}=\underline{1{,}8\ \mathrm{\frac{N}{cm}}}$
+\\
+
+oder aus der Steigung der rechten Geraden:
+\\
+
+$D_2=\frac{\Delta F}{\Delta x}=\frac{F_{\mathrm{ges}}\left(7 \mathrm{cm}\right)-F_{\mathrm{ges}}\left(3{,}5 \mathrm{cm}\right)}{7\ \mathrm{cm}-3{,}5\ \mathrm{cm}}=$
+\\
+
+$\frac{9{,}1\ \mathrm{N}-2{,}8\ \mathrm{N}}{3{,}5\ \mathrm{cm}}=\underline{1{,}8\ \mathrm{\frac{N}{cm}}}$
+\end{minipage}
+\end{tabular}
+\end{center}
+Quelle: www.leifiphysik.de
+\end{MHint}
+\end{MExercise}
+
+%
+\begin{MExercise}
+Für die Dehnung eines Gummibandes ergibt sich folgendes $F$-$\Delta x$-Diagramm:
+\begin{center}
+\begin{tabular}{lc}
+\MGraphicsSolo{Gummiband_Diagramm}{scale=1}
+&
+\begin{minipage}[b]{6.5cm}
+a.) In welchem Bereich gilt das hookesche Gesetz?
+
+\vspace{0.5cm}
+b.) Wie groß ist in diesem Bereich die "`Gummihärte"'?
+
+\vspace{0.5cm}
+c.) Wie viel Kraft benötigt man, damit das Gummiband um $28$ cm gedehnt wird?
+
+\vspace{0.5cm}
+d.) Zwei gleiche Gummibänder dieser Sorte werden hintereinander bzw. parallel aufgehängt und mit einer Kraft von $3$ N gedehnt. Um wieviel verlängert sich dabei jeweils die Kombination aus den beiden Gummibändern? Begründung!
+\end{minipage}
+\end{tabular}
+\end{center}
+
+\begin{MHint}{Lösung}
+
+a.) Die $F$-$\Delta x$-Kennlinie ist linear für $0{,}5\ \mathrm{N}\leq F\leq 2$ N. In diesem Bereich gilt das hookesche Gesetz.
+
+\vspace{0.5cm}
+b.) \[D=\frac{\Delta F}{\Delta x}=\frac{2\ \mathrm{N}-0{,}5\ \mathrm{N}}{0{,}35\ \mathrm{m}-0{,}05\ \mathrm{m}}=\]
+\[=\frac{1{,}5\ \mathrm{N}}{0{,}30\ \mathrm{m}}=\underline{5\ \mathrm{\frac{N}{m}}}\]
+
+c.) Ablesen aus dem Diagramm ergibt:
+\[F\left(\Delta x=28\ \mathrm{cm}\right)\approx \underline{1{,}7\ \mathrm{N}}\]
+
+d.)
+{\bf Gummibänder in Reihe}: $\vec{F}$ "`zieht"' an beiden Gummibändern und verlängert sie jeweils um $\Delta x\approx 44$ cm (abgelesen). Die Kombination verlängert sich also um $\Delta x\approx 88$ cm.
+
+{\bf Gummibänder parallel}: $\vec{F}$  verteilt sich auf beide Gummibänder gleichermaßen, so dass an jeweils einem Gummiband nur die halbe Kraft wirkt. Dadurch verlängert sich jedes Gummiband um $\Delta x\approx 25\ \mathrm{cm}$, was der Verlängerung der gesamten Anordnung entspricht.
+
+
+Quelle: www.leifiphysik.de
+\end{MHint}
+\end{MExercise}
+
+%
+\begin{MExercise}
+Beim Bungee-Jumping springt eine Person in ein Gummiseil, das im ungedehnten Zustand eine Länge von $6{,}0$ m hat. Gehen Sie davon aus, dass für das Seil im verwendeten Bereich das hookesche Gesetz gilt.
+
+a.) Wenn sich eine Person mit $F=900$ N an das Gummiseil hängt, so dehnt sich dieses auf eine Länge von $9$ m. Wie groß ist die "`Gummihärte"'?
+
+\vspace{0.5cm}
+b.) Springt diese Person in das Seil, so dehnt es sich bis auf $16$ m. Welche Kraft wirkt auf diese Person im tiefsten Punkt?
+
+\begin{MHint}{Lösung}
+
+a.) geg: $F=900$ N\hspace{1cm}$s_0=6$ m\hspace{1cm}$s_1=9$ m
+
+\hspace{0.5cm}
+$D=\frac{F}{\Delta s}=\frac{F}{s_1-s_0}=\frac{900\ \mathrm{N}}{9\ \mathrm{m}-6 \ \mathrm{m}}=\underline{300\ \mathrm{\frac{N}{m}}}$
+
+b.) geg: \hspace{0.5cm}$s_2=16$ m
+
+\hspace{0.5cm}
+$F=D\cdot\Delta s=D\cdot\left(s_2-s_0\right)=300\ \mathrm{\frac{N}{m}}\cdot\left(16\ \mathrm{m}-6\ \mathrm{m}\right)=\underline{3000\ \mathrm{N}}$
+
+\vspace{0.5cm}
+Quelle: www.leifiphysik.de
+\end{MHint}
+\end{MExercise}
+\end{MExercises}
+
+
+\MSubsection{Gewichtskraft}   % ein Durchlauf über Gewichtskraft
+\begin{MIntro}
+Ein Stein, den man in der Hand hält, fühlt sich "`schwer"' an. Lässt man ihn los, fällt er nach unten. Warum? Man bemerkt doch von außen keine Kraft, die auf ihn wirkt, man kann nichts sehen, was an ihm zieht oder drückt, und doch spürt man den Stein und bemerkt, dass er seinen Bewegungszustand ändert, nämlich aus der Ruhe heraus beschleunigt wird. 
+
+In diesem Modul wird die Ursache, nämlich die "`fernwirkende"' Gravitationskraft, behandelt.
+
+\end{MIntro}
+
+% 
+\begin{MContent}
+In Abschitt \MRef{Physik_Kraefte_Wirkung} Aufgabe \MRef{Physik_Kraefte_Wirkung_Strassenlaterne} zieht die Straßenlaterne mit einer Kraft $\vec{F}$ in Richtung Erdboden. Wir haben uns darüber keine Gedanken gemacht, denn es ist für uns selbstverständlich, dass ein "`Gewicht"' nach unten zieht oder dass ein "`Gewicht"' etwas eindrücken, also deformieren kann, eben dass man eine Masse mit einer Kraft assoziiert.
+
+Das, was wir umgangssprachlich oft als "`Gewicht"' bezeichnen, ist genaugenommen die {\MEntry{Masse}{Masse}} eines Körpers, ausgedrückt in der Einheit Kilogramm (kg). Die Masse ist eine Eigenschaft eines Körpers, der Körper {\bf{hat}} eine Masse von soundsoviel Kilogramm. Warum spüren wir dann eine Kraft, wenn wir einen Gegenstand auf die Hand nehmen?
+Wie wir wissen, wirkt die Erde mit einer Anziehungskraft auf jeden Körper. Das heißt, der Körper {\bf{erfährt}} eine Kraft, die Gewichtskraft (kurz: Gewicht), von der Erde und wird in Richtung Erdmittelpunkt hin beschleunigt mit der hier auf der Erde nahezu konstanten Erdbeschleunigung (oder auch Ortsfaktor) $\vec{g}$ mit $g=9{,}81\,\mathrm{\frac{m}{s^2}}$ (nach DIN 1305: $g=9{,}80665\,\mathrm{\frac{m}{s^2}}$). Mehr zum Thema "`Beschleunigung"' siehe auch Modul 3 (Translationen.)
+%
+\begin{MInfo}
+\vspace{0.1cm}
+Ein Körper der Masse $m$ erfährt die Gewichtskraft $\vec{F}_{\mathrm g}=m\cdot\vec{g}$ in Richtung Erdmittelpunkt.
+\vspace{0.3cm}
+\end{MInfo}    
+%
+Schon Sir Isaak Newton (1642--1726) hat herausgefunden, dass diese Gewichtskraft wechselweise zwischen allen Körpern wirkt, das heißt, dass jeder Körper eine Anziehungskraft (Schwerkraft, Gravitationskraft) auf jeden anderen Körper ausübt.
+%
+\begin{MInfo}
+
+\vspace{0.1cm}
+{\MEntry {Newtonsches Gravitationsgesetz:}{Newtonsches Gravitationsgesetz}}
+
+Jeder Körper im Universum übt auf jeden anderen Körper eine Kraft entlang der Verbindungslinie ihrer Zentren aus. Sie wird Gravitationskraft genannt. Die Stärke der Gravitationskraft ist direkt proportional zu dem Produkt der beiden Massen $m_1$ und $m_2$ und umgekehrt proportional zum Quadrat des Abstandes $r$ zwischen ihnen:
+%
+\[\hspace{6cm}F_{\mathrm g}=\gamma\cdot\frac{m_1m_2}{r^2}\hspace{2cm}\mathrm{mit}\  \gamma=6{,}672\cdot10^{-11}\mathrm{\frac{m^3}{kg\ s^2}}
+\]
+%
+\end{MInfo}
+%
+Dabei ist {\bf $\gamma$} die {\MEntry {Gravitationskonstante}{Gravitationskonstante}}, die Henry Cavendish (1731--1810) hundert Jahre später bestimmen konnte.
+
+Diese anziehende Kraft bewirkt nach dem 2. Newtonschen Gesetz (siehe Modul 3 Translationen)
+eine Beschleunigung des einen Körpers in Richtung des anderen Körpers:
+\begin{center}
+$\vec{F}_{\mathrm{g}_{21}}=\gamma\cdot\frac{m_1m_2}{r^2}\cdot{ \vec{\mathbf{e}}_{\mathbf{r_{12}}}}=m_2\cdot \vec{a}_{\mathrm{g}}\left(=-\vec{F}_{\mathrm{g}_{12}}\right)$
+\end{center}
+Dabei ist $\vec{F}_{\mathrm{g}_{21}}$ die von Masse 1 auf Masse 2 ausgeübte Kraft und $\vec{\mathbf{e}}_{\mathbf{r_{12}}}$ der Einheitsvektor des Abstandes $r$ der beiden Massenmittelpunkte in Richtung von $m_1$ nach $m_2$.
+
+Den Betrag der Gravitationsbeschleunigung $\vec{a}_{\mathrm g}$ erhält man dann durch Umformen:
+\[a_{\mathrm g}=\gamma\cdot\frac{m_1}{r^2}\]
+Kann man nun mithilfe dieser Formel den Ortsfaktor auf der Erde berechnen? 
+
+Streng genommen gilt das Gravitationsgesetz nur für Punktmassen. Für Berechnungen der Anziehungskräfte zwischen Erde und Mond und anderen Himmelskörpern ist der Abstand sehr groß im Vergleich zu ihren Körpergrößen, somit kann man da das Gesetz guten Gewissens anwenden. Wenn die Abstände zwischen den Körpern in die Dimension ihrer Abmessungen kommen, muss man über die Massen integrieren. Für einen Körper auf der Erde ist diese nun wirklich keine Punktmasse. Für homogene kugelförmige Körper gilt aber, dass man sich die Masse als Punktmasse im Zentrum der Kugel denken kann.% (Kugelschalentheorem, siehe "`Ergänzungen %\MRef{irgendwas}
+%).
+
+Damit kann man den Ortsfaktor für die Erdoberfläche berechnen, wenn man für $r$ den mittleren Radius der Erde $R=6{,}371\cdot10^6$ m und für $m_1$ die Erdmasse $M=5{,}9736\cdot10^{24}$ kg einsetzt.
+Man erhält $g=a_{\mathrm g}=9{,}81922\mathrm{\frac{m}{s^2}}$. Das ist nicht genau der Wert, der oben für die Fallbeschleunigung angenommen wurde!
+Woher kommt das?
+
+Erstens ist die Erde keine Kugel, sie ist an den Polen abgeplattet und hat auch sonst unterschiedliche Höhen, das heißt, ihr Radius $r$ ist nicht überall gleich. Zum Beispiel ist er am Äquator 21 km größer als an den Polen, das heißt, die Gravitation ist an den Polen größer.
+
+%\vspace{0.2cm}
+Zweitens ist die Dichte der Erde und somit die Massenverteilung innerhalb der Erde nicht homogen, was aber zur Anwendung des Kugelschalentheorems Voraussetzung ist.
+
+%\vspace{0.2cm}
+Drittens dreht sich die Erde um ihre eigene Achse. Die Erdrotation ist eine beschleunigte Bewegung, deshalb kann die Erde vom Standpunkt Erde aus gesehen genaugenommen nicht als Inertialsystem angesehen werden, sondern als beschleunigtes Bezugssystem (hier treten Scheinkräfte auf!). Ein Körper auf der Erde rotiert mit und registriert dabei eine Zentrifugalbeschleunigung nach außen vom Erdmittelpunkt weg, so dass die Fallbeschleunigung $g$ geringer ist als die Gravitationsbeschleunigung $a_{\mathrm g}$.
+%  
+
+%\vspace{0.2cm}
+Für Vorgänge auf der Erdoberfläche berechnen wir die Gewichtskraft also mit dem Ortsfaktor $g=9{,}81\,\mathrm{\frac{m}{s^2}}$. Weiter weg oder auf dem Mond oder auf einem anderen Himmelskörper muss die jeweilige Gravitationsbeschleunigung mithilfe des Gravitationsgesetzes neu berechnet werden. Auf dem Mond zum Beispiel ist der Ortsfaktor nur ca. 1/6 so groß wie auf der Erde, das heißt, ein Körper würde dort nur ein Sechstel der Gewichtskraft erfahren.
+
+\ifttm
+\relax
+\else
+\clearpage
+\fi
+{\bf Kontrollfrage:}
+\\
+\begin{MQuestionGroup}
+
+\hspace{0.1cm}
+Eine Tafel Schokolade hat auf der Erde ungefähr:
+
+\vspace{0.6cm}
+\begin{tabular}{lllllll}
+die Masse \hspace{1cm}& $0{,}01$ kg&\MCheckbox{0}&$0{,}1$ kg& \MCheckbox{1}&$1{,}0$ kg&\MCheckbox{0}\\
+das Gewicht & $0{,}1$ N &\MCheckbox{0} & $1{,}0$ N&\MCheckbox{1} & $10$ N &\MCheckbox{0}
+\\
+& \\
+\\
+auf dem Mond:
+\\
+\\
+die Masse & $0{,}0167$ kg&\MCheckbox{0} & $0{,}1$ kg &\MCheckbox{1} & $0{,}167$ kg& \MCheckbox{0}\\
+das Gewicht & $0{,}167$ N &\MCheckbox{1} & $1$ N &\MCheckbox{0} & $1{,}67$ N &\MCheckbox{0}
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+\end{MContent}
+%
+
+
+% 
+% 
+
+\MSubsection{Kräftegleichgewicht}
+\begin{MIntro}
+Beim Tauziehen wirken von zwei Seiten Kräfte auf das Tau, und es kann sein, dass das Tau sich keinen Millimeter von der Stelle rührt.
+
+Ein Apfel hängt an einem Baum, ohne herunter zu fallen, obwohl die Gravitationskraft auf ihn wirkt.
+
+In diesem Abschnitt wird das Kräftegleichgewicht behandelt, und wir lernen das 1. Newtonsche Gesetz kennen und mithilfe der Erkenntnisse aus den vorhergehenden Modulen anzuwenden.
+
+(Für das zweite Newtonsche Gesetz siehe Modul 03, Translationen, Abschnitt 3.5; das 3. Newtonsche Gesetz siehe Abschnitt "`Normalkraft und Kräfte an der schiefen Ebene"' \MRef{Physik_Kraefte_Normalkraft}.)
+\end{MIntro}
+
+% 
+\begin{MContent}\MLabel{Physik_Kraefte_Kraeftegleichgewicht}
+Wenn eine Kraft an einem Körper angreift, so kann sich nach Abschnitt
+ \MRef{Physik_Kraefte_Wirkung} der Bewegungszustand des Körpers ändern, oder der Körper kann deformiert werden. Wie ist es nun, wenn mehrere Kräfte am gleichen Körper angreifen? Im Beispiel~\MRef{Physik_Kraefte_BeispielTanker} im Abschnitt ~\MRef{Physik_Kraefte_Wirkung} erfährt der Tanker durch die zwei Kräfte der zwei Lotsenboote eine größere Kraft als wenn ihn nur eines der Boote ziehen würde. Er wird schneller werden; die Änderung seines Bewegungszustandes ist also größer.
+Was passiert aber, wenn die zwei gleichen Lotsenboote an jeweils dem anderen Ende des Tankers mit der gleichen Kraft, aber entgegengesetzt, ziehen würden?
+
+\begin{center}
+\MGraphicsSolo{Tanker_Lotsenschiff_3}{scale=1}
+\end{center}
+Nach der Vektoraddition addieren sich die beiden betragsgleichen Kräfte zu Null, der Tanker würde in Ruhe bleiben. Das heißt, es gibt keine Änderung seines Bewegungzustandes, obwohl Kräfte wirken! Es herrscht Kräftegleichgewicht.
+
+Wäre der Tanker schon in Bewegung, weil zum Beispiel das eine Boot schon angezogen hat, bevor das zweite Boot seinen Motor anwirft und in die entgegengesetzte Richtung zieht, würden sich die  -- dann wieder betragsgleichen -- Kräfte wieder zu Null addieren, der Tanker würde dann aber unbeschleunigt, das heißt mit konstanter Geschwindigkeit, weiterfahren, so, als ob gar keine Kraft auf ihn einwirken würde. Also gäbe es auch hier keine Änderung des Bewegungszustandes.
+
+Sir Isaak Newton hat diese Erkenntnis, basierend auf Grundlagen, die Galileo Galilei (1564--1642) herausgefunden hat, in dem "`ersten Gesetz der Bewegung"' formuliert:
+\begin{MInfo}
+\vspace{0.1cm}
+{\MEntry{1. Newtonsches Gesetz}{erstes Newtonsches Gesetz}}\MLabel{Physik_Kraefte_1.Newtongesetz}
+
+Ist die resultierende Kraft aller an einem Körper angreifenden Kräfte gleich Null, so herrscht am Körper Kräftegleichgewicht. Ist der Körper in Ruhe, bleibt er in Ruhe. Bewegt sich der Körper, bleibt er im Zustand der gleichförmigen geradlinigen Bewegung.
+\end{MInfo}
+
+Heißt das aber nicht, dass der Tanker nur einmal von einem oder zwei Lotsenbooten auf seine Geschwindigkeit gebracht werden muss und dann für alle Zeit mit derselben weiterfahren könnte ohne zusätzliche Kraft? Oder dass man bei einem Auto den Motor abschalten könnte, wenn man mit der gewünschten Geschwindigkeit fährt?
+
+Nein, natürlich nicht. In der Realität gibt es keine idealen Zustände. Reibung und Luftwiderstand führen zu (Energie-)verlusten; auch Wasser leistet der Bewegung Widerstand in Form von Stampfen (Wasserverdrängung durch Auf- und Abbewegung im Wasser), Formwiderstand oder einfach Reibung, der durch eine Kraft kompensiert werden muss. Mehr dazu im Abschnitt~\MRef{Physik_Kraefte_Reibung}.
+
+Man muss beachten, dass es nicht gleichgültig ist, wie man die Kräfte ansetzt.
+\begin{center}
+\begin{tabular}{cc}
+\begin{minipage}[b]{6cm}
+Diese Kinder ziehen über Seile in entgegengesetzter Richtung an der Spielzeuglok, aber nicht entlang einer Geraden. Die Lok wird sich in diesem Fall gegen den Uhrzeigersinn drehen. Sind die beiden Kräfte betragsmäßig gleich, wird sich die Lok drehen, bis die Kräfte auf der gleichen {\MEntry {Wirkungslinie}{Wirkungslinie}} (Geraden) liegen, und dann im Gleichgewichtszustand verharren.
+\end{minipage}
+&
+\ifttm
+\MGraphicsSolo{Kind_Lok_4a}{scale=1}
+\else
+\MGraphicsSolo{Kind_Lok_4}{scale=1}
+\fi
+\end{tabular}
+\end{center}
+%
+\begin{MExample}
+Ein reifer Apfel mit der Masse $m$ hängt an einem Apfelbaum. Er zieht mit der Gravitationskraft $\vec{F}_{\mathrm g}=m\cdot \vec{g}$ in Richtung Erdmittelpunkt. 
+\begin{center}
+\begin{tabular}{cc}
+\MGraphicsSolo{Kraeftegleichgewicht_Apfelbaum}{scale=0.8}
+&
+\begin{minipage}[b]{10cm}
+Dabei biegt sich der Ast von seiner ursprünglichen Position ohne Apfel bis zur Position mit dem schweren reifen Apfel um die Strecke $\Delta s$. Der Ast ähnelt einer Feder (mit einer nicht-linearen Federhärte): er zieht mit seiner Federkraft $\vec{F}$, die abhängig ist von $\Delta s$, den Apfel nach oben. Dabei stellt sich die Position des Astes so ein, dass $\left|\vec{F}_{\mathrm g}\right|=\left|\vec{F}\right|$ und damit Kräftegleichgewicht herrscht. 
+\end{minipage}
+\end{tabular}
+\end{center}
+\end{MExample}
+%
+\newpage
+\begin{MExample}\MLabel{Physik_Kraefte_Beispiel_Fahrstuhl}
+Sie steigen in einen Fahrstuhl ein. Der Fahrstuhl hat mit Ihnen die Masse $m$ und erfährt von der Erde eine Kraft $\vec{F}_{\mathrm g}=m\cdot \vec{g}$ in Richtung Erdmittelpunkt. 
+\begin{center}
+\begin{tabular}{cc}
+\begin{minipage}[b]{13cm}
+
+Beim Einsteigen in den ruhenden Aufzug müssen der Motor und die Gegengewichte eine Kraft $\vec{F}$ aufbringen, deren Betrag genau so groß ist wie die Kraft $F_{\mathrm g}=m\cdot g$ und ihr damit das Gleichgewicht hält.
+
+Fährt der Aufzug an, z.B. nach oben, so muss die Kraft $F$ größer sein als $m\cdot g$, so dass die resultierende Kraft nach oben zeigt. 
+
+Hat der Aufzug dann seine gewünschte Geschwindigkeit, mit der er weiter nach oben fahren soll, erreicht, benötigt er nur noch eine Kraft $\vec{F}$, die $m\cdot \vec{g}$ kompensiert, das heißt $F=F_{\mathrm g}$, und es herrscht wieder Kräftegleichgewicht, die resultierende Kraft ist Null.
+
+Nun bremst der Aufzug, das heißt die resultierende Kraft muss jetzt nach unten zeigen, entgegen der Fahrtrichtung, also muss $F$ kleiner sein als $F_{\mathrm g}$.
+
+Am Ende befindet sich der Aufzug wieder in Ruhe, die Kraft $F$ ist dabei wieder gerade so groß wie $F_{\mathrm g}$, damit liegt wieder Kräftegleichgewicht vor.
+\end{minipage}
+&
+\MGraphicsSolo{Aufzug}{scale=1}
+\end{tabular}
+\end{center}
+Anschaulich wird der Ablauf mit dem Kraft-Zeit-Diagramm: im oberen Diagramm ist die negative Gravitationskraft rot und die Kraft, die der Aufzug aufbringen muss, blau eingezeichnet, unten in grün sieht man die Gesamtkraft, die auf den Aufzug wirkt:
+
+\MGraphicsSolo{Aufzug_Kraft_Zeit_Diagramm}{scale=1}
+\end{MExample}
+
+\ifttm
+\relax
+\else
+\clearpage
+\fi
+
+{\bf Kontrollfragen:}
+\\
+\begin{MQuestionGroup}
+
+An einem Körper greifen die Kräfte $\vec{F}_1$ und $\vec{F}_2$ an. Sie sind im Gleichgewicht, wenn
+
+\vspace{0.3cm}
+\MCheckbox{0} $\vec{F}_1$ und $\vec{F}_2$ in Betrag und Richtung übereinstimmen
+
+\MCheckbox{0} $\vec{F}_1$ und $\vec{F}_2$ auf der gleichen Wirkungslinie liegen
+
+\MCheckbox{1} der Körper sich mit konstanter Geschwindigkeit in konstanter Richtung bewegt
+
+\MCheckbox{0} der Körper sich beschleunigt bewegt
+
+\MCheckbox{0} $\vec{F}_1$ und $\vec{F}_2$ gleich Größen haben und parallel sind
+
+\MCheckbox{1} $\vec{F}_1$ und $\vec{F}_2$ gleichen Betrag, gleiche Wirkungslinie und entgegengesetzte Richtung haben
+
+\MCheckbox{1} der Körper ruht
+
+\MCheckbox{1} die resultierende Kraft null ist
+
+\end{MQuestionGroup}
+\MGroupButton{Kontrolle}
+\end{MContent}
+
+% 
+\begin{MExercises}
+%
+\begin{MExercise}
+Am Eingang eines Hotels ist ein Schild an zwei Ketten aufgehängt. Das Schild hat die Masse $m=10$ kg. Wie groß sind die Zugkräfte in den beiden Ketten? (Ortsfaktor $g=9{,}81\mathrm{\frac{m}{s^2}}$)
+
+\MGraphicsSolo{Hotelschild}{scale=1}
+%
+\begin{MHint}{Lösung}
+
+Da sich das Schild in Ruhe befindet, muss ein Kräftegleichgewicht bestehen, das heißt, die Resultierende aus den Zugkräften in den beiden Ketten muss betragsmäßig gleich der Gravitationskraft des Schildes sein: $\left|\vec{F}_1+\vec{F}_2\right|=\left|m\vec{g}\right|$
+
+\MGraphicsSolo{Hotelschild_Loesung}{scale=1}
+
+Die Aufgabe kann man graphisch einfach durch Konstruktion des Kräfteparallelogramms lösen (siehe auch Abschnitt  \MRef{Physik_Kraefte_Wirkung}). Zuerst zeichnet man die resultierende Kraft $-m\vec{g}$ ein. Durch Parallelverschiebung von zum Beispiel der rechten Kettenlinie so weit nach links, bis die Linie durch das Pfeilende von $m\vec{g}$ geht, erhält man einen Schnittpunkt mit der linken Kettenlinie und kann die Beträge von $\vec{F}_2$ und $\vec{F}_1$ ablesen:
+
+${F}_1=69$  N
+
+${F}_2=90$  N
+\\
+
+Rechnerisch ist die Bestimmung der Kräfte $\vec{F}_1$ und $\vec{F}_2$ etwas aufwändiger, da keine rechten Winkel und keine Symmetrien vorhanden sind.
+
+\MGraphicsSolo{Hotelschild_Loesung_2}{scale=1}
+
+Es gilt:
+
+$90^\circ-\alpha=\beta$\\
+$90^\circ-\beta=\alpha$
+
+\vspace{0.5cm}
+und\\
+$mg=x_1+x_2$
+
+mit \hspace{1cm} $x_1=F_1\cos(\beta)$ \hspace{1cm}
+und \hspace{1cm} $x_2=F_2\cos(\alpha)$
+\\
+\\
+und damit:
+$mg=F_1\cos(\beta)+F_2\cos(\alpha)$
+\\
+\\
+Weiter gilt:
+$h=F_1\sin(\beta)$ \hspace{1cm}
+und \hspace{1cm} $h=F_2\sin(\alpha)$
+
+$\Rightarrow F_1\sin(\beta)=F_2\sin(\alpha)$
+\\
+\\
+$\Rightarrow F_2=\frac{\sin(\beta)}{\sin(\alpha)}\cdot F_1$
+%
+\[\Rightarrow mg=\frac{\sin(\beta)}{\sin(\alpha)}\cdot F_1\cdot \cos(\alpha)+F_1\cos(\alpha)\]
+\[mg=\left(\frac{\sin62^{\circ}}{\sin43^{\circ}}\cdot\cos43^{\circ}+\cos62^{\circ}\right)\cdot F_1=1{,}42\cdot F_1
+\]
+\\
+\[\Rightarrow F_1=\frac{mg}{1{,}42}=\frac{10\ \mathrm{kg}\cdot 9{,}81\mathrm{\frac{m}{s^2}}}{1{,}42}=\underline{69\ \mathrm{N}}\]
+
+\[\Rightarrow F_2=\frac{\sin62^{\circ}}{\sin43^{\circ}}\cdot 69\ \mathrm{N}=\underline{90\ \mathrm{N}}
+\]
+%
+\end{MHint}
+\end{MExercise}
+%
+\ifttm
+\relaxe
+\else
+\newpage
+\fi
+\begin{MExercise}
+\ 
+\begin{center}
+\begin{tabular}{cc}
+
+\MGraphicsSolo{Vertikalfeder}{scale=0.6}
+&
+\begin{minipage}[b]{12cm}
+Ein Körper der Masse $m=5$ kg hängt an einer Feder mit der Federkonstanten $D=200\ \mathrm{\frac{N}{m}}$, ohne sich zu bewegen. Wie groß ist die Auslenkung der Feder?
+\vspace{4.5cm}
+\end{minipage}
+\end{tabular}
+\end{center} 
+%
+\begin{MHint}{Lösung}
+Da die Anordnung sich nicht bewegt, muss Kräftegleichgewicht herrschen. Der Körper zieht mit der Gewichtskraft $F_{\mathrm g}=mg$ nach unten, die Feder mit der Rückstellkraft $F_{\mathrm r}$ nach oben, in die entgegengesetzte Richtung. Beide Kräfte müssen sich zu Null addieren, ihre Beträge müssen also gleich sein:
+
+\[F_g=mg=D\cdot \Delta x=F_r\]
+\[\Rightarrow \Delta x=\frac{mg}{D}=\frac{5\ \mathrm{kg}\cdot 9{,}81\mathrm{\frac{m}{s^2}}}{200\ \mathrm{\frac{N}{m}}}=\underline{0{,}25\ \mathrm{m}}\]
+
+\end{MHint}
+\end{MExercise}
+
+\end{MExercises}
+
+
+
+\MSubsection{Normalkraft und Kräfte an der schiefen Ebene}
+\begin{MIntro}
+Warum sinkt eine Tasse, die auf einem festen Tisch steht, nicht in diesen ein, obwohl doch die Gravitationskraft auf sie wirkt? Gibt es hier auch ein Kräftegleichgewicht?
+
+Ja, das gibt es. Sie werden in diesem Abschnitt die Normalkraft kennenlernen und auf deren Grundlage das 3. Newtonsche Gesetz. Außerdem werden Sie sehen, wie die Normalkraft bei einer schiefen Ebene wirkt. 
+
+\end{MIntro}
+
+% 
+\begin{MContent}\MLabel{Physik_Kraefte_Normalkraft}
+Stellt man einen Körper auf eine horizontale Ebene, so bleibt er dort stehen und verharrt in Ruhe.
+\begin{center}
+\begin{tabular}{cc}
+\MGraphicsSolo{Karton_Normalkraft}{scale=1}
+&
+\begin{minipage}[b]{11cm}
+Der Körper erfährt die Gravitationskraft oder Gewichtskraft $\vec{F}_{\mathrm g}=m\vec{g}$. Eigentlich müsste er sich nach Abschnitt \MRef{Physik_Kraefte_Wirkung} in Richtung Erdmittelpunkt bewegen. In Ruhe bleiben kann er nur, wenn Kräftegleichgewicht herrscht. Also muss es eine Kraft geben, die mit gleichem Betrag, aber entgegengesetzter Richtung, auf den Körper wirkt. Tatsächlich übt die Unterlage, auf der der Körper steht, diese Kraft auf ihn aus. Man nennt diese Kraft die {\MEntry {Normalkraft}{Normalkraft}} $\vec{F}_{\mathrm N}$, da sie immer senkrecht zur Oberfläche wirkt.
+\end{minipage}
+\end{tabular}
+\end{center}
+%
+\begin{MInfo}
+\vspace{0.1cm}
+Die Kraft, die eine Unterlage auf einen Körper ausübt, nennt man {\MEntry {Normalkraft}{Normalkraft}}.
+\vspace{0.3cm}
+\end{MInfo}
+%
+Die Unterlage übt also eine Kraft auf den Körper aus, aber der Körper übt auch eine genau gleich große, aber entgegengesetzte Kraft auf die Unterlage aus, er "`drückt"' nämlich mit seiner Gewichtskraft auf die Unterlage. Diese beiden Kräfte sind wechselwirkend.
+Ebenso verhält es sich, wenn man gegen eine Wand oder einen schweren Schrank drückt: die Wand bzw. der Schrank üben wiederum eine gleiche, aber entgegengesetzt gerichtete Kraft auf die drückende Hand aus. Newton hat diese Erkenntnis in seinem dritten Axiom, dem {\MEntry {Wechselwirkungs-}{Wechselwirkungsprinzip}} oder {\MEntry {Reaktionsprinzip}{Reaktionsprinzip}}, festgehalten:
+%
+\begin{MInfo}
+{\MEntry {3. Newtonsches Gesetz}{drittes Newtonsches Gesetz}}
+
+Kräfte treten immer paarweise auf. Wenn Körper A eine Kraft auf Körper B ausübt, so wirkt eine gleich große, aber entgegengesetzt gerichtete Kraft von Körper B auf Körper A (actio$=$reactio).
+\end{MInfo}
+%
+\begin{center}
+\begin{tabular}{cc}
+\MGraphicsSolo{schiefe_Ebene}{scale=1.2}
+&
+\begin{minipage}[b]{11cm}
+Stellt man den Körper nun auf eine um den Winkel $\phi$ geneigte, das heißt schiefe Ebene (die sehr glatt ist, d.h. die Reibung ist vernachlässigbar), so wird der Körper nicht stehen bleiben, sondern anfangen, den Hang hinunter zu gleiten, obwohl keine weitere offensichtliche Kraft an ihn angreift. Wie kommt das?
+\end{minipage}
+\end{tabular}
+\end{center}
+%
+Die Gewichtskraft $\vec{F}_{\mathrm g}$ des Körpers wirkt nach wie vor in Richtung Erdmittelpunkt. Die senkrecht auf die schiefe Ebene wirkende Komponente ist allerdings kleiner, nämlich nur $F_{\mathrm g}\cdot \cos \phi$, das ist genau der Betrag der von der Ebene auf den Körper wirkenden Normalkraft $\vec{F}_{\mathrm N}$. Übrig bleibt dann noch die zweite Komponente der Gewichtskraft $\vec{F}_{\mathrm g}$. Diese nennt man {\MEntry {Hangabtriebskraft}{Hangabtriebskraft}}, da sie die Ursache dafür ist, dass der Körper die Ebene hinunter gleitet. Der Betrag der Hangabtriebskraft berechnet sich zu $F_{\mathrm{HA}}=F_{\mathrm g}\sin \phi$.
+%
+\begin{MInfo}
+Für die schiefe Ebene gilt:
+
+\begin{tabular}{lrl}
+Normalkraft& $F_{\mathrm N}$&$=F_{\mathrm g}\cdot \cos\phi$ \\
+Hangabtriebskraft& $F_{\mathrm{HA}}$&$=F_{\mathrm g}\cdot\sin\phi$
+\end{tabular}
+\end{MInfo}
+%
+\begin{MExample}
+Ein Klotz mit der Masse $10$ kg befindet sich auf einer schiefen Ebene mit dem Neigungswinkel $\phi=45^{\circ}$. Gesucht sind die Beträge der Normalkraft und der Hangabtriebskraft.
+
+Der Betrag der Normalkraft, die sowohl die Ebene auf den Klotz als auch der Klotz auf die Ebene ausübt, berechnet sich zu:
+\[F_{\mathrm N}=F_{\mathrm g}\cdot\cos\phi=m\cdot g\cdot\cos\phi=10\ \mathrm{kg}\cdot 9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\cos 45^{\circ}=\underline{69{,}4\ \mathrm{N}}\]
+Der Betrag der Hangabtriebskraft berechnet sich zu:
+\[F_{\mathrm{HA}}=F_{\mathrm g}\cdot \sin\phi=m\cdot g\cdot\sin\phi=10\ \mathrm{kg}\cdot 9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\sin 45^{\circ}=\underline{69{,}4\ \mathrm{N}}\]
+Weil bei einem Winkel von $\phi=45^{\circ}$ das Kräfteparallelogramm ein Quadrat ergibt, sind beide Kräfte gleich groß.
+\end{MExample}
+\end{MContent}
+
+
+
+% 
+\begin{MExercises}
+\begin{MExercise}
+Der kleine Max möchte seinen Schlitten, der $5$ kg wiegt, einen Berg (Neigungswinkel $\phi=30^{\circ}$, keine Reibung) hochziehen. Welche Kraft muss Max mindestens aufwenden?
+
+\begin{MHint}{Lösung}
+Zuerst muss Max eine Kraft $\vec{F}$ aufbringen, die größer ist als die Hangabtriebskraft des Schlittens. Würde er mit genau dem Betrag der Hangabtriebskraft ziehen, so gäbe es ein Kräftegleichgewicht und der Schlitten würde stehen bleiben. Wenn der Schlitten sich dann bewegt, muss Max nur noch genau den Betrag der Hangabtriebskraft  aufbringen, um den Schlitten mit der nun erreichten Geschwindigkeit den Berg hinauf ziehen zu können (siehe auch Beispiel  \MRef{Physik_Kraefte_Beispiel_Fahrstuhl}).
+\[F\geq F_{\mathrm{HA}}=mg\sin\phi=5\ \mathrm{kg}\cdot9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\sin 30^{\circ}=\underline{24{,}5\ \mathrm{N}}\]
+\end{MHint}
+\end{MExercise}
+%
+\begin{MExercise}
+Ein Mann möchte ein $80$ kg schweres Weinfass auf einen Lastwagen heben. Da es sehr schwer ist, rollt er das Fass über eine Rampe auf die Pritsche des Lastwagens. Die Rampe schließt mit der ebenen Straße einen Winkel von 25° ein. Geben Sie in Prozent an, wieviel Kraftersparnis der Mann hat, wenn er das Fass über die Rampe rollt und nicht einfach senkrecht hochhebt.
+
+\begin{MHint}{Lösung}
+Zum senkrechten Hochheben benötigt der Mann die Kraft
+\[F_1=mg=80\ \mathrm{kg}\cdot9{,}81\ \mathrm{\frac{m}{s^2}}=785\ \mathrm{N}\]
+
+Wenn er das Fass die Rampe hinauf rollt, benötigt er -- nach dem Anrollen -- nur noch soviel Kraft, dass er die Hangabtriebskraft kompensieren kann:
+\[F_2=mg\sin\phi=80\ \mathrm{kg}\cdot9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\sin 25^{\circ}=332\ \mathrm{N}\]
+
+Er muss also
+\[\frac{F_1-F_2}{F_1}=\frac{785\ \mathrm{N}-332\ \mathrm{N}}{785\ \mathrm{N}}=0{,}58 \ =\underline{58\%}\]
+weniger Kraft aufbringen.
+\end{MHint}
+
+\end{MExercise}
+\end{MExercises}
+
+
+\MSubsection{Reibungskraft}
+\begin{MIntro}
+Nichts ist perfekt auf dieser Welt, und so werden den nun bekannten Wirkungen von Kräften Hindernisse aufgrund von Reibung in den Weg gestellt. Oft ist dies von Nachteil, da man deswegen eine größere Kraft aufwenden muss, um eine gewünschte Wirkung zu erzielen. Zum Beispiel reicht es nicht, einen Schrank einmal anzuschubsen, damit er -- einmal in Bewegung gesetzt -- über den Boden gleitet, sondern man muss durch weitere andauernde Kraftaufwendung den Schrank zu seinem Zielort schieben.
+
+Andererseits kann ein Auto ohne Reibung weder anfahren noch bremsen. Diese erwünschte Wirkung können Sie bei den Ergänzungen zu diesem Abschnitt kennenlernen. 
+
+\end{MIntro}
+
+% 
+\begin{MContent}\MLabel{Physik_Kraefte_Reibung}
+Schiebt man einen Gegenstand auf einer horizontalen Ebene an, so müsste er sich eigentlich nach Wegnahme der anschiebenden Kraft laut dem 1.Newtonschen Gesetz mit einer konstanten Geschwindigkeit weiterbewegen. Die Erfahrung lehrt uns aber, dass jeder gleitende Körper, auch wenn auf ihn keine sichtbare äußere Kraft wirkt, dennoch immer langsamer wird, bis er zum Stillstand kommt. Ebenso kann sich ein Gegenstand auf einer schiefen Ebene befinden und nicht, wie in Abschnitt \MRef{Physik_Kraefte_Normalkraft} angedacht, ins Rutschen kommen, sondern einfach in Ruhe bleiben, obwohl die Hangabtriebskraft ihn eigentlich in Bewegung versetzen müsste.
+
+Da das Newtonsche Gesetz immer gilt, muss es also eine Kraft geben, die im ersten Fall eine bremsende Wirkung auf den Gegenstand hat, und im zweiten Fall entgegen der Hangabtriebskraft gerichtet ist, so dass ein  Kräftegleichgewicht besteht.
+
+Tatsächlich übt die Unterlage, auf der sich der Gegenstand befindet, eine solche Kraft aus, nämlich die {\MEntry {Reibungskraft}{Reibungskraft}}, deren Stärke abhängig von der materiellen Beschaffenheit sowohl der Unterlage als auch des Gegenstandes ist. Sie ist immer der Bewegungsrichtung entgegengesetzt.
+
+\begin{MExample}
+In einem Versuch zieht man mit einem Federmesser an einem Klotz auf einer nicht allzu glatten Unterlage.
+Erhöht man die Kraft $\vec{F}$ langsam von $0$ N an, so wird man beobachten, dass sich der Klotz zuerst überhaupt nicht bewegt, obwohl die angreifende Kraft immer größer wird. Erst ab einer bestimmten Kraft fängt der Klotz an, sich zu bewegen. Dann gleitet er auf der Unterlage weiter, wobei die dafür benötigte Kraft nun wieder geringer ist.
+\vspace{0.5cm}
+
+\MGraphicsSolo{Reibung}{scale=1}
+
+\end{MExample}
+%
+Die Kraft $\vec{F}$, die man im obigen Beispiel zum Ziehen des Klotzes benötigt, muss diese Reibungskraft kompensieren. 
+
+Die Reibungskraft entsteht durch die Wechselwirkung der Moleküle des Klotzes mit denen der Unterlage überall dort, wo beide Oberflächen in engem Kontakt sind (s. Bildausschnitt). Sie kann äußere Kräfte bis zu einem gewissen Maß ausgleichen, das ist im obigen Versuch zu Beginn, wenn der Klotz sich trotz angreifender Kraft nicht bewegt. In diesem Fall nennt man sie {\MEntry {Haftreibungskraft $F_{\mathrm h}$}{Haftreibungskraft}}. Wenn man mit einer Kraft, deren Betrag einen gewissen Wert überschreitet, zieht, beginnt der Klotz, über die Unterlage zu gleiten.
+Diese zu überwindende Kraft nennt man die {\MEntry {maximale Haft(reibungs)kraft}{Haftreibungskraft, maximale}} {\bf $F_{\mathrm{{h_{max}}}}$}. Beim Gleiten werden nun die molekularen Wechselwirkungen zwischen Klotz und Unterlage ständig aufgebaut und wieder getrennt und kleine Teile der Oberflächen brechen ab. Dies bewirkt wieder eine bewegungshemmende Kraft, die {\MEntry {Gleitreibungskraft $F_{\mathrm{gl}}$} {Gleitreibungskraft}} genannt wird.
+
+Verwendet man bei dem Versuch verschiedene Klötze, die verschiedene Massen haben, so wird man feststellen, dass die Reibungskräfte $F_{\mathrm{{h_{max}}}}$ und $F_{\mathrm{gl}}$ proportional zur jeweiligen Masse sind. Das liegt an der Gewichtskraft $F_{\mathrm g}=mg$, mit der der Klotz auf die Unterlage drückt. Wäre die Unterlage eine schiefe Ebene mit der Neigung $\phi$, würde dann aber nur der Teil $F_{\mathrm g}\cos\phi$ der Gewichtskraft, also $F_{\mathrm N}$, auf die Unterlage drücken, die Reibungskräfte wären kleiner als auf einer horizontalen Unterlage. Richtig ist also, dass die Reibungskräfte proportional zur Normalkraft des Klotzes sind:
+
+\[\frac{F_{\mathrm{h_{max}}}}{F_{\mathrm N}}=\mathrm{const}=f_{\mathrm h}\]
+\[\frac{F_{\mathrm{gl}}}{F_{\mathrm N}}=\mathrm{const}=f_{gl}\]
+
+Die Proportionalitätsfaktoren sind die {\MEntry {Haftreibungszahl}{Haftreibungszahl}} (oder {\MEntry{-Koeffizient}{Haftreibungskoeffizient}}) {\bf $f_{\mathrm h}$} und die {\MEntry {Gleitreibungszahl}{Gleitreibungszahl}} ({\MEntry {-Koeffizient}{Gleitreibungskoeffizien}}) $f_{\mathrm{gl}}$. Sie sind einheitslos. (Anstatt $f$ wird häufig auch das Formelzeichen $\mu$ verwendet.)
+%
+\begin{MInfo}
+Reibungskräfte wirken immer entgegen ihrer Bewegungsrichtung:%
+ 
+\begin{tabular}{llr}
+maximale Haftreibungskraft&\hspace{1cm}&$F_{\mathrm{h_{max}}}=f_{\mathrm h}\cdot F_{\mathrm N}$\\
+Gleitreibungskraft&\hspace{1cm}&$F_{\mathrm{gl}}=f_{\mathrm{gl}}\cdot F_{\mathrm N}$
+\end{tabular}
+\end{MInfo}
+
+Die Größe der Reibungskräfte hängt natürlich auch davon ab, wie rauh bzw. glatt die Oberflächen der aufeinander reibenden Körper sind, und auch, aus welchem Material sie bestehen. Diese Materialeigenschaften sind in den Reibungskoeffizienten enthalten. Einige typische Reibungszahlen sind in der Tabelle aufgelistet:
+
+\begin{tabular}{|l|c|c|}
+\hline
+Stoffpaar&$f_{\mathrm h}$&$f_{\mathrm{gl}}$\\
+\hline\hline
+Stahl/Stahl&0{,}15&0{,}05\\
+\hline
+Stahl/Teflon&0{,}04&0{,}04\\\hline
+Holz/Holz&$\leq0{,}6$&$\leq0{,}6$\\
+\hline
+Holz/Stein&0{,}7&0{,}3\\
+\hline
+Gummi/Straße&0{,}65&0{,}5\\
+\hline
+Schlittschuh/Eis&0{,}03&0{,}01\\
+\hline
+\end{tabular}
+
+\vspace{0.5cm}
+\ifttm
+\relax
+\else
+\newpage
+\fi
+{\bf Kontrollfragen:}
+\begin{itemize}
+\item
+Ein Stahlquader mit der Masse $m=1{,}5$ kg soll auf einer Stahlunterlage gezogen werden. Wie groß ist die maximale Haftreibungskraft, wie groß die Gleitreibungskraft? (Hinweis: rechnen Sie mit $g=10\ \mathrm{\frac{m}{s^2}}$.)
+Geben Sie das Ergebnis auf 2 Kommastellen gerundet mit Einheit an.
+\begin{tabular}{ll}
+maximale Haftreibungskraft: & \MQuestion{5}{2{,}25N}\\
+Gleitreibungskraft& \MQuestion{5}{0{,}75N}\\
+\end{tabular}
+\item
+Ein Körper der Masse $m=1$ kg befindet sich auf einer schiefen Ebene mit dem Neigungswinkel $\phi=25^{\circ}$ und soll den Hang hinunter gezogen werden. Wie groß ist die zu überwindende maximale Haftreibungskraft? ($g=10\,\mathrm{\frac{m}{s^2}}$, $f_{\mathrm h}=0{,}5$)
+
+Geben Sie das Ergebnis auf eine Kommastelle gerundet mit Einheit an.
+
+$F_{\mathrm{h_{max}}}=$ \MQuestion{4}{9{,}1N}
+\end{itemize}
+
+\end{MContent}
+
+% 
+\begin{MExercises}
+\begin{MExercise}
+Max zieht seinen Schlitten ($m_1=5$ kg) parallel zu einer Ebene (Neigungswinkel $\phi$ unbekannt) mit konstanter Geschwindigkeit über den Schnee und muss dabei eine Kraft von $1{,}5$ N aufbringen. Nun setzt sich sein kleines Schwesterchen ($15$ kg) noch auf den Schlitten. Mit welcher Kraft muss Max jetzt ziehen?
+Geben Sie die Lösung als ganze Zahl mit Einheit an:
+
+$F=$\MQuestion{2}{6N}
+
+\begin{MHint}{Lösung}
+geg:\hspace{.5cm} $m_1=5$ kg\hspace{.5cm} $m_2=5\ \mathrm{kg}+15\ \mathrm{kg}=20$ kg\hspace{.5cm} $F_1=1{,}5$ N
+
+ges:\hspace{.5cm} $F_2$
+
+Die Kraft, die Max nur für den Schlitten aufbringen muss, ist
+\[F_1=F_{\rm{gl}_1}=m_1 g\cdot f_{\rm{gl}}\cdot\cos\phi\]
+Die Gleitreibungszahl $f_{\rm{gl}}$ und der Neigungswinkel der Ebene $\phi$ ist nicht bekannt, aber beides ist konstant und ändert sich auch nicht, wenn die Schwester auf dem Schlitten sitzt und damit das Gewicht erhöht:
+\[F_1=m_1 g\cdot \rm{const}\]
+\[F_2=m_2 g\cdot \rm{const}\]
+\[\Rightarrow \frac{F_1}{m_1 g}=\frac{F_2}{m_2 g}\]
+\[\Rightarrow F_2=F_1\cdot\frac{m_2}{m_1}=1{,}5\ \mathrm{N}\cdot\mathrm{\frac{20\ kg}{5\ kg}}=\underline{6\ \mathrm{N}}\]
+
+\end{MHint}
+\end{MExercise}
+%
+\begin{MExercise}
+Welchen Neigungswinkel muss man einer schiefen Ebene geben, damit ein auf ihr liegender Körper gerade zu gleiten beginnt ($f_{\rm h}=0{,}6; f_{\rm{gl}}=0{,}45$)? (Lösung auf ganze Zahl gerundet)
+
+$\phi=$\MQuestion{2}{31}°
+
+\begin{MHint}{Lösung}
+Wie in Abschnitt \MRef{Physik_Kraefte_Normalkraft} beschrieben, kann man die Gewichtskraft des Körpers $\vec{F}_{\rm g}$ in die Normalkraft $\vec{F}_{\rm N}$ und die Hangabtriebskraft $\vec{F}_{\rm{HA}}$ aufteilen. Die Hangabtriebskraft lässt den Körper den Hang hinabgleiten, die Reibungskraft wirkt ihr entgegen. Der Körper beginnt daher erst zu gleiten, wenn $F_{\rm{HA}}$ größer als $F_{\rm{{h_{max}}}}$ wird:
+\ifttm
+\relax
+\else
+\clearpage
+\fi
+\begin{center}
+\begin{tabular}{ll}
+\MGraphicsSolo{Reibung_schiefe_Ebene}{scale=1}
+&
+\begin{minipage}[b]{8cm}
+
+\[F_{\rm{HA}}\geq F_{\rm{h_{max}}}\]
+\[m\cdot g\cdot\sin\phi\geq f_{\rm h}\cdot m\cdot g\cdot\cos\phi\]
+\[\frac{\sin\phi}{\cos\phi}\geq f_{\rm h}\]
+\[\tan\phi\geq f_{\rm h}\]
+\[\tan\phi\geq0{,}6\]
+%\vspace{0.5cm}
+%$\Rightarrow$\hspace{1cm}\underline{$\phi\geq 31°$}
+\end{minipage}
+\end{tabular}
+\end{center}
+
+\[\Rightarrow \hspace{1cm}\underline{\phi\geq \arctan0{,}6\approx31^{\circ}}\]
+\end{MHint}
+\end{MExercise}
+
+
+
+
+\end{MExercises}
+
+
+
+\end{document}
