@@ -434,8 +434,12 @@ class PageFactory(object):
             else:
                 # simulating DeclareGraphicsExtension{png,jpg,gif} from LaTeX
                 self.sys.message(self.sys.VERBOSEINFO, "No file extension given, guessing graphics extensions")
-                filerump = "tex/" + includedir + "/" + fname
-                p = subprocess.Popen(["ls", "-l", filerump + ".*"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+                self.sys.pushdir()
+                os.chdir(self.options.sourcepath)
+                os.chdir("tex")
+                os.chdir(includedir)
+                filerump = fname
+                p = subprocess.Popen(["ls", "-l", filerump + ".*"], stdout = subprocess.PIPE, shell = True, universal_newlines = True)
                 (filelist, err) = p.communicate()
                 if p.returncode == 0:
                     self.sys.message(self.sys.VERBOSEINFO, "  filelist=" + filelist)
@@ -463,6 +467,8 @@ class PageFactory(object):
                                     self.sys.message(self.sys.CLIENTERROR, "Register tag with id " + fileid + " found " + str(n) + " times in html content without graphics extension")
                 else:
                     self.sys.message(self.sys.FATALERROR, "Command ls does not seem to work, error code is " + str(p.returncode))
+                
+                self.sys.popdir()
                 
             dobase64 = 0 # should be enabled later
             if (fext != "*"):

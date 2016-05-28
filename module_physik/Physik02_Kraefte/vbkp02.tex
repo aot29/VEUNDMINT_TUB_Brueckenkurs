@@ -137,15 +137,15 @@ $
 Im Folgenden werden wir oft nur mit den (vorzeichenbehafteten) Komponenten $F_x$ bzw. $F_y$ arbeiten. Dabei bedeutet dann z. Bsp. $F_x>0$ eine Kraft in positiver Bewegungsrichtung und $F_x<0$ eine Kraft in negativer Bewegungsrichtung. 
 
 \vspace{0.5cm}
-In dem Beispiel~\MRef{Physik_Kraefte_BeispielTanker} sei der Betrag der Kraft $F_1=5000\  \mathrm{N}$ und ziehe unter dem Winkel $\alpha=35^{\circ}$ zur $x$-Achse, die Kraft $F_2$ sei $4000\ \mathrm{N}$ bei einem Winkel von $\beta=-60^{\circ}$.
+In dem Beispiel~\MRef{Physik_Kraefte_BeispielTanker} sei der Betrag der Kraft $F_1=5000\  \mathrm{N}$ und ziehe unter dem Winkel $\alpha=35\MGrad$ zur $x$-Achse, die Kraft $F_2$ sei $4000\ \mathrm{N}$ bei einem Winkel von $\beta=-60\MGrad$.
 Man zerlegt nun die beiden Kräfte jeweils in ihre $x$-Komponenten (parallel zur Bewegungsrichtung) und ihre $y$-Komponenten:
 
-\begin{align*}
-{F_1}_x & =F_1\ \cos\alpha =5000\,\mathrm{N}\cdot\cos35^{\circ}=4096\,\mathrm{N}\\
-{F_1}_y & =F_1\ \sin\alpha =5000\,\mathrm{N}\cdot\sin35^{\circ}=2868\,\mathrm{N}\\
-{F_2}_x & =F_2\ \cos\beta =4000\,\mathrm{N}\cdot\cos\left(-60^{\circ}\right)=2000\;\mathrm{N}\\
-{F_2}_y & =F_2\ \sin\beta =4000\,\mathrm{N}\cdot\sin\left(-60^{\circ}\right)=-3464\,\mathrm{N}\\
-\end{align*}
+\begin{eqnarray*}
+{F_1}_x & =&F_1\ \cos\alpha =5000\,\mathrm{N}\cdot\cos35\MGrad=4096\,\mathrm{N}\\
+{F_1}_y & =&F_1\ \sin\alpha =5000\,\mathrm{N}\cdot\sin35\MGrad=2868\,\mathrm{N}\\
+{F_2}_x & =&F_2\ \cos\beta =4000\,\mathrm{N}\cdot\cos\left(-60\MGrad\right)=2000\;\mathrm{N}\\
+{F_2}_y & =&F_2\ \sin\beta =4000\,\mathrm{N}\cdot\sin\left(-60\MGrad\right)=-3464\,\mathrm{N}\\
+\end{eqnarray*}
 
 Zum Berechnen der resultierenden Kraft $\vec{F}_{\mathrm{res}}$ berechnet man zuerst die Komponenten:
 
@@ -160,7 +160,7 @@ und der Winkel zur $x$-Achse $\gamma$ berechnet sich aus
 \[\tan\gamma=\frac{{F_{{\mathrm{res}}}}_y}{{F_{{\mathrm{res}}}}_x}=\frac{-596\,\mathrm{N}}{6096\,\mathrm{N}}=-0{,}098
 \]
 zu
-\[\gamma=\arctan(-0{,}0989)=\underline{-5{,}6^{\circ}}\]
+\[\gamma=\arctan(-0{,}0989)=\underline{-5{,}6\MGrad}\]
 \\
 
 {\bf Kontrollfragen}
@@ -171,22 +171,22 @@ Sie hängen an einem Reck: bei welcher Position müssen Sie mehr Haltekraft aufbri
 \MGraphicsSolo{Reck}{scale=1}
 
 \begin{MQuestionGroup}
-a.)\MCheckbox{1}
-b.)\MCheckbox{0}
+a.)\MLCheckbox{1}{DECCONVUXID_4C4DDA25_0}
+b.)\MLCheckbox{0}{DECCONVUXID_4C4DDA25_1}
 \end{MQuestionGroup}
 \MGroupButton{Kontrolle}
 \\
 
 \item
-Wie ändert sich bei zwei betragsgleichen Kräften $F_1=F_2=50\ \mathrm{N}$ der Betrag der resultierenden Kraft, wenn der Winkel zwischen ihnen von $0^{\circ}$ auf $180^{\circ}$ wächst?
+Wie ändert sich bei zwei betragsgleichen Kräften $F_1=F_2=50\ \mathrm{N}$ der Betrag der resultierenden Kraft, wenn der Winkel zwischen ihnen von $0\MGrad$ auf $180\MGrad$ wächst?
 
 \begin{MQuestionGroup}
 Die resultierende Kraft wird
-größer\MCheckbox{0}
-kleiner\MCheckbox{1}
+größer\MLCheckbox{0}{DECCONVUXID_4C4DDA25_2}
+kleiner\MLCheckbox{1}{DECCONVUXID_4C4DDA25_3}
 
 und zwar von
-\MQuestion{3}{100}N bis \MQuestion{1}{0}N
+\MLQuestion{3}{100}{DECCONVUXID_4C4DDA25_32}N bis \MLQuestion{1}{0}{DECCONVUXID_4C4DDA25_33}N
 \end{MQuestionGroup}
 \MGroupButton{Kontrolle}
 \\
@@ -196,10 +196,10 @@ Bei welchen Winkeln ist der Betrag der Resultierenden bei der vorhergehenden Fra
 
 \begin{MQuestionGroup}
 Resultierende ist größer von
-\MQuestion{1}{0}° bis \MQuestion{3}{120}° 
+\MLQuestion{1}{0}{DECCONVUXID_4C4DDA25_34}$\MGrad$ bis \MLQuestion{3}{120}{DECCONVUXID_4C4DDA25_35}$\MGrad$ 
 
 und kleiner von
-\MQuestion{3}{120}° bis \MQuestion{3}{180}°
+\MLQuestion{3}{120}{DECCONVUXID_4C4DDA25_36}$\MGrad$ bis \MLQuestion{3}{180}{DECCONVUXID_4C4DDA25_37}$\MGrad$
 \end{MQuestionGroup}
 \MGroupButton{Kontrolle}
 \end{itemize}
@@ -208,7 +208,7 @@ und kleiner von
 % 
 \begin{MExercises}
 \begin{MExercise}
-Von einem Bogen mit einer gespannten Sehne soll ein Pfeil abgeschossen werden. Die Beträge der Kräfte in der Sehne sind jeweils $F_1=F_2=100\,\mathrm{N}$. Die Winkel $\alpha=\beta$ sind bei Aufgabe a.) jeweils 90°, bei b.) jeweils 60°. Bestimmen Sie die resultierende Kraft, die auf den Pfeil wirkt.
+Von einem Bogen mit einer gespannten Sehne soll ein Pfeil abgeschossen werden. Die Beträge der Kräfte in der Sehne sind jeweils $F_1=F_2=100\,\mathrm{N}$. Die Winkel $\alpha=\beta$ sind bei Aufgabe a.) jeweils 90$\MGrad$, bei b.) jeweils 60$\MGrad$. Bestimmen Sie die resultierende Kraft, die auf den Pfeil wirkt.
 
 %\bigskip
 \vspace{0.5cm}
@@ -220,10 +220,10 @@ Von einem Bogen mit einer gespannten Sehne soll ein Pfeil abgeschossen werden. D
 mit Einheit:
 
 \vspace{0.5cm}
-a.) \MQuestion{2}{0N}
+a.) \MLQuestion{2}{0N}{DECCONVUXID_4C4DDA25_38}
 
 \vspace{0.5cm}
-b.) \MQuestion{4}{100N}}
+b.) \MLQuestion{4}{100N}{DECCONVUXID_4C4DDA25_39}}
 \end{minipage}
 &
 \MGraphicsSolo{Pfeil_Bogen}{scale=1}
@@ -253,10 +253,10 @@ h=0{,}5\,\mathrm{m}$
 
 Die Kraft $\vec{F}$ lässt sich in zwei Teilkräfte $\vec{F}_1$ und $\vec{F}_2$ aufteilen, die längs der Seilstücke gerichtet sind. Das sind die gesuchten Kräfte, wobei aus Symmetriegründen die Beträge von $\vec{F}_1$ und $\vec{F}_2$ gleich sind.
 Zuerst berechnet man den Winkel $\phi$:
-\[\phi=\arctan\frac{h}{\frac{l}{2}}=\arctan\frac{0{,}5\,\mathrm{m}}{15\,\mathrm{m}}=1{,}91^{\circ}
+\[\phi=\arctan\frac{h}{\frac{l}{2}}=\arctan\frac{0{,}5\,\mathrm{m}}{15\,\mathrm{m}}=1{,}91\MGrad
 \]
 Dieser Winkel kommt auch im Kräfteparallelogramm vor. Damit können wir nun die Beträge von $\vec{F}_i$ berechnen:
-\[\sin\phi=\frac{\frac{F}{2}}{F_i} \hspace{1cm} \Longrightarrow \hspace{1cm} F_i=\frac{F}{2}\cdot\frac{1}{\sin\phi}=100\,\mathrm{N}\cdot\frac{1}{\sin1{,}91^{\circ}}=\underline{3000\,\mathrm{N}}
+\[\sin\phi=\frac{\frac{F}{2}}{F_i} \hspace{1cm} \Longrightarrow \hspace{1cm} F_i=\frac{F}{2}\cdot\frac{1}{\sin\phi}=100\,\mathrm{N}\cdot\frac{1}{\sin1{,}91\MGrad}=\underline{3000\,\mathrm{N}}
 \]
 Wie man sieht, sind die Kräfte $F_1$ bzw. $F_2$, die das Seil aufnehmen muss, sehr viel größer die Kraft, mit der die Lampe eigentlich zieht.
 \end{MHint}
@@ -264,7 +264,7 @@ Wie man sieht, sind die Kräfte $F_1$ bzw. $F_2$, die das Seil aufnehmen muss, se
 %
 
 \begin{MExercise}
-Ein Wasserskifahrer wird von einem Seil mit einer Kraft von $F=400\ \mathrm{N}$ über eine Schanze gezogen (Neigung $20^{\circ}$).
+Ein Wasserskifahrer wird von einem Seil mit einer Kraft von $F=400\ \mathrm{N}$ über eine Schanze gezogen (Neigung $20\MGrad$).
 \\
 \begin{tabular}{lc}
 \MGraphicsSolo{Wasserski}{scale=1}
@@ -298,11 +298,11 @@ F_{\bot}\approx130\ \mathrm{N}
 \\
 
 \item
-geg: $F=400\ \mathrm{N} \hspace{0.5cm} \phi=20^{\circ}$
+geg: $F=400\ \mathrm{N} \hspace{0.5cm} \phi=20\MGrad$
 
-$F_{\|}=F\cdot\cos\phi=400\ \mathrm{N}\cdot\cos 20^{\circ}=\underline{376\ \mathrm{N}}$
+$F_{\|}=F\cdot\cos\phi=400\ \mathrm{N}\cdot\cos 20\MGrad=\underline{376\ \mathrm{N}}$
 
-$F_{\bot}=F\cdot\sin\phi=400\ \mathrm{N}\cdot\sin 20^{\circ}=\underline{137\ \mathrm{N}}$
+$F_{\bot}=F\cdot\sin\phi=400\ \mathrm{N}\cdot\sin 20\MGrad=\underline{137\ \mathrm{N}}$
 \end{enumerate}
 \end{MHint}
 \end{MExercise}
@@ -384,7 +384,7 @@ Die Federhärte $D$ ist eine Materialeigenschaft und somit jeweils für eine besti
 \item
 Eine Feder mit der Federkonstanten $D=100\ \frac{\mathrm{N}}{\mathrm{m}}$ wird von einer Kraft $F=1$ N ausgelenkt. Wie groß ist diese Auslenkung? Geben Sie den Wert auf zwei Kommastellen gerundet an.
 
-Auslenkung $\Delta x=$ \MQuestion{4}{0,01}m
+Auslenkung $\Delta x=$ \MLQuestion{4}{0,01}{DECCONVUXID_4C4DDA25_40}m
 
 Eine solche Feder eignet sich gut als Kraftmesser.
 %
@@ -392,8 +392,8 @@ Eine solche Feder eignet sich gut als Kraftmesser.
 Eine Feder wird durch eine Kraft $F=50$ N um $\Delta s_1=5$ cm ausgelenkt, eine zweite Feder durch die selbe Kraft um $\Delta s_2=10$ cm. Welche Federhärte ist größer?
 
 \begin{MQuestionGroup}
-$D_1$\MCheckbox{1} \hspace{0.5cm}
-$D_2$\MCheckbox{0}
+$D_1$\MLCheckbox{1}{DECCONVUXID_4C4DDA25_4} \hspace{0.5cm}
+$D_2$\MLCheckbox{0}{DECCONVUXID_4C4DDA25_5}
 \end{MQuestionGroup}
 \MGroupButton{Kontrolle}
 
@@ -441,13 +441,13 @@ Abbildung b.)
 \begin{MQuestionGroup}
 Die Federkonstante $D_{\mathrm{ges}}$ einer Serienschaltung von zwei Federn ist immer 
 
-\MCheckbox{0} größer als die größte der Einzelfederkonstanten
+\MLCheckbox{0}{DECCONVUXID_4C4DDA25_6} größer als die größte der Einzelfederkonstanten
 
-\MCheckbox{0} größer als die kleinste der Einzelfederkonstanten
+\MLCheckbox{0}{DECCONVUXID_4C4DDA25_7} größer als die kleinste der Einzelfederkonstanten
 
-\MCheckbox{1} kleiner als die größte der Einzelfederkonstanten
+\MLCheckbox{1}{DECCONVUXID_4C4DDA25_8} kleiner als die größte der Einzelfederkonstanten
 
-\MCheckbox {1} kleiner als die kleinste der Einzelfederkonstanten
+\MLCheckbox{1}{DECCONVUXID_4C4DDA25_8b} kleiner als die kleinste der Einzelfederkonstanten
 \end{MQuestionGroup}
 \MGroupButton{Kontrolle}
 %
@@ -457,13 +457,13 @@ Die Federkonstante $D_{\mathrm{ges}}$ einer Serienschaltung von zwei Federn ist 
 \begin{MQuestionGroup}
 Die Federkonstante $D_{\mathrm{ges}}$ einer Parallelschaltung von zwei Federn ist immer 
 
-\MCheckbox{1} größer als die größte der Einzelfederkonstanten
+\MLCheckbox{1}{DECCONVUXID_4C4DDA25_9} größer als die größte der Einzelfederkonstanten
 
-\MCheckbox{1} größer als die kleinste der Einzelfederkonstanten
+\MLCheckbox{1}{DECCONVUXID_4C4DDA25_10} größer als die kleinste der Einzelfederkonstanten
 
-\MCheckbox{0} kleiner als die größte der Einzelfederkonstanten
+\MLCheckbox{0}{DECCONVUXID_4C4DDA25_11} kleiner als die größte der Einzelfederkonstanten
 
-\MCheckbox {0} kleiner als die kleinste der Einzelfederkonstanten
+\MLCheckbox{0}{DECCONVUXID_4C4DDA25_11b} kleiner als die kleinste der Einzelfederkonstanten
 \end{MQuestionGroup}
 \MGroupButton{Kontrolle}
 \end{itemize}
@@ -699,16 +699,16 @@ Eine Tafel Schokolade hat auf der Erde ungefähr:
 
 \vspace{0.6cm}
 \begin{tabular}{lllllll}
-die Masse \hspace{1cm}& $0{,}01$ kg&\MCheckbox{0}&$0{,}1$ kg& \MCheckbox{1}&$1{,}0$ kg&\MCheckbox{0}\\
-das Gewicht & $0{,}1$ N &\MCheckbox{0} & $1{,}0$ N&\MCheckbox{1} & $10$ N &\MCheckbox{0}
+die Masse \hspace{1cm}& $0{,}01$ kg&\MLCheckbox{0}{DECCONVUXID_4C4DDA25_12}&$0{,}1$ kg& \MLCheckbox{1}{DECCONVUXID_4C4DDA25_13}&$1{,}0$ kg&\MLCheckbox{0}{DECCONVUXID_4C4DDA25_14}\\
+das Gewicht & $0{,}1$ N &\MLCheckbox{0}{DECCONVUXID_4C4DDA25_15} & $1{,}0$ N&\MLCheckbox{1}{DECCONVUXID_4C4DDA25_16} & $10$ N &\MLCheckbox{0}{DECCONVUXID_4C4DDA25_17}
 \\
 & \\
 \\
 auf dem Mond:
 \\
 \\
-die Masse & $0{,}0167$ kg&\MCheckbox{0} & $0{,}1$ kg &\MCheckbox{1} & $0{,}167$ kg& \MCheckbox{0}\\
-das Gewicht & $0{,}167$ N &\MCheckbox{1} & $1$ N &\MCheckbox{0} & $1{,}67$ N &\MCheckbox{0}
+die Masse & $0{,}0167$ kg&\MLCheckbox{0}{DECCONVUXID_4C4DDA25_18} & $0{,}1$ kg &\MLCheckbox{1}{DECCONVUXID_4C4DDA25_19} & $0{,}167$ kg& \MLCheckbox{0}{DECCONVUXID_4C4DDA25_20}\\
+das Gewicht & $0{,}167$ N &\MLCheckbox{1}{DECCONVUXID_4C4DDA25_21} & $1$ N &\MLCheckbox{0}{DECCONVUXID_4C4DDA25_22} & $1{,}67$ N &\MLCheckbox{0}{DECCONVUXID_4C4DDA25_23}
 \end{tabular}
 \end{MQuestionGroup}
 \MGroupButton{Kontrolle}
@@ -822,21 +822,21 @@ Anschaulich wird der Ablauf mit dem Kraft-Zeit-Diagramm: im oberen Diagramm ist 
 An einem Körper greifen die Kräfte $\vec{F}_1$ und $\vec{F}_2$ an. Sie sind im Gleichgewicht, wenn
 
 \vspace{0.3cm}
-\MCheckbox{0} $\vec{F}_1$ und $\vec{F}_2$ in Betrag und Richtung übereinstimmen
+\MLCheckbox{0}{DECCONVUXID_4C4DDA25_24} $\vec{F}_1$ und $\vec{F}_2$ in Betrag und Richtung übereinstimmen
 
-\MCheckbox{0} $\vec{F}_1$ und $\vec{F}_2$ auf der gleichen Wirkungslinie liegen
+\MLCheckbox{0}{DECCONVUXID_4C4DDA25_25} $\vec{F}_1$ und $\vec{F}_2$ auf der gleichen Wirkungslinie liegen
 
-\MCheckbox{1} der Körper sich mit konstanter Geschwindigkeit in konstanter Richtung bewegt
+\MLCheckbox{1}{DECCONVUXID_4C4DDA25_26} der Körper sich mit konstanter Geschwindigkeit in konstanter Richtung bewegt
 
-\MCheckbox{0} der Körper sich beschleunigt bewegt
+\MLCheckbox{0}{DECCONVUXID_4C4DDA25_27} der Körper sich beschleunigt bewegt
 
-\MCheckbox{0} $\vec{F}_1$ und $\vec{F}_2$ gleich Größen haben und parallel sind
+\MLCheckbox{0}{DECCONVUXID_4C4DDA25_28} $\vec{F}_1$ und $\vec{F}_2$ gleich Größen haben und parallel sind
 
-\MCheckbox{1} $\vec{F}_1$ und $\vec{F}_2$ gleichen Betrag, gleiche Wirkungslinie und entgegengesetzte Richtung haben
+\MLCheckbox{1}{DECCONVUXID_4C4DDA25_29} $\vec{F}_1$ und $\vec{F}_2$ gleichen Betrag, gleiche Wirkungslinie und entgegengesetzte Richtung haben
 
-\MCheckbox{1} der Körper ruht
+\MLCheckbox{1}{DECCONVUXID_4C4DDA25_30} der Körper ruht
 
-\MCheckbox{1} die resultierende Kraft null ist
+\MLCheckbox{1}{DECCONVUXID_4C4DDA25_31} die resultierende Kraft null ist
 
 \end{MQuestionGroup}
 \MGroupButton{Kontrolle}
@@ -894,19 +894,19 @@ $\Rightarrow F_1\sin(\beta)=F_2\sin(\alpha)$
 $\Rightarrow F_2=\frac{\sin(\beta)}{\sin(\alpha)}\cdot F_1$
 %
 \[\Rightarrow mg=\frac{\sin(\beta)}{\sin(\alpha)}\cdot F_1\cdot \cos(\alpha)+F_1\cos(\alpha)\]
-\[mg=\left(\frac{\sin62^{\circ}}{\sin43^{\circ}}\cdot\cos43^{\circ}+\cos62^{\circ}\right)\cdot F_1=1{,}42\cdot F_1
+\[mg=\left(\frac{\sin62\MGrad}{\sin43\MGrad}\cdot\cos43\MGrad+\cos62\MGrad\right)\cdot F_1=1{,}42\cdot F_1
 \]
 \\
 \[\Rightarrow F_1=\frac{mg}{1{,}42}=\frac{10\ \mathrm{kg}\cdot 9{,}81\mathrm{\frac{m}{s^2}}}{1{,}42}=\underline{69\ \mathrm{N}}\]
 
-\[\Rightarrow F_2=\frac{\sin62^{\circ}}{\sin43^{\circ}}\cdot 69\ \mathrm{N}=\underline{90\ \mathrm{N}}
+\[\Rightarrow F_2=\frac{\sin62\MGrad}{\sin43\MGrad}\cdot 69\ \mathrm{N}=\underline{90\ \mathrm{N}}
 \]
 %
 \end{MHint}
 \end{MExercise}
 %
 \ifttm
-\relaxe
+\MRelax
 \else
 \newpage
 \fi
@@ -995,13 +995,13 @@ Hangabtriebskraft& $F_{\mathrm{HA}}$&$=F_{\mathrm g}\cdot\sin\phi$
 \end{MInfo}
 %
 \begin{MExample}
-Ein Klotz mit der Masse $10$ kg befindet sich auf einer schiefen Ebene mit dem Neigungswinkel $\phi=45^{\circ}$. Gesucht sind die Beträge der Normalkraft und der Hangabtriebskraft.
+Ein Klotz mit der Masse $10$ kg befindet sich auf einer schiefen Ebene mit dem Neigungswinkel $\phi=45\MGrad$. Gesucht sind die Beträge der Normalkraft und der Hangabtriebskraft.
 
 Der Betrag der Normalkraft, die sowohl die Ebene auf den Klotz als auch der Klotz auf die Ebene ausübt, berechnet sich zu:
-\[F_{\mathrm N}=F_{\mathrm g}\cdot\cos\phi=m\cdot g\cdot\cos\phi=10\ \mathrm{kg}\cdot 9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\cos 45^{\circ}=\underline{69{,}4\ \mathrm{N}}\]
+\[F_{\mathrm N}=F_{\mathrm g}\cdot\cos\phi=m\cdot g\cdot\cos\phi=10\ \mathrm{kg}\cdot 9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\cos 45\MGrad=\underline{69{,}4\ \mathrm{N}}\]
 Der Betrag der Hangabtriebskraft berechnet sich zu:
-\[F_{\mathrm{HA}}=F_{\mathrm g}\cdot \sin\phi=m\cdot g\cdot\sin\phi=10\ \mathrm{kg}\cdot 9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\sin 45^{\circ}=\underline{69{,}4\ \mathrm{N}}\]
-Weil bei einem Winkel von $\phi=45^{\circ}$ das Kräfteparallelogramm ein Quadrat ergibt, sind beide Kräfte gleich groß.
+\[F_{\mathrm{HA}}=F_{\mathrm g}\cdot \sin\phi=m\cdot g\cdot\sin\phi=10\ \mathrm{kg}\cdot 9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\sin 45\MGrad=\underline{69{,}4\ \mathrm{N}}\]
+Weil bei einem Winkel von $\phi=45\MGrad$ das Kräfteparallelogramm ein Quadrat ergibt, sind beide Kräfte gleich groß.
 \end{MExample}
 \end{MContent}
 
@@ -1010,23 +1010,23 @@ Weil bei einem Winkel von $\phi=45^{\circ}$ das Kräfteparallelogramm ein Quadrat
 % 
 \begin{MExercises}
 \begin{MExercise}
-Der kleine Max möchte seinen Schlitten, der $5$ kg wiegt, einen Berg (Neigungswinkel $\phi=30^{\circ}$, keine Reibung) hochziehen. Welche Kraft muss Max mindestens aufwenden?
+Der kleine Max möchte seinen Schlitten, der $5$ kg wiegt, einen Berg (Neigungswinkel $\phi=30\MGrad$, keine Reibung) hochziehen. Welche Kraft muss Max mindestens aufwenden?
 
 \begin{MHint}{Lösung}
 Zuerst muss Max eine Kraft $\vec{F}$ aufbringen, die größer ist als die Hangabtriebskraft des Schlittens. Würde er mit genau dem Betrag der Hangabtriebskraft ziehen, so gäbe es ein Kräftegleichgewicht und der Schlitten würde stehen bleiben. Wenn der Schlitten sich dann bewegt, muss Max nur noch genau den Betrag der Hangabtriebskraft  aufbringen, um den Schlitten mit der nun erreichten Geschwindigkeit den Berg hinauf ziehen zu können (siehe auch Beispiel  \MRef{Physik_Kraefte_Beispiel_Fahrstuhl}).
-\[F\geq F_{\mathrm{HA}}=mg\sin\phi=5\ \mathrm{kg}\cdot9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\sin 30^{\circ}=\underline{24{,}5\ \mathrm{N}}\]
+\[F\geq F_{\mathrm{HA}}=mg\sin\phi=5\ \mathrm{kg}\cdot9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\sin 30\MGrad=\underline{24{,}5\ \mathrm{N}}\]
 \end{MHint}
 \end{MExercise}
 %
 \begin{MExercise}
-Ein Mann möchte ein $80$ kg schweres Weinfass auf einen Lastwagen heben. Da es sehr schwer ist, rollt er das Fass über eine Rampe auf die Pritsche des Lastwagens. Die Rampe schließt mit der ebenen Straße einen Winkel von 25° ein. Geben Sie in Prozent an, wieviel Kraftersparnis der Mann hat, wenn er das Fass über die Rampe rollt und nicht einfach senkrecht hochhebt.
+Ein Mann möchte ein $80$ kg schweres Weinfass auf einen Lastwagen heben. Da es sehr schwer ist, rollt er das Fass über eine Rampe auf die Pritsche des Lastwagens. Die Rampe schließt mit der ebenen Straße einen Winkel von 25$\MGrad$ ein. Geben Sie in Prozent an, wieviel Kraftersparnis der Mann hat, wenn er das Fass über die Rampe rollt und nicht einfach senkrecht hochhebt.
 
 \begin{MHint}{Lösung}
 Zum senkrechten Hochheben benötigt der Mann die Kraft
 \[F_1=mg=80\ \mathrm{kg}\cdot9{,}81\ \mathrm{\frac{m}{s^2}}=785\ \mathrm{N}\]
 
 Wenn er das Fass die Rampe hinauf rollt, benötigt er -- nach dem Anrollen -- nur noch soviel Kraft, dass er die Hangabtriebskraft kompensieren kann:
-\[F_2=mg\sin\phi=80\ \mathrm{kg}\cdot9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\sin 25^{\circ}=332\ \mathrm{N}\]
+\[F_2=mg\sin\phi=80\ \mathrm{kg}\cdot9{,}81\ \mathrm{\frac{m}{s^2}}\cdot\sin 25\MGrad=332\ \mathrm{N}\]
 
 Er muss also
 \[\frac{F_1-F_2}{F_1}=\frac{785\ \mathrm{N}-332\ \mathrm{N}}{785\ \mathrm{N}}=0{,}58 \ =\underline{58\%}\]
@@ -1047,11 +1047,19 @@ Andererseits kann ein Auto ohne Reibung weder anfahren noch bremsen. Diese erwün
 
 % 
 \begin{MContent}\MLabel{Physik_Kraefte_Reibung}
-Schiebt man einen Gegenstand auf einer horizontalen Ebene an, so müsste er sich eigentlich nach Wegnahme der anschiebenden Kraft laut dem 1.Newtonschen Gesetz mit einer konstanten Geschwindigkeit weiterbewegen. Die Erfahrung lehrt uns aber, dass jeder gleitende Körper, auch wenn auf ihn keine sichtbare äußere Kraft wirkt, dennoch immer langsamer wird, bis er zum Stillstand kommt. Ebenso kann sich ein Gegenstand auf einer schiefen Ebene befinden und nicht, wie in Abschnitt \MRef{Physik_Kraefte_Normalkraft} angedacht, ins Rutschen kommen, sondern einfach in Ruhe bleiben, obwohl die Hangabtriebskraft ihn eigentlich in Bewegung versetzen müsste.
+Schiebt man einen Gegenstand auf einer horizontalen Ebene an, so müsste er sich eigentlich nach Wegnahme der
+anschiebenden Kraft laut dem 1.Newtonschen Gesetz mit einer konstanten Geschwindigkeit weiterbewegen.
+Die Erfahrung lehrt uns aber, dass jeder gleitende Körper, auch wenn auf ihn keine sichtbare äußere Kraft wirkt,
+dennoch immer langsamer wird, bis er zum Stillstand kommt. Ebenso kann sich ein Gegenstand auf einer schiefen Ebene
+befinden und nicht, wie in Abschnitt \MRef{Physik_Kraefte_Normalkraft} angedacht, ins Rutschen kommen, sondern einfach
+in Ruhe bleiben, obwohl die Hangabtriebskraft ihn eigentlich in Bewegung versetzen müsste.
 
-Da das Newtonsche Gesetz immer gilt, muss es also eine Kraft geben, die im ersten Fall eine bremsende Wirkung auf den Gegenstand hat, und im zweiten Fall entgegen der Hangabtriebskraft gerichtet ist, so dass ein  Kräftegleichgewicht besteht.
+Da das Newtonsche Gesetz immer gilt, muss es also eine Kraft geben, die im ersten Fall eine bremsende Wirkung
+auf den Gegenstand hat, und im zweiten Fall entgegen der Hangabtriebskraft gerichtet ist, so dass ein  Kräftegleichgewicht besteht.
 
-Tatsächlich übt die Unterlage, auf der sich der Gegenstand befindet, eine solche Kraft aus, nämlich die {\MEntry {Reibungskraft}{Reibungskraft}}, deren Stärke abhängig von der materiellen Beschaffenheit sowohl der Unterlage als auch des Gegenstandes ist. Sie ist immer der Bewegungsrichtung entgegengesetzt.
+Tatsächlich übt die Unterlage, auf der sich der Gegenstand befindet, eine solche Kraft aus, nämlich
+die \MEntry{Reibungskraft}{Reibungskraft}, deren Stärke abhängig von der materiellen Beschaffenheit sowohl der Unterlage als auch
+des Gegenstandes ist. Sie ist immer der Bewegungsrichtung entgegengesetzt.
 
 \begin{MExample}
 In einem Versuch zieht man mit einem Federmesser an einem Klotz auf einer nicht allzu glatten Unterlage.
@@ -1067,12 +1075,16 @@ Die Kraft $\vec{F}$, die man im obigen Beispiel zum Ziehen des Klotzes benötigt,
 Die Reibungskraft entsteht durch die Wechselwirkung der Moleküle des Klotzes mit denen der Unterlage überall dort, wo beide Oberflächen in engem Kontakt sind (s. Bildausschnitt). Sie kann äußere Kräfte bis zu einem gewissen Maß ausgleichen, das ist im obigen Versuch zu Beginn, wenn der Klotz sich trotz angreifender Kraft nicht bewegt. In diesem Fall nennt man sie {\MEntry {Haftreibungskraft $F_{\mathrm h}$}{Haftreibungskraft}}. Wenn man mit einer Kraft, deren Betrag einen gewissen Wert überschreitet, zieht, beginnt der Klotz, über die Unterlage zu gleiten.
 Diese zu überwindende Kraft nennt man die {\MEntry {maximale Haft(reibungs)kraft}{Haftreibungskraft, maximale}} {\bf $F_{\mathrm{{h_{max}}}}$}. Beim Gleiten werden nun die molekularen Wechselwirkungen zwischen Klotz und Unterlage ständig aufgebaut und wieder getrennt und kleine Teile der Oberflächen brechen ab. Dies bewirkt wieder eine bewegungshemmende Kraft, die {\MEntry {Gleitreibungskraft $F_{\mathrm{gl}}$} {Gleitreibungskraft}} genannt wird.
 
-Verwendet man bei dem Versuch verschiedene Klötze, die verschiedene Massen haben, so wird man feststellen, dass die Reibungskräfte $F_{\mathrm{{h_{max}}}}$ und $F_{\mathrm{gl}}$ proportional zur jeweiligen Masse sind. Das liegt an der Gewichtskraft $F_{\mathrm g}=mg$, mit der der Klotz auf die Unterlage drückt. Wäre die Unterlage eine schiefe Ebene mit der Neigung $\phi$, würde dann aber nur der Teil $F_{\mathrm g}\cos\phi$ der Gewichtskraft, also $F_{\mathrm N}$, auf die Unterlage drücken, die Reibungskräfte wären kleiner als auf einer horizontalen Unterlage. Richtig ist also, dass die Reibungskräfte proportional zur Normalkraft des Klotzes sind:
+Verwendet man bei dem Versuch verschiedene Klötze, die verschiedene Massen haben, so wird man feststellen, dass die Reibungskräfte $F_{\mathrm{{h_{max}}}}$ und $F_{\mathrm{gl}}$ proportional zur jeweiligen Masse sind. Das liegt an der Gewichtskraft $F_{\mathrm g}=mg$, mit der der Klotz auf die Unterlage drückt. Wäre die Unterlage eine schiefe Ebene mit der Neigung $\phi$, würde dann aber nur der Teil $F_{\mathrm g}\cos\phi$ der Gewichtskraft, also $F_{\mathrm N}$, auf die Unterlage drücken, die Reibungskräfte wären kleiner als auf einer horizontalen Unterlage.
+Richtig ist also, dass die Reibungskräfte proportional zur Normalkraft des Klotzes sind:
 
-\[\frac{F_{\mathrm{h_{max}}}}{F_{\mathrm N}}=\mathrm{const}=f_{\mathrm h}\]
-\[\frac{F_{\mathrm{gl}}}{F_{\mathrm N}}=\mathrm{const}=f_{gl}\]
+\begin{eqnarray*}
+\frac{F_{\mathrm{h_{max}}}}{F_{\mathrm N}} & = & \mathrm{const} = f_{\mathrm h} \\
+\frac{F_{\mathrm{gl}}}{F_{\mathrm N}} &=&\mathrm{const} = f_{gl}
+\end{eqnarray*}
 
-Die Proportionalitätsfaktoren sind die {\MEntry {Haftreibungszahl}{Haftreibungszahl}} (oder {\MEntry{-Koeffizient}{Haftreibungskoeffizient}}) {\bf $f_{\mathrm h}$} und die {\MEntry {Gleitreibungszahl}{Gleitreibungszahl}} ({\MEntry {-Koeffizient}{Gleitreibungskoeffizien}}) $f_{\mathrm{gl}}$. Sie sind einheitslos. (Anstatt $f$ wird häufig auch das Formelzeichen $\mu$ verwendet.)
+Die Proportionalitätsfaktoren sind die \MEntry {Haftreibungszahl}{Haftreibungszahl} (oder \MEntry{-Koeffizient}{Haftreibungskoeffizient}) {\bf $f_{\mathrm h}$} und die \MEntry {Gleitreibungszahl}{Gleitreibungszahl} ({\MEntry{-Koeffizient}{Gleitreibungskoeffizien}}) $f_{\mathrm{gl}}$.
+Sie sind einheitslos. (Anstatt $f$ wird häufig auch das Formelzeichen $\mu$ verwendet.)
 %
 \begin{MInfo}
 Reibungskräfte wirken immer entgegen ihrer Bewegungsrichtung:%
@@ -1114,15 +1126,15 @@ Schlittschuh/Eis&0{,}03&0{,}01\\
 Ein Stahlquader mit der Masse $m=1{,}5$ kg soll auf einer Stahlunterlage gezogen werden. Wie groß ist die maximale Haftreibungskraft, wie groß die Gleitreibungskraft? (Hinweis: rechnen Sie mit $g=10\ \mathrm{\frac{m}{s^2}}$.)
 Geben Sie das Ergebnis auf 2 Kommastellen gerundet mit Einheit an.
 \begin{tabular}{ll}
-maximale Haftreibungskraft: & \MQuestion{5}{2{,}25N}\\
-Gleitreibungskraft& \MQuestion{5}{0{,}75N}\\
+maximale Haftreibungskraft: & \MLQuestion{5}{2.25}{DECCONVUXID_4C4DDA25_41} N\\
+Gleitreibungskraft& \MLQuestion{5}{0.75}{DECCONVUXID_4C4DDA25_42} N\\
 \end{tabular}
 \item
-Ein Körper der Masse $m=1$ kg befindet sich auf einer schiefen Ebene mit dem Neigungswinkel $\phi=25^{\circ}$ und soll den Hang hinunter gezogen werden. Wie groß ist die zu überwindende maximale Haftreibungskraft? ($g=10\,\mathrm{\frac{m}{s^2}}$, $f_{\mathrm h}=0{,}5$)
+Ein Körper der Masse $m=1$ kg befindet sich auf einer schiefen Ebene mit dem Neigungswinkel $\phi=25\MGrad$ und soll den Hang hinunter gezogen werden. Wie groß ist die zu überwindende maximale Haftreibungskraft? ($g=10\,\mathrm{\frac{m}{s^2}}$, $f_{\mathrm h}=0{,}5$)
 
 Geben Sie das Ergebnis auf eine Kommastelle gerundet mit Einheit an.
 
-$F_{\mathrm{h_{max}}}=$ \MQuestion{4}{9{,}1N}
+$F_{\mathrm{h_{max}}}=$ \MLQuestion{4}{9.1}{DECCONVUXID_4C4DDA25_43} N
 \end{itemize}
 
 \end{MContent}
@@ -1133,7 +1145,7 @@ $F_{\mathrm{h_{max}}}=$ \MQuestion{4}{9{,}1N}
 Max zieht seinen Schlitten ($m_1=5$ kg) parallel zu einer Ebene (Neigungswinkel $\phi$ unbekannt) mit konstanter Geschwindigkeit über den Schnee und muss dabei eine Kraft von $1{,}5$ N aufbringen. Nun setzt sich sein kleines Schwesterchen ($15$ kg) noch auf den Schlitten. Mit welcher Kraft muss Max jetzt ziehen?
 Geben Sie die Lösung als ganze Zahl mit Einheit an:
 
-$F=$\MQuestion{2}{6N}
+$F=$\MLQuestion{2}{6N}{DECCONVUXID_4C4DDA25_44}
 
 \begin{MHint}{Lösung}
 geg:\hspace{.5cm} $m_1=5$ kg\hspace{.5cm} $m_2=5\ \mathrm{kg}+15\ \mathrm{kg}=20$ kg\hspace{.5cm} $F_1=1{,}5$ N
@@ -1154,7 +1166,7 @@ Die Gleitreibungszahl $f_{\rm{gl}}$ und der Neigungswinkel der Ebene $\phi$ ist 
 \begin{MExercise}
 Welchen Neigungswinkel muss man einer schiefen Ebene geben, damit ein auf ihr liegender Körper gerade zu gleiten beginnt ($f_{\rm h}=0{,}6; f_{\rm{gl}}=0{,}45$)? (Lösung auf ganze Zahl gerundet)
 
-$\phi=$\MQuestion{2}{31}°
+$\phi=$\MLQuestion{2}{31}{DECCONVUXID_4C4DDA25_45}$\MGrad$
 
 \begin{MHint}{Lösung}
 Wie in Abschnitt \MRef{Physik_Kraefte_Normalkraft} beschrieben, kann man die Gewichtskraft des Körpers $\vec{F}_{\rm g}$ in die Normalkraft $\vec{F}_{\rm N}$ und die Hangabtriebskraft $\vec{F}_{\rm{HA}}$ aufteilen. Die Hangabtriebskraft lässt den Körper den Hang hinabgleiten, die Reibungskraft wirkt ihr entgegen. Der Körper beginnt daher erst zu gleiten, wenn $F_{\rm{HA}}$ größer als $F_{\rm{{h_{max}}}}$ wird:
@@ -1175,12 +1187,12 @@ Wie in Abschnitt \MRef{Physik_Kraefte_Normalkraft} beschrieben, kann man die Gew
 \[\tan\phi\geq f_{\rm h}\]
 \[\tan\phi\geq0{,}6\]
 %\vspace{0.5cm}
-%$\Rightarrow$\hspace{1cm}\underline{$\phi\geq 31°$}
+%$\Rightarrow$\hspace{1cm}\underline{$\phi\geq 31\MGrad$}
 \end{minipage}
 \end{tabular}
 \end{center}
 
-\[\Rightarrow \hspace{1cm}\underline{\phi\geq \arctan0{,}6\approx31^{\circ}}\]
+\[\Rightarrow \hspace{1cm}\underline{\phi\geq \arctan0{,}6\approx31\MGrad}\]
 \end{MHint}
 \end{MExercise}
 

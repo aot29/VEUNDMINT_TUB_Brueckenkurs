@@ -19,7 +19,7 @@
 """
     This is the Option object associated to the mintmod macro package, 
     Version P0.1.0, needs to be consistent with mintmod.tex
-    Options for the math online course
+    Options for the physics online course
 """
 
 import os.path
@@ -84,14 +84,14 @@ class Option(object):
         self.macrofile = self.macrofilename + ".tex"
         self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex files and templates, utf8 well be accepted too but with a warning
         self.outputencoding = "utf-8"                        # encoding of generated html files
-        self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
-        self.source = "module_veundmint"                     # Quellverzeichnis, platziert in Ebene ueber tex2x.py
-        self.module = "tree_tu9onlinekurs.tex"               # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
+        self.output = "physcourse"                           # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
+        self.source = "module_physik"                        # Quellverzeichnis, platziert in Ebene ueber tex2x.py
+        self.module = "tree_physik.tex"                      # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
         self.outtmp = "_tmp"                                 # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
-        self.description = "Onlinebrückenkurs Mathematik"    # Bezeichnung des erstellen Kurses
+        self.description = "Onlinebrückenkurs Physik"        # Bezeichnung des erstellen Kurses
         self.author = "Projekt VEUNDMINT"                    # Offizieller Autor des Kurses           
         self.contentlicense = "CC BY-SA 3.0"                 # Lizenz des Kursinhalts
-        self.moduleprefix = "Onlinebrückenkurs Mathematik"   # Wird vor Browser-Bookmarks gesetzt
+        self.moduleprefix = "Onlinebrückenkurs Physik"       # Wird vor Browser-Bookmarks gesetzt
         self.variant = "std"                                 # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete fuer Mathematikumsetzung aus, Alternative ist "unotation"
         self.accessflags = "777"                             # linux access flag preset for the entire output directory
 
@@ -101,15 +101,19 @@ class Option(object):
         self.autotikzcopyright = 1                           # includes tikz externalized images in copyright list
         self.displaycopyrightlinks = 0                       # add copyright links to images in the entire course
 
-        self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
+        self.generate_pdf = { "physikkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
         # course signature, course part
-        self.signature_main = "OBMLGAMMA2" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+
+        # main signature of the course, user objects and data are (locally) bound to this id
+        self.signature_main = "OBMLGAMMA2_PHYSIK" # branch from OBMLGAMMA2 mathematics course
+
+        # additional signature fields, no impact on user objects
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
         self.signature_date = "05/2015"
 
-       # ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------ 
+        # ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------ 
         self.overrides = list()
         for ov in override:
             m = re.match(r"(.+?)=(.+)", ov) 
@@ -144,7 +148,7 @@ class Option(object):
                 print("Invalid override string: " + ov)
 
 
-         # Settings for HTML design and typical phrases        
+        # Settings for HTML design and typical phrases        
         self.chaptersite = "chapters.html"
         self.strings = {
             "explanation_subsection": "Einführung in Thema",
