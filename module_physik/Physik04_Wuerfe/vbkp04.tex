@@ -1,7 +1,4 @@
 \input{mintmod}
-%\newcounter{mycounter}\setcounter{mycounter}{1}
-%\newcounter{physapplet}\setcounter{physapplet}{1}
-%\setcounter{tocdepth}{5}
 
 %\makeindex
  
@@ -16,12 +13,10 @@
 %\end{center}
 %\fi % Modul Physik 04: Freier Fall und Würfe
 
-%\setcounter{chapter}{\MINTPhysics}
-%\setcounter{section}{4}
-%\setcounter{subsection}{4}
 \MSetSubject{\MINTPhysics}
-\MSection{Freier Fall \& Würfe}
+\MSection{Freier Fall und Würfe}
 \begin{MSectionStart}
+\MLabel{VBKP04}
 
 In diesem Modul geht es um die Bewegungen von Massepunkten im dreidimensionalen Raum im Schwerefeld der Erde, sogenannte Wurf- oder Fallbewegungen.
 Die Körper werden dabei unter beliebigen Winkeln mit einer Anfangsgeschwindigkeit in die Luft geworfen oder fallen gelassen. 
@@ -89,8 +84,7 @@ Bild- und Objekt-Nachweis:
 
 
 \MSubsection{Freier Fall \& 1D-Würfe}  % ein Durchlauf über Einheiten
-\begin{MXContent}{Freier Fall}{Teil \themycounter}{beweis}
-\stepcounter{mycounter}
+\begin{MXContent}{Freier Fall}{Freier Fall}{STD}
 \MLabel{physik_fall_freierfall}
 Freier Fall \MEntry{}{Fall!freier} bedeutet, dass ein Körper losgelassen wird (Anfangsgeschwindigkeit $v_0 = 0$) und sich senkrecht zur Erdoberfläche in Richtung Erdmittelpunkt hin aufgrund der Gravitationskraft der Erde bewegt. Der freie Fall ist eine sogenannte gleichmäßig beschleunigte Bewegung \MEntry{}{Bewegung!gleichmäßig beschleunigte}, d. h. die Beschleunigung ändert sich mit der Zeit nicht. Die Beschleunigung $a$ beträgt in Mitteleuropa $a = -g = -9.81 \ \mbox{m/s}^2$ und wird Erdbeschleunigung $g$ \MEntry{}{Erdbeschleunigung} genannt. Sie ist zum Erdmittelpunkt hin gerichtet und wird immer als positive Zahl angegeben, z. B. $g = \ 9.81 \ \mbox{m/s}^2$. 
 
@@ -114,14 +108,14 @@ In solchen Fall-Experimenten lässt sich zeigen, dass die Beschleunigung beim fre
 \fi
 
 Für den freien Fall \MEntry{}{Fall!freier} gelten die bereits hergeleiteten Gesetze der gleichmäßig beschleunigten Bewegung. Daher lässt sich der Ort $x$ eines fallenden Objektes mit dem Anfangsort $x_0$ und der Anfangsgeschwindigkeit $v_0$ zum Zeitpunkt $t$ wie folgt berechnen: 
-\begin{equation*}
+$$
 x(t) = x_0 + v_0 \cdot t + \frac{1}{2} \cdot a \cdot t^2
-\end{equation*}
+$$
 Üblicherweise wird die Streckenänderung "`nach oben"' hin positiv gezählt. Da die Erdbeschleunigung den Körper zur Erde hin beschleunigt, also "`nach unten"', erhält man folgende Gleichung, wenn man für den Betrag der Beschleunigung $a$ die Erdbeschleunigung $g$ einsetzt und die Richtung berücksichtigt:
 \begin{MInfo}
-\begin{equation*}
+$$
 x(t) = x_0 + v_0 \cdot t - \frac{1}{2} \cdot g \cdot t^2 
-\end{equation*}
+$$
 \end{MInfo}
 Diese Gesetzmäßigkeiten des freien Falls wurden von Galileo Galilei (1564--1642) erkannt. Er beobachtete, dass die Fallgeschwindigkeit proportional zur Fallzeit und der zurückgelegte Weg proportional zum Quadrat der Fallzeit ist. Sein größtes Problem bei der Untersuchung dieses Phänomens jedoch war, dass ihm keine Uhren zur Zeitmessung zur Verfügung standen. Er verwendete stattdessen u.a. seinen Pulsschlag zur Zeitmessung. Er erdachte daher auch eine mechanische Pendeluhr zur Zeitmessung, die jedoch erst nach seinem Tod erbaut wurde.
 
@@ -164,8 +158,7 @@ Die Anfangsgeschwindigkeit $v_0$ ist $0$, die Anfangshöhe $x_0 = 50 \mbox{\ m}$.
 
 
 
-\begin{MXContent}{Senkrechter Wurf}{Teil \themycounter}{beweis}
-\stepcounter{mycounter}
+\begin{MXContent}{Senkrechter Wurf}{Senkrechter Wurf}{STD}
 \MLabel{physik_fall_senkrwurf}
 
 Bisher wurden nur Würfe ohne Anfangsgeschwindigkeit, also $v_0 = 0$, betrachtet. Lässt man einen Körper mit einer senkrecht nach unten gerichteten Anfangsgeschwindigkeit $(v_0 < 0)$ fallen, spricht man von einem senkrechten Wurf \MEntry{}{Wurf!senkrechter} nach unten. Ist die Anfangsgeschwindigkeit nach oben gerichtet ($v_0 > 0$), spricht man von einem senkrechten Wurf nach oben. Bei der hier verwendeten Vorzeichenkonvention zeigt die positive Richtung nach oben. 
@@ -173,29 +166,29 @@ Bisher wurden nur Würfe ohne Anfangsgeschwindigkeit, also $v_0 = 0$, betrachtet.
 Doch wie verändern sich die Größen Ort, Geschwindigkeit und Beschleunigung beim senkrechten Wurf mit der Zeit? 
 
 Die Formel zur Berechnung des Ortes in Abhängigkeit der Zeit wurde bereits gezeigt:
-\begin{equation*}
+$$
 x(t) = x_0 + v_0 \cdot t - \frac{1}{2} \cdot g \cdot t^2
-\end{equation*} \ifttm \else \\ \fi
+$$ \ifttm \else \\ \fi
 Die Geschwindigkeit ist die Änderung des Ortes mit der Zeit, d. h. es muss folgende Ableitung gebildet werden: 
-\begin{equation*}
+$$
   v(t) = \frac{\mbox{d}x(t)}{\mbox{d}t}
-\end{equation*} \ifttm \else \\ \fi
+$$ \ifttm \else \\ \fi
 Leitet man obigen Ausdruck für den Ort des Körpers nach der Zeit ab, erhält man:
-\begin{equation*}
+$$
  v(t) = \frac{\mbox{d}x(t)}{\mbox{d}t}  = v_0 - g \cdot t
-\end{equation*} \ifttm \else \\ \fi    
+$$ \ifttm \else \\ \fi    
 Ist die Anfangsgeschwindigkeit nach oben gerichtet $(v_0 > 0)$, ist die Geschwindigkeit des Körpers zum Zeitpunkt $t = 0$ positiv. Durch die Erdanziehung erhält der Körper einen zusätzlichen Geschwindigkeitsbeitrag $(- g\cdot t)$, der nach unten gerichtet ist und daher der Anfangsgeschwindigkeit entgegengesetzt ist.
 Zu Beginn ist $v_0$ betragsmäßig größer als $-g \cdot t$ und der Körper bewegt sich nach oben. Jedoch wird die aus beiden Beiträgen resultierende Geschwindigkeit $v$ mit fortschreitender Zeit kleiner, bis an einem Punkt die Anfangsgeschwindigkeit und die Geschwindigkeit aufgrund der Schwerkraft betragsmäßig gleich groß sind, d. h. $v = 0$ ist. Dies ist der sogenannte Umkehrpunkt. Nach diesem Umkehrpunkt ist die nach unten gerichtete Geschwindigkeit $(-g \cdot t)$ größer als die anfänglich nach oben gerichtete $(v_0)$ und der Körper bewegt sich nach unten. 
 
 
 Die Beschleunigung $a$ ist die zeitliche Änderung der Geschwindigkeit, also die Ableitung der Geschwindigkeit nach der Zeit: 
-\begin{equation*}
+$$
   a(t) = \frac{\text{d}v(t)}{\text{d}t}
-\end{equation*} \ifttm \else \\ \fi     
+$$ \ifttm \else \\ \fi     
 Damit ergibt sich für die Beschleunigung beim senkrechten Wurf: 
-\begin{equation*}
+$$
 a(t) = -g 
-\end{equation*} \ifttm \else \\ \fi
+$$ \ifttm \else \\ \fi
 Das bedeutet, die Beschleunigung, die der Körper erfährt, ist über die ganze Zeit des senkrechten Wurfes konstant und beschleunigt den Körper nach unten $(a < 0)$. 
 \ifttm
 \ \\
@@ -225,17 +218,17 @@ Mithilfe obiger Gleichungen lässt sich außerdem berechnen, mit welcher Geschwind
 \end{center} 
 \ifttm{\ \\}\fi
 Der Ball treffe zum Zeitpunkt $t_{\text{r}}$ auf dem Boden auf ($x(t_{\text{r}}) = -h$), d. h.
-\begin{equation*}
+$$
 -h = v_0 \cdot t_{\text{r}} - \frac{1}{2} \cdot g \cdot t_{\text{r}}^2
-\end{equation*}
-Diese Gleichung lässt sich nach der Zeit $t_{\text{r}}$ auf\/lösen und man erhält als Lösung 
-\begin{equation*}
+$$
+Diese Gleichung lässt sich nach der Zeit $t_{\text{r}}$ auflösen und man erhält als Lösung 
+$$
 t_{\text{r}} = \frac{v_0 \pm \sqrt{v_0^2 + 2 \cdot g \cdot h}}{g}
-\end{equation*}
+$$
 Die Geschwindigkeit $v(t_{\text{r}})$ am Auftreffpunkt ist daher
-\begin{equation*}
+$$
 v(t_{\mbox{r}}) = v_0 - g \frac{v_0 \pm \sqrt{v_0^2 + 2\cdot g \cdot h}}{g} = \mp \sqrt{v_0^2 + 2 \cdot g \cdot h}
-\end{equation*} \ifttm \else \\ \fi
+$$ \ifttm \else \\ \fi
 Die positive Lösung entfällt, da die Geschwindigkeit beim Auftreffen nach unten zeigt und damit negativ sein muss. Da $v_0$ quadratisch in die Formel eingeht, ist es für die Endgeschwindigkeit unerheblich, ob die Anfangsgeschwindigkeit nach oben oder nach unten zeigt.  \\
 
 \begin{center}
@@ -261,19 +254,22 @@ Endgeschwindigkeit & $v(t_{\mbox{r}}) = - \sqrt{v_0^2 + 2 \cdot g \cdot h}$ \\
 
 \end{MXContent}
 
-\begin{MXContent}{Horizontaler Wurf}{Teil \themycounter}{beweis}
-\stepcounter{mycounter}
+\begin{MXContent}{Horizontaler Wurf}{Horizontaler Wurf}{STD}
 \MLabel{physik_fall_waagrwurf}
-Der horizontale oder waagerechte Wurf \MEntry{}{Wurf!horizontaler} ist ein Beispiel eines zweidimensionalen Wurfes. Daher muss man zur mathematischen Beschreibung ein zweidimensionales Koordinatensystem wählen, sodass z. B. "`nach rechts"' (horizontale Richtung) die positive $x$-Richtung ist und "`nach oben"' (vertikale Richtung) die positive $y$-Richtung. Beispiele für einen horizontalen Wurf sind das Abwerfen eines Care-Paketes aus einem Flugzeug, ein Gegenstand rutscht von einer Tischplatte und fällt zu Boden oder ein Wasserstrahl, der aus einem waagerecht gehaltenen Schlauch herausströmt. 
+Der horizontale oder waagerechte Wurf \MEntry{}{Wurf!horizontaler} ist ein Beispiel eines zweidimensionalen Wurfes.
+Daher muss man zur mathematischen Beschreibung ein zweidimensionales Koordinatensystem wählen, sodass z. B. \glqq nach rechts\grqq\ (horizontale Richtung) die
+positive $x$-Richtung ist und \glqq nach oben\grqq\ (vertikale Richtung) die positive $y$-Richtung. Beispiele für einen horizontalen Wurf
+sind das Abwerfen eines Care-Paketes aus einem Flugzeug, ein Gegenstand rutscht von einer Tischplatte und fällt
+zu Boden oder ein Wasserstrahl, der aus einem waagerecht gehaltenen Schlauch herausströmt. 
    
 
 Im Folgenden wird das Beispiel eines Flugzeugs verwendet, das ein Care-Paket zum Zeitpunkt $t = 0$ abwirft. Der Ursprung des Koordinatensystems sei der Ort, an dem sich das Flugzeug zum Zeitpunkt $t = 0$ befindet, das heißt, an diesem Punkt ist $x = 0$ und $y = 0$. Das Flugzeug soll mit einer konstanten Geschwindigkeit $v_{x,0}$ in horizontaler Richtung fliegen. Damit handelt es sich bei der horizontalen Bewegung des Flugzeuges um eine gleichförmige Bewegung mit konstanter Geschwindigkeit $v_{x,0}$. Hier wirkt keine Kraft, also auch keine Beschleunigung und es gilt:
 \begin{MInfo}
-\begin{align*}
-x(t) =& v_x(t)\cdot t \\
-v_x(t) =& v_{x,0} \\
-a_x(t) =& 0 
-\end{align*}
+\begin{eqnarray*}
+x(t) &=& v_x(t)\cdot t \\
+v_x(t) &=& v_{x,0} \\
+a_x(t) &=& 0 
+\end{eqnarray*}
 \end{MInfo}
 Da die Bewegung des Flugzeuges sich auf die des Care-Pakets überträgt, bewegen sich Flugzeug und Paket in horizontaler Richtung gleich. Die horizontale und die vertikale Bewegung des Care-Paketes können voneinander getrennt betrachtet werden, da sie sich nicht gegenseitig beeinflussen. Dies lässt sich leicht in einem Experiment erkennen, in dem ein Körper mit horizontaler Beschleunigung und ein Körper ohne horizontale Beschleunigung fallen gelassen werden. Beide Körper fallen in diesem Experiment gleich schnell!  
 \ifttm
@@ -294,139 +290,138 @@ Da die Bewegung des Flugzeuges sich auf die des Care-Pakets überträgt, bewegen s
 
 Da das abgeworfene Paket nach unten fällt, gelten für die vertikale Bewegungskomponente des Paketes die gleichen Gesetzmäßigkeiten wie beim freien Fall unter der Voraussetzung, dass das Paket keine Geschwindigkeit in vertikaler Richtung zu Beginn besitzt ($v_{y,0} = 0$): 
 \begin{MInfo}
-\begin{align*}
-y(t) =& - \frac{1}{2} \cdot g \cdot t^2 \\
-v_y(t) =& -g \cdot t \\
-a_y(t) =& -g
-\end{align*}
+\begin{eqnarray*}
+y(t) &=& - \frac{1}{2} \cdot g \cdot t^2 \\
+v_y(t) &=& -g \cdot t \\
+a_y(t) &=& -g
+\end{eqnarray*}
 \end{MInfo}
 Mit diesen Informationen lässt sich der örtliche und zeitliche Verlauf des Paketes beschreiben. Dies ist wichtig, da man so den Auftreffpunkt des Care-Paketes berechnen kann. Dies soll im Folgenden gezeigt werden. 
 
 Das Flugzeug fliege in der Flughöhe $h$ und mit einer Geschwindigkeit $v_{x,0}$. Zunächst berechnet man den Zeitpunkt des Auftreffens $t_{\mbox{r}}$ des Pakets auf den Erdboden, das bedeutet, $y(t)$ und $h$ sind betragsmäßig gleich groß. Da jedoch der $y$-Koordinatenursprung auf Höhe der Flughöhe liegt, ist $y(t)$ bzw. die Distanz Erdboden/Flugzeug negativ und es gilt daher:
-\begin{equation*}
+$$
 y(t_{\mbox{r}}) = -h = - \frac{1}{2} \cdot g \cdot t_{\mbox{r}}^2
-\end{equation*}
-Damit ergibt sich durch Auf\/lösen der Gleichung nach der Zeit für den Zeitpunkt des Auftreffens $t_{\mbox{r}}$:
+$$
+Damit ergibt sich durch Auflösen der Gleichung nach der Zeit für den Zeitpunkt des Auftreffens $t_{\mbox{r}}$:
 \begin{MInfo}
-\begin{equation*}
+$$
 t_{\mbox{r}} = \sqrt{\frac{2 \cdot h}{g}}
-\end{equation*} 
+$$ 
 \end{MInfo}
 Die ebenfalls mathematisch mögliche negative Lösung ist physikalisch nicht sinnvoll und entfällt deshalb. 
    
 Die während des Fallens zurückgelegte horizontale Wegstrecke $\mathrm{\Delta} x$ ergibt sich dann durch:
-\begin{equation*}
+$$
 \mathrm{\Delta} x = v_{x,0} \cdot t_{\mbox{r}} = v_{x,0} \cdot \sqrt{\frac{2 \cdot h}{g}}
-\end{equation*}
+$$
 
 Diese Formel zeigt, dass sich mit steigender Geschwindigkeit des Flugzeuges oder mit steigender Flughöhe die zurückgelegte horizontale Distanz des Paketes erhöht. Dies erwartet man auch aus der alltäglichen Erfahrung. 
 
 
 Doch welche Form beschreibt der zurückgelegte Weg beim Fallen? Dazu muss man den Ort $y$ in Abhängigkeit von $x$ ausdrücken. Zunächst verwendet man den Zusammenhang $x(t) = v_{x,0} \cdot t$ und stellt ihn nach der Zeit um. 
-\begin{equation*}
+$$
 t = \frac{x(t)}{v_x}
-\end{equation*}
+$$
 Dieser wird in 
-\begin{equation*}
+$$
 y(t) = - \frac{1}{2} \cdot g \cdot t^2 
-\end{equation*}
+$$
 eingesetzt und man erhält:
 \begin{MInfo}
-\begin{equation*}
+$$
 y(x) = - \frac{1}{2} \frac{g}{v_{x,0}^2} x^2    
-\end{equation*}
+$$
 \end{MInfo}
 
-Dies ist eine nach unten geöffnete Parabel (negatives Vorzeichen!), deren positiver Ast ($x > 0$) der Flugbahn des Care-Paketes entspricht. Der Scheitelpunkt der Parabel befindet sich bei $x=0$, also dem Startpunkt, an dem das Care-Paket abgeworfen wird. \ifttm Probieren Sie es selbst: \MSRef{physik_applet_horizwurf}{Applet starten} \else \MSRef{physik_applet_horizwurf}{Zur Applet-Beschreibung} \href{http://mintlx1.scc.kit.edu/onlineapplets/p4/applet_wurf_01.html}{Applet starten}  \fi
-
+Dies ist eine nach unten geöffnete Parabel (negatives Vorzeichen!), deren positiver Ast ($x > 0$) der Flugbahn des Care-Paketes entspricht.
+Der Scheitelpunkt der Parabel befindet sich bei $x=0$, also dem Startpunkt, an dem das Care-Paket abgeworfen wird.
+\ifttm%
+Probieren Sie es selbst: \MSRef{physik_applet_horizwurf}{Applet starten}
+\else%
+\MSRef{physik_applet_horizwurf}{Zur Applet-Beschreibung} \MExtLink{http://mintlx1.scc.kit.edu/onlineapplets/p4/applet_wurf_01.html}{Applet starten}
+\fi
 
 \end{MXContent}
 
 \begin{MExercises}
 \begin{MExercise}
-In einer Fabrik werden Kartoffeln auf einer horizontalen Bahn mit einer Geschwindigkeit von $v = 12 \mbox{\ m/s}$ geführt. Am Ende der Bahn fallen die Kartoffeln in einen Behälter, der $6 \mbox{\ m}$ tief ist. 
+In einer Fabrik werden Kartoffeln auf einer horizontalen Bahn mit einer Geschwindigkeit von $v = 12 \mbox{\ m/s}$ geführt.
+Am Ende der Bahn fallen die Kartoffeln in einen Behälter, der $6 \mbox{\ m}$ tief ist. 
 
 \begin{center}
 \MGraphicsSolo{aufgabe.png}{scale=0.6}\\
 \end{center}  
 
 a) Geben Sie die Zeitspanne $\mathrm{\Delta} t$ auf $1$ Nachkommastelle genau an, die eine Kartoffel benötigt, um auf den Boden des Behälters zu fallen.  
-$\mathrm{\Delta} t =$ \MLParsedQuestion{4}{1,1}{1}{DECCONVUXID_4C4FDA25_0} $\mbox{s}$
+$\mathrm{\Delta} t =$ \MLParsedQuestion{4}{1.1}{1}{DECCONVUXID_4C4FDA25_0} $\mbox{s}$
  
- \begin{MHint}{Lösung}
- \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+ \begin{MSolution}
    Der Ursprung des Koordinatensystems wird auf das Ende der Bahn gewählt, d. h. $y_0 = 0$. \\
    Da die horizontale Geschwindigkeit für das Auftreffen der Kartoffel auf den Erdboden keine Rolle spielt, muss nur
-   \begin{equation*} 
+   $$ 
    y(t) = y_0 - \frac{1}{2} \cdot g \cdot t^2
-   \end{equation*}
+   $$
   berücksichtigt werden. \\
-Gesucht ist die Zeitdauer, bis die Kartoffel $6 \mbox{\ m}$ nach unten gefallen ist, daher muss man diese Gleichung nach $t$ auf\/lösen und $y(t) = h = -6 \mbox{\ m}$ einsetzen: 
-\begin{equation*}
+Gesucht ist die Zeitdauer, bis die Kartoffel $6 \mbox{\ m}$ nach unten gefallen ist, daher muss man diese Gleichung nach $t$ auflösen und $y(t) = h = -6 \mbox{\ m}$ einsetzen: 
+$$
 t^2 = - \frac{2\cdot h}{g}
-\end{equation*}
+$$
 Durch Wurzelziehen erhält man eine positive und negative Lösung, wobei die negative Lösung entfällt, da sie physikalisch nicht sinnvoll ist.
-\begin{equation*}
+$$
 t = \sqrt{- \frac{2 \cdot h}{g}}
-\end{equation*}
+$$
 Durch Einsetzen von $h = -6 \mbox{\ m}$ und $g = 9.81 \mbox{\ m s}^{-2}$ erhält man $t = 1.1 \mbox{\ s}$. 
- \ifttm \else \end{minipage}}\fi             
-         
- \end{MHint} \end{MExercise}
+\end{MSolution}
 
 
 b) Berechnen Sie den Abstand $s$ ausgehend vom Ende der Bahn, in dem sich die Kartoffeln auftürmen werden. 
- $s =$  \MLParsedQuestion{4}{13,2}{1}{DECCONVUXID_4C4FDA25_1} $\mbox{m}$
+ $s =$  \MLParsedQuestion{4}{13.2}{1}{DECCONVUXID_4C4FDA25_1} $\mbox{m}$
  
- \begin{MHint}{Lösung}
- \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
- Der Ursprung des Koordinatensystems wird auf das Ende der Bahn gewählt. Gesucht ist der horizontal zurückgelegte Weg.  
-  Zunächst benötigt man die Zeit, wann die Kartoffel den Boden des Behälters erreicht. Nach Teil a) geschieht dies bei $t = 1.1 \mbox{\ s}$. Den in $x$-Richtung zurückgelegten Weg $s$ berechnet man durch
-  \begin{equation*}
-  	s(t) = \mathrm{\Delta}x(t) = v_{x,0}\cdot t 
-  \end{equation*}
+ \begin{MSolution}
+Der Ursprung des Koordinatensystems wird auf das Ende der Bahn gewählt. Gesucht ist der horizontal zurückgelegte Weg.  
+Zunächst benötigt man die Zeit, wann die Kartoffel den Boden des Behälters erreicht. Nach Teil a) geschieht dies bei $t = 1.1 \mbox{\ s}$. Den in $x$-Richtung zurückgelegten Weg $s$ berechnet man durch
+  $$
+  s(t) = \mathrm{\Delta}x(t) = v_{x,0}\cdot t 
+  $$
   Einsetzen von $t = 1.1 \mbox{\ s}$ und $v_{x,0} = 12 \mbox{\ m/s}$ ergibt $s(1.1 \mbox{\ s}) = 13.2 \mbox{\ m}$.               
- \ifttm \else \end{minipage}}\fi             
-         
- \end{MHint} 
-
+ \end{MSolution} 
+\end{MExercise}
 
 \end{MExercises}
 
 
 \MSubsection{Schiefer Wurf}  % ein Durchlauf über phys. Gesetze
-\begin{MXContent}{Grundlagen des schiefen Wurfs}{Teil \themycounter}{beweis}
-\stepcounter{mycounter}
+\begin{MXContent}{Grundlagen des schiefen Wurfs}{Grundlagen des schiefen Wurfs}{STD}
 \MLabel{physik_fall_schieferwurf01}
-Beim schiefen Wurf \MEntry{}{Wurf!schiefer} wird ein Körper unter einem bestimmten Winkel mit einer Anfangsgeschwindigkeit $v_0$ geworfen, wobei die vertikale und die horizontale Bewegung des Körpers unabhängig voneinander sind. 
+Beim \MEntry{schiefen Wurf}{Wurf!schiefer} wird ein Körper unter einem bestimmten Winkel mit einer Anfangsgeschwindigkeit $v_0$ geworfen, wobei die vertikale und die horizontale Bewegung des Körpers unabhängig voneinander sind. 
 
 Als Beispiel soll der Wurf eines Balles dienen. Der Ball wird zum Zeitpunkt $t = 0$ vom Ursprung des Koordinatensystems mit einem Winkel $\alpha$ bezüglich der horizontalen Achse geworfen. Die Anfangsgeschwindigkeit des Balls zum Zeitpunkt $t = 0$ sei $v(t=0) = v_0$. Die Anfangsgeschwindigkeit bezüglich der horizontalen und vertikalen Achse ergibt sich dann zu:
 \begin{MInfo}
-\begin{align*}
-v_{x,0} =& v_0\cdot \cos(\alpha) \\
-v_{y,0} =& v_0 \cdot \sin(\alpha) 
-\end{align*}
+\begin{eqnarray*}
+v_{x,0} &=& v_0\cdot \cos(\alpha) \\
+v_{y,0} &=& v_0 \cdot \sin(\alpha) 
+\end{eqnarray*}
 \end{MInfo}
 Die \textit{horizontale} Bewegung des Körpers (relativ zur Erde) ist eine gleichförmige Bewegung mit konstanter Geschwindigkeit $v_x$. Hier wirkt keine Kraft, also auch keine Beschleunigung. Daher bewegt sich der Ball entlang der $x$-Achse mit gleichbleibender Geschwindigkeit. Die kinematische Beschreibung der Bewegung in horizontaler Richtung lautet: \ifttm \ \\ \fi
-\begin{align*}
-x(t) =& v_x(t) \cdot t \\
-v_x(t) =& v_{x,0} \\
-a_x(t) =& 0
-\end{align*}
+\begin{eqnarray*}
+x(t) &=& v_x(t) \cdot t \\
+v_x(t) &=& v_{x,0} \\
+a_x(t) &=& 0
+\end{eqnarray*}
 Die \textit{vertikale} Bewegung des Körpers dagegen ist eine gleichmäßig beschleunigte Bewegung $(a = -g)$ unter Einfluss der Gravitationskraft und entspricht dem senkrechten Wurf. Die Beschreibung der vertikalen Richtung lautet daher:
-\begin{align*}
-y(t) =& v_{y,0} \cdot t + \frac{1}{2} \cdot a_y \cdot t^2 = v_{y,0} \cdot t - \frac{1}{2} \cdot g \cdot t^2 \\
-v_y(t) =& v_{y,0} + a_y \cdot t = v_{y,0} - g \cdot t \\
-a_y(t) =& -g
-\end{align*}
+\begin{eqnarray*}
+y(t) &=& v_{y,0} \cdot t + \frac{1}{2} \cdot a_y \cdot t^2 = v_{y,0} \cdot t - \frac{1}{2} \cdot g \cdot t^2 \\
+v_y(t) &=& v_{y,0} + a_y \cdot t = v_{y,0} - g \cdot t \\
+a_y(t) &=& -g
+\end{eqnarray*}
 Mit den kinematischen Gleichungen ist man in der Lage, die Flugbahn des Balls zu berechnen. Dazu drückt man wie beim horizontalen Wurf die Zeit als Quotient der horizontalen Geschwindigkeit und dem Ort $x$ aus:
-\begin{equation*}
+$$
 t = \frac{x}{v_{x,0}}
-\end{equation*}
+$$
 Dieses Ergebnis setzt man in die Gleichung für $y(t)$ ein und man erhält:
-\begin{equation*}
+$$
 y(x) = \frac{v_{y,0}}{v_{x,0}} \cdot x - \frac{1}{2} \frac{g}{v_{x,0}^2}\cdot x^2 = \tan(\alpha)\cdot x - \frac{1}{2} \frac{g}{v_{x,0}^2} \cdot x^2
-\end{equation*}
+$$
 Der 2. Term dieser Gleichung ist identisch mit dem Ergebnis aus dem horizontalen Wurf und beschreibt den positiven Ast einer nach unten geöffneten Parabel $(v_x >0)$. Der 1. Term verschiebt die Parabel in $x$- und $y$-Richtung in Abhängigkeit der vertikalen und horizontalen Anfangsgeschwindigkeit. 
 
 Ist z. B. die vertikale Anfangsgeschwindigkeit $v_{y,0} = 0$, fällt der 1. Term weg und man erhält das gleiche Ergebnis wie beim horizontalen Wurf. Das heißt, der horizontale Wurf ist nur ein Grenzfall des schiefen Wurfes für den Fall, dass $v_{y,0} = 0$ ist. Ist dagegen $v_{x,0} = 0$, tritt der Grenzfall des senkrechten Wurfs ein. 
@@ -457,11 +452,9 @@ Ist $v_{x,0} = 0$, handelt es sich um einen senkrechten Wurf. Ist $v_{y,0} = 0$,
 
 \end{MXContent}
 
-\begin{MXContent}{Reichweite und Flughöhe beim schiefen Wurf}{Teil \themycounter}{beweis}
-\stepcounter{mycounter}
+\begin{MXContent}{Reichweite und Flughöhe beim schiefen Wurf}{Reichweite und Flughöhe beim schiefen Wurf}{STD}
 \MLabel{physik_fall_schieferwurf02}
-Im Folgenden sollen die Fragen geklärt werden, wie weit ein Ball fliegt, wann er auf den Erdboden auftrifft und welche maximale Flughöhe er erreicht. \MEntry{}{Wurf!schiefer!Reichweite}\MEntry{}{Wurf!schiefer!Flughöhe}
- 
+Im Folgenden sollen die Fragen geklärt werden, wie \MEntry{weit}{Wurf!schiefer!Reichweite} ein Ball fliegt, wann er auf den Erdboden auftrifft und welche maximale \MEntry{Flughöhe}{Wurf!schiefer!Flughöhe} er erreicht.
 Für diese Betrachtungen wird der Ursprung des Koordinatensystems z. B. in den Abwurfpunkt gelegt (s. Skizze), der sich im Abstand $h$ über dem Erdboden befindet.
 
 \begin{center}
@@ -470,29 +463,29 @@ Für diese Betrachtungen wird der Ursprung des Koordinatensystems z. B. in den Ab
 \ifttm \begin{html} <br /> \end{html} \fi
 \underline{{Maximale Flughöhe}} \\ 
 Die maximale Flughöhe $y_{\mbox{max}}$ lässt sich aus der bereits bekannten Gleichung
-\begin{equation*}
+$$
 y(x) = \frac{v_{y,0}}{v_{x,0}} \cdot x - \frac{1}{2} \frac{g}{v_{x,0}^2} x^2 
-\end{equation*}
+$$
 berechnen.
 
 Aus der Mathematik ist bekannt, dass ein Maximum einer Funktion bedeutet, dass die 1. Ableitung an dieser Stelle 0 ist und die 2. Ableitung kleiner 0. Daher leitet man zunächst obigen Ausdruck nach $x$ ab:
-\begin{equation*}
+$$
 \frac{\text{d}y(x)}{\text{d}x} = \frac{v_{y,0}}{v_{x,0}} - \frac{g}{v_{x,0}^2} x 
-\end{equation*}
+$$
 Die zweite Ableitung ist kleiner 0 aufgrund des Faktors $-g$ und die Nullstelle der 1. Ableitung befindet sich bei (überprüfen Sie selbst) 
 \begin{equation}
 x_{\mbox{max}} = \frac{v_{y,0} \cdot v_{x,0}}{g}
 \end{equation}
 
 Die maximale Höhe erhält man, indem man $y(x_{\mbox{max}})$ berechnet:
-\begin{equation*}
+$$
 y_{\mbox{max}} = y(x_{\mbox{max}}) = \frac{v_{y,0}}{v_{x,0}} \frac{v_{y,0} v_{x,0}}{g} - \frac{1}{2} \frac{g}{v_{x,0}^2} \left(\frac{v_{y,0}v_{x,0}}{g} \right)^2 = \frac{1}{2} \frac{v_{y,0}^2}{g}
-\end{equation*}
+$$
 Das Maximum der Flugbahn wird zum Zeitpunkt 
 \begin{MInfo}
-\begin{equation*}
+$$
 t_{\mbox{max}} = \frac{x_{\mbox{max}}}{v_x} = \frac{v_{y,0}\cdot v_{x,0}}{g \cdot v_{x,0}} = \frac{v_{y,0}}{g}
-\end{equation*}
+$$
 \end{MInfo}
 erreicht.    
 \\
@@ -500,14 +493,14 @@ erreicht.
 \ifttm \begin{html} <br /> \end{html} \fi
 \underline{{Reichweite und Flugdauer}} \\ 
 Im einfachsten Fall befindet sich der Abwurfpunkt auf gleicher Höhe wie der Erdboden. In diesem Fall ist $h = 0$. Da eine Parabel symmetrisch zur Achse durch ihr Maximum bzw. Minimum ist, muss in diesem Fall die Reichweite $x_{\mbox{r}}$ des Balls $2\cdot x_{\mbox{max}}$ sein. Ebenso ist die Zeitdauer $t_{\mbox{r}} = 2\cdot t_{\mbox{max}}$. Ist $h$ dagegen nicht null, muss man zunächst den Zeitpunkt berechnen, an dem der Ball den Erdboden berührt. Aus den bereits angestellten Überlegungen ist bekannt:
-\begin{equation*}
+$$
 t_{\mbox{r}} = \frac{v_{y,0} \pm \sqrt{v_{y,0}^2+2 g h}}{g}
-\end{equation*}
+$$
 Die negative Lösung entfällt, da sie physikalisch nicht sinnvoll ist (zur Kontrolle: Für den Fall $h = 0$ erhält man $t_{\mbox{r}} = 2 \cdot t_{\mbox{max}}$). Die Reichweite ergibt sich aus dem Zusammenhang $x(t) = v_{x,0}t$ zu:
 \begin{MInfo}
-\begin{equation*}
+$$
 x_{\mbox{r}} = v_{x,0} \frac{v_{y,0} + \sqrt{v_{y,0}^2+2 g h}}{g}
-\end{equation*}
+$$
 \end{MInfo}
 	Veranschaulichen Sie sich obige Überlegungen für den Fall $h=0$: \ifttm \MSRef{physik_applet_schieferwurf2}{Applet starten} \else \MSRef{physik_applet_schieferwurf2}{Zur Applet-Beschreibung} \href{http://mintlx1.scc.kit.edu/onlineapplets/p4/applet_wurf_03.html}{Applet starten} \fi
 
@@ -515,52 +508,51 @@ x_{\mbox{r}} = v_{x,0} \frac{v_{y,0} + \sqrt{v_{y,0}^2+2 g h}}{g}
 
 \end{MXContent}
 
-\begin{MXContent}{Winkelabhängigkeit des schiefen Wurfs}{Teil \themycounter}{beweis}
-\stepcounter{mycounter}
+\begin{MXContent}{Winkelabhängigkeit des schiefen Wurfs}{Winkelabhängigkeit des schiefen Wurfs}{STD}
 \MLabel{physik_fall_schieferwurf03}
 In einem Piratenfilm soll ein Schiffskampf inszeniert werden. Um die Effekte und Stunts zu koordinieren, benötigt man neben den Informationen Reichweite, Flugdauer und maximale Höhe der Geschosse noch die Abhängigkeit bzgl. des Winkels $\alpha$. Diese Winkelabhängigkeit war bisher in der $x$- und $y$-Komponente der Anfangsgeschwindigkeit enthalten. Daher stellt sich z. B. die Frage: Unter welchem Winkel erhält man die maximale Reichweite $x_{\mbox{r,max}}$. Eine andere Fragestellung lautet, die für das obige Beispiel eines Schiffskampfes wichtig ist: Welchen Winkel muss man einstellen, um das gegnerische Schiff bei gegebener Abschussgeschwindigkeit zu treffen? Um das Problem zu vereinfachen, sei $h$ in den folgenden Überlegungen null. \\
 \ifttm \begin{html} <br /> \end{html} \fi
 
-\underline{Maximale Reichweite} \MEntry{}{Wurf!schiefer!Reichweite, maximale}\\ 
-\noindent Für $h = 0$ ist bereits bekannt, dass die Reichweite 
-\begin{equation*}
+\MEntry{Maximale Reichweite}{Wurf!schiefer!Reichweite, maximale}:\\ 
+Für $h = 0$ ist bereits bekannt, dass die Reichweite 
+$$
 x_{\mbox{r}} = 2 \frac{v_{x,0} v_{y,0}}{g}
-\end{equation*}
+$$
 beträgt. Um die Abhängigkeit vom Winkel $\alpha$ zu erhalten, ersetzt man $v_{x,0}$ mit $v_0 \cos(\alpha)$ bzw. $v_{y,0}$ mit $v_0 \sin(\alpha)$:
-\begin{equation*}
+$$
 x_{\mbox{r}} = 2 \frac{v_0^2}{g} \sin(\alpha) \cos(\alpha)
-\end{equation*}
+$$
 Aus der Mathematik ist bekannt, dass sich 2 $\sin(\alpha)\cdot \cos(\alpha)$ zu $\sin(2\alpha)$ zusammenfassen lässt. Man erhält für die Reichweite daher:
 \begin{MInfo}
-\begin{equation*}
+$$
 x_{\mbox{r}} = \frac{v_0^2}{g} \sin(2\alpha)
-\end{equation*}
+$$
 \end{MInfo}
 Da die Sinus-Funktion maximal den Wert 1 annehmen kann, sind für die maximale Reichweite alle Winkel $\alpha$ gesucht, die zu $\sin(2\alpha) = 1$ führen. Dies ist z. B. für $\alpha = 45^\circ$ erfüllt. Unter diesem Winkel wird die Reichweite maximal und die horizontale und die vertikale Geschwindigkeitskomponente beim Abwurf sind gleich groß. \\
 
 
 \ifttm \begin{html} <br /> \end{html} \fi
-\underline{{Winkelabhängigkeit}}\MEntry{}{Wurf!schiefer!Winkelabhängigkeit} \\ 
-\noindent Betrachten wir nun den umgekehrten Fall. Die Reichweite $x_{\mbox{r}}$ ist vorgegeben, ebenso die Anfangsgeschwindigkeit $v_0$. Das gegnerische Schiff sei zugleich in Reichweite der Kanonen. Welchen Winkel $\alpha$ muss man einstellen, um zu treffen? 
+\MEntry{Winkelabhängigkeit}{Wurf!schiefer!Winkelabhängigkeit}:\\ 
+Betrachten wir nun den umgekehrten Fall. Die Reichweite $x_{\mbox{r}}$ ist vorgegeben, ebenso die Anfangsgeschwindigkeit $v_0$. Das gegnerische Schiff sei zugleich in Reichweite der Kanonen. Welchen Winkel $\alpha$ muss man einstellen, um zu treffen? 
 
 Um diese Frage zu beantworten, löst man die Gleichung
-\begin{equation*}
+$$
 x_{\mbox{r}} = \frac{v_0^2}{g} \sin(2\alpha)
-\end{equation*}
+$$
 nach dem Winkel $\alpha$ auf:
-\begin{equation*}
+$$
 \alpha = \frac{1}{2} \arcsin\left(\frac{x_{\mbox{r}} \cdot g}{v_0^2}\right)
-\end{equation*}
+$$
 Der Arcussinus ist die Umkehrfunktion des Sinus in einem Abschnitt der Sinusfunktion, z. B. im Winkelbereich $-90^\circ$ bis $90^\circ$. Um die anderen Winkelbereiche der Sinus-Funktion ebenfalls umkehren zu können, existieren weitere "`Zweige"' der Arcussinus-Funktion, z. B. im Winkelbereich $90^\circ$--$270^\circ$ (s. Abbildung)
 \begin{center}
 \MGraphicsSolo{arcsin.png}{scale=0.6}\\
 \end{center}
 Dies bedeutet, dass man für einen Funktionswert der Arcussinus-Funktion mehrere Winkel als Lösung erhalten kann. Da bei dem betrachteten Problem nur Winkel zwischen $0^\circ$ und $90^\circ$ auftreten sollen, erhält man daher zwei Lösungen:
 \begin{MInfo}
-\begin{align*}
-\alpha_1 =& \frac{1}{2} \arcsin\left(\frac{x_{\mbox{r}} \cdot g}{v_0^2}\right) \\
-\alpha_2 =& \frac{1}{2} \left(180^\circ - \arcsin\left(\frac{x_{\mbox{r}} \cdot g}{v_0^2}\right)\right)
-\end{align*}
+\begin{eqnarray*}
+\alpha_1 &=& \frac{1}{2} \arcsin\left(\frac{x_{\mbox{r}} \cdot g}{v_0^2}\right) \\
+\alpha_2 &=& \frac{1}{2} \left(180^\circ - \arcsin\left(\frac{x_{\mbox{r}} \cdot g}{v_0^2}\right)\right)
+\end{eqnarray*}
 \end{MInfo}
 Das bedeutet, man kann das gegnerische Schiff unter zwei Winkeln treffen: einem flachen und einem steilem Winkel, die zu $45^\circ$ "`symmetrisch"' sind. Die Flugzeiten des Objektes unterscheiden sich jedoch. Das Flugobjekt wird unter dem flachen Abwurfwinkel das Ziel schneller erreichen als beim steilen Winkel. \ifttm Probieren Sie es selbst: \MSRef{physik_applet_winkelwurf}{Applet starten} \else \MSRef{physik_applet_winkelwurf}{Zur Applet-Beschreibung} \href{http://mintlx1.scc.kit.edu/onlineapplets/p4/applet_wurf_04.html}{Applet starten}  \fi
 
@@ -578,9 +570,9 @@ $t_{\mbox{r}} =$ \MLParsedQuestion{4}{6,1}{1}{DECCONVUXID_4C4FDA25_2} $\mbox{\ s
 \begin{MHint}{Lösung}
  \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi 
 	Da der Ball vom Erdboden startet und auch dort wieder auftrifft, lautet die Berechnungsformel für die Zeitdauer:
- \begin{equation*}
+ $$
   	t_{\mbox{r}} = \frac{2v_{y,0}}{g} = \frac{2 v_0 \sin(\alpha)}{g}
-  \end{equation*}
+  $$
 	Setzt man für $v_0 = 50 \mbox{\ m/s}$, für $g = 9.81 \mbox{\ m s}^{-2}$ und für $\alpha = 37^\circ$ ein, erhält man für die Zeitdauer $t_{\mbox{r}} = 6.1 \mbox{\ s}$    
  \ifttm \else \end{minipage}}\fi             
 \end{MHint} \\
@@ -593,13 +585,13 @@ $\mathrm{\Delta} x =$ \MLParsedQuestion{4}{245}{0}{DECCONVUXID_4C4FDA25_3} $\mbo
 \begin{MHint}{Lösung}
  \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi 
   Gesucht ist hier die Wurfweite für den Fall, dass $h = 0$ ist. Daher erhält man als Berechnungsformel für den gesuchten Abstand:
-  \begin{equation*}
+  $$
    \mathrm{\Delta} x = x_{\mbox{r}} = \frac{2 v_{x,0} \cdot v_{y,0}}{g}
-  \end{equation*}
+  $$
   Alternativ erhält man durch die Zusammenhänge $v_{x,0} = v_0 \cos(\alpha)$, $v_{y,0} = v_0 \sin(\alpha)$ und 2 $\sin(\alpha) \cdot \cos(\alpha) = \sin(2 \alpha)$:
-  \begin{equation*}
+  $$
    \mathrm{\Delta} x = x_{\mbox{r}} = v_0^2 \frac{\sin(2 \alpha)}{g}
-  \end{equation*}
+  $$
   Setzt man nun die Werte $v_0 = 50 \mbox{\ m/s}$, $g = 9.81 \mbox{\ m s}^{-2}$ und $\alpha = 37^\circ$ in eine der obigen Gleichungen ein, erhält man $\mathrm{\Delta} x = 245 \mbox{\ m}$.
  \ifttm \else \end{minipage}}\fi    
          
@@ -610,8 +602,7 @@ $\mathrm{\Delta} x =$ \MLParsedQuestion{4}{245}{0}{DECCONVUXID_4C4FDA25_3} $\mbo
 
 
 \MSubsection{Applets}  % ein Durchlauf für die Applets
-\begin{MXContent}{Applet -- Horizontaler Wurf}{Applet \thephysapplet}{puzzle}
-\stepcounter{physapplet}
+\begin{MXContent}{Applet -- Horizontaler Wurf}{Applet -- Horizontaler Wurf}{puzzle}
 \MLabel{physik_applet_horizwurf}
 Ein Flugzeug fliegt in einer Höhe von 3358 \mbox{m} und muss ein Care-Paket auf den mit einem roten Kreis gekennzeichneten Punkt abliefern. Die Geschwindigkeit kann durch einen Regler eingestellt werden. Das Flugzeug startet beim Klicken von Start und wirft das Paket beim Klicken von Abwurf ab. Viel Erfolg!
 \ifttm 
@@ -626,8 +617,7 @@ Ein Flugzeug fliegt in einer Höhe von 3358 \mbox{m} und muss ein Care-Paket auf 
 \fi
 \end{MXContent}
 
-\begin{MXContent}{Applet -- Schiefer Wurf}{Applet \thephysapplet}{puzzle}
-\stepcounter{physapplet}
+\begin{MXContent}{Applet -- Schiefer Wurf}{Applet -- Schiefer Wurf}{puzzle}
 \MLabel{physik_applet_schieferwurf}
 Eine Kanone feuert einen Ball mit einem einstellbaren Winkel $\alpha$ und einer Anfangsgeschwindigkeit $v_0$ ab. Die Anfangsgeschwindigkeit kann im Bereich $v_0 = 1  \ \mbox{ m/s}$ und $v_0 = 100 \ \mbox{ m/s}$ verändert werden. Durch Aktivieren von "`Maße anzeigen"' können Sie die Flugbahn und die vertikale und horizontale Geschwindigkeitskomponente besser verfolgen.
 
@@ -643,8 +633,7 @@ Eine Kanone feuert einen Ball mit einem einstellbaren Winkel $\alpha$ und einer 
 \fi
 \end{MXContent}
 
-\begin{MXContent}{Applet -- Schiefer Wurf}{Applet \thephysapplet}{puzzle}
-\stepcounter{physapplet}
+\begin{MXContent}{Applet -- Schiefer Wurf}{Applet -- Schiefer Wurf}{puzzle}
 \MLabel{physik_applet_schieferwurf2}
 
 Ein Artist möchte einen neuen Rekord aufstellen: Zum einen möchte er bei einer gegebenen Startgeschwindigkeit möglichst weit fliegen. Zum anderen möchte er über ein Hindernis (hier ein Hochhaus) fliegen oder darauf "`landen"'. Mit "`Maße anzeigen"' wird der Winkel, der Abstand des Hauses und die Höhe des Hochhauses jeweils in roter Farbe angezeigt. In blauer Farbe wird die maximal erreichte Flughöhe und deren Position angezeigt.
@@ -662,8 +651,7 @@ Ein Artist möchte einen neuen Rekord aufstellen: Zum einen möchte er bei einer g
 \fi
 \end{MXContent}
 
-\begin{MXContent}{Applet -- Winkelabhängigkeit}{Appplet \thephysapplet}{puzzle}
-\stepcounter{physapplet}
+\begin{MXContent}{Applet -- Winkelabhängigkeit}{Applet -- Winkelabhängigkeit}{puzzle}
 \MLabel{physik_applet_winkelwurf}
 
 In einem Piratenfilm soll ein Schiffskampf inszeniert werden. Die Kapitäne der beiden Schiffe möchten jedoch nicht den gleichen Abschusswinkel verwenden, trotzdem jedoch beide treffen. Sie können den Abschusswinkel eines der Schiffe einstellen und feuern durch Drücken von Start. Der andere Kapitän wird seinen Abschusswinkel entsprechend Ihrer Einstellungen verändern. Der Kanonier berechnet automatisch die passende Abschussgeschwindigkeit, um das gegnerische Schiff bei einem bestimmten Winkel zu treffen.

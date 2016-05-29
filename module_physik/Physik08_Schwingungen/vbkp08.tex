@@ -47,52 +47,19 @@
 %			Einleitende Beispiele Schnitt Kugelwelle, online 
 %			auch animiert, und schwingende Saite
 % Version 9: 2013=10=24 (Letzte Korrekturen von Inge Karl)
-% To Do: Veroeffenlichung, Harmonisierung aller Module
+% Version10: 2016=05=29 (Umstellung auf Onlinevorkurs Physik von Daniel Haase)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{mintmod.tex}
 
-%%%% Neue Befehlsdefinition noch hier, sp"ater in mintmod
-%%%% Alternative als Umgebung mit Fussnote im PDF s. u.
-%%%% \MOnlineOnly{<Inhalt, der nur in der Online-Version erscheinen soll>}
-%%%% dh/ehh/jl, MINT-Kolleg BW, 2013=03=01
-\newcommand\MOnlineOnlyErsatz{Im Onlinemodul finden Sie an dieser Stelle weitere Inhalte.}
-%Standard-Ersatztext, ggf. fuer eigene Bed"urfnisse jeweils mit \renewcommand{...} anpassen.
-%Zum Bezeichner: Ersatz is a German loanword in English which refers to substitutes of 
-%an inferior quality.
-\ifttm
-    \newcommand{\MOnlineOnly}[1]{#1} %d. h. keine Wirkung fuer die Ausgabe
-\else
-    \newcommand{\MOnlineOnly}[1]{
-        \begin{quote}\textit   %Quote-Umgebung mit Kursiv-Deklaration
-            \MOnlineOnlyErsatz
-        \end{quote}
-    }
-    %F"ur die PDF-Version wird der Parameter (Inhalt f"ur die Online-Version) nicht verwendet.
-\fi
-%%%% Alternative:
-\ifttm
-    \newenvironment{MHintRespFootnote}{\begin{MHint}{Bemerkung zu der Gleichung}}{\end{MHint}} %oder Befehl mit Text
-\else
-    \newenvironment{MHintRespFootnote}{\footnote{}{}} %geht nicht :(
-\fi
-%%%% Ende neue Befehlsdefinition f"ur mintmod
-
 \begin{document}
-\MRegisterFile{Bilder}
-\MSetSubject{\MINTPhysics}
-%Ge"anderter Ersatztext:
-\renewcommand\MOnlineOnlyErsatz{Im Online-Modul finden Sie an dieser 
-    Stelle weiterf"uhrende Bemerkungen.
-}
-%Eigener Befehl f"ur Hervorhebung durch Fontbefehl (da kein Absatz), ggf. hier "andern.
-%Andere M"oglichkeiten: Deklaration {{\bfseries #1}} oder
-%Umgebungsvariante der Deklaration {\begin{bfseries} #1 \end{bfseries}}
-\newcommand{\EdmesEmph}[1]{\textit{#1}}
+\def\mse#1{\mathrm{#1}}
 
 %###############################################################################
-\MSection{Schwingungen und Wellen}\MLabel{Physik_Schwingungen}
+\MSection{Schwingungen und Wellen}
+\MLabel{Physik_Schwingungen}
 \begin{MSectionStart}
+\MLabel{VBKP08}
 Schwingungen treten in vielf"altiger Weise in Erscheinung. Beispiele sind 
 \begin{itemize}
   \item Schwingung einer Masse an einer Feder,
@@ -119,74 +86,76 @@ Nach einf"uhrenden Erl"auterungen erfolgt stets auch eine mathematische Beschrei
 Das Thema Schwingungen wird im ersten Drittel des Moduls behandelt. Bei Zeitmangel k"onnen kompliziertere Konzepte wie D"ampfung und Anregung ausgelassen werden. Das zweite Drittel leitet in einige Konzepte von Wellen ein, wobei nur ein kleiner Einblick in das umfangreiche und anspruchsvolle Themengebiet gegeben werden kann. Auch hier kann aus Zeitgr"unden eine Auswahl erforderlich sein. Im letzten Drittel werden zus"atzliche Inhalte zur Verf"ugung gestellt. Es werden numerische L"osungen als ein wichtiges Verfahren in der modernen Physik und in anderen Gebieten der Natur- und Ingenieurwissenschaften vorgestellt. Elektrische Schwingkreise sind in vielen Anwendungen von grundlegender Bedeutung. Der betreffende Abschnitt behandelt die Thematik in Analogie zu den mechanischen Schwingungen, ohne auf Details einzugehen, die in folgenden Modulen behandelt werden. Als weiteres Beispiel f"ur eine mechanische Schwingung wird das Fadenpendel vorgestellt.
 
 Das vorliegende Modul orientiert sich in der Schreibweise und Herangehensweise an den Feynman-Vorlesungen "uber Physik, Band 1: Mechanik, Strahlung, W"arme, R. P. Feynman, R. B. Leighton, M. Sands, Definitive Edition, 5. Auflage, Oldenburg Verlag M"unchen (2007). Dieses Buch richtet sich durchaus an Einsteiger, allerdings stets mit dem Hintergrund fortgeschrittener Konzepte und oft auf originelle Weise.
-Umfangreiche Erl"auterungen zu vielen Themen der Physik finden sich in: Gerthsen Physik, D. Meschede, 24. Auf\/lage, Springer-Verlag Berlin Heidelberg (2010).
-Um einen ersten Eindruck zu einem Themengebiet zu bekommen ist h"aufig auch die deutsch- oder englischsprachige freie Online-Enzyklop"adie Wikipedia\textregistered\ hilfreich.
+Umfangreiche Erl"auterungen zu vielen Themen der Physik finden sich in: Gerthsen Physik, D. Meschede, 24. Auflage, Springer-Verlag Berlin Heidelberg (2010).
+Um einen ersten Eindruck zu einem Themengebiet zu bekommen ist h"aufig auch die deutsch- oder englischsprachige freie Online-Enzyklop"adie Wikipedia hilfreich.
 
 In diesen Modul werden folgende lateinische Symbole verwendet:\\
-\begin{MWTabular}{lll}
-  Symbol & Einheit & Erl"auterung \\\hline
-  $A_C$  & m$^2$   & Fl"ache des Plattenkondensators \\
-  $C$    & F       & Elektrische Kapazit"at \\
-  $c$    & Ns/m    & Proportionalit"atskonstante der geschwindigkeitsabh"angigen Reibungskraft \\
-  $c_\mathrm{s}$ & m/s & Schallgeschwindigkeit \\
-  d$x$/d$t$     & m/s     & Geschwindigkeit. "Ubliches Symbol ohne Ableitung: $v$ \\
-  d$^2x$/d$t^2$ & m/s$^2$ & Beschleunigung. "Ubliches Symbol ohne Ableitung: $a$ \\
-  $E$    & J       & Energie \\
-  $E_\mathrm{kin}$ & J & Kinetische Energie \\
-  $E_\mathrm{pot}$ & J & Potentielle Energie \\
-  $F$    & N       & Kraft \\
-  $F_0$  & N       & Amplitude der "au"seren Kraft \\
-  $g$    & N/kg    & Erdbeschleunigung \\
-  $I$    & A       & Elektrischer Strom \\
-  $k$    & N/m     & Federkonstante \\
-  $k_x$  & rad/m   & $x$-Komponente des Wellenvektors \\
-  $L$    & H       & Elektrische Induktivit"at \\
-  $l$    & m       & Pendell"ange \\
-  $l_\mathrm{D}$ & m & Drahtl"ange \\
-  $m$    & kg      & Masse \\
-  $N$    & -       & Anzahl Windungen \\
-  $P$    & W       & Leistung \\
-  $P_e$  & Pa      & Schallbedingte Druck"anderung \\
-  $P_0$  & Pa      & Gleichgewichtsdruck \\
-  $Q$    & -       & G"ute \\
-  $q$    & C       & Elektrische Ladung \\
-  $R$    & $\Omega$ & Elektrischer Widerstand \\
-  $t$    & s       & Zeit \\
-  $t_0$  & s       & Schwingungsperiode \\
-  $U$    & V       & Elektrische Spannung \\
-  $v$    & m/s     & Geschwindigkeit \\
-  $x$    & m       & Auslenkung (Schwingungen) bzw. Ortsvariable (Wellen) \\
-  $x_h$  & m       & Homogene L"osung (Einschwingvorgang) \\
-  $x_p$  & m       & Partikul"are L"osung (eingeschwungen) \\
-  $\hat{x}$ & m    & Amplitude der Aufh"angungsauslenkung
-\end{MWTabular}
+\begin{tabular}{|l|l|l|}
+\hline
+Symbol & Einheit & Erl"auterung \\\hline
+  $A_C$  & m$^2$   & Fl"ache des Plattenkondensators \\\hline
+  $C$    & F       & Elektrische Kapazit"at \\\hline
+  $c$    & Ns/m    & Proportionalit"atskonstante der geschwindigkeitsabh"angigen Reibungskraft \\\hline
+  $c_\mathrm{s}$ & m/s & Schallgeschwindigkeit \\\hline
+  d$x$/d$t$     & m/s     & Geschwindigkeit. "Ubliches Symbol ohne Ableitung: $v$ \\\hline
+  d$^2x$/d$t^2$ & m/s$^2$ & Beschleunigung. "Ubliches Symbol ohne Ableitung: $a$ \\\hline
+  $E$    & J       & Energie \\\hline
+  $E_\mathrm{kin}$ & J & Kinetische Energie \\\hline
+  $E_\mathrm{pot}$ & J & Potentielle Energie \\\hline
+  $F$    & N       & Kraft \\\hline
+  $F_0$  & N       & Amplitude der "au"seren Kraft \\\hline
+  $g$    & N/kg    & Erdbeschleunigung \\\hline
+  $I$    & A       & Elektrischer Strom \\\hline
+  $k$    & N/m     & Federkonstante \\\hline
+  $k_x$  & rad/m   & $x$-Komponente des Wellenvektors \\\hline
+  $L$    & H       & Elektrische Induktivit"at \\\hline
+  $l$    & m       & Pendell"ange \\\hline
+  $l_\mathrm{D}$ & m & Drahtl"ange \\\hline
+  $m$    & kg      & Masse \\\hline
+  $N$    & -       & Anzahl Windungen \\\hline
+  $P$    & W       & Leistung \\\hline
+  $P_e$  & Pa      & Schallbedingte Druck"anderung \\\hline
+  $P_0$  & Pa      & Gleichgewichtsdruck \\\hline
+  $Q$    & -       & G"ute \\\hline
+  $q$    & C       & Elektrische Ladung \\\hline
+  $R$    & $\Omega$ & Elektrischer Widerstand \\\hline
+  $t$    & s       & Zeit \\\hline
+  $t_0$  & s       & Schwingungsperiode \\\hline
+  $U$    & V       & Elektrische Spannung \\\hline
+  $v$    & m/s     & Geschwindigkeit \\\hline
+  $x$    & m       & Auslenkung (Schwingungen) bzw. Ortsvariable (Wellen) \\\hline
+  $x_h$  & m       & Homogene L"osung (Einschwingvorgang) \\\hline
+  $x_p$  & m       & Partikul"are L"osung (eingeschwungen) \\\hline
+  $\hat{x}$ & m    & Amplitude der Aufh"angungsauslenkung \\\hline
+\end{tabular}
 
 In diesen Modul werden folgende griechische Symbole verwendet:\\
-\begin{MWTabular}{lll}
+\begin{tabular}{|l|l|l|}
+\hline
   Symbol & Einheit & Erl"auterung \\\hline
-  $\alpha$      & (rad)   & Auslenkungswinkel \\
-  $\delta t$    & s       & Dauer eines Zeitschrittes \\
-  $\partial / \partial x$ & 1/m & Partielle Ortsableitung \\
-  $\partial^2 / \partial t^2$ & 1/s$^2$ & Zweite partielle Zeitableitung \\
-  $\partial^2 / \partial x^2$ & 1/m$^2$ & Zweite partielle Ortsableitung \\
-  $\epsilon_0$  & F/m     & Elektrische Feldkonstante \\
-  $\gamma$      & 1/s     & Verh"altnis aus $c$ und $m$, s. o. \\
-  $\Delta$	& (rad)   & Phasenverschiebung der Anregungskraft \\
-  $\kappa$      & (m/s)$^2$    & Druck"anderung pro Dichte"anderung im Bereich der Gleichgewichtswerte \\
-  $\lambda$     & m       & Wellenl"ange \\
-  $\mu_0 $      & H/m     & Magnetische Feldkonstante \\
-  $\nu_0$       & 1/s     & Frequenz \\
-  $\omega_0$    & 1/s     & Nat"urliche Kreisfrequenz \\
-  $\omega$      & 1/s     & Kreisfrequenz der Anregung. \\
-  $\phi$	& (rad)	  & Phasenverschiebung beim harmonischen Oszillator \\
-  $\phi_d$	& (rad)   & Phasenverschiebung mit D"ampfung \\
-  $\rho$        & s$^2$/kg& Schwingungsamplitude pro Amplitude der "au"seren Kraft \\
-  $\rho_e$      & kg/m$^3$ & Schallbedingte Dichte"anderung \\
-  $\rho_0$      & kg/m$^3$ & Gleichgewichtsdichte \\
-  $\sigma$      & S/m     & Elektrische Leitf"ahigkeit \\   
-  $\theta$      & (rad)   & Phasenverschiebung mit Anregungskraft \\
-  $\chi$        & m       & Schallbedingte Teilchenverschiebung
-\end{MWTabular}
+  $\alpha$      & (rad)   & Auslenkungswinkel \\\hline
+  $\delta t$    & s       & Dauer eines Zeitschrittes \\\hline
+  $\partial / \partial x$ & 1/m & Partielle Ortsableitung \\\hline
+  $\partial^2 / \partial t^2$ & 1/s$^2$ & Zweite partielle Zeitableitung \\\hline
+  $\partial^2 / \partial x^2$ & 1/m$^2$ & Zweite partielle Ortsableitung \\\hline
+  $\epsilon_0$  & F/m     & Elektrische Feldkonstante \\\hline
+  $\gamma$      & 1/s     & Verh"altnis aus $c$ und $m$, s. o. \\\hline
+  $\Delta$	& (rad)   & Phasenverschiebung der Anregungskraft \\\hline
+  $\kappa$      & (m/s)$^2$    & Druck"anderung pro Dichte"anderung im Bereich der Gleichgewichtswerte \\\hline
+  $\lambda$     & m       & Wellenl"ange \\\hline
+  $\mu_0 $      & H/m     & Magnetische Feldkonstante \\\hline
+  $\nu_0$       & 1/s     & Frequenz \\\hline
+  $\omega_0$    & 1/s     & Nat"urliche Kreisfrequenz \\\hline
+  $\omega$      & 1/s     & Kreisfrequenz der Anregung. \\\hline
+  $\phi$	& (rad)	  & Phasenverschiebung beim harmonischen Oszillator \\\hline
+  $\phi_d$	& (rad)   & Phasenverschiebung mit D"ampfung \\\hline
+  $\rho$        & s$^2$/kg& Schwingungsamplitude pro Amplitude der "au"seren Kraft \\\hline
+  $\rho_e$      & kg/m$^3$ & Schallbedingte Dichte"anderung \\\hline
+  $\rho_0$      & kg/m$^3$ & Gleichgewichtsdichte \\\hline
+  $\sigma$      & S/m     & Elektrische Leitf"ahigkeit \\   \hline
+  $\theta$      & (rad)   & Phasenverschiebung mit Anregungskraft \\\hline
+  $\chi$        & m       & Schallbedingte Teilchenverschiebung\\\hline
+\end{tabular}
 
 \end{MSectionStart}
 
@@ -196,46 +165,56 @@ In diesen Modul werden folgende griechische Symbole verwendet:\\
 %===============================================================================
 \MSubsection{Schwingungen}\MLabel{Physik_Schwingungen_SubSchwingungen}
 \begin{MIntro}\MLabel{Physik_Schwingungen_IntroSchwingungen}
-Als ganz einfaches mechanisches Beispiel soll eine starre Masse an einer idealen Feder (masselos, linear) betrachtet werden, s. Abb. \MRef{Physik_Schwingungen_AbbHO}:
-
-\begin{center}
-  \MUGraphics{Bilder/abbFederMasse}{scale=1}{Mechanischer harmonischer Oszillator aus idealer Feder und idealer Masse ohne Verluste. Skizze links: Masse im Schwerefeld der Erde an der Feder h"angend. Skizze rechts: reibungsfreie Bewegung in einer horizontalen F"uhrung.\MLabel{Physik_Schwingungen_AbbHO}
-}{width:400px;}
-  \end{center}
-
-Das eine Ende der Feder ist fixiert. Wird die Masse ausgelenkt (d. h. die Feder wird gedehnt oder komprimiert) und dann losgelassen, beginnt die Masse zu schwingen. Abgesehen von der Richtung der Bewegung und der Auslenkung der Feder in Ruhe ist es dabei unerheblich, ob die Masse im Schwerefeld der Erde an der Feder h"angt oder die Masse auf einer horizontalen Schiene ohne Reibung gleitet. 
-
-Bevor wir mit einer genauen Analyse und Beschreibung auftretender Ph"anomene beginnen, soll "uberlegt werden, welche physikalischen Gr"o"sen eine Rolle spielen und wie sie qualitativ zusammenh"angen. Dabei werden kurz die jeweiligen Dimensionen und Einheiten wiederholt.
-
-\begin{itemize}
-  \item Die beobachtete physikalische Gr"o"se ist die Auslenkung der Masse. Diese abh"angige Variable wird hier mit $x$ bezeichnet. Sie ist von der Dimension L"ange mit der SI-Basiseinheit, m.
-  \item Die Auslekung wird als Funktion der unabh"angigen Variablen Zeit betrachtet. Die Zeit wird wie "ublich mit $t$ bezeichnet und ist von der gleichlautenden Dimension Zeit mit der Einheit Sekunde, s.
-  \item Eine Abh"angigkeit der Bewegung von der tr"agen Masse, ein Parameter mit festem Wert f"ur ein gegebenes Masse-Feder-System, ist zu erwarten. Das "ubliche Symbol ist $m$, sie ist von der wiederum gleichlautenden Dimension Masse mit SI-Einheit Kilo(!)gramm, kg.
-  \item Schlie"slich wird die Bewegung dadurch beeinflusst, wie die Federkraft mit der Auslenkung zunimmt. Hier wird vereinfachend eine Proportionalit"at angenommen und der Parameter mit $k$ bezeichnet, wobei die Bezeichnung $D$ ebenfalls verbreitet ist. Die Dimension der Federkonstante ist Kraft pro L"ange, d. h. Masse pro Quadrat der Zeit, mit Einheit Newton pro Meter, N/m, bzw. kg/s$^2$.
-\end{itemize}
-
-\MOnlineOnly{
+% Als ganz einfaches mechanisches Beispiel soll eine starre Masse an einer idealen Feder (masselos, linear) betrachtet werden, s. Abb. \MRef{Physik_Schwingungen_AbbHO}:
+% 
+% \begin{center}
+% \MUGraphics{abbFederMasse}{scale=1}{Mechanischer harmonischer Oszillator aus idealer Feder und idealer Masse ohne Verluste. Skizze links: Masse im Schwerefeld der Erde an der Feder h"angend. Skizze rechts: reibungsfreie Bewegung in einer horizontalen F"uhrung.\MLabel{Physik_Schwingungen_AbbHO}}{width:400px}
+% \end{center}
+% 
+% Das eine Ende der Feder ist fixiert. Wird die Masse ausgelenkt (d. h. die Feder wird gedehnt oder komprimiert) und dann losgelassen, beginnt die Masse zu schwingen. Abgesehen von der Richtung der Bewegung und der Auslenkung der Feder in Ruhe ist es dabei unerheblich, ob die Masse im Schwerefeld der Erde an der Feder h"angt oder die Masse auf einer horizontalen Schiene ohne Reibung gleitet. 
+% 
+% Bevor wir mit einer genauen Analyse und Beschreibung auftretender Ph"anomene beginnen, soll "uberlegt werden, welche physikalischen Gr"o"sen eine Rolle spielen und wie sie qualitativ zusammenh"angen. Dabei werden kurz die jeweiligen Dimensionen und Einheiten wiederholt.
+% 
+% \begin{itemize}
+%   \item Die beobachtete physikalische Gr"o"se ist die Auslenkung der Masse. Diese abh"angige Variable wird hier mit $x$ bezeichnet. Sie ist von der Dimension L"ange mit der SI-Basiseinheit, m.
+%   \item Die Auslekung wird als Funktion der unabh"angigen Variablen Zeit betrachtet. Die Zeit wird wie "ublich mit $t$ bezeichnet und ist von der gleichlautenden Dimension Zeit mit der Einheit Sekunde, s.
+%   \item Eine Abh"angigkeit der Bewegung von der tr"agen Masse, ein Parameter mit festem Wert f"ur ein gegebenes Masse-Feder-System, ist zu erwarten. Das "ubliche Symbol ist $m$, sie ist von der wiederum gleichlautenden Dimension Masse mit SI-Einheit Kilo(!)gramm, kg.
+%   \item Schlie"slich wird die Bewegung dadurch beeinflusst, wie die Federkraft mit der Auslenkung zunimmt. Hier wird vereinfachend eine Proportionalit"at angenommen und der Parameter mit $k$ bezeichnet, wobei die Bezeichnung $D$ ebenfalls verbreitet ist. Die Dimension der Federkonstante ist Kraft pro L"ange, d. h. Masse pro Quadrat der Zeit, mit Einheit Newton pro Meter, N/m, bzw. kg/s$^2$.
+% \end{itemize}
+% 
   \begin{MHint}{Bemerkung zu Dimensionen}
 
     Es wird das "ubliche $\{M, L, T\}$-Grundgr"o"sensystem der Mechanik verwendet. Die folgende Tabelle gibt dieses zusammen mit den entsprechenden Ausdr"ucken f"ur die Federkonstante an:
 
-    \begin{MWTabular}{l|c|c|c}
+    \begin{tabular}{|l|c|c|c|}
+    \hline
     Gr"o"senart    & Gr"o"senbezeichnung & Einheit & Dimensionsformel \\\hline
-    Masse          & $m$                 & kg      & $M$              \\
-    L"ange         & $x$                 & m       & $L$              \\
-    Zeit           & $t$                 & s       & $T$              \\
-    Federkonstante & $k$                 & $\frac{\mse[]{kg}}{\MEinheit[]{s^2}}$ & $\frac{M}{T^2}$
-    \end{MWTabular}
+    Masse          & $m$                 & kg      & $M$              \\\hline
+    L"ange         & $x$                 & m       & $L$              \\\hline
+    Zeit           & $t$                 & s       & $T$              \\\hline
+    Federkonstante & $k$                 & $\frac{\mse{kg}}{\MEinheit{s^2}}$ & $\frac{M}{T^2}$\\\hline
+    \end{tabular}
     
-    Bei dem horizontalen Feder-Masse-System (d. h. ohne Einfluss der Schwerkraft) sei die Schwingungsperiode mit der Dimension Zeit gesucht. Als m"ogliche Einflussgr"o"sen werden die Masse, die Anfangsauslenkung und die Federkonstante in Betracht gezogen. Allein die Analyse der vorkommenden Dimensionen erlaubt weitreichende Aussagen "uber das Ergebnis. Im betrachteten Fall kann die Dimension Zeit nur durch den Ausdruck $\sqrt{m/k}$ gebildet werden. Damit ist die Schwingungsperiode bis auf eine Konstante bekannt, die durch einmalige Messung an einem System mit beliebiger Masse und frei w"ahlbarer Federkonstante bestimmt werden kann. Ebenso ist damit ein Einfluss der zun"achst in Betracht gezogenen Anfangsauslenkung ausgeschlossen. Bei sehr gro"sen Auslenkungen ist dies nat"urlich anders, aber in diesem Fall gen"ugt auch nicht die Angabe einer Federkonstanten f"ur die Beschreibung der Kraft als Funktion der Auslenkung. Analog kann hergeleitet werden, dass bei dem mathematischen Pendel die Masse \EdmesEmph{keinen} Einfluss hat, wohl aber die Schwerkraft. Derartige Untersuchungen sind Gegenstand der Dimensionsanalyse.
+  Bei dem horizontalen Feder-Masse-System (d. h. ohne Einfluss der Schwerkraft) sei die Schwingungsperiode mit der Dimension Zeit gesucht.
+  Als m"ogliche Einflussgr"o"sen werden die Masse, die Anfangsauslenkung und die Federkonstante in Betracht gezogen.
+  Allein die Analyse der vorkommenden Dimensionen erlaubt weitreichende Aussagen "uber das Ergebnis.
+  Im betrachteten Fall kann die Dimension Zeit nur durch den Ausdruck $\sqrt{m/k}$ gebildet werden.
+  Damit ist die Schwingungsperiode bis auf eine Konstante bekannt, die durch einmalige Messung an einem
+  System mit beliebiger Masse und frei w"ahlbarer Federkonstante bestimmt werden kann.
+  Ebenso ist damit ein Einfluss der zun"achst in Betracht gezogenen Anfangsauslenkung ausgeschlossen.
+  Bei sehr gro"sen Auslenkungen ist dies nat"urlich anders, aber in diesem Fall gen"ugt auch nicht
+  die Angabe einer Federkonstanten f"ur die Beschreibung der Kraft als Funktion der Auslenkung.
+  Analog kann hergeleitet werden, dass bei dem mathematischen Pendel die Masse \MOptionalEmph{keinen} Einfluss hat,
+  wohl aber die Schwerkraft. Derartige Untersuchungen sind Gegenstand der Dimensionsanalyse.
 
   \end{MHint}
-}
 
 Um einen zeichnerischen Zugang zu dem zeitlichen Verlauf der Auslenkung und Geschwindigkeit zu erhalten, k"onnen Sie die einleitenden Aufgaben 
-\MRef{Physik_Schwingungen_AufgabeIntroTX}\MLabel{Physik_Schwingungen_VonAufgabeIntroTX} 
+\MRef{Physik_Schwingungen_AufgabeIntroTX}%\MLabel{Physik_Schwingungen_VonAufgabeIntroTX} 
 und 
-\MRef{Physik_Schwingungen_AufgabeIntroTV}\MLabel{Physik_Schwingungen_VonAufgabeIntroTV} bearbeiten.
+\MRef{Physik_Schwingungen_AufgabeIntroTV}%\MLabel{Physik_Schwingungen_VonAufgabeIntroTV}
+bearbeiten.
+
 
 \end{MIntro}
 
@@ -245,11 +224,9 @@ und
 \MLabel{Physik_Schwingungen_MXOszillator}
 Nun soll das zweite Newtonsche Gesetz (Proportionalit"at zwischen Kraft und "Anderung des Impulses, 1687) angewendet werden, um die Bewegungsgleichung f"ur das einfache Modell in Abb. \MRef{Physik_Schwingungen_AbbHO} zu erhalten. Diese Gleichung kann analytisch gel"ost werden:
 
-\MOnlineOnly{
   \begin{MHint}{Bemerkung zum L"osen von Gleichungen}
   Teilweise lassen sich (physikalische) Gleichungen analytisch l"osen, d. h., es kann eine geschlossene Formel angegeben werden. H"aufig ist es allerdings nicht m"oglich, eine analytische L"osung zu finden. Im Informationszeitalter erlauben Computer dann die numerische Berechnung von N"aherungsl"osungen durch Ausf"uhrung vieler Rechenoperationen. Bei analytischen L"osungen ist z. B. vorteilhaft, dass L"osungen leicht f"ur unterschiedliche Parameter berechnet werden k"onnen (nat"urlich meist ebenfalls mit einem Computer), ohne m"oglicherweise aufw"andige numerische Berechnungen mit ge"anderten Parametern durchf"uhren zu m"ussen. Weiterhin kann ein analytischer Ausdruck f"ur weitere Rechnungen verwendet werden, etwa f"ur die Berechnung der Ableitung. Auch bei numerischen Berechnungen gilt es, das Problem zu erfassen, geschickt zu formulieren und mit geeigneten numerischen Verfahren zu l"osen. Als Beispiel f"ur Gleichungen mit anspruchsvoller Mathematik und Numerik seien die Navier-Stokes-Gleichungen f"ur die Beschreibung der Str"omung einfacher Fl"ussigkeiten und Gase genannt. Neben der numerischen L"osung der Gleichungen f"ur ein komplexes Modell kann die analytische L"osung von Gleichungen f"ur vereinfachte, gen"aherte Modelle das Verst"andnis verbessern und helfen, Vorhersagen zu treffen.
   \end{MHint}
-}
 
 Die einseitig befestigte Feder "ubt eine Kraft $F$ auf die Masse $m$ aus (s. Abb. \MRef{Physik_Schwingungen_AbbHO}). Da sich die Masse nicht "andert, ist die "Anderung des Impulses die Masse multipliziert mit der "Anderung der Geschwindigkeit. Die "Anderung der Geschwindigkeit, d. h. die Beschleunigung, ist die zweite Ableitung der Auslenkung nach der Zeit. Das zweite Newtonsche Gesetz lautet damit
 \begin{equation}
@@ -273,26 +250,25 @@ betrachteten physikalischen Gr"o"se $x$ und ihrer zweiten Ableitung nach der Zei
 
 \end{MInfo}
 
-\MOnlineOnly{
   \begin{MHint}{Bemerkung zu der Gleichung}
   Das $x$ in Gl. \MRef{Physik_Schwingungen_EQHO} ist eine Funktion, n"amlich die Auslenkung als Funktion der Zeit, $x(t)$. Neben der Funktion ist eine ihrer Ableitungen in der Gleichung enthalten. Eine Gleichung, in der Ableitungen einer gesuchten Funktion auftreten, nennt sich Differentialgleichung. Differentialgleichungen treten verbreitet in Wissenschaft und Technik auf. H"angt die gesuchte Funktion von mehreren Variablen ab und treten Ableitungen nach unterschiedlichen Variablen auf, nennt man die Gleichung eine partielle Differentialgleichung. Da dies bei der betrachteten Gleichung nicht der Fall ist, wird sie als gew"ohnliche Differentialgleichung bezeichnet. Da die Gleichung nach der h"ochsten Ableitung aufgel"ost ist, hei"st sie explizit, im Gegensatz zu impliziten Gleichungen. Die Ordnung gibt die h"ochste Ableitung an, die vorliegende Gleichung ist demnach zweiter Ordnung. Weiterhin hat Gl. \MRef{Physik_Schwingungen_EQHO} die wichtige Eigenschaft, in der gesuchten Funktion und ihren Ableitungen linear zu sein. Hinsichtlich der L"osung linearer gew"ohnlicher Differentialgleichungen ist vieles bekannt. Sind unterschiedliche L"osungen gefunden, so k"onnen weitere L"osungen durch Linearkombination gebildet werden (Superpositionsprinzip). Nichtlineare Differentialgleichungen, in denen z. B. Potenzen oder trigonometrische Funktionen der gesuchten Funktion oder ihrer Ableitungen vorkommen, sind oft nicht analytisch l"osbar. Bei linearen Differentialgleichungen k"onnen die ''Koeffizienten'' der Funktion oder ihrer Ableitungen selbst Funktionen der unabh"angigen Variablen sein. Ist das wie hier nicht der Fall, handelt es sich um eine lineare Differentialgleichung mit konstanten Koeffizienten. Enh"alt die lineare Differentialgleichung einen Koeffizienten, der nicht mit der Funktion oder ihren Ableitungen multipliziert wird, ist die Differentialgleichung inhomogen. Das ist in Gl. \MRef{Physik_Schwingungen_EQHO} nicht der Fall, es handelt sich also um eine homogene Gleichung.
   Aufgrund der allgemeinen Bedeutung von Differentialgleichungen ist es lohnend, sich mit der Thematik zu besch"aftigen. Im Folgenden werden komplexere Modelle behandelt, die jeweils durch eine komplexere Differentialgleichung repr"asentiert werden. An entsprechender Stelle wird wiederum in Bermerkungen auf die mathematischen Unterschiede eingegangen.
   \end{MHint}
-}
 
 Die allgemeine L"osung von Gl. \MRef{Physik_Schwingungen_EQHO} kann auf unterschiedliche Arten geschrieben werden, sie wird hier ohne Herleitung angegeben:
 \begin{MInfo}
+\MLabel{Physik_Schwingungen_EQHOLoes1}
 Die allgemeine L"osung von Gl. \MRef{Physik_Schwingungen_EQHO} kann mit folgenden Schreibweisen angegeben werden:
 
 \begin{eqnarray}
-  x &=& a\cos\left(\omega_0(t-t_1)\right)\quad\mathrm{oder}\MLabel{Physik_Schwingungen_EQHOLoes1}\\
+  x &=& a\cos\left(\omega_0(t-t_1)\right)\quad\mathrm{oder}\\
   x &=& a\cos(\omega_0t+\phi)\quad\mathrm{oder}\\
   x &=& A\cos\left(\omega_0t\right)+B\sin\left(\omega_0t\right)\; .
 \end{eqnarray}
 
 \end{MInfo}
 
-In der ersten und zweiten Schreibweise nimmt $x$ Werte zwischen $-a$ und $a$ an. Der Vorfaktor $a$ bei Schwingungen wird als \EdmesEmph{Amplitude} bezeichnet. Eine Verschiebung der kosinus- bzw. sinusf"ormigen Schwingung in Richtung der Zeit kann entweder mit $t_1$ als Zeit oder mit $\phi$ als Winkel ausgedr"uckt werden. Die dritte Schreibweise ist aus mathematischer Perspektive naheliegend. Der Nachweis, dass die angegebenen Funktionen tats"achlich L"osungen sind, ist Gegenstand von Aufgabe 
+In der ersten und zweiten Schreibweise nimmt $x$ Werte zwischen $-a$ und $a$ an. Der Vorfaktor $a$ bei Schwingungen wird als \MOptionalEmph{Amplitude} bezeichnet. Eine Verschiebung der kosinus- bzw. sinusf"ormigen Schwingung in Richtung der Zeit kann entweder mit $t_1$ als Zeit oder mit $\phi$ als Winkel ausgedr"uckt werden. Die dritte Schreibweise ist aus mathematischer Perspektive naheliegend. Der Nachweis, dass die angegebenen Funktionen tats"achlich L"osungen sind, ist Gegenstand von Aufgabe 
 %>>>>>>
 \MRef{Physik_Schwingungen_AufgabeLoesungHO}\MLabel{Physik_Schwingungen_VonAufgabeLoesungHO}.
 %<<<<<<
@@ -305,13 +281,13 @@ wird der mathematische Zusammenhang zwischen den Schreibweisen untersucht.
 %%%\end{MXContent}
 %%%\begin{MXContent}{Betrachtung der L"osung}{Betrachtung}{STD}
 %-------------------------------------------------------------------------------
-Die L"osung ist eine einfache periodische Funktion, die sich wiederholt, wenn das Argument der trigonometrischen Funktionen sich um ein Vielfaches von $2\pi$ unterscheidet. Dies ist, nat"urlich unabh"angig von der Schreibweise der L"osung, gegeben, wenn $\omega_0t$ sich um ein Vielfaches von $2\pi$ unterscheidet. Der kleinste positive Zeitunterschied, f"ur den die Gleichheit gilt, wird als \EdmesEmph{Periode} bezeichnet. Mit dem Symbol $t_0$ erh"alt man f"ur die Periode 
+Die L"osung ist eine einfache periodische Funktion, die sich wiederholt, wenn das Argument der trigonometrischen Funktionen sich um ein Vielfaches von $2\pi$ unterscheidet. Dies ist, nat"urlich unabh"angig von der Schreibweise der L"osung, gegeben, wenn $\omega_0t$ sich um ein Vielfaches von $2\pi$ unterscheidet. Der kleinste positive Zeitunterschied, f"ur den die Gleichheit gilt, wird als \MOptionalEmph{Periode} bezeichnet. Mit dem Symbol $t_0$ erh"alt man f"ur die Periode 
 \begin{equation}
   \omega_0t_0 = 2\pi\quad
   \Rightarrow \quad t_0=2\pi/\omega_0\; .
 \end{equation}
 
-Der Kehrwert der Periode ist die \EdmesEmph{Frequenz}: $$\nu_0 = 1/t_0 = \omega_0 / (2\pi)$$. F"ur das Argument der trigonometrischen Funktion im Bogenma"s wird der Begriff \EdmesEmph{Phase} verwendet, allerdings nicht einheitlich. Teilweise wird das ganze, zeitabh"angige Argument als Phase bezeichnet, teilweise nur der Wert f"ur $t=0$. Letzteren kann man auch als Anfangsphase bezeichnen. Die zeitabh"angige Phase "andert sich mit der Rate $\omega_0$. Diese oben eingef"uhrte Gr"o"se wird als \EdmesEmph{Kreisfrequenz} bezeichnet. Die "Anderung der Phase im Bogenma"s pro Zeit ist hier keine Winkelgeschwindigkeit, kann aber als solche aufgefasst werden. So kann man sich auch den Zusammenhang zwischen Frequenz und Kreisfrequenz herleiten: W"ahrend einer Periode "andert sich der Winkel um $2\pi$, d. h. die Winkelgeschwindigkeit ist $\omega_0=2\pi/t_0=2\pi\nu_0$. Da der Winkel im Bogenma"s keine Einheit hat, sind Kreisfrequenz und Frequenz von der gleichen Dimension mit der SI-Einheit $\mse{s^{-1}}$. Es ist allerdings auch "ublich, die Kreisfrequenz in rad/s anzugeben, um den Unterschied zur Frequenz deutlich zu machen. F"ur die Frequenz ist wiederum die Einheit 1 Hertz = 1Hz = $\mse{s^{-1}}$ "ublich. Teilweise wird die Kreisfrequenz abk"urzend nur mit Frequenz bezeichnet.
+Der Kehrwert der Periode ist die \MOptionalEmph{Frequenz}: $$\nu_0 = 1/t_0 = \omega_0 / (2\pi)$$. F"ur das Argument der trigonometrischen Funktion im Bogenma"s wird der Begriff \MOptionalEmph{Phase} verwendet, allerdings nicht einheitlich. Teilweise wird das ganze, zeitabh"angige Argument als Phase bezeichnet, teilweise nur der Wert f"ur $t=0$. Letzteren kann man auch als Anfangsphase bezeichnen. Die zeitabh"angige Phase "andert sich mit der Rate $\omega_0$. Diese oben eingef"uhrte Gr"o"se wird als \MOptionalEmph{Kreisfrequenz} bezeichnet. Die "Anderung der Phase im Bogenma"s pro Zeit ist hier keine Winkelgeschwindigkeit, kann aber als solche aufgefasst werden. So kann man sich auch den Zusammenhang zwischen Frequenz und Kreisfrequenz herleiten: W"ahrend einer Periode "andert sich der Winkel um $2\pi$, d. h. die Winkelgeschwindigkeit ist $\omega_0=2\pi/t_0=2\pi\nu_0$. Da der Winkel im Bogenma"s keine Einheit hat, sind Kreisfrequenz und Frequenz von der gleichen Dimension mit der SI-Einheit $\mse{s^{-1}}$. Es ist allerdings auch "ublich, die Kreisfrequenz in rad/s anzugeben, um den Unterschied zur Frequenz deutlich zu machen. F"ur die Frequenz ist wiederum die Einheit 1 Hertz = 1Hz = $\mse{s^{-1}}$ "ublich. Teilweise wird die Kreisfrequenz abk"urzend nur mit Frequenz bezeichnet.
 
 \begin{MInfo}
 Die L"osung der Bewegungsgleichung f"ur den harmonischen Oszillator sind harmonische, d. h. sinusf"ormige Schwingungen. Die Periode $t_0$ bzw. Frequenz $\nu_0$ bzw. Kreisfrequenz $\omega_0$ der Bewegung h"angt dabei von der Masse $m$ und der Federkonstante $k$ ab, nicht jedoch von der Anfangsauslenkung oder Anfangsgeschwindigkeit. Es gelten folgende Zusammenh"ange:
@@ -328,7 +304,7 @@ Um die vorgestellten Ergebnisse zu veranschaulichen, werden im folgenden Beispie
 Als Beispiel mit einfachen Zahlenwerten wird eine Masse von 1 kg an einer langen, weichen Feder mit $k = 1\,\text{N/m}$ betrachtet. Die Masse werde um ein Meter ausgelenkt und dann losgelassen, s. Abb. \MRef{Physik_Schwingungen_AbbHOBsp}.
 
 \begin{center}
-  \MUGraphics{Bilder/abbFederMasseBsp}{scale=1}{Mechanischer harmonischer Oszillator. Auf der linken Seite ist das System in Ruhe skizziert. Der Anfangszustand mit einer Auslenkung von 1 m ist rechts dargestellt. \MLabel{Physik_Schwingungen_AbbHOBsp}
+  \MUGraphics{abbFederMasseBsp}{scale=1}{Mechanischer harmonischer Oszillator. Auf der linken Seite ist das System in Ruhe skizziert. Der Anfangszustand mit einer Auslenkung von 1 m ist rechts dargestellt. \MLabel{Physik_Schwingungen_AbbHOBsp}
 }{width:600px;}
   \end{center}
 
@@ -336,7 +312,7 @@ Die Auslenkung als Funktion der Zeit ist z. B. durch Gl. \MRef{Physik_Schwingung
 f"ur die erste Periode (Dauer: $2\pi/\omega_0$) dargestellt werden:
 
 \begin{center}
-  \MUGraphics{Bilder/abbBspTXTV}{scale=1}{Auslenkung (links) und Geschwindigkeit (rechts) als Funktion der Zeit f"ur das Beispielsystem w"ahrend der ersten Schwingungsperiode.\MLabel{Physik_Schwingungen_AbbBspTXTV}
+  \MUGraphics{abbBspTXTV}{scale=1}{Auslenkung (links) und Geschwindigkeit (rechts) als Funktion der Zeit f"ur das Beispielsystem w"ahrend der ersten Schwingungsperiode.\MLabel{Physik_Schwingungen_AbbBspTXTV}
 }{width:700px;}
   \end{center}
 
@@ -345,13 +321,9 @@ Durch die Einheitsmasse und -federkonstante erh"alt man die Einheitskreisfrequen
 \end{MExample}
 
 Berechnungen zu dem Feder-Masse-System mit realistischeren Parametern werden in den Aufgaben 
-%>>>>>>
 \MRef{Physik_Schwingungen_AufgabeXFTF}\MLabel{Physik_Schwingungen_VonAufgabeXFTF}
-%<<<<<<
 und
-%>>>>>>
 \MRef{Physik_Schwingungen_AufgabeOsziWaage}\MLabel{Physik_Schwingungen_VonAufgabeOsziWaage}
-%<<<<<<
 behandelt.
 
 Da der analytische Ausdruck f"ur die Auslenkung als Funktion der Zeit bekannt ist, kann nun leicht die Geschwindigkeit als Funktion der Zeit durch Ableitung nach der Zeit bestimmt werden. Die Ableitung wird in Aufgabe \MRef{Physik_Schwingungen_AufgabeLoesungHO} besprochen. F"ur das System mit anf"anglich 10 mm Auslenkung lautet das Ergebnis
@@ -360,9 +332,7 @@ Da der analytische Ausdruck f"ur die Auslenkung als Funktion der Zeit bekannt is
 \end{equation}
 
 Mit der zus"atzlichen Angabe, dass die Schwingungsperiode eine halbe Sekunde betr"agt, soll in Aufgabe
-%>>>>>>
 \MRef{Physik_Schwingungen_AufgabeVMax}\MLabel{Physik_Schwingungen_VonAufgabeVMax}
-%<<<<<<
 die maximale Geschwindigkeit berechnet werden.
 
 
@@ -394,7 +364,7 @@ Im letzten Schritt wurde verwendet, dass f"ur jeden Winkel $\sin^2(\phi) + \cos^
 In der folgenden Abbildung sind der Verlauf der potentiellen und kinetischen Energie f"ur das Beispielmodell w"ahrend der ersten Schwingungsperiode dargestellt.
 
 \begin{center}
-  \MUGraphics{Bilder/abbBetrachtungEpotEkinBsp}{scale=1}{Potentielle und kinetische Energie w"ahrend der ersten Schwingungsperiode f"ur das Beispielmodell.\MLabel{Physik_Schwingungen_AbbBetrachtungEpotEkinBsp}
+  \MUGraphics{abbBetrachtungEpotEkinBsp}{scale=1}{Potentielle und kinetische Energie w"ahrend der ersten Schwingungsperiode f"ur das Beispielmodell.\MLabel{Physik_Schwingungen_AbbBetrachtungEpotEkinBsp}
 }{width:600px;}
   \end{center}
 
@@ -434,7 +404,6 @@ Division durch die Masse f"uhrt mit der Definition $c=m\gamma$ auf
 
 \end{MInfo}
 
-\MOnlineOnly{
   \begin{MHint}{Bemerkung zu der Gleichung}
   Im Vergleich zu Gl. \MRef{Physik_Schwingungen_EQHO} ist ein linearer Term mit der Ableitung erster Ordnung hinzugekommen. Dies "andert nichts am Typ der Differentialgleichung (gew"ohnliche explizite lineare homogene Differentialgleichung zweiter Ordnung mit konstanten Koeffizienten), auch wenn die L"osung komplexer wird und schlecht geraten werden kann. Hier f"uhrt folgender Ansatz zum Ziel: $x=\exp(\lambda t),\,\lambda\in\C$. \\%wg fehlendem Leerzeichen im html
   Einsetzen in Gl. \MRef{Physik_Schwingungen_EQHOD} und K"urzen von $\exp(\lambda t)$ f"uhrt auf die Bestimmungsgleichung 
@@ -451,7 +420,7 @@ Division durch die Masse f"uhrt mit der Definition $c=m\gamma$ auf
   \end{displaymath}
   mit $A_1,\, A_2\in\C$. Damit die L"osungen wie erforderlich reell sind, m"ussen $A_1$ und $A_2$ zueinander komplex konjugiert sein. Unter Verwendung der Eulerformel und der Additionstheoreme ergeben sich drei Schreibweisen, analog zum Fall ohne D"ampfung.
   \end{MHint}
-}
+
 
 Die Gleichung kann verh"altnism"a"sig einfach gel"ost werden, wenn komplexe Zahlen verwendet werden. Da komplexe Zahlen erst zu einem sp"ateren Zeitpunkt in einem Modul des Fachbereichs Mathematik behandelt werden, wird hier die allgemeine L"osung ohne Herleitung angegeben:
 
@@ -482,7 +451,7 @@ Das folgende Beispiel mit Einheitswerten, d. h. es gilt auch $\gamma = 1\mse{s^{
 
 \begin{MExample}
 \begin{center}
-  \MUGraphics{Bilder/abbBspTXD}{}{Auslenkung als Funktion der Zeit f"ur das System mit geschwindigkeitsproportionaler D"ampfung und Einheitswerten f"ur die Parameter. Zum Vergleich ist das unged"ampfte System ebenfalls aufgenommen. \MLabel{Physik_Schwingungen_AbbBspTXD}
+  \MUGraphics{abbBspTXD}{}{Auslenkung als Funktion der Zeit f"ur das System mit geschwindigkeitsproportionaler D"ampfung und Einheitswerten f"ur die Parameter. Zum Vergleich ist das unged"ampfte System ebenfalls aufgenommen. \MLabel{Physik_Schwingungen_AbbBspTXD}
 }{width:600px;}
   \end{center}
 
@@ -518,18 +487,17 @@ Division durch die Masse f"uhrt mit der Definition $c=m\gamma$ auf
 
 \end{MInfo}
 
-\MOnlineOnly{
   \begin{MHint}{Bemerkung zu der Gleichung}
   Im Unterschied zu Gl. \MRef{Physik_Schwingungen_EQHOD} ist nun mit $F$ ein Term (im Allgemeinen eine Funktion der Zeit) gegeben, der nicht mit der gesuchten Funktion $x$ oder einer ihrer Ableitungen verkn"uft ist. Daher ist nun die Differentialgleichung inhomogen. Insgesamt wird Gl. \MRef{Physik_Schwingungen_EQHOFD} also als gew"ohnliche explizite lineare inhomogene Differentialgleichung zweiter Ordnung mit konstanten Koeffizienten bezeichnet.
   \end{MHint}
-}
+
 
 Als einfacher Fall wird f"ur die "au"sere Kraft ebenfalls eine harmonische Zeitabh"angigkeit angesetzt:
 
 \begin{equation}
   F(t) = F_0 \cos\left( \omega t - \Delta \right)\; .
 \end{equation}
-Die Kreisfrequenz der Anregung $\omega$ ist dabei im Allgemeinen verschieden von der \EdmesEmph{nat"urlichen} Frequenz des Systems $\omega_0 = \sqrt{k / m}$, auch \EdmesEmph{Eigenfrequenz} genannt. Die Phasenverschiebung $\Delta$ erlaubt, die Phasenlage der Anregungskraft beim Zeitpunkt $t=0$ festzulegen. Dies ist der Zeitpunkt, zu dem typischerweise die Anfangswerte f"ur Auslenkung und Geschwindigkeit gegeben sind. Negative Zeiten werden hier nicht betrachtet. Soll zum Beispiel ein sinusf"ormiger Zeitverlauf ab $t=0$ behandelt werden, ist $\Delta = \frac{\pi}{2}$ einzusetzen.
+Die Kreisfrequenz der Anregung $\omega$ ist dabei im Allgemeinen verschieden von der \MOptionalEmph{nat"urlichen} Frequenz des Systems $\omega_0 = \sqrt{k / m}$, auch \MOptionalEmph{Eigenfrequenz} genannt. Die Phasenverschiebung $\Delta$ erlaubt, die Phasenlage der Anregungskraft beim Zeitpunkt $t=0$ festzulegen. Dies ist der Zeitpunkt, zu dem typischerweise die Anfangswerte f"ur Auslenkung und Geschwindigkeit gegeben sind. Negative Zeiten werden hier nicht betrachtet. Soll zum Beispiel ein sinusf"ormiger Zeitverlauf ab $t=0$ behandelt werden, ist $\Delta = \frac{\pi}{2}$ einzusetzen.
 
 Eine M"oglichkeit, einen solchen Kraftverlauf technisch zu realisieren, w"are f"ur eine elektrisch geladene Masse gegeben. Diese k"onnte in ein entsprechend oszillierendes homogenes elektrisches Feld zwischen zwei Platten eingebracht werden. 
 
@@ -547,7 +515,7 @@ Zun"achst gilt es, f"ur die Gleichung
   \MLabel{Physik_Schwingungen_EQHOFHarmD}
 \end{equation}
 
-mit geschwindigkeitsproportionaler D"ampfung und harmonischer "au"serer Kraft irgend eine L"osung $x_p$ zu finden. In der Mathematik wird diese eine partikul"are L"osung genannt. Hier f"uhrt der Ansatz zum Ziel, dass die Frequenz der Schwingung mit der Frequenz der Anregungskraft $\omega$ "ubereinstimmt, allerdings mit einer \EdmesEmph{Phasenverschiebung} $\theta$ gegen"uber der Phase der Anregungskraft. F"ur die Amplitude der Auslenkung der Masse wird ein Produktansatz gew"ahlt, bei dem die Amplitude der Anregungskraft als Proportionalit"atsfaktor eingeht:
+mit geschwindigkeitsproportionaler D"ampfung und harmonischer "au"serer Kraft irgend eine L"osung $x_p$ zu finden. In der Mathematik wird diese eine partikul"are L"osung genannt. Hier f"uhrt der Ansatz zum Ziel, dass die Frequenz der Schwingung mit der Frequenz der Anregungskraft $\omega$ "ubereinstimmt, allerdings mit einer \MOptionalEmph{Phasenverschiebung} $\theta$ gegen"uber der Phase der Anregungskraft. F"ur die Amplitude der Auslenkung der Masse wird ein Produktansatz gew"ahlt, bei dem die Amplitude der Anregungskraft als Proportionalit"atsfaktor eingeht:
 
 \begin{equation}
   x_p = \rho F_0 \cos\left(\omega t - \Delta + \theta \right) \; .
@@ -576,7 +544,6 @@ und
 
 \end{MInfo}
 
-\MOnlineOnly{
     \begin{MHint}{Bemerkung zu der Gleichung}
     Mit einer Erweiterung in die komplexen Zahlen kann die Kraft als $F_0\exp\left(i\left(\omega t - \Delta\right)\right)$ geschrieben werden, wobei die physikalisch betrachtete Kraft nur durch den Realteil repr"asentiert wird. Der Ansatz f"ur die Auslenkungsfunktion wird ebenfalls in die komplexen Zahlen erweitert: $\rho F_0 \exp\left(\MIU\left(\omega t - \Delta + \theta \right)\right) = \rho F_0 \exp\left(\MIU\left(\omega t - \Delta \right)\right) \, \exp\left(\MIU \theta \right)$ . Beim Einsetzen in Gleichung \MRef{Physik_Schwingungen_EQHOFHarmD} ergeben sich aufgrund der Tatsache, dass die Gleichung linear ist und dass die Koeffizienten reell sind jeweils eine unabh"angige Gleichungen f"ur den Realteil und den Imagin"arteil, d. h. die Gleichung f"ur den Realteil ent"alt nur den Realteil der Kraft und der Auslenkung. Der Realteil der komplexen Auslenkung ist dann die gesuchte physikalische L"osung. Einsetzen der erweiterten Gr"o"sen in Gleichung \MRef{Physik_Schwingungen_EQHOFHarmD} liefert zun"achst
     \begin{displaymath}
@@ -595,7 +562,6 @@ und
     \end{displaymath}
     In dieser Form k"onnen der Imagin"ar- und Realteil abgelesen werden. Division und K"urzen liefert Gleichung \MRef{Physik_Schwingungen_EQTheta}. Weiterhin zeigt der negative Imagin"arteil, dass $\sin(\theta)$ negativ ist, womit $\theta$ im Intervall $[-\pi\; \pi]$ eindeutig festgelegt ist.
     \end{MHint}
-}
 
 Die L"osung mit Gleichung \MRef{Physik_Schwingungen_EQHReibung} erf"ullt im Allgemeinen nicht die betrachteten Anfangsbedingungen f"ur Auslenkung und Geschwindigkeit. Sie wird jedoch als eingeschwungene L"osung  bezeichnet, da L"osungen zu gegebenen Anfangsbedingungen sich exponentiell der eingeschwungenen L"osung ann"ahern. Bevor dies am Ende des Abschnitts behandelt wird, sollen zun"achst Eigenschaften von $x_p$ aus Gleichung \MRef{Physik_Schwingungen_EQHReibung} untersucht werden.
 
@@ -603,7 +569,7 @@ Die L"osung mit Gleichung \MRef{Physik_Schwingungen_EQHReibung} erf"ullt im Allg
 In der folgenden Abbildung ist die Amplitude $\rho F_0$ in Gl. \MRef{Physik_Schwingungen_EQHReibung} f"ur das Beispielmodell als Funktion der Frequenz dargestellt. Dabei wurde wiederum f"ur $\gamma$ der Einheitswert von $1\mse{s^{-1}}$ eingesetzt.
 
 \begin{center}
-  \MUGraphics{Bilder/abbReibungBsp}{scale=1}{Amplitude bei der eingeschwungenen L"osung mit D"ampfung f"ur das Beispielmodell.\MLabel{Physik_Schwingungen_AbbReibungBsp}
+  \MUGraphics{abbReibungBsp}{scale=1}{Amplitude bei der eingeschwungenen L"osung mit D"ampfung f"ur das Beispielmodell.\MLabel{Physik_Schwingungen_AbbReibungBsp}
 }{width:600px;}
   \end{center}
 
@@ -619,13 +585,13 @@ In Aufgabe
 %<<<<<<
 wird der Verlauf f"ur das System mit realistischeren Parametern behandelt.
 
-Die Amplitude startet bei $\omega=0$ mit dem Wert f"ur die maximale Auslenkung der Aufh"angung. Ist die Anregungsfrequenz $\omega$ gleich der nat"urlichen Frequenz $\omega_0$ verschwindet der erste Summand im Nenner. Der Fall $\omega=\omega_0$ wird \EdmesEmph{Resonanzfall} genannt, in dem f"ur beliebig kleine Reibung beliebig gro"se Amplitudenwerte erhalten werden. Diese treten in realen Systemen nicht auf, da bei entsprechend gro"sen Amplituden Nichtlinearit"aten auftreten, die gegebenenfalls mit der Zerst"orung des System einhergehen. Die maximale Amplitude wird allerdings bei einer Frequenz erreicht, die etwas kleiner als die nat"urliche Frequenz des Oszillators ist, n"amlich bei $\omega = \sqrt{\omega_0^2-(1/2)\gamma^2}$. Teilweise wird auch diese Frequenz als Resonanzfrequenz bezeichnet. Die Schwingungsamplitude geht gegen Null, wenn die Anregungsfrequenz viel gr"o"ser als die nat"urliche Frequenz ist.
+Die Amplitude startet bei $\omega=0$ mit dem Wert f"ur die maximale Auslenkung der Aufh"angung. Ist die Anregungsfrequenz $\omega$ gleich der nat"urlichen Frequenz $\omega_0$ verschwindet der erste Summand im Nenner. Der Fall $\omega=\omega_0$ wird \MOptionalEmph{Resonanzfall} genannt, in dem f"ur beliebig kleine Reibung beliebig gro"se Amplitudenwerte erhalten werden. Diese treten in realen Systemen nicht auf, da bei entsprechend gro"sen Amplituden Nichtlinearit"aten auftreten, die gegebenenfalls mit der Zerst"orung des System einhergehen. Die maximale Amplitude wird allerdings bei einer Frequenz erreicht, die etwas kleiner als die nat"urliche Frequenz des Oszillators ist, n"amlich bei $\omega = \sqrt{\omega_0^2-(1/2)\gamma^2}$. Teilweise wird auch diese Frequenz als Resonanzfrequenz bezeichnet. Die Schwingungsamplitude geht gegen Null, wenn die Anregungsfrequenz viel gr"o"ser als die nat"urliche Frequenz ist.
 
 \begin{MExample}
 Die folgende Abbildung zeigt die Phasenverschiebung $\theta$ f"ur das Beispielmodell als Funktion der Frequenz. 
 
 \begin{center}
-  \MUGraphics{Bilder/abbPhasenVerschiebungBsp}{scale=1}{Phasenverschiebung bei der eingeschwungenen L"osung mit D"ampfung f"ur das Beispielmodell mit starker D"ampfung.\MLabel{Physik_Schwingungen_AbbPhasenVerschiebungBsp}
+  \MUGraphics{abbPhasenVerschiebungBsp}{scale=1}{Phasenverschiebung bei der eingeschwungenen L"osung mit D"ampfung f"ur das Beispielmodell mit starker D"ampfung.\MLabel{Physik_Schwingungen_AbbPhasenVerschiebungBsp}
 }{width:600px;}
   \end{center}
 
@@ -667,7 +633,6 @@ mit $\rho$ und $\theta$ gem"a"s Gleichungen \MRef{Physik_Schwingungen_EQRho} und
 
 \end{MInfo}
 
-\MOnlineOnly{
     \begin{MHint}{Bemerkung zu der Gleichung}
     Bei einem anderen g"angigen Modell f"ur die Reibung in turbulenten Str"omungen gilt das Superpositionsprinzip nicht mehr. Dort ist die Reibung dem Quadrat der Geschwindigkeit proportional. Sei $\zeta$ die Proportionalit"atskonstante und seien $x_p$ und $x_h$ weiterhin L"osungen der inhomogenen beziehungsweise der homogenen Bewegungsgleichung. Einsetzen der Summe in die inhomogene Bewegungsgleichung liefert
     \begin{eqnarray}%\MLabel{Physik_Schwingungen_EQHOD}
@@ -680,7 +645,7 @@ mit $\rho$ und $\theta$ gem"a"s Gleichungen \MRef{Physik_Schwingungen_EQRho} und
   \end{eqnarray}
     was falsch ist, wenn nicht eine Geschwindigkeit konstant Null ist.
     \end{MHint}
-}
+
 
 Aus der Anfangsauslenkung $x_0 = x(0)$ erh"alt man sofort durch Einsetzen von $t=0$ in Gleichung \MRef{Physik_Schwingungen_EQHODFAllg} eine Bestimmungsgleichung f"ur $a$ und $\phi_d$:
 
@@ -714,7 +679,7 @@ berechnet werden.
 Die folgende Abbildung zeigt die L"osung f"ur das System mit realistischeren Parametern, d. h. $\omega = 10\mse{s^{-1}}$, $\hat{x}=1\mse{mm}$, $\Delta = \frac{\pi}{2}$, $t_0 = \MZahl{0}{5}\mse{s}$ und $\gamma=4\mse{s^{-1}}$ f"ur die Anfangsbedingungen $x_0=0\mse{mm}$ und $v_0 = 0\mse{mm/s}$.
 
 \begin{center}
-  \MUGraphics{Bilder/abbTXDF}{scale=1}{Erzwungene Schwingung f"ur das System mit realistischeren Parametern. Bei $t=0$ ruht die Masse in der Gleichgewichtslage. In gr"un gestrichelt ist die Bewegung der Aufh"angung dargestellt, die die "au"sere Kraft bewirkt.\MLabel{Physik_Schwingungen_AbbTXDF}
+  \MUGraphics{abbTXDF}{scale=1}{Erzwungene Schwingung f"ur das System mit realistischeren Parametern. Bei $t=0$ ruht die Masse in der Gleichgewichtslage. In gr"un gestrichelt ist die Bewegung der Aufh"angung dargestellt, die die "au"sere Kraft bewirkt.\MLabel{Physik_Schwingungen_AbbTXDF}
 }{width:600px;}
   \end{center}
 
@@ -734,15 +699,14 @@ Die Untersuchung der einfachen linearen Gleichungen ist dennoch ein wichtiger Be
 \begin{MExercise}\MLabel{Physik_Schwingungen_AufgabeIntroTX}
 Eine Masse an einer Feder werde ausgelenkt und zum Zeitpunkt $t=0$ losgelassen. Die anf"angliche Auslenkung sei $x(t=0)=10\MEinheit{mm}$. Nach einer halben Sekunde kehrt die Masse erstmals wieder in die Ausgangsposition zur"uck. Skizzieren Sie die Auslenkung als Funktion der Zeit f"ur die ersten drei Sekunden.
 
-\MOnlineOnly{
   \begin{MHint}{Bemerkung zu Diagrammen}
   Diagramme sind ein n"utzliches Instrument, um Messdaten oder physikalische Zusammenh"ange darzustellen. Es ist zu "uberlegen, welche Gr"o"se entlang der Ordinate ('y-Achse') als Funktion welcher anderen Gr"o"se entlang der Abszisse ('x-Achse') dargestellt wird. Hier soll die Auslenkung als Funktion der Zeit skizziert werden. In einem anderen Zusammenhang kann es sinnvoll sein, die Zeit als Funktion des Weges darzustellen. Auch Funktionen meherer Gr"o"sen wie Masse multipliziert mit dem Quadrat der Geschwindigkeit sind m"oglich. Bei der Darstellung von Messdaten sind die Einheiten anzugeben. Dies kann in eckigen Klammern erfolgen. In diesem Modul werden die an den Achsen angegebenen physikalischen Gr"o"sen jeweils durch die verwendete Einheit geteilt. Mit dem Zahlenwert auf der jeweiligen Achse ergibt sich so eine Gleichung, z. B. $t$/s = 1, d. h. $t$ = 1 s. Dies entspricht der IUPAC-Empfehlung (E. R. Cohen \textit{et al.}, IUPAC Green Book, 3rd Edition, 2nd Printing, IUPAC \& RSC Publishing, Cambridge (2008)). Weiterhin kann es sinnvoll sein, physikalische Gr"o"sen durch Bezug auf eine Referenzgr"o"se zu 'entdimensionieren', z. B. $t/T$ mit $T$ als Dauer eine Schwingung. Bei Messdaten sollte ein Fehlerbalken die vorliegende Unsicherheit der Messdaten anzeigen. In der Darstellung sollte die gew"ahlte Diagrammgr"o"se ausgenutzt werden, d. h. der Darstellungsbereich sollte nicht viel gr"o"ser als der Diagramminhalt sein.
   \end{MHint}
-}
+
 
 \begin{MHint}{L"osung}
 \begin{center}
-  \MUGraphics{Bilder/abbIntroTX}{}{Auslenkung als Funktion der Zeit.\MLabel{Physik_Schwingungen_AbbIntroTX}
+  \MUGraphics{abbIntroTX}{}{Auslenkung als Funktion der Zeit.\MLabel{Physik_Schwingungen_AbbIntroTX}
 }{width:600px;}
   \end{center}
 \end{MHint}
@@ -761,7 +725,7 @@ Skizzieren Sie au"serdem die Geschwindigkeit als Funktion der Zeit f"ur die erst
 
 \begin{MHint}{L"osung}
 \begin{center}
-  \MUGraphics{Bilder/abbIntroTV}{}{Geschwindigkeit als Funktion der Zeit.\MLabel{Physik_Schwingungen_AbbIntroTV}
+  \MUGraphics{abbIntroTV}{}{Geschwindigkeit als Funktion der Zeit.\MLabel{Physik_Schwingungen_AbbIntroTV}
 }{width:600px;}
   \end{center}
 \end{MHint}
@@ -814,17 +778,16 @@ In Aufgabe \MRef{Physik_Schwingungen_AufgabeIntroTX} wurde angegeben, dass die M
 \end{equation}
 lautet, mit $\omega_0=2\pi/t_0=2\pi/\MZahl{0}{5} \, \mathrm{s} = \MZahl{12}{57}\MEinheit{rad/s}$. 
 
-\MOnlineOnly{
   \begin{MHint}{Bemerkung zu signifikanten Stellen}
   Der letzte Zahlenwert ist nat"urlich gerundet. F"ur eine Periode von exakt 1/2 s in einem idealen System k"onnte man als Kreisfrequenz $4\pi\,\mathrm{rad/s}$ angeben. In einem realen System richtet sich die Anzahl anzugebender, d. h. signifikanter Stellen nach der ungef"ahren Mess- oder Rechengenauigkeit (falls keine genauen Angaben der Unsicherheit erforderlich sind). Die Anzahl signifikanter Stellen im Ergebnis sollte sich danach richten. Oben wurde das Ergebnis auf 4 signifikante Stellen gerundet. Das w"are angemessen, falls die Periode nicht ungenau mit einer halben Sekunde sondern mit \MZahl{0}{5000} s angegeben w"are.
   \end{MHint}
-}
+
 
 Es waren weder die Masse noch die Federkonstante spezifiziert - f"ur die Darstellung der Bewegung gen"ugen die Anfangsbedingungen und die Kreisfrequenz bzw. Periode, die aus der unbekannten Masse und Federkonstante resultiert. Nun sei noch die Federkonstante mit $k=10\MEinheit{N/mm}$ angegeben. Stellen Sie die Federkraft in diesem System einerseits als Funktion der Auslenkung und andererseits als Funktion der Zeit dar!
 
 \begin{MHint}{L"osung} 
 \begin{center}
-  \MUGraphics{Bilder/abbBetrachtungXFTF}{scale=1}{Federkraft als Funktion der Auslenkung (links) bzw. als Funktion der Zeit (rechts). Die maximale Federkraft entspricht etwa der Gewichtskraft einer Masse von 10 kg ($F=m g=10\,\text{kg}\, 9.81\,\text{N/kg}$). Die maximale Federkraft in dem Beispielmodell mit Einheitswerten ist trotz hundertfacher Auslenkung hundert Mal kleiner. \MLabel{Physik_Schwingungen_AbbBetrachtungXFTF}
+  \MUGraphics{abbBetrachtungXFTF}{scale=1}{Federkraft als Funktion der Auslenkung (links) bzw. als Funktion der Zeit (rechts). Die maximale Federkraft entspricht etwa der Gewichtskraft einer Masse von 10 kg ($F=m g=10\,\text{kg}\, 9.81\,\text{N/kg}$). Die maximale Federkraft in dem Beispielmodell mit Einheitswerten ist trotz hundertfacher Auslenkung hundert Mal kleiner. \MLabel{Physik_Schwingungen_AbbBetrachtungXFTF}
 }{width:700px;}
   \end{center}
 
@@ -838,7 +801,7 @@ Zur"uck zum \MSRef{Physik_Schwingungen_VonAufgabeXFTF}{Text}
 \begin{MExercise}\MLabel{Physik_Schwingungen_AufgabeOsziWaage}
 Ist f"ur ein Feder-Masse-System die Federkonstante bekannt und kann die Schwingungsperiode gemessen werden, so kann aus diesen Werten die tr"age Masse bestimmt werden, das hei"st die Masse in dem Zusammenhang \glqq Kraft ist gleich Masse mal Beschleunigung\grqq. Daher kann die betrachtete Anordnung als Personenwaage verwendet werden. Die g"angige Waage im Badezimmer misst die Gewichtskraft und rechnet diese in die schwere Masse um, das ist die Masse in dem Zusammenhang \glqq Kraft ist gleich Masse mal Erdbeschleunigung\grqq. Aufgrund der "Aquivalenz von tr"ager und schwerer Masse erh"alt man das gleiche Ergebnis, solange die g"angige Waage nicht auf dem Mond eingesetzt wird (Unterschiede in der Erdbeschleunigung k"onnen gegen"uber Messfehlern und Schwankungen der K"orpermasse im Tagesverlauf vernachl"assigt werden). Unabh"angig von der Schwerkraft kann man sich morgens an die Feder aus unseren Aufgaben h"angen, ein wenig schwingen, um die Periode zu bestimmen, und dann die tr"age Masse direkt ausrechnen. Dies geht auch in einer Raumstation, solange die Masse des Raumfahrenden wesentlich kleiner ist als die der Raumstation. 
 %\begin{center}
-  \MUGraphics{Bilder/abbWaage}{scale=1}{Verwendung einer Feder als Federwaage im Schwerefeld (links) und als Oszillationswaage (rechts). 
+  \MUGraphics{abbWaage}{scale=1}{Verwendung einer Feder als Federwaage im Schwerefeld (links) und als Oszillationswaage (rechts). 
   \MLabel{Physik_Schwingungen_AbbWaage}
   }{width:600px;}
 %\end{center}
@@ -888,7 +851,7 @@ Zeitdauer bei 100 W in Sekunden (mit zwei signifikanten Stellen und Dezimalpunkt
 
 \begin{MHint}{L"osung} 
 \begin{center}
-  \MUGraphics{Bilder/abbBetrachtungEpotEkin}{scale=1}{Potentielle und kinetische Energie w"ahrend der ersten Schwingungsperiode.\MLabel{Physik_Schwingungen_AbbBetrachtungEpotEkin}
+  \MUGraphics{abbBetrachtungEpotEkin}{scale=1}{Potentielle und kinetische Energie w"ahrend der ersten Schwingungsperiode.\MLabel{Physik_Schwingungen_AbbBetrachtungEpotEkin}
 }{width:600px;}
   \end{center}
 
@@ -905,7 +868,7 @@ Stellen Sie f"ur das Feder-Masse-System mit einer Anfangsauslenkung von 10 mm un
 
 \begin{MHint}{L"osung} 
 \begin{center}
-  \MUGraphics{Bilder/abbTXD}{scale=1}{Auslenkung als Funktion der Zeit f"ur das System mit geschwindigkeitsproportionaler D"ampfung und realistischen Parametern. Zum Vergleich ist das unged"ampfte System ebenfalls aufgenommen.\MLabel{Physik_Schwingungen_AbbTXD}
+  \MUGraphics{abbTXD}{scale=1}{Auslenkung als Funktion der Zeit f"ur das System mit geschwindigkeitsproportionaler D"ampfung und realistischen Parametern. Zum Vergleich ist das unged"ampfte System ebenfalls aufgenommen.\MLabel{Physik_Schwingungen_AbbTXD}
 }{width:600px;}
   \end{center}
 
@@ -922,7 +885,7 @@ Stellen Sie analog zu Beispiel \MRef{Physik_Schwingungen_BspD} die Amplitude $\r
 
 \begin{MHint}{L"osung}
 \begin{center}
-  \MUGraphics{Bilder/abbReibung}{scale=1}{Amplitude der eingeschwungenen L"osung mit D"ampfung.\MLabel{Physik_Schwingungen_AbbReibung}
+  \MUGraphics{abbReibung}{scale=1}{Amplitude der eingeschwungenen L"osung mit D"ampfung.\MLabel{Physik_Schwingungen_AbbReibung}
 }{width:600px;}
   \end{center}
 Auch in diesem Modell ist die Schwingung stark ged"ampft, wenn auch weniger stark als im Bei\-spiel\-mo\-dell mit Einheitswerten. F"ur das Modell mit realistischeren Parametern kann man leicht zeigen, dass hier $\omega_0/\gamma=\pi$ gilt.
@@ -938,7 +901,7 @@ Stellen Sie f"ur das Modell aus Aufgabe \MRef{Physik_Schwingungen_AufgabeErzwung
 
 \begin{MHint}{L"osung}
 \begin{center}
-  \MUGraphics{Bilder/abbPhasenVerschiebung}{scale=1}{Phasenverschiebung bei der eingeschwungenen L"osung in dem Modell mit realistischeren Parametern, das bedeutet hier weniger D"ampfung.\MLabel{Physik_Schwingungen_AbbPhasenVerschiebung}
+  \MUGraphics{abbPhasenVerschiebung}{scale=1}{Phasenverschiebung bei der eingeschwungenen L"osung in dem Modell mit realistischeren Parametern, das bedeutet hier weniger D"ampfung.\MLabel{Physik_Schwingungen_AbbPhasenVerschiebung}
 }{width:600px;}
   \end{center}
 
@@ -959,12 +922,12 @@ Zur"uck zum \MSRef{Physik_Schwingungen_VonAufgabePhasenVerschiebung}{Text}
 %===============================================================================
 \MSubsection{Wellen}\MLabel{Physik_Schwingungen_SubWellen}
 \begin{MIntro}\MLabel{Physik_Schwingungen_IntroWellen}
-Oszillierende Systeme k"onnen die Ausbreitung von Schwingungen im Raum bewirken. Die sich ergebenden Ph"anomene werden als \EdmesEmph{Wellen} bezeichnet. Wellen sind eine weit verbreitete, in verschiedenen Formen auftretende und im Detail komplexe Erscheinung. Beispielsweise werden Wellen, die an ein gasf"ormiges, fl"ussiges oder festes Medium gebunden sind, unter dem Begriff \EdmesEmph{mechanische Wellen} zusammengefasst. Des weiteren wird zwischen longitudinalen und transversalen Wellen unterschieden:
+Oszillierende Systeme k"onnen die Ausbreitung von Schwingungen im Raum bewirken. Die sich ergebenden Ph"anomene werden als \MOptionalEmph{Wellen} bezeichnet. Wellen sind eine weit verbreitete, in verschiedenen Formen auftretende und im Detail komplexe Erscheinung. Beispielsweise werden Wellen, die an ein gasf"ormiges, fl"ussiges oder festes Medium gebunden sind, unter dem Begriff \MOptionalEmph{mechanische Wellen} zusammengefasst. Des weiteren wird zwischen longitudinalen und transversalen Wellen unterschieden:
 \begin{MInfo}
 Wellen, die an ein gasf"ormiges, fl"ussiges oder festes Medium gebunden sind, werden unter dem Begriff mechanische Wellen zusammengefasst.
 \begin{itemize}
   \item Longitudinalwellen k"onnen sich in fluiden (d. h. gasf"ormigen oder fl"ussigen) und festen Medien ausbreiten. Bei diesen erfolgen die Schwingungen im Medium in Richtung der Wellenausbreitung. Ein wichtiges Beispiel ist die Ausbreitung von Schall in Gasen, Fl"ussigkeiten oder Festk"orpern.
-  \item Reine Transversalwellen treten nur in Festk"orpern auf. Hier schwingt das Medium senkrecht zur Ausbreitungsrichtung. Daher kann bei Transversalwellen eine \EdmesEmph{Polarisation} vorliegen, das bedeutet das Vorkommen von nur einer Schwingungsrichtung. Ein Beispiel sind gewisse seismische Wellen.
+  \item Reine Transversalwellen treten nur in Festk"orpern auf. Hier schwingt das Medium senkrecht zur Ausbreitungsrichtung. Daher kann bei Transversalwellen eine \MOptionalEmph{Polarisation} vorliegen, das bedeutet das Vorkommen von nur einer Schwingungsrichtung. Ein Beispiel sind gewisse seismische Wellen.
   \item Mischformen von longitudinalen und transversalen Wellen k"onnen auch in Fluiden auftreten, z. B. bestimmte Arten von Wasserwellen.
 \end{itemize}
 \end{MInfo}
@@ -1002,39 +965,32 @@ In der Akustik werden Schallquellen h"aufig als Punktquellen und das Schallfeld 
 
 \begin{center}
 \begin{tabular}{cc}
-\MUGraphicsSolo{Bilder/abbKugelWelle2}{}{width:400px;}
+\MUGraphicsSolo{abbKugelWelle2}{}{width:400px;}
 &
-\MUGraphicsSolo{Bilder/abbKugelWelle4}{}{width:400px;}
+\MUGraphicsSolo{abbKugelWelle4}{}{width:400px;}
 \\
-\MUGraphicsSolo{Bilder/abbKugelWelle6}{}{width:400px;}
+\MUGraphicsSolo{abbKugelWelle6}{}{width:400px;}
 &
-\MUGraphicsSolo{Bilder/abbKugelWelle8}{}{width:400px;}
+\MUGraphicsSolo{abbKugelWelle8}{}{width:400px;}
 \\
 \end{tabular}
-\MUGraphics{Bilder/Bild_Platzhalter_fuer_Bildertitel}{scale=1}%
+\MUGraphics{Bild_Platzhalter_fuer_Bildertitel}{scale=1}%
 {Querschnitte durch das Schalldruckfeld einer Kugelwelle zu unterschiedlichen Zeiten
 \MLabel{Physik_Schwingungen_AbbKugelwelle}}%
 {width=40px}
 \end{center}
 
-\renewcommand\MOnlineOnlyErsatz{Im Online-Modul finden Sie an dieser 
-    Stelle eine animierte Darstellung.
-}
-\MOnlineOnly{
   \begin{MHint}{Animierte Darstellung}
-  \MUGraphicsSolo{Bilder/abbKugelWelleAni}{}{}
+  \MUGraphicsSolo{abbKugelWelleAni}{}{}
   \end{MHint}
-}
 
 Die Schwankungen des Schalldrucks gegen"uber dem umgebenden Luftdruck sind in beliebigen Einheiten als Falschfarben dargestellt. In der Umgebung der Punktquelle treten Werte au"serhalb der Farbskala auf, diese wurden auf Null gesetzt. Der Schall ist ein Beispiel f"ur eine longitudinale Welle. Interessierte finden n"ahere Informationen unter\\
 \verb%www.dega-akustik.de/publikationen/DEGA_Empfehlung_101.pdf%
 
 Saiteninstrumente liefern ein weiteres Beispiel f"ur Wellenph"anomene. Die folgende Abbildung zeigt schematisch unterschiedliche Bewegungsformen einer gespannten und angeregten, z. B. gezupften Saite. Die Saite ist an den Endpunkten eingespannt und kann sich dort nicht bewegen. Oben im Bild ist die Grundschwingung dargestellt, bei einer nicht gegriffenen Gitarren-A-Saite entspricht sie einem Ton der H"ohe 110 Hz. Darunter ist die erste Oberschwingung gezeigt. Bei der Guitarre wird dieser angeregt, indem die Fingerkuppe in der Saitenmitte beim zw"olften Bund aufgelegt wird, wo sich der Knoten befindet - ohne zu greifen, d. h. ohne die Saite auf das Griffbrett zu dr"ucken. Der erzeugte Oberton, auch Flageolettton genannt, hat als Tonh"ohe 220 Hz. F"ur den n"achsten Flageolettton mit 330 Hz wird der Finger beim siebten Bund aufgelegt und f"ur den Folgenden mit der Frequenz des Standard-Kammertons von 440 Hz beim f"unften Bund. Bei der Zuordnung eines Knotens zu einem Bund ist zu beachten, dass die Bundstege nicht "aquidistant sind. H"ohere Obert"one lassen sich vergleichsweise schlecht anregen.
 
-%\begin{center}
-  \MUGraphics{Bilder/abbHarmonicPartialsWiki}{scale=.5}{Schematische Darstellung unterschiedlicher Saitenschwingungen. Ganz oben ist die Grundschwingung ohne Knoten gezeigt, darunter Oberschwingungen mit zunehmender Anzahl von Knoten. \MLabel{Physik_Schwingungen_AbbHarmonicPartialsWiki}
+  \MUGraphics{abbHarmonicPartialsWiki}{scale=.5}{Schematische Darstellung unterschiedlicher Saitenschwingungen. Ganz oben ist die Grundschwingung ohne Knoten gezeigt, darunter Oberschwingungen mit zunehmender Anzahl von Knoten. \MLabel{Physik_Schwingungen_AbbHarmonicPartialsWiki}
 }{width:350px;}
-%\end{center}
 
 Die Saitenschwingung ist ein Beispiel f"ur eine transversale Welle. Insbesondere handelt es sich um eine stehende Welle. Diese werden als "Uberlagerung zweier fortschreitender Wellen mit entgegengesetzter Bewegungsrichtung beschrieben.
 
@@ -1058,7 +1014,7 @@ Der Zusammenhang zwischen Druck und Dichte wird durch eine Zustandsgleichung bes
 Die Dichte"anderung ist bedingt durch die r"aumlich unterschiedliche Verschiebung des Mediums - bei einer r"aumlich homogenen, d. h. "uberall gleichen Verschiebung w"urde sich die Dichte nicht "andern. Es wird zun"achst nur ein eindimensionales Problem mit der Ortsvariablen $x$ betrachtet, wiederum f"ur sehr kleine Verschiebungen und "Anderungen der Dichte. Der dann geltende Zusammenhang wird hier ohne Herleitung angegeben:
 
 \begin{MInfo}
-Die "Anderung der Dichte bezogen auf die Gleichgewichtsdichte, $\rho_e / \rho_0$, ist entgegengesetzt der "Anderung der Verschiebung pro "Anderung der Ortsvariablen, $\partial \chi / \partial x$. Auf\/l"osen nach der Dichte"anderung ergibt
+Die "Anderung der Dichte bezogen auf die Gleichgewichtsdichte, $\rho_e / \rho_0$, ist entgegengesetzt der "Anderung der Verschiebung pro "Anderung der Ortsvariablen, $\partial \chi / \partial x$. Aufl"osen nach der Dichte"anderung ergibt
 
 \begin{equation}
   \rho_e = -\rho_0 \, \partial \chi / \partial x\; .\MLabel{Physik_Schwingungen_SchallDichte}
@@ -1099,11 +1055,9 @@ F"ur die schallbedingte Verschiebung des Mediums $\chi$ lautet die Wellengleichu
 Die Konstante $\kappa$ ist das Verh"altnis aus Druck- und Dichte"anderung in der um die Gleichgewichtswerte linearisierten Zustandsgleichung.
 \end{MInfo}
 
-\MOnlineOnly{
   \begin{MHint}{Bemerkung zu der Gleichung}
   Die Wellengleichung "ahnelt Gl. \MRef{Physik_Schwingungen_EQHO} f"ur den harmonischen Oszillator. Allerdings treten hier partielle Ableitungen auf, n"amlich die zweiten partiellen Ableitungen nach der Zeit bzw. dem Ort. Daher ist Gl. \MRef{Physik_Schwingungen_SchallWellenGl} eine partielle lineare homogene Differentialgleichung zweiter Ordnung mit konstanten Koeffizienten. Sie wird auch als d'Alembert Gleichung bezeichnet. Auch die Wellengleichung hat die wichtige Eigenschaft, linear zu sein, womit sich unterschiedliche L"osungen durch Linearkombination zu neuen L"osungen "uberlagern (superponieren) lassen.
   \end{MHint}
-}
 
 \end{MXContent}
 
@@ -1125,12 +1079,10 @@ Die Geschwindigkeit $c_\mathrm{s}$ der fortschreitenden Wellen wird f"ur Schall 
 
 Zun"achst soll erl"autert und an Beispielen gezeigt werden, dass es sich bei den Summanden in Gl. \MRef{Physik_Schwingungen_AllgLsgWellenGl} um fortschreitende Wellen handelt. Anschlie"send wird nachgewiesen, dass diese Wellenfunktion tats"achlich die Wellengleichung l"ost.
 
-Die Funktion $f_1$ habe zum Zeitpunkt $t=0$ am Ort $x=0$ den Wert $f_1(0)=\chi_0$. Schreitet die Welle in Richtung zunehmender $x$-Werte fort, so sollte die Funktion $f_1$ den gleichen Wert $\chi_0$ zu einer sp"ateren Zeit $t_+>0$ an einem Ort $x_+>0$ annehmen. Das ist an dem Ort der Fall, f"ur den das Argument der Funktion $f_1$ ebenfalls Null ist, also $x_+-c_\mathrm{s}t_+=0$. Auf\/l"osen nach dem Ort ergibt $x_+=c_\mathrm{s}t_+$. Da die Schallgeschwindigkeit eine positive Gr"o"se ist, gilt, wie zu zeigen war, $x_+>0$, wobei sich der Funktionswert mit der Geschwindigkeit $c_\mathrm{s}$ fortbewegt hat.
+Die Funktion $f_1$ habe zum Zeitpunkt $t=0$ am Ort $x=0$ den Wert $f_1(0)=\chi_0$. Schreitet die Welle in Richtung zunehmender $x$-Werte fort, so sollte die Funktion $f_1$ den gleichen Wert $\chi_0$ zu einer sp"ateren Zeit $t_+>0$ an einem Ort $x_+>0$ annehmen. Das ist an dem Ort der Fall, f"ur den das Argument der Funktion $f_1$ ebenfalls Null ist, also $x_+-c_\mathrm{s}t_+=0$. Aufl"osen nach dem Ort ergibt $x_+=c_\mathrm{s}t_+$. Da die Schallgeschwindigkeit eine positive Gr"o"se ist, gilt, wie zu zeigen war, $x_+>0$, wobei sich der Funktionswert mit der Geschwindigkeit $c_\mathrm{s}$ fortbewegt hat.
 
 Die Betrachtung der Funktion $f_2(x+c_\mathrm{s}t)$ erfolgt in der Aufgabe 
-%>>>>>>
 \MRef{Physik_Schwingungen_AufgabeWelleAbnehmendeX}\MLabel{Physik_Schwingungen_VonAufgabeWelleAbnehmendeX}.
-%<<<<<<
 
 \begin{MExample}\MLabel{Physik_Schwingungen_BspWelleZunehmend}
 Ein Beispiel f"ur eine Funktion der Form $f_1(x-c_\mathrm{s}t)$ ist 
@@ -1144,7 +1096,7 @@ Der erste Faktor oszilliert  bei festem Ort mit der Zeit und ebenso zu fester Ze
 F"ur das in Abb. \MRef{Physik_Schwingungen_AbbWelleBspM} gezeigte Beispiel wurde die Frequenz eines hohen Tones von 10 Kilohertz gew"ahlt, also $\omega = 2\pi 10000\MEinheit{s}^{-1}$. Damit kann der sogenannte Wellenvektor $k_x$ mit der Schallgeschwindigkeit $c_\mathrm{s}=343\MEinheit{m/s}$ zu $k_x=\omega/c_\mathrm{s}=183\MEinheit{rad/m}$ berechnet werden. 
 
 \begin{center}
-  \MUGraphics{Bilder/abbWelleBspM}{scale=1}{Welle, die in Richtung zunehmender $x$-Werte fortschreitet, $f_1(x-c_\mathrm{s}t)$. Darstellungen als Funktion der Ortes sind f"ur zunehmende Zeiten untereinander angeordnet. \MLabel{Physik_Schwingungen_AbbWelleBspM}
+  \MUGraphics{abbWelleBspM}{scale=1}{Welle, die in Richtung zunehmender $x$-Werte fortschreitet, $f_1(x-c_\mathrm{s}t)$. Darstellungen als Funktion der Ortes sind f"ur zunehmende Zeiten untereinander angeordnet. \MLabel{Physik_Schwingungen_AbbWelleBspM}
 }{width:600px;}
   \end{center}
 
@@ -1169,7 +1121,7 @@ Ein Beispiel f"ur eine Funktion der Form $f_2(x+c_\mathrm{s}t)$ ist
 Dieses Beispiel enth"alt keinen oszillierenden Anteil. F"ur die Darstellung in Abb. \MRef{Physik_Schwingungen_AbbWelleBspP} wurde als charakteristische L"ange (\glqq Breite\grqq, s. \MRef{Physik_Schwingungen_AufgabeWelleBreite}) die Wellenl"ange $\lambda$ aus dem vorangehenden Beispiel gew"ahlt.
 
 \begin{center}
-  \MUGraphics{Bilder/abbWelleBspP}{scale=1}{Welle, die in Richtung abnehmender $x$-Werte fortschreitet, $f_2(x+c_\mathrm{s}t)$. Darstellungen als Funktion des Ortes sind f"ur zunehmende Zeiten untereinander angeordnet. \MLabel{Physik_Schwingungen_AbbWelleBspP}
+  \MUGraphics{abbWelleBspP}{scale=1}{Welle, die in Richtung abnehmender $x$-Werte fortschreitet, $f_2(x+c_\mathrm{s}t)$. Darstellungen als Funktion des Ortes sind f"ur zunehmende Zeiten untereinander angeordnet. \MLabel{Physik_Schwingungen_AbbWelleBspP}
 }{width:600px;}
   \end{center}
 
@@ -1185,7 +1137,7 @@ betrachtet.
 Beispiel f"ur die "Uberlagerung zweier in entgegengesetzter Richtung fortschreitender Wellen anhand der beiden vorangehenden Beispiele.
 
 \begin{center}
-  \MUGraphics{Bilder/abbWelleBsp}{scale=1}{Welle, die sich aus der "Uberlagerung (rot) der in den Abbildungen \MRef{Physik_Schwingungen_AbbWelleBspM} und \MRef{Physik_Schwingungen_AbbWelleBspP} dargestellen Wellen (blau bzw. gr"un) ergibt. Darstellungen als Funktion des Ortes sind f"ur zunehmende Zeiten untereinander angeordnet. \MLabel{Physik_Schwingungen_AbbWelleBsp}
+  \MUGraphics{abbWelleBsp}{scale=1}{Welle, die sich aus der "Uberlagerung (rot) der in den Abbildungen \MRef{Physik_Schwingungen_AbbWelleBspM} und \MRef{Physik_Schwingungen_AbbWelleBspP} dargestellen Wellen (blau bzw. gr"un) ergibt. Darstellungen als Funktion des Ortes sind f"ur zunehmende Zeiten untereinander angeordnet. \MLabel{Physik_Schwingungen_AbbWelleBsp}
 }{width:600px;}
   \end{center}
 
@@ -1229,14 +1181,14 @@ Abschlie"send sollen an einem ganz einfachen Beispiel Effekte aufgezeigt werden,
 F"ur $k_x$ wird wie im vorherigen Abschnitt der Zahlenwert eingesetzt, der einer Frequenz von 10 kHz entspricht. Der zweite Summand hat somit einen Wellenvektor, der einer Frequenz von 8 kHz entspricht. Das Ergebnis ist in Abb. \MRef{Physik_Schwingungen_AbbWelleInter} gezeigt. Statt die Wellen wie bisher als Funktion der Ortskoordinate f"ur unterschiedliche Zeiten untereinander anzuordnen, ist hier die Zeit auf der Ordinate aufgetragen. Da eine dritte Dimension auf dem Papier oder Bildschirm fehlt, um $\chi(x,t)$ aufzutragen, werden die Funktionswerte durch Farben wiedergegeben (es entsteht ein sogenanntes Falschfarbenbild). Die Farbtafel neben dem Bild gibt die Zuordnung von Funktionswerten und Farben an. Es ist zu beachten, dass wie bei solchen Darstellungen "ublich die Zeit nun nach oben zunimmt (statt wie bei der bisherigen zeilenweisen Anordnung nach unten).
 
 \begin{center}
-  \MUGraphics{Bilder/abbWelleInter}{scale=1}{"Uberlagerung zweier unendlich ausgedehnter ebener Schallwellen gleicher Amplitude, die in die gleiche Richtung fortschreiten. Beide Wellen sind Kosinus-Wellen, eine mit einer Frequenz von 10 kHz, die andere mit einer Frequenz von 8 kHz. \MLabel{Physik_Schwingungen_AbbWelleInter}
+  \MUGraphics{abbWelleInter}{scale=1}{"Uberlagerung zweier unendlich ausgedehnter ebener Schallwellen gleicher Amplitude, die in die gleiche Richtung fortschreiten. Beide Wellen sind Kosinus-Wellen, eine mit einer Frequenz von 10 kHz, die andere mit einer Frequenz von 8 kHz. \MLabel{Physik_Schwingungen_AbbWelleInter}
 }{width:700px;}
   \end{center}
 
 Betrachtet man die Welle bei fester Zeit als Funktion des Ortes oder an einem festen Ort als Funktion der Zeit, so beobachtet man ein eine abwechselnd anschwellende und dann wieder abschwellende Schwingung. Der Verlauf an einem Ort als Funktion der Zeit ist in Abb. \MRef{Physik_Schwingungen_AbbWelleInterVonT} gezeigt.
 
 \begin{center}
-  \MUGraphics{Bilder/abbWelleInterVonT}{scale=1}{Schnitt durch den in Abb. \MRef{Physik_Schwingungen_AbbWelleInter} dargestellten Datensatz bei festem Ort, n"amlich der kleinsten dargestellen Ort (-255 mm). Das An- und Abschwellen einer h"oherfrequenten Schwingung (Schwebung) ist so gut zu erkennen. \MLabel{Physik_Schwingungen_AbbWelleInterVonT}
+  \MUGraphics{abbWelleInterVonT}{scale=1}{Schnitt durch den in Abb. \MRef{Physik_Schwingungen_AbbWelleInter} dargestellten Datensatz bei festem Ort, n"amlich der kleinsten dargestellen Ort (-255 mm). Das An- und Abschwellen einer h"oherfrequenten Schwingung (Schwebung) ist so gut zu erkennen. \MLabel{Physik_Schwingungen_AbbWelleInterVonT}
 }{width:700px;}
   \end{center}
 
@@ -1266,13 +1218,13 @@ Erl"autern Sie, dass die Funktion $f_2(x+c_\mathrm{s}t)$ in Richtung abnehmender
 
 \begin{MHint}{L"osung}
 Es sei $\chi_a = f_2(x_a+c_\mathrm{s}t_a)$. Zu einer sp"ateren Zeit $t_a+t_+$ hat $f_2$ den Wert $\chi_a$ an dem Ort $x$ f"ur den gilt
-\begin{equation*}
+$$
   x+c_\mathrm{s}(t_a+t_+)=x_a+c_\mathrm{s}t_a\;,
-\end{equation*}
-d. h. an dem Ort, f"ur den das Argument den gleichen Wert hat. Auf\/l"osen nach dem Ort ergibt
-\begin{equation*}
+$$
+d. h. an dem Ort, f"ur den das Argument den gleichen Wert hat. Aufl"osen nach dem Ort ergibt
+$$
   x=x_a-c_\mathrm{s}t_+<x_a\;.
-\end{equation*}
+$$
 Damit ist gezeigt, dass jeder Funktionswert mit der Geschwindigkeit $c_\mathrm{s}$ in Richtung abnehmender $x$-Werte fortschreitet. 
 \end{MHint}
 
@@ -1284,7 +1236,7 @@ Zur"uck zum \MSRef{Physik_Schwingungen_VonAufgabeWelleAbnehmendeX}{Text}
 \begin{MExercise}\MLabel{Physik_Schwingungen_AufgabeWellenLaenge}
 Berechnen Sie die Wellenl"ange f"ur das Beispiel \MRef{Physik_Schwingungen_BspWelleZunehmend}!
 
-\begin{MHint}{L"osung} Es gilt $\lambda = 2\pi/k_x = 2\pi/183\,\mathrm{m} = 34\,\mathrm{mm}$. In Wasser mit einer Schallgeschwindigkeit von 1500 m/s ist die Wellenl"ange bei gleicher Frequenz um den Faktor 1500/343 gr"o"ser. Um in der medizinischen Bildgebung eine gute Ortsauf\/l"osung zu erreichen, werden daher Frequenzen im Megahertzbereich eingesetzt, mit entsprechend kleineren Wellenl"angen. \end{MHint}
+\begin{MHint}{L"osung} Es gilt $\lambda = 2\pi/k_x = 2\pi/183\,\mathrm{m} = 34\,\mathrm{mm}$. In Wasser mit einer Schallgeschwindigkeit von 1500 m/s ist die Wellenl"ange bei gleicher Frequenz um den Faktor 1500/343 gr"o"ser. Um in der medizinischen Bildgebung eine gute Ortsaufl"osung zu erreichen, werden daher Frequenzen im Megahertzbereich eingesetzt, mit entsprechend kleineren Wellenl"angen. \end{MHint}
 
 Zur"uck zum \MSRef{Physik_Schwingungen_VonAufgabeWellenLaenge}{Text}
 \end{MExercise}
@@ -1347,11 +1299,9 @@ Die obige Berechnung von neuen Orten und Geschwindigkeiten zu jeweils gleichen Z
 
 Das Ergebnis ist umso genauer, je kleiner die Schrittweite $\delta t$ ist. Es ist in geeigneter Weise zu pr"ufen, ob das numerische Ergebnis belastbar ist, z. B. durch Vergleich der numerischen Rechnung an Modellen, bei denen das analytische Ergebnis bekannt ist, oder durch Vergleich mit Referenzexperimenten.
 
-\MOnlineOnly{
   \begin{MHint}{Bemerkung zu den Gleichungen}
   In dem obigen Verfahren wird die gew"ohnliche Differentialgeichung zweiter Ordnung in ein System von zwei gew"ohnlichen Differentialgleichugen erster Ordnung umgeschrieben: eine mit der ersten Ableitung der Auslenkung, d. h. der Geschwindigkeit, und eine mit der ersten Ableitung der Geschwindigket, d. h. der Beschleunigung. Das einfache iterative Verfahren f"ur die Integration der jeweiligen Differentialgleichung aus dem Anfangswert und der Anfangssteigung wird als Eulersches Polygonzugverfahren oder auch als Methode der kleinen Schritte bezeichnet, wobei in jedem Iterationsschritt beide gekoppelte Gleichungen iteriert werden m"ussen.
   \end{MHint}
-}
 
 \begin{MInfo}
 F"ur die numerische L"osung der Differentialgleichung k"onnen unterschiedliche Gleichungssysteme aufgestellt werden. Im vorliegenden Fall erh"alt man bei gleicher Schrittweite $\delta t$ erheblich genauere Ergebnisse mit dem durch folgende Gleichungen beschriebenen Verfahren:
@@ -1372,18 +1322,18 @@ Diese Berechnung von neuen Orten und Geschwindigkeiten auf zeitlich versetzten G
 
 \end{MInfo}
 
-\MOnlineOnly{
   \begin{MHint}{Bemerkung zu den Gleichungen}
   Dieses Verfahren wird als Leapfrog oder Verlet Verfahren bezeichnet. Es ist im Allgemeinen genauer als das Eulersche Polygonzugverfahren. Insbesondere hat es den Vorteil, f"ur Bewegungsgleichungen ohne Verluste die Gesamtenergie zu erhalten. So stimmt die mit dem Leapfrog f"ur den harmonischen Oszillator berechnete Auslenkung als Funktion der Zeit nicht exakt mit der analytischen L"osung "uberein, die Auslenkung an den Umkehrpunkten aber schon.
   \end{MHint}
-}
+
 
 
 Der Unterschied in der mit beiden Verfahren erreichten Genauigkeit soll zun"achst an dem analytisch gel"osten Referenzfall des harmonischen Oszillators ohne "au"sere Kraft und ohne Reibung 
 %(s. Abb. \MNRef{Physik_Schwingungen_AbbIntroTX} in der L"osung zu Aufgabe \MNRef{Physik_Schwingungen_AufgabeIntroTX}) 
 mit einer halben Sekunde Schwingungsdauer exemplarisch gezeigt werden. F"ur die Beschleunigung gilt hier $a=-\omega_0^2 x$. Die folgende Tabelle zeigt die Ergebnisse numerischer Integrationen mit beiden Verfahren f"ur eine Schrittweite von $t_0 / 64 = \msz{7}{8125}\mse{ms}$.
 
-\begin{MWTabular}{l|l|l|l|l|l|l|l}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
 Schritt & 
 $\frac{x_{\text{Eul}}}{\mse{mm}}$ & 
 $\frac{v_{\text{Eul}}}{\mse{mm/s}}$ & 
@@ -1392,69 +1342,71 @@ $\frac{x_{\text{LF}}}{\mse{mm}}$ &
 $\frac{v_{\text{LF+}}}{\mse{mm/s}}$ & 
 $\frac{\delta x_{\text{Eul}}}{\mse{mm}}$ & 
 $\frac{\delta x_{\text{LF}}}{\mse{mm}}$\\\hline
-0 & 10 & 0 &   & 10 & -6,169 &  & \\
-1&10,000&-12,337&9,952&9,952&-18,446&0,048&0,000\\
-2&9,904&-24,674&9,808&9,808&-30,546&0,096&0,000\\
-3&9,711&-36,892&9,569&9,569&-42,351&0,141&0,000\\
-4&9,423&-48,872&9,239&9,238&-53,748&0,184&-0,001\\
-5&9,041&-60,497&8,819&8,818&-64,627&0,222&-0,001\\
-6&8,568&-71,651&8,315&8,313&-74,884&0,253&-0,001\\
-7&8,008&-82,221&7,730&7,728&-84,418&0,278&-0,002\\
-8&7,366&-92,101&7,071&7,069&-93,139&0,295&-0,002\\
-9&6,647&-101,189&6,344&6,341&-100,962&0,303&-0,003\\
-10&5,856&-109,389&5,556&5,552&-107,812&0,300&-0,003\\
-11&5,001&-116,613&4,714&4,710&-113,623&0,287&-0,004\\
-12&4,090&-122,783&3,827&3,822&-118,339&0,264&-0,004\\
-13&3,131&-127,830&2,903&2,898&-121,914&0,228&-0,005\\
-14&2,132&-131,692&1,951&1,945&-124,314&0,182&-0,005\\
-15&1,104&-134,323&0,980&0,974&-125,516&0,123&-0,006\\
-16&0,054&-135,685&0,000&-0,006&-125,508&0,054&-0,006\\
-17&-1,006&-135,752&-0,980&-0,987&-124,291&-0,026&-0,007\\
-18&-2,066&-134,511&-1,951&-1,958&-121,875&-0,116&-0,007\\
-19&-3,117&-131,961&-2,903&-2,910&-118,285&-0,214&-0,007\\
-20&-4,148&-128,115&-3,827&-3,834&-113,555&-0,321&-0,007\\
-21&-5,149&-122,998&-4,714&-4,721&-107,730&-0,435&-0,007\\
-22&-6,110&-116,645&-5,556&-5,563&-100,868&-0,554&-0,007\\
-23&-7,021&-109,107&-6,344&-6,351&-93,032&-0,677&-0,007\\
-24&-7,874&-100,445&-7,071&-7,078&-84,301&-0,803&-0,007\\
-25&-8,658&-90,731&-7,730&-7,736&-74,756&-0,928&-0,006\\
-26&-9,367&-80,049&-8,315&-8,320&-64,491&-1,053&-0,006\\
-27&-9,993&-68,493&-8,819&-8,824&-53,605&-1,173&-0,005\\
-28&-10,528&-56,165&-9,239&-9,243&-42,202&-1,289&-0,004\\
-29&-10,967&-43,177&-9,569&-9,573&-30,392&-1,397&-0,003\\
-30&-11,304&-29,647&-9,808&-9,810&-18,289&-1,496&-0,002\\
-31&-11,536&-15,702&-9,952&-9,953&-6,010&-1,584&-0,001\\
-32&-11,658&-1,470&-10,000&-10,000&6,327&-1,658&0,000
-\end{MWTabular}
+0 & 10 & 0 &   & 10 & -6,169 &  & \\\hline
+1&10,000&-12,337&9,952&9,952&-18,446&0,048&0,000\\\hline
+2&9,904&-24,674&9,808&9,808&-30,546&0,096&0,000\\\hline
+3&9,711&-36,892&9,569&9,569&-42,351&0,141&0,000\\\hline
+4&9,423&-48,872&9,239&9,238&-53,748&0,184&-0,001\\\hline
+5&9,041&-60,497&8,819&8,818&-64,627&0,222&-0,001\\\hline
+6&8,568&-71,651&8,315&8,313&-74,884&0,253&-0,001\\\hline
+7&8,008&-82,221&7,730&7,728&-84,418&0,278&-0,002\\\hline
+8&7,366&-92,101&7,071&7,069&-93,139&0,295&-0,002\\\hline
+9&6,647&-101,189&6,344&6,341&-100,962&0,303&-0,003\\\hline
+10&5,856&-109,389&5,556&5,552&-107,812&0,300&-0,003\\\hline
+11&5,001&-116,613&4,714&4,710&-113,623&0,287&-0,004\\\hline
+12&4,090&-122,783&3,827&3,822&-118,339&0,264&-0,004\\\hline
+13&3,131&-127,830&2,903&2,898&-121,914&0,228&-0,005\\\hline
+14&2,132&-131,692&1,951&1,945&-124,314&0,182&-0,005\\\hline
+15&1,104&-134,323&0,980&0,974&-125,516&0,123&-0,006\\\hline
+16&0,054&-135,685&0,000&-0,006&-125,508&0,054&-0,006\\\hline
+17&-1,006&-135,752&-0,980&-0,987&-124,291&-0,026&-0,007\\\hline
+18&-2,066&-134,511&-1,951&-1,958&-121,875&-0,116&-0,007\\\hline
+19&-3,117&-131,961&-2,903&-2,910&-118,285&-0,214&-0,007\\\hline
+20&-4,148&-128,115&-3,827&-3,834&-113,555&-0,321&-0,007\\\hline
+21&-5,149&-122,998&-4,714&-4,721&-107,730&-0,435&-0,007\\\hline
+22&-6,110&-116,645&-5,556&-5,563&-100,868&-0,554&-0,007\\\hline
+23&-7,021&-109,107&-6,344&-6,351&-93,032&-0,677&-0,007\\\hline
+24&-7,874&-100,445&-7,071&-7,078&-84,301&-0,803&-0,007\\\hline
+25&-8,658&-90,731&-7,730&-7,736&-74,756&-0,928&-0,006\\\hline
+26&-9,367&-80,049&-8,315&-8,320&-64,491&-1,053&-0,006\\\hline
+27&-9,993&-68,493&-8,819&-8,824&-53,605&-1,173&-0,005\\\hline
+28&-10,528&-56,165&-9,239&-9,243&-42,202&-1,289&-0,004\\\hline
+29&-10,967&-43,177&-9,569&-9,573&-30,392&-1,397&-0,003\\\hline
+30&-11,304&-29,647&-9,808&-9,810&-18,289&-1,496&-0,002\\\hline
+31&-11,536&-15,702&-9,952&-9,953&-6,010&-1,584&-0,001\\\hline
+32&-11,658&-1,470&-10,000&-10,000&6,327&-1,658&0,000\\\hline
+\end{tabular}
 
 Bei Schritt Null sind in den Spalten mit numerischen Ergebnissen die Anfangswerte eingetragen. In der zweiten und dritten Spalte sind das f"ur das Euler-Verfahren die Anfangsauslenkung $x_{\text{Eul}}=10\mse{mm}$ bzw. die Anfangsgeschwindigkeit $v_{\text{Eul}}=0\frac{mm}{s}$. In der f"unften und sechsten Spalte sind die entsprechenden Werte f"ur das Leapfrog Verfahren angegeben, wobei die Anfangsgeschwindigkeit $v_{\text{LF+}}$ f"ur den Zeitschritt $\frac{\delta t}{2}$ gem"a"s Gleichung \MRef{Physik_Schwingungen_EqLF4} berechnet wurde.
 
 Um zun"achst auf ein kleines, einfaches Programm zu verzichten und an verbreitetes Vorwissen anzukn"upfen, wurde die obige Tabelle auf einfachste Weise mit einer Tabellenkalkulation erstellt. Es wurde die kostenlose Tabellenkalkulation LibreOffice - Calc verwendet, die in der Bedienung dem g"angigen kommerziellen Produkt sehr "ahnlich ist. In den Formeln der benachbarten Zellen des Euler-Verfahrens steht sinngem"a"s
 
-\begin{MWTabular}{c|c|c|c}
+\begin{tabular}{|c|c|c|c|}
+\hline
 \dots & \dots & \dots & \dots \\\hline
 \dots & = $x$ Zeile oben + $v$ Zeile oben mal $\delta t$ & = $v$ Zeile oben - $\omega_0^2$ mal $x$ Zeile oben mal $\delta t$ & \dots \\\hline
-\dots & \dots & \dots & \dots
-\end{MWTabular}
+\dots & \dots & \dots & \dots\\\hline
+\end{tabular}
 
 Die beiden Zellen k"onnen so oft wie gew"unscht untereinander kopiert werden. Bei dem Leapfrog-Verfahren ist es etwas komplizierter. Dort steht in den benachbarten Zellen sinngem"a"s
 
-\begin{MWTabular}{c|c|c|c}
+\begin{tabular}{|c|c|c|c|}
+\hline
 \dots & \dots & \dots & \dots \\\hline
-\dots & = $x$ Zeile oben + $v$ Zeile oben mal $\delta t$ & = $v$ Zeile oben - $\omega_0^2$ mal $x$ \EdmesEmph{gleiche} Zeile mal $\delta t$ & \dots \\\hline
-\dots & \dots & \dots & \dots
-\end{MWTabular}
+\dots & = $x$ Zeile oben + $v$ Zeile oben mal $\delta t$ & = $v$ Zeile oben - $\omega_0^2$ mal $x$ \MOptionalEmph{gleiche} Zeile mal $\delta t$ & \dots \\\hline
+\dots & \dots & \dots & \dots\\\hline
+\end{tabular}
 
 Wie die Tabellenkalkulation bewerkstelligt, dass in jeder Zelle jeweils der aktuell korrekte Wert berechnet und dargestellt wird, ist f"ur den Anwender unerheblich. Zwischen den numerischen Ergebnissen ist in der vierten Spalte das mit der analytischen Gleichung berechnete Ergebnis zum Vergleich angegeben. Die Abweichungen zwischen den numerischen und den analytischen Ergebnissen sind in der siebten und achten Spalte f"ur das Euler-Verfahren bzw. das Leapfrog Verfahren angegeben. Die folgende Abbildung zeigt das Ergebnis f"ur eine gr"o"sere Anzahl von Zeitschritten in einem Diagramm. Da auf der Diagrammskala das analytische Ergebnis mit dem Ergebnis des Leapfrog Verfahrens "ubereinstimmt, kann auf die Darstellung des analytischen Ergebnisses verzichtet werden.
 
 \begin{center}
-  \MUGraphics{Bilder/abbNumVgl}{scale=1}{Numerisch berechnete Auslenkung im harmonischen Oszillator mit dem Leapfrog-Verfahren (magenta) und dem hier wesentlich ungenaueren Euler-Verfahren (blau). Die Schrittweite ist jeweils gleich, das Ergebnis f"ur jeden Zeitschritt ist als eigener Punkt dargestellt.\MLabel{Physik_Schwingungen_AbbNumVgl}
+  \MUGraphics{abbNumVgl}{scale=1}{Numerisch berechnete Auslenkung im harmonischen Oszillator mit dem Leapfrog-Verfahren (magenta) und dem hier wesentlich ungenaueren Euler-Verfahren (blau). Die Schrittweite ist jeweils gleich, das Ergebnis f"ur jeden Zeitschritt ist als eigener Punkt dargestellt.\MLabel{Physik_Schwingungen_AbbNumVgl}
 }{width:600px;}
   \end{center}
 
 Obwohl jede Schwingungsperiode mit 64 Punkten verh"altnism"a"sig fein diskretisiert ist, liefert das Eulersche Polygonzugverfahren (Gln. \MRef{Physik_Schwingungen_EqEuler1} und \MRef{Physik_Schwingungen_EqEuler2}) einen mit der Zeit "uberproportional ansteigenden Fehler in der Auslenkung. Die folgende Abbildung zeigt das Verfahren noch schematisch:
 \begin{center}
-  \MUGraphics{Bilder/abbEulerPoly}{}{Prinzip der numerischen Integration der Bewegungsgleichung mit dem Eulerschen Polygonzugverfahren.\MLabel{Physik_Schwingungen_AbbEulerPoly}
+  \MUGraphics{abbEulerPoly}{}{Prinzip der numerischen Integration der Bewegungsgleichung mit dem Eulerschen Polygonzugverfahren.\MLabel{Physik_Schwingungen_AbbEulerPoly}
 }{width:400px;} %exportiert mit 300 dpi
   \end{center}
 
@@ -1465,7 +1417,7 @@ Die Betrachtung eines Programmes f"ur die Umsetzung der numerischen Integration 
 
 Bei dem Leapfrog Verfahren (Gln. \MRef{Physik_Schwingungen_EqLF1} bis \MRef{Physik_Schwingungen_EqLF3}) werden Ort und Geschwindigkeit auf verschobenen Zeitrastern abwechselnd berechnet, wobei es hier auf die Reihenfolge ankommt. Die folgende Abbildung zeigt das Verfahren noch schematisch:
 \begin{center}
-  \MUGraphics{Bilder/abbLeapFrog}{}{Prinzip der numerische Integration der Bewegungsgleichung mit dem Leapfrog Verfahren.\MLabel{Physik_Schwingungen_AbbLeapFrog}
+  \MUGraphics{abbLeapFrog}{}{Prinzip der numerische Integration der Bewegungsgleichung mit dem Leapfrog Verfahren.\MLabel{Physik_Schwingungen_AbbLeapFrog}
 }{width:700px;} %exportiert mit 300 dpi, 700px (max)
   \end{center}
 
@@ -1477,7 +1429,7 @@ behandelt.
 
 Die numerische Simulation mit dem Leapfrog Verfahren soll nun genutzt werden, um an einem Beispiel das Einschwingen aus der Ruhelage sowie die ged"ampfte Schwingung nach Erreichen des eingeschwungenen Zustandes und Abstellen der "au"seren Kraft zu untersuchen. Mit 10 rad/s wird eine anregende Kreisfrequenz verwendet, die etwas unterhalb der nat"urlichen Kreisfrequenz liegt. In der numerischen Simulation wird die Aufh"angung der Feder "uber die Dauer von sieben Perioden des Oszillators ohne D"ampfung und "au"sere Kraft harmonisch bewegt. Die maximale Auslenkung der Aufh"angung betr"agt 1 mm. Danach wird die Aufh"angung f"ur die gleiche Dauer angehalten. Die folgende Abbildung zeigt sowohl die erzwungene Bewegung der Aufh"angung (gr"un gestrichelt) als auch die numerisch berechnete Auslenkung der Masse (blaue Datenpunkte):
 \begin{center}
-  \MUGraphics{Bilder/abbNumLFLos}{}{Numerisch berechnete Auslenkung der Masse im Feder-Masse-System mit einer D"ampfung von $\gamma = 4/\text{s}$ und einer "au"seren Kraft, die aus der erzwungenen Bewegung der Federaufh"angung resultiert. Die Auslenkung der Federaufh"angung ist in Gr"un gestrichelt dargestellt, die daraus berechnete Auslenkung der Masse zu den gew"ahlten Zeitschritten mit blauen Punkten. Zum Vergleich ist die analytische L"osung f"ur den Fall kontinuierlicher Anregung in Magenta dargestellt. F"ur die Integration der Bewegungsgleichung wurde das Leapfrog Verfahren genutzt.\MLabel{Physik_Schwingungen_AbbNumLFlos}
+  \MUGraphics{abbNumLFLos}{}{Numerisch berechnete Auslenkung der Masse im Feder-Masse-System mit einer D"ampfung von $\gamma = 4/\text{s}$ und einer "au"seren Kraft, die aus der erzwungenen Bewegung der Federaufh"angung resultiert. Die Auslenkung der Federaufh"angung ist in Gr"un gestrichelt dargestellt, die daraus berechnete Auslenkung der Masse zu den gew"ahlten Zeitschritten mit blauen Punkten. Zum Vergleich ist die analytische L"osung f"ur den Fall kontinuierlicher Anregung in Magenta dargestellt. F"ur die Integration der Bewegungsgleichung wurde das Leapfrog Verfahren genutzt.\MLabel{Physik_Schwingungen_AbbNumLFlos}
 }{width:600px;}
   \end{center}
 
@@ -1502,23 +1454,22 @@ Eine der Zutaten f"ur den elektrischen Schwingkreis ist der Kondensator, s. hier
   q = C U\; .\MLabel{Physik_Schwingungen_EqKondensator}
 \end{equation}
 
-\MOnlineOnly{
   \begin{MHint}{Weiterf"uhrende Bemerkungen zu Kondensatoren}
 %   \begin{MInfo}
   Ein Kondensator kann negative und positive Ladung getrennt aufnehmen (d. h. "Uberschuss bzw. Mangel an Elektronen). Im einfachsten Fall besteht er aus zwei parallelen elektrisch leitenden Platten, die durch einen Isolator (Luft oder ein Dielektrikum) getrennt sind. Andere Aufbauten f"uhren bei kompakter Bauweise zu gro"sen Leiterfl"achen. Die getrennten Ladungen f"uhren zu einem elektrischen Feld bzw. zu einer elektrischen Spannung zwischen den Anschl"ussen des Kondensators. F"ur einen idealen Kondensator sind Ladung und Spannung proportional. Die Proportionalit"atskonstante $C$ wird als Kapazit"at bezeichnet:
-  \begin{equation*}
+  $$
   q = C U\; .
-  \end{equation*}
+  $$
   Das Symbol f"ur einen Kondensator deutet die beiden parallelen Platten an:
   \begin{center}
-  \MUGraphics{Bilder/abbKondensator}{}{Symbol f"ur einen Kondensator mit Kapazit"at $C$. Das Symbol deutet die Bauform zweier paralleler Platten an. F"ur einen solchen Plattenkondensator ist die Kapazit"at proportional zu der Plattenfl"ache und invers proportional zum Plattenabstand. In der Abbildung wird f"ur den Kondensator das Verbraucherz"ahlpfeilsystem angewendet, d. h. der Spannungspfeil zwischen den Anschlussklemmen hat die gleiche Richtung wie der Pfeil f"ur die Stromrichtung $I$ im Leiter, die gleich der (technischen) Bewegungsrichtung der Ladung $q$ ist. \MLabel{Physik_Schwingungen_AbbKondensator}
+  \MUGraphics{abbKondensator}{}{Symbol f"ur einen Kondensator mit Kapazit"at $C$. Das Symbol deutet die Bauform zweier paralleler Platten an. F"ur einen solchen Plattenkondensator ist die Kapazit"at proportional zu der Plattenfl"ache und invers proportional zum Plattenabstand. In der Abbildung wird f"ur den Kondensator das Verbraucherz"ahlpfeilsystem angewendet, d. h. der Spannungspfeil zwischen den Anschlussklemmen hat die gleiche Richtung wie der Pfeil f"ur die Stromrichtung $I$ im Leiter, die gleich der (technischen) Bewegungsrichtung der Ladung $q$ ist. \MLabel{Physik_Schwingungen_AbbKondensator}
   }{width:100px;}
   \end{center}
   Die SI-Einheit f"ur die Kapazit"at ist das Farad, F. Typische Werte f"ur Kapazit"aten sind $10^{-12}$ bis einige $10^{-10}$ F, so dass Kapazit"aten "ublicherweise in Pico-Farad, pF, angegeben werden.
 
 %   \end{MInfo}
   \end{MHint}
-}
+
 
 Wenn man einen geladenen Kondensator kurzschlie"st, entl"adt er sich schlagartig, so wie eine gespannte Feder sich schlagartig zusammenzieht, falls keine Masse am freien Ende befestigt ist. Dies "andert sich, wenn der geladene Kondensator an eine elektrische Spule angeschlossen wird. Der bei der Kondensatorentladung flie"sende Strom f"uhrt dazu, dass die Spule ein Magnetfeld aufbaut, was eine Gegenspannung induziert, s. hierzu das Modul \glqq Magnetische Felder und Induktion\grqq. Es gilt der Zusammenhang
 
@@ -1526,25 +1477,24 @@ Wenn man einen geladenen Kondensator kurzschlie"st, entl"adt er sich schlagartig
   U = L \frac{\MD^2q }{\MD t^2}\; .\MLabel{Physik_Schwingungen_EqSpule}
 \end{equation}
 
-\MOnlineOnly{
   \begin{MHint}{Weiterf"uhrende Bemerkungen zu Spulen}
   Stromdurchflossene Leiter erzeugen ein Magnetfeld. Bauelemente, die die damit verbundenen Effekte nutzen, werden als elektrische Spulen bezeichnet. Das Magnetfeld ist proportional zu der Stromst"arke $I=\frac{\MD q }{\MD t}$. Eine "Anderung der Stromst"arke $\frac{\MD I }{\MD t} = \frac{\MD^2q }{\MD t^2}$ f"uhrt an den Anschl"ussen der Spule idealerweise zu einer proportionalen induzierten Gegenspannung. Die Proportionalit"atskonstante $L$ wird als Induktivit"at (genauer: Selbstinduktivit"at) bezeichnet:
-  \begin{equation*}
+  $$
     U = L \frac{\MD^2q }{\MD t^2}\; .
-  \end{equation*}
+  $$
   Das Symbol f"ur eine Spule deutet die Form einer Luftspule an:
   \begin{center}
-    \MUGraphics{Bilder/abbSpule}{}{Symbol f"ur eine Spule mit Induktivit"at $L$. Das Symbol deutet die Bauform einer Luftspule (Solenoid-Spule) an. In der N"aherung einer langen Spule ist die Induktivit"at Proportional der Windungszahl, Windungsdichte und der Querschnittsfl"ache. Wie in Abb. \MRef{Physik_Schwingungen_AbbKondensator} wurde f"ur die Spule das Verbraucherz"ahlpfeilsystem angewendet, andernfalls w"are in Gln. \MRef{Physik_Schwingungen_EqKondensator} und \MRef{Physik_Schwingungen_EqSpule} ein negatives Vorzeichen einzusetzen. \MLabel{Physik_Schwingungen_AbbSpule}
+    \MUGraphics{abbSpule}{}{Symbol f"ur eine Spule mit Induktivit"at $L$. Das Symbol deutet die Bauform einer Luftspule (Solenoid-Spule) an. In der N"aherung einer langen Spule ist die Induktivit"at Proportional der Windungszahl, Windungsdichte und der Querschnittsfl"ache. Wie in Abb. \MRef{Physik_Schwingungen_AbbKondensator} wurde f"ur die Spule das Verbraucherz"ahlpfeilsystem angewendet, andernfalls w"are in Gln. \MRef{Physik_Schwingungen_EqKondensator} und \MRef{Physik_Schwingungen_EqSpule} ein negatives Vorzeichen einzusetzen. \MLabel{Physik_Schwingungen_AbbSpule}
   }{width:140px;}
     \end{center}
   Die SI-Einheit f"ur die Induktivit"at ist das Henry, H. Typische Zahlenwerte sind hier nicht ganz so klein wie bei Kapazit"aten, Induktivit"aten werden h"aufig in Mikro-Henry, $\mu$H, angegeben.
 
   \end{MHint}
-}
+
 
 Um die einfache elektrische Verbindung des (anf"anglich geladenen) Kondensators und der (anfangs stromlosen) Spule zu einem Stromkreis mathematisch zu analysieren, werden die Kirchhoffschen Regeln (1845) angewandt.
 \begin{center}
-  \MUGraphics{Bilder/abbLC}{}{Geschlossener elektrischer Stromkreis aus einem idealen Kondensator und einer idealen Spule. Die Stromrichtungen wurden so gew"ahlt, dass in jedem der beiden Knoten jweils ein Strom zuflie"st und ein Strom abflie"st. Damit ergeben sich im Verbraucherz"ahlpfeilsystem auch die Richtungen f"ur die Spannungspfeile.\MLabel{Physik_Schwingungen_AbbLC}
+  \MUGraphics{abbLC}{}{Geschlossener elektrischer Stromkreis aus einem idealen Kondensator und einer idealen Spule. Die Stromrichtungen wurden so gew"ahlt, dass in jedem der beiden Knoten jweils ein Strom zuflie"st und ein Strom abflie"st. Damit ergeben sich im Verbraucherz"ahlpfeilsystem auch die Richtungen f"ur die Spannungspfeile.\MLabel{Physik_Schwingungen_AbbLC}
 }{width:160px;}
 \end{center}
 
@@ -1573,33 +1523,28 @@ Als Beispiel soll wieder ein System mit einfachen Zahlenwerten dienen, wobei ein
 \begin{MExample}
 Ein Kondensator mit einer Kapazit"at $C$ von einem Pico-Farad wird mit einer Spule mit einer Induktivit"at $L$ von einem Mikro-Henry zu einem Stromkreis verbunden:
 \begin{center}
-  \MUGraphics{Bilder/abbLCBsp}{}{Elektrischer Schwingkreis aus einem idealen Kondensator und einer idealen Spule. Die Induktivit"at entspricht der Masse in einem mechanischen Oszillator, das inverse der Kapazit"at der Federkonstante. Somit gilt $\omega_0^2 = 1/(L C)$.\MLabel{Physik_Schwingungen_AbbLCBsp}
+  \MUGraphics{abbLCBsp}{}{Elektrischer Schwingkreis aus einem idealen Kondensator und einer idealen Spule. Die Induktivit"at entspricht der Masse in einem mechanischen Oszillator, das inverse der Kapazit"at der Federkonstante. Somit gilt $\omega_0^2 = 1/(L C)$.\MLabel{Physik_Schwingungen_AbbLCBsp}
 }{width:160px;}
 \end{center}
 Das Produkt aus Kapazit"at und Induktivit"at betr"agt $1\cdot 10^{-12} \,\text{F}\cdot 1\cdot 10^{-6} \,\text{H} = 10^{-18}\,\text{s}^2$. Die nat"urliche Kreisfrequenz ist der Kehrwert der Quadratwurzel: $\omega_0 = 10^{9}\,\text{s}^{-1}$. Division durch $2\pi$ ergibt f"ur die lineare Frequenz, auf Mega-Hertz gerundet, 159 MHz. Dies ist im Frequenzbereich der Ultrakurzwellen (UKW) und in etwa die Arbeitsfrequenz von Kernspintomographen. Moderne Ganzk"orper-Systeme erzeugen Magnetfelder (genauer: magnetische Flussdichten oder magnetische Induktionen) von 3 Tesla, T. Dies entspricht einer Kernspin-Resonanzfrequenz f"ur Wasserstoffatomkerne von $\MZahl{802}{5} \MEinheit{s^{-1}}$ als Kreisfrequenz bzw. \MZahl{127}{7} MHz als lineare Frequenz. 
 \end{MExample}
 
-\MOnlineOnly{
   \begin{MHint}{Bemerkung zu dem einfachen LC-Kreis}
   Die einfache elektrische Verbindung eines Kondensators und einer Spule mag als nutzlos erscheinen, abgesehen vom Interesse an der Theorie. Tats"achlich k"onnen solche elektrisch isolierten Schwingkreise aber mit Vorteil z. B. in der Kernspintomographie eingesetzt werden. Die Spule dient zur "Radiokommunikation" mit dem Untersuchungsobjekt. Die Ankopplung der Spule an die "ubrige Elektronik des Kernspintomographen erfolgt, "ahnlich wie bei einem Transformator, induktiv "uber eine zweite Spule (Gegeninduktivit"at).
   \end{MHint}
-}
 
-Ein Beispiel zur Berechnung der Resonanzfrequenz bei gegebenen Eingenschaften von Kondensator und Spule findet sich in Aufgabe
-%>>>>>>
-\MRef{Physik_Schwingungen_AufgabeLC}\MLabel{Physik_Schwingungen_VonAufgabeLC}.
-%<<<<<<
+Ein Beispiel zur Berechnung der Resonanzfrequenz bei gegebenen Eingenschaften von Kondensator und Spule findet sich in Aufgabe \MRef{Physik_Schwingungen_AufgabeLC}\MLabel{Physik_Schwingungen_VonAufgabeLC}.
 
 Nach der freien Oszillation im idealen Feder-Masse-System und der ged"ampften Schwingung wurde in Abschnitt \MRef{Physik_Schwingungen_MXErzwungen} die erzwungene Schwingung betrachtet, z. B. mit einer "au"seren Kraft, die sich aus einer harmonischen Bewegung der Federaufh"angung ergibt.
 Das Analogon zu der "au"seren Kraft ist im elektrischen Schwingkreis eine Spannungsquelle, die an ihren Anschl"ussen einen definierten Spannungsverlauf vorgibt, idealerweise unabh"angig von der angeschlossenen ''Last'' (daneben gibt es auch Stromquellen, bei denen der zu- bzw. abflie"sende Strom vorgegeben werden soll). 
 
 Hier ergeben sich nun zwei M"oglichkeiten. Ein Knoten in Abbildung \MRef{Physik_Schwingungen_AbbLC} kann ge"offnet und eine Spannungsquelle eingef"ugt werden, es ergibt sich ein Serienschwingkreis. Als zweite M"oglichkeit kann die Spannungsquelle an die beiden vorhandenen Knoten angeschlossen werden, dadurch wird ein Parallelschwingkreis erhalten:
 \begin{center}
-  \MUGraphics{Bilder/abbLCU}{}{Elektrische Schwingkreise aus einem idealen Kondensator und einer idealen Spule mit "au"serer Spannungsquelle. Die Serienschaltung links entspricht dem mechanischen Feder-Masse-System mit "au"serer Kraft. Rechts ist der ebenfalls bedeutende Parallelschwingkreis dargestellt. F"ur die Spannungsquelle wurde jeweils das Erzeugerz"ahlpfeilsystem gew"ahlt. Die Richtungen der Strom- und entsprechenden Spannungspfeile k"onnte anders gew"ahlt werden, was bei entsprechender Ber"ucksichtigung der Vorzeichen in den Kirchhoffschen Regeln zum gleichen physikalischen Ergebnis f"uhrt.\MLabel{Physik_Schwingungen_AbbLCU}
+  \MUGraphics{abbLCU}{}{Elektrische Schwingkreise aus einem idealen Kondensator und einer idealen Spule mit "au"serer Spannungsquelle. Die Serienschaltung links entspricht dem mechanischen Feder-Masse-System mit "au"serer Kraft. Rechts ist der ebenfalls bedeutende Parallelschwingkreis dargestellt. F"ur die Spannungsquelle wurde jeweils das Erzeugerz"ahlpfeilsystem gew"ahlt. Die Richtungen der Strom- und entsprechenden Spannungspfeile k"onnte anders gew"ahlt werden, was bei entsprechender Ber"ucksichtigung der Vorzeichen in den Kirchhoffschen Regeln zum gleichen physikalischen Ergebnis f"uhrt.\MLabel{Physik_Schwingungen_AbbLCU}
 }{width:600px;}
 \end{center}
 
-F"ur den \EdmesEmph{Serienschwingkreis} ergibt die Knotenregel, dass alle Str"ome bzw. alle zu- und abflie"senden Ladungen gleich sind: $I_L=I_C=I$, es gen"ugt wiederum eine Variable $q$ f"ur die Ladung. In der Maschenregel zeigt der Spannungspfeil f"ur die Spannungsquelle in eine andere Umlaufrichtung als die beiden anderen Spannungspfeile (Erzeugerz"ahlpfeilsystem), muss also in der Summe mit negativem Vorzeichen eingesetzt werden: $U_L+U_C-U=0$. Einsetzen der Spannungen als Funktion der Ladung f"uhrt wieder auf die mathematische Beschreibung:
+F"ur den \MOptionalEmph{Serienschwingkreis} ergibt die Knotenregel, dass alle Str"ome bzw. alle zu- und abflie"senden Ladungen gleich sind: $I_L=I_C=I$, es gen"ugt wiederum eine Variable $q$ f"ur die Ladung. In der Maschenregel zeigt der Spannungspfeil f"ur die Spannungsquelle in eine andere Umlaufrichtung als die beiden anderen Spannungspfeile (Erzeugerz"ahlpfeilsystem), muss also in der Summe mit negativem Vorzeichen eingesetzt werden: $U_L+U_C-U=0$. Einsetzen der Spannungen als Funktion der Ladung f"uhrt wieder auf die mathematische Beschreibung:
 
 \begin{MInfo}
 In einem Serienschwingkreis aus einem idealen Kondensator mit Kapazit"at $C$, einer idealen Spule mit Induktivit"at $L$ und einer idealen Spannungsquelle mit regelbarer Spannung $U(t)$ lautet die Differentialgleichung f"ur die elektrische Ladung $q$
@@ -1625,7 +1570,7 @@ F"ur $U=U_0\cos\left(\omega t\right)$ lautet eine L"osung:
 Die folgende Abbildung zeigt die Amplitude der L"osung, Gl. \MRef{Physik_Schwingungen_EQLCULsg}, f"ur das Modellsystem (1 pF, 1 $\mu$H) als Funktion der Kreisfrequenz der "au"seren Spannung, wobei f"ur die maximale Spannung der Spannungsquelle die Einheitsspannung $U_0=1 \,\text{V}$ gew"ahlt wurde.
 
 \begin{center}
-  \MUGraphics{Bilder/abbLCUBsp}{scale=1}{Amplitude bei der L"osung aus Gl. \MRef{Physik_Schwingungen_EQLCULsg} f"ur das Beispielmodell und eine maximale "au"sere Spannung von 1 V.\MLabel{Physik_Schwingungen_AbbLCUBsp}
+  \MUGraphics{abbLCUBsp}{scale=1}{Amplitude bei der L"osung aus Gl. \MRef{Physik_Schwingungen_EQLCULsg} f"ur das Beispielmodell und eine maximale "au"sere Spannung von 1 V.\MLabel{Physik_Schwingungen_AbbLCUBsp}
 }{width:600px;}
 \end{center}
 
@@ -1642,7 +1587,7 @@ Anders als die Ladung geht der Strom gegen Null, wenn die Kreisfrequenz gegen Nu
 \begin{MExample}
 
 \begin{center}
-  \MUGraphics{Bilder/abbLCUBspI}{scale=1}{Amplitude in dem Beispielschwingkreis f"ur den Strom statt f"ur die Ladung, d. h. Gl. \MRef{Physik_Schwingungen_EQLCULsgI}. \MLabel{Physik_Schwingungen_AbbLCUBspI}
+  \MUGraphics{abbLCUBspI}{scale=1}{Amplitude in dem Beispielschwingkreis f"ur den Strom statt f"ur die Ladung, d. h. Gl. \MRef{Physik_Schwingungen_EQLCULsgI}. \MLabel{Physik_Schwingungen_AbbLCUBspI}
 }{width:600px;}
 \end{center}
 
@@ -1656,7 +1601,7 @@ zu finden.
 
 Geht die Frequenz der "au"seren Spannung gegen die nat"urliche Kreisfrequenz, so divergiert die Spannung am Kondensator, s. Gl. \MRef{Physik_Schwingungen_EqKondensator}. Ebenso divergiert die Spannung an der Spule, s. Gl. \MRef{Physik_Schwingungen_EqSpule}. Dabei gehen beide Spannungen so gegen plus bzw. minus Unendlich, dass die Summe 1 V bleibt.
 
-F"ur den \EdmesEmph{Parallelschwingkreis} ergibt die Knotenregel mit den in Abb. \MRef{Physik_Schwingungen_AbbLCU} gew"ahlten Stromrichtungen $I=I_C+I_L$ bzw. $q=q_C+q_L$. Die Maschenregel besagt, dass alle Spannungen gleich sind, n"amlich $U=U_0\cos\left(\omega t\right)$. F"ur den Kondensator kann somit direkt die zeitabh"angige Ladung angegeben werden:
+F"ur den \MOptionalEmph{Parallelschwingkreis} ergibt die Knotenregel mit den in Abb. \MRef{Physik_Schwingungen_AbbLCU} gew"ahlten Stromrichtungen $I=I_C+I_L$ bzw. $q=q_C+q_L$. Die Maschenregel besagt, dass alle Spannungen gleich sind, n"amlich $U=U_0\cos\left(\omega t\right)$. F"ur den Kondensator kann somit direkt die zeitabh"angige Ladung angegeben werden:
 \begin{equation}
   q_C= C U_0 \cos\left(\omega t\right)\; .
 \end{equation}
@@ -1686,12 +1631,12 @@ Im Resonanzfall heben sich die Str"ome durch den Kondensator und die Spule auf, 
 \begin{MExample}
 Die folgenden Abbildungen zeigen die Ladung bzw. den Strom, der durch die Leitungen zur Spannungsquelle flie"st, f"ur das einfache Beispiel eines Paralellschwingkreises (1 pF, 1 $\mu$H, 1 V).
 \begin{center}
-  \MUGraphics{Bilder/abbLCUParBsp}{scale=1}{Amplitude f"ur die Ladung in der L"osung f"ur den Beispielschwingkreis mit einfachen Zahlenwerten. \MLabel{Physik_Schwingungen_AbbLCUParBsp}
+  \MUGraphics{abbLCUParBsp}{scale=1}{Amplitude f"ur die Ladung in der L"osung f"ur den Beispielschwingkreis mit einfachen Zahlenwerten. \MLabel{Physik_Schwingungen_AbbLCUParBsp}
 }{width:600px;}
 \end{center}
 
 \begin{center}
-  \MUGraphics{Bilder/abbLCUParBspI}{scale=1}{Amplitude f"ur den Strom statt f"ur die Ladung. \MLabel{Physik_Schwingungen_AbbLCUParBspI}
+  \MUGraphics{abbLCUParBspI}{scale=1}{Amplitude f"ur den Strom statt f"ur die Ladung. \MLabel{Physik_Schwingungen_AbbLCUParBspI}
 }{width:600px;}
 \end{center}
 
@@ -1708,25 +1653,23 @@ Schlie"slich soll f"ur den Serienschwingkreis, der dem mechanischen Feder-Masse-
 U=R I\; .
 \end{equation}
 
-\MOnlineOnly{
   \begin{MHint}{Weiterf"uhrende Bemerkungen zu Widerst"anden}
   Abgesehen von Supraleitern f"allt die Spannung entlang ausgedehnter Materialien ab, wenn sie von einem konstanten Strom durchflossen werden. Bei einem idealen Widerstand besteht eine Proportionalit"at zwischen Spannungsabfall und Stromst"arke. Die Proportionalit"atskonstante wird als Widerstand $R$ bezeichnet:
-  \begin{equation*}
+  $$
   U=R I\; .
-  \end{equation*}
+  $$
   Die SI Einheit f"ur den elektrischen Widerstand ist das Ohm, $\Omega$. Als Symbol wird meist ein Rechteck verwendet:
   \begin{center}
-    \MUGraphics{Bilder/abbWiderstand}{}{Symbol f"ur einen Widerstand mit Widerstand (Bauteil und charakteristische physikalische Gr"o"se haben hier die gleiche Bezeichnung) $R$. F"ur einen Widerstand ist das Verbraucherz"ahlpfeilsystem angemessen. \MLabel{Physik_Schwingungen_AbbWiderstand}
+    \MUGraphics{abbWiderstand}{}{Symbol f"ur einen Widerstand mit Widerstand (Bauteil und charakteristische physikalische Gr"o"se haben hier die gleiche Bezeichnung) $R$. F"ur einen Widerstand ist das Verbraucherz"ahlpfeilsystem angemessen. \MLabel{Physik_Schwingungen_AbbWiderstand}
   }{width:140px;}
     \end{center}
 
   \end{MHint}
-}
 
 Es ist zu beachten, dass in dem Ohmschen Widerstand elektrische Leistung $U I = R I^2 = U^2 / R$ in Heizleistung umgewandelt wird, was i. A. zu einer Erw"armung des Bauteils f"uhrt. In der Regel ist der elektrische Widerstand temperaturabh"angig (bei elektrischen Leitern mit der Temperatur steigend, bei Halbleitern mit der Temperatur fallend), was ggf. bei Berechnungen zu ber"ucksichtigen ist. Bisher wurden Kondensator und Spule als ideal betrachtet, d. h. als mit der Kapazit"at bzw. Induktivit"at vollst"andig charakterisiert. Tats"achlich weisen beide Bauteile auch einen Ohmschen Anteil auf. "Ublicherweise wird bei der Spule ein Ohmscher Widerstand in Serie zu der Induktivit"at als ausreichende N"aherung betrachtet. Der Ohmsche Widerstand des Kondensators wird vernachl"assigt. Insbesondere bei hohen Frequenzen treten weitere Nichtidealit"aten in Erscheinung. So zeigen Spulen parasit"are Kapazit"aten und Kondensatoren parasit"are Induktivit"aten. Abstrahlung von elektromagnetischen Wellen f"uhrt zu weiteren Verlusten, Leiter werden nicht mehr gleichm"a"sig vom Strom durchflossen, Leitungsl"angen k"onnen nicht mehr gegen"uber der Wellenl"ange vernachl"assigt werden etc.
 
 \begin{center}
-  \MUGraphics{Bilder/abbRLCU}{}{Elektrischer Serienschwingkreis aus einem Kondensator und einer Spule mit "au"serer Spannungsquelle. Die D"ampfung wird durch den ohmschen Widerstand $R$ ber"ucksichtigt. \MLabel{Physik_Schwingungen_AbbRLCU}
+  \MUGraphics{abbRLCU}{}{Elektrischer Serienschwingkreis aus einem Kondensator und einer Spule mit "au"serer Spannungsquelle. Die D"ampfung wird durch den ohmschen Widerstand $R$ ber"ucksichtigt. \MLabel{Physik_Schwingungen_AbbRLCU}
 }{width:400px;}
 \end{center}
 
@@ -1769,7 +1712,7 @@ und
 In der folgenden Abbildung ist die Amplitude $\rho U_0$ f"ur den Beispielschwingkreis als Funktion der Frequenz dargestellt. Wird f"ur den Widerstand der Einheitswert 1 $\Omega$ eingesetzt, ergibt sich mit 1 $\mu$H ein Wert von $10^6$ / s f"ur $\gamma$. Es wurde wieder $U_0=1\,\text{V}$ gesetzt.
 
 \begin{center}
-  \MUGraphics{Bilder/abbRLCUBsp}{scale=1}{Amplitude bei der eingeschwungenen L"osung mit D"ampfung f"ur den Beispielserienschwingkreis. Aufgrund der starken Resonanz"uberh"ohung "uber drei Gr"o"senordnungen ist es zweckm"a"sig, den (dekadischen) Logarithmus der Ladung bezogen auf die Einheitsladung darzustellen. \MLabel{Physik_Schwingungen_AbbRLCUBsp}
+  \MUGraphics{abbRLCUBsp}{scale=1}{Amplitude bei der eingeschwungenen L"osung mit D"ampfung f"ur den Beispielserienschwingkreis. Aufgrund der starken Resonanz"uberh"ohung "uber drei Gr"o"senordnungen ist es zweckm"a"sig, den (dekadischen) Logarithmus der Ladung bezogen auf die Einheitsladung darzustellen. \MLabel{Physik_Schwingungen_AbbRLCUBsp}
 }{width:600px;}
   \end{center}
 
@@ -1778,7 +1721,7 @@ Geht die Anregungsfrequenz gegen Null, so kann der Einfluss der Spule und des Wi
 Durch die scharfe Resonanz hat auch die in der folgenden Abbildung gezeigte Phasenverschiebung $\theta$ einen scharfen "Ubergang von den Schwingung in Phase mit der Anregung zu einer Antiphasenschwingung:
 
 \begin{center}
-  \MUGraphics{Bilder/abbRLCPhasenVerschiebungBsp}{scale=1}{Phasenverschiebung bei der eingeschwungenen L"osung mit D"ampfung f"ur das Beispielmodell mit schwacher D"ampfung.\MLabel{Physik_Schwingungen_AbbRLCPhasenVerschiebungBsp}
+  \MUGraphics{abbRLCPhasenVerschiebungBsp}{scale=1}{Phasenverschiebung bei der eingeschwungenen L"osung mit D"ampfung f"ur das Beispielmodell mit schwacher D"ampfung.\MLabel{Physik_Schwingungen_AbbRLCPhasenVerschiebungBsp}
 }{width:600px;}
   \end{center}
 
@@ -1792,13 +1735,14 @@ wird ein weiteres Beispiel gerechnet, bei dem der Widerstand des Spulendrahtes a
 
 Die folgende Tabelle stellt die physikalischen Gr"o"sen bei dem mechanischen Feder-Masse-D"ampfer-System dem elektrischen Serienschwingkreis gegen"uber. In beiden F"allen ist die unabh"angige Variabel die Zeit, die abh"angige Variable ist die Auslenkung der Masse bzw. die zu- und abflie"sende Ladung in der Spannungsquelle.
 
-\begin{MWTabular}{lll}
+\begin{tabular}{|l|l|l|}
+\hline
   allgemein                & mechanisch            & elektrisch                   \\\hline
-  Tr"agheit                 & Masse $m$             & Induktivit"at $L$             \\
-  D"ampfung                 & $\gamma=c/m$          & $\gamma=R/L$                 \\
-  Starre                   & Federkonstante $k$    & Kehrwert der Kapazit"at $1/C$ \\
-  nat"urliche Kreisfrequenz & $\omega_0=\sqrt{k/m}$ & $\omega_0=\sqrt{1/(L C)}$    \\
-\end{MWTabular}
+  Tr"agheit                 & Masse $m$             & Induktivit"at $L$             \\\hline
+  D"ampfung                 & $\gamma=c/m$          & $\gamma=R/L$                 \\\hline
+  Starre                   & Federkonstante $k$    & Kehrwert der Kapazit"at $1/C$ \\\hline
+  nat"urliche Kreisfrequenz & $\omega_0=\sqrt{k/m}$ & $\omega_0=\sqrt{1/(L C)}$    \\\hline
+\end{tabular}
 
 Die G"ute eines Resonators ist ein Ma"s daf"ur, wie schmal die Resonanz im Vergleich zu der nat"urlichen Frequenz ist bzw. wie viel Energie im Resonator gespeichert ist im Vergleich zu dem Energieverlust pro Schwingung. Eine "ubliche Definition ist $Q=\omega_0/\gamma$.
 
@@ -1813,7 +1757,7 @@ Abschlie"send sei bemerkt, dass in der Elektrotechnik "ublicherweise mit Str"ome
 Als weitere Schwingung in einem mechanischen Systemen wird das mathematische Pendel behandelt. Bei diesem wird eine punktf"ormige Masse $m$ betrachtet, die ohne Reibung an einem masselosen Faden der L"ange $l$ im Schwerefeld mit der Erdbeschleunigung $g$ pendelt.
 
 \begin{center}
-\MUGraphics{Bilder/abbPendel}{}{Mathematisches Pendel mit Masse $m$ und L"ange $l$ im Schwerefeld der Erde ($g$). \MLabel{Physik_Schwingungen_AbbPendel}
+\MUGraphics{abbPendel}{}{Mathematisches Pendel mit Masse $m$ und L"ange $l$ im Schwerefeld der Erde ($g$). \MLabel{Physik_Schwingungen_AbbPendel}
 }{width:300px;}
 \end{center}
 
@@ -1957,11 +1901,11 @@ Stellen Sie die Amplitude sowohl f"ur die Ladung als auch f"ur den Strom f"ur de
 
 \begin{MHint}{L"osung}
 \begin{center}
-  \MUGraphics{Bilder/abbLCUVorfaktor}{scale=1}{Amplitude bei der eingeschwungenen L"osung ohne D"ampfung f"ur das Modell mit einfachem geometrischen Aufbau und N"aherungsformeln f"ur Kapazit"at und Induktivit"at und eine maximale "au"sere Spannung von 1 V.\MLabel{Physik_Schwingungen_AbbLCUVorfaktor}
+  \MUGraphics{abbLCUVorfaktor}{scale=1}{Amplitude bei der eingeschwungenen L"osung ohne D"ampfung f"ur das Modell mit einfachem geometrischen Aufbau und N"aherungsformeln f"ur Kapazit"at und Induktivit"at und eine maximale "au"sere Spannung von 1 V.\MLabel{Physik_Schwingungen_AbbLCUVorfaktor}
 }{width:600px;}
 \end{center}
 \begin{center}
-  \MUGraphics{Bilder/abbLCUVorfaktorI}{scale=1}{Amplitude f"ur den Strom statt f"ur die Ladung.\MLabel{Physik_Schwingungen_AbbLCUVorfaktorI}
+  \MUGraphics{abbLCUVorfaktorI}{scale=1}{Amplitude f"ur den Strom statt f"ur die Ladung.\MLabel{Physik_Schwingungen_AbbLCUVorfaktorI}
 }{width:600px;}
 \end{center}
 
@@ -1977,11 +1921,11 @@ Erstellen Sie eine Darstellung der Amplituden f"ur Ladung und Strom f"ur den Par
 
 \begin{MHint}{L"osung}
 \begin{center}
-  \MUGraphics{Bilder/abbLCUParVorfaktor}{scale=1}{Amplitude bei der eingeschwungenen L"osung ohne D"ampfung f"ur das Modell eines Parallelschwingkreises mit einfachem geometrischen Aufbau und N"aherungsformeln f"ur Kapazit"at und Induktivit"at und eine maximale "au"sere Spannung von 1 V.\MLabel{Physik_Schwingungen_AbbLCUParVorfaktor}
+  \MUGraphics{abbLCUParVorfaktor}{scale=1}{Amplitude bei der eingeschwungenen L"osung ohne D"ampfung f"ur das Modell eines Parallelschwingkreises mit einfachem geometrischen Aufbau und N"aherungsformeln f"ur Kapazit"at und Induktivit"at und eine maximale "au"sere Spannung von 1 V.\MLabel{Physik_Schwingungen_AbbLCUParVorfaktor}
 }{width:600px;}
 \end{center}
 \begin{center}
-  \MUGraphics{Bilder/abbLCUParVorfaktorI}{scale=1}{Amplitude f"ur den Strom statt f"ur die Ladung.\MLabel{Physik_Schwingungen_AbbLCUParVorfaktorI}
+  \MUGraphics{abbLCUParVorfaktorI}{scale=1}{Amplitude f"ur den Strom statt f"ur die Ladung.\MLabel{Physik_Schwingungen_AbbLCUParVorfaktorI}
 }{width:600px;}
 \end{center}
 
@@ -2021,12 +1965,12 @@ Als Drahtdurchmesser ist ein halber Millimeter angegeben. Der Drahtquerschnitt b
 \end{equation}
 
 \begin{center}
-  \MUGraphics{Bilder/abbRLCUVorfaktor}{scale=1}{Amplitude bei der eingeschwungenen L"osung mit D"ampfung. \MLabel{Physik_Schwingungen_AbbRLCUVorfaktor}
+  \MUGraphics{abbRLCUVorfaktor}{scale=1}{Amplitude bei der eingeschwungenen L"osung mit D"ampfung. \MLabel{Physik_Schwingungen_AbbRLCUVorfaktor}
 }{width:600px;}
   \end{center}
 
 \begin{center}
-  \MUGraphics{Bilder/abbRLCPhasenVerschiebung}{scale=1}{Phasenverschiebung bei der eingeschwungenen L"osung mit D"ampfung.\MLabel{Physik_Schwingungen_AbbRLCPhasenVerschiebung}
+  \MUGraphics{abbRLCPhasenVerschiebung}{scale=1}{Phasenverschiebung bei der eingeschwungenen L"osung mit D"ampfung.\MLabel{Physik_Schwingungen_AbbRLCPhasenVerschiebung}
 }{width:600px;}
   \end{center}
 

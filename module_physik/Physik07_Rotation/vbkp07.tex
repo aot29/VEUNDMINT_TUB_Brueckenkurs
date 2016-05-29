@@ -3,7 +3,8 @@
 \begin{document}
 \MSection{Rotation starrer Körper} % Modul 7 
 \begin{MSectionStart}
-Im Modul 6 haben Sie die Kreisbewegungen eines Massenpunktes kennengelernt. Nun wenden wir uns räumlich ausgedehnten Körpern zu. Eine Tür dreht sich um eine Angel, eine Schallplatte dreht sich auf dem Plattenteller um ihre eigene Achse $\ldots$, mit dem Modell des Massenpunktes kommt man da nicht mehr weiter.
+\MLabel{VBKP07}
+Im Modul \MNRef{VBKP06} haben Sie die Kreisbewegungen eines Massenpunktes kennengelernt. Nun wenden wir uns räumlich ausgedehnten Körpern zu. Eine Tür dreht sich um eine Angel, eine Schallplatte dreht sich auf dem Plattenteller um ihre eigene Achse $\ldots$, mit dem Modell des Massenpunktes kommt man da nicht mehr weiter.
 \\
 
 In diesem Modul führen wir als weiteres Modell den {\bf starren Körper} ein, anhand dessen Sie kennenlernen werden:
@@ -585,12 +586,12 @@ Ein Massenpunkt $m_i$ mit den Koordinaten $(x_i,y_i)$ hat den Abstand $r_i$ zur 
 \[r{_i}^2=\left(x_i-a\right)^2+\left(y_i-b\right)^2\]
 Damit berechnet sich das Trägheitsmoment des Körpers zu
 
-\ifttm  % Vereinfachte underbraces fuer das HTML
-\begin{align*}
-J &= \sum m_i\left(\left(x_i-a\right)^2+\left(y_i-b\right)^2\right)= \\
-  &=\sum m_i\left({x_i}^2-2ax_i+a^2+{y_i}^2-2by_i+b^2\right)= \\
-  &=\underbrace{\sum m_i\left({x_i}^2+{y_i}^2\right)}_{=J_S}-2a\underbrace{\sum m_i x_i}_{=0}-2b\underbrace{\sum m_i y_i}_{=0}+\sum m_i\underbrace{\left(a^2+b^2\right)}_{=h^2=const.}
-\end{align*}
+\ifttm  % Vereinfachte underbraces fuer das HTML und kein align*
+\begin{eqnarray*}
+J &=& \sum m_i\left(\left(x_i-a\right)^2+\left(y_i-b\right)^2\right)= \\
+  &=&\sum m_i\left({x_i}^2-2ax_i+a^2+{y_i}^2-2by_i+b^2\right)= \\
+  &=&\underbrace{\sum m_i\left({x_i}^2+{y_i}^2\right)}_{=J_S}-2a\underbrace{\sum m_i x_i}_{=0}-2b\underbrace{\sum m_i y_i}_{=0}+\sum m_i\underbrace{\left(a^2+b^2\right)}_{=h^2=const.}
+\end{eqnarray*}
 \else
 \begin{align*}
 J &= \sum m_i\left(\left(x_i-a\right)^2+\left(y_i-b\right)^2\right)= \\
