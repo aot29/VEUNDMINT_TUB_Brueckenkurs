@@ -2010,11 +2010,26 @@ function applyLayout(first) {
   });
 
 
+  showHint($('#homebutton'), "Zurück zur Homepage des Kurses");
+  showHint($('#listebutton'), "Stichwortverzeichnis anzeigen");
   showHint($('#menubutton'), "Hier klicken um Navigationsleisten ein- oder auszublenden");
   showHint($('#plusbutton'), "Vergrößert die Schriftgröße");
   showHint($('#minusbutton'), "Verkleinert die Schriftgröße");
   showHint($('#settingsbutton'), "Einstellungen");
 
+  // set proper button visibility in settings depending on course variant
+  if (variant == "std") {
+      $('#variantselect_std').css("visibility", "hidden");
+      $('#variantactive_std').css("visibility", "visible");
+      $('#variantselect_unotation').css("visibility", "visible");
+      $('#variantactive_unotation').css("visibility", "hidden");
+  } else {
+      $('#variantselect_std').css("visibility", "visible");
+      $('#variantactive_std').css("visibility", "hidden");
+      $('#variantselect_unotation').css("visibility", "hidden");
+      $('#variantactive_unotation').css("visibility", "visible");
+  }
+  
   var shareintext = "Diese Seite teilen über:<br /><br />";
   var myurl = window.location.href;
     
