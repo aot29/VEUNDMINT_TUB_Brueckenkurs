@@ -358,12 +358,12 @@ function unloadHandler() {
 <!-- mdeclaresiteuxidpost;;VBKM05_Vierecke_Content;; //-->
 
 <br clear="all"/><br clear="all"/>
-Vielecke werden wie Dreiecke durch gegebene Punkte und geradlinige Verbindungen
-zwischen den Punkten festgelegt. Von den Punkten sollen keine drei Punkte auf
-einer Geraden liegen. Verbindet man drei solche Punkte durch alle möglichen 
-Strecken zwischen zwei der drei Punkte, ergibt sich immer ein geschlossener Weg,
-in dem jeder gegebene Punkt genau zwei Strecken verbindet. 
-Dabei haben die Strecken nur ihre Endpunkte mit andern Strecken gemeinsam. 
+Im vorherigen Abschnitt <a class="MINTERLINK" href="../../html/1.5.3/modstart.html#M05_Dreiecke">5.3</a> wurden Dreiecke betrachtet. 
+Dazu wurde von drei Punkten ausgegangen, die nicht auf einer Geraden liegen. 
+Verbindet man drei solche Punkte durch alle möglichen Strecken zwischen zwei 
+der drei Punkte, ergibt sich immer ein geschlossener Weg, in dem jeder gegebene 
+Punkt genau zwei Strecken verbindet. 
+Dabei haben die Strecken nur ihre Endpunkte mit anderen Strecken gemeinsam. 
 Außerdem gibt es keine Kreuzungspunkte.
 
 <br clear="all"/><br clear="all"/>
@@ -376,10 +376,25 @@ Hier sollen die Strecken alle gegebenen Punkte durch einen einzigen
 geschlossenen Weg miteinander verbinden, der kreuzungsfrei verläuft.
 
 <br clear="all"/><br clear="all"/>
-Unter den Vielecken nehmen die Vierecke eine besondere Stellung ein, da 
-diese in technischen Anwendungen oft verwendet werden. Dadurch haben sich 
-weitere alltägliche Namen entwickelt, die verschiedene Klassen von Vierecken 
-bezeichnen.
+
+<div style="text-align:center">
+
+
+
+<a id="L_SOURCEAUTOLABEL_201">
+</a>
+
+<img src="./VBKM05mtikzauto_35.4x.png" style="width:705px;height:187px" alt="./VBKM05mtikzauto_35.4x.png"/></div>
+
+<br clear="all"/><br clear="all"/>
+Offenbar kann ein Viereck in zwei Dreiecke zerlegt werden. Im Allgemeinen erhält
+man die beiden Dreiecke, wenn man eine Ecke mit dem größten Winkel mit der 
+gegenüberliegenden Ecke durch eine Strecke verbindet. Eine solche Strecke 
+zwischen Ecken, die nicht miteinander verbunden sind, heißt eine 
+<b>Diagonale</b><!-- mindexentry;;Diagonale (Viereck); //--><a class="label" name="ELI_SW133"></a> des Vierecks. Aus der Kenntnis, dass 
+die Summe der (Innen-)Winkel eines Dreicks <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>π</mi></mrow></math> beziehungsweise <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>180</mn><msup><mrow/><mrow><mo>∘</mo></mrow></msup></mrow></math> ist,
+folgt damit, dass die Summe der (Innen-)Winkel eines Vierecks doppelt so groß
+ist, also <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mi>π</mi></mrow></math> beziehungsweise <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>360</mn><msup><mrow/><mrow><mo>∘</mo></mrow></msup></mrow></math> beträgt.
 
 <br clear="all"/><br clear="all"/>
         
@@ -391,33 +406,72 @@ bezeichnen.
     
   
   </b>  <br/><a id="VBKM05_Vierecke">
-</a>Ein Viereck heißt
+</a>Es werden <b>Vierecke</b><!-- mindexentry;;Viereck; //--><a class="label" name="ELI_SW134"></a> betrachtet, die sich dadurch ergeben,
+dass vier gegebene Punkte so durch Strecken miteinander werden, dass ein
+einziger geschlossener, kreuzungsfreier Weg durch alle vier Punkte entsteht.
+Dabei sollen je drei der gegebenen Punkte, die durch zwei Strecken miteinander 
+verbunden sind, nicht auf einer Geraden liegen.
 
-<ul><li> <b>Trapez</b><!-- mindexentry;;Trapez; //--><a class="label" name="ELI_SW133"></a>, falls wenigstens zwei Seiten parallel sind;
+<br clear="all"/><br clear="all"/>
+Wie bei Dreiecken werden auch bei Vierecken die Innenwinkel kurz als Winkel 
+bezeichnet, wenn in einem besonderen Kontext nichts anderes vermerkt wird.
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Ebenso wie bei Dreiecken wird auch die Idee zu Vierecken in vielfältiger Weise 
+in technischen Konstruktionen verwendet. Dadurch sind weitere alltägliche Namen 
+gebräuchlich, die verschiedene Klassen von Vierecken bezeichnen.
+
+<br clear="all"/><br clear="all"/>
+Wie bei Dreiecken werden auch Vierecke nach der Länge von Seiten oder nach der 
+Größe von Winkeln eingeteilt. Dabei erkennt man typische Unterschiede zu 
+Dreiecken. Anders als dort kann es bei Vierecken beispielsweise parallele Seiten 
+geben. Außerdem ist es möglich, dass es mehr als eine Ecke mit einem rechten 
+Winkel gibt.
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Besondere Klassen von Vierecken
+  
+5.4.2
+    
+  
+  </b>  <br/><a id="VBKM05_ViereckeKlassen">
+</a>Für Vierecke mit den folgenden weiteren Eigenschaften werden eigene Begriffe 
+eingeführt: Ein Viereck heißt
+
+<ul><li> <b>Trapez</b><!-- mindexentry;;Trapez; //--><a class="label" name="ELI_SW135"></a>, falls wenigstens zwei Seiten parallel sind;
 <br clear="all"/><br clear="all"/>
 </li>
 
-<li> <b>Parallelogramm</b><!-- mindexentry;;Parallelogramm; //--><a class="label" name="ELI_SW134"></a>, falls je zwei 
+<li> <b>Parallelogramm</b><!-- mindexentry;;Parallelogramm; //--><a class="label" name="ELI_SW136"></a>, falls je zwei 
  gegenüberliegende Seiten parallel sind;
 <br clear="all"/><br clear="all"/>
 </li>
 
-<li> <b>Raute</b><!-- mindexentry;;Raute; //--><a class="label" name="ELI_SW135"></a> oder 
- <b>gleichseitiges Viereck</b><!-- mindexentry;;gleichseitiges Viereck; //--><a class="label" name="ELI_SW136"></a> oder 
- auch <b>Rhombus</b><!-- mindexentry;;Rhombus; //--><a class="label" name="ELI_SW137"></a>, falls alle vier Seiten gleich lang sind;
+<li> <b>Raute</b><!-- mindexentry;;Raute; //--><a class="label" name="ELI_SW137"></a> oder 
+ <b>gleichseitiges Viereck</b><!-- mindexentry;;gleichseitiges Viereck; //--><a class="label" name="ELI_SW138"></a> oder 
+ auch <b>Rhombus</b><!-- mindexentry;;Rhombus; //--><a class="label" name="ELI_SW139"></a>, falls alle vier Seiten gleich lang sind;
 <br clear="all"/><br clear="all"/>
 </li>
 
-<li> <b>Rechteck</b><!-- mindexentry;;Rechteck; //--><a class="label" name="ELI_SW138"></a>, falls alle vier Innenwinkel rechte Winkel sind;
+<li> <b>Rechteck</b><!-- mindexentry;;Rechteck; //--><a class="label" name="ELI_SW140"></a>, falls alle vier (Innen-)Winkel rechte 
+ Winkel sind;
 <br clear="all"/><br clear="all"/>
 </li>
 
-<li> <b>Quadrat</b><!-- mindexentry;;Quadrat; //--><a class="label" name="ELI_SW139"></a>, falls es ein Rechteck ist, bei dem alle 
+<li> <b>Quadrat</b><!-- mindexentry;;Quadrat; //--><a class="label" name="ELI_SW141"></a>, falls es ein Rechteck ist, bei dem alle 
  Seiten gleich lang sind;
 <br clear="all"/><br clear="all"/>
 </li>
 
-<li> <b>Einheitsquadrat</b><!-- mindexentry;;Einheitsquadrat; //--><a class="label" name="ELI_SW140"></a>, falls es ein Quadrat mit 
+<li> <b>Einheitsquadrat</b><!-- mindexentry;;Einheitsquadrat; //--><a class="label" name="ELI_SW142"></a>, falls es ein Quadrat mit 
  Seitenlänge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math> ist.
 <br clear="all"/><br clear="all"/>
 </li>
@@ -426,6 +480,7 @@ bezeichnen.
   
   
   
+Für das Einheitsquadrat muss also auch ein Längenmaßstab vereinbart werden.
 
 <br clear="all"/><br clear="all"/>
 
@@ -433,10 +488,10 @@ bezeichnen.
 
 
 
-<a id="L_SOURCEAUTOLABEL_201">
+<a id="L_SOURCEAUTOLABEL_202">
 </a>
 
-<img src="./VBKM05mtikzauto_35.4x.png" style="width:867px;height:202px" alt="./VBKM05mtikzauto_35.4x.png"/></div>
+<img src="./VBKM05mtikzauto_36.4x.png" style="width:867px;height:202px" alt="./VBKM05mtikzauto_36.4x.png"/></div>
 
 <br clear="all"/><br clear="all"/>
 Unter den gerade eingeführten speziellen Vierecken gibt es eine ganze 
@@ -448,17 +503,21 @@ Reihe von Zusammenhängen:
   <div class="inforahmen">
   <b>Beziehungen zwischen Vierecken
   
-5.4.2
+5.4.3
     
   
   </b>  <br/><a id="VBKM05_Vierecke_Beziehungen">
-</a>Es gilt:
+</a>Es gelten folgende Beziehungen zwischen Vierecken:
 
 <ul><li> Jedes Quadrat ist ein Rechteck.
 <br clear="all"/><br clear="all"/>
 </li>
 
 <li> Jedes Quadrat ist eine Raute.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li> Jede Raute ist ein Parallelogramm.
 <br clear="all"/><br clear="all"/>
 </li>
 
@@ -469,10 +528,6 @@ Reihe von Zusammenhängen:
 <li> Jedes Parallelogramm ist ein Trapez.
 <br clear="all"/><br clear="all"/>
 </li>
-
-<li> Jede Raute ist ein Parallelogramm.
-<br clear="all"/><br clear="all"/>
-</li>
 </ul></div>
   </div>
   
@@ -480,7 +535,8 @@ Reihe von Zusammenhängen:
   
 
 <br clear="all"/><br clear="all"/>
-Ferner lassen sich diese Vierecke auf vielerlei Arten charakterisieren.
+Diese Vierecke können auf vielerlei Weisen anhand von Eigenschaften der 
+Seiten, Winkel oder auch Diagonalen charakterisiert werden.
 
 <br clear="all"/><br clear="all"/>
         
@@ -488,7 +544,7 @@ Ferner lassen sich diese Vierecke auf vielerlei Arten charakterisieren.
   <div class="inforahmen">
   <b>Parallelogramm
   
-5.4.3
+5.4.4
     
   
   </b>  <br/><a id="VBKM05_Parallelogramm">
@@ -523,10 +579,10 @@ Ein Viereck ist genau dann ein Parallelogramm, wenn
 
 
 
-<a id="L_SOURCEAUTOLABEL_202">
+<a id="L_SOURCEAUTOLABEL_203">
 </a>
 
-<img src="./VBKM05mtikzauto_36.4x.png" style="width:313px;height:344px" alt="./VBKM05mtikzauto_36.4x.png"/></div>
+<img src="./VBKM05mtikzauto_37.4x.png" style="width:313px;height:344px" alt="./VBKM05mtikzauto_37.4x.png"/></div>
 
 </td></tr></table><!--vbox--></td><td/></tr></table><!--hboxt--></td></tr></table></div>
   </div>
@@ -535,12 +591,15 @@ Ein Viereck ist genau dann ein Parallelogramm, wenn
   
 
 <br clear="all"/><br clear="all"/>
+Rauten können als besondere Parallelogramme beschrieben werden.
+
+<br clear="all"/><br clear="all"/>
         
   <div class="info">
   <div class="inforahmen">
   <b>Raute
   
-5.4.4
+5.4.5
     
   
   </b>  <br/><a id="VBKM05_Raute">
@@ -569,10 +628,10 @@ Diagonalen einander halbieren.
 
 
 
-<a id="L_SOURCEAUTOLABEL_203">
+<a id="L_SOURCEAUTOLABEL_204">
 </a>
 
-<img src="./VBKM05mtikzauto_37.4x.png" style="width:263px;height:336px" alt="./VBKM05mtikzauto_37.4x.png"/></div>
+<img src="./VBKM05mtikzauto_38.4x.png" style="width:263px;height:336px" alt="./VBKM05mtikzauto_38.4x.png"/></div>
 
 </td></tr></table><!--vbox--></td><td/></tr></table><!--hboxt--></td></tr></table></div>
   </div>
@@ -581,12 +640,17 @@ Diagonalen einander halbieren.
   
 
 <br clear="all"/><br clear="all"/>
+Bei Rechtecken denkt man oft an rechte Winkel, wie es ihr Name andeutet.
+Darüber hinaus können Rechtecke mit Hilfe von Eigenschaften ihrer 
+Diagonalen einfach beschrieben werden.
+
+<br clear="all"/><br clear="all"/>
         
   <div class="info">
   <div class="inforahmen">
   <b>Rechteck
   
-5.4.5
+5.4.6
     
   
   </b>  <br/><a id="VBKM05_Rechteck">
@@ -623,10 +687,10 @@ Ein Viereck ist genau dann ein Rechteck, wenn
 
 
 
-<a id="L_SOURCEAUTOLABEL_204">
+<a id="L_SOURCEAUTOLABEL_205">
 </a>
 
-<img src="./VBKM05mtikzauto_38.4x.png" style="width:321px;height:388px" alt="./VBKM05mtikzauto_38.4x.png"/></div>
+<img src="./VBKM05mtikzauto_39.4x.png" style="width:321px;height:388px" alt="./VBKM05mtikzauto_39.4x.png"/></div>
 
 </td></tr></table><!--vbox--></td><td/></tr></table><!--hboxt--></td></tr></table></div>
   </div>
@@ -635,12 +699,15 @@ Ein Viereck ist genau dann ein Rechteck, wenn
   
 
 <br clear="all"/><br clear="all"/>
+Quadrate sind sowohl besondere Recktecke als auch spezielle Rauten.
+
+<br clear="all"/><br clear="all"/>
         
   <div class="info">
   <div class="inforahmen">
   <b>Quadrat
   
-5.4.6
+5.4.7
     
   
   </b>  <br/><a id="VBKM05_Quadrat">
@@ -649,9 +716,16 @@ Ein Viereck ist genau dann ein Rechteck, wenn
 
 Ein Viereck ist genau dann ein Quadrat, wenn
 
-<ul><li> alle Seiten gleich lang und alle Innenwinkel gleich groß sind 
- oder wenigstens ein Innenwinkel ein rechter Winkel ist;
+<ul><li> alle Seiten gleich lang und 
+ 
+<ul><li> alle Innenwinkel gleich groß sind oder
 <br clear="all"/><br clear="all"/>
+</li>
+
+<li> wenigstens ein Innenwinkel ein rechter Winkel ist;
+<br clear="all"/><br clear="all"/>
+</li>
+</ul><br clear="all"/><br clear="all"/>
 </li>
 
 <li> die Diagonalen gleich lang sind und zudem 
@@ -685,10 +759,10 @@ alle Seiten gleich lang sind;
 
 
 
-<a id="L_SOURCEAUTOLABEL_205">
+<a id="L_SOURCEAUTOLABEL_206">
 </a>
 
-<img src="./VBKM05mtikzauto_39.4x.png" style="width:179px;height:523px" alt="./VBKM05mtikzauto_39.4x.png"/></div>
+<img src="./VBKM05mtikzauto_40.4x.png" style="width:179px;height:523px" alt="./VBKM05mtikzauto_40.4x.png"/></div>
 
 </td></tr></table><!--vbox--></td><td/></tr></table><!--hboxt--></td></tr></table></div>
   </div>
