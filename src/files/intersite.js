@@ -411,7 +411,9 @@ function updateLoginfield() {
         break;
       }
       case 1: {
+        // workaround for local-only: don't display anything here
         s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet";
+        s = "";
         cl = "#FFFF10";
         $('#loginbutton').css("background-color","#FFFF50");
         break;
@@ -1003,8 +1005,9 @@ function allowedPassword(password) {
 // type = 1 -> Create locally only, type = 2 -> create locally and immediately upgrade to server user
 function usercreatelocal_click(type) {
     if (type==2) {
-        alert("In der Korrekturversion ist das Anlegen eines Netz-Benutzers nicht möglich um eine Verzerrung der Aufgaben- und Nutzerdatenauswertung zu vermeiden, bitte registrieren Sie sich nur innerhalb Ihres Browsers mit dem Button unten.");
-        return;
+        // alert("In der Korrekturversion ist das Anlegen eines Netz-Benutzers nicht möglich um eine Verzerrung der Aufgaben- und Nutzerdatenauswertung zu vermeiden, bitte registrieren Sie sich nur innerhalb Ihres Browsers mit dem Button unten.");
+        // return;
+        type = 1; // force local registry
     }
 
     if (intersiteactive == false) {
@@ -1073,7 +1076,7 @@ function usercreatelocal_click(type) {
     }
 
     if (type == 2) {
-        logMessage(CLIENTINFO, "Benutzer wird auf Typ 2 erweitert");
+        logMessage(VERBOSEINFO, "Benutzer wird auf Typ 2 erweitert");
         userdata.addUser(true, intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
     }
 }
