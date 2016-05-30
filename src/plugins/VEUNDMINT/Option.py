@@ -104,7 +104,7 @@ class Option(object):
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
         # course signature, course part
-        self.signature_main = "OBMLGAMMA3" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+        self.signature_main = "OBMLGAMMA4" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
         self.signature_date = "05/2015"
@@ -152,6 +152,7 @@ class Option(object):
             "explanation_exercises": "Übungsaufgaben",
             "explanation_test": "Abschlusstest",
             "chapter": "Kapitel",
+            "subsection": "Abschnitt",
             "module_starttext": "Modul starten: ",
             "module_solutionlink": "Lösung ansehen",
             "module_solution": "Lösung",

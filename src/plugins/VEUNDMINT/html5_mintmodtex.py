@@ -411,9 +411,15 @@ class Plugin(basePlugin):
                     secprefix = ""
                     q = p.parent
                     while (not q is None):
-                        if (q.level > 0) and (q.title != ""):
+                        if (q.level > 1) and (q.title != ""):
                             ti = q.title
-                            ti = re.sub(r"(.*?) (.*)", r"\1", ti, 0, re.S) # remove module number prefix from title
+                            if q.level == 2:
+                                # ti is of type CHAPTER.SECTION TITLE
+                                ti = re.sub(r"(\d*)\.(\d*) (.*)", r"\2 \3", ti, 0, re.S)
+                                ti = self.options.strings['chapter'] + " " + ti
+                            if q.level == 3:
+                                # ti contains title only, without number
+                                ti = self.options.strings['subsection'] + " " + str(q.nr) + " " + ti
                             if (secprefix != ""):
                                 secprefix = ti + "  - " + secprefix
                             else:
@@ -422,7 +428,7 @@ class Plugin(basePlugin):
                     
                     pref = ""
                     if printnr == 1: pref = sid + " "
-                    (p.content, n) = re.subn(r"<h4>(.*?)</h4><!-- sectioninfo;;" + str(sec) + ";;" + str(ssec) + ";;" + str(sssec) + ";;" + str(printnr) + ";;" + str(testpage) + r"; //-->", "<h4>" + secprefix + "</h4><br /><h4>" + pref + r"\1</h4>", p.content, 0, re.S)
+                    (p.content, n) = re.subn(r"<h4>(.*?)</h4><!-- sectioninfo;;" + str(sec) + ";;" + str(ssec) + ";;" + str(sssec) + ";;" + str(printnr) + ";;" + str(testpage) + r"; //-->", "<h4>" + secprefix + "</h4><h4>" + pref + r"\1</h4>", p.content, 0, re.S)
                     if (n != 1):
                         self.sys.message(self.sys.CLIENTERROR, "Could not substitute sectioninfo in xcontent " + p.title + ", n = " + str(n))
                                         

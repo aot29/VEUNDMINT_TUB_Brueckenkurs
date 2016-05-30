@@ -156,6 +156,7 @@ class Option(object):
             "explanation_exercises": "Übungsaufgaben",
             "explanation_test": "Abschlusstest",
             "chapter": "Kapitel",
+            "subsection": "Abschnitt",
             "module_starttext": "Modul starten: ",
             "module_solutionlink": "Lösung ansehen",
             "module_solution": "Lösung",

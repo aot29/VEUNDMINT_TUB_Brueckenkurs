@@ -2042,7 +2042,6 @@ function applyLayout(first) {
 
   shareintext = "Aktuelle Favoriten:<br /><br />";
   shareintext += generateShortFavoriteList() + "<br /><br />";
-  shareintext += "<a style=\"color:#0000FF\"href=\"" + linkPath + "favor.html" + "\">Meine Favoritenliste</a>";
   showHint($('#starbutton'), shareintext);
 
   // qtips an die Feedbackbuttons haengen falls vorhanden
@@ -2166,7 +2165,7 @@ function shareClick() {
 }
 
 function starClick() {
-  opensite(linkPath + "favor.html");
+  // opensite(linkPath + "favor.html");
 }
 
 
