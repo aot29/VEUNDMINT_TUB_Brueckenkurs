@@ -1982,8 +1982,8 @@ function applyLayout(first) {
 
                
   d = d - 2;
-  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Anmelden</div></a>" +
-             "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
+  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Anmelden</div></a>";
+  // head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
     
 
   head += "<div id=\"LOGINROW\" style=\"color:rgb(255,255,255)\"></div>";

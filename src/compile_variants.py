@@ -33,7 +33,7 @@ if repo.is_dirty():
     print("Local workspace for branch " + mdb + " is dirty !!")
 
 
-tagn = 3 # publish1 was done in branch develop_software (tags 1,2,3 have been used by test runs)
+tagn = 4 # publish1 was done in branch develop_software (tags 1,2,3 have been used by test runs)
 while ("AUTOPUBLISH" + str(tagn)) in repo.tags:
     tagn += 1
 print("Next autopublish number will be " + str(tagn))
