@@ -1825,7 +1825,6 @@ Kongruenzs"atzen ein Dreieck konstruiert werden kann.
 Danach wird ein Beispiel zu Dreiecken betrachtet, bei denen nur die Winkel 
 gegeben sind und somit keine der obigen Bedingungen erf"ullt ist.
 
-%%\ifttm\relax\else\newpage\fi
 
 \begin{MExample}
 \begin{tabular}{@{}lr@{}}
@@ -2176,17 +2175,16 @@ Anschlie"send wird der Frage nachgegangen, wie der Fl"acheninhalt eines
 Vielecks einfach berechnet werden kann. 
 \end{MIntro}
 
-%\ifttm\relax\else\newpage\fi
 
 \begin{MXContent}{Vierecke}{Vierecke}{STD}
 \MDeclareSiteUXID{VBKM05_Vierecke_Content}
 
-Vielecke werden wie Dreiecke durch gegebene Punkte und geradlinige Verbindungen
-zwischen den Punkten festgelegt. Von den Punkten sollen keine drei Punkte auf
-einer Geraden liegen. Verbindet man drei solche Punkte durch alle m"oglichen 
-Strecken zwischen zwei der drei Punkte, ergibt sich immer ein geschlossener Weg,
-in dem jeder gegebene Punkt genau zwei Strecken verbindet. 
-Dabei haben die Strecken nur ihre Endpunkte mit andern Strecken gemeinsam. 
+Im vorherigen Abschnitt \MRef{M05_Dreiecke} wurden Dreiecke betrachtet. 
+Dazu wurde von drei Punkten ausgegangen, die nicht auf einer Geraden liegen. 
+Verbindet man drei solche Punkte durch alle m"oglichen Strecken zwischen zwei 
+der drei Punkte, ergibt sich immer ein geschlossener Weg, in dem jeder gegebene 
+Punkt genau zwei Strecken verbindet. 
+Dabei haben die Strecken nur ihre Endpunkte mit anderen Strecken gemeinsam. 
 Au"serdem gibt es keine Kreuzungspunkte.
 
 Bei mehr als drei Punkten ist dies nicht immer der Fall. Bereits vier Punkte 
@@ -2196,13 +2194,62 @@ dass sich mehrere geschlossene Wege ergeben.
 Hier sollen die Strecken alle gegebenen Punkte durch einen einzigen 
 geschlossenen Weg miteinander verbinden, der kreuzungsfrei verl"auft.
 
-Unter den Vielecken nehmen die Vierecke eine besondere Stellung ein, da 
-diese in technischen Anwendungen oft verwendet werden. Dadurch haben sich 
-weitere allt"agliche Namen entwickelt, die verschiedene Klassen von Vierecken 
-bezeichnen.
+%Verschiedene Vierecke:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1.5pt]
+\begin{scope}[xshift=-5cm]
+\draw[dotted,color=blue] (-0.4,0) -- (2,0);
+%\draw (0,2) -- (-1.6,-1) -- (0,0.2) -- (1.6,-1) -- cycle;
+\draw (2,0) -- (-1,-1.6) -- (-0.4,0) -- (-1,1.6) -- cycle;
+\end{scope}
+%%
+\begin{scope}[xshift=0cm]
+\draw[dotted,color=blue] (-0.8,-1.2) -- (1.6,1.2);
+\draw (1.6,1.2) -- (-1.6,1.2) -- (-0.8,-1.2) -- (0.8,-1.2) -- cycle;
+\end{scope}
+%%
+\begin{scope}[xshift=5cm]
+\draw[dotted,color=blue] (0:1.2cm) -- (180:1.2cm);
+\draw (0:1.2cm) -- (90:1.2cm) -- (180:1.2cm) -- (270:1.2cm) -- cycle;
+\end{scope}
+\end{tikzpicture}
+}
+\end{center}
+
+Offenbar kann ein Viereck in zwei Dreiecke zerlegt werden. Im Allgemeinen erh"alt
+man die beiden Dreiecke, wenn man eine Ecke mit dem gr"o"sten Winkel mit der 
+gegen"uberliegenden Ecke durch eine Strecke verbindet. Eine solche Strecke 
+zwischen Ecken, die nicht miteinander verbunden sind, hei"st eine 
+\MEntry{Diagonale}{Diagonale (Viereck)} des Vierecks. Aus der Kenntnis, dass 
+die Summe der (Innen-)Winkel eines Dreicks $\pi$ beziehungsweise $180\MGrad$ ist,
+folgt damit, dass die Summe der (Innen-)Winkel eines Vierecks doppelt so gro"s
+ist, also $2 \pi$ beziehungsweise $360\MGrad$ betr"agt.
 
 \begin{MXInfo}{Vierecke}\MLabel{VBKM05_Vierecke}%
-Ein Viereck hei"st
+Es werden \MEntry{Vierecke}{Viereck} betrachtet, die sich dadurch ergeben,
+dass vier gegebene Punkte so durch Strecken miteinander werden, dass ein
+einziger geschlossener, kreuzungsfreier Weg durch alle vier Punkte entsteht.
+Dabei sollen je drei der gegebenen Punkte, die durch zwei Strecken miteinander 
+verbunden sind, nicht auf einer Geraden liegen.
+
+Wie bei Dreiecken werden auch bei Vierecken die Innenwinkel kurz als Winkel 
+bezeichnet, wenn in einem besonderen Kontext nichts anderes vermerkt wird.
+\end{MXInfo}
+
+Ebenso wie bei Dreiecken wird auch die Idee zu Vierecken in vielf"altiger Weise 
+in technischen Konstruktionen verwendet. Dadurch sind weitere allt"agliche Namen 
+gebr"auchlich, die verschiedene Klassen von Vierecken bezeichnen.
+
+Wie bei Dreiecken werden auch Vierecke nach der L"ange von Seiten oder nach der 
+Gr"o"se von Winkeln eingeteilt. Dabei erkennt man typische Unterschiede zu 
+Dreiecken. Anders als dort kann es bei Vierecken beispielsweise parallele Seiten 
+geben. Au"serdem ist es m"oglich, dass es mehr als eine Ecke mit einem rechten 
+Winkel gibt.
+
+\begin{MXInfo}{Besondere Klassen von Vierecken}\MLabel{VBKM05_ViereckeKlassen}%
+F"ur Vierecke mit den folgenden weiteren Eigenschaften werden eigene Begriffe 
+eingef"uhrt: Ein Viereck hei"st
 \begin{itemize}
 \item \MEntry{Trapez}{Trapez}, falls wenigstens zwei Seiten parallel sind;
 \item \MEntry{Parallelogramm}{Parallelogramm}, falls je zwei 
@@ -2210,13 +2257,15 @@ Ein Viereck hei"st
 \item \MEntry{Raute}{Raute} oder 
  \MEntry{gleichseitiges Viereck}{gleichseitiges Viereck} oder 
  auch \MEntry{Rhombus}{Rhombus}, falls alle vier Seiten gleich lang sind;
-\item \MEntry{Rechteck}{Rechteck}, falls alle vier Innenwinkel rechte Winkel sind;
+\item \MEntry{Rechteck}{Rechteck}, falls alle vier (Innen-)Winkel rechte 
+ Winkel sind;
 \item \MEntry{Quadrat}{Quadrat}, falls es ein Rechteck ist, bei dem alle 
  Seiten gleich lang sind;
 \item \MEntry{Einheitsquadrat}{Einheitsquadrat}, falls es ein Quadrat mit 
  Seitenl\"ange $1$ ist.
 \end{itemize}
 \end{MXInfo}
+F"ur das Einheitsquadrat muss also auch ein L"angenma"sstab vereinbart werden.
 
 %Rechteck:
 \begin{center}
@@ -2257,21 +2306,22 @@ Ein Viereck hei"st
 \end{center}
 
 
-Unter den gerade eingef\"uhrten speziellen Vierecken gibt es eine ganze 
-Reihe von Zusammenh\"angen:
+Unter den gerade eingef"uhrten speziellen Vierecken gibt es eine ganze 
+Reihe von Zusammenh"angen:
 
 \begin{MXInfo}{Beziehungen zwischen Vierecken}\MLabel{VBKM05_Vierecke_Beziehungen}%
-Es gilt:
+Es gelten folgende Beziehungen zwischen Vierecken:
 \begin{itemize}
  \item Jedes Quadrat ist ein Rechteck.
 \item Jedes Quadrat ist eine Raute.
+\item Jede Raute ist ein Parallelogramm.
 \item Jedes Rechteck ist ein Parallelogramm.
 \item Jedes Parallelogramm ist ein Trapez.
-\item Jede Raute ist ein Parallelogramm.
 \end{itemize}
 \end{MXInfo}
 
-Ferner lassen sich diese Vierecke auf vielerlei Arten charakterisieren.
+Diese Vierecke k"onnen auf vielerlei Weisen anhand von Eigenschaften der 
+Seiten, Winkel oder auch Diagonalen charakterisiert werden.
 
 \begin{MXInfo}{Parallelogramm}\MLabel{VBKM05_Parallelogramm}%
 \begin{tabular}{@{}lr@{}}
@@ -2354,8 +2404,7 @@ Ein Viereck ist genau dann ein Parallelogramm, wenn
 \end{tabular}
 \end{MXInfo}
 
-
-\ifttm\else\clearpage\fi
+Rauten k"onnen als besondere Parallelogramme beschrieben werden.
 
 \begin{MXInfo}{Raute}\MLabel{VBKM05_Raute}%
 \begin{tabular}{@{}lr@{}}
@@ -2436,6 +2485,9 @@ Diagonalen einander halbieren.
 \end{tabular}
 \end{MXInfo}
 
+Bei Rechtecken denkt man oft an rechte Winkel, wie es ihr Name andeutet.
+Dar"uber hinaus k"onnen Rechtecke mit Hilfe von Eigenschaften ihrer 
+Diagonalen einfach beschrieben werden.
 
 \begin{MXInfo}{Rechteck}\MLabel{VBKM05_Rechteck}%
 \begin{tabular}{@{}lr@{}}
@@ -2510,14 +2562,18 @@ Ein Viereck ist genau dann ein Rechteck, wenn
 \end{tabular}
 \end{MXInfo}
 
+Quadrate sind sowohl besondere Recktecke als auch spezielle Rauten.
 
 \begin{MXInfo}{Quadrat}\MLabel{VBKM05_Quadrat}%
 \begin{tabular}{@{}lr@{}}
 \begin{minipage}{9.6cm}
 Ein Viereck ist genau dann ein Quadrat, wenn
 \begin{itemize}
-\item alle Seiten gleich lang und alle Innenwinkel gleich gro"s sind 
- oder wenigstens ein Innenwinkel ein rechter Winkel ist;
+\item alle Seiten gleich lang und 
+ \begin{itemize}
+ \item alle Innenwinkel gleich gro"s sind oder 
+ \item wenigstens ein Innenwinkel ein rechter Winkel ist;
+ \end{itemize}
 \item die Diagonalen gleich lang sind und zudem 
 alle Seiten gleich lang sind;
 %jgl: Aussage falsch (auch von Rechtecken erf"ullt):
@@ -2618,6 +2674,82 @@ alle Seiten gleich lang sind;
 \begin{MXContent}{Vielecke}{Vielecke}{STD}
 \MDeclareSiteUXID{VBKM05_Vielecke_Content}
 
+Bei Dreiecken tr"agt bereits eine Ecke oder Seite wesentlich zu den 
+Eigenschaften des gesamten Dreiecks bei, zum Beispiel eine Ecke mit 
+einem rechten Winkel. In Vierecken ist eine Ecke nicht mehr ganz so bestimmend.
+Daf"ur gibt es mehr Variationen der Formen.
+%
+Wenn {\glqq}viele{\grqq} Punkte durch Strecken zu einer geschlossenen 
+Figur, einem Vieleck, verbunden werden, ergeben sich viele M"oglichkeit, 
+vielf"altige Fl"achen zu gestalten und sogar runde Formen anzun"ahern.
+
+%Beispiele von Vielecken mit einer eingezeichneten Diagonale:
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1.5pt]
+\begin{scope}[xshift=-5cm]
+\draw[dotted,color=blue] (200:1.6cm) -- (110:2cm);
+%\draw (0,0) circle(1pt);
+\draw (110:2cm) -- (150:2cm) -- (200:1.6cm) -- (250:1.6cm) -- (330:1cm) %
+ -- (20:1cm) -- (50:1.6cm) -- cycle;
+\end{scope}
+%%
+\begin{scope}[xshift=0cm]
+\draw[dotted,color=blue] (-1.2,2cm) -- (-0.6,-0.6);
+%\draw (100:2cm) -- (240:1cm) -- (315:2.5cm) -- (0:0.5cm) -- (70:3cm) -- cycle;
+\draw (-0.6,-0.6) -- (-0.6,2) -- (-1.2,2) -- (-1.2,-1.2) -- (1.2,-1.2) %
+ -- (1.2,-0.6) -- cycle;
+\end{scope}
+%%
+%\begin{scope}[xshift=2cm]
+%\draw (0:2cm) %
+% -- (15:2cm) -- (30:2cm) -- (45:2cm) -- (60:2cm) -- (75:2cm) -- (90:2cm) %
+% -- (105:2cm) -- (120:2cm) -- (135:2cm) -- (150:2cm) %
+% -- (165:2cm) -- (180:2cm) -- (195:2cm) -- (210:2cm) -- (225:2cm) -- (240:2cm) %
+% -- (255:2cm) -- (270:2cm) -- (285:2cm) -- (300:2cm) -- (315:2cm) %
+% -- (330:2cm) -- (345:2cm) -- cycle;
+%\end{scope}
+%%
+\begin{scope}[xshift=5cm]
+\draw[dotted,color=blue] (0,-2) -- (0,2);
+\draw (0:2cm) -- (30:2cm) -- (60:2cm) -- (90:2cm) -- (120:2cm)  -- (150:2cm) %
+ -- (180:2cm) -- (210:2cm) -- (240:2cm) -- (270:2cm) -- (300:2cm) 
+ -- (330:2cm) -- cycle;
+%\draw (0:2cm) -- (30:2cm) -- (60:2cm) -- (90:2cm) -- (120:2cm)  -- (150:2cm) %
+% -- (180:2cm) -- (210:2cm) -- (240:2cm) -- (270:2cm) -- (300:2cm) 
+% -- (330:2cm) -- cycle;
+\end{scope}
+\end{tikzpicture}
+}
+\end{center}
+
+Eine so detaillierte Einteilung wie f"ur Dreiecke oder Vierecke ist dabei
+kaum mehr m"oglich. Zumal bei Vielecken solche neuen M"oglichkeiten wie die 
+Ann"aherung an runde Formen besonders interessant sind. Dazu werden nicht 
+einzelne Vielecke sondern Konstruktionsprinzipien f"ur eine Abfolge von vielen
+Vielecken betrachtet werden. Und andererseits kann jedes Vieleck bei Bedarf 
+in Dreiecke zerlegt werden, wie dies schon bei Vierecken beobachtet wurde.
+Eine Eigenschaft einer besonderen Ecke wird somit vielfach unter dem Aspekt 
+betrachtet, was dies insgesamt f"ur das Vielfach bedeutet.
+
+Zur Einteilung in verschiedene Klassen bietet sich hier die Fragestellung an,
+ob eine gewissene Eigenschaft von \textbf{allen} Ecken oder Seiten erf"ullt
+wird oder eben nicht, was dies f"ur die Vielecke bedeutet.
+Beispielsweise werdn Vielecke danach klassifiziert, ob die Winkel in allen
+Ecken kleiner $\pi$ beziehungsweise $180\MGrad$ sind. In diesem Fall verlaufen
+dann alle Diagonalen im Innern des Vielecks. Andernfalls gibt es mindestens 
+eine Diagonale au"serhalb.
+
+Die obigen Zeichnungen sind Beispiele von Vielecken, die verschiedene
+Eigenschaften zeigen. Im linken Vieleck sind alle (Innen-) Winkel kleiner 
+als $\pi$ beziehungsweise $180\MGrad$. In dieser Situation spricht man auch 
+von einem konvexen Vieleck. Anders ist es im mittleren Vieleck, in dem es eine
+solche Ecke gibt. 
+Im links dargestellten Vieleck sind alle Innenwinkel gleich, woraus sich ein 
+sehr gleichm"a"siger Verlauf der Seiten ergibt.
+%Au"serdem bieten Vielecke die M"oglichkeit, vielf"altige Fl"achen zu gestalten 
+%und sogar runde Formen anzun"ahern.
+
 \begin{MXInfo}{Vielecke}\MLabel{VBKM05_Vielecke}%
 Es seien $n$ Punkte in der Ebene gegeben, wobei $n$ eine nat\"urliche Zahl mit 
 $n \geq 3$ sei.
@@ -2679,7 +2811,7 @@ Sechsecke.
 %\foreach \Punkt in {P0, P1, P2, P3, P4, P5}
 % \filldraw[color=black!50!white] (\Punkt) circle(2pt);
 \end{scope}
-
+%%
 \begin{scope}[xshift=4cm]
 \foreach \x in {0,1,2,...,5}
 {
@@ -2746,6 +2878,47 @@ Als Ausblick auf die Winkelfunktionen, die im Abschnitt
 besprochen werden, soll der Umfang eines regelm"a"sigen Vielecks noch auf eine 
 andere Weise berechnet werden.
 Seine Ecken liegen alle auf einem Kreis mit einem Radius $r$. 
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[line width=1.5pt, declare function={Radius=3; %
+ cSeite={pow(3,0.5)/2*Radius};}]
+\foreach \x in {0,1,2,5}
+{
+ \coordinate (P\x) at ({\x*60}:Radius);
+ \coordinate (SMP\x) at ({(\x*60)+30}:{1.1*Radius});
+}
+\coordinate (M) at (0,0);
+\coordinate (C) at (30:cSeite);
+%Ausschnitt eines Sechsecks:
+\draw[color=yellow!50!red] (P5) -- (P0) -- (P1) -- (P2);
+%Winkel:
+\filldraw[color=blue] ({0.4*Radius},0) arc(0:30:{0.4*Radius});
+\node[right] at (15:{0.4*Radius}) {$\Mvarphi$};
+%Umkreis:
+\draw[color=black!50!white] (-75:Radius) arc(-75:135:Radius);
+%Seitenmittensenkrechten:
+\draw[color=red!50!white] (M) -- (C);
+\draw[style=dotted,color=red!50!white] (C) -- (SMP0);
+\foreach \x in {1,5}
+ \draw[style=dotted,color=red!50!white] (M) -- (SMP\x);
+%Radien:
+ \draw[color=black!50!white] (M) -- node[below] {$r$} (P0);
+\foreach \x in {1,2,5}
+ \draw[style=dotted,color=black!50!white] (M) -- (P\x);
+%Mittelpunkt:
+\filldraw[color=black!50!white] (0,0) circle(2pt);
+%Punkte des Sechsecks:
+\foreach \Punkt in {P0, P1, P2, P5}
+ \filldraw[color=black!50!white] (\Punkt) circle(2pt);
+\node[below left] at (M) {$M$};
+\node[below right] at (P0) {$A$};
+\node[above right] at (P1) {$B$};
+\node[left] at (C) {$C$};
+\end{tikzpicture}
+}
+\end{center}
+
 Der Winkel $\Mvarphi$ zwischen den Strecken, die vom Mittelpunkt des 
 Kreises zu den Ecken $A$ und $B$ einer Seite verlaufen, ist der $n$-te Teil 
 des Vollwinkels: $\Mvarphi = \frac{2 \pi}{n}$.
@@ -2765,8 +2938,21 @@ U_n = n \cdot a = 2 \cdot r \cdot n \cdot \sin\left(\frac{\pi}{n}\right) %%
 f"ur den Umfang eines regelm"a"sigen Vielecks. Beispielsweise ist 
 $U_6 = 2 \cdot r \cdot 6 \cdot \frac{1}{2} = 6 \cdot r$. 
 Je gr"o"ser $n$ ist, um so mehr n"ahert sich der Umfang des Vielecks dem Wert 
-$2 \cdot r \cdot \pi \approx \MZahl{6}{283} \cdot r$ an, der den Umfang des 
-Kreises mit Radius $r$ angibt.
+$2 \cdot r \cdot \pi \approx \MZahl{6}{283} \cdot r$ an, der den Umfang eines 
+Kreises mit Radius $r$ angibt. Dies kann mit weiterf"uhrenden Methoden der 
+Differentialrechnung begr"undet werden, in deren Grundideen im Kapitel 
+\MRef{VBKM07} eingef"uhrt wird. Die Idee hinter der beschriebenen Ann"aherung
+kann man hier so beschreiben: Zu einem schwierig zu berechnenden Wert wie dem 
+Kreisumfang sucht man nach vielen vergleichbaren Objekten, hier den regelm"a"sigen 
+Vielecken, die zwei Eigenschaften haben: Ihr Umfang ist einfach zu berechnen, 
+und bei hinreichend gro"ser Eckenzahl unterscheiden sie sich hinsichtlich des 
+Umfangs vom Kreis .
+Dieses Vorgehen eignet sich auch f"ur die Berechnung von Fl"achen, die nicht 
+durch Strecken berandet werden (siehe \MRef{VBKM08}).
+Dazu wird im Folgenden zun"achst die Berechnung von Fl"acheninhalten von 
+Vielecken erl"autert, die in dieser Hinsicht relativ einfach ist und die 
+Ausgangspunkt f"ur eine Ann"aherung sein kann, wie das obige Bild eines 
+Sechsecks in einem Kreis zeigt.
 \end{MXContent}
 
 
@@ -2774,7 +2960,6 @@ Kreises mit Radius $r$ angibt.
 \MDeclareSiteUXID{VBKM05_Flaecheninhalt_Content}
 Der Inhalt einer Fl\"ache ist die Zahl der Einheitsquadrate, die man ben\"otigt,
 um diese Fl\"ache vollst\"andig zu bedecken.
-
 
 \begin{tabular}{@{}l@{\hspace{1.5cm}}r@{}}
 \begin{minipage}{8cm}
@@ -4418,7 +4603,6 @@ plot (\x,{cos(\x r)});
 }
 \end{center}
 
-%\ifttm\else\clearpage\fi
 
 %%%\begin{center}
 %%%\MTikzAuto{%
