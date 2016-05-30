@@ -1,0 +1,993 @@
+\input{mintmod.tex}
+
+%\makeindex
+%\setcounter{tocdepth}{5}
+
+\begin{document}
+%\ifttm \MSection{Grundlagen} \else 
+%\begin{center}
+% \ \\[5cm]
+% \textbf{\Huge Physik}
+% \\[1cm]
+% \textbf{\huge Modul 01: Grundlagen}
+%\end{center}
+%\fi % Modul Physik 01: Grundlagen
+
+%\setcounter{chapter}{\MINTPhysics}
+%\setcounter{section}{1}
+%\setcounter{subsection}{0}
+\MSetSubject{\MINTPhysics}
+\MSection{Grundlagen}
+\begin{MSectionStart}
+\MLabel{VBKP01}
+In diesem Modul werden grundsätzliche Zusammenhänge und Vorgehensweisen in der Physik erläutert, die folgende Themengebiete umfassen:
+\ifttm \begin{html} <ul> \end{html} \else \begin{itemize} \fi
+\ifttm \begin{html}  <li> <a href="./mpl/1.1.1/modstart.html">Einheitensysteme</a><div class="p"><!----></div></li> \end{html} 
+\else \item \MSRef{physik_grundlagen_einheitensysteme}{Einheitensysteme} \fi
+\ifttm \begin{html} <li> <a href="./mpl/1.1.1/xcontent2.html">Physikalische Größen und abgeleitete Einheiten</a> <div class="p"><!----></div></li>\end{html} 
+\else \item \MSRef{physik_grundlagen_einheiten}{Physikalische Größen und abgeleitete Einheiten} \fi
+\ifttm \begin{html} <li> <a href="./mpl/1.1.1/xcontent3.html">Größenordnungen</a> <div class="p"><!----></div></li>\end{html} 
+\else \item \MSRef{physik_grundlagen_groessenordnung}{Größenordnungen} \fi
+\ifttm \begin{html} <li> <a href="./mpl/1.1.2/modstart.html">Aufstellen von physikalischen Gesetzen</a><div class="p"><!----></div></li> \end{html} 
+\else \item \MSRef{physik_grundlagen_physgesetze}{Aufstellen von physikalischen Gesetzen} \fi
+\ifttm \begin{html} <li> <a href="./mpl/1.1.2/xcontent2.html">Differentielle Größen</a><div class="p"><!----></div></li> \end{html} 
+\else \item \MSRef{physik_grundlagen_diffgroessen}{Differentielle Größen} \fi
+\ifttm \begin{html} <li> <a href="./mpl/1.1.2/xcontent3.html">Naturkonstanten</a><div class="p"><!----></div></li> \end{html} 
+\else \item \MSRef{physik_grundlagen_naturkonstanten}{Naturkonstanten} \fi
+\ifttm \begin{html} <li> <a href="./mpl/1.1.3/modstart.html">Messunsicherheit</a><div class="p"><!----></div></li> \end{html} 
+\else \item \MSRef{physik_grundlagen_messunsicherheit}{Messunsicherheit} \fi
+\ifttm \begin{html} <li> <a href="./mpl/1.1.3/xcontent2.html">Fehlerrechnung</a> <div class="p"><!----></div></li>\end{html} 
+\else \item \MSRef{physik_grundlagen_fehlerrechnung}{Fehlerrechnung} \fi
+\ifttm \begin{html} <li> <a href="./mpl/1.1.3/xcontent3.html">Grafische Auswertung</a><div class="p"><!----></div></li> \end{html} 
+\else \item \MSRef{physik_grundlagen_grafauswertung}{Grafische Auswertung} \fi
+\ifttm \begin{html} </ul> \end{html} \else \end{itemize} \fi
+\ \\[0.5cm]
+Folgende (allgemeine) Lehrbücher wurden als Quelle benutzt bzw. werden zum Vertiefen des Stoffes empfohlen:  
+\begin{itemize} 
+\item Physik, P.A. Tipler, G. Mosca, Spektrum Akademischer Verlag, 2005
+\item Physik, D. C. Giancoli, Pearson Education, 2006
+\item Physik, D. Halliday, R. Resnick, J. Walker,Wiley VCH, 2001
+\item Gerthsen Physik, D. Meschede, Springer Verlag, 2010
+\end{itemize}
+
+
+
+
+\end{MSectionStart}
+
+
+
+\MSubsection{Einheiten}    % ein Durchlauf über Einheiten
+\begin{MXContent}{Einheitensysteme}{Einheitensysteme}{STD}
+\MLabel{physik_grundlagen_einheitensysteme}
+Physiker haben es sich zur Aufgabe gemacht, Phänomene der Natur zu entdecken, zu beschreiben und letztlich zu verstehen oder sogar vorherzusagen. Dabei ist es besonders wichtig, Formalismen zu entwickeln und anzuwenden, die eine eindeutige und nachvollziehbare Beschreibung ermöglichen. Als Sprache dient hierbei häufig die Mathematik. Worüber geredet wird, also die "`Objekte"', sind in der Regel physikalische Größen\MEntry{}{Größen!physikalische}, die zuvor definiert wurden. Eine solche Größe\MEntry{}{Größen!physikalische} kann zum Beispiel eine Länge, also ein Abstand\MEntry{}{Abstand} sein. Doch eine Länge kann sehr unterschiedlich sein: Ob man $100$ Meter oder $100$ Kilometer laufen muss, macht einen spürbaren Unterschied. Um physikalische Größen\MEntry{}{Größen!physikalische} zu quantifizieren (= mengenmäßig anzugeben), sind demnach neben dem "`Zahlenwert"', der Maßzahl, sogenannte (Maß-)Einheiten\MEntry{}{Einheiten} notwendig. Im erwähnten Beispiel ist die Einheit\MEntry{}{Einheiten} das (Kilo)Meter. \\
+ 
+Einheiten\MEntry{}{Einheiten} sind feste Einheitswerte/Normen, bei denen man einem bestimmten "`Ausmaß"' einer Größe\MEntry{}{Größen!physikalische} einen festen Namen bzw. Wert zuordnet. Ein abweichendes Ausmaß der Größe\MEntry{}{Größen!physikalische} wird als Vielfaches der Norm\MEntry{}{Norm} angegeben. Eine einfache Methode zur Längenangabe wäre, sich zum Beispiel einen geraden Holzstock zu suchen und dort zwei Einkerbungen vorzunehmen. \\
+\begin{center}
+ \MGraphics{stock.png}{scale=0.5}{Bild zur Veranschaulichung der fiktiven Einheit\MEntry{}{Einheiten} "`Maßstock"'}
+\end{center}
+
+\ifttm \begin{html} <br /> \end{html} \fi Den Abstand\MEntry{}{Abstand} zwischen zwei Einkerbungen "`normt"' man zur fiktiven Einheit\MEntry{}{Einheiten} "`Maßstock"'. Man kann nun jeden beliebigen Abstand als Vielfaches dieser Norm angeben. Ist der Abstand\MEntry{}{Abstand} z. B. doppelt so groß wie der Abstand der Einkerbungen am Stock, so sagt man, der Abstand beträgt $2$ Maßstock. Ist der Abstand nur halb so groß, beträgt der Abstand $0.5$ Maßstock.  
+
+\ifttm \begin{html} <br /> \end{html} \fi Die fiktive Einheit\MEntry{}{Einheiten} Maßstock ist jedoch aus verschiedenen Gründen ungünstig: 
+\begin{itemize}
+\item Ein Holzstock wird sich über die Jahre zersetzen, d. h., die Einheit\MEntry{}{Einheiten} wäre nicht sehr langlebig.
+\item Ein Holzstock verändert seine Länge mit der Temperatur, Luftfeuchtigkeit, etc.
+\item Da nicht nur eine Person diese Einheit\MEntry{}{Einheiten} verwenden sollte, muss die Einheit\MEntry{}{Einheiten} möglichst nachvollziehbar und unabhängig vom Ort reproduzierbar sein. Daher bieten sich Einheiten\MEntry{}{Einheiten} an, die auf einem natürlichen Prozess beruhen.
+\item Die Einkerbungen haben eine gewisse Breite und ihr Anfang und Ende ist sicherlich nicht eindeutig erkennbar. Das bedeutet, die Einheit\MEntry{}{Einheiten} muss sehr genau bestimmbar sein.
+\end{itemize}
+
+
+
+
+Daher hat man sich weltweit auf ein Einheitensystem\MEntry{}{Einheiten!System} geeinigt, das man in der Wissenschaft und im Alltag verwenden sollte: das sogenannte SI-Einheitensystem\MEntry{}{Einheiten!System} (Système International d'Unités). In diesem Einheitensystem\MEntry{}{Einheiten!System} sind für alle grundlegenden Größen\MEntry{}{Größen!physikalische} Einheiten\MEntry{}{Einheiten} definiert. Alle anderen Größen\MEntry{}{Größen!physikalische} und damit ihre Einheiten\MEntry{}{Einheiten} lassen sich daraus ableiten. Diese SI-Einheiten\MEntry{}{Einheiten!SI} (insgesamt $7$) werden im Folgenden vorgestellt:
+\ \\
+\ \\
+\ifttm \begin{html} <br /> \end{html} \fi \textbf{\MEntry{Zeit}{Zeit}} \\
+Die SI-Einheit\MEntry{}{Einheiten!SI} der Zeit ist die Sekunde\MEntry{}{Sekunde}, die durch das Symbol s abgekürzt wird. \\
+Eine Sekunde ist erreicht, wenn Strahlung, die bei einem bestimmten Übergang im Cäsium-Atom entsteht, $9 \ 192 \ 631 \ 770$ Schwingungen "`ausgeführt"' hat.
+
+
+ 
+\ifttm \begin{html} <br /> \end{html} \fi \textbf{\MEntry{Länge}{Länge}} \\
+Die SI-Einheit\MEntry{}{Einheiten!SI} der Länge ist das Meter\MEntry{}{Meter}, das durch das Symbol m abgekürzt wird.  \\
+Das Meter ist definiert als die Strecke, die das Licht im Vakuum in $1/299\ 792\ 458$ Sekunden zurücklegt. Daher beträgt die Lichtgeschwindigkeit $299 \ 792\ 458 \ \mbox{m/s}$.
+
+
+
+
+
+\ifttm \begin{html} <br /> \end{html} \fi \textbf{\MEntry{Masse}{Masse}} \\
+Die SI-Einheit\MEntry{}{Einheiten!SI} der Masse ist das Kilogramm\MEntry{}{Kilogramm}, das durch das Symbol kg abgekürzt wird.  \\
+Ein Kilogramm ist die Masse eines Einheitskörpers, dem sogenannten Urkilogramm, der in Sèvres (Frankreich) aufbewahrt wird. 
+
+
+
+
+
+\ifttm \begin{html} <br /> \end{html} \fi \textbf{\MEntry{Temperatur}{Temperatur}}  \\
+Die SI-Einheit\MEntry{}{Einheiten!SI} der Temperatur ist das Kelvin\MEntry{}{Kelvin}, das durch das Symbol K abgekürzt wird.  \\
+Ein Kelvin ist der $273.16$-te Teil der Temperatur des Tripelpunktes von Wassers ($0.01 \ ^\circ\mbox{C}$).
+
+
+
+
+
+\ifttm \begin{html} <br /> \end{html} \fi \textbf{\MEntry{Stoffmenge}{Stoffmenge}}  \\
+Die SI-Einheit\MEntry{}{Einheiten!SI} der Stoffmenge ist das Mol\MEntry{}{Mol}, das durch das Symbol mol abgekürzt wird.  \\
+Ein Mol ist die Stoffmenge eines Systems, die die gleiche Anzahl an Atomen enthält wie $0.012 \ \mbox{kg}$ des Nuklids Kohlenstoff-12. Dies entspricht einer Teilchenzahl von $6.022\cdot 10^{23}$.
+
+
+
+
+
+\ifttm \begin{html} <br /> \end{html} \fi \textbf{\MEntry{Stromstärke}{Stromstärke!elektrische}} \\
+Die SI-Einheit\MEntry{}{Einheiten!SI} der Stromstärke ist das Ampere\MEntry{}{Ampere}, das durch das Symbol A abgekürzt wird.  \\
+Ein Ampere ist die Stärke des zeitlich konstanten  elektrischen Stromes, der im Vakuum zwischen zwei parallelen, unendlich langen, geraden Leitern mit vernachlässigbar kleinem, kreisförmigem Querschnitt fließt und in dem Abstand von $1 \ \mbox{m}$ zwischen diesen Leitern eine Kraft von $2\cdot 10^{-7} \ \mbox{kg} \  \mbox{m/s}^2$ pro Meter Leiterlänge hervorrufen würde.
+
+
+
+
+
+\ifttm \begin{html} <br /> \end{html} \fi \textbf{\MEntry{Lichtstärke}{Lichtstärke}} \\
+Die SI-Einheit\MEntry{}{Einheiten!SI} der Lichtstärke ist das Candela\MEntry{}{Candela}, das durch das Symbol cd abgekürzt wird.  \\
+Ein Candela ist die Lichtstärke in einer Richtung, die eine Lichtquelle mit einer radialen Intensität von $1/683 \ \mbox{kg} \ \mbox{m}^2/\mbox{s}^3$ pro Steradiant (= Einheit des Raumwinkels; in SI-Einheiten\MEntry{}{Einheiten!SI} ausgedrückt: $\mbox{m}^2/\mbox{m}^2$) und einer Frequenz von $540\cdot10^{12} \ \mbox{s}^{-1}$ emittiert.
+
+\ \\
+Neben den SI-Einheiten\MEntry{}{Einheiten!SI} werden aufgrund historischer oder praktischer Gründe noch viele andere Einheiten\MEntry{}{Einheiten} verwendet, die jedoch auf die SI-Einheiten\MEntry{}{Einheiten!SI} zurückführbar sind. Einige davon werden Sie in den folgenden Kapiteln ebenfalls kennenlernen. Auch SI-Einheiten\MEntry{}{Einheiten!SI} werden immer wieder neu definiert, sobald neue Methoden z. B. eine genauere Einteilung zulassen. Insbesondere die Definition der Masse soll in Zukunft geändert werden. Jedoch haben diese Neudefinitionen im täglichen Gebrauch kaum Auswirkungen, da sie sich nur bei sehr genauen Berechnungen bemerkbar machen. In Deutschland ist die Physikalisch-Technische Bundesanstalt in Braunschweig für die Kontrolle und Weiterentwicklung der Einheitenstandards zuständig.
+
+\ \\
+Neben dem SI-Einheitensystem\MEntry{}{Einheiten!System} gibt es noch weitere Einheitensysteme\MEntry{}{Einheiten!System}, die jedoch nicht mehr verwendet werden sollen, wie z. B. das gaußsche CGS-Einheitensystem\MEntry{}{Einheiten!System}. Hier ist zu beachten, dass die Definition von manchen Größen\MEntry{}{Größen!physikalische} abhängig vom Einheitensystem\MEntry{}{Einheiten!System} sein kann, d. h. um den Vergleich der Sprache wieder aufzugreifen: Der "`Sprachgebrauch"' kann zwischen den einzelnen Systemen unterschiedlich sein. Der "`physikalische Inhalt/ die physikalische Aussage"' bleibt davon unbeeinflusst.    
+\end{MXContent}
+
+
+
+
+
+
+
+
+
+\begin{MXContent}{Kontrollfragen}{Fragen}{aufgb}
+
+\begin{MExercise}{}
+Geben Sie alle SI-Einheiten\MEntry{}{Einheiten!SI} und ihre Abkürzungen an. \\
+\begin{MHint}{L"osung}
+\ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+Sekunde (s), Meter (m), Kilogramm (kg), Kelvin (K), Mol (mol), Ampere (A) und Candela (cd)
+\ifttm \else \end{minipage}}\fi
+\end{MHint}
+\end{MExercise}
+
+\ifttm \begin{html} <br /> \end{html} \fi
+\begin{MExercise}{}
+Welche Anforderungen sollte die Definitionsweise einer Einheit\MEntry{}{Einheiten} erfüllen?\\
+\begin{MHint}{L"osung}
+\ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+Sie sollte dauerhaft, ortsunabhängig und gut reproduzierbar sein. Natürliche Prozesse, die eine möglichst feine Einteilung der Einheit erlauben und gut messbar sind, werden daher bevorzugt.
+\ifttm \else \end{minipage}}\fi
+\end{MHint}
+\end{MExercise}
+\end{MXContent}
+
+\begin{MXContent}{Physikalische Größen}{Physikalische Größen}{STD}
+\MLabel{physik_grundlagen_einheiten}
+In den nachfolgenden Kapiteln werden immer wieder verschiedene Größen definiert werden, die mit einem Symbol abgekürzt werden und meist einheitenbehaftet sind. Die Einheiten\MEntry{}{Einheiten} haben dabei häufig einen eigenen Namen und sind aus SI-Einheiten\MEntry{}{Einheiten!SI} aufgebaut; sie sind sogenannte von SI-Einheiten\MEntry{}{Einheiten!SI} abgeleitete Einheiten\MEntry{}{Einheiten}. 
+
+Daher soll im Folgenden eine Übersicht über ausgewählte physikalische Größen\MEntry{}{Größen!physikalische} und ihre Einheiten\MEntry{}{Einheiten} gegeben werden: 
+\ifttm \else \newpage \fi
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Größe\MEntry{}{Größen!physikalische}     & Symbol 	  &    Einheit\MEntry{}{Einheiten}   	&     Symbol  &     SI-Einheit\MEntry{}{Einheiten!SI} \\
+\ifttm &&&& \\ \else \hline \hline \fi
+Länge\MEntry{}{Länge}, Abstand\MEntry{}{Abstand}  			&	$L,l,d,s$		&    Meter\MEntry{}{Meter}			&   m									&		   $1\ \textbf{\mbox{m}}$    \\
+Fläche\MEntry{}{Fläche}		&	  $A$				&    Quadratmeter  &   $\mbox{m}^2$						&     $1 \ \textbf{\mbox{m}}^{\textbf{2}}$ \\
+Volumen\MEntry{}{Volumen}   &   $V$       &    Kubikmeter, Liter\MEntry{}{Liter} &    $\mbox{m}^3$, l &    $1 \ \textbf{\mbox{m}}^{\textbf{3}} = 10^3 \ \mbox{l}$ \\
+Masse\MEntry{}{Masse}  &    $m$         &    Gramm, Kilogramm\MEntry{}{Kilogramm}  &    g, kg   &   $1 \ \textbf{\mbox{kg}} = 10^3 \ \mbox{g}$ \\
+(absolute) Temperatur\MEntry{}{Temperatur} &    $T$ &    Kelvin\MEntry{}{Kelvin} &    K &   $1 \ \textbf{\mbox{K}}$ \\
+Temperatur\MEntry{}{Temperatur} &   $\theta$ &   Celsius\MEntry{}{Celsius}, Fahrenheit\MEntry{}{Fahrenheit} &     $^\circ\mbox{C}$, $^\circ\mbox{F}$ &   $273.15 \ \textbf{\mbox{K}} = 0 \ ^\circ\mbox{C}$\\
+Druck\MEntry{}{Druck} 		&    $p$		&	    Pascal\MEntry{}{Pascal}, Bar\MEntry{}{Bar}			&	    Pa, bar		&    $1 \ \frac{\textbf{\mbox{kg}}}{\textbf{\mbox{m}} \ \textbf{\mbox{s}}^{\textbf{2}}}  = 1 \ \mbox{Pa} = 10^{-5} \ \mbox{bar}$	\\
+Stoffmenge\MEntry{}{Stoffmenge} &    $n$  &    Mol\MEntry{}{Mol}  &    mol  &  $1\ \textbf{mol}$ \\
+Teilchenzahl\MEntry{}{Teilchenzahl} &     $N$  &   --  &    --  &    --  \\
+Molmasse\MEntry{}{Molmasse}    &     $M$  &    -- &    --  & $ 1 \ \frac{\textbf{\mbox{kg}}}{\textbf{\mbox{mol}}} = 10^3 \ \frac{\mbox{g}}{\mbox{mol}}$ \\
+Dichte\MEntry{}{Dichte}     &  $\rho$ &    --  &    --  & $1\ \frac{\textbf{\mbox{kg}}}{\textbf{\mbox{m}}^{\textbf{3}}}$ \\
+Konzentration\MEntry{}{Konzentration}  &  $c$ &    Molarität\MEntry{}{Molarität} &    M & $1000 \ \frac{\textbf{\mbox{mol}}}{\textbf{\mbox{m}}^{\textbf{3}}} = 1 \ \frac{\mbox{mol}}{\mbox{l}} = 1 \ \mbox{M}$ \\
+Energie\MEntry{}{Energie}, Arbeit\MEntry{}{Arbeit} &     $E$ &    Joule\MEntry{}{Joule}  &    J  &    $1 \  \frac{\textbf{\mbox{kg}} \ \textbf{\mbox{m}}^{\textbf{2}}}{\textbf{\mbox{s}}^{\textbf{2}}}  = 1 \ \mbox{J}$  \\
+Kraft\MEntry{}{Kraft}		&			$F$	&		Newton\MEntry{}{Newton}	&		N		&		$1 \ \frac{\textbf{\mbox{kg}} \ \textbf{\mbox{m}}}{\textbf{\mbox{s}}^{\textbf{2}}} = 1 \ \mbox{N} = 1 \ \frac{\mbox{J}}{\mbox{m}}$\\
+Leistung\MEntry{}{Leistung} &    $P$ &   Watt\MEntry{}{Watt} 		&   W   &   $1 \  \frac{\textbf{\mbox{kg}} \ \textbf{\mbox{m}}^{\textbf{2}}}{\textbf{\mbox{s}}^{\textbf{3}}} = 1 \  \frac{\mbox{J}}{\mbox{s}} = 1 \ \mbox{W} $\\
+Zeit\MEntry{}{Zeit} & $t$ & Sekunde\MEntry{}{Sekunde} & $\mbox{s}$ &  $1 \ \textbf{\mbox{s}}$\\
+Geschwindigkeit\MEntry{}{Geschwindigkeit} & $v$ & -- & -- &  $1 \ \frac{\textbf{\mbox{m}}}{\textbf{\mbox{s}}}$\\
+Beschleunigung\MEntry{}{Beschleunigung} & $a$ & --	& -- &  $1\ \frac{\textbf{\mbox{m}}}{\textbf{\mbox{s}}^{\textbf{2}}}$ \\
+elektr. Stromstärke\MEntry{}{Stromstärke!elektrische}	  & $I$ & Ampere\MEntry{}{Ampere} & A & $1\ \textbf{\mbox{A}}$ \\
+elektr. Ladung\MEntry{}{Ladung}		& $Q,q$ & Coulomb\MEntry{}{Coulomb} & \mbox{C} & $1 \  \textbf{\mbox{A}} \ \textbf{\mbox{s}} = 1 \ \mbox{C}$\\
+elektr. Spannung\MEntry{}{Spannung!elektrische} & $U$ & Volt\MEntry{}{Volt}  & \mbox{V} & $1 \ \frac{\textbf{\mbox{kg}} \ \textbf{\mbox{m}}^{\textbf{2}}}{\textbf{\mbox{A}} \ \textbf{\mbox{s}}^{\textbf{3}}} = 1 \ \mbox{V} = 1 \ \frac{\mbox{W}}{\mbox{A}} = 1 \ \frac{\mbox{J}}{\mbox{C}}$\\
+elektr. Widerstand\MEntry{}{Widerstand!elektrischer} & $R$ & Ohm\MEntry{}{Ohm} & $\mathrm{\Omega}$ & $1 \  \frac{\textbf{\mbox{kg}} \ \textbf{\mbox{m}}^2} {\textbf{\mbox{A}}^2 \ \textbf{\mbox{s}}^3} = 1 \ \mathrm{\Omega} = 1 \ \frac{\text{V}}{\text{A}} = 1 \ \mathrm{\Omega}$\\
+Frequenz\MEntry{}{Frequenz} & $\nu$, $f$ & Hertz\MEntry{}{Hertz} & Hz & $1 \ \frac{\textbf{1}}{\textbf{\mbox{s}}} = 1 \ \mbox{Hz}$ \\
+Impuls\MEntry{}{Impuls}   & $p$ & -- & -- & $1 \ \frac{\textbf{\mbox{kg}} \cdot \textbf{\mbox{m}}}{\textbf{\mbox{s}}}$ \\
+\hline
+\end{tabular}
+\end{center}
+\ \\
+In Lehrbüchern oder in Ihrem Studium lernen Sie vielleicht auch andere Größensymbole für dieselbe physikalische Größe\MEntry{}{Größen!physikalische} kennen, denn diese Symbolik wurde bisher im Gegensatz zu den Einheitensymbolen\MEntry{}{Einheiten!Symbol} nicht vereinheitlicht. 
+
+Mit Einheiten\MEntry{}{Einheiten} lässt sich rechnen, wie man es aus der Mathematik für Variable gewohnt ist, z. B. möchte man den Quotienten aus elektrischer Spannung und elektrischen Widerstand berechnen. Die Einheit\MEntry{}{Einheiten} dieser Größe\MEntry{}{Größen!physikalische} lautet: 
+\begin{equation*}
+1 \ \frac{\mbox{V}}{\mathrm{\Omega}} = 1 \ \frac{\frac{\mbox{kg} \ \mbox{m}^2} {\mbox{A} \ \mbox{s}^3}}{\frac{\mbox{kg} \ \mbox{m}^2} {\mbox{A}^2 \ \mbox{s}^3}} = 1 \ \mbox{A}
+\end{equation*}
+\ifttm \else \ \\  \ \\ \fi
+Da hier als Einheit\MEntry{}{Einheiten} Ampere herauskommt, handelt es sich um die Stromstärke $I$. Die Einheiten\MEntry{}{Einheiten} geben daher das sogenannte ohmsche Gesetz wieder: 
+\begin{equation*}
+\frac{U}{R} = I
+\end{equation*}
+Anhand einer sogenannten Dimensionsbetrachtung (= Rechnen mit den Einheiten\MEntry{}{Einheiten}) kann man also Rückschlüsse auf die beteiligten physikalischen Größen\MEntry{}{Größen!physikalische} ziehen. \\
+Einheiten\MEntry{}{Einheiten} sind keine Zierde, sondern müssen immer mitgeführt werden und liefern eine zusätzliche Kontrolle, ob richtig gerechnet wurde! Das Ergebnis ist daher nur korrekt, wenn Maßzahl und Maßeinheit richtig sind!
+
+
+\end{MXContent}
+
+
+
+\begin{MXContent}{Größenordnungen}{Größenordnungen}{STD}
+\MLabel{physik_grundlagen_groessenordnung}
+Unter Größenordnung\MEntry{}{Größenordnung} versteht man die Zehnerpotenz einer physikalischen Größe\MEntry{}{Größen!physikalische}. Ist z. B. ein Baum $1 \ \mbox{m}$ hoch und ein anderer $10 \ \mbox{m}$, dann unterscheiden sich die Bäume in der Höhe um eine Größenordnung\MEntry{}{Größenordnung}. Da sich physikalische Größen\MEntry{}{Größen!physikalische} über viele Größenordnungen\MEntry{}{Größenordnung} erstrecken können, verwendet man im SI-Einheitensystem\MEntry{}{Einheiten!System} Vorsilben, um die Größenordnung\MEntry{}{Größenordnung} anzugeben. Ein bekanntes Beispiel hierfür ist die Millisekunde. Die SI-Einheit\MEntry{}{Einheiten!SI} ist Sekunde und die Vorsilbe "`Milli-"' heißt $1/1000$ oder in Potenzschreibweise $10^{-3}$. 
+Abgekürzt wird die Vorsilbe "`Milli-"' mit m als Vorsatz zu der Einheit\MEntry{}{Einheiten}, d. h. eine Millisekunde ist in Kurzschreibweise: $1 \ \mbox{ms}$. In der nachfolgenden Tabelle finden Sie die Vorsilben sowie die Abkürzungen für SI-Einheiten\MEntry{}{Einheiten!SI}.
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Vorsilbe & Abkürzung & Potenz \\
+\ifttm && \\ \else \hline \hline \fi
+Yotta & Y & $10^{24}$ \\
+Zeta & Z & $10^{21}$ \\
+Exa &  E& $10^{18}$ \\
+Peta & P & $10^{15}$ \\
+Tera & T & $10^{12}$ \\
+Giga & G & $10^{9}$ \\
+Mega & M & $10^{6}$ \\
+Kilo & k & $10^{3}$ \\
+Hekto & h & $10^{2}$ \\
+Deka & da & $10^{1}$ \\
+\ifttm \else \hline \fi
+Dezi & d & $10^{-1}$ \\
+Zenti & c & $10^{-2}$ \\
+Milli & m & $10^{-3}$ \\
+Mikro & $\mu$ & $10^{-6}$ \\
+Nano & n & $10^{-9}$ \\
+Pico & p & $10^{-12}$ \\
+Femto & f & $10^{-15}$ \\
+Atto & a& $10^{-18}$ \\
+Zepto & z & $10^{-21}$ \\
+Yokto & y & $10^{-24}$ \\
+\hline
+\end{tabular}
+\end{center}
+\ifttm \begin{html} <br /> \end{html} \fi Neben der Kenntnis der Zusammenhänge zwischen den physikalischen Größen\MEntry{}{Größen!physikalische} ist es wichtig, eine Vorstellung von den Größenordnungen\MEntry{}{Größenordnung} wichtiger Phänomene/Objekte zu kennen. Zum Beispiel beträgt die Größe eines Atoms etwa $10^{-10} \ \mbox{m}$. Der Durchmesser der Sonne dagegen beträgt etwa $10^9 \ \mbox{m}$. Anhand solcher Kenntnisse lassen sich Fehler vermeiden und Ergebnisse sinnvoll abschätzen. 
+\end{MXContent}
+
+
+
+
+
+
+
+
+
+\begin{MExercises}
+\begin{MExercise}
+ Geben Sie zu den nachfolgenden Vorsilben an, welcher Exponent damit verbunden ist (z. B. $-3$ bei Milli, da $10^{-3}$): \\
+ a) Nano: \MLParsedQuestion{4}{-9}{0}{DECCONVUXID_4C4CDA25_14} 
+ \begin{MHint}{Lösung}
+  \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Nano steht für $10^{-9}$, daher ist der Exponent $-9$. \\
+    \ifttm \else \end{minipage}}\fi
+ \end{MHint}\\
+ 
+ \ifttm \begin{html} <br /> \end{html} \fi
+ b) Kilo: \MLParsedQuestion{4}{3}{0}{DECCONVUXID_4C4CDA25_15} 
+ \begin{MHint}{Lösung}
+ \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Kilo steht für $10^{3}$, daher ist der Exponent $3$.\\
+    \ifttm \else \end{minipage}}\fi
+ \end{MHint} \\
+
+\ifttm \begin{html} <br /> \end{html} \fi 
+ c) Tera: \MLParsedQuestion{4}{12}{0}{DECCONVUXID_4C4CDA25_16} 
+ \begin{MHint}{Lösung} 
+ \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Tera steht für $10^{12}$, daher ist der Exponent $12$.\\
+    \ifttm \else \end{minipage}}\fi
+ \end{MHint} \\
+ 
+ \ifttm \begin{html} <br /> \end{html} \fi
+ d) Mega: \MLParsedQuestion{4}{6}{0}{DECCONVUXID_4C4CDA25_17} 
+ \begin{MHint}{Lösung}
+ \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Mega steht für $10^{6}$, daher ist der Exponent $6$.\\
+    \ifttm \else \end{minipage}}\fi
+ \end{MHint}\\
+ 
+ \ifttm \begin{html} <br /> \end{html} \fi
+ e) Femto: \MLParsedQuestion{4}{-15}{0}{DECCONVUXID_4C4CDA25_18} 
+ \begin{MHint}{Lösung}
+ \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Femto steht für $10^{-15}$, daher ist der Exponent $-15$.\\
+    \ifttm \else \end{minipage}}\fi
+ \end{MHint}\\
+ 
+ \ifttm \begin{html} <br /> \end{html} \fi
+ f) Mikro: \MLParsedQuestion{4}{-6}{0}{DECCONVUXID_4C4CDA25_19} 
+ \begin{MHint}{Lösung}
+ \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Mikro steht für $10^{-6}$, daher ist der Exponent $-6$.\\
+        \ifttm \else \end{minipage}}\fi
+ \end{MHint}\\
+\end{MExercise}
+
+\ifttm \begin{html} <br /> \end{html} \fi
+\ifttm \begin{html} <br /> \end{html} \fi
+\begin{MExercise}
+a) Welcher untenstehende Ausdruck entspricht $\frac{\text{Nm}}{\text{W}}$ in SI-Einheiten\MEntry{}{Einheiten!SI}? \\
+	 \ifttm
+   \begin{MQuestionGroup}
+   $\mbox{m}$: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_0}\\
+   $\text{Hz}$: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_1} \\
+   kg: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_2} \\
+   $\frac{\text{kg}}{\text{m}}$: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_3} \\
+   $\frac{\text{kg}}{\text{m}\cdot \text{s}}$: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_4} \\
+   $\mbox{s}$: \MLCheckbox{1}{DECCONVUXID_4C4CDA25_5} \\
+   $\frac{\text{m}}{\text{s}}$: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_6} \\
+   \end{MQuestionGroup}
+   \MGroupButton{Kontrolle}
+   \else
+   Zur Auswahl stehen: $\text{m}$, $\text{Hz}$, $\text{kg}$, $\frac{\text{kg}}{\text{m}}$ oder $\frac{\text{kg}}{\text{m}\cdot \text{s}}$ oder $\mbox{s}$. 
+   \fi
+   \ifttm \begin{html} <br /> \end{html} \fi
+  \begin{MHint}{Lösung}
+  \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Einheit\MEntry{}{Einheiten} Newton steht für $\frac{\text{kg} \cdot \text{m}}{\text{s}^2}$, die Einheit\MEntry{}{Einheiten} Watt für $\frac{\text{kg}\cdot \text{m}^2}{\text{s}^3}$. Ein Newton-Meter entspricht auch der Einheit\MEntry{}{Einheiten} Joule und Watt den Einheiten Joule pro Sekunde. Man erhält daher $1 \  \frac{\text{Nm}}{\text{W}} = 1 \ \frac{\frac{\text{kg} \cdot \text{m}}{\text{s}^2}\cdot \text{m}}{\frac{\text{kg}\cdot \text{m}^2}{\text{s}^3}} = 1 \ \frac{\text{J}\cdot \text{s}}{\text{J}} = 1 \ \mbox{s}$.
+    \ifttm \else \end{minipage}}\fi
+  \end{MHint} \\
+  
+\ifttm \begin{html} <br /> \end{html} \fi
+b) Welcher untenstehende Ausdruck entspricht $\frac{\text{J}}{\text{Pa} \cdot \text{m}^2}$ in SI-Einheiten\MEntry{}{Einheiten!SI}? \\
+	\ifttm
+   \begin{MQuestionGroup}
+   m: \MLCheckbox{1}{DECCONVUXID_4C4CDA25_7}\\
+   $\text{Hz}^{-1}$: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_8} \\
+   kg: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_9} \\
+   $\frac{\text{kg}}{\text{m}}$: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_10} \\
+   $\frac{\text{kg}}{\text{m}\cdot \text{s}}$: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_11} \\
+   s: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_12} \\
+   $\frac{\text{m}}{\text{s}}$: \MLCheckbox{0}{DECCONVUXID_4C4CDA25_13} \\
+   \end{MQuestionGroup}
+   \MGroupButton{Kontrolle}
+  \else
+   Zur Auswahl stehen: $\text{m}$, $\text{Hz}$, $\text{kg}$, $\frac{\text{kg}}{\text{m}}$, $\frac{\text{kg}}{\text{m}\cdot \text{s}}$ oder $\mbox{s}$. 
+  \fi
+  \ifttm \begin{html} <br /> \end{html} \fi
+    \begin{MHint}{Lösung}
+    \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Einheit\MEntry{}{Einheiten} Joule steht für $\frac{\text{kg} \cdot \text{m}^2}{\text{s}^2}$, die Einheit\MEntry{}{Einheiten} Pascal für $\frac{\text{kg}}{\text{m} \cdot \text{s}^2}$. Man erhält daher $1 \ \frac{\text{J}}{\text{Pa} \ \text{m}^2} = 1 \ \frac{\frac{\text{kg} \cdot \text{m}^2}{\text{s}^2}}{\frac{\text{kg} \cdot \text{m}^2}{\text{m} \cdot \text{s}^2}} = 1 \ \mbox{m}$.
+    \ifttm \else \end{minipage}}\fi
+  \end{MHint} \\
+
+
+
+\end{MExercise}
+  
+  
+  
+  
+\end{MExercises}
+
+
+
+
+
+
+
+
+
+
+\MSubsection{Physikalische Gesetze}   % ein Durchlauf über phys. Gesetze
+\begin{MXContent}{Physikalische Gesetze}{Physikalische Gesetze}{STD}
+\MLabel{physik_grundlagen_physgesetze}
+In der Physik ist es von grundlegender Bedeutung, die Zusammenhänge zwischen verschiedenen physikalischen Größen\MEntry{}{Größen!physikalische} zu kennen. Nur dann ist eine umfassende Beschreibung der Naturprozesse möglich. Um solche Zusammenhänge bzw. Gesetzmäßigkeiten zu finden, kann man versuchen, sie aufgrund theoretischer Überlegungen herzuleiten oder über Experimente zu bestimmen. Den Experimenten kommt dabei eine zentrale Rolle zu, da jede Gesetzmäßigkeit, die aufgrund von theoretischen Überlegungen gefunden wurde (= Theorie), durch Experimente untermauert/verifiziert werden muss. Auch gibt es häufig etablierte Theorien, die jedoch bestimmte Experimente nicht beschreiben können und daher erweitert oder durch eine neue Theorie ersetzt werden. Ein Beispiel hierfür ist die klassische Mechanik, die durch die Quantenmechanik ersetzt bzw. erweitert wurde. Wichtig hierbei ist, dass die Quantenmechanik die Gesetzmäßigkeiten, die in der klassischen Mechanik enthalten sind, ebenfalls wiedergibt. 
+
+Doch wie bestimmt man aus einem Experiment eine physikalische Gesetzmäßigkeit? \\
+Ein Auto fährt auf einer Autobahn mit konstanter Geschwindigkeit $v$. Der Beifahrer notiert sich ab einem bestimmten Zeitpunkt, welche Strecke $\Delta x$ das Auto in einer Zeitspanne $\mathrm{\Delta} t$ zurückgelegt hat (Wertepaar Zeit -- Strecke). Das Symbol $\mathrm{\Delta}$ bei der Bezeichnung der physikalischen Größen\MEntry{}{Größen!physikalische} kennzeichnet eine Differenz, da eine Wegstrecke sich durch die Differenz zweier (Orts-)Punkte ergibt; das gleiche gilt für eine Zeitspanne. Das Symbol $\Delta$ wird häufig auch weggelassen. Man verwendet zum Beispiel im Fall einer Strecke die Bezeichnung $s$, sodass gilt $s$ = $\mathrm{\Delta} x$. \\ 
+Der Beifahrer könnte z.B. folgende Wertetabelle erhalten:
+
+\ifttm \begin{html} <br /> \end{html} \fi
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Zeit $\mathrm{\Delta}t$ in $\mbox{s}$ & Strecke $\mathrm{\Delta}x$ in $\mbox{m}$ \\
+\ifttm & \\ \else \hline \hline \fi
+$0$ & $0$ \\
+$10$ & $250$ \\
+$20$ & $500$ \\
+$30$ & $750$ \\
+$40$ & $1000$ \\
+$50$ & $1250$ \\
+$60$ & $1500$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\ifttm \begin{html} <br /> \end{html} \fi Aus dem alltäglichen Gebrauch des Begriffes der Geschwindigkeit ist bekannt, dass die Geschwindigkeit proportional zur Wegstrecke $\mathrm{\Delta} x$ und antiproportional zum Zeitintervall $\mathrm{\Delta} t$ ist:
+\begin{equation*}
+v \propto \mathrm{\Delta} x \ \  \mbox{bzw.}\ \ \ v \propto \frac{1}{\mathrm{\Delta} t}
+\end{equation*}
+Doch wie erhält man diese Zusammenhänge, wenn diese aus dem Alltag nicht so leicht zugänglich sind? Dazu verwendet man obige Wertetabelle. Ein mögliches Vorgehen könnte wie folgt sein: \\
+Aus der Tabelle entnimmt man, dass sich die zurückgelegte Strecke bei einer Verdoppelung der Zeit ebenfalls verdoppelt. Damit sind die Strecke und die Zeit linear proportional
+\begin{equation*}
+\mathrm{\Delta} x \propto \mathrm{\Delta} t
+\end{equation*}
+Hätte sich die zurückgelegte Strecke verneunfacht bei einer Verdreifachung der Zeit, wäre der Zusammenhang $\mathrm{\Delta} x \propto (\mathrm{\Delta} t)^2$ (quadratisch proportional).
+Der lineare Zusammenhang in obiger Tabelle lässt sich auch leicht anhand einer Auftragung erkennen:
+\begin{center}
+\MGraphics{diagramm.png}{scale=0.8}{Diagramm zur obigen Tabelle}
+\end{center}
+\ifttm \begin{html} <br /> \end{html} \fi
+Um die Proportionalität in eine Gleichung zu überführen, wird ein sogenannter Proportionalitätsfaktor $k$ benötigt. 
+\begin{equation*}
+ \mathrm{\Delta} x = k \cdot \mathrm{\Delta} t
+\end{equation*}
+Durch eine Dimensionsbetrachtung\MEntry{}{Dimensionsbetrachtung} (= Einheitenbetrachtung)\ifttm \begin{html} <br /> \end{html} \fi
+\begin{equation*}
+\text{Meter} = \text{?} \ \cdot \ \text{Sekunde}  
+\end{equation*}
+erhält man als Dimension bzw. Einheit für den Proportionalitätsfaktor $\mbox{m/s}$. Der Proportionalitätsfaktor wird Geschwindigkeit genannt und wird häufig mit dem Buchstaben $v$ abgekürzt. Damit erhält man die physikalische Gesetzmäßigkeit:
+\begin{equation*}
+\mathrm{\Delta} x = v \cdot \mathrm{\Delta}t
+\end{equation*}
+Die Geschwindigkeit ist somit der "`Umrechnungsfaktor"' zwischen zurückgelegter Strecke und dazu benötigter Zeit. Im obigen Diagramm entspricht die Geschwindigkeit $v$ der Steigung, die über das Steigungsdreieck $\mathrm{\Delta} x/\mathrm{\Delta} t$ erhalten wird. 
+\end{MXContent}
+
+
+
+
+
+
+
+
+
+\begin{MXContent}{Kontrollfragen}{Fragen}{aufgb}
+
+\begin{MExercise}{}
+Was bedeutet proportional, was bedeutet antiproportional? \\
+\begin{MHint}{L"osung}
+\ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+Bei einer Proportionalität verhält sich eine Größe\MEntry{}{Größen!physikalische} $a$ im gleichen Maße wie eine andere Größe\MEntry{}{Größen!physikalische} $b$, d.h. a $\propto$ $b$ und das Verhältnis $\frac{a}{b}$ ist konstant. Bei einer Antiproportionalität verhält sich $a$ zu $b$ reziprok, d.h. $a$ $\propto$ $\frac{1}{b}$ und das Produkt $a \cdot b$ ist konstant.
+\ifttm \else \end{minipage}}\fi
+\end{MHint}
+\end{MExercise}
+
+\ifttm \begin{html} <br /> \end{html} \fi
+\begin{MExercise}{}
+Was versteht man unter einer Dimensionsbetrachtung?\\
+\begin{MHint}{L"osung}
+\ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+In einer Dimensionsbetrachtung werden von allen beteiligten Größen\MEntry{}{Größen!physikalische} einer Gleichung die Einheiten betrachtet und ggf. verrechnet. 
+\ifttm \else \end{minipage}}\fi
+\end{MHint}
+\end{MExercise}
+
+
+\end{MXContent}
+
+\begin{MXContent}{Differentielle Größen}{Differentielle Größen}{STD}
+\MLabel{physik_grundlagen_diffgroessen}
+
+Der Zusammenhang $\mathrm{\Delta} t \cdot v = \mathrm{\Delta} x$ wurde ausgehend von einer konstanten Geschwindigkeit des Autos erhalten. Doch wie ändert sich die Vorgehensweise, wenn das Auto die Geschwindigkeit mit der Zeit ändert, d. h., wenn die Geschwindigkeit eine Funktion der Zeit ist, $v = v(t)$? \\
+Bisher wurde die Geschwindigkeit als Quotient der zurückgelegten Wegstrecke $\mathrm{\Delta} x$ und der dazu benötigten Zeit $\mathrm{\Delta} t$ definiert:
+\begin{equation*}
+v = \frac{\mathrm{\Delta} x}{\mathrm{\Delta} t}
+\end{equation*}
+Bei konstanter Geschwindigkeit des Autos ist es egal, in welchem Zeitintervall die Geschwindigkeit berechnet wird, z. B. berechnet sich ausgehend von der bereits bekannten Wertetabelle die Geschwindigkeit $v$ im Zeitintervall $0$--$10 \ \text{s}$ zu
+\begin{equation*}
+v  = \frac{250 \  \text{m}  - 0 \ \text{m}}{10 \ \text{s} - 0 \ \text{s}} = 25 \ \text{m}/\text{s} = \frac{0.025 \ \text{km}}{\frac{1}{3600} \ \text{h}} = 90 \ \text{km}/\text{h}  
+\end{equation*}
+und ist identisch mit der Geschwindigkeit im Zeitintervall $10\  \text{s}$--$20\ \text{s}$ \ifttm \begin{html} <br /> \end{html} \fi
+\begin{equation*}
+v  = \frac{500 \ \text{m} - 250 \ \text{m}}{20 \ \text{s} - 10 \ \text{s}} = 25 \ \text{m/s} = 90 \ \text{km}/\text{h}  
+\end{equation*}
+Bei nicht-konstanter Geschwindigkeit hätten die Ergebnisse unterschiedlich sein können. \\
+Das Ziel ist es, eine Geschwindigkeit zu einem bestimmten Zeitpunkt $t$ zu definieren, also $v(t)$. Die bisherigen Zeitintervalle sind mit $10 \ \text{s}$ recht groß. Würde man z. B. jede Millisekunde "`messen"', wäre das Zeitintervall nur $1$ Millisekunde groß. Aber auch dieses ließe sich noch weiter verkleinern. Für (nahezu) unendlich kleine (= infinitesimal kleine) Intervalle hätte man das Ziel erreicht, die Geschwindigkeit in einem einzigen Zeit\textbf{punkt} anzugeben. Für solch infinitesimal kleine Intervalle wird das $\mathrm{\Delta}$ (Differenz) durch d (Differentiation) ersetzt (mathematisch: Der Differenzenquotient wird in einen Differentialquotienten mit den Differentialen d$x$ und d$t$ überführt.) und man erhält:
+\begin{equation*}
+v(t) = \frac{\text{d}x}{\text{d}t}
+\end{equation*}
+Dies entspricht mathematisch der Ableitung der Wegstrecke nach der Zeit. Im Weg-Zeit-Diagramm ist daher die Geschwindigkeit die Steigung der Tangente zu einem bestimmten Zeitpunkt im Graphen und entspricht der grünen Geraden im unten stehenden Diagramm. Das blau eingezeichnete Steigungsdreieck stellt den Fall endlich kleiner Intervalle dar ($v =  \mathrm{\Delta} x/\mathrm{\Delta} t$) und die Steigung des Geradenabschnitts entspricht der mittleren Geschwindigkeit im Intervall $[30 \ \text{s}$; $40\ \text{s}]$.
+\ifttm \else \newpage \fi
+\begin{center}
+\MGraphics{diagramm2.png}{scale=0.6}{Diagramm für den Fall einer zeitlich veränderlichen Geschwindigkeit. Grüne Linie: Tangente im Punkt $t$ = $35$ s, $v = \frac{\text{d}x}{\text{d}t}$. Blau: Steigungsdreieck im Intervall $30 \ \text{s}$--$40 \ \text{s}$, $v = \frac{\mathrm{\Delta} x}{\mathrm{\Delta} t}$\mbox{}.}
+\end{center}
+
+Es ist bekannt, dass gilt:
+\begin{equation*}
+v  \cdot  \mathrm{\Delta} t= \mathrm{\Delta} x
+\end{equation*}
+Mit diesem Zusammenhang lässt sich die zurückgelegte Wegstrecke in einem bestimmten Zeitintervall berechnen, sofern die Geschwindigkeit konstant ist. Im Falle zeitlich veränderlicher Geschwindigkeit erhält man zunächst
+\begin{equation*}
+v(t)  \text{d}t= \text{d}x
+\end{equation*}
+Normalerweise ist man nicht an einer infinitesimal kleinen Wegstrecke d$x$ interessiert, sondern an einer messbaren Strecke $\mathrm{\Delta} x$ in einem festen Zeitintervall $\mathrm{\Delta} t$. Die Wegstrecke $\mathrm{\Delta} x$ ergäbe sich, wenn man alle (unendlich vielen!) d$x$ aufsummieren würde, die sich in dem betrachteten Zeitintervall befinden. Mathematisch bedeutet dies, man muss folgendes Integral bilden:
+\begin{equation*}
+\int_{t_1}^{t_2} v(t) \ \text{d}t = \mathrm{\Delta} x
+\end{equation*}
+In einem Geschwindigkeits-Zeit-Diagramm entspricht also $\mathrm{\Delta} x$ der Fläche unter dem Graphen. 
+\end{MXContent}
+
+
+
+\begin{MXContent}{Naturkonstanten}{Naturkonstanten}{STD}
+\MLabel{physik_grundlagen_naturkonstanten}
+Der Proportionalitätsfaktor beim Zusammenhang zwischen Weg und Zeit wurde als Geschwindigkeit eingeführt. Die Geschwindigkeit hängt z. B. von der Zeit ab. Jedoch gibt es Proportionalitätsfaktoren, die unabhängig von der Zeit oder anderen Parametern, also konstant sind; sie sind daher sogenannte Proportionalitäts\textbf{konstanten}. 
+Solche Proportionalitätskonstanten können sich in verschiedenen physikalischen Gesetzen wiederholen und werden deshalb auch Naturkonstanten genannt und mit einem (einheitlichen) Buchstaben gekennzeichnet. Im Folgenden finden Sie eine Tabelle mit wichtigen Naturkonstanten\MEntry{}{Naturkonstanten}:
+\begin{center}
+\ifttm \begin{html} <br /> \end{html} \fi\begin{tabular}{|c|c|c|}
+\hline
+Name & Symbol & Wert \\
+\ifttm  & & \\ \else \hline \hline \fi
+Lichtgeschwindigkeit\MEntry{}{Lichtgeschwindigkeit} & $c$ & $2.99792458\cdot10^8 \ \text{m}/\text{s}$ \\
+Permittivität des Vakuums\MEntry{}{Permittivität!Vakuum} / Influenzkonstante\MEntry{}{Influenzkonstante} & $\epsilon_0$ & $8.85418782\cdot10^{-12} \ \frac{\text{A} \ \text{s}}{\text{V} \ \text{m}}$\\
+Permeabilität des Vakuums\MEntry{}{Permeabilität!Vakuum} / Induktionskonstante\MEntry{}{Induktionskonstante} & $\mu_0$ & $1.2566370614\cdot10^{-6} \ \frac{\text{V} \ \text{s}}{\text{A} \ \text{m}}$ \\
+Elementarladung\MEntry{}{Elementarladung} & $e$ & $1.6021892\cdot10^{-19} \ \text{C}$ \\
+Planck-Konstante\MEntry{}{Konstante!Planck} &$h$ & $6.626176\cdot10^{-34} \ \text{J} \ \text{s}$ \\
+Avogadro-Konstante\MEntry{}{Avogadrozahl}\MEntry{}{Konstante!Avogadro} & $N_{\text{A}}$ & $6.02214\cdot10^{23} \ \text{mol}^{-1}$ \\
+Masse eines Elektrons\MEntry{}{Masse!Elektron} & $m_{\text{e}} $ & $9.109534\cdot10^{-31} \ \text{kg}$ \\
+Masse eines Protons\MEntry{}{Masse!Proton} & $m_{\text{p}}$ & $1.6726485\cdot10^{-27} \ \text{kg}$\\
+Masse eines Neutrons\MEntry{}{Masse!Neutron} & $m_{\text{n}}$ & $1.6749272\cdot10^{-27} \ \text{kg}$\\
+Bohrsches Magneton\MEntry{}{Magneton!Bohrsches} & $\mu_{\text{B}}$& $9.274078\cdot10^{-24} \ \text{J}/\text{T}$\\
+Magneton des Protons\MEntry{}{Magneton!Proton} & $\mu_{\text{N}}$ & $5.0508248\cdot10^{-27} \ \text{J}/\text{T}$ \\
+Rydberg-Konstante\MEntry{}{Rydberg-Konstante} & $R_{\infty}$ & $1.0973731\cdot 10^{7} \ \text{m}^{-1}$ \\
+Bohrsche Radius\MEntry{}{Radius!Bohrsche} & $a_0$& $0.52917706\cdot10^{-10} \ \text{m}$\\
+Boltzmann Konstante\MEntry{}{Konstante!Boltzmann} & $k_{\text{B}}$ & $1.380662\cdot10^{-23} \ \text{J}/\text{K}$ \\
+Faraday Konstante\MEntry{}{Konstante!Faraday} & $F$ & $96484.56 \ \text{C}/\text{mol}$\\
+Gas-Konstante\MEntry{}{Konstante!Gas} & $R$ & $8.31441 \ \frac{\text{J}}{\text{mol} \ \text{K}}$\\
+Gravitationskonstante\MEntry{}{Konstante!Gravitation} & $G,\gamma,\ifttm\else\mathnormal\fi\mathit\Gamma$ & $6.6720\cdot10^{-11} \ \text{N} \ \text{m}^2/\text{kg}^2$\\
+\hline
+\end{tabular}
+\end{center}
+\end{MXContent}
+
+
+
+
+
+
+
+
+
+\begin{MExercises}
+\begin{MExercise}
+Folgende Wertetabelle wurde in einem Experiment erhalten \ifttm \begin{html} <br /> \end{html} \fi \ifttm \begin{html} <br /> \end{html} \fi 
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Zeit $\mathrm{\Delta} t$ in s & Strecke $\mathrm{\Delta} x$ in m \\ 
+\ifttm & \\ \else \hline \hline \fi
+0 & 0 \\
+10 & 230 \\
+20 & 510 \\
+30 & 730 \\
+40 & 1030 \\
+\hline
+\end{tabular}
+\end{center}
+
+\ifttm \begin{html} <br /> \end{html} \fi Berechnen Sie die Durchschnittsgeschwindigkeit für die Zeitintervalle $[0 \ \mbox{s}$; $10 \ \mbox{s}]$, $[10 \ \mbox{s}$; $20 \ \mbox{s}]$, $[20\ \mbox{s}$; $30 \ \mbox{s}]$ und \mbox{$[10 \ \mbox{s}$; $40 \ \mbox{s}]$}. Geben Sie das Ergebnis auf eine Nachkommastelle genau in der Einheit $\text{km/h}$ an: \\
+\ifttm \begin{html} <br /> \end{html} \fi
+   1. Intervall: \ifttm \MLParsedQuestion{5}{82.8}{1}{DECCONVUXID_4C4CDA25_20} $\mbox{km/h}$ \\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Geschwindigkeit ergibt sich aus $v = \frac{\mathrm{\Delta} x}{\mathrm{\Delta} t}$, also $v = \frac{230 \ \text{m}}{10 \ \text{s}} = 23 \ \mbox{m/s} = 82.8\ \mbox{km/h}$\\
+    \ifttm \else \end{minipage}}\fi
+   \end{MHint} \\
+   
+   \ifttm \begin{html} <br /> \end{html} \fi
+   2. Intervall: \ifttm \MLParsedQuestion{5}{100.8}{1}{DECCONVUXID_4C4CDA25_21} $\mbox{km/h}$ \\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Geschwindigkeit ergibt sich aus $v = \frac{\mathrm{\Delta} x}{\mathrm{\Delta} t}$, also $v = \frac{510 \ \text{m} - 230 \ \text{m}}{20 \ \text{s} - 10 \ \text{s}} = 28 \ \text{m}/\text{s} = 100.8 \ \text{km}/\text{h}$\\
+    \ifttm \else \end{minipage}}\fi
+   \end{MHint} \\
+   
+   \ifttm \begin{html} <br /> \end{html} \fi
+   3. Intervall: \ifttm \MLParsedQuestion{5}{79.2}{1}{DECCONVUXID_4C4CDA25_22} $\mbox{km/h}$ \\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Geschwindigkeit ergibt sich aus $v = \frac{\mathrm{\Delta} x}{\mathrm{\Delta} t}$, also $v = \frac{730 \ \text{m} - 510 \ \text{m}}{30 \ \text{s} - 20 \ \text{s}} = 22 \ \mbox{m/s} = 79.2 \ \mbox{km/h}$\\
+    \ifttm \else \end{minipage}}\fi
+   \end{MHint} \\
+   
+   \ifttm \begin{html} <br /> \end{html} \fi
+   4. Intervall: \ifttm \MLParsedQuestion{5}{96.0}{1}{DECCONVUXID_4C4CDA25_23} $\mbox{km/h}$ \\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Geschwindigkeit ergibt sich aus $v = \frac{\mathrm{\Delta} x}{\mathrm{\Delta} t}$, also $v = \frac{1030 \ \text{m} - 230 \ \text{m}}{40 \ \text{s} - 10 \ \text{s}} = 26.6 \ \mbox{m/s} = 96.0 \ \mbox{km/h}$\\
+    \ifttm \else \end{minipage}}\fi
+   \end{MHint} \\
+   
+\end{MExercise}
+
+\ifttm \begin{html} <br /> \end{html} \fi
+\ifttm \begin{html} <br /> \end{html} \fi 
+\begin{MExercise}
+Der Ort $x(t)$ eines Objektes kann in einem Experiment durch folgende Funktion beschrieben werden: $x(t) = 25.6 \ \frac{\text{m}}{\text{s}} \cdot t-12 \ \text{m}$ \\
+
+\ifttm \begin{html} <br /> \end{html} \fi
+a) Wie groß ist die Geschwindigkeit zum Zeitpunkt $t = 0 \ \mbox{s}$? Geben Sie das Ergebnis auf eine Nachkommastelle genau in der Einheit $\mbox{km/h}$ an: \\
+   \ifttm \MLParsedQuestion{5}{92.16}{1}{DECCONVUXID_4C4CDA25_24} $\mbox{km/h}$  \\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Geschwindigkeit ergibt sich aus $v = \frac{\text{d} x}{\text{d} t}$, also $v = 25.6 \ \mbox{m/s} = 92.2 \ \mbox{km/h}$\\
+    \ifttm \else \end{minipage}}\fi
+   \end{MHint} \\
+   
+   \ifttm \begin{html} <br /> \end{html} \fi
+b) Wie groß ist die Geschwindigkeit zum Zeitpunkt $t = 10 \ \mbox{s}$? Geben Sie das Ergebnis auf eine Nachkommastelle genau in der Einheit $\mbox{km/h}$ an: \\ \ifttm \else \newpage \fi
+   \ifttm \MLParsedQuestion{5}{92.16}{1}{DECCONVUXID_4C4CDA25_25} $\mbox{km/h}$ \\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Geschwindigkeit ergibt sich aus $v = \frac{\text{d} x}{\text{d} t}$, also auch in diesem Fall $v = 25.6 \ \mbox{m/s} = 92.2 \ \mbox{km/h}$\\
+    \ifttm \else \end{minipage}}\fi
+   \end{MHint} \\
+   
+   \ifttm \begin{html} <br /> \end{html} \fi
+c) Wie groß ist die Geschwindigkeit zum Zeitpunkt $t = 0 \ s$, wenn die Funktion $x(t) = 25.6 \ \frac{\text{m}}{\text{s}^2} \cdot t^2 -12 \  \text{m}$ wäre?\\ Geben Sie das Ergebnis auf eine Nachkommastelle genau in der Einheit $\mbox{km/h}$ an: \\
+   \ifttm \MLParsedQuestion{5}{0.0}{1}{DECCONVUXID_4C4CDA25_26} $\mbox{km/h}$ \\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Geschwindigkeit ergibt sich aus $v = \frac{\text{d} x}{\text{d} t}$, also $v = 2\cdot25.6 \ \text{m}/\text{s}^2 \cdot t = 0 \ \mbox{km/h}$ für $t = 0 \ \mbox{s}$.\\
+    \ifttm \else \end{minipage}}\fi
+   \end{MHint} \\
+   
+   \ifttm \begin{html} <br /> \end{html} \fi
+d) Wie groß ist die Geschwindigkeit zum Zeitpunkt $t = 1 \ \mbox{s}$, wenn die Funktion $x(t)= 25.6 \ \frac{\text{m}}{\text{s}^2}\cdot t^2-12 \  \text{m}$ wäre?\\ Geben Sie das Ergebnis auf eine Nachkommastelle genau in der Einheit $\mbox{km/h}$ an: \\
+   \ifttm \MLParsedQuestion{5}{184.32}{1}{DECCONVUXID_4C4CDA25_27} $\mbox{km/h}$ \\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Geschwindigkeit ergibt sich aus $v = \frac{\text{d} x}{\text{d} t}$, also $v = 2\cdot25.6 \ \text{m}/\text{s}^2 \cdot t = 51.2 \ \mbox{m/s} = 184.3 \ \mbox{km/h}$ für $t = 1 \ \mbox{s}$.\\
+    \ifttm \else \end{minipage}}\fi
+   \end{MHint} \\
+
+\end{MExercise}
+  
+\end{MExercises}
+
+
+
+
+
+
+
+
+
+
+
+\MSubsection{Fehlerrechnung} % ein Durchlauf über Fehlerrechnung
+\begin{MXContent}{Messunsicherheiten}{Messunsicherheiten}{STD}
+\MLabel{physik_grundlagen_messunsicherheit}
+Bei jedem Experiment gibt es "`Fehler"', die zu Messunsicherheiten führen. Daher ist eine Angabe von physikalischen Messgrößen\MEntry{}{Größen!Messgröße} nur mit Angabe der Unsicherheit sinnvoll, d.h., man gibt Messgrößen\MEntry{}{Größen!Messgröße} z. B. folgendermaßen an: 
+\begin{center}
+$\mathrm{\Delta} H$ = (234 $\pm$ 4) kJ/mol 
+\end{center}
+\ifttm \begin{html} <br /> \end{html} \fi 4 kJ/mol ist in diesem Beispiel die Unsicherheit. Eine Angabe des Ergebnisses mit einer höheren Genauigkeit\MEntry{}{Genauigkeit} als der Fehler ist nicht sinnvoll, z. B. ist die Angabe $\mathrm{\Delta} H$ = (234.532 $\pm$ 4) kJ/mol nicht sinnvoll. Da solche Angaben  von grundlegender Bedeutung sind, gibt es eine entsprechende DIN-Norm dafür (DIN 1319). Im Folgenden soll ein kurzer Einblick in die Fehlerrechnung\MEntry{}{Fehlerrechnung} gegeben werden.
+
+\ifttm \begin{html} <br /> \end{html} \fi
+Zunächst unterscheidet man zwischen den Begriffen Präzision\MEntry{}{Präzision} und Genauigkeit\MEntry{}{Genauigkeit}/Richtigkeit einer Messung. Die Präzision\MEntry{}{Präzision} einer Messung gibt an, wie gut die aufgenommenen Messwerte übereinstimmen. Je kleiner die Abweichung sich entsprechender Messwerte in unterschiedlichen Messungen ist, desto höher ist die Präzision\MEntry{}{Präzision}, d.h., die Messmethode liefert gut reproduzierbare Ergebnisse. Jedoch sagt dies nichts über die Genauigkeit\MEntry{}{Genauigkeit} bzw. Richtigkeit der Ergebnisse aus. Diese geben die Abweichung vom "`wahren Wert"' einer Größe\MEntry{}{Größen!physikalische} an. Die Genauigkeit\MEntry{}{Genauigkeit} gibt dabei die Abweichung eines einzelnen Messwertes zum wahren Wert wieder, die Richtigkeit die Abweichung des Mittelwerts einzelner Messwerte zum wahren Wert. \\
+Ein Beispiel: Folgende Wertetabelle für eine Geschwindigkeits-Messreihe wurde erhalten:
+\ifttm \begin{html} <br /> \end{html} \fi \ifttm \begin{html} <br /> \end{html} \fi 
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Messung & Geschwindigkeit $v$ in $\text{m/s}$ \\
+\ifttm & \\ \else \hline \hline \fi
+1 & 99 \\
+2 & 101 \\
+3 & 99 \\
+4 & 100 \\
+5 & 100 \\
+6 & 101 \\
+\hline
+\end{tabular}
+\end{center}
+
+\ifttm \begin{html} <br /> \end{html} \fi
+Der wahre Wert der Geschwindigkeit sei $150 \text{m/s}$. Der Mittelwert der Messung ergibt sich aus \ifttm \begin{html} <br /> \end{html} \fi
+\begin{equation*}
+\frac{(99+101+99+100+100+101)\ \text{m}/\text{s}}{6} = 100 \  \text{m}/\text{s}. 
+\end{equation*}
+Die Abweichung der einzelnen Messpunkte zu diesem Mittelwert beträgt $\pm \ 1 \ \text{m}/\text{s}$ (1\ \text{\%} Fehler), d.h. die Messmethode liefert gut reproduzierbare Ergebnisse und die Präzision\MEntry{}{Präzision} ist hoch. Die Genauigkeit\MEntry{}{Genauigkeit} der einzelnen Messwerte ist jedoch schlecht, da die Abweichung der Messwerte zum wahren Wert sehr hoch ist: in der ersten Messung beträgt die Abweichung vom wahren Wert $51 \ \text{m/s}$, in der 2. Messung $49 \ \text{m/s}$. Dies entspricht einer Abweichung von etwa $33 \ \text{\%}$. Ebenso verhält es sich mit der Richtigkeit. Die Abweichung zwischen Mittelwert und wahrem Wert beträgt $50 \ \text{m/s}$ und entspricht damit ebenfalls einer Abweichung von etwa $33 \ \text{\%}$. Trotz hoher Präzision\MEntry{}{Präzision} kann man also ungenaue Werte bezüglich des wahren Wertes einer physikalischen Größe\MEntry{}{Größen!physikalische} erhalten! \\[0.5 cm]
+
+\ifttm \else \ \\ \ \\ \fi
+\ifttm \begin{html} <br /> \end{html} \fi
+\ifttm \begin{html} <br /> \end{html} \fi
+\ifttm {\textbf{\underline{Statistischer\MEntry{}{Fehler!statistisch} und systematischer\MEntry{}{Fehler!systematischer} Fehler}}} \else {\underline{Statistischer und systematischer Fehler}} \fi \\
+Neben der Güte der Messung lässt sich auch die Art der Fehlerursache einteilen. Man unterscheidet zwischen systematischen Fehlern und statistischen Fehlern. \\
+Statistische Fehler zeichnen sich dadurch aus, dass sie auf zufälligen Messabweichungen beruhen, sodass die Messwerte um einen mittleren Wert verteilt sind (s. Grafik). Die Ursachen des statistischen Fehlers sind im Allgemeinen nicht im Einzelnen bestimmbar.  
+\begin{center}
+\MGraphics{statfehler.png}{scale=0.5}{Bild zur Veranschaulichung eines statistischen Fehlers. Durchgezogene Linie: Mittelwert. Punkte: Messwerte. Man erkennt, dass die Messwerte um den Mittelwert "`streuen"', d.h. die Messwerte weichen sowohl "`nach oben"' als auch "`nach unten"' vom Mittelwert ab.}
+\end{center}
+\ifttm \begin{html} <br /> \end{html} \fi
+Statistische Fehler können durch mehrmaliges Wiederholen der Messung minimiert werden.  \\
+\ifttm \begin{html} <br /> \end{html} \fi
+Systematische Fehler dagegen lassen sich auf diese Weise nicht verringern. Systematische Fehler führen bei identischen Messbedingungen zu Messwerten, die immer um den gleichen Betrag und in die gleiche Richtung verschoben sind. Daher lassen sich systematische Fehler im Allgemeinen nur durch eine sorgfältige Analyse der Messdaten erkennen. Systematische Fehler sind immer mit statistischen Fehlern überlagert.
+\begin{center}
+\MGraphics{statfehler02.png}{scale=0.5}{Statistischer und systematischer Fehler. Der aus den Messergebnissen gewonnene Mittelwert ist durch einen systematischen Fehler "`nach oben"' verschoben.} \\[0.5 cm]
+\end{center}
+
+\ifttm \else \pagebreak \fi
+
+\ifttm {\textbf{\underline{Fehlerquellen}}} \else { \underline{Fehlerquellen}} \fi\\
+Fehlerquellen können danach eingeteilt werden, ob sie einen statistischen Fehler oder einen systematischen Fehler verursachen. \\
+Folgende Fehlerquellen führen zu einem \textit{statistischen Fehler}:
+\begin{itemize}
+\item Messgröße\MEntry{}{Größen!Messgröße}: Die Messgröße selbst besitzt einen statistischen Charakter. Ein Beispiel hierfür ist der radioaktive Zerfall. 
+\item Äußere Einflüsse: Die Messung wird z. B. durch Schwankungen in der Temperatur, des Druckes oder z. B. durch einen Luftzug beeinflusst. 
+\item Experimentator: Zum Beispiel führt die Reaktionszeit des Experimentators beim Messen mit einer Stoppuhr zu statistischen Fehlern. Ein anderes Beispiel ist das Ablesen einer Messskala, die immer nur eine begrenzte Genauigkeit\MEntry{}{Genauigkeit} hat oder der Experimentator vergisst das Vorzeichen.
+\end{itemize}
+
+Folgende Fehlerquellen führen dagegen zu einem \textit{systematischen Fehler}:
+\begin{itemize}
+\item Äußere Einflüsse: Bei konstanten äußeren Einflüssen, die die Messung verändern, erhält man einen systematischen Fehler.
+\item Messtechnik: Instrumente müssen in der Regel kalibriert sein. Eine fehlerhafte Kalibrierung führt ebenfalls zu einem systematischen Fehler. Außerdem kann eine Veränderung der eigentlichen Messgröße\MEntry{}{Größen!Messgröße} durch die Messmethode nicht immer ausgeschlossen werden. Ein Beispiel ist die Bestimmung eines ohmschen Widerstandes aus Spannung und Strom, da hier der Innenwiderstand des Messinstrumentes in der Regel berücksichtigt werden muss.
+\item Datenverarbeitung: In der heutigen Zeit werden viele Messdaten sofort weiterverarbeitet und der Experimentator erhält nur das Endergebnis. Fehler bei dieser Datenverarbeitung führen in der Regel zu systematischen Fehler, die z.T. sehr schwer zu erkennen sind. Ebenso führt die Verwendung von Näherungsformeln zu systematischen Fehlern.
+\item Experimentator: Zum Beispiel falsche Bedienung der Messgeräte kann zu einem systematischen Fehler führen. Auch wenn der Experimentator bestimmte Werte erwartet, kann dies zu systematischen Fehlern führen.
+\end{itemize}
+\end{MXContent}
+
+
+
+
+
+
+
+
+
+\begin{MXContent}{Kontrollfragen}{Fragen}{aufgb}
+
+\begin{MExercise}{}
+Was versteht man unter einem systematischen und einem statistischen Fehler? \\
+\begin{MHint}{L"osung}
+\ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+Bei systematischen Fehlern werden die Messwerte stets in die gleiche Richtung und um den gleichen Betrag verfälscht. Statistische Fehler führen zu einer "`Streuung"' der Messwerte um einen mittleren Wert.  
+\ifttm \else \end{minipage}}\fi
+\end{MHint}
+\end{MExercise}
+
+\ifttm \begin{html} <br /> \end{html} \fi
+\begin{MExercise}{}
+Wie kann man statistische Fehler verringern? \\
+\begin{MHint}{L"osung}
+\ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+Statistische Fehler lassen sich durch Mittelung der experimentellen Daten verringern, d.h. je größer die Anzahl der Messungen, desto kleiner wird der statistische Fehler. 
+\ifttm \else \end{minipage}}\fi
+\end{MHint}
+\end{MExercise}
+
+\ifttm \begin{html} <br /> \end{html} \fi
+\begin{MExercise}{}
+Erklären Sie den Unterschied zwischen Präzision\MEntry{}{Präzision} und Genauigkeit\MEntry{}{Genauigkeit} einer Messung.\\
+\begin{MHint}{L"osung}
+\ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+Die Präzision einer Messung gibt an, wie stark die Messwerte streuen, und ist damit mit dem statistischen Fehler einer Messung verknüpft. Die Genauigkeit gibt an, wie stark ein Messwert vom "`wahren Wert"' abweicht, beinhaltet also auch systematische Fehlerquellen.
+\ifttm \else \end{minipage}}\fi
+\end{MHint}
+\end{MExercise}
+
+
+\end{MXContent}
+
+\begin{MXContent}{Fehlerrechnung}{Fehlerrechnung}{STD}
+\MLabel{physik_grundlagen_fehlerrechnung}
+\ifttm { \textbf{\underline{Direkte Bestimmung einer Messgröße\MEntry{}{Größen!Messgröße}}}} \else {\underline{Direkte Bestimmung einer Messgröße\MEntry{}{Größen!Messgröße}}} \fi \\
+Im vorherigen Abschnitt wurden statistischer\MEntry{}{Fehler!statistisch} und systematischer\MEntry{}{Fehler!systematisch} Fehler eingeführt. Doch wie lässt man diese Fehler quantitativ in die Auswertung der Messergebnisse einfließen?
+
+Systematische Fehler lassen sich im Allgemeinen nachträglich durch eine rechnerische Korrektur kompensieren, z. B. mittels Durchführung eines Kalibrierexperimentes. Hierbei wird ein Referenzexperiment, dessen Ergebnis sehr gut bekannt ist, mit dem zu korrigierenden Experiment auf geeignete Weise verrechnet.\\
+Häufig werden Messungen mehrfach wiederholt, um den statistischen\MEntry{}{Fehler!statistisch} Fehler zu minimieren. Aus den einzelnen Messungen erhält man den besten Schätzwert der Messgröße\MEntry{}{Größen!Messgröße} $x$ durch Bilden des \textbf{arithmetischen Mittelwertes} \MEntry{}{Mittelwert} $\overline{x}$, der sich aus dem Quotienten der Summe aller Messwerte $x_i$ und der Anzahl $n$ dieser Werte berechnet:
+\begin{equation*}
+\overline{x} = \frac{1}{n} \sum^{n}_{i=1} x_i
+\end{equation*}
+Eine gute Beschreibung des statistischen\MEntry{}{Fehler!statistisch} Fehlers erhält man im Allgemeinen durch die Bildung der sogenannten \textbf{Standardabweichung} \MEntry{}{Standardabweichung} $\sigma_x$  (Englisch: root mean square deviation, Abk. rms deviation), bei der berücksichtigt wurde, dass der Mittelwert \MEntry{}{Mittelwert} ebenfalls auf den Messdaten beruht (daher $n-1$):
+\begin{equation*}
+\sigma_x = \sqrt{\frac{1}{n-1} \ \sum^{n}_{i=1} (x_i-\overline{x})^2}
+\end{equation*}
+Die Standardabweichung \MEntry{}{Standardabweichung} der Größe\MEntry{}{Größen!physikalische} $x$ gibt bei normal verteilten Größen\MEntry{}{Größen!physikalische} an, dass mit einer Wahrscheinlichkeit von ca. 68 \% der gesuchte Messwert im Intervall [$\overline{x}-\sigma_x,\overline{x}+\sigma_x$] anzutreffen ist (68 \%-Konfidenzintervall\MEntry{}{Konfidenzintervall}). Um diese sogenannte Sicherheits-Wahrscheinlichkeit zu erhöhen, gibt man daher häufig die Fehlertoleranz als zweifache Standardabweichung \MEntry{}{Standardabweichung} an. Die Wahrscheinlichkeit, den gesuchten Messwert im Intervall [$\overline{x}-2\cdot\sigma_x,\overline{x}+2\cdot\sigma_x$] anzutreffen, beträgt dann 95.5 \%. Zum Beispiel sei bei einer Messung der Mittelwert \MEntry{}{Mittelwert} der Geschwindigkeit $v = 10 \ \mbox{m/s}$, die Standardabweichung \MEntry{}{Standardabweichung} $\sigma_x = 0.1 \ \mbox{m/s}$. Möchte man den Fehler in einem 95.5 \%-Konfidenzintervall angeben, erfolgt dann die Angabe in der Form:
+\begin{center}
+$v$ = (10 $\pm$ 0.2) \text{m}/\text{s}
+\end{center}
+\vspace{0.5cm}
+
+\ifttm \begin{html} <br /> \end{html} \fi
+\ifttm  { \textbf{\underline{Indirekte Bestimmung einer Messgröße\MEntry{}{Größen!Messgröße}}}} \else { \underline{Indirekte Bestimmung einer Messgröße\MEntry{}{Größen!Messgröße}}} \fi \\
+Häufig muss die interessierende Messgröße\MEntry{}{Größen!Messgröße} mit Hilfe anderer physikalischer Größen\MEntry{}{Größen!physikalische} bestimmt werden. Ein Beispiel ist die bereits verwendete Bestimmung der Geschwindigkeit $v$ als Quotient der zurückgelegten Strecke $s$ und des entsprechenden Zeitintervalls $t$ (die zuvor verwendeten $\mathrm{\Delta}$-Symbole werden aufgrund der Übersichtlichkeit im Folgenden weggelassen, d.h. $s = \mathrm{\Delta} x$ bzw. $t = \mathrm{\Delta} t$):
+\begin{equation*}
+v = \frac{s}{t}
+\end{equation*}
+Da nach obiger Gleichung die Geschwindigkeit von der Wegstrecke $s$ und dem Zeitintervall $t$ abhängt, gehen auch die Messunsicherheiten von $s$ und $t$ in die Geschwindigkeit mit ein. Mithilfe der allgemeinen Fehlerfortpflanzungsgleichung lässt sich die Standardabweichung \MEntry{}{Standardabweichung} $\sigma_x$ bezüglich der Größe\MEntry{}{Größen!physikalische} $x$, die von den Variablen $a_1$, $a_2$, $\ldots$ abhängt, berechnen:
+\begin{equation*}
+\sigma_x = \sqrt{\left(\frac{\partial x}{\partial a_1} \right)^2 \sigma_{a_1}^2 + \left(\frac{\partial x}{\partial a_2} \right)^2 \sigma_{a_2}^2 + \ldots + 2 \sigma_{a_1a_2}\left(\frac{\partial x}{\partial a_1} \right)\left(\frac{\partial x}{\partial a_2}\right) + \ldots } 
+\end{equation*}
+Das Symbol $\partial$ heißt, dass die Größe\MEntry{}{Größen!physikalische} x nur nach der im Nenner (explizit) angegebenen Variable abgeleitet werden muss (sogenannte partielle Ableitung). Dies entspricht der Ableitung, wie sie "`aus der Schule"' typischerweise bekannt ist. Anstelle der in der Schule üblichen Variable $x$ wird jedoch einmal nach $a_1$ bzw. $a_2$, etc. abgeleitet. \\
+Die Terme mit dem Vorfaktor 2 berücksichtigen vorhandene Abhängigkeiten zwischen den einzelnen Größen\MEntry{}{Größen!physikalische}, z. B. zwischen $a_1$ und $a_2$. Sind diese voneinander unabhängig, dann sind diese Terme gleich null und fallen damit aus der Berechnung heraus. Man erhält dann das sogenannte \textbf{gaußsche Fehlerfortpflanzungsgesetz\MEntry{}{Fehlerfortpflanzung!gaußsche}}:
+\begin{equation*}
+\sigma_x = \sqrt{\left(\frac{\partial x}{\partial a_1} \right)^2 \sigma_{a_1}^2 + \left(\frac{\partial x}{\partial a_2} \right)^2 \sigma_{a_2}^2 + \ldots} 
+\end{equation*}
+Für das Gesetz zur Bestimmung der Geschwindigkeit erhält man damit unter der Voraussetzung, dass die Wegstrecke und die Zeit statistisch unabhängig voneinander bestimmt wurden:
+\ifttm
+ \begin{equation*}
+  \sigma_v = \sqrt{\left(\frac{\partial v}{\partial s} \right)^2 \sigma_s^2 + \left(\frac{\partial v} {\partial t} \right)^2 \sigma_t^2} 
+ \end{equation*}
+ \begin{equation*}
+  \ \  = \sqrt{\left(\frac{1}{t} \right)^2 \sigma_s^2 + \left(- \frac{s} {t^2} \right)^2 \sigma_t^2} 
+ \end{equation*}
+\else
+ \begin{eqnarray*}
+  \sigma_v &=& \sqrt{\left(\frac{\partial v}{\partial s} \right)^2 \sigma_s^2 +
+              \left(\frac{\partial v} {\partial t} \right)^2 \sigma_t^2} \\
+  & = &\sqrt{\left(\frac{1}{t} \right)^2 \sigma_s^2 + \left(- \frac{s} {t^2} \right)^2 \sigma_t^2} 
+ \end{eqnarray*}
+\fi
+Im Falle einer möglichen statistischen Abhängigkeit der einzelnen Größen\MEntry{}{Größen!physikalische} verwendet man die sogenannte \textbf{\MEntry{Größt\-fehler\-abschätzung}{Größtfehlerabschätzung}}
+\begin{equation*}
+\Delta x = \left|\frac{\partial x}{\partial a_1} \right| \Delta a_1 + \left|\frac{\partial x}{\partial a_2} \right| \Delta a_2 + \ldots
+\end{equation*}
+$\Delta x$ ist dabei die Messunsicherheit der Größe\MEntry{}{Größen!physikalische} $x$, $\mathrm{\Delta} a_1$ die Messunsicherheit der Größe\MEntry{}{Größen!physikalische} $a_1$, usw. Letztere Messunsicherheiten muss man häufig sinnvoll schätzen oder sie sind auf den Geräten angegeben. Eine sinnvolle Schätzung bei Digitalanzeigen ist eine Variation der letzten Nachkommastelle um 1. Für eine Anzeige mit einer Nachkommastelle zum Beispiel bedeutet das, dass der Fehler auf $\pm$ 0.1 geschätzt wird. Auch im Falle der gaußschen Fehlerfortpflanzung\MEntry{}{Fehlerfortpflanzung!gaußsche} kann man anstelle der Standardabweichung \MEntry{}{Standardabweichung} die (geschätzten) Messunsicherheiten $\mathrm{\Delta} x$ usw. verwenden, wenn z. B. die Standardabweichungen \MEntry{}{Standardabweichung} zu aufwendig oder nicht berechenbar sind. \\
+Für das Beispiel der Bestimmung der Geschwindigkeit aus Wegstrecke und Zeit erhält man für eine geschätzte Unsicherheit des Weges $\Delta s = 1 \mbox{\ m}$ und für die Zeit $\Delta t = 1 \mbox{\ s}$:
+\begin{equation*}
+\Delta v = \left|\frac{1}{t} \right| 1 \mbox{\ m} + \left|- \frac{s}{t^2} \right| 1 \mbox{\ s}
+\end{equation*}
+
+\end{MXContent}
+
+
+
+\ifttm \else \pagebreak \fi
+\begin{MXContent}{Graphische Auswertung}{Graphische Auswertung}{STD}
+\MLabel{physik_grundlagen_grafauswertung}
+Bei der graphischen Darstellung von Messergebnissen sollten folgende Regeln beachtet werden:
+\begin{itemize}
+\item Die Koordinatenachsen müssen eindeutig zuordenbar sein, d.h., jede Achse erhält eine \textbf{Achsenbeschriftung}, die ggf. \textbf{mit Einheiten\MEntry{}{Einheiten}} versehen wird.
+\item Die \textbf{Skalen} werden so gewählt, dass die interessierenden Messdaten \textbf{sinnvoll}, \textbf{gut erkennbar} und \textbf{übersichtlich} sind, z. B. bei einem Datensatz $2$, $5$, $7$ wählt man die Skala von $0$ bis $10$ und nicht von $-10$ bis $30$ o.ä. 
+\item Häufig werden \textbf{lineare Auftragungen bevorzugt}. Man trägt z. B. Messwertepaare ($x_i$,$y_i$), die einem exponentiell abfallenden Verlauf ($y_i = e^{-x_i}$) folgen, nicht direkt auf, sondern mit logarithmischer Ordinatenskalierung, d.h. man trägt z. B. $x_i$ gegen $\ln{y_i}$ auf.
+\item Messwerte, die auf \textbf{Einzelmessungen} beruhen und nicht sehr dicht beieinanderliegen, werden als Punkte dargestellt und \textbf{nicht miteinander verbunden}. 
+\item \textbf{Funktionsverläufe} dagegen werden als \textbf{Linie} dargestellt.
+\item Das gesamte \textbf{Diagramm} muss hinreichend \textbf{groß} sein, damit alle Einzelheiten erkennbar sind.
+\item Wenn eine sinnvolle Angabe des Fehlers möglich ist, werden Fehlerbalken\MEntry{}{Fehlerbalken} bei Einzelmessungen oder ein Fehlerbereich bei Funktionsverläufen eingezeichnet. 
+\end{itemize}
+Programme, mit denen relativ einfach solche Diagramme erstellt werden können, sind z. B. Excel, Gnuplot, Origin, Tecplot, etc. \\
+
+
+
+\begin{center}
+\MGraphics{diagrammDemo.png}{scale=0.5}{Bild zur Veranschaulichung einer graphischen Darstellung von Messwerten}
+\end{center}
+\ifttm \begin{html} <br /> \end{html} \fi
+
+Häufig ist die interessierende Größe\MEntry{}{Größen!physikalische} im Diagramm\MEntry{}{Diagramm} die Steigung. Dazu muss man eine Gerade $y = f(x) = a\cdot x + b$ (oder eine andere sinnvolle Funktion) durch alle Messpunkte "`legen"', sodass der Fehler möglichst klein wird. Mathematisch bedeutet dies, dass folgende Summe minimiert werden muss:\ifttm \begin{html} <br /> \end{html} \fi
+\begin{equation*}
+\sum_{i=1}^{n} \left(y_i - f(x_i)\right)^2  = \sum_{i=1}^{n} \left(y_i - (a \cdot x_i + b)\right)^2 
+\end{equation*}
+Diese Methode, bei der die sogenannten Fehlerquadrate minimiert werden, heißt (lineare) Regression (engl. least squares fit). Viele Programme  zum Erstellen von Diagrammen\MEntry{}{Diagramm} (z. B. Excel, Origin, Tecplot, Gnuplot u.a.) bieten die Möglichkeit einer linearen Regression an. Für obiges Beispiel erhält man so die blaue Kurve im unten stehenden Diagramm\MEntry{}{Diagramm}.\ifttm \begin{html} <br /> \end{html} \fi
+\begin{center}
+\MGraphics{lineareReg.png}{scale=0.5}{Diagramm mit dem Ergebnis einer linearen Regression}
+\end{center}\ifttm \begin{html} <br /> \end{html} \fi
+Die Programme liefern außerdem häufig Werte verschiedener statistischer Parameter zur Beurteilung der Regression mit. Die wichtigsten sind hierbei der $\chi^2$-Wert und der pearsonsche Korrelationskoeffizient. Je kleiner der $\chi^2$-Wert ist, desto besser passt die Regressionsfunktion zu den Messwerten und ermöglicht gleichzeitig Aussagen über die Güte der Anpassung (je kleiner, desto besser). Ebenso gibt der pearsonsche Korrelationskoeffizient an, ob die angenommene Regressionsfunktion (z. B. $y = a\cdot x+b$) mit den Messwerten zusammenpasst, kann aber für Aussagen über die Güte der Anpassung nicht verwendet werden. Ist der pearsonsche Korrelationskoeffizient 1, stimmen Funktion und Messwerte vollständig überein. Doch Vorsicht, dies heißt nicht zwangsläufig, dass die Funktion den physikalischen Zusammenhang richtig wiedergibt! \\ \ifttm \begin{html} <br /> \end{html} \fi
+Eine grafische Möglichkeit den Fehler einer Steigung zu bestimmen, kann man auf folgendem Weg erhalten:
+\begin{itemize}
+\item Man verbindet den unteren Fehlerbalken\MEntry{}{Fehlerbalken} des Punktes, der am linken Rand des Diagramms\MEntry{}{Diagramm} liegt, mit dem oberen Fehlerbalken\MEntry{}{Fehlerbalken} des Punktes, der am rechten Rand des Diagramms\MEntry{}{Diagramm} liegt.
+\item Man verbindet den oberen Fehlerbalken\MEntry{}{Fehlerbalken} des Punktes, der am linken Rand des Diagramms\MEntry{}{Diagramm} liegt, mit dem unteren Fehlerbalken\MEntry{}{Fehlerbalken} des Punktes, der am rechten Rand des Diagramms\MEntry{}{Diagramm} liegt.
+\end{itemize}
+Dabei ist jeweils darauf zu achten, dass die Verbindungslinie durch alle Fehlerbalken\MEntry{}{Fehlerbalken} der Messpunkte durchführt, die berücksichtigt werden sollen!
+Man erhält neben der Regressionsgeraden so zusätzlich 2 weitere Geraden, die jeweils eine mögliche Steigung repräsentieren, die innerhalb der Fehlergrenzen\MEntry{}{Fehlergrenzen} (= Fehlerbalken\MEntry{}{Fehlerbalken}) gerade noch möglich sind. Durch Bestimmung dieser Steigungen z. B. mit Hilfe eines Steigungsdreiecks erhält man auf grafischem Wege die Fehler der linearen Regression.
+\begin{center}
+\MGraphics{grafFehler.png}{scale=0.5}{Diagramm mit linearer Regression und Bestimmung des Fehler auf grafischem Wege}
+\end{center}
+\end{MXContent}
+
+
+
+
+
+
+
+
+
+\begin{MExercises}
+
+\begin{MExercise}
+Folgende Wertetabelle wurde in einem Experiment erhalten \ifttm \begin{html} <br /> \end{html} \fi \ifttm \begin{html} <br /> \end{html} \fi 
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Nummer des Experiments & Geschwindigkeit $v$ in $\mbox{m/s}$ \\
+\ifttm & \\ \else \hline \hline \fi
+1 & 23 \\
+2 & 26 \\
+3 & 22 \\
+4 & 27 \\
+\hline
+\end{tabular}
+\end{center}
+
+\ifttm \begin{html} <br /> \end{html} \fi
+a) Berechnen Sie den Mittelwert $\overline{v}$. Geben Sie das Ergebnis auf eine Nach\-komma\-stelle genau in der Einheit $\text{m/s}$ an. \\
+   \ifttm $\overline{v}$ = \MLParsedQuestion{5}{24.5}{1}{DECCONVUXID_4C4CDA25_28} $\text{m/s}$ \\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Der Mittelwert $\overline{v}$ berechnet sich mit der Formel  
+    \begin{equation*}
+		  \overline{v} = \frac{1}{n} \sum^{n}_{i=1} v_i,
+		\end{equation*}d.h.  $\overline{v}$ = $\frac{(23+26+22+27)\ \text{m}/\text{s}}{4} = 24.5 \ \text{m/s}$.		
+		\ifttm \else \end{minipage}}\fi
+   \end{MHint} \\
+   
+   \ifttm \begin{html} <br /> \end{html} \fi
+b) Berechnen Sie die Standardabweichung $\sigma_v$ der Geschwindigkeit. Geben Sie das Ergebnis auf eine Nachkommastelle genau in der Einheit $\text{m/s}$ an. \\
+   \ifttm $\sigma_v$ =  \MLParsedQuestion{5}{2.4}{1}{DECCONVUXID_4C4CDA25_29} $\text{m/s}$ \\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Standardabweichung $\sigma_v$ berechnet sich mit der Formel  
+    \begin{equation*}
+\sigma_x = \sqrt{\frac{1}{n-1} \ \sum^{n}_{i=1} (v_i-\overline{v})^2},
+\end{equation*} d.h. $\sigma_v = \sqrt{\frac{1}{4-1} \ \left((23-24.5)^2 + (26-24.5)^2 + (22-24.5)^2 + (27-24.5)^2 \right) \frac{\text{m}^2}{\text{s}^2}} = 2.4 \ \text{m/s}$	\\
+Bei einem Vertrauensintervall von $95.5\ \%$ würde man als Ergebnis erhalten: $v = (24.5 \pm 4.8)\ \text{m/s}$.
+\ifttm \else \end{minipage}}\fi
+   \end{MHint}\\
+\end{MExercise} 
+ 
+ \ifttm \begin{html} <br /> \end{html} \fi
+ \ifttm \begin{html} <br /> \end{html} \fi 
+\begin{MExercise}  
+Aus einem Experiment hat man die Geschwindigkeit zu $v = 24.5 \ \text{m/s}$ bestimmt. Die Standardabweichung der Strecke $\sigma_s$ beträgt $1 \ \text{m}$, die Standardabweichung des Zeitintervalls $\sigma_t$ beträgt $1 \ \text{s}$. \\
+\ifttm \begin{html} <br /> \end{html} \fi
+a) Berechnen Sie den Fehler der Geschwindigkeit für das Wertepaar ($\overline{s} = 257.5 \ \text{m}$, $\overline{t}  = 10 \ \text{s}$) unter der Annahme, dass die Fehler statistisch\MEntry{}{Fehler!statistisch} unabhängig sind. Geben Sie das Ergebnis auf eine Nach\-komma\-stelle genau in der Einheit $\text{m/s}$ an. \\
+\ifttm $\sigma_v$ =  \MLParsedQuestion{5}{2.5769}{1}{DECCONVUXID_4C4CDA25_30} $\text{m/s}$\\ \fi \ifttm \else \newpage \fi 
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Geschwindigkeit ist $v = \frac{s}{t}$. Da die Fehler statistisch unabhängig sind, kann die gaußsche Fehlerfortpflanzungsformel\MEntry{}{Fehlerfortpflanzung!gaußsche} verwendet werden:  
+   \begin{equation*}
+\sigma_v = \sqrt{\left(\frac{\partial v}{\partial s} \right)^2 \sigma_{s}^2 + \left(\frac{\partial v}{\partial t} \right)^2 \sigma_{t}^2} 
+\end{equation*} d.h. 
+   \begin{equation*}
+\sigma_v = \sqrt{\left(\frac{1}{t} \right)^2 \sigma_{s}^2 + \left(-\frac{s}{t^2} \right)^2 \sigma_{t}^2} = \sqrt{\left(\frac{1}{10 \ \text{s}} \right)^2 (1 \ \text{m})^2 + \left(-\frac{257.5 \ \text{m}}{10^2 \ \text{s}^2} \right)^2 (1 \ \text{s})^2} = 2.6 \ \text{m/s}
+\end{equation*}
+\ifttm \else \end{minipage}}\fi
+   \end{MHint}\\
+   
+   \ifttm \begin{html} <br /> \end{html} \fi
+b) Berechnen Sie den Fehler der Geschwindigkeit für das Wertepaar ($\overline{s}$ = 257.5 m, $\overline{t}  = 10 \ \text{s}$) unter der Annahme, dass die Fehler statistisch\MEntry{}{Fehler!statistisch} abhängig sind. Die Fehler der Größen\MEntry{}{Größen!physikalische} Strecke und Zeit, $\Delta s$ und $\Delta t$, entsprechen den jeweiligen Standardabweichungen. Geben Sie das Ergebnis auf eine Nachkommastelle genau in der Einheit $\text{m/s}$ an. \\
+\ifttm $\sigma_v$ =  \MLParsedQuestion{5}{2.675}{1}{DECCONVUXID_4C4CDA25_31} $\text{m/s}$\\ \fi
+ 	 \begin{MHint}{Lösung}
+ 	 \ifttm \else \rotatebox{180}{\begin{minipage}{\textwidth}  \fi
+    Die Geschwindigkeit ist $v = \frac{s}{t}$. Da die Fehler statistisch abhängig sind, verwendet man die Größt\-fehler\-abschätzung\MEntry{}{Größtfehlerabschätzung}:  
+\begin{equation*}
+\Delta v = \left|\frac{\partial v}{\partial s} \right| \Delta s + \left|\frac{\partial v}{\partial t} \right| \Delta t
+\end{equation*} d.h. 
+\begin{equation*}
+\Delta v = \left|\frac{1}{t} \right| \Delta s + \left|- \frac{s}{t^2} \right| \Delta t =  \left|\frac{1}{10 \ \text{s}} \right| 1 \ \text{m} + \left|- \frac{257.5 \ \text{m}}{10^2 \ \text{s}^2} \right|  1 \ \text{s} = 2.7 \ \text{m/s}
+\end{equation*}
+\ifttm \else \end{minipage}}\fi
+   \end{MHint}\\
+\end{MExercise} 
+     
+\end{MExercises}
+
+
+
+
+
+
+
+
+
+
+%\renewcommand{\indexname}{Stichwortverzeichnis}
+%\printindex
+
+\end{document}

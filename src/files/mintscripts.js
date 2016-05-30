@@ -28,17 +28,20 @@ function extround(zahl,n_stelle)
     return zahl;
 }
 
+// parses math going from the user to course internals, course will always process math in unotation
 function notationParser_IN(s) {
 
     // Von der Koordinierungsgruppe beschlossene OMB+ Notation
-    s = s.replace(/\,/g,".");
-    s = s.replace(/\;/g,",");
+    if (variant == "std") {
+        s = s.replace(/\,/g,"."); // std -> unotation: decimal point instead of comma
+        s = s.replace(/\;/g,","); // std -> unotation: comma instead of semicolon
+    }
 
     // Am Ende haengende Verketter ^ und _ nicht an Parser weitergeben
     if (s.lastIndexOf("^") == (s.length - 1)) s = s.slice(0,s.length-1);
     if (s.lastIndexOf("_") == (s.length - 1)) s = s.slice(0,s.length-1);
     
-    // Ueber HTML-CopyPaste erhaltene Tags ersetzen
+    // replace HTML tags which show up if the user used copy&paste from the webpage
     s.replace(/&nbsp;/g," ");
     s.replace(/\t/g," ");
     
@@ -46,13 +49,17 @@ function notationParser_IN(s) {
     
 }
 
+// parses math going from course internals to the user, course will always process math in unotation
 function notationParser_OUT(s) {
+    // inverse of notationParser_IN except HTML tag treatment which cannot occur here
     
-    s = s.replace(/\,/g,";");
-    s = s.replace(/\\right\./g,"\\right\\DOTESCAPE"); // Quick&Dirty-workaround fuer Dezimalpunktreplacement
-    s = s.replace(/\./g,",");
-    s = s.replace(/\\right\\DOTESCAPE/g,"\\right\."); // Quick&Dirty-workaround fuer Dezimalpunktreplacement
-
+    if (variant == "std") {
+        s = s.replace(/\,/g,";");
+        s = s.replace(/\\right\./g,"\\right\\DOTESCAPE"); // Quick&Dirty-workaround fuer Dezimalpunktreplacement
+        s = s.replace(/\./g,",");
+        s = s.replace(/\\right\\DOTESCAPE/g,"\\right\."); // Quick&Dirty-workaround fuer Dezimalpunktreplacement
+    }
+    
     return s;
 }
 
@@ -221,7 +228,6 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   }
   
   FVAR.push(ob);
-  // if ((FVAR.length-1) != c) { alert("Objekt Nr. " + (FVAR.length-1) + " in Array hat Counter " +c); } 
 }
 
 // Blendet Einstellungsseite ein und aus
@@ -1115,7 +1121,6 @@ function check_group(input_from, input_to) {
 		break;
               }
               
-              // default: { alert("Unbekannter Typ: " + FIELD_TYPE[i]); }
             }
     }
 
@@ -1829,6 +1834,7 @@ function selectVariant(v) {
   
   var ex1 = outputWebdir;
   var raw = outputWebdir;
+  
   if (ex1.indexOf("_") != -1) {
       raw = ex1.substr(0, ex1.indexOf("_"));
   }
@@ -1838,8 +1844,8 @@ function selectVariant(v) {
       ex2 = ex2 + "_" + v;
   }
   
-  s = window.location.href;
-  s = s.replace("/" + ex1 + "/", "/" + ex2 + "/");
+  t = window.location.href;
+  s = t.replace("/" + ex1 + "/", "/" + ex2 + "/");
   
   if (intersiteactive) {
       intersiteobj.login.variant = v;
@@ -2004,11 +2010,26 @@ function applyLayout(first) {
   });
 
 
+  showHint($('#homebutton'), "Zurück zur Homepage des Kurses");
+  showHint($('#listebutton'), "Stichwortverzeichnis anzeigen");
   showHint($('#menubutton'), "Hier klicken um Navigationsleisten ein- oder auszublenden");
   showHint($('#plusbutton'), "Vergrößert die Schriftgröße");
   showHint($('#minusbutton'), "Verkleinert die Schriftgröße");
   showHint($('#settingsbutton'), "Einstellungen");
 
+  // set proper button visibility in settings depending on course variant
+  if (variant == "std") {
+      $('#variantselect_std').css("visibility", "hidden");
+      $('#variantactive_std').css("visibility", "visible");
+      $('#variantselect_unotation').css("visibility", "visible");
+      $('#variantactive_unotation').css("visibility", "hidden");
+  } else {
+      $('#variantselect_std').css("visibility", "visible");
+      $('#variantactive_std').css("visibility", "hidden");
+      $('#variantselect_unotation').css("visibility", "hidden");
+      $('#variantactive_unotation').css("visibility", "visible");
+  }
+  
   var shareintext = "Diese Seite teilen über:<br /><br />";
   var myurl = window.location.href;
     
@@ -2021,7 +2042,6 @@ function applyLayout(first) {
 
   shareintext = "Aktuelle Favoriten:<br /><br />";
   shareintext += generateShortFavoriteList() + "<br /><br />";
-  shareintext += "<a style=\"color:#0000FF\"href=\"" + linkPath + "favor.html" + "\">Meine Favoritenliste</a>";
   showHint($('#starbutton'), shareintext);
 
   // qtips an die Feedbackbuttons haengen falls vorhanden
@@ -2145,7 +2165,7 @@ function shareClick() {
 }
 
 function starClick() {
-  opensite(linkPath + "favor.html");
+  // opensite(linkPath + "favor.html");
 }
 
 

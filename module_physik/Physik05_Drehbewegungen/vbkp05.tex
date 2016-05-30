@@ -1,0 +1,645 @@
+\input{mintmod}
+
+\begin{document}
+
+\MSetSubject{\MINTPhysics}
+
+\MSection{Kreisbewegungen}
+
+\begin{MSectionStart}
+\MLabel{VBKP05}
+\ifttm \else 
+
+\begin{center}
+\textbf{\huge \"Ubersicht}
+\end{center}
+\fi
+
+
+Wir betrachten in diesem Modul Massenpunkte, die einfache Formen von \MEntry{Drehbewegungen}{Drehbewegung} ausf\"uhren. Dieser speziellen Form der Bewegung widmen wir einen eigenen Abschnitt, da Rotationen in unserem Leben allgegenw\"artig sind. Sei dies bei Drehungen wie wir sie in der Natur, z.B.~bei der Rotation der Erde um ihre Achse, oder in der Technik, wie wir sie bei den von Ingenieuren entwickelten Gegenst\"ande wie Reifen, Propellern, Motoren und Zahnr\"adern, finden. Wir besch\"aftigen uns dabei nur mit Rotationen um eine fest im Raum stehende Achse, wie man sie z.B.~bei einem Karussell oder einer W\"aschetrommel beobachtet. Wir werden bei unseren Untersuchungen feststellen, dass wir viele Erkenntnisse aus Modul 03, Translationen, hier auf den Spezialfall der Drehbewegungen anwenden k\"onnen und so ganz \"ahnliche Gesetze entdecken, wie wir sie bereits f\"ur die geradlinige Bewegung eines Massenpunktes gefunden haben.\\
+F\"ur die Analyse von Drehbewegungen verfolgen wir eine \"ahnliche Strategie wie bei den Translationen. Zuerst \"uberlegen wir uns die grundlegenden Gr\"o{\ss}en, um Drehbewegungen beschreiben zu k\"onnen. Dabei werden wieder Begriffe wie Bahnkurve, Geschwindigkeit und Beschleunigung eine wesentliche Rolle spielen. Danach betrachten wir spezielle Formen der Drehbewegung, insbesondere die, bei der sich der Betrag der Geschwindigkeit des K\"orpers nicht \"andert (die sogenannte gleichf\"ormige Kreisbewegung), und leiten deren kinematische Beschreibungen her. 
+\ \\[0.5cm]
+
+ Im Einzelnen besch\"aftigen wir uns mit den folgenden Themen:
+  
+\begin{itemize}
+\item Die Beschreibung von Drehbewegungen
+\item Drehbewegungen mit konstanter Winkelbeschleunigung
+\item Die gleichf\"ormige Kreisbewegung
+\end{itemize}
+
+Kompliziertere Drehbewegungen sind in Modul 07 (Tr\"agheitsmomente, Rotation) Gegenstand der Betrachtung. 
+\ \\[0.5cm]
+
+Folgende (allgemeine) Lehrb\"ucher wurden als Quelle benutzt bzw. werden zum Vertiefen des Stoffes empfohlen:  
+\begin{itemize} 
+\item Physik, P.A. Tipler/Mosca, Spektrum Akademischer Verlag, 2005
+\item Physik, D. Halliday, R. Resnick, J. Walker,Wiley VCH, 2001
+\item Gerthsen Physik, Helmut Vogel, Springer Verlag, 1997
+\item Experimentalphysik I, Wolfgang Demtr\"oder, Springer Verlag, 2006
+\end{itemize}
+
+\end{MSectionStart}
+
+
+
+
+\MSubsection{Die Beschreibung von Drehbewegungen}
+\MLabel{Physik_Drehbewegungen_Kinematik} 
+
+\begin{MIntro}
+Dieser Abschnitt behandelt folgende Inhalte:
+\begin{itemize}
+  \item{Winkelgeschwindigkeit}
+  \item{Winkelbeschleunigung}
+\end{itemize}
+
+
+Bei vielen Bewegungsabl\"aufen, die wir in der Natur und Technik finden, handelt es sich um Kreisbewegungen. Das Riesenrad auf dem Jahrmarkt oder ein Propeller eines Windrotors sind typische Beispiele f\"ur reine Rotationen, der Reifen eines fahrenden Autos ist dagegen ein Beispiel einer \"Uberlagerung aus Rotation und Translation. Auf letzteres gehen wir in diesem Kapitel nicht ein.
+
+Wie in Modul 03, Translationen, betrachten wir hier einen Massenpunkt. Dieser rotiere um eine fest im Raum fixierte Achse und seine Bahnkurve beschreibt demzufolge eine Kreisbahn, deren Mittelpunkt auf der Drehachse liegt und deren Radius durch die Entfernung des Massenpunktes von der Achse gegeben wird. Um die Rotation dieses Massenpunktes zu beschreiben, verfolgen wir dieselbe Strategie wie in Modul 03. Das hei{\ss}t, wir \"uberlegen uns, wie wir die Bewegung des Massenpunktes geeignet beschreiben k\"onnen, wenn wir ber\"ucksichtigen, dass seine Bahnkurve der einer Kreisbahn entspricht. Ferner studieren wir, wie die f\"ur die Beschreibung der Kinematik eines Teilchens wesentlichen Begriffe Geschwindigkeit und Beschleunigung im Falle einer Kreisbewegung zu formulieren sind. Wir m\"ochten aber an dieser Stelle betonen, dass die bereits in Modul 03 gefundenen Definitionen zu Bahnkurve, Geschwindigkeit und Beschleunigung hier Anwendung finden und einige neue Begriffsbildungen, die wir in diesem Modul kennenlernen werden, nur aus diesen Definitionen \emph{abgeleitet} sind.
+\end{MIntro}
+
+\begin{MContent}
+In der Abbildung unten sehen wir einen Massenpunkt, der sich mit Radius R auf einer Kreisbahn bewegt.
+
+\MUGraphicsSolo{rotation-kreis-1.png}{scale=0.25}{width:400px}
+
+ Wir \"uberlegen uns zun\"achst, dass f\"ur eine Beschreibung der Kinematik eines Teilchens die Messung des \emph{Ortes}, an dem er sich zu einem bestimmten Zeitpunkt aufh\"alt, von wesentlicher Bedeutung ist. Wir verwenden dazu ein kartesisches Koordinatensystem. Den Ursprung legen wir in die Drehachse, so dass der Abstand des Massenpunktes zum Ursprung immer der Radius $R$ der Drehbewegung ist. Ferner sei die Drehachse so positioniert, dass die Bewegung des Massenpunktes in der $xy$--Ebene stattfindet. Wir beobachten nun, dass es f\"ur eine Positionsbestimmung des Massenpunktes bereits gen\"ugt, seinen Winkel $\phi$  zur $x$--Achse sowie den Radius $R$ zu kennen (s.~Abbildung). Dieser Winkel wird immer gegen den Uhrzeigersinn und im Bogenma{\ss} gemessen, also mit der Hilfseinheit \emph{Radiant} angegeben. Wir bezeichnen den Winkel $\phi$ als \MEntry{Drehwinkel}{Drehwinkel}. 
+
+
+
+
+\begin{MInfo}
+Ein Massenpunkt rotiere um eine feste Raumachse. Dann gen\"ugt f\"ur seine Positionsbestimmung der Radius $R$ der Drehbewegung sowie der Drehwinkel $\phi=\phi(t)$. In kartesischen Koordinaten ergibt sich f\"ur die Bahnkurve des Massenpunktes 
+\begin{equation}\MLabel{Physik_Drehbewegung_Bahnkurve}
+\vec{r}(t)=\left(\begin{array}{c} x(t) \\ y(t) \end{array}\right)=\left(\begin{array}{c} R\cos(\phi(t)) \\ R\sin(\phi(t)) \end{array}\right).\\
+\end{equation}
+Rotiert der Massenpunkt um den Winkel $\text{d}\phi:= \phi_2-\phi_1$, so bewegt er sich auf einem Kreisbogen der L\"ange 
+\begin{equation}\MLabel{Physik_Drehbewegungen_kreisbogen}
+\text{d}s=R\,\text{d}\phi,
+\end{equation}
+wie in der nachfolgenden Abbildung skizziert. Bei einer kompletten Umdrehung gilt $\text{d}s=R\cdot 2\pi$. Dies entspricht gerade dem Umfang des Kreises mit Radius $R$.
+\end{MInfo}
+
+
+\MUGraphicsSolo{rotation-kreis-2.png}{scale=0.25}{width:400px}
+
+Aus Modul \MNRef{VBKP03} wissen wir, dass die Geschwindigkeit eines K\"orpers sich aus der \"Anderung seines Aufenthaltsortes relativ zur dazu ben\"otigten Zeit, also der ersten Ableitung der Bahnkurve nach der Zeit ergibt. Ganz analog verfahren wir hier: Da die Bahnkurve im Falle der Drehbewegungen insbesondere vom Drehwinkel $\phi=\phi(t)$ abh\"angt, spielt f\"ur die Momentangeschwindigkeit des Massenpunktes die erste Ableitung des Drehwinkels eine wesentliche Rolle: Es wird f\"ur Kreisbewegungen als Analogie zur Geschwindigkeit die sogenannte Winkelgeschwindigkeit eingef\"uhrt, die ausschlie{\ss}lich die \"Anderung des Winkels mit der Zeit beinhaltet.
+
+\begin{MInfo}
+Man nennt
+\begin{equation}\MLabel{Physik_Drehbewegungen_Winkelgeschwindigkeit}
+\omega:=\frac{\text{d}\phi}{\text{d}t}=\dot{\phi}
+\end{equation}die \MEntry{Winkelgeschwindigkeit}{Winkelgeschwindigkeit} des Massenpunktes. Diese gibt an, wie schnell der Radiusvektor $\vec{r}$ den Drehwinkel $\phi$ \"uberstreicht.\\
+Die Einheit der Winkelgeschwindigkeit ist $\frac{\text{rad}}{s}$.
+\end{MInfo}
+
+Da wir in diesem Abschnitt nur Rotationen betrachten, die um eine raumfeste Achse rotieren, gibt es f\"ur die Winkelgeschwindigkeit nur zwei m\"ogliche Richtungen: Bei einer Drehung gegen den Uhrzeigersinn nimmt $\phi$ zu und $\omega$ ist positiv, bei einer Rotation im Uhrzeigersinn nimmt $\phi$ ab und $\omega$ ist negativ. Dies ist analog zur Bewegung in einer Dimension, wo die Bewegung wie die Geschwindigkeit entweder in positive oder in negative Richtung geht. \\
+
+Aus der ersten Ableitung von \MERef{Physik_Drehbewegung_Bahnkurve} nach der Zeit l\"asst sich nun die Geschwindigkeit eines rotierenden K\"orpers herleiten:
+$$
+\vec{v}(t)=\dot{\vec{r}}(t)=\left(\begin{array}{c} \dot{x}(t) \\ \dot{y}(t) \end{array}\right)=\left(\begin{array}{c} -R\sin(\phi(t))\cdot\frac{\text{d}\phi}{\text{d}t} \\ R\cos(\phi(t))\cdot\frac{\text{d}\phi}{\text{d}t} \end{array}\right).
+$$
+Mit \MERef{Physik_Drehbewegungen_Winkelgeschwindigkeit} erh\"alt man das Folgende:
+\begin{MInfo}
+Ein Massenpunkt rotiere in einem Radius $R$ um eine feste Achse mit der Winkelgeschwindigkeit $\omega$. Dann gilt f\"ur die Momentangeschwindigkeit des K\"orpers
+\begin{equation}\MLabel{Physik_Drehbewegung_Bahngeschwindigkeit}
+\vec{v}(t)=\dot{\vec{r}}(t)=\left(\begin{array}{c} \dot{x}(t) \\ \dot{y}(t) \end{array}\right)=\left(\begin{array}{c} -R\omega(t)\sin(\phi(t)) \\ R\omega(t)\cos(\phi(t)) \end{array}\right).\\
+\end{equation}
+F\"ur den Geschwindigkeitsbetrag des Massenpunktes erh\"alt man daraus
+\begin{equation}\MLabel{Physik_Drehbewegungen_geschwindigkeitsbetrag}
+\vert\vec{v}(t)\vert=\vert\dot{\vec{r}}(t)\vert=R\omega(t).
+\end{equation}
+\end{MInfo}
+
+Wiederum analog zu Modul 03 ergibt sich die Beschleunigung eines Massenpunktes bei einer Drehbewegung aus der zweiten Ableitung der Bahnkurve nach der Zeit, also aus der Ver\"anderung der Geschwindigkeit mit der Zeit. Dies motiviert die Einf\"uhrung des Begriffs der Winkelbeschleunigung:
+
+\begin{MInfo}
+Wir nennen
+\begin{equation}\MLabel{Physik_Drehbewegungen_Winkelbeschleunigung}
+\alpha=\frac{\textrm{d}\omega}{\textrm{d}t}=\dot{\omega}=\frac{\textrm{d}^2\phi}{\textrm{d}t^2}=\ddot{\phi}
+\end{equation}die \MEntry{Winkelbeschleunigung}{Winkelbeschleunigung} des rotierenden K\"orpers. Diese Gr\"o{\ss}e ist positiv, wenn die Winkelbeschleunigung $\omega$ zunimmt, und negativ, wenn sie abnimmt.\\
+
+Die Einheit ist $\frac{\text{rad}}{s^2}$.
+\end{MInfo}
+
+Da wir f\"ur die Herleitung der Gr\"o{\ss}en Drehwinkel $\phi$, Drehgeschwindigkeit $\omega$ und Drehbeschleunigung $\alpha$ auf die Definitionen aus Modul 03 zur\"uck gegriffen haben, verwundert es nicht, dass wir entsprechende Gr\"o{\ss}en bei der eindimensionalen Translation finden:
+\begin{center}
+  \begin{tabular}{|c|c|} \hline
+   
+     Translation & Drehbewegung\\ \hline
+     Verschiebung $                                                                                                                                                                                                                       s$ & Drehwinkel $\phi$ \\
+     Geschwindigkeit $v$ & Winkelgeschwindigkeit $\omega$ \\
+     Beschleunigung $a$ & Winkelbeschleunigung $\alpha$ \\
+     \hline
+  \end{tabular}
+  \end{center}
+  \end{MContent}
+  
+  \begin{MExercises}
+   \MSubsubsectionx{Kontrollfragen}
+
+
+\begin{MExercise}
+Wir betrachten eine Scheibe mit Radius $R$, die sich um eine Achse dreht und stellen ein Gewicht 1 auf den \"au{\ss}eren Rand der Scheibe und ein Gewicht 2 in die Mitte zwischen Achse und Gewicht 1. Was l\"asst sich \"uber die Winkelgeschwindigkeit der beiden Gewichte sagen? \\
+
+\begin{MQuestionGroup}
+                  Gewicht 1 besitzt im Vergleich zu Gewicht 2 eine\\
+                  gr\"o{\ss}ere: \MLCheckbox{0}{DECCONVUXID_4C50DA25_0} 
+                  kleinere: \MLCheckbox{0}{DECCONVUXID_4C50DA25_1} 
+                  gleiche: \MLCheckbox{1}{DECCONVUXID_4C50DA25_2} 
+                  \end{MQuestionGroup}\\
+                  Winkelgeschwindigkeit.
+                  \MGroupButton{Kontrolle}
+                  
+
+\end{MExercise}
+
+\begin{MExercise}
+Was l\"asst sich \"uber die Geschwindigkeit der beiden Gewichte sagen?
+\\
+
+F\"ur die Geschwindigkeit $v_1$ von Gewicht 1 gilt in Relation zur Geschwindigkeit $v_2$ von Gewicht 2\\
+\begin{MQuestionGroup}
+                  $v_1=v_2$: \MLCheckbox{0}{DECCONVUXID_4C50DA25_3} 
+                  $v_1=\frac{1}{2}v_2$: \MLCheckbox{0}{DECCONVUXID_4C50DA25_4} 
+                  $v_1=2v_2$: \MLCheckbox{1}{DECCONVUXID_4C50DA25_5} 
+                  \end{MQuestionGroup}\\
+                  \MGroupButton{Kontrolle}
+                  
+                  
+\begin{MHint}{L"osung}
+Gewicht 1 besitzt eine h\"ohere Geschwindigkeit $v_1$. F\"ur die Geschwindigkeit $v_2$ von Gewicht 2 gilt mit \MERef{Physik_Drehbewegungen_geschwindigkeitsbetrag}
+$$
+v_1=R\frac{\textrm{d}\phi}{\textrm{d}t}=2\cdot \frac{R}{2}\frac{\textrm{d}\phi}{\textrm{d}t}=2\cdot\frac{\textrm{d}s_2}{\textrm{d}t}=2v_2.
+$$
+\end{MHint}
+\end{MExercise}
+
+\end{MExercises}
+
+  
+  \MSubsection{Drehbewegungen mit konstanter Winkelbeschleunigung}
+  \begin{MIntro}
+  In Modul 03 Translationen haben wir bereits Bewegungen mit konstanter Beschleunigung kennengelernt, ein wichtiger Spezialfall der reinen Translation, f\"ur den es uns m\"oglich war, ausgehend von der konstanten Beschleunigung durch Integration die Bahnkurve des Massenpunktes explizit herzuleiten. Bewegungen mit konstanter Winkelbeschleunigung sind dazu analoge Spezialf\"alle einer reinen Rotation, f\"ur die wir nun \"ahnliche Gleichungen f\"ur die Geschwindigkeit sowie die Bahnkurve ermitteln wollen.  
+\end{MIntro}
+
+
+\begin{MContent}
+\begin{MInfo}\MLabel{Physik_Drehbewegung_vergleichtransdreh} Sei 
+\begin{equation}\MLabel{Physik_Drehbewegung_winkelbeschlkonstant}
+\frac{\textrm{d}\omega}{\textrm{d}t}=\alpha=const.
+\end{equation} die Winkelbeschleunigung eines Massenpunktes. Mittels Integration von \MERef{Physik_Drehbewegung_winkelbeschlkonstant} k\"onnen wir nun seine Bewegungsgleichung ermitteln. Wir werden diese Beziehungen nicht herleiten, sondern sie lediglich den Gleichungen aus der Translation gegen\"uberstellen. Dabei sieht man, dass dabei die linearen Gr\"o{\ss}en Beschleunigung und Geschwindigkeit nur mit den entsprechenden Winkelgr\"o{\ss}en ersetzt werden.
+  \begin{center}
+    \begin{tabular}{|c|c|} \hline
+     
+       Gleichung f\"ur beschleunigte Translation & Gleichung f\"ur beschleunigte Rotation\\ \hline
+       $a=a_0=const.$ & $\alpha=\alpha_0=const.$ \\
+       $v(t)=a_0t+v_0$ & $\omega(t)=\alpha_0t+\omega_0$ \\
+       $s(t)=\frac{1}{2}a_0t^2+v_0t+r_0$ & $\phi(t)=\frac{1}{2}\alpha_0t^2+\omega_0t+\phi_0$ \\
+       \hline
+    \end{tabular}
+    \end{center}
+    \end{MInfo}
+    \end{MContent}
+    
+    \begin{MExercises}
+    
+    \begin{MExercise}
+    Ein Schleifstein rotiere mit konstanter Winkelbeschleunigung $\alpha=0{,}35\,\frac{\text{rad}}{\text{s}^2}$. Zum Zeitpunkt $t=0$ ist seine Winkelgeschwindigkeit $\omega_0=-4{,}6\,\frac{\text{rad}}{\text{s}}$, (der Schleifstein dreht sich also im Uhrzeigersinn), und seine Bezugslinie ist waagrecht (Winkelposition $\phi_0=0$) ausgerichtet. 
+    \begin{enumerate}
+    \item Wie viel Zeit vergeht von $t=0$ an, bis sich der Schleifstein f\"unfmal in positiver Richtung um die eigene Achse gedreht hat?
+    \item Nach welcher Zeit bzw.~nach wie vielen Umdrehungen kommt der Stein zum Stillstand?
+    \end{enumerate}
+    \begin{MSolution}
+    \begin{enumerate}
+    \item Da die Winkelbeschleunigung des Schleifsteins konstant ist, k\"onnen wir die Formeln aus der Tabelle in \ref{Physik_Drehbewegung_vergleichtransdreh} anwenden. Damit ergibt sich aus $\phi_0=0$ und der Tatsache, dass f\"unf ganze Umdrehungen im Bogenma{\ss} $10\pi$ bedeuten
+    \begin{eqnarray}
+    \phi(t)&=&\frac{1}{2}\alpha t^2+\omega_0t+\phi_0\\
+    \Leftrightarrow 10\pi\,\text{rad}&=&\frac{1}{2}0{,}35\,\frac{\text{rad}}{\text{s}^2}t^2+(-4{,}6\,\frac{\text{rad}}{\text{s}})t.
+    \end{eqnarray} Diese quadratische Gleichung aufgel\"ost nach $t$ liefert
+    $$
+    t_1=32\,\text{s}\quad\text{und}\quad t_2=-5{,}6\,\text{s.}
+    $$ Die L\"osung $t_2$ ist offensichtlich physikalisch nicht sinnvoll. Also vergehen $32\,\text{s}$, bis sich der Stein f\"unfmal um die eigene Achse gedreht hat.
+    \item Wir wissen, dass der Stein zu Beginn in negative Richtung, also im Uhrzeigersinn, rotiert. Die Winkelbeschleunigung des Schleifsteins ist aber positiv, d.h.~der Stein dreht sich langsamer und langsamer, bis er schlie{\ss}lich zum Stillstand kommt. Die daf\"ur ben\"otigte Zeit $t_1$ berechnet sich folgenderma{\ss}en:
+    $$
+    \omega(t_1)=0=\alpha t_1+\omega_0\,\Leftrightarrow\, t_1=\frac{4{,}6\,\frac{\text{rad}}{\text{s}}}{0{,}35\,\frac{\text{rad}}{\text{s}^2}}=13{,}1\,\text{s}.
+    $$Nach $13{,}1\,\text{s}$ dreht sich der Schleifstein damit gegen den Uhrzeigersinn. 
+    \end{enumerate}
+    Quelle: Halliday, Resnick: Physik
+    \end{MSolution}
+    \end{MExercise}
+    
+    \end{MExercises}
+    
+  \MSubsection{Die gleichf\"ormige Kreisbewegung}
+  \MLabel{Physik_Drehbewegungen_gleichfoermige} 
+  
+  \begin{MIntro}
+  Dieser Abschnitt behandelt die folgenden Inhalte:
+  \begin{itemize}
+  \item {Die Kreisbewegung mit konstantem Geschwindigkeitsbetrag}
+  \item {Die Zentripetalkraft}
+  \end{itemize}
+  
+  
+  Wir wenden uns nun dem Fall zu, dass ein Massenpunkt sich mit einer konstanten, d.h.~gleichf\"ormigen Geschwindigkeit auf einem Kreis mit Radius $R$ bewegt. Insbesondere werden in gleichen Zeiten gleiche Strecken auf dem Kreis zur\"uckgelegt. Eine solche Bewegung nennen wir gleichf\"ormige Kreisbewegung. Wir werden feststellen, dass sich dabei der K\"orper trotz des konstanten Geschwindigkeitsbetrags \emph{beschleunigt}. Auf den ersten Blick mag das verwunderlich erscheinen, da eine Beschleunigung meist mit einer \"Anderung der Geschwindigkeit einhergeht. Man beachte aber, dass die Geschwindigkeit ein zwei- oder dreikomponentiger Vektor ist und kein Skalar. Wenn eine Geschwindigkeit nicht ihren Betrag, sondern nur ihre Richtung \"andert, so ist immer auch eine Beschleunigung im Spiel. Man kann sich diesen Sachverhalt auch \"uber das zweite Newtonsche Axiom klar machen: \"Andert ein K\"orper nicht seine Geschwindigkeit aber seine Bewegungsrichtung, so wirkt eine Kraft auf ihn. Mit dem zweiten Newtonschen Gesetz $\vec{F}=m\cdot \vec{a}$ wird klar, dass der K\"orper beschleunigen muss (s.~auch Richtungs\"anderung durch Kr\"afte in Modul "Kr\"afte").
+  \end{MIntro}
+  
+  \begin{MContent}
+  Unser Ziel ist es nun explizit herzuleiten, wie sich die Geschwindigkeit und vor allem der Betrag und die Richtung der Beschleunigung des Massenpunktes bei einer gleichf\"ormigen Kreisbewegung in zwei Dimensionen verh\"alt:\\
+  
+  Unsere L\"osungsstrategie ist, die Bahnkurve des K\"orpers (Gleichung \MERef{Physik_Drehbewegung_Bahnkurve}) zu betrachten und daraus die gesuchten Gr\"o{\ss}en mit Hilfe der Definitionen aus Modul 03 "Translationen" herzuleiten.\\
+         Die Bahnkurve sei gegeben durch
+        \begin{equation}\MLabel{Physik_Drehbewegung_Bahnkurve2}
+        \vec{r}(t):=\MCases{
+        &x(t):=R\cos(\omega t)\\
+        &y(t):=R\sin(\omega t),\\
+        }
+        \end{equation} 
+        wobei wir f\"ur den Drehwinkel $\phi(t):=\omega t$ in \MERef{Physik_Drehbewegung_Bahnkurve} mit $\omega=const.$ setzen.
+        Wir wissen aus Modul 03, dass sich die Geschwindigkeit des Massenpunktes aus der ersten Ableitung der Bahnkurve nach der Zeit ergibt. Damit gilt
+        \begin{equation}\MLabel{Physik_Drehbewegung_Geschwindigkeitgleichfoermig}
+        \vec{v}(t)=\dot{\vec{r}}(t)=\MCases{
+        &v_x(t)=\dot{x}(t)=-R\omega \sin(\omega t)\\
+        &v_y(t)=\dot{y}(t)= R\omega \cos(\omega t)\\
+        }
+        \end{equation} 
+        und f\"ur den Betrag des Geschwindigkeitsvektors $\vec{v}$ erhalten wir damit
+        \begin{equation}\MLabel{Physik_Drehbewegung_alpha}
+        \vert \vec{v}(t)\vert:=\sqrt{\dot{x}(t)^2+\dot{y}(t)^2}=R\omega\sqrt{\sin^2(\omega t)+\cos^2(\omega t)}=R\omega.
+        \end{equation} Vergleichen wir das Ergebnis mit \MERef{Physik_Drehbewegung_Bahngeschwindigkeit} und \MERef{Physik_Drehbewegungen_geschwindigkeitsbetrag}, so stellen wir fest, dass hier $\omega$ wieder die Winkelgeschwindigkeit des Massenpunktes bezeichnet.
+       
+        Wir sehen nun an \MERef{Physik_Drehbewegung_Geschwindigkeitgleichfoermig} und \MERef{Physik_Drehbewegung_alpha}, dass sich also nur die Richtung der Geschwindigkeit mit der Zeit \"andert, der Betrag jedoch konstant bleibt, da $\omega$ unabh\"angig von der Zeit ist. F\"ur das Skalarprodukt aus Ortsvektor der Bahnkurve und Geschwindigkeitsvektor gilt
+        $$
+        \vec{r}(t)\cdot\vec{v}(t)=-R^2\omega\cos(\omega t)\sin(\omega t)+ R^2\omega\sin(\omega t)\cos(\omega t)=0,
+        $$ 
+        woraus folgt, dass $\vec{r}(t)$ und $\vec{v}(t)$ zu jedem Zeitpunkt senkrecht aufeinander stehen.
+        \begin{MInfo}
+        Bei einer gleichf\"ormigen Kreisbewegung wird die Geschwindigkeit des Massenpunktes gegeben durch Gleichung \MERef{Physik_Drehbewegung_Geschwindigkeitgleichfoermig}, den Betrag der Geschwindigkeit erh\"alt man aus \MERef{Physik_Drehbewegung_alpha}. Ferner steht in jedem Punkt der Kreisbewegung der Geschwindigkeitsvektor senkrecht auf der Bahnkurve.
+        \end{MInfo}
+        
+        Damit l\"asst sich nun die Zeitdauer, die der K\"orper f\"ur eine kompletten Umdrehung braucht, angeben:
+          \begin{MInfo}
+          Die Zeit, die der Massenpunkt f\"ur einen kompletten Umlauf ben\"otigt, ist
+          \begin{equation}\MLabel{Physik_Drehbewegung_Periode}
+          T=\frac{2\pi R}{\vert v\vert}=\frac{2\pi}{\vert\omega\vert}.
+          \end{equation} $T$ wird die Periode der Kreisbewegung genannt.\\
+          Wir bezeichnen ferner mit
+          \begin{equation}\MLabel{Physik_Drehbewegung_Frequenz}
+          f:=\frac{1}{T}
+          \end{equation} die \MEntry{Frequenz}{Frequenz} der Rotation, d.h.~die Anzahl der pro Sekunde ausgef\"uhrten Rotationen. Die Einheit f\"ur die Frequenz ist \MEntry{Hertz}{Hertz} (abgek\"urzt Hz), wobei 
+          $$
+          1\,\text{Hertz}=1\,\text{Hz}=1\,\text{Umdrehung pro Sekunde}=1\,\text{s}^{-1}.
+          $$
+          \end{MInfo}
+          
+          
+         Kommen wir nun zur Beschleunigung des Massenpunktes, die sich aus der zweiten Ableitung der Bahnkurve nach der Zeit folgenderma{\ss}en berechnet:
+             \begin{equation}
+             \vec{a}(t)=\MCases{\MLabel{Physik_Drehbewegung_beta}
+                 &a_x(t)=\ddot{x}(t)=-R\omega^2 \cos(\omega t)\\
+                 &a_y(t)=\ddot{y}(t)=-R\omega^2 \sin(\omega t).\\
+                 }
+             \end{equation}
+             Es gilt also:
+             
+             $$\vec{a}(t)=-\omega^2\vec{r}(t) 
+             $$ und
+             $$\vert\vec{a}(t)\vert=R\omega^2. 
+             $$
+             
+             \begin{MInfo}
+                Sei $\vec{e}_r$ der Einheitsvektor, der vom Mittelpunkt des Kreises in Richtung des Massenpunktes zeigt. Der Beschleunigungsvektor bei einer gleichf\"ormigen Drehbewegung ergibt sich mit \MERef{Physik_Drehbewegung_beta} zu
+               \begin{equation}\MLabel{Physik_Drehbewegung_Beschleunigungsvektor}
+               \vec{a}(t)=-R\omega^2\vec{e}_r(t)=-\frac{\vert \vec{v}\vert^2}{R}\vec{e}_r(t)
+               \end{equation} und hei{\ss}t \MEntry{Zentripetalbeschleunigung}{Zentripetalbeschleunigung}, weil $\vec{a}$ \emph{zum} Mittelpunkt des Kreises zeigt. 
+               \end{MInfo}
+               
+               Wir wissen bereits, dass aufgrund des 2. Newtonschen Gesetzes jede Beschleunigung eine Kraft bewirkt:
+               \begin{MInfo}
+                 Mit den obigen Bezeichnungen nennen wir 
+                 \begin{equation}\MLabel{Physik_Drehbewegung_Zentripetalkraft}
+                 \vec{F}_{\textrm{ZP}}:=-m\cdot R\omega^2\vec{e}_r(t)=-\frac{m\vert \vec{v}\vert^2}{R}\vec{e}_r(t)
+                 \end{equation} \MEntry{Zentripetalkraft}{Zentripetalkraft}, wobei $m $ die Masse des Teilchens ist. Sie wirkt senkrecht zur Kreisbewegung in Richtung des Kreiszentrums. 
+                 \end{MInfo}
+                 F\"ahrt ein Auto um eine Kurve, wirkt eine Zentripetalkraft radial \emph{nach innen}. Die Insassen des Wagens versp\"uren aber eine ganz andere Kraft, n\"amlich eine, die radial \emph{nach au{\ss}en} wirkt, also von der Drehachse weg gerichtet. Diese Kraft nennen wir \MEntry{Zentrifugalkraft}{Zentrifugalkraft} oder \MEntry{Fliehkraft}{Fliehkraft}. Diese wirkt auf jeden rotierenden K\"orper, der sich nicht genau auf der Drehachse des rotierenden Bezugssystems befindet und ist eine sogenannte \MEntry{Scheinkraft}{Scheinkraft}. Scheinkr\"afte sind Kr\"afte, die sich in einem System, das kein Inertialsystem ist (also ein beschleunigtes Bezugssystem ist), als Auswirkung einer \"au{\ss}eren Kraft auf das System ergeben. In diesem Fall hei{\ss}t das: Der Autofahrer, der sich innerhalb des rotierenden Systems befindet, empfindet, dass auf ihn eine Kraft weg von der Drehachse wirkt. Ein au{\ss}enstehender Beobachter nimmt diese Kraft \"uberhaupt nicht wahr. Statt dessen sieht er, dass das Auto auf einer Kreisbahn gehalten wird, f\"ur die nur eine Kraft verantwortlich sein kann, die radial nach innen wirkt.
+                 
+               \end{MContent}
+             
+             \begin{MExtra} 
+             \textbf{Alternativer Zugang zur gleichf\"ormigen Kreisbewegung}
+             
+             
+              Wir verwenden nun einen etwas ph\"anomenologischeren Zugang, um die Geschwindigkeit bzw.~die Beschleunigung eines Massenpunktes zu bestimmen, der sich mit einer konstanten, d.h.~gleichf\"ormigen Geschwindigkeit, auf einem Kreis mit Radius $R$ bewegt. Dieser Zugang verzichtet auf die konkrete Darstellung der Bahnkurve \MERef{Physik_Drehbewegung_Bahnkurve}, die wir in unserem ersten Zugang verwendet haben.\\
+              
+              
+               Wir betrachten zun\"achst die folgende Skizze:
+             
+  \MUGraphicsSolo{rotation-kreis-3.png}{scale=0.25}{width:400px}
+  
+  
+  Der Betrag der Geschwindigkeit $\vert v\vert$ bleibt zwar gleich, der Geschwindigkeitsvektor \"andert aber seine \emph{Richtung} permanent, da er immer tangential zur Bahnkurve verl\"auft. Dies kann man durch das folgende Gedankenexperiment veranschaulichen: Wir stellen uns einen Gartenschlauch vor, der auf einer Drehscheibe montiert ist. Stellt man  das Wasser an, w\"ahrend der Schlauch rotiert, so beobachtet man, dass das Wasser tangential wegspritzt. Es gilt also
+  \begin{equation}
+  \vec{v}(t)=\vert v\vert \vec{e}_{\textrm{T}}(t),
+  \end{equation}wobei $\vec{e}_{\textrm{T}}(t)$ wie oben dargestellt der Tangenteneinheitsvektor an die Bahnkurve zum Zeitpunkt $t$ ist. 
+  
+  Der Weg $\Delta s$, den der Massenpunkt zur\"ucklegt, kann mit Hilfe des Drehwinkels $\phi$ wegen \MERef{Physik_Drehbewegungen_kreisbogen} folgenderma{\ss}en dargestellt werden:
+  \begin{equation}
+  \Delta s=R\Delta \phi.
+  \end{equation} 
+  
+  \begin{MInfo} F\"ur die Geschwindigkeit des Massenpunktes gilt wegen $R=\textrm{const.}$
+  \begin{equation}\MLabel{Physik_Drehbewegung_Geschwindigkeitsvektor}
+  \vec{v}(t)=\frac{\textrm{d}s}{\textrm{d}t}\vec{e}_{\textrm{T}}(t)=R\frac{\textrm{d}\phi}{\textrm{d}t}\vec{e}_{\textrm{T}}(t)=R\omega
+  \vec{e}_{\textrm{T}}(t),
+  \end{equation}wobei wir mit $\omega$ wieder die Winkelgeschwindigkeit bezeichnen, die im Falle der gleichf\"ormigen Kreisbewegung konstant, also unabh\"angig von $t$ ist.
+  \end{MInfo}
+  
+  
+  Durch nochmaliges Ableiten der Geschwindigkeit nach der Zeit erhalten wir die Beschleunigung, die auf einen K\"orper bei der gleichf\"ormigen Kreisbewegung wirkt. Dabei wenden wir die Produktregel aus der Analysis an und ber\"ucksichtigen, dass $\vert v\vert=const.$ gilt.
+  \begin{equation}\MLabel{Physik_Drehbewegung_beschl}
+  \vec{a}(t)=\frac{\textrm{d}\vec{v}}{\textrm{d}t}=\frac{\textrm{d}}{\textrm{d}t}\left(\vert v\vert\vec{e}_{\textrm{T}}(t)\right)=\frac{\textrm{d}\vert v\vert}{\textrm{d}t}\vec{e}_{\textrm{T}}(t)+\vert v\vert\frac{\textrm{d}\vec{e}_{\textrm{T}}(t)}{\textrm{d}t}=\vert v\vert\frac{\textrm{d}\vec{e}_{\textrm{T}}(t)}{\textrm{d}t}.
+  \end{equation} 
+  
+  
+  Um also die Richtung zu ermitteln, in die der K\"orper beschleunigt wird, m\"ussen wir nun die Richtung der ersten Ableitung des Tangenteneinheitsvektors bestimmen: Es gilt
+  $$
+  \vert \vec{e}_{\textrm{T}}(t)\vert^2=\vec{e}_{\textrm{T}}(t)\cdot \vec{e}_{\textrm{T}}(t)= 1=\textrm{const.}
+  $$ und damit folgt aus der Produktregel
+  \begin{equation}
+  0=\frac{\textrm{d}}{\textrm{d}t}\left(\vec{e}_{\textrm{T}}(t)\cdot \vec{e}_{\textrm{T}}(t)\right)=2 \vec{e}_{\textrm{T}}(t)\cdot\frac{\textrm{d}\vec{e}_{\textrm{T}}(t)}{\textrm{d}t}.
+  \end{equation} Wir wissen, dass das Skalarprodukt zweier Vektoren verschwindet, falls die beiden Vektoren aufeinander senkrecht stehen. Daraus ergibt sich:
+  
+  \begin{MInfo}
+  Bei einer Drehbewegung um eine feste Achse steht die Beschleunigung $\vec{a}$ des K\"orpers senkrecht auf der Geschwindigkeit $\vec{v}$ bzw.~dem Vektor $\vec{e}_{\textrm{T}}(t)$. 
+  \end{MInfo}
+  
+  Da $\vec{e}_{\textrm{T}}(t)$ immer senkrecht auf dem Radiusvektor steht, dreht der Radiusvektor mit derselben Winkelgeschwindigkeit $\omega$ wie  $\vec{e}_{\textrm{T}}(t)$. Ferner gibt der Vektor $\frac{\textrm{d}\vec{e}_{\textrm{T}}(t)}{\textrm{d}t}$ an, mit welcher Winkelgeschwindigkeit sich die Tangente um die Achse dreht. Daraus ergibt sich
+  \begin{equation}
+  \frac{\textrm{d}}{\textrm{d}t}\vec{e}_{\textrm{T}}(t)=\vert\vec{e}_{\textrm{T}}(t)\vert \frac{\textrm{d}\phi}{\textrm{d}t}\vec{n}(t)=\omega\vec{n}(t),
+  \end{equation}wobei $\vec{n}(t)$ der Einheitsvektor senkrecht zu $\vec{e}_{\textrm{T}}(t)$ ist. Es folgt sofort
+  
+  \begin{equation}\left\vert\frac{\textrm{d}\vec{e}_{\textrm{T}}(t)}{\textrm{d}t}\right\vert=\omega. 
+  \end{equation}Wenn wir weiter beachten, dass die Beschleunigung des Massenpunktes zum Kreiszentrum zeigen muss, da sich andernfalls der K\"orper vom Mittelpunkt entfernen w\"urde, ergibt sich das Folgende:
+  
+  \begin{MInfo}
+   Sei $\vec{e}_r$ der Einheitsvektor, der vom Mittelpunkt des Kreises in Richtung des Massenpunktes zeigt. Der Beschleunigungsvektor bei einer gleichf\"ormigen Drehbewegung ergibt sich mit \MERef{Physik_Drehbewegung_beschl} zu
+  $$
+  \vec{a}(t)=R\omega\frac{\textrm{d}\vec{e}_{\textrm{T}}(t)}{\textrm{d}t}=-R\omega^2\vec{e}_r(t)=-\frac{\vert v\vert^2}{R}\vec{e}_r(t).
+  $$ 
+  \end{MInfo}
+  Wir stellen fest, dass wir auf diesem Wege ebenfalls Formel \MERef{Physik_Drehbewegung_Beschleunigungsvektor} f\"ur die Zentripetalbeschleunigung des K\"orpers gefunden haben.
+  
+  \end{MExtra}
+  
+  \begin{MExercises}
+  
+  \begin{MExercise}
+  Ein Astronaut kreise in der H\"ohe $h=520\,\text{km}$ in einer Raumstation mit konstanter Geschwindigkeit $v=7{,}6\,\frac{\text{km}}{\text{s}}$ in einer kreisf\"ormigen Umlaufbahn um die Erde. Die Masse $m_{\textrm{A}}$ des Astronauten betr\"agt $79\,\text{kg}$. Der Erdradius betr\"agt $6370\,\text{km}$. 
+  \begin{enumerate}
+  \item Wie gro{\ss} ist seine Beschleunigung?
+  \item Welche Kraft \"ubt die Erde auf den Astronauten aus?
+  \item Wie gro{\ss} ist die Masse $m_{\textrm{E}}$ der Erde?
+  \end{enumerate}
+  Hinweis: Der Astronaut kann gegen\"uber der Erde als Massenpunkt angesehen werden.
+  
+  \begin{MSolution}
+  \begin{enumerate}
+  \item Der Astronaut befindet sich auf einer gleichf\"ormigen Kreisbewegung. Mit \MERef{Physik_Drehbewegung_Beschleunigungsvektor} ergibt sich deshalb f\"ur die Beschleunigung
+  \begin{equation}
+  \vert\vec{a}(t)\vert=\frac{\vert \vec{v}\vert^2}{R}=\frac{\vert \vec{v}\vert^2}{R_{\textrm{E}}+h}=\frac{(7{,}6\,\frac{\text{km}}{\text{s}})^2}{6370\,\text{km}+520\,\text{km}}=8,38\,\frac{\text{m}}{\text{s}^2}.
+  \end{equation}  
+  \item Auf den Astronauten wirkt eine Zentripetalkraft, da er sich auf einer (gleichf\"ormigen) Kreisbewegung befindet. Diese wird von der Gravitationskraft der Erde auf den Astronauten ausge\"ubt. Daraus berechnet sich die Kraft
+  $$
+  F_{{\textrm{ZP}}}=m_{\textrm{A}}a=79\,\text{kg}\cdot 8{,}38\,\frac{\text{m}}{\text{s}^2}=662\,\text{N.}
+  $$
+  \item Der Astronaut kreist in konstanter H\"ohe um die Erde. Das bedeutet, dass die Zentripetalkraft $F_{{\textrm{ZP}}}$, die auf den Astronauten wirkt, gleich der Gravitationskraft $F_{\textrm{G}}$ , die die Zentripetalkraft bewirkt, ist. F\"ur die Gravitationskonstante gilt $\gamma=6{,}674\cdot 10^{-11}\,\frac{\text{m}^3}{\text{kgs}^2}$. Damit ergibt sich
+  \begin{eqnarray*}
+  &\quad F_{\textrm{ZP}}=F_{\textrm{G}}\\\Leftrightarrow &\frac{m_{\textrm{A}}v^2}{r}=\gamma\frac{m_{\textrm{A}}m_{\textrm{E}}}{r^2}\\\Leftrightarrow
+  &m_{\textrm{E}}=\frac{rv^2}{\gamma}=\frac{6890\,\text{km}\cdot\left(7{,}6\,\frac{\text{km}}{\text{s}})^2\right)^2 }{6{,}674\cdot 10^{-11}\,\frac{\text{m}^3}{\text{kg}\text{s}^2}}=5{,}963\cdot 10^{24}\,\text{kg}.
+  \end{eqnarray*}
+  \end{enumerate}
+  \end{MSolution}
+  \end{MExercise}
+  \begin{MExercise}
+  Im Jahre 1901 fuhr Allo Diavolo in einer Zirkusvorstellung als erster mit einem Fahrrad durch eine Loopingbahn. Nehmen Sie an, die Loopingbahn sei ein Kreis mit Radius $R=2{,}7\,\text{m}$, den er in einer gleichf\"ormigen Kreisbewegung umf\"ahrt. Wie gro{\ss} muss dann der Betrag der Geschwindigkeit $v$ am Scheitelpunkt der Loopingbahn mindestens sein, damit Diavolo mit der Bahn in Kontakt bleibt? Bei der L\"osung des Problems kann Diavolo als Massenpunkt betrachtet werden.
+  
+  
+  \begin{MSolution}
+   Ein L\"osungsansatz ist, sich die Kr\"afte zu betrachten, die im Scheitelpunkt der Bahn auf Diavolo wirken: Zum einen ist dies die Gravitationskraft $\vec{F}_{\textrm{g}}$ in negative $y$--Richtung und eine von der Loopingbahn auf das Rad wirkende Normalkraft $\vec{N}$, die in die gleiche Richtung zeigt (zur Erinnerung: Eine Kraft, die eine Unterlage auf einen K\"orper aus\"ubt, nennt man Normalkraft). Ferner nehmen wir an, dass Diavolo und sein Fahrrad den Scheitelpunkt der Bahn als Massenpunkt in einer gleichf\"ormigen Kreisbewegung durchfahren und aus diesem Grunde auf sie  eine Zentripetalkraft in Richtung Kreismittelpunkt wirkt. Wegen  \MERef{Physik_Drehbewegung_Zentripetalkraft} gilt
+   $$
+   \vec{F}_{\textrm{ZP}}:=-m\cdot \frac{\vert \vec{v}\vert^2}{R}\vec{r}(t),
+   $$
+   wobei $m$ die Masse von Fahrrad und Diavolo ist. Bedingung daf\"ur, dass Diavolo in Kontakt mit der Bahn bleibt, ist, dass die Normalkraft im Scheitelpunkt der Bahn nicht negativ ist, das heisst $N\geq 0$. Mit Hilfe des 2. Newtonschen Gesetzes erhalten wir deshalb f\"ur die Komponenten entlang der $y$--Achse als Bedingung, dass Diavolo nicht abst\"urzt
+  \begin{eqnarray*}
+  &m\cdot \frac{\vert \vec{v}\vert^2}{R}= N+mg\ge mg\\
+  \Leftrightarrow &v\ge\sqrt{gR}=\sqrt{9{,}8\,\frac{\text{m}}{\text{s}^2}\cdot 2{,}7\,\text{m}}=5{,}1\,\frac{\text{m}}{\text{s}}.
+  \end{eqnarray*}
+  Diavolo muss also daf\"ur Sorge tragen, dass seine Geschwindigkeit im Scheitelpunkt der Bahn mindestens $5{,}1\,\frac{\text{m}}{\text{s}}$ betr\"agt.\\
+  
+  Quelle: Halliday, Resnick: Physik I
+  
+  \end{MSolution}
+  \end{MExercise}
+  
+  \begin{MExercise}
+  Eine Kugel der Masse $m_1$ bewegt sich auf einer Kreisbahn mit dem Radius $r$ auf einem reibungsfreien horizontalen Tisch. \"Uber einen Faden, der durch ein Loch in der Tischplatte verl\"auft, ist sie mit einer Masse $m_2$ verbunden. Wie h\"angt $r$ von $m_1$, $m_2$ und der Zeit f\"ur einen Umlauf $T$ ab, damit die Massen im Gleichgewicht sind?
+  
+  \begin{MSolution}
+  Wir betrachten die vertikal wirkende Gravitationskraft $\vec{F}_{\textrm{g}}$ und die horizontal wirkende Zentripetalkraftkraft $\vec{F}_{{\textrm{ZP}}}$, die betragsm\"a{\ss}ig gleich sein m\"ussen, um die beiden Massen im Gleichgewicht zu halten:
+  \begin{eqnarray*}
+  \qquad\vert\vec{F}_{\textrm{g}}\vert&=&\vert\vec{F}_{\textrm{ZP}}\vert\\
+  \Leftrightarrow m_2g&=&m_1\frac{v^2}{r}\\
+  \Leftrightarrow m_2g&=&m_1\frac{(2\pi r)^2}{T^2r}\\
+  \Leftrightarrow r&=&\frac{g}{4\pi^2}\frac{m_2}{m_1}T^2.
+  \end{eqnarray*}
+  \end{MSolution}
+  Quelle: Tipler, Physik
+  \end{MExercise}
+  
+  \begin{MExercise}
+  Ein Mann rotiert wie in der Abbildung gezeigt einen K\"orper mit einer Masse von $m=25\,\text{kg}$ auf einem horizontalen Kreis mit einem Radius von $R:=0{,}75\,\text{m}$ herum. Eine Umdrehung dauert $1{,}5\,\text{s}$. Ermitteln Sie den Betrag und die Richtung der Kraft, die der Mann auf den K\"orper aus\"ubt. 
+  
+  
+  \MUGraphicsSolo{rotation-beispiel-3_17.png}{scale=0.2}{width:400px}
+  
+  \begin{MSolution}
+  Die Kraft $\vec{F_{\textrm{F}}}$, die der Mann auf den K\"orper aus\"ubt, wirkt vom K\"orper ausgehend genau in Richtung des Mannes und setzt sich zusammen aus der Zentripetalkraft, die in $x$--Richtung wirkt und dem Gegengewicht zur Gewichtskraft $\vec{F_{\textrm{g}}}$ des K\"orpers:
+  $$
+  \vec{F_{\textrm{F}}}=\vec{F_{\textrm{Z}}}-\vec{F_{\textrm{g}}}
+  $$
+  F\"ur den Betrag der Zentripetalkraft gilt
+  $$
+  \vert\vec{F_{\textrm{Z}}}\vert=m\omega^2R=m\left(\frac{2\pi}{T}\right)^2R=25\,\text{kg}\left(\frac{2\pi}{1,5\,\text{s}}\right)^2\cdot 0,75\,\text{m}=329\,\text{N}
+  $$Insgesamt ergibt sich als Betrag der Gesamtkraft auf den K\"orper
+  $$
+  \vert\vec{F_{\textrm{F}}}\vert=\sqrt{\vert\vec{F_{\textrm{Z}}}\vert^2+\vert\vec{F_{\textrm{g}}}\vert^2}=\sqrt{\vert\vec{F_{\textrm{Z}}}
+  \vert^2+(mg)^2}=\sqrt{(329\,\text{N})^2+\left(9{,}81\,\frac{\text{m}}{\text{s}^2}\cdot 
+  25\,\text{kg}\right)^2}=410\,\text{N}.
+    $$
+    Quelle: Tipler, Physik
+  \end{MSolution}
+  \end{MExercise}
+  
+  \begin{MExercise}
+   Eine Person befindet sich an der mit Segeltuch bespannten Wand eines Rotors, ein hohler Zylinder, der sich sehr schnell um seine Mittelachse dreht. Der Zylinder beginnt sich zu drehen. Dabei bewegen sich die mitfahrende Person, die Wand und der Fu{\ss}boden gemeinsam. Wenn die Geschwindigkeit einen bestimmten Wert erreicht, f\"allt der Fu{\ss}boden pl\"otzlich weg. Die Person f\"allt jedoch nicht mit, sondern wird, solange der Zylinder rotiert, gegen die Wand gedr\"uckt. Nehmen Sie an, der Haftreibungskoeffizient $\mu$ zwischen der Kleidung der Person und dem Segeltuch sei $0{,}4$ und der Radius $R$ des Zylinders sei $2{,}1\,\text{m}$.
+   \begin{enumerate}
+   \item Welche Mindestgeschwindigkeit $v$ m\"ussen Zylinder und Person besitzen, damit die Person nicht f\"allt, wenn der Fu{\ss}boden entfernt wird?
+   \item Die Masse der Person im Rotor betrage  $49\,\text{kg}$. Wie gro{\ss} ist der Betrag der auf sie wirkenden Zentripetalkraft?
+   \end{enumerate}
+   \begin{MSolution}
+   \begin{enumerate}
+   \item Auf die Person im Rotor wirkt eine nach unten gerichtete Kraft, die Gewichtskraft $\vec{F}_{\textrm{g}}=mg$. Diese Kraft muss in dem Moment, in dem der Boden des Rotors nach unten wegf\"allt, durch eine nach oben gerichtete Kraft, die Haftreibungskraft $\vec{F}_{\textrm{HR}}$ kompensiert werden, da andernfalls die Person nach unten rutschen w\"urde. F\"ur den Betrag der Haftreibungskraft gilt
+   \begin{equation}
+   \vert\vec{F}_{\textrm{HR}}\vert=\mu\vert\vec{F}_{\textrm{N}}\vert,
+   \end{equation}wobei $\vec{F}_{\textrm{N}}$ die Normalkraft ist, die der Zylinder auf die Person aus\"ubt und die horizontal in Richtung der Mittelachse des Rotors wirkt. Diese Kraft wird hervorgerufen durch die Zentripetalkraft, so dass wir
+   \begin{equation}
+   \vert\vec{F}_{\textrm{N}}\vert=\vert\vec{F}_{\textrm{ZP}}\vert=\frac{mv^2}{R}
+   \end{equation}erhalten, wobei $v$ die Geschwindigkeit ist, mit der sich die Person auf der Kreisbahn bewegt. Es gilt also
+   \begin{equation}
+   \mu \frac{mv^2}{R}=mg\,\Leftrightarrow\, v=\sqrt{\frac{gR}{\mu}}=\sqrt{\frac{9{,}81\,\frac{\text{m}}{\text{s}^2}\cdot 2{,}1\,\text{m}}{0{,}4}}=7{,}2\,\frac{\text{m}}{\text{s}}.
+   \end{equation}
+   Der Zylinder muss also mit einer Geschwindigkeit von mindestens $7{,}2\,\frac{\text{m}}{\text{s}}$ rotieren, damit die Person an der Wand nicht nach unten rutscht.
+   \item Der Betrag der auf die Person wirkende Zentripetalkraft betr\"agt
+   $$
+   \vert\vec{F}_{\textrm{ZP}}\vert=\frac{mv^2}{R}=\frac{49\,\text{kg}\cdot (7,2\,\frac{\text{m}}{\text{s}})^2}{2{,}1\,\text{m}}=1200\,\text{N.}
+   $$
+   
+   \end{enumerate}
+   \end{MSolution}
+   \end{MExercise}
+    
+  \begin{MExercise}
+  Sie fahren auf einer horizontalen Fl\"ache mit dem Fahrrad auf einer Kreisbahn mit einem Radius von $r=20\,\text{m}$. Die Gesamtkraft, die die Stra{\ss}e auf das Fahrrad aus\"ubt und die sich aus Normalkraft und Reibungskraft zusammensetzt, bildet einen Winkel von $\alpha=15^{\circ}$ gegen die Vertikale. 
+  \begin{enumerate}
+  \item Wie hoch ist Ihre Geschwindigkeit?
+  \item Die Reibungskraft ist halb so gro{\ss} wie der maximale m\"ogliche Wert. Wie gro{\ss} ist der Haftreibungskoeffizient $\mu_{\textrm{R,h}}$?
+  \end{enumerate}
+  
+  
+  \MUGraphicsSolo{rotation-beispiel-3_18.png}{scale=0.2}{width:400px}
+  
+ 
+  
+  \begin{MSolution}
+  \begin{enumerate}
+  \item Die Abbildung zeigt die am Fahrrad angreifenden Kr\"afte: Die Normalkraft $\vec{F}_{\textrm{N}}$ ist im Gleichgewicht mit der nach unten gerichteten Gewichtskraft $mg$. Horizontal wirkt die Haftreibungskraft $\vec{F}_{\textrm{HR}}$, die zur Zentripetalkraft  $\vec{F}_{\textrm{ZP}}$ f\"uhrt. Sie ist umso gr\"o{\ss}er, je schneller Sie mit Ihrem Fahrrad fahren. Sei $\vec{F}_{\textrm{S}}$ die Gesamtkraft, die die Stra{\ss}e auf das Fahrrad aus\"ubt, dann gilt
+  $$
+  \vec{F}_{\textrm{S}}=\vec{F}_{\textrm{N}}+\vec{F}_{\textrm{HR}}
+  $$ und weiter
+  $$
+  \tan \alpha=\frac{\vert\vec{F}_{\textrm{HR}}\vert}{mg}.
+  $$ Damit erhalten wir
+  \begin{eqnarray*}
+  \vert\vec{F}_{\textrm{ZP}}\vert&=&\vert\vec{F}_{\textrm{HR}}\vert\,\Leftrightarrow\, \frac{mv^2}{r}=mg\cdot\tan \alpha\\
+  \Leftrightarrow v&=&\sqrt{gr\tan\alpha }=\sqrt{\tan (15^{\circ})\cdot 9{,}81\,\frac{\text{m}}{\text{s}^2}\cdot 20\,\text{m}}=7{,}25\,\frac{\text{m}}{\text{s}}=26{,}1\,\frac{\text{km}}{\text{h}}.
+  \end{eqnarray*}
+  \item Es gilt 
+  $$
+  \vert\vec{F}_{\textrm{HR,max}}\vert=2\vert\vec{F}_{\textrm{HR}}\vert.
+  $$ Daraus folgt
+  \begin{equation}
+  \mu_{\textrm{R,h}}mg=\vert\vec{F}_{\textrm{HR,max}}\vert=2\frac{mv^2}{r}\,\Leftrightarrow\, \mu_{\textrm{R,h}}=\frac{2v^2}{rg}=\frac{2gr\tan \alpha}{rg}=2\tan \alpha=0{,}536.
+  \end{equation}
+  \end{enumerate}
+  \end{MSolution}
+  Quelle: Tipler, Physik
+  \end{MExercise}
+  \begin{MExercise}
+  Ein Stein mit der Masse $m= 95\,\text{g}$ wird an einem Faden der L\"ange $l_{\textrm{F}}=85\,\text{cm}$ auf einem horizontalem Kreis herumgewirbelt. Jede Umdrehung des Steins dauert $T=1{,}22\,\text{s}$. Wie gro{\ss} ist der Winkel des Fadens zur Horizontalen?
+  
+ 
+  \MUGraphicsSolo{rotation-beispiel-3_19.png}{scale=0.2}{width:400px}
+  
+  \begin{MSolution}
+  Sei wie in der Abbildung angegeben $\alpha$ der Winkel des Fadens zur Horizontalen, sei $r$ der Radius, mit dem der Stein um seinen Aufh\"angepunkt kreist und $\omega$ seine Winkelgeschwindigkeit. Auf den Stein wirken zwei Kr\"afte: Die Gewichtskraft $\vec{F}_{\textrm{g}}$ in negativer $y$--Richtung und die Zentripetalkraft $\vec{F}_{\textrm{ZP}}$ in horizontaler Richtung. Diese beiden Kr\"afte bewirken eine Zugkraft im Faden $\vec{F}_{\textrm{F}}=(\vec{F}_{\textrm{F,x}},\vec{F}_{\textrm{F,y}})$ in Richtung des Aufh\"angepunktes des Fadens. F\"ur diese Kr\"afte gilt im Massenpunkt 
+  $$
+  \vec{F}_{\textrm{F}}=\vec{F}_{\textrm{ZP}}-\vec{F}_{\textrm{g}}.
+  $$
+  Daraus folgt
+  \begin{eqnarray*}
+  \vert\vec{F}_{\textrm{g}}\vert&=&mg=\vert\vec{F}_{\textrm{F,y}}\vert\quad\text{und}\\
+  \vert\vec{F}_{\textrm{ZP}}\vert&=&\vert\vec{F}_{\textrm{F,x}}\vert.
+  \end{eqnarray*} Ferner gilt
+  \begin{equation}\MLabel{Physik_Drehbewegung_gleichung1}
+  \sin\alpha=\frac{\vert\vec{F}_{\textrm{g}}\vert}{\vert\vec{F}_{\textrm{F}}\vert}\,\Leftrightarrow\, \vert\vec{F}_{\textrm{F}}\vert=\frac{mg}{\sin\alpha} 
+  \end{equation} und
+  \begin{equation}\MLabel{Physik_Drehbewegung_gleichung2}
+  \cos\alpha=\frac{\vert\vec{F}_{\textrm{ZP}}\vert}{\vert\vec{F}_{\textrm{F}}\vert}\,\Leftrightarrow\, \vert\vec{F}_{\textrm{F}}\vert=\frac{m\omega^2r}{\cos\alpha}.
+  \end{equation} Setzen wir die Terme aus \MERef{Physik_Drehbewegung_gleichung1} und \MERef{Physik_Drehbewegung_gleichung2} gleich, so ergibt sich
+  \begin{equation}\MLabel{Physik_Drehbewegung_gleichung3}
+  \frac{mg}{\sin\alpha}=\frac{m\omega^2r}{\cos\alpha}.
+  \end{equation} Ungl\"ucklicherweise ist uns weder der Radius $r$ noch die Winkelgeschwindigkeit $\omega$ bekannt. Wir m\"ussen also $r$ in Abh\"angigkeit von $\alpha$ und der Fadenl\"ange $l_{\textrm{F}}$ ausdr\"ucken sowie $\omega$ in Abh\"angigkeit der Umlaufdauer $T$: Wir erhalten
+  \begin{eqnarray*}
+    \cos\alpha&=&\frac{r}{l_{\textrm{F}}}\,\Leftrightarrow\, r=l_{\textrm{F}}\cdot\cos\alpha\quad\text{und}\\
+    \omega&=&\frac{2\pi}{T}.
+  \end{eqnarray*}
+    Dies eingesetzt in \MERef{Physik_Drehbewegung_gleichung3} ergibt
+    \begin{eqnarray}\MLabel{Physik_Drehbewegung_gleichung4}
+    \nonumber\frac{g}{\sin\alpha}&=&\frac{4\pi^2\cdot l_{\textrm{F}}\cdot\cos\alpha}{T^2\cos\alpha}\\
+    \Leftrightarrow \alpha&=&\arcsin\left(\frac{gT^2}{4\pi^2\cdot l_{\textrm{F}}}\right)\\
+    \nonumber\,\Leftrightarrow\, \alpha&=&\arcsin\left(\frac{9{,}81\,\frac{\text{m}}{\text{s}^2}\cdot(1{,}22\,\text{s})^2}{4\pi^2\cdot 0{,}85\,\text{m}}\right)
+    \end{eqnarray} Daraus folgt, dass der Winkel des Fadens zur Horizontalen $\alpha=26^{\circ}$ betr\"agt.
+  \end{MSolution}
+  
+  Quelle: Tipler, Physik
+  \end{MExercise}
+  
+  
+  \begin{MExercise}
+  Ein Bauingenieur soll einen Kurvenabschnitt einer Stra{\ss}e planen. Er erh\"alt folgende Vorgaben: Bei vereister Stra{\ss}e, d.h.~bei einem Haftreibungskoeffizienten von $\mu_{\textrm{R}}=0{,}08$ zwischen Stra{\ss}e und Gummi, darf ein stehendes Auto nicht in den Stra{\ss}engraben im Inneren der Kurve rutschen. Andererseits d\"urfen Autos, die mit $60\,\frac{\text{km}}{\text{h}}$ fahren, nicht aus der Kurve getragen werden. Welchen Radius sollte die Kurve mindestens besitzen und unter welchem Winkel sollte sie \"uberh\"oht sein?
+  
+  \begin{MSolution}
+  Wir besch\"aftigen uns zun\"achst mit dem Fall, dass ein stehendes Auto bei einem Haftreibungskoeffizienten von $\mu_{\textrm{R}}=0{,}08$ nicht ins Rutschen geraten soll. Sei $\alpha$ der Winkel, mit dem die Kurve \"uberh\"oht ist, $m$ sei die Masse des Autos. Dann wirken auf das stehende Auto eine Hangabtriebskraft $\vec{F}_{\textrm{H}}$ ins Innere der Kurve und eine ihr entgegengesetzte Haftreibungskraft $\vec{F}_{\textrm{R}}$. Die Bedingung, dass das Auto \emph{nicht} ins Kurveninnere abrutscht, ist
+  \begin{eqnarray*}
+  \vert\vec{F}_{\textrm{H}}\vert&\le&\vert\vec{F}_{\textrm{R}}\vert\\
+  \Leftrightarrow mg\sin\alpha&\le& \mu_{\textrm{R}} mg\cos\alpha\\
+  \Leftrightarrow \alpha&\le&\arctan\mu_{\textrm{R}}\\
+  \Leftrightarrow \alpha&\le& 4{,}574^{\circ}.
+  \end{eqnarray*} Wird also $\alpha\le 4{,}574^{\circ}$ gew\"ahlt, so rutscht ein stehendes Auto bei vereister Stra{\ss}e nicht in den Graben.\\
+  
+ 
+  
+  Kommen wir nun zur zweiten Bedingung, die der Bauingenieur erf\"ullen soll: Das Auto bewegt sich mit $v=60\,\frac{\text{km}}{\text{h}}$ und dementsprechend muss auf das Auto eine Zentripetalkraft $\vec{F}_{\textrm{ZP}}$ wirken, die in horizontaler Richtung wirkt und das Auto auf der Kreisbahn h\"alt. Diese wird durch die Reibungskraft und die Hangabtriebskraft aufgebracht. Daher kann der Anteil der Zentripetalkraft, die parallel zu Reibungskraft und Hangabtriebskraft wirkt (in unserer Abbildung ist das $\vec{F}_{\textrm{1}}$), nicht gr\"o{\ss}er als die Summe dieser beiden Kr\"afte sein. Die Bedingung, dass das Auto mit $60\,\frac{\text{km}}{\text{h}}$ um die Kurve fahren kann, lautet demnach
+  \begin{equation}\MLabel{Physik_Drehbewegung_gleichung1_520}
+  \vert\vec{F}_{\textrm{ZP}}\vert\cos\alpha\le\left(\vert\vec{F}_{\textrm{R}}\vert+\vert\vec{F}_{\textrm{H}}\vert\right),
+  \end{equation} wobei wir mit $\alpha$ wieder den Winkel bezeichnen, mit der die Kurve \"uberh\"oht ist.
+  
+  
+  \MUGraphicsSolo{rotation-aufgabe-3_20.png}{scale=0.25}{width:400px}
+  
+  
+   F\"ur die Hangabtriebskraft gilt wie oben
+  \begin{equation}\MLabel{Physik_Drehbewegung_gleichung2_520}
+  \vert\vec{F}_{\textrm{H}}\vert=mg\sin\alpha. 
+  \end{equation}Die Reibungskraft verl\"auft parallel der Stra{\ss}e und es gilt
+  \begin{equation}\MLabel{Physik_Drehbewegung_gleichung3_520}
+  \vert\vec{F}_{\textrm{R}}\vert=\mu_{\textrm{R}} \vert\vec{F}_{\textrm{N}}\vert,
+  \end{equation} wobei $\vec{F}_{\textrm{N}}$ die Normalkraft auf die Stra{\ss}e bezeichnet. W\"are die Kurve nicht \"uberh\"oht, so w\"urde sich diese einfach aus dem Gewicht des Autos $\vec{F}_{\textrm{g}}$ ergeben. In diesem Fall ist es jedoch etwas komplizierter, wie wir obiger Abbildung entnehmen k\"onnen: Die Kraft $\vec{F}_{\textrm{2}}$ resultiert aus dem senkrecht zur Unterlage wirkenden Anteil der Gewichtskraft des Autos (in der Abbildung mit $\vec{F}_{\textrm{K}}$ bezeichnet) \emph{und} dem entgegengesetzt wirkenden Anteil der Normalkraft $\vec{F}_{\textrm{N}}$. Damit ergibt sich
+  \begin{equation}\MLabel{Physik_Drehbewegung_gleichung4_520}
+  \vert\vec{F}_{\textrm{N}}\vert=\vert\vec{F}_{\textrm{K}}\vert+\vert\vec{F}_{\textrm{2}}\vert=mg\cos\alpha+\frac{mv^2}{r}\sin\alpha.
+  \end{equation} Setzt man nun \MERef{Physik_Drehbewegung_gleichung2_520}, \MERef{Physik_Drehbewegung_gleichung3_520} und \MERef{Physik_Drehbewegung_gleichung4_520} in \MERef{Physik_Drehbewegung_gleichung1_520} ein, so ergibt sich
+  \begin{eqnarray*}
+  \vert\vec{F}_{\textrm{ZP}}\vert\cos\alpha&\le&\vert\vec{F}_{\textrm{R}}\vert+\vert\vec{F}_{\textrm{H}}\vert\\
+  \Leftrightarrow \frac{mv^2}{r}\cos\alpha&\le& \mu\left(mg\cos\alpha+\frac{mv^2}{r}\sin\alpha\right)+mg\sin\alpha\\
+  \Leftrightarrow \frac{mv^2}{r}\left(\cos\alpha-\mu\sin\alpha\right)&\le& mg\left(\mu\cos\alpha+\sin\alpha\right) \\
+  \Leftrightarrow r&\ge& \frac{v^2}{g}\left(\frac{\cos\alpha-\mu\sin\alpha}{\mu\cos\alpha+\sin\alpha}\right).\\
+  \end{eqnarray*} Mit $\alpha= 4{,}574^{\circ}$ erh\"alt man
+  $$
+  r\ge \frac{\left(16{,}667\,\frac{\text{m}}{\text{s}}\right)^2}{g}\cdot\left(\frac{\cos(4{,}574^{\circ})-0{,}08\cdot\sin(4{,}574^{\circ}}
+  {0{,}08\cdot\cos(4{,}574^{\circ})+\sin(4{,}574^{\circ})}\right)
+  =175,85\,\text{m}.
+  $$ Der Radius der Kurve muss also mindestens $176\,\text{m}$ betragen, dass das Auto bei Glatteis mit $v=60\,\frac{\text{km}}{\text{h}}$ ohne Probleme durch die Kurve fahren kann.
+  \end{MSolution}
+  
+  Quelle: Tipler: Physik
+  \end{MExercise}
+  
+  \end{MExercises}
+  
+  \MPrintIndex
+  
+  
+\end{document}

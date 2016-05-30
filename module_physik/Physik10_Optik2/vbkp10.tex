@@ -1,0 +1,1661 @@
+\input{mintmod}
+
+\MSetSubject{\MINTPhysics}
+
+\begin{document}
+
+\MSection{Wellenoptik}
+  \begin{MSectionStart}
+  \MLabel{VBKP10}
+  Die Wellentheorie des Lichtes wurde bereits im 17. Jahrhundert von dem niederländischen Physiker, Astronom und Mathematiker Christiaan Huygens entwickelt. Zuerst konnte sich die Wellenoptik nicht gegen die seinerzeit sehr beliebte Korpuskularvorstellung durchsetzen, die Licht als aus kleinen Teilchen zusammengesetzt beschreibt.
+	
+	Zu Beginn des 19. Jahrhunderts gelang es sowohl Young als auch Fresnel, die \textbf{Interferenz} nachzuweisen. Des Weiteren wurde festgestellt, dass Licht \textbf{gebeugt} werden kann und \textbf{polarisiert} ist. Dies lieferte eindeutige Evidenzen für die Wellentheorie.
+	
+	Im 20. Jahrhundert wurde das Weltbild der Optik abermals erschüttert. Durch den \textbf{Photo-} und den \textbf{Comptoneffekt} konnte nachgewiesen werden, dass das Licht sich nicht immer wie eine Welle verhält, sondern in diesen Experimenten eindeutig einen korpuskularen Charakter an den Tag legt. Was jetzt? Die Physiker des 20. Jahrhunderts behalfen sich mit der Aussage, dass Licht \textbf{sowohl} Wellen- \textbf{als} \textbf{auch} Teilchencharakter besitzt. Dies nennt man den \textbf{Dualismus} des Lichtes.
+	
+	Die bislang historisch eingeführten Aspekte der Wellenoptik werden im Folgenden genauer beleuchtet, der Korpuskularcharakter von Licht wird sp\"ater im Modul 14 \glqq Atomphysik\grqq{} behandelt. 
+	
+	In diesem Modul werden die wesentlichen Aspekte und Ph\"anomene sowie fundamentale Experimente der Wellenoptik genauer erläutert. Auf dem Weg dahin werden folgende Themen besprochen:
+
+	\begin{itemize}
+	 \item Licht als elektromagnetische Welle
+	 \item Polarisation
+	 \item Interferenz
+	 \item Beugung
+	 \item Streuung
+	\end{itemize}
+    
+
+	Folgende Lehrb\"ucher wurden als Quellen benutzt und werden zum Vertiefen des Stoffes empfohlen:
+	\begin{itemize}
+	  \item Friedhelm Kuypers,  \glqq Physik 2 f\"ur Ingenieure und Naturwissenschaftler\grqq, Wiley-VCH Verlag GmbH und Co. KGaA Weinheim, 2.Auflage 2002
+	  \item Eugene Hecht, \glqq Optik\grqq, Oldenbourg Verlag, 4. Auflage 2005
+	  \item Helmut Lindner, \glqq Physikalische Aufgaben\grqq, Carl Hanser Verlag M\"unchen, 35. Auflage 2009
+	  \item Paul A. Tipler, \glqq Physik\grqq, Spektrum Akademischer Verlag Heidelberg Berlin Oxford, 6. Auflage 2009
+	\end{itemize}
+\end{MSectionStart}	
+
+  
+  \MSubsection{Licht als elektromagnetische Welle}
+
+    \begin{MXContent}{Was ist eine elektromagnetische Welle?}{em-Wellen}{STD}
+
+	In Modul \MNRef{VBKP08} wurde bereits das Konzept der Welle eingef\"uhrt.
+	Da es sich bei Licht um eine elektromagnetische Welle handelt, die erst sp\"ater eingef\"uhrt wird, soll in diesem Abschnitt
+	das Prinzip der elektromagnetischen Welle schonmal in groben Z\"ugen erl\"autert werden.
+
+	In einem elektromagnetischen Schwingkreis wird ein Kondensator periodisch aufgeladen und entladen. Hier kann eine Analogie zum Federpendel erkannt werden.
+	
+	\begin{center}
+	  \MUGraphicsSolo{Analogie-Mechanik.png}{scale=0.3}{width:800px}
+	\end{center}
+	
+	Beim Federpendel schwingt eine an einer Feder angebrachte Masse um den Ruhepunkt. Der Ruhepunkt ist hierbei der Punkt, in dem sich die Masse ohne Auslenkung des Pendels befindet. Im angeregten Zustand ist die kinetische Energie ($E_{\text{kin}} = \frac{1}{2} m v^2 $) maximal während die potentielle Energie Null ist. Die Geschwindigkeit des Systems ist in diesem Punkt maximal. Das Analogon zum Ruhepunkt des Pendels ist im elektrischen Schwingkreis, der Zeitpunkt, zu dem der Kondensator komplett entladen ist. Der Strom (das Analogon zur Geschwindigkeit) ist zu diesem Zeitpunkt maximal und somit auch das an der Spule induzierte Magnetfeld. Die Gesamtenergie des Schwingkreises ist gleich der magnetischen Energie ($E_{\text{mag}} =  \frac{1}{2} L I^2$). Somit kann die magnetische Energie in Analogie zur kinetischen Energie des Federpendels betrachtet werden. 
+	
+	Beim Federpendel wird ab dem Zeitpunkt des Verlassens des Ruhepunktes die kinetische Energie der Masse in potentielle Energie ($E_{\text{pot}} = m g h$) umgewandelt bis der Punkt erreicht wird, an dem die Masse nur noch potentielle Energie hat. In diesem Punkt ist das Pendel maximal ausgelenkt. Der Geschwindigkeitsvektor kehrt in diesem Punkt seine Richtung um, sein Betrag verschwindet also. Ein analoges Verhalten legt der Induktionsstrom an den Tag. Er verschwindet, sobald die Platten des Kondensators maximal aufgeladen sind. Die aufgeladenen Platten bewirken später einen Induktionsstrom in die andere Richtung. In diesem Punkt ist die elektrische Energie ($E_{\text{el}} = \frac{1}{2} CU^2$) maximal in Analogie zur potentiellen Energie des Federpendels, während die magnetische Energie verschwindet.  
+	
+	Nach Überwinden des Punktes maximaler Auslenkung wird die potentielle bzw. elektrische Energie wieder in kinetische bzw. magnetische Energie umgewandelt und das Spiel beginnt von Neuem in die entgegengesetzte Richtung. 
+
+	Die Wellen, die von einem elektrischen Schwingkreis ausgesendet werden, nennt man elektromagnetische Wellen. Schauen wir uns das elektrische Feld einer solchen Welle an, können wir folgende Bewegungsgleichung dafür aufstellen:
+	\begin{equation} \MLabel{gl_em_BewGl}
+	  \frac{\partial^2 \vec{E}}{\partial x^2} + \frac{\partial^2 \vec{E}}{\partial y^2} +   \frac{\partial^2 \vec{E}}{\partial z^2} = \frac{1}{c^2}  \frac{\partial^2 \vec{E}}{\partial t^2}.
+	\end{equation}
+	Als Lösungen dieser Gleichung können sich elektromagnetische Wellen unterschiedlicher Frequenzen ergeben.  
+	Solche Wellen treten in der Natur und Technik auf. In jedem Frequenzbereich tritt die elektromagnetische Strahlung anders in Erscheinung. So kann man eine Mikrowelle beispielsweise dafür verwenden, eine Tasse Wasser aufzuwärmen, während man mit Röntgen-Strahlung eine Abbildung von den Knochen eines Menschen machen kann (da diese Strahlung einige Teile der Materie gut andere schlechter durchdringt).
+
+	\begin{center}
+	  \MUGraphicsSolo{Frequenzen-em.png}{scale=0.25}{width:800px}
+	\end{center}
+	
+	Wie man in diesem Bild sieht, ist auch das Licht (sichtbares, infrarotes und ultraviolettes) im Bereich der elektromagnetischen Strahlung anzusiedeln. Darum kann Gleichung \MERef{gl_em_BewGl} als Bewegungsgleichung des Lichtes gesehen werden.  
+\end{MXContent}
+
+
+    
+    \begin{MXContent}{Polarisation}{Polarisation}{STD} \MLabel{abschn-pol}
+  Ein aus der Wellenoptik sehr charakteristisches Ph\"anomen, da in der Akustik in Fl\"ussigkeiten und Gasen g\"anzlich unbekannt, ist das Ph\"anomen der Polarisation. Polarisierung tritt nur in der Optik auf, da es sich bei Schallwellen um Longitudinalwellen und bei elektromagnetischen um Transversalwellen handelt (sp\"ater in diesem Kapitel mehr dazu).
+
+  Das elektrische Feld und das Magnetfeld schwingen senkrecht zueinander und beide senkrecht zur Ausbreitungsrichtung. Die \glqq Schwingrichtung\grqq{} eines elektromagnetischen Feldes wird also durch die Auslenkung des elektrischen Feldes beschrieben. Die Auslenkung einer elektromagnetischen Welle, die sich in $x$-Richtung fortbewegt, kann darum beschrieben werden durch die Wellenfunktion
+
+  $$
+    \vec{\psi} (x, t) =  \MVector{
+			    A_y \\ 0
+                         } \cdot \cos \left( k x - \omega t - \phi_y \right)
+			  +
+			  \MVector{
+			    0 \\ A_z
+                         } \cdot \cos \left( k x - \omega t - \phi_z \right).
+  $$
+  
+  Es handelt sich hierbei um eine Teilwelle in $y$- und eine in $z$-Richtung. In dieser Gleichung sind $A_y$ und $A_z$ die Amplituden in $y$- und $z$-Richtung. Die Gr\"o\ss{}e $k$ nennt man Wellenzahl. Sie hat die Einheit $\frac{1}{\text{m}}$, womit das Argument des Cosinus dimensionslos wird. Die hier betrachtete Wellenfront kann man sich als Ebene vorstellen, die senkrecht zur $x$-Achse steht und in deren Richtung wandert. Die zur\"uckgelegte Geschwindigkeit ist dabei $\omega$. $\phi_y$ und $\phi_z$ sind die Anfangsphasen in $y$- und $z$-Richtung. Sie geben zusammen mit den Amplituden die Auslenkungen zum Zeitpunkt $t$ = 0 am Ort $x$ = 0 an. Die \"Uberlagerung der beiden Teilwellen in $y$- und $z$-Richtung, die man am Ende wahrnimmt, h\"angt haupts\"achlich von der Phasendifferenz dieser beiden Teilwellen ab:
+
+  \begin{enumerate}
+   \item Betr\"agt die Phasendifferenz ein ganzzahliges Vielfaches von $\pi$, also 
+	$$
+	  \phi_y - \phi_z = m \cdot \pi \text{ mit } m \in \mathbb{Z}, 
+	$$
+	ergibt sich f\"ur die Wellenfunktion
+	\begin{eqnarray*}
+	  \vec{\psi} (x,t) & = & \MVector{
+			    A_y \\ 0
+                         } \cdot \cos \left( k x - \omega t - \phi_y \right)
+			  +
+			  \MVector{
+			    0 \\ A_z
+                         } \cdot \cos \left( k x - \omega t - \phi_z \right) \\
+			  & = & \MVector{
+			    A_y \\ 0
+                         } \cdot \cos \left( k x - \omega t - \phi_y \right)
+			  +
+			  \MVector{
+			    0 \\ A_z
+                         } \cdot \cos \left( k x - \omega t - \phi_y + m \pi \right) \\
+			  & = & \left( \MVector{
+			    A_y \\ 0
+                         } \pm   \MVector{
+			    0 \\ A_z
+                         } \right)\cdot \cos \left( k x - \omega t - \phi_y \right) \\ 
+			& = & \MVector{
+			    A_y \\ \pm A_z
+                        }\cdot \cos \left( k x - \omega t - \phi_y \right), \\ 
+	\end{eqnarray*}
+	wobei die $z$-Komponente f\"ur gerade $m$ positiv und f\"ur ungerade $m$ negativ ist. Bei dieser Art von \"Uberlagerung ergibt sich also eine konstante Richtung f\"ur die Amplitude: Sie ist immer parallel zum Vektor $ \MVector{ A_y \\ \pm A_z }$ gerichtet. Da sich hierbei die Ausrichtung des $E$-Feldes projiziert in die $xy$-Ebene immer auf einer Geraden befindet, nennt man diese Polarisationsart \textbf{lineare Polarisation}.\\
+	\begin{MInfo}
+	  \textbf{Lineare Polarisation:}
+
+	    Das elektrische Feld einer linear polarisierten elektromagnetischen Welle schwingt immer auf einer Geraden.
+
+	    Die Amplitude einer linear polarisierten Welle kann berechnet werden aus 
+	    $$
+	      A = \sqrt{A_y^2 + A_z^2},
+	    $$
+	    ihre Schwingebene bildet einen konstanten Winkel mit der $y$-Achse, der berechnet werden kann aus
+	    $$
+	      \gamma = \arctan \frac{A_z}{A_y}.
+	    $$
+	\end{MInfo}
+     \item Wenn die Phasendifferenz sich um $\frac{\pi}{2}$ von einem ganzzahligen Vielfachen von $\pi$ unterscheidet, also
+	  $$
+	    \phi_y - \phi_z = \left( 2 m + 1 \right) \cdot \frac{\pi}{2},
+	  $$
+
+	  und zus\"atzlich noch die Amplituden in $y$- und $z$-Richtung \"ubereinstimmen, wenn also
+	  $$
+	    A_y = A_z,
+	  $$
+	  ergibt sich ein weiterer Sonderfall:
+	  
+	  \begin{eqnarray*}
+	    \vec{\psi} & = & \MVector{
+			    A_y \\ 0
+                         } \cdot \cos \left( k x - \omega t - \phi_y \right)
+			  +
+			  \MVector{
+			    0 \\ A_z
+                         } \cdot \cos \left( k x - \omega t - \phi_z \right) \\
+		        & = & \MVector{
+			    A_y \\ 0
+                         } \cdot \cos \left( k x - \omega t - \phi_y \right)
+			  +
+			  \MVector{
+			    0 \\ A_z
+                         } \cdot \cos \left( k x - \omega t - \phi_y + \left( 2m + 1 \right) \cdot \frac{\pi}{2} \right) \\
+		       & = & \MVector{
+			    A_y \\ 0
+                         } \cdot \cos \left( k x - \omega t - \phi_y \right)
+			  \pm
+			  \MVector{
+			    0 \\ A_z
+                         } \cdot \sin \left( k x - \omega t - \phi_y \right) \\
+		      & = & \MVector{
+			    A_y \\ 0
+                         } \cdot \cos \left( k x - \omega t - \phi_y \right)
+			  \pm
+			  \MVector{
+			    0 \\ A_y
+                         } \cdot \sin \left( k x - \omega t - \phi_y \right) \\
+		      & = & A_y \cdot \MVector{
+			    \cos \left( k x - \omega t - \phi_y \right) \\ \pm \sin \left( k x - \omega t - \phi_y \right)
+                         }.
+	  \end{eqnarray*}
+	  Es ergibt sich also eine kreisf\"ormige Schraubenlinie, d.h. wenn man die Richtung der Auslenkung des elektrischen Feldes auf die $yz$-Ebene projiziert, ergibt sich wegen der konstanten Amplitude ein Kreis anstatt einer Ellipse. Diese Polarisationsart nennt man auch \textbf{zirkulare Polarisation}.
+     \item Ist die Phasendifferenz kein Vielfaches von $\pi$, vereinfacht sich die Wellenfunktion nicht weiter. In diesem Fall bewegt sich die Auslenkungsrichtung des 	   	E-Feldes auf einer Schraubenlinie um die $x$-Achse herum. Eine Projektion der Auslenkungsrichtung in die $yz$-Ebene ergibt eine Ellipse. Diesen allgemeinsten 	   Fall nennt man \textbf{elliptische Polarisation}.
+  \end{enumerate}
+  Im kommenden Bild werden Auslenkung des $E$-Feldes in $y$- und $z$-Richtung (blau und rot) und die daraus resultierende \"Uberlagerung f\"ur die Sonderf\"alle der linearen und zirkularen Polarisation gezeigt:
+	      
+  \begin{center}
+    \MUGraphicsSolo{Polarisation.png}{scale=0.25}{width:700px}
+  \end{center}
+  
+ Als alternative Herangehensweise kann man elliptische Polarisation als allgemeinen Fall der Polarisation sehen, w\"ahrend lineare und zirkulare Polarisation Sonderf\"alle der elliptischen Polarisation sind. 
+
+  Die n\"achste Frage ist nun, wie man polarisiertes Licht erzeugen kann. Um uns Klarheit \"uber den Grundgedanken des Mechanismus zu verschaffen, k\"onnen wir uns \"uberlegen,  was passiert, wenn man z.B. eine \glqq Seilwelle\grqq (ein Seil wird in eine willk\"urliche Richtung geschwungen) auf einen Spalt aus zwei zusammenstehenden St\"aben laufen l\"asst. Was hierbei zu sehen sein wird, ist, dass die Seilwelle hinter dem Spalt nur parallel zur Spaltausrichtung weiter schwingen kann. Es kommt also zu einer Polarisation, da nur noch die Komponenten parallel zu den St\"aben weiter schwingen k\"onnen.
+
+  Dieser erste Spalt, den das Seil passiert, hei\ss{}t in einem experimentellen Aufbau \textbf{Polarisator}. Wenn man einen zweiten Spalt hinter dem ersten befestigt, nennt sich dieser \textbf{Analysator}, weil man mit ihm die Polarisationsrichtung des Seils ausmachen kann: Wenn der Spalt genau in Richtung der Polarisation ausgerichtet ist, erh\"alt man die maximale Auslenkung, w\"ahrend die Auslenkung Null wird, wenn die Achse des Analysators um 90$^{\circ}$ im Vergleich zu der Polarisationsrichtung gedreht ist. Untersucht man auch die Abh\"angigkeit vom Drehwinkel $\theta$ genauer, erh\"alt man eine Proportionalit\"at zu $\cos^2\theta$, wobei $\theta$ = 0 der Rotationsrichtung der Welle entspricht und $\theta$ = 90$^\circ$ folglich der Richtung senkrecht zur Ausbreitungsrichtung. Dieser Zusammenhang ist auch als Malussches Gesetz bekannt:
+
+  \begin{MInfo}
+    \textbf{Malussches Gesetz:}
+
+    \begin{equation}
+      I(\theta) = I(0) \cdot \cos^2 \theta,
+    \end{equation}
+
+     wobei $\theta$ der Winkel zwischen Orientierung des Analysators und der Polarisationsrichtung ist. 
+  \end{MInfo}
+
+  Im folgenden Experiment wird nochmals klar, was eine \"Anderung der Polarisationsrichtung bedeutet:
+
+  \textbf{Gedankenexperiment:}
+
+      \begin{center}
+	\MUGraphicsSolo{Exp_Polarisation.png}{scale=0.15}{width:700px}
+      \end{center}
+      
+      Es werden drei Polarisatoren mit folgenden Orientierungen aufgestellt:
+      \begin{enumerate}
+	\item in $y$-Richtung
+	\item in einem Winkel $\theta$ zur $y$-Achse
+	\item in $z$-Richtung (in einem Winkel von 90$^{\circ}$ zur $y$-Achse).
+      \end{enumerate}
+    
+      Nun kann man sich anschauen, wie nat\"urliches (unpolarisiertes) Licht der Intensit\"at $I_0$ nach Durchlaufen der drei Polarisatoren aussieht:
+
+      \begin{enumerate}
+	\item Nach dem ersten Polarisator: Die einfallenden Lichtkomponenten k\"onnen je in $y$- und $z$-Komponenten zerlegt werden. Im Mittel findet also 50\% der 		Auslenkung der elektrischen Felder in $y$-Richtung statt. Man erh\"alt nach dem Polarisator also
+	      $$
+		I_1 = \frac{I_0}{2}.
+	      $$
+	      Rechnerisch kann man diesen Anteil auch ermitteln, indem man den Mittelwert \"uber alle Komponenten bildet. Da sich der Mittelwert einer Funktion auf dem Intervall $\left[ 0,l \right]$ ergibt aus $\bar{f} = \frac{1}{l} \cdot \int_0^l f(x) \MD x$, ist die gemittelte Intensit\"at aller m\"oglichen Schwingrichtungen
+	      \begin{eqnarray*}
+		I_1 & = & \frac{1}{2\pi} \cdot \int\limits_0^{2 \pi} I_0 \cdot \cos^2 \theta \MD \theta\\
+		    & = & \frac{I_0}{2}.
+	      \end{eqnarray*}
+	  \item Die Intensit\"at nach dem zweiten Polarisator kann einfach mit Hilfe des Malusschen Gesetzes berechnet werden:
+		\begin{eqnarray*}
+		  I_2 & = & I_1 \cdot \cos^2\theta\\
+		      & = & \frac{I_0}{2} \cdot \cos^2 \theta
+		\end{eqnarray*}
+	  \item Nach dem dritten Polarisator ergibt sich dann analog:
+		\begin{eqnarray*}
+		  I_3 & = & I_2 \cdot \cos^2\left( 90^{\circ} - \theta \right) \\
+		      & = & I_2 \cdot \sin^2\left( \theta \right) \\
+		      & = & \frac{I_0}{2} \cdot \cos^2 \theta \cdot \sin^2 \theta.
+		\end{eqnarray*}
+      \end{enumerate}
+	   W\"ahlt man an zweiter Stelle beispielsweise einen Winkel von 45$^{\circ}$, ergibt sich also am Ende ein Achtel der urspr\"unglichen Intensit\"at.  
+
+    
+  Aufgrund des Messaufbaus kann man sich gut klar machen, dass in diesem Zusammenhang Polarisation nur f\"ur Transversalwellen messbar ist. Bei Schallwellen in Gasen oder Fl\"ussigkeiten handelt sich um Longitudinalwellen. Darum k\"onnen bei ihnen keine Polarisationsph\"anomene wahrgenommen werden. Licht kann hingegen im Vakuum als reine Transversalwelle angenommen werden. Dies kann dadurch nachgewiesen werden, dass man Polarisation bei Licht erzeugen und nachweisen kann. 
+
+  Nat\"urliches Licht wird durch Schwingung angeregter Atome erzeugt. Da die Schwingrichtungen mehrerer Atome zuf\"allig verteilt sind, gibt es bei nat\"urlichem Licht keine bevorzugte Polarisationsrichtung. Darum ist es interessant, sich Verfahren zu \"uberlegen, um polarisiertes Licht zu erzeugen. 
+
+  Am einfachsten ist Licht durch Absorption zu polarisieren. Man ben\"otigt also Objekte, deren Absorptionsgrad polarisationsabh\"angig ist. Bei Polaroidfiltern werden Plastikfolien mit langkettigen Kohlenwasserstoffmolek\"ulen erzeugt. Werden diese Folien dann stark erhitzt und gedehnt, richten sich die Molek\"ulketten parallel zur Dehnrichtung aus. Ein anschlie\ss{}endes Eintauchen in jodhaltige L\"osungen f\"uhrt zu einer Anlagerung der Jodatome an die Ketten und daraus resultierend zu einer Anh\"aufung von Leitungselektronen, die sich ausschlie\ss{}lich in Richtung der Ketten bewegen k\"onnen. Orthogonal zu den Ketten ist das Medium also ein Isolator und parallel dazu ein sehr guter Leiter. Dieser Aufbau f\"uhrt dazu, dass sich ein elektrisches Feld nur noch parallel zu diesen Ketten ausrichten kann und damit zu einer Polarisation des durchlaufenden Lichtes. Wie in dem zuvor beschriebenen Experiment festgestellt, wird so genau die H\"alfte der m\"oglichen Lichtintensit\"at herausgefiltert. Darum wird nat\
+"urliches Licht, das durch solch einen Filter l\"auft, am anderen Ende stark abgedunkelt (der Filter sieht grau aus).
+
+  Zur Polarisation von Licht kann man sich auch die Reflexion an optisch dichten Medien zur Hilfe nehmen. Beim \"Ubergang von Licht aus einem optisch d\"unneren in ein optisch dichteres Medium (siehe Kapitel 9: Geometrische Optik) findet eine teilweise Reflexion des einfallenden Lichtes statt. Der Anteil des reflektierten Lichtes h\"angt hierbei auch von der Polarisation und dem Einfallswinkel des Lichtes ab. Wenn man den Aufbau so w\"ahlt, dass reflektierter und gebrochener Strahl senkrecht aufeinander stehen, erreicht man eine lineare Polarisation. Die Polarisationsrichtung steht senkrecht auf der Einfallsebene. Dieses Sachverhalt kann man im Brewsterschen Gesetz zusammenfassen:
+
+  \begin{MInfo}
+    \textbf{Brewstersches Gesetz:}
+
+    Wenn reflektierter und gebrochener Strahl senkrecht zueinander stehen, ist der reflektierte Strahl linear polarisiert. Der Einfallswinkel, f\"ur den diese Voraussetzung gilt, wird auch Polarisationswinkel $\alpha_{\text{P}}$  oder Brewsterwinkel genannt.
+
+    \begin{equation}
+      \alpha_{\text{P}} = \arctan\left( \frac{n_2}{n_1} \right)
+    \end{equation}
+
+  \end{MInfo}
+  
+   Letzterer Zusammenhang soll sp\"ater in einer Aufgabe bewiesen werden.
+
+  Die praktisch relevantesten Polarisatoren sind doppelbrechende Kristalle. In solchen Kristallen breitet sich Licht nicht in alle Richtungen gleich schnell aus. Dies hat zu Folge, dass ein Strahl nat\"urlichen Lichts, das senkrecht auf einen solchen Kristall f\"allt, in zwei Teilstrahlen aufgeteilt wird:
+
+  \begin{enumerate}
+   \item einen Teilstrahl, der sich ohne Ablenkung weiterbewegt: den\textbf{ordentlichen Strahl}
+   \item und einem Teilstrahl, der trotz senkrechtem Einfall einer Brechung unterliegt: den \textbf{au\ss{}erordentlichen Strahl}
+  \end{enumerate}
+
+  Somit erscheinen Gegenst\"ande, die man sich durch solch einen Kristall betrachtet, doppelt.
+
+  Die beiden entstehenden Strahlen haben folgende Eigenschaften:
+
+  \begin{itemize}
+   \item Sowohl der au\ss{}erordentliche als auch der ordentliche Strahl sind linear polarisiert. Ihre Polarisierungsrichtungen sind senkrecht zueinander.
+   \item Die Brechzahl des ordentlichen Strahls $n_{\text{o}}$ (und damit auch die Ausbreitungsgeschwindigkeit $c_{\text{o}}= \frac{c_{\text{Vakuum}}}{n_{\text{o}}}$) ist unabh\"angig von der Ausbreitungsrichtung, w\"ahrend die Brechzahl des au\ss{}erordentlichen Strahls $n_{\text{ao}}$ ellipsenf\"ormig von der Ausbreitungsrichtung abh\"angt.
+   \item Es gibt eine Richtung, in der sich der au\ss{}erordentliche und der ordentliche Lichtstrahl gleich schnell ausbreiten ($c_{\text{o}} = c_{\text{ao}}$). Diese Richtung nennt man die \textbf{optische Achse} des doppelbrechenden Mediums. Hier sind also auch die Brechungszahlen der beiden Strahlen gleich. Senkrecht zur optischen Achse unterscheiden sich die Brechungszahlen der beiden Strahlen maximal ($\left| n_{\text{o}} - n_{\text{ao}} \right|$ ist maximal).
+  \end{itemize}
+
+   \begin{center}
+    \MUGraphicsSolo{Doppelbrechnung.png}{scale=0.15}{width:700px}
+  \end{center}
+
+   Betrachtet man den Fall, dass Licht senkrecht zur Oberfl\"ache einf\"allt und ist dabei das Medium so geschliffen, dass die optische Achse parallel zur Oberfl\"ache steht, kann keine Doppelbrechnung beobachtet werden. Die Polarisationsrichtungen von ordentlichem und au\ss{}erordentlichem Strahl verlaufen beide parallel zur optischen Achse. Da der Lichteinfall orthogonal zur optischen Achse stattfindet, unterscheiden sich die Brechungszahlen von ordentlichem und au\ss{}erordentlichem Strahl maximal und damit unterscheiden sich die Ausbreitungsgeschwindigkeiten des Lichtes ($c_{\text{o}} \neq c_{\text{ao}}$). Der Kristall agiert in diesem Zusammenhang also als Phasenverschieber. Es ergibt sich hierbei eine elliptische oder zirkulare Polarisation aus zuvor linear polarisiertem Licht und umgekehrt.
+
+   Schauen wir uns eine linear polarisierte Welle
+
+    $$
+      \vec{\psi}_{\text{vor}} (x,t) = \MVector{ A_y \\ A_z } \cdot \cos (kx - \omega t - \phi)
+    $$
+
+    an, die auf eine Kristallplatte der Dicke $d$ f\"allt, teilt diese sich innerhalb der Platte in ordentlichen und au\ss{}erordentlichen Strahl auf, mit unterschiedlichen Geschwindigkeiten $c_o \neq c_{ao}$. Wegen der unterschiedlichen Geschwindigkeiten unterscheiden sich im Medium auch die Welllenl\"angen $\lambda_o \neq \lambda_{ao}$, was eine Phasendifferenz $\Delta \phi$ zwischen den beiden Teilstrahlen bedingt. Hinter dem Kristall \"uberlagern sich diese beiden Teilstrahlen dann wieder 
+
+    $$
+      \vec{\psi}_{\text{hinter}} (x,t) = \MVector{ A_y \\ 0 } \cdot \cos (kx - \omega t - \phi) + \MVector{ 0 \\ A_z } \cdot \cos (kx - \omega t - \phi - \Delta \phi).
+    $$
+
+    Da im betrachteten Beispiel der Strahl senkrecht auf die Platte f\"allt, werden in der Plattendickt $d$  $\frac{d}{\lambda_o}$ Wellenl\"angen des ordentlichen Teilstrahls durchlaufen, w\"ahrend das Licht des au\ss{}erordentlichen Teilstrahls $\frac{d}{\lambda_{ao}}$ Wellenl\"angen durchl\"auft. Da eine Wellenl\"ange einen Unterschied zwischen den beiden Teilwellen am Ende einer Phasendifferenz von $2 \pi$ entspricht, kann man die Phasendifferenz berechnen aus
+
+    \begin{eqnarray*} 
+      \Delta \phi & = & 2 \pi \cdot \left( \frac{d}{\lambda_{\text{o}}} -  \frac{d}{\lambda_{\text{ao}}}\right)\\
+		  & = &  \frac{2 \pi}{\lambda_{\text{Vakuum}}} \cdot d \cdot \left( n_{\text{a}} - n_{\text{ao}} \right). 
+    \end{eqnarray*}
+
+
+    Da sich eine elliptische Polarisation ergibt, wenn die Phasendifferenz der Teilstrahlen kein ganzzahliges Vielfaches von $\pi$ ist ($\Delta \phi \neq m \cdot \pi$), ergibt sich f\"ur einen Linear-Nach-Elliptisch-Umwandler die Bedingung
+
+    \begin{eqnarray*}
+      & m \cdot \pi & \neq 2 \pi \cdot \left( \frac{d}{\lambda_{\text{o}}} -  \frac{d}{\lambda_{\text{ao}}}\right)\\
+      \Leftrightarrow & d & \neq \frac{m}{2} \cdot \frac{\lambda_{\text{ao}} \cdot \lambda_{\text{o}}}{\lambda_{\text{ao}} - \lambda_{\text{o}}} .
+    \end{eqnarray*}
+
+    Man kann also zusammenfassend sagen:
+
+    \begin{MInfo}
+      Wenn f\"ur die Dicke eines doppelbrechenden Kristalls gilt:
+      \begin{equation}
+	d  \neq \frac{m}{2} \cdot \frac{\lambda_{\text{ao}} \cdot \lambda_{\text{o}}}{\lambda_{\text{ao}} - \lambda_{\text{o}}},
+      \end{equation}
+      wandelt der Kristall linear polarisiertes in elliptisch polarisiertes Licht um.
+    \end{MInfo}
+    
+    Ein interessanter Sonderfall ergibt sich, wenn man das Pl\"attchen so gestaltet, dass die Phasendifferenz der beiden Teilstrahlen genau $\frac{\pi}{2}$ betr\"agt. Dies erreicht man, indem man die Dicke wie folgt w\"ahlt:
+
+    \begin{eqnarray*}
+      d & = &  \frac{\Delta \phi}{2\pi} \cdot \frac{\lambda_{\text{Vakuum}}}{n_{\text{o}} - n_{\text{ao}}} =\frac{1}{4} \cdot \frac{\lambda_{\text{Vakuum}}}{n_{\text{o}} - n_{\text{ao}}} \\  & = & \frac{1}{4} \cdot  \frac{\lambda_{\text{ao}} \cdot \lambda_{\text{o}}}{\lambda_{\text{ao}} - \lambda_{\text{o}}} \text{ f\"ur } \lambda_{\text{ao}} > \lambda_o.
+    \end{eqnarray*}
+
+    Wenn man nun noch das Material so pr\"apariert, dass die optische Achse um 45$^{\circ}$ zur Oberfl\"ache gedreht ist, also $A_y = A_z$ gilt, erhalten die beiden Teilwellen nach Durchdringen des Kristalls gleiche Amplituden. Man erreicht mit solch einem Aufbau eine Umwandlung von linear zu zirkular polarisiertem Licht. Wegen des speziellen Wellenl\"angenzusammenhangs nennt man solche Kristalle \textbf{$\mathbf{\frac{\lambda}{4}}$-Pl\"attchen}.
+
+    Provoziert man das Gegenteil der Bedingung f\"ur elliptische Polarisation erh\"alt man ein \textbf{$\mathbf{\frac{\lambda}{2}}$-Pl\"attchen}, das eine Phasenverschiebung von $\pi$ erzeugt. Mit einem solchen Pl\"attchen bewirkt man eine Drehung der Polarisationsrichtung des linear polarisierten Lichtes je nach Orientierung der optischen Achse des Kristalls.
+\end{MXContent}	
+
+
+\begin{MXContent}{Aufgaben}{Übungen}{genetisch}
+  \begin{MExercise}
+  
+    Wie l\"asst sich elliptisch polarisiertes Licht der Wellenfunktion
+    $$
+      \vec{\psi} (x,t) = \MVector{ A_y \\ 0 } \cdot \cos \left( k x - \omega t \right) + \MVector{ 0 \\ A_z } \cdot \cos \left( k x - \omega t - \frac{\pi}{4}\right)
+    $$
+
+    mittels Doppelbrechung in linear polarisiertes Licht umwandeln?
+
+   \begin{MHint}{L\"osung}
+
+      Nehmen wir an, die doppelbrechende Platte hat die Dicke $d$. Am Anfang betr\"agt der Phasenunterschied zwischen $y$- und $z$-Komponente des Lichtes $\frac{\pi}{4}$. Um diesen auf $\pi$ zu erh\"ohen, muss die Platte gerade so dick sein, dass eine Phasenverschiebung von $\frac{3\pi}{4}$ bewirkt wird. Es muss also gelten:
+      
+      \begin{eqnarray*}
+	  & \Delta \phi & = 2 \pi \left( \frac{d}{\lambda_{\text{o}}} - \frac{d}{\lambda_{\text{ao}}} \right) \stackrel{!}{=} \frac{3\pi}{4} \\
+	  \Leftrightarrow & d & = \frac{3}{8} \cdot  \frac{\lambda_{\text{ao}} \cdot \lambda_{\text{o}}}{\lambda_{\text{ao}} - \lambda_{\text{o}}},
+      \end{eqnarray*}
+      Damit ergibt sich die Wellenfunktion hinter der Platte zu
+
+      \begin{eqnarray*}
+	  \vec{\psi}_{\text{hinter}} (x,t) &=& \MVector{ A_y \\ 0 } \cdot \cos \left( k x - \omega t \right) + \MVector{ 0 \\ A_z } \cdot \cos \left( k x - \omega t - \pi\right)	\\
+	      & = & \MVector{ A_y \\ - A_z } \cdot \cos \left( k x - \omega t \right).
+      \end{eqnarray*}
+
+   \end{MHint}
+  \end{MExercise}
+
+   \begin{MExercise}
+      Wie l\"asst sich ohne Intensit\"atsverlust die Polarisationsebene von linear polarisiertem Licht um 90$^{\circ}$ drehen?
+
+      \begin{MHint}{L\"osung}
+	F\"ur linear polarisiertes Licht sind die Amplituden beliebig. Die Phasendifferenz der beiden Komponenten muss die Bedingung erf\"ullen 
+
+	$$
+	  \phi_y - \phi_z = m \pi. 
+	$$
+	
+	Damit lautet die Wellenfunktion
+	
+	$$
+	  \vec{\psi} (x,t) = \MVector{ A_y \\ \pm A_z } \cdot \cos \left( k x - \omega t \right).
+	$$
+
+	W\"ahlen wir beispielsweise den Fall f\"ur gerade $m$:
+
+	$$
+	  \vec{\psi} (x,t) = \MVector{ A_y \\ A_z } \cdot \cos \left( k x - \omega t \right).
+	$$
+
+	 Wie in Abschnitt \MRef{abschn-pol} vorher bereits erw\"ahnt, braucht man zum Umdrehen der Polarisationsrichtung ein $\frac{\lambda}{2}$-Pl\"attchen. Nach Durchqueren des Pl\"attchens sieht die Wellenfunktion folgenderma\ss{}en aus:
+
+	 \begin{eqnarray*}
+	    \vec{\psi}_{\text{hinter}} (x,t) & =&  \MVector{ A_y \\ 0 } \cdot \cos \left( k x - \omega t - \phi_y \right) + \MVector{ 0 \\ A_z } \cdot \cos \left( k x - \omega t - \phi_y + m \pi \right)\\
+				    & = & \MVector{ A_y \\ - A_z } \cdot \cos \left( k x - \omega t - \phi_y\right).
+	 \end{eqnarray*}
+	 Die Randbedingung an das $\frac{\lambda}{2}$-Pl\"attchen ist also, dass die Vektoren $\MVector{ A_y \\ A_z } $ und $\MVector{ A_y \\ -A_z } $ senkrecht aufeinander stehen. Zwei Vektoren stehen genau dann senkrecht aufeinander, wenn ihr Skalarprodukt 0 ist:
+	
+	  \begin{eqnarray*}
+	    & \MVector{ A_y \\ A_z } \cdot \MVector{ A_y \\ -A_z } & = A_y^2 - A_z^2 \stackrel{!}{=} 0 \\
+	    \Leftrightarrow & A_y = \pm A_z &  \Leftrightarrow \gamma = 45^{\circ},
+	  \end{eqnarray*}
+  
+	  wobei $\gamma$ der Winkel zwischen $y$-Achse und Polarisationsvektor ist. Dies kann erreicht werden, indem man die optische Achse des Medium so orientiert, dass sie im 45$^{\circ}$-Winkel zur Polarisationsrichtung des einfallenden Lichtstrahls steht. 
+      \end{MHint}
+     
+   \end{MExercise}
+
+    \begin{MExercise}
+      Eine ebene Lichtwelle f\"allt von einem optisch d\"unneren Medium der Brechzahl $n_1$ in ein optisch dichteres Medium der Brechzahl $n_2$ ($n_2 > n_1$). Der Einfallswinkel ist gleich dem Brewsterwinkel $\alpha_P$, so dass reflektierter und gebrochener Strahl senkrecht aufeinander stehen. Leiten Sie mit Hilfe des Snelliusschen Brechungsgesetzes
+      $$
+	n_1 \sin \alpha_1 = n_2 \sin \alpha_2
+      $$
+      
+      die im Abschnitt \MRef{abschn-pol} vorher eingef\"uhrte Beziehung
+	
+      $$
+	\tan \alpha_{\text{P}} = \frac{n_2}{n_1}
+      $$
+
+      her.
+
+      \begin{MHint}{L\"osung}
+
+	 Es ergibt sich folgendes Bild:
+
+	 \begin{center}
+	    \MUGraphicsSolo{Aufgabe_Brewster.png}{scale=0.25}{width:700px}
+	  \end{center}
+	
+	  Da es sich beim Einfallwinkel um den Brewsterwinkel handelt, stehen der Reflexionswinkel (der gleich dem Einfallwinkel ist) und der Brechnungswinkel senkrecht aufeinander:
+
+	  \begin{eqnarray*}
+	    & \alpha_2 + \alpha_{\text{P}} &= 90^{\circ} \\
+	    \Rightarrow & \alpha_2 = 90^{\circ} - \alpha_{\text{P}}.
+	  \end{eqnarray*}
+
+	  Eingesetzt in das Snelliussche Gesetz ergibt sich dann:
+
+	  \begin{eqnarray*}
+	    & n_1 \sin \alpha_{\text{P}} &= n_2 \sin \left( 90^{\circ}- \alpha_{\text{P}} \right)\\
+	     \Rightarrow &\frac{n_2}{n_1} & = \frac{\sin \alpha_{\text{P}}}{\sin \left( 90^{\circ}- \alpha_{\text{P}} \right)} = \frac{\sin \alpha_{\text{P}}}{\cos \alpha_{\text{P}}} = \tan \alpha_{\text{P}}
+	  \end{eqnarray*}
+
+      \end{MHint}
+     
+   \end{MExercise}
+
+   \begin{MExercise}
+      Berechnen Sie die Dicke eines $\lambda$/4-Pl\"attchen als Funktion der Brechzahlen $n_{\text{o}}$, $n_{\text{ao}}$ und der Wellenl\"ange $\lambda_{\text{Vakuum}}$ im Vakuum.  
+
+      \begin{MHint}{L\"osung}
+	  Die Phasenverschiebung zwischen ordentlichem und au\ss{}erordentlichem Strahl betr\"agt
+
+	  \begin{eqnarray*}
+	    \Delta \phi & = &  2 \pi \left( \frac{d}{\lambda_{\text{o}}} -  \frac{d}{\lambda_{\text{ao}}} \right)\\
+	    & = & \frac{2 \pi d}{\lambda_{\text{Vakuum}}} \cdot \left( n_{\text{o}} -n_{\text{ao}} \right).
+	  \end{eqnarray*}
+	  
+	  F\"ur ein $\lambda$/4-Pl\"attchen betr\"agt (wie in Abschnitt \MRef{abschn-pol} vorher eingef\"uhrt) die Phasendifferenz $\frac{\pi}{2}$, also gilt:
+  
+	  \begin{eqnarray*}
+	    & \frac{2 \pi d}{\lambda_{\text{Vakuum}}} \cdot \left( n_{\text{o}} -n_{\text{ao}} \right) & = \frac{\pi}{2} \\
+	    \Rightarrow & d = \frac{\lambda_{\text{Vakuum}}}{4} \cdot \frac{1}{n_{\text{o}} - n_{\text{ao}}}.
+	  \end{eqnarray*}
+      \end{MHint}
+
+      \begin{MHint}{Information}
+	Damit man die Pl\"attchen also nicht zu d\"unn machen muss gleichzeitig aber auch nicht die Durchl\"assigkeit leidet, w\"ahlt man in der Praxis Stoffe, bei denen die beiden Brechzahlen m\"oglichst dicht beieinander liegen.
+      \end{MHint}
+
+     
+   \end{MExercise}
+
+
+    \begin{MExercise}
+      
+      Eine Lichtwelle hat die Wellenfunktion
+
+      $$
+	\vec{\psi} (x,t) = \MVector{ A \\ 0 } \cdot \cos (kx - \omega t) + \MVector{ 0 \\ \sqrt{3} A } \cdot \cos (kx - \omega t - \frac{\pi}{3}).
+      $$
+
+      a.) Wie ist diese Welle polarisiert und wie kann ihr Licht in linear polarisiertes Licht umgewandelt werden?
+
+      \begin{MHint}{L\"osung}
+	 Die Welle ist elliptisch polarisiert. Wenn die Phasendifferenz $\frac{\pi}{3}$ durch einen doppelbrechenden Kristall auf $\pi$ erh\"oht wird, entsteht eine linear polarisierte Welle. Man braucht also einen Kristall, der die Phase um $\frac{2\pi}{3}$ ver\"andert:
+
+	 \begin{eqnarray*} 
+	    &\Delta \phi & = \frac{2 \pi}{3} = \frac{2 \pi}{ \lambda_{\text{Vakuum}}} d \left( n_{\text{o}} - n_{\text{ao}} \right)\\
+	    \Leftrightarrow & d & = \frac{\lambda_{\text{Vakuum}}}{3 \left( n_{\text{o}} - n_{\text{ao}} \right)}. 
+	 \end{eqnarray*}
+
+	  Der Winkel zwischen Polarisationsebene und $y$-Achse kann dann berechnet werden aus:
+
+	  \begin{eqnarray*}
+	    \gamma = \arctan \frac{A_z}{A_y} = \arctan \sqrt{3} = 60^{\circ}.
+	  \end{eqnarray*}
+
+      \end{MHint}
+
+      b.) Wie kann man diese Welle in eine zirkular polarisierte Welle umwandeln (keine Rechnung notwendig)?
+    
+      \begin{MHint}{Tipp}
+	Verwenden Sie zwei Polarisatoren.
+      \end{MHint}
+
+
+      \begin{MHint}{L\"osung}
+	 F\"ur zirkular polarisiertes Licht m\"ussen die Amplituden $A_y$ und $A_z$ gleich sein und die Phasendifferenz muss $\phi_y - \phi_z = \left( 2n + 1 \right) \frac{\pi}{2}$ betragen.
+
+	 Dazu l\"asst man das Licht zuerst durch einen Linearpolarisator laufen, der um 45$^{\circ}$ gegen die $z$-Achse geneigt ist. Hinter dem Linearpolarisator ist das Licht linear polarisiert mit $A_y = A_z = A_{\text{L}}$. Es ergibt sich f\"ur die Wellenfunktion
+
+	  $$
+	    \vec{\psi}_{\text{hinter,1}} (x,t) = \MVector{ A_{\text{L}} \\ A_{\text{L}} } \cdot \cos (kx - \omega t -\phi).
+	  $$
+
+	  Anschlie\ss{}end leitet man das Licht durch ein $\lambda$/4-Pl\"attchen, dessen optische Achse um 45$^{\circ}$ gegen die $z$-Achse geneigt ist. Hinter dem $\lambda$/4-Pl\"attchen lautet die Wellenfunktion dann
+
+	   $$
+	      \vec{\psi}_{\text{hinter,2}} (x,t) = \MVector{ A_{\text{L}} \\ 0 } \cdot \cos (kx - \omega t -\hat{\phi}) + \MVector{ 0 \\ A_{\text{L}} } \cdot \cos (kx - \omega t - \hat{\phi} - \frac{\pi}{2}).
+	  $$
+      \end{MHint}
+
+    \end{MExercise}
+
+    Quelle: \glqq Physik f\"ur Ingenieure\grqq, Friedhelm Kuypers
+\end{MXContent}
+
+
+  \MSubsection{Interferenz}
+  
+    \begin{MXContent}{Superposition und das Grundprinzip der Interferenz}{Interferenz}{STD}
+
+Akustische Töne werden in der Natur nur selten mit einer alleinstehenden Frequenz erzeugt. Der klingende Ton ist nur der Grundton, der von sogenannten Obertönen ergänzt wird. Bei einer Geige sind die Saiten so angeordnet, dass der Grundton einer benachbarten h\"oheren Saite immer dem zweiten Grundton der tieferen Saite entspricht. Dadurch lässt sich die Geige gut stimmen, weil die Nachbarsaite, wenn diese stimmt, mit der aktuellen Saite mitschwingt. 
+Eine solche Überlagerung von Tönen nennt man Superposition. 
+
+Natürliche Lichtquellen erzeugen auch eine Superposition unterschiedlicher Frequenzen. Bei der Sonne kann man dies Anhand der Farbe des Sonnenlichtes erkennen: Es ist weiß. Doch was heißt das? Insgesamt gibt es beim Licht drei Farben: rot, grün und blau. Andere Farb-Nuancen ergeben sich durch unterschiedliche Überlagerung dieser Farben. So ist gelb beispielsweise keine Grundfarbe, sondern eine Superposition von grün und rot. Dies kennen Sie aus Zeichenprogrammen am Computer. Hier kann man anhand eines Codes aus drei Zahlen Farben definieren (der Name rgb-Schema steht hierbei für rot, grün und blau). Je nachdem, wie man den blau-Anteil bei einer Mischung mit rot wählt, erhält man Magenta oder Violett. 
+
+\begin{center}
+  \MUGraphicsSolo{Farben.png}{scale=0.3}{width:800px}
+\end{center}
+
+Wählt man den Anteil aller Farben gleich, erhält man weiß. Weißes Licht ist also eine Superposition aus Licht aller Farben mit jeweils derselben Intensit\"at. Mit Hilfe von Prismen kann man  diese Zusammensetzung des Sonnenlichtes durch eine Zerlegung in seine Einzelteile belegen. Wie in Modul 9 bereits erläutert, werden in einem solchen Prisma die Lichtwellen unterschiedlicher Frequenz in unterschiedlichen Winkeln gebrochen und dadurch aufgespalten.
+
+Ein Licht-\textbf{Wellenpaket} besteht also aus vielen unterschiedlichen Wellen und kann darum mittels des \textbf{Superpositionsprinzips} beschrieben werden als
+$$
+   \vec{\psi} (\vec{r}, t) = \sum_m \vec{\psi}_m (\vec{r}, t).
+$$
+Geht man nun davon aus, dass die Teilwellen die Amplituden $ \vec{A}_m(\vec{r}, t)$ und die Phasen $\varphi_m$ haben, ergibt dies
+$$
+   \vec{\psi} (\vec{r}, t) = \sum_m \vec{A}_m (\vec{r}, t) \cos(\vec{k}_m \cdot \vec{r} - \omega_m t - \varphi_m).
+$$
+
+Eine Lichtwelle, die von einer natürlichen Quelle erzeugt wird, tritt also nie allein, sondern in Wellenpaketen auf. Dies geschieht z.B. aufgrund der unterschiedlichen Emissionszustände der Licht entsendenden Atome. In solchen Wellenpaketen kommt es zu Interferenzerscheinungen. Die Intensit\"at des Lichts der Wellenlängen in einem Wellenpakt ist dabei um eine mittlere Wellenlänge $\lambda_0$ gau\ss{}verteilt. Eine Gr\"o\ss{}e , mit deren Hilfe die Streuung der Frequenzen des Wellenpakets beschrieben werden kann, ist die Breite bei halber H\"ohe $\Delta \lambda$.
+
+\begin{center}
+  \MUGraphicsSolo{Gaussverteilung.png}{scale=0.3}{width:800px}
+\end{center}
+
+\begin{MInfo}
+ Eine Überlagerung von Wellen nennt man \textbf{Interferenz}. 
+\end{MInfo}
+
+Der Effekt der Interferenz wird bei gleichen Frequenzen am deutlichsten. Darum werden im Folgenden diese F\"alle diskutiert.
+
+Der einfachste Fall von Interferenz ergibt sich bei der Untersuchung von zwei ebenen Wellen, die in dieselbe Richtung laufen. Wählen wir den Nullpunkt der Zeit so, dass die Phase der ersten Welle verschwindet und das Koordinatensystem so, dass sich die Wellenpakete in $x$-Richtung bewegen, ergibt sich mit dem Superpositionsprinzip
+\begin{eqnarray*}
+ A_1 \cos ( k x - \omega t) + A_2 \cos ( k x - \omega t - \varphi) & = A \cos (k x - \omega t - \delta),\\
+\end{eqnarray*}
+ wobei 
+\begin{eqnarray}
+ & A & = \sqrt{A_1^2 + A_2^2 + 2 A_1 A_2 \cos \varphi} \MLabel{eq_amplitude} \text{ \hspace{1cm} und}\\
+ & \tan \delta & = \frac{A_2 \sin \varphi}{A_1 + A_2 \cos \varphi}.\MLabel{eq_phase} 
+\end{eqnarray}
+Durch die Überlagerung ergibt sich also wieder eine ebene Welle \textbf{derselben Frequenz}. Die Amplitude der Überlagerung hängt nicht nur von den ursprünglichen Amplituden, sondern auch von den Phasenverschiebungen der Wellen ab. 
+
+\begin{center}
+  \MUGraphicsSolo{Mittlere_Interferenz.png}{scale=0.3}{width:800px}
+\end{center}
+
+Darum können zwei Sonderfälle untersucht werden:
+\begin{enumerate}
+ \item \boldmath $\varphi = 2 n \pi$ \unboldmath (wobei $n$ eine ganze Zahl ist):\\
+      hier ergibt sich  $\cos \varphi$ in Gleichung \MRef{eq_amplitude} zu 1, d.h. 
+      $$
+	A = \sqrt{A_1^2 + A_2^2 + 2 A_1 A_2} = \sqrt{\left( A_1 + A_2 \right)^2} = A_1 + A_2.
+      $$
+      Die Amplituden verstärken sich also gegenseitig maximal. In einem solchen Fall spricht man von \textbf{konstruktiver Interferenz}.
+
+      \begin{center}
+	\MUGraphicsSolo{Konstruktive_Interferenz.png}{scale=0.3}{width:800px}
+      \end{center}
+
+ \item \boldmath $\varphi = \left( 2 n + 1 \right) \pi$ \unboldmath (wobei $n$ eine ganze Zahl ist):
+      hier ergibt sich $\cos \varphi$ in der resultierenden Amplitude \MRef{eq_amplitude} zu minus eins, d.h. 
+      $$
+      A = \sqrt{A_1^2 + A_2^2 - 2 A_1 A_2} = \sqrt{\left( A_1 - A_2 \right)^2} = \left| A_1 - A_2 \right|.
+      $$
+      Wenn die Amplituden gleich gro\ss{} sind, löschen sie sich also gegenseitig aus. Man spricht hier von \textbf{destruktiver Interferenz}.
+
+      \begin{center}
+	\MUGraphicsSolo{Destruktive_Interferenz.png}{scale=0.3}{width:800px}
+      \end{center}
+\end{enumerate}
+
+Nur kohärente Lichtwellen interferieren geordnet und stationär. Was das heißt, wird im nächsten Abschnitt besprochen. 
+
+\end{MXContent}
+
+\begin{MXContent}{Kohärenz}{Kohärenz}{STD}
+
+  Kohärenz k\"onnen wir veranschualichen, indem wir uns das Beispiel von Soldaten, die über eine Brücke laufen, anschauen. In vielen Fällen gibt es auf Brücken ein Marschverbot. Dies ist zu verstehen, wenn man weiß, dass jedes Bauwerk eine sogenannte Resonanz-Frequenz besitzt. Wird diese Frequenz getroffen, schwingt das Bauwerk mit. Bei Erdbeben ist dies sowohl bei Hochhäusern als auch bei Brücken zu beobachten. Kommen wir wieder zu den Soldaten auf der Brücke zurück: Diese können in einem Takt marschieren, der genau die Resonanzfrequenz der Brücke trifft. In diesem Fall fängt die Brücke an mitzuschwingen. Der Schritt eines Soldaten reicht jedoch noch nicht aus, um die Brücke \glqq zu knacken\grqq{}. Laufen zwei Soldaten im Gleichschritt über die Brücke, kann man dies als zwei Schwingungen mit derselben Frequenz interpretieren. Diese interferieren und regen die Brücke mit doppelter Amplitude zum 
+  Schwingen an. Verstärkt man das Ganze zu einer $n$-fachen Armee, können wir uns vorstellen, dass eine Schwingung mit $n$-facher Amplitude entsteht, die die Brücke zum Schwingen anregt. Weil die Schwingung aber so stark ist, dass die Brücke dieser baulich nicht standhalten kann, bricht sie zusammen. Dieses Phänomen tritt jedoch nur auf, wenn die Soldaten im Gleichschritt marschieren. Variiert die Schrittfrequenz, kommt es nicht zu einer konstruktiven Interferenz dieses Ausmaßes und die Brücke bleibt heil.
+
+  Es gibt also für die Interferenz Bedingungen an die Frequenz der interferierenden Wellen oder besser gesagt an den Phasenunterschied dieser. Bei der Interferenz zweier Wellen ergibt sich nur ein stabiles Interferenzmuster, wenn die Wellen eine ähnliche Frequenz haben. Ist dies nicht der Fall, ergeben sich zeitabhängige Phasenunterschiede und die Phasen heben sich im Mittel heraus. 
+
+   In folgender Abbildung wird gezeigt, was eine Überlagerung von vielen nicht-kohärenten Wellen bewirkt (wie dies in einem natürlich vorkommenden Wellenpaket der Fall ist). Eine solche Überlagerung führt zu einer zeitlich abklingenden Schwingung. Der Mittelwert der Überlagerung verschwindet:
+
+  \begin{center}
+    \MUGraphicsSolo{Kohaerenzzeit2.png}{scale=0.3}{width:800px}
+  \end{center}
+
+  Darum kann in einem solchen Fall kein stabiles Interferenz-Muster entstehen. Wenn die Phasendifferenz zweier Wellen zeitlich konstant ist, nennt man diese \textbf{kohärent}. Bewegt sich die Änderung der Phasendifferenz im Bereich von unter $2 \pi$, nennen wir die Welle \textbf{zeitlich kohärent}. Eine Veränderung der Phasendifferenz kann verschiedene Ursachen haben:
+
+  \begin{itemize}
+   \item Die Frequenz der Lichtwelle kann sich verändern.
+   \item Die meisten Lichtquellen senden, wie bereits erwähnt, keine Einzelwelle, sondern Wellenpakete aus. Hier sind die Phasen statistisch verteilt und ergeben so eine statistische Phasendifferenz.
+   \item Der Brechungsindex des Mediums, durch das die Wellen emittiert werden, kann zeitlich fluktuieren (z.B. bei Wasser mit Wirbeln).
+  \end{itemize}
+
+  Betrachtet man ein Wellenpaket, das nicht kohärent ist, gibt es in der Regel eine gewisse Zeitspanne, in der die Phasendifferenz $2 \pi$ nicht überschreitet. Diese Zeitspanne nennt man die \textbf{Kohärenzzeit}. In folgender Graphik wird die Koh\"arenzzeit $t_{\text{c}}$ am Beispiel zweier Wellen (die sich in der Frequenz unterscheiden) veranschaulicht:
+
+  \begin{center}
+    \MUGraphicsSolo{Kohaerenzzeit1.png}{scale=0.3}{width:800px}
+  \end{center}
+
+  Wie eine Veränderung der Phasendifferenz zwischen Wellen aussieht, die von einer Lichtquelle der Frequenz $\nu_0$ mit der spektralen Breite $\Delta \nu$ ausgesendet werden, kann man sich klar machen, indem man den Phasenunterschied zwischen zwei Teilwellen des Wellenpaketes anschaut. In dem Wellenpaket sind statistisch verteilte Wellen mit Frequenzen zwischen $\nu_1 = \nu_0 - \frac{\Delta \nu}{2}$ und $ \nu_2 = \nu_0 + \frac{\Delta \nu}{2}$ enthalten. Die maximale Phasendifferenz, die sich hier ergeben kann, ist
+
+  \begin{eqnarray*}
+    \Delta \varphi (t) & = & 2 \pi \left( \nu_2 - \nu _1 \right) \left( t - t_0 \right) \\
+		    & = & 2 \pi \left( \nu_0 + \frac{\Delta \nu}{2}  - \left(\nu _0 - \frac{\Delta \nu}{2}  \right) \right) \left( t - t_0 \right) \\
+		    & = & 2 \pi  \Delta \nu \left( t - t_0 \right).
+  \end{eqnarray*}
+  
+  Der Phasenunterschied $\Delta \phi$ verschwindet zum Zeitpunkt $t_0$. Nehmen wir nun noch $t_0 = 0$ an, ergibt sich
+
+  \begin{eqnarray*}
+    \Delta \varphi (t) & = & 2 \pi \cdot \Delta \nu \cdot t.
+  \end{eqnarray*}
+  
+  Wollen wir nun die Kohärenzzeit des Wellenpaketes berechnen, müssen wir den Zeitpunkt herausfinden, zu dem die Phasendifferenz auf $2 \pi$ angewachsen ist:
+  
+  \begin{eqnarray*}
+    & 2 \pi   =  &  2 \pi \cdot  \Delta \nu \cdot t_{\text{c}} \\
+  \Rightarrow & t_{\text{c}} = & \frac{1}{\Delta \nu},
+  \end{eqnarray*}
+
+  die Kohärenzzeit entspricht also dem Kehrwert der spektralen Frequenzbreite des Wellenpaketes. Dies gilt für die äußersten Wellen des Paketes. Die Phasendifferenzen der restlichen Teilwellen des Wellenpaketes zur Kohärenzzeit liegen zwischen 0 und $2 \pi$.    
+
+  Die Strecke, die das Licht während der Kohärenzzeit zurücklegt, 
+  $$
+   \Delta s_{\text{c}} = c \cdot \Delta t_{\text{c}}.
+  $$
+   nennt man \textbf{Kohärenzlänge}. 
+
+  Man kann also bis hierher zusammenfassen:
+
+  \begin{MInfo}
+    Die Koh\"arenzl\"ange ist gegeben durch
+    \begin{equation}
+      \Delta s_{\text{c}} = c \cdot \Delta t_{\text{c}},
+    \end{equation}
+    wobei $\Delta t_{\text{c}}$ die Koh\"arenzzeit ist, die gegeben ist durch das Inverse der spektralen Breite des Wellenpaketes,
+    \begin{equation}
+      \Delta t_{\text{c}} = \frac{1}{\Delta \nu}.
+    \end{equation}
+  \end{MInfo}
+
+
+  Wenn man sich Licht über den Raum verteilt anschaut, können für Lichtwellenpakete, die unterschiedliche Raumpunkte erreichen, auch unterschiedliche Phasenunterschiede beobachtet werden. In folgender Graphik wird veranschaulicht, warum dies der Fall ist:
+  
+  \begin{center}
+    \MUGraphicsSolo{Phasen_Ort.png}{scale=0.2}{width:800px}
+  \end{center}
+
+  Die Phase einer Welle ist abhängig vom zurückgelegten Weg. Wenn sich dieser Weg unterscheidet($\Delta s_1 \neq \Delta s_2$), kann dies zu unterschiedlichen Phasen führen, d.h. für unterschiedliche Raumpunkte $r$ kann sich die r\"aumliche Phasendifferenz $\varphi_i$ einer beliebigen Teilwelle $\psi_i$ des Wellenpaketes in unterschiedlichen Raumpunkten $r_1$ und $r_2$ um
+
+  \begin{eqnarray*}
+    \Delta_r \varphi_i = \varphi_i (r_1) - \varphi_i (r_2)
+  \end{eqnarray*}
+
+   unterscheiden. Ist dieser Unterschied kleiner als $2 \pi$, spricht man von \textbf{räumlicher Kohärenz}. Schaut man sich den räumlichen Bereich an, in dem die räumliche Differenz zwischen den Phasen verschwindet, kann man senkrecht auf der Ausbreitungsrichtung des Lichtes in diesem Bereich eine Fläche definieren, die \textbf{Kohärenzfläche} $F_{\text{c}}$ genannt wird. 
+
+   Die Forderungen nach räumlicher und zeitlicher Kohärenz kann man zusammenfassen, indem man sich das Kohärenzvolumen definiert (als Kohärenzfläche mal Kohärenzlänge):
+
+  \begin{eqnarray*}
+    \Delta V_{\text{c}} = F_{\text{c}} \cdot \Delta s_{\text{c}}.
+  \end{eqnarray*}
+
+   Räumlich und zeitlich kohärent ist dann alles, was sich innerhalb dieses Volumens befindet. Damit kann man eine Bedingung für die Interferenz festlegen:
+
+  \begin{MInfo}
+    Nur innerhalb des Kohärenzvolumens $\Delta V_{\text{c}}$ ist eine Beobachtung von Interferenzstrukturen erkennbar. Außerhalb des Kohärenzvolumens heben sich die Interferenzstrukturen im Mittel auf. Das Kohärenzvolumen ist gegeben durch:
+
+    \begin{eqnarray}
+      \Delta V_{\text{c}} = F_{\text{c}} \cdot \Delta s_{\text{c}}.
+    \end{eqnarray}
+  \end{MInfo}
+
+  Im Koh\"arenzvolumen ist also sowohl r\"aumliche als auch zeitliche Koh\"arenz gegeben.
+\end{MXContent}
+
+
+  
+    \begin{MXContent}{Experimente zur Interferenz: Interferometer}{Interferometer}{STD}
+
+ Da wir jetzt präzisiert haben, wann Interferenzmuster beobachtet werden können, ist es nun möglich, über eine experimentelle Umsetzung nachzudenken. Die erste Frage, die es in diesem Zusammenhang zu klären gilt, ist die Frage, wie es möglich ist, kohärente Wellen herzustellen. Praktisch gibt es dafür zwei Lösungen:
+
+  \begin{enumerate}
+    \item  Kopplung der Lichtsender (d.h. die Erzeuger für die Teilwellen werden phasenstarr miteinander gekoppelt).
+    \item  Die Welle, die von einer Quelle erzeugt wird, wird in Teilwellen aufgespalten, die dann verschieden lange Wege durchlaufen.
+  \end{enumerate}
+ 
+Lichtwellen sind in der Natur die Abstrahlung energetisch angeregter Atome. Da diese in der Regel unabhängig voneinander sind, senden sie Licht statistisch verteilter Phasen aus. Als Folge dessen ist das von einer Lichtquelle ausgestrahlte Licht in der Regel inkohärent. Daher ist der erste Punkt für Lichtwellen schwer anwendbar. Dies kann in der Praxis nur durch eine Anregung der Atome mittels einer kohärenten Lichtquelle umgesetzt werden, was wiederum die Existenz einer solchen voraussetzt. Dies kann nur durch die Anwendung von Lasern unter bestimmten Bedingungen realisiert werden, da diese bedingt durch ihre inneren Vorg\"ange koh\"arentes Licht ausstrahlen.
+
+In den meisten Fällen muss man aber auf die zweite Möglichkeit zur\"uckgreifen: Man kombiniert eine Lichtquelle mit diversen Strahlteilern und lässt die entstehenden Teilwellen unterschiedliche Wege durchlaufen bevor man sie wieder zusammenführt um ihre Interferenzmuster zu betrachten. Die einfachste Form der Interferenz ist die \textbf{Zweistrahlinterferenz} im Gegensatz zur \textbf{Vielstrahlinterferenz} (die im Rahmen dieses Moduls nicht genauer besprochen wird).
+
+Das Phänomen der Interferenz wird in Interferometern genutzt. Mittels solcher Geräte können sowohl Änderungen von Strecken im Mikrometerbereich als auch Brechungsindizes durchsichtiger Medien bestimmt werden. In diesem Abschnitt werden zwei solcher Geräte vorgestellt.
+
+\begin{MExperiment}
+    \textbf{Fresnelscher Spiegelversuch:}
+
+      Beim Fresnelschen Spiegelversuch sind zwei ebene Spiegel in einem kleinen Winkel zueinander angeordnet. Eine punktförmige Lichtquelle erscheint bei solch einer Anordnung für einen Beobachter in der Beobachtungsebene wie zwei punktförmige virtuelle Lichtquellen, die sich hinter den beiden Spiegeln befinden. Die Weglängen, die die Lichtbündel von der Original-Lichtquelle zur Leinwand zurücklegen, entspricht dabei genau der Weglänge, die das Lichtbündel von den virtuellen Lichtquellen aus zurücklegen. 
+      \begin{center}
+	  \MUGraphicsSolo{FresnelSpiegel_t.png}{scale=0.15}{width:700px}
+      \end{center}
+      Nehmen wir an, dass die virtuellen Lichtquellen (wie in der Zeichnung) in den Punkten $\left( d, 0, z_0 \right)$ und $\left( -d, 0, z_0 \right)$ liegen und suchen uns auf der Leinwand einen Punkt $P$ mit den Koordinaten $\left( x, y, 0 \right)$ als Beobachtungspunkt aus, ist die Differenz der Wege, die ein Lichtstrahl aus Lichtquelle 1 und ein Lichtstrahl aus Quelle 2 zurücklegt:
+      $$
+	\Delta s = \sqrt{\left( x + d \right)^2 + y^2 + z_0^2} - \sqrt{\left( x - d \right)^2 + y^2 + z_0^2}.
+      $$
+
+      Der Ausdruck für den Wegunterschied der beiden Lichtstrahlen kann umgeschrieben werden als
+
+      $$
+       \Delta s + \sqrt{\left( x - d \right)^2 + y^2 + z_0^2} = \sqrt{\left( x + d \right)^2 + y^2 + z_0^2},
+      $$
+      was sich durch zweifaches Quadrieren und Umstellen der Terme zu
+      $$
+       \frac{x^2}{a^2} - \frac{y^2}{b^2} = 1
+      $$
+      mit
+      \begin{eqnarray*}
+	a^2 & = & \frac{d^2 + z_0^2 -\Delta s^2}{\left( \frac{2 d}{\Delta s} \right)^2 - 1},\\
+	b^2 & = & d^2 + z_0^2 - \Delta s^2,
+      \end{eqnarray*}
+
+      d.h. konstante Werte der Wegdifferenz sind auf einer Hyperbel angeordnet.
+
+      Beträgt die Wegdifferenz ein Vielfaches der Wellenlänge, ist also $\Delta s = m \cdot \lambda$ mit $m=0,1,2,\cdots$, trifft das Minimum der einen Welle auf das Minimum der anderen Welle und Maximum auf Maximum. Die Wellen sind also in Phase. Darum kommt es in diesem Fall zur konstruktiven Interferenz und die Intensitäten der Wellen verstärken sich maximal. 
+
+      Beträgt die Wegdifferenz ein Vielfaches der halben Wellenlänge, ist also $\Delta s = \frac{2m + 1}{2} \cdot \lambda$, trifft das Minimum der einen Welle auf das Maximum der anderen Welle und Maximum auf Minimum, die Wellen sind also gegenphasig. Darum kommt es in diesem Fall zur destruktiven Interferenz und die Intensität des Interferenzmusters nimmt den minimalen Wert an.
+
+      Damit sind alle Intensitätsminima und -maxima auf Hyperbeln angeordnet. Als Beobachtung ist auf dem Schirm also ein Interferenzmuster aus hellen und dunklen Hyperbeln zu erkennen. 
+    
+      Die räumliche Ausdehnung des Musters wird durch die Kohärenzlänge $\Delta s_{\text{c}} =  \frac{c}{\Delta \nu}$ vorgegeben. Je kleiner also die spektrale Breite einer Quelle, desto größer das resultierende Interferenzmuster. Ein weiterer Faktor, der in die Breite des Interferenzmusters eingeht, ist der Abstand der virtuellen Lichtquellen. Je kleiner der Abstand der virtuellen Quellen, desto breiter das Interferenzmuster. %Bisher wurde angenommen, dass die Lichtquellen punktförmig sind, d.h. keine räumliche Ausdehnung haben. Warum und in welchem Ausmaß die räumliche Ausdehnung der Quellen einfließt wird im Abschnitt zum Youngschen Doppelspalt klar.
+      %Hier wäre ein Foto von interferierenden Wellen schön
+\end{MExperiment}
+
+ \begin{MExperiment}
+    \textbf{Michelsoninterferometer:}
+      Das Michelson-Interferometer setzt sich zusammen aus zwei in einem 90$^{\circ}$-Winkel zueinander angeordneten Spiegeln, von denen einer beweglich ist, und einem halbdurchl\"assigen Spiegel in der Mitte in einem 45$^{\circ}$-Winkel zu den anderen beiden Spiegeln. In folgender Abbildung wird diese Anordnung und der Verlauf der nochmals anschaulich dargestellt:  
+    \begin{center}
+	  \MUGraphicsSolo{Michelson_t.png}{scale=0.15}{width:700px}
+    \end{center}
+    Die Anordnung des halbdurchl\"assigen Spiegels bewirkt eine Ablenkung des reflektierten Strahls in $y$-Richtung und eine direkte Weiterleitung der anderen Strahlh\"alfte. Die so entstandenen beiden Strahlenteiler werden dann an den beiden anderen Spiegeln reflektiert. Danach werden die ankommenden Strahlen nochmals vom Strahlteile in einen reflektierten und einen transmittierten Anteil zerlegt. Am Ende trifft am Beobachtungspunkt ein Strahl ein, der eine Mischung aus Strahlen beider Wege ist.
+
+    Dadurch, dass jeder Strahl je einmal am Strahlteiler transmittiert und einmal reflektiert wurde, sind ihre Amplituden im Beobachtungspunkt gleich. Der Beobachter sieht im Strahlteiler die urspr\"ungliche Lichtquelle sowie zwei Spiegel. Beide Spiegel beinhalten eine virtuelle Lichtquelle. 
+
+    Betrachten wir nun einen Punkt auf der Lichtquelle und beobachten wir den Verlauf eines Lichtstrahles, der von diesem Punkt ausgeht. Man kann den Verlauf vereinfachen, indem man sich den Strahlenverlauf in eine Richtung aufgeklappt vorstellt. Diese Vorstellung ergibt folgendes Bild:
+
+     \begin{center}
+	  \MUGraphicsSolo{Michelson_2.png}{scale=0.15}{width:700px}
+    \end{center}
+
+    Hierbei befindet sich die Lichtquelle in $s$. Die beiden Spiegel $M_1$ und $M_2$ sind hintereinander angeordnet und folglich befinden sich die zu den Spiegeln geh\"orenden Bilder dahinter in den Punkten $s_1$ und $s_2$. Wird der Abstand der beiden hintereinander angeordneten Spiegel als $d$ angenommen, betr\"agt der Abstand der virtuellen Bilder $2d$ (siehe Modul "`Optik 1"'). 
+
+    Der Abstand von $2d$ kommt dadurch zustande, dass der Abstand $d$ bei senkrechtem Lichteinfall zweimal durchlaufen wird: Einmal vor und einmal nach der Reflexion. Darum betr\"agt der Gangunterschied f\"ur kleine Einfallswinkel $\Delta s \approx 2 d$.
+
+    Die Bedingung f\"ur konstruktive Interferenz w\"are ohne weitere \"Uberlegungen also:
+
+    \begin{eqnarray*}
+      & m \cdot \lambda & = 2 d \\
+      \Leftrightarrow & d & = \frac{m \cdot \lambda}{2} .
+    \end{eqnarray*}
+    
+    Jede Verschiebung des beweglichen Spiegels um eine halbe Wellenl\"ange $\lambda$ bewirkt am selben Ort wieder ein Maximum.
+
+    Bei der Aufteilung des Strahls im halbdurchl\"assigen Spiegel entsteht ein weiterer Gangunterschied von $\frac{\lambda}{2}$, da hierbei f\"ur den einen Strahl zwei und f\"ur den anderen Strahl nur eine Reflexion mit einem Phasensprung von $\frac{\lambda}{2}$ stattfinden. Damit ergibt sich der Gangunterschied zwischen den beiden beim Beobachter eintreffenden Strahlen zu
+
+    \begin{equation}
+      \Delta s = 2 d \cdot \cos \theta + \frac{\lambda}{2}
+    \end{equation}
+
+    Diese Phasenverschiebung von $\frac{\lambda}{2}$ f\"uhrt dazu, dass die vorher aufgestellte Bedingung f\"ur konstruktive Interferenz in Wirklichkeit zu einer Bedingung f\"ur destruktive Interferenz wird. Es ergeben sich somit folgende Bedingungen:
+
+    \begin{tabular}{ll}
+      Destruktive Interferenz: & $d  = \frac{m \cdot \lambda}{2 \cos \theta} $\\
+      Konstruktive Interferenz: & $d  = \frac{2m-1}{4} \frac{\lambda}{\cos \theta} $\\
+    \end{tabular}
+
+    Bei senkrechtem Lichteinfall also:
+
+    \begin{tabular}{ll}
+      Destruktive Interferenz: & $d  = \frac{m \cdot \lambda}{2} $\\
+      Konstruktive Interferenz: & $d  = \frac{2m-1}{4} \cdot \lambda $\\
+    \end{tabular}
+
+    Beim Michelson-Interferometer muss ber\"ucksichtigt werden, dass die Lichtquelle keine Punktquelle ist. Man kann sich diese als ausgedehnte, leuchtende Fl\"ache vorstellen. Da es so in der gesamten Strahlebene, anstatt nur in einer Richtung, m\"oglich ist, Lichteinstrahlungen unter gleichen Winkeln zum Lot zu bekommen, die alle zur Interferenz beitragen, ist auf dem Schirm am Ende kein Streifen- sondern ein Ringmuster zu beobachten:
+
+    \begin{center}
+	  \MUGraphicsSolo{Ringe.png}{scale=0.15}{width:700px}
+    \end{center}
+
+    Die Maxima werden in der Graphik durch die dunklen Ringe dargestellt.
+
+    Die Ordnungszahlen werden beim Michelson-Interferometer genau anders herum verteilt als bei einem Gitter (das sp\"ater diskutiert wird): Nimmt man an, dass das Muster in der Mitte (in einem Ablenkwinkel von 0$^{\circ}$) dunkel ist, kann man diesem Minimum die maximale Ordnungszahl
+
+    \begin{equation}\MLabel{eq_michelson_max}
+      m_{\text{max}} = \frac{2d}{\lambda}
+    \end{equation}
+
+    zuteilen. Darum wird hier noch als weiterer Parameter die Ringzahl $p$ eingef\"uhrt:
+
+    $$
+      p = m_{\text{max}} - m
+    $$
+
+    Diese kann verwendet werden, um Ringe von innen nach au\ss{}en \glqq abzuz\"ahlen\grqq. 
+
+    Verschiebt man nun den beweglichen Spiegel, kann man Folgendes beobachten: Bei einer best\"andigen Vergr\"o\ss{}erung des Abstandes quellen immer neue Ringe aus dem Zentrum heraus nach au\ss{}en. Bei einer Abstandsabnahme ergibt sich genau das umgekehrte Bild. Bei einer Verschiebung um eine halbe Wellenl\"ange verschiebt sich Maximum $m$ genau auf den vorherigen Platz von Maximum $m+1$ bzw. $m-1$.
+
+    Mit Hilfe eines Michelson-Interferometers kann man kleine Wellenl\"angenunterschiede sehr genau messen. Darum findet diese Apparatur z.B. Anwendung bei der Vermessung der Natrium-Doppellinie (zwei Wellenl\"angen im gelben Bereich, die sehr nah aneinanderliegen). Jede Wellenl\"ange erzeugt hierbei ihr eigenes Ringsystem. Die beiden Systeme \"uberlagern sich, wobei es zu einer Intensit\"atsschwebung kommt. Durch Einstellen des Spiegelabstandes kann diese vermindert werden. Aus der Differenz der beiden Spiegelabst\"ande kann dann die Wellenl\"angendifferenz bestimmt werden. Bei der Natrium-Doppellinie w\"are der Wellenl\"angenunterschied 0,59~nm. \\
+    Das Resultat der \"Uberlagerung der beiden Wellen kann dabei wie folgt beschrieben werden:
+
+    $$
+      A \cdot \left( \omega_1 t) +  \cdot \cos(\omega_2 t) \right)  \stackrel{\text{Addth}}{=}  2 A \cdot \left( \cos(\frac{\omega_1  + \omega_2 }{2}t)  \cdot \cos(  \frac{ \omega_1  -\omega_2 }{2}t) \right)  \\
+    $$
+
+    Die Frequenz der Schwebung ist also $\frac{ \omega_1  -\omega_2 }{2}$ (Modul 8, "`Schwingungen und Wellen"'). Bestimmt man nun mit dem Interferometer die Wellenl\"ange der Schwebung, erh\"alt man die H\"alfte der Differenz der beiden Wellenl\"angen. 
+
+    Die Entfernungsdifferenz der Spiegel w\"urde sich dann also auf 0,295~nm belaufen, was mit guten Messapparaturen durchaus im Bereich des Messbaren liegt. 
+\end{MExperiment}
+
+
+ 
+\end{MXContent}
+
+
+\begin{MXContent}{Aufgabe}{Übung}{genetisch}
+  \begin{MExercise}
+    Der He-Ne-Laser eines Michelson-Interferometers gibt ein Parallelb\"undel mit der Wellenl\"ange $\lambda=632,8$~nm ab, das durch zwei Sammellinsen unter Beibehaltung der Parallelit\"at aufgeweitet wird. Die Interferenzen werden auf einer Mattscheibe beobachtet, die eine Skala enth\"alt.
+    
+   % a.) Auf der Mattscheibe treten parallele, gerade Interferenzstreifen auf. Durch Ausz\"ahlen der Streifenzahl \"uber die Feldbreite erh\"alt man als Abstand benachbarter Streifen 1,2~mm. Was k\"onnen Sie daraus ableiten?
+
+   % \begin{MHint}{L\"osung}
+   %  Das parallele Lichtb\"undel erzeugt parallele, geradlinige Interferenzstreifen. Daher sind der virtuelle Spiegel und der feste Spiegel leicht gegeneinander gekippt und bilden einen Luftkeil mit dem \"Offnungswinkel
+
+   %  $$
+%	\delta = \frac{\lambda}{2 \cdot \Delta y} \approx 0,{}015^{\circ}.
+ %    $$
+
+  %  \end{MHint}
+
+    a.) Wie kann mit dem Interferometer die Brechzahl eines Gases gemessen werden? Beim langsamen Auf|"f\"ullen eines Beh\"alters mit der L\"ange $l = 50$~mm werden im Zentrum des Interferenzmusters 52,5 Hell-Dunkel-Perioden durchlaufen (die Dicke des Gef\"a\ss{}es sei vernachl\"assigbar). Wie gro\ss{} ist die Brechzahl des aufgef\"ullten Gases?
+
+   % \begin{MHint}{Anmerkung}
+%	Sie ben\"otigen zwei K\"uvetten, eine evakuierte und eine, in die das Gas eingef\"ullt werden kann.
+%
+ %    \end{MHint}
+
+    \begin{MHint}{Anmerkung}
+      Zur Messung einer Brechzahl werden in einem Michelson-Interferometer vor den beiden Spiegeln zwei identische, baugleiche, evakuierte (leere) Gef\"a\ss{}e (planparallele Abschlussfenster) angebracht. Eines der beiden Gef\"a\ss{}e wird dann langsam mit dem Gas, dessen Brechzahl gemessen werden soll, aufgef\"ullt. Dadurch \"andert sich die (vom Brechungsindex abh\"angige) Wellenl\"ange so, dass im Inneren des Interferenzmusters zahlreiche hell-dunkel-\"Phasen durchlaufen werden. Der optische Wegl\"angenunterschied zwischen den beiden Strahlen ist $\Delta \Lambda =  \left( n -1  \right) 2 l$, da das Gef\"a\ss{} einmal vor und einmal nach der Reflexion durchlaufen wird.
+
+      Leiten Sie zum L\"osen dieser Aufgabe zuerst eine allgemeine Formel her, aus der durch Abz\"ahlen der hell-dunkel-Phasen der Brechnungsindex bestimmt werden kann und verwenden Sie diese dann um aus den Angaben den Brechungsindex zu berechnen 
+    \end{MHint}
+
+
+    \begin{MHint}{L\"osung}
+      Wenn man beide Spiegel parallel ausrichtet und auf den Strahlteiler ein divergentes Lichtb\"undel einfallen l\"asst, so treten Interferenzringe auf. %(Dasselbe ergibt sich f\"ur parallele Strahlen und leicht gekippte Spiegel.) 
+      
+      Wenn mit der gegebenen optischen Wegl\"angendifferenz $k$ hell-dunkel-Phasen durchlaufen werden sollen muss gelten:
+
+      $$
+       \Delta \Lambda =  \left( n -1  \right) 2 l = k \lambda
+      $$
+
+      und somit berechnet sich der Brechnungsindex aus 
+
+      $$
+	n - 1 = k \frac{\lambda}{ 2 l} = 52,{}5 \cdot \frac{632,8\text{~nm}}{2 \cdot 50\text{~mm}} = 52,{}5 \cdot \frac{632,8}{100}\cdot 10^{-6} = 332,{}22 \cdot 10^{-6}
+      $$
+
+      Der Brechnungsindex des Gases ist also
+
+       $$
+	n  = 332,{}22 \cdot 10^{-6} + 1 \approx 1,{}00033
+      $$
+
+%      Eine Brechzahl eines Gases kann in einem Michelson-Interferometer gemessen werden, indem man in beiden Interferometerarmen vor den Spiegeln identische, evakuierte K\"uvetten anbringt (mit gleicher Innenl\"ange $l$). Nun wird eine K\"uvette langsam mit dem zu vermessenden Gas aufgef\"ullt. Dabei \"andert sich die optische Wellenl\"ange, so dass im Zentrum der Interferenzringe wieder zahlreiche Hell-Dunkel-Perioden durchlaufen werden.
+%
+ %     Die optische Wellenl\"ange in einer evakuierten K\"uvette entspricht 2$l$, w\"ahrend sie in der mit Gas gef\"ullten die Brechzahl des Gases mit einbezieht ($n 2 l$). Darum ist der Gangunterschied von $k$ Hell-Dunkel-Perioden:
+%
+%       \begin{eqnarray*}
+%	  & \Delta d & = n 2 l - 2 l = \left( n - 1 \right) 2 l \stackrel{!}{=} k \lambda_{\text{Vakuum}}\\
+%	  \Rightarrow & n & = 1 + k \cdot \frac{\lambda_{\text{Vakuum}}}{2 l} \approx 1,00033.
+%       \end{eqnarray*} 
+
+    \end{MHint}
+
+
+    b.) Das Laserlicht wird durch Gl\"uhlampenlicht ersetzt. Welche Lage m\"ussen die Spiegel zueinander haben, damit wenigstens einige Interferenzstreifen sichtbar sind?
+
+    \begin{MHint}{L\"osung}
+       Gl\"uhlampenlicht hat eine Koh\"arenzl\"ange im Bereich von $\Delta s_{\text{c}} = c \cdot \Delta t_{\text{c}} =  c \cdot \frac{1}{\Delta \nu} \approx 10^{-6}$~m. Der Wegunterschied der Teilstrahlen darf daher nicht gr\"o\ss{}er als $10^{-6}$~m sein. Die Spiegel m\"ussen also auf $10^{-6}$~m genau eingestellt werden.
+    \end{MHint}
+
+
+  \end{MExercise}
+
+  Quelle: \glqq Physik f\"ur Ingenieure\grqq, Friedhelm Kuypers
+  
+\end{MXContent}
+
+
+
+
+  \MSubsection{Beugung}
+
+    \begin{MXContent}{Beugung an einem Spalt}{Beugung}{STD}
+  Wie bereits im Modul 9 \glqq Geometrische Optik\grqq{} genauer er\"ortert, ist nach dem Huygens-Prinzip jeder Punkt einer Wellenfront Ausgangspunkt einer neuen kugelf\"ormigen Elementarwelle, die Frequenz der urspr\"unglichen Welle hat. Eine \"Uberlagerung all dieser Elementarwellen ergibt eine Wellenfront.
+
+  In der geometrischen Optik wurde diskutiert, wie sich eine Welle verh\"alt, deren Wellenl\"ange viel kleiner ist als das Hindernis, auf das sie trifft. In der Wellenoptik besch\"aftigt man sich mit Effekten von Hindernissen, deren Gr\"o\ss{}e in etwa derselben Gr\"o\ss{}enordnung liegt wie die Wellenl\"ange selbst.
+
+  Betrachtet man einen Spalt, der gr\"o\ss{}er als eine Wellenl\"ange ist, erkennt man, dass durch den Spalt mehrere Elementarwellen dringen k\"onnen, die sich kugelf\"ormig ausbreiten und darum in alle Richtungen \"uberlagern. Im Fernfeld (Abstand zum Spalt $\gg$ Breite des Spalts $b$) ergibt sich auf jedem Punkt eines Schirmes ein B\"undel nahezu paralleler Strahlen, wie in folgender Abbildung gezeigt: 
+
+  \begin{center}
+	  \MUGraphicsSolo{Spalt_Punktquellen.png}{scale=0.15}{width:700px}
+   \end{center}
+
+   In dieser Abbildung wurde ein Punkt au\ss{}erhalb des Zetrums des Schirmes gew\"ahlt. W\"urden sich die Wellen nach dem Spalt nicht kugelf\"ormig ausbreiten, k\"onnen sich die Wellen nur im Abbildungslot \"uberlagern.
+
+   Der gr\"o\ss{}te Gangunterschied ergibt sich f\"ur die Randstrahlen. Wenn $b$ die Spaltbreite ist und $\alpha$ der Winkel zum Abbildungslot, ist dieser:
+
+   \begin{equation}\MLabel{eq_beugung_gangunterschied}
+      \Delta s = b \cdot \sin \alpha.
+   \end{equation}
+  
+   Durch Aufteilung des B\"undels in zwei H\"alften kann man verdeutlichen, was die Bedingung daf\"ur ist, dass alle Strahlen sich ausl\"oschen:
+
+   \begin{center}
+	  \MUGraphicsSolo{Spalt_Punktquellen_halb.png}{scale=0.15}{width:700px}
+   \end{center}
+  
+
+  An dem gezeigten Bild kann man sehen, dass sich alle Strahlen genau dann ausl\"oschen, wenn
+  
+  $$
+    \Delta s = \lambda.
+  $$
+
+  In diesem Fall haben 1 und 1$^{\prime}$ genau einen Gangunterschied von $\frac{\lambda}{2}$ und l\"oschen sich somit aus. Dasselbe gilt f\"ur 2 und 2$^{\prime}$, 3 und 3$^{\prime}$ usw. Zu jedem Strahl gibt es also einen Partner, der genau zur Ausl\"oschung f\"uhrt. 
+
+  Ersetzt man nun in Gleichung \MRef{eq_beugung_gangunterschied} den Gangunterschied durch die Wellenl\"ange, kann man den Winkel des ersten Beugungsminimums (dem ersten dunklen Punkt auf dem Schirm) bestimmen:
+
+  $$
+    \sin \alpha_{\text{1. Min.}}  = \frac{\lambda}{b}.
+  $$
+
+  F\"ur einen Gangunterschied von $\Delta s = \frac{3 \lambda}{2}$ kann man die Punktquellen im Spalt in drei Teile unterteilen:
+
+  \begin{center}
+	  \MUGraphicsSolo{Spalt_Punktquellen_drittel.png}{scale=0.15}{width:700px}
+  \end{center}
+  
+  Zwischen den Strahlen 1 und 1$^{\prime}$, 2 und 2$^{\prime}$,  3 und 3$^{\prime}$ usw. betr\"agt der Gangunterschied jeweils $\frac{\lambda}{2}$. Darum l\"oschen sich diese Strahlen paarweise aus. Da auf diese Art die Strahlen des letzten Drittels \"ubrig bleiben, erscheint an der zu diesem Gangunterschied geh\"orenden Stelle auf dem Bildschirm ein Intensit\"atsmaximum.
+
+  So kann man sich weiter \"uberlegen, dass sich f\"ur alle ganzen Wellenl\"angen ein Intensit\"atsminimum und f\"ur alle halben ein Intensit\"atsmaximum ergibt. Weiterhin kann man sich \"uberlegen, dass sich f\"ur die Intensit\"atsmaxima ein immer gr\"o\ss{}er werdender Anteil der Strahlen ausl\"oscht (f\"ur $\frac{5 \lambda}{2}$ $\frac{4}{5}$, f\"ur $\frac{7 \lambda}{2}$ $\frac{6}{7}$...) und darum die Intensit\"at der Maxima nach au\ss{}en hin abnimmt.
+
+  Mit einer leichten geometrischen \"Uberlegung kann man diese Beobachtung zusammenfassen als
+
+  \begin{eqnarray}
+    \sin \alpha_{m}^{\text{min}} & = m \cdot \frac{\lambda}{b} & \text{ f\"ur } m = \pm 1, \pm 2, \pm 3,\cdots\\
+    \sin \alpha_{m}^{\text{max}} & = \left( m + \frac{1}{2} \right) \cdot \frac{\lambda}{b} & \text{ f\"ur } m =- \frac{1}{2}, + 1, \pm 2, \pm 3, \cdots
+  \end{eqnarray}
+
+  In $\sin \alpha_0^{\text{max}} = \frac{1}{2} \cdot \frac{\lambda}{b}$ befindet sich kein Extremum, da es hier nach der vorher angef\"uhrten Argumentation keine Ausl\"oschung geben kann.
+
+  Das Maximum nullter Ordnung entspricht $m=-\frac{1}{2}$, die Maxima erster Ordnung $m = 1$ und $m = -2$ usw.
+  Die Bedingungen f\"ur Maximum und Minimum sind bei der Beugung genau umgekehrt zur Interferenz.
+
+  Mit diesem Wissen kann man durch einige Grenzwertbetrachtungen im Fernfeld f\"ur die Intensit\"at des Lichtes folgende Winkelproportionalit\"at herleiten:
+
+  $$
+    I (\sin \alpha) \propto \frac{\sin^2 (\pi \frac{b}{\lambda} \sin \alpha)}{\left( \pi \cdot \frac{b}{\lambda} \cdot \sin \alpha \right)^2}.
+  $$
+
+  Das Verh\"altnis zwischen Wellenl\"ange und Spaltbreite spielt hier f\"ur das entstehende Beugungsmuster eine wesentliche Rolle. Im Folgenden sehen Sie die Intensit\"atsverteilung f\"ur 
+
+  $\frac{b}{\lambda} = 4$
+   \begin{center}
+	  \MUGraphicsSolo{b_durch_lambda_gleich_4.png}{scale=0.5}{width:700px}
+  \end{center}
+
+  $\frac{b}{\lambda} = 1$
+   \begin{center}
+	  \MUGraphicsSolo{b_durch_lambda_gleich_1.png}{scale=0.5}{width:700px}
+  \end{center}
+  
+  $\frac{b}{\lambda} = \frac{1}{4}$
+   \begin{center}
+	  \MUGraphicsSolo{b_durch_lambda_gleich_einviertel.png}{scale=0.5}{width:700px}
+  \end{center}
+
+  Je kleiner die Spaltbreite im Vergleich zur Wellenl\"ange, desto mehr dringen die Wellen in den Schattenbereich vor. Je gr\"o\ss{}er die Spaltbreite im Vergleich zur Wellenl\"ange, desto intensiver die Beugung (desto gr\"o\ss{}er wird der Lichtanteil, der sich au\ss{}erhalb des Abbildungslots befindet). Wenn die Spaltbreite sehr gro\ss{} im Vergleich zur Wellenl\"ange wird, findet fast keine Beugung mehr statt.
+
+  F\"ur $\frac{b}{\lambda} > 1$ ergeben sich mit gr\"o\ss{}er werdenden Zahlen mehr Beugungsmaxima, deren Intensit\"at nach au\ss{}en hin stark abnimmt, bis sie im Bereich, der uns aus dem Alltag bekannt ist, so klein sind, dass man sie mit dem blo\ss{}en Auge nicht erkennen kann.
+
+  Im Gegensatz zu Licht wird Schall im allt\"aglichen Leben gebeugt, was daran liegt, dass Schallwellen eine betr\"achtlich gr\"o\ss{}ere Wellenl\"ange als Licht haben (Licht liegt im nm-Bereich, w\"ahrend Schallwellen im m-Bereich liegen).
+
+\end{MXContent}
+
+\begin{MXContent}{Aufgaben}{Übungen}{genetisch}
+    \begin{MExercise}
+	
+     Das Beugungsmuster eines Spaltes der Breite $b$ wird, wie bereits eingef\"uhrt, beschrieben durch
+
+      $$
+	I(\alpha) \propto \frac{\sin^2 \left( \pi \frac{b}{\lambda} \sin \alpha \right)}{ \left( \pi \frac{b}{\lambda} \sin \alpha \right)^2} =: f(\alpha).
+      $$
+      
+      Untersuchen Sie die Lage der Minima und Maxima und die H\"ohe der Maxima durch eine Fernfeldbetrachtung ($\alpha \rightarrow 0$). 
+
+      \begin{MHint}{L\"osung}
+	Beugungsminima ergeben sich f\"ur
+
+	$$
+	  \sin \alpha_m^{\text{min}} = m \frac{\lambda}{b} \text{\hspace{2cm} wobei } m = \pm 1, \pm 2, \pm 3, \cdots.
+	$$ 
+  
+	An diesen Stellen ist die Funktion $f(\alpha)$ gleich Null.
+
+	Im Beugungsmaximum nullter Ordnung $\alpha^{\text{max}} = 0$ verschwinden Z\"ahler und Nenner der Funktion $f(\alpha)$. F\"ur $\alpha \rightarrow 0$ geht $\sin \alpha \rightarrow 0$, darum betrachten wir im Folgenden $x = \sin \alpha \rightarrow 0$. Der Grenzwert der Funktion in Null kann mit der Regel von l'Hospital berechnet werden:
+	
+	\begin{eqnarray*}
+	  \lim_{x \rightarrow 0} f(x) &=& \lim_{x \rightarrow 0}\left( \frac{\sin^2 \left( \pi \frac{b}{\lambda} x \right)}{ \left( \pi \frac{b}{\lambda} x \right)^2} \right)\\
+	   & \stackrel{\text{l'Hospital}}{=} & \lim_{x \rightarrow 0}\left( \frac{ 2 \cdot  \cos  \left( \pi \frac{b}{\lambda} x \right) \sin \left( \pi \frac{b}{\lambda} x\right)}{ 2 \cdot \left( \pi \frac{b}{\lambda} x \right)} \right)\\
+	     & \stackrel{\text{l'Hospital}}{=} & \lim_{x \rightarrow 0}\left( \frac{ 2 \cdot \left(  \cos^2  \left( \pi \frac{b}{\lambda} x \right) - \sin^2 \left( \pi \frac{b}{\lambda} x \right) \right)}{ 2} \right)\\
+	      & = & \frac{ 2 \cdot \left(  1^2 - 0^2  \right)}{ 2} \\
+	      & = & \frac{ 2 }{ 2} \\
+	    & = & 1.
+	\end{eqnarray*}
+
+	Im Maximum nullter Ordnung wird also die gleiche Intensit\"at wie bei der Einstrahlung erreicht.
+
+	Das Beugungsmaximum erster Ordnung liegt bei $m = 1$ und $m = -2$, das zweite bei $m = 2$ und $m= -3$ $\cdots$ Somit gilt f\"ur die Beugungsmaxima:
+
+	\begin{eqnarray*}
+	  & \sin \alpha^{\text{max}} &= \frac{2 m + 1}{2} \frac{\lambda}{b}\\
+	  \Rightarrow & f(\alpha^{\text{max}}) & = \frac{1}{\left( 2 m + 1 \right)^2 \left( \frac{\pi}{2} \right)^2}.
+	\end{eqnarray*}
+
+	 Das Maximum erster Ordnung hat also nur noch den Anteil 
+    
+	  $$
+	    \frac{1}{\left( 3\right)^2 \left( \frac{\pi}{2} \right)^2} = \frac{4}{9 \pi^2}(\approx4,{}5)\% 
+	  $$
+
+	   der urspr\"unglichen Intensit\"at, das Maximum zweiter Ordnung den Anteil 
+
+	   $$
+	    \frac{1}{\left( 5 \right)^2 \left( \frac{\pi}{2} \right)^2} = \frac{4}{25 \pi^2}(\approx 1,{}6\%) \cdots
+	   $$
+
+      \end{MHint}
+    \end{MExercise}
+
+    Quelle: \glqq Physik f\"ur Ingenieure\grqq, Friedhelm Kuypers
+  
+    \begin{MExercise}
+    
+      Licht der Wellenl\"ange 600~nm f\"allt auf einen langen, engen Spalt. Berechnen Sie den Winkel des ersten Beugungsminimums f\"ur folgende Spaltbreiten: 
+
+      a.) 1,0~mm
+
+      \begin{MHint}{L\"osung}
+	Die ersten Nullstellen ($m = \pm 1$) der Intensit\"at liegen bei Winkeln $\alpha$, f\"ur die gilt:
+    
+	\begin{eqnarray*}
+	  & \sin \alpha &= \frac{\lambda}{b} \\
+	  \Rightarrow & \alpha & = \arcsin \left( \frac{\lambda}{b} \right) = 0,{}03^{\circ},
+	\end{eqnarray*}
+
+      \end{MHint}
+
+      b.) 0,1~mm
+
+      \begin{MHint}{L\"osung}
+	Die ersten Nullstellen ($m = \pm 1$) der Intensit\"at liegen bei Winkeln $\alpha$, f\"ur die gilt:
+    
+	\begin{eqnarray*}
+	  & \sin \alpha &= \frac{\lambda}{b} \\
+	  \Rightarrow & \alpha & = \arcsin \left( \frac{\lambda}{b} \right) = 0,{}34^{\circ},
+	\end{eqnarray*}
+
+      \end{MHint}
+
+      c.) 0,01~mm
+
+      \begin{MHint}{L\"osung}
+	Die ersten Nullstellen ($m = \pm 1$) der Intensit\"at liegen bei Winkeln $\alpha$, f\"ur die gilt:
+    
+	\begin{eqnarray*}
+	  & \sin \alpha &= \frac{\lambda}{b} \\
+	  \Rightarrow & \alpha & = \arcsin \left( \frac{\lambda}{b} \right) = 3,{}44^{\circ}.
+	\end{eqnarray*}
+
+      \end{MHint}
+    \end{MExercise}
+
+    
+    Quelle: \glqq Physik f\"ur Wissenschaftler und Ingenieure\grqq, Paul A. Tipler, Gene Mosca
+
+
+\end{MXContent}
+
+\begin{MXContent}{Spaltexperimente}{Spalt}{STD}
+  \begin{MExample}
+
+    \textbf{Beispiel zum Spalt:}
+
+    \begin{center}
+	  \MUGraphicsSolo{Spalt.png}{scale=0.15}{width:700px}
+    \end{center}
+ 
+    Auf einen 0,5~mm breiten Spalt f\"allt Licht der Wellenl\"ange $\lambda$. Wenn sich der Schirm in einem Abstand von $L=3$~m vom Spalt befindet, liegt der innerste dunkle Streifen in einem Abstand von 8~mm vom Mittelpunkt weg. Es gilt 
+
+    $$
+      \sin \alpha_1^{\text{min}} = \frac{\lambda}{b}.
+    $$
+
+    Wegen der Geometrie des Aufbaus  ist der Sinus 
+  
+    $$
+      \sin \alpha_1^{\text{min}} = \frac{a/2}{\sqrt{L^2 + \left(a/2\right)^2}},
+    $$
+  
+    wobei $a$ der Abstand zwischen den ersten zwei dunklen Stellen ist. Setzt man diese beiden Gleichungen gleich, erh\"alt man
+    
+    \begin{eqnarray*}
+	& \frac{\lambda}{b} & = \frac{a/2}{\sqrt{L^2 + \left(a/2\right)^2}} \\
+	\Rightarrow & \lambda & = b \cdot \frac{a/2}{\sqrt{L^2 + \left(a/2\right)^2}} \\
+	& & = \mathbf{666,{}7}\text{\textbf{~nm}.}
+    \end{eqnarray*}
+
+    f\"ur die Wellenl\"ange des ausgesendeten Lichtes.
+  \end{MExample}
+
+\begin{MExperiment}
+    \textbf{Youngscher Doppelspaltversuch:}
+    Beim Youngschen Doppelspaltversuch werden zwei Spalte, die sich im Abstand $d$ zueinander befinden, von einer Lichtquelle beleuchtet.
+
+    \begin{center}
+	  \MUGraphicsSolo{Doppelspalt_t.png}{scale=0.15}{width:700px}
+    \end{center}
+
+    Die beiden Spalte k\"onnen nach dem Huygensschen Prinzip (Modul 9 \glqq Geometrische Optik\grqq{}) als Ausgangspunkt neuer Wellen gesehen werden. Diese beiden Teilwellen \"uberlagern sich hinter den Spalten. W\"ahlt man auf dem Beobachtungsschirm einen repr\"asentativen Punkt $P$ aus, kann die Wegdifferenz der beiden Strahlen aus der Differenz der Wege der beiden Strahlen von den Spalten $S_1$ und $S_2$ zum Punkt $P$ berechnet werden: 
+    
+    $$
+      \Delta s = \overline{S_2 P} - \overline{S_1 P}.
+    $$
+      
+    Betrachten wir nun die Auswirkungen der Ausdehnung der Lichtquelle, um eine Bedingung f\"ur Koh\"arenz aufzustellen. Hierbei ist vor allem die Ausdehnung $b$ parallel zu den Spalten zu ber\"ucksichtigen (siehe Bild unten). Diese kann in kleine Fl\"achensegmente unterteilt werden, von denen jedes eine eigene Teilwelle emittiert. Darum wird man mit einer ausgedehnten Quelle in jedem Spalt eine \"Uberlagerung mehrerer Teilwellen bekommen. Nehmen wir nun auch an, dass die Fl\"achensegmente der Quelle voneinander unabh\"angig sind, ist zu erwarten, dass die Phasen der entstehenden Teilwellen statistisch verteilt sind. Somit schwanken die Phasen der Gesamtwellen in den Spalten statistisch. Wenn die Schwankungen synchron sind, ist die Phasendifferenz zwischen den resultierenden Wellen der beiden Spalte $\Delta \phi = \phi_1 - \phi_2$ zeitlich konstant. Wenn $\Delta \phi < 2 \pi$ ist, bilden die Spalte also koh\"arente Lichtquellen, was zu einer zeitlich konstanten Interferenzstruktur f\"uhrt.
+
+    F\"ur den Mittelpunkt der Quelle trifft dies in jedem Fall zu, da die Wegdifferenzen zwischen den aus den beiden Spalten resultierenden Lichtb\"undeln verschwindet.  F\"ur andere Punkte ist dies nicht zwangsl\"aufig der Fall. Die gr\"o\ss{}te Wegdifferenz erreichen die Randpunkte $R_1$ und $R_2$. Darum m\"ussen diese bei Koh\"arenzbetrachtungen genauer unter die Lupe genommen werden.
+
+    \begin{center}
+	  \MUGraphicsSolo{Doppelspalt_hinten.png}{scale=0.15}{width:700px}
+    \end{center}
+
+    Wenn der Weg, den die Strahlen vom Mittelpunkt der Quelle aus zur\"ucklegen, viel gr\"o\ss{}er ist als der Abstand der Spalte, kann die maximale Wegdifferenz berechnet werden aus  
+
+    \begin{eqnarray*}
+      \Delta s_{\text{max}} & = & \overline{R_1 S_2} - \overline{R_1 S_1} \\
+			    & = & \overline{R_2 S_1} - \overline{R_1 S_1} \\
+			    & = & b \cdot \sin \vartheta, 
+    \end{eqnarray*}
+    wobei $b$ die Quellenbreite und $\theta$ der Winkel zwischen der Verbindungslinie und der Senkrechten zur Quelle ist. Aus der Definition des $\sin$ ergibt sich $\sin \theta = \frac{d/2}{D}$ und damit
+    \begin{equation}
+      \Delta s_{\text{max}} = b \cdot \frac{d}{2D}.
+    \end{equation}
+    Wenn die maximale Wegdifferenz die halbe Wellenl\"ange ($\frac{\lambda}{2}$) \"ubersteigt, kann bei einer statistischen Emission die Phasendifferenz um mehr als $\pi$ schwanken ($\Delta \phi = \phi(S_1) - \phi(S_2) = \frac{2 \pi}{\lambda} \cdot \Delta s$), womit kein zeitlich konstantes Interferenzmuster mehr m\"oglich ist (siehe Koh\"arenz).
+
+    Es ergibt sich also f\"ur die Beobachtung eines Interferenzmusters folgende Bedingung:
+
+    \begin{eqnarray*}
+      & \Delta s_{\text{max}} & = \frac{bd}{2D} < \frac{\lambda}{2} \\
+      \Rightarrow & \frac{d}{\lambda}  & <\frac{D}{b}.
+    \end{eqnarray*}
+
+    \textbf{Der maximale Spaltabstand in Einheiten der Wellenl\"ange muss also kleiner sein als der Abstand zwischen Quelle und Spalten in Einheiten der Ausdehnung der Lichtquelle.}
+      
+    Um Interferenzmuster sichtbar zu machen, hat man also folgende M\"oglichkeiten:
+
+    \begin{itemize}
+     \item Eine Lichtquelle mit einer sehr kleinen Ausdehnung w\"ahlen
+     \item Den Abstand zwischen den Spalten und der Lichtquelle m\"oglichst gro\ss{} w\"ahlen
+     \item Die Wellenl\"ange des Lichtes m\"oglichst gro\ss{} w\"ahlen
+     \item Den Spaltabstand m\"oglichst klein w\"ahlen
+    \end{itemize}
+
+    Wenn eine (oder mehrere) dieser Bedingungen erf\"ullt ist, kann man auf dem Schirm Interferenzmuster beobachten. Um zu erkl\"aren, wie diese aussehen, muss man sich \"uberlegen, was mit dem Licht passiert, sobald es die Spalte passiert hat.
+
+    \begin{center}
+	  \MUGraphicsSolo{Doppelspalt_vorne_t.png}{scale=0.15}{width:700px}
+    \end{center}
+
+    Da man nun von koh\"arentem Licht ausgehen kann, betrachtet man den Gangunterschied der von den einzelnen Spalten erzeugten Teilwellen, da dieser f\"ur die Phasendifferenz verantwortlich ist. Der Gangunterschied ergibt sich aus geometrischen Betrachtungen f\"ur kleine Winkel zu
+    
+    \begin{eqnarray*}
+      \Delta s = d \cdot \sin \theta_m \approx  d \cdot \theta_m,
+    \end{eqnarray*}
+    wobei $\theta_m$ der Winkel zwischen dem Lot zum zweiten Strahl und der Verbindungsgerade der Spalte ist.
+    
+    Da sich der Winkel $\theta_m$ zwischen der Verbindungslinie des Mittelpunktes der Spalte mit dem Mittelpunkt des Schirmes $O$ und der Verbindungslinie des Mittelpunktes der Spalte mit dem Punkt $P$ wiederholt, kann die Entfernung des Punktes $P$ vom Mittelpunkt des Schirmes $O$ ausgedr\"uckt werden als
+
+   \begin{eqnarray*}
+      y_m = s \cdot \tan  \theta_m,
+   \end{eqnarray*}
+   wobei $s$ die Entfernung der Spalte vom Schirm ist. F\"ur kleine Winkel kann dies gen\"ahert werden durch:
+   \begin{eqnarray*}
+      y_m \approx s \cdot \theta_m.
+    \end{eqnarray*}
+    Damit ergibt sich der Gangunterschied der beiden Strahlen zu
+    \begin{eqnarray*}
+      \Delta s \approx d \cdot \frac{y_m}{s}.
+    \end{eqnarray*}
+    Mit diesem Ergebnis kann man auf das sich ergebende Muster auf dem Schirm zur\"uckschlie\ss{}en. 
+  
+    Je nach Gangunterschied der beiden Strahlen \"andert sich das Interferenzverhalten. Da der Gangunterschied von der Position auf dem Schirm abh\"angt, kann davon ausgegangen werden, dass auf dem Schirm unterschiedlich helle Regionen entstehen: Im Falle der konstruktiven Interferenz werden helle Stellen erwartet, im Falle der destruktiven Interferenz dunkle Stellen. Auf dem Schirm wechseln sich also mehrere helle Streifen mit mehreren dunklen ab. Wo die hellen Streifen zu sehen sind, kann mittels der Bedingung f\"ur konstruktive Interferenz berechnet werden: Konstruktive Interferenz tritt auf, wenn der Gangunterschied der Strahlen ein Vielfaches der Wellenl\"ange ist, also f\"ur
+
+    $$
+      \Delta s  = m \cdot \lambda.
+    $$
+
+    Setzt man diese Bedingung in das Ergebnis f\"ur den Gangunterschied ein, erh\"alt man eine Positionsangabe f\"ur den $m$-ten Lichtstreifen:
+
+    $$
+      y_m = \frac{s}{d} \cdot m \cdot \lambda.
+    $$
+
+    Es stellt sich die Frage, ob die Streifen immer im gleichen Abstand voneinander auftreten oder ob der Abstand variiert. Dazu berechnet man den Abstand zwischen zwei benachbarten Streifen:
+
+    \begin{eqnarray*}
+      y_{m+1} - y_m & \approx  \frac{s}{d} \cdot \left( m +1 \right) \cdot \lambda -  \frac{s}{d} \cdot m \cdot \lambda \\
+		    & = \frac{s}{d} \cdot \lambda,
+    \end{eqnarray*}
+   
+    der Abstand variiert also nicht. Mit der Bedingung f\"ur destruktive Interferenz kann analog die Lage der dunklen Streifen berechnet werden.
+
+    $$
+      y_{m, \text{min}} = \frac{s}{d} \cdot \left( m + \frac{1}{2} \right) \cdot \lambda.
+    $$
+
+    Was man auf dem Bildschirm sieht, ist also Folgendes: Es ergibt sich ein Streifenmuster mit $m$ Streifen, die immer den gleichen Abstand voneinander haben. Dieser ist proportional zur Entfernung des Schirmes von dem Spalt und der Wellenl\"ange des Lichtes und umgekehrt proportional zum Spaltabstand. %Um ein vern\"unftiges Interferenzmuster zu sehen muss man also den Spaltabstand m\"oglichst klein und die Entfernung der Spalte zum Schirm m\"oglichst gro\ss{} W\"ahlen (bei der Wellenl\"ange hat man bei einem festen Versuchsaufbau in der Regel nicht so gro\ss{}e Variationsm\"oglichkeiten. )  
+    
+    \begin{center}
+	\MUGraphicsSolo{Doppelspalt_Beugungsbild.png}{scale=1}{width:700px}
+    \end{center} 
+\end{MExperiment}
+
+\begin{MExperiment}
+  \textbf{Gitter:}
+   Ordnet man nicht zwei Spalte, sondern $N$ Spalte parallel an, entsteht ein Gitter. Ein Gitter ist also eine (quasi-)periodische Struktur, deren Ausdehnung in der Gr\"o\ss{}enordnung der Wellenl\"ange liegt.
+
+     \begin{center}
+	  \MUGraphicsSolo{Gitter.png}{scale=0.15}{width:700px}
+    \end{center}
+  An einem Gitter werden zuerst viele kleine Lichtb\"undel gebeugt, die sich dann hinter dem Gitter \"uberlagern. Die st\"arksten Interferenzerscheinungen entstehen dabei zwischen Lichtb\"undeln aus zwei benachbarten Spalten. Darum ist zu erwarten, dass sich die Hauptmaxima des entstehenden Interferenzmusters etwa an den gleichen Stellen befinden, wie beim Doppelspalt: 
+
+   $$
+      \Delta s = d \cdot \sin \theta = m \cdot \lambda.
+   $$
+
+
+  Die Intensit\"atsverteilung sieht jedoch ein bisschen anders aus. Sie wird durch zwei Faktoren beeinflusst:
+  
+  \begin{enumerate}
+   \item Die Interferenz zwischen den Lichtb\"undeln kann behandelt werden wie die Interferenz von mehreren Sendern gleicher Parameter. Diese weist folgende 		Proportionalit\"at auf:
+	$$
+	  I \propto \frac{\sin^2\left(N \pi \frac{d}{\lambda} \cdot \sin \theta \right)}{\sin^2 \left(\pi \frac{d}{\lambda} \cdot \sin \theta \right)}.
+	$$
+    \item Zus\"atzlich werden alle Lichtb\"undel an den Spalten gebeugt. Die Intensit\"atsverteilung muss also noch zus\"atzlich proportional zu
+      $$
+	\frac{\sin^2 \left( \pi \frac{b}{\lambda} \cdot \sin \theta \right)}{\left(\pi \cdot \frac{b}{\lambda} \cdot \sin \theta\right)^2}
+      $$
+      sein.
+  \end{enumerate}
+  Insgesamt sieht die Intensit\"atsverteilung also folgenderma\ss{}en aus:
+
+  \begin{equation}
+    I \propto A_S^2  \cdot \frac{\sin^2\left(\pi \frac{b}{\lambda}\cdot \sin \theta\right)}{\left(\pi \frac{b}{\lambda}\cdot \sin \theta\right)^2}
+      \cdot \frac{\sin^2\left(N \pi \frac{d}{\lambda}\cdot \sin \theta\right)}{\sin^2\left(\pi \frac{d}{\lambda}\cdot \sin \theta\right)}.
+  \end{equation}
+  
+   Im Folgenden ist exemplarisch f\"ur ein Gitter mit 8 Spalten und ein Abstand-zu-Spaltbreite-Verh\"altnis $\frac{d}{b} = \frac{3}{2}$ eine solche Intensit\"atsverteilung  gezeigt:
+   \begin{center}
+	  \MUGraphicsSolo{Interferenz_Gitter.png}{scale=0.15}{width:700px}
+    \end{center}
+   Zus\"atzlich ist $N^2 \cdot \frac{\sin^2 \left( \pi \frac{b}{\lambda} \cdot \sin \theta \right)}{\left(\pi \cdot \frac{b}{\lambda} \cdot \sin \theta\right)^2}$ abgebildet, was man als den Effekt, der sich aus der Beugung ergibt, interpretieren kann. Man sieht, dass die Intensit\"at der Hauptmaxima im Wesentlichen von der Beugung bestimmt wird. Die h\"ochste beobachtbare Ordnung ergibt sich aus dem Verh\"altnis zwischen der Entfernung zweier Spalte und der Wellenl\"ange, aus der Beschr\"ankung der Sinus-Funktion:
+  
+  \begin{equation}
+    m_{\text{max}} = \frac{d}{\lambda}.
+  \end{equation}
+
+  Je gr\"o\ss{}er der Abstand gew\"ahlt wird, desto mehr Hauptmaxima ergeben sich auf kleinstem Raum. Darum sind f\"ur Gitter gro\ss{}er Gitterkonstante $d$ Interferenzmuster mit dem blo\ss{}en Auge nicht mehr erkennbar.
+
+  Bei $N$ Spalten ergeben sich zwischen zwei Hauptmaxima zus\"atzlich $N-2$ Nebenmaxima. Diese entstehen an Stellen, an denen $\sin\left( \pi \frac{d}{\lambda} \cdot \sin(\Theta) \right) = 1$ und der Rest ungleich Null ist. 
+
+  Die Intensit\"at der Nebenmaxima ist proportional zu $\frac{1}{N^2}$. Darum sind f\"ur gro\ss{}e $N$ die Nebenmaxima ab einem gewissen Punkt nicht mehr wahrnehmbar und darum zu vernachl\"assigen.
+  
+\end{MExperiment}
+\end{MXContent}
+
+\begin{MXContent}{Aufgaben}{Übungen}{genetisch}
+  \begin{MExercise}
+      
+      Zwei enge Spalte werden mit Licht der Wellenl\"ange 589~nm beleuchtet, und auf einem 3~m weit entfernten Schirm werden 28 helle Streifen pro Zentimeter beobachtet. Welchen Abstand haben die Spalte?
+
+      \begin{MHint}{L\"osung}
+	Die Abst\"ande der Streifen f\"ur $m$ und $m+1$ von der Mitte des Schirms aus gemessen sind
+	
+	\begin{eqnarray*}
+	  y_m & = & m \frac{\lambda l}{d},\\
+	  y_{m+1} & = & \left(m +1 \right)\frac{\lambda l}{d},\\
+	\end{eqnarray*}
+
+	wobei $d$ der Spaltabstand und $l$ der Abstand vom Schirm ist.
+
+	\begin{eqnarray*}
+	  \Delta y & = & y_{m+1} - y_m\\
+		& = & \frac{\lambda l}{d}\\
+	\end{eqnarray*}
+
+	Da die Menge der Streifen pro L\"angeneinheit der Kehrwert von $\Delta y$ ist, gilt damit:
+
+	$$
+	  d = \frac{\lambda l}{\Delta y} = n \cdot \lambda \cdot l = 4,{}95\text{~mm.}
+	$$
+
+      \end{MHint}
+
+    \end{MExercise}
+
+     \begin{MExercise}
+      
+      Zwei enge Spalte haben voneinander den Abstand $d$. Das Interferenzmuster wird auf einem Schirm beobachtet, der den Abstand $l$ von den Spalten hat.
+
+      a.) Berechnen Sie den Abstand $\Delta y$ der Maxima auf dem Schirm f\"ur $\lambda$ $=$ $500$~nm und $d$ $=$ $1$~cm sowie $l$ $=$ $1$~m.
+
+	\begin{MHint}{L\"osung}
+	  Die Abst\"ande der Streifen f\"ur $m$ und $m+1$ von der Mitte des Schirms aus sind
+  
+	  $$
+	    y_m = m \frac{\lambda l}{d}
+	  $$
+
+	  und
+
+	  $$
+	    y_{m+1} = \left(  m +1 \right) \frac{\lambda l}{d}.
+	  $$
+
+	  Die Differenz zwischen diesen beiden Entfernungen ist
+
+	  $$
+	    \Delta y =  y_{m+1} - y_m = \frac{\lambda l}{d} = \frac{500 \cdot 10^-9\text{~m} \cdot 1\text{~m}}{10 \cdot 10^-2\text{~m}} = 50,{}0 \text{~$\mu$m}.
+	  $$
+
+	\end{MHint}
+
+      b.) Erwarten Sie unter diesen Bedingungen \"uberhaupt ein Interferenzmuster, das mit blo\ss{}em Auge auf dem Schirm zu erkennen ist? 
+
+	  \begin{MHint}{L\"osung}
+	    Mit der L\"osung aus Aufgabenteil a.) ist der Abstand zwischen den Streifen so gering, dass mit dem blo\ss{}en Auge kein Interferenzmuster mehr zu erkennen ist. 
+	  \end{MHint}
+
+      c.) Wie dicht m\"ussen die Spalte beieinander sein, damit unter sonst gleichen Bedingungen die Interferenzmaxima auf dem Schirm den Abstand 1~mm haben?
+	  \begin{MHint}{L\"osung}
+
+	    Die in a.) hergeleitete Formel kann nach $d$ umgeformt werden:
+
+	    $$
+	      d = \frac{\lambda l }{\Delta y} =  \frac{500 \text{~nm} \cdot 1\text{~m}}{1\text{~mm}} = 0,{}500 \text{~mm}.
+	    $$
+
+	  \end{MHint}
+
+    \end{MExercise}
+
+
+    \begin{MExercise}
+      
+      Mit einem Beugungsgitter, das 2000 Linien pro Zentimeter aufweist, sollen die Wellenl\"angen der Strahlung von angeregtem Wasserstoffgas gemessen werden. Bei welchen Winkeln $\alpha$ erwarten Sie die ersten beiden violetten Linien mit den Wellenl\"angen 434~nm und 410~nm.
+
+      \begin{MHint}{L\"osung}
+	Die Interferenenzmaxima im Beugungsmuster erscheinen bei Winkeln $\theta$, f\"ur die gilt
+
+	$$
+	  d \sin \theta = m \lambda,
+	$$
+      
+	wobei $d$ der Abstand der Spalte (Gitterkonstante) ist. Die Anzahl der Spalte pro Zentimeter ist gegeben durch $n = \frac{1}{d} = 2000 \frac{1}{\text{cm}}$. Damit ergibt sich f\"ur die Winkel der Maxima
+
+	$$
+	  \theta_m^{\text{max}} = \arcsin \frac{m \lambda}{d} = \arcsin \left( m n \lambda \right)
+	$$
+
+
+	F\"ur das erste Maximum mit $m = 1$ erh\"alt man somit f\"ur $\lambda = 434$~nm
+
+	$$
+	  \alpha_1^{\text{max}} = 4,{}9^{\circ}
+	$$
+
+	und f\"ur $\lambda = 410~nm$
+
+	$$
+	  \alpha_1^{\text{max}} = 4,{}7^{\circ}.
+	$$
+
+      \end{MHint}
+
+    \end{MExercise}
+
+    Quelle: \glqq Physik f\"ur Wissenschaftler und Ingenieure\grqq, Paul A. Tipler, Gene Mosca
+
+    \begin{MExercise}
+      Wei\ss{}es Licht mit $\lambda_{\text{min}} = $ $380$~nm und $\lambda_{\text{max}} = $ $760$~nm f\"allt senkrecht auf ein Gitter mit 1000 Spalten pro mm. Hinter dem Gitter steht parallel dazu im Abstand $l=1$~m ein Schirm.
+     
+      a.) Welche Abst\"ande $y_1$ und $y_2$ haben die zwei R\"ander der Interferenzmaximums erster Ordnung von der Interferenzlinie nullter Ordnung auf dem Schirm? 
+      \begin{MHint}{L\"osung}
+	Es befinden sich 1000 Spalte auf 1~mm, die Gitterkonstante ist also
+
+	$$
+	  b = \frac{1\text{~mm}}{1000} = 1000\text{~nm}.
+	$$
+    
+	Wei\ss{}es Licht enth\"alt alle Wellenl\"angen zwischen 380~nm (violett) und 760~nm (rot). Im Interferenzmaximum nullter Ordnung treffen alle Farben auf der Stelle $y = 0$ unter dem Winkel $\alpha = 0$ zusammen. Hier ist also nach wie vor wei\ss{}es Licht zu sehen.
+
+	Im Interferenzmaximum erster Ordnung wird das wei\ss{}e Licht aufgespalten. Die unterschiedlichen Farben befinden sich im Bereich zwischen den Winkeln $\alpha_1$ und $\alpha_2$ mit      
+    
+	\begin{eqnarray*}
+	  & \sin \alpha_1 & = \frac{380\text{~nm}}{1000\text{~nm}} = 0,{}38\\
+	  \Rightarrow & \alpha _1 \approx 22,{}33^{\circ}
+	\end{eqnarray*}
+
+	 und
+  
+	\begin{eqnarray*}
+	  & \sin \alpha_2 & = \frac{760\text{~nm}}{1000\text{~nm}} = 0,76\\
+	  \Rightarrow & \alpha _2 \approx 49,{}46^{\circ}.
+	\end{eqnarray*}
+
+      \end{MHint}
+
+      
+      b.) Kann das Spektrum 2. Ordnung (alle sichtbaren Wellenl\"angen f\"ur $m = 2$) vollst\"andig im Winkelbereich $0^{\circ} \leq \alpha \leq 90^{\circ}$ beobachtet werden? Wenn nein, wie gro\ss{} ist die Wellenl\"ange $\lambda_{\text{max}}$, f\"ur die $\alpha_2^{\text{max}} \leq 90^{\circ}$ ist?
+
+      \begin{MHint}{L\"osung}
+	Es gilt
+
+	\begin{eqnarray*}
+	  & \sin \alpha_2^{\text{max}} &= \frac{2 \lambda}{d}.
+	\end{eqnarray*}
+
+	Wenn $\alpha \leq 90^{\circ}$ sein soll, hei\ss{}t das, dass $\sin\alpha_2^{\text{max}} \leq 1$ sein muss, also:
+
+	\begin{eqnarray*}
+	  & 1 & \geq \frac{2 \lambda}{d}\\
+	  \Rightarrow & \frac{d}{2} & = 500\text{nm} = \lambda_{\text{max}} \geq \lambda,
+	\end{eqnarray*}
+
+	es kann also nicht mehr das gesamte Spektrum gesehen werden, sondern nur alles, was eine kleinere Wellenl\"ange als 500~nm besitzt (violett bis gr\"un).
+      \end{MHint}
+    \end{MExercise}
+
+    Quelle: \glqq Physik f\"ur Ingenieure\grqq, Friedhelm Kuypers
+
+
+   % \begin{MExercise}
+   %   
+   %  Das Spektrum von Neon weist im sichtbaren Bereich au\ss{}ergew\"ohnlich viele Linien auf. Zwei dieser zahlreichen Linien haben die Wellenl\"angen 519,313~nm und 519,322~nm. Das Licht einer Neonentladungslampe f\"allt senkrecht auf ein Transmissionsgitter mit 8400 Linien pro Zentimeter, und es wird das Spektrum 2. Ordnung betrachtet. Wie breit muss die beleuchtete Fl\"ache des Gitters sein, damit die beiden erw\"ahnten Linien noch aufzul\"osen sind?
+%
+ %     \begin{MHint}{L\"osung}
+%	Die notwendige Breite $b$ der Gitterfl\"ache ist das Produkt aus der Gitterkonstante $g$ und der Gesamtzahl der im Gitter enthaltenen Spalte: 
+%
+%	$$
+%	  b = N \cdot g.
+%	$$
+%
+%	Das Aufl\"osungsverm\"ogen ist
+%
+%	$$
+%	  \frac{\lambda}{\left| \Delta \lambda \right| } = m \cdot N.
+%	$$
+%
+%	Als Wellenl\"ange $\lambda$ w\"ahlen wir das arithmetische Mittel der gegebenen Wellenl\"angen. Mit $m= 2$ ergibt sich dann
+%
+%	$$
+%	  b = \frac{\lambda g}{\left| \Delta \lambda \right|  } = 3,43 \text{~cm.}
+%	$$
+%
+ %     \end{MHint}
+%
+ %   \end{MExercise}
+
+
+    \begin{MExercise}
+      
+      Ein Beugungsgitter hat $n$ Linien pro L\"angeneinheit. Zeigen Sie, dass die Winkeldifferenz zweier Linien mit den Wellenl\"angen $\lambda$ und $\lambda + \Delta \lambda$ n\"aherungsweise durch
+
+      $$
+	\Delta \theta = \frac{\Delta \lambda}{\sqrt{\frac{1}{n^2 m^2} - \lambda^2}}
+      $$
+
+      gegeben ist, wobei $m$ die Ordnung und $n$ die Anzahl der Gitter pro Zentimeter ist.
+
+      \begin{MHint}{Tipp}
+	Leiten Sie die Maximumsbedingung nach der Wellenl\"ange ab und ersetzen Sie die Gitterkonstante $d$ durch $\frac{1}{n}$.
+      \end{MHint}
+
+      \begin{MHint}{Tipp}
+	In kleinen Wellenl\"angenbereichen k\"onnen die Differentiale $\MD \lambda$ und $\MD \theta$ durch die Differenzen $\Delta \lambda$ und $\Delta \theta$ angen\"ahert werden.
+      \end{MHint}
+
+      \begin{MHint}{Tipp}
+	$$
+	  \sin^2 \theta + \cos^2 \theta = 1
+	$$
+      \end{MHint}
+
+      \begin{MHint}{Tipp}
+	Sie k\"onnen den Sinus in der hergeleiteten Gleichung nochmals durch die Maximumsbedingung ersetzen, um den Winkel $\theta$ endg\"ultig aus der Gleichung zu eliminieren.
+      \end{MHint}
+
+      \begin{MHint}{L\"osung}
+
+      Mit der Gitterkonstante $d$ gilt f\"ur den Winkel $\theta$ der Interferenzmaxima beim Gitter 
+    
+      $$
+	d \sin \theta = m \lambda. 
+      $$
+
+      Leitet man diesen Ausdruck nach $\lambda$ ab, erh\"alt man
+
+      \begin{eqnarray*}
+	& \frac{\MD}{\MD \lambda} \left( d \sin \theta \right) & = \frac{\MD}{\MD \lambda} \left( m \lambda \right)\\
+	\Rightarrow & d \frac{\MD \theta}{\MD \lambda} \cos \theta = m.
+      \end{eqnarray*}
+
+      Ersetzt man die Gitterkonstante, durch die Anzahl der Striche pro L\"angeneinheit $d = \frac{1}{n}$, erh\"alt man
+
+      $$	
+	 \frac{\MD \theta}{\MD \lambda} \cos \theta = n m.
+      $$
+	
+      In dem gegebenen kleinen Wellenl\"angenbereich, k\"onnen die Differentiale durch die Differenzen angen\"ahert werden:
+      
+      $$	
+	 \frac{\Delta \theta}{\Delta \lambda} \cos \theta = n m,
+      $$
+
+      aufgel\"ost nach der Winkeldifferenz ergibt sich
+
+      $$
+	\Delta \theta = \frac{n m \Delta \lambda}{\cos \theta} = \frac{n m \Delta \lambda}{\sqrt{1 - \sin^2 \theta}}.
+      $$
+
+
+      Schaut man sich nun wieder die urspr\"ungliche Gleichung an, erh\"alt man $\sin \alpha = n m \lambda$. Setzt man diesen Ausdruck in die hergeleitete Gleichung f\"ur die Winkeldifferenz ein, erh\"alt man
+      \begin{eqnarray*}
+	\Delta \alpha & = & \frac{n m \Delta \lambda}{\sqrt{1 - n^2 m ^2 \lambda^2}} \\
+		      & = & \frac{\Delta \lambda}{\frac{1}{nm} \sqrt{1 - n^2 m^2 \lambda^2}} \\
+		      & = & \frac{\Delta \lambda}{\sqrt{\frac{1 - n^2 m^2 \lambda^2}{n^2 m^2}}} \\
+		      & = & \frac{\Delta \lambda}{\sqrt{\frac{1}{n^2 m^2} - \lambda^2}}. \\
+      \end{eqnarray*}
+
+      \end{MHint}
+
+    \end{MExercise}
+
+    Quelle: \glqq Physik f\"ur Wissenschaftler und Ingenieure\grqq, Paul A. Tipler, Gene Mosca
+\end{MXContent}
+
+
+
+
+  \MSubsection{Streuung}
+
+    \begin{MXContent}{Warum ist der Himmel blau?}{Streuung}{STD}
+ Die Frage warum der Himmel blau ist, obwohl der Hintergrund des Alls schwarz erscheint, beantwortet uns das Ph\"anomen der Streuung. Erfahrene Bergsteiger wissen, dass auf den Gipfeln des Himalaja der Himmel sogar eher dunkelviolett erscheint. Auch diese Beobachtung kann mit Hilfe der Streuung erkl\"art werden.
+
+Die Atmosph\"are setzt sich im Wesentlichen aus Stickstoff und Sauerstoff zusammen, die beide durchsichtig sind. Ein Lichtteilchen kann beim Durchqueren der Atmosph\"are seine Energie an die Stickstoff- oder Sauerstoffmolek\"ule abgeben und so die Elektronen in deren H\"ulle zum Schwingen anregen. So kann jedes Molek\"ul als kleiner Oszillator angesehen werden. Nachdem das Elektron in der H\"ulle zum Schwingen angeregt wurde, sendet es wiederum Licht (mit derselben Frequenz) aus und verliert so die Energie wieder. Da die Molek\"ule in der Atmosph\"are zuf\"allig verteilt sind, findet eine solche Lichtaussendung in alle erdenkliche Richtungen statt.
+
+Streuprozesse sind abh\"angig von der Menge des Gases und dem Stoff, aus dem sich das Gas zusammensetzt. Da die Mini-Oszillatoren st\"arker reagieren je n\"aher die  Frequenz des gestreuten Lichts an die Resonanzfrequenz der Molek\"ule herankommt, wird Licht mit einer Freuqenz nahe der Resonanzfrequentz am st\"arksten gestreut. Die Resonanzfrequenzen von Stickstoff und Sauerstoff liegen im ultravioletten Bereich. Darum wird violettes Licht am st\"arksten gestreut. Ein solch ein Gasgemisch durchdringender Strahl hat einen sehr starken Rot- und Gr\"unanteil, w\"ahrend das wahrzunehmende Streulicht einen sehr starken Violett- und Blauanteil hat. Darum ist auf der Erde ein blauer Himmel und eine gelbe Sonne wahrzunehmen. Auf dem Saturn-Mond Titan hingegen, dessen Atmosph\"are sich haupts\"achlich aus Stickstoff (ohne Sauerstoff), Argon und Methan zusammensetzt, ist ein orange-farbener Himmel zu beobachten, da sich hier das Methan im oberen Teil der Atmosph\"are sammelt.
+
+\begin{center}
+  \MUGraphicsSolo{Streulicht_Luft.png}{scale=0.15}{width:700px}
+\end{center}
+
+Rayleigh fand empirisch heraus, dass die Intensit\"at des Streulichtes antiproportional zu $\lambda^4$ ist:
+
+\begin{equation}
+  I_{\text{Streulicht}} \propto \frac{1}{\lambda^4}.
+\end{equation}
+
+So gilt f\"ur die beiden Randfrequenzen des sichtbaren Lichts:
+
+\begin{center}
+  \begin{tabular}{|c|c|c|}
+   \hline
+    Farbe & Wellenl\"ange & $\frac{1}{\lambda^4}$\\
+    \hline
+    \hline
+     rot & 680~nm & 4,677$\cdot$10$^{-12}$ \\
+     violett & 400~nm & 3,906$\cdot$10$^{-11}$ \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Die Intensit\"at von violettem Streulicht ist also um einen Faktor 10 gr\"o\ss{}er als bei rotem Streulicht.
+
+Damit k\"onnen wir unsere Frage nach dem blauen Himmel beantworten: Das Licht legt in der Atmosph\"are einen Weg zur\"uck. Je l\"anger dieser Weg ist desto gr\"o\ss{}er ist speziell f\"ur violettes bis blaues Licht die Wahrscheinlichkeit f\"ur eine Streuung. Darum ist, wenn das Licht bei uns ankommt, der Gro\ss{}teil aller Violett- und Blaunuancen gestreut. Dies \"au\ss{}ert sich so, dass man dieses Licht am gesamten Himmel verteil sieht. Die Reste des Lichtes, die die Atmosph\"are im Wesentlichen ungestreut durchdringen, \"uberlagern sich zu gelbem Licht (das wir hier als Sonne am blauen Himmel wahrnehmen). Auf dem Gipfel eines hohen Berges ist der zur\"uckgelegte Weg des Lichtes k\"urzer (und zus\"atzlich noch die Atmosph\"are im unteren Bereich dichter). Darum kommt auch ein Gro\ss{}teil des blauen Lichtes noch ungestreut an und das Streulicht scheint haupts\"achlich violett.
+
+Diese Erkl\"arung hat aber einen kleinen Haken: Da die Atmosph\"are im unteren Bereich eine sehr gro\ss{}e Dichte besitzt, m\"usste auch das von Objekten, wie hohen Bergen, reflektierte Licht stark gestreut werden und wir m\"ussten die Berge damit in einem roten Farbton wahrnehmen, was jedoch offensichtlich nicht der Fall ist. Somit ist unsere Erkl\"arung noch nicht ganz hinreichend.
+
+Dieses Ph\"anomen kann man sich durch Interferenz erkl\"aren: Die Elementarwellen, die von den Streuzentren der Atmosph\"are ausgehen, haben keine besondere Phasenbeziehung mehr, weshalb kein definiertes Interferenzmuster erwartet werden kann, wenn es sich um ein d\"unnes Gas handelt (d.h. wenn der Abstand zwischen den Molek\"ulen klein im Vergleich zur Wellenl\"ange ist). Manche der statistisch verteilten Phasen verhalten sich so, dass sie sich konstruktiv \"uberlagern, andere so, dass sie sich destruktiv \"uberlagern. Im Mittel \glqq heben sich die Interferenzmuster weg\grqq. Genau dies ist die Situation in der oberen Atmosph\"are. Hier findet somit haupts\"achlich die (ungest\"orte) Streuung des blauen Lichtes statt.
+
+Ist das Gas dichter (wie z.B. in Erdn\"ahe), kann man nicht mehr von einer zuf\"alligen Verteilung der Phasen ausgehen, weshalb es hier zu Interferenzerscheinungen kommt. Wegen der Asymmetrie des Strahls findet in Vorw\"artsrichtung haupts\"achlich konstruktive Interferenz statt, w\"ahrend Strahlen zur Seite hin haupts\"achlich destruktiv interferieren. Darum wird in einem homogenen, dichten Medium nur sehr wenig Licht seitlich oder r\"uckw\"arts gestreut (es geht also kein blaues Licht zur Seite hin weg). Dies kann man sich klar machen, wenn man sich \"uberlegt, dass der Abstand zwischen den Streuzentren kleiner ist als die Wellenl\"ange. Darum kann es bei der Streuung sehr oft zu Gangunterschieden von einer halben Wellenl\"ange und damit zu destruktiver Interferenz kommen. Im unteren Teil der Atmosph\"are kann sich das Licht also im Wesentlichen ungehindert fortpflanzen. So ist dann auch der Effekt zu erkl\"aren, dass das Licht im unteren Bereich der Atmosph\"are nicht mehr weiter gestreut wird.
+
+\begin{center}
+  \MUGraphicsSolo{Streulicht_Atmosphaere.png}{scale=0.15}{width:700px}
+\end{center}
+
+\end{MXContent}
+
+   
+    
+\end{document}

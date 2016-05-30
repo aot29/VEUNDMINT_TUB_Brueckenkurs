@@ -1,0 +1,1380 @@
+\input{mintmod.tex}
+
+\MPragma{MathSkip}
+
+\begin{document}
+
+\MSetSubject{\MINTPhysics}
+
+\MSection{Strahlenoptik}
+
+\begin{MSectionStart}
+\MLabel{VBKP09}
+
+Das Sehen ist einer der fünf essentiellen Sinne, die uns helfen, im Alltag zu bestehen. Unser Auge "`detektiert"' Licht, das von unserer Umgebung ausgeht, und sendet die gesammelten Informationen an das Gehirn weiter. Dort entsteht ein Bild, mit dessen Hilfe wir uns in der Welt zurechtfinden. Dennoch kann uns dieser Sinn gelegentlich auch täuschen. Unter bestimmten Umständen nehmen wir Bilder wahr, die nicht immer der Realität entsprechen müssen.
+
+Die \MEntry{Optik}{Optik} (griechisch opsis = "`das Sehen"') ist die \MEntry{Lehre vom Licht}{Lehre vom Licht} und beschäftigt sich als Solche mit der Ausbreitung von Licht und seiner Wechselwirkung mit Materie. In diesem Modul lernen wir das Licht und seine Eigenschaften kennen. Wir beschäftigen uns mit der Beschreibung von Licht und insbesondere mit seiner Ausbreitung in verschiedenen Medien. Dabei beschränken wir uns zunächst auf die sogenannte \MEntry{geometrische Optik}{Optik, geometrische}.
+
+%====================================================================================================================
+% Kapitel Inhalt
+Im einzelnen besch\"aftigen wir uns mit den folgenden Themen:
+\begin{itemize}
+\item Was ist Licht?
+\item Reflexion an Spiegeln
+\item Das Brechungsgesetz
+\item Linsen und Linsensysteme
+\end{itemize}
+%====================================================================================================================
+Die komplexere Wellenoptik ist Thema von Modul 10: "`Optik 2"'.
+%====================================================================================================================
+% Kapitel Literatur
+\ \\[0.5cm]
+Folgende (allgemeine) Lehrb\"ucher wurden als Quelle benutzt bzw. werden zum Vertiefen des Stoffes empfohlen:  
+\begin{itemize} 
+\item Physik, Paul A. Tipler \& Gene Mosca, Spektrum Akademischer Verlag, 2005
+\item Physik, David Halliday, Robert Resnick \& Jearl Walker, Wiley VCH, 2001
+\item Experimentalphysik II, Wolfgang Demtr\"oder, Springer Verlag, 2006
+\item Taschenbuch der Physik, Horst Kuchling, Fachbuchverlag Leipzig, 1999
+\end{itemize}
+%====================================================================================================================
+\end{MSectionStart}
+%====================================================================================================================
+
+%====================================================================================================================
+%====================================================================================================================
+%====================================================================================================================
+% Section Titel
+\MSubsection{Was ist Licht?}
+\MLabel{Physik_Optik1_Licht} 
+%====================================================================================================================
+% Kapitel Intro
+\begin{MIntro}
+Wir wollen zunächst beschreiben, welche Modelle die Physik verwendet, um Licht und seine Wechselwirkung mit seiner Umgebung zu beschreiben. Insbesondere sollen hier
+%
+\begin{itemize}
+\item die verschiedenen Arten, Licht zu beschreiben
+\item das Spektrum elektromagnetischer Strahlung
+\item die Grundlagen der Ausbreitung von Licht
+\end{itemize}
+%
+von Interesse sein.
+\end{MIntro}
+%====================================================================================================================
+
+%====================================================================================================================
+% Section Inhalt (Was ist Licht?)
+\begin{MContent}
+%====================================================================================================================
+
+In der Elektrodynamik ist (sichtbares) Licht ein Teil der \MEntry{elektromagnetischen Strahlung}{elektromagnetische Strahlung}\MEntry{}{Strahlung, elektromagnetische}, die sich als Lösung der sogenannten \MEntry{}{Maxwell-Gleichungen}\MEntry{quellfreien Maxwell-Gleichungen}{Maxwell-Gleichungen, quellfrei} ergibt. Hier wird Licht als \MEntry{Welle}{elektromagnetische Welle}\MEntry{}{Welle, elektromagnetische}, bei der elektrische und magnetische Felder senkrecht zur geradlinigen Ausbreitungsrichtung schwingen, beschrieben. Diese elektromagnetischen Wellen breiten sich im Vakuum mit der sogenannten \MEntry{Vakuum-Lichtgeschwindigkeit}{Lichtgeschwindigkeit} $c_{0}\,=\,1/\sqrt{\mu_{0}\epsilon_{0}}\,=\,2,99792458\cdot 10^{8}$~m/s aus, wobei $\mu_{0}$ und $\epsilon_{0}$ die magnetische bzw. elektrische Feldkonstante darstellen.
+%
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{em-spektrum.png}{width=0.9\linewidth}{width:90\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+%
+Ihre Ausbreitungsgeschwindigkeit in anderen durchsichtigen Medien beträgt $c\,=\,c_{0}/n$, wobei $n$ als Brechungsindex des Mediums bezeichnet wird. Zusätzlich kann man der elektromagnetischen Welle ihren Welleneigenschaften entsprechend eine \MEntry{Wellenlänge}{Wellenlänge} $\lambda$ zuordnen. Im sichtbaren Bereich (ca. $380$ bis $780$~nm) des elektromagnetischen Spektrums (siehe Abbildung) nehmen wir diese als \MEntry{Farbe des Lichts}{Farbe des Lichts} wahr. Wird ein Lichtstrahl aus Lichtwellen aller Farben zusammengesetzt, nehmen wir ihn als \MEntry{weißes Licht}{Licht, weiß} wahr.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Infobox_Welle}
+  Licht kann als elektromagnetische Welle beschrieben werden, der die \MEntry{Wellenlänge}{Wellenlänge} $\lambda$ zugeordnet wird. Dieser Wellenlänge entsprechend ordnet man die elektromagnetischen Wellen in ein Spektrum ein. Die Überlagerung von Licht aller Wellenlängen ergibt \MEntry{weißes Licht}{Licht, weiß}.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Der Nachweis der Wellennatur des Lichts wird in Modul 10 gegeben. Seine geradlinige Ausbreitung hingegen kann mit einfachen Schattenexperimenten nachvollzogen werden, die hier nicht weiter vorgestellt werden sollen.
+
+Zahlreiche Experimente zeigen, dass elektromagnetische Wellen auch Eigenschaften von massiven Teilchen besitzen können. Ein Beispiel dafür ist der \MEntry{photoelektrische Effekt}{photoelektrischer Effekt}, bei dem eine elektromagnetische Welle durch einen Stoßprozess ein Elektron aus einer leitenden Oberfläche herauslösen kann. Für die Beschreibung dieses Phänomens mit dem sogenannten \MEntry{Welle-Teilchen-Dualismus}{Welle-Teilchen-Dualismus} bekam Albert Einstein 1921 den Nobelpreis. Die nähere Beschreibung der zugrundeliegenden Prozesse würde an dieser Stelle zu weit führen und ist der Atomphysik und der Quantenmechanik überlassen.
+
+%-----------------------------------------------------------------------------
+% Ueberschrift
+\vspace{5mm}
+\textbf{Die Ausbreitung des Lichts}
+%-----------------------------------------------------------------------------
+
+In diesem Modul beschäftigen wir uns insbesondere mit der \MEntry{geometrischen Optik}{geometrische Optik}\MEntry{}{geometrische Optik, geometrische}, also der Beschreibung der Ausbreitung von Licht durch \MEntry{geradlinige Strahlen}{Strahlenoptik} (Strahlenoptik)\MEntry{}{Strahlenoptik}. Für einige Phänomene, die wir insbesondere bei der Brechung von Licht finden, müssen wir jedoch auf die Welleneigenschaften des Lichts zurückgreifen. Seine Ausbreitung wurde schon vor der elektromagnetischen Beschreibung durch Maxwells Gleichungen von zwei Theorien beschrieben. Der niederländische Physiker Christian Huygens (ca. 1678) beschrieb die Ausbreitung von Licht durch die Überlagerung von sogenannten Elementarwellen:
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Huygens}
+  Das \MEntry{Huygenssche Prinzip}{Huygenssches Prinzip} besagt, dass jeder Punkt eines Mediums, der von einer Wellenbewegung erfasst wird, zum Ausgangspunkt einer neuen Welle (\MEntry{Elementarwelle}{Elementarwelle}) wird. Die in jedem Punkt entstehenden Elementarwellen interferieren und bilden so eine beobachtbare gemeinsame \MEntry{Wellenfront}{Wellenfront}.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Diese Beschreibung werden wir in diesem Modul insbesondere zur Untersuchung der Lichtbrechung ausnutzen. Eine tiefere Untersuchung der Wellennatur des Lichts folgt erst in Modul 10. Eine weitere Theorie lieferte der französicher Mathematiker Pierre de Fermat:
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Fermat}
+  Der Weg des Lichts von Punkt A zu Punkt B ist so gewählt, dass die für den Weg benötigte Zeitspanne minimal ist. Dies ist als das \MEntry{Fermatsche Prinzip}{Fermatsches Prinzip} bekannt.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Auch diese Beschreibung werden wir zur Ableitung der Gesetze der Lichtbrechung verwenden. Beide Beschreibungen führen auf dasselbe Ergebnis. Insbesondere folgt aus Fermats Theorie des Lichts direkt, dass Licht sich in einem Medium mit dem Brechungsindex $n$ immer geradlinig ausbreitet. Diese Eigenschaft werden wir in diesem Modul in der geometrischen Optik ausnutzen, um die Phänomene der Reflexion und Brechung und die daraus folgenden Möglichkeiten, Objekte mithilfe von Spiegeln und Linsen abzubilden, zu untersuchen.
+
+%====================================================================================================================
+% Ende Section Inhalt (Was ist Licht?)
+\end{MContent}
+%====================================================================================================================
+
+%====================================================================================================================
+% Aufgaben (Was ist Licht?)
+%\begin{MExercises}
+%====================================================================================================================
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+%\begin{MExercise} 
+%  Aufgabentext
+
+%  \begin{MQuestionGroup}
+%    Optionale Lösung 1: \MLCheckbox{1}{DECCONVUXID_4C54DA25_0} 
+%    Optionale Lösung 2: \MLCheckbox{0}{DECCONVUXID_4C54DA25_1} 
+%    Optionale Lösung 3: \MLCheckbox{0}{DECCONVUXID_4C54DA25_2} 
+%  \end{MQuestionGroup}
+%  \MGroupButton{Kontrolle}
+
+
+%  \begin{MSolution}
+%    Lösungstext und Rechnung
+%  \end{MSolution}
+%\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%====================================================================================================================
+%\end{MExercises}
+%====================================================================================================================
+% Ende Aufgaben
+%====================================================================================================================
+% Ende Section (Was ist Licht?)
+%====================================================================================================================
+%====================================================================================================================
+%====================================================================================================================
+
+%====================================================================================================================
+%====================================================================================================================
+%====================================================================================================================
+% Section Titel
+\MSubsection{Reflexion an Spiegeln}
+\MLabel{Physik_Optik1_Reflexion} 
+%====================================================================================================================
+% Kapitel Intro
+\begin{MIntro}
+Die Reflexion ist einer der grundlegenden Prozesse, die bei der Ausbreitung von Licht und seiner Wechselwirkung mit Materie vorkommen. In technischen Anwendungen, z.B. von Spiegeln in einem Teleskop, wird sie ausgenutzt, um Abbildungen von verschiedenen Objekten zu erzeugen. Daher behandelt dieser Abschnitt die folgenden Inhalte:
+\begin{itemize}
+\item Das Reflexionsgesetz
+\item Optische Abbildungen mit ebenen Spiegeln
+\item Optische Abbildungen mit sphärischen Spiegeln
+\end{itemize}
+
+\end{MIntro}
+%====================================================================================================================
+
+%====================================================================================================================
+% Section Inhalt (Reflexion an Spiegeln)
+\begin{MContent}
+%====================================================================================================================
+
+%-----------------------------------------------------------------------------
+% Ueberschrift
+%\vspace{5mm}
+\textbf{Reflexion}\MEntry{}{Reflexion}
+%-----------------------------------------------------------------------------
+
+Fällt ein Lichtstrahl schräg auf eine reflektierende Oberfläche, so wird für die Beschreibung seiner weiteren Ausbreitung der Winkel $\theta$ zwischen dem Lichtstrahl und dem \MEntry{Lot}{Lot} (der Flächennormalen am Ort des Lichteinfalls), der sogenannte \MEntry{Einfallswinkel}{Einfallswinkel}, betrachtet. Die Ebene, die von der Flächennormalen und dem Lichtstrahl aufgespannt wird, wird als \MEntry{Einfallsebene}{Einfallsebene} bezeichnet. Der reflektierte Strahl befindet sich ebelfalls in der Einfallsebene. Er schließt mit dem Lot den Winkel $\theta'$ ein.
+
+Wie der Lichtstrahl seine Ausbreitungsrichtung an der reflektierenden Fläche ändert, lässt sich mithilfe des Fermatschen Prinzips verstehen. Wird der Lichtstrahl vom Punkt A über eine reflektierende Fläche zu Punkt B geschickt, lässt sich sein Weg in zwei Teile aufteilen. Beide Strecken sind geradlinig. Das Licht könnte auf verschiedenen Wegen von A nach B kommen. So könnte es beispielsweise zwischen dem roten gestrichelten Weg und dem durchgezogenen Weg wählen. (Hinzu kommen noch beliebig viele andere Möglichkeiten, die hier nicht angegeben sind.)
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{reflexion.png}{width=0.70\linewidth}{width:70\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Nach Fermat nimmt das Licht den Weg, auf dem es in der kürzesten Zeit von Punkt A zu Punkt B gelangen kann. Da es sich vor und nach der Reflexion mit derselben konstanten Geschwindigkeit ausbreitet, ist dies in diesem Fall mit der insgesamt kürzesten Strecke gleichzusetzen. Es lässt sich zeigen, dass $\theta\,=\,\theta'$ gilt.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Reflexionsgesetz}
+  Das \MEntry{Reflexionsgesetz}{Reflexionsgesetz} besagt, dass der Winkel, unter dem ein Lichtstrahl an einer reflektierenden Oberfläche reflektiert wird, seinem Einfallswinkel entspricht (\MEntry{Einfallswinkel}{Einfallswinkel} = \MEntry{Ausfallswinkel}{Ausfallswinkel} bzw. $\theta\,=\,\theta'$). Das Reflexionsgesetz gilt für Wellen aller Art.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Das Reflexionsgesetz lässt sich mathematisch ähnlich wie das weiter unten erklärte Brechungsgesetz herleiten. Das Vorgehen wird dort erläutert. Eine genaue Rechnung wird als Übungsaufgabe gestellt. Das Reflexionsgesetz folgt aus derselben Rechnung, wenn man anstelle der dort angenommenen Grenzfläche zwischen zwei Medien eine reflektierende Oberfläche annimmt und die Lichtgeschwindigkeiten in beiden Medien gleichsetzt.
+
+%-----------------------------------------------------------------------------
+% Ueberschrift
+%\vspace{5mm}
+\textbf{Optische Abbildungen mit ebenen Spiegeln}\MEntry{}{Abbildung, optische}\MEntry{}{optische Abbildung}\MEntry{}{ebener Spiegel}\MEntry{}{Spiegel, ebener}
+%-----------------------------------------------------------------------------
+
+Zur Konstruktion eines Bildes an einem ebenen Spiegel untersucht man die Lichtstrahlen, die von einem Punkt $P$, der an dem Spiegel abgebildet wird, ausgehen und auf den Spiegel treffen (siehe linke Abbildung, rote duchgezogene Linien). Sie setzen ihre Bahn gemäß dem Reflexionsgesetz so fort, als kämen sie vom Punkt $B$ (gestrichelte graue Linien).
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{ebener-spiegel-1.png}{width=0.35\linewidth}{width:35\%}\hspace{1cm}
+\MUGraphicsSolo{ebener-spiegel-2.png}{width=0.50\linewidth}{width:50\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Ein Beobachter (siehe rechtes Bild) kann nicht unterscheiden, ob die Lichtstrahlen, die ihn erreichen, am Spiegel reflektiert wurden oder wirklich vom Punkt $B$ stammen. Der Punkt $B$ wird als \MEntry{virtuelles Bild}{virtuelles Bild}\MEntry{}{Bild, virtuell} von $P$ bezeichnet, da keine "`echten"' Lichtstrahlen von ihm ausgehen. Man findet den Bildpunkt durch "`gedachte"' Verlängerungen der reflektierten Lichtstrahlen hinter den Spiegel. Befindet sich der Punkt $P$ im Abstand $p$ zum Spiegel, so erscheint das Bild $B$, als läge es im Abstand $b\,=\,p$ hinter dem Spiegel.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{ebener-spiegel-3.png}{width=0.40\linewidth}{width:40\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Die oben stehende Abbildung zeigt die Bildkonstruktion eines Gegenstandes der Höhe $G$, hier als Pfeil dargestellt, der sich im Abstand $g$ vor dem Spiegel befindet. Zur Konstruktion des Bildes des gesamten Gegenstandes, müssen die oben gefundenen Regeln für jeden Punkt des Gegenstandes angewendet werden. Man kann jedoch leicht sehen, dass die Untersuchung des Anfangs- und Endpunktes des Gegenstandes genügt, um seine Lage im Bild zu identifizieren.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Infobox_ebener_Spiegel}
+  Das \MEntry{virtuelle Bild}{virtuelles Bild} eines Gegenstandes in einem \MEntry{ebenen Spiegel}{ebener Spiegel}\MEntry{}{Spiegel, ebener} erscheint mit einer Höhe $B\,=\,G$ im Abstand $b\,=\,g$ hinter dem Spiegel. Es steht aufrecht, d.h. es liegt genau parallel zum Gegenstand.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+
+Ein vereinfachtes Vorgehen bei der Bildkonstruktion ist in der unten stehenden Abbildung dargestellt. Hier wird das Problem durch die Einführung einer sogenannten \MEntry{optischen Achse}{optische Achse} auf die Abbildung des Endpunktes des Gegenstandes reduziert. Die optische Achse liegt bei ebenen Spiegeln senkrecht zur Spiegeloberfläche. Die Lage des abzubildenden Gegenstandes wird so gewählt, dass er senkrecht auf der optischen Achse steht und sein Anfangspunkt auf der optischen Achse zu finden ist. Das Bild des Anfangspunktes liegt dann ebenfalls auf der optischen Achse.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{ebener-spiegel-4.png}{width=0.55\linewidth}{width:60\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Findet man nun das Bild des Endpunktes des Gegenstandes, kann man das Bild des Gegenstandes durch eine senkrechte Verbindung zur optischen Achse erstellen. Im Folgenden wird die optische Achse immer als Hilfsmittel zur Bildkonstruktion verwendet.
+
+%-----------------------------------------------------------------------------
+% Ueberschrift
+%\vspace{5mm}
+\textbf{Optische Abbildungen mit sphärischen Spiegeln}\MEntry{}{Abbildung, optische}\MEntry{}{optische Abbildung}\MEntry{}{sphärischer Spiegel}\MEntry{}{Spiegel, sphärischer}
+%-----------------------------------------------------------------------------
+
+Bei sphärisch (kugelförmig) gebogenen Spiegeln gilt das Reflexionsgesetz (Einfallswinkel = Ausfallswinkel) ebenso wie bei ebenen Spiegeln. Durch die Form des Spiegels ist die Anwendung dieses Gesetzes allerdings erschwert. Um die Konstruktion einer optischen Abbildung mit sphärischen Spiegeln leichter zu verstehen, definieren wir zunächst die optische Achse und untersuchen das Verhalten von speziell ausgewählten Lichtstrahlen bei der Reflexion an den beiden möglichen Formen eines sphärischen Spiegels.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Infobox_optische_Achse}
+  Die Symmetrieachse eines sphärischen Spiegels (oder auch einer Linse) bezeichnet man als \MEntry{optische Achse}{optische Achse}.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Man unterscheidet zwischen zwei Spiegeltypen: bei einem \MEntry{konkaven}{konkav} Spiegel (Hohlspiegel)\MEntry{}{Hohlspiegel} befindet sich der Krüm\-mungs\-mit\-tel\-punkt auf der reflektierenden Seite des Spiegels, während sich der Krüm\-mungs\-mit\-tel\-punkt bei einem \MEntry{konvexen}{konvex} Spiegel auf der nicht reflektierenden Seite befindet. Sie besitzen verschiedene Eigenschaften der optischen Abbildung und erzeugen so verschiedene Bilder.
+
+In den unten stehenden Abbildungen A und B untersuchen wir verschiedene Lichtstrahlen, die von einem Punkt $P$ auf der optischen Achse eines konkaven Spiegels ausgehen, dessen Krümmungsmittelpunkt sich im Punkt $M$ befindet. Abbildung A zeigt ein Strahlenbündel, das sich insbesondere noch nah an der optischen Achse befindet, wenn die Lichtstrahlen am Hohlspiegel reflektiert werden. Das Lot auf die Spiegeloberfläche (grau gestrichelte Linien) findet man, indem man eine Gerade von dem Ort, an dem ein Lichtstrahl auf den Spiegel trifft, zum Krümmungsmittelpunkt $M$ einzeichnet. Die Richtung, in die sich der reflektierte Strahl ausbreitet, findet man mit dem Reflexionsgesetz.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{kugelspiegel-halbkugel-1.png}{width=0.40\linewidth}{width:45\%}\hspace{0.5cm}
+\MUGraphicsSolo{kugelspiegel-halbkugel-2.png}{width=0.40\linewidth}{width:45\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Die reflektierten Strahlen in Abbildung A schneiden sich im Punkt $P'$. Ein Beobachter nimmt diese Lichtstrahlen wahr, als hätten sie ihren Ursprung in diesem Punkt. $P'$ wird das \MEntry{reelle Bild}{Bild, reelles}\MEntry{}{reelles Bild} von $P$ genannt, weil von ihm -- im Gegensatz zum virtuellen Bild -- tatsächlich Lichtstrahlen ausgehen. Man kann dieses Bild als Betrachter sehen, wenn man sich (in dieser Abbildung) links vom Bildpunkt $P'$ befindet und auf den Spiegel schaut. Ein \emph{reelles Bild} kann am Bildpunkt mit einem Fotofilm oder einem Halbleiterdetektor (z.B. Bildsensor einer Digitalkamera) aufgenommen werden. Ein \emph{virtuelles Bild} hingegen kann nicht aufgenommen werden, da von ihm selbst keine Lichtstrahlen ausgehen.
+
+Abbildung B zeigt die Grenzen auf, die der optischen Abbildung mit einem Hohlspiegel gesetzt sind. Hier untersuchen wir Lichtstrahlen, die in großer Entfernung von der optischen Achse auf den Spiegel treffen und dort reflektiert werden. Man sieht, dass diese Strahlen sich nicht mehr in einem Punkt schneiden, sondern sich dem Bildpunkt nur annähern. Dadurch wird das Bild unscharf. Dieser Effekt ist als \MEntry{sphärische Aberation}{sphärische Aberation}\MEntry{}{Aberation, sphärische} bekannt.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Infobox_Bild_Hohlspiegel}
+  Eine Bildkonstruktion ist bei einem Hohlspiegel nur für sogenannte \MEntry{achsennahe Lichtstrahlen}{achsennahe Lichtstrahlen}\MEntry{}{Lichtstrahlen, achsennah}, die fast parallel zur optischen Achse verlaufen, möglich. Um bei einem sphärischen Hohlspiegel eine gute Bildschärfe zu erhalten, werden die \MEntry{achsenfernen Lichtstrahlen}{achsenferne Lichtstrahlen}\MEntry{}{Lichtstrahlen, achsenfern} ausgeblendet.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Vorbereitend auf die Bildkontruktion von Gegenständen untersuchen wir nun das Verhalten einiger spezieller Lichtstrahlen bei der Reflexion an sphärischen Spiegeln. Dabei beginnen wir mit Lichtstrahlen, die parallel zur optischen Achse auf den Spiegel fallen (siehe Abbilung unten), den sogenannten \MEntry{Parallelstrahlen}{Parallelstrahl}. Das linke Bild zeigt dies für einen konkaven Spiegel.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Infobox_Hohlspiegel_Brennweite}
+  Parallel zur optischen Achse einfallende Lichtstrahlen (\MEntry{Parallelstrahlen}{Parallelstrahlen}) werden an der Spie\-gel\-oberfläche gemäß dem Reflexionsgesetz reflektiert und schneiden sich im \MEntry{Brennpunkt}{Brennpunkt} $F$. Seine Entfernung $f$ zum Spiegel entlang der optischen Achse wird \MEntry{Brennweite}{Brennweite, Hohlspiegel} genannt und ergibt sich bei einem sphärischen Spiegel zu
+  %
+  \begin{eqnarray*}
+  f\,=\,\frac{r}{2},
+  \end{eqnarray*}
+  %
+  wobei $r$ der Krümmungsradius des Hohlspiegels ist. Der Brennpunkt befindet sich zwischen Spiegel und Krümmungsmittelpunkt.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{kugelspiegel-brennpunkt-1.png}{width=0.45\linewidth}{width:70\%}
+\MUGraphicsSolo{kugelspiegel-brennpunkt-2.png}{width=0.45\linewidth}{width:70\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Brennpunkt und Brennweite eines konvexen Kugelspiegels (rechtes Bild) sind auf dieselbe Weise definiert. Auch hier findet sich der Brennpunkt in der Entfernung $f\,=\,r/2$ zur Spiegeloberfläche auf der optischen Achse zwischen Spiegel und Krümmungsmittelpunkt. Parallel zur optischen Achse einfallende Lichtstrahlen werden an dieser Art von Spiegel so reflektiert, als hätten sie ihren Ursprung im Brennpunkt (siehe grau gestrichelte Verlängerungen der reflektierten Lichtstrahlen).
+
+Neben der Untersuchung von Parallelstrahlen ist insbesondere die Untersuchung von \MEntry{Mittelpunktstrahlen}{Mittelpunktstrahl} und \MEntry{Scheitelpunktstrahlen}{Scheitelpunktstrahl} besonders einfach. Dies ist im folgenden Bild für einen konkaven (links) und einen konvexen (rechts) Kugelspiegel dargestellt. Dabei ist der Mittelpunktstrahl bei einem \emph{konkaven} Spiegel so definiert, dass er von dem abzubildenden Punkt ausgehend so zum Spiegel verläuft, als käme er aus dem Krümmungsmittelpunkt des Spiegels. Bei einem \emph{konvexen} Spiegel verläuft der Mittelpunktstrahl von einem abzubildenden Punkt in Richtung des Krüm\-mungs\-mit\-tel\-punk\-tes. Die Mittelpunktstrahlen werden in sich selbst reflektiert, werden also direkt zurück geworfen. Scheitelpunktstrahlen treffen auf den Spiegel am Schnittpunkt von Spiegel und optischer Achse und werden symmetrisch zur optischen Achse reflektiert.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{kugelspiegel-1.png}{width=0.45\linewidth}{width:70\%}
+\MUGraphicsSolo{kugelspiegel-2.png}{width=0.45\linewidth}{width:70\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Die Bildpunkte findet man jeweils im Schnittpunkt der reflektierten Strahlen. Da sich in diesen Beispielen die "`echten"' reflektierten Lichtstrahlen nicht treffen, betrachtet man ihre Verlängerungen (grau gestrichelte Linien) über die reflektierende Fläche der Spiegel hinaus. So findet man hier in beiden Fällen ein aufrecht stehendes virtuelles Bild. Bei sphärischen Spiegeln werden die Abstände des Gegenstandes bzw. des Bildes zum \emph{Scheitelpunkt} des Spiegels als \MEntry{Gegenstandsweite}{Gegenstandsweite} $g$ bzw. \MEntry{Bildweite}{Bildweite} $b$ bezeichnet. Wie diese Größen mit der \MEntry{Brennweite}{Brennweite} $f$ zusammenhängen, wird in der Abbildungsgleichung zusammengefasst:
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Infobox_Hohlspiegel_Abbildungsgleichung}
+  Die \MEntry{Abbildungsgleichung}{Abbildungsgleichung} für Kugelspiegel setzt Brennweite $f$, Gegenstandsweite $g$ und Bildweite $b$ in Beziehung zueinanander:
+  %
+  \begin{eqnarray*}
+  \frac{1}{g}\,+\,\frac{1}{b}\,=\,\frac{1}{f}
+  \end{eqnarray*}
+  %
+  Werden Gegenstands- und Brennweite (beides vor der Spiegelfläche) positiv gezählt, so findet man ein Bild mit positiver Bildweite (reelles Bild) ebenfalls vor dem Spiegel. Ein Bild mit negativer Bildweite (virtuelles Bild) befindet sich hinter dem Spiegel.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Die Herleitung der Abbildungsgleichung sollen Sie als eine der unten stehenden Aufgaben bearbeiten. Die Bildkonstruktion an sphärischen Spiegeln wird im Folgenden an einigen Beispielen mit Hilfe der vorgestellten ausgezeichneten Strahlen verdeutlicht.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{kugelspiegel-bildkonstruktion-konkav-1.png}{width=0.45\linewidth}{width:50\%}
+\MUGraphicsSolo{kugelspiegel-bildkonstruktion-konkav-2.png}{width=0.45\linewidth}{width:50\%}\\
+\MUGraphicsSolo{kugelspiegel-bildkonstruktion-konkav-3.png}{width=0.53\linewidth}{width:60\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Im Folgenden verwenden wir zur Konstruktion von Bildern an Spiegeln (ebenso bei Linsen) Lichtstrahlen, deren Weg nach der Reflexion bekannt und besonders einfach zu beschreiben ist. Dies sind insbesondere die oben beschriebenen Parallel-, Brennpunkt- und Scheitelpunktstrahlen.
+
+Die drei obigen Abbildungen (A) bis (C) zeigen die Enstehung des Bildes an einem konkaven Spiegel für drei verschiedene Fälle: Der Gegenstand ist weiter vom Scheitelpunkt entfernt als der Brennpunkt (A), der Gegenstand befindet sich zwischen Scheitelpunkt und Brennpunkt (B) und der Gegenstand befindet sich genau auf dem Brennpunkt (C). Das Vorgehen bei der Bildkonstruktion ist in allen Fällen dasselbe. Zur Auswahl stehen Mittelpunkt-, Brennpunkt-, Scheitelpunkt- und Parallelstrahl, die von der Spitze des abzubildenden Gegenstandes ausgehen. Meist genügt die Untersuchung von Zweien dieser Lichtstrahlen, deren Schnittpunkt die Lage des Bildpunktes bestimmt. So entsteht im Beispiel (A) ein reelles vergrößertes Bild, das auf dem Kopf steht. In Beispiel (B) hingegen erhält man ein aufrecht stehendes, vergrößertes, virtuelles Bild. Die Konfiguration, die in Beispiel (C) betrachtet wird, führt zu parallel verlaufenden reflektierten Lichtstrahlen. Diese besitzen keinen Schnittpunkt. Auch ihre gedachten Verlängerungen über die Spiegelfläche hinaus schneiden sich nicht. In diesem Fall kann man kein Bild finden.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Infobox_Hohlspiegel_Vergroesserung}
+  Als \MEntry{Vergrößerung}{Vergrößerung} (bzw. als \MEntry{Abbildungsmaßstab}{Abbildungsmaßstab}) $m$ ist das Verhältnis von Bildgröße $B$ zu Gegenstandsgröße $G$ definiert. Sie lässt sich mit Bild- und Gegenstandsweite berechnen:
+  %
+  \begin{eqnarray*}
+  m\,=\,\frac{B}{G}\,=\,-\frac{b}{g}
+  \end{eqnarray*}
+  %
+  Ein Bild mit positiver Vergrößerung entspricht in seiner Orientierung dem Gegenstand, während ein Bild mit negativer Vergrößerung im Vergleich zum Gegenstand auf dem Kopf steht.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Die Bildkonstruktion bei einem konvexen Kugelspiegel wird in den beiden folgenden Abbildungen (A) und (B) verdeutlicht. Auch hier werden die ausgezeichneten Strahlen untersucht. In Bild (A) werden Parallel- und Brennpunktstrahl verwendet, während in Abbildung (B) Mittelpunkt- und Scheitelpunktstrahl benutzt werden, um in diesen Beispielen jeweils dieselbe Abbildung zu erzeugen. Die Formeln für Abbildungsgleichung und Vergrößerung gelten hier genauso wie beim konkaven Spiegel.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{kugelspiegel-bildkonstruktion-konvex-1.png}{width=0.45\linewidth}{width:70\%}
+\MUGraphicsSolo{kugelspiegel-bildkonstruktion-konvex-2.png}{width=0.45\linewidth}{width:70\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Bei einem konvexen Kugelspiegel entsteht immer ein aufrechtes und verkleinertes virtuelles Bild, das zwischen Scheitelpunkt und Brennpunkt liegt. Dies zeigt die Untersuchung der Abbildungsgleichung und der Vergrößerung. Wird die Gegenstandsweite $g$ (vor dem Spiegel) positiv gezählt, so muss die Brennweite $f$ negativ sein, da der Brennpunkt hier hinter dem Spiegel liegt. Damit folgt aus
+%
+\begin{eqnarray*}
+\frac{1}{b}\,=\,\frac{1}{f}-\frac{1}{g},
+\end{eqnarray*}
+%
+dass die Bildweite $b$ immer negativ ist. Für $g\,\longrightarrow\,\infty$ folgt $b\,=\,f$, während sich für $g\,\longrightarrow\,0$ auch $b\,=\,0$ ergibt. Eine negative Bildweite $b$ führt zu einer positiven Vergrößerung, also einem aufrecht stehenden Bild.
+%====================================================================================================================
+% Ende Section Inhalt (Reflexion an Spiegeln)
+\end{MContent}
+%====================================================================================================================
+
+%====================================================================================================================
+% Aufgaben (Reflexion an Spiegeln)
+\begin{MExercises}
+%====================================================================================================================
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Ein Lichtstrahl fällt auf einen von zwei Spiegeln, die senkrecht zueinander stehen (siehe Abbildung).
+  \begin{enumerate}
+  \item Vervollständigen Sie den Weg, den der Lichtstrahl durch die abgebildete Spiegelkonstruktion zurücklegt.
+  \item Zeigen Sie, dass der ausfallende Lichtstrahl nach der zweiten Reflexion unabhängig vom Einfallswinkel des einfallenden Lichtstrahls genau antiparallel zu dem einfallenden Lichtstrahl verläuft.
+  \end{enumerate}
+  \begin{center}
+  \MUGraphicsSolo{aufgabe-spiegel-1.png}{width=0.4\linewidth}{width:40\%}
+  \end{center}
+
+  \begin{MSolution}
+    In der nachfolgenden Skizze ist der vollständige Weg des Lichtstrahls eingetragen. Hier wird auch leicht ersichtlich, dass einfallender und ausfallender Lichtstrahl genau antiparallel verlaufen.
+    %
+    \begin{center}
+    \MUGraphicsSolo{aufgabe-spiegel-1-loesung.png}{width=0.4\linewidth}{width:40\%}
+    \end{center}
+    %
+    Das Lot auf Spiegel 1 verläuft parallel zu Spiegel 2. Daher hat ein Lichtstrahl, der unter dem Winkel $\vartheta$ zu diesem Lot einfällt und entsprechend reflektiert wird, an Spiegel 2 einen Einfallswinkel von $90^{\circ}-\vartheta$. Dieser Einfallswinkel entspricht seinem Ausfallswinkel. Das heißt nun, dass der ausfallende Lichtstrahl mit dem horizontal liegenden Spiegel 2 den Winkel $\vartheta$ einschließt, denselben Winkel wie der einfallende Strahl mit dem horizontal verlaufenden Lot an Spiegel 1. Die Strahlen verlaufen also unabhängig von $\vartheta$ antiparallel.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Ein Lichtstrahl fällt auf einen konkaven Hohlspiegel, wie in der Abbildung gezeigt. Im Brennpunkt des Hohlspiegels befindet sich ein kleiner planparalleler Spiegel, der Senkrecht zur optischen Achse des Hohlspiegels ausgerichtet ist. Vervollständigen Sie den Strahlengang des einfallenden Lichtstrahls.
+  %
+  \begin{center}
+  \MUGraphicsSolo{aufgabe-kugelspiegel-1.png}{width=0.7\linewidth}{width:70\%}
+  \end{center}
+
+  \begin{MSolution}
+  Der einfallende Lichtstrahl verläuft parallel zur optischen Achse. Er trifft auf den Hohlspiegel und wird in Richtung Brennpunkt reflektiert. Dort trifft er den planparallelen Spiegel, an dem er gemäß Reflexionsgesetz reflektiert wird. Er trifft nun als Brennpunktstrahl wieder auf den Hohlspiegel und verlässt diesen wieder parallel zur optischen Achse. Der Verlauf ist in der unten stehenden Abbildung dargestellt.
+  %
+  \begin{center}
+  \MUGraphicsSolo{aufgabe-kugelspiegel-1-loesung.png}{width=0.7\linewidth}{width:70\%}
+  \end{center}  
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Ein Gegenstand wird mit einem konkaven Kugelspiegel ($r\,=\,40$~cm) abgebildet. Welche Gegenstandsweite müssen Sie einstellen, um eine Vergrößerung $m\,=\,5$ zu erzeugen? Welche Bildweite erhalten Sie? Charakterisieren Sie das entstehende Bild!
+  \begin{MSolution}
+    Die positive Vergrößerung deutet auf ein aufrecht stehendes Bild hin. Aus den oben gezeigten Über\-le\-gung\-en für konkave Hohlspiegel kann man schon jetzt ableiten, dass der Gegenstand sich zwischen Brennpunkt und Scheitelpunkt des Spiegels befindet. Für die Vergrößerung gilt:
+    %
+    \begin{eqnarray*}
+    m \,=\, \frac{B}{G} \,=\, -\frac{b}{g} \,=\, 5 \quad\Leftrightarrow\quad b \,=\, -5g
+    \end{eqnarray*}
+    %
+    Gleichzeitig gilt die Abbildungsgleichung:
+    %
+    \begin{eqnarray*}
+    \frac{1}{f} &=& \frac{1}{g}+\frac{1}{b} \quad\Leftrightarrow\quad \frac{2}{r} \,=\, \frac{1}{g}-\frac{1}{5g} \,=\, \frac{4}{5g} \quad\Leftrightarrow\quad g \,=\, \frac{2}{5}\,r \,=\, 16~\text{cm}
+    \end{eqnarray*}
+    %
+    Damit ergibt sich die Bildweite zu
+    %
+    \begin{eqnarray*}
+    b &=& -5g \,=\, -5\cdot 16~\text{cm} \,=\, -80~\text{cm}
+    \end{eqnarray*}
+    %
+    Es handelt sich um ein virtuelles Bild. Es befindet sich auf der dem Gegenstand abgewandten Seite des Spiegels.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Ein Gegenstand wird mit einem konkaven Hohlspiegel ($r\,=\,40$~cm) abgebildet. Welche Gegenstandsweite müssen Sie einstellen, um eine Vergrößerung $m\,=\,-5$ zu erzeugen? Welche Bildweite erhalten Sie? Charakterisieren Sie das entstehende Bild!
+  \begin{MSolution}
+    Die negative Vergrößerung deutet auf ein kopfüber stehendes Bild hin. Der Gegenstand befindet sich somit außerhalb der Brennweite des Spiegels. Für die Vergrößerung gilt:
+    %
+    \begin{eqnarray*}
+    m \,=\, \frac{B}{G} \,=\, -\frac{b}{g} \,=\, -5 \quad\Leftrightarrow\quad b \,=\, 5g
+    \end{eqnarray*}
+    %
+    Gleichzeitig gilt die Abbildungsgleichung:
+    %
+    \begin{eqnarray*}
+    \frac{1}{f} &=& \frac{1}{g}+\frac{1}{b} \quad\Leftrightarrow\quad \frac{2}{r} \,=\, \frac{1}{g}+\frac{1}{5g} \,=\, \frac{6}{5g} \quad\Leftrightarrow\quad g \,=\, \frac{3}{5}\,r \,=\, 24~\text{cm}
+    \end{eqnarray*}
+    %
+    Damit ergibt sich die Bildweite zu
+    %
+    \begin{eqnarray*}
+    b &=& 5g \,=\, 5\cdot 24~\text{cm} \,=\, 120~\text{cm}
+    \end{eqnarray*}
+    %
+    Es handelt sich um ein reelles Bild. Es befindet sich auf der dem Gegenstand zugewandten Seite des Spiegels.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Ein Gegenstand steht vor einem konkaven Hohlspiegel im Abstand $g\,=\,0,5 f$. Wie groß ist die Bildweite? Wie stark ist das Bild vergrößert? Charakterisieren Sie das Bild!
+  \begin{MSolution}
+    Die Bildweite lässt sich mit der Abbildungsgleichung berechnen:
+    %
+    \begin{eqnarray*}
+    \frac{1}{f} &=& \frac{1}{g}+\frac{1}{b} \quad\Leftrightarrow\quad \frac{1}{f} \,=\, \frac{2}{f}+\frac{1}{b} \quad\Leftrightarrow\quad b \,=\, -f
+    \end{eqnarray*}
+    %
+    Das Bild befindet sich auf der dem Gegenstand abgewandten Seite des Spiegels. Die Vergrößerung ergibt sich zu
+    %
+    \begin{eqnarray*}
+    m &=& -\frac{b}{g} \,=\, -\frac{-f}{0,5f} \,=\, 2
+    \end{eqnarray*}
+    %
+    Das Bild ist doppelt so groß wie der Gegenstand. Es steht aufrecht und ist virtuell.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Leiten Sie am Beispiel der folgenden Abbildung, in der der Punkt $P$ auf den Punkt $B$ abgebildet wird, die Abbildungsgleichung her. Verwenden Sie für Ihre Berechnungen nur Lichtstrahlen, die sehr nah an der optischen Achse verlaufen. Mit welchen Näherungen kann man in diesem Fall die Winkel $\alpha$ und $\gamma$ berechnen?
+  \begin{center}
+  \MUGraphicsSolo{kugelspiegel-abbildungsgleichung.png}{width=0.6\linewidth}{width:75\%}
+  \end{center}
+
+  \begin{MSolution}
+    Aus der Skizze lassen sich die folgenden Zusammenhänge zwischen den verschiedenen eingezeichneten Winkeln ablesen:
+    %
+    \begin{eqnarray*}
+    180^{\circ}-\beta \,=\, 180^{\circ}-\alpha-\delta &\quad\Leftrightarrow\quad &\beta \,=\, \alpha+\delta\\
+    180^{\circ}-\gamma\,=\, 180^{\circ}-\alpha-2\delta &\quad\Leftrightarrow\quad &\gamma \,=\, \alpha+2\delta
+    \end{eqnarray*}
+    %
+    Fasst man diese Gleichungen zusammen, so erhält man:
+    %
+    \begin{eqnarray*}
+    \alpha+\gamma &=& 2\beta
+    \end{eqnarray*}
+    %
+    Betrachtet man nur achsennahe Lichtstrahlen, so lassen sich $\alpha$ und $\gamma$ mit den Näherungen
+    %
+    \begin{eqnarray*}
+    \alpha \,\approx\, \frac{\overline{S_{1}S_{2}}}{\overline{S_{1}P}} \quad\text{und}\quad \gamma \,\approx\, \frac{\overline{S_{1}S_{2}}}{\overline{S_{1}B}}
+    \end{eqnarray*}
+    %
+    berechnen, wobei $\overline{S_{1}S_{2}}$ hier die Länge des Kreisbogens bedeutet, der die Punkte $S_{1}$ und $S_{2}$ verbindet. Der Winkel $\beta$ lässt sich exakt berechnen:
+    %
+    \begin{eqnarray*}
+    \beta \,=\, \frac{\overline{S_{1}S_{2}}}{\overline{S_{1}M}}.
+    \end{eqnarray*}
+    %
+    Mit $g\,=\,\overline{S_{1}P}$, $b\,=\,\overline{S_{1}B}$ und $f\,=\,1/2\,r\,=\,1/2\,\overline{S_{1}M}$ folgt
+    %
+    \begin{eqnarray*}
+    \frac{1}{g}+\frac{1}{b} \,=\, \frac{1}{f}.
+    \end{eqnarray*}
+    %
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%====================================================================================================================
+\end{MExercises}
+%====================================================================================================================
+% Ende Aufgaben
+%====================================================================================================================
+% Ende Section (Reflexion an Spiegeln)
+%====================================================================================================================
+%====================================================================================================================
+%====================================================================================================================
+
+%====================================================================================================================
+%====================================================================================================================
+%====================================================================================================================
+% Section Titel
+\MSubsection{Das Brechungsgesetz}
+\MLabel{Physik_Optik1_Brechung} 
+%====================================================================================================================
+% Kapitel Intro
+\begin{MIntro}
+Die Brechung von Licht steht hinter vielen natürlichen Phänomenen und einer Reihe von technischen Anwendungen, die in der heutigen Welt nicht mehr wegzudenken sind. In diesem Abschnitt werden wir die physikalischen Hintergründe der Lichtbrechung und ihre Auswirkungen anhand einiger Beispiele erklären. Im Vordergrund stehen die folgenden Themen:
+%
+\begin{itemize}
+\item Das Snelliussche Brechungsgesetz
+\item Der Grenzwinkel der Totalreflexion
+\item Dispersion
+\end{itemize}
+%
+\end{MIntro}
+%====================================================================================================================
+
+%====================================================================================================================
+% Section Inhalt (Das Brechungsgesetz)
+\begin{MContent}
+%====================================================================================================================
+%-----------------------------------------------------------------------------
+% Ueberschrift
+%\vspace{5mm}
+\textbf{Das Snelliussche Brechungsgesetz}\MEntry{}{Snelliussches Brechungsgesetz}\MEntry{}{Brechungsgesetz}\\
+%-----------------------------------------------------------------------------
+
+Im Vakuum breitet sich Licht mit der \MEntry{Vakuum-Lichtgeschwindigkeit}{Vakuum-Lichtgeschwindigkeit}\MEntry{}{Lichtgeschwindigkeit} $c_{0}\,=\,2,99792458\cdot 10^{8}$~m/s aus. In anderen durchsichtigen Medien ist die Lichtgeschwindigkeit kleiner und berechnet sich über den sogenannten \MEntry{Brechungsindex}{Brechungsindex} $n$ des Mediums, eine Größe, die die optischen Eigenschaften eines Materials charakterisiert.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Lichtgeschwindigkeit}
+Die Lichtgeschwindigkeit in einem durchsichtigen Medium lässt sich durch die Formel
+\begin{eqnarray*}
+c\,=\,c_{0}/n
+\end{eqnarray*}
+berechnen, wobei $c$ und $c_{0}$ die Lichtgeschwindigkeit im Medium bzw. im Vakuum sind, $n$ bezeichnet den Brechungsindex des Materials.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Offensichtlich beträgt der Brechungsindex im Vakuum $n\,=\,1$. In Luft findet man mit $n\,\approx\,1,0003$ einen etwas höheren Wert. Wegen der geringen Abweichung nimmt man für einfache Rechnungen häufig auch für Luft den Wert $n\,=\,1$ an. Die genauen Brechungsindizes für verschiedene Medien lassen sich häufig entsprechenden Listen für Materialkonstanten, z.B. in einer umfangreicheren Formelsammlung, entnehmen. So gilt z.B. für flüssiges Wasser $n\,=\,1,33$, für Glas $n\,=\,1,50-1,66$ und für Diamant $n\,\approx\,2,42$.
+
+Aus dem \MEntry{Fermatschen Prinzip}{Fermatsches Prinzip} (siehe oben) lässt sich ableiten, dass Licht sich innerhalb eines Mediums geradlinig ausbreitet. Diese Erkenntnis gibt uns die Möglichkeit, die Ausbreitung des Lichts mithilfe von Strahlen, also mit der geometrischen Optik, zu beschreiben. Trifft ein Lichtstrahl auf eine Grenzfläche zweier Medien mit unterschiedlichen optischen Eigenschaften (siehe Abbildung), also zwei verschiedenen Brechungsindizes $n_{1}$ des ersten Mediums und $n_{2}$ des zweiten Mediums, wird ein Teil des Lichts an dieser Grenzfläche dem Reflexionsgesetz entsprechend reflektiert und breitet sich weiter geradlinig in Medium 1 aus. Der andere Teil des Lichts dringt in das Medium 2 ein. Dieser durchgelassene Teil des Lichtstrahls breitet sich nun in einer anderen als der ursprünglichen Richtung aus, die von den optischen Eigenschaften, also den Brechungsindizes, der beiden Medien abhängt. Dieses Phänomen ist als \MEntry{Brechung}{Brechung} bekannt.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{brechung-reflexion.png}{width=0.45\linewidth}{width:55\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Die Reflexion haben wir bereits untersucht und können daher sagen, dass für den reflektierten Strahl das Gesetz "`Einfallswinkel = Ausfallswinkel"' gilt. Wir müssen uns noch fragen, wie die Ausbreitungsrichtung des gebrochenen Lichtstrahls von den optischen Eigenschaften der beiden Medien und der Einfallsrichtung des Lichtstrahls abhängt. Betrachtet man den Winkel $\alpha_{1}$ des in Medium 1 \MEntry{eintretenden Lichtstrahls}{Lichtstrahl} zum \MEntry{Lot auf der Grenzfläche}{Lot}, kann man den \MEntry{Brechungswinkel}{Brechungswinkel} $\alpha_{2}$ des \MEntry{gebrochenen Lichtstrahls}{Lichtstrahl} in Medium 2 in Abhängigkeit der Brechungsindizes $n_{1}$ und $n_{2}$ bestimmen. Um diesen Zusammenhang abzuleiten, werden im Folgenden zwei Möglichkeiten vorgestellt.
+
+Das Fermatsche Prinzip besagt, dass das Licht den Weg zwischen zwei Punkten so "`wählt"', dass die für die Strecke benötigte Zeit möglichst gering ist. Dies gilt auch beim Übergang zwischen zwei Medien. In der unten stehenden Abbildung soll ein Lichtstrahl vom Punkt $P_{1}$, der in einem Medium mit dem Brechungsindex $n_{1}$ liegt, zum Punkt $P_{2}$, der in einem Medium mit dem Brechungsindex $n_{2}$ liegt, geschickt werden. Beide Medien berühren sich an einer horizontalen Grenzfläche. In der Abbildung sind die Punkte $P_{1}$ und $P_{2}$ beispielhaft mit 7 ausgewählten Wegstrecken verbunden, wobei die in den unterschiedlichen Medien liegenden Teilstrecken jeweils geradlinig sind. Beliebig viele weitere Wege sind denkbar, solange sie nach demselben Prinzip konstruiert werden.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{fermat.png}{width=0.7\linewidth}{width:80\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Nach dem Fermatschen Prinzip legt das Licht diejenige Wegstrecke zurück, für die es am wenigsten Zeit benötigt. Stellt man sich nun vor, dass man die Ausbreitung eines Lichtstrahls gemäß dem Weg-Zeit-Gesetz der Kinematik mit den beiden Geschwindigkeiten $c_{1}$ in Medium 1 und $c_{2}$ in Medium 2 beschreiben kann, lässt sich für einen beliebigen Weg die Zeit berechnen, die der Lichtstrahl benötigt, um die gesamte Strecke von $P_{1}$ zu $P_{2}$ zurückzulegen. Eine Minimierung dieser Zeit mit den üblichen mathematischen Methoden führt auf den gesuchten Zusammenhang, das sogenannte \MEntry{Brechungsgesetz}{Brechungsgesetz}. Die genaue Rechnung wird an dieser Stelle nicht vorgeführt. Diese soll anhand eines ähnlichen Problems in den Übungsaufgaben zu diesem Kapitel nachvollzogen werden.
+
+Eine vollständige Herleitung des Brechungsgesetzes soll hier am \MEntry{Huygensschen Prinzip}{Huygenssches Prinzip} gezeigt werden. Wir stellen uns einen Lichtstrahl (siehe Abbildung A) aus vielen sich parallel ausbreitenden Wellen aufgebaut vor. Diese können wir von links nach rechts durchnummerieren. Zur Vereinfachung der Anschauung sollen bei allen Wellen die Maxima genau nebeneinander angeordnet sein. Verbindet man die Maxima, so findet man eine Linie (im Medium 1 in blau dargestellt, in Medium 2 in grün gezeichnet), die genau senkrecht zur Ausbreitungsrichtung des Lichtstrahls (graue Linien) verläuft. Die auf einer Linie liegenden Maxima wollen wir hier als Wellenfront bezeichnen.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{huygens_a.png}{width=0.45\linewidth}{width:70\%}
+\MUGraphicsSolo{huygens_b.png}{width=0.45\linewidth}{width:70\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Trifft die erste Welle des Lichtstrahls auf die Grenzfläche, befinden sich die übrigen Wellen noch in verschiedenen Entfernungen zu dieser. Während die erste Welle des Lichtstrahls jetzt schon in Medium 2 eindringt, müssen alle anderen Wellen noch unterschiedliche Wege in Medium 1 zurücklegen, bevor sie auf die Grenzfläche treffen. Die gelben Punkte markieren die Stellen, an denen die einzelnen Wellen, die den Lichtstrahl bilden, auf die Grenzfläche treffen. Nach Huygens breiten sich von jedem dieser Punkte sogenannte Elementarwellen in alle Richtungen aus. Diese Elementarwellen interferieren und es bildet sich wieder ein Lichtstrahl, wobei die in Medium 1 parallel laufenden Wellen auch in Medium 2 wieder parallel verlaufen und ihre nebeneinander liegenden Maxima auch weiterhin eine Wellenfront bilden. Aus dieser Tatsache lässt sich nun das Brechungsgesetz herleiten.
+
+Dazu nehmen wir zunächst vereinfachend an, dass der Brechungsindex in Medium 2 größer ist als in Medium 1 ($n_{2}\,>\,n_{1}$). Daraus folgt, dass die Ausbreitungsgeschwindigkeit des Lichts in Medium 2 kleiner ist als in Medium 1 ($c_{2}\,<\,c_{1}$). Trifft eine Welle des Lichtstrahls auf die Grenzfläche, so ist die rechts benachbarte Welle noch um die Strecke $s_{1}$ von der Grenzfläche entfernt (siehe Abbildung B -- eine Vergrößerung des grau hinterlegten Bereichs aus Abbildung A). Die noch im Medium 1 verbleibende Welle legt die Strecke $s_{1}$ bis zur Grenzfläche in der Zeit $\Delta t$ zurück, sodass gilt
+%
+\begin{eqnarray*}
+s_{1}&=&c_{1}\Delta t.
+\end{eqnarray*}
+%
+In derselben Zeit legt die benachbarte Welle in Medium 2 die Strecke
+%
+\begin{eqnarray*}
+s_{2}&=&c_{2}\Delta t
+\end{eqnarray*}
+%
+zurück. Betrachtet man nun die Darstellung in Abbildung B, so findet man, dass sich aus den von den beiden benachbarten Wellen zurückgelegten Strecken, den Wellenfronten in den jeweiligen Medien sowie der Grenzfläche zwei rechtwinklige Dreiecke mit einer gemeinsamen Hypotenuse bilden lassen. Die beiden zum Lot gemessenen Winkel $\alpha_{1}$ und $\alpha_{2}$ finden sich in dem jeweiligen Dreieck wieder. Für die beiden Winkel gilt
+%
+\begin{eqnarray*}
+\sin\alpha_{1}\,=\,\frac{s_{1}}{d}\quad&\text{und}&\quad\sin\alpha_{2}\,=\,\frac{s_{2}}{d}\\
+\Rightarrow\quad\frac{s_{1}}{\sin\alpha_{1}} &=& \frac{s_{2}}{\sin\alpha_{2}}\\
+\Leftrightarrow\quad\frac{c_{1}\Delta t}{\sin\alpha_{1}} &=& \frac{c_{2}\Delta t}{\sin\alpha_{2}}\\
+\Leftrightarrow\quad\frac{c_{1}}{c_{2}} &=& \frac{\sin\alpha_{1}}{\sin\alpha_{2}}\\
+\Leftrightarrow\quad\frac{c_{0}/n_{1}}{c_{0}/n_{2}} &=& \frac{\sin\alpha_{1}}{\sin\alpha_{2}}\\
+\Leftrightarrow\quad n_{1}\sin\alpha_{1} &=& n_{2}\sin\alpha_{2}.
+\end{eqnarray*}
+%
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Snellius}
+Der Zusammenhang zwischen Einfallswinkel und Brechungswinkel beim Übergang eines Lichtstrahls von einem Medium mit dem Brechungsindex $n_{1}$ zu einem Medium mit dem Brechungsindex $n_{2}$ wird durch das \MEntry{Snelliussche Brechungsgesetz}{Snelliussches Brechungsgesetz}\MEntry{}{Brechungsgesetz} beschrieben:
+\begin{eqnarray*}
+\frac{\sin\alpha_{1}}{\sin\alpha_{2}}\,=\,\frac{c_{1}}{c_{2}}\,=\,\frac{n_{2}}{n_{1}}
+\end{eqnarray*}
+Dabei sind $\alpha_{1}$ der Einfallswinkel und $\alpha_{2}$ der Brechungswinkel.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------
+% Ueberschrift
+\vspace{5mm}
+\textbf{Der Grenzwinkel der Totalreflexion}\MEntry{}{Totalreflexion}\MEntry{}{Grenzwinkel der Totalreflexion}
+%-----------------------------------------------------------------------------
+
+Ein besonderer Fall der Brechung ergibt sich, wenn ein Lichtstrahl von einem Medium mit hohem Brechungsindex in ein Medium mit kleinem Brechungsindex übergeht. Dies ist in der unten stehenden Abbildung gezeigt. Eine Lichtquelle befinde sich in einem Medium mit großem Brechungsindex. Verfolgen wir die verschiedenen Lichtstrahlen, die von dieser Lichtquelle ausgehen, stellen wir fest, dass die Lichtstrahlen beim Übergang in das Medium mit kleinerem Brechungsindex vom Lot weg gebrochen werden. Das heißt insbesondere, dass ein Einfallswinkel $\alpha_{1}$ erreicht werden kann, bei dem sich der Brechungswinkel zu $\alpha_{2}\,=\,90^{\circ}$ ergibt.
+
+Wird der Einfallswinkel weiter vergrößert, kann der einfallende Lichtstrahl nicht mehr in das Medium mit dem kleineren Brechungsindex eindringen und wird an der Grenzfläche vollständig reflektiert. Diesen sogenannten \MEntry{Grenzwinkel der Totalreflexion}{Grenzwinkel der Totalreflexion} $\alpha_{\text{g}}$ kann man über das Brechungsgesetz bestimmen, indem man $\alpha_{1}\,=\,\alpha_{\text{g}}$ und $\alpha_{2}\,=\,90^{\circ}$ verwendet:
+%
+\begin{eqnarray*}
+\frac{\sin\alpha_{1}}{\sin\alpha_{2}}&=&\frac{\sin\alpha_{\text{g}}}{\sin 90^{\circ}}\,=\,\frac{n_{2}}{n_{1}}
+\end{eqnarray*}
+%
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Grenzwinkel}
+Der \MEntry{Grenzwinkel der Totalreflexion}{Grenzwinkel der Totalreflexion} ergibt sich zu
+\begin{eqnarray*}
+\alpha_{\text{g}}\,=\,\arcsin\left(\frac{n_{2}}{n_{1}}\right)
+\end{eqnarray*}
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{totalreflexion.png}{width=0.7\linewidth}{width:80\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Die Totalreflexion findet technische Anwendung im Bereich von Lichtleitern. Um Informationen über weite Strecken möglichst verlustfrei und möglichst schnell zu versenden, kann man Licht verwenden. Die Informationen werden in Lichtsignale umgewandelt und dann als Lichtstrahl möglichst parallel zur Achse in einen durchsichtigen Leiter geschickt. Das Medium, aus dem der Leiter besteht, leitet das Signal durch Totalreflexion an seinen Grenzen zum umgebenden Medium weiter (siehe Abbildung unten), solange der Lichtstrahl in einem sehr großen Einfallswinkel auf die Grenzflächen trifft. Ist der Lichtleiter zu stark gebogen und damit der Einfallswinkel sehr klein, kann der Lichtstrahl den Leiter verlassen. Um die Verluste möglichst gering zu halten, kann der Lichtleiter entweder mit einem Medium mit sehr kleinem Brechungsindex oder einen vollständig reflektierenden Material ummantelt werden. Prinzipiell ist eine Ummantelung allerdings nicht nötig.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{lichtleiter-1.png}{width=0.8\linewidth}{width:85\%}\\
+\MUGraphicsSolo{lichtleiter-2.png}{width=0.8\linewidth}{width:85\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Auch in der Natur spielt die Totalreflexion eine Rolle und kann dafür sorgen, dass unsere Augen uns täuschen. Dies ist in der unten stehenden Abbildung dargestellt. Der Brechungsindex der Luft ist abhängig von der Temperatur. Je höher die Temperatur der Luft, umso niedriger ist der Brechungsindex. Wird an einem sehr heißen Tag der Erdboden von der Sonne besonders stark aufgeheizt, wird auch die Luft über dem Erdboden sehr heiß. Jetzt können Lichtstrahlen, die eigentlich in Richtung Erdboden gerichtet sind, so stark gebrochen werden, dass das Licht eine Totalreflexion erfährt, bevor es den Boden erreichen kann. Treffen diese Lichtstrahlen auf einen Beobachter, sieht er ein Spiegelbild des Körpers, von dem die Lichtstrahlen ursprünglich ausgingen, am Boden. Dieses Phänomen ist allgemein als \MEntry{Fata Morgana}{Fata Morgana} bekannt. Auf diese Weise kann auch das blaue Licht des Himmels über dem Boden reflektiert werden. Bei großer Hitze kommen turbulente Bewegungen der Luftmassen über dem Boden hinzu, die im total reflektierten Licht sichtbar werden. So entsteht in unserem Kopf die Vorstellung eines Sees am Erdboden.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{fata-morgana.png}{width=0.95\linewidth}{width:100\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------
+% Ueberschrift
+\vspace{5mm}
+\textbf{Dispersion}\MEntry{}{Dispersion}
+%-----------------------------------------------------------------------------
+
+Auch wenn bei der Beschreibung der Ausbreitung von Lichtstrahlen in der geometrischen Optik die Wellennatur des Lichts nicht berücksichtigt werden muss, kann man jedoch nicht vollständig auf diese verzichten. Häufig ist der Brechungsindex $n$ eines Mediums abhängig von der Wellenlänge $\lambda$ des Lichts. Es gilt also $n\,=\,n\left(\lambda\right)$. Dieses Phänomen ist unter dem Begriff \MEntry{Dispersion}{Dispersion} bekannt. Trifft weißes Licht schräg auf eine Glasplatte, so wird Licht mit einer kurzen Wellenlänge stärker gebrochen als Licht mit einer großen Wellenlänge. Der Brechungswinkel ist also kleiner, je kleiner die Wellenlänge des gebrochenen Lichts ist.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{dispersion.png}{width=0.5\linewidth}{width:60\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+In einem Prisma wird dieser Effekt besonders deutlich. Nach dem Durchgang durch ein Glasprisma ist das ursprünglich weiße Licht in seine Spektralfarben zerlegt, die sich jetzt in unterschiedliche Richtungen ausbreiten (siehe Abbildung).
+
+So lässt sich auch die Entstehung eines Regenbogens erklären. Die unten stehende Abbildung stellt diesen Vorgang dar. Das von der Sonne her parallel einfallende Licht trifft auf kugelförmige Wassertropfen. Beim Eintritt in die Wassertropfen wird das Licht gebrochen. An der Rückseite des Tropfens wird das Licht reflektiert und beim Austritt noch einmal gebrochen. Während dieses Prozesses wird das weiße Licht der Sonne aufgrund der Wellenlängenabhängigkeit des Brechungsindexes in seine Farben aufgespalten, wodurch wir einen Regenbogen wahrnehmen können.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{regenbogen.png}{width=0.9\linewidth}{width:90\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+%====================================================================================================================
+% Ende Section Inhalt (Das Brechungsgesetz)
+\end{MContent}
+%====================================================================================================================
+
+%====================================================================================================================
+% Aufgaben (Das Brechungsgesetz)
+\begin{MExercises}
+%====================================================================================================================
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Ein Lichtstrahl wird der unten stehenden Abbildung entsprechend gebrochen. Der Winkel $\alpha_{\mbox{\tiny{1}}}$ betrage $40^{\circ}$. Wie groß ist $\alpha_{\mbox{\tiny{2}}}$?
+  \begin{center}
+    \MUGraphicsSolo{aufgabe-brechung-1.png}{width=0.45\linewidth}{width:60\%}
+  \end{center}
+
+  \begin{MSolution}
+    Einfalls- und Brechungswinkel werden zum Lot gemessen. Daher gilt hier
+    %
+    \begin{eqnarray*}
+    \frac{\sin\left(90^{\circ}-\alpha_{1}\right)}{\sin\left(90^{\circ}-\alpha_{2}\right)} &=& \frac{n_{2}}{n_{1}}\\
+    \Leftrightarrow\quad\sin\left(90^{\circ}-\alpha_{2}\right) &=& \frac{n_{1}}{n_{2}}\,\sin\left(90^{\circ}-\alpha_{1}\right)\\
+    \Leftrightarrow\quad\sin\left(90^{\circ}-\alpha_{2}\right) &=& \frac{1}{1,7}\,\sin\left(50^{\circ}\right)\\
+    \Leftrightarrow\quad 90^{\circ}-\alpha_{2} &=& \arcsin 0,45 \,=\, 26,8^{\circ}\\
+    \Leftrightarrow\quad \alpha_{2} &=& 63,2^{\circ}
+    \end{eqnarray*}
+    %
+    Der Brechungswinkel beträgt $26,8^{\circ}$, aber für den in der Zeichnung gesuchten Winkel ergibt sich $\alpha_{2} \,=\, 63,2^{\circ}$.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Beim  Übergang von Luft zu Glas wird ein Lichtstrahl, der unter einem Winkel von $50^{\circ}$ von oben auf eine Glasplatte fällt, gebrochen. Der Ausfallswinkel betrage $30^{\circ}$. Wie groß ist die Lichtgeschwindigkeit im Glas?
+
+  \begin{MSolution}
+    Es gilt das Brechungsgesetz:
+    %
+    \begin{eqnarray*}
+    \frac{\sin\alpha_{\text{Luft}}}{\sin\alpha_{\text{Glas}}} &=& \frac{n_{\text{Glas}}}{n_{\text{Luft}}}\\
+    \Leftrightarrow\quad n_{\text{Glas}} &=& n_{\text{Luft}}\,\frac{\sin\alpha_{\text{Luft}}}{\sin\alpha_{\text{Glas}}}\\
+    \Leftrightarrow\quad n_{\text{Glas}} &=& 1\cdot\frac{\sin 50^{\circ}}{\sin 30^{\circ}} \,=\, 1,53
+    \end{eqnarray*}
+    %
+    Der Brechungsindex des Glases beträgt $1,53$. Dadurch ergibt sich die Lichtgeschwindigkeit im Glas zu $c_{\text{Glas}}\,=\,c_{0}/n_{\text{Glas}}\,=\,1,959\cdot 10^{8}$~m/s.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Ein Lichtstrahl trifft in einem Winkel von $40^{\circ}$ von oben auf eine planparallele Glasplatte ($n\,=\,1,6$) der Dicke $2$~cm. Unter welchem Winkel tritt er unten aus der Glasplatte aus?
+
+  \begin{MSolution}
+    Der Lichtstrahl trifft unter einem Winkel $\alpha_{1}\,=\,40^{\circ}$ auf eine Glasplatte (siehe Abbildung). Über das Brechungsgesetz kann der Brechungswinkel $\alpha_{2}$ bestimmt werden. Trifft der Lichtstrahl dann auf die zweite Grenzfläche von Glas zu Luft, entspricht der Einfallswinkel dort genau dem Brechungswinkel $\alpha_{2}$ an der ersten Grenzfläche. Auch für diesen Übergang kann wieder das Brechungsgesetz verwendet werden.
+    %
+    \begin{center}
+      \MUGraphicsSolo{aufgabe-brechung-2-loesung.png}{width=0.45\linewidth}{width:45\%}
+    \end{center}
+    %
+    Aus diesen Überlegungen und mit $n_{1}\,=\,n_{3}$ ergibt sich die folgende Rechnung zur Bestimmung des Brechungswinkels $\alpha_{3}$:
+    %
+    \begin{eqnarray*}
+    \frac{\sin\alpha_{1}}{\sin\alpha_{2}} \,=\, \frac{n_{2}}{n_{1}} \quad &\text{und}& \quad \frac{\sin\alpha_{2}}{\sin\alpha_{3}} \,=\, \frac{n_{3}}{n_{2}}\\
+    \Leftrightarrow\quad \sin\alpha_{2} \,=\, \frac{n_{1}}{n_{2}}\,\sin\alpha_{1} \quad &\text{und}& \quad \sin\alpha_{2} \,=\, \frac{n_{3}}{n_{2}}\,\sin\alpha_{3}\\
+    \Rightarrow\quad \frac{n_{1}}{n_{2}}\,\sin\alpha_{1} &=& \frac{n_{3}}{n_{2}}\,\sin\alpha_{3}\\
+    \Leftrightarrow\quad \sin\alpha_{1} &=& \sin\alpha_{3}\\
+    \Leftrightarrow\quad \alpha_{1} &=& \alpha_{3}\\
+    \Leftrightarrow\quad \alpha_{3} &=& 40^{\circ}
+    \end{eqnarray*}
+    %
+    Der Winkel, unter dem das Licht aus der Glasplatte austritt, ist genauso groß wie der Winkel, unter dem es eintritt. Die Ausbreitungsrichtung des Lichts hat sich also nicht geändert. Der Lichtstrahl wurde parallel zu seinem ursprünglichen Weg verschoben.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Eine Rettungsschwimmerin steht am Strand im Punkt P$_{1}$. Sie sieht eine ertrinkende Person im Meer im Punkt P$_{2}$. Bis zum Wasser läuft sie am Strand einen geradlinigen Weg mit der Geschwindigkeit $v_{1}$. Im Wasser schwimmt sie von der Stelle, an der sie ins Wasser gesprungen ist, mit einer Geschwindigkeit $v_{2}\,<\,v_{1}$ entlang eines geradlinigen Weges zur ertrinkenden Person. Welchen Weg muss sie wählen, um die ertrinkende Person in möglichst kurzer Zeit zu erreichen? Wie hängt dieses Problem mit dem Brechungsgesetz zusammen?
+  \begin{center}
+    \MUGraphicsSolo{aufgabe-rettungsschwimmer.png}{width=0.70\linewidth}{width:80\%}
+  \end{center}
+  \begin{MSolution}
+    Wir zeichnen einen beliebigen möglichen Weg der Rettungsschwimmerin in die Skizze ein. Dabei müssen beide Teilwege geradlinig sein.
+    \begin{center}
+      \MUGraphicsSolo{aufgabe-rettungsschwimmer-loesung.png}{width=0.70\linewidth}{width:80\%}
+    \end{center}
+    Es entstehen zwei rechtwinklige Dreiecke mit den Hypotenusen $v_{1}\Delta t_{1}$ und $v_{2}\Delta t_{2}$, wobei $\Delta t_{1}$ und $\Delta t_{2}$ die für den jeweiligen Teilweg benötigten Zeiten sind. Aus ihnen ergibt sich die gesamte für den Weg zum Ertrinkenden benötigte Zeit:
+    %
+    \begin{eqnarray*}
+    t_{\text{ges}} &=& \Delta t_{1} + \Delta t_{2}.
+    \end{eqnarray*}
+    %
+    Für die weitere Betrachtung des Problems verwenden wir den Abstand $d$ der Rettungsschwimmerin zum Ertrinkenden entlang der Uferlinie, der in ein am Strand zurückgelegtes Stück $x$ und ein im Wasser zurückgelegtes Stück $d-x$ eingeteilt wird, sowie die Abstände $y_{1}$ und $y_{2}$, die die Rettungsschwimmerin senkrecht zur Uferlinie zurücklegen muss. Es gilt:
+    %
+    \begin{eqnarray*}
+    v_{1}^{2}\Delta t_{1}^{2} &=& x^{2}+y_{1}^{2}\quad\Rightarrow\quad \Delta t_{1} \,=\, \frac{1}{v_{1}}\sqrt{x^{2}+y_{1}^{2}}\\
+    v_{2}^{2}\Delta t_{2}^{2} &=& \left(d-x\right)^{2}+y_{2}^{2}\quad\Rightarrow\quad \Delta t_{2} \,=\, \frac{1}{v_{2}}\sqrt{\left(d-x\right)^{2}+y_{2}^{2}}.
+    \end{eqnarray*}
+    %
+    Dies wird in die Gesamtzeit eingesetzt:
+    %
+    \begin{eqnarray*}
+    t_{\text{ges}} &=& \frac{1}{v_{1}}\sqrt{x^{2}+y_{1}^{2}} + \frac{1}{v_{2}}\sqrt{\left(d-x\right)^{2}+y_{2}^{2}}
+    \end{eqnarray*}
+    %
+    Da die Geschwindigkeiten $v_{1}$ und $v_{2}$ konstant sind und die Abstände $d$, $y_{1}$ und $y_{2}$ für alle Wege identisch sind, ist die Gesamtzeit, die die Rettungsschwimmerin benötigt, nur von der frei wählbaren Strecke $x$ abhängig. Diese Gesamtzeit soll minimiert werden:
+    %
+    \begin{eqnarray*}
+    \frac{dt_{\text{ges}}}{dx} &=& \frac{1}{v_{1}}\frac{x}{\sqrt{x^{2}+y_{1}^{2}}} - \frac{1}{v_{2}}\frac{d-x}{\sqrt{\left(d-x\right)^{2}+y_{2}^{2}}} \,=\, 0
+    \end{eqnarray*}
+    %
+    Mit
+    %
+    \begin{eqnarray*}
+    \sin\alpha_{1} \,=\, \frac{x}{\sqrt{x^{2}+y_{1}^{2}}} \quad\text{und}\quad \sin\alpha_{2} \,=\, \frac{d-x}{\sqrt{\left(d-x\right)^{2}+y_{2}^{2}}}
+    \end{eqnarray*}
+    %
+    folgt
+    %
+    \begin{eqnarray*}
+    \frac{\sin\alpha_{1}}{v_{1}} - \frac{\sin\alpha_{2}}{v_{2}} \,=\, 0 \quad\Leftrightarrow\quad \frac{\sin\alpha_{1}}{\sin\alpha_{2}} \,=\, \frac{v_{1}}{v_{2}}.
+    \end{eqnarray*}
+    %
+    Das Ergebnis entspricht dem Snelliusschem Brechungsgesetz, da die Forderung an die Rettungsschwimmerin den Fermatschen Forderungen an die Ausbreitung des Lichts entspricht.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Nehmen Sie an, dass Sie die Ausbreitung von Radio- und Funksignalen analog zur Ausbreitung von Lichtstrahlen beschreiben können. Erklären Sie, wie eine Funkverbindung zwischen Europa und Australien ohne die Hilfe von Satelliten funktionieren kann, auch wenn kein direkter "`Sichtkontakt"' zwischen den Funkpartnern besteht.
+  \begin{center}
+    \MUGraphicsSolo{aufgabe-radiowellen.png}{width=0.35\linewidth}{width:35\%}
+  \end{center}
+
+  \begin{MSolution}
+    Dass Funkverbindungen ohne Satellitenunterstützung rund um die Welt, also z.B. auch zwischen Europa und Australien möglich sind, ist allgemein bekannt. Hobby-Funker nutzen dies aus, um mit Freunden auf der ganzen Welt zu kommunizieren, auch wenn es keine geradlinige Verbindung zwischen Sender und Empfänger gibt, die laut Fermatschem Prinzip (geradlinige Ausbreitung des Lichts, bzw. in diesem Fall der Radiosignale) eigentlich nötig ist. Daraus kann man schließen, dass die Radiosignale, die sich in der Erdatmosphäre ausbreiten, eine Totalreflexion erfahren müssen (siehe Abbildung).
+    %
+    \begin{center}
+      \MUGraphicsSolo{aufgabe-radiowellen-loesung.png}{width=0.35\linewidth}{width:35\%}
+    \end{center}
+    %
+    Das heißt aber, dass der Brechungsindex der Atmosphäre mit zunehmender Höhe immer kleiner werden muss. Die Abbildung zeigt eine sehr vereinfachte Darstellung der Signalausbreitung. Der reale Verlauf ist ähnlich dem bei der Entstehung einer Fata Morgana (siehe oben). Die Höhenabhängigkeit des Brechungsindexes lässt sich tatsächlich durch Messungen nachweisen.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  In Ihrem Australienurlaub tauchen Sie am Great Barrier Reef. Unter Wasser schauen Sie nach oben und stellen fest, dass Sie Gegenstände oberhalb der Wasseroberfläche nur in einem Kreis mit einem Radius von $5$~m erkennen können, während Sie außerhalb dieses Kreises nur Dinge sehen, die sich unterhalb der Wasseroberfläche befinden.
+  \begin{enumerate}
+  \item Erklären Sie den physikalischen Hintergrund dieses Phänomens.
+  \item In welcher Tiefe unter der Wasseroberfläche befinden Sie sich?
+  \end{enumerate}
+  (Quelle: Tipler, Physik)
+
+  \begin{MSolution}
+    Der hier beobachtbare Prozess ist die Umkehrung der Totalreflexion. Der größte mögliche Einfallswinkel des Lichts beim Übergang von Luft zu Wasser ist $90^{\circ}$. Ein Lichtstrahl, der unter diesem Winkel auf die Wasseroberflächte trifft, wird genau im Grenzwinkel der Totalreflexion gebrochen. Das heißt, dass Lichtstrahlen im Sichtfeld des Tauchers, die ihn unter einem größeren Winkel als dem Grenzwinkel erreichen, ihren Ursprungsort unter der Wasseroberfläche haben.
+    %
+    \begin{center}
+    \MUGraphicsSolo{aufgabe-totalreflexion-2-loesung.png}{width=0.45\linewidth}{width:60\%}
+    \end{center}
+    %
+    Die Tiefe des Tauchers lässt sich durch Betrachtung des Dreiecks aus der Tiefe, dem Radius des Kreises und dem Lichtstrahl, der unter dem Grenzwinkel $\alpha_{\text{g}}\,=\,\arcsin\left(n_{2}/n_{1}\right)\,=\,48,75^{\circ}$ gebrochen wird, bestimmen:
+    %
+    \begin{eqnarray*}
+    \tan\alpha_{\text{g}} \,=\, \frac{r}{h} \quad\Leftrightarrow\quad h \,=\, \frac{r}{\tan\alpha_{\text{g}}} \,=\, \frac{5~\text{m}}{\tan 48,75^{\circ}} \,=\, 4,38~\text{m}
+    \end{eqnarray*}
+    %
+    
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Eine Lichtquelle ist in ein Medium mit wellenlängenabhängigem Brechungsindex $n_{1}$ eingebettet. Sie sendet einen Strahl weißen Lichts aus, der unter einem Winkel von $\alpha\,=\,43,2^{\circ}$ auf die Grenzfläche des Mediums zur Luft trifft (siehe linkes Bild). Das rechte Bild zeigt den funktionalen Zusammenhang zwischen dem Brechungsindex $n_{1}$ und der Wellenlänge $\lambda$ des Lichts. Welche Wellenlängen können das Medium verlassen, welche werden total reflektiert? Welcher Farbe entspricht die Wellenlänge, an dem der Übergang von Brechung zu Totalreflexion geschieht?
+  %
+  \begin{center}
+  \MUGraphicsSolo{aufgabe-dispersion-1-2.png}{width=0.6\linewidth}{width:60\%}\hspace{0.5cm}
+  \MUGraphicsSolo{aufgabe-dispersion-1-1.png}{width=0.35\linewidth}{width:35\%}
+  \end{center}
+  %
+  \begin{MSolution}
+    Der Einfallswinkel des weißen Lichts beträgt $\alpha\,=\,43,2^{\circ}$. Wir suchen den Brechungsindex $n_{1}$, den das Medium mindestens besitzen muss, damit Licht an der Grenzfläche zu Luft total reflektiert wird. Es gilt
+    %
+    \begin{eqnarray*}
+    \alpha_{\text{g}} \,=\, \alpha \,=\, \arcsin\left(\frac{1}{n_{1}}\right) \quad\Rightarrow\quad n_{1} \,=\, \frac{1}{\sin\alpha} \,=\, \frac{1}{\sin\left(43,2^{\circ}\right)} \,=\, 1,46.
+    \end{eqnarray*}
+    %
+    Lichtstrahlen mit einer Wellenlänge, für die das Medium einen größeren Brechungsindex als $n_{1}\,=\,1,46$ besitzt, werden an der Grenzfläche zur Luft total reflektiert. In der rechten Abbildung kann man ablesen, dass dies für $\lambda\,<\,500$~nm der Fall ist. Die entspricht der Farbe grün.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise}
+  Warum erscheint ein klares Gewässer flacher als es wirklich ist?
+  %
+  \begin{MSolution}
+    Beobachten wir ein Objekt am Grund eines klaren Gewässers, in der unten stehenden Abbildung beispielsweise einen Stein, so wird das Licht, das von diesem Objekt ausgeht, an der Grenzfläche von Wasser zu Luft gebrochen. Wir sehen also nicht direkt den Stein, sondern ein Bild des Steins in der Richtung, aus der das Licht unser Auge erreicht. So interpretieren wir die Lage des Objekts -- und damit auch seiner Umgebung -- anders als sie wirklich ist. In diesem Fall wirkt das Gewässer auf uns flacher als es tatsächlich ist.
+    %
+    \begin{center}
+    \MUGraphicsSolo{aufgabe-brechung-2.png}{width=0.5\linewidth}{width:50\%}
+    \end{center}
+    %
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%====================================================================================================================
+\end{MExercises}
+%====================================================================================================================
+% Ende Aufgaben
+%====================================================================================================================
+% Ende Section (Das Brechungsgesetz)
+%====================================================================================================================
+%====================================================================================================================
+%====================================================================================================================
+
+
+%====================================================================================================================
+%====================================================================================================================
+%====================================================================================================================
+% Section Titel
+\MSubsection{Linsen und Linsensysteme}
+\MLabel{Physik_Optik1_Linsen} 
+%====================================================================================================================
+% Kapitel Intro
+\begin{MIntro}
+Linsen und Systeme aus Linsen sind als nützliche optische Instrumente bekannt. Dazu gehören z.B. Brillen, Lupen, Mikroskope oder Teleskope. Um die Eigenschaften und Funktionsweisen dieser Instrumente zu verstehen, werden hier die folgenden Inhalte vorgestellt:
+\begin{itemize}
+\item Dünne sphärische Linsen
+\item Optische Abbildungen mit dünnen Linsen
+\item Optische Abbildungen mit Linsensystemen
+\end{itemize}
+\end{MIntro}
+%====================================================================================================================
+
+%====================================================================================================================
+% Section Inhalt (Linsen und Linsensysteme)
+\begin{MContent}
+%====================================================================================================================
+
+%-----------------------------------------------------------------------------
+% Ueberschrift
+\vspace{5mm}
+\textbf{Dünne sphärische Linsen}\MEntry{}{Linse, sphärisch}\MEntry{}{sphärische Linse}
+%-----------------------------------------------------------------------------
+
+Eine \MEntry{Linse}{Linse} besteht aus transparentem Material und besitzt zwei das sie durchquerende Licht brechende Flächen, die eine gemeinsame optische Achse besitzen. \MEntry{Sphärische Linsen}{Linse, sphärisch} besitzen Begrenzungsflächen, die Teile von kugelförmigen Flächen sind. Man unterscheidet die verschiedenen in der unteren Abbildung dargestellten Linsenformen anhand ihrer Grenzflächen.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{konvexlinsen.png}{width=0.4\linewidth}{width:40\%}\hspace{1cm}
+\MUGraphicsSolo{konkavlinsen.png}{width=0.4\linewidth}{width:40\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Im folgenden wollen wir uns hier zur Vereinfachung auf \emph{bikonvexe} und \emph{bikonkave} dünne Linsen beschränken.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Linsen_Duenne_Linse}
+Eine Linse wird als \MEntry{dünne Linse}{Linse, dünn} bezeichnet, wenn ihre Dicke klein gegenüber ihrem Krümmungsradius ist. Die zweifache Brechung eines Lichtstrahls an den beiden Grenzflächen der Linse wird in Rechnungen und Zeichnungen vereinfacht durch eine einzelne Brechung an ihrer \MEntry{Hauptebene}{Hauptebene} dargestellt.
+
+Die \MEntry{Hauptebene}{Hauptebene, Linse} verläuft senkrecht zur optischen Achse und liegt in der Mittelebene der Linse. Brennweite, Gegenstandsweite und Bildweite werden als Abstände zur Hauptebene angegeben.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Die unten stehenden Abbildungen (A) und (B) zeigen die Brechung unterschiedlicher ausgewählter Lichtstrahlen an einer bikonvexen (A) und einer bikonkaven (B) Linse. Die Hauptebene der Linse ist als schwarz gestrichelte Linie eingezeichnet. Der Verlauf des Lichtstrahls beim Durchqueren der Linse kann vereinfacht durch eine einzige Brechung an dieser Ebene beschrieben werden. Dabei treffen sich parallel auf eine Bi\-kon\-vex\-lin\-se einfallende Lichtstrahlen (\MEntry{Parallelstrahlen}{Parallelstrahl}, rot) in dem hinter der Linse liegenden \MEntry{Brennpunkt}{Brennpunkt} $f_{2}$, werden also zu \MEntry{Brennpunktstrahlen}{Brennpunktstrahl}. Daher wird eine bikonvexe Linse auch als \MEntry{Sammellinse}{Sammellinse} bezeichnet. Eine bikonkave Linse hingegen bricht parallel einfallende Lichtstrahlen so, dass sie nach der Brechung verlaufen als kämen sie aus dem vor der Linse liegenden Brennpunkt $f_{1}$. Eine bikonkave Linse wird aus diesem Grund auch als \MEntry{Zerstreuungslinse}{Zerstreuungslinse} bezeichnet.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{sammellinse-1.png}{width=0.8\linewidth}{width:90\%}\\
+\MUGraphicsSolo{zerstreuungslinse-1.png}{width=0.8\linewidth}{width:90\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Bei einer Sammellinse werden Lichtstrahlen, die durch den vor der Linse liegenden Brennpunkt $f_{1}$ verlaufen (grün), nach der Brechung zu parallelen verlaufenden Strahlen. Eine Zerstreuungslinse erzeugt aus Lichtstrahlen, die vor der Brechung auf den hinter der Linse liegenden Brennpunkt $f_{2}$ zulaufen, durch ihre Brechung Parallelstrahlen. Die Ausbreitungsrichtung von \MEntry{Mittelpunktstrahlen}{Mittelpunktstrahl} (blau) wird von beiden Linsentypen nicht verändert.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Linsen_Brennweite}
+Die \MEntry{Brennweite}{Brennweite, Linse} einer dünnen Linse, die von Luft umschlossen ist, kann mit der sogenannten \MEntry{Linsenschleiferformel}{Linsenschleiferformel} berechnet werden:
+%
+\begin{eqnarray*}
+\frac{1}{f} \,=\, \left(n-1\right)\left(\frac{1}{r_{1}}-\frac{1}{r_{2}}\right)
+\end{eqnarray*}
+%
+Hier ist $n$ der Brechungsindex des Materials, aus dem die Linse gefertigt ist. Die beiden Radien $r_{1}$ und $r_{2}$ beschreiben die Krümmung der dem Objekt zugewandten bzw. abgewandten brechenden Fläche der Linse. Dann ist $f$ die Brennweite der Linse auf der dem Objekt abgewandten Seite.
+
+Bei der Berechnung ist die Krümmung der beiden Grenzflächen zu beachten. Liegt der Mittelpunkt der betrachteten Linsenoberfläche auf der dem Gegenstand abgewandten Seite, ist der Krümmungsradius positiv zu rechnen. Liegt der Mittelpunkt auf der dem Gegenstand zugewandten Seite, ist der Krümmugnsradius negativ zu rechnen. Die Lage des Brennpunktes vor oder hinter der Linse ergibt sich nach derselben Regel.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Auch wenn es möglich ist, Linsen mit unterschiedlichen Krümmungsradien $r_{1}$ und $r_{2}$ zu bauen, beschränken wir uns hier auf Linsen mit gleichen Krümmungsradien für beide Grenzflächen ($r_{2}\,=\,-r_{1}$).
+
+%-----------------------------------------------------------------------------
+% Ueberschrift
+\vspace{5mm}
+\textbf{Optische Abbildungen mit dünnen Linsen}\MEntry{}{Abbildung, optische}\MEntry{}{optische Abbildung}\MEntry{}{dünne Linse}\MEntry{}{Linse, dünn}
+%-----------------------------------------------------------------------------
+
+Zur Untersuchung der Entstehung von Abbildungen an Sammel- und Zerstreuungslinsen ziehen wir die oben beschriebenen Lichtstrahlen heran. Wir beginnen mit einer Sammellinse. In den folgenden Abbildungen (A) bis (C) sind die drei verschiedenen Möglichkeiten der Lage eines abzubildenden Gegenstandes der Größe $G$ im Vergleich zur Brennweite der Linse dargestellt. Wir suchen für die verschiedenen Gegenstandsweiten $g$ die zugehörige Bildweite $b$ und die Bildgröße $B$.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{sammellinse-2.png}{width=0.7\linewidth}{width:90\%}\\
+\MUGraphicsSolo{sammellinse-3.png}{width=0.7\linewidth}{width:90\%}\\
+\MUGraphicsSolo{sammellinse-4.png}{width=0.7\linewidth}{width:90\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Abbildung (A) zeigt einen Gegenstand, der weiter als die Brennweite von der Hauptebene einer Sammellinse entfernt ist ($g\,>\,f$). Um das Bild zu finden, das durch die Brechung an der Linse entsteht, verwenden wir die Parallel-, Mittelpunkt- und Brennpunktstrahlen, die von der Spitze des Gegenstandes ausgehen. Diese werden bis zur Hauptebene gezeichnet, an der ihre Brechung angenommen wird. Ihr Verlauf nach der Brechung wird wie oben beschrieben eingezeichnet. Der zur Spitze des Gegenstandes gehörende Bildpunkt liegt im Schnittpunkt der drei untersuchten Lichtstrahlen auf der dem Gegenstand abgewandten Seite. In diesem Punkt treffen sich reale Lichtstrahlen. Es entsteht ein reelles, auf dem Kopf stehendes, vergrößertes Bild mit den Eigenschaften, die schon bei den Hohlspiegeln beschrieben wurden.
+
+In Abbildung (B) liegt der Gegenstand zwischen Hauptebene und Brennpunkt ($g\,<\,f$). Eine Untersuchung von Parallel-, Brennpunkt- und Mittelpunktstrahl ergibt, dass diese sich nach der Brechung auf der dem Gegenstand abgewandten Seite nicht in einem Punkt schneiden. Eine rückwertige Verlängerung der gebrochenen Lichtstrahlen (grau gestrichelte Linien) führt zum Bildpunkt der Spitze des abzubildenden Gegenstandes im Schnittpunkt dieser drei Linien. In diesem Fall entsteht ein virtuelles, aufrecht stehendes, vergrößertes Bild des Gegenstandes.
+
+Bild (C) stellt den Strahlenverlauf für einen im Brennpunkt liegenden Gegenstand dar. Hier können für die Bildkonstruktion nur Parallel- und Mittelpunktstrahl verwendet werden. Diese verlaufen nach ihrer Brechung genau parallel, schneiden sich also nicht. Auch durch ihre rückwertige Verlängerung kann kein Schnittpunkt gefunden werden. In diesem Fall entsteht kein Bild des Gegenstandes.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{zerstreuungslinse-2.png}{width=0.7\linewidth}{width:90\%}\\
+\MUGraphicsSolo{zerstreuungslinse-3.png}{width=0.7\linewidth}{width:90\%}\\
+\MUGraphicsSolo{zerstreuungslinse-4.png}{width=0.7\linewidth}{width:90\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Die oben gezeigten Abbildungen (A) bis (C) zeigen die Entstehung eines Bildes an einer Zerstreuungslinse, wobei der abzubildende Gegenstand jeweils außerhalb der Brennweite (A), innerhalb der Brennweite (B) und genau im Brennpunkt (C) zu finden ist. Zunächst werden von der Spitze des gegenstandes Brennpunkt-, Mittelpunkt- und Parallelstrahl eingezeichnet, wobei die Brechung der Lichtstrahlen an der Hauptebene der Linse angenommen wird. Diese Konstruktion ist in allen drei Fällen ähnlich. Auf der dem Gegenstand abgewandten Seite findet sich kein Schnittpunkt der gebrochenen Lichtstrahlen. Daher untersuchen wir die rückwärtigen Verlängerungen und finden so einen Schnittpunkt auf der dem Gegenstand zugewandten Seite. Hier finden wir den zur Spitze des Gegenstandes gehörenden Bildpunkt. Es entsteht ein virtuelles, aufrecht stehendes, verkleinertes Bild.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Linsen_Abbildungsmassstab}
+Die \MEntry{Vergrößerung}{Vergrößerung} (Abbildungsmaßstab) $m$ einer dünnen Linse wird aus dem Verhältnis von Blidgröße $B$ zu Gegenstandsgröße $G$ bestimmt.
+%
+\begin{eqnarray*}
+m \,=\, \left|\frac{B}{G}\right| \,=\, \left|\frac{b}{g}\right|
+\end{eqnarray*}
+%
+Hier sind $g$ die Gegenstandsweite und $b$ die Bildweite. Zu beachten ist, dass im Falle der Linsen nur die Beträge der jeweiligen Größen betrachtet werden.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Aus dieser Beziehung kann man mit Hilfe der Strahlensätze die Abbildungsgleichung ableiten.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Linsen_Abbildungsgleichung}
+Für dünne Linsen gilt dieselbe \MEntry{Abbildungsgleichung}{Abbildungsgleichung} wie für Hohlspiegel:
+%
+\begin{eqnarray*}
+\frac{1}{f} \,=\, \frac{1}{g}+\frac{1}{b}
+\end{eqnarray*}
+%
+Hier sind $f$ die Brennweite der Linse, $g$ die Gegenstandsweite und $b$ die Bildweite. Zu beachten ist, dass $g$ positiv angegeben wird. Die Brennweite $f$ ist nach der \MEntry{Linsenschleiferformel}{Linsenschleiferformel} für Sammellinsen positiv und für Zerstreuungslinsen negativ. Erhält man eine positive Bildweite $b$, so liegt das Bild auf der dem Gegenstand abgewandten Seite der Linse und ist reell. Ein negatives $b$ bedeutet ein virtuelles Bild auf der dem Gegenstand zugewandten Seite.
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------
+% Ueberschrift
+\vspace{5mm}
+\textbf{Optische Abbildungen mit Linsensystemen}\MEntry{}{Linsensystem}\MEntry{}{optische Abbildung}\MEntry{}{Abbildung, optische}
+%-----------------------------------------------------------------------------
+
+Als \MEntry{Linsensystem}{Linsensystem} bezeichnen wir ein System aus zwei oder mehr Linsen, die eine \MEntry{gemeinsame optische Achse}{optische Achse} besitzen. Hier werden wir uns auf Systeme aus zwei Linsen beschränken. Die Art der beiden Linsen im System ist frei wählbar.
+
+Das vermutlich am häufigsten gesehene Alltagsbeispiel eines Systems aus zwei Linsen ist ein Auge, dessen Sehkraft mit einer Brille oder Kontaktlinse korrigiert werden muss. Bei einem gesunden Auge werden die Lichtstrahlen, die von einem Punkt $P$, den wir betrachten, ausgehen direkt auf einen Punkt $P'$ auf der Netzhaut abgebildet, siehe Abbildung (A).
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{auge-1.png}{width=0.45\linewidth}{width:47\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Die Abbildungen (B) und (C) hingegen zeigen ein weitsichtiges bzw. ein kurzsichtiges Auge. In diesen Fällen entsteht das Bild $P'$ des betrachteten Punkts $P$ nicht mehr auf der Netzhaut, sondern hinter (Weitsichtigkeit) oder vor (Kurzsichtigkeit) ihr. Die vom Punkt $P$ ausgehenden Lichtstrahlen beleuchten auf der Netzhaut eine ausgedehnte Fläche und das Bild wird unscharf. Dies korrigiert man durch Hinzufügen einer zweiten Linse, d.h. einer Brille oder Kontaktlinse.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{auge-2a.png}{width=0.45\linewidth}{width:47\%}
+\MUGraphicsSolo{auge-2b.png}{width=0.45\linewidth}{width:47\%}\\
+\MUGraphicsSolo{auge-3a.png}{width=0.45\linewidth}{width:47\%}
+\MUGraphicsSolo{auge-3b.png}{width=0.45\linewidth}{width:47\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+Wir betrachten nun einen Gegenstand der Größe $G$ durch ein System aus zwei Linsen. Dies ist in der folgenden Abbildung dargestellt. Das Licht fällt zunächst vom Gegenstand auf die erste Linse und wird dort gebrochen. An der zweiten Linse erfährt es eine zweite Brechung, bei der ein Bild entsteht, das schließlich von einem Beobachter betrachtet werden kann.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{linsensystem.png}{width=0.95\linewidth}{width:95\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Infobox
+\begin{MInfo}
+\MLabel{Physik_Optik1_Linsensystem}
+Bei der Konstruktion des Bildes, das durch ein \MEntry{System aus zwei Linsen}{Linsensystem} entsteht, gehen wir in zwei Schritten vor:
+%
+\begin{enumerate}
+\item Wir ignorieren Linse 2 und konstruieren das Bild $B$ (Zwischenbild) des Gegenstandes $G$ an der ersten Linse.
+\item Wir ignorieren Linse 1 und verwenden das Zwischenbild $B$ der ersten Linse als Gegenstand $G'$ der zweiten Linse. Wir konstruieren das Bild $B'$ der zweiten Linse.
+\end{enumerate}
+%
+Die \MEntry{Vergrößerung}{Vergrößerung} (Abbildungsmaßstab) des Systems ergibt sich als Produkt der Vergrößerungen der einzelnen Linsen:
+%
+\begin{eqnarray*}
+M \,=\, m_{1}m_{2}
+\end{eqnarray*}
+%
+\end{MInfo}
+%--------------------------------------------------------------------------------------------------------------------
+
+Besteht das System aus mehr als zwei Linsen, ist das Vorgehen analog zu dem hier Beschriebenen.
+
+Sehen wir uns die optische Abbildung mit einem System aus zwei Linsen am Beispiel eines Mikroskops an. Dieses besteht aus zwei Sammellinsen, die als Objektiv bzw. Okular bezeichnet werden. Bringt man das abzubildende (sehr kleine) Objekt $G$ sehr nah an den Brennpunkt des Objektivs ($g\,>\,f_{\text{ob}}$), so ensteht ein reelles Bild $B$. Wir können seine Lage und seine Größe durch die Untersuchung von Parallel-, Brennpunkt- und Mittelpunktstrahl finden. Dieses reelle Bild können wir durch eine zweite Linse, das Okular, betrachten. Ein Mikroskop ist so konstruiert, dass das am Objektiv entstehende Bild $B$ des betrachteten Objekts $G$ kurz hinter dem Brennpunkt des Okulars entsteht. Wir verwenden dieses Bild wie einen Gegenstand, der durch das Okular abgebildet wird. Auch hier untersuchen wir einige ausgewählte Lichtstrahlen und finden ein virtuelles, stark vergrößertes Bild $B'$.
+
+%--------------------------------------------------------------------------------------------------------------------
+% Abbildung
+\begin{center}
+\MUGraphicsSolo{mikroskop.png}{width=0.95\linewidth}{width:95\%}
+\end{center}
+%--------------------------------------------------------------------------------------------------------------------
+
+In der Skizze liegt der Gegenstand $G$ noch sehr weit vom Brennpunkt des Objektivs entfernt. Je näher man ihn an den Brennpunkt heranführt, desto größer wird das Bild $B'$.
+
+Ein weiteres bekanntes optisches Instrument, das aus zwei Linsen besteht, ist ein Fernrohr oder Teleskop. Auf die Bildkonstruktion an diesem Instrument soll hier nicht weiter eingegangen werden. Das Vorgehen ist jedoch dem beim Mikroskop ähnlich.
+
+%====================================================================================================================
+% Ende Section Inhalt (Linsen und Linsensysteme)
+\end{MContent}
+%====================================================================================================================
+
+%====================================================================================================================
+% Aufgaben (Linsen und Linsensysteme)
+\begin{MExercises}
+%====================================================================================================================
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise} 
+  Eine Sammellinse des Durchmessers $d_{\text{l}}\,=\,20$~cm wird von parallel zur optischen Achse einfallendem Licht vollständig ausgeleuchtet. Auf einem Schirm, der $l\,=\,30$~cm hinter der Linse senkrecht zur optischen Achse positioniert ist, erscheint ein heller kreisrunder Lichtfleck mit einem Radius von $r_{\text{s}}\,=\,5$~cm. Welche Brennweite hat die Linse?
+
+  \begin{MSolution}
+    Die Brennweite der Sammellinse kann mit den hier gemachten Angaben nicht eindeutig bestimmt werden. Es wurde keine Aussage darüber getroffen, ob der Schirm innerhalb oder außerhalb der Brennweite der Linse positioniert ist. In beiden Fällen kann jedoch derselbe ausgeleuchtete Fleck an der Wand entstehen. Dies wird deutlich, wenn man die in der unten stehenden Abbildung eingezeichneten Lichtstrahlen verfolgt. Hier verwenden wir insbesondere Lichtstrahlen, die gerade am äußeren Rand der Linse gebrochen werden. Dort treffen parallele Lichtstrahlen auf die Linse und können entweder in Richtung der durchgezogenen Linien (Schirm außerhalb der Brennweite) oder der gestrichelten Linien (Schirm innerhalb der Brennweite) gebrochen werden. In beiden Fällen wird dieselbe Fläche auf dem Schirm ausgeleuchtet.
+    %
+    \begin{center}
+      \MUGraphicsSolo{aufgabe-konvexlinse-1.png}{width=0.90\linewidth}{width:90\%}
+    \end{center}
+    %
+    Um die beiden möglichen Brennweiten $f_{1}$ und $f_{2}$ zu bestimmen, betrachten wir die verschiedenen rechtwinkligen Dreiecke, die in der Abbildung zwischen Hauptachse der Linse, Lichtstrahlen und Schirm entstehen. Wir zeichnen die beiden Winkel $\alpha$ und $\beta$ ein und bestimmen diese:
+    %
+    \begin{eqnarray*}
+    \tan\alpha \,=\, \frac{d_{\text{l}}}{2f_{1}} \quad &\text{und}& \quad \tan\alpha \,=\, \frac{r_{\text{s}}}{l-f_{1}}\\
+    \tan\beta \,=\, \frac{d_{\text{l}}}{2f_{2}} \quad &\text{und}& \quad \tan\beta \,=\, \frac{r_{\text{s}}}{f_{2}-l}
+    \end{eqnarray*}
+    %
+    Durch jeweiliges Gleichsetzen finden wir die Brennweiten:
+    %
+    \begin{eqnarray*}
+    \frac{d_{\text{l}}}{2f_{1}} \,=\, \frac{r_{\text{s}}}{l-f_{1}} \quad\Leftrightarrow\quad f_{1} \,=\, \frac{d_{\text{l}}l}{2r_{\text{s}}-d_{\text{l}}} \,=\, \frac{30~\text{cm}\cdot 20~\text{cm}}{10~\text{cm}+20~\text{cm}} \,=\, 20~\text{cm}\\
+    \frac{d_{\text{l}}}{2f_{2}} \,=\, \frac{r_{\text{s}}}{f_{2}-l} \quad\Leftrightarrow\quad f_{2} \,=\, \frac{d_{\text{l}}l}{d_{\text{l}}-2r_{\text{s}}} \,=\, \frac{30~\text{cm}\cdot 20~\text{cm}}{20~\text{cm}-10~\text{cm}} \,=\, 60~\text{cm}
+    \end{eqnarray*}
+    %
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise} 
+  Berechnen Sie für eine Sammellinse den kleinsten möglichen Abstand zwischen einem Gegenstand und seinem reellen Bild.
+
+  \begin{MSolution}
+    Sei $l\,=\,g+b$ der Abstand zwischen Gegenstand und Bild. Wir suchen das Minimum von $l$ in Abhängigkeit der Gegenstandsweite $g$ oder der Bildweite $b$ bei fester Brennweite $f$. Mit der Abbildungsgleichung
+    %
+    \begin{eqnarray*}
+    \frac{1}{f} \,=\, \frac{1}{g}+\frac{1}{b} \quad\Leftrightarrow\quad b \,=\, \frac{fg}{g-f}
+    \end{eqnarray*}
+    %
+    folgt
+    %
+    \begin{eqnarray*}
+    l\,=\,g+b \,=\, g+\frac{fg}{g-f}
+    \end{eqnarray*}
+    %
+    Um das Minimum von $l$ bezüglich der Gegenstandsweite $g$ zu suchen, benötigen wir die erste und zweite Ableitung von $l$ nach $g$:
+    %
+    \begin{eqnarray*}
+    \frac{dl}{dg} &=& 1+\frac{f\left(g-f\right)-fg}{\left(g-f\right)^{2}} \,=\, \frac{g\left(g-2f\right)}{\left(g-f\right)^{2}}\\
+    \frac{d^{2}l}{dg^{2}} &=& \frac{2\left(g-f\right)^{3}-2g\left(g-2f\right)\left(g-f\right)}{\left(g-f\right)^{4}} \,=\, \frac{2}{g-f}-2g\frac{g-2f}{\left(g-f\right)^{3}}
+    \end{eqnarray*}
+    %
+    Im Minimum der Funktion $l$ gilt:
+    %
+    \begin{eqnarray*}
+    \frac{dl}{dg}\left(g_{\text{min}}\right) \,=\, \frac{g_{\text{min}}\left(g_{\text{min}}-2f\right)}{\left(g_{\text{min}}-f\right)^{2}} \,=\, 0 \quad\Leftrightarrow\quad g_{\text{min}}\,=\,0 \quad\vee\quad g_{\text{min}} \,=\, 2f
+    \end{eqnarray*}
+    %
+    Da $g_{\text{min}}\,=\,0$ bedeutet, dass der Gegenstand in der Hauptachse der Linse liegen würde, bleibt $g_{\text{min}} \,=\, 2f$ als mögliche Lösung übrig. Wir müssen nun anhand der zweiten Ableitung überprüfen, ob es sich hier wirklich um ein Minimum handelt:
+    %
+    \begin{eqnarray*}
+    \frac{d^{2}l}{dg^{2}}\left(g_{\text{min}}\right) &=& \frac{2}{g_{\text{min}}-f}-2g_{\text{min}}\frac{g_{\text{min}}-2f}{\left(g_{\text{min}}-f\right)^{3}}\\
+    &=& \frac{2}{2f-f}-4f\frac{2f-2f}{\left(2f-f\right)^{3}}\\
+    &=& \frac{2}{f} \,>\, 0
+    \end{eqnarray*}
+    %
+    Es handelt sich tatsächlich um ein Minimum. Der gesuchte minimale Abstand ergibt sich durch einsetzen in die Gleichung für $l$
+    %
+    \begin{eqnarray*}
+    l \,=\, g_{\text{min}}+\frac{fg_{\text{min}}}{g_{\text{min}}-f} \,=\, 2f+\frac{2f^{2}}{2f-f} \,=\, 4f
+    \end{eqnarray*}
+    %
+    und entspricht der vierfachen Brennweite.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise} 
+  Bestimmen Sie das Bild $B$ des Gegenstandes $G$, das durch das hier vorgegebene System aus zwei Sammellinsen entsteht!
+  %
+  \begin{center}
+    \MUGraphicsSolo{aufgabe-linsensystem-1.png}{width=0.90\linewidth}{width:90\%}
+  \end{center}
+  %
+  \begin{MSolution}
+    Wir gehen bei der Lösung schrittweise vor und konstruieren zunächst das Zwischenbild $Z$ der ersten Linse:
+    %
+    \begin{center}
+      \MUGraphicsSolo{aufgabe-linsensystem-1-loesung-1.png}{width=0.90\linewidth}{width:90\%}
+    \end{center}
+    %
+    Mit Hilfe von Parallel- und Brennpunktstrahl lässt sich dieses finden. Durch die hier gewählte Konstruktion, dass der Abstand der beiden Linsen genau der Summe ihrer Brennweiten entspricht, erhalten wir so auch direkt einen Parallelstrahl und einen Brennpunktstrahl, um das Bild der zweiten Linse zu finden:
+    %
+    \begin{center}
+      \MUGraphicsSolo{aufgabe-linsensystem-1-loesung-2.png}{width=0.90\linewidth}{width:90\%}
+    \end{center}
+    %
+    So finden wir das Bild $B$, das an diesem Linsensystem vom Gegenstand $G$ entsteht.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------------------------------------------------
+% Aufgabe
+\begin{MExercise} 
+  Bestimmen Sie das Bild $B$ des Gegenstandes $G$, das durch das hier vorgegebene System aus einer Sammellinse und einer Zerstreuungslinse entsteht!
+  %
+  \begin{center}
+    \MUGraphicsSolo{aufgabe-linsensystem-2.png}{width=0.90\linewidth}{width:90\%}
+  \end{center}
+  %
+  \begin{MSolution}
+    Wir gehen bei der Lösung schrittweise vor und konstruieren zunächst das Zwischenbild $Z$ der Sammellinse:
+    %
+    \begin{center}
+      \MUGraphicsSolo{aufgabe-linsensystem-2-loesung-1.png}{width=0.90\linewidth}{width:90\%}
+    \end{center}
+    %
+    Mit Hilfe von Parallel- und Brennpunktstrahl lässt sich dieses finden. Durch die hier gewählte Konstruktion, dass der Abstand der beiden Linsen genau der Summe ihrer Brennweiten entspricht, erhalten wir so auch direkt einen Parallelstrahl der Zerstreuungslinse. Dieser verläuft nach der Brechung so, als käme er aus dem vor der Linse liegenden Brennpunkt.
+    %
+    \begin{center}
+      \MUGraphicsSolo{aufgabe-linsensystem-2-loesung-2.png}{width=0.90\linewidth}{width:90\%}
+    \end{center}
+    %
+    Der Lichtstrahl, der nach der Brechung an der Sammellinse durch den vor der Zerstreuungslinse liegenden Brennpunkt verläuft, kann leider nicht zur Bildkonstruktion beitragen. Daher verwenden wir einen Lichtstrahl, der hinter der Sammellinse so verläuft, als verliefe er von der Spitze des Zwischenbildes $Z$ durch die Mitte der Zerstreuungslinse, wobei er seine Richtung nicht verändert. Im Schnittpunkt dieses Lichtstrahls mit der rückwärtigen Verlängerung des zwischen den beiden Linsen parallel zur optischen Achse verlaufenden Lichtstrahls finden wir das Bild $B$, das an diesem Linsensystem vom Gegenstand $G$ entsteht. Zur Vervollständigung sind die noch fehlenden Strahlenverläufe eingezeichnet.
+  \end{MSolution}
+\end{MExercise}
+%--------------------------------------------------------------------------------------------------------------------
+%====================================================================================================================
+\end{MExercises}
+%====================================================================================================================
+% Ende Aufgaben
+%====================================================================================================================
+% Ende Section (Linsen und Linsensysteme)
+%====================================================================================================================
+%====================================================================================================================
+%====================================================================================================================
+
+\MPrintIndex
+
+\end{document}

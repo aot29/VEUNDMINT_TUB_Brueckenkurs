@@ -225,6 +225,8 @@ class PageFactory(object):
                                 tsec = str(p3.nr) + p3.title
                                 tsec = re.sub(r"([0123456789]+?)\.([0123456789]+)(.*)", "<div class=\"xsymb selected\">\\1.\\2</div></a>&nbsp;", tsec, 1, re.S)
                                 pages4 = p3.children
+                                if len(pages4) == 0:
+                                    self.sys.message(self.sys.FATALERROR, "Level 3 element has no children: " + p3.title)
                                 for a in range(len(pages4)):
                                        p4 = pages4[a]
                                        if p4 is tc:
@@ -233,8 +235,8 @@ class PageFactory(object):
                                            cl = ""
                                        divid = "idxsymb_tc" + str(p4.myid)
                                        tsec += "<a class=\"MINTERLINK\" href=\"" + p4.fullname + "\"><div uxid=\"" + p4.uxid + "\" id=\"" + divid + "\" class=\"xsymb " + p4.tocsymb + cl + "\"></div></a>\n"
-                                       
                                 c += "    <li><a class=\"MINTERLINK\" href=\"" + pages4[0].fullname + "\">" + tsec + "</li>\n"
+                                       
                         c += "    </ul></div>\n"
                 c += "  </li>\n"
         c += "\n" \
@@ -314,7 +316,12 @@ class PageFactory(object):
             # higher level: set links to module start
             pp = tc
             while (pp.level != self.options.contentlevel):
-                pp = pp.children[0]
+                if pp is None:
+                    self.sys.message(self.sys.FATALERROR, "NaviTree descent run into a None reference")
+                if len(pp.children) == 0:
+                    self.sys.message(self.sys.FATALERROR, "Tree element " + pp.title + " of level " + str(pp.level) + " (not contentlevel) has no children")
+                else:
+                    pp = pp.children[0]
             # higher level link: is always alone and therefore selected
             navi += "  <li class=\"xsectbutton\"><a class=\"MINTERLINK naviselected\" href=\"" + pp.fullname + "\">"
             if pp.helpsite:
@@ -434,8 +441,12 @@ class PageFactory(object):
             else:
                 # simulating DeclareGraphicsExtension{png,jpg,gif} from LaTeX
                 self.sys.message(self.sys.VERBOSEINFO, "No file extension given, guessing graphics extensions")
-                filerump = "tex/" + includedir + "/" + fname
-                p = subprocess.Popen(["ls", "-l", filerump + ".*"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+                self.sys.pushdir()
+                os.chdir(self.options.sourcepath)
+                os.chdir("tex")
+                os.chdir(includedir)
+                filerump = fname
+                p = subprocess.Popen(["ls", "-l", filerump + ".*"], stdout = subprocess.PIPE, shell = True, universal_newlines = True)
                 (filelist, err) = p.communicate()
                 if p.returncode == 0:
                     self.sys.message(self.sys.VERBOSEINFO, "  filelist=" + filelist)
@@ -463,6 +474,8 @@ class PageFactory(object):
                                     self.sys.message(self.sys.CLIENTERROR, "Register tag with id " + fileid + " found " + str(n) + " times in html content without graphics extension")
                 else:
                     self.sys.message(self.sys.FATALERROR, "Command ls does not seem to work, error code is " + str(p.returncode))
+                
+                self.sys.popdir()
                 
             dobase64 = 0 # should be enabled later
             if (fext != "*"):

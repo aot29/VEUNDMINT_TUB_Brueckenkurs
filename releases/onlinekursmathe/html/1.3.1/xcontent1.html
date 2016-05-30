@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 3.1.2 Auflösen einfacher Ungleichungen</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+// onload blocks start
+__CQJ = CreateQuestionObj; function GSLS(c) {
+  var str = "";
+if(c==1){str=debork("07y681+3/c0.c(xt-x-.5xs/a;yq3,26",1);}if(c==2){str=debork("1628c,b()..55xa7b5++b320,c+)bs34",1);}if(c==3){str=debork("1s0395ty93q4sb21rc;8+bq.b0;(414.",1);}if(c==4){str=debork("0c0648x-446qa*515;r77c413;yt0r9t",1);}if(c==5){str=debork("(ny)t29,a3,-f,6rtbxac(it2a/-x-9b",10);}if(c==6){str=debork("[6*1atr)f,14ct.6/qyn4-x454ar;ti/",12);}if(c==7){str=debork("(b7t5bf--,y32ti4t,.-yntci,s)f66n",14);}return str;}
+
+__CQJ("UG1",1,GSLS(1),"QFELD_3.1.3.QF1",2,"IMGQFELD_3.1.3.QF1",4,0,3);__CQJ("UG2",2,GSLS(2),"QFELD_3.1.3.QF2",2,"IMGQFELD_3.1.3.QF2",4,0,3);__CQJ("UG3",3,GSLS(3),"QFELD_3.1.3.QF3",2,"IMGQFELD_3.1.3.QF3",4,0,3);__CQJ("UG4",4,GSLS(4),"QFELD_3.1.3.QF4",2,"IMGQFELD_3.1.3.QF4",4,0,3);__CQJ("TXH1",5,GSLS(5),"QFELD_3.1.3.QF5",6,"5",4,0,3);__CQJ("TXH2",6,GSLS(6),"QFELD_3.1.3.QF6",6,"5",4,0,3);__CQJ("TXH3",7,GSLS(7),"QFELD_3.1.3.QF7",6,"5",4,0,3);
+// onload blocks stop
+var SITE_ID = "1.3.1.2";
+var SITE_UXID = "VBKM03_EinfacheUngleichungen";
+var SECTION_ID = 3;
+var docName = "xcontent1";
+var fullName = "html/1.3.1/xcontent1.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.3.1/modstart.html"><div class="xsymb selected">3.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.3.1/modstart.html"><div uxid="VBKM03_UngleichungenIntro" id="idxsymb_tc98" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.3.1/xcontent1.html"><div uxid="VBKM03_EinfacheUngleichungen" id="idxsymb_tc99" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html/1.3.1/xcontent2.html"><div uxid="VBKM03_SpezielleUmformungen" id="idxsymb_tc100" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.3.2/modstart.html"><div class="xsymb selected">3.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.3.2/modstart.html"><div uxid="VBKM03_UmformungenFallunterscheidungen" id="idxsymb_tc101" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.3.2/xcontent1.html"><div uxid="VBKM03_Fallunterscheidungen_Exercises" id="idxsymb_tc102" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.3.3/modstart.html"><div class="xsymb selected">3.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.3.3/modstart.html"><div uxid="VBKM03_Betragsungleichungen_Intro" id="idxsymb_tc103" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.3.3/xcontent1.html"><div uxid="VBKM03_QuadratischeUngleichungen" id="idxsymb_tc104" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.3.3/xcontent2.html"><div uxid="VBKM03_WeitereUngleichungstypen" id="idxsymb_tc105" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.3.4/modstart.html"><div class="xsymb selected">3.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.3.4/modstart.html"><div uxid="VBKM03_Abschlusstest" id="idxsymb_tc106" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.3.1/modstart.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/1.3.1/xcontent2.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM03_UngleichungenIntro" class="MINTERLINK" href="../../html/1.3.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM03_EinfacheUngleichungen" class="MINTERLINK naviselected" href="../../html/1.3.1/xcontent1.html">Auflösen</a></li>
+  <li class="xsectbutton"><a uxid="VBKM03_SpezielleUmformungen" class="MINTERLINK" href="../../html/1.3.1/xcontent2.html">Spezielle Umformungen</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /><a href='../../veundmintkurs.pdf' target='_new'><img src='../../images/pdfmini.png' border='0' /></a></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas f&uuml;r den Onlinekurs</b><br />
+<ul style="width:95%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;min-width:100px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;min-width:100px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;min-width:100px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLEGREEN);">Gr&uuml;n</button></center></li>
+<li style="padding:20px;min-width:100px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  Mathematische Symbole nach <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation, empfohlen):<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  <div id="variantactive_std" style="visibility:hidden">
+  (Diese Notation ist aktiviert)
+  </div>
+  <button id="variantselect_std" style="visibility:hidden" type="button" class="stdbutton" onclick="selectVariant('std');">Zur Schulbuchnotation wechseln</button>
+  </li>
+  <li>
+  Alternative Notation, die in vielen technischen Studieng&auml;ngen eingesetzt wird:<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  <div id="variantactive_unotation" style="visibility:hidden">
+  (Diese Notation ist aktiviert)
+  </div>
+  <button id="variantselect_unotation" style="visibility:hidden" type="button" class="stdbutton" onclick="selectVariant('unotation');">Zu dieser Notation wechseln</button>
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zur&uuml;ck zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Kursinhalt</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Kapitel 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.2.0.html"><div class ="tocminbutton">Kapitel 2</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.3.0.html"><div class ="tocminbutton">Kapitel 3</div></a>
+    <div><ul>
+    <li><a class="MINTERLINK" href="../../html/1.3.1/modstart.html"><div class="xsymb selected">3.1</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.3.1/modstart.html"><div uxid="VBKM03_UngleichungenIntro" id="idxsymb_tc98" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.3.1/xcontent1.html"><div uxid="VBKM03_EinfacheUngleichungen" id="idxsymb_tc99" class="xsymb status1 selected"></div></a>
+<a class="MINTERLINK" href="../../html/1.3.1/xcontent2.html"><div uxid="VBKM03_SpezielleUmformungen" id="idxsymb_tc100" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.3.2/modstart.html"><div class="xsymb selected">3.2</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.3.2/modstart.html"><div uxid="VBKM03_UmformungenFallunterscheidungen" id="idxsymb_tc101" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.3.2/xcontent1.html"><div uxid="VBKM03_Fallunterscheidungen_Exercises" id="idxsymb_tc102" class="xsymb status2"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.3.3/modstart.html"><div class="xsymb selected">3.3</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.3.3/modstart.html"><div uxid="VBKM03_Betragsungleichungen_Intro" id="idxsymb_tc103" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.3.3/xcontent1.html"><div uxid="VBKM03_QuadratischeUngleichungen" id="idxsymb_tc104" class="xsymb status1"></div></a>
+<a class="MINTERLINK" href="../../html/1.3.3/xcontent2.html"><div uxid="VBKM03_WeitereUngleichungstypen" id="idxsymb_tc105" class="xsymb status1"></div></a>
+</li>
+    <li><a class="MINTERLINK" href="../../html/1.3.4/modstart.html"><div class="xsymb selected">3.4</div></a>&nbsp;<a class="MINTERLINK" href="../../html/1.3.4/modstart.html"><div uxid="VBKM03_Abschlusstest" id="idxsymb_tc106" class="xsymb status3"></div></a>
+</li>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.4.0.html"><div class ="tocminbutton">Kapitel 4</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.5.0.html"><div class ="tocminbutton">Kapitel 5</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.6.0.html"><div class ="tocminbutton">Kapitel 6</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.7.0.html"><div class ="tocminbutton">Kapitel 7</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.8.0.html"><div class ="tocminbutton">Kapitel 8</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.9.0.html"><div class ="tocminbutton">Kapitel 9</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.10.0.html"><div class ="tocminbutton">Kapitel 10</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong>LEGENDE</strong></li><li><div class="xsymb">1.1</div>Einführung in Thema<br/></li><li><div class="xsymb status1"></div>Lernabschnitt</li><li><div class="xsymb status2"></div>Übungsaufgaben</li><li><div class="xsymb status3"></div>Abschlusstest</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/1.3.1/modstart.html"></a></div>
+<div class="nnext"><a class="MINTERLINK" href="../../html/1.3.1/xcontent2.html"></a></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM03_UngleichungenIntro" class="MINTERLINK" href="../../html/1.3.1/modstart.html">Einf&#252;hrung</a></li>
+  <li class="xsectbutton"><a uxid="VBKM03_EinfacheUngleichungen" class="MINTERLINK naviselected" href="../../html/1.3.1/xcontent1.html">Auflösen</a></li>
+  <li class="xsectbutton"><a uxid="VBKM03_SpezielleUmformungen" class="MINTERLINK" href="../../html/1.3.1/xcontent2.html">Spezielle Umformungen</a></li>
+</ul>
+</div>
+  <div id="content" class="content">
+
+
+
+
+
+
+
+<h4>Kapitel 3 Ungleichungen in einer Unbekannten  - Abschnitt 3.1  Ungleichungen und ihre Lösungsmengen</h4><h4>3.1.2 Auflösen einfacher Ungleichungen</h4>
+<!-- mdeclaresiteuxidpost;;VBKM03_EinfacheUngleichungen;; //-->
+
+<br clear="all"/><br clear="all"/>
+Ist die Unbestimmte in einer Ungleichung isoliert, so ist die Lösungsmenge ein Intervall, vgl. auch Infobox <a class="MINTERLINK" href="../../html/1.1.1/modstart.html#VBKM01_Intervalle">1.1.5</a>:
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+3.1.3
+    
+  
+  </b>  <br/> <br/><a id="M03_Aufloesungen">
+</a>
+Die <b>aufgelösten Ungleichungen</b><!-- mindexentry;;Ungleichungen (aufgelöst); //--><a class="label" name="ELI_SW62"></a> haben folgende <b>Intervalle</b><!-- mindexentry;;Intervall; //--><a class="label" name="ELI_SW63"></a> als Lösungsmenge:
+
+<ul><li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>&lt;</mo><mi>a</mi></mrow></math> besitzt die Lösungsmenge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext/><mrow><mo>]</mo><mo>-</mo><mi>∞</mi><mo>;</mo><mi>a</mi><mo>[</mo></mrow><mtext/></mrow></math>, alle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>, die kleiner als <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> sind.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>≤</mo><mi>a</mi></mrow></math> besitzt die Lösungsmenge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext/><mrow><mo>]</mo><mo>-</mo><mi>∞</mi><mo>;</mo><mi>a</mi><mo>]</mo></mrow></mrow></math>, alle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>, die kleiner oder gleich <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> sind.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>&gt;</mo><mi>a</mi></mrow></math> besitzt die Lösungsmenge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext/><mrow><mo>]</mo><mi>a</mi><mo>;</mo><mi>∞</mi><mo>[</mo></mrow><mtext/></mrow></math>, alle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>, die größer als <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> sind.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>≥</mo><mi>a</mi></mrow></math> besitzt die Lösungsmenge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mo>[</mo><mi>a</mi><mo>;</mo><mi>∞</mi><mo>[</mo></mrow><mtext/></mrow></math>, alle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>, die größer oder gleich <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> sind.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul>
+Dabei ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> die Unbestimmte und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> ein konkreter Zahlenwert. Tritt die Unbestimmte in der Ungleichung nicht mehr auf, so ist die Lösungsmenge
+entweder <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>ℝ</mo><mo>=</mo><mtext/><mrow><mo>]</mo><mo>-</mo><mi>∞</mi><mo>;</mo><mi>∞</mi><mo>[</mo></mrow><mtext/></mrow></math>, falls die Ungleichung erfüllt ist, oder die leere Menge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">{</mo><mo stretchy="false">}</mo></mrow></math>, falls die Ungleichung nicht erfüllt ist.
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+Das Zeichen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>∞</mi></mrow></math> bedeutet dabei <b>unendlich</b><!-- mindexentry;;Unendlich; //--><a class="label" name="ELI_SW64"></a>. Ein endliches Intervall hat die Form <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext/><mo stretchy="false">]</mo><mi>a</mi><mo>;</mo><mi>b</mi><mo stretchy="false">[</mo><mtext/></mrow></math>, was „alle Zahlen zwischen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi></mrow></math>“ bedeutet. Möchte man
+die Zahlenmenge nur auf einer Seite begrenzen, so kann man für die andere Seite die Symbole <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>∞</mi></mrow></math> (rechts) oder <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>-</mo><mi>∞</mi></mrow></math> (links) einsetzen.
+
+<br clear="all"/><br clear="all"/>
+Wie schon bei den Gleichungen versucht man durch Umformungen, welche die Lösungsmenge nicht verändern, eine aufgelöste Ungleichung zu erhalten, aus der man die Lösungsmenge einfach ablesen kann:
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+3.1.4
+    
+  
+  </b>  <br/> <br/><a id="VBKM03_AequivalenzumformungenUngleichungen">
+</a>
+Um aus einer gegebenen Ungleichung eine aufgelöste Ungleichung zu erhalten,
+sind folgende <b>Äquivalenzumformungen</b><!-- mindexentry;;Äquivalenzumformung (Ungleichung); //--><a class="label" name="ELI_SW65"></a> erlaubt:
+
+<ul><li>Addition einer Konstanten auf beiden Seiten der Ungleichung: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow></math> ist äquivalent zu <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>+</mo><mi>c</mi><mo>&lt;</mo><mi>b</mi><mo>+</mo><mi>c</mi></mrow></math>.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Multiplikation mit einer positiven Konstanten auf beiden Seiten der Ungleichung: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow></math> ist äquivalent zu <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>·</mo><mi>c</mi><mo>&lt;</mo><mi>b</mi><mo>·</mo><mi>c</mi></mrow></math>, falls <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi><mo>&gt;</mo><mn>0</mn></mrow></math> ist.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li>Multiplikation mit einer negativen Konstanten auf beiden Seiten der Ungleichung und Umdrehung des Vergleichssymbols: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow></math> ist äquivalent zu <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>·</mo><mi>c</mi><mo>&gt;</mo><mi>b</mi><mo>·</mo><mi>c</mi></mrow></math>,
+falls <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi><mo>&lt;</mo><mn>0</mn></mrow></math> ist.
+<br clear="all"/><br clear="all"/>
+</li>
+</ul></div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="exmp">
+  <div class="exmprahmen">
+  <b>Beispiel
+  3.1.5
+  
+  </b>  <br/>
+Die Ungleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>-</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mi>x</mi><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&lt;</mo><mn>2</mn></mrow></math> löst man schrittweise mit den obigen Umformungen auf:
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mo>-</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mi>x</mi><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&lt;</mo><mn>2</mn><mi>  </mi><mi>  </mi><mrow><mo stretchy="false">‖</mo>              <mo/></mrow><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>-</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mi>x</mi><mo>&lt;</mo><mn>2</mn><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>  </mi><mi>  </mi><mrow><mo stretchy="false">‖</mo>              <mo/></mrow><mo>·</mo><mrow><mo>(</mo><mo>-</mo><mfrac><mrow><mn>4</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>)</mo></mrow><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>x</mi><mo>&gt;</mo><mo>-</mo><mfrac><mrow><mn>4</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mrow><mo>(</mo><mn>2</mn><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>)</mo></mrow><mi>  </mi><mi>  </mi><mrow><mo stretchy="false">‖</mo>              <mo/></mrow><mi>  </mi><mtext>Vereinfachen</mtext></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>x</mi><mo>&gt;</mo><mo>-</mo><mfrac><mrow><mn>20</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mo>-</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
+
+Damit besitzt die ursprüngliche Ungleichung die Lösungsmenge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext/><mrow><mo>]</mo><mo>-</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>;</mo><mi>∞</mi><mo>[</mo></mrow><mtext/></mrow></math>. Wichtig ist bei den Umformungen, dass die Multiplikation mit der negativen Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>-</mo><mfrac><mrow><mn>4</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></math> das Vergleichssymbol umdreht.
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_3.1.6">  <b>Aufgabe 3.1.6
+</b>  <br/>
+Sind diese Ungleichungen richtig oder falsch?
+
+<br clear="all"/><br clear="all"/>
+
+<table><tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_3.1.3.QF1" id="QFELD_3.1.3.QF1" onchange="handlerChange(1,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_3.1.3.QF1" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_3.1.3.QF1"/></td><td align="left">  </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&gt;</mo><mn>1</mn><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></math></td></tr><tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_3.1.3.QF2" id="QFELD_3.1.3.QF2" onchange="handlerChange(2,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_3.1.3.QF2" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_3.1.3.QF2"/></td><td align="left">  </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>≥</mo><mn>2</mn><mi>a</mi><mi>b</mi><mo>-</mo><msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math> (wobei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi></mrow></math> unbekannte Zahlen sind)</td></tr><tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_3.1.3.QF3" id="QFELD_3.1.3.QF3" onchange="handlerChange(3,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_3.1.3.QF3" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_3.1.3.QF3"/></td><td align="left">  </td><td align="left"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&lt;</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>&lt;</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>4</mn></mrow></mfrac></mrow></math></td></tr><tr><td align="left">
+ <input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_QFELD_3.1.3.QF4" id="QFELD_3.1.3.QF4" onchange="handlerChange(4,1);"/><img src="../../images/questionmark.png" name="Name_IMGQFELD_3.1.3.QF4" width="20" height="20" border="0" align="absmiddle" id="IMGQFELD_3.1.3.QF4"/></td><td align="left">  </td><td align="left">Angenommen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow></math>, dann ist immer auch <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>&lt;</mo><msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math>.
+</td></tr></table><button name="Name_Group1to4" class="groupbutton" id="Group1to4" type="button" onclick="group_button(1,4);">Eingabe überprüfen</button>
+
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint1" class="hintbutton_closed" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint1"> 
+Die erste Ungleichung vereinfacht sich zu <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&gt;</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></math>, was nach Multiplikation mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>6</mn></mrow></math> äquivalent ist zu <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mo>&gt;</mo><mn>4</mn></mrow></math>, dies ist eine falsche Aussage.
+Die zweite Ungleichung kann man durch Übertragen aller Zahlenwerte auf die linke Seite
+vereinfachen zu <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>2</mn><mi>a</mi><mi>b</mi><mo>+</mo><msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>≥</mo><mn>0</mn></mrow></math>, dies ist eine wegen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>2</mn><mi>a</mi><mi>b</mi><mo>+</mo><msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mo stretchy="false">(</mo><mi>a</mi><mo>-</mo><mi>b</mi><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup></mrow></math> für alle Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi></mrow></math> wahre Aussage.
+Multiplikation der dritten Ungleichungskette mit dem Hauptnenner <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>12</mn></mrow></math> ergibt die Kette <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>6</mn><mo>&lt;</mo><mn>8</mn><mo>&lt;</mo><mn>9</mn></mrow></math>, die erfüllt ist.
+Die letzte Aussage ist dagegen falsch, beispielsweise für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi><mo>=</mo><mn>1</mn></mrow></math> ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>1</mn></mrow></math> nicht kleiner als <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>1</mn></mrow></math>. Quadrieren von Termen ist keine Äquivalenzumformung.
+</div>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+            <div class="aufgabe" id="ADIV_3.1.7">  <b>Aufgabe 3.1.7
+</b>  <br/>
+Welche Lösungsmengen besitzen die folgenden Ungleichungen?
+
+<ol type="1"><li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo>&gt;</mo><mn>3</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> besitzt das Lösungsintervall <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="6" name="Name_QFELD_3.1.3.QF5" id="QFELD_3.1.3.QF5" type="text" size="30" maxlength="30" onfocus="handlerFocus(5);" onblur="handlerBlur(5);" onkeyup="handlerChange(5,0);" onpaste="handlerChange(5,0);" oninput="handlerChange(5,0);" onpropertychange="handlerChange(5,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_3.1.3.QF5"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>-</mo><mn>3</mn><mi>x</mi><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>≤</mo><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math> besitzt das Lösungsintervall <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="6" name="Name_QFELD_3.1.3.QF6" id="QFELD_3.1.3.QF6" type="text" size="30" maxlength="30" onfocus="handlerFocus(6);" onblur="handlerBlur(6);" onkeyup="handlerChange(6,0);" onpaste="handlerChange(6,0);" oninput="handlerChange(6,0);" onpropertychange="handlerChange(6,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_3.1.3.QF6"/>
+
+
+.
+<br clear="all"/><br clear="all"/>
+</li>
+
+<li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>≤</mo><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math> besitzt das Lösungsintervall <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="6" name="Name_QFELD_3.1.3.QF7" id="QFELD_3.1.3.QF7" type="text" size="30" maxlength="30" onfocus="handlerFocus(7);" onblur="handlerBlur(7);" onkeyup="handlerChange(7,0);" onpaste="handlerChange(7,0);" oninput="handlerChange(7,0);" onpropertychange="handlerChange(7,0);"/><img src="../../images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="QMQFELD_3.1.3.QF7"/>
+
+
+.
+
+<br clear="all"/><br clear="all"/>
+</li>
+</ol><span style="color:#0000FF">Geben Sie Intervalle in der Form <tt>(a;b)</tt> ein, für die Intervallgrenzen dürfen auch
+Brüche oder <tt>unendlich</tt> bzw. negativ <tt>-unendlich</tt> eingesetzt werden. Achten Sie darauf, ob die Randpunkte enthalten sind.</span>
+
+<br clear="all"/><br clear="all"/>
+  <button name="Name_MHint2" class="hintbutton_closed" id="MHint2_button" type="button" onclick="toggle_hint('MHint2');">Lösung</button>
+  <div class="hint" style="display:none" id="MHint2"> 
+Umformen der ersten Ungleichung ergibt
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo>&gt;</mo><mn>3</mn><mi>x</mi><mo>-</mo><mn>1</mn><mi>  </mi><mi>  </mi><mrow><mo stretchy="false">‖</mo>              <mo/></mrow><mo>+</mo><mn>1</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn><mo>&gt;</mo><mn>3</mn><mi>x</mi><mi>  </mi><mi>  </mi><mrow><mo stretchy="false">‖</mo>              <mo/></mrow><mo>-</mo><mn>2</mn><mi>x</mi><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>2</mn><mo>&gt;</mo><mi>x</mi></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
+
+und damit das Lösungsintervall <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mtext/><mrow><mo>]</mo><mo>-</mo><mi>∞</mi><mo>;</mo><mn>2</mn><mo>[</mo></mrow><mtext/></mrow></math>. Umformen der zweiten Ungleichung ergibt
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mo>-</mo><mn>3</mn><mi>x</mi><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>≤</mo><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>  </mi><mi>  </mi><mrow><mo stretchy="false">‖</mo>              <mo/></mrow><mo>+</mo><mn>3</mn><mi>x</mi><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>-</mo><mn>1</mn><mo>≤</mo><mn>4</mn><mi>x</mi><mi>  </mi><mi>  </mi><mrow><mo stretchy="false">‖</mo>              <mo/></mrow><mo>·</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>≤</mo><mi>x</mi></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
+
+und damit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mrow><mo>[</mo><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>;</mo><mi>∞</mi><mo>[</mo></mrow><mtext/></mrow></math>. Umformen der dritten Ungleichung ergibt
+<br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mi>x</mi><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>≤</mo><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>  </mi><mi>  </mi><mrow><mo stretchy="false">‖</mo>              <mo/></mrow><mo>-</mo><mi>x</mi><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>≤</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>
+
+Diese Aussage ist unabhängig von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>∈</mo><mo>ℝ</mo></mrow></math> immer erfüllt, also ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mo>ℝ</mo><mo>=</mo><mtext/><mrow><mo>]</mo><mo>-</mo><mi>∞</mi><mo>;</mo><mi>∞</mi><mo>[</mo></mrow><mtext/></mrow></math> die Lösungsmenge.
+</div>
+
+  </div>
+  
+  
+
+<br clear="all"/><br clear="all"/>
+        
+  <div class="info">
+  <div class="inforahmen">
+  <b>Info
+  
+3.1.8
+    
+  
+  </b>  <br/> <br/>
+Eine Ungleichung in der Unbestimmten <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> ist <b>linear</b><!-- mindexentry;;Ungleichung (linear); //--><a class="label" name="ELI_SW66"></a>, falls auf beiden Seiten der Ungleichung nur Vielfache von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> und Konstanten vorkommen.
+Jede lineare Ungleichung lässt sich durch Äquivalenzumformungen zu einer der aufgelösten Gleichungen aus <a class="MINTERLINK" href="../../html/1.3.1/xcontent1.html#M03_Aufloesungen">3.1.3</a> umformen.
+</div>
+  </div>
+  
+  
+  
+
+<br clear="all"/><br clear="all"/>
+<br/></div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>

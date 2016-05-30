@@ -1257,7 +1257,7 @@ function createHelpFavorite() {
     type: "Tipp",
     color: "00FF00",
     text: "Eingangstest probieren",
-    pid: "?",
+    pid: "html/sectionx2.1.0.html",
     icon: "test01.png"
   };
   logMessage(VERBOSEINFO, "New HelpFavorite created");
@@ -1276,8 +1276,11 @@ function generateShortFavoriteList() {
   var i;
   var s = "";
   for (i = 0; i < intersiteobj.favorites.length; i++) {
+    if (i > 0) {
+      s += "<br />";
+    }
     s += "<img src=\"" + linkPath + "images/" + intersiteobj.favorites[i].icon + "\" style=\"width:20px;height:20px\">&nbsp;&nbsp;";
-    s += "<a href=\"\" >" + intersiteobj.favorites[i].text + "</a><br />";
+    s += "<a class='MINTERLINK' href='" + linkPath + intersiteobj.favorites[i].pid + "' >" + intersiteobj.favorites[i].text + "</a>";
   }
   
   return s;

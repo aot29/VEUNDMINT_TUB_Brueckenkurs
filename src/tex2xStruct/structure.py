@@ -143,7 +143,12 @@ class Structure(object):
         # options member: A module exposing a class "Option", linked modules must provide the class definition and may READ but not modify data exposed by this object reference
         # class Options must be under LGPL or GPL license
         try:
-            module = imp.load_source(plugin_name, os.path.join("plugins", plugin_name, "Option.py"))
+            options_file = "Option.py"
+            for ov in override:
+                m = re.match(r"(.+?)=(.+)", ov) 
+                if m.group(1) == "options":
+                    options_file = m.group(2) # should be located in same directory as the generic option object for the plugin
+            module = imp.load_source(plugin_name, os.path.join("plugins", plugin_name, options_file))
             self.interface['options'] = module.Option(currentDir, override)
         except Exception:
             formatted_lines = traceback.format_exc().splitlines()

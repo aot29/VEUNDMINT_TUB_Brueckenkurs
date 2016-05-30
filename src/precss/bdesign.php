@@ -589,7 +589,8 @@ a .tocminbutton {
     left: 0;
     width: 0;
     height: 0;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
     visibility: hidden;
     padding: 10px;
     position: fixed;
@@ -602,6 +603,7 @@ a .tocminbutton {
     font-weight: 700;
     color: white;
     display: block;
+    min-width: 500px;
 }
 
 .stdbutton {

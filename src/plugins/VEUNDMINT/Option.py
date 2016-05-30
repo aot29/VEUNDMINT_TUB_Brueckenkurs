@@ -19,6 +19,7 @@
 """
     This is the Option object associated to the mintmod macro package, 
     Version P0.1.0, needs to be consistent with mintmod.tex
+    Options for the math online course
 """
 
 import os.path
@@ -103,43 +104,47 @@ class Option(object):
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
         # course signature, course part
-        self.signature_main = "OBMLGAMMA2" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+        self.signature_main = "OBMLGAMMA4" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
         self.signature_date = "05/2015"
 
-        # ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------ 
+       # ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------ 
         self.overrides = list()
         for ov in override:
             m = re.match(r"(.+?)=(.+)", ov) 
             if m:
-                self.overrides.append([m.group(1), m.group(2)])
-                if hasattr(self, m.group(1)):
-                    vr = getattr(self, m.group(1))
-                    if (type(vr).__name__ == "int"):
-                        setattr(self, m.group(1), int(m.group(2)))
-                    else:
-                        if (type(vr).__name__ == "str"):
-                            setattr(self, m.group(1), m.group(2))
-                        else:
-                            if (type(vr).__name__ == "float"):
-                                setattr(self, m.group(1), float(m.group(2)))
-                            else:
-                                if (type(vr).__name__ == "bool"):
-                                    if (m.group(2) == "0"):
-                                        setattr(self, m.group(1), False)
-                                    else:
-                                        setattr(self, m.group(1), True)
-                                else:
-                                    print("Option type " + type(vr).__name__ + " not acceptable")
+                if m.group(1) == "options":
+                    print("Option selection: " + m.group(2))
+                    # options override was processed in struct object before Options were loaded
                 else:
-                    print("Option " + m.group(1) + " does not exist, cannot override")
+                    self.overrides.append([m.group(1), m.group(2)])
+                    if hasattr(self, m.group(1)):
+                        vr = getattr(self, m.group(1))
+                        if (type(vr).__name__ == "int"):
+                            setattr(self, m.group(1), int(m.group(2)))
+                        else:
+                            if (type(vr).__name__ == "str"):
+                                setattr(self, m.group(1), m.group(2))
+                            else:
+                                if (type(vr).__name__ == "float"):
+                                    setattr(self, m.group(1), float(m.group(2)))
+                                else:
+                                    if (type(vr).__name__ == "bool"):
+                                        if (m.group(2) == "0"):
+                                            setattr(self, m.group(1), False)
+                                        else:
+                                            setattr(self, m.group(1), True)
+                                    else:
+                                        print("Option type " + type(vr).__name__ + " not acceptable")
+                    else:
+                        print("Option " + m.group(1) + " does not exist, cannot override")
                 
             else:
                 print("Invalid override string: " + ov)
 
 
-        # Settings for HTML design and typical phrases        
+         # Settings for HTML design and typical phrases        
         self.chaptersite = "chapters.html"
         self.strings = {
             "explanation_subsection": "Einführung in Thema",
@@ -147,6 +152,7 @@ class Option(object):
             "explanation_exercises": "Übungsaufgaben",
             "explanation_test": "Abschlusstest",
             "chapter": "Kapitel",
+            "subsection": "Abschnitt",
             "module_starttext": "Modul starten: ",
             "module_solutionlink": "Lösung ansehen",
             "module_solution": "Lösung",
