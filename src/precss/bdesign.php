@@ -642,7 +642,7 @@ a .tocminbutton {
 
 .roulettebutton {
     color: grey !important;
-    background-color: rgba(215,235,255,0) !important;
+    background-color: rgb(185,215,255) !important;
     display: inline-block;
     border: 2px solid rgba(155,200,210,0.5) !important;
     border-radius: 3px;

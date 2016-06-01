@@ -178,7 +178,8 @@ class Option(object):
             "message_done": "Alle Aufgaben gelöst",
             "message_progress": "Aufgaben teilweise gelöst",
             "message_problem": "Einige Aufgaben falsch beantwortet",
-            "modstartbox_tocline": "Dieses Modul gliedert sich in folgende Abschnitte:"
+            "modstartbox_tocline": "Dieses Modul gliedert sich in folgende Abschnitte:",
+            "roulette_text": "In der Onlineversion erscheinen hier Aufgaben aus einer Aufgabenliste"
         }
         
         self.knownmathcommands = [ "sin", "cos", "tan", "cot", "log", "ln", "exp" ] # these will be excluded from post-ttm modifications

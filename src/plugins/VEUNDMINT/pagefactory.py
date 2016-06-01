@@ -693,11 +693,11 @@ class PageFactory(object):
                 maxid = self.data['DirectRoulettes'][rid]
             else:
                 self.sys.message(self.sys.CLIENTERROR, "Could not find roulette id " + rid)
-            if myid == "0":
+            if myid == 0:
                 vis = "block"
             else:
                 vis = "none"
-            bt = "<div class=\"rouletteselector\"><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">Neue Aufgabe</button><br />"
+            bt = "<div class=\"rouletteselector\"><br /><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">Neue Aufgabe generieren</button><br />"
             self.sys.message(self.sys.VERBOSEINFO, "Roulette " + rid + "." + str(myid) + " done")
             return "<div style=\"display:" + vis + "\" id=\"DROULETTE" + rid + "." + str(myid) + "\">" + bt + m.group(3) + "</div></div>"
   
