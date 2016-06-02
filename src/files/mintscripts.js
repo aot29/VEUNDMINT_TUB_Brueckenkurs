@@ -546,6 +546,9 @@ function check_group(input_from, input_to) {
             s = FVAR[i].id;
             var e = d.getElementById(s);
 
+            // element may not exist, for example if it is part of roulette exercise which is not active
+            if (e != null) {
+            
             switch(FVAR[i].type) {
               
               case 1: {
@@ -1122,6 +1125,7 @@ function check_group(input_from, input_to) {
               }
               
             }
+            } // closing brace from e==null check
     }
 
 

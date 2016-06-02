@@ -9,7 +9,11 @@ MathJax.Hub.Config({
       bold: ['{\\\\bf #1}', 1]
     }
   },
-  tex2jax: { inlineMath: [['\\\\(','\\\\)']], displayMath: [['\\\\[','\\\\]']] },
+  tex2jax: {
+    ignoreClass: "tex2jaxignore",
+    inlineMath: [['\\\\(','\\\\)']],
+    displayMath: [['\\\\[','\\\\]']]
+  },
       "CommonHTML": {
         scale: 100,
         minScaleAdjust: 80,
