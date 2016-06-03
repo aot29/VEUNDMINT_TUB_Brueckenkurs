@@ -682,28 +682,45 @@ class PageFactory(object):
 
         """
 
-
+        html = self.postprocess_roulettes(html)
         
+  
+        return html
+    
+    # end postprocessing
+
+
+    def postprocess_roulettes(self, html):
         # prepare DirectRoulette divs
+        
+        rl = list()
+        
         def droul(m):
+            nonlocal rl
             rid = m.group(1)
             myid = int(m.group(2))
+            if myid == 0:
+                vis = "block"
+            else:
+                vis = "none"
             maxid = 0
             if rid in self.data['DirectRoulettes']:
                 maxid = self.data['DirectRoulettes'][rid]
             else:
                 self.sys.message(self.sys.CLIENTERROR, "Could not find roulette id " + rid)
-            if myid == 0:
-                vis = "block"
-            else:
-                vis = "none"
-            bt = "<div class=\"rouletteselector\"><br /><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">Neue Aufgabe generieren</button><br />"
+            bt = "<div class=\"rouletteselector\"><br /><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">" + self.options.strings['roulette_new'] + "</button><br /><br />"
             self.sys.message(self.sys.VERBOSEINFO, "Roulette " + rid + "." + str(myid) + " done")
-            return "<div style=\"display:" + vis + "\" id=\"DROULETTE" + rid + "." + str(myid) + "\">" + bt + m.group(3) + "</div></div>"
+            s = "<div class=\"tex2jaxignore\" style=\"display:" + vis + "\" id=\"DROULETTE" + rid + "." + str(myid) + "\">" + bt + m.group(3) + "</div></div>"
+            rl.append([ myid, s])
+            # div for id=0 is being set into HTML, remaining blocks are stored and will be written to that div by javascript code
+            if myid == 0:
+                # generate container div and its first entry
+                s = "<div id='ROULETTECONTAINER_" + rid + "'>" + s + "</div>"
+            return s
   
         html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>", droul, html, 0, re.S)
-  
-  
         return html
     
-    # end postprocessing
+        
+        
+        
