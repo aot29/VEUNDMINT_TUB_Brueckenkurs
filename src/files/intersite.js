@@ -802,7 +802,7 @@ function pushISO(synced) {
           nmax = 0;
           ngot = 0;
           for (j = 0; j < intersiteobj.scores.length; j++) {
-              if (scores[j].intest) {
+              if (intersiteobj.scores[j].intest) {
                   nmax += intersiteobj.scores[j].maxpoints;
                   ngot += intersiteobj.scores[j].points;
               }
