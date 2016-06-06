@@ -1999,7 +1999,7 @@ function applyLayout(first) {
   var loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
   if (intersiteactive) {
       if (intersiteobj.login.type >= 2) {
-          loginbuttontext = "Logout";
+          loginbuttontext = "Logout (" + getNameDescription() + ")";
           loginbuttonhint = "Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersiteobj.login.sname + " gespeichert.";
           loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "logout.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
       }

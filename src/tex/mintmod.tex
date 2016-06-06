@@ -266,11 +266,16 @@
 \newcommand{\MGlobalConfTag}{}
 \fi
 
-% Makro, um in der HTML-Ausgabe die Konfiguration zu kennzeichnen
 \ifttm
 \newcommand{\MGlobalLogoutTag}{\special{html:<!-- mgloballogouttag -->}}
 \else
 \newcommand{\MGlobalLogoutTag}{}
+\fi
+
+\ifttm
+\newcommand{\MGlobalLoginTag}{\special{html:<!-- mgloballogintag -->}}
+\else
+\newcommand{\MGlobalLoginTag}{}
 \fi
 
 % Makro, um in der HTML-Ausgabe die Standortbeschreibung zu kennzeichnen

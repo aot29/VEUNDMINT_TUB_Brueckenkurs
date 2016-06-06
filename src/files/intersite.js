@@ -103,6 +103,13 @@ function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
   return obj;
 }
 
+function getNameDescription() {
+    if (intersiteactive == false) return "";
+    if (intersiteobj.login.type == 0) return "Anonym";
+    if (intersiteobj.login.sname != "") return intersiteobj.login.sname;
+    return intersiteobj.login.vname;
+}
+
 // Callbacks for createIntersiteObjFormSCORM
 function check_user_scorm_success(data) {
   logMessage(VERBOSEINFO, "checkuser_scorm success: data = " + JSON.stringify(data));

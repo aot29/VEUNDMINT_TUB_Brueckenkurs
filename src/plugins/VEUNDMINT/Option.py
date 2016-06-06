@@ -58,21 +58,21 @@ class Option(object):
         
         # VE&MINT conversion flags, using values 0 and 1 (integers)
         self.testonly = 0
-        self.scormlogin = 1       # =1: No implicit user management, user-loginname is constructed from a SCORM string and immediately pulled from database
+        self.scormlogin = 0       # =1: No implicit user management, user-loginname is constructed from a SCORM string and immediately pulled from database
         self.nosols =  0          # =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
         self.doscorm = 0          # =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden
-        self.doscorm12 = 1        # =0: Kein SCORM, =1- > SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 1.2 verwendet werden
+        self.doscorm12 = 0        # =0: Kein SCORM, =1- > SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 1.2 verwendet werden
         self.qautoexport = 0      # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
         self.diaok = 0            # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
-        self.cleanup = 1          # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
-        self.localjax = 1         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
+        self.cleanup = 0          # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
+        self.localjax = 0         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
         self.borkify = 0          # =1 html und js-Dateien werden borkifiziert
         self.dorelease = 0        # In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
-        self.doverbose = 0        # Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
+        self.doverbose = 1        # Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
         self.docollections = 0    # Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
-        self.dopdf = 0            # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
+        self.dopdf = 1            # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
         self.dotikz = 0           # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
-        self.dozip = 0            # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
+        self.dozip = 1            # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
         self.consolecolors = 1    # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
         self.consoleascii = 0     # =1 -> Only us-ascii strings are printed to the console (or pipes), does not affect written files
         self.forceyes = 1         # =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
@@ -107,7 +107,7 @@ class Option(object):
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
         # course signature, course part
-        self.signature_main = "OBMLGAMM5_SCORM12_UKS_l" # "OBMLGAMMA5" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+        self.signature_main = "OBMLGAMMA6" # "OBMLGAMMA5_SCORM12_UKS_m" # "OBMLGAMMA5" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
         self.signature_date = "06/2015"
@@ -339,7 +339,7 @@ class Option(object):
         #self.ContentStructure.append("div")#Container werden nun über Attribute identifiziert
         
         # special site tags
-        self.sitetaglist = ["chapter", "config", "data", "favorites", "location", "search", "test", "logout"]
+        self.sitetaglist = ["chapter", "config", "data", "favorites", "location", "search", "test", "logout", "login"]
         
         # ModuleStructure
         self.ModuleStructure = []
