@@ -929,7 +929,7 @@ class Plugin(basePlugin):
             self.createRedirect("index.html", self.startfile, False)
             self.sys.message(self.sys.CLIENTINFO, "HTML Tree entry chain created")
             self.sys.message(self.sys.CLIENTINFO, "  index.html -> " + self.startfile)
-            if (self.options.doscorm == 1):
+            if (self.options.doscorm == 1) or (self.options.doscorm12 == 1):
                 self.createRedirect(self.entryfile, self.startfile, True)
                 self.sys.message(self.sys.CLIENTINFO, "  SCORM -> " + self.entryfile + " -> " + self.startfile)
 
@@ -980,12 +980,26 @@ class Plugin(basePlugin):
           + "var signature_git_branch = \"" + self.options.signature_git_branch + "\";\n" \
           + "var signature_git_message = \"" + self.options.signature_git_message + "\";\n" \
           + "var signature_git_commit = \"" + self.options.signature_git_commit + "\";\n"
-      
+
+        if self.options.doscorm12 == 1:
+            s += "var doScorm = 1;\n"
+            s += "var expectedScormVersion = \"1.2\";\n"
+        else:
+            if self.options.doscorm == 1:
+                s += "var doScorm = 1;\n"
+                s += "var expectedScormVersion = \"2004\";\n"
+            else:
+                s += "var doScorm = 0;\n"
+                s += "var expectedScormVersion = \"\";\n"
+                
+            
 
         for vr in ["signature_main", "signature_version", "signature_localization", "do_feedback", "do_export", "reply_mail",
                    "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",
                    "footer_middle", "footer_right", "mainlogo", "stdmathfont", "variant"]:
             s += "var " + vr + " = \"" + getattr(self.options, vr) + "\";\n"
+            
+        s += "var feedbackdesc = data_server_description;\n";
             
         
         if self.options.dorelease == 1:
@@ -1088,7 +1102,25 @@ class Plugin(basePlugin):
                 self.sys.message(self.sys.CLIENTERROR, "Could not unpack local MathJax folder:\n" + tar + "\n" + str(err))
             else:
                 self.sys.message(self.sys.CLIENTINFO, "Local MathJax installed (from " + self.options.mathjaxtgz + ") in path " + mpath)
+
+        if self.options.doscorm12 == 1:
+            p = subprocess.Popen(["tar", "-xvzf", os.path.join(self.options.converterDir, self.options.scorm12tgz), "--directory=" + self.options.targetpath],
+                                 stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+            (tar, err) = p.communicate()
+            if p.returncode != 0:
+                self.sys.message(self.sys.CLIENTERROR, "Could not unpack local SCORM 1.2 material:\n" + tar + "\n" + str(err))
+            else:
+                self.sys.message(self.sys.CLIENTINFO, "Local SCORM 1.2 base files installed (from " + self.options.scorm12tgz + ")" )
             
+        if self.options.doscorm == 1:
+            p = subprocess.Popen(["tar", "-xvzf", os.path.join(self.options.converterDir, self.options.scorm4tgz), "--directory=" + self.options.targetpath],
+                                 stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+            (tar, err) = p.communicate()
+            if p.returncode != 0:
+                self.sys.message(self.sys.CLIENTERROR, "Could not unpack local SCORM 4 material:\n" + tar + "\n" + str(err))
+            else:
+                self.sys.message(self.sys.CLIENTINFO, "Local SCORM 4 base files installed (from " + self.options.scorm12tgz + ")" )
+
 
     def createRedirect(self, filename, redirect, scorm):
         # filename (containing the redirect) and target are given relative to top level directory
@@ -1128,6 +1160,12 @@ class Plugin(basePlugin):
             pd = ""
         self.sys.message(self.sys.CLIENTINFO, "FINISHED tree containing " + self.outputextension + pd)
             
+        if self.options.doscorm12 == 1:
+            self.writeSCORM12files()
+            
+        if self.options.doscorm == 1:
+            self.writeSCORM4files()
+
         if self.options.dozip == 1:
             self.sys.pushdir()
             os.chdir(self.options.targetpath)
@@ -1380,4 +1418,40 @@ class Plugin(basePlugin):
             (u, v) = (v, u % v)
         return abs(u)
 
+
+    def writeSCORM12files(self):
+        self.sys.message(self.sys.CLIENTINFO, "SCORM 1.2 output requested") 
+        self.sys.pushdir()
+
+        # write the manifest file, including the file list
+        manifest = self.sys.readTextFile(self.options.template_scorm12manifest, self.options.stdencoding)
+        os.chdir(self.options.targetpath)
+        p = subprocess.Popen(["find", "."], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+        (output, err) = p.communicate()
+        if p.returncode != 0:
+            self.sys.message(self.sys.FATALERROR, "find command error, last lines:" + output)
         
+        manif = ""
+        fc = 0
+        nfc = 0
+        fl = output.splitlines()
+        for l in fl:
+            if l != ".":
+                if os.path.isfile(l):
+                    manif += "  <file href=\"" + l[2:] + "\"/>\n" # don't use preceeding "./" in filenames
+                    fc += 1
+                else:
+                    nfc += 1
+        
+        manif = "<resource adlcp:scormtype=\"sco\" href=\"" + self.entryfile + "\" type=\"webcontent\" identifier=\"xml_index.html\">\n" + manif + "</resource>\n"
+            
+        manifest = re.sub(r"</resources>", manif + "</resources>", manifest, 1, re.S)
+        self.sys.writeTextFile("imsmanifest.xml", manifest, self.options.outputencoding)        
+        
+        self.sys.message(self.sys.CLIENTINFO, "SCORM 1.2: " + str(fc) + " files added to package, " + str(nfc) + " non-files excluded in manifest")
+        self.sys.popdir()        
+
+
+    def writeSCORM4files(self):
+        self.sys.message(self.sys.CLIENTINFO, "SCORM 4 output requested") 
+        self.sys.message(self.sys.FATALERROR, "SCORM 4 is not implemented yet")

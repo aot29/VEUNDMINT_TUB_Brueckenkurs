@@ -1984,9 +1984,28 @@ function applyLayout(first) {
   var systyle = "style=\"max-height:" + d + "px;height:" + d + "px\"";
   var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px;max-height:" + (d-2) + "px\"";
 
-               
+
+  // no variant switching in SCORM versions (because variants are actually different courses)  
+  if (doScorm == 1) {
+      // disable variant switching button
+      $('#variantselect_unotation').prop('disabled', true);
+      $('#variantselect_unotation').text('(in diesem Kurs nicht vorhanden)');
+  }
+  
   d = d - 2;
-  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Anmelden</div></a>";
+  
+  var loginbuttontext = "Zum Kurs anmelden";
+  var loginbuttonhint = "Hier können Sie sich zum Kurs persönlich anmelden, im Moment wird der Kurs anonym bearbeitet.";
+  var loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
+  if (intersiteactive) {
+      if (intersiteobj.login.type >= 2) {
+          loginbuttontext = "Logout";
+          loginbuttonhint = "Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersiteobj.login.sname + " gespeichert.";
+          loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "logout.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
+      }
+  }
+  
+  var head = loginbuttonhtml;
   // head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
     
 
@@ -2020,6 +2039,7 @@ function applyLayout(first) {
   showHint($('#plusbutton'), "Vergrößert die Schriftgröße");
   showHint($('#minusbutton'), "Verkleinert die Schriftgröße");
   showHint($('#settingsbutton'), "Einstellungen");
+  showHint($('#loginbutton'), loginbuttonhint);
 
   // set proper button visibility in settings depending on course variant
   if (variant == "std") {
@@ -2094,7 +2114,7 @@ function applyLayout(first) {
         
 });
 
-    
+  setupInterlinks()
 }
 
 function changeFontSize(add) {

@@ -7,7 +7,6 @@ var MVAR = new Array();
 var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
 var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
 var objScormApi = null;
-var doScorm = 0;
 var viewmodel;
 var activeinputfieldid = "";
 var activetooltip = null;
@@ -15,7 +14,6 @@ var activefieldid = "";
 var sendcounter = 0;
 var intersiteactive = false;
 var intersiteobj = createIntersiteObj();
-var intersitelinks = false;
 var localStoragePresent = false;
 var SITE_ID = "(unknown)";
 var SITE_UXID = "(unknown)";
@@ -30,6 +28,7 @@ var timerActive = false;
 var timerVar = null;
 var timerColors = new Array();
 var timerIterator = 0;
+var requestLogout = 0;
 
 // <JSCRIPTPRELOADTAG>
 

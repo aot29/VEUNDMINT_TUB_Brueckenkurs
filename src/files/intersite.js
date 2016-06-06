@@ -67,13 +67,31 @@ function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
   obj.login.type = 1; // starting locally
 
   obj.login.vname = "";
-  var sp = s_name.split(" ");
+  
+  var turn = false;
+  var spl = " ";
+  // there's no end as to how LMS present a simple name
+  if (s_name.indexOf(", ") != -1) {
+      turn = true;
+      spl = ", ";
+  } else {
+      if (s_name.indexOf(",") != -1) {
+          turn = true;
+          spl = ",";
+      }
+  }
+  var sp = s_name.split(spl);
   for (var e = 0; e < (sp.length - 1); e++) {
     if (e != 0) obj.login.vname += " ";
     obj.login.vname += sp[e];
   }
   obj.login.sname = sp[sp.length - 1];
-  logMessage(VERBOSEINFO,"Decomposed name " + s_name + " into vname=\"" + obj.login.vname + "\", sname = \"" + obj.login.sname + "\"");
+  if (turn) {
+      var z = obj.login.sname;
+      obj.login.sname = obj.login.vname;
+      obj.login.vname = z;
+  }
+  logMessage(VERBOSEINFO,"Decomposed name " + s_name + " into vname=\"" + obj.login.vname + "\", sname=\"" + obj.login.sname + "\"");
 
   obj.login.username = s_login;
   obj.login.password = s_pw;
@@ -92,7 +110,6 @@ function check_user_scorm_success(data) {
   if (data.user_exists == false) {
     logMessage(VERBOSEINFO, "User does not exist, adding user to database with initial data push");
     userdata.addUser(true, intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
-    intersiteobj.type = 3;
     // continue with register callbacks
   } else {
     logMessage(VERBOSEINFO, "User is present in database, emitting data pull request");
@@ -207,29 +224,41 @@ function SetupIntersite(clearuser, pulledstr) {
     }
   }
 
+  var scormcontinuation = false;
+  
   if (doScorm == 1) {
     if ((ls == "") || (ls == "CLEARED")) {
-      // reinitialize SCORM
-      logMessage(VERBOSEINFO, "pipwerks.SCORM start");
+      // reinitialize SCORM, ls==CLEARED is not an error but happens when same user on same browser reopens the SCORM course
+      logMessage(VERBOSEINFO, "pipwerks.SCORM start due to ls = " + ls);
     } else {
       // SCORM is already active, inherit state of the pipwerks object
       var sobj = JSON.parse(ls);
       if (sobj != null) {
+        scormcontinuation = true;
         pipwerks.scormdata = sobj;
         logMessage(VERBOSEINFO, "pipwerks.SCORM continuation");
       } else {
-        logMessage(VERBOSEINFO, "pipwerks.SCORM-Uebertragungsobjekt beschaedigt");
+        logMessage(VERBOSEINFO, "pipwerks.SCORM transfer object it broken");
       }
     }
   }
 
   if ((scormLogin == 1) && (SITE_PULL == 1)) {
-    // SCORM-pull: Skip LocalStorage an fetch data directly from the database server if possible, otherwise use new user with SCROM-ID and CID as login
-    logMessage(VERBOSEINFO, "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + ")");
+    // SCORM-pull: Skip LocalStorage and fetch data directly from the database server if possible, otherwise use new user with SCROM-ID and CID as login
+    logMessage(VERBOSEINFO, "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + "), SCORM-Version: " + expectedScormVersion);
 
-    var psres = pipwerks.SCORM.init();
-    logMessage(VERBOSEINFO, "SCORM init = " + psres + " (remember duplicate SCORM inits return false but do not hurt)");
-    psres = pipwerks.SCORM.get("cmi.learner_id");
+    if (scormcontinuation == false) {
+        var psres = pipwerks.SCORM.init();
+        logMessage(VERBOSEINFO, "SCORM init = " + psres + " (duplicate SCORM inits return false but do not hurt on SCORM 2004v4)");
+    } else {
+        logMessage(VERBOSEINFO, "SCORM init refused (continued)");
+    }
+    
+    var idgetstr = "cmi.core.student_id";
+    if (expectedScormVersion == "2004") {
+        idgetstr = "cmi.learner_id";
+    }
+    psres = pipwerks.SCORM.get(idgetstr);
     if (psres == "null") {
       // no SCORM present, refuse to set up user
       alert("Kommunikation der Lernplattform fehlgeschlagen, Kurs kann nur anonym bearbeitet werden!");
@@ -244,7 +273,13 @@ function SetupIntersite(clearuser, pulledstr) {
     } else {
       var s_id = psres;
       logMessage(VERBOSEINFO, "SCORM learner id = " + psres);
-      psres = pipwerks.SCORM.get("cmi.learner_name");
+      
+      var inamestr = "cmi.core.student_name";
+      if (expectedScormVersion == "2004") {
+          inamestr = "cmi.learner_name";
+      }
+      
+      psres = pipwerks.SCORM.get(inamestr);
       var s_name = psres;
       logMessage(VERBOSEINFO, "SCORM learner name = " + psres);
       psres = pipwerks.SCORM.save();
@@ -329,7 +364,9 @@ function SetupIntersite(clearuser, pulledstr) {
     alert("Ihre Benutzerdaten konnten nicht vom Server geladen werden, eine automatische eMail an den Administrator wurde verschickt. Sie können den Kurs trotzdem anonym bearbeiten, eingetragene Lösungen werden jedoch nicht gespeichert!");
     var timestamp = +new Date();
     var us = "(unknown)";
-    if (scormLogin == 1) us = s_login;
+    if (scormLogin == 1) {
+        us = s_login;
+    }
     var cm = "LOGINERROR: " + "CID:" + signature_CID + ", user:" + us + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
     sendeFeedback( { statistics: cm }, true );
     intersiteobj = createIntersiteObj();
@@ -374,6 +411,7 @@ function SetupIntersite(clearuser, pulledstr) {
   }
 
   UpdateSpecials();
+  logMessage(VERBOSEINFO, "UpdateSpecials done");
   confHandlerISOLoad()
   if (intersiteactive) {
       updateCommits(intersiteobj);
@@ -382,18 +420,30 @@ function SetupIntersite(clearuser, pulledstr) {
   // updateLayoutState will be called from applyLayout()
 
   // Has to be called after UpdateSpecials, because that creates hrefs
-  if (intersitelinks != true) {
-    var links = document.getElementsByClassName("MINTERLINK");
-    for (i=0; i<links.length; i++) {
-      links[i].onclick = function() { opensite(this.href); return false;}
-    }
-    intersitelinks = true;
-  }
+  setupInterlinks()
 
+  if (requestLogout == 1) {
+      // we are on the logout page, we can do synced calls here
+      logMessage(VERBOSEINFO, "Logout requested");
+      pushISO(true);
+      window.close();
+      // browsers may refuse javascript close based on security settings,
+      // in that case the module text informs the user to close manually.
+  } else {
+      logMessage(VERBOSEINFO, "No logout requested");
+  }
+  
 
   if (clearuser == true) {
       pushISO(false);
       ulreply_set(false,"");
+  }
+}
+
+function setupInterlinks() {
+  var links = document.getElementsByClassName("MINTERLINK");
+  for (i=0; i<links.length; i++) {
+      links[i].onclick = function() { opensite(this.href); return false;}
   }
 }
 
@@ -415,32 +465,39 @@ function updateLoginfield() {
         s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet";
         s = "";
         cl = "#FFFF10";
-        $('#loginbutton').css("background-color","#FFFF50");
+        // $('#loginbutton').css("background-color","#FFFF50");
+        $('#loginbutton').css("color","#FFFF20");
         break;
       }
       case 2: {
         s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         cl = "#FFFFFF";
-        $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
+        // $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
+        $('#loginbutton').css("color","#80FFA0");
+        if (doScorm == 1) {
+            // $('#loginbutton').prop("disabled", true);
+        }
         break;
       }
       case 3: {
         s = "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         cl = "#FFFFFF";
-        $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
+        // $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
+        $('#loginbutton').css("color","#80FFA0");
         break;
       }
       default: {
         logMessage(CLIENTERROR, "updateLoginfield, wrongtype=" + intersiteobj.login.type);
         s = "Keine Anmeldung möglich!";
+        $('#loginbutton').css("color","#FF0000");
         break;
       }
     }
   }
 
   // Set headers
-  $('#LOGINROW').css("color",cl);
-  $('#LOGINROW').html(s);
+  // $('#LOGINROW').css("color",cl);
+  // $('#LOGINROW').html(s);
 
   // Build login-only fields if they exist on the page
   e = document.getElementById("ONLYLOGINFIELD");
@@ -494,7 +551,10 @@ function updateLoginfield() {
             var unf = document.getElementById("USERNAMEFIELD");
             var prefixs;
             if (scormLogin == 0) {
-              prefixs = "Benutzername: " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ")";
+              prefixs = "Benutzername: " + intersiteobj.login.username;
+              if ((intersiteobj.login.vname != "") || (intersiteobj.login.sname != "")) {
+                  prefixs += " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ")";
+              }
             } else {
               // Username is id combination in the SCORM login modules
               prefixs = "Benutzer: " + intersiteobj.login.vname + " " + intersiteobj.login.sname;
@@ -515,7 +575,7 @@ function updateLoginfield() {
                 }
 
                 case 2: {
-                    s = prefixs + ",<br />Datenspeicherung in diesem Browser und auf Server ";
+                    s = prefixs + ",<br />Datenspeicherung in diesem Browser und auf ";
                     if (cr != null) cr.disabled = true;
                     if (unf != null) unf.style.display = "none";
                     break;
@@ -523,7 +583,7 @@ function updateLoginfield() {
 
                 case 3: {
                     // Doesn't display that it isn't up to date
-                    s = prefixs + ",<br />Datenspeicherung in diesem Browser und auf Server ";
+                    s = prefixs + ",<br />Datenspeicherung in diesem Browser und auf ";
                     if (cr != null) cr.disabled = true;
                     if (unf != null) unf.style.display = "none";
                     break;
@@ -732,13 +792,45 @@ function pushwrite_error(message, data) {
 // synced == true => only do synchronous ajax calls (necessary when calling unload-Handler for example because the callback page would be gone when the request get's replied to)
 function pushISO(synced) {
   logMessage(VERBOSEINFO,"pushISO start (synced = " + synced + ")");
-  var s = JSON.stringify(intersiteobj);
+  var psres = "";
+  var jso = JSON.stringify(intersiteobj);
   if (localStoragePresent == true) {
     if (doScorm == 1) {
       localStorage.setItem("LOCALSCORM", JSON.stringify(pipwerks.scormdata));
-      logMessage(VERBOSEINFO,"Aktualisiere SCORM Uebertragungsobjekt");
+      logMessage(VERBOSEINFO, "Updating SCORM transfer object");
+      if (expectedScormVersion == "1.2") {
+          nmax = 0;
+          ngot = 0;
+          for (j = 0; j < intersiteobj.scores.length; j++) {
+              if (scores[j].intest) {
+                  nmax += intersiteobj.scores[j].maxpoints;
+                  ngot += intersiteobj.scores[j].points;
+              }
+          }
+          psres = pipwerks.SCORM.set("cmi.core.score.raw", ngot);
+          logMessage(VERBOSEINFO, "SCORM set points to " + ngot + ": " + psres);
+          psres = pipwerks.SCORM.set("cmi.core.score.min", 0);
+          logMessage(VERBOSEINFO, "SCORM set min points to 0: " + psres);
+          psres = pipwerks.SCORM.set("cmi.core.score.max", nmax);
+          logMessage(VERBOSEINFO, "SCORM set max points to " + nmax + ": " + psres);
+
+          var s = "browsed";
+          if (ngot > 0) {
+              if (ngot == nmax) {
+                  s = "completed";
+              } else {
+                  s = "incomplete";
+              }
+          }
+          psres = pipwerks.SCORM.set("cmi.core.lesson_status", s);
+          logMessage(VERBOSEINFO, "SCORM set status to " + s + ": " + psres);
+
+          
+      } else {
+          logMessage(CLIENTINFO, "SCORM final reporting above SCORM 1.2 not supported yet");
+      }
     }
-    localStorage.setItem(getObjName(), s);
+    localStorage.setItem(getObjName(), jso);
     if ((intersiteobj.login.type == 2) || (intersiteobj.login.type == 3)) {
         // Eintrag in Serverdatenbank aktualisieren
         logMessage(VERBOSEINFO,"Aktualisiere DB-Server (synced = " + synced + ")");
@@ -1007,7 +1099,6 @@ function usercreatelocal_click(type) {
     if (type==2) {
         // alert("In der Korrekturversion ist das Anlegen eines Netz-Benutzers nicht möglich um eine Verzerrung der Aufgaben- und Nutzerdatenauswertung zu vermeiden, bitte registrieren Sie sich nur innerhalb Ihres Browsers mit dem Button unten.");
         // return;
-        type = 1; // force local registry
     }
 
     if (intersiteactive == false) {
@@ -1034,9 +1125,9 @@ function usercreatelocal_click(type) {
     }
 
     var pws = "";
-    if (4==4) { //TODO: Wy is this always true statement here?
-      // Version for correction: username=password
-
+    if (scormLogin == 1) {
+        logMessage(CLIENTINFO, "Tried to set username in SCORM mode");
+        return;
     } else {
       // normal version: password requested from user
       pws = prompt("Geben Sie ein Passwort für den Benutzer " + una + " ein:");
@@ -1076,7 +1167,7 @@ function usercreatelocal_click(type) {
     }
 
     if (type == 2) {
-        logMessage(VERBOSEINFO, "Benutzer wird auf Typ 2 erweitert");
+        logMessage(VERBOSEINFO, "User elevated to type 2");
         userdata.addUser(true, intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
     }
 }
@@ -1115,8 +1206,8 @@ function register_error(message, data) {
   logMessage(VERBOSEINFO, "Register error: " + message + ", data = " + JSON.stringify(data));
   var na;
   na = (scormLogin == 1) ? (intersiteobj.login.sname) : (intersiteobj.login.username);
-  alert("Benutzer " + na + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
-  setIntersiteType(1);
+  alert("Benutzer " + na + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal.");
+  setIntersiteType(0);
 }
 
 
@@ -1193,9 +1284,21 @@ function usercheck() {
 }
 
 function setIntersiteType(t) {
-  logMessage(VERBOSEINFO, "Set type=" + t);
   if (intersiteactive == true) {
+      if (t == intersiteobj.login.type) {
+          logMessage(DEBUGINFO, "setIntersiteType with already existing type " + t + " called, doing nothing");
+          return;
+      }
+      logMessage(VERBOSEINFO, "Set type=" + t);
       intersiteobj.login.type = t;
+      if (t == 0) {
+          // user becomes anonymous
+          intersiteobj.login.vname = "";
+          intersiteobj.login.sname = "";
+          intersiteobj.login.username = "";
+          intersiteobj.login.password = "";
+          intersiteobj.login.email = "";
+      }
   } else {
       logMessage(DEBUGINFO, "intersiteactive == false");
   }
