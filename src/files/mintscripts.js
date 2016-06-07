@@ -1983,14 +1983,6 @@ function applyLayout(first) {
   $('div.headmiddle').height(d);
   var systyle = "style=\"max-height:" + d + "px;height:" + d + "px\"";
   var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px;max-height:" + (d-2) + "px\"";
-
-
-  // no variant switching in SCORM versions (because variants are actually different courses)  
-  if (doScorm == 1) {
-      // disable variant switching button
-      $('#variantselect_unotation').prop("disabled", true);
-      $('#variantselect_unotation').text('(in diesem Kurs nicht vorhanden)');
-  }
   
   d = d - 2;
   
@@ -2008,9 +2000,17 @@ function applyLayout(first) {
   var head = loginbuttonhtml;
   
   if (intersiteactive) {
-      if (intersiteobj.login.type >= 2) {
+      if ((intersiteobj.login.type >= 2) && (scormLogin == 0)) {
           head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + "Mein Account" + "</div></a>";
       }
+  }
+  
+  if (scormLogin == 0) {
+      $('.show_scorm').css("display", "none");
+      $('.show_noscorm').css("display", "block");
+  } else {
+      $('.show_scorm').css("display", "block");
+      $('.show_noscorm').css("display", "none");
   }
   
   
@@ -2024,7 +2024,9 @@ function applyLayout(first) {
   head += "<button id=\"starbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"starClick();\"></button>"; 
   head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"></button>";
   head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"></button>";
-  head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"></button>";
+  if (scormLogin == 0) {
+      head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"></button>";
+  }
   head += "<button id=\"settingsbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"toggle_settings();\"></button>";
   
   head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"></button>";
@@ -2051,16 +2053,23 @@ function applyLayout(first) {
   showHint($('#confbutton'), "Zeigt persönliche Daten zum Kurs und weitere Einstellungen an");
 
   // set proper button visibility in settings depending on course variant
-  if (variant == "std") {
-      $('#variantselect_std').css("visibility", "hidden");
-      $('#variantactive_std').css("visibility", "visible");
-      $('#variantselect_unotation').css("visibility", "visible");
-      $('#variantactive_unotation').css("visibility", "hidden");
+
+  if (doScorm == 1) {
+      // no variant switching in SCORM versions (because variants are actually different courses)  
+      $('#variantselect_unotation').prop("disabled", true);
+      $('#variantselect_unotation').text('(in diesem Kurs nicht vorhanden)');
   } else {
-      $('#variantselect_std').css("visibility", "visible");
-      $('#variantactive_std').css("visibility", "hidden");
-      $('#variantselect_unotation').css("visibility", "hidden");
-      $('#variantactive_unotation').css("visibility", "visible");
+      if (variant == "std") {
+          $('#variantselect_std').css("visibility", "hidden");
+          $('#variantactive_std').css("visibility", "visible");
+          $('#variantselect_unotation').css("visibility", "visible");
+          $('#variantactive_unotation').css("visibility", "hidden");
+      } else {
+          $('#variantselect_std').css("visibility", "visible");
+          $('#variantactive_std').css("visibility", "hidden");
+          $('#variantselect_unotation').css("visibility", "hidden");
+          $('#variantactive_unotation').css("visibility", "visible");
+      }
   }
   
   var shareintext = "Diese Seite teilen über:<br /><br />";
@@ -2175,17 +2184,18 @@ function showHint(element, hinttext) {
 
   if (element == null) return;
     
-  var q_my = "";
-  var q_at = "";
-                  
-  if (element.offset().left < 200) {
-      // element is too far on the left side, so tooltip should be to the right side
-      q_at = "bottom right";
-      q_my = "top left";
-  } else {
-      // sufficient space to place tooltip to the left side
-      q_at = "bottom left";
-      q_my = "top right";
+  var q_at = "bottom left";
+  var q_my = "top right";
+
+  if (typeof element.offset == 'function') { // some buttons don't seem to provide it
+      off = element.offset(); // and some provide a null
+      if (off != null) {
+          if (element.offset().left < 200) {
+              // element is too far on the left side, so tooltip should be to the right side
+              q_at = "bottom right";
+              q_my = "top left";
+          }
+      }
   }
                   
   hinttext = "<div style=\"font-size:" + SIZES.SMALLFONTSIZE + "px;line-height:100%\">" + hinttext + "</div>";
@@ -2196,8 +2206,8 @@ function showHint(element, hinttext) {
   } else {
     element.qtip({
        content: { text: hinttext },
-       show: { delay: 750 },
-       hide: { delay: 1000, fixed: true },
+       show: { delay: 500 },
+       hide: { delay: 100, fixed: true },
        position: {
            my: q_my,
            at: q_at,

@@ -8,8 +8,7 @@
 Auf den folgenden Seiten finden sich
 \begin{itemize}
 \item{die \MSRef{L_CHAPTER}{Kapitelübersicht} des Kurses,}
-\item{die persönlichen \MSRef{L_CDATA}{Kursdaten},}
-\item{die \MSRef{L_CONFIG}{Einstellungen} für den Onlinekurs.}
+\item{die \MSRef{L_CONFIG}{Persönlichen Einstellungen} für den Onlinekurs.}
 \end{itemize}
 \end{MSectionStart}
 
@@ -76,14 +75,19 @@ Kann nicht auf Browserdaten zugreifen!
 
 Falls Sie schon einen Account für den Brückenkurs besitzen,
 können Sie sich auf der \MSRef{L_LOGIN}{Login-Seite} einloggen.
+\begin{html}
+<div class="show_scorm" style="display:none">
+<br />
+<b>Sie sind über das Lernsystem angemeldet und registriert.</b>
+</div>
+\end{html}
 \ \\
 
-\textbf{Einen neuen Account registrieren:}\\
+\begin{html}
+<div class="show_noscorm" style="display:none">
+<b>Einen neuen Account registrieren:</b><br />
 Nach erfolgreicher Registrierung werden die Daten auf unseren Servern abgelegt
 und Ihr Bearbeitungsstand ist auch auf anderen Rechnern und Geräten verfügbar:
-
-
-\begin{html}
 <div class="xreply">
 <p id="LOGINFIELD">
 Kann nicht auf Browserdaten zugreifen!
@@ -114,38 +118,39 @@ Nach der Registrierung werden Ihre Daten auf unseren Kursservern hinterlegt, ebe
 statistische Erhebungen genutzt und um die Qualtität der Inhalte und der Aufgaben zu verbessern. Bitte beachten Sie, dass Teilnahmebestätigungen für den Kurs nur ausgestellt
 werden können, wenn die freiwilligen Felder vollständig ausgefüllt sind.
 </div>
-
+</div>
 \end{html}
 
-
-\textbf{Kursdaten löschen:}
-
-% <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="usercreatelocal_click(1);">Obige Benutzerdaten im Browser registrieren</button><br />
-
-Die in diesem Browser und auf unseren Servern gespeicherten Daten werden gelöscht,
-der Kurs kann dadurch von vorne bearbeitet werden. Benutzername, Passwort und persönliche Daten bleiben erhalten.
+% \textbf{Kursdaten zurücksetzen:}
+% 
+% % <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="usercreatelocal_click(1);">Obige Benutzerdaten im Browser registrieren</button><br />
+% Die in diesem Browser und auf unseren Servern gespeicherten Daten zu diesem Kurs werden zurückgesetzt,
+% der Kurs kann dadurch von vorne bearbeitet werden. Benutzername, Passwort und persönliche Daten bleiben erhalten.
+% 
+% \begin{html}
+% <button type="button" class="criticalbutton" id="RESETBUTTON1" onclick="userreset_click();">Kursdaten zurücksetzen</button>
+% \end{html}
 
 \begin{html}
-<button type="button" class="criticalbutton" id="RESETBUTTON1" onclick="userreset_click();">Alle Benutzerdaten löschen</button>
-\end{html}
-
-\textbf{Account löschen:}
-
+<div class="show_scorm" style="display:none">
+<b>Ihre Benutzerdaten können Sie im Lernsystem einsehen und verändern.</b>
+</div>
+<div class="show_noscorm" style="display:none">
+<b>Account löschen</b><br />
 Die in diesem Browser und auf unseren Servern gespeicherten Daten inklusive des Accounts werden gelöscht.
 Beachten Sie, dass ein einmal registrierter Accountname auch nach Lösung des Accounts nicht mehr für eine Registrierung
 zur Verfügung steht.
-
-\begin{html}
+<br /><br />
 <button type="button" class="criticalbutton" id="RESETBUTTON2" onclick="userdelete_click();">Account löschen</button>
-\end{html}
-
-\begin{html}
+</div>
+<br /><br />
 <div class="xreply">
 <p id="CHECKIS">
 Kann nicht auf Browserdaten zugreifen!
 </p>
 </div>
 \end{html}
+
 
 \end{MXContent}
 
@@ -154,13 +159,22 @@ Kann nicht auf Browserdaten zugreifen!
 \MGlobalLoginTag
 \MDeclareSiteUXID{VBKM_MISCLOGIN}
 \begin{html}
-<button type="button" id="LOGINBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="userlogin_click();">Einloggen in den Kurs</button><br />
+<div class="show_noscorm" style="display:none">
+<button type="button" class="criticalbutton" id="LOGINBUTTON" onclick="userlogin_click();">Einloggen in den Kurs</button><br />
 \end{html}
 
 Zum Einloggen sind der Benutzername und das Passwort der Registrierung erforderlich.
 
+\begin{html}
+</div>
+<div class="show_scorm" style="display:none">
+<b>Sie können sich nur über das Lernsystem an- und abmelden.</b>
+</div>
+\end{html}
+
 \end{MXContent}
 
+\MSubsection{Logout}
 
 \begin{MXContent}{Logout}{Logout}{STD}
 \MLabel{L_LOGOUT}
@@ -174,10 +188,14 @@ requestLogout = 1;
 <p id="LOGINFIELD">
 Kann nicht auf Browserdaten zugreifen!
 </p>
+<div class="show_scorm" style="display:none">
+<b>Der Kurs ist geschlossen, ggf. müssen Sie ihn noch über das Lernsystem verlassen oder das Fenster schließen.</b>
+</div>
+<div class="show_noscorm" style="display:none">
+<b>Der Kurs ist geschlossen, ggf. müssen Sie noch das Browserfenster oder den Tab schließen.</b>
+</div>
 \end{html}
 
-
-Das Browserfenster bzw. der Tab kann nun geschlossen, oder der Kurs weiter bearbeitet werden.
 
 \end{MXContent}
 
