@@ -1988,7 +1988,7 @@ function applyLayout(first) {
   // no variant switching in SCORM versions (because variants are actually different courses)  
   if (doScorm == 1) {
       // disable variant switching button
-      $('#variantselect_unotation').prop('disabled', true);
+      $('#variantselect_unotation').prop("disabled", true);
       $('#variantselect_unotation').text('(in diesem Kurs nicht vorhanden)');
   }
   
@@ -2006,6 +2006,14 @@ function applyLayout(first) {
   }
   
   var head = loginbuttonhtml;
+  
+  if (intersiteactive) {
+      if (intersiteobj.login.type >= 2) {
+          head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + "Mein Account" + "</div></a>";
+      }
+  }
+  
+  
   // head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
     
 
@@ -2040,6 +2048,7 @@ function applyLayout(first) {
   showHint($('#minusbutton'), "Verkleinert die Schriftgröße");
   showHint($('#settingsbutton'), "Einstellungen");
   showHint($('#loginbutton'), loginbuttonhint);
+  showHint($('#confbutton'), "Zeigt persönliche Daten zum Kurs und weitere Einstellungen an");
 
   // set proper button visibility in settings depending on course variant
   if (variant == "std") {
@@ -2164,6 +2173,21 @@ function menuClick() {
 // Hinweis wird bei laengerem Hover wieder eingeblendet
 function showHint(element, hinttext) {
 
+  if (element == null) return;
+    
+  var q_my = "";
+  var q_at = "";
+                  
+  if (element.offset().left < 200) {
+      // element is too far on the left side, so tooltip should be to the right side
+      q_at = "bottom right";
+      q_my = "top left";
+  } else {
+      // sufficient space to place tooltip to the left side
+      q_at = "bottom left";
+      q_my = "top right";
+  }
+                  
   hinttext = "<div style=\"font-size:" + SIZES.SMALLFONTSIZE + "px;line-height:100%\">" + hinttext + "</div>";
 
   // Check if qtip is already attached to the element
@@ -2175,8 +2199,8 @@ function showHint(element, hinttext) {
        show: { delay: 750 },
        hide: { delay: 1000, fixed: true },
        position: {
-           my: 'top right',
-           at: 'bottom left',
+           my: q_my,
+           at: q_at,
            target: element
        },
        style: { classes: 'qtip-yellow'}

@@ -19,6 +19,11 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  * */
 
+// color constants
+
+COLOR_INPUTBACKGROUND = "#70E0E0";
+COLOR_INPUTCHANGED = "#E0C0C0";
+
 // determines the local storage name of the intersite object
 function getObjName() {
     s = "isobj_" + signature_main;
@@ -55,7 +60,8 @@ function createIntersiteObj() {
     sites: [],
     favorites: [ createHelpFavorite() ],
     history: { globalmillis: 0, commits: [] }, // commits = array aus Arrays [ hexsha+cid, firstlogintimestamp, lastlogintimestamp ]
-    login: { type: 0, vname: "", sname: "", username: "", password: "", email: "", variant: "std" }
+    login: { type: 0, vname: "", sname: "", username: "", password: "", email: "", variant: "std", sgang: "", uni: "" },
+    signature: { main: signature_main, version: signature_version, localization: "DE-MINT" }
   };
   
   return obj;
@@ -529,19 +535,6 @@ function updateLoginfield() {
   }
 
 
-  // Create complete login field on settings page
-  e = document.getElementById("RESETBUTTON");
-  if (e != null) {
-      var dis = true;
-
-      if (intersiteactive == true) {
-          if (intersiteobj.configuration.CF_LOCAL == "1") {
-              dis = false;
-          }
-      }
-      e.disabled = dis;
-  }
-
   var e = document.getElementById("LOGINFIELD");
   if (e != null) {
     var s = "";
@@ -608,31 +601,39 @@ function updateLoginfield() {
 
             if (t != 0) {
                     var z = document.getElementById("USER_UNAME");
-                    if (z != null) { z.value = intersiteobj.login.username; z.style.backgroundColor = "#70FFFF"; }
+                    if (z != null) { z.value = intersiteobj.login.username; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_PW");
-                    if (z != null) { z.value = intersiteobj.login.password; z.style.backgroundColor = "#70FFFF"; }
+                    if (z != null) { z.value = intersiteobj.login.password; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_VNAME");
-                    if (z != null) { z.value = intersiteobj.login.vname; z.style.backgroundColor = "#70FFFF"; }
+                    if (z != null) { z.value = intersiteobj.login.vname; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_SNAME");
-                    if (z != null) { z.value = intersiteobj.login.sname; z.style.backgroundColor = "#70FFFF"; }
+                    if (z != null) { z.value = intersiteobj.login.sname; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_EMAIL");
-                    if (z != null) { z.value = intersiteobj.login.email; z.style.backgroundColor = "#70FFFF"; }
+                    if (z != null) { z.value = intersiteobj.login.email; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
+                    z = document.getElementById("USER_SGANG");
+                    if (z != null) { z.value = intersiteobj.login.sgang; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
+                    z = document.getElementById("USER_UNI");
+                    if (z != null) { z.value = intersiteobj.login.uni; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
             } else {
                     var z = document.getElementById("USER_UNAME");
-                    if (z != null) { z.value = ""; z.style.backgroundColor = "#E0E3E0"; }
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_PW");
-                    if (z != null) { z.value = ""; z.style.backgroundColor = "#E0E3E0"; }
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_VNAME");
-                    if (z != null) { z.value = ""; z.style.backgroundColor = "#E0E3E0"; }
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_SNAME");
-                    if (z != null) { z.value = ""; z.style.backgroundColor = "#E0E3E0"; }
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_EMAIL");
-                    if (z != null) { z.value = ""; z.style.backgroundColor = "#E0E3E0"; }
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
+                    z = document.getElementById("USER_SGANG");
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
+                    z = document.getElementById("USER_UNI");
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
             }
-
-
         } else s = "Keine Anmeldedaten gefunden!";
     } else s = "Keine Anmeldedaten im Browser gespeichert!";
+    $('#updatepdatabutton').css("visibility", "hidden");
+    $('#updatepdatabutton').prop('disabled', true);
     e.style.color = "#000000";
     e.innerHTML = s;
 
@@ -989,6 +990,98 @@ function confHandlerISOLoad() {
 
 // -------------------------------------------------- user management (TODO: outsource into userdata.js) ---------------------------------------------------
 
+function userupdate_check() {
+    var ch = false;
+    var z = document.getElementById("USER_VNAME");
+    if (z != null) {
+        if (z.value != intersiteobj.login.vname) {
+            ch = true;
+            z.style.backgroundColor = COLOR_INPUTCHANGED;
+        } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_SNAME");
+    if (z != null) {
+        if (z.value != intersiteobj.login.sname) {
+            ch = true;
+            z.style.backgroundColor = COLOR_INPUTCHANGED;
+        } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_EMAIL");
+    if (z != null) {
+        if (z.value != intersiteobj.login.email) {
+            ch = true;
+            z.style.backgroundColor = COLOR_INPUTCHANGED;
+        } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_SGANG");
+    if (z != null) {
+        if (z.value != intersiteobj.login.sgang) {
+            ch = true;
+            z.style.backgroundColor = COLOR_INPUTCHANGED;
+        } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_UNI");
+    if (z != null) {
+        if (z.value != intersiteobj.login.uni) {
+            ch = true;
+            z.style.backgroundColor = COLOR_INPUTCHANGED;
+        } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    
+    if (intersiteactive) {
+        if (intersiteobj.login.type > 0) {
+            if (ch) {    
+                $('#updatepdatabutton').css("visibility", "visible");
+                $('#updatepdatabutton').prop("disabled", false);
+            } else {
+                $('#updatepdatabutton').css("visibility", "hidden");
+                $('#updatepdatabutton').prop("disabled", true);
+            }
+        }
+    }
+}
+
+function userupdate_click() {
+    var z = document.getElementById("USER_VNAME");
+    if (z != null) {
+        intersiteobj.login.vname = z.value;
+        z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_SNAME");
+    if (z != null) {
+        intersiteobj.login.sname = z.value;
+        z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_EMAIL");
+    if (z != null) {
+        intersiteobj.login.email = z.value;
+        z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_SGANG");
+    if (z != null) {
+        intersiteobj.login.sgang = z.value;
+        z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_UNI");
+    if (z != null) {
+        intersiteobj.login.uni = z.value;
+        z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    
+    if (intersiteobj.login.type >= 1) {
+        pushISO(true);
+        if (intersiteobj.login.type == 2) {
+            alert("Ihre Änderungen wurden gespeichert!\n" + feedbackdesc);
+        }
+    }
+    
+    $('#updatepdatabutton').css("visibility", "hidden");
+    $('#updatepdatabutton').prop("disabled", true);
+    
+    applyLayout(false); // login button needs to be modified
+}
+
+
 function userlogin_click() {
   logMessage(VERBOSEINFO, "userlogin geklickt");
 
@@ -1063,7 +1156,7 @@ function loginread_error(message, data) {
 
 function userreset_click() {
   logMessage(VERBOSEINFO, "userreset_click");
-  var s = "Wirklich alle Benutzer- und Kursdaten ";
+  var s = "Wirklich alle Kursdaten ";
   if (intersiteactive == true) {
       if (intersiteobj.config != null) {
           if (intersiteobj.config.type > 0) {
@@ -1073,6 +1166,22 @@ function userreset_click() {
   }
   s += "löschen? Dieser Vorgang kann nicht rückgängig gemacht werden!";
   if (confirm(s) == true) SetupIntersite(true);
+}
+
+function userdelete_click() {
+  logMessage(VERBOSEINFO, "userreset_click");
+  var s = "Wirklich alle Benutzer- und Kursdaten ";
+  if (intersiteactive == true) {
+      if (intersiteobj.config != null) {
+          if (intersiteobj.config.type > 0) {
+              s += "(Benutzername " + intersiteobj.config.username + ") ";
+          }
+      }
+  }
+  s += "löschen? Dieser Vorgang kann nicht rückgängig gemacht werden!";
+  if (confirm(s) == true) {
+      alert("Diese Funktion steht noch nicht zur Verfügung!");
+  }
 }
 
 // returns "" for valid usernames, error string otherwise
@@ -1123,6 +1232,8 @@ function usercreatelocal_click(type) {
     var vn = document.getElementById("USER_VNAME");
     var sn = document.getElementById("USER_SNAME");
     var em = document.getElementById("USER_EMAIL");
+    var sgang = document.getElementById("USER_SGANG");
+    var uni = document.getElementById("USER_UNI");
     var una = un.value;
 
     var rt = allowedUsername(una);
@@ -1162,8 +1273,11 @@ function usercreatelocal_click(type) {
     intersiteobj.login.vname = vn.value;
     intersiteobj.login.sname = sn.value;
     intersiteobj.login.email = em.value;
+    intersiteobj.login.sgang = sgang.value;
+    intersiteobj.login.uni = uni.value;
 
     updateLoginfield();
+    applyLayout(false);
 
     logMessage(VERBOSEINFO, "Neuen Benutzer " + intersiteobj.login.username + " angelegt.");
 
@@ -1232,7 +1346,7 @@ function check_user_success(data) {
       if (data.user_exists == true) {
         ulreply_set(false, "Benutzername ist schon vergeben.");
       } else {
-        ulreply_set(true, "Dieser Benutzername ist verfügbar! <button type='button' style='background: #00FF00' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
+        ulreply_set(true, "Dieser Benutzername ist verfügbar! <button type='button' class='criticalbutton' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
       }
     } else {
         logMessage(VERBOSEINFO, "checkuser success, status=false, data = " + JSON.stringify(data));
@@ -1417,3 +1531,4 @@ function generateLongFavoriteList() {
   
   return s;
 }
+

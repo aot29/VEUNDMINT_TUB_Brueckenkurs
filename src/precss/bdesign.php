@@ -116,6 +116,7 @@ tocnavsymb ul li {
 
 .navi ul li,
 .stdbutton,
+.criticalbutton,
 .testsbutton,
 .roulettebutton,
 .nprev,
@@ -288,14 +289,14 @@ img {
 }
 
 
-#loginbutton, #cdatabutton, #LOGINROW {
+#loginbutton, #cdatabutton, #confbutton, #LOGINROW {
 	text-transform: uppercase;
 	padding: 2px 0px 2px 10px !important;
 	font-size: [-SMALLFONTSIZE-] !important;
 	letter-spacing: 0.5px !important;
 	line-height: 26px;
 }
-#loginbutton:hover, #cdatabutton:hover {
+#loginbutton:hover, #cdatabutton:hover, #confbutton:hover {
 	color: rgba(255,255,255,.5) !important;
 }
 
@@ -621,6 +622,23 @@ a .tocminbutton {
 
 .stdbutton:hover {
     background-color:rgba(255,255,255,.5) !important;
+}
+
+.criticalbutton {
+    color: white !important;
+    background-color: rgb(180,30,80) !important;
+    border: 2px solid rgb(150,0,0) !important;
+    border-radius: 3px;
+    padding: 5px 10px  !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px;
+    margin: 0px 10px;
+    font-family: 'open-sans-condensed';
+    font-weight: 700;
+}
+
+.criticalbutton:hover {
+    background-color:rgb(220,50,100) !important;
 }
 
 .testsbutton {
