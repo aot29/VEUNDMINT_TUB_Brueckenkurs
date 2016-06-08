@@ -1,5 +1,5 @@
 README.txt des Repositories ve-und-mint
-Autor: Daniel Haase 04/2016
+Autor: Daniel Haase 04/2016  .
 
 Dies ist der Hauptordner des Repositories ve-und-mint,
 es dient der Entwicklung der nicht-öffentlichen Version des
@@ -51,7 +51,7 @@ python3 tex2x.py VEUNDMINT
 innerhalb des Verzeichnisses src
 
 Dafür muss unter Linux python3 installiert sein (mindestens Version 3.4)
-sowie die Python-Module GitPython, html5lib, lxml, pytidylib, simplejson.
+sowie die Python-Module GitPython, html5lib, lxml, pytidylib, simplejson, glob2.
 Diese kann man (als root) mit dem Kommando python3 -m pip install <name>
 automatisch installieren lassen.
 
