@@ -42,3 +42,23 @@ function unloadHandler() {
 }
 
 </script>
+
+<!-- i18n start -->
+<script>
+    $.i18n.debug = true;
+
+    // set to 'de' if html:lang is missing        
+    lang = $( 'html' ).attr( 'lang' );
+    if ( !lang ) {
+        lang = 'de';
+         $( 'html' ).attr( 'lang' ) = lang;
+    }
+    
+    /* A convenience function to make things shorter */
+    l = function( key ) {
+        return $.i18n( key );
+    }
+    
+</script>
+<!-- i18n end -->
+

@@ -53,7 +53,7 @@ class Option(object):
         self.currentDir = os.path.abspath(currentDir) # one level above location of tex2x.py
         self.converterDir = os.path.join(self.currentDir, "src")
         self.logFilename = "conversion.log"
-        self.locale = "de_DE" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language, string definition depends on used system!
+        self.locale = "de_DE.utf8" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language, string definition depends on used system!
         locale.setlocale(locale.LC_ALL, self.locale)
         
         # VE&MINT conversion flags, using values 0 and 1 (integers)
@@ -264,6 +264,7 @@ class Option(object):
         self.copyrightFile = os.path.join(self.sourceTEX, "copyrightcollection.tex")
         self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
         self.convinfofile = "convinfo.js"
+        self.i18nFiles = os.path.join( self.converterCommonFiles, "i18n") # localization / internationalization files
 
         # HTML/JS/CSS template options
         self.template_precss = "precss"
@@ -299,7 +300,10 @@ class Option(object):
             "intersite.js",
             "exercises.js",
             "mintscripts.js",
-            "servicescripts.js"
+            "servicescripts.js",
+            "js/jquery.i18n/libs/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
+            "js/jquery.i18n/src/jquery.i18n.js",
+            "js/jquery.i18n/src/jquery.i18n.messagestore.js"
         ]
 
         # javascript files to be minimized if borkify is active, relative to converterDir
