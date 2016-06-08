@@ -50,6 +50,8 @@ class PageFactory(object):
         else:
             self.sys.message(self.sys.CLIENTWARN, "Options do not provide toc addition template, will be omitted")
             self.tocadd = ""
+        
+        self.lang = self.options.locale.split('_')[0]
 
         
     def _load_templates(self):
@@ -101,9 +103,11 @@ class PageFactory(object):
         #template = h5_fromstring(self.template_html5)
         
         # do substitutions supported by lxml parsers and etree
-        
         template.find(".//title").text = tc.title
         template.find(".//meta[@id='meta-charset']").attrib['content'] = "text/html; charset=" + self.options.outputencoding
+        
+        # set locale for UI elements
+        template.attrib["lang"] = self.lang
 
         # do pure string substitutions, link updates to match tc location in the tree will be done later
 
@@ -118,10 +122,17 @@ class PageFactory(object):
         js_text = ""     
         for js in self.options.scriptheaders:
             js_text += "<script src=\"" + js + "\" type=\"text/javascript\"></script>\n"
+        
+        # Preload (some) i18n strings
+        # To make sure ui text are available when needed, preload them in server-side
+        # TODO: only load required texts, not necessarily all. preload ui-* texts, load msg-* texts dynamically ?
+        i18nPath = os.path.join( self.options.i18nFiles, self.lang + ".json" )
+        i18nStrings = self.sys.readTextFile( i18nPath, self.options.stdencoding)
+        i18nString = "<script>$.i18n().load( {" + self.lang + ":" + i18nStrings + "} );</script>"
 
         tc.html = self._substitute_string(tc.html, "mathjax-header", self.template_mathjax_settings + self.template_mathjax_include)
         tc.html = self._append_string(tc.html, "javascript-header", cs_text)
-        tc.html = self._substitute_string(tc.html, "javascript-body-header", js_text + self.template_javascriptheader)
+        tc.html = self._substitute_string(tc.html, "javascript-body-header", js_text + i18nString + self.template_javascriptheader)
         tc.html = self._substitute_string(tc.html, "javascript-body-footer", self.template_javascriptfooter)
 
         tc.html = self._append_string(tc.html, "toccaption", self.gettoccaption(tc))
