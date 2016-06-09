@@ -160,7 +160,7 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   ob.uxid = uxid;
   ob.value = 0; // nur von typ 2 genutzt
   
-  // Diese Elemente werden von handlerChange nach Eingabe des Benutzers gefuellt
+  // Elemente werden von handlerChange nach Eingabe des Benutzers gefuellt
   ob.rawinput = "";
   ob.texinput = "";
   ob.parsedinput = "";
@@ -218,7 +218,7 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   var integrationsSchritte = 100;
   // convert-Funktion je nach Typ setzen
   if ((type == 1) | (type == 3) | (type == 4) | (type == 5) | (type == 7)) {
-    // Diese Feldtypen rendern und parsen ihre Eingabe ganz normal
+    // Feldtypen rendern und parsen ihre Eingabe ganz normal
     ob.convertinput = function() { return mparser.convertMathInput(notationParser_IN(this.rawinput), integrationsSchritte ); }
   } else {
     if (type == 6) {
@@ -285,8 +285,8 @@ function toggle_hint(div_id) {
             if (e.className == "chintbutton_open") {
               e.className = "chintbutton_closed";
             } 
-	  }
-	}
+      }
+    }
       }
     }
 }
@@ -361,7 +361,7 @@ function checkSimplification(type, input) {
     // Nur ein Bruchstrich erlaubt
     if (input.indexOf("/") != -1) {
       if (input.indexOf("/") != input.lastIndexOf("/")) {
-	ret.push(new Array("Bruch ist nicht zusammengefasst" , 1));
+    ret.push(new Array("Bruch ist nicht zusammengefasst" , 1));
       }
     }
   }
@@ -449,22 +449,22 @@ function handlerChange(id, nocontentcheck) {
     FVAR[id].texinput = "";
     if (e.value != "") {
       try {
-	// Eingabe konnte geparset werden
-	var ob = FVAR[id].convertinput();
-	FVAR[id].texinput = notationParser_OUT(ob.latex);
-	FVAR[id].parsedinput = ob.mathjs;
-	FVAR[id].valcode = mathJS.compile(ob.mathjs);
-	FVAR[id].valvalid = true;
+    // Eingabe konnte geparset werden
+    var ob = FVAR[id].convertinput();
+    FVAR[id].texinput = notationParser_OUT(ob.latex);
+    FVAR[id].parsedinput = ob.mathjs;
+    FVAR[id].valcode = mathJS.compile(ob.mathjs);
+    FVAR[id].valvalid = true;
       } catch(e) {
-	// Eingabe konnte nicht geparset werden
-	if (FVAR[id].texinput == "") FVAR[id].texinput = "\\text{(Fehlerhafte Eingabe)}";
-	FVAR[id].parsedinput = "0";
-	FVAR[id].valcode = mathJS.compile("0");
-	FVAR[id].valvalid = false;
+    // Eingabe konnte nicht geparset werden
+    if (FVAR[id].texinput == "") FVAR[id].texinput = "\\text{("+l("msg-incorrect-input")+")}"; // "Fehlerhafte Eingabe"
+    FVAR[id].parsedinput = "0";
+    FVAR[id].valcode = mathJS.compile("0");
+    FVAR[id].valvalid = false;
       }
     } else {
       // Eingabe war leer
-      FVAR[id].texinput = "\\text{(Keine Eingabe)}";
+      FVAR[id].texinput = "\\text{("+l("msg-missing-input")+")}"; // "Keine Eingabe"
       FVAR[id].parsedinput = "0";
       FVAR[id].valcode = mathJS.compile("0");
       FVAR[id].valvalid = false;
@@ -498,7 +498,7 @@ function handlerChange(id, nocontentcheck) {
     }
   } else closeInputContent();
 
-		  
+          
 }
 
 // Callback fuer die Fragegruppen-Buttons
@@ -522,7 +522,7 @@ function rawParse(eingabe) {
      var retobj = mparser.convertMathInput(eingabe,2);
      var mjs = retobj.mathjs;
          var z = mparser.evalMathJS(mjs);
-	 return z;
+     return z;
    } catch(e) {
      return NaN;
    }
@@ -561,7 +561,7 @@ function check_group(input_from, input_to) {
                     FVAR[i].message = "";
                     notifyPoints(i, 0, SOLUTION_NEUTRAL);
                  } else {
-                    FVAR[i].message = "L&#246;sung inkorrekt";
+                    FVAR[i].message = l("msg-incorrect-answer"); // Lösung inkorrekt
                     notifyPoints(i, 0, SOLUTION_FALSE);
                   }
                 }
@@ -611,7 +611,7 @@ function check_group(input_from, input_to) {
                     }
                 }
                 
-		      break;
+              break;
               }
               
               case 3: {
@@ -656,10 +656,10 @@ function check_group(input_from, input_to) {
                              logMessage(VERBOSEINFO, "Benutzer hat leere Menge eingegeben");
                          } else {
                            valuta = st.split(",");
-			   if (valuta.length==1) {
-			     // Alternativ Semikolon moeglich, aber nur wenn kein Komma gefunden
-			     valuta = st.split(";");
-			  }
+               if (valuta.length==1) {
+                 // Alternativ Semikolon moeglich, aber nur wenn kein Komma gefunden
+                 valuta = st.split(";");
+              }
                         }
                      }
                 }
@@ -685,7 +685,7 @@ function check_group(input_from, input_to) {
                 }
                 
                 
-		if (ok == 1) {
+        if (ok == 1) {
                   FVAR[i].message = "";
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
                 } else {
@@ -694,9 +694,9 @@ function check_group(input_from, input_to) {
                     notifyPoints(i, 0, SOLUTION_NEUTRAL);
                   } else {
                     if ((soluta.length == 1) && (solleer == 0)) {
-                        FVAR[i].message = "Wert inkorrekt";
+                        FVAR[i].message = l("msg-incorrect-value"); // "Wert inkorrekt"
                     } else {
-                        FVAR[i].message = "L&#246;sungsmenge inkorrekt";
+                        FVAR[i].message = l("msg-incorrect-quantity"); // "Lösungsmenge inkorrekt"
                     }
                     notifyPoints(i, 0, SOLUTION_FALSE);
                   }
@@ -706,12 +706,12 @@ function check_group(input_from, input_to) {
               
               case 4: {
                 // Eingabefeld mit Funktionsausdruck als Loesung, geparset, approximierter Vergleich an den Stuetzstellen 1,2,...,Anzahl verschoben um Anzahl/2 nach links
-		// Ggf. Vereinfachungsvorschrift (Fall 5)
+        // Ggf. Vereinfachungsvorschrift (Fall 5)
 
-	        var options = FVAR[i].option.split(";",4);
+            var options = FVAR[i].option.split(";",4);
                 var stuetzen = options[0];
                 var varia = options[1].split(","); // Mehrere Auswertungsvariablen durch Komma getrennt erkennen
-		var stellen = options[2];
+        var stellen = options[2];
                 var vereinfachung = options[3]; // Werte 0..15 sind Vereinfachungstyp (0 = keine), Flags 16,32,64,128 sind optional
                 
                 var k;
@@ -720,109 +720,109 @@ function check_group(input_from, input_to) {
  
                 // FVAR[i].rawinput und andere muessen hier vor Aufruf (z.B. von handlerChange) gesetzt sein (was gefixt werden muss)
 
-		if (FVAR[i].valvalid == false) {
-		  ok = false;
-		  message = "Frage noch nicht beantwortet";
-		} else {
-		
-		var c1,c2;
-		
-		if ((vereinfachung & 32) == 32) {
-		  // Nur nach Stammfunktion gefragt, beide Funktionen werden auf f(1.234)=0 normiert, es wird davon ausgegangen, dass es nur eine Variable gibt
-		  // und dass die Funktion bei x=1.234 existiert.
-		  var scope = mathJSFunctions;
-		  scope[varia[0]] = 1.234;
-		  c1 = FVAR[i].valcode.eval(scope);
-		  c2 = FVAR[i].solcode.eval(scope);
-		}
+        if (FVAR[i].valvalid == false) {
+          ok = false;
+          message = l("msg-unanswered-question"); // "Frage noch nicht beantwortet"
+        } else {
+        
+        var c1,c2;
+        
+        if ((vereinfachung & 32) == 32) {
+          // Nur nach Stammfunktion gefragt, beide Funktionen werden auf f(1.234)=0 normiert, es wird davon ausgegangen, dass es nur eine Variable gibt
+          // und dass die Funktion bei x=1.234 existiert.
+          var scope = mathJSFunctions;
+          scope[varia[0]] = 1.234;
+          c1 = FVAR[i].valcode.eval(scope);
+          c2 = FVAR[i].solcode.eval(scope);
+        }
 
 
                 var first;
-         	if ((vereinfachung & 512) == 512) {
-		  // Besondere (nur positive und nur schwach rationale) Stuetzstellen gefordert
+            if ((vereinfachung & 512) == 512) {
+          // Besondere (nur positive und nur schwach rationale) Stuetzstellen gefordert
                   first = 1.1957856840; // sollte nicht aus versehen als Bruch irgendwo auftreten
-		} else {
-		  // Normale Stuetzstellen (positive und negative, fast symmetrisch, und Null wird getroffen wenn mehr als eine Stelle verlangt)
+        } else {
+          // Normale Stuetzstellen (positive und negative, fast symmetrisch, und Null wird getroffen wenn mehr als eine Stelle verlangt)
                   first = 1 - (stuetzen*0.5); // erste Stuetzstelle, Definition macht JavaScript auch klar dass es floats sind
-		}
+        }
 
-		
-		vv = [];
-		for (vj=0; vj<varia.length; vj++) vv[vj] = first;
-		
+        
+        vv = [];
+        for (vj=0; vj<varia.length; vj++) vv[vj] = first;
+        
                 try {
 
-		  // ---------- Starting eval for vv = " + vv + " --------------------");
-		  
-		  var ok = true;
-		  var fini = false;
-		  
-		  while (fini == false) {
-		    // Bei gegebenen Stuetzstellen in vv auswerten
-		    var scope = mathJSFunctions;
-		    for (vj=0; vj<varia.length; vj++) {
-		      scope[varia[vj]] = vv[vj];
-		    }
+          // ---------- Starting eval for vv = " + vv + " --------------------");
+          
+          var ok = true;
+          var fini = false;
+          
+          while (fini == false) {
+            // Bei gegebenen Stuetzstellen in vv auswerten
+            var scope = mathJSFunctions;
+            for (vj=0; vj<varia.length; vj++) {
+              scope[varia[vj]] = vv[vj];
+            }
                     s = FVAR[i].solcode.eval(scope);
-		    v = FVAR[i].valcode.eval(scope);
+            v = FVAR[i].valcode.eval(scope);
                     if ((vereinfachung & 32) == 32) {
                         s = s - c2;
                         v = v - c1;
                     }
                     
-		    var pd = "norm(" + s + " - " + v + ")";
+            var pd = "norm(" + s + " - " + v + ")";
                     var ed = rawParse(pd);
                     
-		    if (!(Math.abs(extround(ed,stellen)-extround(0,stellen)) <= Math.pow(10,(stellen+2)*(-1)))) {
-		      ok = false;
-		      fini = true;
-		      message = "Eingabe ist noch nicht richtig";
-		    }
-		    
-		    // Gesamtes Stuetzstellenarray inkrementieren
-		    var index = 0;
-		    var inc = true;
-		    while (inc == true) {
-		      (vv[index])++;
-		      if (vv[index] > stuetzen) {
-			vv[index] = first;
-			index++;
-			if (index == varia.length) {
-			  // Ganzes array durchinkrementiert
-			  inc = false;
-			  fini = true;
-			}
-		      } else {
-			inc = false;
-		      }
-			
-		    }
-		    
-		    
-		  }
-		  
-    	          if (ok == true) message = "Dies ist eine richtige L&#246;sung";
-		  
-		  
-		} catch(e) {
-		  ok = false;
-		  message = "Form der Eingabe ist fehlerhaft";
-		}
+            if (!(Math.abs(extround(ed,stellen)-extround(0,stellen)) <= Math.pow(10,(stellen+2)*(-1)))) {
+              ok = false;
+              fini = true;
+              message = l("msg-still-incorrect-input"); // "Eingabe ist noch nicht richtig"
+            }
+            
+            // Gesamtes Stuetzstellenarray inkrementieren
+            var index = 0;
+            var inc = true;
+            while (inc == true) {
+              (vv[index])++;
+              if (vv[index] > stuetzen) {
+            vv[index] = first;
+            index++;
+            if (index == varia.length) {
+              // Ganzes array durchinkrementiert
+              inc = false;
+              fini = true;
+            }
+              } else {
+            inc = false;
+              }
+            
+            }
+            
+            
+          }
+          
+                  if (ok == true) message = l("msg-correct-answer"); // "Dies ist eine richtige L&#246;sung"
+          
+          
+        } catch(e) {
+          ok = false;
+          message = l("msg-malformed-input"); // "Form der Eingabe ist fehlerhaft"
+        }
                 
                 var messages = checkSimplification(vereinfachung, FVAR[i].rawinput);
                 
-		
-		for (k=0; k<messages.length; k++) {
+        
+        for (k=0; k<messages.length; k++) {
                     // if (message != "") { message = message + "<br />"; }
                     message = message + "<div style='color:#454545'>" + messages[k][0] + "</div>";
                     if (messages[k][1] == 1) ok = false;
                 }
                 
-		} // endif von valvalid-test
+        } // endif von valvalid-test
 
-		
+        
                 FVAR[i].message = message;
-		if (ok) {
+        if (ok) {
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
                 } else {
                   if (e.value == "") {
@@ -833,164 +833,164 @@ function check_group(input_from, input_to) {
                 }
 
 
-		break;
+        break;
               }
 
               
          case 6: {
                 FVAR[i].rawinput = e.value;
-		var b = notationParser_IN(e.value.trim());
+        var b = notationParser_IN(e.value.trim());
                 b = b.replace(/;/gi,","); // Kommata und Semikolon in Musterloesung und Eingabe zulassen (Semikolon in Musterloesung wird von CreateQuestionObj verarztet)
                 var stellen = FVAR[i].option;
                 
-		var typl = 0; // 0 = nicht bekannt, 1 = offen, 2 = abgeschlossen, 3 = minus unendlich
-		var typr = 0;
-		var btypl = 0; 
-		var btypr = 0;
-		
-	        ok = 0;
+        var typl = 0; // 0 = nicht bekannt, 1 = offen, 2 = abgeschlossen, 3 = minus unendlich
+        var typr = 0;
+        var btypl = 0; 
+        var btypr = 0;
+        
+            ok = 0;
 
-		if (FVAR[i].solution.indexOf("(") != -1) typl = 1;
-		if (FVAR[i].solution.indexOf("[") != -1) typl = 2;
-		if (FVAR[i].solution.indexOf("(-infty") != -1) typl = 3;
-		if (FVAR[i].solution.indexOf("(infty") != -1) typl = 0;
-		if (FVAR[i].solution.indexOf(")") != -1) typr = 1;
-		if (FVAR[i].solution.indexOf("]") != -1) typr = 2;
-		if (FVAR[i].solution.indexOf("infty)") != -1) typr = 3;
-		if (FVAR[i].solution.indexOf("-infty)") != -1) typr = 0;
-		  
-		if ((typr == 0) || (typl == 0)) {
+        if (FVAR[i].solution.indexOf("(") != -1) typl = 1;
+        if (FVAR[i].solution.indexOf("[") != -1) typl = 2;
+        if (FVAR[i].solution.indexOf("(-infty") != -1) typl = 3;
+        if (FVAR[i].solution.indexOf("(infty") != -1) typl = 0;
+        if (FVAR[i].solution.indexOf(")") != -1) typr = 1;
+        if (FVAR[i].solution.indexOf("]") != -1) typr = 2;
+        if (FVAR[i].solution.indexOf("infty)") != -1) typr = 3;
+        if (FVAR[i].solution.indexOf("-infty)") != -1) typr = 0;
+          
+        if ((typr == 0) || (typl == 0)) {
 
-		  logMessage(CLIENTERROR, "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft");
-		  
-		} else {
-		  
+          logMessage(CLIENTERROR, "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft");
+          
+        } else {
+          
                   // Alternativen fuer "infty" erkennen
                   b = b.replace(/infinity/g, 'infty');
                   b = b.replace(/unendlich/g, 'infty');
-		  
+          
                   // mit dieser Technik wird noch (-1)*infty als infty interpretiert
                   if (b.indexOf("(") != -1) btypl = 1;
-		  if (b.indexOf("[") != -1) btypl = 2;
-		  if (b.indexOf("(-infty") != -1) btypl = 3;
+          if (b.indexOf("[") != -1) btypl = 2;
+          if (b.indexOf("(-infty") != -1) btypl = 3;
                   if (b.indexOf("(infty") != -1) btypl = 0;
-		  if (b.indexOf(")") != -1) btypr = 1;
-		  if (b.indexOf("]") != -1) btypr = 2;
-		  if (b.indexOf("infty)") != -1) btypr = 3;
+          if (b.indexOf(")") != -1) btypr = 1;
+          if (b.indexOf("]") != -1) btypr = 2;
+          if (b.indexOf("infty)") != -1) btypr = 3;
                   if (b.indexOf("-infty)") != -1) btypr = 0;
-		
-		  if ((typl == btypl) && (typr == btypr)) {
-		    var s = b.split(",");
-		    var t = FVAR[i].solution.split(",");
-		    if (s.length == 2) {
-		      ok = 1;
-		      s[0] = s[0].substring(1,s[0].length).trim();
-		      s[1] = s[1].substring(0,s[1].length-1).trim();
-		      t[0] = t[0].substring(1,t[0].length).trim();
-		      t[1] = t[1].substring(0,t[1].length-1).trim();
-		      if (typl != 3) {
-			var h = rawParse(s[0]);
-			if ((isNaN(h)) | (Math.abs(extround(h,stellen)-extround(rawParse(t[0]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) ok = 0;
-		      }
-		      if (typr != 3) {
-  			var h = rawParse(s[1]);
-			if ((isNaN(h)) | (Math.abs(extround(h,stellen)-extround(rawParse(t[1]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) ok = 0;
-		      }
-		    }
-		  }
-		}
-		
-		
+        
+          if ((typl == btypl) && (typr == btypr)) {
+            var s = b.split(",");
+            var t = FVAR[i].solution.split(",");
+            if (s.length == 2) {
+              ok = 1;
+              s[0] = s[0].substring(1,s[0].length).trim();
+              s[1] = s[1].substring(0,s[1].length-1).trim();
+              t[0] = t[0].substring(1,t[0].length).trim();
+              t[1] = t[1].substring(0,t[1].length-1).trim();
+              if (typl != 3) {
+            var h = rawParse(s[0]);
+            if ((isNaN(h)) | (Math.abs(extround(h,stellen)-extround(rawParse(t[0]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) ok = 0;
+              }
+              if (typr != 3) {
+            var h = rawParse(s[1]);
+            if ((isNaN(h)) | (Math.abs(extround(h,stellen)-extround(rawParse(t[1]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) ok = 0;
+              }
+            }
+          }
+        }
+        
+        
                 if (ok == 1) {
-		  FVAR[i].message = "Dies ist eine richtige L&#246;sung";
+          FVAR[i].message = "Dies ist eine richtige L&#246;sung";
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
                 } else {
                   if (e.value == "") {
-		    FVAR[i].message = "";
+            FVAR[i].message = "";
                     notifyPoints(i, 0, SOLUTION_NEUTRAL);
                   } else {
-		    FVAR[i].message = "Ist nicht das gesuchte Intervall";
+            FVAR[i].message = l("msg-incorrect-interval"); // "Ist nicht das gesuchte Intervall"
                     notifyPoints(i, 0, SOLUTION_FALSE);
                   }
                 }
 
-		
-		break;
+        
+        break;
               }
 
          case 7: {
-	        // Spezialisiertes Eingabefeld, Wirkung haengt von Fallindex ab
+            // Spezialisiertes Eingabefeld, Wirkung haengt von Fallindex ab
                 FVAR[i].rawinput = e.value;
-		var b = notationParser_IN(e.value.trim());
-                var ok = 0;		
-		
+        var b = notationParser_IN(e.value.trim());
+                var ok = 0;     
+        
 
-	        var options = FVAR[i].option.split(";",4);
+            var options = FVAR[i].option.split(";",4);
                 var stuetzen = options[0];
                 var varia = options[1].split(","); // Mehrere Auswertungsvariablen durch Komma getrennt erkennen
-		var stellen = options[2];
+        var stellen = options[2];
                 var styp = options[3]; // string der Spezialtyp der Aufgabe angibt
                 
 
                 var message = "";
-		
-		switch(styp) {
+        
+        switch(styp) {
 
-		  case "onlyempty": {
+          case "onlyempty": {
                     if (b.trim().length == 0) ok = 1;
-		    break;
-		  }
-		  
+            break;
+          }
+          
                   case "vector": {
                     var n = rawParse(b);
                     ok = 1;
                     break;
                   }
-		  
-		  case "evennat": {
-		    var n = rawParse(b);
-		    if ((n >= 1) && (Math.floor(n) == n) && (n % 2 == 0)) ok = 1;
-		    break;
-		  }
-		  
-		  case "oddnat": {
-		    var n = rawParse(b);
-		    if ((n >= 1) && (Math.floor(n) == n) && (n % 2 == 1)) ok = 1;
-		    break;
-		  }
-		  
-		  case "intervalelement": {
+          
+          case "evennat": {
+            var n = rawParse(b);
+            if ((n >= 1) && (Math.floor(n) == n) && (n % 2 == 0)) ok = 1;
+            break;
+          }
+          
+          case "oddnat": {
+            var n = rawParse(b);
+            if ((n >= 1) && (Math.floor(n) == n) && (n % 2 == 1)) ok = 1;
+            break;
+          }
+          
+          case "intervalelement": {
                     // Kommata und Semikolon in Musterloesung zugelassen (Semikolon in Musterloesung wird von CreateQuestionObj verarztet)
                     var typl = 0, typr = 0;
-		    var s = FVAR[i].solution;
-		    if (s.indexOf("(") != -1) typl = 1;
-		    if (s.indexOf("[") != -1) typl = 2;
-		    if (s.indexOf("(-infty") != -1) typl = 3;
-		    if (s.indexOf("(infty") != -1) typl = 0;
-		    if (s.indexOf(")") != -1) typr = 1;
-		    if (s.indexOf("]") != -1) typr = 2;
-		    if (s.indexOf("infty)") != -1) typr = 3;
-		    if (s.indexOf("-infty)") != -1) typr = 0;
+            var s = FVAR[i].solution;
+            if (s.indexOf("(") != -1) typl = 1;
+            if (s.indexOf("[") != -1) typl = 2;
+            if (s.indexOf("(-infty") != -1) typl = 3;
+            if (s.indexOf("(infty") != -1) typl = 0;
+            if (s.indexOf(")") != -1) typr = 1;
+            if (s.indexOf("]") != -1) typr = 2;
+            if (s.indexOf("infty)") != -1) typr = 3;
+            if (s.indexOf("-infty)") != -1) typr = 0;
                     
-		    if ((typr == 0) || (typl == 0)) {
-		      logMessage(CLIENTERROR, "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft (Aufgabe Typ 7)");
-		    } else {
-		      
-     		      var t = s.split(",");
-  		      if (t.length == 2) {
-			ok = 1;
-			var l = rawParse(b);
-			if (b.trim() == "") {
-			  // Leerstring ist keine richtige Eingabe und fuehrt bei echtem Leerstring zu grauem Feld
-			  l = NaN;
-			  ok = 0;
-			}
-		        t[0] = t[0].substring(1,t[0].length).trim();
-		        t[1] = t[1].substring(0,t[1].length-1).trim();
-       		        var h0 = rawParse(t[0]);
-       		        var h1 = rawParse(t[1]);
+            if ((typr == 0) || (typl == 0)) {
+              logMessage(CLIENTERROR, "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft (Aufgabe Typ 7)");
+            } else {
+              
+                  var t = s.split(",");
+              if (t.length == 2) {
+            ok = 1;
+            var l = rawParse(b);
+            if (b.trim() == "") {
+              // Leerstring ist keine richtige Eingabe und fuehrt bei echtem Leerstring zu grauem Feld
+              l = NaN;
+              ok = 0;
+            }
+                t[0] = t[0].substring(1,t[0].length).trim();
+                t[1] = t[1].substring(0,t[1].length-1).trim();
+                    var h0 = rawParse(t[0]);
+                    var h1 = rawParse(t[1]);
                         var sl = l + " "; // Umgehung eines Fehlers wenn l nur Zahl und nicht String ist
-		        if ((sl.indexOf(",") != -1) | (sl.indexOf("[") != -1) | (sl.indexOf("]") != -1)) {
+                if ((sl.indexOf(",") != -1) | (sl.indexOf("[") != -1) | (sl.indexOf("]") != -1)) {
                           ok = 0; // Vektor oder Intervall vom Benutzer eingegeben, aber Zahl erwartet. Muss separat abgefangen werden da JavaScript sonst Strings vergleicht
                         } else {
                           if ((typl == 1) && (h0 >= l)) ok = 0;
@@ -998,11 +998,11 @@ function check_group(input_from, input_to) {
                           if ((typr == 1) && (h1 <= l)) ok = 0;
                           if ((typr == 2) && (h1 < l)) ok = 0;
                        }
- 		      }	
-		    }
-		    
-		    break;
-		  }
+              } 
+            }
+            
+            break;
+          }
 
                   case "exactfraction": {
                     // Bruch muss zur Loesung aequivalent sein, sowie maximal gekuerzt und mit positivem Nenner
@@ -1098,27 +1098,27 @@ function check_group(input_from, input_to) {
               }
                   
                   default: {
-		    logMessage(CLIENTERROR, "STYP " + styp + " nicht bekannt (MSpecialQuestion)");
-		    ok = 0;
-		    break;
-		  }
-		}
-		
+            logMessage(CLIENTERROR, "STYP " + styp + " nicht bekannt (MSpecialQuestion)");
+            ok = 0;
+            break;
+          }
+        }
+        
                 if (ok == 1) {
-		  FVAR[i].message = "Dies ist eine richtige L&#246;sung";
+          FVAR[i].message = "Dies ist eine richtige L&#246;sung";
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
                 } else {
                   if (e.value == "") {
-		    FVAR[i].message = "";
+            FVAR[i].message = "";
                     notifyPoints(i, 0, SOLUTION_NEUTRAL);
                   } else {
-		    FVAR[i].message = "Ist keine richtige L&#246;sung";
+            FVAR[i].message = "Ist keine richtige L&#246;sung";
                     notifyPoints(i, 0, SOLUTION_FALSE);
                   }
                 }
 
-		
-		break;
+        
+        break;
               }
               
             }
@@ -1196,9 +1196,9 @@ function GetResult(uxid)
     if (intersiteobj.configuration.CF_LOCAL == "1") {
       var j = 0;
       for (j = 0; j < intersiteobj.scores.length; j++) {
-	if (intersiteobj.scores[j].uxid == uxid) {
-	  return intersiteobj.scores[j].rawinput;
-	}
+    if (intersiteobj.scores[j].uxid == uxid) {
+      return intersiteobj.scores[j].rawinput;
+    }
       }
     }
   }
@@ -1236,16 +1236,16 @@ function InitResults(empty)
       if (FVAR[i].sync == 1) {
         v = GetResult(FVAR[i].uxid);
       } else {
-	v = null;
+    v = null;
       }
             
       if (v == null) v = "";
       switch(FVAR[i].type) {
               
-	      case 1: {
-		// Eingabefeld mit alphanumerischer Loesung, case-sensitive
+          case 1: {
+        // Eingabefeld mit alphanumerischer Loesung, case-sensitive
                 e.value = v;
-		FVAR[i].rawinput = v;
+        FVAR[i].rawinput = v;
                 check_group(i,i);
                 break;
               }
@@ -1320,21 +1320,21 @@ function InitResults(empty)
                 break;
               }
               
-	      case 6: {
+          case 6: {
                 // Eingabefeld mit Intervall als Loesung
                 e.value = v;
                 FVAR[i].rawinput = v;
                 check_group(i,i);
                 break;
-	      }
+          }
               
-	      case 7: {
+          case 7: {
                 // Spezialisiertes Eingabefeld
                 e.value = v;
                 FVAR[i].rawinput = v;
                 check_group(i,i);
                 break;
-	      }
+          }
       }
     }
     
@@ -1354,18 +1354,18 @@ function finish_button(name) {
  var ratio = 100 * nPoints / nMaxPoints;
   if (f != null) {
     f.innerHTML = "";
-    f.innerHTML += "<strong>" + name + " wurde abgeschlossen:</strong><br />";
-    f.innerHTML += "Im Test erreichte Punkte: " + nPoints + "<br />";
-    f.innerHTML += "Maximal erreichbare Punkte: " + nMaxPoints + "<br />";
-    f.innerHTML += "Der Test wird abgeschickt, wenn mindestens ein Punkt erreicht wurde.<br /><br />";
+    f.innerHTML += "<strong>" + l( "msg-completed-test", name) + "</strong><br />"; // name + " wurde abgeschlossen:
+    f.innerHTML += l( "msg-reached-points", nPoints) + "<br />";// Im Test erreichte Punkte: " + nPoints
+    f.innerHTML += l( "msg-max-points", nMaxPoints ) + "<br />"; // "Maximal erreichbare Punkte: " + nMaxPoints
+    f.innerHTML += l("msg-dispatched-test") + "<br /><br />"; // "Der Test wird abgeschickt, wenn mindestens ein Punkt erreicht wurde.
     if (nPoints < nMinPoints) {
-      f.innerHTML += "<strong>Der Test ist noch nicht abgeschickt.</strong><br />";
+      f.innerHTML += "<strong>"+l("msg-not-dispatched-test")+"</strong><br />"; // Der Test ist noch nicht abgeschickt.
     } else {
-      f.innerHTML += "Test ist eingereicht, kann aber weiter bearbeitet und erneut abgeschickt werden.<br />";
+      f.innerHTML += l("msg-submitted-test")+"<br />"; // Test ist eingereicht, kann aber weiter bearbeitet und erneut abgeschickt werden.
     }
     if (SITE_UXID == "VBKMT_AbgebeTest") {
       ratio = Math.round(ratio * 100) / 100;
-      f.innerHTML += "<emph>Es wurden " + ratio + "% der Punkte erreicht!</emph><br /><br />";
+      f.innerHTML += "<emph>"+l("msg-reached-point-ratio", ratio)+"</emph><br /><br />";// Es wurden " + ratio + "% der Punkte erreicht!
     }
     
   }
@@ -1383,8 +1383,8 @@ function finish_button(name) {
       if ((doScorm == 1) && (SITE_UXID == "VBKMT_AbgebeTest")) {
         // MatheV4: Gesamtpunktzahl ueber alle ABSCHLUSSTESTS mitteln und Prozentwert an SCORM uebertragen
         
-	logMessage(VERBOSEINFO, "ENTRYTEST geht an SCORM");	
-	var mx = 0;
+    logMessage(VERBOSEINFO, "ENTRYTEST geht an SCORM"); 
+    var mx = 0;
         var mi = 0;
         var av = 0;
         // iterate through questions with test flag outside preparation test
@@ -1437,7 +1437,7 @@ function finish_button(name) {
         logMessage(VERBOSEINFO, "SCORM set completion " + psres);
         psres = pipwerks.SCORM.save();
         logMessage(DEBUGINFO, "SCORM save = " + psres);
-        if (psres==true) f.innerHTML += "Die Punktzahl wurde zur statistischen Auswertung übertragen\n";
+        if (psres==true) f.innerHTML += l("msg-transfered-result")+"\n"; // Die Punktzahl wurde zur statistischen Auswertung übertragen
 
       }
       
@@ -1611,21 +1611,21 @@ function fillUserField()
     var e = document.getElementById("UFID");
     if (e != null) {
       if (lName != "") {
-	e.value = lName + "\n(ID: " + lID + ")";
+    e.value = lName + "\n(ID: " + lID + ")";
       } else {
-	e.value = "<Nicht angemeldet>";
+    e.value = "<"+l("ui-not-loggedin")+">";// Nicht angemeldet
       }
       
       if (nPoints > 0) {
-	if (nMaxPoints > 0) {
-	  e.value += "\nPunkte erreicht: " + nPoints + " von " + nMaxPoints;
-	} else {
-	  e.value += "\nPunkte erreicht: " + nPoints;
-	}
+    if (nMaxPoints > 0) {
+      e.value += "\n" + l("ui-max-points", nPoints, nMaxPoints)//"\nPunkte erreicht: " + nPoints + " von " + nMaxPoints;
+    } else {
+      e.value += "\n" + l("ui-reached-points", nPoints )// "\nPunkte erreicht: " + nPoints;
+    }
       } else {
-	if (nMaxPoints > 0) {
-	  e.value += "\nPunkte zu erreichen: " + nMaxPoints;
-	}
+    if (nMaxPoints > 0) {
+      e.value += "\n" + l("ui-necessary-points", nMaxPoints); // "\nPunkte zu erreichen: " + nMaxPoints;
+    }
       }
       e.readOnly = true;
     }
@@ -1686,7 +1686,7 @@ function rerollMVar(varname) {
       MVAR[i].reroll();
       var j = 0;
       for (j=0; j<MVAR[i].deps.length; j++) {
-	MVAR[i].deps[j].valueHasMutated();
+    MVAR[i].deps[j].valueHasMutated();
       }
       check_group(1,FVAR.length-1);
       return MVAR[i].value();
@@ -1724,13 +1724,13 @@ function closeInputContent() {
     }
     if (activefieldid != "") {
         if (activetooltip == null) {
-	  logMessage(DEBUGINFO, "activefieldid ohne tooltip!");
-	} else {
-	  var api = activetooltip.qtip("api");
-	  api.toggle(false);
-	  api.destroy();
-	  activetooltip = null;
-	}
+      logMessage(DEBUGINFO, "activefieldid ohne tooltip!");
+    } else {
+      var api = activetooltip.qtip("api");
+      api.toggle(false);
+      api.destroy();
+      activetooltip = null;
+    }
         activefieldid = "";
     }
 }
@@ -1744,14 +1744,14 @@ function displayInputContent(id,latex) {
       // Neuer Tooltip wird erzeugt und an das input-Element geklebt, bei Tests keine Kommentare dazu abhaengig vom Status des Tests
       var content = "";
       if ((isTest == false) | (testFinished == true)) {
-	content = '<div id="NINPUTFIELD' + activefieldid + '" data-bind="evalmathjax: ifobs"></div><br /><div name="NUSERMESSAGE" id="UFIDM' + activefieldid + '" style="line-height:110%; color:#000000; border: thin solid rgb(0,0,0); padding: 8px; background-color:#CFDFDF; width:250px; font-size:11pt; font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;"></div>';
+    content = '<div id="NINPUTFIELD' + activefieldid + '" data-bind="evalmathjax: ifobs"></div><br /><div name="NUSERMESSAGE" id="UFIDM' + activefieldid + '" style="line-height:110%; color:#000000; border: thin solid rgb(0,0,0); padding: 8px; background-color:#CFDFDF; width:250px; font-size:11pt; font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;"></div>';
       } else {
-	content = '<div id="NINPUTFIELD' + activefieldid + '" data-bind="evalmathjax: ifobs"></div><br />(im laufenden Test keine Tipps)';
+    content = '<div id="NINPUTFIELD' + activefieldid + '" data-bind="evalmathjax: ifobs"></div><br />' + l("ui-missing-tooltip");
       }
       activetooltip = $(" input[id=\"" + activefieldid + "\"] ").qtip({ 
-	id: 'activetooltip',
-	show: {event: 'customShow' },
-	hide: {event: 'customHide' },
+    id: 'activetooltip',
+    show: {event: 'customShow' },
+    hide: {event: 'customHide' },
         content: '...',
 /*        events: {
           show: function(event, api) { alert("show"); },
@@ -1897,19 +1897,19 @@ function styleColors(c) {
     if (intersiteactive == true) {
       if (intersiteobj != null) {
         if (typeof intersiteobj.configuration.stylecolor == "string") {
-	  if (intersiteobj.configuration.stylecolor == STYLEGREEN) {
-	    c = c.substr(0,2) + c.substr(4,2) + c.substr(2,2);
-	  } else {
-  	    if (intersiteobj.configuration.stylecolor == STYLERED) {
-	      c = c.substr(4,2) + c.substr(0,2) + c.substr(2,2);
-	    } else {
-    	      if (intersiteobj.configuration.stylecolor == STYLEGREY) {
-  	        c = c.substr(4,2) + c.substr(4,2) + c.substr(4,2);
-	      }
-	    }
-	  }
+      if (intersiteobj.configuration.stylecolor == STYLEGREEN) {
+        c = c.substr(0,2) + c.substr(4,2) + c.substr(2,2);
+      } else {
+        if (intersiteobj.configuration.stylecolor == STYLERED) {
+          c = c.substr(4,2) + c.substr(0,2) + c.substr(2,2);
         } else {
-  	  logMessage(DEBUGINFO, "No stylecolor found in configuration");
+              if (intersiteobj.configuration.stylecolor == STYLEGREY) {
+            c = c.substr(4,2) + c.substr(4,2) + c.substr(4,2);
+          }
+        }
+      }
+        } else {
+      logMessage(DEBUGINFO, "No stylecolor found in configuration");
         }
       }
     }
@@ -1982,7 +1982,7 @@ function applyLayout(first) {
 
                
   d = d - 2;
-  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Anmelden</div></a>";
+  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">"+l("ui-login")+"</div></a>";
   // head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
     
 
@@ -2010,12 +2010,12 @@ function applyLayout(first) {
   });
 
 
-  showHint($('#homebutton'), "Zurück zur Homepage des Kurses");
-  showHint($('#listebutton'), "Stichwortverzeichnis anzeigen");
-  showHint($('#menubutton'), "Hier klicken um Navigationsleisten ein- oder auszublenden");
-  showHint($('#plusbutton'), "Vergrößert die Schriftgröße");
-  showHint($('#minusbutton'), "Verkleinert die Schriftgröße");
-  showHint($('#settingsbutton'), "Einstellungen");
+  showHint($('#homebutton'), l("hint-home") ); // "Zurück zur Homepage des Kurses"
+  showHint($('#listebutton'), l("hint-list") ); // "Stichwortverzeichnis anzeigen"
+  showHint($('#menubutton'), l("hint-menu") ); // "Hier klicken um Navigationsleisten ein- oder auszublenden"
+  showHint($('#plusbutton'), l("hint-zoomin") ); // "Vergrößert die Schriftgröße"
+  showHint($('#minusbutton'), l("hint-zoomout") ); // "Verkleinert die Schriftgröße"
+  showHint($('#settingsbutton'), l("hint-settings") ); // "Einstellungen"
 
   // set proper button visibility in settings depending on course variant
   if (variant == "std") {
@@ -2030,7 +2030,7 @@ function applyLayout(first) {
       $('#variantactive_unotation').css("visibility", "visible");
   }
   
-  var shareintext = "Diese Seite teilen über:<br /><br />";
+  var shareintext = l("msg-shared-page") + "<br /><br />"; // Seite teilen über:
   var myurl = window.location.href;
     
   shareintext += "<a href=\"#\" onclick=\"shareFacebook()\"><img src=\"" + linkPath + "images/sharetargetfacebook.png\"></a>";
@@ -2040,7 +2040,7 @@ function applyLayout(first) {
   shareintext += "<a href=\"https://plus.google.com/share?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargetgoogleplus.png\"></a>";
   showHint($('#sharebutton'), shareintext);
 
-  shareintext = "Aktuelle Favoriten:<br /><br />";
+  shareintext = l("msg-current-favorites")+"<br /><br />"; // Aktuelle Favoriten:
   shareintext += generateShortFavoriteList() + "<br /><br />";
   showHint($('#starbutton'), shareintext);
 

@@ -370,7 +370,7 @@ class Option(object):
 
         if self.symbolexplain == 1:
             self.tocadd = "<ul class=\"legende\">" \
-                        + "<li><strong>LEGENDE</strong></li>" \
+                        + "<li><strong style=\"text-transform: uppercase\">" + self.strings['legend'] + "</strong></li>" \
                         + "<li><div class=\"xsymb\">1.1</div>" + self.strings['explanation_subsection'] + "<br/></li>" \
                         + "<li><div class=\"xsymb status1\"></div>" + self.strings['explanation_xcontent'] + "</li>" \
                         + "<li><div class=\"xsymb status2\"></div>" + self.strings['explanation_exercises'] + "</li>" \

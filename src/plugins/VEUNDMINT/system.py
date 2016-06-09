@@ -243,7 +243,7 @@ class System(object):
     def writeTextFile(self, name, text, enc):
         if ((not os.path.exists(os.path.dirname(name))) and (os.path.dirname(name) != "")):
             os.makedirs(os.path.dirname(name))
-    
+        enc = 'utf8'; # Force utf8. Encoding is broken somehow
         with open(name, "w", encoding = enc) as file:
             file.write(text)
             
