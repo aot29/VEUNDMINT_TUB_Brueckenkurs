@@ -282,41 +282,41 @@ function SetupIntersite(clearuser, pulledstr) {
       var iso = localStorage.getItem(getObjName());
       logMessage(VERBOSEINFO,"iso aus localStorage geholt");
       if (clearuser == true) {
-	  if (intersiteactive == true) {
-	    if (intersiteobj.configuration.CF_USAGE == "1") {
-	      var timestamp = +new Date();
-	      var cm = "USERRESET: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp;
-	      sendeFeedback( { statistics: cm }, true );
-	    }
-	  }
-	  iso = null;
-	  logMessage(VERBOSEINFO, "Userreset verlangt");
+      if (intersiteactive == true) {
+        if (intersiteobj.configuration.CF_USAGE == "1") {
+          var timestamp = +new Date();
+          var cm = "USERRESET: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp;
+          sendeFeedback( { statistics: cm }, true );
+        }
+      }
+      iso = null;
+      logMessage(VERBOSEINFO, "Userreset verlangt");
       }
       
       if (iso == "") {
-	iso = null; // Falls localStorage von der JavaScript-Konsole aus resettet wurde
-	logMessage(VERBOSEINFO, "iso = \"\" auf null gesetzt");
+    iso = null; // Falls localStorage von der JavaScript-Konsole aus resettet wurde
+    logMessage(VERBOSEINFO, "iso = \"\" auf null gesetzt");
       }
 
       if (iso == null) {
-	intersiteobj = createIntersiteObj();
-	intersiteobj.active = true;
-	intersiteobj.startertitle = document.title;
-	intersiteobj.configuration.CF_LOCAL = "1";
-	intersiteobj.configuration.CF_USAGE = "1";
-	intersiteobj.configuration.CF_TESTS = "1";
+    intersiteobj = createIntersiteObj();
+    intersiteobj.active = true;
+    intersiteobj.startertitle = document.title;
+    intersiteobj.configuration.CF_LOCAL = "1";
+    intersiteobj.configuration.CF_USAGE = "1";
+    intersiteobj.configuration.CF_TESTS = "1";
         intersiteactive = true;
-	logMessage(VERBOSEINFO, "Intersite setup with local storage from scratch from " + intersiteobj.startertitle);
-	if ((intersiteobj.configuration.CF_USAGE == "1") && (clearuser == false)) {
-	    var timestamp = +new Date();
-	    var cm = "INTERSITEFIRST: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
-	    sendeFeedback( { statistics: cm }, true );
-	}
+    logMessage(VERBOSEINFO, "Intersite setup with local storage from scratch from " + intersiteobj.startertitle);
+    if ((intersiteobj.configuration.CF_USAGE == "1") && (clearuser == false)) {
+        var timestamp = +new Date();
+        var cm = "INTERSITEFIRST: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
+        sendeFeedback( { statistics: cm }, true );
+    }
       } else {
-	intersiteobj = JSON.parse(iso);
-	logMessage(VERBOSEINFO,"iso geparsed, logintype = " + intersiteobj.login.type + ", username = " + intersiteobj.login.username);
-	logMessage(VERBOSEINFO,"Got an intersite object from " + intersiteobj.startertitle);
-	intersiteactive = true;
+    intersiteobj = JSON.parse(iso);
+    logMessage(VERBOSEINFO,"iso geparsed, logintype = " + intersiteobj.login.type + ", username = " + intersiteobj.login.username);
+    logMessage(VERBOSEINFO,"Got an intersite object from " + intersiteobj.startertitle);
+    intersiteactive = true;
       }
     }
   }
@@ -596,7 +596,12 @@ function UpdateSpecials() {
         e.innerHTML = l( 'msg-persistence-deactivated' );//"Datenspeicherung wurde durch Benutzer deaktiviert, es werden keine Kursdaten gespeichert.";
     } else {
       var mys = JSON.stringify(intersiteobj);
-      e.innerHTML = ((intersiteactive==true) && (localStoragePresent==true)) ? ( l( 'msg-succesful-localpersistence',mys.length) : l( 'msg-failed-localpersistence' ); //"Der Browser kann die Kursdaten speichern,\nes werden momentan " + mys.length + " Bytes durch Kursdaten belegt.") : "Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert."
+      if ( (intersiteactive==true) && (localStoragePresent==true) ) {
+          e.innerHTML = l( 'msg-succesful-localpersistence',mys.length)
+          
+      } else {
+          e.innerHTML = l( 'msg-failed-localpersistence' )
+      } //"Der Browser kann die Kursdaten speichern,\nes werden momentan " + mys.length + " Bytes durch Kursdaten belegt.") : "Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert."
     }
   }
 
@@ -857,7 +862,7 @@ function confHandlerChange(id) {
     if (intersiteobj.active == true) {
 
       if ((intersiteobj.configuration.CF_LOCAL == "1") && (id == "CF_LOCAL") && (c == false)) {
-          if (confirm( l('msg-confirm-persistence')) ) == false) { c = 1; e.checked = true; } // "Ohne lokale Datenspeicherung gehen die Benutzer- und Kursdaten verloren. Trotzdem ohne Datenspeicherung fortfahren?"
+          if (confirm( l('msg-confirm-persistence')) == false) { c = 1; e.checked = true; } // "Ohne lokale Datenspeicherung gehen die Benutzer- und Kursdaten verloren. Trotzdem ohne Datenspeicherung fortfahren?"
       }
 
 
@@ -929,7 +934,7 @@ function userlogin_success(data) {
 function userlogin_error(message, data) {
   if (typeof(data) == "object") {
       if (data.error == "invalid password") {
-        alert( l('msg-repeat-login') ) ); // "Benutzername oder Passwort sind nicht korrekt, bitte versuchen Sie es nochmal."
+        alert( l('msg-repeat-login') ); // "Benutzername oder Passwort sind nicht korrekt, bitte versuchen Sie es nochmal."
         logMessage(VERBOSEINFO, "Login wegen fehlerhaftem Benutzernamen/Passwort nicht akzeptiert");
         return;
       }
@@ -1038,7 +1043,7 @@ function usercreatelocal_click(type) {
 
     } else {
       // normal version: password requested from user
-      pws = prompt( l('msg-prompt', una) ) ); //"Geben Sie ein Passwort für den Benutzer " + una + " ein:"
+      pws = prompt( l('msg-prompt', una) ); //"Geben Sie ein Passwort für den Benutzer " + una + " ein:"
       if (pws == null) return; // user has pressed abort
       rt = allowedPassword(pws);
       if (rt != "") {
@@ -1049,7 +1054,7 @@ function usercreatelocal_click(type) {
       var pws2 = prompt( l('msg-repeat-prompt') );//"Geben Sie das Passwort zur Sicherheit nochmal ein:"
       if (pws2 == null) return; // user has pressed abort
       if (pws2 != pws) {
-          alert( l('msg-inconsistent-password')) ); //"Die Passwörter stimmen nicht überein."
+          alert( l('msg-inconsistent-password') ); //"Die Passwörter stimmen nicht überein."
           return;
       }
     }
@@ -1114,7 +1119,7 @@ function register_error(message, data) {
   logMessage(VERBOSEINFO, "Register error: " + message + ", data = " + JSON.stringify(data));
   var na;
   na = (scormLogin == 1) ? (intersiteobj.login.sname) : (intersiteobj.login.username);
-  alert( l( 'msg-failed-createuser', na );// "Benutzer " + na + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
+  alert( l( 'msg-failed-createuser', na ));// "Benutzer " + na + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
   setIntersiteType(1);
 }
 
@@ -1131,9 +1136,10 @@ function check_user_success(data) {
 
     if ((data.action == "check_user") && (data.status == true)) {
       if (data.user_exists == true) {
-        ulreply_set(false, l( 'msg-unavailable-username' ) ));//"Benutzername ist schon vergeben."
+        ulreply_set(false, l( 'msg-unavailable-username' ) );//"Benutzername ist schon vergeben."
       } else {
-        ulreply_set(true, l('msg-available-username', '<button type=\'button\' style=\'background: #00FF00\' onclick=\'usercreatelocal_click(2);\'>', '</button>');//"Dieser Benutzername ist verfügbar! <button type='button' style='background: #00FF00' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
+        ulreply_set(true, l('msg-available-username', 
+        '<button type=\'button\' style=\'background: #00FF00\' onclick=\'usercreatelocal_click(2);\'>', '</button>'));//"Dieser Benutzername ist verfügbar! <button type='button' style='background: #00FF00' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
       }
     } else {
         logMessage(VERBOSEINFO, "checkuser success, status=false, data = " + JSON.stringify(data));
@@ -1144,7 +1150,7 @@ function check_user_success(data) {
 
 function check_user_error(message, data) {
   logMessage(VERBOSEINFO, "checkuser error:" + message + ", data = " + JSON.stringify(data));
-  ulreply_set(false, l( 'msg-failed-server', feedbackdesc ) ));//"Kommunikation mit Server (" + feedbackdesc + ") nicht möglich."
+  ulreply_set(false, l( 'msg-failed-server', feedbackdesc ) );//"Kommunikation mit Server (" + feedbackdesc + ") nicht möglich."
 }
 
 
