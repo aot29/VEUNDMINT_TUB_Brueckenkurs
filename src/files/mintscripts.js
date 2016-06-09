@@ -1592,6 +1592,15 @@ function globalreadyHandler(pulluserstr)
   // Wird aufgerufen, wenn die Seite komplett geladen und alle Bilder/iframes gefuellt sind (VOR globalload, NACH direkt-JS-Befehlen auf html-Seite im body-Bereich oder eingebundenen js-Dateien) ODER durch pull-emit-callback wenn intersiteobj aktualisiert werden muss
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   logMessage(DEBUGINFO, "globalreadyHandler start");
+  // emit JSON companion load request if present, use preset sitejson otherwise
+  if (sitejson_load) {
+      $.getJSON(docName + ".json", function(data) {
+          sitejson = data;
+          logMessage(DEBUGINFO, "companion object retrieved");
+        });
+  }
+  
+  // setup intersite objects  
   SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
   if (intersiteactive == true) {
     if (variant != intersiteobj.login.variant) {
@@ -1865,15 +1874,17 @@ function selectVariant(v) {
 
 // rid = eindeutige ID des Roulettes, id = Nummer der Einzelaufgabe, maxid = Anzahl Aufgaben (letzte hat id maxid-1)
 function rouletteClick(rid, id, maxid) {
-  var d = Math.floor((Math.random() * maxid)); 
-  var e = document.getElementById("DROULETTE" + rid + "." + id);
-  if (e != null) {
-    e.style.display = 'none';
-  }
-  e = document.getElementById("DROULETTE" + rid + "." + d);
-  if (e != null) {
-    e.style.display = 'block';
-  }
+    logMessage(DEBUGINFO, "rouletteClick: rid=" + rid + ", id=" + id + ", maxid=" + maxid);
+    // select a random div
+    var d = Math.floor((Math.random() * maxid)); 
+    logMessage(VERBOSEINFO, "Selected d=" + d);
+    // get div for the question as a string from the roulette hash's array
+    s = sitejson["_RLV_" + rid][d];
+    logMessage(VERBOSEINFO, "Retrieved divstring");
+    // set container to hidden, write new HTML inset content, enable container and display it
+    $("#" + "ROULETTECONTAINER_" + rid).css("visibility", "hidden").html(s).prop('disabled', false).css("visibility", "visible");
+    // call MathJax to typeset new content
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, "ROULETTECONTAINER_" + rid]);
 }
 
 // Datenbank-Roulettes

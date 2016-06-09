@@ -24,13 +24,14 @@
 
 import re
 import os
+import json
 import subprocess
+import locale
 from lxml import etree
 from lxml import html
 from tidylib import tidy_document
 from copy import deepcopy
 from random import randint
-import locale
 
 from plugins.exceptions import PluginException
 from plugins.basePlugin import Plugin as basePlugin
@@ -895,22 +896,34 @@ class Plugin(basePlugin):
         for c in tc.children:
             self.write_htmlfiles(c)
         if tc.display:
-            f = os.path.join(self.options.targetpath, self.outputsubdir, tc.link + "." + self.outputextension)
-            if not self.releaseCheck(tc.html, f):
-                self.sys.message(self.sys.CLIENTWARN, "File " + f + " did not pass post release check")
+            f_html = os.path.join(self.options.targetpath, self.outputsubdir, tc.link + "." + self.outputextension)
+            f_json = os.path.join(self.options.targetpath, self.outputsubdir, tc.link + "." + "json")
+            if not self.releaseCheck(tc.html, f_html):
+                self.sys.message(self.sys.CLIENTWARN, "File " + f_html + " did not pass post release check")
                 if self.options.dorelease == 1:
                     self.sys.message(self.sys.FATALERROR, "Refusing to create a release version due to check errors")
-            self.sys.writeTextFile(f, tc.html, self.options.outputencoding)
+
+            jso = json.dumps(tc.sitejson)
+            if len(jso) > self.options.maxsitejsonlength:
+                # use a separate file for the json companion object
+                tc.html = tc.html.replace("var sitejson_load = false;", "var sitejson_load = true;", 1)
+                self.sys.writeTextFile(f_json, jso, self.options.outputencoding)
+            else:
+                # directly paste the object as JSON string into the page
+                tc.html = tc.html.replace("var sitejson = {};", "var sitejson = " + jso + ";", 1);
+
+            # write the actual html file
+            self.sys.writeTextFile(f_html, tc.html, self.options.outputencoding)
             self.filecount += 1
             if "<!-- mglobalstarttag -->" in tc.html:
-                self.sys.message(self.sys.CLIENTINFO, "Global starttag found in file " + f + ", locally " + tc.link)
+                self.sys.message(self.sys.CLIENTINFO, "Global starttag found in file " + f_html + ", locally " + tc.link)
                 self.startfile = self.outputsubdir + "/" + tc.link + "." + self.outputextension
                 self.entryfile = "entry_" + tc.docname + "." + self.outputextension
                 
             # search for other tags and create redirects if found
             for s in self.options.sitetaglist:
                 if "<!-- mglobal" + s + "tag -->" in tc.html:
-                    self.sys.message(self.sys.CLIENTINFO, "Global " + s + "tag found in file " + f + ", locally " + tc.link)
+                    self.sys.message(self.sys.CLIENTINFO, "Global " + s + "tag found in file " + f_html + ", locally " + tc.link)
                     self.siteredirects[s][1] = self.outputsubdir + "/" + tc.link + "." + self.outputextension
             
             # generate export files if required

@@ -64,7 +64,7 @@ class Option(object):
         self.doscorm12 = 0        # =0: Kein SCORM, =1- > SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 1.2 verwendet werden
         self.qautoexport = 0      # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
         self.diaok = 0            # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
-        self.cleanup = 0          # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
+        self.cleanup = 1          # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
         self.localjax = 0         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
         self.borkify = 0          # =1 html und js-Dateien werden borkifiziert
         self.dorelease = 0        # In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
@@ -103,6 +103,7 @@ class Option(object):
         self.htmltikzscale = 1.3                             # scaling factor used for tikz-png scaling, can be overridden by pragmas
         self.autotikzcopyright = 1                           # includes tikz externalized images in copyright list
         self.displaycopyrightlinks = 0                       # add copyright links to images in the entire course
+        self.maxsitejsonlength = 255                         # the maximal number of string characters allowed for an internal json site object, will be stored in a different file if limit is exceeded
 
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 

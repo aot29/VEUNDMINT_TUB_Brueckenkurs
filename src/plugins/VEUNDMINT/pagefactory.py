@@ -24,8 +24,9 @@
 
 import re
 import os
-from distutils.dir_util import mkpath
+import json
 import subprocess
+from distutils.dir_util import mkpath
 from lxml import etree
 from lxml import html
 from plugins.exceptions import PluginException
@@ -162,6 +163,8 @@ class PageFactory(object):
 
         
         tc.html = self.update_links(tc.html, tc.backpath)
+        # roulette expansion has to be the last operation, after link updating
+        tc.html = self.pack_roulettes(tc.html, tc.sitejson)
 
         
     def gettoccaption(self, tc):
@@ -681,44 +684,38 @@ class PageFactory(object):
   }
 
         """
-
-        html = self.postprocess_roulettes(html)
-        
   
         return html
     
     # end postprocessing
 
 
-    def postprocess_roulettes(self, html):
-        # prepare DirectRoulette divs
-        
-        rl = list()
+    def pack_roulettes(self, html, sitejson):
         
         def droul(m):
-            nonlocal rl
             rid = m.group(1)
             myid = int(m.group(2))
-            if myid == 0:
-                vis = "block"
-            else:
-                vis = "none"
             maxid = 0
             if rid in self.data['DirectRoulettes']:
                 maxid = self.data['DirectRoulettes'][rid]
             else:
                 self.sys.message(self.sys.CLIENTERROR, "Could not find roulette id " + rid)
-            bt = "<div class=\"rouletteselector\"><br /><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">" + self.options.strings['roulette_new'] + "</button><br /><br />"
+            bt = "<br /><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">" + self.options.strings['roulette_new'] + "</button><br /><br />"
             self.sys.message(self.sys.VERBOSEINFO, "Roulette " + rid + "." + str(myid) + " done")
-            s = "<div class=\"tex2jaxignore\" style=\"display:" + vis + "\" id=\"DROULETTE" + rid + "." + str(myid) + "\">" + bt + m.group(3) + "</div></div>"
-            rl.append([ myid, s])
+            # take care not to have any " in the string, as it will be passed as a string to js
+            s = "<div id='DROULETTE" + rid + "." + str(myid) + "'>" + bt + m.group(3) + "</div>"
             # div for id=0 is being set into HTML, remaining blocks are stored and will be written to that div by javascript code
+            t = ""
             if myid == 0:
-                # generate container div and its first entry
-                s = "<div id='ROULETTECONTAINER_" + rid + "'>" + s + "</div>"
-            return s
+                # generate container div and its first entry, as well as the JS array variable
+                t += "<div class='dynamic_inset' id='ROULETTECONTAINER_" + rid + "'>" + s + "</div>"
+                sitejson["_RLV_" + rid] = list()
+            sitejson["_RLV_" + rid].append(s)
+            if len(sitejson["_RLV_" + rid]) != (myid + 1):
+                self.sys.message(self.sys.CLIENTERROR, "Roulette inset id " + str(myid) + ", does not match ordering of LaTeX environments");
+            return t
   
-        html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>", droul, html, 0, re.S)
+        html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droul, html, 0, re.S)
         return html
     
         
