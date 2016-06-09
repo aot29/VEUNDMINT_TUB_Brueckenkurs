@@ -133,11 +133,11 @@ class Plugin(basePlugin):
         self.generate_css()
 
         self.xidobj = None # used by global xcontent linking
-        self.analyze_html() # analyzation done on raw text
+        self.analyze_html() # analysis done on raw text
         self.setup_contenttree()
-        self.analyze_nodes_stage1(self.ctree) # analyzation done inside nodes
+        self.analyze_nodes_stage1(self.ctree) # analysis done inside nodes
         self.prepare_index()
-        self.analyze_nodes_stage2(self.ctree) # analyzation parts using information from stage1 and the index
+        self.analyze_nodes_stage2(self.ctree) # analyse parts using information from stage1 and the index
         
         for i in self.data['sections']:
             if i in self.data['expoints'] and i in self.data['sitepoints'] and i in self.data['testpoints']:

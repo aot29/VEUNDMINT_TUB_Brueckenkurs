@@ -51,6 +51,7 @@ class PageFactory(object):
             self.sys.message(self.sys.CLIENTWARN, "Options do not provide toc addition template, will be omitted")
             self.tocadd = ""
         
+        # Read the language ISO code (en, de...) from the locale code (de_DE.utf8...)
         self.lang = self.options.locale.split('_')[0]
 
         
@@ -126,13 +127,14 @@ class PageFactory(object):
         # Preload (some) i18n strings
         # To make sure ui text are available when needed, preload them in server-side
         # TODO: only load required texts, not necessarily all. preload ui-* texts, load msg-* texts dynamically ?
+        # Pack the JSON localization file between Javascript tags
         i18nPath = os.path.join( self.options.i18nFiles, self.lang + ".json" )
         i18nStrings = self.sys.readTextFile( i18nPath, self.options.stdencoding)
-        i18nString = "<script>$.i18n().load( {" + self.lang + ":" + i18nStrings + "} );</script>"
+        i18nJavascript = "<script>$.i18n().load( {" + self.lang + ":" + i18nStrings + "} );</script>"
 
         tc.html = self._substitute_string(tc.html, "mathjax-header", self.template_mathjax_settings + self.template_mathjax_include)
         tc.html = self._append_string(tc.html, "javascript-header", cs_text)
-        tc.html = self._substitute_string(tc.html, "javascript-body-header", js_text + i18nString + self.template_javascriptheader)
+        tc.html = self._substitute_string(tc.html, "javascript-body-header", js_text + i18nJavascript + self.template_javascriptheader)
         tc.html = self._substitute_string(tc.html, "javascript-body-footer", self.template_javascriptfooter)
 
         tc.html = self._append_string(tc.html, "toccaption", self.gettoccaption(tc))

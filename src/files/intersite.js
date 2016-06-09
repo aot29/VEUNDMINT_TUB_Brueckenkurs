@@ -597,7 +597,7 @@ function UpdateSpecials() {
     } else {
       var mys = JSON.stringify(intersiteobj);
       if ( (intersiteactive==true) && (localStoragePresent==true) ) {
-          e.innerHTML = l( 'msg-succesful-localpersistence',mys.length)
+          e.innerHTML = l( 'msg-successful-localpersistence',mys.length)
           
       } else {
           e.innerHTML = l( 'msg-failed-localpersistence' )
@@ -1189,11 +1189,12 @@ function usercheck() {
 
     var una = e.value;
     var rt = allowedUsername(una);
+    logMessage(DEBUGINFO, una +" "+ rt);
     if (rt != "") {
         ulreply_set(false,rt);
         return;
     }
-
+    ulreply_set(true,una); // set the input field display to checked 
     userdata.checkUser(true, una, check_user_success, check_user_error);
 }
 

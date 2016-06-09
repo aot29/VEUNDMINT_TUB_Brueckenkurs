@@ -53,7 +53,7 @@ class Option(object):
         self.currentDir = os.path.abspath(currentDir) # one level above location of tex2x.py
         self.converterDir = os.path.join(self.currentDir, "src")
         self.logFilename = "conversion.log"
-        self.locale = "de_DE.utf8" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language, string definition depends on used system!
+        self.locale = "en_GB.utf8" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language, string definition depends on used system!
         locale.setlocale(locale.LC_ALL, self.locale)
         
         # VE&MINT conversion flags, using values 0 and 1 (integers)
@@ -86,7 +86,12 @@ class Option(object):
         self.outputencoding = "utf-8"                        # encoding of generated html files
         self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
         self.source = "module_veundmint"                     # Quellverzeichnis, platziert in Ebene ueber tex2x.py
-        self.module = "tree_tu9onlinekurs.tex"               # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
+        if self.locale == 'en_GB.utf8' :                     # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
+            self.module = "tree_tu9onlinekurs_en.tex"
+                                            
+        else :
+            self.module = "tree_tu9onlinekurs.tex"               
+        
         self.outtmp = "_tmp"                                 # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
         self.description = "Onlinebrückenkurs Mathematik"    # Bezeichnung des erstellen Kurses
         self.author = "Projekt VEUNDMINT"                    # Offizieller Autor des Kurses           
@@ -144,8 +149,10 @@ class Option(object):
                 print("Invalid override string: " + ov)
 
 
-         # Settings for HTML design and typical phrases        
+         # Settings for HTML design and
         self.chaptersite = "chapters.html"
+        # typical phrases are now localized in json files (see below, at the end of the method).
+        """
         self.strings = {
             "explanation_subsection": "Einführung in Thema",
             "explanation_xcontent": "Lernabschnitt",
@@ -180,7 +187,7 @@ class Option(object):
             "message_problem": "Einige Aufgaben falsch beantwortet",
             "modstartbox_tocline": "Dieses Modul gliedert sich in folgende Abschnitte:"
         }
-        
+        """
         self.knownmathcommands = [ "sin", "cos", "tan", "cot", "log", "ln", "exp" ] # these will be excluded from post-ttm modifications
         self.mathmltags = [ "math", "mo", "mi", "mrow", "mstyle", "msub", "mn", "mtable", "msup", "mtext", "mfrac", "msqrt", "mover" ]
         self.specialtags = [ "tocnavsymb"] + self.mathmltags # these will be excluded from libtidy error detection
@@ -349,6 +356,14 @@ class Option(object):
             "PRE_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "preprocessor_mintmodtex.py"),
             "HTML5_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "html5_mintmodtex.py")
         }
+
+        # Read the language ISO code (en, de...) from the locale code (de_DE.utf8...)
+        self.lang = self.locale.split('_')[0]
+        
+        # load localization files
+        i18nPath = os.path.join( self.i18nFiles, self.lang + ".json" )
+        self.strings = json.load( open( i18nPath ) )
+
         
         if self.dopdf == 1:
             self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdfmini.png' border='0' /></a>"
@@ -363,7 +378,6 @@ class Option(object):
                         + "</ul>"
         else:
             self.tocadd = ""
-
                 
         self.check_consistency()
 
