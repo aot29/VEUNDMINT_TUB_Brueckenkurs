@@ -312,9 +312,9 @@ class Option(object):
             "exercises.js",
             "mintscripts.js",
             "servicescripts.js",
-            "js/jquery.i18n/libs/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
-            "js/jquery.i18n/src/jquery.i18n.js",
-            "js/jquery.i18n/src/jquery.i18n.messagestore.js"
+            "CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
+            "jquery.i18n.js",
+            "jquery.i18n.messagestore.js"
         ]
 
         # javascript files to be minimized if borkify is active, relative to converterDir
