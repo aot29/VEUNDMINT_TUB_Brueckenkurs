@@ -605,7 +605,7 @@
   \begin{html}
   <div class="exmp">
   <div class="exmprahmen">
-  \end{html}\textbf{Beispiel
+  \end{html}\textbf{Example
   \ifnum\value{MSepNumbers}=0
   \arabic{section}.\arabic{subsection}.\arabic{MObjectCounter}\setcounter{MLastIndex}{\value{MObjectCounter}}
   \else
@@ -614,7 +614,7 @@
   } \ \\}{\begin{html}</div>
   </div>
   \end{html}
-  \special{html:<!-- mfeedbackbutton;Beispiel;}\arabic{MTestSite}\special{html:;}\MGenerateExmpNumber\special{html:; //-->}
+  \special{html:<!-- mfeedbackbutton;Example;}\arabic{MTestSite}\special{html:;}\MGenerateExmpNumber\special{html:; //-->}
   }
 
   \newenvironment{MExperiment}{
@@ -1291,7 +1291,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 \newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}}{\end{MXContent}}
 \newenvironment{MContent}{\begin{MXContent}{Contents}{Contents}{beweis}}{\end{MXContent}}
-\newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{Exercieces}{Exercieces}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
+\newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{Exercises}{Exercises}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
 
 % #1 = Lesbare Testbezeichnung
 \newenvironment{MTest}[1]{%
@@ -1843,44 +1843,43 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \fi%
 
 \def\MFormelZoomHint{\MInputHint{%
-Formel zu klein? Mit einem Doppelklick auf eine Formel wird sie vergr��ert dargestellt.}}
+Formula too small? Double click to enlarge.}}
 
 \def\jHTMLHinweisBedienung{\MInputHint{%
-Mit Hilfe der Symbole am oberen Rand des Fensters
-k"onnen Sie durch die einzelnen Abschnitte navigieren.}}
+The symbols at the upper boundary allow you to navigate through the course.}}
 
 \def\jHTMLHinweisEingabeText{\MInputHint{%
-Geben Sie jeweils ein Wort oder Zeichen als Antwort ein.}}
+Enter a word or a symbol.}}
 
 \def\jHTMLHinweisEingabeTerm{\MInputHint{%
-Klammern Sie Ihre Terme, um eine eindeutige Eingabe zu erhalten. 
-Beispiel: Der Term $\frac{3x+1}{x-2}$ soll in der Form
-\texttt{(3*x+1)/((x+2)^2}$ eingegeben werden (wobei auch Leerzeichen 
-eingegeben werden k"onnen, damit eine Formel besser lesbar ist).}}
+Use parentheses to get unambiguous expression. 
+Example: The Term $\frac{3x+1}{x-2}$ should be entered as
+\texttt{(3*x+1)/(x+2)}$ (you can add spaces for legibility).}}
 
 \def\jHTMLHinweisEingabeIntervalle{\MInputHint{%
-Intervalle werden links mit einer "offnenden Klammer und rechts mit einer 
-schlie"senden Klammer angegeben. Eine runde Klammer wird verwendet, wenn der 
-Rand nicht dazu geh"ort, eine eckige, wenn er dazu geh"ort. 
-Als Trennzeichen wird ein Komma oder ein Semikolon akzeptiert.
-Beispiele: $(a, b)$ offenes Intervall,
-$[a; b)$ links abgeschlossenes, rechts offenes Intervall von $a$ bis $b$. 
-Die Eingabe $]a;b[$ f"ur ein offenes Intervall wird nicht akzeptiert.
-F"ur $\infty$ kann \texttt{infty} oder \texttt{unendlich} geschrieben werden.}}
+Intervals are written like this: $[a,b]$ for a
+closed interval, $(a,b]$ for a left open right closed interval, 
+$[a,b)$ for a left closed right open interval and $(a,b)$ for
+an open interval. $a$ and $b$ are infimum and supremum of
+the interval, they can be real numbers or $\pm \infty$.
+Write \texttt{infty} for $\infty$. The two numbers can
+be separated by a comma or by a semicolon, both are valid
+expressions.
+}}
 
 \def\jHTMLHinweisEingabeFunktionen{\MInputHint{%
-Schreiben Sie Malpunkte (geschrieben als \texttt{*}) aus und setzen Sie Klammern um Argumente f\"ur Funktionen.
-Beispiele: Polynom: \texttt{3*x + 0.1}, Sinusfunktion: \texttt{sin(x)}, 
-Verkettung von cos und Wurzel: \texttt{cos(sqrt(3*x))}.}}
+Explicitily denote multiplication by \texttt{*} and use parentheses for the arguments of functions.
+Example: Polynomial: \texttt{3*x + 0.1}, sine function: \texttt{sin(x)}, 
+Composition of cos and the square root function: \texttt{cos(sqrt(3*x))}.}}
 
 \def\jHTMLHinweisEingabeFunktionenSinCos{\MInputHint{%
-Die Sinusfunktion $\sin x$ wird in der Form \texttt{sin(x)} angegeben, %
-$\cos\left(\sqrt{3 x}\right)$ durch \texttt{cos(sqrt(3*x))}.}}
+The Sine function $\sin x$ has to be entered like this \texttt{sin(x)} (with parentheses), %
+$\cos\left(\sqrt{3 x}\right)$ like \texttt{cos(sqrt(3*x))}.}}
 
 \def\jHTMLHinweisEingabeFunktionenExp{\MInputHint{%
-Die Exponentialfunktion $\MEU^{3x^4 + 5}$ wird als
-\texttt{exp(3 * x^4 + 5)} angegeben, %
-$\ln\left(\sqrt{x} + 3.2\right)$ durch \texttt{ln(sqrt(x) + 3.2)}.}}
+The exponential function $\MEU^{3x^4 + 5}$ has to be entered as
+\texttt{exp(3 * x^4 + 5)}, %
+$\ln\left(\sqrt{x} + 3.2\right)$ as \texttt{ln(sqrt(x) + 3.2)}.}}
 
 % ---------------------------------- Spezialbefehle fuer Fachbereich Physik --------------------------
 
