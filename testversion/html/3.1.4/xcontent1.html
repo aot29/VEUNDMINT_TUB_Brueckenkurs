@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML" lang="en">
+<head>
+<meta http-equiv="expires" content="0"/>
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Onlinebrückenkurs Mathematik Abschnitt 1.4.2 Favourites</title>
+<div class="mathjax-header"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+    Macros: {
+      RR: '{\\bf R}',
+      bold: ['{\\bf #1}', 1]
+    }
+  },
+  tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      "CommonHTML": {
+        scale: 100,
+        minScaleAdjust: 80,
+        mtextFontInherit: true,
+        linebreak: { automatic: false, width: "container" },
+  },
+  "fast-preview": {
+      disabled: true
+  },
+  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+});
+MathJax.Hub.processSectionDelay = 0;
+</script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?locale=de"></script>
+<!-- Headerversion MPL/localjax -->
+</div>
+<div class="javascript-header"></div><link rel="stylesheet" type="text/css" href="../../qtip2/jquery.qtip.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../datatables/min.css"/>
+
+</head>
+<body onload="loadHandler()" onunload="unloadHandler()">
+<div class="javascript-body-header"><script src="../../es5-sham.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../qtip2/jquery.qtip.min.js" type="text/javascript"></script>
+<script src="../../datatables/datatables.min.js" type="text/javascript"></script>
+<script src="../../knockout-3.0.0.js" type="text/javascript"></script>
+<script src="../../math.js" type="text/javascript"></script>
+<script src="../../dynamiccss.js" type="text/javascript"></script>
+<script src="../../convinfo.js" type="text/javascript"></script>
+<script src="../../mparser.js" type="text/javascript"></script>
+<script src="../../scormwrapper.js" type="text/javascript"></script>
+<script src="../../dlog.js" type="text/javascript"></script>
+<script src="../../userdata.js" type="text/javascript"></script>
+<script src="../../intersite.js" type="text/javascript"></script>
+<script src="../../exercises.js" type="text/javascript"></script>
+<script src="../../mintscripts.js" type="text/javascript"></script>
+<script src="../../servicescripts.js" type="text/javascript"></script>
+<script src="../../js/jquery.i18n/libs/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js" type="text/javascript"></script>
+<script src="../../js/jquery.i18n/src/jquery.i18n.js" type="text/javascript"></script>
+<script src="../../js/jquery.i18n/src/jquery.i18n.messagestore.js" type="text/javascript"></script>
+<script>$.i18n().load( {en:{
+	"@metadata": {
+		"authors": [
+			"Clara Hummel"
+		],
+		"last-updated": "2016-06-09",
+		"locale": "en"
+	},
+    "msg-incorrect-input" : "Incorrect input",
+    "msg-missing-input" : "No input",
+    "msg-incorrect-answer" : "Incorrect answer",
+    "msg-incorrect-value" : "Incorrect value",
+    "msg-incorrect-quantity" : "Incorrect solution set",
+    "msg-unanswered-question" : "Question has not been answered yet",
+    "msg-still-incorrect-input" : "Input is not correct yet",
+    "msg-correct-answer" : "This is a correct answer",
+    "msg-malformed-input" : "Input form is incorrect",
+    "msg-incorrect-interval" : "is not the desired interval",
+    "msg-completed-test" : "$1 has been completed",
+    "msg-reached-points" : "Scored points in test: $1",
+    "msg-max-points" : "Maximal scored points: $1",
+    "msg-dispatched-test" : "The test will be submitted if a minimum of one point has been scored.",
+    "msg-not-dispatched-test" : "The test has not been submitted yet.",
+    "msg-submitted-test" : "The test has been submitted. However it can still be edited and submitted again.",
+    "msg-reached-point-ratio" : "$1% of points have been scored",
+    "msg-transfered-result" : "Your score will be submitted for statistical analysis",
+    "ui-userid" : "(ID: $1))",
+    "ui-not-loggedin" : "Not logged in",
+    "ui-max-points" : "Points scored: $1 of $2",
+    "ui-reached-points" : "Points scored: $1",
+    "ui-necessary-points" : "Total score: $1",
+    "ui-missing-tooltip" : "(there wil be no tips during the test)",
+    "ui-login" : "Log in",
+    "ui-course-data" : "Course data",
+    "hint-home" : "Back to course homepage",
+    "hint-list" : "View index",
+    "hint-menu" : "Click here to show or hide navigation bar",
+    "hint-zoomin" : "Increases font size",
+    "hint-zoomout" : "Decreases font size",
+    "hint-settings" : "Settings",
+    "msg-shared-page" : "Share this page via:",
+    "msg-current-favorites" : "Current favourits",
+    "msg-failed-connection" : "Communication with platform failed. The course can only be worked on anonymously",
+    "msg-failed-userdata" : "Your user data could not be downloaded from server. An automated email has been sent to the administrator. However you can work on the course anonymously, entered answers will not be saved though",
+    "ui-no-user" : "No user logged in",
+    "ui-unknown-user" : "User $1 ($2 $3), not logged onto server",
+    "ui-known-user" : "User $1 ($2 $3) logged onto server",
+    "ui-username" : "Username",
+    "ui-password" : "Password",
+    "ui-login" : "Log in",
+    "msg-local-persistence" : "Data will only be stored in this browser and on this computer",
+    "msg-no-persistence" : "No course data will be saved",
+    "msg-long-username" : "User $1 ($2 $3)",
+    "msg-scorm-username" : "User  $1 $2",
+    "msg-missing-userdata" : "No user data available yet. The course will be worked on anonymously",
+    "msg-persistence-both" : "Data will be stored in this browser and on server",
+    "msg-failed-login" : "Log in failed",
+    "msg-missing-logindata" : "No log in data found",
+    "msg-missing-browserdata" : "No log in data saved in browser",
+    "msg-persistence-deactivated" : "Data storage has been deactivated by the user, no course data will be stored",
+    "msg-failed-localpersistence" : "The browser can not store local data. Input in input boxes will not be saved",
+    "msg-successful-localpersistence" : "The browser can not store course data $1 Bytes are occupied by course data",
+    "msg-total-progress" : "Visited $1 of $2 module units altogether",
+    "msg-total-points" : "Scored $1 out of $2 points in the exercises altogether",
+    "msg-total-test" : "Scored $1 of $2 points in the final test altogether.",
+    "msg-failed-test" : "Final test has not been passed yet",
+    "msg-passed-test" : "Final test PASSED",
+    "msg-change-localpersistence" : "The browser can not store local data, input in input boxes will not be saved. If applicable modify your selections on the settings page",
+    "msg-confirm-persistence" : "Without local data storage your user data and course data will be lost. Do you want to continue anyways?",
+    "msg-repeat-login" : "Username or password are incorrect. Please try again",
+    "msg-confirm-delete" : "Do you really want to delete all user data and course data $1? This process can not be undone",
+    "msg-badlength-username" : "Your log in name  must contain a minimum of 6 and a maximum of 18 characters",
+    "msg-badchars-username" : "Your log in name can only contain Latin characters, numbers and the special characters _-+",
+    "msg-badlength-password" : "Your password must contain a minimum of 6 and a maximum of 18 characters",
+    "msg-badchars-password" : "Im Passwort sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _-+ erlaubt. - Your password can only contain Latin charactrs, numbers and the special characters _-+",
+    "msg-failed-createuser" : "Data can not be stored, user can not be created",
+    "msg-activate-localpersistence" : "Data can not be stored, local data storage has to be activated in settings first",
+    "msg-prompt" : "Enter a password for user $1:",
+    "msg-repeat-prompt" : "Please enter your password again",
+    "msg-inconsistent-password" : "The passwords do not match",
+    "msg-duplicate-username" : "The user $1 already exists on the server, please enter a new username",
+    "msg-failed-createuser" : "User $1 could not be created. Please try again later. The user will only be created in the browser",
+    "msg-unavailale-username" : "The username has already been taken",
+    "msg-available-username" : "This username is available! $1 Register now $2",
+    "msg-failed-server" : "Communication with server \"$1\" failed",
+	
+	"msg-unavailable-login" : "Login failed!",
+    "msg-duplicate-username" : "Benutzer $1 existiert schon auf dem Server, bitte geben Sie einen neuen Benutzernamen ein.",
+
+    "explanation_subsection": "Introduction to the subject",
+    "explanation_xcontent": "Learning step",
+    "explanation_exercises": "Exercises",
+    "explanation_test": "Final test",
+    "chapter": "Chapter",
+    "subsection": "Section",
+    "module_starttext": "Launch module: ",
+    "module_solutionlink": "See the solution",
+    "module_solution": "Solution",
+    "module_solutionback": "Back to the exercise",
+    "module_content": "Contents of the module",
+    "module_moreinfo": "More information",
+    "module_helpsitetitle": "Start page",
+    "module_labelprefix": "Module",
+    "subsection_labelprefix": "Section",
+    "subsubsection_labelprefix": "Subsection",
+    "exercise_labelprefix": "Exercise",
+    "example_labelprefix": "Example",
+    "experiment_labelprefix": "Experiment",
+    "image_labelprefix": "Image",
+    "table_labelprefix": "Table",
+    "equation_labelprefix": "Equation",
+    "theorem_labelprefix": "Theorem",
+    "video_labelprefix": "Video",
+    "brokenlabel": "(VERWEIS)",
+    "feedback_sendit": "Send feedback",
+    "qexport_download_tex": "Source code of this exercise in LaTeX format",
+    "qexport_download_doc": "Source code of this exercise in Word-Format",
+    "message_done": "All exercises solved",
+    "message_progress": "Exercises partially solved",
+    "message_problem": "Some answers are incorrect",
+    "modstartbox_tocline": "This module has the following sections:",
+    "legend" : "legend"
+
+
+}
+} );</script><script>
+var isTest = false;
+var testFinished = true;
+var FVAR = new Array();
+FVAR.push("CounterDummy");
+var MVAR = new Array();
+var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+var objScormApi = null;
+var doScorm = 0;
+var viewmodel;
+var activeinputfieldid = "";
+var activetooltip = null;
+var activefieldid = "";
+var sendcounter = 0;
+var intersiteactive = false;
+var intersiteobj = createIntersiteObj();
+var intersitelinks = false;
+var localStoragePresent = false;
+var SITE_ID = "(unknown)";
+var SITE_UXID = "(unknown)";
+var SITE_PULL = 0;
+var STYLEBLUE = "0";
+var STYLERED = "1";
+var STYLEGREEN = "2";
+var STYLEGREY = "3";
+var animationSpeed = 250;
+var timerMillis = 250;
+var timerActive = false;
+var timerVar = null;
+var timerColors = new Array();
+var timerIterator = 0;
+
+SITE_PULL = 0;
+// onload blocks start
+// onload blocks stop
+var SITE_ID = "3.1.4.2";
+var SITE_UXID = "VBKM_MISCFAVORITES";
+var SECTION_ID = 1;
+var docName = "xcontent1";
+var fullName = "html/3.1.4/xcontent1.html";
+var linkPath = "../../";
+// <JSCRIPTPRELOADTAG>
+
+function loadHandler() {
+  globalloadHandler("");
+}
+
+function unloadHandler() {
+  globalunloadHandler();
+}
+
+</script>
+
+<!-- i18n start -->
+<script>
+    $.i18n.debug = true;
+
+    // set to 'de' if html:lang is missing        
+    lang = $( 'html' ).attr( 'lang' );
+    if ( !lang ) {
+        lang = 'de';
+         $( 'html' ).attr( 'lang' ) = lang;
+    }
+    
+    /* A convenience function to make things shorter */
+    l = function( key, val1, val2, val3 ) {
+        return $.i18n( key, val1, val2, val3 );
+    }
+    
+</script>
+<!-- i18n end -->
+
+</div>
+<div id="fixed">
+  <div id="fhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="ftoc" class="toc">
+    <div id="itoccaption" class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Contents of the module</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Chapter 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong style="text-transform: uppercase">legend</strong></li><li><div class="xsymb">1.1</div>Introduction to the subject<br/></li><li><div class="xsymb status1"></div>Learning step</li><li><div class="xsymb status2"></div>Exercises</li><li><div class="xsymb status3"></div>Final test</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="fnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/3.1.4/modstart.html"></a></div>
+<div class="nnext"></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM_MISCSEARCH" class="MINTERLINK" href="../../html/3.1.4/modstart.html">Search</a></li>
+  <li class="xsectbutton"><a uxid="VBKM_MISCFAVORITES" class="MINTERLINK naviselected" href="../../html/3.1.4/xcontent1.html">Favourites</a></li>
+</ul>
+</div>
+  <div id="footer" class="footer">
+    <div id="footerleft" class="footerleft"><img src='../../images/ccbysa80x15.png' border='0' /></div>
+    <div id="footermiddle" class="footermiddle">Onlinebrückenkurs Mathematik</div>
+    <div id="footerright" class="footerright"><a href='mailto:admin@ve-und-mint.de' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a></div>
+  </div>
+  <div id="settings" class="settings" style="visibility:hidden"><p>
+<center>
+<b>Auswahl des Farbschemas f&uuml;r den Onlinekurs</b><br />
+<ul style="width:95%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;min-width:100px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;min-width:100px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;min-width:100px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLEGREEN);">Gr&uuml;n</button></center></li>
+<li style="padding:20px;min-width:100px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  Mathematische Symbole nach <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation, empfohlen):<br />
+  \(\displaystyle
+  ]a;b[\ , \ \mathbb N =\lbrace 1;2;3;\ldots\rbrace \ , \ P=(a;b;c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1,414\ldots
+  \)
+  <div id="variantactive_std" style="visibility:hidden">
+  (Diese Notation ist aktiviert)
+  </div>
+  <button id="variantselect_std" style="visibility:hidden" type="button" class="stdbutton" onclick="selectVariant('std');">Zur Schulbuchnotation wechseln</button>
+  </li>
+  <li>
+  Alternative Notation, die in vielen technischen Studieng&auml;ngen eingesetzt wird:<br />
+  \(\displaystyle
+  (a,b)\ , \ \mathbb N =\lbrace 1,2,3,\ldots\rbrace \ , \ P=(a,b,c)\ ,\ \vec{x}= \left(\begin{array}{c} 1\\2  \end{array}\right) \ ,\ \sqrt2 =1.414\ldots
+  \)
+  <div id="variantactive_unotation" style="visibility:hidden">
+  (Diese Notation ist aktiviert)
+  </div>
+  <button id="variantselect_unotation" style="visibility:hidden" type="button" class="stdbutton" onclick="selectVariant('unotation');">Zu dieser Notation wechseln</button>
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zur&uuml;ck zum Kurs</button>
+</center>
+</p>
+</div>
+</div>
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"></div><tocnavsymb><ul><li><a class="MINTERLINK" href="../../chapter.html" target="_new"><div class="tocmintitle">Contents of the module</div></a><div><ul>
+  <li><a class="MINTERLINK" href="../../html/sectionx1.1.0.html"><div class ="tocminbutton">Chapter 1</div></a>
+    <div><ul>
+    </ul></div>
+  </li>
+
+</ul></div></li></ul><ul class="legende"><li><strong style="text-transform: uppercase">legend</strong></li><li><div class="xsymb">1.1</div>Introduction to the subject<br/></li><li><div class="xsymb status1"></div>Learning step</li><li><div class="xsymb status2"></div>Exercises</li><li><div class="xsymb status3"></div>Final test</li></ul></tocnavsymb><br /><br />
+  </div>
+  <div id="nfnavi" class="navi"><div class="nprev"><a class="MINTERLINK" href="../../html/3.1.4/modstart.html"></a></div>
+<div class="nnext"></div>
+<ul>
+  <li class="xsectbutton"><a uxid="VBKM_MISCSEARCH" class="MINTERLINK" href="../../html/3.1.4/modstart.html">Search</a></li>
+  <li class="xsectbutton"><a uxid="VBKM_MISCFAVORITES" class="MINTERLINK naviselected" href="../../html/3.1.4/xcontent1.html">Favourites</a></li>
+</ul>
+</div>
+  <div id="content" class="content">
+
+
+
+
+
+
+
+<h4>Chapter 1 User settings  - Section 1.4  Search</h4><h4>1.4.2 Favourites</h4>
+
+
+
+<a id="L_FAVORITESSITE">
+</a>
+<!-- mglobalfavoritestag -->
+<!-- mdeclaresiteuxidpost;;VBKM_MISCFAVORITES;; //-->
+
+<br clear="all"/><br clear="all"/>
+<div id="FAVORITELISTLONG"/>
+
+<br clear="all"/><br clear="all"/>
+<br/>
+</div>
+</div>
+<div class="javascript-body-footer"><script>
+viewmodel = {
+  // viewmodel blocks start
+// viewmodel blocks stop
+// <JSCRIPTVIEWMODEL>
+  
+  ifobs: ko.observable("")
+}
+
+ko.bindingHandlers.evalmathjax = {
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      var value = valueAccessor(), allBindings = allBindingsAccessor();
+      var latex = ko.unwrap(value);
+      
+      var i;
+      latex = applyMVARLatex(latex);
+
+      if (element.childNodes[0]) {
+        // var sy = getScrollY();
+        var mathelement = MathJax.Hub.getAllJax(element)[0];
+        MathJax.Hub.Queue(["Text",mathelement,latex]);
+        // setScrollY(sy);
+      } else {
+        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+      
+        var s = document.createElement('script');
+        s.type = "math/tex; mode=display";
+        try {
+          s.appendChild(document.createTextNode(latex));
+          element.appendChild(s);
+        } catch (e) {
+          s.text = latex;
+          element.appendChild(s);
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+      }
+  }
+ };
+
+ko.applyBindings(viewmodel);
+
+
+$(document).ready(function () {
+  globalreadyHandler("");   
+});
+
+  // postmodel blocks start
+// postmodel blocks stop
+// <JSCRIPTPOSTMODEL>
+
+</script>
+</div>
+</body>
+</html>
