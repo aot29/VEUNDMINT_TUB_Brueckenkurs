@@ -9,12 +9,16 @@ MathJax.Hub.Config({
       bold: ['{\\\\bf #1}', 1]
     }
   },
-  tex2jax: { inlineMath: [['\\\\(','\\\\)']], displayMath: [['\\\\[','\\\\]']] },
-      "CommonHTML": {
-        scale: 100,
-        minScaleAdjust: 80,
-        mtextFontInherit: true,
-        linebreak: { automatic: false, width: "container" },
+  tex2jax: {
+    ignoreClass: "tex2jaxignore",
+    inlineMath: [['\\\\(','\\\\)']],
+    displayMath: [['\\\\[','\\\\]']]
+  },
+  "CommonHTML": {
+    scale: 100,
+    minScaleAdjust: 80,
+    mtextFontInherit: true,
+    linebreak: { automatic: false, width: "container" },
   },
   "fast-preview": {
       disabled: true

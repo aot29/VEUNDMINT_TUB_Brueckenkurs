@@ -546,6 +546,9 @@ function check_group(input_from, input_to) {
             s = FVAR[i].id;
             var e = d.getElementById(s);
 
+            // element may not exist, for example if it is part of roulette exercise which is not active
+            if (e != null) {
+            
             switch(FVAR[i].type) {
               
               case 1: {
@@ -1122,6 +1125,7 @@ function check_group(input_from, input_to) {
               }
               
             }
+            } // closing brace from e==null check
     }
 
 
@@ -1588,6 +1592,15 @@ function globalreadyHandler(pulluserstr)
   // Wird aufgerufen, wenn die Seite komplett geladen und alle Bilder/iframes gefuellt sind (VOR globalload, NACH direkt-JS-Befehlen auf html-Seite im body-Bereich oder eingebundenen js-Dateien) ODER durch pull-emit-callback wenn intersiteobj aktualisiert werden muss
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   logMessage(DEBUGINFO, "globalreadyHandler start");
+  // emit JSON companion load request if present, use preset sitejson otherwise
+  if (sitejson_load) {
+      $.getJSON(docName + ".json", function(data) {
+          sitejson = data;
+          logMessage(DEBUGINFO, "companion object retrieved");
+        });
+  }
+  
+  // setup intersite objects  
   SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
   if (intersiteactive == true) {
     if (variant != intersiteobj.login.variant) {
@@ -1861,15 +1874,17 @@ function selectVariant(v) {
 
 // rid = eindeutige ID des Roulettes, id = Nummer der Einzelaufgabe, maxid = Anzahl Aufgaben (letzte hat id maxid-1)
 function rouletteClick(rid, id, maxid) {
-  var d = Math.floor((Math.random() * maxid)); 
-  var e = document.getElementById("DROULETTE" + rid + "." + id);
-  if (e != null) {
-    e.style.display = 'none';
-  }
-  e = document.getElementById("DROULETTE" + rid + "." + d);
-  if (e != null) {
-    e.style.display = 'block';
-  }
+    logMessage(DEBUGINFO, "rouletteClick: rid=" + rid + ", id=" + id + ", maxid=" + maxid);
+    // select a random div
+    var d = Math.floor((Math.random() * maxid)); 
+    logMessage(VERBOSEINFO, "Selected d=" + d);
+    // get div for the question as a string from the roulette hash's array
+    s = sitejson["_RLV_" + rid][d];
+    logMessage(VERBOSEINFO, "Retrieved divstring");
+    // set container to hidden, write new HTML inset content, enable container and display it
+    $("#" + "ROULETTECONTAINER_" + rid).css("visibility", "hidden").html(s).prop('disabled', false).css("visibility", "visible");
+    // call MathJax to typeset new content
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, "ROULETTECONTAINER_" + rid]);
 }
 
 // Datenbank-Roulettes
@@ -1948,8 +1963,7 @@ function applyLayout(first) {
   
   var css = DYNAMICCSS;
   
-  
-  
+    
   css = css.replace(/\[LINKPATH\]/g, linkPath);
   
   for (var ckey in COLORS) {
@@ -1979,13 +1993,37 @@ function applyLayout(first) {
   $('div.headmiddle').height(d);
   var systyle = "style=\"max-height:" + d + "px;height:" + d + "px\"";
   var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px;max-height:" + (d-2) + "px\"";
-
-               
+  
   d = d - 2;
   var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">"+l("ui-login")+"</div></a>";
-  // head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
+  var loginbuttontext = l("ui-loginbutton");//"Zum Kurs anmelden";
+  var loginbuttonhint = l("hint-loginbutton");//"Hier können Sie sich zum Kurs persönlich anmelden, im Moment wird der Kurs anonym bearbeitet.";
+  var loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
+  if (intersiteactive) {
+      if (intersiteobj.login.type >= 2) {
+          loginbuttontext = l( "logout", getNameDescription() ); // "Logout (" + getNameDescription() + ")";
+          loginbuttonhint = l( "hint-logout", intersiteobj.login.sname ); //"Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersiteobj.login.sname + " gespeichert.";
+          loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "logout.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
+      }
+  }
+  
+  var head = loginbuttonhtml;
+  
+  if (intersiteactive) {
+      if ((intersiteobj.login.type >= 2) && (scormLogin == 0)) {
+          head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + l( "msg-myaccount" ) + "</div></a>";
+      }
+  }
+  
+  if (scormLogin == 0) {
+      $('.show_scorm').css("display", "none");
+      $('.show_noscorm').css("display", "block");
+  } else {
+      $('.show_scorm').css("display", "block");
+      $('.show_noscorm').css("display", "none");
+  }
     
-
+  // head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
   head += "<div id=\"LOGINROW\" style=\"color:rgb(255,255,255)\"></div>";
   
   head += "<a id=\"listebutton\" href=\"" + linkPath + "search.html\" ></a>";
@@ -1993,7 +2031,9 @@ function applyLayout(first) {
   head += "<button id=\"starbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"starClick();\"></button>"; 
   head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"></button>";
   head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"></button>";
-  head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"></button>";
+  if (scormLogin == 0) {
+      head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"></button>";
+  }
   head += "<button id=\"settingsbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"toggle_settings();\"></button>";
   
   head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"></button>";
@@ -2009,25 +2049,33 @@ function applyLayout(first) {
     $(this).hover(function() { $(this).css("background-color", COLORS.TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", COLORS.TOCMINBUTTON); });
   });
 
-
   showHint($('#homebutton'), l("hint-home") ); // "Zurück zur Homepage des Kurses"
   showHint($('#listebutton'), l("hint-list") ); // "Stichwortverzeichnis anzeigen"
   showHint($('#menubutton'), l("hint-menu") ); // "Hier klicken um Navigationsleisten ein- oder auszublenden"
   showHint($('#plusbutton'), l("hint-zoomin") ); // "Vergrößert die Schriftgröße"
   showHint($('#minusbutton'), l("hint-zoomout") ); // "Verkleinert die Schriftgröße"
   showHint($('#settingsbutton'), l("hint-settings") ); // "Einstellungen"
+  showHint($('#loginbutton'), loginbuttonhint);
+  showHint($('#confbutton'), l("hint-confbutton") );// "Zeigt persönliche Daten zum Kurs und weitere Einstellungen an"
 
   // set proper button visibility in settings depending on course variant
-  if (variant == "std") {
-      $('#variantselect_std').css("visibility", "hidden");
-      $('#variantactive_std').css("visibility", "visible");
-      $('#variantselect_unotation').css("visibility", "visible");
-      $('#variantactive_unotation').css("visibility", "hidden");
+
+  if (doScorm == 1) {
+      // no variant switching in SCORM versions (because variants are actually different courses)  
+      $('#variantselect_unotation').prop("disabled", true);
+      $('#variantselect_unotation').text('(in diesem Kurs nicht vorhanden)');
   } else {
-      $('#variantselect_std').css("visibility", "visible");
-      $('#variantactive_std').css("visibility", "hidden");
-      $('#variantselect_unotation').css("visibility", "hidden");
-      $('#variantactive_unotation').css("visibility", "visible");
+      if (variant == "std") {
+          $('#variantselect_std').css("visibility", "hidden");
+          $('#variantactive_std').css("visibility", "visible");
+          $('#variantselect_unotation').css("visibility", "visible");
+          $('#variantactive_unotation').css("visibility", "hidden");
+      } else {
+          $('#variantselect_std').css("visibility", "visible");
+          $('#variantactive_std').css("visibility", "hidden");
+          $('#variantselect_unotation').css("visibility", "hidden");
+          $('#variantactive_unotation').css("visibility", "visible");
+      }
   }
   
   var shareintext = l("msg-shared-page") + "<br /><br />"; // Seite teilen über:
@@ -2090,7 +2138,7 @@ function applyLayout(first) {
         
 });
 
-    
+  setupInterlinks()
 }
 
 function changeFontSize(add) {
@@ -2140,6 +2188,22 @@ function menuClick() {
 // Hinweis wird bei laengerem Hover wieder eingeblendet
 function showHint(element, hinttext) {
 
+  if (element == null) return;
+    
+  var q_at = "bottom left";
+  var q_my = "top right";
+
+  if (typeof element.offset == 'function') { // some buttons don't seem to provide it
+      off = element.offset(); // and some provide a null
+      if (off != null) {
+          if (element.offset().left < 200) {
+              // element is too far on the left side, so tooltip should be to the right side
+              q_at = "bottom right";
+              q_my = "top left";
+          }
+      }
+  }
+                  
   hinttext = "<div style=\"font-size:" + SIZES.SMALLFONTSIZE + "px;line-height:100%\">" + hinttext + "</div>";
 
   // Check if qtip is already attached to the element
@@ -2148,11 +2212,11 @@ function showHint(element, hinttext) {
   } else {
     element.qtip({
        content: { text: hinttext },
-       show: { delay: 750 },
-       hide: { delay: 1000, fixed: true },
+       show: { delay: 500 },
+       hide: { delay: 100, fixed: true },
        position: {
-           my: 'top right',
-           at: 'bottom left',
+           my: q_my,
+           at: q_at,
            target: element
        },
        style: { classes: 'qtip-yellow'}

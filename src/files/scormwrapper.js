@@ -265,14 +265,21 @@ pipwerks.SCORM.connection.initialize = function(){
 
     if(!scorm.connection.isActive){
 
-        var API = pipwerks.SCORM.API.getHandle(),
-            errorCode = 0;
-
-        if(API){
+        var API = pipwerks.SCORM.API.getHandle();
+        var errorCode = 0;
+        
+        if (API) {
 
              switch(scorm.version){
-                 case "1.2" : success = makeBoolean(API.LMSInitialize("")); break;
-                 case "2004": success = makeBoolean(API.Initialize("")); break;
+                 case "1.2" : {
+                     success = makeBoolean(API.LMSInitialize(""));
+                     break;
+                 }
+                 
+                 case "2004": {
+                     success = makeBoolean(API.Initialize(""));
+                     break;
+                 }
              }
 
             if(success){

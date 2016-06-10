@@ -353,7 +353,7 @@ class Preprocessor(object):
             if re.search(r"\\begin\{MExercise\}", rtext):
                 self.sys.message(self.sys.CLIENTERROR, "Roulette exercises not exhausted by exercise loop")
 
-            rtext = r"\ifttm\special{html:<!-- directroulette-start;" + rid + r"; //-->}" + htex + r"\special{html:<!-- directroulette-stop;" + rid + r"; //-->}\else\texttt{Im HTML erscheinen hier Aufgaben aus einer Aufgabenliste...}\fi" + "\n"
+            rtext = r"\ifttm\special{html:<!-- directroulette-start;" + rid + r"; //-->}" + htex + r"\special{html:<!-- directroulette-stop;" + rid + r"; //-->}\else\texttt{" + self.options.strings['roulette_text'] + r"}\fi" + "\n"
             
             self.local['tex'] = self.local['tex'].replace(r"\MDirectRouletteExercises{" + rfilename + r"}{" +rid + r"}", rtext, 1) 
             
