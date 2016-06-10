@@ -19,6 +19,11 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  * */
 
+// color constants
+
+COLOR_INPUTBACKGROUND = "#70E0E0";
+COLOR_INPUTCHANGED = "#E0C0C0";
+
 // determines the local storage name of the intersite object
 function getObjName() {
     s = "isobj_" + signature_main;
@@ -55,7 +60,8 @@ function createIntersiteObj() {
     sites: [],
     favorites: [ createHelpFavorite() ],
     history: { globalmillis: 0, commits: [] }, // commits = array aus Arrays [ hexsha+cid, firstlogintimestamp, lastlogintimestamp ]
-    login: { type: 0, vname: "", sname: "", username: "", password: "", email: "", variant: "std" }
+    login: { type: 0, vname: "", sname: "", username: "", password: "", email: "", variant: "std", sgang: "", uni: "" },
+    signature: { main: signature_main, version: signature_version, localization: "DE-MINT" }
   };
   
   return obj;
@@ -67,13 +73,31 @@ function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
   obj.login.type = 1; // starting locally
 
   obj.login.vname = "";
-  var sp = s_name.split(" ");
+  
+  var turn = false;
+  var spl = " ";
+  // there's no end as to how LMS present a simple name
+  if (s_name.indexOf(", ") != -1) {
+      turn = true;
+      spl = ", ";
+  } else {
+      if (s_name.indexOf(",") != -1) {
+          turn = true;
+          spl = ",";
+      }
+  }
+  var sp = s_name.split(spl);
   for (var e = 0; e < (sp.length - 1); e++) {
     if (e != 0) obj.login.vname += " ";
     obj.login.vname += sp[e];
   }
   obj.login.sname = sp[sp.length - 1];
-  logMessage(VERBOSEINFO,"Decomposed name " + s_name + " into vname=\"" + obj.login.vname + "\", sname = \"" + obj.login.sname + "\"");
+  if (turn) {
+      var z = obj.login.sname;
+      obj.login.sname = obj.login.vname;
+      obj.login.vname = z;
+  }
+  logMessage(VERBOSEINFO,"Decomposed name " + s_name + " into vname=\"" + obj.login.vname + "\", sname=\"" + obj.login.sname + "\"");
 
   obj.login.username = s_login;
   obj.login.password = s_pw;
@@ -85,6 +109,13 @@ function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
   return obj;
 }
 
+function getNameDescription() {
+    if (intersiteactive == false) return "";
+    if (intersiteobj.login.type == 0) return "Anonym";
+    if (intersiteobj.login.sname != "") return intersiteobj.login.sname;
+    return intersiteobj.login.vname;
+}
+
 // Callbacks for createIntersiteObjFormSCORM
 function check_user_scorm_success(data) {
   logMessage(VERBOSEINFO, "checkuser_scorm success: data = " + JSON.stringify(data));
@@ -92,7 +123,6 @@ function check_user_scorm_success(data) {
   if (data.user_exists == false) {
     logMessage(VERBOSEINFO, "User does not exist, adding user to database with initial data push");
     userdata.addUser(true, intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
-    intersiteobj.type = 3;
     // continue with register callbacks
   } else {
     logMessage(VERBOSEINFO, "User is present in database, emitting data pull request");
@@ -207,29 +237,41 @@ function SetupIntersite(clearuser, pulledstr) {
     }
   }
 
+  var scormcontinuation = false;
+  
   if (doScorm == 1) {
     if ((ls == "") || (ls == "CLEARED")) {
-      // reinitialize SCORM
-      logMessage(VERBOSEINFO, "pipwerks.SCORM start");
+      // reinitialize SCORM, ls==CLEARED is not an error but happens when same user on same browser reopens the SCORM course
+      logMessage(VERBOSEINFO, "pipwerks.SCORM start due to ls = " + ls);
     } else {
       // SCORM is already active, inherit state of the pipwerks object
       var sobj = JSON.parse(ls);
       if (sobj != null) {
+        scormcontinuation = true;
         pipwerks.scormdata = sobj;
         logMessage(VERBOSEINFO, "pipwerks.SCORM continuation");
       } else {
-        logMessage(VERBOSEINFO, "pipwerks.SCORM-Uebertragungsobjekt beschaedigt");
+        logMessage(VERBOSEINFO, "pipwerks.SCORM transfer object it broken");
       }
     }
   }
 
   if ((scormLogin == 1) && (SITE_PULL == 1)) {
-    // SCORM-pull: Skip LocalStorage an fetch data directly from the database server if possible, otherwise use new user with SCROM-ID and CID as login
-    logMessage(VERBOSEINFO, "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + ")");
+    // SCORM-pull: Skip LocalStorage and fetch data directly from the database server if possible, otherwise use new user with SCROM-ID and CID as login
+    logMessage(VERBOSEINFO, "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + "), SCORM-Version: " + expectedScormVersion);
 
-    var psres = pipwerks.SCORM.init();
-    logMessage(VERBOSEINFO, "SCORM init = " + psres + " (remember duplicate SCORM inits return false but do not hurt)");
-    psres = pipwerks.SCORM.get("cmi.learner_id");
+    if (scormcontinuation == false) {
+        var psres = pipwerks.SCORM.init();
+        logMessage(VERBOSEINFO, "SCORM init = " + psres + " (duplicate SCORM inits return false but do not hurt on SCORM 2004v4)");
+    } else {
+        logMessage(VERBOSEINFO, "SCORM init refused (continued)");
+    }
+    
+    var idgetstr = "cmi.core.student_id";
+    if (expectedScormVersion == "2004") {
+        idgetstr = "cmi.learner_id";
+    }
+    psres = pipwerks.SCORM.get(idgetstr);
     if (psres == "null") {
       // no SCORM present, refuse to set up user
       alert( l( 'msg-failed-connection' ) ); // "Kommunikation der Lernplattform fehlgeschlagen, Kurs kann nur anonym bearbeitet werden!"
@@ -244,7 +286,13 @@ function SetupIntersite(clearuser, pulledstr) {
     } else {
       var s_id = psres;
       logMessage(VERBOSEINFO, "SCORM learner id = " + psres);
-      psres = pipwerks.SCORM.get("cmi.learner_name");
+      
+      var inamestr = "cmi.core.student_name";
+      if (expectedScormVersion == "2004") {
+          inamestr = "cmi.learner_name";
+      }
+      
+      psres = pipwerks.SCORM.get(inamestr);
       var s_name = psres;
       logMessage(VERBOSEINFO, "SCORM learner name = " + psres);
       psres = pipwerks.SCORM.save();
@@ -329,7 +377,9 @@ function SetupIntersite(clearuser, pulledstr) {
     alert( l( 'msg-failed-userdata' ) ); // "Ihre Benutzerdaten konnten nicht vom Server geladen werden, eine automatische eMail an den Administrator wurde verschickt. Sie können den Kurs trotzdem anonym bearbeiten, eingetragene Lösungen werden jedoch nicht gespeichert!"
     var timestamp = +new Date();
     var us = "(unknown)";
-    if (scormLogin == 1) us = s_login;
+    if (scormLogin == 1) {
+        us = s_login;
+    }
     var cm = "LOGINERROR: " + "CID:" + signature_CID + ", user:" + us + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
     sendeFeedback( { statistics: cm }, true );
     intersiteobj = createIntersiteObj();
@@ -374,6 +424,7 @@ function SetupIntersite(clearuser, pulledstr) {
   }
 
   UpdateSpecials();
+  logMessage(VERBOSEINFO, "UpdateSpecials done");
   confHandlerISOLoad()
   if (intersiteactive) {
       updateCommits(intersiteobj);
@@ -382,18 +433,30 @@ function SetupIntersite(clearuser, pulledstr) {
   // updateLayoutState will be called from applyLayout()
 
   // Has to be called after UpdateSpecials, because that creates hrefs
-  if (intersitelinks != true) {
-    var links = document.getElementsByClassName("MINTERLINK");
-    for (i=0; i<links.length; i++) {
-      links[i].onclick = function() { opensite(this.href); return false;}
-    }
-    intersitelinks = true;
-  }
+  setupInterlinks()
 
+  if (requestLogout == 1) {
+      // we are on the logout page, we can do synced calls here
+      logMessage(VERBOSEINFO, "Logout requested");
+      pushISO(true);
+      window.close();
+      // browsers may refuse javascript close based on security settings,
+      // in that case the module text informs the user to close manually.
+  } else {
+      logMessage(VERBOSEINFO, "No logout requested");
+  }
+  
 
   if (clearuser == true) {
       pushISO(false);
       ulreply_set(false,"");
+  }
+}
+
+function setupInterlinks() {
+  var links = document.getElementsByClassName("MINTERLINK");
+  for (i=0; i<links.length; i++) {
+      links[i].onclick = function() { opensite(this.href); return false;}
   }
 }
 
@@ -415,32 +478,39 @@ function updateLoginfield() {
         s = l( 'ui-unknown-user', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); // "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet";
         s = "";
         cl = "#FFFF10";
-        $('#loginbutton').css("background-color","#FFFF50");
+        // $('#loginbutton').css("background-color","#FFFF50");
+        $('#loginbutton').css("color","#FFFF20");
         break;
       }
       case 2: {
         s = l( 'ui-known-user', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); // "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         cl = "#FFFFFF";
-        $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
+        // $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
+        $('#loginbutton').css("color","#80FFA0");
+        if (doScorm == 1) {
+            // $('#loginbutton').prop("disabled", true);
+        }
         break;
       }
       case 3: {
         s = l( 'ui-known-user', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); // "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         cl = "#FFFFFF";
-        $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
+        // $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
+        $('#loginbutton').css("color","#80FFA0");
         break;
       }
       default: {
         logMessage(CLIENTERROR, "updateLoginfield, wrongtype=" + intersiteobj.login.type);
         s = l('msg-unavailable-login'); //"Keine Anmeldung möglich!";
+        $('#loginbutton').css("color","#FF0000");
         break;
       }
     }
   }
 
   // Set headers
-  $('#LOGINROW').css("color",cl);
-  $('#LOGINROW').html(s);
+  // $('#LOGINROW').css("color",cl);
+  // $('#LOGINROW').html(s);
 
   // Build login-only fields if they exist on the page
   e = document.getElementById("ONLYLOGINFIELD");
@@ -465,19 +535,6 @@ function updateLoginfield() {
   }
 
 
-  // Create complete login field on settings page
-  e = document.getElementById("RESETBUTTON");
-  if (e != null) {
-      var dis = true;
-
-      if (intersiteactive == true) {
-          if (intersiteobj.configuration.CF_LOCAL == "1") {
-              dis = false;
-          }
-      }
-      e.disabled = dis;
-  }
-
   var e = document.getElementById("LOGINFIELD");
   if (e != null) {
     var s = "";
@@ -494,7 +551,10 @@ function updateLoginfield() {
             var unf = document.getElementById("USERNAMEFIELD");
             var prefixs;
             if (scormLogin == 0) {
-              prefixs = l( 'msg-long-username', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname );//"Benutzername: " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ")";
+              prefixs = l( 'msg-long-username', intersiteobj.login.username ); //"Benutzername: " + intersiteobj.login.username;
+              if ((intersiteobj.login.vname != "") || (intersiteobj.login.sname != "")) {
+                  prefixs += " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ")";
+              }
             } else {
               // Username is id combination in the SCORM login modules
               prefixs = l( 'msg-scorm-username', intersiteobj.login.vname, intersiteobj.login.sname); // "Benutzer: " + intersiteobj.login.vname + " " + intersiteobj.login.sname;
@@ -541,34 +601,41 @@ function updateLoginfield() {
 
             if (t != 0) {
                     var z = document.getElementById("USER_UNAME");
-                    if (z != null) { z.value = intersiteobj.login.username; z.style.backgroundColor = "#70FFFF"; }
+                    if (z != null) { z.value = intersiteobj.login.username; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_PW");
-                    if (z != null) { z.value = intersiteobj.login.password; z.style.backgroundColor = "#70FFFF"; }
+                    if (z != null) { z.value = intersiteobj.login.password; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_VNAME");
-                    if (z != null) { z.value = intersiteobj.login.vname; z.style.backgroundColor = "#70FFFF"; }
+                    if (z != null) { z.value = intersiteobj.login.vname; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_SNAME");
-                    if (z != null) { z.value = intersiteobj.login.sname; z.style.backgroundColor = "#70FFFF"; }
+                    if (z != null) { z.value = intersiteobj.login.sname; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_EMAIL");
-                    if (z != null) { z.value = intersiteobj.login.email; z.style.backgroundColor = "#70FFFF"; }
+                    if (z != null) { z.value = intersiteobj.login.email; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
+                    z = document.getElementById("USER_SGANG");
+                    if (z != null) { z.value = intersiteobj.login.sgang; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
+                    z = document.getElementById("USER_UNI");
+                    if (z != null) { z.value = intersiteobj.login.uni; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
             } else {
                     var z = document.getElementById("USER_UNAME");
-                    if (z != null) { z.value = ""; z.style.backgroundColor = "#E0E3E0"; }
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_PW");
-                    if (z != null) { z.value = ""; z.style.backgroundColor = "#E0E3E0"; }
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_VNAME");
-                    if (z != null) { z.value = ""; z.style.backgroundColor = "#E0E3E0"; }
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_SNAME");
-                    if (z != null) { z.value = ""; z.style.backgroundColor = "#E0E3E0"; }
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
                     z = document.getElementById("USER_EMAIL");
-                    if (z != null) { z.value = ""; z.style.backgroundColor = "#E0E3E0"; }
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
+                    z = document.getElementById("USER_SGANG");
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
+                    z = document.getElementById("USER_UNI");
+                    if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
             }
-
-
         } else s = l( 'msg-missing-logindata' );//"Keine Anmeldedaten gefunden!";
     } else s = l( 'msg-missing-browserdata' );//"Keine Anmeldedaten im Browser gespeichert!";
+    $('#updatepdatabutton').css("visibility", "hidden");
+    $('#updatepdatabutton').prop('disabled', true);
     e.style.color = "#000000";
     e.innerHTML = s;
-
 
     logMessage(VERBOSEINFO, "Userfield gesetzt");
   }
@@ -737,13 +804,45 @@ function pushwrite_error(message, data) {
 // synced == true => only do synchronous ajax calls (necessary when calling unload-Handler for example because the callback page would be gone when the request get's replied to)
 function pushISO(synced) {
   logMessage(VERBOSEINFO,"pushISO start (synced = " + synced + ")");
-  var s = JSON.stringify(intersiteobj);
+  var psres = "";
+  var jso = JSON.stringify(intersiteobj);
   if (localStoragePresent == true) {
     if (doScorm == 1) {
       localStorage.setItem("LOCALSCORM", JSON.stringify(pipwerks.scormdata));
-      logMessage(VERBOSEINFO,"Aktualisiere SCORM Uebertragungsobjekt");
+      logMessage(VERBOSEINFO, "Updating SCORM transfer object");
+      if (expectedScormVersion == "1.2") {
+          nmax = 0;
+          ngot = 0;
+          for (j = 0; j < intersiteobj.scores.length; j++) {
+              if (intersiteobj.scores[j].intest) {
+                  nmax += intersiteobj.scores[j].maxpoints;
+                  ngot += intersiteobj.scores[j].points;
+              }
+          }
+          psres = pipwerks.SCORM.set("cmi.core.score.raw", ngot);
+          logMessage(VERBOSEINFO, "SCORM set points to " + ngot + ": " + psres);
+          psres = pipwerks.SCORM.set("cmi.core.score.min", 0);
+          logMessage(VERBOSEINFO, "SCORM set min points to 0: " + psres);
+          psres = pipwerks.SCORM.set("cmi.core.score.max", nmax);
+          logMessage(VERBOSEINFO, "SCORM set max points to " + nmax + ": " + psres);
+
+          var s = "browsed";
+          if (ngot > 0) {
+              if (ngot == nmax) {
+                  s = "completed";
+              } else {
+                  s = "incomplete";
+              }
+          }
+          psres = pipwerks.SCORM.set("cmi.core.lesson_status", s);
+          logMessage(VERBOSEINFO, "SCORM set status to " + s + ": " + psres);
+
+          
+      } else {
+          logMessage(CLIENTINFO, "SCORM final reporting above SCORM 1.2 not supported yet");
+      }
     }
-    localStorage.setItem(getObjName(), s);
+    localStorage.setItem(getObjName(), jso);
     if ((intersiteobj.login.type == 2) || (intersiteobj.login.type == 3)) {
         // Eintrag in Serverdatenbank aktualisieren
         logMessage(VERBOSEINFO,"Aktualisiere DB-Server (synced = " + synced + ")");
@@ -895,6 +994,98 @@ function confHandlerISOLoad() {
 
 // -------------------------------------------------- user management (TODO: outsource into userdata.js) ---------------------------------------------------
 
+function userupdate_check() {
+    var ch = false;
+    var z = document.getElementById("USER_VNAME");
+    if (z != null) {
+        if (z.value != intersiteobj.login.vname) {
+            ch = true;
+            z.style.backgroundColor = COLOR_INPUTCHANGED;
+        } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_SNAME");
+    if (z != null) {
+        if (z.value != intersiteobj.login.sname) {
+            ch = true;
+            z.style.backgroundColor = COLOR_INPUTCHANGED;
+        } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_EMAIL");
+    if (z != null) {
+        if (z.value != intersiteobj.login.email) {
+            ch = true;
+            z.style.backgroundColor = COLOR_INPUTCHANGED;
+        } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_SGANG");
+    if (z != null) {
+        if (z.value != intersiteobj.login.sgang) {
+            ch = true;
+            z.style.backgroundColor = COLOR_INPUTCHANGED;
+        } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_UNI");
+    if (z != null) {
+        if (z.value != intersiteobj.login.uni) {
+            ch = true;
+            z.style.backgroundColor = COLOR_INPUTCHANGED;
+        } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    
+    if (intersiteactive) {
+        if (intersiteobj.login.type > 0) {
+            if (ch) {    
+                $('#updatepdatabutton').css("visibility", "visible");
+                $('#updatepdatabutton').prop("disabled", false);
+            } else {
+                $('#updatepdatabutton').css("visibility", "hidden");
+                $('#updatepdatabutton').prop("disabled", true);
+            }
+        }
+    }
+}
+
+function userupdate_click() {
+    var z = document.getElementById("USER_VNAME");
+    if (z != null) {
+        intersiteobj.login.vname = z.value;
+        z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_SNAME");
+    if (z != null) {
+        intersiteobj.login.sname = z.value;
+        z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_EMAIL");
+    if (z != null) {
+        intersiteobj.login.email = z.value;
+        z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_SGANG");
+    if (z != null) {
+        intersiteobj.login.sgang = z.value;
+        z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    z = document.getElementById("USER_UNI");
+    if (z != null) {
+        intersiteobj.login.uni = z.value;
+        z.style.backgroundColor = COLOR_INPUTBACKGROUND;
+    }
+    
+    if (intersiteobj.login.type >= 1) {
+        pushISO(true);
+        if (intersiteobj.login.type == 2) {
+            alert("Ihre Änderungen wurden gespeichert!\n" + feedbackdesc);
+        }
+    }
+    
+    $('#updatepdatabutton').css("visibility", "hidden");
+    $('#updatepdatabutton').prop("disabled", true);
+    
+    applyLayout(false); // login button needs to be modified
+}
+
+
 function userlogin_click() {
   logMessage(VERBOSEINFO, "userlogin geklickt");
 
@@ -977,7 +1168,23 @@ function userreset_click() {
           }
       }
   }
-  if (confirm( l('msg-confirm-delete', s) ) == true) SetupIntersite(true);//// "Wirklich alle Benutzer- und Kursdaten "..."löschen? Dieser Vorgang kann nicht rückgängig gemacht werden!"
+  if (confirm( l('msg-confirm-reset', s) ) == true) SetupIntersite(true);//// "Wirklich alle Kursdaten "..."löschen? Dieser Vorgang kann nicht rückgängig gemacht werden!"
+}
+
+function userdelete_click() {
+  logMessage(VERBOSEINFO, "userreset_click");
+  var s = "Wirklich alle Benutzer- und Kursdaten ";
+  if (intersiteactive == true) {
+      if (intersiteobj.config != null) {
+          if (intersiteobj.config.type > 0) {
+              s += "(Benutzername " + intersiteobj.config.username + ") ";
+          }
+      }
+  }
+  s += "löschen? Dieser Vorgang kann nicht rückgängig gemacht werden!";
+  if (confirm(s) == true) {
+      alert("Diese Funktion steht noch nicht zur Verfügung!");
+  }
 }
 
 // returns "" for valid usernames, error string otherwise
@@ -1011,7 +1218,6 @@ function usercreatelocal_click(type) {
     if (type==2) {
         // alert("In der Korrekturversion ist das Anlegen eines Netz-Benutzers nicht möglich um eine Verzerrung der Aufgaben- und Nutzerdatenauswertung zu vermeiden, bitte registrieren Sie sich nur innerhalb Ihres Browsers mit dem Button unten.");
         // return;
-        type = 1; // force local registry
     }
 
     if (intersiteactive == false) {
@@ -1029,6 +1235,8 @@ function usercreatelocal_click(type) {
     var vn = document.getElementById("USER_VNAME");
     var sn = document.getElementById("USER_SNAME");
     var em = document.getElementById("USER_EMAIL");
+    var sgang = document.getElementById("USER_SGANG");
+    var uni = document.getElementById("USER_UNI");
     var una = un.value;
 
     var rt = allowedUsername(una);
@@ -1038,9 +1246,9 @@ function usercreatelocal_click(type) {
     }
 
     var pws = "";
-    if (4==4) { //TODO: Wy is this always true statement here?
-      // Version for correction: username=password
-
+    if (scormLogin == 1) {
+        logMessage(CLIENTINFO, "Tried to set username in SCORM mode");
+        return;
     } else {
       // normal version: password requested from user
       pws = prompt( l('msg-prompt', una) ); //"Geben Sie ein Passwort für den Benutzer " + una + " ein:"
@@ -1068,8 +1276,11 @@ function usercreatelocal_click(type) {
     intersiteobj.login.vname = vn.value;
     intersiteobj.login.sname = sn.value;
     intersiteobj.login.email = em.value;
+    intersiteobj.login.sgang = sgang.value;
+    intersiteobj.login.uni = uni.value;
 
     updateLoginfield();
+    applyLayout(false);
 
     logMessage(VERBOSEINFO, "Neuen Benutzer " + intersiteobj.login.username + " angelegt.");
 
@@ -1080,7 +1291,7 @@ function usercreatelocal_click(type) {
     }
 
     if (type == 2) {
-        logMessage(VERBOSEINFO, "Benutzer wird auf Typ 2 erweitert");
+        logMessage(VERBOSEINFO, "User elevated to type 2");
         userdata.addUser(true, intersiteobj.login.username, intersiteobj.login.password, undefined, register_success, register_error);
     }
 }
@@ -1120,7 +1331,7 @@ function register_error(message, data) {
   var na;
   na = (scormLogin == 1) ? (intersiteobj.login.sname) : (intersiteobj.login.username);
   alert( l( 'msg-failed-createuser', na ));// "Benutzer " + na + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
-  setIntersiteType(1);
+  setIntersiteType(0);
 }
 
 
@@ -1139,7 +1350,7 @@ function check_user_success(data) {
         ulreply_set(false, l( 'msg-unavailable-username' ) );//"Benutzername ist schon vergeben."
       } else {
         ulreply_set(true, l('msg-available-username', 
-        '<button type=\'button\' style=\'background: #00FF00\' onclick=\'usercreatelocal_click(2);\'>', '</button>'));//"Dieser Benutzername ist verfügbar! <button type='button' style='background: #00FF00' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
+        '<button type=\'button\' style=\'criticalbutton\' onclick=\'usercreatelocal_click(2);\'>', '</button>'));//"Dieser Benutzername ist verfügbar! <button type='button' style='background: #00FF00' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
       }
     } else {
         logMessage(VERBOSEINFO, "checkuser success, status=false, data = " + JSON.stringify(data));
@@ -1199,9 +1410,21 @@ function usercheck() {
 }
 
 function setIntersiteType(t) {
-  logMessage(VERBOSEINFO, "Set type=" + t);
   if (intersiteactive == true) {
+      if (t == intersiteobj.login.type) {
+          logMessage(DEBUGINFO, "setIntersiteType with already existing type " + t + " called, doing nothing");
+          return;
+      }
+      logMessage(VERBOSEINFO, "Set type=" + t);
       intersiteobj.login.type = t;
+      if (t == 0) {
+          // user becomes anonymous
+          intersiteobj.login.vname = "";
+          intersiteobj.login.sname = "";
+          intersiteobj.login.username = "";
+          intersiteobj.login.password = "";
+          intersiteobj.login.email = "";
+      }
   } else {
       logMessage(DEBUGINFO, "intersiteactive == false");
   }
@@ -1313,3 +1536,4 @@ function generateLongFavoriteList() {
   
   return s;
 }
+

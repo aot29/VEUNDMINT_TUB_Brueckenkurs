@@ -266,6 +266,18 @@
 \newcommand{\MGlobalConfTag}{}
 \fi
 
+\ifttm
+\newcommand{\MGlobalLogoutTag}{\special{html:<!-- mgloballogouttag -->}}
+\else
+\newcommand{\MGlobalLogoutTag}{}
+\fi
+
+\ifttm
+\newcommand{\MGlobalLoginTag}{\special{html:<!-- mgloballogintag -->}}
+\else
+\newcommand{\MGlobalLoginTag}{}
+\fi
+
 % Makro, um in der HTML-Ausgabe die Standortbeschreibung zu kennzeichnen
 \ifttm
 \newcommand{\MGlobalLocationTag}{\special{html:<!-- mgloballocationtag -->}}
@@ -2012,14 +2024,14 @@ Hier erscheint die Testauswertung!
 % -----------------------------------START Rouletteaufgaben ------------------------------------------------------------
 
 \ifttm
+\newcommand{\MDirectRouletteExercises}[2]{\relax} % wird durch den Konverter gefunden und ersetzt
+\else
 % #1 = Dateiname, #2 = eindeutige ID fuer das Roulette im Kurs
 \newcommand{\MDirectRouletteExercises}[2]{
 \begin{MExercise}
-\texttt{Im HTML erscheinen hier Aufgaben aus einer Aufgabenliste...}
+\texttt{In der Onlineversion erscheinen hier zufällige Aufgaben aus einer Aufgabenliste.}
 \end{MExercise}
 }
-\else
-\newcommand{\MDirectRouletteExercises}[2]{\relax} % wird durch mconvert.pl gefunden und ersetzt
 \fi
 
 

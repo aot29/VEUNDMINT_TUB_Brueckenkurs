@@ -368,7 +368,7 @@ sub parse_curve {
   if ($text =~ s/\\ifLsg\\Loesung(.+?)\\else\\relax\\fi/\\begin{MHint}{L\\"osung}$1\\end{MHint}/s ) {
     logMessage($VERBOSEINFO, "MLoesung found and replaced by MHint");
     
-    if ($text =~ s/\\includegraphics\[(.+?)\]{(.+?)}/\\MUGraphicsSolo{;AUTOFILENAME}{$1}{width:700px}\n/s ) {
+    if ($text =~ s/\\includegraphics\[(.+?)\]{(.+?)}/\\MUGraphicsSolo{;AUTOFILENAME;}{$1}{width:700px}\n/s ) {
       my $oldfile = $2;
       my $newfile = convertimage($oldfile);
       $text =~ s/;AUTOFILENAME;/$newfile/s ;

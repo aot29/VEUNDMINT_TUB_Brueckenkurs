@@ -8,8 +8,7 @@
 Auf den folgenden Seiten finden sich
 \begin{itemize}
 \item{die \MSRef{L_CHAPTER}{Kapitelübersicht} des Kurses,}
-\item{die persönlichen \MSRef{L_CDATA}{Kursdaten},}
-\item{die \MSRef{L_CONFIG}{Einstellungen} für den Onlinekurs.}
+\item{die \MSRef{L_CONFIG}{Persönlichen Einstellungen} für den Onlinekurs.}
 \end{itemize}
 \end{MSectionStart}
 
@@ -69,49 +68,82 @@ Kann nicht auf Browserdaten zugreifen!
 
 \MSubsection{Einstellungen}
 
-\begin{MXContent}{Einstellungen}{Einstellungen}{STD}
+\begin{MXContent}{Anmeldung zum Kurs}{Anmeldung zum Kurs}{STD}
 \MLabel{L_CONFIG}
 \MGlobalConfTag
 \MDeclareSiteUXID{VBKM_MISCSETTINGS}
 
+Falls Sie schon einen Account für den Brückenkurs besitzen,
+können Sie sich auf der \MSRef{L_LOGIN}{Login-Seite} einloggen.
 \begin{html}
+<div class="show_scorm" style="display:none">
+<br />
+<b>Sie sind über das Lernsystem angemeldet und registriert.</b>
+</div>
+\end{html}
+\ \\
+
+\begin{html}
+<div class="show_noscorm" style="display:none">
+<b>Einen neuen Account registrieren:</b><br />
+Nach erfolgreicher Registrierung werden die Daten auf unseren Servern abgelegt
+und Ihr Bearbeitungsstand ist auch auf anderen Rechnern und Geräten verfügbar:
 <div class="xreply">
 <p id="LOGINFIELD">
 Kann nicht auf Browserdaten zugreifen!
 </p>
+Persönliche Angaben (notwendig um eine Teilnahmebestätigungen zu erstellen):&nbsp;&nbsp;<button type="button" id="updatepdatabutton" style="visibility:hidden" class="criticalbutton" onclick="userupdate_click();">Persönliche Daten aktualisieren</button>
+<table>
+  <tr><td align=left>Vorname:</td><td align=left><input id="USER_VNAME" type="text" size="40" oninput="userupdate_check();" onkeyup="userupdate_check();" onpaste="userupdate_check();" onpropertychange="usercheck();"></input></td></tr>
+  <tr><td align=left>Nachname:</td><td align=left><input id="USER_SNAME" type="text" size="40" oninput="userupdate_check();" onkeyup="userupdate_check();" onpaste="userupdate_check();" onpropertychange="usercheck();"></input></td></tr>
+  <tr><td align=left>eMail:</td><td align=left><input id="USER_EMAIL" type="text" size="40" oninput="userupdate_check();" onkeyup="userupdate_check();" onpaste="userupdate_check();" onpropertychange="usercheck();"></input></td></tr>
+</table>
+<br />
+Freiwillige Angaben zum angestrebten Studiengang (falls geplant bzw. bekannt):
+<table>
+  <tr><td align=left>Studiengang:</td><td align=left><input id="USER_SGANG" type="text" size="40" oninput="userupdate_check();" onkeyup="userupdate_check();" onpaste="userupdate_check();" onpropertychange="usercheck();"></input></td></tr>
+  <tr><td align=left>Universität / Hochschule:</td><td align=left><input id="USER_UNI" type="text" size="40" oninput="userupdate_check();" onkeyup="userupdate_check();" onpaste="userupdate_check();" onpropertychange="usercheck();"></input></td></tr>
+</table>
+<br />
+<br />
 <div id="USERNAMEFIELD">
 Wählen Sie einen Loginnamen für die Kursbearbeitung:<br />
 Loginname: <input id="USER_UNAME" type="text" size="18" oninput="usercheck();" onkeyup="usercheck();" onpaste="usercheck();" onpropertychange="usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
 <br />
 <div class="usercreatereply"><p id="ulreply_p"> </p></div>
 <br /><br />
-Freiwillige Angaben:
-<table>
-  <tr><td align=left>Vorname:</td><td align=left><input id="USER_VNAME" type="text" size="40"></input></td></tr>
-  <tr><td align=left>Nachname:</td><td align=left><input id="USER_SNAME" type="text" size="40"></input></td></tr>
-  <tr><td align=left>eMail:</td><td align=left><input id="USER_EMAIL" type="text" size="40"></input></td></tr>
-</table>
 </div>
 
+Nach der Registrierung werden Ihre Daten auf unseren Kursservern hinterlegt, ebenso Ihre eingegebenen Lösungen und Testergebnisse. Diese Daten werden für anonymisierte
+statistische Erhebungen genutzt und um die Qualtität der Inhalte und der Aufgaben zu verbessern. Bitte beachten Sie, dass Teilnahmebestätigungen für den Kurs nur ausgestellt
+werden können, wenn die freiwilligen Felder vollständig ausgefüllt sind.
 </div>
-
+</div>
 \end{html}
 
-% <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="usercreatelocal_click(1);">Obige Benutzerdaten im Browser registrieren</button><br />
-% <button type="button" id="RESETBUTTON" style="height:60px;width:250px;background:#FFD0C0" onclick="userreset_click();">Alle Benutzerdaten löschen</button>
+% \textbf{Kursdaten zurücksetzen:}
+% 
+% % <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="usercreatelocal_click(1);">Obige Benutzerdaten im Browser registrieren</button><br />
+% Die in diesem Browser und auf unseren Servern gespeicherten Daten zu diesem Kurs werden zurückgesetzt,
+% der Kurs kann dadurch von vorne bearbeitet werden. Benutzername, Passwort und persönliche Daten bleiben erhalten.
+% 
+% \begin{html}
+% <button type="button" class="criticalbutton" id="RESETBUTTON1" onclick="userreset_click();">Kursdaten zurücksetzen</button>
+% \end{html}
 
-
-% <button type="button" id="LOGINBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="userlogin_click();">Benutzer wechseln</button><br />
-
-
-Daten werden wie folgt kommuniziert oder gespeichert:
-
-\begin{itemize}
-\item{Kursdaten werden im Browser gespeichert.}
-\item{Nutzungsverhalten wird anonym kommuniziert.}
-\item{Lösungen werden anonym kommuniziert.}
-\end{itemize}
 \begin{html}
+<div class="show_scorm" style="display:none">
+<b>Ihre Benutzerdaten können Sie im Lernsystem einsehen und verändern.</b>
+</div>
+<div class="show_noscorm" style="display:none">
+<b>Account löschen</b><br />
+Die in diesem Browser und auf unseren Servern gespeicherten Daten inklusive des Accounts werden gelöscht.
+Beachten Sie, dass ein einmal registrierter Accountname auch nach Löschung des Accounts nicht mehr für eine Registrierung
+zur Verfügung steht.
+<br /><br />
+<button type="button" class="criticalbutton" id="RESETBUTTON2" onclick="userdelete_click();">Account löschen</button>
+</div>
+<br /><br />
 <div class="xreply">
 <p id="CHECKIS">
 Kann nicht auf Browserdaten zugreifen!
@@ -120,32 +152,49 @@ Kann nicht auf Browserdaten zugreifen!
 \end{html}
 
 
+\end{MXContent}
 
-% \ \\ \ \\
-% Ihre lokal gespeicherten Daten:
-% 
-% \begin{html}
-% <textarea name="Name_OBJARRAYS" id="OBJARRAYS" rows="40" cols="80" style="background-color:#F0F0F0"></textarea>
-% <script>
-% var e = document.getElementById("OBJARRAYS");
-% e.value = "?";
-% e.readOnly = true;
-% </script>
-% \end{html}
-% 
-% \ \\ \ \\
-% Das intersiteobj:
-% 
-% \begin{html}
-% <textarea name="Name_OBJOUT" id="OBJOUT" rows="40" cols="80" style="background-color:#F0F0F0"></textarea>
-% <script>
-% var mys = JSON.stringify(intersiteobj);
-% console.log("Decoded intersiteobj");
-% var e = document.getElementById("OBJOUT");
-% e.value = mys;
-% e.readOnly = true;
-% </script>
-% \end{html}
+\begin{MXContent}{Login}{Login}{STD}
+\MLabel{L_LOGIN}
+\MGlobalLoginTag
+\MDeclareSiteUXID{VBKM_MISCLOGIN}
+\begin{html}
+<div class="show_noscorm" style="display:none">
+<button type="button" class="criticalbutton" id="LOGINBUTTON" onclick="userlogin_click();">Einloggen in den Kurs</button><br />
+\end{html}
+
+Zum Einloggen sind der Benutzername und das Passwort der Registrierung erforderlich.
+
+\begin{html}
+</div>
+<div class="show_scorm" style="display:none">
+<b>Sie können sich nur über das Lernsystem an- und abmelden.</b>
+</div>
+\end{html}
+
+\end{MXContent}
+
+\MSubsection{Logout}
+
+\begin{MXContent}{Logout}{Logout}{STD}
+\MLabel{L_LOGOUT}
+\MGlobalLogoutTag
+\MDeclareSiteUXID{VBKM_MISCLOGOUT}
+
+\begin{html}
+<script type="text/javascript">
+requestLogout = 1;
+</script>
+<p id="LOGINFIELD">
+Kann nicht auf Browserdaten zugreifen!
+</p>
+<div class="show_scorm" style="display:none">
+<b>Der Kurs ist geschlossen, ggf. müssen Sie ihn noch über das Lernsystem verlassen oder das Fenster schließen.</b>
+</div>
+<div class="show_noscorm" style="display:none">
+<b>Der Kurs ist geschlossen, ggf. müssen Sie noch das Browserfenster oder den Tab schließen.</b>
+</div>
+\end{html}
 
 
 \end{MXContent}

@@ -58,16 +58,17 @@ class Option(object):
         
         # VE&MINT conversion flags, using values 0 and 1 (integers)
         self.testonly = 0
-        self.scormlogin = 0
+        self.scormlogin = 0       # =1: No implicit user management, user-loginname is constructed from a SCORM string and immediately pulled from database
         self.nosols =  0          # =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
-        self.doscorm = 0          # =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden, dann muss auch entsprechendes Flag in conv.pl gesetzt werden
+        self.doscorm = 0          # =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden
+        self.doscorm12 = 0        # =0: Kein SCORM, =1- > SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 1.2 verwendet werden
         self.qautoexport = 0      # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
         self.diaok = 0            # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
         self.cleanup = 1          # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
-        self.localjax = 1         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
+        self.localjax = 0         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
         self.borkify = 0          # =1 html und js-Dateien werden borkifiziert
         self.dorelease = 0        # In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
-        self.doverbose = 0        # Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
+        self.doverbose = 1        # Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
         self.docollections = 0    # Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
         self.dopdf = 0            # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
         self.dotikz = 0           # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
@@ -76,7 +77,7 @@ class Option(object):
         self.consoleascii = 0     # =1 -> Only us-ascii strings are printed to the console (or pipes), does not affect written files
         self.forceyes = 1         # =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
         self.symbolexplain = 1    # =1 -> Short list explaining symbols is added to table of contents
-        self.forceoffline = 1     # =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
+        self.forceoffline = 0     # =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
         self.quiet = 0            # =1 -> Absolutely no print messages, caller must deduce outcome by return value of sys.exit
 
                 
@@ -104,19 +105,23 @@ class Option(object):
         self.variant = "std"                                 # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete fuer Mathematikumsetzung aus, Alternative ist "unotation"
         self.accessflags = "777"                             # linux access flag preset for the entire output directory
 
-        self.mathjaxtgz = "mathjax26complete.tgz"
+        self.mathjaxtgz = "mathjax26complete.tgz"            # only used if localjax=1
+        self.scorm12tgz = "scorm12_xsd.tgz"                  # only used if doscorm12=1
+        self.scorm4tgz = ""                                  # only used if doscorm=1
         self.texstylefiles = ["bibgerm.sty", "maxpage.sty"]  # style files needed in local directories for local pdflatex compilation
         self.htmltikzscale = 1.3                             # scaling factor used for tikz-png scaling, can be overridden by pragmas
         self.autotikzcopyright = 1                           # includes tikz externalized images in copyright list
         self.displaycopyrightlinks = 0                       # add copyright links to images in the entire course
+        self.maxsitejsonlength = 255                         # the maximal number of string characters allowed for an internal json site object, will be stored in a different file if limit is exceeded
 
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
         # course signature, course part
         self.signature_main = "MFR_TUB" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+        # self.signature_main = "OBMLGAMMA9" # "OBMLGAMMA5_SCORM12_UKS_m" # "OBMLGAMMA5" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
-        self.signature_date = "05/2015"
+        self.signature_date = "06/2015"
 
        # ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------ 
         self.overrides = list()
@@ -189,7 +194,9 @@ class Option(object):
             "message_done": "Alle Aufgaben gelöst",
             "message_progress": "Aufgaben teilweise gelöst",
             "message_problem": "Einige Aufgaben falsch beantwortet",
-            "modstartbox_tocline": "Dieses Modul gliedert sich in folgende Abschnitte:"
+            "modstartbox_tocline": "Dieses Modul gliedert sich in folgende Abschnitte:",
+            "roulette_text": "In der Onlineversion erscheinen hier Aufgaben aus einer Aufgabenliste",
+            "roulette_new": "Neue Aufgabe"
         }
         """
         self.knownmathcommands = [ "sin", "cos", "tan", "cot", "log", "ln", "exp" ] # these will be excluded from post-ttm modifications
@@ -252,7 +259,7 @@ class Option(object):
         self.data_server = server                  
         self.exercise_server = server
         self.feedback_service = server + "/feedback.php" # Absolute Angabe
-        self.data_server_description = "Server 3 (KIT)"        
+        self.data_server_description = "Server 3 (VE-UND-MINT, Standort KIT)"        
         self.data_server_user = server + "/userdata.php"  # Absolute Angabe
         self.footer_middle = self.description
         # don't use \" in strings as they are being passed to JavaScript variables (and \" becomes evaluated)
@@ -289,6 +296,9 @@ class Option(object):
         self.template_redirect_scorm = os.path.join(self.converterTemplates, "html5_redirect_scorm.html")
         self.template_redirect_basic = os.path.join(self.converterTemplates, "html5_redirect_basic.html")
         self.template_settings = os.path.join(self.converterTemplates, "html5_settings.html")
+        
+        # SCORM templates
+        self.template_scorm12manifest = os.path.join(self.converterTemplates, "scorm12_moodle_manifest.xml")
 
         # VE&MINT stylesheets und JS-files, die in jeder HTML-Datei eingebunden werden, Dateiangaben relativ zum files-Ordner
         self.stylesheets  = [
@@ -346,7 +356,7 @@ class Option(object):
         #self.ContentStructure.append("div")#Container werden nun über Attribute identifiziert
         
         # special site tags
-        self.sitetaglist = ["chapter", "config", "data", "favorites", "location", "search", "test"]
+        self.sitetaglist = ["chapter", "config", "data", "favorites", "location", "search", "test", "logout", "login"]
         
         # ModuleStructure
         self.ModuleStructure = []
@@ -406,7 +416,7 @@ class Option(object):
                 sys.exit(1)
 
         if self.scormlogin == 1:
-            if self.doscorm == 0:
-                print("FATAL ERROR: Option scormlogin is detrimental if doscorm is not active, aborting with error code 1")
+            if self.doscorm == 0 and self.doscorm12 == 0:
+                print("FATAL ERROR: Option scormlogin is detrimental if doscorm or doscorm12 is not active, aborting with error code 1")
                 sys.exit(1)
                 
