@@ -78,19 +78,23 @@ class Option(object):
         self.symbolexplain = 1    # =1 -> Short list explaining symbols is added to table of contents
         self.forceoffline = 1     # =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
         self.quiet = 0            # =1 -> Absolutely no print messages, caller must deduce outcome by return value of sys.exit
-        
+
+                
+        # VE&MINT locale-dependent source/target parameters
+        if self.locale == 'en_GB.utf8' :                     # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
+            self.module = "tree_tu9onlinekurs_en.tex"
+            self.macrofilename = "mintmod_engl"
+                                
+        else :
+            self.module = "tree_tu9onlinekurs.tex"               
+            self.macrofilename = "mintmod"
+            
         # VE&MINT source/target parameters
-        self.macrofilename = "mintmod"
         self.macrofile = self.macrofilename + ".tex"
         self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex files and templates, utf8 well be accepted too but with a warning
         self.outputencoding = "utf-8"                        # encoding of generated html files
         self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
         self.source = "module_veundmint"                     # Quellverzeichnis, platziert in Ebene ueber tex2x.py
-        if self.locale == 'en_GB.utf8' :                     # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
-            self.module = "tree_tu9onlinekurs_en.tex"
-                                            
-        else :
-            self.module = "tree_tu9onlinekurs.tex"               
         
         self.outtmp = "_tmp"                                 # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
         self.description = "Onlinebrückenkurs Mathematik"    # Bezeichnung des erstellen Kurses
