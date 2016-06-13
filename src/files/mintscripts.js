@@ -457,14 +457,14 @@ function handlerChange(id, nocontentcheck) {
     FVAR[id].valvalid = true;
       } catch(e) {
     // Eingabe konnte nicht geparset werden
-    if (FVAR[id].texinput == "") FVAR[id].texinput = "\\text{("+l("msg-incorrect-input")+")}"; // "Fehlerhafte Eingabe"
+    if (FVAR[id].texinput == "") FVAR[id].texinput = "\\text{("+$.i18n("msg-incorrect-input")+")}"; // "Fehlerhafte Eingabe"
     FVAR[id].parsedinput = "0";
     FVAR[id].valcode = mathJS.compile("0");
     FVAR[id].valvalid = false;
       }
     } else {
       // Eingabe war leer
-      FVAR[id].texinput = "\\text{("+l("msg-missing-input")+")}"; // "Keine Eingabe"
+      FVAR[id].texinput = "\\text{("+$.i18n("msg-missing-input")+")}"; // "Keine Eingabe"
       FVAR[id].parsedinput = "0";
       FVAR[id].valcode = mathJS.compile("0");
       FVAR[id].valvalid = false;
@@ -564,7 +564,7 @@ function check_group(input_from, input_to) {
                     FVAR[i].message = "";
                     notifyPoints(i, 0, SOLUTION_NEUTRAL);
                  } else {
-                    FVAR[i].message = l("msg-incorrect-answer"); // Lösung inkorrekt
+                    FVAR[i].message = $.i18n("msg-incorrect-answer"); // Lösung inkorrekt
                     notifyPoints(i, 0, SOLUTION_FALSE);
                   }
                 }
@@ -697,9 +697,9 @@ function check_group(input_from, input_to) {
                     notifyPoints(i, 0, SOLUTION_NEUTRAL);
                   } else {
                     if ((soluta.length == 1) && (solleer == 0)) {
-                        FVAR[i].message = l("msg-incorrect-value"); // "Wert inkorrekt"
+                        FVAR[i].message = $.i18n("msg-incorrect-value"); // "Wert inkorrekt"
                     } else {
-                        FVAR[i].message = l("msg-incorrect-quantity"); // "Lösungsmenge inkorrekt"
+                        FVAR[i].message = $.i18n("msg-incorrect-quantity"); // "Lösungsmenge inkorrekt"
                     }
                     notifyPoints(i, 0, SOLUTION_FALSE);
                   }
@@ -725,7 +725,7 @@ function check_group(input_from, input_to) {
 
         if (FVAR[i].valvalid == false) {
           ok = false;
-          message = l("msg-unanswered-question"); // "Frage noch nicht beantwortet"
+          message = $.i18n("msg-unanswered-question"); // "Frage noch nicht beantwortet"
         } else {
         
         var c1,c2;
@@ -779,7 +779,7 @@ function check_group(input_from, input_to) {
             if (!(Math.abs(extround(ed,stellen)-extround(0,stellen)) <= Math.pow(10,(stellen+2)*(-1)))) {
               ok = false;
               fini = true;
-              message = l("msg-still-incorrect-input"); // "Eingabe ist noch nicht richtig"
+              message = $.i18n("msg-still-incorrect-input"); // "Eingabe ist noch nicht richtig"
             }
             
             // Gesamtes Stuetzstellenarray inkrementieren
@@ -804,12 +804,12 @@ function check_group(input_from, input_to) {
             
           }
           
-                  if (ok == true) message = l("msg-correct-answer"); // "Dies ist eine richtige L&#246;sung"
+                  if (ok == true) message = $.i18n("msg-correct-answer"); // "Dies ist eine richtige L&#246;sung"
           
           
         } catch(e) {
           ok = false;
-          message = l("msg-malformed-input"); // "Form der Eingabe ist fehlerhaft"
+          message = $.i18n("msg-malformed-input"); // "Form der Eingabe ist fehlerhaft"
         }
                 
                 var messages = checkSimplification(vereinfachung, FVAR[i].rawinput);
@@ -912,7 +912,7 @@ function check_group(input_from, input_to) {
             FVAR[i].message = "";
                     notifyPoints(i, 0, SOLUTION_NEUTRAL);
                   } else {
-            FVAR[i].message = l("msg-incorrect-interval"); // "Ist nicht das gesuchte Intervall"
+            FVAR[i].message = $.i18n("msg-incorrect-interval"); // "Ist nicht das gesuchte Intervall"
                     notifyPoints(i, 0, SOLUTION_FALSE);
                   }
                 }
@@ -1358,18 +1358,18 @@ function finish_button(name) {
  var ratio = 100 * nPoints / nMaxPoints;
   if (f != null) {
     f.innerHTML = "";
-    f.innerHTML += "<strong>" + l( "msg-completed-test", name) + "</strong><br />"; // name + " wurde abgeschlossen:
-    f.innerHTML += l( "msg-reached-points", nPoints) + "<br />";// Im Test erreichte Punkte: " + nPoints
-    f.innerHTML += l( "msg-max-points", nMaxPoints ) + "<br />"; // "Maximal erreichbare Punkte: " + nMaxPoints
-    f.innerHTML += l("msg-dispatched-test") + "<br /><br />"; // "Der Test wird abgeschickt, wenn mindestens ein Punkt erreicht wurde.
+    f.innerHTML += "<strong>" + $.i18n( "msg-completed-test", name) + "</strong><br />"; // name + " wurde abgeschlossen:
+    f.innerHTML += $.i18n( "msg-reached-points", nPoints) + "<br />";// Im Test erreichte Punkte: " + nPoints
+    f.innerHTML += $.i18n( "msg-max-points", nMaxPoints ) + "<br />"; // "Maximal erreichbare Punkte: " + nMaxPoints
+    f.innerHTML += $.i18n("msg-dispatched-test") + "<br /><br />"; // "Der Test wird abgeschickt, wenn mindestens ein Punkt erreicht wurde.
     if (nPoints < nMinPoints) {
-      f.innerHTML += "<strong>"+l("msg-not-dispatched-test")+"</strong><br />"; // Der Test ist noch nicht abgeschickt.
+      f.innerHTML += "<strong>"+$.i18n("msg-not-dispatched-test")+"</strong><br />"; // Der Test ist noch nicht abgeschickt.
     } else {
-      f.innerHTML += l("msg-submitted-test")+"<br />"; // Test ist eingereicht, kann aber weiter bearbeitet und erneut abgeschickt werden.
+      f.innerHTML += $.i18n("msg-submitted-test")+"<br />"; // Test ist eingereicht, kann aber weiter bearbeitet und erneut abgeschickt werden.
     }
     if (SITE_UXID == "VBKMT_AbgebeTest") {
       ratio = Math.round(ratio * 100) / 100;
-      f.innerHTML += "<emph>"+l("msg-reached-point-ratio", ratio)+"</emph><br /><br />";// Es wurden " + ratio + "% der Punkte erreicht!
+      f.innerHTML += "<emph>"+$.i18n("msg-reached-point-ratio", ratio)+"</emph><br /><br />";// Es wurden " + ratio + "% der Punkte erreicht!
     }
     
   }
@@ -1441,7 +1441,7 @@ function finish_button(name) {
         logMessage(VERBOSEINFO, "SCORM set completion " + psres);
         psres = pipwerks.SCORM.save();
         logMessage(DEBUGINFO, "SCORM save = " + psres);
-        if (psres==true) f.innerHTML += l("msg-transfered-result")+"\n"; // Die Punktzahl wurde zur statistischen Auswertung übertragen
+        if (psres==true) f.innerHTML += $.i18n("msg-transfered-result")+"\n"; // Die Punktzahl wurde zur statistischen Auswertung übertragen
 
       }
       
@@ -1626,18 +1626,18 @@ function fillUserField()
       if (lName != "") {
     e.value = lName + "\n(ID: " + lID + ")";
       } else {
-    e.value = "<"+l("ui-not-loggedin")+">";// Nicht angemeldet
+    e.value = "<"+$.i18n("ui-not-loggedin")+">";// Nicht angemeldet
       }
       
       if (nPoints > 0) {
     if (nMaxPoints > 0) {
-      e.value += "\n" + l("ui-max-points", nPoints, nMaxPoints)//"\nPunkte erreicht: " + nPoints + " von " + nMaxPoints;
+      e.value += "\n" + $.i18n("ui-max-points", nPoints, nMaxPoints)//"\nPunkte erreicht: " + nPoints + " von " + nMaxPoints;
     } else {
-      e.value += "\n" + l("ui-reached-points", nPoints )// "\nPunkte erreicht: " + nPoints;
+      e.value += "\n" + $.i18n("ui-reached-points", nPoints )// "\nPunkte erreicht: " + nPoints;
     }
       } else {
     if (nMaxPoints > 0) {
-      e.value += "\n" + l("ui-necessary-points", nMaxPoints); // "\nPunkte zu erreichen: " + nMaxPoints;
+      e.value += "\n" + $.i18n("ui-necessary-points", nMaxPoints); // "\nPunkte zu erreichen: " + nMaxPoints;
     }
       }
       e.readOnly = true;
@@ -1759,7 +1759,7 @@ function displayInputContent(id,latex) {
       if ((isTest == false) | (testFinished == true)) {
     content = '<div id="NINPUTFIELD' + activefieldid + '" data-bind="evalmathjax: ifobs"></div><br /><div name="NUSERMESSAGE" id="UFIDM' + activefieldid + '" style="line-height:110%; color:#000000; border: thin solid rgb(0,0,0); padding: 8px; background-color:#CFDFDF; width:250px; font-size:11pt; font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;"></div>';
       } else {
-    content = '<div id="NINPUTFIELD' + activefieldid + '" data-bind="evalmathjax: ifobs"></div><br />' + l("ui-missing-tooltip");
+    content = '<div id="NINPUTFIELD' + activefieldid + '" data-bind="evalmathjax: ifobs"></div><br />' + $.i18n("ui-missing-tooltip");
       }
       activetooltip = $(" input[id=\"" + activefieldid + "\"] ").qtip({ 
     id: 'activetooltip',
@@ -1995,14 +1995,14 @@ function applyLayout(first) {
   var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px;max-height:" + (d-2) + "px\"";
   
   d = d - 2;
-  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">"+l("ui-login")+"</div></a>";
-  var loginbuttontext = l("ui-loginbutton");//"Zum Kurs anmelden";
-  var loginbuttonhint = l("hint-loginbutton");//"Hier können Sie sich zum Kurs persönlich anmelden, im Moment wird der Kurs anonym bearbeitet.";
+  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">"+$.i18n("ui-login")+"</div></a>";
+  var loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";
+  var loginbuttonhint = $.i18n("hint-loginbutton");//"Hier können Sie sich zum Kurs persönlich anmelden, im Moment wird der Kurs anonym bearbeitet.";
   var loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
   if (intersiteactive) {
       if (intersiteobj.login.type >= 2) {
-          loginbuttontext = l( "logout", getNameDescription() ); // "Logout (" + getNameDescription() + ")";
-          loginbuttonhint = l( "hint-logout", intersiteobj.login.sname ); //"Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersiteobj.login.sname + " gespeichert.";
+          loginbuttontext = $.i18n( "logout", getNameDescription() ); // "Logout (" + getNameDescription() + ")";
+          loginbuttonhint = $.i18n( "hint-logout", intersiteobj.login.sname ); //"Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersiteobj.login.sname + " gespeichert.";
           loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "logout.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
       }
   }
@@ -2011,7 +2011,7 @@ function applyLayout(first) {
   
   if (intersiteactive) {
       if ((intersiteobj.login.type >= 2) && (scormLogin == 0)) {
-          head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + l( "msg-myaccount" ) + "</div></a>";
+          head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + $.i18n( "msg-myaccount" ) + "</div></a>";
       }
   }
   
@@ -2049,14 +2049,14 @@ function applyLayout(first) {
     $(this).hover(function() { $(this).css("background-color", COLORS.TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", COLORS.TOCMINBUTTON); });
   });
 
-  showHint($('#homebutton'), l("hint-home") ); // "Zurück zur Homepage des Kurses"
-  showHint($('#listebutton'), l("hint-list") ); // "Stichwortverzeichnis anzeigen"
-  showHint($('#menubutton'), l("hint-menu") ); // "Hier klicken um Navigationsleisten ein- oder auszublenden"
-  showHint($('#plusbutton'), l("hint-zoomin") ); // "Vergrößert die Schriftgröße"
-  showHint($('#minusbutton'), l("hint-zoomout") ); // "Verkleinert die Schriftgröße"
-  showHint($('#settingsbutton'), l("hint-settings") ); // "Einstellungen"
+  showHint($('#homebutton'), $.i18n("hint-home") ); // "Zurück zur Homepage des Kurses"
+  showHint($('#listebutton'), $.i18n("hint-list") ); // "Stichwortverzeichnis anzeigen"
+  showHint($('#menubutton'), $.i18n("hint-menu") ); // "Hier klicken um Navigationsleisten ein- oder auszublenden"
+  showHint($('#plusbutton'), $.i18n("hint-zoomin") ); // "Vergrößert die Schriftgröße"
+  showHint($('#minusbutton'), $.i18n("hint-zoomout") ); // "Verkleinert die Schriftgröße"
+  showHint($('#settingsbutton'), $.i18n("hint-settings") ); // "Einstellungen"
   showHint($('#loginbutton'), loginbuttonhint);
-  showHint($('#confbutton'), l("hint-confbutton") );// "Zeigt persönliche Daten zum Kurs und weitere Einstellungen an"
+  showHint($('#confbutton'), $.i18n("hint-confbutton") );// "Zeigt persönliche Daten zum Kurs und weitere Einstellungen an"
 
   // set proper button visibility in settings depending on course variant
 
@@ -2078,7 +2078,7 @@ function applyLayout(first) {
       }
   }
   
-  var shareintext = l("msg-shared-page") + "<br /><br />"; // Seite teilen über:
+  var shareintext = $.i18n("msg-shared-page") + "<br /><br />"; // Seite teilen über:
   var myurl = window.location.href;
     
   shareintext += "<a href=\"#\" onclick=\"shareFacebook()\"><img src=\"" + linkPath + "images/sharetargetfacebook.png\"></a>";
@@ -2088,7 +2088,7 @@ function applyLayout(first) {
   shareintext += "<a href=\"https://plus.google.com/share?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargetgoogleplus.png\"></a>";
   showHint($('#sharebutton'), shareintext);
 
-  shareintext = l("msg-current-favorites")+"<br /><br />"; // Aktuelle Favoriten:
+  shareintext = $.i18n("msg-current-favorites")+"<br /><br />"; // Aktuelle Favoriten:
   shareintext += generateShortFavoriteList() + "<br /><br />";
   showHint($('#starbutton'), shareintext);
 
