@@ -1021,7 +1021,7 @@
 \def\MGenerateID{QFELD_\arabic{section}.\arabic{subsection}.\arabic{MSiteCounter}.QF\arabic{MFieldCounter}}
 
 % #1 = 0/1 ggf. mit ::smc abgetrennt auszuschliessende single-choice-boxen (UXIDs durch , getrennt ohne UX), #2 = uxid ohne UX
-\newcommand{\MCheckbox}[2]{
+\newcommand{\MLCheckbox}[2]{
 \MQuestionCheckbox{#1}{\MGenerateID}{\MStdPoints}{#2}
 \addtocounter{MFieldCounter}{1}
 }
@@ -1049,6 +1049,7 @@
 \MQuestionID{#1}{#2}{\MGenerateID}{3}{#3}{\MStdPoints}{#4}
 \addtocounter{MFieldCounter}{1}
 }
+
 
 % Parameter: Laenge des Feldes, Loesungsfunktion, Anzahl Stuetzstellen, Funktionsvariablen durch Kommata getrennt (nicht case-sensitive), Anzahl Nachkommastellen im Vergleich
 \newcommand{\MFunctionQuestion}[5]{
@@ -1123,7 +1124,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 \def\MyText#1{#1}
 
-% is used internally by the conversion package, should not be used by original tex documents
+% is used internally by the conversion package, should not be used  original tex documents
 \def\MOrgLabel#1{\relax}
 
 \ifttm
@@ -1826,6 +1827,15 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\modsemph}[1]{#1}
 
 
+
+\ifttm%
+\newcommand{\MModstartBox}{\special{html:<!-- modstartbox //-->}}
+\else%
+\newcommand{\MModstartBox}{%
+\relax
+}
+\fi
+
 % ---------------------------------- Spezialbefehle fuer JL ------------------------------------------
 
 
@@ -1854,7 +1864,7 @@ Enter a word or a symbol.}}
 \def\jHTMLHinweisEingabeTerm{\MInputHint{%
 Use parentheses to get unambiguous expression. 
 Example: The Term $\frac{3x+1}{x-2}$ should be entered as
-\texttt{(3*x+1)/(x+2)}$ (you can add spaces for legibility).}}
+\texttt{(3*x+1)/(x+2)} (you can add spaces for legibility).}}
 
 \def\jHTMLHinweisEingabeIntervalle{\MInputHint{%
 Intervals are written like this: $[a,b]$ for a
