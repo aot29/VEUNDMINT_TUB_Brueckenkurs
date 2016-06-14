@@ -274,7 +274,7 @@ function SetupIntersite(clearuser, pulledstr) {
     psres = pipwerks.SCORM.get(idgetstr);
     if (psres == "null") {
       // no SCORM present, refuse to set up user
-      alert( l( 'msg-failed-connection' ) ); // "Kommunikation der Lernplattform fehlgeschlagen, Kurs kann nur anonym bearbeitet werden!"
+      alert( $.i18n( 'msg-failed-connection' ) ); // "Kommunikation der Lernplattform fehlgeschlagen, Kurs kann nur anonym bearbeitet werden!"
       intersiteobj = createIntersiteObj();
       intersiteobj.active = true;
       intersiteobj.startertitle = document.title;
@@ -374,7 +374,7 @@ function SetupIntersite(clearuser, pulledstr) {
     // If user is online, ask for password, login and fetch data from server
     if ((intersiteobj.login.type == 2) || (intersiteobj.login.type == 3)) logMessage(VERBOSEINFO,"Type=2,3, serverget missing");
   } else {
-    alert( l( 'msg-failed-userdata' ) ); // "Ihre Benutzerdaten konnten nicht vom Server geladen werden, eine automatische eMail an den Administrator wurde verschickt. Sie können den Kurs trotzdem anonym bearbeiten, eingetragene Lösungen werden jedoch nicht gespeichert!"
+    alert( $.i18n( 'msg-failed-userdata' ) ); // "Ihre Benutzerdaten konnten nicht vom Server geladen werden, eine automatische eMail an den Administrator wurde verschickt. Sie können den Kurs trotzdem anonym bearbeiten, eingetragene Lösungen werden jedoch nicht gespeichert!"
     var timestamp = +new Date();
     var us = "(unknown)";
     if (scormLogin == 1) {
@@ -468,14 +468,14 @@ function updateLoginfield() {
   if (intersiteactive == true) {
     switch (intersiteobj.login.type) {
       case 0: {
-        s = l( 'ui-no-user' ); // "Kein Benutzer angemeldet"
+        s = $.i18n( 'ui-no-user' ); // "Kein Benutzer angemeldet"
         cl = "#E01010";
         $('#loginbutton').css("background-color","#FF5050");
         break;
       }
       case 1: {
         // workaround for local-only: don't display anything here
-        s = l( 'ui-unknown-user', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); // "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet";
+        s = $.i18n( 'ui-unknown-user', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); // "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + "), nicht am Server angemeldet";
         s = "";
         cl = "#FFFF10";
         // $('#loginbutton').css("background-color","#FFFF50");
@@ -483,7 +483,7 @@ function updateLoginfield() {
         break;
       }
       case 2: {
-        s = l( 'ui-known-user', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); // "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
+        s = $.i18n( 'ui-known-user', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); // "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         cl = "#FFFFFF";
         // $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
         $('#loginbutton').css("color","#80FFA0");
@@ -493,7 +493,7 @@ function updateLoginfield() {
         break;
       }
       case 3: {
-        s = l( 'ui-known-user', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); // "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
+        s = $.i18n( 'ui-known-user', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); // "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         cl = "#FFFFFF";
         // $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
         $('#loginbutton').css("color","#80FFA0");
@@ -501,7 +501,7 @@ function updateLoginfield() {
       }
       default: {
         logMessage(CLIENTERROR, "updateLoginfield, wrongtype=" + intersiteobj.login.type);
-        s = l('msg-unavailable-login'); //"Keine Anmeldung möglich!";
+        s = $.i18n('msg-unavailable-login'); //"Keine Anmeldung möglich!";
         $('#loginbutton').css("color","#FF0000");
         break;
       }
@@ -520,7 +520,7 @@ function updateLoginfield() {
       if (intersiteactive == true) {
 
         e.innerHTML = s + "<br /><br />";
-        e.innerHTML += "<table> <tr><td align=left>" + l('ui-username') + ":</td><td align=left><input id=\"OUSER_LOGIN\" type=\"text\" size=\"18\"></input></td></tr><tr><td align=left>" + l( 'ui-password' ) +  ":</td><td align=left><input id=\"OUSER_PW\" type=\"password\" size=\"18\"></input></td></tr></table><br /><button type =\"button\" onclick=\"userlogin_click();\">" + l('ui-login') + "</button>"; // Benutzername, Passwort, Benutzer anmelden
+        e.innerHTML += "<table> <tr><td align=left>" + $.i18n('ui-username') + ":</td><td align=left><input id=\"OUSER_LOGIN\" type=\"text\" size=\"18\"></input></td></tr><tr><td align=left>" + $.i18n( 'ui-password' ) +  ":</td><td align=left><input id=\"OUSER_PW\" type=\"password\" size=\"18\"></input></td></tr></table><br /><button type =\"button\" onclick=\"userlogin_click();\">" + $.i18n('ui-login') + "</button>"; // Benutzername, Passwort, Benutzer anmelden
         e = document.getElementById("OUSER_LOGIN");
         if (e != null) {
             e.style.backgroundColor = "#D0D0D0";
@@ -542,26 +542,26 @@ function updateLoginfield() {
         if (intersiteobj.login != null) {
             var sb = "";
             if ((intersiteactive == true) && (intersiteobj.configuration.CF_LOCAL == "1")) {
-                sb = l( 'msg-local-persistence' );// "Datenspeicherung nur in diesem Browser und diesem Rechner.";
+                sb = $.i18n( 'msg-local-persistence' );// "Datenspeicherung nur in diesem Browser und diesem Rechner.";
             } else {
-                sb = l( 'msg-no-persistence' ); // "Es werden keine Kursdaten gespeichert.";
+                sb = $.i18n( 'msg-no-persistence' ); // "Es werden keine Kursdaten gespeichert.";
             }
             var t = intersiteobj.login.type;
             var cr = document.getElementById("CREATEBUTTON");
             var unf = document.getElementById("USERNAMEFIELD");
             var prefixs;
             if (scormLogin == 0) {
-              prefixs = l( 'msg-long-username', intersiteobj.login.username ); //"Benutzername: " + intersiteobj.login.username;
+              prefixs = $.i18n( 'msg-long-username', intersiteobj.login.username ); //"Benutzername: " + intersiteobj.login.username;
               if ((intersiteobj.login.vname != "") || (intersiteobj.login.sname != "")) {
                   prefixs += " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ")";
               }
             } else {
               // Username is id combination in the SCORM login modules
-              prefixs = l( 'msg-scorm-username', intersiteobj.login.vname, intersiteobj.login.sname); // "Benutzer: " + intersiteobj.login.vname + " " + intersiteobj.login.sname;
+              prefixs = $.i18n( 'msg-scorm-username', intersiteobj.login.vname, intersiteobj.login.sname); // "Benutzer: " + intersiteobj.login.vname + " " + intersiteobj.login.sname;
             }
             switch (t) {
                 case 0: {
-                    s = l( 'msg-missing-userdata' ) + ",<br />" + sb; // "Noch keine Benutzerdaten vorhanden, Kurs wird anonym bearbeitet
+                    s = $.i18n( 'msg-missing-userdata' ) + ",<br />" + sb; // "Noch keine Benutzerdaten vorhanden, Kurs wird anonym bearbeitet
                     if (cr != null) cr.disabled = false;
                     if (unf != null) unf.style.display = "inline";
                     break;
@@ -575,7 +575,7 @@ function updateLoginfield() {
                 }
 
                 case 2: {
-                    s = prefixs + ",<br />" + l( 'msg-persistence-both' ); //"Datenspeicherung in diesem Browser und auf Server "
+                    s = prefixs + ",<br />" + $.i18n( 'msg-persistence-both' ); //"Datenspeicherung in diesem Browser und auf Server "
                     if (cr != null) cr.disabled = true;
                     if (unf != null) unf.style.display = "none";
                     break;
@@ -583,14 +583,14 @@ function updateLoginfield() {
 
                 case 3: {
                     // Doesn't display that it isn't up to date
-                    s = prefixs + ",<br />" + l( 'msg-persistence-both' );//"Datenspeicherung in diesem Browser und auf Server ";
+                    s = prefixs + ",<br />" + $.i18n( 'msg-persistence-both' );//"Datenspeicherung in diesem Browser und auf Server ";
                     if (cr != null) cr.disabled = true;
                     if (unf != null) unf.style.display = "none";
                     break;
                 }
 
                 default: {
-                    s = l( 'msg-failed-login' );//"Anmeldevorgang gescheitert!";
+                    s = $.i18n( 'msg-failed-login' );//"Anmeldevorgang gescheitert!";
                     e.style.color = "#FF1111";
                     break;
                 }
@@ -630,8 +630,8 @@ function updateLoginfield() {
                     z = document.getElementById("USER_UNI");
                     if (z != null) { z.value = ""; z.style.backgroundColor = COLOR_INPUTBACKGROUND; }
             }
-        } else s = l( 'msg-missing-logindata' );//"Keine Anmeldedaten gefunden!";
-    } else s = l( 'msg-missing-browserdata' );//"Keine Anmeldedaten im Browser gespeichert!";
+        } else s = $.i18n( 'msg-missing-logindata' );//"Keine Anmeldedaten gefunden!";
+    } else s = $.i18n( 'msg-missing-browserdata' );//"Keine Anmeldedaten im Browser gespeichert!";
     $('#updatepdatabutton').css("visibility", "hidden");
     $('#updatepdatabutton').prop('disabled', true);
     e.style.color = "#000000";
@@ -649,9 +649,9 @@ function UpdateSpecials() {
   if (e != null) {
     // textarea exists only on the settings page, is created and prepared by the page before load happens
     if ((intersiteactive==true) && (intersiteobj.configuration.CF_LOCAL == "0")) {
-        e.innerHTML = l( 'msg-persistence-deactivated' );//"Datenspeicherung wurde durch Benutzer deaktiviert, es werden keine Kursdaten gespeichert.";
+        e.innerHTML = $.i18n( 'msg-persistence-deactivated' );//"Datenspeicherung wurde durch Benutzer deaktiviert, es werden keine Kursdaten gespeichert.";
     } else {
-      e.innerHTML = ((intersiteactive==true) && (localStoragePresent==true)) ? generateLongFavoriteList() : l( 'msg-failed-localpersistence' );//"Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert.";
+      e.innerHTML = ((intersiteactive==true) && (localStoragePresent==true)) ? generateLongFavoriteList() : $.i18n( 'msg-failed-localpersistence' );//"Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert.";
     }
   }
 
@@ -660,14 +660,14 @@ function UpdateSpecials() {
   if (e != null) {
     // textarea exists only on the settings page, is created and prepared by the page before load happens
     if ((intersiteactive==true) && (intersiteobj.configuration.CF_LOCAL == "0")) {
-        e.innerHTML = l( 'msg-persistence-deactivated' );//"Datenspeicherung wurde durch Benutzer deaktiviert, es werden keine Kursdaten gespeichert.";
+        e.innerHTML = $.i18n( 'msg-persistence-deactivated' );//"Datenspeicherung wurde durch Benutzer deaktiviert, es werden keine Kursdaten gespeichert.";
     } else {
       var mys = JSON.stringify(intersiteobj);
       if ( (intersiteactive==true) && (localStoragePresent==true) ) {
-          e.innerHTML = l( 'msg-successful-localpersistence',mys.length)
+          e.innerHTML = $.i18n( 'msg-successful-localpersistence',mys.length)
           
       } else {
-          e.innerHTML = l( 'msg-failed-localpersistence' )
+          e.innerHTML = $.i18n( 'msg-failed-localpersistence' )
       } //"Der Browser kann die Kursdaten speichern,\nes werden momentan " + mys.length + " Bytes durch Kursdaten belegt.") : "Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert."
     }
   }
@@ -726,24 +726,24 @@ function UpdateSpecials() {
           }
 
           s += "<strong>Kapitel " + (k+1) + ": " + globalsections[k] + "</strong><br />";
-          s += l('msg-total-progress', si[k], globalsitepoints[k] ) + "<br />";//"Insgesamt " + si[k] + " von " + globalsitepoints[k] + " Lerneinheiten des Moduls besucht.";
+          s += $.i18n('msg-total-progress', si[k], globalsitepoints[k] ) + "<br />";//"Insgesamt " + si[k] + " von " + globalsitepoints[k] + " Lerneinheiten des Moduls besucht.";
           s += "<progress id='slidebar0_" + k + "' value='" + si[k] + "' max='" + globalsitepoints[k] + "'></progress><br />";
-          s += l('msg-total-points', p[k], globalexpoints[k]) + "<br />";//"Insgesamt " + p[k] + " von " + globalexpoints[k] + " Punkten der Aufgaben erreicht.<br />";
+          s += $.i18n('msg-total-points', p[k], globalexpoints[k]) + "<br />";//"Insgesamt " + p[k] + " von " + globalexpoints[k] + " Punkten der Aufgaben erreicht.<br />";
           s += "<progress id='slidebar1_" + k + "' value='" + p[k] + "' max='" + globalexpoints[k] + "'></progress><br />";
-          s += l( 'msg-total-test', t[k], globaltestpoints[k] ) + "<br />";//"Insgesamt " + t[k] + " von " + globaltestpoints[k] + " Punkten im Abschlusstest erreicht.<br />";
+          s += $.i18n( 'msg-total-test', t[k], globaltestpoints[k] ) + "<br />";//"Insgesamt " + t[k] + " von " + globaltestpoints[k] + " Punkten im Abschlusstest erreicht.<br />";
           s += "<progress id='slidebar2_" + k + "' value='" + t[k] + "' max='" + globaltestpoints[k] + "'></progress><br />";
           var ratio = t[k]/globaltestpoints[k];
           if (ratio < 0.9) {
-            s += "<span style='color:#E00000'>" + l('msg-failed-test') + "</span>"; // Abschlusstest ist noch nicht bestanden.
+            s += "<span style='color:#E00000'>" + $.i18n('msg-failed-test') + "</span>"; // Abschlusstest ist noch nicht bestanden.
           } else {
-            s += "<span style='color:#00F000'>" + l('msg-passed-test') + "</span>"; // Abschlusstest ist BESTANDEN.
+            s += "<span style='color:#00F000'>" + $.i18n('msg-passed-test') + "</span>"; // Abschlusstest ist BESTANDEN.
           }
           s += "<br /><br />";
 
         }
         e.innerHTML = s;
       } else {
-        e.innerHTML = l('msg-change-localpersistence');//"Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert. Modifizieren Sie ggf. die Auswahl auf der Einstellungsseite.";
+        e.innerHTML = $.i18n('msg-change-localpersistence');//"Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert. Modifizieren Sie ggf. die Auswahl auf der Einstellungsseite.";
       }
     }
   }
@@ -961,7 +961,7 @@ function confHandlerChange(id) {
     if (intersiteobj.active == true) {
 
       if ((intersiteobj.configuration.CF_LOCAL == "1") && (id == "CF_LOCAL") && (c == false)) {
-          if (confirm( l('msg-confirm-persistence')) == false) { c = 1; e.checked = true; } // "Ohne lokale Datenspeicherung gehen die Benutzer- und Kursdaten verloren. Trotzdem ohne Datenspeicherung fortfahren?"
+          if (confirm( $.i18n('msg-confirm-persistence')) == false) { c = 1; e.checked = true; } // "Ohne lokale Datenspeicherung gehen die Benutzer- und Kursdaten verloren. Trotzdem ohne Datenspeicherung fortfahren?"
       }
 
 
@@ -1125,7 +1125,7 @@ function userlogin_success(data) {
 function userlogin_error(message, data) {
   if (typeof(data) == "object") {
       if (data.error == "invalid password") {
-        alert( l('msg-repeat-login') ); // "Benutzername oder Passwort sind nicht korrekt, bitte versuchen Sie es nochmal."
+        alert( $.i18n('msg-repeat-login') ); // "Benutzername oder Passwort sind nicht korrekt, bitte versuchen Sie es nochmal."
         logMessage(VERBOSEINFO, "Login wegen fehlerhaftem Benutzernamen/Passwort nicht akzeptiert");
         return;
       }
@@ -1168,7 +1168,7 @@ function userreset_click() {
           }
       }
   }
-  if (confirm( l('msg-confirm-reset', s) ) == true) SetupIntersite(true);//// "Wirklich alle Kursdaten "..."löschen? Dieser Vorgang kann nicht rückgängig gemacht werden!"
+  if (confirm( $.i18n('msg-confirm-reset', s) ) == true) SetupIntersite(true);//// "Wirklich alle Kursdaten "..."löschen? Dieser Vorgang kann nicht rückgängig gemacht werden!"
 }
 
 function userdelete_click() {
@@ -1190,11 +1190,11 @@ function userdelete_click() {
 // returns "" for valid usernames, error string otherwise
 function allowedUsername(username) {
     if ((username.length < 6) || (username.length > 18)) {
-         return l( 'msg-badlength-username' );//"Der Loginname muss mindestens 6 und höchstens 18 Zeichen enthalten";
+         return $.i18n( 'msg-badlength-username' );//"Der Loginname muss mindestens 6 und höchstens 18 Zeichen enthalten";
     }
 
     if (RegExp('[^a-z0-9\\-\\+_]', 'i').test(username)) {
-        return l( 'msg-badchars-username' ); //"Im Loginnamen sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
+        return $.i18n( 'msg-badchars-username' ); //"Im Loginnamen sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
     }
 
     return "";
@@ -1203,11 +1203,11 @@ function allowedUsername(username) {
 // return "" for valid passwords, error string otherwise
 function allowedPassword(password) {
     if ((password.length < 6) || (password.length > 18)) {
-         return l( 'msg-badlength-password' );//"Das Passwort muss mindestens 6 und höchstens 18 Zeichen enthalten";
+         return $.i18n( 'msg-badlength-password' );//"Das Passwort muss mindestens 6 und höchstens 18 Zeichen enthalten";
     }
 
     if (RegExp('[^a-z0-9\\-\\+_]', 'i').test(password)) {
-          return l( 'msg-badchars-password' );//"Im Passwort sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
+          return $.i18n( 'msg-badchars-password' );//"Im Passwort sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
     }
 
     return "";
@@ -1221,7 +1221,7 @@ function usercreatelocal_click(type) {
     }
 
     if (intersiteactive == false) {
-        alert( l( 'msg-failed-createuser' ) );//"Keine Datenspeicherung möglich, kann Benutzer nicht anlegen!"
+        alert( $.i18n( 'msg-failed-createuser' ) );//"Keine Datenspeicherung möglich, kann Benutzer nicht anlegen!"
         return;
     }
 
@@ -1251,7 +1251,7 @@ function usercreatelocal_click(type) {
         return;
     } else {
       // normal version: password requested from user
-      pws = prompt( l('msg-prompt', una) ); //"Geben Sie ein Passwort für den Benutzer " + una + " ein:"
+      pws = prompt( $.i18n('msg-prompt', una) ); //"Geben Sie ein Passwort für den Benutzer " + una + " ein:"
       if (pws == null) return; // user has pressed abort
       rt = allowedPassword(pws);
       if (rt != "") {
@@ -1259,10 +1259,10 @@ function usercreatelocal_click(type) {
           return;
       }
 
-      var pws2 = prompt( l('msg-repeat-prompt') );//"Geben Sie das Passwort zur Sicherheit nochmal ein:"
+      var pws2 = prompt( $.i18n('msg-repeat-prompt') );//"Geben Sie das Passwort zur Sicherheit nochmal ein:"
       if (pws2 == null) return; // user has pressed abort
       if (pws2 != pws) {
-          alert( l('msg-inconsistent-password') ); //"Die Passwörter stimmen nicht überein."
+          alert( $.i18n('msg-inconsistent-password') ); //"Die Passwörter stimmen nicht überein."
           return;
       }
     }
@@ -1318,9 +1318,9 @@ function register_success(data) {
       }
       setIntersiteType(1);
       if (data.error == "user already exists") {
-          alert( l( 'msg-duplicate-username', na ) );//"Benutzer " + na + " existiert schon auf dem Server, bitte geben Sie einen neuen Benutzernamen ein."
+          alert( $.i18n( 'msg-duplicate-username', na ) );//"Benutzer " + na + " existiert schon auf dem Server, bitte geben Sie einen neuen Benutzernamen ein."
       } else {
-          alert( l( 'msg-failed-createuser', na ) );//"Benutzer " + na + " konnte nicht angelegt werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt."
+          alert( $.i18n( 'msg-failed-createuser', na ) );//"Benutzer " + na + " konnte nicht angelegt werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt."
       }
   }
 }
@@ -1330,7 +1330,7 @@ function register_error(message, data) {
   logMessage(VERBOSEINFO, "Register error: " + message + ", data = " + JSON.stringify(data));
   var na;
   na = (scormLogin == 1) ? (intersiteobj.login.sname) : (intersiteobj.login.username);
-  alert( l( 'msg-failed-createuser', na ));// "Benutzer " + na + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
+  alert( $.i18n( 'msg-failed-createuser', na ));// "Benutzer " + na + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
   setIntersiteType(0);
 }
 
@@ -1347,9 +1347,9 @@ function check_user_success(data) {
 
     if ((data.action == "check_user") && (data.status == true)) {
       if (data.user_exists == true) {
-        ulreply_set(false, l( 'msg-unavailable-username' ) );//"Benutzername ist schon vergeben."
+        ulreply_set(false, $.i18n( 'msg-unavailable-username' ) );//"Benutzername ist schon vergeben."
       } else {
-        ulreply_set(true, l('msg-available-username', 
+        ulreply_set(true, $.i18n('msg-available-username', 
         '<button type=\'button\' style=\'criticalbutton\' onclick=\'usercreatelocal_click(2);\'>', '</button>'));//"Dieser Benutzername ist verfügbar! <button type='button' style='background: #00FF00' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
       }
     } else {
@@ -1361,7 +1361,7 @@ function check_user_success(data) {
 
 function check_user_error(message, data) {
   logMessage(VERBOSEINFO, "checkuser error:" + message + ", data = " + JSON.stringify(data));
-  ulreply_set(false, l( 'msg-failed-server', feedbackdesc ) );//"Kommunikation mit Server (" + feedbackdesc + ") nicht möglich."
+  ulreply_set(false, $.i18n( 'msg-failed-server', feedbackdesc ) );//"Kommunikation mit Server (" + feedbackdesc + ") nicht möglich."
 }
 
 
