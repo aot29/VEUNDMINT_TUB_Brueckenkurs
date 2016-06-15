@@ -45,6 +45,23 @@ class AbstractSystemTest(unittest.TestCase):
         self.browser.get( os.path.join( self.baseUrl, self.pageUrl ) )
 
 
-# Can't instantitate this directly, use child class
+    def _navToChapter(self, chapter, section=None):
+        '''
+        Navigate to chapter specified by name.
+        @param chapter: (required) a STRING specifying the chapter, e.g. "1" will open chapter 1 
+        @param section: (optional) a STRING specifying the section, e.g. "1.2" will open section 1.2
+        '''
+        # Open the start page
+        self._openStartPage()
+        # Open chapter 
+        self.browser.find_element_by_partial_link_text( "%s %s" % ( self.locale[ "chapter" ], chapter ) ).click()
+        
+        # Open section
+        if section != None:
+            content = self.browser.find_element_by_id( "content" )
+            content.find_element_by_partial_link_text( section ).click()
+
+
+# Can't call this directly, use child class
 if __name__ == "__main__":
     raise NotImplementedError        
