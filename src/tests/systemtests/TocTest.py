@@ -1,6 +1,8 @@
 '''
 Created on Jun 15, 2016
 
+Test the TOC navigation area
+
 @author: alvaro
 '''
 import unittest
