@@ -8,39 +8,19 @@ Unittest: are navigational elements present?
 @author: alvaro
 '''
 import unittest
-from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
-import json
-import os.path
+from tests.systemtests.AbstractSystemTest import AbstractSystemTest
 
-class PageHeadTest(unittest.TestCase):
-    baseUrl = "file:///home/alvaro/Workspace/VEUNDMINT_TUB_Brueckenkurs/tu9onlinekurstest/html"
-    basePath = "/home/alvaro/Workspace/VEUNDMINT_TUB_Brueckenkurs/tu9onlinekurstest"
-    pageUrl = "sectionx2.1.0.html"
-    i18nPath = "i18n"
-    lang = "en"
-    
+class PageHeadTest( AbstractSystemTest ):    
 
     def setUp(self):
-        # load locale file
-        localePath = os.path.join( self.basePath, self.i18nPath, self.lang + ".json")
-        self.localeFile = open( localePath )
-        self.locale = json.load( self.localeFile )
-        # create the Firefox browser
-        self.browser = webdriver.Firefox()
-        # set try to find an element for max 10 seconds
-        self.browser.implicitly_wait(10)
-        # open the page
-        self.browser.get( os.path.join( self.baseUrl, self.pageUrl ) )
+        AbstractSystemTest.setUp( self )
+        # open a page to test it
+        self._openStartPage()
 
 
     def tearDown(self):
-        # close the browser
-        if self.browser:
-            self.browser.quit()
-        # close the locale file
-        if self.localeFile:
-            self.localeFile.close()
+        AbstractSystemTest.tearDown( self )
         
         
     def testHeadButtonsPresent(self):
