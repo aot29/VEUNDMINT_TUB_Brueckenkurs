@@ -1038,7 +1038,8 @@ class Plugin(basePlugin):
         for glb in ['sitepoints', 'expoints', 'testpoints']:
             s += "var global" + glb + " = [];\n"
             for i in range(len(self.data[glb])):
-                s += "global" + glb + "[" + str(i) + "] = " + str(self.data[glb][str(i)]) + ";\n"
+                if str(i) in self.data[glb]:
+                    s += "global" + glb + "[" + str(i) + "] = " + str(self.data[glb][str(i)]) + ";\n"
         
 
         self.sys.writeTextFile(os.path.join(self.options.targetpath, self.options.convinfofile), s, self.options.outputencoding)
