@@ -65,7 +65,7 @@ class Option(object):
         self.qautoexport = 0      # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
         self.diaok = 0            # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
         self.cleanup = 1          # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
-        self.localjax = 0         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
+        self.localjax = 1         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
         self.borkify = 0          # =1 html und js-Dateien werden borkifiziert
         self.dorelease = 0        # In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
         self.doverbose = 1        # Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
@@ -77,7 +77,7 @@ class Option(object):
         self.consoleascii = 0     # =1 -> Only us-ascii strings are printed to the console (or pipes), does not affect written files
         self.forceyes = 1         # =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
         self.symbolexplain = 1    # =1 -> Short list explaining symbols is added to table of contents
-        self.forceoffline = 0     # =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
+        self.forceoffline = 1     # =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
         self.quiet = 0            # =1 -> Absolutely no print messages, caller must deduce outcome by return value of sys.exit
 
                 

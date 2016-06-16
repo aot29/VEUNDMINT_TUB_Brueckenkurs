@@ -25,8 +25,8 @@ class AbstractSystemTest(unittest.TestCase):
         self.locale = json.load( self.localeFile )
         # create the Firefox browser
         self.browser = webdriver.Firefox()
-        # set try to find an element for max 10 seconds
-        self.browser.implicitly_wait(10)
+        # set try to find an element for max 5 seconds
+        self.browser.implicitly_wait(5)
 
 
     def tearDown(self):

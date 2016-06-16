@@ -7,17 +7,19 @@ Testet die Roulette-Uebungen
 '''
 import unittest
 from tests.systemtests.AbstractSystemTest import AbstractSystemTest
-from selenium.webdriver.support.ui import WebDriverWait
 
 class RouletteTest( AbstractSystemTest ):
 
+    def setUp(self):
+        AbstractSystemTest.setUp( self )
+        # navigate to chapter 1 section 1.2
+        self._navToChapter( "1", "1.2" )
+        
 
     def testRouletteElement(self):
         '''
         Is the roulette exercise on te page?
         '''
-        # navigate to chapter 1 section 1.2
-        self._navToChapter( "1", "1.2" )
         # get the first roulette exercise on the page
         roulette = self.browser.find_element_by_id( "ROULETTECONTAINER_VBKM01_FRACTIONTRAINING" )
         self.assertTrue( roulette, "Roulettecontainer not found" )
@@ -27,8 +29,6 @@ class RouletteTest( AbstractSystemTest ):
         '''
         Is the exercise in the right locale?
         '''
-        # navigate to chapter 1 section 1.2
-        self._navToChapter( "1", "1.2" )
         # get the first roulette exercise on the page
         roulette = self.browser.find_element_by_id( "ROULETTECONTAINER_VBKM01_FRACTIONTRAINING" )
         # Check that keywords use the correct locale
@@ -41,8 +41,6 @@ class RouletteTest( AbstractSystemTest ):
         '''
         Is the solution shown after clicking on the hint button?
         '''
-        # navigate to chapter 1 section 1.2
-        self._navToChapter( "1", "1.2" )
         # get the first roulette exercise on the page
         roulette = self.browser.find_element_by_id( "ROULETTECONTAINER_VBKM01_FRACTIONTRAINING" )
         # get the first hint element
