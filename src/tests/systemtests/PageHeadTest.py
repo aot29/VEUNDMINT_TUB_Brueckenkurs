@@ -17,13 +17,9 @@ class PageHeadTest( AbstractSystemTest ):
         AbstractSystemTest.setUp( self )
         # open a page to test it
         self._openStartPage()
-
-
-    def tearDown(self):
-        AbstractSystemTest.tearDown( self )
         
-        
-    def testHeadButtonsPresent(self):
+    
+    def testHeadButtonsComplete(self):
         '''
         Test head of the page and buttons
         '''
@@ -83,7 +79,7 @@ class PageHeadTest( AbstractSystemTest ):
             self.assertEquals( text.lower(), button.text.lower(), "%s has wrong text" % elid )            
                 
         # check the link
-        link = self._resolveButtonLInk( elid, button.tag_name )
+        link = self._resolveButtonLink( elid, button.tag_name )
         self.assertTrue( href in link )
         
         # Check hint
@@ -97,7 +93,7 @@ class PageHeadTest( AbstractSystemTest ):
             self.assertTrue( hint in qtipEl.text, "%s has wrong hint text" % elid )
 
 
-    def _resolveButtonLInk(self, elid, tag):
+    def _resolveButtonLink(self, elid, tag):
         '''
         Get the link from a navigation button, whichever type the button is
         @param elid: DOM id of the button element

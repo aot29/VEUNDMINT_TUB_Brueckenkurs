@@ -19,10 +19,6 @@ class TocTest( AbstractSystemTest ):
         self._openStartPage()
 
 
-    def tearDown(self):
-        AbstractSystemTest.tearDown( self )
-
-
     def testTitlePresent(self):
         '''
         Test the TOC title is present
@@ -43,8 +39,8 @@ class TocTest( AbstractSystemTest ):
 
         # Link to chapter 1-10 should be there
         #for n in range(1, 10):
-        #    self.assertTrue( self.browser.find_element_by_partial_link_text( "Chapter %s" % n ), "No link to chapter %s found" % n)
-        self.assertTrue( self.browser.find_element_by_partial_link_text( "Chapter 1" ), "No link to chapter 1 found")
+        #    self.assertTrue( self.browser.find_element_by_partial_link_text( "%s %s" % ( self.locale[ 'chapter' ], n ) ), "No link to chapter %s found" % n)
+        self.assertTrue( self.browser.find_element_by_partial_link_text( "%s %s" % ( self.locale[ 'chapter' ], 1 ) ), "No link to chapter 1 found")
 
 
     def testLegendPresent(self):

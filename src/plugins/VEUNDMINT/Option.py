@@ -53,7 +53,7 @@ class Option(object):
         self.currentDir = os.path.abspath(currentDir) # one level above location of tex2x.py
         self.converterDir = os.path.join(self.currentDir, "src")
         self.logFilename = "conversion.log"
-        self.locale = "en_GB.utf8" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language, string definition depends on used system!
+        self.locale = "de_DE.utf8" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language, string definition depends on used system!
         locale.setlocale(locale.LC_ALL, self.locale)
         
         # VE&MINT conversion flags, using values 0 and 1 (integers)

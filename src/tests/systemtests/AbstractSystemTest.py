@@ -11,21 +11,37 @@ import json
 import os.path
 
 class AbstractSystemTest(unittest.TestCase):
-    baseUrl = "file:///home/alvaro/Workspace/VEUNDMINT_TUB_Brueckenkurs/tu9onlinekurstest/html"
-    basePath = "/home/alvaro/Workspace/VEUNDMINT_TUB_Brueckenkurs/tu9onlinekurstest"
-    i18nPath = "i18n"
-    lang = "en"
-    pageUrl = "sectionx2.1.0.html"
-
+    '''
+    baseURL can be a file or a http URL. 
+    baseURL should be absolute.
+    If it's a file, it should be the complete path to a file. 
+    If it's a http URL, then the path can use the forward slash if the server is so configured 
+    '''
+    baseUrl = "file:////var/www/html/tu9onlinekurstest/index.html"
+    '''
+    Absolute path to the checkout directory
+    '''
+    basePath = "~/Workspace/VEUNDMINT_TUB_Brueckenkurs/"
+    '''
+    Language to be used for locale
+    (it would be better to read this from Option.py, but import doesn't work as expected)
+    '''
+    lang = "de"
 
     def setUp(self):
         # load locale file
-        localePath = os.path.join( self.basePath, self.i18nPath, self.lang + ".json")
-        self.localeFile = open( localePath )
-        self.locale = json.load( self.localeFile )
+        try:
+            i18nPath = os.path.expanduser( os.path.join( self.basePath, "src/files/i18n/%s.json" % self.lang ) )
+            localeFile = open( i18nPath )
+            self.locale = json.load( localeFile )
+            
+        finally:
+            localeFile.close()
+
         # create the Firefox browser
         self.browser = webdriver.Firefox()
-        # set try to find an element for max 5 seconds
+
+        # set timeout to 5 seconds
         self.browser.implicitly_wait(5)
 
 
@@ -33,16 +49,13 @@ class AbstractSystemTest(unittest.TestCase):
         # close the browser
         if self.browser:
             self.browser.quit()
-        # close the locale file
-        if self.localeFile:
-            self.localeFile.close()
-
+            
 
     def _openStartPage(self):
         '''
         Opens the start page of the online course in a browser. Used to test navigation elements and toc.
         '''
-        self.browser.get( os.path.join( self.baseUrl, self.pageUrl ) )
+        self.browser.get( os.path.expanduser( self.baseUrl ) )
 
 
     def _navToChapter(self, chapter, section=None):
