@@ -38,7 +38,7 @@ class FinalTestTest( AbstractSystemTest ):
         # check that keywords use the correct locale
         pageText = self.browser.find_element_by_id( 'content' ).text.lower()
         self.assertTrue( self.locale["chapter"].lower() in pageText )
-        self.assertTrue( self.locale["module_labelprefix"].lower() in pageText )
+        self.assertTrue( self.locale["chapter"].lower() in pageText )
         self.assertTrue( self.locale["explanation_test"].lower() in pageText )
         self.assertTrue( self.locale["exercise_labelprefix"].lower() in pageText )
         # where do these come from?

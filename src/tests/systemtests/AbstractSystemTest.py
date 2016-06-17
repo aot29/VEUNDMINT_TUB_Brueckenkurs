@@ -23,8 +23,8 @@ class AbstractSystemTest(unittest.TestCase):
     '''
     basePath = "~/Workspace/VEUNDMINT_TUB_Brueckenkurs/"
     '''
-    Language to be used for locale
-    (it would be better to read this from Option.py, but import doesn't work as expected)
+    Language to be used for locale during testing
+    (it would be better to read this from Option.py, but import didn't work as expected)
     '''
     lang = "de"
 
