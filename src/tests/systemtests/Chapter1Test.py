@@ -11,13 +11,16 @@ class Chapter1Test( AbstractSystemTest ):
     '''
     Test chapter 1
     '''
+    def setUp( self ):
+        AbstractSystemTest.setUp(self)
+        # navigate to chapter 1
+        self._navToChapter( "1" )
+
 
     def testStartPageContent(self):
         '''
         Does the overview page list the expected number of chaper sections?
         '''
-        # Open chapter 1
-        self._navToChapter( "1" )
         # count number of sections listed
         content = self.browser.find_element_by_id( "content" )
         sections = content.find_elements_by_tag_name( "li" )
@@ -28,8 +31,6 @@ class Chapter1Test( AbstractSystemTest ):
         '''
         Does the "launch module" Button on the chapter 1 page contains the right locale?
         '''
-        # Open chapter 1
-        self._navToChapter( "1" )
         self.assertTrue( self.browser.find_element_by_partial_link_text( self.locale["module_starttext"].upper() ) )
 
 

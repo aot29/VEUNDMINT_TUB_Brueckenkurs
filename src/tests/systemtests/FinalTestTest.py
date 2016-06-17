@@ -17,6 +17,19 @@ class FinalTestTest( AbstractSystemTest ):
         self._navToChapter( "1", "1.5" )
 
 
+    def testSubmitEmpty(self):
+        '''
+        Submitting an empty form should bring no points
+        '''
+        resetBtn = self.browser.find_element_by_id( 'TESTRESET' )
+        resetBtn.click()
+        submitBtn = self.browser.find_element_by_id( 'TESTFINISH' )
+        submitBtn.click()
+        response = self.browser.find_element_by_id( 'TESTEVAL' ).text
+        expected = self.locale[ "msg-reached-points" ].replace( '$1', "0" ) # locale string is parametrized with $1
+        self.assertTrue( expected in response, "Submitting an empty test form did not return 0 points" )
+        
+
     def testLocale(self):
         '''
         Is the test in the right locale?
@@ -34,33 +47,56 @@ class FinalTestTest( AbstractSystemTest ):
         self.assertTrue( "The test evaluation will be displayed here".lower() in pageText )
 
 
-    def testExercise_1_5_5( self ):
+    def testAnswerIsMultipleChoice(self):
+        '''
+        Exercise 1.5.1 takes a multiple choice answer
+        The 3-state multiple choice buttons should appear.
+        '''
+        # the last table cell (bottom/right) should not be empty
+        exName = 'ADIV_1.5.1'
+        lastTableCell = self.browser.find_element_by_xpath( "//div[@id='%s']/table//tr[last()]/td[last()]" % exName )
+        self.assertTrue( lastTableCell.find_element_by_tag_name( 'input' ), 
+                         "Multiple choice %s question is missing at least one answer button" % exName )
+        
+        
+    def testAnswerIsExpression( self ):
         '''
         Exercise 1.5.5 takes a mathematical expression as answer
 
         Is the correct solution recognized (marked in green)?
         Is the wrong solution recognized (marked in red)?
         '''
+        # get exercise
+        exName = 'ADIV_1.5.5'
+        exEl = self.browser.find_element_by_id( exName )
         # get the input field
-        inputEl = self.browser.find_element_by_id( "QFELD_1.5.2.QF6" )
+        inputEl = exEl.find_element_by_tag_name( 'input' )
+        # get the check field (question mark image)
+        checkField = exEl.find_element_by_tag_name( 'img' )
         # get the submit button
         submitBtn = self.browser.find_element_by_id( 'TESTFINISH' )
         
         # if input field is empty, icon should be "question mark"
         inputEl.clear()
         submitBtn.click()
-        self.assertTrue( "questionmark" in self.browser.find_element_by_id( "QMQFELD_1.5.2.QF6" ).get_attribute( "src" ), "Answer is displaying the wrong image" )
+        self.assertTrue( "questionmark" in checkField.get_attribute( "src" ), 
+                         "Exercise %s is displaying the wrong image when empty" % exName )
 
         # if answer is wrong, icon should be "false"
         inputEl.send_keys( "1/0" )
         submitBtn.click()
-        self.assertTrue( "false" in self.browser.find_element_by_id( "QMQFELD_1.5.2.QF6" ).get_attribute( "src" ), "Answer is displaying the wrong image" )
+        self.assertTrue( "false" in checkField.get_attribute( "src" ), 
+                         "Exercise %s is displaying the wrong image when wrong" % exName )
 
+
+        # this is a problem as solution has to be entered in the test method
+         
         # Put the solution in the input field: icon should be "right"
-        inputEl.clear()
-        inputEl.send_keys( "x^(3/2)" )
-        submitBtn.click()
-        self.assertTrue( "right" in self.browser.find_element_by_id( "QMQFELD_1.5.2.QF6" ).get_attribute( "src" ), "Answer is displaying the wrong image" )
+        # inputEl.clear()
+        # inputEl.send_keys( "solution goes here" )
+        # submitBtn.click()
+        # self.assertTrue( "right" in checkField.get_attribute( "src" ), 
+        #                  "Exercise %s is displaying the wrong image when correct" % exName )
         
         
 
