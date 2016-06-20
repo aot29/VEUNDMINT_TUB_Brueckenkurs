@@ -10,25 +10,30 @@ Beschreibung der git-Zweige (branches) im Projekt ve-und-mint:
 
 Hauptzweige:
  - master                     [aktuelle getestete Version von Technik und Inhalt, das eigentliche Projekt]
- - TU9Onlinekurs              [Live-Version des Onlinekurses]
+ - TU9Onlinekurs              [Live-Version des Onlinekurses, FINGER WEG]
 
 Entwicklungszweige:
  - develop_software           [Arbeitsversion der Technik, hier werden Erweiterungen programmiert und Programmfehler korrigiert]
  - develop_content            [Arbeitsversion der Inhalte, hier werden inhaltliche Änderungen in die TeX-Dateien eingepflegt]
- 
+ - tuberlin_brueckenkurs      [Arbeitsversion der TU Berlin für den mehrsprachigen Kurs]
+
 Abspaltungen:
- - VMBeta                     [Alte Beta-Version des Onlinekurses]
  - MatheV4_2015vak            [Der Online-Mathevorkurs V4 für WiIng und TVWL am KIT verwendet gleiche Technik, aber andere Inhalte]
  - hm1test_unihannover_ws2015 [Sonderversion für die Uni Hannover, die nur den Eingangstest des Kurses als eTest vor Ort haben will]
-
+ - develop_python             [Wurde für die Entwicklung der Python-Version des Konverters eingesetzt, ist jetzt obsolet]
+ - VMBeta                     [Alte Beta-Version des Onlinekurses, ist jetzt obsolet]
+ 
 Sonstige:
  - playground                 [Hier darf mit dem Code und den Modulen frei herumgespielt werden]
- 
+
  
 Beschreibung der Ordner innerhalb der Zweige:
- - module_veundmint           [Die LaTeX-Quelldateien des Projekts, neben den TU9-Modulen noch einige Sondermodule]
+ - module_veundmint           [Die LaTeX-Quelldateien des Onlinebrückenkurses Mathematik]
+ - module_physik              [Die LaTeX-Quelldateien des Onlinebrückenkurses Physik]
  - module_hannovertest        [Quellen für den eTest der Uni Hannover]
  - src                        [Programmcode und Konvertermaterialien]
+ - releases                   [Enthält die Releases der Kurse und die Beschreibungsdatei, wird automatisch durch das Programm
+                               src/compile_variants.py beschrieben und SOLLTE NICHT MANUELL EDITIERT WERDEN]
  
  
 ------------------------- Der Autokonverter ---------------------------------------------------------------------
@@ -48,10 +53,15 @@ Der (aktuelle) Python-Konverter wird gestartet mit
 
 python3 tex2x.py VEUNDMINT
 
-innerhalb des Verzeichnisses src
+innerhalb des Verzeichnisses src [option=wert, ...]
 
-Dafür muss unter Linux python3 installiert sein (mindestens Version 3.4)
-sowie die Python-Module GitPython, html5lib, lxml, pytidylib, simplejson, glob2.
+Das Optionen-Objekt wird über eine Zuweisung der Form options=DATEINAME eingestellt,
+wird es leer gelassen, so wird das Standardobjekt src/plugins/VEUNDMINT/Option.py genommen
+(es gehört zum TU9-Onlinebrückenkurs Mathematik).
+
+Für die Nutzung des Konverters muss python3 installiert sein (mindestens Version 3.4)
+sowie die Python-Module GitPython, html5lib, lxml, pytidylib, simplejson, glob2 (mindestens, ggf. mehr Module).
+
 Diese kann man (als root) mit dem Kommando python3 -m pip install <name>
 automatisch installieren lassen.
 
@@ -66,8 +76,8 @@ Der Konverter selbst gibt nur wichtige Fehler- und Informationsmeldungen aus,
 eine vollständige Liste aller Meldungen und Zeitangaben werden in die Datei
 conversion.log im Hauptverzeichnis geschrieben.
 
-Das Konvertierungstool an sich (tex2struct, tex2x, grundlegende Plugins) stehen unter GPL.
-Die Plugins für den VEUNDMINT-Kurs (im Ordner src/plugins/VEUNDMINT) stehen unter der LGPL.
+Das Konvertierungstool an sich (tex2struct, tex2x, VE&MINT-Plugins) stehen unter GPL.
+Die Makro- und Hilfsdateien für den VE&MINT-Kurs (js/tex/html/css/php-Dateien) stehen unter der LGPL.
 
 ------------------------- Alter PERL-Konverter -----------------------------------------------------
 
