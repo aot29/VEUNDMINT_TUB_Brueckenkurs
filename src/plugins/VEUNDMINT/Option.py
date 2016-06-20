@@ -82,6 +82,8 @@ class Option(object):
 
                 
         # VE&MINT locale-dependent source/target parameters
+        # For the moment, build either the DE or the EN version. 
+        # This will change, as the user should be able to switch languages, so both versions will be built
         if self.locale == 'en_GB.utf8' :                     # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
             self.module = "tree_tu9onlinekurs_en.tex"
             self.macrofilename = "mintmod_engl"

@@ -38,9 +38,8 @@ class TocTest( AbstractSystemTest ):
         self.assertTrue( toc, "Page toc is missing" )
 
         # Link to chapter 1-10 should be there
-        #for n in range(1, 10):
-        #    self.assertTrue( self.browser.find_element_by_partial_link_text( "%s %s" % ( self.locale[ 'chapter' ], n ) ), "No link to chapter %s found" % n)
-        self.assertTrue( self.browser.find_element_by_partial_link_text( "%s %s" % ( self.locale[ 'chapter' ], 1 ) ), "No link to chapter 1 found")
+        for n in range(1, 10):
+            self.assertTrue( self.browser.find_element_by_partial_link_text( "%s %s" % ( self.locale[ 'chapter' ], n ) ), "No link to chapter %s found" % n)
 
 
     def testLegendPresent(self):

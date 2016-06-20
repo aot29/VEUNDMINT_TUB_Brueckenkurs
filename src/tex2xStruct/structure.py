@@ -257,9 +257,9 @@ class Structure(object):
         
         try:
             xmlfile = open(self.options.ttmFile, "rb")
-            xmltext = xmlfile.read().decode()
+            xmltext = xmlfile.read().decode( 'utf8', 'ignore' ) # force utf8 here, otherwise it won't build
             xmlfile.close()
-            self.sys.message(self.sys.VERBOSE, "Successfully decoded xml output")
+            self.sys.message(self.sys.VERBOSEINFO, "Successfully decoded xml output")
         except:
             # old ttm produces latin1 encoded xml if given tex was latin1
             self.sys.message(self.sys.CLIENTINFO, "Could not decode xml output as utf8, trying encoding " + self.options.stdencoding)
