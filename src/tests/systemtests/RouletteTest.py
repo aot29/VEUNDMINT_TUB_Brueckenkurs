@@ -60,8 +60,6 @@ class RouletteTest( AbstractSystemTest ):
         Is the correct solution recognized (marked in green)?
         Is the wrong solution recognized (marked in red)?
         '''
-        # navigate to chapter 1 section 1.2
-        self._navToChapter( "1", "1.2" )
 
         # Call the hint-javascript to load the solution
         self.browser.execute_script( "toggle_hint('MHint1')" )
