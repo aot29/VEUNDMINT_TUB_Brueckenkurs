@@ -68,6 +68,16 @@ function mygcd(a, b) {
   return mygcd(b, a % b);
 }
 
+function getIndeterminatePropName() {
+    /** 
+    Workaround for Firefox Bug https://bugzilla.mozilla.org/show_bug.cgi?id=1281733
+    
+    Use 'readOnly' instead of 'indeterminate', otherwise Firefox (on Linux)
+    will mess up the tristate checkbox display (however the values are correct).
+    **/
+    var isFirefox = /Firefox/i.test( navigator.userAgent );        
+    return isFirefox? 'readOnly' : 'indeterminate';    
+}
 
 // Erzeugt das zu einem interaktiven Fragefeld gehoerende JS-Objekt
 // uxid = unique exercise id zur Verwendung mit intersiteobj
@@ -188,7 +198,11 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
     if (type == 2) {
       // Uebersetzen der values fuer die Loesung: tex: 0 und 1, js: 0 = noch nicht geclickt, 1 = angewaehlt, 2 = abgewaehlt
       if (ob.solution == "0") ob.solution = "2"; else ob.solution = "1";
-      ob.clear = function() { this.element.checked = false; this.element.indeterminate = true; this.value = "0"; this.element.cval = "0"; this.message = ""; this.image.src = "../../images/questionmark.png"; notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
+      ob.clear = function() { 
+        this.element.checked = false; 
+        this.element[ getIndeterminatePropName() ] = true; 
+        this.value = "0"; 
+        this.element.cval = "0"; this.message = ""; this.image.src = "../../images/questionmark.png"; notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
       ob.rawloadvalue = function(val) {
           this.value = val;
           this.element.cval = val;
@@ -197,17 +211,17 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
           if ((val == "0") || (val == "")) {
               // nothing selected yet
               this.element.checked = false;
-              this.element.indeterminate = true;
+              this.element[getIndeterminatePropName()] = true;
           }
           if (v == "1") {
               // yes selected
               this.element.checked = true;
-              this.element.indeterminate = false;
+              this.element[getIndeterminatePropName()] = false;
           }
           if (v == "2") {
               // no selected
               this.element.checked = false;
-              this.element.indeterminate = false;
+              this.element[getIndeterminatePropName()] = false;
           }
       }
     } else {
@@ -593,7 +607,7 @@ function check_group(input_from, input_to) {
                               var f = d.getElementById(FVAR[k].id);
                               if (f != null) {
                                   f.checked = false;
-                                  f.indeterminate = false;
+                                  f.prop( getIndeterminatePropName(), false);
                                   f.setAttribute("data-val", "2")
                               }
                               notifyPoints(k, 1, SOLUTION_TRUE); // sollte das nicht false sein? Aber ist nur Bild..
@@ -1261,21 +1275,21 @@ function InitResults(empty)
                     // nothing selected yet
                     e.cval = "0";
                     e.checked = false;
-                    e.indeterminate = true;
+                    e[getIndeterminatePropName()] = true;
                     FVAR[i].clear();
                 }
                 if (v == "1") {
                     // yes selected
                     e.cval = "1";
                     e.checked = true;
-                    e.indeterminate = false;
+                    e[getIndeterminatePropName()] = false;
                     check_group(i,i);
                 }
                 if (v == "2") {
                     // no selected
                     e.cval = "2";
                     e.checked = false;
-                    e.indeterminate = false;
+                    e[getIndeterminatePropName()] = false;
                     check_group(i,i);
                 }
                 break;
@@ -2099,7 +2113,7 @@ function applyLayout(first) {
          content: { attr: 'tiptitle' },
          show: { event: "mouseenter" }
   });
-  
+    
   // enable tristate checkboxes (but only those used for exercises)
   var $check = $("input[mtristate=1]"), el;
   $check
@@ -2116,21 +2130,21 @@ function applyLayout(first) {
             // unchecked ->  indeterminate
             case "2":
                 el.prop('cval', "0");
-                el.prop('indeterminate', true);
+                el.prop(getIndeterminatePropName(), true);
                 el.prop('checked', false); // remember indeterminate is independent of checked
                 break;
             
             // checked -> unchecked
             case "1":
                 el.prop('cval', "2");
-                el.prop('indeterminate', false);
+                el.prop(getIndeterminatePropName(), false);
                 el.prop('checked', false);
                 break;
             
             // indeterminate -> checked
             default:
                 el.prop('cval', "1");
-                el.prop('indeterminate', false);
+                el.prop(getIndeterminatePropName(), false);
                 el.prop('checked', true);
                 break;
         }
