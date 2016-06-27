@@ -8,30 +8,20 @@ Base class for all system tests
 import unittest
 from selenium import webdriver
 import json
-import os.path
+import os.path, ConfigParser
 
 class AbstractSystemTest(unittest.TestCase):
-    '''
-    baseURL can be a file or a http URL. 
-    baseURL should be absolute.
-    If it's a file, it should be the complete path to a file. 
-    If it's a http URL, then the path can use the forward slash if the server is so configured 
-    '''
-    baseUrl = "file:////var/www/html/tu9onlinekurstest/index.html"
-    '''
-    Absolute path to the checkout directory
-    '''
-    basePath = "~/Workspace/VEUNDMINT_TUB_Brueckenkurs/"
-    '''
-    Language to be used for locale during testing
-    (it would be better to read this from Option.py, but import didn't work as expected)
-    '''
-    lang = "de"
-
+    '''Path to configuration file for the tests.'''
+    configPath =  "../testconfig.ini"
+    
     def setUp(self):
+        #Read the configuration file
+        self.config = ConfigParser.ConfigParser()
+        self.config.read( self.configPath )
+
         # load locale file
         try:
-            i18nPath = os.path.expanduser( os.path.join( self.basePath, "src/files/i18n/%s.json" % self.lang ) )
+            i18nPath = os.path.expanduser( os.path.join( self._getConfigParam( 'basePath' ), "src/files/i18n/%s.json" % self._getConfigParam( 'lang' ) ) )
             localeFile = open( i18nPath )
             self.locale = json.load( localeFile )
             
@@ -51,11 +41,15 @@ class AbstractSystemTest(unittest.TestCase):
             self.browser.quit()
             
 
+    def _getConfigParam(self, key):
+        return self.config.get( 'defaults', key )
+        
+
     def _openStartPage(self):
         '''
         Opens the start page of the online course in a browser. Used to test navigation elements and toc.
         '''
-        self.browser.get( os.path.expanduser( self.baseUrl ) )
+        self.browser.get( os.path.expanduser( self._getConfigParam( 'baseUrl' ) ) )
 
 
     def _navToChapter(self, chapter, section=None):
