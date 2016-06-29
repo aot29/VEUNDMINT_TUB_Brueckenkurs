@@ -10,9 +10,8 @@
 #
 
 .DEFAULT_GOAL := build_DE
+BASEDIR = ../src
 
-prepare:
-	cd ../src
-
-build_DE: prepare
-	python3 tex2x.py VEUNDMINT lang=de
+build_DE:
+	cd $(BASEDIR)
+	cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=de
