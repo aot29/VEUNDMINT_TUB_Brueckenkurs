@@ -297,6 +297,7 @@ class Option(object):
         self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
         self.convinfofile = "convinfo.js"
         self.i18nFiles = os.path.join( self.converterCommonFiles, "i18n") # localization / internationalization files
+
         # load localization files
         i18nPath = os.path.join( self.i18nFiles, self.lang + ".json" )
         self.strings = json.load( open( i18nPath ) )

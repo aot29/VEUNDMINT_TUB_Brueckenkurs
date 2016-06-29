@@ -10,7 +10,10 @@
 #
 
 .DEFAULT_GOAL := build_DE
+<<<<<<< HEAD
 .BASEDIR = "../src"
+=======
+>>>>>>> ae4c8e7d9868d77851ceeada3c7cfa717d5aed7a
 
 prepare:
 	cd ../src
