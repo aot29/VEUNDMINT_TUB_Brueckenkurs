@@ -10,7 +10,7 @@
 #
 
 .DEFAULT_GOAL := build_DE
-BASEDIR = ../src
+BASEDIR = "../src"
 
 build_DE:
 	cd $(BASEDIR)

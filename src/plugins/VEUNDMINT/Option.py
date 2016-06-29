@@ -75,10 +75,6 @@ class Option(object):
         self.module = ( lambda locale: "tree_tu9onlinekurs_en.tex" if locale == 'en_GB.utf8' else "tree_tu9onlinekurs.tex" ) ( self.locale)
         # macrofile to use. It's probably not a good idea to have 2 separate macri files, as they change often
         self.macrofilename = ( lambda locale: "mintmod_engl" if locale == 'en_GB.utf8' else "mintmod" ) ( self.locale)
-
-        # load localization files
-        i18nPath = os.path.join( self.i18nFiles, self.lang + ".json" )
-        self.strings = json.load( open( i18nPath ) )
         
         # VE&MINT conversion flags, using values 0 and 1 (integers)
         self.testonly = 0
@@ -301,6 +297,10 @@ class Option(object):
         self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
         self.convinfofile = "convinfo.js"
         self.i18nFiles = os.path.join( self.converterCommonFiles, "i18n") # localization / internationalization files
+
+        # load localization files
+        i18nPath = os.path.join( self.i18nFiles, self.lang + ".json" )
+        self.strings = json.load( open( i18nPath ) )
 
         # HTML/JS/CSS template options
         self.template_precss = "precss"
