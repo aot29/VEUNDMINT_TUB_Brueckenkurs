@@ -53,8 +53,28 @@ class Option(object):
         self.currentDir = os.path.abspath(currentDir) # one level above location of tex2x.py
         self.converterDir = os.path.join(self.currentDir, "src")
         self.logFilename = "conversion.log"
-        self.locale = "de_DE.utf8" # define Pythons locale (impact for example on sorting umlauts), should be set to locale of course language, string definition depends on used system!
+
+        '''
+        Localization, language and encoding settings
+        
+        Default language is 'de', but may be overriden by the build script 
+        to build different language versions.
+        '''
+        # Language should be parametrizable, so values depend on the lang parameter
+        self.lang = ( lambda override: 'en' if 'lang=en' in override else 'de' ) ( override )
+        
+        # define Pythons locale (impact for example on sorting umlauts), 
+        # should be set to locale of course language, string definition depends on used system!
+        self.locale = ( lambda lang: "de_DE.utf8" if lang == 'de' else 'en_GB.utf8' ) ( self.lang )
         locale.setlocale(locale.LC_ALL, self.locale)
+        
+        # Read the language ISO code (en, de...) from the locale code (de_DE.utf8...)
+        self.lang = self.locale.split('_')[0]
+        
+        # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
+        self.module = ( lambda locale: "tree_tu9onlinekurs_en.tex" if locale == 'en_GB.utf8' else "tree_tu9onlinekurs.tex" ) ( self.locale)
+        # macrofile to use. It's probably not a good idea to have 2 separate macri files, as they change often
+        self.macrofilename = ( lambda locale: "mintmod_engl" if locale == 'en_GB.utf8' else "mintmod" ) ( self.locale)
         
         # VE&MINT conversion flags, using values 0 and 1 (integers)
         self.testonly = 0
@@ -82,15 +102,7 @@ class Option(object):
 
                 
         # VE&MINT locale-dependent source/target parameters
-        # For the moment, build either the DE or the EN version. 
-        # This will change, as the user should be able to switch languages, so both versions will be built
-        if self.locale == 'en_GB.utf8' :                     # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
-            self.module = "tree_tu9onlinekurs_en.tex"
-            self.macrofilename = "mintmod_engl"
-                                
-        else :
-            self.module = "tree_tu9onlinekurs.tex"               
-            self.macrofilename = "mintmod"
+        # Build either the DE or the EN version. 
             
         # VE&MINT source/target parameters
         self.macrofile = self.macrofilename + ".tex"
@@ -285,6 +297,9 @@ class Option(object):
         self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
         self.convinfofile = "convinfo.js"
         self.i18nFiles = os.path.join( self.converterCommonFiles, "i18n") # localization / internationalization files
+        # load localization files
+        i18nPath = os.path.join( self.i18nFiles, self.lang + ".json" )
+        self.strings = json.load( open( i18nPath ) )
 
         # HTML/JS/CSS template options
         self.template_precss = "precss"
@@ -372,14 +387,6 @@ class Option(object):
             "PRE_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "preprocessor_mintmodtex.py"),
             "HTML5_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "html5_mintmodtex.py")
         }
-
-        # Read the language ISO code (en, de...) from the locale code (de_DE.utf8...)
-        self.lang = self.locale.split('_')[0]
-        
-        # load localization files
-        i18nPath = os.path.join( self.i18nFiles, self.lang + ".json" )
-        self.strings = json.load( open( i18nPath ) )
-
         
         if self.dopdf == 1:
             self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdfmini.png' border='0' /></a>"

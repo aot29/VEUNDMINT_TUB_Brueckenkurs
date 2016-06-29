@@ -38,7 +38,7 @@ parser.add_argument("-v", "--verbose", help="increases verbosity", action="store
 parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
 
 args = parser.parse_args()
-#print(args.plugin)
+#print(args.override)
     
 # TODO: tex2x should be callable from everywhere, right now directory joins assume we are in src
 if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
