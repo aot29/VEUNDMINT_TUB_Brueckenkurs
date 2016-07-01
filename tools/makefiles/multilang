@@ -1,20 +1,22 @@
 # Builds the multi-language version
 #
-# This could be implemented in Python, but in the present stage of development,
+# This file is here for 2 reasons:
+# 1. This could be implemented in Python, but in the present stage of development,
 # it would be unwise to add the extra layer of complexity.
 #
-# Some form of automation is necessary to setup  the continuous integration server
+# 2. Some form of automation is necessary to setup the continuous integration server
 #
-# Remember to always use tabs instead of spaces! 
+# Caveats:
+# * Remember to always use tabs instead of spaces! 
 # Specially when doing copy+paste, tabs will sometimes be replaced by spaces.
 # Make will then throw a "missing separator" error.
+# * This script should work on any Unix system, but the result should be cross-plattform,
+# so specifically don't use softlinks.
 #
-# Using GNU Make invoke as:
+# Using GNU Make, invoke as:
 #
 # cd <VEUNDMINT checkout path>
 # make -f tools/makefiles/multilang
-#
-# Should work on any Unix system.
 #
 
 .DEFAULT_GOAL := all
@@ -41,7 +43,7 @@ all: convert merge fixlinks cleanup
 
 
 #
-# Use the converter to build a version
+# Use the converter to build the version specified by CURRENT_LANG
 #
 define convert_cmd
 	# prefixed with "-" to ignore converter errors
@@ -75,6 +77,8 @@ merge:
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
 
 	# paths to common (de/en) external files
+	# Don't use UNix softlinks here, 
+	# as it the output should also work on non-Unixes.
 	cd $(OUTPUT)/html && ln -s ../*.js .
 	cd $(OUTPUT)/html && ln -s ../*.png .
 	cd $(OUTPUT)/html && ln -s ../images .
@@ -86,7 +90,7 @@ merge:
 	cd $(OUTPUT)/html && ln -s ../MathJax .
 
 #
-# Fix the links using Unix shell commands
+# Fix the links using shell commands.
 #
 define fixlinks_cmd
 	# extra paths for fonts and tooltip images, as the path depends on
