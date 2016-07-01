@@ -1,34 +1,69 @@
 # Builds the multi-language version
 #
-# Will be integrated in the continuous integration server (when it's there)
-# Remember to always use tabs instead of spaces
+# This could be implemented in Python, but in the present stage of development,
+# it would be unwise to add the extra layer of complexity.
 #
-# invoke as:
+# Some form of automation is necessary to setup  the continuous integration server
 #
-# cd VEUNDMINT checkout path
+# Remember to always use tabs instead of spaces! 
+# Specially when doing copy+paste, tabs will sometimes be replaced by spaces.
+# Make will then throw a "missing separator" error.
+#
+# Using GNU Make invoke as:
+#
+# cd <VEUNDMINT checkout path>
 # make -f tools/makefile
 #
-# Works only on Unix systems
+# Should work on any Unix system.
 #
 
 .DEFAULT_GOAL := all
-BASEDIR = "../src"
+
+# Path to source dir, relative to <VEUNDMINT checkout path>
+BASEDIR = src
+
+# Name of the output dir to be created 
 OUTPUT = tu9onlinekurstest
-STARTPAGE = sectionx3.1.0.html
+
+# Language the index.html will point to by default,
+# possible values: de, en
+DEFAULT_LANG = de
+
+# Declare as phony so targets will run even if there's a file by that name
+.PHONY: convert merge fixlinks cleanup all 
 
 
-build_DE:
+#
+# Build everything
+#
+all: convert merge fixlinks cleanup
+	echo "ready"
+
+
+#
+# Use the converter to build a version
+#
+define convert_cmd
 	# prefixed with "-" to ignore converter errors
-	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=de output=$(OUTPUT)_de
+	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=$(CURRENT_LANG) output=$(OUTPUT)_$(CURRENT_LANG)
+endef
 
 
-build_EN:
-	# prefixed with "-" to ignore converter errors
-	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=en output=$(OUTPUT)_en
+#
+# Build the English and the German version
+#
+convert:
+	# set CURRENT_LANG at runtime.
+	$(eval CURRENT_LANG := de)
+	$(convert_cmd)
+	$(eval CURRENT_LANG := en)
+	$(convert_cmd)
 
 
-#all: build_DE build_EN
-all:
+#
+# Merge the 2 versions together
+#
+merge:
 	mv $(OUTPUT)_de $(OUTPUT)
 
 	# move German HTML from /html to /html/de
@@ -39,22 +74,63 @@ all:
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
 
-	# fix links to common (de/en) external files
-	cd $(OUTPUT)/html
-	ln -s ../*.js .
-	ln -s ../*.png .
-	ln -s ../images .
-	ln -s ../qtip2 .
-	ln -s ../css .
-	ln -s ../datatables .
-	ln -s ../fonts .
-	ln -s ../i18n .
-	ln -s ../MathJax .
+	# paths to common (de/en) external files
+	cd $(OUTPUT)/html && ln -s ../*.js .
+	cd $(OUTPUT)/html && ln -s ../*.png .
+	cd $(OUTPUT)/html && ln -s ../images .
+	cd $(OUTPUT)/html && ln -s ../qtip2 .
+	cd $(OUTPUT)/html && ln -s ../css .
+	cd $(OUTPUT)/html && ln -s ../datatables .
+	cd $(OUTPUT)/html && ln -s ../fonts .
+	cd $(OUTPUT)/html && ln -s ../i18n .
+	cd $(OUTPUT)/html && ln -s ../MathJax .
 
-	# fix links in German version
-	cd $(OUTPUT)/html/de && find . *.html -type f -exec sed -i "s|href=\"\.\./html|href=\"\.\./de|g" {} \;
-	cd $(OUTPUT)/html/de && find . *.html -type f -exec sed -i "s|href=\"\.\./\.\./html|href=\"\.\./\.\./de|g" {} \;
+#
+# Fix the links using Unix shell commands
+#
+define fixlinks_cmd
+	# extra paths for fonts and tooltip images, as the path depends on
+	# javascript var linkPath, which is changed below to fix the redirects
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && ln -s ../fonts .
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && ln -s ../images .
 
-	# fix links in English version
-	cd $(OUTPUT)/html/en && find . *.html -type f -exec sed -i "s|href=\"\.\./html|href=\"\.\./en|g" {} \;
-	cd $(OUTPUT)/html/en && find . *.html -type f -exec sed -i "s|href=\"\.\./\.\./html|href=\"\.\./\.\./en|g" {} \;
+	# copy redirects to each language version
+	cd $(OUTPUT) && cp *.html html/$(CURRENT_LANG)
+
+	# fix links in HTML
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -type f -exec sed -i "s|href=\"\.\./html|href=\"\.\./$(CURRENT_LANG)|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -type f -exec sed -i "s|href=\"\.\./\.\./html|href=\"\.\./\.\./$(CURRENT_LANG)|g" {} \;
+
+	# fix links in Javascript
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -type f -exec sed -i "s|var linkPath = \"\.\./\"|var linkPath = \"\.\./$(CURRENT_LANG)/\"|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -type f -exec sed -i "s|var linkPath = \"\.\./\.\./\"|var linkPath = \"\.\./\.\./$(CURRENT_LANG)/\"|g" {} \;
+
+	# fix link in redirects (-maxdepth 0 is important here)
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -maxdepth 0 -type f -exec sed -i "s|url=html/|url=|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -maxdepth 0 -type f -exec sed -i "s|window\.location\.href = \"html/|window\.location\.href = \"|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -maxdepth 0 -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
+
+	# fix index.html to point to default language version
+	cd $(OUTPUT) && sed -i "s|url=html|url=html/$(DEFAULT_LANG)|g" index.html
+	cd $(OUTPUT) && sed -i "s|window\.location\.href = \"html|window\.location\.href = \"html/$(DEFAULT_LANG)|g" index.html
+	cd $(OUTPUT) && sed -i "s|href=\"html|href=\"html/$(DEFAULT_LANG)|g" index.html
+	# fixme
+	cd $(OUTPUT) && sed -i "s|html/$(DEFAULT_LANG)/$(DEFAULT_LANG)/|html/$(DEFAULT_LANG)/|g" index.html
+endef
+
+
+#
+# Fix the link paths in the HTML files
+#
+fixlinks:
+	# set CURRENT_LANG at runtime. Eval writes the line into the target
+	$(eval CURRENT_LANG := de)
+	$(fixlinks_cmd)
+	$(eval CURRENT_LANG := en)
+	$(fixlinks_cmd)
+
+
+cleanup:
+	rm -Rf $(OUTPUT)_en
+
+
