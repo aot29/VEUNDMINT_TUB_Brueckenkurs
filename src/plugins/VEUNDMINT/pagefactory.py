@@ -170,7 +170,8 @@ class PageFactory(object):
            +  "var SECTION_ID = " + ssn + ";\n" \
            +  "var docName = \"" + tc.docname + "\";\n" \
            +  "var fullName = \"" + self.outputplugin.outputsubdir + "/" + tc.link + "." + self.outputplugin.outputextension + "\";\n" \
-           +  "var linkPath = \"" + tc.backpath + "\";\n"
+           +  "var linkPath = \"" + tc.backpath + "\";\n" \
+           +  "var fontPath = \"" + tc.backpath + "\";\n"
        
         tc.html = tc.html.replace("// <JSCRIPTPRELOADTAG>", js + "// <JSCRIPTPRELOADTAG>")
 

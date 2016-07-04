@@ -1977,8 +1977,8 @@ function applyLayout(first) {
   
   var css = DYNAMICCSS;
   
-    
-  css = css.replace(/\[LINKPATH\]/g, linkPath);
+  // Font path and link path are not necessarily the same, in case of multi-language site
+  css = css.replace(/\[LINKPATH\]fonts/g, fontPath);
   
   for (var ckey in COLORS) {
     var rex = new RegExp("\\[-" + ckey + "-\\]",'g');
