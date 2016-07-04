@@ -11,7 +11,7 @@
 # Specially when doing copy+paste, tabs will sometimes be replaced by spaces.
 # Make will then throw a "missing separator" error.
 # * This script should work on any Unix system, but the result should be cross-plattform,
-# so specifically don't use softlinks.
+# so specifically don't use softlinks (ln -s is bad).
 #
 # Using GNU Make, invoke as:
 #
@@ -38,7 +38,7 @@ DEFAULT_LANG = de
 #
 # Build everything
 #
-all: convert merge fixlinks cleanup
+all: convert merge fix cleanup
 	echo "ready"
 
 
@@ -52,7 +52,7 @@ endef
 
 
 #
-# Build the English and the German version
+# Build the English and the German version.
 #
 convert:
 	# set CURRENT_LANG at runtime.
@@ -63,7 +63,7 @@ convert:
 
 
 #
-# Merge the 2 versions together
+# Merge the 2 versions together.
 #
 merge:
 	mv $(OUTPUT)_de $(OUTPUT)
@@ -76,62 +76,79 @@ merge:
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
 
-	# paths to common (de/en) external files
-	# Don't use UNix softlinks here, 
-	# as it the output should also work on non-Unixes.
-	cd $(OUTPUT)/html && ln -s ../*.js .
-	cd $(OUTPUT)/html && ln -s ../*.png .
-	cd $(OUTPUT)/html && ln -s ../images .
-	cd $(OUTPUT)/html && ln -s ../qtip2 .
-	cd $(OUTPUT)/html && ln -s ../css .
-	cd $(OUTPUT)/html && ln -s ../datatables .
-	cd $(OUTPUT)/html && ln -s ../fonts .
-	cd $(OUTPUT)/html && ln -s ../i18n .
-	cd $(OUTPUT)/html && ln -s ../MathJax .
 
 #
 # Fix the links using shell commands.
+# Don't use Unix softlinks here (ln -s),
+# as the output should also work on non-Unixes.
 #
-define fixlinks_cmd
-	# extra paths for fonts and tooltip images, as the path depends on
-	# javascript var linkPath, which is changed below to fix the redirects
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && ln -s ../fonts .
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && ln -s ../images .
-
-	# copy redirects to each language version
+define fixLinks_cmd
+	# copy HTML-redirects to each language version
 	cd $(OUTPUT) && cp *.html html/$(CURRENT_LANG)
 
-	# fix links in HTML
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -type f -exec sed -i "s|href=\"\.\./html|href=\"\.\./$(CURRENT_LANG)|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -type f -exec sed -i "s|href=\"\.\./\.\./html|href=\"\.\./\.\./$(CURRENT_LANG)|g" {} \;
+	# fix links to HTML pages
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./html|href=\"\.\./$(CURRENT_LANG)|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./\.\./html|href=\"\.\./\.\./$(CURRENT_LANG)|g" {} \;
 
-	# fix links in Javascript
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -type f -exec sed -i "s|var linkPath = \"\.\./\"|var linkPath = \"\.\./$(CURRENT_LANG)/\"|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -type f -exec sed -i "s|var linkPath = \"\.\./\.\./\"|var linkPath = \"\.\./\.\./$(CURRENT_LANG)/\"|g" {} \;
+	# fix paths in Javascript
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var linkPath = \"\.\./\"|var linkPath = \"\.\./$(CURRENT_LANG)/\"|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var linkPath = \"\.\./\.\./\"|var linkPath = \"\.\./\.\./$(CURRENT_LANG)/\"|g" {} \;
 
-	# fix link in redirects (-maxdepth 0 is important here)
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -maxdepth 0 -type f -exec sed -i "s|url=html/|url=|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -maxdepth 0 -type f -exec sed -i "s|window\.location\.href = \"html/|window\.location\.href = \"|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . *.html -maxdepth 0 -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
+	# fix path to font files
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var fontPath = \"\.\./\"|var fontPath = \"\.\./\.\./fonts/\"|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var fontPath = \"\.\./\.\./\"|var fontPath = \"\.\./\.\./\.\./fonts/\"|g" {} \;
 
-	# fix index.html to point to default language version
-	cd $(OUTPUT) && sed -i "s|url=html|url=html/$(DEFAULT_LANG)|g" index.html
-	cd $(OUTPUT) && sed -i "s|window\.location\.href = \"html|window\.location\.href = \"html/$(DEFAULT_LANG)|g" index.html
-	cd $(OUTPUT) && sed -i "s|href=\"html|href=\"html/$(DEFAULT_LANG)|g" index.html
-	# fixme
-	cd $(OUTPUT) && sed -i "s|html/$(DEFAULT_LANG)/$(DEFAULT_LANG)/|html/$(DEFAULT_LANG)/|g" index.html
+	# fix link in redirects (-maxdepth 1 is important here)
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|url=html/|url=|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|window\.location\.href = \"html/|window\.location\.href = \"|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
+endef
+
+
+#
+# Set the locale for i18n and MathJax
+#
+define setLocale_cmd
+	# set locale of HTML page (for i18n). The HTML locale is currently set in the HTML template.
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|lang=\"de\"|lang=\"$(CURRENT_LANG)\"|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|lang=\"en\"|lang=\"$(CURRENT_LANG)\"|g" {} \;
+
+	# set the MathJax locale
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|MathJax.js?locale=de|MathJax.js?locale=$(CURENT_LANG)|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|MathJax.js?locale=en|MathJax.js?locale=$(CURENT_LANG)|g" {} \;
 endef
 
 
 #
 # Fix the link paths in the HTML files
 #
-fixlinks:
-	# set CURRENT_LANG at runtime. Eval writes the line into the target
+fix:
+	# Fix paths to common (*.js, *.css ...) external files
+	# Javascript links seem to be inserted in various places with different syntax
+	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script src=\"\.\./|<script src=\"\.\./\.\./|g" {} \;
+	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script type=\"text/javascript\" src=\"\.\./|<script type=\"text/javascript\" src=\"\.\./\.\./|g" {} \;
+	# fix links to stylesheets
+	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<link rel=\"stylesheet\" type=\"text/css\" href=\"\.\./|<link rel=\"stylesheet\" type=\"text/css\" href=\"\.\./\.\./|g" {} \;
+	# fix links to images
+	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src=\"\.\./images/|src=\"\.\./\.\./images/|g" {} \;
+	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src=\'\.\./images/|src=\"\.\./\.\./images/|g" {} \;
+
+	# set CURRENT_LANG to de
 	$(eval CURRENT_LANG := de)
-	$(fixlinks_cmd)
+	$(fixLinks_cmd)
+	$(setLocale_cmd)
+
+	# set CURRENT_LANG to en
 	$(eval CURRENT_LANG := en)
-	$(fixlinks_cmd)
+	$(fixLinks_cmd)
+	$(setLocale_cmd)
+
+	# fix index.html to point to default language version
+	cd $(OUTPUT) && sed -i "s|url=html|url=html/$(DEFAULT_LANG)|g" index.html
+	cd $(OUTPUT) && sed -i "s|window\.location\.href = \"html|window\.location\.href = \"html/$(DEFAULT_LANG)|g" index.html
+	cd $(OUTPUT) && sed -i "s|href=\"html|href=\"html/$(DEFAULT_LANG)|g" index.html
+
+
 
 
 cleanup:
