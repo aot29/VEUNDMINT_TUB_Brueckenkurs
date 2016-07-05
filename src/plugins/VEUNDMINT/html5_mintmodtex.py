@@ -1143,7 +1143,6 @@ class Plugin(basePlugin):
             self.writeRedirect(self.template_redirect_scorm, filename, redirect, scorm )
         else:
             s = self.template_redirect_basic            
-        self.writeRedirect(self.template_redirect_basic, filename, redirect, scorm )
         s = re.sub(r"\$url", redirect, s, 0, re.S)
         self.sys.writeTextFile(os.path.join(self.options.targetpath, filename), s, self.options.outputencoding)
         self.sys.message(self.sys.CLIENTINFO, "Redirect created from " + filename + " to " + redirect)
