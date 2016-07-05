@@ -171,7 +171,8 @@ class PageFactory(object):
            +  "var docName = \"" + tc.docname + "\";\n" \
            +  "var fullName = \"" + self.outputplugin.outputsubdir + "/" + tc.link + "." + self.outputplugin.outputextension + "\";\n" \
            +  "var linkPath = \"" + tc.backpath + "\";\n" \
-           +  "var fontPath = \"" + tc.backpath + "\";\n"
+           +  "var fontPath = \"" + tc.backpath + "fonts/\";\n" \
+           +  "var imagesPath = \"" + tc.backpath + "images/\";\n"
        
         tc.html = tc.html.replace("// <JSCRIPTPRELOADTAG>", js + "// <JSCRIPTPRELOADTAG>")
 

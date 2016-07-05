@@ -202,12 +202,12 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
         this.element.checked = false; 
         this.element[ getIndeterminatePropName() ] = true; 
         this.value = "0"; 
-        this.element.cval = "0"; this.message = ""; this.image.src = "../../images/questionmark.png"; notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
+        this.element.cval = "0"; this.message = ""; this.image.src = imagesPath + "questionmark.png"; notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
       ob.rawloadvalue = function(val) {
           this.value = val;
           this.element.cval = val;
           this.message = "";
-          this.image.src = "../../images/questionmark.png";
+          this.image.src = imagesPath + "questionmark.png";
           if ((val == "0") || (val == "")) {
               // nothing selected yet
               this.element.checked = false;
@@ -1518,9 +1518,9 @@ function notifyPoints(i, points, state) {
       logMessage(VERBOSEINFO, "notifyPoints warning: img=0, type = " + FVAR[i].type);
   } else {
     switch(state) {
-        case SOLUTION_TRUE: { img.src = "../../images/right.png"; break; }
-        case SOLUTION_FALSE: { img.src = "../../images/false.png"; break; }
-        case SOLUTION_NEUTRAL: { img.src = "../../images/questionmark.png"; break; }
+        case SOLUTION_TRUE: { img.src = imagesPath + "right.png"; break; }
+        case SOLUTION_FALSE: { img.src = imagesPath + "false.png"; break; }
+        case SOLUTION_NEUTRAL: { img.src = imagesPath + "questionmark.png"; break; }
     }
   }
   
@@ -2095,11 +2095,11 @@ function applyLayout(first) {
   var shareintext = $.i18n("msg-shared-page") + "<br /><br />"; // Seite teilen über:
   var myurl = window.location.href;
     
-  shareintext += "<a href=\"#\" onclick=\"shareFacebook()\"><img src=\"" + linkPath + "images/sharetargetfacebook.png\"></a>";
+  shareintext += "<a href=\"#\" onclick=\"shareFacebook()\"><img src=\"" + imagesPath  + "sharetargetfacebook.png\"></a>";
   shareintext += "&nbsp;";
-  shareintext += "<a href=\"http://twitter.com/intent/tweet?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargettwitter.png\"></a>";
+  shareintext += "<a href=\"http://twitter.com/intent/tweet?url=" + myurl + "\" target=\"_new\"><img src=\"" + imagesPath + "sharetargettwitter.png\"></a>";
   shareintext += "&nbsp;";
-  shareintext += "<a href=\"https://plus.google.com/share?url=" + myurl + "\" target=\"_new\"><img src=\"" + linkPath + "images/sharetargetgoogleplus.png\"></a>";
+  shareintext += "<a href=\"https://plus.google.com/share?url=" + myurl + "\" target=\"_new\"><img src=\"" + imagesPath + "sharetargetgoogleplus.png\"></a>";
   showHint($('#sharebutton'), shareintext);
 
   shareintext = $.i18n("msg-current-favorites")+"<br /><br />"; // Aktuelle Favoriten:

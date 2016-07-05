@@ -87,6 +87,8 @@ define fixLinks_cmd
 	cd $(OUTPUT) && cp *.html html/$(CURRENT_LANG)
 
 	# fix links to HTML pages
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./chapter\.html|href=\"\.\./$(CURRENT_LANG)/chapter.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./\.\./chapter\.html|href=\"\.\./\.\./$(CURRENT_LANG)/chapter.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./html|href=\"\.\./$(CURRENT_LANG)|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./\.\./html|href=\"\.\./\.\./$(CURRENT_LANG)|g" {} \;
 
@@ -95,8 +97,12 @@ define fixLinks_cmd
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var linkPath = \"\.\./\.\./\"|var linkPath = \"\.\./\.\./$(CURRENT_LANG)/\"|g" {} \;
 
 	# fix path to font files
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var fontPath = \"\.\./\"|var fontPath = \"\.\./\.\./fonts/\"|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var fontPath = \"\.\./\.\./\"|var fontPath = \"\.\./\.\./\.\./fonts/\"|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var fontPath = \"\.\./\.\./fonts/\"|var fontPath = \"\.\./\.\./\.\./fonts/\"|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var fontPath = \"\.\./fonts/\"|var fontPath = \"\.\./\.\./fonts/\"|g" {} \;
+
+	# fix path for images in Javascript
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var imagesPath = \"\.\./\.\./images/\"|var imagesPath = \"\.\./\.\./\.\./images/\"|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var imagesPath = \"\.\./images/\"|var imagesPath = \"\.\./\.\./images/\"|g" {} \;
 
 	# fix link in redirects (-maxdepth 1 is important here)
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|url=html/|url=|g" {} \;
@@ -127,11 +133,15 @@ fix:
 	# Javascript links seem to be inserted in various places with different syntax
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script src=\"\.\./|<script src=\"\.\./\.\./|g" {} \;
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script type=\"text/javascript\" src=\"\.\./|<script type=\"text/javascript\" src=\"\.\./\.\./|g" {} \;
+
 	# fix links to stylesheets
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<link rel=\"stylesheet\" type=\"text/css\" href=\"\.\./|<link rel=\"stylesheet\" type=\"text/css\" href=\"\.\./\.\./|g" {} \;
+
 	# fix links to images
+	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src=\"\.\./\.\./images/|src=\"\.\./\.\./\.\./images/|g" {} \;
+	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src='\.\./\.\./images/|src='\.\./\.\./\.\./images/|g" {} \;
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src=\"\.\./images/|src=\"\.\./\.\./images/|g" {} \;
-	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src=\'\.\./images/|src=\"\.\./\.\./images/|g" {} \;
+	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src='\.\./images/|src=\'\.\./\.\./images/|g" {} \;
 
 	# set CURRENT_LANG to de
 	$(eval CURRENT_LANG := de)
