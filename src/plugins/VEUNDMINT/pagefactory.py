@@ -126,9 +126,8 @@ class PageFactory(object):
             js_text += "<script src=\"" + js + "\" type=\"text/javascript\"></script>\n"
         
         # Preload (some) i18n strings
-        # To make sure ui text are available when needed, preload them in server-side
+        # To make sure ui text are available when needed
         # TODO: only load required texts, not necessarily all. preload ui-* texts, load msg-* texts dynamically ?
-        # Pack the JSON localization file between Javascript tags
         i18nPath = os.path.join( self.options.i18nFiles, self.lang + ".json" )
         i18nStrings = self.sys.readTextFile( i18nPath, self.options.stdencoding)
         i18nJavascript = "<script>$.i18n().load( {" + self.lang + ":" + i18nStrings + "} );</script>"
