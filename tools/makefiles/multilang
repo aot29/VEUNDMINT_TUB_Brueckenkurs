@@ -153,12 +153,8 @@ fix:
 	$(fixLinks_cmd)
 	$(setLocale_cmd)
 
-	# fix index.html to point to default language version
-	cd $(OUTPUT) && sed -i "s|url=html|url=html/$(DEFAULT_LANG)|g" index.html
-	cd $(OUTPUT) && sed -i "s|window\.location\.href = \"html|window\.location\.href = \"html/$(DEFAULT_LANG)|g" index.html
-	cd $(OUTPUT) && sed -i "s|href=\"html|href=\"html/$(DEFAULT_LANG)|g" index.html
-
-
+	# replace index.html with src/templates/html5_choose_language.html to allow for choosing en or de version
+	cp src/templates/html5_choose_language.html $(OUTPUT)/index.html
 
 
 cleanup:
