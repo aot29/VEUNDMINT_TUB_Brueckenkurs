@@ -119,6 +119,7 @@ class Plugin(basePlugin):
 
         
         self.template_redirect_basic = self.sys.readTextFile(self.options.template_redirect_basic, self.options.stdencoding)
+        self.template_redirect_multi = self.sys.readTextFile(self.options.template_redirect_multi, self.options.stdencoding)
         self.template_redirect_scorm = self.sys.readTextFile(self.options.template_redirect_scorm, self.options.stdencoding)
 
         self.siteredirects = dict() # consists of pairs [ redirectfilename, redirectarget ]
@@ -1141,7 +1142,7 @@ class Plugin(basePlugin):
         if scorm:
             s = self.template_redirect_scorm
         else:
-            s = self.template_redirect_basic
+            s = self.template_redirect_basic            
         s = re.sub(r"\$url", redirect, s, 0, re.S)
         self.sys.writeTextFile(os.path.join(self.options.targetpath, filename), s, self.options.outputencoding)
         self.sys.message(self.sys.CLIENTINFO, "Redirect created from " + filename + " to " + redirect)

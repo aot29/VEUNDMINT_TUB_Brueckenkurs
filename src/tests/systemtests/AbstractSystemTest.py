@@ -8,7 +8,8 @@ Base class for all system tests
 import unittest
 from selenium import webdriver
 import json
-import os.path, ConfigParser
+import os.path
+import configparser as ConfigParser
 
 class AbstractSystemTest(unittest.TestCase):
     '''Path to configuration file for the tests.'''
@@ -20,13 +21,15 @@ class AbstractSystemTest(unittest.TestCase):
         self.config.read( self.configPath )
 
         # load locale file
+        localeFile = None
         try:
             i18nPath = os.path.expanduser( os.path.join( self._getConfigParam( 'basePath' ), "src/files/i18n/%s.json" % self._getConfigParam( 'lang' ) ) )
             localeFile = open( i18nPath )
             self.locale = json.load( localeFile )
             
         finally:
-            localeFile.close()
+            if localeFile:
+                localeFile.close()
 
         # create the Firefox browser
         self.browser = webdriver.Firefox()
