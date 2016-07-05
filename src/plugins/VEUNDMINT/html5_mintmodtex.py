@@ -119,7 +119,7 @@ class Plugin(basePlugin):
 
         
         self.template_redirect_basic = self.sys.readTextFile(self.options.template_redirect_basic, self.options.stdencoding)
-        self.template_redirect_multi = self.sys.readTextFile(self.options.template_redirect_multi, self.options.stdencoding)
+        #self.template_redirect_multi = self.sys.readTextFile(self.options.template_redirect_multi, self.options.stdencoding)
         self.template_redirect_scorm = self.sys.readTextFile(self.options.template_redirect_scorm, self.options.stdencoding)
 
         self.siteredirects = dict() # consists of pairs [ redirectfilename, redirectarget ]
