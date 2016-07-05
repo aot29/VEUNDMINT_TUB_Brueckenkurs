@@ -89,7 +89,7 @@ Bei welchen der folgenden Gleichungssysteme handelt es sich um Lineare Gleichung
 \MGroupButton{Eingabe kontrollieren}
 \end{MExercise}
 Lineare Gleichungssysteme zeichnen sich gegenüber allgemeinen Gleichungssystemen
-durch eine meist deutlich größere Einfachheit aus. Nichtsdestotrotz spielen sie in mannigfachen Bereichen
+durch eine meist deutlich größere Einfachheit aus. Nichtsdestotrotz spielen sie in den verschiedensten Bereichen
 eine zentral wichtige Rolle, so in der Medizin z.B. im Zusammenhang mit der Computertomographie, in der Technik etwa
 bei der Beschreibung, wie sich Schall in komplex gestalteten Räumen ausbreitet, oder in der Physik beispielsweise bei der
 Frage, welche Wellenlängen angeregte Atome aussenden können. Daher ist es zweifelsohne lohnenswert, sich intensiv
@@ -107,7 +107,7 @@ können nur ganze nichtnegative Zahlen, also Elemente von $\N_0$, sein. Daher mus
 aus denen die Lösungen stammen können, von vornherein auf $\N_0$ einschränken (und zwar sowohl für $x$ als auch $y$).
 \begin{MInfo}
 Diejenige Zahlenmenge, aus der die Lösungen eines Gleichungssystems überhaupt nur stammen können, nennt man
-die \MEntry{Grundmenge}{Grundmenge}. Die \MEntry{Definitionsmenge}{Definitionsmenge} ist diejenige Teilmenge
+die \MEntry{Grundmenge}{Grundmenge} des Gleichungssystems. Die \MEntry{Definitionsmenge}{Definitionsmenge} ist diejenige Teilmenge%%%
 der Grundmenge, für die alle Terme in den Gleichungen des Systems \textbf{definiert} sind.
 Für Lineare Gleichungssysteme fallen Grundmenge und Definitionsmenge zusammen. Als \MEntry{Lösungsmenge}{Lösungsmenge}
 schließlich bezeichnet man diejenige Teilmenge der Definitionsmenge, die die \textbf{Lösungen} des Systems zusammenfasst.
@@ -148,14 +148,14 @@ Sind die rechten Seiten $b_1$ und $b_2$ beide gleich $0$ ($b_1 = 0 = b_2$), so s
 Aufgrund der Linearität kann jede der beiden Gleichungen des Systems in Infobox \MRef{M04_2x2_system} für sich als Gleichung
 einer Geraden in der $x$-$y$-Ebene interpretiert werden: Löst man z.B. die erste Gleichung nach $y$ auf,
 $$y = - \Mdfrac{a_{11}}{a_{12}} x + \Mdfrac{b_1}{a_{12}} \MDFPSpace ,$$
-so kann man aus dieser expliziten Form direkt ablesen, dass eine Gerade mit der Steigung $m = - a_{11}/a_{12}$
-und dem $y$-Achsenabschnitt $y_0 = b_1/a_{12}$ beschrieben wird.
+so kann man aus dieser expliziten Form direkt ablesen, dass eine Gerade mit der Steigung $m = - \Mdfrac{a_{11}}{a_{12}}$
+und dem $y$-Achsenabschnitt $y_0 = \Mdfrac{b_1}{a_{12}}$ beschrieben wird.
 
 Am Rande wird festgehalten, dass das eben erwähnte Freistellen nach $y$ natürlich
 nur funktioniert, falls $a_{12} \neq 0$ ist. Ist $a_{12} = 0$,
 so lautet die erste Gleichung $a_{11} \cdot x = b_1$; diese ist für $a_{11} \neq 0$ äquivalent zu
-$x = (b_1/a_{11})$, was bedeutet, dass $x$ einen konstanten Wert annimmt; dies stellt ebenfalls eine Gerade dar,
-nämlich eine Gerade parallel zur $y$-Achse im Abstand $(b_1/a_{11})$.\\
+$x = \Mdfrac{b_1}{a_{11}}$, was bedeutet, dass $x$ einen konstanten Wert annimmt; dies stellt ebenfalls eine Gerade dar,
+nämlich eine Gerade parallel zur $y$-Achse im Abstand $\Mdfrac{b_1}{a_{11}}$.\\
 Und was, wenn sowohl $a_{12} = 0$ als auch
 $a_{11} = 0$ gilt? Nun, dann muss ebenfalls $b_1 = 0$ sein, da ansonsten die erste Gleichung von vornherein
 einen Widerspruch ergeben würde. Für $a_{11} = a_{12} = b_1 = 0$ ist aber die erste Gleichung (für alle
@@ -165,8 +165,8 @@ Im Fall der zweiten Gleichung in Infobox \MRef{M04_2x2_system} geht man ganz ent
 $$y = - \Mdfrac{a_{21}}{a_{22}} x + \Mdfrac{b_2}{a_{22}} \MDFPeriod$$
 Insgesamt erhält man zwei Geraden als Repräsentanten der beiden linearen Gleichungen, und die Frage nach Lösbarkeit und Lösung
 des Linearen Gleichungssystems, also die \textbf{Frage nach der
-gleichzeitigen Gültigkeit beider Gleichungen}, liest sich als \textbf{Frage nach Existenz und 
-Lage des Schnittpunkts der beiden Geraden}. Dazu schaut man sich ein konkretes Beispiel an:
+gleichzeitigen Gültigkeit beider Gleichungen}, lässt sich als \textbf{Frage nach Existenz und %%%
+Lage des Schnittpunkts der beiden Geraden} lesen. Dazu schaut man sich ein konkretes Beispiel an:%%%
 
 \begin{MExample}
 Das Lineare Gleichungssystem aus dem einführenden Beispiel \MRef{M04_einfuehrendes_Bsp} lautet:
@@ -206,9 +206,10 @@ $y_{0,1} = 10$ bzw. $y_{0,2} = \Mtfrac{13}{2}$ beschrieben:
 %%\MUGraphicsSolo{eindeutige_lsg.png}{scale=1}{width:450px}
 \end{center}
 Man erkennt aus dem Schaubild, dass sich die beiden Geraden in der Tat schneiden, und liest
-die Koordinaten des Schnittpunktes zu $\MPointTwo{x = 7}{y = 3})$ ab. Dementsprechend besitzt
+die Koordinaten des Schnittpunktes zu $\MPointTwo{x = 7}{y = 3}$ ab. Dementsprechend besitzt
 das hier betrachtete Lineare Gleichungssystem eine eindeutige Lösung; die
 Lösungsmenge $\ML$ enthält genau ein Zahlenpaar, ${\ML} = \{ \MPointTwo{x = 7}{y = 3} \}$.
+Die Artistengruppe aus Beispiel \MRef{M04_einfuehrendes_Bsp} hat also $7$ Einräder und $3$ Fahrräder.%%%
 \end{MExample}
 Diese anschauliche Betrachtungsweise eignet sich hervorragend, alle Fälle zu
 diskutieren, die überhaupt nur auftreten können: Denn entweder schneiden sich zwei Geraden in der $x$-$y$-Ebene -
@@ -218,9 +219,7 @@ und schneiden sich daher sozusagen in unendlich vielen Punkten. Andere Möglichke
 Demzufolge kann man im Hinblick auf die Mächtigkeit der Lösungsmenge des
 zugehörigen linearen Gleichungssystems Folgendes festhalten:
 \begin{MInfo}
-Ein \MEntry{inhomogenes Lineares Gleichungssystem}{Lineares Gleichungssystem (inhomogen)} besitzt entweder eine
-eindeutige Lösung oder aber keine Lösung oder
-aber unendlich viele Lösungen.
+Ein \MEntry{inhomogenes Lineares Gleichungssystem}{Lineares Gleichungssystem (inhomogen)} besitzt entweder \textbf{keine}, \textbf{eine eindeutige} oder aber \textbf{unendlich viele Lösungen}. %%%
 
 Ein \MEntry{homogenes Lineares Gleichungssystem}{Lineares Gleichungssystem (homogen)} weist \textbf{immer
 eine Lösung} auf, nämlich die sogenannte \MEntry{triviale Lösung}{Triviale Lösung (LGS)} $x = 0$ und $y = 0$.
@@ -297,7 +296,7 @@ $$\left. \begin{array}{rcl} x + y & = & 2 \\[.5ex] 2 x + 2 y & = & 4 \end{array}
 \\[.5cm]
 \begin{minipage}[t]{7.5cm}
 Die beiden Geraden besitzen dieselbe Steigung $m = - 1$, aber verschiedene $y$-Achsenabschnitte ($y_0 = 2$
-bzw. $y_0 = 1/2$); sie verlaufen parallel; das Lineare Gleichungssystem besitzt \textbf{keine}
+bzw. $y_0 = \Mdfrac12$); sie verlaufen parallel; das Lineare Gleichungssystem besitzt \textbf{keine}
 Lösung: $${\ML} = \MEmptyset\MDFPeriod $$
 \end{minipage} &
 \begin{minipage}[t]{7.5cm}
@@ -378,45 +377,45 @@ ${\ML} = \MEmptyset$.
 \MDeclareSiteUXID{VBKM04_Einsetzmethode}
 \MLabel{M04_einsetz_gleichsetz}
 Bisher wurden Fragen der \MEntry{Lösbarkeit}{Lösbarkeit} und der \textbf{graphischen Lösung} von
-Linearen Gleichungssystemen der Gestalt \MRef{M04_2x2_system} untersucht.
+Linearen Gleichungssystemen der Gestalt aus \MRef{M04_2x2_system} untersucht.%%%
 Eine rechnerische Behandlung solcher Systeme steht noch aus, was jetzt nachgeholt werden soll.
 Dazu betrachtet man ein weiteres Beispiel:
 \begin{MExample}
-Familie Müller hat für die Renovierung ihres Hauses zwei Kredite in einer Gesamthöhe von $50000$ Euro
-aufnehmen müssen, für die sie pro Jahr zusammen $3700$ Euro allein an Zinsen zu bezahlen hat. Für den
+Familie Müller hat für die Renovierung ihres Hauses zwei Kredite in einer Gesamthöhe von $50\,000$ Euro
+aufnehmen müssen, für die sie pro Jahr zusammen $3\,700$ Euro allein an Zinsen zu bezahlen hat. Für den
 einen Kreditvertrag fallen $5\%$, für den anderen $8\%$ jährliche Zinsen an. Über welche Beträge
 laufen die einzelnen Kredite?
 
 Man bezeichnet die gesuchten Kredithöhen der beiden Verträge mit $x$ und $y$. Die
-Summe dieser beiden Beträge beläuft sich laut Aufgabentext auf $50000$ Euro, also lautet die erste Gleichung:
+Summe dieser beiden Beträge beläuft sich laut Aufgabentext auf $50\,000$ Euro, also lautet die erste Gleichung:
 \begin{eqnarray*}
-\mbox{Gleichung}\MBlank (1) & : & x + y = 50000 \; \; \; \mbox{(in Euro )}\MDFPeriod 
+\mbox{Gleichung}\MBlank (1) & : & x + y = 50\,000 \; \; \; \mbox{(in Euro)}\MDFPeriod 
 \end{eqnarray*}
 Die Zinslast aus dem mit $5\%$ verzinsten Vertrag beträgt $\MZahl{0}{05} \cdot x$, die aus dem anderen Vertrag  mit $8\%$ Zinsen
-$\MZahl{0}{08} \cdot y$. Beide Lasten summieren sich gemäß Aufgabetext auf $3700$ Euro; dies liefert eine zweite Gleichung:
+$\MZahl{0}{08} \cdot y$. Beide Lasten summieren sich gemäß Aufgabetext auf $3\,700$ Euro; dies liefert eine zweite Gleichung:
 \begin{eqnarray*}
-\mbox{Gleichung}\MBlank (2) & : & \MZahl{0}{05} x + \MZahl{0}{08} y = 3700 \; \; \; \mbox{(in Euro )}\MDFPeriod 
+\mbox{Gleichung}\MBlank (2) & : & \MZahl{0}{05} x + \MZahl{0}{08} y = 3\,700 \; \; \; \mbox{(in Euro)}\MDFPeriod 
 \end{eqnarray*}
 Wiederum landet man bei einem Linearen Gleichungssystem vom Typ \MRef{M04_2x2_system}.
 
-Für die rechnerische Lösung stellt man Gleichung~$(1)$ nach $y$ frei; es entsteht eine zu $(1)$ äquivalente Gleichung~$(1')$:
+Für die rechnerische Lösung stellt man Gleichung~$(1)$ nach $y$ um; es entsteht eine zu $(1)$ äquivalente Gleichung~$(1')$:
 \begin{eqnarray*}
-\mbox{Gleichung}\MBlank (1') & : & y = 50000 - x\MDFPeriod 
+\mbox{Gleichung}\MBlank (1') & : & y = 50\,000 - x\MDFPeriod 
 \end{eqnarray*}
 Diesen Ausdruck für $y$ kann man nun in Gleichung~$(2)$ für $y$ \textbf{einsetzen}, sodass die resultierende Gleichung nur noch
 $x$ als Unbekannte enthält und dementsprechend aufgelöst werden kann:
 \begin{eqnarray*}
-& & \MZahl{0}{05} x + \MZahl{0}{08} (50000 - x) = 3700 \\
-\Leftrightarrow & & \MZahl{0}{05} x + 4000 - \MZahl{0}{08} x = 3700 \\
+& & \MZahl{0}{05} x + \MZahl{0}{08} (50\,000 - x) = 3\,700 \\
+\Leftrightarrow & & \MZahl{0}{05} x + 4\,000 - \MZahl{0}{08} x = 3\,700 \\
 \Leftrightarrow & & \MZahl{0}{03} x = 300 \\
-\Leftrightarrow & & x = 10000\MDFPeriod 
+\Leftrightarrow & & x = 10\,000\MDFPeriod 
 \end{eqnarray*}
 Setzt man dieses Ergebnis für $x$ in Gleichung~$(1')$ ein, so folgt:
 \begin{eqnarray*}
-& & y = 50000 - 10000 \\
-\Leftrightarrow & & y = 40000\MDFPeriod 
+& & y = 50\,000 - 10\,000 \\
+\Leftrightarrow & & y = 40\,000\MDFPeriod 
 \end{eqnarray*}
-Die gesuchten Kreditvolumina betragen daher $10000$ Euro (Vertrag mit $5\%$ Verzinsung) und $40000$ Euro
+Die gesuchten Kreditvolumina betragen daher $10\,000$ Euro (Vertrag mit $5\%$ Verzinsung) und $40\,000$ Euro
 (Vertrag mit $8\%$ Verzinsung).
 \end{MExample}
 Das voranstehende Beispiel demonstriert auf charakteristische Art und Weise das Vorgehen bei der sogenannten
@@ -435,8 +434,7 @@ diese Lösung allerdings nicht zur Grundmenge, so muss sie ausgeschlossen werden.
 \item[(ii)]{Die resultierende Gleichung enthält die andere der beiden Unbekannten nicht mehr und stellt einen Widerspruch
 in sich dar. Dann besitzt das Lineare Gleichungssystem keine Lösung.}
 \item[(iii)]{Die resultierende Gleichung enthält die andere der beiden Unbekannten nicht mehr und ist automatisch immer
-gültig. Dann besitzt das Lineare Gleichungssystem unendlich viele Lösungen (wenn nicht Überlegungen zur
-Grundmenge Einschränkungen diktieren).}
+gültig. Dann besitzt das Lineare Gleichungssystem unendlich viele Lösungen (wenn sich durch die zulässige Grundmenge keine Einschränkungen ergeben).}
 \end{itemize}
 \end{MInfo}
 Bei dieser Vorgehensweise bestehen gewisse Freiheiten. Es ist nicht festgelegt, welche der linearen Gleichungen
@@ -485,7 +483,7 @@ rechnerisch zu lösen. Nachfolgend betrachtet man eine weitere Methode, die sehr 
 Bei der \MEntry{Gleichsetzmethode}{Gleichsetzmethode} werden \textbf{beide} linearen Gleichungen in einem ersten
 Schritt nach einer der Unbekannten - oder nach einem Vielfachen einer der Unbekannten - freigestellt. Die beiden
 resultierenden neuen Gleichungen werden dann im zweiten Schritt \textbf{gleichgesetzt}.
-In der Folge können dann die drei im Zusammenhang mit der Einsetzmethode diskutierten Fälle auftreten.
+Es können dann abermals die drei im Zusammenhang mit der Einsetzmethode diskutierten Fälle auftreten.
 \end{MInfo}
 Auch dieses Verfahren beinhaltet gewisse Freiheiten; so ist zum Beispiel nicht vorgeschrieben, nach welcher Unbekannten
 die linearen Gleichungen freigestellt werden sollen.
@@ -514,7 +512,7 @@ mit Hilfe der Gleichsetzmethode.
 \ \\
 \begin{MHint}{Lösung}
 Man löst beispielsweise beide Gleichungen nach $x$ auf: dazu multipliziert man die erste Gleichung mit
-$(1/7)$ und stellt nach $x$ frei,
+$\Mdfrac17$ und stellt nach $x$ um,
 $$x = \Mtfrac{14}{7} - \Mtfrac27 y \Leftrightarrow x = 2 - \Mtfrac27 y \; : \MBlank\mbox{Gleichung}\MBlank (1') \MDFPSpace ;$$
 die zweite Gleichung multipliziert man dagegen mit $\Mtfrac13$, bevor man nach $x$ freistellt,
 $$x = \Mtfrac63 + \Mtfrac53 y \Leftrightarrow x = 2 + \Mtfrac53 y \; : \MBlank\mbox{Gleichung}\MBlank (2') \MDFPeriod $$
@@ -549,8 +547,8 @@ $$\begin{array}{crclcl} & (2 x + y) \cdot 11 & = & 9 \cdot 11 & & \\
 \Leftrightarrow & 22 x + 11 y & = & 99 & & : \MBlank\mbox{Gleichung}\MBlank (1') 
 \MDFPeriod \end{array}$$
 Anschließend \textbf{addiert} man die neue Gleichung $(1')$ zu Gleichung $(2)$ hinzu, d.h. man setzt die
-\textbf{Summe} der linken Seiten von $(1')$ und $(2)$ gleich der \textbf{Summe} der rechten Seiten
-von $(1')$ und $(2)$. Dabei fällt die Unbekannte~$y$
+\textbf{Summe} der linken Seiten von $(2)$ und $(1')$ gleich der \textbf{Summe} der rechten Seiten
+von $(2)$ und $(1')$. Dabei fällt die Unbekannte~$y$
 heraus; dies ist übrigens der Grund für die Wahl des Faktors $11$ im vorherigen Schritt:
 $$3 x - 11 y + 22 x + 11 y = 1 + 99 \Leftrightarrow 25 x = 100 \Leftrightarrow x = 4 \MDFPeriod $$
 Um den Lösungswert für $y$ zu bekommen, kann man das gerade erzielte Resultat für $x$ z.B. in Gleichung~$(1)$
@@ -559,23 +557,23 @@ $$2 \cdot 4 + y = 9 \Leftrightarrow 8 + y = 9 \Leftrightarrow y = 1 \MDFPeriod$$
 Das Lineare Gleichungssystem des vorliegenden Beispiels besitzt also eine eindeutige Lösung, ${\ML} =
 \{ \MPointTwo{x = 4}{y = 1} \}$.
 \end{MExample}
-Auch bei diesem Verfahren liegt das Vorgehen nicht eindeutig fest: So hätte man z.B. auch Gleichung~$(1)$ mit $3$
+Auch bei diesem Verfahren ist das Vorgehen nicht eindeutig festgelegt: So hätte man z.B. auch Gleichung~$(1)$ mit $3$
 und Gleichung~$(2)$ mit $(- 2)$ durchmultiplizieren können,
 $$\begin{array}{rclcrclcl} (2x + y) \cdot 3 & = & 9 \cdot 3 & \Leftrightarrow & 6 x + 3 y & = & 27
-& & : \MBlank\mbox{Gleichung}\MBlank ({1'}') \MDFPSpace, \\ 
+& & : \MBlank\mbox{Gleichung}\MBlank ({1''}) \MDFPSpace, \\ 
 (3 x - 11 y) \cdot (- 2) & = & 1 \cdot (- 2) & \Leftrightarrow & - 6 x + 22 y & = & - 2
-& & : \MBlank\mbox{Gleichung}\MBlank ({2'}') \MDFPSpace , \end{array}$$
-um bei der anschließenden \textbf{Addition} der Gleichungen~$({1'}')$ und $({2'}')$ die Variable $x$ zu eliminieren:
+& & : \MBlank\mbox{Gleichung}\MBlank ({2''}) \MDFPSpace , \end{array}$$
+um bei der anschließenden \textbf{Addition} der Gleichungen~$({1''})$ und $({2''})$ die Variable $x$ zu eliminieren:
 $$6 x + 3 y - 6 x + 22 y = 27 - 2 \Leftrightarrow 25 y = 25 \Leftrightarrow y = 1 \MDFPeriod$$
 Das Ergebnis für $y$ hätte man dann z.B. in Gleichung~$(2)$ einsetzen können, um $x$ zu bestimmen:
 $$3 x - 11 \cdot 1 = 1 \Leftrightarrow 3 x = 12 \Leftrightarrow x = 4 \MDFPeriod$$
 \begin{MInfo}
-Bei der Additionsmethode wird eine der linearen Gleichungen durch geschickte Multiplikation
+Bei der \MEntry{Additionsmethode}{Additionsmethode} wird eine der linearen Gleichungen durch geschickte Multiplikation
 mit einem geeigneten Faktor so umgeformt, dass bei der anschließenden \textbf{Addition} der anderen Gleichung (zumindest)
 eine Unbekannte herausfällt. (Manchmal ist es einfacher, \textbf{beide} Gleichungen vor der \textbf{Addition} mit
 passend gewählten Faktoren zu multiplizieren.) Wie im Fall der Einsetzmethode
-\MRef{M04_einsetzmethode} (oder der \MRef{M04_gleichsetzmethode}) können
-in der Folge drei Fälle auftreten, die auf eine Lösungsmenge $\ML$ mit genau einem Element, keinem Element oder
+\MRef{M04_einsetzmethode} (oder der Gleichsetzmethode \MRef{M04_gleichsetzmethode}) können%%%
+anschließend drei Fälle auftreten, die auf eine Lösungsmenge $\ML$ mit genau einem Element, keinem Element oder
 unendlich vielen Elementen führen.
 \end{MInfo}
 \end{MXContent}
@@ -782,7 +780,7 @@ $$\begin{array}{lcrcl} \mbox{Gleichung}\MBlank (1): & & x + y - z & = & 0 \MDFPS
 \mbox{Gleichung}\MBlank (3): & & 2 x - y + z & = & 4 \end{array}$$
 gesucht; als Grundmenge wählt man die Menge der reellen Zahlen $\R$.
 
-Jede der drei linearen Gleichungen lässt sich problemlos nach $z$ freistellen:
+Jede der drei linearen Gleichungen lässt sich problemlos nach $z$ umstellen:
 $$\begin{array}{lcrcl} \mbox{Gleichung}\MBlank (1'): & & z & = & x + y \MDFPSpace,\\
 \mbox{Gleichung}\MBlank (2'): & & z & = & 6 - x - y \MDFPSpace,\\
 \mbox{Gleichung}\MBlank (3'): & & z & = & 4 - 2 x + y \MDFPeriod \end{array}$$
@@ -1204,7 +1202,7 @@ und die \textbf{Lösungsmenge} besteht \textbf{aus genau einem Element}.}
 \end{itemize}
 Man sieht, dass trotz der anschaulichen Interpretation das genaue Auseinanderdividieren der einzelnen Fälle doch einigermaßen
 kompliziert ist. Um so wichtiger wird es sein, gerade wenn die Systeme noch größer werden und die Anschauung schwieriger
-bzw. unmöglich wird, rechnerische Methoden an der Hand zu haben, um die Lösbarkeit Linearer Gleichungssysteme zu
+bzw. unmöglich wird, rechnerische Methoden zur Hand zu haben, um die Lösbarkeit Linearer Gleichungssysteme zu
 untersuchen und deren Lösungsmengen zu bestimmen. Das \MEntry{Additionsverfahren}{Additionsverfahren}, dessen
 Diskussion weiter unten erneut aufgegriffen wird, wird ein solch geeignetes Verfahren sein.
 
@@ -1221,8 +1219,8 @@ Im Beispiel wurde als rechnerisches Verfahren die \MSRef{M04_gleichsetzmethode}{
 sehr eng mit der anschaulich geometrischen Interpretation zusammenhängt. Durch das \textbf{Gleichsetzen} expliziter
 Ebenen- bzw. Geradengleichungen werden ja genau die Schnittgeraden bzw. -punkte bestimmt.
 \begin{MInfo}
-Bei der Gleichsetzmethode werden die drei linearen Gleichungen in einem ersten
-Schritt nach einer der Unbekannten - oder nach einem Vielfachen einer der Unbekannten - freigestellt. Die
+Bei der Bei der \MEntry{Gleichsetzmethode}{Gleichsetzmethode} werden die drei linearen Gleichungen in einem ersten
+Schritt nach einer der Unbekannten - oder nach einem Vielfachen einer der Unbekannten - umgestellt. Die
 resultierenden neuen Gleichungen werden dann im zweiten Schritt paarweise \textbf{gleichgesetzt}, wobei es genügt,
 dies für zwei Paare durchzuführen. Insgesamt entsteht ein \textbf{Lineares
 Gleichungssystem}, das nur noch aus \textbf{zwei} Gleichungen in (den verbliebenen) \textbf{zwei} Unbekannten
@@ -1278,12 +1276,12 @@ $$y = 24 - \Mtfrac95 z \MDFPSpace ,$$
 und diesen Ausdruck in Gleichung~$(3')$ \textbf{einsetzen}:
 $$- 15 (24 - \Mtfrac95 z) - 9 z = - 180 \Leftrightarrow 360 - 27 z + 9 z = 180 \Leftrightarrow 18 z = 180
 \Leftrightarrow z = 10 \MDFPeriod$$
-Damit ergibt sich $y$ zu
+Damit ergibt sich $y$ mit Gleichung~$(2')$ zu %%%
 $$y = 24 - \Mtfrac95 \cdot 10 = 24 - 9 \cdot 2 = 6 $$
 und schließlich $x$ (mit Hilfe von beispielsweise Gleichung~$(1')$):
 $$x = 2 \cdot 6 + 2 \cdot 10 - 30 = 12 + 20 - 30 = 2 \MDFPeriod$$
 Das Lineare Gleichungssystem besitzt daher eine eindeutige Lösung; die Lösungsmenge $\ML$ enthält genau
-ein Element, ${\ML} = \{ \MPointThree{x = 2}{y = 6}{z = 10} \}$.
+ein Element, ${\ML} = \{ \MPointThree{x = 2}{y = 6}{z = 10} \}$. Damit hatte das erste Kind vor dem Portemonnaie-Fund 2, das zweite Kind 6 und das dritte Kind 10 Euro.%%%
 \end{MExample}
 Vielleicht fragt sich der eine oder andere im Zusammenhang mir dem voranstehenden Beispiel, ob es in Anbetracht
 der identischen rechten Seiten - alle gleich $- 30$ - nicht praktischer wäre, einfach die linken Seiten paarweise
@@ -1297,13 +1295,13 @@ auch in der Additionsmethode) geht es darum, in einem ersten und zweiten Schritt
 zu eliminieren, sodass nur noch ein System aus zwei linearen Gleichungen in zwei Unbekannten (und damit ein
 einfacheres Problem) verbleibt.
 
-Übrigens, wie man dann dieses reduzierte Problem löst, das kann unabhängig von der Art und Weise,
+Übrigens, wie man dann dieses reduzierte Problem löst, kann unabhängig von der Art und Weise,
 wie man begonnen hat, gewählt werden.
 Mit anderen Worten, es ist durchaus zulässig und - vom rechentechnischen Standpunkt aus gesehen - eventuell
 sogar clever, beim Lösen eines Linearen Gleichungssystems
 mit drei Gleichungen in drei Unbekannten mit einer Methode, z.B. der Einsetzmethode, zu beginnen,
 um die Problemstellung auf ein
-System aus zwei Gleichungen in zwei Unbekannten sozusagen \glqq herunterzukochen{\grqq},
+System aus zwei Gleichungen in zwei Unbekannten sozusagen \glqq herunterzubrechen{\grqq},
 und dieses einfachere System dann mit einer anderen Methode, z.B. der
 Gleichsetzmethode, weiterzubehandeln. In diesem Sinne können die Verfahren also gemischt werden.
 \begin{MInfo}
@@ -1351,7 +1349,7 @@ Ziel und der Grund für die Faktoren $3$ bzw. $5$ bei den obigen Summationen.
 
 Man könnte nun das Untersystem, bestehend aus den zwei Gleichungen~$(2')$ und $(3')$ in den zwei Unbekannten
 $y$ und $z$ mit einer anderen Methode, z.B. der Einsetzmethode, weiterbehandeln. Doch es soll lieber vollständig
-innerhalb der Additionsmethode gearbeitet werden: Dazu nimmt man in der Folge Gleichung~$(2')$ - ebenso wie Gleichung~$(1)$ -
+innerhalb der Additionsmethode gearbeitet werden: Dazu nimmt man im Folgenden Gleichung~$(2')$ - ebenso wie Gleichung~$(1)$ -
 von Änderungen aus; Gleichung~$(3')$ soll aber nochmals ersetzt werden und zwar durch die Summe
 $(3') + (- 3) \cdot (2')$:
 $$(- 15 y - 9 z) + (- 3) \cdot (- 5 y - 9 z) = - 180 + (- 3) \cdot (- 120) \Leftrightarrow
@@ -1360,7 +1358,7 @@ Das System hat ein weiteres Mal sein Aussehen gewandelt,
 $$\begin{array}{lcrcl} \mbox{Gleichung}\MBlank (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
 \mbox{Gleichung}\MBlank (2'): & & - 5 y - 9 z & = & - 120 \MDFPSpace, \\
 \mbox{Gleichung}\MBlank ({3'}'): & & 18 z & = &  180 \MDFPSpace, \end{array}$$
-und besitzt nun - zumindest was die linken Seiten anbelangt - so eine Art \textbf{Dreiecksform}.
+und besitzt nun - zumindest was die linken Seiten anbelangt - eine Art \textbf{Dreiecksform}.%%%
 
 Die Bestimmung der Unbekannten ist nun äußerst einfach: Die unterste Gleichung (Gleichung~$({3'}')$) hängt nur noch
 von einer einzigen Unbekannten, nämlich $z$, ab und kann daher sofort aufgelöst werden, $z = 10$.\\
@@ -1369,10 +1367,11 @@ das Ergebnis für die nächste Unbekannte, hier $y$, liefert: $- 5 y - 9 \cdot 10 
 - 30 \Leftrightarrow y = 6$.\\
 Schließlich ergeben $y$ und $z$ in die oberste Gleichung (Gleichung~$(1)$) eingesetzt sofort die Lösung
 für die verbleibende Unbekannte, im vorliegenden Beispiel $x$: $x - 2 \cdot 6 - 2 \cdot 10 = - 30 \Leftrightarrow
-x = 2$.
+x = 2$.\\
+Also ist die Lösungsmenge gegeben durch ${\ML} = \{ \MPointThree{x = 2}{y = 6}{z = 10} \}$.%%%
 \end{MExample}
 Die aufmerksame Leserin, der aufmerksame Leser mag sich beim Studium des obigen Beispiels unter Umständen die Frage
-vorlegen, ob - und wenn ja, warum - es zulässig ist, in einem System eine Gleichung durch eine andere zu ersetzen.
+stellen, ob - und wenn ja, warum - es zulässig ist, in einem System eine Gleichung durch eine andere zu ersetzen.%%%
 Im Beispiel geschieht dies an drei Punkten, etwa wenn an die Stelle der Gleichung~$(2)$ die Kombination Gleichung~$(2)$
 plus $3$ mal Gleichung~$(1)$, also Gleichung~$(2')$, tritt.
 
@@ -1396,7 +1395,7 @@ Beispiel zu - und allgemeiner bei derartigen Umformungen Linearer Gleichungssyst
 Bei der \MEntry{Additionsmethode}{Additionsmethode} werden Paare linearer Gleichungen des Systems - gegebenenfalls
 nach der Multiplikation (mindestens) einer der beiden Gleichungen mit einem geschickt gewählten Faktor (bzw. mit
 geschickt gewählten Faktoren) - mit dem Ziel addiert, dass in den resultierenden Gleichungen (zumindest) eine Unbekannte
-herausfällt. Dabei ist darauf zu achten, dass bei der fortschreitenden Lösungsfindung keine Information verlorengeht,
+herausfällt. Dabei ist darauf zu achten, dass bei der fortschreitenden Lösungsfindung keine Information verloren geht,
 sprich, dass die Anzahl der (informationsrelevanten) Gleichungen stets erhalten bleibt. Am geschicktesten bringt man
 in diesem Zuge das Gleichungssystem auf eine \textbf{Dreiecksform}. Dann ist das anschließende Auffinden der Lösung
 besonders einfach.
@@ -1577,8 +1576,8 @@ alle rechten Seiten der Gleichungen als feste, konkrete Zahlenwerte vorzugeben, 
 zu lassen, um zu studieren, was in verschiedenen Situationen passieren kann; manchmal kennt man auch nicht
 alle Koeffizienten oder rechten Seiten aufgrund der Aufgaben- oder Problemstellung.
 
-Zum anderen ist es möglich, dass entweder die Anzahl der linearen Gleichungen oder
-aber die Anzahl der Unbekannten in einem Gleichungssystem dominiert.
+Zum anderen ist es möglich, dass die Anzahl der linearen Gleichungen und
+ die Anzahl der Unbekannten in einem Gleichungssystem unterschiedlich groß ist.%%%
 \end{MIntro}
 
 \begin{MXContent}{Systeme mit freiem Parameter}{Systeme mit freiem Parameter}{STD}
@@ -1799,23 +1798,23 @@ einsetzen:
 Die so gefundenen Werte für $m$ und $b$ stellen eine eindeutige Lösung
 des betrachteten LGS dar.
 \par
-Für das Beispiel $\alpha=-2, \beta=2$ erhält man die Lösung $m=-1/4, b=5/2$ 
+Für das Beispiel $\alpha=-2, \beta=2$ erhält man die Lösung $m=-1/4, b=3/2$%%% 
 und für $\alpha=2, \beta=-2$ das Ergebnis $m=-3/4, b=-9/2$.
 %
 \medskip\par\noindent
 %
-B. In diesem Fall gilt $\beta-\alpha = 0 \MBlank \Leftrightarrow \MBlank
+B. Gilt nun $\beta-\alpha = 0 \MBlank \Leftrightarrow \MBlank %%%
 \beta=\alpha$. Damit verschwindet die linke Seite von Gl. $(2')$. Dies macht
 die folgende weitere Fallunterscheidung nötig:
 %
 \smallskip\par\noindent
 %
-Ba. Gilt nun für die rechte Seite von Gl. $(2')$ $1+2\alpha+\beta\ne 0$,
+B(i). Gilt nun für die rechte Seite von Gl. $(2')$ $1+2\alpha+\beta\ne 0$,%%%
 dann besitzt das LGS keine Lösung, $\ML=\MEmptyset$. Setzt man noch
 $\beta=\alpha$ ein, dann erhält man $\beta=\alpha\ne -\frac{1}{3}$.
 %
 \smallskip\par\noindent
-Bb. Verschwindet die rechte Seite von Gl. $(2')$, dann besteht das LGS
+B(ii). Verschwindet die rechte Seite von Gl. $(2')$, dann besteht das LGS%%%
 faktisch nur noch aus Gl. (1) mit $\beta=\alpha=-\frac{1}{3}$.
 In diesem Fall kann man $m=\lambda$, 
 $\lambda\in\R$, beliebig vorgeben, und $b$ ergibt sich direkt aus Gl. (1)
@@ -1918,17 +1917,17 @@ weiteren Vereinfachung,
       y + z&=& -1+t-t^2 & 
 	  \mbox{Gl.}\MBlank (2')\MDFPSpace, \\[0.5ex]
       0 &=& -1+t^2 & 
-	  \mbox{Gl.}\MBlank ({3'}') \MDFPeriod
+	  \mbox{Gl.}\MBlank ({3''}) \MDFPeriod
   \end{array}
 \]
-Dieses äquivalente LGS besitzt nur dann eine Lösung, wenn auch Gl. $({3'}')$ 
+Dieses äquivalente LGS besitzt nur dann eine Lösung, wenn auch Gl. $({3''})$ 
 erfüllt ist, also $0=-1+t^2$ $\Leftrightarrow$ $t^2=1$ gilt.
 In allen anderen Fällen ist die Lösungsmenge leer, d.h.
 \[
   \ML=\MEmptyset \MBlank\mbox{für}\MBlank t\in\R\MSetminus\{-1\MElSetSep 1\}
   \MDFPeriod
 \]
-Ist nun Gl. $({3'}')$ erfüllt, also $t=1$ oder $t=-1$, dann kann $z$
+Ist nun Gl. $({3''})$ erfüllt, also $t=1$ oder $t=-1$, dann kann $z$
 frei gewählt werden, d.h. $z=\lambda$, $\lambda\in\R$.
 Die Umstellung der Gln. $(1')$ und $(2')$ nach $x$ bzw. $y$ liefert
 im Fall $t=1$ die Ausdrücke $x=-2z$ und $y=-1-z$, also
