@@ -129,6 +129,12 @@ endef
 # Fix the link paths in the HTML files
 #
 fix:
+	# fix redirect to English welcome page
+	cd $(OUTPUT)/html/en && sed -i "s|sectionx3\.1\.0\.html|sectionx2\.1\.0\.html|g" index.html;
+
+	# fix redirect to English "contents of the module" page
+        cd $(OUTPUT)/html/en && sed -i "s|sectionx4\.1\.0\.html|sectionx3\.1\.0\.html|g" chapter.html;
+
 	# Fix paths to common (*.js, *.css ...) external files
 	# Javascript links seem to be inserted in various places with different syntax
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script src=\"\.\./|<script src=\"\.\./\.\./|g" {} \;
