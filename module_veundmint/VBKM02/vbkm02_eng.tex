@@ -1,0 +1,969 @@
+\input{mintmod.tex}
+\MPragma{MathSkip}
+
+%\Mtikzexternalize
+
+\begin{document}
+
+\MSection{Equations in one Variable}
+\MLabel{VBKM02}
+\MSetSectionID{VBKM02} % wird fuer tikz-Dateien verwendet
+
+\begin{MSectionStart}
+\MDeclareSiteUXID{VBKM02_START}
+
+Equations arise by equating two terms in which variables occur. Simple equations can be solved by 
+applying transformations and solution formulas. For more sophisticated equations case analyses are 
+required. This module consists of
+
+\begin{itemize}
+\item{Section \MNRef{M02_EinfacheGleichungen}: \MSRef{M02_EinfacheGleichungen}{Simple Equations},}
+%\item{dem Abschnitt \MNRef{M02_Wurzelgleichungen}, \MSRef{M02_Wurzelgleichungen}{Gleichungen mit Wurzeln},}
+\item{Section \MNRef{M02_Betragsgleichungen}: \MSRef{M02_Betragsgleichungen}{Absolute Value Equations},}
+\item{and Section \MNRef{M02_Abschlusstest}: \MSRef{M02_Abschlusstest}{Final Test}.}
+\end{itemize}
+\end{MSectionStart}
+
+\MSubsection{Simple Equations}
+\MLabel{M02_EinfacheGleichungen}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM02_EinfacheGleichungenIntro}
+\begin{MInfo}
+An \MEntry{equation}{equation} is an expression of the form
+$$
+\text{left-hand side} \;=\; \text{right-hand side} \MDFPSpace
+$$
+with mathematical expressions on both sides of the equation. These expressions generally contain variables or unknowns (e.q.\ $x$). 
+Depending on the variable values an equation is satisfied if both sides of the equation evaluate to the same value. An equation is not 
+satisfied if the sides of the equation evaluate to different values.
+\end{MInfo}
+
+Equations describe relations between expressions or model a problem to be solved. An equation itself cannot
+be true or false but some variables satisfy the equation and others do not. To test whether the equation is 
+true or false for a single variable value this value has to be inserted into the equation. Then, both sides of the 
+equation are evaluated to certain values. The equation is satisfied by an inserted variable value if the evaluated 
+values coincide:
+
+\begin{MExample}
+The equation $2x-1=x^2$ has the right-hand side $x^2$ and the left-hand side $2x-1$. Inserting $x=1$ 
+results in the value $1$ on both sides of the equals sign, hence $x=1$ is a solution of this equation. 
+However, $x=2$ is no solution since the left-hand side of the equation is evaluated to the value $4$ while the 
+right-hand side is evaluated to the value $3$.
+\end{MExample}
+
+\begin{MInfo}
+The \MEntry{solution set}{solution set} $\ML$ of an equation is the set of all numbers satisfying the relation 
+$$
+\text{left-hand side} \;=\; \text{right-hand side} \MDFPSpace
+$$
+if inserted into the the equation instead of the variable (e.q. $x$).
+\end{MInfo}
+
+Typical problems concerning equations are:
+\begin{itemize}
+ \item{specify the solution set of an equation, i.e.\ find all variable values satisfying the equation,}
+ \item{transform the equation, in particular, solve an equation for the variables, and}
+ \item{find an equation modelling a problem described textually.}
+\end{itemize}
+
+
+\begin{MExample}
+  A savings deposit is to be designed such that it gives a fixed return per year. The bank intends to achieve
+  that the saver returns for a five years deposit exactly 600~Euro more than for a deposit of only two years. 
+
+  First, the textual problem is translated into an equation with the variable $r$ denoting the return per year. Then, 
+  the equation is $5\cdot r=2\cdot r+600$. It says that five payments (left-hand side of the equation) equal 
+  two payments plus 600 (the unit Euro is then omitted during calculation).
+
+  This equation can be solved for $r$ very easily by subtracting the term $2r$ to both sides of the equation. Then, the 
+  equation reads $3r=600$ and dividing by $3$ results in the solution $r=200$.
+
+  Thus, the bank has to offer a return of 200~Euro per year to reach the required savings target. 
+\end{MExample}
+
+% \begin{MExercise}
+% Übersetzen Sie die folgenden Aussagen in eine Gleichung (ohne sie zu lösen):
+% \begin{MExerciseItems}
+% \item{In elf Jahren ist Max doppelt so alt wie jetzt ($t$ = jetziges Alter in Jahren):  ???}
+% \item{Ein Kunde hat eine Rechnung über 1000 Euro zu bezahlen. Die monatlich zu zahlende Rate bleibt für ihn gleich unabhängig davon ob er
+% \begin{itemize}
+%  \item{die Rechnung mit $m$ gleichgroßen Raten abbezahlt,}
+%  \item{vier Raten mehr als $m$ einteilt und zusätzlich 10 Euro Verzugsgebühren pro Monat an die Bank zahlt (die nicht zur Rechnungsbegleichung dienen).}
+% \end{itemize}
+% Ist $m$ die Anzahl der Monate, so gilt ???
+% }
+% \end{MExerciseItems}
+% \end{MExercise}
+
+
+\begin{MInfo}
+Two equations are said to be \MEntry{equivalent}{equivalence} if they have the same solution set.
+
+An \MEntry{equivalent transformation}{equivalent transformation} is a special transformation that changes
+the equation but not its solution set. Important equivalent transformations are
+
+\begin{itemize}
+ \item{adding/subtracting terms to both sides of the equation,}
+ \item{exchanging both sides of the equation,}
+ \item{transformation of terms on one side of the equation, and}
+ \item{inserting known relations.}
+ \end{itemize}
+
+The following transformations are considered as equivalent transformations only if the used term is non-zero 
+(which can depend on the variables):
+
+\begin{itemize}
+ \item{multiplying/dividing by a term (this term has to be non-zero),}
+ \item{taking the reciprocal on both sides of the equation (both sides have to be non-zero).}
+\end{itemize}
+\end{MInfo}
+
+Here, the following \MEntry{notation}{equivalent transformation (notation)} is used:
+
+\begin{itemize}
+ \item{equivalent equations are indicated by the symbol $\Leftrightarrow$ (which reads: if and only if, i.e. one
+  equation is satisfied if and only if the other equation is satisfied).}
+
+\item{the symbol is underset by the transforming operation (or, for solutions with more than one line, the 
+  transforming operation is written next to the transformation).}
+\end{itemize}
+
+Importantly, the reader should be able to understand which transformation was carried out.
+
+\begin{MExample}
+This example illustrates two simple single-lined equivalent transformations. Even though the symbol $\Leftrightarrow$ 
+is two-sided the notation is interpreted in such a way that the transformation is applied from 
+left to right:
+$$
+3x-x^2 \;=\; 2x-x^2+1\;\;\MUnderset{+x^2}\Leftrightarrow\;\;  3x\;=\; 2x+1 \;\;\MUnderset{-2x}\Leftrightarrow\;\; x \;=\; 1 \MDFPeriod
+$$
+The left equation and the right equation are equivalent. On the left we have the initial equation
+(corresponding to a certain textual problem) and on the right we have an equivalent equation 
+showing the solution immediately.
+\end{MExample}
+
+\begin{MExample}
+\MLabel{BSP_Umformungen1}
+For several complicated transformations the transformation steps should be written below each other.
+In this case the respective transformations are separated from the equation by vertical bars. 
+
+\begin{eqnarray*}
+& \text{Start:} & 12+t \;=\;\Mdfrac{2t}{2t^2}+t \ \ \ \ \MSep \ -t\ \\ \ \\
+& \Leftrightarrow & 12 \;=\; \Mdfrac{2t}{2t^2}  \ \ \ \ \MSep \ \text{sides exchanged}\ \\ \ \\
+& \Leftrightarrow & \Mdfrac{2t}{2t^2} \;=\; 12  \ \ \ \ \MSep \ \text{left-hand side transformed}\ \\ \ \\
+& \Leftrightarrow & \Mdfrac1t \;=\; 12  \ \ \ \ \MSep \ \text{reciprocals taken}\ \\ \ \\
+& \Leftrightarrow & t \;=\; \Mdfrac{1}{12} \MDFPeriod
+\end{eqnarray*}
+
+Here, after the vertical bar both short symbols as, e.g. $-t$, and textual descriptions are allowed. 
+Importantly, the reader should be able to understand which transformations were carried out and should be able to decide whether 
+they are correct.
+
+\end{MExample}
+\end{MIntro}
+
+\begin{MXContent}{Conditions in Transformations}{Conditions}{STD}
+\MDeclareSiteUXID{VBKM02_Bedingungen}
+Multiplication, division, and taking reciprocals are only equivalent transformations if the factors or terms are 
+non-zero. In example~\MRef{BSP_Umformungen1}, the reader understands that both sides of the equation are non-zero 
+such that the transformation is allowed. If the variables themselves are used in the transformation it has to be 
+noted that the respective term has to be non-zero. The solution at the end of the transformations is then 
+only valid for variable values satisfying the transformation conditions. All other values have to be checked 
+\textit{separately}, typically by inserting the value into the equation:
+
+\begin{MExample}
+In this example, the necessary transformation conditions are not problematic:
+\begin{eqnarray*}
+& \text{Start:} & 9x \;=\;81x^2  \ \ \ \ \MSep \ :x\text{, transformation allowed if }x\not=0\ \\ \ \\
+& \Leftrightarrow & 9 \;=\; 81x  \ \ \ \ \MSep \ :81\text{ and exchange sides}\ \\ \ \\
+& \Leftrightarrow & x \;=\; \Mdfrac19 \ \ \ \ \text{and this value satisfies the condition }x\not=0 \MDFPeriod
+\end{eqnarray*}
+The value $x=0$, initially rejected by the transformation condition, has to be checked separately. The equation $9x=81x^2$ is 
+also satisfied for $x=0$, hence $x=0$ is also a solution of the equation. In set notation, the 
+solution set is $\ML=\lbrace 0\MElSetSep \Mtfrac19\rbrace$.
+\end{MExample}
+
+Anyway, values violating a condition have to be checked separately, in particular, they can be finally 
+part of the solution.
+
+\begin{MExample}
+\begin{eqnarray*}
+& \text{Start:} & x^2-2x \;=\; 2x-4 \ \ \ \ \MSep \ \text{factor out on both sides} \ \\ \ \\
+& \Leftrightarrow & x\cdot (x-2) \;=\; 2\cdot (x-2) \ \ \ \ | \ :(x-2)\text{, transformation only allowed if }x\not=2\ \\ \ \\
+& \Leftrightarrow & x\;=\; 2  \MDFPeriod
+\end{eqnarray*}
+This value of $x$ violates the condition $x\not=2$. Hence, this is possibly no solution. Inserting $x=2$
+into the initial equation gives $2^2-2\cdot 2=0$ on the left-hand side and also $2\cdot 2-4=0$ on the 
+right-hand side. Hence, $x=2$ is indeed a solution, even though it violated the transformation condition.
+\end{MExample}
+
+\begin{MExercise}
+Find the solution of the equation $(x-2)(x-3)=x^2-9$ by transforming the right-hand side using the third 
+binomial formula and then dividing by a common factor. 
+
+The solution is $x$ = \MLParsedQuestion{5}{3}{5}{EASY1}.
+
+\begin{MHint}{Solution}
+The correct transformation steps including conditions are
+\begin{eqnarray*}
+& \text{Start:} & (x-2)(x-3)\;=\; x^2-9 \ \ \ \ \MSep \ \text{transformation of the right-hand side} \ \\ \ \\
+& \Leftrightarrow & (x-2)(x-3) \;=\; (x+3)(x-3) \ \ \ \ \MSep \ :(x-3)\text{, transformation allowed if }x\not=3\ \\ \ \\
+& \Leftrightarrow & x-2\;=\; x+3 \ \ \ \ \MSep \ -x \ \\ \ \\
+& \Leftrightarrow & -2 \;=\; 3 \; \text{is a wrong equation.}
+\end{eqnarray*}
+Importantly, this equation is only wrong for $x\not=3$. We have to check $x=3$ separately, and indeed 
+$x=3$ satisfies the initial equation.
+\end{MHint}
+\end{MExercise}
+\end{MXContent}
+
+\begin{MXContent}{Proportionality and Rule of Three}{Proportionality}{STD}
+\MLabel{VBKM02_Dreisatz}
+\MDeclareSiteUXID{VBKM02_Dreisatz}
+In practise, a relation between two quantities that occurs frequently is the 
+\MEntry{proportionality}{proportionality} between two quantities, e.g. between 
+mass and volume, time and travelled distance or weight (quantity) of a product and its price. 
+The relation can be exemplary for certain fixed quantities. Then, a first aim is to formulate the 
+resulting relation for another application example. 
+The procedure shall be illustrated by an example. 
+
+
+\begin{MExample}
+$5\MEinheit{kg}$ of apples cost $3$ Euro. How much do $11\MEinheit{kg}$
+of apples cost?
+\par
+The initial relation can be formulated as follows:
+$$
+5\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 3\MBlank \text{Euro}
+\MDFPeriod
+$$
+It is assumed that these quantities are proportional to each other. In the next
+step the relation between the quantities is reduced to a unit of one of the quantities, 
+namely to the unit of the given quantity. Here, both quantities 
+are multiplied by $1/5$ -- i.e. the unit is $1\MEinheit{kg}$ --:
+$$
+1\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 
+\frac{1}{5}\cdot 3\MBlank \text{Euro} = \MZahl{0}{6}\MBlank \text{Euro}
+\MDFPeriod
+$$
+Finally, both sides of the equation are multiplied by the multiple of the 
+respective unit of the specified quantity, in this case by the factor $11$: 
+$$
+11\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 
+11\cdot\MZahl{0}{6}\MBlank \text{Euro} = \MZahl{6}{6}\MBlank \text{Euro}
+\MDFPeriod
+$$
+The required price for $11\MEinheit{kg}$ of apples is therefore
+$\MZahl{6}{60}\MBlank \text{Euro}$.
+\end{MExample}
+
+We have derived the required relation by deriving a relation for one unit of a quantity from 
+the initial relation. This procedure demonstrated here as an example is called 
+\MEntry{rule of three}{rule of three}.
+
+The posed problem can also be solved by introducing a proportionality factor. 
+Again, we consider the example above.
+
+\begin{MExample}
+The price $P$ is proportional to the mass $m$. Hence, it exists a constant 
+$k$ with
+$$
+P=k m \MDFPeriod
+$$
+Since this relation also holds for the given values $m_0=5\MEinheit{kg}$
+and $P_0=3\MBlank\text{Euro}$ it follows 
+\begin{eqnarray*}
+  P_0=k m_0 & \MTSP\MSep\MTSP & \text{multiplying by}\MBlank \frac{1}{m_0} \\
+  \Longleftrightarrow\MDFPSpace\frac{P_0}{m_0}=k &;& 
+\end{eqnarray*}
+hence in this case
+$$
+k=\frac{3}{5} = \MZahl{0}{6} \MDFPSpace,
+$$
+taken in the unit of Euro per kg. (As a scientist you would correctly write 
+ $k=\MZahl{0}{6} \MBlank \text{Euro}/\MEinheit[]{kg}$, since proportionality factors 
+generally carry a dimensional unit.) Using $m_1=11\MEinheit{kg}$, one obtains 
+finally
+$$
+P_1=k m_1 = \MZahl{0}{6}\cdot 11 =\MZahl{6}{6} \MBlank \text{(Euro)}
+\MDFPSpace
+$$
+which is the same result as for using the rule of three (see previous example).
+\end{MExample}
+
+\begin{MExercise}
+A car takes $9$~minutes to travel a distance of $6\MEinheit{km}$.
+\begin{MExerciseItems}
+\item{%
+Which distance $s$ the car travels within $15$~minutes?
+\medskip\par
+The solution is $s_{15}$ = \MLParsedQuestion{5}{10}{5}{EASY2}$\MEinheit{km}$.
+}
+\item{%
+The proportionality factor between travelled distance $s$ and travelling 
+time $t$ is the velocity $v$ of the car.
+\medskip\par
+The velocity is $v$ = \MLParsedQuestion{5}{40}{5}{EASY3}$\MEinheit{km}/\MEinheit{h}$.
+}
+\end{MExerciseItems}
+\begin{MHint}{Solution}
+>From the given values we know that the car travels $\frac{6}{9}\MEinheit{km}
+=\frac{2}{3}\MEinheit{km}$  within one minute and therefore 
+$15\cdot\frac{2}{3}\MEinheit{km}=10\MEinheit{km}$ within $15$~minutes.
+\par
+So, the velocity is
+$$v=\frac{10\MEinheit{km}}{15\MEinheit{min}} = 
+\frac{10\MEinheit{km}}{(1/4)\MEinheit{h}} =
+40\MEinheit{}\frac{\MEinheit[]{km}}{\MEinheit[]{h}}
+\MDFPeriod
+$$
+\end{MHint}
+\end{MExercise}
+\end{MXContent}
+
+\begin{MXContent}{Solving linear Equations}{Solving}{STD}
+\MLabel{VBKM02_LineareGleichungenLoesen}
+\MDeclareSiteUXID{VBKM02_Aufloesen}
+\begin{MInfo}
+A \MEntry{linear equation}{equation (linear)} is an equation in which only multiples of 
+variables and constants occur.
+
+For a linear equation in one variable (here the variable $x$) one of the following 
+three statements holds:
+\begin{itemize}
+ \item{The equation has no solution.}
+ \item{The equation has a single solution.}
+ \item{Every value of $x$ is a solution of the equation.}
+\end{itemize}
+\end{MInfo}
+
+These three cases are distinguished by means of the transformation steps:
+\begin{itemize}
+\item{If the transformation ends up in a statement that is wrong for all $x$ (e.g. $1=0$) 
+then the equation is unsolvable.}
+\item{If the transformation ends up in a statement that is true for all $x$ (e.g. $1=1$)
+then the equation is solvable for all values of $x$.}
+\item{Otherwise, the equation can be solved, i.e. it can be transformed into 
+the equation $x=\text{value}$ which is the solution.}
+\end{itemize}
+
+\begin{MXInfo}{Set notation}
+Using the set notation (with the solution set $\ML$) these cases can be expressed as follows:
+\begin{itemize}
+ \item{$\ML=\lbrace\rbrace$ or $L=\MEmptyset$ if there is no solution,}
+ \item{$\ML=\lbrace \text{value}\rbrace$ if there is a single solution,}
+ \item{$\ML=\R$ if all real numbers $x$ are a solution.}
+\end{itemize}
+\end{MXInfo}
+
+
+\begin{MExample}
+The linear equation $3x+2=2x-1$ has one solution. 
+This solution is obtained by equivalent transformations:
+$$
+3x+2 \;=\; 2x-1 \;\;\MUnderset{-2x}\Leftrightarrow\;\; x+2\;=\;-1\;\;\MUnderset{-2}\Leftrightarrow\;\; x\;=\; -3 \MDFPeriod
+$$
+Hence, $x=-3$ is the only solution.
+\end{MExample}
+
+\begin{MExample}
+The linear equation $3x+3=9x+9$ has the solution:
+$$
+3x+3 \;=\; 9x+9 \;\;\MUnderset{:(x+1)}\Leftrightarrow\;\; 3\;=\;9 \MDFPeriod
+$$
+This statement is wrong. Hence, for all $x\not=-1$ (transformation condition) the equation is wrong.
+Inserting $x=-1$ satisfies the equation, and so the only solution is $x=-1$.
+
+Alternatively, the equation could have been transformed as follows:
+$$
+3x+3 \;=\; 9x+9 \;\;\MUnderset{-3x-9}\Leftrightarrow\;\; -6 \;=\; 6x \;\; \Leftrightarrow\;\; x \;=\; -1 \MDFPeriod
+$$
+\end{MExample}
+
+\begin{MExercise}
+Transform the following linear equations and specify their solution sets:
+\MInputHint{Enter simply \texttt{$\lbrace a\rbrace$} for a unit set and $\lbrace\rbrace$ for an empty set.}\ \\
+\begin{MExerciseItems}
+\item{The equation $x-1=1-x$ has the solution set \MEquationItem{$\ML$}{\MLParsedQuestion{4}{1,1}{4}{LUA1}},}
+\item{The equation $4x-2=2x+2$ has the solution set \MEquationItem{$\ML$}{\MLParsedQuestion{4}{2,2}{4}{LUA2}},}
+\item{The equation $2x-6=2x-10$ has the solution set \MEquationItem{$\ML$}{\MLParsedQuestion{4}{}{4}{LUA3}}.}
+\end{MExerciseItems}
+
+\begin{MHint}{Solution}
+The first equation can be transformed into $2x=2$ or $x=1$, respectively, so 
+the solution set is $\ML=\lbrace 1\rbrace$. The second equation can be transformed into $2x=4$ and the solution set is 
+$\ML=\lbrace 2\rbrace$. The third equation can be transformed into $-6=-10$ which is a false statement, 
+hence $\ML=\lbrace\rbrace$.
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Find the solution of the general linear equation $a x=b$ with $a$ and $b$ being real numbers.
+Specify the values of $a$ and $b$ for which the following three cases occur:
+\begin{itemize}
+ \item{Every value of $x$ is a solution ($\ML=\R$) if 
+\MEquationItem{$a$}{\MLParsedQuestion{4}{0}{4}{ALG1}} and $b=0$.}
+ \item{There is no solution ($\ML=\MEmptyset$) if \MEquationItem{$a$}{\MLParsedQuestion{4}{0}{4}{ALG2}} 
+and $b\not=$\MLParsedQuestion{4}{0}{4}{ALG3}.}
+ \item{Otherwise, there is a single solution, namely 
+\MEquationItem{$x$}{\MLSimplifyQuestion{5}{b/a}{10}{a,b}{10}{513}{VBKM02ALTFALL3}}.}
+\end{itemize}
+
+\begin{MHint}{Solution}
+Every value of $x$ is a solution ($\ML=\R$) if $a=0$ and $b=0$.
+There is no solution ($\ML=\MEmptyset$) if $a=0$ and $b\not=0$.
+Otherwise, there is only one solution, namely $x=\Mtfrac{b}{a}$.
+\end{MHint}
+
+\end{MExercise}
+
+
+\end{MXContent}
+
+\begin{MXContent}{Solving quadratic Equations}{Quadratic Equations}{STD}
+\MLabel{VBKM02_QuadratischeGleichungen}
+\MDeclareSiteUXID{VBKM02_Quadratische Gleichungen}
+\begin{MInfo}
+A \MEntry{quadratic equation}{equation (quadratic)} is an equation of the form
+  $a x^2 + b x + c = 0$ with $a\not=0$, or, in reduced form, $x^2+ p x + q=0$. 
+This form is obtained by dividing the equation by $a$.
+
+For a quadratic equation in one variable (here the variable $x$) one of the following three statements 
+holds:
+\begin{itemize}
+ \item{The quadratic equation has no solution: $\ML=\lbrace\rbrace$.}
+ \item{The quadratic equation has a single solution $\ML=\lbrace x_1\rbrace$.}
+ \item{The quadratic equation has two different solutions $\ML=\lbrace x_1\MElSetSep x_2\rbrace$.}
+\end{itemize}
+\end{MInfo}
+
+The solutions are obtained by applying \MEntry{quadratic solution formulas}{solution formulas}.
+
+\begin{MInfo}
+\MLabel{VBKM02_pqFormel}
+The \MEntry{$p q$ formula}{pq formula} for solving the equation $x^2+p x + q = 0$ reads
+$$
+x_{1,2} \;=\; -\Mdfrac{p}{2}\pm \sqrt{\Mdfrac14p^2-q} \MDFPeriod
+$$
+Here, the equation has
+\begin{itemize}
+\item{no (real) solution if $\Mtfrac14p^2-q<0$ (taking the square root is not allowed),}
+\item{a single solution $x_1=-\Mtfrac{p}{2}$ if $\Mtfrac14p^2=q$ and the square root is zero,}
+\item{two different solutions if the square root is a positive number.}
+\end{itemize}
+
+The expression $D:=\Mtfrac14p^2-q$ underneath the square root considered above is called 
+\textbf{discriminant}.
+\end{MInfo}
+The solution of a quadratic equation is often described by an alternative formula:
+\begin{MInfo}
+\MLabel{VBKM02_abcFormel}
+For the equation $a x^2+b x + c = 0$ with $a\ne 0$ the
+\MEntry{$a b c$ formula}{abc formula} reads
+$$
+x_{1,2} \;=\; \frac{-b\pm\sqrt{b^2-4 a c}}{2a} \MDFPeriod
+$$
+Here, the equation has
+\begin{itemize}
+\item{no (real) solution if $b^2-4 a c<0$ (the square root of a negative number is undefined within the
+range of real numbers),}
+\item{a single solution $x_1=-\Mtfrac{b}{2a}$ if $b^2=4 a c$ and the square root is zero,}
+\item{two different solutions if the square root is a positive number.}
+\end{itemize}
+Again, the expression $D:=b^2-4 a c$ underneath the square root considered above is called 
+\textbf{discriminant}.
+\end{MInfo}
+Certainly, both formulas result in the same solutions. (For applying the $pq$ formula, the quadratic 
+equation is to be divided by the factor $a$ of the quadratic term.)
+\medskip\par
+This three different cases correspond to three different numbers of intersection points between 
+the graph of a parabola opening upwards $f(x)=x^2+p x+ q$ and the $x$ axis (applying the $p q$ formula).
+
+\begin{center}
+%%\MUGraphicsSolo{para1b.png}{width=0.2\linewidth}{width:230px}\ \ 
+%%\MUGraphicsSolo{para2b.png}{width=0.2\linewidth}{width:230px}\ \ 
+%%\MUGraphicsSolo{para3b.png}{width=0.2\linewidth}{width:230px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm,scale=0.60] 
+\foreach \sx/\fsy in {-7.0cm/0.5,0.0cm/0.0,7.0cm/-0.5} {
+\begin{scope}[xshift=\sx,yshift=0]
+\draw[black] (-3,0) -- (3,0) (0,-3) -- (0,3);
+\foreach \x in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-2.0pt) node[below=1.0pt] {\tiny $\x$};
+\foreach \x in {-2.5, -1.5, ..., 2.5}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.0pt);
+\foreach \y in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-2.0pt,0pt) node[left=1.0pt] {\tiny $\y$};
+\foreach \y in {-2.5, -1.5, ..., 2.5}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.0pt,0pt);
+\draw[black] (-0.0pt,-0.0pt) node[anchor=north east] {\tiny $0$};
+\clip(-3.0,-3.0) rectangle (3.0,3.0);
+\draw[smooth,samples=27,domain=-3:3, line width=1.0pt,color=red!50!black] plot(\x,{\x*\x+\fsy});
+\end{scope}
+}
+\end{tikzpicture}
+}
+\end{center}
+
+Three cases: no intersection point, one intersection point and two intersection points with the
+$x$ axis.
+
+
+\begin{MExample}
+The quadratic equation $x^2-x+1=0$ has no solution since the discriminant $\Mtfrac14p^2-q=-\Mtfrac34$
+within the $p q$ formula is negative.
+In contrast, the equation $x^2-x-1=0$ has two solutions
+\begin{eqnarray*}
+x_1 &=& \Mdfrac12+\sqrt{\Mdfrac14+1} \;=\; \Mdfrac12(1+\sqrt5) \MDFPSpace ,\ \\
+x_2 &=& \Mdfrac12-\sqrt{\Mdfrac14+1} \;=\; \Mdfrac12(1-\sqrt5) \MDFPeriod
+\end{eqnarray*}
+\end{MExample}
+
+\begin{MInfo}
+\MLabel{VBKM02_Scheitelpunktform}
+%%Eine quadratische Gleichung ist in \MEntry{Scheitelpunktform}{Scheitelpunktform}, wenn sie die Form $a\cdot (x-s)^2=d$ besitzt mit $a\not=0$ und $d\geq 0$.
+%%Für den Funktionsausdruck der zugehörigen Parabel liest sich diese Form $f(x)=a\cdot (x-s)^2-d$.
+%%In dieser Situation ist $(s\,|\,-d)$ der \MEntry{Scheitelpunkt}{Scheitelpunkt (Parabel)} der Parabel.
+%%
+%%Falls $a>0$ ist gibt es zwei Lösungen
+%%$$
+%%x_1 \;=\; s-\sqrt{\Mdfrac{d}{a}} \MDFPSpace,\MDFPaSpace x_2 \;=\; s+\sqrt{\Mdfrac{d}{a}}
+%%$$
+%%der Gleichung, diese liegen symmetrisch um die $x$-Koordinate des Scheitelpunkts. Für $d=0$ gibt es nur eine Lösung.
+%%
+%%Das Vorzeichen von $a$ bestimmt, ob die Gleichung eine nach oben oder unten geöffnete Parabel beschreibt.
+The function expression of a parabola has \MEntry{vertex form}{vertex form} if the function
+has the form $f(x)=a\cdot (x-s)^2-d$ with $a\ne 0$. In this case, $\MPointTwo{s}{-d}$
+is the \MEntry{vertex}{vertex (parabola)} of the parabola. The corresponding 
+quadratic equation for $f(x)=0$ then reads $a\cdot (x-s)^2=d$.
+
+Dividing this equation by $a$ one obtains the equivalent quadratic equation 
+$(x-s)^2=\frac{d}{a}$. Since the left-hand side is a square of a real number, only 
+solutions exist if and only if the right-hand side is non-negative as well, i.e.
+$\frac{d}{a}\ge 0$. By taking the square root, taking the two possible signs into
+account, one obtains $x-s=\pm\sqrt{\frac{d}{a}}$.
+
+So, for $\frac{d}{a}>0$ two solutions of the equation exist:
+$$
+x_1 \;=\; s-\sqrt{\Mdfrac{d}{a}} \MDFPSpace,\MDFPaSpace x_2 \;=\; s+\sqrt{\Mdfrac{d}{a}}\,;
+$$
+they are symmetric to the $x$ coordinate $s$ of the vertex. For $d=0$, only one
+solution exists.
+
+The sign of $a$ determines whether the function expression describes a parabola 
+opening upwards or downwards. 
+\end{MInfo}
+
+The quadratic equation has only one single solution $s$ if it can be transformed into the form
+$(x-s)^2=0$.
+
+\begin{MInfo}
+\MLabel{VBKM02_QuadratischErgaenzung}
+
+Any quadratic equation can be transformed (after collecting terms on the left-hand side
+and normalisation, if necessary) to vertex form by 
+\MEntry{completing the square}{completing the square}. For this, a constant is
+added to both sides of the equation such that on the left-hand side we have a term of the 
+form $x^2\pm 2s x+s^2$ to which the first or second binomial formula can be applied.
+\end{MInfo}
+
+\begin{MExample}
+Adding the constant $2$ transforms the equation $x^2-4x+2=0$ into the
+form $x^2-4x+4=2$ or into the form $(x-2)^2=2$, respectively. From this,
+the two solutions $x_1=2-\sqrt{2}$ and $2+\sqrt{2}$ can be seen immediately.
+In contrast, the quadratic equation $x^2+x=-2$ has no solution since completing
+the square results in $x^2+x+\Mtfrac14=-\Mtfrac74$ or $(x+\Mtfrac12)^2=-\Mtfrac74$, respectively, 
+where the right-hand side is negative for $a=1$.
+\end{MExample}
+
+\begin{MExercise}
+Find the solutions of the following quadratic equations by completing the square after 
+collecting terms on the left-hand side and normalisation (i.e.\ selecting $a=1$):
+
+\begin{MExerciseItems}
+\item{$x^2=8x-1$ has the vertex form \MEquationItem{\MLSimplifyQuestion{20}{x^2-8*x+16}{5}{x}{5}{0}{MSPF1}}{\MLParsedQuestion{5}{15}{5}{GLD1}}.\\The solution set is \MEquationItem{$\ML$}{\MLParsedQuestion{30}{4-sqrt(15),4+sqrt(15)}{5}{SQRT1}}.}
+\item{$x^2=2x+2+2x^2$ has the vertex form \MEquationItem{\MLSimplifyQuestion{20}{x^2+2*x+1}{5}{x}{5}{0}{MSPF2}}{\MLParsedQuestion{5}{-1}{5}{GLD2}}.\\The solution set is \MEquationItem{$\ML$}{\MLParsedQuestion{30}{}{5}{SQRT2}.}}
+\item{$x^2-6x+18=-x^2+6x$ has the vertex form \MEquationItem{\MLSimplifyQuestion{20}{x^2-6*x+9}{5}{x}{5}{0}{MSPF3}}{\MLParsedQuestion{5}{0}{5}{GLD3}}.\\The solution set is \MEquationItem{$\ML$}{\MLParsedQuestion{30}{3,3}{5}{SQRT3}.}}
+\end{MExerciseItems}
+\MInputHint{Enter sets in the form \texttt{$\lbrace$ a;b;c;$\ldots\rbrace$}. Enter the empty set as $\lbrace\rbrace$.}
+
+\begin{MHint}{Solution}
+The transformations are for the first equation
+\begin{eqnarray*}
+&&x^2=8x-1 \ \\
+&\Leftrightarrow&x^2-8x+1=0 \ \\
+&\Leftrightarrow&x^2-8x+16=15 \ \\
+&\Leftrightarrow&(x-4)^2=15 \ \\
+&& \ML=\lbrace 4-\sqrt{15}\MElSetSep 4+\sqrt{15}\rbrace
+\end{eqnarray*}
+and for the second equation
+\begin{eqnarray*}
+&&x^2=2x+2+2x^2 \ \\
+&\Leftrightarrow&x^2+2x+2=0 \ \\
+&\Leftrightarrow&x^2+2x+1=-1 \ \\
+&\Leftrightarrow&(x+1)^2=-1\ \\
+&& \ML=\lbrace\rbrace
+\end{eqnarray*}
+and for the third equation
+\begin{eqnarray*}
+&&x^2-6x+18=-x^2+6x \ \\
+&\Leftrightarrow&2x^2-12x+18=0 \ \\
+&\Leftrightarrow&x^2-6x+9=0 \ \\
+&\Leftrightarrow&(x-3)^2=0\ \\
+&& \ML=\lbrace3\rbrace \MDFPeriod
+\end{eqnarray*}
+\end{MHint}
+
+\end{MExercise}
+
+\end{MXContent}
+
+
+\MSubsection{Absolute Value Equations}
+\MLabel{M02_Betragsgleichungen}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM02_Betragsgleichungen_Intro}
+\MLabel{VBKM02_Betrag}
+The absolute value $|x|$ assigns a variable $x\in\R$ its value without sign: If $x\geq 0$, then $|x|=x$, 
+otherwise $|x|=-x$ (see figure).
+
+\begin{center}
+%%\MUGraphicsSolo{betrag1.png}{width=0.4\linewidth}{width:350px}\\
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm] 
+\draw[black] (-3,0) -- (3,0) (0,-3) -- (0,3);
+\foreach \x in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-2.0pt) node[below=1.0pt] {\scriptsize $\x$};
+\foreach \x in {-2.5, -1.5, ..., 2.5}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.0pt);
+\foreach \y in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-2.0pt,0pt) node[left=1.0pt] {\scriptsize $\y$};
+\foreach \y in {-2.5, -1.5, ..., 2.5}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.0pt,0pt);
+\draw[black] (-0.0pt,-0.5pt) node[anchor=north east] {\scriptsize $0$};
+\clip(-3.0,-3.0) rectangle (3.0,3.0);
+\draw[black, line width=1.0pt,color=red!50!black] (-3,3) -- (0,0) -- (3,3);
+\end{tikzpicture}
+}
+\par
+The absolute value $|x|$ as a function of $x$.
+\end{center}
+
+Absolute value equations are equations in which one absolute value or several absolute values occur. 
+Problems arise since the absolute value is calculated by distinguishing the two cases  
+$$
+\left|{\,\text{term}\,}\right| \;\; =\;\; \MCases{\text{term} & \text{for}\;\text{term}\geq 0\\ -\text{term} & \text{for}\;\text{Term}<0}\,.
+$$
+For solving absolute value equations, these cases have to be solved step by step 
+and analysed to find the solutions.
+
+\begin{MExample}
+Obviously, the absolute value equation $|x|=2$ has the solution set $\ML=\lbrace 2\MElSetSep -2\rbrace$.
+Just as easy, it can be seen that $|x-1|=3$ has the solution set $\ML=\lbrace -2\MElSetSep 4\rbrace$.
+\end{MExample}
+
+As soon as beside the absolute value several other terms occur a case analysis is required.
+In the following section we will explain in detail how this analysis is done and how it is 
+written correctly since the case analysis will play an important role in the next modules.
+\end{MIntro}
+
+\begin{MXContent}{Carry out a Case Analysis}{Case Analysis}{STD}
+\MDeclareSiteUXID{VBKM02_Fallunterscheidungen}
+
+\begin{MInfo}
+\MLabel{VBKM02_FallBetrag}
+To solve an \MEntry{absolute value equation}{absolute value equation} two cases are distinguished:
+\begin{itemize}
+\item{For all values of $x$ for which the absolute value term is non-negative the absolute value can be omitted or
+replaced by simple brackets, respectively.}
+\item{For all values of $x$ for which the absolute value term is negative the term is bracketed and negated.}
+\end{itemize}
+Then, the solution sets from the case analyses will be restricted to satisfy the case conditions. 
+Only if this procedure is finished for all cases, the solution subsets will be merged to the 
+solution set of the initial equation. 
+\end{MInfo}
+
+For solving absolute value equations it is important to write down the solution steps correctly
+and to distinguish the cases clearly.
+
+The following video demonstrates a detailed written solution of the absolute value
+equation $|2x-4|=6$ by case analysis.
+
+
+\MVideo{vidbsp1}{Carry out a case analysis.\MCopyrightLabel{VBKM06_Video_Beispiel1}}
+\ \\
+\MCopyrightNotice{\MCCLicense}{FSZ}{MINT}{Dozentin: Dipl.-ing. Heike Herold}{VBKM06_Video_Beispiel1}
+
+The case analysis presented in the video reads shortly
+$$
+|2x-4| \;=\; \MCases{2x-4 &\text{for}\;x\geq 2 \\ -2x+4 & \text{for}\;x<2} \;=\;\MCases{2x-4 &\text{for}\;x\geq 2 \\ -2x+4 & \text{otherwise}} \MDFPeriod
+$$
+\MInputHint{In einem Eingabefeld würde man das als \texttt{falls(x>=2;2*x-4;-2*x+4)} eintippen. Auch \texttt{falls(x<2;-2*x+4;2*x-4)} wäre richtig.}
+
+\begin{MExercise}
+Describe the values of the expression $2\cdot |x-4|$ by a case analysis:
+\begin{center}
+$\displaystyle 2\cdot |x-4|$ = \MLSimplifyQuestion{30}{falls(x>=4,2*(x-4),-2*(x-4))}{15}{x}{4}{128}{VBKM02ALTFALL1}.
+\end{center}
+\MInputHint{Enter the case analysis in the form \texttt{falls(BEDINGUNG;W1;W2)}, where \texttt{W1} is the value of the expression if the corresponding condition is satisfied. Do not use the absolute value function.}
+\begin{MHint}{Solution}
+\begin{eqnarray*}
+2\cdot |x-4| \;=\; \MCases{2x-8 &\text{for}\;x\geq 4 \\ -2x+8 & \text{for}\;x<4}
+\end{eqnarray*}
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Reproduce the steps shown in the video \MRef{VBKM06_Video_Beispiel1} to solve the absolute 
+value equation $|6+3x|=12$.
+
+The case analysis reads shortly $|6+3x|$ = \MLSimplifyQuestion{40}{for(x>=-2,6+3*x,-6-3*x)}{15}{x}{3}{128}{VBKM02ALTFALL2}.
+\begin{MHint}{Solution}
+\begin{eqnarray*}
+|6+3x| \;=\; \MCases{6+3x &\text{for}\;x\geq -2 \\ -6-3x & \text{for}\;x<-2}
+\end{eqnarray*}
+\end{MHint}\\
+\MInputHint{Enter the case analysis in the form \texttt{falls(BEDINGUNG;W1;W2)}, where \texttt{W1} is the value of the expression if the corresponding condition is satisfied.
+You can copy one of the input examples into the input field and adapt it to the new equation.}
+\ \\ \ \\
+Finding the solution for each case and checking the case conditions leads to the solution set
+\MEquationItem{$\ML$}{\MLParsedQuestion{10}{2,-6}{3}{LVI}} for the equation $|6+3x|=12$.
+
+\begin{MHint}{Solution}
+\begin{eqnarray*}
+\ML \;=\; \{-6\MElSetSep 2\}
+\end{eqnarray*}
+\end{MHint}\\
+\MInputHint{Mengen können in der Form \texttt{$\lbrace$a;b;c;\ldots$\rbrace$} eingegeben werden.}
+\end{MExercise}
+
+You can practise the stepwise solution of absolute value equations within the following exercise. 
+
+
+\MDirectRouletteExercises{abs_equations.rtex}{VBKM02_ABSEQTRAINING}
+
+
+\end{MXContent}
+
+\begin{MXContent}{Mixed Equations}{Mixed Equations}{STD}
+\MDeclareSiteUXID{VBKM02_GemischteGleichungen}
+
+\begin{MInfo}
+If an equation contains both absolute values and other expressions, the case analysis 
+has to be done according to the absolute value terms and applied only to these.
+\end{MInfo}
+
+Finally, keep in mind to crosscheck the found solution sets with the case conditions.
+
+\begin{MExample}
+Solve the equation $|x-1|+x^2=1$. Here, the case analysis is as follows:
+\begin{itemize}
+\item{For $x\geq 1$, the absolute value bars can be replaced by normal brackets which results
+in the quadratic equation $(x-1)+x^2=1$ that is transformed into the equation $x^2+x-2=0$.
+Using the $p q$ formula we get the two solutions
+\begin{eqnarray*}
+x_1 & =& -\Mdfrac12-\sqrt{\Mdfrac94}\;=\; -2 \MDFPSpace, \\
+x_2 & =& -\Mdfrac12+\sqrt{\Mdfrac94}\;=\; 1 \MDFPSpace
+\end{eqnarray*}
+of which only $x_2$ satisfies the case condition.
+}
+\item{For $x<1$, one obtains the quadratic equation $-(x-1)+x^2=1$ that is 
+transformed into the equation $x^2-x=0$ or $x\cdot (x-1)=0$, respectively. The product representation 
+indicates the two solutions $x_3=0$ and $x_4=1$. Because of the case condition only 
+$x_3=0$ is a solution of the initial equation.
+}
+\end{itemize}
+So, altogether $\ML=\lbrace 0\MElSetSep 1\rbrace$ is the solution set of the 
+initial equation.
+\end{MExample}
+
+%TODO: Intervalle sind hier noch garnicht erklaert
+%TODO: Kodierung von offenen Intervallgrenzen in "\MLIntervalQuestion" (?!)
+\begin{MExercise}
+Find the solution set of the mixed equation $|x-3|\cdot x=9$.
+\begin{MExerciseItems}
+\item{If $x$ is in the interval \MLIntervalQuestion{14}{[3,infty)}{5}{GIM1} the  
+absolute value term is non-negative.\\ One obtains the quadratic equation 
+\MEquationItem{\MLFunctionQuestion{15}{x^2-3*x-9}{5}{x}{5}{GIM2}}{$0$}.\\
+The solution set is \MLParsedQuestion{35}{3/2-sqrt(45/4)\MElSetSep 3/2+sqrt(45/4)}{5}{GIM3}.\\
+Only the solution \MLParsedQuestion{15}{3/2+sqrt(45/4)}{5}{GIM4} satisfies the case condition.}
+
+\item{If $x$ is in the interval \MLIntervalQuestion{14}{(-infty,3)}{5}{GIM5} the absolute 
+value term is negative.\\  One obtains the normalised quadratic equation 
+\MEquationItem{\MLFunctionQuestion{15}{x^2-3*x+9}{5}{x}{5}{GIM6}}{$0$}.\\
+The solution set is \MLParsedQuestion{30}{}{5}{GIM7}.}
+\end{MExerciseItems}
+%TODO: Text und Kodierung anpassen
+\MInputHint{Enter open intervals in the form $(3;5)$ and closed intervals in the form $[3;5]$. Enter
+``infinity'' as text or simply as \texttt{infty}. Do not use the notation $]a;b[$ fir open intervals. 
+Sets can be entered by listing the elements in the form $\lbrace 1\MElSetSep 2\MElSetSep 3\rbrace$. For 
+the set brackets enter AltGr+7 or AltGr+0, respectively.} 
+
+So, altogether the solution set is \MEquationItem{$\ML$}{\MLParsedQuestion{20}{3/2+sqrt(45/4),3/2+sqrt(45/4)}{5}{GIM8}}.
+
+\begin{MHint}{Solution}
+If $x$ is in the interval $\left[3\MIntvlSep \infty\MoIr[\right]$ the absolute value term is non-negative
+and one obtains the quadratic equation $x^2-3x-9=0$ with the solution set 
+$\ML=\lbrace \Mtfrac32-\sqrt{\Mtfrac{45}{4}};\Mtfrac32+\sqrt{\Mtfrac{45}{4}}\rbrace$. Only the 
+larger solution $\Mtfrac32+\sqrt{\Mtfrac{45}{4}}$ satisfies the condition $x\geq 3$. This can 
+also be seen without any calculator by estimating $\sqrt{\Mtfrac{45}{4}}\geq\sqrt{\Mtfrac{36}{4}}=3$.
+In contrast, if $x$ is in the interval $\MoIl[\left]-\infty\MIntvlSep 3\MoIr[\right]$
+the absolute value term is negative. One obtains the normalised quadratic equation $x^2-3x+9=0$.
+Because of $\Mtfrac14p^2-q<0$ in the $pq$ formula this equation is unsolvable. Hence, the initial
+equation has only one solution $\Mtfrac32+\sqrt{\Mtfrac{45}{4}}$.
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Find the solutions of the mixed absolute value equation $3|2x+1|=|x-5|$ by visualising 
+the different cases on the number line and finally solving the equation by case analysis. 
+First, visualise the case analysis for each absolute value. 
+
+The solution set is \MLParsedQuestion{10}{-8/5,2/7}{5}{PARSEDQUEST1}.
+
+\begin{MHint}{Solution}
+Visualising the different cases for the expressions $|2x+1|$ and $|x-5|$ above each other 
+indicates all cases to be distinguished:
+
+%%\MGraphics{fallunterscheidung3.png}{scale=1}{Graphische Darstellung der drei Fälle.\MCopyrightLabel{VBKM02_Grafik_Fallunterscheidung3}}
+%%\MCopyrightNotice{\MCCLicense}{NONE}{VEMINT}{Im Rahmen des VE\&MINT-Projekts}{VBKM02_Grafik_Fallunterscheidung3}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.35cm, y=1.0cm] 
+\fill[color=yellow!20!white] (-7,-1.2) rectangle (15,6.2);
+\foreach \sy in {0.0cm,2.5cm,5.0cm} {
+\begin{scope}[xshift=0,yshift=\sy]
+\draw[-stealth',black] (-6,0) -- (13.5,0);
+\foreach \x in {-4, 0, 4, 8, 12}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,3.0pt) (0pt,0pt) node[below=1.0pt] {\small $\x$};
+\foreach \x in {-5, -3, -2, -1, 1, 2, 3, 5, 6, 7, 9, 10, 11}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,1.0pt);
+\end{scope}
+\def\rdst{0.2}
+\def\tdst{0.6}
+\def\vdst{0.4}
+\draw[color=red,line width=2.2pt] (-6.0,\rdst) -- (-0.5,\rdst);
+\draw[color=green!60!black,line width=2.2pt] (-0.5,\rdst) -- (5.0,\rdst);
+\draw[color=orange,line width=2.2pt] (5.0,\rdst) -- (12.0,\rdst);
+\draw[color=red,line width=2.2pt] (-3.25,\tdst) node {Case (1)};
+\draw[color=green!60!black,line width=2.2pt] (2.25,\tdst) node {Case (2)};
+\draw[color=orange,line width=2.2pt] (8.5,\tdst) node {Case (3)};
+\draw[color=blue,line width=0.8pt] (-0.5,\vdst) -- (-0.5,-0.5) node[below=0pt] {$-\frac{1}{2}$} ;
+\draw[color=blue,line width=0.8pt] (5.0,\vdst) -- (5.0,-0.5) node[below=0pt] {$5$} ;
+\begin{scope}[xshift=0,yshift=2.5cm]
+\draw[color=red,line width=2.2pt] (-6.0,\rdst) -- (5.0,\rdst);
+\draw[color=orange,line width=2.2pt] (5.0,\rdst) -- (12.0,\rdst);
+\draw[color=red,line width=2.2pt] (-0.50,\tdst) node {$x-5<0$};
+\draw[color=orange,line width=2.2pt] (8.5,\tdst) node {$x-5>0$};
+\draw[color=blue,line width=0.8pt] (5.0,\vdst) -- (5.0,-0.5) node[below=0pt] {$5$} ;
+\end{scope}
+\begin{scope}[xshift=0,yshift=5cm]
+\draw[color=red,line width=2.2pt] (-6.0,\rdst) -- (-0.5,\rdst);
+\draw[color=orange,line width=2.2pt] (-0.5,\rdst) -- (12.0,\rdst);
+\draw[color=red,line width=2.2pt] (-3.25,\tdst) node {$2x+1<0$};
+\draw[color=orange,line width=2.2pt] (5.75,\tdst) node {$2x+1>0$};
+\draw[color=blue,line width=0.8pt] (-0.5,\vdst) -- (-0.5,-0.5) node[below=0pt] {$-\frac{1}{2}$} ;
+\end{scope}
+}
+\end{tikzpicture}
+}
+\par
+Illustration of the three cases
+\end{center}
+
+According to the figure above the following three cases have to be distinguished:
+\begin{itemize}
+\item{Case (1): For $x<-\Mtfrac12$ both terms in the absolute value terms are negative.}
+\item{Case (2): For $-\Mtfrac12\leq x<5$ the term in the second absolute value term is negative but the 
+term in the first one is not.}
+\item{Case (3): For $5\leq x$ both terms in the absolute value terms are non-negative.}
+\item{Obviously, there is no $x$ for which the first term is negative and the second 
+term is non-negative.}
+\end{itemize}
+
+So, the solutions can be summarised:
+\begin{itemize}
+\item{In case (1), both absolute values reverse the sign of the terms:\\ $3|2x+1|=|x-5|\;\Leftrightarrow\;3(-(2x+1)) = -(x-5)$.\\
+This equation has the solution $x=-\Mtfrac85$ satisfying the case condition.}
+\item{In case (2), only the second absolute value reverses the sign of the term: \\$3|2x+1|=|x-5|\;\Leftrightarrow\;3(2x+1) = -(x-5)$.\\
+This equation has the solution $x=\Mtfrac27$ satisfying the case condition.}
+\item{In case (3), the absolute value bars in both terms can be omitted (replaced by normal brackets): \\
+ $3|2x+1|=|x-5|\;\Leftrightarrow\;3(2x+1) = (x-5)$.\\
+This equation has the solution $x=-\Mtfrac85$, but this solution does \textit{not} 
+satisfy the case condition. Thus, it will be discarded within its case analysis.}
+\end{itemize}
+Therefore, the solution set is $\lbrace -\Mtfrac85\MElSetSep \Mtfrac27\rbrace$.
+\end{MHint}
+\end{MExercise}
+
+
+\end{MXContent}
+
+\MSubsection{Final Test}
+\MLabel{M02_Abschlusstest}
+
+\begin{MTest}{Final Test Modul 2}
+\MDeclareSiteUXID{VBKM02_Abschlusstest}
+
+\begin{MExercise}
+Find an absolute value term describing the following graph of a function as easy as possible:
+
+%%\MUGraphics{abs2.png}{width=0.5\linewidth}{Funktionsgraph von $f(x)$.}{width:300px}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm, y=1.12cm] 
+\draw[black] (-5,0) -- (5,0) (0,-5) -- (0,5);
+\foreach \x in {-4, -2, 2, 4}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3.0pt) node[below=1.0pt] {\normalsize $\x$};
+\foreach \x in {-4.8, -4.4, ..., 5.0}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.5pt);
+\foreach \y in {-4, -2, 2, 4}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-3.0pt,0pt) node[left=1.0pt] {\normalsize $\y$};
+\foreach \y in {-4.8, -4.4, ..., 5.0}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.5pt,0pt);
+%%\draw[black] (-0.0pt,-0.5pt) node[anchor=north east] {\small $0$};
+\clip(-5.0,-5.0) rectangle (5.0,5.0);
+\draw[black, line width=1.0pt,color=black] (-1,6) -- (3,-2) -- (5,2);
+\end{tikzpicture}
+}
+\par
+Graph of the function $f(x)$.
+\end{center}
+
+Answer: $f(x)=$ \MLSimplifyQuestion{20}{2*abs(x-3)-2}{5}{x}{5}{0}{KA0}\: .
+\end{MExercise}
+
+\begin{MExercise}
+Solve the following equations:
+\begin{MExerciseItems}
+\item{$|2x-3|=8$ has the solution set \MLParsedQuestion{16}{11/2,-5/2}{5}{KA1}.}
+\item{$|x-2|\cdot x=0$ has the solution set \MLParsedQuestion{16}{0,2}{5}{KA2}.} 
+\end{MExerciseItems}
+\MInputHint{Enter sets in the form \texttt{$\lbrace$ a;b;c;$\ldots\rbrace$}. 
+Enter the empty set as $\lbrace\rbrace$.}
+\end{MExercise}
+
+\begin{MExercise}
+A camera has a resolution of $6$ megapixels, i.e. -- for convenience -- 
+6 million pixels and produces images in format $2:3$. Which size has a 
+quadratic pixel on a print-out of format $(60$ cm$) \times (40$ cm$)$? 
+Specify the side length of a pixel in millimetre. 
+
+Answer: \MLParsedQuestion{10}{0.2}{5}{VPIXQ}\ \ \ \ (without the unit mm).
+\end{MExercise}
+
+\begin{MExercise}
+Find the solution set of the mixed equation $|x-1|\cdot (x+1)=3$.\\
+Answer: \MEquationItem{$\ML$}{\MLParsedQuestion{15}{2,2}{5}{KAX4}}.
+\end{MExercise}
+
+
+\end{MTest}
+
+
+\newpage
+\MPrintIndex
+
+\end{document}

@@ -1,0 +1,792 @@
+\input{mintmod.tex}
+\MPragma{MathSkip}
+
+%\Mtikzexternalize
+
+\begin{document}
+%\include{vbkm03_eng}
+%\include{vbkm02_eng}
+\MSection{Inequalities in one Variable}
+\MLabel{VBKM03}
+\MSetSectionID{ungl}
+
+\begin{MSectionStart}
+\MDeclareSiteUXID{VBKM03_START}
+
+Inequalities arise by relating terms using one of the comparing symbols $\leq$, $<$, $\geq$, or $>$. Simple 
+inequalities usually have intervals as their solution sets. But the solution of inequalities is often
+more difficult than the solution of equations. Hence, specific types of inequalities will be explained
+in more detail.
+
+This module consists of:
+
+\begin{itemize}
+\item{Section~\MNRef{M03_Ungleichungen}: \MSRef{M03_Ungleichungen}{Inequalities and their Solution Sets},}
+\item{Section~\MNRef{M03_Umformen}: \MSRef{M03_Umformen}{Transformation of Inequalities},}
+\item{Section~\MNRef{M03_Betragsungleichungen}: \MSRef{M03_Betragsungleichungen}{Absolute Value Inequalities and 
+Quadratic Inequalities},}
+\item{and Section~\MNRef{M03_Abschlusstest}: \MSRef{M03_Abschlusstest}{Final Test}.}
+\end{itemize}
+
+\end{MSectionStart}
+
+\MSubsection{Inequalities and their Solution Sets}
+\MLabel{M03_Ungleichungen}
+
+\begin{MIntro}
+
+\begin{MInfo}
+\MDeclareSiteUXID{VBKM03_UngleichungenIntro}
+If two numbers are related by one of the \MEntry{comparing symbols}{comparing symbols} 
+$\leq$, $<$, $\geq$, or $>$, a statement is generated that can be true or false depending on 
+the numbers:
+\begin{itemize}
+\item{$a<b$ (reads: ``$a$ is strictly less than $b$'' or simply ``$a$ is less than $b$'') is true if the number $a$ is less than and not equal to $b$.}
+\item{$a \leq b$ (reads: ``$a$ is less than $b$'') is true if $a$ is less than or equal to $b$.}
+\item{$a>b$ (reads: ``$a$ is strictly greater than $b$'' or simply ``$a$ is greater than $b$'') is true if the number $a$ is greater and not equal to $b$.}
+\item{$a \geq b$ (reads: ``$a$ is greater than $b$'') is true if the number $a$ is greater than or equal to $b$.}
+\end{itemize}
+\end{MInfo}
+
+The relating symbols describe how the given values are related to each other on the number line: 
+$a<b$ means that $a$ is to the left of $b$ on the number line.
+
+\begin{MExample}
+The statements $2<4$, $-12\leq 2$, $4>1$, and $3\geq 3$ are true,
+but the statements $2<\sqrt2$ and $3>3$ are false.
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Enden:
+\draw [fill = blue] (2,0) circle (1.5pt);
+\draw [fill = blue] (4,0) circle (1.5pt);
+\end{tikzpicture}
+}%
+
+On the number line, the number $2$ is to the left of the number $4$, thus $2<4$.
+\end{center}
+
+\end{MExample}
+
+Here, $a<b$ means the same as $b>a$, likewise $a\leq b$ means the same as $b\geq a$. But it
+should be noted that the opposite of the statement $a<b$ is the statement $a\geq b$ and not
+$a>b$. If terms with a variable occur in an inequality, the problem is to find the number range
+of the variable such that the inequality is true. 
+\end{MIntro}
+
+\begin{MXContent}{Solving simple Inequalities}{Solving}{STD}
+\MDeclareSiteUXID{VBKM03_EinfacheUngleichungen}
+
+If the variable occurs isolated in the inequality, the solution set is an interval, see also info
+box \MRef{VBKM01_Intervalle}: 
+
+
+\begin{MInfo}
+\MLabel{M03_Aufloesungen}
+The \MEntry{solved inequalities}{inequalities (solved)} 
+have the following \MEntry{intervals}{intervals} as their solution sets:
+\begin{itemize}
+\item{$x< a$ has the solution set $\MoIl[\left] -\infty\MIntvlSep a\MoIr[\right]$, i.e.\ all $x$ less than $a$.}
+\item{$x\leq a$ has the solution set $\MoIl[\left] -\infty\MIntvlSep a\right]$, 
+i.e. all $x$ less than or equal to $a$.}
+\item{$x> a$ has the solution set $\MoIl[\left] a\MIntvlSep \infty\MoIr[\right]$, i.e.\ all
+ $x$ greater than $a$.}
+\item{$x\geq a$ has the solution set $\left[a\MIntvlSep \infty\MoIr[\right]$, i.e.\ all $x$
+greater than or equal to $a$.}
+\end{itemize}
+Here, $x$ is the variable and $a$ is a specific value. 
+If the variable does not occur in the inequality anymore, the solution set is either
+$\R=\MoIl[\left] -\infty\MIntvlSep \infty\MoIr[\right]$ if the inequality is satisfied, 
+or the empty set $\lbrace \rbrace$ if the inequality is not satisfied.
+\end{MInfo}
+
+The symbol $\infty$ means \MEntry{infinity}{infinity}. A finite interval has the form 
+$\MoIl a\MIntvlSep b\MoIr$ which reads ``all numbers between $a$ and $b$''. If the interval
+is to be finite only on one side, the other interval boundary can be replaced by the symbol 
+$\infty$ (right-hand side) or $-\infty$ (left-hand side).
+
+As for equations one tries to find a solved inequality by applying transformations that do
+not change the solution set. From the solved inequality the solution set can be easily seen.
+
+
+\begin{MInfo}
+\MLabel{VBKM03_AequivalenzumformungenUngleichungen}
+To obtain a solved inequality from an unsolved inequality the following 
+\MEntry{equivalent transformations}{equivalent transformations (inequality)} are allowed:
+\begin{itemize}
+\item{adding a constant to both sides of the inequality: $a<b$ is equivalent to $a+c<b+c$.}
+\item{multiplying both sides of the inequality by a positive constant: $a<b$ 
+is equivalent to $a\cdot c<b\cdot c$ if $c>0$.}
+\item{multiplying both sides of the inequality by a negative constant and inverting the 
+comparing symbol: $a<b$ is equivalent to $a\cdot c>b\cdot c$ if $c<0$.}
+\end{itemize}
+\end{MInfo}
+
+\begin{MExample}
+The inequality $-\frac34x-\frac12<2$ is solved stepwise by the above transformations:
+\begin{eqnarray*}
+&&-\frac34x-\frac12 < 2 \;\; \MSep +\frac12\ \\
+&\Leftrightarrow&-\frac34x < 2+\frac12 \;\; \MSep \cdot\left({-\frac43}\right)\ \\
+&\Leftrightarrow&x > -\frac43\left({2+\frac12}\right) \;\; \MSep \;\text{simplifying}\\
+&\Leftrightarrow&x >  -\frac{20}{6} \;=\; -\frac{10}{3} \MDFPeriod
+\end{eqnarray*}
+So, the initial inequality has the solution set 
+ $\MoIl[\left] -\frac{10}{3}\MIntvlSep \infty\MoIr[\right]$. 
+Importantly, multiplying the inequality by the negative number $-\frac43$ inverts the 
+comparing symbol.
+\end{MExample}
+
+\begin{MExercise}
+Are the following inequalities true or false?
+
+\begin{MQuestionGroup}
+\begin{tabular}{lll}
+\MCheckbox{0}{UG1} & \ \ &  $\frac12>1-\frac13$\\
+\MCheckbox{1}{UG2} & \ \ & $a^2\geq 2a b-b^2$ (where $a$ and $b$ are unknown numbers)\\
+\MCheckbox{1}{UG3} & \ \ & $\frac12<\frac23<\frac34$\\
+\MCheckbox{0}{UG4} & \ \ & Let $a<b$, then also $a^2<b^2$.
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Check input}
+
+\begin{MHint}{Solution}
+The first inequality can be simplified to $\frac12>\frac23$, which, after multiplying by $6$, 
+is equivalent to $3>4$. This statement is false. The second inequality can be simplified by 
+collecting all numbers on the left-hand side: $a^2-2a b+b^2\geq 0$. Since $a^2-2a b+b^2=(a-b)^2$,
+this statement is true for all $a$ and $b$. Multiplying the third chain of inequalities by the
+least common denominator $12$ results in the chain of inequalities $6<8<9$. This statement is true.
+In contrast, the last statement is false, since for example, for $a=-1$ and $b=1$, the term
+$a^2=1$ is not less than $b^2=1$. Taking the square of terms is not an equivalent transformation.
+\end{MHint}
+\end{MExercise}
+
+
+\begin{MExercise}
+Find the solution sets of the following inequalities.
+\begin{MExerciseItems}
+\item{$2x+1> 3x-1$ has the solution interval \MEquationItem{$\ML$}{\MLIntervalQuestion{30}{(-infty,2)}{5}{TXH1}}.}
+\item{$-3x-\frac12\leq x+\frac12$ has the solution interval \MEquationItem{$\ML$}{\MLIntervalQuestion{30}{[-1/4,infty)}{5}{TXH2}}.}
+\item{$x-\frac12\leq x+\frac12$ has the solution interval \MEquationItem{$\ML$}{\MLIntervalQuestion{30}{(-infty,infty)}{5}{TXH3}}.}
+\end{MExerciseItems}
+\MInputHint{Enter the intervals in the form \texttt{(a;b)}, for the interval boundaries also fractions and
+\texttt{infinity} or \texttt{-infinity} can be used. Take care whether the interval boundaries are included 
+or excluded.}
+
+\begin{MHint}{Solution}
+Transformation of the first inequality results in
+\begin{eqnarray*}
+&& 2x+1 > 3x-1\;\; \MSep+1\ \\
+&\Leftrightarrow& 2x+2 > 3x\;\; \MSep-2x\ \\
+&\Leftrightarrow&2 > x
+\end{eqnarray*}
+and hence the solution interval is $\ML=\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$. 
+Transformation of the second inequality results in
+\begin{eqnarray*}
+&&-3x-\frac12\leq x+\frac12 \;\; \MSep +3x-\frac12\ \\
+&\Leftrightarrow&-1\leq 4x \;\; \MSep \cdot \frac14\ \\
+&\Leftrightarrow&-\frac14\leq  x
+\end{eqnarray*}
+and hence $\ML=\left[-\frac14\MIntvlSep \infty\MoIr[\right]$. 
+Transformation of the third inequality results in
+\begin{eqnarray*}
+&&x-\frac12\leq x+\frac12\;\; \MSep-x\ \\
+&\Leftrightarrow&-\frac12\leq \frac12 \MDFPeriod
+\end{eqnarray*}
+This statement does not depend on $x\in\R$ and is always true, 
+thus the solution set is $\ML=\R=\MoIl[\left] -\infty\MIntvlSep \infty\MoIr[\right]$.
+\end{MHint}
+\end{MExercise}
+
+\begin{MInfo}
+An inequality in one variable $x$ is \MEntry{linear}{inequality (linear)} if on both sides of the 
+inequality only multiples of $x$ and constants occur. Each linear inequality can be transformed 
+into a solved inequality by one of the equivalent transformations described in the info box
+\MRef{M03_Aufloesungen}.
+\end{MInfo}
+
+\end{MXContent}
+
+\begin{MXContent}{Specific Transformations}{Specific Transformations}{STD}
+\MDeclareSiteUXID{VBKM03_SpezielleUmformungen}
+The following equivalent transformations are useful if the variable occurs 
+in the denominator of an expression. But they can only be applied under certain
+restrictions:
+
+\begin{MInfo}
+Under the restriction that none of the occurring denominators is zero (the corresponding variable values are
+ never solutions) and the fractions on both sides have the same sign, the reciprocal can be taken
+on both sides of the inequality while inverting the comparing symbol.
+\end{MInfo}
+
+\begin{MExample}
+For example, the inequality $\frac1{2x}\leq \frac1{3x}$ is equivalent to $2x\geq 3x$
+(comparing symbol inverted) as long as $x\not=0$. The new inequality has the solution
+set $\MoIl[\left] -\infty\MIntvlSep 0\right]$. However, since the value $x=0$ was excluded (and 
+does not belong to the domain of the initial inequality either) the solution set of 
+$\frac1{2x}\leq \frac1{3x}$ is $\ML=\MoIl[\left] -\infty\MIntvlSep 0\MoIr[\right]$.
+\end{MExample}
+
+\begin{MExercise}
+Find the solution sets of the following inequalities.
+\begin{MExerciseItems}
+\item{$\frac1x\geq\frac13$ has the solution set \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(0;3]}{3}{KKL1}}.}
+\item{$\frac1x<\frac1{\sqrt{x}}$ has the solution set \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(1;infty)}{3}{KKL2}}.}
+\end{MExerciseItems}
+
+\begin{MHint}{Solution}
+For the first inequality, the value $x=0$ is not in the domain, hence this value is excluded. For 
+$x>0$, taking the reciprocal while inverting the comparing symbol is allowed and results in
+$x\leq 3$. Together with the condition above the solution interval is $\ML=\MoIl 0\MIntvlSep 3]$.
+For $x<0$ the reciprocal rule cannot be applied. However, it can be seen, even without any rule, that
+none of the values $x<0$ can be a solution, since then $\frac1x$ is negative as well and not greater than
+or equal to $\frac13$.
+
+The domain of the second inequality is $\MoIl 0\MIntvlSep \infty\MoIr$, since 
+only for these values of $x$ taking the square root is
+defined and only for $x\neq 0$ the denominators are non-zero. On the domain, 
+taking the reciprocal while inverting the comparing symbol is 
+allowed and results in $x>\sqrt{x}$. Since $\sqrt{x}>0$, the inequality can be 
+divided by $\sqrt{x}$ resulting in $\sqrt{x}>1$. This inequality has the solution
+set $\ML=\MoIl 1\MIntvlSep \infty\MoIr$ which occurs also in the domain.
+\end{MHint}
+
+\end{MExercise}
+
+Please note for the last part of the exercise:
+
+\begin{MInfo}
+Taking the square on both sides of an inequality is not an equivalent transformation and 
+possibly does change the solution set.
+\end{MInfo}
+
+For example, $x=-2$ is no solution of $x>\sqrt{x}$, but indeed a solution of $x^2>x$. However,
+this transformation can be applied if the case analysis for the transformation
+is carried out correctly and the domain of the initial inequality is taken into account. This method is
+described in more detail in the next section.
+\end{MXContent}
+
+\MSubsection{Transformation of Inequalities}
+\MLabel{M03_Umformen}
+
+\begin{MXContent}{Transformation with Case Analysis}{Case Analysis}{STD}
+\MDeclareSiteUXID{VBKM03_UmformungenFallunterscheidungen}
+The simple linear transformations described in the previous section are equivalent transformations.
+They do not change the solution set of the corresponding inequality. For nonlinear
+inequalities advanced solution methods are required. Usually, these methods need 
+a case analysis depending on the sign, since, in contrast to the situation for
+equations described in Modul~\MNRef{VBKM02}, now also the inequality can be inverted during 
+transformation.
+
+ 
+\begin{MInfo}
+If an inequality is multiplied by a term in which the variable $x$ occurs, a case analysis 
+is required and for each case the transformation has to be considered separately: 
+
+\begin{itemize}
+\item{For those values of $x$, for which the multiplied term is positive, the comparing symbol
+of the inequality is unchanged.}
+\item{For those values of $x$, for which the multiplied term is negative, the comparing symbol
+of the inequality is inverted.}
+\item{The case that the multiplied term is zero has to be excluded during the transformation and
+has to be considered separately, if necessary.}
+\end{itemize}
+\ \\ \ \\
+The solution sets found in the individual cases have to be checked with respect to the case conditions
+as described for the solution of \MSRef{VBKM02_FallBetrag}{absolute value equations}.
+\end{MInfo}
+
+In contrast, adding terms in which the variable occurs, does not require a case analysis. Usually, 
+transformations involving case analyses are mandatory if the variable occurs in the denominator or 
+in a composite term.
+
+
+\begin{MExample}
+The inequality $\frac1{2x}\leq 1$ can be simplified by multiplying both sides of the inequality
+by the term $2x$:
+
+\begin{itemize}
+\item{Under the condition $x>0$ this results in the new inequality $1\leq 2x$. It has the solution set
+$\ML_1=\left[\frac12\MIntvlSep \infty\MoIr[\right]$. The condition $x>0$ is satisfied by all elements of the solution 
+set.}
+\item{Under the condition $x<0$ this results in the new inequality $1\geq 2x$. It has the solution set
+ $\MoIl[\left] -\infty\MIntvlSep \frac12\right]$. Because of the additional
+condition $x<0$ only the elements of the set 
+$\ML_2=\MoIl[\left] -\infty\MIntvlSep 0\MoIr[\right]$ are solutions.}
+\item{The single case $x=0$ is no solution since this value is not in the domain of the inequality. 
+In this case multiplying the inequality by $x$ is not allowed.}
+\end{itemize}
+So, altogether one obtains the union set 
+$\ML=\ML_1\cup \ML_2=\R\MSetminus\left[0\MIntvlSep \frac12\MoIr[\right]$ as solution set:
+\ \\ \ \\
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Enden:
+\draw [line width=2.0pt,color=blue] (-1,0.0)-- (0,0.0);
+\draw [line width=2.0pt,color=blue] (0.5,0.0)-- (5,0.0);
+\draw [fill = blue] (0.5,0) circle (1.5pt);
+\draw [fill = white] (0,0) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+\end{MExample}
+
+As in Modul~\MNRef{VBKM02} the following statement holds for the solution set.
+
+\begin{MInfo}
+The cases have to be chosen such that all elements of the domain of the inequality are covered. 
+For the solution set in an individual case, it has to be checked that the solution set satisfies the 
+corresponding case condition. For any case, the resulting solution set has to be reduced to
+the solution subset satisfying the case condition. The union of the solution sets for the individual cases
+is the solution set of the initial inequality.
+\end{MInfo}
+
+\end{MXContent}
+
+\begin{MExercises}
+\MDeclareSiteUXID{VBKM03_Fallunterscheidungen_Exercises}
+If the inequality is multiplied by a composite term, it has to be investigated precisely for which values
+of $x$ the case analysis has to be done:
+
+\begin{MExercise}
+Find the solution set of the inequality $\frac1{4-2x}<3$. 
+The domain of the inequality is $D=\R\MSetminus \lbrace 2\rbrace$ since only for these
+values of $x$ the denominator is non-zero. If the inequality is multiplied by the term
+$4-2x$, three cases have to be distinguished. Fill in the blanks in the following text 
+accordingly:
+
+\begin{MExerciseItems}
+\item{On the interval \MLIntervalQuestion{15}{(-infty,2)}{4}{GOM1} the term is positive, the comparing symbol 
+remains unchanged, and the new inequality reads $1\:<\:$\MLSimplifyQuestion{15}{3*(4-2*x)}{5}{x}{5}{0}{SIMPLE2}.
+Linear transformations result in the solution set 
+\MEquationItem{$\ML_1$}{\MLIntervalQuestion{20}{(-infty,11/6)}{3}{MIXGOM}}. 
+The elements of this set satisfy the case condition.}
+\item{On the interval \MLIntervalQuestion{15}{(2,infty)}{4}{GOM2} the term is negative, 
+the comparing symbol is inverted. Initially, the new inequality has the solution set 
+\MLIntervalQuestion{20}{(11/6,infty)}{4}{INT1}, because of the case condition only the 
+subset \MEquationItem{$\ML_2$}{\MLIntervalQuestion{20}{(2,infty)}{4}{GOM3}} is allowed.}
+\item{The single value $x=2$ is no solution of the initial inequality since 
+it is not in \MLQuestion{25}{domain}{UGX}.}
+\end{MExerciseItems}
+
+Sketch the solution set of the inequality and indicate the boundary points.
+
+\begin{MHint}{Solution}
+On the interval $\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$ the term is positive. 
+The corresponding solution set is $\MoIl[\left] -\infty\MIntvlSep \frac{11}{6}\MoIr[\right]$.
+In contrast, on the interval $\MoIl 2\MIntvlSep \infty\MoIr$ the term is negative, 
+the comparing symbol is inverted. Initially, the new inequality has the solution set
+ $\MoIl[\left] \frac{11}{6}\MIntvlSep \infty\MoIr[\right]$, because of the case condition
+$x>2$ only the subset $\ML_2=\MoIl 2\MIntvlSep \infty\MoIr$ is allowed.
+So, altogether the union set $\ML=\ML_1\cup\ML_2=\R\MSetminus \left[\frac{11}6\MIntvlSep 2\right]$
+is the solution set of the initial inequality excluding the boundary points:
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Enden:
+\draw [line width=2.0pt,color=blue] (-1,0.0)-- (1.83,0.0);
+\draw [line width=2.0pt,color=blue] (2,0.0)-- (5,0.0);
+\draw [fill = white] (1.83,0) circle (1.5pt);
+\draw [fill = white] (2,0) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+The solution set of the inequality $\frac{x-1}{x-2}\leq 1$ is 
+\MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(-infty,2)}{4}{IGU1}}.
+
+\begin{MHint}{Solution}
+The domain of the inequality is $D=\R\MSetminus\lbrace 2\rbrace$.
+
+\begin{itemize}
+\item{For $x>2$, multiplying the inequality by the term $x-2$ results in $x-1\leq x-2$, 
+which is equivalent to the false statement $-1\leq -2$. Thus, this case does not contribute a solution to the solution set.}
+\item{For $x<2$, multiplying the inequality by the term $x-2$ results in $x-1\geq x-2$, 
+which is equivalent to the true statement $-1\geq -2$. 
+Because of the case condition the solution interval for this case is only 
+$\ML_2=\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$.}
+\item{The single value $x=2$ is no solution.}
+\end{itemize}
+So, altogether the solution set is 
+ $\ML=\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$ 
+excluding the boundary points (even though the comparing symbol $\leq$ occurred in the initial
+inequality).
+\end{MHint}
+\end{MExercise}
+
+
+\begin{MExercise}
+The solution set of the inequality $\frac1{1-\sqrt{x}}<1+\sqrt{x}$ is \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(1,infty)}{4}{IGU2}}.
+\ \\ \ \\
+\begin{MHint}{Solution}
+The domain of the inequality is $D=[0\MIntvlSep \infty\MoIr\MSetminus \lbrace 1\rbrace$
+since only for these values of $x$ the square root is defined and the denominator is non-zero.
+\begin{itemize}
+\item{For $0\leq x<1$, multiplying the inequality by the term $1-\sqrt{x}$ results in
+  $1<(1+\sqrt{x})(1-\sqrt{x})$, which is equivalent to $1<1-x$. This 
+inequality is satisfied for $x<0$, but these values of $x$ violate the case condition and 
+thus, they are not in the solution set.}
+\item{For $x>1$, multiplying the inequality by the term $1-\sqrt{x}$ results in $1>1-x$, 
+which is equivalent to $x>0$. But only the values of $x$ in the interval
+  $\MoIl 1\MIntvlSep \infty\MoIr$ satisfy the case condition, hence $\ML=\MoIl 1\MIntvlSep \infty\MoIr$ 
+is the only solution interval of the initial inequality.}
+\item{The single value $x=1$ is no solution.}
+\end{itemize}
+\end{MHint}
+\end{MExercise}
+
+
+\end{MExercises}
+
+\MSubsection{Absolute Value Inequalities and Quadratic Inequalities}
+\MLabel{M03_Betragsungleichungen}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM03_Betragsungleichungen_Intro}
+As in the approach in Modul~\MNRef{VBKM02} and in the previous section 
+\MEntry{absolute values}{inequalities (absolute values)} in inequalities are solved 
+by a case analysis:
+
+\begin{MInfo}
+To solve an \MEntry{absolute value inequality}{absolute value inequality} two cases are distinguished:
+
+\begin{itemize}
+\item{For those values of $x$, for which the absolute value term is non-negative the absolute value can be omitted or
+replaced by simple brackets, respectively.}
+\item{For those values of $x$, for which the absolute value term is negative the term is bracketed and negated.}
+\end{itemize}
+\ \\
+Then, the solution sets arising from the case analysis will be restricted as described in the 
+\MSRef{VBKM02_FallBetrag}{previous module} and merged to the solution set of the initial inequality. 
+\end{MInfo}
+
+\begin{MExample}
+To solve the absolute value inequality $|4x-2|<1$ two cases are distinguished:
+\begin{itemize}
+\item{For $x\geq \frac12$, the absolute value term is non-negative: 
+In this case the inequality is equivalent to $(4x-2)<1$ or $x<\frac34$, respectively. 
+Because of the case condition the solution set is only 
+$\ML_1=\left[\frac12\MIntvlSep \frac34\MoIr[\right]$ in this case.}
+\item{For $x<\frac12$, the absolute value term is negative: 
+In this case the inequality is equivalent to $-(4x-2)<1$ or $x>\frac14$, respectively. 
+Only the subset $\ML_2=\MoIl[\left] \frac14\MIntvlSep \frac12\MoIr[\right]$ 
+satisfies the case condition and is the solution set.}
+\end{itemize}
+The union of the two solution intervals results in the solution set
+$\ML=\MoIl[\left] \frac14\MIntvlSep \frac34\MoIr[\right]$ for the initial absolute value inequality:
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Enden:
+\draw [line width=2.0pt,color=blue] (0.25,0.0)-- (0.75,0.0);
+\draw [fill = white] (0.25,0) circle (1.5pt);
+\draw [fill = white] (0.75,0) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+\end{MExample}
+
+\begin{MExercise}
+To solve the absolute value inequality $|x-1|<2|x-1|+x$ two cases are distinguished:
+\begin{MExerciseItems}
+\item{On the interval \MLIntervalQuestion{20}{[1,infty)}{3}{UGL1}, both
+terms in the absolute value terms are non-negative. 
+The solution set of the inequality is in this case 
+\MEquationItem{$\ML_1$}{\MLIntervalQuestion{20}{[1,infty)}{3}{UGL2}}.}
+\item{On the interval \MLIntervalQuestion{20}{(-infty,1)}{3}{UGL3}, both
+terms in the absolute value terms are negative. 
+The solution set of the inequality is in this case
+\MEquationItem{$\ML_2$}{\MLIntervalQuestion{20}{(-infty,1)}{3}{UGL4}}.}
+\end{MExerciseItems}
+The union of the two intervals results in the solution interval 
+\MEquationItem{$\ML$}{\MLIntervalQuestion{25}{(-infty,infty)}{4}{UGL5}}.
+\ \\ \ \\
+\begin{MHint}{Solution}
+For $x\in [1\MIntvlSep \infty\MoIr$, both terms in the absolute value terms are non-negative, 
+one obtains the inequality $x-1<2(x-1)+x$, which is equivalent to $x>\frac12$. 
+Because of the case condition one obtains $\ML_1=[1\MIntvlSep \infty\MoIr$ as solution set.
+For $x\in\MoIl[\left] -\infty\MIntvlSep 1\MoIr[\right]$, 
+both terms in the absolute value terms are negative and
+one obtains $-(x-1)<-2(x-1)+x$. 
+This inequality is equivalent to the inequality $x-1<x$ which is
+always true. Thus,
+the solution set for the second case is
+$\ML_2=\MoIl[\left] -\infty\MIntvlSep 1\MoIr[\right]$.
+\ \\ \ \\
+Since $\ML=\ML_1\cup \ML_2=\R=\MoIl[\left] -\infty\MIntvlSep \infty\MoIr[\right]$ 
+the inequality is always satisfied.
+\end{MHint}
+\end{MExercise}
+
+\end{MIntro}
+
+\begin{MXContent}{Quadratic Absolute Value Inequalities}{Quadratic Inequalities}{STD}
+\MDeclareSiteUXID{VBKM03_QuadratischeUngleichungen}
+\begin{MInfo}
+An inequality is called \MEntry{quadratic}{inequality (quadratic)} in $x$ 
+if it can be transformed into $x^2 + p x + q < 0$ (other comparing symbols are allowed).
+\end{MInfo}
+\ \\ \ \\
+Hence, quadratic inequalities can be solved in two ways: by investigating the roots 
+and the opening behaviour of the polynomial and by completing the square. Often completing
+the square is simpler:
+ 
+
+\begin{MInfo}
+To solve an inequality by \MEntry{completing the square}{completing the square (inequalities)} 
+one tries to transform it into the form $(x+a)^2<b$. Taking the square root then results
+in the absolute value inequality $|x+a|<\sqrt{b}$ with the solution set 
+$\MoIl[\left] -a-\sqrt{b}\MIntvlSep -a+\sqrt{b}\MoIr[\right]$ if $b\geq 0$. Otherwise 
+the inequality is unsolvable.
+
+The inverted inequality $|x+a|>\sqrt{b}$ has the solution set
+$\MoIl[\left] -\infty\MIntvlSep -a-\sqrt{b}\MoIr[\right]\cup \MoIl[\left] -a+\sqrt{b}\MIntvlSep \infty\MoIr[\right]$. 
+For $\leq$ and $\geq$ the corresponding boundary points have to be included.
+\end{MInfo}
+
+Always note the calculation rule $\sqrt{x^2}=|x|$ described in Modul~\MNRef{VBKM01}.
+
+\begin{MExample}
+Find the solution of the inequality $2x^2\geq 4x+2$. Collecting the terms on the left-hand side and dividing 
+the inequality by $2$ results in $x^2-2x-1\geq0$. Completing the square on the 
+left-hand side to the second binomial formula results in the equivalent inequality $x^2-2x+1\geq 2$
+or $(x-1)^2\geq 2$, respectively. Taking the square root results in the absolute value 
+inequality $|x-1|\geq\sqrt{2}$ with the solution set 
+$\ML=\MoIl[\left] -\infty\MIntvlSep 1-\sqrt{2}\right]\cup \left[1+\sqrt{2}\MIntvlSep \infty\MoIr[\right]$.
+\end{MExample}
+
+On the other hand, the inequality $x^2-2x-1\geq0$ can be investigated as follows:
+The left-hand side describes a parabola opened upwards. The roots $x_{1,2}=1\pm \sqrt2$ 
+can be found using the $pq$ formula:
+
+\begin{center}
+%%\MUGraphicsSolo{parabelu.png}{width=0.4\linewidth}{width:400px}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.0cm, y=1.0cm,scale=1.50] 
+\draw[black] (-1,0) -- (3,0) (0,-2) -- (0,2);
+\foreach \x in {-1, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-2.0pt) node[below=1.0pt] {\scriptsize $\x$};
+\foreach \x in {-0.5, 0.5, ..., 3.0}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.0pt);
+\foreach \y in {-2, -1, 1, 2}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-2.0pt,0pt) node[left=1.0pt] {\scriptsize $\y$};
+\foreach \y in {-1.5, -0.5, 0.5, 1.5}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.0pt,0pt);
+\draw[black] (-0.0pt,-0.0pt) node[anchor=north east] {\scriptsize $0$};
+\clip(-1.0,-3.0) rectangle (3.0,2.0);
+\draw[smooth,samples=21,domain=-1:3, line width=1.0pt,color=red!50!black] plot(\x,{\x*\x-2*\x-1});
+\end{tikzpicture}
+}
+\end{center}
+Since the parabola opens upwards, the inequality $x^2-2x-1\geq0$ is satisfied by the
+values of $x$ in the parabola branches left and right to the roots, i.e. by the set 
+$\ML=\MoIl[\left] -\infty\MIntvlSep 1-\sqrt{2}\right]\cup \left[1+\sqrt{2}\MIntvlSep \infty\MoIr[\right]$.
+
+\begin{MInfo}
+\MLabel{M03_InfoFormen}
+Depending on the roots of $x^2+ p x + q$, the opening of the parabola and the 
+comparing symbol, the quadratic inequality $x^2 +p x +q <0$ (including other comparing symbols) 
+has one of the following solution sets:
+
+\begin{itemize}
+\item{the set of real numbers $\R$,}
+\item{two branches $\MoIl[\left] -\infty\MIntvlSep x_1\MoIr[\right]\cup \MoIl[\left] x_2\MIntvlSep \infty\MoIr[\right]$ (including the boundary points for $\leq$ and $\geq$),}
+\item{an interval $\MoIl x_1\MIntvlSep x_2\MoIr$ (including the boundary points for $\leq$ and $\geq$ if applicable),}
+\item{a single point $x_1$,}
+\item{the pointed set $\R\MSetminus\lbrace x_1\rbrace$,}
+\item{the empty set $\lbrace\rbrace$.}
+\end{itemize}
+\end{MInfo}
+
+Fill in the blanks in the following text describing the solution of a quadratic
+inequality by investigating the behaviour of the parabola:
+
+\begin{MExercise}
+Find the solution set of the inequality $x^2+6x< -5$. 
+Transformation results in the inequality \MLSimplifyQuestion{15}{x^2+6*x+5}{5}{x}{5}{1}{OBXP1}$<0$.
+Using the $p q$ formula one obtains the set of roots
+\MLParsedQuestion{9}{-1,-5}{3}{PXL}. The left-hand side
+describes a parabola opening \MLQuestion{10}{upwards}{ObenX}.
+It belongs to an inequality involving the comparing symbol $<$, hence 
+the solution set is \MEquationItem{$\ML$}{\MLIntervalQuestion{15}{(-5,-1)}{5}{INVX}}.
+\ \\ \ \\
+\begin{MHint}{Solution}
+Transformation results in $x^2+6x+5<0$. Using the $p q$ formula
+one obtains the roots $x_{1,2}=-3\pm\sqrt{9-5}$, i.e.\ $x_1=-1$ and $x_2=-5$.
+The left-hand side describes a parabola opening upwards. It satisfies the inequality 
+involving $<$ only on the interval $\MoIl[\left] -5\MIntvlSep -1\MoIr[\right]$ excluding
+the boundary points.
+\end{MHint}
+\end{MExercise}
+
+\end{MXContent}
+
+\begin{MXContent}{Further Types of Inequalities}{Further Types of Inequalities}{STD}
+\MDeclareSiteUXID{VBKM03_WeitereUngleichungstypen}
+Many other types of inequalities can be transformed into quadratic inequalities. Sometimes, 
+case analyses have to be done or excluded values in the domain have to be observed:
+
+\begin{MInfo}
+An inequality containing \MEntry{fractions}{inequality (fractions)}, where the 
+variable $x$ occurs in the denominator of composite terms, can be transformed into a 
+form without fractions by multiplying the inequality by the least common denominator. 
+However, in doing so, the roots of the denominators have to be excluded from the domain
+of the new inequality. 
+
+Additionally, if the inequality is multiplied by a term, different cases have to be distinguished 
+depending on the sign of the term.
+\end{MInfo}
+
+\begin{MExample}
+The inequality $2-\frac1x\leq x$ can be transformed by multiplying the inequality by $x$. Here, three 
+cases have to be distinguished:
+\begin{itemize}
+\item{For $x>0$, the comparing symbol in the inequality is unchanged. The new inequality
+reads $2x-1\leq x^2$ and is equivalent to $x^2-2x+1\geq 0$ or $(x-1)^2\geq 0$, respectively.
+This inequality is always satisfied. Because of the case condition one obtains 
+the solution set $\ML_1=\MoIl 0\MIntvlSep \infty\MoIr$.}
+\item{For $x<0$, the comparing symbol in the inequality is inverted. The new inequality
+reads $2x-1\geq x^2$ and is equivalent to $x^2-2x+1\leq 0$ or $(x-1)^2\leq 0$, respectively.
+This inequality is only satisfied for $x=1$. But this value is excluded by the case condition, 
+i.e.\ $\ML_2=\{\}$.}
+\item{The single value $x=0$ is not in the domain of the initial inequality and hence it is
+no solution.}
+\end{itemize}
+
+So, altogether one obtains the union set 
+$\ML=\MoIl 0\MIntvlSep \infty\MoIr$ as solution set of the initial inequality.
+\end{MExample}
+
+Inequalities involving composite fraction and root terms often do not have solution
+sets of the types described in info box~\MRef{M03_InfoFormen}:
+
+\begin{MExample}
+Find the solution set of the inequality $\sqrt{x}+\frac1{\sqrt{x}}>2$. 
+The domain of the inequality is $\MoIl 0\MIntvlSep \infty\MoIr$.
+Multiplying by $\sqrt{x}$ results in the inequality $x+1>2\sqrt x$. 
+Here, no case analysis is required since $\sqrt{x}>0$ is in the domain.
+Transformation results in $x-2\sqrt{x}+1>0$ or $(\sqrt{x}-1)^2>0$, respectively, 
+which is satisfied for all $x\not=1$ in the domain.
+Hence, the solution set of the initial inequality is
+$\ML=\MoIl 0\MIntvlSep \infty\MoIr\MSetminus\lbrace 1\rbrace$:
+\ \\ \ \\
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Enden:
+\draw [line width=2.0pt,color=blue] (0,0.0)-- (1,0.0);
+\draw [line width=2.0pt,color=blue] (1,0.0)-- (5,0.0);
+\draw [fill = white] (0,0) circle (1.5pt);
+\draw [fill = white] (1,0) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+
+\end{MExample}
+
+\end{MXContent}
+
+
+\MSubsection{Final Test}
+\MLabel{M03_Abschlusstest}
+
+\begin{MTest}{Final Test Modul 3}
+\MDeclareSiteUXID{VBKM03_Abschlusstest}
+
+\begin{MExercise}
+Find the value of the parameter $\alpha$ such that the inequality $2x^2\leq x-\alpha$ 
+has exactly one solution:
+\begin{MExerciseItems}
+\item{The parameter value is \MEquationItem{$\alpha$}{\MLParsedQuestion{10}{1/8}{3}{PMA1}}.}
+\item{In this case \MEquationItem{$x$}{\MLParsedQuestion{10}{1/4}{3}{PMA2}} is the only solution
+of the inequality.}
+\end{MExerciseItems}
+\end{MExercise}
+
+
+\begin{MExercise}
+Find an absolute value function $g(x)$ describing the following graph as easy as possible.
+
+%%\MUGraphics{abs3.png}{width=0.5\linewidth}{Funktionsgraph von $g(x)$.}{width:300px}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}[x=1.4cm, y=1.9cm] 
+\draw[black] (-3,0) -- (3,0) (0,-3) -- (0,3);
+\foreach \x in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3.0pt) node[below=1.0pt] {\normalsize $\x$};
+\foreach \x in {-3.0, -2.8, ..., 3.0}
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-1.5pt);
+\foreach \y in {-3, -2, -1, 1, 2, 3}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-3.0pt,0pt) node[left=1.0pt] {\normalsize $\y$};
+\foreach \y in {-3.0, -2.8, ..., 3.0}
+\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-1.5pt,0pt);
+%%\draw[black] (-0.0pt,-0.5pt) node[anchor=north east] {\small $0$};
+\clip(-3.0,-3.0) rectangle (3.0,3.0);
+\draw[black, line width=1.0pt,color=black] (-3,-3) -- (1,1) -- (2,4);
+\end{tikzpicture}
+}
+\par
+Graph of the function $g(x)$.
+\end{center}
+Try to find a representation of the form $g(x)=|x+a|+b x+c$. 
+The kink in the graph indicates how the absolute value term looks like.
+
+\begin{MExerciseItems}
+\item{Find the solution set of the inequality $g(x)\leq x$ by means of the graph.\\
+The solution set is \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(-infty;1]}{5}{AUX1}}.}
+\item{\MEquationItem{$g(x)$}{\MLSimplifyQuestion{20}{abs(x-1)+2*x-1}{10}{x}{10}{0}{SIMPLE3}}. 
+\\\MInputHint{Absolute values can be entered in the form \texttt{betrag(x-a)} or \texttt{abs(x-a)}.}}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Which positive real numbers $x$ satisfy the following inequalities?
+\begin{MExerciseItems}
+\item{$|3x-6|\leq x+2$ has the solution set
+\MEquationItem{$\ML$}{\MLIntervalQuestion{16}{[1,4]}{4}{COSH1}} (written as an interval).}
+\item{$\frac{x+1}{x-1}\geq 2$ has the solution set 
+\MEquationItem{$\ML$}{\MLIntervalQuestion{16}{(1,3]}{4}{COSH2}} (written as an interval).}
+\end{MExerciseItems}
+\MInputHint{Enter open intervals in the form $(3;5)$, closed intervals in the form 
+$[3;5]$. Infinity can be entered a a word or shortly a \texttt{infty}. Do not use 
+notation $]a;b[$ for open intervals. Sets can be entered by listing the elements
+ $\lbrace 1;2;3\rbrace$. For the set brackets enter AltGr+7 or AltGr+0, respectively.}
+\end{MExercise}
+
+\end{MTest}
+
+\newpage
+\MPrintIndex
+
+\end{document}

@@ -17,17 +17,17 @@
 \newcounter{MOutput}
 
 \ifttm
-\usepackage{german}
+%\usepackage{german}
 \usepackage{array}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \else
-\documentclass[ngerman,oneside]{scrbook}
+\documentclass[oneside]{scrbook}
 \usepackage{etex}
 \usepackage[latin1]{inputenc}
 \usepackage{textcomp}
-\usepackage[ngerman]{babel}
+\usepackage[ngerman,english]{babel}
 \usepackage[pdftex]{color}
 \usepackage{xcolor}
 \usepackage{graphicx}
@@ -41,7 +41,7 @@
 \usepackage{amstext}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage[ngerman]{varioref}
+\usepackage[ngerman,english]{varioref}
 \usepackage{framed}
 \usepackage{supertabular}
 \usepackage{longtable}
@@ -90,7 +90,7 @@
 
 \def\MPageHeaderDef{%
 \pagestyle{fancy}%
-\fancyhead[r]{(C) VE\&MINT-Projekt}
+\fancyhead[r]{(C) VE\&MINT-Project}
 \fancyfoot[c]{\thepage\\--- CCL BY-SA 3.0 ---}
 }
 
@@ -107,7 +107,7 @@
 
 \newcommand{\ML}{L}
 
-\newcommand{\MGGT}{\mathrm{ggT}}
+\newcommand{\MGGT}{\mathrm{gcd}}
 
 
 \ifttm
@@ -215,9 +215,6 @@
 \fi
 \fi
 
-\ifttm
-\relax% ttm can't handle DeclareGraphicsExtension, graphics includes will be done by preprocessing anyway
-\else
 \ifnum\value{MOutput}=\MOutputPDF
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 \fi
@@ -229,7 +226,6 @@
 \ifnum\value{MOutput}=\MOutputHTML
 % Wird vom Konverter leider nicht erkannt und daher in split.pm hardcodiert!
 \DeclareGraphicsExtensions{.png,.jpg,.gif}
-\fi
 \fi
 
 % Umdefinition der hyperref-Nummerierung im PDF-Modus
@@ -264,18 +260,6 @@
 \newcommand{\MGlobalConfTag}{\special{html:<!-- mglobalconfigtag -->}}
 \else
 \newcommand{\MGlobalConfTag}{}
-\fi
-
-\ifttm
-\newcommand{\MGlobalLogoutTag}{\special{html:<!-- mgloballogouttag -->}}
-\else
-\newcommand{\MGlobalLogoutTag}{}
-\fi
-
-\ifttm
-\newcommand{\MGlobalLoginTag}{\special{html:<!-- mgloballogintag -->}}
-\else
-\newcommand{\MGlobalLoginTag}{}
 \fi
 
 % Makro, um in der HTML-Ausgabe die Standortbeschreibung zu kennzeichnen
@@ -590,9 +574,9 @@
 
   \ifnum\value{MExerciseCollectionCounter}=0\else\addtocounter{MExerciseCollectionTextCounter}{1}\special{html:<!-- mexercisetextstart;;}\arabic{MExerciseCollectionTextCounter}\special{html:;; //-->}\fi
   \special{html:<div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
-  \textbf{Aufgabe \MGenerateExNumber
+  \textbf{Exercise \MGenerateExNumber
   } \ \\}{
-  \special{html:</div><!-- mfeedbackbutton;Aufgabe;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->}
+  \special{html:</div><!-- mfeedbackbutton;Exercise;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->}
   \ifnum\value{MExerciseCollectionCounter}=0\else\special{html:<!-- mexercisetextstop //-->}\fi
   }
 
@@ -605,7 +589,7 @@
   \setcounter{MLastType}{5}
 
   \special{html:<div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
-  \textbf{Aufgabe \MGenerateExNumber
+  \textbf{Exercise \MGenerateExNumber
   } \ \\%
   \special{html:</div><div class="exfetch_text" id="ADIVTEXT_}\MGenerateExNumber\special{html:">}%
   \special{html:</div><div class="exfetch_sol" id="ADIVSOL_}\MGenerateExNumber\special{html:">}%
@@ -691,16 +675,16 @@
   \newtheorem{thmc}{Satz}
   \theoremstyle{MDefStyle}
   \newtheorem{defn}[thm]{Definition}
-  \newtheorem{exmp}[thm]{Beispiel}
+  \newtheorem{exmp}[thm]{Example}
   \newtheorem{info}[thm]{\MInfoText}
   \theoremstyle{MDefStyle}
   \newtheorem{defnc}{Definition}
   \theoremstyle{MDefStyle}
-  \newtheorem{exmpc}{Beispiel}[section]
+  \newtheorem{exmpc}{Example}[section]
   \theoremstyle{MDefStyle}
   \newtheorem{infoc}{\MInfoText}
   \theoremstyle{MDefStyle}
-  \newtheorem{exrc}{Aufgabe}[section]
+  \newtheorem{exrc}{Exercise}[section]
   \theoremstyle{MDefStyle}
   \newtheorem{verc}{Versuch}[section]
   
@@ -749,7 +733,7 @@
 \fi%
 
 % MHint sollte nicht direkt fuer Loesungen benutzt werden wegen solutionselect
-\newenvironment{MSolution}{\begin{MHint}{L"osung}}{\end{MHint}}
+\newenvironment{MSolution}{\begin{MHint}{Solution}}{\end{MHint}}
 
 \newcounter{MCodeCounter}
 
@@ -887,6 +871,14 @@
 
 \newcounter{MSiteCounter}
 \newcounter{MFieldCounter} % Kombination section.subsection.site.field ist eindeutig in allen Modulen, field alleine nicht
+
+\newcounter{MiniMarkerCounter}
+
+\ifttm
+\newenvironment{MMiniPageP}[1]{\begin{minipage}{#1\linewidth}\special{html:<!-- minimarker;;}\arabic{MiniMarkerCounter}\special{html:;;#1; //-->}}{\end{minipage}\addtocounter{MiniMarkerCounter}{1}}
+\else
+\newenvironment{MMiniPageP}[1]{\begin{minipage}{#1\linewidth}}{\end{minipage}\addtocounter{MiniMarkerCounter}{1}}
+\fi
 
 \newcounter{AlignCounter}
 
@@ -1029,8 +1021,14 @@
 \def\MGenerateID{QFELD_\arabic{section}.\arabic{subsection}.\arabic{MSiteCounter}.QF\arabic{MFieldCounter}}
 
 % #1 = 0/1 ggf. mit ::smc abgetrennt auszuschliessende single-choice-boxen (UXIDs durch , getrennt ohne UX), #2 = uxid ohne UX
-\newcommand{\MLCheckbox}[2]{
+\newcommand{\MCheckbox}[2]{
 \MQuestionCheckbox{#1}{\MGenerateID}{\MStdPoints}{#2}
+\addtocounter{MFieldCounter}{1}
+}
+
+% Erster Parameter: Zeichenlaenge der Eingabebox, zweiter Parameter: Loesungstext
+\newcommand{\MQuestion}[2]{
+\MQuestionID{#1}{#2}{\MGenerateID}{1}{0}{\MStdPoints}{#2}
 \addtocounter{MFieldCounter}{1}
 }
 
@@ -1041,8 +1039,20 @@
 }
 
 % Parameter: Laenge des Feldes, Loesung (wird auch geparsed), Stellen Genauigkeit hinter dem Komma, weitere Stellen werden mathematisch gerundet vor Vergleich
+\newcommand{\MParsedQuestion}[3]{
+\MQuestionID{#1}{#2}{\MGenerateID}{3}{#3}{\MStdPoints}{#2}
+\addtocounter{MFieldCounter}{1}
+}
+
+% Parameter: Laenge des Feldes, Loesung (wird auch geparsed), Stellen Genauigkeit hinter dem Komma, weitere Stellen werden mathematisch gerundet vor Vergleich
 \newcommand{\MLParsedQuestion}[4]{
 \MQuestionID{#1}{#2}{\MGenerateID}{3}{#3}{\MStdPoints}{#4}
+\addtocounter{MFieldCounter}{1}
+}
+
+% Parameter: Laenge des Feldes, Loesungsfunktion, Anzahl Stuetzstellen, Funktionsvariablen durch Kommata getrennt (nicht case-sensitive), Anzahl Nachkommastellen im Vergleich
+\newcommand{\MFunctionQuestion}[5]{
+\MQuestionID{#1}{#2}{\MGenerateID}{4}{#3;#4;#5;0}{\MStdPoints}{#2}
 \addtocounter{MFieldCounter}{1}
 }
 
@@ -1052,19 +1062,30 @@
 \addtocounter{MFieldCounter}{1}
 }
 
+% Parameter: Laenge des Feldes, Loesungsintervall, Genauigkeit der Zahlenwertpruefung
+\newcommand{\MIntervalQuestion}[3]{
+\MQuestionID{#1}{#2}{\MGenerateID}{6}{#3}{\MStdPoints}{#2}
+\addtocounter{MFieldCounter}{1}
+}
+
 % Parameter: Laenge des Feldes, Loesungsintervall, Genauigkeit der Zahlenwertpruefung, UXID
 \newcommand{\MLIntervalQuestion}[4]{
 \MQuestionID{#1}{#2}{\MGenerateID}{6}{#3}{\MStdPoints}{#4}
 \addtocounter{MFieldCounter}{1}
 }
 
-% Parameter: Laenge des Feldes, Loesungsfunktion, Anzahl Stuetzstellen, Funktionsvariable (nicht case-sensitive), Anzahl Nachkommastellen im Vergleich, Vereinfachungsbedingung, UXID
+% Parameter: Laenge des Feldes, Loesungsfunktion, Anzahl Stuetzstellen, Funktionsvariable (nicht case-sensitive), Anzahl Nachkommastellen im Vergleich, Vereinfachungsbedingung
 % Vereinfachungsbedingung ist eine der Folgenden:
 % 0 = Keine Vereinfachungsbedingung
 % 1 = Keine Klammern (runde oder eckige) mehr im vereinfachten Ausdruck
 % 2 = Faktordarstellung (Term hat Produkte als letzte Operation, Summen als vorgeschaltete Operation)
 % 3 = Summendarstellung (Term hat Summen als letzte Operation, Produkte als vorgeschaltete Operation)
 % Flag 512: Besondere Stuetzstellen (nur >1 und nur schwach rational), sonst symmetrisch um Nullpunkt und ganze Zahlen inkl. Null werden getroffen
+\newcommand{\MSimplifyQuestion}[6]{
+\MQuestionID{#1}{#2}{\MGenerateID}{4}{#3;#4;#5;#6}{\MStdPoints}{#2}
+\addtocounter{MFieldCounter}{1}
+}
+
 \newcommand{\MLSimplifyQuestion}[7]{
 \MQuestionID{#1}{#2}{\MGenerateID}{4}{#3;#4;#5;#6}{\MStdPoints}{#7}
 \addtocounter{MFieldCounter}{1}
@@ -1262,15 +1283,15 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 % GHEADER und GFOOTER werden von split.pm gefunden, aber nur, wenn nicht HELPSITE oder TESTSITE
 \ifttm
-\newenvironment{MSectionStart}{\special{html:<div class="xcontent0">}\MSubsubsectionx{Modul\"ubersicht}}{\setcounter{MSSEnd}{0}\special{html:</div>}}
+\newenvironment{MSectionStart}{\special{html:<div class="xcontent0">}\MSubsubsectionx{Module Overview}}{\setcounter{MSSEnd}{0}\special{html:</div>}}
 % Darf nicht als XContent nummeriert werden, darf nicht als XContent gelabelt werden, wird aber in eine xcontent-div gesetzt fuer Python-parsing
 \else
-\newenvironment{MSectionStart}{\MSubsectionx{Modul\"ubersicht}}{\setcounter{MSSEnd}{0}}
+\newenvironment{MSectionStart}{\MSubsectionx{Module Overview}}{\setcounter{MSSEnd}{0}}
 \fi
 
-\newenvironment{MIntro}{\begin{MXContent}{Einf\"uhrung}{Einf\"uhrung}{genetisch}}{\end{MXContent}}
-\newenvironment{MContent}{\begin{MXContent}{Inhalt}{Inhalt}{beweis}}{\end{MXContent}}
-\newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{Aufgaben}{Aufgaben}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
+\newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}}{\end{MXContent}}
+\newenvironment{MContent}{\begin{MXContent}{Contents}{Contents}{beweis}}{\end{MXContent}}
+\newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{Exercises}{Exercises}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
 
 % #1 = Lesbare Testbezeichnung
 \newenvironment{MTest}[1]{%
@@ -1296,14 +1317,14 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \ifttm
 \def\MPrintIndex{
 \ifnum\value{MSSEnd}>0{\MSubsectionEndMacros}\addtocounter{MSSEnd}{-1}\fi
-\renewcommand{\indexname}{Stichwortverzeichnis}
+\renewcommand{\indexname}{Index}
 \special{html:<p><!-- printindex //--></p>}
 }
 \else
 \def\MPrintIndex{
 \ifnum\value{MSSEnd}>0{\MSubsectionEndMacros}\addtocounter{MSSEnd}{-1}\fi
-\renewcommand{\indexname}{Stichwortverzeichnis}
-\addcontentsline{toc}{section}{Stichwortverzeichnis}
+\renewcommand{\indexname}{Index}
+\addcontentsline{toc}{section}{Index}
 \printindex
 }
 \fi
@@ -1385,6 +1406,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \setcounter{verc}{0}
 \setcounter{infoc}{0}
 \fi
+\setcounter{MiniMarkerCounter}{1}
 \setcounter{AlignCounter}{1}
 \setcounter{MXCTest}{0}
 \setcounter{MCodeCounter}{0}
@@ -1472,7 +1494,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 <div class="imagecenter">
 <center>
 <div>
-<video width="95\%" controls="controls"><source src="\end{html}\MMaterial/\MLastFile\begin{html}" type="video/mp4">Ihr Browser kann keine MP4-Videos abspielen!</video>
+<video width="95\%" controls="controls"><source src="\end{html}\MMaterial/#1.mp4\begin{html}" type="video/mp4">Ihr Browser kann keine MP4-Videos abspielen!</video>
 </div>
 <div class="bildtext">
 \end{html}
@@ -1514,7 +1536,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\MVideo}[2]{%
 % Kein Video im PDF darstellbar, trotzdem so tun als ob da eines waere
 \begin{center}
-(Video nicht darstellbar)
+(Video cannot be played)
 \end{center}
 \addtocounter{MVideoCounter}{1}
 \setcounter{MLastIndex}{\value{MVideoCounter}}
@@ -1804,15 +1826,6 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newcommand{\modsemph}[1]{#1}
 
 
-\ifttm%
-\newcommand{\MModstartBox}{\special{html:<!-- modstartbox //-->}}
-\else%
-\newcommand{\MModstartBox}{%
-\relax
-}
-\fi
-
-
 % ---------------------------------- Spezialbefehle fuer JL ------------------------------------------
 
 
@@ -1830,7 +1843,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \fi%
 
 \def\MFormelZoomHint{\MInputHint{%
-Formel zu klein? Mit einem Doppelklick auf eine Formel wird sie vergr\"o{\ss}ert dargestellt.}}
+Formel zu klein? Mit einem Doppelklick auf eine Formel wird sie vergrößert dargestellt.}}
 
 \def\jHTMLHinweisBedienung{\MInputHint{%
 Mit Hilfe der Symbole am oberen Rand des Fensters
@@ -1969,9 +1982,6 @@ Hier erscheint die Testauswertung!
 
 % Notationsmakros die nicht von der Kursvariante abhaengig sind
 
-\newcommand{\MOptionalEmph}[1]{#1} % optional aktivierbare Hervorhebung wichtiger Stellen im Text
-\newcommand{\MGrad}{{}^{\circ}} % Fuer Winkel im Gradmass
-
 \newcommand{\MZahltrennzeichen}[1]{\renewcommand{\MZXYZhltrennzeichen}{#1}}
 
 \ifttm
@@ -2024,14 +2034,14 @@ Hier erscheint die Testauswertung!
 % -----------------------------------START Rouletteaufgaben ------------------------------------------------------------
 
 \ifttm
-\newcommand{\MDirectRouletteExercises}[2]{\relax} % wird durch den Konverter gefunden und ersetzt
-\else
 % #1 = Dateiname, #2 = eindeutige ID fuer das Roulette im Kurs
 \newcommand{\MDirectRouletteExercises}[2]{
 \begin{MExercise}
-\texttt{In der Onlineversion erscheinen hier zufällige Aufgaben aus einer Aufgabenliste.}
+\texttt{Im HTML erscheinen hier Aufgaben aus einer Aufgabenliste...}
 \end{MExercise}
 }
+\else
+\newcommand{\MDirectRouletteExercises}[2]{\relax} % wird durch mconvert.pl gefunden und ersetzt
 \fi
 
 
@@ -2067,7 +2077,7 @@ Hier erscheint die Testauswertung!
   \def\MVariant{std}
 
   % Trennzeichen fuer Dezimalzahlen
-  \newcommand{\MZXYZhltrennzeichen}{,}
+  \newcommand{\MZXYZhltrennzeichen}{.}
 
   % Exponent zur Basis 10 in der Exponentialschreibweise, 
   % Standardmalzeichen: \times
@@ -2167,8 +2177,5 @@ Hier erscheint die Testauswertung!
 
 % ----------------------------------- Spezialelemente fuer Konfigurationsseite, werden nicht von mintscripts.js verwaltet --
 
-
 % #1 = DOM-id der Box
 \ifttm\newcommand{\MConfigbox}[1]{\special{html:<input cfieldtype="2" type="checkbox" name="Name_}#1\special{html:" id="}#1\special{html:" onchange="confHandlerChange('}#1\special{html:');"/>}}\fi % darf im PDF nicht aufgerufen werden!
-
-% ----------------------------------- Konverter fuegt automatisierte Makros am Schluss an ---------------------------
