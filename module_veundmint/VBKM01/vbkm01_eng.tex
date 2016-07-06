@@ -14,15 +14,15 @@
 
 \begin{MSectionStart}
 \MDeclareSiteUXID{VBKM01_START}
-This module provides the mathematical basics to elementary arithmetic and introduces and explains the 
+This module covers the mathematical basics of elementary arithmetic and introduces and explains the 
 notation used throughout this online course. This module consists of
 
 \begin{itemize}
-\item{Section \MNRef{M01_Zahlenbereiche}: \MSRef{M01_Zahlenbereiche}{Numbers, Variables, Terms},}
-\item{Section \MNRef{M01_Bruchrechnung}: \MSRef{M01_Bruchrechnung}{Fractional Arithmetic},}
-\item{Section \MNRef{M01_Umformen}: \MSRef{M01_Umformen}{Transformation of Terms},}
-\item{Section \MNRef{M01_Potenzenwurzeln}: \MSRef{M01_Potenzenwurzeln}{Powers and Roots}, }
-\item{and the \MSRef{M01_Ausgangstest}{Final Test}: \MNRef{M01_Ausgangstest}.}
+\item{Section \MNRef{M01_Zahlenbereiche}: \MSRef{M01_Zahlenbereiche}{Numbers, Variables, Terms}}
+\item{Section \MNRef{M01_Bruchrechnung}: \MSRef{M01_Bruchrechnung}{Fractional Arithmetic}}
+\item{Section \MNRef{M01_Umformen}: \MSRef{M01_Umformen}{Transformation of Terms}}
+\item{Section \MNRef{M01_Potenzenwurzeln}: \MSRef{M01_Potenzenwurzeln}{Powers and Roots} }
+\item{and the \MSRef{M01_Ausgangstest}{Final Test}: \MNRef{M01_Ausgangstest}}
 \end{itemize}
 
 
@@ -35,55 +35,53 @@ notation used throughout this online course. This module consists of
 \MDeclareSiteUXID{VBKM01_ZahlenIntro}
 
 %Einfügung Mengenschreibweise
-Mathematics is a science, in which abstract structures and their logical correlations are investigated in general. 
-Before we examine the actual subjects of this section in more detail, we shall refer shortly to the fundamental 
+Mathematics is a science, in which abstract structures and their logical correlations are investigated. 
+Before we examine the actual subjects of this section in more detail, we shall refer briefly to the fundamental 
 notion of a \MEntry{set}{set}. 
 
 \begin{MInfo}
-To be able to make statements on a number of structurally similar objects in compact manner such objects 
+To be able to make statements about a number of structurally similar objects in compact manner, such objects 
 can be gathered into sets serving as a container for the objects. Let the objects be denoted by $a,b,c,\ldots$, 
-then the symbol $M=\{a\MElSetSep b \MElSetSep c \MElSetSep \ldots\}$ forms the set $M$, which contains the previously 
-listed objects as \textbf{elements}. The latter statement is written shortly as $a\in M$, $b\in M$, $c\in M$ etc; thus the symbol 
-``$\in$'' reads ``is element of''. (Sometimes it is more convenient to reverse the order of element 
-and set. To obtain the same statement(s) the symbol $\in$ is turned, e.g.\ $M\ni a$, $M\ni b$, $M\ni c$ etc.\ then 
+then the symbol $M=\{a\MElSetSep b \MElSetSep c \MElSetSep \ldots\}$ denotes the set $M$, which contains the previously 
+listed objects as \textbf{elements}. The latter statement is written in short as $a\in M$, $b\in M$, $c\in M$ etc; thus the symbol 
+``$\in$'' reads ``is an element of''. (Sometimes it is more convenient to reverse the order of element 
+and set. To obtain the same statement(s) the symbol $\in$ is turned around, e.g.\ $M\ni a$, $M\ni b$, $M\ni c$ etc.\ 
 means the same as before, where ``$\ni$'' now reads ``contains as an element'' or 
 ``contains''.) 
 
-Apart from the listing notation for sets other notations exist. If, for example, the elements have to fulfil a 
+Apart from the listing notation for sets, other notations exist. If, for example, the elements have to fulfil a 
 condition $B$, then this is written in the form $T=\{x\MCondSetSep x\MBlank\text{fulfils}\MBlank B\}$. If $x$ is taken (explicitly) from a 
 more comprehensive set $U$, then this is also written in the form $T=\{x\MCondSetSep x\in U \MBlank\text{and}\MBlank 
-x\MBlank\text{fulfils}\MBlank B\}$ or in short $T=\{x\in U\MCondSetSep x\MBlank\text{fulfils}\MBlank B\}$.
+x\MBlank\text{fulfils}\MBlank B\}$ or, in short, $T=\{x\in U\MCondSetSep x\MBlank\text{fulfils}\MBlank B\}$.
 %%Da die Bedingung $B$ eine Einschränkung für die Elemente von $U$ darstellt,
 %%ist $T$ dann in natürlicher Weise eine \textbf{Teilmenge} von $U$,
 %%notiert in Formelnotation als $T\subset U$.
 
 Statements like ``$x\in U$'' or ``$x\MBlank\text{fulfils}\MBlank B$'' are statements in a 
-mathematical sense, e.g.\ you can assign them a unique truth value ``true'' or ``false''. 
-Let $A_1$ and $A_2$ be such statements. In the case, that both $A_1$ and $A_2$ are to hold, which means $A_1$ 
-\textbf{and} $A_2$ are to hold, this is also written as $A_1 \wedge A_2$. In the case, that only one of the two 
-statements needs to hold, i.e.\ $A_1$ \textbf{or} $A_2$ (or both) are to hold, one also writes $A_1\vee A_2$.
+mathematical sense, i.e.\ you can assign them a unique truth value ``true'' or ``false''. 
+Let $A_1$ and $A_2$ be two such statements. In the case that both $A_1$ \textbf{and} $A_2$ are to hold, one writes $A_1 \wedge A_2$. In the case that only one of the two 
+statements needs to hold, i.e.\ $A_1$ \textbf{or} $A_2$ \textbf{or} both, one writes $A_1\vee A_2$.
 
-For two sets $M$ and $N$ one writes
+For two sets $M$ and $N$ one writes:
 \begin{itemize}
 \item{%
 $M\subseteq N$, i.e.\ $M$ is a (improper) \textbf{subset} of $N$, if every element of $M$ is also contained in 
 $N$. If at least one element exists that is not contained in $M$, meaning that $M$ is a proper subset of $N$, 
-one (also) writes $M\subset N$;
+one writes $M\subset N$.
 }
 \item{%
-$M\cup N$ for the \textbf{union} of the two sets; the union denotes the set containing all elements that are at 
-least contained in one of the two sets;
+$M\cup N$ for the \textbf{union} of the two sets. The union denotes the set containing all elements that are contained in at least one of the two sets.
 }
 \item{%
-$M\cap N$ for the \textbf{intersection} of the two sets; the intersection denotes the set containing all elements 
-that are contained in both of the two sets;
+$M\cap N$ for the \textbf{intersection} of the two sets. The intersection denotes the set containing all elements 
+that are contained in both of the two sets.
 }
 \item{%
 $N\MSetminus M$ for the \textbf{complement}, i.e.\ the set containing all elements of $N$ that are \textit{not} contained in $M$.
 }
 \end{itemize}
 Thus the union mentioned above is characterised by elements that fulfil the condition $(x\in M) \vee (x\in N)$. However, for
-the elements of the intersection $(x\in M) \wedge (x\in N)$ holds. In contrast, the complement above contains such 
+the elements of the intersection $(x\in M) \wedge (x\in N)$ holds. In contrast, the complement above contains 
 elements for which $(x\in N) \wedge (x\notin M)$ holds. The symbol $\notin$ denotes the negation of the element 
 statement. 
 \end{MInfo}
@@ -108,12 +106,12 @@ $\displaystyle \R$ & the \textbf{set of all real numbers}.\\
 \end{tabular}
 \end{MInfo}
 
-These number ranges are not independent of each other. They rather form a chain of nested number sets:
+These number ranges are not independent of each other. Rather, they form a chain of nested number sets:
 $$\N\subset\N_{0}\subset\Z\subset\Q\subset\R \MDFPeriod$$ 
 %%Dabei bedeutet das Symbol $\subset$, dass der links stehende Zahlenbereich eine Teilmenge des rechts stehenden Zahlenbereichs ist.
 %%Beispielsweise ist jede ganze Zahl aus $\Z$ immer auch eine rationale Zahl aus $\Q$.
 One obtains these number ranges by examining the solutions of the following equations and extending the number 
-range in such a way that always a solution exists:
+range in such a way that a solution always exists:
 
 \begin{center}
 \begin{tabular}{|c|r|r|r|c|}
@@ -128,13 +126,13 @@ $\displaystyle \R$ & $x^2=2$ &$x^2=-1$ & etc. & \\
 \end{tabular}
 \end{center}
 
-Natural numbers occur whenever numbers of objects have to be determined or things have to be numbered. They play a great role 
-in combinatorics: the number of possibilities selecting 6 balls out of 49 is, for example, a natural number. In computer science 
+Natural numbers occur whenever numbers of objects have to be determined or things have to be labelled (using numbers). They play a great role 
+in combinatorics: the number of possibilities for selecting 6 balls out of 49 is, for example, a natural number. In computer science 
 natural numbers are the bases of different number systems: the binary system has the base 2, the decimal system has the base 10, 
 and the hexadecimal system has the base 16. Specific natural numbers, the prime numbers, form the basis of modern encryption methods. 
 
-Arithmetic on the set of natural numbers is easy, but limits are reached, if you, for example, read a temperature value of 3\,$^\circ$C 
-(are plus or minus degrees meant?) or if an equation of the form $x+5=1$ is to be solved. Thus the set of natural numbers has to be extended
+Arithmetic on the set of natural numbers is easy, but limits are reached if, for example, you read a temperature value of 3\,$^\circ$C 
+(does it mean plus or minus degrees?) or if an equation such as $x+5=1$ is to be solved. Thus the set of natural numbers has to be extended
 by the negative natural numbers to obtain the set of integer numbers $\Z$. The \MEntry{set of integer numbers}{integer numbers $\Z$} is 
 denoted by
 $$\Z:=\{\dots\MElSetSep  -4\MElSetSep -3\MElSetSep -2\MElSetSep -1\MElSetSep 0\MElSetSep 1\MElSetSep 2\MElSetSep 3\MElSetSep 4\MElSetSep \dots\}.$$
@@ -164,16 +162,16 @@ $$\Q:=\left\{{\Mdfrac{p}{q}\MCondSetSep p,q\in\Z, q\neq 0 }\right\}.$$
 The elements $\displaystyle \Mtfrac{p}{q}$ of the set $\Q$ are called \MEntry{fractions}{fraction}, where $p$ is the 
 \MEntry{numerator}{numerator} of the fraction and $q$ is the non-zero \MEntry{denominator}{denominator} of the fraction.
 \end{MInfo}
-Rational numbers play a role whenever the numerals have to be ``more precise'', i.e.\ if temperatures 
+Rational numbers play a role whenever the numerals have to be ``more precise'', e.g.\ if temperatures 
 have to be given in fractional amounts of $^\circ$C, portions of surfaces have to be coloured, or medications have to be 
 mixed from specific ingredients. 
 
-Note that the representation as a fraction is not unique: one and the same number can be 
+Note that the representation as a fraction is not unique: one number can be 
 represented by several fractions. For example,
 $$
 2 \;=\; \Mdfrac{4}{2} \;=\; \Mdfrac{1024}{512}
 $$
-is one and the same rational number.
+all represent the same rational number.
 
 Also, not every number on the number line can be represented as a fraction. Considering, for example, 
 a square with sides of length $1$, the length of the diagonal $d$ can be calculated by means of the 
@@ -198,15 +196,15 @@ Pythagorean theorem:
 \end{minipage}
 \begin{minipage}{0.55\linewidth}
 \begin{center}
-$$d^2 = 1^2+1^2 = 2, \;\mbox{i.e.\ formal}\; d=\sqrt{2}.$$
+$$d^2 = 1^2+1^2 = 2, \;\mbox{or\ formally,}\; d=\sqrt{2}.$$
 \end{center}
 \end{minipage}
 
 \vspace*{5mm}
 
-Another number, that cannot be represented as a fraction, is obtained by unrolling a wheel of diameter $1$ 
-on the number line. The result is the number $\pi$. It can be proven, that these two numbers ($\sqrt{2}$ and $\pi$)
-cannot be represented as a fraction. (In the case of $\sqrt{2}$ this proof is relatively simple.) These numbers are two 
+Another number that cannot be represented as a fraction is obtained by unrolling a wheel of diameter $1$ 
+on the number line. The result is the number $\pi$. It can be proven that these two numbers ($\sqrt{2}$ and $\pi$)
+cannot be represented as fractions. (In the case of $\sqrt{2}$ this proof is relatively simple.) These numbers are two 
 example elements of the set of the so called \MEntry{irrational numbers}{irrational numbers}.
 
 \vspace*{5mm}
@@ -225,29 +223,29 @@ example elements of the set of the so called \MEntry{irrational numbers}{irratio
 }
 \end{center}
 
-A number is irrational, if it is not rational, i.e. if it cannot be represented as a fraction.
-The irrational numbers close the gaps remained so far on the number line, where now every point 
-corresponds exactly to one real number. 
+A number is irrational if it is not rational, i.e. if it cannot be represented as a fraction.
+The irrational numbers close the remaining gaps on the number line, where every point now
+corresponds to exactly one real number. 
 
 \begin{MInfo}
-The set of \MEntry{real numbers}{real numbers $\R$} is denoted by $R$ and includes the set of rational 
+The set of \MEntry{real numbers}{real numbers $\R$} is denoted by $\mathbb{R}$ and includes the set of rational 
 numbers and the set of irrational numbers. It contains all numbers that can be represented on the number line.
 \end{MInfo}
 
 Real numbers serve as measures for lengths, areas, temperatures, masses, etc. Throughout this course 
 the mathematical problems are typically solved using real numbers.
 
-A basic property of real numbers is, that they are ordered, i.e. for two real numbers $a,b$ exactly one of
-the three relations $a<b$, $a=b$, or $a>b$ holds. Another defining property is the completeness, which -- 
+A basic property of real numbers is that they are ordered, i.e. for two real numbers $a,b$ exactly one of
+the three relations $a<b$, $a=b$, or $a>b$ holds. Another defining property is completeness, which -- 
 roughly speaking -- describes the ``gaplessness'' of the number line.
 
 \begin{MInfo}
 \MLabel{VBKM01_Intervalle}
 For two different real numbers, one sometimes considers all numbers lying between these two 
 numbers on the number line. Such subsets of real numbers are called \MEntry{intervals}{interval}.
-They are described in such a way, that they are assigned a left interval boundary ($a$) and a right 
+They are described by assigning a left interval boundary ($a$) and a right 
 interval boundary $(b)$ with $a<b$. Depending on whether one interval boundary or two interval 
-boundaries are included the following cases exist:
+boundaries are included, the following cases exist:
 
 
 \begin{itemize}
@@ -275,7 +273,7 @@ right-closed} interval between $a$ and $b$, including the right interval boundar
 the left interval boundary.
 }
 \end{itemize}
-The two last intervals are also called \textbf{half-open}
+The last two intervals are also called \textbf{half-open}
 intervals.
 
 For open interval ends, \textbf{unbounded} intervals can be considered as well. In these cases the 
@@ -299,21 +297,21 @@ ${\R_{0}}^{-}=\MoIl[\left] -\infty \MIntvlSep 0\right]$.
 \MDeclareSiteUXID{VBKM01_VariablenTerme}
 
 The use of variables, terms, and equations is required to formalise expressions with 
-still indeterminate values.
+indeterminate values.
 
 \begin{MInfo}
 A \MEntry{variable}{variable} is a symbol (typically a letter) used as a placeholder for an
 indeterminate value. A \MEntry{term}{term} is a mathematical expression that can contain variables, arithmetic 
 operations and further symbols and, after substituting variables with numbers, gives a specific value. 
 Terms can be combined to equations and inequalities, respectively, or they can be inserted into function
-descriptions, of which more later.
+descriptions, as we shall see later.
 \end{MInfo}
 
 
 \begin{MExample}
 The textual question 
 
-\textit{In a school class there are four girls more than boys and in total there are 20 children. How many 
+\textit{In a school class there are four more girls than boys and in total there are 20 children. How many 
 girls and boys are in the class, respectively?
 }
 
@@ -350,16 +348,16 @@ Greek alphabetical order:
  $\iota$,        \ifttm$I$\else$\mathrm{I}$\fi & ``iota''          &
  $\Mvarkappa$,   \ifttm$K$\else$\mathrm{K}$\fi & ``kappa''         \\
  $\lambda$,      $\Lambda$                     & ``lambda''        &
- $\mu$,          \ifttm$M$\else$\mathrm{M}$\fi & ``m\"u''          &
- $\nu$,          \ifttm$N$\else$\mathrm{N}$\fi & ``n\"u''          &
+ $\mu$,          \ifttm$M$\else$\mathrm{M}$\fi & ``mu''          &
+ $\nu$,          \ifttm$N$\else$\mathrm{N}$\fi & ``nu''          &
  $\xi$,          $\Xi$                         & ``xi''            &
- $o$,            \ifttm$O$\else$\mathrm{O}$\fi & ``omikron''       \\
+ $o$,            \ifttm$O$\else$\mathrm{O}$\fi & ``omicron''       \\
  $\pi$,          $\Pi$                         & ``pi''            &
  $\varrho$,      \ifttm$P$\else$\mathrm{P}$\fi & ``rho''           &
  $\sigma$,       $\Sigma$                      & ``sigma''         &
 % $\varsigma$,                                  & \dq sigma\dq         &
  $\tau$,         \ifttm$T$\else$\mathrm{T}$\fi & ``tau''          &
- $\upsilon$,     $\Upsilon$                    & ``\"upsilon''     \\
+ $\upsilon$,     $\Upsilon$                    & ``upsilon''     \\
  $\Mvarphi$,     $\Phi$                        & ``phi''           &
  $\chi$,         \ifttm$X$\else$\mathrm{X}$\fi & ``chi''           &
  $\psi$,         $\Psi$                        & ``psi''           &
@@ -371,7 +369,7 @@ Greek alphabetical order:
 \MInputHint{In the exercises Greek letters can be entered with their description, e.g.\ \texttt{alpha} instead of $\alpha$.}
 \end{MInfo}
 
-It is important, that a term can be evaluated to a specific value, if the variables occurring in the term are substituted 
+It is important that a term can be evaluated to a specific value if the variables occurring in the term are substituted 
 with numbers:
 \newpage
 \begin{MExample}
@@ -383,7 +381,7 @@ The following expressions are terms:
 \item{$1+2+3+4$: no variables occur, however this is a term (which always gives the value $10$).}
 \item{$\Mtfrac{\alpha+\beta}{1+\gamma}$: for example, $\alpha=1$, $\beta=2$, and $\gamma=3$ give the value 
 $\Mtfrac{3}{4}$. But $\gamma=-1$ is not allowed.}
-\item{$\sin(\pi (x+1))$: for example, the term gives always the value zero, if $x$ is substituted with an integer number.}
+\item{$\sin(\pi (x+1))$: this term, for example, always gives the value zero, if $x$ is substituted with an integer number.}
 \item{$z$: a single variable is also a term.}
 \item{$1+2+3+\cdots+(n-1)+n$ is a term, in which the variable $n$ occurs in the term itself and defines 
 its length as well.}
@@ -391,13 +389,13 @@ its length as well.}
 \end{MExample}
 
 \begin{MExample}
-These expressions are no terms in a mathematical sense:
+These expressions are not terms in a mathematical sense:
 \begin{itemize}
 \item{$a+b=20$ is an equation (inserting values for $a$ and $b$ gives no number, but the equation is simply true or false).}
 \item{$a\cdot (b+c$ is not correctly bracketed,}
-\item{``\textit{The ratio of girls in the school class}'' is no term, 
+\item{``\textit{The ratio of girls in the school class}'' is not a term, 
 but can be formalised by the term $\Mtfrac{a}{a+b}$,}
-\item{$\sin$ is no term but a function name, in contrast $\sin(\alpha)$ is a term (which can be evaluated by 
+\item{$\sin$ is not a term but a function name, in contrast $\sin(\alpha)$ is a term (which can be evaluated by 
 inserting an angle for $\alpha$).}
 \end{itemize}
 \end{MExample}
@@ -446,7 +444,7 @@ $x^2+y^2=(1+2+3)^2+y^2=36+y^2$ and certainly not $1+2+3^2+y^2=12+y^2$.
 \end{MExample}
 
 \begin{MExercise}
-Which term is formed, if the following object is inserted into the term $x^2+y^2$:
+Which term is formed if the following object is inserted into the term $x^2+y^2$?
 \begin{MExerciseItems}
 \item{The angle $\alpha$ both for $x$ and $y$: Then \MEquationItem{$x^2+y^2$}{\MLFunctionQuestion{13}{2*alpha^2}{5}{alpha}{5}{ERX1}}.}
 \item{The number $2$ for $y$ and the term $t+1$ for $x$: Then \MEquationItem{$x^2+y^2$}{\MLFunctionQuestion{13}{4+(t+1)^2}{5}{t}{5}{ERX2}}.}
@@ -492,12 +490,12 @@ Answer:
 \begin{itemize}
 \item{The large circle has in total an area of \MLFunctionQuestion{25}{25/4*pi*x*x}{5}{x}{5}{ERX11},}
 \item{each smaller circle has an area of \MLFunctionQuestion{25}{1/4*pi*x*x}{5}{x}{5}{ERX12},}
-\item{the area of the figure is in total \MLFunctionQuestion{40}{(25/4*pi-1/2*pi-3)*x*x}{5}{x}{5}{ERX13}.}
+\item{the total area of the figure is \MLFunctionQuestion{40}{(25/4*pi-1/2*pi-3)*x*x}{5}{x}{5}{ERX13}.}
 \end{itemize}
 \MInputHint{The number $\pi$ can be entered as \texttt{pi}.}
 
 \begin{MHint}{Hint for calculating the area}
-The calculation of areas is presented in later chapters. To solve this exercise you only need to know, that
+The calculation of areas is presented in later chapters. To solve this exercise, you only need to know that
 a rectangle of side lengths $a$ and $b$ has the area $a\cdot b$ (entered as \texttt{a*b}) and  
 a circle of radius $r$ has the area $\pi r^2$ (entered as \texttt{pi*r\^2}).
 \end{MHint}
@@ -547,14 +545,14 @@ simplify the term, to isolate individual variables, or to transform a term into 
 \begin{MExample}
 Allowed transformations are:
 \begin{itemize}
-\item{$a(a+a+a)+a^2+a^2+a^2 = 6a^2$: the term on the right is simpler, since it requires less symbols.}
+\item{$a(a+a+a)+a^2+a^2+a^2 = 6a^2$: the term on the right is simpler, since it requires fewer symbols.}
 \item{$(x+3)^2-9=x^2+6x$ (first binomial formula): both terms describe a parabola. On the left, 
 the vertex $(-3,-9)$ of the parabola can be seen easily, on the right, the two roots ($x_1=0$ and $x_2=-6$)
 can be seen easily.}
 \item{$1+3x+3x^2+x^3=(1+x)^3$: on the right, it can be seen, for example, that the function described by the 
 term has only the root $x_1=-1$.}
-\item{$\Mtfrac{a+1}{a}=1+\Mtfrac{1}{a}$: on the left, it can be seen, that the term has the root $a_1=-1$, 
-on the right it can be seen, that, for very large $a$, the term converges to $1$ (since $\Mtfrac{1}{a}$ is very 
+\item{$\Mtfrac{a+1}{a}=1+\Mtfrac{1}{a}$: on the left, it can be seen that the term has the root $a_1=-1$, 
+on the right it can be seen that, for very large $a$, the term converges to $1$ (since $\Mtfrac{1}{a}$ is very 
 small in this case).}
 \end{itemize}
 \end{MExample}
@@ -608,8 +606,8 @@ where numerator and denominator are integers, and the denominator holds $\neq 0$
 $$\Mdfrac{1}{2}\MDFPSpace, \MDFPaSpace\Mdfrac{5}{-10}\MDFPSpace, \MDFPaSpace\Mdfrac{-17}{12}\MDFPSpace, 
 \MDFPaSpace\Mdfrac{1}{23}\MDFPSpace, \MDFPaSpace\Mdfrac{4}{6}\MDFPSpace, \MDFPaSpace\Mdfrac{-2}{3}\MDFPSpace, 
 \MDFPaSpace \ldots \MDFPeriod$$
-It can be seen very quickly, that one and the same number can have an arbitrary number of equivalent 
-representations. For example, it holds:
+It can be seen very quickly that a single number can have an arbitrary number of equivalent 
+representations. For example, it holds that:
 $$\Mdfrac{12}{36} = \Mdfrac{1}{3} = \Mdfrac{24}{72} = \Mdfrac{-12}{-36} = \Mdfrac{3}{9} = \Mdfrac{2}{6} = \Mdfrac{120}{360}= \dots \MDFPeriod$$
 The different representations transform into each other by \textbf{reducing} and \textbf{expanding}, respectively.
 \begin{MInfo}
@@ -624,16 +622,16 @@ the same non-zero integer.
 Three friends like to share a pizza. Tom eats $\displaystyle \Mtfrac{1}{4}$ of the pizza, Tim eats
 $\displaystyle \Mtfrac{1}{3}$ of the pizza. How much of the pizza is left for their friend Sven, 
 who always has the biggest appetite?\\
-The solution is found by means of fractional arithmetic: At first, we have to add 
-two fractions to decide, how much of the pizza Tim and Tom already ate:
+The solution is found by means of fractional arithmetic: First, we have to add 
+two fractions, to decide how much of the pizza Tim and Tom already ate:
 $$\Mdfrac{1}{4} + \Mdfrac{1}{3} = \Mdfrac{1\cdot 3}{4\cdot 3}+\Mdfrac{1\cdot 4}{3\cdot 4} 
 = \Mdfrac{3}{12} +\Mdfrac{4}{12} = \Mdfrac{7}{12} \MDFPeriod$$
 Here, we can already identify the two most important steps: 
-At first, we have to expand the two fractions to the so called 
+First we have to expand the two fractions to the so called 
 \textbf{least common denominator}, or, as one also says, we have to create
 \textbf{like} fractions. Then, if the fractions have the same denominator, 
-we can add them by adding their numerators and maintaining the denominator. 
->From the result, that Tim and Tom ate 
+we can add them by adding their numerators and maintaining the same denominator. 
+From the result that Tim and Tom ate 
 $\displaystyle \Mtfrac{7}{12}$ of the pizza, we can calculate
 how much of the pizza is left for Sven by subtracting 
 $\displaystyle \Mtfrac{7}{12}$ from 1:
@@ -643,14 +641,14 @@ denominator. Then we have to subtract the two numerators. Indeed, the two friend
 have left much of the pizza for the always hungry Sven.
 \end{MExample}
 
-In the following training exercise the reducing of fractions can be practised.
+The reducing of fractions can be practised in the training exercises below.
 
 \MDirectRouletteExercises{fraction_cancellation.rtex}{VBKM01_FRACTIONTRAINING}
 \newpage
 
-It becomes more difficult, if indeterminate expressions (e.g.\ variables) occur in 
+It becomes more difficult if indeterminate expressions (e.g.\ variables) occur in 
 numerator and denominator. These can be reduced or cancelled just like numbers (but not 
-with numbers), for example,
+with numbers), for example, we get
 $$
 \frac{4x^2y^3+3y^2}{10y^2} \;=\; \frac{4x^2y+3}{10}
 $$
@@ -671,7 +669,7 @@ The \MEntry{greatest common divisor}{gcd} (gcd) of two numbers is the largest nu
 divides both numbers without remainder.
 \end{MInfo}
 
-In case the determination of the lcm is too complicated, also the 
+If the determination of the lcm is too complicated, the 
 simple product of the denominators can be used instead of the lcm in the following 
 calculation rule:
 
@@ -744,7 +742,7 @@ Finding the least common denominator and collecting/reducing gives
 \end{MExercise}
 
 \begin{MExercise}
-In the case of like fractions, you may only add or decompose the nominators, 
+In the case of like fractions, you may only add or decompose the numerators, 
 for denominators no such rule exists. To convince yourself, calculate the following numbers
 by finding the least common denominator and reducing 
 as much as possible:
@@ -753,12 +751,12 @@ as much as possible:
 \item{\MEquationItem{$\Mdfrac{1+2}{5+6}$}{\MLSpecialQuestion{12}{3/11}{5}{0}{0}{exactfraction}{GLN3}} but \MEquationItem{$\Mdfrac15+\Mdfrac26$}{\MLSpecialQuestion{12}{8/15}{5}{0}{0}{exactfraction}{GLN4}}.}
 \end{MExerciseItems}
 \begin{MHint}{Solution}
-Sums of denominators may not be collected, not even in the case of like nominators. Here is
+Sums of denominators may not be collected, not even in the case of like numerators. Here, we have
 $$
 \Mdfrac12+\Mdfrac13\;=\; \Mdfrac{3}{6}+\Mdfrac26 \;=\; \Mdfrac56\;\;\text{but}\;\;
 \Mdfrac{1}{2+3} \;=\; \Mdfrac15\MDFPSpace .
 $$
-Also, the simple ``splitting'' of fraction parts is not allowed, here is
+Also, the simple ``splitting'' of fraction parts is not allowed, here we have
 $$
 \Mdfrac{1+2}{5+6} \;=\; \Mdfrac{3}{11}  \;\;\text{but}\;\; \Mdfrac15+\Mdfrac26 \;=\; \Mdfrac{6}{30}+\Mdfrac{10}{30} \;=\; \Mdfrac{16}{30}\;=\; \Mdfrac{8}{15}\MDFPSpace .
 $$
@@ -795,7 +793,7 @@ $$\Mdfrac23\cdot \Mdfrac45 = \Mdfrac{2\cdot 4}{3\cdot 5} = \Mdfrac{8}{15}\MDFPSp
 Dividing the denominator into the numerator gives a \MEntry{decimal fraction}{decimal fraction} or 
 a decimal number, respectively, for example,
 $$\Mdfrac{1}{2} = \MZahl{0}{5} \MDFPSpace, \MDFPaSpace \Mdfrac{1}{3} = \MZahl{0}{33333}\ldots= \MZahl{0}{}\bar{3} \MDFPSpace, \MDFPaSpace \Mdfrac{1}{7} = \MZahl{0}{}\overline{142857} \MDFPSpace, \MDFPaSpace \Mdfrac{1}{8} = \MZahl{0}{125} \MDFPeriod$$
-By means of these examples it can already be seen, that the division is either finite, leading to a
+By means of these examples, it can already be seen that the division is either finite, leading to a
 \MEntry{proper decimal fraction}{decimal fraction (proper)}, or the digits of the decimal number repeat in a 
 certain way, leading to an \MEntry{infinite repeating decimal fraction}{decimal fraction (repeating)}.
 
@@ -848,11 +846,11 @@ $10$ and subtract from the result the initial number to eliminate the infinite r
 $\Rightarrow$&$9$ & $\cdot$ & $\MZahl{0}{}\bar 6$ & = & $\MZahl{6}{0}$\\
 \end{tabular}
 \end{center}
->From the last relation, it immediately follows after division by $9$:
+From the last relation, it immediately follows after division by $9$:
 \quad $\displaystyle \MZahl{0}{}\bar 6 = \Mtfrac{6}{9} = \Mtfrac{2}{3}.$
 \end{MExample}
 
-This method also works, if not all digits after the decimal point repeat periodically:
+This method also works if not all digits after the decimal point repeat periodically:
 
 \begin{MExample}
 The decimal number $\MZahl{0}{8}\bar{3}=\MZahl{0}{83333}\ldots$ is to be converted to 
@@ -869,7 +867,7 @@ Division by $90$ gives the result: $\displaystyle \MZahl{0}{8}\bar 3 = \Mtfrac{7
 \end{MExample}
 
 Thus, the method is always the same: by multiplying by powers of ten and subsequent 
-subtraction the infinite repeating decimal is removed.
+subtraction, the infinite repeating decimal is removed.
 
 \begin{MExercise}
 Using the above method, find a simple and fully reduced fraction that represents the
@@ -890,7 +888,7 @@ this fraction is already fully reduced as well.
 \end{MExercise}
 
 However, in \MEntry{back-of-the-envelope calculations}{back-of-the-envelope calculation} 
-(i.e. if you only want to roughly estimate the magnitude or the ratio of one number to the other without 
+(i.e. if you only want to roughly estimate a magnitude or the ratio of one number to the other without 
 knowing the correct values of the decimal fractions) it is useful to multiply the numbers by the least 
 common denominator instead of converting them to decimals:
 
@@ -912,7 +910,7 @@ transformation).
 
 \begin{MExercise}
 Arrange the fractions 
-$\frac{16}{15}$, $\frac12$, $\frac23$, $\frac2{-3}$, $\frac{60}{90}$, and $\frac43$ in order of size?
+$\frac{16}{15}$, $\frac12$, $\frac23$, $\frac2{-3}$, $\frac{60}{90}$, and $\frac43$ in order of size:
 \ \\
 \MLParsedQuestion{7}{2/(-3)}{5}{VBKM01_USR1}\ $<$\ 
 \MLParsedQuestion{7}{2/3}{5}{VBKM01_USR2}\ $=$\ 
@@ -1025,7 +1023,7 @@ Using the \MSRef{Mathematik_Grundlagen_UDB}{trick for converting} infinite repea
 \item{$x=\MZahl{0}{}\overline{9}$, hence $\displaystyle 10x-x=9\;\Rightarrow\;9x=9\;\Rightarrow\;x=1$.}
  \end{itemize}
  Note for the last part of this exercise, that $1=\MZahl{1}{000}\ldots$ and $1=\MZahl{0}{999}\ldots=\MZahl{0}{}\overline{9}$
-are two decimal representations of one and the same number.
+are two decimal representations of the same number.
 \end{MHint}
 \end{MExercises}
 
@@ -1048,14 +1046,14 @@ the term can be evaluated to a certain value. For example, $x+x-1$ is a term; on
 expression $2x-1$ is a term as well, this term can be transformed into $x+x-1$, and hence it evaluates to the same value if $x=2$ is 
 inserted. As a symbolic expression, $x+x-1$ is different from $2x-1$, but as functional expressions they are both the same (equivalent): 
 No matter which value is inserted for $x$, both terms are always evaluated to the same value. A term can also be a value for itself, 
-if no variables occur. For example, $3\cdot (2+4)$ is a term having the value $18$.}
-\item{As evaluation rule: A term can be interpreted as a type of instruction how to calculate a new value from given values 
+if no variables occur. For example, $3\cdot (2+4)$ is a term with the value $18$.}
+\item{As evaluation rules: A term can be interpreted as a type of instruction how to calculate a new value from given values 
 (inserted into the variables). For example, the term $x^2-1$ can be read as 
 ``square the value of $x$ and subtract one from the result''. This is different from
 the term $(x+1)(x-1)$, even if both terms give the same value. The second term describes the evaluation as  
 ``add one to $x$ and multiply the result with the value, resulting if $x$ is subtracted by one''. The two terms are 
 mathematically equal. One writes $x^2-1=(x-1)(x+1)$, but they represent two different ways for calculating the value. Depending on 
-the problem setting, one of the two terms can be more convenient to solve the problem.}
+the problem setting, one of the two terms may be more convenient for solving the problem.}
 \end{itemize}
 
 \end{MIntro}
@@ -1065,15 +1063,15 @@ the problem setting, one of the two terms can be more convenient to solve the pr
 \MDeclareSiteUXID{VBKM01_Termumformungen}
 
 \ \\
-Dealing with terms gets interesting, if the equality of two terms is to be investigated or complicated terms are to
+Dealing with terms gets interesting if the equality of two terms is to be investigated, or if complicated terms are to
 be simplified.
 
 \begin{MInfo}\MLabel{Mathematik_Grundlagen_BinomischeFormel}
-Two terms are \MEntry{equal}{equality (of terms)}, if they can be transformed into each other by allowed transformations. 
+Two terms are \MEntry{equal}{equality (of terms)} if they can be transformed into each other by allowed transformations. 
 Complicated terms can be simplified using calculation rules. Note in doing so:
 \begin{enumerate}
 \item Exponentiation precedes multiplication precedes addition.
-\item If brackets are involved the distributive property applies:
+\item If brackets are involved, the distributive property applies:
 $$a\cdot(b\pm c) = a\cdot b\pm a\cdot c \MDFPSpace, \MDFPaSpace (a\pm b)\cdot c = a\cdot c \pm b\cdot c \MDFPeriod$$
 \item With $d\neq 0$ we have: $\displaystyle (a\pm b):d = \Mtfrac{a}{d}\pm \Mtfrac{b}{d}.$
 \item For expressions with nested brackets, first evaluate what's inside the innermost
@@ -1120,7 +1118,7 @@ Simplify the following term using the second binomial formula:\ \\ \ \\
 \begin{MExample}\MLabel{VBKM01_Bsp_binomial}%
 The binomial formulas can be used to transform quadratic expressions cleverly.
 This is very useful if squares are to be calculated without any aid. For this, the number to be 
-squared is splitted into a simple number (usually a power of ten) and the remainder:
+squared is split into a simple number (usually a power of ten) and the remainder:
 \begin{eqnarray*}
 103^2 & = & (100+3)^2 = 100^2+2\cdot 100\cdot 3+3^2 = 10609 \MDFPSpace,\\
 49^2 & = & (50-1)^2 = 50^2-2\cdot 50\cdot 1 +1^2 = 2401 \MDFPSpace,\\
@@ -1237,33 +1235,33 @@ Factorise the following terms as far as possible using one of the binomial formu
 % Hier ist das Applet zuende.
 
 
-Mathematical expressions can be written in different ways that each have certain pros and cons. Essentially,
-the ways are distinguished by the fact which mathematical operation is to be performed at last. The most important types
+Mathematical expressions can be written in different ways, which each have certain pros and cons. Essentially,
+the ways are distinguished by which mathematical operation is to be performed last. The most important types
 are the representation as a sum and the representation as a product.
 
 
 \begin{MInfo}
-For a \MEntry{representation as a product}{representation as a product} it is the multiplication that is performed at last. Because 
-of the order of operation rule this can only be achieved by enclosing the factors in brackets. From the representation as a 
-product it can be deduced particularly simple in which cases the relevant term takes the value zero. This happens if and only if
+For a \MEntry{representation as a product}{representation as a product} it is the multiplication that is performed last. Because 
+of the order of operation rule, this can only be achieved by enclosing the factors in brackets. From the representation as a 
+product it can be deduced particularly easily in cases where the relevant term takes the value zero. This happens if and only if
 one of the factors takes the value zero.
 \end{MInfo}
 
-For example, the term $(x-1)\cdot (x-2)$ is zero, if $x=1$ or $x=2$. For all other values of $x$ the term takes a non-zero value.
+For example, the term $(x-1)\cdot (x-2)$ is zero if $x=1$ or $x=2$. For all other values of $x$ the term takes a non-zero value.
 
 \begin{MInfo}
-For a \MEntry{representation as a sum}{representation as a sum} it is the addition or the subtraction that is performed at last. 
-Because of the order of operation rule terms without brackets are in this representation automatically. From the representation
-as a sum the asymptotic behaviour of an expression can be deduced particularly simple. The asymptotic behaviour of a function 
-describes how the function behaves if the variable $x$ takes arbitrarily large values up to values at the boundaries of the domain 
+For a \MEntry{representation as a sum}{representation as a sum} it is the addition or the subtraction that is performed last. 
+Because of the order of operation rule, terms without brackets are in this representation automatically. From the representation
+as a sum the asymptotic behaviour of an expression can be deduced particularly easily. The asymptotic behaviour of a function 
+describes how the function behaves if the variable $x$ takes arbitrarily large values, up to values at the boundaries of the domain 
 lying at infinity. For polynomials, for example, the asymptotic behaviour is determined by the term with the largest exponent.
 \end{MInfo}
 
-To change from one representation to the other several methods exist.
+To change from one representation to the other, several methods exist.
 
 \begin{MInfo}
 \MEntry{Expanding}{expanding} means multiplying each addend of one factor by each addend of the other factor and 
-adding up the results. In the case of more than two factors they should be multiplied out step by step (only two at a time).
+adding up the results. In the case of more than two factors, they should be multiplied out step by step (only two at a time).
 \end{MInfo}
 
 \begin{MExample}
@@ -1348,10 +1346,10 @@ The following graph corresponds to a polynomial $g(x)$ of degree two:
 \par
 Graph of the function $g(x)$.
 \end{center}
->From the graph, derive the representation of $g(x)$ as a product.
+From the graph, derive the representation of $g(x)$ as a product.
 
 \begin{MExerciseItems}
-\item{The graph has two zeros $x_1$ and $x_2$. Multiplied out, the two factors resulting from this fact give the polynomial 
+\item{The graph has two zeros $x_1$ and $x_2$. Multiplied out the two factors resulting from this fact, we get the polynomial 
 $f(x)=(x-x_1)(x-x_2)$ = \MLSimplifyQuestion{30}{(x+2)*(x-3)}{10}{x}{5}{1}{LSFF9}.}
 \item{The polynomial $f(x)$ does not correspond to the graph since at $x=0$ it takes the value 
 \MLParsedQuestion{5}{-6}{5}{ER4} whereas the graph shows that the function $g(x)$ at $x=0$ takes the value 
@@ -1360,7 +1358,7 @@ $c$ = \MLParsedQuestion{5}{-2}{5}{ER5}.}
 \item{This finally gives the representation of $g(x)$ as a product: $g(x)$ = \MLSimplifyQuestion{30}{(0-2)*(x+2)*(x-3)}{4}{x}{3}{1}{LSFF10}.}
 \end{MExerciseItems}
 \begin{MHint}{Solution}
-The graph shows the zeros $x_1=-2$ and $x_2=3$. Multiplied out, the two factors resulting from this fact give the polynomial
+The graph shows the zeros $x_1=-2$ and $x_2=3$. Multiplying out the two factors resulting from this fact, we get the polynomial
 $f(x)=(x+2)(x-3)=x^2-x-6$. At $x=0$, we have $f(0)=-6$, but the graph shows $g(0)=12$. 
 This difference can be corrected by an additional factor of $-2$. In total, we have $g(x)=-2x^2+2x+12$.
 \end{MHint}
@@ -1389,7 +1387,7 @@ finally collecting like terms:
 \begin{MXContent}{Exponentiation and Roots}{Powers and Roots}{STD}
 \MDeclareSiteUXID{VBKM01_PotenzenWurzeln}
 The following section deals with expressions of the form $\displaystyle a^s$, where $a\in\R$. But the question is: 
-For which numbers $s$ this power can be reasonable defined?
+For which numbers $s$ can this power be reasonably defined?
 
 Powers with positive integer exponents are defined as follows:
 \begin{MInfo}
@@ -1473,7 +1471,7 @@ the exponent of the root unchanged:
 $$\Mdfrac{\sqrt[n]{a}}{\sqrt[n]{b}} = \sqrt[n]{\Mdfrac{a}{b}}, b\neq 0 \MDFPeriod$$
 \end{enumerate}
 \end{MInfo}
-But how to calculate the number $\displaystyle \left(\sqrt[10]{4}\right)^5$?
+But how can we calculate the number $\displaystyle \left(\sqrt[10]{4}\right)^5$?
 
 \begin{MInfo}
 Let $m,n\in\N$ and $a\in\R, a\geq 0.$
@@ -1511,7 +1509,7 @@ Calculate the following roots (here, the result is always an integer):
 \begin{MXContent}{Calculating using Powers}{Calculating using Powers}{STD}
 \MDeclareSiteUXID{VBKM01_RPW}
 
-The following calculation rules allow to transform and simplify expressions containing powers or roots:
+The following calculation rules allow one to transform and simplify expressions containing powers or roots:
 
 \begin{MInfo}
 \MLabel{VBKM01_Potenzgesetze}
@@ -1519,7 +1517,7 @@ For $a,b \in \R, a,b>0, p,q\in\Q$, the following \MEntry{exponent rules}{exponen
 $$a^p\cdot b^p = (a\cdot b)^p \MDFPSpace, \MDFPaSpace \Mdfrac{a^p}{b^p} = \left(\Mdfrac{a}{b}\right)^p \MDFPSpace,  \MDFPaSpace a^p\cdot a^q = a^{p+q} \MDFPSpace, \MDFPaSpace \Mdfrac{a^p}{a^q} = a^{p-q} \MDFPSpace, \MDFPaSpace (a^p)^q = a^{p\cdot q} \MDFPeriod$$ 
 \end{MInfo}
 
-Note, in particular, that generally $\displaystyle (a^p)^q \neq a^{p^q}$, i.e. multiple powers should be bracketed. 
+Note that, generally, $\displaystyle (a^p)^q \neq a^{p^q}$, i.e. multiple powers should be bracketed. 
 For example, $\displaystyle \left(2^3\right)^2 = 8^2 = 64$, but $\displaystyle 2^{\left(3^2\right)} = 2^9 = 512$.
 \ \\ \ \\
 \MFormelZoomHint
@@ -1542,12 +1540,12 @@ The following expressions can be simplified using the exponent rules:
 \end{MExerciseItems}
 \end{MExercise}
 
-However, when comparing powers and roots care should be taken: Not only the values but also the signs of exponent and base
-control, whether the value of the power is large or small:
+However, when comparing powers and roots, one should take care: not only the values, but also the signs of exponent and base
+control whether the value of the power is large or small:
 
 \begin{MExample}
-For a positive base and a negative exponent 
-the value of the power decreases, when increasing the base:
+For a positive base and a negative exponent, 
+the value of the power decreases when increasing the base:
 \begin{eqnarray*}
 2^{-1} &=& \frac12\;=\; \MZahl{0}{5}\ \\
 3^{-1} &=& \frac13\;=\; \MZahl{0}{}\bar 3\ \\
@@ -1586,7 +1584,7 @@ $2^3$, $2^{-3}$, $3^2$, $(-3)^2$, $(-3)^{-2}$, $3^{\frac12}$, $2^{\frac13}$:
 \MLParsedQuestion{9}{(-3)^2}{5}{VBKM01_USR13}\ .
 \ \\
 \begin{MHint}{Solution}
-Here, several ways to the correct solution exist. For example, it is worth to raise all terms to the 
+Here, several ways to the correct solution exist. For example, we can raise all terms to the 
 power of $3$ (analogous to the calculation in Example~\MRef{VBKM01_Bsp_Anordnung}). Exponentiation to
 the power of $3$ is allowed since it is an odd number that does not cancel the sign of the exponent.
 In contrast, exponentiation to the power of $2$ would cancel all signs such that the resulting 
@@ -1647,7 +1645,7 @@ Calculate the following roots (here, the result is always an integer):
 \end{MExercise}
 
 \begin{MExercise}
-Simplify the following expressions and find its value as a reduced fraction containing no powers:
+Simplify the following expressions and write each as a reduced fraction containing no powers:
 \begin{MExerciseItems}
 \item{\MEquationItem{$\displaystyle \Mdfrac{3^3\cdot 6^3}{9\cdot2^3\cdot 4^3}$}{\MLSpecialQuestion{10}{81/64}{5}{0}{0}{exactfraction}{PPP17}}.\\\begin{MHint}{Solution} $$\Mdfrac{3^3\cdot 6^3}{9\cdot2^3\cdot 4^3}=\Mdfrac{3^4\cdot 2^3}{2^3\cdot 4^3}=\Mdfrac{3^4}{4^3}=\Mdfrac{81}{64} \MDFPeriod$$\end{MHint}}
 \item{\MEquationItem{$\displaystyle 3^2\cdot 9^{-3}\cdot 27^{6}\cdot 27^{-2}$}{\MLSpecialQuestion{10}{6561}{5}{0}{0}{exactfraction}{PPP18}}.\\\begin{MHint}{Solution} $$3^2\cdot 9^{-3}\cdot 27^{-2}\cdot 27^{6}=3^{2+2\cdot(-3)+3\cdot 6-6}=3^{8} \MDFPeriod$$\end{MHint}}
@@ -1671,7 +1669,7 @@ Simplify the following expressions and find its value as a reduced fraction cont
 \MDeclareSiteUXID{VBKM01_Abschlusstest}
 \begin{MExercise}
 \MSetPoints{1}
-Check the box in each case to indicate, whether the mathematical expressions are equations, inequalities, terms, or 
+Check the box in each case to indicate whether the mathematical expressions are equations, inequalities, terms, or 
 numbers (multiple checks are possible):
 
 
