@@ -159,6 +159,9 @@ fix:
 	# fix redirect to English "contents of the module" page
 	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.1/modstart\.html|3\.1\.1/modstart\.html|g" chapter.html;
 
+	# fix redirect to English "view index" page
+	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.5/modstart\.html|3\.1\.4/modstart\.html|g" search.html;
+
 	# replace index.html with src/templates/html5_choose_language.html to allow for choosing en or de version
 	cp src/templates/html5_choose_language.html $(OUTPUT)/index.html
 
