@@ -269,7 +269,7 @@ class Option(object):
         server = "https://mintlx3.scc.kit.edu/dbtest"
         self.do_feedback = "0"                        # Feedbackfunktionen aktivieren? DOPPLUNG MIT FLAGS
         self.do_export = "0"                          # Aufgabenexport aktivieren? DOPPLUNG MIT FLAGS
-        self.reply_mail = "admin@ve-und-mint.de"      # Wird in mailto vom Admin-Button eingesetzt
+        self.reply_mail = "brueckenkurs@innocampus.tu-berlin.de"      # Wird in mailto vom Admin-Button eingesetzt
         self.data_server = server                  
         self.exercise_server = server
         self.feedback_service = server + "/feedback.php" # Absolute Angabe
