@@ -32,7 +32,7 @@ OUTPUT = tu9onlinekurstest
 DEFAULT_LANG = de
 
 # Declare as phony so targets will run even if there's a file by that name
-.PHONY: convert merge fixlinks cleanup all 
+.PHONY: convert merge fixlinks fixredirects cleanup all 
 
 
 #
@@ -75,6 +75,31 @@ merge:
 
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
+
+
+#
+# Don't use Unix softlinks here (ln -s),
+# as the output should also work on non-Unixes.
+#
+define fixRedirects_cmd
+	# copy HTML-redirects to each language version
+	cd $(OUTPUT) && cp *.html html/$(CURRENT_LANG)
+endef
+
+
+#
+# Copy redirect pages to each html/language directory
+# Moved to its own target, to make sure it is done 
+# Before serach and replace starts in "fix" target.
+#
+fixRedirects:
+	# set CURRENT_LANG to de
+	$(eval CURRENT_LANG := de)
+	$(fixRedirects_cmd)
+
+	# set CURRENT_LANG to en
+	$(eval CURRENT_LANG := en)
+	$(fixRedirects_cmd)
 
 
 #
@@ -128,7 +153,7 @@ endef
 #
 # Fix the link paths in the HTML files
 #
-fix:
+fix: fixRedirects
 	# Fix paths to common (*.js, *.css ...) external files
 	# Javascript links seem to be inserted in various places with different syntax
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script src=\"\.\./|<script src=\"\.\./\.\./|g" {} \;
