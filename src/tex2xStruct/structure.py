@@ -702,15 +702,13 @@ class Structure(object):
 
         if is_64bits:
             ttms = os.path.join(ttmStartFolder, "ttm")
-        # elif (os.name == "posix"):
-        #     ttms = "/Users/n/Sites/VEUNDMINT_TUB_Brueckenkurs/src/ttm/osx/TtH/Unix/tth"
         else:
             ttms = os.path.join(ttmStartFolder, "ttm32")
 
 
         try:
             with open(xmlFileName, "wb") as outfile, open(texStartFile, "rb") as infile:
-                pr = subprocess.Popen(ttms + "-p" + self.options.sourceTEX, stdout = outfile, stdin = infile, stderr = subprocess.PIPE, shell = True, universal_newlines = True)
+                pr = subprocess.Popen([ttms, "-p", self.options.sourceTEX], stdout = outfile, stdin = infile, stderr = subprocess.PIPE, shell = True, universal_newlines = True)
                 (output, err) = pr.communicate()
         except:
             self.sys.popdir()
