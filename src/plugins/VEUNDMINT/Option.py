@@ -28,6 +28,7 @@ import re
 import locale
 from git import Repo
 import sys
+import platform
 
 class Option(object):
     """
@@ -65,7 +66,7 @@ class Option(object):
 
         # define Pythons locale (impact for example on sorting umlauts),
         # should be set to locale of course language, string definition depends on used system!
-        if (os.name == "posix"):
+        if (platform.system() == "Darwin"):
             self.locale = ( lambda lang: "de_DE.UTF-8" if lang == 'de' else 'en_GB.UTF-8' ) ( self.lang )
         else:
             self.locale = ( lambda lang: "de_DE.utf8" if lang == 'de' else 'en_GB.utf8' ) ( self.lang )

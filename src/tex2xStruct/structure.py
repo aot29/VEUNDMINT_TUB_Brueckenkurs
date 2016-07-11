@@ -710,15 +710,9 @@ class Structure(object):
 
         try:
             with open(xmlFileName, "wb") as outfile, open(texStartFile, "rb") as infile:
-                print ("sourceTex: %s" % self.options.sourceTEX)
-                print ("ttmstartFolder %s" % ttmStartFolder)
-                print ("ttms %s" % ttms)
                 pr = subprocess.Popen(ttms + "-p" + self.options.sourceTEX, stdout = outfile, stdin = infile, stderr = subprocess.PIPE, shell = True, universal_newlines = True)
                 (output, err) = pr.communicate()
-                print ("output: %s" % output)
-                print ("pr returncode %s" % pr.returncode)
         except:
-            print ("unexpected error:", self.sys.exc_info()[0])
             self.sys.popdir()
             self.sys.message(self.sys.FATALERROR, "ttm call exception")
 

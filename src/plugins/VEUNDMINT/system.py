@@ -29,6 +29,7 @@ import getpass
 import socket
 import glob2
 import base64
+import platform
 
 class System(object):
 
@@ -214,7 +215,7 @@ class System(object):
             self.message(self.FATALERROR, "File " + name + " not found")
         else:
             self.message(self.VERBOSEINFO, "File " + name + " found")
-        if (os.name == "posix"):
+        if (platform.system() == "Darwin"):
             p = subprocess.Popen(["file", "-I", name], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
         else:
             p = subprocess.Popen(["file", "-i", name], stdout = subprocess.PIPE, shell = False, universal_newlines = True)

@@ -1,4 +1,4 @@
-"""    
+"""
     VEUNDMINT plugin package
     Copyright (C) 2016  VE&MINT-Projekt - http://www.ve-und-mint.de
 
@@ -45,26 +45,26 @@ class PageFactory(object):
         self.options = interface['options']
         self.outputplugin = outputplugin
         self._load_templates()
-        
+
         if hasattr(self.options, "tocadd"):
             self.tocadd = self.options.tocadd
         else:
             self.sys.message(self.sys.CLIENTWARN, "Options do not provide toc addition template, will be omitted")
             self.tocadd = ""
-        
+
         # Read the language ISO code (en, de...) from the locale code (de_DE.utf8...)
         self.lang = self.options.locale.split('_')[0]
 
-        
+
     def _load_templates(self):
         if self.options.doscorm == 0:
             self.sys.message(self.sys.CLIENTINFO, "Using HTML5 MINTMODTEX template")
             self.template_html5 = self.sys.readTextFile(self.options.template_html5, self.options.stdencoding)
         else:
             self.sys.message(self.sys.FATALERROR, "SCORM interface not supported yet")
-            
+
         # fixed template texts will be inserted automaticall at div ids identical to the option name starting with template_
-        
+
         self.template_javascriptheader = self.sys.readTextFile(self.options.template_javascriptheader, self.options.stdencoding)
         self.template_javascriptfooter = self.sys.readTextFile(self.options.template_javascriptfooter, self.options.stdencoding)
 
@@ -72,20 +72,20 @@ class PageFactory(object):
         if self.options.localjax == 1:
             self.sys.message(self.sys.CLIENTINFO, "MathJax will be used locally")
             self.template_mathjax_include = self.sys.readTextFile(self.options.template_mathjax_local, self.options.stdencoding)
-        else:            
+        else:
             self.sys.message(self.sys.CLIENTINFO, "MathJax will be included from MathJax CDN")
             self.template_mathjax_include = self.sys.readTextFile(self.options.template_mathjax_cdn, self.options.stdencoding)
-            
+
         self.template_settings = self.sys.readTextFile(self.options.template_settings, self.options.stdencoding)
 
-            
+
     def _substitute_string(self, html, cstr, insertion):
         # carefull: parser turns <div ....></div> into <div ... /> but not if a whitespace is inside
         (html, n) = re.subn(r"\<div (.*?)class=\"" + re.escape(cstr) + r"\"(.*?)\>(.+?)\</div\>", "<div \\1class=\"" + cstr + "\"\\2>" + insertion + "</div>", html, 0, re.S)
         if n <= 0:
             self.sys.message(self.sys.CLIENTERROR, "div replacement (class=\"" + cstr + "\") happened " + str(n) + " times")
         return html
-            
+
 
     def _append_string(self, html, cstr, append):
         # carefull: parser turns <div ....></div> into <div ... />
@@ -94,7 +94,7 @@ class PageFactory(object):
             self.sys.message(self.sys.CLIENTERROR, "div append (class=\"" + cstr + "\") happened " + str(n) + " times")
         return html
 
-            
+
     # generates a html page as a string using loaded templates and the given TContent object
     def generate_html(self, tc):
         if (tc.display == False):
@@ -103,11 +103,11 @@ class PageFactory(object):
 
         template = etree.fromstring(self.template_html5)
         #template = h5_fromstring(self.template_html5)
-        
+
         # do substitutions supported by lxml parsers and etree
         template.find(".//title").text = tc.title
         template.find(".//meta[@id='meta-charset']").attrib['content'] = "text/html; charset=" + self.options.outputencoding
-        
+
         # set locale for UI elements
         template.attrib["lang"] = self.lang
 
@@ -121,10 +121,10 @@ class PageFactory(object):
         cs_text = ""
         for cs in self.options.stylesheets:
             cs_text += "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + cs + "\"/>\n"
-        js_text = ""     
+        js_text = ""
         for js in self.options.scriptheaders:
             js_text += "<script src=\"" + js + "\" type=\"text/javascript\"></script>\n"
-        
+
         # Preload (some) i18n strings
         # To make sure ui text are available when needed
         # TODO: only load required texts, not necessarily all. preload ui-* texts, load msg-* texts dynamically ?
@@ -160,8 +160,8 @@ class PageFactory(object):
             else:
                 idstr = str(pp.pos) + "." + idstr
             pp = pp.parent
-            
-        
+
+
         # provide tc attributes as JS variables inside the html
         js = ""
         js += "var SITE_ID = \"" + idstr + "\";\n" \
@@ -172,38 +172,38 @@ class PageFactory(object):
            +  "var linkPath = \"" + tc.backpath + "\";\n" \
            +  "var fontPath = \"" + tc.backpath + "fonts/\";\n" \
            +  "var imagesPath = \"" + tc.backpath + "images/\";\n"
-       
+
         tc.html = tc.html.replace("// <JSCRIPTPRELOADTAG>", js + "// <JSCRIPTPRELOADTAG>")
 
-        
+
         tc.html = self.update_links(tc.html, tc.backpath)
         # roulette expansion has to be the last operation, after link updating
         tc.html = self.pack_roulettes(tc.html, tc.sitejson)
 
-        
+
     def gettoccaption(self, tc):
         c = ""
         # Nummer des gerade aktuellen Fachbereichs ermitteln
         pp = tc
         fsubi = tc.chapter
-        
+
         attr = ""
         root = tc.root
-        
+
         pages1 = root.children
         n1 = len(pages1)
 
         c += "<tocnavsymb><ul>"
         c += "<li><a class=\"MINTERLINK\" href=\"" + self.outputplugin.siteredirects['chapter'][0] + "\" target=\"_new\"><div class=\"tocmintitle\">" + self.options.strings['module_content'] + "</div></a>"
         c += "<div><ul>\n"
-   
+
         i1 = 0; # eigentlich for-schleife, aber hier nur Kursinhalt
         p1 = pages1[i1]
         if (p1.myid  == tc.myid):
             attr = " class=\"selected\""
         else:
             attr = " class=\"notselected\""
-  
+
         attr = ""
         ff = i1 + 1
 
@@ -211,10 +211,10 @@ class PageFactory(object):
         if self.options.tocchapters == 1:
             self.sys.message(self.sys.VERBOSEINFO, "Adding chapter link to toc")
             ti = re.sub(r"([12345] )(.*)", "\\2", p1.title, 1, re.S)
-            c += "<li" + attr + "><a class=\"MINTERLINK\" href=\"" + p1.fullname  + "\">" + ti + "</a>\n" 
+            c += "<li" + attr + "><a class=\"MINTERLINK\" href=\"" + p1.fullname  + "\">" + ti + "</a>\n"
         else:
             self.sys.message(self.sys.VERBOSEINFO, "Omitting chapter link in toc")
-    
+
         pages2 = p1.children
         n2 = len(pages2)
         if (n2 > 0):
@@ -230,7 +230,7 @@ class PageFactory(object):
                 # Stil der tocminbuttons wird in intersite.js gesetzt
                 c += "  <li><a class=\"MINTERLINK\" href=\"" + p2.fullname + "\"><div class =\"tocminbutton\">" \
                   +  self.options.strings['chapter'] + " " + str(ti + 1) + "</div></a>\n"
-                if fsubi != -1: 
+                if fsubi != -1:
                     # Untereintraege immer einfuegen im neuen Stil
                     pages3 = p2.children
                     n3 = len(pages3)
@@ -253,7 +253,7 @@ class PageFactory(object):
                                        divid = "idxsymb_tc" + str(p4.myid)
                                        tsec += "<a class=\"MINTERLINK\" href=\"" + p4.fullname + "\"><div uxid=\"" + p4.uxid + "\" id=\"" + divid + "\" class=\"xsymb " + p4.tocsymb + cl + "\"></div></a>\n"
                                 c += "    <li><a class=\"MINTERLINK\" href=\"" + pages4[0].fullname + "\">" + tsec + "</li>\n"
-                                       
+
                         c += "    </ul></div>\n"
                 c += "  </li>\n"
         c += "\n" \
@@ -263,10 +263,10 @@ class PageFactory(object):
           +  self.tocadd \
           + "</tocnavsymb>" \
           +  "<br /><br />"
-  
+
         return c
-    
-    
+
+
     # adds prefix to links in html code
     def update_links(self, html, prefix):
         if prefix != "":
@@ -276,19 +276,19 @@ class PageFactory(object):
             html = re.sub(r"(src|href)=(\"|')(?!#|https://|http://|ftp://|mailto:|:localmaterial:|:directmaterial:)", "\\1=\\2" + prefix, html, 0, re.S)
             html = re.sub(r"(\<param name=[\"\']movie[\"\'] value=[\"\'])(?!http|https|ftp)", "\\1" + prefix, html, 0, re.S)
 
-            if re.search(r",(\"|\')(?!(\#|\'|\"|http://|https://|ftp://|mailto:|:localmaterial:|:directmaterial:))", html, re.S): 
+            if re.search(r",(\"|\')(?!(\#|\'|\"|http://|https://|ftp://|mailto:|:localmaterial:|:directmaterial:))", html, re.S):
                 self.sys.message(self.sys.VERBOSEINFO, "Undesired combination marker and protocol prefix found in html code")
 
             # Lokale Dateien befinden sich im gleichen Ordner ohne Prefix
             html = html.replace(":localmaterial:", ".")
             html = html.replace(":directmaterial:", "")
-        
+
         else:
             self.sys.message(self.sys.CLIENTWARN, "update_links called without a proper link prefix")
-            
+
         return html
 
-        
+
     def getnavi(self, tc):
         navi = ""
 
@@ -298,14 +298,14 @@ class PageFactory(object):
         if (tc.level == self.options.contentlevel) and (p is None):
             if not tc.xleft is None:
                 p = tc.xleft
-            
+
         if (not p is None) and (tc.level == self.options.contentlevel):
             anchor = "<a class=\"MINTERLINK\" href=\"" + p.fullname +  "\"></a>"
         else:
             anchor = ""
-            
+
         navi += "<div class=\"" + icon + "\">" + anchor + "</div>\n"
-        
+
         # link to next page
         p = tc.navright()
         icon = "nnext"
@@ -346,7 +346,7 @@ class PageFactory(object):
             else:
                  navi += self.options.strings['module_starttext'] + tc.title
             navi += "</a></li>\n"
-        
+
         parent = tc.parent
         if not parent is None:
             pages = parent.children
@@ -369,8 +369,8 @@ class PageFactory(object):
         navi += "</ul>\n"
 
         return navi
-    
-    
+
+
     # correct specific problems arising from parsing HTML5 with an HTML parser
     def _correcthtml5(self, html):
         # parser gobbles doctype
@@ -378,8 +378,8 @@ class PageFactory(object):
         # parser shortens void divs do <div .... /> which is invalid (resp. just a starting tag) in HTML5
         html = re.sub(r"\<div (.*?)/\>", "<div \\1></div>", html, 0, re.S)
         return html
-    
-    
+
+
     def postprocessing(self, html, tc):
         # read unique ids
         m = re.search(r"\<!-- mdeclaresiteuxidpost;;(.+?);; //--\>", html, re.S)
@@ -389,14 +389,14 @@ class PageFactory(object):
         else:
             tc.uxid = "UNKNOWNUXID"
             self.sys.message(self.sys.CLIENTWARN, "Site hat keine uxid: " + tc.title);
-            
+
         # activate pull sites and adapt JS variables
         if "<!-- pullsite //-->" in html:
             html = html.replace("// <JSCRIPTPRELOADTAG>", "SITE_PULL = 1;\n" + "// <JSCRIPTPRELOADTAG>")
             self.sys.message(self.sys.CLIENTINFO, "User-Pull on Site: " + tc.title)
         else:
             html = html.replace("// <JSCRIPTPRELOADTAG>", "SITE_PULL = 0;\n" + "// <JSCRIPTPRELOADTAG>")
-            
+
         # remove br tags which destabilize tabulars, is remains unknown why ttm places br there anyway,
         # we are detecting the combination <!--hbox--><br clear="all" /> followed by a table tag
         (html, n) = re.subn(r"\<!--hbox--\>\<br clear=\"all\" /\> *\<table", "<!--hbox--> <table", html, 0, re.S)
@@ -415,29 +415,29 @@ class PageFactory(object):
                     k = k + 1
                 self.sys.message(self.sys.VERBOSEINFO, "ttm <mi>-correction: " + m.group(0) + "  ->  " + s)
                 return s
-            
+
         html = re.sub(r"\<mi\>([^\W\d_]{2,})\</mi\>", mireplace, html, 0, re.S)
-        
-        # MStartJustify, MEndJustify  
+
+        # MStartJustify, MEndJustify
         if "<!-- startalign;;" in html:
             self.sys.message(self.sys.CLIENTERROR, "Justify, JTabular, JustifiedImages are not supported yet")
-            
+
 
         # find registered files and copy them to an appropriate position inside the HTML tree
         self.sys.message(self.sys.VERBOSEINFO, "Copying local files, outputfolder=" + tc.fullpath + ", outputfile=" + tc.fullname)
-        
+
         nf = 0
-      
+
         fileregs = re.findall(r"\<!-- registerfile;;(.+?);;(.+?);;(.+?); //--\>", html, re.S)
         for reg in fileregs:
-            
+
             nf += 1
             fname = reg[0]
             includedir = reg[1]
             fileid = reg[2]
             fnameorg = fname
             self.sys.message(self.sys.VERBOSEINFO, "Processing includedir=" + includedir + ", fname=" + fname + ", id=" + fileid)
-            
+
             # file extension given?
             dobase64 = 0
             fext = ""
@@ -491,9 +491,9 @@ class PageFactory(object):
                                     self.sys.message(self.sys.CLIENTERROR, "Register tag with id " + fileid + " found " + str(n) + " times in html content without graphics extension")
                 else:
                     self.sys.message(self.sys.FATALERROR, "Command ls does not seem to work, error code is " + str(p.returncode))
-                
+
                 self.sys.popdir()
-                
+
             dobase64 = 0 # should be enabled later
             if (fext != "*"):
                 fname = fname + fext
@@ -505,7 +505,7 @@ class PageFactory(object):
                     # not an error, as path of file may be empty
                     fnamepath = ""
                     fnamename = fname
-                
+
                 fnamepath = fnamepath + "."
                 (html, n) = re.subn(r"\[\[!-- mfileref;;" + re.escape(fileid) + "; //--\]\]" , fname, html , 0, re.S)
                 if n > 0:
@@ -518,7 +518,7 @@ class PageFactory(object):
                 (html, n) = re.subn(r"\<!-- registerfile;;" + fnameorg2 + ";;" + includedir + ";;" + fileid + "; //--\>", "" , html ,0, re.S)
                 if (n != 1):
                     self.sys.message(self.sys.CLIENTERROR, "Register tag with id " + fileid + " found " + str(n) + " times in html content")
-                
+
                 # remove top directory level from fname because include directories inside sourceTEX are not being reproduced in HTML
                 if (includedir != "."):
                     # carefull: only 1 replacement allowed because pathname is prefix of mtikzauto-filenames
@@ -541,25 +541,25 @@ class PageFactory(object):
                         self.sys.message(self.sys.FATALERROR, "cp refused to work on source=" + sourcep + ", target=" + targetp)
                 else:
                     self.sys.message(self.sys.CLIENTERROR, "Could not extract file details for fi2=" + fi2)
-                    
-        
+
+
             # end of regfile for
 
         if (nf > 0):
             self.sys.message(self.sys.VERBOSEINFO, str(nf) + " local files copied")
-            
-        
+
+
         if self.options.stdmathfont == "1":
             # add font to mtext, normalstyles and boldstyles (without serif)
             html = html.replace("fontstyle=\"normal\"", "fontfamily=\'" + self.options.fonts['STDMATHFONTFAMILY'] + "\' fontstyle=\"normal\"")
             html = html.replace("fontweight=\"bold\"", "fontfamily=\'" + self.options.fonts['STDMATHFONTFAMILY'] + "\' fontstyle=\"normal\" fontweight=\"bold\"")
             html = html.replace("<mtext>", "<mtext fontfamily=\'" + self.options.fonts['STDMATHFONTFAMILY'] + "\' fontstyle=\"normal\">")
             html = re.sub(r"\<mtext(.*?)\>(.*?)\<mstyle(.*?)\>(.+?)\</mstyle(.*?)\>\n*(.*?)\</mtext(.*?)\>", "<mstyle\\3><mtext\\1>\\4</mtext\\7></mstyle\\5>", html, 0, re.S)
-            
+
         # generate variables used by testsites if needed
         if tc.testsite:
             html = html.replace("// <JSCRIPTPRELOADTAG>", "isTest = true;\nvar nMaxPoints = 0;\nvar nPoints = 0;\n// <JSCRIPTPRELOADTAG>")
-            
+
         # move JS blocks from tcontents into appropriate head/body segments
         jsblocks = ""
         def loadmove(m):
@@ -586,9 +586,9 @@ class PageFactory(object):
             else:
                 self.sys.message(self.sys.CLIENTERROR, "Could not find image information for " + tname)
                 return ""
-        
+
         html= re.sub(r"\[\[!-- svgstyle;(.+?) //--\]\]", svgstyle, html, 0, re.S)
-        
+
 
         # prepare feedback buttons
         j = 0 # is always zero up to now
@@ -603,14 +603,14 @@ class PageFactory(object):
             ibt += "<button type=\"button\" style=\"background-color: #E0C0C0; border: 2px\" ttip=\"1\" tiptitle=\"" + tip + "\" name=\"Name_FEEDBACK" + str(j) + "_" + exid + "\" id=\"" + bid + "\" type=\"button\" onclick=\"internal_feedback(\'" + exid + "\',\'" + bid + "\',\'" + ftype + " " + exid + "\');\">"
             ibt += self.options.strings['feedback_sendit']
             ibt += "</button><br />\n"
-            
+
             # display feedback buttons if (not a test version) and not globally deactivated
             if self.options.do_feedback == "1":
                 return ibt
             else:
                 return ""
         html = re.sub(r"\<!-- mfeedbackbutton;(.+?);(.*?);(.*?); //--\>", bfeed, html, 0, re.S)
-  
+
         def dhtml(m):
             pos = int(m.group(1))
             self.sys.message(self.sys.VERBOSEINFO, "DirectHTML " + m.group(1) + " set")
@@ -619,8 +619,8 @@ class PageFactory(object):
 
         if "<!-- qexportstart" in html:
             self.sys.message(self.sys.CLIENTERROR, "qexports not implemented yet")
-            
-        
+
+
         # process qexports:
         # qpos = unique export index per tex file (index generated by preparsing, not affectd by section or xcontent numbers)
         # pos = unique export index per page (html file) generated by postprocessing, filename of exports is pagename plus pos plus extension
@@ -648,49 +648,49 @@ class PageFactory(object):
             else:
                 # exports disabled: remove export tag entirely
                 return ""
-        
+
         html = re.sub(r"\<!-- qexportstart;(.*?); //--\>(.*?)\<!-- qexportend;\1; //--\>", qexp, html, 0, re.S)
-        
-        
+
+
         # process exercise collections
         if self.options.docollections == 1:
             self.sys.message(self.sys.CLIENTERROR, "Collection export not implemented yet")
             collc = 0
             colla = 0
-            
+
         """
-            
-            
+
+
     while (html =~ m/<!-- mexercisecollectionstart;;(.+?);;(.+?);; \/\/-->(.*?)<!-- mexercisecollectionstop \/\/-->/s ) {
       my $ecid1 = $1;
       my $ecopt = $2;
       my $ectext = $3;
       my $mark = generatecollectionmark($ecid1, $ecopt);
       html =~ s/<!-- mexercisecollectionstart;;$ecid1;;$ecopt;; \/\/-->(.*?)<!-- mexercisecollectionstop \/\/-->/$mark/s ;
-      
+
       my $arraystring = "[";
       my $ast = 0;
-      
+
       # Aus der collection die Aufgaben extrahieren
       while ($ectext =~ m/<!-- mexercisetextstart;;(.+?);; \/\/-->(.*?)<!-- mexercisetextstop \/\/-->/s ) {
         self.sys.message(self.sys.VERBOSEINFO, "    Aufgabe extrahiert");
         my $exid = $1;
         my $extext = $2;
         $ectext =~ s/<!-- mexercisetextstart;;$exid;; \/\/-->(.*?)<!-- mexercisetextstop \/\/-->//s ;
-         
+
         if ($ast eq 1) { $arraystring .= ","; } else { $ast = 1; }
         my $ctext = encode_base64($extext);
         $ctext =~ s/\n/\\n/gs;
 
         my $l;
-        
+
         $arraystring .= "{\"id\": \"$ecid1" . "_" . "$exid\", \"content\": \"$ctext\"}";
-     
+
         $colla++;
       }
-      
+
       $arraystring .= "]";
-      
+
       $collc++;
       push @colexports, ["$ecid1", "$ecopt" , $arraystring];
     }
@@ -698,14 +698,14 @@ class PageFactory(object):
   }
 
         """
-  
+
         return html
-    
+
     # end postprocessing
 
 
     def pack_roulettes(self, html, sitejson):
-        
+
         def droul(m):
             rid = m.group(1)
             myid = int(m.group(2))
@@ -728,10 +728,6 @@ class PageFactory(object):
             if len(sitejson["_RLV_" + rid]) != (myid + 1):
                 self.sys.message(self.sys.CLIENTERROR, "Roulette inset id " + str(myid) + ", does not match ordering of LaTeX environments");
             return t
-  
+
         html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droul, html, 0, re.S)
         return html
-    
-        
-        
-        
