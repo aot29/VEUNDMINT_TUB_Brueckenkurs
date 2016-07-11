@@ -88,7 +88,7 @@ class Structure(object):
     zwei Elemente lang)
 
     Die Reihenfolge der Inhaltsabschnitte in self.content entspricht dabei lediglich der
-    Reihenfolge der Abschnitte aus der XML-Vorlage. 
+    Reihenfolge der Abschnitte aus der XML-Vorlage.
 
 
     Benötigte Inhalte (derzeit Bilder, Interaktionen, swf-Files, adobe-Files):
@@ -96,46 +96,46 @@ class Structure(object):
     Diese finden sich aufgelistet in den Attributen get_required_X (X entsprechend ersetzen).
     Ein Listenelement besteht wieder aus einer Liste, nach dem Schema: [toc_node, Dateiname]
     Also analog zu self.content.
-    
+
     '''
 
 
     def __init__(self):
         '''
         Constructor
-        '''  
+        '''
 
-        
+
 
     def startTex2x(self, verbose, plugin_name, override):
         """
         Wird vom Konstruktor aufgerufen und leitet die Verarbeitung der Materialien ein.
         Zusätzlich werden die Optionen aus der Option-Klasse eingebunden und berücksichtigt.
         Die Bearbeitung erfolgt dabei im Groben nach folgenden Schritten:
-        
+
         * Aus den tex-Sourcen per ttm eine xml-Datei erzeugen
-        
+
         * xml-Datei einlesen
-        
+
         * Aus xml-Datei Strukturen herstellen (Kapitel, Module, Inhaltsverzeichnis, Lösungen, etc.)
-        
+
         * Prüfen der benötigten Quelldateien auf Vollständigkeit im input-Ordner
-        
+
         * Erstellen der verschiedenen Ausgabeformate anhand der in den Optionen spezifizierten Plugins
         """
-        
+
         currentDir = ".."
 
         """
         --------------------- BEGIN DEFINITION OF THE MODULE INTERFACE ------------------------------------------------------
-        
+
         INITIALIZE INTERFACE DATA MEMBER, WHICH SERVES AS THE SOLE COMMUNICATION INTERFACE TO LINKED MODULES
         AS DESCRIBED IN THE tex2x LICENSE. LINKED MODULES (PLUGINS) MAY ONLY USE THE FOLLOWING DATA MEMBERS
         FOR COMMUNICATION AND FUNCTION CALLS:
-        
+
         """
         self.interface = dict()
-        
+
         # data member: linked modules may READ/WRITE/CHANGE/DELETE elements of the data member,
         # added elements must not contain functions or code of any kind.
         self.interface['data'] = dict()
@@ -145,7 +145,7 @@ class Structure(object):
         try:
             options_file = "Option.py"
             for ov in override:
-                m = re.match(r"(.+?)=(.+)", ov) 
+                m = re.match(r"(.+?)=(.+)", ov)
                 if m.group(1) == "options":
                     options_file = m.group(2) # should be located in same directory as the generic option object for the plugin
             module = imp.load_source(plugin_name, os.path.join("plugins", plugin_name, options_file))
@@ -169,7 +169,7 @@ class Structure(object):
                 print(traceback.format_exc())
             else:
                 print("\nCannot load System facility of plugin '" + plugin_name + "', using system from tex2x\n")
-                
+
             self.interface['system'] = TSystem
 
         # preprocessor_plugins member: A list of modules exposing a class "Preprocessor" which has a function "preprocess"
@@ -212,18 +212,18 @@ class Structure(object):
         if hasattr(self.options, "overrides"):
             for ov in self.options.overrides:
                 self.sys.message(self.sys.VERBOSEINFO, "tex2x called with override option: " + ov[0] + " -> " + ov[1])
-       
-        
+
+
         schritt = 1
         total_time = 0;
-        
+
         if verbose:
             time_start = time.time()
-            
+
         #Preprocessing aus den Plugins aktivieren
         for pp in self.interface['preprocessor_plugins']:
             pp.preprocess()
-        
+
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
@@ -231,18 +231,18 @@ class Structure(object):
             print("Preprocessing starten\n")
             total_time += time_diff
             schritt += 1
-        
+
         if verbose:
             time_start = time.time()
-            
+
         #ttm starten - xml-Vorlage erzeugen
         if self.options.ttmExecute:
             self.start_ttm()
         else:
             self.prepare_xml_file()
-        
-        
-        
+
+
+
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
@@ -250,11 +250,11 @@ class Structure(object):
             print("ttm starten\n")
             total_time += time_diff
             schritt += 1
-        
+
         #XML parsen
         if verbose:
             time_start = time.time()
-        
+
         try:
             xmlfile = open(self.options.ttmFile, "rb")
             xmltext = xmlfile.read().decode( 'utf8', 'ignore' ) # force utf8 here, otherwise it won't build
@@ -264,10 +264,10 @@ class Structure(object):
             # old ttm produces latin1 encoded xml if given tex was latin1
             self.sys.message(self.sys.CLIENTINFO, "Could not decode xml output as utf8, trying encoding " + self.options.stdencoding)
             xmltext = self.sys.readTextFile(self.options.ttmFile, self.options.stdencoding)
-        
+
         #MathML manuell optimieren, da die Ausgabe des ttm nicht ausreichend ist
         xmltext = self.optimize_mathml(xmltext)
-        
+
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
@@ -275,23 +275,23 @@ class Structure(object):
             print("(Optimiere MathML aus dem ttm per RegEx) \n")
             total_time += time_diff
             schritt  += 1
-        
+
         #Vor dem Parsen werden alle Entities durch die neuen Versionen ersetzt
         xmltext = self.replace_html_entities(xmltext)
-        
+
         # include raw xml text for plugins
         self.data['rawxml'] = xmltext
-        
+
         #parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder(self.options.parserName))
         #self.xmltree_raw = parser.parse(xmlfile)
-        
+
         parser = html.HTMLParser(remove_blank_text = False)
         #self.xmltree_raw = etree.parse(StringIO(xmltext),parser)
 
         self.xmltree_raw = etree.fromstring(xmltext, parser)
         #self.xmltree_raw = html5parser.fromstring(xmltext)
         #self.xmltree_raw = html5parser.document_fromstring(xmlfile.read())
-        
+
         self.sys.timestamp("XMLTree parsed")
 
         if verbose:
@@ -301,15 +301,15 @@ class Structure(object):
             print("(Entities durch HTML5 konforme Entities ersetzen und XML parsen) \n")
             total_time += time_diff
             schritt  += 1
-        
+
         #Inhaltsverzeichnis erstellen und Inhalt zusammenschneiden
         if verbose:
             time_start = time.time()
-            
-            
+
+
         self.create_toc_and_disect_content()
         self.sys.timestamp("toc/content created")
-        
+
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
@@ -317,13 +317,13 @@ class Structure(object):
             print("(Inhaltsverzeichnis erstellen und Content-Blöcke passend dazu ausschneiden)\n")
             total_time += time_diff
             schritt += 1
-            
+
         #Erstellen einer Liste mit den tatsächlich benötigten Bild-Dateien
         if verbose:
             time_start = time.time()
-            
+
         self.required_images = self.get_required_images(self.content)
-                
+
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
@@ -331,7 +331,7 @@ class Structure(object):
             print("(Erstellen einer Liste aller tatsächlich benötigter Bilder im Inhaltsbereich)\n")
             total_time += time_diff
             schritt += 1
-        
+
         #Pfade im Inhalt müssen der Verzeichnisstruktur angepasst werden
         if verbose:
             time_start = time.time()
@@ -341,7 +341,7 @@ class Structure(object):
             self.correct_path_to_linked_files(self.content)
         else:
             self.sys.message(self.sys.VERBOSEINFO, "tex2x link correction not requested by options")
-                
+
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
@@ -349,16 +349,16 @@ class Structure(object):
             print("(Korrektur von Bild- und Interaktionspfaden)\n")
             total_time += time_diff
             schritt += 1
-            
+
         #Quelldaten auf Vollständigkeit prüfen
         #Das sollte von den Plugins selbst gemacht werden, da nicht klar ist, was noch alles benötigt wird
         #und ob so ein Check gewollt ist
         """
         if verbose:
             time_start = time.time()
-            
+
         self.verify_existence_of_required_files()
-                
+
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
@@ -372,9 +372,9 @@ class Structure(object):
 
         if verbose:
             time_start = time.time()
-            
-        self.start_plugins(plugin_name);    
-        
+
+        self.start_plugins(plugin_name);
+
         if verbose:
             time_end = time.time()
             time_diff = time_end - time_start
@@ -382,31 +382,31 @@ class Structure(object):
             print("Plugins ausführen\n")
             total_time += time_diff
             schritt += 1
-            
-            
+
+
         if verbose:
             print("Total time: " + str(total_time))
-            
+
         # stop program execution and return proper error level as return value
         self.sys.finish_program()
 
-       
+
     def create_toc_and_disect_content(self):
         """
         Extrahiert aus dem XML-Baum die Struktur des Inhaltsverzeichnisses (Inhalts-Struktur-Tags werden in den Optionen definiert)
         Da sie Struktur extrem flexibel sein soll,
         wird das Inhaltsverzeichnis als XML-Baum erstellt.
-        
+
         Gleichzeitig werden die Inhalte entsprechend geteilt und in einer Liste abgelegt,
         deren Elemente folgende Struktur haben: [toc_node, content_node].
         So ist jeder Schnippsel einem Knoten im Inhaltsverzeichnis zugeordnet.
-        
+
         Zusätzlich werden beim Zerschneiden zwei zusätzliche Modulteile erstellt: Visualisierungen und Info (vgl. Module der VEMINT-CD).
         """
-        
+
         #Kopie, um Schreibweise zu verkürzen
         contentStructure = self.options.ContentStructure
-        
+
         root = self.xmltree_raw
         body = root.find("body")
 
@@ -415,23 +415,23 @@ class Structure(object):
             body = root
 
         toc = etree.Element("tableOfContents")
-        toc_node = toc        
-        
-        
-        
+        toc_node = toc
+
+
+
         previous_level = -1
         content = []
-        
+
         #print(etree.tostring(body[0], pretty_print = True).decode())
-        
+
         for node in body[0].iterchildren():
             level = -1;
             for i in range(len(contentStructure)):
                 if self._checkContentStructure(node, contentStructure[i]):
                     level = i;
                     break;
-            
-            
+
+
             #level != -1 bedeutet es handelt sich um einen Ebenen-Wechsel
             #und ein Knoten wird zum toc hinzugefügt
             if (level != -1):
@@ -444,19 +444,19 @@ class Structure(object):
                         toc_node = new_element
                         toc_node.set("level", str(level+1))
                         i += 1;
-                
+
                 #Entsprechend viele Ebenen zurück gehen
                 if (level <= previous_level):
                     i = previous_level
                     while (i>=level):
                         toc_node = toc_node.getparent()
                         i -= 1
-                    
+
                     new_element = etree.Element(contentStructure[level])
                     toc_node.append(new_element)
                     toc_node = new_element
                     toc_node.set("level", str(level+1))
-                    
+
                 #name Attribut hinzufügen
                 #Auf der ersten Ebene sieht das Attribut so aus: name="tth_chAp1"
                 if node.tag == contentStructure[0]:
@@ -471,14 +471,14 @@ class Structure(object):
                     new_element.text = node[1].tail#Strip ergänzen?
                 if (len(node) and node[0].tail != None):
                     new_element.text = new_element.text + node[0].tail#Strip ergänzen?
-                    
+
                 #Unnötige Leerzeichen werden noch entfernt
                 if new_element.text != None:
                     new_element.text = new_element.text.strip()
-                    
+
 
             #Es gab keinen Ebenen-Wechsel
-            #haben wir einen Knoten gefunden, der Teil eines Moduls ist?                    
+            #haben wir einen Knoten gefunden, der Teil eines Moduls ist?
             if level == -1:
                 #Es wurde ein zugehöriges Modul gefunden
                 #Modul wird gespeichert mit zugehörigem Knoten aus dem Inhaltsverzeichnis
@@ -493,20 +493,20 @@ class Structure(object):
                             print("Fehler beim Parsen der xcontent-Nummer")
                     else:
                         self.sys.message(self.sys.CLIENTWARN, "Dissection found class " + self.options.ModuleStructureClass + ", but without a number")
-                            
-                        
-                        
+
+
+
                     content_node = deepcopy(node)
 
                     content.append([toc_node, content_node])
                     continue
-                            
-            
+
+
             #letzten level merken, um oben zu wissen, wie viele Ebenen gewechselt werden
             if (level != -1):
                 previous_level = level
                 previous_node = toc_node
-                    
+
         #Objetkvariable setzen
         self.tocxml = toc
         self.content = content
@@ -516,14 +516,14 @@ class Structure(object):
         """
         :param content: zu analysierende content-Liste
         :returns: image-Liste -- Liste der benötigten Bilddateien im Format [toc_node, Dateiname]
-        
+
         Ermittelt alle benötigten Bilddateien. Anhand dieser Informationen können Plugins entscheiden, welche
         Dateien kopiert werden müssen. Zusätzlich kann so die Vollständigkeit der Quelldateien geprüft werden.
-        
+
         Die Auflistung ist Modulweise, damit z.B. das Scorm-Plugin pro Paket nur die im Modul benötigten
         Bilddateien zuordnet und kopiert.
         """
-        
+
         required_images = list()
         for tupel in content:
             for div in tupel[1:]:
@@ -536,85 +536,85 @@ class Structure(object):
                     """
                     Passiert an anderer Stelle, da es je nach Tiefe des Inhalts
                     gehandhabt werden muss
-                    
+
                     #Korrigiere den Datei-Pfad noch bei Bedarf
                     if (img.get("src")[:6] != "../../"):
                         img.set("src", "../../" + img.get("src"))
                     """
                 if len(required):
-                    required_images.append([tupel[0], required])        
+                    required_images.append([tupel[0], required])
         #print((required_images))
         return required_images
-        
+
     def start_plugins(self, plugin_name):
         """
         :param target: Plugin mit dessen Hilfe die Ausgabe erzeugt werden soll
-        
+
         Lädt alle Plugins im Pluginverzeichnis und startet diese.
         """
-        
+
         self.data['content'] = self.content
         self.data['tocxml'] = self.tocxml
         self.data['required_images'] = self.required_images
-        
+
         #Daten hier "löschen"
         self.content = None
         self.tocxml = None
         self.required_images = None
-        
-        
+
+
         #Preprocessing aus den Plugins aktivieren
         for op in self.interface['output_plugins']:
             op.create_output()
-             
+
         #Temporäre Dateien aufräumen
         if self.options.cleanup == 1:
             self.clean_up();
 
-           
+
     def replace_html_entities(self, text):
         """
         :param text: String -- Text, in welchem die HTML-Entitäten bearbeitet werden sollen
         :returns: String -- Text mit bereinigten Entitäten
-        
+
         Diese Funktion entfernt alle alten HTML-Entitäten und ersetzt diese
         durch HTML5 konforme Entitäten.
         """
         #print(text)
         #text = text.decode()
-        
+
         #Liste Lesen und verarbeiten
         fobj = open(os.path.join(self.options.currentDir,"src", "entity_list.txt"), "r")
         line_list = fobj.readlines()
         entity_list = list()
         for line in line_list:
             entity_list.append(line.split())
-            #entity_list[-1][0] = "&amp;" + entity_list[-1][0][1:] 
-            
+            #entity_list[-1][0] = "&amp;" + entity_list[-1][0][1:]
+
         #entity_list enthält jetzt je listen Eintrag
         #eine Liste mit zwei Strings
         #erster beschreibt eine alte Entity, z.B.: &Ropf;
         #zweiterer beschreibt den HTML5 Ersatz, z.B: &#8477;
-        
+
         #Alles ersetzen
         for line in entity_list:
             text = text.replace(line[0], line[1])
-        
+
         fobj.close();
         #Bearbeiteten Text zurückgeben
         return text
-            
-    
-            
-    
-        
-                    
-    
-       
+
+
+
+
+
+
+
+
     def correct_path_to_linked_files(self, content):
         """
         :param content: content-Liste -- content-Liste der Inhalte deren Pfade korrigiert werden sollen.
-        
+
         Bilder und Interaktionen liegen in einem gemeinsamen Verzeichnis auf einer
         höheren Ebene als die html/xml Dateien. Das kann auf der tex-Ebene noch nicht berücksichtigt werden und wird
         an dieser Stelle korrigiert.
@@ -623,44 +623,44 @@ class Structure(object):
         TODO: Derzeit handelt es sich konstant um 2 Ebenen. Das sollte jedeoch anhand der Position der zugehörigen toc_node
         im Inhaltsverzeichnis dynamisch korrigiert werden.
         """
-        
+
         for tupel in content:
             for div in tupel[1:]:
                 #Interaktionen behandeln
                 for a in div.findall(".//a"):
                     if not a.get("href") is None and a.get("href")[:a.get("href").find("/")] == "interaktion":
-                        
+
                         a.set("href", "../../" + a.get("href"))
-        
+
                 #Bilder allgemein behandeln
                 for img in div.findall(".//img"):
-                    
+
                     #Pfade von Bilddateien könnten unterschiedlich relativiert sein
                     #erstmal werden alle gleich gemacht
-                                            
-                    if (img.get("src") != None and img.get("src")[:6] != "../../"):    
+
+                    if (img.get("src") != None and img.get("src")[:6] != "../../"):
                         img.set("src", "../../" + img.get("src"))
-                        
+
 
                 for flashrahmen in div.findall(".//div[@class='flashrahmen']"):
                     param = flashrahmen.find(".//param[@name='movie']")
                     param.set("value", "../../" + param.get("value"))
-                    
+
                     embed = flashrahmen.find(".//embed")
                     embed.set("src", "../../" + embed.get("src"))
-                    
+
                 for videorahmen in div.findall(".//video"):
                     for source_tag in videorahmen.findall(".//source"):
-                        source_tag.set("src", "../../" + source_tag.get("src")) 
-                        
+                        source_tag.set("src", "../../" + source_tag.get("src"))
+
                 for iframe in div.findall(".//iframe"):
-                    iframe.set("src", "../../" + iframe.get("src")) 
-                    
- 
+                    iframe.set("src", "../../" + iframe.get("src"))
+
+
     def verify_existence_of_required_files(self):
         """
-        Überprüft, ob die als benötigt ermittelten Dateien im Dateisystem vorhanden sind. 
-        
+        Überprüft, ob die als benötigt ermittelten Dateien im Dateisystem vorhanden sind.
+
         .. note::
             Pluginspezifische Dateien werden hier noch nicht erfasst!
             (z.B. das imsmanifest.xml-Template des VEMINT.SCORM-Plugins)
@@ -670,14 +670,14 @@ class Structure(object):
             for image in tupel[1]:
                 if not os.path.exists(os.path.join(self.options.sourceCommonFiles, "images", image)):
                     print("Achtung: Die Datei " + os.path.join(self.options.sourceCommonFiles, "images", image) + " wurde im Quellverzeichnis nicht gefunden. Wird jedoch im Modul " + tupel[0].get("name") + " verwendet.")
-            
-            
-   
+
+
+
 
     def start_ttm(self):
         """
         Ruft den ttm per Kommandozeile auf und erzeugt so eine xml-Datei aus den Tex-Sourcen.
-        
+
         .. note::
             Achtung:  ein externes Programm wird hier aufgerufen, das lässt sich
             theoretisch bösartig ausnutzen, wenn man den ttm ersetzt.
@@ -699,30 +699,38 @@ class Structure(object):
         texStartFile = self.options.sourceTEXStartFile
         ttmStartFolder = self.options.ttmPath
         xmlFileName = self.options.ttmFile
-        
+
         if is_64bits:
             ttms = os.path.join(ttmStartFolder, "ttm")
+        # elif (os.name == "posix"):
+        #     ttms = "/Users/n/Sites/VEUNDMINT_TUB_Brueckenkurs/src/ttm/osx/TtH/Unix/tth"
         else:
             ttms = os.path.join(ttmStartFolder, "ttm32")
-        
-        
+
+
         try:
             with open(xmlFileName, "wb") as outfile, open(texStartFile, "rb") as infile:
-                pr = subprocess.Popen([ttms, "-p", self.options.sourceTEX], stdout = outfile, stdin = infile, stderr = subprocess.PIPE, shell = True, universal_newlines = True)
+                print ("sourceTex: %s" % self.options.sourceTEX)
+                print ("ttmstartFolder %s" % ttmStartFolder)
+                print ("ttms %s" % ttms)
+                pr = subprocess.Popen(ttms + "-p" + self.options.sourceTEX, stdout = outfile, stdin = infile, stderr = subprocess.PIPE, shell = True, universal_newlines = True)
                 (output, err) = pr.communicate()
+                print ("output: %s" % output)
+                print ("pr returncode %s" % pr.returncode)
         except:
+            print ("unexpected error:", self.sys.exc_info()[0])
             self.sys.popdir()
             self.sys.message(self.sys.FATALERROR, "ttm call exception")
-            
+
         # ttm streams its messages to stderr
-        
+
         self.sys.popdir()
 
         if pr.returncode < 0:
-            self.sys.message(self.sys.FATALERROR, "Call to " + ttms + " for file " + textStartFile + " was terminated by a signal (POSIX return code " + p.returncode + ")")
+            self.sys.message(self.sys.FATALERROR, "Call to " + ttms + " for file " + texStartFile + " was terminated by a signal (POSIX return code " + p.returncode + ")")
         else:
             if pr.returncode > 0:
-                self.sys.message(self.sys.CLIENTERROR, ttms + " reported an error in file " + textStartFile + ", error lines have been written to logfile")
+                self.sys.message(self.sys.CLIENTERROR, ttms + " reported an error in file " + texStartFile + ", error lines have been written to logfile")
                 s = output[-512:]
                 s = s.replace("\n",", ")
                 self.sys.message(self.sys.VERBOSEINFO, "Last lines: " + s)
@@ -745,14 +753,14 @@ class Structure(object):
                 else:
                     if "Error: Fatal" in ttmlines[i]:
                         self.sys.message(self.sys.FATALERROR, "ttm exit with fatal error: " + ttmlines[i] + ", aborting")
-                        
+
 
         if anl > 0:
             self.sys.message(self.sys.CLIENTINFO, "ttm found " + str(anl) + " abnormal newlines")
-                
+
         if (cm > 0) and (self.options.dorelease == 1):
             self.sys.message(self.sys.FATALERROR, "ttm found " + str(cm) + " unknown commands, refusing to continue on release version")
-        
+
 
 
     def prepare_xml_file(self):
@@ -766,41 +774,41 @@ class Structure(object):
             self.start_ttm()
 
 
-    
-                            
-                    
-    
-                         
-    
-    
+
+
+
+
+
+
+
     def optimize_mathml(self, xmltext):
         """
         Optimiert MathML nachträglich weiter, nachdem der ttm es erzeugt hat.
         """
-        
+
         pattern = r"<mn>(?P<a>[0-9]*)</mn><mo>,</mo><mn>(?P<b>[0-9]*)</mn>"
         replace = r"<mn>\g<a>,\g<b></mn>"
         xmltext = re.sub(pattern, replace, xmltext)
-             
+
         #xmltext = "<mn>1</mn><mo>,</mo><msup><mrow><mn>001</mn></mrow><mrow><mn>2</mn></mrow></msup>"
-        
+
         pattern = r"<mn>(?P<a>[0-9]*)<\/mn><mo>,</mo>[\n|\r]*<msup><mrow><mn>(?P<b>[0-9]*)</mn></mrow><mrow><mn>(?P<c>[0-9])</mn></mrow>[\n|\r]*</msup>"
         replace = r"<msup><mrow><mn>\g<a>,\g<b></mn></mrow><mrow><mn>\g<c></mn></mrow>\n</msup>"
         xmltext = re.sub(pattern, replace, xmltext)
-        
+
         #s/<mtable([^>]+)>/<mtable>/g;
         pattern = r"<mtable[^>]+>"
         replace = r"<mtable>"
         xmltext = re.sub(pattern, replace, xmltext)
-        
-         
-        
+
+
+
         if not hasattr(self.options, "keepequationtables"): self.options.keepequationtables = 0
         if self.options.keepequationtables == 0:
             pattern = r"<table width=\"100%\"><tr><td align=\"center\">(?P<a>\s*(<math(.|\n)*?</math>)\s*)</td></tr></table>"
             replace = r"<center>\g<a></center>"
             xmltext = re.sub(pattern, replace, xmltext)
-        
+
         """Kein Effekt
         #Das Zeichen \subsetneq kennt ttm nicht
         pattern = r"\\subsetneq"
@@ -808,7 +816,7 @@ class Structure(object):
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
         """
-        
+
         """Kein Effekt
         #mathbb-Zeichen (Reals, Integers, usw)
         pattern = r"\\mathbb<mi>(?P<a>[A-Za-z])</mi>"
@@ -816,7 +824,7 @@ class Structure(object):
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
         """
-        
+
         #Ab hier werden übertrieben große Abstände verringert
         """Kein Effekt
         pattern = r"<mi>&emsp;</mi>"
@@ -830,23 +838,23 @@ class Structure(object):
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
         """
-        
+
         pattern = r"<mi>&emsp;&emsp;&emsp;</mi>"
         replace = r"<mi>&nbsp;&nbsp;&nbsp;</mi>"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
+
         pattern = r"<mi>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</mi>"
         replace = r"<mi>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mi>"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
+
         #\empty ist kein Integer, sondern Text
         pattern = r"<mi>&empty;</mi>"
         replace = r"<mtext>&empty;</mtext>"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
+
         """replacetd()-Fkt gibt es nicht.. vielleicht ist das hier auch inzwischen überflüssig. FF geht auch so, IE wird noch getestet
         #Bei Tabellen mit Rahmen sollen auch die Zellen Rahmen haben
         pattern = r"<table border=\"1\">((.|\s)*?)</table>"
@@ -854,118 +862,118 @@ class Structure(object):
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
         """
-        
+
         #Probleme mit dem nicht-Teilbarkeitszeichen beheben
         pattern = r"&nmid;"
         replace = r"<mo>∤</mo>"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
-        
+
+
         #Probleme mit dem nicht-Orthogonalitätszeichen beheben
         pattern = r"</mi>\s*&nparallel;\s*<mi>"
         replace = r" ∦ "
         t = re.subn(pattern, replace, xmltext)
-        xmltext = t[0]       
-        
+        xmltext = t[0]
+
         #Probleme mit vertikalen Punkten beheben
         pattern = r"<mrow>:</mrow>"
         replace = r"<mo>&#8942;</mo>"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
+
         #umgehe tex fehler in 5.2.1_grenzwertefunktionen.tex
         #TODO: Tex-Quelle reparieren
         pattern = r"<mstyle fontweight=\"bold\">h</mstyle>"
         replace = r"h"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
-        
-          
+
+
+
         #Probleme Ableitungen 2. Grades beheben
         pattern = r"</mi>\"<mo stretchy"
         replace = r"</mi><mo>'</mo><mo>'</mo><mo stretchy"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-       
-        
+
+
         #Probleme Ableitungen 3. Grades beheben
         pattern = r"</mi>\"<mo>'</mo><mo stretchy"
         replace = r"</mi><mo>'</mo><mo>'</mo><mo>'</mo><mo stretchy"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-          
+
         #Problem mit Ableitung 2. Grades ohne Klammern - wichtig darf erst nach der Behebung des Problems mit 3. Ableitung erfolgen
         pattern = r"<mi>f</mi>\""
         replace = r"<mi>f</mi><mo>'</mo><mo>'</mo>"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
+
         #Problem mit Ableitung 2. Grades ohne Klammern - wichtig darf erst nach der Behebung des Problems mit 3. Ableitung erfolgen
         pattern = r"<mi>g</mi>\""
         replace = r"<mi>g</mi><mo>'</mo><mo>'</mo>"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
+
         #4.2.1 Hinführung: Kästen werden nicht richtig dargestellt
         pattern = r"&square;"
         replace = r"<mo>□</mo>"
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
+
         #4.3.6 Hinführung: a''
         pattern = r"<mrow>\"</mrow>"
         replace = r'<mrow><mi>"</mi></mrow>'
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
+
         #5.4.2-24 ä wird vom ttm als Operator interpretiert
         pattern = r"</mi>&#228;<mi fontstyle=\"italic\">"
         replace = r'&#228;'
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
+
         #5.4.2-24 ö wird vom ttm als Operator interpretiert
         pattern = r"</mi>&#246;<mi fontstyle=\"italic\">"
         replace = r'&#246;'
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        
+
         #7.1.2 - ∦ wird nicht als "Operator" erkannt
         """
         pattern = r"∦"
         replace = r'<mo>∦</mo>'
         t = re.subn(pattern, replace, xmltext)
         xmltext = t[0]
-        """  
+        """
         #Diese Zeile kann nach dem Ersetzen genutzt werden, um mitgeteilt zu bekommen, wie viele Ersetzungen stattfanden
         #print("##########zahl: " + str(t[1]))
 
 
         return xmltext;
-    
-    
+
+
     def save_parsed_content_to_file(self):
         #TODO: prüfen, ob tmp Verzeichnis existiert, falls ja warnen
-        
+
         #Tempverzeichnis leeren (Reste stören sonst den Ladevorgang der Plugins
         if os.path.exists(self.options.targetpathTemp):
             self.sys.removeTree(self.options.targetpathTemp)
         self.sys.makePath(self.options.targetpathTemp)#Verzeichnis anlegen, existierte nicht oder wir haben es gerade gelöscht
- 
-        
+
+
         #tocxml in Datei ablegen
         tocxml_tmp_filename = os.path.join(self.options.targetpathTemp, "tocxml.xml")
         print(tocxml_tmp_filename)
         with open(tocxml_tmp_filename,"wb+") as f:
             f.write(etree.tostring(self.tocxml))
-        
+
         #Ordner-Struktur im tmp-Verzeichnis anlegen
         for node in self.tocxml.iter():
             if (not node.get("name") == None) and (not os.path.exists(os.path.join(self.options.targetpathTemp, node.get("name")))):
                 self.sys.makePath(os.path.join(self.options.targetpathTemp, node.get("name")))
-                            
+
         for tupel in self.content:
             i = 0
             for xmltree in tupel[1:]:
@@ -973,19 +981,19 @@ class Structure(object):
                 with open(os.path.join(self.options.targetpathTemp, tupel[0].get("name"),
                                        tupel[1].get("class") + "_" + str(i) + ".xml"),"wb+") as f:
                     f.write(etree.tostring(xmltree))
-    
-        
+
+
         with open(os.path.join(self.options.targetpathTemp, "test.json"),"w+") as f:
             json.dump(self.data, f)
-            
+
     def clean_up(self):
         """
         Wir räumen wieder auf. Insbesondere das temporäre Input-Verzeichnis wird wieder gelöscht.
         """
         print("Räume auf: " + os.path.abspath(self.options.sourcepath))
         self.sys.removeTree(self.options.sourcepath)
-        
-          
+
+
     def _checkContentStructure(self, node, tag):
         # check if node tag belongs to the content structure from options AND if it is structure tag generated by ttm
         if (node.tag == tag):
@@ -999,9 +1007,7 @@ class Structure(object):
             except:
                 # has no previous node or previous node has no defined "id"
                 return False
-   
+
             return True
         else:
             return False
-    
-         

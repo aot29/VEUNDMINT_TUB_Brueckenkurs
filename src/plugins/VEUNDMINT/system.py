@@ -1,7 +1,7 @@
-"""    
+"""
     VEUNDMINT System module
     Copyright (C) 2016  VE&MINT-Projekt - http://www.ve-und-mint.de
-    This module is a modification of the System module from the tex2x converter by VEMINT 
+    This module is a modification of the System module from the tex2x converter by VEMINT
 
     The VEUNDMINT System module is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -53,9 +53,9 @@ class System(object):
         self.doColors = options.consolecolors
         self.doVerbose = options.doverbose
         self.beQuiet = options.quiet
-        
+
         self.dirstack = []
-        
+
         self.startTime = time.time()
         self.checkTime = self.startTime
         self.errorlevel = 0 # highest error level that occured: 1 = warning, 2 = error, 3 = fatal error, will be returned by sys.exit
@@ -76,17 +76,17 @@ class System(object):
                 self._encode_print(color + txt + self.BASHCOLORRESET)
             else:
                 self._encode_print(txt)
-       
-            
+
+
         with open(self.logFilename, 'a', encoding='utf-8') as log:
             log.write(txt + "\n")
-            
-            
+
+
     def message(self, lvl, msg):
         # Conversion is on a "server", not a client, server relevant information is displayed always
         if (lvl == self.CLIENTINFO):
             self._printMessage("", "INFO:    " + msg)
-        else: 
+        else:
             if (lvl == self.CLIENTERROR):
                 self._printMessage(self.BASHCOLORRED, "ERROR:   " + msg)
                 self.errorlevel = max(self.errorlevel, 2)
@@ -110,8 +110,8 @@ class System(object):
                                     sys.exit(3) # highest possible error level
                                 else:
                                     self._printMessage(self.BASHCOLORRED, "ERROR: Wrong error type " + lvl + ", message: " + msg)
-            
-    
+
+
     def timestamp(self, msg):
         myTime = time.time()
         reltimediff = myTime - self.checkTime
@@ -125,9 +125,9 @@ class System(object):
         :param path: Pfad - Pfad zur Datei
         :param attr: Attribut - Angabe des Modus zur Öffnung, z.B. rb, w, etc
         :returns: Dateihandle - Handle der geöffneten Datei.
-        
+
         Öffnet die in **path** angegebene Datei.
-        
+
         .. note::
             Nicht existierende Dateien und Pfade werden dabei neu angelegt!
         """
@@ -139,24 +139,24 @@ class System(object):
     def ensureTree(self, path):
         if not os.path.exists(path) and path != "":
             os.makedirs(path)
-        
+
 
     def copyFile(self, source, target, filename):
         """
         :param source: Pfad - Pfad zum Quellverzeichnis
         :param target: Pfad - Pfad zum Zielverzeichnis
         :param filename: Pfad - Dateiname, kann zusätzlich zu **source** bzw. **target** relative Unterverzeichnisse angeben
-        
+
         Kopiert die Datei **filename** vom Verzeichnis **source** in das Verzeichnis **target**.
-        
+
         .. note::
-            In **source** und **target** identische Unterordner vor **filename** können auch in den **filename**-Parameter eingetragen werden, um Redundante angaben zu vermeiden. 
+            In **source** und **target** identische Unterordner vor **filename** können auch in den **filename**-Parameter eingetragen werden, um Redundante angaben zu vermeiden.
         """
         mkpath(target)
         mkpath(os.path.dirname(os.path.join(target, filename)))
         copy_file(os.path.join(source, filename),os.path.join(target, filename), update = 1)
 
-    
+
     def getPathName(self, path):
         while path[0]=="." :
             path=path[3:len(path)]
@@ -166,7 +166,7 @@ class System(object):
     def showFilesInPath(self, path):
         pathLen=len(path)+1
         fileArray=[]
-        for root,dirs,files in os.walk(path):                
+        for root,dirs,files in os.walk(path):
             root=root[pathLen:] #i don't like it, but it works
             for name in files:
                 if name.count("svn")==0  and root.count("svn")==0:
@@ -175,26 +175,26 @@ class System(object):
                 if name.count("svn")!=0:
                     continue
         return fileArray
-        
-        
+
+
     def copyFiletree(self, source, target, path):
         copy_tree(os.path.join(source,path),os.path.join(target,path),update=1)
-        
-        
+
+
     def removeTree(self, path):
         if os.path.isdir(path):
             shutil.rmtree(path)
         else:
             self.message(self.CLIENTERROR, "removeTree got " + path + ", but it is not a tree or does not exist")
 
-        
+
     def removeFile(self, path):
         if os.path.isfile(path):
             os.remove(path)
         else:
             self.message(self.CLIENTERROR, "removeFile got " + path + ", but it is not a file or does not exist")
 
-            
+
     def makePath(self, path):
         os.makedirs(path)
 
@@ -205,7 +205,7 @@ class System(object):
             shutil.rmtree(path)
         self.makePath(path)
 
-    
+
     # retrieves the input of a text file and checks its encoding, but always converts found encoding to unicode strings
     # Return value is always a Python3 string (in unicode)
     def readTextFile(self, name, enc):
@@ -214,7 +214,10 @@ class System(object):
             self.message(self.FATALERROR, "File " + name + " not found")
         else:
             self.message(self.VERBOSEINFO, "File " + name + " found")
-        p = subprocess.Popen(["file", "-i", name], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+        if (os.name == "posix"):
+            p = subprocess.Popen(["file", "-I", name], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+        else:
+            p = subprocess.Popen(["file", "-i", name], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
         (output, err) = p.communicate()
         m = re.match(r".*?; charset=([^\n ]+)", output, re.S)
         if m:
@@ -228,17 +231,17 @@ class System(object):
                 self.message(self.VERBOSEINFO, "Switched ASCII encoding to latin1")
                 enc = "iso-8859-1"
 
-            print(enc)            
+            print(enc)
             with open(name, "r", encoding = enc) as f:
                 text = f.read()
             self.message(self.VERBOSEINFO, "Read string of length " + str(len(text)) + " from file " + name + " encoded in " + m.group(1) + ", converted to python3 unicode string")
-    
+
         else:
             self.message(self.FATALERROR, "Output of file-command could not be matched (VEUNDMINT System.py, readTextfile function): " + output)
-        
+
         return text
-        
-    
+
+
     # writes text to a text file (creating or overwriting existing files) in a given encoding given a Python3 unicode string
     # subfolders are created if not already there
     def writeTextFile(self, name, text, enc):
@@ -247,15 +250,15 @@ class System(object):
         enc = 'utf8'; # Force utf8. Encoding is broken somehow
         with open(name, "w", encoding = enc) as file:
             file.write(text)
-            
+
         self.message(self.VERBOSEINFO, "Written string of length " + str(len(text)) + " to file " + name + " encoded in " + enc)
 
 
     # stores the current working directory on the dirstack
     def pushdir(self):
         self.dirstack.append(os.path.abspath(os.getcwd()))
-    
-    
+
+
     # changes back to the last directory on the dirstack
     def popdir(self):
         if len(self.dirstack) > 0:
@@ -263,7 +266,7 @@ class System(object):
             del self.dirstack[-1]
         else:
             self.message(self.FATALERROR, "popdir did not match pushdir, dirstack is empty")
-    
+
 
     # substitutes umlauts by tex commands
     def umlauts_tex(self, tex):
@@ -276,7 +279,7 @@ class System(object):
         tex = tex.replace("ü","\"u")
         return tex
 
-            
+
     # creates a string which is not a substring of anything in the given text and contains no regex problematic characters
     def generate_autotag(self, text):
         t = "TTAG"
@@ -291,16 +294,16 @@ class System(object):
         s = re.sub(r"\r", "\\r" , s ,0 ,re.S)
         s = re.sub(r"\n", "\\n", s, 0, re.S)
         return s
-      
-      
+
+
     def get_conversion_signature(self):
         s = dict()
         s['timestamp'] = time.ctime(time.time())
         s['convmachine'] = socket.gethostname()
         s['convuser'] = getpass.getuser()
         return s
-    
-    
+
+
     def listFiles(self, pattern):
         return glob2.glob(pattern)
 
@@ -312,8 +315,8 @@ class System(object):
         for k in range(len(b)):
             h[k % len(h)] = (h[k % len(h)] + b[k]) % 256
         return base64.b16encode(h).decode("utf-8")
-        
-      
+
+
     # prints text on the console (which maybe does not understand utf8, so we encode output in ASCII), and only if not in quiet mode
     def _encode_print(self, txt):
         if not self.beQuiet:
@@ -321,9 +324,8 @@ class System(object):
                 print(txt.encode(encoding = "us-ascii", errors = "backslashreplace").decode("us-ascii"))
             else:
                 print(txt)
-                
-                
+
+
     # ends the program, returning the maximum error level reached during execution
     def finish_program(self):
         sys.exit(self.errorlevel)
-    

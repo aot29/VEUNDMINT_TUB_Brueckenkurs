@@ -1,4 +1,4 @@
-﻿"""    
+﻿"""
     VEUNDMINT plugin package
     Copyright (C) 2016  VE&MINT-Projekt - http://www.ve-und-mint.de
 
@@ -17,12 +17,12 @@
 """
 
 """
-    This is the Option object associated to the mintmod macro package, 
+    This is the Option object associated to the mintmod macro package,
     Version P0.1.0, needs to be consistent with mintmod.tex
     Options for the math online course
 """
 
-import os.path
+import os
 import json
 import re
 import locale
@@ -35,47 +35,50 @@ class Option(object):
     bei Weitem sprengen würde, ist die Options-Klasse angelegt worden, um die Optionen vor dem Start bequem in
     einem Texteditor nach den eigenen Bedürfnissen anpassbar zu machen. Grob schlüsseln sich die verfügbaren Optionen
     wie folgt auf
-    
+
     * Debug Ausgabe ein-/ausschalten
-    
+
     * Quellordner angeben
-    
+
     * Inhaltsstruktur der Quelle festlegen
-    
+
     Diese Angaben beziehen sich auf die Structure-Klasse. Da eingebundene Plug-ins unter anderen Lizenzen als der GPL veröffentlicht werden können, darf hier kein Austausch stattfinden.
     """
-    
+
     def __init__(self, currentDir, override):
-        
+
         #Debugging
         self.DEBUG = True
-        
+
         self.currentDir = os.path.abspath(currentDir) # one level above location of tex2x.py
         self.converterDir = os.path.join(self.currentDir, "src")
         self.logFilename = "conversion.log"
 
         '''
         Localization, language and encoding settings
-        
-        Default language is 'de', but may be overriden by the build script 
+
+        Default language is 'de', but may be overriden by the build script
         to build different language versions.
         '''
         # Language should be parametrizable, so values depend on the lang parameter
         self.lang = ( lambda override: 'en' if 'lang=en' in override else 'de' ) ( override )
-        
-        # define Pythons locale (impact for example on sorting umlauts), 
+
+        # define Pythons locale (impact for example on sorting umlauts),
         # should be set to locale of course language, string definition depends on used system!
-        self.locale = ( lambda lang: "de_DE.utf8" if lang == 'de' else 'en_GB.utf8' ) ( self.lang )
+        if (os.name == "posix"):
+            self.locale = ( lambda lang: "de_DE.UTF-8" if lang == 'de' else 'en_GB.UTF-8' ) ( self.lang )
+        else:
+            self.locale = ( lambda lang: "de_DE.utf8" if lang == 'de' else 'en_GB.utf8' ) ( self.lang )
         locale.setlocale(locale.LC_ALL, self.locale)
-        
+
         # Read the language ISO code (en, de...) from the locale code (de_DE.utf8...)
         self.lang = self.locale.split('_')[0]
-        
+
         # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
         self.module = ( lambda locale: "tree_tu9onlinekurs_en.tex" if locale == 'en_GB.utf8' else "tree_tu9onlinekurs.tex" ) ( self.locale)
         # macrofile to use. It's probably not a good idea to have 2 separate macri files, as they change often
         self.macrofilename = ( lambda locale: "mintmod_engl" if locale == 'en_GB.utf8' else "mintmod" ) ( self.locale)
-        
+
         # VE&MINT conversion flags, using values 0 and 1 (integers)
         self.testonly = 0
         self.scormlogin = 0       # =1: No implicit user management, user-loginname is constructed from a SCORM string and immediately pulled from database
@@ -100,20 +103,20 @@ class Option(object):
         self.forceoffline = 1     # =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
         self.quiet = 0            # =1 -> Absolutely no print messages, caller must deduce outcome by return value of sys.exit
 
-                
+
         # VE&MINT locale-dependent source/target parameters
-        # Build either the DE or the EN version. 
-            
+        # Build either the DE or the EN version.
+
         # VE&MINT source/target parameters
         self.macrofile = self.macrofilename + ".tex"
         self.stdencoding = "iso-8859-1"                      # Presumed encoding of tex files and templates, utf8 well be accepted too but with a warning
         self.outputencoding = "utf-8"                        # encoding of generated html files
         self.output = "tu9onlinekurstest"                    # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
         self.source = "module_veundmint"                     # Quellverzeichnis, platziert in Ebene ueber tex2x.py
-        
+
         self.outtmp = "_tmp"                                 # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
         self.description = "Onlinebrückenkurs Mathematik"    # Bezeichnung des erstellen Kurses
-        self.author = "Projekt VEUNDMINT"                    # Offizieller Autor des Kurses           
+        self.author = "Projekt VEUNDMINT"                    # Offizieller Autor des Kurses
         self.contentlicense = "CC BY-SA 3.0"                 # Lizenz des Kursinhalts
         self.moduleprefix = "Onlinebrückenkurs Mathematik"   # Wird vor Browser-Bookmarks gesetzt
         self.variant = "std"                                 # zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete fuer Mathematikumsetzung aus, Alternative ist "unotation"
@@ -137,10 +140,10 @@ class Option(object):
         self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
         self.signature_date = "06/2015"
 
-       # ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------ 
+       # ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------
         self.overrides = list()
         for ov in override:
-            m = re.match(r"(.+?)=(.+)", ov) 
+            m = re.match(r"(.+?)=(.+)", ov)
             if m:
                 if m.group(1) == "options":
                     print("Option selection: " + m.group(2))
@@ -167,7 +170,7 @@ class Option(object):
                                         print("Option type " + type(vr).__name__ + " not acceptable")
                     else:
                         print("Option " + m.group(1) + " does not exist, cannot override")
-                
+
             else:
                 print("Invalid override string: " + ov)
 
@@ -216,14 +219,14 @@ class Option(object):
         self.knownmathcommands = [ "sin", "cos", "tan", "cot", "log", "ln", "exp" ] # these will be excluded from post-ttm modifications
         self.mathmltags = [ "math", "mo", "mi", "mrow", "mstyle", "msub", "mn", "mtable", "msup", "mtext", "mfrac", "msqrt", "mover" ]
         self.specialtags = [ "tocnavsymb"] + self.mathmltags # these will be excluded from libtidy error detection
-        
+
         self.fonts = {
             # BASICFONTFAMILY  => "Open Sans Condensed"
             "BASICFONTFAMILY": "open-sans",
             # only used if stdmathfont is on:
             "STDMATHFONTFAMILY": "\'HelveticaNeue-Light\', \'Helvetica Neue Light\', \'Helvetica Neue\', Helvetica, Arial, \'Lucida Grande\', Verdana, Arial, Helvetica , sans-serif"
         }
-        
+
         menuwidth = 160 + 15 # 160px for the table of contents, 15px to accomodate a vertical scrollbar should it appear inside toc
         mybasicfontsize = 16
         headheight = 30
@@ -250,12 +253,12 @@ class Option(object):
         # course signature, repository part
         repo = Repo(self.currentDir)
         assert not repo.bare
-        
+
         if repo.is_dirty():
             self.signature_git_dirty = 1
         else:
             self.signature_git_dirty = 0
-        
+
         h = repo.head
         hc = h.commit
         self.signature_git_head = h.name
@@ -263,22 +266,22 @@ class Option(object):
         self.signature_git_committer = hc.committer.name
         self.signature_git_message = hc.message.replace("\n", "")
         self.signature_git_commit = hc.hexsha
-        
-        
+
+
         # VE&MINT course parameters, defining values used by the online course
         server = "https://mintlx3.scc.kit.edu/dbtest"
         self.do_feedback = "0"                        # Feedbackfunktionen aktivieren? DOPPLUNG MIT FLAGS
         self.do_export = "0"                          # Aufgabenexport aktivieren? DOPPLUNG MIT FLAGS
         self.reply_mail = "brueckenkurs@innocampus.tu-berlin.de"      # Wird in mailto vom Admin-Button eingesetzt
-        self.data_server = server                  
+        self.data_server = server
         self.exercise_server = server
         self.feedback_service = server + "/feedback.php" # Absolute Angabe
-        self.data_server_description = "Server 3 (VE-UND-MINT, Standort KIT)"        
+        self.data_server_description = "Server 3 (VE-UND-MINT, Standort KIT)"
         self.data_server_user = server + "/userdata.php"  # Absolute Angabe
         self.footer_middle = self.description
         # don't use \" in strings as they are being passed to JavaScript variables (and \" becomes evaluated)
         self.footer_left = "<img src='images/ccbysa80x15.png' border='0' />"
-        
+
         self.footer_right = "<a href='mailto:" + self.reply_mail + "' target='_new'><div style='display:inline-block' class='tocminbutton'>Mail an Admin</div></a>"
         self.mainlogo = "veundmint_netlogo.png" # Im Pfad files/images
         self.tocchapters = 0 # =1 -> display chapter links in table of contents
@@ -287,11 +290,11 @@ class Option(object):
         # variables used by the OSS converter, should not be changed directly as they take input from the above definitions
         self.parserName = "lxml"
         self.converterCommonFiles = os.path.join(self.converterDir, "files") # Bedeutung von sourceCommonFiles vom OSS-Konverter ist anders
-        self.texCommonFiles = os.path.join(self.converterDir, "tex") 
+        self.texCommonFiles = os.path.join(self.converterDir, "tex")
         self.sourcepath_original = os.path.join(self.currentDir, self.source) # directory to original source (strictly read only, except if amendsource is active)
         self.sourcepath = os.path.join(self.currentDir, self.outtmp) # Pfad in dem gearbeitet wird
         self.sourceTEX = os.path.join(self.sourcepath, "tex") # Teilpfad in dem die LaTeX-Quellenkopien liegen
-        self.sourceTEXStartFile = os.path.join(self.sourceTEX, self.module) 
+        self.sourceTEXStartFile = os.path.join(self.sourceTEX, self.module)
         self.targetpath = os.path.join(self.currentDir, self.output) # Pfad in den der generierte Kurs kommt
         self.copyrightFile = os.path.join(self.sourceTEX, "copyrightcollection.tex")
         self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
@@ -315,7 +318,7 @@ class Option(object):
         self.template_redirect_basic = os.path.join(self.converterTemplates, "html5_redirect_basic.html")
         # self.template_redirect_multi = os.path.join(self.converterTemplates, "html5_choose_language.html") # Startseite fuer 2-sprachige Version
         self.template_settings = os.path.join(self.converterTemplates, "html5_settings.html")
-        
+
         # SCORM templates
         self.template_scorm12manifest = os.path.join(self.converterTemplates, "scorm12_moodle_manifest.xml")
 
@@ -360,11 +363,11 @@ class Option(object):
         self.ttmExecute = True
         self.ttmPath = os.path.join(self.converterDir, "ttm")
         self.ttmFile = os.path.join(self.sourceTEX, "targetxml.xml")
-        
+
         # optimization options
         self.nolinkcorrection = 1
         self.keepequationtables = 1
-        
+
         # ContentStructure
         self.contentlevel = 4 # level used by tcontent objects from subsubsections (MXContent)
         self.ContentStructure=[]
@@ -373,23 +376,23 @@ class Option(object):
         self.ContentStructure.append("h3") # a subsection in the coursre, MSubsection according to MINTMOD
         self.ContentStructure.append("h4") # used for subsection introduction inside xcontents
         #self.ContentStructure.append("div")#Container werden nun über Attribute identifiziert
-        
+
         # special site tags
         self.sitetaglist = ["chapter", "config", "data", "favorites", "location", "search", "test", "logout", "login"]
-        
+
         # ModuleStructure
         self.ModuleStructure = []
         self.ModuleStructureClass= "xcontent" #nach dieser klasse wird gesucht, um Modulbereiche zu identifizieren. (Dann jeweils mit einer Nummer dahinter)
 
-        
+
         # use these Plugins (plugin path must be listed below within the plugin settings!)
         self.usePreprocessorPlugins = [ "PRE_MINTMODTEX" ]
         self.useOutputPlugins = [ "HTML5_MINTMODTEX" ] # name is also postfix of template files used by the plugin
-        self.pluginPath = { 
+        self.pluginPath = {
             "PRE_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "preprocessor_mintmodtex.py"),
             "HTML5_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "html5_mintmodtex.py")
         }
-        
+
         if self.dopdf == 1:
             self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdfmini.png' border='0' /></a>"
 
@@ -403,17 +406,17 @@ class Option(object):
                         + "</ul>"
         else:
             self.tocadd = ""
-                
+
         self.check_consistency()
 
-   
+
     # checks if given option values (including overrides) are consistent
     def check_consistency(self):
         for p in [ self.converterCommonFiles, self.texCommonFiles, self.sourcepath_original ]:
             if not os.path.isdir(p):
                 print("FATAL ERROR: Mandatory directory not found: " + p + ", aborting program with error code 1")
                 sys.exit(1)
-                
+
         if self.docollections == 1:
             if (self.nosols == 1) or (self.qautoexport == 1) or (self.cleanup == 1):
                 print("FATAL ERROR: Option docollections=1 cannot be used with nosols, qautoexport or cleanup flags, aborting with error code 1")
@@ -430,4 +433,3 @@ class Option(object):
             if self.doscorm == 0 and self.doscorm12 == 0:
                 print("FATAL ERROR: Option scormlogin is detrimental if doscorm or doscorm12 is not active, aborting with error code 1")
                 sys.exit(1)
-                
