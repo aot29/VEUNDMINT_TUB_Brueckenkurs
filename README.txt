@@ -60,7 +60,7 @@ wird es leer gelassen, so wird das Standardobjekt src/plugins/VEUNDMINT/Option.p
 (es gehört zum TU9-Onlinebrückenkurs Mathematik).
 
 Für die Nutzung des Konverters muss python3 installiert sein (mindestens Version 3.4)
-sowie die Python-Module GitPython, html5lib, lxml, pytidylib, simplejson, glob2, gitpython (mindestens, ggf. mehr Module).
+sowie die Python-Module **GitPython, html5lib, lxml, pytidylib, simplejson, glob2** (mindestens, ggf. mehr Module).
 
 Diese kann man (als root) mit dem Kommando python3 -m pip install <name>
 automatisch installieren lassen.
