@@ -51,14 +51,15 @@ move:
 	-mkdir $(WWW)
 	#Move the contents of the directory to the server
 	mv $(OUTPUT)/* $(WWW)
+	chown -R $(WWWUSER) $(WWW)/*
 	# Remove the empty directory
 	rm -R $(OUTPUT)
 	
 
 # Check beforehand that script is running under correct user
 checkuser:
-ifneq ($(USER),$(WWWUSER))
-	$(error "Run as user $(WWWUSER)")
+ifneq ($(USER),"root")
+	$(error "Run as root)
 endif
 
 
