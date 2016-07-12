@@ -58,8 +58,8 @@ move:
 
 # Check beforehand that script is running under correct user
 checkuser:
-ifneq ($(USER),"root")
-	$(error "Run as root)
+ifneq ($(USER),root)
+	$(error "Run as root")
 endif
 
 
