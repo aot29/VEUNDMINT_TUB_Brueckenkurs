@@ -1,0 +1,69 @@
+#
+# Deploys the latest development version on the server
+# Must be runa s www-data
+#
+# Get latest development version of software and content from repository
+#
+
+.DEFAULT_GOAL := nightly
+
+# Name of the output dir 
+OUTPUT = tu9onlinekurstest
+
+
+# Directory of the server root
+WWW = /var/www/nightly/
+
+
+# Server user name
+WWWUSER = www-data
+
+
+# Declare as phony so targets will run even if there's a file by that name
+.PHONY: getlatest buildall move checkuser nightly
+
+
+#
+# Get the latest version from git
+#
+getlatest:
+	# get latest contents
+	git checkout develop_content
+	git pull
+	# get latest software
+	git checkout develop_software
+	git pull
+	# merge latest content into software
+	git merge develop_content
+
+
+#
+# Call the makefile that builds the multi-language version
+#
+buildall:
+	$(MAKE) -f ./tools/makefiles/multilang 
+
+
+#
+# Move the result to the server
+#
+move:
+	-mkdir $(WWW)
+	#Move the contents of the directory to the server
+	mv $(OUTPUT)/* $(WWW)
+	# Remove the empty directory
+	rm -R $(OUTPUT)
+	
+
+# Check beforehand that script is running under correct user
+checkuser:
+ifneq ($(USER),$(WWWUSER))
+	$(error "Run as user $(WWWUSER)")
+endif
+
+
+#
+# Build and deploy the nightly build
+#	
+nightly: checkuser getlatest buildall move
+	$(info "Nightly build done.")
