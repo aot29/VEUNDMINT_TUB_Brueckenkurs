@@ -9,7 +9,7 @@ $mysql_dbname = 'UserData';
 $mysql_user_table = 'users';
 $mysql_data_table = 'data';
 
-$pwhash = "\$2y\$10\$O.CPDXuVhRwe2cJ5ZWUpF.WkBt5w0qjm6bQIGAvFBp86Mi9Dr1.li";
+$pwhash = "$2y$10$1ZBvdFFYNQ9ROaUsDDrwGO4op1nBLP2Q7VyFagh5CPPq2h0bqjQDm";
 
 $pw = $_GET["password"];
 if (password_verify($pw, $pwhash)) {
