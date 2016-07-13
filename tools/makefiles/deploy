@@ -4,6 +4,10 @@
 #
 # Get latest development version of software and content from repository
 #
+# Run as:
+# sudo make -f tools/makefiles/deploy
+#
+
 
 .DEFAULT_GOAL := nightly
 
@@ -11,8 +15,8 @@
 OUTPUT = tu9onlinekurstest
 
 
-# Directory of the server root
-WWW = /var/www/nightly/
+# Directory under the server root wher the files will be copied
+NIGHTLY = /var/www/nightly
 
 
 # Server user name
@@ -28,13 +32,13 @@ WWWUSER = www-data
 #
 getlatest:
 	# get latest contents
-	git checkout develop_content
-	git pull
+	#git checkout develop_content
+	#git pull
 	# get latest software
 	git checkout develop_software
 	git pull
 	# merge latest content into software
-	git merge develop_content
+	#git merge develop_content
 
 
 #
@@ -48,10 +52,10 @@ buildall:
 # Move the result to the server
 #
 move:
-	-mkdir $(WWW)
-	#Move the contents of the directory to the server
-	mv $(OUTPUT)/* $(WWW)
-	chown -R $(WWWUSER) $(WWW)/*
+	-mkdir $(NIGHTLY)
+	#Overwrite the contents of the directory on the server
+	cp -Rf $(OUTPUT)/* $(NIGHTLY)
+	chown -R $(WWWUSER) $(NIGHTLY)/*
 	# Remove the empty directory
 	rm -R $(OUTPUT)
 	
@@ -65,6 +69,6 @@ endif
 
 #
 # Build and deploy the nightly build
-#	
+#
 nightly: checkuser getlatest buildall move
-	$(info "Nightly build done.")
+	$(info "Nightly build deployed in " = $(NIGHTLY))
