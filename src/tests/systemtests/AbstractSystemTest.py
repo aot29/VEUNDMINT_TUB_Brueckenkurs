@@ -10,11 +10,12 @@ from selenium import webdriver
 import json
 import os.path
 import configparser as ConfigParser
+from tests.test_tools import getBaseDirectory
 
 class AbstractSystemTest(unittest.TestCase):
     '''Path to configuration file for the tests.'''
-    configPath =  "../testconfig.ini"
-    
+    configPath = os.path.join(getBaseDirectory(), "src/tests/", "testconfig.ini")
+
     def setUp(self):
         #Read the configuration file
         self.config = ConfigParser.ConfigParser()
@@ -23,10 +24,10 @@ class AbstractSystemTest(unittest.TestCase):
         # load locale file
         localeFile = None
         try:
-            i18nPath = os.path.expanduser( os.path.join( self._getConfigParam( 'basePath' ), "src/files/i18n/%s.json" % self._getConfigParam( 'lang' ) ) )
+            i18nPath = os.path.expanduser( os.path.join( getBaseDirectory(), "src/files/i18n/%s.json" % self._getConfigParam( 'lang' ) ) )
             localeFile = open( i18nPath )
             self.locale = json.load( localeFile )
-            
+
         finally:
             if localeFile:
                 localeFile.close()
@@ -42,11 +43,11 @@ class AbstractSystemTest(unittest.TestCase):
         # close the browser
         if self.browser:
             self.browser.quit()
-            
+
 
     def _getConfigParam(self, key):
         return self.config.get( 'defaults', key )
-        
+
 
     def _openStartPage(self):
         '''
@@ -58,14 +59,14 @@ class AbstractSystemTest(unittest.TestCase):
     def _navToChapter(self, chapter, section=None):
         '''
         Navigate to chapter specified by name.
-        @param chapter: (required) a STRING specifying the chapter, e.g. "1" will open chapter 1 
+        @param chapter: (required) a STRING specifying the chapter, e.g. "1" will open chapter 1
         @param section: (optional) a STRING specifying the section, e.g. "1.2" will open section 1.2
         '''
         # Open the start page
         self._openStartPage()
-        # Open chapter 
+        # Open chapter
         self.browser.find_element_by_partial_link_text( "%s %s" % ( self.locale[ "chapter" ], chapter ) ).click()
-        
+
         # Open section
         if section != None:
             content = self.browser.find_element_by_id( "content" )
@@ -74,4 +75,4 @@ class AbstractSystemTest(unittest.TestCase):
 
 # Can't call this directly, use child class
 if __name__ == "__main__":
-    raise NotImplementedError        
+    raise NotImplementedError
