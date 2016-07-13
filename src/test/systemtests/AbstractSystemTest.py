@@ -10,7 +10,7 @@ from selenium import webdriver
 import json
 import os.path
 import configparser as ConfigParser
-from tests.test_tools import getBaseDirectory
+from test.test_tools import getBaseDirectory
 
 class AbstractSystemTest(unittest.TestCase):
     '''Path to configuration file for the tests.'''
