@@ -4,8 +4,7 @@ Created on Jun 15, 2016
 @author: alvaro
 '''
 import unittest
-from tests.systemtests.AbstractSystemTest import AbstractSystemTest
-
+from test.systemtests.AbstractSystemTest import AbstractSystemTest
 
 class Chapter1Test( AbstractSystemTest ):
     '''
@@ -40,15 +39,15 @@ class Chapter1Test( AbstractSystemTest ):
         '''
         # Open the *second* subsection (as it's more interesting than the first one)
         self._navToChapter( "1", "1.2" )
-        
+
         # Check that keywords use the correct locale
         pageText = self.browser.find_element_by_id( "content" ).text.lower()
         self.assertTrue( self.locale["chapter"].lower() in pageText )
         self.assertTrue( self.locale["subsection_labelprefix"].lower() in pageText )
         self.assertTrue( self.locale["example_labelprefix"].lower() in pageText )
         self.assertTrue( self.locale["exercise_labelprefix"].lower() in pageText )
-        
-        
+
+
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

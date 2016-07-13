@@ -5,7 +5,7 @@ Created on Jun 21, 2016
 @author: alvaro
 '''
 import unittest
-from tests.systemtests.AbstractSystemTest import AbstractSystemTest
+from test.systemtests.AbstractSystemTest import AbstractSystemTest
 
 class Test( AbstractSystemTest ):
     '''
@@ -27,7 +27,7 @@ class Test( AbstractSystemTest ):
         inputEl = self.browser.find_element_by_id( 'USER_UNAME' )
         imgEl = self.browser.find_element_by_id( "checkuserimg" ) # the icon next to the input field
         btnPath = "//div[@class='usercreatereply']//child::button" # path to the create-user button (present when constraints are met)
-        
+
         # nothing in field
         inputEl.clear()
         self.browser.execute_script( "usercheck()" )
@@ -61,7 +61,7 @@ class Test( AbstractSystemTest ):
         self.browser.execute_script( "usercheck()" )
         self.assertTrue( "right" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
         self.assertTrue( len( self.browser.find_elements_by_xpath( btnPath ) ), "Button not displayed when it should" )
-        
+
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

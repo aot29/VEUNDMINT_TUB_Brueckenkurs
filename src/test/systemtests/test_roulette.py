@@ -6,7 +6,7 @@ Testet die Roulette-Uebungen
 @author: alvaro
 '''
 import unittest
-from tests.systemtests.AbstractSystemTest import AbstractSystemTest
+from test.systemtests.AbstractSystemTest import AbstractSystemTest
 
 class RouletteTest( AbstractSystemTest ):
 
@@ -14,7 +14,7 @@ class RouletteTest( AbstractSystemTest ):
         AbstractSystemTest.setUp( self )
         # navigate to chapter 1 section 1.2
         self._navToChapter( "1", "1.2" )
-        
+
 
     def testRouletteElement(self):
         '''
@@ -23,7 +23,7 @@ class RouletteTest( AbstractSystemTest ):
         # get the first roulette exercise on the page
         roulette = self.browser.find_element_by_id( "ROULETTECONTAINER_VBKM01_FRACTIONTRAINING" )
         self.assertTrue( roulette, "Roulettecontainer not found" )
-        
+
 
     def testLocale(self):
         '''
@@ -46,14 +46,14 @@ class RouletteTest( AbstractSystemTest ):
         # get the first hint element
         hintEl = self.browser.find_element_by_id( "MHint1" )
         self.assertTrue( hintEl, "Roulettecontainer not found" )
-        
+
         # Check hint is hidden at first
         self.assertEqual( "display: none;", hintEl.get_attribute("style") , "Hint is not dispayed correctly")
         # Call display the hint-button directly in Javascript
         self.browser.execute_script( "toggle_hint('MHint1')" )
         # Check hint is revealed
         self.assertEqual( "display: block;", roulette.find_element_by_id( "MHint1" ).get_attribute("style") , "Hint is not dispayed correctly")
-        
+
 
     def testRecognizeSolution(self):
         '''
@@ -63,8 +63,8 @@ class RouletteTest( AbstractSystemTest ):
 
         # Call the hint-javascript to load the solution
         self.browser.execute_script( "toggle_hint('MHint1')" )
-        
-        # These exercises are fractions. Get the numerator and denominator of the solution (the solution comes last) 
+
+        # These exercises are fractions. Get the numerator and denominator of the solution (the solution comes last)
         nomXpath = "//div[@id='MHint1']/descendant::span[@class='mjx-numerator'][last()]"
         numerator = self.browser.find_element_by_xpath( nomXpath ).text
         denXpath = "//div[@id='MHint1']/descendant::span[@class='mjx-denominator'][last()]"
@@ -72,7 +72,7 @@ class RouletteTest( AbstractSystemTest ):
 
         # get the input field
         inputEl = self.browser.find_element_by_id( "QFELD_1.2.2.QF1" )
-        
+
         # if input field is empty, icon should be "question mark"
         inputEl.clear()
         self.assertTrue( "questionmark" in self.browser.find_element_by_id( "QMQFELD_1.2.2.QF1" ).get_attribute( "src" ), "Answer is displaying the wrong image" )
@@ -86,8 +86,8 @@ class RouletteTest( AbstractSystemTest ):
         inputEl.clear()
         inputEl.send_keys( answer )
         self.assertTrue( "right" in self.browser.find_element_by_id( "QMQFELD_1.2.2.QF1" ).get_attribute( "src" ), "Answer is displaying the wrong image" )
-        
-        
+
+
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

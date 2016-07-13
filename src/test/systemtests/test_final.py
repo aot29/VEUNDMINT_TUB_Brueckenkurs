@@ -4,7 +4,7 @@ Created on Jun 16, 2016
 @author: alvaro
 '''
 import unittest
-from tests.systemtests.AbstractSystemTest import AbstractSystemTest
+from test.systemtests.AbstractSystemTest import AbstractSystemTest
 
 class FinalTestTest( AbstractSystemTest ):
     '''
@@ -28,7 +28,7 @@ class FinalTestTest( AbstractSystemTest ):
         response = self.browser.find_element_by_id( 'TESTEVAL' ).text
         expected = self.locale[ "msg-reached-points" ].replace( '$1', "0" ) # locale string is parametrized with $1
         self.assertTrue( expected in response, "Submitting an empty test form did not return 0 points" )
-        
+
 
     def testLocale(self):
         '''
@@ -55,10 +55,10 @@ class FinalTestTest( AbstractSystemTest ):
         # the last table cell (bottom/right) should not be empty
         exName = 'ADIV_1.5.1'
         lastTableCell = self.browser.find_element_by_xpath( "//div[@id='%s']/table//tr[last()]/td[last()]" % exName )
-        self.assertTrue( lastTableCell.find_element_by_tag_name( 'input' ), 
+        self.assertTrue( lastTableCell.find_element_by_tag_name( 'input' ),
                          "Multiple choice %s question is missing at least one answer button" % exName )
-        
-        
+
+
     def testAnswerIsExpression( self ):
         '''
         Exercise 1.5.5 takes a mathematical expression as answer
@@ -75,30 +75,30 @@ class FinalTestTest( AbstractSystemTest ):
         checkField = exEl.find_element_by_tag_name( 'img' )
         # get the submit button
         submitBtn = self.browser.find_element_by_id( 'TESTFINISH' )
-        
+
         # if input field is empty, icon should be "question mark"
         inputEl.clear()
         submitBtn.click()
-        self.assertTrue( "questionmark" in checkField.get_attribute( "src" ), 
+        self.assertTrue( "questionmark" in checkField.get_attribute( "src" ),
                          "Exercise %s is displaying the wrong image when empty" % exName )
 
         # if answer is wrong, icon should be "false"
         inputEl.send_keys( "1/0" )
         submitBtn.click()
-        self.assertTrue( "false" in checkField.get_attribute( "src" ), 
+        self.assertTrue( "false" in checkField.get_attribute( "src" ),
                          "Exercise %s is displaying the wrong image when wrong" % exName )
 
 
         # this is a problem as solution has to be entered in the test method
-         
+
         # Put the solution in the input field: icon should be "right"
         # inputEl.clear()
         # inputEl.send_keys( "solution goes here" )
         # submitBtn.click()
-        # self.assertTrue( "right" in checkField.get_attribute( "src" ), 
+        # self.assertTrue( "right" in checkField.get_attribute( "src" ),
         #                  "Exercise %s is displaying the wrong image when correct" % exName )
-        
-        
+
+
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

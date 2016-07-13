@@ -6,7 +6,7 @@ Test the TOC navigation area
 @author: alvaro
 '''
 import unittest
-from tests.systemtests.AbstractSystemTest import AbstractSystemTest
+from test.systemtests.AbstractSystemTest import AbstractSystemTest
 
 
 class TocTest( AbstractSystemTest ):
@@ -27,8 +27,8 @@ class TocTest( AbstractSystemTest ):
         el = self.browser.find_element_by_class_name( "tocmintitle" )
         self.assertTrue( el, "TOC title is missing" )
         self.assertEqual( self.locale[ "module_content" ].lower(), el.text.lower(), "TOC title is wrong" )
-        
-        
+
+
     def testTocPresent(self):
         '''
         Test table of contents of the page
