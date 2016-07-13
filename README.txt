@@ -43,7 +43,7 @@ Folgend findet sich die Anleitung zur Einrichtung einer lokalen Kopie des VE&MIN
 
 Dieser Schritt ist optional wird aber empfohlen. Zur einrichtung einer virtuellen Entwicklungsumgebung unter python3 führen Sie im Hauptverzeichnis den Befehl
 
-`pyvenv venv` aus. Dadurch wird eine Ordner `venv` im Verzeichnis erstellt in den alle python3 Libraries installiert werden können.
+`virtualenv -p python3 envname` aus. Dadurch wird eine Ordner `venv` im Verzeichnis erstellt in den alle python3 Libraries installiert werden können.
 
 Bevor die Bibliotheken für das Projekt installiert werden, kann mit dem Befehl `source venv/bin/activate` die virtuelle Umgebung aktiviert werden. (Deaktivierung mit `deactivate`).
 
