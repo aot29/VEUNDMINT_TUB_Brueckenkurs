@@ -1,5 +1,5 @@
 README.txt des Repositories ve-und-mint
-Autor: Daniel Haase 04/2016 u.a. .
+Autor: Daniel Haase 04/2016 u.a.
 
 Dies ist der Hauptordner des Repositories ve-und-mint,
 es dient der Entwicklung der nicht-öffentlichen Version des
