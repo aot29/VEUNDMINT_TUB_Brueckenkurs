@@ -38,7 +38,7 @@ DEFAULT_LANG = de
 #
 # Build everything
 #
-all: convert merge fix cleanup
+all: |convert merge fix cleanup
 	echo "ready"
 
 
@@ -55,6 +55,9 @@ endef
 # Build the English and the German version.
 #
 convert:
+	# delete older builds
+	-rm -Rf $(OUTPUT)
+
 	# set CURRENT_LANG at runtime.
 	$(eval CURRENT_LANG := de)
 	$(convert_cmd)
@@ -192,6 +195,6 @@ fix: fixRedirects
 
 
 cleanup:
-	rm -Rf $(OUTPUT)_en
+	-rm -Rf $(OUTPUT)_en
 
 

@@ -15,7 +15,7 @@
 OUTPUT = tu9onlinekurstest
 
 
-# Directory under the server root wher the files will be copied
+# Directory under the server root where the files will be copied
 NIGHTLY = /var/www/nightly
 
 
@@ -31,6 +31,8 @@ WWWUSER = www-data
 # Get the latest version from git
 #
 getlatest:
+	# stash local changes
+	git stash
 	# get latest contents
 	#git checkout develop_content
 	#git pull
@@ -70,5 +72,5 @@ endif
 #
 # Build and deploy the nightly build
 #
-nightly: checkuser getlatest buildall move
+nightly: |checkuser getlatest buildall move
 	$(info "Nightly build deployed in " = $(NIGHTLY))
