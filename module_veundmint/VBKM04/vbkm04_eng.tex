@@ -18,10 +18,10 @@ This module deals with solution methods for systems of linear equations and cons
 
 \begin{itemize}
 \item{Section~\MNRef{M04_LGS}: \MSRef{M04_LGS}{What are Systems of Linear Equations?},}
-\item{Section~\MNRef{M04_2_Unbekannte}: \MSRef{M04_2_Unbekannte}{Systems of Linear Equations in two Variables},}
-\item{Section~\MNRef{M04_3_Unbekannte}: \MSRef{M04_3_Unbekannte}{Systems of Linear Equations in three Variables},}
-\item{Section~\MNRef{M04_freier_Parameter}: \MSRef{M04_freier_Parameter}{More General Systems},}
-\item{and Section~\MNRef{M04_Ausgangstest}: \MSRef{M04_Ausgangstest}{Final Test}.}
+\item{Section~\MNRef{M04_2_Unbekannte}: \MSRef{M04_2_Unbekannte}{Systems of Linear Equations in two Variables}}
+\item{Section~\MNRef{M04_3_Unbekannte}: \MSRef{M04_3_Unbekannte}{Systems of Linear Equations in three Variables}}
+\item{Section~\MNRef{M04_freier_Parameter}: \MSRef{M04_freier_Parameter}{More General Systems}}
+\item{Section~\MNRef{M04_Ausgangstest}: \MSRef{M04_Ausgangstest}{Final Test}}
 \end{itemize}
 
 \MModstartBox
@@ -39,23 +39,23 @@ A problem in which several variables occur at the same time!? And on top of that
 a whole slew of equations is involved!? Problems of this kind do not only occur in science and 
 engineering but also in other academic fields and in every day life! And they all have to be solved!
 
-But calm down now: It will not get difficult! However, it is true that in very different fields  
+But calm down now: it won't get difficult! However, it is true that in very different fields  
 you will often encounter situations and problems which can be mathematically modelled by
-several equations in several variables. For this, a first simple example is considered.
+several equations in several variables. Here, we consider a simple first example.
 
 \begin{MExample}
 \MLabel{M04_einfuehrendes_Bsp}
-A young group of stuntmen likes to pimp up its breakneck cycling stunt by purchasing new rims showing 
-garish light effects for its unicycles and bicycles. For a total of $10$ unicycles and bicycles
-$13$~rims are required. How many unicycles and bicycles does the group have? 
+A young group of stuntmen want to pimp up their breakneck cycling stunt by purchasing new rims which create 
+garish light effects for their unicycles and bicycles. For a total of $10$ unicycles and bicycles
+$13$~rims are required. How many unicycles and bicycles do the group have? 
 
-The first step is to translate the information given in the problem description into mathematical equations. Let $x$ denote the desired number of unicycles and $y$ denote the number of 
+The first step is to translate the information given in the description of the problem into mathematical equations. Let $x$ denote the desired number of unicycles and $y$ denote the number of 
 bicycles. Then the first information given in the problem reads
 \begin{eqnarray*}
 \mbox{equation}\MBlank (1) & : & x + y = 10
 \end{eqnarray*}
-since the group has in total $10$ cycles. Moreover, a unicycle has one rim and a bicycle has 
-two rims. Since in total $13$ rims are to be purchased it is also known that
+since the group have $10$ cycles in total. Moreover, a unicycle has one rim and a bicycle has 
+two rims. Since $13$ rims are to be purchased in total, it is also known that
 \begin{eqnarray*}
 \mbox{equation}\MBlank (2) & : & x + 2 y = 13.
 \end{eqnarray*}
@@ -65,8 +65,8 @@ $x$ (number of unicycles) and $y$ (number of bicycles).
 
 Of course, sooner or later you want to know how many unicycles and bicycles the group 
 of stuntmen really has. In the given example you can guess the values of $x$ and $y$ by
-a little trial and error. But actually we are interested in \textbf{methods}
-to solve problems like the example above \textbf{systematically}.
+a little trial and error. Here we are actually interested in the \textbf{methods}
+for solving problems like the example above \textbf{systematically}.
 \end{MIntro}
 
 \begin{MContent}
@@ -79,19 +79,19 @@ Several equations relating a specific number of variables \textbf{at the same ti
 form a so called \MEntry{system of equations}{system of equations}. If the variables 
 in every equation occur only linearly, i.e.\ at most to the power of $1$, and
 are only multiplied by (constant) numbers, the system is called
-a \MEntry{system of linear equations}{system of equations (linear)}, or shortly 
+a \MEntry{system of linear equations}{system of equations (linear)}, or 
 \MEntry{LS}{LS} (linear system).
 \end{MInfo}
 
 The two equations in the first example~\MRef{M04_einfuehrendes_Bsp} form a system of linear
 equations in the variables $x$ and $y$. In contrast, the three equations 
 $$x + y + z = 3,\;\mbox{}\;x + y - z = 1,\;\mbox{and}\; x \cdot y + z = 2$$
-form indeed a system of equations in the variables $x$, $y$, and $z$, but the 
+do form a system of equations in the variables $x$, $y$, and $z$, but the 
 system is \textbf{not} linear since in the third equation the term $x \cdot y$ occurs, which 
 is \textbf{bilinear} in the variables $x$ and $y$ and hence violates the condition
 of \textbf{linearity}.
 
-By the way, in a system of equations the number of equations must not be equal to the 
+By the way, in a system of equations the number of equations need not be equal to the 
 number of variables; we will return to this later on.
 
 \begin{MInfo}
@@ -111,20 +111,19 @@ Which of the following systems is a system of linear equations?
 \MGroupButton{Eingabe kontrollieren}
 \end{MExercise}
 Systems of linear equations are distinguished from general systems of equations
-by an often larger simplicity. Nevertheless, they play an important role in as 
-diverse fields as in medical science, e.g.\ in association with computed tomography, 
-in engineering, e.g. when it is described how sound propagates in complex 
-designed spaces, or in physics, e.g. concerning the question, which wave 
-lengths excited atoms can emit. Hence, without doubt it is worthwhile to deal with
+by their relative simplicity. Nevertheless, they play an important role in as 
+diverse fields as medical science, e.g.\ in association with computed tomography, engineering, e.g. when it is described how sound propagates in complex 
+designed spaces, or physics, e.g. concerning the question of which wave 
+lengths excited atoms can emit. It is, without doubt, worth dealing with
 systems of linear equations intensely.
 
-For systems of equations generally the question is in the focus which 
+For systems of equations generally, the question focuses on which 
 values the variables have to take such that all equations of the system are
 simultaneously satisfied. Such a set of values for the variables is called
 a \MEntry{solution of a system of equations}{solution of a system of equations}.
 
-Before we solve systems of equations a detail should be noted: Depending on
-the problem it is possibly not useful to accept all variable values. In the first
+Before we solve systems of equations a detail should be noted: depending on
+the problem, it may not be useful to accept all variable values. In the first
 example~\MRef{M04_einfuehrendes_Bsp} the variables $x$ and $y$ are the numbers of 
 unicycles and bicycles the group of stuntmen owns. Such numbers can only be non-negative
 integers, i.e. elements of $\N_0$. Hence, in this case the number range for the 
@@ -173,8 +172,8 @@ otherwise.
 
 \end{MInfo}
 
-Because of the linearity each of the two equations of the system in info box \MRef{M04_2x2_system}
-can be interpreted as the equation of a line in the $x$-$y$-plane: If, for example, the first equation
+Because of their linearity, each of the two equations of the system in info box \MRef{M04_2x2_system}
+can be interpreted as the equation of a line in the $x$-$y$-plane. If, for example, the first equation
 is solved for $y$,
 $$y = - \Mdfrac{a_{11}}{a_{12}} x + \Mdfrac{b_1}{a_{12}} \MDFPSpace ,$$
 one immediately sees from this explicate form that it describes a line with the slope 
@@ -185,7 +184,7 @@ the first equation reads $a_{11} \cdot x = b_1$; for $a_{11} \neq 0$ this is equ
 to $x = (b_1/a_{11})$, i.e.\ $x$ is a constant. This equation also describes a line, namely 
 a line parallel to the $y$-axis with $y$-intercept $(b_1/a_{11})$.
 
-And what about the case that both $a_{12} = 0$ and $a_{11} = 0$? Then, also $b_1 = 0$, since 
+And what about the case in which both $a_{12} = 0$ and $a_{11} = 0$? Then, we also have $b_1 = 0$, since 
 otherwise the first equation would result in a contradiction. But for $a_{11} = a_{12} = b_1 = 0$,
 the first equation is (for all values of $x$ and $y$) always identically satisfied ($0 = 0$),
 and hence useless.
@@ -237,13 +236,13 @@ and the $y$-intercepts $y_{0,1} = 10$ and $y_{0,2} = \Mtfrac{13}{2}$, respective
 }%
 %%\MUGraphicsSolo{eindeutige_lsg.png}{scale=1}{width:450px}
 \end{center}
-The figure shows that the two lines intersect indeed, and one reads off the coordinates 
-of the intersection point $\MPointTwo{x = 7}{y = 3}$. Accordingly, the system of 
+The figure shows that the two lines do indeed intersect, and one reads off the coordinates 
+of the intersection point as $\MPointTwo{x = 7}{y = 3}$. Accordingly, the system of 
 linear equations considered here has a unique solution. The solution set consists 
 of exactly one pair of numbers, namely ${\ML} = \{ \MPointTwo{x = 7}{y = 3} \}$.
 \end{MExample}
 
-This intuitive approach is suited very well to discuss all cases which can generally occur: Two
+This intuitive approach is very well suited to discussing all cases which can generally occur: two
 lines in the $x$-$y$-plane can intersect each other -- and then the intersection point is 
 necessarily \textbf{unique} --, or the two lines are parallel and thus do not have any
 intersection point, or the two lines coincide -- so to speak -- they intersect in 
@@ -339,44 +338,42 @@ $${\ML} = \MEmptyset\MDFPeriod $$
 \begin{minipage}[t]{7.5cm}
 The two lines have both the same slope $m = - 1$ and the same
 $y$-intercept $y_0 = 2$. The two lines coincide. The system of linear equations 
-has an infinite number of solutions which, for example, can be written as follows:
+has an infinite number of solutions which can be written, for example, as follows:
 $${\ML} = \{ \MPointTwo{t}{ - t + 2} \MCondSetSep  t \in \R \}\MDFPeriod $$
 \end{minipage}
 \end{tabular}
 \end{center}
 \end{MExample}
-For the example on the right other parametrisations of the solution set 
+For the example on the right, other parametrisations of the solution set 
 are possible and allowed. It basically just depends on how to describe the points of 
 the (congruent) lines appropriately. The above description of the solution set $\ML$
 simply used the equation of the line itself and the control variable was denoted by 
 $t$ instead of $x$.
 
-And what is it about the above mentioned restrictions due to the basic set? 
+And what about the above mentioned restrictions due to the basic set? 
 Let us look at the following example.
 
 \begin{MExample}
-At a local fair, an exceptionally clever stallholder promises almost dreamlike prizes and this 
-for an absurdly low initial wager if, yes, if only one of the passersby is able to unravel him the 
+At a local fair, an exceptionally clever stallholder promises almost dreamlike prizes for an absurdly low initial wager if one, yes, only one of the passers-by is able to unravel the 
 following little mystery:
 
-\textit{I rolled a dice twice. If I subtract the sixfold of the second pip number from the twofold
-of the first pip number I get the number $3$. But then, if I add to the fourfold of the first
-pip number the number $6$ I get the twelvefold of the second pip number. Which two numbers I have rolled?}
+\textit{I rolled a die twice. If I subtract twice the first number I rolled from six times
+the second number, I get the number $3$. If I add $6$ to four times the first number, I get the twelve times the second number. Which two numbers did I roll?}
 
-Let the pip number of the first dice be denoted by $x$ and the pip number of the second dice by $y$. 
+Let the first number he rolled be denoted by $x$ and the second by $y$. 
 Then the statements of the stallholder can be translated very quickly into a set of equations:
 $$\left. \begin{array}{rcl} 6 y - 2 x & = & 3 \\[.5ex] 4 x + 6 & = & 12 y \end{array} \right\} \Leftrightarrow
 \left\{ \begin{array}{rcl} y & = & \Mtfrac13 x + \Mtfrac12 \\[.5ex]
 y & = & \Mtfrac13 x + \Mtfrac12 \end{array} \right. \MDFPeriod $$
-One realises, that the corresponding system of linear equations -- interpreted geometrically -- 
+One realises that the corresponding system of linear equations -- interpreted geometrically -- 
 results in two congruent lines. At first glance, it thus seems to have an infinite number
 of solutions.
 
-But now the basic set has to be taken into account: Since both $x$ and $y$ represent pip numbers,
-the two variables can only take a value out of the set 
+But now the basic set has to be taken into account: since both $x$ and $y$ represent numbers on a die,
+the two variables can only take values from the set 
 $\{ 1\MElSetSep 2\MElSetSep 3\MElSetSep 4\MElSetSep 5\MElSetSep 6 \}$. If one looks at 
 the line $y = \Mtfrac13 x + \Mtfrac12$ in the $x$-$y$-plane, one sees that no possible pair
-of pip numbers falls onto this line. Hence, the solution set in this case is indeed the 
+of numbers thrown on a die fall onto this line. Hence, the solution set in this case is indeed the 
 empty set ${\ML} = \MEmptyset$.
 \begin{center}
 \MTikzAuto{%
@@ -421,7 +418,7 @@ empty set ${\ML} = \MEmptyset$.
 \MLabel{M04_einsetz_gleichsetz}
 Until now we studied the \MEntry{solvability}{solvability} and the \textbf{graphical solution}
 of systems of linear equations of the form \MRef{M04_2x2_system}.
-Studying such systems algebraically is still pending which shall now be done.
+Next, we need to study these systems algebraically.
 To this end, we investigate a further example.
 
 \begin{MExample}
@@ -439,7 +436,7 @@ equation reads:
 
 The interest burden from the mortgage agreement at a rate of $5\%$ is $\MZahl{0}{05} \cdot x$, 
 and the interest burden from the other one at a rate of $8\%$ is $\MZahl{0}{08} \cdot y$. From
-the problem description it is known that the two values adds up to $3{,}700$. This results in
+the problem description we know that the two values add up to $3{,}700$. This results in
 a second equation:
 \begin{eqnarray*}
 \mbox{equation}\MBlank (2) & \colon \MZahl{0}{05} x + \MZahl{0}{08} y = 3{,}700 \; \; \; \mbox{(Euro )}\MDFPeriod 
@@ -452,8 +449,8 @@ equation~$(1')$, which is equivalent to equation $(1)$:
 \mbox{equation}\MBlank (1') & \colon y = 50{,}000 - x\MDFPeriod 
 \end{eqnarray*}
 This equation for $y$ can be substituted into equation $(2)$. In the resulting 
-equation now only the variable  
-$x$ occurs, which therefore can be solved for $x$:
+equation only the variable  
+$x$ occurs, so it can be solved for $x$:
 \begin{eqnarray*}
 & & \MZahl{0}{05} x + \MZahl{0}{08} (50{,}000 - x) = 3{,}700 \\
 \Leftrightarrow & & \MZahl{0}{05} x + 4{,}000 - \MZahl{0}{08} x = 3{,}700 \\
@@ -466,9 +463,9 @@ Substituting the solution for $x$ into equation~$(1')$ results in
 \Leftrightarrow & & y = 40{,}000\MDFPeriod 
 \end{eqnarray*}
 Hence, the mortgage amounts are $10{,}000$ Euro (mortgage with interest of $5\%$ annually) and
-$4{,}0000$ Euro (mortgage with interest of $8\%$ annually).
+$40{,}000$ Euro (mortgage with interest of $8\%$ annually).
 \end{MExample}
-The previous example illustrates characteristically the approach in the so called 
+The previous example illustrates the characteristics of the so called 
 \textbf{substitution method}:
 \begin{MInfo}
 \MLabel{M04_einsetzmethode}
@@ -483,10 +480,10 @@ part of the solution. The second part is obtained, for example, by substituting 
 of the first part into the equation from the first step. The solution is unique. (If this
 solution does not belong to the basic set, it has to be excluded.)}
 \item[(ii)]{In the resulting equation (after collecting like terms) the other variable
-does not occur anymore and the equation is a contraction. Then the system of linear equations
+does not occur any more and the equation is a contraction. Then the system of linear equations
 has no solution.}
 \item[(iii)]{In the resulting equation (after collecting like terms) the other variable
-does not occur anymore and the equation is always true. Then the system of linear 
+does not occur any more and the equation is always true. Then the system of linear 
 equations has an infinite number of solutions (unless the definition of the basic set 
 results in some restrictions).}
 \end{itemize}
@@ -495,7 +492,7 @@ This approach involves certain details. It is not defined which of the linear eq
 is to be solved for which of the variables -- or multiples of the variable. As long as 
 the applied transformations are equivalent any of the possible ways will result in the same 
 solution. Preferring a specific way is partly a matter of taste and partly a 
-matter of skills: A clever choice can simplify some intermediate calculations.
+matter of skills: a clever choice can simplify some intermediate calculations.
 
 Concerning the \textbf{substitution method}, cases (ii) and (iii) mentioned above 
 shall be illustrated again by means of the systems of linear equations 
@@ -534,7 +531,7 @@ This is always true. The LS has \textbf{an infinite number} of solutions.
 \end{center}
 \end{MExample}
 The substitution method is not the only approach for solving systems of linear 
-equations. In the following, another method is discussed, which is closely related 
+equations. In the following section another method is discussed, which is closely related 
 to the graphical solution of a LS.
 
 \begin{MInfo}
@@ -544,7 +541,7 @@ linear equations are solved for one of the variables -- or a multiple of one of
 the variables. As a second step the two resulting equations will be \textbf{equated}. 
 Then the three cases discussed for the substitution method can occur. 
 \end{MInfo}
-This approach involves certain details as well. So, for example, it is not
+This approach involves certain details as well. For example, it is not
 defined for which variable the linear equations are to be solved.
 
 For illustration, the first example is solved again, this time by means of
@@ -599,7 +596,7 @@ Alternatively, before equating them, the two equations could have been solved fo
 We will now discuss another, third method for solving systems of linear equations 
 algebraically. But this method will develop its full potential only for larger systems, i.e.\
 systems of many equations in many variables since it can be systematised very well.
-Here, we will discuss the general approach. At first, let us see an example.
+Here, we will discuss the general approach. First, let us see an example.
 
 \begin{MExample}
 Find the solution of the system of linear equations
@@ -615,7 +612,7 @@ $$\begin{array}{crclcl} & (2 x + y) \cdot 11 & = & 9 \cdot 11 & & \\
 Subsequently, the new equation $(1')$ is added to equation $(2)$, i.e.\ the \textbf{sum}
 of the left-hand sides of $(1')$ and $(2)$ is equated to the \textbf{sum} of
 the right-hand sides of $(1')$ and $(2)$. In doing so, the variable $y$ is cancelled
-out. By the way, this was the reason for selecting the factor $11$ in the previous step. 
+out. This was the reason for selecting the factor $11$ in the previous step. 
 $$3 x - 11 y + 22 x + 11 y = 1 + 99 \Leftrightarrow 25 x = 100 \Leftrightarrow x = 4 \MDFPeriod $$
 The get the solution for $y$ the just obtained solution for $x$ can be substituted, e.g.\
 into equation~$(1)$:
@@ -623,8 +620,8 @@ $$2 \cdot 4 + y = 9 \Leftrightarrow 8 + y = 9 \Leftrightarrow y = 1 \MDFPeriod$$
 Thus, this system of linear equations has a unique solution ${\ML} =
 \{ \MPointTwo{x = 4}{y = 1} \}$.
 \end{MExample}
-As for the other methods, also in this method the approach is not uniquely defined: 
-For example, equation~$(1)$ could have been multiplied by $3$ and equation~$(2)$ by $(- 2)$
+As for the other methods,the approach here is not uniquely defined: 
+for example, equation~$(1)$ could have been multiplied by $3$ and equation~$(2)$ by $(- 2)$
 $$\begin{array}{rclcrclcl} (2x + y) \cdot 3 & = & 9 \cdot 3 & \Leftrightarrow & 6 x + 3 y & = & 27
 & & : \MBlank\mbox{equation}\MBlank ({1'}') \MDFPSpace, \\ 
 (3 x - 11 y) \cdot (- 2) & = & 1 \cdot (- 2) & \Leftrightarrow & - 6 x + 22 y & = & - 2
@@ -662,17 +659,17 @@ Solve the following systems of linear equations using the substitution method:
 $y = 4 - 3 x$. Then this equation can be substituted into the second equation ($- x + 2 y = 1$):
 $- x + 2 (4 - 3 x) = 1 \Leftrightarrow - x + 8 - 6 x = 1 \Leftrightarrow - 7 x = - 7
 \Leftrightarrow x = 1$. With this value of $x$, for example, the second equation results in
-$3 \cdot 1 + y = 4 \Leftrightarrow y = 1$. So, the solution set is here 
+$3 \cdot 1 + y = 4 \Leftrightarrow y = 1$. So, the solution set is 
 ${\ML} = \{ \MPointTwo{1}{1} \}$.
 
 Of course, one could start differently: For example, one could solve the first equation for $x$
 and substitute the solution for $x$ into the second equation, to get a solution for $y$; or one could 
 start generally with the second equation and solve this in the first step for $x$ or for $y$. Hence,
-there exist some details in the approach.}
+there are some details in the approach.}
 \item{Solving, for example, the first equation ($- x + 4 y = 5$) for $x$ results in $x = 4 y - 5$. 
 Then, this equation can be substituted into the second equation ($2 x - 8 y = - 10$):
  $2 ( 4 y - 5) - 8 y = - 10 \Leftrightarrow 8 y - 10 - 8y = - 10 \Leftrightarrow 0 = 0$. 
-So, this is no further statement, in other words: The second equation does not contain new information. Thus, in
+So, this is not a new statement, in other words: the second equation does not contain new information. Thus, in
 this case the solution set $\ML$ contains an infinite number of solution pairs $\MPointTwo{x}{y}$
 which can be parametrised by a real number $t$. If one chooses, for example, $y = t$, the
 solution set reads ${\ML} = \{ \MPointTwo{4 t - 5}{t}  \MCondSetSep  t \in \R \}$. This
@@ -733,7 +730,7 @@ $- 14 x + 22 y + 14 x + 35 y = 80 + 91 \Leftrightarrow 57 y = 171 \Leftrightarro
 Substituting this value of $y$, for example, in the second equation results in 
 $2 x + 5 \cdot 3 = 13 \Leftrightarrow
 2 x = 13 - 15 \Leftrightarrow 2 x = - 2 \Leftrightarrow x = - 1$. Hence, the solution set $\ML$ 
-reads here ${\ML} = \{ \MPointTwo{- 1}{ 3} \}$.}
+reads ${\ML} = \{ \MPointTwo{- 1}{ 3} \}$.}
 \end{MExerciseItems}
 \end{MHint}
 \end{MExercise}
@@ -775,7 +772,7 @@ $y$-intercept is $\Mtfrac{4}{3}$. The graphs are as in the following figure.
 }%
 %%\MUGraphicsSolo{Aufgabe_Schnittpunkt_Geraden_1.png}{scale=1}{width:450px}
 \end{center}
-From this figure one reads the coordinates of the intersection point
+>From this figure one reads off the coordinates of the intersection point as
 $\MPointTwo{x = 1}{y = 1}$. Hence, the solution set is ${\ML} = \{ \MPointTwo{1}{1} \}$.
 \end{MHint}
 \end{MExercise}
@@ -787,27 +784,27 @@ $\MPointTwo{x = 1}{y = 1}$. Hence, the solution set is ${\ML} = \{ \MPointTwo{1}
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM04_DreiUnbekannte_Intro}
-In the following we will slightly increase the level of difficulty and 
-change over to the discussion of slightly more complex systems.
+In the following section we will slightly increase the level of difficulty and 
+discuss slightly more complex systems.
 
 \begin{MExample}
 \MLabel{M04_einfuehrendes_Bsp_2}
 While playing, three children find a wallet with $30$ Euro in it. The first child says: 
 ``If I keep the money for myself, I will have twice as much money as you both!''  whereupon the 
 second child proudly boasts: ``And if I simply pocket the found money, I will have three 
-times as much money as you both!'' The third child can only smile superior: ``And if I take the 
-money, I will be five times as rich as you two chisellers!'' How much money did the children
-own before the trove?
+times as much money as you both!'' The third child can only smile smugly: ``And if I take the 
+money, I will be five times as rich as you two!'' How much money did the children
+own before thet found the wallet?
 
 Let the amounts of money (in Euro) the three children owned before the trove denoted by 
 $x$, $y$, and $z$, respectively. The statement of the first child can be translated into
 an algebraic equation as follows:
 $$x + 30 = 2 (y + z) \Leftrightarrow x - 2 y - 2 z = - 30 \; : \MBlank\mbox{equation}\MBlank (1) \MDFPeriod$$
-Likewise, the statement of the second child will be translated into
+Likewise, the statement of the second child can be translated into
 $$y + 30 = 3 (x + z) \Leftrightarrow - 3 x + y - 3 z = - 30 \; : \MBlank\mbox{equation}\MBlank (2) \MDFPeriod$$
 And finally, the statement of the third child is translated into
 $$z + 30 = 5 (x + y) \Leftrightarrow - 5 x - 5 y + z = - 30 \; : \MBlank\mbox{equation}\MBlank (3) \MDFPeriod$$
-So, it arises a system of three linear equations in tree variables denoted here by $x$, $y$, and $z$. 
+So there arises a system of three linear equations in tree variables denoted here by $x$, $y$, and $z$. 
 \end{MExample}
 The reader, who is interested in the solution of this little riddle, will find it below 
 worked out in detail using both the \textbf{substitution method} 
@@ -833,7 +830,7 @@ Otherwise, the system is called \textbf{inhomogeneous}.
 
 \begin{MXContent}{Solvability and Comparison Method, graphical Interpretation}{Solvability}{STD}
 \MDeclareSiteUXID{VBKM04_LoesbarkeitUndLoesungen3}
-As described in section~\MRef{M04_2_Unbekannte} for systems of two linear equations in two variables
+As described in section~\MRef{M04_2_Unbekannte} for systems of two linear equations in two variables,
 the question for solvability and the solution of the system can be traced back very clearly
 to the question for existence and position of the intersection point of two lines. And of course, 
 one should think about whether for systems of three linear equations a similar graphical 
@@ -1224,8 +1221,8 @@ and equation~$(3')$.
 \end{tikzpicture}
 }%
 \end{center}
-Since in the initial system of linear equations all equations have to hold simultaneously, 
-also the two equations for the two intersection lines of the three planes have to hold 
+Since all equations in the initial linear system have to hold simultaneously, 
+the two equations for the two intersection lines of the three planes also have to hold 
 simultaneously. Graphically, this is the case at the intersection point of the intersection 
 lines. This intersection point is found by \textbf{equating} the right-hand sides of 
 equation~$(A)$ and equation~$(B)$:
@@ -1297,7 +1294,7 @@ intersection of plane~$(2)$ and plane~$(3)$, and intersection of plane~$(1)$ and
 and the \textbf{solution set} consists of \textbf{exactly one element}.}
 \end{itemize}}
 \end{itemize}
-Despite this illustrative graphical interpretation the case analysis for the solution set is 
+Despite this illustrative graphical interpretation, the case analysis for the solution set is 
 rather complex. Therefore, algebraic methods for investigating the solvability 
 of systems of linear equations and for finding their solution sets will be all the more important, 
 in particular, if the systems will get larger
@@ -1336,9 +1333,9 @@ Find the solution set of the following system of linear equations
 Use the comparison method and be clever!
 
 \begin{MHint}{Solution}
-Initially, the first equation does not depend an the variable $y$. Hence, it would
-be clever, to eliminate $y$ from the second equation and the third equation as well. 
-For this, the second equation and the third equation is solved for $y$:
+The first equation does not depend an the variable $y$. Hence, it would
+be clever to eliminate $y$ from the second and third equations as well. 
+For this, the second and third equations are solved for $y$:
 $$y = 1 + x - 2 z \; \MBlank\mbox{and}\MBlank \; y = 11 - z \MDFPeriod $$
 Then the right-hand sides are equated:
 $$1 + x - 2 z = 11 - z \Leftrightarrow - x + z = - 10 \MDFPeriod $$
@@ -1421,8 +1418,8 @@ section~\MRef{M04_2_Unbekannte}.
 \MDeclareSiteUXID{VBKM04_Additionsmethode3}
 The idea of the addition method, which we already discussed a little before (see
 section~\MRef{M04_addition}), is to \textbf{add} equations of the system such that
-the number of variables occurring in the system is reduced. For this, often one 
-of the equations has to be multiplied by a clever chosen factor before 
+the number of variables occurring in the system is reduced. For this, one 
+of the equations often has to be multiplied by a cleverly chosen factor before 
 \textbf{adding} these equations.
 
 The addition method for a system of three linear equations in three variables 
@@ -1456,7 +1453,7 @@ that was the intention and the reason for choosing the factors $3$ and $5$ above
 
 The subsystem that consists of the two equations~$(2')$ and $(3')$ in the two variables 
 $y$ and $z$ could now be solved using one of the other methods, e.g.\ the substitution
-method. But here, it should rather be solved completely using the addition method. For this, 
+method. But here, it should be solved completely using the addition method. For this, 
 equation~$(2')$ and equation~$(1)$ will be left unchanged in the following. In contrast,
 equation~$(3')$ has to be replaced, namely by the sum $(3') + (- 3) \cdot (2')$:
 $$(- 15 y - 9 z) + (- 3) \cdot (- 5 y - 9 z) = - 180 + (- 3) \cdot (- 120) \Leftrightarrow
@@ -1480,10 +1477,10 @@ immediately provides the solution for the remaining variable, in the example thi
 variable $x$: $x - 2 \cdot 6 - 2 \cdot 10 = - 30 \Leftrightarrow x = 2$.
 \end{MExample}
 
-But the attentive reader may ask himself whether -- and if so, why -- it is allowed 
+An attentive reader may ask themselves whether -- and if so, why -- one is allowed 
 to replace an equation in a system of equations by another equation. In the example
 above this occurs three times, e.g. if equation~$(2)$ is replaced by a combination
-of equation~$(2)$ and the threefold of equation~$(1)$, i.e.\ equation~$(2')$.
+of equation~$(2)$ and three times equation~$(1)$, i.e.\ equation~$(2')$.
 
 Finding the solution of a system of linear equations requires that all equations 
 of the system \textbf{hold simultaneously}, i.e.\ in example~\MRef{M04_einf_Bsp_2_rech_2}
@@ -1496,12 +1493,12 @@ then immediately follows that equation~$(1)$ and
 $$\mbox{equation}\MBlank (2') + (-1) \cdot \MBlank\mbox{equation}\MBlank (1) 
 \Leftrightarrow 3\cdot\MBlank\mbox{equation}\MBlank (2) 
 \Leftrightarrow \MBlank\mbox{equation}\MBlank (2)  $$
-hold simultaneously as well. Hence, it is allowed to replace equation~$(2)$
+hold simultaneously as well. Hence, one is allowed to replace equation~$(2)$
 by equation~$(2')$ in the systems of equations.
 
-Importantly, it can be seen here: If the \textbf{two}
-equations -- equation~$(1)$ and equation~$(2)$ -- would both replaced by equation~(2'),
-information would be lost and even a mistake would be made.
+Importantly, one can see here: if the \textbf{two}
+equations -- equation~$(1)$ and equation~$(2)$ -- were both replaced by equation~(2'),
+information would be lost and a mistake would be made.
 (The requirement of \textbf{only} $(2')$ instead of $(1)$ \textbf{and}
 $(2)$ is much weaker.) This is the reason why in the ``new'' systems
 some equations are left unchanged: equation~$(1)$ \textbf{and} equation~$(2)$ are
@@ -1517,7 +1514,7 @@ are added while multiplying (at least) one  of the equations by a clever chosen 
 (or clever chosen factors) such that in the resulting equations (at least) one variable 
 is eliminated. It has to be ensured that in the solution process no information is lost, i.e.\
 the number of (information relevant) equations is fixed. For this, it is most clever to bring the 
-system in \textbf{triangular from}. Then, the solution can be found very easily.
+system into \textbf{triangular from}. Then, the solution can be found very easily.
 \end{MInfo}
 %\begin{MInfo}
 %Die systematische Verallgemeinerung der vorstehend beschriebenen Vorgehensweise bei der Additionsmethode auf Systeme
@@ -1626,7 +1623,7 @@ which is substituted into equation~($2$):
 $$R_1 (I_2 + I_3) + R_2 I_2 = U \Leftrightarrow (R_1 + R_2) I_2 + R_1 I_3 = U \; : \MBlank\mbox{equation}\MBlank (2') \MDFPeriod$$
 This last equation~($2'$) and equation~($3$) only depend on
 the variables $I_2$ and $I_3$. They form a system of two linear equations in two variables, 
-which is now solved: For this, e.g.\ equation~($3$) is solved for~$I_3$:
+which is now solved: e.g.\ equation~($3$) can be solved for~$I_3$:
 $$I_3 = \Mdfrac{R_2}{R_3} I_2 \; : \MBlank\mbox{equation}\MBlank (3') \MDFPSpace ,$$
 which is then substituted into equation~$(2')$:
 \begin{eqnarray*}
@@ -1636,9 +1633,9 @@ which is then substituted into equation~$(2')$:
 & \Leftrightarrow & \Mdfrac{R_1 R_2 + R_1 R_3 + R_2 R_3}{R_3} I_2 = U \\[.5ex]
 & \Leftrightarrow & I_2 = \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} U \MDFPeriod
 \end{eqnarray*}
-Hence, for $I_3$ it follows using equation~$(3')$
+Hence, for $I_3$ it follows, using equation~$(3')$,
 $$I_3 = \Mdfrac{R_2}{R_3} \cdot \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} U = \Mdfrac{R_2}{R_1 R_2 + R_1 R_3 + R_2 R_3} U$$
-and for $I_1$ it follows finally:
+and for $I_1$
 \begin{eqnarray*}
   I_1 = I_2 + I_3 &=& \Mdfrac{R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U + \Mdfrac{R_2}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U \\
   &=& \Mdfrac{R_2 + R_3}{R_1 R_2 + R_1 R_3 + R_2 R_3} \cdot U \MDFPeriod
@@ -1671,7 +1668,7 @@ to eliminate~$y$ from the second and third equation as well. For this, the secon
 & \Leftrightarrow & 5 x = 5 \\
 & \Leftrightarrow & x = 1 \MDFPeriod
 \end{eqnarray*}
-In the same time the variable $z$ is eliminated as well. Inserting
+At the same time the variable $z$ is also eliminated. Inserting
 the value for $x$ in the first equations results in
 $$1 + 2 z = 5 \Leftrightarrow 2 z = 4 \Leftrightarrow z = 2 \MDFPeriod$$
 Using the second equation the value of $y$ is
@@ -1690,7 +1687,7 @@ Hence, the solution set is ${\ML} = \{ \MPointThree{x = 1}{y = 0}{z = 2} \}$.
 \MDeclareSiteUXID{VBKM04_AllgemeineLGS_Intro}
 
 At the end of this module two further details concerning systems of linear equations
-will be discussed shortly.
+will be discussed briefly.
 
 Firstly, in systems of linear equations free parameters can occur. These are variable 
 quantities -- so called tuning parameters -- which possibly affect the behaviour of the systems, in
@@ -1727,7 +1724,7 @@ last equation is a contraction. In this case the system of linear equations has
 \textbf{no solution}, i.e.\ ${\ML} = \MEmptyset$.
 
 \textbf{Case B} ($\alpha = - 6$): If the given free parameter $\alpha$ is equal to $- 6$, the last 
-equations is always satisfied ($0 = 0$). In fact, the two initial equations in this case are multiples of
+equation is always satisfied ($0 = 0$). In fact, the two initial equations in this case are multiples of
 each other such that only one of them indeed carries information. Accordingly, \textbf{the solution set 
 is infinite}: ${\ML}
 = \{ \MPointTwo{x = 3 + 2 t}{y = t}  \MCondSetSep t \in \R \}$.
@@ -1736,12 +1733,12 @@ is infinite}: ${\ML}
 The example shows that the solution set may strongly depend on the value of the free
 parameter. 
 
-Such a free parameter cannot only occur in one of the right-hand sides of the system of
-linear equations, but also in the left-hand sides, in a number of times or in a function both on the 
-left-hand sides and on the right-hand sides. Also several parameter can occur in a 
+Such a free parameter can occur not only in one of the right-hand sides of the system of
+linear equations, but also in the left-hand sides, multiple times or in a function both on the 
+left-hand sides and on the right-hand sides. Also several parameters can occur in a 
 system at the same time.
 
-Let us know consider a slightly more complex example.
+Let us now consider a slightly more complex example.
 
 \begin{MExample}
 Find the solution set of the following system of linear equations
@@ -1794,7 +1791,7 @@ ${\ML} = \{ \MPointThree{x = \Mtfrac{1}{2 + \alpha}}{ y = \Mtfrac{1}{2 + \alpha}
 z = \Mtfrac{1}{2 + \alpha} } \}$.
 \end{MExample}
 
-The previous example indicates the relevance of a clearly and exactly case analysis.  
+The previous example indicates the relevance of a clear and precise case analysis.  
 Depending on the value of $\alpha$ ($\alpha = 1$, $\alpha = - 2$, or $\alpha \in 
 \R \setminus \{- 2\MElSetSep 1 \}$) the solution set is completely different! 
 In the first case it is an infinite set, in the second the empty set, and in the 
@@ -1803,7 +1800,7 @@ third the solution set consists of exactly one element!
 By the way, the exceptionality of the case $\alpha = 1$ could have seen directly
 from the initial system of linear equations: For $\alpha = 1$, the same equation
 occurs three times, namely $x + y + z = 1$, i.e.\ two of the three equations in the initial system 
-do not contribute any information and thus, they are needless. 
+do not contribute any information and thus, they are unnecessary. 
 For $\alpha = 1$, only the equation $x + y + z = 1$ relates the three variables.
 \end{MXContent}
 
@@ -1868,7 +1865,7 @@ the second equation reads \MEquationItem{$m\beta+b$}{\MLSimplifyQuestion{15}{-1+
 for these \texttt{alpha} and \texttt{beta} can be entered.}
 }
 \item{Solve this system of equations for $b$ and $m$. For which values of 
-$\alpha$ and $\beta$ the systems has a unique solution, no solution,
+$\alpha$ and $\beta$ does the system have a unique solution, no solution,
 or an infinite number of solutions?
 \par
 For $\alpha=-2$ and $\beta=2$ one obtains, for example, the 
@@ -1891,12 +1888,12 @@ cases, i.e.\ no solution and an infinite number of solutions?}
 \begin{MHint}{Solution}
 \begin{MExerciseItems}
 \item{%
-From the condition 
+>From the condition 
 \[
   y(x_1=\alpha)=y_1(x_1=\alpha) \MBlank\mbox{and}\MBlank
   y(x_2=\beta)=y_2(x_2=\beta)
 \]
-the LS for $m$ and $b$ results:
+the LS for $m$ and $b$ results in:
 \[
   \begin{array}{rcll}
      m\alpha +b &=& -2(1+\alpha) & \mbox{equation}\MBlank (1)\MDFPSpace, \\[0.5ex]
@@ -1931,7 +1928,7 @@ for $b$:
 %%  =-\frac{\alpha(1+2\alpha+\beta)+2(1+\alpha)(\beta-\alpha)}{\beta-\alpha}
   \MDFPeriod
 \]
-The found values of $m$ and $b$ represent a unique solution of the considered LS.
+The obtained values of $m$ and $b$ represent a unique solution of the considered LS.
 \par
 For $\alpha=-2$, $\beta=2$, the solution is $m=-1/4, b=5/2$,
 and for $\alpha=2$, $\beta=-2$ the solution is $m=-3/4, b=-9/2$.
@@ -1989,7 +1986,7 @@ $t\in\R$.
   \end{array}
 \]
 \par
-The LS has only solutions for the following values of the parameter:
+The LS only has solutions for the following values of the parameter:
 $t\in\mbox{}$\MLParsedQuestion{12}{-1,1}{4}{LGSPar2PSolSet}. \\
 \MInputHint{Set can be entered in the form \texttt{$\lbrace$a;b;c;$\ldots\rbrace$}. The empty set can be entered as $\lbrace\rbrace$.}
 \par
@@ -1997,7 +1994,7 @@ For the smallest value of the parameter $t$ the solution is\\
 \MEquationItem{$x$}{\MLSimplifyQuestion{10}{-4}{10}{r}{10}{513}{LGSPar2LVx}},
 \MEquationItem{$y$}{\MLSimplifyQuestion{10}{-3-r}{10}{r}{10}{513}{LGSPar1LVy}},
 $z=r$, $r\in\R$.\\
-For the greates value of the parameter $t$ the solution is\\
+For the greatest value of the parameter $t$ the solution is\\
 \MEquationItem{$x$}{\MLSimplifyQuestion{10}{-2*r}{10}{r}{10}{513}{LGSPar2HVx}},
 \MEquationItem{$y$}{\MLSimplifyQuestion{10}{-1-r}{10}{r}{10}{513}{LGSPar1HVy}},
 $z=r$, $r\in\R$.
@@ -2029,8 +2026,7 @@ by the sum of the negative of equation~$(1)$ and equation~$(3')$:
 	  \mbox{equation}\MBlank ({3'}') \MDFPeriod
   \end{array}
 \]
-subsequently, replacing equation~$(2)$ by the sum of the $(-t)$-fold of 
-equation~$(1)$ and equation~$(2)$ results in a LS in triangular form:
+subsequently, replacing equation~$(2)$ by the sum of $(-t)$-times equation~$(1)$ and equation~$(2)$ results in a LS in triangular form:
 \[
   \begin{array}{rcll}
       x -y +t z&=& t & 
@@ -2053,15 +2049,15 @@ a further simplification,
 	  \mbox{equation}\MBlank ({3'}') \MDFPeriod
   \end{array}
 \]
-This equivalent LS has only a solution if equation~$({3'}')$  is satisfied
+This equivalent LS only has a solution if equation~$({3'}')$  is satisfied
 as well, i.e.\ $0=-1+t^2$ $\Leftrightarrow$ $t^2=1$. In all other cases the 
 solution set is the empty set, i.e.\
 \[
   \ML=\MEmptyset \MBlank\mbox{für}\MBlank t\in\R\MSetminus\{-1\MElSetSep 1\}
   \MDFPeriod
 \]
-If now equation~$({3'}')$ is satisfied, i.e.\ $t=1$ or $t=-1$, 
-then $z$ can be chosen arbitrary, i.e.\ $z=\lambda$, $\lambda\in\R$.
+If equation~$({3'}')$ is now satisfied, i.e.\ $t=1$ or $t=-1$, 
+then $z$ can be chosen arbitrarily, i.e.\ $z=\lambda$, $\lambda\in\R$.
 Solving equation~$(1')$ and equation~$(2')$ for $x$ and $y$, respectively, 
 for $t=1$ results in the expressions $x=-2z$ and $y=-1-z$, so the solution set is
 \[
