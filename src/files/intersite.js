@@ -63,7 +63,7 @@ function createIntersiteObj() {
     login: { type: 0, vname: "", sname: "", username: "", password: "", email: "", variant: "std", sgang: "", uni: "" },
     signature: { main: signature_main, version: signature_version, localization: "DE-MINT" }
   };
-  
+
   return obj;
 }
 
@@ -73,7 +73,7 @@ function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
   obj.login.type = 1; // starting locally
 
   obj.login.vname = "";
-  
+
   var turn = false;
   var spl = " ";
   // there's no end as to how LMS present a simple name
@@ -238,7 +238,7 @@ function SetupIntersite(clearuser, pulledstr) {
   }
 
   var scormcontinuation = false;
-  
+
   if (doScorm == 1) {
     if ((ls == "") || (ls == "CLEARED")) {
       // reinitialize SCORM, ls==CLEARED is not an error but happens when same user on same browser reopens the SCORM course
@@ -266,7 +266,7 @@ function SetupIntersite(clearuser, pulledstr) {
     } else {
         logMessage(VERBOSEINFO, "SCORM init refused (continued)");
     }
-    
+
     var idgetstr = "cmi.core.student_id";
     if (expectedScormVersion == "2004") {
         idgetstr = "cmi.learner_id";
@@ -286,12 +286,12 @@ function SetupIntersite(clearuser, pulledstr) {
     } else {
       var s_id = psres;
       logMessage(VERBOSEINFO, "SCORM learner id = " + psres);
-      
+
       var inamestr = "cmi.core.student_name";
       if (expectedScormVersion == "2004") {
           inamestr = "cmi.learner_name";
       }
-      
+
       psres = pipwerks.SCORM.get(inamestr);
       var s_name = psres;
       logMessage(VERBOSEINFO, "SCORM learner name = " + psres);
@@ -340,7 +340,7 @@ function SetupIntersite(clearuser, pulledstr) {
       iso = null;
       logMessage(VERBOSEINFO, "Userreset verlangt");
       }
-      
+
       if (iso == "") {
     iso = null; // Falls localStorage von der JavaScript-Konsole aus resettet wurde
     logMessage(VERBOSEINFO, "iso = \"\" auf null gesetzt");
@@ -445,7 +445,7 @@ function SetupIntersite(clearuser, pulledstr) {
   } else {
       logMessage(VERBOSEINFO, "No logout requested");
   }
-  
+
 
   if (clearuser == true) {
       pushISO(false);
@@ -551,7 +551,7 @@ function updateLoginfield() {
             var unf = document.getElementById("USERNAMEFIELD");
             var prefixs;
             if (scormLogin == 0) {
-              prefixs = $.i18n( 'msg-long-username', intersiteobj.login.username ); //"Benutzername: " + intersiteobj.login.username;
+              prefixs = $.i18n( 'msg-long-username', intersiteobj.login.usernamem, intersiteobj.login.vname, intersiteobj.login.sname ); //"Benutzername: " + intersiteobj.login.username;
               if ((intersiteobj.login.vname != "") || (intersiteobj.login.sname != "")) {
                   prefixs += " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ")";
               }
@@ -665,7 +665,7 @@ function UpdateSpecials() {
       var mys = JSON.stringify(intersiteobj);
       if ( (intersiteactive==true) && (localStoragePresent==true) ) {
           e.innerHTML = $.i18n( 'msg-successful-localpersistence',mys.length)
-          
+
       } else {
           e.innerHTML = $.i18n( 'msg-failed-localpersistence' )
       } //"Der Browser kann die Kursdaten speichern,\nes werden momentan " + mys.length + " Bytes durch Kursdaten belegt.") : "Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert."
@@ -772,7 +772,7 @@ function pushlogin_success(data) {
 
     // store data
     var datastring = JSON.stringify(intersiteobj);
-    userdata.writeData(true, intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout is done by the write callbacks 
+    userdata.writeData(true, intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout is done by the write callbacks
 }
 
 function pushlogin_error(message, data) {
@@ -837,7 +837,7 @@ function pushISO(synced) {
           psres = pipwerks.SCORM.set("cmi.core.lesson_status", s);
           logMessage(VERBOSEINFO, "SCORM set status to " + s + ": " + psres);
 
-          
+
       } else {
           logMessage(CLIENTINFO, "SCORM final reporting above SCORM 1.2 not supported yet");
       }
@@ -1031,10 +1031,10 @@ function userupdate_check() {
             z.style.backgroundColor = COLOR_INPUTCHANGED;
         } else z.style.backgroundColor = COLOR_INPUTBACKGROUND;
     }
-    
+
     if (intersiteactive) {
         if (intersiteobj.login.type > 0) {
-            if (ch) {    
+            if (ch) {
                 $('#updatepdatabutton').css("visibility", "visible");
                 $('#updatepdatabutton').prop("disabled", false);
             } else {
@@ -1071,17 +1071,17 @@ function userupdate_click() {
         intersiteobj.login.uni = z.value;
         z.style.backgroundColor = COLOR_INPUTBACKGROUND;
     }
-    
+
     if (intersiteobj.login.type >= 1) {
         pushISO(true);
         if (intersiteobj.login.type == 2) {
             alert("Ihre Änderungen wurden gespeichert!\n" + feedbackdesc);
         }
     }
-    
+
     $('#updatepdatabutton').css("visibility", "hidden");
     $('#updatepdatabutton').prop("disabled", true);
-    
+
     applyLayout(false); // login button needs to be modified
 }
 
@@ -1349,7 +1349,7 @@ function check_user_success(data) {
       if (data.user_exists == true) {
         ulreply_set(false, $.i18n( 'msg-unavailable-username' ) );//"Benutzername ist schon vergeben."
       } else {
-        ulreply_set(true, $.i18n('msg-available-username', 
+        ulreply_set(true, $.i18n('msg-available-username',
         '<button type=\'button\' style=\'criticalbutton\' onclick=\'usercreatelocal_click(2);\'>', '</button>'));//"Dieser Benutzername ist verfügbar! <button type='button' style='background: #00FF00' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
       }
     } else {
@@ -1405,7 +1405,7 @@ function usercheck() {
         ulreply_set(false,rt);
         return;
     }
-    ulreply_set(true,una); // set the input field display to checked 
+    ulreply_set(true,una); // set the input field display to checked
     userdata.checkUser(true, una, check_user_success, check_user_error);
 }
 
@@ -1440,12 +1440,12 @@ function convertTimestamp(stamp) {
        date.getUTCMinutes(),
        date.getUTCSeconds(),
     ];
-    
+
     for (j = 0; j < d.length; j++) {
         d[j] = "" + d[j];
         if (d[j].length == 1) d[j] = "0" + d[j];
     }
-    
+
     return d[2] + "." + d[1] + "." + d[0] + " - " + d[3] + ":" + d[4] + ":" + d[5];
 }
 
@@ -1462,7 +1462,7 @@ function getTimestamp() {
 function updateCommits(obj) {
     var timestamp = getTimestamp();
     var s = "CHEX:" + signature_git_commit + "_CID:" + signature_CID;
-    
+
     var j;
     var found = false;
     for (j = 0; ((j < obj.history.commits.length) && (!found)); j++) {
@@ -1475,7 +1475,7 @@ function updateCommits(obj) {
         n = obj.history.commits.length;
         obj.history.commits[n] = [ s, timestamp, timestamp ];
     }
-    
+
     logMessage(DEBUGINFO, "Commit history:");
     for (j = 0; j < obj.history.commits.length; j++) {
         logMessage(DEBUGINFO, "  " + obj.history.commits[j][0] + ", " + convertTimestamp(obj.history.commits[j][1]) + ", " + convertTimestamp(obj.history.commits[j][2]));
@@ -1500,7 +1500,7 @@ function generateShortFavoriteList() {
   if (intersiteactive == false) {
     return "Datenspeicherung nicht möglich";
   }
-  
+
   if (typeof(intersiteobj.favorites) != "object") {
     intersiteobj.favorites = new Array();
   }
@@ -1514,7 +1514,7 @@ function generateShortFavoriteList() {
     s += "<img src=\"" + linkPath + "images/" + intersiteobj.favorites[i].icon + "\" style=\"width:20px;height:20px\">&nbsp;&nbsp;";
     s += "<a class='MINTERLINK' href='" + linkPath + intersiteobj.favorites[i].pid + "' >" + intersiteobj.favorites[i].text + "</a>";
   }
-  
+
   return s;
 }
 
@@ -1522,7 +1522,7 @@ function generateLongFavoriteList() {
   if (intersiteactive == false) {
     return "Datenspeicherung nicht möglich";
   }
-  
+
   if (typeof(intersiteobj.favorites) != "object") {
     intersiteobj.favorites = new Array();
   }
@@ -1533,7 +1533,6 @@ function generateLongFavoriteList() {
     s += "<img src=\"" + linkPath + "images/" + intersiteobj.favorites[i].icon + "\" style=\"width:48px;height:48px\">&nbsp;&nbsp;";
     s += "<a href=\"\" >" + intersiteobj.favorites[i].text + "</a><br />";
   }
-  
+
   return s;
 }
-
