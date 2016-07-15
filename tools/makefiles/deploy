@@ -54,10 +54,17 @@ buildall:
 # Move the result to the server
 #
 move:
+	#  keep the build log
+	mv conversion.log /var/log/nightly.log
+
+	# delete the nightly directory on the server
+	-rm -Rf $(NIGHTLY)
 	-mkdir $(NIGHTLY)
-	#Overwrite the contents of the directory on the server
+
+	#Overwrite the contents of the nightly directory on the server
 	cp -Rf $(OUTPUT)/* $(NIGHTLY)
 	chown -R $(WWWUSER) $(NIGHTLY)/*
+
 	# Remove the empty directory
 	rm -R $(OUTPUT)
 	
