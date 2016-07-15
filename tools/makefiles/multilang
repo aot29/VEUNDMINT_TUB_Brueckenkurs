@@ -136,6 +136,10 @@ define fixLinks_cmd
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|url=html/|url=|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|window\.location\.href = \"html/|window\.location\.href = \"|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
+
+        # Add the logout.html page out of the template src/templates/html5_logout.html
+        cp src/templates/html5_logout.html $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
+
 endef
 
 
@@ -192,7 +196,6 @@ fix: fixRedirects
 
 	# replace index.html with src/templates/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates/html5_choose_language_simple.html $(OUTPUT)/index.html
-
 
 cleanup:
 	-rm -Rf $(OUTPUT)_en

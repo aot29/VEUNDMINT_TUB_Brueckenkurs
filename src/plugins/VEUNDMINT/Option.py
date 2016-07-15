@@ -104,7 +104,7 @@ class Option(object):
         self.consoleascii = 0     # =1 -> Only us-ascii strings are printed to the console (or pipes), does not affect written files
         self.forceyes = 1         # =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
         self.symbolexplain = 1    # =1 -> Short list explaining symbols is added to table of contents
-        self.forceoffline = 1     # =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
+        self.forceoffline = 0     # =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
         self.quiet = 0            # =1 -> Absolutely no print messages, caller must deduce outcome by return value of sys.exit
 
 
