@@ -124,6 +124,7 @@ class Plugin(basePlugin):
 
         self.siteredirects = dict() # consists of pairs [ redirectfilename, redirectarget ]
         for t in self.options.sitetaglist:
+            self.sys.message(self.sys.VERBOSEINFO, "Adding %s to site redirects" % t)
             self.siteredirects[t] = [ t + "." + self.outputextension, "" ]
 
      
@@ -923,10 +924,12 @@ class Plugin(basePlugin):
                 
             # search for other tags and create redirects if found
             for s in self.options.sitetaglist:
+                self.sys.message(self.sys.VERBOSEINFO, "Tag %s found in %s" % (s, tc.link) )
                 if "<!-- mglobal" + s + "tag -->" in tc.html:
                     self.sys.message(self.sys.CLIENTINFO, "Global " + s + "tag found in file " + f_html + ", locally " + tc.link)
+                    self.sys.message(self.sys.VERBOSEINFO, "Tag %s found in %s" % (s, tc.link) )
                     self.siteredirects[s][1] = self.outputsubdir + "/" + tc.link + "." + self.outputextension
-            
+
             # generate export files if required
             if (len(tc.exports) != 0):
                 self.sys.message(self.sys.VERBOSEINFO, "Generating " + str(len(tc.exports)) + " additional export files")
@@ -949,6 +952,7 @@ class Plugin(basePlugin):
 
         for s in self.options.sitetaglist:
             if self.siteredirects[s][1] != "":
+                self.sys.message(self.sys.VERBOSEINFO, "Writing misc file for tag %s redirect in %s %s" % (s, self.siteredirects[s][0], self.siteredirects[s][1]) )
                 self.createRedirect(self.siteredirects[s][0], self.siteredirects[s][1], False)
 
         # write SCORM manifest if needed
