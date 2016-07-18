@@ -3,7 +3,16 @@ cache:
     - venv
 test: 
   script: 
-    - "echo $CI_BUILD_REF_NAME"
+    - "echo running tests for $CI_BUILD_REF_NAME"
+    - "echo installing phantomJS"
+    - "mkdir ~/tmp"
+    - "pushd ~/tmp"
+    - "export $PHANTOM_JS = phantomjs-2.1.1-linux-x86_64"
+    - "wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2"
+    - "tar xvjf $PHANTOM_JS.tar.bz2"
+    - "ln -s ~/tmp/$PHANTOM_JS/bin/phantomjs /usr/bin/phantomjs
+    - "phantomjs --version"
+    - "echo installing python dependencies in virtual environment"
     - "[ ! -d venv ] && virtualenv -p python3 venv"
     - "source venv/bin/activate"
     - "pip3 install -r requirements.txt"
