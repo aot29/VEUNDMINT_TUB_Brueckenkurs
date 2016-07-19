@@ -29,6 +29,7 @@ import locale
 from git import Repo
 import sys
 import platform
+from settings import BASE_DIR
 
 class Option(object):
     """
@@ -255,7 +256,7 @@ class Option(object):
             self.colors = json.load(colorfile)
 
         # course signature, repository part
-        repo = Repo(self.currentDir)
+        repo = Repo(BASE_DIR)
         assert not repo.bare
 
         if repo.is_dirty():
