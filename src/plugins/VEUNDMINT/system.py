@@ -45,7 +45,7 @@ class System(object):
     # bash console color scheme
     BASHCOLORRED = "\033[91m"
     BASHCOLORGREEN = "\033[92m"
-    BASHCOLORRESET = "\[\033[0m\]"
+    BASHCOLORRESET = "\033[0m"
 
 
     def __init__(self, options):
