@@ -14,7 +14,7 @@ import json
 import os.path
 import configparser as ConfigParser
 from test.test_tools import getBaseDirectory
-from settings import BASE_DIR
+from settings import BASE_DIR, BASE_URL
 from distutils.spawn import find_executable
 
 
@@ -63,10 +63,10 @@ class AbstractSystemTest(unittest.TestCase):
 		'''
 		Opens the start page of the online course in the webdriver Used to test navigation elements and toc.
 		'''
-		print ('_openStartPage with %s ' % os.path.expanduser( self._getConfigParam( 'baseUrl' ) ))
+		print ('_openStartPage with %s ' % BASE_URL)
 					
-		if (self.driver.current_url != self._getConfigParam("baseUrl")):
-			self.driver.get( "http://localhost:3000" )
+		if (self.driver.current_url != BASE_URL):
+			self.driver.get( BASE_URL )
 		
 			wait = WebDriverWait(self.driver, 3)
 			element = wait.until(EC.presence_of_element_located((By.ID,'languageChooser')))

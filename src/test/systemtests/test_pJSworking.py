@@ -1,11 +1,8 @@
 import unittest
 from selenium import webdriver
+from test.systemtests.AbstractSystemTest import AbstractSystemTest
 
-class TestOne(unittest.TestCase):
-
-    def setUp(self):
-        self.driver = webdriver.PhantomJS(executable_path='/homes/mathphys/plessing/VE/node_modules/phantomjs/lib/phantom/bin/phantomjs')
-        self.driver.set_window_size(1120, 550)
+class TestOne(AbstractSystemTest):
 
     def test_url(self):
         self.driver.get("http://duckduckgo.com/")
@@ -15,9 +12,6 @@ class TestOne(unittest.TestCase):
         self.assertIn(
             "https://duckduckgo.com/?q=realpython", self.driver.current_url
         )
-
-    def tearDown(self):
-        self.driver.quit()
 
 if __name__ == '__main__':
     unittest.main()
