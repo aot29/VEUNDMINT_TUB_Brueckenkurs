@@ -4,7 +4,7 @@ from selenium import webdriver
 class TestOne(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.PhantomJS()
+        self.driver = webdriver.PhantomJS(executable_path='/homes/mathphys/plessing/VE/node_modules/phantomjs/lib/phantom/bin/phantomjs')
         self.driver.set_window_size(1120, 550)
 
     def test_url(self):
