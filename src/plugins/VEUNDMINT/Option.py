@@ -266,7 +266,7 @@ class Option(object):
         h = repo.head
         hc = h.commit
         self.signature_git_head = h.name
-        self.signature_git_branch = h.ref
+        self.signature_git_branch = "develop_software"
         self.signature_git_committer = hc.committer.name
         self.signature_git_message = hc.message.replace("\n", "")
         self.signature_git_commit = hc.hexsha
