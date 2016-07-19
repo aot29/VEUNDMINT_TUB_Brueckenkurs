@@ -266,7 +266,12 @@ class Option(object):
         h = repo.head
         hc = h.commit
         self.signature_git_head = h.name
-        self.signature_git_branch = "develop_software"
+        
+        # removed as it would cause an detached HEAD error at CI Testing
+        # self.signature_git_branch = repo.active_branch.name
+        
+        self.signature_git_branch = 'develop software'
+        
         self.signature_git_committer = hc.committer.name
         self.signature_git_message = hc.message.replace("\n", "")
         self.signature_git_commit = hc.hexsha
