@@ -29,7 +29,6 @@ import locale
 from git import Repo
 import sys
 import platform
-from settings import BASE_DIR
 
 class Option(object):
     """
@@ -256,7 +255,7 @@ class Option(object):
             self.colors = json.load(colorfile)
 
         # course signature, repository part
-        repo = Repo(BASE_DIR)
+        repo = Repo(self.currentDir)
         assert not repo.bare
 
         if repo.is_dirty():
@@ -267,7 +266,7 @@ class Option(object):
         h = repo.head
         hc = h.commit
         self.signature_git_head = h.name
-        self.signature_git_branch = repo.active_branch.name
+        self.signature_git_branch = h.ref
         self.signature_git_committer = hc.committer.name
         self.signature_git_message = hc.message.replace("\n", "")
         self.signature_git_commit = hc.hexsha
