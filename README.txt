@@ -55,12 +55,21 @@ sowie die Python-Module GitPython, html5lib, lxml, pytidylib, simplejson, glob2 
 Diese können einzeln (als root) mit dem Kommando `python3 -m pip install <name>`
 automatisch installiert werden, oder alle auf einmal mit `pip3 install -r requirements.txt`
 
-## Der Autokonverter
+Auf Linux müssen die folgenden Packages installiert sein:
+libxml2, libxml2-dev, libslt1-dev
 
-Der Autokonverter kann genutzt werden, um die aktuellen Änderungen im Branch develop_content
-zu konvertieren und anzuzeigen: http://mintlx3.scc.kit.edu/autoconverter/autoconv.php
+~~## Der Autokonverter~~
 
-Dort ist immer der aktuelle Konverter hinterlegt, dies ist die bevorzugte Konvertierungsmethode für Autoren.
+~~Der Autokonverter kann genutzt werden, um die aktuellen Änderungen im Branch develop_content
+zu konvertieren und anzuzeigen: http://mintlx3.scc.kit.edu/autoconverter/autoconv.php~~
+
+~~Dort ist immer der aktuelle Konverter hinterlegt, dies ist die bevorzugte Konvertierungsmethode für Autoren.~~
+
+## Konvertieren ##
+Die aktuellen Änderungen im aktiven Branch können mit der Makefile konvertiert werden.
+```
+make -f tools/makefiles/multilang
+```
 
 ## Manuelles Konvertieren der Module
 
