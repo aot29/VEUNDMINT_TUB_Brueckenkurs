@@ -29,6 +29,8 @@ WWWUSER = www-data
 
 #
 # Get the latest version from git
+# Checkout the branch you wish to use before launcing the make script.
+# A specific branch will not be checked out automatically.
 #
 getlatest:
 	# stash local changes
@@ -37,7 +39,7 @@ getlatest:
 	#git checkout develop_content
 	#git pull
 	# get latest software
-	git checkout develop_software
+	#git checkout develop_software
 	git pull
 	# merge latest content into software
 	#git merge develop_content
