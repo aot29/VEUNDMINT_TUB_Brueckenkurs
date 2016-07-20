@@ -56,7 +56,7 @@ Diese können einzeln (als root) mit dem Kommando `python3 -m pip install <name>
 automatisch installiert werden, oder alle auf einmal mit `pip3 install -r requirements.txt`
 
 Auf Linux müssen die folgenden Packages installiert sein:
-libxml2, libxml2-dev, libslt1-dev
+libxml2, libxml2-dev, libslt1-dev, lib32z1
 
 ~~## Der Autokonverter~~
 
