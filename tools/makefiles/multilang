@@ -198,6 +198,9 @@ fix: fixRedirects
 	# fix redirect to English "view index" page
 	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.5/modstart\.html|3\.1\.4/modstart\.html|g" search.html;
 
+	# fix redirect to English "register account page" page
+	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.3/modstart\.html|3\.1\.3/modstart\.html|g" config.html;
+
 	# replace index.html with src/templates/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates/html5_choose_language_simple.html $(OUTPUT)/index.html
 
