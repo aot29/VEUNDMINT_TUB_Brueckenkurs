@@ -137,8 +137,9 @@ define fixLinks_cmd
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|window\.location\.href = \"html/|window\.location\.href = \"|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
 
-        # Add the logout.html page out of the template src/templates/html5_logout.html
-        cp src/templates/html5_logout.html $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
+	# Add the logout.html page out of the template src/templates/html5_logout.html
+	cp src/templates/html5_logout.html $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
+	
 
 endef
 
@@ -174,6 +175,9 @@ fix: fixRedirects
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src='\.\./\.\./images/|src='\.\./\.\./\.\./images/|g" {} \;
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src=\"\.\./images/|src=\"\.\./\.\./images/|g" {} \;
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src='\.\./images/|src=\'\.\./\.\./images/|g" {} \;
+
+	# Point the home button to the site index
+	# TODO, set extra Javascript path
 
 	# set CURRENT_LANG to de
 	$(eval CURRENT_LANG := de)

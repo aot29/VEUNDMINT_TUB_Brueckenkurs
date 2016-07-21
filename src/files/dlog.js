@@ -58,7 +58,7 @@ function logMessage(lvl, msg) {
       }
 
       case 2: {
-          if (isRelease == 0) { console.log("CLIENTERROR: " + msg); }
+          if (isRelease == 0) { console.log("CLIENTERROR: " + msg); alert(msg);} // need feedback for the user here
           if (typeof(intersiteobj) == "object") {
               var timestamp = +new Date();
               var cm = "CLIENTERROR: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", message: " + msg + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;

@@ -551,7 +551,7 @@ function updateLoginfield() {
             var unf = document.getElementById("USERNAMEFIELD");
             var prefixs;
             if (scormLogin == 0) {
-              prefixs = $.i18n( 'msg-long-username', intersiteobj.login.usernamem, intersiteobj.login.vname, intersiteobj.login.sname ); //"Benutzername: " + intersiteobj.login.username;
+              prefixs = $.i18n( 'msg-long-username', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); //"Benutzername: " + intersiteobj.login.username;
               if ((intersiteobj.login.vname != "") || (intersiteobj.login.sname != "")) {
                   prefixs += " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ")";
               }
@@ -1118,7 +1118,8 @@ function userlogin_success(data) {
     logMessage(VERBOSEINFO, "userlogin success");
     if (data.status == false) { userlogin_error("Login gescheitert", null); return; }
     logMessage(VERBOSEINFO, "Login ok, username = " + data.username + ", role = " + data.role);
-    userdata.getData(true, undefined, loginread_success, loginread_error); // logout is done by the write callbacks
+    // need to send username
+    userdata.getData(true, data.username, loginread_success, loginread_error); // logout is done by the write callbacks
   // continue with callbacks
 }
 
