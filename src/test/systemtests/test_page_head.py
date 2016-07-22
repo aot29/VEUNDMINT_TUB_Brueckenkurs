@@ -16,7 +16,7 @@ class PageHeadTest( AbstractSystemTest ):
     def setUp(self):
         AbstractSystemTest.setUp( self )
         # open a page to test it
-        self._openStartPage()
+        self._chooseLanguageVersion("de")
 
 
     def testHeadButtonsComplete(self):
@@ -24,7 +24,7 @@ class PageHeadTest( AbstractSystemTest ):
         Test head of the page and buttons
         '''
         # Find the head section of the page
-        head = self.browser.find_element_by_id( "fhead" )
+        head = self.driver.find_element_by_id( "fhead" )
         self.assertTrue( head, "Page head is missing" )
 
         # Test nav buttons
@@ -71,7 +71,7 @@ class PageHeadTest( AbstractSystemTest ):
         @param hint: String displayed on mouseover
         '''
         # Find the login button
-        button = self.browser.find_element_by_id( elid )
+        button = self.driver.find_element_by_id( elid )
         self.assertTrue( button, "%s is missing" % elid )
 
         # Check button text if button is a div
@@ -85,10 +85,11 @@ class PageHeadTest( AbstractSystemTest ):
         # Check hint
         qtipNr = button.get_attribute('data-hasqtip')
         if qtipNr:
+            print (qtipNr)
             # hint element is added to the page on mouseover
-            hover = ActionChains(self.browser)
+            hover = ActionChains(self.driver)
             hover.move_to_element(button).perform()
-            qtipEl = self.browser.find_element_by_id( "qtip-%s-content" % qtipNr )
+            qtipEl = self.driver.find_element_by_id( "qtip-%s-content" % qtipNr )
             # hint text should be part of displayed tooltip (not necessarily equal)
             self.assertTrue( hint in qtipEl.text, "%s has wrong hint text" % elid )
 
@@ -101,17 +102,17 @@ class PageHeadTest( AbstractSystemTest ):
         '''
         # if button is a text button, check the text displayed and get the link (parent of "div"-element)
         if tag == "div":
-            linkEl = self.browser.find_element_by_xpath( "//div[@id='%s']/.." % elid )
+            linkEl = self.driver.find_element_by_xpath( "//div[@id='%s']/.." % elid )
             link = linkEl.get_attribute('href')
 
         # if button is a link, get only the link ("a"-element)
         elif tag == "a":
-            linkEl = self.browser.find_element_by_xpath( "//a[@id='%s']" % elid )
+            linkEl = self.driver.find_element_by_xpath( "//a[@id='%s']" % elid )
             link = linkEl.get_attribute('href')
 
         # if button is a javascript button, get the "onClick" attribute
         elif tag == "button":
-            linkEl = self.browser.find_element_by_xpath( "//button[@id='%s']" % elid )
+            linkEl = self.driver.find_element_by_xpath( "//button[@id='%s']" % elid )
             link = linkEl.get_attribute('onclick')
 
         return link

@@ -45,11 +45,11 @@ class AbstractSystemTest(unittest.TestCase):
 						
 		self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
 		self.driver.set_window_size(1120, 550)
-		self.driver.set_page_load_timeout(15)
+#		self.driver.set_page_load_timeout(5)
 		self.driver.implicitly_wait(5)
 		
-	def tearDown(self):
-				
+		
+	def tearDown(self):				
 		# close the webdriver
 		if self.driver:
 			self.driver.quit()
@@ -63,28 +63,28 @@ class AbstractSystemTest(unittest.TestCase):
 		'''
 		Opens the start page of the online course in the webdriver Used to test navigation elements and toc.
 		'''
-		print ('_openStartPage with %s ' % BASE_URL)
-					
-		if (self.driver.current_url != BASE_URL):
-			self.driver.get( BASE_URL )
-		
-			wait = WebDriverWait(self.driver, 3)
-			element = wait.until(EC.presence_of_element_located((By.ID,'languageChooser')))
-		else:
-			print("openStartPage was already on start Page")
+# 		print ('_openStartPage with %s ' % BASE_URL)
+# 					
+# 		if (self.driver.current_url != BASE_URL):
+		self.driver.get( BASE_URL )
+# 		
+# 			wait = WebDriverWait(self.driver, 3)
+# 			element = wait.until(EC.presence_of_element_located((By.ID,'languageChooser')))
+# 		else:
+# 			print("openStartPage was already on start Page")
 
 
-	def _navToChapter(self, chapter, section=None):
+	def _navToChapter(self, chapter, section=None, lang = "de"):
 		'''
 		Navigate to chapter specified by name.
 		@param chapter: (required) a STRING specifying the chapter, e.g. "1" will open chapter 1
 		@param section: (optional) a STRING specifying the section, e.g. "1.2" will open section 1.2
+		@param lang: (optional) a STRING specifying the language code, e.g. "de" or "en"
 		'''
 		# Open the start page
-		self._chooseLanguageVersion("de")
-		# Open chapter
-		print("%s %s" % ( self.locale[ "chapter" ], chapter ))
-		
+		self._openStartPage()
+		self._chooseLanguageVersion( lang )
+		# Open chapter		
 		element = self.driver.find_element_by_partial_link_text( "%s %s" % ( self.locale[ "chapter" ], chapter ) )
 		element.click()
 
@@ -100,16 +100,16 @@ class AbstractSystemTest(unittest.TestCase):
 		'''
 		self._openStartPage()
 		
-		print ('on page %s' % self.driver.current_url)
+		#print ('on page %s' % self.driver.current_url)
 
-		wait = WebDriverWait(self.driver, 10)
-		language_links = self.driver.find_elements_by_class_name('btn')
-	
-		print(language_links[0].get_attribute('href'))
-		el = [x for x in language_links if languagecode in x.get_attribute('href')]
-		el[0].click()
-		
-		#self.driver.find_element_by_css_selector("a[href*='/" + languagecode + "/']").click();
+# 		wait = WebDriverWait(self.driver, 10)
+# 		language_links = self.driver.find_elements_by_class_name('btn')
+# 	
+# 		print(language_links[0].get_attribute('href'))
+# 		el = [x for x in language_links if languagecode in x.get_attribute('href')]
+# 		el[0].click()
+# 		
+		self.driver.find_element_by_css_selector("a[href*='/" + languagecode + "/']").click();
 
 
 # Can't call this directly, use child class
