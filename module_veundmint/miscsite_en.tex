@@ -69,7 +69,7 @@ Cannot access browser data!
 
 \MSubsection{Settings}
 
-\begin{MXContent}{Einstellungen}{Einstellungen}{STD}
+\begin{MXContent}{Anmeldung zum Kurs}{Anmeldung zum Kurs}{STD}
 \MLabel{L_CONFIG}
 \MGlobalConfTag
 \MDeclareSiteUXID{VBKM_MISCSETTINGS}
@@ -77,26 +77,54 @@ Cannot access browser data!
 If you already have an account please go to the \MSRef{L_LOGIN}{login page}.
 
 \begin{html}
+<div class="show_scorm" style="display:none">
+<b>Please login through the learning platform.</b>
+</div>
+\end{html}
+
+\begin{html}
+<div class="show_noscorm" style="display:none">
+
+<b>Create a new account:</b><br />
+After you have registered successfully, your data will be saved to our servers
+and your course progress information will be available to you on other
+computers or devices:
 <div class="xreply">
 <p id="LOGINFIELD">
 Cannot access browser data!
 </p>
-<div id="USERNAMEFIELD">
-Choose a login name for working on the course:<br />
-Login name: <input id="USER_UNAME" type="text" size="18" oninput="usercheck();" onkeyup="usercheck();" onpaste="usercheck();" onpropertychange="usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
-<br />
-<div class="usercreatereply"><p id="ulreply_p"> </p></div>
-<br /><br />
-Optional information:
+Optional information: &nbsp;&nbsp;<button type="button" id="updatepdatabutton"
+style="visibility:hidden" class="criticalbutton"
+onclick="userupdate_click();">Update personal dat (optional):</button> 
 <table>
   <tr><td align=left>First name:</td><td align=left><input id="USER_VNAME" type="text" size="40"></input></td></tr>
   <tr><td align=left>Last name:</td><td align=left><input id="USER_SNAME" type="text" size="40"></input></td></tr>
   <tr><td align=left>Email:</td><td align=left><input id="USER_EMAIL" type="text" size="40"></input></td></tr>
 </table>
+<p>
+Data on intended course (optional, if known or planned):
+</p>
+<table>
+  <tr><td align=left>Course:</td><td align=left><input id="USER_SGANG"
+  type="text" size="40"></input></td></tr> <tr><td align=left>University:</td><td align=left><input id="USER_UNI" type="text" size="40"></input></td></tr>
+</table>
+
+<div id="USERNAMEFIELD">
+<p>
+Choose a login name for working on the course:
+</p>
+Login name: <input id="USER_UNAME" type="text" size="18" oninput="usercheck();" onkeyup="usercheck();" onpaste="usercheck();" onpropertychange="usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
+<br />
+<div class="usercreatereply"><p id="ulreply_p"> </p></div>
+<br /><br />
 </div>
 
+After you have registered, your data will be stored on our course servers, along
+with your responses and test results. This data will be submitted anonymously
+for statistical analysis in order to increase the quality of the course contents
+and exercises. Please note that a confirmation of participation to the course
+can only be issued if the optional data field s have been submitted.</div>
 </div>
-
 \end{html}
 
 % <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="usercreatelocal_click(1);">Register above user data in the browser</button><br />
@@ -106,20 +134,27 @@ Optional information:
 % <button type="button" id="LOGINBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="userlogin_click();">Switch user</button><br />
 
 
-Data is transferred or saved as follows:
-
-\begin{itemize}
-\item{Course data is saved in your browser.}
-\item{Anonymised user actions are transferred.}
-\item{Anonymised solutions are transferred.}
-\end{itemize}
 \begin{html}
+<div class="show_scorm" style="display:none">
+<b>You can edit your personal data in the learning platform.</b>
+</div>
+<div class="show_noscorm" style="display:none">
+<b>Delete account</b><br />
+Data saved on this browser and on our servers will be deleted. Please note that
+an account name that has been registered will not become available after
+deletion.
+
+<br /><br />
+<button type="button" class="criticalbutton" id="RESETBUTTON2"
+onclick="userdelete_click();">Delete account</button> </div>
+<br /><br />
 <div class="xreply">
 <p id="CHECKIS">
 Cannot access browser data!
 </p>
 </div>
 \end{html}
+\end{MXContent}
 
 \begin{MXContent}{Login}{Login}{STD}
 \MLabel{L_LOGIN}
@@ -141,33 +176,27 @@ Username and password are required.
 
 \end{MXContent}
 
+\MSubsection{Logout}
 
-% \ \\ \ \\
-% Your locally saved data:
-% 
-% \begin{html}
-% <textarea name="Name_OBJARRAYS" id="OBJARRAYS" rows="40" cols="80" style="background-color:#F0F0F0"></textarea>
-% <script>
-% var e = document.getElementById("OBJARRAYS");
-% e.value = "?";
-% e.readOnly = true;
-% </script>
-% \end{html}
-% 
-% \ \\ \ \\
-% intersiteobj:
-% 
-% \begin{html}
-% <textarea name="Name_OBJOUT" id="OBJOUT" rows="40" cols="80" style="background-color:#F0F0F0"></textarea>
-% <script>
-% var mys = JSON.stringify(intersiteobj);
-% console.log("Decoded intersiteobj");
-% var e = document.getElementById("OBJOUT");
-% e.value = mys;
-% e.readOnly = true;
-% </script>
-% \end{html}
+\begin{MXContent}{Logout}{Logout}{STD}
+\MLabel{L_LOGOUT}
+\MGlobalLogoutTag
+\MDeclareSiteUXID{VBKM_MISCLOGOUT}
 
+\begin{html}
+<script type="text/javascript">
+requestLogout = 1;
+</script>
+<p id="LOGINFIELD">
+No user data available!
+</p>
+<div class="show_scorm" style="display:none">
+<b>The course is closed, please logout through the learning platform or
+close the browser window.</b> </div>
+<div class="show_noscorm" style="display:none">
+<b>The course is closed, please close the browser window or tab.</b>
+</div>
+\end{html}
 
 \end{MXContent}
 

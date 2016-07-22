@@ -2016,7 +2016,7 @@ function applyLayout(first) {
   if (intersiteactive) {
       if (intersiteobj.login.type >= 2) {
           loginbuttontext = $.i18n( "logout", getNameDescription() ); // "Logout (" + getNameDescription() + ")";
-          loginbuttonhint = $.i18n( "hint-logout", intersiteobj.login.sname ); //"Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersiteobj.login.sname + " gespeichert.";
+          loginbuttonhint = $.i18n( "hint-logout", intersiteobj.login.username ); //"Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersiteobj.login.sname + " gespeichert.";
           loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "logout.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
       }
   }
