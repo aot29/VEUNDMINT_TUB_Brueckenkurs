@@ -339,7 +339,7 @@ class Option(object):
         ]
         self.scriptheaders = [
             "es5-sham.min.js",
-            "qtip2/jquery-1.10.2.min.js",
+            "jquery-3.1.0.min.js",
             "qtip2/jquery.qtip.min.js",
             "datatables/datatables.min.js",
             "knockout-3.0.0.js",
