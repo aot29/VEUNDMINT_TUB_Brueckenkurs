@@ -1,3 +1,4 @@
+import sys
 import settings as global_settings
 from plugins.VEUNDMINT.Option import Option as VEUNDMINTOption
 
@@ -40,9 +41,11 @@ class SettingsMixin(Settings):
 settings = Settings()
 
 # for convenience an VEUNDMINT-Option settings is supplied
-# which currently fails with
-# File "/Users/n/Sites/VEUNDMINT_TUB_Brueckenkurs/src/plugins/VEUNDMINT/Option.py", line 254, in __init__
-#     with open(os.path.join(self.converterDir, "plugins", "VEUNDMINT", "colorset_blue.json")) as colorfile:
-# FileNotFoundError: [Errno 2] No such file or directory: '/Users/n/Sites/VEUNDMINT_TUB_Brueckenkurs/src/src/plugins/VEUNDMINT/colorset_blue.json'
-# might be related to the Constructor
-ve_settings = Settings(VEUNDMINTOption('',[]))
+import argparse
+parser = argparse.ArgumentParser(description='tex2x converter')
+parser.add_argument("plugin", help="specify the plugin you want to run")
+parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
+parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
+args = parser.parse_args()
+print (args.override)
+ve_settings = Settings(VEUNDMINTOption('',args.override))

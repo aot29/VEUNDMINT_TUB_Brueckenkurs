@@ -77,9 +77,9 @@ class Option(object):
         self.lang = self.locale.split('_')[0]
 
         # tex-Hauptdatei des Kurses (relativ zum Quellverzeichnis!) fuer HTML-Erzeugung
-        self.module = ( lambda locale: "tree_tu9onlinekurs_en.tex" if locale == 'en_GB.utf8' else "tree_tu9onlinekurs.tex" ) ( self.locale)
+        self.module = ( lambda locale: "tree_tu9onlinekurs_en.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "tree_tu9onlinekurs.tex" ) ( self.locale)
         # macrofile to use. It's probably not a good idea to have 2 separate macri files, as they change often
-        self.macrofilename = ( lambda locale: "mintmod_engl" if locale == 'en_GB.utf8' else "mintmod" ) ( self.locale)
+        self.macrofilename = ( lambda locale: "mintmod_engl" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "mintmod" ) ( self.locale)
 
         # VE&MINT conversion flags, using values 0 and 1 (integers)
         self.testonly = 0
