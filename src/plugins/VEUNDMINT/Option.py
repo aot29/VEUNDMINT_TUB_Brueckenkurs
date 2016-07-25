@@ -29,6 +29,7 @@ import locale
 from git import Repo
 import sys
 import platform
+import settings as new_settings
 
 class Option(object):
     """
@@ -51,7 +52,7 @@ class Option(object):
         #Debugging
         self.DEBUG = True
 
-        self.currentDir = os.path.abspath(currentDir) # one level above location of tex2x.py
+        self.currentDir = new_settings.BASE_DIR # one level above location of tex2x.py
         self.converterDir = os.path.join(self.currentDir, "src")
         self.logFilename = "conversion.log"
 
@@ -89,10 +90,10 @@ class Option(object):
         self.qautoexport = 0      # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
         self.diaok = 0            # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
         self.cleanup = 1          # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
-        
+
         # Achtung, MathJax hat 33988 Dateien. Wenn die Option lokales MathJax gesetzt ist, kann das zu Problemen mit der Inodes-Quote fuehren!
         self.localjax = 0         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
-        
+
         self.borkify = 0          # =1 html und js-Dateien werden borkifiziert
         self.dorelease = 0        # In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
         self.doverbose = 1        # Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
@@ -266,12 +267,12 @@ class Option(object):
         h = repo.head
         hc = h.commit
         self.signature_git_head = h.name
-        
+
         # removed as it would cause an detached HEAD error at CI Testing
         # self.signature_git_branch = repo.active_branch.name
-        
+
         self.signature_git_branch = 'develop software'
-        
+
         self.signature_git_committer = hc.committer.name
         self.signature_git_message = hc.message.replace("\n", "")
         self.signature_git_commit = hc.hexsha

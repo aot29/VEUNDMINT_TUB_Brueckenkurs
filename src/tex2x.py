@@ -1,4 +1,4 @@
-"""    
+"""
     tex2x converter - Processes tex-files in order to create various output formats via plugins
     Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
 
@@ -28,6 +28,8 @@ from lxml import etree
 import tex2xStruct as struct
 import plugins
 import os
+from tex2xStruct import structure
+
 
 import argparse
 
@@ -39,16 +41,10 @@ parser.add_argument("override", help = "override option values ", nargs = "*", t
 
 args = parser.parse_args()
 #print(args.override)
-    
+
 # TODO: tex2x should be callable from everywhere, right now directory joins assume we are in src
 if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
     print("tex2x must be called in its own directory")
 else:
     #create object and start processing
-    struct.structure.Structure().startTex2x(args.verbose, args.plugin, args.override) # this function will terminate the program with sys.exit
-
-
-
-
-
-
+    structure.Structure().startTex2x(args.verbose, args.plugin, args.override) # this function will terminate the program with sys.exit
