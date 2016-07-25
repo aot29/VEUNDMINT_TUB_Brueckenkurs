@@ -23,8 +23,8 @@ class AbstractSystemTest(unittest.TestCase):
 	configPath = os.path.join(BASE_DIR + "/", "src/test/", "testconfig.ini")
 
 	def setUp(self):
-		
-		
+
+
 		#Read the configuration file
 		self.config = ConfigParser.ConfigParser()
 		self.config.read( self.configPath )
@@ -42,14 +42,14 @@ class AbstractSystemTest(unittest.TestCase):
 
 		# create the Web Driver with PhantomJS
 		# TODO make this generic
-						
+
 		self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
 		self.driver.set_window_size(1120, 550)
 #		self.driver.set_page_load_timeout(5)
 		self.driver.implicitly_wait(5)
-		
-		
-	def tearDown(self):				
+
+
+	def tearDown(self):
 		# close the webdriver
 		if self.driver:
 			self.driver.quit()
@@ -64,10 +64,10 @@ class AbstractSystemTest(unittest.TestCase):
 		Opens the start page of the online course in the webdriver Used to test navigation elements and toc.
 		'''
 # 		print ('_openStartPage with %s ' % BASE_URL)
-# 					
+#
 # 		if (self.driver.current_url != BASE_URL):
 		self.driver.get( BASE_URL )
-# 		
+#
 # 			wait = WebDriverWait(self.driver, 3)
 # 			element = wait.until(EC.presence_of_element_located((By.ID,'languageChooser')))
 # 		else:
@@ -82,33 +82,47 @@ class AbstractSystemTest(unittest.TestCase):
 		@param lang: (optional) a STRING specifying the language code, e.g. "de" or "en"
 		'''
 		# Open the start page
-		self._openStartPage()
+		#self._openStartPage()
 		self._chooseLanguageVersion( lang )
-		# Open chapter		
-		element = self.driver.find_element_by_partial_link_text( "%s %s" % ( self.locale[ "chapter" ], chapter ) )
-		element.click()
+
+		# Open chapter
+		#
+		link_text = "%s %s" % ( self.locale[ "chapter" ], chapter )
+		chapter_el = WebDriverWait(self.driver, 10).until(
+			EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, link_text))
+		)
+
+		chapter_el.click()
+
+		# element = self.driver.find_element_by_partial_link_text( "%s %s" % ( self.locale[ "chapter" ], chapter ) )
+		# element.click()
 
 		# Open section
 		if section != None:
-			content = self.driver.find_element_by_id( "content" )
-			content.find_element_by_partial_link_text( section ).click()
-			
+
+			section_el = WebDriverWait(self.driver, 5).until(
+				EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href*="' + chapter + "." + section + '"]'))
+			)
+
+			section_el.click()
+
+
 	def _chooseLanguageVersion(self, languagecode):
 		'''
 		Navigate to the specified language version of the website
 		@param languagecode: (required) a STRING specifying the language code, e.g. "de" or "en"
 		'''
 		self._openStartPage()
-		
+
 		#print ('on page %s' % self.driver.current_url)
 
 # 		wait = WebDriverWait(self.driver, 10)
 # 		language_links = self.driver.find_elements_by_class_name('btn')
-# 	
+#
 # 		print(language_links[0].get_attribute('href'))
 # 		el = [x for x in language_links if languagecode in x.get_attribute('href')]
 # 		el[0].click()
-# 		
+#
 		self.driver.find_element_by_css_selector("a[href*='/" + languagecode + "/']").click();
 
 
