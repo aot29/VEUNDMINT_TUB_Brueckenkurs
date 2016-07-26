@@ -697,7 +697,7 @@ class Structure(object):
         #Sicherstellen, dass Outputdirecotry existiert
         if not os.path.exists(self.options.targetpath):
             os.makedirs(self.options.targetpath)
-        
+
         #ttm starten
 
         ttm_parser = TTMParser()
@@ -931,7 +931,7 @@ class Structure(object):
         """
         Wir räumen wieder auf. Insbesondere das temporäre Input-Verzeichnis wird wieder gelöscht.
         """
-        print("Räume auf: " + os.path.abspath(self.options.sourcepath))
+        print("Raeume auf: " + os.path.abspath(self.options.sourcepath))
         self.sys.removeTree(self.options.sourcepath)
 
 
