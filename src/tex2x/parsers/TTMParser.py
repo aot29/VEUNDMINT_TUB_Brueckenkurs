@@ -14,7 +14,7 @@ class TTMParser(object):
         """
         Parses files from TeX to ?, uses the converterDir Option which is set to /src
         """
-        # TODO: are there sideeffects by commenting this out? hope not.
+        # TODO DH: Why exactly do we need this?
         sys.pushdir()
         os.chdir(tex_dir)
 

@@ -320,12 +320,13 @@ class System(object):
 
 
     # prints text on the console (which maybe does not understand utf8, so we encode output in ASCII), and only if not in quiet mode
+    # had to alter this as it was throwing errors on the gitlab testrunner
     def _encode_print(self, txt):
         if not self.beQuiet:
             if self.doEncodeASCII == 1:
                 print(txt.encode(encoding = "us-ascii", errors = "backslashreplace").decode("us-ascii"))
             else:
-                print(txt)
+                print(txt.encode('ascii', 'ignore'))
 
 
     # ends the program, returning the maximum error level reached during execution
