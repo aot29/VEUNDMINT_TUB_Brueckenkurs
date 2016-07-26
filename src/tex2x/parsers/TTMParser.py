@@ -26,10 +26,10 @@ class TTMParser(object):
             self._logResults(self.subprocess, ttm_bin, tex_start, sys)
             #return output, err
 
-        except:
+        except Exception, e:
             # sys.popdir()
             import sys as real_sys
-            sys.message(sys.FATALERROR, "%s" % real_sys.exc_info()[0].message)
+            sys.message(sys.FATALERROR, str(e))
 
         # sys.popdir()
 
