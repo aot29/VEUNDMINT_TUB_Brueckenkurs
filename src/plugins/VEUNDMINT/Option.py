@@ -89,7 +89,7 @@ class Option(object):
         self.doscorm12 = 0        # =0: Kein SCORM, =1- > SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 1.2 verwendet werden
         self.qautoexport = 0      # =1 Alle MExercise-Umgebungen werden auch als Export verpackt
         self.diaok = 0            # =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
-        self.cleanup = 1          # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
+        self.cleanup = 0          # =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
 
         # Achtung, MathJax hat 33988 Dateien. Wenn die Option lokales MathJax gesetzt ist, kann das zu Problemen mit der Inodes-Quote fuehren!
         self.localjax = 0         # =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
