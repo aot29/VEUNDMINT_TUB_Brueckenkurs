@@ -30,6 +30,7 @@ import socket
 import glob2
 import base64
 import platform
+import codecs
 
 class System(object):
 
@@ -324,7 +325,7 @@ class System(object):
             if self.doEncodeASCII == 1:
                 print(txt.encode(encoding = "us-ascii", errors = "backslashreplace").decode("us-ascii"))
             else:
-                print(txt)
+                print(txt.encode('utf-8'))
 
 
     # ends the program, returning the maximum error level reached during execution
