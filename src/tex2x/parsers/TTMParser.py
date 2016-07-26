@@ -29,7 +29,7 @@ class TTMParser(object):
         except:
             # sys.popdir()
             import sys as real_sys
-            sys.message(sys.FATALERROR, real_sys.exc_info()[0])
+            sys.message(sys.FATALERROR, "%s" % real_sys.exc_info()[0])
 
         # sys.popdir()
 
