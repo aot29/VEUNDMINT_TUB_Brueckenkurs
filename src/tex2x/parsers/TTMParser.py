@@ -14,9 +14,11 @@ class TTMParser(object):
         """
         Parses files from TeX to ?, uses the converterDir Option which is set to /src
         """
-        # TODO: are there sideeffects by commenting this out? hope not.
+        # TODO DH: Why exactly do we need this?
         sys.pushdir()
         os.chdir(tex_dir)
+
+        print(ttm_bin)
 
         try:
             with open(ttm_outfile, "wb") as outfile, open(tex_start, "rb") as infile:
@@ -47,7 +49,7 @@ class TTMParser(object):
         Log the output from ttm_process in a human readable form. Is still using the system class. It
         might be good to use logging.Logger instead(?)
         """
-        if sys is not None:
+        if sys is not None and self.subprocess is not None:
 
             (output, err) = self.subprocess.communicate()
 
