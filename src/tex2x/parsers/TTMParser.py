@@ -15,8 +15,8 @@ class TTMParser(object):
         Parses files from TeX to ?, uses the converterDir Option which is set to /src
         """
         # TODO: are there sideeffects by commenting this out? hope not.
-        sys.pushdir()
-        os.chdir(tex_dir)
+        # sys.pushdir()
+        # os.chdir(tex_dir)
 
         try:
             with open(ttm_outfile, "wb") as outfile, open(tex_start, "rb") as infile:
@@ -27,17 +27,18 @@ class TTMParser(object):
             #return output, err
 
         except:
-            sys.popdir()
-            sys.message(sys.FATALERROR, sys.exc_info()[0])
+            # sys.popdir()
+            import sys as real_sys
+            sys.message(sys.FATALERROR, real_sys.exc_info()[0])
 
-        sys.popdir()
+        # sys.popdir()
 
         # TODO what shall be returned here? A string to the output tex file? the content from the parsing process?
 
     def getParserProcess(self):
         """
         Return a reference to the ttmParser Process, might return None, when called
-        before the parse function was called
+        before the parse function was called..
         """
         return self.subprocess
 
