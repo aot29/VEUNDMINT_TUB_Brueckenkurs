@@ -26,7 +26,7 @@ class TTMParser(object):
             self._logResults(self.subprocess, ttm_bin, tex_start, sys)
             #return output, err
 
-        except Exception, e:
+        except BaseException as e:
             # sys.popdir()
             import sys as real_sys
             sys.message(sys.FATALERROR, str(e))
