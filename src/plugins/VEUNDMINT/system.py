@@ -107,7 +107,8 @@ class System(object):
                                 self._printMessage(self.BASHCOLORRED, "ERROR: Wrong error type " + lvl + " on conversion platform, message: " + msg)
                             else:
                                 if (lvl == self.FATALERROR):
-                                    self._printMessage(self.BASHCOLORRED, "FATAL ERROR: " + msg)
+                                    import sys as real_sys
+                                    self._printMessage(self.BASHCOLORRED, "FATAL ERROR: " + msg + real_sys.last_traceback)
                                     self._encode_print("Program aborted with error code 1")
                                     sys.exit(3) # highest possible error level
                                 else:
@@ -326,7 +327,7 @@ class System(object):
             if self.doEncodeASCII == 1:
                 print(txt.encode(encoding = "us-ascii", errors = "backslashreplace").decode("us-ascii"))
             else:
-                print(txt.encode('ascii', 'ignore'))
+                print(txt.encode('utf-8', 'ignore'))
 
 
     # ends the program, returning the maximum error level reached during execution
