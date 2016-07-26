@@ -54,6 +54,7 @@ class System(object):
         self.doColors = options.consolecolors
         self.doVerbose = options.doverbose
         self.beQuiet = options.quiet
+        self.options = options
 
         self.dirstack = []
 
