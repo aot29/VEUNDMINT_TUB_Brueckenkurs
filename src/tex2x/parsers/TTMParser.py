@@ -15,8 +15,8 @@ class TTMParser(object):
         Parses files from TeX to ?, uses the converterDir Option which is set to /src
         """
         # TODO: are there sideeffects by commenting this out? hope not.
-        # sys.pushdir()
-        # os.chdir(tex_dir)
+        sys.pushdir()
+        os.chdir(tex_dir)
 
         try:
             with open(ttm_outfile, "wb") as outfile, open(tex_start, "rb") as infile:
@@ -27,7 +27,7 @@ class TTMParser(object):
             #return output, err
 
         except BaseException as e:
-            # sys.popdir()
+            sys.popdir()
             import sys as real_sys
             sys.message(sys.FATALERROR, str(e))
 
