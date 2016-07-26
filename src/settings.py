@@ -1,5 +1,6 @@
 import os
 import logging
+import platform
 
 # The base directory of everything
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -21,7 +22,7 @@ converterDir = 'defaultConverterDirSetting'
 module_tex = os.path.join(BASE_DIR, 'module_veundmint')
 
 # The ttm binary file
-ttmBin = os.path.join(BASE_DIR, 'src/ttm/ttm')
+ttmBin = os.path.join(BASE_DIR, 'src/ttm/ttm_osx') if platform.system() == 'Darwin' else os.path.join(BASE_DIR, 'src/ttm/ttm')
 
 # The directory ttm will look for TeX Files ?
 sourceTEX = os.path.join(BASE_DIR, 'src/tex')
