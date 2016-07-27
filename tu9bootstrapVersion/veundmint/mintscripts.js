@@ -177,9 +177,58 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
  
   // Dynamische prepare-Funktion unabhaengig vom Fragefeldtyp einbauen
   // Funktion bekommt das dem Feld zugewiesene DOM-Element als Parameter, clear xoder externes setting wird danach separat ausgefuehrt in InitResults
-  ob.prepare = function() { this.element = document.getElementById(this.id); if (this.type == 2) { this.image = document.getElementById(this.option); } };
+  ob.prepare = function() { 
+	  this.element = document.getElementById(this.id); 
+	  if (this.type == 2) { 
+		  this.image = document.getElementById(this.option); 
+	  } 
+  };
+  
+  /**
+   * Display a visual cue during exercise input
+   * (e.g. a question mark, a cross, a check).
+   * 
+   * @param status - one of SOLUTION_NEUTRAL (default), SOLUTION_TRUE or SOLUTION_FALSE
+   */
+  ob.displayFeedback = function( status ) {
+	switch( status ) {
+		case SOLUTION_NEUTRAL:
+			className = "glyphicon-question-sign";
+			color = QCOLOR_NEUTRAL;
+			break;
+		case SOLUTION_TRUE:
+			className = "glyphicon-ok";
+			color = QCOLOR_TRUE;
+			break;
+		case SOLUTION_FALSE:
+			className = "glyphicon-remove";
+			color = QCOLOR_FALSE;
+			break;
+		default:
+			className = "glyphicon-question-sign";
+			color = QCOLOR_NEUTRAL;
+	}
+	
+	// Get the image element on the page and set the  bootstrap class 
+	var icon = document.getElementById( this.imgid );
+	if ( typeof icon != 'undefined' && icon !== null ) { 
+		icon.className = "glyphicon " + className;
+		icon.style.color = color;
+		
+	} else {
+		console.log( "Can't display status for image " + this.imgid );
+	}
+	// get the input field and change the background color
+	if ( this.type != 2 ) {
+		var field = document.getElementById( this.id );
+		if ( typeof field != 'undefined' && field !== null ) {
+			console.log("color " + color);
+			field.style.backgroundColor = color;
+		}
+	}
+  }
 
-    // Dynamische clear-Funktion abhaengig vom Fragefeldtyp einbauen
+  // Dynamische clear-Funktion abhaengig vom Fragefeldtyp einbauen
   if ((type == 1) | (type == 3) | (type == 4) | (type == 5) | (type == 6) | (type == 7)) {
       ob.rawloadvalue = function(val) { // Nur Benutzung in clear
             document.getElementById(this.id).value = val; // Stringbasierte Felder
@@ -202,12 +251,12 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
         this.element.checked = false; 
         this.element[ getIndeterminatePropName() ] = true; 
         this.value = "0"; 
-        this.element.cval = "0"; this.message = ""; this.image.src = imagesPath + "questionmark.png"; notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
+        this.element.cval = "0"; this.message = ""; this.displayFeedback(); notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
       ob.rawloadvalue = function(val) {
           this.value = val;
           this.element.cval = val;
           this.message = "";
-          this.image.src = imagesPath + "questionmark.png";
+          this.displayFeedback(); // this.image.src = imagesPath + "questionmark.png";
           if ((val == "0") || (val == "")) {
               // nothing selected yet
               this.element.checked = false;
@@ -242,7 +291,9 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   }
   
   FVAR.push(ob);
+  
 }
+
 
 // Blendet Einstellungsseite ein und aus
 function toggle_settings() {
@@ -510,6 +561,7 @@ function handlerChange(id, nocontentcheck) {
     console.log( "textinput " + s );
     displayInputContent(id,s);
     var u = document.getElementById("UFIDM" + activefieldid);
+    console.log("u " + u);
     if (u != null) {
       u.innerHTML = FVAR[id].message;
       u.style.background = e.style.background;
@@ -1519,17 +1571,27 @@ function notifyPoints(i, points, state) {
   }
   
   // Feldeigenschaften entsprechend anpassen
+  FVAR[i].displayFeedback(state);
+  /*
   var img = document.getElementById(FVAR[i].imgid);
+  
   if (img == null) {
       logMessage(VERBOSEINFO, "notifyPoints warning: img=0, type = " + FVAR[i].type);
   } else {
     switch(state) {
-        case SOLUTION_TRUE: { img.src = imagesPath + "right.png"; break; }
-        case SOLUTION_FALSE: { img.src = imagesPath + "false.png"; break; }
-        case SOLUTION_NEUTRAL: { img.src = imagesPath + "questionmark.png"; break; }
+        case SOLUTION_TRUE: 
+        	FVAR[i].displayFeedbackIcon(SOLUTION_TRUE); // img.src = imagesPath + "right.png"; 
+        	break;
+        case SOLUTION_FALSE: 
+        	FVAR[i].displayFeedbackIcon(SOLUTION_FALSE); // img.src = imagesPath + "false.png"; 
+        	break;
+        case SOLUTION_NEUTRAL: 
+        	FVAR[i].displayFeedbackIcon(SOLUTION_NEUTRAL);//img.src = imagesPath + "questionmark.png"; 
+        	break;
     }
   }
-  
+  */
+  /*
   if (FVAR[i].type != 2) {
       // Normale Kombination Eingabefeld und Antworticon
       var e = document.getElementById(FVAR[i].id);
@@ -1539,7 +1601,7 @@ function notifyPoints(i, points, state) {
           case SOLUTION_NEUTRAL: { e.style.background = QCOLOR_NEUTRAL; break; }
       }
   }
-
+  */
   updateLayoutStates();
  
 }
@@ -1798,8 +1860,12 @@ function displayInputContent(id,latex) {
 //	          hide: function(event, api) { alert("hide"); }
 //	        },
 	        style: {
-	          classes: 'qtip-blue qtip-shadow'
-	        }
+	          classes: 'qtip-shadow'
+	        },
+	    	position: {
+	    		my: 'top left',  // Position my top left...
+	            at: 'bottom left' // at the bottom right of...
+	    	}
       });
       console.log(activetooltip);
   
