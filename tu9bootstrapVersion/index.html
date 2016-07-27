@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.css" />
     <link rel="stylesheet" type="text/css" href="veundmint/veundmint_theme.css" />
+    <link rel="stylesheet" type="text/css" href="qtip2/jquery.qtip.css">
 	<div class="mathjax-header"><script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
 	  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
@@ -44,17 +45,17 @@
 	</div>
     
 	<script src="veundmint/knockout-3.0.0.js" type="text/javascript"></script>
-    <script src="veundmint/math.js" type="text/javascript"></script>
+  <script src="veundmint/math.js" type="text/javascript"></script>
 	<script src="veundmint/mparser.js" type="text/javascript"></script>
-    <script src="jQuery/jquery.js" type="text/javascript"></script>
+  <script src="jQuery/jquery.js" type="text/javascript"></script>
 	<script src="qtip2/jquery.qtip.js" type="text/javascript"></script>
-    <script src="veundmint/dlog.js" type="text/javascript"></script>
-    <script src="veundmint/dynamiccss.js" type="text/javascript"></script>
-    <script src="veundmint/intersite.js" type="text/javascript"></script>
-    <script src="veundmint/mintscripts.js" type="text/javascript"></script>
-    <script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
-    <script src="jQuery/jquery.i18n.js" type="text/javascript"></script>
-    <script src="jQuery/jquery.i18n.messagestore.js" type="text/javascript"></script>
+  <script src="veundmint/dlog.js" type="text/javascript"></script>
+  <script src="veundmint/dynamiccss.js" type="text/javascript"></script>
+  <script src="veundmint/intersite.js" type="text/javascript"></script>
+  <script src="veundmint/mintscripts.js" type="text/javascript"></script>
+  <script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
+  <script src="jQuery/jquery.i18n.js" type="text/javascript"></script>
+  <script src="jQuery/jquery.i18n.messagestore.js" type="text/javascript"></script>
  
  
 		<script src="datatables/datatables.js" type="text/javascript"></script>
@@ -596,9 +597,51 @@ Um zwischen beiden Darstellungen zu wechseln, gibt es mehrere Techniken.
         <li>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
             <mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mo stretchy="false">(</mo><mn>3</mn><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> = 
-            
+
+<!-- QTip --> 
+<!-- 
+<div style="z-index: 15001; top: 1888.57px; left: 815.317px; opacity: 1; display: block;" data-qtip-id="activetooltip" aria-hidden="false" aria-describedby="qtip-activetooltip-content" aria-atomic="false" aria-live="polite" role="alert" tracking="false" class="qtip qtip-default qtip-blue qtip-shadow qtip-pos-tl qtip-focus" id="qtip-activetooltip">
+	<div style="background-color: transparent ! important; border: 0px none ! important; width: 8px; height: 8px; line-height: 8px; left: -1px; top: -8px;" class="qtip-tip">
+		<canvas height="8" width="8" style="background-color: transparent ! important; border: 0px none ! important; width: 8px; height: 8px;"></canvas>
+	</div>
+	<div class="qtip-titlebar">
+		<div aria-atomic="true" class="qtip-title" id="qtip-activetooltip-title">Formeleingabe</div>
+	</div>
+	<div aria-atomic="true" id="qtip-activetooltip-content" class="qtip-content">
+		<div id="NINPUTFIELDQFELD_1.3.5.QF1" data-bind="evalmathjax: ifobs">
+			<span style="text-align: center;" class="mjx-chtml MJXc-display">
+				<span style="font-size: 129%;" tabindex="0" class="mjx-chtml MathJax_CHTML" id="MathJax-Element-52-Frame">
+					<span role="math" class="mjx-math" id="MJXc-Node-1367">
+						<span class="mjx-mrow" id="MJXc-Node-1368">
+							<span class="mjx-mstyle" id="MJXc-Node-1369">
+								<span class="mjx-mrow" id="MJXc-Node-1370">
+									<span class="mjx-mstyle" id="MJXc-Node-1371">
+										<span style="font-size: 120%;" class="mjx-mrow" id="MJXc-Node-1372">
+											<span class="mjx-mtext" id="MJXc-Node-1373">
+												<span style="padding-top: 0.52em; padding-bottom: 0.225em;" class="mjx-char">
+													<span style="font-size: 77.5%; padding-bottom: 0.332em; width: 8.83em;" class="mjx-charbox MJXc-font-inherit">(msg-missing-input)</span>
+												</span>
+											</span>
+										</span>
+									</span>
+								</span>
+							</span>
+						</span>
+					</span>
+				</span>
+			</span>
+			<script id="MathJax-Element-52" type="math/tex; mode=display">\displaystyle\large \text{(msg-missing-input)}</script>
+		</div><br>
+		<div name="NUSERMESSAGE" id="UFIDMQFELD_1.3.5.QF1" style="line-height: 110%; color: rgb(0, 0, 0); border: thin solid rgb(0, 0, 0); padding: 8px; background: rgb(224, 224, 224) none repeat scroll 0% 0%; width: 250px; font-size: 11pt;" helveticaneue-light",="" "helvetica="" neue="" light",="" neue",="" helvetica,="" arial,="" "lucida="" grande",="" verdana,="" helvetica="" ,="" sans-serif;"="">msg-unanswered-question</div>
+	</div>
+</div>
+ -->
+<!--             
+<div id="NINPUTFIELD" data-bind="evalmathjax: ifobs"></div><br /><div name="NUSERMESSAGE" id="UFIDMQFELD_1.3.5.QF1" style="line-height:110%; color:#000000; border: thin solid rgb(0,0,0); padding: 8px; background-color:#CFDFDF; width:250px; font-size:11pt; font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;"></div>
+<input style="background: rgb(224, 224, 224) none repeat scroll 0% 0%;" mfieldtype="4" name="Name_QFELD_1.3.5.QF1" id="QFELD_1.3.5.QF1" size="30" maxlength="30" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);" type="text">                
+ -->
             <input mfieldtype="4" name="Name_QFELD_1.3.5.QF1" id="QFELD_1.3.5.QF1" type="text" size="30" maxlength="30" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);"/>
-                
+
             <span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.3.5.QF1"></span>
         
             <button name="Name_MHint1" id="MHint1_button" type="button" class="btn btn-default" data-toggle="show_solution" onclick="toggle_hint('MHint1');">Lösung</button>      
