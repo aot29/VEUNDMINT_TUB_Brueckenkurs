@@ -18,13 +18,13 @@ class TTMParserTest(unittest.TestCase):
 
     def testTitle(self):
         """
-        Test if the LaTeX \title command is converted correctly to <tilte> in html
+        Test if the LaTeX \\title command is converted correctly to <tilte> in html
         """
         self.isCorrectConversionTest(r'''\title{I am a pretty good tester}''', '<title> I am a pretty good tester </title>')
 
     def testCenterText(self):
         """
-        Test correct conversion from \begin{center} to <div style="text-align:center">...
+        Test correct conversion from \\begin{center} to <div style="text-align:center">...
         TODO: the closing div tag </div> should not appear on a newline
         """
         res = self.isCorrectConversionTest(r'''\begin{center}
@@ -52,11 +52,7 @@ Ich stehe in der mitte
         self.parser.parse(tex_start=self.tex_test_file, ttm_outfile=self.tex_test_output, sys=self.s)
 
         # check for occurence of the html_string in the generated file
-        # we use mmap which has a better performance (less memory)
-        with open(self.tex_test_output, 'rb', 0) as file, \
-            mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ) as s:
+        with open(self.tex_test_output, 'rb', 0) as file:
             data = file.read()
             #we have to look for byte strings as mmap will produce byte arrays
             self.assertIn(html_string.encode(), data)
-            # if s.find(html_string.encode()) != -1:
-            #     self.assertEqual(result, expected)
