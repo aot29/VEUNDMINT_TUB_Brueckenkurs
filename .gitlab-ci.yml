@@ -8,6 +8,9 @@ cache:
     - node_modules/
     - venv/
 
+before_script:
+  "echo we are working in $CI_PROJECT_DIR"
+
 setup_nvm:
   stage: setup
   script:
@@ -17,6 +20,7 @@ setup_nvm:
     - "nvm install 5.0"
     - "nvm use 5.0"
     - "npm install"
+    - "npm run dev"
   artifacts:
     name: "${CI_BUID_STAGE}_${CI_BUID_REF_NAME}"
     paths:
