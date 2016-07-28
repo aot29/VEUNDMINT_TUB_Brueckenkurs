@@ -9,7 +9,17 @@ cache:
     - venv/
 
 before_script:
-  "echo we are working in $CI_PROJECT_DIR"
+  - "echo we are working in $CI_PROJECT_DIR"
+  # runn ssh-agent (inside the build environment)
+  - "eval $(ssh-agent -s)"
+  # add the ssh key storen in SSH_PRIVATE_KEY variable to the agent store
+  - "ssh add < (echo ''$SSH_PRIVATE_KEY')"
+
+test_ssh:
+  stage: setup
+  script:
+    # try to ssh to the server
+    - ssh mulfadmin@guest6.mulf.tu-berlin.de
 
 setup_nvm:
   stage: setup
