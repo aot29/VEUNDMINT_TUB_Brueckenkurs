@@ -4,17 +4,18 @@ Created on Jun 16, 2016
 @author: alvaro
 '''
 import unittest
-from test.systemtests.AbstractSystemTest import AbstractSystemTest
+from test.systemtests.SeleniumTest import SeleniumTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-class FinalTestTest( AbstractSystemTest ):
+class FinalTestTest( SeleniumTest ):
     '''
     Test the final test for module 1
     '''
 
     def setUp( self ):
-        AbstractSystemTest.setUp(self)
+        SeleniumTest.setUp(self)
         # navigate to chapter 1, final test (1.5)
         self._navToChapter( "1", "1.5" )
 

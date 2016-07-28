@@ -44,7 +44,8 @@ class AbstractSystemTest(unittest.TestCase):
 		# create the Web Driver with PhantomJS
 		# TODO make this generic
 
-		self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
+		#self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
+		self.driver = webdriver.Firefox()
 		self.driver.set_window_size(1120, 550)
 #		self.driver.set_page_load_timeout(5)
 		self.driver.implicitly_wait(5)
@@ -59,7 +60,7 @@ class AbstractSystemTest(unittest.TestCase):
 		return self.config.get( 'defaults', key )
 
 
-	def _openStartPage(self):
+	def _openStartPage(self, no_mathjax=False):
 		'''
 		Opens the start page of the online course in the webdriver Used to test navigation elements and toc.
 		'''
@@ -68,6 +69,7 @@ class AbstractSystemTest(unittest.TestCase):
 # 		if (self.driver.current_url != BASE_URL):
 # 		# get the url from environment, otherwise from settings
 		start_url = os.getenv('BASE_URL', BASE_URL)
+		start_url = start_url + '?no_mathjax' if no_mathjax else start_url
 
 		self.driver.get( start_url )
 #
@@ -77,7 +79,7 @@ class AbstractSystemTest(unittest.TestCase):
 # 			print("openStartPage was already on start Page")
 
 
-	def _navToChapter(self, chapter, section=None, lang = "de"):
+	def _navToChapter(self, chapter, section=None, lang = "de", no_mathjax=False):
 		'''
 		Navigate to chapter specified by name.
 		@param chapter: (required) a STRING specifying the chapter, e.g. "1" will open chapter 1
@@ -86,7 +88,7 @@ class AbstractSystemTest(unittest.TestCase):
 		'''
 		# Open the start page
 		#self._openStartPage()
-		self._chooseLanguageVersion( lang )
+		self._chooseLanguageVersion( lang, no_mathjax )
 
 		# Open chapter
 		#
@@ -110,7 +112,7 @@ class AbstractSystemTest(unittest.TestCase):
 			section_el.click()
 
 
-	def _chooseLanguageVersion(self, languagecode):
+	def _chooseLanguageVersion(self, languagecode, no_mathjax=False):
 		'''
 		Navigate to the specified language version of the website
 		@param languagecode: (required) a STRING specifying the language code, e.g. "de" or "en"

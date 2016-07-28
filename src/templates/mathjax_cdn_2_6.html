@@ -1,2 +1,13 @@
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?locale=de"></script>
-
+<script type="text/javascript">
+/* load mathjax only if we did not pass the no_mathjax argument */
+var params={};window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(str,key,value){params[key] = value;});
+if (params.no_mathjax !== "undefined") {
+  var d = document,
+  h = d.getElementsByTagName('head')[0],
+  s = d.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?locale=de';
+  h.appendChild(s);
+}
+</script>

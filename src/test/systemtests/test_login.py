@@ -5,21 +5,21 @@ Created on Jun 21, 2016
 @author: alvaro
 '''
 import unittest
-from test.systemtests.AbstractSystemTest import AbstractSystemTest
+from test.systemtests.SeleniumTest import SeleniumTest
 
-class TestLogin( AbstractSystemTest ):
+class TestLogin( SeleniumTest ):
     '''
     Tests for the login page
     '''
     registrationFieldIds = {'USER_VNAME', 'USER_SNAME', 'USER_EMAIL', 'USER_SGANG', 'USER_UNI', 'USER_UNAME'}
     '''
-    Testuser name and password  
+    Testuser name and password
     '''
     TestUName = 'TestUser12345'
     TestUPassword = 'xxxxx'
 
     def setUp(self):
-        AbstractSystemTest.setUp(self)
+        SeleniumTest.setUp(self)
         # navigate to EN login page
         self._chooseLanguageVersion( 'en' )
         # Actually, this is the register button, but its ID is loginbutton
@@ -32,7 +32,7 @@ class TestLogin( AbstractSystemTest ):
         '''
         for id in self.registrationFieldIds:
             self._checkPresentAndEmpty( id )
-        
+
 
     def testName(self):
         '''
@@ -91,20 +91,20 @@ class TestLogin( AbstractSystemTest ):
         # The registration button should appear
         self.assertTrue( self._getRegistrationButton(), "Registration button not displayed when it should" )
         # Click on the registration button
-        
+
         # There's an error when I try this: Invalid Command Method. Perhaps unsupported by the PhantomJS driver?
         # A simple solution would be to remove the prompt, which doesn't add to the user experience anyway.
-        
+
         self._getRegistrationButton().click()
-        passPrompt = self.driver.switch_to.alert; 
+        passPrompt = self.driver.switch_to.alert;
         passPrompt.send_keys( self.TestUPassword )
-        
+
 
     def _checkPresentAndEmpty(self, inputId):
         '''
         Check if an input field is present and is empty
         @param inputName String the id of an input field
-        '''    
+        '''
         self.assertTrue( self.driver.find_element_by_id( inputId ) )
         self.assertFalse( self.driver.find_element_by_id( inputId ).get_attribute("value") )
 
@@ -119,8 +119,8 @@ class TestLogin( AbstractSystemTest ):
         resp = False
         if len( list ) != 0 : resp = list[0]
         return resp
-        
-        
+
+
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

@@ -1,8 +1,8 @@
 import unittest
 from selenium import webdriver
-from test.systemtests.AbstractSystemTest import AbstractSystemTest
+from test.systemtests.SeleniumTest import SeleniumTest
 
-class TestPJS(AbstractSystemTest):
+class TestPJS(SeleniumTest):
 
     def test_url(self):
         self.driver.get("http://duckduckgo.com/")

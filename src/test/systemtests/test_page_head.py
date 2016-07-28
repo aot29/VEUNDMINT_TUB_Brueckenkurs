@@ -9,12 +9,12 @@ Unittest: are navigational elements present?
 '''
 import unittest
 from selenium.webdriver.common.action_chains import ActionChains
-from test.systemtests.AbstractSystemTest import AbstractSystemTest
+from test.systemtests.SeleniumTest import SeleniumTest
 
-class PageHeadTest( AbstractSystemTest ):
+class PageHeadTest( SeleniumTest ):
 
     def setUp(self):
-        AbstractSystemTest.setUp( self )
+        SeleniumTest.setUp( self )
         # open a page to test it
         self._chooseLanguageVersion("de")
 
