@@ -50,6 +50,7 @@ build_multilang:
   stage: build
   script:
     - "[ ! -d tu9onlinekurstest ] && make -f tools/makefiles/multilang"
+    - "rsync -i /Users/n/.ssh/can -avr --exclude '*.png' --exclude '*.mp4' tu9onlinekurstest/* mulfadmin@guest6.mulf.tu-berlin.de:/home/mulfadmin/gitlab-ci"
 
 all_tests_and_coverage:
   stage: test
