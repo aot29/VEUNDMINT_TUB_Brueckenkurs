@@ -325,7 +325,11 @@ class System(object):
             if self.doEncodeASCII == 1:
                 print(txt.encode(encoding = "us-ascii", errors = "backslashreplace").decode("us-ascii"))
             else:
-                print(txt)
+                try:
+                    print(txt)
+                except:
+                    # this prevents failing on certain consoles
+                    print(txt.encode('utf-8'))
 
 
     # ends the program, returning the maximum error level reached during execution

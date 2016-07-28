@@ -33,7 +33,7 @@ class TTMParser(object):
             import sys as real_sys
             sys.message(sys.FATALERROR, str(e))
 
-        # sys.popdir()
+        sys.popdir()
 
         # TODO what shall be returned here? A string to the output tex file? the content from the parsing process?
 

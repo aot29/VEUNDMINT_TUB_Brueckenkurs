@@ -45,7 +45,7 @@ import argparse
 parser = argparse.ArgumentParser(description='tex2x converter')
 parser.add_argument("--plugin", help="specify the plugin you want to run")
 parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
-#parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
-args, unknown = parser.parse_known_args()
+parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
+args = parser.parse_args()
 
-ve_settings = Settings(VEUNDMINTOption('',[]))
+ve_settings = Settings(VEUNDMINTOption('', args.override))
