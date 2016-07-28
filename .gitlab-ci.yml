@@ -12,7 +12,7 @@ before_script:
   - "echo we are working in $CI_PROJECT_DIR"
   # runn ssh-agent (inside the build environment)
   - "eval $(ssh-agent -s)"
-  - "ssh add < echo '$SSH_PRIVATE_KEY'"
+  - "ssh add <echo('$SSH_PRIVATE_KEY')
 
 test_ssh:
   stage: setup
