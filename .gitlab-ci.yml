@@ -17,6 +17,10 @@ setup_nvm:
     - "nvm install 5.0"
     - "nvm use 5.0"
     - "npm install"
+  artifacts:
+    name: "${CI_BUID_STAGE}_${CI_BUID_REF_NAME}"
+    paths:
+      - node_modules/
 
 setup_python:
   stage: setup
@@ -25,6 +29,10 @@ setup_python:
     - "[ ! -d venv ] && virtualenv -p python3 venv"
     - "source venv/bin/activate"
     - "pip3 install -r requirements.txt"
+  artifacts:
+    name: "${CI_BUID_STAGE}_${CI_BUID_REF_NAME}"
+    paths:
+      - venv/
 
 build_multilang:
   stage: build
@@ -37,3 +45,6 @@ all_tests_and_coverage:
     - "source venv/bin/activate"
     - "cd src/test"
     - "green -vvv --run-coverage"
+  dependencies:
+    - setup_python
+    - setup_nvm
