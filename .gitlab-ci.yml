@@ -28,5 +28,9 @@ build_multilang:
   stage: build
   script:
     - "[ ! -d tu9onlinekurstest ] && make -f tools/makefiles/multilang"
-    - "cd src"
+
+do_tests:
+  stage: test
+  script:
+    - "cd src/test"
     - "python -m unittest"
