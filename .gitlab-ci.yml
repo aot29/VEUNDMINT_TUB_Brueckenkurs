@@ -30,8 +30,8 @@ build_multilang:
   script:
     - "[ ! -d tu9onlinekurstest ] && make -f tools/makefiles/multilang"
 
-do_tests:
+all_tests_and_coverage:
   stage: test
   script:
     - "cd src/test"
-    - "python -m unittest"
+    - "green -vvv --run-coverage"
