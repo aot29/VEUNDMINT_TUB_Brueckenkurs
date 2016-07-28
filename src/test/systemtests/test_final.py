@@ -5,6 +5,8 @@ Created on Jun 16, 2016
 '''
 import unittest
 from test.systemtests.AbstractSystemTest import AbstractSystemTest
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 
 class FinalTestTest( AbstractSystemTest ):
     '''
@@ -36,11 +38,14 @@ class FinalTestTest( AbstractSystemTest ):
         '''
         # get the text of the page content
         # check that keywords use the correct locale
-        pageText = self.driver.find_element_by_id( 'content' ).text.lower()
-        self.assertTrue( self.locale["chapter"].lower() in pageText )
-        self.assertTrue( self.locale["chapter"].lower() in pageText )
-        self.assertTrue( self.locale["explanation_test"].lower() in pageText )
-        self.assertTrue( self.locale["exercise_labelprefix"].lower() in pageText )
+        #
+        page_text = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "content")))
+        page_text = page_text.text.lower()
+
+        self.assertTrue( self.locale["chapter"].lower() in page_text )
+        self.assertTrue( self.locale["chapter"].lower() in page_text )
+        self.assertTrue( self.locale["explanation_test"].lower() in page_text )
+        self.assertTrue( self.locale["exercise_labelprefix"].lower() in page_text )
         # where do these come from?
         #self.assertTrue( "Submit test".lower() in pageText )
         #self.assertTrue( "Reset and restart".lower() in pageText )

@@ -55,7 +55,6 @@ class AbstractSystemTest(unittest.TestCase):
 		if self.driver:
 			self.driver.quit()
 
-
 	def _getConfigParam(self, key):
 		return self.config.get( 'defaults', key )
 
@@ -69,7 +68,7 @@ class AbstractSystemTest(unittest.TestCase):
 # 		if (self.driver.current_url != BASE_URL):
 # 		# get the url from environment, otherwise from settings
 		start_url = os.getenv('BASE_URL', BASE_URL)
-		
+
 		self.driver.get( start_url )
 #
 # 			wait = WebDriverWait(self.driver, 3)
