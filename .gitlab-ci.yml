@@ -5,7 +5,6 @@ stages:
 
 cache:
   paths:
-    - venv/
     - node_modules/
 
 setup_nvm:
@@ -17,6 +16,8 @@ setup_nvm:
     - "nvm install 5.0"
     - "nvm use 5.0"
     - "npm install"
+    - "npm run dev > /dev/null &"
+
 setup_python:
   stage: setup
   script:
