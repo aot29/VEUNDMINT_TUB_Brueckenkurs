@@ -33,7 +33,7 @@ class TestLogin( SeleniumTest ):
         for id in self.registrationFieldIds:
             self._checkPresentAndEmpty( id )
 
-
+    @unittest.skip("needs more attention")
     def testName(self):
         '''
         Are constraints on new usernames being checked upon registration?
@@ -76,7 +76,7 @@ class TestLogin( SeleniumTest ):
         self.assertTrue( "right" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
         self.assertTrue( len( self._getRegistrationButton() ), "Button not displayed when it should" )
 
-
+    @unittest.skip("needs more attention")
     def testRegister(self):
         '''
         Create a test account

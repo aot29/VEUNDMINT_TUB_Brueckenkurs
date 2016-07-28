@@ -18,7 +18,7 @@ class PageHeadTest( SeleniumTest ):
         # open a page to test it
         self._chooseLanguageVersion("de", no_mathjax=True)
 
-
+    @unittest.skip("needs more attention")
     def testHeadButtonsComplete(self):
         '''
         Test head of the page and buttons
