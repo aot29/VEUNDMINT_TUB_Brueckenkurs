@@ -33,5 +33,6 @@ build_multilang:
 all_tests_and_coverage:
   stage: test
   script:
+    - "source venv/bin/activate"
     - "cd src/test"
     - "green -vvv --run-coverage"
