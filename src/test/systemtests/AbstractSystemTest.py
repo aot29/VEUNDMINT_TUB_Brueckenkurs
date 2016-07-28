@@ -11,6 +11,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
+import os
 import os.path
 import configparser as ConfigParser
 from test.test_tools import getBaseDirectory
@@ -66,7 +67,10 @@ class AbstractSystemTest(unittest.TestCase):
 # 		print ('_openStartPage with %s ' % BASE_URL)
 #
 # 		if (self.driver.current_url != BASE_URL):
-		self.driver.get( BASE_URL )
+# 		# get the url from environment, otherwise from settings
+		start_url = os.getenv('BASE_URL', BASE_URL)
+		
+		self.driver.get( start_url )
 #
 # 			wait = WebDriverWait(self.driver, 3)
 # 			element = wait.until(EC.presence_of_element_located((By.ID,'languageChooser')))

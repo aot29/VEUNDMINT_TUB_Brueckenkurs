@@ -12,13 +12,6 @@ before_script:
   - "echo we are working in $CI_PROJECT_DIR"
   # runn ssh-agent (inside the build environment)
 
-
-test_ssh:
-  stage: setup
-  script:
-    # try to ssh to the server
-    - ssh -i ~/.ssh/can mulfadmin@guest6.mulf.tu-berlin.de
-
 setup_nvm:
   stage: setup
   script:
@@ -57,6 +50,7 @@ all_tests_and_coverage:
   script:
     - "source venv/bin/activate"
     - "cd src/test"
+    - "export BASE_URL=http://guest6.mulf.tu-berlin.de/gitlab-ci/"
     - "green -vvv --run-coverage"
   dependencies:
     - setup_python
