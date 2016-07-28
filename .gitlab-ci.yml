@@ -1,19 +1,31 @@
+stages:
+  - setup
+  - build
+
 cache:
   paths:
-    - venv
-test:
+    - venv/
+    - node_modules/
+
+setup_nvm:
+  stage: setup
   script:
-    - "echo running tests for $CI_BUILD_REF_NAME"
     - "echo installing npm and phantomJS via nvm"
     - "git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`"
     - ". ~/.nvm/nvm.sh"
     - "nvm install 5.0"
     - "nvm use 5.0"
     - "npm install"
+setup_python:
+  stage: setup
+  script:
     - "echo installing python dependencies in virtual environment"
     - "[ ! -d venv ] && virtualenv -p python3 venv"
     - "source venv/bin/activate"
     - "pip3 install -r requirements.txt"
+
+build_multilang:
+  stage: build
     - "[ ! -d tu9onlinekurstest ] && make -f tools/makefiles/multilang"
     - "cd src"
     - "python -m unittest"
