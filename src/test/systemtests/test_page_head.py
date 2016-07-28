@@ -16,7 +16,7 @@ class PageHeadTest( SeleniumTest ):
     def setUp(self):
         SeleniumTest.setUp( self )
         # open a page to test it
-        self._chooseLanguageVersion("de")
+        self._chooseLanguageVersion("de", no_mathjax=True)
 
 
     def testHeadButtonsComplete(self):

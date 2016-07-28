@@ -41,7 +41,7 @@ class Chapter1Test( SeleniumTest ):
 		Does the overview page list the expected number of chaper sections?
 		'''
 		# count number of sections listed
-		self._chooseLanguageVersion( "de" )
+		self._chooseLanguageVersion( "de", no_mathjax=True )
 
 		content = self.driver.find_element_by_id( "content" )
 		sections = content.find_elements_by_tag_name( "li" )
