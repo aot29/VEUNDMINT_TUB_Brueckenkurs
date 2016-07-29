@@ -37,7 +37,7 @@ from plugins.exceptions import PluginException
 from plugins.basePlugin import Plugin as basePlugin
 
 from plugins.VEUNDMINT.tcontent import TContent
-from plugins.VEUNDMINT.pagefactory import PageFactory
+from plugins.VEUNDMINT.PageFactory import PageFactory
 
 class Plugin(basePlugin):
 
@@ -51,7 +51,7 @@ class Plugin(basePlugin):
         self.version ="P0.1.0"
         self.outputextension = "html"
         self.outputsubdir = self.outputextension
-        self.pagefactory = PageFactory(interface, self)
+        self.page = PageFactory(interface, self).getPage()
         self.randcharstr = "0123456789,.;abcxysqrt()/*+-"
         self.sys.message(self.sys.VERBOSEINFO, "Output plugin " + self.name + " of version " + self.version + " constructed")
 
@@ -891,7 +891,7 @@ class Plugin(basePlugin):
     def generate_html(self, tc):
         for c in tc.children:
             self.generate_html(c)
-        self.pagefactory.generate_html(tc)
+        self.page.generateHTML(tc)
         
         
     def write_htmlfiles(self, tc):
@@ -941,7 +941,8 @@ class Plugin(basePlugin):
     def write_miscfiles(self):
         # write redirects
         if self.startfile == "":
-            self.sys.message(self.sys.FATALERROR, "No startfile found")
+            pass
+            #self.sys.message(self.sys.FATALERROR, "No startfile found")
         else:
             self.createRedirect("index.html", self.startfile, False)
             self.sys.message(self.sys.CLIENTINFO, "HTML Tree entry chain created")

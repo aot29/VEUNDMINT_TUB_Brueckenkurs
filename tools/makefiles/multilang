@@ -64,6 +64,22 @@ convert:
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
 
+#
+# set CURRENT_LANG at runtime.
+# Build DE language version
+#
+de:
+	$(eval CURRENT_LANG := de)
+	$(convert_cmd)
+
+
+#
+# set CURRENT_LANG at runtime.
+# Build EN language version
+#
+en:
+	$(eval CURRENT_LANG := en)
+	$(convert_cmd)
 
 #
 # Merge the 2 versions together.
