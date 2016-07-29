@@ -18,7 +18,7 @@
 
 
 """
-    This is html5 output plugin PageFactory object
+    This is html5 output plugin Page object written by Daniel Haase from KIT
     Version P0.1.0, needs to be consistent with mintmod.tex and the preprocessor plugin
 """
 
@@ -36,13 +36,14 @@ from lxml.html import fromstring as hp_fromstring
 from lxml.html.html5parser import HTMLParser as HTML5Parser
 from lxml.html.html5parser import fromstring as h5_fromstring
 from lxml import etree
+from plugins.VEUNDMINT.AbstractPage import AbstractPage
 
-class PageFactory(object):
+class PageKIT(AbstractPage):
 
-    def __init__(self, interface, outputplugin):
-        self.sys = interface['system']
-        self.data = interface['data']
-        self.options = interface['options']
+    def __init__(self, sys, data, options, outputplugin):
+        self.sys = sys
+        self.data = data
+        self.options = options
         self.outputplugin = outputplugin
         self._load_templates()
 
@@ -96,7 +97,7 @@ class PageFactory(object):
 
 
     # generates a html page as a string using loaded templates and the given TContent object
-    def generate_html(self, tc):
+    def generateHTML(self, tc):
         if (tc.display == False):
             tc.html = "<html>NODISPLAY</html>"
             return
