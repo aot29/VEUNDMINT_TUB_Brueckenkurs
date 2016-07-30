@@ -16,12 +16,12 @@
 
 
 """
-   Forked from pagefactory.py (now Page.py) to follow factory pattern.
+   Forked from pagefactory.py (now PageKIT.py) to follow factory pattern.
 """
 
 class PageFactory(object):
     '''
-    Deals with the instantiation of page objects without exposing the logic.
+    Deals with the instantiation of page objects without requiring unnecessary coupling.
     Enables having different Page objects, which can be instantiated according to some parameter in Option.py
     '''
 
@@ -43,7 +43,7 @@ class PageFactory(object):
         if ( self.options.bootstrap ):
             # When using bootstrap, use the Page object by TUB
             from plugins.VEUNDMINT.PageTUB import PageTUB
-            page = PageTUB( self.options.converterTemplates )
+            page = PageTUB( self.options.converterTemplates, self.options.lang )
             
         else:
             # By default, use the Page object by KIT

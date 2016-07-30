@@ -136,7 +136,7 @@ class Option(object):
         self.displaycopyrightlinks = 0                       # add copyright links to images in the entire course
         self.maxsitejsonlength = 255                         # the maximal number of string characters allowed for an internal json site object, will be stored in a different file if limit is exceeded
         
-        self.bootstrap = 0                                   # Use Bootstrap for responsive layout
+        self.bootstrap = 1                                   # Use Bootstrap for responsive layout
 
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
@@ -304,39 +304,9 @@ class Option(object):
         self.stylesheets = []
         self.scriptheaders = []
         if ( self.bootstrap ):
-            # Bootstrap-specific styles and JS-Files
-            self.stylesheets  += [
-                "qtip2/jquery.qtip.min.css",
-                "datatables/min.css",
-                "bootstrap/css/bootstrap.css",
-                "bootstrap/css/bootstrap-theme.css",
-                "css/veundmint_theme.css"
-            ]
-
-            self.scriptheaders += [
-                "jQuery/jquery-2.2.4.js",
-                "bootstrap/js/bootstrap.js",
-                "js/mintscripts_bootstrap.js"
-                "es5-sham.min.js",
-                "qtip2/jquery.qtip.min.js",
-                "datatables/datatables.min.js",
-                "knockout-3.0.0.js",
-                "math.js",
-                "dynamiccss.js",
-                self.convinfofile,
-                "mparser.js",
-                "scormwrapper.js",
-                "dlog.js",
-                "userdata.js",
-                "mintscripts.js",
-                "intersite.js",
-                "exercises.js",
-                "mintscripts.js",
-                "servicescripts.js",
-                "CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
-                "jquery.i18n.js",
-                "jquery.i18n.messagestore.js"
-            ]
+            # Styles and JS-Files for the Bootstrap
+            # version are in the templates
+            pass
             
         else:
             # Default-layout-specific styles and JS-Files

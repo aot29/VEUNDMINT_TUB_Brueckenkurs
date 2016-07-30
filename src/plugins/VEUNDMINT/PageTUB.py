@@ -28,11 +28,12 @@ from plugins.VEUNDMINT.AbstractPage import AbstractPage
 class PageTUB( AbstractPage ):
 
 
-    def __init__( self, tplPath ):
+    def __init__( self, tplPath, lang ):
         '''
         Please do not instantiate directly, use PageFactory instead (except for unit tests).
         '''
         self.tplPath = tplPath
+        self.lang = lang
     
     
     def generateHTML( self, tc ):
@@ -41,17 +42,24 @@ class PageTUB( AbstractPage ):
         
         @param tc - TContent object encapsulating the data for the page to be rendered
         '''
-        page = self.createPage( tc )
+        # Create the XML inout
+        page = self.createPageXML( tc )
+
+        # Load the template
         templatePath = os.path.join( self.tplPath, "page.xslt" )
         template = etree.parse( templatePath )
         if ( template is None ):
             raise Exception( 'Could not load template from file %s' % templatePath )
+
+        # Apply the template
         transform = etree.XSLT( template )
         result = transform( page )
+
+        # save the result in tc object
         tc.html = str(result)
 
 
-    def createPage(self, tc):
+    def createPageXML(self, tc):
         '''
         Create a XML document representing a page from a TContent object
         
@@ -59,6 +67,7 @@ class PageTUB( AbstractPage ):
         @return an etree element
         '''
         page = etree.Element( 'page' )
+        page.set( 'lang', self.lang )
         
         # page title
         title = etree.Element( 'title' )
