@@ -12,19 +12,19 @@ before_script:
   - "echo we are working in $CI_PROJECT_DIR"
   # runn ssh-agent (inside the build environment)
 
-setup_nvm:
-  stage: setup
-  script:
-    - "echo installing npm and phantomJS via nvm"
-    - "git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`"
-    - ". ~/.nvm/nvm.sh"
-    - "nvm install 5.0"
-    - "nvm use 5.0"
-    - "npm install"
-  artifacts:
-    name: "${CI_BUID_STAGE}_${CI_BUID_REF_NAME}"
-    paths:
-      - node_modules/
+# setup_nvm:
+#   stage: setup
+#   script:
+#     - "echo installing npm and phantomJS via nvm"
+#     - "git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`"
+#     - ". ~/.nvm/nvm.sh"
+#     - "nvm install 5.0"
+#     - "nvm use 5.0"
+#     - "npm install"
+#   artifacts:
+#     name: "${CI_BUID_STAGE}_${CI_BUID_REF_NAME}"
+#     paths:
+#       - node_modules/
 
 setup_python:
   stage: setup
@@ -47,6 +47,14 @@ build_multilang:
 all_tests_and_coverage:
   stage: test
   script:
+    # taken from setup_nvm above for time optimization
+    - "echo installing npm and phantomJS via nvm"
+    - "git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`"
+    - ". ~/.nvm/nvm.sh"
+    - "nvm install 5.0"
+    - "nvm use 5.0"
+    - "npm install"
+    # end
     - "source venv/bin/activate"
     - "cd src/test"
     - "export BASE_URL=http://guest6.mulf.tu-berlin.de/gitlab-ci/"
