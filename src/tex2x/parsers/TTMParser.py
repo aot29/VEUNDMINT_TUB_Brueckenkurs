@@ -16,9 +16,11 @@ class TTMParser(object):
         """
         # TODO DH: Why exactly do we need this?
         sys.pushdir()
-        os.chdir(tex_dir)
 
-        print(ttm_bin)
+        if not os.path.exists(tex_dir):
+            os.makedirs(tex_dir)
+
+        os.chdir(tex_dir)
 
         try:
             with open(ttm_outfile, "wb") as outfile, open(tex_start, "rb") as infile:
