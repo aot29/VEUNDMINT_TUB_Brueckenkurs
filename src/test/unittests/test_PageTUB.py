@@ -2,11 +2,11 @@ import unittest
 import os
 from plugins.VEUNDMINT.tcontent import TContent
 from plugins.VEUNDMINT.PageTUB import PageTUB
+from settings import BASE_DIR
 
 
 class test_PageTUB(unittest.TestCase):
-	tplPath = os.environ['PYTHONPATH'] + "/src/templates_xslt"
-	
+	tplPath = os.path.join(BASE_DIR, "src/templates_xslt")
 
 	def setUp(self):
 		self.tc = TContent()
@@ -19,7 +19,7 @@ class test_PageTUB(unittest.TestCase):
 		page.generateHTML( self.tc )
 		# print(self.tc.html)
 		# HTML is stored in tc.html
-		self.assertTrue( "<title>%s</title>" % self.tc.title in self.tc.html, "Title not found in HTML" )		
+		self.assertTrue( "<title>%s</title>" % self.tc.title in self.tc.html, "Title not found in HTML" )
 
 
 	def test_createPage(self):
