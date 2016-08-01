@@ -36,7 +36,7 @@ from lxml.html import fromstring as hp_fromstring
 from lxml.html.html5parser import HTMLParser as HTML5Parser
 from lxml.html.html5parser import fromstring as h5_fromstring
 from lxml import etree
-from plugins.VEUNDMINT.AbstractPage import AbstractPage
+from tex2x.renderers.AbstractPage import AbstractPage
 
 class PageKIT(AbstractPage):
 

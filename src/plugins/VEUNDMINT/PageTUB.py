@@ -23,16 +23,20 @@ Created on Jul 29, 2016
 
 from lxml import etree
 import os
-from plugins.VEUNDMINT.AbstractPage import AbstractPage
+import tidylib
+from tidylib import tidy_document
+from tex2x.renderers.AbstractPage import AbstractPage
 
 class PageTUB( AbstractPage ):
 
 
-    def __init__( self, tplPath ):
+    def __init__( self, tplPath, lang ):
         '''
         Please do not instantiate directly, use PageFactory instead (except for unit tests).
         '''
         self.tplPath = tplPath
+        self.lang = lang
+        self._setTidyBaseOptions()
     
     
     def generateHTML( self, tc ):
@@ -41,17 +45,24 @@ class PageTUB( AbstractPage ):
         
         @param tc - TContent object encapsulating the data for the page to be rendered
         '''
-        page = self.createPage( tc )
+        # Create the XML inout
+        page = self.createPageXML( tc )
+
+        # Load the template
         templatePath = os.path.join( self.tplPath, "page.xslt" )
         template = etree.parse( templatePath )
         if ( template is None ):
             raise Exception( 'Could not load template from file %s' % templatePath )
+
+        # Apply the template
         transform = etree.XSLT( template )
         result = transform( page )
-        tc.html = str(result)
+                
+        # save the result in tc object
+        tc.html, self.tidyErrors = tidy_document( str(result) )
 
 
-    def createPage(self, tc):
+    def createPageXML(self, tc):
         '''
         Create a XML document representing a page from a TContent object
         
@@ -59,12 +70,34 @@ class PageTUB( AbstractPage ):
         @return an etree element
         '''
         page = etree.Element( 'page' )
+        page.set( 'lang', self.lang )
         
         # page title
         title = etree.Element( 'title' )
         title.text = tc.title
         page.append( title )
         
+        # page content
+        content = etree.Element( 'content' )
+        content.text = tc.content
+        page.append( content )
+        
         return page
+
         
-        
+    def _setTidyBaseOptions( self ):
+        '''
+        Use tidy to make code more readable.
+        Note that changing the options might invalidate some unit tests
+        '''
+        tidylib.BASE_OPTIONS = {
+            "output-xhtml": 1,     # XHTML instead of HTML4
+            "indent": "auto",           # Pretty; not too much of a performance hit
+            "tab-size": 2,
+            "tidy-mark": 0,        # No tidy meta tag in output
+            "wrap": 0,             # No wrapping
+            "alt-text": "",        # Help ensure validation
+            "doctype": 'strict',   # Little sense in transitional for tool-generated markup...
+            "force-output": 1,     # May not get what you expect but you will get something}
+            "wrap": 0
+        }
