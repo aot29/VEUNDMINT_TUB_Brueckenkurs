@@ -25,7 +25,7 @@ from lxml import etree
 import os
 import tidylib
 from tidylib import tidy_document
-from plugins.VEUNDMINT.AbstractPage import AbstractPage
+from tex2x.renderers.AbstractPage import AbstractPage
 
 class PageTUB( AbstractPage ):
 
