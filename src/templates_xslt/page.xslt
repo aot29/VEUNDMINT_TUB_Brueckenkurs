@@ -47,7 +47,9 @@
 				<div id="pageContainer">
 					<div class="col-xs-12">
 						<div class="row row-offcanvas row-offcanvas-left">
-							<xsl:apply-templates select="toc" />
+							<xsl:apply-templates select="toc">
+								<xsl:with-param name="basePath" select="$basePath" />
+							</xsl:apply-templates>
 							<xsl:copy-of select="content" />
 						</div>
 					</div>

@@ -1,11 +1,14 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:template match="toc">
+		<xsl:param name="basePath" />
 		<xsl:comment>TOC side bar</xsl:comment>
 		<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation" style="margin-top: 5px;">
 			<div id="toc" class="panel-group">
 				<h3><span data-toggle="i18n" data-i18n="module_content"/></h3>
-				<xsl:apply-templates select="entries/entry"/>
+				<xsl:apply-templates select="entries/entry">
+					<xsl:with-param name="basePath"><xsl:value-of select="$basePath" /></xsl:with-param>
+				</xsl:apply-templates>
 				<xsl:call-template name="legend"/>
             </div>
         </div>
@@ -13,10 +16,11 @@
 	</xsl:template>
 
 	<xsl:template match="entry">
+		<xsl:param name="basePath" />
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parents="#toc" href="{@href}"><xsl:value-of select="title"/></a>
+					<a data-toggle="collapse" data-parents="#toc" href="{$basePath}/{@href}"><xsl:value-of select="caption"/></a>
 				</h4>
 			</div>
 		</div>
