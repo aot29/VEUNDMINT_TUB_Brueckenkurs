@@ -31,6 +31,34 @@ class TTMParserTest(unittest.TestCase):
 Ich stehe in der mitte
 \end{center}''', '<div style="text-align:center">Ich stehe in der mitte')
 
+    def testTTMError(self):
+        """
+        Test if an error is raised if calling the TTM Process failed (for what reason ever)
+        """
+        self.tex_test_file = 'no_existing.file'
+        with self.assertRaises(BaseException):
+            self.testCenterText()
+
+    def testTTMProcess(self):
+        """
+        Test some special cases with the ttm binary
+        """
+        subprocess = self.parser.getParserProcess()
+        self.assertIsNone(subprocess)
+
+        # kick off parser to get a subprocess
+        self.testTitle()
+        subprocess = self.parser.getParserProcess()
+        self.assertIsNotNone(subprocess)
+
+        # make subprocess return error code 1
+        TTMParser().settings.dorelease = 1
+        with self.assertRaises(SystemExit) as cm:
+            self.isCorrectConversionTest(r'''\unknownlatexcommand''','')
+
+        self.assertEqual(cm.exception.code, 3)
+
+
     def isCorrectConversionTest(self, latex_string, html_string):
         """Checks for correct tex to html conversion
 

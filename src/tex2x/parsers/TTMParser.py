@@ -10,6 +10,10 @@ class TTMParser(object):
     Class that can parse texfiles to xml. Relies on the 'ttm' binary.
     """
 
+    def __init__(self):
+        self.subprocess = None
+        self.settings = settings
+
     def parse(self, tex_start=settings.sourceTEXStartFile, ttm_outfile=settings.ttmFile, tex_dir=settings.sourceTEX, ttm_bin=settings.ttmBin, sys=None):
         """
         Parses files from TeX to ?, uses the converterDir Option which is set to /src
