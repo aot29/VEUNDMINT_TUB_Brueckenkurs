@@ -1,5 +1,7 @@
 import unittest
 import os
+from lxml import etree
+
 from plugins.VEUNDMINT.tcontent import TContent
 from plugins.VEUNDMINT.PageTUB import PageTUB
 from tex2x.Settings import settings
@@ -18,6 +20,7 @@ class test_PageTUB(unittest.TestCase):
 		self.tc.caption = "Test"
 		self.tc.fullname = "html/test"
 		self.tc.content = "Some content."
+		self.tc.myid = 123
 			
 		# add a parent
 		self.tc.parent = TContent()
@@ -27,49 +30,88 @@ class test_PageTUB(unittest.TestCase):
 		sibling1 = TContent()
 		sibling1.caption = "Sibling 1"
 		sibling1.fullname = "html/section1"
+		sibling1.myid = 456 
 		sibling2 = TContent()
 		sibling2.caption = "Sibling 2"
 		sibling2.fullname = "html/section2"
+		sibling2.myid = 789 
 		self.tc.parent.children.append( sibling1 )		
 		self.tc.parent.children.append( sibling2 )
 		
 		#add some children
 		child1 = TContent()
-		child1.title = "Child 1"
+		child1.caption = "Child 1"
 		child1.fullname = "html/1/xcontent1.html"
 		child2 = TContent()
-		child2.title = "Child 2"
+		child2.caption = "Child 2"
 		child2.fullname = "html/2/xcontent2.html"
 		self.tc.children.append( child1 )
 		self.tc.children.append( child2 )
 
+		#add some grand children
+		child11 = TContent()
+		child11.caption = "Child 11"
+		child11.fullname = "html/11/xcontent11.html"
+		child11.tocsymb = "status1"
+		child12 = TContent()
+		child12.caption = "Child 12"
+		child12.fullname = "html/12/xcontent12.html"
+		child21 = TContent()
+		child21.caption = "Child 21"
+		child21.fullname = "html/21/xcontent21.html"
+		child1.children.append( child11 )
+		child1.children.append( child12 )
+		child2.children.append( child21 )
+		
+		self.page = PageTUB( self.tplPath, self.lang )
+		# create an XML element using the tc mock-up 
+		# (only for testing, i.r.l. you can skip this step and do page.generateHTML directly)
+		self.xml = self.page.generateXML( self.tc )
+		# generate HTML element using the tc mock-up
+		self.page.generateHTML( self.tc )
 
-	def test_createPageXML(self):
+
+	def test_generateXML(self):
 		'''
 		Test that the XML contains all required elements and attributes
 		'''
-		# create an XML element using the tc mock-up
-		page = PageTUB( self.tplPath, self.lang )
-		xml = page.generateXML( self.tc )
-
 		#Title
-		self.assertEqual( self.tc.title, xml.xpath('/page/title')[0].text, "Title is wrong in XML" )
+		self.assertEqual( self.tc.title, self.xml.xpath('/page/title')[0].text, "Title is wrong in XML" )
 		#Lang
-		self.assertEqual( self.lang, xml.xpath('/page/@lang')[0], "Language code is wrong in XML" )
+		self.assertEqual( self.lang, self.xml.xpath('/page/@lang')[0], "Language code is wrong in XML" )
 		# Content
-		self.assertEqual( self.tc.content, xml.xpath('/page/content')[0].text, "Content is wrong in XML" )
+		self.assertEqual( self.tc.content, self.xml.xpath('/page/content')[0].text, "Content is wrong in XML" )
+	
+	
+	def test_generateTocXML(self):
+		'''
+		Test that the table of contents XML contains all required elements and attributes
+		'''		
 		#TOC (there are 3 siblings in the test tc object instantiated in the setup of this test)
-		self.assertTrue( xml.xpath('/page/toc'), "TOC is missing in XML" )
-		self.assertEqual( 3, len( xml.xpath('/page/toc/entries/entry') ), "Expecting 2 entries in TOC in XML" )
+		self.assertTrue( self.xml.xpath('/page/toc'), "TOC is missing in XML" )
+		self.assertEqual( 3, len( self.xml.xpath('/page/toc/entries/entry') ), "Expecting 2 entries in TOC in XML" )
+		
+		
+	def test_generateTocEntryXML(self):
+		'''
+		Test that each TOC entry XML contains all required elements and attributes
+		'''		
+		# one sibling is selected
+		selectedCount = 0
+		for sibling in self.xml.xpath('/page/toc/entries/entry'):
+			if sibling.xpath( '@selected' )[0] == "True": selectedCount += 1
+		self.assertEqual( 1, selectedCount )
+		# selected entry has children
+		selected = self.xml.xpath('/page/toc/entries/entry[@selected="True"]')[0]
+		self.assertEqual( 2, len( selected.xpath('children/entry') ), "Expecting 2 children in TOC in XML" )
+		# selected entry has grand children
+		self.assertEqual( 3, len( selected.xpath('children/entry/children/entry') ), "Expecting 3 grand children in selected element in XML" )
 
 
 	def test_generateHTML(self):
 		'''
 		Test that everything gets transformed to HTML.
 		'''
-		# generate HTML element using the tc mock-up
-		page = PageTUB( self.tplPath, self.lang )
-		page.generateHTML( self.tc )
 		#print(self.tc.html)
 		# HTML is stored in tc.html
 		self.assertTrue( "<title>%s</title>" % self.tc.title in self.tc.html, "Title not found in HTML" )		
@@ -86,16 +128,39 @@ class test_PageTUB(unittest.TestCase):
 		# i18n points to the right locale
 		self.assertTrue( "$.i18n().load( {%s" % self.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
 		# navbar
-		self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )		
-		#toc
+		self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
+		
+		#
+		# TOC
+		#
+		
 		self.assertTrue( 'id="toc"' in self.tc.html, "TOC is missing in HTML" )
+
 		# Siblings in TOC (basePath is expected to be ../, as set in page.xslt)
 		siblings = self.tc.parent.children
 		for i in range( len( siblings ) ):
 				sibling = siblings[i]
-				self.assertTrue( 'href="../%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )				
+
+				# TOC entry captions present
+				self.assertTrue( sibling.caption in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.caption )
+
+				# TOC entry links present
+				if sibling.myid != self.tc.myid:
+					self.assertTrue( 'href="%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )
+
+				else:
+					# one sibling is selected
+					self.assertTrue( 'href="#collapse"' in self.tc.html, "Selected TOC entry is missing in HTML. Expected %s" % sibling.fullname )
+					
+		# children and grand children
+		children = self.tc.children
+		for child in children:
+			self.assertTrue( child.caption in self.tc.html )
+			grandChildren = child.children
+			for gc in grandChildren:
+				self.assertTrue( gc.caption in self.tc.html )
+				
+		
 		#legend
 		self.assertTrue( 'id="legend"' in self.tc.html, "Legend is missing in HTML" )		
-		# content
-		self.assertTrue( self.tc.content in self.tc.html, "Content is missing in HTML" )
 		

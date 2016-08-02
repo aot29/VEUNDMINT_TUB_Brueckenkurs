@@ -3,17 +3,14 @@
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:import href="css.xslt" />
-	<xsl:import href="js.xslt" />
-	<xsl:import href="mathJax.xslt" />
-	<xsl:import href="i18n.xslt" />
+	<xsl:import href="headers.xslt" />
 	<xsl:import href="jsFooter.xslt" />
 	<xsl:import href="navbar.xslt" />
 	<xsl:import href="toc.xslt" />
+	<xsl:import href="tabs.xslt" />
+	<xsl:import href="pageFooter.xslt" />
 	
 	<xsl:template match="/page">
-		<!-- Path to root directory for .css and .js hrefs -->
-		<xsl:variable name="basePath">..</xsl:variable>
 	
 		<html lang="{@lang}">
 			<head>
@@ -21,41 +18,46 @@
 				<title><xsl:value-of select="title" /></title>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				
-				<!-- Stylesheets -->
-				<xsl:call-template name="css">
-					<xsl:with-param name="basePath" select="$basePath" />
-				</xsl:call-template>
-				
-				<!-- External JS -->
-				<xsl:call-template name="js" >
-					<xsl:with-param name="basePath" select="$basePath" />
-				</xsl:call-template>
-				
-				<!-- MathJax -->
-				<xsl:call-template name="mathJax" />
-				
-				<!-- i18n -->
-				<xsl:call-template name="i18n">
+				<!-- Stylesheets, External JS, MathJax, i18n -->
+				<xsl:call-template name="headers">
 					<xsl:with-param name="lang" select="@lang" />
 				</xsl:call-template>
+				
 			</head>
+			
 			<body>
 				<!-- Navigation bar at the top of the page -->
 				<xsl:call-template name="navbar" />
 				
-				<!-- Page contents and toc -->
-				<div id="pageContainer">
-					<div class="col-xs-12">
-						<div class="row row-offcanvas row-offcanvas-left">
-							<xsl:apply-templates select="toc">
-								<xsl:with-param name="basePath" select="$basePath" />
-							</xsl:apply-templates>
-							<xsl:copy-of select="content" />
+				<!-- Page contents, tabs, TOC and footer -->
+				<div id="pageContainer" >		          
+					<div class="row" style="margin: 0 15px 0 15px;">
+				        <div class="col-xs-12">
+				            <div class="row row-offcanvas row-offcanvas-left">
+	
+								<!-- TOC -->
+								<xsl:apply-templates select="toc" />
+								
+								<div class="col-xs-12 col-sm-12 col-md-9" id="courseContent">
+	
+									<!-- page tabs -->
+									<xsl:apply-templates select='toc/entries' mode="tabs"/>
+									
+									<!--page contents-->
+	                    			<div class="row" id="pageContents">
+										<xsl:copy-of select="content/*" />
+					                </div>
+					                
+									<!-- Footer -->
+									<xsl:call-template name="pageFooter" />
+					                
+								</div>	
+							</div>
 						</div>
 					</div>
 				</div>
 				
-				<!-- Footer -->
+				<!-- JS in footer -->
 				<xsl:call-template name="jsFooter" />
 			</body>
 		</html>
