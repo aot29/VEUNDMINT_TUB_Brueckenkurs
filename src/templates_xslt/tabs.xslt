@@ -2,18 +2,28 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	
 	<!-- Tabs bar -->
-	<xsl:template match='toc/entries' mode="tabs">
-		<xsl:comment>Tabs</xsl:comment>
+	<xsl:template match='toc' mode="tabs">
+		<xsl:param name="selectedPage" />
+		
+		<xsl:comment>Sub TOC (Tabs or launch button)</xsl:comment>
 		<div class="row" id="subtoc" >
-		<div class="col-sm-1 ffrwButton"><div class="glyphicon glyphicon-chevron-left pull-left"></div></div>
-		<div class="col-xs-12 col-sm-10" style="padding: 0;">
-			<ul class="nav nav-tabs nav-justified">
-				<xsl:apply-templates select="entry" mode="tab" />
-			</ul>
-			</div>
-		<div class="col-sm-1 ffrwButton"><div class="glyphicon glyphicon-chevron-right pull-right"></div></div>
+
+			<!-- If selected entry is a section overview (level 3) or a page (level 4), render tab bar with siblings -->
+			<xsl:if test="$selectedPage/@level = 3 or $selectedPage/@level = 4">
+
+				<div class="col-sm-1 ffrwButton"><div class="glyphicon glyphicon-chevron-left pull-left"></div></div>
+				<div class="col-xs-12 col-sm-10" style="padding: 0;">
+					<ul class="nav nav-tabs nav-justified">
+						<xsl:apply-templates select="entry" mode="tab" />
+					</ul>
+				</div>
+				<div class="col-sm-1 ffrwButton"><div class="glyphicon glyphicon-chevron-right pull-right"></div></div>
+
+			</xsl:if>
+
 		</div>
 		<xsl:comment>End start tabs</xsl:comment>
+
 	</xsl:template>
 
 	<!-- Single tab -->

@@ -21,20 +21,24 @@ class test_PageTUB(unittest.TestCase):
 		self.tc.fullname = "html/test"
 		self.tc.content = "Some content."
 		self.tc.myid = 123
-			
+		self.tc.level = 2
+		
 		# add a parent
 		self.tc.parent = TContent()
 		self.tc.parent.children.append( self.tc )
+		self.tc.parent.level = 1
 		
 		#add some siblings
 		sibling1 = TContent()
 		sibling1.caption = "Sibling 1"
 		sibling1.fullname = "html/section1"
 		sibling1.myid = 456 
+		sibling1.level = 2
 		sibling2 = TContent()
 		sibling2.caption = "Sibling 2"
 		sibling2.fullname = "html/section2"
 		sibling2.myid = 789 
+		sibling2.level = 2
 		self.tc.parent.children.append( sibling1 )		
 		self.tc.parent.children.append( sibling2 )
 		
@@ -42,9 +46,11 @@ class test_PageTUB(unittest.TestCase):
 		child1 = TContent()
 		child1.caption = "Child 1"
 		child1.fullname = "html/1/xcontent1.html"
+		child1.level = 3
 		child2 = TContent()
 		child2.caption = "Child 2"
 		child2.fullname = "html/2/xcontent2.html"
+		child2.level = 3
 		self.tc.children.append( child1 )
 		self.tc.children.append( child2 )
 
@@ -53,12 +59,15 @@ class test_PageTUB(unittest.TestCase):
 		child11.caption = "Child 11"
 		child11.fullname = "html/11/xcontent11.html"
 		child11.tocsymb = "status1"
+		child11.level = 4
 		child12 = TContent()
 		child12.caption = "Child 12"
 		child12.fullname = "html/12/xcontent12.html"
+		child12.level = 4
 		child21 = TContent()
 		child21.caption = "Child 21"
 		child21.fullname = "html/21/xcontent21.html"
+		child21.level = 4
 		child1.children.append( child11 )
 		child1.children.append( child12 )
 		child2.children.append( child21 )
@@ -96,17 +105,24 @@ class test_PageTUB(unittest.TestCase):
 		'''
 		Test that each TOC entry XML contains all required elements and attributes
 		'''		
+		#get the selected entry
+		selected = self.xml.xpath('/page/toc/entries/entry[@selected="True"]')[0]
+		
 		# one sibling is selected
 		selectedCount = 0
 		for sibling in self.xml.xpath('/page/toc/entries/entry'):
 			if sibling.xpath( '@selected' )[0] == "True": selectedCount += 1
 		self.assertEqual( 1, selectedCount )
+		
 		# selected entry has children
-		selected = self.xml.xpath('/page/toc/entries/entry[@selected="True"]')[0]
 		self.assertEqual( 2, len( selected.xpath('children/entry') ), "Expecting 2 children in TOC in XML" )
 		# selected entry has grand children
 		self.assertEqual( 3, len( selected.xpath('children/entry/children/entry') ), "Expecting 3 grand children in selected element in XML" )
-
+		
+		# Check that levels are present
+		self.assertEqual( 2, int( selected.xpath('@level')[0] ) )
+		self.assertEqual( 3, int( selected.xpath('children/entry/@level')[0] ) )
+		
 
 	def test_generateHTML(self):
 		'''

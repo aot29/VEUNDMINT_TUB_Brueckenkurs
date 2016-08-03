@@ -25,7 +25,7 @@
 		</xsl:choose>
 	</xsl:template>
 
-	
+
 	<!-- Apply to unselected entries -->
 	<xsl:template match="entry" mode="unselected">
 		<div class="panel panel-default">
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 	</xsl:template>
-	
+
 	<!-- Apply to selected entry -->
 	<xsl:template match="entry" mode="selected">
 		<div class="panel panel-primary">
@@ -56,21 +56,20 @@
 
 	<!-- entry children -->
 	<xsl:template match="children">
-		<xsl:param name="icon" select="no_icon" />
 		<ul>
-			<xsl:apply-templates select="entry" mode="submenu">
-				<xsl:with-param name="icon" select="$icon" />
-			</xsl:apply-templates>
+			<xsl:apply-templates select="entry" mode="submenu" />
 		</ul>
 	</xsl:template>
 
 	<xsl:template match="entry" mode="submenu">
-		<xsl:param name="icon" />
+	
+		<!-- TOC entries of level 4 have icons -->
+		<xsl:variable name="iconClass"><xsl:if test="@level = '4'">glyphicon glyphicon-file</xsl:if></xsl:variable>
+		
+		<!-- List entries recursively -->
 		<li>
-			<a href="{@href}" class="{$icon} {@status}"><span class="entryText"><xsl:value-of select="caption"/></span></a>
-			<xsl:apply-templates select="children">
-				<xsl:with-param name="icon">glyphicon glyphicon-file</xsl:with-param>
-			</xsl:apply-templates>
+			<a href="{@href}" class="{$iconClass} {@status}"><span class="entryText"><xsl:value-of select="caption"/></span></a>
+			<xsl:apply-templates select="children" />
 		</li>
 	</xsl:template>
 

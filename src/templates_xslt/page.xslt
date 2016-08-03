@@ -8,10 +8,14 @@
 	<xsl:import href="navbar.xslt" />
 	<xsl:import href="toc.xslt" />
 	<xsl:import href="tabs.xslt" />
+	<xsl:import href="content.xslt" />
 	<xsl:import href="pageFooter.xslt" />
 	
 	<xsl:template match="/page">
-	
+
+		<!-- The currently selected page -->
+		<xsl:variable name="selectedPage" select="toc/entries/entry[@selected='True']" />
+
 		<html lang="{@lang}">
 			<head>
 				<meta charset="utf-8" />
@@ -40,14 +44,16 @@
 								
 								<div class="col-xs-12 col-sm-12 col-md-9" id="courseContent">
 	
-									<!-- page tabs -->
-									<xsl:apply-templates select='toc/entries' mode="tabs"/>
+									<!-- Page tabs -->
+									<xsl:apply-templates select='toc' mode="tabs">
+										<xsl:with-param name="selectedPage" select="$selectedPage"/>
+									</xsl:apply-templates>
 									
-									<!--page contents-->
-	                    			<div class="row" id="pageContents">
-										<xsl:copy-of select="content/*" />
-					                </div>
-					                
+									<!-- Page contents-->
+									<xsl:apply-templates select="content">
+										<xsl:with-param name="selectedPage" select="$selectedPage"/>
+									</xsl:apply-templates>
+														                
 									<!-- Footer -->
 									<xsl:call-template name="pageFooter" />
 					                

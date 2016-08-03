@@ -212,6 +212,10 @@ class PageTUB( AbstractPage ):
 		if hasattr( child, 'tocsymb' ) and child.tocsymb is not None:
 			childEl.set( 'status', child.tocsymb )
 	
+		# Modules are level 2, sections are level 3 etc.
+		if hasattr( child, 'level' ) and child.level is not None:
+			childEl.set( 'level', str( child.level ) )		
+	
 		# caption is an element, as it could contain HTML-tags
 		caption = etree.Element( 'caption' )
 		caption.text = child.caption
