@@ -113,13 +113,17 @@ class PageTUB( AbstractPage ):
 		# toc
 		page.append( self.generateTocXML( tc ) )
 
+		# add links to next and previous entries
+		self.addPrevNextLinks(page, tc, basePath)
+		
 		# correct the links in content and TOC
 		self.correctLinks( page, basePath )
 		
-		# add base path to xml, as the transformer doesn't seem to support parameter passing
-		page.set( 'basePath', ".." )
+		# add base path to XML, as the transformer doesn't seem to support parameter passing
+		page.set( 'basePath', basePath )
 				
 		return page
+
 
 
 	def generateContentXML( self, tc ):
@@ -177,7 +181,7 @@ class PageTUB( AbstractPage ):
 			
 		# add the entries to the toc element
 		toc.append( entries )
-
+		
 		return toc
 
 
@@ -253,6 +257,27 @@ class PageTUB( AbstractPage ):
 		return childEl
 
 
+	def addPrevNextLinks(self, page, tc, basePath):
+		"""
+		Add links to previous and next pages
+		
+		@param page - etree Element holding content and TOC
+		@param tc - a TContent object encapsulating page data and content
+		@param basePath - String prefix for all links
+		"""
+		navPrev = tc.navleft()
+		if navPrev is not None: 
+			navPrevEl = etree.Element( "navPrev" )
+			navPrevEl.set( "href", os.path.join(basePath, navPrev.fullname ) )
+			page.append( navPrevEl )
+			
+		navNext = tc.navright()
+		if navNext is not None: 
+			navNextEl = etree.Element( "navNext" )
+			navNextEl.set( "href", os.path.join(basePath, navNext.fullname ) )
+			page.append( navNextEl )
+
+
 	def getBasePath(self, tc):
 		"""
 		Set base path to point up from the level of the current tc object
@@ -262,7 +287,7 @@ class PageTUB( AbstractPage ):
 		basePath = ".."
 		for l in range( self.MODULE_LEVEL, tc.level ):
 			basePath = os.path.join( '..', basePath )
-	
+			
 		return basePath
 
 	

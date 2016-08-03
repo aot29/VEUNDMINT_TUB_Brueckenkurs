@@ -10,11 +10,8 @@
 	<xsl:import href="tabs.xslt" />
  	<xsl:import href="content.xslt" />
  	<xsl:import href="pageFooter.xslt" />
-	
+ 	
 	<xsl:template match="/page">
-
-		<!-- The currently selected page -->
-		<xsl:variable name="selectedPage" select="toc/entries/entry[@selected='True']" />
 
 		<html lang="{@lang}">
 			<head>
@@ -38,24 +35,19 @@
 	
 								<!-- TOC -->
 								<xsl:apply-templates select="toc" />
-								
 								<div class="col-xs-12 col-sm-12 col-md-9" id="courseContent">
 	
 									<!-- Page tabs -->
-									<xsl:apply-templates select='toc' mode="tabs">
-										<xsl:with-param name="selectedPage" select="$selectedPage"/>
-									</xsl:apply-templates>
-									
+									<xsl:apply-templates select="." mode="tabs" />
+
 									<!-- Page contents-->
-									<xsl:apply-templates select="content">
-										<xsl:with-param name="selectedPage" select="$selectedPage"/>
-									</xsl:apply-templates>
+									<xsl:apply-templates select="." mode="content" />
 														                
 									<!-- Footer -->
 									<xsl:call-template name="pageFooter">
 										<xsl:with-param name="basePath" select="@basePath" />
 									</xsl:call-template>
-					                
+
 								</div>	
 							</div>
 						</div>
@@ -64,6 +56,7 @@
 				
 				<!-- JS in footer -->
 				<xsl:call-template name="jsFooter" />
+
 			</body>
 		</html>
 	</xsl:template>

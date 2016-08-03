@@ -1,7 +1,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:template match="content">
-		<xsl:param name="selectedPage" />
+	<xsl:template match="page" mode="content">
+		<!-- The currently selected page -->
+		<xsl:variable name="selectedPage" select="toc/entries/entry[@selected='True']" />
 		
 		<!-- Top level pages don't have a tab bar at the top, so need in-line CSS to override -->
 		<xsl:variable name="inlineCss"><xsl:if test="$selectedPage/@level = 1 or $selectedPage/@level = 2">border: 1px solid #ccc; border-radius: 4px;</xsl:if></xsl:variable>

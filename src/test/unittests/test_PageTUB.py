@@ -183,6 +183,9 @@ class test_PageTUB(unittest.TestCase):
 		
 		
 	def testCorrectLinks(self):
+		"""
+		Test that internal links and references get corrected and external ones are left as-is.
+		"""
 		xml = etree.Element( 'page' )
 		
 		# correct these
@@ -214,4 +217,12 @@ class test_PageTUB(unittest.TestCase):
 		self.assertFalse( basePath in mailto.get( 'href' ), "Link correction failed for link %s" % mailto.get( 'href' ) )
 		
 		
+	def testGetBasePath(self):
+		"""
+		Test that the base path corresponds to the entry level
+		"""
+		self.tc.level = PageTUB.MODULE_LEVEL
+		self.assertEquals("..", self.page.getBasePath( self.tc ))
+		self.tc.level = PageTUB.SECTION_LEVEL
+		self.assertEquals("../..", self.page.getBasePath( self.tc ))
 		
