@@ -15,18 +15,22 @@
 	//
 	// Variables
 	//
+	var USER_CREDENTIALS_KEY = 'user_credentials';
 
 	var veundmint = {}; // Object for public APIs
 	var supports = !!document.querySelector && !!root.addEventListener; // Feature test
 	var settings, eventTimeout;
 
-  var currentUser = {};
   var isLoggedIn = false;
+
+	var userCredentials;
 
 	// Default settings
 	var defaults = {
 		apiUrl: 'http://localhost:8000',
     apiAuthUrl: 'http://localhost:8000/api-token-auth/',
+		apiProfileUrl: 'http://localhost:8000/whoami/',
+		apiWebsiteActionUrl: 'http://localhost:8000/server-action/',
 		initClass: 'js-myplugin',
 		callbackBefore: function () {},
 		callbackAfter: function () {}
@@ -86,32 +90,6 @@
 		return !options || !(typeof JSON === 'object' && typeof JSON.parse === 'function') ? {} : JSON.parse( options );
 	};
 
-	/**
-	 * Get the closest matching element up the DOM tree
-	 * @param {Element} elem Starting element
-	 * @param {String} selector Selector to match against (class, ID, or data attribute)
-	 * @return {Boolean|Element} Returns false if not match found
-	 */
-	var getClosest = function (elem, selector) {
-		var firstChar = selector.charAt(0);
-		for ( ; elem && elem !== document; elem = elem.parentNode ) {
-			if ( firstChar === '.' ) {
-				if ( elem.classList.contains( selector.substr(1) ) ) {
-					return elem;
-				}
-			} else if ( firstChar === '#' ) {
-				if ( elem.id === selector.substr(1) ) {
-					return elem;
-				}
-			} else if ( firstChar === '[' ) {
-				if ( elem.hasAttribute( selector.substr(1, selector.length - 2) ) ) {
-					return elem;
-				}
-			}
-		}
-		return false;
-	};
-
 	// @todo Do something...
 
 	/**
@@ -128,23 +106,7 @@
 
 		// Reset variables
 		settings = null;
-		eventTimeout = null;
 
-	};
-
-	/**
-	 * On window scroll and resize, only run events at a rate of 15fps for better performance
-	 * @private
-	 * @param  {Function} eventTimeout Timeout function
-	 * @param  {Object} settings
-	 */
-	var eventThrottler = function () {
-		if ( !eventTimeout ) {
-			eventTimeout = setTimeout(function() {
-				eventTimeout = null;
-				actualMethod( settings );
-			}, 66);
-		}
 	};
 
 	/**
@@ -187,7 +149,12 @@
       type: "POST",
       url: settings.apiAuthUrl,
       data: user_credentials,
-      success: store_credentials
+      success: function (data) {
+				delete(user_credentials.password);
+				$.extend(user_credentials, data);
+				//user credentials will have the form {username: <name>, token: <token>}
+				localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(user_credentials));
+			}
     });
     // save answer from server in object
     var auth_result = '';
@@ -197,11 +164,14 @@
     }
     console.log('veundmint.authenticate called with:', user_credentials);
 
-		store_credentials = function(credentials) {
-			console.log(credentials);
-		}
     return auth_result;
   }
+
+	veundmint.getMyUserProfile = function() {
+		veundmint.authAjaxGET(settings.apiProfileUrl, {}, function (data) {
+			console.log(data);
+		});
+	}
 
   /**
    * Logs the user out from the server (serverLogoutUrl)
@@ -209,9 +179,8 @@
    * @return {[type]}            [description]
    */
   veundmint.logout = function (callback) {
-    //log out of the server
-    // << call server api logout here >>
-    var logout_result = '';
+    userCredentials = null;
+		localStorage.removeItem(USER_CREDENTIALS_KEY);
     if (typeof callback === "function") {
     // Call it, since we have confirmed it is callable​
       callback(logout_result);
@@ -226,10 +195,62 @@
    * @return {json}        the json result from the server
    */
   veundmint.sendWebsiteAction = function (object) {
-    //
+
     console.log('veundmint.sendWebsiteAction called with object', object);
+
+		if (typeof settings.apiWebsiteActionUrl === "undefined") {
+			console.log('apiWebsiteActionUrl is not set, will not call sendWebsiteAction()');
+			return null;
+		}
+
+		$.ajax({
+			type: "POST",
+			url: settings.apiWebsiteActionUrl,
+			data: object,
+			success: function (data) {
+				console.log(data);
+			}
+		});
   }
 
+	/**
+	 * Get the user credentials from local variable. If not set, get it from local
+	 * Storage and set it and return it
+	 * @return {object or null} the user credentials object or null
+	 */
+	veundmint.getUserCredentials = function () {
+		if (typeof userCredentials !== "undefined" && userCredentials !== null) {
+			return userCredentials;
+		} else {
+			var lsUserCred = localStorage.getItem(USER_CREDENTIALS_KEY);
+			if (lsUserCred !== null) {
+				return JSON.parse(lsUserCred);
+			}
+		}
+		console.log('can only call getUserCredentials if user is authenticated')
+		return null;
+	}
+
+	veundmint.authAjaxGET = function (url, data, onSuccess) {
+		var userCredentials = veundmint.getUserCredentials();
+		if (userCredentials === null || typeof userCredentials === "undefined"
+			|| typeof userCredentials.token === "undefined" ) {
+				console.log('can only make authAjaxGET request if userCredentials are set');
+				return;
+		}
+		$.ajax({
+      type: "GET",
+			dataType: 'json',
+      url: url,
+      data: data,
+      success: onSuccess,
+			headers: {
+				'Authorization': 'JWT ' + userCredentials.token
+			}
+    });
+	}
+
+	veundmint.init();
 	return veundmint;
 
 });
