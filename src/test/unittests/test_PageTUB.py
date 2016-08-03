@@ -75,7 +75,8 @@ class test_PageTUB(unittest.TestCase):
 		self.page = PageTUB( self.tplPath, self.lang )
 		# create an XML element using the tc mock-up 
 		# (only for testing, i.r.l. you can skip this step and do page.generateHTML directly)
-		self.xml = self.page.generateXML( self.tc )
+		basePath = self.page.getBasePath( self.tc )
+		self.xml = self.page.generateXML( self.tc, basePath )
 		# generate HTML element using the tc mock-up
 		self.page.generateHTML( self.tc )
 
@@ -162,7 +163,7 @@ class test_PageTUB(unittest.TestCase):
 
 				# TOC entry links present
 				if sibling.myid != self.tc.myid:
-					self.assertTrue( 'href="%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )
+					self.assertTrue( 'href="../%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )
 
 				else:
 					# one sibling is selected
@@ -179,4 +180,38 @@ class test_PageTUB(unittest.TestCase):
 		
 		#legend
 		self.assertTrue( 'id="legend"' in self.tc.html, "Legend is missing in HTML" )		
+		
+		
+	def testCorrectLinks(self):
+		xml = etree.Element( 'page' )
+		
+		# correct these
+		image = etree.Element( 'img' )
+		image.set( 'href', 'source.png' )
+		xml.append( image )
+		entry = etree.Element( 'entry' )
+		entry.set( 'href', 'entry.html' )
+		xml.append( entry )
+		internalLink = etree.Element( 'a' )
+		internalLink.set( 'href', 'index.html' )
+		xml.append( internalLink )
+		
+		# do not correct these
+		externalLink = etree.Element( 'a' )
+		externalLink.set( 'href', 'http://www.example.com' )
+		xml.append( externalLink )
+		mailto = etree.Element( 'a' )
+		mailto.set( 'href', 'mailto: a@b.com' )
+		xml.append( mailto )
+		
+		basePath = ".."
+		self.page.correctLinks( xml, basePath )
+		self.assertTrue( basePath in image.get( 'href' ), "Link correction failed for link %s" % image.get( 'href' ) )
+		self.assertTrue( basePath in entry.get( 'href' ), "Link correction failed for link %s" % entry.get( 'href' ) )
+		self.assertTrue( basePath in internalLink.get( 'href' ), "Link correction failed for link %s" % internalLink.get( 'href' ) )
+		
+		self.assertFalse( basePath in externalLink.get( 'href' ), "Link correction failed for link %s" % externalLink.get( 'href' ) )
+		self.assertFalse( basePath in mailto.get( 'href' ), "Link correction failed for link %s" % mailto.get( 'href' ) )
+		
+		
 		

@@ -8,8 +8,8 @@
 	<xsl:import href="navbar.xslt" />
 	<xsl:import href="toc.xslt" />
 	<xsl:import href="tabs.xslt" />
-	<xsl:import href="content.xslt" />
-	<xsl:import href="pageFooter.xslt" />
+ 	<xsl:import href="content.xslt" />
+ 	<xsl:import href="pageFooter.xslt" />
 	
 	<xsl:template match="/page">
 
@@ -23,10 +23,7 @@
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				
 				<!-- Stylesheets, External JS, MathJax, i18n -->
-				<xsl:call-template name="headers">
-					<xsl:with-param name="lang" select="@lang" />
-				</xsl:call-template>
-				
+				<xsl:apply-templates select="." mode="headers" />
 			</head>
 			
 			<body>
@@ -55,7 +52,9 @@
 									</xsl:apply-templates>
 														                
 									<!-- Footer -->
-									<xsl:call-template name="pageFooter" />
+									<xsl:call-template name="pageFooter">
+										<xsl:with-param name="basePath" select="@basePath" />
+									</xsl:call-template>
 					                
 								</div>	
 							</div>

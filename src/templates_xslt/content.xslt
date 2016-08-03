@@ -12,7 +12,7 @@
 
 			<!-- Add a module launch button to module overview pages (level 2) -->
 			<xsl:if test="$selectedPage/@level = 2">
-				<a type="button" class="btn btn-primary center-block" href="{@href}" style="margin-top: 2em; width: 50%;">
+				<a type="button" class="btn btn-primary center-block" href="{@href}" style="margin-top: 2em; width: 33%;">
 					<span data-toggle="i18n" data-i18n="module_starttext"/>: <xsl:value-of select="$selectedPage/caption" />
 				</a>
 			</xsl:if>

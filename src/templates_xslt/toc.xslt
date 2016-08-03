@@ -50,7 +50,7 @@
 					<xsl:apply-templates select="children" />
 				</div>
 			</div>
-		</div>	
+		</div>
 	</xsl:template>
 
 
@@ -61,8 +61,8 @@
 		</ul>
 	</xsl:template>
 
+
 	<xsl:template match="entry" mode="submenu">
-	
 		<!-- TOC entries of level 4 have icons -->
 		<xsl:variable name="iconClass"><xsl:if test="@level = '4'">glyphicon glyphicon-file</xsl:if></xsl:variable>
 		

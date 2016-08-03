@@ -1,5 +1,5 @@
 '''
-Created on Jul 29, 2016
+	This file is part of the VEUNDMINT plugin package
 
 	The VEUNDMINT plugin package is free software; you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
@@ -13,13 +13,11 @@ Created on Jul 29, 2016
 
 	You should have received a copy of the GNU Lesser General Public License
 	along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
-'''
-
-''' 
-	Render page by applying XSLT templates, using the lxml library.
 	
+	Created on Jul 29, 2016
 	@author: Alvaro Ortiz for TUB (http://tu-berlin.de)
 '''
+
 
 from lxml import etree
 import os
@@ -27,6 +25,17 @@ from tidylib import tidy_document
 from tex2x.renderers.AbstractPage import AbstractPage
 
 class PageTUB( AbstractPage ):
+	"""
+	Render page by applying XSLT templates, using the lxml library.	
+	"""
+	
+	# Constants for levels
+	MODULE_LEVEL = 2
+	SECTION_LEVEL = 3
+	SUBSECTION_LEVEL = 4
+
+	# Entity definition hack
+	ENTITIES = '<!DOCTYPE xsl:stylesheet [ <!ENTITY nbsp "&#160;"> ]>'
 
 	def __init__( self, tplPath, lang ):
 		"""
@@ -37,7 +46,7 @@ class PageTUB( AbstractPage ):
 		"""
 		self.tplPath = tplPath
 		self.lang = lang
-		
+				
 		#Use tidy to cleanup tc.content.
 		#Do not use tidy on the final output of Page, as tidy will remove empty spans required by bootstrap.
 		self.tidyOptions = {
@@ -52,7 +61,7 @@ class PageTUB( AbstractPage ):
 			"wrap": 0,
 			"show-body-only": True	# Doesn't work
 		}	
-	
+
 	
 	def generateHTML( self, tc ):
 		"""
@@ -60,8 +69,11 @@ class PageTUB( AbstractPage ):
 		
 		@param tc - TContent object encapsulating the data for the page to be rendered
 		"""
-		# Create the XML inout
-		xml = self.generateXML( tc )
+		# get the base path
+		basePath = self.getBasePath(tc)
+		
+		# Create the XML output
+		xml = self.generateXML( tc, basePath )
 
 		# Load the template
 		templatePath = os.path.join( self.tplPath, "page.xslt" )
@@ -71,17 +83,19 @@ class PageTUB( AbstractPage ):
 
 		# Apply the template
 		transform = etree.XSLT( template )
+		#print( etree.tostring( xml ))
 		result = transform( xml )
-
+		
 		# save the result in tc object
 		tc.html = str(result) # don't use tidy on the whole page, as version 1 drops-empty-elements
 
 
-	def generateXML(self, tc):
+	def generateXML(self, tc, basePath):
 		"""
 		Create a XML document representing a page from a TContent object
 		
 		@param tc - a TContent object encapsulating page data and content
+		@param basePath - String prefix for all links
 		@return an etree element
 		"""
 		# page is the root element
@@ -98,11 +112,17 @@ class PageTUB( AbstractPage ):
 		
 		# toc
 		page.append( self.generateTocXML( tc ) )
+
+		# correct the links in content and TOC
+		self.correctLinks( page, basePath )
 		
+		# add base path to xml, as the transformer doesn't seem to support parameter passing
+		page.set( 'basePath', ".." )
+				
 		return page
 
 
-	def generateContentXML(self, tc):
+	def generateContentXML( self, tc ):
 		"""
 		Get the content from tc, cleanup using tidy, parse it and return XML
 		
@@ -121,12 +141,14 @@ class PageTUB( AbstractPage ):
 		contentString = contentString.replace( '<br clear="all" />', '' )
 
 		# add this to fix &nbsp;.
-		contentString = '<!DOCTYPE xsl:stylesheet [ <!ENTITY nbsp "&#160;"> ]>' + contentString
+		contentString = self.ENTITIES + contentString
+		# parse content string to etree
 		content = etree.fromstring( contentString )
+	
 		return content.find('content')
-	
-	
-	def generateTocXML(self, tc):
+
+		
+	def generateTocXML( self, tc ):
 		"""
 		Create XML for the table of contents
 		
@@ -146,8 +168,16 @@ class PageTUB( AbstractPage ):
 				# add the new entry to the entries element
 				entries.append( self.generateTocEntryXML( tc, sibling ) )
 		
+		# correct links to sections in TOC
+		sectionEntries = entries.xpath("//entry[@level = %s]" % self.SECTION_LEVEL)
+		modstartSuffix = "modstart.html"
+		for entry in sectionEntries:
+			link = os.path.join( entry.get( 'href' ), modstartSuffix )				
+			entry.set( 'href', link )
+			
 		# add the entries to the toc element
 		toc.append( entries )
+
 		return toc
 
 
@@ -205,7 +235,7 @@ class PageTUB( AbstractPage ):
 		"""		
 		childEl = etree.Element( 'entry' )
 		
-		# href is an attribute
+		# set link
 		childEl.set( 'href', child.fullname )
 		
 		# status is an attribute (optional)
@@ -213,13 +243,42 @@ class PageTUB( AbstractPage ):
 			childEl.set( 'status', child.tocsymb )
 	
 		# Modules are level 2, sections are level 3 etc.
-		if hasattr( child, 'level' ) and child.level is not None:
-			childEl.set( 'level', str( child.level ) )		
+		childEl.set( 'level', str( child.level ) )
 	
 		# caption is an element, as it could contain HTML-tags
-		caption = etree.Element( 'caption' )
+		caption = etree.Element( "caption" )
 		caption.text = child.caption
 		childEl.append( caption )
 		
 		return childEl
+
+
+	def getBasePath(self, tc):
+		"""
+		Set base path to point up from the level of the current tc object
 		
+		@param tc - TContent object encapsulating the data for the page to be rendered
+		"""
+		basePath = ".."
+		for l in range( self.MODULE_LEVEL, tc.level ):
+			basePath = os.path.join( '..', basePath )
+	
+		return basePath
+
+	
+	def correctLinks(self, page, basePath ):
+		"""
+		Add basePath to all entries, links and images
+		
+		@param page - etree Element holding content and TOC
+		@param basePath - String prefix for all links
+		"""
+		aHrefs = page.xpath( "//a|//img|//entry" )
+		for a in aHrefs:
+			link = a.get( 'href' )
+			
+			# don't correct links to external resources
+			if link is not None and 'http://' not in link and 'mailto:' not in link:
+				a.set( 'href', os.path.join( basePath, link ) )
+
+
