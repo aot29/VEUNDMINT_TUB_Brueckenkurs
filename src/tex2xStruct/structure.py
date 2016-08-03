@@ -700,8 +700,8 @@ class Structure(object):
 
         #ttm starten
 
-        ttm_parser = TTMParser()
-        ttm_parser.parse(sys=self.sys)
+        ttm_parser = TTMParser(sys=self.sys)
+        ttm_parser.parse()
 
 
     def prepare_xml_file(self):
