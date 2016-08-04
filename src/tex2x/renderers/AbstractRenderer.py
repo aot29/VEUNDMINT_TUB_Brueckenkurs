@@ -21,6 +21,7 @@
 import os
 
 # Constants for levels
+ROOT_LEVEL = 1
 MODULE_LEVEL = 2
 SECTION_LEVEL = 3
 SUBSECTION_LEVEL = 4

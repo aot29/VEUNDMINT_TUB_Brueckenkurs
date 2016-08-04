@@ -29,7 +29,8 @@ class PageTUB( AbstractHtmlRenderer, AbstractXmlRenderer ):
 	Render page by applying XSLT templates, using the lxml library.	
 	"""
 	
-	# Entity definition hack
+	# Entity definition for &nbsp; needs to be added before parsing  
+	# perhaps load all entities from DTD?
 	ENTITIES = '<!DOCTYPE xsl:stylesheet [ <!ENTITY nbsp "&#160;"> ]>'
 
 	def __init__( self, tplPath, lang, tocRenderer ):
@@ -38,7 +39,7 @@ class PageTUB( AbstractHtmlRenderer, AbstractXmlRenderer ):
 		
 		@param tplPath - String path to the directory holding the xslt templates
 		@param lang - String ISO-639-1 language code ("de" or "en")
-		@param tocRenderer - TocRenderer an AbstractHtmlRenderer that builds the table of contents
+		@param tocRenderer - TocRenderer an AbstractXMLRenderer that builds the table of contents
 		"""
 		self.tplPath = tplPath
 		self.lang = lang
@@ -176,9 +177,16 @@ class PageTUB( AbstractHtmlRenderer, AbstractXmlRenderer ):
 		@param tc - TContent object encapsulating the data for the page to be rendered
 		"""
 		basePath = ".."
-		for l in range( MODULE_LEVEL, tc.level ):
-			basePath = os.path.join( '..', basePath )
-			
+		
+		if tc.level == ROOT_LEVEL:
+			basePath = ".."
+		if tc.level == MODULE_LEVEL:
+			basePath = ".."
+		if tc.level == SECTION_LEVEL:
+			basePath = "../.."
+		if tc.level == SUBSECTION_LEVEL:
+			basePath = "../.."
+		
 		return basePath
 
 

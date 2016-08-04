@@ -79,7 +79,7 @@ class test_PageTUB(AbstractRendererTestCase):
 
 				else:
 					# one sibling is selected
-					self.assertTrue( 'href="#collapse"' in self.tc.html, "Selected TOC entry is missing in HTML. Expected %s" % sibling.fullname )
+					self.assertTrue( 'href="#collapse"' in self.tc.html, "Selected TOC entry is missing in HTML. Expected #collapse" )
 					
 		# children and grand children
 		children = self.tc.children
@@ -102,6 +102,8 @@ class test_PageTUB(AbstractRendererTestCase):
 		self.tc.level = MODULE_LEVEL
 		self.assertEquals("..", self.page.getBasePath( self.tc ))
 		self.tc.level = SECTION_LEVEL
+		self.assertEquals("../..", self.page.getBasePath( self.tc ))
+		self.tc.level = SUBSECTION_LEVEL
 		self.assertEquals("../..", self.page.getBasePath( self.tc ))
 		
 

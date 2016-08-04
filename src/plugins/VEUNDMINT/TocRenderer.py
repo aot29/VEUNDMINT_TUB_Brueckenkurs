@@ -48,14 +48,15 @@ class TocRenderer( AbstractXmlRenderer ):
         entries = etree.Element( 'entries' )
 
         # go through the tree contained in tc, starting one level up
-        parent = tc.parent
-        if parent is not None:
-            # siblings are at the same level than the current page
-            siblings = parent.children
+        # get the root element for the TOC
+        tocModule = self._getModule( tc )
+        if tocModule is not None and tocModule.parent is not None:
+            # siblings are at the modules at the same level than the current page
+            siblings = tocModule.parent.children
             for i in range( len( siblings ) ):
                 sibling = siblings[i]
                 # add the new entry to the entries element
-                entries.append( self.generateTocEntryXML( tc, sibling ) )
+                entries.append( self.generateTocEntryXML( tocModule, sibling ) )
         
         # correct links to sections in TOC
         sectionEntries = entries.xpath("//entry[@level = %s]" % SECTION_LEVEL)
@@ -68,7 +69,7 @@ class TocRenderer( AbstractXmlRenderer ):
         toc.append( entries )
         
         return toc
-
+        
 
     def generateTocEntryXML(self, tc, sibling):
         """
@@ -113,8 +114,8 @@ class TocRenderer( AbstractXmlRenderer ):
             childrenElement.append( childEl )
             
         return childrenElement
-    
-    
+
+
     def generateSingleEntryXML(self, child):
         """
         Create XML for single entries or children of entries in the table of contents
@@ -140,3 +141,13 @@ class TocRenderer( AbstractXmlRenderer ):
         childEl.append( caption )
         
         return childEl
+    
+    
+    def _getModule(self, tc):
+        """
+        Get the root of the TOC tree
+        """
+        if int( tc.level ) == ROOT_LEVEL: return tc        
+        elif int( tc.level ) == MODULE_LEVEL: return tc
+        elif int( tc.level ) == SECTION_LEVEL: return tc.parent
+        elif int( tc.level ) == SUBSECTION_LEVEL: return tc.parent.parent
