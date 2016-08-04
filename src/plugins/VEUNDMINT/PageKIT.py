@@ -36,9 +36,9 @@ from lxml.html import fromstring as hp_fromstring
 from lxml.html.html5parser import HTMLParser as HTML5Parser
 from lxml.html.html5parser import fromstring as h5_fromstring
 from lxml import etree
-from tex2x.renderers.AbstractPage import AbstractPage
+from tex2x.renderers.AbstractRenderer import AbstractHtmlRenderer
 
-class PageKIT(AbstractPage):
+class PageKIT(AbstractHtmlRenderer):
 
     def __init__(self, sys, data, options, outputplugin):
         self.sys = sys

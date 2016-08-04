@@ -22,27 +22,23 @@
 from lxml import etree
 import os
 from tidylib import tidy_document
-from tex2x.renderers.AbstractPage import AbstractPage
+from tex2x.renderers.AbstractRenderer import *
 
-class PageTUB( AbstractPage ):
+class PageTUB( AbstractHtmlRenderer, AbstractXmlRenderer ):
 	"""
 	Render page by applying XSLT templates, using the lxml library.	
 	"""
 	
-	# Constants for levels
-	MODULE_LEVEL = 2
-	SECTION_LEVEL = 3
-	SUBSECTION_LEVEL = 4
-
 	# Entity definition hack
 	ENTITIES = '<!DOCTYPE xsl:stylesheet [ <!ENTITY nbsp "&#160;"> ]>'
 
-	def __init__( self, tplPath, lang ):
+	def __init__( self, tplPath, lang, tocRenderer ):
 		"""
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
 		
 		@param tplPath - String path to the directory holding the xslt templates
 		@param lang - String ISO-639-1 language code ("de" or "en")
+		@param tocRenderer - TocRenderer an AbstractHtmlRenderer that builds the table of contents
 		"""
 		self.tplPath = tplPath
 		self.lang = lang
@@ -60,7 +56,9 @@ class PageTUB( AbstractPage ):
 			"force-output": 1,		# May not get what you expect but you will get something}
 			"wrap": 0,
 			"show-body-only": True	# Doesn't work
-		}	
+		}
+		
+		self.tocRenderer = tocRenderer
 
 	
 	def generateHTML( self, tc ):
@@ -111,10 +109,10 @@ class PageTUB( AbstractPage ):
 		page.append( self.generateContentXML( tc ) )
 		
 		# toc
-		page.append( self.generateTocXML( tc ) )
+		page.append( self.tocRenderer.generateXML( tc ) )
 
 		# add links to next and previous entries
-		self.addPrevNextLinks(page, tc, basePath)
+		self._addPrevNextLinks(page, tc, basePath)
 		
 		# correct the links in content and TOC
 		self.correctLinks( page, basePath )
@@ -123,7 +121,6 @@ class PageTUB( AbstractPage ):
 		page.set( 'basePath', basePath )
 				
 		return page
-
 
 
 	def generateContentXML( self, tc ):
@@ -151,113 +148,7 @@ class PageTUB( AbstractPage ):
 	
 		return content.find('content')
 
-		
-	def generateTocXML( self, tc ):
-		"""
-		Create XML for the table of contents
-		
-		@param tc - a TContent object encapsulating page data and content
-		@return an etree element
-		"""
-		toc = etree.Element( 'toc' )
-		entries = etree.Element( 'entries' )
-
-		# go through the tree contained in tc, starting one level up
-		parent = tc.parent
-		if parent is not None:
-			# siblings are at the same level than the current page
-			siblings = parent.children
-			for i in range( len( siblings ) ):
-				sibling = siblings[i]
-				# add the new entry to the entries element
-				entries.append( self.generateTocEntryXML( tc, sibling ) )
-		
-		# correct links to sections in TOC
-		sectionEntries = entries.xpath("//entry[@level = %s]" % self.SECTION_LEVEL)
-		modstartSuffix = "modstart.html"
-		for entry in sectionEntries:
-			link = os.path.join( entry.get( 'href' ), modstartSuffix )				
-			entry.set( 'href', link )
-			
-		# add the entries to the toc element
-		toc.append( entries )
-		
-		return toc
-
-
-	def generateTocEntryXML(self, tc, sibling):
-		"""
-		Create XML for the table of contents
-		
-		@param tc - a TContent object encapsulating a TOC entry
-		@param sibling - a TContent object encapsulating a TOC entry
-		@return an etree element
-		"""
-		entry = self.generateSingleEntryXML( sibling )
-
-		# check if entry is selected
-		if sibling.myid == tc.myid: 
-			isSelected = "True"
-			# if entry selected, append its children
-			entry.append( self.generateTocEntryChildrenXML( sibling ) )
-			
-		else:
-			isSelected = "False"
-
-		entry.set( "selected", isSelected )
-				
-		return entry
-
-
-	def generateTocEntryChildrenXML( self, sibling ):
-		"""
-		Create XML for the table of contents
-		
-		@param sibling - a TContent object encapsulating a TOC entry
-		@return an etree element
-		"""
-		childrenElement = etree.Element( 'children' )		
-		for child in sibling.children:
-			childEl = self.generateSingleEntryXML( child )
-
-			# Append grand children recursively
-			if hasattr(child, 'children') and child.children is not None:
-				children2 = self.generateTocEntryChildrenXML( child )
-				childEl.append( children2 )
-	
-			childrenElement.append( childEl )
-			
-		return childrenElement
-	
-	
-	def generateSingleEntryXML(self, child):
-		"""
-		Create XML for single entries or children of entries in the table of contents
-		
-		@param sibling - a TContent object encapsulating a TOC entry
-		@return an etree element
-		"""		
-		childEl = etree.Element( 'entry' )
-		
-		# set link
-		childEl.set( 'href', child.fullname )
-		
-		# status is an attribute (optional)
-		if hasattr( child, 'tocsymb' ) and child.tocsymb is not None:
-			childEl.set( 'status', child.tocsymb )
-	
-		# Modules are level 2, sections are level 3 etc.
-		childEl.set( 'level', str( child.level ) )
-	
-		# caption is an element, as it could contain HTML-tags
-		caption = etree.Element( "caption" )
-		caption.text = child.caption
-		childEl.append( caption )
-		
-		return childEl
-
-
-	def addPrevNextLinks(self, page, tc, basePath):
+	def _addPrevNextLinks(self, page, tc, basePath):
 		"""
 		Add links to previous and next pages
 		
@@ -285,25 +176,9 @@ class PageTUB( AbstractPage ):
 		@param tc - TContent object encapsulating the data for the page to be rendered
 		"""
 		basePath = ".."
-		for l in range( self.MODULE_LEVEL, tc.level ):
+		for l in range( MODULE_LEVEL, tc.level ):
 			basePath = os.path.join( '..', basePath )
 			
 		return basePath
-
-	
-	def correctLinks(self, page, basePath ):
-		"""
-		Add basePath to all entries, links and images
-		
-		@param page - etree Element holding content and TOC
-		@param basePath - String prefix for all links
-		"""
-		aHrefs = page.xpath( "//a|//img|//entry" )
-		for a in aHrefs:
-			link = a.get( 'href' )
-			
-			# don't correct links to external resources
-			if link is not None and 'http://' not in link and 'mailto:' not in link:
-				a.set( 'href', os.path.join( basePath, link ) )
 
 

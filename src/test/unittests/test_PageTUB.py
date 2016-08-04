@@ -3,76 +3,20 @@ import os
 from lxml import etree
 
 from plugins.VEUNDMINT.tcontent import TContent
+from plugins.VEUNDMINT.TocRenderer import TocRenderer
 from plugins.VEUNDMINT.PageTUB import PageTUB
 from tex2x.Settings import settings
 
+from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
+from tex2x.renderers.AbstractRenderer import *
 
-class test_PageTUB(unittest.TestCase):
-	tplPath = os.path.join(settings.BASE_DIR, "src/templates_xslt")
+class test_PageTUB(AbstractRendererTestCase):
 	
-
 	def setUp(self):
-		self.lang = "en"
+		AbstractRendererTestCase.setUp(self)
 		
-		# Setup a tc object for testing
-		self.tc = TContent()
-		self.tc.title = "Test Title"
-		self.tc.caption = "Test"
-		self.tc.fullname = "html/test"
-		self.tc.content = "Some content."
-		self.tc.myid = 123
-		self.tc.level = 2
-		
-		# add a parent
-		self.tc.parent = TContent()
-		self.tc.parent.children.append( self.tc )
-		self.tc.parent.level = 1
-		
-		#add some siblings
-		sibling1 = TContent()
-		sibling1.caption = "Sibling 1"
-		sibling1.fullname = "html/section1"
-		sibling1.myid = 456 
-		sibling1.level = 2
-		sibling2 = TContent()
-		sibling2.caption = "Sibling 2"
-		sibling2.fullname = "html/section2"
-		sibling2.myid = 789 
-		sibling2.level = 2
-		self.tc.parent.children.append( sibling1 )		
-		self.tc.parent.children.append( sibling2 )
-		
-		#add some children
-		child1 = TContent()
-		child1.caption = "Child 1"
-		child1.fullname = "html/1/xcontent1.html"
-		child1.level = 3
-		child2 = TContent()
-		child2.caption = "Child 2"
-		child2.fullname = "html/2/xcontent2.html"
-		child2.level = 3
-		self.tc.children.append( child1 )
-		self.tc.children.append( child2 )
-
-		#add some grand children
-		child11 = TContent()
-		child11.caption = "Child 11"
-		child11.fullname = "html/11/xcontent11.html"
-		child11.tocsymb = "status1"
-		child11.level = 4
-		child12 = TContent()
-		child12.caption = "Child 12"
-		child12.fullname = "html/12/xcontent12.html"
-		child12.level = 4
-		child21 = TContent()
-		child21.caption = "Child 21"
-		child21.fullname = "html/21/xcontent21.html"
-		child21.level = 4
-		child1.children.append( child11 )
-		child1.children.append( child12 )
-		child2.children.append( child21 )
-		
-		self.page = PageTUB( self.tplPath, self.lang )
+		tocRenderer = TocRenderer( self.tplPath, self.lang )
+		self.page = PageTUB( self.tplPath, self.lang, tocRenderer )
 		# create an XML element using the tc mock-up 
 		# (only for testing, i.r.l. you can skip this step and do page.generateHTML directly)
 		basePath = self.page.getBasePath( self.tc )
@@ -91,38 +35,6 @@ class test_PageTUB(unittest.TestCase):
 		self.assertEqual( self.lang, self.xml.xpath('/page/@lang')[0], "Language code is wrong in XML" )
 		# Content
 		self.assertEqual( self.tc.content, self.xml.xpath('/page/content')[0].text, "Content is wrong in XML" )
-	
-	
-	def test_generateTocXML(self):
-		'''
-		Test that the table of contents XML contains all required elements and attributes
-		'''		
-		#TOC (there are 3 siblings in the test tc object instantiated in the setup of this test)
-		self.assertTrue( self.xml.xpath('/page/toc'), "TOC is missing in XML" )
-		self.assertEqual( 3, len( self.xml.xpath('/page/toc/entries/entry') ), "Expecting 2 entries in TOC in XML" )
-		
-		
-	def test_generateTocEntryXML(self):
-		'''
-		Test that each TOC entry XML contains all required elements and attributes
-		'''		
-		#get the selected entry
-		selected = self.xml.xpath('/page/toc/entries/entry[@selected="True"]')[0]
-		
-		# one sibling is selected
-		selectedCount = 0
-		for sibling in self.xml.xpath('/page/toc/entries/entry'):
-			if sibling.xpath( '@selected' )[0] == "True": selectedCount += 1
-		self.assertEqual( 1, selectedCount )
-		
-		# selected entry has children
-		self.assertEqual( 2, len( selected.xpath('children/entry') ), "Expecting 2 children in TOC in XML" )
-		# selected entry has grand children
-		self.assertEqual( 3, len( selected.xpath('children/entry/children/entry') ), "Expecting 3 grand children in selected element in XML" )
-		
-		# Check that levels are present
-		self.assertEqual( 2, int( selected.xpath('@level')[0] ) )
-		self.assertEqual( 3, int( selected.xpath('children/entry/@level')[0] ) )
 		
 
 	def test_generateHTML(self):
@@ -182,47 +94,15 @@ class test_PageTUB(unittest.TestCase):
 		self.assertTrue( 'id="legend"' in self.tc.html, "Legend is missing in HTML" )		
 		
 		
-	def testCorrectLinks(self):
-		"""
-		Test that internal links and references get corrected and external ones are left as-is.
-		"""
-		xml = etree.Element( 'page' )
-		
-		# correct these
-		image = etree.Element( 'img' )
-		image.set( 'href', 'source.png' )
-		xml.append( image )
-		entry = etree.Element( 'entry' )
-		entry.set( 'href', 'entry.html' )
-		xml.append( entry )
-		internalLink = etree.Element( 'a' )
-		internalLink.set( 'href', 'index.html' )
-		xml.append( internalLink )
-		
-		# do not correct these
-		externalLink = etree.Element( 'a' )
-		externalLink.set( 'href', 'http://www.example.com' )
-		xml.append( externalLink )
-		mailto = etree.Element( 'a' )
-		mailto.set( 'href', 'mailto: a@b.com' )
-		xml.append( mailto )
-		
-		basePath = ".."
-		self.page.correctLinks( xml, basePath )
-		self.assertTrue( basePath in image.get( 'href' ), "Link correction failed for link %s" % image.get( 'href' ) )
-		self.assertTrue( basePath in entry.get( 'href' ), "Link correction failed for link %s" % entry.get( 'href' ) )
-		self.assertTrue( basePath in internalLink.get( 'href' ), "Link correction failed for link %s" % internalLink.get( 'href' ) )
-		
-		self.assertFalse( basePath in externalLink.get( 'href' ), "Link correction failed for link %s" % externalLink.get( 'href' ) )
-		self.assertFalse( basePath in mailto.get( 'href' ), "Link correction failed for link %s" % mailto.get( 'href' ) )
-		
-		
 	def testGetBasePath(self):
 		"""
 		Test that the base path corresponds to the entry level
 		"""
-		self.tc.level = PageTUB.MODULE_LEVEL
+		tc = TContent()
+		self.tc.level = MODULE_LEVEL
 		self.assertEquals("..", self.page.getBasePath( self.tc ))
-		self.tc.level = PageTUB.SECTION_LEVEL
+		self.tc.level = SECTION_LEVEL
 		self.assertEquals("../..", self.page.getBasePath( self.tc ))
+		
+
 		
