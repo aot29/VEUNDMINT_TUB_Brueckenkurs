@@ -13,17 +13,17 @@ class test_PageXmlRenderer(AbstractRendererTestCase):
     
     def setUp(self):
         AbstractRendererTestCase.setUp(self)
-        
         self.renderer = PageXmlRenderer( self.lang )
-        # create an XML element using the tc mock-up 
-        # (only for testing, i.r.l. you can skip this step and do page.generateHTML directly)
-        self.xml = self.renderer.generateXML( self.tc )
 
 
     def test_generateXML(self):
         '''
         Test that the XML contains all required elements and attributes
         '''
+        # create an XML element using the tc mock-up 
+        # (only for testing, i.r.l. you can skip this step and do page.generateHTML directly)
+        self.xml = self.renderer.generateXML( self.tc )
+        
         #Title
         self.assertEqual( self.tc.title, self.xml.xpath('/page/title')[0].text, "Title is wrong in XML" )
         #Lang
@@ -32,6 +32,6 @@ class test_PageXmlRenderer(AbstractRendererTestCase):
         self.assertEqual( self.tc.content, self.xml.xpath('/page/content')[0].text, "Content is wrong in XML" )
         
 
-        
+    
 
         

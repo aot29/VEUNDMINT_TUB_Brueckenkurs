@@ -4,7 +4,14 @@
 		<xsl:comment>TOC side bar</xsl:comment>
 		<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation" style="margin-top: 5px;">
 			<div id="toc" class="panel-group">
-				<h3><span data-toggle="i18n" data-i18n="module_content"/></h3>
+				<h3>
+					<span data-toggle="i18n" data-i18n="module_content"/>
+					<div class="pull-right">
+						<a data-toggle="tooltip" id="homebutton" href="../../index.html" class="btn btn-link glyphicon glyphicon-home"></a>
+						<a data-toggle="tooltip" id="listebutton" href="../../search.html" class="btn btn-link glyphicon glyphicon-book"></a>
+						<a data-toggle="tooltip" id="databutton" href="../../data.html" class="btn btn-link glyphicon glyphicon-dashboard"></a>
+					</div>                        
+				</h3>
 				<xsl:apply-templates select="entries/entry" />
 				<xsl:call-template name="legend"/>
 			</div>
@@ -42,10 +49,10 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parents="#toc" href="#collapse"><xsl:value-of select="caption"/></a>
+					<a href="{@href}"><xsl:value-of select="caption"/></a>
 				</h4>
 			</div>
-			<div id="collapse" class="panel-collapse">
+			<div>
 				<div class="panel-body">
 					<xsl:apply-templates select="children" />
 				</div>
@@ -65,10 +72,18 @@
 	<xsl:template match="entry" mode="submenu">
 		<!-- TOC entries of level 4 have icons -->
 		<xsl:variable name="iconClass"><xsl:if test="@level = '4'">glyphicon glyphicon-file</xsl:if></xsl:variable>
+		<xsl:variable name="highlightClass"><xsl:if test="@selected = 'True'">selectedEntry</xsl:if></xsl:variable>
 		
 		<!-- List entries recursively -->
 		<li>
-			<a href="{@href}" class="{$iconClass} {@status}"><span class="entryText"><xsl:value-of select="caption"/></span></a>
+			<xsl:choose>
+				<xsl:when test="@href">
+					<a href="{@href}" class="{$iconClass} {@status}"><span class="entryText {$highlightClass}"><xsl:value-of select="caption"/></span></a>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="caption"/>
+				</xsl:otherwise>
+			</xsl:choose>
 			<xsl:apply-templates select="children" />
 		</li>
 	</xsl:template>

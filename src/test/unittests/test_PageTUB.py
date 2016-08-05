@@ -77,7 +77,23 @@ class test_PageTUB(AbstractRendererTestCase):
 		#legend
 		self.assertTrue( 'id="legend"' in self.tc.html, "Legend is missing in HTML" )		
 		
+		#tabs or lauch button (self.tc is a module overview page)
+		self.assertTrue( 'btn btn-primary' in self.tc.html, "Launch button is missing in HTML" )
+		self.assertFalse( 'nav nav-tabs' in self.tc.html, "Tabs are rendered when they shouldn't in HTML" )		
 		
+	
+	def testPrevNextLInks(self):
+		# Create the XML output for a page with left and right neighbors
+		siblings = self.tc.children
+		xml = self.page.generateXML( siblings[1] )
+		self.assertTrue( len( siblings ) >= 3 )
+		# add links to next and previous entries
+		self.page._addPrevNextLinks(xml, siblings[1] )
+		#print( etree.tostring( xml ) )
+		self.assertEquals( siblings[2].fullname, xml.xpath('navNext/@href')[0], "Next page not found" )
+		self.assertEquals( siblings[0].fullname, xml.xpath('navPrev/@href')[0], "Prev page not found" )
+
+
 	def testGetBasePath(self):
 		"""
 		Test that the base path corresponds to the entry level

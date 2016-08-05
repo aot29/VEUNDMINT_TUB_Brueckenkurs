@@ -28,7 +28,7 @@ from plugins.VEUNDMINT.PageXmlRenderer import PageXmlRenderer
 
 class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 	"""
-	Render page by applying XSLT templates, using the lxml library.	
+	Render page by applying XSLT templates, using the lxml library.
 	"""
 	
 	def __init__( self, tplPath, lang, tocRenderer ):
@@ -100,7 +100,7 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		return basePath
 	
 	
-	def _addPrevNextLinks(self, page, tc, basePath):
+	def _addPrevNextLinks(self, page, tc, basePath=''):
 		"""
 		Add links to previous and next pages
 		
@@ -108,16 +108,19 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		@param tc - a TContent object encapsulating page data and content
 		@param basePath - String prefix for all links
 		"""
-		navPrev = tc.navleft()
+		navPrev = tc.left
+		if navPrev is None: 
+			navPrev = tc.xleft		
 		if navPrev is not None: 
 			navPrevEl = etree.Element( "navPrev" )
 			navPrevEl.set( "href", os.path.join(basePath, navPrev.fullname ) )
 			page.append( navPrevEl )
-			
-		navNext = tc.navright()
-		if navNext is not None: 
+
+		navNext = tc.right
+		if navNext is None:
+			navNext = tc.xright
+		if navNext is not None:
 			navNextEl = etree.Element( "navNext" )
 			navNextEl.set( "href", os.path.join(basePath, navNext.fullname ) )
 			page.append( navNextEl )
-
 

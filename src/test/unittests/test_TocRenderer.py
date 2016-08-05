@@ -38,7 +38,7 @@ class test_TocRenderer(AbstractRendererTestCase):
     def test_generateTocXML(self):
         '''
         Test that the table of contents XML contains all required elements and attributes
-        '''        
+        '''
         #TOC (there are 3 siblings in the test tc object instantiated in the setup of this test)
         self.assertTrue( self.xml.xpath('/toc'), "TOC is missing in XML" )
         self.assertEqual( 3, len( self.xml.xpath('/toc/entries/entry') ), "Expecting 2 entries in TOC in XML" )
@@ -58,7 +58,7 @@ class test_TocRenderer(AbstractRendererTestCase):
         self.assertEqual( 1, selectedCount )
         
         # selected entry has children
-        self.assertEqual( 2, len( selected.xpath('children/entry') ), "Expecting 2 children in TOC in XML" )
+        self.assertEqual( 3, len( selected.xpath('children/entry') ), "Expecting 2 children in TOC in XML" )
         # selected entry has grand children
         self.assertEqual( 3, len( selected.xpath('children/entry/children/entry') ), "Expecting 3 grand children in selected element in XML" )
         

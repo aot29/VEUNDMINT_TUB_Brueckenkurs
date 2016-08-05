@@ -6,7 +6,7 @@
 		<xsl:comment>Page footer</xsl:comment>
 		     <div class="row" style="margin: 0px;" >
 				<div class="container-fluid" style="margin: 0; padding: 0">
-                    <div class="navbar navbar-default" style="display: flex; align-items: center; margin-bottom: 2em;"  id="footer">
+                    <div class="" style="display: flex; align-items: center; margin-bottom: 2em;"  id="footer">
                         <div class="col-sm-2">
                             <img src="{$basePath}/images/ccbysa80x15.png" border="0" class="pull-left"/>
                         </div>

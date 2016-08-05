@@ -45,6 +45,8 @@ class TocRenderer( AbstractXmlRenderer ):
         @return an etree element
         """
         toc = etree.Element( 'toc' )
+        selectedId = tc.myid
+        toc.set( 'forPage', str( selectedId ) )
         entries = etree.Element( 'entries' )
 
         # go through the tree contained in tc, starting one level up
@@ -56,59 +58,48 @@ class TocRenderer( AbstractXmlRenderer ):
             for i in range( len( siblings ) ):
                 sibling = siblings[i]
                 # add the new entry to the entries element
-                entries.append( self.generateTocEntryXML( tocModule, sibling ) )
-        
-        # correct links to sections in TOC
-        sectionEntries = entries.xpath("//entry[@level = %s]" % SECTION_LEVEL)
-        modstartSuffix = "modstart.html"
-        for entry in sectionEntries:
-            link = os.path.join( entry.get( 'href' ), modstartSuffix )                
-            entry.set( 'href', link )
-            
+                entries.append( self.generateTocEntryXML( tocModule, sibling, selectedId ) )
+
         # add the entries to the toc element
         toc.append( entries )
-        
-        return toc
-        
 
-    def generateTocEntryXML(self, tc, sibling):
+        return toc
+
+
+    def generateTocEntryXML(self, module, sibling, selectedId ):
         """
         Create XML for the table of contents
         
-        @param tc - a TContent object encapsulating a TOC entry
+        @param module - a TContent object encapsulating a TOC entry
         @param sibling - a TContent object encapsulating a TOC entry
+        @param selectedId - int id of the selected page
         @return an etree element
         """
-        entry = self.generateSingleEntryXML( sibling )
+        entry = self.generateSingleEntryXML( sibling, module.myid )
 
-        # check if entry is selected
-        if sibling.myid == tc.myid: 
-            isSelected = "True"
+        # check if module is selected
+        if sibling.myid == module.myid: 
             # if entry selected, append its children
-            entry.append( self.generateTocEntryChildrenXML( sibling ) )
-            
-        else:
-            isSelected = "False"
+            entry.append( self.generateTocEntryChildrenXML( sibling, selectedId ) )
 
-        entry.set( "selected", isSelected )
-                
         return entry
 
 
-    def generateTocEntryChildrenXML( self, sibling ):
+    def generateTocEntryChildrenXML( self, sibling, selectedId ):
         """
         Create XML for the table of contents
         
         @param sibling - a TContent object encapsulating a TOC entry
+        @param selectedId - int the id of the currently selected page
         @return an etree element
         """
         childrenElement = etree.Element( 'children' )        
         for child in sibling.children:
-            childEl = self.generateSingleEntryXML( child )
+            childEl = self.generateSingleEntryXML( child, selectedId )
 
             # Append grand children recursively
             if hasattr(child, 'children') and child.children is not None:
-                children2 = self.generateTocEntryChildrenXML( child )
+                children2 = self.generateTocEntryChildrenXML( child, selectedId )
                 childEl.append( children2 )
     
             childrenElement.append( childEl )
@@ -116,24 +107,36 @@ class TocRenderer( AbstractXmlRenderer ):
         return childrenElement
 
 
-    def generateSingleEntryXML(self, child):
+    def generateSingleEntryXML(self, child, selectedId):
         """
         Create XML for single entries or children of entries in the table of contents
         
         @param sibling - a TContent object encapsulating a TOC entry
+        @param selectedId - int the id of the currently selected page
         @return an etree element
         """        
         childEl = etree.Element( 'entry' )
         
-        # set link
-        childEl.set( 'href', child.fullname )
+        # Set link for TOC entry
+        # Sections don't have links, as there are actually only modules and subsections
+        # In PageKIT, these are redirects to the first subsection
+        childEl.set( 'id', str( child.myid ) )
+
+        if ( child.level != SECTION_LEVEL ):
+            childEl.set( 'href', child.fullname )
         
         # status is an attribute (optional)
         if hasattr( child, 'tocsymb' ) and child.tocsymb is not None:
             childEl.set( 'status', child.tocsymb )
-    
+
         # Modules are level 2, sections are level 3 etc.
         childEl.set( 'level', str( child.level ) )
+
+        # Mark the entry as selected
+        if child.myid == selectedId:
+            childEl.set( 'selected', 'True' )
+        else:
+            childEl.set( 'selected', 'False' )
     
         # caption is an element, as it could contain HTML-tags
         caption = etree.Element( "caption" )

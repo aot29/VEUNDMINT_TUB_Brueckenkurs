@@ -4,20 +4,22 @@
 	<!-- Tabs bar -->
 	<xsl:template match="page" mode="tabs">
 		<!-- The currently selected page -->
-		<xsl:variable name="selectedPage" select="toc/entries/entry[@selected='True']" />
+		<xsl:variable name="selectedPage" select="toc/entries/entry[@selected='True']/children/entry/children/entry[@selected='True']" />
 		
 		<xsl:comment>Sub TOC (Tabs or launch button)</xsl:comment>
 		<div class="row" id="subtoc" >
 
-			<!-- If selected entry is a section overview (level 3) or a page (level 4), render tab bar with siblings -->
-			<xsl:if test="$selectedPage/@level = 3 or $selectedPage/@level = 4">
+			<!-- If selected entry is a subsection (level 4), render tab bar with siblings -->
+			<xsl:if test="$selectedPage/@level = 4">
 
 				<div class="col-sm-1 ffrwButton"><xsl:apply-templates select="navPrev" /></div>
+				
 				<div class="col-xs-12 col-sm-10" style="padding: 0;">
 					<ul class="nav nav-tabs nav-justified">
-						<xsl:apply-templates select="entry" mode="tab" />
+						<xsl:apply-templates select="$selectedPage/../*" mode="tab" />
 					</ul>
 				</div>
+				
 				<div class="col-sm-1 ffrwButton"><xsl:apply-templates select="navNext" /></div>
 
 			</xsl:if>

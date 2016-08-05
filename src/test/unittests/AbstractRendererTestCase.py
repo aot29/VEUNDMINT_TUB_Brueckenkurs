@@ -15,6 +15,9 @@ from tex2x.Settings import settings
 
 
 class AbstractRendererTestCase(unittest.TestCase):
+    """
+    Provides a TContent object to test page and TOC renderers
+    """
     
     tplPath = os.path.join(settings.BASE_DIR, "src/templates_xslt")
 
@@ -60,8 +63,18 @@ class AbstractRendererTestCase(unittest.TestCase):
         child2.fullname = "html/2/xcontent2.html"
         child2.level = SECTION_LEVEL
         child2.parent = self.tc
+        child3 = TContent()
+        child3.caption = "Child 3"
+        child3.fullname = "html/3/xcontent3.html"
+        child3.level = SECTION_LEVEL
+        child3.parent = self.tc
         self.tc.children.append( child1 )
         self.tc.children.append( child2 )
+        self.tc.children.append( child3 )
+
+        # Prev and next
+        child2.left = child1
+        child2.right = child3
 
         #add some grand children
         child11 = TContent()
