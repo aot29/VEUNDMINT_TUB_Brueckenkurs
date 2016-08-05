@@ -20,6 +20,10 @@
 
 import os
 
+# Entity definition for &nbsp; needs to be added before parsing  
+# perhaps load all entities from DTD?
+ENTITIES = '<!DOCTYPE xsl:stylesheet [ <!ENTITY nbsp "&#160;"> ]>'
+
 # Constants for levels
 ROOT_LEVEL = 1
 MODULE_LEVEL = 2

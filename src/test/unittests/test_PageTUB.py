@@ -17,25 +17,9 @@ class test_PageTUB(AbstractRendererTestCase):
 		
 		tocRenderer = TocRenderer( self.tplPath, self.lang )
 		self.page = PageTUB( self.tplPath, self.lang, tocRenderer )
-		# create an XML element using the tc mock-up 
-		# (only for testing, i.r.l. you can skip this step and do page.generateHTML directly)
-		basePath = self.page.getBasePath( self.tc )
-		self.xml = self.page.generateXML( self.tc, basePath )
 		# generate HTML element using the tc mock-up
 		self.page.generateHTML( self.tc )
 
-
-	def test_generateXML(self):
-		'''
-		Test that the XML contains all required elements and attributes
-		'''
-		#Title
-		self.assertEqual( self.tc.title, self.xml.xpath('/page/title')[0].text, "Title is wrong in XML" )
-		#Lang
-		self.assertEqual( self.lang, self.xml.xpath('/page/@lang')[0], "Language code is wrong in XML" )
-		# Content
-		self.assertEqual( self.tc.content, self.xml.xpath('/page/content')[0].text, "Content is wrong in XML" )
-		
 
 	def test_generateHTML(self):
 		'''
