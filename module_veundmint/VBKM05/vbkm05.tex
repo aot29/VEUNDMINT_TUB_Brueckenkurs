@@ -421,11 +421,11 @@ werden.
 
 \begin{MXInfo}{Strahlens\"atze}%
 \MLabel{VBKM05_Satz_Strahlensatz}%
-Vom gemeinsamen Punkt $S$ gehen zwei Strahlen $s_1$ und $s_2$ aus, 
+Vom gemeinsamen Punkt $S$ gehen zwei verschiedene Strahlen $s_1$ und $s_2$ aus, 
 die durch die Punkte $A$ beziehungsweise $C$ verlaufen. Der Punkt $B$ 
 liegt auf dem Strahl $s_1$ und $D$ liegt auf dem Strahl $s_2$. Zuerst
 werden die Strecken zwischen den Punkten auf den beiden Strahlen betrachtet,
-dann auch zwischen den Strahlen.
+dann auch die Strecken zwischen den Strahlen.
 \par
 \begin{tabular}{@{}lr@{}}
 \begin{minipage}[b]{7cm}
@@ -496,7 +496,7 @@ und $\MGeoAbstand{B}{D} = \MGeoAbstand{D}{B}$ gilt.
 \end{MXInfo}
 Die Aussagen der Strahlens"atze gelten auch, wenn anstelle von Strahlen 
 zwei Geraden betrachtet werden, die sich im Punkt $S$ schneiden. Als 
-Anwendungsbeispiel ist oben eine Lochkamera genannt worden.
+Anwendungsbeispiel ist oben eine Lochkamera genannt worden. Als Merksatz f\"ur die Strahlens|"atze kann man sich einfach $\frac{lang}{kurz} = \frac{lang}{kurz}$ einpr\"agen.
 
 Auf diese Weise k"onnen Entfernungen zwischen Punkten berechnet werden,
 ohne dass die Strecke direkt gemessen wird.
@@ -505,7 +505,7 @@ ohne dass die Strecke direkt gemessen wird.
 Die gegebenen Punkte $A$, $B$, $C$ und $D$ bestimmen die Geraden 
 $\MGeoGerade{A}{B}$ und $\MGeoGerade{C}{D}$, die sich im Punkt $S$
 schneiden. Weiter ist bekannt, dass die Geraden $\MGeoGerade{A}{C}$ und 
-$\MGeoGerade{B}{D}$ parallel sind. Zwischen den Punkten wurden die 
+$\MGeoGerade{B}{D}$ parallel sind. Zwischen den Punkten wurden die
 Abst"ande $\MGeoAbstand{A}{B} = 51$, $\MGeoAbstand{S}{C} = 12 $ und 
 $\MGeoAbstand{C}{D} = 18$ gemessen.
 
@@ -738,7 +738,7 @@ Winkel zwischen den Strahlen $h$ und $g$.
 Der Punkt $S$ hei"st \MEntry{Scheitelpunkt}{Scheitelpunkt (Winkel)} des 
 Winkels, und die beiden Halbgeraden, die den Winkel bilden, hei"sen 
 \MEntry{Schenkel}{Schenkel} des Winkels.
-Wenn $A$ ein Punkt auf der Geraden $g$ und $B$ ein Punkt auf der Geraden $h$
+Wenn $A$ ein Punkt auf der Halbgeraden $g$ und $B$ ein Punkt auf der Halbgeraden $h$
 ist, so kann man auch $\Mmeasuredangle \left( A S B \right)$ f"ur 
 $\Mmeasuredangle \left( g, h \right)$ schreiben. In diesem Sinne werden 
 Winkel zwischen Strecken $\MGeoStrecke{S}{A}$ und $\MGeoStrecke{S}{B}$
@@ -783,9 +783,9 @@ Es seien $g$ und $h$ zwei Geraden, die sich im Punkt $S$ schneiden.
 
 \begin{itemize}
 \item Die Winkel $\Mvarphi$ und $\Mvarphi'$ hei"sen 
- \MEntry{Scheitelwinkel}{Scheitelwinkel} zueinander.
+ \MEntry{Scheitelwinkel}{Scheitelwinkel} zueinander, da sie sich am selben Scheitelpunkt gegen\"uber liegen.
 \item Die Winkel $\Mvarphi$ und $\psi$ hei"sen 
- \MEntry{Nebenwinkel}{Nebenwinkel} bez"uglich $g$.
+ \MEntry{Nebenwinkel}{Nebenwinkel} bez"uglich $g$, da sie an der selben Gerade liegen.
 \end{itemize}
 \end{MXInfo}
 
@@ -814,7 +814,7 @@ Seien $g$ und $h$ Halbgeraden mit dem Scheitelpunkt $S$.
 \begin{itemize}
 \item
 Der Winkel, der die gesamte Ebene "uberdeckt, hei"st 
-\MEntry{Vollwinkel}{Vollwinkel (Winkel)}.
+\MEntry{Vollwinkel}{Vollwinkel (Winkel)}. In diesem Fall sind die beiden Geraden identisch.
 \item
 Wenn $g$ und $h$ eine Gerade bilden, hei"st der Winkel zwischen $g$ und $h$
 %$\Mmeasuredangle(g,h)$ gestreckter Winkel.
@@ -822,9 +822,9 @@ gestreckter Winkel.
 \item
 Der Winkel zwischen zwei Halbgeraden, die einen gestreckten Winkel halbieren,
 hei"st \MEntry{rechter Winkel}{rechter Winkel (Winkel)}. 
-Man sagt dann auch, dass $g$ und $h$ 
-\MEntry{senkrecht aufeinander stehen}{senkrecht (Gerade)} oder dass 
-$g$ und $h$ \MEntry{orthogonal zueinander}{orthogonal} sind. 
+Man sagt dann auch, dass $g$ und $h$  
+\MEntry{ senkrecht aufeinander stehen}{senkrecht (Gerade)} oder dass 
+$g$ und $h$  \MEntry{ orthogonal zueinander}{orthogonal} sind. 
 \end{itemize}
 \end{MXInfo}
 
@@ -1021,6 +1021,7 @@ $30\MGrad$ und Vielfachen davon dargestellt.
 \end{center}
 
 \paragraph{Bogenma"s}
+
 Bereits im antiken Babylonien, "Agypten und Griechenland stellte man fest, 
 dass das Verh\"altnis des Umfangs $U$ eines Kreises zu seinem Durchmesser 
 $D$ stets das gleiche ist, und somit Umfang und Durchmesser zueinander 
@@ -1038,8 +1039,8 @@ periodischer Dezimalbruch geschrieben werden. Numerische Berechnungen ergeben,
 dass n"aherungsweise $\pi \approx \MZahl{3}{141592653589793}$ ist.
 \end{MXInfo}
 
-Wenn der Radius des Kreises genau $1$ ist, so hat der Kreis den Umfang $2\pi$. 
-Beim \MEntry{Bogenma"s}{Bogenma"s} wird die Linie eines Kreises vom Radius $1$
+Wenn der Radius $r$ des Kreises genau $1$ ist, so hat der Kreis den Umfang $2\pi$. 
+Beim \MEntry{Bogenma"s}{Bogenma"s} wird die Linie des Umfang eines Kreises vom Radius $r = 1$
 eingeteilt.
 Als Bogenma"s eines Winkels $\Mmeasuredangle(g,h)$ wird die L"ange des 
 \MEntry{Kreisbogens}{Kreisbogen} verwendet, die durch den Winkel 
@@ -1257,7 +1258,7 @@ Sie k"onnen Ihr Ergebnis auch auf drei Nachkommastellen gerundet angeben.}
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Dreiecke_Intro}
 
-Technische Bauwerke wie zum Beispiel Fachwerke oder manche Br"ucken nutzen 
+Technische Bauwerke, wie zum Beispiel Fachwerke oder manche Br"ucken, nutzen 
 Dreiecke als Konstruktionselemente.
 
 %Bruecke:
@@ -1371,7 +1372,7 @@ zwischen Seitenl"angen und Winkel werden dann im Abschnitt
 beantworten zu k"onnen, die f"ur Anwendungen relevant sind.
 
 \begin{MXInfo}{Dreieck}\MLabel{Mathematik_ElementareGeometrie_SummeDerInnenwinkel}%
-Ein \MEntry{Dreieck}{Dreieck} entsteht, wenn man drei Punkte $A$, $B$ und $C$, 
+Ein \MEntry{Dreieck}{Dreieck} entsteht, wenn man drei voneinander verschiedene Punkte $A$, $B$ und $C$, 
 die nicht auf einer Geraden liegen, verbindet. Dieses Dreieck wird dann mit 
 $\MGeoDreieck{A}{B}{C}$ bezeichnet.
 \begin{itemize}
@@ -1439,7 +1440,7 @@ Die Summe aller (Innen-)Winkel in einem Dreieck betr"agt $180\MGrad$
 beziehungsweise $\pi$. Somit kann h"ochstens ein Winkel gleich oder gr"o"ser 
 als $90\MGrad$ beziehungsweise $\frac{\pi}{2}$ sein. Dementsprechend werden die
 Dreiecke nach ihrem gr"o"sten Winkel in drei verschiedene Klassen eingeteilt:
-\begin{MXInfo}{Bezeichungen f"ur Dreiecke}%
+\begin{MXInfo}{Bezeichnungen f"ur Dreiecke}%
 Dreiecke werden folgenderma"sen nach ihren Winkeln benannt:
 \begin{itemize}
  \item Ein Dreieck, in dem alle Winkel kleiner als~$\frac{\pi}{2}$ sind, hei"st 
@@ -1482,8 +1483,8 @@ h"oher befindet sich das Gelenk "uber dem Boden.
 \end{center}
 
 So wird in einem Dreieck $\MGeoDreieck{A}{B}{C}$ die k"urzeste Strecke 
-zwischen der Ecke $C$ und der Geraden, die durch die gegen"uberliegende 
-Seite $c$ bestimmt ist, die 
+zwischen der Ecke $C$ und der gegen\"uberliegenden Seite $\MGeoStrecke{A}{B}$
+, die 
 \MEntry{H"ohe eines Dreiecks}{H"ohe eines Dreiecks} $h_c$ auf 
 die Seite $c$ genannt. Der andere Endpunkt $D$ der Strecke $h_c$ hei"st 
 \MEntry{H"ohenfu"spunkt}{H"ohenfu"spunkt}.
@@ -2180,10 +2181,10 @@ Vielecks einfach berechnet werden kann.
 
 Im vorherigen Abschnitt \MRef{M05_Dreiecke} wurden Dreiecke betrachtet. 
 Dazu wurde von drei Punkten ausgegangen, die nicht auf einer Geraden liegen. 
-Verbindet man drei solche Punkte durch alle m"oglichen Strecken zwischen zwei 
-der drei Punkte, ergibt sich immer ein geschlossener Weg, in dem jeder gegebene 
-Punkt genau zwei Strecken verbindet. 
-Dabei haben die Strecken nur ihre Endpunkte mit anderen Strecken gemeinsam. 
+Will man all diese drei Punkte durch alle m\"oglichen Kombinationen
+von 3 Strecken (zwischen jeweils zwei der drei Punkte) verbinden,
+ergibt sich immer ein geschlossener Weg. 
+Dabei ist jeder gegebene Punkt immer eine Schnittstelle von genau zwei Strecken.
 Au"serdem gibt es keine Kreuzungspunkte.
 
 Bei mehr als drei Punkten ist dies nicht immer der Fall. Bereits vier Punkte 
@@ -2236,8 +2237,8 @@ Wie bei Dreiecken werden auch bei Vierecken die Innenwinkel kurz als Winkel
 bezeichnet, wenn in einem besonderen Kontext nichts anderes vermerkt wird.
 \end{MXInfo}
 
-Ebenso wie bei Dreiecken wird auch die Idee zu Vierecken in vielf"altiger Weise 
-in technischen Konstruktionen verwendet. Dadurch sind weitere allt"agliche Namen 
+Genauso wie Dreiecke, werden auch Vierecke in vielf"altiger Weise 
+in der technischen Konstruktionen verwendet. Dadurch sind weitere allt"agliche Namen 
 gebr"auchlich, die verschiedene Klassen von Vierecken bezeichnen.
 
 Wie bei Dreiecken werden auch Vierecke nach der L"ange von Seiten oder nach der 
@@ -2251,7 +2252,7 @@ F"ur Vierecke mit den folgenden weiteren Eigenschaften werden eigene Begriffe
 eingef"uhrt: Ein Viereck hei"st
 \begin{itemize}
 \item \MEntry{Trapez}{Trapez}, falls wenigstens zwei Seiten parallel sind;
-\item \MEntry{Parallelogramm}{Parallelogramm}, falls je zwei 
+\item \MEntry{Parallelogramm}{Parallelogramm}, falls alle beiden zwei 
  gegen\"uberliegende Seiten parallel sind;
 \item \MEntry{Raute}{Raute} oder 
  \MEntry{gleichseitiges Viereck}{gleichseitiges Viereck} oder 
@@ -2309,7 +2310,7 @@ Unter den gerade eingef"uhrten speziellen Vierecken gibt es eine ganze
 Reihe von Zusammenh"angen:
 
 \begin{MXInfo}{Beziehungen zwischen Vierecken}\MLabel{VBKM05_Vierecke_Beziehungen}%
-Es gelten folgende Beziehungen zwischen Vierecken:
+Es gelten unter anderem folgende Beziehungen zwischen Vierecken:
 \begin{itemize}
  \item Jedes Quadrat ist ein Rechteck.
 \item Jedes Quadrat ist eine Raute.
@@ -2723,9 +2724,9 @@ vielf"altige Fl"achen zu gestalten und sogar runde Formen anzun"ahern.
 \end{center}
 
 Eine so detaillierte Einteilung wie f"ur Dreiecke oder Vierecke ist dabei
-kaum mehr m"oglich. Die neuen M"oglichkeiten wie die Ann"aherung an 
-runde Formen f"uhren auch auf andere interessante Fragen. Dazu werden nicht 
-einzelne Vielecke sondern Konstruktionsprinzipien f"ur eine Abfolge von vielen
+kaum mehr m"oglich. Die neuen M"oglichkeiten, wie die Ann"aherung an 
+runde Formen, f"uhren auch auf andere interessante Fragen. Dazu werden nicht 
+einzelne Vielecke, sondern Konstruktionsprinzipien f"ur eine Abfolge von vielen
 Vielecken betrachtet. Und andererseits kann jedes Vieleck bei Bedarf 
 in Dreiecke zerlegt werden, wie dies schon bei Vierecken beobachtet wurde.
 Eine Eigenschaft einer besonderen Ecke wird somit vielfach unter dem Aspekt 
@@ -2744,7 +2745,7 @@ Eigenschaften zeigen. Im linken Vieleck sind alle (Innen-) Winkel kleiner
 als $\pi$ beziehungsweise $180\MGrad$. In dieser Situation spricht man auch 
 von einem konvexen Vieleck. Anders ist es im mittleren Vieleck, in dem es eine
 Ecke mit einem gr"o"seren Winkel gibt. 
-Im links dargestellten Vieleck sind alle Innenwinkel gleich, woraus sich ein 
+Im rechts dargestellten Vieleck sind alle Innenwinkel gleich, woraus sich ein 
 sehr gleichm"a"siger Verlauf der Seiten ergibt.
 %Au"serdem bieten Vielecke die M"oglichkeit, vielf"altige Fl"achen zu gestalten 
 %und sogar runde Formen anzun"ahern.
@@ -2843,7 +2844,7 @@ Sechsecke.
 Regelm"a"sige Vielecke haben verschiedene Symmetrieeigenschaften. Alle Geraden 
 durch die Seitenmitten,  die senkrecht auf einer Seite stehen, schneiden sich
 in einem Punkt $M$. Eine Spiegelung an einer solchen Geraden bildet das 
-Vieleck auf sich ab.
+Vieleck auf sich ab (Spiegelsymmetrie).
 
 Au"serdem sind regelm"a"sige Vielecke in der Weise rotationssymmetrisch, dass das 
 Vieleck auf sich abgebildet wird, wenn man es um $M$ um den Winkel 
@@ -2939,16 +2940,16 @@ $U_6 = 2 \cdot r \cdot 6 \cdot \frac{1}{2} = 6 \cdot r$.
 Je gr"o"ser $n$ ist, um so mehr n"ahert sich der Umfang des Vielecks dem Wert 
 $2 \cdot r \cdot \pi \approx \MZahl{6}{283} \cdot r$ an, der den Umfang eines 
 Kreises mit Radius $r$ angibt. Dies kann mit weiterf"uhrenden Methoden der 
-Differentialrechnung begr"undet werden, in deren Grundideen im Kapitel 
+Differentialrechnung begr"undet werden, dessen Grundideen im Kapitel 
 \MRef{VBKM07} eingef"uhrt wird. Die Idee hinter der beschriebenen Ann"aherung
-kann man hier so beschreiben: Zu einem schwierig zu berechnenden Wert wie dem 
-Kreisumfang sucht man nach vielen vergleichbaren Objekten, hier den regelm"a"sigen 
+kann man hier so beschreiben: Zu einem schwierig zu berechnenden Wert, wie dem 
+Kreisumfang, sucht man nach vielen vergleichbaren Objekten, hier den regelm"a"sigen 
 Vielecken, die zwei Eigenschaften haben: Ihr Umfang ist einfach zu berechnen, 
 und bei hinreichend gro"ser Eckenzahl unterscheiden sie sich hinsichtlich des 
 Umfangs vom Kreis um weniger als irgend eine vorgegebene positive Zahl (hier
 denkt man an {\glqq}kleine{\grqq} Zahlen).
 Dieses Vorgehen eignet sich auch f"ur die Berechnung von Fl"achen, die nicht 
-durch Strecken berandet werden (siehe Kapitel \MRef{VBKM08}).
+durch gerade Strecken berandet werden (siehe Kapitel \MRef{VBKM08}).
 Dazu wird im Folgenden zun"achst die Berechnung von Fl"acheninhalten von 
 Vielecken erl"autert, die in dieser Hinsicht relativ einfach ist und die 
 Ausgangspunkt f"ur eine Ann"aherung sein kann, wie das obige Bild eines 
@@ -3370,7 +3371,7 @@ kompliziertere, die trotzdem einfach beschrieben werden k"onnen.
 \begin{MXContent}{Elementargeometrische K"orper}{Elementargeometrische K"orper}{STD}%
 \MDeclareSiteUXID{VBKM05A_ElementareKoerper_Content}
 
-Punkte sind die einfachsten grundlegenden geometrischen Objekte. Verschiebungen
+Punkte sind die einfachsten geometrischen Objekte. Verschiebungen
 f"uhren auf Strecken, und Operationen wie das Verschieben oder Drehen von 
 Strecken in der Ebene f"uhren auf elementargeometrische Figuren. 
 Beispielsweise ergeben sich Vielecke und Kreise, wie sie oben beschrieben 
@@ -3807,9 +3808,9 @@ Wie h"angen beide Gr"o"sen zusammen?
 \begin{MExercise}
 Stellen Sie sich vor, der gerade Kegel wird von der Spitze eben 
 durch den Mittelpunkt der Kreisscheibe in zwei gleiche Teile zerlegt.
-Dann ist eine Seite der beiden Teile jeweils ein Dreieck, durch dessen Seiten 
-die H"ohe $h$, der Abstand $\ell$ und der Radius $r$ beziehungsweise der 
-Durchmesser der Kreisscheibe bestimmt werden.
+Dann ist eine Seite der beiden Teile jeweils ein Dreieck, dessen Seiten durch  
+die H"ohe $h$, den Abstand $\ell$ und den Radius $r$  
+der Kreisscheibe bestimmt werden.
 Hierbei werden $r$ und $h$ als gegeben angesehen.
 
 \begin{MExerciseItems}
@@ -4254,8 +4255,8 @@ Zusammenh"ange erkennen.
 \item Mit zunehmendem Winkel $\alpha$ nimmt die Gegenkathete $a$ zu und die 
 Ankathete $b$ ab.
 
-Ebenso verhalten sich $\sin\left(\alpha\right)\sim a$ und 
-$\cos\left(\alpha\right)\sim b$.
+Ebenso verhalten sich $\sin\left(\alpha\right)$ zu $a$ und 
+$\cos\left(\alpha\right)$ zu $b$.
 
 \item Mit zunehmendem Winkel $\alpha$ nimmt $a$ in dem gleichen Ma\ss\ zu 
 wie $b$ mit dem von $90\MGrad$ aus fallenden Winkel $\alpha$ abnimmt. Im 
@@ -4478,7 +4479,7 @@ berechnen.
 Ist n"amlich $s$ der Abstand zu einem Geb"aude mit Flachdach, das unter einem 
 Winkel $x$ beobachtet wird, ergibt sich aus $\tan(x) = \frac{h}{s}$ n"amlich 
 $h = s \cdot \tan(x)$. Ebenso k"onnen auch $\cos$ und $\sin$ verwendet werden, 
-um L"angen zu bereichnen. Dieser Zusammenhang zwischen Winkeln und L"angen wird
+um L"angen zu berechnen. Dieser Zusammenhang zwischen Winkeln und L"angen wird
 oft verwendet.
 
 Beispielsweise kann man so einen Fl"acheninhalt berechnen, auch wenn eine 
