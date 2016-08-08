@@ -62,6 +62,8 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		xml.append( self.tocRenderer.generateXML( tc ) )
 		# correct the links in content and TOC
 		self.correctLinks( xml, basePath )
+		# add extra css classes for content
+		self._enhanceContent( xml )
 		# add base path to XML, as the transformer doesn't seem to support parameter passing
 		xml.set( 'basePath', basePath )
 		# add links to next and previous entries
@@ -73,7 +75,6 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 
 		# Apply the template
 		transform = etree.XSLT( template )
-		#print( etree.tostring( xml ))
 		result = transform( xml )
 		
 		# save the result in tc object
@@ -100,6 +101,42 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		return basePath
 	
 	
+	def _enhanceContent( self, xml ):
+		"""
+		add extra css classes for content
+		(content is provided in html after being converted from LaTeX)
+
+		@param page - etree Element holding content and TOC
+		"""
+		exampleDivs = xml.xpath( "//div[@class='exmp']" )
+		for div in exampleDivs:
+			# set the new css class
+			div.set( "class", "panel panel-default" )
+			
+			# get the title and the body
+			divContent = div.xpath( "div[@class='exmprahmen']" )
+			divTitle = divContent.xpath( "b[first()]" )
+			divBody = divContent.xpath( "following::title" )
+
+			# create a new title element
+			heading = etree.Element( "div" )
+			heading.set( "class", "panel-heading" )
+			title = etree.Element( "div" )
+			title.set( "class", "panel-title" )
+			title.text = divTitle
+			heading.append( title )
+			
+			# create a new body element
+			body = etree.Element( "div" )
+			body.set( "class", "panel-body" )
+			body.appen( divBody )
+
+			# replace the content of the div with the new divs
+			div.remove( divContent )
+			div.append( heading )
+			div.append( body )
+
+
 	def _addPrevNextLinks(self, page, tc, basePath=''):
 		"""
 		Add links to previous and next pages

@@ -21,6 +21,40 @@ class test_PageTUB(AbstractRendererTestCase):
 		self.page.generateHTML( self.tc )
 
 
+	def testEnhanceContent(self):
+		'''
+		HTML Content from examples, info and exercises gets transformed
+		'''
+		original = """<div class="exmprahmen">
+		<b>Example 1.1.9</b> &nbsp;
+		<br>The following expressions are terms:
+		<ul>
+		<li>x·(y+z)-1: for x=1, y=2, and z=0 one obtains, for example, the value 1.
+		
+		</li>
+		<li>sin(α)+cos(α): for α= 0∘ and β= 0∘ one obtains, for example, the value 1 (for the calculation of sine and cosine refer to (VERWEIS)).
+		
+		</li>
+		<li>1+2+3+4: no variables occur, however this is a term (which always gives the value 10).
+		
+		</li>
+		<li>α+β 1+γ : for example, α=1, β=2, and γ=3 give the value 3 4 . But γ=-1 is not allowed.
+		
+		</li>
+		<li>sin(π(x+1)): this term, for example, always gives the value zero, if x is substituted with an integer number.
+		
+		</li>
+		<li>z: a single variable is also a term.
+		
+		</li>
+		<li>1+2+3+…+(n-1)+n is a term, in which the variable n occurs in the term itself and defines its length as well.
+		
+		</li>
+		</ul>
+		</div>"""
+
+		
+
 	def test_generateHTML(self):
 		'''
 		Test that everything gets transformed to HTML.
@@ -58,12 +92,7 @@ class test_PageTUB(AbstractRendererTestCase):
 				self.assertTrue( sibling.caption in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.caption )
 
 				# TOC entry links present
-				if sibling.myid != self.tc.myid:
-					self.assertTrue( 'href="../%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )
-
-				else:
-					# one sibling is selected
-					self.assertTrue( 'href="#collapse"' in self.tc.html, "Selected TOC entry is missing in HTML. Expected #collapse" )
+				self.assertTrue( 'href="../%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )
 					
 		# children and grand children
 		children = self.tc.children

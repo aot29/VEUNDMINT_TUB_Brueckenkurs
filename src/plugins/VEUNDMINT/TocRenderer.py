@@ -45,20 +45,26 @@ class TocRenderer( AbstractXmlRenderer ):
         @return an etree element
         """
         toc = etree.Element( 'toc' )
-        selectedId = tc.myid
-        toc.set( 'forPage', str( selectedId ) )
+        pageId = tc.myid
+        # add a parameter to the tree: the currently selected page
+        toc.set( 'forPage', str( pageId ) )
+        # the TOC entries tree
         entries = etree.Element( 'entries' )
 
-        # go through the tree contained in tc, starting one level up
-        # get the root element for the TOC
+        # get the module element for the TOC
         tocModule = self._getModule( tc )
         if tocModule is not None and tocModule.parent is not None:
             # siblings are at the modules at the same level than the current page
             siblings = tocModule.parent.children
+            # get the id of the currently selected module
+            moduleId = tocModule.myid
             for i in range( len( siblings ) ):
                 sibling = siblings[i]
                 # add the new entry to the entries element
-                entries.append( self.generateTocEntryXML( tocModule, sibling, selectedId ) )
+                entries.append( self.generateTocEntryXML( sibling, moduleId, pageId ) )
+        
+        if tc.title == "2.1 Welcome":
+            print( etree.tostring(entries) )
 
         # add the entries to the toc element
         toc.append( entries )
@@ -66,21 +72,21 @@ class TocRenderer( AbstractXmlRenderer ):
         return toc
 
 
-    def generateTocEntryXML(self, module, sibling, selectedId ):
+    def generateTocEntryXML(self, sibling, moduleId, pageId ):
         """
         Create XML for the table of contents
         
-        @param module - a TContent object encapsulating a TOC entry
         @param sibling - a TContent object encapsulating a TOC entry
-        @param selectedId - int id of the selected page
+        @param moduleId -  - int id of the currently selected module
+        @param pageId - int id of the currently selected page
         @return an etree element
         """
-        entry = self.generateSingleEntryXML( sibling, module.myid )
+        entry = self.generateSingleEntryXML( sibling, moduleId )
 
         # check if module is selected
-        if sibling.myid == module.myid: 
+        if sibling.myid == moduleId: 
             # if entry selected, append its children
-            entry.append( self.generateTocEntryChildrenXML( sibling, selectedId ) )
+            entry.append( self.generateTocEntryChildrenXML( sibling, pageId ) )
 
         return entry
 
@@ -148,9 +154,10 @@ class TocRenderer( AbstractXmlRenderer ):
     
     def _getModule(self, tc):
         """
-        Get the root of the TOC tree
+        Get the module corresponding to the selected page
         """
         if int( tc.level ) == ROOT_LEVEL: return tc        
         elif int( tc.level ) == MODULE_LEVEL: return tc
         elif int( tc.level ) == SECTION_LEVEL: return tc.parent
         elif int( tc.level ) == SUBSECTION_LEVEL: return tc.parent.parent
+        

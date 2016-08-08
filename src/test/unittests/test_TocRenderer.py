@@ -4,6 +4,7 @@ Created on Aug 4, 2016
 @author: ortiz
 '''
 import unittest
+from lxml import etree
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
 from plugins.VEUNDMINT.TocRenderer import TocRenderer
 from tex2x.renderers.AbstractRenderer import *
@@ -41,7 +42,7 @@ class test_TocRenderer(AbstractRendererTestCase):
         '''
         #TOC (there are 3 siblings in the test tc object instantiated in the setup of this test)
         self.assertTrue( self.xml.xpath('/toc'), "TOC is missing in XML" )
-        self.assertEqual( 3, len( self.xml.xpath('/toc/entries/entry') ), "Expecting 2 entries in TOC in XML" )
+        self.assertEqual( 3, len( self.xml.xpath('/toc/entries/entry') ), "Expecting 3 entries in TOC in XML" )
         
         
     def test_generateTocEntryXML(self):
