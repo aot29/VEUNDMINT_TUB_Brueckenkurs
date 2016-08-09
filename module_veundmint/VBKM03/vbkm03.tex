@@ -79,7 +79,7 @@ Dabei ist $x$ die Unbestimmte und $a$ ein konkreter Zahlenwert. Tritt die Unbest
 entweder $\R=\MoIl[\left] -\infty\MIntvlSep \infty\MoIr[\right]$, falls die Ungleichung erfüllt ist, oder die leere Menge $\lbrace \rbrace$, falls die Ungleichung nicht erfüllt ist.
 \end{MInfo}
 
-Das Zeichen $\infty$ bedeutet dabei \MEntry{unendlich}{Unendlich}. Ein endliches Intervall hat die Form $\MoIl a\MIntvlSep b\MoIr$, was \glqq alle Zahlen zwischen $a$ und $b$\grqq\ bedeutet. Möchte man
+Das Zeichen $\infty$ bedeutet dabei \MEntry{unendlich}{Unendlich}. Ein endliches Intervall hat als Intervallgrenzen Zahlen oder Variablen (ungleich unendlich). Es hat die Form $\MoIl a\MIntvlSep b\MoIr$, was \glqq alle Zahlen zwischen $a$ und $b$\grqq\ bedeutet, ohne die beiden Zahlen $a$ und $b$. Möchte man
 die Zahlenmenge nur auf einer Seite begrenzen, so kann man für die andere Seite die Symbole $\infty$ (rechts) oder $-\infty$ (links) einsetzen.
 
 Wie schon bei den Gleichungen versucht man durch Umformungen, welche die Lösungsmenge nicht verändern, eine aufgelöste Ungleichung zu erhalten, aus der man die Lösungsmenge einfach ablesen kann:
@@ -121,10 +121,10 @@ Sind diese Ungleichungen richtig oder falsch?
 \MGroupButton{Eingabe überprüfen}
 
 \begin{MHint}{Lösung}
-Die erste Ungleichung vereinfacht sich zu $\frac12>\frac23$, was nach Multiplikation mit $6$ äquivalent ist zu $3>4$, dies ist eine falsche Aussage.
+Die erste Ungleichung vereinfacht sich zu $\frac12>\frac23$, was nach Multiplikation mit $6$ äquivalent ist zu $3>4$, dies ist eine falsche Aussage.\\
 Die zweite Ungleichung kann man durch Übertragen aller Zahlenwerte auf die linke Seite
-vereinfachen zu $a^2-2a b+b^2\geq 0$, dies ist eine wegen $a^2-2a b+b^2=(a-b)^2$ für alle Zahlen $a$ und $b$ wahre Aussage.
-Multiplikation der dritten Ungleichungskette mit dem Hauptnenner $12$ ergibt die Kette $6<8<9$, die erfüllt ist.
+vereinfachen zu $a^2-2a b+b^2\geq 0$, dies ist eine wegen $a^2-2a b+b^2=(a-b)^2$ für alle Zahlen $a$ und $b$ wahre Aussage.\\
+Multiplikation der dritten Ungleichungskette mit dem Hauptnenner $12$ ergibt die Kette $6<8<9$, die erfüllt ist.\\
 Die letzte Aussage ist dagegen falsch, beispielsweise für $a=-1$ und $b=1$ ist $a^2=1$ nicht kleiner als $b^2=1$. Quadrieren von Termen ist keine Äquivalenzumformung.
 \end{MHint}
 \end{MExercise}
@@ -137,7 +137,7 @@ Welche Lösungsmengen besitzen die folgenden Ungleichungen?
 \item{$-3x-\frac12\leq x+\frac12$ besitzt das Lösungsintervall \MEquationItem{$\ML$}{\MLIntervalQuestion{30}{[-1/4,infty)}{5}{TXH2}}.}
 \item{$x-\frac12\leq x+\frac12$ besitzt das Lösungsintervall \MEquationItem{$\ML$}{\MLIntervalQuestion{30}{(-infty,infty)}{5}{TXH3}}.}
 \end{MExerciseItems}
-\MInputHint{Geben Sie Intervalle in der Form \texttt{(a;b)} ein, für die Intervallgrenzen dürfen auch
+\MInputHint{Geben Sie Intervalle als in sich geschlossene Klammern in der Form \texttt{(a;b)} oder \texttt{[a;b)} ein, für die Intervallgrenzen dürfen auch
 Brüche oder \texttt{unendlich} bzw. negativ \texttt{-unendlich} eingesetzt werden. Achten Sie darauf, ob die Randpunkte enthalten sind.}
 
 \begin{MHint}{Lösung}
@@ -147,13 +147,13 @@ Umformen der ersten Ungleichung ergibt
 &\Leftrightarrow& 2x+2 > 3x\;\; \MSep-2x\ \\
 &\Leftrightarrow&2 > x
 \end{eqnarray*}
-und damit das Lösungsintervall $\ML=\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$. Umformen der zweiten Ungleichung ergibt
+und damit das Lösungsintervall $\ML=\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$. \\Umformen der zweiten Ungleichung ergibt
 \begin{eqnarray*}
 &&-3x-\frac12\leq x+\frac12 \;\; \MSep +3x-\frac12\ \\
 &\Leftrightarrow&-1\leq 4x \;\; \MSep \cdot \frac14\ \\
 &\Leftrightarrow&-\frac14\leq  x
 \end{eqnarray*}
-und damit $\ML=\left[-\frac14\MIntvlSep \infty\MoIr[\right]$. Umformen der dritten Ungleichung ergibt
+und damit $\ML=\left[-\frac14\MIntvlSep \infty\MoIr[\right]$. \\Umformen der dritten Ungleichung ergibt
 \begin{eqnarray*}
 &&x-\frac12\leq x+\frac12\;\; \MSep-x\ \\
 &\Leftrightarrow&-\frac12\leq \frac12 \MDFPeriod
@@ -193,13 +193,13 @@ Wie lauten die Lösungsintervalle dieser Ungleichungen?
 
 \begin{MHint}{Lösung}
 Bei der ersten Ungleichung ist $x=0$ nicht in der Definitionsmenge, dieser Wert wird daher ausgeschlossen. Ist $x>0$, so ist das Bilden der Kehrwerte und Umdrehen der Ungleichung
-erlaubt und ergibt $x\leq 3$. Zusammen mit der Vorbedingung erhält man das Lösungsintervall $\ML=\MoIl 0\MIntvlSep 3]$. Für die $x<0$ darf man die
+erlaubt und ergibt $x\leq 3$. Zusammen mit der Vorbedingung erhält man das Lösungsintervall $\ML=\MoIl 0\MIntvlSep 3]=( 0\MIntvlSep 3]$. Für die $x<0$ darf man die
 Kehrwertregel nicht anwenden. Man sieht hier aber auch ohne Regel, dass kein $x<0$ eine Lösung sein kann, da dann auch $\frac1x$
 negativ und nicht größer oder gleich $\frac13$ ist.
 \ \\ \ \\
 Die Definitionsmenge der zweiten Ungleichung ist $\MoIl 0\MIntvlSep \infty\MoIr$, da nur für diese $x$ sowohl die Wurzel wie auch die Nenner zulässig sind.
 Das Bilden der Kehrwerte und Umdrehen der Ungleichung ist auf der Definitionsmenge erlaubt und ergibt $x>\sqrt{x}$. Da $\sqrt{x}>0$ ist, darf man die gesamte
-Ungleichung durch $\sqrt{x}$ teilen und erhält $\sqrt{x}>1$. Diese Ungleichung besitzt die Lösungsmenge $\ML=\MoIl 1\MIntvlSep \infty\MoIr$, die auch in der Definitionsmenge enthalten ist.
+Ungleichung durch $\sqrt{x}$ teilen und erhält $\sqrt{x}>1$. Diese Ungleichung besitzt die Lösungsmenge $\ML=\MoIl 1\MIntvlSep \infty\MoIr=( 1\MIntvlSep \infty)$, die auch in der Definitionsmenge enthalten ist.
 \end{MHint}
 
 \end{MExercise}
@@ -290,13 +290,13 @@ wegen der Vorbedingung ist aber nur die Teilmenge \MEquationItem{$\ML_2$}{\MLInt
 \item{Der Einzelwert $x=2$ ist keine Lösung der ursprünglichen Ungleichung, da er nicht zu der \MLQuestion{25}{Definitionsmenge}{UGX} gehört.}
 \end{MExerciseItems}
 \ \\
-Skizzieren Sie die Lösungsmenge der Ungleichung und markieren Sie die Randpunkte.
+Skizzieren Sie die Lösungsmenge der Ungleichung in einem Zahlenstrahl und markieren Sie die Randpunkte.
 \ \\ \ \\
 \begin{MHint}{Lösung}
-Auf dem Intervall $\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$ ist der Term positiv mit Lösungsmenge $\MoIl[\left] -\infty\MIntvlSep \frac{11}{6}\MoIr[\right]$.
-Auf dem Intervall $\MoIl 2\MIntvlSep \infty\MoIr$  ist der Term dagegen negativ, das Vergleichssymbol wird gedreht. Die neue Ungleichung hat zunächst die Lösungsmenge $\MoIl[\left] \frac{11}{6}\MIntvlSep \infty\MoIr[\right]$,
-wegen der Vorbedingung $x>2$ ist aber nur die Teilmenge $\ML_2=\MoIl 2\MIntvlSep \infty\MoIr$ davon zulässig.
-Insgesamt ist die Vereinigungsmenge $\ML=\ML_1\cup\ML_2=\R\MSetminus \left[\frac{11}6\MIntvlSep 2\right]$ die Lösungsmenge der ursprünglichen Ungleichung, die Randpunkte gehören nicht dazu:
+Auf dem Intervall $\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$ ist der Term positiv mit Lösungsmenge $\MoIl[\left] -\infty\MIntvlSep \frac{11}{6}\MoIr[\right]$.\\
+Auf dem Intervall $\MoIl 2\MIntvlSep \infty\MoIr=( 2\MIntvlSep \infty)$  ist der Term dagegen negativ, das Vergleichssymbol wird gedreht. Die neue Ungleichung hat zunächst die Lösungsmenge $\MoIl[\left] \frac{11}{6}\MIntvlSep \infty\MoIr[\right]$,
+wegen der Vorbedingung $x>2$ ist aber nur die Teilmenge $\ML_2=\MoIl 2\MIntvlSep \infty\MoIr=( 2\MIntvlSep \infty)$ davon zulässig.\\
+Insgesamt ist die Vereinigungsmenge $\ML=\ML_1\cup\ML_2=\R\MSetminus \left[\frac{11}6\MIntvlSep 2\right]$ die Lösungsmenge der ursprünglichen Ungleichung, die Randpunkte gehören nicht dazu (z.B. $x=2$ ist nicht in der \textbf{Definitionsmenge}):
 \ \\
 \begin{center}
 \MTikzAuto{%
@@ -325,7 +325,7 @@ Die Definitionsmenge der Ungleichung ist $D=\R\MSetminus\lbrace 2\rbrace$.
 \begin{itemize}
 \item{Im Fall $x>2$ multipliziert man mit $x-2$ und erhält $x-1\leq x-2$, was äquivalent zur falschen Aussage $-1\leq -2$ ist. Der erste Fall trägt nichts zur Lösungsmenge bei.}
 \item{Im Fall $x<2$ multipliziert man mit $x-2$ und erhält $x-1\geq x-2$, was äquivalent zur wahren Aussage $-1\geq -2$ ist. Wegen der Vorbedingung ist das Lösungsintervall für diesen Fall aber nur $\ML_2=\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$.}
-\item{Der Einzelwert $x=2$ ist keine Lösung.}
+\item{Der Einzelwert $x=2$ ist keine Lösung, weil er im Definitionsbereich ausgeschlossen wurde.}
 \end{itemize}
 Die Lösungsmenge ist also insgesamt $\ML=\MoIl[\left] -\infty\MIntvlSep 2\MoIr[\right]$ ohne die Randpunkte (auch wenn die Ursprungsungleichung mit $\leq$ aufgebaut war).
 \end{MHint}
@@ -340,8 +340,8 @@ Die Definitionsmenge der Ungleichung ist $D=[0\MIntvlSep \infty\MoIr\MSetminus \
 da nur für diese $x$ die Wurzeln und der Nenner zulässig sind.
 \begin{itemize}
 \item{Im Fall $0\leq x<1$ multipliziert man mit $1-\sqrt{x}$ und erhält $1<(1+\sqrt{x})(1-\sqrt{x})$, was äquivalent zur Aussage $1<1-x$ ist. Diese ist für $x<0$ erfüllt, aber diese $x$ verletzen die Fallbedingung und kommen daher nicht in die Lösungsmenge.}
-\item{Im Fall $x>1$ multipliziert man mit $1-\sqrt{x}$ und erhält $1>1-x$, was äquivalent zu $x>0$ ist. Aber nur die $x$ aus $\MoIl 1\MIntvlSep \infty\MoIr$ erfüllen auch die Fallbedingung, also ist $\ML=\MoIl 1\MIntvlSep \infty\MoIr$ das einzige Lösungsintervall für die ursprüngliche Ungleichung.}
-\item{Der Einzelwert $x=1$ ist keine Lösung.}
+\item{Im Fall $x>1$ multipliziert man mit $1-\sqrt{x}$ und erhält $1>1-x$, was äquivalent zu $x>0$ ist. Aber nur die $x$ aus $\MoIl 1\MIntvlSep \infty\MoIr$ erfüllen auch die Fallbedingung, also ist $\ML=\MoIl 1\MIntvlSep \infty\MoIr=( 1\MIntvlSep \infty)$ das einzige Lösungsintervall für die ursprüngliche Ungleichung.}
+\item{Der Einzelwert $x=1$ ist keine Lösung, weil er im Definitionsbereich ausgeschlossen wurde.}
 \end{itemize}
 \end{MHint}
 \end{MExercise}
@@ -400,8 +400,8 @@ Die Betragsungleichung $|x-1|<2|x-1|+x$ teilt man in zwei Fälle auf:
 Zusammensetzen der beiden Intervalle ergibt das Lösungsintervall \MEquationItem{$\ML$}{\MLIntervalQuestion{25}{(-infty,infty)}{4}{UGL5}}.
 \ \\ \ \\
 \begin{MHint}{Lösung}
-Für $x\in [1\MIntvlSep \infty\MoIr$ sind beide Terme in den Beträgen nicht negativ, man erhält die Ungleichung $x-1<2(x-1)+x$, welche äquivalent zu $x>\frac12$ ist. Wegen der Fallbedingung erhält man $\ML_1=[1\MIntvlSep \infty\MoIr$ als Lösungsmenge.
-Für $x\in\MoIl[\left] -\infty\MIntvlSep 1\MoIr[\right]$ sind beide Terme in den Beträgen negativ und man erhält $-(x-1)<-2(x-1)+x$. Diese Ungleichung ist äquivalent zur immer richtigen Ungleichung $x-1<x$. Damit ist $\ML_2=\MoIl[\left] -\infty\MIntvlSep 1\MoIr[\right]$ die Lösungsmenge des zweiten Falls.
+Für $x\in [1\MIntvlSep \infty\MoIr=[1\MIntvlSep \infty)$ sind beide Terme in den Beträgen nicht negativ, man erhält die Ungleichung $x-1<2(x-1)+x$, welche äquivalent zu $x>\frac12$ ist. Wegen der Fallbedingung erhält man $\ML_1=[1\MIntvlSep \infty\MoIr=[1\MIntvlSep \infty)$ als Lösungsmenge.\\
+Für $x\in\MoIl[\left] -\infty\MIntvlSep 1\MoIr[\right]=( -\infty\MIntvlSep 1)$ sind beide Terme in den Beträgen negativ und man erhält $-(x-1)<-2(x-1)+x$. Diese Ungleichung ist äquivalent zur immer richtigen Ungleichung $x-1<x$. Damit ist unter der Beachtung der Fallbedingung $\ML_2=\MoIl[\left] -\infty\MIntvlSep 1\MoIr[\right]$ die Lösungsmenge des zweiten Falls.
 \ \\ \ \\
 Wegen $\ML=\ML_1\cup \ML_2=\R=\MoIl[\left] -\infty\MIntvlSep \infty\MoIr[\right]$ ist die Ungleichung immer erfüllt.
 \end{MHint}
@@ -434,7 +434,7 @@ die äquivalente Ungleichung $x^2-2x+1\geq 2$, bzw. $(x-1)^2\geq 2$.
 Ziehen der Wurzel ergibt die Betragsungleichung $|x-1|\geq\sqrt{2}$ mit Lösungsmenge $\ML=\MoIl[\left] -\infty\MIntvlSep 1-\sqrt{2}\right]\cup \left[1+\sqrt{2}\MIntvlSep \infty\MoIr[\right]$.
 \end{MExample}
 
-Andererseits kann man die Ungleichung $x^2-2x-1\geq0$ auch wie folgt untersuchen: Die linke Seite beschreibt eine nach oben geöffnete Parabel, deren Nullstellen $x_{1,2}=1\pm \sqrt2$ man mit
+Andererseits kann man die Ungleichung $x^2-2x-1\geq0$ auch wie folgt untersuchen: Die linke Seite beschreibt eine nach oben geöffnete Parabel (positives Vorzeichen von $x^2$), deren Nullstellen $x_{1,2}=1\pm \sqrt2$ man mit
 der $p q$-Formel erhält:
 \begin{center}
 %%\MUGraphicsSolo{parabelu.png}{width=0.4\linewidth}{width:400px}
@@ -455,15 +455,15 @@ der $p q$-Formel erhält:
 \end{tikzpicture}
 }
 \end{center}
-Die Ungleichung $x^2-2x-1\geq0$ wird wegen der Öffnung nach oben von den Parabelästen links und rechts von den Nullstellen erfüllt, also von der Menge $\ML=\MoIl[\left] -\infty\MIntvlSep 1-\sqrt{2}\right]\cup \left[1+\sqrt{2}\MIntvlSep \infty\MoIr[\right]$.
+Die Ungleichung $x^2-2x-1\geq0$ wird wegen der Öffnung nach oben von den Parabelästen links und rechts von den Nullstellen erfüllt (vergleiche die Ungleichung mit $y\geq0$), also von der Menge $\ML=\MoIl[\left] -\infty\MIntvlSep 1-\sqrt{2}\right]\cup \left[1+\sqrt{2}\MIntvlSep \infty\MoIr[\right]$.
 
 \begin{MInfo}
 \MLabel{M03_InfoFormen}
-Die quadratische Ungleichung $x^2 +p x +q <0$ (oder andere Vergleichssymbole) besitzt in Abhängigkeit der Nullstellen von $x^2+ p x + q$, der Öffnung der Parabel sowie der Richtung der Ungleichung eine der folgenden Lösungsmengen:
+Die quadratische Ungleichung $x^2 +p x +q <0$ (auch andere Vergleichssymbole möglich) besitzt in Abhängigkeit der Nullstellen von $x^2+ p x + q$, der Öffnung der Parabel, sowie des Vergleichssymbol der Ungleichung eine der folgenden Lösungsmengen:
 \begin{itemize}
 \item{die reellen Zahlen $\R$,}
-\item{zwei Äste $\MoIl[\left] -\infty\MIntvlSep x_1\MoIr[\right]\cup \MoIl[\left] x_2\MIntvlSep \infty\MoIr[\right]$ (ggf. mit beiden Randpunkten enthalten bei $\leq$ und $\geq$),}
-\item{ein Intervall $\MoIl x_1\MIntvlSep x_2\MoIr$ (ggf. mit beiden Randpunkten enthalten bei $\leq$ und $\geq$),}
+\item{zwei Intervalle $\MoIl[\left] -\infty\MIntvlSep x_1\MoIr[\right]\cup \MoIl[\left] x_2\MIntvlSep \infty\MoIr[\right]$ (bei $\leq$ und $\geq$ sind die Randpunkte jeweils mit im Intervall enthalten),}
+\item{ein Intervall $\MoIl x_1\MIntvlSep x_2\MoIr$ (bei $\leq$ und $\geq$ sind die Randpunkte jeweils mit im Intervall enthalten),}
 \item{einen Einzelpunkt $x_1$,}
 \item{die punktierte Menge $\R\MSetminus\lbrace x_1\rbrace$,}
 \item{die leere Lösungsmenge $\lbrace\rbrace$.}
@@ -475,14 +475,14 @@ Der folgende Lückentext beschreibt die Lösung einer quadratischen Ungleichung üb
 \begin{MExercise}
 Zu lösen sei $x^2+6x< -5$. Umformen ergibt die Ungleichung \MLSimplifyQuestion{15}{x^2+6*x+5}{5}{x}{5}{1}{OBXP1}$<0$.
 Mit der $p q$-Formel findet man die Nullstellenmenge
-\MLParsedQuestion{9}{-1,-5}{3}{PXL}. Die linke Seite beschreibt eine nach \MLQuestion{10}{oben}{ObenX} geöffnete Parabel.
-Sie gehört zu einer Ungleichung mit dem Vergleichssymbol $<$, also ist die
+\MLParsedQuestion{9}{-1,-5}{3}{PXL}. Die linke Seite beschreibt eine nach \MLQuestion{10}{oben}{ObenX} geöffnete Parabel,
+sie gehört zu einer Ungleichung mit dem Vergleichssymbol $<$, also ist die
 Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{15}{(-5,-1)}{5}{INVX}}.
 \ \\ \ \\
 \begin{MHint}{Lösung}
 Umformen ergibt $x^2+6x+5<0$. Mit der $p q$-Formel findet man die Nullstellen $x_{1,2}=-3\pm\sqrt{9-5}$, also $x_1=-1$ und $x_2=-5$.
 Die linke Seite beschreibt eine nach oben geöffnete Parabel,
-sie erfüllt die Ungleichung mit $<$, also nur auf dem Intervall $\MoIl[\left] -5\MIntvlSep -1\MoIr[\right]$ ohne die Randpunkte.
+sie erfüllt die Ungleichung mit $<$, also nur auf dem Intervall $\MoIl[\left] -5\MIntvlSep -1\MoIr[\right]$ ohne die Randpunkte. \\ Bildlich gesprochen ist dies der Intervall in dem die Parabel unter der y-Achse ist ($y<0$), vergleiche dazu auch Skizze aus dem Beispiel davor.
 \end{MHint}
 \end{MExercise}
 
@@ -546,7 +546,7 @@ Also ist die Lösungsmenge der ursprünglichen Ungleichung $\ML=\MoIl 0\MIntvlSep 
 \MSubsection{Abschlusstest}
 \MLabel{M03_Abschlusstest}
 
-\begin{MTest}{Abschlusstest Modul 3}
+\begin{MTest}{Abschlusstest Kapitel 3}
 \MDeclareSiteUXID{VBKM03_Abschlusstest}
 
 \begin{MExercise}
@@ -595,7 +595,7 @@ Für welche positiven reellen Zahlen $x$ sind die folgenden Ungleichungen erfüllt
 \item{$|3x-6|\leq x+2$ hat die Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{16}{[1,4]}{4}{COSH1}} (als Intervall geschrieben).}
 \item{$\frac{x+1}{x-1}\geq 2$ hat die Lösungsmenge \MEquationItem{$\ML$}{\MLIntervalQuestion{16}{(1,3]}{4}{COSH2}} (als Intervall geschrieben).}
 \end{MExerciseItems}
-\MInputHint{Offene Intervalle können in der Form $(3;5)$, geschlossene Intervalle in der Form $[3;5]$ eingegeben werden. Unendlich kann man als Wort oder kurz als \texttt{infty} schreiben.
+\MInputHint{Offene Intervalle können in der Form $(3;5)$, geschlossene Intervalle in der Form $[3;5]$ eingegeben werden. Unendlich kann man als Wort oder kurz als \texttt{infinity} schreiben.
 Verwenden Sie nicht die Schreibweise $]a;b[$ für offene Intervalle. Mengen können in aufzählender Form $\lbrace 1;2;3\rbrace$ eingegeben werden. Die Mengenklammer erhalten Sie mit AltGr+7 bzw. AltGr+0.}
 \end{MExercise}
 

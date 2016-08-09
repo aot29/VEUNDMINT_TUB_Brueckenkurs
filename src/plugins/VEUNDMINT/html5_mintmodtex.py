@@ -1305,38 +1305,42 @@ class Plugin(basePlugin):
                 reply = False
                 self.sys.message(self.sys.CLIENTWARN, "Found more then one site UXID in file " + fname + ": " + m.group(0))
         re.sub(re.escape("<!-- mdeclaresiteuxidpost;;") + r"(.+?)" + re.escape(";; //-->"), ucount, html, 0, re.S)
-                    
-        # check for proper HTML syntax
-        (document, tidylines) = tidy_document(html)
+        
 
-        # tidy error messages are of the following form:
-        # line 213 column 35 - Error: <tocnavsymb> is not recognized!
-        # line 213 column 35 - Warning: discarding unexpected <tocnavsymb>
-
-        wrn = 0
-        inf = 0
-        def tidyerrline(m):
-            nonlocal reply, fname, wrn, inf
-            if m.group(3) == "Error":
-                ok = False
-                for tag in self.options.specialtags:
-                    if m.group(4) == "<" + tag + "> is not recognized!":
-                        ok = True
-                if not ok:
-                    self.sys.message(self.sys.CLIENTWARN, "libtidy found error in " + fname + ": " + m.group(0))
-                    reply = False
-            elif m.group(3) == "Warning":
-                wrn += 1
-            elif m.group(3) == "Info":
-                inf += 1
+        # Don't use tidy on bootrap version, as it erases necessary elements.
+        # tidy is applied in PageTUB on the page content anyway.        
+        if ( not self.options.bootstrap ):
+            # check for proper HTML syntax
+            (document, tidylines) = tidy_document(html)
+    
+            # tidy error messages are of the following form:
+            # line 213 column 35 - Error: <tocnavsymb> is not recognized!
+            # line 213 column 35 - Warning: discarding unexpected <tocnavsymb>
+    
+            wrn = 0
+            inf = 0
+            def tidyerrline(m):
+                nonlocal reply, fname, wrn, inf
+                if m.group(3) == "Error":
+                    ok = False
+                    for tag in self.options.specialtags:
+                        if m.group(4) == "<" + tag + "> is not recognized!":
+                            ok = True
+                    if not ok:
+                        self.sys.message(self.sys.CLIENTWARN, "libtidy found error in " + fname + ": " + m.group(0))
+                        reply = False
+                elif m.group(3) == "Warning":
+                    wrn += 1
+                elif m.group(3) == "Info":
+                    inf += 1
+                else:
+                    self.sys.message(self.sys.CLIENTERROR, "libtidy line could not be parsed: " + m.group(0))
+                
+            re.sub(r"line (\d*) column (\d*) - ([^\:]+): ([^\n]*)(?=\n)", tidyerrline, tidylines, 0, re.S)
+            if wrn > 0:
+                self.sys.message(self.sys.VERBOSEINFO, "libtidy found " + str(wrn) + " warnings and " + str(inf) + " infos in file " + fname)
             else:
-                self.sys.message(self.sys.CLIENTERROR, "libtidy line could not be parsed: " + m.group(0))
-            
-        re.sub(r"line (\d*) column (\d*) - ([^\:]+): ([^\n]*)(?=\n)", tidyerrline, tidylines, 0, re.S)
-        if wrn > 0:
-            self.sys.message(self.sys.VERBOSEINFO, "libtidy found " + str(wrn) + " warnings and " + str(inf) + " infos in file " + fname)
-        else:
-            self.sys.message(self.sys.CLIENTWARN, "libtidy found no errors (or its output was somehow not parsed correctly) for file " + fname)
+                self.sys.message(self.sys.CLIENTWARN, "libtidy found no errors (or its output was somehow not parsed correctly) for file " + fname)
             
                  
         return reply

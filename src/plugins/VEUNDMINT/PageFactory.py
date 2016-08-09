@@ -34,16 +34,18 @@ class PageFactory(object):
 
     def getPage(self):
         '''
-        Instantiate a Page object. All Page objects should extend AbstractPage.
+        Instantiate a Page object. All Page objects should extend AbstractHtmlRenderer.
         Which Page object is instantiated depends on options set in Option.py
         
-        @return object implementing AbstractPage
+        @return object implementing AbstractHtmlRenderer
         '''
         
         if ( self.options.bootstrap ):
             # When using bootstrap, use the Page object by TUB
             from plugins.VEUNDMINT.PageTUB import PageTUB
-            page = PageTUB( self.options.converterTemplates, self.options.lang )
+            from plugins.VEUNDMINT.TocRenderer import TocRenderer
+            tocRenderer = TocRenderer( self.options.converterTemplates, self.options.lang )
+            page = PageTUB( self.options.converterTemplates, self.options.lang, tocRenderer )
             
         else:
             # By default, use the Page object by KIT

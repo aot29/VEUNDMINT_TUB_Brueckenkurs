@@ -18,9 +18,6 @@
 					
 						<xsl:comment>tools</xsl:comment>
 						<div class="navbar-right">
-				          <a data-toggle="tooltip" id="databutton" href="../../data.html" class="btn btn-link glyphicon glyphicon-dashboard"></a>
-				          <a data-toggle="tooltip" id="listebutton" href="../../search.html" class="btn btn-link glyphicon glyphicon-book"></a>
-				          <a data-toggle="tooltip" id="homebutton" href="../../index.html" class="btn btn-link glyphicon glyphicon-home"></a>
 				          <a data-toggle="tooltip" id="favoritesbutton" onclick="starClick();" class="btn btn-link glyphicon glyphicon-star-empty"></a>
 				          <a data-toggle="tooltip" id="zoomoutbutton" onclick="changeFontSize(-5);" class="btn btn-link glyphicon glyphicon-zoom-out"></a>
 				          <a data-toggle="tooltip" id="zoominbutton" onclick="changeFontSize(5);" class="btn btn-link glyphicon glyphicon-zoom-in"></a>

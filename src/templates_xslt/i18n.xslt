@@ -131,7 +131,7 @@
 				"explanation_test": "Final test",
 				"chapter": "Chapter",
 				"subsection": "Section",
-				"module_starttext": "Launch module: ",
+				"module_starttext": "Launch module",
 				"module_solutionlink": "See the solution",
 				"module_solution": "Solution",
 				"module_solutionback": "Back to the exercise",
@@ -157,7 +157,7 @@
 				"message_progress": "Exercises partially solved",
 				"message_problem": "Some answers are incorrect",
 				"modstartbox_tocline": "This module has the following sections:",
-				"legend" : "legend",
+				"legend" : "Legend",
 				"roulette_text": "In the online version, exercises from an exercise list will be shown here",
 				"roulette_new": "New exercise"
 			
@@ -272,7 +272,7 @@
 				"explanation_test": "Abschlusstest",
 				"chapter": "Kapitel",
 				"subsection": "Abschnitt",
-				"module_starttext": "Modul starten: ",
+				"module_starttext": "Modul starten",
 				"module_solutionlink": "Lösung ansehen",
 				"module_solution": "Lösung",
 				"module_solutionback": "Zurück zur Aufgabe",

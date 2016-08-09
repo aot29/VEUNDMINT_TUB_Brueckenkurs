@@ -765,6 +765,16 @@
 \newcommand{\grqq}{\begin{html}&ldquo;\end{html}}
 \fi
 
+% Backsim (PhysikBK)
+\ifttm
+\newcommand{\backsim}{\begin{html}<mi>&backsim;</mi>\end{html}}
+\fi
+% Cancel (PhysikBK)
+\ifttm
+\newcommand{\cancel}[1]{\begin{html}<menclose notation="horizontalstrike"><mi>#1</mi></menclose>\end{html}}
+\fi
+
+
 \ifttm
 \newcommand{\MNdash}{\begin{html}&ndash;\end{html}}
 \else
@@ -1857,7 +1867,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \fi%
 
 \def\MFormelZoomHint{\MInputHint{%
-Formel zu klein? Mit einem Doppelklick auf eine Formel wird sie vergrößert dargestellt.}}
+Formel zu klein? Mit einem Doppelklick auf eine Formel wird sie vergr"o"sert dargestellt.}}
 
 \def\jHTMLHinweisBedienung{\MInputHint{%
 Mit Hilfe der Symbole am oberen Rand des Fensters
