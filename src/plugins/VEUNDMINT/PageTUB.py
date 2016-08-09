@@ -1,5 +1,5 @@
 '''
-Created on Jul 29, 2016
+	This file is part of the VEUNDMINT plugin package
 
 	The VEUNDMINT plugin package is free software; you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
@@ -13,46 +13,38 @@ Created on Jul 29, 2016
 
 	You should have received a copy of the GNU Lesser General Public License
 	along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
-'''
-
-''' 
-	Render page by applying XSLT templates, using the lxml library.
 	
+	Created on Jul 29, 2016
 	@author: Alvaro Ortiz for TUB (http://tu-berlin.de)
 '''
+
 
 from lxml import etree
 import os
 from tidylib import tidy_document
-from tex2x.renderers.AbstractPage import AbstractPage
+from tex2x.renderers.AbstractRenderer import *
+from plugins.VEUNDMINT.PageXmlRenderer import PageXmlRenderer
 
-class PageTUB( AbstractPage ):
 
-	def __init__( self, tplPath, lang ):
+class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
+	"""
+	Render page by applying XSLT templates, using the lxml library.
+	"""
+	
+	def __init__( self, tplPath, lang, tocRenderer ):
 		"""
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
 		
 		@param tplPath - String path to the directory holding the xslt templates
 		@param lang - String ISO-639-1 language code ("de" or "en")
+		@param tocRenderer - TocRenderer an AbstractXMLRenderer that builds the table of contents
 		"""
+		super().__init__( lang )
 		self.tplPath = tplPath
 		self.lang = lang
 		
-		#Use tidy to cleanup tc.content.
-		#Do not use tidy on the final output of Page, as tidy will remove empty spans required by bootstrap.
-		self.tidyOptions = {
-			"output-xml": 1,		# XML instead of HTML4
-			"indent": 0,			# Pretty; not too much of a performance hit
-			"tab-size": 2,
-			"tidy-mark": 0,			# No tidy meta tag in output
-			"wrap": 0,				# No wrapping
-			"alt-text": "",			# Help ensure validation
-			"doctype": 'strict',	# Little sense in transitional for tool-generated markup...
-			"force-output": 1,		# May not get what you expect but you will get something}
-			"wrap": 0,
-			"show-body-only": True	# Doesn't work
-		}	
-	
+		self.tocRenderer = tocRenderer
+
 	
 	def generateHTML( self, tc ):
 		"""
@@ -60,101 +52,112 @@ class PageTUB( AbstractPage ):
 		
 		@param tc - TContent object encapsulating the data for the page to be rendered
 		"""
-		# Create the XML inout
+		
+		# get the base path
+		basePath = self.getBasePath(tc)
+		
+		# Create the XML output
 		xml = self.generateXML( tc )
+		# toc
+		xml.append( self.tocRenderer.generateXML( tc ) )
+		# correct the links in content and TOC
+		self.correctLinks( xml, basePath )
+		# add extra css classes for content
+		self._enhanceContent( xml )
+		# add base path to XML, as the transformer doesn't seem to support parameter passing
+		xml.set( 'basePath', basePath )
+		# add links to next and previous entries
+		self._addPrevNextLinks(xml, tc, basePath)
 
 		# Load the template
 		templatePath = os.path.join( self.tplPath, "page.xslt" )
 		template = etree.parse( templatePath )
-		if ( template is None ):
-			raise Exception( 'Could not load template from file %s' % templatePath )
 
 		# Apply the template
 		transform = etree.XSLT( template )
 		result = transform( xml )
-
+		
 		# save the result in tc object
-		tc.html = str(result) # don't use tidy on the whole page, as version 1 drops-empty-elements
+		tc.html = str(result) # don't use tidy on the whole page, as tidy version 1 drops-empty-elements
 
 
-	def generateXML(self, tc):
+	def getBasePath(self, tc):
 		"""
-		Create a XML document representing a page from a TContent object
+		Set base path to point up from the level of the current tc object
 		
-		@param tc - a TContent object encapsulating page data and content
-		@return an etree element
+		@param tc - TContent object encapsulating the data for the page to be rendered
 		"""
-		# page is the root element
-		page = etree.Element( 'page' )
-		page.set( 'lang', self.lang )
+		basePath = ".."
 		
-		# title
-		title = etree.Element( 'title' )
-		title.text = tc.title
-		page.append( title )
+		if tc.level == ROOT_LEVEL:
+			basePath = ".."
+		if tc.level == MODULE_LEVEL:
+			basePath = ".."
+		if tc.level == SECTION_LEVEL:
+			basePath = "../.."
+		if tc.level == SUBSECTION_LEVEL:
+			basePath = "../.."
 		
-		# content
-		page.append( self.generateContentXML( tc ) )
-		
-		# toc
-		page.append( self.generateTocXML( tc ) )
-		
-		return page
-
-
-	def generateContentXML(self, tc):
-		"""
-		Get the content from tc, cleanup using tidy, parse it and return XML
-		
-		@param tc - a TContent object encapsulating page data and content
-		@return an etree element
-		"""
-		# tidy-up page contents from tc.content
-		tidyContent, self.tidyErrors = tidy_document( tc.content, self.tidyOptions )
-		# Wrap inside a content element
-		# Tidy returns a whole HTML page, just use the content part
-		# It should be possible to force tidy to return a fragment, but it doesn't work (see self.tidyOptions)
-		contentString = tidyContent.replace( '<body>', '<content>' )
-		contentString = contentString.replace( '</body>', '</content>' )
-		# Drop the clear=all, since they mess-up the layout
-		contentString = contentString.replace( '<br clear="all" />', '' )
-		# add this to fix &nbsp;.
-		contentString = '<!DOCTYPE xsl:stylesheet [ <!ENTITY nbsp "&#160;"> ]>' + contentString
-		content = etree.fromstring( contentString )
-		#print( etree.tostring( content.find('content') ) )
-		return content.find('content')
+		return basePath
 	
 	
-	def generateTocXML(self, tc):
+	def _enhanceContent( self, xml ):
 		"""
-		Create XML for the table of contents
+		add extra css classes for content
+		(content is provided in html after being converted from LaTeX)
+
+		@param page - etree Element holding content and TOC
+		"""
+		exampleDivs = xml.xpath( "//div[@class='exmp']" )
+		for div in exampleDivs:
+			# set the new css class
+			div.set( "class", "panel panel-default" )
+			
+			# get the title and the body
+			divContent = div.xpath( "div[@class='exmprahmen']" )
+			divTitle = divContent.xpath( "b[first()]" )
+			divBody = divContent.xpath( "following::title" )
+
+			# create a new title element
+			heading = etree.Element( "div" )
+			heading.set( "class", "panel-heading" )
+			title = etree.Element( "div" )
+			title.set( "class", "panel-title" )
+			title.text = divTitle
+			heading.append( title )
+			
+			# create a new body element
+			body = etree.Element( "div" )
+			body.set( "class", "panel-body" )
+			body.appen( divBody )
+
+			# replace the content of the div with the new divs
+			div.remove( divContent )
+			div.append( heading )
+			div.append( body )
+
+
+	def _addPrevNextLinks(self, page, tc, basePath=''):
+		"""
+		Add links to previous and next pages
 		
+		@param page - etree Element holding content and TOC
 		@param tc - a TContent object encapsulating page data and content
-		@return an etree element
+		@param basePath - String prefix for all links
 		"""
-		toc = etree.Element( 'toc' )
-		entries = etree.Element( 'entries' )
+		navPrev = tc.left
+		if navPrev is None: 
+			navPrev = tc.xleft		
+		if navPrev is not None: 
+			navPrevEl = etree.Element( "navPrev" )
+			navPrevEl.set( "href", os.path.join(basePath, navPrev.fullname ) )
+			page.append( navPrevEl )
 
-		# go through the tree contained in tc, starting one level up
-		parent = tc.parent
-		if parent is not None:
-			# siblings are at the same level than the current page
-			siblings = parent.children
-			for i in range( len( siblings ) ):
-				sibling = siblings[i]
-				entry = etree.Element( 'entry' )
-				# href is an attribute
-				entry.set( 'href', sibling.fullname )
-				# caption is an element, as it could contain HTML-tags
-				caption = etree.Element( 'caption' )
-				caption.text = sibling.caption
-				entry.append( caption )
-				# add the new entry to the entries element
-				entries.append( entry )
-		
-		# add the entries to the toc element
-		toc.append( entries )
-
-		return toc
-
+		navNext = tc.right
+		if navNext is None:
+			navNext = tc.xright
+		if navNext is not None:
+			navNextEl = etree.Element( "navNext" )
+			navNextEl.set( "href", os.path.join(basePath, navNext.fullname ) )
+			page.append( navNextEl )
 

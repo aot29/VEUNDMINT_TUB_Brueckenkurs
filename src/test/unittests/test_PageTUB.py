@@ -2,76 +2,65 @@
 
 import unittest
 import os
+from lxml import etree
+
 from plugins.VEUNDMINT.tcontent import TContent
+from plugins.VEUNDMINT.TocRenderer import TocRenderer
 from plugins.VEUNDMINT.PageTUB import PageTUB
 from tex2x.Settings import settings
 
+from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
+from tex2x.renderers.AbstractRenderer import *
 
-class test_PageTUB(unittest.TestCase):
-	tplPath = os.path.join(settings.BASE_DIR, "src/templates_xslt")
+class test_PageTUB(AbstractRendererTestCase):
 	
-
 	def setUp(self):
-		self.lang = "en"
+		AbstractRendererTestCase.setUp(self)
 		
-		# Setup a tc object for testing
-		self.tc = TContent()
-		self.tc.title = "Test Title"
-		self.tc.caption = "Test"
-		self.tc.fullname = "html/test"
-		self.tc.content = "Some content."
-			
-		# add a parent
-		self.tc.parent = TContent()
-		self.tc.parent.children.append( self.tc )
-		
-		#add some siblings
-		sibling1 = TContent()
-		sibling1.caption = "Sibling 1"
-		sibling1.fullname = "html/section1"
-		sibling2 = TContent()
-		sibling2.caption = "Sibling 2"
-		sibling2.fullname = "html/section2"
-		self.tc.parent.children.append( sibling1 )		
-		self.tc.parent.children.append( sibling2 )
-		
-		#add some children
-		child1 = TContent()
-		child1.title = "Child 1"
-		child1.fullname = "html/1/xcontent1.html"
-		child2 = TContent()
-		child2.title = "Child 2"
-		child2.fullname = "html/2/xcontent2.html"
-		self.tc.children.append( child1 )
-		self.tc.children.append( child2 )
+		tocRenderer = TocRenderer( self.tplPath, self.lang )
+		self.page = PageTUB( self.tplPath, self.lang, tocRenderer )
+		# generate HTML element using the tc mock-up
+		self.page.generateHTML( self.tc )
 
 
-	def test_createPageXML(self):
+	def testEnhanceContent(self):
 		'''
-		Test that the XML contains all required elements and attributes
+		HTML Content from examples, info and exercises gets transformed
 		'''
-		# create an XML element using the tc mock-up
-		page = PageTUB( self.tplPath, self.lang )
-		xml = page.generateXML( self.tc )
+		original = """<div class="exmprahmen">
+		<b>Example 1.1.9</b> &nbsp;
+		<br>The following expressions are terms:
+		<ul>
+		<li>x·(y+z)-1: for x=1, y=2, and z=0 one obtains, for example, the value 1.
+		
+		</li>
+		<li>sin(α)+cos(α): for α= 0∘ and β= 0∘ one obtains, for example, the value 1 (for the calculation of sine and cosine refer to (VERWEIS)).
+		
+		</li>
+		<li>1+2+3+4: no variables occur, however this is a term (which always gives the value 10).
+		
+		</li>
+		<li>α+β 1+γ : for example, α=1, β=2, and γ=3 give the value 3 4 . But γ=-1 is not allowed.
+		
+		</li>
+		<li>sin(π(x+1)): this term, for example, always gives the value zero, if x is substituted with an integer number.
+		
+		</li>
+		<li>z: a single variable is also a term.
+		
+		</li>
+		<li>1+2+3+…+(n-1)+n is a term, in which the variable n occurs in the term itself and defines its length as well.
+		
+		</li>
+		</ul>
+		</div>"""
 
-		#Title
-		self.assertEqual( self.tc.title, xml.xpath('/page/title')[0].text, "Title is wrong in XML" )
-		#Lang
-		self.assertEqual( self.lang, xml.xpath('/page/@lang')[0], "Language code is wrong in XML" )
-		# Content
-		self.assertEqual( self.tc.content, xml.xpath('/page/content')[0].text, "Content is wrong in XML" )
-		#TOC (there are 3 siblings in the test tc object instantiated in the setup of this test)
-		self.assertTrue( xml.xpath('/page/toc'), "TOC is missing in XML" )
-		self.assertEqual( 3, len( xml.xpath('/page/toc/entries/entry') ), "Expecting 2 entries in TOC in XML" )
-
+		
 
 	def test_generateHTML(self):
 		'''
 		Test that everything gets transformed to HTML.
 		'''
-		# generate HTML element using the tc mock-up
-		page = PageTUB( self.tplPath, self.lang )
-		page.generateHTML( self.tc )
 		#print(self.tc.html)
 		# HTML is stored in tc.html
 		self.assertTrue( "<title>%s</title>" % self.tc.title in self.tc.html, "Title not found in HTML" )		
@@ -88,16 +77,65 @@ class test_PageTUB(unittest.TestCase):
 		# i18n points to the right locale
 		self.assertTrue( "$.i18n().load( {%s" % self.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
 		# navbar
-		self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )		
-		#toc
+		self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
+		
+		#
+		# TOC
+		#
+		
 		self.assertTrue( 'id="toc"' in self.tc.html, "TOC is missing in HTML" )
+
 		# Siblings in TOC (basePath is expected to be ../, as set in page.xslt)
 		siblings = self.tc.parent.children
 		for i in range( len( siblings ) ):
 				sibling = siblings[i]
-				self.assertTrue( 'href="../%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )				
+
+				# TOC entry captions present
+				self.assertTrue( sibling.caption in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.caption )
+
+				# TOC entry links present
+				self.assertTrue( 'href="../%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )
+					
+		# children and grand children
+		children = self.tc.children
+		for child in children:
+			self.assertTrue( child.caption in self.tc.html )
+			grandChildren = child.children
+			for gc in grandChildren:
+				self.assertTrue( gc.caption in self.tc.html )
+				
+		
 		#legend
 		self.assertTrue( 'id="legend"' in self.tc.html, "Legend is missing in HTML" )		
-		# content
-		self.assertTrue( self.tc.content in self.tc.html, "Content is missing in HTML" )
+		
+		#tabs or lauch button (self.tc is a module overview page)
+		self.assertTrue( 'btn btn-primary' in self.tc.html, "Launch button is missing in HTML" )
+		self.assertFalse( 'nav nav-tabs' in self.tc.html, "Tabs are rendered when they shouldn't in HTML" )		
+		
+	
+	def testPrevNextLInks(self):
+		# Create the XML output for a page with left and right neighbors
+		siblings = self.tc.children
+		xml = self.page.generateXML( siblings[1] )
+		self.assertTrue( len( siblings ) >= 3 )
+		# add links to next and previous entries
+		self.page._addPrevNextLinks(xml, siblings[1] )
+		#print( etree.tostring( xml ) )
+		self.assertEquals( siblings[2].fullname, xml.xpath('navNext/@href')[0], "Next page not found" )
+		self.assertEquals( siblings[0].fullname, xml.xpath('navPrev/@href')[0], "Prev page not found" )
+
+
+	def testGetBasePath(self):
+		"""
+		Test that the base path corresponds to the entry level
+		"""
+		tc = TContent()
+		self.tc.level = MODULE_LEVEL
+		self.assertEquals("..", self.page.getBasePath( self.tc ))
+		self.tc.level = SECTION_LEVEL
+		self.assertEquals("../..", self.page.getBasePath( self.tc ))
+		self.tc.level = SUBSECTION_LEVEL
+		self.assertEquals("../..", self.page.getBasePath( self.tc ))
+		
+
 		

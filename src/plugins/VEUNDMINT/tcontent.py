@@ -27,8 +27,6 @@ from lxml import etree
 
 class TContent(object):
 
-
-
     def __init__(self):
 
         # following properties are used for the root element of the tree, others have to overwrite most of them

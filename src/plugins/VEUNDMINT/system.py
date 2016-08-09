@@ -233,7 +233,6 @@ class System(object):
                 self.message(self.VERBOSEINFO, "Switched ASCII encoding to latin1")
                 enc = "iso-8859-1"
 
-            #print(enc)
             with open(name, "r", encoding = enc) as f:
                 text = f.read()
             self.message(self.VERBOSEINFO, "Read string of length " + str(len(text)) + " from file " + name + " encoded in " + m.group(1) + ", converted to python3 unicode string")
