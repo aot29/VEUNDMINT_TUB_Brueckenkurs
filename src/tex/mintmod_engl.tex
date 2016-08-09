@@ -573,11 +573,13 @@
   \setcounter{MLastType}{5}
 
   \ifnum\value{MExerciseCollectionCounter}=0\else\addtocounter{MExerciseCollectionTextCounter}{1}\special{html:<!-- mexercisetextstart;;}\arabic{MExerciseCollectionTextCounter}\special{html:;; //-->}\fi
-  \special{html:<div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
+  \special{html:<div class="aufgabe"
+  id="ADIV_}\MGenerateExNumber\special{html:"><div class="panel
+  panel-warning"><div class="panel-heading">}%
   \textbf{Exercise \MGenerateExNumber
-  } \ \\}{
-  \special{html:</div><!-- mfeedbackbutton;Exercise;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->}
-  \ifnum\value{MExerciseCollectionCounter}=0\else\special{html:<!-- mexercisetextstop //-->}\fi
+  } \begin{html}</div><div class="panel-body">\end{html} \ \\}{
+  \special{html:</div></div><!--
+  mfeedbackbutton;Exercise;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->} \ifnum\value{MExerciseCollectionCounter}=0\else\special{html:<!-- mexercisetextstop //-->}\fi
   }
 
   % Stellt eine Kombination aus Aufgabe, Loesungstext und Eingabefeld bereit,
@@ -604,16 +606,16 @@
   \setcounter{MLastType}{6}
   \begin{html}
   <div class="exmp">
-  <div class="exmprahmen">
+  <div class="exmprahmen panel panel-default">
+  <div class="panel-heading"><h5 class="panel-title">
   \end{html}\textbf{Example
   \ifnum\value{MSepNumbers}=0
   \arabic{section}.\arabic{subsection}.\arabic{MObjectCounter}\setcounter{MLastIndex}{\value{MObjectCounter}}
   \else
   \arabic{section}.\arabic{subsection}.\arabic{MExampleCounter}\setcounter{MLastIndex}{\value{MExampleCounter}}
   \fi
-  } \ \\}{\begin{html}</div>
-  </div>
-  \end{html}
+  } \begin{html}</h5></div><div class="panel-body">\end{html}}
+  {\begin{html}</div></div></div>\end{html}
   \special{html:<!-- mfeedbackbutton;Example;}\arabic{MTestSite}\special{html:;}\MGenerateExmpNumber\special{html:; //-->}
   }
 
@@ -650,7 +652,8 @@
   \setcounter{MLastType}{4}
   \begin{html}
   <div class="info">
-  <div class="inforahmen">
+  <div class="inforahmen panel panel-info">
+  <div class="panel-heading"><h5 class="panel-title">
   \end{html}\textbf{#1
   \ifnum\value{MInfoNumbers}=0
   \else
@@ -660,8 +663,8 @@
     \arabic{MInfoCounter}\setcounter{MLastIndex}{\value{MInfoCounter}}
     \fi
   \fi
-  } \ \\}{\begin{html}</div>
-  </div>
+  } \begin{html}</h5></div><div class="panel-body">\end{html}\
+  \\}{\begin{html}</div></div></div>
   \end{html}
   \special{html:<!-- mfeedbackbutton;Info;}\arabic{MTestSite}\special{html:;}\MGenerateInfoNumber\special{html:; //-->}
   }
