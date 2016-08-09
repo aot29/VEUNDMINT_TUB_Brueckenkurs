@@ -765,6 +765,16 @@
 \newcommand{\grqq}{\begin{html}&ldquo;\end{html}}
 \fi
 
+% Backsim (PhysikBK)
+\ifttm
+\newcommand{\backsim}{\begin{html}<mi>&backsim;</mi>\end{html}}
+\fi
+% Cancel (PhysikBK)
+\ifttm
+\newcommand{\cancel}[1]{\begin{html}<menclose notation="horizontalstrike"><mi>#1</mi></menclose>\end{html}}
+\fi
+
+
 \ifttm
 \newcommand{\MNdash}{\begin{html}&ndash;\end{html}}
 \else
