@@ -1193,7 +1193,7 @@ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ monoton wachsend.
 %\end{MXInfo}
 
 Somit gen"ugt es, das Vorzeichen der Ableitung $f'$ zu bestimmen, um zu 
-erkennen, ob eine Funktion auf dem Intervall $\MoIl a \MIntvlSep b\MoIr$ monoton wachsend oder monoton fallend ist.
+erkennen, ob eine Funktion auf dem Intervall $\MoIl a \MIntvlSep b\MoIr$ monoton wachsend oder monoton fallend ist. Beachten muss man lediglich, dass sich die Monotonie der Funktion $f$ an den Nullstellen der Ableitung $f'$ \"andern kann. %###
 %\end{MXContent}
 
 \begin{MExample}
@@ -1208,7 +1208,7 @@ die Ableitung $g'$ jeweils ein anderes Vorzeichen hat.
 
 Mit Hilfe folgender Tabelle wird bestimmt, in welchen Bereichen die Ableitung 
 von $g$ positiv bzw. negativ ist. Diese Bereiche entsprechen den Monotoniebereichen von 
-$g$. Der Eintrag $+$ besagt, dass der betrachtete Term im angegebenen
+$g$. Die untersuchten Terme ergeben sich aus den einzelnen Faktoren von $g$. Der Eintrag $+$ besagt, dass der betrachtete Term im angegebenen %###
 Intervall positiv ist. Wenn er negativ ist, wird $-$ eingetragen:
 \[
 \begin{array}{c||c|c|c}
@@ -1220,6 +1220,10 @@ g'(x) & + & - & + \\\hline\hline
 g \text{ ist monoton } & \text{ wachsend } & \text{ fallend } & \text{ wachsend } \\
 \end{array}
 \]
+Die Funktion $g$ ist im Intervall $\MoIl -\infty \MIntvlSep -3\MoIr$ monoton wachsend, im Intervall $\MoIl -3 \MIntvlSep 1\MoIr$ monoton fallend und im Intervall $\MoIl 1 \MIntvlSep \infty\MoIr$ wieder monoton wachsend.%###
+\end{MExample}%###
+%###
+\begin{MExample}%###
 Für die Funktion $h: \R \setminus \{ 0 \} \rightarrow \R$ mit $h(x) = \frac{1}{x}$
 gilt $h'(x) = - \frac{1}{x^2}$. Hier ist 
 $h'(x) < 0$ f"ur alle $x \neq 0$.
@@ -1227,9 +1231,8 @@ $h'(x) < 0$ f"ur alle $x \neq 0$.
 Auch wenn für die beiden Teilbereiche $x<0$ und $x>0$ dasselbe Monotonieverhalten auftritt,
 ist $h$ nicht über den gesamten Definitionsbereich monoton fallend. Als Gegenbeispiel kann
 $h(-2) = -\frac{1}{2}$ und $h(1) = 1$ angeführt werden. Hier gilt $-2 < 1$, aber auch $h(-2) < h(1)$. Dies
-entspricht einem wachsenden Verhalten beim Übergang vom einen zum anderen Teilbereich. Dass die Funktion $h$
-auf $\MoIl -\infty\MIntvlSep 0\MoIr$ monoton fallend ist, bedeutet also, die Einschr"ankung von $h$ auf dieses Intervall
-ist monoton fallend. Zudem ist $h$ f"ur alle $x > 0$ ebenfalls monoton fallend.
+entspricht einem wachsenden Verhalten beim Übergang vom einen zum anderen Teilbereich. Deshalb ist es wichtig deutlich zu unterscheiden, dass die Funktion $h$ 
+auf dem Intervall $\MoIl -\infty\MIntvlSep 0\MoIr$ und ebenfalls auf dem Intervall $\MoIl 0\MIntvlSep \infty\MoIr$ monoton fallend ist. %###
 \end{MExample}
 \end{MXContent}
 
@@ -1356,9 +1359,9 @@ beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notat
   = \frac{4x^2 + 4 - 16x^2}{(x^2 + 1)^3} = \frac{4 (1-3x^2)}{(x^2 + 1)^3} \MDFPeriod
  \end{eqnarray*}
  Da $4/(x^2 + 1)^3$ stets positiv ist, wird das Vorzeichen von ${f'}'(x)$ einzig durch den Faktor $(1 - 3x^2)$ bestimmt. Die einfachen
- Nullstellen von ${f'}'(x)$ liegen bei $x_0 = \pm \frac{1}{\sqrt{3}}$. Daher ist für $x>0$ ${f'}'(x)$ auf dem
+ Nullstellen von ${f'}'(x)$ liegen bei $x_0 = \pm \frac{1}{\sqrt{3}}$. Daher ist für $x>0$ die zweite Ableitung ${f'}'(x)$ auf dem %###
  offenen Intervall $\MoIl[\left] 0 \MIntvlSep \frac{1}{\sqrt{3}} \MoIr[\right] $
- echt größer $0$ und $f$ daher dort linksgekrümmt (konvex). Auf $\MoIl[\left] \frac{1}{\sqrt{3}} \MIntvlSep \infty \MoIr[\right]$ gilt ${f'}'(x) < 0$; somit ist $f$ dort
+ echt größer $0$ und $f$ in diesem Intervall linksgekrümmt (konvex). Auf $\MoIl[\left] \frac{1}{\sqrt{3}} \MIntvlSep \infty \MoIr[\right]$ gilt ${f'}'(x) < 0$; somit ist $f$ dort %###
  rechtsgekrümmt (konkav).
  \end{MHint}
 \end{MExercise}
@@ -1455,7 +1458,7 @@ Eine vollständige Kurvendiskussion für $f$ besteht in diesem Kurs aus folgenden 
 \item Achsenschnittpunkte des Graphen
 \item Symmetrie des Graphen
 \item Grenzverhalten/Asymptoten
-\item Die ersten Ableitungen
+\item Den ersten beiden Ableitungen %###
 \item Extremwerte
 \item Monotonieverhalten
 \item Wendestellen
@@ -1475,7 +1478,7 @@ Der erste Teil der Kurvendiskussion besteht aus algebraischen und geometrischen 
 Es werden alle reellen Zahlen $x$ bestimmt, f"ur die $f(x)$ existiert. Die 
 Menge $D$ all dieser Zahlen wird maximaler Definitionsbereich genannt.
 
-\item[Schnittpunkte mit den Achsen] ~\relax
+\item[Schnittpunkte mit den Achsen] ~\relax 
 \begin{itemize}
 \item $x$-Achse: Alle Nullstellen von $f$ werden bestimmt.
 \item $y$-Achse: Der Funktionswert $f(0)$ (falls $0 \in D$) wird berechnet.
@@ -1483,7 +1486,7 @@ Menge $D$ all dieser Zahlen wird maximaler Definitionsbereich genannt.
 
 \item[Symmetrie des Graphen]
 Der Graph der Funktion ist symmetrisch zur $y$-Achse, wenn $f(-x) = f(x)$ f"ur
-alle $x \in D$ ist. Dann heißt die Funktion $f$ auch \textbf{gerade}.
+alle $x \in D$ ist. Dann heißt die Funktion $f$ auch \textbf{gerade}.\\%###
 Ist $f(-x) = -f(x)$ f"ur alle $x \in D$, so ist der Graph
 zum Ursprung $\MPointTwo{0}{0}$ des Koordinatensystems punktsymmetrisch.
 In diesem Falle nennt man die Funktion $f$ auch \textbf{ungerade}.
@@ -1555,7 +1558,7 @@ Da $f(x)$ ein Bruch aus zwei Polynomen ist und der Nenner die höhere Potenz besi
 \textbf{Ableitungen}\\
 Die ersten beiden Ableitungen der Funktion folgen mit Hilfe der Quotientenregel:
 $$
-f'(x) \;=\; 4\cdot\frac{1\cdot (x^2+2)-x\cdot 2x}{(x^2+2)^2} \;=\; 4\cdot \frac{-x^2+2}{(x^2+2)^2} \MDFPeriod
+f'(x) \;=\; \frac{4\cdot (x^2+2)-4x\cdot 2x}{(x^2+2)^2} \;=\; 4\cdot \frac{-x^2+2}{(x^2+2)^2} \MDFPeriod %###
 $$
 Erneutes Ableiten und Vereinfachen ergibt
 \begin{eqnarray*}
@@ -1591,7 +1594,7 @@ in allen diesen Stellen das Vorzeichen. Es handelt sich
 daher um Wendestellen von $f$. Die Wendepunkte $\MPointTwo{0}{0}$, $\MPointTwoAS{\sqrt6}{\frac12\sqrt6}$, $\MPointTwoAS{-\sqrt6}{-\frac12\sqrt6}$ ergeben sich durch
 Einsetzen der Wendestellen in $f$.
 \ \\ \ \\
-\textbf{Krümmungsverhalten}\\
+\textbf{Kr\"ummungsverhalten}\\
 Die zweimal differenzierbare Funktion $f$ ist konvex, wenn die zweite Ableitung größer oder gleich Null ist. Sie ist konkav,
 wenn die zweite Ableitung kleiner oder gleich Null ist.
 Da das Polynom im Nenner von ${f'}'(x)$ stets positiv ist, genügt es, das Vorzeichen des Polynoms $p(x)=8x(x-\sqrt6)(x+\sqrt6)$ im Zähler
@@ -1647,6 +1650,8 @@ $x_2$ = \MLParsedQuestion{13}{sqrt(2)}{3}{DXG10} ist eine Maximalstelle.\\
 Wendepunkte: Die Menge der Wendestellen ist
 \MLParsedQuestion{30}{-1-sqrt(3),-1+sqrt(3)}{3}{DXG11}\\\MInputHint{(in Mengenschreibweise, Wurzeln dürfen stehenbleiben)}.\\
 \ \\
+Kr\"mmungsverhalten: Die Funktion ist auf dem Intervall \MLIntervalQuestion{26}{(-1-sqrt(3),-1+sqrt(3))}{4}{DXG8} konvex und ansonsten konkav.\\%###
+\ \\%###
 Skizzieren Sie den Graphen und vergleichen Sie ihn anschließend mit der Musterlösung.
 
 \begin{MHint}{Lösung}
@@ -1685,9 +1690,9 @@ Weiter ist $x_1 < x_2$ und
 $$
 f'(x)\; =\; - (x + \sqrt{2}) (x - \sqrt{2}) \MEU^x \MDFPeriod
 $$
-Auf $\MoIl[\left]-\infty\MIntvlSep  -\sqrt{2}\MoIr[\right]$ ist $f'$ negativ und damit $f$ monoton fallend.
-Auf $\MoIl[\left]-\sqrt{2}\MIntvlSep  \sqrt{2}\MoIr[\right]$ ist $f'$ positiv und damit $f$ monoton wachsend.
-Auf $\MoIl[\left]\sqrt{2}\MIntvlSep  \infty\MoIr[\right]$ ist $f'$ negativ und damit $f$ monoton fallend.
+Auf $\MoIl[\left]-\infty\MIntvlSep  -\sqrt{2}\MoIr[\right]$ ist $f'$ negativ und damit $f$ monoton fallend.\\ %###
+Auf $\MoIl[\left]-\sqrt{2}\MIntvlSep  \sqrt{2}\MoIr[\right]$ ist $f'$ positiv und damit $f$ monoton wachsend.\\%###
+Auf $\MoIl[\left]\sqrt{2}\MIntvlSep  \infty\MoIr[\right]$ ist $f'$ negativ und damit $f$ monoton fallend.\\%###
 Somit ist $x_1 = -\sqrt{2}$ Minimalstelle und $x_2 = \sqrt{2}$ Maximalstelle.
 \ \\ \ \\
 \textbf{Wendepunkte}\\
@@ -1695,6 +1700,12 @@ Die notwendige Bedingung f"ur Wendestellen ${f'}'(x) = 0$ f"uhrt auf die quadrat
 $x^2 + 2 x - 2 = 0$. Die L"osungen sind $w_1 = \frac{-2 - \sqrt{4 + 8}}{2} = -1 - \sqrt{3}$
 und $w_2 = \frac{-2 + \sqrt{4 + 8}}{2} = -1 + \sqrt{3}$.
 \ \\ \ \\
+\textbf{Kr\"mmungsverhalten}\\%###
+Da die Wendepunkte bekannt sind, muss nur noch bestimmt werden, wann ${f'}'(x)$ gr\"o\ss er oder kleiner Null ist. Die Ableitungen der Exponentialfunktion sind immer gr\"o\ss er Null, von daher bestimmt der quadratische Term das Vorzeichen.\\%###
+Auf $\MoIl[\left]-\infty\MIntvlSep  -1 - \sqrt{3}\MoIr[\right]$ ist ${f'}'(x)$ negativ und damit $f$ konkav.\\%###
+Auf $\MoIl[\left]-1 - \sqrt{3}\MIntvlSep  -1 + \sqrt{3}\MoIr[\right]$ ist ${f'}'(x)$ positiv und damit $f$ konvex.\\%###
+Auf $\MoIl[\left]-1 + \sqrt{3}\MIntvlSep  \infty\MoIr[\right]$ ist ${f'}'(x)$ negativ und damit $f$ konkav.%###
+\ \\ \ \\%###
 \textbf{Skizze des Graphen}\\
 \MUGraphics{BildKurvendiskussion3.png}{width=0.5\linewidth}{Der Graph der Funktion $f$,
 skizziert auf dem Intervall $\MoIl -\MZahl{6}{2}\MIntvlSep 3\MoIr$.}{width:400px}
@@ -1747,7 +1758,7 @@ Optimierungsaufgabe genannt.
 \begin{MXContent}{Beispiel}{Beispiel}{STD}
 \MDeclareSiteUXID{VBKM07_WeitereBeispiele}
 
-Das obige Beispiel soll etwas genauer betrachtet werden: Es geht also um die Minimierung der Oberfläche einer zylinderförmigen Dose bei einem vorgegebenen Volumen
+Dazu soll ein Beispiel etwas genauer betrachtet werden: Es geht also um die Minimierung der Oberfläche einer zylinderförmigen Dose bei einem vorgegebenen Volumen %###
 (Grundfläche mal Höhe)
 %
 \begin{eqnarray*}
