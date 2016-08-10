@@ -17,7 +17,7 @@ class FinalTestTest( SeleniumTest ):
     def setUp( self ):
         SeleniumTest.setUp(self)
         # navigate to chapter 1, final test (1.5)
-        self._navToChapter( "1", "1.5", no_mathjax=True )
+        self._navToChapter( "1", "1.5" )
 
 
     def testSubmitEmpty(self):

@@ -53,7 +53,7 @@ class Chapter1Test( SeleniumTest ):
 		Is the page in the right locale?
 		'''
 
-		self._chooseLanguageVersion("de", no_mathjax=True)
+		self._chooseLanguageVersion("de")
 
 		# Open the *second* subsection (as it's more interesting than the first one)
 		self._navToChapter( "1", section="1.2", lang = "de", no_mathjax=True )
