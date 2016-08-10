@@ -575,10 +575,10 @@
   \ifnum\value{MExerciseCollectionCounter}=0\else\addtocounter{MExerciseCollectionTextCounter}{1}\special{html:<!-- mexercisetextstart;;}\arabic{MExerciseCollectionTextCounter}\special{html:;; //-->}\fi
   \special{html:<div class="aufgabe"
   id="ADIV_}\MGenerateExNumber\special{html:"><div class="panel
-  panel-warning"><div class="panel-heading">}%
+  panel-warning"><div class="panel-heading"><h5 class="title">}%
   \textbf{Exercise \MGenerateExNumber
-  } \begin{html}</div><div class="panel-body">\end{html} \ \\}{
-  \special{html:</div></div><!--
+  } \begin{html}</h5></div><div class="panel-body">\end{html} \ \\}{
+  \special{html:</div></div></div><!--
   mfeedbackbutton;Exercise;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->} \ifnum\value{MExerciseCollectionCounter}=0\else\special{html:<!-- mexercisetextstop //-->}\fi
   }
 
@@ -1293,7 +1293,8 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newenvironment{MSectionStart}{\MSubsectionx{Module Overview}}{\setcounter{MSSEnd}{0}}
 \fi
 
-\newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}}{\end{MXContent}}
+\newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}\begin{html}<div
+class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \newenvironment{MContent}{\begin{MXContent}{Contents}{Contents}{beweis}}{\end{MXContent}}
 \newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{Exercises}{Exercises}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
 
