@@ -12,7 +12,7 @@ class Chapter1Test( SeleniumTest ):
 	'''
 	def setUp( self ):
 		SeleniumTest.setUp(self)
-		self._openStartPage()
+		self._openStartPage(no_mathjax=True)
 
 
 	def testChooseLanguageVersion(self):
