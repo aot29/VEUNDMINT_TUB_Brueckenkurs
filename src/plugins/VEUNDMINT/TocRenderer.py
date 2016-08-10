@@ -1,163 +1,185 @@
 '''
-    This file is part of the VEUNDMINT plugin package
+	This file is part of the VEUNDMINT plugin package
 
-    The VEUNDMINT plugin package is free software; you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or (at your
-    option) any later version.
+	The VEUNDMINT plugin package is free software; you can redistribute it and/or modify
+	it under the terms of the GNU Lesser General Public License as published by
+	the Free Software Foundation; either version 3 of the License, or (at your
+	option) any later version.
 
-    The VEUNDMINT plugin package is distributed in the hope that it will be useful, but
-    WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-    or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
-    License for more details.
+	The VEUNDMINT plugin package is distributed in the hope that it will be useful, but
+	WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+	or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+	License for more details.
 
-    You should have received a copy of the GNU Lesser General Public License
-    along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
-    
-    Created on Aug 4, 2016
-    @author: Alvaro Ortiz for TUB (http://tu-berlin.de)
+	You should have received a copy of the GNU Lesser General Public License
+	along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
+	
+	Created on Aug 4, 2016
+	@author: Alvaro Ortiz for TUB (http://tu-berlin.de)
 '''
 
 
 from lxml import etree
 import os
+import re
 from tidylib import tidy_document
 from tex2x.renderers.AbstractRenderer import *
 
 class TocRenderer( AbstractXmlRenderer ):
-    
-    def __init__( self, tplPath, lang ):
-        """
-        Please do not instantiate directly, use PageFactory instead (except for unit tests).
-        
-        @param tplPath - String path to the directory holding the xslt templates
-        @param lang - String ISO-639-1 language code ("de" or "en")
-        """
-        self.tplPath = tplPath
-        self.lang = lang
+	"""
+	Generates a table of contents for the selected page (the TContent tc object passed to generateXML)
+	"""	
+	
+	def generateXML( self, tc ):
+		"""
+		Create XML for the table of contents
+		
+		@param tc - a TContent object encapsulating page data and content
+		@return an etree element
+		"""
+		toc = etree.Element( 'toc' )
+		pageId = tc.myid
+		# add a parameter to the tree: the currently selected page
+		toc.set( 'forPage', str( pageId ) )
+		# the TOC entries tree
+		entries = etree.Element( 'entries' )
 
-    
-    def generateXML( self, tc ):
-        """
-        Create XML for the table of contents
-        
-        @param tc - a TContent object encapsulating page data and content
-        @return an etree element
-        """
-        toc = etree.Element( 'toc' )
-        pageId = tc.myid
-        # add a parameter to the tree: the currently selected page
-        toc.set( 'forPage', str( pageId ) )
-        # the TOC entries tree
-        entries = etree.Element( 'entries' )
+		# get the module element for the TOC
+		tocModule = self._getModule( tc )
+		if tocModule is not None and tocModule.parent is not None:
+			# siblings are at the modules at the same level than the current page
+			siblings = tocModule.parent.children
+			# get the id of the currently selected module
+			moduleId = tocModule.myid
+			for i in range( len( siblings ) ):
+				sibling = siblings[i]
+				# add the new entry to the entries element
+				entries.append( self.generateTocEntryXML( sibling, moduleId, pageId ) )
+		
+		# add the entries to the toc element
+		toc.append( entries )
 
-        # get the module element for the TOC
-        tocModule = self._getModule( tc )
-        if tocModule is not None and tocModule.parent is not None:
-            # siblings are at the modules at the same level than the current page
-            siblings = tocModule.parent.children
-            # get the id of the currently selected module
-            moduleId = tocModule.myid
-            for i in range( len( siblings ) ):
-                sibling = siblings[i]
-                # add the new entry to the entries element
-                entries.append( self.generateTocEntryXML( sibling, moduleId, pageId ) )
-        
-        if tc.title == "2.1 Welcome":
-            print( etree.tostring(entries) )
-
-        # add the entries to the toc element
-        toc.append( entries )
-
-        return toc
+		return toc
 
 
-    def generateTocEntryXML(self, sibling, moduleId, pageId ):
-        """
-        Create XML for the table of contents
-        
-        @param sibling - a TContent object encapsulating a TOC entry
-        @param moduleId -  - int id of the currently selected module
-        @param pageId - int id of the currently selected page
-        @return an etree element
-        """
-        entry = self.generateSingleEntryXML( sibling, moduleId )
+	def generateTocEntryXML(self, sibling, moduleId, pageId ):
+		"""
+		Create XML for the table of contents
+		
+		@param sibling - a TContent object encapsulating a TOC entry
+		@param moduleId -  - int id of the currently selected module
+		@param pageId - int id of the currently selected page
+		@return an etree element
+		"""
+		entry = self.generateSingleEntryXML( sibling, moduleId )
 
-        # check if module is selected
-        if sibling.myid == moduleId: 
-            # if entry selected, append its children
-            entry.append( self.generateTocEntryChildrenXML( sibling, pageId ) )
+		# check if module is selected
+		if sibling.myid == moduleId: 
+			# if entry selected, append its children
+			entry.append( self.generateTocEntryChildrenXML( sibling, pageId ) )
 
-        return entry
-
-
-    def generateTocEntryChildrenXML( self, sibling, selectedId ):
-        """
-        Create XML for the table of contents
-        
-        @param sibling - a TContent object encapsulating a TOC entry
-        @param selectedId - int the id of the currently selected page
-        @return an etree element
-        """
-        childrenElement = etree.Element( 'children' )        
-        for child in sibling.children:
-            childEl = self.generateSingleEntryXML( child, selectedId )
-
-            # Append grand children recursively
-            if hasattr(child, 'children') and child.children is not None:
-                children2 = self.generateTocEntryChildrenXML( child, selectedId )
-                childEl.append( children2 )
-    
-            childrenElement.append( childEl )
-            
-        return childrenElement
+		return entry
 
 
-    def generateSingleEntryXML(self, child, selectedId):
-        """
-        Create XML for single entries or children of entries in the table of contents
-        
-        @param sibling - a TContent object encapsulating a TOC entry
-        @param selectedId - int the id of the currently selected page
-        @return an etree element
-        """        
-        childEl = etree.Element( 'entry' )
-        
-        # Set link for TOC entry
-        # Sections don't have links, as there are actually only modules and subsections
-        # In PageKIT, these are redirects to the first subsection
-        childEl.set( 'id', str( child.myid ) )
+	def generateTocEntryChildrenXML( self, sibling, selectedId ):
+		"""
+		Create XML for the table of contents
+		
+		@param sibling - a TContent object encapsulating a TOC entry
+		@param selectedId - int the id of the currently selected page
+		@return an etree element
+		"""
+		childrenElement = etree.Element( 'children' )		
+		for child in sibling.children:
+			childEl = self.generateSingleEntryXML( child, selectedId )
 
-        if ( child.level != SECTION_LEVEL ):
-            childEl.set( 'href', child.fullname )
-        
-        # status is an attribute (optional)
-        if hasattr( child, 'tocsymb' ) and child.tocsymb is not None:
-            childEl.set( 'status', child.tocsymb )
+			# Append grand children recursively
+			if hasattr(child, 'children') and child.children is not None:
+				children2 = self.generateTocEntryChildrenXML( child, selectedId )
+				childEl.append( children2 )
+	
+			childrenElement.append( childEl )
+			
+		return childrenElement
 
-        # Modules are level 2, sections are level 3 etc.
-        childEl.set( 'level', str( child.level ) )
 
-        # Mark the entry as selected
-        if child.myid == selectedId:
-            childEl.set( 'selected', 'True' )
-        else:
-            childEl.set( 'selected', 'False' )
-    
-        # caption is an element, as it could contain HTML-tags
-        caption = etree.Element( "caption" )
-        caption.text = child.caption
-        childEl.append( caption )
-        
-        return childEl
-    
-    
-    def _getModule(self, tc):
-        """
-        Get the module corresponding to the selected page
-        """
-        if int( tc.level ) == ROOT_LEVEL: return tc        
-        elif int( tc.level ) == MODULE_LEVEL: return tc
-        elif int( tc.level ) == SECTION_LEVEL: return tc.parent
-        elif int( tc.level ) == SUBSECTION_LEVEL: return tc.parent.parent
-        
+	def generateSingleEntryXML(self, child, selectedId):
+		"""
+		Create XML for single entries or children of entries in the table of contents
+		
+		@param child - a TContent object encapsulating a TOC entry
+		@param selectedId - int the id of the currently selected page
+		@return an etree element
+		"""		
+		childEl = etree.Element( 'entry' )
+		
+		# Set link for TOC entry
+		# Sections don't have links, as there are actually only modules and subsections
+		# In PageKIT, these are redirects to the first subsection
+		childEl.set( 'id', str( child.myid ) )
+
+		if ( child.level != SECTION_LEVEL ):
+			childEl.set( 'href', child.fullname )
+		
+		# status is an attribute (optional)
+		if hasattr( child, 'tocsymb' ) and child.tocsymb is not None:
+			childEl.set( 'status', child.tocsymb )
+
+		# Modules are level 2, sections are level 3 etc.
+		childEl.set( 'level', str( child.level ) )
+
+		# Mark the entry as selected
+		if child.myid == selectedId:
+			childEl.set( 'selected', 'True' )
+		else:
+			childEl.set( 'selected', 'False' )
+	
+		# caption is an element, as it could contain HTML-tags
+		caption = etree.Element( "caption" )
+		caption.text = self._makeCaption( child )
+		childEl.append( caption )
+		
+		return childEl
+	
+	
+	def _makeCaption(self, tc):
+		"""
+		Make the caption to be displayed for each TOC entry
+		
+		@param child - a TContent object encapsulating a TOC entry
+		@return - String
+		"""
+
+		pageIndex = tc.title
+		# For module captions, remove the first digit and point
+		if tc.level == MODULE_LEVEL:
+			match = re.search('(?<=\d\.)\w+', tc.title)
+			if match:
+				pageIndex = match.group(0) + '.'
+				
+		# section captions are not numbered, so get the number from the link (the 2 last digits from the folder name)
+		elif tc.level == SECTION_LEVEL:
+			match = re.search( '(?<=\d\.)\d\.\d', tc.fullname)
+			if match:
+				pageIndex = match.group(0) + '.'
+			
+		# match at least one digit followed by a point possibly followed by one or more digits etc
+		if tc.level == SUBSECTION_LEVEL:
+			match = re.search( '\d+\.\d*\.*\d*\.*', tc.title ) 
+			if match:
+				pageIndex = match.group(0)
+				
+		response = "%s %s" % ( pageIndex, tc.caption ) 
+
+		return response
+
+	
+	def _getModule(self, tc):
+		"""
+		Get the module corresponding to the selected page
+		"""
+		if int( tc.level ) == ROOT_LEVEL: return tc		
+		elif int( tc.level ) == MODULE_LEVEL: return tc
+		elif int( tc.level ) == SECTION_LEVEL: return tc.parent
+		elif int( tc.level ) == SUBSECTION_LEVEL: return tc.parent.parent
+		

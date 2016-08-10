@@ -94,9 +94,6 @@ class PageXmlRenderer(AbstractXmlRenderer):
         contentString = tidyContent.replace( '<body>', '<content>' )
         contentString = contentString.replace( '</body>', '</content>' )
 
-        # Drop the clear=all, since they mess-up the layout
-        contentString = contentString.replace( '<br clear="all" />', '' )
-
         # add this to fix &nbsp;.
         contentString = ENTITIES + contentString
         # parse content string to etree

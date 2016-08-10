@@ -14,8 +14,33 @@ class test_TocRenderer(AbstractRendererTestCase):
     def setUp(self):
         AbstractRendererTestCase.setUp(self)
 
-        self.tocRenderer = TocRenderer( self.tplPath, self.lang )
+        self.tocRenderer = TocRenderer()
         self.xml = self.tocRenderer.generateXML( self.tc )
+    
+    
+    def  test_makeCaption(self):
+        # Module numbers start at the second digit of the caption
+        # as the first digit is always 1, so 1.2 becomes 2
+        self.tc.title = "Onlinebrückenkurs Mathematik Abschnitt 1.1.Elementary Arithmetic"
+        self.tc.caption = "Elementary Arithmetic"
+        self.tc.level = MODULE_LEVEL
+        expected = "1. Elementary Arithmetic"
+        self.assertEquals( expected, self.tocRenderer._makeCaption( self.tc ), "Wrong caption" )
+        
+        # section don't have numbers so get them from the link
+        self.tc.title = "LS in two Variables"
+        self.tc.fullname = "html/1.4.2/modstart.html"
+        self.tc.caption = "LS in two Variables"
+        self.tc.level = SECTION_LEVEL
+        expected = "4.2. LS in two Variables"
+        self.assertEquals( expected, self.tocRenderer._makeCaption( self.tc ), "Wrong caption" )        
+        
+        # subsection numbers start at the first digit        
+        self.tc.title = "Onlinebrückenkurs Mathematik Abschnitt 1.5.1.Final Test Module 1"
+        self.tc.caption = "Final Test Module 1"
+        self.tc.level = SUBSECTION_LEVEL
+        expected = "1.5.1. Final Test Module 1"
+        self.assertEquals( expected, self.tocRenderer._makeCaption( self.tc ), "Wrong caption" )
         
 
     def test_getModule(self):
