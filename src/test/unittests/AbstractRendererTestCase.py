@@ -32,6 +32,22 @@ class AbstractRendererTestCase(unittest.TestCase):
         self.tc.content = "Some content."
         self.tc.myid = 123
         self.tc.level = 2
+        # add some content: text, MathMl, stuff to replace, input tags
+        self.tc.content = """
+		Expand the following terms completely and collect like terms. Describe the asymptotic behaviour of the final expression: 
+		
+		<ol type="1">
+		<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+		<mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mo stretchy="false">
+		(</mo><mn>3</mn><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> = 
+		
+		
+		<!-- onloadstart //-->CreateQuestionObj("LSFF3",1,"(3-x)*(x+1)","QFELD_1.3.5.QF1",4,"10;x;5;1",4,0,1);<!-- onloadstop //-->
+		<input mfieldtype="4" name="Name_QFELD_1.3.5.QF1" id="QFELD_1.3.5.QF1" type="text" size="30" maxlength="30" 
+		onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" 
+		oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);"/><span>
+		<span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.3.5.QF1"/></span> 
+        """
         
         # add a parent
         self.tc.parent = TContent()

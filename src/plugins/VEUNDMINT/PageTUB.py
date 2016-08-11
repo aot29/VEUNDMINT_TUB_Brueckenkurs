@@ -21,6 +21,7 @@
 
 from lxml import etree
 import os
+import re
 from tidylib import tidy_document
 from tex2x.renderers.AbstractRenderer import *
 from plugins.VEUNDMINT.PageXmlRenderer import PageXmlRenderer
@@ -75,7 +76,6 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		transform = etree.XSLT( template )
 		result = transform( xml )
 		
-		
 		# save the result in tc object
 		tc.html = self._contentToString( result, tc )
 
@@ -104,12 +104,16 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		"""
 		TTM produces non-valid HTML, so it has to be added after XML has been parsed.
 		Don't use tidy on the whole page, as tidy version 1 drops MathML elements (among other)
+		Note: string replace is faster than regex
 		
 		@param xml - etree holding the page and toc without the content result of XSLT transformation
 		@patam tc - TContent object for the page
 		"""
-		# Reduce the number of breaks clear=all's, since they mess-up the layout
-		tc.content = tc.content.replace( '<br clear="all"><br clear="all"><br clear="all"><br clear="all">', '<br /><br />' )
+		# Reduce the number of breaks and clear=all's, since they mess-up the layout
+		breakStr = '<br style="margin-bottom: 2em" />'
+		tc.content = tc.content.replace( '<br/> <br/>', breakStr )
+		tc.content = tc.content.replace( '<br clear="all"/><br clear="all"/>', breakStr )
+		tc.content = tc.content.replace( '<br clear="all"></br>\n<br clear="all"></br>', breakStr )
 		
 		# replace the content placeholder added in PageXmlRenderer with the actual non-valid HTML content
 		resultString = str( xml )

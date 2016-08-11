@@ -75,13 +75,39 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		# content
 		content = etree.Element( 'content' )
 		xml.append( content )
+		
+		# add questions
+		xml.append( self._getQuestions( tc ) )
 
 		return xml
+
+
+	def _getQuestions(self, tc):
+		"""
+		Move the questions wrapped in onloadstart and onloadstop comments to the page header
+		
+		@param tc - a TContent object encapsulating page data and content
+		@return an etree element
+		"""
+		# find the questions hidden in the content
+		questions = etree.Element( 'questions' )
+		match = re.findall( "\<!-- onloadstart //--\>(.*?)\<!-- onloadstop //--\>", tc.content )
+		for found in match:
+			question = etree.Element( 'question' )
+			question.text = found
+			questions.append( question )
+
+		# remove the questions from the content			
+		tc.content = re.sub( "\<!-- onloadstart //--\>(.*?)\<!-- onloadstop //--\>", '', tc.content )
+		
+		return questions
 
 
 	def _generateIds(self, tc):
 		"""
 		compute number of chapters and section numbers
+		
+		@param tc - a TContent object encapsulating page data and content
 		"""
 		siteId = ""
 		sectionId = -1

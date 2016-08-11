@@ -2,25 +2,24 @@
 
 	<xsl:template match="page" mode="js">
 		<xsl:param name="basePath" />
-        <script src="{$basePath}/jQuery/jquery-2.2.4.js" type="text/javascript"></script>
-        <script src="{$basePath}/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-        <script src="{$basePath}/js/mintscripts_bootstrap.js" type="text/javascript"></script>
-        <script src="{$basePath}/es5-sham.min.js" type="text/javascript"></script>
-        <script src="{$basePath}/qtip2/jquery.qtip.min.js" type="text/javascript"></script>
-        <script src="{$basePath}/datatables/datatables.min.js" type="text/javascript"></script>
-        <script src="{$basePath}/knockout-3.0.0.js" type="text/javascript"></script>
-        <script src="{$basePath}/math.js" type="text/javascript"></script>
-        <script src="{$basePath}/dynamiccss.js" type="text/javascript"></script>
-        <script src="{$basePath}/convinfo.js" type="text/javascript"></script>
-        <script src="{$basePath}/mparser.js" type="text/javascript"></script>
-        <script src="{$basePath}/scormwrapper.js" type="text/javascript"></script>
-        <script src="{$basePath}/dlog.js" type="text/javascript"></script>
-        <script src="{$basePath}/userdata.js" type="text/javascript"></script>
-        <script src="{$basePath}/intersite.js" type="text/javascript"></script>
-        <script src="{$basePath}/exercises.js" type="text/javascript"></script>
-        <script src="{$basePath}/servicescripts.js" type="text/javascript"></script>
-        <script src="{$basePath}/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js" type="text/javascript"></script>
-        <script src="{$basePath}/jquery.i18n.js" type="text/javascript"></script>
+        <script src="{$basePath}/jQuery/jquery-2.2.4.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/bootstrap/js/bootstrap.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/js/mintscripts_bootstrap.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/es5-sham.min.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/qtip2/jquery.qtip.min.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/datatables/datatables.min.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/knockout-3.0.0.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/math.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/convinfo.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/mparser.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/scormwrapper.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/dlog.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/userdata.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/intersite.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/exercises.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/servicescripts.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <script src="{$basePath}/jquery.i18n.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
         <script src="{$basePath}/jquery.i18n.messagestore.js" type="text/javascript"></script>
 
 		<script>
@@ -58,6 +57,9 @@
 			var sitejson_load = false;
 			var sitejson = {};					
 			]]>
+			
+			<xsl:apply-templates select="questions/question" />
+			
 			var SITE_ID = "<xsl:value-of select="@siteId" />";
 			var SITE_UXID = "<xsl:value-of select="@uxId" />";
 			var SECTION_ID = "<xsl:value-of select="@sectionId" />";
@@ -135,6 +137,12 @@
 	        }
 		]]>
 	    </script>
+	</xsl:template>
+
+	<xsl:template match="question">
+		<xsl:value-of select="." />
+		<!-- a new line -->
+		<xsl:text>&#xa;</xsl:text>
 	</xsl:template>
 
 </xsl:stylesheet>

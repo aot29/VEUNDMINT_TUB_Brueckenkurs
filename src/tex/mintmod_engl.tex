@@ -552,9 +552,9 @@
 % Bei Uebersetzung nach PDF werden die theorem-Umgebungen verwendet, bei Uebersetzung in HTML ein manuelles Makro
 \ifttm%
 
-  \newenvironment{MHint}[1]{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" class="hintbutton_closed" id="MHint}\arabic{MHintCounter}\special{html:_button" %
+  \newenvironment{MHint}[1]{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" class="hintbutton_closed btn btn-default" id="MHint}\arabic{MHintCounter}\special{html:_button" %
   type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}#1\special{html:</button>}
-  \special{html:<div class="hint" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
+  \special{html:<div class="hint well" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
 
   \newenvironment{MCOSHZusatz}{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" class="chintbutton_closed" id="MHint}\arabic{MHintCounter}\special{html:_button" %
   type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}Weiterf\"uhrende Inhalte\special{html:</button>}
@@ -577,8 +577,7 @@
   id="ADIV_}\MGenerateExNumber\special{html:"><div class="panel
   panel-warning"><div class="panel-heading"><h5 class="title">}%
   \textbf{Exercise \MGenerateExNumber
-  } \begin{html}</h5></div><div class="panel-body">\end{html} \ \\}{
-  \special{html:</div></div></div><!--
+  } \begin{html}</h5></div><div class="panel-body">\end{html}}{\special{html:</div></div></div><!--
   mfeedbackbutton;Exercise;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->} \ifnum\value{MExerciseCollectionCounter}=0\else\special{html:<!-- mexercisetextstop //-->}\fi
   }
 
@@ -663,9 +662,8 @@
     \arabic{MInfoCounter}\setcounter{MLastIndex}{\value{MInfoCounter}}
     \fi
   \fi
-  } \begin{html}</h5></div><div class="panel-body">\end{html}\
-  \\}{\begin{html}</div></div></div>
-  \end{html}
+  } \begin{html}</h5></div><div class="panel-body">\end{html}}
+  {\begin{html}</div></div></div>\end{html}
   \special{html:<!-- mfeedbackbutton;Info;}\arabic{MTestSite}\special{html:;}\MGenerateInfoNumber\special{html:; //-->}
   }
 
@@ -993,9 +991,7 @@
 \special{html:<input mfieldtype="}#4\special{html:" name="Name_}#3\special{html:" id="}#3\special{html:" type="text" size="}#1\special{html:" maxlength="}#1%
 \special{html:" }\ifnum\value{MGroupActive}=0\special{html:onfocus="handlerFocus(}\arabic{MFieldCounter}%
 \special{html:);" onblur="handlerBlur(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,0);"/>}%
-\special{html:<span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"></span>}
-%<img class="className="glyphicon-question-sign" src="images/questionmark.png" width="20" height="20"
-%border="0" align="absmiddle" id="}QM#3\special{html:"/>} 
+\special{html:<span><span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
 \else%
 \special{html:onblur="handlerBlur(}\arabic{MFieldCounter}%
 \special{html:);" onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}%
@@ -1946,7 +1942,7 @@ $\ln\left(\sqrt{x} + 3.2\right)$ as \texttt{ln(sqrt(x) + 3.2)}.}}
 \ifnum%
 \if\value{MTestSite}>0%
 \else%
-{\color{blue}#1}%
+\begin{html}<span class="text-info">\end{html}{#1}\begin{html}</span>\end{html}
 \fi%
 \fi%
 }
