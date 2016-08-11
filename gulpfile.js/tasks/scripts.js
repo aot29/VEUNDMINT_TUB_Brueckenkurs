@@ -11,6 +11,7 @@ var autoprefixer = require('gulp-autoprefixer')
 var path         = require('path')
 var cssnano      = require('gulp-cssnano')
 var concat       = require('gulp-concat')
+var using        = require('gulp-using')
 
 var paths = {
   //src: path.join(config.root.src, config.tasks.css.src, '/**/*.{' + config.tasks.css.extensions + '}'),
@@ -25,6 +26,7 @@ var scriptsTask = function () {
     // .pipe(autoprefixer(config.tasks.css.autoprefixer))
     // .pipe(gulpif(global.production, cssnano({autoprefixer: false})))
     // .pipe(gulpif(!global.production, sourcemaps.write()))
+    .pipe(using({prefix:'Using script', path:'relative', color:'yellow', filesize:true}))
     .pipe(concat('app.js'))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())

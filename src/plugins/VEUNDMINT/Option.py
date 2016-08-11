@@ -314,23 +314,24 @@ class Option(object):
                 "qtip2/jquery.qtip.min.css",
                 "datatables/min.css"
             ]
+            # all the following files are now injected via gulp
             self.scriptheaders += [
                 "es5-sham.min.js",
                 "datatables/datatables.min.js",
-                "knockout-3.0.0.js",
-                "math.js",
-                "dynamiccss.js",
-                self.convinfofile,
-                "mparser.js",
-                "scormwrapper.js",
-                "dlog.js",
-                "userdata.js",
-                "mintscripts.js",
-                "intersite.js",
-                "exercises.js",
-                "servicescripts.js",
+                # "knockout-3.0.0.js",
+                # "math.js",
+                # "dynamiccss.js",
+                # self.convinfofile, # this file will hold several python variables translated to js
+                # "mparser.js",
+                # "scormwrapper.js",
+                # "dlog.js",
+                # "userdata.js",
+                # "mintscripts.js",
+                # "intersite.js",
+                # "exercises.js",
+                # "servicescripts.js",
                 "CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
-                "jquery.i18n.messagestore.js"
+                # "jquery.i18n.messagestore.js"
             ]
 
             # javascript files to be minimized if borkify is active, relative to converterDir
