@@ -47,7 +47,7 @@ var paths = {
 gulp.task('serve', function() {
 
     browserSync.init({
-        server: paths.src
+        server: 'app'
     });
 
     //gulp.watch("app/scss/*.scss", ['sass']);
@@ -56,20 +56,25 @@ gulp.task('serve', function() {
 
 gulp.task('inject', function () {
 
-  var cssAndJsSrc = paths.cssSrc.concat(paths.jsSrc);
+  var cssAndJsSrc = './tu9onlinekurstest/app/app.css';
 
-  var target = gulp.src(['./tu9onlinekurstest/*.html', './tu9onlinekurstest/html/**/*.html']);
+  var target = gulp.src(['./tu9onlinekurstest/html/**/*.html']);
   // It's not necessary to read the files (will speed up things), we're only after their paths:
   var sources = gulp.src(cssAndJsSrc, {read: false});
 
-  target.pipe(inject(sources, {relative: true}))
-    .pipe(gulp.dest(paths.src));
+  target.pipe(inject(sources))
+    .pipe(gulp.dest(paths.dest + 'html'));
+
+  return gulp.src('./tu9onlinekurstest/*.html')
+    .pipe(inject(gulp.src(cssAndJsSrc, {read: false})))
+    .pipe(gulp.dest(paths.dest));
+
 });
 
 gulp.task('css', function() {
   return gulp.src(paths.cssSrc)
     .pipe(concat('app.css'))
-    .pipe(gulp.dest(paths.src));
+    .pipe(gulp.dest(paths.dest));
 });
 
 // gulp.task('html', function() {
