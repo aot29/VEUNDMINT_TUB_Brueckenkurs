@@ -52,6 +52,14 @@ endef
 
 
 #
+# Deploy all images to the images directory
+#
+define deploy_img_cmd
+	cd module_veundmint && find . -iname \*.png -print0 | xargs -I{} -0 cp {} ../$(OUTPUT)/images
+endef
+
+
+#
 # Build the English and the German version.
 #
 convert:
@@ -63,6 +71,10 @@ convert:
 	$(convert_cmd)
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
+	
+	# deploy images
+	$(deploy_img_cmd)
+	
 
 #
 # set CURRENT_LANG at runtime.
@@ -71,6 +83,8 @@ convert:
 de:
 	$(eval CURRENT_LANG := de)
 	$(convert_cmd)
+	mv $(OUTPUT)_$(CURRENT_LANG) $(OUTPUT)
+	$(deploy_img_cmd)
 
 
 #
@@ -80,6 +94,9 @@ de:
 en:
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
+	mv $(OUTPUT)_$(CURRENT_LANG) $(OUTPUT)
+	$(deploy_img_cmd)
+
 
 #
 # Merge the 2 versions together.
@@ -220,7 +237,8 @@ fix: fixRedirects
 	# replace index.html with src/templates_html5/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_html5/html5_choose_language_simple.html $(OUTPUT)/index.html
 
+
 cleanup:
-	-rm -Rf $(OUTPUT)_en
+	-rm -Rf $(OUTPUT)
 
 
