@@ -1,6 +1,6 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:template name="js">
+	<xsl:template match="page" mode="js">
 		<xsl:param name="basePath" />
         <script src="{$basePath}/jQuery/jquery-2.2.4.js" type="text/javascript"></script>
         <script src="{$basePath}/bootstrap/js/bootstrap.js" type="text/javascript"></script>
@@ -16,18 +16,15 @@
         <script src="{$basePath}/scormwrapper.js" type="text/javascript"></script>
         <script src="{$basePath}/dlog.js" type="text/javascript"></script>
         <script src="{$basePath}/userdata.js" type="text/javascript"></script>
-        <script src="{$basePath}/mintscripts.js" type="text/javascript"></script>
         <script src="{$basePath}/intersite.js" type="text/javascript"></script>
         <script src="{$basePath}/exercises.js" type="text/javascript"></script>
-        <script src="{$basePath}/mintscripts.js" type="text/javascript"></script>
         <script src="{$basePath}/servicescripts.js" type="text/javascript"></script>
         <script src="{$basePath}/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js" type="text/javascript"></script>
         <script src="{$basePath}/jquery.i18n.js" type="text/javascript"></script>
         <script src="{$basePath}/jquery.i18n.messagestore.js" type="text/javascript"></script>
 
 		<script>
-		<![CDATA[
-
+			<![CDATA[
 			var isTest = false;
 			var testFinished = true;
 			var FVAR = new Array();
@@ -59,11 +56,15 @@
 			var timerIterator = 0;
 			var requestLogout = 0;
 			var sitejson_load = false;
-			var sitejson = {};
-			
-			// <JSCRIPTPRELOADTAG>
-					
-		]]>
+			var sitejson = {};					
+			]]>
+			var SITE_ID = "<xsl:value-of select="@siteId" />";
+			var SITE_UXID = "<xsl:value-of select="@uxId" />";
+			var SECTION_ID = "<xsl:value-of select="@sectionId" />";
+			var docName = "<xsl:value-of select="docName" />";
+			var fullName = "<xsl:value-of select="fullName" />";
+			var linkPath = "<xsl:value-of select="$basePath" />";
+			var imagesPath = "<xsl:value-of select="$basePath" />/images";		
 		</script>
 	    <script>
 	    <![CDATA[

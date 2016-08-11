@@ -876,10 +876,11 @@ class Plugin(basePlugin):
         # tables with borders need borders for cells too (as strict html requires all elements to have same border style, which can only be
         # be circumvented using css or js tricks)
 
-        def repltd(m):
-            t = re.sub(r"\<td([^\>]*?)\>", "<td\\1 class=\"rahmen\">", m.group(1), 0, re.S)
-            return "<table border=\"1\" class=\"rahmen\">" + t + "</table>"
-        tc.content = re.sub(r"\<table border\=\"1\"\>((.|\s)*?)\</table\>", repltd, tc.content, 0, re.S)
+		# this produces invalid html
+        #def repltd(m):
+        #    t = re.sub(r"\<td([^\>]*?)\>", "<td\\1 class=\"rahmen\">", m.group(1), 0, re.S)
+        #    return "<table border=\"1\" class=\"rahmen\">" + t + "</table>"
+        #tc.content = re.sub(r"\<table border\=\"1\"\>((.|\s)*?)\</table\>", repltd, tc.content, 0, re.S)
 
        
         # recursively analyze children

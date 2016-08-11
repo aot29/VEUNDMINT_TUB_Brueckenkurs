@@ -993,7 +993,9 @@
 \special{html:<input mfieldtype="}#4\special{html:" name="Name_}#3\special{html:" id="}#3\special{html:" type="text" size="}#1\special{html:" maxlength="}#1%
 \special{html:" }\ifnum\value{MGroupActive}=0\special{html:onfocus="handlerFocus(}\arabic{MFieldCounter}%
 \special{html:);" onblur="handlerBlur(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,0);"/>}%
-\special{html:<img src="images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="}QM#3\special{html:"/>}
+\special{html:<span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"></span>}
+%<img class="className="glyphicon-question-sign" src="images/questionmark.png" width="20" height="20"
+%border="0" align="absmiddle" id="}QM#3\special{html:"/>} 
 \else%
 \special{html:onblur="handlerBlur(}\arabic{MFieldCounter}%
 \special{html:);" onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}%
