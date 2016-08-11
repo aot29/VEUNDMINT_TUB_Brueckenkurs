@@ -12,8 +12,8 @@
 		<xsl:variable name="inlineCss"><xsl:if test="$isModuleSelected">border: 1px solid #ccc; border-radius: 4px;</xsl:if></xsl:variable>
 
 		<div class="row" id="pageContents" style="{$inlineCss}">
-			<!-- Copy whatever is in content to the output tree -->
-			<xsl:copy-of select="content/*" />
+			<!-- Placeholder. Whatever non-valid HTML comes out of TTM will be pasted here in PageTUB, after the XSLT transformation is done -->
+			<content/>
 
 			<!-- Add a module launch button to module overview pages -->
 			<xsl:if test="$isModuleSelected">

@@ -74,13 +74,10 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		# Apply the template
 		transform = etree.XSLT( template )
 		result = transform( xml )
-		contentString = str(result)
 		
-		# Reduce the number of breaks clear=all's, since they mess-up the layout
-		contentString = contentString.replace( '<br clear="all"><br clear="all"><br clear="all"><br clear="all">', '<br /><br />' )
 		
 		# save the result in tc object
-		tc.html = contentString # don't use tidy on the whole page, as tidy version 1 drops-empty-elements
+		tc.html = self._contentToString( result, tc )
 
 
 	def getBasePath(self, tc):
@@ -101,6 +98,24 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 			basePath = "../.."
 		
 		return basePath
+	
+
+	def _contentToString(self, xml, tc):
+		"""
+		TTM produces non-valid HTML, so it has to be added after XML has been parsed.
+		Don't use tidy on the whole page, as tidy version 1 drops MathML elements (among other)
+		
+		@param xml - etree holding the page and toc without the content result of XSLT transformation
+		@patam tc - TContent object for the page
+		"""
+		# Reduce the number of breaks clear=all's, since they mess-up the layout
+		tc.content = tc.content.replace( '<br clear="all"><br clear="all"><br clear="all"><br clear="all">', '<br /><br />' )
+		
+		# replace the content placeholder added in PageXmlRenderer with the actual non-valid HTML content
+		resultString = str( xml )
+		resultString = resultString.replace( '<content></content>', tc.content )
+
+		return resultString
 	
 
 	def _addPrevNextLinks(self, page, tc, basePath=''):

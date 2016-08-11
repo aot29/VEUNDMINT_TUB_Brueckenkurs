@@ -26,7 +26,9 @@ from tex2x.renderers.AbstractRenderer import *
 
 class PageXmlRenderer(AbstractXmlRenderer):
 	"""
-	Render page contents encapsulated in a TContent object as XML, using the lxml library.	
+	Create a XML tree for a page. 
+	As page contents rendered by TTM are non-valid HTML, only a placeholder element is added here.
+	Actual page contents are added in PageTUB.
 	"""
 
 
@@ -37,21 +39,6 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		@param lang - String ISO-639-1 language code ("de" or "en")
 		"""
 		self.lang = lang
-
-		#Use tidy to cleanup tc.content.
-		#Do not use tidy on the final output of Page, as tidy will remove empty spans required by bootstrap.
-		self.tidyOptions = {
-			"output-xml": 1,		# XML instead of HTML4
-			"indent": 0,			# Pretty; not too much of a performance hit
-			"tab-size": 2,
-			"tidy-mark": 0,			# No tidy meta tag in output
-			"wrap": 0,				# No wrapping
-			"alt-text": "",			# Help ensure validation
-			"doctype": 'strict',	# Little sense in transitional for tool-generated markup...
-			"force-output": 1,		# May not get what you expect but you will get something}
-			"wrap": 0,
-			"show-body-only": True	# Doesn't work
-		}
 		
 		
 	def generateXML(self, tc):
@@ -86,7 +73,8 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		xml.append( title )
 
 		# content
-		xml.append( self.generateContentXML( tc ) )
+		content = etree.Element( 'content' )
+		xml.append( content )
 
 		return xml
 
@@ -109,39 +97,6 @@ class PageXmlRenderer(AbstractXmlRenderer):
 			
 		tc.siteId = siteId
 		tc.sectionId = sectionId
-
-
-	def generateContentXML( self, tc ):
-		"""
-		Get the content from tc, cleanup using tidy, parse it and return XML
-		
-		@param tc - a TContent object encapsulating page data and content
-		@return an etree element
-		"""
-
-		# tidy-up page contents from tc.content
-		#tidyContent, self.tidyErrors = tidy_document( tc.content, self.tidyOptions )
-		# Wrap inside a content element
-		# Tidy returns a whole HTML page, just use the content part
-		# It should be possible to force tidy to return a fragment, but it doesn't work (see self.tidyOptions)
-		#contentString = tc.content.replace( '<body>', '<content>' )
-		#contentString = contentString.replace( '</body>', '</content>' )
-		#contentString = tidyContent.replace( '<body>', '<content>' )
-		#contentString = contentString.replace( '</body>', '</content>' )
-
-		# add this to fix &nbsp;.
-		contentString = ENTITIES + "<content>" + tc.content + "</content>"
-		contentString = re.sub('<!--','<comment>', contentString )
-		contentString = re.sub('-->','</comment>', contentString )
-
-		# parse content string to etree
-		#print( contentString )
-		#parser = etree.XMLParser( recover=True )
-		#content = etree.XML( contentString, parser)
-		content = etree.fromstring( contentString )
-		print( etree.tostring( content ) )
-	
-		return content
 
 
 			

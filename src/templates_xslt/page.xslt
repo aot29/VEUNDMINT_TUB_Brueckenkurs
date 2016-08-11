@@ -40,7 +40,7 @@
 									<!-- Page tabs -->
 									<xsl:apply-templates select="." mode="tabs" />
 
-									<!-- Page contents-->
+									<!-- Page contents-->									
 									<xsl:apply-templates select="." mode="content" />
 														                
 									<!-- Footer -->
