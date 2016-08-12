@@ -78,9 +78,6 @@ convert:
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
 	
-	# deploy images
-	$(deploy_img_cmd)
-	
 
 #
 # set CURRENT_LANG at runtime.
@@ -118,6 +115,8 @@ merge:
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
 	rm -Rf $(OUTPUT)_en
+	
+	$(deploy_img_cmd)
 
 
 #
@@ -179,8 +178,7 @@ define fixLinks_cmd
 
 	# Add the logout.html page out of the template src/templates_html5/html5_logout.html
 	cp src/templates_html5/html5_logout.html $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
-	
-
+		
 endef
 
 

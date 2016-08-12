@@ -79,8 +79,8 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		transform = etree.XSLT( template )
 		result = transform( xml )
 		
-		# save the result in tc object
-		tc.html = self._contentToString( result, tc )
+		# add tc.content and save the result in tc object
+		tc.html = self._contentToString( result, tc, basePath )
 
 
 	def getBasePath(self, tc):
@@ -103,14 +103,15 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		return basePath
 	
 
-	def _contentToString(self, xml, tc):
+	def _contentToString(self, xml, tc, basePath):
 		"""
 		TTM produces non-valid HTML, so it has to be added after XML has been parsed.
 		Don't use tidy on the whole page, as tidy version 1 drops MathML elements (among other)
 		Note: string replace is faster than regex
 		
 		@param xml - etree holding the page and toc without the content result of XSLT transformation
-		@patam tc - TContent object for the page
+		@param tc - TContent object for the page
+		@param basePath - String prefix for all links
 		"""
 		# Reduce the number of breaks and clear=all's, since they mess-up the layout
 		breakStr = '<br style="margin-bottom: 2em" />'
@@ -118,9 +119,13 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		tc.content = tc.content.replace( '<br clear="all"/><br clear="all"/>', breakStr )
 		tc.content = tc.content.replace( '<br clear="all"></br>\n<br clear="all"></br>', breakStr )
 		
+		# replace the link placeholders in the content 
+		tc.content = re.sub(r"(src|href)=(\"|')(?!#|https://|http://|ftp://|mailto:|:localmaterial:|:directmaterial:)", "\\1=\\2" + basePath + "/", tc.content)
+
 		# replace the content placeholder added in PageXmlRenderer with the actual non-valid HTML content
 		resultString = str( xml )
 		resultString = resultString.replace( '<content></content>', tc.content )
+
 
 		return resultString
 	

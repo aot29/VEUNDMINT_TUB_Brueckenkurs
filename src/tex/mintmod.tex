@@ -552,9 +552,9 @@
 % Bei Uebersetzung nach PDF werden die theorem-Umgebungen verwendet, bei Uebersetzung in HTML ein manuelles Makro
 \ifttm%
 
-  \newenvironment{MHint}[1]{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" class="hintbutton_closed" id="MHint}\arabic{MHintCounter}\special{html:_button" %
+  \newenvironment{MHint}[1]{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" class="hintbutton_closed btn btn-default" id="MHint}\arabic{MHintCounter}\special{html:_button" %
   type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}#1\special{html:</button>}
-  \special{html:<div class="hint" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
+  \special{html:<div class="hint well" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
 
   \newenvironment{MCOSHZusatz}{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" class="chintbutton_closed" id="MHint}\arabic{MHintCounter}\special{html:_button" %
   type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}Weiterf\"uhrende Inhalte\special{html:</button>}
@@ -572,14 +572,14 @@
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{5}
 
-  \ifnum\value{MExerciseCollectionCounter}=0\else\addtocounter{MExerciseCollectionTextCounter}{1}\special{html:<!-- mexercisetextstart;;}\arabic{MExerciseCollectionTextCounter}\special{html:;; //-->}\fi
-  \special{html:<div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
-  \textbf{Exercise \MGenerateExNumber
-  } \ \\}{
-  \special{html:</div><!-- mfeedbackbutton;Exercise;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->}
-  \ifnum\value{MExerciseCollectionCounter}=0\else\special{html:<!-- mexercisetextstop //-->}\fi
+\ifnum\value{MExerciseCollectionCounter}=0\else\addtocounter{MExerciseCollectionTextCounter}{1}\special{html:<!-- mexercisetextstart;;}\arabic{MExerciseCollectionTextCounter}\special{html:;; //-->}\fi
+  \special{html:<div class="aufgabe"
+  id="ADIV_}\MGenerateExNumber\special{html:"><div class="panel
+  panel-warning"><div class="panel-heading"><h5 class="title">}%
+  \textbf{Aufgabe \MGenerateExNumber
+  } \begin{html}</h5></div><div class="panel-body">\end{html}}{\special{html:</div></div></div><!--
+  mfeedbackbutton;Exercise;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->} \ifnum\value{MExerciseCollectionCounter}=0\else\special{html:<!-- mexercisetextstop //-->}\fi
   }
-
   % Stellt eine Kombination aus Aufgabe, Loesungstext und Eingabefeld bereit,
   % bei der Aufgabentext und Musterloesung sowie die zugehoerigen Feldelemente
   % extern bezogen und div-aktualisiert werden, das Eingabefeld aber immer das gleiche ist.
@@ -604,17 +604,17 @@
   \setcounter{MLastType}{6}
   \begin{html}
   <div class="exmp">
-  <div class="exmprahmen">
+  <div class="exmprahmen panel panel-default">
+  <div class="panel-heading"><h5 class="panel-title">
   \end{html}\textbf{Beispiel
   \ifnum\value{MSepNumbers}=0
   \arabic{section}.\arabic{subsection}.\arabic{MObjectCounter}\setcounter{MLastIndex}{\value{MObjectCounter}}
   \else
   \arabic{section}.\arabic{subsection}.\arabic{MExampleCounter}\setcounter{MLastIndex}{\value{MExampleCounter}}
   \fi
-  } \ \\}{\begin{html}</div>
-  </div>
-  \end{html}
-  \special{html:<!-- mfeedbackbutton;Beispiel;}\arabic{MTestSite}\special{html:;}\MGenerateExmpNumber\special{html:; //-->}
+  } \begin{html}</h5></div><div class="panel-body">\end{html}}
+  {\begin{html}</div></div></div>\end{html}
+  \special{html:<!-- mfeedbackbutton;Example;}\arabic{MTestSite}\special{html:;}\MGenerateExmpNumber\special{html:; //-->}
   }
 
   \newenvironment{MExperiment}{
@@ -650,7 +650,8 @@
   \setcounter{MLastType}{4}
   \begin{html}
   <div class="info">
-  <div class="inforahmen">
+  <div class="inforahmen panel panel-info">
+  <div class="panel-heading"><h5 class="panel-title">
   \end{html}\textbf{#1
   \ifnum\value{MInfoNumbers}=0
   \else
@@ -660,9 +661,8 @@
     \arabic{MInfoCounter}\setcounter{MLastIndex}{\value{MInfoCounter}}
     \fi
   \fi
-  } \ \\}{\begin{html}</div>
-  </div>
-  \end{html}
+  } \begin{html}</h5></div><div class="panel-body">\end{html}}
+  {\begin{html}</div></div></div>\end{html}
   \special{html:<!-- mfeedbackbutton;Info;}\arabic{MTestSite}\special{html:;}\MGenerateInfoNumber\special{html:; //-->}
   }
 
@@ -990,7 +990,7 @@
 \special{html:<input mfieldtype="}#4\special{html:" name="Name_}#3\special{html:" id="}#3\special{html:" type="text" size="}#1\special{html:" maxlength="}#1%
 \special{html:" }\ifnum\value{MGroupActive}=0\special{html:onfocus="handlerFocus(}\arabic{MFieldCounter}%
 \special{html:);" onblur="handlerBlur(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,0);"/>}%
-\special{html:<img src="images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="}QM#3\special{html:"/>}
+\special{html:<span><span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
 \else%
 \special{html:onblur="handlerBlur(}\arabic{MFieldCounter}%
 \special{html:);" onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}%
@@ -1295,7 +1295,8 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newenvironment{MSectionStart}{\MSubsectionx{Module Overview}}{\setcounter{MSSEnd}{0}}
 \fi
 
-\newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}}{\end{MXContent}}
+\newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}\begin{html}<div
+class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \newenvironment{MContent}{\begin{MXContent}{Contents}{Contents}{beweis}}{\end{MXContent}}
 \newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{Exercieces}{Exercieces}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
 
@@ -1594,9 +1595,12 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 % Parameter 2: Skalierungsoptionen (wirken nur im PDF)
 % Parameter 3: Skalierungsoptionen (wirken nur im HTML), als style-format: "width=???, height=???"
 \ifttm
-\newcommand{\MUGraphicsSolo}[3]{\MRegisterFile{#1}\begin{html}
-<img src="\end{html}\MMaterial/\MLastFile\begin{html}" style="\end{html}#3\begin{html}" alt="\end{html}\MMaterial/\MLastFile\begin{html}"/>
-\end{html}%
+\newcommand{\MUGraphicsSolo}[3]{\MRegisterFile{#1}
+% unecessarily convoluted. Use deploy script for images, not tex converter.
+%\begin{html}
+%<img src="\end{html}\MMaterial/\MLastFile\begin{html}" style="\end{html}#3\begin{html}" alt="\end{html}\MMaterial/\MLastFile\begin{html}"/>
+\begin{html}<img class="mintmodimage" src="../../images/\end{html}#1\begin{html}"/>\end{html}
+%\end{html}%
 \special{html:<!-- mfeedbackbutton;Abbildung;}#1\special{html:;}\MMaterial/\MLastFile\special{html:; //-->}%
 }
 \else
@@ -1857,7 +1861,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \fi%
 
 \def\MFormelZoomHint{\MInputHint{%
-Formel zu klein? Mit einem Doppelklick auf eine Formel wird sie vergrößert dargestellt.}}
+Formel zu klein? Mit einem Doppelklick auf eine Formel wird sie vergrï¿½ï¿½ert dargestellt.}}
 
 \def\jHTMLHinweisBedienung{\MInputHint{%
 Mit Hilfe der Symbole am oberen Rand des Fensters
@@ -1945,7 +1949,7 @@ $\ln\left(\sqrt{x} + 3.2\right)$ durch \texttt{ln(sqrt(x) + 3.2)}.}}
 \ifnum%
 \if\value{MTestSite}>0%
 \else%
-{\color{blue}#1}%
+\begin{html}<span class="text-info">\end{html}{#1}\begin{html}</span>\end{html}
 \fi%
 \fi%
 }
