@@ -52,16 +52,16 @@ class test_TocRenderer(AbstractRendererTestCase):
 		Test that the module corresponding to the selected page is found 
 		'''
 		# if selected page is root, then return root
-		tocRoot = self.tocRenderer._getModule( self.tc.parent )
+		tocRoot = AbstractXmlRenderer.getModule( self.tc.parent )
 		self.assertEquals( ROOT_LEVEL, tocRoot.level )
 		
-		tocRoot = self.tocRenderer._getModule( self.tc )
+		tocRoot = AbstractXmlRenderer.getModule( self.tc )
 		self.assertEquals( MODULE_LEVEL, tocRoot.level )
 		
-		tocRoot = self.tocRenderer._getModule( self.tc.children[0] )
+		tocRoot = AbstractXmlRenderer.getModule( self.tc.children[0] )
 		self.assertEquals( MODULE_LEVEL, tocRoot.level )
 		
-		tocRoot = self.tocRenderer._getModule( self.tc.children[0].children[0] )
+		tocRoot = AbstractXmlRenderer.getModule( self.tc.children[0].children[0] )
 		self.assertEquals( MODULE_LEVEL, tocRoot.level )
 
 

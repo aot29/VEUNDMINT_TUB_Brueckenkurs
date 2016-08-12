@@ -38,7 +38,7 @@ DEFAULT_LANG = de
 #
 # Build everything
 #
-all: |convert merge fix cleanup
+all: |cleanup convert merge fix 
 	echo "ready"
 
 
@@ -55,7 +55,13 @@ endef
 # Deploy all images to the images directory
 #
 define deploy_img_cmd
+	# copy all math images
 	cd module_veundmint && find . -iname \*.png -print0 | xargs -I{} -0 cp {} ../$(OUTPUT)/images
+	# copy logos
+	cd src/files/images && find . -iname logo_\*.png -print0 | xargs -I{} -0 cp {} ../../../$(OUTPUT)/images
+	# copy additional images
+	cp src/files/images/cclbysa.png $(OUTPUT)/images
+	cp src/files/images/tbeispiel.png $(OUTPUT)/images
 endef
 
 
@@ -80,7 +86,7 @@ convert:
 # set CURRENT_LANG at runtime.
 # Build DE language version
 #
-de:
+de: cleanup
 	$(eval CURRENT_LANG := de)
 	$(convert_cmd)
 	mv $(OUTPUT)_$(CURRENT_LANG) $(OUTPUT)
@@ -91,7 +97,7 @@ de:
 # set CURRENT_LANG at runtime.
 # Build EN language version
 #
-en:
+en: cleanup
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
 	mv $(OUTPUT)_$(CURRENT_LANG) $(OUTPUT)
@@ -111,6 +117,7 @@ merge:
 
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
+	rm -Rf $(OUTPUT)_en
 
 
 #
@@ -240,5 +247,7 @@ fix: fixRedirects
 
 cleanup:
 	-rm -Rf $(OUTPUT)
+	-rm -Rf $(OUTPUT)_en
+	-rm -Rf $(OUTPUT)_de
 
 

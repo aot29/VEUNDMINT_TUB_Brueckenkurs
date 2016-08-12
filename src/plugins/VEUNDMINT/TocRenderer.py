@@ -45,7 +45,7 @@ class TocRenderer( AbstractXmlRenderer ):
 		entries = etree.Element( 'entries' )
 
 		# get the module element for the TOC
-		tocModule = self._getModule( tc )
+		tocModule = AbstractXmlRenderer.getModule( tc )
 		if tocModule is not None and tocModule.parent is not None:
 			# siblings are at the modules at the same level than the current page
 			siblings = tocModule.parent.children
@@ -150,6 +150,9 @@ class TocRenderer( AbstractXmlRenderer ):
 		@return - String
 		"""
 
+		# don't add section numbers to captions on the first page (imprint, course information etc.)
+		if not AbstractXmlRenderer.isCoursePage(tc): return tc.caption
+
 		pageIndex = tc.title
 		# For module captions, remove the first digit and point
 		if tc.level == MODULE_LEVEL:
@@ -172,14 +175,4 @@ class TocRenderer( AbstractXmlRenderer ):
 		response = "%s %s" % ( pageIndex, tc.caption ) 
 
 		return response
-
-	
-	def _getModule(self, tc):
-		"""
-		Get the module corresponding to the selected page
-		"""
-		if int( tc.level ) == ROOT_LEVEL: return tc		
-		elif int( tc.level ) == MODULE_LEVEL: return tc
-		elif int( tc.level ) == SECTION_LEVEL: return tc.parent
-		elif int( tc.level ) == SUBSECTION_LEVEL: return tc.parent.parent
 		

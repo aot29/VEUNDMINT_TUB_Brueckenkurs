@@ -67,6 +67,9 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		xml.set( 'basePath', basePath )
 		# add links to next and previous entries
 		self._addPrevNextLinks(xml, tc, basePath)
+		# flag the pages from the welcome module as isFirstPage = True
+		xml.set( 'isCoursePage', str( AbstractXmlRenderer.isCoursePage(tc) ) )
+		#print(etree.tostring(xml))
 
 		# Load the template
 		templatePath = os.path.join( self.tplPath, "page.xslt" )

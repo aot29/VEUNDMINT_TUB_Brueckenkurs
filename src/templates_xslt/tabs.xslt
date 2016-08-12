@@ -12,7 +12,9 @@
 			<!-- If selected entry is a subsection (level 4), render tab bar with siblings -->
 			<xsl:if test="$selectedPage/@level = 4">
 
-				<div class="col-sm-1 ffrwButton"><xsl:apply-templates select="navPrev" /></div>
+				<div class="col-sm-1 ffrwButton">
+					<xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navPrev" /></xsl:if>
+				</div>
 				
 				<div class="col-xs-12 col-sm-10" style="padding: 0;">
 					<ul class="nav nav-tabs nav-justified">
@@ -20,7 +22,9 @@
 					</ul>
 				</div>
 				
-				<div class="col-sm-1 ffrwButton"><xsl:apply-templates select="navNext" /></div>
+				<div class="col-sm-1 ffrwButton">
+					<xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navNext" /></xsl:if>
+				</div>
 
 			</xsl:if>
 

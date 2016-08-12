@@ -159,8 +159,8 @@
 				"modstartbox_tocline": "This module has the following sections:",
 				"legend" : "Legend",
 				"roulette_text": "In the online version, exercises from an exercise list will be shown here",
-				"roulette_new": "New exercise"
-			
+				"roulette_new": "New exercise",
+				"course-title": "Preparatory Online Course in Mathematics"			
 				}
 				} );
 		</script>
@@ -300,8 +300,8 @@
 				"modstartbox_tocline": "Dieses Modul gliedert sich in folgende Abschnitte:",
 				"legend" : "Legende",
 				"roulette_text": "In der Onlineversion erscheinen hier Aufgaben aus einer Aufgabenliste",
-				"roulette_new": "Neue Aufgabe"
-			
+				"roulette_new": "Neue Aufgabe",
+				"course-title": "Onlinebrückenkurs Mathematik"
 			}
 			} );
 		</script>
