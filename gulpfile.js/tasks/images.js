@@ -18,7 +18,7 @@ var imagesTask = function() {
 }
 
 var infolderImagesTask = function () {
-  return gulp.src('./tu9onlinekurstest/html/de/**/*.png', {base: "./tu9onlinekurstest/"})
+  return gulp.src('./tu9onlinekurstest/html/**/*.png', {base: "./tu9onlinekurstest/"})
     //.pipe(imagemin())
     .pipe(gulp.dest(config.root.dest))
 }
