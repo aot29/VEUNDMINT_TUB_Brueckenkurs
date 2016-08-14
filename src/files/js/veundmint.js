@@ -5,6 +5,7 @@ onload="loadHandler()" onunload="unloadHandler()" */
 $(function() {
   loadHandler();
   if (typeof MathJax !== "undefined") {
+    console.log('we are loading custom mathjax');
     MathJax.Hub.Config({
       jax: [":directmaterial:input/TeX",":directmaterial:input/MathML", ":directmaterial:output/CommonHTML"],
       extensions: [":directmaterial:tex2jax.js", ":directmaterial:mml2jax.js", ":directmaterial:MathMenu.js", ":directmaterial:MathZoom.js"],
