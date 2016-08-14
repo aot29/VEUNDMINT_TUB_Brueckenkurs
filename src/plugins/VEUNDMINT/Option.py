@@ -311,13 +311,13 @@ class Option(object):
         else:
             # Default-layout-specific styles and JS-Files
             self.stylesheets  += [
-                "qtip2/jquery.qtip.min.css",
-                "datatables/min.css"
+                # "qtip2/jquery.qtip.min.css",
+                # "datatables/min.css"
             ]
             # all the following files are now injected via gulp
             self.scriptheaders += [
-                "es5-sham.min.js",
-                "datatables/datatables.min.js",
+                # "es5-sham.min.js",
+                # "datatables/datatables.min.js",
                 # "knockout-3.0.0.js",
                 # "math.js",
                 # "dynamiccss.js",
@@ -330,7 +330,7 @@ class Option(object):
                 # "intersite.js",
                 # "exercises.js",
                 # "servicescripts.js",
-                "CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
+                # "CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
                 # "jquery.i18n.messagestore.js"
             ]
 
