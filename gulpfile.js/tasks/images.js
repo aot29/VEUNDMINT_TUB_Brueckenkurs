@@ -17,5 +17,12 @@ var imagesTask = function() {
     .pipe(gulp.dest(paths.dest));
 }
 
+var infolderImagesTask = function () {
+  return gulp.src('./tu9onlinekurstest/html/de/**/*.png', {base: "./tu9onlinekurstest/"})
+    //.pipe(imagemin())
+    .pipe(gulp.dest(config.root.dest))
+}
+
 gulp.task('images', imagesTask)
-module.exports = imagesTask
+gulp.task('infolderImages', infolderImagesTask)
+module.exports = [imagesTask, infolderImagesTask]
