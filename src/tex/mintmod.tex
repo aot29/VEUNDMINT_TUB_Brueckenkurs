@@ -63,9 +63,9 @@
 \usetikzlibrary{external}
 \usetikzlibrary{patterns}
 \usetikzlibrary{fadings}
-\usepackage[colorlinks=true,linkcolor=blue]{hyperref} 
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
 \usepackage[all]{hypcap}
-%\usepackage[colorlinks=true,linkcolor=blue,bookmarksopen=true]{hyperref} 
+%\usepackage[colorlinks=true,linkcolor=blue,bookmarksopen=true]{hyperref}
 \usepackage{ifpdf}
 
 \usepackage{movie15}
@@ -474,7 +474,7 @@
 \def\MTypeEquation{10}        %# Eine Gleichungsnummer, hat keinen Zaehler da durch equation/eqnarray gezaehlt wird
 \def\MTypeTheorem{11}         % Ein theorem oder xtheorem, Separatzaehler fuer die Chemie ist MTheoremCounter
 \def\MTypeVideo{12}           %# Ein Video,Separatzaehler fuer alle FB ist MVideoCounter
-\def\MTypeEntry{13}           %# Ein Eintrag fuer die Stichwortliste, wird nicht gezaehlt sondern erhaelt im preparsing ein unique-label 
+\def\MTypeEntry{13}           %# Ein Eintrag fuer die Stichwortliste, wird nicht gezaehlt sondern erhaelt im preparsing ein unique-label
 
 % Zaehler fuer das Labelsystem sind prefixcounter, jeder Zaehler wird VOR dem gezaehlten Objekt inkrementiert und zaehlt daher das aktuelle Objekt
 \newcounter{MInfoCounter}
@@ -562,10 +562,10 @@
   <div class="coshwarn">}Diese Inhalte liegen \"uber dem Kursniveau und werden in den Aufgaben und Tests nicht abgefragt.\special{html:</div><br />}
   \addtocounter{MHintCounter}{1}}{\begin{html}</div>\end{html}}
 
-  
+
   \newenvironment{MDefinition}{\begin{definition}\setcounter{MLastIndex}{\value{definition}}\ \\}{\end{definition}}
 
-  
+
   \newenvironment{MExercise}{
   \renewcommand{\MStdPoints}{4}
   \addtocounter{MExerciseCounter}{1}
@@ -687,9 +687,9 @@
   \newtheorem{exrc}{Exercise}[section]
   \theoremstyle{MDefStyle}
   \newtheorem{verc}{Versuch}[section]
-  
+
   \newenvironment{MFetchExercise}{}{} % kann im PDF nicht dargestellt werden
-  
+
   \newenvironment{MExercise}{\begin{exrc}\renewcommand{\MStdPoints}{1}\MTB}{\end{exrc}}
   \newenvironment{MHint}[1]{\ \\ \underline{#1:}\\}{}
   \newenvironment{MCOSHZusatz}{\ \\ \underline{Weiterf\"uhrende Inhalte:}\\}{}
@@ -816,7 +816,7 @@
 \fi
 
 
-\def\Mmapsto{\ifttm\special{html:<mi>&mapsto;</mi>}\else\mapsto\fi} 
+\def\Mmapsto{\ifttm\special{html:<mi>&mapsto;</mi>}\else\mapsto\fi}
 \def\Mvarphi{\ifttm\phi\else\varphi\fi}
 \def\Mphi{\ifttm\varphi\else\phi\fi}
 \ifttm%
@@ -828,13 +828,13 @@
 \def\Mepsilon{\ifttm\varepsilon\else\epsilon\fi}
 \def\Mvarkappa{\ifttm\kappa\else\varkappa\fi}
 \def\Mkappa{\ifttm\varkappa\else\kappa\fi}
-\def\Mcomplement{\ifttm\special{html:<mi>&comp;</mi>}\else\complement\fi} 
+\def\Mcomplement{\ifttm\special{html:<mi>&comp;</mi>}\else\complement\fi}
 \def\MWW{\mathrm{WW}}
-\def\Mmod{\ifttm\special{html:<mi>&nbsp;mod&nbsp;</mi>}\else\mod\fi} 
+\def\Mmod{\ifttm\special{html:<mi>&nbsp;mod&nbsp;</mi>}\else\mod\fi}
 
 \ifttm%
 \def\mod{\text{\;mod\;}}%
-\def\MNEquiv{\special{html:<mi>&NotCongruent;</mi>}}% 
+\def\MNEquiv{\special{html:<mi>&NotCongruent;</mi>}}%
 \def\MNSubseteq{\special{html:<mi>&NotSubsetEqual;</mi>}}%
 \def\MEmptyset{\special{html:<mi>&empty;</mi>}}%
 \def\MVDots{\special{html:<mi>&#x22EE;</mi>}}%
@@ -913,7 +913,7 @@
 \MStopJustify
 &
 \begin{MMiniPageP}{0.3}
-#2  
+#2
 \end{MMiniPageP}
 \end{tabular}
 \end{center}
@@ -929,7 +929,7 @@
 \MStopJustify
 &
 \begin{MMiniPageP}{0.45}
-#2  
+#2
 \end{MMiniPageP}
 \end{tabular}
 \end{center}
@@ -945,7 +945,7 @@
 \MStopJustify
 &
 \begin{MMiniPageP}{0.7}
-#2  
+#2
 \end{MMiniPageP}
 \end{tabular}
 \end{center}
@@ -1185,9 +1185,9 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \def\MRef#1{\ifttm\special{html:<!-- mmref;;}#1\special{html:;;0; //-->}\else\vref{#1}\fi}
 \def\MERef#1{\ifttm\special{html:<!-- mmref;;}#1\special{html:;;0; //-->}\else\eqref{#1}\fi}
 \def\MNRef#1{\ifttm\special{html:<!-- mmref;;}#1\special{html:;;0; //-->}\else\ref{#1}\fi}
-\def\MSRef#1#2{\ifttm\special{html:<!-- msref;;}#1\special{html:;;}#2\special{html:; //-->}\else \if#2\empty \ref{#1} \else \hyperref[#1]{#2}\fi\fi} 
+\def\MSRef#1#2{\ifttm\special{html:<!-- msref;;}#1\special{html:;;}#2\special{html:; //-->}\else \if#2\empty \ref{#1} \else \hyperref[#1]{#2}\fi\fi}
 
-\def\MRefRange#1#2{\ifttm\MRef{#1} bis 
+\def\MRefRange#1#2{\ifttm\MRef{#1} bis
 \MRef{#2}\else\vrefrange[\unskip]{#1}{#2}\fi}
 
 \def\MRefTwo#1#2{\ifttm\MRef{#1} und \MRef{#2}\else%
@@ -1295,7 +1295,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 \newcommand{\MDeclareSiteUXID}[1]{\relax}
 
-\fi 
+\fi
 
 % GHEADER und GFOOTER werden von split.pm gefunden, aber nur, wenn nicht HELPSITE oder TESTSITE
 \ifttm
@@ -1368,8 +1368,8 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \ifnum#1=3
   \ifttm
   \renewcommand{\theequation}{\arabic{section}.\arabic{subsection}.\arabic{equation}}
-  \renewcommand{\thetable}{\arabic{section}.\arabic{subsection}.\arabic{table}} 
-  \renewcommand{\thefigure}{\arabic{section}.\arabic{subsection}.\arabic{figure}} 
+  \renewcommand{\thetable}{\arabic{section}.\arabic{subsection}.\arabic{table}}
+  \renewcommand{\thefigure}{\arabic{section}.\arabic{subsection}.\arabic{figure}}
   \else
   \renewcommand{\theequation}{\arabic{chapter}.\arabic{section}.\arabic{equation}}
   \renewcommand{\thetable}{\arabic{chapter}.\arabic{section}.\arabic{table}}
@@ -1763,10 +1763,10 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
   % Important: DO NOT directly convert from pdf to hires-png or from svg to png with GraphViz convert as it has some problems and memory leaks
   png export/.style=%
   {
-    external/system call/.add={}{; 
-      pdf2svg "\image.pdf" "\image.svg" ; 
-      convert -density 112.5 -transparent white "\image.pdf" "\image.png"; 
-      inkscape --export-png="\image.4x.png" --export-dpi=450 --export-background-opacity=0 --without-gui "\image.svg"; 
+    external/system call/.add={}{;
+      pdf2svg "\image.pdf" "\image.svg" ;
+      convert -density 112.5 -transparent white "\image.pdf" "\image.png";
+      inkscape --export-png="\image.4x.png" --export-dpi=450 --export-background-opacity=0 --without-gui "\image.svg";
       rm "\image.pdf"; rm "\image.log"; rm "\image.dpth"; rm "\image.idx"
     },
     external/force remake,
@@ -1820,8 +1820,8 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 %Makro fuer Funktionen:
 \newcommand{\exfunction}[5]
 {\begin{array}{rrcl}
- #1 \colon  & #2 &\lto & #3 \\[.05cm]  
-  & #4 &\longmapsto  & #5 
+ #1 \colon  & #2 &\lto & #3 \\[.05cm]
+  & #4 &\longmapsto  & #5
 \end{array}}
 
 \newcommand{\function}[5]{%
@@ -1877,24 +1877,24 @@ k"onnen Sie durch die einzelnen Abschnitte navigieren.}}
 Geben Sie jeweils ein Wort oder Zeichen als Antwort ein.}}
 
 \def\jHTMLHinweisEingabeTerm{\MInputHint{%
-Klammern Sie Ihre Terme, um eine eindeutige Eingabe zu erhalten. 
+Klammern Sie Ihre Terme, um eine eindeutige Eingabe zu erhalten.
 Beispiel: Der Term $\frac{3x+1}{x-2}$ soll in der Form
-\texttt{(3*x+1)/((x+2)^2}$ eingegeben werden (wobei auch Leerzeichen 
+\texttt{(3*x+1)/((x+2)^2}$ eingegeben werden (wobei auch Leerzeichen
 eingegeben werden k"onnen, damit eine Formel besser lesbar ist).}}
 
 \def\jHTMLHinweisEingabeIntervalle{\MInputHint{%
-Intervalle werden links mit einer "offnenden Klammer und rechts mit einer 
-schlie"senden Klammer angegeben. Eine runde Klammer wird verwendet, wenn der 
-Rand nicht dazu geh"ort, eine eckige, wenn er dazu geh"ort. 
+Intervalle werden links mit einer "offnenden Klammer und rechts mit einer
+schlie"senden Klammer angegeben. Eine runde Klammer wird verwendet, wenn der
+Rand nicht dazu geh"ort, eine eckige, wenn er dazu geh"ort.
 Als Trennzeichen wird ein Komma oder ein Semikolon akzeptiert.
 Beispiele: $(a, b)$ offenes Intervall,
-$[a; b)$ links abgeschlossenes, rechts offenes Intervall von $a$ bis $b$. 
+$[a; b)$ links abgeschlossenes, rechts offenes Intervall von $a$ bis $b$.
 Die Eingabe $]a;b[$ f"ur ein offenes Intervall wird nicht akzeptiert.
 F"ur $\infty$ kann \texttt{infty} oder \texttt{unendlich} geschrieben werden.}}
 
 \def\jHTMLHinweisEingabeFunktionen{\MInputHint{%
 Schreiben Sie Malpunkte (geschrieben als \texttt{*}) aus und setzen Sie Klammern um Argumente f\"ur Funktionen.
-Beispiele: Polynom: \texttt{3*x + 0.1}, Sinusfunktion: \texttt{sin(x)}, 
+Beispiele: Polynom: \texttt{3*x + 0.1}, Sinusfunktion: \texttt{sin(x)},
 Verkettung von cos und Wurzel: \texttt{cos(sqrt(3*x))}.}}
 
 \def\jHTMLHinweisEingabeFunktionenSinCos{\MInputHint{%
@@ -2007,6 +2007,7 @@ Hier erscheint die Testauswertung!
 % Notationsmakros die nicht von der Kursvariante abhaengig sind
 
 \newcommand{\MZahltrennzeichen}[1]{\renewcommand{\MZXYZhltrennzeichen}{#1}}
+\newcommand{\MGrad}{{}^{\circ}} % Fuer Winkel im Gradmass
 
 \ifttm
 \newcommand{\MZahl}[3][\MZXYZhltrennzeichen]{\edef\MZXYZtemp{\noexpand\special{html:<mn>#2#1#3</mn>}}\MZXYZtemp}
@@ -2016,13 +2017,13 @@ Hier erscheint die Testauswertung!
 
 \newcommand{\MEinheitenabstand}[1]{\renewcommand{\MEinheitenabstXYZnd}{#1}}
 \ifttm
-\newcommand{\MEinheit}[2][\MEinheitenabstXYZnd]{{}#1\edef\MEINHtemp{\noexpand\special{html:<mi mathvariant="normal">#2</mi>}}\MEINHtemp} 
+\newcommand{\MEinheit}[2][\MEinheitenabstXYZnd]{{}#1\edef\MEINHtemp{\noexpand\special{html:<mi mathvariant="normal">#2</mi>}}\MEINHtemp}
 \else
-\newcommand{\MEinheit}[2][\MEinheitenabstXYZnd]{{}#1 \mathrm{#2}} 
+\newcommand{\MEinheit}[2][\MEinheitenabstXYZnd]{{}#1 \mathrm{#2}}
 \fi
 
 \newcommand{\MExponentensymbol}[1]{\renewcommand{\MExponentensymbXYZl}{#1}}
-\newcommand{\MExponent}[2][\MExponentensymbXYZl]{{}#1{} 10^{#2}} 
+\newcommand{\MExponent}[2][\MExponentensymbXYZl]{{}#1{} 10^{#2}}
 
 %Punkte in 2 und 3 Dimensionen
 \newcommand{\MPointTwo}[3][]{#1(#2\MCoordPointSep #3{}#1)}
@@ -2031,7 +2032,7 @@ Hier erscheint die Testauswertung!
 \newcommand{\MPointThreeAS}[3]{\left(#1\MCoordPointSep #2\MCoordPointSep #3\right)}
 
 % Masseinheit, Standardabstand: \,
-\newcommand{\MEinheitenabstXYZnd}{\MThinspace} 
+\newcommand{\MEinheitenabstXYZnd}{\MThinspace}
 
 % Horizontaler Leerraum zwischen herausgestellter Formel und Interpunktion
 \ifttm
@@ -2078,9 +2079,9 @@ Hier erscheint die Testauswertung!
   % Trennzeichen fuer Dezimalzahlen
   \newcommand{\MZXYZhltrennzeichen}{.}
 
-  % Exponent zur Basis 10 in der Exponentialschreibweise, 
+  % Exponent zur Basis 10 in der Exponentialschreibweise,
   % Standardmalzeichen: \times
-  \newcommand{\MExponentensymbXYZl}{\times} 
+  \newcommand{\MExponentensymbXYZl}{\times}
 
   % Begrenzungszeichen fuer offene Intervalle
   \newcommand{\MoIl}[1][]{\mbox{}#1(\mathopen{}} % bzw. ']'
@@ -2097,15 +2098,15 @@ Hier erscheint die Testauswertung!
 
 \else
   % An dieser Stelle wird angenommen, dass std-Variante aktiv ist
-  % std = beschlossene Notation im TU9-Onlinekurs 
+  % std = beschlossene Notation im TU9-Onlinekurs
   \def\MVariant{std}
 
   % Trennzeichen fuer Dezimalzahlen
   \newcommand{\MZXYZhltrennzeichen}{.}
 
-  % Exponent zur Basis 10 in der Exponentialschreibweise, 
+  % Exponent zur Basis 10 in der Exponentialschreibweise,
   % Standardmalzeichen: \times
-  \newcommand{\MExponentensymbXYZl}{\times} 
+  \newcommand{\MExponentensymbXYZl}{\times}
 
   % Begrenzungszeichen fuer offene Intervalle
   \newcommand{\MoIl}[1][]{\mbox{}#1]\mathopen{}} % bzw. '('
@@ -2113,7 +2114,7 @@ Hier erscheint die Testauswertung!
 
   % Zahlen-Separation im IntervaLL
   \newcommand{\MIntvlSep}{;} %oder ','
-  
+
   % Separation von Elementen in Mengen
   \newcommand{\MElSetSep}{;} %oder ','
 
