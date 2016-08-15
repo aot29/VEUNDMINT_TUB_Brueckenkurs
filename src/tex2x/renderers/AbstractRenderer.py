@@ -39,7 +39,44 @@ class AbstractXmlRenderer(object):
         @param obj - Object any object used to hold the data
         '''
         raise NotImplementedError
+       
+    @staticmethod
+    def getModule(tc):
+        """
+        Get the module corresponding to the selected page
+        
+        @param tc - a TContent object encapsulating page data and content
+        @return TContent object - the tc of the corresponding module
+        """
+        if int( tc.level ) == ROOT_LEVEL: return tc        
+        elif int( tc.level ) == MODULE_LEVEL: return tc
+        elif int( tc.level ) == SECTION_LEVEL: return tc.parent
+        elif int( tc.level ) == SUBSECTION_LEVEL: return tc.parent.parent
+        else: return tc
 
+
+    @staticmethod
+    def isFirstPage(tc):
+        """
+        Is the given tc the first ('Welcome') page?
+        
+        @param tc - a TContent object encapsulating page data and content
+        @return - boolean
+        """
+        if tc is None: return False
+        return tc.uxid == 'VBKM_FIRSTPAGE'
+
+
+    @staticmethod
+    def isCoursePage(tc):
+        """
+        Is the page described by tc a course page, as opposed to the welcome or settings page
+        
+        @param tc - a TContent object encapsulating page data and content
+        @return - boolean
+        """
+        return not ( AbstractXmlRenderer.isFirstPage( AbstractXmlRenderer.getModule( tc ) ) ) 
+        
 
 class AbstractHtmlRenderer(object):
     '''

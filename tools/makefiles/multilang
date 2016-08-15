@@ -38,7 +38,7 @@ DEFAULT_LANG = de
 #
 # Build everything
 #
-all: |convert merge fix cleanup
+all: |cleanup convert merge fix 
 	echo "ready"
 
 
@@ -48,6 +48,20 @@ all: |convert merge fix cleanup
 define convert_cmd
 	# prefixed with "-" to ignore converter errors
 	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=$(CURRENT_LANG) output=$(OUTPUT)_$(CURRENT_LANG)
+endef
+
+
+#
+# Deploy all images to the images directory
+#
+define deploy_img_cmd
+	# copy all math images
+	cd module_veundmint && find . -iname \*.png -print0 | xargs -I{} -0 cp {} ../$(OUTPUT)/images
+	# copy logos
+	cd src/files/images && find . -iname logo_\*.png -print0 | xargs -I{} -0 cp {} ../../../$(OUTPUT)/images
+	# copy additional images
+	cp src/files/images/cclbysa.png $(OUTPUT)/images
+	cp src/files/images/tbeispiel.png $(OUTPUT)/images
 endef
 
 
@@ -63,23 +77,29 @@ convert:
 	$(convert_cmd)
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
+	
 
 #
 # set CURRENT_LANG at runtime.
 # Build DE language version
 #
-de:
+de: cleanup
 	$(eval CURRENT_LANG := de)
 	$(convert_cmd)
+	mv $(OUTPUT)_$(CURRENT_LANG) $(OUTPUT)
+	$(deploy_img_cmd)
 
 
 #
 # set CURRENT_LANG at runtime.
 # Build EN language version
 #
-en:
+en: cleanup
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
+	mv $(OUTPUT)_$(CURRENT_LANG) $(OUTPUT)
+	$(deploy_img_cmd)
+
 
 #
 # Merge the 2 versions together.
@@ -94,6 +114,9 @@ merge:
 
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
+	rm -Rf $(OUTPUT)_en
+	
+	$(deploy_img_cmd)
 
 
 #
@@ -155,8 +178,7 @@ define fixLinks_cmd
 
 	# Add the logout.html page out of the template src/templates_html5/html5_logout.html
 	cp src/templates_html5/html5_logout.html $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
-	
-
+		
 endef
 
 
@@ -220,7 +242,10 @@ fix: fixRedirects
 	# replace index.html with src/templates_html5/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_html5/html5_choose_language_simple.html $(OUTPUT)/index.html
 
+
 cleanup:
+	-rm -Rf $(OUTPUT)
 	-rm -Rf $(OUTPUT)_en
+	-rm -Rf $(OUTPUT)_de
 
 

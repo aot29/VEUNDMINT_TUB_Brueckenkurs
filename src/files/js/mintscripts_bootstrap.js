@@ -1984,31 +1984,6 @@ function applyLayout(first) {
 	    SIZES.TOCWIDTH = SIZES.MENUWIDTH - 21;
 	  }
 	  
-	  
-	  var css = DYNAMICCSS;
-	  
-	  // Font path and link path are not necessarily the same, in case of multi-language site
-	  css = css.replace(/\[LINKPATH\]fonts/g, fontPath);
-	  
-	  for (var ckey in COLORS) {
-	    var rex = new RegExp("\\[-" + ckey + "-\\]",'g');
-	    
-	    css = css.replace(rex, "#" + styleColors(COLORS[ckey]));
-	  }
-	
-	  for (var ckey in SIZES) {
-	    var rex = new RegExp("\\[-" + ckey + "-\\]",'g');
-	    css = css.replace(rex, SIZES[ckey] + "px");
-	  }
-	  
-	  for (var ckey in FONTS) {
-	    var rex = new RegExp("\\[-" + ckey + "-\\]",'g');
-	    css = css.replace(rex, FONTS[ckey]);
-	  }
-	
-	  e.innerHTML = css;
-	  logMessage(DEBUGINFO, "Set dynamic style sheet, size = " + css.length);
-	
 	  if (intersiteactive) {
 	    if (intersiteobj.layout.menuactive == false) hideNavigation(false);
 	  }

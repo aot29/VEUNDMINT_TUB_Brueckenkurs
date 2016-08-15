@@ -34,13 +34,14 @@
 				            <div class="row row-offcanvas row-offcanvas-left">
 	
 								<!-- TOC -->
-								<xsl:apply-templates select="toc" />
+								<xsl:apply-templates select="." mode="toc" />
+								
 								<div class="col-xs-12 col-sm-12 col-md-9" id="courseContent">
 	
 									<!-- Page tabs -->
 									<xsl:apply-templates select="." mode="tabs" />
 
-									<!-- Page contents-->
+									<!-- Page contents-->									
 									<xsl:apply-templates select="." mode="content" />
 														                
 									<!-- Footer -->

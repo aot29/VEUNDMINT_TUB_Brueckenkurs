@@ -28,9 +28,8 @@ class test_PageXmlRenderer(AbstractRendererTestCase):
         self.assertEqual( self.tc.title, self.xml.xpath('/page/title')[0].text, "Title is wrong in XML" )
         #Lang
         self.assertEqual( self.lang, self.xml.xpath('/page/@lang')[0], "Language code is wrong in XML" )
-        # Content
-        self.assertEqual( self.tc.content, self.xml.xpath('/page/content')[0].text, "Content is wrong in XML" )
-        
+        # found a question in the sample content
+        self.assertEquals( 1, len( self.xml.xpath( '/page/questions' ) ), "Expected a question, but none or more than one found" )
 
     
 

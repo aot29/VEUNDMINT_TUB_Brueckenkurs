@@ -1,19 +1,23 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:import href="socialMedia.xslt" />
 
-	<xsl:template match="toc">
+	<xsl:template match="page" mode="toc">
 		<xsl:comment>TOC side bar</xsl:comment>
+		
 		<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation" style="margin-top: 5px;">
-			<div id="toc" class="panel-group">
+			<div id="toc" class="panel-group"><br/>
+				<!-- Add TOC title and home buttons, but skip title on first page -->
 				<h3>
-					<span data-toggle="i18n" data-i18n="module_content"/>
 					<div class="pull-right">
-						<a data-toggle="tooltip" id="homebutton" href="../../index.html" class="btn btn-link glyphicon glyphicon-home"></a>
-						<a data-toggle="tooltip" id="listebutton" href="../../search.html" class="btn btn-link glyphicon glyphicon-book"></a>
-						<a data-toggle="tooltip" id="databutton" href="../../data.html" class="btn btn-link glyphicon glyphicon-dashboard"></a>
+						<a data-toggle="tooltip" id="homebutton" href="{@basePath}/{@lang}/index.html" class="btn btn-link glyphicon glyphicon-home"></a>
+						<a data-toggle="tooltip" id="listebutton" href="{@basePath}/{@lang}/search.html" class="btn btn-link glyphicon glyphicon-book"></a>
+						<a data-toggle="tooltip" id="databutton" href="{@basePath}/{@lang}/data.html" class="btn btn-link glyphicon glyphicon-dashboard"></a>
 					</div>                        
+					<span data-toggle="i18n" data-i18n="course-title"/>
 				</h3>
-				<xsl:apply-templates select="entries/entry" />
+				<xsl:apply-templates select="toc/entries/entry" />
 				<xsl:call-template name="legend"/>
+				<xsl:call-template name="socialMedia"/>
 			</div>
 		</div>
 		<xsl:comment>End TOC side bar</xsl:comment>
@@ -104,5 +108,5 @@
 			</div>
 		</div>
 	</xsl:template>
-
+	
 </xsl:stylesheet>

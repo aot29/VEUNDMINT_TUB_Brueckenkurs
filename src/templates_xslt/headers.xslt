@@ -14,9 +14,9 @@
 		</xsl:call-template>
 		
 		<!-- External JS -->
-		<xsl:call-template name="js" >
+		<xsl:apply-templates select="." mode="js" >
 			<xsl:with-param name="basePath" select="@basePath" />
-		</xsl:call-template>
+		</xsl:apply-templates>
 		
 		<!-- MathJax -->
 		<xsl:call-template name="mathJax" />

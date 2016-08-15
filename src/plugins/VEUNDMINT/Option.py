@@ -136,7 +136,7 @@ class Option(object):
         self.displaycopyrightlinks = 0                       # add copyright links to images in the entire course
         self.maxsitejsonlength = 255                         # the maximal number of string characters allowed for an internal json site object, will be stored in a different file if limit is exceeded
         
-        self.bootstrap = 0                                   # Use Bootstrap for responsive layout
+        self.bootstrap = 1                                   # Use Bootstrap for responsive layout
 
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 

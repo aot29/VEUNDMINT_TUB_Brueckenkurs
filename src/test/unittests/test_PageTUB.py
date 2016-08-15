@@ -17,8 +17,8 @@ class test_PageTUB(AbstractRendererTestCase):
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
 		
-		tocRenderer = TocRenderer( self.tplPath, self.lang )
-		self.page = PageTUB( self.tplPath, self.lang, tocRenderer )
+		tocRenderer = TocRenderer()
+		self.page = PageTUB( self.tplPath, self.lang, tocRenderer, self.data )
 		# generate HTML element using the tc mock-up
 		self.page.generateHTML( self.tc )
 
@@ -110,7 +110,10 @@ class test_PageTUB(AbstractRendererTestCase):
 		
 		#tabs or lauch button (self.tc is a module overview page)
 		self.assertTrue( 'btn btn-primary' in self.tc.html, "Launch button is missing in HTML" )
-		self.assertFalse( 'nav nav-tabs' in self.tc.html, "Tabs are rendered when they shouldn't in HTML" )		
+		self.assertFalse( 'nav nav-tabs' in self.tc.html, "Tabs are rendered when they shouldn't in HTML" )
+		
+		# questions
+		self.assertTrue( 'CreateQuestionObj("LSFF3",1,"(3-x)*(x+1)","QFELD_1.3.5.QF1",4,"10;x;5;1",4,0,1);' in self.tc.html, "Missing question javascript" )
 		
 	
 	def testPrevNextLInks(self):

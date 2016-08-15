@@ -21,6 +21,7 @@
 
 from lxml import etree
 import os
+import re
 from tidylib import tidy_document
 from tex2x.renderers.AbstractRenderer import *
 from plugins.VEUNDMINT.PageXmlRenderer import PageXmlRenderer
@@ -31,7 +32,7 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 	Render page by applying XSLT templates, using the lxml library.
 	"""
 	
-	def __init__( self, tplPath, lang, tocRenderer ):
+	def __init__( self, tplPath, lang, tocRenderer, data ):
 		"""
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
 		
@@ -42,7 +43,7 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		super().__init__( lang )
 		self.tplPath = tplPath
 		self.lang = lang
-		
+		self.data = data
 		self.tocRenderer = tocRenderer
 
 	
@@ -62,12 +63,16 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		xml.append( self.tocRenderer.generateXML( tc ) )
 		# correct the links in content and TOC
 		self.correctLinks( xml, basePath )
-		# add extra css classes for content
-		self._enhanceContent( xml )
 		# add base path to XML, as the transformer doesn't seem to support parameter passing
 		xml.set( 'basePath', basePath )
 		# add links to next and previous entries
 		self._addPrevNextLinks(xml, tc, basePath)
+		# flag the pages from the welcome module as isFirstPage = True
+		xml.set( 'isCoursePage', str( AbstractXmlRenderer.isCoursePage(tc) ) )
+		# flag test pages
+		xml.set( 'isTest', str( tc.testsite ).lower() ) # JS booleans are lowercase 
+			
+		#print(etree.tostring(xml))
 
 		# Load the template
 		templatePath = os.path.join( self.tplPath, "page.xslt" )
@@ -77,8 +82,8 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		transform = etree.XSLT( template )
 		result = transform( xml )
 		
-		# save the result in tc object
-		tc.html = str(result) # don't use tidy on the whole page, as tidy version 1 drops-empty-elements
+		# add tc.content and save the result in tc object
+		tc.html = self._contentToString( result, tc, basePath )
 
 
 	def getBasePath(self, tc):
@@ -100,42 +105,66 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		
 		return basePath
 	
-	
-	def _enhanceContent( self, xml ):
+
+	def _contentToString(self, xml, tc, basePath):
 		"""
-		add extra css classes for content
-		(content is provided in html after being converted from LaTeX)
-
-		@param page - etree Element holding content and TOC
+		TTM produces non-valid HTML, so it has to be added after XML has been parsed.
+		Don't use tidy on the whole page, as tidy version 1 drops MathML elements (among other)
+		Note: string replace is faster than regex
+		
+		@param xml - etree holding the page and toc without the content result of XSLT transformation
+		@param tc - TContent object for the page
+		@param basePath - String prefix for all links
 		"""
-		exampleDivs = xml.xpath( "//div[@class='exmp']" )
-		for div in exampleDivs:
-			# set the new css class
-			div.set( "class", "panel panel-default" )
+		# Reduce the number of breaks and clear=all's, since they mess-up the layout
+		breakStr = '<br style="margin-bottom: 2em" />'
+		tc.content = tc.content.replace( '<br/> <br/>', breakStr )
+		tc.content = tc.content.replace( '<br clear="all"/><br clear="all"/>', breakStr )
+		tc.content = tc.content.replace( '<br clear="all"></br>\n<br clear="all"></br>', breakStr )
+		
+		# replace the link placeholders in the content 
+		tc.content = re.sub(r"(src|href)=(\"|')(?!#|https://|http://|ftp://|mailto:|:localmaterial:|:directmaterial:)", "\\1=\\2" + basePath + "/", tc.content)
+
+		# replace the content placeholder added in PageXmlRenderer with the actual non-valid HTML content
+		resultString = str( xml )
+		resultString = resultString.replace( '<content></content>', tc.content )
+
+		return resultString
+
+	"""
+	def _packRoulettes(self, html, sitejson):
+
+		def droul(m):
+			rid = m.group(1)
+			myid = int(m.group(2))
+			maxid = 0
 			
-			# get the title and the body
-			divContent = div.xpath( "div[@class='exmprahmen']" )
-			divTitle = divContent.xpath( "b[first()]" )
-			divBody = divContent.xpath( "following::title" )
+			if rid in self.data['DirectRoulettes']:
+				maxid = self.data['DirectRoulettes'][rid]
+			else:
+				raise Exception( "Could not find roulette id " + rid )
+				
+			bt = "<br /><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">" + self.options.strings['roulette_new'] + "</button><br /><br />"
+			self.sys.message(self.sys.VERBOSEINFO, "Roulette " + rid + "." + str(myid) + " done")
 
-			# create a new title element
-			heading = etree.Element( "div" )
-			heading.set( "class", "panel-heading" )
-			title = etree.Element( "div" )
-			title.set( "class", "panel-title" )
-			title.text = divTitle
-			heading.append( title )
+			# take care not to have any " in the string, as it will be passed as a string to js
+			s = "<div id='DROULETTE" + rid + "." + str(myid) + "'>" + bt + m.group(3) + "</div>"
+
+			# div for id=0 is being set into HTML, remaining blocks are stored and will be written to that div by javascript code
+			t = ""
+			if myid == 0:
+				# generate container div and its first entry, as well as the JS array variable
+				t += "<div class='dynamic_inset' id='ROULETTECONTAINER_" + rid + "'>" + s + "</div>"
+				sitejson["_RLV_" + rid] = list()
+			sitejson["_RLV_" + rid].append(s)
+			if len(sitejson["_RLV_" + rid]) != (myid + 1):
+				raise Exception(self.sys.CLIENTERROR, "Roulette inset id " + str(myid) + ", does not match ordering of LaTeX environments");
 			
-			# create a new body element
-			body = etree.Element( "div" )
-			body.set( "class", "panel-body" )
-			body.appen( divBody )
+			return t
 
-			# replace the content of the div with the new divs
-			div.remove( divContent )
-			div.append( heading )
-			div.append( body )
-
+		html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droul, html, 0, re.S)
+		return html
+	"""
 
 	def _addPrevNextLinks(self, page, tc, basePath=''):
 		"""

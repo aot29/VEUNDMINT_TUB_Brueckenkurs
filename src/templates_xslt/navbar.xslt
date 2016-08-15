@@ -9,7 +9,7 @@
 				     	<div>
 							<button id="menuButton" type="button" data-toggle="offcanvas" class="btn btn-link glyphicon glyphicon-menu-hamburger" style="float:left">
 							</button>
-							<a data-toggle="tooltip-navbar" id="loginbutton" href="../../config.html" class="btn btn-default btn-sm" >
+							<a data-toggle="tooltip-navbar" id="loginbutton" href="../../config.html" class="btn btn-default btn-sm disabled" >
 								<span class="glyphicon glyphicon-user"></span>&nbsp;<span data-toggle="i18n" data-i18n="ui-loginbutton"/>
 							</a>
 						</div>
@@ -17,12 +17,12 @@
 					<div class="col-sm-6" id="toolsSidebar">
 					
 						<xsl:comment>tools</xsl:comment>
-						<div class="navbar-right">
-				          <a data-toggle="tooltip" id="favoritesbutton" onclick="starClick();" class="btn btn-link glyphicon glyphicon-star-empty"></a>
-				          <a data-toggle="tooltip" id="zoomoutbutton" onclick="changeFontSize(-5);" class="btn btn-link glyphicon glyphicon-zoom-out"></a>
-				          <a data-toggle="tooltip" id="zoominbutton" onclick="changeFontSize(5);" class="btn btn-link glyphicon glyphicon-zoom-in"></a>
-				          <a data-toggle="tooltip" id="sharebutton" onclick="shareClick();" class="btn btn-link glyphicon glyphicon-share-alt"></a>
-				          <a data-toggle="tooltip" id="settingsbutton" onclick="toggle_settings();" class="btn btn-link glyphicon glyphicon-cog"></a>
+						<div class="dropdown pull-right">
+						    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class=" glyphicon glyphicon-cog" /><b class="caret"></b></a>
+						    <ul class="dropdown-menu">
+								<li><a data-toggle="tooltip" id="zoomoutbutton" onclick="changeFontSize(-5);" class="btn btn-link glyphicon glyphicon-zoom-out"></a></li>
+								<li><a data-toggle="tooltip" id="zoominbutton" onclick="changeFontSize(5);" class="btn btn-link glyphicon glyphicon-zoom-in"></a></li>
+							</ul>
 				        </div>
 						<xsl:comment>end tools</xsl:comment>
 					</div>				

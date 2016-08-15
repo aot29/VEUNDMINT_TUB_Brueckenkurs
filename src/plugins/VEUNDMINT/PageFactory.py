@@ -44,8 +44,8 @@ class PageFactory(object):
             # When using bootstrap, use the Page object by TUB
             from plugins.VEUNDMINT.PageTUB import PageTUB
             from plugins.VEUNDMINT.TocRenderer import TocRenderer
-            tocRenderer = TocRenderer( self.options.converterTemplates, self.options.lang )
-            page = PageTUB( self.options.converterTemplates, self.options.lang, tocRenderer )
+            tocRenderer = TocRenderer()
+            page = PageTUB( self.options.converterTemplates, self.options.lang, tocRenderer, self.data )
             
         else:
             # By default, use the Page object by KIT
