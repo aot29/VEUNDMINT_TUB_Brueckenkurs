@@ -79,8 +79,32 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		# add questions
 		xml.append( self._getQuestions( tc ) )
 
+		# add roulettes
+		xml.append( self._getRoulettes( tc ) )
+
 		return xml
 
+
+	def _getRoulettes(self, tc):
+		"""
+		Move the roulette questions wrapped in rouletteexc_start and rouletteexc-stop comments to the page header
+		
+		@param tc - a TContent object encapsulating page data and content
+		@return an etree element
+		"""
+		# find the roulette questions hidden in the content
+		roulettes = etree.Element( 'roulettes' )
+		match = re.findall( "\<!-- rouletteexc_start //--\>(.*?)\<!-- rouletteexc-stop //--\>", tc.content )
+		for found in match:
+			roulette = etree.Element( 'roulette' )
+			roulette.text = found
+			roulettes.append( roulette )
+		
+		# remove the questions from the content			
+		tc.content = re.sub( "\<!-- rouletteexc_start //--\>(.*?)\<!-- rouletteexc-stop //--\>", '', tc.content )
+		
+		return roulettes
+		
 
 	def _getQuestions(self, tc):
 		"""

@@ -23,6 +23,7 @@ class AbstractRendererTestCase(unittest.TestCase):
 
     def setUp(self):
         self.lang = "en"
+        self.data = None
         
         # Setup a tc object for testing
         self.tc = TContent()

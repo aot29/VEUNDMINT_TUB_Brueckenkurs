@@ -45,7 +45,7 @@ class PageFactory(object):
             from plugins.VEUNDMINT.PageTUB import PageTUB
             from plugins.VEUNDMINT.TocRenderer import TocRenderer
             tocRenderer = TocRenderer()
-            page = PageTUB( self.options.converterTemplates, self.options.lang, tocRenderer )
+            page = PageTUB( self.options.converterTemplates, self.options.lang, tocRenderer, self.data )
             
         else:
             # By default, use the Page object by KIT

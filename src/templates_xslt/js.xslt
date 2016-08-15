@@ -23,9 +23,12 @@
         <script src="{$basePath}/jquery.i18n.messagestore.js" type="text/javascript"></script>
 
 		<script>
+			
+			var isTest = <xsl:value-of select="@isTest" />;
 			<![CDATA[
-			var isTest = false;
-			var testFinished = true;
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
 			var FVAR = new Array();
 			FVAR.push("CounterDummy");
 			var MVAR = new Array();

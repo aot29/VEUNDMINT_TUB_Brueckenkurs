@@ -35,6 +35,7 @@
 	
 								<!-- TOC -->
 								<xsl:apply-templates select="." mode="toc" />
+								
 								<div class="col-xs-12 col-sm-12 col-md-9" id="courseContent">
 	
 									<!-- Page tabs -->

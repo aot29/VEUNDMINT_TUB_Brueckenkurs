@@ -32,7 +32,7 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 	Render page by applying XSLT templates, using the lxml library.
 	"""
 	
-	def __init__( self, tplPath, lang, tocRenderer ):
+	def __init__( self, tplPath, lang, tocRenderer, data ):
 		"""
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
 		
@@ -43,7 +43,7 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		super().__init__( lang )
 		self.tplPath = tplPath
 		self.lang = lang
-		
+		self.data = data
 		self.tocRenderer = tocRenderer
 
 	
@@ -69,6 +69,9 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		self._addPrevNextLinks(xml, tc, basePath)
 		# flag the pages from the welcome module as isFirstPage = True
 		xml.set( 'isCoursePage', str( AbstractXmlRenderer.isCoursePage(tc) ) )
+		# flag test pages
+		xml.set( 'isTest', str( tc.testsite ).lower() ) # JS booleans are lowercase 
+			
 		#print(etree.tostring(xml))
 
 		# Load the template
@@ -126,9 +129,42 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		resultString = str( xml )
 		resultString = resultString.replace( '<content></content>', tc.content )
 
-
 		return resultString
-	
+
+	"""
+	def _packRoulettes(self, html, sitejson):
+
+		def droul(m):
+			rid = m.group(1)
+			myid = int(m.group(2))
+			maxid = 0
+			
+			if rid in self.data['DirectRoulettes']:
+				maxid = self.data['DirectRoulettes'][rid]
+			else:
+				raise Exception( "Could not find roulette id " + rid )
+				
+			bt = "<br /><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">" + self.options.strings['roulette_new'] + "</button><br /><br />"
+			self.sys.message(self.sys.VERBOSEINFO, "Roulette " + rid + "." + str(myid) + " done")
+
+			# take care not to have any " in the string, as it will be passed as a string to js
+			s = "<div id='DROULETTE" + rid + "." + str(myid) + "'>" + bt + m.group(3) + "</div>"
+
+			# div for id=0 is being set into HTML, remaining blocks are stored and will be written to that div by javascript code
+			t = ""
+			if myid == 0:
+				# generate container div and its first entry, as well as the JS array variable
+				t += "<div class='dynamic_inset' id='ROULETTECONTAINER_" + rid + "'>" + s + "</div>"
+				sitejson["_RLV_" + rid] = list()
+			sitejson["_RLV_" + rid].append(s)
+			if len(sitejson["_RLV_" + rid]) != (myid + 1):
+				raise Exception(self.sys.CLIENTERROR, "Roulette inset id " + str(myid) + ", does not match ordering of LaTeX environments");
+			
+			return t
+
+		html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droul, html, 0, re.S)
+		return html
+	"""
 
 	def _addPrevNextLinks(self, page, tc, basePath=''):
 		"""
