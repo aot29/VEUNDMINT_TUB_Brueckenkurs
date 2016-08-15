@@ -44,8 +44,18 @@ class PageFactory(object):
             # When using bootstrap, use the Page object by TUB
             from plugins.VEUNDMINT.PageTUB import PageTUB
             from plugins.VEUNDMINT.TocRenderer import TocRenderer
+            from plugins.VEUNDMINT.PageXmlRenderer import PageXmlRenderer, QuestionDecorator, RouletteDecorator 
+
+            # get a basic page renderer
+            xmlRenderer = PageXmlRenderer( self.options.lang )
+            # decorate with questions and roulette exercises
+            contentRenderer =   QuestionDecorator( 
+                                    RouletteDecorator( xmlRenderer, self.data )
+                                )
+            # get a table of contents renderer            
             tocRenderer = TocRenderer()
-            page = PageTUB( self.options.converterTemplates, self.options.lang, tocRenderer, self.data )
+            # get a page HTML renderer
+            page = PageTUB( self.options.converterTemplates, contentRenderer, tocRenderer )
             
         else:
             # By default, use the Page object by KIT

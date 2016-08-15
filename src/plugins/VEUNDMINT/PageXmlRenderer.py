@@ -41,7 +41,7 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		self.lang = lang
 		
 		
-	def generateXML(self, tc):
+	def generateXML( self, tc ):
 		"""
 		Create a XML document representing a page from a TContent object
 		
@@ -76,55 +76,7 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		content = etree.Element( 'content' )
 		xml.append( content )
 		
-		# add questions
-		xml.append( self._getQuestions( tc ) )
-
-		# add roulettes
-		xml.append( self._getRoulettes( tc ) )
-
 		return xml
-
-
-	def _getRoulettes(self, tc):
-		"""
-		Move the roulette questions wrapped in rouletteexc_start and rouletteexc-stop comments to the page header
-		
-		@param tc - a TContent object encapsulating page data and content
-		@return an etree element
-		"""
-		# find the roulette questions hidden in the content
-		roulettes = etree.Element( 'roulettes' )
-		match = re.findall( "\<!-- rouletteexc_start //--\>(.*?)\<!-- rouletteexc-stop //--\>", tc.content )
-		for found in match:
-			roulette = etree.Element( 'roulette' )
-			roulette.text = found
-			roulettes.append( roulette )
-		
-		# remove the questions from the content			
-		tc.content = re.sub( "\<!-- rouletteexc_start //--\>(.*?)\<!-- rouletteexc-stop //--\>", '', tc.content )
-		
-		return roulettes
-		
-
-	def _getQuestions(self, tc):
-		"""
-		Move the questions wrapped in onloadstart and onloadstop comments to the page header
-		
-		@param tc - a TContent object encapsulating page data and content
-		@return an etree element
-		"""
-		# find the questions hidden in the content
-		questions = etree.Element( 'questions' )
-		match = re.findall( "\<!-- onloadstart //--\>(.*?)\<!-- onloadstop //--\>", tc.content )
-		for found in match:
-			question = etree.Element( 'question' )
-			question.text = found
-			questions.append( question )
-
-		# remove the questions from the content			
-		tc.content = re.sub( "\<!-- onloadstart //--\>(.*?)\<!-- onloadstop //--\>", '', tc.content )
-		
-		return questions
 
 
 	def _generateIds(self, tc):
@@ -147,6 +99,119 @@ class PageXmlRenderer(AbstractXmlRenderer):
 			
 		tc.siteId = siteId
 		tc.sectionId = sectionId
+
+
+class PageXmlDecorator( AbstractXmlRenderer ):
+	"""
+	Base class for all page decorators.
+	"""
+	def __init__(self, renderer):
+		"""
+		Initialize the base class with the class that will be decorated
+		
+		@param renderer - an object implementing AbstractXmlRenderer
+		"""
+		self.renderer = renderer
+		
+	
+	def generateXml(self, tc):
+		"""
+		Decorate the class. This method is to be called 
+		first thing in the overriding method by all extending decorator classes, 
+		like this:
+		xml = super().generateXml( tc )
+		"""
+		return self.renderer.generateXML(tc)
+		
+
+class RouletteDecorator( PageXmlDecorator ):
+	"""
+	Adds roulette-exercises to page xml.
+	Implements the decorator pattern.
+	"""
+	
+	def __init__(self, renderer, data):
+		"""
+		@param renderer - an object implementing AbstractXmlRenderer
+		@param data - a dict containing the DirectRoulettes key
+		"""
+		super().__init__(renderer)
+		self.data = data
+	
+	
+	def generateXML(self, tc):
+		"""
+		Move the roulette questions wrapped in rouletteexc_start and rouletteexc-stop comments to the page header
+		
+		@param tc - a TContent object encapsulating page data and content
+		@return an etree element
+		"""
+		# call the method from the superclass
+		xml = super().generateXml( tc )
+		
+		# find the roulette questions hidden in the content
+		roulettes = etree.Element( 'roulettes' )
+		found = re.findall( "<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)<!-- rouletteexc-stop;(.+?);(.+?); //--\>", tc.content, re.DOTALL )
+		for match in found:
+			rid = match[0] # name of the roulette exercise, e.g. VBKM01_FRACTIONTRAINING
+			myid = match[1] # Index of the roulette on the page, e.g. 54
+			print('DirectRoulettes' in self.data)
+			if 'DirectRoulettes' in self.data and rid in self.data[ 'DirectRoulettes' ]:
+				maxid = self.data[ 'DirectRoulettes' ][rid]
+			else:
+				raise Exception( "Roulette not found" )
+			
+			roulette = etree.Element( 'roulette' )
+			roulette.set( 'rid', str( rid ) )
+			roulette.set( 'myid', str( myid ) )
+			roulette.set( 'maxid', str( maxid ) )
+			roulettes.append( roulette )
+		
+		# remove the questions from the content
+		tc.content = re.sub("<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)<!-- rouletteexc-stop;(.+?);(.+?); //--\>", '', tc.content, 0, re.DOTALL)
+		
+		xml.append( roulettes )
+		return xml
+
+		
+class QuestionDecorator(PageXmlDecorator):
+	"""
+	Adds questions to page xml.
+	Implements the decorator pattern.
+	"""
+	
+	def __init__(self, renderer):
+		"""
+		@param renderer - an object implementing AbstractXmlRenderer
+		"""
+		super().__init__(renderer)
+
+	
+	def generateXML(self, tc):
+		"""
+		Move the questions wrapped in onloadstart and onloadstop comments to the page header
+		
+		@param tc - a TContent object encapsulating page data and content
+		@return an etree element
+		"""
+		# call the method from the superclass
+		xml = super().generateXml(tc)
+
+		# find the questions hidden in the content
+		questions = etree.Element( 'questions' )
+		match = re.findall( "\<!-- onloadstart //--\>(.*?)\<!-- onloadstop //--\>", tc.content )
+		for found in match:
+			question = etree.Element( 'question' )
+			question.text = found
+			questions.append( question )
+
+		# remove the questions from the content			
+		tc.content = re.sub( "\<!-- onloadstart //--\>(.*?)\<!-- onloadstop //--\>", '', tc.content )
+		
+		xml.append( questions )
+		return xml
+
+
 
 
 			

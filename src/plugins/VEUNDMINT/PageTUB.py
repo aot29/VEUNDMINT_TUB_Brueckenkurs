@@ -24,26 +24,26 @@ import os
 import re
 from tidylib import tidy_document
 from tex2x.renderers.AbstractRenderer import *
-from plugins.VEUNDMINT.PageXmlRenderer import PageXmlRenderer
+from plugins.VEUNDMINT.PageXmlRenderer import *
 
 
-class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
+class PageTUB( AbstractHtmlRenderer ):
 	"""
 	Render page by applying XSLT templates, using the lxml library.
 	"""
 	
-	def __init__( self, tplPath, lang, tocRenderer, data ):
+	def __init__( self, tplPath, contentRenderer, tocRenderer ):
 		"""
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
 		
 		@param tplPath - String path to the directory holding the xslt templates
 		@param lang - String ISO-639-1 language code ("de" or "en")
+		@param contentRenderer - PageXmlRenderer an AbstractXMLRenderer that builds the page contents, including the questions and roulettes added by the decorators
 		@param tocRenderer - TocRenderer an AbstractXMLRenderer that builds the table of contents
+		@param data - a dict
 		"""
-		super().__init__( lang )
 		self.tplPath = tplPath
-		self.lang = lang
-		self.data = data
+		self.contentRenderer = contentRenderer
 		self.tocRenderer = tocRenderer
 
 	
@@ -58,9 +58,10 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		basePath = self.getBasePath(tc)
 		
 		# Create the XML output
-		xml = self.generateXML( tc )
+		xml = self.contentRenderer.generateXML( tc )
 		# toc
 		xml.append( self.tocRenderer.generateXML( tc ) )
+		
 		# correct the links in content and TOC
 		self.correctLinks( xml, basePath )
 		# add base path to XML, as the transformer doesn't seem to support parameter passing
@@ -72,8 +73,6 @@ class PageTUB( AbstractHtmlRenderer, PageXmlRenderer ):
 		# flag test pages
 		xml.set( 'isTest', str( tc.testsite ).lower() ) # JS booleans are lowercase 
 			
-		#print(etree.tostring(xml))
-
 		# Load the template
 		templatePath = os.path.join( self.tplPath, "page.xslt" )
 		template = etree.parse( templatePath )

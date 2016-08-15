@@ -5,6 +5,7 @@ import os
 from lxml import etree
 
 from plugins.VEUNDMINT.tcontent import TContent
+from plugins.VEUNDMINT.PageXmlRenderer import *
 from plugins.VEUNDMINT.TocRenderer import TocRenderer
 from plugins.VEUNDMINT.PageTUB import PageTUB
 from tex2x.Settings import settings
@@ -17,8 +18,9 @@ class test_PageTUB(AbstractRendererTestCase):
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
 		
+		contentRenderer = PageXmlRenderer( self.lang )
 		tocRenderer = TocRenderer()
-		self.page = PageTUB( self.tplPath, self.lang, tocRenderer, self.data )
+		self.page = PageTUB( self.tplPath, contentRenderer, tocRenderer )
 		# generate HTML element using the tc mock-up
 		self.page.generateHTML( self.tc )
 
@@ -119,7 +121,7 @@ class test_PageTUB(AbstractRendererTestCase):
 	def testPrevNextLInks(self):
 		# Create the XML output for a page with left and right neighbors
 		siblings = self.tc.children
-		xml = self.page.generateXML( siblings[1] )
+		xml = self.page.contentRenderer.generateXML( siblings[1] )
 		self.assertTrue( len( siblings ) >= 3 )
 		# add links to next and previous entries
 		self.page._addPrevNextLinks(xml, siblings[1] )
