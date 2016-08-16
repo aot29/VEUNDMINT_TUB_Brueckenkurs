@@ -30,6 +30,7 @@ setup_python:
   stage: setup
   only:
     - develop_software
+    - develop_gulp
   script:
     - "echo installing python dependencies in virtual environment"
     - "[ ! -d venv ] && virtualenv -p python3 venv"
@@ -44,6 +45,7 @@ build_multilang:
   stage: build
   only:
     - develop_software
+    - develop_gulp
   script:
     - "[ ! -d tu9onlinekurstest ] && make -f tools/makefiles/multilang"
     - "rsync -i /Users/n/.ssh/can -avr --exclude '*.png' --exclude '*.mp4' tu9onlinekurstest/* mulfadmin@guest6.mulf.tu-berlin.de:/home/mulfadmin/gitlab-ci"
@@ -52,14 +54,16 @@ all_tests_and_coverage:
   stage: test
   only:
     - develop_software
+    - develop_gulp
   script:
     # taken from setup_nvm above for time optimization
     - "echo installing npm and phantomJS via nvm"
     - "git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`"
     - ". ~/.nvm/nvm.sh"
-    - "nvm install 5.0"
-    - "nvm use 5.0"
+    - "nvm install 6.0"
+    - "nvm use 6.0"
     - "npm install"
+    - "bower install"
     # end
     - "source venv/bin/activate"
     - "export BASE_URL=http://guest6.mulf.tu-berlin.de/gitlab-ci/"
