@@ -151,11 +151,11 @@ class RouletteDecorator( PageXmlDecorator ):
 		
 		# find the roulette questions hidden in the content
 		roulettes = etree.Element( 'roulettes' )
+		"""
 		found = re.findall( "<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)<!-- rouletteexc-stop;(.+?);(.+?); //--\>", tc.content, re.DOTALL )
 		for match in found:
 			rid = match[0] # name of the roulette exercise, e.g. VBKM01_FRACTIONTRAINING
 			myid = match[1] # Index of the roulette on the page, e.g. 54
-			print('DirectRoulettes' in self.data)
 			if 'DirectRoulettes' in self.data and rid in self.data[ 'DirectRoulettes' ]:
 				maxid = self.data[ 'DirectRoulettes' ][rid]
 			else:
@@ -166,14 +166,51 @@ class RouletteDecorator( PageXmlDecorator ):
 			roulette.set( 'myid', str( myid ) )
 			roulette.set( 'maxid', str( maxid ) )
 			roulettes.append( roulette )
-		
-		# remove the questions from the content
-		tc.content = re.sub("<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)<!-- rouletteexc-stop;(.+?);(.+?); //--\>", '', tc.content, 0, re.DOTALL)
-		
-		xml.append( roulettes )
-		return xml
+		"""
+		def droul( match ):
+			"""
+			Generates XML and placeholders when a roulette is found in the content
+			
+			@param match - a match object from re.sub
+			@returns string containing a placeholder for the first roulette in each group
+			"""
+			# Load no more than MAX_ROULETTES exercises for sanity. These should be loaded dynamically from the backend, not dumped in the page JS.
+			MAX_ROULETTES = 25 
+			if len( roulettes ) > MAX_ROULETTES: return
+			
+			# Process the match found in the page
+			rid = match.group(1) # name of the roulette exercise, e.g. VBKM01_FRACTIONTRAINING
+			myid = int( match.group(2) ) # Index of the roulette on the page, e.g. 54
+			exercise = match.group(3) # the content of the exercise
+			if 'DirectRoulettes' in self.data and rid in self.data[ 'DirectRoulettes' ]:
+				maxid = self.data[ 'DirectRoulettes' ][rid]
+			else:
+				raise Exception( "Roulette not found" )
 
+			# create a XML-roulette element			
+			roulette = etree.Element( 'roulette' )
+			roulette.set( 'rid', str( rid ) )
+			roulette.set( 'myid', str( myid ) )
+			roulette.set( 'maxid', str( maxid ) )
+			roulette.text = exercise
+			roulettes.append( roulette )
+			
+			# generate placeholder div
+			response = ''
+			if myid == 0:
+				response = "<div id='ROULETTECONTAINER_%s' />" % rid
+
+			return response
 		
+		# find the roulette questions in the content and replace them with placeholders
+		tc.content = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droul, tc.content, 0, re.S)
+
+		# add the roulettes to the xml
+		xml.append( roulettes )
+
+		return xml
+	
+
 class QuestionDecorator(PageXmlDecorator):
 	"""
 	Adds questions to page xml.

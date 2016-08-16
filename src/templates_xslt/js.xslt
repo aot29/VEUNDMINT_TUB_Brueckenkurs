@@ -57,10 +57,9 @@
 			var timerColors = new Array();
 			var timerIterator = 0;
 			var requestLogout = 0;
-			var sitejson_load = false;
-			var sitejson = {};					
 			]]>
-			
+
+			<!-- Create question objects  -->			
 			<xsl:apply-templates select="questions/question" />
 			
 			var SITE_ID = "<xsl:value-of select="@siteId" />";
@@ -68,11 +67,18 @@
 			var SECTION_ID = "<xsl:value-of select="@sectionId" />";
 			var docName = "<xsl:value-of select="docName" />";
 			var fullName = "<xsl:value-of select="fullName" />";
+			
+			<!-- Paths -->
 			var linkPath = "<xsl:value-of select="$basePath" />";
-			var imagesPath = "<xsl:value-of select="$basePath" />/images";		
-		</script>
-	    <script>
-	    <![CDATA[
+			var imagesPath = "<xsl:value-of select="$basePath" />/images";
+
+			<!-- Roulette exercises -->			
+			var sitejson_load = true;
+			var sitejson = {};					
+			<xsl:apply-templates select="roulettes/roulette" />
+
+			<!-- Event handlers -->
+	    	<![CDATA[
 		    $( window ).resize(function() {
 		    	// necessary in case the window is resized while the collapsible sidebar is on.
 		       	document.body.style.overflowX = "auto";
@@ -138,7 +144,7 @@
 	            var offsetHeight = $( "#navbarTop" ).height() + $( "#subtoc" ).height() + $( "#footer" ).height() * 2;
 	            $( "#pageContents" ).css( "minHeight", docHeight - offsetHeight + "px" );
 	        }
-		]]>
+			]]>
 	    </script>
 	</xsl:template>
 
@@ -147,5 +153,11 @@
 		<!-- a new line -->
 		<xsl:text>&#xa;</xsl:text>
 	</xsl:template>
+	
+	<xsl:template match="roulette">
+		<xsl:if test="@myid = 0">sitejson['_RLV_<xsl:value-of select="@rid"/>'] = list();</xsl:if>
+		sitejson["_RLV_<xsl:value-of select="@rid"/>"].append( '<div id="DROULETTE{@rid}.{@myid}"><button type="button" class="roulettebutton" onclick="rouletteClick( {@rid}, {@myid}, {@maxid});">roulette_new</button><br/></div>');
+	</xsl:template>	
+
 
 </xsl:stylesheet>

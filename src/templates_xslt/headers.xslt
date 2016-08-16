@@ -13,7 +13,7 @@
 			<xsl:with-param name="basePath" select="@basePath" />
 		</xsl:call-template>
 		
-		<!-- External JS -->
+		<!-- JS -->
 		<xsl:apply-templates select="." mode="js" >
 			<xsl:with-param name="basePath" select="@basePath" />
 		</xsl:apply-templates>
@@ -25,6 +25,7 @@
 		<xsl:call-template name="i18n">
 			<xsl:with-param name="lang" select="@lang" />
 		</xsl:call-template>
+		
 		
 	</xsl:template>
 

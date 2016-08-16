@@ -524,7 +524,7 @@ class Plugin(basePlugin):
 					self.sys.message(self.sys.CLIENTERROR, "ModstartBox requested for content element " + tc.title + ", but child " + p.title + " misses contentlabels")
 				else:
 					# simulate \MNRref and MSRef from mintmod.tex
-					s += "<li>Abschnitt <!-- mmref;;" + p.contentlabel + ";;0; //-->: <!-- msref;;" + p.contentlabel + ";;" + t + "; //-->"
+					s += "<li><!-- mmref;;" + p.contentlabel + ";;0; //-->: <!-- msref;;" + p.contentlabel + ";;" + t + "; //-->"
 					if (k < len(tc.children) - 1):
 						s += ","
 					else:
