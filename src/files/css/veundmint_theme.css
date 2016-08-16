@@ -1,0 +1,233 @@
+
+/*pageContents*/
+#pageContents {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    margin-bottom: 20px;
+}
+.jumbotron {
+	padding: 48px;
+}
+/*end pageContents*/
+
+/*tables*/
+#pageContents table td {
+	padding: 0.5em;
+}
+
+/*icons*/
+.glyphicon-question-sign {
+	padding: 1em;
+}
+
+/*images*/
+.mintmodimage {
+	width: 50%;
+	max-width: 400px;
+}
+
+/*social media*/
+#social-media-links li {
+	float: left;
+	padding: 0.5em;
+}
+
+/*Boxes*/
+.info, .exmp, .aufgabe {
+	padding-top: 1em;
+}
+
+/* Form styles */
+div.panel-body input {
+    background: white;
+    border: 1px dashed grey;
+    margin-bottom: 1em;
+    padding-left: 5px;
+}
+/*
+Extra bottom margin for toggle buttons,
+but only if not in lists.
+*/
+.btn {
+	margin-bottom: 1em;
+}
+ol .btn {
+	margin-bottom: 0;
+}
+/* end form styles*/
+
+/*Extra styles for tooltips*/
+    .tooltip.bottom .tooltip-arrow {
+        border-bottom-color: #ccc;
+    }
+    .tooltip-inner {
+        background-color: #999;
+    }
+/*end tooltip*/
+
+/*Extra styles for FF and RW Buttons*/
+.ffrwButton {
+    height: 3em;
+    padding: 0px;
+    margin: 0px;
+    border-bottom: 1px solid #ddd;
+    color: #55aadd;
+    padding: 0.7em 1em 0  1em;
+}
+    
+/*end FF/RW*/
+
+/*start extra styles for nav and TOC*/
+    #navbar {
+        margin-bottom: 0px;
+        border-radius: 0;
+    }
+    #subtoc {
+        margin-top: 20px;
+    }
+    #toc ul {
+         list-style-type: none;
+    }
+    #toc .entryText {
+		padding-left: 1em;
+		font-family: Helvetica, sans-serif;
+		color: #337ab7;
+    }
+/*    
+    .panel-body>ul {
+    	padding-left: 0;
+    }
+*/
+    .selectedEntry {
+    	font-weight: bold;
+    }
+/*
+    #toc li {
+        list-style-type: none;
+        float: left;
+    }
+    #toc li {
+        padding: 2px;
+    }
+    #toc ul.panel > li {
+        width: 100%;
+    }
+    #toc ul.panel li.lastFromPanel {
+        clear: both;
+    }
+*/
+    #legende ul.panel li div.glyphicon {
+        padding-right: 5px;
+    }
+    .status1 {
+	    color: #55aadd;
+    }
+    .status2 {
+	    color: #0055aa;
+    }
+    .status3 {
+	    color: #000055;
+    }
+    
+    /* Toolbar */
+    
+    #toolsNav {
+	    margin-top: 3em;
+    }
+    
+    #toolsNav .navbar-nav > li > a {
+	    padding-top: 0;
+	    padding-bottom: 0;
+    }
+/*end extra styles for TOC*/
+
+/* start Off canvas layout*/
+body {
+  padding-top: 51px;  
+}
+.text-center {
+  padding-top: 20px;
+}
+.col-xs-12 {
+  background-color: #fff;
+}
+#sidebar {
+  height: 100%;
+  padding-right: 15px;
+  padding-bottom: 40px;
+}
+#sidebar .nav {
+  width: 95%;
+}
+#sidebar li {
+  border:0 #f2f2f2 solid;
+}
+
+#menuButton {
+	padding-left: 0;
+}
+
+/*MathJax override wrap settings*/
+.mjx-chtml {
+	white-space: normal!important;
+}
+
+/* show or collapse sidebar styles */
+@media screen and (min-width: 970px) {
+	#menuButton {
+		display: none;
+	}
+	#sidebar {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 970px) {
+	#menuButton {
+		display: block;
+	}
+	.row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    
+  }
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -41.6%;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -41.6%;
+  }
+  .row-offcanvas-right.responsive {
+    right: 41.6%;
+  }
+  .row-offcanvas-left.responsive {
+    left: 41.6%;
+  }
+  
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 41.6%;
+  }
+  #toc {
+    padding-top:0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+	#toolsSidebar {
+		display: none;
+	}
+	.ffrwButton {
+		display: none;
+	}
+}
+/* end Offcanvas Layout*/
+

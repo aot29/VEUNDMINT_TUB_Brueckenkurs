@@ -1,3 +1,5 @@
+
+
 \input{mintmod}
 \MPragma{MathSkip}
 
@@ -163,13 +165,13 @@ konstruieren.
 
 \begin{MXContent}{Punkte und Geraden}{Punkte und Geraden}{STD}
 \MDeclareSiteUXID{VBKM05_PunkteGeraden_Content}
-
+0
 Ein Standpunkt oder eine Position in einer Ebene wird in der Geometrie zum
 einfachsten Objekt, einem Punkt, idealisiert. 
-"Uber einen einzelnen Punkten l"asst sich nichts weiter sagen.
+Ein Punkt wird mit einem gro"sen lateinischen Buchstaben bezeichnet, au"ser seiner Position besitzt der Punkte keine weitere Eigenschaften.
 
 Betrachtet man mehrere Punkte, kann man auf verschiedene Weise Beziehungen 
-zwischen den Punkten betrachten -- und man kann neue Objekte wie zum Beispiel
+zwischen den Punkten betrachten -- und man kann neue Objekte, wie zum Beispiel
 Strecken und Geraden beschreiben (siehe die folgende Abbildung).
 Mathematisch gesprochen, sind es Mengen von Punkten.
 
@@ -229,9 +231,9 @@ man entsprechend der Aufgabe passende Einheiten wie zum Beispiel Meter
 oder Zentimeter als L"angeneinheit festlegen.
 
 \begin{MXInfo}{Strecken und Abst"ande}
-Gegeben sind Punkte $A$ und $B$. Die \MEntry{Strecke}{Strecke} 
+Gegeben sind zwei verschiedene Punkte $A$ und $B$. Die \MEntry{Strecke}{Strecke} 
 $\MGeoStrecke{A}{B}$ zwischen $A$ und $B$ ist der k"urzeste Weg zwischen den 
-Punkten $A$ und $B$. 
+Punkten $A$ und $B$ in dieser Reihenfolge. 
 
 %Strecke:
 \begin{center}
@@ -256,7 +258,11 @@ zwischen den Punkten $A$ und $B$.
 Das Bild von einem Lichtstrahl, ausgesandt von einem fernen Stern oder 
 von der Sonne, ist eine passende Vorstellung f"ur einen 
 \MEntry{Strahl}{Strahl}, der in einem Punkt $A$ beginnt und in Richtung eines
-zweiten Punktes $A$ gedanklich immer weiter geht. Ein Strahl wird auch
+<<<<<<< HEAD
+zweiten Punktes $B$ gedanklich immer weiter und darüber hinaus geht. Ein Strahl wird auch
+=======
+zweiten Punktes $B$ gedanklich immer weiter geht. Ein Strahl wird auch
+>>>>>>> master_kit
 \MEntry{Halbgerade}{Halbgerade} genannt.
 
 %Strahlen und Geraden:
@@ -289,13 +295,12 @@ zweiten Punktes $A$ gedanklich immer weiter geht. Ein Strahl wird auch
 }
 \end{center}
 
-Wenn man den Weg auf einer Strecke $\MGeoStrecke{A}{B}$ in beide Richtungen 
-fortsetzt, spricht man von einer Geraden.
+Wenn man den Weg auf einer Strecke $\MGeoStrecke{A}{B}$ "uber beide Punkte hinaus verlängert, spricht man von einer Geraden.
 
 \begin{MXInfo}{Gerade}
 Seien $A$ und $B$ zwei Punkte (das hei"st, es ist $A$ ein Punkt, der vom 
 Punkt $B$ verschieden ist). Dann bestimmen $A$ und $B$ genau eine 
-\MEntry{Gerade}{Gerade} $\MGeoGerade{A}{B}$.
+\MEntry{Gerade}{Gerade} $\MGeoGerade{A}{B}$, die auch nur mittels einem kleinem lateinischen Buchstaben benannt werden kann.
 \end{MXInfo}
 Wenn man zu zwei Punkten $A$ und $B$ einen weiteren Punkt $P$ betrachtet,
 kann man nach dem Abstand $d$ von $P$ zur Geraden $\MGeoGerade{A}{B}$ fragen.
@@ -344,8 +349,13 @@ Auch eine einzelne Gerade kann "uber den Abstand von zwei Punkten $M$ und $M'$
 beschrieben werden: Die Menge aller Punkte, die von zwei Punkten $M$ und $M'$ 
 gleich weit entfernt sind, ist eine Gerade.
 
-Dies ist ein typische Vorgehensweise in der Geometrie, mit Hilfe von 
+<<<<<<< HEAD
+Dies ist ein typische Vorgehensweise in der Geometrie: Mit Hilfe von 
+Eigenschaften, wie einem Abstand, neue Objekte zu definieren. Auf diese Weise
+=======
+Dies ist eine typische Vorgehensweise in der Geometrie, mit Hilfe von 
 Eigenschaften wie einem Abstand neue Objekte zu definieren. Auf diese Weise
+>>>>>>> master_kit
 kann auch ein Kreis ganz einfach beschrieben werden.
 
 \begin{MXInfo}{Kreis}
@@ -378,7 +388,7 @@ Dann hei"st die Menge aller Punkte, die von $M$ den Abstand $r$ haben, ein
 \MDeclareSiteUXID{VBKM05_Strahlensaetze_Content}
 
 Eine Lochkamera liefert ein kleines Bild der Umwelt. Die Gr"o"senverh"altnisse
-vom Bild $B$ zum Gegenstand $G$ sind proportional zu den Abst"anden $b$ 
+vom Bildh"ohe $B$ zu Gegenstandsh"ohe $G$ sind proportional zu den Abst"anden $b$ 
 beziehungsweise $g$, die jeweils von der Lochblende $L$ gemessen werden:
 \[
 \frac{B}{G} = \frac{b}{g} \MDFPeriod %%
@@ -422,11 +432,11 @@ werden.
 
 \begin{MXInfo}{Strahlens\"atze}%
 \MLabel{VBKM05_Satz_Strahlensatz}%
-Vom gemeinsamen Punkt $S$ gehen zwei Strahlen $s_1$ und $s_2$ aus, 
+Vom gemeinsamen Punkt $S$ gehen zwei verschiedene Strahlen $s_1$ und $s_2$ aus, 
 die durch die Punkte $A$ beziehungsweise $C$ verlaufen. Der Punkt $B$ 
 liegt auf dem Strahl $s_1$ und $D$ liegt auf dem Strahl $s_2$. Zuerst
 werden die Strecken zwischen den Punkten auf den beiden Strahlen betrachtet,
-dann auch zwischen den Strahlen.
+dann auch die Strecken zwischen den Strahlen.
 \par
 \begin{tabular}{@{}lr@{}}
 \begin{minipage}[b]{7cm}
@@ -497,7 +507,7 @@ und $\MGeoAbstand{B}{D} = \MGeoAbstand{D}{B}$ gilt.
 \end{MXInfo}
 Die Aussagen der Strahlens"atze gelten auch, wenn anstelle von Strahlen 
 zwei Geraden betrachtet werden, die sich im Punkt $S$ schneiden. Als 
-Anwendungsbeispiel ist oben eine Lochkamera genannt worden.
+Anwendungsbeispiel ist oben eine Lochkamera genannt worden. Als Merksatz f\"ur die Strahlens|"atze kann man sich einfach $\frac{lang}{kurz} = \frac{lang}{kurz}$ einpr\"agen.
 
 Auf diese Weise k"onnen Entfernungen zwischen Punkten berechnet werden,
 ohne dass die Strecke direkt gemessen wird.
@@ -506,7 +516,7 @@ ohne dass die Strecke direkt gemessen wird.
 Die gegebenen Punkte $A$, $B$, $C$ und $D$ bestimmen die Geraden 
 $\MGeoGerade{A}{B}$ und $\MGeoGerade{C}{D}$, die sich im Punkt $S$
 schneiden. Weiter ist bekannt, dass die Geraden $\MGeoGerade{A}{C}$ und 
-$\MGeoGerade{B}{D}$ parallel sind. Zwischen den Punkten wurden die 
+$\MGeoGerade{B}{D}$ parallel sind. Zwischen den Punkten wurden die
 Abst"ande $\MGeoAbstand{A}{B} = 51$, $\MGeoAbstand{S}{C} = 12 $ und 
 $\MGeoAbstand{C}{D} = 18$ gemessen.
 
@@ -739,7 +749,7 @@ Winkel zwischen den Strahlen $h$ und $g$.
 Der Punkt $S$ hei"st \MEntry{Scheitelpunkt}{Scheitelpunkt (Winkel)} des 
 Winkels, und die beiden Halbgeraden, die den Winkel bilden, hei"sen 
 \MEntry{Schenkel}{Schenkel} des Winkels.
-Wenn $A$ ein Punkt auf der Geraden $g$ und $B$ ein Punkt auf der Geraden $h$
+Wenn $A$ ein Punkt auf der Halbgeraden $g$ und $B$ ein Punkt auf der Halbgeraden $h$
 ist, so kann man auch $\Mmeasuredangle \left( A S B \right)$ f"ur 
 $\Mmeasuredangle \left( g, h \right)$ schreiben. In diesem Sinne werden 
 Winkel zwischen Strecken $\MGeoStrecke{S}{A}$ und $\MGeoStrecke{S}{B}$
@@ -784,9 +794,9 @@ Es seien $g$ und $h$ zwei Geraden, die sich im Punkt $S$ schneiden.
 
 \begin{itemize}
 \item Die Winkel $\Mvarphi$ und $\Mvarphi'$ hei"sen 
- \MEntry{Scheitelwinkel}{Scheitelwinkel} zueinander.
+ \MEntry{Scheitelwinkel}{Scheitelwinkel} zueinander, da sie sich am selben Scheitelpunkt gegen\"uber liegen.
 \item Die Winkel $\Mvarphi$ und $\psi$ hei"sen 
- \MEntry{Nebenwinkel}{Nebenwinkel} bez"uglich $g$.
+ \MEntry{Nebenwinkel}{Nebenwinkel} bez"uglich $g$, da sie an der selben Gerade liegen.
 \end{itemize}
 \end{MXInfo}
 
@@ -815,7 +825,7 @@ Seien $g$ und $h$ Halbgeraden mit dem Scheitelpunkt $S$.
 \begin{itemize}
 \item
 Der Winkel, der die gesamte Ebene "uberdeckt, hei"st 
-\MEntry{Vollwinkel}{Vollwinkel (Winkel)}.
+\MEntry{Vollwinkel}{Vollwinkel (Winkel)}. In diesem Fall sind die beiden Geraden identisch.
 \item
 Wenn $g$ und $h$ eine Gerade bilden, hei"st der Winkel zwischen $g$ und $h$
 %$\Mmeasuredangle(g,h)$ gestreckter Winkel.
@@ -823,9 +833,9 @@ gestreckter Winkel.
 \item
 Der Winkel zwischen zwei Halbgeraden, die einen gestreckten Winkel halbieren,
 hei"st \MEntry{rechter Winkel}{rechter Winkel (Winkel)}. 
-Man sagt dann auch, dass $g$ und $h$ 
-\MEntry{senkrecht aufeinander stehen}{senkrecht (Gerade)} oder dass 
-$g$ und $h$ \MEntry{orthogonal zueinander}{orthogonal} sind. 
+Man sagt dann auch, dass $g$ und $h$  
+\MEntry{ senkrecht aufeinander stehen}{senkrecht (Gerade)} oder dass 
+$g$ und $h$  \MEntry{ orthogonal zueinander}{orthogonal} sind. 
 \end{itemize}
 \end{MXInfo}
 
@@ -1022,6 +1032,7 @@ $30\MGrad$ und Vielfachen davon dargestellt.
 \end{center}
 
 \paragraph{Bogenma"s}
+
 Bereits im antiken Babylonien, "Agypten und Griechenland stellte man fest, 
 dass das Verh\"altnis des Umfangs $U$ eines Kreises zu seinem Durchmesser 
 $D$ stets das gleiche ist, und somit Umfang und Durchmesser zueinander 
@@ -1039,8 +1050,8 @@ periodischer Dezimalbruch geschrieben werden. Numerische Berechnungen ergeben,
 dass n"aherungsweise $\pi \approx \MZahl{3}{141592653589793}$ ist.
 \end{MXInfo}
 
-Wenn der Radius des Kreises genau $1$ ist, so hat der Kreis den Umfang $2\pi$. 
-Beim \MEntry{Bogenma"s}{Bogenma"s} wird die Linie eines Kreises vom Radius $1$
+Wenn der Radius $r$ des Kreises genau $1$ ist, so hat der Kreis den Umfang $2\pi$. 
+Beim \MEntry{Bogenma"s}{Bogenma"s} wird die Linie des Umfang eines Kreises vom Radius $r = 1$
 eingeteilt.
 Als Bogenma"s eines Winkels $\Mmeasuredangle(g,h)$ wird die L"ange des 
 \MEntry{Kreisbogens}{Kreisbogen} verwendet, die durch den Winkel 
@@ -1134,7 +1145,7 @@ Die Formulierungen der letzten S"atze klingen m"oglicherweise umst"andlich.
 Dies liegt vermutlich auch daran, dass genau zwischen Winkel und einem Ma"s, 
 hier dem Bogenma"s, f"ur den Winkel unterschieden wird.
 
-Wenn es darum geht, einen gesuchten Wert zu berechnen, werden bei Strecken 
+Wenn es darum geht, einen gesuchten Wert zu berechnen, wird bei Strecken 
 oft dieselbe Bezeichnung f"ur die Strecke und ihre L"ange verwendet. Dies 
 ist meistens verst"andlich und hilft, einen Sachverhalt einfach zu beschreiben
 oder in einer Zeichnung darzustellen. Wichtig ist dabei, dass die verwendete 
@@ -1162,7 +1173,7 @@ zwischen Bogenma"s und Gradma"s wird im Folgenden beschrieben.
 \begin{MXInfo}{Zusammenhang zwischen Bogenma"s und Gradma"s}
 Es werden Halbgeraden $g$ und $h$ betrachtet, die den Winkel 
 $\Mmeasuredangle(g,h)$ einschlie"sen. Das Bogenma"s des Winkels wird mit $x$ 
-bezeichnet, und das Gradma"s des Winkels mit $\alpha$. 
+bezeichnet und das Gradma"s des Winkels mit $\alpha$. 
 
 Dann ist der Anteil $x$ von $2\pi$ gleich dem Anteil $\alpha$ von 
 $360\MGrad$ und damit: 
@@ -1236,13 +1247,35 @@ anderen genannten Winkelma"s.
 \begin{center}
 \begin{tabular}{l*{6}{c}}
  & $\alpha_1$ & $\alpha_2$ & $\alpha_3$ & $\alpha_4$ & $\alpha_5$ & $\alpha_6$ \\
- Bogenma\ss\ & $\pi$               &   \MLParsedQuestion{10}{9*pi/5}{3}{GEO1} &   	$\frac{2 \pi}{3}$                &\MLParsedQuestion{10}{3*pi/2}{3}{GEO2} & $\frac{11 \pi}{12}$ & \MLParsedQuestion{10}{pi/6}{3}{GEO3} \\
- Gradma\ss\   & \MLParsedQuestion{10}{180}{3}{GEO4}      & $324$    & \MLParsedQuestion{10}{120}{3}{GEO5}        &    $270$    & \MLParsedQuestion{10}{165}{3}{GEO6} & $30$ \\
+ Bogenma"s & $\pi$               &   \MLParsedQuestion{10}{9*pi/5}{3}{GEO1} &   	$\frac{2 \pi}{3}$                &\MLParsedQuestion{10}{3*pi/2}{3}{GEO2} & $\frac{11 \pi}{12}$ & 
+\MLParsedQuestion{10}{pi/6}{3}{GEO3} \\
+ Gradma"s  & \MLParsedQuestion{10}{180}{3}{GEO4}      & $324\MGrad$    & \MLParsedQuestion{10}{120}{3}{GEO5}        &    $270\MGrad$    & \MLParsedQuestion{10}{165}{3}{GEO6} & $30\MGrad$ %%
 \end{tabular}
 \end{center}
 
 \MInputHint{Ein $\pi$ geben Sie als \texttt{pi} ein. 
 Sie k"onnen Ihr Ergebnis auch auf drei Nachkommastellen gerundet angeben.}
+
+\begin{MHint}{L"osung}
+Es wird der Wert eines Winkels im Bogenma"s mit $x$ und im Gradma"s mit $\alpha$
+bezeichnet. Dann ist das Verh"altnis zur jeweiligen Ma"szahl des Vollwinkels 
+gleich: $\frac{x}{2 \pi} = \frac{\alpha}{360\MGrad}$.
+Somit ergibt sich die Umrechnung vom Bogenma"s in das Gradma"s aus
+$\alpha = \frac{180\MGrad}{\pi} \cdot x$, 
+und die Umrechnung vom Gradma"s in das Bogenma"s ergibt sich gem"a"s
+$x = \frac{\pi}{180\MGrad} \cdot \alpha$.
+F"ur die angegebenen Werte erh"alt man:
+
+\begin{center}
+\begin{tabular}{l*{6}{c}}
+ & $\alpha_1$ & $\alpha_2$ & $\alpha_3$ & $\alpha_4$ & $\alpha_5$ & $\alpha_6$ \\
+%\hline
+ Bogenma"s &   $\pi$     & $\frac{9 \cdot \pi}{5}$ & $\frac{2 \pi}{3}$ & $\frac{3 \cdot \pi}{2}$ & $\frac{11 \pi}{12}$ & $\frac{\pi}{6}$ \\
+ Gradma"s  & $180\MGrad$ &      $324\MGrad$        &    $120\MGrad$    &    $270\MGrad$        & $165\MGrad$          &   $30\MGrad$   %%
+\end{tabular}
+\end{center}
+\end{MHint}
+
 \end{MExercise}
 
 \end{MXContent}
@@ -1258,7 +1291,7 @@ Sie k"onnen Ihr Ergebnis auch auf drei Nachkommastellen gerundet angeben.}
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Dreiecke_Intro}
 
-Technische Bauwerke wie zum Beispiel Fachwerke oder manche Br"ucken nutzen 
+Technische Bauwerke, wie zum Beispiel Fachwerke oder manche Br"ucken, nutzen 
 Dreiecke als Konstruktionselemente.
 
 %Bruecke:
@@ -1372,7 +1405,7 @@ zwischen Seitenl"angen und Winkel werden dann im Abschnitt
 beantworten zu k"onnen, die f"ur Anwendungen relevant sind.
 
 \begin{MXInfo}{Dreieck}\MLabel{Mathematik_ElementareGeometrie_SummeDerInnenwinkel}%
-Ein \MEntry{Dreieck}{Dreieck} entsteht, wenn man drei Punkte $A$, $B$ und $C$, 
+Ein \MEntry{Dreieck}{Dreieck} entsteht, wenn man drei voneinander verschiedene Punkte $A$, $B$ und $C$, 
 die nicht auf einer Geraden liegen, verbindet. Dieses Dreieck wird dann mit 
 $\MGeoDreieck{A}{B}{C}$ bezeichnet.
 \begin{itemize}
@@ -1440,7 +1473,7 @@ Die Summe aller (Innen-)Winkel in einem Dreieck betr"agt $180\MGrad$
 beziehungsweise $\pi$. Somit kann h"ochstens ein Winkel gleich oder gr"o"ser 
 als $90\MGrad$ beziehungsweise $\frac{\pi}{2}$ sein. Dementsprechend werden die
 Dreiecke nach ihrem gr"o"sten Winkel in drei verschiedene Klassen eingeteilt:
-\begin{MXInfo}{Bezeichungen f"ur Dreiecke}%
+\begin{MXInfo}{Bezeichnungen f"ur Dreiecke}%
 Dreiecke werden folgenderma"sen nach ihren Winkeln benannt:
 \begin{itemize}
  \item Ein Dreieck, in dem alle Winkel kleiner als~$\frac{\pi}{2}$ sind, hei"st 
@@ -1483,8 +1516,8 @@ h"oher befindet sich das Gelenk "uber dem Boden.
 \end{center}
 
 So wird in einem Dreieck $\MGeoDreieck{A}{B}{C}$ die k"urzeste Strecke 
-zwischen der Ecke $C$ und der Geraden, die durch die gegen"uberliegende 
-Seite $c$ bestimmt ist, die 
+zwischen der Ecke $C$ und der gegen\"uberliegenden Seite $\MGeoStrecke{A}{B}$
+, die 
 \MEntry{H"ohe eines Dreiecks}{H"ohe eines Dreiecks} $h_c$ auf 
 die Seite $c$ genannt. Der andere Endpunkt $D$ der Strecke $h_c$ hei"st 
 \MEntry{H"ohenfu"spunkt}{H"ohenfu"spunkt}.
@@ -1716,13 +1749,13 @@ $p = \MGeoAbstand{A}{D}$ und $q = \MGeoAbstand{B}{D}$ vereinbart.
 \end{tabular}
 
 \begin{MXInfo}{H"ohensatz}
-Das Quadrat \"uber der H\"ohe ist fl\"acheninhaltsgleich dem Rechteck aus 
+Das Quadrat "uber der H"ohe ist fl"acheninhaltsgleich dem Rechteck aus 
 den beiden Hypotenusenabschnitten: 
-\[h^2 = p\cdot q \MDFPeriod\]	
+\[h_c^2 = p\cdot q \MDFPeriod\]	
 \end{MXInfo}
 
 \begin{MXInfo}{Kathetensatz}
-Das Quadrat \"uber einer Kathete ist fl\"acheninhaltsgleich dem Rechteck aus 
+Das Quadrat "uber einer Kathete ist fl"acheninhaltsgleich dem Rechteck aus 
 der Hypotenuse und dem anliegenden Hypotenusenabschnitt: 
 \[a^2 = c\cdot q \MDFPSpace, \MDFPaSpace b^2=c\cdot p \MDFPeriod\]
 \end{MXInfo}
@@ -1731,7 +1764,7 @@ der Hypotenuse und dem anliegenden Hypotenusenabschnitt:
 Gegeben sei ein rechtwinkliges Dreieck mit den Kathetenl\"angen $a=3$ und 
 $b=4$.
 
-Die L\"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras berechnet 
+Die L"ange der Hypotenuse kann mithilfe des Satzes von Pythagoras berechnet 
 werden:
 \[
 c = \sqrt{a^2 + b^2}=\sqrt{9 + 16}=\sqrt{25}=5 \MDFPeriod %%
@@ -1749,7 +1782,9 @@ h_c=\sqrt{p\cdot q}=\sqrt{\frac{9}{5}\cdot\frac{16}{5}} %
 \end{MExample}
 
 \begin{MExercise}
-Berechnen Sie f\"ur ein rechtwinkliges Dreieck mit der Hypotenuse $c=\MZahl{10}{5}$, der H\"ohe $h_c=\MZahl{5}{04}$ und dem Hypotenusenabschnitt $q=\MZahl{3}{78}$ die L\"ange der beiden Katheten.
+Berechnen Sie f"ur ein rechtwinkliges Dreieck mit der Hypotenuse 
+$c=\MZahl{10}{5}$ und dem Hypotenusenabschnitt $q=\MZahl{3}{78}$ die L\"ange 
+der beiden Katheten.
 
 \begin{MHint}{L\"osung}
 \[\text{Kathetensatz:} \quad a=\sqrt{c\cdot q}=\sqrt{\MZahl{10}{5} \cdot \MZahl{3}{78}}=\MZahl{6}{3} \MDFPSpace;\]
@@ -1766,20 +1801,21 @@ Berechnen Sie f\"ur ein rechtwinkliges Dreieck mit der Hypotenuse $c=\MZahl{10}{
 \begin{MXContent}{Kongruente und "ahnliche Dreiecke}{Kongruenz}{STD}
 \MDeclareSiteUXID{VBKM05_Kongruenzsaetze_Content}
 
-Zu einem Dreieck geh\"oren unter anderem drei Seitenl\"angen und drei Winkel. 
+Zu einem Dreieck geh"oren unter anderem drei Seitenl"angen und drei Winkel. 
 Die Au"senwinkel sind durch die Innenwinkel bereits festgelegt, sodass durch 
-diese sechs Gr"o"sen die {\glqq}Form{\grqq} eines Dreieck bestimmt ist. Wenn 
-bei zwei Dreiecken alle diese Gr"o"sen \"ubereinstimmen, so sind diese Dreiecke 
+diese sechs Gr"o"sen die {\glqq}Form{\grqq} eines Dreiecks bestimmt ist. Wenn 
+bei zwei Dreiecken alle diese Gr"o"sen "ubereinstimmen, so sind diese Dreiecke 
 deckungsgleich oder \MEntry{kongruent}{kongruent (Dreieck)}. 
 Dabei spielt es keine 
-Rolle, wo sich die Dreiecke befinden. Kongruente Dreiecke k\"onnen also durch 
-Drehung, Spiegelung und Verschiebung ineinander \"uberf\"uhrt werden.\\
+Rolle, wo sich die Dreiecke befinden. Kongruente Dreiecke k"onnen also durch 
+Drehung, Spiegelung und Verschiebung ineinander "ubergef"uhrt werden.
+
 Kennt man vier von den sechs Gr"o"sen, so ist das Dreieck eindeutig bestimmt 
 bis auf Spielgelung oder Drehung, das hei"st bis auf die Lage des Dreiecks 
-im Raum. Alle Dreiecke, die man mit diesen Angaben erh\"alt, sind dann kongruent.
-In einigen F\"allen gen\"ugen sogar drei Angaben, um das Dreieck eindeutig 
+im Raum. Alle Dreiecke, die man mit diesen Angaben erh"alt, sind dann kongruent.
+In einigen F"allen gen"ugen sogar drei Angaben, um das Dreieck eindeutig 
 zu bestimmen.
-Sie werden in den \MEntry{Kongruenzs\"atzen}{Kongruenzs\"atze (Dreieck)} 
+Sie werden in den \MEntry{Kongruenzs"atzen}{Kongruenzs\"atze (Dreieck)} 
 beschrieben:
 
 \begin{MXInfo}{Kongruenzs"atze f"ur Dreiecke}%
@@ -1817,10 +1853,10 @@ eine der folgenden Situationen vorliegt:
 %dass diese gleich lang sind.
  
 Wenn von einem Dreieck nur zwei oder drei Angaben gegeben sind, die 
-keinem der oben angegebenen F\"alle entsprechen, so gibt es verschiedene
-Dreiecke, f\"ur die die Angaben zutreffen und die nicht deckungsgleich sind.
+keinem der oben angegebenen F"alle entsprechen, so gibt es verschiedene
+Dreiecke, f"ur die die Angaben zutreffen und die nicht deckungsgleich sind.
 
-Im Folgenden wird zuerst in einen Beispiel erl"autert, wie mit den 
+Im Folgenden wird zuerst in einem Beispiel erl"autert, wie mit den 
 Kongruenzs"atzen ein Dreieck konstruiert werden kann.
 Danach wird ein Beispiel zu Dreiecken betrachtet, bei denen nur die Winkel 
 gegeben sind und somit keine der obigen Bedingungen erf"ullt ist.
@@ -1830,11 +1866,11 @@ gegeben sind und somit keine der obigen Bedingungen erf"ullt ist.
 \begin{tabular}{@{}lr@{}}
 \begin{minipage}{10cm}
 Gegeben seien die Seiten $b$ und~$c$ und der Winkel~$\alpha$.
-Das Dreieck \glqq sws\grqq\ erh\"alt man, indem man zun\"achst eine Seite, 
+Das Dreieck \glqq sws\grqq\ erh"alt man, indem man zun\"achst eine Seite, 
 hier zum Beispiel die Seite $c$, zeichnet und an der nach der 
-Bezeichnungskonvention passenden Ecke ($A$) den Winkel $\alpha$ anf\"ugt.
-Dann schl\"agt man um diese Ecke einen Kreis, dessen Radius der
-L\"ange der zweiten Seite (hier $b$) entspricht. Der Schnittpunkt dieses
+Bezeichnungskonvention passenden Ecke ($A$) den Winkel $\alpha$ anf"ugt.
+Dann schl"agt man um diese Ecke einen Kreis, dessen Radius der
+L"ange der zweiten Seite (hier $b$) entspricht. Der Schnittpunkt dieses
 Kreises mit dem zweiten Schenkel des Winkels bildet die dritte
 Ecke des Dreiecks ($C$).
 \end{minipage}
@@ -1962,19 +1998,19 @@ verdeutlicht:
 }
 \end{center}
 
-\begin{MXInfo}{\"Ahnlichkeitss\"atze f\"ur Dreiecke}%
+\begin{MXInfo}{"Ahnlichkeitss"atze f"ur Dreiecke}%
 \MLabel{VBKM05_DreieckeAehnlichkeitssaetze}
 Zwei Dreiecke hei"sen zueinander \MEntry{"ahnlich}{"Ahnlich (Dreieck)}, wenn
 sie
 \begin{itemize}
- \item in zwei (und damit wegen der Winkelinnensumme in drei) 
-   Winkeln \"ubereinstimmen, oder
- \item in allen \textbf{Verh\"altnissen} ihrer entsprechenden Seiten 
+ \item in zwei (und damit wegen der Winkelsumme in drei) 
+   Winkeln "ubereinstimmen, oder
+ \item in allen \textbf{Verh"altnissen} ihrer entsprechenden Seiten 
    \"ubereinstimmen, oder
- \item in einem Winkel und im \textbf{Verh\"altnis} der anliegenden 
-   Seiten \"ubereinstimmen, oder
- \item im \textbf{Verh\"altnis} zweier Seiten und im Gegenwinkel der 
-   gr"o"seren Seite \"ubereinstimmen.
+ \item in einem Winkel und im \textbf{Verh"altnis} der anliegenden 
+   Seiten "ubereinstimmen, oder
+ \item im \textbf{Verh"altnis} zweier Seiten und im Gegenwinkel der 
+   gr"o"seren Seite "ubereinstimmen.
 \end{itemize}
 \end{MXInfo}
 
@@ -2104,7 +2140,7 @@ $\alpha$ und $\beta'$.
 
 
 \begin{MExercise}
-Zeigen Sie mithilfe von Wechselwinkeln, dass die Summe der Innenwinkel in 
+Zeigen Sie mithilfe von Wechselwinkeln, dass die Summe der (Innen-)Winkel in 
 einem Dreieck stets $\pi$ beziehungsweise $180\MGrad$ betr\"agt.
 
 \begin{MHint}{Tipp}
@@ -2181,10 +2217,10 @@ Vielecks einfach berechnet werden kann.
 
 Im vorherigen Abschnitt \MRef{M05_Dreiecke} wurden Dreiecke betrachtet. 
 Dazu wurde von drei Punkten ausgegangen, die nicht auf einer Geraden liegen. 
-Verbindet man drei solche Punkte durch alle m"oglichen Strecken zwischen zwei 
-der drei Punkte, ergibt sich immer ein geschlossener Weg, in dem jeder gegebene 
-Punkt genau zwei Strecken verbindet. 
-Dabei haben die Strecken nur ihre Endpunkte mit anderen Strecken gemeinsam. 
+Will man all diese drei Punkte durch alle m\"oglichen Kombinationen
+von 3 Strecken (zwischen jeweils zwei der drei Punkte) verbinden,
+ergibt sich immer ein geschlossener Weg. 
+Dabei ist jeder gegebene Punkt immer eine Schnittstelle von genau zwei Strecken.
 Au"serdem gibt es keine Kreuzungspunkte.
 
 Bei mehr als drei Punkten ist dies nicht immer der Fall. Bereits vier Punkte 
@@ -2228,17 +2264,19 @@ ist, also $2 \pi$ beziehungsweise $360\MGrad$ betr"agt.
 
 \begin{MXInfo}{Vierecke}\MLabel{VBKM05_Vierecke}%
 Es werden \MEntry{Vierecke}{Viereck} betrachtet, die sich dadurch ergeben,
-dass vier gegebene Punkte so durch Strecken miteinander werden, dass ein
-einziger geschlossener, kreuzungsfreier Weg durch alle vier Punkte entsteht.
+dass vier gegebene Punkte so durch Strecken miteinander verbunden werden, dass 
+ein einziger geschlossener, kreuzungsfreier Weg durch alle vier Punkte entsteht.
 Dabei sollen je drei der gegebenen Punkte, die durch zwei Strecken miteinander 
 verbunden sind, nicht auf einer Geraden liegen.
 
 Wie bei Dreiecken werden auch bei Vierecken die Innenwinkel kurz als Winkel 
-bezeichnet, wenn in einem besonderen Kontext nichts anderes vermerkt wird.
+bezeichnet. In den Situationen, in denen neben Innenwinkeln auch Au"senwinkel 
+betrachtet werden, ist es hilfreich, jeweils ausdr"ucklich anzugeben, ob ein
+Innenwinkel oder ein Au"senwinkel betrachtet wird.
 \end{MXInfo}
 
-Ebenso wie bei Dreiecken wird auch die Idee zu Vierecken in vielf"altiger Weise 
-in technischen Konstruktionen verwendet. Dadurch sind weitere allt"agliche Namen 
+Genauso wie Dreiecke, werden auch Vierecke in vielf"altiger Weise 
+in der technischen Konstruktionen verwendet. Dadurch sind weitere allt"agliche Namen 
 gebr"auchlich, die verschiedene Klassen von Vierecken bezeichnen.
 
 Wie bei Dreiecken werden auch Vierecke nach der L"ange von Seiten oder nach der 
@@ -2252,7 +2290,7 @@ F"ur Vierecke mit den folgenden weiteren Eigenschaften werden eigene Begriffe
 eingef"uhrt: Ein Viereck hei"st
 \begin{itemize}
 \item \MEntry{Trapez}{Trapez}, falls wenigstens zwei Seiten parallel sind;
-\item \MEntry{Parallelogramm}{Parallelogramm}, falls je zwei 
+\item \MEntry{Parallelogramm}{Parallelogramm}, falls alle beiden zwei 
  gegen\"uberliegende Seiten parallel sind;
 \item \MEntry{Raute}{Raute} oder 
  \MEntry{gleichseitiges Viereck}{gleichseitiges Viereck} oder 
@@ -2310,7 +2348,7 @@ Unter den gerade eingef"uhrten speziellen Vierecken gibt es eine ganze
 Reihe von Zusammenh"angen:
 
 \begin{MXInfo}{Beziehungen zwischen Vierecken}\MLabel{VBKM05_Vierecke_Beziehungen}%
-Es gelten folgende Beziehungen zwischen Vierecken:
+Es gelten unter anderem folgende Beziehungen zwischen Vierecken:
 \begin{itemize}
  \item Jedes Quadrat ist ein Rechteck.
 \item Jedes Quadrat ist eine Raute.
@@ -2332,8 +2370,8 @@ Ein Viereck ist genau dann ein Parallelogramm, wenn
 %jgl: Es werden hier nur einfache Vierecke betrachtet:
 %\item es ein einfaches Viereck ist, dessen gegen"uberliegenden Seiten 
 \item gegen"uberliegende Seiten jeweils gleich lang sind;
-\item gegen"uberliegende Innenwinkel gleich gro"s sind;
-\item zwei benachbarte Innenwinkel zusammen $\pi$ bzw. $180\MGrad$ ergeben; 
+\item gegen"uberliegende Winkel gleich gro"s sind;
+\item zwei benachbarte Winkel zusammen $\pi$ bzw. $180\MGrad$ ergeben; 
 \item die Diagonalen einander halbieren.
 \end{itemize}
 \end{minipage}
@@ -2494,15 +2532,15 @@ Diagonalen einfach beschrieben werden.
 \begin{minipage}{9.6cm}
 Ein Viereck ist genau dann ein Rechteck, wenn
 \begin{itemize}
-\item alle Innenwinkel gleich gro"s sind;
-\item es ein Parallelogramm ist, bei dem wenigstens ein Innenwinkel ein 
+\item alle Winkel gleich gro"s sind;
+\item es ein Parallelogramm ist, bei dem wenigstens ein Winkel ein 
  rechter Winkel ist;
 \item es ein Parallelogramm ist, bei dem die Diagonalen gleich lang sind; 
 \item die Diagonalen einander halbieren und gleich lang sind;
 %jgl: Folgende Aussage beschreibt ein spezielles(!) Recheck: ein Quadrat, sodass
 %die Aequivalenz hier falsch ist:
 %\item es eine Raute mit gleich langen Diagonalen ist;
-\item die Diagonalen einander halbieren und wenigstens ein Innenwinkel 
+\item die Diagonalen einander halbieren und wenigstens ein Winkel 
  ein rechter Winkel ist.
 \end{itemize}
 \end{minipage}
@@ -2571,8 +2609,8 @@ Ein Viereck ist genau dann ein Quadrat, wenn
 \begin{itemize}
 \item alle Seiten gleich lang sind und 
  \begin{itemize}
- \item alle Innenwinkel gleich gro"s sind oder 
- \item wenigstens ein Innenwinkel ein rechter Winkel ist;
+ \item alle Winkel gleich gro"s sind oder 
+ \item wenigstens ein Winkel ein rechter Winkel ist;
  \end{itemize}
 \item die Diagonalen gleich lang sind und zudem 
 alle Seiten gleich lang sind;
@@ -2580,14 +2618,14 @@ alle Seiten gleich lang sind;
 %\item es ein Parallelogramm ist, in welchem die Diagonalen einander 
 % halbieren (jgl: dies gilt in jedem Parallelogramm) und 
 % \begin{itemize}
-%  \item alle Innenwinkel gleich gro"s sind oder
+%  \item alle Winkel gleich gro"s sind oder
 %  \item welches wenigstens einen rechten Winkel besitzt;
 %\end{itemize}
 %jgl: Vorschlag fuer eine weitere Charakerisierung:
 \item die Diagonalen senkrecht zueinander stehen und 
  \begin{itemize}
   \item sich halbieren und gleich lang sind oder
-  \item alle Innenwinkel gleich gro"s sind;
+  \item alle Winkel gleich gro"s sind;
  \end{itemize}
 \item es eine Raute mit gleich langen Diagonalen ist;
 \item es sowohl eine Raute als auch ein Rechteck ist.
@@ -2680,7 +2718,7 @@ einem rechten Winkel. In Vierecken ist eine Ecke nicht mehr ganz so bestimmend.
 Daf"ur gibt es mehr Variationen der Formen.
 %
 Wenn {\glqq}viele{\grqq} Punkte durch Strecken zu einer geschlossenen 
-Figur, einem Vieleck, verbunden werden, ergeben sich viele M"oglichkeit, 
+Figur, einem Vieleck, verbunden werden, ergeben sich viele M"oglichkeiten, 
 vielf"altige Fl"achen zu gestalten und sogar runde Formen anzun"ahern.
 
 %Beispiele von Vielecken mit einer eingezeichneten Diagonale:
@@ -2724,9 +2762,9 @@ vielf"altige Fl"achen zu gestalten und sogar runde Formen anzun"ahern.
 \end{center}
 
 Eine so detaillierte Einteilung wie f"ur Dreiecke oder Vierecke ist dabei
-kaum mehr m"oglich. Die neuen M"oglichkeiten wie die Ann"aherung an 
-runde Formen f"uhren auch auf andere interessante Fragen. Dazu werden nicht 
-einzelne Vielecke sondern Konstruktionsprinzipien f"ur eine Abfolge von vielen
+kaum mehr m"oglich. Die neuen M"oglichkeiten, wie die Ann"aherung an 
+runde Formen, f"uhren auch auf andere interessante Fragen. Dazu werden nicht 
+einzelne Vielecke, sondern Konstruktionsprinzipien f"ur eine Abfolge von vielen
 Vielecken betrachtet. Und andererseits kann jedes Vieleck bei Bedarf 
 in Dreiecke zerlegt werden, wie dies schon bei Vierecken beobachtet wurde.
 Eine Eigenschaft einer besonderen Ecke wird somit vielfach unter dem Aspekt 
@@ -2745,13 +2783,17 @@ Eigenschaften zeigen. Im linken Vieleck sind alle (Innen-) Winkel kleiner
 als $\pi$ beziehungsweise $180\MGrad$. In dieser Situation spricht man auch 
 von einem konvexen Vieleck. Anders ist es im mittleren Vieleck, in dem es eine
 Ecke mit einem gr"o"seren Winkel gibt. 
-Im links dargestellten Vieleck sind alle Innenwinkel gleich, woraus sich ein 
+<<<<<<< HEAD
+Im rechts dargestellten Vieleck sind alle Innenwinkel gleich, woraus sich ein 
+=======
+Im rechts dargestellten Vieleck sind alle Winkel gleich, woraus sich ein 
+>>>>>>> master_kit
 sehr gleichm"a"siger Verlauf der Seiten ergibt.
 %Au"serdem bieten Vielecke die M"oglichkeit, vielf"altige Fl"achen zu gestalten 
 %und sogar runde Formen anzun"ahern.
 
 \begin{MXInfo}{Vielecke}\MLabel{VBKM05_Vielecke}%
-Es seien $n$ Punkte in der Ebene gegeben, wobei $n$ eine nat\"urliche Zahl mit 
+Es seien $n$ Punkte in der Ebene gegeben, wobei $n$ eine nat"urliche Zahl mit 
 $n \geq 3$ sei.
 Hier werden \MEntry{Vielecke}{Vieleck} betrachtet, die dadurch entstehen, dass
 die Punkte nacheinander durch Strecken miteinander verbunden werden, sodass 
@@ -2769,9 +2811,9 @@ Ein Vieleck wird auch als \MEntry{$n$-Eck}{$n$-Eck} oder
  die $n$ Verbindungsstrecken hei"sen
  \MEntry{Seiten}{Seite (Vieleck)} des Vielecks.
 
-\item Jedes Vieleck kann man in $(n-2)$ einander nicht \"uberlappende 
- Dreiecke zerlegen. Die Summe aller Innenwinkel eines Vielecks betr\"agt daher 
- $(n-2) \cdot \pi$ beziehungsweise $(n-2) \cdot 180\MGrad$.
+\item Jedes Vieleck kann man in $(n-2)$ einander nicht "uberlappende 
+ Dreiecke zerlegen. Die Summe aller (Innen-)Winkel eines Vielecks betr"agt 
+ daher $(n-2) \cdot \pi$ beziehungsweise $(n-2) \cdot 180\MGrad$.
 
 \item Die Verbindungsstrecken zwischen je zwei Ecken, die nicht auf derselben 
  Seite des Vielecks liegen, hei"sen die \MEntry{Diagonalen}{Diagonale (Vieleck)} 
@@ -2784,8 +2826,8 @@ gleich gro"sen Innenwinkeln. F"ur $n = 3$ sind dies die gleichseitigen
 Dreiecke, und von den Vierecken sind es die Quadrate.
 
 \begin{MXInfo}{Regelm"a"sige Vielecke}
-Ein Vieleck, dessen Seiten alle die gleiche L\"ange haben und dessen 
-Innenwinkel zudem alle gleich gro"s sind, nennt man
+Ein Vieleck, dessen $n$ Seiten alle die gleiche L"ange haben und dessen 
+(Innen-)Winkel zudem alle gleich gro"s sind, nennt man
 \MEntry{regelm"a"siges Vieleck}{regelm"a"siges Vieleck}
 oder \MEntry{regelm"a"siges $n$-Eck}{regelm"a"siges n-Eck}.
 \end{MXInfo}
@@ -2844,7 +2886,7 @@ Sechsecke.
 Regelm"a"sige Vielecke haben verschiedene Symmetrieeigenschaften. Alle Geraden 
 durch die Seitenmitten,  die senkrecht auf einer Seite stehen, schneiden sich
 in einem Punkt $M$. Eine Spiegelung an einer solchen Geraden bildet das 
-Vieleck auf sich ab.
+Vieleck auf sich ab (Spiegelsymmetrie).
 
 Au"serdem sind regelm"a"sige Vielecke in der Weise rotationssymmetrisch, dass das 
 Vieleck auf sich abgebildet wird, wenn man es um $M$ um den Winkel 
@@ -2862,8 +2904,8 @@ Wenn ein Vieleck weitere Eigenschaften hat, die einen Bezug zur L"ange der
 Seiten haben, kann es weitere Aussagen zum Umfang geben.
 
 Es werden zun"achst Vierecke betrachtet. Wenn $a$ und $b$ 
-benachbarte Seiten eines Parallelogramms sind, dass ist sein Umfang
-$U = a + b + a + b = 2 \cdot a \cdot b$.
+benachbarte Seiten eines Parallelogramms sind, dann ist sein Umfang
+$U = a + b + a + b = 2 \cdot (a + b)$.
 
 Bei einer Raute und auch bei einem Quadrat sind alle vier Seiten gleich lang, 
 sodass sein Umfang durch $U = 4 \cdot a$ gegeben ist, wenn $a$ die L"ange einer 
@@ -2940,16 +2982,16 @@ $U_6 = 2 \cdot r \cdot 6 \cdot \frac{1}{2} = 6 \cdot r$.
 Je gr"o"ser $n$ ist, um so mehr n"ahert sich der Umfang des Vielecks dem Wert 
 $2 \cdot r \cdot \pi \approx \MZahl{6}{283} \cdot r$ an, der den Umfang eines 
 Kreises mit Radius $r$ angibt. Dies kann mit weiterf"uhrenden Methoden der 
-Differentialrechnung begr"undet werden, in deren Grundideen im Kapitel 
+Differentialrechnung begr"undet werden, dessen Grundideen im Kapitel 
 \MRef{VBKM07} eingef"uhrt wird. Die Idee hinter der beschriebenen Ann"aherung
-kann man hier so beschreiben: Zu einem schwierig zu berechnenden Wert wie dem 
-Kreisumfang sucht man nach vielen vergleichbaren Objekten, hier den regelm"a"sigen 
+kann man hier so beschreiben: Zu einem schwierig zu berechnenden Wert, wie dem 
+Kreisumfang, sucht man nach vielen vergleichbaren Objekten, hier den regelm"a"sigen 
 Vielecken, die zwei Eigenschaften haben: Ihr Umfang ist einfach zu berechnen, 
 und bei hinreichend gro"ser Eckenzahl unterscheiden sie sich hinsichtlich des 
 Umfangs vom Kreis um weniger als irgend eine vorgegebene positive Zahl (hier
 denkt man an {\glqq}kleine{\grqq} Zahlen).
 Dieses Vorgehen eignet sich auch f"ur die Berechnung von Fl"achen, die nicht 
-durch Strecken berandet werden (siehe Kapitel \MRef{VBKM08}).
+durch gerade Strecken berandet werden (siehe Kapitel \MRef{VBKM08}).
 Dazu wird im Folgenden zun"achst die Berechnung von Fl"acheninhalten von 
 Vielecken erl"autert, die in dieser Hinsicht relativ einfach ist und die 
 Ausgangspunkt f"ur eine Ann"aherung sein kann, wie das obige Bild eines 
@@ -3275,13 +3317,14 @@ Auch in der Formel f"ur den Fl\"acheninhalt von Kreisen kommt
 die Kreiszahl vor.
 
 \begin{MXInfo}{Fl"acheninhalt eines Kreises}
-Der Fl\"acheninhalt eines Kreises mit dem Radius $r$ berechnet sich zu 
+Der Fl"acheninhalt $F$ eines Kreises mit dem Radius $r$ berechnet sich zu 
 \[ F =\pi\cdot r^2 \MDFPeriod\]
 \end{MXInfo}
 
 \begin{MExample}
-Ein Kreis mit dem Radius habe einen Fl\"acheninhalt von rund $\MZahl{12}{566}$.
-Hieraus l\"asst sich die Kreiszahl $\pi$ n"aherungsweise berechnen:
+Ein Kreis mit dem Radius $r = 2$ habe einen Fl"acheninhalt $F$ von rund 
+$\MZahl{12}{566}$.
+Hieraus l"asst sich die Kreiszahl $\pi$ n"aherungsweise berechnen:
 Aus $F =\pi\cdot r^2$ folgt $\pi = \frac{F}{r^2}$.
 Mit den angegebenen Werten ergibt sich der N"aherungswert
 \[
@@ -3371,7 +3414,7 @@ kompliziertere, die trotzdem einfach beschrieben werden k"onnen.
 \begin{MXContent}{Elementargeometrische K"orper}{Elementargeometrische K"orper}{STD}%
 \MDeclareSiteUXID{VBKM05A_ElementareKoerper_Content}
 
-Punkte sind die einfachsten grundlegenden geometrischen Objekte. Verschiebungen
+Punkte sind die einfachsten geometrischen Objekte. Verschiebungen
 f"uhren auf Strecken, und Operationen wie das Verschieben oder Drehen von 
 Strecken in der Ebene f"uhren auf elementargeometrische Figuren. 
 Beispielsweise ergeben sich Vielecke und Kreise, wie sie oben beschrieben 
@@ -3673,11 +3716,7 @@ die Oberfl"ache $O$ einer Pyramide, deren
 Seiten alle gleichseitige Dreiecke mit der Seitenl"ange $a$ sind.
 
 Antwort: 
-%\begin{MExerciseItems}
-%\item \MEquationItem{$V$}{\MLSimplifyQuestion{30}{ ? }{10}{a}{4}{32}{ExM05TPyr1}}
-%\item 
-\MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*a*sqrt(3)}{10}{a}{4}{32}{ExM05TPyr2}}
-%\end{MExerciseItems}
+\MEquationItem{$O$}{\MLSimplifyQuestion{30}{a*a*sqrt(3)}{10}{a}{4}{512}{ExM05TPyr2}}
 
 \begin{MHint}{L"osung}
 Eine Pyramide, deren Seiten alle gleichseitige Dreiecke sind, hat insgesamt 
@@ -3808,16 +3847,16 @@ Wie h"angen beide Gr"o"sen zusammen?
 \begin{MExercise}
 Stellen Sie sich vor, der gerade Kegel wird von der Spitze eben 
 durch den Mittelpunkt der Kreisscheibe in zwei gleiche Teile zerlegt.
-Dann ist eine Seite der beiden Teile jeweils ein Dreieck, durch dessen Seiten 
-die H"ohe $h$, der Abstand $\ell$ und der Radius $r$ beziehungsweise der 
-Durchmesser der Kreisscheibe bestimmt werden.
+Dann ist eine Seite der beiden Teile jeweils ein Dreieck, dessen Seiten durch  
+die H"ohe $h$, den Abstand $\ell$ und den Radius $r$  
+der Kreisscheibe bestimmt werden.
 Hierbei werden $r$ und $h$ als gegeben angesehen.
 
 \begin{MExerciseItems}
 \item
 Beschreiben Sie $\ell$ in Abh"angigkeit von $h$ und $r$:
 \par
-\MEquationItem{$\ell$}{\MLSimplifyQuestion{30}{sqrt(r*r + h*h)}{10}{r,h}{4}{32}{ExM05Zyla}}
+\MEquationItem{$\ell$}{\MLSimplifyQuestion{30}{sqrt(r^2 + h^2)}{10}{r,h}{4}{512}{ExM05Zyla}}
 
 \begin{MHint}{L"osung}
 Die L"ange $\ell$ ist die Hypotenuse des Dreiecks, dessen Katheten die H"ohe
@@ -3828,7 +3867,7 @@ des Pythagoras ergibt sich $\ell = \sqrt{r^2 + h^2}$.
 \item
 Geben Sie die Oberfl"ache $O$ des Kegels in Abh"angigkeit von $h$ und $r$ an:
 \par
- \MEquationItem{$O$}{\MLSimplifyQuestion{30}{pi*r*(r + sqrt(r*r + h*h))}{10}{r,h}{4}{32}{ExM05Zylb}}
+ \MEquationItem{$O$}{\MLSimplifyQuestion{30}{pi*r*(r + sqrt(r^2 + h^2))}{10}{r,h}{4}{512}{ExM05Zylb}}
 
 \begin{MHint}{L"osung}
 Es wird das Ergebnis $\ell = \sqrt{r^2 + h^2}$ der ersten Teilaufgabe in die 
@@ -3836,7 +3875,7 @@ oben angegebene Formel f"ur die Oberfl"ache $O$ eingesetzt. Damit erh"alt man
 \[
 O = \pi \cdot r \cdot (r + \ell) %
  = \pi \cdot r \cdot \left(r + \sqrt{r^2 + h^2}\right) %
- = \pi \cdot r^2 \cdot \left(1 + \sqrt{1 + \left(\frac{h}{r}\right)} \right). %%
+ = \pi \cdot r^2 \cdot \left(1 + \sqrt{1 + \left(\frac{h}{r}\right)^2} \right). %%
 \]
 Mit der zuletzt genannten Formel sieht man, wie sich die Oberfl"ache $O$ im 
 Vergleich zur Kreisfl"ache $G = \pi \cdot r^2$ mit dem Verh"altnis von H"ohe $h$
@@ -3864,22 +3903,101 @@ Grundfl"ache ein Dreieck ist, von dem zwei Seiten $5\MEinheit{cm}$ lang sind,
 und eine Seite $6\MEinheit{cm}$ lang ist.
 \par
 Antwort: \MLParsedQuestion{15}{96}{10}{ExM05EK1}$\MEinheit{cm}^3$
+\begin{MHint}{L"osung}
+Die Grundfl"ache des Prismas ist ein gleichseitiges Dreieck mit den gleich
+langen Seiten $a$ und $b$ und einer weiteren Seite $c$. Deshalb kann die 
+H"ohe $h_c$ auf $c$ mit dem Satz des Pythagoras berechnet werden. Mit den 
+angegebenen Werten erh"alt man die H"ohe 
+$h_c = \sqrt{(5\MEinheit{cm})^2 - \left(\frac{6\MEinheit{cm}}{2}\right)^2} %
+ = 4\MEinheit{cm}$ und damit
+den Fl"acheninhalt 
+$G = \frac{1}{2} \cdot 6\MEinheit{cm} \cdot 4\MEinheit{cm} = 12\MEinheit{cm}^2$.
+Das gesuchte Volumen $V$ des Prismas ist
+$V = G \cdot h = 12\MEinheit{cm}^2 \cdot 8\MEinheit{cm} %
+ =  96\MEinheit{cm}^3$.
+\end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
-Die Oberfl"ache eines Zylinders mit einer H"ohe von $h = 6\MEinheit{cm}$ 
-soll mit einer Farbfolie beklebt werden. Die Oberfl"ache soll 
-$O = 200\MEinheit{cm}^2$ gro"s sein. Berechnen Sie den Durchmesser $d$ der 
-Kreisfl"ache und das Volumen $V$ des Zylinders.
+Die Oberfl"ache eines Zylinders mit einer H"ohe von 
+$h = \MZahl{6}{0}\MEinheit{cm}$ soll mit einer Farbfolie beklebt werden. 
+Die Oberfl"ache soll $O = \MZahl{200}{0}\MEinheit{cm}^2$ gro"s sein. Berechnen 
+Sie den Durchmesser $d$ der Kreisfl"ache und das Volumen $V$ des Zylinders.
 Verwenden Sie als N"aherung f"ur $\pi$ den Wert $\MZahl{3}{1415}$ und runden 
-Sie Ihre Ergebnisse auf Millimeter.
+Sie Ihre Ergebnisse auf eine Nachkommastelle (dies entspricht einer Genauigkeit
+von einem Millimeter beziehungsweise Qubikmillimeter).
 
 Antworten:
 \begin{MExerciseItems}
-\item %
- \MEquationItem{$d$}{\MLParsedQuestion{15}{177}{10}{ExM05EK21}}$\MEinheit{cm}$
-\item %
- \MEquationItem{$V$}{\MLParsedQuestion{15}{177}{10}{ExM05EK22}}$\MEinheit{cm}^3$
+\item Durchmesser %
+%Ergebnis auf eine Nachkommastelle:
+ \MEquationItem{$d$}{\MLParsedQuestion{15}{6.8}{10}{ExM05EK21}}$\MEinheit{cm}$
+%Ergebnis auf zwei Nachkommastelle:
+% \MEquationItem{$d$}{\MLParsedQuestion{15}{6.78}{10}{ExM05EK21}}$\MEinheit{cm}$
+
+\begin{MHint}{L"osung}
+Die Oberfl"ache eines Zylinders ergibt sich aus der Summe der Grundfl"achen und 
+der Mantelfl"ache:
+\[
+O = 2 \cdot \pi \cdot \left(\frac{d}{2}\right)^2 + \pi \cdot d \cdot h %
+ = \frac{1}{2} \cdot \pi \cdot d^2 + \pi \cdot h \cdot d %
+ = \frac{\pi}{2} \cdot \left( d^2 + 2 \cdot h \cdot d \right) \MDFPeriod %
+\]
+In der Aufgabe sind die Oberfl"ache $O$ und die H"ohe $h$ des Zylinders gegeben.
+Damit kann der gesuchte Kreisdurchmesser $d$ des Bodens berechnet werden, indem 
+eine L"osungsformel f"ur eine quadratische Gleichung verwendet wird oder eine 
+quadratische Erg"anzung vorgenommen wird (siehe Kapitel \MRef{VBKM01}):
+Multiplikation mit $\frac{2}{\pi}$ und Addition von $h^2$ f"uhrt auf
+\[
+(d + h)^2 = d^2 + 2 h d + h^2 = \frac{2 \cdot O}{\pi} + h^2 \MDFPSpace, %%
+\]
+woraus 
+\[ 
+d = -h + \sqrt{\frac{2 \cdot O}{\pi} + h^2} %%
+\]
+folgt.
+Mit den angegebenen Zahlenwerten ergibt sich
+\[
+d \approx -\MZahl{6}{0}\MEinheit{cm} %
+ + \sqrt{\frac{2 \cdot \MZahl{200}{0}\MEinheit{cm}^2}{\MZahl{3}{1415}} %
+      + \MZahl{6}{0}^2\MEinheit{cm}^2} %
+  = -\MZahl{6}{0}\MEinheit{cm} %
+ + \sqrt{\frac{\MZahl{400}{0}\MEinheit{cm}^2}{\MZahl{3}{1415}} %
+      + \MZahl{36}{0}\MEinheit{cm}^2} %
+%Ergebnis auf eine Nachkommastelle:
+% = \MZahl{6}{8}\MEinheit{cm} %%
+%Ergebnis auf zwei Nachkommastellen:
+ \approx \MZahl{6}{8}\MEinheit{cm} %%
+\]
+f"ur den gesuchten Durchmesser.
+\end{MHint}
+\item Volumen %
+%Ergebnis auf eine Nachkommastelle:
+\MEquationItem{$V$}{\MLParsedQuestion{15}{217.9}{10}{ExM05EK22}}$\MEinheit{cm}^3$
+(mit dem gerundeten Ergebnis der ersten Teilaufgabe)
+%Ergebnis auf zwei Nachkommastellen:
+%\MEquationItem{$V$}{\MLParsedQuestion{15}{216.61}{10}{ExM05EK22}}$\MEinheit{cm}^3$
+
+\begin{MHint}{L"osung}
+Mit dem in der vorherigen Teilaufgabe berechneten Durchmesser 
+$d = \MZahl{6}{8}\MEinheit{cm}$ erh"alt man das Volumen $V$ des Zylinders:
+\begin{eqnarray*}
+V = \pi \cdot \left(\frac{d}{2}\right)^2 \cdot h %
+ \approx \MZahl{3}{1415} \cdot \left(\frac{\MZahl{6}{8}\MEinheit{cm}}{2}\right)^2 %
+   \cdot \MZahl{6}{0}\MEinheit{cm} %
+ & = & \MZahl{3}{1415} \cdot \MZahl{11}{56}\MEinheit{cm}^{2} %
+   \cdot \MZahl{6}{0}\MEinheit{cm}  \\
+ & = & \MZahl{3}{1415} \cdot \MZahl{69}{36}\MEinheit{cm}^{3} \\
+%Ergebnis auf eine Nachkommastelle:
+ & \approx & \MZahl{217}{9}\MEinheit{cm}^{3} \MDFPeriod %
+%Ergebnis auf zwei Nachkommastellen:
+% & = & \MZahl{216}{61}\MEinheit{cm}^{3} \MDFPeriod %
+\end{eqnarray*}
+Anmerkung: Wenn das Ergebnis des Durchmessers 
+$d \approx \MZahl{6}{78}\MEinheit{cm}$ mit zwei Nachkommastellen berechnet
+wird, erh"alt man $V \approx \MZahl{216}{61}\MEinheit{cm}^{3}$ als Wert f"ur 
+das Volumen.
+\end{MHint}
 \end{MExerciseItems}
 \end{MExercise}
 
@@ -3893,17 +4011,18 @@ Durchmesser von $d = 20\MEinheit{cm}$ {\glqq}mittig{\grqq} ausgebohrt (das
 hei"st, der Schnittpunkt der Diagonalen der quadratischen Grundfl"ache bildet 
 den Mittelpunkt der Kreisscheibe des Zylinders). 
 Verwenden Sie als N"aherung f"ur $\pi$ den Wert $\MZahl{3}{1415}$ und runden 
-Sie Ihre Ergebnisse auf die ganze Zahlen.
+Sie Ihre Ergebnisse auf ganze Zahlen.
 Berechnen Sie
 \begin{MExerciseItems}
 \item das Volumen $V_Z$ des ausgebohrten Hohlraums:
 \par
 \MEquationItem{$V_Z$}{\MLParsedQuestion{15}{37698}{10}{ExM05EK21b}}$\MEinheit{cm}^3$
+
 \begin{MHint}{L"osung}
 Das Volumen des Zylinders ist
 \[
 V_Z = \pi \cdot \left(\frac{d}{2}\right)^2 \cdot h %
- = \MZahl{3}{1415} \cdot \left(\frac{20\MEinheit{cm}}{2}\right)^2 %
+ \approx \MZahl{3}{1415} \cdot \left(\frac{20\MEinheit{cm}}{2}\right)^2 %
    \cdot 120\MEinheit{cm} %
  = \MZahl{3}{1415} \cdot 12000\MEinheit{cm}^{3} %
  = 37698\MEinheit{cm}^{3} %
@@ -3913,23 +4032,33 @@ V_Z = \pi \cdot \left(\frac{d}{2}\right)^2 \cdot h %
 \item den prozentualen Anteil des Volumens $V_1$ des neuen Holzst"ucks, 
 das nach dem Ausbohren von $V_0$ noch vorhanden ist:
 \par
-Antwort: \MLParsedQuestion{15}{81}{10}{ExM05EK21c} $\%$
+Antwort: \MLParsedQuestion{15}{80}{10}{ExM05EK21c} $\%$
+
 \begin{MHint}{L"osung}
-Das Volumen $V$ des Holzst"ucks ist
+Das Volumen $V_0$ des Holzst"ucks ist
 \[
-V = s^2 \cdot h %
+V_0 = s^2 \cdot h %
  = \left(40\MEinheit{cm}\right)^2 \cdot 120\MEinheit{cm} %
  = 1600 \cdot 120\MEinheit{cm}^{3} %
  = 16 \cdot 12000\MEinheit{cm}^{3} %
+ = 192000\MEinheit{cm}^{3} %
 \]
 Damit ist der Anteil $p_Z$ des ausgebohrten Zylinders durch
 \[
-p_Z = \frac{V_Z}{V} %
+p_Z = \frac{V_Z}{V_0} %
  = \frac{\pi \cdot 12000\MEinheit{cm}^3}{16 \cdot 12000\MEinheit{cm}^3} %
- \approx \frac{\MZahl{3}{1415}}{16} \approx 19 \% %%
+ \approx \frac{\MZahl{3}{1415}}{16} \approx \MZahl{19}{6} \approx 20 \% %%
 \]
-und somit $p = (100 - 19) \% = 81 \%$ der prozentuale Anteil des neuen 
+und somit $p = (100 - 20) \% = 80 \%$ der prozentuale Anteil des neuen 
 Holzst"ucks im Vergleich zum urspr"unglichen Holzquader.
+%
+%Anmerkung: Wenn mit dem gerundeten Ergebnis aus der ersten Teilaufgaben 
+%weiter gerechnet wird, erh"alt man
+%$p = 1 - \frac{V_Z}{V_0} %
+% = 1 - \frac{37698\MEinheit{cm}^{3}}{192000\MEinheit{cm}^{3}} %
+% \approx \MZahl{0}{803} \approx{80} \%$
+%als prozentualen Anteil, und damit in diesem Beispiel dasselbe gerundete 
+%Ergebnis.
 \end{MHint}
 \end{MExerciseItems}
 \end{MExercise}
@@ -4081,24 +4210,27 @@ genannt.
 \begin{itemize}
 \item
 Die Zuordnung zwischen Winkel $x$ und dem Verh"altnis zwischen Gegenkathete $a$ 
-und Ankathete $b$ wird als Tangens bezeichnet:
+und Ankathete $b$ wird als Tangens 
 \[
 \tan(x) := \frac{\text{Gegenkathete}}{\text{Ankathete}} = \frac{a}{b} %%
 \]
+bezeichnet.
 %
 \item
-Die Zuordnung zwischen Winkel $x$ und dem Verh"altnis zwischen Ankathete $b$ und 
-Hypotenuse $c$ wird als Kosinus bezeichnet:
+Die Zuordnung zwischen Winkel $x$ und dem Verh"altnis zwischen Ankathete $b$ 
+und Hypotenuse $c$ wird als Kosinus 
 \[
 \cos(x) := \frac{\text{Ankathete}}{\text{Hyptenuse}} = \frac{b}{c} %%
 \]
+bezeichnet.
 %
 \item
 Die Zuordnung zwischen Winkel $x$ und dem Verh"altnis zwischen Gegenkathete $a$ 
-und Hypotenuse $c$ wird als Sinus bezeichnet:
+und Hypotenuse $c$ wird als Sinus 
 \[
 \sin(x) := \frac{\text{Gegenkathete}}{\text{Hyptenuse}} = \frac{a}{c} %%
 \]
+bezeichnet.
 \end{itemize}
 \end{MXInfo}
 
@@ -4129,12 +4261,13 @@ Der Sinus l\"asst sich sofort aus den Angaben berechnen:
 F\"ur den Kosinus wird die L\"ange der Seite $b$ ben\"otigt, welche man 
 mithilfe des Satzes von Pythagoras erh\"alt:
 \[
-b^2 = c^2 - a^2 %%
+b^2 = c^2 - a^2 \MDFPeriod %%
 \]
 Daraus folgt:
 \[
 \cos\left(\alpha\right)=\frac{b}{c}=\frac{\sqrt{c^2-a^2}}{c} %
- =\frac{\sqrt{\left(5\MEinheit{cm}\right)^2 - \left(\MZahl{2}{5}\MEinheit{cm}\right)^2}}{5\MEinheit{cm}}=\MZahl{0}{866} \MDFPeriod %%
+ = \frac{\sqrt{\left(5\MEinheit{cm}\right)^2 - \left(\MZahl{2}{5}\MEinheit{cm}\right)^2}}{5\MEinheit{cm}} %
+ = \MZahl{0}{866} \MDFPeriod %%
 \]
 Damit ergibt sich f\"ur den Tangens
 \[
@@ -4255,8 +4388,8 @@ Zusammenh"ange erkennen.
 \item Mit zunehmendem Winkel $\alpha$ nimmt die Gegenkathete $a$ zu und die 
 Ankathete $b$ ab.
 
-Ebenso verhalten sich $\sin\left(\alpha\right)\sim a$ und 
-$\cos\left(\alpha\right)\sim b$.
+Ebenso verhalten sich $\sin\left(\alpha\right)$ zu $a$ und 
+$\cos\left(\alpha\right)$ zu $b$.
 
 \item Mit zunehmendem Winkel $\alpha$ nimmt $a$ in dem gleichen Ma\ss\ zu 
 wie $b$ mit dem von $90\MGrad$ aus fallenden Winkel $\alpha$ abnimmt. Im 
@@ -4296,7 +4429,12 @@ Es soll der Sinus des Winkels $\alpha=45\MGrad$ nun exakt berechnet, also
 nicht wie in Aufgabe \MRef{VBKM05_TrigonometrieAufgabeTabelle} aus 
 gemessenen (und damit fehlerbehafteten) Werten bestimmt werden.
 
-Wenn im rechtwinkligen Dreieck mit $\gamma=90\MGrad$ der Winkel $\alpha$ gleich $45\MGrad$ ist, so muss wegen der Innenwinkelsumme $\alpha+\beta+\gamma=\pi=180\MGrad$ der Winkel $\beta$ auch gleich $45\MGrad=\pi/4$ sein, und die beiden Katheten $a$ und $b$ sind gleich lang. Ein Dreieck mit zwei gleich langen Seiten nennt man \textbf{gleichschenklig}:
+Wenn im rechtwinkligen Dreieck mit $\gamma=90\MGrad$ der Winkel $\alpha$ 
+gleich $45\MGrad$ ist, so muss wegen der Summe der Winkel 
+$\alpha+\beta+\gamma=\pi=180\MGrad$ der Winkel $\beta$ auch gleich 
+$45\MGrad=\pi/4$ sein. Folglich sind die beiden Katheten $a$ und $b$ gleich lang. 
+Ein Dreieck mit zwei gleich langen Seiten nennt man 
+\MEntry{gleichschenklig}{gleichschenklig (Dreieck)}.
 
 \begin{tabular}{@{}lr@{}}
 \MTikzAuto{%
@@ -4317,10 +4455,16 @@ Wenn im rechtwinkligen Dreieck mit $\gamma=90\MGrad$ der Winkel $\alpha$ gleich 
 &
 \begin{minipage}[b]{10cm}
 Es gilt: \[\sin\left(\alpha\right) = \sin\left(45\MGrad\right) = \frac{a}{c} \MDFPeriod\]
-Au\ss erdem gilt: \[a^2+b^2 = 2a^2 = c^2\quad\Rightarrow\quad c=\sqrt{2}\cdot a\]
-\[\Rightarrow\quad \sin\left(45\MGrad\right) = \sin\left(\pi/4\right)=\frac{a}{\sqrt{2}\cdot a} = \frac{1}{2}\cdot \sqrt{2} \MDFPeriod\]
+Au"serdem gilt 
+\[a^2+b^2 = 2a^2 = c^2\quad\Rightarrow\quad c=\sqrt{2}\cdot a\MDFPSpace,\]
+woraus
+\[
+\sin\left(45\MGrad\right) = \sin\left(\pi/4\right) %
+ = \frac{a}{\sqrt{2}\cdot a} = \frac{1}{2}\cdot \sqrt{2} %%
+\]
 \end{minipage}
 \end{tabular}
+folgt.
 In der Aufgabe \MRef{VBKM05_TrigonometrieAufgabeTabelle} wurde der Sinus 
 von $45\MGrad$ durch einen Wert von $\MZahl{0}{7}$ angen"ahert, was dem 
 tats"achlichen Wert von $\frac{1}{2}\cdot \sqrt{2}$ schon recht nahe kommt.
@@ -4472,14 +4616,15 @@ in der mit $\alpha$ bezeichneten letzten Zeile der Winkel im Gradma"s notiert.
 \fi
 
 Diese Werte sollte man sich merken. Die Werte der trigonometrischen Funktionen 
-f\"ur andere Winkel sind in Tabellen bzw. im Taschenrechner gespeichert.
+f"ur andere Winkel sind in Tabellen abgelegt bzw. mit dem Taschenrechner 
+berechenbar.
 
 Damit kann man dann aus einem Winkel und einem Abstand ganz einfach eine H"ohe 
 berechnen. 
 Ist n"amlich $s$ der Abstand zu einem Geb"aude mit Flachdach, das unter einem 
 Winkel $x$ beobachtet wird, ergibt sich aus $\tan(x) = \frac{h}{s}$ n"amlich 
 $h = s \cdot \tan(x)$. Ebenso k"onnen auch $\cos$ und $\sin$ verwendet werden, 
-um L"angen zu bereichnen. Dieser Zusammenhang zwischen Winkeln und L"angen wird
+um L"angen zu berechnen. Dieser Zusammenhang zwischen Winkeln und L"angen wird
 oft verwendet.
 
 Beispielsweise kann man so einen Fl"acheninhalt berechnen, auch wenn eine 
@@ -4778,7 +4923,7 @@ dargestellt).
 }
 \end{center}
 
-Formelm"a"sig ausgedr"uckt, bedeutet dies
+Formelm"a"sig ausgedr"uckt bedeutet dies
 \[
 \cos(-\Mvarphi) = \cos(\Mvarphi)
 \qquad \text{und} \qquad
@@ -4793,15 +4938,15 @@ Aufgabe \MRef{VBKM05_TrigonometrieAufgabeArcsinArccos}).
 
 \begin{MExample}
 Gesucht sind jeweils die Werte des Sinus, Kosinus und Tangens des 
-Winkels $\alpha=315\MGrad$.
+Winkels $\alpha = 315\MGrad$.
 
-F"ur $\alpha=315\MGrad$ liegt der Punkt $P_\alpha$ im vierten Quadranten. 
+F"ur $\alpha = 315\MGrad$ liegt der Punkt $P_\alpha$ im vierten Quadranten. 
 Er wird auf dem Einheitskreis auch durch den negativen Winkel 
 $\Mvarphi = 315\MGrad - 360\MGrad = -45\MGrad$ beschrieben.
 Damit ist
-$\sin(315\MGrad) = \sin(-45\MGrad) = -\sin(45\MGrad)=\frac{1}{2} \sqrt{2}$
+$\sin(315\MGrad) = \sin(-45\MGrad) = -\sin(45\MGrad) = -\frac{1}{2} \sqrt{2}$
 und
-$\cos(315\MGrad) = \cos(-45\MGrad) = \cos(45\MGrad)=\frac{1}{2} \sqrt{2}$
+$\cos(315\MGrad) = \cos(-45\MGrad) = \cos(45\MGrad) = \frac{1}{2} \sqrt{2}$
 sowie $\tan(315\MGrad) = \tan(-45\MGrad) = -1$.
 %Die zugeh"orige Strecke bildet mit den zugeh"origen Achsenabschnitten 
 %ein gleichschenkliges Dreieck. Somit gilt 
@@ -4912,22 +5057,29 @@ gesuchte Wert des Winkels, der in der Zeichnung rosa gekennzeichnet ist.
 
 \begin{MExercise}
 \begin{enumerate}
-\item F\"ur ein bei~$C$ rechtwinkliges Dreieck seien 
-$b = \MZahl{2}{53}\MEinheit{cm}$ und $c = \MZahl{3}{88}\MEinheit{cm}$ gegeben. 
-Geben Sie $\sin \left( \alpha \right)$, $\sin \left( \beta \right)$ und $a$ an!
+\item
+F"ur ein im Punkt $C$ rechtwinkliges Dreieck seien 
+eine Kathete $b = \MZahl{2}{53}\MEinheit{cm}$ und die Hypotenuse 
+$c = \MZahl{3}{88}\MEinheit{cm}$ gegeben. 
+Berechnen Sie die L"ange der anderen Kathete $a$ und die Sinuswerte 
+$\sin \left( \alpha \right)$ sowie $\sin \left( \beta \right)$. 
+Runden Sie Ihre Ergebnisse bitte auf vier Nachkommastellen.
 
 Ergebnisse:
 \begin{itemize}
-\item \MEquationItem{$\sin \left( \alpha \right)$}{\MLParsedQuestion{15}{0.7587}{4}{ExM05Sec6TrigFktWerteAlpha}}
-\item \MEquationItem{$\sin \left( \beta \right)$}{\MLParsedQuestion{15}{0.65201}{4}{ExM05Sec6TrigFktWerteBeta}}
 \item \MEquationItem{$a$}{\MLParsedQuestion{15}{2.9417}{4}{ExM05Sec6TrigFktWerteLaenge}$\MEinheit{cm}$}
+%
+\item \MEquationItem{$\sin \left( \alpha \right)$}{\MLParsedQuestion{15}{0.7582}{4}{ExM05Sec6TrigFktWerteAlpha}}
+%
+\item \MEquationItem{$\sin \left( \beta \right)$}{\MLParsedQuestion{15}{0.6520}{4}{ExM05Sec6TrigFktWerteBeta}}
 \end{itemize}
        
 \begin{MHint}{L\"osung}
 Es ist
 \[
 a = \sqrt{c^2 - b^2}
-= \sqrt{\left( \MZahl{3}{88}\MEinheit{cm} \right)^2 - \left( \MZahl{2}{53}\MEinheit{cm} \right)^2}
+= \sqrt{\left( \MZahl{3}{88}\MEinheit{cm} \right)^2 %
+  - \left( \MZahl{2}{53}\MEinheit{cm} \right)^2}
 = \sqrt{\MZahl{15}{0544}\MEinheit{cm}^2 - \MZahl{6}{4009}\MEinheit{cm}^2}
 = \sqrt{\MZahl{8}{6535}}\MEinheit{cm} \MDFPSpace,
 \]
@@ -4944,25 +5096,36 @@ und
 = \frac{253}{388} \MDFPeriod
 \]
 Numerisch ergibt sich
-$a \approx \MZahl{2}{9417}\MEinheit{cm}$, $\sin \left( \alpha \right) \approx \MZahl{0}{7587}$
-und $\sin \left( \beta \right) \approx \MZahl{0}{65201}$.
+$a \approx \MZahl{2}{9417}\MEinheit{cm}$, 
+$\sin \left( \alpha \right) \approx \MZahl{0}{7582}$
+und $\sin \left( \beta \right) \approx \MZahl{0}{6520}$.
 \end{MHint}
-\item Berechnen Sie den Fl\"acheninhalt $F$ eines Dreiecks mit den Seiten
-$a = 4\MEinheit{m}$ und $c = 60\MEinheit{cm}$
-und dem Winkel $\beta = \Mmeasuredangle(a,c) = \frac{11 \pi}{36}$!
+%\end{MExercise}
 
-Ergebnis: \MEquationItem{$F$}{\MLParsedQuestion{25}{4*sin(11*pi/36)*6/20}{3}{GEO8}$\MEinheit{m}^2$}
+%\begin{MExercise}
+\item
+Es wird ein Dreieck mit den Seiten
+$a = 4\MEinheit{m}$ und $c = 60\MEinheit{cm}$
+und dem Winkel $\beta = \Mmeasuredangle(a,c) = \frac{11 \pi}{36}$ betrachtet.
+Berechnen Sie den Fl"acheninhalt $F$ des Dreiecks und runden Sie Ihr Ergebnis
+auf drei Nachkommastellen. 
+
+Ergebnis: %
+ \MEquationItem{$F$}{\MLParsedQuestion{25}{4*sin(11*pi/36)*6/20}{3}{GEO8}$\MEinheit{m}^2$}
  
 \MInputHint{Geben Sie Ihr Ergebnis bitte auf drei Nachkommastellen gerundet 
 oder als Ausdruck an. Dabei wird der Sinus eines Winkels~$x$ als 
 \texttt{sin(x)} und die Zahl~$\pi$ als \texttt{pi} geschrieben.}
  
 \begin{MHint}{L\"osung}
+Der Fl"acheninhalt ist durch
 \[
-\frac{\left( a \cdot \sin \left( \beta \right) \right) \cdot c}{2}
+F = \frac{1}{2} \cdot \left( a \cdot \sin \left( \beta \right) \right) \cdot c %
+= \frac{1}{2} \cdot 4\MEinheit{m} \cdot \sin \left( \Mtfrac{11 \pi}{36} \right) \cdot \MZahl{0}{6}\MEinheit{m} %
 = \sin \left( \Mtfrac{11 \pi}{36} \right) \cdot \MZahl{1}{2}\MEinheit{m}^2
-\approx \MZahl{0}{98298}\MEinheit{m}^2 \MDFPeriod
+\approx \MZahl{0}{983}\MEinheit{m}^2 %%
 \]
+gegeben.
 \end{MHint}
 \end{enumerate}
 \end{MExercise}
@@ -5180,20 +5343,24 @@ Streckenl"angen $\MGeoAbstand{P}{B}$ und $\MGeoAbstand{Q}{C}$ in Zentimeter:
 
 \begin{MExercise}
 \MLabel{VBKM05_A_Quadratkreise}
-Ein Quadrat mit Seitenl\"ange $a$ sei gegeben. Geben Sie Formeln an f\"ur 
-Fl\"acheninhalt und Umfang des gr\"o\ss tm\"oglichen Kreises innerhalb des 
-Quadrats, sowie f\"ur den kleinstm\"oglichen Kreis, der das Quadrat enth\"alt:
+Ein Quadrat mit Seitenl"ange $a$ sei gegeben. Geben Sie Formeln an f"ur 
+Fl"acheninhalt und Umfang des gr"o"stm"oglichen Kreises innerhalb des 
+Quadrats, sowie f"ur den kleinstm"oglichen Kreis, der das Quadrat enth"alt:
 \begin{MExerciseItems}
-\item{Umfang des Kreises im Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a}{14}{a}{4}{1}{ExM05TestAg41}}
+\item Umfang des Kreises im Quadrat in Abh"angigkeit von der 
+Seitenl"ange $a$: \MLSimplifyQuestion{14}{pi*a}{14}{a}{4}{1}{ExM05TestAg41}
 %
-\item{Fl\"acheninhalt des Kreises im Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{(1/4)*pi*a*a}{14}{a}{4}{1}{ExM05TestAg42}}
+\item Fl"acheninhalt des Kreises im Quadrat in Abh"angigkeit von der 
+Seitenl"ange $a$: \MLSimplifyQuestion{14}{(1/4)*pi*a*a}{14}{a}{4}{1}{ExM05TestAg42}
 %
-\item{Umfang des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{sqrt(2)*pi*a}{14}{a}{4}{1}{ExM05TestAg43}}
+\item Umfang des Kreises um das Quadrat in Abh"angigkeit von der 
+Seitenl"ange $a$: \MLSimplifyQuestion{14}{a*pi*sqrt(2)}{14}{a}{4}{1}{ExM05TestAg43}
 %
-\item{Fl\"acheninhalt des Kreises um das Quadrat in Abh\"angigkeit von der Seitenl\"ange $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{ExM05TestAg44}}
+\item Fl"acheninhalt des Kreises um das Quadrat in Abh"angigkeit von der 
+Seitenl"ange $a$: \MLSimplifyQuestion{14}{pi*a*a/2}{14}{a}{4}{1}{ExM05TestAg44}
 \end{MExerciseItems}
 \par
-In den Antwortfeldern d\"urfen keine Klammern oder Wurzelausdr\"ucke auftauchen.
+In den Antwortfeldern d"urfen keine Klammern oder Wurzelausdr"ucke auftauchen.
 Schreiben Sie beispielsweise $2^{0.5}$ statt $\sqrt{2}$, um die Wurzel zu 
 vermeiden.
 %jgl: Tests aktuell ohne Loesungen (daher auskommentiert):
@@ -5220,3 +5387,5 @@ vermeiden.
 %end of test.
 
 \end{document}
+
+

@@ -27,8 +27,6 @@ from lxml import etree
 
 class TContent(object):
 
-
-
     def __init__(self):
 
         # following properties are used for the root element of the tree, others have to overwrite most of them
@@ -75,7 +73,7 @@ class TContent(object):
         self.uxid = ""
         self.myid = 0 # .id is special in python, 0 is the id of the root element
         self.content = "" # pure html content of the element
-        self.html = "" # will be filled by PageFactory with proper html file content
+        self.html = "" # will be filled by Page with proper html file content
         self.sitejson = dict() # will be filled by PageFactory with content and passed as json to the page
 
         # at time of construction, this object is its own tree

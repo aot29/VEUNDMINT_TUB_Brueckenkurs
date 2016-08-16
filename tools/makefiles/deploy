@@ -1,6 +1,6 @@
 #
 # Deploys the latest development version on the server
-# Must be runa s www-data
+# Must be run as www-data
 #
 # Get latest development version of software and content from repository
 #
@@ -69,7 +69,7 @@ move:
 
 	# Remove the empty directory
 	rm -R $(OUTPUT)
-	
+
 
 # Check beforehand that script is running under correct user
 checkuser:

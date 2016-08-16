@@ -6,17 +6,17 @@ Test the TOC navigation area
 @author: alvaro
 '''
 import unittest
-from test.systemtests.AbstractSystemTest import AbstractSystemTest
+from test.systemtests.SeleniumTest import SeleniumTest
 
 
-class TocTest( AbstractSystemTest ):
+class TocTest( SeleniumTest ):
     pageUrl = "sectionx2.1.0.html"
 
 
     def setUp(self):
-        AbstractSystemTest.setUp( self )
+        SeleniumTest.setUp( self )
         # open a page to test it
-        self._chooseLanguageVersion("de")
+        self._chooseLanguageVersion("de", no_mathjax=True)
 
 
     def testTitlePresent(self):

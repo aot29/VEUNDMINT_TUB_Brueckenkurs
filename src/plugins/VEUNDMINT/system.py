@@ -54,6 +54,7 @@ class System(object):
         self.doColors = options.consolecolors
         self.doVerbose = options.doverbose
         self.beQuiet = options.quiet
+        self.options = options
 
         self.dirstack = []
 
@@ -232,7 +233,6 @@ class System(object):
                 self.message(self.VERBOSEINFO, "Switched ASCII encoding to latin1")
                 enc = "iso-8859-1"
 
-            print(enc)
             with open(name, "r", encoding = enc) as f:
                 text = f.read()
             self.message(self.VERBOSEINFO, "Read string of length " + str(len(text)) + " from file " + name + " encoded in " + m.group(1) + ", converted to python3 unicode string")
@@ -324,7 +324,11 @@ class System(object):
             if self.doEncodeASCII == 1:
                 print(txt.encode(encoding = "us-ascii", errors = "backslashreplace").decode("us-ascii"))
             else:
-                print(txt)
+                try:
+                    print(txt)
+                except:
+                    # this prevents failing on certain consoles
+                    print(txt.encode('utf-8'))
 
 
     # ends the program, returning the maximum error level reached during execution

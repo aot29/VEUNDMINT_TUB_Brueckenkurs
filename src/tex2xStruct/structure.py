@@ -38,6 +38,13 @@ import subprocess
 import plugins
 
 
+# note: imports must be early (before having copied all the files to
+# temporary directories), otherwise all the relative paths will be wrong (= set
+# to the temporary directories), and important files from BASE_DIR cannot be
+# found
+from tex2x.parsers.TTMParser import TTMParser
+
+
 
 
 class Structure(object):
@@ -691,68 +698,10 @@ class Structure(object):
         if not os.path.exists(self.options.targetpath):
             os.makedirs(self.options.targetpath)
 
-        is_64bits = sys.maxsize > 2**32#Bit Zahl des OS ermitteln, damit wir gleich den richtigen ttm starten können
-
         #ttm starten
-        self.sys.pushdir()
-        os.chdir(self.options.sourceTEX)
-        texStartFile = self.options.sourceTEXStartFile
-        ttmStartFolder = self.options.ttmPath
-        xmlFileName = self.options.ttmFile
 
-        if is_64bits:
-            ttms = os.path.join(ttmStartFolder, "ttm")
-        else:
-            ttms = os.path.join(ttmStartFolder, "ttm32")
-
-
-        try:
-            with open(xmlFileName, "wb") as outfile, open(texStartFile, "rb") as infile:
-                pr = subprocess.Popen([ttms, "-p", self.options.sourceTEX], stdout = outfile, stdin = infile, stderr = subprocess.PIPE, shell = True, universal_newlines = True)
-                (output, err) = pr.communicate()
-        except:
-            self.sys.popdir()
-            self.sys.message(self.sys.FATALERROR, "ttm call exception")
-
-        # ttm streams its messages to stderr
-
-        self.sys.popdir()
-
-        if pr.returncode < 0:
-            self.sys.message(self.sys.FATALERROR, "Call to " + ttms + " for file " + texStartFile + " was terminated by a signal (POSIX return code " + p.returncode + ")")
-        else:
-            if pr.returncode > 0:
-                self.sys.message(self.sys.CLIENTERROR, ttms + " reported an error in file " + texStartFile + ", error lines have been written to logfile")
-                s = output[-512:]
-                s = s.replace("\n",", ")
-                self.sys.message(self.sys.VERBOSEINFO, "Last lines: " + s)
-            else:
-                self.sys.timestamp(ttms + " finished successfully")
-
-        # process output of ttm
-        anl = 0 # abnormal newlines found by ttm
-        cm = 0 # unknown latex commands
-        ttmlines = err.split("\n")
-        for i in range(len(ttmlines)):
-            self.sys.message(self.sys.VERBOSEINFO, "(ttm) " + ttmlines[i])
-            m = re.search(r"\*\*\*\* Unknown command (.+?), ", ttmlines[i])
-            if m:
-                self.sys.message(self.sys.CLIENTWARN, "ttm does not know LaTeX command " + m.group(1))
-                cm += 1
-            else:
-                if "Abnormal NL, removespace" in ttmlines[i]:
-                    anl += 1
-                else:
-                    if "Error: Fatal" in ttmlines[i]:
-                        self.sys.message(self.sys.FATALERROR, "ttm exit with fatal error: " + ttmlines[i] + ", aborting")
-
-
-        if anl > 0:
-            self.sys.message(self.sys.CLIENTINFO, "ttm found " + str(anl) + " abnormal newlines")
-
-        if (cm > 0) and (self.options.dorelease == 1):
-            self.sys.message(self.sys.FATALERROR, "ttm found " + str(cm) + " unknown commands, refusing to continue on release version")
-
+        ttm_parser = TTMParser(sys=self.sys)
+        ttm_parser.parse()
 
 
     def prepare_xml_file(self):
@@ -982,7 +931,7 @@ class Structure(object):
         """
         Wir räumen wieder auf. Insbesondere das temporäre Input-Verzeichnis wird wieder gelöscht.
         """
-        print("Räume auf: " + os.path.abspath(self.options.sourcepath))
+        print("Raeume auf: " + os.path.abspath(self.options.sourcepath))
         self.sys.removeTree(self.options.sourcepath)
 
 

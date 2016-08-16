@@ -4,34 +4,34 @@ Created on Jun 15, 2016
 @author: alvaro
 '''
 import unittest
-from test.systemtests.AbstractSystemTest import AbstractSystemTest
+from test.systemtests.SeleniumTest import SeleniumTest
 
-class Chapter1Test( AbstractSystemTest ):
+class Chapter1Test( SeleniumTest ):
 	'''
 	Test chapter 1
 	'''
 	def setUp( self ):
-		AbstractSystemTest.setUp(self)
-		self._openStartPage()
-		
-		
+		SeleniumTest.setUp(self)
+		self._openStartPage(no_mathjax=True)
+
+
 	def testChooseLanguageVersion(self):
-		self._chooseLanguageVersion("de")
+		self._chooseLanguageVersion("de", no_mathjax=True)
 		self.assertIn("/de/", self.driver.current_url)
 
-		self._chooseLanguageVersion("en")
+		self._chooseLanguageVersion("en", no_mathjax=True)
 		self.assertIn("/en/", self.driver.current_url)
-		
+
 	def testNavToChapterOne(self):
 		'''
 		Navigate to Chapter 1
 		'''
-		self._navToChapter("1")
+		self._navToChapter("1", no_mathjax=True)
 
 		content = self.driver.find_element_by_id( "content" )
 		sections = content.find_elements_by_tag_name( "li" )
-		self.assertEqual( 5, len( sections ), "Chapter 1 has the wrong number of sections" )		
-		
+		self.assertEqual( 5, len( sections ), "Chapter 1 has the wrong number of sections" )
+
 		#Does the "launch module" Button on the chapter 1 page contains the right locale?
 		self.assertTrue( self.driver.find_element_by_partial_link_text( self.locale["module_starttext"].upper() ) )
 
@@ -41,8 +41,8 @@ class Chapter1Test( AbstractSystemTest ):
 		Does the overview page list the expected number of chaper sections?
 		'''
 		# count number of sections listed
-		self._chooseLanguageVersion( "de" )
-		
+		self._chooseLanguageVersion( "de", no_mathjax=True )
+
 		content = self.driver.find_element_by_id( "content" )
 		sections = content.find_elements_by_tag_name( "li" )
 		self.assertEqual( 10, len( sections ), "Chapter 1 has the wrong number of sections" )
@@ -52,12 +52,12 @@ class Chapter1Test( AbstractSystemTest ):
 		'''
 		Is the page in the right locale?
 		'''
-		
-		self._chooseLanguageVersion("de")
-		
+
+		self._chooseLanguageVersion("de", no_mathjax=True)
+
 		# Open the *second* subsection (as it's more interesting than the first one)
-		self._navToChapter( "1", section="1.2", lang = "de" )
-		
+		self._navToChapter( "1", section="1.2", lang = "de", no_mathjax=True )
+
 		# Check that keywords use the correct locale
 		pageText = self.driver.find_element_by_id( "content" ).text.lower()
 		self.assertTrue( self.locale["chapter"].lower() in pageText )

@@ -1,0 +1,45 @@
+<p>
+<center>
+<b>Auswahl des Farbschemas f&uuml;r den Onlinekurs</b><br />
+<ul style="width:95%;list-style-type:none;columns:4;-webkit-columns:4;-moz-columns:4">
+<li style="padding:20px;min-width:100px;background-color:rgba(41,100,255,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLEBLUE);">Blau</button></center></li>
+<li style="padding:20px;min-width:100px;background-color:rgba(255,41,100,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLERED);">Rot</button></center></li>
+<li style="padding:20px;min-width:100px;background-color:rgba(41,255,100,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLEGREEN);">Gr&uuml;n</button></center></li>
+<li style="padding:20px;min-width:100px;background-color:rgba(100,100,100,1)"><center><button class="stdbutton" style="width:80px" type="button" onclick="selectColor(STYLEGREY);">Grau</button></center></li>
+</ul>
+</center>
+</p>
+
+<br /><br />
+
+<p>
+<center>Auswahl der mathematischen Notation</center><br />
+<ul style="list-style-type:none">
+  <li>
+  Mathematische Symbole nach <a href="https://de.wikipedia.org/wiki/DIN_1302">DIN 1302</a> (Schulbuchnotation, empfohlen):<br />
+  \\(\\displaystyle
+  ]a;b[\\ , \\ \\mathbb N =\\lbrace 1;2;3;\\ldots\\rbrace \\ , \\ P=(a;b;c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right) \\ ,\\ \\sqrt2 =1,414\\ldots
+  \\)
+  <div id="variantactive_std" style="visibility:hidden">
+  (Diese Notation ist aktiviert)
+  </div>
+  <button id="variantselect_std" style="visibility:hidden" type="button" class="stdbutton" onclick="selectVariant('std');">Zur Schulbuchnotation wechseln</button>
+  </li>
+  <li>
+  Alternative Notation, die in vielen technischen Studieng&auml;ngen eingesetzt wird:<br />
+  \\(\\displaystyle
+  (a,b)\\ , \\ \\mathbb N =\\lbrace 1,2,3,\\ldots\\rbrace \\ , \\ P=(a,b,c)\\ ,\\ \\vec{x}= \\left(\\begin{array}{c} 1\\\\2  \\end{array}\\right) \\ ,\\ \\sqrt2 =1.414\\ldots
+  \\)
+  <div id="variantactive_unotation" style="visibility:hidden">
+  (Diese Notation ist aktiviert)
+  </div>
+  <button id="variantselect_unotation" style="visibility:hidden" type="button" class="stdbutton" onclick="selectVariant('unotation');">Zu dieser Notation wechseln</button>
+  </li>
+</ul>
+</p>
+<p>
+<br /><br />
+<center>
+<button type="button" class="stdbutton" onclick="toggle_settings();">Zur&uuml;ck zum Kurs</button>
+</center>
+</p>

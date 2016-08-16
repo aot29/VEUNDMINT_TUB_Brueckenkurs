@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML" lang="de">
+<head>
+<meta http-equiv="expires" content="0" />
+<meta id="meta-charset" http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<div class="mathjax-header"> </div>
+<div class="javascript-header"> </div>
+<div class="javascript-body-header"> </div>
+</head>
+<body>
+	<!-- start top navbar -->
+	    
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop">
+		<div class="container-fluid ">
+			<div class="row" style="margin-left: 0;margin-top: 10px; ">
+				<div class="col-sm-6 navbar-left" id="toggle_sidebar" role="navigation" >
+			      	<div>
+						<button id="menuButton" type="button" data-toggle="offcanvas" class="btn btn-link glyphicon glyphicon-menu-hamburger" style="float:left">
+						</button>
+						<a data-toggle="tooltip-navbar" id="loginbutton" href="../../config.html" class="btn btn-default btn-sm" >
+							<span class="glyphicon glyphicon-user"/> <span>Zum Kurs anmelden</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-sm-6" id="toolsSidebar">
+				
+		        	<!-- Tools -->
+					<div class="navbar-right">
+			          <a data-toggle="tooltip" id="databutton" href="../../data.html" class="btn btn-link glyphicon glyphicon-dashboard"/>
+			          <a data-toggle="tooltip" id="listebutton" href="../../search.html" class="btn btn-link glyphicon glyphicon-book"/>
+			          <a data-toggle="tooltip" id="homebutton" href="../../index.html" class="btn btn-link glyphicon glyphicon-home"/>
+			          <a data-toggle="tooltip" id="favoritesbutton" onclick="starClick();" class="btn btn-link glyphicon glyphicon-star-empty"/>
+			          <a data-toggle="tooltip" id="zoomoutbutton" onclick="changeFontSize(-5);" class="btn btn-link glyphicon glyphicon-zoom-out"/>
+			          <a data-toggle="tooltip" id="zoominbutton" onclick="changeFontSize(5);" class="btn btn-link glyphicon glyphicon-zoom-in"/>
+			          <a data-toggle="tooltip" id="sharebutton" onclick="shareClick();" class="btn btn-link glyphicon glyphicon-share-alt"/>
+			          <a data-toggle="tooltip" id="settingsbutton" onclick="toggle_settings();" class="btn btn-link glyphicon glyphicon-cog"/>
+			        </div>
+		        	<!-- end Tools -->
+	        	
+				</div>				
+			</div>
+		</div>
+	</div>
+	<!-- end top navbar -->
+    
+    
+<div id="notfixed">
+  <div id="nfhead" class="head">
+    <div class="headmiddle"> </div>
+  </div>
+  <div id="nftoc" class="toc">
+    <div class="toccaption"> </div>
+  </div>
+  <div id="nfnavi" class="navi"> </div>
+  <div id="content" class="content"> </div>
+</div>
+</body>
+</html>
