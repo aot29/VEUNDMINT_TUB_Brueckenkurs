@@ -11,6 +11,7 @@ var path         = require('path')
 //var render       = require('gulp-nunjucks-render')
 var fs           = require('fs')
 var inject       = require('gulp-inject')
+var gutil = require('gulp-util');
 
 var exclude = path.normalize('!**/{' + config.tasks.html.excludeFolders.join(',') + '}/**')
 
@@ -28,7 +29,17 @@ var htmlTask = function() {
   return gulp.src(paths.src)
     .pipe(gulpif(global.production, htmlmin(config.tasks.html.htmlmin)))
     // inject all required files here and set the current working dir to the output directory
-    .pipe(inject(gulp.src(['css/app.css', 'js/mathjax/MathJax.js', 'js/app.js'], {read: false, cwd: __dirname + '/../../public'})))
+    .pipe(inject(gulp.src(['css/app.css', 'js/mathjax/MathJax.js', 'js/app.js'], {
+      read: false,
+      cwd: __dirname + '/../../public'
+    }), {
+      transform: function (filepath, file, i, length) {
+        if (filepath === "/js/mathjax/MathJax.js") {
+          filepath += '?config=TeX-AMS-MML_HTMLorMML';
+        }
+        return inject.transform.apply(inject.transform, arguments);
+      }
+    }))
     .pipe(gulp.dest(paths.dest))
     .on('end', browserSync.reload)
 

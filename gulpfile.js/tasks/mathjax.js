@@ -11,7 +11,7 @@ var browserSync  = require('browser-sync')
 
 var paths = {
   //src: path.join(config.root.src, config.tasks.css.src, '/**/*.{' + config.tasks.css.extensions + '}'),
-  src: ["./bower_components/MathJax/*.js", "./bower_components/MathJax/extensions/**.js"],
+  src: ["./bower_components/MathJax/**/*"],
   dest: path.join(config.root.dest, 'js/mathjax/')
 }
 
