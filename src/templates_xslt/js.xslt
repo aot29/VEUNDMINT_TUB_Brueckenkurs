@@ -75,7 +75,7 @@
 			<!-- Roulette exercises -->			
 			var sitejson_load = true;
 			var sitejson = {};					
-			<xsl:apply-templates select="roulettes/roulette" />
+			<!-- xsl:apply-templates select="roulettes/roulette" / -->
 
 			<!-- Event handlers -->
 	    	<![CDATA[

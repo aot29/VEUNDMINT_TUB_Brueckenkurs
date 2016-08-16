@@ -198,8 +198,9 @@ class RouletteDecorator( PageXmlDecorator ):
 			# generate placeholder div
 			response = ''
 			if myid == 0:
-				response = "<div id='ROULETTECONTAINER_%s' />" % rid
-
+				#response = "<div id='ROULETTECONTAINER_%s' />" % rid
+				response = exercise
+				
 			return response
 		
 		# find the roulette questions in the content and replace them with placeholders
