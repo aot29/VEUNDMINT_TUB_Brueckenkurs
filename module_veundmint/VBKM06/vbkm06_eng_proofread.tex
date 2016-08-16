@@ -1,0 +1,3897 @@
+\input{mintmod}
+\MPragma{MathSkip}
+
+\Mtikzexternalize
+
+\begin{document}
+\MSetSubject{\MINTMathematics}
+
+\MSection{Elementary Functions} 
+\MSetSectionID{elfunktionen}
+
+\begin{MSectionStart}
+\MLabel{VBKM06}
+\MDeclareSiteUXID{VBKM06_START}
+
+\MModstartBox
+\end{MSectionStart}
+
+\MSubsection{Basics of Functions}
+\MLabel{VBKM06_Grundlagen}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM06_Grundlagen_Intro}
+>From Module~\MNRef{VBKM01} we already know that \highlight{real numbers} are \highlight{sets} and 
+\highlight{intervals} are \highlight{subsets} of real numbers.
+
+\begin{MExample}
+All real numbers $\R$, excluding the number $0\in\R$, are to be collected in a set. How is this 
+set of numbers described? For this, the notation 
+\[
+ \R\setminus\{0\} 
+\]
+is used. This reads as ``$\R$ without $0$''. Alternatively, this set can be described 
+as a union of two open intervals:
+\[
+ \R\setminus\{0\}=(-\infty\MIntvlSep 0)\cup(0\MIntvlSep \infty) \MDFPeriod
+\]
+In the same way, single numbers can be removed from any other sets. So, for example, the 
+set
+\[
+ [1\MIntvlSep 3)\setminus\{2\} 
+\]
+contains all numbers of the half-open interval $[1\MIntvlSep 3)$, excluding the number $2$:
+
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-1,0.0) -- (5,0.0);
+\foreach \x in {-1, 0, 1, 2, 3, 4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (4.9,-0.3) node[] {$\mathbb{R}$};
+% Intervall: [1,2):
+\draw [line width=2.0pt,color=blue] (1,0.0)-- (2,0.0);
+% Intervall: (2,3):
+\draw [line width=2.0pt,color=blue] (2,0.0)-- (3,0.0);
+% fehlende 2:
+\draw [color = blue, fill = white] (2,0) circle (1.5pt);
+% Enden:
+\draw [fill = blue] (1,0) circle (1.5pt);
+\draw [color = blue, fill = white] (3,0) circle (1.5pt);
+\end{tikzpicture}
+}%
+\end{MExample}
+
+\begin{MExercise}
+Indicate the intervals $(-\infty\MIntvlSep \pi)$ and $(8\MIntvlSep \MZahl{8}{5}]$ on the number line.
+\begin{MHint}{Solution}
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (-2.0,0.0) -- (6.0,0.0);
+\foreach \x in {-1, 0, 1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (5.7,-0.3) node[] {$\mathbb{R}$};
+% Intervall: [-\infty,\pi)
+\draw [line width=2.0pt,color=blue] (-2,0.0)-- (3.14,0.0);
+\draw [color = blue, fill = white] (3.14,0) circle (1.5pt);
+\end{tikzpicture}
+}%
+
+\MTikzAuto{%
+\begin{tikzpicture}
+% reelle Achse
+\draw[->,color=black] (5,0.0) -- (11,0.0);
+\foreach \x in {6, 7, 8, 9, 10}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw (10.7,-0.3) node[] {$\mathbb{R}$};
+% Intervall: (8,8.5]
+\draw [line width=2.0pt,color=blue] (8,0.0)-- (8.5,0.0);
+\draw [color = blue, fill = white] (8,0) circle (1.5pt);
+\draw [fill = blue] (8.5,0) circle (1.5pt);
+\end{tikzpicture}
+}%
+
+\end{MHint}
+\end{MExercise}
+
+For doing and applying mathematics, it is not sufficient to just consider sets and 
+equations and inequalities for numbers of these sets, as done in the previous modules (for example, 
+in \MSRef{VBKM01}{Module 1}). We also need \highlight{functions} 
+(which are often also denoted as \modsemph{maps}).
+
+\begin{MInfo}
+\MLabel{VBKM06_Abbildungen}
+\MEntry{Functions}{function} (or \MEntry{maps}{map}) are assignments between elements of two sets.
+\end{MInfo}
+\end{MIntro}
+
+We will focus on the basic mathematical term of an assignment between numbers in 
+Section~\MNRef{sec:zuordnungen}. In Section~\MNRef{sec:anwendungen} we will refer to  
+applications of mathematics in other sciences, and we will illustrate how useful the 
+mathematical notion of a function as a tool for the formalisation of relations between 
+dependent quantities is. Finally, we will study the graphical representation of functions 
+using graphs in Section~\MNRef{sec:graphen}. Later in this chapter we will consider 
+the most relevant elementary functions together with their graphs. It is fundamental to 
+know the behaviour of the graphs of the elementary functions.
+
+
+\begin{MXContent}{Assignments between Sets}{Assignments}{STD}\MLabel{sec:zuordnungen}
+\MDeclareSiteUXID{VBKM06_Zuordnungen}
+
+We start with a first example of a function as an assignment between two sets. For this 
+purpose, we consider the set of natural numbers $\N$ and the set of rational numbers
+$\Q$, and visualise these two sets as two ``containers'' filled with numbers.
+
+\MTikzAuto{%
+\begin{tikzpicture}
+% natürliche Zahlen:
+\draw  (3.5,10.3) node[anchor=north west] {$\mathbb{N}$};
+\draw [] (2.7,7.6) ellipse (1.7cm and 2.4cm);
+\draw (2,6.3)  node[anchor=north west](eins) {1};
+\draw (2.1,7.4)  node[anchor=north west](zwei) {2};
+\draw (2.3,8.7)  node[anchor=north west] (drei){3};
+\draw (2.5,9.5) node[anchor=north west] (vier) {4};
+\draw (2.7,9.8) node[anchor=north west] {...};
+% rationale Zahlen:
+\draw (9.8,10.3) node[anchor=north west] {$\mathbb{Q}$};
+\draw (8.8,7.5) ellipse (1.9cm and 2.6cm);
+\draw (8,8) node[anchor=north west](Feins) {$\frac{1}{2}$};
+\draw (9.8,8.4) node[anchor=north west] {$\frac{3}{4}$};
+\draw (7.4,6.7) node[anchor=north west] {$-\frac{1}{2}$};
+\draw (7.8,9.6) node[anchor=north west](Fvier) {$2$};
+\draw (7.1,7.5) node[anchor=north west] {$0$};
+\draw (8.6,9.9) node[anchor=north west] {$3$};
+\draw (7.3,8.7) node[anchor=north west](Fzwei) {$1$};
+\draw (8.6,6.9) node[anchor=north west] {$\frac{1}{3}$};
+\draw (8.5,8.7) node[anchor=north west] {$\frac{2}{3}$};
+\draw (9.0,7.8) node[anchor=north west] {$\frac{2}{5}$};
+\draw (9.3,9.3) node[anchor=north west](Fdrei) {$\frac{3}{2}$};
+\draw (9.3,6.5) node[anchor=north west] {...};
+\end{tikzpicture} 
+}%
+
+Now, we want to create an assignment between the elements of these two sets as follows. 
+To each number $n\in\N$ half of this number $\frac{n}{2}\in\Q$ is assigned, i.e. 
+to the number $1\in\N$ assign the number $\frac{1}{2}\in\Q$, to the number 
+$2\in\N$ assign the number $1\in\Q$, etc. In the figure below, this 
+fact is illustrated by arrows that indicate which numbers in $\Q$ are assigned to
+which numbers in $\N$.
+
+\MTikzAuto{%
+\begin{tikzpicture}
+% natürliche Zahlen:
+\draw  (3.5,10.3) node[anchor=north west] {$\mathbb{N}$};
+\draw [] (2.7,7.6) ellipse (1.7cm and 2.4cm);
+\draw [color = blue](2,6.3)  node[anchor=north west](eins) {1};
+\draw [color = blue](2.1,7.4)  node[anchor=north west](zwei) {2};
+\draw [color = blue](2.3,8.7)  node[anchor=north west] (drei){3};
+\draw [color = blue](2.5,9.5) node[anchor=north west] (vier) {4};
+\draw [color = blue](2.7,9.8) node[anchor=north west] {...};
+% rationale Zahlen:
+\draw (9.8,10.3) node[anchor=north west] {$\mathbb{Q}$};
+\draw (8.8,7.5) ellipse (1.9cm and 2.6cm);
+\draw (8,8) node[anchor=north west](Feins) {$\frac{1}{2}$};
+\draw (9.8,8.4) node[anchor=north west] {$\frac{3}{4}$};
+\draw (7.4,6.7) node[anchor=north west] {$-\frac{1}{2}$};
+\draw (7.8,9.6) node[anchor=north west](Fvier) {$2$};
+\draw (7.1,7.5) node[anchor=north west] {$0$};
+\draw (8.6,9.9) node[anchor=north west] {$3$};
+\draw (7.3,8.7) node[anchor=north west](Fzwei) {$1$};
+\draw (8.6,6.9) node[anchor=north west] {$\frac{1}{3}$};
+\draw (8.5,8.7) node[anchor=north west] {$\frac{2}{3}$};
+\draw (9.0,7.8) node[anchor=north west] {$\frac{2}{5}$};
+\draw (9.3,9.3) node[anchor=north west](Fdrei) {$\frac{3}{2}$};
+\draw (9.3,6.5) node[anchor=north west] {...};
+% Abbildung: 
+\draw [|->] (eins) -- (Feins);
+\draw [|->] (zwei) --(Fzwei);
+\draw [|->] (drei) -- (Fdrei);
+\draw [|->] (vier) --(Fvier);
+\end{tikzpicture}
+}%
+
+For the \modsemph{assignment of single elements} of the sets, described above in words,
+we use the so called \highlight{assignment arrow}. This is an arrow that has a bar at its tail: $\longmapsto$.
+It says that to the number on the side with the bar the number on the side with the arrow is assigned:
+\[
+\N\ni1\longmapsto\MZahl{0}{5}\in\Q \MDFPSpace,\MDFPaSpace \N\ni2\longmapsto1\in\Q \MDFPSpace, \MDFPaSpace \text{etc.} 
+\]
+With these assignments, we have now constructed a \modsemph{function} from the natural numbers $\N$ to the rational 
+numbers $\Q$. In mathematics, this assignment is named, i.e. a symbol is allocated (often this is $f$ for \modsemph{f}unction),
+that shall describe exactly this assignment. For this purpose, the sets of numbers \modsemph{from which}
+and \modsemph{to which} the assignment will be done must be noted. In our case, to the elements of the set of natural 
+numbers $\N$ the rational numbers are assigned. Mathematically, this is expressed by a so called 
+\highlight{mapping arrow} $\null\lto\null$, i.e. an arrow that has the target set at its head and the set, 
+whose elements are assigned to, at its tail. Thus, in our case we have
+\[
+ f\colon \N\lto\Q \MDFPeriod
+\]
+This reads as ``the function $f$ maps $\N$ to $\Q$''. 
+
+Furthermore, we can now ask whether the assignments of this function,
+$1\longmapsto\frac{1}{2},\ 2\longmapsto1,\ \text{etc.}$, can be described in a more 
+compact way. To do this, we recall the beginning of this example. We decided to assign 
+to each natural number $n$ its half $\frac{n}{2}$. So we can write this arbitrary 
+natural number $n$ and the corresponding rational number $\frac{n}{2}$ left and right to the 
+assignment arrow, respectively:
+\[
+ n\longmapsto\frac{n}{2} \MDFPeriod
+\]
+This reads as ``$n$ is mapped to $\frac{n}{2}$''. This notation is also called 
+\highlight{mapping rule} of the function. Another notation for the mapping rule uses 
+the name of the function:
+\[
+ f(n) = \frac{n}{2} \MDFPeriod
+\]
+This reads as ``$f$ of $n$ equals $\frac{n}{2}$''. Altogether we can describe this function $f$
+as follows:
+\[
+ \function{f}{\N}{\Q}{n}{\frac{n}{2} \MDFPeriod}
+\]
+Finally, this reads as ``the function $f$ maps $\N$ to $\Q$, each $n\in\N$ is mapped to $\frac{n}{2}\in\Q$''.
+Throughout this module, we will continue to use this summarising notation of functions. 
+
+Let us consider a few further simple examples for functions.
+
+\begin{MExample}\MLabel{bsp1:grundlagen}
+\begin{itemize}
+ \item A function $g$ assigns to each real number $x$ its square: $x\cdot x=x^2$. 
+This results in the so called standard parabola (see Section~\MNRef{sec:monome}):
+ \[
+  \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
+ \]
+Hence, the mapping rule of $g$ is $g(x)=x^2$. Then, assignments can be calculated for specific numbers.
+For example, $g(2)=2^2=4$ or $g(-\pi)=(-\pi)^2=\pi^2$, etc.
+
+\item A function $\Mvarphi$ shall assign to each real number $y$ between $0$ and $1$ three times its value plus 
+$1$. This is an example for a so called linear affine function (see Section~\MNRef{VBKM06_sec:linear-affin}):
+ \[
+  \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1 \MDFPeriod}
+ \]
+Hence, the mapping rule of $\Mvarphi$ is $\Mvarphi(y)=3y+1$. Thus, for example, 
+$\Mvarphi(\frac{1}{3})=3\cdot\frac{1}{3}+1=2$, etc. 
+However, in this case the values $\Mvarphi(8)$ or $\Mvarphi(1)$ \modsemph{cannot be calculated}
+since $8$ and $1$ do not belong to the set $(0\MIntvlSep 1)$. 
+ %Dies wird unten im Rest dieses Abschnitts nochmal genauer erörtert werden. 
+\end{itemize}
+
+\end{MExample}
+
+\begin{MExercise}\MLabel{ex1:grundlagen}
+\begin{itemize}
+ \item[(i)] Specify a function $h$ that assigns to each positive real number $x$ its reciprocal. 
+  Calculate the values $h(2)$ and $h(1)$. Complete the two assignments
+ \[
+  3\longmapsto\text{ ?}\quad\text{and}\quad\text{? }\longmapsto2
+ \]
+ of $h$.
+ \item[(ii)] Describe in words the assignment that is done by the following function:
+ \[
+  \function{w}{[4\MIntvlSep 9]}{\R}{\alpha}{\sqrt{\alpha} \MDFPeriod}
+ \]
+ Calculate $w(9)$ and $w(5)$. Can $w(10)$ also be calculated?
+\end{itemize}
+
+\begin{MHint}{Solution}
+ \begin{itemize}
+  \item[(i)] The reciprocal of $x$ is $\frac{1}{x}$. The set of positive real numbers is $(0\MIntvlSep \infty)$.
+  Hence, the function $h$ can be written as
+  \[
+   \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\frac{1}{x} \MDFPeriod}
+  \]
+  This is an example for a function of hyperbolic type that will be described in more detail in 
+  Section~\MNRef{VBKM06_Potenz}. The mapping rule of $h$ is $h(x)=\frac{1}{x}$, hence $h(2)=\frac{1}{2}$
+  and $h(1)=\frac{1}{1}=1$. Moreover, we have $h(3)=\frac{1}{3}$, hence $3\longmapsto\frac{1}{3}$.
+  The observation $h(\frac{1}{2})=\frac{1}{\frac{1}{2}}=2$ gives us $\frac{1}{2}\longmapsto2$.
+  \item[(ii)] The function $w$ assigns to each real number $\alpha$ greater or equal to $4$ and less or equal
+  to $9$ its square root $\sqrt{\alpha}$. The mapping rule is $w(\alpha)=\sqrt{\alpha}$, hence 
+  $w(9)=\sqrt{9}=3$ and $w(5)=\sqrt{5}$. The value $w(10)$ cannot be calculated since $10\notin[4\MIntvlSep 9]$.
+ \end{itemize}
+
+\end{MHint}
+\end{MExercise}
+
+The examples above show some basic properties of functions for which we will now introduce specific terminology.
+\begin{MInfo}
+For the definition of a function, a set of numbers is specified whose elements are to be assigned to 
+other numbers by the function. This set is called the \MEntry{domain}{domain} or set of definition of the function.
+If the function has a name, e.g. $f$, then the domain is denoted by the symbol $D_f$. For example, 
+the domain of the function
+\[
+   \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\frac{1}{x}}
+\]
+in Exercise~\MNRef{ex1:grundlagen} is the set $D_h=(0\MIntvlSep \infty)$. There is also a specific term for the elements of the 
+domain. In this exercise, the numbers $x\in D_h$ are assigned by 
+the mapping rule $h(x)=\frac{1}{x}$. Here, the variable $x$ is called the 
+\MEntry{independent variable}{independent variable} of the function $h$.
+\end{MInfo}
+
+\begin{MExercise}
+Specify the domain of function $w$ in Exercise~\MNRef{ex1:grundlagen} and function $g$ in 
+Example~\MNRef{bsp1:grundlagen}.
+
+\begin{MHint}{Solution}
+We have
+\[
+  \function{w}{[4\MIntvlSep 9]}{\R}{\alpha}{\sqrt{\alpha}}
+\]
+and 
+\[
+  \function{g}{\R}{\R}{x}{x^2 \MDFPSpace,}
+\]
+hence $D_w=[4\MIntvlSep 9]$ and $D_g=\R$.
+\end{MHint}
+\end{MExercise}
+
+If we consider the mapping rule $h(x)=\frac{1}{x}$ of the function, we see that there is no reason 
+not to insert in $\frac{1}{x}$ any real number $x$, \modsemph{excluding} the value $x=0$, since 
+the operation ``$\frac{1}{0}$'' has no solution. Therefore, in specifying the domain, we can distinguish 
+between numbers that are excluded because they are 
+\modsemph{not allowed to be inserted in the mapping rule at all} and those that are excluded because 
+\modsemph{the function is just defined accordingly}. This now leads to the term of the 
+\highlight{maximal domain} of a function, i.e. the maximum subset of real numbers $\R$ that can
+be used as the domain of a function with a known mapping rule.
+    
+
+\begin{MExample}
+The maximum domain $D_h\subset\R$ of the function
+\[
+ \function{h}{D_h}{\R}{x}{\frac{1}{x} \MDFPSpace,}
+\]
+is $D_h=\R\setminus\{0\}$.
+\end{MExample}
+
+\begin{MExercise}
+Find the maximum domain of the function
+\[
+  \function{w}{D_w}{\R}{\alpha}{\sqrt{\alpha} \MDFPeriod}
+\]
+
+\begin{MHint}{Solution}
+The square root has a real number as its result for all non-negative real numbers. Hence, $D_w=[0\MIntvlSep \infty)$.%
+\end{MHint}%
+\end{MExercise}%
+
+For the definition of a function, a second set  (beside the domain) is required, the set that
+is the target of the assignment by the function. This set is called \highlight{target set} or \highlight{codomain}. 
+Let us again consider the function
+\[
+  \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1}
+\]
+in Example~\MNRef{bsp1:grundlagen}. Its target set is the set of real numbers $\R$. The target set of the function
+\[
+ \function{f}{\N}{\Q}{n}{\frac{n}{2}}
+\]
+in the first example of this section is the set of rational numbers $\Q$. Here, we see an important difference
+between the domain and target set of a function. The domain contains all numbers, and only those numbers, that are allowed 
+to be inserted (and one wishes to insert) in the mapping rule of the function. However, the target set can contain
+all numbers that can potentially appear as a result of the mapping function.
+
+In this context the question arises: What is the smallest target set that can be used for a function 
+with given domain and known mapping rule? The smallest target set is the set of numbers that -- for 
+a given domain and mapping rule -- indeed appear as targets of the assignment. This set is 
+called \MEntry{range}{range} or image, and its elements are called values of the function. For a function
+$f$, the symbol $W_f$ is used for the image. For the values of a function $f$ of an independent variable $x$ 
+we write generally $f(x)\in W_f$, as in the mapping rule, or we introduce another variable, e.g. $y=f(x)\in 
+W_f$. 
+
+
+\begin{MExample}
+Let us consider again the example
+\[
+  \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1 \MDFPeriod}
+\]
+The range of this function is
+\[
+W_{\Mvarphi}=(1\MIntvlSep 4) \MDFPeriod
+\]
+This can be seen by inserting some values from $D_{\Mvarphi}=(0\MIntvlSep 1)$ in the  mapping rule and calculating 
+the results. In this way, a so called \MEntry{table of values}{table of values} is obtained:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$y$ & $\MZahl{0}{1}$ & $\MZahl{0}{3}$ & $\MZahl{0}{5}$ & $\MZahl{0}{7}$ & $\MZahl{0}{9}$ \\\hline 
+$\Mvarphi(y)$ & $\MZahl{1}{3}$ & $\MZahl{1}{9}$ & $\MZahl{2}{5}$ & $\MZahl{3}{1}$ & $\MZahl{3}{7}$ \\ \hline
+\end{tabular}
+\end{center}
+\end{MExample}
+
+Such tables of values are useful to get an overview of the values of a function. However, from a 
+mathematical point of view, they are not sufficient to be \modsemph{completely sure} what the 
+actual range of a function is. One method to determine the range of a function is based on 
+solving inequalities:
+\begin{MExample}
+For the function
+\[
+  \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1 \MDFPSpace ,} 
+\]
+due to the domain $D_{\Mvarphi}=(0\MIntvlSep 1)$ for the independent variable $y$ we have
+\[
+ 0<y<1 \MDFPeriod
+\]
+Now, we use equivalent transformations to create the mapping rule $\Mvarphi(y)=3y+1$ in this inequality:
+\[
+ 0<y<1\,|\cdot 3\quad\Leftrightarrow\quad 0<3y<3\,|+1\quad\Leftrightarrow\quad 1<3y+1<4\quad\Leftrightarrow\quad 1<\Mvarphi(y)<4 \MDFPeriod
+\]
+Hence, we have for the values of the function $\Mvarphi(y)\in(1\MIntvlSep 4)$ and therefore $W_{\Mvarphi}=(1\MIntvlSep 4)$.
+\end{MExample}
+
+\end{MXContent}
+
+\begin{MXContent}{Functions in Mathematics and Applications}{Mathematics and Applications}{STD}\MLabel{sec:anwendungen}
+\MDeclareSiteUXID{VBKM06_FunktionenAnwendungen}
+Mathematical functions often describe relations between quantities that arise from other sciences or everyday life. 
+For example, the volume $V$ of a cube depends on the side length $a$ of the cube. The volume 
+can be considered as a mathematical function that assigns the corresponding volume $V(a)=a^3$ to each side length $a>0$:
+\[
+ \function{V}{(0\MIntvlSep \infty)}{\R}{a}{V(a)=a^3 \MDFPeriod}
+\]
+The result is the cubic standard parabola (see Section~\MNRef{sec:monome}) for the relation between side length and
+volume. In this way, many more examples can be found arising from sciences and everyday life: the position as 
+a function of time in physics, the reaction rate as a function of concentration in chemistry, the amount 
+of flour needed as a function of the desired amount of dough in a cake recipe, etc. 
+
+To this end, let us consider an example.
+\begin{MExample}\MLabel{bsp:anwendungen}%
+The intensity of nuclear radiation is \highlight{inversely proportional} to the square of the distance to the 
+source. This is called the \modsemph{inverse square law}. Using a physical \highlight{proportionality factor} $c>0$,
+the relation between intensity $I$ of the radiation and distance $r>0$ from the source can be formulated 
+mathematically as follows:
+\[
+ \function{I}{(0\MIntvlSep \infty)}{\R}{r}{\frac{c}{r^2} \MDFPeriod}
+\]
+Hence, for the intensity we have the mapping rule $I(r)=\frac{c}{r^2}$ that describes the relation between the 
+quantities $I$ and $r$. 
+\end{MExample}
+
+\begin{MExercise}\MLabel{ex:anwendungen}
+>From the construction of wind turbines it is known that the wind turbine power is \highlight{proportional} to the 
+cube of the wind velocity. Under the condition that the proportionality factor satisfies the relation $\rho>0$, 
+which of the following mathematical functions describes this relation of physical quantities correctly?
+
+a)
+\[
+ \function{P}{(0\MIntvlSep \infty)}{\R}{v}{P(v)=\frac{\rho}{v^3}}
+\]
+b)
+\[
+ \function{P}{\R}{\R}{v}{P(v)=\rho v^3}
+\]
+c)
+\[
+ \function{P}{[0\MIntvlSep \infty)}{\R}{v}{P(v)=\rho v^3}
+\]
+d)
+\[
+ \function{x}{[0\MIntvlSep \infty)}{\R}{f}{x(f)=\rho f^3}
+\]
+\begin{MHint}{Solution}
+c) and d) are correct. a) is wrong since it describes an inverse proportionality. b) is not adequate to the problem.
+Only non-negative wind velocities make sense in this context and hence, negative values should be excluded from the domain. 
+c) is correct; in this case we have the relation $P(v)=\rho v^3$ between the power $P$ and the wind velocity $v$. We see that d) 
+is equally correct. In this case we have a function that is completely identical to case c), except for the fact that in this 
+case the power is denoted by $x$ and the wind velocity is denoted by $f$. This again clarifies that the letters used to denote the 
+function and the variables are mathematically completely arbitrary. However, in the sciences there are conventions, which 
+letters are \modsemph{generally} used to denote certain quantities. So, here it is more common to denote the velocity by $v$ and the power by $P$.
+\end{MHint}
+
+\end{MExercise}
+
+
+\end{MXContent}
+
+\begin{MXContent}{Invertability}{Invertability}{STD}\MLabel{sec:graphen}
+\MDeclareSiteUXID{VBKM06_Umkehrbarkeit}
+The visualisation of a function, as for example
+\[
+ \function{f}{\R}{\R}{x}{x^2 \MDFPSpace,}
+\]
+in form of a so called Venn diagram (see Section~\MNRef{sec:zuordnungen})
+
+% venn7 Quadratische Zuordnung = venn4
+\MTikzAuto{%
+\begin{tikzpicture}[scale = 0.5]
+% Definitionsbereich
+\draw  (3.5,10.3) node[anchor=north west] {$\mathbb{R}$};
+\draw [] (2.7,7.6) ellipse (1.7cm and 2.4cm);
+\draw [color = blue](2,6.3)  node[anchor=north west](vierMinus) {-4};
+\draw [color = blue](2.1,7.4)  node[anchor=north west](eins) {1};
+\draw [color = blue](2.3,8.7)  node[anchor=north west] (vier){4};
+\draw [color = blue](2.5,9.5) node[anchor=north west]  {...};
+% Wertebereich
+\draw (9.8,10.3) node[anchor=north west] {$\mathbb{R}$};
+\draw (8.8,7.5) ellipse (1.9cm and 2.6cm);
+\draw (8,8) node[anchor=north west] {$\frac{1}{2}$};
+\draw (7.4,6.7) node[anchor=north west] {$-\frac{1}{2}$};
+\draw (7.1,7.5) node[anchor=north west](Feins) {$1$};
+\draw (8.0,9.8) node[anchor=north west] (Fvier){$16$};
+\draw (7.3,8.7) node[anchor=north west]{$0$};
+\draw (9.0,7.8) node[anchor=north west] {$\pi$};
+\draw (9.3,9.3) node[anchor=north west] {$\frac{3}{2}$};
+\draw (9.3,6.5) node[anchor=north west] {...};
+% Abbildung: 
+\draw[|->] (eins) -- (Feins);
+\draw[|->] (vier) -- (Fvier);
+\draw[|->] (vierMinus) -- (Fvier);
+\end{tikzpicture}
+}%
+
+is in fact useful to understand what a function really is, but it says nothing about the special properties 
+of the function. For this purpose, another kind of graphical representation exists, namely the representation 
+as the \highlight{graph} of the function. For this representation, we draw a two-dimensional coordinate system 
+(see Module~\MNRef{VBKM09}) in which the numbers of the domain of the function are indicated on the 
+horizontal axis and the numbers from the range are indicated on the vertical axis. In such a coordinate 
+system we mark all points $(x|f(x))$ arising by the assignment of the function $x\longmapsto f(x)$. In 
+this case, these are all points 
+$(x|x^2)$, i.e.~$(1|1)$, $(-1|1)$, $(-\frac{\pi}{2}|\frac{\pi^2}{4})$, etc. This results in a curve that
+is called \highlight{graph of $f$} and that is denoted by the symbol $G_f$:
+
+% grund1
+\MTikzAuto{%
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4,0) -- (3.9,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,4.7);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4,0) node[anchor=north west] {$x$};
+\draw (-1,5.2) node[anchor=north west] {$f(x)$};
+% Graph (x,x^2)
+\draw[smooth,samples=50,domain=-2.1:2.1, line width=2pt,color=green] plot(\x,{(\x)^(2.0)});
+%Ausgewählte Elemente des Definitionsbereiches:
+\foreach \x in {-1.57, -1, 1, 2}{
+	\fill [color = cyan](\x,0.0) circle (1.5pt);
+	% f(x):
+	\fill [color = orange] (0, \x*\x) circle (1.5pt);
+	%Punktepaare
+	\draw [fill=green] (\x,\x*\x) circle (1.5pt);
+	%kreuzlinien
+	\draw [dashed, color = cyan] (\x,0)--(\x, \x*\x);
+	\draw [dashed, color = orange] (0,\x*\x)--(\x, \x*\x);
+}
+% Beschriftung:
+\begin{scriptsize}
+  \draw (-1.6,2.4) node[anchor = east]{$(-\frac{\pi}{2}| \frac{\pi^2}{4})$};
+	\draw (-1,1) node[anchor = east]{$(-1| 1)$};
+	\draw (1,1) node[anchor = west]{$(1| 1)$};
+	\draw (2,4) node[anchor = west]{$(2| 4)$};
+\end{scriptsize}
+\draw (-2,4) node[color = green, anchor = east]{$G_f:$ $\color{black} ( \color{blue} x \color{black}| \color{orange} f(x)\color{black})$};
+\end{tikzpicture}
+}%
+
+
+If we consider the function
+\[
+ \function{f}{\N}{\Q}{n}{\frac{n}{2}}
+\]
+from Section~\MNRef{sec:zuordnungen} and its graph
+
+% grund2 f: \N\rightarrow \R, n \mapsto n/2
+\MTikzAuto{%
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4,0) -- (3.9,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2) -- (0,2);
+\foreach \y in {-1, 1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4,0) node[anchor=north west] {$n$};
+\draw (-1,2) node[anchor=north west] {$f(n)$};
+%"alle" Elemente des Definitionsbereiches:
+\foreach \n in {-3,-2,-1, 0, 1,2,3}{
+	\fill [color = cyan](\n,0.0) circle (1.5pt);
+	% f(x):
+	\fill [color = orange] (0, \n/2) circle (1.5pt);
+	%Punktepaare
+	\draw [color=green, fill=green] (\n,\n/2) circle (1.5pt);
+	%kreuzlinien
+	\draw [dashed, color = cyan] (\n,0)--(\n, \n/2);
+	\draw [dashed, color = orange] (0,\n/2)--(\n, \n/2);
+}
+\draw (3.1,1.5) node[color = green, anchor = west]{$G_f$};
+\end{tikzpicture}
+}%
+
+then we see that graphs not always have to be continuous curves, but also can consist, as in this case, 
+only of single points. 
+
+Now, from the graph we can see many basic properties of the function. Recall the function 
+\[
+  \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1}
+\]
+with domain $D_{\Mvarphi}=(0\MIntvlSep 1)$ and range $W_{\Mvarphi}=(1\MIntvlSep 4)$ from 
+Section~\MNRef{sec:zuordnungen}. If we draw its graph, then we see that the domain and the range 
+appear on the horizontal and on the vertical axes, respectively:
+
+% grund3 f: (0,1) --> \R, y \mapsto 3y+1
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\draw[->,color=black] (-1.5,0) -- (2,0);
+\foreach \x in {-1,1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,5);
+\foreach \y in {1, 2, 3, 4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2,0) node[anchor=north west] {$y$};
+\draw (-1,5) node[anchor=north west] {$\Mvarphi(y)$};
+%Graph: x \mapsto 3x+1
+\draw (0.5,2.5) node[anchor=west, color = green] {$G_{\Mvarphi}$};
+\draw[smooth,samples=50,domain=0:1, line width=2pt,color=green] plot(\x,{3*(\x)+1});
+\draw[color=green, fill=white] (1,4) circle (1.5pt);
+%Definitionsbereich
+\draw (0.5,0) node[anchor=south, color = cyan] {$D_{\Mvarphi}$};
+\draw [line width=2.0pt,color=cyan] (0,0)-- (1,0);
+\draw [color = blue, fill = white]  (0,0) circle (1.5pt);
+\draw [color = blue, fill = white]  (1,0) circle (1.5pt);
+% Wertebereich
+\draw (0,2.5) node[anchor=east, color = orange] {$W_{\Mvarphi}$};
+\draw [line width=2.0pt,color=orange] (0,1)-- (0,4);
+\draw [color = orange, fill = white]  (0,1) circle (1.5pt);
+\draw [color = orange, fill = white]  (0,4) circle (1.5pt);
+\end{tikzpicture}
+}%
+
+\begin{MExercise}
+Consider again the graph of the function
+\[
+ \function{f}{\R}{\R}{x}{x^2\MDFPSpace,} 
+\]
+indicate domain and range on the the horizontal axis and vertical axes and label them.
+
+\begin{MHint}{Solution}
+% grund4
+\MTikzAuto{%
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4,0) -- (3.9,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,4.7);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4,0) node[anchor=north west] {$x$};
+\draw (-1,5.2) node[anchor=north west] {$f(x)$};
+% Graph (x,x^2)
+\draw[smooth,samples=50,domain=-2.1:2.1] plot(\x,{(\x)^(2.0)});
+%Definitionsbereich
+\draw (1,0) node[anchor=south, color = cyan] {$D_f$};
+\draw [color=cyan] (-4,0) -- (3.9,0);
+% Wertebereich
+\draw (0,2.5) node[anchor=east, color = orange] {$W_f$};
+\draw [color=orange] (0,0)-- (0,4.7);
+\fill [color = orange]  (0,0) circle (1.5pt);
+\end{tikzpicture}
+}%
+
+$D_f=\R$, $W_f=[0\MIntvlSep \infty)$
+\end{MHint}
+\end{MExercise}
+
+Furthermore, the property of uniqueness of functions can be seen from the graph. To convince 
+ourselves of this, we realise that a curve as shown in the figure below 
+
+
+% notfunction
+\MTikzAuto{%
+\begin{tikzpicture}
+% Koordinatensystem
+\node (xMAX) at (5,0){};
+\node (yMAX) at (0,2.8){};
+\draw[->,color=black] (-3,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2) -- (yMAX);
+\foreach \y in {-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+% notfunktion
+\draw [rotate around={90:(0,0)}, 
+			smooth,samples=100,
+			domain=-1.5:1.9] 
+			plot(\x,{((\x)-1.0)*(\x)*((\x)+1.0)-2});
+% Punkte
+\fill [color = red]  (2,1) circle (1.5pt);
+\fill [color = red]  (2,0) circle (1.5pt);
+\fill [color = red]  (2,-1) circle (1.5pt);
+% x
+\begin{scriptsize}
+	\draw (2,0) circle node[anchor = north west ](x){$x$};
+	% y1,y2,y3
+	\draw (0,1) circle  node[anchor = west ]{$y_1$};
+	\draw (0,0) circle  node[anchor = south west ]{$y_2$};
+	\draw (0,-1) circle node[anchor = west ]{$y_3$};
+\end{scriptsize}
+\draw [color = red, dotted] (2,-1)--(2,0) --(2,1);
+\end{tikzpicture}
+}%
+
+cannot be a graph of a function. For a single $x$-value in the domain, several values 
+$y_1,y_2,y_3$  had to exist in the range. Graphs of functions indicate 
+the uniqueness by the fact that they ``cannot reverse in the horizontal direction''.
+
+Another important property of a graph is its \modsemph{growing behaviour}. Let us consider the function
+\[
+ \function{f}{\R}{\R}{x}{x^2}
+\]
+and its graph.
+
+%GRAPH: mon1:
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\node (xMAX) at (2.8,0){};
+\node (yMAX) at (0,4.8){};
+%Achsen
+\draw[->,color=green, line width=2pt] (0,0) -- (3,0);
+\draw[->,color=red, line width=2pt] (-3,0) -- (-0.05,0);
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+% Graph (x,x^2)
+\draw[smooth,samples=50,domain=-2.1:2.1] plot(\x,{(\x)^(2.0)});
+%Markierungen
+\draw (2.1,4) node[right] {$G_f$};
+\draw[color = black, fill = black]  (0,0) circle (1.5pt);
+\draw[->,color=green] (1.5,1) -- (2.5,3);
+\draw[color=green] (2,2) node[right] {rises};
+\draw[->,color=red] (-2.5,3) -- (-1.5,1);
+\draw[color=red] (-2,2) node[left] {falls};
+\end{tikzpicture}
+}%
+
+On the horizontal axis in this graph we see two regions in which the \modsemph{growing behaviour} of the 
+graph is different. In the region of $x$-values with $x\in(-\infty\MIntvlSep 0)$ the graph 
+\modsemph{falls}, i.e. if the $x$ values increase, then the corresponding function values on 
+the vertical axis decrease. In the region of $x$-values with $x\in(0\MIntvlSep \infty)$ we 
+observe the contrary behaviour. For increasing $x$-values the corresponding function values also increase: the graph \modsemph{rises}. At the $x$-value $0\in\R$ the region of decreasing growing behaviour merges into 
+the region of increasing growing behaviour. Such values will be of particular importance for the study of vertices 
+in Section~\MNRef{sec:polynome} and for the determination of \MSRef{VBKM07_Kurvendiskussion}{extreme values} 
+in Module~\MNRef{VBKM07}. 
+
+These two properties are referred to as \highlight{strictly decreasing} and \highlight{strictly increasing}, respectively, 
+and they are defined mathematically as follows:
+
+\begin{MInfo}
+\begin{itemize}
+ \item If for $x_1<x_2$ in a subset of the domain of a function $f$ we always have $f(x_1)>f(x_2)$, the function $f$ is 
+  said to be strictly decreasing for every $x$ in this subset.
+
+%GRAPH: mon2a:
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\node (xMAX) at (3.8,0){};
+\node (yMAX) at (0,3.8){};
+%Achsen
+\draw[->,color=black] (-.5,0) -- (xMAX);
+\draw[->,color=black] (0,-.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+% Graph (x,x^2)
+\draw[smooth,samples=150,domain=0.5:2.8] plot(\x,{-sin(\x r)-\x +3.5});
+\draw (0.5,2.52) node[anchor=south] {$G_f$};
+%Markierungen
+\draw[color = red, fill = red]  (1,1.659) circle (1.5pt);
+\draw[color = red, fill = red]  (2,0.591) circle (1.5pt);
+\draw[color = red, dotted] (1,1.659) -- (1,0);
+\draw[color = red, dotted] (2,0.591) -- (2,0);
+\draw[color = red, dotted] (1,1.659) -- (0,1.659);
+\draw[color = red, dotted] (2,0.591) -- (0,0.591);
+\draw[shift={(1,0)},color=red] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize{$x_1$}};
+\draw[shift={(2,0)},color=red] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize{$x_2$}};
+\draw[shift={(0,1.659)},color=red] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize{$f(x_1)$}};
+\draw[shift={(0,0.591)},color=red] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize{$f(x_2)$}};
+\draw[color=red] (1.5,-0.02) node[below] {\footnotesize{$<$}};
+\draw[color=red] (-0.3,1.125) node[left] {\footnotesize{$\vee$}};
+\end{tikzpicture}  
+}%
+
+ \item If for $x_1<x_2$ in a subset of the domain of a function $f$ we always have $f(x_1)<f(x_2)$, the function $f$ is 
+  said to be strictly increasing for every $x$ in this subset.
+
+%GRAPH: mon2b:
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\node (xMAX) at (3.8,0){};
+\node (yMAX) at (0,3.8){};
+%Achsen
+\draw[->,color=black] (-.5,0) -- (xMAX);
+\draw[->,color=black] (0,-.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+% Graph (x,x^2)
+\draw[smooth,samples=150,domain=0.5:2.8] plot(\x,{sin(\x r)+\x-.5});
+\draw (2.8,2.52) node[anchor=south] {$G_f$};
+%Markierungen
+\draw[color = olive, fill = olive]  (1,1.3415) circle (1.5pt);
+\draw[color = olive, fill = olive]  (2,2.409) circle (1.5pt);
+\draw[color = olive, dotted] (1,1.3415) -- (1,0);
+\draw[color = olive, dotted] (2,2.409) -- (2,0);
+\draw[color = olive, dotted] (1,1.3415) -- (0,1.3415);
+\draw[color = olive, dotted] (2,2.409) -- (0,2.409);
+\draw[shift={(1,0)},color=olive] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize{$x_1$}};
+\draw[shift={(2,0)},color=olive] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize{$x_2$}};
+\draw[shift={(0,1.3415)},color=olive] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize{$f(x_1)$}};
+\draw[shift={(0,2.409)},color=olive] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize{$f(x_2)$}};
+\draw[color=olive] (1.5,-0.02) node[below] {\footnotesize{$<$}};
+\draw[color=olive] (-0.3,1.875) node[left] {\footnotesize{$\vee$}};
+\end{tikzpicture}
+}%
+
+\end{itemize}
+\end{MInfo}
+
+This is true for all functions that will be investigated throughout this module. Often, the described 
+monotonicity properties are only true for certain regions in the functions's domain, as we have seen for
+the case of the standard parabola. However functions also exist which only have one of 
+the monotonicity properties for the entire domain (see Example~\MNRef{bsp1:monoton} below). In this 
+case the entire function is called strictly increasing or strictly decreasing. A function that is either strictly decreasing or strictly increasing is simply called 
+\highlight{strictly monotonic}.
+
+A further example shows how strict monotonicity can be checked explicitly for a function by solving 
+\MSRef{M03_Ungleichungen}{inequalities} from Module~\MRef{VBKM03}.
+
+\begin{MExample}\MLabel{bsp1:monoton}%
+
+Consider the function
+\[
+ \function{h}{\R}{\R}{x}{-\frac{1}{2}x+1}.
+\]
+Determine whether the function $h$ is either strictly increasing or 
+strictly decreasing.
+
+First, we choose two arbitrary numbers $x_1,x_2\in D_h=\R$ for which
+\[
+ x_1<x_2 \MDFPeriod
+\]
+By \MSRef{VBKM03_AequivalenzumformungenUngleichungen}{equivalent transformations} of inequalities, we can 
+transform $x_1<x_2$ either to $h(x_1)<h(x_2)$ or to $h(x_1)>h(x_2)$, and from this we can conclude that 
+$h$ is strictly increasing or strictly decreasing. We apply the following equivalent transformations to
+the inequality $x_1<x_2$:
+\[
+ x_1<x_2\,|\cdot(-\frac{1}{2})\quad\Leftrightarrow\quad -\frac{1}{2}x_1>-\frac{1}{2}x_2 \MDFPeriod
+\]
+Furthermore, we add $+1$ to the mapping rule. Thus, we obtain
+\[
+ -\frac{1}{2}x_1>-\frac{1}{2}x_2\,|+1\quad\Leftrightarrow\quad -\frac{1}{2}x_1+1>-\frac{1}{2}x_2+1\quad\Leftrightarrow\quad h(x_1)>h(x_2) \MDFPeriod
+\]
+Since $h(x_1)>h(x_2)$, the function $h$ is strictly decreasing. This can also be seen from the graph of~$h$:
+
+%GRAPH: mon3:
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\node (xMAX) at (4.8,0){};
+\node (yMAX) at (0,2.8){};
+%Achsen
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (yMAX);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$h(x)$};
+% Graph (x,x^2)
+\draw[smooth,samples=150,domain=-1:4] plot(\x,{-0.5*\x+1});
+\draw (-1,1.5) node[anchor=east] {$G_h$};
+%Markierung
+\draw[->,color=red] (1,1.2) -- (3,0.2);
+\draw[color=red] (2,1) node[anchor=west] {falls};
+\end{tikzpicture}
+}%
+
+\end{MExample}
+
+\begin{MExercise}\MLabel{ex1:monoton}
+Use equivalent transformations to check explicitly that the function
+\[
+ \function{\eta}{\R}{\R}{x}{2x+2}
+\]
+is strictly increasing.
+\begin{MHint}{Solution}
+We have
+\[
+ x_1<x_2\,|\cdot2\quad\Leftrightarrow\quad2x_1<2x_2\,|+2\quad\Leftrightarrow\quad2x_1+2<2x_2+2\quad\Leftrightarrow\quad\eta(x_1)<\eta(x_2) \MDFPSpace,
+\]
+hence the function $\eta$ is strictly increasing.
+\end{MHint}
+\end{MExercise}
+
+
+\end{MXContent}
+
+\MSubsection{Linear Functions and Polynomials}
+\MLabel{VBKM06_linear}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Intro}
+In this section we study the following types of functions: constant functions, linear functions, linear affine 
+functions, monomials and polynomials.
+\end{MIntro}
+
+
+\begin{MXContent}{Constant Functions and the Identity}{Constants and Identity}{STD}
+\MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Konstanten}
+
+So called constant functions assign to every number in the domain $\R$ \modsemph{exactly the same} 
+constant number in the target set $\R$, e.g. the constant number $2$, in the following way:
+\[
+ \function{f}{\R}{\R}{x}{2 \MDFPeriod}
+\]
+%BILD: venn-const
+\MTikzAuto{%
+\begin{tikzpicture}
+%venn.Definitionsbereich
+\draw (0,0) ellipse (1cm and 1.5cm);
+\draw (-0.5,1.8) node[auto] {$\mathbb{R}$};
+% x0, x1, x2
+\draw(0.0, 1) node (x1){$-1$};
+\draw (0.3,-1) node[auto](x2){$2$} ;
+\draw (-0.3,-0.2)node[auto](xh){$\frac{1}{2}$};
+\draw (0.6,0.2) node(xp) {$\pi$};
+\draw (-.5,0.45) node {$\dots$};
+%venn.Wertebereich
+\draw (5,0) ellipse (1 cm and 1.5cm);
+\draw (4.5,1.8) node[auto] {$\mathbb{R}$};
+% f(x0), f(x1), f(x2)
+\draw (5,1)  node[auto]{$-1$};
+\draw (5,-1)  node[auto](Fx){$2$};
+\draw (4.7,-0.2) node {$\frac{1}{2}$};
+\draw (5.6,0.2) node {$\pi$};
+\draw (4.6,0.45) node {$\dots$};
+%Abbildung
+\draw [|->] (x1) -- (Fx);
+\draw [|->] (x2) -- (Fx);
+\draw[|->] (xh) -- (Fx);
+\draw[|->] (xp) -- (Fx);
+\draw (2.5,0.3) node {$f$};
+\end{tikzpicture}
+}%
+%Abstand:
+\hspace{2cm}
+%GRAPH: const1 
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Graph: konstant
+\draw[color=red] (3,2) node[anchor=south] {$G_f$};
+\draw[color=red] (-1.5,2)--(2.8,2);
+%Koordinatensystem
+\node (xMAX) at (2.8,0){};
+\node (yMAX) at (0,3.5){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1, 2, 3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+\end{tikzpicture}
+}%
+
+Here, we then have $f(x)=2$ for all $x\in\R$. Hence, the range of this function $f$ consists only 
+of the set $W_f=\{2\}\subset\R$.
+
+The identity function on $\R$ is the function that assigns each real number to itself. This is written as follows:
+\[
+ \function{\Id}{\R}{\R}{x}{x \MDFPeriod}
+\]
+%BILD: venn-id
+\MTikzAuto{%
+\begin{tikzpicture}
+%venn.Definitionsbereich
+\draw (0,0) ellipse (1cm and 1.5cm);
+\draw (-0.5,1.8) node[auto] {$\mathbb{R}$};
+% x0, x1, x2
+\draw(0.0, 1) node (x1){$-1$};
+\draw (0.3,-1) node[auto](x2){$2$} ;
+\draw (-0.3,-0.2)node[auto](xh){$\frac{1}{2}$};
+\draw (0.6,0.2) node(xp) {$\pi$};
+\draw (-.5,0.45) node {$\dots$};
+%venn.Wertebereich
+\draw (5,0) ellipse (1 cm and 1.5cm);
+\draw (4.5,1.8) node[auto] {$\mathbb{R}$};
+% f(x0), f(x1), f(x2)
+\draw (5,1)  node[auto](Fx1){$-1$};
+\draw (5,-1)  node[auto](Fx2){$2$};
+\draw (4.7,-0.2) node(Fxh) {$\frac{1}{2}$};
+\draw (5.6,0.2) node(Fxp) {$\pi$};
+\draw (4.6,0.45) node {$\dots$};
+%Abbildung
+\draw [|->] (x1) -- (Fx1);
+\draw [|->] (x2) -- (Fx2);
+\draw[|->] (xh) -- (Fxh);
+\draw[|->] (xp) -- (Fxp);
+\draw (2.5,1.3) node {$\Id$};
+\end{tikzpicture}
+}%
+%Abstand:
+\hspace{2cm}
+%GRAPH: id1
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Graph: Id
+\draw[color=red] (2.5,2.5) node[anchor=south] {$G_{\Id}$};
+\draw[color=red] (-0.5,-0.5)--(2.5,2.5);
+%Koordinatensystem
+\node (xMAX) at (2.8,0){};
+\node (yMAX) at (0,3.5){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1, 2, 3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$\operatorname{Id}(x)$};
+\end{tikzpicture}
+}%
+
+Here, we then have $\Id(x)=x$ for all $x\in\R$. Hence, the range of $\Id$ is the set 
+of real numbers ($W_{\Id}=\R$). Furthermore, the identity function is (obviously) a strictly 
+increasing function.
+\end{MXContent}
+
+
+\begin{MXContent}{Linear Functions}{Linear}{STD}\MLabel{sec:linear}
+\MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Linear}
+
+Starting from the identity function, more complex functions - so called \highlight{linear functions} - can be constructed. So, for example, one can think of a function that assigns to each 
+real number twice its value or $\pi$ times its value, etc., e.g.
+\[
+ \function{f}{\R}{\R}{x}{2x}
+\]
+or
+\[
+ \function{g}{\R}{\R}{x}{\pi x \MDFPeriod}
+\]
+
+%BILD: venn-lin1
+\MTikzAuto{%
+\begin{tikzpicture}
+%venn.Definitionsbereich
+\draw (0,0) ellipse (1cm and 1.5cm);
+\draw (-0.5,1.8) node[auto] {$\mathbb{R}$};
+% x0, x1, x2
+\draw (0.0, 0.8) node(x1){$-1$};
+\draw (0.6,0.2) node(xn) {$0$};
+\draw (-0.3,-0.2)node(xh){$\frac{1}{2}$};
+\draw (0.3,-0.9) node(x2){$2$} ;
+\draw (-0.4,0.3) node {$\dots$};
+%venn.Wertebereich
+\draw (5,0) ellipse (1 cm and 1.5cm);
+\draw (4.5,1.8) node[auto] {$\mathbb{R}$};
+% f(x0), f(x1), f(x2)
+\draw (5,1)  node(Fx1){$-2$};
+\draw (5.6,0.2) node(Fxn) {$0$};
+\draw (4.7,-0.4) node(Fxh) {$1$};
+\draw (5,-1.2)  node(Fx2){$4$};
+\draw (5.3,-0.6) node {$\dots$};
+%Abbildung
+\draw [|->] (x1) -- (Fx1);
+\draw [|->] (x2) -- (Fx2);
+\draw[|->] (xn) -- (Fxn);
+\draw[|->] (xh) -- (Fxh);
+\draw (2.5,1.3) node {$f$};
+\end{tikzpicture}
+}%
+\hspace{2cm}
+%GRAPH: lin1
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,4.8){};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1, 2, 3, 4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: x->2x
+\draw[color=red] (-0.2,-0.4)--(2.2,4.4);
+\draw[color=red] (2.2,4.4) node[anchor=south] {$G_f$};
+\end{tikzpicture}
+}%
+
+
+%BILD: venn-lin2
+\MTikzAuto{%
+\begin{tikzpicture}
+%venn.Definitionsbereich
+\draw (0,0) ellipse (1cm and 1.5cm);
+\draw (-0.5,1.8) node[auto] {$\mathbb{R}$};
+% x0, x1, x2
+\draw (0.0, 0.8) node(x1){$-1$};
+\draw (0.6,0.2) node(xn) {$0$};
+\draw (-0.3,-0.2)node(xh){$\frac{1}{2}$};
+\draw (0.3,-0.9) node(x2){$2$} ;
+\draw (-0.4,0.3) node {$\dots$};
+%venn.Wertebereich
+\draw (5,0) ellipse (1 cm and 1.5cm);
+\draw (4.5,1.8) node[auto] {$\mathbb{R}$};
+% f(x0), f(x1), f(x2)
+\draw (5,1)  node(Fx1){$-\pi$};
+\draw (5.6,0.2) node(Fxn) {$0$};
+\draw (4.7,-0.4) node(Fxh) {$\frac{\pi}{2}$};
+\draw (5,-1.2)  node(Fx2){$2\pi$};
+\draw (5.3,-0.6) node {$\dots$};
+%Abbildung
+\draw [|->] (x1) -- (Fx1);
+\draw [|->] (x2) -- (Fx2);
+\draw[|->] (xn) -- (Fxn);
+\draw[|->] (xh) -- (Fxh);
+\draw (2.5,1.3) node {$g$};
+\end{tikzpicture}
+}%
+\hspace{2cm}
+%GRAPH: lin2
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,4.8){};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1, 2, 3, 4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$g(x)$};
+%Graph: x->pi*x
+\draw[color=red] (-0.1,-0.3)--(1.4,4.5);
+\draw[color=red] (1.4,4.5) node[anchor=south] {$G_g$};
+\end{tikzpicture}
+}%
+
+Hence, all linear functions (except for the zero function, see below) also have the entire set 
+of real numbers as their ranges ($W_f,W_g=\R$). The factor that multiplies each real number in such 
+a linear function is called \highlight{slope} of the linear function. Often, also for linear functions 
+one does not like to specify a certain function with a specific slope, but an arbitrary function 
+with an arbitrary slope $m\in\R$:
+\[
+ \function{f}{\R}{\R}{x}{m x \MDFPeriod}
+\]
+
+%GRAPH: lin3
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,1.8){};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\draw[shift={(0,0.5)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {$m$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: x->m*x
+\draw[color=red] (-0.4,-0.2)--(2.2,1.1);
+\draw[color=red] (2.2,1.1) node[anchor=south] {$G_f$};
+%Markierungen
+\draw[color=red, dotted] (1,.5) -- (1,0); 
+\draw[color=red, dotted] (1,.5) -- (0,.5);
+\end{tikzpicture}
+}%
+
+Where does the term slope of a linear function come from? If the difference in height by which the graph is rising vertically 
+is divided by the corresponding length in the horizontal direction, then one obtains the slope $m$. 
+
+
+\begin{MInfo}
+A linear function
+\[
+ \function{f}{\R}{\R}{x}{m x} 
+\]
+is strictly increasing if and only if its slope is positive, i.e. $m>0$; 
+and it is strictly decreasing if and only if its slope is negative, i.e. $m<0$.
+\end{MInfo}
+
+
+\begin{MExercise}
+Which of the linear functions above has the slope $m=1$?
+
+\begin{MHint}{Solution}
+We have $f(x)=1\cdot x=x=\Id(x)$, i.e. the identity function.
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Which of the linear functions above has the slope $m=0$?
+\begin{MHint}{Solution}
+We have $f(x)=0\cdot x=0$, i.e. the constant function that is always $0$. 
+\end{MHint}
+\end{MExercise}
+
+\end{MXContent}
+ 
+\begin{MXContent}{Linear Affine Functions}{Affin}{STD}
+\MLabel{VBKM06_sec:linear-affin}
+\MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Affin}
+
+Combining linear functions with constant functions results in so called \highlight{linear affine functions}.
+These are the sum of a linear function and a constant function. Generally, without any specification for 
+the slope ($m\in\R$) this is written as follows:
+\[
+ \function{f}{\R}{\R}{x}{m x+c \MDFPeriod}
+\]
+
+%GRAPH: affin1
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\draw[shift={(0,1.5)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {$c$};
+\draw[shift={(0,2)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {$c+m$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: x->m*x+c
+\draw[color=red] (-1,1)--(3,3);
+\draw[color=red] (3,3) node[anchor=south] {$G_f$};
+%Markierungen
+\draw[color=red,dotted] (1,0) -- (1,2);
+\draw[color=red,dotted] (0,2) -- (1,2);
+\end{tikzpicture}	
+}%
+
+The graphs of linear affine functions are also called \highlight{lines}. For linear affine functions,
+the constant $m$ is still called slope, and the constant $c\in\R$ is called \highlight{$y$-intercept}.
+The reason for this term is as follows: if the intersection point of the graph of the linear affine function
+with the vertical axis is considered, then this point has the distance $c$ from the origin (see figure above). 
+So, for the linear affine function shown in the figure below
+\[
+ \function{f}{\R}{\R}{x}{-2x-1}
+\]
+
+%GRAPH: affin2
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,1.8){};
+\draw[->,color=black] (0,-5) -- (yMAX);
+\foreach \y in {-5,-4,-3,-2,-2,1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\draw[shift={(0,-1)},color=red] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $c=-1$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: x-> -2x-1
+\draw[color=red] (-1,1)--(2,-5);
+\draw[color=red] (2,-5) node[anchor=north] {$G_f$};
+\end{tikzpicture}
+}%
+
+we have the slope $m=-2$ and the $y$-intercept $c=-1$. The $y$-intercept is the value of the function 
+at $x=0$ and hence given by 
+\[
+ c=f(0)=-2\cdot 0-1 = -1 \MDFPeriod
+\]
+
+\begin{MExercise}
+Find the slope and the $y$-intercept of the function
+\[
+ \function{f}{\R}{\R}{x}{\pi x-42 \MDFPeriod}
+\]
+\begin{MHint}{Solution}
+Slope: $\pi$ and $y$-intercept: $-42$
+\end{MHint}
+\end{MExercise}
+
+
+\begin{MExercise}
+Which functions are the linear affine functions that have slope $m=0$, and 
+which are the ones with $y$-intercept $c=0$?
+\begin{MHint}{Solution}
+If $m=0$, then $f(x)=0\cdot x+c=c$. 
+Hence, the constant functions are the ones that have slope $0$. A zero 
+$y$-intercept, i.e. $c=0$, implies $f(x)=m x+0=m x$. Hence, in this case
+we obtain exactly the linear functions.
+\end{MHint}
+\end{MExercise}
+
+
+\end{MXContent}
+ 
+\begin{MXContent}{Absolute Value Functions}{Betrag}{STD}
+\MLabel{VBKM06_sec:betrag}
+\MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Betrag}
+In Module~\MNRef{VBKM02} the \MSRef{VBKM02_Betrag}{absolute value} of a real number $x$ was introduced in the following way:
+\[
+ |x| = \begin{MCaseEnv} x & \text{for}\;x\geq 0 \\ -x & \text{for}\;x<0 \MDFPeriod \end{MCaseEnv}
+\]
+In the context of this module, the absolute value can be regarded as a function. This results in 
+the \MEntry{absolute value function}{absolute value function}:
+\[
+ \function{b}{\R}{\R}{x}{|x| \MDFPeriod}
+\]
+
+\begin{MExercise}
+What is the range $W_b$ of the absolute value function $b$?
+\begin{MHint}{Solution}
+Since $b(x)=|x|\geq0$ for all numbers $x$ in $D_b=\R$, we have  $W_b=[0\MIntvlSep \infty)$. 
+\end{MHint}
+\end{MExercise}
+
+Due to the definition according to cases
+\[
+ b(x)=|x|=\begin{MCaseEnv} x & \text{for}\;x\geq0 \\ -x & \text{for}\;x<0 \MDFPSpace , \end{MCaseEnv}
+\]
+the absolute value function is an example of a \modsemph{piecewise defined} function. If absolute values are 
+defined according to different cases, then it is also said that the absolute value is \highlight{resolved}.
+Then, the graph of the absolute value function $b$ looks as follows:
+
+%GRAPH: abs1
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,2.8){};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$b(x)$};
+%Graph: x-> |x|
+\draw[color=red] (-2,2)--(0,0)--(2,2);
+\draw[color=red] (2,2) node[anchor=south] {$G_b$};
+\end{tikzpicture}
+}%
+
+One property of the graph of the absolute value function, which most of the more general functions involving absolute
+values have in common, is the kink at $x=0$. The absolute value function $b$ defined above is only the simplest case of 
+a function involving an absolute value. More complicated examples of functions can be constructed, involving one or several absolute values, e.g.
+\[
+ \function{f}{\R}{\R}{x}{|2x-1| \MDFPeriod}
+\]
+
+For such functions, it is a relevant task to get an idea of how the graph of the function looks. 
+To do this, we use the piecewise definition of the absolute value, and the approach is similar to 
+the one for the solution of \MSRef{VBKM02_FallBetrag}{absolute value equations} and inequalities. Here,
+we demonstrate this approach for the example of the function $f$ defined above:
+
+\begin{MExample}
+Consider the function
+\[\function{f}{\R}{\R}{x}{|2x-1|}.\]
+What does the graph look like?
+
+We calculate:
+\[
+ f(x)=|2x-1|=\begin{MCaseEnv} 2x-1 & \text{for}\ 2x-1\geq0 \\ -(2x-1) & \text{for}\ 2x-1<0\end{MCaseEnv}=\begin{MCaseEnv} 2x-1 & \text{for}\ x\geq\frac{1}{2} \\ -2x+1 & \text{for}\ x<\frac{1}{2} \MDFPeriod\end{MCaseEnv}
+\]
+Thus, we obtain a piecewise defined function whose graph is an increasing line with the slope $2$ 
+and the $y$-intercept $-1$ for $x$ in the region $x\geq\frac{1}{2}$ and a decreasing line with 
+the slope $-2$ and the $y$-intercept $1$ for $x$ in the region $x<\frac{1}{2}$. With this information 
+we can  draw the graph of $f$:
+
+%GRAPH: abs2
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,4.8){};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1,2, 3, 4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: x-> |2x-1|
+\draw[color=red] (-1.5,4)--(0.5,0)--(2.5,4);
+\draw[color=red] (2.5,4) node[anchor=south] {$G_{f}$};
+\end{tikzpicture}
+}%
+\end{MExample}
+
+\begin{MInfo}
+\textcolor{red}{CAUTION!} 
+If absolute values are resolved as in the calculation in the example above, two important calculation rules 
+have to be observed:
+
+\begin{enumerate}
+ \item The \modsemph{regions} for the cases are defined by inequalities for the entire 
+  \modsemph{expression} between the absolute value bars, here $2x-1\geq 0$ and $2x-1<0$, and \modsemph{not} only 
+  by $x\geq 0$ and $x<0$. It is always that way if absolute values are resolved.
+
+ \item For the case $<0$ the \modsemph{entire} expression gets a minus sign. Here, care has to be taken that
+  the expression is bracketed. In the example above, we therefore have $-(2x-1)=-2x+1$ and \modsemph{not}
+  $-2x-1$. This is always the case if absolute values are resolved.
+\end{enumerate}
+\end{MInfo}
+
+
+
+\begin{MExercise}
+Sketch the graph of the function
+\[
+ \function{\alpha}{\R}{\R}{x}{|-8x+1|-1 \MDFPeriod } 
+\]
+Moreover, specify its range $W_\alpha$.
+\begin{MHint}{Solution}
+We have
+\[
+ \alpha(x)=|-8x+1|-1=\begin{MCaseEnv} -8x+1-1 & \text{for}\ -8x+1\geq0 \\ -(-8x+1)-1 & \text{for}\ -8x+1<0 \end{MCaseEnv}=\begin{MCaseEnv} -8x & \text{for}\ x\leq\frac{1}{8} \\ 8x-2 & \text{for}\ x>\frac{1}{8} \MDFPSpace,\end{MCaseEnv}
+\]
+hence: 
+
+%GRAPH: abs3
+\MTikzAuto{%
+\begin{tikzpicture}[x = 2cm] 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (1.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,4.5){};
+\draw[->,color=black] (0,-1.5) -- (yMAX);
+\foreach \y in {-1,1,2, 3, 4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[left] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$\alpha(x)$};
+%Graph: x-> |-8x+1|-1
+\draw[color=red] (-0.5,4)--(0.125,-1)--(0.75,4);
+\draw[color=red] (0.75,4) node[anchor=south] {$G_{\alpha}$};
+\draw[shift={(1/8,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[anchor=north] {\footnotesize $\frac{1}{8}$};
+\end{tikzpicture}
+}%
+
+Since $|-8x+1|\geq0$, it follows $|-8x+1|-1\geq -1$ which implies $W_\alpha=[-1\MIntvlSep \infty)$.
+\end{MHint}
+\end{MExercise}
+
+
+\end{MXContent}
+
+
+\begin{MXContent}{Monomials}{Monomials}{STD}\MLabel{sec:monome}
+\MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Monome}
+As well as the linear affine functions studied in the previous section one now can 
+also think of functions that assign to all real numbers non-negative integer powers 
+of itself. An example is the function
+\[
+ \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
+\]
+
+% venn-para (siehe venn4)
+\MTikzAuto{%
+\begin{tikzpicture}[scale = 0.5]
+% Definitionsbereich
+\draw  (3.5,10.3) node[anchor=north west] {$\mathbb{R}$};
+\draw [] (2.7,7.6) ellipse (1.7cm and 2.4cm);
+\draw [color = blue](2,6.3)  node[anchor=north west](vierMinus) {-4};
+\draw [color = blue](2.1,7.4)  node[anchor=north west](eins) {1};
+\draw [color = blue](2.3,8.7)  node[anchor=north west] (vier){4};
+\draw [color = blue](2.5,9.5) node[anchor=north west]  {...};
+% Wertebereich
+\draw (9.8,10.3) node[anchor=north west] {$\mathbb{R}$};
+\draw (8.8,7.5) ellipse (1.9cm and 2.6cm);
+\draw (8,8) node[anchor=north west] {$\frac{1}{2}$};
+\draw (7.4,6.7) node[anchor=north west] {$-\frac{1}{2}$};
+\draw (7.1,7.5) node[anchor=north west](Feins) {$1$};
+\draw (8.0,9.8) node[anchor=north west] (Fvier){$16$};
+\draw (7.3,8.7) node[anchor=north west]{$0$};
+\draw (9.0,7.8) node[anchor=north west] {$\pi$};
+\draw (9.3,9.3) node[anchor=north west] {$\frac{3}{2}$};
+\draw (9.3,6.5) node[anchor=north west] {...};
+% Abbildung: 
+\draw[|->] (eins) -- (Feins);
+\draw[|->] (vier) -- (Fvier);
+\draw[|->] (vierMinus) -- (Fvier);
+\end{tikzpicture}
+}%
+\hspace{1cm}
+%GRAPH: mon1
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\node (xMAX) at (2.8,0){};
+\node (yMAX) at (0,4.8){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$g(x)$};
+% Graph (x,x^2)
+\draw[color=red,smooth,samples=50,domain=-2.1:2.1] plot(\x,{(\x)^(2.0)});
+\draw[color=red] (2.1,4.41) node[anchor=south] {$G_g$};
+\end{tikzpicture}
+}%
+
+This works for every non-negative integer exponent, and generally this function is written as 
+\[
+ \function{f}{\R}{\R}{x}{x^n}
+\]
+with $n\in\N_0$, and it is called a \highlight{monomial}. The exponent $n$ of a monomial is called 
+the \highlight{degree} of the monomial. For example, the function $g$ described at the beginning 
+of this section is a monomial of degree $2$.
+
+\begin{MExercise}
+Which functions are the monomials of degree $1$ and $0$? 
+
+\begin{MHint}{Solution}
+Since $x^1=x$ for all $x\in\R$, the identity function  $\Id$ is the monomial of degree $1$. Likewise, 
+$x^0=1$ for all $x\in\R$, and thus, the constant function  $f\colon\R\lto\R$, $f(x)=1$ is the monomial 
+of degree $0$.
+\end{MHint}
+\end{MExercise}
+The monomial of degree $2$ is called the \highlight{standard parabola}. The monomial 
+of degree $3$ is called the \highlight{cubic standard parabola}. The figure below shows 
+the graphs of a few monomials.
+
+%GRAPH: mon2
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\node (xMAX) at (2.8,0){};
+\node (yMAX) at (0,4.8){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\foreach \y in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+\clip(-2.5,-3.5) rectangle (2.5,4.5);
+% Monome
+\draw[color = cyan,smooth,samples=50,domain=-2.5:2.5] plot(\x,{(\x)}); \draw[color = cyan](-1.4,-1.4)node[left]{$G_x$};
+\draw[color = orange, smooth,samples=50,domain=-2.4:2.4] plot(\x,{(\x)^(2.0)}); \draw[color = orange](-1.5,2)node[left]{$G_{x^2}$};
+\draw[color = blue, smooth,samples=50,domain=-1.9:1.9] plot(\x,{(\x)^(3.0)}); \draw[color = blue](-1.3,-3)node[left]{$G_{x^3}$};
+\draw[color = red, smooth,samples=50,domain=-1.5:1.5] plot(\x,{(\x)^(4.0)}); \draw[color = red](-1.3,3)node[right]{$G_{x^4}$};
+\draw[color = black, smooth,samples=50,domain=-1.4:1.4] plot(\x,{(\x)^(5.0)}); \draw[color = black](-1.2,-2.5)node[right]{$G_{x^5}$};
+%Punkte
+\draw[color=black,fill=black] (1,1) circle (1pt);
+\draw[color=black,fill=black] (-1,1) circle (1pt);
+\draw[color=black,fill=black] (-1,-1) circle (1pt);
+\end{tikzpicture}
+}%
+
+On the basis of these graphs, we now summarise some conclusions on monomials: There is a fundamental difference 
+between monomials (with the mapping rule $f(x)=x^n$, $n\in\N$) of even and odd degree. 
+The range of monomials of an even non-zero degree is always the set $[0\MIntvlSep \infty)$, while monomials
+of odd degree have the range $\R$. Furthermore, we always have 
+\[
+ f(1)=1^n=1 \MDFPSpace,
+\]
+\[
+ f(0)=0^n=0
+\]
+and
+\[
+ f(-1)=\MCases{1 & \text{for}\ n\ \text{even} \\ -1 & \text{for}\ n\ \text{odd\MDFPeriod} }
+\]
+Moreover, we have
+\[
+ \MCases{x>x^2>x^3>x^4>\dots & \text{for}\ x\in(0\MIntvlSep 1) \\ x<x^2<x^3<x^4<\dots & \text{for}\ x\in(1\MIntvlSep \infty) \MDFPeriod}
+\]
+
+\begin{MExercise}
+How can our conclusions concerning monomials be seen immediately from the exponent rules?
+
+\begin{MHint}{Solution}
+
+>From the exponent rules, we know that $1^n=1$ and $0^n=0$ for arbitrary non-negative 
+integers $n$. We have $(-1)^n=1$  if $n$ is an even number and $(-1)^n=-1$ if $n$ is an odd number. 
+>From this, the described conclusions result for all monomials.
+$x>x^2>x^3>x^4>\dots$ for positive $x$ less than $1$ and $x<x^2<x^3<x^4<\dots$ for $x$ greater than $1$ result from the exponent
+rules since higher powers of positive numbers less than $1$ will always have decreasing values while, in contrast,
+higher powers of positive numbers greater than $1$ will always have increasing values.
+\end{MHint}
+\end{MExercise}
+
+\end{MXContent}
+
+\begin{MXContent}{Polynomials and Their Roots}{Roots}{STD}\MLabel{sec:polynome}
+\MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Polynome}
+
+The monomials considered until now always involved only exactly one power of the 
+independent variable. From these monomials more complex functions one can easily construct more complex functions involving several different powers of the independent variable. These are sums 
+of multiples of monomials. They are called \highlight{polynomials}. 
+A few examples and their graphs are given below.  
+
+\[
+ \begin{array}{ll}
+ \function{f_1}{\R}{\R}{x}{2x^3+4x^2-3x+42} & (\text{degree:}\;3) \\[3ex]
+
+ \function{f_2}{\R}{\R}{x}{-x^{101}+3x-14} & (\text{degree:}\;101) \\[3ex]
+
+ \function{f_3}{\R}{\R}{x}{9x^4+9x^3-2x^2-19x} & (\text{degree:}\;4) \\[3ex]
+
+ \function{f_4}{\R}{\R}{x}{x^2+2x+2} & (\text{degree:}\;2) \\[3ex]
+
+ \function{f_5}{\R}{\R}{x}{8x-2} & (\text{degree:}\;1) \\[3ex]
+
+ \function{f_6}{\R}{\R}{x}{13} & (\text{degree:}\;0) \\
+ \end{array}
+\]
+
+%GRAPHEN: poly1
+\MTikzAuto{%
+\begin{tikzpicture}[y=0.1cm] 
+%Koordinatensystem
+\node (xMAX) at (2.5,0){};
+\node (yMAX) at (0,60){};
+\draw[->,color=black] (-5,0) -- (xMAX);
+\foreach \x in {-5, -4, -3, -2, -1,1, 2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-15) -- (yMAX);
+\foreach \y in {-10,10,20,30,40,50}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_1(x)$};
+%Beschriftung
+%\draw(0,38)node[right]{$f_1(x)= 2x^3+ 4x^2 - 3x+ 42$};
+% Polynom-Plot: 2*x^3+ 4*x^2 - 3*x+ 42
+\clip(-5,-10) rectangle (5,55);
+\draw[color=red,smooth,samples=50,domain=-4.5:2] plot(\x,{2*(\x)^3 + 4*(\x)^2 - 3*(\x)+ 42}); 
+\draw[color=red] (-3.5,20) node[anchor=east] {$G_{f_1}$};
+\end{tikzpicture}
+}%
+\hspace{1cm}
+%GRAPHEN: poly2
+\MTikzAuto{%
+\begin{tikzpicture}[y=0.4cm] 
+% Koordinatensystem
+\node (xMAX) at (2.5,0){};
+\node (yMAX) at (0,4){};
+\draw[->,color=black] (-2,0) -- (xMAX);
+\foreach \x in {-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-20) -- (yMAX);
+\foreach \y in {-18,-16,-14,-12,-10,-8,-6,-4,-2,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_2(x)$};
+% Beschriftung
+%\draw(0,-7)node[right]{$f_2(x)= -x^{101}+ 3x-14$};
+% Polynom-Plot: -x^101+ 3x- 14
+\clip(-2,-20) rectangle (2,3);
+\draw[color=red,smooth,samples=100,domain=-1.05:1.05] plot(\x,{-(\x)^(101) + 3*(\x)-14}); 
+\draw[color=red] (1,-12) node[anchor=west] {$G_{f_2}$};
+\end{tikzpicture}
+}%
+
+%GRAPHEN: poly3
+\MTikzAuto{%
+\begin{tikzpicture}[y=0.4cm] 
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-2,0) -- (xMAX);
+\foreach \x in {-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,10){};
+\draw[->,color=black] (0,-10) -- (yMAX);
+\foreach \y in {-8,-6,-4,-2,2,4,6,8}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_3(x)$};
+% Polynom-Plot:
+\clip(-1,-10) rectangle (2,9);
+\draw[color=red, smooth,samples=100,domain=-0.6:1.3] plot(\x,{9.0*(\x)^(4.0)+9.0*(\x)^(3.0)-2.0*(\x)^(2.0)-19.0*(\x)});
+\draw[color=red] (1,-4) node[anchor=west] {$G_{f_3}$};
+\end{tikzpicture}
+}%
+\hspace{1cm}
+%GRAPHEN: poly4
+\MTikzAuto{%
+\begin{tikzpicture} 
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-5,0) -- (xMAX);
+\foreach \x in {-4,-3,-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,9){};
+\draw[->,color=black] (0,-1) -- (yMAX);
+\foreach \y in {1, 2,3, 4,5, 6,7,8}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_4(x)$};
+% Polynom-Plot: 
+\clip(-5,0) rectangle (3,8.5);
+\draw[color=red, smooth,samples=100,domain=-5:3]plot(\x,{(\x)^(2.0)+2.0*(\x)+2.0});
+\draw[color=red] (1.5,6) node[anchor=west] {$G_{f_4}$};
+\end{tikzpicture}
+}%
+
+%GRAPHEN: poly5
+\MTikzAuto{%
+\begin{tikzpicture} 
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,6){};
+\draw[->,color=black] (0,-4) -- (yMAX);
+\foreach \y in {-3,-2,-1,1, 2,3, 4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[left] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_5(x)$};
+% Polynom-Plot: 
+\clip(-2,-4) rectangle (2.8,5.8);
+\draw[color=red, smooth,samples=100,domain=-5:3]plot(\x,{8*(\x)-2});
+\draw[color=red] (1,5) node[anchor=west] {$G_{f_5}$};
+\end{tikzpicture}
+}%
+\hspace{1cm}
+%GRAPHEN: poly6
+\MTikzAuto{%
+\begin{tikzpicture}[y = 0.2cm]
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,20){};
+\draw[->,color=black] (0,-2) -- (yMAX);
+\foreach \y in {10}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_6(x)$};
+% Polynom-Plot: 
+\draw[color=red] (-1.5,13)--(2.5, 13);
+\draw[color=red] (2.5,13) node[anchor=south] {$G_{f_6}$};
+\end{tikzpicture}
+}%
+
+Obviously, the degree of a polynomial is determined by the monomial with highest degree. Moreover,
+we see that all types of functions (constant functions, linear functions and linear affine functions) 
+studied so far -- as well as the monomials -- occur naturally as special cases of polynomials. Thus, 
+the polynomials include all types of functions considered so far. 
+
+An unspecific polynomial of degree $n\in\N$ is written as follows:
+\[
+ \function{f}{\R}{\R}{x}{a_nx^n+a_{n-1}x^{n-1}+a_{n-2}x^{n-2}\dots +a_{2}x^{2}+a_1x+a_0 \MDFPeriod}
+\]
+Here, $a_0,a_1,\dots,a_n$ with $a_n\neq0$ are real prefactors of the individual monomials, which
+are called \highlight{coefficients} of the polynomial.
+
+\begin{MExercise}
+What is the polynomial $f(x)$ with the coefficients $a_0=-4$, $a_2=\pi$, and $a_4=9$, and what is its
+range?
+\ \\ \ \\
+The polynomial is \MEquationItem{$f(x)$}{\MLFunctionQuestion{25}{9*x^4+pi*x^2-4}{5}{x}{5}{ELFP1}},\\ 
+its range is \MEquationItem{$W_f$}{\MLIntervalQuestion{15}{[-4,infty)}{4}{ELFP1b}}.\\
+\MInputHint{Enter the number $\pi$ as \texttt{pi} and the range as an interval.}
+
+\begin{MHint}{Solution}
+The polynomial is
+\[
+ \function{f}{\R}{\R}{x}{9x^4+\pi x^2-4 \MDFPSpace ,}
+\]
+and its range is $W_f=[-4\MIntvlSep \infty)$ since the even powers of $x$ can only 
+take non-negative values.
+\end{MHint}
+\end{MExercise}
+
+For general polynomials, the roots are of particular relevance. The roots of a polynomial
+can be found by solving equations of $n$th degree. In the case of degree polynomials 
+of degree $n=2$ (which are also called general parabolas),  this is possible by solving a 
+quadratic equation. In Module~\MNRef{VBKM02} the relevant terms and methods, i.e. 
+\MSRef{VBKM02_QuadratischErgaenzung}{completing the square}, the \MSRef{VBKM02_pqFormel}{$pq$ formula}, 
+and the \MSRef{VBKM02_Scheitelpunktform}{vertex form} of quadratic expressions are explained in detail. 
+
+
+
+\begin{MExample}
+Consider the parabola 
+\[
+ \function{\zeta}{\R}{\R}{y}{2y^2-8y+6 }.
+\]
+We find the roots and the vertex and then sketch the graph.
+
+We complete the square in the mapping rule $\zeta(y)=2(y^2-4y+3)$:
+\[
+ y^2-4y+3=y^2-4y+4-1=(y-2)^2-1 \MDFPeriod
+\]
+Thus, the mapping rule can be written as 
+\[
+ \zeta(y)=2(y-2)^2-2 \MDFPeriod
+\]
+We see that the parabola is shifted with respect to the standard parabola by $2$~units to the right 
+and $2$~units downwards. It can be seen that the vertex is at $(2,-2)$. The roots can be calculated according to:
+\[
+	\zeta(y)=2((y-2)^2-1)=0\quad\Leftrightarrow\quad (y-2)^2=1\quad\Leftrightarrow\quad y_{1,2}-2=\MCases{1\\-1}\quad\Leftrightarrow\quad y_{1,2}=\MCases{3\\1 \MDFPeriod}
+\]
+Finally, the graph of the function is as shown in the figure below.
+
+%GRAPH: bsp-para
+\MTikzAuto{%
+\begin{tikzpicture} 
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (4.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,6){};
+\draw[->,color=black] (0,-2.5) -- (yMAX);
+\foreach \y in {-2,-1,1, 2,3, 4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[left] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$y$};
+\draw (yMAX) node[anchor=east] {$\zeta(y)$};
+% Para-Plot: 
+%\clip(-2,-4) rectangle (2.8,5.8);
+\draw[color=red, smooth,samples=100,domain=0:4]plot(\x,{2*\x^2-8*\x+6});
+\draw[color=red] (3.8,4) node[anchor=west] {$G_{\zeta}$};
+\draw[color=orange, fill=orange] (2,-2) circle (1.5pt);
+\draw[color=blue, fill=blue] (3,0) circle (1.5pt);
+\draw[color=blue, fill=blue] (1,0) circle (1.5pt);
+\draw[color=orange] (2,-2) node[anchor=north] {\footnotesize vertex};
+\draw[color=blue] (1.1,0) node[anchor=south west] {\footnotesize roots};
+\end{tikzpicture}
+}%
+
+\end{MExample}
+
+\end{MXContent}
+
+
+\begin{MXContent}{Hyperbolas}{Hyperbolas}{STD}\MLabel{sec:hyperbel}
+\MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Hyperbeln}
+
+We consider functions which have a \highlight{reciprocal relation} in their mapping rule. For the determination of the \modsemph{maximum domain} of such a function,
+note that the denominator must be non-zero. 
+
+A few examples of reciprocal functions are listed below; these are reciprocals of monomials, and they 
+are also called functions of \highlight{hyperbolic type}.
+\[
+ \function{f_1}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x} \MDFPSpace,}
+\]
+\[
+ \function{f_2}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^2} \MDFPSpace,}
+\]
+\[
+ \function{f_3}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^3} \MDFPSpace,}
+\]
+etc. Their graphs are as follows. 
+
+%GRAPHEN: hyp2
+\MTikzAuto{%
+\begin{tikzpicture}
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (4.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,4.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\foreach \y in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_1(x),f_2(x),f_3(x)$};
+% Graph: 
+\clip(-3.5,-3.5) rectangle (4.5,4.5);
+%1/x
+\draw[color = cyan, smooth,samples=100,domain=0.02:4.5]plot(\x,{1/(\x)});
+\draw[color = cyan, smooth,samples=100,domain=-4.5:-0.02]plot(\x,{1/(\x)});
+\draw[color = cyan](-2,-0.5) node[below]{$G_{f_1}$};
+%1/x^2
+\draw[color = orange, smooth,samples=100,domain=0.3:4.5]plot(\x,{1/(\x)^2});
+\draw[color = orange, smooth,samples=100,domain=-4.5:-0.3]plot(\x,{1/(\x)^2});
+\draw[color = orange](-1,1) node[left]{$G_{f_2}$};
+%1/x^3
+\draw[color = blue, smooth,samples=100,domain=0.6:4.5]plot(\x,{1/(\x)^3});
+\draw[color = blue, smooth,samples=100,domain=-4.5:-0.6]plot(\x,{1/(\x)^3});
+\draw[color = blue](-0.9,-1.5) node[left]{$G_{f_3}$};
+\end{tikzpicture}
+}%
+
+In particular, the graph of the function
+\[
+ \function{f_1}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x} }
+\]
+is called the \highlight{hyperbola}.
+
+Generally, for the reciprocal of an arbitrary monomial of degree $n\in\N$
+a corresponding function of hyperbolic type can be specified.
+\[
+ \function{f_n}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^n} \MDFPeriod}
+\]
+\begin{MExercise}
+What is the range $W_{f_n}$ of the function $f_n$ for even or odd $n\in\N$?
+
+\begin{MHint}{Solution}
+We always have $\frac{1}{x^n}\neq0$ since a quotient can only be zero if the numerator is zero. Thus, the range 
+never contains $0\in\R$. Since $x^n\geq0$ for even $n\in\N$, we have $\frac{1}{x^n}>0$  for even $n\in\N$. 
+However, for odd $n\in\N$ we can also have $\frac{1}{x^n}<0$. This results in
+\[
+ W_{f_n}=\MCases{\R\setminus\{0\} & \text{for}\ n\ \text{odd} \\ (0\MIntvlSep \infty) & \text{for}\ n\ \text{even} \MDFPeriod}
+\]
+This can also be seen from the graphs of the functions of hyperbolic type.
+\end{MHint}
+\end{MExercise}
+
+Further examples for functions of hyperbolic type were already considered in Example~\MNRef{bsp:anwendungen} and in 
+Exercise~\MNRef{ex:anwendungen} in Section~\MNRef{sec:anwendungen}.
+\end{MXContent}
+
+\begin{MXContent}{Rational Functions}{Rational}{STD}\MLabel{sec:gebrochen}
+\MDeclareSiteUXID{VBKM06_EinfacheFunktionen_GebrochenRational}
+General rational functions have mapping rules that consists of a quotient of two polynomials. 
+Some examples with their graphs are given below. Of course, for these functions numbers for which the denominator in the mapping rule equals zero must also be 
+excluded from the domain.
+
+\begin{MExample}\MLabel{einf_bsp_gebr_rat}
+\[
+ \function{f}{\R}{\R}{x}{\frac{8}{x^2+1} \MDFPSpace,}
+\]
+\[
+ \function{g}{\R\setminus\{-4,\frac{3}{2}\}}{\R}{x}{\frac{-18x+3}{2x^2+5x-12} \MDFPSpace,}
+\]
+\[
+ \function{h}{\R\setminus\{-1\}}{\R}{x}{\frac{x^3-x^2+x}{x+1} \MDFPeriod}
+\] 
+
+%GRAPHEN: rat1
+\MTikzAuto{%
+\begin{tikzpicture}[scale = 0.5]
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (10,0){};
+\draw[->,color=black] (-9,0) -- (xMAX);
+\foreach \x in {-8,-6,-4,-2,2,4,6,8}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,9){};
+\draw[->,color=black] (0,-2) -- (yMAX);
+\foreach \y in {2,4,6,8}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+% Graph: 
+\clip(-9,-1) rectangle (9.5,8.5);
+\draw[color=red,smooth,samples=100,domain=-9:9]plot(\x,{8/((\x)^2+1)}) node[above] {$G_f$};
+\end{tikzpicture}
+}%
+
+%GRAPHEN: rat2
+\MTikzAuto{%
+\begin{tikzpicture}[scale = 0.5]
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (10,0){};
+\draw[->,color=black] (-9,0) -- (xMAX);
+\foreach \x in {-8,-6,-4,-2,2,4,6,8}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,9){};
+\draw[->,color=black] (0,-7) -- (yMAX);
+\foreach \y in {-6,-4,-2,2,4,6,8}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$g(x)$};
+% Graph: 
+\clip(-9,-7) rectangle (9.5,8.5);
+\draw[color=red,smooth,samples=100,domain=-9:-4.8]
+		plot(\x,{(-18*(\x)+3)/(2*(\x)^2+5*(\x)-12)});	
+\draw[color=red,smooth,samples=100,domain=-3.1:1.3]
+		plot(\x,{(-18*(\x)+3)/(2*(\x)^2+5*(\x)-12)}) ;
+\draw[color=red,smooth,samples=100,domain=1.8:9.5]
+		plot(\x,{(-18*(\x)+3)/(2*(\x)^2+5*(\x)-12)});
+\draw[color=red] (1.1,6) node[right] {$G_g$};
+%Definitionslücken:		
+\draw[color = blue, fill = white](-4,0) circle(3pt);		
+\draw[color = blue, fill = white](1.5,0) circle(3pt);
+\end{tikzpicture}
+}%
+\hspace{0.5cm}
+%GRAPHEN: rat3
+\MTikzAuto{%
+\begin{tikzpicture}[y = 0.2cm, x = 0.5cm]
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (6,0){};
+\draw[->,color=black] (-4,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,20){};
+\draw[->,color=black] (0,-10) -- (yMAX);
+\foreach \y in {-5,5,10,15}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$h(x)$};
+% Graph: 
+\clip(-4,-10) rectangle (6,19);
+\draw[color=red,smooth,samples=100,domain=-3.1:-1.2]
+		plot(\x,{((\x)^3-(\x)^2+(\x))/((\x)+1)});
+\draw[color=red,smooth,samples=100,domain=-0.8:5.3]
+		plot(\x,{((\x)^3-(\x)^2+(\x))/((\x)+1)});
+\draw[color=red] (4.5,15) node[left] {$G_h$};
+%Definitionslücken:		
+\draw[color = blue, fill = white](-1,0) circle(1.5pt);		
+\end{tikzpicture}
+}%
+
+\end{MExample}
+
+
+\begin{MExercise}
+For the function
+\[
+ \function{\psi}{D_\psi}{\R}{x}{\frac{-42x}{x^2-\pi} }
+\]
+find the maximum domain $D_\psi\subset\R$ of $\psi$.
+
+\begin{MHint}{Solution}
+The roots of the denominator are 
+\[
+ x^2-\pi=0\quad\Leftrightarrow\quad x^2=\pi\quad\Leftrightarrow\quad x=\pm\sqrt{\pi} \MDFPeriod
+\]
+Thus, we have $D_\psi=\R\setminus\{-\sqrt{\pi},\sqrt{\pi}\}$.
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+For the rational functions in Example~\MNRef{einf_bsp_gebr_rat}, specify the degree of the polynomials 
+in the numerator and the denominator and find their roots.
+
+\begin{MHint}{Solution}
+The function $f$ has the a numerator of degree $0$ and denominator of degree $2$. The numerator does not have a root ($8\neq0$), nor does the denominator ($x^2+1=0$ has no solution).\\
+The function $g$ has the a numerator of degree $1$ and denominator of degree $2$. The root of the numerator is at $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$), and the roots of the denominator at $x_{1,2}=-4,\frac{3}{2}$ are obtained by solving the quadratic equation $2x^2+5x-12=0$, e.g. by means of the quadratic formula.\\
+The function $h$ has a numerator of degree $3$ and denominator of degree $1$. The root of the denominator is simply at 
+$x=-1$ ($x+1=0\Leftrightarrow x=-1$). To find the roots of the numerator, the equation $x^3-x^2+x=0$ has to be solved. 
+By factoring out $x$ one obtains $x(x^2-x+1)=0$, and it can be seen immediately that one root is at $x=0$. Finally, 
+the quadratic equation $x^2-x+1=0$ has to be solved by means of the quadratic formula. However, the discriminant 
+$\Delta=1^2-4\cdot1\cdot1=-3$ is negative, so no other real solution of the equation -- and hence 
+no other root of the numerator -- exists. 
+\end{MHint}
+\end{MExercise}
+
+The \highlight{roots} of a rational function are the roots of the numerator. For example, the function 
+\[
+ \function{j}{\R\setminus\{-1\MElSetSep 3\}}{\R}{x}{\frac{x-1}{x^2-2x-3}}
+\]
+has a single root at $x=1$. The roots of the denominator of rational functions that must be excluded from 
+the domain often have to be investigated further. It is of particular interest how the graphs of functions 
+behave \modsemph{in the neighbourhood} of gaps in the domain. The roots of the denominator are also called 
+\highlight{poles}. The next examples will illustrate the different types of poles that can occur. 
+
+\begin{MExample}
+\[
+ \function{f_1}{\R\setminus\{2\}}{\R}{x}{\frac{3}{x-2}}
+\]
+\[
+ \function{f_2}{\R\setminus\{-3\}}{\R}{x}{\frac{2}{(x+3)^2}}
+\]
+\[
+ \function{f_3}{\R\setminus\{1\}}{\R}{x}{\frac{x^2-1}{x-1}}
+\]
+
+%GRAPHEN: rat4
+\MTikzAuto{%
+\begin{tikzpicture}
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (5.8,0){};
+\draw[->,color=black] (-3,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,5.8){};
+\draw[->,color=black] (0,-4) -- (yMAX);
+\foreach \y in {-3,-2,-1,1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_1(x)$};
+% Graph: 
+\clip(-3,-4) rectangle (5.5,5.5);
+\draw[color=red,smooth,samples=100,domain=-3:1.3]
+		plot(\x,{3/((\x)-2)}) ;
+\draw[color=red,samples=100,domain=2.4:6]
+		plot(\x,{3/((\x)-2)}) ;		
+\draw[color=red] (2.7,5) node[right] {$G_{f_1}$};
+%Definitionslücken:		
+\draw[color = blue, fill = white](2,0) circle(1.5pt);
+\draw[color = blue, dotted](2,-4)--(2,5.5);
+\end{tikzpicture}
+}%
+
+% GRAPHEN: rat5
+\MTikzAuto{%
+\begin{tikzpicture}
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (1.8,0){};
+\draw[->,color=black] (-6,0) -- (xMAX);
+\foreach \x in {-5,-4,-3,-2,-1,1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,5.8){};
+\draw[->,color=black] (0,-1) -- (yMAX);
+\foreach \y in {1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_2(x)$};
+% Graph: 
+\clip(-6,-1) rectangle (1.5,5.5);
+\draw[color=red,smooth,samples=100,domain=-6:-3.5]
+		plot(\x,{2/(((\x)+3)^2)});
+\draw[color=red,smooth,samples=100,domain=-2.5:1.5]
+		plot(\x,{2/(((\x)+3)^2)});
+\draw[color=red] (1,0.2) node[above] {$G_{f_2}$};
+%Definitionslücken:		
+\draw[color = blue, fill = white](-3,0) circle(1.5pt);
+\draw[color = blue, dotted](-3,-1)--(-3,5.5);
+\end{tikzpicture}
+}%
+\hspace{.5cm}
+% GRAPHEN: rat6
+\MTikzAuto{%
+\begin{tikzpicture}
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,5.8){};
+\draw[->,color=black] (0,-2) -- (yMAX);
+\foreach \y in {-1,1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_3(x)$};
+% Graph: 
+\clip(-3,-2) rectangle (3.5,5.5);
+\draw[color=red, smooth,samples=100,domain=-3:3.5]
+		plot(\x,{(\x)+1}) node[above, left=2pt] {$G_{f_3}$};		
+%hebbare Definitionslücke:		
+\draw[color = blue, fill = white](1,0) circle(1.5pt);
+\draw[color = blue, dotted](1,-1)--(1,5);
+\draw[color = black, fill = white](1,2) circle(1pt);
+\end{tikzpicture}
+}%
+\end{MExample}
+
+At $x=2$ and $x=-3$ the functions $f_1$ and $f_2$, respectively, have so called 
+\modsemph{(proper) poles}, and at $x=1$ the function $f_3$ has a so called \modsemph{removable singularity}.
+Looking at the graphs, the difference between these types of poles becomes clear. For (proper) poles,
+the graph rises or falls unboundedly in the neighbourhood of the pole, and for continuously removable 
+singularities the graph ends left and right in the ``gap''.
+
+In the mapping rules of the three functions, this difference is expressed as follows: the values 
+$x=2$ and $x=-3$ are \modsemph{roots of the denominator}, but they are not \modsemph{roots of the numerator}
+of the functions $f_1$ and $f_2$, respectively. Actually, the functions $f_1$ and $f_2$ do not have 
+any roots in the numerator. In such cases, the roots of the denominator are always (proper) poles.
+
+\begin{MExercise}
+Is the denominator's root of the function
+\[
+ \function{q}{\R\setminus\{\frac{1}{2}\}}{\R}{x}{\frac{x^4-1}{2x-1}}
+\]
+a proper pole? If so, give reasons for your answer.
+
+\begin{MHint}{Solution}
+The point $x=\frac{1}{2}$ is a root of the denominator:
+\[
+ 2x-1=0\quad\Leftrightarrow\quad 2x=1\quad\Leftrightarrow\quad x=\frac{1}{2} \MDFPeriod
+\]
+However, for the numerator, we have:
+\[
+ x^4-1=0\quad\Leftrightarrow\quad x^4=1\quad\Leftrightarrow\quad x=\pm 1 \MDFPSpace,
+\]
+and thus, the roots of the numerator are at $x=-1$ and $x=1$. Hence, $x=\frac{1}{2}$ is not a root
+of the numerator. Thus, $x=\frac{1}{2}$ is a proper pole.
+\end{MHint}
+\end{MExercise}
+
+Between the two poles of $f_1$ and $f_2$ there is a further difference.
+At the pole $x=2$ of $f_1$, the function has a \modsemph{change of sign}. The graph of $f_1$ falls 
+left to the pole unboundedly to minus infinity and rises right to the pole (coming from the right) 
+unboundedly to plus infinity.\\
+The graph of $f_2$ rises on both sides of the pole at $x=-3$ (while approaching the pole) unboundedly
+to plus infinity, and hence, there is no \modsemph{change of sign} in the function values.
+
+However, in the mapping rule of $f_3$, the term responsible for the pole at $x=1$ can be cancelled
+out. For rational functions that have a removable singularity, this is always possible.
+
+\begin{MExercise}
+Find all poles/singularities of the function
+\[
+ \function{\gamma}{D_\gamma}{\R}{x}{\frac{3x+6}{x^2-x-6}}
+\]
+and determine their type. Specify the maximum domain $D_\gamma\subset\R$ of the function.
+
+\begin{MHint}{Solution}
+The roots of the denominator are the solutions of the quadratic equation $x^2-x-6=0$, thus
+\[
+ x_{1,2}=\frac{-(-1)\pm\sqrt{(-1)^2-4\cdot(-6)\cdot1}}{2}=\frac{1\pm 5}{2}=\MCases{3\MDFPaSpace\MDFPSpace \\-2\MDFPeriod}
+\]
+Hence, the maximum domain is
+\[
+ D_\gamma=\R\setminus\{-2\MElSetSep 3\} \MDFPeriod
+\]
+The root of the numerator results from $3x+6=0$, i.e. the root of the numerator is also at $x=-2$. Thus, we 
+can transform the mapping rule of $\gamma$ for $x\in D_\gamma$ as follows:
+\[
+ \gamma(x)=\frac{3x+6}{x^2-x-6}=\frac{3(x+2)}{(x-3)(x+2)}=\frac{3}{x-3} \MDFPeriod
+\]
+Hence, the function can also be written in the form
+\[
+ \function{\gamma}{\R\setminus\{-2\MElSetSep 3\}}{\R}{x}{\frac{3}{x-3}\MDFPSpace ,} 
+\]
+and thus, the function has a continuously removable singularity at $x=-2$ and a (proper) pole with 
+change of sign at $x=3$.
+\end{MHint}
+\end{MExercise}
+\end{MXContent}
+
+\begin{MXContent}{Asymptotes}{Asymptotes}{STD}\MLabel{sec:asymptoten}
+\MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Asymptoten}
+
+In this section we will study how rational functions behave as $x$ tends to infinity if 
+the \modsemph{degree of the polynomial in the numerator is less than or equal to the degree of the 
+polynomial in the denominator}. An example of this is the function
+\[
+ \function{f}{\R\setminus\{-\pi\}}{\R}{x}{\frac{x}{x+\pi} \MDFPeriod}
+\]
+In the function $f$, the degree of the polynomial in the numerator is $1$,
+and degree of the polynomial in the denominator is $1$. Other examples were 
+investigated in the previous Section~\MNRef{sec:gebrochen}.
+
+\begin{MExample}\MLabel{ex1:polydiv}%
+Let us consider the function
+\[
+ \function{g}{\R\setminus\{1\}}{\R}{x}{1+\frac{1}{x-1} \MDFPeriod} 
+\]
+Its mapping rule is a sum of a polynomial (of degree $0$) and a rational term. By finding the common
+denominator it is easy to transform $g(x)$ into a rational form in which the degree of the polynomial in the 
+numerator equals the degree of the polynomial in the denominator:
+\[
+ g(x)=1+\frac{1}{x-1}=\frac{x-1}{x-1}+\frac{1}{x-1}=\frac{x-1+1}{x-1}=\frac{x}{x-1} \MDFPeriod
+\]
+Thus, we can rewrite $g$ in the form
+\[
+ \function{g}{\R\setminus\{1\}}{\R}{x}{\frac{x}{x-1}\MDFPSpace ,} 
+\]
+and we now consider the corresponding graph.
+
+% GRAPHEN: rat7
+\MTikzAuto{%
+\begin{tikzpicture}
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (7.8,0){};
+\draw[->,color=black] (-5.5,0) -- (xMAX);
+\foreach \x in {-5,-4,-3,-2,-1,1,2,3,4,5,6,7}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,5.8){};
+\draw[->,color=black] (0,-4.5) -- (yMAX);
+\foreach \y in {-4,-3,-2,-1,1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$g(x)$};
+% Graph: 
+\clip(-5,-4.5) rectangle (7,5.5);
+\draw[color=red,smooth,samples=100,domain=-5:0.9]
+		plot(\x,{\x/(\x-1)});
+\draw[color=red,smooth,samples=100,domain=1.1:7]
+		plot(\x,{\x/(\x-1)});
+\draw[color=red] (5,1.5) node[above] {$G_{g}$};
+%Definitionslücke:		
+\draw[color = blue, fill = white](1,0) circle(1.5pt);
+%Asymptote:
+\draw[color=blue, dotted] (-5.5,1) -- (7.5,1);
+\end{tikzpicture}
+}%
+
+Besides the pole and the singularity at $x=1$, we see that the value 
+$y=1$ is of specific relevance. Obviously, this value is never taken by the function $g$. 
+Thus, the range of $g$ is $W_g=\R\setminus\{1\}$. Instead, for ``very large'' values 
+($x$ tends to plus infinity) and ``very small'' values ($x$ tends to minus infinity) of the 
+independent variable $x$, the function $g$ \modsemph{approaches} its 
+limiting value $1$ indefinitely \modsemph{without} ever reaching it for any real number $x$.
+
+This can be seen from the mapping rule $g(x)=1+\frac{1}{x-1}$ as follows. For ``very large''
+($5$, $10$, $100$, etc.) or ``very small'' ($-5$, $-10$, $-100$, etc.) values of $x$, 
+the rational part $\frac{1}{x-1}$ approaches $0$ since $x$ occurs in the 
+denominator. In general, for these values of $x$, only the polynomial part $1$ 
+of the mapping rule remains. This part can be described by a -- in this case constant --
+function that is called an \highlight{asymptote} $g_{As}$ of the function $g$:
+\[
+ \function{g_{As}}{\R}{\R}{x}{1 \MDFPeriod}
+\]
+Since this is a constant function, it is also called 
+a \modsemph{horizontal asymptote}.
+ 
+\end{MExample}
+\begin{MExercise}\MLabel{auf2:polydiv}
+Identify the asymptotes of the function
+\[
+ \function{i}{\R\setminus\{-2\}}{\R}{x}{3-\frac{6}{x+2}}
+\]
+and the asymptote of the hyperbola described in Section~\MNRef{sec:hyperbel}. 
+\begin{MHint}{Solution}
+We have
+\[
+ i(x)=3-\frac{6}{x+2}
+\]
+with the rational part $\frac{6}{x+2}$. Hence, the horizontal asymptote of $i$ has the 
+mapping rule $i_{As}(x)=3$. The hyperbola
+\[
+ \function{f}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x}}
+\]
+also has an asymptote. We can write the mapping rule as 
+\[
+ f(x)=0+\frac{1}{x} \MDFPSpace,
+\]
+thus, we have $f_{As}(x)=0$ for the asymptote, i.e. the asymptote is the function that is constantly $0$:
+the zero function or the horizontal axis of the coordinate system.
+\end{MHint}
+\end{MExercise}
+
+
+
+\begin{MInfo}
+A rational function $f$ with the polynomial $p(x)$ of degree $z\geq0$ in the numerator and 
+the polynomial $q(x)$ of degree  $n\geq0$ in the denominator of the form 
+\[
+ \function{f}{\R\setminus\{\text{denominator's roots}\}}{\R}{x}{f(x)=\frac{p(x)}{q(x)}}
+\]
+has a constant function (or a horizontal line) as an asymptote if $z\leq n$.
+In particular, the zero function is the asymptote in the case $z<n$.
+\end{MInfo}
+
+\end{MXContent}
+
+
+\MSubsection{Power Functions}
+\MLabel{VBKM06_Potenz}
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM06_Potenzfunktionen_Intro}
+In Section~\MNRef{sec:monome} and Section~\MNRef{sec:hyperbel} we studied monomials and functions of 
+hyperbolic type. In summary, these can be described as the following type of functions:
+\[
+ \function{f}{D_f}{\R}{x}{x^k \MDFPSpace ,} 
+\]
+where $k\in\Z\setminus\{0\}$ and $D_f=\R$ for $k\in\N$ as well as $D_f=\R\setminus\{0\}$ for $k\in\Z$ 
+with $k<0$. In this section, we will allow arbitrary rational for the exponent in the mapping rule.
+This results in so called \modsemph{power functions} that again include monomials and functions of
+hyperbolic type as special cases. We will collect their fundamental properties and see some applications.
+\end{MIntro}
+
+
+
+\begin{MXContent}{Radical Functions}{Radical Functions}{STD}\MLabel{sec:wurzel}
+\MDeclareSiteUXID{VBKM06_Potenzfunktionen_Wurzel}%
+\begin{MExample}\MLabel{bsp1:wurzel}%
+
+If an object falling in the homogeneous gravitational field of the Earth is observed, then 
+the following relation between the falling time and the travelled distance can be found:
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{c|c|c|c|c|c}
+Falling time $t$ in seconds & $0$ & $\sqrt{\frac{2}{g}}$ & $\sqrt{\frac{2}{g}}\cdot \MZahl{1}{5}$ & $\sqrt{\frac{2}{g}}\cdot 2$ & $\sqrt{\frac{2}{g}}\cdot 3$ \\\hline
+Travelled distance $s$ in metres & $0$ & $1$ & $\MZahl{2}{25}$ & $4$ & $9$
+\end{tabular}
+
+Here, $g\approx \MZahl{9}{81}\frac{\MEinheit[]{m}}{\MEinheit[]{s}^2}$ is the physical constant of the 
+gravitational acceleration. Now, plotting these values in a diagram with the horizontal axis $s$ 
+and the vertical axis $t$ results in the figure below.
+
+
+% GRAPHEN: wurz-mess
+\MTikzAuto{%
+\begin{tikzpicture}[y = 2cm]
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (10,0){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {0,1,2.25, 4, 9}
+		\draw[shift={(\x,0)},color=black] 
+		  (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,1.8){};
+\draw[->,color=black] (0,0) -- (yMAX);
+
+\draw[shift={(0,0)},color=black] (2pt,0pt) -- (-2pt,0pt) node[above left] {\tiny $0$};
+\draw[shift={(0,0.45)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\sqrt{\frac{2}{g}}$};
+
+\foreach \y in {1.5, 2, 3}
+\draw[shift={(0,0.45*\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\sqrt{\frac{2}{g}}\cdot\y$};
+
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$s$};
+\draw (yMAX) node[anchor=east] {$t(s)$};	
+% Punkte
+\draw[fill = blue](0,0)circle(1.5pt);
+\draw[fill = blue](1,0.45)circle(1.5pt);
+\draw[fill = blue](2.25,0.68)circle(1.5pt);
+\draw[fill = blue](4,0.9)circle(1.5pt);
+\draw[fill = blue](9,1.35)circle(1.5pt);
+\end{tikzpicture}
+}%
+
+This suggests that the relation between $t$ and $s$ can be described mathematically by the function
+\[
+ \function{t}{[0\MIntvlSep \infty)}{\R}{s}{\sqrt{\frac{2}{g}}\cdot \sqrt{s}}
+\]
+with $s$ being the independent variable. This is a function, in whose mapping rule a root 
+(more specifically, a square root) of the independent variable occurs. Then, the graph of this function 
+contains the measurement points listed above:
+
+% GRAPHEN: wurz1
+\MTikzAuto{%
+\begin{tikzpicture}[y = 2cm]
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (10,0){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {0,1,2.25, 4, 9}
+		\draw[shift={(\x,0)},color=black] 
+		  (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,1.8){};
+\draw[->,color=black] (0,0) -- (yMAX);
+\draw[shift={(0,0)},color=black] (2pt,0pt) -- (-2pt,0pt) node[above left] {\tiny $0$};
+\draw[shift={(0,0.45)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\sqrt{\frac{2}{g}}$};
+
+\foreach \y in {1.5, 2, 3}
+\draw[shift={(0,0.45*\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\sqrt{\frac{2}{g}}\cdot\y$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$s$};
+\draw (yMAX) node[anchor=east] {$t(s)$};
+%Graph
+\draw[smooth,samples=100,domain=0.01:9.5,color=blue] plot(\x,{sqrt(2.0*(\x)/9.81)});	
+% Punkte
+\draw[fill = blue](0,0)circle(1.5pt);
+\draw[fill = blue](1,0.45)circle(1.5pt);
+\draw[fill = blue](2.25,0.68)circle(1.5pt);
+\draw[fill = blue](4,0.9)circle(1.5pt);
+\draw[fill = blue](9,1.35)circle(1.5pt);
+\end{tikzpicture}
+}%
+\end{MExample}
+
+This example shows that functions with mapping rules that contain roots of the independent variables 
+occur naturally in applications of mathematics. 
+ 
+For natural numbers $n\in\N$, $n>1$, the functions 
+\[
+ \function{f_n}{D_{f_n}}{\R}{x}{\sqrt[n]{x}=x^{\frac{1}{n}}}
+\]
+are called \highlight{radical functions}. Obviously, these include the square root $f_2(x)=\sqrt{x}$,
+the cube root $f_3(x)=\sqrt[3]{x}$, the fourth root $f_4(x)=\sqrt[4]{x}$, etc., as mapping rules 
+of functions (see \MSRef{VBKM01_Potenzgesetze}{exponent rules}). 
+
+
+\begin{MExercise}
+Transform the mapping rule of the radical functions using exponent rules such that only 
+exponents still occur in the mapping rule.
+
+\begin{MHint}{Solution}
+According to the exponent rules, we have 
+\[
+ f_n(x)=\sqrt[n]{x}=x^{\frac{1}{n}}
+\]
+for all natural numbers $n$. Hence, for example
+\[
+ f_2(x)=\sqrt{x}=x^{\frac{1}{2}}\MDFPSpace, \MDFPaSpace f_3(x)=\sqrt[3]{x}=x^{\frac{1}{3}}\MDFPSpace, \MDFPaSpace f_4(x)=\sqrt[4]{x}=x^{\frac{1}{4}}\MDFPSpace, \MDFPaSpace \dots
+\]
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+What is the function $f_n$ with $n=1$?
+
+\begin{MHint}{Solution}
+
+According to the exponent rules, we have for $n=1$ 
+\[
+ f_1(x)=\sqrt[1]{x}=x^{\frac{1}{1}}=x=\Id(x) \MDFPeriod
+\]
+This is the identity function. Generally, this function is excluded from the class of radical functions.
+\end{MHint}
+\end{MExercise}
+
+Of great relevance is now the maximum domain $D_{f_n}$ that a radical function can have. Obviously, 
+it depends on the exponent $n$ of the root which values of $x$ are allowed to be inserted in the mapping 
+rule to obtain real values as a result. So we see that the square root $\sqrt{\ }$ has a
+real value as a result only for a non-negative number. However, if we consider the cube root $\sqrt[3]{\ }$, 
+then we see that the cube root has a real value as a result for all real numbers, for example,  
+$\sqrt[3]{-27}=-3$. Generally, we have:
+
+
+\begin{MInfo}
+The radical functions
+\[
+ \function{f_n}{D_{f_n}}{\R}{x}{\sqrt[n]{x}}
+\]
+with $n\in\N$ and $n>1$ have the maximum domain $D_{f_n}=[0\MIntvlSep \infty)$ if $n$ is even and 
+the maximum domain $D_{f_n}=\R$ if $n$ is odd.
+\end{MInfo}
+
+Thus, the graphs of the first four radical functions, $f_2$, $f_3$, $f_4$, $f_5$, look like as in the figure below. 
+
+% GRAPHEN: wurz2
+\MTikzAuto{%
+\begin{tikzpicture}
+% Koordinatensystem
+% x-koordinate
+\node (xMAX) at (8.8,0){};
+\draw[->,color=black] (-8,0) -- (xMAX);
+\foreach \x in {-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8}
+		\draw[shift={(\x,0)},color=black] 
+		  (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y- koordinate
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3) -- (yMAX);
+\foreach \y in {-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+% Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_2(x),f_3(x),f_4(x),f_5(x)$};
+%Beschriftung
+\draw[color = orange] (8.2,2.9) node[right] {$G_{\sqrt{x}}$};
+\draw[color = cyan] (8.2,2.3) node[right] {$G_{\sqrt[3]{x}}$};
+\draw[color = red] (8.2,1.8) node[right] {$G_{\sqrt[4]{x}}$};
+\draw[color = blue] (8.2,1.3) node[right] {$G_{\sqrt[5]{x}}$};
+%Graph
+\clip(-8,-3) rectangle (8.2,3.5);
+% f_2
+\draw [rotate around={90:(0,0)}, 
+      color = orange,
+			smooth,samples=100,
+			domain=0:3] 
+			plot(\x,{-(\x)^2});	
+%f_3
+\draw [rotate around={90:(0,0)}, 
+      color = cyan,
+			smooth,samples=100,
+			domain=-2.2:2.2] 
+			plot(\x,{(-\x)^3});
+%f_4
+\draw [rotate around={90:(0,0)}, 
+      color = red,
+			smooth,samples=100,
+			domain=0:1.8] 
+			plot(\x,{-(\x)^4});
+%f_3
+\draw [rotate around={90:(0,0)}, 
+      color = blue,
+			smooth,samples=100,
+			domain=-1.6:1.6] 
+			plot(\x,{(-\x)^5});
+\end{tikzpicture}
+}%
+
+>From the graphs, it can be seen that all radical functions 
+are \highlight{strictly increasing}.
+
+\begin{MExercise}
+For the radical functions
+\[
+ \function{f_n}{D_{f_n}}{\R}{x}{\sqrt[n]{x}}
+\]
+with $n\in\N$, $n>1$, find the range $W_{f_n}$ depending on whether $n$ is even or odd.
+
+\begin{MHint}{Solution}
+For radical functions with $n$ even, obviously only non-negative numbers can occur as results since, according to 
+the exponent rules, the roots $\sqrt{x}$, $\sqrt[4]{x}$, $\sqrt[6]{x}$ are always non-negative for $x\geq 0$. 
+In contrast, for radical functions with $n$ odd, all negative real numbers can occur as results. In fact, 
+we have $\sqrt[3]{x}<0$, $\sqrt[5]{x}<0$ if and only if $x<0$. In summary, we then have, regarding the strict
+monotonicity of the radical functions, $W_{f_n}=\R$ if $n$ is odd, and $W_{f_n}=[0\MIntvlSep \infty)$ if $n$ is even.
+\end{MHint}
+
+
+\end{MExercise}
+
+\end{MXContent}
+
+
+\MSubsection{Exponential and Logarithmic Functions}
+\MLabel{VBKM06_exponential}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM06_Exponentialfunktionen_Intro}
+
+In contrast to power functions, in \MEntry{exponential functions}{exponential function} the independent variable 
+does not occur in the \modstextbf{base} of the exponential term but in the \modstextbf{exponent}.
+Accordingly, we will consider mapping rules such as
+$$x \longmapsto 2^x\; \text{or}\; x \longmapsto 10^x \MDFPeriod$$
+\ \\ \ \\
+Exponential functions are relevant in many different fields, for example, for the description of 
+biological growth processes -- including diverse population models --, the processes of radioactive decay, or 
+a certain kind of interest calculation. Let us consider an example.
+
+\begin{MExample}
+\MLabel{M06_bsp_bak_pop}
+
+A bacterial culture starts with $500$ bacteria and doubles in size every $13$ minutes. We would like to know how many
+bacteria will be in the culture after $1$ hour and $15$ minutes (i.e. after $75$ minutes).
+
+As a first try we can create a simple table of values that lists the number of bacteria in the population at 
+the beginning ($t=0$ min), after $t = 13$ min, after $t = 26$ min, etc., i.e. at multiples of the 
+$13$ minutes doubling time:
+\begin{center}
+ \begin{tabular}{|c|r|r|r|r|r|r|r|r|c|}
+ \hline
+ Time $t$ in min & 0 & 13 & 26 & 39 & 52 & 65 & 78 & 91 & etc. \\ \hline
+ Number of Bacteria & 500 & 1000 & 2000 & 4000 & 8000 & 16000 & 32000 & 64000 & etc. \\ 
+ \hline
+ \end{tabular}
+\end{center}
+>From the table we can estimate that the answer to our question will be between $16000$ and $32000$, probably 
+closer to $32000$. What about a (more) precise answer? For this, we need to know the 
+\modstextbf{functional relation} between the values of $t$ and the number of bacteria. In the figure below 
+the graph of a function $p$ is shown; so to speak, this graph closes the gaps between the isolated points that 
+correspond to the pairs of values in the table and are plotted as well. The corresponding mapping rule 
+assigns to each real valued point in time a number of bacteria. As we will see, the corresponding function 
+is an \modstextbf{exponential function}.
+
+\begin{center}
+\MUGraphicsSolo{bak_pop.png}{scale=1}{width:400px}
+\end{center}
+
+>From the graphical representation, the required number of bacteria can be read off a bit more precisely. However, 
+for the exact specification we need the mapping rule underlying the graph, which we will first simply state here:
+$$p: [0\MIntvlSep \infty) \longrightarrow (0\MIntvlSep  \infty) \;\text{with}\; t \longmapsto p(t) = 500 \cdot 2^{(t/13)} \MDFPeriod$$
+(In Exercise~\MRef{M06_bsp_bak_pop_exercise} we will give a reason for this functional relation.)\\
+For $t = 75$ (measured in minutes) we obtain the function value
+$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27270 \MDFPeriod$$
+Hence, after $75$~minutes $27270$~bacteria live in the considered population.
+\end{MExample}
+\end{MIntro}
+
+
+\begin{MContent}
+\MLabel{M06_allgem_exp_fkt}
+\MDeclareSiteUXID{VBKM06_Exponentialfunktionen_Allgemein}
+
+In the previous \MSRef{M06_bsp_bak_pop}{example}, an \modstextbf{exponential function} with base $a = 2$ occurs, and the 
+independent variable -- in this example this is the variable $t$ -- occurs in the exponent. We will now specify the general 
+mapping rule for an exponential function with an arbitrary base $a$; however, we here assume $a > 0$:
+$$
+\begin{array}{rrcl}
+ f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot a^{\lambda x} \MDFPeriod
+\end{array}
+$$
+Here, $f_0$ and $\lambda$ denote so called parameters of the exponential function that will be introduced below. 
+
+The domain of all exponential functions is the set of all real numbers, i.e. $D_f = \R$, whereas the range 
+only consists of the positive real numbers, i.e. $W_f = (0\MIntvlSep  \infty)$, since every power of a positive number 
+can only be positive.
+
+\begin{MExercise}
+ Why it is assumed that the base $a$ of the exponential function is greater than zero? 
+
+\begin{MHint}{Solution}
+  An exponential function will be defined not only for certain, specific, or isolated values of the 
+  variable $x$ but, if possible, for all real numbers. If negative bases $a < 0$ were allowed, then 
+  problems would immediately arise in extracting roots -- referring to $a^{(1/2)} = \sqrt{a}, a^{1/4}, 
+  a^{1/12}$, etc. For example, square roots of negative numbers are not defined, see 
+  Section~\MRef{VBKM06_Potenz}.
+ \end{MHint}
+\end{MExercise}
+
+Some general properties can be seen from the figure below showing exponential functions 
+$g: \R \rightarrow (0\MIntvlSep  \infty)$, $x \longmapsto g(x) = a^x$ for different values of 
+$a$:
+\begin{center}
+\MUGraphicsSolo{expo_vgl.png}{scale=1}{width:400px}
+\end{center}
+\begin{itemize}
+ \item All these exponential functions pass trough the point $(x = 0, y = 1)$, since 
+  $g(x = 0) = a^0$ and $a^0 = 1$ for every number $a$.
+ \item If $a > 1$, then the graph of $g$ rises from left to right (i.e. for increasing $x$-values); 
+  one also says that the function $g$ is \modstextbf{strictly increasing}. The greater the value of $a$,
+  the steeper the graph of $g$ rises for \modstextbf{positive} values of $x$. Moving towards ever larger 
+  negative values of $x$ (i.e. approaching from right to left) the negative $x$-axis is an asymptote 
+  of the graph.
+ \item If $a < 1$, then the graph of $g$ falls from left to right (i.e. for increasing $x$-values);
+  one also says that the function $d$ is \modstextbf{strictly decreasing}.  The greater the value of $a$,
+  the slower the graph of $g$ falls for \modstextbf{negative} values of $x$. Moving towards ever larger 
+  positive values of $x$ (i.e. approaching from left to right) the positive $x$-axis is an asymptote 
+  of the graph.
+\end{itemize}
+What are the parameters $f_0$ and $\lambda$? The parameter $f_0$ is easily explained: 
+if the value $x = 0$ is inserted in the general exponential function $f$, resulting in 
+$$f(x = 0) = f_0 \cdot a^{\lambda \cdot 0} = f_0 \cdot a^0 = f_0 \cdot 1 = f_0 \MDFPSpace,$$
+then it can be seen that $f_0$ is a kind of \modstextbf{starting point or initial value} (at least if the 
+variable $x$ is taken for a time); the exponential progression $a^{\lambda x}$ is generally multiplied 
+by the factor $f_0$ and thus weighted accordingly, i.e. stretched (for $|f_0| > 1$)  
+or compressed (for $|f_0| < 1$).
+
+The parameter $\lambda$ that occurs in the exponent is called \MEntry{growth rate}{growth rate}; it 
+determines how strong the exponential function -- with the same base -- increases (for $\lambda > 0$) 
+or decreases (for $\lambda < 0$).
+
+
+\begin{MExercise}
+ \MLabel{M06_bsp_bak_pop_exercise}
+  Reason the parameters in the exponential function $f(t) = 500 \cdot 2^{(t/13)}$ that occurs in 
+  Example~\MRef{M06_bsp_bak_pop}.
+
+  \begin{MHint}{Solution}
+  In every doubling period of $13$ minutes -- as the name suggests -- the population of bacteria doubles.
+  Compared to the initial value ($500$ bacteria), the number of bacteria doubles after a period of $13$~minutes, 
+  quadruples after two such periods, increases by a factor of eight after $3 \cdot 13$~minutes (always compared
+  to the initial value, as already said), etc. From that fact we see that a growth process involves powers 
+  of $2$; accordingly, we take as the base of the functional relation $a = 2$. 
+
+  This consideration also determines the exponent of the required exponential function: Our measurement 
+  of time has to refer to the doubling period of $13$ minutes, hence, the exponent is $\Mtfrac{t}{13}$. 
+  After $13$~minutes, the exponent has the value $\Mtfrac{13}{13} = 1$. Then, the growth factor is 
+  $2^{(13/13)}=2$. After two doubling periods ($26$~minutes), the exponent has the value $\Mtfrac{26}{13} = 2$, 
+  and thus the growth factor is altogether $2^{(26/13)} = 2^2 = 4$, etc. 
+
+  Finally, we have to weight our exponential function $2^{(t/13)}$ by the correct initial value 
+  ($500$ bacteria); this is done by the factor $500$.
+ \end{MHint}
+\end{MExercise}
+\end{MContent}
+
+\begin{MXContent}{The Natural Exponential Function}{Natural Exponential Function}{STD}
+\MLabel{M06_e_fkt}
+\MDeclareSiteUXID{VBKM06_Exponentialfunktionen_efkt}
+  There is a very special exponential function, sometimes also called \textit{the} exponential function, that we 
+  will study now. In fact, all other exponential functions can be reduced to this special exponential function. It has 		
+  \MEntry{Euler's number}{Euler's number} $e$ as its base. Its value is (approximately) equal to
+  $$\MEU = \MZahl{2}{718281828459045235} \dots \MDFPeriod$$
+ 
+  So, let us consider the graph of \modstextbf{the} exponential function -- 
+  for the time being without any additional parameters -- 
+  $$
+  \begin{array}{rrcl}
+  g: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & g(x) = \MEU^x \MDFPSpace,
+  \end{array}
+  $$
+  which is, because of its base $\MEU$, also called the \MEntry{$\MEU$ function}{e function} or 
+  \MEntry{natural exponential function}{exponential function (natural)}:
+  \begin{center}
+  \MUGraphicsSolo{e_fkt.png}{scale=1}{width:400px}
+  \end{center}
+  Unsurprisingly, the natural exponential function shows the typical behaviour of exponential 
+  functions $x \Mmapsto a^x$ $(a > 1)$ already discussed in Section~\MRef{M06_allgem_exp_fkt}, 
+  after all we have only chosen a special value for the base, namely $a = \MEU$. In particular, we note 
+  again that the natural exponential function is \modstextbf{strictly increasing}, i.e. for large negative 
+  values of $x$, it approaches the negative $x$-axis, and for $x = 0$, it takes the value $1$.
+
+  \begin{MExercise}
+  \MLabel{M06_aufg_e_fkt_2}
+  What does the graph of the function $h: \R \rightarrow (0\MIntvlSep  \infty)$, $x \Mmapsto h(x) = \MEU^{- x}$ 
+  look like, and which general properties has this function?
+
+  \begin{MHint}{Solution}
+   \begin{center}
+    \begin{tabular}{ccc}
+     \MUGraphicsSolo{e_fkt_2.png}{scale=1}{width:300px} &
+     \hspace*{1.5cm} &
+     \begin{minipage}[b]{6cm}
+      The function $h$ is strictly decreasing, for large positive values of $x$ the graph of $h$ 
+      approaches the positive $x$-axis, and for $x = 0$ the function $h$ takes the value $h(x = 0) = 1$.
+      \end{minipage}
+      \end{tabular}
+    \end{center}
+    \end{MHint}
+  \end{MExercise}
+ 
+  At the beginning of this subsection we claimed that the exponential functions described above 
+  can be reduced to the natural exponential function. This is done by means of the identity
+  $$a^x = \MEU^{x \cdot\ln(a)} $$
+  that is valid for any real number $a > 0$ and any real number $x$. Here, $\ln$ denotes the 
+  \MSRef{VBKM06_LNDEF}{natural logarithmic function} that will be studied in detail in the 
+  following Section~\MRef{M06_Logarithmus}.
+ \begin{MExercise}
+  Explain why the identity $a^x = \MEU^{x \cdot \ln(a)}$ is valid. 
+  \begin{MHint}{Solution}
+  According to the exponent rule $(b^r)^s = b^{r \cdot s}$ the right hand side of the identity in 
+  question can be rewritten as $\MEU^{x \cdot\ln(a)} = (\MEU^{\ln(a)})^x$. Since the 
+  natural logarithmic function $\ln$ is the inverse of the natural exponential function,
+  we have $\MEU^{\ln(a)} = a$.  This implies $(\MEU^{\ln(a)})^x = a^x$ which is indeed the 
+  left hand side of the identity.
+  \end{MHint}
+ \end{MExercise}
+ 
+ 
+  In \modstextbf{general natural exponential functions}, the parameters $f_0$ and $\lambda$ occur
+  that were already introduced in Section~\MRef{M06_allgem_exp_fkt}; thus, its functional description is as 
+  follows: 
+  $$
+  \begin{array}{rrcl}
+    f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot \MEU^{\lambda x} \MDFPeriod
+  \end{array}
+  $$
+  Again, the parameter $f_0$ describes initial values different from $1$, and the factor 
+  $\lambda$ in the exponent allows for different (positive or negative) growth rates. 
+  This shall be finally illustrated by means of an example. 
+
+  \begin{MExample}
+  A series of experiments with radioactive iodine atoms ($^{131}\mathrm{I}$) results  
+  in the following mean data:
+  \begin{center}
+   \begin{tabular}{|c|r|r|r|r|r|}
+    \hline
+    Number of Iodine Atoms & 10000 & 5000 & 2500 & 1250 & etc. \\ \hline
+    Number of Days Elapsed & 0 & \MZahl{8}{04} & \MZahl{16}{08} & \MZahl{24}{12} & etc.\\ \hline
+   \end{tabular}
+  \end{center}
+  In other words: every $\MZahl{8}{04}$~days the number of iodine atoms halves due to radioactive decay. For this reason 
+  one says in this context that the \modstextbf{half-life} $h$ of $^{131}\mathrm{I}$ equals $\MZahl{8}{04}$~days.
+
+  The radioactive decay follows an \modstextbf{exponential law}: 
+  $$N(t) = N_0 \cdot \MEU^{\lambda t} \MDFPeriod$$
+  Our exponential function is here denoted by $N$; it describes the number of remaining iodine atoms.
+  Accordingly, $N_0$ denotes the number of iodine atoms at the beginning, i.e. $N_0 = 10000$. 
+  The independent variable is in this case the time $t$ (measured in days). We expect the 
+  parameter $\lambda$ to be negative since the exponential function describes a decay
+  process, i.e. a process with a negative growth rate. We will determine $\lambda$
+  from the measurement data.
+  
+  After $h = \MZahl{8}{04}$~days only $5000$ iodine atoms are still present, i.e. 
+  $N(t = \MZahl{8}{04}) = 5000 = \Mtfrac{N_0}{2}$. Using the exponential law for the 
+  radioactive decay, we obtain:
+  $$\Mdfrac{N_0}{2} = N_0 \cdot \MEU^{\lambda \cdot h}  \MDFPeriod$$
+  Now, we can cancel $N_0$ on both sides of the equation and subsequently take the
+  natural logarithm of the equation (see Section~\MRef{M06_Logarithmus}): 
+  $$\ln \left( \Mdfrac12 \right ) = \ln(\MEU^{\lambda \cdot h})  \MDFPeriod$$
+  We transform the left hand side according to the calculation rules for logarithmic functions
+  (see Section~\MRef{M06_Logarithmus}): $\ln(1/2) = \ln(1) - \ln(2) = 0 - \ln(2) = - \ln(2)$.
+  For the right hand side we note that the natural logarithmic function is the inverse 
+  function of the natural exponential function, i.e. $\ln(\MEU^{\lambda \cdot h}) = \lambda \cdot h$;
+  thus we have:
+  $$\begin{array}{crcl} & - \ln(2) & = & \lambda \cdot h \\[.5ex]
+  \Leftrightarrow & \lambda & = & - \Mdfrac{\ln(2)}{h}  \MDFPeriod \end{array}$$
+  Inserting the half-life $h = \MZahl{8}{04}$~days of $^{131}\mathrm{I}$ results in this case
+  in 
+  $$\lambda \approx - \MZahl{0}{0862} \; \Mdfrac{1}{\text{day}}  \MDFPeriod$$
+  Other radioactive substances have different half-lifes, e.g. $^{239}\mathrm{Pu}$ has 
+  a half-life of $24000$~years, and hence they result in different values of the 
+  parameter $\lambda$ in the exponential law for the radioactive decay.
+ \end{MExample}
+\end{MXContent}
+
+
+
+\begin{MXContent}{Logarithmic Function}{Logarithmic Function}{STD}
+\MLabel{M06_Logarithmus}
+\MDeclareSiteUXID{VBKM06_Logarithmusfunktion}
+
+In Section~\MRef{M06_e_fkt} we studied the natural exponential function
+ $$
+ \begin{array}{rrcl} g : & \R & \longrightarrow & (0\MIntvlSep  \infty) \\
+ & x & \longmapsto & g(x) = \MEU^x  \MDFPeriod
+ \end{array}
+ $$
+In particular, we pointed out a very important property of the natural exponential function: it is strictly increasing. If the graph of this function is reflected about the angle 
+bisector between the first and the third quadrant, one obtains the graph of the natural logarithmic function
+that has the symbol $\ln$:
+ 
+\begin{MInfo}
+\MLabel{VBKM06_LNDEF}
+The function defined by the equation $\MEU^{\ln(x)}=x$
+$$
+\function{\ln}{(0\MIntvlSep \infty)}{\R}{x}{\ln(x)}
+$$
+is called the \MEntry{natural logarithmic function}{logarithmic function (natural)}.
+\end{MInfo}
+
+Here, the equation shall be read in such a way that $\ln(x)=a$ is just the value $a$ with $\MEU^a=x$.
+The construction mentioned above is shown in the figure below.
+ \begin{center}
+ \MUGraphicsSolo{ln_fkt.png}{scale=1}{}
+ \end{center}
+
+The following properties of the natural logarithmic function can be seen from 
+the graph:
+ \begin{itemize}
+  \item The function $\ln$ is strictly increasing.
+  \item Approaching zero from the right on the $x$-axis, $\ln(x)$ takes ever larger negative values: 
+  We note that the graph of $\ln$ gets arbitrarily close to the negative vertical axis ($y$-axis).
+  \item At the point $x = 1$ the natural logarithmic function takes the value $0$, i.e. $\ln(1) = 0$.
+ \end{itemize}
+ 
+As well as the natural logarithmic function there are other logarithmic functions, which each correspond to a certain 
+exponent.
+
+\begin{MInfo}
+If $b>0$ is an arbitrary exponent, then the function defined by the equation 
+$b^{\log_b(x)}=x$ (read as: ``$\log_b(x)=a$ is the exponent $a$ with $b^a=x$'')
+$$
+\function{\log_b}{(0\MIntvlSep \infty)}{\R}{x}{\log_b(x)}
+$$
+is called the \MEntry{general logarithmic function}{logarithmic function (general)} with base $b$.
+\end{MInfo}
+
+Normally, the logarithmic function cannot be calculated directly. Since it is defined as the inverse function 
+of the exponential function, one generally tries to rewrite its input as a power and reads off the exponent. 
+
+\begin{MExample}
+Typical calculations for the natural logarithmic function are
+$$
+\ln(\MEU^5) \;=\; 5\MDFPSpace, \MDFPaSpace \ln(\sqrt{\MEU}) \;=\; \ln(\MEU^{\frac12}) \;=\; \frac12
+$$
+and for the general logarithmic function:
+$$
+\log_5(25) \;=\; \log_5(5^2) \;=\; 2 \MDFPSpace, \MDFPaSpace \log_3(81) \;=\; \log_3(3^4) \;=\; 4 \MDFPeriod
+$$
+\end{MExample}
+
+Here, the base of the logarithmic function has to be observed, for example, we have
+$$
+\log_2(64) \;=\; \log_2(2^6) \;=\; 6 \MDFPSpace,\MDFPSpace \text{ but }\MDFPSpace
+\log_4(64) \;=\; \log_4(4^3) \;=\; 3 \MDFPeriod
+$$
+
+\begin{MExercise}
+Calculate the values of the following logarithmic functions:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\displaystyle\ln(\sqrt[3]{\MEU})$}{\MLSimplifyQuestion{10}{1/3}{5}{}{5}{1}{LNA1}}. \begin{MHint}{Solution}We have $\ln(\sqrt[3]{\MEU})=\ln(\MEU^{\frac13})=\frac13$.\end{MHint}}
+\item{\MEquationItem{$\displaystyle\log_2(256)$}{\MLSimplifyQuestion{10}{8}{5}{}{5}{1}{LNA2}}. \begin{MHint}{Solution}We have $\log_2(256)=\log_2(2^8)=8$.\end{MHint}}
+\item{\MEquationItem{$\displaystyle\log_9(3)$}{\MLSimplifyQuestion{10}{1/2}{5}{}{5}{1}{LNA3}}. \begin{MHint}{Solution}We have $\log_9(3)=\log_9(9^{\frac12})=\frac12$.\end{MHint}}
+\end{MExerciseItems}
+\end{MExercise}
+
+In mathematics and in the sciences the following logarithmic functions are frequently used and 
+thus have their own dedicated names:
+\begin{itemize}
+\item{Logarithmic function to the base $10$: denoted by $\log_{10}(x)=\lg(x)$ or sometimes only by $\log(x)$. This 
+logarithmic function is associated to the powers of ten and is used, for example, in chemistry for the calculation of 
+the ph level.}
+\item{Logarithmic function to the base $2$: denoted by $\log_2(x)=\ld(x)$. This 
+logarithmic function is relevant in computer science.}
+\item{Logarithmic function to the base $\MEU$: denoted by $\log_\MEU(x)=\ln(\MEU)$. The natural logarithmic function
+is mostly inadequate for practical calculations (unless the expression is a power of $\MEU$). It is called 
+natural since the exponential function with base $\MEU$, from a mathematical point of view, is simpler than 
+the general exponential function (e.g. because $\MEU^x$ is its own derivative, but $b^x$ for $b\not=\MEU$ is not).}
+\end{itemize}
+
+There are several calculation rules for the logarithmic function, which will be explained in the next section.
+\end{MXContent}
+
+\begin{MXContent}{Logarithm Rules}{Logarithm Rules}{STD}
+\MDeclareSiteUXID{VBKM06_Logarithmusgesetze}
+ 
+
+For calculations involving logarithmic functions certain rules apply
+that can be derived form the \MSRef{VBKM01_Potenzgesetze}{exponent rules}.
+ 
+ 
+ \begin{MInfo}
+  \MLabel{M06_log_ges}
+  The following rules are called \MEntry{logarithm rules}{logarithm rules}:
+  $$\begin{array}{rcll}
+   \log (u \cdot v) & = & \log(u) + \log(v) & (u, v >0) \MDFPSpace, \\[.5ex]
+   \log \left( \Mdfrac{u}{v} \right) & = & \log (u) - \log (v) & (u, v >0) \MDFPSpace, \\[.5ex]
+   \log (u^x) & = & x \cdot \log(u) & (u>0, x \in \R) \MDFPeriod
+  \end{array}$$
+ \end{MInfo}
+ 
+  These rules do not only apply to natural logarithmic functions but also to all other 
+  logarithmic functions. They can be used to transform a given expression in such a way that 
+  the power occurs only in the logarithmic terms.
+
+ 
+ \begin{MExample}
+ For example, the value $\ld(4^5)$ can be calculated applying the logarithm rules:
+ $$
+ \ld(8^5) \;=\; \log_2(8^5) \;=\;5\cdot \log_2(8) \;=\; 5\cdot \log_2(2^3) \;=\; 5\cdot 3 \;=\; 15 \MDFPeriod
+ $$
+ Products in logarithmic functions can be split into sums outside the logarithmic functions:
+ $$
+ \lg\left({100\cdot \sqrt{10}\cdot \frac1{10}}\right) \;=\; \lg(100)+\lg(\sqrt{10})-\lg(10) 
+  \;=\; 2+\frac12-1 \;=\; \frac32 \MDFPeriod
+ $$
+ \end{MExample}
+
+ 
+ Importantly, the splitting rule $\log(u\cdot v)=\log(u)+\log(v)$ transforms products into sums. 
+ The other way round is impossible for logarithmic functions: the logarithm of a sum 
+ cannot be transformed any further.
+\end{MXContent}
+
+
+
+\MSubsection{Trigonometric Functions}
+\MLabel{VBKM06_trigonometrisch}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM06_TrigonometrischeFunktionen_Intro}
+ 
+
+\MEntry{Trigonometry}{trigonometry}, according to its origin in the Greek words trigonon for ``triangle'' and metron 
+for ``measure'', is the \modstextbf{measuring theory of (angles and sides of) triangles}. In this theory, 
+the \MEntry{trigonometric functions}{trigonometric functions} \modstextbf{sine function}, \modstextbf{cosine function} 
+and \modstextbf{tangent function}, play a central role. 
+
+However, the field of applications of sine, cosine, tangent etc is not restricted 
+to ``simple'' triangle calculations. In fact, the trigonometric functions show their real potential 
+in the manifold fields of applications. The most relevant of those are probably in the description of 
+oscillation processes and wave phenomena in physics and engineering. However, they are also applied 
+in many other fields as, for example, in geodesy and astronomy.
+ 
+\end{MIntro}
+
+\begin{MXContent}{Sine Function}{Sine Function}{STD}
+\MLabel{M06_Sinusfkt}
+\MDeclareSiteUXID{VBKM06_TrigonometrischeFunktionen_Sinus}
+In Module~\MRef{VBKM05} the trigonometric functions were introduced in Section~\MRef{M05_Trigonometrie}
+on right triangles, for example by the relation
+$$\begin{array}{rcccccl}
+  \sin(\alpha) & = & \Mdfrac{\text{opposite side}}{\text{hypotenuse}\MDFPSpace ,} & & \\[2ex]
+\end{array}$$
+and explained using the \MSRef{VBKM05_Trigonometrie_Einheitskreis}{unit circle}. Starting from this 
+definition of $\sin(\alpha)$ we arrive at the \MEntry{sine function}{sine function} if we declare  
+the angle $\alpha$ to be the independent variable of a function named $\sin$. This can be illustrated 
+by means of a family of right triangles $A B C$ that are inscribed the \MEntry{unit circle}{unit circle}, 
+i.e. a circle with radius $r = 1$, in a certain way.
+\begin{center}
+ \MUGraphicsSolo{sin_fkt_im_kreis.png}{scale=0.83}{width:400px}
+\end{center}
+
+If we start with the angle $\alpha = 0^\circ$, corresponding to a triangle degenerated to a line segment, then 
+the length of the line segment $\overline{B C}$ equals $0$. If we now rotate the point $B$ \modstextbf{counterclockwise}
+around the circle, then the angle $\alpha$ -- and $\sin(\alpha)$ as well -- increases until for 
+$\alpha = 90^\circ$ a \modstextbf{maximum value} ($\sin(90^\circ) = 1$) is reached. Afterwards, the angle 
+$\alpha$ continues to increase while $\sin(\alpha)$ is starting to decrease again. For $\alpha = 180^\circ$, 
+the triangle $A B C$ is again degenerated to a line segment and $\sin(180^\circ) = 0$. If 
+$\alpha$ further increases, the triangle ``flips downwards'' and the line segment $\overline{B C}$ is 
+oriented parallel to the negative vertical line ($y$-axis), hence, its length is \modstextbf{negative}.
+For $\alpha = 270^\circ$ the \modstextbf{maximum negative value} occurs, before $\alpha$ approaches 
+$0$ again. At $\alpha = 360^\circ$ the game starts again.
+ \begin{center}
+  \MUGraphicsSolo{sin_fkt.png}{scale=1}{width:400px}
+ \end{center}
+The figure above shows the graph of the sine function
+ $$
+ \begin{array}{rrcl}
+  \sin : & \R & \longrightarrow & [- 1; + 1] \\ & \alpha & \longmapsto & \sin(\alpha) \MDFPeriod
+ \end{array}
+ $$
+ In contrast to the discussion so far, the angle $\alpha$ is plotted on the horizontal axis ($\alpha$-axis)
+ in \MSRef{VBKM05_Def_Bogenmass}{radian measure}, used more commonly in this context, and not in degree measure.
+ 
+  Let us specify some of the most relevant properties of the sine function:
+ \begin{itemize}
+  \item{The sine function is defined on the entire set of real numbers $\R$. Hence, $D_{\sin} = \R$. In contrast, 
+  the range only consists of the interval between $-1$ and $+ 1$, including these two endpoints: 
+  $W_{\sin} = [- 1\MIntvlSep  + 1]$.}
+
+
+  \item{After certain measures, the graph of the since function repeats its shape exactly; in this context 
+  this is called the periodicity of the sine function. The \MEntry{period}{period (sine)} of the 
+  sine function is $360^\circ$ or $2 \pi$. Mathematically, this relation can be expressed as 
+  $$\sin(\alpha) = \sin(\alpha + 2 \pi)\MDFPeriod$$}
+ \end{itemize}
+ 
+  Just a quick look at the graph of the simple sine function suggests that we could use this function for the description 
+  of wave phenomena. However, to be able to use the full potential of the sine function a few parameters will be 
+  introduced. For example, the amplitude of the sine function can be amplified or damped by a 
+  so called \modstextbf{amplitude factor} $A$, the frequency of the oscillation can be affected by a 
+  \modstextbf{frequency-like} factor $a$, and the entire path of the graph can be shifted to the left or to the right 
+  by a \modstextbf{shifting constant} $b$. Thus, the \modstextbf{general sine function} has the following form:
+ $$\begin{array}{rrcl}
+  f : & \R & \longrightarrow & [- A\MIntvlSep  + A] \\
+  & x & \longmapsto & f(x) = A \, \sin (a x + b) \MDFPeriod 
+ \end{array}$$
+ \begin{MExample}
+  \MLabel{M06_Fadenpendel}
+  Let us consider a simple pendulum. A small, heavy weight swings freely in the gravitational field of the 
+  Earth at a long, very thin cord that is, for example, fixed at the ceiling of a (high) room. Under certain 
+  idealised conditions and for small values of the displacement angle $\Mvarphi$ from the 
+  \modstextbf{rest position} (the \modstextbf{vertical axis}), the relation between the angle $\Mvarphi$  
+  and the independent variable $t$, i.e. the time, is described by a general sine function:
+  $$\Mvarphi (t) = A \, \sin(\Mdfrac{2 \pi}{T} t + b) \MDFPeriod$$
+  Here, $T$ denotes the so called \modstextbf{period} of the pendulum, i.e. the period of time, required 
+  by the pendulum for a full oscillation.
+ \end{MExample}
+\end{MXContent}
+
+\begin{MXContent}{Cosine and Tangent Function}{Cosine, Tangent, and Cotangent}{STD}\MLabel{sec:cos}
+\MDeclareSiteUXID{VBKM06_TrigonometrischeFunktionen_CosTan}
+  Essentially, for the cosine function and the tangent function we have to do the same considerations 
+  as for the sine function that we already know from Subsection~\MRef{M06_Sinusfkt}. As we have some 
+  experience, we can shorten the discussion a bit. We start with the 
+  \MEntry{cosine function}{cosine function} and consider again our triangles inscribed the unit circle.
+ \begin{center}
+  \MUGraphicsSolo{cos_fkt_im_kreis.png}{scale=1}{width:400px}
+ \end{center}
+  Again, all hypotenuses of these right triangles have the length $1$, such that the  
+  cosines of the angles $\alpha$ occur as the lengths of the line segments $\overline{A C}$ in 
+  the figure. If we uniformly rotate the point $B$ \modstextbf{counterclockwise} around the circle, varying the 
+  angle $\alpha$, we finally obtain the \modstextbf{cosine function}:
+ $$
+ \begin{array}{rrcl}
+  \cos : & \R & \longrightarrow & [- 1; + 1] \\ & \alpha & \longmapsto & \cos(\alpha)\MDFPeriod
+ \end{array} 
+ $$
+ \begin{center}
+  \MUGraphicsSolo{cos_fkt.png}{scale=1}{width:400px}
+ \end{center}
+  The figure above shows the graph of the cosine function(solid line) and the graph 
+  of the sine function (dotted line) side by side for comparison. We see a very strong relationship, which we will
+  discuss later.
+
+  What are the relevant properties of the cosine function?
+ 
+ \begin{itemize}
+  \item The \modstextbf{cosine function} is also a \modstextbf{periodic function}. The \modstextbf{period} 
+  is again $2 \pi$ or $360^\circ$.
+  \item The domain of the cosine function consists of the entire set of the real numbers. Hence, $D_{\cos} = \R$.
+  The range is the interval between $-1$ and $+1$, including the endpoints: $W_{\cos} = [- 1\MIntvlSep  + 1]$.
+  \item From the figure above, showing $\cos(\alpha)$ and $\sin(\alpha)$, we immediately see that
+  $$\cos(\alpha) = \sin \left( \alpha + \Mdfrac{\pi}{2} \right)$$
+  for all real values of $\alpha$. Also true, but not as obvious, is the relation
+    $$\cos(\alpha) = - \sin \left( \alpha - \Mdfrac{\pi}{2} \right) \MDFPeriod$$
+ \end{itemize}
+ \begin{MExercise}
+  \MLabel{M06_cos_diskussion}
+  At which points does the cosine function take its maximum positive value $1$, and at which points does it take its maximum negative value $- 1$?
+  What are its roots (at which points is the function $0$)?
+  \begin{MHint}{Solution}
+   We have $\cos(0) = 1$. Because of the periodicity with period $2 \pi$ this is also true 
+  for all $\alpha$ equal to $\pm 2 \pi, \pm 2 \cdot 2 \pi,
+  \pm 3 \cdot 2 \pi, \dots$. Hence, the cosine function takes its maximum value $1$ for all integer 
+  multiples of $2 \pi$ (or all even multiples of $\pi$). This can also be written as:
+  $$\cos(\alpha) = 1 \Leftrightarrow \alpha \in \{ 2 k \cdot \pi\MCondSetSep k \in \Z \} \MDFPeriod $$
+  The value $- 1$ is taken by the cosine function at the points $\dots, - 3 \pi, - \pi, \pi, 3 \pi, 5 \pi, \dots$, i.e.
+  for all odd multiples of $\pi$:
+   $$\cos(\alpha) = - 1 \Leftrightarrow \alpha \in \{ (2 k + 1) \cdot \pi\MCondSetSep k \in \Z \} \MDFPeriod $$
+  Roots occur at $\dots, - \Mtfrac{3}{2} \pi, - \Mtfrac{1}{2} \pi, \Mtfrac{1}{2} \pi, \Mtfrac32 \pi, \dots$, i.e. 
+  at half-integer multiples of $\pi$:
+   $$\cos(\alpha) = 0 \Leftrightarrow \alpha \in \{ \Mtfrac{2k+1}{2} \cdot \pi; k \in \Z \} \MDFPeriod$$
+  \end{MHint}
+ \end{MExercise}
+  
+As in the case of the sine, the cosine has also a general cosine function. In its definition additional degrees of freedom
+occur in form of parameters (\modstextbf{amplitude factor} $B$, \modstextbf{frequency factor} $c$, and
+\modstextbf{shifting constant} $d$). In this way, it is possible to fit the function's graph 
+to different situations (in application examples):
+ $$
+ \begin{array}{rrcl}
+  g : & \R & \longrightarrow & [- A; + A] \\
+  & x & \longmapsto & g(x) = B \, \cos (c x + d)  
+ \end{array} \MDFPeriod
+ $$
+ \begin{MExercise}
+  In Example~\MRef{M06_Fadenpendel} we briefly discussed the simple pendulum. In particular, 
+  the displacement angle $\Mvarphi$ of the pendulum can be determined as a function of time under the condition that 
+  the period $T$ equals $\pi$~seconds and that the pendulum at $t = 0$ is started with an initial 
+  displacement angle of $30^\circ$:
+  $$\Mvarphi (t) = \Mdfrac{\pi}{6} \cdot\sin \left(2 t + \Mdfrac{\pi}{2}\right) \MDFPeriod$$
+  Can this situation also be described using the (general) cosine function (instead of the sine function), 
+  and if so, what form does $\Mvarphi (t)$ take in this case?
+
+\begin{MHint}{Solution}
+  The answer to the first question is: ``Yes, it is possible to describe the present situation 
+  using the cosine function'' (as we will see in a moment). 
+
+  In principle, we could start with the general cosine function $g$ given above and determine the parameters 
+  $B$, $c$ and $d$ for the present situation using the same consideration as in Example~\MRef{M06_Fadenpendel}. 
+  However, it is easier to apply the relation $\cos(\alpha) = \sin(\alpha + \Mdfrac{\pi}{2})$ between 
+  cosine and sine functions since then, it immediately follows that
+   $$\sin(2 t + \Mdfrac{\pi}{2}) = \cos(2 t) \MDFPSpace,$$
+   and thus:
+   $$\Mvarphi (t) = \Mdfrac{\pi}{6}\cdot\cos(2 t) \MDFPeriod$$
+  \end{MHint}
+ \end{MExercise}
+ 
+  The tangent is the ratio of sine to cosine. Thus, it follows immediately that the 
+  \MEntry{tangent function}{tangent function} cannot be defined for all real numbers since 
+  finally the cosine function has an infinite number of roots. This can be seen, for example, 
+  in Exercise~\MRef{M06_cos_diskussion}. In Exercise~\MRef{M06_cos_diskussion} also the positions 
+  of the roots of the cosine function are determined, namely $\cos(\alpha) = 0
+ \Leftrightarrow \alpha \in \{ \Mtfrac{2k+1}{2} \cdot \pi; k \in \Z \}$. Thus, the domain 
+  of the tangent function is $D_{\tan} = \R \setminus \{ \Mtfrac{2k+1}{2} \cdot \pi; k \in \Z \}$.
+
+  And what about the range? At the roots of the cosine function the tangent function tends
+  to infinite positive or negative values and has a pole, and at the root of the sine function
+  the ratio of sine and cosine is zero. In between, all values can be taken by the tangent 
+  function, and hence $W_{\tan} = \R$. All in all, for the tangent function we have
+  $$
+  \begin{array}{rrcl}
+    \tan : & \R \setminus \{ \Mtfrac{2k+1}{2} \cdot \pi; k \in \Z \} & \longrightarrow & \R \\
+    & \alpha & \longmapsto & \tan(\alpha)
+  \end{array}
+  $$
+  The graph of the function is shown in the figure below. 
+ \begin{center}
+  \MUGraphicsSolo{tan_fkt.png}{scale=1}{width:400px}
+ \end{center}
+
+  In addition, the tangent function is periodic, however, the period is $\pi$ or $180^\circ$.
+ 
+ \begin{MExercise}
+ The so called cotangent function (abbreviated to $\cot$) is defined by
+ $\cot (\alpha) = \frac1{\tan(\alpha)}= \Mdfrac{\cos(\alpha)}{\sin(\alpha)}$.
+ 
+  Specify the domain and the range of the cotangent function.
+
+  \begin{MHint}{Solution}
+  The poles of the cotangent functions are at the points where the sine function is $0$.
+  This is the case if $\alpha$ is an integer multiple of $\pi$. Thus, we have to exclude these points 
+  in the definition of the cotangent function:
+   $$D_{\cot} = \R \setminus \{ k \cdot \pi \MCondSetSep k \in \Z \} \MDFPeriod$$
+
+  For the determination of the range, the considerations are very similar to the ones for the range of the tangent function. 
+  We thus have $W_{\cot} = \R$.
+   \begin{center}
+    \MUGraphicsSolo{cot_fkt.png}{scale=1}{width:400px}
+   \end{center}
+  \end{MHint}
+ \end{MExercise}
+\end{MXContent}
+
+
+\MSubsection{Properties and Construction of Elementary Functions}
+\MLabel{VBKM06_eigenschaften}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM06_Eigenschaften_Intro}
+
+In this section, we will consider a further property of elementary functions that we have not 
+discussed yet in previous sections: the symmetry of functions. Furthermore, 
+we will investigate how to construct new functions from known elementary functions. For this
+purpose sums, products and compositions of functions are introduced.
+\end{MIntro}
+
+
+\begin{MXContent}{Symmetry}{Symmetry}{STD}
+\MDeclareSiteUXID{VBKM06_Eigenschaften_Symmetrie}
+
+\begin{MInfo}
+A function $f\colon \R\lto\R$ is called \highlight{even} or \highlight{axially symmetric} if, for all $x\in\R$, we have
+\[
+ f(x)=f(-x)
+\MDFPeriod
+\]
+Analogously, a function is called \highlight{odd} or \highlight{centrally symmetric} if, for all $x\in\R$, we have
+\[
+ f(x)=-f(-x)\MDFPeriod
+\]
+\end{MInfo}
+
+These two symmetry conditions for functions allow us to make conclusions about the behaviour of the graphs. 
+For even functions, a reflection across the vertical axis does not change the graph, and for odd 
+functions, a reflection across the origin does not change the graph. A few illustrative examples 
+are listed below.
+
+
+\begin{MExample}
+\begin{itemize}
+ \item The functions
+ \[
+  \function{f_1}{\R}{\R}{x}{x^2}
+ \]
+ and
+ \[
+  \function{f_2}{\R}{\R}{x}{|x|\MDFPSpace,}
+ \]
+ i.e. the standard parabola (see Section~\MNRef{sec:monome}) and the absolute value function
+ (see Section~\MNRef{VBKM06_sec:betrag}), are examples of even functions. We have 
+  $f_1(-x)=(-x)^2=x^2=f_1(x)$ and $f_2(-x)=|-x|=|x|=f_2(x)$ for all $x\in\R$. 
+  The graphs of these two functions are symmetric under reflection across the vertical axis.
+
+%GRAPH: sym1
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\node (xMAX) at (2.8,0){};
+\node (yMAX) at (0,4.8){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f_1(x),f_2(x)$};
+% Graphen
+\draw[color=red,smooth,samples=50,domain=-2.1:2.1] plot(\x,{(\x)^(2.0)});
+\draw[color=red] (2.1,4.41) node[anchor=south] {$G_{f_1}$};
+\draw[color=blue] (0,0) -- (2,2);
+\draw[color=blue] (0,0) -- (-2,2);
+\draw[color=blue] (-2.1,2.1) node[anchor=south] {$G_{f_2}$};
+\end{tikzpicture}  
+}%
+
+ \item The function
+ \[
+  \function{g}{\R}{\R}{x}{x^3 \MDFPSpace,}
+ \]
+  i.e. the cubic parabola (see Section~\MNRef{sec:monome}), is an example of an odd function. We have 
+  $g(-x)=(-x)^3=-x^3=-g(x)$ for all $x\in\R$. The graph of the function is centrally symmetric with respect 
+  to the origin.
+
+%GRAPH: sym2
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\node (xMAX) at (2.8,0){};
+\node (yMAX) at (0,4.8){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\foreach \y in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$g$};
+\clip(-2.5,-3.5) rectangle (2.5,4.5);
+% Graphen
+\draw[color = red, smooth,samples=50,domain=-1.9:1.9] plot(\x,{(\x)^(3.0)}); \draw[color = red](-1.4,-3)node[left]{$G_{g}$};
+%\draw[color=blue] (0,1) -- (2,1);
+%\draw[color=blue] (0,-1) -- (-2,-1);
+%\draw[color=blue, fill=blue] (0,0) circle (1.5pt);
+%\draw[color=blue, fill=white] (0,1) circle (1.5pt);
+%\draw[color=blue, fill=white] (0,-1) circle (1.5pt);
+%\draw[color=blue] (2,1) node[anchor=south] {$G_{g_2}$};
+\end{tikzpicture} 
+}%
+
+ 
+
+\end{itemize}
+\end{MExample}
+
+Of course, the symmetry properties of functions can also be used if the domain of the function is not the entire 
+set of real numbers. However, then the domain must contain the number $0$ \modsemph{in the middle of the interval}. 
+An example of this case is the tangent function in the exercise below.
+
+\begin{MExercise}
+Specify whether the following functions are even, odd or non-symmetric.
+
+\begin{itemize}
+ \item[a)] \[\function{f}{\R}{\R}{x}{\MEU^x}\]
+ \item[b)] \[\function{g}{\R}{\R}{y}{\sin(y)}\]
+ \item[c)] \[\function{h}{(-\frac{\pi}{2}\MIntvlSep \frac{\pi}{2})}{\R}{\alpha}{\tan(\alpha)}\]
+ \item[d)] \[\function{i}{\R}{\R}{u}{\cos(u)}\]
+ \item[e)] \[\function{j}{\R}{\R}{x}{42}\]
+\end{itemize}
+\begin{MHint}{Solution}
+a) non-symmetric, b) odd, c) odd, d) even, e) even 
+\end{MHint}
+
+\end{MExercise}
+\end{MXContent}
+
+
+
+\begin{MXContent}{Sums, Products, Compositions}{Sums, Products, Compositions}{STD}\MLabel{Verkettung}
+\MDeclareSiteUXID{VBKM06_SummeProduktVerkettung}
+
+
+In this section, we will now use the large collection of elementary functions that we acquired in this 
+module to create new more complex functions out of this elementary functions. At different places throughout this 
+module we already studied functions those mapping rules were composed of sums and products of simpler mapping 
+rules. Of course, one can also take differences and, under certain conditions, quotients from mapping 
+rule. The example below lists a few such combined functions.
+
+\begin{MExample}
+\begin{itemize}
+ \item The function 
+ \[
+  \function{f}{\R}{\R}{x}{x+\sin(x)}
+ \]
+  is the \modsemph{sum} of the identity function (see Section~\MNRef{sec:linear}) and the sine function 
+  (see Section~\MNRef{VBKM06_trigonometrisch}). The graph of this function is shown in the figure below.
+
+ %GRAPH: summ1
+\MTikzAuto{%
+\begin{tikzpicture}[scale=0.5]
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (8,0){};
+\draw[->,color=black] (-7.5,0) -- (xMAX);
+\foreach \x in {-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,7.8){};
+\draw[->,color=black] (0,-7.5) -- (yMAX);
+\foreach \y in {-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph
+\draw[color=red,samples=100,domain=-6.2:6.2] plot(\x,{\x + sin(\x r)}); 
+\draw[color=red] (2,2) node[anchor=north] {$G_f$};
+\end{tikzpicture} 
+}%
+
+ \item The function
+ \[
+  \function{g}{[1\MIntvlSep 2]}{\R}{y}{y^2-\ln(y)}
+ \]
+  is the \modsemph{difference} of the standard parabola (see Section~\MNRef{sec:monome}) and the 
+  natural logarithmic function (see Section~\MNRef{M06_Logarithmus}). The graph of this function is shown 
+  in the figure below.%
+
+  %GRAPH: summ2
+\MTikzAuto{%
+\begin{tikzpicture}
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,4.8){};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$y$};
+\draw (yMAX) node[anchor=east] {$g(y)$};
+%Graph
+\draw[color=red,samples=50,domain=1:2] plot(\x,{\x*\x - ln(\x)}); 
+\draw[color=red,fill=red] (1,1) circle (1pt);
+\draw[color=red,fill=red] (2,3.3) circle (1pt);
+\draw[color=red] (.8,1) node[anchor=south] {$G_g$};
+\end{tikzpicture} 
+}%
+
+ \item The function
+ \[
+  \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\MEU^x\frac{1}{x}}
+ \]
+ is the \modsemph{product} of the natural exponential function with the mapping rule 
+ $\MEU^x$ (see Section~\MNRef{M06_e_fkt}) and the hyperbola with the 
+ mapping rule $\frac{1}{x}$ (see Section~\MNRef{sec:hyperbel}). The graph of this function is shown 
+  in the figure below.
+ 
+   %GRAPH: summ3
+\MTikzAuto{%
+\begin{tikzpicture}
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,7.8){};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1,2,3,4,5,6,7}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$h(x)$};
+%Graph
+\draw[color=red,samples=100,domain=0.2:3] plot(\x,{exp(\x)/\x}); 
+\draw[color=red] (3.1,6) node[anchor=north] {$G_h$};
+\end{tikzpicture} 
+}%
+
+ \item The function
+ \[
+  \function{\Mvarphi}{\R}{\R}{z}{\frac{cos(z)}{z^2+1}}
+ \]
+  is the \modsemph{quotient} of the cosine function (see Section~\MNRef{sec:cos}) and the 
+  polynomial of degree $2$ (see Section~\MNRef{sec:polynome}) with the mapping rule $z^2+1$. 
+  The graph of this function is shown in the figure below.
+ 
+  %GRAPH: summ4
+\MTikzAuto{%
+\begin{tikzpicture}[y=3cm]
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (8,0){};
+\draw[->,color=black] (-7.5,0) -- (xMAX);
+\foreach \x in {-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,1.8){};
+\draw[->,color=black] (0,-1.5) -- (yMAX);
+\foreach \y in {-1,1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$z$};
+\draw (yMAX) node[anchor=east] {$\Mvarphi(z)$};
+%Graph
+\draw[color=red,samples=100,domain=-7:7] plot(\x,{cos(\x r)/(\x*\x + 1)}); 
+\draw[color=red] (1,0.7) node[anchor=south] {$G_{\Mvarphi}$};
+\end{tikzpicture}
+}%
+\end{itemize}
+ 
+\end{MExample}
+
+
+\begin{MExercise}
+Find further examples for elementary functions we studied in this module that were constructed from 
+simpler elementary functions by combining sums, differences, product, or quotients. 
+
+\begin{MHint}{Solution}
+Further examples are:
+\begin{itemize}
+ \item Functions of hyperbolic type (see Section~\MNRef{sec:hyperbel}) are all quotients 
+  of the constant function $1$ and a monomial.
+ \item Monomials (see Section~\MNRef{sec:monome}) are all multiple products of the 
+  identity function $\Id(x)=x$.
+ \item Linear functions (see Section~\MNRef{sec:linear}) are products of constant functions 
+  describing the slope and the identity function.
+ \item Polynomials (see Section~\MNRef{sec:polynome}) are sums and differences of functions 
+  that are themselves products of constant functions and monomials.
+\end{itemize}
+ 
+\end{MHint}
+
+\end{MExercise}
+
+Finally, there is another way to combine elementary functions to obtain new functions. This is the 
+so called \highlight{composition} of functions. 
+
+Let us consider a few examples.
+
+\begin{MExample}
+\begin{itemize}
+ \item The functions
+ \[
+  \function{f}{\R}{\R}{x}{f(x)=x^2+1}
+ \]
+ and
+ \[
+  \function{g}{\R}{\R}{x}{g(x)=\MEU^x}
+ \]
+ can be composed in two ways. We can compose the function $f\circ g\colon\R\lto\R$ or the 
+function $g\circ f\colon \R\lto\R$. We obtain
+ \[
+  (f\circ g)(x)=f(g(x))=f(\MEU^x)=(\MEU^x)^2+1=\MEU^{2x}+1 \MDFPSpace,
+ \]
+ i.e.
+ \[
+  \function{f\circ g}{\R}{\R}{x}{\MEU^{2x}+1 \MDFPSpace,}
+ \]
+ and
+ \[
+  (g\circ f)(x)=g(f(x))=g(x^2+1)=\MEU^{x^2+1} \MDFPSpace,
+ \]
+ i.e.
+ \[
+  \function{g\circ f}{\R}{\R}{x}{\MEU^{x^2+1} \MDFPeriod}
+ \]
+  If we look at the graphs, we see that these are two completely different functions, i.e. 
+the order of the composition is relevant.
+ 
+   %GRAPH: kett1
+\MTikzAuto{%
+\begin{tikzpicture}[x=2cm,y=0.5cm]
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (1.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,8.8){};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1,2,3,4,5,6,7,8}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$(f\circ g)(x),(g\circ f)(x)$};
+%Graph
+\draw[color=red,samples=50,domain=-1:1] plot(\x,{exp(\x*\x + 1)}); 
+\draw[color=blue,samples=50,domain=-1:1] plot(\x,{exp(2*\x) + 1}); 
+\draw[color=red] (-0.7,4) node[anchor=east] {$G_{g\circ f}$};
+\draw[color=blue] (-1,1) node[anchor=east] {$G_{f\circ g}$};
+\end{tikzpicture}
+}%
+
+ \item If two functions such as 
+ \[
+  \function{h}{\R}{\R}{x}{\sin(x)}
+ \]
+ and 
+ \[
+  \function{w}{[0\MIntvlSep \infty)}{\R}{x}{\sqrt{x}}
+ \]
+  are composed, however, the domains of the functions have to be observed. For example, if we 
+  want to consider the composed function $w\circ h$, then we have
+ \[
+  (w\circ h)(x)=w(h(x))=w(\sin(x))=\sqrt{\sin(x)} \MDFPeriod
+ \]
+  Since the values of the sine function can also be negative but the square root only accepts non-negative 
+  values, the domain of the sine function has to be restricted accordingly such that 
+  the corresponding function values of the sine function are always non-negative, for example, by 
+  the restriction $x\in[0\MIntvlSep \pi]=D_{w\circ h}$. Thus, we have 
+ \[
+  \function{w\circ h}{[0\MIntvlSep \pi]}{\R}{x}{\sqrt{\sin(x)} \MDFPeriod}
+ \]
+\end{itemize}
+\end{MExample}
+
+
+\begin{MExercise}
+Let the functions
+\[
+ \function{f}{\R}{\R}{x}{2x-3 \MDFPSpace}
+\]
+\[
+ \function{g}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x}}
+\]
+
+and
+\[
+ \function{h}{\R}{\R}{x}{\sin(x) }
+\]
+be given. Specify the compositions $f\circ g$, $g\circ f$, $h\circ f$, $h\circ g$, $f\circ f$, and $g\circ g$. 
+Restrict the domains, if necessary, such that the composition is allowed. However, for the composed function 
+always use the maximum domain.
+
+\begin{MHint}{Solution}
+\[
+ \function{f\circ g}{\R\setminus\{0\}}{\R}{x}{\frac{2}{x}-3}
+\]
+\[
+ \function{g\circ f}{\R\setminus\{\frac{3}{2}\}}{\R}{x}{\frac{1}{2x-3}}
+\]
+\[
+ \function{h\circ f}{\R}{\R}{x}{\sin(2x-3)}
+\]
+\[
+ \function{h\circ g}{\R\setminus\{0\}}{\R}{x}{\sin(\frac{1}{x})}
+\] 
+\[
+ \function{f\circ f}{\R}{\R}{x}{4x-9}
+\]
+\[
+ \function{g\circ g}{\R}{\R}{x}{x}
+\]
+\end{MHint}
+
+\end{MExercise}
+
+
+\end{MXContent}
+
+
+\MSubsection{Final Test}
+\MLabel{M06_Abschlusstest}
+
+\begin{MTest}{Final Test Module \arabic{section}}
+\MDeclareSiteUXID{VBKM06_Abschlusstest}
+
+\begin{MExercise}
+Specify the maximum domains $D_f$ and $D_g$ of the two functions
+\[
+ \function{f}{D_f}{\R}{x}{\frac{9x^2-\sin(x)+42}{x^2-2}}
+\]
+and
+\[
+ \function{g}{D_g}{\R}{y}{\frac{\ln(y)}{y^2+1}\MDFPeriod}
+\]
+% Intervallquestion
+\end{MExercise}
+
+\begin{MExercise}
+Specify the range $W_i$ of the function
+\[
+ \function{i}{\R}{\R}{x}{x^2-4x+4+\pi\MDFPeriod}
+\]
+\end{MExercise}
+
+\begin{MExercise}
+Find the parameters  $A,\lambda\in\R$ in the exponential function 
+\[
+ \function{c}{\R}{\R}{x}{A\cdot \MEU^{\lambda x}-1\MDFPaSpace,}
+\]
+such that $c(0)=1$ and $c(4)=0$.
+\ \\ \ \\
+Answer: \MEquationItem{$A$}{\MLParsedQuestion{10}{2}{3}{EL1}}, \MEquationItem{$\lambda$}{\MLParsedQuestion{15}{-ln(2)/4}{3}{EL2}}.
+\ \\
+\MInputHint{Simple logarithms can be left as they are, e.g. $\ln(100)$ can be entered as \texttt{ln(100)} even though the exact value of $ln(100)$ is unknown.}
+\end{MExercise}
+
+\begin{MExercise}
+Specify the composition $h=f\circ g\colon\R\to\R$ (note: $h(x)=(f\circ g)(x)=f(g(x))$)
+of the functions 
+\[
+ \function{f}{\R}{\R}{x}{C\cdot\sin(x)}
+\]
+and
+\[
+ \function{g}{\R}{\R}{x}{B\cdot x+\pi \MDFPeriod}
+\]
+Answer: \MEquationItem{$h(x)$}{\MLFunctionQuestion{20}{C*sin(B*x+pi)}{10}{x,B,C}{4}{EL3}}.
+\ \\ \ \\
+Find the parameters such that the sine wave described by the function $h$ has the graph shown below.
+
+ \begin{center}
+ \MUGraphics{sinusfrage.png}{width=0.4\linewidth}{A sine wave.}{width:300px}
+ %\MCopyrightNotice{\MCCLicense}{NONE}{MINT}{Funktionsplot erstellt und exportiert mit Maple15}{VBKM06_Abbildung_Sinusfrage}
+ \end{center}
+\ \\ \ \\
+Answer: \MEquationItem{$h(x)$}{\MLFunctionQuestion{20}{3*sin(1/2*pi*x+pi)}{10}{x}{4}{EL4}}.
+\end{MExercise}
+
+
+\begin{MExercise}
+Specify the inverse function $f=u^{-1}$ of
+\[
+ \function{u}{(0\MIntvlSep \infty)}{\R}{y}{-\log_2(y) \MDFPeriod}
+\]
+The function $f=u^{-1}$ has
+\begin{MExerciseItems}
+\item{the domain \MEquationItem{$D_f$}{\MLIntervalQuestion{20}{(-infty,infty)}{3}{TEID1}}.}
+\item{the range \MEquationItem{$W_f$}{\MLIntervalQuestion{20}{(0,infty)}{3}{TEID2}}.}
+\item{the mapping rule \MEquationItem{$f(y)=u^{-1}(y)$}{\MLSimplifyQuestion{13}{2^(-y)}{5}{y}{5}{512}{TEID3}}.}
+\end{MExerciseItems}
+\MInputHint{Enter the ranges as intervals of the form \texttt{(a;b)}, \texttt{infinity} can also be an endpoint.}
+\end{MExercise}
+
+\begin{MExercise}
+
+Please indicate whether the following statements are right or wrong:
+\ \\ \ \\
+
+The function 
+\[
+ \function{f}{[0\MIntvlSep 3)}{\R}{x}{2x+1}
+\]
+
+% Safari kann Checkboxes in lists nicht anzeigen
+\begin{tabular}{lll}
+\MLCheckbox{0}{EF1} & \ \ & ... can be also written for short as $f(x)=2x+1$.\\
+\MLCheckbox{1}{EF2} & \ \ & ... is a linear affine function.\\
+\MLCheckbox{0}{EF3} & \ \ & ... has the range $\R$.\\
+\MLCheckbox{1}{EF4} & \ \ & ... has the slope $2$.\\
+\MLCheckbox{1}{EF5} & \ \ & ... can only take values greater or equal $1$ and less than $7$.\\
+\MLCheckbox{1}{EF6} & \ \ & ... has a graph that is a piece of a line.\\
+\MLCheckbox{1}{EF7} & \ \ & ... has at $x=0$ the value $1$.\\
+\MLCheckbox{0}{EF8} & \ \ & ... has the domain $\R$.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Calculate the following logarithms:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\ln(\MEU^5\cdot\frac1{\sqrt{\MEU}})$}{\MLSimplifyQuestion{10}{9/2}{5}{}{5}{1}{TLG0}}.}
+\item{\MEquationItem{$\log_{10}(\MZahl{0}{01})$}{\MLSimplifyQuestion{10}{-2}{5}{}{5}{1}{TLG1}}.}
+\item{\MEquationItem{$\log_2(\sqrt{2\cdot 4\cdot 16\cdot 256\cdot 1024})$}{\MLSimplifyQuestion{10}{25/2}{5}{}{5}{1}{TLG2}}.}
+\end{MExerciseItems}
+\end{MExercise}
+\end{MTest}
+
+
+\newpage
+\MPrintIndex
+
+\end{document}
