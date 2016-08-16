@@ -1,7 +1,8 @@
 <script type="text/javascript">
 /* load mathjax only if we did not pass the no_mathjax argument */
 var params={};window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(str,key,value){params[key] = value;});
-if (typeof params['no_mathjax'] !== "undefined") {
+
+if (typeof params['no_mathjax'] === "undefined") {
   var d = document,
   h = d.getElementsByTagName('head')[0],
   s = d.createElement('script');

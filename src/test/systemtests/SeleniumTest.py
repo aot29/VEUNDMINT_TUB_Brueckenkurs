@@ -49,8 +49,12 @@ class SeleniumTest(unittest.TestCase):
         # 		if (self.driver.current_url != BASE_URL):
         # 		# get the url from environment, otherwise from settings
         start_url = os.getenv('BASE_URL', BASE_URL)
-
-        self.driver.get( start_url + '?no_mathjax' )
+        if no_mathjax:
+            self.driver.get( start_url + '?no_mathjax=' )
+            # print('we are at: %s %s' % (start_url, '?no_mathjax='))
+        else:
+            self.driver.get( start_url )
+            # print('we are at: %s' % start_url)
 
     def _navToChapter(self, chapter, section=None, lang = "de", no_mathjax=False):
         '''
