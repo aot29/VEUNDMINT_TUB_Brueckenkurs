@@ -86,7 +86,8 @@ build_multilang_gulp:
     # build everything
     - "[ ! -d tu9onlinekurstest ] && make -f tools/makefiles/multilang en"
     # workaround as nvm knows all module paths
-    - "nvm exec gulp"
+    - "npm run bower_install"
+    - "npm run go"
     - "rsync -avr --exclude '*.png' --exclude '*.mp4' public/* /home/mulfadmin/gitlab-ci"
   # dependencies:
   #   - setup_node
