@@ -94,12 +94,25 @@ build_multilang_gulp:
     - "rsync -avr --exclude public/* /home/gitlab-runner/gitlab-ci"
   # dependencies:
   #   - setup_node
+  #
+
+all_tests_gulp:
+  stage: test
+  only:
+    - develop_gulp
+  script:
+    - "source venv/bin/activate"
+    - "export BASE_URL=http://guest6.mulf.tu-berlin.de/gitlab-ci-test/"
+    - "export LC_ALL=en_US.UTF-8"
+    - "export LANG=en_US.UTF-8"
+    - "export LANGUAGE=en_US.UTF-8"
+    - "green -vvv --run-coverage"
+    - "coverage html"    
 
 all_tests_and_coverage:
   stage: test
   only:
     - develop_software
-    - develop_gulp
   script:
     # taken from setup_nvm above for time optimization
     - "echo installing npm and phantomJS via nvm"
