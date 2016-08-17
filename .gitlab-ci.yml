@@ -83,7 +83,7 @@ build_multilang_gulp:
     - "nvm alias default 6"
     - "cd $CI_PROJECT_DIR"
     - "npm install"
-    - git config --global url."https://.insteadOf git://
+    - "git config --global url.'https://'.insteadOf git://"
     # we need gulp and bower globally
     - "npm install -g gulp bower"
     # build everything
