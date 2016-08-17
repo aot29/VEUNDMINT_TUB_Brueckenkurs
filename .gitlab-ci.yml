@@ -4,9 +4,11 @@ stages:
   - test
 
 cache:
+  key: "$CI_BUILD_REF_NAME"
   paths:
-    - node_modules/
     - venv/
+    - node_modules/
+    - bower_components/
 
 before_script:
   - "echo we are working in $CI_PROJECT_DIR"
