@@ -38,10 +38,10 @@ setup_python:
     - "[ ! -d venv ] && virtualenv -p python3 venv"
     - "source venv/bin/activate"
     - "pip3 install -r requirements.txt"
-  artifacts:
-    name: "${CI_BUID_STAGE}_${CI_BUID_REF_NAME}"
-    paths:
-      - venv/
+  # artifacts:
+  #   name: "${CI_BUID_STAGE}_${CI_BUID_REF_NAME}"
+  #   paths:
+  #     - venv/
 
 # setup_node:
 #   stage: setup
@@ -83,7 +83,7 @@ build_multilang_gulp:
     - "nvm alias default 6"
     - "cd $CI_PROJECT_DIR"
     - "npm install"
-    - "git config --global url.'https://'.insteadOf git://"
+    - git config --global url."https://.insteadOf git://
     # we need gulp and bower globally
     - "npm install -g gulp bower"
     # build everything
@@ -121,6 +121,6 @@ all_tests_and_coverage:
     name: "${CI_BUID_STAGE}_${CI_BUID_REF_NAME}"
     paths:
       - src/test/htmlcov
-  dependencies:
-    - setup_python
+  # dependencies:
+  #   - setup_python
     #    - setup_nvm
