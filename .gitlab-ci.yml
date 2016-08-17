@@ -83,7 +83,7 @@ build_multilang_gulp:
     # we need gulp and bower globally
     - "npm install -g gulp bower"
     # build everything
-    - "[ ! -d tu9onlinekurstest ] && cd src && python3 tex2x.py VEUNDMINT lang=en" #make -f tools/makefiles/multilang"
+    - "[ ! -d tu9onlinekurstest ] && make -f tools/makefiles/multilang"
     # workaround as nvm knows all module paths
     - "nvm exec gulp"
     - "rsync -avr --exclude '*.png' --exclude '*.mp4' public/* /home/mulfadmin/gitlab-ci"
