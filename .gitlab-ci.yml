@@ -41,6 +41,23 @@ setup_python:
     paths:
       - venv/
 
+setup_node:
+  stage: setup
+  only:
+    - develop_gulp
+  script:
+    - "echo installing npm and phantomJS via nvm"
+    - "git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`"
+    - ". ~/.nvm/nvm.sh"
+    - "nvm install 6"
+    - "nvm use 6"
+    - "npm install"
+    - "npm install -g gulp bower"
+  artifacts:
+    paths:
+      - node_modules
+      - bower_components
+
 build_multilang:
   stage: build
   only:
@@ -57,6 +74,8 @@ build_multilang_gulp:
     - "[ ! -d tu9onlinekurstest ] && make -f tools/makefiles/multilang"
     - "gulp"
     - "rsync -avr --exclude '*.png' --exclude '*.mp4' public/* /home/mulfadmin/gitlab-ci"
+  dependencies:
+    - setup_node
 
 all_tests_and_coverage:
   stage: test
