@@ -87,8 +87,8 @@ build_multilang_gulp:
     # workaround as nvm knows all module paths
     - "nvm exec gulp"
     - "rsync -avr --exclude '*.png' --exclude '*.mp4' public/* /home/mulfadmin/gitlab-ci"
-  dependencies:
-    - setup_node
+  # dependencies:
+  #   - setup_node
 
 all_tests_and_coverage:
   stage: test
