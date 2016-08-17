@@ -51,6 +51,7 @@ setup_node:
     - ". ~/.nvm/nvm.sh"
     - "nvm install 6"
     - "nvm use 6"
+    - "cd $CI_PROJECT_DIR"
     - "npm install"
     - "npm install -g gulp bower"
   artifacts:
