@@ -91,7 +91,7 @@ build_multilang_gulp:
     # workaround as nvm knows all module paths
     - "npm run bower_install"
     - "npm run go"
-    - "sudo rsync -avr --exclude '*.png' --exclude '*.mp4' public/* /home/mulfadmin/gitlab-ci"
+    - "rsync -vr --exclude '*.png' --exclude '*.mp4' public/* /home/mulfadmin/gitlab-ci"
   # dependencies:
   #   - setup_node
 
