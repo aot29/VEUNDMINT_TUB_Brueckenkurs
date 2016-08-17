@@ -1632,6 +1632,7 @@ function globalreadyHandler(pulluserstr) {
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   logMessage(DEBUGINFO, "globalreadyHandler start");
   // emit JSON companion load request if present, use preset sitejson otherwise
+  // this should specify a success handler, or catch failures
   if (sitejson_load) {
       $.getJSON(docName + ".json", function(data) {
           sitejson = data;

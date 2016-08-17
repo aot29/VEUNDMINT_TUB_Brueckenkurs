@@ -101,42 +101,20 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		tc.sectionId = sectionId
 
 
-class PageXmlDecorator( AbstractXmlRenderer ):
-	"""
-	Base class for all page decorators.
-	"""
-	def __init__(self, renderer):
-		"""
-		Initialize the base class with the class that will be decorated
-		
-		@param renderer - an object implementing AbstractXmlRenderer
-		"""
-		self.renderer = renderer
-		
-	
-	def generateXml(self, tc):
-		"""
-		Decorate the class. This method is to be called 
-		first thing in the overriding method by all extending decorator classes, 
-		like this:
-		xml = super().generateXml( tc )
-		"""
-		return self.renderer.generateXML(tc)
-		
-
 class RouletteDecorator( PageXmlDecorator ):
 	"""
 	Adds roulette-exercises to page xml.
 	Implements the decorator pattern.
 	"""
 	
-	def __init__(self, renderer, data):
+	def __init__(self, renderer, data, i18strings):
 		"""
 		@param renderer - an object implementing AbstractXmlRenderer
 		@param data - a dict containing the DirectRoulettes key
 		"""
 		super().__init__(renderer)
 		self.data = data
+		self.i18strings = i18strings
 	
 	
 	def generateXML(self, tc):
@@ -151,36 +129,57 @@ class RouletteDecorator( PageXmlDecorator ):
 		
 		# find the roulette questions hidden in the content
 		roulettes = etree.Element( 'roulettes' )
-		"""
-		found = re.findall( "<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)<!-- rouletteexc-stop;(.+?);(.+?); //--\>", tc.content, re.DOTALL )
-		for match in found:
-			rid = match[0] # name of the roulette exercise, e.g. VBKM01_FRACTIONTRAINING
-			myid = match[1] # Index of the roulette on the page, e.g. 54
-			if 'DirectRoulettes' in self.data and rid in self.data[ 'DirectRoulettes' ]:
-				maxid = self.data[ 'DirectRoulettes' ][rid]
+
+		def droul(m):
+			"""
+			forked from PageKIT by Daniel Haase. 
+			Refactor this.
+			This creates a json dictionary which html5_mintmod.py stores in a file if it's large enough.
+			Then mintscripts_bootstrap loads it.
+			There are several problems:
+			* All 300 JSON objects get preloaded, which is silly. There should be a backend service that provides them one by one. 
+			* There is HTML in this Python class, which is no no (see below for generating XML)
+			* html5_mintmod.py has its own problems, see comments there
+			"""
+			rid = m.group(1)
+			myid = int(m.group(2))
+			maxid = 0
+			if rid in self.data['DirectRoulettes']:
+				maxid = self.data['DirectRoulettes'][rid]
 			else:
-				raise Exception( "Roulette not found" )
-			
-			roulette = etree.Element( 'roulette' )
-			roulette.set( 'rid', str( rid ) )
-			roulette.set( 'myid', str( myid ) )
-			roulette.set( 'maxid', str( maxid ) )
-			roulettes.append( roulette )
+				raise Exception("Could not find roulette id " + rid)
+			bt = "<button type=\"button\" class=\"btn btn-success roulettebutton\" onclick=\"rouletteClick('%s',%s,%s);\">%s</button>" % ( rid, myid, maxid, self.i18strings['roulette_new'] )
+			# take care not to have any " in the string, as it will be passed as a string to js
+			s = "<div id='DROULETTE" + rid + "." + str(myid) + "'>" + m.group(3) + bt + "</div>"
+			# div for id=0 is being set into HTML, remaining blocks are stored and will be written to that div by javascript code
+			t = ""
+			if myid == 0:
+				# generate container div and its first entry, as well as the JS array variable
+				t += "<div class='dynamic_inset' id='ROULETTECONTAINER_" + rid + "'>" + s + "</div>"
+				tc.sitejson["_RLV_" + rid] = list()
+			tc.sitejson["_RLV_" + rid].append(s)
+			if len(tc.sitejson["_RLV_" + rid]) != (myid + 1):
+				raise Exception("Roulette inset id " + str(myid) + ", does not match ordering of LaTeX environments");
+			return t
+
+		tc.content = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droul, tc.content, 0, re.S)
+
+
 		"""
-		def droul( match ):
+		Use the following code as a base for refactoring. This produces XML with the roulette exercises. 
+		This XML could be used to store the exercises in a JSON file, or perhaps write a JSON file directly?
+		Whatever, exercises should be loaded from the backend dynamically, not stored in a browser-side javascript array, all 300 of them.
+		"""
+		def droulXML_for_refactoring( match ):
 			"""
 			Generates XML and placeholders when a roulette is found in the content
 			
 			@param match - a match object from re.sub
 			@returns string containing a placeholder for the first roulette in each group
-			"""
-			# Load no more than MAX_ROULETTES exercises for sanity. These should be loaded dynamically from the backend, not dumped in the page JS.
-			MAX_ROULETTES = 25 
-			if len( roulettes ) > MAX_ROULETTES: return
-			
+			"""			
 			# Process the match found in the page
 			rid = match.group(1) # name of the roulette exercise, e.g. VBKM01_FRACTIONTRAINING
-			myid = int( match.group(2) ) # Index of the roulette on the page, e.g. 54
+			myid = int( match.group(2) ) # Index of the roulette on the roulette group, e.g. 54
 			exercise = match.group(3) # the content of the exercise
 			if 'DirectRoulettes' in self.data and rid in self.data[ 'DirectRoulettes' ]:
 				maxid = self.data[ 'DirectRoulettes' ][rid]
@@ -198,16 +197,15 @@ class RouletteDecorator( PageXmlDecorator ):
 			# generate placeholder div
 			response = ''
 			if myid == 0:
-				#response = "<div id='ROULETTECONTAINER_%s' />" % rid
 				response = exercise
 				
 			return response
 		
 		# find the roulette questions in the content and replace them with placeholders
-		tc.content = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droul, tc.content, 0, re.S)
+		#tc.content = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droulXML, tc.content, 0, re.S)
 
 		# add the roulettes to the xml
-		xml.append( roulettes )
+		#xml.append( roulettes )
 
 		return xml
 	
@@ -243,7 +241,7 @@ class QuestionDecorator(PageXmlDecorator):
 			question.text = found
 			questions.append( question )
 
-		# remove the questions from the content			
+		# remove the question object comments from the content			
 		tc.content = re.sub( "\<!-- onloadstart //--\>(.*?)\<!-- onloadstop //--\>", '', tc.content )
 		
 		xml.append( questions )

@@ -109,4 +109,27 @@ class AbstractHtmlRenderer(object):
             if link is not None and 'http://' not in link and 'mailto:' not in link:
                 a.set( 'href', os.path.join( basePath, link ) )
 
+
+class PageXmlDecorator( AbstractXmlRenderer ):
+    """
+    Base class for all page decorators.
+    """
+    def __init__(self, renderer):
+        """
+        Initialize the base class with the class that will be decorated
+        
+        @param renderer - an object implementing AbstractXmlRenderer
+        """
+        self.renderer = renderer
+        
+    
+    def generateXml(self, tc):
+        """
+        Decorate the class. This method is to be called 
+        first thing in the overriding method by all extending decorator classes, 
+        like this:
+        xml = super().generateXml( tc )
+        """
+        return self.renderer.generateXML(tc)
+        
     

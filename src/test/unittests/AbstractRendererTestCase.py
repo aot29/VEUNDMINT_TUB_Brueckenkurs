@@ -24,6 +24,7 @@ class AbstractRendererTestCase(unittest.TestCase):
     def setUp(self):
         self.lang = "en"
         self.data = None
+        self.i18strings = dict({"roulette_new": "New exercise"})
         
         # Setup a tc object for testing
         self.tc = TContent()
@@ -49,7 +50,7 @@ class AbstractRendererTestCase(unittest.TestCase):
 		oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);"/><span>
 		<span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.3.5.QF1"/></span> 
 		
-        <!-- rouletteexc-start;VBKM01_FRACTIONTRAINING;54; //-->
+        <!-- rouletteexc-start;VBKM01_FRACTIONTRAINING;0; //-->
         <div class="aufgabe" id="ADIV_1.2.57"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  
         <b>Aufgabe 1.2.57\n</b> </h5></div><div class="panel-body">\nK\xc3\xbcrzen Sie soweit m\xc3\xb6glich: 
         <math xmlns="http://www.w3.org/1998/Math/MathML">\n<mrow><mstyle displaystyle="true">\n
@@ -61,7 +62,7 @@ class AbstractRendererTestCase(unittest.TestCase):
         <div class="hint well" style="display:none" id="MHint55"> \n<br/><br/>\n<center>
         <math xmlns="http://www.w3.org/1998/Math/MathML">\n    <mstyle displaystyle="true"><mrow>\n<mfrac><mrow><mn>882</mn></mrow>\n<mrow><mn>945</mn></mrow>\n</mfrac>\n<mo>=</mo>\n<mfrac><mrow><mn>63</mn><mo>\xc2\xb7</mo><mn>14</mn></mrow>\n<mrow><mn>63</mn><mo>\xc2\xb7</mo><mn>15</mn></mrow>\n</mfrac>\n<mo>=</mo>\n<mfrac><mrow><mn>14</mn></mrow>\n<mrow><mn>15</mn></mrow>\n</mfrac>\n<mi>\xe2\x80\x82</mi><mo>.</mo></mrow>\n    </mstyle></math></center>\n
         <br/>\n</div>\n </div></div></div><!--\n  mfeedbackbutton;Exercise;0;1.2.57; //--> \n  
-        <!-- rouletteexc-stop;VBKM01_FRACTIONTRAINING;54; //-->
+        <!-- rouletteexc-stop;VBKM01_FRACTIONTRAINING;0; //-->
         """
         
         # roulette data

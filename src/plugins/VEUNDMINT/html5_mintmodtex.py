@@ -907,11 +907,14 @@ class Plugin(basePlugin):
 				if self.options.dorelease == 1:
 					self.sys.message(self.sys.FATALERROR, "Refusing to create a release version due to check errors")
 
+			# wrong place to set javascript vars: 
+			# this class should be concerned with writing files, not changing their content
 			jso = json.dumps(tc.sitejson)
 			if len(jso) > self.options.maxsitejsonlength:
 				# use a separate file for the json companion object
 				tc.html = tc.html.replace("var sitejson_load = false;", "var sitejson_load = true;", 1)
 				self.sys.writeTextFile(f_json, jso, self.options.outputencoding)
+				self.sys.message(self.sys.CLIENTINFO, 'JSON for %s written to %s' % (tc.caption, f_json) )
 			else:
 				# directly paste the object as JSON string into the page
 				tc.html = tc.html.replace("var sitejson = {};", "var sitejson = " + jso + ";", 1);

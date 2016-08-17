@@ -160,6 +160,7 @@
 				"legend" : "Legend",
 				"roulette_text": "In the online version, exercises from an exercise list will be shown here",
 				"roulette_new": "New exercise",
+				"roulette_instruction": "Reduce as far as possible",
 				"course-title": "Preparatory Online Course in Mathematics"			
 				}
 				} );
@@ -301,6 +302,7 @@
 				"legend" : "Legende",
 				"roulette_text": "In der Onlineversion erscheinen hier Aufgaben aus einer Aufgabenliste",
 				"roulette_new": "Neue Aufgabe",
+				"roulette_instruction": "Kürzen Sie soweit möglich",
 				"course-title": "Onlinebrückenkurs Mathematik"
 			}
 			} );

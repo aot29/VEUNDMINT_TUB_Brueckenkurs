@@ -65,14 +65,14 @@
 			var SITE_ID = "<xsl:value-of select="@siteId" />";
 			var SITE_UXID = "<xsl:value-of select="@uxId" />";
 			var SECTION_ID = "<xsl:value-of select="@sectionId" />";
-			var docName = "<xsl:value-of select="docName" />";
-			var fullName = "<xsl:value-of select="fullName" />";
 			
 			<!-- Paths -->
 			var linkPath = "<xsl:value-of select="$basePath" />";
 			var imagesPath = "<xsl:value-of select="$basePath" />/images";
 
 			<!-- Roulette exercises -->			
+			var docName = "<xsl:value-of select="@docName" />";
+			var fullName = "<xsl:value-of select="@fullName" />";
 			var sitejson_load = true;
 			var sitejson = {};					
 			<!-- xsl:apply-templates select="roulettes/roulette" / -->
