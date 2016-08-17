@@ -73,7 +73,8 @@ build_multilang_gulp:
     - develop_gulp
   script:
     - "[ ! -d tu9onlinekurstest ] && make -f tools/makefiles/multilang"
-    - "gulp"
+    # workaround as nvm knows all module paths
+    - "nvm exec gulp"
     - "rsync -avr --exclude '*.png' --exclude '*.mp4' public/* /home/mulfadmin/gitlab-ci"
   dependencies:
     - setup_node
