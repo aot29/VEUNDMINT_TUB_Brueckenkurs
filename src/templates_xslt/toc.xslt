@@ -6,13 +6,8 @@
 		
 		<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation" style="margin-top: 5px;">
 			<div id="toc" class="panel-group"><br/>
-				<!-- Add TOC title and home buttons, but skip title on first page -->
+				<!-- Add TOC title -->
 				<h3>
-					<div class="pull-right">
-						<a data-toggle="tooltip" id="homebutton" href="{@basePath}/{@lang}/index.html" class="btn btn-link glyphicon glyphicon-home"></a>
-						<a data-toggle="tooltip" id="listebutton" href="{@basePath}/{@lang}/search.html" class="btn btn-link glyphicon glyphicon-book"></a>
-						<a data-toggle="tooltip" id="databutton" href="{@basePath}/{@lang}/data.html" class="btn btn-link glyphicon glyphicon-dashboard"></a>
-					</div>                        
 					<span data-toggle="i18n" data-i18n="course-title"/>
 				</h3>
 				<xsl:apply-templates select="toc/entries/entry" />

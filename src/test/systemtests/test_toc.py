@@ -16,7 +16,7 @@ class TocTest( SeleniumTest ):
     def setUp(self):
         SeleniumTest.setUp( self )
         # open a page to test it
-        self._chooseLanguageVersion("de", no_mathjax=True)
+        self._navToChapter("1", no_mathjax=True)
 
 
     def testTitlePresent(self):
@@ -24,9 +24,9 @@ class TocTest( SeleniumTest ):
         Test the TOC title is present
         '''
         # Find the TOC title section of the page
-        el = self.driver.find_element_by_class_name( "tocmintitle" )
+        el = self.getElement( "tocTitle" )
         self.assertTrue( el, "TOC title is missing" )
-        self.assertEqual( self.locale[ "module_content" ].lower(), el.text.lower(), "TOC title is wrong" )
+        self.assertEqual( self.locale[ "course-title" ].lower(), el.text.lower(), "TOC title is wrong" )
 
 
     def testTocPresent(self):
@@ -34,12 +34,17 @@ class TocTest( SeleniumTest ):
         Test table of contents of the page
         '''
         # Find the toc section of the page
-        toc = self.driver.find_element_by_id( "ftoc" )
+        toc = self.getElement( "toc" )
         self.assertTrue( toc, "Page toc is missing" )
 
         # Link to chapter 1-10 should be there
-        for n in range(1, 10):
-            self.assertTrue( self.driver.find_element_by_partial_link_text( "%s %s" % ( self.locale[ 'chapter' ], n ) ), "No link to chapter %s found" % n)
+        if self.isBootstrap():
+            for n in range(1, 10):
+                self.assertTrue( self.driver.find_element_by_partial_link_text( "%s. " % n ), "No link to chapter %s found" % n)
+                
+        else:
+            for n in range(1, 10):
+                self.assertTrue( self.driver.find_element_by_partial_link_text( "%s %s" % ( self.locale[ 'chapter' ], n ) ), "No link to chapter %s found" % n)
 
 
     def testLegendPresent(self):
@@ -47,7 +52,7 @@ class TocTest( SeleniumTest ):
         Test the TOC legend is present
         '''
         # Find the TOC legend section of the page
-        el = self.driver.find_element_by_class_name( "legende" )
+        el = self.getElement( "legend" )
         self.assertTrue( el, "Legend is missing" )
 
 

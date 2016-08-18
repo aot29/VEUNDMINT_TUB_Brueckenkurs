@@ -9,21 +9,30 @@
 				     	<div>
 							<button id="menuButton" type="button" data-toggle="offcanvas" class="btn btn-link glyphicon glyphicon-menu-hamburger" style="float:left">
 							</button>
-							<a data-toggle="tooltip-navbar" id="loginbutton" href="../../config.html" class="btn btn-default btn-sm disabled" >
+							<a data-toggle="tooltip-navbar" id="loginbutton" href="../../config.html" class="btn btn-default btn-sm" >
 								<span class="glyphicon glyphicon-user"></span>&nbsp;<span data-toggle="i18n" data-i18n="ui-loginbutton"/>
 							</a>
+							<a data-toggle="tooltip" id="homebutton" href="{@basePath}/{@lang}/index.html" class="btn btn-link glyphicon glyphicon-home"></a>
+							<a data-toggle="tooltip" id="listebutton" href="{@basePath}/{@lang}/search.html" class="btn btn-link glyphicon glyphicon-book"></a>
+							<a data-toggle="tooltip" id="databutton" href="{@basePath}/{@lang}/data.html" class="btn btn-link glyphicon glyphicon-dashboard"></a>
 						</div>
 					</div>
-					<div class="col-sm-6" id="toolsSidebar">
+					<div class="col-sm-6" id="tools">
 					
 						<xsl:comment>tools</xsl:comment>
-						<div class="dropdown pull-right">
-						    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class=" glyphicon glyphicon-cog" /><b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-								<li><a data-toggle="tooltip" id="zoomoutbutton" onclick="changeFontSize(-5);" class="btn btn-link glyphicon glyphicon-zoom-out"></a></li>
-								<li><a data-toggle="tooltip" id="zoominbutton" onclick="changeFontSize(5);" class="btn btn-link glyphicon glyphicon-zoom-in"></a></li>
-							</ul>
-				        </div>
+						
+			        	<div class=" pull-right">
+							<span class="dropdown">
+							    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class=" glyphicon glyphicon-cog" /><b class="caret"></b></a>
+							    <ul class="dropdown-menu">
+									<li><a data-toggle="tooltip" id="favoritesbutton" onclick="starClick();" class="btn btn-link glyphicon glyphicon-star-empty"></a></li>
+									<li><a data-toggle="tooltip" id="zoomoutbutton" onclick="changeFontSize(-5);" class="btn btn-link glyphicon glyphicon-zoom-out"></a></li>
+									<li><a data-toggle="tooltip" id="zoominbutton" onclick="changeFontSize(5);" class="btn btn-link glyphicon glyphicon-zoom-in"></a></li>
+									<li><a data-toggle="tooltip" id="settingsbutton" onclick="toggle_settings();" class="btn btn-link glyphicon glyphicon-user"></a></li>
+								</ul>
+							</span>
+						</div>
+						
 						<xsl:comment>end tools</xsl:comment>
 					</div>				
 				</div>
