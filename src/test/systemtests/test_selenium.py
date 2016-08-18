@@ -7,17 +7,17 @@ from selenium.webdriver.common.by import By
 class MySeleniumTest(SeleniumTest):
 
     def testChooseLanguageVersion(self):
-    	self._chooseLanguageVersion("de", no_mathjax=True)
+    	self._chooseLanguageVersion("de")
     	self.assertIn("/de/", self.driver.current_url)
 
-    	self._chooseLanguageVersion("en", no_mathjax=True)
+    	self._chooseLanguageVersion("en")
     	self.assertIn("/en/", self.driver.current_url)
 
     def testNavToChapterOne(self):
         '''
         Navigate to Chapter 1
         '''
-        self._navToChapter("1", no_mathjax=True)
+        self._navToChapter("1")
 
         content = self.driver.find_element_by_id( "content" )
         sections = content.find_elements_by_tag_name( "li" )
@@ -32,7 +32,7 @@ class MySeleniumTest(SeleniumTest):
         Does the overview page list the expected number of chaper sections?
         '''
         # count number of sections listed
-        self._chooseLanguageVersion( "de", no_mathjax=True )
+        self._chooseLanguageVersion( "de" )
 
         content = self.driver.find_element_by_id( "content" )
         sections = content.find_elements_by_tag_name( "li" )
@@ -44,7 +44,7 @@ class MySeleniumTest(SeleniumTest):
         Is the page in the right locale?
         '''
 
-        self._chooseLanguageVersion("de", no_mathjax=True)
+        self._chooseLanguageVersion("de")
 
         # Open the *second* subsection (as it's more interesting than the first one)
         self._navToChapter( "1", section="1.2", lang = "de" )

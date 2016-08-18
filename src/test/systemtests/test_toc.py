@@ -16,7 +16,7 @@ class TocTest( SeleniumTest ):
     def setUp(self):
         SeleniumTest.setUp( self )
         # open a page to test it
-        self._chooseLanguageVersion("de", no_mathjax=True)
+        self._chooseLanguageVersion("de")
 
 
     def testTitlePresent(self):

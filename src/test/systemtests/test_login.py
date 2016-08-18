@@ -21,7 +21,7 @@ class TestLogin( SeleniumTest ):
     def setUp(self):
         SeleniumTest.setUp(self)
         # navigate to EN login page
-        self._chooseLanguageVersion( 'en', no_mathjax=True )
+        self._chooseLanguageVersion( 'en' )
         # Actually, this is the register button, but its ID is loginbutton
         self.driver.find_element_by_id( 'loginbutton' ).click()
 
