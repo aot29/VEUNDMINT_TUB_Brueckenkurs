@@ -29,16 +29,18 @@ var htmlTask = function() {
   return gulp.src(paths.src)
     .pipe(gulpif(global.production, htmlmin(config.tasks.html.htmlmin)))
     // inject all required files here and set the current working dir to the output directory
-    .pipe(inject(gulp.src(['css/app.css', 'js/mathjax/MathJax.js', 'js/app.js'], {
+    .pipe(gulp.dest(paths.dest))
+    .pipe(inject(gulp.src(['./public/css/app.css', './public/js/mathjax/MathJax.js', './public/js/app.js'], {
       read: false,
-      cwd: __dirname + '/../../public'
+      ignorePath: 'public'
     }), {
       transform: function (filepath, file, i, length) {
-        if (filepath === "/js/mathjax/MathJax.js") {
+        if (filepath === "./js/mathjax/MathJax.js") {
           filepath += '?config=TeX-AMS-MML_HTMLorMML';
         }
         return inject.transform.apply(inject.transform, arguments);
-      }
+      },
+      relative: true
     }))
     .pipe(gulp.dest(paths.dest))
     .on('end', browserSync.reload)
