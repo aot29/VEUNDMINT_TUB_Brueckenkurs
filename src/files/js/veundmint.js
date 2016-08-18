@@ -1,3 +1,15 @@
+/* this should actually go to a different file, but where i did not decide yet
+it is responsible for the document loaded action that was befor in the body onload and onunload
+onload="loadHandler()" onunload="unloadHandler()" */
+
+$(function() {
+  loadHandler();
+});
+
+$(window).on('beforeunload', function(){
+	unloadHandler();
+ });
+
 //UMD JS Modules Starter template taken from https://gist.github.com/cferdinandi/ece94569aefcffa5f7fa
 
 (function (root, factory) {

@@ -135,8 +135,8 @@ class Option(object):
         self.autotikzcopyright = 1                           # includes tikz externalized images in copyright list
         self.displaycopyrightlinks = 0                       # add copyright links to images in the entire course
         self.maxsitejsonlength = 255                         # the maximal number of string characters allowed for an internal json site object, will be stored in a different file if limit is exceeded
-        
-        self.bootstrap = 1                                   # Use Bootstrap for responsive layout
+
+        self.bootstrap = 0                                   # Use Bootstrap for responsive layout
 
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
@@ -281,11 +281,11 @@ class Option(object):
 
         # HTML/JS/CSS template options
         self.template_precss = "precss"
-        
+
         # Use either templates or templates_bootstrap to render HTML files
-        self.converterTemplates = ( lambda bootstrap: 'templates_xslt' if bootstrap else 'templates_html5' ) ( self.bootstrap )        
-        
-        self.template_html5 = os.path.join(self.converterTemplates, "html5_mintmodtex.html")        
+        self.converterTemplates = ( lambda bootstrap: 'templates_xslt' if bootstrap else 'templates_html5' ) ( self.bootstrap )
+
+        self.template_html5 = os.path.join(self.converterTemplates, "html5_mintmodtex.html")
         self.template_javascriptheader = os.path.join(self.converterTemplates, "html5_javascriptheader.html")
         self.template_javascriptfooter = os.path.join(self.converterTemplates, "html5_javascriptfooter.html")
         self.template_mathjax_settings = os.path.join(self.converterTemplates, "mathjax_settings.html")
@@ -307,34 +307,31 @@ class Option(object):
             # Styles and JS-Files for the Bootstrap
             # version are in the templates
             pass
-            
+
         else:
             # Default-layout-specific styles and JS-Files
             self.stylesheets  += [
-                "qtip2/jquery.qtip.min.css",
-                "datatables/min.css"
+                # "qtip2/jquery.qtip.min.css",
+                # "datatables/min.css"
             ]
+            # all the following files are now injected via gulp
             self.scriptheaders += [
-                "jquery-3.1.0.min.js",
-                "es5-sham.min.js",
-                "qtip2/jquery.qtip.min.js",
-                "datatables/datatables.min.js",
-                "knockout-3.0.0.js",
-                "math.js",
-                "dynamiccss.js",
-                self.convinfofile,
-                "mparser.js",
-                "scormwrapper.js",
-                "dlog.js",
-                "userdata.js",
-                "mintscripts.js",
-                "intersite.js",
-                "exercises.js",
-                "mintscripts.js",
-                "servicescripts.js",
-                "CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
-                "jquery.i18n.js",
-                "jquery.i18n.messagestore.js"
+                # "es5-sham.min.js",
+                # "datatables/datatables.min.js",
+                # "knockout-3.0.0.js",
+                # "math.js",
+                # "dynamiccss.js",
+                # self.convinfofile, # this file will hold several python variables translated to js
+                # "mparser.js",
+                # "scormwrapper.js",
+                # "dlog.js",
+                # "userdata.js",
+                # "mintscripts.js",
+                # "intersite.js",
+                # "exercises.js",
+                # "servicescripts.js",
+                # "CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
+                # "jquery.i18n.messagestore.js"
             ]
 
             # javascript files to be minimized if borkify is active, relative to converterDir
