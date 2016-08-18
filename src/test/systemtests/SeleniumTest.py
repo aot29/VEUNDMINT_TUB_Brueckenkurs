@@ -7,15 +7,38 @@ import json
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
+from tex2x.Settings import ve_settings as settings
 
 class SeleniumTest(unittest.TestCase):
     configPath = os.path.join(BASE_DIR + "/", "src/test/", "testconfig.ini")
 
+    # Xpaths for the bootstrap and non-bootstrap versions
+    # Most xpaths assume you are starting from the root element (e.g. using self.driver).
+    xpath = {
+        'bootstrap': {
+            'pageContents' : "//div[@id='pageContents']",
+            'launchButton' : "//div[@id='pageContents']/a[@type='button']",
+            'launchButtonTextElement' : "//div[@id='pageContents']/a[@type='button']/span[@data-i18n]",
+            'TESTRESET' : "//button[@id='TESTRESET']",
+            'TESTFINISH' : "//button[@id='TESTFINISH']",
+            'TESTEVAL' : "//p[@id='TESTEVAL']",
+            'lastTableCell' : "//div[@id='pageContents']//table//tr[last()]/td[last()]"
+        },
+        'html5': {
+            'pageContents' : "//div[@id='content']",
+            'launchButton' : "//div[@id='content']/button",
+            'launchButtonTextElement' : "//div[@id='content']/button",
+            'TESTRESET' : "//button[@id='TESTRESET']",
+            'TESTFINISH' : "//button[@id='TESTFINISH']",
+            'TESTEVAL' : "//p[@id='TESTEVAL']",
+            'lastTableCell' : "//div[@id='content']//table//tr[last()]/td[last()]"
+        }
+    }
+
     @classmethod
     def setUpClass(self):
-        self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
-        #self.driver = webdriver.Firefox()
+        #self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
+        self.driver = webdriver.Firefox()
         self.driver.set_window_size(1120, 550)
         self.driver.set_page_load_timeout(5)
         self.driver.implicitly_wait(5)
@@ -23,6 +46,9 @@ class SeleniumTest(unittest.TestCase):
         #Read the configuration file
         self.config = ConfigParser.ConfigParser()
         self.config.read( self.configPath )
+        
+        # set global timeout
+        wait = WebDriverWait(self.driver, 3)
 
         # load locale file
         localeFile = None
@@ -34,11 +60,33 @@ class SeleniumTest(unittest.TestCase):
         finally:
             if localeFile:
                 localeFile.close()
+                
+        # set URL's
+        self.start_url = os.getenv('BASE_URL', BASE_URL)
+
 
     @classmethod
     def tearDownClass(self):
         self.driver.close()
         self.driver.quit()
+
+
+    def getElement( self, key ):
+        """
+        Get a DOM element by looking the key up in the array of xpaths.
+        The xpath depends on whether the bootstrap on non-bootstrap version is being built 
+        Use this instead of self.driver.find_element_by_xpath('...')
+        
+        @param key - String key in the self.xpath dict 
+        """
+        if settings.bootstrap == 1:
+            val = self.xpath['bootstrap'][ key ]
+
+        else:
+            val = self.xpath['html5'][ key ]
+        
+        return self.driver.find_element_by_xpath( val )
+
 
     def _openStartPage(self, no_mathjax=False):
         '''
@@ -48,12 +96,11 @@ class SeleniumTest(unittest.TestCase):
         #
         # 		if (self.driver.current_url != BASE_URL):
         # 		# get the url from environment, otherwise from settings
-        start_url = os.getenv('BASE_URL', BASE_URL)
         if no_mathjax:
-            self.driver.get( start_url + '?no_mathjax=' )
-            # print('we are at: %s %s' % (start_url, '?no_mathjax='))
+            self.driver.get( self.start_url + '?no_mathjax=' )
+            #print('we are at: %s %s' % (start_url, '?no_mathjax='))
         else:
-            self.driver.get( start_url )
+            self.driver.get( self.start_url )
             # print('we are at: %s' % start_url)
 
     def _navToChapter(self, chapter, section=None, lang = "de", no_mathjax=False):
@@ -63,33 +110,21 @@ class SeleniumTest(unittest.TestCase):
         @param section: (optional) a STRING specifying the section, e.g. "1.2" will open section 1.2
         @param lang: (optional) a STRING specifying the language code, e.g. "de" or "en"
         '''
-        # Open the start page
-        #self._openStartPage()
-        self._chooseLanguageVersion( lang, no_mathjax=no_mathjax )
 
-        # Open chapter
-        #
-        link_text = "%s %s" % ( self.locale[ "chapter" ], chapter )
-        chapter_el = WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, link_text))
-        )
+        if section is None:
+            # Open chapter
+            url = "%s/html/%s/sectionx%s.1.0.html" % ( self.start_url, lang, chapter )
+            
+        else:
+            # Open section
+            url = "%s/html/%s/%s.%s/modstart.html" % ( self.start_url, lang, chapter, section )
+        
+        self.driver.get( url )
 
-        chapter_el.click()
-
-        # element = self.driver.find_element_by_partial_link_text( "%s %s" % ( self.locale[ "chapter" ], chapter ) )
-        # element.click()
-
-        # Open section
-        if section != None:
-
-            section_el = WebDriverWait(self.driver, 5).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href*="' + chapter + "." + section + '"]'))
-            )
-
-            section_el.click()
 
     def _getConfigParam(self, key):
         return self.config.get( 'defaults', key )
+
 
     def _chooseLanguageVersion(self, languagecode, no_mathjax=False):
         '''
