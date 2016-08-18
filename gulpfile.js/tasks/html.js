@@ -35,7 +35,7 @@ var htmlTask = function() {
       ignorePath: 'public'
     }), {
       transform: function (filepath, file, i, length) {
-        if (filepath === "./js/mathjax/MathJax.js") {
+        if (filepath.includes("js/mathjax/MathJax.js")) {
           filepath += '?config=TeX-AMS-MML_HTMLorMML';
         }
         return inject.transform.apply(inject.transform, arguments);
