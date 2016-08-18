@@ -13,7 +13,7 @@ class RouletteTest( SeleniumTest ):
     def setUp(self):
         SeleniumTest.setUp( self )
         # navigate to chapter 1 section 1.2
-        self._navToChapter( "1", "1.2", "de", no_mathjax=True )
+        self._navToChapter( "1", "1.2", "de")
 
 
     def testRouletteElement(self):

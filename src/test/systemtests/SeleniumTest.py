@@ -40,7 +40,7 @@ class SeleniumTest(unittest.TestCase):
         self.driver.close()
         self.driver.quit()
 
-    def _openStartPage(self, no_mathjax=False):
+    def _openStartPage(self):
         '''
         Opens the start page of the online course in the webdriver Used to test navigation elements and toc.
         '''
@@ -50,9 +50,9 @@ class SeleniumTest(unittest.TestCase):
         # 		# get the url from environment, otherwise from settings
         start_url = os.getenv('BASE_URL', BASE_URL)
 
-        self.driver.get( start_url + '?no_mathjax' )
+        self.driver.get( start_url )
 
-    def _navToChapter(self, chapter, section=None, lang = "de", no_mathjax=False):
+    def _navToChapter(self, chapter, section=None, lang = "de"):
         '''
         Navigate to chapter specified by name.
         @param chapter: (required) a STRING specifying the chapter, e.g. "1" will open chapter 1
@@ -61,7 +61,7 @@ class SeleniumTest(unittest.TestCase):
         '''
         # Open the start page
         #self._openStartPage()
-        self._chooseLanguageVersion( lang, no_mathjax=no_mathjax )
+        self._chooseLanguageVersion( lang )
 
         # Open chapter
         #
@@ -87,11 +87,11 @@ class SeleniumTest(unittest.TestCase):
     def _getConfigParam(self, key):
         return self.config.get( 'defaults', key )
 
-    def _chooseLanguageVersion(self, languagecode, no_mathjax=False):
+    def _chooseLanguageVersion(self, languagecode):
         '''
         Navigate to the specified language version of the website
         @param languagecode: (required) a STRING specifying the language code, e.g. "de" or "en"
         '''
-        self._openStartPage(no_mathjax=no_mathjax)
+        self._openStartPage()
 
         self.driver.find_element_by_css_selector("a[href*='/" + languagecode + "/']").click();
