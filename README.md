@@ -49,6 +49,16 @@ php-cli
 ```
 
 ## Building
+### start latex converter
+```
+make -f tools/makefiles/multilang
+```
+### build production version
+```
+npm install
+bower install
+gulp && gulp watch
+```
 
 ## Testing
 We use the python module green to run our tests, as it has a nicer user experience and can also run coverage at once. To kick off the tests do
