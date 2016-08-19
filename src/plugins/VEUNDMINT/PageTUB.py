@@ -141,8 +141,6 @@ class PageTUB( AbstractHtmlRenderer ):
 		tc.content = tc.content.replace( '<br clear="all"/><br clear="all"/>', breakStr )
 		tc.content = tc.content.replace( '<br clear="all"></br>\n<br clear="all"></br>', breakStr )
 		
-		tc.content = re.sub(r"(src|href)=(\"|')(?!#|https://|http://|ftp://|mailto:|:localmaterial:|:directmaterial:)", "\\1=\\2" + basePath + "/", tc.content)
-
 		# replace the content placeholder added in PageXmlRenderer with the actual non-valid HTML content
 		resultString = str( xml )
 		resultString = resultString.replace( '<content></content>', tc.content )
