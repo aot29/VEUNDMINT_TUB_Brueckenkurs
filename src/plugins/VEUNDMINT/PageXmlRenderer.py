@@ -127,6 +127,9 @@ class RouletteDecorator( PageXmlDecorator ):
 		# call the method from the superclass
 		xml = super().generateXml( tc )
 		
+		# skip on special pages
+		if AbstractXmlRenderer.isSpecialPage( tc ) : return xml
+		
 		# find the roulette questions hidden in the content
 		roulettes = etree.Element( 'roulettes' )
 
@@ -232,6 +235,9 @@ class QuestionDecorator(PageXmlDecorator):
 		"""
 		# call the method from the superclass
 		xml = super().generateXml(tc)
+		
+		# skip on special pages
+		if AbstractXmlRenderer.isSpecialPage( tc ) : return xml
 
 		# find the questions hidden in the content
 		questions = etree.Element( 'questions' )

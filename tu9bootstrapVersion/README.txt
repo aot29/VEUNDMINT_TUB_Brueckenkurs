@@ -1,1 +1,0 @@
-Ein Mockup, um die/der Designer/in zu zeigen, was wir wollen. 

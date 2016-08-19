@@ -31,6 +31,10 @@ SECTION_LEVEL = 3
 SUBSECTION_LEVEL = 4
 
 class AbstractXmlRenderer(object):
+    # list of special pages
+    specialPagesUXID = [ 'VBKM_MISCCOURSEDATA', 'VBKM_MISCSETTINGS', 'VBKM_MISCLOGIN', 'VBKM_MISCLOGOUT', 'VBKM_MISCSEARCH', 'VBKM_MISCFAVORITES' ]
+    # list of info pages
+    infoPagesUXID = [ "VBKM_FIRSTPAGE","VBKM_COURSEINFORMATION","VBKM_AUTHORS","VBKM_IMPRESSUM","VBKM_LEGAL","VBKM_DISPLAYINFO" ]
     
     def generateXML(self, obj):
         '''
@@ -75,8 +79,34 @@ class AbstractXmlRenderer(object):
         @param tc - a TContent object encapsulating page data and content
         @return - boolean
         """
-        return not ( AbstractXmlRenderer.isFirstPage( AbstractXmlRenderer.getModule( tc ) ) ) 
+        return not ( 
+                    AbstractXmlRenderer.isFirstPage( AbstractXmlRenderer.getModule( tc ) ) 
+                    or AbstractXmlRenderer.isSpecialPage(tc)
+                    or AbstractXmlRenderer.isInfoPage(tc)  
+                    ) 
+
         
+    @staticmethod
+    def isSpecialPage(tc):
+        """
+        Is this a special page, i.e. a non-content page such as login, serach, settings etc.
+        
+        @param tc - TContent object for the page
+        @return boolean
+        """
+        return tc.uxid in AbstractXmlRenderer.specialPagesUXID
+    
+    
+    @staticmethod
+    def isInfoPage(tc):
+        """
+        Is this an info page, i.e. a page containing info about the site,such as legal, authors etc.
+        
+        @param tc - TContent object for the page
+        @return boolean
+        """
+        return tc.uxid in AbstractXmlRenderer.infoPagesUXID
+    
 
 class AbstractHtmlRenderer(object):
     '''

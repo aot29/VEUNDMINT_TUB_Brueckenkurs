@@ -59,20 +59,19 @@ class PageTUB( AbstractHtmlRenderer ):
 		
 		# Create the XML output
 		xml = self.contentRenderer.generateXML( tc )
-		# toc
-		xml.append( self.tocRenderer.generateXML( tc ) )
-		
-		# correct the links in content and TOC
-		self.correctLinks( xml, basePath )
-		# add base path to XML, as the transformer doesn't seem to support parameter passing
-		xml.set( 'basePath', basePath )
+		self.addFlags(xml, tc, basePath)
+				
+		# Prepare a non-special page, otherwise skip TOC and FF-RW links
+		if not AbstractXmlRenderer.isSpecialPage( tc ) :
+			# toc
+			xml.append( self.tocRenderer.generateXML( tc ) )
+			
 		# add links to next and previous entries
 		self._addPrevNextLinks(xml, tc, basePath)
-		# flag the pages from the welcome module as isFirstPage = True
-		xml.set( 'isCoursePage', str( AbstractXmlRenderer.isCoursePage(tc) ) )
-		# flag test pages
-		xml.set( 'isTest', str( tc.testsite ).lower() ) # JS booleans are lowercase 
 			
+		# correct the links in content and TOC
+		self.correctLinks( xml, basePath )
+		
 		# Load the template
 		templatePath = os.path.join( self.tplPath, "page.xslt" )
 		template = etree.parse( templatePath )
@@ -85,6 +84,24 @@ class PageTUB( AbstractHtmlRenderer ):
 		tc.html = self._contentToString( result, tc, basePath )
 
 
+	def addFlags(self, xml, tc, basePath):
+		"""
+		Add the attributes of the page element. These are used for rendering.
+		
+		@param xml - etree holding the page
+		@param tc - TContent object for the page
+		@param basePath - String prefix for all links
+		"""
+		# add base path to XML, as the transformer doesn't seem to support parameter passing
+		xml.set( 'basePath', basePath )
+		# flag test pages
+		xml.set( 'isTest', str( tc.testsite ).lower() ) # JS booleans are lowercase 
+		# flag the course pages
+		xml.set( 'isCoursePage', str( AbstractXmlRenderer.isCoursePage(tc) ) )
+		xml.set( 'isSpecialPage', str( AbstractXmlRenderer.isSpecialPage(tc) ) )
+		xml.set( 'isInfoPage', str( AbstractXmlRenderer.isInfoPage(tc) ) )
+
+
 	def getBasePath(self, tc):
 		"""
 		Set base path to point up from the level of the current tc object
@@ -92,6 +109,9 @@ class PageTUB( AbstractHtmlRenderer ):
 		@param tc - TContent object encapsulating the data for the page to be rendered
 		"""
 		basePath = ".."
+		
+		if AbstractXmlRenderer.isSpecialPage( tc ):
+			return basePath
 		
 		if tc.level == ROOT_LEVEL:
 			basePath = ".."
@@ -121,7 +141,6 @@ class PageTUB( AbstractHtmlRenderer ):
 		tc.content = tc.content.replace( '<br clear="all"/><br clear="all"/>', breakStr )
 		tc.content = tc.content.replace( '<br clear="all"></br>\n<br clear="all"></br>', breakStr )
 		
-		# replace the link placeholders in the content 
 		tc.content = re.sub(r"(src|href)=(\"|')(?!#|https://|http://|ftp://|mailto:|:localmaterial:|:directmaterial:)", "\\1=\\2" + basePath + "/", tc.content)
 
 		# replace the content placeholder added in PageXmlRenderer with the actual non-valid HTML content
@@ -130,40 +149,6 @@ class PageTUB( AbstractHtmlRenderer ):
 
 		return resultString
 
-	"""
-	def _packRoulettes(self, html, sitejson):
-
-		def droul(m):
-			rid = m.group(1)
-			myid = int(m.group(2))
-			maxid = 0
-			
-			if rid in self.data['DirectRoulettes']:
-				maxid = self.data['DirectRoulettes'][rid]
-			else:
-				raise Exception( "Could not find roulette id " + rid )
-				
-			bt = "<br /><button type=\"button\" class=\"roulettebutton\" onclick=\"rouletteClick(\'" + rid + "\'," + str(myid) + "," + str(maxid) + ");\">" + self.options.strings['roulette_new'] + "</button><br /><br />"
-			self.sys.message(self.sys.VERBOSEINFO, "Roulette " + rid + "." + str(myid) + " done")
-
-			# take care not to have any " in the string, as it will be passed as a string to js
-			s = "<div id='DROULETTE" + rid + "." + str(myid) + "'>" + bt + m.group(3) + "</div>"
-
-			# div for id=0 is being set into HTML, remaining blocks are stored and will be written to that div by javascript code
-			t = ""
-			if myid == 0:
-				# generate container div and its first entry, as well as the JS array variable
-				t += "<div class='dynamic_inset' id='ROULETTECONTAINER_" + rid + "'>" + s + "</div>"
-				sitejson["_RLV_" + rid] = list()
-			sitejson["_RLV_" + rid].append(s)
-			if len(sitejson["_RLV_" + rid]) != (myid + 1):
-				raise Exception(self.sys.CLIENTERROR, "Roulette inset id " + str(myid) + ", does not match ordering of LaTeX environments");
-			
-			return t
-
-		html = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droul, html, 0, re.S)
-		return html
-	"""
 
 	def _addPrevNextLinks(self, page, tc, basePath=''):
 		"""

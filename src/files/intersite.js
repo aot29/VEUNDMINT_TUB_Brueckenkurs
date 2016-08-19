@@ -207,7 +207,7 @@ function objClone(obj) {
 // Initialises the intersite object, if 'update == true', existing data get's overwritten, if 'scormLogin == true' the user id is used from SCORM instead of localStorage (this doesn't include 'clearuser')
 // pulledstr = JSON-String from db for user-obj, otherwise "" if nothing needs to be pulled.
 function SetupIntersite(clearuser, pulledstr) {
-  logMessage(VERBOSEINFO, "SetupIntersite START");
+  console.log("SetupIntersite START");
   if (forceOffline == 1) {
       logMessage(CLIENTINFO, "Course is in OFFLINE mode");
   }

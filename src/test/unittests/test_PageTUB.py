@@ -75,7 +75,7 @@ class test_PageTUB(AbstractRendererTestCase):
 		# at least one js
 		self.assertTrue( 'type="text/javascript"' in self.tc.html, "Missing external javascript in HTML" )
 		# MathJax got loaded
-		self.assertTrue( 'https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js' in self.tc.html, "Missing external MathJax in HTML" )
+		self.assertTrue( 'MathJax.js' in self.tc.html, "Missing external MathJax in HTML" )
 		# i18n points to the right locale
 		self.assertTrue( "$.i18n().load( {%s" % self.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
 		# navbar
@@ -94,6 +94,8 @@ class test_PageTUB(AbstractRendererTestCase):
 
 				# TOC entry captions present
 				self.assertTrue( sibling.caption in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.caption )
+				
+				#print(self.tc.html)
 
 				# TOC entry links present
 				self.assertTrue( 'href="../%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )
