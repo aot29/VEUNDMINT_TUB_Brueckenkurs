@@ -95,9 +95,9 @@ Indicate the intervals $(-\infty\MIntvlSep \pi)$ and $(8\MIntvlSep \MZahl{8}{5}]
 \end{MHint}
 \end{MExercise}
 
-For doing and applying mathematics, it is not sufficient to consider only sets as well as 
+For doing and applying mathematics, it is not sufficient to just consider sets and 
 equations and inequalities for numbers of these sets, as done in the previous modules (for example, 
-in \MSRef{VBKM01}{Module 1}). Additionally, we need so called \highlight{functions} 
+in \MSRef{VBKM01}{Module 1}). We also need \highlight{functions} 
 (which are often also denoted as \modsemph{maps}).
 
 \begin{MInfo}
@@ -109,8 +109,8 @@ in \MSRef{VBKM01}{Module 1}). Additionally, we need so called \highlight{functio
 We will focus on the basic mathematical term of an assignment between numbers in 
 Section~\MNRef{sec:zuordnungen}. In Section~\MNRef{sec:anwendungen} we will refer to  
 applications of mathematics in other sciences, and we will illustrate how useful the 
-mathematical term of a function as a tool for the formalisation of relations between 
-dependant quantities is. Finally, we will study the graphical representation of functions 
+mathematical notion of a function as a tool for the formalisation of relations between 
+dependent quantities is. Finally, we will study the graphical representation of functions 
 using graphs in Section~\MNRef{sec:graphen}. Later in this chapter we will consider 
 the most relevant elementary functions together with their graphs. It is fundamental to 
 know the behaviour of the graphs of the elementary functions.
@@ -120,12 +120,12 @@ know the behaviour of the graphs of the elementary functions.
 \MDeclareSiteUXID{VBKM06_Zuordnungen}
 
 We start with a first example of a function as an assignment between two sets. For this 
-purpose, we consider the set of natural numbers $\N$ as well as the set of rational numbers
-$\Q$ and visualise these two sets as two ``containers'' filled with numbers.
+purpose, we consider the set of natural numbers $\N$ and the set of rational numbers
+$\Q$, and visualise these two sets as two ``containers'' filled with numbers.
 
 \MTikzAuto{%
 \begin{tikzpicture}
-% natürliche Zahlen:
+% natï¿½rliche Zahlen:
 \draw  (3.5,10.3) node[anchor=north west] {$\mathbb{N}$};
 \draw [] (2.7,7.6) ellipse (1.7cm and 2.4cm);
 \draw (2,6.3)  node[anchor=north west](eins) {1};
@@ -151,16 +151,16 @@ $\Q$ and visualise these two sets as two ``containers'' filled with numbers.
 \end{tikzpicture} 
 }%
 
-Now, we like to do an assignment between the elements of these two sets as follows. 
+Now, we want to create an assignment between the elements of these two sets as follows. 
 To each number $n\in\N$ half of this number $\frac{n}{2}\in\Q$ is assigned, i.e. 
-to the number $1\in\N$ the number $\frac{1}{2}\in\Q$ is assigned, to the number 
-$2\in\N$ the number $1\in\Q$ is assigned, etc. In the figure below, this 
+to the number $1\in\N$ assign the number $\frac{1}{2}\in\Q$, to the number 
+$2\in\N$ assign the number $1\in\Q$, etc. In the figure below, this 
 fact is illustrated by arrows that indicate which numbers in $\Q$ are assigned to
 which numbers in $\N$.
 
 \MTikzAuto{%
 \begin{tikzpicture}
-% natürliche Zahlen:
+% natï¿½rliche Zahlen:
 \draw  (3.5,10.3) node[anchor=north west] {$\mathbb{N}$};
 \draw [] (2.7,7.6) ellipse (1.7cm and 2.4cm);
 \draw [color = blue](2,6.3)  node[anchor=north west](eins) {1};
@@ -191,8 +191,8 @@ which numbers in $\N$.
 \end{tikzpicture}
 }%
 
-We use for the \modsemph{assignment of single elements} of the sets, described above in words,
-the so called \highlight{assignment arrow}. This is an arrow that has a bar at its tail: $\longmapsto$.
+For the \modsemph{assignment of single elements} of the sets, described above in words,
+we use the so called \highlight{assignment arrow}. This is an arrow that has a bar at its tail: $\longmapsto$.
 It says that to the number on the side with the bar the number on the side with the arrow is assigned:
 \[
 \N\ni1\longmapsto\MZahl{0}{5}\in\Q \MDFPSpace,\MDFPaSpace \N\ni2\longmapsto1\in\Q \MDFPSpace, \MDFPaSpace \text{etc.} 
@@ -200,19 +200,19 @@ It says that to the number on the side with the bar the number on the side with 
 With these assignments, we have now constructed a \modsemph{function} from the natural numbers $\N$ to the rational 
 numbers $\Q$. In mathematics, this assignment is named, i.e. a symbol is allocated (often this is $f$ for \modsemph{f}unction),
 that shall describe exactly this assignment. For this purpose, the sets of numbers \modsemph{from which}
-and \modsemph{to which} the assignment shall be done must be noted. In our case, to the elements of the set of natural 
+and \modsemph{to which} the assignment will be done must be noted. In our case, to the elements of the set of natural 
 numbers $\N$ the rational numbers are assigned. Mathematically, this is expressed by a so called 
 \highlight{mapping arrow} $\null\lto\null$, i.e. an arrow that has the target set at its head and the set, 
 whose elements are assigned to, at its tail. Thus, in our case we have
 \[
  f\colon \N\lto\Q \MDFPeriod
 \]
-This reads as "the function $f$ maps $\N$ to $\Q$''. 
+This reads as ``the function $f$ maps $\N$ to $\Q$''. 
 
 Furthermore, we can now ask whether the assignments of this function,
 $1\longmapsto\frac{1}{2},\ 2\longmapsto1,\ \text{etc.}$, can be described in a more 
 compact way. To do this, we recall the beginning of this example. We decided to assign 
-to each natural number $n$ its half $\frac{n}{2}$. So, we can write this arbitrary 
+to each natural number $n$ its half $\frac{n}{2}$. So we can write this arbitrary 
 natural number $n$ and the corresponding rational number $\frac{n}{2}$ left and right to the 
 assignment arrow, respectively:
 \[
@@ -224,19 +224,19 @@ the name of the function:
 \[
  f(n) = \frac{n}{2} \MDFPeriod
 \]
-This reads as ``$f$ of $n$ equals $\frac{n}{2}$''. Altogether, we can thus describe the function $f$
-considered here as follows:
+This reads as ``$f$ of $n$ equals $\frac{n}{2}$''. Altogether we can describe this function $f$
+as follows:
 \[
  \function{f}{\N}{\Q}{n}{\frac{n}{2} \MDFPeriod}
 \]
 Finally, this reads as ``the function $f$ maps $\N$ to $\Q$, each $n\in\N$ is mapped to $\frac{n}{2}\in\Q$''.
-Throughout this module, we will continue to use this summarising notation for functions. 
+Throughout this module, we will continue to use this summarising notation of functions. 
 
 Let us consider a few further simple examples for functions.
 
 \begin{MExample}\MLabel{bsp1:grundlagen}
 \begin{itemize}
- \item A function $g$ assigns to each real number $x$ its square $x\cdot x=x^2$. 
+ \item A function $g$ assigns to each real number $x$ its square: $x\cdot x=x^2$. 
 This results in the so called standard parabola (see Section~\MNRef{sec:monome}):
  \[
   \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
@@ -253,7 +253,7 @@ Hence, the mapping rule of $\Mvarphi$ is $\Mvarphi(y)=3y+1$. Thus, for example,
 $\Mvarphi(\frac{1}{3})=3\cdot\frac{1}{3}+1=2$, etc. 
 However, in this case the values $\Mvarphi(8)$ or $\Mvarphi(1)$ \modsemph{cannot be calculated}
 since $8$ and $1$ do not belong to the set $(0\MIntvlSep 1)$. 
- %Dies wird unten im Rest dieses Abschnitts nochmal genauer erörtert werden. 
+ %Dies wird unten im Rest dieses Abschnitts nochmal genauer erï¿½rtert werden. 
 \end{itemize}
 
 \end{MExample}
@@ -283,7 +283,7 @@ since $8$ and $1$ do not belong to the set $(0\MIntvlSep 1)$.
   This is an example for a function of hyperbolic type that will be described in more detail in 
   Section~\MNRef{VBKM06_Potenz}. The mapping rule of $h$ is $h(x)=\frac{1}{x}$, hence $h(2)=\frac{1}{2}$
   and $h(1)=\frac{1}{1}=1$. Moreover, we have $h(3)=\frac{1}{3}$, hence $3\longmapsto\frac{1}{3}$.
-  Furthermore, the observation $h(\frac{1}{2})=\frac{1}{\frac{1}{2}}=2$ results in $\frac{1}{2}\longmapsto2$.
+  The observation $h(\frac{1}{2})=\frac{1}{\frac{1}{2}}=2$ gives us $\frac{1}{2}\longmapsto2$.
   \item[(ii)] The function $w$ assigns to each real number $\alpha$ greater or equal to $4$ and less or equal
   to $9$ its square root $\sqrt{\alpha}$. The mapping rule is $w(\alpha)=\sqrt{\alpha}$, hence 
   $w(9)=\sqrt{9}=3$ and $w(5)=\sqrt{5}$. The value $w(10)$ cannot be calculated since $10\notin[4\MIntvlSep 9]$.
@@ -292,17 +292,17 @@ since $8$ and $1$ do not belong to the set $(0\MIntvlSep 1)$.
 \end{MHint}
 \end{MExercise}
 
-The examples above show some basic properties of functions for which we will now introduce specific terms.
+The examples above show some basic properties of functions for which we will now introduce specific terminology.
 \begin{MInfo}
 For the definition of a function, a set of numbers is specified whose elements are to be assigned to 
-other numbers by the function. This set is called \MEntry{domain}{domain} or set of definition of the function.
+other numbers by the function. This set is called the \MEntry{domain}{domain} or set of definition of the function.
 If the function has a name, e.g. $f$, then the domain is denoted by the symbol $D_f$. For example, 
 the domain of the function
 \[
    \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\frac{1}{x}}
 \]
-in Exercise~\MNRef{ex1:grundlagen} is the set $D_h=(0\MIntvlSep \infty)$. For the elements of the 
-domain, a specific term also exists. In this exercise, the numbers $x\in D_h$ are assigned by 
+in Exercise~\MNRef{ex1:grundlagen} is the set $D_h=(0\MIntvlSep \infty)$. There is also a specific term for the elements of the 
+domain. In this exercise, the numbers $x\in D_h$ are assigned by 
 the mapping rule $h(x)=\frac{1}{x}$. Here, the variable $x$ is called the 
 \MEntry{independent variable}{independent variable} of the function $h$.
 \end{MInfo}
@@ -331,7 +331,7 @@ between numbers that are excluded because they are
 \modsemph{not allowed to be inserted in the mapping rule at all} and those that are excluded because 
 \modsemph{the function is just defined accordingly}. This now leads to the term of the 
 \highlight{maximal domain} of a function, i.e. the maximum subset of real numbers $\R$ that can
-be used as the domain of a function with known mapping rule.
+be used as the domain of a function with a known mapping rule.
     
 
 \begin{MExample}
@@ -353,7 +353,7 @@ The square root has a real number as its result for all non-negative real number
 \end{MHint}%
 \end{MExercise}%
 
-For the definition of a function, beside the domain another second set is required, namely the set that
+For the definition of a function, a second set  (beside the domain) is required, the set that
 is the target of the assignment by the function. This set is called \highlight{target set} or \highlight{codomain}. 
 Let us again consider the function
 \[
@@ -364,7 +364,7 @@ in Example~\MNRef{bsp1:grundlagen}. Its target set is the set of real numbers $\
  \function{f}{\N}{\Q}{n}{\frac{n}{2}}
 \]
 in the first example of this section is the set of rational numbers $\Q$. Here, we see an important difference
-between domain and target set of a function. The domain contains all numbers, and only those numbers, that are allowed 
+between the domain and target set of a function. The domain contains all numbers, and only those numbers, that are allowed 
 to be inserted (and one wishes to insert) in the mapping rule of the function. However, the target set can contain
 all numbers that can potentially appear as a result of the mapping function.
 
@@ -387,7 +387,7 @@ The range of this function is
 W_{\Mvarphi}=(1\MIntvlSep 4) \MDFPeriod
 \]
 This can be seen by inserting some values from $D_{\Mvarphi}=(0\MIntvlSep 1)$ in the  mapping rule and calculating 
-the results. In this way, a so called \MEntry{lookup table}{lookup table} is obtained:
+the results. In this way, a so called \MEntry{table of values}{table of values} is obtained:
 
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
@@ -398,7 +398,7 @@ $\Mvarphi(y)$ & $\MZahl{1}{3}$ & $\MZahl{1}{9}$ & $\MZahl{2}{5}$ & $\MZahl{3}{1}
 \end{center}
 \end{MExample}
 
-Such lookup tables are useful to get an overview of the values of a function. However, from a 
+Such tables of values are useful to get an overview of the values of a function. However, from a 
 mathematical point of view, they are not sufficient to be \modsemph{completely sure} what the 
 actual range of a function is. One method to determine the range of a function is based on 
 solving inequalities:
@@ -423,20 +423,20 @@ Hence, we have for the values of the function $\Mvarphi(y)\in(1\MIntvlSep 4)$ an
 \begin{MXContent}{Functions in Mathematics and Applications}{Mathematics and Applications}{STD}\MLabel{sec:anwendungen}
 \MDeclareSiteUXID{VBKM06_FunktionenAnwendungen}
 Mathematical functions often describe relations between quantities that arise from other sciences or everyday life. 
-For example, the volume $V$ of a cube depends on the side length $a$ of the cube. Then, the volume 
+For example, the volume $V$ of a cube depends on the side length $a$ of the cube. The volume 
 can be considered as a mathematical function that assigns the corresponding volume $V(a)=a^3$ to each side length $a>0$:
 \[
  \function{V}{(0\MIntvlSep \infty)}{\R}{a}{V(a)=a^3 \MDFPeriod}
 \]
 The result is the cubic standard parabola (see Section~\MNRef{sec:monome}) for the relation between side length and
 volume. In this way, many more examples can be found arising from sciences and everyday life: the position as 
-a function of time in physics, the reaction velocity as a function of concentration in chemistry, the amount 
-of flour as a function of the desired amount of dough in a cake recipe, etc. 
+a function of time in physics, the reaction rate as a function of concentration in chemistry, the amount 
+of flour needed as a function of the desired amount of dough in a cake recipe, etc. 
 
 To this end, let us consider an example.
 \begin{MExample}\MLabel{bsp:anwendungen}%
 The intensity of nuclear radiation is \highlight{inversely proportional} to the square of the distance to the 
-source. This is also called \modsemph{inverse square law}. Using a physical \highlight{proportionality factor} $c>0$,
+source. This is called the \modsemph{inverse square law}. Using a physical \highlight{proportionality factor} $c>0$,
 the relation between intensity $I$ of the radiation and distance $r>0$ from the source can be formulated 
 mathematically as follows:
 \[
@@ -448,7 +448,7 @@ quantities $I$ and $r$.
 
 \begin{MExercise}\MLabel{ex:anwendungen}
 >From the construction of wind turbines it is known that the wind turbine power is \highlight{proportional} to the 
-third power of the wind velocity. Under the condition that the proportionality factor satisfies the relation $\rho>0$, 
+cube of the wind velocity. Under the condition that the proportionality factor satisfies the relation $\rho>0$, 
 which of the following mathematical functions describes this relation of physical quantities correctly?
 
 a)
@@ -474,8 +474,7 @@ c) is correct; in this case we have the relation $P(v)=\rho v^3$ between the pow
 is equally correct. In this case we have a function that is completely identical to case c), except for the fact that in this 
 case the power is denoted by $x$ and the wind velocity is denoted by $f$. This again clarifies that the letters used to denote the 
 function and the variables are mathematically completely arbitrary. However, in the sciences there are conventions, which 
-letters are \modsemph{generally} used to denote certain quantities. So, here it is more common to denote the velocity by $v$ 
-(from the English word \modsemph{velocity}) and the power by $P$ (from the English word \modsemph{power}).
+letters are \modsemph{generally} used to denote certain quantities. So, here it is more common to denote the velocity by $v$ and the power by $P$.
 \end{MHint}
 
 \end{MExercise}
@@ -545,7 +544,7 @@ is called \highlight{graph of $f$} and that is denoted by the symbol $G_f$:
 \draw (-1,5.2) node[anchor=north west] {$f(x)$};
 % Graph (x,x^2)
 \draw[smooth,samples=50,domain=-2.1:2.1, line width=2pt,color=green] plot(\x,{(\x)^(2.0)});
-%Ausgewählte Elemente des Definitionsbereiches:
+%Ausgewï¿½hlte Elemente des Definitionsbereiches:
 \foreach \x in {-1.57, -1, 1, 2}{
 	\fill [color = cyan](\x,0.0) circle (1.5pt);
 	% f(x):
@@ -606,13 +605,13 @@ from Section~\MNRef{sec:zuordnungen} and its graph
 then we see that graphs not always have to be continuous curves, but also can consist, as in this case, 
 only of single points. 
 
-Now, from the graph many basic properties of the function can be seen. Recall the function 
+Now, from the graph we can see many basic properties of the function. Recall the function 
 \[
   \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1}
 \]
 with domain $D_{\Mvarphi}=(0\MIntvlSep 1)$ and range $W_{\Mvarphi}=(1\MIntvlSep 4)$ from 
 Section~\MNRef{sec:zuordnungen}. If we draw its graph, then we see that the domain and the range 
-appear on the horizontal and on the vertical axis, respectively:
+appear on the horizontal and on the vertical axes, respectively:
 
 % grund3 f: (0,1) --> \R, y \mapsto 3y+1
 \MTikzAuto{%
@@ -650,7 +649,7 @@ Consider again the graph of the function
 \[
  \function{f}{\R}{\R}{x}{x^2\MDFPSpace,} 
 \]
-indicate domain and range on the the horizontal axis and on the vertical axis and specify them.
+indicate domain and range on the the horizontal axis and vertical axes and label them.
 
 \begin{MHint}{Solution}
 % grund4
@@ -724,9 +723,9 @@ ourselves of this, we realise that a curve as shown in the figure below
 \end{tikzpicture}
 }%
 
-can hardly ever be a graph of a function. For a single $x$-value in the domain, several values 
+cannot be a graph of a function. For a single $x$-value in the domain, several values 
 $y_1,y_2,y_3$  had to exist in the range. Graphs of functions indicate 
-the uniqueness by the fact that they ``cannot reverse in horizontal direction''.
+the uniqueness by the fact that they ``cannot reverse in the horizontal direction''.
 
 Another important property of a graph is its \modsemph{growing behaviour}. Let us consider the function
 \[
@@ -769,8 +768,7 @@ On the horizontal axis in this graph we see two regions in which the \modsemph{g
 graph is different. In the region of $x$-values with $x\in(-\infty\MIntvlSep 0)$ the graph 
 \modsemph{falls}, i.e. if the $x$ values increase, then the corresponding function values on 
 the vertical axis decrease. In the region of $x$-values with $x\in(0\MIntvlSep \infty)$ we 
-observe the contrary behaviour. For increasing $x$-values the corresponding function values also increase. 
-The graph \modsemph{rises}. At the $x$-value $0\in\R$ the region of decreasing growing behaviour merges into 
+observe the contrary behaviour. For increasing $x$-values the corresponding function values also increase: the graph \modsemph{rises}. At the $x$-value $0\in\R$ the region of decreasing growing behaviour merges into 
 the region of increasing growing behaviour. Such values will be of particular importance for the study of vertices 
 in Section~\MNRef{sec:polynome} and for the determination of \MSRef{VBKM07_Kurvendiskussion}{extreme values} 
 in Module~\MNRef{VBKM07}. 
@@ -780,7 +778,7 @@ and they are defined mathematically as follows:
 
 \begin{MInfo}
 \begin{itemize}
- \item For $x_1<x_2$ in a subset of the domain of a function $f$, we have $f(x_1)>f(x_2)$. Then the function $f$ is 
+ \item If for $x_1<x_2$ in a subset of the domain of a function $f$ we always have $f(x_1)>f(x_2)$, the function $f$ is 
   said to be strictly decreasing for every $x$ in this subset.
 
 %GRAPH: mon2a:
@@ -815,7 +813,7 @@ and they are defined mathematically as follows:
 \end{tikzpicture}  
 }%
 
- \item For $x_1<x_2$ in a subset of the domain of a function $f$, we have $f(x_1)<f(x_2)$. Then the function $f$ is 
+ \item If for $x_1<x_2$ in a subset of the domain of a function $f$ we always have $f(x_1)<f(x_2)$, the function $f$ is 
   said to be strictly increasing for every $x$ in this subset.
 
 %GRAPH: mon2b:
@@ -855,24 +853,24 @@ and they are defined mathematically as follows:
 
 This is true for all functions that will be investigated throughout this module. Often, the described 
 monotonicity properties are only true for certain regions in the functions's domain, as we have seen for
-the case of the standard parabola. However, also functions do exist that have only one of 
+the case of the standard parabola. However functions also exist which only have one of 
 the monotonicity properties for the entire domain (see Example~\MNRef{bsp1:monoton} below). In this 
-case the entire function is called strictly increasing or strictly decreasing. Furthermore, 
-a function that is either strictly decreasing or strictly increasing is simply called 
+case the entire function is called strictly increasing or strictly decreasing. A function that is either strictly decreasing or strictly increasing is simply called 
 \highlight{strictly monotonic}.
 
-A further example shows how strictly monotonicity can be checked explicitly for a function by solving 
+A further example shows how strict monotonicity can be checked explicitly for a function by solving 
 \MSRef{M03_Ungleichungen}{inequalities} from Module~\MRef{VBKM03}.
 
 \begin{MExample}\MLabel{bsp1:monoton}%
-Let the function
-\[
- \function{h}{\R}{\R}{x}{-\frac{1}{2}x+1}
-\]
-be given. Determine whether the function $h$ is either strictly increasing or 
-strictly decreasing?
 
-First, we chose two arbitrary numbers $x_1,x_2\in D_h=\R$ for which
+Consider the function
+\[
+ \function{h}{\R}{\R}{x}{-\frac{1}{2}x+1}.
+\]
+Determine whether the function $h$ is either strictly increasing or 
+strictly decreasing.
+
+First, we choose two arbitrary numbers $x_1,x_2\in D_h=\R$ for which
 \[
  x_1<x_2 \MDFPeriod
 \]
@@ -941,14 +939,14 @@ hence the function $\eta$ is strictly increasing.
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Intro}
 In this section we study the following types of functions: constant functions, linear functions, linear affine 
-functions as well as monomials and polynomials.
+functions, monomials and polynomials.
 \end{MIntro}
 
 
 \begin{MXContent}{Constant Functions and the Identity}{Constants and Identity}{STD}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Konstanten}
 
-So called constant functions assign to each number in the domain $\R$ \modsemph{exactly one} 
+So called constant functions assign to every number in the domain $\R$ \modsemph{exactly the same} 
 constant number in the target set $\R$, e.g. the constant number $2$, in the following way:
 \[
  \function{f}{\R}{\R}{x}{2 \MDFPeriod}
@@ -1009,8 +1007,7 @@ constant number in the target set $\R$, e.g. the constant number $2$, in the fol
 Here, we then have $f(x)=2$ for all $x\in\R$. Hence, the range of this function $f$ consists only 
 of the set $W_f=\{2\}\subset\R$.
 
-The identity function on $\R$ is the function that assigns to each real number exactly the identical 
-real number. This is written as follows:
+The identity function on $\R$ is the function that assigns each real number to itself. This is written as follows:
 \[
  \function{\Id}{\R}{\R}{x}{x \MDFPeriod}
 \]
@@ -1068,7 +1065,7 @@ real number. This is written as follows:
 }%
 
 Here, we then have $\Id(x)=x$ for all $x\in\R$. Hence, the range of $\Id$ is the set 
-of real numbers ($W_{\Id}=\R$). Furthermore, the identity function is obliviously a strictly 
+of real numbers ($W_{\Id}=\R$). Furthermore, the identity function is (obviously) a strictly 
 increasing function.
 \end{MXContent}
 
@@ -1076,8 +1073,7 @@ increasing function.
 \begin{MXContent}{Linear Functions}{Linear}{STD}\MLabel{sec:linear}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Linear}
 
-Starting from the identity function, more complex functions, so called \highlight{linear functions},
-can be constructed. So, for example, one can think of a function that assigns to each 
+Starting from the identity function, more complex functions - so called \highlight{linear functions} - can be constructed. So, for example, one can think of a function that assigns to each 
 real number twice its value or $\pi$ times its value, etc., e.g.
 \[
  \function{f}{\R}{\R}{x}{2x}
@@ -1196,7 +1192,7 @@ or
 \end{tikzpicture}
 }%
 
-Hence, all linear functions (except for the zero function, see below) have also the entire set 
+Hence, all linear functions (except for the zero function, see below) also have the entire set 
 of real numbers as their ranges ($W_f,W_g=\R$). The factor that multiplies each real number in such 
 a linear function is called \highlight{slope} of the linear function. Often, also for linear functions 
 one does not like to specify a certain function with a specific slope, but an arbitrary function 
@@ -1302,7 +1298,7 @@ the slope ($m\in\R$) this is written as follows:
 
 The graphs of linear affine functions are also called \highlight{lines}. For linear affine functions,
 the constant $m$ is still called slope, and the constant $c\in\R$ is called \highlight{$y$-intercept}.
-The reason for this term is as follows: If the intersection point of the graph of the linear affine function
+The reason for this term is as follows: if the intersection point of the graph of the linear affine function
 with the vertical axis is considered, then this point has the distance $c$ from the origin (see figure above). 
 So, for the linear affine function shown in the figure below
 \[
@@ -1373,7 +1369,7 @@ In Module~\MNRef{VBKM02} the \MSRef{VBKM02_Betrag}{absolute value} of a real num
  |x| = \begin{MCaseEnv} x & \text{for}\;x\geq 0 \\ -x & \text{for}\;x<0 \MDFPeriod \end{MCaseEnv}
 \]
 In the context of this module, the absolute value can be regarded as a function. This results in 
-the following \MEntry{absolute value function}{absolute value function}
+the \MEntry{absolute value function}{absolute value function}:
 \[
  \function{b}{\R}{\R}{x}{|x| \MDFPeriod}
 \]
@@ -1389,7 +1385,7 @@ Due to the definition according to cases
 \[
  b(x)=|x|=\begin{MCaseEnv} x & \text{for}\;x\geq0 \\ -x & \text{for}\;x<0 \MDFPSpace , \end{MCaseEnv}
 \]
-the absolute value function is an example for a \modsemph{piecewise defined} function. If absolute values are 
+the absolute value function is an example of a \modsemph{piecewise defined} function. If absolute values are 
 defined according to different cases, then it is also said that the absolute value is \highlight{resolved}.
 Then, the graph of the absolute value function $b$ looks as follows:
 
@@ -1419,21 +1415,20 @@ Then, the graph of the absolute value function $b$ looks as follows:
 
 One property of the graph of the absolute value function, which most of the more general functions involving absolute
 values have in common, is the kink at $x=0$. The absolute value function $b$ defined above is only the simplest case of 
-a function involving an absolute value. More complicated examples of functions can be constructed, involving one absolute 
-value or several absolute values, e.g.
+a function involving an absolute value. More complicated examples of functions can be constructed, involving one or several absolute values, e.g.
 \[
  \function{f}{\R}{\R}{x}{|2x-1| \MDFPeriod}
 \]
 
-For such functions, it is a relevant task to get an idea of how the graph of the function looks like. 
-To this, the piecewise definition of the absolute value is used, and the approach is similar to 
+For such functions, it is a relevant task to get an idea of how the graph of the function looks. 
+To do this, we use the piecewise definition of the absolute value, and the approach is similar to 
 the one for the solution of \MSRef{VBKM02_FallBetrag}{absolute value equations} and inequalities. Here,
 we demonstrate this approach for the example of the function $f$ defined above:
 
 \begin{MExample}
-Let the function
-\[\function{f}{\R}{\R}{x}{|2x-1|}\]
-be given. How does the graph look like?
+Consider the function
+\[\function{f}{\R}{\R}{x}{|2x-1|}.\]
+What does the graph look like?
 
 We calculate:
 \[
@@ -1481,7 +1476,7 @@ have to be observed:
 
  \item For the case $<0$ the \modsemph{entire} expression gets a minus sign. Here, care has to be taken that
   the expression is bracketed. In the example above, we therefore have $-(2x-1)=-2x+1$ and \modsemph{not}
-  $-2x-1$. Also this is always that way if absolute values are resolved.
+  $-2x-1$. This is always the case if absolute values are resolved.
 \end{enumerate}
 \end{MInfo}
 
@@ -1535,7 +1530,7 @@ Since $|-8x+1|\geq0$, it follows $|-8x+1|-1\geq -1$ which implies $W_\alpha=[-1\
 
 \begin{MXContent}{Monomials}{Monomials}{STD}\MLabel{sec:monome}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Monome}
-Beside the linear affine functions studied in the previous section one now can 
+As well as the linear affine functions studied in the previous section one now can 
 also think of functions that assign to all real numbers non-negative integer powers 
 of itself. An example is the function
 \[
@@ -1609,8 +1604,8 @@ $x^0=1$ for all $x\in\R$, and thus, the constant function  $f\colon\R\lto\R$, $f
 of degree $0$.
 \end{MHint}
 \end{MExercise}
-The monomial of degree $2$ is also called \highlight{standard parabola}. The monomial 
-of degree $3$ is also called \highlight{cubic standard parabola}. The figure below shows 
+The monomial of degree $2$ is called the \highlight{standard parabola}. The monomial 
+of degree $3$ is called the \highlight{cubic standard parabola}. The figure below shows 
 the graphs of a few monomials.
 
 %GRAPH: mon2
@@ -1663,13 +1658,13 @@ Moreover, we have
 \]
 
 \begin{MExercise}
-How this conclusions concerning monomials can be seen immediately from the exponent rules?
+How can our conclusions concerning monomials be seen immediately from the exponent rules?
 
 \begin{MHint}{Solution}
 
 >From the exponent rules, we know that $1^n=1$ and $0^n=0$ for arbitrary non-negative 
-integers $n$, and we have $(-1)^n=1$  if $n$ is an even number as well as $(-1)^n=-1$ if $n$ is an odd number. 
->From this, the described conclusions result, which all monomials have in common. Also, the inequalities
+integers $n$. We have $(-1)^n=1$  if $n$ is an even number and $(-1)^n=-1$ if $n$ is an odd number. 
+>From this, the described conclusions result for all monomials.
 $x>x^2>x^3>x^4>\dots$ for positive $x$ less than $1$ and $x<x^2<x^3<x^4<\dots$ for $x$ greater than $1$ result from the exponent
 rules since higher powers of positive numbers less than $1$ will always have decreasing values while, in contrast,
 higher powers of positive numbers greater than $1$ will always have increasing values.
@@ -1681,10 +1676,9 @@ higher powers of positive numbers greater than $1$ will always have increasing v
 \begin{MXContent}{Polynomials and Their Roots}{Roots}{STD}\MLabel{sec:polynome}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Polynome}
 
-While the monomials considered until now always involved only exactly one power of the 
-independent variable, from these monomials more complex functions can be constructed 
-easily involving several different powers of the independent variable. These are sums 
-of multiples of monomials. They are then called \highlight{polynomials}. 
+The monomials considered until now always involved only exactly one power of the 
+independent variable. From these monomials more complex functions one can easily construct more complex functions involving several different powers of the independent variable. These are sums 
+of multiples of monomials. They are called \highlight{polynomials}. 
 A few examples and their graphs are given below.  
 
 \[
@@ -1883,8 +1877,8 @@ take non-negative values.
 \end{MExercise}
 
 For general polynomials, the roots are of particular relevance. The roots of a polynomial
-can be found by solving equations of $n$th degree. In case of degree $n=2$, i.e. for polynomials 
-of degree $2$ (which are also called general parabolas),  this is possible by solving a 
+can be found by solving equations of $n$th degree. In the case of degree polynomials 
+of degree $n=2$ (which are also called general parabolas),  this is possible by solving a 
 quadratic equation. In Module~\MNRef{VBKM02} the relevant terms and methods, i.e. 
 \MSRef{VBKM02_QuadratischErgaenzung}{completing the square}, the \MSRef{VBKM02_pqFormel}{$pq$ formula}, 
 and the \MSRef{VBKM02_Scheitelpunktform}{vertex form} of quadratic expressions are explained in detail. 
@@ -1892,11 +1886,11 @@ and the \MSRef{VBKM02_Scheitelpunktform}{vertex form} of quadratic expressions a
 
 
 \begin{MExample}
-Let the parabola 
+Consider the parabola 
 \[
- \function{\zeta}{\R}{\R}{y}{2y^2-8y+6 }
+ \function{\zeta}{\R}{\R}{y}{2y^2-8y+6 }.
 \]
-be given. We find the roots and the vertex and finally sketch the graph.
+We find the roots and the vertex and then sketch the graph.
 
 We complete the square in the mapping rule $\zeta(y)=2(y^2-4y+3)$:
 \[
@@ -1906,8 +1900,8 @@ Thus, the mapping rule can be written as
 \[
  \zeta(y)=2(y-2)^2-2 \MDFPeriod
 \]
-We see, that the parabola is shifted with respect to the standard parabola by $2$~units to the right 
-and $2$~units downwards. It can be seen that the vertex is at $(2|-2)$. The roots can be calculated according to:
+We see that the parabola is shifted with respect to the standard parabola by $2$~units to the right 
+and $2$~units downwards. It can be seen that the vertex is at $(2,-2)$. The roots can be calculated according to:
 \[
 	\zeta(y)=2((y-2)^2-1)=0\quad\Leftrightarrow\quad (y-2)^2=1\quad\Leftrightarrow\quad y_{1,2}-2=\MCases{1\\-1}\quad\Leftrightarrow\quad y_{1,2}=\MCases{3\\1 \MDFPeriod}
 \]
@@ -1951,9 +1945,8 @@ Finally, the graph of the function is as shown in the figure below.
 \begin{MXContent}{Hyperbolas}{Hyperbolas}{STD}\MLabel{sec:hyperbel}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Hyperbeln}
 
-We consider the functions that have a \highlight{reciprocal relation} in their mapping rule, i.e. in the
-mapping rule \highlight{reciprocals} occur. For the determination of the \modsemph{maximum domain} of such a function,
-it has to be noted that the denominator must be non-zero. 
+We consider functions which have a \highlight{reciprocal relation} in their mapping rule. For the determination of the \modsemph{maximum domain} of such a function,
+note that the denominator must be non-zero. 
 
 A few examples of reciprocal functions are listed below; these are reciprocals of monomials, and they 
 are also called functions of \highlight{hyperbolic type}.
@@ -2007,10 +2000,10 @@ In particular, the graph of the function
 \[
  \function{f_1}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x} }
 \]
-is called \highlight{hyperbola}.
+is called the \highlight{hyperbola}.
 
 Generally, for the reciprocal of an arbitrary monomial of degree $n\in\N$
-also a corresponding function of hyperbolic type can be specified.
+a corresponding function of hyperbolic type can be specified.
 \[
  \function{f_n}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^n} \MDFPeriod}
 \]
@@ -2019,7 +2012,7 @@ What is the range $W_{f_n}$ of the function $f_n$ for even or odd $n\in\N$?
 
 \begin{MHint}{Solution}
 We always have $\frac{1}{x^n}\neq0$ since a quotient can only be zero if the numerator is zero. Thus, the range 
-does never contain $0\in\R$. Since $x^n\geq0$ for even $n\in\N$, we have $\frac{1}{x^n}>0$  for even $n\in\N$. 
+never contains $0\in\R$. Since $x^n\geq0$ for even $n\in\N$, we have $\frac{1}{x^n}>0$  for even $n\in\N$. 
 However, for odd $n\in\N$ we can also have $\frac{1}{x^n}<0$. This results in
 \[
  W_{f_n}=\MCases{\R\setminus\{0\} & \text{for}\ n\ \text{odd} \\ (0\MIntvlSep \infty) & \text{for}\ n\ \text{even} \MDFPeriod}
@@ -2035,8 +2028,8 @@ Exercise~\MNRef{ex:anwendungen} in Section~\MNRef{sec:anwendungen}.
 \begin{MXContent}{Rational Functions}{Rational}{STD}\MLabel{sec:gebrochen}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_GebrochenRational}
 General rational functions have mapping rules that consists of a quotient of two polynomials. 
-Some examples with their graphs are given below. Of course, also for this functions numbers must be 
-excluded from the domain for which the denominator in the mapping rule equals zero.
+Some examples with their graphs are given below. Of course, for these functions numbers for which the denominator in the mapping rule equals zero must also be 
+excluded from the domain.
 
 \begin{MExample}\MLabel{einf_bsp_gebr_rat}
 \[
@@ -2100,7 +2093,7 @@ excluded from the domain for which the denominator in the mapping rule equals ze
 \draw[color=red,smooth,samples=100,domain=1.8:9.5]
 		plot(\x,{(-18*(\x)+3)/(2*(\x)^2+5*(\x)-12)});
 \draw[color=red] (1.1,6) node[right] {$G_g$};
-%Definitionslücken:		
+%Definitionslï¿½cken:		
 \draw[color = blue, fill = white](-4,0) circle(3pt);		
 \draw[color = blue, fill = white](1.5,0) circle(3pt);
 \end{tikzpicture}
@@ -2131,7 +2124,7 @@ excluded from the domain for which the denominator in the mapping rule equals ze
 \draw[color=red,smooth,samples=100,domain=-0.8:5.3]
 		plot(\x,{((\x)^3-(\x)^2+(\x))/((\x)+1)});
 \draw[color=red] (4.5,15) node[left] {$G_h$};
-%Definitionslücken:		
+%Definitionslï¿½cken:		
 \draw[color = blue, fill = white](-1,0) circle(1.5pt);		
 \end{tikzpicture}
 }%
@@ -2140,11 +2133,11 @@ excluded from the domain for which the denominator in the mapping rule equals ze
 
 
 \begin{MExercise}
-Let the function
+For the function
 \[
  \function{\psi}{D_\psi}{\R}{x}{\frac{-42x}{x^2-\pi} }
 \]
-be given. Find the maximum domain $D_\psi\subset\R$ of $\psi$.
+find the maximum domain $D_\psi\subset\R$ of $\psi$.
 
 \begin{MHint}{Solution}
 The roots of the denominator are 
@@ -2160,13 +2153,13 @@ For the rational functions in Example~\MNRef{einf_bsp_gebr_rat}, specify the deg
 in the numerator and the denominator and find their roots.
 
 \begin{MHint}{Solution}
-The function $f$ has the numerator's degree $0$ and the denominator's degree $2$. The numerator does not have a root ($8\neq0$) as well as the denominator ($x^2+1=0$ has no solution).\\
-The function $g$ has the numerator's degree $1$ and the denominator's degree $2$. The root of the numerator is at $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$), and the roots of the denominator at $x_{1,2}=-4,\frac{3}{2}$ are obtained by solving the quadratic equation $2x^2+5x-12=0$, e.g. by means of the quadratic formula.\\
-The function $h$ has the numerator's degree $3$ and the denominator's degree $1$. The root of the denominator is simply at 
+The function $f$ has the a numerator of degree $0$ and denominator of degree $2$. The numerator does not have a root ($8\neq0$), nor does the denominator ($x^2+1=0$ has no solution).\\
+The function $g$ has the a numerator of degree $1$ and denominator of degree $2$. The root of the numerator is at $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$), and the roots of the denominator at $x_{1,2}=-4,\frac{3}{2}$ are obtained by solving the quadratic equation $2x^2+5x-12=0$, e.g. by means of the quadratic formula.\\
+The function $h$ has a numerator of degree $3$ and denominator of degree $1$. The root of the denominator is simply at 
 $x=-1$ ($x+1=0\Leftrightarrow x=-1$). To find the roots of the numerator, the equation $x^3-x^2+x=0$ has to be solved. 
 By factoring out $x$ one obtains $x(x^2-x+1)=0$, and it can be seen immediately that one root is at $x=0$. Finally, 
 the quadratic equation $x^2-x+1=0$ has to be solved by means of the quadratic formula. However, the discriminant 
-$\Delta=1^2-4\cdot1\cdot1=-3$ is negative such that no other real solution of the equation -- and hence 
+$\Delta=1^2-4\cdot1\cdot1=-3$ is negative, so no other real solution of the equation -- and hence 
 no other root of the numerator -- exists. 
 \end{MHint}
 \end{MExercise}
@@ -2176,7 +2169,7 @@ The \highlight{roots} of a rational function are the roots of the numerator. For
  \function{j}{\R\setminus\{-1\MElSetSep 3\}}{\R}{x}{\frac{x-1}{x^2-2x-3}}
 \]
 has a single root at $x=1$. The roots of the denominator of rational functions that must be excluded from 
-the domain often have to be investigated further. Particularly, it is of interest how the graphs of functions 
+the domain often have to be investigated further. It is of particular interest how the graphs of functions 
 behave \modsemph{in the neighbourhood} of gaps in the domain. The roots of the denominator are also called 
 \highlight{poles}. The next examples will illustrate the different types of poles that can occur. 
 
@@ -2216,7 +2209,7 @@ behave \modsemph{in the neighbourhood} of gaps in the domain. The roots of the d
 \draw[color=red,samples=100,domain=2.4:6]
 		plot(\x,{3/((\x)-2)}) ;		
 \draw[color=red] (2.7,5) node[right] {$G_{f_1}$};
-%Definitionslücken:		
+%Definitionslï¿½cken:		
 \draw[color = blue, fill = white](2,0) circle(1.5pt);
 \draw[color = blue, dotted](2,-4)--(2,5.5);
 \end{tikzpicture}
@@ -2247,7 +2240,7 @@ behave \modsemph{in the neighbourhood} of gaps in the domain. The roots of the d
 \draw[color=red,smooth,samples=100,domain=-2.5:1.5]
 		plot(\x,{2/(((\x)+3)^2)});
 \draw[color=red] (1,0.2) node[above] {$G_{f_2}$};
-%Definitionslücken:		
+%Definitionslï¿½cken:		
 \draw[color = blue, fill = white](-3,0) circle(1.5pt);
 \draw[color = blue, dotted](-3,-1)--(-3,5.5);
 \end{tikzpicture}
@@ -2275,7 +2268,7 @@ behave \modsemph{in the neighbourhood} of gaps in the domain. The roots of the d
 \clip(-3,-2) rectangle (3.5,5.5);
 \draw[color=red, smooth,samples=100,domain=-3:3.5]
 		plot(\x,{(\x)+1}) node[above, left=2pt] {$G_{f_3}$};		
-%hebbare Definitionslücke:		
+%hebbare Definitionslï¿½cke:		
 \draw[color = blue, fill = white](1,0) circle(1.5pt);
 \draw[color = blue, dotted](1,-1)--(1,5);
 \draw[color = black, fill = white](1,2) circle(1pt);
@@ -2284,15 +2277,15 @@ behave \modsemph{in the neighbourhood} of gaps in the domain. The roots of the d
 \end{MExample}
 
 At $x=2$ and $x=-3$ the functions $f_1$ and $f_2$, respectively, have so called 
-\modsemph{(proper) poles}, and at $x=1$ the function $f_3$ has a so called \modsemph{removeable singularity}.
+\modsemph{(proper) poles}, and at $x=1$ the function $f_3$ has a so called \modsemph{removable singularity}.
 Looking at the graphs, the difference between these types of poles becomes clear. For (proper) poles,
-the graph rises or falls unboundedly in the neighbourhood of the pole, and for continuously removeable 
+the graph rises or falls unboundedly in the neighbourhood of the pole, and for continuously removable 
 singularities the graph ends left and right in the ``gap''.
 
-In the mapping rules of the three functions, this difference is expressed as follows: The values 
+In the mapping rules of the three functions, this difference is expressed as follows: the values 
 $x=2$ and $x=-3$ are \modsemph{roots of the denominator}, but they are not \modsemph{roots of the numerator}
 of the functions $f_1$ and $f_2$, respectively. Actually, the functions $f_1$ and $f_2$ do not have 
-any numerator's roots at all. In such cases, the roots of the denominator are always (proper) poles.
+any roots in the numerator. In such cases, the roots of the denominator are always (proper) poles.
 
 \begin{MExercise}
 Is the denominator's root of the function
@@ -2323,7 +2316,7 @@ The graph of $f_2$ rises on both sides of the pole at $x=-3$ (while approaching 
 to plus infinity, and hence, there is no \modsemph{change of sign} in the function values.
 
 However, in the mapping rule of $f_3$, the term responsible for the pole at $x=1$ can be cancelled
-out. For rational functions that have a removeable singularity, this is always possible.
+out. For rational functions that have a removable singularity, this is always possible.
 
 \begin{MExercise}
 Find all poles/singularities of the function
@@ -2350,7 +2343,7 @@ Hence, the function can also be written in the form
 \[
  \function{\gamma}{\R\setminus\{-2\MElSetSep 3\}}{\R}{x}{\frac{3}{x-3}\MDFPSpace ,} 
 \]
-and thus, the function has a continuously removeable singularity at $x=-2$ and a (proper) pole with 
+and thus, the function has a continuously removable singularity at $x=-2$ and a (proper) pole with 
 change of sign at $x=3$.
 \end{MHint}
 \end{MExercise}
@@ -2360,8 +2353,8 @@ change of sign at $x=3$.
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Asymptoten}
 
 In this section we will study how rational functions behave as $x$ tends to infinity if 
-the \modsemph{degree of the polynomial in the numerator is less or equal to the degree of the 
-polynomial in the denominator}. An example of that case is the function
+the \modsemph{degree of the polynomial in the numerator is less than or equal to the degree of the 
+polynomial in the denominator}. An example of this is the function
 \[
  \function{f}{\R\setminus\{-\pi\}}{\R}{x}{\frac{x}{x+\pi} \MDFPeriod}
 \]
@@ -2411,7 +2404,7 @@ and we now consider the corresponding graph.
 \draw[color=red,smooth,samples=100,domain=1.1:7]
 		plot(\x,{\x/(\x-1)});
 \draw[color=red] (5,1.5) node[above] {$G_{g}$};
-%Definitionslücke:		
+%Definitionslï¿½cke:		
 \draw[color = blue, fill = white](1,0) circle(1.5pt);
 %Asymptote:
 \draw[color=blue, dotted] (-5.5,1) -- (7.5,1);
@@ -2428,13 +2421,13 @@ limiting value $1$ indefinitely \modsemph{without} ever reaching it for any real
 This can be seen from the mapping rule $g(x)=1+\frac{1}{x-1}$ as follows. For ``very large''
 ($5$, $10$, $100$, etc.) or ``very small'' ($-5$, $-10$, $-100$, etc.) values of $x$, 
 the rational part $\frac{1}{x-1}$ approaches $0$ since $x$ occurs in the 
-denominator. In general tendency, for these values of $x$, only the polynomial part $1$ 
-remains of the mapping rule. This part can be described by a -- in this case constant --
+denominator. In general, for these values of $x$, only the polynomial part $1$ 
+of the mapping rule remains. This part can be described by a -- in this case constant --
 function that is called an \highlight{asymptote} $g_{As}$ of the function $g$:
 \[
  \function{g_{As}}{\R}{\R}{x}{1 \MDFPeriod}
 \]
-Since this is a constant function in this case, it is also called 
+Since this is a constant function, it is also called 
 a \modsemph{horizontal asymptote}.
  
 \end{MExample}
@@ -2454,7 +2447,7 @@ mapping rule $i_{As}(x)=3$. The hyperbola
 \[
  \function{f}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x}}
 \]
-has also an asymptote. We can write the mapping rule as 
+also has an asymptote. We can write the mapping rule as 
 \[
  f(x)=0+\frac{1}{x} \MDFPSpace,
 \]
@@ -2488,9 +2481,9 @@ hyperbolic type. In summary, these can be described as the following type of fun
  \function{f}{D_f}{\R}{x}{x^k \MDFPSpace ,} 
 \]
 where $k\in\Z\setminus\{0\}$ and $D_f=\R$ for $k\in\N$ as well as $D_f=\R\setminus\{0\}$ for $k\in\Z$ 
-with $k<0$. In this section, we will allow arbitrary rational numbers to be the exponent in the mapping rule.
+with $k<0$. In this section, we will allow arbitrary rational for the exponent in the mapping rule.
 This results in so called \modsemph{power functions} that again include monomials and functions of
-hyperbolic type as special cases. Also, we will collect their fundamental properties and give some applications.
+hyperbolic type as special cases. We will collect their fundamental properties and see some applications.
 \end{MIntro}
 
 
@@ -2615,7 +2608,7 @@ for all natural numbers $n$. Hence, for example
 \end{MExercise}
 
 \begin{MExercise}
-What is the functions $f_n$ with $n=1$?
+What is the function $f_n$ with $n=1$?
 
 \begin{MHint}{Solution}
 
@@ -2628,7 +2621,7 @@ This is the identity function. Generally, this function is excluded from the cla
 \end{MExercise}
 
 Of great relevance is now the maximum domain $D_{f_n}$ that a radical function can have. Obviously, 
-it depends on the exponent $n$ of the root, which values of $x$ are allowed to be inserted in the mapping 
+it depends on the exponent $n$ of the root which values of $x$ are allowed to be inserted in the mapping 
 rule to obtain real values as a result. So we see that the square root $\sqrt{\ }$ has a
 real value as a result only for a non-negative number. However, if we consider the cube root $\sqrt[3]{\ }$, 
 then we see that the cube root has a real value as a result for all real numbers, for example,  
@@ -2706,13 +2699,13 @@ For the radical functions
 \[
  \function{f_n}{D_{f_n}}{\R}{x}{\sqrt[n]{x}}
 \]
-with $n\in\N$, $n>1$, find the range $W_{f_n}$ depending on the fact whether $n$ is even or odd.
+with $n\in\N$, $n>1$, find the range $W_{f_n}$ depending on whether $n$ is even or odd.
 
 \begin{MHint}{Solution}
 For radical functions with $n$ even, obviously only non-negative numbers can occur as results since, according to 
 the exponent rules, the roots $\sqrt{x}$, $\sqrt[4]{x}$, $\sqrt[6]{x}$ are always non-negative for $x\geq 0$. 
 In contrast, for radical functions with $n$ odd, all negative real numbers can occur as results. In fact, 
-we have $\sqrt[3]{x}<0$, $\sqrt[5]{x}<0$ if and only if $x<0$. In summary, we then have, regarding the strictly 
+we have $\sqrt[3]{x}<0$, $\sqrt[5]{x}<0$ if and only if $x<0$. In summary, we then have, regarding the strict
 monotonicity of the radical functions, $W_{f_n}=\R$ if $n$ is odd, and $W_{f_n}=[0\MIntvlSep \infty)$ if $n$ is even.
 \end{MHint}
 
@@ -2729,21 +2722,21 @@ monotonicity of the radical functions, $W_{f_n}=\R$ if $n$ is odd, and $W_{f_n}=
 \MDeclareSiteUXID{VBKM06_Exponentialfunktionen_Intro}
 
 In contrast to power functions, in \MEntry{exponential functions}{exponential function} the independent variable 
-does not occur in the \modstextbf{basis} of the exponential term but in the \modstextbf{exponent}.
-Accordingly, we will consider mapping rules as, for example, 
+does not occur in the \modstextbf{base} of the exponential term but in the \modstextbf{exponent}.
+Accordingly, we will consider mapping rules such as
 $$x \longmapsto 2^x\; \text{or}\; x \longmapsto 10^x \MDFPeriod$$
 \ \\ \ \\
 Exponential functions are relevant in many different fields, for example, for the description of 
-biological growth processes -- including diverse population models --, for the processes of radioactive decay, or 
-for a certain kind of interest calculation. Let us consider an example.
+biological growth processes -- including diverse population models --, the processes of radioactive decay, or 
+a certain kind of interest calculation. Let us consider an example.
 
 \begin{MExample}
 \MLabel{M06_bsp_bak_pop}
 
-A bacterial culture starts with $500$ bacteria and doubles in size every $13$ minutes. We like to know: How many
-bacteria will be in the culture after $1$ hour and $15$ minutes (i.e. after $75$ minutes)?
+A bacterial culture starts with $500$ bacteria and doubles in size every $13$ minutes. We would like to know how many
+bacteria will be in the culture after $1$ hour and $15$ minutes (i.e. after $75$ minutes).
 
-As a first try we can create a simple lookup table that lists the number of bacteria in the population at 
+As a first try we can create a simple table of values that lists the number of bacteria in the population at 
 the beginning ($t=0$ min), after $t = 13$ min, after $t = 26$ min, etc., i.e. at multiples of the 
 $13$ minutes doubling time:
 \begin{center}
@@ -2767,10 +2760,10 @@ is an \modstextbf{exponential function}.
 \end{center}
 
 >From the graphical representation, the required number of bacteria can be read off a bit more precisely. However, 
-for the exact specification we need the mapping rule underlying the graph, which we will first only state here:
+for the exact specification we need the mapping rule underlying the graph, which we will first simply state here:
 $$p: [0\MIntvlSep \infty) \longrightarrow (0\MIntvlSep  \infty) \;\text{with}\; t \longmapsto p(t) = 500 \cdot 2^{(t/13)} \MDFPeriod$$
-(In Exercise~\MRef{M06_bsp_bak_pop_exercise} we will reason this functional relation.)\\
-Thus, for $t = 75$ (measured in minutes) we obtain the function value
+(In Exercise~\MRef{M06_bsp_bak_pop_exercise} we will give a reason for this functional relation.)\\
+For $t = 75$ (measured in minutes) we obtain the function value
 $$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27270 \MDFPeriod$$
 Hence, after $75$~minutes $27270$~bacteria live in the considered population.
 \end{MExample}
@@ -2799,10 +2792,10 @@ can only be positive.
  Why it is assumed that the base $a$ of the exponential function is greater than zero? 
 
 \begin{MHint}{Solution}
-  An exponential function shall be defined not only for certain, specific, or isolated values of the 
+  An exponential function will be defined not only for certain, specific, or isolated values of the 
   variable $x$ but, if possible, for all real numbers. If negative bases $a < 0$ were allowed, then 
   problems would immediately arise in extracting roots -- referring to $a^{(1/2)} = \sqrt{a}, a^{1/4}, 
-  a^{1/12}$, etc. For example, square roots of negative numbers are not defined, see also 
+  a^{1/12}$, etc. For example, square roots of negative numbers are not defined, see 
   Section~\MRef{VBKM06_Potenz}.
  \end{MHint}
 \end{MExercise}
@@ -2814,21 +2807,21 @@ $a$:
 \MUGraphicsSolo{expo_vgl.png}{scale=1}{width:400px}
 \end{center}
 \begin{itemize}
- \item All these exponential functions pass trough the point $(x = 0, y = 1)$: This is true since 
+ \item All these exponential functions pass trough the point $(x = 0, y = 1)$, since 
   $g(x = 0) = a^0$ and $a^0 = 1$ for every number $a$.
  \item If $a > 1$, then the graph of $g$ rises from left to right (i.e. for increasing $x$-values); 
   one also says that the function $g$ is \modstextbf{strictly increasing}. The greater the value of $a$,
-  the steeper the graph of $g$ rises for \modstextbf{positive} values of $x$. Towards ever larger 
+  the steeper the graph of $g$ rises for \modstextbf{positive} values of $x$. Moving towards ever larger 
   negative values of $x$ (i.e. approaching from right to left) the negative $x$-axis is an asymptote 
   of the graph.
  \item If $a < 1$, then the graph of $g$ falls from left to right (i.e. for increasing $x$-values);
   one also says that the function $d$ is \modstextbf{strictly decreasing}.  The greater the value of $a$,
-  the slower the graph of $g$ falls for \modstextbf{negative} values of $x$. Towards ever larger 
+  the slower the graph of $g$ falls for \modstextbf{negative} values of $x$. Moving towards ever larger 
   positive values of $x$ (i.e. approaching from left to right) the positive $x$-axis is an asymptote 
   of the graph.
 \end{itemize}
-And what is it about the parameters $f_0$ and $\lambda$? The parameter $f_0$ is easily explained: 
-If the value $x = 0$ is inserted in the general exponential function $f$, resulting in 
+What are the parameters $f_0$ and $\lambda$? The parameter $f_0$ is easily explained: 
+if the value $x = 0$ is inserted in the general exponential function $f$, resulting in 
 $$f(x = 0) = f_0 \cdot a^{\lambda \cdot 0} = f_0 \cdot a^0 = f_0 \cdot 1 = f_0 \MDFPSpace,$$
 then it can be seen that $f_0$ is a kind of \modstextbf{starting point or initial value} (at least if the 
 variable $x$ is taken for a time); the exponential progression $a^{\lambda x}$ is generally multiplied 
@@ -2836,7 +2829,7 @@ by the factor $f_0$ and thus weighted accordingly, i.e. stretched (for $|f_0| > 
 or compressed (for $|f_0| < 1$).
 
 The parameter $\lambda$ that occurs in the exponent is called \MEntry{growth rate}{growth rate}; it 
-determines how strong the exponential function -- for one and the same base -- increases (for $\lambda > 0$) 
+determines how strong the exponential function -- with the same base -- increases (for $\lambda > 0$) 
 or decreases (for $\lambda < 0$).
 
 
@@ -2879,12 +2872,12 @@ or decreases (for $\lambda < 0$).
   g: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & g(x) = \MEU^x \MDFPSpace,
   \end{array}
   $$
-  that is because of its base $\MEU$ also called \MEntry{$\MEU$ function}{e function} or 
+  which is, because of its base $\MEU$, also called the \MEntry{$\MEU$ function}{e function} or 
   \MEntry{natural exponential function}{exponential function (natural)}:
   \begin{center}
   \MUGraphicsSolo{e_fkt.png}{scale=1}{width:400px}
   \end{center}
-  Unsurprisingly, also the natural exponential function shows the typical behaviour of exponential 
+  Unsurprisingly, the natural exponential function shows the typical behaviour of exponential 
   functions $x \Mmapsto a^x$ $(a > 1)$ already discussed in Section~\MRef{M06_allgem_exp_fkt}, 
   after all we have only chosen a special value for the base, namely $a = \MEU$. In particular, we note 
   again that the natural exponential function is \modstextbf{strictly increasing}, i.e. for large negative 
@@ -2909,14 +2902,14 @@ or decreases (for $\lambda < 0$).
     \end{MHint}
   \end{MExercise}
  
-  At the beginning of this subsection we have claimed that the exponential functions described above 
+  At the beginning of this subsection we claimed that the exponential functions described above 
   can be reduced to the natural exponential function. This is done by means of the identity
   $$a^x = \MEU^{x \cdot\ln(a)} $$
   that is valid for any real number $a > 0$ and any real number $x$. Here, $\ln$ denotes the 
   \MSRef{VBKM06_LNDEF}{natural logarithmic function} that will be studied in detail in the 
   following Section~\MRef{M06_Logarithmus}.
  \begin{MExercise}
-  Give reasons why the identity $a^x = \MEU^{x \cdot \ln(a)}$ is valid. 
+  Explain why the identity $a^x = \MEU^{x \cdot \ln(a)}$ is valid. 
   \begin{MHint}{Solution}
   According to the exponent rule $(b^r)^s = b^{r \cdot s}$ the right hand side of the identity in 
   question can be rewritten as $\MEU^{x \cdot\ln(a)} = (\MEU^{\ln(a)})^x$. Since the 
@@ -2949,7 +2942,7 @@ or decreases (for $\lambda < 0$).
     Number of Days Elapsed & 0 & \MZahl{8}{04} & \MZahl{16}{08} & \MZahl{24}{12} & etc.\\ \hline
    \end{tabular}
   \end{center}
-  In other words: Every $\MZahl{8}{04}$~days the number of iodine atoms halves due to radioactive decay; for this reason 
+  In other words: every $\MZahl{8}{04}$~days the number of iodine atoms halves due to radioactive decay. For this reason 
   one says in this context that the \modstextbf{half-life} $h$ of $^{131}\mathrm{I}$ equals $\MZahl{8}{04}$~days.
 
   The radioactive decay follows an \modstextbf{exponential law}: 
@@ -2957,8 +2950,8 @@ or decreases (for $\lambda < 0$).
   Our exponential function is here denoted by $N$; it describes the number of remaining iodine atoms.
   Accordingly, $N_0$ denotes the number of iodine atoms at the beginning, i.e. $N_0 = 10000$. 
   The independent variable is in this case the time $t$ (measured in days). We expect the 
-  parameter $\lambda$ to be negative since the exponential function shall describe a decay
-  process, i.e. a process with a negative growth rate. In the sequel, we will determine $\lambda$
+  parameter $\lambda$ to be negative since the exponential function describes a decay
+  process, i.e. a process with a negative growth rate. We will determine $\lambda$
   from the measurement data.
   
   After $h = \MZahl{8}{04}$~days only $5000$ iodine atoms are still present, i.e. 
@@ -2996,8 +2989,7 @@ In Section~\MRef{M06_e_fkt} we studied the natural exponential function
  & x & \longmapsto & g(x) = \MEU^x  \MDFPeriod
  \end{array}
  $$
-In particular, we pointed out there a very important property of the natural exponential function, namely
-that this function is strictly increasing. If the graph of this function is reflected over the angle 
+In particular, we pointed out a very important property of the natural exponential function: it is strictly increasing. If the graph of this function is reflected about the angle 
 bisector between the first and the third quadrant, one obtains the graph of the natural logarithmic function
 that has the symbol $\ln$:
  
@@ -3025,7 +3017,7 @@ the graph:
   \item At the point $x = 1$ the natural logarithmic function takes the value $0$, i.e. $\ln(1) = 0$.
  \end{itemize}
  
-Besides the natural logarithmic function other logarithmic functions exist that each corresponds to a certain 
+As well as the natural logarithmic function there are other logarithmic functions, which each correspond to a certain 
 exponent.
 
 \begin{MInfo}
@@ -3034,7 +3026,7 @@ $b^{\log_b(x)}=x$ (read as: ``$\log_b(x)=a$ is the exponent $a$ with $b^a=x$'')
 $$
 \function{\log_b}{(0\MIntvlSep \infty)}{\R}{x}{\log_b(x)}
 $$
-is called the \MEntry{general logarithmic function}{logarithmic function (general)} to the base $b$.
+is called the \MEntry{general logarithmic function}{logarithmic function (general)} with base $b$.
 \end{MInfo}
 
 Normally, the logarithmic function cannot be calculated directly. Since it is defined as the inverse function 
@@ -3045,7 +3037,7 @@ Typical calculations for the natural logarithmic function are
 $$
 \ln(\MEU^5) \;=\; 5\MDFPSpace, \MDFPaSpace \ln(\sqrt{\MEU}) \;=\; \ln(\MEU^{\frac12}) \;=\; \frac12
 $$
-as well as for the general logarithmic function
+and for the general logarithmic function:
 $$
 \log_5(25) \;=\; \log_5(5^2) \;=\; 2 \MDFPSpace, \MDFPaSpace \log_3(81) \;=\; \log_3(3^4) \;=\; 4 \MDFPeriod
 $$
@@ -3080,7 +3072,7 @@ natural since the exponential function with base $\MEU$, from a mathematical poi
 the general exponential function (e.g. because $\MEU^x$ is its own derivative, but $b^x$ for $b\not=\MEU$ is not).}
 \end{itemize}
 
-For the logarithmic function several calculation rules exist that will be explained in the next section.
+There are several calculation rules for the logarithmic function, which will be explained in the next section.
 \end{MXContent}
 
 \begin{MXContent}{Logarithm Rules}{Logarithm Rules}{STD}
@@ -3134,13 +3126,13 @@ that can be derived form the \MSRef{VBKM01_Potenzgesetze}{exponent rules}.
  
 
 \MEntry{Trigonometry}{trigonometry}, according to its origin in the Greek words trigonon for ``triangle'' and metron 
-for ``measure'', is the \modstextbf{measuring theory (of angles and sides) of triangles}. In this theory, 
-the \MEntry{trigonometric functions}{trigonometric functions}, as \modstextbf{sine function}, \modstextbf{cosine function} 
+for ``measure'', is the \modstextbf{measuring theory of (angles and sides of) triangles}. In this theory, 
+the \MEntry{trigonometric functions}{trigonometric functions} \modstextbf{sine function}, \modstextbf{cosine function} 
 and \modstextbf{tangent function}, play a central role. 
 
-However, the field of applications of sine, cosine, tangent and et cetera is not restricted 
-to ``simple'' triangle calculations. In fact, the trigonometric functions develop their real potential 
-only in the manifold fields of applications. The most relevant of those are probably in the description of 
+However, the field of applications of sine, cosine, tangent etc is not restricted 
+to ``simple'' triangle calculations. In fact, the trigonometric functions show their real potential 
+in the manifold fields of applications. The most relevant of those are probably in the description of 
 oscillation processes and wave phenomena in physics and engineering. However, they are also applied 
 in many other fields as, for example, in geodesy and astronomy.
  
@@ -3149,12 +3141,12 @@ in many other fields as, for example, in geodesy and astronomy.
 \begin{MXContent}{Sine Function}{Sine Function}{STD}
 \MLabel{M06_Sinusfkt}
 \MDeclareSiteUXID{VBKM06_TrigonometrischeFunktionen_Sinus}
-In Module~\MRef{VBKM05} the trigonometric functions were introduced elementary in Section~\MRef{M05_Trigonometrie}
+In Module~\MRef{VBKM05} the trigonometric functions were introduced in Section~\MRef{M05_Trigonometrie}
 on right triangles, for example by the relation
 $$\begin{array}{rcccccl}
   \sin(\alpha) & = & \Mdfrac{\text{opposite side}}{\text{hypotenuse}\MDFPSpace ,} & & \\[2ex]
 \end{array}$$
-and explained at the \MSRef{VBKM05_Trigonometrie_Einheitskreis}{unit circle}. Starting from this 
+and explained using the \MSRef{VBKM05_Trigonometrie_Einheitskreis}{unit circle}. Starting from this 
 definition of $\sin(\alpha)$ we arrive at the \MEntry{sine function}{sine function} if we declare  
 the angle $\alpha$ to be the independent variable of a function named $\sin$. This can be illustrated 
 by means of a family of right triangles $A B C$ that are inscribed the \MEntry{unit circle}{unit circle}, 
@@ -3172,7 +3164,7 @@ the triangle $A B C$ is again degenerated to a line segment and $\sin(180^\circ)
 $\alpha$ further increases, the triangle ``flips downwards'' and the line segment $\overline{B C}$ is 
 oriented parallel to the negative vertical line ($y$-axis), hence, its length is \modstextbf{negative}.
 For $\alpha = 270^\circ$ the \modstextbf{maximum negative value} occurs, before $\alpha$ approaches 
-$0$ again. At $\alpha = 360^\circ$ the game is starting again.
+$0$ again. At $\alpha = 360^\circ$ the game starts again.
  \begin{center}
   \MUGraphicsSolo{sin_fkt.png}{scale=1}{width:400px}
  \end{center}
@@ -3198,9 +3190,9 @@ The figure above shows the graph of the sine function
   $$\sin(\alpha) = \sin(\alpha + 2 \pi)\MDFPeriod$$}
  \end{itemize}
  
-  Just a short look at the graph of the simple sine function suggests to use this function for the description 
-  of wave phenomena. However, to be able to use up the full potential of the sine function a few parameters will be 
-  introduced previously. For example, the amplitude of the sine function can be amplified or damped by a 
+  Just a quick look at the graph of the simple sine function suggests that we could use this function for the description 
+  of wave phenomena. However, to be able to use the full potential of the sine function a few parameters will be 
+  introduced. For example, the amplitude of the sine function can be amplified or damped by a 
   so called \modstextbf{amplitude factor} $A$, the frequency of the oscillation can be affected by a 
   \modstextbf{frequency-like} factor $a$, and the entire path of the graph can be shifted to the left or to the right 
   by a \modstextbf{shifting constant} $b$. Thus, the \modstextbf{general sine function} has the following form:
@@ -3242,8 +3234,8 @@ The figure above shows the graph of the sine function
  \begin{center}
   \MUGraphicsSolo{cos_fkt.png}{scale=1}{width:400px}
  \end{center}
-  The figure above shows, besides the graph of the cosine (solid line), once again the graph 
-  of the sine function (dotted line) for comparison. We see a very strong relationship that we will
+  The figure above shows the graph of the cosine function(solid line) and the graph 
+  of the sine function (dotted line) side by side for comparison. We see a very strong relationship, which we will
   discuss later.
 
   What are the relevant properties of the cosine function?
@@ -3255,13 +3247,13 @@ The figure above shows the graph of the sine function
   The range is the interval between $-1$ and $+1$, including the endpoints: $W_{\cos} = [- 1\MIntvlSep  + 1]$.
   \item From the figure above, showing $\cos(\alpha)$ and $\sin(\alpha)$, we immediately see that
   $$\cos(\alpha) = \sin \left( \alpha + \Mdfrac{\pi}{2} \right)$$
-  for all real values of $\alpha$. Likewise true, but not as obvious, is the relation
+  for all real values of $\alpha$. Also true, but not as obvious, is the relation
     $$\cos(\alpha) = - \sin \left( \alpha - \Mdfrac{\pi}{2} \right) \MDFPeriod$$
  \end{itemize}
  \begin{MExercise}
   \MLabel{M06_cos_diskussion}
-  At which points the cosine function takes its maximum value $1$, and at which points it takes its maximum negative value $- 1$?
-  What are its roots (at which points the function equals $0$)?
+  At which points does the cosine function take its maximum positive value $1$, and at which points does it take its maximum negative value $- 1$?
+  What are its roots (at which points is the function $0$)?
   \begin{MHint}{Solution}
    We have $\cos(0) = 1$. Because of the periodicity with period $2 \pi$ this is also true 
   for all $\alpha$ equal to $\pm 2 \pi, \pm 2 \cdot 2 \pi,
@@ -3288,13 +3280,13 @@ to different situations (in application examples):
  \end{array} \MDFPeriod
  $$
  \begin{MExercise}
-  In Example~\MRef{M06_Fadenpendel} we have shortly discussed the simple pendulum. In particular, 
+  In Example~\MRef{M06_Fadenpendel} we briefly discussed the simple pendulum. In particular, 
   the displacement angle $\Mvarphi$ of the pendulum can be determined as a function of time under the condition that 
   the period $T$ equals $\pi$~seconds and that the pendulum at $t = 0$ is started with an initial 
   displacement angle of $30^\circ$:
   $$\Mvarphi (t) = \Mdfrac{\pi}{6} \cdot\sin \left(2 t + \Mdfrac{\pi}{2}\right) \MDFPeriod$$
   Can this situation also be described using the (general) cosine function (instead of the sine function), 
-  and if so, which form has $\Mvarphi (t)$ in this case?
+  and if so, what form does $\Mvarphi (t)$ take in this case?
 
 \begin{MHint}{Solution}
   The answer to the first question is: ``Yes, it is possible to describe the present situation 
@@ -3336,14 +3328,14 @@ to different situations (in application examples):
   In addition, the tangent function is periodic, however, the period is $\pi$ or $180^\circ$.
  
  \begin{MExercise}
- The so called cotangent function (abbreviated by $\cot$) is defined by
+ The so called cotangent function (abbreviated to $\cot$) is defined by
  $\cot (\alpha) = \frac1{\tan(\alpha)}= \Mdfrac{\cos(\alpha)}{\sin(\alpha)}$.
  
   Specify the domain and the range of the cotangent function.
 
   \begin{MHint}{Solution}
-  The poles of the cotangent functions are at the points, where the sine function is $0$.
-  And this is the case if $\alpha$ is an integer multiple of $\pi$. Thus, we have to exclude these points 
+  The poles of the cotangent functions are at the points where the sine function is $0$.
+  This is the case if $\alpha$ is an integer multiple of $\pi$. Thus, we have to exclude these points 
   in the definition of the cotangent function:
    $$D_{\cot} = \R \setminus \{ k \cdot \pi \MCondSetSep k \in \Z \} \MDFPeriod$$
 
@@ -3364,13 +3356,13 @@ to different situations (in application examples):
 \MDeclareSiteUXID{VBKM06_Eigenschaften_Intro}
 
 In this section, we will consider a further property of elementary functions that we have not 
-discussed in previous sections yet. This concerns the symmetry of functions. Furthermore, 
+discussed yet in previous sections: the symmetry of functions. Furthermore, 
 we will investigate how to construct new functions from known elementary functions. For this
-purpose, among others, sums, products and compositions of functions are introduced.
+purpose sums, products and compositions of functions are introduced.
 \end{MIntro}
 
 
-\begin{MXContent}{Symmetrie}{Symmetrie}{STD}
+\begin{MXContent}{Symmetry}{Symmetry}{STD}
 \MDeclareSiteUXID{VBKM06_Eigenschaften_Symmetrie}
 
 \begin{MInfo}
@@ -3385,7 +3377,7 @@ Analogously, a function is called \highlight{odd} or \highlight{centrally symmet
 \]
 \end{MInfo}
 
-These two symmetry conditions for functions allow conclusions on the behaviour of the graphs. 
+These two symmetry conditions for functions allow us to make conclusions about the behaviour of the graphs. 
 For even functions, a reflection across the vertical axis does not change the graph, and for odd 
 functions, a reflection across the origin does not change the graph. A few illustrative examples 
 are listed below.
@@ -3435,7 +3427,7 @@ are listed below.
  \[
   \function{g}{\R}{\R}{x}{x^3 \MDFPSpace,}
  \]
-  i.e. the cubic parabola (see Section~\MNRef{sec:monome}), is an example for an odd function. We have 
+  i.e. the cubic parabola (see Section~\MNRef{sec:monome}), is an example of an odd function. We have 
   $g(-x)=(-x)^3=-x^3=-g(x)$ for all $x\in\R$. The graph of the function is centrally symmetric with respect 
   to the origin.
 
@@ -3503,7 +3495,7 @@ In this section, we will now use the large collection of elementary functions th
 module to create new more complex functions out of this elementary functions. At different places throughout this 
 module we already studied functions those mapping rules were composed of sums and products of simpler mapping 
 rules. Of course, one can also take differences and, under certain conditions, quotients from mapping 
-rule. The example below lists again a few of such combined functions.
+rule. The example below lists a few such combined functions.
 
 \begin{MExample}
 \begin{itemize}
@@ -3723,7 +3715,7 @@ the order of the composition is relevant.
 \end{tikzpicture}
 }%
 
- \item If two functions as 
+ \item If two functions such as 
  \[
   \function{h}{\R}{\R}{x}{\sin(x)}
  \]
@@ -3732,7 +3724,7 @@ the order of the composition is relevant.
   \function{w}{[0\MIntvlSep \infty)}{\R}{x}{\sqrt{x}}
  \]
   are composed, however, the domains of the functions have to be observed. For example, if we 
-  like to consider the composed function $w\circ h$, then we have
+  want to consider the composed function $w\circ h$, then we have
  \[
   (w\circ h)(x)=w(h(x))=w(\sin(x))=\sqrt{\sin(x)} \MDFPeriod
  \]
@@ -3761,8 +3753,8 @@ and
  \function{h}{\R}{\R}{x}{\sin(x) }
 \]
 be given. Specify the compositions $f\circ g$, $g\circ f$, $h\circ f$, $h\circ g$, $f\circ f$, and $g\circ g$. 
-Restrict the domains, if necessary, such that the composition is allowed. However, use for the composed function 
-always the maximum domain.
+Restrict the domains, if necessary, such that the composition is allowed. However, for the composed function 
+always use the maximum domain.
 
 \begin{MHint}{Solution}
 \[
