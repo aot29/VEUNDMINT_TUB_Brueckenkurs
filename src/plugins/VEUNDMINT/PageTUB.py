@@ -143,7 +143,6 @@ class PageTUB( AbstractHtmlRenderer ):
 		
 		tc.content = re.sub(r"(src|href)=(\"|')(?!#|https://|http://|ftp://|mailto:|:localmaterial:|:directmaterial:)", "\\1=\\2" + basePath + "/", tc.content)
 
-
 		# if this is a special page, replace the title
 		if AbstractXmlRenderer.isSpecialPage(tc):
 			tc.content = re.sub( r"<h4>(.+?)</h4><h4>(.+?)</h4>", "<h4 id='pageTitle' data-toggle='i18n' data-i18n='%s' ></h4>" % tc.uxid, tc.content )
