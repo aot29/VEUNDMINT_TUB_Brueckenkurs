@@ -1053,7 +1053,7 @@ class Plugin(basePlugin):
 					s += "global" + glb + "[" + str(i) + "] = " + str(self.data[glb][str(i)]) + ";\n"
 		
 
-		self.sys.writeTextFile(os.path.join(self.options.targetpath, self.options.convinfofile), s, self.options.outputencoding)
+		        self.sys.writeTextFile(os.path.join(self.options.targetpath, 'js', self.options.convinfofile), s, self.options.outputencoding)
 
 
 	# generate css and js style files
@@ -1105,8 +1105,8 @@ class Plugin(basePlugin):
 		
 		jcss += " + \"\";"
 		 
-		self.sys.writeTextFile(os.path.join(self.options.targetpath, "css", "grundlagen.css"), ocss, self.options.outputencoding)
-		self.sys.writeTextFile(os.path.join(self.options.targetpath, "dynamiccss.js"), jcss, self.options.outputencoding)
+		self.sys.writeTextFile(os.path.join(self.options.targetpath, "grundlagen.css"), ocss, self.options.outputencoding)
+		self.sys.writeTextFile(os.path.join(self.options.targetpath, "js/dynamiccss.js"), jcss, self.options.outputencoding)
 		self.sys.popdir()
 		self.sys.message(self.sys.VERBOSEINFO, "Stylefiles created")
 

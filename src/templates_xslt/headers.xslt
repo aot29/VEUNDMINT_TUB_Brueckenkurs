@@ -8,25 +8,27 @@
 
 	<xsl:template match="page" mode="headers">
 		
-		<!-- Stylesheets -->
+		<!-- Stylesheets 
 		<xsl:call-template name="css">
 			<xsl:with-param name="basePath" select="@basePath" />
-		</xsl:call-template>
-		
-		<!-- JS -->
-		<xsl:apply-templates select="." mode="js" >
-			<xsl:with-param name="basePath" select="@basePath" />
-		</xsl:apply-templates>
+		</xsl:call-template> -->
 		
 		<!-- MathJax -->
 		<xsl:call-template name="mathJax">
 			<xsl:with-param name="basePath" select="@basePath" />
 		</xsl:call-template>
 		
-		<!-- i18n -->
+		<!-- i18n 
 		<xsl:call-template name="i18n">
 			<xsl:with-param name="lang" select="@lang" />
-		</xsl:call-template>
+		</xsl:call-template> -->
+		
+		<xsl:comment>
+			inject:css
+		</xsl:comment>
+		<xsl:comment>
+			endinject
+		</xsl:comment>			
 		
 		
 	</xsl:template>

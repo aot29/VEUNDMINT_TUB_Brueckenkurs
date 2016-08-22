@@ -2,7 +2,7 @@
 
 	<xsl:template match="page" mode="js">
 		<xsl:param name="basePath" />
-        <script src="{$basePath}/jQuery/jquery-2.2.4.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
+        <!-- <script src="{$basePath}/jQuery/jquery-2.2.4.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
         <script src="{$basePath}/bootstrap/js/bootstrap.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
         <script src="{$basePath}/js/mintscripts_bootstrap.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
         <script src="{$basePath}/es5-sham.min.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
@@ -20,7 +20,7 @@
         <script src="{$basePath}/servicescripts.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
         <script src="{$basePath}/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
         <script src="{$basePath}/jquery.i18n.js" type="text/javascript"></script><xsl:text>&#xa;</xsl:text>
-        <script src="{$basePath}/jquery.i18n.messagestore.js" type="text/javascript"></script>
+        <script src="{$basePath}/jquery.i18n.messagestore.js" type="text/javascript"></script> -->
 
 		<script>
 			
