@@ -1,5 +1,4 @@
 
-
 # VEUNDMINT
 VEUNDMINT is a repository that enables users to build their own Online Learning Environments
 from Latex files. It will convert latex input to html / css / js output and includes many custom
@@ -49,16 +48,20 @@ php-cli
 ```
 
 ## Building
-### start latex converter
-```
-make -f tools/makefiles/multilang
-```
-### build production version
+### install dependencies for web version
 ```
 npm install
 bower install
-gulp && gulp watch
 ```
+### start make script that will kick off the converter and run gulp afterwards
+```
+make -f tools/makefiles/multilang
+```
+### run development server
+```
+gulp watch
+```
+
 
 ## Testing
 We use the python module green to run our tests, as it has a nicer user experience and can also run coverage at once. To kick off the tests do
