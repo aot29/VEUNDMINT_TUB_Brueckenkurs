@@ -38,7 +38,7 @@ DEFAULT_LANG = de
 #
 # Build everything
 #
-all: |cleanup convert merge fix 
+all: |cleanup convert merge fix startGulp
 	echo "ready"
 
 
@@ -247,5 +247,12 @@ cleanup:
 	-rm -Rf $(OUTPUT)
 	-rm -Rf $(OUTPUT)_en
 	-rm -Rf $(OUTPUT)_de
+
+#
+# starts gulp to produce dist version version if gulp command is found
+# echo instruction how to proceed otherwise
+#
+startGulp:
+	@type gulp >/dev/null 2>&1 && gulp ||echo "gulp does not exist. You need to install npm (node package manager) first. Then install project dependencies via 'npm install' and build the online version with 'gulp' or run this make script again after you installed npm and dependencies"
 
 
