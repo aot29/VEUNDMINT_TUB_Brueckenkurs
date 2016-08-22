@@ -46,7 +46,7 @@ class PageTUB( AbstractHtmlRenderer ):
 		self.contentRenderer = contentRenderer
 		self.tocRenderer = tocRenderer
 
-	
+
 	def generateHTML( self, tc ):
 		"""
 		Applies the template to the page data. The result is a HTML string which is stored in tc.html.
@@ -143,6 +143,11 @@ class PageTUB( AbstractHtmlRenderer ):
 		
 		tc.content = re.sub(r"(src|href)=(\"|')(?!#|https://|http://|ftp://|mailto:|:localmaterial:|:directmaterial:)", "\\1=\\2" + basePath + "/", tc.content)
 
+
+		# if this is a special page, replace the title
+		if AbstractXmlRenderer.isSpecialPage(tc):
+			tc.content = re.sub( r"<h4>(.+?)</h4><h4>(.+?)</h4>", "<h4 id='pageTitle' data-toggle='i18n' data-i18n='%s' ></h4>" % tc.uxid, tc.content )
+			
 		# replace the content placeholder added in PageXmlRenderer with the actual non-valid HTML content
 		resultString = str( xml )
 		resultString = resultString.replace( '<content></content>', tc.content )

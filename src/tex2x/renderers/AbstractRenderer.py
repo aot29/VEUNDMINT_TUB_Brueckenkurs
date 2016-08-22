@@ -32,7 +32,7 @@ SUBSECTION_LEVEL = 4
 
 class AbstractXmlRenderer(object):
     # list of special pages
-    specialPagesUXID = [ 'VBKM_MISCCOURSEDATA', 'VBKM_MISCSETTINGS', 'VBKM_MISCLOGIN', 'VBKM_MISCLOGOUT', 'VBKM_MISCSEARCH', 'VBKM_MISCFAVORITES' ]
+    specialPagesUXID = { 'VBKM_MISCCOURSEDATA' : 'data.html', 'VBKM_MISCSETTINGS' : 'config.html', 'VBKM_MISCLOGIN' : 'login.html', 'VBKM_MISCLOGOUT' : 'logout.html', 'VBKM_MISCSEARCH' : 'search.html', 'VBKM_MISCFAVORITES' : 'favorites.html' }
     # list of info pages
     infoPagesUXID = [ "VBKM_FIRSTPAGE","VBKM_COURSEINFORMATION","VBKM_AUTHORS","VBKM_IMPRESSUM","VBKM_LEGAL","VBKM_DISPLAYINFO" ]
     
@@ -94,7 +94,7 @@ class AbstractXmlRenderer(object):
         @param tc - TContent object for the page
         @return boolean
         """
-        return tc.uxid in AbstractXmlRenderer.specialPagesUXID
+        return tc.uxid in AbstractXmlRenderer.specialPagesUXID.keys()
     
     
     @staticmethod

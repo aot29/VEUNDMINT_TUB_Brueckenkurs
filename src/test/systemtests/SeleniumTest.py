@@ -20,6 +20,7 @@ class SeleniumTest(unittest.TestCase):
     xpath = {
         'bootstrap': {
             'pageContents' : "//div[@id='pageContents']",
+            'pageTitle' : "//div[@id='pageContents']/h4",
             'launchButton' : "//div[@id='pageContents']/a[@type='button']",
             'launchButtonTextElement' : "//div[@id='pageContents']/a[@type='button']/span[@data-i18n]",
             'TESTRESET' : "//button[@id='TESTRESET']",
@@ -31,11 +32,11 @@ class SeleniumTest(unittest.TestCase):
             'denominator' : "//div[@id='MHint1']/descendant::span[@class='mjx-denominator'][last()]",
             'tocTitle' : "//div[@id='toc']/h3",
             'toc' : "//div[@id='toc']",
-            'legend' : "//div[@id='legend']"
-    
+            'legend' : "//div[@id='legend']"    
         },
         'html5': {
             'pageContents' : "//div[@id='content']",
+            'pageTitle' : "//div[@id='pageContents']/h4",
             'launchButton' : "//div[@id='content']/button",
             'launchButtonTextElement' : "//div[@id='content']/button",
             'TESTRESET' : "//button[@id='TESTRESET']",
