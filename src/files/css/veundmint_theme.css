@@ -70,7 +70,6 @@ ol .btn {
 /*Extra styles for FF and RW Buttons*/
 .ffrwButton {
     height: 3em;
-    padding: 0px;
     margin: 0px;
     border-bottom: 1px solid #ddd;
     color: #55aadd;
@@ -173,6 +172,11 @@ body {
 	white-space: normal!important;
 }
 
+/* Tabs */
+nav > li > a {
+  padding: 10px 2px;
+}	
+
 /* show or collapse sidebar styles */
 @media screen and (min-width: 970px) {
 	#menuButton {
@@ -218,15 +222,15 @@ body {
   #toc {
     padding-top:0;
   }
+  #sidebar ul {
+    padding-left: 0;
+  } 
+  
+  /* hide tabs*/
+  #subtoc {
+    display: none;
+  }
 }
 
-@media screen and (max-width: 600px) {
-	#tools {
-		display: none;
-	}
-	.ffrwButton {
-		display: none;
-	}
-}
-/* end Offcanvas Layout*/
+
 

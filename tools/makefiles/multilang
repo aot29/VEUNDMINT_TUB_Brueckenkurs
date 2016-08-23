@@ -166,6 +166,9 @@ define fixSpecialPages_cmd
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGOUT|href=\"\.\./$(CURRENT_LANG)/logout.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_SEARCHSITE|href=\"\.\./$(CURRENT_LANG)/search.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_FAVORITESSITE|href=\"\.\./$(CURRENT_LANG)/favorites.html|g" {} \;	    
+	
+	# fix links in search page
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name 'search.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;	    
 endef
 
 

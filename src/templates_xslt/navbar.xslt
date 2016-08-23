@@ -5,7 +5,7 @@
 		<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop">
 			<div class="container-fluid ">
 				<div class="row" style="margin-left: 0;margin-top: 10px; ">
-				    <div class="col-sm-3 navbar-left" id="toggle_sidebar" role="navigation" >
+				    <div class="col-sm-12 navbar-left" id="toggle_sidebar" role="navigation" >
 				     	<div id="tools">
 							<button id="menuButton" type="button" data-toggle="offcanvas" class="btn btn-link glyphicon glyphicon-menu-hamburger" style="float:left">
 							</button>
@@ -19,8 +19,6 @@
 							<!-- a data-toggle="tooltip" id="favoritesbutton" onclick="starClick();" class="btn btn-link glyphicon glyphicon-star-empty"/ -->
 						</div>
 					</div>
-					<div class="col-sm-9">
-					</div>				
 				</div>
 			</div>
 		</div>
