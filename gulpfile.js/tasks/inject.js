@@ -1,5 +1,4 @@
 var config       = require('../config')
-if(!config.tasks.fonts) return
 
 var gulp         = require('gulp');
 var path         = require('path');
@@ -7,7 +6,6 @@ var inject       = require('gulp-inject');
 var bowerFiles = require('main-bower-files');
 var browserSync  = require('browser-sync');
 var gulpif       = require('gulp-if')
-
 var exclude = path.normalize('!**/{' + config.tasks.html.excludeFolders.join(',') + '}/**')
 
 var paths = {
@@ -17,7 +15,6 @@ var paths = {
 }
 
 var injectTask = function() {
-
 
   return gulp.src(path.join(config.root.dest, config.tasks.html.src, '/**/*.{' + config.tasks.html.extensions + '}'))
   // quite complex task

@@ -70,10 +70,6 @@ class test_PageTUB(AbstractRendererTestCase):
 		self.assertTrue( "utf-8" in self.tc.html, "Wrong or missing encoding in HTML" )
 		# language
 		self.assertTrue( 'html lang="%s"' % self.lang in self.tc.html, "Wrong or missing language code in HTML" )
-		# at least one stylesheet
-		self.assertTrue( 'link rel="stylesheet" type="text/css"' in self.tc.html, "Missing stylesheets in HTML" )
-		# at least one js
-		self.assertTrue( 'type="text/javascript"' in self.tc.html, "Missing external javascript in HTML" )
 		# MathJax got loaded
 		self.assertTrue( 'MathJax.js' in self.tc.html, "Missing external MathJax in HTML" )
 		# i18n points to the right locale
