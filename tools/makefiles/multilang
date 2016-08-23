@@ -19,7 +19,7 @@
 # make -f tools/makefiles/multilang
 #
 
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := allTUB
 
 # Path to source dir, relative to <VEUNDMINT checkout path>
 BASEDIR = src
@@ -36,15 +36,15 @@ DEFAULT_LANG = de
 
 
 #
-# Build everything for the non-bootstrap version
+# Build everything for the bootstrap version
 #
-all: |cleanup convert merge fixRedirects fix startGulp
+allTUB: |cleanupBefore convert merge fixRedirects fix fixSpecialPages startGulp cleanupAfter
 	echo "ready"
 
 #
-# Build everything for the bootstrap version
+# Build everything for the non-bootstrap version
 #
-allbootstrap: |cleanup convert merge fixRedirects fix fixSpecialPages startGulp
+allKIT: |cleanup convert merge fixRedirects fix startGulp
 	echo "ready"
 
 #
@@ -281,11 +281,15 @@ fix: fixRedirects
 	# replace index.html with src/templates_html5/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_html5/html5_choose_language_simple.html $(OUTPUT)/index.html
 
+cleanupBefore: cleanupAfter
+	-rm -Rf public
 
-cleanup:
+cleanupAfter:
 	-rm -Rf $(OUTPUT)
 	-rm -Rf $(OUTPUT)_en
 	-rm -Rf $(OUTPUT)_de
+
+
 
 #
 # starts gulp to produce dist version version if gulp command is found
