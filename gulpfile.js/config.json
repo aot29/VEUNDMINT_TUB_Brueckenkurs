@@ -8,7 +8,16 @@
     "browserSync": {
       "server": {
         "baseDir": "public"
-      }
+      },
+      "logFileChanges": true,
+      "logConnections": true,
+      "files": [
+        "./public/*.html",
+        "./public/html/**/*.html",
+        "./public/css/*.css",
+        "./public/js/*.js"
+      ],
+      "injectChanges": true
     },
     "css": {
       "src": [

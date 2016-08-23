@@ -6,7 +6,7 @@ var browserSync = require('browser-sync')
 var reload = browserSync.reload
 
 var watchTask = function() {
-  gulp.watch(["./public/*.html", "./public/css/*.css", "./public/js/*.js"]).on("change", reload);
+  //gulp.watch(["./public/*.html", "./public/css/*.css", "./public/js/*.js"]).on("change", reload);
 }
 
 gulp.task('watch', ['browserSync'], watchTask)
