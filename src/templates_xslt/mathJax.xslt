@@ -33,8 +33,9 @@
 			MathJax.Hub.processSectionDelay = 0;
 			]]>
 		</script>
-		<script type="text/javascript" src="{$basePath}/MathJax/MathJax.js"></script>
-		<!-- script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?locale="></ script -->
+		<!-- script type="text/javascript" src="{$basePath}/MathJax/MathJax.js" -->
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?locale="></script>
+		
 	</xsl:template>
 
 </xsl:stylesheet>

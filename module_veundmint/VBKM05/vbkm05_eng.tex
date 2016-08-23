@@ -19,9 +19,9 @@
 \MModstartBox
 
 The first sections of this chapter will introduce you to elementary geometry, while referring 
-to the previous chapters. As a main issue, we first deal with the properties of triangles before 
+to the previous chapters. As a main topic, we first deal with the properties of triangles before 
 calculating areas of polygons and volumes of simple geometric solids. Advanced problems are solved 
-by means of trigonometric functions. These will give a first outlook to the later modules 
+by means of trigonometric functions. These will give us a first taste of the later modules 
 on calculus and analytic geometry.
 
  
@@ -36,17 +36,17 @@ on calculus and analytic geometry.
 \MDeclareSiteUXID{VBKM05_Grundbegriffe_Intro}
 
 
-Looking at the stars in a clear, moonless night conveys a vivid impression of the 
+Looking at the stars on a clear, moonless night conveys a vivid impression of the 
 elementary objects of geometry, namely the points. Since time immemorial, people mentally 
 connected the points of light in the night sky by lines they subsequently interpreted 
-as the contours of highly diverse characters. Yet every building, with its vertex corners, 
+as the contours of highly diverse characters. Every building, with its vertex corners, 
 edges, and faces, provides evidence of the practical use of this ``heavenly'' geometry, \ldots.
 
-On the other hand, the invention of resistant pencils, wax tablets, papyrus, or paper enabled
+On the other hand, the invention of pencils, wax tablets, papyrus or paper enabled
 people to capture their thoughts and observations ``on paper'' and to show them to
-others. For example, the intention to realise the drawing in a real building resulted in the 
+others. For example, the desire to realise a drawing as a physical building resulted in the 
 concept of a plan. A plan is a drawing of an idealised image showing, for example, how 
-a stadium shall look like from above.
+a stadium shall look from above.
 
 For the construction of a stadium, significant points are staked out in the terrain. The 
 current status of the project is shown in the following drawing containing the contours and 
@@ -223,8 +223,8 @@ Mathematically, these objects are sets of points.
 \end{center}
 
 First, we consider a line segment and the distance between points. To do this, 
-we still need a comparison tool for measuring the distance. In mathematics,
-this tool is a comparative length with so called unit length. For applications, 
+we need a comparison tool for measuring distance. In mathematics,
+this tool is a comparative length called the unit length. For applications, 
 appropriate length units such as metres or centimetres are chosen, depending 
 on the task in hand.
 
@@ -270,7 +270,7 @@ ray is also called \MEntry{half-line}{half-line}.
 \node[below] at (-1,-0.5) {$A$};
 \filldraw (1,0.5) circle(1pt);
 \node[below] at (1,0.5) {$B$};
-\node at (0,-1.5) {Strahl};
+\node at (0,-1.5) {ray};
 \end{scope}
 %Gerade:
 \begin{scope}[xshift=3cm]
@@ -279,14 +279,14 @@ ray is also called \MEntry{half-line}{half-line}.
 \node[below] at (-1,-0.5) {$A$};
 \filldraw (1,0.5) circle(1pt);
 \node[below] at (1,0.5) {$B$};
-\node at (0,-1.5) {Gerade};
+\node at (0,-1.5) {line};
 \end{scope}
 \end{tikzpicture}
 }
 \end{center}
 
 Continuing the path of a line segment $\MGeoStrecke{A}{B}$ on both ends indefinitely results in 
-a so called line.
+a line.
 
 \begin{MXInfo}{Line}
 Let $A$ and $B$ be two points (i.e. point $A$ is different from point $B$). Then, $A$ and $B$ define
@@ -331,10 +331,10 @@ If any two lines $g$ and $h$ do not have any points in common, the smallest
 distance between points on $g$ and $h$, respectively, is called the distance between 
 the lines $g$ and $h$. Hence, $g$ and $h$ do not have any point in common if they have 
 a distance larger than $0$. Two lines are called \MEntry{parallel}{parallel} if every point 
-on one of the two lines has the same distance to the other line.
+on one of the two lines has the same distance from the other line.
 
 A single line can be described by the distance of two points $M$ and $M'$ as well: The set 
-of all points having the same distance from two points $M$ and $M'$ is a line.
+of all points with the same distance from two points $M$ and $M'$ is a line.
 
 In geometry, it is a typical approach to define new objects by means of certain properties such 
 as the distance. In this way, a circle can also be described very easily.
@@ -472,7 +472,7 @@ This can also be expressed in the form:
 \]
 \item
 The ratio of the line segments on the parallel lines equals the ratio of 
-the corresponding line segments emanating from $S$ on one and the same ray
+the corresponding line segments emanating from $S$ on a single ray
 \[
    \frac{\MGeoAbstand{S}{A}}{\MGeoAbstand{S}{B}}
  = \frac{\MGeoAbstand{A}{C}}{\MGeoAbstand{B}{D}}
@@ -500,7 +500,7 @@ measuring the length of the line segments directly.
 
 \begin{MExample}
 Let four points $A$, $B$, $C$, and $D$ be given. These points define the
-two lines $\MGeoGerade{A}{B}$ and $\MGeoGerade{C}{D}$ intersecting in the point $S$. 
+two lines $\MGeoGerade{A}{B}$ and $\MGeoGerade{C}{D}$ intersecting at the point $S$. 
 Furthermore, it is known that the lines $\MGeoGerade{A}{C}$ and $\MGeoGerade{B}{D}$ 
 are parallel. Between the points the following distances were measured: 
 $\MGeoAbstand{A}{B} = 51$, $\MGeoAbstand{S}{C} = 12 $, and 
@@ -548,10 +548,10 @@ follows.
 \begin{MExercises}
 \MDeclareSiteUXID{VBKM05_Strahlensaetze_Exercises}
 \begin{MExercise}
-The son of the house is looking at the tree on the neighbours property. He observes 
-that the tree is completely covered by the hedge separating the two properties if
-he only stands close enough to the hedge. Now he is looking for the point at which 
-he just cannot see the tree anymore. 
+The son of the house is looking at the tree on the neighbouring property. He observes 
+that the tree is completely covered by the hedge separating the two properties only if
+he stands close enough to the hedge. Now he is looking for the point at which 
+he \textit{just} cannot see the tree any more. 
 
 The boy is $\MZahl{1}{40}$~metres tall. If the boy stands
 $\MZahl{2}{50}$~metres away from the hedge, which is $\MZahl{2}{40}$~metres 
@@ -620,7 +620,7 @@ Applying the second intercept theorem results in
 
 The values are $d_{\mathrm{KH}} = \MZahl{2}{5}\MEinheit{m} + \frac{1\MEinheit{m}}{2} = 3\MEinheit{m}$
 and $d_{\mathrm{KB}} = \MZahl{2}{5}\MEinheit{m} + 1\MEinheit{m} + \MZahl{14}{5}\MEinheit{m} = 18\MEinheit{m}$.
-Hence, it follows
+Hence, it follows that
 \[
   h_{\mathrm{B}}
    = \left( \MZahl{2}{4}\MEinheit{m} - \MZahl{1}{4}\MEinheit{m} \right) \cdot \frac{18\MEinheit{m}}{3\MEinheit{m}} + \MZahl{1}{4}\MEinheit{m}
@@ -643,10 +643,10 @@ Hence, it follows
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_WinkelIntro}
 
-Lines intersecting in a point $S$ divide the plane in a characteristic way. 
+Lines intersecting at a point $S$ divide the plane in a characteristic way. 
 To describe this observation the concept of an angle is introduced. 
 The question of how to measure angles can be answered in different ways, 
-which in the end are all based on a subdivision of circles.
+which in the end are all based on the subdivision of circles.
 
 In this module, degree measure and radian measure are described. 
 
@@ -705,7 +705,7 @@ Angle enclosed by the rays $g$ and $h$.
 For the notation of the angle $\Mmeasuredangle \left( g, h \right)$, 
 the order of $g$ and $h$ is relevant. $\Mmeasuredangle \left( g, h \right)$
 denotes the angle shown in the figure above. It is defined by
-turning the half-line $g$ counterclockwise to the half-line $h$.
+turning the half-line $g$ counter-clockwise to the half-line $h$.
 
 In contrast, $\Mmeasuredangle \left( h, g \right)$ denotes the angle from 
 $h$ to $g$ as illustrated by the figure below.
@@ -738,10 +738,9 @@ the angle $\Mmeasuredangle \left( g, h \right)$ can also be denoted by
 $\Mmeasuredangle \left( A S B \right)$. In this way, angles between line segments 
 $\MGeoStrecke{S}{A}$ and $\MGeoStrecke{S}{B}$ are described.
 
-Angles are often denoted by lowercase Greek letters to distinguish them from variables, 
-which are generally denoted by lowercase Latin letters (see Table~\MRef{VBKM01_Griechisch} 
-in module~\MNRef{VBKM01}). Further angles can be found if angles formed by intersecting lines are 
-taken into account. 
+Angles are often denoted by lower-case Greek letters to distinguish them from variables, 
+which are generally denoted by lower-case Latin letters (see Table~\MRef{VBKM01_Griechisch} 
+in module~\MNRef{VBKM01}). Further angles can be found by considering angles formed by intersecting lines. 
 
 \begin{MXInfo}{Vertical Angles and Supplementary Angles}%
 \MLabel{VBKM05_Scheitelwinkel_Nebenwinkel}%
@@ -964,7 +963,7 @@ angles to each other, respectively.
 \MLabel{VBKM05_Winkelmessung}
 
 We already explained the notation $\Mmeasuredangle(g,h)$ for the angle defined by turning 
-$g$ counterclockwise to $h$. This explanation provides an idea of how to measure angles, i.e.
+$g$ counter-clockwise to $h$. This explanation provides an idea of how to measure angles, i.e.
 how to compare angles quantitatively.
 
 Think of the face of an analogue watch with its twelve evenly spaced hour marks. Likewise, 
@@ -1010,7 +1009,7 @@ of multiples of $30\MGrad$.
 
 \paragraph{Radian Measure.}
 
-Already in the ancient Babylonia, Egypt, and Greece people observed that
+In ancient Babylonia, Egypt, and Greece people had already observed that
 the ratio of the circumference $U$ of a circle to its diameter $D$ is always 
 the same, and hence circumference and diameter of a circle are proportional to 
 each other. This ratio is called $\pi$.
@@ -1034,14 +1033,14 @@ If the circle has a radius of exactly $1$, the circumference is $2\pi$. Now, for
 \MEntry{radian measure}{radian measure} the circumference of a circle with radius $1$ is subdivided. 
 For the radian measure of an angle $\Mmeasuredangle(g,h)$ the length of an \MEntry{arc}{arc} 
 ``cut'' by this angle is used. As a result, the radian measure assigns to each angle a number 
-between $0$ and $2\pi$. In science applications, the symbol rad (for radian) is used to
+between $0$ and $2\pi$. In scientific applications, the symbol rad is used to
 express explicitly that the angle is measured in radian measure.
 
 \begin{MXInfo}{Radian Measure}\MLabel{VBKM05_Def_Bogenmass}%
 Let $g$ and $h$ be two half-lines emanating from the common vertex $S$ and enclosing 
 the angle $\Mmeasuredangle(g,h)$. If a circle with radius~$r = 1$ is drawn around $S$, the
 two half-lines cut the circle into two pieces. Now, the angle is described by the one arc $x$ 
-that transforms $g$ into $h$ by a counterclockwise rotation (indicated by a green line in the 
+that transforms $g$ into $h$ by a counter-clockwise rotation (indicated by a green line in the 
 figure below). In other words, vertex $S$ is always on the left if one moves on the 
 arc $x$ from $g$ towards $h$.
 
@@ -1072,8 +1071,8 @@ The length of the arc $x$ is the \MEntry{radian measure}{radian measure} of the
 angle $\Mmeasuredangle \left( g, h \right)$.
 \end{MXInfo}
 
-By means of an angle measure such as radian measure or degree measure 
-introduced previously, angles can simply be classified into different types and named 
+By means of an angle measure (such as the radian and degree measures
+introduced previously), angles can simply be classified into different types and named 
 accordingly. 
 
 For repetition and completeness, all names, including ones previously discussed, are listed 
@@ -1120,9 +1119,9 @@ with radius $r = 1$.
 The wording in the last sentences might seem awkward. The reason for that lies probably in the fact
 that we do distinguish precisely between an angle and its measure, e.g. the radian measure in this case.
 
-When it comes to calculate a required value for line segments, often the same notation is
+When it comes to calculating a required value for line segments, the same notation is often
 used for a segment and its length. Mostly this is clear, and it helps to describe or to illustrate 
-a problem in a simple way. Importantly, the unit of the angle has to be known or 
+a problem efficiently. Importantly, the unit of the angle has to be known or 
 explicitly specified. Often, such an agreement -- a so called convention -- is also used if it is 
 known from the context that a certain angle has to be calculated using a certain angle measure. 
 
@@ -1135,7 +1134,7 @@ the specified measure.
 \end{MXInfo}
 Hence, for example, we can write $\Mmeasuredangle(g,h) = 90\MGrad$ and speak about the 
 right angle $\Mmeasuredangle(g,h)$ enclosed by the lines $g$ and $h$ at the same time.
-Accordingly, this applies for the radian measure.
+The same idea applies for the radian measure.
 
 The value of an angle can be converted from radian measure to degree measure (and vice versa) by
 considering the ratios of its value to the value of the complete angle in the 
@@ -1236,7 +1235,7 @@ Convert their values to the other measure.
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05_Dreiecke_Intro}
 
-Technical structures such as trusses and some bridges use triangles as its 
+Technical structures such as trusses and some bridges use triangles as their 
 constructing elements (see figure below).
 
 
@@ -1315,8 +1314,7 @@ Furthermore, the question of how to partition arbitrary surfaces into simple
 far beyond simple geometric considerations. A first impression of such relevance gives 
 us the integral calculus described in chapter~\MRef{VBKM08} together with its application 
 to the calculation of surface areas. There, the first approximation to the integral is 
-a partition of the area into rectangles (consisting of two triangles to stay in the 
-context of triangles). For the three-dimensional computer aided modelling of surfaces,
+a partition of the area into rectangles (each consisting of two triangles, to stay on  topic). For the three-dimensional computer aided modelling of surfaces,
 for example in the manufacturing of car bodies, partitions into triangles 
 (triangulations) are the basis of many calculations and deceptively realistic 
 looking virtual animations. 
@@ -1328,7 +1326,7 @@ looking virtual animations.
 
 Many statements on geometric figures and solids arise from the properties of 
 triangles. A triangle is the ``simplest closed figure'' which can be determined by 
-three non-collinear points (i.e. the points do not lie on a same straight line).
+three non-collinear points (i.e. the points do not lie on a single straight line).
 
 %Eine Strecke $\MGeoStrecke{A}{B}$ ist durch ihre beiden {\glqq}Endpunkte{\grqq} 
 %$A$ und $B$ bestimmt (die hier als verschieden vorausgesetzt werden). Die 
@@ -1338,7 +1336,7 @@ three non-collinear points (i.e. the points do not lie on a same straight line).
 %\MGeoGerade{A}{B}$ liegt.
 
 
-First, we will represent the important terms. Then, we will answer the questions
+First, we will present the important terms. Then we will answer the question of
 under which conditions a triangle is uniquely defined and how individual 
 angles and sides can be calculated. Here, the intercept theorems are an important tool 
 since they can also be considered as statements on relations between different triangles.
@@ -1368,10 +1366,10 @@ angle is called \MEntry{exterior angle}{exterior angle}.
 \begin{minipage}{10cm}
 
 The vertices and sides of a triangle are often denoted as follows:
-Vertices are denoted by uppercase Latin letters
-in mathematical positive direction (counterclockwise). 
-The side opposite to a vertex is denoted by its lowercase Latin letter, 
-and the interior angle of the vertex is denoted by the corresponding lowercase Greek letter. 
+vertices are denoted by upper-case Latin letters
+in mathematical positive direction (counter-clockwise). 
+The side opposite a vertex is denoted by its lower-case Latin letter, 
+and the interior angle of the vertex is denoted by the corresponding lower-case Greek letter. 
 \par
 Since exterior angles are far less important than interior angles, 
 the \textbf{interior angles} are simply called \MEntry{angles}{angle (triangle)} 
@@ -1431,7 +1429,7 @@ Triangles are named according to their angles as follows:
 
 As an example, let us consider the simple structure of a car jack with the shape of a triangle (see figure below):
 It consists of two rods connected by a joint. The two other endpoints of the rods can be pulled 
-together. The greater the angle of a rod with respect to the street is, the higher is the joint 
+together. The greater the angle of a rod with respect to the street is, the higher the joint is 
 above the ground.
 
 \begin{center}
@@ -1453,8 +1451,7 @@ above the ground.
 Thus, in a triangle $\MGeoDreieck{A}{B}{C}$ the shortest line segment between vertex $C$ and 
 the line defined by the side $c$ opposite to $C$ is called  
 \MEntry{altitude (or height) of the triangle}{altitude of a triangle} $h_c$ on the (base) side $c$.
-The second endpoint $D$ of the line segment $h_c$ is called 
-\MEntry{perpendicular foot}{perpendicular foot}. The altitudes $h_a$ and 
+The second endpoint $D$ of the line segment $h_c$ is called the \MEntry{perpendicular foot}{perpendicular foot}. The altitudes $h_a$ and 
 $h_b$ are defined accordingly.
 
 One can also say that altitudes are those line segments that are perpendicular to the 
@@ -1467,8 +1464,7 @@ line of a side and have the vertex opposite to the relevant side as an endpoint.
 \MDeclareSiteUXID{VBKM05_Pythagoras_Content}
 
 One statement relating the lengths of the sides in a right triangle is provided by 
-\MEntry{Pythagoras' theorem}{Pythagoras (theorem)}. The theorem is given here 
-in a frequently used phrasing.
+\MEntry{Pythagoras' theorem}{Pythagoras (theorem)}. A commonly-used formulation of the theorem is given here.
 
 \begin{MXInfo}{Pythagoras' Theorem}
 \MLabel{VBKM05_Pythagoras}
@@ -1523,8 +1519,8 @@ c = \sqrt{c^2} = \sqrt{a^2 + b^2} = \sqrt{36 + 64} = \sqrt{100} = 10 \MDFPeriod
 \end{MExample}
 
 \begin{MExercise}
-Let a right triangle $\MGeoDreieck{A}{B}{C}$ with the right angle at vertex
-$C$, hypotenuse $c = \frac{25}{3}$, and altitude (height) $h_c = 4$ be given. The line segment 
+Consider a right triangle $\MGeoDreieck{A}{B}{C}$ with the right angle at vertex
+$C$, hypotenuse $c = \frac{25}{3}$, and altitude (height) $h_c = 4$. The line segment 
 $\MGeoStrecke{D}{B}$ has the length $q = \MGeoAbstand{D}{B} = 3$. Here, $D$ is
 the perpendicular foot of the altitude $h_c$. Calculate the length of the two legs 
 $a$ and $b$.
@@ -1535,13 +1531,13 @@ angle at the vertex $D$. Then, we have
 \[
  a = \sqrt{h_c^2 + q^2} = \sqrt{4^2 + 3^2} = \sqrt{25} = 5 \MDFPeriod
 \]
-Now, we apply Pythagoras' theorem to the given right triangle $\MGeoDreieck{A}{B}{C}$, whereof
+Now, we apply Pythagoras' theorem to the given right triangle $\MGeoDreieck{A}{B}{C}$:
 \[
  b = \sqrt{c^2-a^2} = \sqrt{\left(\frac{25}{3}\right)^2-5^2} %
  = \sqrt{\frac{400}{9}} %
- = \frac{20}{3} %%
+ = \frac{20}{3}. %%
 \]
-follows.
+
 \end{MHint}
 \end{MExercise}
 \MEntry{Thales' theorem}{Thales (theorem)} is another important theorem that
@@ -1648,9 +1644,9 @@ hypotenuse. Hence, $h_c \leq \frac{c}{2}$.
 %Zusatz: Hoehensatz und Kathetensatz.
 \begin{MCOSHZusatz}
 
-In a right triangle, besides Pythagoras' theorem further statements hold.
+In a right triangle, some statements beyond Pythagoras' theorem hold.
 
-For this purpose, we will use the notation illustrated below:
+To study them, we will use the notation illustrated below:
 \par
 \begin{tabular}{@{}lr@{}}
 \begin{minipage}{9cm}
@@ -1768,7 +1764,7 @@ following situations is at hand:
   only one side is a leg of the given angle and the second side is greater than the 
   given leg. 
 
-  (This theorem is called ``Ssa'', where the uppercase ``S''  indicates that 
+  (This theorem is called ``Ssa'', where the upper-case ``S''  indicates that 
   the side opposite to the given angle is the greater one.)
 \end{itemize}
 \end{MXInfo}
@@ -1778,13 +1774,13 @@ following situations is at hand:
 %deren Seiten aufgrund der Konstruktion so zugeordnet werden k"onnen, 
 %dass diese gleich lang sind.
 
-If for a triangle only two characteristics are known, or three characteristics are known
+If only two characteristics of a triangle are known, or three characteristics are known
 that do not correspond to one of the cases described above, than a number of different triangles 
-with these characteristics do exist that are not congruent.
+with these characteristics exist which are not congruent.
 
 The next example will illustrate how a triangle can be constructed applying the theorems 
-for congruent triangles. Then, another example will be considered, where only 
-three angles are known and hence none of the theorems described above applies.
+for congruent triangles. Then another example will be considered, where only 
+three angles are known and hence none of the theorems described above apply.
 
 \begin{MExample}
 \begin{tabular}{@{}lr@{}}
@@ -1827,8 +1823,8 @@ $\alpha=30\MGrad$ and $\beta=120\MGrad$ using the notation introduced above.
 \begin{MHint}{Solution}
 \begin{tabular}{@{}lr@{}}
 \begin{minipage}{9cm}
-1. Draw the given line segment $c$. 2. Attach to either side of the segment 
-the corresponding angles $\alpha$ and $\beta$. 3. The intersection point of 
+1. Draw the given line segment $c$. 2. Attach the corresponding angles $\alpha$ and $\beta$ to either side of the segment 
+. 3. The intersection point of 
 the two new legs is the third vertex $C$ of the triangle.
 \end{minipage}
 &
@@ -1939,8 +1935,8 @@ if they
 \end{itemize}
 \end{MXInfo}
 
-For the right and the left triangle in Example~\MRef{VBKM05_BeispielAehnlichkeit}
-there is a special fact. The left triangle is transformed into the other by 
+The right and the left triangle in Example~\MRef{VBKM05_BeispielAehnlichkeit}
+have a special relationship. The left triangle is transformed into the other by 
 uniform scaling\MLabel{Mathematik_ElementareGeometrie_zentrischeStreckung}
 with the centre of enlargement $S$ and the scaling factor $k$.
 
@@ -2122,10 +2118,10 @@ $\alpha+\gamma+\beta=\pi$.
 \MDeclareSiteUXID{VBKM05_Flaecheninhalt_Intro}
 
 In nature, various figures in different shapes can be found. There, 
-rounded shapes are particularly evident. When it comes to partition a surface 
-completely, also some boundaries can be found that can be approximated as line 
-segments. A prominent example are honeycomb structures created by 
-insects. Technical applications are often based on figures bounded by straight 
+rounded shapes are particularly evident. When it comes to partitioning a surface 
+completely, some boundaries can be found that can be approximated as line 
+segments. The honeycomb structures created by 
+insects are a famous example. Technical applications are often based on figures bounded by straight 
 line segments.
  
 
@@ -2139,7 +2135,7 @@ question how the area of a polygon can be calculated easily.
 \begin{MXContent}{Quadrilaterals}{Quadrilaterals}{STD}
 \MDeclareSiteUXID{VBKM05_Vierecke_Content}
 
-In the previous section~\MRef{M05_Dreiecke} triangles were considered.
+In the previous section~\MRef{M05_Dreiecke}, triangles were considered.
 They were defined by three non-collinear points. Connecting each two of the three points 
 by a line segment always results in a single closed path in which
 every point connects exactly two line segments. The line segments in the path
@@ -2182,27 +2178,25 @@ two vertices of the quadrilateral which are not connected to each other is calle
 \MEntry{diagonal}{diagonal (quadrilateral)} of the quadrilateral. From the fact that 
 the sum of (interior) angles in a triangle equals $\pi$ or $180\MGrad$ 
 then results that the sum of (interior) angles in a quadrilateral is twice 
-this sum, i.e. equals $2 \pi$ or $360\MGrad$. 
+this sum, i.e. $2 \pi$ or $360\MGrad$. 
 
 
 \begin{MXInfo}{Quadrilaterals}\MLabel{VBKM05_Vierecke}%
 
 Consider \MEntry{quadrilaterals}{quadrilaterals} constructed by connecting the 
-four given points by line segments such that a single, closed and 
-non-intersecting path trough this four points results. There, each three of 
+four given points by line segments forming a single, closed and 
+non-intersecting path trough these four points. There, each three of 
 the four points connected by two line segments must be non-collinear. 
 
 As for triangles, the interior angles of quadrilaterals are simply denoted 
-as angles if not otherwise specified in the context.
+as angles if not otherwise specified in context.
 \end{MXInfo}
 
-As the concept of triangles the concept of quadrilaterals is used in technical structures in many
+Like triangles, quadrilaterals are used in technical structures in many
 ways. Therefore, additional terms are commonly used to specify different types of quadrilaterals. 
 
-In the same way as triangles also quadrilaterals are classified by the lengths of their 
-sides or by the magnitudes of angles. Compared to the classification of triangles 
-typical differences occur. For example, quadrilaterals can have parallel sides. 
-Furthermore, they can have more than one vertex with a right angle. 
+Also as for triangles, quadrilaterals are classified by the lengths of their 
+sides or by the magnitudes of angles. There are differences between the classifications of triangles and quadrilaterals. For example, quadrilaterals can have parallel sides, or have more than one vertex with a right angle. 
 
 \begin{MXInfo}{Special Types of Quadrilaterals}\MLabel{VBKM05_ViereckeKlassen}%
 
@@ -2216,7 +2210,7 @@ A quadrilateral is called
  \MEntry{equilateral quadrilateral}{equilateral quadrilateral} or
  \MEntry{diamond}{diamond} if all four sides are of equal length;
 \item \MEntry{rectangle}{rectangle} if all four (interior) angles are right angles;
-\item \MEntry{square}{square} if it is a rectangle having four sides  of equal length;
+\item \MEntry{square}{square} if it is a rectangle with four sides  of equal length;
 \item \MEntry{unit square}{unit square} if it is a square with sides of length $1$.
 \end{itemize}
 \end{MXInfo}
@@ -2261,8 +2255,7 @@ Thus, for the unit square also a measure has to be fixed.
 }
 \end{center}
 
-Between the quadrilaterals introduced above a series of relations exist:
-
+There are several relations between the quadrilaterals introduced above:
 \begin{MXInfo}{Relations between rectangles}\MLabel{VBKM05_Vierecke_Beziehungen}%
 Between different quadrilaterals the following relations exist:
 \begin{itemize}
@@ -2632,7 +2625,7 @@ of equal length;
 
 For triangles, even one vertex or side contributes to the essential properties 
 of the whole triangle, for example, one vertex with a right angle. For quadrilaterals, 
-a vertex isn't such specifying anymore. Instead, there is a greater variety of shapes.
+a single vertex no longer has such strong specifying properties. Instead, there is a greater variety of shapes.
 If ``many'' points are connected to a closed figure by line segments, there are many 
 possibilities to create various figures and even to approximate round shapes. 
 
@@ -2679,7 +2672,7 @@ possibilities to create various figures and even to approximate round shapes.
 
 Here, such a detailed classification as for triangles or quadrilaterals is barely 
 possible. The new possibilities such as the approximation of round shapes do also lead 
-to new interesting questions. To this, one does not consider single polygons but construction 
+to new interesting questions. One does not consider single polygons but construction 
 principles for a series of many polygons. On the other hand, every polygon can be 
 divided into triangles if required, as we have seen already for quadrilaterals.
 Thus, a property of a single vertex is often considered in terms of what this means
@@ -2729,10 +2722,10 @@ quadrilaterals these are squares.
 A polygon that is  equilateral (all sides have the same length) and
 equiangular (all angles are equal in measure) is called 
 \MEntry{regular polygon}{regular polygon} or 
-\MEntry{regelar $n$-gon}{regelar $n$-gon}.
+\MEntry{regelar $n$-gon}{regular $n$-gon}.
 \end{MXInfo}
 
-Honeycombs are -- seen from above -- approximately regular hexagons.
+Honeycombs are -- when seen from above -- approximately regular hexagons.
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[line width=1.5pt, declare function={Radius=3;}]
@@ -2782,7 +2775,7 @@ Honeycombs are -- seen from above -- approximately regular hexagons.
 }
 \end{center}
 
-Regular polygons have different symmetry properties. All lines perpendicular to the sides,
+Regular polygons have various symmetry properties. All lines perpendicular to the sides,
 passing through the midpoint of the respective side, intersect in a point $M$. Reflecting 
 a polygon across such a line maps it onto itself.
 
@@ -2805,7 +2798,7 @@ First, quadrilaterals are considered. If $a$ and $b$ are adjacent sides
 of a parallelogram, then its circumference is 
 $U = a + b + a + b = 2 \cdot a \cdot b$.
 
-For a rhombus and also for a square, all four sides have the same length $a$ such
+For a rhombus (and therefore for a square), all four sides have the same length $a$ such
 that its circumference is $U = 4 \cdot a$.
 
 Likewise, for every regular polygon, all sides have the same length. If $n$ is the number 
@@ -2876,18 +2869,16 @@ $U_6 = 2 \cdot r \cdot 6 \cdot \frac{1}{2} = 6 \cdot r$.
 The larger $n$ is, the closer the circumference is to the value 
 $2 \cdot r \cdot \pi \approx \MZahl{6}{283} \cdot r$ describing the 
 circumference of a circle with radius $r$. This can be 
-shown by means of more advanced methods of calculus. Its basic ideas 
-are introduced in Chapter~\MRef{VBKM07}. The approach described here is
-based on the following idea: It is difficult to calculate the value 
+shown by means of more advanced methods of calculus, the basic ideas of which are introduced in Chapter~\MRef{VBKM07}. The approach described here is
+based on the following idea: it is difficult to calculate the value 
 of the circumference of a circle. Therefore, one looks for 
-similar objects, in this case the regular polygons, having two properties:
-Their circumference can be calculated easily, and if the number of vertices 
+similar objects, in this case the regular polygons, with two properties:
+their circumference can be calculated easily, and if the number of vertices 
 is sufficiently large, then the circumference of the polygon differs from the 
 circumference of a circle less than any given positive number (here, one 
 thinks of ``small'' numbers). This approach can also be used to calculate 
 the area of surfaces that are not bounded by line segments 
-(see Chapter~\MRef{VBKM08}). For this purpose, it will be illustrated in the 
-following how to calculate the area of polygons, which is in this respect relatively 
+(see Chapter~\MRef{VBKM08}). For this purpose, it will be illustrated here how to calculate the area of polygons, which is in this respect relatively 
 easy. Further, this can be used as the starting point of an approximation, as the 
 figure above showing a circle inscribed into a hexagon suggests. 
 \end{MXContent}
@@ -2968,7 +2959,7 @@ from one vertex to the opposite side such that this line is perpendicular to the
 This line is called the \textbf{altitude} $h_{i}$ of a triangle on a specific side $i$,
 where $i$ is the index of the side $a$, $b$, or $c$. 
 
-Depending on the fact, whether the new line is interior or exterior to the triangle,
+Depending on whether the new line is interior or exterior to the triangle,
 the area of the triangle equals the sum or the difference of the areas of the two resulting 
 right triangles:
 
@@ -3017,7 +3008,7 @@ On the right, we have
  = \Mtfrac{1}{2} \cdot h_w \cdot \left( w_2 - w_1 \right)
  = \Mtfrac{1}{2} \cdot h_w \cdot w \MDFPeriod
 \]
-Thus, the area can always be calculated from the length of one side and the 
+Thus the area can always be calculated from the length of one side and the 
 length of the altitude perpendicular to the corresponding side.
 
 \begin{MXInfo}{Area of a Triangle}
@@ -3100,7 +3091,7 @@ $F = \frac{1}{2} \cdot c \cdot h = \frac{1}{2} \cdot 4 \cdot 2 = 4$.
 \end{MHint}
 \end{MExercise}
 
-Using the formula for the area of triangles also areas of polygons can be 
+Using the formula for the area of triangles, areas of polygons can also be 
 calculated. This is due to the fact that every polygon can be divided into 
 triangles by adding diagonals to the polygon until all subareas are triangles. However, 
 the considerations will remain restricted here to a few simple shapes. In the
@@ -3279,8 +3270,8 @@ $F_1+F_2+F_3+F_4 = 165+600+182+486 = 1433$.
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM05A_ElementareKoerper_Intro}
 
-The shapes of common objects such as a notepad, a mobile as well as of
-technical structures as tunnels can be described by simple basic solids,
+The shapes of common objects such as a notepad or a mobile phone as well as of
+technical structures such as tunnels can be described by simple basic solids,
 apart form the ``rounded vertices''. Why is that?
 
 If a broom is moved straight across a plane floor covered with dust, 
@@ -3300,21 +3291,20 @@ line segments result in simple geometric figures. For example, polygons and circ
 are obtained in a way described above. 
 
 If figures are shifted or rotated out of their plane, then new objects are 
-created that are denoted as solids. In the following, some simple solids 
-will be described whose shapes can be identified easily in many everyday objects 
+created that are denoted as solids. In this section some simple solids 
+will be described, whose shapes can be identified easily in many everyday objects 
 and technical constructions.
 
 %Beispiel:
 \begin{MExample}
 Let us consider a rectangle and shift it perpendicular to the drawing plane.
 In this way, a rectangular cuboid (or informally a rectangular box) is constructed. 
-Its surface consists of the given rectangle and a copy of that (two faces). Moreover, 
-by the four sides of the given rectangle four further rectangles (faces) are formed.
+Its surface consists of the given rectangle and a copy of that (two faces). Four further rectangles (faces) are formed by the four sides of the given rectangle.
 \end{MExample}
 
 Taking any polygon and shifting it perpendicular to the drawing plane, results in a solid 
 that is called a prism. The term also denotes a transparent optical element 
-of this shape used to refract light waves. Because of the fact that the refractive index
+of this shape used to refract light waves. Because the angle of refraction
 depends on the wavelength (i.e. the colour of the light), the different wave lengths of seemingly white 
 light are refracted differently. In this way, the different colours of white light become visible.
 
@@ -3381,7 +3371,7 @@ as its base face. If all faces are squares, the prism is called a cube.
 The construction principle can be varied in different ways. For example, the 
 polygon can be replaced by a disk that is shifted. By a perpendicular translation 
 of the disk a solid is created that is especially symmetric, namely a cylinder. 
-A tunnel drilling machine creates -- considered in a simplified manner -- 
+A tunnel drilling machine creates -- if considered in a simplified manner -- 
 a cylindrical tube.
 
 \begin{MXInfo}{Cylinder}
@@ -3438,8 +3428,7 @@ between the two disks forms the lateral face $M$ of the cylinder.
 %Ende (Zeichnung).
 
 The volume $V$ of the cylinder is the product of the area of the disk 
-$G$ with radius $r$ and the height $h$ of the cylinder: We have 
-$V = G \cdot h = \pi \cdot r^2 \cdot h$.
+$G$ with radius $r$ and the height $h$ of the cylinder: $V = G \cdot h = \pi \cdot r^2 \cdot h$.
 
 The area $O$ of the surface is the sum of twice the area of the disk $G$ and 
 the area of the lateral surface $M$. With the circumference $U = 2 \cdot \pi \cdot r$
@@ -3455,7 +3444,7 @@ solid is a sphere.
 
 \begin{MXInfo}{Sphere}
 Let a disk with centre $M$ and radius $r$ be given. If the disk $M$ is 
-rotated around an axes trough $M$ and a boundary point of the disk, the resulting 
+rotated around an axis trough $M$ and a boundary point of the disk, the resulting 
 solid is a sphere with radius $r$.
 
 %Zeichnung Kugel:
@@ -3502,14 +3491,14 @@ $O = 4 \cdot \pi \cdot r^2$.
 \end{MXInfo}
 
 A sphere can also be described as a solid consisting of all points that
-have a distance from $M$ less or equal to $r$ (see also Chapter~\MRef{VBKM10}).
+have a distance less than or equal to $r$ from $M$ (see also Chapter~\MRef{VBKM10}).
 
 In this approach, a prism is a solid consisting of all points that 
 lie on a connecting line between the base face and its copy. 
 
 In the following, two variations of this approach will be considered. 
 We start again with a polygon as base face. Moreover, instead of a copy of the 
-base face now only a point is given.
+base face, only a point is given.
 
 \begin{MXInfo}{Pyramid}
 Let a polygon $G$ and a point $S$ with distance $h > 0$ from $G$ be given. 
@@ -3564,7 +3553,7 @@ The figure above shows a pyramid with a triangular base face.
 %Ende (Zeichnung).
 
 The volume $V$ of the pyramid is proportional to the area of the base face 
-$G$ and the height $h$. We have $V = \frac{1}{3} \cdot G \cdot h$.
+$G$ and the height $h$: $V = \frac{1}{3} \cdot G \cdot h$.
 
 The area $O$ of the surface is the sum of the area of the base face $G$ and 
 the area of the lateral surface $M$, where the area of the lateral surfaces 
@@ -3604,7 +3593,7 @@ $\ell = \sqrt{a^2 - \frac{1}{4} \cdot a^2} %
  = \frac{1}{2} \cdot a \cdot \sqrt{3}$.
 Hence,
 $F = \frac{1}{2} \cdot a \cdot \ell = \frac{1}{4} \cdot a^2 \cdot \sqrt{3}$, 
-such that
+so
 $O = 4 \cdot F = a^2 \cdot \sqrt{3}$.%
 \end{MHint}
 \end{MExercise}
@@ -3612,7 +3601,7 @@ $O = 4 \cdot F = a^2 \cdot \sqrt{3}$.%
 The considerations above, that a prism and a cylinder share the same 
 constructing principle for different base faces, can be applied to the new 
 situation of a pyramid as well. One obtains another solid if instead of a polygon 
-(as for the case of a pyramid) now a disk is used as base face. 
+(as for the case of a pyramid) a disk is now used as base face. 
 
 \begin{MXInfo}{Cone}
 Let a disk $G$ with radius $r$ and a point $S$ with distance $h > 0$ from $G$ be given.
@@ -3740,8 +3729,7 @@ O = \pi \cdot r \cdot (r + \ell) %
  = \pi \cdot r \cdot \left(r + \sqrt{r^2 + h^2}\right) %
  = \pi \cdot r^2 \cdot \left(1 + \sqrt{1 + \left(\frac{h}{r}\right)} \right). %%
 \]
-The last formula shows how the surface area of the cone compared to 
-the area of the disk $G = \pi \cdot r^2$ depends on the ratio from the height 
+The last formula shows how the relation between surface area of the cone  and the area $G = \pi \cdot r^2$ of the disk depends on the ratio of the height 
 $h$ to the radius $r$.
 \end{MHint}
 \end{MExerciseItems}
@@ -3771,9 +3759,9 @@ Answer: \MLParsedQuestion{15}{96}{10}{ExM05EK1}$\MEinheit{cm}^3$
 \begin{MExercise}
 The surface area of a cylinder of height $h = 6\MEinheit{cm}$ is to be covered 
 with a coloured sheet. The surface area shall be $O = 200\MEinheit{cm}^2$. 
-Calculate the diameter $d$ of the disk and the volume of the cylinder. Use for 
-$\pi$ the approximate value $\MZahl{3}{1415}$ and round off your result 
-to millimetre.
+Calculate the diameter $d$ of the disk and the volume of the cylinder. Use the approximate value $\MZahl{3}{1415}$ for 
+$\pi$ and round off your result 
+to the nearest millimetre.
 
 
 Answers:
@@ -3786,14 +3774,14 @@ Answers:
 \end{MExercise}
 
 \begin{MExercise}
-Let a piece of wood with the shape of a rectangular cuboid with the volume
-$V$ be given. The height of the cuboid is $h = 120\MEinheit{cm}$, and the 
+Consider a piece of wood with the shape of a rectangular cuboid with the volume
+$V$. The height of the cuboid is $h = 120\MEinheit{cm}$, and the 
 base face is a square with sides of length $s = 40\MEinheit{cm}$.
 >From the piece of wood, a cylindrical hole of height $g$ with a diameter 
 $d = 20\MEinheit{cm}$ is drilled ``centrically'' (i.e. the intersection 
 point of the diagonals of the quadratic base face is the centre of the 
-base disk of the cylinder). Use for $\pi$ the approximate value 
-$\MZahl{3}{1415}$ and round off your result to integers. Calculate
+base disk of the cylinder). Use the approximate value 
+$\MZahl{3}{1415}$ for $\pi$ and round off your result to integers. Calculate
 
 \begin{MExerciseItems}
 \item the volume $V_Z$ of the drilled hole:
@@ -3828,8 +3816,7 @@ p_Z = \frac{V_Z}{V} %
  = \frac{\pi \cdot 12000\MEinheit{cm}^3}{16 \cdot 12000\MEinheit{cm}^3} %
  \approx \frac{\MZahl{3}{1415}}{16} \approx 19 \% %%
 \]
-and thus, $p = (100 - 19) \% = 81 \%$ is the percentage of the new 
-piece of wood compared to the original wooden rectangular cuboid.
+and thus, $p = (100 - 19) \% = 81 \%$ is the percentage original wooden rectangular cuboid which forms the new piece of wood.
 \end{MHint}
 \end{MExerciseItems}
 \end{MExercise}
@@ -3840,7 +3827,7 @@ piece of wood compared to the original wooden rectangular cuboid.
 
 %content: Abschnitt 6: Winkelfunktionen
 
-\MSubsection{Trigonometric Functions: Sine and et cetera}
+\MSubsection{Trigonometric Functions: Sine, et cetera}
 \MLabel{M05_Trigonometrie}
 
 \begin{MIntro}
@@ -3852,20 +3839,20 @@ piece of wood compared to the original wooden rectangular cuboid.
 %ergeben und zur Definition von Sinus, Cosinus und weiteren trigonometrischer 
 %Gr"o"sen f"uhren, werden im n"achsten Modul allgemein besprochen.
 
-At mountain roads signs are put up warning if the road goes steeply downhill.
+On mountain roads, warning signs are put up if the road goes steeply downhill.
 The percentage describes how steep the terrain slopes compared to a horizontal 
 movement. Questions for the conditions of movements on an inclined plane in physics 
-have been investigated by Galileo Galilee. The results are also relevant for 
+have been investigated by Galileo Galilei. The results are also relevant for 
 technical constructions.
 
-Trigonometric functions serve as a mathematical tool. They describe a geometric 
+Trigonometric functions serve as a mathematical tool: they describe a geometric 
 situation by means of a mathematical expression.
 %Im Bild von oben ausgedr"uckt, wird in diesem Abschnitt "uber Winkelfunktionen
 %beschrieben, wie der Zusammenhang zwischen der prozentualen Angabe des 
 This section describes how the relation between the percentage of the slope and 
 the corresponding angle can be expressed. A first investigation of the properties 
 of the trigonometric functions gives an idea of the various possible applications
-that are far beyond geometry and will be revisited repeatedly in the later sections. 
+far beyond geometry, which will be revisited repeatedly in the later sections. 
 \end{MIntro}
 
 \begin{MXContent}{Trigonometry in Triangles}{Triangle}{STD}
@@ -3873,7 +3860,7 @@ that are far beyond geometry and will be revisited repeatedly in the later secti
 \MDeclareSiteUXID{VBKM05_Trigonometrie_Content}
 
 If one drives downhill on a road with a slope of five percent, then
-the height falls five metres for every 100 metres. Here, the difference in height
+the height falls five metres for every 100 metres travelled horizontally. Here, the difference in height
 is considered in comparison to the horizontal line.
 
 \begin{center}
@@ -3918,7 +3905,7 @@ of $45\MGrad$.
 
 In other words: An angle of $45\MGrad$ corresponds to a slope of 
 $\frac{100\MEinheit{m}}{100\MEinheit{m}} = 1$, i.e. the ratio 
-of the vertical line segment to the vertical line segment is $1$. 
+of the horizontal line segment to the vertical line segment is $1$. 
 According to the intercept theorem, this ratio does not depend 
 on the lengths of the individual segments. It only depends on 
 the position of the two rays with respect to each other, i.e. 
@@ -3927,7 +3914,7 @@ ratio of the line segments to an angle is also known for other angles, many cons
 problems can be solved. For example, for a given angle the height can be
 determined. 
 
-Even the question which ratio corresponds to an angle of $30\MGrad$ shows, however,
+Even the question of which ratio corresponds to an angle of $30\MGrad$ shows, however,
 that in general it is not that simple to determine the assignment of a ratio
 of line segments to an angle.
 %Schon die Berechnung, dass zu einem Gef"alle oder einer Steigung von 
@@ -3938,9 +3925,9 @@ of line segments to an angle.
 %so einfach.
 Therefore, the time-consumingly determined values that we considered initially
 were listed in mathematical tables such that they could be looked up later again easily.
-Meanwhile, these values are available practically everywhere provided by calculators and 
+Now, these values are available practically everywhere, provided by calculators and 
 computers. The most common assignments of an angle to a ratio of line segments are presented 
-in the following. They are called circular functions or trigonometric functions, 
+below. They are called circular functions or trigonometric functions, 
 the branch of mathematics dealing with their properties is called 
 \MEntry{trigonometry}{trigonometry}.
 
@@ -3952,8 +3939,8 @@ Here, the most common \MEntry{circular functions}{circular functions}
 are described as assignments of ratios of the sides in a right triangle to an angle. 
 The circular functions are also called \MEntry{trigonometric functions}{trigonometric function}.
 Here, $x$ denotes an angle in a right triangle that is not a right angle.
-The \MEntry{opposite (side)}{opposite (side)} is the side opposite to the angle $x$, 
-and the other leg is called \MEntry{adjacent (side)}{adjacent (side)}. 
+The \MEntry{opposite (side)}{opposite (side)} is the side opposite the angle $x$, 
+and the other leg is called the \MEntry{adjacent (side)}{adjacent (side)}. 
 
 \begin{center}
 \MTikzAuto{%
@@ -3975,21 +3962,21 @@ and the other leg is called \MEntry{adjacent (side)}{adjacent (side)}.
 
 \begin{itemize}
 \item
-The assignment of the ratio of the opposite side $a$ to the adjacent side $b$ to an angle 
+The ratio of the opposite side $a$ to the adjacent side $b$ to an angle 
 is called tangent function:
 \[
 \tan(x) := \frac{\text{opposite side}}{\text{adjacent side}} = \frac{a}{b} %%
 \]
 %
 \item
-The assignment of the ratio of the adjacent side $b$ to the hypotenuse $c$ to an angle 
+The ratio of the adjacent side $b$ to the hypotenuse $c$ to an angle 
 is called cosine function:
 \[
 \cos(x) := \frac{\text{adjacent side}}{\text{hypotenuse}} = \frac{b}{c} %%
 \]
 %
 \item
-The assignment of the ratio of the opposite side $a$ to the hypotenuse $c$ 
+The ratio of the opposite side $a$ to the hypotenuse $c$ 
 to an angle is called sine function:
 \[
 \sin(x) := \frac{\text{opposite side}}{\text{hypotenuse}} = \frac{a}{c} %%
@@ -3997,7 +3984,7 @@ to an angle is called sine function:
 \end{itemize}
 \end{MXInfo}
 
-Accordingly, the tangent function describes the assignment of the ratio 
+The tangent function describes the assignment of the ratio 
 of height to width to the angle of inclination, i.e. the slope. In 
 Chapter~\MRef{VBKM08} this is also relevant in the context to the 
 geometrical interpretation of the derivative.
@@ -4022,7 +4009,7 @@ The sine can be calculated immediately from the given values:
 \[
 \sin\left(\alpha\right)=\frac{a}{c}
  =\frac{\MZahl{2}{5}\MEinheit{cm}}{5\MEinheit{cm}}=\MZahl{0}{5} \MDFPeriod\]
-To calculate the cosine the length of the side $b$ is required obtained
+To calculate the cosine the length of the side $b$ is required - it can be obtained
 by means of Pythagoras' theorem:
 \[
 b^2 = c^2 - a^2 %%
@@ -4058,13 +4045,13 @@ measured values for the sides $a$ and $b$ in a table.
 Use a drawing scale of $1\,\text{unit length} \,\hat{=}\, 2\MEinheit{cm}$, and fill in the 
 measured values for the sides $a$ and $b$ in a table. 
 \fi
->From the measured values calculate to each angle the sine, cosine, and tangent 
-and decide subsequently for which functions also values for $\alpha = 0\MGrad$ 
-and $\alpha = 90\MGrad$ do exist. After that, plot the calculated values of sine 
+>From the measured values, calculate the sine, cosine, and tangent of each angle
+and decide for which functions also values for $\alpha = 0\MGrad$ 
+and $\alpha = 90\MGrad$ exist. After that, plot the calculated values of sine 
 and cosine against the angle $\alpha$.
 
 \begin{MHint}{Solution}
-In the process of measurement errors do always occur! Therefore, the 
+In the process of measurement, errors will always occur! Therefore, the 
 values in your table will be slightly different from the ones given in 
 the table below. The table could look as follows:
 
@@ -4141,7 +4128,7 @@ Then, the corresponding diagram looks as follows:
 \end{MExercise}
 
 If we once again look closer at the results obtained in the last exercise, 
-we can find different ways how to interpret them, and then identify 
+we can find different ways to interpret them, and then identify 
 some relations.
 
 
@@ -4172,8 +4159,8 @@ and
  = \sin\left(\frac{\pi}{2}-\alpha\right) \MDFPeriod %%
 \]
 %
-\item For $\alpha=45\MGrad$ opposite side and adjacent side are equal, and thus sine and 
-cosine are equal as well. Conversely, this observation was used at the beginning of this 
+\item For $\alpha=45\MGrad$ the opposite side and adjacent side are equal, and thus sine and 
+cosine are equal as well. This observation was used at the beginning of this 
 section for the determination of the slope.
 
 \item The tangent function, i.e. the ratio of $a$ to $b$, increases with increasing 
@@ -4181,7 +4168,7 @@ angle $\alpha$ from zero to ``infinity''.
 \end{itemize}
 
 In the following example we will continue our considerations from the beginning of this 
-section leading to a triangle with an angle of $45\MGrad$ to calculate the value 
+section and use a triangle with an angle of $45\MGrad$ to calculate the value 
 of the corresponding sine value exactly.
 
 \begin{MExample}
@@ -4223,14 +4210,14 @@ the actual value of $\frac{1}{2}\cdot \sqrt{2}$.
 \end{MExample}
 
 In the next example we will calculate the sine of the angle $\alpha = 60\MGrad$. 
-For this purpose, we will first do not consider a right triangle but a equilateral 
+For this purpose, we first do not consider a right triangle but an equilateral 
 triangle. By a clever decomposition of the triangle and by using another 
 ``auxiliary quantity'' we will obtain the required result. 
 
 
 \begin{MExample}\MLabel{M05_TrigonometrieBeispiel:gleichseitigesDreieck}%
 Consider a \textbf{equilateral} triangle to calculate $\sin\left(60\MGrad\right)$. 
-As the term implies the sides of this triangle are all of equal length, and the angles are 
+As the name implies, the sides of this triangle are all of equal length, and the angles are 
 also all of the same magnitude, namely $\alpha=\beta=\gamma = \frac{180\MGrad}{3} = 60\MGrad = \frac{\pi}{3}$.
 According to the theorem for congruent triangles ``sss'', the triangle is defined uniquely 
 by the specification of a side $a$. This triangle is constructed by drawing the side $a$ 
@@ -4291,7 +4278,7 @@ As a result we obtain the required value
  = \frac{h}{a} %
  =\frac{1}{2}\cdot \sqrt{3} \MDFPeriod %%
 \]
->From this triangle also the sine of another angle can be calculated: The altitude
+>From this triangle the sine of another angle can also be calculated: the altitude
 $h$ bisects the above angle such that in the two congruent smaller triangles the 
 above angle is $30\MGrad = \frac{\pi}{6}$. Now we have
 \[
@@ -4358,8 +4345,8 @@ in the last row denoted by $\alpha$ the angle is given in radian measure.
 \end{center}
 \fi
 
-These values you should know by heart. The values of the trigonometric functions for other
-angles are listed in tables or saved in the calculator.
+You should learn these values by heart. The values of the trigonometric functions for other
+angles are listed in tables or saved in your calculator.
 
 Hence, a height can be calculated very easily from an angle and a distance. 
 Namely, if $s$ is the distance of a building with a flat roof, which is observed 
@@ -4367,14 +4354,14 @@ at an angle of $x$, then from $\tan(x) = \frac{h}{s}$ we have  $h = s \cdot \tan
 Likewise, sine and cosine can be used to calculate lengths. This relation between 
 angles and lengths is often used.
 
-For example, in this way an area can be calculated even if the required 
-length us not given directly. In the following example, the altitude
+For example, an area can be calculated in this way even if the required 
+length is not given directly. In the following example, the altitude
 of a triangle is to be calculated. Since $h$ emanating from a vertex $C$ 
 is perpendicular to the line of the opposite side
 $c = \MGeoStrecke{A}{B}$, the vertices of $h$ and  $A$ or $B$, respectively, 
-form a right triangle. If an angle and the adjacent side is given, then 
+form a right triangle. If an angle and the adjacent side are given, then 
 the altitude can be calculated from $\sin(\alpha) = \frac{h}{b}$ or from
-$\sin(\beta) = \frac{h}{a}$, where the standard notation was used.
+$\sin(\beta) = \frac{h}{a}$, using standard notation.
 
 
 \begin{MExercise}
@@ -4558,11 +4545,11 @@ plot (\x,{cos(\x r)});
 The unit circle is a circle with a radius of $1$. Its centre is positioned  
 at the origin in the Cartesian coordinate system. Consider a line segment 
 of length $1$ emanating from the centre. From its horizontal initial 
-position on the positive $x$-axis, this segment is now rotated counterclockwise, i.e.
-in mathematical positive direction, around its centre. In this process, its rotating 
+position on the positive $x$-axis, this segment is now rotated counter-clockwise, i.e.
+in the mathematical positive direction, around its centre. In this process, its rotating 
 end point is sweeping the unit circle enclosing the angle $\Mvarphi$ with the positive 
 $x$-axis. During rotation, the angle $\Mvarphi$ increases from $0$ to $2\pi$ or 
-$360\MGrad$, respectively. Thus, to any angle $\Mvarphi$ corresponds a point 
+$360\MGrad$, respectively. Thus, to any angle $\Mvarphi$ there corresponds a point 
 with the coordinates $x_{\Mvarphi}$ and $y_{\Mvarphi}$ on the unit circle. 
 
 For $\Mvarphi$ from $0$ to $\frac{\pi}{2}$, the line segment, the corresponding
@@ -4603,7 +4590,7 @@ be seen that the values of the cosine function do not change if
 the line segment is reflected across the $x$-axis. Hence, the cosine value of 
 the angle $\Mvarphi$ is equal to the cosine value of the angle $-\Mvarphi$
 (indicated in the figure below by the green line). For the sine function, 
-a reflection across the $x$-axis results in a change of sign of the sinus 
+a reflection across the $x$-axis results in a change of sign of the sine 
 value (indicated in the figure below by the blue line and the violet line, 
 respectively)
  
@@ -4854,13 +4841,13 @@ the sine of an angle as \texttt{sin(x)} and the number $\pi$ as \texttt{pi}.}
 \MSubsection{Final Test}
 \MLabel{M05_Abschlusstest}
 
-\begin{MTest}{Final Test Modul \arabic{section}}
+\begin{MTest}{Final Test Module \arabic{section}}
 \MLabel{M05_Abschlusstest_Test}
 \MDeclareSiteUXID{VBKM05_Abschlusstest}
 
 \begin{MExercise} %Testaufgabe
-Identify the figures below as precise as possible by specifying the name of the type 
-(preceded by an adjective if necessary) describing as many properties 
+Identify the figures below as precisely as possible by specifying the name of the type 
+(preceded by an adjective if necessary) and describing as many properties 
 of the figure as possible.
 
 \begin{center}
@@ -4936,7 +4923,7 @@ Are the following results and statements right or wrong?
  Every square is a parallelogram. \\
 %
 \MLCheckbox{1}{ExM05TestAg24} & % \MLCheckbox{0}{ExM05TestAg25} & %
- It exists exactly one square with a diagonal of $5\MEinheit{cm}$. \\
+ There exists exactly one square with a diagonal of $5\MEinheit{cm}$. \\
 %
 \MLCheckbox{1}{ExM05TestAg26} & % \MLCheckbox{0}{ExM05TestAg27} & %
  A triangle with the angles $36\MGrad$ and $54\MGrad$ is right-angled. \\
@@ -5009,11 +4996,10 @@ Are the following results and statements right or wrong?
 
 \begin{MExercise} %Testaufgabe: Gemeinsame Abschlussaufgabe der 
 % TU9-Brueckenkurse von OMB+ und VE&MINT:
-Let a triangle ABC with side lengths
+Consider a triangle ABC with side lengths
 $a = 5\MEinheit{cm}$,
 $b = 6\MEinheit{cm}$, and
-$c = 9\MEinheit{cm}$
-be given. On the side $c$ a point $P$ and on the side $b$ a point $Q$ 
+$c = 9\MEinheit{cm}$. On the side $c$ a point $P$ and on the side $b$ a point $Q$ 
 are chosen such that $PQ$ is parallel to the side $a$ and 
 $\MGeoAbstand{P}{Q} = \MZahl{0}{50}\MEinheit{cm}$. Calculate the lengths 
 of the line segments $\MGeoAbstand{P}{B}$ and $\MGeoAbstand{Q}{C}$ specified in centimetre.
@@ -5057,7 +5043,7 @@ of the line segments $\MGeoAbstand{P}{B}$ and $\MGeoAbstand{Q}{C}$ specified in 
 
 \begin{MExercise}
 \MLabel{VBKM05_A_Quadratkreise}
-Let a square with sides of length $a$ be given. Find the formulas for the area and the circumference
+Consider a square with sides of length $a$. Find the formulas for the area and the circumference
 for the largest circle inscribed to the square as well as for the smallest circle containing the 
 square completely:
 \begin{MExerciseItems}
