@@ -6,8 +6,7 @@ Created on Jun 15, 2016
 import unittest
 from test.systemtests.SeleniumTest import SeleniumTest
 
-class Chapter1Test( SeleniumTest ):
-		
+class Chapter1Test( SeleniumTest ):		
 	'''
 	Test chapter 1
 	'''
