@@ -1,4 +1,3 @@
-
 # VEUNDMINT
 VEUNDMINT is a repository that enables users to build their own Online Learning Environments
 from Latex files. It will convert latex input to html / css / js output and includes many custom
@@ -12,7 +11,7 @@ features such as exercises, tests, glossary, etc. It is easily extendable.
 
 Following, you will find installation instructions to get you started. This package is build in **Python3**. To get you started, first clone this repository
 ```
-git clone https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs.git VEUNDMINT
+git clone git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git VEUNDMINT
 cd VEUNDMINT
 ```
 You need permissions, to do so, as long as we are still developing. If you want to participate, send us a request.
@@ -52,6 +51,8 @@ php-cli
 ```
 npm install
 bower install
+(or npm run bower_install if using a virtual Python environment)
+
 ```
 ### start make script that will kick off the converter and run gulp afterwards
 ```
