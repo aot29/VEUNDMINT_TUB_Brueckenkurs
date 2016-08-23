@@ -1051,9 +1051,8 @@ class Plugin(basePlugin):
 			for i in range(len(self.data[glb])):
 				if str(i) in self.data[glb]:
 					s += "global" + glb + "[" + str(i) + "] = " + str(self.data[glb][str(i)]) + ";\n"
-		
-
-		        self.sys.writeTextFile(os.path.join(self.options.targetpath, 'js', self.options.convinfofile), s, self.options.outputencoding)
+					
+				self.sys.writeTextFile(os.path.join(self.options.targetpath, 'js', self.options.convinfofile), s, self.options.outputencoding)
 
 
 	# generate css and js style files
