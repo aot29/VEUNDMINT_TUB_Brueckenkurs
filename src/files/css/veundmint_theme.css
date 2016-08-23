@@ -79,13 +79,22 @@ ol .btn {
     
 /*end FF/RW*/
 
-/*start extra styles for nav and TOC*/
+    /* Tools */
     #navbar {
         margin-bottom: 0px;
         border-radius: 0;
     }
+    
+    #tools .btn-link {
+		color: #337ab7;
+    }
+    
+	/* TOC */    
     #subtoc {
         margin-top: 20px;
+    }
+    #toc h3 {
+    	margin-top: 0.25em;
     }
     #toc ul {
          list-style-type: none;
@@ -95,11 +104,11 @@ ol .btn {
 		font-family: Helvetica, sans-serif;
 		color: #337ab7;
     }
-/*    
-    .panel-body>ul {
+  
+    .panel-body > ul:first-child {
     	padding-left: 0;
     }
-*/
+
     .selectedEntry {
     	font-weight: bold;
     }
@@ -131,16 +140,6 @@ ol .btn {
 	    color: #000055;
     }
     
-    /* Toolbar */
-    
-    #toolsNav {
-	    margin-top: 3em;
-    }
-    
-    #toolsNav .navbar-nav > li > a {
-	    padding-top: 0;
-	    padding-bottom: 0;
-    }
 /*end extra styles for TOC*/
 
 /* start Off canvas layout*/
@@ -222,7 +221,7 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-	#toolsSidebar {
+	#tools {
 		display: none;
 	}
 	.ffrwButton {

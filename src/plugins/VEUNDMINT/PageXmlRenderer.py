@@ -127,6 +127,9 @@ class RouletteDecorator( PageXmlDecorator ):
 		# call the method from the superclass
 		xml = super().generateXml( tc )
 		
+		# skip on special pages
+		if AbstractXmlRenderer.isSpecialPage( tc ) : return xml
+		
 		# find the roulette questions hidden in the content
 		roulettes = etree.Element( 'roulettes' )
 
@@ -147,6 +150,7 @@ class RouletteDecorator( PageXmlDecorator ):
 			if rid in self.data['DirectRoulettes']:
 				maxid = self.data['DirectRoulettes'][rid]
 			else:
+				
 				raise Exception("Could not find roulette id " + rid)
 			bt = "<button type=\"button\" class=\"btn btn-success roulettebutton\" onclick=\"rouletteClick('%s',%s,%s);\">%s</button>" % ( rid, myid, maxid, self.i18strings['roulette_new'] )
 			# take care not to have any " in the string, as it will be passed as a string to js
@@ -232,6 +236,9 @@ class QuestionDecorator(PageXmlDecorator):
 		"""
 		# call the method from the superclass
 		xml = super().generateXml(tc)
+		
+		# skip on special pages
+		if AbstractXmlRenderer.isSpecialPage( tc ) : return xml
 
 		# find the questions hidden in the content
 		questions = etree.Element( 'questions' )

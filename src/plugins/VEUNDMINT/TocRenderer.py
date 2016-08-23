@@ -38,6 +38,10 @@ class TocRenderer( AbstractXmlRenderer ):
 		@return an etree element
 		"""
 		toc = etree.Element( 'toc' )
+		
+		# skip on special pages
+		if AbstractXmlRenderer.isSpecialPage( tc ) : return toc
+
 		pageId = tc.myid
 		# add a parameter to the tree: the currently selected page
 		toc.set( 'forPage', str( pageId ) )

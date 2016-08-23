@@ -24,7 +24,7 @@ class PageHeadTest( SeleniumTest ):
         Test head of the page and buttons
         '''
         # Find the head section of the page
-        head = self.driver.find_element_by_id( "fhead" )
+        head = self.getElement( "navbarTop" )
         self.assertTrue( head, "Page head is missing" )
 
         # Test nav buttons
@@ -38,24 +38,9 @@ class PageHeadTest( SeleniumTest ):
         self._testButton( "homebutton", "index.html",
                           None,
                           self.locale[ "hint-home" ] )
-        self._testButton( "starbutton", "starClick",
+        self._testButton( "databutton", "data.html",
                           None,
-                          self.locale[ "msg-current-favorites" ] )
-        self._testButton( "minusbutton", "changeFontSize",
-                          None,
-                          self.locale[ "hint-zoomout" ] )
-        self._testButton( "plusbutton", "changeFontSize",
-                          None,
-                          self.locale[ "hint-zoomin" ] )
-        self._testButton( "sharebutton", "shareClick",
-                          None,
-                          self.locale[ "msg-shared-page" ] )
-        self._testButton( "settingsbutton", "toggle_settings",
-                          None,
-                          self.locale[ "hint-settings" ] )
-        self._testButton( "menubutton", "menuClick",
-                          None,
-                          self.locale[ "hint-menu" ] )
+                          self.locale[ "hint-home" ] )
 
 
     def _testButton(self, elid, href, text, hint):

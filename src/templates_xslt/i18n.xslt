@@ -56,6 +56,13 @@
 				"ui-missing-tooltip" : "(there wil be no tips during the test)",
 				"ui-login" : "Log in",
 				"ui-course-data" : "Course data",
+
+				"VBKM_MISCCOURSEDATA": "My course data",
+				"VBKM_MISCSEARCH": "Search",
+				"VBKM_MISCSETTINGS": "Register for the course",
+				"VBKM_MISCLOGIN" : "Log in",
+				"VBKM_MISCLOGOUT" : "Log out",
+				"VBKM_MISCFAVORITES" : "Favorites",
 			
 				"hint-databutton" : "Course data",
 				"hint-homebutton" : "Back to course homepage",
@@ -161,7 +168,7 @@
 				"roulette_text": "In the online version, exercises from an exercise list will be shown here",
 				"roulette_new": "New exercise",
 				"roulette_instruction": "Reduce as far as possible",
-				"course-title": "Preparatory Online Course in Mathematics"			
+				"course-title": "Preparatory Online Course in Mathematics",
 				}
 				} );
 		</script>
@@ -203,6 +210,14 @@
 				"ui-missing-tooltip" : "(im laufenden Test keine Tipps)",
 				"ui-login" : "Anmelden",
 				"ui-course-data" : "Kursdaten",
+				
+				"VBKM_MISCCOURSEDATA": "Meine Kursdaten",
+				"VBKM_MISCSEARCH": "Suchen",
+				"VBKM_MISCSETTINGS": "Anmeldung zum Kurs",
+				"VBKM_MISCLOGIN" : "Benutzer anmelden",
+				"VBKM_MISCLOGOUT" : "Logout",
+				"VBKM_MISCFAVORITES" : "Aktuelle Favoriten",
+				
 				"hint-homebutton" : "Zurück zur Homepage des Kurses",
 				"hint-databutton" : "Meine Kursdaten anzeigen",
 				"hint-listebutton" : "Stichwortverzeichnis anzeigen",

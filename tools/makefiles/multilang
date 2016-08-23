@@ -32,15 +32,20 @@ OUTPUT = tu9onlinekurstest
 DEFAULT_LANG = de
 
 # Declare as phony so targets will run even if there's a file by that name
-.PHONY: convert merge fixlinks fixredirects cleanup all 
+.PHONY: convert merge fix fixRedirects fixSpecialPages cleanup all 
 
 
 #
-# Build everything
+# Build everything for the non-bootstrap version
 #
-all: |cleanup convert merge fix startGulp
+all: |cleanup convert merge fixRedirects fix startGulp
 	echo "ready"
 
+#
+# Build everything for the bootstrap version
+#
+allbootstrap: |cleanup convert merge fixRedirects fix fixSpecialPages startGulp
+	echo "ready"
 
 #
 # Use the converter to build the version specified by CURRENT_LANG
@@ -122,6 +127,7 @@ merge:
 #
 # Don't use Unix softlinks here (ln -s),
 # as the output should also work on non-Unixes.
+# This whole redirection system is unecessarily convoluted. Special pages should be dealt with in mintmod.
 #
 define fixRedirects_cmd
 	# copy HTML-redirects to each language version
@@ -132,7 +138,7 @@ endef
 #
 # Copy redirect pages to each html/language directory
 # Moved to its own target, to make sure it is done 
-# Before serach and replace starts in "fix" target.
+# Before search and replace starts in "fix" target.
 #
 fixRedirects:
 	# set CURRENT_LANG to de
@@ -142,6 +148,40 @@ fixRedirects:
 	# set CURRENT_LANG to en
 	$(eval CURRENT_LANG := en)
 	$(fixRedirects_cmd)
+
+
+# Copy special pages to their definitive location.
+# This should be dealt with in mintmod
+define fixSpecialPages_cmd
+	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/data.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCCOURSEDATA;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/data.html
+	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/config.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/config.html
+	-cd $(OUTPUT)/html  && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGIN;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/login.html
+	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/logout.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGOUT;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/logout.html
+	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/search.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSEARCH;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/search.html
+	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/favorites.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCFAVORITES;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/favorites.html
+	
+	#now correct the links
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CONFIG|href=\"\.\./$(CURRENT_LANG)/config.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CDATA|href=\"\.\./$(CURRENT_LANG)/data.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGIN|href=\"\.\./$(CURRENT_LANG)/login.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGOUT|href=\"\.\./$(CURRENT_LANG)/logout.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_SEARCHSITE|href=\"\.\./$(CURRENT_LANG)/search.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_FAVORITESSITE|href=\"\.\./$(CURRENT_LANG)/favorites.html|g" {} \;	    
+endef
+
+
+#
+# Move special pages to their definitive location
+# this will overwrite some but not all redirect pages
+#
+fixSpecialPages:
+	# set CURRENT_LANG to de
+	$(eval CURRENT_LANG := de)
+	$(fixSpecialPages_cmd)
+
+	# set CURRENT_LANG to en
+	$(eval CURRENT_LANG := en)
+	$(fixSpecialPages_cmd)
 
 
 #
@@ -199,7 +239,7 @@ endef
 #
 # Fix the link paths in the HTML files
 #
-fix: fixRedirects
+fix: 
 	# Fix paths to common (*.js, *.css ...) external files
 	# Javascript links seem to be inserted in various places with different syntax
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script src=\"\.\./|<script src=\"\.\./\.\./|g" {} \;
@@ -232,12 +272,6 @@ fix: fixRedirects
 
 	# fix redirect to English "contents of the module" page
 	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.1/modstart\.html|3\.1\.1/modstart\.html|g" chapter.html;
-
-	# fix redirect to English "view index" page
-	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.5/modstart\.html|3\.1\.4/modstart\.html|g" search.html;
-
-	# fix redirect to English "register account page" page
-	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.3/modstart\.html|3\.1\.3/modstart\.html|g" config.html;
 
 	# replace index.html with src/templates_html5/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_html5/html5_choose_language_simple.html $(OUTPUT)/index.html
