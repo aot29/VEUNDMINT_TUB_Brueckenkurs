@@ -287,6 +287,6 @@ cleanup:
 # echo instruction how to proceed otherwise
 #
 startGulp:
-	@type gulp >/dev/null 2>&1 && gulp ||echo "gulp does not exist. You need to install npm (node package manager) first. Then install project dependencies via 'npm install' and build the online version with 'gulp' or run this make script again after you installed npm and dependencies"
+	@type npm >/dev/null 2>&1 && npm run gulp ||echo "npm does not exist. You need to install npm (node package manager) first. Then install project dependencies via 'npm install' and build the online version with 'gulp' or run this make script again after you installed npm and dependencies"
 
 
