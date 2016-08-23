@@ -3,11 +3,11 @@ it is responsible for the document loaded action that was befor in the body onlo
 onload="loadHandler()" onunload="unloadHandler()" */
 
 $(function() {
-  loadHandler();
+  globalloadHandler("");
 });
 
 $(window).on('beforeunload', function(){
-	unloadHandler();
+	globalunloadHandler();
  });
 
 //UMD JS Modules Starter template taken from https://gist.github.com/cferdinandi/ece94569aefcffa5f7fa
