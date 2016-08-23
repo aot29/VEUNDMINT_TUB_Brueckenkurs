@@ -2,19 +2,11 @@ var config = require('../config')
 var gulp   = require('gulp')
 var path   = require('path')
 var watch  = require('gulp-watch')
+var browserSync = require('browser-sync')
+var reload = browserSync.reload
 
 var watchTask = function() {
-  var watchableTasks = ['fonts', 'images', 'css', 'html']
-
-  watchableTasks.forEach(function(taskName) {
-    var task = config.tasks[taskName]
-    if(task) {
-      //var glob = path.join(config.root.src, task.src, '**/*.{' + task.extensions.join(',') + '}')
-      // watch(glob, function() {
-      //  require('./' + taskName)()
-      // })
-    }
-  })
+  gulp.watch(["./public/*.html", "./public/css/*.css", "./public/js/*.js"]).on("change", reload);
 }
 
 gulp.task('watch', ['browserSync'], watchTask)
