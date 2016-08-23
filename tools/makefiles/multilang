@@ -36,11 +36,16 @@ DEFAULT_LANG = de
 
 
 #
-# Build everything
+# Build everything for the non-bootstrap version
 #
-all: |cleanup convert merge fix startGulp
+all: |cleanup convert merge fixRedirects fix startGulp
 	echo "ready"
 
+#
+# Build everything for the bootstrap version
+#
+allbootstrap: |cleanup convert merge fixRedirects fix fixSpecialPages startGulp
+	echo "ready"
 
 #
 # Use the converter to build the version specified by CURRENT_LANG
@@ -142,6 +147,40 @@ fixRedirects:
 	# set CURRENT_LANG to en
 	$(eval CURRENT_LANG := en)
 	$(fixRedirects_cmd)
+
+
+# Copy special pages to their definitive location.
+# This should be dealt with in mintmod
+define fixSpecialPages_cmd
+	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/data.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCCOURSEDATA;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/data.html
+	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/config.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/config.html
+	-cd $(OUTPUT)/html  && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGIN;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/login.html
+	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/logout.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGOUT;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/logout.html
+	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/search.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSEARCH;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/search.html
+	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/favorites.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCFAVORITES;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/favorites.html
+	
+	#now correct the links
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CONFIG|href=\"\.\./$(CURRENT_LANG)/config.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CDATA|href=\"\.\./$(CURRENT_LANG)/data.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGIN|href=\"\.\./$(CURRENT_LANG)/login.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGOUT|href=\"\.\./$(CURRENT_LANG)/logout.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_SEARCHSITE|href=\"\.\./$(CURRENT_LANG)/search.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_FAVORITESSITE|href=\"\.\./$(CURRENT_LANG)/favorites.html|g" {} \;	    
+endef
+
+
+#
+# Move special pages to their definitive location
+# this will overwrite some but not all redirect pages
+#
+fixSpecialPages:
+	# set CURRENT_LANG to de
+	$(eval CURRENT_LANG := de)
+	$(fixSpecialPages_cmd)
+
+	# set CURRENT_LANG to en
+	$(eval CURRENT_LANG := en)
+	$(fixSpecialPages_cmd)
 
 
 #
@@ -253,6 +292,6 @@ cleanup:
 # echo instruction how to proceed otherwise
 #
 startGulp:
-	@type gulp >/dev/null 2>&1 && gulp ||echo "gulp does not exist. You need to install npm (node package manager) first. Then install project dependencies via 'npm install' and build the online version with 'gulp' or run this make script again after you installed npm and dependencies"
+	@type npm >/dev/null 2>&1 && npm run gulp ||echo "npm does not exist. You need to install npm (node package manager) first. Then install project dependencies via 'npm install' and build the online version with 'gulp' or run this make script again after you installed npm and dependencies"
 
 

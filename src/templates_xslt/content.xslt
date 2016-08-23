@@ -7,13 +7,13 @@
 		<xsl:variable name="selectedPage" select="toc/entries/entry[@selected='True']/children/entry/children/entry[@selected='True']" />
 		<!-- Is the selected page a module page? -->
 		<xsl:variable name="isModuleSelected" select="not ($selectedPage) and $selectedModule" />
-		<!-- Is the selected page the welcome page? -->
-		<xsl:variable name="isFirstPage" select="@uxId = 'VBKM_FIRSTPAGE'" />
 		
 		<!-- Module level pages don't have a tab bar at the top, so need in-line CSS to override -->
-		<xsl:variable name="inlineCss"><xsl:if test="$isModuleSelected">border: 1px solid #ccc; border-radius: 4px;</xsl:if></xsl:variable>
+		<xsl:variable name="inlineCss"><xsl:if test="$isModuleSelected or @isSpecialPage='True'">border: 1px solid #ccc; border-radius: 4px;</xsl:if></xsl:variable>
 
 		<div class="row" id="pageContents" style="{$inlineCss}">
+			<xsl:call-template name="zoom" />
+			
 			<!-- Placeholder. Whatever non-valid HTML comes out of TTM will be pasted here in PageTUB, after the XSLT transformation is done -->
 			<content/>
 
@@ -24,6 +24,14 @@
 				</a>
 			</xsl:if>
 			
+		</div>
+	</xsl:template>
+
+
+	<xsl:template name="zoom">
+		<div class="pull-right">
+			<a data-toggle="tooltip" id="zoomoutbutton" onclick="changeFontSize(-5);" class="btn btn-link glyphicon glyphicon-zoom-out"></a>
+			<a data-toggle="tooltip" id="zoominbutton" onclick="changeFontSize(5);" class="btn btn-link glyphicon glyphicon-zoom-in"></a>
 		</div>
 	</xsl:template>
 
