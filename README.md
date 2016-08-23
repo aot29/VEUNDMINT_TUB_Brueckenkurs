@@ -51,6 +51,8 @@ php-cli
 ```
 npm install
 bower install
+(or npm run bower_install if using a virtual Python environment)
+
 ```
 ### start make script that will kick off the converter and run gulp afterwards
 ```

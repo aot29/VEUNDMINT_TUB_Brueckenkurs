@@ -2,7 +2,7 @@ var config       = require('../config')
 if(!config.tasks.scripts) return
 
 var gulp         = require('gulp')
-//var gulpif       = require('gulp-if')
+var gulpif       = require('gulp-if')
 var browserSync  = require('browser-sync')
 //var sass         = require('gulp-sass')
 //var sourcemaps   = require('gulp-sourcemaps')
@@ -21,7 +21,9 @@ var paths = {
 var scriptsTask = function () {
   return gulp.src(paths.src)
     .pipe(using({prefix:'Using script', path:'relative', color:'yellow', filesize:true}))
-    .pipe(concat('app.js'))
+    .pipe(gulpif(global.production,
+      concat('app.js')
+    ))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
 }
