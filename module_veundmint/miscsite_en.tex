@@ -95,7 +95,7 @@ Cannot access browser data!
 </p>
 Optional information: &nbsp;&nbsp;<button type="button" id="updatepdatabutton"
 style="visibility:hidden" class="criticalbutton"
-onclick="userupdate_click();">Update personal dat (optional):</button> 
+onclick="intersite.userupdate_click();">Update personal dat (optional):</button>
 <table>
   <tr><td align=left>First name:</td><td align=left><input id="USER_VNAME" type="text" size="40"></input></td></tr>
   <tr><td align=left>Last name:</td><td align=left><input id="USER_SNAME" type="text" size="40"></input></td></tr>
@@ -113,7 +113,7 @@ Data on intended course (optional, if known or planned):
 <p>
 Choose a login name for working on the course:
 </p>
-Login name: <input id="USER_UNAME" type="text" size="18" oninput="usercheck();" onkeyup="usercheck();" onpaste="usercheck();" onpropertychange="usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
+Login name: <input id="USER_UNAME" type="text" size="18" oninput="intersite.usercheck();" onkeyup="intersite.usercheck();" onpaste="intersite.usercheck();" onpropertychange="intersite.usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
 <br />
 <div class="usercreatereply"><p id="ulreply_p"> </p></div>
 <br /><br />
@@ -127,11 +127,11 @@ can only be issued if the optional data field s have been submitted.</div>
 </div>
 \end{html}
 
-% <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="usercreatelocal_click(1);">Register above user data in the browser</button><br />
-% <button type="button" id="RESETBUTTON" style="height:60px;width:250px;background:#FFD0C0" onclick="userreset_click();">Delete all user data</button>
+% <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="intersite.usercreatelocal_click(1);">Register above user data in the browser</button><br />
+% <button type="button" id="RESETBUTTON" style="height:60px;width:250px;background:#FFD0C0" onclick="intersite.userreset_click();">Delete all user data</button>
 
 
-% <button type="button" id="LOGINBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="userlogin_click();">Switch user</button><br />
+% <button type="button" id="LOGINBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="intersite.userlogin_click();">Switch user</button><br />
 
 
 \begin{html}
@@ -146,7 +146,7 @@ deletion.
 
 <br /><br />
 <button type="button" class="criticalbutton" id="RESETBUTTON2"
-onclick="userdelete_click();">Delete account</button> </div>
+onclick="intersite.userdelete_click();">Delete account</button> </div>
 <br /><br />
 <div class="xreply">
 <p id="CHECKIS">

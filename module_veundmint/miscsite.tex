@@ -92,7 +92,7 @@ und Ihr Bearbeitungsstand ist auch auf anderen Rechnern und Geräten verfügbar:
 <p id="LOGINFIELD">
 Kann nicht auf Browserdaten zugreifen!
 </p>
-Persönliche Angaben (notwendig um eine Teilnahmebestätigungen zu erstellen):&nbsp;&nbsp;<button type="button" id="updatepdatabutton" style="visibility:hidden" class="criticalbutton" onclick="userupdate_click();">Persönliche Daten aktualisieren</button>
+Persönliche Angaben (notwendig um eine Teilnahmebestätigungen zu erstellen):&nbsp;&nbsp;<button type="button" id="updatepdatabutton" style="visibility:hidden" class="criticalbutton" onclick="intersite.userupdate_click();">Persönliche Daten aktualisieren</button>
 <table>
   <tr><td align=left>Vorname:</td><td align=left><input id="USER_VNAME" type="text" size="40" ></input></td></tr>
   <tr><td align=left>Nachname:</td><td align=left><input id="USER_SNAME" type="text" size="40"></input></td></tr>
@@ -108,7 +108,7 @@ Freiwillige Angaben zum angestrebten Studiengang (falls geplant bzw. bekannt):
 <br />
 <div id="USERNAMEFIELD">
 Wählen Sie einen Loginnamen für die Kursbearbeitung:<br />
-Loginname: <input id="USER_UNAME" type="text" size="18" oninput="usercheck();" onkeyup="usercheck();" onpaste="usercheck();" onpropertychange="usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
+Loginname: <input id="USER_UNAME" type="text" size="18" oninput="intersite.usercheck();" onkeyup="intersite.usercheck();" onpaste="intersite.usercheck();" onpropertychange="intersite.usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
 <br />
 <div class="usercreatereply"><p id="ulreply_p"> </p></div>
 <br /><br />
@@ -122,13 +122,13 @@ werden können, wenn die freiwilligen Felder vollständig ausgefüllt sind.
 \end{html}
 
 % \textbf{Kursdaten zurücksetzen:}
-% 
-% % <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="usercreatelocal_click(1);">Obige Benutzerdaten im Browser registrieren</button><br />
+%
+% % <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="intersite.usercreatelocal_click(1);">Obige Benutzerdaten im Browser registrieren</button><br />
 % Die in diesem Browser und auf unseren Servern gespeicherten Daten zu diesem Kurs werden zurückgesetzt,
 % der Kurs kann dadurch von vorne bearbeitet werden. Benutzername, Passwort und persönliche Daten bleiben erhalten.
-% 
+%
 % \begin{html}
-% <button type="button" class="criticalbutton" id="RESETBUTTON1" onclick="userreset_click();">Kursdaten zurücksetzen</button>
+% <button type="button" class="criticalbutton" id="RESETBUTTON1" onclick="intersite.userreset_click();">Kursdaten zurücksetzen</button>
 % \end{html}
 
 \begin{html}
@@ -141,7 +141,7 @@ Die in diesem Browser und auf unseren Servern gespeicherten Daten inklusive des 
 Beachten Sie, dass ein einmal registrierter Accountname auch nach Löschung des Accounts nicht mehr für eine Registrierung
 zur Verfügung steht.
 <br /><br />
-<button type="button" class="criticalbutton" id="RESETBUTTON2" onclick="userdelete_click();">Account löschen</button>
+<button type="button" class="criticalbutton" id="RESETBUTTON2" onclick="intersite.userdelete_click();">Account löschen</button>
 </div>
 <br /><br />
 <div class="xreply">

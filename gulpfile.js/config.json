@@ -8,7 +8,16 @@
     "browserSync": {
       "server": {
         "baseDir": "public"
-      }
+      },
+      "logFileChanges": true,
+      "logConnections": true,
+      "files": [
+        "./public/*.html",
+        "./public/html/**/*.html",
+        "./public/css/*.css",
+        "./public/js/*.js"
+      ],
+      "injectChanges": true
     },
     "css": {
       "src": [
@@ -36,6 +45,7 @@
         "./tu9onlinekurstest/js/math.js",
         "./tu9onlinekurstest/js/mparser.js",
         "./tu9onlinekurstest/js/dynamiccss.js",
+        "./tu9onlinekurstest/js/exercises.js",
         "./tu9onlinekurstest/js/dlog.js",
         "./tu9onlinekurstest/js/userdata.js",
         "./tu9onlinekurstest/js/scormwrapper.js",
@@ -43,7 +53,7 @@
         "./tu9onlinekurstest/js/CLDRPluralRuleParser.js",
         "./tu9onlinekurstest/js/mintscripts_bootstrap.js",
         "./tu9onlinekurstest/js/servicescripts.js",
-        "./tu9onlinekurstest/js/intersite.js",
+        "./tu9onlinekurstest/js/newIntersite.js",
         "./tu9onlinekurstest/js/veundmint.js"
       ],
       "dest": "js"
@@ -82,17 +92,18 @@
         "./public/js/jquery.i18n.js",
         "./public/js/jquery.i18n.messagestore.js",
         "./public/js/bootstrap.js",
-        "./public/js/convinfo.js",
         "./public/js/math.js",
-        "./public/js/mparser.js",
         "./public/js/dynamiccss.js",
+        "./public/js/convinfo.js",
+        "./public/js/mparser.js",
+        "./public/js/scormwrapper.js",
         "./public/js/dlog.js",
         "./public/js/userdata.js",
-        "./public/js/scormwrapper.js",
-        "./public/js/CLDRPluralRuleParser.js",
+        "./public/js/newIntersite.js",
+        "./public/js/exercises.js",
         "./public/js/mintscripts_bootstrap.js",
         "./public/js/servicescripts.js",
-        "./public/js/intersite.js",
+        "./public/js/CLDRPluralRuleParser.js",
         "./public/js/veundmint.js",
         "./public/css/app.css"
       ]

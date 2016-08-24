@@ -23,7 +23,7 @@
         <script src="{$basePath}/jquery.i18n.messagestore.js" type="text/javascript"></script> -->
 
 		<script>
-			
+
 			var isTest = <xsl:value-of select="@isTest" />;
 			var requestLogout = <xsl:value-of select="@requestLogout" />;
 			<![CDATA[
@@ -41,8 +41,7 @@
 			var activetooltip = null;
 			var activefieldid = "";
 			var sendcounter = 0;
-			var intersiteactive = false;
-			var intersiteobj = createIntersiteObj();
+
 			var localStoragePresent = false;
 			var SITE_ID = "(unknown)";
 			var SITE_UXID = "(unknown)";
@@ -59,22 +58,22 @@
 			var timerIterator = 0;
 			]]>
 
-			<!-- Create question objects  -->			
+			<!-- Create question objects  -->
 			<xsl:apply-templates select="questions/question" />
-			
+
 			var SITE_ID = "<xsl:value-of select="@siteId" />";
 			var SITE_UXID = "<xsl:value-of select="@uxId" />";
 			var SECTION_ID = "<xsl:value-of select="@sectionId" />";
-			
+
 			<!-- Paths -->
 			var linkPath = "<xsl:value-of select="$basePath" />";
 			var imagesPath = "<xsl:value-of select="$basePath" />/images";
 
-			<!-- Roulette exercises -->			
+			<!-- Roulette exercises -->
 			var docName = "<xsl:value-of select="@docName" />";
 			var fullName = "<xsl:value-of select="@fullName" />";
 			var sitejson_load = true;
-			var sitejson = {};					
+			var sitejson = {};
 			<!-- xsl:apply-templates select="roulettes/roulette" / -->
 
 			<!-- Event handlers -->
@@ -84,22 +83,22 @@
 		       	document.body.style.overflowX = "auto";
 		       	document.getElementById("courseContent").style.opacity = "1";
 		       	if ( $( window ).width() < 970 ) {
-			       	toggleCourseContent();	       		
+			       	toggleCourseContent();
 		       	}
 			    });
-			    
+
 			    function toggleCourseContent() {
 		        // When menu toggled, "hide" the rest of the page
 		        if ( document.getElementById('pageContainer').getElementsByClassName( 'responsive' ).length > 0 ) {
 		        	document.body.style.overflowX = "hidden";
 		        	document.getElementById("courseContent").style.opacity = "0.33";
-		        	
+
 		        } else {
 		        	document.body.style.overflowX = "auto";
 		        	document.getElementById("courseContent").style.opacity = "1";
-		        }		    	
+		        }
 			}
-			    
+
 	        $(document).ready(function() {
 	            // set the tooltip texts
 	            $('[data-toggle="tooltip"]').each( function(i, el) {
@@ -128,12 +127,12 @@
 	            $('[data-toggle="i18n"]').each(function(i, el) {
 	            	$(el).text( $.i18n( $(el).attr( 'data-i18n' ) ) );
 	            });
-	            
-	            // footer at bottom of column 
+
+	            // footer at bottom of column
 	            // don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
 	            $(window).resize( positionFooter );
 	            positionFooter();
-	            
+
 	            // body onload
 	            globalloadHandler("");
 	            
@@ -141,13 +140,10 @@
 	            if(requestLogout) {
 	            	localStorage.clear();
 	            }
-	            
-	            
-	
 	        });
-	                
+
 	        function positionFooter() {
-	            var docHeight = $(window).height();            
+	            var docHeight = $(window).height();
 	            var offsetHeight = $( "#navbarTop" ).height() + $( "#subtoc" ).height() + $( "#footer" ).height() * 2;
 	            $( "#pageContents" ).css( "minHeight", docHeight - offsetHeight + "px" );
 	        }
@@ -160,11 +156,11 @@
 		<!-- a new line -->
 		<xsl:text>&#xa;</xsl:text>
 	</xsl:template>
-	
+
 	<xsl:template match="roulette">
 		<xsl:if test="@myid = 0">sitejson['_RLV_<xsl:value-of select="@rid"/>'] = list();</xsl:if>
 		sitejson["_RLV_<xsl:value-of select="@rid"/>"].append( '<div id="DROULETTE{@rid}.{@myid}"><button type="button" class="roulettebutton" onclick="rouletteClick( {@rid}, {@myid}, {@maxid});">roulette_new</button><br/></div>');
-	</xsl:template>	
+	</xsl:template>
 
 
 </xsl:stylesheet>
