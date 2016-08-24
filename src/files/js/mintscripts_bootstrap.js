@@ -21,7 +21,7 @@
  * */
 
 // Ueberbleibsel aus parser.js
-function extround(zahl,n_stelle) 
+function extround(zahl,n_stelle)
 {
     var i;
     i = Math.pow(10,n_stelle);
@@ -41,26 +41,26 @@ function notationParser_IN(s) {
     // Am Ende haengende Verketter ^ und _ nicht an Parser weitergeben
     if (s.lastIndexOf("^") == (s.length - 1)) s = s.slice(0,s.length-1);
     if (s.lastIndexOf("_") == (s.length - 1)) s = s.slice(0,s.length-1);
-    
+
     // replace HTML tags which show up if the user used copy&paste from the webpage
     s.replace(/&nbsp;/g," ");
     s.replace(/\t/g," ");
-    
+
     return s;
-    
+
 }
 
 // parses math going from course internals to the user, course will always process math in unotation
 function notationParser_OUT(s) {
     // inverse of notationParser_IN except HTML tag treatment which cannot occur here
-    
+
     if (variant == "std") {
         s = s.replace(/\,/g,";");
         s = s.replace(/\\right\./g,"\\right\\DOTESCAPE"); // Quick&Dirty-workaround fuer Dezimalpunktreplacement
         s = s.replace(/\./g,",");
         s = s.replace(/\\right\\DOTESCAPE/g,"\\right\."); // Quick&Dirty-workaround fuer Dezimalpunktreplacement
     }
-    
+
     return s;
 }
 
@@ -70,18 +70,18 @@ function mygcd(a, b) {
 }
 
 function getIndeterminatePropName() {
-    /** 
+    /**
     Workaround for Firefox Bug https://bugzilla.mozilla.org/show_bug.cgi?id=1281733
-    
+
     Use 'readOnly' instead of 'indeterminate', otherwise Firefox (on Linux)
     will mess up the tristate checkbox display (however the values are correct).
     **/
-    var isFirefox = /Firefox/i.test( navigator.userAgent );        
-    return isFirefox? 'readOnly' : 'indeterminate';    
+    var isFirefox = /Firefox/i.test( navigator.userAgent );
+    return isFirefox? 'readOnly' : 'indeterminate';
 }
 
 // Erzeugt das zu einem interaktiven Fragefeld gehoerende JS-Objekt
-// uxid = unique exercise id zur Verwendung mit intersiteobj
+// uxid = unique exercise id zur Verwendung mit intersite.getObj()
 // c = Wert der Zaehlers MFieldCounter aus tex-Dokument
 // solution = Loesung (Typ der Loesung abhaengig vom Typ der Aufgabe, aber immer string)
 // id = alphanumerische id des Aufgaben-Elements (Eindeutig in html-file)
@@ -92,7 +92,7 @@ function getIndeterminatePropName() {
 function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, section) {
 
   // Durch ttm geschleuste Loesungsformeln entparsen falls ttm Sonderzeichen als HTML-Code codiert hat
-  
+
   solution = solution.replace(/\&amp;/g,"&");
   solution = solution.replace(/\&\#38;/g,"&");
   solution = solution.replace(/\&\#166;/g,"|");
@@ -102,7 +102,7 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   solution = solution.replace(/\&gt\;/g,">");
 
   // Umlauts, {, } and \ss will be given in unicode
-  
+
   ob = Object.create(null);
   ob.counter = c;
   ob.id = id;
@@ -112,7 +112,7 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   } else {
     ob.sync = 1;
   }
-  
+
   if (type == 2) {
     if (solution.indexOf("::smc") != -1) {
         var sm = solution.substr(solution.indexOf("::smc") + 5, solution.length - solution.indexOf("::smc") - 5);
@@ -126,8 +126,8 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   } else {
     ob.imgid = "QM" + ob.id;
   }
-  
-  
+
+
   if ((type == 6) || (type == 7)) {
     // Intervalle und Spezialaufgaben haben Loesungscode fuer linke und rechte Grenze, und Semikolons werden durch Kommata ersetzt.
     ob.solution = solution.replace(/\;/gi,",");
@@ -141,7 +141,7 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
       ob.solcodea = mathJS.compile("0");
       ob.solcodeb = mathJS.compile("0");
     }
-      
+
   } else {
     ob.solution = solution;
     try {
@@ -170,25 +170,25 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   ob.section = section;
   ob.uxid = uxid;
   ob.value = 0; // nur von typ 2 genutzt
-  
+
   // Elemente werden von handlerChange nach Eingabe des Benutzers gefuellt
   ob.rawinput = "";
   ob.texinput = "";
   ob.parsedinput = "";
- 
+
   // Dynamische prepare-Funktion unabhaengig vom Fragefeldtyp einbauen
   // Funktion bekommt das dem Feld zugewiesene DOM-Element als Parameter, clear xoder externes setting wird danach separat ausgefuehrt in InitResults
-  ob.prepare = function() { 
-	  this.element = document.getElementById(this.id); 
-	  if (this.type == 2) { 
-		  this.image = document.getElementById(this.option); 
-	  } 
+  ob.prepare = function() {
+	  this.element = document.getElementById(this.id);
+	  if (this.type == 2) {
+		  this.image = document.getElementById(this.option);
+	  }
   };
-  
+
   /**
    * Display a visual cue during exercise input
    * (e.g. question mark, cross, check).
-   * 
+   *
    * @param status - one of SOLUTION_NEUTRAL (default), SOLUTION_TRUE or SOLUTION_FALSE
    */
   ob.displayFeedback = function( status ) {
@@ -209,13 +209,13 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
 			className = "glyphicon-question-sign";
 			color = QCOLOR_NEUTRAL;
 	}
-	
-	// Get the image element on the page and set the bootstrap class 
+
+	// Get the image element on the page and set the bootstrap class
 	var icon = document.getElementById( this.imgid );
-	if ( typeof icon != 'undefined' && icon !== null ) { 
+	if ( typeof icon != 'undefined' && icon !== null ) {
 		icon.className = "glyphicon " + className;
 		icon.style.color = color;
-		
+
 	} else {
 		console.log( "Can't display status for image " + this.imgid );
 	}
@@ -248,10 +248,10 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
     if (type == 2) {
       // Uebersetzen der values fuer die Loesung: tex: 0 und 1, js: 0 = noch nicht geclickt, 1 = angewaehlt, 2 = abgewaehlt
       if (ob.solution == "0") ob.solution = "2"; else ob.solution = "1";
-      ob.clear = function() { 
-        this.element.checked = false; 
-        this.element[ getIndeterminatePropName() ] = true; 
-        this.value = "0"; 
+      ob.clear = function() {
+        this.element.checked = false;
+        this.element[ getIndeterminatePropName() ] = true;
+        this.value = "0";
         this.element.cval = "0"; this.message = ""; this.displayFeedback(); notifyPoints(this.counter, 0, SOLUTION_NEUTRAL); };
       ob.rawloadvalue = function(val) {
           this.value = val;
@@ -290,9 +290,9 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
       ob.convertinput = function() { return mparser.convertMathInput(notationParser_IN(this.rawinput), integrationsSchritte ); }
     }
   }
-  
+
   FVAR.push(ob);
-  
+
 }
 
 
@@ -319,9 +319,9 @@ function toggle_settings() {
 
 function selectColor(c) {
   logMessage(DEBUGINFO, "Color select: " + c);
-  if (intersiteactive == true) {
-    if (intersiteobj != null) {
-      intersiteobj.configuration.stylecolor = c;
+  if (intersite.isActive() == true) {
+    if (intersite.getObj() != null) {
+      intersite.getObj().configuration.stylecolor = c;
     }
   }
   applyLayout(false);
@@ -350,7 +350,7 @@ function toggle_hint(div_id) {
           } else {
             if (e.className == "chintbutton_open") {
               e.className = "chintbutton_closed";
-            } 
+            }
       }
     }
       }
@@ -384,11 +384,11 @@ function checkSimplification(type, input) {
   if (input.indexOf("e^") != -1) {
       ret.push(new Array("exp(TERM) statt e^TERM" , 1));
   }
-  
+
   if (input.indexOf("\\") != -1) {
       ret.push(new Array("Backslash-Notation verwendet" , 0));
   }
-  
+
   if (input.indexOf(")(") != -1) {
       ret.push(new Array("(...)*(...) statt (...)(...)" , 1));
   }
@@ -400,8 +400,8 @@ function checkSimplification(type, input) {
         ret.push(new Array("Produkte in Form " + res[1] + "*" + res[2] + " statt " + res[1] + res[2], 1));
     }
   }
-  
-  
+
+
   if ((type & 15) == 1) {
     // Alle Klammern durch runde Klammern ersetzen
     var rex = new RegExp('\\[','gi');
@@ -412,7 +412,7 @@ function checkSimplification(type, input) {
       ret.push(new Array("L&#246;sung ist nicht vereinfacht" , 1));
     }
   }
-  
+
   if ((type & 15) == 3) {
     // Hoechste Operation muss Addition/Subtraktion sein, Addition/Subtraktion darf auf tieferen Ebenen nicht vorkommen
     // Alle Klammern durch runde Klammern ersetzen
@@ -421,7 +421,7 @@ function checkSimplification(type, input) {
     rex = new RegExp('\\]','gi');
     input = input.replace(rex,")");
   }
-    
+
 
   if ((type & 16) == 16) {
     // Nur ein Bruchstrich erlaubt
@@ -438,14 +438,14 @@ function checkSimplification(type, input) {
       ret.push(new Array("Wurzeln sollen als Exponenten geschrieben werden" , 1));
     }
   }
-  
+
   if ((type & 128) == 128) {
     // Keine Betragsfunktion erlaubt
     if ((input.indexOf("abs") != -1) | (input.indexOf("|") != -1)) {
       ret.push(new Array("Betragsstriche sollen durch eine Fallunterscheidung geschrieben werden" , 1));
     }
   }
-  
+
   if ((type & 256) == 256) {
     // Keine Brueche und keine Potenzen erlaubt
     if ((input.indexOf("^") != -1) | (input.indexOf("/") != -1)) {
@@ -460,7 +460,7 @@ function checkSimplification(type, input) {
       ret.push(new Array("L&#246;sung soll eine Zahl sein" , 1));
     }
   }
-  
+
   if ((type & 2048) == 2048) {
     // Nur hoechstens ein ^ und kein / und * erlaubt
     if (input.indexOf("^") != -1) {
@@ -472,18 +472,18 @@ function checkSimplification(type, input) {
         ret.push(new Array("Nenner und Faktoren sollen aufgel&#246;st werden" , 1));
       }
     }
-    
+
   }
 
-  
+
   return ret;
 }
 
 function isProperNumber(s) {
-  if (s.indexOf("x") != -1) return false; // schliesst Hexadezimalzahlen aus    
-  if (s.indexOf("b") != -1) return false; // schliesst Binaerzahlen aus    
-  if (s.indexOf("o") != -1) return false; // schliesst Oktalzahlen aus    
-    
+  if (s.indexOf("x") != -1) return false; // schliesst Hexadezimalzahlen aus
+  if (s.indexOf("b") != -1) return false; // schliesst Binaerzahlen aus
+  if (s.indexOf("o") != -1) return false; // schliesst Oktalzahlen aus
+
   return $.isNumeric(s);
 }
 
@@ -506,7 +506,7 @@ function handlerChange(id, nocontentcheck) {
   if (FVAR[id].type == 2) {
     if (FVAR[id].smc.length > 0) nocontentcheck = 0;
   }
-    
+
   var formula = 0; // Stellt der Feldinhalt eine Formel dar?
   if (FVAR[id].type == 4) formula = 1; // Eingabefeld fuer mathematische Ausdruecke? Rohe Zahlen oder Intervalle werden nicht gehintet
   if (formula == 1) {
@@ -523,7 +523,7 @@ function handlerChange(id, nocontentcheck) {
 	    FVAR[id].parsedinput = ob.mathjs;
 	    FVAR[id].valcode = mathJS.compile(ob.mathjs);
 	    FVAR[id].valvalid = true;
-	    
+
       } catch(e) {
 	    // Eingabe konnte nicht geparset werden
 	    if (FVAR[id].texinput == "") FVAR[id].texinput = "\\text{("+$.i18n("msg-incorrect-input")+")}"; // "Fehlerhafte Eingabe"
@@ -532,7 +532,7 @@ function handlerChange(id, nocontentcheck) {
 	    FVAR[id].valvalid = false;
       }
       console.log("valid input " + FVAR[id].valvalid);
-      
+
     } else {
       // Eingabe war leer
       FVAR[id].texinput = "\\text{("+$.i18n("msg-missing-input")+")}"; // "Keine Eingabe"
@@ -544,19 +544,19 @@ function handlerChange(id, nocontentcheck) {
 
   if (nocontentcheck != 1) {
       check_group(id, id); // Erzeugt ggf. Meldungen, die zusaetzlich zur Formel angezeigt werden
-      
+
       if (FVAR[id].points == FVAR[id].maxpoints) {
-        if ((intersiteactive == true) && (FVAR[id].sync == 1)) {
-            if (intersiteobj.configuration.CF_TESTS == "1") {
+        if ((intersite.isActive() == true) && (FVAR[id].sync == 1)) {
+            if (intersite.getObj().configuration.CF_TESTS == "1") {
             var st = "";
             var timestamp = +new Date();
-            st = "EXSUCCESS: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", pagename:" + fullName + ", uxid:" + FVAR[id].uxid + ", elementid:" + id + ", input:" + FVAR[id].rawinput + ", message:" + FVAR[id].message;
-            sendeFeedback( { statistics: st }, true);
+            st = "EXSUCCESS: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", pagename:" + fullName + ", uxid:" + FVAR[id].uxid + ", elementid:" + id + ", input:" + FVAR[id].rawinput + ", message:" + FVAR[id].message;
+            intersite.sendeFeedback( { statistics: st }, true);
             }
         }
       }
   }
- 
+
   if (formula == 1) {
     var s = FVAR[id].texinput;
     console.log( "textinput " + s );
@@ -571,7 +571,7 @@ function handlerChange(id, nocontentcheck) {
     }
   } else closeInputContent();
 
-          
+
 }
 
 // Callback fuer die Fragegruppen-Buttons
@@ -603,27 +603,27 @@ function rawParse(eingabe) {
 
 // Uebernimmt die Inhalte der DOM-Elemente von Question-Feldern und faerbt sie entsprechend ein (auch Checkboxen!)
 function check_group(input_from, input_to) {
- 
+
     var d = document;
     var i;
     var s;
 
-  
+
     if (isTest == true) {
       // Bei Tests bilden alle vorhandenen Fragefelder eine Gruppe
       nPoints = 0;
       nMaxPoints = 0;
     }
-    
+
     for (i=input_from; i<=input_to; i++) {
             s = FVAR[i].id;
             var e = d.getElementById(s);
 
             // element may not exist, for example if it is part of roulette exercise which is not active
             if (e != null) {
-            
+
             switch(FVAR[i].type) {
-              
+
               case 1: {
                 // Eingabefeld mit alphanumerischer Loesung, case-sensitive
                 var v = e.value;
@@ -647,12 +647,12 @@ function check_group(input_from, input_to) {
               case 2: {
                 // tristate checkbox: indeterminate, true determinate, false determinate (having intersite values "0", "1", "2"), stored in val attribute of the element
                 var v = e.cval;
-                
+
                 if (v == "") {
                     logMessage(VERBOSEINFO, "cval \"\" mapped to \"0\"");
                     v = "0";
                 }
-                
+
                 if (v == "1") {
                     // dirty: Eigentlich sollte der neue Wert auch durch checkgroup getestet werden, aber das fuehrt auf eine Rekursion...
                     var j;
@@ -674,7 +674,7 @@ function check_group(input_from, input_to) {
                         }
                     }
                 }
-                  
+
                 FVAR[i].value = v;
                 FVAR[i].rawinput = v;
                 if (v == "0") {
@@ -686,10 +686,10 @@ function check_group(input_from, input_to) {
                         notifyPoints(i, 0, SOLUTION_FALSE);
                     }
                 }
-                
+
               break;
               }
-              
+
               case 3: {
                 // Eingabefeld mit reeller Loesung, geparset, exakt bis auf OPTION Stellen hinter dem Komma
                 // Leerstring in Vorgabeloesung: Leere Menge ist gefragt (nicht leerer String)
@@ -710,7 +710,7 @@ function check_group(input_from, input_to) {
                     solleer = 1;
                     soluta = {}; // die leere Menge als leeres Array moeglicher Werte
                 }
-                
+
                 if ((soluta.length == 1) && (solleer == 0)) {
                      // Es ist ein Element ohne Angabe von Mengenklammern gefragt
                      valuta = notationParser_IN(e.value).split(",");
@@ -759,8 +759,8 @@ function check_group(input_from, input_to) {
                    }
                    if (c==0) ok = 0;
                 }
-                
-                
+
+
         if (ok == 1) {
                   FVAR[i].message = "";
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
@@ -779,7 +779,7 @@ function check_group(input_from, input_to) {
                 }
                 break;
               }
-              
+
               case 4: {
                 // Eingabefeld mit Funktionsausdruck als Loesung, geparset, approximierter Vergleich an den Stuetzstellen 1,2,...,Anzahl verschoben um Anzahl/2 nach links
         // Ggf. Vereinfachungsvorschrift (Fall 5)
@@ -789,20 +789,20 @@ function check_group(input_from, input_to) {
                 var varia = options[1].split(","); // Mehrere Auswertungsvariablen durch Komma getrennt erkennen
         var stellen = options[2];
                 var vereinfachung = options[3]; // Werte 0..15 sind Vereinfachungstyp (0 = keine), Flags 16,32,64,128 sind optional
-                
+
                 var k;
                 var message = "";
                 var ok = true;
- 
+
                 // FVAR[i].rawinput und andere muessen hier vor Aufruf (z.B. von handlerChange) gesetzt sein (was gefixt werden muss)
 
         if (FVAR[i].valvalid == false) {
           ok = false;
           message = $.i18n("msg-unanswered-question"); // "Frage noch nicht beantwortet"
         } else {
-        
+
         var c1,c2;
-        
+
         if ((vereinfachung & 32) == 32) {
           // Nur nach Stammfunktion gefragt, beide Funktionen werden auf f(1.234)=0 normiert, es wird davon ausgegangen, dass es nur eine Variable gibt
           // und dass die Funktion bei x=1.234 existiert.
@@ -822,17 +822,17 @@ function check_group(input_from, input_to) {
                   first = 1 - (stuetzen*0.5); // erste Stuetzstelle, Definition macht JavaScript auch klar dass es floats sind
         }
 
-        
+
         vv = [];
         for (vj=0; vj<varia.length; vj++) vv[vj] = first;
-        
+
                 try {
 
           // ---------- Starting eval for vv = " + vv + " --------------------");
-          
+
           var ok = true;
           var fini = false;
-          
+
           while (fini == false) {
             // Bei gegebenen Stuetzstellen in vv auswerten
             var scope = mathJSFunctions;
@@ -845,16 +845,16 @@ function check_group(input_from, input_to) {
                         s = s - c2;
                         v = v - c1;
                     }
-                    
+
             var pd = "norm(" + s + " - " + v + ")";
                     var ed = rawParse(pd);
-                    
+
             if (!(Math.abs(extround(ed,stellen)-extround(0,stellen)) <= Math.pow(10,(stellen+2)*(-1)))) {
               ok = false;
               fini = true;
               message = $.i18n("msg-still-incorrect-input"); // "Eingabe ist noch nicht richtig"
             }
-            
+
             // Gesamtes Stuetzstellenarray inkrementieren
             var index = 0;
             var inc = true;
@@ -871,32 +871,32 @@ function check_group(input_from, input_to) {
               } else {
             inc = false;
               }
-            
+
             }
-            
-            
+
+
           }
-          
+
                   if (ok == true) message = $.i18n("msg-correct-answer"); // "Dies ist eine richtige L&#246;sung"
-          
-          
+
+
         } catch(e) {
           ok = false;
           message = $.i18n("msg-malformed-input"); // "Form der Eingabe ist fehlerhaft"
         }
-                
+
                 var messages = checkSimplification(vereinfachung, FVAR[i].rawinput);
-                
-        
+
+
         for (k=0; k<messages.length; k++) {
                     // if (message != "") { message = message + "<br />"; }
                     message = message + "<div style='color:#454545'>" + messages[k][0] + "</div>";
                     if (messages[k][1] == 1) ok = false;
                 }
-                
+
         } // endif von valvalid-test
 
-        
+
                 FVAR[i].message = message;
         if (ok) {
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
@@ -912,18 +912,18 @@ function check_group(input_from, input_to) {
         break;
               }
 
-              
+
          case 6: {
                 FVAR[i].rawinput = e.value;
         var b = notationParser_IN(e.value.trim());
                 b = b.replace(/;/gi,","); // Kommata und Semikolon in Musterloesung und Eingabe zulassen (Semikolon in Musterloesung wird von CreateQuestionObj verarztet)
                 var stellen = FVAR[i].option;
-                
+
         var typl = 0; // 0 = nicht bekannt, 1 = offen, 2 = abgeschlossen, 3 = minus unendlich
         var typr = 0;
-        var btypl = 0; 
+        var btypl = 0;
         var btypr = 0;
-        
+
             ok = 0;
 
         if (FVAR[i].solution.indexOf("(") != -1) typl = 1;
@@ -934,17 +934,17 @@ function check_group(input_from, input_to) {
         if (FVAR[i].solution.indexOf("]") != -1) typr = 2;
         if (FVAR[i].solution.indexOf("infty)") != -1) typr = 3;
         if (FVAR[i].solution.indexOf("-infty)") != -1) typr = 0;
-          
+
         if ((typr == 0) || (typl == 0)) {
 
           logMessage(CLIENTERROR, "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft");
-          
+
         } else {
-          
+
                   // Alternativen fuer "infty" erkennen
                   b = b.replace(/infinity/g, 'infty');
                   b = b.replace(/unendlich/g, 'infty');
-          
+
                   // mit dieser Technik wird noch (-1)*infty als infty interpretiert
                   if (b.indexOf("(") != -1) btypl = 1;
           if (b.indexOf("[") != -1) btypl = 2;
@@ -954,7 +954,7 @@ function check_group(input_from, input_to) {
           if (b.indexOf("]") != -1) btypr = 2;
           if (b.indexOf("infty)") != -1) btypr = 3;
                   if (b.indexOf("-infty)") != -1) btypr = 0;
-        
+
           if ((typl == btypl) && (typr == btypr)) {
             var s = b.split(",");
             var t = FVAR[i].solution.split(",");
@@ -975,8 +975,8 @@ function check_group(input_from, input_to) {
             }
           }
         }
-        
-        
+
+
                 if (ok == 1) {
           FVAR[i].message = "Dies ist eine richtige L&#246;sung";
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
@@ -990,7 +990,7 @@ function check_group(input_from, input_to) {
                   }
                 }
 
-        
+
         break;
               }
 
@@ -998,43 +998,43 @@ function check_group(input_from, input_to) {
             // Spezialisiertes Eingabefeld, Wirkung haengt von Fallindex ab
                 FVAR[i].rawinput = e.value;
         var b = notationParser_IN(e.value.trim());
-                var ok = 0;     
-        
+                var ok = 0;
+
 
             var options = FVAR[i].option.split(";",4);
                 var stuetzen = options[0];
                 var varia = options[1].split(","); // Mehrere Auswertungsvariablen durch Komma getrennt erkennen
         var stellen = options[2];
                 var styp = options[3]; // string der Spezialtyp der Aufgabe angibt
-                
+
 
                 var message = "";
-        
+
         switch(styp) {
 
           case "onlyempty": {
                     if (b.trim().length == 0) ok = 1;
             break;
           }
-          
+
                   case "vector": {
                     var n = rawParse(b);
                     ok = 1;
                     break;
                   }
-          
+
           case "evennat": {
             var n = rawParse(b);
             if ((n >= 1) && (Math.floor(n) == n) && (n % 2 == 0)) ok = 1;
             break;
           }
-          
+
           case "oddnat": {
             var n = rawParse(b);
             if ((n >= 1) && (Math.floor(n) == n) && (n % 2 == 1)) ok = 1;
             break;
           }
-          
+
           case "intervalelement": {
                     // Kommata und Semikolon in Musterloesung zugelassen (Semikolon in Musterloesung wird von CreateQuestionObj verarztet)
                     var typl = 0, typr = 0;
@@ -1047,11 +1047,11 @@ function check_group(input_from, input_to) {
             if (s.indexOf("]") != -1) typr = 2;
             if (s.indexOf("infty)") != -1) typr = 3;
             if (s.indexOf("-infty)") != -1) typr = 0;
-                    
+
             if ((typr == 0) || (typl == 0)) {
               logMessage(CLIENTERROR, "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft (Aufgabe Typ 7)");
             } else {
-              
+
                   var t = s.split(",");
               if (t.length == 2) {
             ok = 1;
@@ -1074,9 +1074,9 @@ function check_group(input_from, input_to) {
                           if ((typr == 1) && (h1 <= l)) ok = 0;
                           if ((typr == 2) && (h1 < l)) ok = 0;
                        }
-              } 
+              }
             }
-            
+
             break;
           }
 
@@ -1097,7 +1097,7 @@ function check_group(input_from, input_to) {
                       sp = rawParse(s);
                       ok = 1;
                     }
-                    
+
                     // Richtiger Bruchwert bis auf Abschaetzung?
                     if (Math.abs(extround(l,stellen)-extround(sp,stellen)) <= Math.pow(10,(stellen+2)*(-1))) {
                     } else {
@@ -1116,7 +1116,7 @@ function check_group(input_from, input_to) {
                         } else {
                             ok = 0; // ist keine reine ganze Zahl
                         }
-                        
+
                     } else {
                         var fr = b.split("/");
                         if (fr.length != 2) {
@@ -1151,8 +1151,8 @@ function check_group(input_from, input_to) {
                             }
                         }
                     }
-                    
-                    
+
+
                     break;
                   }
 
@@ -1160,7 +1160,7 @@ function check_group(input_from, input_to) {
               case "inputstring2": {
                 // Zur Datenerfassung: Strings mit genau 2 Zeichen (ohne trim) werden akzeptiert
                 if (b.length == 2) ok = 1;
-                break;    
+                break;
               }
 
               case "inputnumber2": {
@@ -1170,16 +1170,16 @@ function check_group(input_from, input_to) {
                       ok = 1;
                     }
                 }
-                break;    
+                break;
               }
-                  
+
                   default: {
             logMessage(CLIENTERROR, "STYP " + styp + " nicht bekannt (MSpecialQuestion)");
             ok = 0;
             break;
           }
         }
-        
+
                 if (ok == 1) {
           FVAR[i].message = "Dies ist eine richtige L&#246;sung";
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
@@ -1193,10 +1193,10 @@ function check_group(input_from, input_to) {
                   }
                 }
 
-        
+
         break;
               }
-              
+
             }
             } // closing brace from e==null check
     }
@@ -1237,7 +1237,7 @@ function GetSCORMApi()
       {
             API = ScanParentsForApi(window.top.opener);
       }
-      
+
       return API;
 }
 
@@ -1249,32 +1249,32 @@ function GetInteractionID(gid)
   if (objScormApi == null) return -1;
 
   var N = objScormApi.GetValue("cmi.interactions._count");
-  
+
   var id = -1;
   for (id=0; id<N; id++) {
     var sid = objScormApi.GetValue("cmi.interactions." + id + ".id");
     if (sid == gid) return id;
   }
-  
+
   // Neue Interaktion im LMS generieren und Werte initialisieren
   objScormApi.SetValue("cmi.interactions." + N + ".id",gid);
   objScormApi.SetValue("cmi.interactions." + N + ".type", "long-fill-in");
   objScormApi.SetValue("cmi.interactions." + N + ".description", "Question id " + gid);
   objScormApi.SetValue("cmi.interactions." + N + ".learner_response", "");
   objScormApi.SetValue("cmi.interactions." + N + ".result","neutral");
-  
+
   return N;
 }
 
 // Parameter: Die globale uxid (als string) des Fragefelds
 function GetResult(uxid)
 {
-  if (intersiteactive == true) {
-    if (intersiteobj.configuration.CF_LOCAL == "1") {
+  if (intersite.isActive() == true) {
+    if (intersite.getObj().configuration.CF_LOCAL == "1") {
       var j = 0;
-      for (j = 0; j < intersiteobj.scores.length; j++) {
-    if (intersiteobj.scores[j].uxid == uxid) {
-      return intersiteobj.scores[j].rawinput;
+      for (j = 0; j < intersite.getObj().scores.length; j++) {
+    if (intersite.getObj().scores[j].uxid == uxid) {
+      return intersite.getObj().scores[j].rawinput;
     }
       }
     }
@@ -1293,18 +1293,18 @@ function InitResults(empty)
 
   var i = 0;
   for (i=1; i<FVAR.length; i++) { FVAR[i].prepare(); }
-  
-  if (intersiteactive == true) {
-    if (intersiteobj.configuration.CF_LOCAL == "0") empty = true; // Benutzer will keine StorageNutzung
+
+  if (intersite.isActive() == true) {
+    if (intersite.getObj().configuration.CF_LOCAL == "0") empty = true; // Benutzer will keine StorageNutzung
   }
-  
-  if ((empty==true) || (intersiteactive!=true)) {
-    for (i = 1; i < FVAR.length; i++) { 
+
+  if ((empty==true) || (intersite.isActive()!=true)) {
+    for (i = 1; i < FVAR.length; i++) {
       FVAR[i].clear();
     }
   }
- 
-  if ((intersiteactive == true) && (empty==false)) {
+
+  if ((intersite.isActive() == true) && (empty==false)) {
     logMessage(VERBOSEINFO, "Performing MQuestion-result reload");
     var gid = "";
     var v = "";
@@ -1315,10 +1315,10 @@ function InitResults(empty)
       } else {
     v = null;
       }
-            
+
       if (v == null) v = "";
       switch(FVAR[i].type) {
-              
+
           case 1: {
         // Eingabefeld mit alphanumerischer Loesung, case-sensitive
                 e.value = v;
@@ -1353,7 +1353,7 @@ function InitResults(empty)
                 }
                 break;
               }
-              
+
               case 3: {
                 // Eingabefeld mit reeller Loesung, geparset, exakt bis auf OPTION Stellen hinter dem Komma, Mengen moeglich, Mengen moeglich
                 e.value = v;
@@ -1361,7 +1361,7 @@ function InitResults(empty)
                 check_group(i,i);
                 break;
               }
-              
+
               case 4: {
                 // Eingabefeld mit Funktionsausdruck als Loesung, geparset, approximierter Vergleich an den Stuetzstellen 1,2,...,Anzahl
                 if (v.trim() != "") {
@@ -1396,7 +1396,7 @@ function InitResults(empty)
                 check_group(i,i);
                 break;
               }
-              
+
           case 6: {
                 // Eingabefeld mit Intervall als Loesung
                 e.value = v;
@@ -1404,7 +1404,7 @@ function InitResults(empty)
                 check_group(i,i);
                 break;
           }
-              
+
           case 7: {
                 // Spezialisiertes Eingabefeld
                 e.value = v;
@@ -1414,7 +1414,7 @@ function InitResults(empty)
           }
       }
     }
-    
+
 
   } else {
     // Keine geladenen Daten oder empty==true, alle Felder werden geleert
@@ -1444,28 +1444,28 @@ function finish_button(name) {
       ratio = Math.round(ratio * 100) / 100;
       f.innerHTML += "<emph>"+$.i18n("msg-reached-point-ratio", ratio)+"</emph><br /><br />";// Es wurden " + ratio + "% der Punkte erreicht!
     }
-    
+
   }
   if (isTest == true) {
       testFinished = true;
-      
-      if ((intersiteactive==true) && (intersiteobj.configuration.CF_TESTS=="1")) {
-          pushISO(false);
+
+      if ((intersite.isActive()==true) && (intersite.getObj().configuration.CF_TESTS=="1")) {
+          intersite.pushIso(false);
           var timestamp = +new Date();
-          var cm = "TESTFINISH: " + "CID:" + signature_CID + ", user:" + intersiteobj.login.username + ", timestamp:" + timestamp + ", testname:" + name + ", nPoints:" + nPoints + ", maxPoints:" + nMaxPoints + ", ratio:" + (nPoints/nMaxPoints) + ", nMinPoints:" + nMinPoints;
-          sendeFeedback({statistics: cm }, true);
+          var cm = "TESTFINISH: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", testname:" + name + ", nPoints:" + nPoints + ", maxPoints:" + nMaxPoints + ", ratio:" + (nPoints/nMaxPoints) + ", nMinPoints:" + nMinPoints;
+          intersite.sendeFeedback({statistics: cm }, true);
           logMessage(VERBOSEINFO, "Testfinish gesendet");
       }
 
       if ((doScorm == 1) && (SITE_UXID == "VBKMT_AbgebeTest")) {
         // MatheV4: Gesamtpunktzahl ueber alle ABSCHLUSSTESTS mitteln und Prozentwert an SCORM uebertragen
-        
-    logMessage(VERBOSEINFO, "ENTRYTEST geht an SCORM"); 
+
+    logMessage(VERBOSEINFO, "ENTRYTEST geht an SCORM");
     var mx = 0;
         var mi = 0;
         var av = 0;
         // iterate through questions with test flag outside preparation test
-        
+
         var psres = pipwerks.SCORM.init();
         logMessage(VERBOSEINFO, "SCORM init = " + psres);
         psres = pipwerks.SCORM.get("cmi.learner_id");
@@ -1517,8 +1517,8 @@ function finish_button(name) {
         if (psres==true) f.innerHTML += $.i18n("msg-transfered-result")+"\n"; // Die Punktzahl wurde zur statistischen Auswertung übertragen
 
       }
-      
-      
+
+
   }
 }
 
@@ -1534,47 +1534,47 @@ function notifyPoints(i, points, state) {
     nPoints += points;
     nMaxPoints += FVAR[i].maxpoints;
   }
-  if ((intersiteactive == true) && (FVAR[i].sync == 1)) {
-      if ((intersiteobj.configuration.CF_LOCAL == "1") && (intersiteobj.configuration.CF_TESTS == "1")) {
+  if ((intersite.isActive() == true) && (FVAR[i].sync == 1)) {
+      if ((intersite.getObj().configuration.CF_LOCAL == "1") && (intersite.getObj().configuration.CF_TESTS == "1")) {
           var f = false;
           var j = 0;
-          for (j = 0; j<intersiteobj.scores.length; j++) {
-              if (intersiteobj.scores[j].uxid == FVAR[i].uxid) {
+          for (j = 0; j<intersite.getObj().scores.length; j++) {
+              if (intersite.getObj().scores[j].uxid == FVAR[i].uxid) {
                   f = true;
-                  intersiteobj.scores[j].maxpoints = FVAR[i].maxpoints;
-                  intersiteobj.scores[j].points = points;
-                  intersiteobj.scores[j].siteuxid = SITE_UXID;
-                  intersiteobj.scores[j].section = FVAR[i].section;
-                  intersiteobj.scores[j].id = FVAR[i].id;
-                  intersiteobj.scores[j].uxid = FVAR[i].uxid;
-                  intersiteobj.scores[j].intest = FVAR[i].intest;
-                  intersiteobj.scores[j].rawinput = FVAR[i].rawinput;
-                  intersiteobj.scores[j].value = FVAR[i].value;
-                  intersiteobj.scores[j].state = state;
-                  logMessage(VERBOSEINFO, "Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersiteobj.scores[j].rawinput);
+                  intersite.getObj().scores[j].maxpoints = FVAR[i].maxpoints;
+                  intersite.getObj().scores[j].points = points;
+                  intersite.getObj().scores[j].siteuxid = SITE_UXID;
+                  intersite.getObj().scores[j].section = FVAR[i].section;
+                  intersite.getObj().scores[j].id = FVAR[i].id;
+                  intersite.getObj().scores[j].uxid = FVAR[i].uxid;
+                  intersite.getObj().scores[j].intest = FVAR[i].intest;
+                  intersite.getObj().scores[j].rawinput = FVAR[i].rawinput;
+                  intersite.getObj().scores[j].value = FVAR[i].value;
+                  intersite.getObj().scores[j].state = state;
+                  logMessage(VERBOSEINFO, "Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
               }
           }
           if (f == false) {
-            var k = intersiteobj.scores.length;
-            intersiteobj.scores[k] = { uxid: FVAR[i].uxid };
-            intersiteobj.scores[k].maxpoints = FVAR[i].maxpoints;
-            intersiteobj.scores[k].points = points;
-            intersiteobj.scores[k].siteuxid = SITE_UXID;
-            intersiteobj.scores[k].section = FVAR[i].section;
-            intersiteobj.scores[k].id = FVAR[i].id;
-            intersiteobj.scores[k].intest = FVAR[i].intest;
-            intersiteobj.scores[k].value = FVAR[i].value;
-            intersiteobj.scores[k].rawinput = FVAR[i].rawinput;
-            intersiteobj.scores[k].state = state;
+            var k = intersite.getObj().scores.length;
+            intersite.getObj().scores[k] = { uxid: FVAR[i].uxid };
+            intersite.getObj().scores[k].maxpoints = FVAR[i].maxpoints;
+            intersite.getObj().scores[k].points = points;
+            intersite.getObj().scores[k].siteuxid = SITE_UXID;
+            intersite.getObj().scores[k].section = FVAR[i].section;
+            intersite.getObj().scores[k].id = FVAR[i].id;
+            intersite.getObj().scores[k].intest = FVAR[i].intest;
+            intersite.getObj().scores[k].value = FVAR[i].value;
+            intersite.getObj().scores[k].rawinput = FVAR[i].rawinput;
+            intersite.getObj().scores[k].state = state;
             logMessage(VERBOSEINFO, "Points for " + FVAR[i].uxid + " ADDED at position " + k);
           }
       }
   }
-  
+
   // Feldeigenschaften entsprechend anpassen
   FVAR[i].displayFeedback(state);
   updateLayoutStates();
- 
+
 }
 
 
@@ -1583,52 +1583,52 @@ function globalunloadHandler() {
       window.clearInterval(timerVar);
       timerActive = false;
   }
-    
-  pushISO(true); // nur synchrone ajax-calls erlauben, da wir im unload-Handler sind und die callbacks sonst verschwinden bevor Aufruf beantwortet wird
- 
+
+  intersite.pushIso(true); // nur synchrone ajax-calls erlauben, da wir im unload-Handler sind und die callbacks sonst verschwinden bevor Aufruf beantwortet wird
+
   // VERALTET
   if (pipwerks.scormdata.connection.isActive == true)
   {
     logMessage(VERBOSEINFO, "pipwerks.scormdata.connection.isActive == true in globalunloadHandler");
     pipwerks.SCORM.save();
-    
+
   } else {
     logMessage(VERBOSEINFO, "pipwerks.scormdata.connection.isActive == false in globalunloadHandler");
-  }  
+  }
 }
 
 function globalloadHandler(pulluserstr) {
-  // Wird aufgerufen, wenn die Seite komplett geladen ist (NACH globalready) ODER durch pull-emit-callback wenn intersiteobj aktualisiert werden muss
+  // Wird aufgerufen, wenn die Seite komplett geladen ist (NACH globalready) ODER durch pull-emit-callback wenn intersite.getObj() aktualisiert werden muss
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   logMessage(DEBUGINFO, "globalLoadHandler start, pulluser = " + ((pulluserstr == "") ? ("\"\"") : ("userdata")));
   if (pulluserstr != "") {
-    SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
-    logMessage(DEBUGINFO, "SetupIntersite in loadhandler fertig");
-    
-    if (intersiteactive == true) {
-      if (variant != intersiteobj.login.variant) {
+    intersite.setup(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von intersite.setup ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
+    logMessage(DEBUGINFO, "intersite.setup in loadhandler fertig");
+
+    if (intersite.isActive() == true) {
+      if (variant != intersite.getObj().login.variant) {
         // abort site setup, switch to needed variant tree
-        selectVariant(intersiteobj.login.variant);
+        selectVariant(intersite.getObj().login.variant);
       }
     }
-    
+
     applyLayout(false);
     logMessage(DEBUGINFO, "Layout gesetzt in loadhandler");
     InitResults(false);
     logMessage(DEBUGINFO, "Results eingetragen");
 
   }
- 
+
   if (timerActive == false) {
       timerActive = true;
       timerVar = window.setInterval(globalTimerHandler, timerMillis);
   }
- 
+
   logMessage(DEBUGINFO, "globalLoadHandler finish");
 }
 
 function globalreadyHandler(pulluserstr) {
-  // Wird aufgerufen, wenn die Seite komplett geladen und alle Bilder/iframes gefuellt sind (VOR globalload, NACH direkt-JS-Befehlen auf html-Seite im body-Bereich oder eingebundenen js-Dateien) ODER durch pull-emit-callback wenn intersiteobj aktualisiert werden muss
+  // Wird aufgerufen, wenn die Seite komplett geladen und alle Bilder/iframes gefuellt sind (VOR globalload, NACH direkt-JS-Befehlen auf html-Seite im body-Bereich oder eingebundenen js-Dateien) ODER durch pull-emit-callback wenn intersite.getObj() aktualisiert werden muss
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   logMessage(DEBUGINFO, "globalreadyHandler start");
   // emit JSON companion load request if present, use preset sitejson otherwise
@@ -1639,17 +1639,17 @@ function globalreadyHandler(pulluserstr) {
           logMessage(DEBUGINFO, "companion object retrieved");
         });
   }
-  // setup intersite objects  
-  SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
-  if (intersiteactive == true) {
-    if (variant != intersiteobj.login.variant) {
+  // setup intersite objects
+  intersite.setup(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von intersite.setup ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
+  if (intersite.isActive() == true) {
+    if (variant != intersite.getObj().login.variant) {
       // abort site setup, switch to needed variant tree
-      selectVariant(intersiteobj.login.variant);
+      selectVariant(intersite.getObj().login.variant);
     }
   }
 
   // setup intersite objects
-  logMessage(DEBUGINFO, "SetupIntersite fertig");
+  logMessage(DEBUGINFO, "intersite.setup fertig");
   applyLayout(true);
   logMessage(DEBUGINFO, "Layout gesetzt");
   InitResults(false);
@@ -1668,7 +1668,7 @@ function fillUserField() {
       } else {
     e.value = "<"+$.i18n("ui-not-loggedin")+">";// Nicht angemeldet
       }
-      
+
       if (nPoints > 0) {
     if (nMaxPoints > 0) {
       e.value += "\n" + $.i18n("ui-max-points", nPoints, nMaxPoints)//"\nPunkte erreicht: " + nPoints + " von " + nMaxPoints;
@@ -1688,17 +1688,17 @@ function fillUserField() {
 // Ermittelt die vertikale Scrollposition des Browsers
 function getScrollY() {
     var scrOfY = 0;
- 
+
     if( typeof( window.pageYOffset ) == 'number' ) {
         //Netscape compliant
         scrOfY = window.pageYOffset;
         scrOfX = window.pageXOffset;
-        
+
     } else if( document.body && ( document.body.scrollLeft || document.body.scrollTop ) ) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
         scrOfX = document.body.scrollLeft;
-        
+
     } else if( document.documentElement && ( document.documentElement.scrollLeft || document.documentElement.scrollTop ) ) {
         //IE6 standards compliant mode
         scrOfY = document.documentElement.scrollTop;
@@ -1793,7 +1793,7 @@ function displayInputContent(id,latex) {
 	    content = '<div id="NINPUTFIELD' + activefieldid + '" data-bind="evalmathjax: ifobs"></div><br />' + $.i18n("ui-missing-tooltip");
       }
       console.log(content);
-      activetooltip = $(" input[id=\"" + activefieldid + "\"] ").qtip({ 
+      activetooltip = $(" input[id=\"" + activefieldid + "\"] ").qtip({
 	    id: 'activetooltip',
 	    show: {event: 'customShow' },
 	    hide: {event: 'customHide' },
@@ -1811,7 +1811,7 @@ function displayInputContent(id,latex) {
 	    	}
       });
       console.log(activetooltip);
-  
+
       var api = activetooltip.qtip("api");
       api.set('content.title',"Formeleingabe");
       api.set('content.text',content);
@@ -1835,7 +1835,7 @@ function displayInputContent(id,latex) {
         // Element wird im qtip komplett neu angelegt und getypesettet
         // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
         console.log("create element");
-      
+
         var s = document.createElement('script');
         s.type = "math/tex; mode=display";
         try {
@@ -1847,7 +1847,7 @@ function displayInputContent(id,latex) {
         }
         MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
     }
-    
+
 }
 
 
@@ -1856,52 +1856,52 @@ function displayInputContent(id,latex) {
 function permuteString(str, u) {
   var n = str.length;
   var t = "";
-  
+
   var i;
   for (i = 0; i < n; i++) {
     t += str.charAt((u*i) % n);
   }
- 
+
   return t;
 }
 
 
 function debork(str, l) {
-  var n = str.length;  
+  var n = str.length;
   u = (((5*n) - (3*l)) % n);
   while (mygcd(u,n) != 1) { u = ((u + 1) % n);}
-   
+
   var i = 0;
   while ( ((i*u) % n) != 1) { i++; }
-  
-  str = permuteString(str, i);  
+
+  str = permuteString(str, i);
   return str.slice(0,l);
-} 
+}
 
 // ----------------------------------------------- Variant management ---------------------------
 
 function selectVariant(v) {
   logMessage(DEBUGINFO, "Variant selected: " + v);
-  
+
   var ex1 = outputWebdir;
   var raw = outputWebdir;
-  
+
   if (ex1.indexOf("_") != -1) {
       raw = ex1.substr(0, ex1.indexOf("_"));
   }
-  
+
   var ex2 = raw;
   if (v != "std") {
       ex2 = ex2 + "_" + v;
   }
-  
+
   t = window.location.href;
   s = t.replace("/" + ex1 + "/", "/" + ex2 + "/");
-  
-  if (intersiteactive) {
-      intersiteobj.login.variant = v;
+
+  if (intersite.isActive()) {
+      intersite.getObj().login.variant = v;
   }
-  
+
   opensite(s); // same site in different output directory
 }
 
@@ -1914,7 +1914,7 @@ function selectVariant(v) {
 function rouletteClick(rid, id, maxid) {
     logMessage(DEBUGINFO, "rouletteClick: rid=" + rid + ", id=" + id + ", maxid=" + maxid);
     // select a random div
-    var d = Math.floor((Math.random() * maxid)); 
+    var d = Math.floor((Math.random() * maxid));
     logMessage(VERBOSEINFO, "Selected d=" + d);
     // get div for the question as a string from the roulette hash's array
     s = sitejson["_RLV_" + rid][d];
@@ -1947,16 +1947,16 @@ function rouletteExercise(rid) {
 
 function styleColors(c) {
   if (c.length == 6) {
-    if (intersiteactive == true) {
-      if (intersiteobj != null) {
-        if (typeof intersiteobj.configuration.stylecolor == "string") {
-      if (intersiteobj.configuration.stylecolor == STYLEGREEN) {
+    if (intersite.isActive() == true) {
+      if (intersite.getObj() != null) {
+        if (typeof intersite.getObj().configuration.stylecolor == "string") {
+      if (intersite.getObj().configuration.stylecolor == STYLEGREEN) {
         c = c.substr(0,2) + c.substr(4,2) + c.substr(2,2);
       } else {
-        if (intersiteobj.configuration.stylecolor == STYLERED) {
+        if (intersite.getObj().configuration.stylecolor == STYLERED) {
           c = c.substr(4,2) + c.substr(0,2) + c.substr(2,2);
         } else {
-              if (intersiteobj.configuration.stylecolor == STYLEGREY) {
+              if (intersite.getObj().configuration.stylecolor == STYLEGREY) {
             c = c.substr(4,2) + c.substr(4,2) + c.substr(4,2);
           }
         }
@@ -1969,60 +1969,60 @@ function styleColors(c) {
   }
   return c;
 }
-    
+
 
 // first = false -> Seite wurde schonmal mit Layout aufgesetzt, Layout soll nur angepasst werden
 function applyLayout(first) {
-  
+
   updateLayoutStates();
-    
+
   var e = document.getElementById("dynamic_css");
   if (e == null) {
     e = document.createElement('style');
     e.setAttribute("id", "dynamic_css");
     document.body.appendChild(e);
   }
-  
+
   // change layout parameters according to user settings
   if (false) {
-	  if (intersiteactive === true) {
-	    SIZES.BASICFONTSIZE = SIZES.STARTFONTSIZE + intersiteobj.layout.fontadd;
+	  if (intersite.isActive() === true) {
+	    SIZES.BASICFONTSIZE = SIZES.STARTFONTSIZE + intersite.getObj().layout.fontadd;
 	    SIZES.SMALLFONTSIZE = SIZES.BASICFONTSIZE - 2;
 	    SIZES.BIGFONTSIZE = SIZES.BASICFONTSIZE + 2;
-	    SIZES.MENUWIDTH = 160 + 10 * intersiteobj.layout.fontadd;
+	    SIZES.MENUWIDTH = 160 + 10 * intersite.getObj().layout.fontadd;
 	    SIZES.TOCWIDTH = SIZES.MENUWIDTH - 21;
 	  }
-	  
-	  if (intersiteactive) {
-	    if (intersiteobj.layout.menuactive == false) hideNavigation(false);
+
+	  if (intersite.isActive()) {
+	    if (intersite.getObj().layout.menuactive == false) hideNavigation(false);
 	  }
-	  
+
 	  var d = 10 + SIZES.BASICFONTSIZE;
 	  $('div.headmiddle').height(d);
 	  var systyle = "style=\"max-height:" + d + "px;height:" + d + "px\"";
 	  var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px;max-height:" + (d-2) + "px\"";
-	  
+
 	  d = d - 2;
 	  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">"+$.i18n("ui-login")+"</div></a>";
 	  var loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";
 	  var loginbuttonhint = $.i18n("hint-loginbutton");//"Hier können Sie sich zum Kurs persönlich anmelden, im Moment wird der Kurs anonym bearbeitet.";
 	  var loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
-	  if (intersiteactive) {
-	      if (intersiteobj.login.type >= 2) {
+	  if (intersite.isActive()) {
+	      if (intersite.getObj().login.type >= 2) {
 	          loginbuttontext = $.i18n( "logout", getNameDescription() ); // "Logout (" + getNameDescription() + ")";
-	          loginbuttonhint = $.i18n( "hint-logout", intersiteobj.login.username ); //"Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersiteobj.login.sname + " gespeichert.";
+	          loginbuttonhint = $.i18n( "hint-logout", intersite.getObj().login.username ); //"Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersite.getObj().login.sname + " gespeichert.";
 	          loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "logout.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
 	      }
 	  }
-  } 
+  }
   var head = loginbuttonhtml;
-  
-  if (intersiteactive) {
-      if ((intersiteobj.login.type >= 2) && (scormLogin == 0)) {
+
+  if (intersite.isActive()) {
+      if ((intersite.getObj().login.type >= 2) && (scormLogin == 0)) {
           head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + $.i18n( "msg-myaccount" ) + "</div></a>";
       }
   }
-  
+
   if (scormLogin == 0) {
       $('.show_scorm').css("display", "none");
       $('.show_noscorm').css("display", "block");
@@ -2030,24 +2030,24 @@ function applyLayout(first) {
       $('.show_scorm').css("display", "block");
       $('.show_noscorm').css("display", "none");
   }
-    
+
   // head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
   /*
   head += "<div id=\"LOGINROW\" style=\"color:rgb(255,255,255)\"></div>";
-  
+
   head += "<a id=\"listebutton\" href=\"" + linkPath + "search.html\" ></a>";
   head += "<a id=\"homebutton\" href=\"" + linkPath + "index.html\" ></a>";
-  head += "<button id=\"starbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"starClick();\"></button>"; 
+  head += "<button id=\"starbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"starClick();\"></button>";
   head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"></button>";
   head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"></button>";
   if (scormLogin == 0) {
       head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"></button>";
   }
   head += "<button id=\"settingsbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"toggle_settings();\"></button>";
-  
+
   head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"></button>";
-*/  
-/*    
+*/
+/*
   $('div.headmiddle').each(function(i) {
       $(this).html(head);
     }
@@ -2061,17 +2061,17 @@ function applyLayout(first) {
   // set proper button visibility in settings depending on course variant
 
   if (doScorm == 1) {
-      // no variant switching in SCORM versions (because variants are actually different courses)  
+      // no variant switching in SCORM versions (because variants are actually different courses)
       $('#variantselect_unotation').prop("disabled", true);
       $('#variantselect_unotation').text('(in diesem Kurs nicht vorhanden)');
-      
+
   } else {
       if (variant == "std") {
           $('#variantselect_std').css("visibility", "hidden");
           $('#variantactive_std').css("visibility", "visible");
           $('#variantselect_unotation').css("visibility", "visible");
           $('#variantactive_unotation').css("visibility", "hidden");
-          
+
       } else {
           $('#variantselect_std').css("visibility", "visible");
           $('#variantactive_std').css("visibility", "hidden");
@@ -2079,10 +2079,10 @@ function applyLayout(first) {
           $('#variantactive_unotation').css("visibility", "visible");
       }
   }
-  
+
   var shareintext = $.i18n("msg-shared-page") + "<br /><br />"; // Seite teilen über:
   var myurl = window.location.href;
-    
+
   shareintext += "<a href=\"#\" onclick=\"shareFacebook()\"><img src=\"" + imagesPath  + "sharetargetfacebook.png\"></a>";
   shareintext += "&nbsp;";
   shareintext += "<a href=\"http://twitter.com/intent/tweet?url=" + myurl + "\" target=\"_new\"><img src=\"" + imagesPath + "sharetargettwitter.png\"></a>";
@@ -2095,40 +2095,40 @@ function applyLayout(first) {
 
   // qtips an die Feedbackbuttons haengen falls vorhanden
 
-  $("button[ttip='1']").qtip({ 
+  $("button[ttip='1']").qtip({
          position: { target: 'mouse', adjust: { x: 5, y: 5 } },
          style: { classes: 'qtip-blue qtip-shadow' },
          content: { attr: 'tiptitle' },
          show: { event: "mouseenter" }
   });
-    
+
   // enable tristate checkboxes (but only those used for exercises)
   var $check = $("input[mtristate=1]"), el;
   $check
    .prop("mtristate", "2") // don't set function again
    .click(function(e) {
-       
+
 
         el = $(this);
- 
+
         // states are indeterminate, true determinate, false determinate (having intersite values "0", "1", "2", which we store in property "cval")
-        
+
         switch(el.prop('cval')) {
-            
+
             // unchecked ->  indeterminate
             case "2":
                 el.prop('cval', "0");
                 el.prop(getIndeterminatePropName(), true);
                 el.prop('checked', false); // remember indeterminate is independent of checked
                 break;
-            
+
             // checked -> unchecked
             case "1":
                 el.prop('cval', "2");
                 el.prop(getIndeterminatePropName(), false);
                 el.prop('checked', false);
                 break;
-            
+
             // indeterminate -> checked
             default:
                 el.prop('cval', "1");
@@ -2136,8 +2136,8 @@ function applyLayout(first) {
                 el.prop('checked', true);
                 break;
         }
-        
-        
+
+
 });
 
 //  setupInterlinks()
@@ -2145,7 +2145,7 @@ function applyLayout(first) {
 
 /**
  * Change the base font size for the page. Called by zoom buttons.
- * 
+ *
  * @param add - a positive or negative number (any number will do, the exact value has no meaning)
  */
 function changeFontSize(add) {
@@ -2155,13 +2155,13 @@ function changeFontSize(add) {
   if ( typeof( current ) == 'undefined' ) current = sizeDefault;
   i = sizes.indexOf( current );
   if ( i < 0 || i >= sizes.length ) i = sizes.indexOf( sizeDefault );
-    
+
   if ( add > 0 ) {
-	  newI = Math.min ( i + 1, sizes.length-1 ) 
+	  newI = Math.min ( i + 1, sizes.length-1 )
 
   } else {
-	  newI = Math.max ( i - 1, 0 ) 
-	  
+	  newI = Math.max ( i - 1, 0 )
+
   }
   document.body.style.fontSize = sizes[ newI ];
 }
@@ -2177,7 +2177,7 @@ function hideNavigation(animate) {
   $('#footerright').slideUp(speed / 3);
   $('#footer').hide();
   $('#content').css("margin-left","0px");
-  if (intersiteactive) intersiteobj.layout.menuactive = false;
+  if (intersite.isActive()) intersite.getObj().layout.menuactive = false;
 }
 
 function showNavigation(animate) {
@@ -2191,7 +2191,7 @@ function showNavigation(animate) {
   $('div.toc').animate({width: 'show'}, speed);
   $('tocnavsymb').show();
   $('div.navi').slideDown(speed);
-  if (intersiteactive) intersiteobj.layout.menuactive = true;
+  if (intersite.isActive()) intersite.getObj().layout.menuactive = true;
 }
 
 function menuClick() {
@@ -2202,12 +2202,12 @@ function menuClick() {
     }
 }
 
-// Zeigt einmalig einen Hinweis fuer ein Bedienelement an und merkt sich im intersiteobj dass der hint gezeigt wurde
+// Zeigt einmalig einen Hinweis fuer ein Bedienelement an und merkt sich im intersite.getObj() dass der hint gezeigt wurde
 // Hinweis wird bei laengerem Hover wieder eingeblendet
 function showHint(element, hinttext) {
 
   if (element == null) return;
-    
+
   var q_at = "bottom left";
   var q_my = "top right";
 
@@ -2221,7 +2221,7 @@ function showHint(element, hinttext) {
           }
       }
   }
-                  
+
   hinttext = "<div style=\"font-size:" + SIZES.SMALLFONTSIZE + "px;line-height:100%\">" + hinttext + "</div>";
 
   // Check if qtip is already attached to the element
@@ -2253,23 +2253,23 @@ function starClick() {
 
 function shareFacebook() {
   window.open(
-    'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), 
-    'facebook-share-dialog', 
-    'width=626,height=436'); 
+    'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href),
+    'facebook-share-dialog',
+    'width=626,height=436');
 }
 
 // changes classes of toc/navi elements to show element state (element behaviour is defined in css)
 function updateLayoutStates() {
-  if (intersiteactive == true) {
-    if (intersiteobj != null) {
+  if (intersite.isActive() == true) {
+    if (intersite.getObj() != null) {
         // check sites and select layout state accordingly
         $('.xsymb').each(function(i) {
             el = $(this);
             ux = "SITE_" + el.attr("uxid");
             var j;
             var found = false;
-            for (j = 0; ((j < intersiteobj.sites.length) && !found); j++) {
-                if (intersiteobj.sites[j].uxid == ux) {
+            for (j = 0; ((j < intersite.getObj().sites.length) && !found); j++) {
+                if (intersite.getObj().sites[j].uxid == ux) {
                     found = true;
                 }
             }
@@ -2279,28 +2279,28 @@ function updateLayoutStates() {
                 var maxpoints = 0;
                 var points = 0;
                 var sfound = false;
-                
-                
-                
+
+
+
                 // no exercises present or all in neutral state: no state
                 // at least one exercise in false state: problem
                 // all exercises in true state: done
                 // otherwise: progress (some exercises done, some in true state, none in false state)
-                
+
                 alldone = true;
                 allneutral = true;
                 prob = false;
-                for (k = 0; k < intersiteobj.scores.length; k++) {
-                    if (intersiteobj.scores[k].siteuxid == el.attr("uxid")) {
+                for (k = 0; k < intersite.getObj().scores.length; k++) {
+                    if (intersite.getObj().scores[k].siteuxid == el.attr("uxid")) {
                         sfound = true;
-                        maxpoints += intersiteobj.scores[k].maxpoints;
-                        points += intersiteobj.scores[k].points;
-                        if (intersiteobj.scores[k].state == SOLUTION_FALSE) {
+                        maxpoints += intersite.getObj().scores[k].maxpoints;
+                        points += intersite.getObj().scores[k].points;
+                        if (intersite.getObj().scores[k].state == SOLUTION_FALSE) {
                             prob = true;
                             alldone = false;
                             allneutral = false;
                         } else {
-                            if (intersiteobj.scores[k].state == SOLUTION_NEUTRAL) {
+                            if (intersite.getObj().scores[k].state == SOLUTION_NEUTRAL) {
                                 alldone = false;
                             } else {
                                 allneutral = false;
@@ -2308,7 +2308,7 @@ function updateLayoutStates() {
                         }
                     }
                 }
-                
+
                 var msg = "";
                 if ((sfound == false) || (allneutral == true) || (maxpoints == 0)) {
                     el.toggleClass("state_progress", false);
@@ -2335,17 +2335,17 @@ function updateLayoutStates() {
                         }
                     }
                 }
-                
+
                 if (msg != "") {
                     el.attr("tiptitle", msg);
-                    el.qtip({ 
+                    el.qtip({
                         position: { target: 'mouse', adjust: { x: 5, y: 5 } },
                         style: { classes: 'qtip-blue qtip-shadow' },
                         content: { attr: 'tiptitle' },
                         show: { event: "mouseenter" }
                     });
                 }
-                    
+
             } else {
                 el.toggleClass("state_progress", false);
                 el.toggleClass("state_done", false);
@@ -2376,13 +2376,13 @@ function updateLayoutStates() {
 function globalTimerHandler() {
     var j;
     timerIterator++;
-    if (intersiteactive) {
-        intersiteobj.history.globalmillis += timerMillis;
+    if (intersite.isActive()) {
+        intersite.getObj().history.globalmillis += timerMillis;
         var k;
         var ux = "SITE_" + SITE_UXID;
-        for (k = 0; k < intersiteobj.sites.length; k++) {
-            if (intersiteobj.sites[k].uxid == ux) {
-                intersiteobj.sites[k].millis += timerMillis;
+        for (k = 0; k < intersite.getObj().sites.length; k++) {
+            if (intersite.getObj().sites[k].uxid == ux) {
+                intersite.getObj().sites[k].millis += timerMillis;
             }
         }
     }

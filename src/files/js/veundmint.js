@@ -3,12 +3,35 @@ it is responsible for the document loaded action that was befor in the body onlo
 onload="loadHandler()" onunload="unloadHandler()" */
 
 $(function() {
-  globalloadHandler("");
+	intersite.init();
+	globalloadHandler("");
 });
 
 $(window).on('beforeunload', function(){
 	globalunloadHandler();
  });
+
+
+//TODO this should definately go somewhere totally else
+ // Opens a new webpage (from the local packet) in a new browser tab
+ // localurl sollte direkt aus dem href-Attribut bei anchors genommen werden TODO: Translation
+ // Marks the page as visited in 'intersite.getObj()'
+ function opensite(localurl) {
+   //window.location.href = localurl; // fetches the new page
+
+   // pushISO(); is now called on the pages by beforeunload
+
+   if (intersite.isActive() == true) {
+     if (intersite.getObj().configuration.CF_USAGE == "1") {
+
+       var timestamp = +new Date();
+       var cm = "OPENSITE: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", SITEUXID:" + SITE_UXID + ", localurl:" + localurl;
+       intersite.sendeFeedback( { statistics: cm }, false ); // synced, otherwise the page with callbacks is gone when the request is completed
+     }
+   }
+
+   window.open(localurl,"_self");
+ }
 
 //UMD JS Modules Starter template taken from https://gist.github.com/cferdinandi/ece94569aefcffa5f7fa
 
