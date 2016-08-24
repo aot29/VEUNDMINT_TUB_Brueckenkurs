@@ -26,7 +26,6 @@ class TestLogin( SeleniumTest ):
         self.getElement( 'loginbutton' ).click()
 
 
-    @unittest.skip("needs more attention")
     def testCheckRegistrationForm(self):
         '''
         Check that all fields are there, and that they are empty for an unregistered user
@@ -35,7 +34,6 @@ class TestLogin( SeleniumTest ):
             self._checkPresentAndEmpty( id )
 
 
-    @unittest.skip("needs more attention")
     def testName(self):
         '''
         Are constraints on new usernames being checked upon registration?
@@ -48,35 +46,36 @@ class TestLogin( SeleniumTest ):
         inputEl.clear()
         self.driver.execute_script( "usercheck()" )
         self.assertTrue( "questionmark" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
-        self.assertFalse( len( self._getRegistrationButton() ) )
+        self.assertFalse( self._getRegistrationButton() )
 
         # Loginname too short
         inputEl.clear()
         inputEl.send_keys( "abcde" )
         self.driver.execute_script( "usercheck()" ) # Just changing the field doesn't trigger the javascript
         self.assertTrue( "false" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
-        self.assertFalse( len( self._getRegistrationButton() ), "Button displayed when it shouldn't" )
+        self.assertFalse( self._getRegistrationButton(), "Button displayed when it shouldn't" )
 
         # Loginname invalid chars
         inputEl.clear()
         inputEl.send_keys( u'abcdeä' )
         self.driver.execute_script( "usercheck()" )
         self.assertTrue( "false" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
-        self.assertFalse( len( self._getRegistrationButton() ), "Button displayed when it shouldn't" )
+        self.assertFalse( self._getRegistrationButton(), "Button displayed when it shouldn't" )
 
         # Loginname too long
         inputEl.clear()
         inputEl.send_keys( 'abcdefghijklmnopqrstuvwxyz' )
         self.driver.execute_script( "usercheck()" )
         self.assertTrue( "false" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
-        self.assertFalse( len( self._getRegistrationButton() ), "Button displayed when it shouldn't" )
+        self.assertFalse( self._getRegistrationButton(), "Button displayed when it shouldn't" )
 
         # Loginname OK
         inputEl.clear()
         inputEl.send_keys( "ab12_-+" )
         self.driver.execute_script( "usercheck()" )
         self.assertTrue( "right" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
-        self.assertTrue( len( self._getRegistrationButton() ), "Button not displayed when it should" )
+        self.assertTrue( self._getRegistrationButton(), "Button not displayed when it should" )
+
 
     @unittest.skip("needs more attention")
     def testRegister(self):
@@ -113,13 +112,13 @@ class TestLogin( SeleniumTest ):
 
     def _getRegistrationButton(self):
         '''
-        Returns the registration button when it appears or False.
+        @return the registration button element if it is present on the page or empty list.
         '''
-        btnPath = "//div[@class='usercreatereply']//child::button" # path to the create-user button (present when constraints are met)
+        #btnPath = "//div[@class='usercreatereply']//child::button" # path to the create-user button (present when constraints are met)
         # get a list of elements, otherwise an exception is thrown when no element is found
-        list = self.driver.find_elements_by_xpath( btnPath)
+        elList = self.driver.find_elements_by_xpath( self.xpath['bootstrap']['registrationButton'] )
         resp = False
-        if len( list ) != 0 : resp = list[0]
+        if len( elList ) != 0 : resp = elList[0]
         return resp
 
 

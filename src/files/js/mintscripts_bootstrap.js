@@ -1639,7 +1639,15 @@ function globalreadyHandler(pulluserstr) {
           logMessage(DEBUGINFO, "companion object retrieved");
         });
   }
-  
+  // setup intersite objects  
+  SetupIntersite(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von SetupIntersite ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
+  if (intersiteactive == true) {
+    if (variant != intersiteobj.login.variant) {
+      // abort site setup, switch to needed variant tree
+      selectVariant(intersiteobj.login.variant);
+    }
+  }
+
   // setup intersite objects
   logMessage(DEBUGINFO, "SetupIntersite fertig");
   applyLayout(true);
