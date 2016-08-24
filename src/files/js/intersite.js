@@ -204,7 +204,8 @@ function objClone(obj) {
     return temp;
 }
 
-// Initialises the intersite object, if 'update == true', existing data get's overwritten, if 'scormLogin == true' the user id is used from SCORM instead of localStorage (this doesn't include 'clearuser')
+// Initialises the intersite object, if 'update == true', existing data gets overwritten, 
+// if 'scormLogin == true' the user id is used from SCORM instead of localStorage (this doesn't include 'clearuser')
 // pulledstr = JSON-String from db for user-obj, otherwise "" if nothing needs to be pulled.
 function SetupIntersite(clearuser, pulledstr) {
   logMessage(VERBOSEINFO, "SetupIntersite START");
@@ -422,7 +423,7 @@ function SetupIntersite(clearuser, pulledstr) {
         }
      }
   }
-
+// HIER
   UpdateSpecials();
   logMessage(VERBOSEINFO, "UpdateSpecials done");
   confHandlerISOLoad()
@@ -485,8 +486,8 @@ function updateLoginfield() {
       case 2: {
         s = $.i18n( 'ui-known-user', intersiteobj.login.username, intersiteobj.login.vname, intersiteobj.login.sname ); // "Benutzer " + intersiteobj.login.username + " (" + intersiteobj.login.vname + " " + intersiteobj.login.sname + ") ist am Server angemeldet";
         cl = "#FFFFFF";
-        // $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
-        $('#loginbutton').css("color","#80FFA0");
+        $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
+        //$('#loginbutton').css("color","#80FFA0");
         if (doScorm == 1) {
             // $('#loginbutton').prop("disabled", true);
         }

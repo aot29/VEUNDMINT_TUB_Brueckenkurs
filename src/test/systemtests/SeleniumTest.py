@@ -32,7 +32,8 @@ class SeleniumTest(unittest.TestCase):
             'denominator' : "//div[@id='MHint1']/descendant::span[@class='mjx-denominator'][last()]",
             'tocTitle' : "//div[@id='toc']/h3",
             'toc' : "//div[@id='toc']",
-            'legend' : "//div[@id='legend']"    
+            'legend' : "//div[@id='legend']",
+            'registrationButton' : "//div[@class='usercreatereply']//child::button"
         },
         'html5': {
             'pageContents' : "//div[@id='content']",
@@ -54,8 +55,8 @@ class SeleniumTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
-        #self.driver = webdriver.Firefox()
+        #self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
+        self.driver = webdriver.Firefox()
         self.driver.set_window_size(1120, 550)
         self.driver.set_page_load_timeout(5)
         self.driver.implicitly_wait(5)
@@ -106,7 +107,6 @@ class SeleniumTest(unittest.TestCase):
             else:
                 val = self.xpath['html5'][ key ]
         
-            print("xpath %s" % val)
             element = self.driver.find_element_by_xpath( val )
         
         else:

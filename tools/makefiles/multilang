@@ -42,10 +42,11 @@ allTUB: |cleanupBefore convert merge fixRedirects fix fixSpecialPages startGulp 
 	echo "ready"
 
 #
+# Don#t use this target. Checkout the legacy branch instead
 # Build everything for the non-bootstrap version
 #
-allKIT: |cleanup convert merge fixRedirects fix startGulp
-	echo "ready"
+#allKIT: |cleanup convert merge fixRedirects fix startGulp
+#	echo "ready"
 
 #
 # Use the converter to build the version specified by CURRENT_LANG
@@ -284,14 +285,21 @@ fix: fixRedirects
 	# replace index.html with src/templates_html5/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_html5/html5_choose_language_simple.html $(OUTPUT)/index.html
 
+
+#
+# Cleanup before starting a new build
+#
 cleanupBefore: cleanupAfter
 	-rm -Rf public
 
+
+#
+# Cleanup after a build is ready
+#
 cleanupAfter:
 	-rm -Rf $(OUTPUT)
 	-rm -Rf $(OUTPUT)_en
 	-rm -Rf $(OUTPUT)_de
-
 
 
 #
