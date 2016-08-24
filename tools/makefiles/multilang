@@ -156,7 +156,7 @@ define fixSpecialPages_cmd
 	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/data.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCCOURSEDATA;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/data.html
 	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/config.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/config.html
 	-cd $(OUTPUT)/html  && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGIN;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/login.html
-	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/logout.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGOUT;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/logout.html
+	-cd $(OUTPUT)/html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGOUT;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/logout.html
 	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/search.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSEARCH;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/search.html
 	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/favorites.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCFAVORITES;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/favorites.html
 	

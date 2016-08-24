@@ -100,6 +100,7 @@ class PageTUB( AbstractHtmlRenderer ):
 		xml.set( 'isCoursePage', str( AbstractXmlRenderer.isCoursePage(tc) ) )
 		xml.set( 'isSpecialPage', str( AbstractXmlRenderer.isSpecialPage(tc) ) )
 		xml.set( 'isInfoPage', str( AbstractXmlRenderer.isInfoPage(tc) ) )
+		xml.set( 'requestLogout', str( AbstractXmlRenderer.isLogoutPage(tc) ).lower() )
 
 
 	def getBasePath(self, tc):

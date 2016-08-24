@@ -1970,58 +1970,28 @@ function styleColors(c) {
   return c;
 }
     
+/**
+ * Change the text of the login button
+ */
+function loginButtonSetText() {
+  var loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";
+  
+  if (intersiteactive) {
+      if (intersiteobj.login.type >= 2) {
+          loginbuttontext = $.i18n( "msg-myaccount", getNameDescription() ); // "Logout
+      } else {
+    	  loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";    	  
+      }
+	  console.log(loginbuttontext);
+	  $("[ id = loginbutton_text ]").text( $.i18n( loginbuttontext ) );
+  }	
+}
 
 // first = false -> Seite wurde schonmal mit Layout aufgesetzt, Layout soll nur angepasst werden
 function applyLayout(first) {
   
   updateLayoutStates();
-    
-  var e = document.getElementById("dynamic_css");
-  if (e == null) {
-    e = document.createElement('style');
-    e.setAttribute("id", "dynamic_css");
-    document.body.appendChild(e);
-  }
-  
-  // change layout parameters according to user settings
-  if (false) {
-	  if (intersiteactive === true) {
-	    SIZES.BASICFONTSIZE = SIZES.STARTFONTSIZE + intersiteobj.layout.fontadd;
-	    SIZES.SMALLFONTSIZE = SIZES.BASICFONTSIZE - 2;
-	    SIZES.BIGFONTSIZE = SIZES.BASICFONTSIZE + 2;
-	    SIZES.MENUWIDTH = 160 + 10 * intersiteobj.layout.fontadd;
-	    SIZES.TOCWIDTH = SIZES.MENUWIDTH - 21;
-	  }
-	  
-	  if (intersiteactive) {
-	    if (intersiteobj.layout.menuactive == false) hideNavigation(false);
-	  }
-	  
-	  var d = 10 + SIZES.BASICFONTSIZE;
-	  $('div.headmiddle').height(d);
-	  var systyle = "style=\"max-height:" + d + "px;height:" + d + "px\"";
-	  var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px;max-height:" + (d-2) + "px\"";
-	  
-	  d = d - 2;
-	  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">"+$.i18n("ui-login")+"</div></a>";
-	  var loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";
-	  var loginbuttonhint = $.i18n("hint-loginbutton");//"Hier können Sie sich zum Kurs persönlich anmelden, im Moment wird der Kurs anonym bearbeitet.";
-	  var loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
-	  if (intersiteactive) {
-	      if (intersiteobj.login.type >= 2) {
-	          loginbuttontext = $.i18n( "logout", getNameDescription() ); // "Logout (" + getNameDescription() + ")";
-	          loginbuttonhint = $.i18n( "hint-logout", intersiteobj.login.username ); //"Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersiteobj.login.sname + " gespeichert.";
-	          loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "logout.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
-	      }
-	  }
-  } 
-  var head = loginbuttonhtml;
-  
-  if (intersiteactive) {
-      if ((intersiteobj.login.type >= 2) && (scormLogin == 0)) {
-          head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + $.i18n( "msg-myaccount" ) + "</div></a>";
-      }
-  }
+  loginButtonSetText();
   
   if (scormLogin == 0) {
       $('.show_scorm').css("display", "none");
@@ -2031,33 +2001,7 @@ function applyLayout(first) {
       $('.show_noscorm').css("display", "none");
   }
     
-  // head += "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "cdata.html\" class=\"MINTERLINK\"><div id=\"cdatabutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">Kursdaten</div></a> ";
-  /*
-  head += "<div id=\"LOGINROW\" style=\"color:rgb(255,255,255)\"></div>";
-  
-  head += "<a id=\"listebutton\" href=\"" + linkPath + "search.html\" ></a>";
-  head += "<a id=\"homebutton\" href=\"" + linkPath + "index.html\" ></a>";
-  head += "<button id=\"starbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"starClick();\"></button>"; 
-  head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"></button>";
-  head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"></button>";
-  if (scormLogin == 0) {
-      head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"></button>";
-  }
-  head += "<button id=\"settingsbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"toggle_settings();\"></button>";
-  
-  head += "<button id=\"menubutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"menuClick();\"></button>";
-*/  
-/*    
-  $('div.headmiddle').each(function(i) {
-      $(this).html(head);
-    }
-  );
- */
-/*
-  $('.navi > ul > li').each(function(i) {
-    $(this).hover(function() { $(this).css("background-color", COLORS.TOCMINBUTTONHOVER); }, function() { $(this).css("background-color", COLORS.TOCMINBUTTON); });
-  });
-*/
+
   // set proper button visibility in settings depending on course variant
 
   if (doScorm == 1) {

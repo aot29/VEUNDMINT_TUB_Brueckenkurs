@@ -60,6 +60,17 @@ class AbstractXmlRenderer(object):
 
 
     @staticmethod
+    def isLogoutPage(tc):
+        """
+        Is the given tc the logout page?
+        
+        @param tc - a TContent object encapsulating page data and content
+        @return - boolean
+        """
+        return tc.uxid == 'VBKM_MISCLOGOUT'
+        
+
+    @staticmethod
     def isFirstPage(tc):
         """
         Is the given tc the first ('Welcome') page?

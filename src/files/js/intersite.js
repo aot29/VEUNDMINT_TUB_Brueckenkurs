@@ -775,7 +775,7 @@ function pushlogin_success(data) {
     var datastring = JSON.stringify(intersiteobj);
     userdata.writeData(true, intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout is done by the write callbacks
     
-    window.location.href="../index.html";
+    window.location.href="index.html";
     
 }
 
@@ -1154,7 +1154,7 @@ function loginread_success(data) {
 
   // TODO: belongs to quickfix, should be removed
   userdata.logout(true, pushlogout_success, pushlogout_error);
-  window.location.href="../index.html";
+  window.location.href="index.html";
 }
 
 function loginread_error(message, data) {

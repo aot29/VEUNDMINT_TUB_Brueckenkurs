@@ -25,6 +25,7 @@
 		<script>
 			
 			var isTest = <xsl:value-of select="@isTest" />;
+			var requestLogout = <xsl:value-of select="@requestLogout" />;
 			<![CDATA[
 			var nMaxPoints = 0;
 			var nPoints = 0;
@@ -56,7 +57,6 @@
 			var timerVar = null;
 			var timerColors = new Array();
 			var timerIterator = 0;
-			var requestLogout = 0;
 			]]>
 
 			<!-- Create question objects  -->			
@@ -136,6 +136,13 @@
 	            
 	            // body onload
 	            globalloadHandler("");
+	            
+	            // on the logout page
+	            if(requestLogout) {
+	            	localStorage.clear();
+	            }
+	            
+	            
 	
 	        });
 	                

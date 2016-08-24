@@ -8,49 +8,32 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from tex2x.Settings import ve_settings as settings
+from tex2x.renderers.AbstractRenderer import AbstractXmlRenderer
 
 class SeleniumTest(unittest.TestCase):
     configPath = os.path.join(BASE_DIR + "/", "src/test/", "testconfig.ini")
 
-    # Xpaths for the bootstrap and non-bootstrap versions
     # Most xpaths assume you are starting from the root element (e.g. using self.driver).
     # use with self.getElement('key')
     # To retrieve an element by id, e.g. from the content of the page, 
     # it's not necessary to add it here to use self.getElement('id')
     xpath = {
-        'bootstrap': {
-            'pageContents' : "//div[@id='pageContents']",
-            'pageTitle' : "//div[@id='pageContents']/h4",
-            'launchButton' : "//div[@id='pageContents']/a[@type='button']",
-            'launchButtonTextElement' : "//div[@id='pageContents']/a[@type='button']/span[@data-i18n]",
-            'TESTRESET' : "//button[@id='TESTRESET']",
-            'TESTFINISH' : "//button[@id='TESTFINISH']",
-            'TESTEVAL' : "//p[@id='TESTEVAL']",
-            'lastTableCell' : "//div[@id='pageContents']//table//tr[last()]/td[last()]",
-            'navbarTop' : "//div[@id='navbarTop']",
-            'numerator' : "//div[@id='MHint1']/descendant::span[@class='mjx-numerator'][last()]",
-            'denominator' : "//div[@id='MHint1']/descendant::span[@class='mjx-denominator'][last()]",
-            'tocTitle' : "//div[@id='toc']/h3",
-            'toc' : "//div[@id='toc']",
-            'legend' : "//div[@id='legend']",
-            'registrationButton' : "//div[@class='usercreatereply']//child::button"
-        },
-        'html5': {
-            'pageContents' : "//div[@id='content']",
-            'pageTitle' : "//div[@id='content']/h4",
-            'launchButton' : "//div[@id='content']/li[@class='xsectbutton']",
-            'launchButtonTextElement' : "//div[@id='content']/button",
-            'TESTRESET' : "//button[@id='TESTRESET']",
-            'TESTFINISH' : "//button[@id='TESTFINISH']",
-            'TESTEVAL' : "//p[@id='TESTEVAL']",
-            'lastTableCell' : "//div[@id='content']//table//tr[last()]/td[last()]",
-            'navbarTop' : "//div[@id='fhead']",
-            'numerator' : "//div[@id='MHint1']/descendant::span[@class='mjx-numerator'][last()]",
-            'denominator' : "//div[@id='MHint1']/descendant::span[@class='mjx-denominator'][last()]",
-            'tocTitle' : "//div[@class='tocmintitle']",
-            'toc' : "//div[@id='ftoc']",
-            'legend' : "//div[@class='legende']"
-        }
+        'pageContents' : "//div[@id='pageContents']",
+        'pageTitle' : "//div[@id='pageContents']/h4",
+        'launchButton' : "//div[@id='pageContents']/a[@type='button']",
+        'launchButtonTextElement' : "//div[@id='pageContents']/a[@type='button']/span[@data-i18n]",
+        'TESTRESET' : "//button[@id='TESTRESET']",
+        'TESTFINISH' : "//button[@id='TESTFINISH']",
+        'TESTEVAL' : "//p[@id='TESTEVAL']",
+        'lastTableCell' : "//div[@id='pageContents']//table//tr[last()]/td[last()]",
+        'navbarTop' : "//div[@id='navbarTop']",
+        'numerator' : "//div[@id='MHint1']/descendant::span[@class='mjx-numerator'][last()]",
+        'denominator' : "//div[@id='MHint1']/descendant::span[@class='mjx-denominator'][last()]",
+        'tocTitle' : "//div[@id='toc']/h3",
+        'toc' : "//div[@id='toc']",
+        'legend' : "//div[@id='legend']",
+        'registrationButton' : "//div[@class='usercreatereply']//child::button",
+        'loginButton' : "//button[@onclick='userlogin_click();']"
     }
 
     @classmethod
@@ -91,7 +74,7 @@ class SeleniumTest(unittest.TestCase):
     def getElement( self, key ):
         """
         Method has 2 usages:
-        1. Retrieve a DOM element from the navigation etc., since the paths are different in the bootstrap and html5 versions 
+        1. Retrieve a DOM element from the navigation etc. 
         In this case, the DOM element is retrieved by looking up the key up in the array of xpaths.
         
         2. Retrieve a DOM element from the page content. The element is retrieved by id
@@ -100,14 +83,8 @@ class SeleniumTest(unittest.TestCase):
         
         @param key - String case 1: key in the self.xpath dict or case 2: element id
         """
-        if key in self.xpath['bootstrap'] or key in self.xpath['html5']:
-            if settings.bootstrap == 1:
-                val = self.xpath['bootstrap'][ key ]
-    
-            else:
-                val = self.xpath['html5'][ key ]
-        
-            element = self.driver.find_element_by_xpath( val )
+        if key in self.xpath.keys():
+            element = self.driver.find_element_by_xpath( self.xpath[ key ] )
         
         else:
             element = self.driver.find_element_by_id( key )
@@ -157,8 +134,20 @@ class SeleniumTest(unittest.TestCase):
         self.driver.get( url )
 
 
+    def _navToSpecialPage(self, key, lang="de"):
+        if key in AbstractXmlRenderer.specialPagesUXID.keys():
+            url = "%s/html/%s/%s" % ( self.start_url, lang, AbstractXmlRenderer.specialPagesUXID[key] )
+
+        else:
+            print( "Key must be in AbstractXmlRenderer.specialPagesUXID" )
+            
+        self.driver.get( url )
+            
+        
+
     def _getConfigParam(self, key):
         return self.config.get( 'defaults', key )
+
 
     def _chooseLanguageVersion(self, languagecode, no_mathjax=False):
         '''
