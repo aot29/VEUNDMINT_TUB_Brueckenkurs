@@ -440,7 +440,7 @@ function SetupIntersite(clearuser, pulledstr) {
       // we are on the logout page, we can do synced calls here
       logMessage(VERBOSEINFO, "Logout requested");
       pushISO(true);
-      window.close();
+      //window.close(); // why?
       // browsers may refuse javascript close based on security settings,
       // in that case the module text informs the user to close manually.
   } else {

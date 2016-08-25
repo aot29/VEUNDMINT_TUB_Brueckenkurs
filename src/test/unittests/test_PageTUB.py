@@ -25,6 +25,32 @@ class test_PageTUB(AbstractRendererTestCase):
 		self.page.generateHTML( self.tc )
 
 
+	def testLoadSpecialPage(self):
+		"""
+		Can special pages be loaded from templates stored in templates_xslt/XXX.xml
+		"""
+		for key in AbstractXmlRenderer.specialPagesUXID.keys():
+
+			if key == 'VBKM_MISCSEARCH' : continue
+
+			self.tc.uxid = key
+			self.page.loadSpecialPage( self.tc )
+			self.assertTrue( '<!-- mdeclaresiteuxidpost;;%s;; //-->' % key in self.tc.content )
+
+
+	def testGenerateHTML_for_special_pages(self):
+		for key in AbstractXmlRenderer.specialPagesUXID.keys():
+
+			if key == 'VBKM_MISCSEARCH' : continue
+
+			# Can the page be generated from template?
+			self.tc.uxid = key
+			self.page.generateHTML( self.tc )
+			self.assertTrue( '<!-- mdeclaresiteuxidpost;;%s;; //-->' % key in self.tc.html, "UXID Tag not found in %s" % key )
+			# navbar present?
+			self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
+
+
 	def testEnhanceContent(self):
 		'''
 		HTML Content from examples, info and exercises gets transformed

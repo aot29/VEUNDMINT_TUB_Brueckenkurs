@@ -153,12 +153,20 @@ fixRedirects:
 # Copy special pages to their definitive location.
 # This should be dealt with in mintmod
 define fixSpecialPages_cmd
-	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/data.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCCOURSEDATA;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/data.html
-	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/config.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/config.html
-	-cd $(OUTPUT)/html  && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGIN;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/login.html
-	-cd $(OUTPUT)/html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGOUT;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/logout.html
-	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/search.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSEARCH;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/search.html
-	-cd $(OUTPUT)/html && rm $(CURRENT_LANG)/favorites.html && find $(CURRENT_LANG) -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCFAVORITES;; //-->' -l | xargs -I '{}' cp '{}' $(CURRENT_LANG)/favorites.html
+
+	-rm $(OUTPUT)/html/$(CURRENT_LANG)/data.html
+	-rm $(OUTPUT)/html/$(CURRENT_LANG)/config.html
+	-rm $(OUTPUT)/html/$(CURRENT_LANG)/login.html
+	-rm $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
+	-rm $(OUTPUT)/html/$(CURRENT_LANG)/search.html
+	-rm $(OUTPUT)/html/$(CURRENT_LANG)/favorites.html
+
+	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCCOURSEDATA;; //-->' -l | xargs -I '{}' cp '{}' data.html
+	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->' -l | xargs -I '{}' cp '{}' config.html
+	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGIN;; //-->' -l | xargs -I '{}' cp '{}' login.html
+	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGOUT;; //-->' -l | xargs -I '{}' cp '{}' logout.html
+	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSEARCH;; //-->' -l | xargs -I '{}' cp '{}' search.html
+	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCFAVORITES;; //-->' -l | xargs -I '{}' cp '{}' favorites.html
 	
 	#now correct the links
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CONFIG|href=\"\.\./$(CURRENT_LANG)/config.html|g" {} \;
@@ -220,7 +228,7 @@ define fixLinks_cmd
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
 
 	# Add the logout.html page out of the template src/templates_html5/html5_logout.html
-	cp src/templates_html5/html5_logout.html $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
+	#cp src/templates_html5/html5_logout.html $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
 		
 endef
 
@@ -276,12 +284,6 @@ fix: fixRedirects
 	# fix redirect to English "contents of the module" page
 	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.1/modstart\.html|3\.1\.1/modstart\.html|g" chapter.html;
 
-	# fix redirect to English "view index" page
-	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.5/modstart\.html|3\.1\.4/modstart\.html|g" search.html;
-
-	# fix redirect to English "register account page" page
-	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.3/modstart\.html|3\.1\.3/modstart\.html|g" config.html;
-
 	# replace index.html with src/templates_html5/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_html5/html5_choose_language_simple.html $(OUTPUT)/index.html
 
@@ -300,6 +302,7 @@ cleanupAfter:
 	-rm -Rf $(OUTPUT)
 	-rm -Rf $(OUTPUT)_en
 	-rm -Rf $(OUTPUT)_de
+	-rm -Rf _tmp
 
 
 #

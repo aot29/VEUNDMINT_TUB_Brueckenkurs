@@ -31,9 +31,9 @@ SECTION_LEVEL = 3
 SUBSECTION_LEVEL = 4
 
 class AbstractXmlRenderer(object):
-    # list of special pages
-    specialPagesUXID = { 'VBKM_MISCCOURSEDATA' : 'data.html', 'VBKM_MISCSETTINGS' : 'config.html', 'VBKM_MISCLOGIN' : 'login.html', 'VBKM_MISCLOGOUT' : 'logout.html', 'VBKM_MISCSEARCH' : 'search.html', 'VBKM_MISCFAVORITES' : 'favorites.html' }
-    # list of info pages
+    # list of special pages, these are not part of the course, and are generated from templates
+    specialPagesUXID = { 'VBKM_MISCCOURSEDATA' : 'data', 'VBKM_MISCSETTINGS' : 'config', 'VBKM_MISCLOGIN' : 'login', 'VBKM_MISCLOGOUT' : 'logout', 'VBKM_MISCSEARCH' : 'search', 'VBKM_MISCFAVORITES' : 'favorites' }
+    # list of info pages. These are not part of the course, but are generated in LaTeX
     infoPagesUXID = [ "VBKM_FIRSTPAGE","VBKM_COURSEINFORMATION","VBKM_AUTHORS","VBKM_IMPRESSUM","VBKM_LEGAL","VBKM_DISPLAYINFO" ]
     
     def generateXML(self, obj):

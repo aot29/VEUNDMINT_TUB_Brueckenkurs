@@ -136,7 +136,7 @@ class SeleniumTest(unittest.TestCase):
 
     def _navToSpecialPage(self, key, lang="de"):
         if key in AbstractXmlRenderer.specialPagesUXID.keys():
-            url = "%s/html/%s/%s" % ( self.start_url, lang, AbstractXmlRenderer.specialPagesUXID[key] )
+            url = "%s/html/%s/%s.html" % ( self.start_url, lang, AbstractXmlRenderer.specialPagesUXID[key] )
 
         else:
             print( "Key must be in AbstractXmlRenderer.specialPagesUXID" )
