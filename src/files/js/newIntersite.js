@@ -1353,6 +1353,13 @@ COLOR_INPUTCHANGED = "#E0C0C0";
            alert("Diese Funktion steht noch nicht zur Verfügung!");
        }
      }
+     
+     function getNameDescription() {
+    	    if (active == false) return "";
+    	    if (obj.login.type == 0) return "Anonym";
+    	    if (obj.login.sname != "") return obj.login.sname;
+    	    return obj.login.vname;
+    	}
 
      // attach properties to the exports object to define
      // the exported module properties.
@@ -1369,5 +1376,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      exports.getObj = getObj;
      exports.getName = getName;
      exports.isActive = isActive;
+     exports.getNameDescription = getNameDescription;
 
 }));

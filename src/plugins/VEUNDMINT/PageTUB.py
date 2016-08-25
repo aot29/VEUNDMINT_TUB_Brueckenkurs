@@ -32,6 +32,9 @@ class PageTUB( AbstractHtmlRenderer ):
 	Render page by applying XSLT templates, using the lxml library.
 	"""
 	
+	BASE_TEMPLATE = "page.xslt"
+	""" The template which includes all others """
+	
 	def __init__( self, tplPath, contentRenderer, tocRenderer ):
 		"""
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
@@ -73,15 +76,23 @@ class PageTUB( AbstractHtmlRenderer ):
 		self.correctLinks( xml, basePath )
 		
 		# Load the template
-		templatePath = os.path.join( self.tplPath, "page.xslt" )
+		templatePath = os.path.join( self.tplPath, PageTUB.BASE_TEMPLATE )
 		template = etree.parse( templatePath )
 
 		# Apply the template
 		transform = etree.XSLT( template )
 		result = transform( xml )
 		
-		# add tc.content and save the result in tc object
-		tc.html = self._contentToString( result, tc, basePath )
+		if AbstractXmlRenderer.isSpecialPage( tc ) and tc.uxid != 'VBKM_MISCSEARCH' :
+			# Special pages are now generated from templates_xslt
+			self.loadSpecialPage( tc )
+			
+		# Prepare content which is stored in tc.content (change paths etc.)
+		self.prepareContent( tc )
+		
+		# Replace the content placeholder added in PageXmlRenderer with the actual (not necessarily XML-valid) HTML content
+		resultString = str( result )
+		tc.html = resultString.replace( '<content></content>', tc.content )
 
 
 	def addFlags(self, xml, tc, basePath):
@@ -100,6 +111,38 @@ class PageTUB( AbstractHtmlRenderer ):
 		xml.set( 'isCoursePage', str( AbstractXmlRenderer.isCoursePage(tc) ) )
 		xml.set( 'isSpecialPage', str( AbstractXmlRenderer.isSpecialPage(tc) ) )
 		xml.set( 'isInfoPage', str( AbstractXmlRenderer.isInfoPage(tc) ) )
+		xml.set( 'requestLogout', str( AbstractXmlRenderer.isLogoutPage(tc) ).lower() )
+
+
+	def loadSpecialPage(self, tc):
+		if tc.uxid not in AbstractXmlRenderer.specialPagesUXID.keys():
+			raise Exception( "This does not seem to be a special page: %" % tc.uxid )
+		
+		pageContentPath = os.path.join( self.tplPath, "%s.xml" % AbstractXmlRenderer.specialPagesUXID[ tc.uxid ] )
+		parser = etree.XMLParser(remove_blank_text=True)
+		tree = etree.parse(pageContentPath, parser)
+		tc.content = etree.tostring( tree ).decode("utf-8")
+
+
+	def prepareContent(self, tc):
+		"""
+		TTM produces non-valid HTML, so it has to be added after XML has been parsed.
+		Don't use tidy on the whole page, as tidy version 1 drops MathML elements (among other)
+		Note: string replace is faster than regex
+		
+		@param tc - TContent object for the page
+		"""
+		# Reduce the number of breaks and clear=all's, since they mess-up the layout
+		breakStr = '<br style="margin-bottom: 2em" />'
+		tc.content = tc.content.replace( '<br/> <br/>', breakStr )
+		tc.content = tc.content.replace( '<br clear="all"/><br clear="all"/>', breakStr )
+		tc.content = tc.content.replace( '<br clear="all"></br>\n<br clear="all"></br>', breakStr )
+		tc.content = tc.content.replace( '\t', '' )
+		tc.content = tc.content.replace( '\n', '' )
+		
+		# if this is a special page, replace the title
+		if AbstractXmlRenderer.isSpecialPage(tc):
+			tc.content = re.sub( r"<h4>(.+?)</h4><h4>(.+?)</h4>", "<h4 id='pageTitle' data-toggle='i18n' data-i18n='%s' ></h4>" % tc.uxid, tc.content )
 
 
 	def getBasePath(self, tc):
@@ -124,36 +167,6 @@ class PageTUB( AbstractHtmlRenderer ):
 		
 		return basePath
 	
-
-	def _contentToString(self, xml, tc, basePath):
-		"""
-		TTM produces non-valid HTML, so it has to be added after XML has been parsed.
-		Don't use tidy on the whole page, as tidy version 1 drops MathML elements (among other)
-		Note: string replace is faster than regex
-		
-		@param xml - etree holding the page and toc without the content result of XSLT transformation
-		@param tc - TContent object for the page
-		@param basePath - String prefix for all links
-		"""
-		# Reduce the number of breaks and clear=all's, since they mess-up the layout
-		breakStr = '<br style="margin-bottom: 2em" />'
-		tc.content = tc.content.replace( '<br/> <br/>', breakStr )
-		tc.content = tc.content.replace( '<br clear="all"/><br clear="all"/>', breakStr )
-		tc.content = tc.content.replace( '<br clear="all"></br>\n<br clear="all"></br>', breakStr )
-		
-		# not necessary
-		#tc.content = re.sub(r"(src|href)=(\"|')(?!#|https://|http://|ftp://|mailto:|:localmaterial:|:directmaterial:)", "\\1=\\2" + basePath + "/", tc.content)
-
-		# if this is a special page, replace the title
-		if AbstractXmlRenderer.isSpecialPage(tc):
-			tc.content = re.sub( r"<h4>(.+?)</h4><h4>(.+?)</h4>", "<h4 id='pageTitle' data-toggle='i18n' data-i18n='%s' ></h4>" % tc.uxid, tc.content )
-			
-		# replace the content placeholder added in PageXmlRenderer with the actual non-valid HTML content
-		resultString = str( xml )
-		resultString = resultString.replace( '<content></content>', tc.content )
-
-		return resultString
-
 
 	def _addPrevNextLinks(self, page, tc, basePath=''):
 		"""

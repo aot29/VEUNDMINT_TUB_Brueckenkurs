@@ -10,7 +10,7 @@
 							<button id="menuButton" type="button" data-toggle="offcanvas" class="btn btn-link glyphicon glyphicon-menu-hamburger" style="float:left">
 							</button>
 							<a data-toggle="tooltip-navbar" id="loginbutton" href="{@basePath}/{@lang}/config.html" class="btn btn-default btn-sm" >
-								<span class="glyphicon glyphicon-user"></span>&nbsp;<span data-toggle="i18n" data-i18n="ui-loginbutton"/>
+								<span class="glyphicon glyphicon-user"></span>&nbsp;<span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"/>
 							</a>
 							<a data-toggle="tooltip" id="homebutton" href="{@basePath}/{@lang}/index.html" class="btn btn-link glyphicon glyphicon-home"></a>
 							<a data-toggle="tooltip" id="listebutton" href="{@basePath}/{@lang}/search.html" class="btn btn-link glyphicon glyphicon-book"></a>

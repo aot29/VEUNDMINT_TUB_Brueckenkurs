@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<div>
+
+	<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->
+
+	<p>Falls Sie schon einen Account für den Brückenkurs besitzen,
+	können Sie sich hier einloggen.</p>
+
+	<a class="btn btn-primary center-block btn-lg" type="button" href="login.html">Login</a>
+	
+	<a class="btn btn-primary center-block btn-lg" type="button" href="logout.html">Logout</a>
+
+	<div class="show_scorm" style="display:none">
+		<b>Sie sind über das Lernsystem angemeldet und registriert.</b>
+	</div>
+
+	<div class="show_noscorm" style="display:none">
+
+		<!-- REGISTER NEW ACCOUNT -->
+		<div class="register_new">
+			<h5>Einen neuen Account registrieren:</h5>
+
+			<p>Nach erfolgreicher Registrierung werden die Daten auf unseren Servern abgelegt
+			und Ihr Bearbeitungsstand ist auch auf anderen Rechnern und Geräten verfügbar:</p>
+
+			<div class="xreply">
+				<p id="LOGINFIELD">
+					Kann nicht auf Browserdaten zugreifen!
+				</p>
+				
+				<form class="form-horizontal">
+
+					<div class="form-group">
+						<p>Persönliche Angaben (notwendig um eine Teilnahmebestätigungen zu erstellen):</p>
+
+						<label for="USER_VNAME" class="control-label col-xs-2">Vorname</label>
+				        <div class="col-xs-10">
+							<input type="text" class="form-control" id="USER_VNAME" />
+				        </div>
+				        
+						<label for="USER_SNAME" class="control-label col-xs-2">Nachname</label>
+				        <div class="col-xs-10">
+							<input type="text" class="form-control" id="USER_SNAME" />
+				        </div>
+					</div>
+					
+					<div class="form-group">
+						<p>Freiwillige Angaben zum angestrebten Studiengang (falls geplant bzw. bekannt):</p>
+
+						<label for="USER_SGANG" class="control-label col-xs-2">Studiengang</label>
+				        <div class="col-xs-10">
+							<input type="text" class="form-control" id="USER_SGANG" />
+				        </div>
+
+						<label for="USER_SGANG" class="control-label col-xs-2">Universität / Hochschule</label>
+				        <div class="col-xs-10">
+							<input type="text" class="form-control" id="USER_UNI" />
+				        </div>
+					</div>
+					
+					<div id="USERNAMEFIELD" class="form-group">
+							<p>Wählen Sie einen Loginnamen für die Kursbearbeitung:</p>
+				
+							<label for="USER_UNAME" class="control-label col-xs-2">Loginname</label>
+					        <div class="col-xs-10">
+								<input type="text" class="form-control" id="USER_UNAME" oninput="usercheck();" onkeyup="usercheck();" onpaste="usercheck();" onpropertychange="usercheck();"/><img id="checkuserimg" src="images/questionmark.png" />
+					        </div>
+					
+							<div class="usercreatereply"><p id="ulreply_p"> </p></div>
+					</div>
+				</form>
+	
+				<div class="panel panel-default">
+					<div class="panel-body">
+						Nach der Registrierung werden Ihre Daten auf unseren Kursservern hinterlegt, ebenso Ihre eingegebenen Lösungen und Testergebnisse. Diese Daten werden für anonymisierte
+						statistische Erhebungen genutzt und um die Qualtität der Inhalte und der Aufgaben zu verbessern. Bitte beachten Sie, dass Teilnahmebestätigungen für den Kurs nur ausgestellt
+						werden können, wenn die freiwilligen Felder vollständig ausgefüllt sind.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="show_scorm" style="display:none">
+		<b>Ihre Benutzerdaten können Sie im Lernsystem einsehen und verändern.</b>
+	</div>
+	
+	<div class="show_noscorm" style="display:none">
+		<div class="xreply">
+			<p id="CHECKIS">
+				Kann nicht auf Browserdaten zugreifen!
+			</p>
+		</div>
+	</div>
+	
+</div>

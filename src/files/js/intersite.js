@@ -440,7 +440,7 @@ function SetupIntersite(clearuser, pulledstr) {
       // we are on the logout page, we can do synced calls here
       logMessage(VERBOSEINFO, "Logout requested");
       pushISO(true);
-      window.close();
+      //window.close(); // why?
       // browsers may refuse javascript close based on security settings,
       // in that case the module text informs the user to close manually.
   } else {
@@ -775,7 +775,7 @@ function pushlogin_success(data) {
     var datastring = JSON.stringify(intersiteobj);
     userdata.writeData(true, intersiteobj.login.username, datastring, pushwrite_success, pushwrite_error); // logout is done by the write callbacks
     
-    window.location.href="../index.html";
+    window.location.href="index.html";
     
 }
 
@@ -1154,7 +1154,7 @@ function loginread_success(data) {
 
   // TODO: belongs to quickfix, should be removed
   userdata.logout(true, pushlogout_success, pushlogout_error);
-  window.location.href="../index.html";
+  window.location.href="index.html";
 }
 
 function loginread_error(message, data) {

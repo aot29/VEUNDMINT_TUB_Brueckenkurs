@@ -1969,13 +1969,30 @@ function styleColors(c) {
   }
   return c;
 }
-
+    
+/**
+ * Change the text of the login button
+ */
+function loginButtonSetText() {
+  var loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";
+  
+  if ( intersite.isActive() ) {
+      if (intersite.getObj().login.type >= 2) {
+          loginbuttontext = $.i18n( "msg-myaccount", intersite.getNameDescription() ); // "Logout
+      } else {
+    	  loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";    	  
+      }
+	  console.log(loginbuttontext);
+	  $("[ id = loginbutton_text ]").text( $.i18n( loginbuttontext ) );
+  }	
+}
 
 // first = false -> Seite wurde schonmal mit Layout aufgesetzt, Layout soll nur angepasst werden
 function applyLayout(first) {
 
   updateLayoutStates();
-
+  loginButtonSetText();
+  
   var e = document.getElementById("dynamic_css");
   if (e == null) {
     e = document.createElement('style');
