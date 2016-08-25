@@ -7,7 +7,7 @@
 				<div class="row" style="margin-left: 0;margin-top: 10px; ">
 				    <div class="col-sm-12 navbar-left" id="toggle_sidebar" role="navigation" >
 				     	<div id="tools">
-							<button id="menuButton" type="button" data-toggle="offcanvas" class="btn btn-link glyphicon glyphicon-menu-hamburger" style="float:left">
+							<button id="menuButton" type="button" data-toggle="offcanvas" class="btn btn-link glyphicon glyphicon-menu-hamburger visible-sm visible-xs" style="float:left">
 							</button>
 							<a data-toggle="tooltip-navbar" id="loginbutton" href="{@basePath}/{@lang}/config.html" class="btn btn-default btn-sm" >
 								<span class="glyphicon glyphicon-user"></span>&nbsp;<span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"/>
@@ -23,5 +23,5 @@
 			</div>
 		</div>
 		<xsl:comment>end top navbar</xsl:comment>
-	</xsl:template>    
+	</xsl:template>
 </xsl:stylesheet>

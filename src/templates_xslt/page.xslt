@@ -10,7 +10,7 @@
 	<xsl:import href="tabs.xslt" />
  	<xsl:import href="content.xslt" />
  	<xsl:import href="pageFooter.xslt" />
- 	
+
 	<xsl:template match="/page">
 
 		<html lang="{@lang}">
@@ -18,43 +18,39 @@
 				<meta charset="utf-8" />
 				<title><xsl:value-of select="title" /></title>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				
+
 				<!-- Stylesheets, External JS, MathJax, i18n -->
 				<xsl:apply-templates select="." mode="headers" />
 			</head>
-			
+
 			<body>
 				<!-- Navigation bar at the top of the page -->
 				<xsl:call-template name="navbar" />
-				
+
 				<!-- Page contents, tabs, TOC and footer -->
-				<div id="pageContainer" >		          
-					<div class="row" style="margin: 0 15px 0 15px;">
-				        <div class="col-xs-12">
-				            <div class="row row-offcanvas row-offcanvas-left">
-	
+				<div id="pageContainer" class="container-fluid" >
+					<div class="row-fluid row-offcanvas row-offcanvas-left">
+						<div class="col-xs-6 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
 								<!-- TOC -->
 								<xsl:apply-templates select="." mode="toc" />
-								
-								<div class="col-xs-12 col-sm-12 col-md-9" id="courseContent">
-	
-									<!-- Page tabs -->
-									<xsl:apply-templates select="." mode="tabs" />
+						</div>
+						<div class="col-xs-12 col-md-9" id="courseContent">
 
-									<!-- Page contents-->									
-									<xsl:apply-templates select="." mode="content" />
-														                
-									<!-- Footer -->
-									<xsl:call-template name="pageFooter">
-										<xsl:with-param name="basePath" select="@basePath" />
-									</xsl:call-template>
+							<!-- Page tabs -->
+							<xsl:apply-templates select="." mode="tabs" />
 
-								</div>	
-							</div>
+							<!-- Page contents-->
+							<xsl:apply-templates select="." mode="content" />
+
+							<!-- Footer -->
+							<xsl:call-template name="pageFooter">
+								<xsl:with-param name="basePath" select="@basePath" />
+							</xsl:call-template>
+
 						</div>
 					</div>
 				</div>
-				
+
 				<!-- JS in footer -->
 				<xsl:call-template name="jsFooter" />
 

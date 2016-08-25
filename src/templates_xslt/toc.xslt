@@ -3,8 +3,7 @@
 
 	<xsl:template match="page" mode="toc">
 		<xsl:comment>TOC side bar</xsl:comment>
-		
-		<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation" style="margin-top: 5px;">
+
 			<div id="toc" class="panel-group"><br/>
 				<!-- Add TOC title -->
 				<h3>
@@ -16,7 +15,6 @@
 				</xsl:if>
 				<xsl:call-template name="socialMedia"/>
 			</div>
-		</div>
 		<xsl:comment>End TOC side bar</xsl:comment>
 	</xsl:template>
 
@@ -74,7 +72,7 @@
 		<!-- TOC entries of level 4 have icons -->
 		<xsl:variable name="iconClass"><xsl:if test="@level = '4'">glyphicon glyphicon-file</xsl:if></xsl:variable>
 		<xsl:variable name="highlightClass"><xsl:if test="@selected = 'True'">selectedEntry</xsl:if></xsl:variable>
-		
+
 		<!-- List entries recursively -->
 		<li>
 			<xsl:choose>
@@ -89,7 +87,7 @@
 		</li>
 	</xsl:template>
 
-	
+
 	<!-- TOC legend -->
 	<xsl:template name="legend">
 		<xsl:comment>Legend</xsl:comment>
@@ -105,5 +103,5 @@
 			</div>
 		</div>
 	</xsl:template>
-	
+
 </xsl:stylesheet>

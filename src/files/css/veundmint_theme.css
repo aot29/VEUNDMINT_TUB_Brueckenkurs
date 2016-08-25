@@ -1,7 +1,10 @@
+body {
+	padding-top: 70px;
+}
 
 /*pageContents*/
 #pageContents {
-    padding: 20px;
+    padding: 10px 20px;
     border: 1px solid #ccc;
     border-top: none;
     border-radius: 0 0 4px 4px;
@@ -12,7 +15,56 @@
 .jumbotron {
 	padding: 48px;
 }
-/*end pageContents*/
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 991px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+  }
+
+  .row-offcanvas-right {
+    right: 0;
+  }
+
+  .row-offcanvas-left {
+    left: 0;
+  }
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -75%; /* 6 columns */
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -75%; /* 6 columns */
+  }
+
+  .row-offcanvas-right.active {
+    right: 75%; /* 6 columns */
+  }
+
+  .row-offcanvas-left.active {
+    left: 75%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 75%; /* 6 columns */
+  }
+
+  #toggle_sidebar {
+		padding-left: 0;
+	}
+}
+
 
 /*tables*/
 #pageContents table td {
@@ -91,9 +143,6 @@ ol .btn {
     }
 
 	/* TOC */
-    #subtoc {
-        margin-top: 20px;
-    }
     #toc h3 {
     	margin-top: 0.25em;
     }
@@ -141,95 +190,8 @@ ol .btn {
 	    color: #000055;
     }
 
-/*end extra styles for TOC*/
-
-/* start Off canvas layout*/
-body {
-  padding-top: 51px;
-}
-.text-center {
-  padding-top: 20px;
-}
-.col-xs-12 {
-  background-color: #fff;
-}
-#sidebar {
-  height: 100%;
-  padding-right: 15px;
-  padding-bottom: 40px;
-}
-#sidebar .nav {
-  width: 95%;
-}
-#sidebar li {
-  border:0 #f2f2f2 solid;
-}
-
-#menuButton {
-	padding-left: 0;
-}
 
 /*MathJax override wrap settings*/
 .mjx-chtml {
 	white-space: normal!important;
-}
-
-/* Tabs */
-nav > li > a {
-  padding: 10px 2px;
-}
-
-/* show or collapse sidebar styles */
-@media screen and (min-width: 970px) {
-	#menuButton {
-		display: none;
-	}
-	#sidebar {
-		display: block;
-	}
-}
-
-@media screen and (max-width: 970px) {
-	#menuButton {
-		display: block;
-	}
-	.row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.5s ease-out;
-    -moz-transition: all 0.5s ease-out;
-    transition: all 0.5s ease-out;
-
-  }
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -41.6%;
-  }
-
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -41.6%;
-  }
-  .row-offcanvas-right.responsive {
-    right: 41.6%;
-  }
-  .row-offcanvas-left.responsive {
-    left: 41.6%;
-  }
-
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 41.6%;
-  }
-  #toc {
-    padding-top:0;
-  }
-  #sidebar ul {
-    padding-left: 0;
-  }
-
-  /* hide tabs*/
-  #subtoc {
-    display: none;
-  }
 }
