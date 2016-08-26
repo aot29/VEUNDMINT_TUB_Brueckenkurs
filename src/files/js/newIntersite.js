@@ -49,7 +49,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
     obj = createobj();
     name = "isobj_" + signature_main;
     pipwerks.SCORM.init();
-    console.log('we are on scorm:', isScormEnv());
     console.log("cmi.core.student_id from scorm:", pipwerks.SCORM.get("cmi.core.student_id"));
   }
 
