@@ -1971,27 +1971,39 @@ function styleColors(c) {
 }
     
 /**
- * Change the text of the login button
+ * Change the text of the login button:
+ * Logged -in or -out?
  */
-function loginButtonSetText() {
-  var loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";
-  
-  if ( intersite.isActive() ) {
-      if (intersite.getObj().login.type >= 2) {
-          loginbuttontext = $.i18n( "msg-myaccount", intersite.getNameDescription() ); // "Logout
-      } else {
-    	  loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";    	  
-      }
-	  console.log(loginbuttontext);
-	  $("[ id = loginbutton_text ]").text( $.i18n( loginbuttontext ) );
-  }	
+function loginButtonSet() {
+    if( userdata.isLoggedIn() ) {
+    	$('#logged_out_buttons').hide();
+    	$('#logged_in_buttons').show();
+    	
+    } else {
+    	$('#logged_in_buttons').hide();
+    	$('#logged_out_buttons').show();
+    }
+}
+
+/**
+ * Change the look of the tool buttons (glossar, data etc.):
+ * Logged -in or -out?
+ */
+function toolButtonsSet() {
+    if( userdata.isLoggedIn() ) {
+    	$('#databutton').removeClass( 'disabled' );
+    	
+    } else {
+    	$('#databutton').addClass( 'disabled' );
+    }
 }
 
 // first = false -> Seite wurde schonmal mit Layout aufgesetzt, Layout soll nur angepasst werden
 function applyLayout(first) {
 
   updateLayoutStates();
-  loginButtonSetText();
+  loginButtonSet();
+  toolButtonsSet()
   
   var e = document.getElementById("dynamic_css");
   if (e == null) {

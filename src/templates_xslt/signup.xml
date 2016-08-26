@@ -7,7 +7,7 @@
 	können Sie sich hier einloggen.</p>
 
 	<a class="btn btn-primary center-block btn-lg" type="button" href="login.html">Login</a>
-	
+
 	<a class="btn btn-primary center-block btn-lg" type="button" href="logout.html">Logout</a>
 
 	<div class="show_scorm" style="display:none">
@@ -27,7 +27,7 @@
 				<p id="LOGINFIELD">
 					Kann nicht auf Browserdaten zugreifen!
 				</p>
-				
+
 				<form class="form-horizontal">
 
 					<div class="form-group">
@@ -37,7 +37,7 @@
 				        <div class="col-xs-10">
 							<input type="text" class="form-control" id="USER_VNAME" />
 				        </div>
-				        
+
 						<label for="USER_SNAME" class="control-label col-xs-2">Nachname</label>
 				        <div class="col-xs-10">
 							<input type="text" class="form-control" id="USER_SNAME" />
@@ -48,7 +48,7 @@
 							<input type="email" class="form-control" id="USER_EMAIL" />
 				        </div>
 					</div>
-					
+
 					<div class="form-group">
 						<p>Freiwillige Angaben zum angestrebten Studiengang (falls geplant bzw. bekannt):</p>
 
@@ -62,19 +62,19 @@
 							<input type="text" class="form-control" id="USER_UNI" />
 				        </div>
 					</div>
-					
+
 					<div id="USERNAMEFIELD" class="form-group">
 							<p>Wählen Sie einen Loginnamen für die Kursbearbeitung:</p>
-				
+
 							<label for="USER_UNAME" class="control-label col-xs-2">Loginname</label>
 					        <div class="col-xs-10">
-								<input type="text" class="form-control" id="USER_UNAME" oninput="usercheck();" onkeyup="usercheck();" onpaste="usercheck();" onpropertychange="usercheck();"/><img id="checkuserimg" src="images/questionmark.png" />
+								<input type="text" class="form-control" id="USER_UNAME" oninput="intersite.usercheck();" onkeyup="intersite.usercheck();" onpaste="intersite.usercheck();" onpropertychange="intersite.usercheck();"/><img id="checkuserimg" src="images/questionmark.png" />
 					        </div>
-					
+
 							<div class="usercreatereply"><p id="ulreply_p"> </p></div>
 					</div>
 				</form>
-	
+
 				<div class="panel panel-default">
 					<div class="panel-body">
 						Nach der Registrierung werden Ihre Daten auf unseren Kursservern hinterlegt, ebenso Ihre eingegebenen Lösungen und Testergebnisse. Diese Daten werden für anonymisierte
@@ -85,11 +85,11 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="show_scorm" style="display:none">
 		<b>Ihre Benutzerdaten können Sie im Lernsystem einsehen und verändern.</b>
 	</div>
-	
+
 	<div class="show_noscorm" style="display:none">
 		<div class="xreply">
 			<p id="CHECKIS">
@@ -97,5 +97,5 @@
 			</p>
 		</div>
 	</div>
-	
+
 </div>

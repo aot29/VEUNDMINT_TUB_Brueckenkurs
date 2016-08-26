@@ -29,7 +29,7 @@ var userdata = (function (serviceURL) {
     if (url == "") {
       logMessage(CLIENTERROR, "Kein dataserver deklariert!");
     }
-    
+
     /**
      * PRIVATE FUNCTION
      * Create a success callback for jquery's ajax requests.
@@ -217,6 +217,16 @@ var userdata = (function (serviceURL) {
     exports.setURL = function (baseURL) {
         url = baseURL + '/userdata.php';
     };
+
+    exports.isLoggedIn = function () {
+      if (typeof intersite !== undefined &&
+        typeof intersite.getObj() !== undefined &&
+        typeof intersite.getObj().login !== undefined) {
+          return intersite.getObj().login.type !== 0;
+      } else {
+        return false;
+      }
+    }
 
     return exports;
 })(data_server_user);

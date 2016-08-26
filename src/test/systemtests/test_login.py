@@ -86,16 +86,10 @@ class TestLogin( SeleniumTest ):
 		self.assertTrue( self._getRegistrationButton(), "Button not displayed when it should" )
 
 
-	def testLogin(self):
-		'''
-		Test if the test user can login.
-		The test user needs to be registered manually for the test to succeed.
-		User data is in this class
-		'''
-		# logout just to be sure
-		self._navToSpecialPage( 'VBKM_MISCLOGOUT' )
-		
-		# login, using the test user "selenium"
+	def _login(self):
+		"""
+		login, using the test user "selenium"
+		"""
 		self._navToSpecialPage( 'VBKM_MISCLOGIN' )
 		usernameInput = self.getElement( 'OUSER_LOGIN' )
 		usernameInput.send_keys( self.TestUName )
@@ -106,7 +100,27 @@ class TestLogin( SeleniumTest ):
 		
 		# give the server a chance
 		time.sleep(10)
+
+
+	def _logout(self):
+		self._navToSpecialPage( 'VBKM_MISCLOGOUT' )
 		
+		# give the server a chance
+		time.sleep(10)
+
+
+	def testLogin(self):
+		'''
+		Test if the test user can login.
+		The test user needs to be registered manually for the test to succeed.
+		User data is in this class
+		'''
+		# logout just to be sure
+		self._logout()
+		
+		#login, using the test user "selenium"
+		self._login()
+
 		# load the registration page and check the fields are not empty
 		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )
 		for name in self.registrationFieldIds:
@@ -117,10 +131,7 @@ class TestLogin( SeleniumTest ):
 		self.assertEquals( self.locale[ 'msg-myaccount' ], self.getElement( 'loginbutton_text' ).text )
 
 		# logout
-		self._navToSpecialPage( 'VBKM_MISCLOGOUT' )
-		
-		# give the server a chance
-		time.sleep(10)
+		self._logout()		
 		
 		# load the registration page and check the fields are empty after logout
 		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )
@@ -130,6 +141,7 @@ class TestLogin( SeleniumTest ):
 
 		# check the text on the login button
 		self.assertEquals( self.locale[ 'ui-loginbutton' ], self.getElement( 'loginbutton_text' ).text )
+
 
 	@unittest.skip("needs more attention")
 	def testRegister(self):

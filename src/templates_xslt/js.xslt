@@ -137,8 +137,18 @@
 	            globalloadHandler("");
 	            
 	            // on the logout page
-	            if(requestLogout) {
+	            if( requestLogout ) {
 	            	localStorage.clear();
+	            }
+	            
+	            // Logged -in or -out?
+	            if( userdata.isLoggedIn() ) {
+	            	$('#logged_out_buttons').hide();
+	            	$('#logged_in_buttons').show();
+	            	
+	            } else {
+	            	$('#logged_in_buttons').hide();
+	            	$('#logged_out_buttons').show();
 	            }
 	        });
 

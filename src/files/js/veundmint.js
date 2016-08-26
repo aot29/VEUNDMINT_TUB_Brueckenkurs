@@ -3,6 +3,25 @@ it is responsible for the document loaded action that was befor in the body onlo
 onload="loadHandler()" onunload="unloadHandler()" */
 
 $(function() {
+
+  $('[data-toggle="offcanvas"]').click(function () {
+    $('.row-offcanvas').toggleClass('active')
+  });
+	//collapse with data attribute does not work for us, so we use js instead
+	//
+	//TODO commented out, when we have content in sidebar we can comment that in again
+	//
+	// $('.module-panel > div.panel-heading').click(function (e) {
+	// 	e.preventDefault();
+	// 	$(this).parent().children('.panel-collapse').collapse('toggle');
+	// });
+  // //this closes all other panels of #toc on click of certain panel
+  // $('#toc .collapse').on('show.bs.collapse', function (e) {
+  //     var actives = $('#toc').find('.in, .collapsing');
+  //     actives.each( function (index, element) {
+  //         $(element).collapse('hide');
+  //     })
+  // })
 	intersite.init();
 	globalloadHandler("");
 });
