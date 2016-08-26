@@ -1,13 +1,27 @@
 <?xml version="1.0"?>
 <div>
-	<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGIN;; //-->
 
+	<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGIN;; //-->
+	
 	<div class="show_noscorm" style="display:none">
-		<div id="ONLYLOGINFIELD"></div>	
-		<div>Zum Einloggen sind der Benutzername und das Passwort der Registrierung erforderlich.</div>
+		<i>Zum Einloggen sind der Benutzername und das Passwort der <a href="signup.html">Registrierung</a> erforderlich.</i>
+		<form class="form-horizontal">
+			<div class="form-group col-sm-6 col-md-8">
+				
+				<label for="OUSER_LOGIN" class="control-label col-xs-6">Benutzername</label>
+				<div class="col-xs-6"><input type="text" class="form-control" id="OUSER_LOGIN" /></div>
+		        
+				<label for="OUSER_PW" class="control-label col-xs-6">Passwort</label>
+				<div class="col-xs-6"><input type="password" class="form-control" id="OUSER_PW" /></div>
+
+				<a class="std-button btn btn-primary btn-lg pull-right" type="button" href="login.html">Login</a>
+	        
+			</div>			
+			
+		</form>
 	</div>
 	
 	<div class="show_scorm" style="display:none">
-		<b>Sie können sich nur über das Lernsystem an- und abmelden.</b>
+		<b>Sie k&#246;nnen sich nur &#252;ber das Lernsystem an- und abmelden.</b>
 	</div>
 </div>
