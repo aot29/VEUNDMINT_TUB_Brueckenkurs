@@ -4,7 +4,7 @@
 	<xsl:template match="page" mode="toc">
 		<xsl:comment>TOC side bar</xsl:comment>
 
-			<div id="toc" class="panel-group"><br/>
+			<div id="toc" class="panel-group">
 				<!-- Add TOC title -->
 				<h3>
 					<span data-toggle="i18n" data-i18n="course-title"/>
@@ -34,7 +34,7 @@
 
 	<!-- Apply to unselected entries -->
 	<xsl:template match="entry" mode="unselected">
-		<div class="panel panel-default">
+		<div class="panel panel-default module-panel">
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a href="{@href}"><xsl:value-of select="caption"/></a>
@@ -45,7 +45,7 @@
 
 	<!-- Apply to selected entry -->
 	<xsl:template match="entry" mode="selected">
-		<div class="panel panel-primary">
+		<div class="panel panel-primary module-panel">
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a href="{@href}"><xsl:value-of select="caption"/></a>
