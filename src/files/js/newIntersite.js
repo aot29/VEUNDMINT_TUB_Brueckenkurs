@@ -1499,5 +1499,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      exports.getName = getName;
      exports.isActive = isActive;
      exports.getNameDescription = getNameDescription;
+     exports.isScormEnv = isScormEnv;
 
 }));
