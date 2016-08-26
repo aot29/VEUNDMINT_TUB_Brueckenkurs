@@ -14,9 +14,9 @@
 
 				<div class="col-xs-12" style="padding: 0;">
 					<ul class="nav nav-pills">
-						<li><xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navPrev" /></xsl:if></li>
+						<xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navPrev" /></xsl:if>
 						<xsl:apply-templates select="$selectedPage/../*" mode="tab" />
-						<li><xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navNext" /></xsl:if></li>
+						<xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navNext" /></xsl:if>
 					</ul>
 				</div>
 
@@ -30,11 +30,11 @@
 
 	<!-- RW and FF Buttons -->
 	<xsl:template match="navPrev">
-		<a class="subtoc-prev glyphicon glyphicon-chevron-left pull-left" href="{@href}"></a>
+		<li class="pull-left"><a class="subtoc-prev glyphicon glyphicon-chevron-left pull-left" href="{@href}"></a></li>
 	</xsl:template>
 
 	<xsl:template match="navNext">
-		<a class="subtoc-next glyphicon glyphicon-chevron-right pull-right" href="{@href}"></a>
+		<li class="pull-right"><a class="subtoc-next glyphicon glyphicon-chevron-right pull-right" href="{@href}"></a></li>
 	</xsl:template>
 
 
