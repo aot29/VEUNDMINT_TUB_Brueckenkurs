@@ -29,7 +29,7 @@ class PageHeadTest( SeleniumTest ):
 
         # Test nav buttons
 
-        self._testButton( "loginbutton", "config.html",
+        self._testButton( "loginbutton", "signup.html",
                           self.locale[ "ui-loginbutton" ],
                           self.locale[ "hint-loginbutton" ] )
         self._testButton( "listebutton", "search.html",

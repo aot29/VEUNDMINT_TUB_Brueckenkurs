@@ -155,21 +155,21 @@ fixRedirects:
 define fixSpecialPages_cmd
 
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/data.html
-	-rm $(OUTPUT)/html/$(CURRENT_LANG)/config.html
+	-rm $(OUTPUT)/html/$(CURRENT_LANG)/signup.html
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/login.html
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/search.html
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/favorites.html
 
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCCOURSEDATA;; //-->' -l | xargs -I '{}' cp '{}' data.html
-	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->' -l | xargs -I '{}' cp '{}' config.html
+	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->' -l | xargs -I '{}' cp '{}' signup.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGIN;; //-->' -l | xargs -I '{}' cp '{}' login.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGOUT;; //-->' -l | xargs -I '{}' cp '{}' logout.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSEARCH;; //-->' -l | xargs -I '{}' cp '{}' search.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCFAVORITES;; //-->' -l | xargs -I '{}' cp '{}' favorites.html
 	
 	#now correct the links
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CONFIG|href=\"\.\./$(CURRENT_LANG)/config.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CONFIG|href=\"\.\./$(CURRENT_LANG)/signup.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CDATA|href=\"\.\./$(CURRENT_LANG)/data.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGIN|href=\"\.\./$(CURRENT_LANG)/login.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGOUT|href=\"\.\./$(CURRENT_LANG)/logout.html|g" {} \;

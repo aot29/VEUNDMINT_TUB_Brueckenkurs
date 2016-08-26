@@ -27,14 +27,14 @@ class SpecialPages( SeleniumTest ):
         Special pages should be available and have the correct localized title
         """
         for i18nKey,pageName in self.pageNames.items():
-            url = "%s/html/%s/%s" % ( self.start_url, self.lang, pageName )
-            print(url)
+            url = "%s/html/%s/%s.html" % ( self.start_url, self.lang, pageName )
             self.driver.get( url )
             content = self.getElement( 'pageContents' )
             self.assertTrue( content, "No content found for %s" % url)
             
             # test for correct titles in bootstrap version
             actualTitle = self.getElement( 'pageTitle' ).text
+            print(actualTitle)
             expectedTitle = self.locale[ i18nKey ]
             self.assertEquals( expectedTitle, actualTitle, "Wrong title on page %s" % url)
 
