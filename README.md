@@ -47,9 +47,10 @@ php-cli
 ```
 
 ## Building
+See our [Wiki](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Code-refactoring) for detailed instuctions
 ### install dependencies for web version
 ```
-npm install
+npm install 
 bower install
 (or npm run bower_install if using a virtual Python environment)
 
