@@ -955,6 +955,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          logMessage(DEBUGINFO, una +" "+ rt);
          if (rt != "") {
              ulreply_set(false,rt);
+             $('#newUserButton').addClass('disabled');
              return;
          }
          ulreply_set(true,una); // set the input field display to checked
@@ -1034,7 +1035,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       * @return {[type]}      [description]
       */
      function check_user_success(data) {
-         console.log( "checkuser success");
          var e = document.getElementById("USER_UNAME");
          if (e == null) {
              console.log( "USER_UNAME-Feld nicht gefunden");
@@ -1042,15 +1042,20 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          }
 
          if ((data.action == "check_user") && (data.status == true)) {
+
            if (data.user_exists == true) {
              ulreply_set(false, $.i18n( 'msg-unavailable-username' ) );//"Benutzername ist schon vergeben."
+             $('#newUserButton').addClass('disabled');
+
            } else {
-             ulreply_set(true, $.i18n('msg-available-username',
-             '<button type=\'button\' style=\'criticalbutton\' onclick=\'intersite.usercreatelocal_click(2);\'>', '</button>'));//"Dieser Benutzername ist verfügbar! <button type='button' style='background: #00FF00' onclick='usercreatelocal_click(2);'>Jetzt registrieren</button>");
+             ulreply_set(true, $.i18n('msg-available-username'));//"Dieser Benutzername ist verfügbar."
+             $('#newUserButton').removeClass('disabled');
            }
+           
          } else {
              console.log( "checkuser success, status=false, data = " + JSON.stringify(data));
              ulreply_set(false, "Kommunikation mit Server (" + feedbackdesc + ") nicht möglich.");
+             $('#newUserButton').addClass('disabled');
          }
 
      }
