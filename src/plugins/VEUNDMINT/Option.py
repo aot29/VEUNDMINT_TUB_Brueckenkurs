@@ -243,7 +243,7 @@ class Option(object):
 
 
         # VE&MINT course parameters, defining values used by the online course
-        server = "http://guest6.mulf.tu-berlin.de/server/dbtest"
+        server = "https://guest6.mulf.tu-berlin.de/server/dbtest"
         self.do_feedback = "0"                        # Feedbackfunktionen aktivieren? DOPPLUNG MIT FLAGS
         self.do_export = "0"                          # Aufgabenexport aktivieren? DOPPLUNG MIT FLAGS
         self.reply_mail = "brueckenkurs@innocampus.tu-berlin.de"      # Wird in mailto vom Admin-Button eingesetzt
