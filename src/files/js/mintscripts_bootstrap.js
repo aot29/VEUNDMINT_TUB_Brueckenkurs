@@ -1969,7 +1969,7 @@ function styleColors(c) {
   }
   return c;
 }
-    
+
 /**
  * Change the text of the login button:
  * Logged -in or -out?
@@ -1978,7 +1978,7 @@ function loginButtonSet() {
     if( userdata.isLoggedIn() ) {
     	$('#logged_out_buttons').hide();
     	$('#logged_in_buttons').show();
-    	
+
     } else {
     	$('#logged_in_buttons').hide();
     	$('#logged_out_buttons').show();
@@ -1992,7 +1992,7 @@ function loginButtonSet() {
 function toolButtonsSet() {
     if( userdata.isLoggedIn() ) {
     	$('#databutton').removeClass( 'disabled' );
-    	
+
     } else {
     	$('#databutton').addClass( 'disabled' );
     }
@@ -2004,7 +2004,7 @@ function applyLayout(first) {
   updateLayoutStates();
   loginButtonSet();
   toolButtonsSet()
-  
+
   var e = document.getElementById("dynamic_css");
   if (e == null) {
     e = document.createElement('style');
@@ -2047,12 +2047,12 @@ function applyLayout(first) {
   var head = loginbuttonhtml;
 
   if (intersite.isActive()) {
-      if ((intersite.getObj().login.type >= 2) && (scormLogin == 0)) {
+      if ((intersite.getObj().login.type >= 2) && (intersite.isScormEnv() == 0)) {
           head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + $.i18n( "msg-myaccount" ) + "</div></a>";
       }
   }
 
-  if (scormLogin == 0) {
+  if (intersite.isScormEnv() == 0) {
       $('.show_scorm').css("display", "none");
       $('.show_noscorm').css("display", "block");
   } else {
@@ -2069,7 +2069,7 @@ function applyLayout(first) {
   head += "<button id=\"starbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"starClick();\"></button>";
   head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"></button>";
   head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"></button>";
-  if (scormLogin == 0) {
+  if (intersite.isScormEnv() == 0) {
       head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"></button>";
   }
   head += "<button id=\"settingsbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"toggle_settings();\"></button>";
