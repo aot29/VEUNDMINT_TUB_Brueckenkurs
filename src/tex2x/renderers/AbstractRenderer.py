@@ -32,7 +32,7 @@ SUBSECTION_LEVEL = 4
 
 class AbstractXmlRenderer(object):
     # list of special pages, these are not part of the course, and are generated from templates
-    specialPagesUXID = { 'VBKM_MISCCOURSEDATA' : 'data', 'VBKM_MISCSETTINGS' : 'config', 'VBKM_MISCLOGIN' : 'login', 'VBKM_MISCLOGOUT' : 'logout', 'VBKM_MISCSEARCH' : 'search', 'VBKM_MISCFAVORITES' : 'favorites' }
+    specialPagesUXID = { 'VBKM_MISCCOURSEDATA' : 'data', 'VBKM_MISCSETTINGS' : 'signup', 'VBKM_MISCLOGIN' : 'login', 'VBKM_MISCLOGOUT' : 'logout', 'VBKM_MISCSEARCH' : 'search', 'VBKM_MISCFAVORITES' : 'favorites' }
     # list of info pages. These are not part of the course, but are generated in LaTeX
     infoPagesUXID = [ "VBKM_FIRSTPAGE","VBKM_COURSEINFORMATION","VBKM_AUTHORS","VBKM_IMPRESSUM","VBKM_LEGAL","VBKM_DISPLAYINFO" ]
     
