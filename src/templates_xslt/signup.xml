@@ -11,7 +11,8 @@
 			<!-- REGISTER NEW ACCOUNT -->
 			<div class="register_new">
 
-				<h1>Einen neuen Account registrieren</h1>
+				<h1 id="pageTitle_logged_out" style="display:none">Einen neuen Account registrieren</h1>
+				<h1 id="pageTitle_logged_in" style="display:none">Mein Account</h1>
 				<p>Nach erfolgreicher Registrierung werden die Daten auf unseren Servern abgelegtund Ihr Bearbeitungsstand ist auch auf anderen Rechnern und Ger&#228;ten verf&#252;gbar:</p>
 
 				<form class="form-horizontal col-sm-6 col-md-8" style="padding-top: 2em;">
@@ -60,16 +61,14 @@
 					</div>
 					
 			        
-					<div class="col-xs-6 pull-right">
-						<span id="ulreply_p" class="pull-right"></span>
-						<a class="std-button btn btn-primary btn-lg pull-right disabled" type="button" href="login.html" onclick="intersite.usercreatelocal_click(2);">Jetzt registrieren</a>
+					<div id="ulreply_p" class="control-label col-xs-6"><span></span></div>
+					<div class="col-xs-6">
+						<a id="newUserButton" class="std-button btn btn-primary btn-lg pull-right disabled" type="button" onclick="intersite.usercreatelocal_click(2);">Jetzt registrieren</a>
 					</div>
-					
+						
 				</form>
 
-				<div class="clearfix"></div>
-				
-				<div class="panel panel-default">
+				<div class="panel panel-default" style="clear:both">
 					<div class="panel-body">
 						Nach der Registrierung werden Ihre Daten auf unseren Kursservern hinterlegt, ebenso Ihre eingegebenen L&#246;sungen und Testergebnisse. Diese Daten werden f&#252;r anonymisiertestatistische Erhebungen genutzt und um die Qualtit&#228;t der Inhalte und der Aufgaben zu verbessern. Bitte beachten Sie, dass Teilnahmebest&#228;tigungen f&#252;r den Kurs nur ausgestelltwerden k&#246;nnen, wenn die freiwilligen Felder vollst&#228;ndig ausgef&#252;llt sind.
 					</div>

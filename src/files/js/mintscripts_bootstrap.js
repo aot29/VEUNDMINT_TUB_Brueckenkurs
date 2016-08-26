@@ -1974,7 +1974,7 @@ function styleColors(c) {
  * Change the text of the login button:
  * Logged -in or -out?
  */
-function loginButtonSet() {
+function updateLoginButton() {
     if( userdata.isLoggedIn() ) {
     	$('#logged_out_buttons').hide();
     	$('#logged_in_buttons').show();
@@ -1989,7 +1989,7 @@ function loginButtonSet() {
  * Change the look of the tool buttons (glossar, data etc.):
  * Logged -in or -out?
  */
-function toolButtonsSet() {
+function updateToolButtons() {
     if( userdata.isLoggedIn() ) {
     	$('#databutton').removeClass( 'disabled' );
 
@@ -1998,12 +1998,29 @@ function toolButtonsSet() {
     }
 }
 
+/**
+ * If on the signup page, display the user data if available
+ */
+function updateMyAccountDisplay() {
+	if( SITE_UXID == "VBKM_MISCSETTINGS" ) {
+	    if( userdata.isLoggedIn() ) {
+	    	$('#pageTitle_logged_out').hide();
+	    	$('#pageTitle_logged_in').show();
+
+	    } else {
+	    	$('#pageTitle_logged_in').hide();
+	    	$('#pageTitle_logged_out').show();
+	    }
+	}
+}
+
 // first = false -> Seite wurde schonmal mit Layout aufgesetzt, Layout soll nur angepasst werden
 function applyLayout(first) {
 
   updateLayoutStates();
-  loginButtonSet();
-  toolButtonsSet()
+  updateLoginButton();
+  updateToolButtons();
+  updateMyAccountDisplay();
 
   var e = document.getElementById("dynamic_css");
   if (e == null) {
