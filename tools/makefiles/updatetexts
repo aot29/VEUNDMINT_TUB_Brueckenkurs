@@ -60,7 +60,10 @@ endef
 #
 cp2tmp:
 	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := ${var}) $(cp2tmp_cmd) )
-	
+
+	# copy testpaket
+	-cd module_veundmint && cp --parents VBKMTestpaketKIT/vbkmtestpaketkit1.tex ${TMP_DIR}
+	-cd module_veundmint && cp --parents VBKMTestpaketKIT/vbkmtestpaketkit1_eng.tex ${TMP_DIR}
 
 #
 # Copy all language versions of a chapter from the temp folder to module_veundmint
@@ -69,6 +72,10 @@ define cp2vbkm_cmd
 	# cp chapter ${CURRENT_CHAPTER}
 	-cp ${TMP_DIR}/VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}.tex module_veundmint/VBKM${CURRENT_CHAPTER}
 	-cp ${TMP_DIR}/VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}_eng.tex module_veundmint/VBKM${CURRENT_CHAPTER}
+	
+	# copy testpaket
+	-cp ${TMP_DIR}/VBKMTestpaketKIT/vbkmtestpaketkit1.tex module_veundmint/VBKMTestpaketKIT
+	-cp ${TMP_DIR}/VBKMTestpaketKIT/vbkmtestpaketkit1_eng.tex module_veundmint/VBKMTestpaketKIT
 endef
 
 
