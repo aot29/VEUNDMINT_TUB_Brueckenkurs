@@ -2,6 +2,8 @@
 # This will overwrite texts without consideration for the file's history
 # Why? Because the two branches are wildly out of sync so texts can be cherry-picked only.
 #
+# But: git status shows the updated chapters.
+#
 # Using GNU Make, invoke as:
 #
 # cd <VEUNDMINT checkout path>
@@ -27,6 +29,7 @@ CHAPTERS = 01 02 03 04 05 06 07 08 09 10
 getLatestContent:
 	# checkout the content branch
 	git checkout develop_content
+	# git pull will ask for the passphrase
 	git pull
 	
 
@@ -37,6 +40,7 @@ getLatestContent:
 getLatestSoftware:
 	# checkout the software branch
 	git checkout develop_software
+	# git pull will ask for the passphrase
 	git pull
 
 
