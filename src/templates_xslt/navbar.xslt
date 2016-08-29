@@ -23,20 +23,20 @@
 					
 						<!-- Show these when not logged in -->
 						<div class="btn-group pull-right" id="logged_out_buttons" style="display: none;">
-							<a type="button" href="signup.html" class="btn btn-default btn-sm">
+							<a type="button" href="{@basePath}/{@lang}/signup.html" class="btn btn-default btn-sm">
 								<span class="glyphicon glyphicon-user"></span> <span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span>
 							</a>
-							<a type="button" href="login.html" class="btn btn-default btn-sm">
+							<a type="button" href="{@basePath}/{@lang}/login.html" class="btn btn-default btn-sm">
 								<span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span>
 							</a>
 						</div>
 
 						<!-- Show these when logged in -->
 						<div class="btn-group pull-right" id="logged_in_buttons" style="display: none;">
-							<a type="button" href="signup.html" class="btn btn-default btn-sm">
+							<a type="button" href="{@basePath}/{@lang}/signup.html" class="btn btn-default btn-sm">
 								<span class="glyphicon glyphicon-user"></span> <span id="account_text" data-toggle="i18n" data-i18n="msg-myaccount"></span>
 							</a>
-							<a type="button" href="logout.html" class="btn btn-default btn-sm">
+							<a type="button" href="{@basePath}/{@lang}/logout.html" class="btn btn-default btn-sm">
 								<span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span>
 							</a>
 						</div>
