@@ -16,12 +16,10 @@
   	padding: 48px;
   }
 
-  /*
-   * Off Canvas
-   * --------------------------------------------------
-   */
   @media screen and (max-width: 991px) {
-    .row-offcanvas {
+
+	/* Off Canvas */
+	.row-offcanvas {
       position: relative;
       -webkit-transition: all .25s ease-out;
            -o-transition: all .25s ease-out;
@@ -63,6 +61,32 @@
     #toggle_sidebar {
   		padding-left: 0;
   	}
+  	
+  	/* hide pills (tabs) on small screens */
+  	#subtoc {
+  		display: none;
+  	}
+    /*Close the page contents container at the top when no subnav pills are displayed*/
+    #pageContents {
+    	border-top: 1px solid #ccc;
+	}
+  	
+  	/* Make some room in the header bar*/
+  	#tools .btn {
+  		padding-right: 3px;
+  	}
+    #toolsRow {
+		margin-right: 0!important;
+    }
+    
+  }
+  
+  @media screen and (max-width: 371px) {    
+  	/* Make more room in the header bar*/
+	#navbarContainer {
+    	padding-right: 0;
+    	padding-left: 0;
+    }
   }
 
 
@@ -117,19 +141,25 @@
   }
   /* end form styles*/
 
-  /*Extra styles for tooltips*/
+	  /*Extra styles for tooltips*/
       .tooltip.bottom .tooltip-arrow {
           border-bottom-color: #ccc;
       }
       .tooltip-inner {
           background-color: #999;
       }
-  /*end tooltip*/
+  	/*end tooltip*/
 
       /* Tools */
       #navbar {
           margin-bottom: 0px;
           border-radius: 0;
+      }
+      
+      #toolsRow {
+	      margin-left: 0;
+	      margin-top: 10px; 
+	      margin-right: 1em;
       }
 
       #tools .btn-link {
