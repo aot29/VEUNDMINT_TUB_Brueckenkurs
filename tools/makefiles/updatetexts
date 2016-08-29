@@ -17,7 +17,7 @@ TMP_DIR = /tmp
 CHAPTERS = 01 02 03 04 05 06 07 08 09 10
 
 # Declare as phony so targets will run even if there's a file by that name
-.PHONY: cleanupBefore getLatestContent cp2tmp all
+.PHONY: cleanup getLatestContent cp2tmp getLatestSoftware cp2vbkm all
 
 
 #
@@ -63,8 +63,8 @@ cp2tmp:
 #
 define cp2vbkm_cmd
 	# cp chapter ${CURRENT_CHAPTER}
-	-cd ${TMP_DIR} && cp VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}.tex module_veundmint/VBKM${CURRENT_CHAPTER}
-	-cd ${TMP_DIR} && cp VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}_eng.tex module_veundmint/VBKM${CURRENT_CHAPTER}
+	-cp ${TMP_DIR}/VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}.tex module_veundmint/VBKM${CURRENT_CHAPTER}
+	-cp ${TMP_DIR}/VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}_eng.tex module_veundmint/VBKM${CURRENT_CHAPTER}
 endef
 
 
@@ -72,7 +72,7 @@ endef
 #copy the files from the temporary folder to the chapter location
 #
 cp2vbkm:
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := ${var}) $(cp_chapter_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := ${var}) $(cp2vbkm_cmd) )
 
 
 #
@@ -85,7 +85,7 @@ cleanup:
 #
 # Build and deploy the nightly build
 #
-all: |cleanup getLatestContent cp2tmp getLatestSoftware cp2vbkm
+all: |cleanup getLatestContent cp2tmp getLatestSoftware cp2vbkm cleanup
 	echo "Texts updated."
 
 
