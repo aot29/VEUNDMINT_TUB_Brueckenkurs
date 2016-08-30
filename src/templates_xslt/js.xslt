@@ -125,7 +125,7 @@
 				});
 	            // Localized texts
 	            $('[data-toggle="i18n"]').each(function(i, el) {
-	            	$(el).text( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	            	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
 	            });
 
 	            // footer at bottom of column

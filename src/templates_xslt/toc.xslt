@@ -10,7 +10,7 @@
 					<span data-toggle="i18n" data-i18n="course-title"/>
 				</h3>
 				<xsl:apply-templates select="toc/entries/entry" />
-				<xsl:if test="@isSpecialPage='False' and @isInfoPage='False'">
+				<xsl:if test="@isSpecialPage='False' and @isInfoPage='False' and @isTestPage='False'">
 					<xsl:call-template name="legend"/>
 				</xsl:if>
 				<xsl:call-template name="socialMedia"/>

@@ -21,14 +21,49 @@
 		
 	<xsl:template name="i18n_en">
 		<script>
+			<![CDATA[
 			$.i18n().load( {en:{
 				"@metadata": {
 					"authors": [
 						"Clara Hummel"
 					],
-					"last-updated": "2016-06-09",
+					"last-updated": "2016-08-30",
 					"locale": "$lang"
 				},
+				"signup_text01" : "If you already have an account please go to the <a href=\"login.html\">login page</a>.",
+				"signup_text02" : "Please login through the learning platform.",
+				"signup_text03" : "Create a new account",
+				"signup_text04" : "My account",
+				"signup_text05" : "After you have registered successfully, your data will be saved to our servers and your course progress information will be available to you on other computers or devices.",
+				"signup_text06" : "Optional information",
+				"signup_text07" : "First name",
+				"signup_text08" : "Last name",
+				"signup_text09" : "Email",
+				"signup_text10" : "Data on intended course (optional, if known or planned)",
+				"signup_text11" : "Course",
+				"signup_text12" : "University",
+				"signup_text13" : "Choose a login name for working on the course.",
+				"signup_text14" : "Login name",
+				"signup_text15" : "Register",
+				"signup_text16" : "After you have registered, your data will be stored on our course servers, along with your responses and test results. This data will be submitted anonymously for statistical analysis in order to increase the quality of the course contents and exercises. Please note that a confirmation of participation to the course can only be issued if the optional data field s have been submitted.",
+				"signup_text17" : "You can edit your personal data in the learning platform.",
+				"signup_text18" : "Cannot access browser data!",
+				
+				"login_text01" : "Username and password are required.",
+				"login_text02" : "User name",
+				"login_text03" : "Password",
+				"login_text04" : "Login",
+				"login_text05" : "Please login through the learning platform.",
+				
+				"logout_text01" : "No user data available!",
+				"logout_text02" : "The course is closed, please logout through the learning platform or close the browser window.",
+				"logout_text03" : "The course is closed, please close the browser window or tab.",
+				
+				"data_text01" : "My course data",
+				"data_text02" : "You can configure your personal data on your <a href=\"signup.html\">Settings</a> page.",
+				"data_text03" : "Your progress on course modules is assessed based on completed exercises and the results of the final tests. The course is considered completed once you have passed all final tests with at least a 90\% score.",
+				"data_text04" : "Cannot access browser data!",
+				
 				"msg-incorrect-input" : "Incorrect input",
 				"msg-missing-input" : "No input",
 				"msg-incorrect-answer" : "Incorrect answer",
@@ -63,6 +98,9 @@
 				"VBKM_MISCLOGIN" : "Log in",
 				"VBKM_MISCLOGOUT" : "Log out",
 				"VBKM_MISCFAVORITES" : "Favorites",
+				"VBKMT_OffenerTest" : "Test 1: Sample Part",
+				"VBKMT_AbgebeTest" : "Test 1: Graded Part To Be Submitted",
+				"VBKMT_START" : "Test 1: Entrance Test",
 			
 				"hint-databutton" : "Course data",
 				"hint-homebutton" : "Back to course homepage",
@@ -174,19 +212,55 @@
 				"course-title": "Preparatory Online Course in Mathematics",
 				}
 				} );
+				]]>
 		</script>
 	</xsl:template>
 	
 	<xsl:template name="i18n_de">
 		<script>
+			<![CDATA[
 			$.i18n().load( {de:{
 				"@metadata": {
 					"authors": [
 						"Alvaro Ortiz"
 					],
-					"last-updated": "2016-06-03",
+					"last-updated": "2016-08-30",
 					"locale": "de"
 				},
+				"signup_text01" : "Falls Sie schon einen Account für den Brückenkurs besitzen,können Sie sich hier <a href=\"login.html\">einloggen</a>.",
+				"signup_text02" : "Sie sind über das Lernsystem angemeldet und registriert.",
+				"signup_text03" : "Einen neuen Account registrieren",
+				"signup_text04" : "Mein Account",
+				"signup_text05" : "Nach erfolgreicher Registrierung werden die Daten auf unseren Servern abgelegtund Ihr Bearbeitungsstand ist auch auf anderen Rechnern und Geräten verfügbar.",
+				"signup_text06" : "Persönliche Angaben (notwendig um eine Teilnahmebestätigungen zu erstellen)",
+				"signup_text07" : "Vorname",
+				"signup_text08" : "Nachname",
+				"signup_text09" : "eMail",
+				"signup_text10" : "Freiwillige Angaben zum angestrebten Studiengang (falls geplant bzw. bekannt).",
+				"signup_text11" : "Studiengang",
+				"signup_text12" : "Universität / Hochschule",
+				"signup_text13" : "Wählen Sie einen Loginnamen für die Kursbearbeitung",
+				"signup_text14" : "Loginname",
+				"signup_text15" : "Jetzt registrieren",
+				"signup_text16" : "Nach der Registrierung werden Ihre Daten auf unseren Kursservern hinterlegt, ebenso Ihre eingegebenen Lösungen und Testergebnisse. Diese Daten werden für anonymisierte statistische Erhebungen genutzt und um die Qualtität der Inhalte und der Aufgaben zu verbessern. Bitte beachten Sie, dass Teilnahmebestätigungen für den Kurs nur ausgestelltwerden können, wenn die freiwilligen Felder vollständig ausgefüllt sind.",
+				"signup_text17" : "Ihre Benutzerdaten können Sie im Lernsystem einsehen und verändern.",
+				"signup_text18" : "Kann nicht auf Browserdaten zugreifen!",
+
+				"login_text01" : "Zum Einloggen sind der Benutzername und das Passwort der <a href=\"signup.html\">Registrierung</a> erforderlich.",
+				"login_text02" : "Benutzername",
+				"login_text03" : "Passwort",
+				"login_text04" : "Login",
+				"login_text05" : "Sie können sich nur über das Lernsystem an- und abmelden.",
+				
+				"logout_text01" : "Kann nicht auf Browserdaten zugreifen!",
+				"logout_text02" : "Der Kurs ist geschlossen, ggf. müssen Sie ihn noch über das Lernsystem verlassen oder das Fenster schließen.",
+				"logout_text03" : "Der Kurs ist geschlossen, ggf. müssen Sie noch das Browserfenster oder den Tab schließen.",
+
+				"data_text01" : "Meine Kursdaten",
+				"data_text02" : "Die persönlichen Daten können auf der <a href=\"signup.html\">Einstellungsseite</a> eingerichtet werden.",
+				"data_text03" : "Der Bearbeitungsstand der Kursmodule wird aufgrund der bearbeiteten Übungsaufgaben sowie der Ergebnisse der Abschlusstests gemessen. Der Kurs gilt als erfolgreich absolviert, wenn sämtliche Abschlusstests mit mindestens 90\% der Punkte bestanden wurden.",
+				"data_text04" : "Kann nicht auf Browserdaten zugreifen!",
+				
 				"msg-incorrect-input" : "Fehlerhafte Eingabe",
 				"msg-missing-input" : "Keine Eingabe",
 				"msg-incorrect-answer" : "Lösung inkorrekt",
@@ -220,6 +294,9 @@
 				"VBKM_MISCLOGIN" : "Benutzer anmelden",
 				"VBKM_MISCLOGOUT" : "Logout",
 				"VBKM_MISCFAVORITES" : "Aktuelle Favoriten",
+				"VBKMT_OffenerTest" : "Test 1: Einführender Teil",
+				"VBKMT_AbgebeTest" : "Test 1: Abzugebender Teil",
+				"VBKMT_START" : "Eingangstest",
 				
 				"hint-homebutton" : "Zurück zur Homepage des Kurses",
 				"hint-databutton" : "Meine Kursdaten anzeigen",
@@ -327,6 +404,7 @@
 				"course-title": "Onlinebrückenkurs Mathematik"
 			}
 			} );
+			]]>
 		</script>
 	</xsl:template>
 

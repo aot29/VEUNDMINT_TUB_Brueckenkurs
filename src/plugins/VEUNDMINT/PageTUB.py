@@ -65,7 +65,7 @@ class PageTUB( AbstractHtmlRenderer ):
 		self.addFlags(xml, tc, basePath)
 				
 		# Prepare a non-special page, otherwise skip TOC and FF-RW links
-		if not AbstractXmlRenderer.isSpecialPage( tc ) :
+		if not ( AbstractXmlRenderer.isSpecialPage( tc ) or AbstractXmlRenderer.isTestPage( tc ) )  :
 			# toc
 			xml.append( self.tocRenderer.generateXML( tc ) )
 			
@@ -111,6 +111,7 @@ class PageTUB( AbstractHtmlRenderer ):
 		xml.set( 'isCoursePage', str( AbstractXmlRenderer.isCoursePage(tc) ) )
 		xml.set( 'isSpecialPage', str( AbstractXmlRenderer.isSpecialPage(tc) ) )
 		xml.set( 'isInfoPage', str( AbstractXmlRenderer.isInfoPage(tc) ) )
+		xml.set( 'isTestPage', str( AbstractXmlRenderer.isTestPage(tc) ) )
 		xml.set( 'requestLogout', str( AbstractXmlRenderer.isLogoutPage(tc) ).lower() )
 
 
@@ -140,9 +141,9 @@ class PageTUB( AbstractHtmlRenderer ):
 		tc.content = tc.content.replace( '\t', '' )
 		tc.content = tc.content.replace( '\n', '' )
 		
-		# if this is a special page, replace the title
-		if AbstractXmlRenderer.isSpecialPage(tc):
-			tc.content = re.sub( r"<h4>(.+?)</h4><h4>(.+?)</h4>", "<h4 id='pageTitle' data-toggle='i18n' data-i18n='%s' ></h4>" % tc.uxid, tc.content )
+		# if this is a special page, replace the title by i18n entry
+		if AbstractXmlRenderer.isSpecialPage(tc) or AbstractXmlRenderer.isTestPage(tc):
+			tc.content = re.sub( r"<h4>(.+?)</h4><h4>(.+?)</h4>", "<h1 id='pageTitle' data-toggle='i18n' data-i18n='%s' ></h1>" % tc.uxid, tc.content )
 
 
 	def getBasePath(self, tc):

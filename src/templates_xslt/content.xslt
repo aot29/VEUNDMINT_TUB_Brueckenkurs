@@ -9,7 +9,7 @@
 		<xsl:variable name="isModuleSelected" select="not ($selectedPage) and $selectedModule" />
 		
 		<!-- Module level pages don't have a tab bar at the top, so need in-line CSS to override -->
-		<xsl:variable name="inlineCss"><xsl:if test="$isModuleSelected or @isSpecialPage='True'">border: 1px solid #ccc; border-radius: 4px;</xsl:if></xsl:variable>
+		<xsl:variable name="inlineCss"><xsl:if test="$isModuleSelected or @isSpecialPage='True' or @isTestPage='True'">border: 1px solid #ccc; border-radius: 4px;</xsl:if></xsl:variable>
 
 		<div class="row" id="pageContents" style="{$inlineCss}">
 			<xsl:call-template name="zoom" />

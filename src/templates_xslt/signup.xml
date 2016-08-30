@@ -1,48 +1,48 @@
 <?xml version="1.0"?>
 	<div>
 		<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->
-		<i>Falls Sie schon einen Account f&#252;r den Br&#252;ckenkurs besitzen,k&#246;nnen Sie sich hier <a href="login.html">einloggen</a>.</i>
+		<i><span data-toggle="i18n" data-i18n="signup_text01" /></i>
 	
 		<div class="show_scorm" style="display:none">
-			<b>Sie sind &#252;ber das Lernsystem angemeldet und registriert.</b>
+			<b><span data-toggle="i18n" data-i18n="signup_text02" /></b>
 		</div>
 		
 		<div class="show_noscorm" style="display:none">
 			<!-- REGISTER NEW ACCOUNT -->
 			<div class="register_new">
 
-				<h1 id="pageTitle_logged_out" style="display:none">Einen neuen Account registrieren</h1>
-				<h1 id="pageTitle_logged_in" style="display:none">Mein Account</h1>
-				<p>Nach erfolgreicher Registrierung werden die Daten auf unseren Servern abgelegtund Ihr Bearbeitungsstand ist auch auf anderen Rechnern und Ger&#228;ten verf&#252;gbar:</p>
+				<h1 id="pageTitle_logged_out" style="display:none"><span data-toggle="i18n" data-i18n="signup_text03" /></h1>
+				<h1 id="pageTitle_logged_in" style="display:none"><span data-toggle="i18n" data-i18n="signup_text04" /></h1>
+				<p><span data-toggle="i18n" data-i18n="signup_text05" /></p>
 
 				<form class="form-horizontal col-sm-6 col-md-8" style="padding-top: 2em;">
 
 					<div class="form-group ">
-						<p style="text-align: center">Pers&#246;nliche Angaben (notwendig um eine Teilnahmebest&#228;tigungen zu erstellen):</p>
+						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text06" /></p>
 						
-						<label for="USER_VNAME" class="control-label col-xs-6">Vorname</label>
+						<label for="USER_VNAME" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text07" /></label>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" id="USER_VNAME"/>
 						</div>
 													
-						<label for="USER_SNAME" class="control-label col-xs-6">Nachname</label>
+						<label for="USER_SNAME" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text08" /></label>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" id="USER_SNAME"/>
 						</div>
 						
-						<label for="USER_EMAIL" class="control-label col-xs-6">eMail</label>
+						<label for="USER_EMAIL" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text09" /></label>
 						<div class="col-xs-6">
 							<input type="email" class="form-control" id="USER_EMAIL"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<p style="text-align: center">Freiwillige Angaben zum angestrebten Studiengang (falls geplant bzw. bekannt):</p>
+						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text10" /></p>
 						
-						<label for="USER_SGANG" class="control-label col-xs-6">Studiengang</label>
+						<label for="USER_SGANG" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text11" /></label>
 						<div class="col-xs-6"><input type="text" class="form-control" id="USER_SGANG"/></div>
 						
-						<label for="USER_SGANG" class="control-label col-xs-6">Universit&#228;t / Hochschule</label>
+						<label for="USER_SGANG" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text12" /></label>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" id="USER_UNI"/>
 						</div>
@@ -50,9 +50,9 @@
 					
 					
 					<div class="form-group logged_out_only">
-						<p style="text-align: center">W&#228;hlen Sie einen Loginnamen f&#252;r die Kursbearbeitung:</p>
+						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text13" /></p>
 						
-						<label for="USER_UNAME" class="control-label col-xs-6">Loginname</label>
+						<label for="USER_UNAME" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text14" /></label>
 						<div class="col-xs-5">
 							<input type="text" class="form-control" id="USER_UNAME" oninput="intersite.usercheck();" onkeyup="intersite.usercheck();" onpaste="intersite.usercheck();" onpropertychange="intersite.usercheck();" />
 						</div>		
@@ -64,26 +64,24 @@
 			        
 					<div id="ulreply_p" class="control-label col-xs-6"><span></span></div>
 					<div class="col-xs-6 logged_out_only">
-						<a id="newUserButton" class="std-button btn btn-primary btn-lg pull-right disabled" type="button" onclick="intersite.usercreatelocal_click(2);">Jetzt registrieren</a>
+						<a id="newUserButton" class="std-button btn btn-primary btn-lg pull-right disabled" type="button" onclick="intersite.usercreatelocal_click(2);"><span data-toggle="i18n" data-i18n="signup_text15" /></a>
 					</div>
 						
 				</form>
 
 				<div class="panel panel-default logged_out_only" style="clear:both">
-					<div class="panel-body">
-						Nach der Registrierung werden Ihre Daten auf unseren Kursservern hinterlegt, ebenso Ihre eingegebenen L&#246;sungen und Testergebnisse. Diese Daten werden f&#252;r anonymisiertestatistische Erhebungen genutzt und um die Qualtit&#228;t der Inhalte und der Aufgaben zu verbessern. Bitte beachten Sie, dass Teilnahmebest&#228;tigungen f&#252;r den Kurs nur ausgestelltwerden k&#246;nnen, wenn die freiwilligen Felder vollst&#228;ndig ausgef&#252;llt sind.
-					</div>
+					<div class="panel-body"><span data-toggle="i18n" data-i18n="signup_text16" /></div>
 				</div>
 			</div>
 		</div>
 		
 		<div class="show_scorm" style="display:none">
-			<b>Ihre Benutzerdaten k&#246;nnen Sie im Lernsystem einsehen und ver&#228;ndern.</b>
+			<b><span data-toggle="i18n" data-i18n="signup_text17" /></b>
 		</div>
 		
 		<div class="show_noscorm" style="display:none">
 			<div class="xreply">
-				<p id="CHECKIS">Kann nicht auf Browserdaten zugreifen!</p>
+				<p id="CHECKIS"><span data-toggle="i18n" data-i18n="signup_text18" /></p>
 			</div>
 		</div>
 	</div>

@@ -160,6 +160,7 @@ define fixSpecialPages_cmd
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/search.html
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/favorites.html
+	-rm $(OUTPUT)/html/$(CURRENT_LANG)/test.html
 
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCCOURSEDATA;; //-->' -l | xargs -I '{}' cp '{}' data.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->' -l | xargs -I '{}' cp '{}' signup.html
@@ -167,6 +168,7 @@ define fixSpecialPages_cmd
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGOUT;; //-->' -l | xargs -I '{}' cp '{}' logout.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSEARCH;; //-->' -l | xargs -I '{}' cp '{}' search.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCFAVORITES;; //-->' -l | xargs -I '{}' cp '{}' favorites.html
+	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKMT_START;; //-->' -l | xargs -I '{}' cp '{}' test.html
 	
 	#now correct the links
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CONFIG|href=\"\.\./$(CURRENT_LANG)/signup.html|g" {} \;
@@ -175,6 +177,7 @@ define fixSpecialPages_cmd
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGOUT|href=\"\.\./$(CURRENT_LANG)/logout.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_SEARCHSITE|href=\"\.\./$(CURRENT_LANG)/search.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_FAVORITESSITE|href=\"\.\./$(CURRENT_LANG)/favorites.html|g" {} \;	    
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_TEST01START|href=\"\.\./$(CURRENT_LANG)/test.html|g" {} \;	    
 	
 	# fix links in search page
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name 'search.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;	    
@@ -226,9 +229,6 @@ define fixLinks_cmd
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|url=html/|url=|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|window\.location\.href = \"html/|window\.location\.href = \"|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
-
-	# Add the logout.html page out of the template src/templates_html5/html5_logout.html
-	#cp src/templates_html5/html5_logout.html $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
 		
 endef
 
@@ -278,14 +278,11 @@ fix: fixRedirects
 	$(fixLinks_cmd)
 	$(setLocale_cmd)
 
-	# fix redirect to English welcome page
-	cd $(OUTPUT)/html/en && sed -i "s|sectionx3\.1\.0\.html|sectionx2\.1\.0\.html|g" index.html;
-
 	# fix redirect to English "contents of the module" page
 	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.1/modstart\.html|3\.1\.1/modstart\.html|g" chapter.html;
 
-	# replace index.html with src/templates_html5/html5_choose_language_simple.html to allow for choosing en or de version
-	cp src/templates_html5/html5_choose_language_simple.html $(OUTPUT)/index.html
+	# replace index.html with src/templates_xslt/html5_choose_language_simple.html to allow for choosing en or de version
+	cp src/templates_xslt/html5_choose_language_simple.html $(OUTPUT)/index.html
 
 
 #
