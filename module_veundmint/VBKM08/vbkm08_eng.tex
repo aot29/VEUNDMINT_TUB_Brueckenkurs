@@ -850,10 +850,10 @@ $f(z_k) = f(x_k) = x_k = \frac{k}{n}$.
 
 Substituting these terms into the formula 
 (\ref{eq:integral}) gives the equation
-\begin{align*}
-S_n &= \sum_{k=0}^{n-1} f(x_k)\cdot\Delta(x_k) = \sum_{k=0}^{n-1} x_k \cdot \frac{1}{n} = \sum_{k=0}^{n-1} \frac{k}{n} \cdot \frac{1}{n} = \frac{1}{n^2} \cdot \sum_{k=0}^{n-1} k = \frac{1}{n^2} \cdot \sum_{k=1}^{n-1} k\\
- &= \frac{1}{n^2} \frac{n (n-1)}{2} = \frac{1}{2} \cdot \frac{n-1}{n} = \frac{1}{2} \cdot \left(1 - \frac{1}{n}\right) \MDFPSpace , %
-\end{align*}
+\begin{eqnarray*}
+S_n &=& \sum_{k=0}^{n-1} f(x_k)\cdot\Delta(x_k) = \sum_{k=0}^{n-1} x_k \cdot \frac{1}{n} = \sum_{k=0}^{n-1} \frac{k}{n} \cdot \frac{1}{n} = \frac{1}{n^2} \cdot \sum_{k=0}^{n-1} k = \frac{1}{n^2} \cdot \sum_{k=1}^{n-1} k\\
+ &=& \frac{1}{n^2} \frac{n (n-1)}{2} = \frac{1}{2} \cdot \frac{n-1}{n} = \frac{1}{2} \cdot \left(1 - \frac{1}{n}\right) \MDFPSpace , %
+\end{eqnarray*}
 where we used the formula $\sum_{k=1}^{n-1} k = \frac{1}{2}\,n(n-1)$ of C.\,F.~Gauss. 
 And with $\displaystyle\lim_{n \rightarrow \infty} \frac{1}{n} = 0$, we find for the integral
 \[
@@ -2267,7 +2267,7 @@ W = \int_1^4 F_s(r) \MDwSp r %
 \MLabel{VBKM08_Abschlusstest}
 
 
-\begin{MTest}{Final Test Module~\ref{VBKM08}}
+\begin{MTest}{Final Test Module \arabic{section}}
 \MDeclareSiteUXID{VBKM08_Abschlusstest}
 \begin{MExercise} %Stammfunktionen:
 Find an antiderivative for each of the following functions:
