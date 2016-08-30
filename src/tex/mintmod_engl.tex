@@ -995,7 +995,8 @@
 \else%
 \special{html:onblur="handlerBlur(}\arabic{MFieldCounter}%
 \special{html:);" onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}%
-\special{html:<img src="images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="}QM#3\special{html:"/>}\fi%
+\special{html:<span><span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
+%\special{html:<img src="images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="}QM#3\special{html:"/>}\fi%
 \else%
 \ifnum\value{QBoxFlag}=1\fbox{$\phantom{\MForLoop{#1}{b}}$}\else$\phantom{\MForLoop{#1}{b}}$\fi%
 \fi%
@@ -1012,8 +1013,10 @@
 <!-- mdeclarepoints;;}\arabic{section}\special{html:;;}#2\special{html:;;}#3\special{html:;;}\arabic{MTestSite}\special{html:;;}\arabic{chapter}%
 \special{html:;; //--><!-- onloadstart //-->CreateQuestionObj("}#4\special{html:",}\arabic{MFieldCounter}\special{html:,"}#1\special{html:","}#2\special{html:",2,"IMG}#2%
 \special{html:",}#3\special{html:,}\arabic{MTestSite}\special{html:,}\arabic{section}\special{html:);<!-- onloadstop //-->}%
-\special{html:<input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_}#2\special{html:" id="}#2\special{html:" onchange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/><img src="images/questionmark.png" name="}Name_IMG#2%
-\special{html:" width="20" height="20" border="0" align="absmiddle" id="}IMG#2\special{html:"/> }%
+\special{html:<input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_}#2\special{html:" id="}#2\special{html:" onchange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}
+\special{html:<span><span class="glyphicon glyphicon-question-sign" id="}IMG#2\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
+%<img src="images/questionmark.png" name="}Name_IMG#2%
+%\special{html:" width="20" height="20" border="0" align="absmiddle" id="}IMG#2\special{html:"/> }%
 \else%
 \ifnum\value{QBoxFlag}=1\fbox{$\phantom{X}$}\else$\phantom{X}$\fi%
 \fi%
