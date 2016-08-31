@@ -6,11 +6,15 @@
   #pageContents {
       padding: 10px 20px;
       border: 1px solid #ccc;
-      border-top: none;
       border-radius: 0 0 4px 4px;
       margin-bottom: 20px;
       font-size: 16px;
       line-height: 1.6em;
+  }
+
+  /*Wrap long texts in lauch buttons*/
+  #pageContents .btn {
+  	white-space: normal;
   }
   
   /* Special styles for when the user is logged in */
@@ -196,31 +200,21 @@
       .selectedEntry {
       	font-weight: bold;
       }
+      
+	  /*tabs (pills)*/
       #subtoc {
-        padding: 0;
+		padding: 0;
       }
       #subtoc .nav {
-        border: 1px solid #ccc;
         padding: 6px;
       }
       #subtoc .subtoc-prev, #subtoc .subtoc-next {
         font-size:1.4em;
       }
-  /*
-      #toc li {
-          list-style-type: none;
-          float: left;
-      }
-      #toc li {
-          padding: 2px;
-      }
-      #toc ul.panel > li {
-          width: 100%;
-      }
-      #toc ul.panel li.lastFromPanel {
-          clear: both;
-      }
-  */
+	 .chevron {
+	 	padding-top: 1em;
+	 }
+
       #legende ul.panel li div.glyphicon {
           padding-right: 5px;
       }

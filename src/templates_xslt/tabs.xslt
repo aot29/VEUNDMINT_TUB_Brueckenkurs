@@ -12,29 +12,23 @@
 			<!-- If selected entry is a subsection (level 4), render tab bar with siblings -->
 			<xsl:if test="$selectedPage/@level = 4">
 
-				<div class="col-xs-12" style="padding: 0;">
+				<div class="col-md-1 chevron pull-left">
+					<xsl:if test="@isCoursePage = 'True'"><a class="subtoc-prev glyphicon glyphicon-chevron-left pull-left" href="{@href}"></a></xsl:if>
+				</div>
+				<div class="col-md-10">
 					<ul class="nav nav-pills">
-						<xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navPrev" /></xsl:if>
 						<xsl:apply-templates select="$selectedPage/../*" mode="tab" />
-						<xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navNext" /></xsl:if>
 					</ul>
+				</div>
+				<div class="col-md-1 chevron pull-right">
+					<xsl:if test="@isCoursePage = 'True'"><a class="subtoc-next glyphicon glyphicon-chevron-right pull-right" href="{@href}"></a></xsl:if>
 				</div>
 
 			</xsl:if>
 
 		</div>
-		<xsl:comment>End start tabs</xsl:comment>
+		<xsl:comment>End tabs</xsl:comment>
 
-	</xsl:template>
-
-
-	<!-- RW and FF Buttons -->
-	<xsl:template match="navPrev">
-		<li class="pull-left"><a class="subtoc-prev glyphicon glyphicon-chevron-left pull-left" href="{@href}"></a></li>
-	</xsl:template>
-
-	<xsl:template match="navNext">
-		<li class="pull-right"><a class="subtoc-next glyphicon glyphicon-chevron-right pull-right" href="{@href}"></a></li>
 	</xsl:template>
 
 
