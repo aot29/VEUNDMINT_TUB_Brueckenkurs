@@ -1,0 +1,4358 @@
+\input{mintmod.tex}
+\MPragma{MathSkip}
+\Mtikzexternalize
+
+\begin{document}
+
+\MSection{Objects in the Two-Dimensional Coordinate System}
+\MLabel{VBKM09}
+\MSetSectionID{VBKM09} % wird fuer tikz-Dateien verwendet
+
+\begin{MSectionStart}
+\MDeclareSiteUXID{VBKM09_START}
+
+\MModstartBox
+\end{MSectionStart}
+
+% \MSubsection{Punkte und Geraden in der Ebene}
+% \MLabel{M09_PGE}
+\MSubsection{Cartesian Coordinate System in the Plane}
+\MLabel{M09_1kartesisch}
+
+\begin{MIntro}
+\MLabel{VBKM09_Koordinaten_Intro}
+\MDeclareSiteUXID{VBKM09_Koordinaten_Intro}
+
+In \MSRef{VBKM05}{Module~5}, we considered objects - lines and circles - in a purely geometric way. If such objectsmare also to be analysed algebraically (by means of equations), then \MEntry{coordinate systems}{coordinate systems} 
+are introduced, in which points can be uniquely specified. The basic idea of a coordinate system is very easy: if the 
+position of a point is to be specified exactly, then a reference point (called the \MEntry{origin}{origin}) and a certain 
+unit length (e.g. kilometre) are required. In this way, the position of a point can be uniquely specified by two numbers.
+In mathematics, these two numbers are called the \MEntry{coordinates}{coordinates} of the point. In the real world coordinates can be 
+found, for example, on marker plates that specify the position of hydrants in the ground (see figure below).
+\begin{center}
+\MUGraphicsSolo{hydrant.png}{scale=0.6}{width:571px}
+\end{center}
+
+In this case, the origin is the position at which the plate is mounted, the unit length is metre, and the numbers
+\MZahl{0}{9}\ and \MZahl{6}{4}\ specify that the hydrant can be found \MZahl{0}{9}~metres to the right and \MZahl{6}{4}~metres 
+backwards. Hence, the two numbers \MZahl{0}{9}\ and \MZahl{6}{4} are the coordinates of the hydrant in the coordinate
+system defined by the position of the marker plate and the unit length of a metre (see figure below).
+
+\begin{center}
+\MTikzAuto{\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (2.2,0);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,1.2) -- (0,-7.2);
+\foreach \y in {7,6,5,4,3,2,1}
+\draw[shift={(0,-\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%Achsenbeschriftung
+\draw (2.1,0) node[anchor=north west] {\footnotesize to the right in metres};
+\draw (0.1,-7.2) node[anchor=north west] {\footnotesize backwards in metres};
+%Punkte
+\draw [dashed] (0.9,0)--(0.9, -6.4);
+\draw [dashed] (0,-6.4)--(0.9, -6.4);
+\draw[fill = red](0.0,0.0) circle (1.5pt);
+\draw[color=red] (-32pt,-8pt) node[right] {\footnotesize Marker Plate};
+\draw[fill = blue](0.9,-6.4) circle (1.5pt);
+\draw[color=blue] (0.9,-6.4) node[right] {\footnotesize Hydrant};
+
+\end{tikzpicture}}
+\end{center}
+
+In mathematics, directions in a coordinate system are rarely called ``right'' and ``backwards''. In drawing a 
+coordinate system, the horizontal direction is often called $x$-direction or $x_1$-direction, and the 
+vertical direction is called $y$-direction or $x_2$-direction. Moreover, by mathematical convention the 
+$x$-direction is to the right and the $y$-direction is up.
+
+\begin{center}
+\begin{tabular}{lr}
+\MTikzAuto{\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.5,0) -- (2.9,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.3) -- (0,2.8);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.2) node[anchor=north west] {$y$};
+\end{tikzpicture}}
+
+& 
+
+\MTikzAuto{\begin{tikzpicture}
+\draw[->,color=black] (-2.5,0) -- (2.9,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.3) -- (0,2.8);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.8,0) node[anchor=north west] {$x_1$};
+\draw (-0.5,3.2) node[anchor=north west] {$x_2$};
+\end{tikzpicture}}
+\end{tabular}
+\end{center}
+
+The unit length used can also be specified, but from a purely mathematical point of view this is 
+not necessary. Note that negative coordinates are to the left and below the origin.
+Finally, the drawn \MEntry{axes}{axes} are often called $x$-axis or $x_1$-axis and $y$-axis and 
+$x_2$-axis according to the coordinates. Furthermore, the names \MEntry{axis of abscissa}{axis of abscissa} for the 
+horizontal axis and \MEntry{axis of ordinates}{axis of ordinates} for the vertical axis are in common use. (Correspondingly, 
+the coordinate values are then called \MEntry{abscissas}{abscissa} and \MEntry{ordinates}{ordinate}.)
+
+From the figures above, we can see that such a coordinate system divides the plane into four regions. These regions have special 
+names: \MEntry{quadrants}{quadrants} \textbf{I} to \textbf{IV} (see figure below).
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.1,0);
+%\foreach \x in {-2,-1,1,2}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.1);
+%\foreach \y in {-2,-1,1,2}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.2) node[anchor=north west] {$y$};
+%Quadranten füllen
+\def \q1{(0,0) -- (3,0) -- (3,3) -- (0,3)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\def \q2{(0,0) -- (-3,0) -- (-3,3) -- (0,3)}
+\fill[color=green,fill=green,fill opacity=0.15] \q2;
+\def \q3{(0,0) -- (-3,0) -- (-3,-3) -- (0,-3)}
+\fill[color=blue,fill=blue,fill opacity=0.15] \q3;
+\def \q4{(0,0) -- (3,0) -- (3,-3) -- (0,-3)}
+\fill[color=yellow,fill=yellow,fill opacity=0.15] \q4;
+\draw (0.5,1.5) node[anchor=west] {Quadrant I};
+\draw (-0.5,1.5) node[anchor=east] {Quadrant II};
+\draw (-0.5,-1.5) node[anchor=east] {Quadrant III};
+\draw (0.5,-1.5) node[anchor=west] {Quadrant IV};
+
+\end{tikzpicture}
+}
+\end{center}
+
+The coordinate systems described above are called 
+\MEntry{Cartesian coordinate systems}{Cartesian coordinate system}. This is means that the axes are perpendicular to each other, 
+i.e. they intersect in the origin at an angle of $90^{\circ}$. Non-Cartesian coordinate systems
+do also exist, but they will not be considered in this course. Here, we will 
+assume that every coordinate system is Cartesian.
+
+Once the concept of a coordinate system in the plane is clear, it is obvious that the position of points
+in (three-dimensional) space can be described in a similar way. For example, to describe the position of an aircraft precisely we need only its position with respect to the control tower but also its altitude. 
+Thus, a third coordinate and hence a coordinate system with three axes are required. Such coordinate systems 
+will be introduced in \MSRef{VBKM10}{Module 10}.
+\end{MIntro}
+
+\begin{MXContent}{Points in Cartesian Coordinate Systems}{Points}{STD}
+\MLabel{VBKM09_Punkte}
+\MDeclareSiteUXID{VBKM09_Punkte}
+
+Now, if we want to describe points in the plane by coordinates, we use variables. 
+Typically, points are denoted by upper-case Latin letters $A,B,C,\MHDots$ or $P,Q,R,\MHDots$, and their coordinates 
+are denoted by lower-case Latin letters $a,b,c,\MHDots$ or $x,y,\MHDots$. First, we will define what is 
+meant by a point in the plane in which a coordinate system is given, and we will fix the notation that will be used 
+in the rest of this course.
+
+\begin{MInfo}
+\MLabel{VBKM09_PunktInEbene}
+
+With respect to a given coordinate system, a \MEntry{point}{point} in the plane is described by $P=\MPointTwo{a}{b}$,
+where $P$ is the variable denoting the point and $a$ and $b$ are its coordinates. Its abscissa or $x$-coordinate is 
+$a$, and its ordinate or $y$-coordinate is $b$ as shown in the figure below.
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.1,0) -- (3.1,0);
+%\foreach \x in {-2,-1,1,2}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,3.1);
+%\foreach \y in {-2,-1,1,2}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.2) node[anchor=north west] {$y$};
+%Punkt
+\draw [dashed] (2,0)--(2,1);
+\draw [dashed] (0,1)--(2,1);
+\draw[fill = red](2,1) circle (1.5pt);
+\draw[color=red] (2,1) node[right] {$P=\MPointTwo{a}{b}$};
+
+\draw[color=red] (2,0) node[below] {\footnotesize $a$};
+\draw[color=red] (0,1) node[left] {\footnotesize $b$};
+
+\end{tikzpicture}
+}
+\end{center}
+
+\end{MInfo}
+
+For points, some slightly different notations exist. At school, $P(a|b)$ or $P(a,b)$ is often written instead of $P=\MPointTwo{a}{b}$. Throughout this course, the notation $P=\MPointTwo{a}{b}$
+will be used. Since points are uniquely determined by their coordinates, we will not distinguish between a point $P$ 
+and its coordinates $\MPointTwo{a}{b}$ in the following but we will consider both as the same object. 
+For every coordinate system, the origin (the point with the coordinates $\MPointTwo{0}{0}$) is a special point. Generally,
+it is denoted by the variable $O$: $O=\MPointTwo{0}{0}$.
+
+\begin{MExample}
+The figure below shows the three points $P=\MPointTwo{2}{4}$, $Q=\MPointTwo{-1}{1}$, and $R=\MPointTwo{0}{-1}$.
+The point $Q$, for example, has the $x$-coordinate $-1$ (one unit length to the left on the axis of abscissas)
+and the $y$-coordinate $1$ (one unit length upwards on the axis of ordinates).
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4,0) -- (3.9,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,4.7);
+\foreach \y in {-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,5) node[anchor=north west] {$y$};
+%Ausgewählte Elemente des Definitionsbereiches:
+\foreach \x in {-1,2}{
+        \fill [color = cyan](\x,0.0) circle (1.5pt);
+        % f(x):
+        \fill [color = orange] (0, \x*\x) circle (1.5pt);
+        
+        %kreuzlinien
+        \draw [dashed, color = cyan] (\x,0)--(\x, \x*\x);
+        \draw [dashed, color = orange] (0,\x*\x)--(\x, \x*\x);
+        %Punktepaare
+        \draw [fill=green] (\x,\x*\x) circle (1.5pt);
+}
+\draw [dashed, color = cyan] (0,0)--(0, -1);
+\draw [fill=green] (0, -1) circle (1.5pt);
+% Beschriftung:
+%\begin{scriptsize}
+        \draw (2,4) node[anchor = west]{$P=\MPointTwo{2}{4}$};
+        \draw (-1,1) node[anchor = east]{$Q=\MPointTwo{-1}{1}$};
+        \draw (0,-1) node[anchor = west] {$R=\MPointTwo{0}{-1}$};
+%\end{scriptsize}
+\end{tikzpicture}
+}
+\end{center}
+
+\end{MExample}
+
+
+% Bei der Beschreibung von Punkten lassen wir physikalische Einheiten stets weg. Für das Rechnen mit den geometrischen Objekten ist es unerheblich, ob es sich um Millimeter,
+% Meter oder andere Längeneinheiten handelt. Nur die Zahlenwerte werden verwendet. Dagegen ist es wie im Beispiel durchaus möglich, dass Koordinaten durch Brüche, Dezimalzahlen
+% oder andere auswertbare Ausdrücke gegeben sind.
+
+
+
+% \begin{MInfo}
+% In der Notation $P=(x;y)$ schreibt man die Koordinaten in einer Zeile auf. Dies wird schwerer lesbar, sobald mehr als zwei Koordinaten auftreten und
+% die Punkte in Gleichungen auftauchen.
+% Bei der \MEntry{Vektorschreibweise}{Vektorschreibweise} werden daher Koordinaten zu einem Vektor zusammengefasst und untereinander geschrieben:
+% $$
+% \MVec{v} \;=\; \MVector{2\\-4} \MDFPSpace,
+% $$
+% hier beispielsweise der Vektor $\MVec{v}$ mit den Koordinaten $2$ und $-4$.
+% Diese Schreibweise ist angenehmer, sobald mehr als zwei Komponenten vorhanden sind und Gleichungen mit den Vektoren aufgestellt werden.
+% \end{MInfo}
+
+\begin{MExercise}
+Specify the coordinates of the points drawn in the following coordinate system.
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4,0) -- (3.9,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,4.7);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,5) node[anchor=north west] {$y$};
+%Punktepaare
+\draw [fill=green] (-2,1) circle (1.5pt);
+\draw [fill=green] (1,0) circle (1.5pt);
+\draw [fill=green] (-2,2.5) circle (1.5pt);
+% Beschriftung:
+%\begin{scriptsize}
+        \draw (-2,1) node[anchor = east]{$P$};
+        \draw (1,0) node[anchor = south west]{$Q$};
+        \draw (-2,2.5) node[anchor = east]{$R$};
+%\end{scriptsize}
+\end{tikzpicture}
+}
+\end{center}
+\begin{MExerciseItems}
+\item{\MEquationItem{$P$}{\MLFunctionQuestion{15}{(-2,1)}{5}{x}{5}{VEB1}}.}
+\item{\MEquationItem{$Q$}{\MLFunctionQuestion{15}{(1,0)}{5}{x}{5}{VEB2}}.}
+\item{\MEquationItem{$R$}{\MLFunctionQuestion{15}{(-2,5/2)}{5}{x}{5}{VEB3}}.}
+\end{MExerciseItems}
+\MInputHint{Enter the points as $(x;y)$. For example, enter \texttt{(12;-4)} for a point with $x$-coordinate $12$ and $y$-coordinate $-4$.}
+
+\begin{MHint}{Solution}
+The coordinates of the given points are:
+$$
+P \;=\; \MPointTwo{-2}{1} \MDFPSpace, \MDFPaSpace
+Q \;=\; \MPointTwo{1}{0} \MDFPSpace, \MDFPaSpace
+R \;=\; \MPointTwo[\Big]{-2}{\frac52} \;=\; \MPointTwo{-2}{\MZahl{2}{5}} \MDFPeriod
+$$
+% In Vektorschreibweise lauten die Punkte
+% $$
+% \MVector{-2\\1}\MDFPSpace, \MDFPaSpace \MVector{1\\0}\MDFPSpace, \MDFPaSpace  \MVector{-2\\\frac52} \MDFPeriod
+% $$
+\end{MHint}
+\end{MExercise}
+
+In the following sections we will describe further geometrical objects, such as lines and circles, 
+by coordinates. For this purpose, we first have to understand that points in the plane (described by their 
+coordinates with respect to a given coordinate system) can be collected into so called 
+\MEntry{sets of points}{set of points}. This is illustrated by the example below.
+
+\begin{MExample}
+In the figure below, three points are plotted.
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.1,0) -- (3.5,0);
+\foreach \x in {-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,3.5);
+\foreach \y in {-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north west] {$x$};
+\draw (-0.7,3.8) node[anchor=north west] {$y$};
+%Punkte
+\draw [dashed] (-0.5,0)--(-0.5,-0.5);
+\draw [dashed] (0,-0.5)--(-0.5,-0.5);
+\draw [fill = red] (-0.5,-0.5) circle (1.5pt);
+\draw [dashed] (1,0)--(1,1);
+\draw [dashed] (0,1)--(1,1);
+\draw [fill = red] (1,1) circle (1.5pt);
+\draw [dashed] (2,0)--(2,2);
+\draw [dashed] (0,2)--(2,2);
+\draw [fill = red] (2,2) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+
+This set of points can be described by the following specification:
+\[
+ \{\MPointTwo{-\MZahl{0}{5}}{-\MZahl{0}{5}}\MElSetSep \MPointTwo{1}{1}\MElSetSep \MPointTwo{2}{2}\} = \{\MPointTwo{a}{a}\MCondSetSep a\in\{-\MZahl{0}{5}\MElSetSep 1\MElSetSep 2\}\}
+\]
+\end{MExample}
+
+\begin{MExercise}
+Draw the following sets of points in a Cartesian coordinate system.
+
+\begin{itemize}
+ \item[1.] $\{\MPointTwo{i}{i+1}\MCondSetSep i\in\{-2,-1,0,1,2\}\}$ 
+ \item[2.] $\{\MPointTwo[\Big]{\frac{1}{n}}{0}\MCondSetSep n=1\vee n=2 \vee n=4\}\cup\{\MPointTwo{-1}{-2}\}$
+ \item[3.] The set of all points in the first quadrant with integer abscissa smaller than $5$ and ordinate $1$
+\end{itemize}
+
+
+\begin{MHint}{Solution}
+\begin{itemize}
+ \item[1.]
+ 
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.5,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (0,3.5);
+\foreach \y in {-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north west] {$x$};
+\draw (-0.7,3.8) node[anchor=north west] {$y$};
+%Punkte
+\draw [fill = red] (-2,-1) circle (1.5pt);
+\draw [fill = red] (-1,0) circle (1.5pt);
+\draw [fill = red] (0,1) circle (1.5pt);
+\draw [fill = red] (1,2) circle (1.5pt);
+\draw [fill = red] (2,3) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+ 
+ 
+\item[2.]
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.5,0) -- (2.5,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (0,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.5,0) node[anchor=north west] {$x$};
+\draw (-0.7,2.8) node[anchor=north west] {$y$};
+%Punkte
+\draw [fill = red] (1,0) circle (1.5pt);
+\draw [fill = red] (0.5,0) circle (1.5pt);
+\draw [fill = red] (0.25,0) circle (1.5pt);
+\draw [fill = red] (-1,-2) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+
+\item[3.]
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.5,0) -- (4.5,0);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,2.5);
+\foreach \y in {-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north west] {$x$};
+\draw (-0.7,2.8) node[anchor=north west] {$y$};
+%Punkte
+\draw [fill = red] (1,1) circle (1.5pt);
+\draw [fill = red] (2,1) circle (1.5pt);
+\draw [fill = red] (3,1) circle (1.5pt);
+\draw [fill = red] (4,1) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+\end{itemize}
+
+\end{MHint}
+\end{MExercise}
+
+As we know from \MSRef{VBKM05}{Module 5}, lines and circles are sets of an infinite number of points. It 
+will be the subject of the following sections to describe their coordinates by means of sets of points and appropriate equations.
+A special infinite set of points is the collection of \textit{all} points in a coordinate system in the plane. For this
+set, a specific notion exists. 
+
+\begin{MInfo}
+\MLabel{VBKM09_R2}
+The set of all points in the plane described by the pairs of coordinates in a given Cartesian coordinate system is 
+denoted by
+\[
+ \R^2 := \{ \MPointTwo{x}{y}\MCondSetSep x\in\R\wedge y\in\R \} \MDFPeriod
+\]
+The symbol $\R^2$ reads as ``$\R$ two'', ``$\R$ to the power of two'', or ``$\R$ squared''. This indicates that 
+every point can be described by a pair of coordinates (also denoted as ordered pair) that consists of two real numbers.  
+\end{MInfo}
+
+\end{MXContent}
+
+
+% \MSubsection{Kreise}
+% \MLabel{M09_Kreise}
+
+\MSubsection{Lines in the Plane}
+\MLabel{M09_2Geraden}
+
+\begin{MIntro}
+\MLabel{VBKM09_Geraden_Intro}
+\MDeclareSiteUXID{VBKM09_Geraden_Intro}
+
+In \MSRef{VBKM05}{Module 5} lines in the plane were defined as line segments that are continued 
+on both ends indefinitely. In the context of the \MSRef{M09_1kartesisch}{previous section}, these lines 
+can now be considered as infinite sets of points in the plane with respect to a Cartesian coordinate system. 
+The elements of these sets of points then have to satisfy certain (linear) equations. Usually, lines 
+are denoted by lowercase Latin letters $g,h,\MHDots$. If a line is drawn in a coordinate system, only a \textit{section} or \textit{segment} of the line can be drawn. However, the line 
+itself extends indefinitely (see figure below). 
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.1,0) -- (3.1,0);
+%\foreach \x in {-2,-1,1,2}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,3.1);
+%\foreach \y in {-2,-1,1,2}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.8,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.2) node[anchor=north west] {$y$};
+%Gerade
+\draw[color=red] (-2,-0.5) -- (3,2);
+\draw[color=red, dashed] (3,2) -- (3.5,2.25);
+\draw[color=red, dashed] (-2,-0.5) -- (-2.5,-0.75);
+\draw[color=red] (3,2) node[anchor=north west] {$g$};
+
+\end{tikzpicture}
+}
+\end{center}
+
+>From \MSRef{VBKM06}{Module 6} we already know special cases of lines that are described as infinite sets in 
+$\R^2$. Namely, these are the graphs of linear affine functions that we discussed in 
+Section~\MSRef{VBKM06_linear}{Linear Functions and Polynomials} in Module~6. The example below revises
+the relevant terms of this section before they are used again further on.
+
+\begin{MExample}
+The graph ($G_f$) of the linear affine function 
+\[
+ \function{f}{\R}{\R}{x}{-2x+1}
+\] 
+is a line $h$ with the $y$-intercept $1$ and the slope $-2$ (see figure below).
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.2,0) -- (2.3,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,3.3);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-1,3) -- (2,-3);
+\draw[color=red] (2,-3) node[anchor=west] {$h=G_f$};
+
+\end{tikzpicture}
+}
+\end{center}
+
+\end{MExample}
+
+
+\end{MIntro}
+
+\begin{MXContent}{Coordinate Form of Equations of a Line}{Coordinate Equations of a Line}{STD}
+\MLabel{VBKM09_Koordinatengleichungen}
+\MDeclareSiteUXID{VBKM09_Koordinatengleichungen}
+
+Let us first introduce the most general form of a coordinate equation of a line. Using this equation, every line 
+in the plane can be specified as an infinite set of points with respect to a given coordinate system.
+
+\begin{MInfo}\MLabel{geradengleichung}
+A \MEntry{line}{line} $g$ in $\R^2$ is a set of points
+\[
+ g=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep p x+q y=c\}\MDFPeriod
+\]
+Here, $p$, $q$, $c$ are real numbers that define the line. At least \textit{one of the numbers} $p$ and $q$ \textit{must be non-zero}. 
+The linear equation
+\[
+ p x+q y=c
+\]
+is called the \MEntry{equation of a line}{equation of a line} or, more specifically, to distinguish it from other forms of equations of a line, 
+as \MEntry{coordinate form of the equation of a line}{coordinate form}. A common abbreviation for the explicit set notation given above
+is to specify only the variable of the line and the equation of the line:
+\[
+ g\colon\MDFPSpace p x+q y=c\MDFPeriod
+\]
+\end{MInfo}
+
+
+
+% \begin{MInfo}
+% Eine \MEntry{Gerade}{Gerade} ist eine durchgezogene Linie in der Ebene. Eine Gerade kann beschrieben werden
+% \begin{itemize}
+% \item{durch eine Funktionsgleichung $y=m \cdot x+b$ mit Steigung $m$ und Achsenabschnitt $b$,}
+% \item{durch Angabe von zwei verschiedenen Punkten $P$ und $Q$, dann ist $\overline{P Q}$ die Gerade durch die beiden Punkte,}
+% \item{durch eine allgemeine Gleichung der Form $p x+q y=c$.}
+% \end{itemize}
+% \end{MInfo}
+
+The example below shows a few lines and their set notations or equations.
+
+\pagebreak
+
+\begin{MExample} \MLabel{bsp:geraden1}
+
+\begin{itemize}
+ \item[a)]{\ $g=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x-y=0\}$
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.2,0) -- (2.3,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,2.3);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,2.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-2,-2) -- (2,2);
+\draw[color=red] (2,2) node[anchor=north] {$g$};
+
+\end{tikzpicture}
+}
+\end{center}
+ 
+ 
+ Here, we have $p=1$, $q=-1$, and $c=0$.
+ }
+ \item[b)]{\ $h\colon\MDFPSpace -x - 2 = -3y\MDFPaSpace\Leftrightarrow\MDFPaSpace h\colon\MDFPSpace -x + 3y = 2$
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.2,0) -- (3.3,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,2.3);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,2.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-3,-0.333) -- (3,1.667);
+\draw[color=red] (3,1.667) node[anchor=north] {$h$};
+
+\end{tikzpicture}
+}
+\end{center}
+ 
+ Here, we have $p=-1$, $q=3$, and $c=2$.
+ }
+ \item[c)]{\ $\alpha\colon\MDFPSpace  4y = 1$
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.2,0) -- (3.3,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,2.3);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,2.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-3,0.25) -- (3,0.25);
+\draw[color=red] (3,0.25) node[anchor=south] {$\alpha$};
+
+\end{tikzpicture}
+}
+\end{center}
+ 
+ Here, we have $p=0$, $q=4$, and $c=1$.
+ }
+ \item[d)]{\ $\beta=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x-1=0\}$
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.2,0) -- (2.3,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,3.3);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (1,-3) -- (1,3);
+\draw[color=red] (1,3) node[anchor=west] {$\beta$};
+
+\end{tikzpicture}
+}
+\end{center}
+ 
+ Here, we have $p=1$, $q=0$, and $c=1$.
+ }
+\end{itemize}
+ 
+\end{MExample}
+
+
+% Diese Beschreibungsmöglichkeiten werden in den folgenden Abschnitten vorgestellt.
+% 
+% Die einfachste Möglichkeit zur Beschreibung einer Geraden ist eine Funktionsgleichung. Dabei benutzt man, dass \MSRef{VBKM06_sec:linear-affin}{linear-affine Funktionen}
+% eine Gerade als Graph besitzen und schreibt einfach die Funktionsgleichung auf.
+% 
+% \begin{MInfo}
+% Die \MEntry{Funktionsgleichung}{Funktionsgleichung (Gerade)} einer Geraden in der Ebene lautet
+% $$
+% y \;=\; f(x) \;=\; m\cdot x+b
+% $$
+% mit
+% \begin{itemize}
+% \item{der \MEntry{Steigung}{Steigung} $m$,}
+% \item{dem \MEntry{Achsenabschnitt}{Achsenabschnitt} $b$,}
+% \item{und den Koordinaten $x$ und $y$ der Geraden.}
+% \end{itemize}
+% \end{MInfo}
+
+Now we want to be able to draw a line correctly in a coordinate system in $\R^2$. The line can be uniquely defined by an 
+equation of a line, or by other data. To do this, we have to establish a relation to the graphs of linear affine functions. 
+We also need to know by what kind of data a line in the plane is uniquely defined. This information will be given below. 
+
+
+\begin{MInfo}\MLabel{VBKM09_Info_Normalform}
+A line $g$ given by an equation of a line in coordinate form  
+\[
+ g\colon\MDFPSpace p x+q y=c 
+\]
+can be converted into \MEntry{normal form}{normal form (of an equation of a line)} if $q\neq 0$. In this case, the equation of a line 
+$p x+q y=c$ can be solved for $y$, and the normal form of $g$ is then
+\[
+ g\colon\MDFPSpace y=-\frac{p}{q}x + \frac{c}{q}\MDFPeriod
+\]
+In this form, the line describes a graph of a \MSRef{VBKM06_sec:linear-affin}{linear affine function} $f$ 
+with the slope $-\frac{p}{q}$ and the $y$-intercept $\frac{c}{q}$:
+\[
+ \function{f}{\R}{\R}{x}{y=f(x)=-\frac{p}{q}x + \frac{c}{q}\MDFPeriod}
+\]
+\end{MInfo}
+
+Since the slope and the $y$-intercept can be read off from the equation of a line in normal form, lines can be 
+drawn in the same way as the graphs of \MSRef{VBKM06_sec:linear-affin}{linear affine functions}.
+
+\begin{MExample}
+The line
+\[
+ g = \{\MPointTwo{x}{y}\in\R^2\MCondSetSep -x-2y=2\}
+\]
+has the equation $-x-2y=2$ in coordinate form. This equation can be converted into the form $y=-\frac{1}{2}x-1$ by 
+\MSRef{VBKM02_LineareGleichungenLoesen}{equivalent transformations of linear equations}. Thus, the line $g$ has the normal 
+form
+\[
+ g\colon\MDFPSpace y=-\frac{1}{2}x-1\MDFPSpace ,
+\]
+and it describes the graph of the linear affine function
+\[
+ \function{f}{\R}{\R}{x}{y=f(x)=-\frac{1}{2}x -1}
+\]
+with the slope $-\frac{1}{2}$ and the $y$-intercept $-1$.
+
+To draw $g$ one has to understand the following: the $y$-intercept $-1$ implies that the point $\MPointTwo{0}{-1}$  lies on $g$. 
+Starting from this point, the line $g$ can be drawn correctly by constructing a slope triangle of slope $-\frac{1}{2}$ (by 
+$x=1$ units to the right and by $y=\frac{1}{2}$ units downwards) in the correct direction:
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.2,0) -- (3.3,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,2.3);
+\foreach \y in {-3,-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,2.7) node[anchor=north west] {$y$};
+%Gerade
+\draw[color=red] (-3,0.5) -- (3,-2.5);
+\draw[color=red] (-3,0.5) node[anchor=south] {$g$};
+%Punkt und Steigungsdreieck
+\draw[fill=red] (0,-1) circle (1.5pt);
+\draw[color=red] (0,-1) node[anchor=north east] {\footnotesize $\MPointTwo{0}{-1}$};
+\draw[color=red, dashed] (0,-1) -- (1,-1);
+\draw[color=red, dashed] (1,-1) -- (1,-1.5);
+\draw[color=red] (0.5,-1) node[anchor=south] {\footnotesize $1$};
+\draw[color=red] (1,-1.25) node[anchor=west] {\footnotesize $\frac{1}{2}$};
+
+\end{tikzpicture}
+}
+\end{center}
+\end{MExample}
+
+There two special cases: they can be demonstrated by the two 
+lines $\alpha\colon 4y=1$ and $\beta\colon x-1=0$ in Example~\MNRef{bsp:geraden1} (see figure below).
+
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.2,0) -- (3.3,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,2.3);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,2.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-3,0.25) -- (3,0.25);
+\draw[color=red] (3,0.25) node[anchor=south] {$\alpha$};
+
+\end{tikzpicture}
+}
+\end{center}
+
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.2,0) -- (2.3,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,3.3);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (1,-3) -- (1,3);
+\draw[color=red] (1,3) node[anchor=west] {$\beta$};
+
+\end{tikzpicture}
+}
+\end{center}
+
+The line $\alpha$ is parallel to the $x$-axis. Thus, its normal form $\alpha\colon y=\frac{1}{4}$ describes the 
+graph of a constant function as a special case of the linear affine functions. The line $\beta$ is parallel 
+to the $y$-axis. Its equation of a line cannot be converted into normal form since $q=0$. This is true for all lines
+that are parallel to the $y$-axis.For such lines a normal form does not exist, since these lines cannot be 
+a graph of a function (as discussed in Section~\MNRef{sec:graphen}). Lines that are parallel to the $y$-axis have neither 
+have a $y$-intercept (since they do not intersect the $y$-axis) nor a slope. However, 
+for the sake of consistency, they can be assigned a slope of $\infty$.
+
+\begin{MExercise}
+Draw the following lines in a coordinate system. Convert the corresponding equation of a line (if required and possible)
+into normal form first. 
+
+\begin{itemize}
+ \item[1.] $g_1\colon\MDFPSpace y=-2x+3$
+ \item[2.] $g_2\colon\MDFPSpace -2x+y-2=0$
+ \item[3.] $g_3\colon\MDFPSpace x+3=0$
+\end{itemize}
+
+\begin{MHint}{Solution}
+
+\begin{itemize}
+ \item[1.] The equation of the line is given in normal form, so no transformation is required.
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (3.3,0);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,5.3);
+\foreach \y in {-2,-1,1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,5.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-1,5) -- (2.5,-2);
+\draw[color=red] (-1,5) node[anchor=north east] {$g_1$};
+
+\end{tikzpicture}
+}
+\end{center} 
+ 
+ \item[2.] The normal form of the line is $g_2\colon\MDFPSpace y=2x+2$.
+ \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.2,0) -- (2.3,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,6.3);
+\foreach \y in {-2,-1,1,2,3,4,5,6}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,6.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-2,-2) -- (2,6);
+\draw[color=red] (2,6) node[anchor=west] {$g_2$};
+
+\end{tikzpicture}
+}
+\end{center} 
+ 
+ 
+ \item[3.] The equation of the line cannot be converted into normal form. The line is parallel to the $y$-axis.
+ 
+  \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (1.3,0);
+\foreach \x in {-4,-3,-2,-1,1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,2.3);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (1.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,2.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-3,-2) -- (-3,2);
+\draw[color=red] (-3,2) node[anchor=west] {$g_3$};
+
+\end{tikzpicture}
+}
+\end{center} 
+\end{itemize}
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+Let a line $h$ be given by the figure below.
+  \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.2,0) -- (4.3,0);
+\foreach \x in {-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,2.3);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,2.7) node[anchor=north west] {$y$};
+%grid
+\draw[color=black, dotted] (-2,-2) -- (-2,2);
+\draw[color=black, dotted] (-1,-2) -- (-1,2);
+\draw[color=black, dotted] (1,-2) -- (1,2);
+\draw[color=black, dotted] (2,-2) -- (2,2);
+\draw[color=black, dotted] (3,-2) -- (3,2);
+\draw[color=black, dotted] (4,-2) -- (4,2);
+\draw[color=black, dotted] (-2,2) -- (4,2);
+\draw[color=black, dotted] (-2,1) -- (4,1);
+\draw[color=black, dotted] (-2,-1) -- (4,-1);
+\draw[color=black, dotted] (-2,-2) -- (4,-2);
+%Graph
+\draw[color=red] (-2,-2) -- (4,1);
+\draw[color=red] (4,1) node[anchor=west] {$h$};
+
+\end{tikzpicture}
+}
+\end{center} 
+
+Specify the equation of the line $h$ in normal form.\\
+$h\colon\MDFPSpace y=$ \MLFunctionQuestion{12}{0.5*x-1}{4}{x}{3}{VM09X1}
+
+\begin{MHint}{Solution}
+The equation of a line of $h$ in normal form is $y=\frac{1}{2}x-1=\MZahl{0}{5}\cdot x-1$.  
+\end{MHint}
+\end{MExercise}
+As well as by an equations, a line in the plane can also be uniquely defined by other data. From these data, the corresponding equation 
+of a line can be derived, and the line can be drawn in a coordinate system. 
+
+\begin{MInfo}
+There are two alternative ways to uniquely define a line in the plane:
+\begin{itemize}
+ \item \textbf{``A line is uniquely defined by two points''} If two points $P$ and $Q$ in $\R^2$ are given, there exists exactly one line $g$
+that passes through the points $P$ and $Q$. The line passing through $P$ and $Q$ is then also denoted by $g=g_{P Q}=g_{Q P}$ or simply by
+$g=P Q$.
+ \item \textbf{``A line is uniquely defined by a point and a slope''} If a point $P$ in $\R^2$ and a slope $m$ are given, there exists exactly one 
+line $g$ that passes through $P$ and has the slope $m$.
+\end{itemize}
+\end{MInfo}
+
+The two following examples illustrate how the equation of a line can be derived from the data that uniquely define this line, and how
+this line can be drawn.
+
+\begin{MExample}
+\MLabel{bsp:geraden2}
+Let the points $P=\MPointTwo{-1}{-1}$ and $Q=\MPointTwo{2}{1}$ be given. The line $g_{P Q}=P Q$ passing through these two points can be 
+drawn immediately. To determine the line of equation it is useful to construct a slope triangle from the two given points:
+  \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.2,0) -- (3.3,0);
+\foreach \x in {-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,2.3);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,2.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-2,-1.667) -- (3,1.667);
+\draw[color=red] (3,1.667) node[anchor=west] {$g_{P Q}=P Q$};
+%Punkte
+\draw [fill=red] (-1,-1) circle (1.5pt);
+\draw[color=red] (-1,-1) node[anchor=south] {$P$};
+\draw [fill=red] (2,1) circle (1.5pt);
+\draw[color=red] (2,1) node[anchor=south] {$Q$};
+%Steigungsdreieck
+\draw[color=red, dashed] (-1,-1) -- (2,-1);
+\draw[color=red, dashed] (2,-1) -- (2,1);
+\draw[color=red] (1,-1) node[anchor=north] {\footnotesize $3=2-(-1)$};
+\draw[color=red] (2,0) node[anchor=south west] {\footnotesize $2=1-(-1)$};
+\end{tikzpicture}
+}
+\end{center} 
+
+>From the $x$-coordinates $-1$ and $2$ of $P$ and $Q$ we obtain the width $3$ of the slope triangle. From the corresponding $y$-coordinates 
+$-1$ and $1$ we obtain its height $2$. Thus, the slope in the equation of the line is $m=\frac{2}{3}$. For the normal form of the equation of 
+the line $g_{P Q}$ we thus obtain:
+\[
+ g_{P Q}\colon\MDFPSpace y=m x+b=\frac{2}{3}x+b\MDFPeriod
+\]
+Now, only the $y$-intercept $b$ has to be determined. We know that the line $g_{P Q}$ passes through the two points $P$ and $Q$. Therefore, we can 
+substitute the $x$- and $y$-coordinates of one of these points into the equation of the line, and calculate $b$. Substituting, for example, 
+the coordinates of the point $Q=\MPointTwo{2}{1}$ results in
+\[
+ 1=\frac{2}{3}\cdot 2 + b\MDFPaSpace\Leftrightarrow\MDFPaSpace b=1-\frac{4}{3}=-\frac{1}{3}\MDFPeriod
+\]
+Using the point $P=\MPointTwo{-1}{-1}$ would result in the same equation. Thus, the required equation of the line in normal form is
+\[
+ g_{P Q}\colon\MDFPSpace y=\frac{2}{3}x-\frac{1}{3}\MDFPeriod
+\]
+\end{MExample}
+
+\begin{MExample}
+Let the point $R=\MPointTwo{2}{-1}$ and the slope $m=\frac{1}{2}$ be given. Find the line $g$ that passes through the point $R$ and has the slope 
+$m=\frac{1}{2}$. As in Example~\MNRef{bsp:geraden2}, the equation of the line $g$ in normal form can be specified immediately while the 
+$y$-intercept is still unknown:
+\[
+ g\colon\MDFPSpace y=m x+b=\frac{1}{2}x+b\MDFPeriod
+\]
+Moreover, both the coordinates $x$ and $y$ of the point $R$ are given here from which the $y$-intercept can be calculated, as 
+in Example~\MNRef{bsp:geraden2}:
+\[
+%y=\frac{1}{2}x + b\MDFPaSpace\Leftrightarrow\MDFPaSpace
+ -1=\frac{1}{2}\cdot 2 + b\MDFPaSpace\Leftrightarrow\MDFPaSpace b=-2\MDFPeriod
+\]
+Thus, the required equation of the line is
+\[
+ g\colon\MDFPSpace y=m x+b=\frac{1}{2}x-2\MDFPeriod
+\]
+Using the point $R=\MPointTwo{2}{-1}$ and the slope $m=\frac{1}{2}$, the line $g$ can also be drawn immediately as illustrated by the 
+figure below.
+  \begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (5.3,0);
+\foreach \x in {-1,1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,1.3);
+\foreach \y in {-3,-2,-1,1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (5.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,1.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-1,-2.5) -- (5,0.5);
+\draw[color=red] (5,0.5) node[anchor=south] {$g$};
+%Punkt
+\draw [fill=red] (2,-1) circle (1.5pt);
+\draw[color=red] (2,-1) node[anchor=north] {$R$};
+%Steigungsdreieck
+\draw[color=red, dashed] (2,-1) -- (4,-1);
+\draw[color=red, dashed] (4,-1) -- (4,0);
+\draw[color=red] (3,-1) node[anchor=north] {\footnotesize $2$};
+\draw[color=red] (4,-0.5) node[anchor=west] {\footnotesize $1$};
+\end{tikzpicture}
+}
+\end{center} 
+\end{MExample}
+
+\begin{MExercise}
+Each set of data given here defines a unique line. For each one, give the equation of the line and then sketch it.
+\begin{MExerciseItems}
+\item{The points $A=\MPointTwo{1}{5}$ and $B=\MPointTwo{3}{1}$ are on the line.\\ $g_{A B}\colon\MDFPSpace y=$\MLFunctionQuestion{12}{-2*x+7}{4}{x}{3}{VM09X2}} 
+\item{The points $S=\MPointTwo{\MZahl{1}{5}}{-\MZahl{0}{5}}$ and $T=\MPointTwo[\Big]{\frac{3}{2}}{2}$ are on the line.\\ $g_{S T}\colon\MDFPSpace x=$\MLFunctionQuestion{12}{1.5}{4}{x}{3}{VM09X3}} 
+\item{The line $g$ passes trough the point $\MPointTwo{-4}{3}$ with a slope of $-1$.\\$g\colon\MDFPSpace y=$\MLFunctionQuestion{12}{-1*x-1}{4}{x}{3}{VM09X4}} 
+\item{The line $h$ passes trough the point $\MPointTwo{42}{2}$ with a slope of $0$.\\$h\colon\MDFPSpace y=$\MLFunctionQuestion{12}{2}{4}{x}{3}{VM09X5}} 
+\end{MExerciseItems}
+
+\begin{MHint}{Solution}
+\begin{itemize}
+ \item[1.] $g_{A B}\colon\MDFPSpace y=-2x+7$
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (4.3,0);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.2) -- (0,8.3);
+\foreach \y in {-1,1,2,3,4,5,6,7,8}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,8.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-0.5,8) -- (4,-1);
+\draw[color=red] (4,-1) node[anchor=west] {$g_{A B}$};
+%Punkte
+\draw [fill=red] (1,5) circle (1.5pt);
+\draw[color=red] (1,5) node[anchor=south west] {$A$};
+\draw [fill=red] (3,1) circle (1.5pt);
+\draw[color=red] (3,1) node[anchor=south west] {$B$};
+\end{tikzpicture}
+}
+\end{center} 
+
+ \item[2.] $g_{S T}\colon\MDFPSpace x=\frac{3}{2}$
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (3.3,0);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,3.3);
+\foreach \y in {-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (1.5,-2) -- (1.5,3);
+\draw[color=red] (1.5,3) node[anchor=west] {$g_{S T}$};
+%Punkte
+\draw [fill=red] (1.5,-0.5) circle (1.5pt);
+\draw[color=red] (1.5,-0.5) node[anchor=west] {$S$};
+\draw [fill=red] (1.5,2) circle (1.5pt);
+\draw[color=red] (1.5,2) node[anchor=west] {$T$};
+\end{tikzpicture}
+}
+\end{center}  
+ \item[3.] $g\colon\MDFPSpace y=-x-1$
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-5.2,0) -- (1.3,0);
+\foreach \x in {-5,-4,-3,-2,-1,1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,4.3);
+\foreach \y in {-2,-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (1.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-5,4) -- (1,-2);
+\draw[color=red] (1,-2) node[anchor=north] {$g$};
+%Punkt
+\draw [fill=red] (-4,3) circle (1.5pt);
+\draw[color=red] (-4,3) node[anchor=south west] {$\MPointTwo{-4}{3}$};
+%Steigungsdreieck
+\draw[color=red, dashed] (-4,3) -- (-4,2);
+\draw[color=red, dashed] (-4,2) -- (-3,2);
+\draw[color=red] (-4,2.5) node[anchor=east] {\footnotesize $-1$};
+\draw[color=red] (-3.5,2) node[anchor=north] {\footnotesize $1$};
+\end{tikzpicture}
+}
+\end{center} 
+
+ \item[4.] $h\colon\MDFPSpace y=2$
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[color=black] (-2.2,0) -- (3.2,0);
+\draw[color=black, dotted] (3.2,0) -- (3.8,0);
+\draw[->,color=black] (3.8,0) -- (4.3,0);
+\foreach \x in {-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[shift={(4,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $42$};
+\draw[->,color=black] (0,-1.2) -- (0,3.3);
+\foreach \y in {-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-2,2) -- (3.2,2);
+\draw[color=red, dotted] (3.2,2) -- (3.8,2);
+\draw[color=red] (3.8,2) -- (4.3,2);
+\draw[color=red] (-2,2) node[anchor=south] {$h$};
+%Punkt
+\draw [fill=red] (4,2) circle (1.5pt);
+\draw[color=red] (4,2) node[anchor=south] {$\MPointTwo{42}{2}$};
+\end{tikzpicture}
+}
+\end{center} 
+
+\end{itemize}
+ 
+\end{MHint}
+
+\end{MExercise}
+
+\end{MXContent}
+
+\begin{MXContent}{Relative Positions of Lines}{Relative Positions}{STD}
+\MLabel{VBKM09_Lagebeziehungen}
+\MDeclareSiteUXID{VBKM09_Lagebeziehungen}
+
+In the previous Section~\MNRef{VBKM09_Koordinatengleichungen} we discussed how to describe lines 
+by means of equations in coordinate form and how to find the equations of a line from given data. This section 
+investigates the relative positions of lines (given by equations) with respect to each other and 
+ with respect to other given points. The latter question can be answered very easily since a point either lies on a line or it 
+does not. 
+
+\begin{MInfo}
+Let a line
+\[
+ g = \{\MPointTwo{x}{y}\MCondSetSep p x+q y=c\}
+\]
+and a point $P=\MPointTwo{a}{b}$ in $\R^2$ be given. The point $P$ lies on the line (i.e. $P\in g$) if and only if its 
+abscissa and its ordinate satisfy the equation of the line, i.e. if we have
+\[
+ p a+q b=c\MDFPeriod
+\]
+\end{MInfo}
+
+Thus, using an equation of the line, we can check whether points lie on the line or do not.
+
+\begin{MExample}
+Let us consider the line
+\[
+ h\colon\MDFPSpace x+2y=-1\MDFPeriod
+\]
+We see that the point $A=\MPointTwo[\Big]{-2}{\frac{1}{2}}$ lies on $h$ since its coordinates 
+$x=-2$ and $y=\frac{1}{2}$ satisfy the equation of a line, i.e.
+\[
+ -2 + 2\cdot\frac{1}{2}=-2+1=-1 \MDFPeriod
+\]
+The point $B=\MPointTwo{1}{1}$, however, does not lie on $h$ since its coordinates $x=1$ and $y=1$ do not 
+satisfy the equation of a line, i.e.
+\[
+ 1+2\cdot1=3\neq -1\MDFPeriod
+\]
+This is illustrated by the figure below.
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.2,0) -- (2.3,0);
+\foreach \x in {-3,-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.2) -- (0,2.3);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,2.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (-3,1) -- (2,-1.5);
+\draw[color=red] (2,-1.5) node[anchor=north] {$g$};
+%Punkte
+\draw [fill=red] (-2,0.5) circle (1.5pt);
+\draw[color=red] (-2,0.5) node[anchor=south] {$A$};
+\draw [fill=red] (1,1) circle (1.5pt);
+\draw[color=red] (1,1) node[anchor=south] {$B$};
+\end{tikzpicture}
+}
+\end{center} 
+\end{MExample}
+
+\begin{MExercise}
+Decide whether the given points lie on the given lines by inserting and calculating. Tick the points that lie on the line.\\
+
+\begin{MQuestionGroup}
+$g\colon\MDFPSpace 2x-4(\frac{y}{2}+x)+2y=-3$:\\
+
+\begin{tabular}{lll}
+\MLCheckbox{1}{SCH1} & \ \ & $P=\MPointTwo{\MZahl{1}{5}}{2}$\\
+\MLCheckbox{0}{SCH2} & \ \ & $Q=\MPointTwo[\Big]{-\frac{3}{2}}{-4}$\\
+\MLCheckbox{0}{SCH3} & \ \ & $R=\MPointTwo{\MZahl{0}{5}}{0}$\\
+\MLCheckbox{1}{SCH4} & \ \ & $S=\MPointTwo[\Big]{\frac{9}{6}}{0}$\\
+\MLCheckbox{0}{SCH5} & \ \ & $T=\MPointTwo{0}{-\pi}$\\
+\end{tabular}
+
+\end{MQuestionGroup}
+
+\MGroupButton{Check input}
+
+\begin{MHint}{Solution}
+The equation of the line can be simplified:
+\[
+ 2x-4(\frac{y}{2}+x)+2y=-3\MDFPaSpace\Leftrightarrow\MDFPaSpace2x-2y-4x+2y=-3\MDFPaSpace\Leftrightarrow\MDFPaSpace-2x=-3\MDFPaSpace\Leftrightarrow\MDFPaSpace x=\frac{3}{2}\MDFPeriod
+\]
+Thus, the line $h$ is parallel to the axis of ordinates, and all points ith abscissa $\MZahl{1}{5}$ lie on $h$. From 
+\[
+ \frac{9}{6} = \frac{3}{2} = \MZahl{1}{5}
+\]
+we see that, on our list, these are only the points $P$ and $S$. All our other points do not lie on the line $h$. This is illustrated by the figure below. 
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.2,0) -- (3.3,0);
+\foreach \x in {-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-5.2) -- (0,3.3);
+\foreach \y in {-5,-4,-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Graph
+\draw[color=red] (1.5,-5) -- (1.5,3);
+\draw[color=red] (1.5,3) node[anchor=west] {$h$};
+%Punkte
+\draw [fill=red] (1.5,2) circle (1.5pt);
+\draw[color=red] (1.5,2) node[anchor=west] {$P$};
+\draw [fill=red] (-1.5,-4) circle (1.5pt);
+\draw[color=red] (-1.5,-4) node[anchor=south] {$Q$};
+\draw [fill=red] (0.5,0) circle (1.5pt);
+\draw[color=red] (0.5,0) node[anchor=south] {$R$};
+\draw [fill=red] (1.5,0) circle (1.5pt);
+\draw[color=red] (1.5,0) node[anchor=south west] {$S$};
+\draw [fill=red] (0,-3.14) circle (1.5pt);
+\draw[color=red] (0,-3.14) node[anchor=west] {$T$};
+\end{tikzpicture}
+}
+\end{center} 
+\end{MHint}
+
+\end{MExercise}
+
+Two lines on a plane can have three different relative positions:
+
+\begin{MInfo}\MLabel{info_relative_lage}
+Let $g$ and $h$ be two lines in the plane that are described by equations of a line with respect to a coordinate system. Then the lines have exactly
+one of the following relative positions with respect to each other:
+\begin{enumerate}
+ \item The lines $g$ and $h$ have exactly one point in common, i.e. they intersect. The common point is called the \MEntry{intersection point}{intersection point (of two lines in the plane)}.
+ \item The lines $g$ and $h$ do not have any points in common, i.e. they do not intersect at all. In this case, the lines are \MEntry{parallel}{parallelism (of two lines in the plane)}.
+ \item The lines $g$ and $h$ have all their point in common, i.e. they are identical. In this case, the lines are coincident.
+\end{enumerate}
+\end{MInfo}
+
+The last case seems to be a little strange at first glance. You may wonder why two names ($g$ and $h$) exist for the same object. Different equations can in fact describe 
+exactly one and the same line if the equations arise from each other by equivalent transformations. Sometimes this is not obvious but can be seen from a detailed investigation. This idea is illustrated by the 
+example below.
+
+\begin{MExample}
+\begin{enumerate}
+ \item The lines $g\colon\MDFPSpace y=2x-1$ and $h\colon\MDFPSpace y=x+1$ intersect. The only point they have in common is the intersection
+  point $S=\MPointTwo{2}{3}$:
+ \begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (3.3,0);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \y in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Geraden
+\draw[color=red] (-1,-3) -- (2.5,4);
+\draw[color=red] (2.5,4) node[anchor=east] {$g$};
+\draw[color=blue] (-1.5,-0.5) -- (3,4);
+\draw[color=blue] (3,4) node[anchor=west] {$h$};
+%Schnittpunkt
+\draw [fill=violet] (2,3) circle (1.5pt);
+\draw[color=violet] (2,3) node[anchor=south east] {$S$};
+\end{tikzpicture}
+}
+\end{center} 
+
+\item The lines $g\colon\MDFPSpace y = \frac{1}{2}x-1$ and $h\colon\MDFPSpace x-2y=-2$ do not intersect. They are parallel to each other:
+ \begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.2,0) -- (3.3,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,3.3);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Geraden
+\draw[color=red] (-3,-2.5) -- (3,0.5);
+\draw[color=red] (3,0.5) node[anchor=south] {$g$};
+\draw[color=blue] (-3,-0.5) -- (3,2.5);
+\draw[color=blue] (3,2.5) node[anchor=south] {$h$};
+\end{tikzpicture}
+}
+\end{center} 
+
+\item The lines $g\colon\MDFPSpace y = \frac{1}{3}x+1$ and $h\colon\MDFPSpace 2x-6y=-6$ are coincident 
+since they arise from each other by equivalent transformations:
+\[
+ y = \frac{1}{3}x+1\MDFPaSpace\Leftrightarrow\MDFPaSpace y-\frac{1}{3}x=1\MDFPaSpace|\cdot(-6)\MDFPaSpace\Leftrightarrow\MDFPaSpace2x-6y=-6
+\]
+ \begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.2) -- (0,3.3);
+\foreach \y in {-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Geraden
+\draw[color=violet] (-4,-0.333) -- (3,2);
+\draw[color=violet] (3,2) node[anchor=south] {$g=h$};
+\end{tikzpicture}
+}
+\end{center} 
+\end{enumerate}
+ 
+\end{MExample}
+
+The methods for calculating the intersection point of lines are the methods for solving a system of two linear equations in two variables 
+(in this case these are the equations of a line) that were discussed in detail in Module~\MNRef{VBKM04}. In particular, the 
+geometrical aspect of the intersection point of lines was discussed in detail in Section~\MNRef{M04_2_Unbekannte} in this context. Hence, 
+for the methods of finding an intersection point, we refer to Section~\MNRef{M04_2_Unbekannte} and highly recommend a brief repetition of the 
+material presented there.
+
+However, if two equations of a line are given in normal form, i.e. if their slopes and $y$-intercepts are known, then 
+it can be seen immediately (without a calculation) which of the three relative positions defined in Info Box~\MNRef{info_relative_lage}
+applies to the two lines:
+
+\begin{MInfo}
+Let two lines $g$ and $h$ in the plane be given by equations in normal form.
+\begin{enumerate}
+ \item If the slopes of $g$ and $h$ are \textit{different}, the two lines intersect.
+ \item If the slopes of $g$ and $h$ are \textit{the same}, but their $y$-intercepts are \textit{different}, the two lines are parallel.
+ \item If the slopes and $y$-intercepts of $g$ and $h$ are \textit{the same}, the two lines are coincident.
+\end{enumerate}
+
+\end{MInfo}
+
+\begin{MExercise}
+Decide by calculation whether the given lines intersect. Tick the corresponding boxes and enter the intersection points for the lines that 
+do intersect. Sketch the pairs of lines.
+\begin{MQuestionGroup}
+\begin{MExerciseItems}
+\item{$f\colon\MDFPSpace y=x-2$ and $g\colon\MDFPSpace y=2-x$:\\
+\begin{tabular}{lll}
+\MLCheckbox{0}{VEBC11} & \ \ & do not intersect (are parallel),\\
+\MLCheckbox{0}{VEBC12} & \ \ & are coincident,\\
+\MLCheckbox{1}{VEBC13} & \ \ & have an intersection point.
+\end{tabular}}
+\item{$f\colon\MDFPSpace y=1-x$ and $g\colon\MDFPSpace y=4\cdot(3x+1)-x-3$:\\
+\begin{tabular}{lll}
+\MLCheckbox{0}{VEBC21} & \ \ & do not intersect (are parallel),\\
+\MLCheckbox{0}{VEBC22} & \ \ & are coincident,\\
+\MLCheckbox{1}{VEBC23} & \ \ & have an intersection point.
+\end{tabular}}
+\item{$f\colon\MDFPSpace y=4(x+1)-x-1$ and $g\colon\MDFPSpace y=3x-3$:\\
+\begin{tabular}{lll}
+\MLCheckbox{1}{VEBC31} & \ \ & do not intersect (are parallel),\\
+\MLCheckbox{0}{VEBC32} & \ \ & are coincident,\\
+\MLCheckbox{0}{VEBC33} & \ \ & have an intersection point.
+\end{tabular}}
+\item{$f\colon\MDFPSpace y=5x-2$ and $g\colon\MDFPSpace y=(2x+1)+(3x-3)$:\\
+\begin{tabular}{lll}
+\MLCheckbox{0}{VEBC41} & \ \ & do not intersect (are parallel),\\
+\MLCheckbox{1}{VEBC42} & \ \ & are coincident,\\
+\MLCheckbox{0}{VEBC43} & \ \ & have an intersection point.
+\end{tabular}}
+\end{MExerciseItems}
+\ \\
+The first intersection point is \MLFunctionQuestion{10}{(2,0)}{5}{x}{5}{VEBC14}, the second intersection point is \MLFunctionQuestion{10}{(2,0)}{5}{x}{5}{VEBC14b}.
+\end{MQuestionGroup}
+
+\MGroupButton{Check input}
+
+\begin{MHint}{Solution}
+Equating both functions results in
+\begin{MExerciseItems}
+\item{
+$$
+x-2 \;=\; 2-x \;\; \Leftrightarrow\;\; 2x\;=\; 4 \;\; \Leftrightarrow\;\; x \;=\; 2 \MDFPeriod
+$$
+Thus, the two lines have the intersection point $P=\MPointTwo{2}{0}$.}
+\item{
+$$
+1-x \;=\; 4(3x+1)-x-3 \;\; \Leftrightarrow\;\; 12x\;=\; 0 \;\; \Leftrightarrow\;\; x \;=\; 0\MDFPeriod
+$$
+Thus, the two lines have the intersection point $P=\MPointTwo{0}{1}$.}
+\item{ 
+$$
+4(x+1)-x-1 \;=\; 3x-3\;\; \Leftrightarrow\;\; 0\;=\; -6 \MDFPeriod
+$$
+These two lines do not intersect since the equation cannot be solved.}
+\item{$(2x+1)+(3x-3)=5x-2$. These two lines are coincident.}
+\end{MExerciseItems}
+\end{MHint}
+
+\begin{MHint}{Sketch 1}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Graphen
+\draw[color=red] (-2,-4)--(3,1);
+\draw[color=red] (3,1) node[anchor=west] {$f$};
+\draw[color=blue] (-2,4)--(3,-1);
+\draw[color=blue] (3,-1) node[anchor=west] {$g$};
+\draw [fill=violet] (2,0) circle (1.5pt);
+\end{tikzpicture}       
+}%
+\end{center}
+\end{MHint}
+\begin{MHint}{Sketch 2}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+\draw[color=black] (0pt,-8pt) node[right] {\footnotesize $0$};
+%Graphen
+\draw[color=red] (-2,3)--(3,-2);
+\draw[color=red] (3,-2) node[anchor=west] {$f$};
+\draw[color=blue] (-0.3636,-3)--(0.1818,3);
+\draw[color=blue] (0.1818,3) node[anchor=west] {$g$};
+\draw [fill=violet] (0,1) circle (1.5pt);
+\end{tikzpicture}       
+}%
+\end{center}
+\end{MHint}
+\begin{MHint}{Sketch 3}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Graphen
+\draw[color=red] (-2,-3)--(0,3);
+\draw[color=red] (0,3) node[anchor=west] {$f$};
+\draw[color=blue] (0,-3)--(2,3);
+\draw[color=blue] (2,3) node[anchor=west] {$g$};
+\end{tikzpicture}       
+}%
+\end{center}
+\end{MHint}
+\begin{MHint}{Sketch 4}
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+%\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Graphen
+\draw[color=violet] (-0.2,-3)--(1,3);
+\draw[color=violet] (1,3) node[anchor=west] {$f=g$};
+\end{tikzpicture}       
+}%
+\end{center}
+\end{MHint}
+\end{MExercise}
+
+% Bei dieser Schreibweise beschreibt man die Gerade durch den funktionalen Zusammenhang zwischen den beiden Koordinaten: Ist der Wert für $x$ bekannt,
+% so kann man über die Gleichung den Wert von $y$ ausrechnen.
+% Über die Funktionsgleichung kann man beispielsweise Schnittpunkte ausrechnen, indem man die entsprechenden Gleichungen gleichsetzt.
+% Funktionsgleichungen für Geraden sind \MSRef{VBKM02_LineareGleichungenLoesen}{linear}, daher treten
+% wie in Modul \MNRef{VBKM02} die drei möglichen Lösungstypen auf:
+% 
+% \begin{MInfo}
+% Zwei durch Funktionsgleichungen $f(x)=a x + b$ und $g(x)=c x + d$ gegebene Geraden haben
+% \begin{itemize}
+% \item{keinen Schnittpunkt, falls die lineare Gleichung $f(x)=g(x)$ keine Lösung für $x$ besitzt,}
+% \item{genau einen Schnittpunkt, falls die lineare Gleichung genau eine Lösung $x$ besitzt. Dann ist der Schnittpunkt gegeben durch $P=(x;f(x))$ oder $P=(x;g(x))$,}
+% \item{unendlich viele Schnittpunkte, falls $f(x)=g(x)$ alle reellen Zahlen $x$ als Lösung besitzt. In diesem Fall sind die beiden Geraden gleich.}
+% \end{itemize}
+% \end{MInfo}
+% 
+% Auflösen nach $x$ geschieht wie in Modul \MNRef{VBKM02} durch Isolierung der Unbestimmten $x$:
+% 
+% 
+% \begin{MExample}
+% Gesucht sei der Schnittpunkt der Geraden $f(x)=2x+1$ und $g(x)=-x-2$. Gleichsetzen und Isolieren von $x$ ergibt
+% \begin{eqnarray*}
+% & \text{Start:} & 2x+1\;=\; -x-2  \ \\ \ \\
+% & \Leftrightarrow & 3x\;=\;-3 \ \\ \ \\
+% & \Leftrightarrow & x\;=\; -1 \MDFPeriod
+% \end{eqnarray*}
+% Die Lösungsmenge der Gleichung ist also $\ML=\lbrace -1\rbrace$. Einsetzen der gefundenen Koordinate in eine der beiden Funktionsgleichungen ergibt
+% $y=f(-1)=g(-1)=-1$. Also ist der gesuchte Schnittpunkt $P=(-1;-1)$:
+% \begin{center}
+% \MTikzAuto{%
+% \begin{tikzpicture} 
+% %Koordinatensystem
+% % x-Achse
+% \node (xMAX) at (3.8,0){};
+% \draw[->,color=black] (-3.5,0) -- (xMAX);
+% \foreach \x in {-2,-1,1,2}
+% \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% % y-Achse
+% \node (yMAX) at (0,3.8){};
+% \draw[->,color=black] (0,-3.5) -- (yMAX);
+% \draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% %Achsenbeschriftung
+% \draw (xMAX) node[anchor=north east] {$x$};
+% \draw (yMAX) node[anchor=east] {$y$};
+% %Graphen
+% \draw[color=red] (-2,-3)--(1,3);
+% \draw[color=red] (1,3) node[anchor=west] {$G_f$};
+% \draw[color=blue] (-2,0)--(1,-3);
+% \draw[color=blue] (1,-3) node[anchor=west] {$G_g$};
+% \draw [fill=green] (-1,-1) circle (1.5pt);
+% \draw (-1,-1) node[anchor = south]{$P$};
+% \end{tikzpicture}       
+% }%
+% \end{center}
+% Dabei ist der Graph $G_f$ der Funktion $f(x)=2x+1$ die Gerade. Im Folgenden trennen wir beide Objekte aber nicht mehr voneinander.
+% \end{MExample}
+% 
+% Dabei treten die drei Lösungstypen in den folgenden Fällen auf:
+% \begin{itemize}
+% \item{Falls zwei durch Funktionsgleichungen gegebene Geraden verschiedene Steigungen besitzen, so gibt es genau einen Schnittpunkt.}
+% \item{Falls zwei Geraden gleiche Steigungen und gleiche Achsenabschnitte besitzen, so handelt es sich um die gleiche Gerade.}
+% \item{Falls die Steigungen gleich und die Achsenabschnitte aber verschieden sind, so gibt es keinen Schnittpunkt.}
+% \end{itemize}
+% 
+% 
+% 
+% \end{MXContent}
+% 
+% \begin{MXContent}{Zwei-Punkte-Form}{Zwei-Punkte-Form}{STD}
+% \MLabel{VBKM09_ZweiPunkteForm}
+% \MDeclareSiteUXID{VBKM09_ZweiPunkteForm}
+% 
+% Geraden mit Funktionsgleichungen zu beschreiben hat den Vorteil, dass rechnerische Aufgaben wie das Finden von Schnittpunkten
+% damit einfach zu lösen sind, da man die gegebenen Terme für die anzusetzenden Gleichungen sofort einsetzen kann.
+% Allerdings lässt sich nicht jede Gerade durch eine Funktionsgleichung beschreiben.
+% Eine Funktionsgleichung drückt aus, dass man allen möglichen $x$-Werten jeweils einen $y$-Wert (und damit einen Punkt auf der Geraden) zuordnen kann.
+% Vertikale Geraden sind keine Graphen von linear-affinen Funktionen, hier kann man nicht jedem $x$-Wert einen Punkt zuordnen.
+% Für solche Geraden benötigt man andere Beschreibungstechniken, eine davon ist die \MEntry{Zwei-Punkte-Form}{Zwei-Punkte-Form}:
+% 
+% \begin{MInfo}
+% Eine Gerade ist eindeutig beschrieben durch Angabe von zwei verschiedenen Punkten auf der Geraden. Sind $P$ und $Q$ die beiden Punkte,
+% so notiert man die durch diese beiden Punkte verlaufende Gerade durch $\overline{P Q}$.
+% \end{MInfo}
+% 
+% Beispielsweise kann man die durch die Funktionsgleichung $f(x)=2x+1$ gegebene Gerade auch durch die beiden Punkte $P=(0;1)$ und $Q=(2;5)$ beschreiben.
+% Dagegen kann man die vertikale Gerade durch die Punkte $R=(2;0)$ und $S=(2;1)$ nicht durch eine Funktionsgleichung beschreiben.
+% Mit der Zwei-Punkte-Form kann man jede mögliche Gerade beschreiben, allerdings eignet sie sich nicht zur Berechnung von Schnittpunkten.
+% Um Schnittpunkte auszurechnen, muss man die Geraden daher erst in Funktionsform beschreiben:
+% 
+% \begin{MInfo}
+% Ist eine nicht vertikale Gerade $\overline{P Q}$ durch die beiden Punkte $P=(x_1;y_1)$ und $Q=(x_2;y_2)$ gegeben, so besitzt sie die Steigung
+% $$
+% m \;=\; \frac{y_2-y_1}{x_2-x_1} \MDFPeriod
+% $$
+% Den Achsenabschnitt $b$ findet man dann durch Einsetzen eines Punktes in die Gleichung $y=m x+b$.
+% \end{MInfo}
+% 
+% \begin{MExample}
+% Ist die Gerade $\overline{P Q}$ gegeben mit $P=(1;2)$ und $Q=(5;3)$, so besitzt sie die Steigung $m=\frac{3-2}{5-1}=\frac14$.
+% Einsetzen des Punkts $P$ in die Funktionsgleichung $y=\frac14x+b$ ergibt die Gleichung $2=\frac14\cdot 1+b$. Auflösen nach $b$ ergibt
+% $b=2-\frac14=\frac74$. Also ist
+% $$
+% y \;=\; \frac14\cdot x +\frac74
+% $$
+% die Funktionsgleichung für die Gerade $\overline{P Q}$.
+% \end{MExample}
+% 
+% Die vertikale Gerade durch die Punkte $P=(3;2)$ und $Q=(3;1)$ lässt sich nicht durch eine Funktionsgleichung beschreiben,
+% Einsetzen der Koordinaten ergibt eine Null im Nenner. Horizontale Geraden erhalten dagegen eine Null im Zähler und haben die Steigung Null.
+% 
+% \begin{MExercise}
+% Drücken Sie die Gerade $\overline{P Q}$ jeweils durch eine Funktionsgleichung $y=f(x)=m x+b$ aus:
+% \begin{MExerciseItems}
+% \item{Für $P=(2;1)$ und $Q=(1;2)$ ergibt sich \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{3-x}{5}{x}{5}{1}{VEBD1}}.}
+% \item{Für $P=(3;0)$ und $Q=(1;\alpha)$ ergibt sich \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{-1/2*alpha*x+1+3/2*alpha}{5}{x,alpha}{5}{1}{VEBD2}}.}
+% \end{MExerciseItems}
+% Beim zweiten Aufgabenteil ist $\alpha$ eine unbekannte Konstante, die in der Funktionsgleichung als \MInputHint{\texttt{alpha}} eingegeben werden kann.
+% 
+% \begin{MHint}{Lösung}
+% Einsetzen der Koordinaten aus den Punkten in die Gleichung für die Steigung ergibt für die erste Gerade
+% $$
+% m \;=\; \frac{y_2-y_1}{x_2-x_1} \;=\; \frac{1-2}{2-1} \;=\; -1 \MDFPeriod
+% $$
+% Die Gerade besitzt also die Funktionsgleichung $f(x)=-x+b$ mit Achsenabschnitt $b$. Einsetzen von $P$ in die Gleichung ergibt $1=f(2)=-2+b$ und somit $b=3$. Die gesuchte Gleichung ist also $f(x)=-x+3=3-x$.
+% \ \\ \ \\
+% Bei der zweiten Geraden erhalten wir die Steigung
+% $$
+% m \;=\; \frac{\alpha-0}{1-3} \;=\; -\frac12\alpha \MDFPeriod
+% $$
+% Die Gerade besitzt also die Funktionsgleichung $f(x)=-\frac12\alpha x +b$ mit unbekanntem $\alpha$ (nach dessen Wert aber auch nicht gefragt ist).
+% Einsetzen von $P$ in die Gleichung ergibt $1=f(3)=-\frac32\alpha +b$. Auflösen nach $b$ ergibt $b=1+\frac32\alpha$. Damit ist $f(x)=-\frac12\alpha x+1+\frac32\alpha$ die Funktionsgleichung der Geraden.
+% \end{MHint}
+% \end{MExercise}
+% 
+% \end{MXContent}
+% 
+% \begin{MXContent}{Allgemeine Form}{Allgemeine Form}{STD}
+% \MLabel{VBKM09_AllgemeineForm}
+% \MDeclareSiteUXID{VBKM09_AllgemeineForm}
+% 
+% Die Zwei-Punkte-Form kann zwar jede mögliche Gerade beschreiben, ist zum praktischen Rechnen (beispielsweise zum Finden von Schnittpunkten) ungeeignet.
+% Das Problem entsteht jedoch nur bei vertikalen Geraden, die nicht als Graph einer Funktion der $x$-Koordinate geschrieben werden können.
+% Diese Geraden kann man auch durch Gleichungen beschreiben, wenn man auf den funktionalen Zusammenhang zwischen $x$ und $y$ verzichtet. Dieser wird
+% dadurch hergestellt, dass $y$ auf einer Seite der Funktionsgleichung isoliert ist. Diese Forderung lässt man daher oft fallen:
+% 
+% \begin{MInfo}
+% \MLabel{VBKM09_AllgemeineGleichung}
+% Jede Gerade kann durch eine \MEntry{allgemeine Geradengleichung}{Allgemeine Geradengleichung} der Form
+% $$
+% p x+ q y \;=\; c
+% $$
+% beschrieben werden, wobei $p$ und $q$ reelle Konstanten sind, die nicht beide Null sein dürfen.
+% Die Gerade besteht dann aus allen Punkten $P=(x;y)$, deren Koordinaten die Gleichung erfüllen.
+% \end{MInfo}
+% 
+% Mit einer Gleichung dieser Form lassen sich sämtliche Geraden beschreiben, dabei gibt es die folgenden Spezialfälle:
+% 
+% \begin{itemize}
+% \item{Ist $p=0$, so kann man durch $q$ teilen und eine Gleichung der Form $y=c'$ bekommen. Sie beschreibt die horizontale Gerade mit Steigung Null und Achsenabschnitt $c'$.}
+% \item{Ist $q=0$, so kann man durch $p$ teilen und eine Gleichung der Form $x={c'}'$ bekommen. Sie drückt aus, dass die $y$-Koordinate beliebig aus $\R$ und die $x$-Koordinate fest gleich ${c'}'$ ist.
+% 	Dadurch wird eine vertikale Gerade beschrieben, welche die $x$-Achse bei ${c'}'$ schneidet.}
+% \item{Sind $p$ und $q$ verschieden von Null, so ist die Gerade nicht parallel zu einer der beiden Koordinatenachsen.}
+% \end{itemize}
+% 
+% \begin{MInfo}
+% Mit Ausnahme der vertikalen Geraden kann eine allgemeine Gleichung stets in eine Funktionsgleichung umgewandelt werden, indem man durch $q$ teilt und nach $y$ auflöst. Umgekehrt
+% kann eine Funktionsgleichung in eine allgemeine Form gebracht werden, indem der Achsenabschnitt auf einer Seite isoliert wird.
+% 
+% Eine Zwei-Punkte-Form erhält man, indem man Werte für $x$ und $y$ errät, welche die Gleichung erfüllen. Dabei kann man versuchen, eine der Koordinaten auf Null zu setzen und nach der anderen Koordinate aufzulösen.
+% \end{MInfo}
+% 
+% \begin{MExample}
+% Die durch die Funktionsgleichung $y=5x+1$ gegebene Gerade kann man auch durch die allgemeine Form $y-5x=1$ ausdrücken. Umgekehrt kann man die vertikale Gerade $x=3$ nicht durch eine Funktionsgleichung der Form
+% $y=f(x)$ ausdrücken.
+% \end{MExample}
+% 
+% \begin{MExample}
+% Die durch die allgemeine Gleichung $6x+12y=3$ gegebene Gerade soll durch eine Funktionsgleichung beschrieben werden. Auflösen nach $y$ ergibt
+% \begin{eqnarray*}
+% & \text{Start:} & 6x+12y\;=\;3  \ \\ \ \\
+% & \Leftrightarrow & 12y\;=\;-6x+3 \ \\ \ \\
+% & \Leftrightarrow & y\;=\;-\frac1{2}x+\frac14 \MDFPeriod
+% \end{eqnarray*}
+% \end{MExample}
+% 
+% 
+% Eine allgemeine Geradengleichung ist nicht eindeutig, die gleiche Gerade kann durch mehrere verschiedene Gleichungen beschrieben werden.
+% Beispielsweise beschreibt $2x+4y=1$ die gleiche Gerade wie $6x+12y=3$.
+% 
+% Die drei durchgenommenen Beschreibungstechniken eigenen sich jeweils für spezielle Fragestellungen:
+% 
+% \begin{itemize}
+% \item{Die Funktionsform $y=m x+b$ eignet sich um mit der Geraden zu rechnen, d.h. Schnittpunkte zu bestimmen oder Punkte auf der Geraden zu produzieren (indem man irgendwelche Werte für $x$ einsetzt).}
+% \item{Die Zwei-Punkte-Form eignet sich, wenn die Punkte auf der Geraden schon bekannt sind. Meist startet eine Aufgabe mit dieser Form und muss für weitere Rechnungen erst in eine andere Form umgewandelt werden.}
+% \item{Die allgemeine Geradengleichung ist eine Testgleichung: Mit ihr kann man für gegebene Punkte leicht entscheiden, ob die Punkte auf der Geraden liegen oder nicht.
+% Für praktische Rechnung kann sie recht einfach in Funktionsform umgewandelt werden.}
+% \end{itemize}
+% 
+% \begin{MExercise}
+% Berechnen Sie den Schnittpunkt der Geraden $\overline{P Q}$ für $P=(3;1)$ und $Q=(1;0)$ mit der durch die allgemeine Gleichung $2x+2y=-4$ beschriebenen Geraden, indem Sie
+% beide Geraden zunächst in Funktionsform bringen:
+% \begin{MExerciseItems}
+% \item{Die Funktionsform für die erste Gerade ist \MEquationItem{$f(x)$}{\MLSimplifyQuestion{20}{1/2*x-1/2}{5}{x}{5}{1}{VEBE1}}.}
+% \item{Die Funktionsform für die zweite Gerade ist \MEquationItem{$g(x)$}{\MLSimplifyQuestion{20}{-x-2}{5}{x}{5}{1}{VEBE2}}.}
+% \item{Gleichsetzen der beiden Terme ergibt die Lösungskoordinate \MEquationItem{$x$}{\MLParsedQuestion{5}{-1}{4}{VEBE3}} und den Schnittpunkt \MEquationItem{$P$}{\MLFunctionQuestion{10}{(-1,-1)}{5}{x}{5}{VEBE4}}.}
+% \end{MExerciseItems}
+% Skizzieren Sie beide Geraden sowie die gegebenen Punkte.
+% 
+% \begin{MHint}{Lösung}
+% Für die erste Gerade ergibt sich die Steigung
+% $$
+% m \;=\; \frac{y_2-y_1}{x_2-x_1} \;=\; \frac{0-1}{1-3} \;=\; \frac12 \MDFPeriod
+% $$
+% Einsetzen von $P=(3:1)$ in die Gleichung $y=f(x)=\frac12x+b$ ergibt $b=-\frac12$ und somit $f(x)=\frac12x-\frac12$. Bei der zweiten Geraden ergibt Auflösung nach $y$ die Funktionsform $y=g(x)=-x-2$.
+% 
+% Gleichsetzen beider Funktionsterme ergibt
+% \begin{eqnarray*}
+% & \text{Start:} & f(x) \;=\; g(x) \ \\ \ \\
+% & \Leftrightarrow & \frac12x-\frac12\;=\; -x-2 \ \\ \ \\
+% & \Leftrightarrow & \frac32x \;=\;-\frac32\ \\ \ \\
+% & \Leftrightarrow & x \;=\;-1 \MDFPeriod
+% \end{eqnarray*}
+% Damit ist $S=(-1;f(-1))=(-1;-1)$ der gesuchte Schnittpunkt.
+% \end{MHint}
+% \begin{MHint}{Skizze}
+% \begin{center}
+% \MTikzAuto{%
+% \begin{tikzpicture} 
+% %Koordinatensystem
+% % x-Achse
+% \node (xMAX) at (3.8,0){};
+% \draw[->,color=black] (-3.5,0) -- (xMAX);
+% \foreach \x in {-3,-2,-1,1,2,3}
+% \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% % y-Achse
+% \node (yMAX) at (0,3.8){};
+% \draw[->,color=black] (0,-3.5) -- (yMAX);
+% %\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+% \foreach \x in {-3,-2,-1,1,2,3}
+% \draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+% %Achsenbeschriftung
+% \draw (xMAX) node[anchor=north east] {$x$};
+% \draw (yMAX) node[anchor=east] {$y$};
+% %Graphen
+% \draw[color=red] (-3,-2)--(3.5,1.25);
+% \draw[color=red] (3.5,1.25) node[anchor=west] {$G_f$};
+% \draw[color=blue] (-3,1)--(1.5,-3.5);
+% \draw[color=blue] (1.5,-3.5) node[anchor=west] {$G_g$};
+% \draw [fill=green] (-1,-1) circle (1.5pt);
+% \draw [fill=red] (3,1) circle (1.5pt);
+% \draw [fill=red] (1,0) circle (1.5pt);
+% \draw (3,1) node[anchor = south]{$P$};
+% \draw (1,0) node[anchor = south]{$Q$};
+% \draw (-1,-1) node[anchor = north]{$S$};
+% \end{tikzpicture}       
+% }%
+% \end{center}
+% \end{MHint}
+% \end{MExercise}
+
+\end{MXContent}
+
+\MSubsection{Circles in the Plane}
+\MLabel{M09_3Kreise}
+
+\begin{MIntro}
+\MLabel{VBKM09_Kreise_Intro}
+\MDeclareSiteUXID{VBKM09_Kreise_Intro}
+
+Everybody has an intuitive understanding of what a \textbf{circle} is:
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Kreis
+\draw[color=red] (0,0) circle (1);
+%Radius
+\draw[color=black] (0,0) -- (0.707,0.707);
+\draw[color=black] (0.3,0.36) node[anchor=north west] {\footnotesize $r$};
+%Mittelpunkt
+\draw[fill=green] (0,0) circle (1.5pt);
+\draw[color=green] (0,0) node[anchor=south east] {\footnotesize $M$};
+\end{tikzpicture}       
+}%
+\end{center}
+All points on the (red) circle have the same \textbf{distance} from exactly one point, namely the 
+\textbf{centre} $M$. This distance $r$ is the so called \textbf{radius} of the circle (see Module~\MNRef{VBKM05}).
+If we now want to describe circles in a given coordinate system by equations, as we did in the previous section 
+for lines, and use these descriptions for calculations, we will have to examine the meaning of the terms circle, centre, 
+distance, and radius in more detail. This will enable us to specify an \textbf{equation of a circle}. This is the subject 
+of this section. 
+
+\end{MIntro}
+
+\begin{MXContent}{Distance and Length of a Line Segment}{Distance Line Segment}{STD}
+\MLabel{VBKM09_Abstand_Strecken}
+\MDeclareSiteUXID{VBKM09_Abstand_Strecken}
+
+If we recall the first example of a hydrant in Section~\MNRef{VBKM09_Koordinaten_Intro}, we see that we 
+are now able to specify the position of the hydrant in a coordinate system by means of the data given on the 
+hydrant's plate. However, if we are interested in the distance of the hydrant from the plate, then we have to
+calculate this distance from the coordinates.  
+
+\begin{center}
+\MUGraphicsSolo{hydrant.png}{scale=0.6}{width:571px}
+\end{center}
+
+For this purpose, \MSRef{VBKM05_Pythagoras}{Pythagoras' theorem} is useful:
+
+\begin{center}
+\MTikzAuto{\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (2.2,0);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,1.2) -- (0,-7.2);
+\foreach \y in {7,6,5,4,3,2,1}
+\draw[shift={(0,-\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%Achsenbeschriftung
+\draw (2.1,0) node[anchor=north west] {\footnotesize to the right in metres};
+\draw (0.1,-7.2) node[anchor=north west] {\footnotesize backwards in metres};
+%Pythagoras
+\draw[color=violet, line width=1.5pt] (0,0) -- (0.9, -6.4);
+\draw[color=violet] (0.25,-2) node[anchor=west] {\footnotesize $d$};
+\draw[color=violet] (0,0) -- (0.9, 0);
+\draw[color=violet] (0.45,-0.1) node[anchor=south] {\footnotesize $\MZahl{0}{9}$};
+\draw[color=violet] (0.9,-3.2) node[anchor=west] {\footnotesize $\MZahl{6}{4}$};
+\draw[color=violet] (0.7,0) -- (0.7, -0.2);
+\draw[color=violet] (0.7,-0.2) -- (0.9, -0.2);
+\draw[color=violet, fill=violet] (0.8,-0.1) circle (0.5pt);
+%Punkte
+\draw[color=violet] (0.9,0)--(0.9, -6.4);
+\draw [dashed] (0,-6.4)--(0.9, -6.4);
+\draw[fill = red](0.0,0.0) circle (1.5pt);
+\draw[color=red] (-32pt,-8pt) node[right] {\footnotesize Marker Plate};
+\draw[fill = blue](0.9,-6.4) circle (1.5pt);
+\draw[color=blue] (0.9,-6.4) node[right] {\footnotesize Hydrant};
+\end{tikzpicture}}
+\end{center}
+
+For the distance $d$ between the plate and the hydrant, we have
+\[
+ d^2 = \MZahl{0}{9}^2 + \MZahl{6}{4}^2 \MDFPeriod
+\]
+Thus, the distance $d$ can be calculated (approximately):
+\[
+ d = \sqrt{\MZahl{0}{81} + \MZahl{40}{96}} \approx \MZahl{6}{46} \MDFPeriod
+\]
+The distance between the plate and the hydrant is (measured in the unit lengths of metres) about 6~metres and 46~centimetres. 
+For purely mathematical purposes, the unit length is not relevant, and that we will omit it again from here onwards.
+
+The example of the plate and the hydrant above can easily be generalised. The distance between two points in $\R^2$
+can always be determined using an appropriate right triangle and \MSRef{VBKM05_Pythagoras}{Pythagoras' theorem}.
+ 
+
+\begin{MExample}\MLabel{bsp:abstand}
+The points $P=\MPointTwo{1}{2}$ and $Q=\MPointTwo{3}{3}$ have the distance
+\[
+\sqrt{(3-1)^2+(3-2)^2} = \sqrt{2^2+1^2} = \sqrt{5} \MDFPeriod
+\]
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (4.3,0);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.2) -- (0,4.3);
+\foreach \y in {-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (-10pt,-8pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Steigungsdreieck
+\draw[color=red, dashed] (1,2) -- (3,2);
+\draw[color=red, dashed] (3,2) -- (3,3);
+\draw[color=red] (2,2) node[anchor=north] {\footnotesize $2=3-1$};
+\draw[color=red] (3,2.5) node[anchor=west] {\footnotesize $1=3-2$};
+\draw[color=red] (2.2,2.4) node[anchor=south east] {\footnotesize $\sqrt{5}$};
+%Punkte
+\draw[color=red] (1,2) -- (3,3);
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {$P$};
+\draw[fill=red] (3,3) circle (1.5pt);
+\draw[color=red] (3,3) node[anchor=south] {$Q$};
+%rechter Winkel
+\draw[color=red] (2.8,2.2) -- (3,2.2);
+\draw[color=red] (2.8,2.2) -- (2.8,2);
+\draw[color=red,fill=red] (2.9,2.1) circle (0.5pt);
+\end{tikzpicture}
+}
+\end{center} 
+\end{MExample}
+
+Thus, the distance between two points in the plane can be calculated by determining the side lengths 
+of a right triangle from their abscissas and ordinates and then applying Pythagoras' theorem. Furthermore, 
+it is obvious from Example~\MNRef{bsp:abstand} above that the distance between the points $P$ and 
+$Q$ equals the length of a finite segment of the line $P Q$, namely the segment between $P$ and $Q$. 
+This finite segment of the line $P Q$ is called \MEntry{line segment}{line segment} between $P$ and $Q$ 
+and is denoted by the symbol $\overline{P Q}$. The \MEntry{length of the line segment}{length of a line segment} 
+is the distance between $P$ and $Q$ and is denoted by the symbol $[\overline{P Q}]$. 
+
+\begin{MInfo}
+\MLabel{VBKM09_Abstand}
+The \MEntry{distance}{distance} of two points $P=\MPointTwo{x_0}{y_0}$ and $Q=\MPointTwo{x_1}{y_1}$ in $\R^2$ is given by
+\[
+ [\overline{P Q}] = \sqrt{(x_1-x_0)^2+(y_1-y_0)^2} \MDFPeriod
+\]
+\end{MInfo}
+
+Two points have the distance zero if they coincide.
+
+\begin{MExercise}
+\begin{MExerciseItems}
+\item{Calculate the distance between the two points $A=\MPointTwo{-1}{-5}$ and $B=\MPointTwo{4}{7}$.\\ $[\overline{A B}]=$\MLFunctionQuestion{12}{13}{4}{x}{3}{VM09X6}} 
+\item{Calculate \textit{the square} of the distance between the two points $P=\MPointTwo{3}{0}$ and $Q=\MPointTwo{1}{\psi}$ depending on $\psi$.\\ \MEquationItem{$[\overline{P Q}]^2$}{\MLSimplifyQuestion{30}{4+psi^2}{5}{psi}{5}{1}{AB1}}}
+\item{Calculate the coordinates of the point $V$ in the third quadrant that has the distance $3\sqrt{5}$ from the point $U=\MPointTwo{2}{1}$ and lies on the line with the slope $2$ that passes through the point $U$.\\
+\MEquationItem{$V$}{\MLFunctionQuestion{15}{(-1,-5)}{5}{x}{5}{AB2}}}
+
+\end{MExerciseItems}
+In the second part of the exercise, $\psi$ is an unknown constant that can be entered as \texttt{psi}.
+\MInputHint{Enter $\psi$ as \texttt{psi}.}
+
+\begin{MHint}{Solution} 
+\begin{MExerciseItems}
+\item{\[
+       [\overline{A B}] = \sqrt{(-1-4)^2+(-5-7)^2} = \sqrt{5^2+12^2} = \sqrt{169} = 13
+      \]
+} 
+\item{\[
+       [\overline{P Q}]^2 = (3-1)^2 + (0-\psi)^2 = 4+\psi^2
+      \]
+}
+\item{According to Section~\MNRef{VBKM09_Koordinatengleichungen}, the line with the slope $2$ passing through the point $U=\MPointTwo{2}{1}$ has the equation $y=2x+b$ with the $y$-intercept $b$ that can be found by substituting the coordinates of $U$ into the equation:
+\[
+ 1 = 2\cdot 2 + b\MDFPaSpace\Leftrightarrow\MDFPaSpace b=-3\MDFPeriod
+\]
+Thus, for the line with the slope $2$ passing through the point $U$, we have the equation $y=2x-3$. The coordinates of the points lying on this line
+are $\MPointTwo{x}{2x-3}$. We now have to find the point that has the distance $3\sqrt{5}$ from $U$ and lies in the third quadrant.
+Depending on $x$, we have for the distance between $U=\MPointTwo{2}{1}$ and a point $\MPointTwo{x}{2x-3}$:
+\[
+ [\overline{U\MPointTwo{x}{2x-3}}] = \sqrt{(2-x)^2+(1-(2x-3))^2}=\sqrt{(x-2)^2 + (2x-4)^2} =
+\]
+\[
+ = \sqrt{(x-2)^2 + 4(x-2)^2} = \sqrt{5(x-2)^2} = \sqrt{5}|x-2|\MDFPeriod
+\]
+Solving the equation
+\[
+ \sqrt{5}|x-2| = 3\sqrt{5}\MDFPaSpace\Leftrightarrow\MDFPaSpace |x-2|=3
+\]
+using the methods described in Section~\MNRef{M02_Betragsgleichungen} results in two values of $x$, namely $-1$ and $5$. Only $x=-1$ corresponds to an abscissa of a point in the third quadrant. The corresponding ordinate results from substituting this value of $x$
+into the equation of the line:
+\[
+ y = 2\cdot(-1)-3 = -5\MDFPeriod
+\]
+Hence, the required point is $V=\MPointTwo{-1}{-5}$.
+}
+\end{MExerciseItems}
+
+\end{MHint} 
+
+\end{MExercise}
+
+
+
+\end{MXContent}
+
+\begin{MXContent}{Coordinate Equations of Circles}{Coordinate Equations Circles}{STD}
+\MLabel{VBKM09_Kreise_Koordinaten}
+\MDeclareSiteUXID{VBKM09_Kreise_Koordinaten}
+
+With a coordinate system in the plane at hand, we are now able to describe the points on a
+circle using the term of distance introduced in the previous Section~\MNRef{VBKM09_Abstand_Strecken}
+by an equation, the so called equation of a circle. In practice, the compulsory root in the equation for the 
+distance is avoided by using the square of the distance. This is allowed since distances are 
+always non-negative. Thus, for two points $P_1=\MPointTwo{x_1}{y_1}$ and $P_2=\MPointTwo{x_2}{y_2}$ 
+we have:
+\[
+ [\overline{P_1P_2}] = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\MDFPaSpace\Leftrightarrow\MDFPaSpace[\overline{P_1P_2}]^2 = (x_2-x_1)^2 + (y_2-y_1)^2 \MDFPeriod
+\]
+This is summarised in the Info Box below.
+
+\begin{MInfo}\MLabel{infobox_kreis}
+A \MEntry{circle}{circle} $K$ in the plane with a given coordinate system is the set of all points that 
+have a fixed distance $r>0$, the \MEntry{radius}{radius}, from a common \MEntry{centre}{centre}
+$M=\MPointTwo{x_0}{y_0}$. By specifying the radius and the centre a circle is uniquely defined. Thus,
+we have:
+\[
+ K=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 = r^2\}\MDFPeriod
+\]
+As for lines, often just the \MEntry{equation of a circle}{equation of a circle} is given:
+\[
+ K\colon\MDFPSpace(x-x_0)^2 + (y-y_0)^2 = r^2\MDFPeriod
+\]
+All points with coordinates that satisfy the equation of a given circle belong to the circle. This is 
+illustrated by the figure below.
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (4.3,0);
+\draw[->,color=black] (0,-1.2) -- (0,3.3);
+\draw[dotted,color=violet] (2,1.5) -- (2,0);
+\draw[dotted,color=violet] (2,1.5) -- (0,1.5);
+\draw[shift={(2,0)},color=black] (0pt,2pt) -- (0pt,-2pt); 
+\draw[color=violet] (2,0) node[below] {\footnotesize $x_0$};
+\draw[shift={(0,1.5)},color=black] (0pt,2pt) -- (0pt,-2pt); 
+\draw[color=violet] (0,1.5) node[left] {\footnotesize $y_0$};
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Kreis
+\draw[color=red] (2,1.5) circle (1);
+\draw[color=red] (2.707,0.82) node[anchor=north west] {\footnotesize $K$};
+%Radius
+\draw[color=black] (2,1.5) -- (2.707,2.207);
+\draw[color=black] (2.3,1.86) node[anchor=north west] {\footnotesize $r$};
+%Mittelpunkt
+\draw[fill=violet] (2,1.5) circle (1.5pt);
+\draw[color=violet] (2,1.5) node[anchor=south east] {\footnotesize $M$};
+\end{tikzpicture}       
+}%
+\end{center}
+\end{MInfo}
+
+Using the equation of a circle we are now able to describe arbitrary circles in the plane as well as 
+points that lie on that circle and points that do not.
+
+
+\begin{MExample}
+The circle with centre $P=\MPointTwo{2}{1}$ and radius $r=2$ is described by the following equation:
+\[
+ (x-2)^2 + (y-1)^2 = 2^2 = 4.
+\]
+Thus, all points that have the distance of $2$ from the point $P$ lie on the circle. For example, the point 
+$Q=\MPointTwo{0}{1}$ lies on the circle since we have
+\[
+ (0-2)^2 + (1-1)^2 = (-2)^2 + 0^2 = 4.
+\]
+In contrast, the point $R=\MPointTwo{3}{-2}$ does not lie on the circle since its distance from the point $P$ is
+\[
+ [\overline{P R}] = \sqrt{(2-3)^2 + (1-(-2))^2} = \sqrt{10} \neq 2.
+\]
+The coordinates of the point $R$ do not satisfy the given equation of a circle.
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (4.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,3.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw (2,1) circle (2);
+\draw [fill=red] (2,1) circle (1.5pt);
+\draw [fill=green] (0,1) circle (1.5pt);
+\draw[color=black] (2,1)--(4,1);
+\draw (2,1) node[anchor = north]{$P$};
+\draw (0,1) node[anchor = west]{$Q$};
+\draw (3,1) node[anchor = north]{$r$};
+\draw [fill=green] (3,-2) circle (1.5pt);
+\draw (3,-2) node[anchor = north]{$R$};
+\end{tikzpicture}
+}%
+\end{center}
+\end{MExample}
+
+An important special case is any circle that has the origin of the coordinate system as its 
+centre. For example, the equation
+\[
+ x^2+y^2=2
+\]
+describes a circle with a radius of $\sqrt{2}$ centred at the origin $\MPointTwo{0}{0}$ (see figure below).
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,2.8){};
+\draw[->,color=black] (0,-2.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (0,0) circle (1.42);
+\end{tikzpicture}
+}%
+\end{center}
+
+The most special case of this is the circle with a radius of $1$ at the origin $\MPointTwo{0}{0}$. 
+
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (2.8,0){};
+\draw[->,color=black] (-2.5,0) -- (xMAX);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,2.8){};
+\draw[->,color=black] (0,-2.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (0,0) circle (1);
+\draw[color=red] (0.707,-0.707) node[anchor=north west] {\footnotesize unit circle};
+\end{tikzpicture}
+}%
+\end{center}
+
+This circle is called the \MEntry{unit circle}{unit circle}, and it is important in   
+trigonometry (see Section~\MRef{M05_Trigonometrie} and Section~\MRef{VBKM06_trigonometrisch}).
+
+\begin{MExercise}
+\begin{MExerciseItems}
+\item{Let a circle $\Xi$ be given by the equation
+\[
+ \Xi\colon x^2 + (y+2)^2 = 8.
+\]
+Its centre is at $M=$\MLFunctionQuestion{12}{(0,-2)}{4}{x}{3}{VM09X7} and its radius is 
+$r=$\MLFunctionQuestion{12}{sqrt(8)}{4}{x}{3}{VM09X8}. Draw the circle.}
+
+\item{The equation of a circle with a radius of $1$ at $\MPointTwo{-2}{-1}$ is\\ \MLSimplifyQuestion{30}{(x+2)^2+(y+1)^2}{5}{x,y}{5}{1}{Kreis1}$=1$.\\
+Decide whether the given points lie on the circle. Tick those points that lie on the circle.\\
+\begin{MQuestionGroup}
+\begin{tabular}{ll}
+\MLCheckbox{0}{Kreis2} & The origin\\
+\MLCheckbox{0}{Kreis3} & $\MPointTwo{1}{1}$\\
+\MLCheckbox{1}{Kreis4} & $\MPointTwo{-2}{0}$\\
+\MLCheckbox{1}{Kreis5} & $\MPointTwo[\Big]{-\frac{3}{2}}{\frac{\sqrt{3}-2}{2}}$\\
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Check points}
+}
+\end{MExerciseItems}
+
+
+\begin{MHint}{Solution} 
+\begin{MExerciseItems}
+\item{
+\[
+ M=\MPointTwo{0}{-2}
+\]
+\[
+ r=2\sqrt{2}
+\]
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (3.8,0){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,1.8){};
+\draw[->,color=black] (0,-5.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-5,-4,-3,-2,-1,1}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=red] (0,-2) circle (2.828);
+\draw[color=red] (2.3,-3.8) node[anchor=south east] {\footnotesize $\Xi$};
+\draw[fill=green] (0,-2) circle (1.5pt);
+\draw[color=green] (0,-2) node[anchor=west] {\footnotesize $M$};
+\end{tikzpicture}
+}%
+\end{center}
+} 
+\item{\[
+       (x+2)^2+(y+1)^2=1
+      \]
+The origin and the point $\MPointTwo{1}{1}$ do not lie on the circle but the points $\MPointTwo{-2}{0}$ and 
+$\MPointTwo[\Big]{-\frac{3}{2}}{\frac{\sqrt{3}-2}{2}}$ do, as can be seen by substituting the coordinates of the points into 
+the given equation of a circle:
+\[
+ (0+2)^2+(0+1)^2=4+1=5\neq 1,
+\]
+\[
+ (1+2)^2+(1+1)^2=9+4=13\neq 1,
+\]
+\[
+ (-2+2)^2 + (0+1)^2 = 0+1=1,
+\]
+\[
+ \left(-\frac{3}{2}+2\right)^2 + \left(\frac{\sqrt{3}-2}{2}+1\right)^2 = \left(\frac{1}{2}\right)^2 + \left(\frac{\sqrt{3}}{2}\right)^2 = \frac{1}{4}+\frac{3}{4}=1\MDFPeriod
+\]
+
+}
+\end{MExerciseItems}
+
+\end{MHint} 
+
+\end{MExercise}
+
+% Wie bei der Zwei-Punkte-Form für Geraden ist die Beschreibung eines Kreises durch Mittelpunkt und Radius erstmal nicht geeignet, um direkte Rechnungen mit dem Kreis auszuführen.
+% 
+% 
+% Genau wie bei Geraden sind Kreise letztlich Mengen von unendlich vielen Punkten, die in einer geeigneten Form beschrieben werden müssen, damit man mit ihnen rechnen kann.
+% In Modul \MNRef{VBKM05} haben wir schon mit dem Einheitskreis gearbeitet, um die \MSRef{VBKM05_Trigonometrie_Einheitskreis}{trigonometrischen Funktionen} zu veranschaulichen.
+% Er kann durch eine quadratische Gleichung beschrieben werden, die als Grundlage für beliebige Kreise dient:
+% 
+% \begin{MInfo}
+% Der Einheitskreis wird durch die \MEntry{Kreisgleichung}{Kreisgleichung}
+% $$
+% x^2+y^2 \;=\; 1
+% $$
+% beschrieben. Diese Gleichung drückt aus, dass die Punkte auf dem Kreis den Abstand $1$ zum Ursprung besitzen.
+% \end{MInfo}
+% 
+% Ein beliebiger Kreis mit Radius $1$ kann nun dadurch beschrieben werden, dass man den Einheitskreis zum neuen Mittelpunkt verschiebt.
+% Dabei wird jede Koordinate separat verschoben und man erhält die Kreisgleichung
+% $$
+% (x-x_0)^2+(y-y_0)^2 \;=\; 1
+% $$
+% für den Kreis um den Mittelpunkt $P=(x_0;y_0)$ mit Radius $1$.
+% Um nun noch den Radius anzupassen und damit beliebige Kreise ausdrücken zu können, verändert man die Konstante auf der rechten Seite der Gleichung. Da in der \MSRef{VBKM09_Abstand}{Abstandsgleichung}
+% die Wurzel aus den Quadraten auftritt, muss in der Kreisgleichung nun das Quadrat des Radius eingesetzt werden:
+% 
+% \begin{MInfo}
+% Die \MEntry{allgemeine Kreisgleichung}{Allgemeine Kreisgleichung} für den Kreis mit Mittelpunkt $(x_0;y_0)$ und Radius $r>0$ lautet
+% $$
+% (x-x_0)^2+(y-y_0)^2 \;=\; r^2 \MDFPeriod
+% $$
+% \end{MInfo}
+% 
+% \begin{MExample}
+% Liegt der Punkt $(2;2)$ auf dem Kreis um den Mittelpunkt $(3;4)$ mit Radius $2$?
+% Dazu stellen wir die allgemeine Kreisgleichung auf und prüfen, ob der Punkt $(2;2)$ sie erfüllt.
+% Einsetzen der Verschiebung auf den neuen Mittelpunkt und des Quadrats des Radius ergibt die Kreisgleichung
+% $$
+% (x-3)^2+(y-4)^2 \;=\; 4 \MDFPeriod
+% $$
+% Einsetzen von $x=2$ und $y=2$ ergibt
+% $$
+% (2-3)^2+(2-4)^2 \;=\; 5 \; \not=\; 4 \MDFPSpace,
+% $$
+% womit $(2;2)$ nicht auf dem Kreis liegt.
+% \end{MExample}
+
+As the examples and exercises above show, it is rather easy to read off the centre and the radius of the circle 
+from its equation of a circle if it is given in the form
+\[
+ (x-x_0)^2+(y-y_0)^2=r^2
+\]
+described in Info Box~\MNRef{infobox_kreis}. Therefore, this form is also called 
+\MEntry{normal form}{normal form (of an equation of a circle)}. Unfortunately, the equation of a circle is often not 
+given in this simple form but has to be transformed by a few calculation steps to enable us to read off the 
+the centre and the radius. This approach is illustrated in the example below.
+
+\begin{MExample}
+Let a circle $K$ be given by the equation
+\[
+ K\colon x^2+y^2-6x+y+\frac{21}{4}=0.
+\]
+You can neither immediately see that this is an equation of a circle nor read off the centre and the radius. This equation can be transformed into normal form using the method of 
+\MSRef{VBKM02_QuadratischErgaenzung}{completing the square}. We will apply this method separately to the terms containing $x$ and the 
+terms containing $y$ in the equation of a circle given above.
+
+For the terms containing $x$, we have
+\[
+ x^2-6x = x^2 -2\cdot3x = x^2 -2\cdot3x +3^2-3^2 = x^2-6x+9-9 = (x-3)^2-9,
+\]
+and for the terms containing $y$, we have
+\[
+ y^2+y = y^2+2\cdot\frac{1}{2}y =  y^2+2\cdot\frac{1}{2}y + \left(\frac{1}{2}\right)^2 - \left(\frac{1}{2}\right)^2 = y^2+y+\frac{1}{4}-\frac{1}{4}=\left(y+\frac{1}{2}\right)^2-\frac{1}{4}\MDFPeriod 
+\]
+For the equation of the circle, this implies:
+\[
+ x^2+y^2-6x+y+\frac{21}{4}=0\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-3)^2-9 + \left(y+\frac{1}{2}\right)^2-\frac{1}{4}+\frac{21}{4}=0\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-3)^2+ \left(y+\frac{1}{2}\right)^2=4
+\]
+This is the normal form of the equation of this circle, and we can read off the centre $M=\MPointTwo[\Big]{3}{-\frac{1}{2}}$
+and the radius $r=2$ easily (see figure below).
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (5.8,0){};
+\draw[->,color=black] (-1.5,0) -- (xMAX);
+\foreach \x in {-1,1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,2.8){};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-3,-2,-1,1,2}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=black] (3,-0.5) -- (5,-0.5);
+\draw[color=black] (4,-0.5) node[anchor=north] {\footnotesize $r$};
+\draw[color=red] (3,-0.5) circle (2);
+\draw[fill=red] (3,-0.5) circle (1.5pt);
+\draw[color=red] (3,-0.5) node[anchor=north] {\footnotesize $M$};
+
+\end{tikzpicture}
+}%
+\end{center}
+\end{MExample}
+
+\begin{MExercise}
+Find the centre $P$ and the radius $\rho$ of the circle
+\[
+ \Lambda = \{\MPointTwo{x}{y}\MCondSetSep x^2+2\sqrt{3}x=2\sqrt{3}y-y^2\}. 
+\]
+Transform the equation of the circle into normal form using the method of completing the square. In addition, sketch
+the circle.\\
+$P=$\MLFunctionQuestion{12}{(-sqrt(3),sqrt(3))}{4}{x}{3}{VM09X10}\\
+$\rho=$\MLFunctionQuestion{12}{sqrt(6)}{4}{x}{3}{VM09X11}
+
+\begin{MHint}{Solution}
+\[
+ x^2+2\sqrt{3}x=2\sqrt{3}y-y^2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+2\sqrt{3}x+y^2-2\sqrt{3}y=0 \MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+2\sqrt{3}x+3+y^2-2\sqrt{3}y+3=6
+\]
+\[
+ \Leftrightarrow\MDFPaSpace (x+\sqrt{3})^2+(y-\sqrt{3})^2 = 6 
+\]
+Thus, we have $P=\MPointTwo{-\sqrt{3}}{\sqrt{3}}$ and $\rho=\sqrt{6}$.
+\begin{center}
+\MTikzAuto{%
+\begin{tikzpicture} 
+%Koordinatensystem
+% x-Achse
+\node (xMAX) at (1.8,0){};
+\draw[->,color=black] (-5.5,0) -- (xMAX);
+\foreach \x in {-5,-4,-3,-2,-1,1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+% y-Achse
+\node (yMAX) at (0,5.8){};
+\draw[->,color=black] (0,-1.5) -- (yMAX);
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\foreach \x in {-1,1,2,3,4,5}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$y$};
+%Graphen
+\draw[color=black] (-1.73,1.73) -- (-1.73,4.18);
+\draw[color=black] (-1.73,3) node[anchor=west] {\footnotesize $\rho$};
+\draw[color=red] (-1.73,1.73) circle (2.45);
+\draw[color=red] (0,0) node[anchor=south east] {\footnotesize $\Lambda$};
+\draw[fill=violet] (-1.73,1.73) circle (1.5pt);
+\draw[color=violet] (-1.73,1.73) node[anchor=north] {\footnotesize $P$};
+
+\end{tikzpicture}
+}%
+\end{center}
+\end{MHint}
+
+\end{MExercise}
+
+\end{MXContent}
+
+\begin{MXContent}{Relative Positions of Circles}{Relative Positions Circles}{STD}
+\MLabel{VBKM09_Kreise_Lage}
+\MDeclareSiteUXID{VBKM09_Kreise_Lage}
+
+We may also raise the question of the relative position in the coordinate system for a circle and a line or for two circles, 
+as we did for two lines. That is, we have to determine whether the two objects intersect, osculate, or do not 
+have any points in common. In the case of a circle and a line, the intersection point or the osculation point can be 
+calculated easily. For two circles, this is more difficult and goes beyond the scope of this course. For two 
+circles we will only discuss whether or not they intersect or osculate, not at which points this happens.
+
+\begin{MInfo}
+Let a circle $K$ and a line $g$ in the plane be given 
+(by equations in coordinate form with respect to a fixed coordinate system). Then the circle and the line 
+have exactly one of the following three relative positions with respect to each other.
+\begin{enumerate}
+ \item The circle $K$ and the line $g$ do not have any points in common. This is true for the red line in the figure below. 
+  Such a line is called an \MEntry{exterior line}{exterior line (to a circle)} to the circle.
+ \item The circle $K$ and the line $g$ have exactly one point in common, i.e. the line osculates the circle. 
+  This is true for the blue line in the figure below. Such a line is called a \MEntry{tangent line}{tangent line (to a circle)} to the circle.
+ \item The circle $K$ and the line $g$ have two points in common, i.e. the line intersects the circle. 
+  This is true for the green line in the figure below. Such a line is called a \MEntry{secant line}{secant line (to a circle)} to the circle.
+\end{enumerate}
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (4.3,0);
+\draw[->,color=black] (0,-2) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis
+\draw[color=black] (2,2) circle (1);
+\draw[color=black] (2.9,2.2) node[anchor=south west] {\footnotesize $K$};
+%Geraden
+\draw[color=red] (-1,-0.5) -- (2,4);
+\draw[color=red] (2,4) node[anchor=west] {\footnotesize $g$};
+\draw[color=green] (-1,-1) -- (3.5,4);
+\draw[color=green] (3.5,4) node[anchor=west] {\footnotesize $g$};
+\draw[color=blue] (-0.2,-1.61) -- (4,2.59);
+\draw[color=blue] (4,2.59) node[anchor=west] {\footnotesize $g$};
+\end{tikzpicture}
+}
+\end{center} 
+\end{MInfo}
+
+If a line is a tangent or a secant, the circle and the line have one or two points in common, respectively.
+How can the intersection point or points be calculated? Since the points lie on both the circle and on the line, 
+they have to satisfy both the equation of the circle and the equation of the line in coordinate form.  
+Thus, we have two equations for the two unknown coordinates of the intersection points, and we are 
+able to calculate the coordinates. However, since in the equations of a 
+circle in coordinate form the unknown coordinates are squared, we do \textit{not} have two linear equations.
+Hence, the methods for solving systems of linear equations described in Module~\MNRef{VBKM05} unfortunately \textit{cannot} be applied. 
+The Info Box below outlines the method for calculating the intersection points.
+
+\begin{MInfo}
+ Let a circle $K$ in the plane with centre $\MPointTwo{x_0}{y_0}$ and radius $r$ be given 
+  by an equation of a circle in coordinate form
+\[
+ K\colon (x-x_0)^2+(y-y_0)^2=r^2 \MDFPSpace ,
+\]
+  and a line with slope $m$ and $y$-intercept $b$ by an equation in normal form
+\[
+ g\colon y=m x+b\MDFPeriod
+\]
+To calculate the potential intersection points, the equation of $g$ can be substituted into the 
+equation of $K$ resulting in a quadratic equation in the variable $x$:
+\[
+ (x-x_0)^2+(\underbrace{m x+b}_{=y}-y_0)^2=r^2\MDFPeriod
+\]
+For a quadratic equation three cases can occur (see Section~\MNRef{VBKM02_QuadratischeGleichungen}):
+\begin{enumerate}
+ \item The quadratic equation has no solution. In this case, $g$ is an exterior line to $K$. An $x$-coordinate
+  of a common point cannot be found.
+ \item The quadratic equation has exactly one solution. In this case, $g$ is a tangent line to $K$. For the
+  $x$-coordinate (the solution of the quadratic equation), a corresponding $y$-coordinate can be calculated 
+  from the given equation of a line. The two coordinates define the osculation point of the tangent line $g$ 
+  and the circle $K$. 
+ \item The quadratic equation has two solutions. In this case, $g$ is a secant line to $K$. For both
+  $x$-coordinates (the two solutions of the quadratic equation), corresponding $y$-coordinates can be calculated 
+  from the given equation of a line. The two pairs of coordinates define the intersection points of the secant line 
+  and the circle $K$.
+\end{enumerate}
+
+\end{MInfo}
+
+\begin{MExample}
+Let a circle $K$ with the centre $\MPointTwo{2}{2}$ and a radius of $1$ be given by
+\[
+ K\colon (x-2)^2 + (y-2)^2=1 \MDFPSpace ,
+\]
+and the lines $g_1$, $g_2$, and $g_3$ by
+\[
+ g_1\colon y=x-\sqrt{2} \MDFPSpace
+\]
+\[
+ g_2\colon y=x+1\MDFPSpace
+\]
+\[
+ g_3\colon y=2x+2 \MDFPSpace .
+\]
+\begin{itemize}
+ \item Line $g_1$:\\
+ Substituting the equation of the line $g_1$ into the given equation of the circle results in
+ \[
+  (x-2)^2 + (x-\sqrt{2}-2)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-2)^2 + [(x-2)-\sqrt{2}]^2=1
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace (x-2)^2 + (x-2)^2 - 2\sqrt{2}(x-2)+(\sqrt{2})^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace 2(x-2)^2 - 2\sqrt{2}(x-2)+1=0 
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace (\sqrt{2}(x-2)-1)^2=0\MDFPaSpace\Leftrightarrow\MDFPaSpace \sqrt{2}(x-2)-1=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x-2=\frac{1}{\sqrt{2}}
+  \MDFPaSpace\Leftrightarrow\MDFPaSpace x = 2+\frac{1}{\sqrt{2}} \MDFPeriod
+ \]
+ The resulting quadratic equation has only the solution
+  $x = 2+\frac{1}{\sqrt{2}}$. Thus, $g_1$ is a tangent line to $K$ that osculates $K$ in a point with the $x$-coordinate
+  $2+\frac{1}{\sqrt{2}}$. The corresponding $y$-coordinate is calculated from the given equation of the line:
+ \[
+  y=2+\frac{1}{\sqrt{2}}-\sqrt{2}=2+\frac{\sqrt{2}}{2}-\sqrt{2}=2-\frac{1}{\sqrt{2}}\MDFPeriod
+ \]
+ Thus, the tangent line $g_1$ osculates the circle $K$ at the point $P=\MPointTwo[\Big]{2+\frac{1}{\sqrt{2}}}{2-\frac{1}{\sqrt{2}}}$.
+ \item Line $g_2$:\\
+ Substituting the equation of the line $g_2$ into the given equation of the circle results in
+ \[
+  (x-2)^2 + (x+1-2)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-2)^2 + (x-1)^2=1
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace x^2-4x+4+x^2-2x+1=1\MDFPaSpace\Leftrightarrow\MDFPaSpace 2x^2-6x+4=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-3x+2=0
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace x_{1,2}=\frac{3\pm\sqrt{9-8}}{2}=\frac{3\pm 1}{2}\MDFPaSpace\Leftrightarrow\MDFPaSpace x_1=2\ \wedge\ x_2=1 \MDFPeriod
+ \]
+  The resulting quadratic equation has two solutions. Thus, $g_2$ is a secant line to the circle $K$ that intersects 
+  $K$ in two points with the $x$-coordinates $x_1=2$ and $x_2=1$. The corresponding $y$-coordinates are calculated from 
+  the given equation of the line:
+ \[
+  y_1=x_1+1=2+1=3\MDFPaSpace\textrm{and}\MDFPaSpace y_2=x_2+1=1+1=2\MDFPeriod
+ \]
+  Thus, the two points $Q_1=\MPointTwo{2}{3}$ and $Q_2=\MPointTwo{1}{2}$ are 
+  the intersection points of the secant line $g_2$ with the circle $K$.
+ \item Line $g_3$:\\
+ Substituting the equation of the line $g_3$ into the given equation of the circle results in
+ \[
+  (x-2)^2 + (2x+2-2)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace (x-2)^2 + (2x)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-4x+4+4x^2=1
+ \]
+ \[
+  \Leftrightarrow\MDFPaSpace 5x^2-4x+3=0 \MDFPeriod
+ \]
+ %BEMERKUNG: In Kapitel 2 wird der Begriff der Diskriminante NICHT eingeführt! Warum? Das muss nachgeholt werden!
+ The discriminant (see Section~\MNRef{VBKM02_QuadratischeGleichungen}) of this quadratic equation is
+ \[
+  (-4)^2-4\cdot5\cdot3=16-60<0 \MDFPSpace .
+ \]
+  Thus, the equation does not have a solution, and the line $g_3$ is an exterior line to the circle $K$.
+\end{itemize}
+The circle, all three lines, and the intersection points are shown in the figure below.
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.2,0) -- (4.3,0);
+\foreach \x in {-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2) -- (0,4.3);
+\foreach \x in {-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis
+\draw[color=black] (2,2) circle (1);
+\draw[color=black] (2.9,2.2) node[anchor=south west] {\footnotesize $K$};
+%\draw[color=black, fill=black] (2,2) circle (1pt);
+%Geraden
+\draw[color=red] (-2,-2) -- (1,4);
+\draw[color=red] (1,4) node[anchor=west] {\footnotesize $g_3$};
+\draw[color=violet] (-2,-1) -- (3,4);
+\draw[color=violet] (3,4) node[anchor=west] {\footnotesize $g_2$};
+\draw[fill=violet] (1,2) circle (1.5pt);
+\draw[fill=violet] (2,3) circle (1.5pt);
+\draw[color=violet] (1,2) node[anchor=east] {\footnotesize $Q_2$};
+\draw[color=violet] (2,3) node[anchor=south east] {\footnotesize $Q_1$};
+\draw[color=blue] (-0.2,-1.61) -- (4,2.59);
+\draw[color=blue] (4,2.59) node[anchor=west] {\footnotesize $g_1$};
+\draw[fill=blue] (2.71,1.29) circle (1.5pt);
+\draw[color=blue] (2.71,1.29) node[anchor=north west] {\footnotesize $P$};
+\end{tikzpicture}
+}
+\end{center} 
+\end{MExample}
+
+\begin{MExercise}
+Let a circle $K$ be given by the equation 
+\[
+ K\colon x^2+(y-1)^2=2 \MDFPSpace , 
+\]
+and two lines by
+\[
+ g\colon y=\sqrt{7}x+5
+\]
+\[
+ h\colon y=2x+2 \MDFPeriod
+\]
+\begin{MExerciseItems}
+\item{Show that $g$ is a tangent line to $K$, and calculate the $x$-coordinate and $y$-coordinate of the osculation point 
+  $\MPointTwo{x}{y}$ of $g$ and $K$.\\
+$x=$\MLFunctionQuestion{10}{-sqrt(7)/2}{5}{x}{5}{TANG1}\\
+$y=$\MLFunctionQuestion{10}{3/2}{5}{x}{5}{TANG2}
+} 
+\item{Show that $h$ is a secant line to $K$, and calculate the $x$-coordinates and $y$-coordinates of the intersection 
+  points $\MPointTwo{x_1}{y_1}$ and $\MPointTwo{x_2}{y_2}$ of $h$ and $K$.\\
+$x_1=$\MLFunctionQuestion{10}{1/5}{5}{x}{5}{SEK01}\\
+$y_1=$\MLFunctionQuestion{10}{12/5}{5}{x}{5}{SEK02}\\
+$x_2=$\MLFunctionQuestion{10}{-1}{5}{x}{5}{SEK03}\\
+$y_2=$\MLFunctionQuestion{10}{0}{5}{x}{5}{SEK04}
+} 
+\end{MExerciseItems}
+\MInputHint{Enter square roots as \texttt{sqrt}. Enter, for example, \texttt{sqrt(2)} for $\sqrt{2}$.}
+
+\begin{MHint}{Solution}
+\begin{MExerciseItems}
+\item{Substituting $g$ into $K$ results in
+\[
+ x^2+(\sqrt{7}x+5-1)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+(\sqrt{7}x+4)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+7x^2+8\sqrt{7}x+16=2
+\]
+\[
+ \Leftrightarrow\MDFPaSpace 8x^2+8\sqrt{7}x+14=0\MDFPaSpace\Leftrightarrow\MDFPaSpace 4x^2+4\sqrt{7}x+7=0\MDFPaSpace\Leftrightarrow\MDFPaSpace (2x+\sqrt{7})^2=0 \MDFPeriod
+\]
+Thus, the quadratic equation has exactly one solution, and $g$ is a tangent line to $K$. For the $x$-coordinate of the 
+osculation point we have:
+\[
+ (2x+\sqrt{7})^2=0\MDFPaSpace\Leftrightarrow\MDFPaSpace 2x+\sqrt{7}=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x=-\frac{\sqrt{7}}{2}\MDFPeriod
+\]
+Substituting $x$ into the given equation of a line results in:
+\[
+ y=\sqrt{7}\left(-\frac{\sqrt{7}}{2}\right)+5=-\frac{7}{2}+5=\frac{3}{2}\MDFPeriod
+\]
+}
+\item{Substituting $h$ in $K$ results in
+\[
+ x^2+(2x+2-1)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+(2x+1)^2-2=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+4x^2+4x+1-2=0
+\]
+\[
+ \Leftrightarrow\MDFPaSpace 5x^2+4x-1=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x_{1,2}=\frac{-4\pm\sqrt{16+20}}{10}=\frac{-4\pm 6}{10}\MDFPaSpace\Leftrightarrow\MDFPaSpace
+ x_1=\frac{1}{5}\ \wedge\ x_2=-1 \MDFPeriod
+\]
+Since the quadratic equation has two solutions, $h$ is a secant line to $K$. The corresponding $y$-coordinates result 
+again from substituting the $x$-coordinates into the given equation of a line:
+\[
+ y_1=2\left(\frac{1}{5}\right)+2=\frac{2}{5}+2=\frac{12}{5}
+\]
+and 
+\[
+ y_2=2\left(-1\right)+2=-2+2=0\MDFPeriod
+\]
+
+}
+\end{MExerciseItems}
+ 
+\end{MHint}
+
+\end{MExercise}
+
+
+\begin{MExercise}
+Let a circle $K$ be given by the equation
+\[
+ K\colon (x-3)^2+y^2=2 \MDFPSpace ,
+\]
+and the line $g$ with the slope $2$ and the $y$-intercept $b$ by the equation
+\[
+ g\colon y=2x+b
+\]
+in normal form. Find the interval in which $b$ must lie such that $g$ is a secant line to $K$.\\
+$b\MDFPSpace \in \MDFPSpace ]$\MLFunctionQuestion{15}{-6-sqrt(10)}{5}{x}{5}{SEK1}$;$\MLFunctionQuestion{15}{-6+sqrt(10)}{5}{x}{5}{SEK2}$[ \MDFPSpace$.
+
+\MInputHint{Enter square roots as \texttt{sqrt}. Enter, for example, \texttt{sqrt(2)} as $\sqrt{2}$.}
+
+\begin{MHint}{Solution}
+Substituting the equation of the line (with the unknown $b$) into the equation of a circle results in
+\[
+ (x-3)^2+(2x+b)^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2-6x+9+4x^2+4b x+b^2=2\MDFPaSpace\Leftrightarrow\MDFPaSpace 5x^2+(4b-6)x+b^2+7=0 \MDFPeriod
+\]
+For $g$ to be a secant line to $K$, this quadratic equation (in the variable $x$) must have two solutions. This is the case 
+if its discriminant is positive, i.e. if we have:
+\[
+ (4b-6)^2-4\cdot 5(b^2+7)>0\MDFPaSpace\Leftrightarrow\MDFPaSpace 16b^2-48b+36-20b^2-140>0\MDFPaSpace\Leftrightarrow\MDFPaSpace -4b^2-48b-104>0
+\]
+\[
+ \Leftrightarrow\MDFPaSpace b^2+12b+26<0\MDFPeriod
+\]
+The solutions of the quadratic equation $b^2+12b+26=0$ (in the variable $b$) are
+\[
+ b_{1,2}=\frac{-12\pm\sqrt{144-104}}{2}=\frac{-12\pm\sqrt{40}}{2}=\frac{-12\pm2\sqrt{10}}{2}=-6\pm\sqrt{10} \MDFPeriod
+\]
+Thus, the required interval is $]-6-\sqrt{10};-6+\sqrt{10}[$.
+\end{MHint}
+\end{MExercise}
+
+Of course, lines defined by equations that cannot be transformed into normal form (i.e. lines that are parallel 
+to the $y$-axis) can intersect or osculate circles as well. The method described above cannot be 
+applied directly to such lines . The example below illustrates the method which is applied in this case.
+
+\begin{MExample}
+Let a circle $K$ be given by the equation
+\[
+ K\colon (x-1)^2+(y-1)^2=1\MDFPSpace ,
+\]
+and line $g$ by the equation
+\[
+ g\colon x=\frac{3}{2}\MDFPeriod
+\]
+The two objects are shown in the figure below.
+\begin{center}
+ \MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.2,0) -- (3.3,0);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.2) -- (0,3.3);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,3.7) node[anchor=north west] {$y$};
+%Kreis
+\draw[color=red] (1,1) circle (1);
+\draw[color=red] (1.9,1.2) node[anchor=south west] {\footnotesize $K$};
+%Gerade
+\draw[color=blue] (1.5,-1) -- (1.5,3);
+\draw[color=blue] (1.5,3) node[anchor=west] {\footnotesize $g$};
+%Punkte
+\draw[fill=violet] (1.5,1.866) circle (1pt);
+\draw[fill=violet] (1.5,0.134) circle (1pt);
+\end{tikzpicture}
+}
+\end{center} 
+Obviously, $g$ is a secant line to $K$. In this case, the intersection point cannot be calculated 
+by solving the equation of a line for $y$. Instead, the equation of a line $x=\frac{3}{2}$ is simply 
+substituted into the given equation of a circle. This results in two values of $y$, i.e. the $y$-coordinates 
+of the intersection points:
+\[
+  (\frac{3}{2}-1)^2+(y-1)^2=1\MDFPaSpace\Leftrightarrow\MDFPaSpace \frac{1}{4}+y^2-2y+1=1 \MDFPaSpace\Leftrightarrow\MDFPaSpace y^2-2y+\frac{1}{4}=0
+\]
+\[
+ \Leftrightarrow\MDFPaSpace y_{1,2}=\frac{2\pm\sqrt{4-1}}{2}=1\pm\frac{\sqrt{3}}{2}\MDFPaSpace\Leftrightarrow\MDFPaSpace y_1=1+\frac{\sqrt{3}}{2}\ \wedge\ y_2=1-\frac{\sqrt{3}}{2}\MDFPeriod
+\]
+Obviously, both corresponding $x$-coordinates are equal to $\frac{3}{2}$ since the intersection points lie 
+on the line $g$. Thus, the two intersection points of the line $g$ and the circle $K$ are 
+$\MPointTwo[\Big]{\frac{3}{2}}{1+\frac{\sqrt{3}}{2}}$ and $\MPointTwo[\Big]{\frac{3}{2}}{1-\frac{\sqrt{3}}{2}}$.
+\end{MExample}
+
+The Info Box below lists the different cases for the relative positions of two circles together with general 
+criteria that allow to decide which of the cases for two given circles applies.
+
+\begin{MInfo}\MLabel{VBKM09_Info_Kreiseschneiden}
+Let two (different) circles, $K_1$ with centre $M_1$ and radius $r_1$ and 
+$K_2$ with centre $M_2$ and radius $r_2$, be given (by equations of a circle 
+in the plane with respect to a fixed coordinate system). Then the circles have exactly one of the 
+following three relative positions with respect to each other:
+\begin{enumerate}
+ \item The circles $K_1$ and $K_2$ do not have any points in common, i.e. they do not intersect. This is 
+  the case if and only if for the radii $r_1$ and $r_2$ and the distance 
+  $[\overline{M_1 M_2}]$ of the two centres, we have the inequalities
+ \[
+  [\overline{M_1 M_2}]>r_1+r_2\MDFPaSpace\textrm{or}\MDFPaSpace[\overline{M_1 M_2}]<|r_1-r_2|\MDFPeriod
+ \]
+ \item The circles $K_1$ and $K_2$ have one point in common, i.e. they osculate. This is 
+  the case if and only if for the radii $r_1$ and $r_2$ and the distance 
+  $[\overline{M_1 M_2}]$ of the two centres, we have the inequalities
+ \[
+  [\overline{M_1 M_2}]=r_1+r_2\MDFPaSpace\textrm{or}\MDFPaSpace[\overline{M_1 M_2}]=|r_1-r_2|\MDFPeriod
+ \]
+ \item The circles $K_1$ and $K_2$ have two points in common, i.e. they intersect. This is 
+  the case if and only if for the radii $r_1$ and $r_2$ and the distance 
+  $[\overline{M_1 M_2}]$ of the two centres, we have the inequality
+ \[
+  |r_1-r_2|<[\overline{M_1 M_2}]<r_1+r_2\MDFPeriod
+ \]
+\end{enumerate}
+The three cases are illustrated in the figure below.
+\begin{center}
+\begin{tabular}{cc}
+
+$[\overline{M_1 M_2}]>r_1+r_2$:
+
+&
+
+$[\overline{M_1 M_2}]<|r_1-r_2|$:\\
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (4.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (3,1);
+\draw[color=violet] (1.75,1.75) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (2.2,2);
+\draw[color=black] (1.6,2) node[anchor=south] {\scriptsize $r_1$};
+\draw[color=black] (3,1) -- (2.2,1);
+\draw[color=black] (2.6,1) node[anchor=north] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (1.2);
+\draw[color=red] (1,3.2) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (3,1) circle (0.8);
+\draw[color=blue] (3,1.7) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (3,1) circle (1.5pt);
+\draw[color=blue] (3,1) node[anchor=south] {\scriptsize $M_2$};
+
+\end{tikzpicture}
+} 
+&
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (4.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (2,1);
+\draw[color=violet] (1.45,1.75) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (-1,2);
+\draw[color=black] (0,2) node[anchor=south west] {\scriptsize $r_1$};
+\draw[color=black] (2,1) -- (2,0.5);
+\draw[color=black] (1.9,0.75) node[anchor=west] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (2);
+\draw[color=red] (1,4) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (2,1) circle (0.5);
+\draw[color=blue] (2,1.4) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (2,1) circle (1.5pt);
+\draw[color=blue] (1.9,0.9) node[anchor=south west] {\scriptsize $M_2$};
+
+\end{tikzpicture}
+} 
+\end{tabular}
+
+\begin{tabular}{cc}
+
+$[\overline{M_1 M_2}]=r_1+r_2$:
+
+&
+
+$[\overline{M_1 M_2}]=|r_1-r_2|$:\\
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (4.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (3,1);
+\draw[color=violet] (1.9,1.6) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (2.5,2);
+\draw[color=black] (1.75,2) node[anchor=south] {\scriptsize $r_1$};
+\draw[color=black] (3,1) -- (2.264,1);
+\draw[color=black] (2.65,1) node[anchor=north] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (1.5);
+\draw[color=red] (1,3.5) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (3,1) circle (0.736);
+\draw[color=blue] (3,1.7) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (3,1) circle (1.5pt);
+\draw[color=blue] (3,1) node[anchor=south] {\scriptsize $M_2$};
+%Berührpunkt
+\draw[fill=violet] (2.34,1.33) circle (1.5pt);
+\end{tikzpicture}
+} 
+&
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (4.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (4.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (2,1);
+\draw[color=violet] (1.45,1.75) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (-1,2);
+\draw[color=black] (0,2) node[anchor=south west] {\scriptsize $r_1$};
+\draw[color=black] (2,1) -- (2,0.414);
+\draw[color=black] (1.9,0.75) node[anchor=west] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (2);
+\draw[color=red] (1,4) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (2,1) circle (0.586);
+\draw[color=blue] (2,1.5) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (2,1) circle (1.5pt);
+\draw[color=blue] (1.9,0.9) node[anchor=south west] {\scriptsize $M_2$};
+%Berührpunkt
+\draw[fill=violet] (2.414,0.586) circle (1.5pt);
+\end{tikzpicture}
+} 
+\end{tabular}
+
+\begin{tabular}{c}
+
+$|r_1-r_2|<[\overline{M_1 M_2}]<r_1+r_2$:\\
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1,0) -- (5.3,0);
+\draw[->,color=black] (0,-1) -- (0,4.3);
+%Achsenbeschriftung
+\draw (5.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Verbindungsstreckeundradien
+\draw[color=violet, line width = 1.2pt] (1,2) -- (3,1);
+\draw[color=violet] (2.2,1.5) node[anchor=north east] {\scriptsize $\overline{M_1 M_2}$};
+\draw[color=black] (1,2) -- (2.5,2);
+\draw[color=black] (1.8,2) node[anchor=south] {\scriptsize $r_1$};
+\draw[color=black] (3,1) -- (3,-1);
+\draw[color=black] (3,0) node[anchor=north west] {\scriptsize $r_2$};
+%Kreise
+\draw[color=red] (1,2) circle (1.5);
+\draw[color=red] (1,3.5) node[anchor=south] {\scriptsize $K_1$};
+\draw[fill=red] (1,2) circle (1.5pt);
+\draw[color=red] (1,2) node[anchor=south] {\scriptsize $M_1$};
+\draw[color=blue] (3,1) circle (2);
+\draw[color=blue] (3,3) node[anchor=south] {\scriptsize $K_2$};
+\draw[fill=blue] (3,1) circle (1.5pt);
+\draw[color=blue] (3,1) node[anchor=south] {\scriptsize $M_2$};
+%Schnittpunkte
+\draw[fill=violet] (2.237,2.849) circle (1.5pt);
+\draw[fill=violet] (1.063,0.501) circle (1.5pt);
+\end{tikzpicture}
+}
+
+\end{tabular}
+
+\end{center}
+
+\end{MInfo}
+
+Thus, the relative position of two circles can be determined from their centres and radii. The calculation 
+of possible intersection points is more difficult and goes beyond the scope of this course.
+
+\begin{MExample}
+Let a circle $K$ with centre $M_K$ and radius $r_K$ be given by the equation 
+\[
+ K\colon x^2+y^2-2y=1 \MDFPSpace ,
+\]
+and a circle $L$ with centre $M_L$ and unknown radius $r>0$ by the equation
+\[
+ L\colon (x+1)^2+(y-1)^2=r^2 \MDFPeriod
+\]
+Find the values of $r$ for which the circles $K$ and $L$ intersect, osculate, or do not intersect. 
+
+>From the given equation of a circle $L$ the centre $M_L$ can be read off directly: $M_L=\MPointTwo{-1}{1}$. However,
+the equation for $K$ is not in normal form. By completing the square this equation can easily be transformed
+into normal form such that the centre $M_K$ and the radius $r_K$ can be read off:
+\[
+ x^2+y^2-2y=1\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+y^2-2y+1-1=1\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+(y-1)^2=2\MDFPeriod
+\]
+Thus, we have $M_K=\MPointTwo{0}{1}$ and $r_K=\sqrt{2}$. Hence, the distance between the two centres is
+\[
+ [\overline{M_K M_L}]=\sqrt{(0+1)^2+(1-1)^2}=1 \MDFPSpace ,
+\]
+and the sum of the two radii is
+\[
+ r+r_K=r+\sqrt{2} \MDFPeriod
+\]
+Since $r>0$, we have 
+\[
+ r+\sqrt{2}>\sqrt{2}>1=[\overline{M_K M_L}] \MDFPeriod
+\]
+Hence $[\overline{M_K M_L}]\geq r+\sqrt{2}$ cannot occur in this case. The geometric reason for this is that
+the centre of $L$ lies within $K$, as can be seen from the figure below. According 
+to the criteria listed in Info Box~\MNRef{VBKM09_Info_Kreiseschneiden}, the two circles osculate if 
+\[
+ |r-\sqrt{2}|=1=[\overline{M_K M_L}]\MDFPeriod 
+\]
+According to the section on \MSRef{M02_Betragsgleichungen}{absolute value inequalities}, this equation is satisfied if
+\[
+ r-\sqrt{2}=1\MDFPaSpace\textrm{or}\MDFPaSpace r-\sqrt{2}=-1\MDFPeriod
+\]
+Hence, the two radii $r$ for which the circle $L$ osculates the circle $K$ are:
+\[
+ r=\sqrt{2}+1\MDFPaSpace\textrm{and}\MDFPaSpace r=\sqrt{2}-1\MDFPeriod
+\]
+Now we have still to investigate the remaining possible values of $r$. For $0<r<\sqrt{2}-1$, we have
+\[
+ |r-\sqrt{2}|=-(r-\sqrt{2})=\sqrt{2}-r>1=[\overline{M_K M_L}] \MDFPSpace ,
+\]
+i.e. $K$ and $L$ do not have any points in common. For $\sqrt{2}-1<r<\sqrt{2}+1$, we have to distinguish 
+the cases $\sqrt{2}-1<r\leq\sqrt{2}$ and $\sqrt{2}<r<\sqrt{2}+1$ if we investigate the absolute value. In the case
+$\sqrt{2}-1<r\leq\sqrt{2}$, we have
+\[
+ |r-\sqrt{2}|=-(r-\sqrt{2})=\sqrt{2}-r<1=[\overline{M_K M_L}] \MDFPSpace ,
+\]
+and in the case $\sqrt{2}<r<\sqrt{2}+1$, we have
+\[
+ |r-\sqrt{2}|=r-\sqrt{2}<1=[\overline{M_K M_L}] \MDFPeriod
+\]
+Thus, the circles $K$ and $L$ have two points in common for $\sqrt{2}-1<r<\sqrt{2}+1$, i.e. the circles intersect. 
+Finally, we have in the case $r>\sqrt{2}+1$:
+\[
+ |r-\sqrt{2}|=r-\sqrt{2}>1=[\overline{M_K M_L}]\MDFPeriod
+\]
+The circles $K$ and $L$ also do not have any points in common in this case. In summary, we have the following 
+conditions for the relative position of the two circles $K$ and $L$:
+\begin{itemize}
+ \item If $r\in\{\sqrt{2}-1\MElSetSep\sqrt{2}+1\}$, the two circles $K$ and $L$ osculate at one point.
+ \item If $r\in$ $]\sqrt{2}-1\MIntvlSep\sqrt{2}+1[$, the two circles $K$ and $L$ intersect at two points.
+ \item If $r\in$ $]0\MIntvlSep\sqrt{2}-1[$ $\cup$ $]\sqrt{2}+1\MIntvlSep\infty[$, the two circles $K$ and $L$ do
+  not have any points in common.
+\end{itemize}
+The figure below shows some of the cases for the circles $K$ and $L$.
+\begin{center}
+ 
+\begin{tabular}{cc}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-1,0.667);
+\draw[color=black] (-1.1,0.75) node[anchor=north west] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (0.33);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,0.93) node[anchor=south] {\tiny $M_L$};
+\draw[color=blue] (-1,1.33) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=\frac{1}{3}$};
+\end{tikzpicture}
+} 
+
+& 
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-1,0.586);
+\draw[color=black] (-1.1,0.65) node[anchor=north west] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (0.414);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,0.95) node[anchor=south] {\tiny $M_L$};
+\draw[color=blue] (-1,1.4) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=\sqrt{2}-1$};
+%Berührpunkt
+\draw[fill=violet] (-1.414,1) circle (1.5pt);
+\end{tikzpicture}
+} \\
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-1,0);
+\draw[color=black] (-1.1,0.5) node[anchor=west] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (1);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,1) node[anchor=south] {\scriptsize $M_L$};
+\draw[color=blue] (-2,1) node[anchor=east] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=1$};
+%Schnittpunkte
+\draw[fill=violet] (-1,0) circle (1.5pt);
+\draw[fill=violet] (-1,2) circle (1.5pt);
+\draw[fill=red] (0,1) circle (1.5pt);
+\end{tikzpicture}
+} 
+
+&
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-3.414,1);
+\draw[color=black] (-2.2,1) node[anchor=south] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (2.414);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,1) node[anchor=south] {\scriptsize $M_L$};
+\draw[color=blue] (-1,3.414) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=\sqrt{2}+1$};
+%Berührpunkt
+\draw[fill=violet] (1.414,1) circle (1.5pt);
+
+\end{tikzpicture}
+} 
+\end{tabular}
+
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-4.2,0) -- (3.3,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.2) -- (0,4.3);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\x)},color=black] (2pt,0pt) -- (-2pt,-0pt) node[left] {\footnotesize $\x$};
+\draw[color=black] (0pt,-6pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.3,0) node[anchor=north west] {$x$};
+\draw (-0.5,4.7) node[anchor=north west] {$y$};
+%Kreis K
+\draw[color=black] (0,1) -- (1,0);
+\draw[color=black] (0.45,0.45) node[anchor=south west] {\scriptsize $r_K$};
+\draw[color=red] (0,1) circle (1.414);
+\draw[fill=red] (0,1) circle (1.5pt);
+\draw[color=red] (0,1) node[anchor=south west] {\scriptsize $M_K$};
+\draw[color=red] (0,2.414) node[anchor=south west] {\scriptsize $K$};
+%Kreis L
+\draw[color=black] (-1,1) -- (-4,1);
+\draw[color=black] (-2.5,1) node[anchor=south] {\scriptsize $r$};
+\draw[color=blue] (-1,1) circle (3);
+\draw[fill=blue] (-1,1) circle (1.5pt);
+\draw[color=blue] (-1,1) node[anchor=south] {\scriptsize $M_L$};
+\draw[color=blue] (-1,4) node[anchor=south] {\scriptsize $L$};
+%Beschriftung
+\draw[color=red] (2,4) node[right] {\footnotesize $M_K=\MPointTwo{0}{1}$};
+\draw[color=black] (2,3.5) node[right] {\footnotesize $r_K=\sqrt{2}$};
+\draw[color=blue] (2,3) node[right] {\footnotesize $M_L=\MPointTwo{-1}{1}$};
+\draw[color=black] (2,2.5) node[right] {\footnotesize $r=3$};
+
+\end{tikzpicture}
+} 
+\end{center}
+
+\end{MExample}
+
+\begin{MExercise}
+Let two circles $K_1$ and $K_2$ be given by the equations
+\[
+ K_1\colon (x+6)^2+(y+4)^2=64
+\]
+\[
+ K_2\colon x^2+2x+y^2-16y+40=0 \MDFPeriod
+\]
+The two circles $K_1$ and $K_2$
+
+\begin{MQuestionGroup}
+\begin{tabular}{ll}
+\MLCheckbox{1}{KREIS_COSH1} & osculate at one point,\\
+\MLCheckbox{0}{KREIS_COSH2} & intersect at two points,\\
+\MLCheckbox{0}{KREIS_COSH3} & do not have any points in common.
+\end{tabular}
+\end{MQuestionGroup}
+\MGroupButton{Check input}
+
+\begin{MHint}{Solution}
+The centre $M_1$ and the radius $r_1$ of the circle $K_1$ can immediately be read off: $M_1=\MPointTwo{-6}{-4}$ and $r_1=8$. To transform the equation of the circle $K_2$ into normal form, 
+we have to complete the square:
+\[
+ x^2+2x+y^2-16y+40=0\MDFPaSpace\Leftrightarrow\MDFPaSpace x^2+2x+1 + y²-2\cdot8y+64+40-64-1=0
+\]
+\[
+ \Leftrightarrow\MDFPaSpace (x+1)^2+(y-8)^2=25\MDFPeriod
+\]
+Now we can also read off the centre $M_2$ and the radius $r_2$ of $K_2$: $M_2=\MPointTwo{-1}{8}$ and $r_2=5$. 
+>From these values, we calculate
+\[
+ [\overline{M_1 M_2}]=\sqrt{(-1+6)^2+(8+4)^2}=\sqrt{25+144}=\sqrt{169}=13
+\]
+and
+\[
+ r_1+r_2=13 \MDFPeriod
+\]
+In this case we have $[\overline{M_1 M_2}]=13=r_1+r_2$, and according to the criteria listed in 
+Info Box~\MNRef{VBKM09_Info_Kreiseschneiden}, the circles $K_1$ and $K_2$ osculate at one point.
+\end{MHint}
+
+\end{MExercise}
+
+\end{MXContent}
+
+\MSubsection{Regions in the plane}
+\MLabel{M09_4Bereiche}
+\begin{MIntro}
+\MLabel{VBKM09_Bereiche_Intro}
+\MDeclareSiteUXID{VBKM09_Bereiche_Intro}
+
+While in the previous sections curves in the plane (lines or circles) were investigated by means of 
+coordinate equations, in this section we will replace the coordinate \textit{equations} by 
+coordinate \textit{inequalities}. Thereby not curves but \textit{regions} in the plane are described, which are 
+bounded by the corresponding curves. Depending on whether the inequality is strict ($<$ or $>$)
+or not ($\leq$ or $\geq$), the bounding curve is a part of the region or not. Regions can be, for example, 
+areas above and below lines, areas within or outside circles, or even intersections of these. 
+A few examples are shown in the figures below.
+\begin{itemize}
+ \item Region above the line $y=\frac{1}{2}x-1$ excluding the line itself:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2.5) -- (3.5,0.75) -- (3.5,3.5) -- (-3,3.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-3,-2.5) -- (3.5,0.75);
+
+\end{tikzpicture}
+}
+\end{center}
+ \item Region below the line $y=2$ including the line itself:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,2) -- (-3,-3) -- (3.5,-3) -- (3.5,2)}
+\fill[color=blue,fill=blue,fill opacity=0.15] \q1;
+\draw[color=blue] (-3,2) -- (3.5,2);
+
+\end{tikzpicture}
+}
+\end{center}
+ \item Region above the line $y=x$ and within the unit circle $x^2+y^2=1$ including 
+  the points on the circle but excluding the points on the line:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+%\def \q1{(-3,-3) -- (3.5,3.5) -- (3.5,3.5) -- (-3,3.5)}
+\fill[color=green,fill=green,fill opacity=0.15] (-0.707,-0.707) arc [radius=1, start angle=225, delta angle=-180];
+\draw[color=green, dashed] (-3,-3) -- (3.5,3.5);
+\draw[color=green] (0,0) circle (1);
+
+\end{tikzpicture}
+}
+\end{center}
+\end{itemize}
+Here and in the following we will use the general convention that curves included in the region are drawn as solid lines 
+and curves \textit{excluded} from the region are drawn as dashed lines. 
+
+\end{MIntro}
+
+\begin{MXContent}{Regions bounded by Lines and Circles}{Regions (lines and circles as boundaries)}{STD}
+\MLabel{VBKM09_Bereiche_Geraden_Kreise}
+\MDeclareSiteUXID{VBKM09_Bereiche_Geraden_Kreise}
+
+The Info Box below lists the regions that can occur if the equals sign in the equation of a line is replaced by 
+an inequality sign.
+
+\begin{MInfo}
+Let a line $g$ in the plane (with slope $m$ and $y$-intercept $b$) be given by
+\[
+ g\colon y=m x+b 
+\]
+in normal form with respect to a fixed coordinate system. Substituting an inequality sign for the equals sign results 
+in the following sets that describe regions in the plane:
+\begin{itemize}
+ \item $B_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y>m x+b\}=$ ``region above the line excluding the points on the line itself''
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2.5) -- (3.5,0.75) -- (3.5,3.5) -- (-3,3.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-3,-2.5) -- (3.5,0.75);
+\draw[color=red] (3.5,0.75) node[anchor=west] {\footnotesize $g$};
+\draw[color=red] (-1,1) node[anchor=south east] {$B_1$};
+\end{tikzpicture}
+}
+\end{center}
+ \item $B_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y\geq m x+b\}=$ ``region above the line including the points on the line itself''
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2.5) -- (3.5,0.75) -- (3.5,3.5) -- (-3,3.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red] (-3,-2.5) -- (3.5,0.75);
+\draw[color=red] (3.5,0.75) node[anchor=west] {\footnotesize $g$};
+\draw[color=red] (-1,1) node[anchor=south east] {$B_2$};
+\end{tikzpicture}
+}
+\end{center}
+ \item $B_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y<m x+b\}=$ ``region below the line excluding the points on the line itself''
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2.5) -- (3.5,0.75) -- (3.5,-3.1) -- (-3,-3.1)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-3,-2.5) -- (3.5,0.75);
+\draw[color=red] (3.5,0.75) node[anchor=west] {\footnotesize $g$};
+\draw[color=red] (2,-2) node[anchor=north west] {$B_3$};
+\end{tikzpicture}
+}
+\end{center}
+ \item $B_4:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y\leq m x+b\}=$ ``region below the line including the points on the line itself''
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2.5) -- (3.5,0.75) -- (3.5,-3.1) -- (-3,-3.1)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red] (-3,-2.5) -- (3.5,0.75);
+\draw[color=red] (3.5,0.75) node[anchor=west] {\footnotesize $g$};
+\draw[color=red] (2,-2) node[anchor=north west] {$B_4$};
+\end{tikzpicture}
+}
+\end{center}
+\end{itemize}
+
+\end{MInfo}
+
+For equations of a line that cannot be transformed into normal form, the line of thought on the resulting regions 
+is analogous. The example below shows two simple cases.
+
+\begin{MExample}
+Let two lines be given by the equations
+\[
+ g\colon y=-x+1
+\]
+\[
+ h\colon x=-1 \MDFPeriod   
+\]
+Find and sketch the following sets:
+\[
+ A=\textrm{``region above}\ g \textrm{ excluding the points on the line}\ g\ \textrm{itself''},
+\] 
+\[
+ B=\textrm{``region to the right of line}\ h \textrm{ including the points on the line}\ h\ \textrm{itself''},
+\]
+and $A\cap B$.
+
+>From the Info Box above, we have
+\[
+ A=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y<-x+1\}
+\]
+and
+\[
+ B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x\geq-1\} \MDFPSpace 
+\]
+since the points to the right of line $h$ have $x$-coordinates that are greater than $-1$.
+Thus, the intersection $A\cap B$ is the set of points with coordinates that satisfy both the conditions:
+\[
+ A\cap B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y<-x+1\wedge x\geq-1\}\MDFPeriod
+\]
+This is illustrated by the figures below.
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-2,3)-- (3.5,-2.5) -- (3.5,-3) -- (-3,-3) -- (-3,3)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-2,3) -- (3.5,-2.5);
+\draw[color=red] (3.5,-2.5) node[anchor=south west] {\footnotesize $g$};
+\draw[color=red] (-2,-2) node[anchor=south west] {$A$};
+\end{tikzpicture}
+}
+\end{center}
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-1,-3) -- (-1,3.5) -- (3.5,3.5) -- (3.5,-3)}
+\fill[color=blue,fill=blue,fill opacity=0.15] \q1;
+\draw[color=blue] (-1,-3) -- (-1,3.5);
+\draw[color=blue] (-1,-3) node[anchor=east] {\footnotesize $h$};
+\draw[color=blue] (2,2) node[anchor=north east] {$B$};
+\end{tikzpicture}
+}
+\end{center}
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-1,2) -- (-1,-3) -- (3.5,-3) -- (3.5,-2.5)}
+\fill[color=violet,fill=violet,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-2,3) -- (3.5,-2.5);
+\draw[color=blue] (-1,-3) -- (-1,3.5);
+\draw[color=blue] (-1,-3) node[anchor=east] {\footnotesize $h$};
+\draw[color=red] (3.5,-2.5) node[anchor=south west] {\footnotesize $g$};
+\draw[color=violet] (2,-2) node[anchor=north east] {$A\cap B$};
+\draw[color=violet] (-1,2) circle (1.5pt);
+\end{tikzpicture}
+}
+\end{center}
+Here, the intersection point $\MPointTwo{-1}{2}$ of the two lines is not an element of $A\cap B$
+since points on the line $g$ are generally excluded from the region $A\cap B$. In the figure above 
+this is indicated by a small empty circle at this point.
+\end{MExample}
+
+The example above illustrates the following: regions given by coordinate inequalities
+derived from equations of lines are easy to specify. It becomes more difficult if intersections of 
+such regions are considered. The following, more difficult example shows that even absolute values can be involved. 
+
+
+\begin{MExample}
+Describe the set defined by 
+\[
+ M=\{\MPointTwo{x}{y}\MCondSetSep |x-y|<1\}
+\]
+in words and sketch it.
+
+For absolute values (see Section~\MNRef{M02_Betragsgleichungen}) a case analysis is required as usual:
+\begin{enumerate}
+ \item $x-y\geq 0\MDFPSpace\Leftrightarrow\MDFPSpace x\geq y$\\
+ In this case the inequality $|x-y|<1$ can be solved for
+ \[
+  |x-y|<1\MDFPSpace\Leftrightarrow\MDFPSpace x-y<1\MDFPSpace\Leftrightarrow\MDFPSpace y>x-1 \MDFPeriod
+ \]
+  Thus, the set $M$ contains all points $\MPointTwo{x}{y}$ with coordinates that satisfy the inequalities 
+  $x\geq y$ and $y>x-1$, i.e. those points that lie above the line $y=x-1$ but below the angle bisector 
+  $y=x$.
+ \item $x-y< 0\MDFPSpace\Leftrightarrow\MDFPSpace x<y$\\
+  In this case the inequality $|x-y|<1$ can be solved for
+ \[
+  |x-y|<1\MDFPSpace\Leftrightarrow\MDFPSpace -(x-y)<1\MDFPSpace\Leftrightarrow\MDFPSpace y<x+1 \MDFPeriod
+ \]
+  Thus, the set $M$ contains all points $\MPointTwo{x}{y}$ with coordinates that satisfy the inequalities 
+  $x<y$ and $y<x+1$, i.e. those points that lie below the line $y=x+1$ but above the angle bisector $y=x$.
+\end{enumerate}
+>From these two cases, we obtain the following description of the set $M$:
+\[
+ M=\textrm{``all points between the lines}\ y=x-1\ \textrm{and}\ y=x+1\textrm{ that do not lie on those lines''}
+\]
+The figure below shows the corresponding sketch.
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-2) -- (-3,-3) -- (-2,-3) -- (3.5,2.5) -- (3.5,3.5) -- (2.5,3.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red, dashed] (-2,-3) -- (3.5,2.5);
+\draw[color=red, dashed] (-3,-2) -- (2.5,3.5);
+\draw[color=red] (-3,-3) -- (3.5,3.5);
+\draw[color=red] (3.5,2.5) node[anchor=west] {\footnotesize $y=x-1$};
+\draw[color=red] (2.5,3.5) node[anchor=east] {\footnotesize $y=x+1$};
+\draw[color=red] (3.5,3.5) node[anchor=west] {\footnotesize $y=x$};
+\draw[color=red] (-1.8,-1) node[anchor=west] {$M$};
+\end{tikzpicture}
+}
+\end{center}
+\end{MExample}
+
+\begin{MExercise}
+Describe and sketch the following sets:
+\begin{MExerciseItems}
+\item{$A=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y\geq 1\}\cap\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x\geq 1\} $} 
+\item{$B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep |2x-y|\geq 1\}$}
+\item{$C=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep |y|>x+1\}$}
+\end{MExerciseItems}
+
+\begin{MHint}{Solution}
+\begin{MExerciseItems}
+\item{All points with coordinates that satisfy the inequality $y\geq 1$ lie on or above the line $y=1$, 
+and all points with coordinates that satisfy the inequality $x\geq 1$ lie on or to the right of the line $x=1$.
+The set $A$ contains the points that satisfy both conditions (intersection of two sets). Thus, we have:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(1,3.5) -- (3.5,3.5) -- (3.5,1) -- (1,1)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red] (1,1) -- (3.5,1);
+\draw[color=red] (1,1) -- (1,3.5);
+\draw[color=red, dashed] (-3,1) -- (1,1);
+\draw[color=red, dashed] (1,-3) -- (1,1);
+\draw[color=red] (-3,1) node[anchor=north] {\footnotesize $y=1$};
+\draw[color=red] (1,-3) node[anchor=west] {\footnotesize $x=1$};
+\draw[color=red] (2,2) node[anchor=south west] {$A$};
+\draw[color=red, fill=red] (1,1) circle (1pt);
+\end{tikzpicture}
+}
+\end{center}
+
+}
+\item{Case analysis:
+\begin{enumerate}
+ \item $2x-y\geq0\MDFPSpace\Leftrightarrow\MDFPSpace y\leq 2x$:\\
+ \[
+  |2x-y|\geq1\MDFPSpace\Leftrightarrow\MDFPSpace 2x-y\geq 1\MDFPSpace\Leftrightarrow\MDFPSpace y\leq 2x-1
+ \]
+  This case includes all points that lie on or below the line $y=2x-1$.
+ \item $2x-y<0\MDFPSpace\Leftrightarrow\MDFPSpace y>2x$:\\
+ \[
+  |2x-y|\geq1\MDFPSpace\Leftrightarrow\MDFPSpace -(2x-y)\geq 1\MDFPSpace\Leftrightarrow\MDFPSpace y\geq 2x+1
+ \]
+  This case includes all points that lie on or above the line $y=2x+1$.
+\end{enumerate}
+All in all the following regions are included:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-4.1) -- (0,4.5);
+\foreach \y in {-4,-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,4.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-2.5,-4) -- (-3,-4) -- (-3,4.5) -- (1.75,4.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\def \q2{(-1.5,-4) -- (3.5,-4) -- (3.5,4.5) -- (2.75,4.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q2;
+\draw[color=red] (-2.5,-4) -- (1.75,4.5);
+\draw[color=red] (-1.5,-4) -- (2.75,4.5);
+\draw[color=red] (-2.5,-4) node[anchor=north east] {\footnotesize $y=2x+1$};
+\draw[color=red] (-1.5,-4) node[anchor=north] {\footnotesize $y=2x-1$};
+\draw[color=red] (2,-2) node[anchor=south west] {$B$};
+\draw[color=red] (-2,2) node[anchor=south west] {$B$};
+\end{tikzpicture}
+}
+\end{center}
+
+}
+\item{Case analysis:
+\begin{enumerate}
+ \item $y\geq0$:\\
+ \[
+  |y|>x+1\MDFPSpace\Leftrightarrow\MDFPSpace y>x+1
+ \]
+  This case includes all points with a non-negative $y$-coordinate that lie above the line $y=x+1$.
+ \item $y<0$:\\
+ \[
+  |y|>x+1\MDFPSpace\Leftrightarrow\MDFPSpace -y>x+1\MDFPSpace\Leftrightarrow\MDFPSpace y<-x-1
+ \]
+  This case includes all points with a negative $y$-coordinate that lie below the line $y=-x-1$.
+\end{enumerate}
+All in all the following region results:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\def \q1{(-3,-3) -- (2,-3) -- (-1,0) -- (2.5,3.5) -- (-3,3.5)}
+\fill[color=red,fill=red,fill opacity=0.15] \q1;
+\draw[color=red] (-3.1,0) -- (-1,0);
+\draw[color=red,dashed] (-1,0) -- (2.5,3.5);
+\draw[color=red,dashed] (-1,0) -- (2,-3);
+\draw[color=red] (2.5,3.5) node[anchor=west] {\footnotesize $y=x+1$};
+\draw[color=red] (2,-3) node[anchor=west] {\footnotesize $y=-x-1$};
+\draw[color=red] (-2,-1) node[anchor=south west] {$C$};
+\draw[color=red, fill=white] (-1,0) circle (1.5pt);
+\end{tikzpicture}
+}
+
+\end{center}
+The point $\MPointTwo{-1}{0}$ does not belong to the set $C$.
+}
+\end{MExerciseItems}
+ 
+\end{MHint}
+\end{MExercise}
+
+The Info Box below lists the regions in the plane that can be bounded by a circle.
+
+\begin{MInfo}
+Let a circle $K$ in the plane (with the centre $M=\MPointTwo{x_0}{y_0}$ and the radius $r$) be given by the
+equation 
+\[
+ K\colon (x-x_0)^2 + (y-y_0)^2 = r^2 
+\]
+in normal form with respect to a fixed coordinate system. Then replacing the equals sign with an inequality results in the following sets that describe regions an a plane:
+\begin{itemize}
+ \item $B_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 < r^2\}=$ 
+  ``region within the circle excluding the points on the circle itself''
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (4.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red,dashed] (2,1.5) circle (1); 
+\draw[color=red] (2.707,2.207) node[anchor=south west] {\footnotesize $K$};
+\draw[color=red] (2,1.5) node[anchor=north] {$B_1$};
+\fill[color=red,fill=red,fill opacity=0.15] (3,1.5) arc [radius=1, start angle=0, delta angle=360];
+\end{tikzpicture}
+}
+\end{center}
+ \item $B_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 \leq r^2\}=$ 
+``region within the circle including the points on the circle itself''
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (4.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red] (2,1.5) circle (1); 
+\draw[color=red] (2.707,2.207) node[anchor=south west] {\footnotesize $K$};
+\draw[color=red] (2,1.5) node[anchor=north] {$B_2$};
+\fill[color=red,fill=red,fill opacity=0.15] (3,1.5) arc [radius=1, start angle=0, delta angle=360];
+\end{tikzpicture}
+}
+\end{center}
+  \item $B_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 > r^2\}=$ 
+``region outside the circle excluding the points on the circle itself''
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (4.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red,dashed] (2,1.5) circle (1); 
+\draw[color=red] (2.707,2.207) node[anchor=south west] {\footnotesize $K$};
+\draw[color=red] (4,1.5) node[anchor=north] {$B_3$};
+\fill[color=red,fill=red,fill opacity=0.15] (-1,3.5) -- (4.5,3.5) -- (4.5,-1) -- (-1,-1) -- cycle (2,1.5) circle (1);
+\end{tikzpicture}
+}
+\end{center}
+ \item $B_4:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-x_0)^2 + (y-y_0)^2 \geq r^2\}=$ 
+``region outside the circle including the points on the circle itself''
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (4.5,0);
+%\foreach \x in {-3,-2,-1,1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.1) -- (0,3.5);
+%\foreach \y in {-3,-2,-1,1,2,3}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red] (2,1.5) circle (1); 
+\draw[color=red] (2.707,2.207) node[anchor=south west] {\footnotesize $K$};
+\draw[color=red] (4,1.5) node[anchor=north] {$B_4$};
+\fill[color=red,fill=red,fill opacity=0.15] (-1,3.5) -- (4.5,3.5) -- (4.5,-1) -- (-1,-1) -- cycle (2,1.5) circle (1);
+\end{tikzpicture}
+}
+\end{center}
+\end{itemize}
+
+\end{MInfo}
+
+The example below shows a few special cases of regions that are bounded by circles as well as a few 
+more complex cases that arise by combining several regions bounded by circles or lines.
+
+\begin{MExample}
+Let two circles $K_1$ and $K_2$ be given by the equations
+\[
+ K_1\colon x^2+y^2=4
+\]
+and 
+\[
+ K_2\colon (x-2)^2+y^2=1\MDFPSpace ,
+\]
+and let the line $g$ be given by the equation 
+\[
+ g\colon y=-x+1 \MDFPeriod
+\]
+\begin{itemize}
+ \item The set $A_1:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2\leq 1\}$ consists of all points 
+  within and on the circle $K_2$:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (4.5,0);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (4.5,0) node[anchor=north] {$x$};
+\draw (-0.2,2.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red] (2,0) circle (1); 
+\draw[color=red] (2.707,0.707) node[anchor=south west] {\footnotesize $K_2$};
+\draw[color=red] (2,0.1) node[anchor=south] {$A_1$};
+\fill[color=red,fill=red,fill opacity=0.15] (2,0) circle (1);
+\end{tikzpicture}
+}
+\end{center}
+
+\item The set $A_2:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2<1\}\cap\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x^2+y^2<4\}$ 
+  consists of all points that lie both within the circle $K_1$ and within the circle $K_2$, i.e. within the intersection of the two discs, excluding the points on the circles themselves:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-2.1,0) -- (3.5,0);
+\foreach \x in {-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,2.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red,dashed] (2,0) circle (1); 
+\draw[color=red,dashed] (0,0) circle (2); 
+\draw[color=red] (2.707,0.707) node[anchor=south west] {\footnotesize $K_2$};
+\draw[color=red] (-1.41,1.41) node[anchor=south east] {\footnotesize $K_1$};
+\draw[color=red] (1.5,0.1) node[anchor=south] {$A_2$};
+\begin{scope} \clip{(2,0) circle (1)}; \fill[color=red,fill=red,fill opacity=0.15]  (0,0) circle (2); \end{scope}
+
+\end{tikzpicture}
+}
+\end{center}
+
+\item The set $A_3:=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-2)^2+y^2<1\wedge y\geq-x+1\}$ consists of all points 
+  that lie both within the circle $K_2$ -- excluding the points on the circle -- and above the line $g$:
+
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (3.5,0);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,2.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red,dashed] (2,0) circle (1); 
+\draw[color=red] (-1,2) -- (3,-2);
+\draw[color=red] (2.707,0.707) node[anchor=south west] {\footnotesize $K_2$};
+\draw[color=red] (3,-2) node[anchor=north] {\footnotesize $g$};
+\draw[color=red] (2,0.1) node[anchor=south] {$A_3$};
+\begin{scope} \clip{(2,0) circle (1)}; \fill[color=red,fill=red,fill opacity=0.15] (-1,2) -- (-1,2.5) -- (3.5,2.5) -- (3.5,-2) -- (3,-2); \end{scope}
+\draw[color=red,fill=white] (1,0) circle (1pt);
+\draw[color=red,fill=white] (2,-1) circle (1pt);
+\end{tikzpicture}
+}
+\end{center}
+The intersection points between the circle and the line do not belong to the set $A_3$.
+\end{itemize}
+\end{MExample}
+
+\begin{MExercise}
+Sketch the given sets:
+\begin{MExerciseItems}
+\item{$A=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x-1)^2+(y-1)^2\geq 1\}\cap\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y>-\frac{1}{2}x+1\} $} 
+\item{$B=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep |x|<1\}\cup\{\MPointTwo{x}{y}\in\R^2\MCondSetSep (x+3)^2+(y-1)^2\leq 4\}$}
+\item{$C=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep x^2+y^2<4\wedge x^2+(y+1)^2\geq 1\}$}
+\end{MExerciseItems} 
+
+\begin{MHint}{Solution}
+\begin{MExerciseItems}
+\item{The set $A$ consists of all points that lie both outside or on the circle at $\MPointTwo{1}{1}$
+  with radius $1$ and above the line $y=-\frac{1}{2}x+1$:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-1.1,0) -- (3.5,0);
+\foreach \x in {-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.1) -- (0,3.5);
+\foreach \y in {-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red] (0,1) arc [radius=1, start angle=180, delta angle=-233]; 
+\draw[color=red,dashed] (0,1) arc [radius=1, start angle=180, delta angle=127]; 
+\draw[color=red,dashed] (-1,1.5) -- (3.5,-0.75);
+\draw[color=red] (1.707,1.707) node[anchor=south west] {\footnotesize $(x-1)^2+(y-1)^2=1$};
+\draw[color=red] (3.5,-0.75) node[anchor=north] {\footnotesize $y=-\frac{1}{2}x+1$};
+\draw[color=red] (1,3) node[anchor=east] {$A$};
+\begin{scope} \clip{(-1,1.5) -- (-1,3.5) -- (3.5,3.5) --  (3.5,-0.75) -- cycle}; \fill[color=red,fill=red,fill opacity=0.15] (-1,1.5) -- (-1,3.5) -- (3.5,3.5) --  (3.5,-0.75) -- cycle (1,1) circle (1); \end{scope}
+\draw[color=red,fill=white] (0,1) circle (1pt);
+\draw[color=red,fill=white] (1.6,0.2) circle (1pt);
+\end{tikzpicture}
+}
+\end{center}
+The intersection points of the circle and the line do not belong to $A$.
+}
+\item{The set $B$ consists of the points in the plane with coordinates that satisfy the inequality $|x|<1$, i.e. 
+  that satisfy $-1<x<1$. Additionally, the (union!) set $B$ contains the points within and on the circle $(x+3)^2+(y-1)^2=4$:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-5.1,0) -- (2.5,0);
+\foreach \x in {-5,-4,-3,-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.1) -- (0,4.5);
+\foreach \y in {-2,-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (2.5,0) node[anchor=north] {$x$};
+\draw (-0.2,4.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red] (-3,1) circle (2);
+\draw[color=red,dashed] (-1,-2) -- (-1,4.5);
+\draw[color=red,dashed] (1,-2) -- (1,4.5);
+\draw[color=red] (-4.5,2.5) node[anchor=south east] {\footnotesize $(x+3)^2+(y-1)^2=4$};
+\draw[color=red] (-1,-2) node[anchor=north] {\footnotesize $x=-1$};
+\draw[color=red] (1,-2) node[anchor=north] {\footnotesize $x=1$};
+\draw[color=red] (-3,1.5) node[anchor=south] {$B$};
+\fill[color=red,fill=red,fill opacity=0.15] (-1,-2) -- (-1,4.5) -- (1,4.5) --  (1,-2);
+\fill[color=red,fill=red,fill opacity=0.15] (-3,1) circle (2);
+\draw[color=red,fill=red] (-1,1) circle (1pt);
+\end{tikzpicture}
+}
+\end{center}
+The point $\MPointTwo{-1}{1}$ belongs to the set $B$.
+}
+\item{The set $C$ consists of all points that lie both within the circle $x^2+y^2=4$ and outside the circle 
+  $x^2+(y+1)^2=1$:
+\begin{center}
+\MTikzAuto{
+\begin{tikzpicture}
+%Koordinatensystem
+\draw[->,color=black] (-3.1,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.1) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,0) node[anchor=north west] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (3.5,0) node[anchor=north] {$x$};
+\draw (-0.2,3.5) node[anchor=east] {$y$};
+%Quadranten füllen
+\draw[color=red,dashed] (0,0) circle (2);
+\draw[color=red] (0,-1) circle (1);
+\draw[color=red] (0,0) node[anchor=south] {\footnotesize $x^2+(y+1)^2=1$};
+\draw[color=red] (0,2) node[anchor=south west] {\footnotesize $x^2+y^2=4$};
+\draw[color=red] (1,1) node[anchor=south] {$C$};
+\fill[color=red,fill=red,fill opacity=0.15] (0,0) circle (2) (-1,-1) arc [radius=1, start angle=180, delta angle=-360];
+\draw[color=red,fill=white] (0,-2) circle (1pt);
+\end{tikzpicture}
+}
+\end{center}
+The point $\MPointTwo{0}{-2}$ does not belong to $C$.
+}
+
+\end{MExerciseItems}
+\end{MHint}
+
+
+\end{MExercise}
+
+\end{MXContent}
+
+
+\MSubsection{Final Test}
+\MLabel{VBKM09_Abschlusstest}
+
+
+\begin{MTest}{Final Test Module~\ref{VBKM09}}
+\MDeclareSiteUXID{VBKM09_5Abschlusstest}
+
+
+\begin{MExercise}
+\MSetPoints{8}
+Specify the normal form of the equation of the line $P Q$ that passes through the two points $P=\MPointTwo{1}{3}$
+and $Q=\MPointTwo{-1}{7}$.
+\ \\ \ \\
+Answer: \MEquationItem{$y$}{\MLSimplifyQuestion{20}{-2*x+5}{5}{x}{5}{1}{VBNT1}}.
+\end{MExercise}
+
+\begin{MExercise}
+Let a line be given by the equation $6x+2y=4$.
+
+\begin{MExerciseItems}
+\MSetPoints{8} 
+\item{The normal form of this equation is \MEquationItem{$y$}{\MLSimplifyQuestion{20}{2-3*x}{5}{x}{5}{1}{VBNT2}}.}
+\item{What is the relative position of this line with respect to the line described by the equation $y=3x-2$?\\
+\MSetPoints{2}
+\begin{tabular}{lll}
+\MLCheckbox{0}{VBNT3} & \ \ & There is no intersection point at all.\\
+\MLCheckbox{1}{VBNT4} & \ \ & There is exactly one intersection point.\\
+\MLCheckbox{0}{VBNT5} & \ \ & The lines coincide.
+\end{tabular}}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Find the intersection point between the line described by the equation $y=2x+2$
+and the line described by the equation $2x=6$.
+\ \\ \ \\
+Answer: The intersection point is \MLFunctionQuestion{15}{(3,8)}{5}{x}{5}{VBNT6}.\\
+\MInputHint{Enter the points in the form \texttt{(a;b)}.}
+\ \\ \ \\
+Tick the possible reasons why the equation of a line $2x=6$ of the second line 
+cannot be transformed into normal form. (Several statements can be true.)\\
+\MSetPoints{1}
+\begin{tabular}{lll}
+\MLCheckbox{0}{VBNT7} & \ \ & The equation of the line cannot be solved for $x$.\\
+\MLCheckbox{1}{VBNT8} & \ \ & The equation of the line cannot be solved for $y$.\\
+\MLCheckbox{0}{VBNT9} & \ \ & The equation of the line is not cancelled completely.\\
+\MLCheckbox{0}{VBNT10} & \ \ & The line is parallel to the $x$-axis.\\
+\MLCheckbox{1}{VBNT11} & \ \ & The line is parallel to the $y$-axis.\\
+\MLCheckbox{1}{VBNT12} & \ \ & The slope of the line is not finite.\\
+\MLCheckbox{0}{VBNT13} & \ \ & The line does not intersect the $x$-axis.\\
+%\MLCheckbox{0}{VBNT14} & \ \ &  Die Gleichung beschreibt keine Gerade.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Decide which of the following points lie on the circle with the centre $P=\MPointTwo{3}{-1}$ and a radius of $r=\sqrt{10}$:\\
+\MSetPoints{2}
+\begin{tabular}{lll}
+\MLCheckbox{1}{VBNT15} & \ \ & The origin\\
+\MLCheckbox{0}{VBNT17} & \ \ & $(2;3)$\\
+\MLCheckbox{1}{VBNT16} & \ \ & $(4;2)$\\
+\MLCheckbox{0}{VBNT18} & \ \ & $(3;2)$\\
+\MLCheckbox{0}{VBNT19} & \ \ & $(0;\sqrt{10})$
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Let a circle be defined by the following equation:
+$$
+(x-2)^2+(y+3)^2 \;=\; 9 \MDFPeriod
+$$
+What are the properties of this circle?
+\MSetPoints{2}
+\begin{MExerciseItems}
+\item{Its radius is \MEquationItem{$r$}{\MLParsedQuestion{5}{3}{4}{VBNT20}}.}
+\item{Its centre is \MEquationItem{$M$}{\MLFunctionQuestion{15}{(2,-3)}{5}{x}{5}{VBNT21}}.}\\
+\MInputHint{Enter points in the form \texttt{(a;b)}.}
+\item{It intersects the line that passes though $M$ and a second unknown point $P$\\
+\MSetPoints{1}
+\begin{tabular}{lll}
+\MLCheckbox{0}{VBNT22} & \ \ & at one point,\\
+\MLCheckbox{1}{VBNT23} & \ \ & at two points,\\
+\MLCheckbox{0}{VBNT24} & \ \ & at three points,\\
+\MLCheckbox{0}{VBNT25} & \ \ & not at all.
+\end{tabular}
+}
+\end{MExerciseItems}
+\end{MExercise}
+
+
+\end{MTest}
+
+
+\newpage
+\MPrintIndex
+
+\end{document}
+
