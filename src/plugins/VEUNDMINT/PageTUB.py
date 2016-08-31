@@ -88,7 +88,7 @@ class PageTUB( AbstractHtmlRenderer ):
 			self.loadSpecialPage( tc )
 			
 		# Prepare content which is stored in tc.content (change paths etc.)
-		self.prepareContent( tc )
+		self.prepareContent( tc, basePath )
 		
 		# Replace the content placeholder added in PageXmlRenderer with the actual (not necessarily XML-valid) HTML content
 		resultString = str( result )
@@ -125,13 +125,14 @@ class PageTUB( AbstractHtmlRenderer ):
 		tc.content = etree.tostring( tree ).decode("utf-8")
 
 
-	def prepareContent(self, tc):
+	def prepareContent(self, tc, basePath):
 		"""
 		TTM produces non-valid HTML, so it has to be added after XML has been parsed.
 		Don't use tidy on the whole page, as tidy version 1 drops MathML elements (among other)
 		Note: string replace is faster than regex
 		
 		@param tc - TContent object for the page
+		@param basePath - String prefix for all links
 		"""
 		# Reduce the number of breaks and clear=all's, since they mess-up the layout
 		breakStr = '<br style="margin-bottom: 2em" />'
@@ -141,10 +142,12 @@ class PageTUB( AbstractHtmlRenderer ):
 		tc.content = tc.content.replace( '\t', '' )
 		tc.content = tc.content.replace( '\n', '' )
 		
+		tc.content = tc.content.replace( '<a class="MINTERLINK" href="', '<a class="MINTERLINK" href="%s/' % basePath )
+				
 		# if this is a special page, replace the title by i18n entry
 		if AbstractXmlRenderer.isSpecialPage(tc) or AbstractXmlRenderer.isTestPage(tc):
 			tc.content = re.sub( r"<h4>(.+?)</h4><h4>(.+?)</h4>", "<h1 id='pageTitle' data-toggle='i18n' data-i18n='%s' ></h1>" % tc.uxid, tc.content )
-
+		
 
 	def getBasePath(self, tc):
 		"""
