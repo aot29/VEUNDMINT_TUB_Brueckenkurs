@@ -6,7 +6,7 @@
 		<script>
 			$.i18n();
 			$.i18n().locale = '<xsl:value-of select="$lang" />';
-			$.i18n().load( { '<xsl:value-of select="$lang" />' : '../../../<xsl:value-of select="$basePath" />/i18n/<xsl:value-of select="$lang" />.json' } ).done( function() {
+			$.i18n().load( { '<xsl:value-of select="$lang" />' : '<xsl:value-of select="$basePath" />/../i18n/<xsl:value-of select="$lang" />.json' } ).done( function() {
 				
 	            // set the tooltip texts
 	            $('[data-toggle="tooltip"]').each( function(i, el) {
