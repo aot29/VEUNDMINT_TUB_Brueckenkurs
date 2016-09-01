@@ -52,7 +52,6 @@ class FinalTestTest( SeleniumTest ):
         #self.assertTrue( "Reset and restart".lower() in pageText )
         #self.assertTrue( "The test evaluation will be displayed here".lower() in pageText )
 
-    @unittest.skip("needs more attention")
     def testAnswerIsMultipleChoice(self):
         '''
         Exercise 1.5.1 takes a multiple choice answer

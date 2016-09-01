@@ -23,7 +23,6 @@ class Chapter1Test( SeleniumTest ):
 		self.assertIn("/en/", self.driver.current_url)
 
 
-	@unittest.skip("can't find launch button")
 	def testNavToChapter1(self):
 		'''
 		Navigate to Chapter 1

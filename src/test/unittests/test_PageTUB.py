@@ -99,7 +99,7 @@ class test_PageTUB(AbstractRendererTestCase):
 		# MathJax got loaded
 		self.assertTrue( 'MathJax.js' in self.tc.html, "Missing external MathJax in HTML" )
 		# i18n points to the right locale
-		self.assertTrue( "$.i18n().load( {%s" % self.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
+		self.assertTrue( "$.i18n().load( { '%s' :" % self.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
 		# navbar
 		self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
 		

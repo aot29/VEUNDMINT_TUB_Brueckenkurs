@@ -19,7 +19,7 @@ class SeleniumTest(unittest.TestCase):
 	# it's not necessary to add it here to use self.getElement('id')
 	xpath = {
 		'pageContents' : "//div[@id='pageContents']",
-		'pageTitle' : "//div[@id='pageContents']/h4",
+		'pageTitle' : "//h1",
 		'launchButton' : "//div[@id='pageContents']/a[@type='button']",
 		'launchButtonTextElement' : "//div[@id='pageContents']/a[@type='button']/span[@data-i18n]",
 		'TESTRESET' : "//button[@id='TESTRESET']",
@@ -32,14 +32,17 @@ class SeleniumTest(unittest.TestCase):
 		'tocTitle' : "//div[@id='toc']/h3",
 		'toc' : "//div[@id='toc']",
 		'legend' : "//div[@id='legend']",
-		'registrationButton' : "//div[@class='usercreatereply']//child::button",
-		'loginButton' : "//a[@href='login.html']"
+		'registrationButton' : "//a[@id='newUserButton']",
+		'signupButton' : "//a[@href='../en/signup.html']",
+		'loginButtonNavBar' : "//a[@href='../de/login.html']",
+		'loginButton' : "//button[@onclick='intersite.userlogin_click();']"
 	}
 
 	@classmethod
 	def setUpClass(self):
-		#self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
-		self.driver = webdriver.Firefox()
+		self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
+		
+		#self.driver = webdriver.Firefox()
 		self.driver.set_window_size(1120, 550)
 		self.driver.set_page_load_timeout(5)
 		self.driver.implicitly_wait(5)
@@ -50,6 +53,7 @@ class SeleniumTest(unittest.TestCase):
 		
 		# set global timeout
 		wait = WebDriverWait(self.driver, 3)
+
 
 		# load locale file
 		localeFile = None
@@ -63,6 +67,11 @@ class SeleniumTest(unittest.TestCase):
 				localeFile.close()
 				
 		# set URL's
+		
+		#
+		# to change the base URL, do something like
+		# export BASE_URL=http://localhost:3000/
+		#
 		self.start_url = os.getenv('BASE_URL', BASE_URL)
 
 
@@ -112,6 +121,8 @@ class SeleniumTest(unittest.TestCase):
 		self.driver.get( start_url )
 
 
+		
+
 	def _navToChapter(self, chapter, section=None, lang = "de", no_mathjax=False):
 		'''
 		Navigate to chapter specified by name.
@@ -130,8 +141,9 @@ class SeleniumTest(unittest.TestCase):
 		else:
 			# Open section
 			url = "%s/html/%s/%s.%s/modstart.html" % ( self.start_url, lang, chapter, section )
-		
+
 		self.driver.get( url )
+		WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.ID, "pageContents")))
 
 
 	def _navToSpecialPage(self, key, lang="de"):
@@ -155,4 +167,6 @@ class SeleniumTest(unittest.TestCase):
 		@param languagecode: (required) a STRING specifying the language code, e.g. "de" or "en"
 		'''
 		url = "%s/html/%s/" % ( self.start_url, lang )
+		print(url)
 		self.driver.get( url )
+		WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.ID, "pageContents")))
