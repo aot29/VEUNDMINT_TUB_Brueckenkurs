@@ -208,8 +208,8 @@ define fixLinks_cmd
 	cd $(OUTPUT) && cp *.html html/$(CURRENT_LANG)
 
 	# fix links to HTML pages
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./chapter\.html|href=\"\.\./$(CURRENT_LANG)/chapter.html|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./\.\./chapter\.html|href=\"\.\./\.\./$(CURRENT_LANG)/chapter.html|g" {} \;
+	#cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./chapter\.html|href=\"\.\./$(CURRENT_LANG)/chapter.html|g" {} \;
+	#cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./\.\./chapter\.html|href=\"\.\./\.\./$(CURRENT_LANG)/chapter.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./html|href=\"\.\./$(CURRENT_LANG)|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./\.\./html|href=\"\.\./\.\./$(CURRENT_LANG)|g" {} \;
 
@@ -279,7 +279,7 @@ fix: fixRedirects
 	$(setLocale_cmd)
 
 	# fix redirect to English "contents of the module" page
-	cd $(OUTPUT)/html/en && sed -i "s|4\.1\.1/modstart\.html|3\.1\.1/modstart\.html|g" chapter.html;
+	#cd $(OUTPUT)/html/en && sed -i "s|4\.1\.1/modstart\.html|3\.1\.1/modstart\.html|g" chapter.html;
 
 	# replace index.html with src/templates_xslt/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_xslt/html5_choose_language_simple.html $(OUTPUT)/index.html
