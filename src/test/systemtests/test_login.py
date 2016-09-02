@@ -22,27 +22,20 @@ class TestLogin( SeleniumTest ):
 	TestUPassword = 'XL3OAph'
 
 	def setUp(self):
-		#SeleniumTest.setUp(self)
+		SeleniumTest.setUp(self)
 		# navigate to EN login page
 		self._chooseLanguageVersion( 'en' )
 
 
-	def tearDown(self):
-		self._navToSpecialPage( 'VBKM_MISCLOGOUT', '' )
-		SeleniumTest.tearDown(self)
-		
 
 	def testCheckRegistrationForm(self):
 		'''
 		Check that all fields are there, and that they are empty for an unregistered user
 		'''
+		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )
 		
-		# the signup button takes a while to become active
-		time.sleep(10)
-
-		self.getElement( 'signupButton' ).click()
-		for id in self.registrationFieldIds:
-			self._checkPresentAndEmpty( id )
+		for field in self.registrationFieldIds:
+			self._checkPresentAndEmpty( field )
 
 
 	def testName(self):
@@ -50,7 +43,7 @@ class TestLogin( SeleniumTest ):
 		Are constraints on new usernames being checked upon registration?
 		Check if image is right and login button is displayed when necessary.
 		'''
-		self.getElement( 'signupButton' ).click()
+		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )
 		
 		inputEl = self.driver.find_element_by_id( 'USER_UNAME' )
 		imgEl = self.driver.find_element_by_id( "checkuserimg" ) # the icon next to the input field

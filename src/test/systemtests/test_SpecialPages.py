@@ -14,12 +14,10 @@ class SpecialPages( SeleniumTest ):
 	"""
 
 	def setUp(self):
+		SeleniumTest.setUp(self)
 		self.pageNames = AbstractXmlRenderer.specialPagesUXID
 		self.lang = 'de'
 
-
-	def tearDown(self):
-		pass
 
 
 	def testSpecialPagePresent(self):

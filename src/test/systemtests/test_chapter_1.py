@@ -11,7 +11,7 @@ class Chapter1Test( SeleniumTest ):
 	Test chapter 1
 	'''
 	def setUp( self ):
-		#SeleniumTest.setUp(self)
+		SeleniumTest.setUp(self)
 		self._openStartPage(no_mathjax=True)
 
 

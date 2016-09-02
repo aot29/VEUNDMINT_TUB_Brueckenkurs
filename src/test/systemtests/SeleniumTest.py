@@ -38,27 +38,30 @@ class SeleniumTest(unittest.TestCase):
 		'loginButton' : "//button[@onclick='intersite.userlogin_click();']"
 	}
 
-	@classmethod
-	def setUpClass(self):
+	#
+	# Each test forks its own process, so needs its own driver. Otherwise they get in the way of each other and cause random errors.
+	# Todo: Some stuff can go in setUpClass (but not the driver)
+	#
+	def setUp(self):
 		self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
 		
 		#self.driver = webdriver.Firefox()
 		self.driver.set_window_size(1120, 550)
-		self.driver.set_page_load_timeout(5)
-		self.driver.implicitly_wait(5)
+		self.driver.set_page_load_timeout(30)
+		#self.driver.implicitly_wait(30)
 
 		#Read the configuration file
 		self.config = ConfigParser.ConfigParser()
 		self.config.read( self.configPath )
 		
 		# set global timeout
-		wait = WebDriverWait(self.driver, 3)
+		#wait = WebDriverWait(self.driver, 3)
 
 
 		# load locale file
 		localeFile = None
 		try:
-			i18nPath = os.path.expanduser( os.path.join( BASE_DIR, "src/files/i18n/%s.json" % self._getConfigParam( self, 'lang' ) ) )
+			i18nPath = os.path.expanduser( os.path.join( BASE_DIR, "src/files/i18n/%s.json" % self._getConfigParam( 'lang' ) ) )
 			localeFile = open( i18nPath )
 			self.locale = json.load( localeFile )
 
@@ -75,8 +78,7 @@ class SeleniumTest(unittest.TestCase):
 		self.start_url = os.getenv('BASE_URL', BASE_URL)
 
 
-	@classmethod
-	def tearDownClass(self):
+	def tearDown(self):
 		self.driver.close()
 		self.driver.quit()
 
@@ -93,10 +95,12 @@ class SeleniumTest(unittest.TestCase):
 		@param key - String case 1: key in the self.xpath dict or case 2: element id
 		"""
 		if key in self.xpath.keys():
-			element = self.driver.find_element_by_xpath( self.xpath[ key ] )
-		
+			#element = self.driver.find_element_by_xpath( self.xpath[ key ] )
+			element = WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self.xpath[ key ])))
+	
 		else:
-			element = self.driver.find_element_by_id( key )
+			#element = self.driver.find_element_by_id( key )
+			element = WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.ID, key)))
 			
 		return element
 			
@@ -118,7 +122,7 @@ class SeleniumTest(unittest.TestCase):
 		# 		# get the url from environment, otherwise from settings
 		start_url = os.getenv('BASE_URL', BASE_URL)
 
-		self.driver.get( start_url )
+		self._loadPage( start_url )
 
 
 		
@@ -142,8 +146,7 @@ class SeleniumTest(unittest.TestCase):
 			# Open section
 			url = "%s/html/%s/%s.%s/modstart.html" % ( self.start_url, lang, chapter, section )
 
-		self.driver.get( url )
-		WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.ID, "pageContents")))
+		self._loadPage( url )
 
 
 	def _navToSpecialPage(self, key, lang="de"):
@@ -153,7 +156,7 @@ class SeleniumTest(unittest.TestCase):
 		else:
 			print( "Key must be in AbstractXmlRenderer.specialPagesUXID" )
 
-		self.driver.get( url )
+		self._loadPage( url )
 			
 		
 
@@ -167,6 +170,14 @@ class SeleniumTest(unittest.TestCase):
 		@param languagecode: (required) a STRING specifying the language code, e.g. "de" or "en"
 		'''
 		url = "%s/html/%s/" % ( self.start_url, lang )
-		print(url)
+		self._loadPage( url )
+
+		
+	def _loadPage(self, url):
+		"""
+		Try to load a URL without causing errors or timeouts.
+		
+		@param url - the url to load
+		"""
 		self.driver.get( url )
-		WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.ID, "pageContents")))
+		WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "pageContents")))
