@@ -36,6 +36,10 @@ class TestLogin( SeleniumTest ):
 		'''
 		Check that all fields are there, and that they are empty for an unregistered user
 		'''
+		
+		# the signup button takes a while to become active
+		time.sleep(10)
+
 		self.getElement( 'signupButton' ).click()
 		for id in self.registrationFieldIds:
 			self._checkPresentAndEmpty( id )

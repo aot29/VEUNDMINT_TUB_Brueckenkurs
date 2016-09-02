@@ -1,0 +1,64 @@
+# Runs all tests
+# depends on green
+#
+# Using GNU Make, cd to the checkout path and invoke as:
+#
+# make -f tools/makefiles/test
+# By default, systemtests will test the version on the staging server
+#
+# To run test on localhost, do:
+# make -f tools/makefiles/test localhost
+#
+
+.DEFAULT_GOAL := all
+
+# The URL for the test server (will be used by default)
+STAGING_URL=guest6.mulf.tu-berlin.de/gitlab-ci-test/
+
+# When testing the build locally (may be one of localhost or 127.0.0.1)
+LOCALHOST_URL=localhost
+
+# Declare as phony so targets will run even if there's a file by that name
+.PHONY: all localhost
+
+
+all: 
+	echo "Running all test on ${STAGING_URL}"
+	export BASE_URL=${STAGING_URL}
+	$(unittest_cmd)
+	$(checkServer_cmd)
+	$(systest_cmd)
+
+
+localhost: 
+	echo "Running all test run on ${LOCALHOST_URL}"
+	export BASE_URL=${LOCALHOST_URL}
+	$(unittest_cmd)
+	$(checkServer_cmd)
+	$(systest_cmd)
+
+
+#
+# Check if the server is running
+#
+define checkServer_cmd
+	ping -c 3 ${BASE_URL} > /dev/null 2>&1 || echo "Server at ${BASE_URL} not running"
+endef
+
+
+#
+# Unit tests are regression- and TDD-tests 
+#	
+define unittest_cmd
+	green -vvv src.test.unittests
+endef
+
+
+#
+# System tests are selenium tests, which hit the UI directly
+# The use a headless browser (PhantomJS) 
+#	
+define systest_cmd
+	cd src && green -vvv test.systemtests
+endef
+
