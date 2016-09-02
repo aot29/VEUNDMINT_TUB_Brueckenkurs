@@ -22,7 +22,6 @@
 from lxml import etree
 import os
 import re
-from tidylib import tidy_document
 from tex2x.renderers.AbstractRenderer import *
 from plugins.VEUNDMINT.PageXmlRenderer import *
 
@@ -148,6 +147,10 @@ class PageTUB( AbstractHtmlRenderer ):
 		if AbstractXmlRenderer.isSpecialPage(tc) or AbstractXmlRenderer.isTestPage(tc):
 			tc.content = re.sub( r"<h4>(.+?)</h4><h4>(.+?)</h4>", "<h1 id='pageTitle' data-toggle='i18n' data-i18n='%s' ></h1>" % tc.uxid, tc.content )
 		
+		#if this is not a special page, apply some layout
+		if not ( AbstractXmlRenderer.isSpecialPage(tc) or AbstractXmlRenderer.isTestPage(tc) ):
+			tc.content = re.sub( r"<h4>(.+?) - (.+?)</h4><h4>(.+?)</h4>", r"<h4><div class='label label-default'>\1</div></h4><strong>\2</strong><h1>\3</h1>", tc.content )
+
 
 	def getBasePath(self, tc):
 		"""
