@@ -49,13 +49,14 @@ class PageFactory(object):
             # get a basic page renderer
             xmlRenderer = PageXmlRenderer( self.options.lang )
             # decorate with questions and roulette exercises
-            contentRenderer =   QuestionDecorator( 
-                                    RouletteDecorator( xmlRenderer, self.data )
+            # the order is important, as roulette adds questions
+            xmlRenderer =   RouletteDecorator( 
+                                    QuestionDecorator( xmlRenderer ), self.data, self.options.strings
                                 )
             # get a table of contents renderer            
             tocRenderer = TocRenderer()
             # get a page HTML renderer
-            page = PageTUB( self.options.converterTemplates, contentRenderer, tocRenderer )
+            page = PageTUB( self.options.converterTemplates, xmlRenderer, tocRenderer )
             
         else:
             # By default, use the Page object by KIT

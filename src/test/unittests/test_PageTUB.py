@@ -25,6 +25,32 @@ class test_PageTUB(AbstractRendererTestCase):
 		self.page.generateHTML( self.tc )
 
 
+	def testLoadSpecialPage(self):
+		"""
+		Can special pages be loaded from templates stored in templates_xslt/XXX.xml
+		"""
+		for key in AbstractXmlRenderer.specialPagesUXID.keys():
+
+			if key == 'VBKM_MISCSEARCH' : continue
+
+			self.tc.uxid = key
+			self.page.loadSpecialPage( self.tc )
+			self.assertTrue( '<!-- mdeclaresiteuxidpost;;%s;; //-->' % key in self.tc.content )
+
+
+	def testGenerateHTML_for_special_pages(self):
+		for key in AbstractXmlRenderer.specialPagesUXID.keys():
+
+			if key == 'VBKM_MISCSEARCH' : continue
+
+			# Can the page be generated from template?
+			self.tc.uxid = key
+			self.page.generateHTML( self.tc )
+			self.assertTrue( '<!-- mdeclaresiteuxidpost;;%s;; //-->' % key in self.tc.html, "UXID Tag not found in %s" % key )
+			# navbar present?
+			self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
+
+
 	def testEnhanceContent(self):
 		'''
 		HTML Content from examples, info and exercises gets transformed
@@ -70,14 +96,10 @@ class test_PageTUB(AbstractRendererTestCase):
 		self.assertTrue( "utf-8" in self.tc.html, "Wrong or missing encoding in HTML" )
 		# language
 		self.assertTrue( 'html lang="%s"' % self.lang in self.tc.html, "Wrong or missing language code in HTML" )
-		# at least one stylesheet
-		self.assertTrue( 'link rel="stylesheet" type="text/css"' in self.tc.html, "Missing stylesheets in HTML" )
-		# at least one js
-		self.assertTrue( 'type="text/javascript"' in self.tc.html, "Missing external javascript in HTML" )
 		# MathJax got loaded
-		self.assertTrue( 'https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js' in self.tc.html, "Missing external MathJax in HTML" )
+		self.assertTrue( 'MathJax.js' in self.tc.html, "Missing external MathJax in HTML" )
 		# i18n points to the right locale
-		self.assertTrue( "$.i18n().load( {%s" % self.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
+		self.assertTrue( "$.i18n().load( { '%s' :" % self.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
 		# navbar
 		self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
 		
@@ -94,6 +116,8 @@ class test_PageTUB(AbstractRendererTestCase):
 
 				# TOC entry captions present
 				self.assertTrue( sibling.caption in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.caption )
+				
+				#print(self.tc.html)
 
 				# TOC entry links present
 				self.assertTrue( 'href="../%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )

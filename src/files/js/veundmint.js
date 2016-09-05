@@ -1,3 +1,57 @@
+/* this should actually go to a different file, but where i did not decide yet
+it is responsible for the document loaded action that was befor in the body onload and onunload
+onload="loadHandler()" onunload="unloadHandler()" */
+
+$(function() {
+
+  $('[data-toggle="offcanvas"]').click(function () {
+    $('.row-offcanvas').toggleClass('active')
+  });
+	//collapse with data attribute does not work for us, so we use js instead
+	//
+	//TODO commented out, when we have content in sidebar we can comment that in again
+	//
+	// $('.module-panel > div.panel-heading').click(function (e) {
+	// 	e.preventDefault();
+	// 	$(this).parent().children('.panel-collapse').collapse('toggle');
+	// });
+  // //this closes all other panels of #toc on click of certain panel
+  // $('#toc .collapse').on('show.bs.collapse', function (e) {
+  //     var actives = $('#toc').find('.in, .collapsing');
+  //     actives.each( function (index, element) {
+  //         $(element).collapse('hide');
+  //     })
+  // })
+	intersite.init();
+	globalloadHandler("");
+});
+
+$(window).on('beforeunload', function(){
+	globalunloadHandler();
+ });
+
+
+//TODO this should definately go somewhere totally else
+ // Opens a new webpage (from the local packet) in a new browser tab
+ // localurl sollte direkt aus dem href-Attribut bei anchors genommen werden TODO: Translation
+ // Marks the page as visited in 'intersite.getObj()'
+ function opensite(localurl) {
+   //window.location.href = localurl; // fetches the new page
+
+   // pushISO(); is now called on the pages by beforeunload
+
+   if (intersite.isActive() == true) {
+     if (intersite.getObj().configuration.CF_USAGE == "1") {
+
+       var timestamp = +new Date();
+       var cm = "OPENSITE: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", SITEUXID:" + SITE_UXID + ", localurl:" + localurl;
+       intersite.sendeFeedback( { statistics: cm }, false ); // synced, otherwise the page with callbacks is gone when the request is completed
+     }
+   }
+
+   window.open(localurl,"_self");
+ }
+
 //UMD JS Modules Starter template taken from https://gist.github.com/cferdinandi/ece94569aefcffa5f7fa
 
 (function (root, factory) {

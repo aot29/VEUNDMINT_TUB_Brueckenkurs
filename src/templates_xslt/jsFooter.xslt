@@ -1,6 +1,26 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+	<xsl:import href="js.xslt" />
+	<xsl:import href="i18n.xslt" />
+
 	<xsl:template name="jsFooter">
+		<xsl:comment>
+			inject:js
+		</xsl:comment>
+		<xsl:comment>
+			endinject
+		</xsl:comment>
+		
+		<!-- i18n -->
+		<xsl:call-template name="i18n">
+			<xsl:with-param name="lang" select="@lang" />
+			<xsl:with-param name="basePath" select="@basePath" />
+		</xsl:call-template>
+		
+		<!-- JS -->	
+		<xsl:apply-templates select="." mode="js" >
+			<xsl:with-param name="basePath" select="@basePath" />
+		</xsl:apply-templates> 			
 		<script>
 		<![CDATA[
 

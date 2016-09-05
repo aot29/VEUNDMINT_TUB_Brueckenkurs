@@ -1,0 +1,55 @@
+# Runs all tests
+# depends on green
+#
+# Using GNU Make, cd to the checkout path and invoke as:
+#
+# make -f tools/makefiles/test
+# By default, systemtests will test the version on the staging server
+#
+# To run test on localhost, do:
+# make -f tools/makefiles/test localhost
+#
+
+.DEFAULT_GOAL := all
+
+# The URL for the test server (will be used by default)
+STAGING_URL=http://guest6.mulf.tu-berlin.de/gitlab-ci-test/
+
+# When testing the build locally (may be one of localhost or 127.0.0.1)
+LOCALHOST_URL=http://localhost:3000
+
+# Declare as phony so targets will run even if there's a file by that name
+.PHONY: all localhost
+
+
+all: 
+	echo "Running unit tests on ${STAGING_URL}"
+	$(eval BASE_URL := ${STAGING_URL})
+	echo "Running system tests run on ${BASE_URL}"
+	$(checkServer_cmd)
+	$(runtest_cmd)
+
+
+localhost: 
+	echo "Running unit tests on localhost"
+	$(eval BASE_URL := ${LOCALHOST_URL})
+	echo "Running system tests run on ${BASE_URL}"
+	$(checkServer_cmd)
+	$(systest_cmd)
+
+
+#
+# Check if the server is running
+#
+define checkServer_cmd
+	@ping -c 3 `echo ${BASE_URL}  | awk -F/ '{print $$3}' | awk -F: '{print $$1}' - ` > /dev/null 2>&1 || echo "Server at ${BASE_URL} not running"
+endef
+
+
+#
+# Run all tests and gather test coverage data
+#	
+define systest_cmd
+	export BASE_URL=${BASE_URL} && cd src && green -vvvr test
+endef
+

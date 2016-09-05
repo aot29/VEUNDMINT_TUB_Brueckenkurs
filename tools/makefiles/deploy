@@ -29,7 +29,7 @@ WWWUSER = www-data
 
 #
 # Get the latest version from git
-# Checkout the branch you wish to use before launcing the make script.
+# Checkout the branch you wish to use before launching the make script.
 # A specific branch will not be checked out automatically.
 #
 getlatest:
@@ -82,4 +82,5 @@ endif
 # Build and deploy the nightly build
 #
 nightly: |checkuser getlatest buildall move
-	$(info "Nightly build deployed in " = $(NIGHTLY))
+	echo "Nightly build deployed in ${NIGHTLY}"
+

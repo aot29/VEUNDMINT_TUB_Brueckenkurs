@@ -3,23 +3,18 @@
 
 	<xsl:template match="page" mode="toc">
 		<xsl:comment>TOC side bar</xsl:comment>
-		
-		<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation" style="margin-top: 5px;">
-			<div id="toc" class="panel-group"><br/>
-				<!-- Add TOC title and home buttons, but skip title on first page -->
+
+			<div id="toc" class="panel-group">
+				<!-- Add TOC title -->
 				<h3>
-					<div class="pull-right">
-						<a data-toggle="tooltip" id="homebutton" href="{@basePath}/{@lang}/index.html" class="btn btn-link glyphicon glyphicon-home"></a>
-						<a data-toggle="tooltip" id="listebutton" href="{@basePath}/{@lang}/search.html" class="btn btn-link glyphicon glyphicon-book"></a>
-						<a data-toggle="tooltip" id="databutton" href="{@basePath}/{@lang}/data.html" class="btn btn-link glyphicon glyphicon-dashboard"></a>
-					</div>                        
 					<span data-toggle="i18n" data-i18n="course-title"/>
 				</h3>
 				<xsl:apply-templates select="toc/entries/entry" />
-				<xsl:call-template name="legend"/>
+				<xsl:if test="@isSpecialPage='False' and @isInfoPage='False' and @isTestPage='False'">
+					<xsl:call-template name="legend"/>
+				</xsl:if>
 				<xsl:call-template name="socialMedia"/>
 			</div>
-		</div>
 		<xsl:comment>End TOC side bar</xsl:comment>
 	</xsl:template>
 
@@ -39,7 +34,7 @@
 
 	<!-- Apply to unselected entries -->
 	<xsl:template match="entry" mode="unselected">
-		<div class="panel panel-default">
+		<div class="panel panel-default module-panel">
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a href="{@href}"><xsl:value-of select="caption"/></a>
@@ -50,7 +45,7 @@
 
 	<!-- Apply to selected entry -->
 	<xsl:template match="entry" mode="selected">
-		<div class="panel panel-primary">
+		<div class="panel panel-primary module-panel">
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a href="{@href}"><xsl:value-of select="caption"/></a>
@@ -77,7 +72,7 @@
 		<!-- TOC entries of level 4 have icons -->
 		<xsl:variable name="iconClass"><xsl:if test="@level = '4'">glyphicon glyphicon-file</xsl:if></xsl:variable>
 		<xsl:variable name="highlightClass"><xsl:if test="@selected = 'True'">selectedEntry</xsl:if></xsl:variable>
-		
+
 		<!-- List entries recursively -->
 		<li>
 			<xsl:choose>
@@ -92,7 +87,7 @@
 		</li>
 	</xsl:template>
 
-	
+
 	<!-- TOC legend -->
 	<xsl:template name="legend">
 		<xsl:comment>Legend</xsl:comment>
@@ -108,5 +103,5 @@
 			</div>
 		</div>
 	</xsl:template>
-	
+
 </xsl:stylesheet>

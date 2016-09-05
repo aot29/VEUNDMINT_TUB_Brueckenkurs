@@ -1,5 +1,3 @@
-
-
 \ifttm
 \MSetSubject{\MINTPhysics}
 \MSubject{Sonstiges}
@@ -19,22 +17,22 @@ Auf den folgenden Seiten finden sich
 \begin{MXContent}{Kapitelübersicht}{Kapitel}{STD}
 \MLabel{L_CHAPTER}
 \MDeclareSiteUXID{VBKM_MISCCHAPTERS}
-\MGlobalChapterTag
-Einzelne Lernmodule und deren Abschnitte können jederzeit manuell angesteuert und bearbeitet werden:
-\begin{itemize}
-\item{Modul 01: \MSRef{VBKM01}{Elementares Rechnen}}
-\item{Modul 02: \MSRef{VBKM02}{Gleichungen in einer Unbekannten}}
-\item{Modul 03: \MSRef{VBKM03}{Ungleichungen in einer Unbekannten}}
-\item{Modul 04: \MSRef{VBKM04}{Lineare Gleichungssysteme}}
-\item{Modul 05: \MSRef{VBKM05}{Elementare Geometrie}}
-\item{Modul 06: \MSRef{VBKM06}{Elementare Funktionen}}
-\item{Modul 07: \MSRef{VBKM07}{Differentialrechnung}}
-\item{Modul 08: \MSRef{VBKM08}{Integralrechnung}}
-\item{Modul 09: \MSRef{VBKM09}{Orientierung im zweidimensionalen Koordinatensystem}}
-\item{Modul 10: \MSRef{VBKM10}{Grundlagen der anschaulichen Vektorgeometrie}}
-\end{itemize}
-Auch die Tests und die Übungsaufgaben können in beliebiger Reihenfolge und auch mehrfach bearbeitet werden.
-Dazu sind einfach die Einträge im Inhaltsverzeichnis im linken Randbereich anzuklicken.
+% \MGlobalChapterTag
+%Einzelne Lernmodule und deren Abschnitte können jederzeit manuell angesteuert und bearbeitet werden:
+%\begin{itemize}
+%\item{Modul 01: \MSRef{VBKM01}{Elementares Rechnen}}
+%\item{Modul 02: \MSRef{VBKM02}{Gleichungen in einer Unbekannten}}
+%\item{Modul 03: \MSRef{VBKM03}{Ungleichungen in einer Unbekannten}}
+%\item{Modul 04: \MSRef{VBKM04}{Lineare Gleichungssysteme}}
+%\item{Modul 05: \MSRef{VBKM05}{Elementare Geometrie}}
+%\item{Modul 06: \MSRef{VBKM06}{Elementare Funktionen}}
+%\item{Modul 07: \MSRef{VBKM07}{Differentialrechnung}}
+%\item{Modul 08: \MSRef{VBKM08}{Integralrechnung}}
+%\item{Modul 09: \MSRef{VBKM09}{Orientierung im zweidimensionalen Koordinatensystem}}
+%\item{Modul 10: \MSRef{VBKM10}{Grundlagen der anschaulichen Vektorgeometrie}}
+%\end{itemize}
+%Auch die Tests und die Übungsaufgaben können in beliebiger Reihenfolge und auch mehrfach bearbeitet werden.
+%Dazu sind einfach die Einträge im Inhaltsverzeichnis im linken Randbereich anzuklicken.
 \end{MXContent}
 
 \MSubsection{Meine Kursdaten}
@@ -44,18 +42,20 @@ Dazu sind einfach die Einträge im Inhaltsverzeichnis im linken Randbereich anzu
 \MGlobalDataTag
 \MDeclareSiteUXID{VBKM_MISCCOURSEDATA}
 
-Die persönlichen Daten können auf der \MSRef{L_CONFIG}{Einstellungsseite} eingerichtet werden.
+% see templates_xslt/data.xml
 
-Der Bearbeitungsstand der Kursmodule wird aufgrund der bearbeiteten Übungsaufgaben sowie der Ergebnisse
-der Abschlusstests gemessen. Der Kurs gilt als erfolgreich absolviert, wenn sämtliche Abschlusstests mit mindestens 90\% der Punkte bestanden wurden:
+%Die persönlichen Daten können auf der \MSRef{L_CONFIG}{Einstellungsseite} eingerichtet werden.
 
-\begin{html}
-<div>
-<p id="CDATAS">
-Kann nicht auf Browserdaten zugreifen!
-</p>
-</div>
-\end{html}
+%Der Bearbeitungsstand der Kursmodule wird aufgrund der bearbeiteten Übungsaufgaben sowie der Ergebnisse
+%der Abschlusstests gemessen. Der Kurs gilt als erfolgreich absolviert, wenn sämtliche Abschlusstests mit mindestens 90\% der Punkte bestanden wurden:
+
+%\begin{html}
+%<div>
+%<p id="CDATAS">
+%Kann nicht auf Browserdaten zugreifen!
+%</p>
+%</div>
+%\end{html}
 
 % \begin{html}
 %  <div class="progress">
@@ -75,102 +75,107 @@ Kann nicht auf Browserdaten zugreifen!
 \MGlobalConfTag
 \MDeclareSiteUXID{VBKM_MISCSETTINGS}
 
-Falls Sie schon einen Account für den Brückenkurs besitzen,
-können Sie sich auf der \MSRef{L_LOGIN}{Login-Seite} einloggen.
-\begin{html}
-<div class="show_scorm" style="display:none">
-<br />
-<b>Sie sind über das Lernsystem angemeldet und registriert.</b>
-</div>
-\end{html}
-\ \\
+% see templates_xslt/signup.xml
 
-\begin{html}
-<div class="show_noscorm" style="display:none">
-<b>Einen neuen Account registrieren:</b><br />
-Nach erfolgreicher Registrierung werden die Daten auf unseren Servern abgelegt
-und Ihr Bearbeitungsstand ist auch auf anderen Rechnern und Geräten verfügbar:
-<div class="xreply">
-<p id="LOGINFIELD">
-Kann nicht auf Browserdaten zugreifen!
-</p>
-Persönliche Angaben (notwendig um eine Teilnahmebestätigungen zu erstellen):&nbsp;&nbsp;<button type="button" id="updatepdatabutton" style="visibility:hidden" class="criticalbutton" onclick="userupdate_click();">Persönliche Daten aktualisieren</button>
-<table>
-  <tr><td align=left>Vorname:</td><td align=left><input id="USER_VNAME" type="text" size="40" ></input></td></tr>
-  <tr><td align=left>Nachname:</td><td align=left><input id="USER_SNAME" type="text" size="40"></input></td></tr>
-  <tr><td align=left>eMail:</td><td align=left><input id="USER_EMAIL" type="text" size="40"></input></td></tr>
-</table>
-<br />
-Freiwillige Angaben zum angestrebten Studiengang (falls geplant bzw. bekannt):
-<table>
-  <tr><td align=left>Studiengang:</td><td align=left><input id="USER_SGANG" type="text" size="40"></input></td></tr>
-  <tr><td align=left>Universität / Hochschule:</td><td align=left><input id="USER_UNI" type="text" size="40"></input></td></tr>
-</table>
-<br />
-<br />
-<div id="USERNAMEFIELD">
-Wählen Sie einen Loginnamen für die Kursbearbeitung:<br />
-Loginname: <input id="USER_UNAME" type="text" size="18" oninput="usercheck();" onkeyup="usercheck();" onpaste="usercheck();" onpropertychange="usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
-<br />
-<div class="usercreatereply"><p id="ulreply_p"> </p></div>
-<br /><br />
-</div>
+%Falls Sie schon einen Account für den Brückenkurs besitzen,
+%können Sie sich auf der \MSRef{L_LOGIN}{Login-Seite} einloggen.
+%\begin{html}
+%<div class="show_scorm" style="display:none">
+%<br />
+%<b>Sie sind über das Lernsystem angemeldet und registriert.</b>
+%</div>
+%\end{html}
+%\ \\
 
-Nach der Registrierung werden Ihre Daten auf unseren Kursservern hinterlegt, ebenso Ihre eingegebenen Lösungen und Testergebnisse. Diese Daten werden für anonymisierte
-statistische Erhebungen genutzt und um die Qualtität der Inhalte und der Aufgaben zu verbessern. Bitte beachten Sie, dass Teilnahmebestätigungen für den Kurs nur ausgestellt
-werden können, wenn die freiwilligen Felder vollständig ausgefüllt sind.
-</div>
-</div>
-\end{html}
+%\begin{html}
+%<div class="show_noscorm" style="display:none">
+%<b>Einen neuen Account registrieren:</b><br />
+%Nach erfolgreicher Registrierung werden die Daten auf unseren Servern abgelegt
+%und Ihr Bearbeitungsstand ist auch auf anderen Rechnern und Geräten verfügbar:
+%<div class="xreply">
+%<p id="LOGINFIELD">
+%Kann nicht auf Browserdaten zugreifen!
+%</p>
+%Persönliche Angaben (notwendig um eine Teilnahmebestätigungen zu erstellen):&nbsp;&nbsp;<button type="button" id="updatepdatabutton" style="visibility:hidden" class="criticalbutton" onclick="intersite.userupdate_click();">Persönliche Daten aktualisieren</button>
+%<table>
+%  <tr><td align=left>Vorname:</td><td align=left><input id="USER_VNAME" type="text" size="40" ></input></td></tr>
+%  <tr><td align=left>Nachname:</td><td align=left><input id="USER_SNAME" type="text" size="40"></input></td></tr>
+%  <tr><td align=left>eMail:</td><td align=left><input id="USER_EMAIL" type="text" size="40"></input></td></tr>
+%</table>
+%<br />
+%Freiwillige Angaben zum angestrebten Studiengang (falls geplant bzw. bekannt):
+%<table>
+%  <tr><td align=left>Studiengang:</td><td align=left><input id="USER_SGANG" type="text" size="40"></input></td></tr>
+%  <tr><td align=left>Universität / Hochschule:</td><td align=left><input id="USER_UNI" type="text" size="40"></input></td></tr>
+%</table>
+%<br />
+%<br />
+%<div id="USERNAMEFIELD">
+%Wählen Sie einen Loginnamen für die Kursbearbeitung:<br />
+%Loginname: <input id="USER_UNAME" type="text" size="18" oninput="intersite.usercheck();" onkeyup="intersite.usercheck();" onpaste="intersite.usercheck();" onpropertychange="intersite.usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
+%<br />
+%<div class="usercreatereply"><p id="ulreply_p"> </p></div>
+%<br /><br />
+%</div>
+
+%Nach der Registrierung werden Ihre Daten auf unseren Kursservern hinterlegt, ebenso Ihre eingegebenen Lösungen und Testergebnisse. Diese Daten werden für anonymisierte
+%statistische Erhebungen genutzt und um die Qualtität der Inhalte und der Aufgaben zu verbessern. Bitte beachten Sie, dass Teilnahmebestätigungen für den Kurs nur ausgestellt
+%werden können, wenn die freiwilligen Felder vollständig ausgefüllt sind.
+%</div>
+%</div>
+%\end{html}
 
 % \textbf{Kursdaten zurücksetzen:}
-% 
-% % <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="usercreatelocal_click(1);">Obige Benutzerdaten im Browser registrieren</button><br />
+%
+% % <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="intersite.usercreatelocal_click(1);">Obige Benutzerdaten im Browser registrieren</button><br />
 % Die in diesem Browser und auf unseren Servern gespeicherten Daten zu diesem Kurs werden zurückgesetzt,
 % der Kurs kann dadurch von vorne bearbeitet werden. Benutzername, Passwort und persönliche Daten bleiben erhalten.
-% 
+%
 % \begin{html}
-% <button type="button" class="criticalbutton" id="RESETBUTTON1" onclick="userreset_click();">Kursdaten zurücksetzen</button>
+% <button type="button" class="criticalbutton" id="RESETBUTTON1" onclick="intersite.userreset_click();">Kursdaten zurücksetzen</button>
 % \end{html}
 
-\begin{html}
-<div class="show_scorm" style="display:none">
-<b>Ihre Benutzerdaten können Sie im Lernsystem einsehen und verändern.</b>
-</div>
-<div class="show_noscorm" style="display:none">
-<b>Account löschen</b><br />
-Die in diesem Browser und auf unseren Servern gespeicherten Daten inklusive des Accounts werden gelöscht.
-Beachten Sie, dass ein einmal registrierter Accountname auch nach Löschung des Accounts nicht mehr für eine Registrierung
-zur Verfügung steht.
-<br /><br />
-<button type="button" class="criticalbutton" id="RESETBUTTON2" onclick="userdelete_click();">Account löschen</button>
-</div>
-<br /><br />
-<div class="xreply">
-<p id="CHECKIS">
-Kann nicht auf Browserdaten zugreifen!
-</p>
-</div>
-\end{html}
+%\begin{html}
+%<div class="show_scorm" style="display:none">
+%<b>Ihre Benutzerdaten können Sie im Lernsystem einsehen und verändern.</b>
+%</div>
+%<div class="show_noscorm" style="display:none">
+%<b>Account löschen</b><br />
+%Die in diesem Browser und auf unseren Servern gespeicherten Daten inklusive des Accounts werden gelöscht.
+%Beachten Sie, dass ein einmal registrierter Accountname auch nach Löschung des Accounts nicht mehr für eine Registrierung
+%zur Verfügung steht.
+%<br /><br />
+%<button type="button" class="criticalbutton" id="RESETBUTTON2" onclick="intersite.userdelete_click();">Account löschen</button>
+%</div>
+%<br /><br />
+%<div class="xreply">
+%<p id="CHECKIS">
+%Kann nicht auf Browserdaten zugreifen!
+%</p>
+%</div>
+%\end{html}
 \end{MXContent}
 
 \begin{MXContent}{Login}{Login}{STD}
 \MLabel{L_LOGIN}
 \MGlobalLoginTag
 \MDeclareSiteUXID{VBKM_MISCLOGIN}
-\begin{html}
-<div class="show_noscorm" style="display:none">
-<div id="ONLYLOGINFIELD"></div>
-\end{html}
 
-Zum Einloggen sind der Benutzername und das Passwort der Registrierung erforderlich.
+% see templates_xslt/login.xml
 
-\begin{html}
-</div>
-<div class="show_scorm" style="display:none">
-<b>Sie können sich nur über das Lernsystem an- und abmelden.</b>
-</div>
-\end{html}
+%\begin{html}
+%<div class="show_noscorm" style="display:none">
+%<div id="ONLYLOGINFIELD"></div>
+%\end{html}
+
+%Zum Einloggen sind der Benutzername und das Passwort der Registrierung erforderlich.
+
+%\begin{html}
+%</div>
+%<div class="show_scorm" style="display:none">
+%<b>Sie können sich nur über das Lernsystem an- und abmelden.</b>
+%</div>
+%\end{html}
 
 \end{MXContent}
 
@@ -181,20 +186,22 @@ Zum Einloggen sind der Benutzername und das Passwort der Registrierung erforderl
 \MGlobalLogoutTag
 \MDeclareSiteUXID{VBKM_MISCLOGOUT}
 
-\begin{html}
-<script type="text/javascript">
-requestLogout = 1;
-</script>
-<p id="LOGINFIELD">
-Kann nicht auf Browserdaten zugreifen!
-</p>
-<div class="show_scorm" style="display:none">
-<b>Der Kurs ist geschlossen, ggf. müssen Sie ihn noch über das Lernsystem verlassen oder das Fenster schließen.</b>
-</div>
-<div class="show_noscorm" style="display:none">
-<b>Der Kurs ist geschlossen, ggf. müssen Sie noch das Browserfenster oder den Tab schließen.</b>
-</div>
-\end{html}
+% see templates_xslt/logout.xml
+
+%\begin{html}
+%<script type="text/javascript">
+%requestLogout = 1;
+%</script>
+%<p id="LOGINFIELD">
+%Kann nicht auf Browserdaten zugreifen!
+%</p>
+%<div class="show_scorm" style="display:none">
+%<b>Der Kurs ist geschlossen, ggf. müssen Sie ihn noch über das Lernsystem verlassen oder das Fenster schließen.</b>
+%</div>
+%<div class="show_noscorm" style="display:none">
+%<b>Der Kurs ist geschlossen, ggf. müssen Sie noch das Browserfenster oder den Tab schließen.</b>
+%</div>
+%\end{html}
 
 
 \end{MXContent}
@@ -223,4 +230,3 @@ Mit Strg-F sucht der Browser nach Schlagwörtern in der Liste. Folgende Stichwö
 \end{MXContent}
 
 \fi
-

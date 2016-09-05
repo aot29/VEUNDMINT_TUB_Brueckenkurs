@@ -98,7 +98,7 @@ class Option(object):
         self.dorelease = 0        # In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
         self.doverbose = 0        # Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
         self.docollections = 0    # Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
-        self.dopdf = 0            # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
+        self.dopdf =  0           # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
         self.dotikz = 0           # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
         self.dozip = 0            # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
         self.consolecolors = 1    # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
@@ -135,8 +135,8 @@ class Option(object):
         self.autotikzcopyright = 1                           # includes tikz externalized images in copyright list
         self.displaycopyrightlinks = 0                       # add copyright links to images in the entire course
         self.maxsitejsonlength = 255                         # the maximal number of string characters allowed for an internal json site object, will be stored in a different file if limit is exceeded
-        
-        self.bootstrap = 0                                   # Use Bootstrap for responsive layout
+
+        self.bootstrap =      1                              # Use Bootstrap for responsive layout
 
         self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
@@ -243,7 +243,8 @@ class Option(object):
 
 
         # VE&MINT course parameters, defining values used by the online course
-        server = "http://guest6.mulf.tu-berlin.de/server/dbtest"
+        server_protocol = ( lambda scormlogin: 'https' if scormlogin == 1 else 'http' ) ( self.scormlogin )
+        server = server_protocol + "://guest6.mulf.tu-berlin.de/server/dbtest"
         self.do_feedback = "0"                        # Feedbackfunktionen aktivieren? DOPPLUNG MIT FLAGS
         self.do_export = "0"                          # Aufgabenexport aktivieren? DOPPLUNG MIT FLAGS
         self.reply_mail = "brueckenkurs@innocampus.tu-berlin.de"      # Wird in mailto vom Admin-Button eingesetzt
@@ -281,11 +282,11 @@ class Option(object):
 
         # HTML/JS/CSS template options
         self.template_precss = "precss"
-        
+
         # Use either templates or templates_bootstrap to render HTML files
-        self.converterTemplates = ( lambda bootstrap: 'templates_xslt' if bootstrap else 'templates_html5' ) ( self.bootstrap )        
-        
-        self.template_html5 = os.path.join(self.converterTemplates, "html5_mintmodtex.html")        
+        self.converterTemplates = ( lambda bootstrap: 'templates_xslt' if bootstrap else 'templates_html5' ) ( self.bootstrap )
+
+        self.template_html5 = os.path.join(self.converterTemplates, "html5_mintmodtex.html")
         self.template_javascriptheader = os.path.join(self.converterTemplates, "html5_javascriptheader.html")
         self.template_javascriptfooter = os.path.join(self.converterTemplates, "html5_javascriptfooter.html")
         self.template_mathjax_settings = os.path.join(self.converterTemplates, "mathjax_settings.html")
@@ -307,34 +308,31 @@ class Option(object):
             # Styles and JS-Files for the Bootstrap
             # version are in the templates
             pass
-            
+
         else:
             # Default-layout-specific styles and JS-Files
             self.stylesheets  += [
-                "qtip2/jquery.qtip.min.css",
-                "datatables/min.css"
+                # "qtip2/jquery.qtip.min.css",
+                # "datatables/min.css"
             ]
+            # all the following files are now injected via gulp
             self.scriptheaders += [
-                "jquery-3.1.0.min.js",
-                "es5-sham.min.js",
-                "qtip2/jquery.qtip.min.js",
-                "datatables/datatables.min.js",
-                "knockout-3.0.0.js",
-                "math.js",
-                "dynamiccss.js",
-                self.convinfofile,
-                "mparser.js",
-                "scormwrapper.js",
-                "dlog.js",
-                "userdata.js",
-                "mintscripts.js",
-                "intersite.js",
-                "exercises.js",
-                "mintscripts.js",
-                "servicescripts.js",
-                "CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
-                "jquery.i18n.js",
-                "jquery.i18n.messagestore.js"
+                # "es5-sham.min.js",
+                # "datatables/datatables.min.js",
+                # "knockout-3.0.0.js",
+                # "math.js",
+                # "dynamiccss.js",
+                # self.convinfofile, # this file will hold several python variables translated to js
+                # "mparser.js",
+                # "scormwrapper.js",
+                # "dlog.js",
+                # "userdata.js",
+                # "mintscripts.js",
+                # "intersite.js",
+                # "exercises.js",
+                # "servicescripts.js",
+                # "CLDRPluralRuleParser/src/CLDRPluralRuleParser.js",
+                # "jquery.i18n.messagestore.js"
             ]
 
             # javascript files to be minimized if borkify is active, relative to converterDir

@@ -22,6 +22,7 @@
 from lxml import etree
 import os
 import re
+import html
 from tidylib import tidy_document
 from tex2x.renderers.AbstractRenderer import *
 
@@ -38,6 +39,10 @@ class TocRenderer( AbstractXmlRenderer ):
 		@return an etree element
 		"""
 		toc = etree.Element( 'toc' )
+		
+		# skip on special pages
+		if AbstractXmlRenderer.isSpecialPage( tc ) : return toc
+
 		pageId = tc.myid
 		# add a parameter to the tree: the currently selected page
 		toc.set( 'forPage', str( pageId ) )
@@ -58,6 +63,8 @@ class TocRenderer( AbstractXmlRenderer ):
 		
 		# add the entries to the toc element
 		toc.append( entries )
+		
+		#print( AbstractXmlRenderer.toString( toc ) )
 
 		return toc
 
@@ -152,7 +159,7 @@ class TocRenderer( AbstractXmlRenderer ):
 
 		# don't add section numbers to captions on the first page (imprint, course information etc.)
 		if not AbstractXmlRenderer.isCoursePage(tc): return tc.caption
-
+		
 		pageIndex = tc.title
 		# For module captions, remove the first digit and point
 		if tc.level == MODULE_LEVEL:
@@ -162,7 +169,7 @@ class TocRenderer( AbstractXmlRenderer ):
 				
 		# section captions are not numbered, so get the number from the link (the 2 last digits from the folder name)
 		elif tc.level == SECTION_LEVEL:
-			match = re.search( '(?<=\d\.)\d\.\d', tc.fullname)
+			match = re.search( '(?<=\d\.)\d+\.\d+', tc.fullname)
 			if match:
 				pageIndex = match.group(0) + '.'
 			
@@ -173,6 +180,9 @@ class TocRenderer( AbstractXmlRenderer ):
 				pageIndex = match.group(0)
 				
 		response = "%s %s" % ( pageIndex, tc.caption ) 
-
-		return response
+		
+		# Need to unescape to cope with different formats in LaTeX files.
+		# If umlaute are written as e.g. "a in LaTeX, they get converted to unicode entities, such as &#228;
+		# which in turn get escaped as &amp;228; during XSL transformation.
+		return html.unescape( response )
 		

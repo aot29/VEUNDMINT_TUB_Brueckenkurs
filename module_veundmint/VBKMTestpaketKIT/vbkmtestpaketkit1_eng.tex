@@ -1,0 +1,750 @@
+\input{mintmod.tex}
+
+
+\MPragma{MathSkip}
+
+%Einkommentieren um automatisiert pngs zu exportieren
+\Mtikzexternalize
+
+\begin{document}
+
+\MSection{Entrance Test} %  aus KIT-Vorkurs
+\MSetSectionID{testkit1}
+
+\begin{MSectionStart}
+\MGlobalSTestTag
+\MLabel{L_TEST01START}
+\MDeclareSiteUXID{VBKMT_START}
+% \textbf{Autorenversion, nicht zur Veröffentlichung vorgesehen}\\
+% Die Tests sollen an folgenden Terminen gestellt werden:
+% \begin{itemize}
+% \item{\MSRef{L_TEST01}{Test 1} (Onlinemodule 1,2,3: Elementares Rechnen, Gleichungen, Ungleichungen inklusive Potenzen und Wurzeln aber ohne Funktionsbegriff) am 12. September \textit{nach} dem letzten Tutorium der ersten Woche,}
+% \item{\MSRef{L_TEST02}{Test 2} (Onlinemodul 5: Elementare Geometrie) am 17.09.2024,}
+% \item{\MSRef{L_TEST03}{Test 3} (Onlinemodul 6: Elementare Funktionen) am 19.09.2014,}
+% \item{\MSRef{L_TEST04}{Test 4} (Onlinemodul 7: Differentialrechnung) am 23. September passend zum Onlinemodul an diesem Termin,}
+% \item{\MSRef{L_TEST05}{Test 5} (Onlinemodul 8: Integralrechnung) inklusive Zusatzaufgaben zu partieller Integration und Substitution am 25.09.2014,}
+% \item{\MSRef{L_TEST06}{Test 6} (Onlinemodul 4: Lineare Gleichungssysteme) am 26.09.2014.}
+% % \item{\MSRef{L_TEST07}{Test 7} (Onlinemodul 9: Vektorgeometrie) am 30. September passend zum Onlinemodul an diesem Termin.}
+% \end{itemize}
+% Die Onlinemodule 5 (Elementare Geometrie) und 10 (Orientierung im 3D-Koordinatensystem) werden nicht separat geprüft, einzelne Fragen daraus tauchen in Test 6 auf.
+% \ \\ \ \\
+
+Please note:
+
+\begin{itemize}
+\item{The sample part of the test will introduce you to the use of the input boxes.}
+\item{Your answers in the sample part of the test will not be graded.}
+\item{During the test you are allowed to rely on literature or written notes. However, 
+the test must be taken without any technical aids. In particular, you may not use a calculator.}
+\end{itemize}
+
+\ \\ \ \\
+For the sample test, please click \MSRef{L_TEST01}{here}.
+To proceed immediately to the graded entrance test, please click \MSRef{L_TEST02}{here}.
+
+\end{MSectionStart}
+
+\MSubsection{Test 1: Sample Part}
+
+\begin{MXContent}{Restart}{Restart}{exclam}
+\MLabel{L_TEST01}
+\MDeclareSiteUXID{VBKMT_OffenerTest}
+
+Please read the \MSRef{L_TEST01START}{instructions on the test procedure}.
+\ \\ \ \\
+The sample part of the test is optional and  will not be graded. It serves to introduce you to the use of the input boxes.
+\ \\ \ \\
+Important notice: please solve the exercises on a sheet of paper without using a calculator. Enter your solutions into the input boxes, and they will be checked. As soon as you are familiar with the use of the input boxes, you can click ``next'' in the upper right-hand corner and take the graded entrance test.
+\ \\ \ \\
+\MInputHint{Many exercises are followed by blue info texts that give hints for the use of the interactive input boxes.
+For more complex terms, a blue info box appears where the entered mathematical term is displayed as you type in your entry. Do not 
+confirm your entry until the displayed term agrees completely with the solution you intend to enter.}
+
+\begin{MExercise}
+Simplify the following complex fractions so that only a simple fraction remains:
+\begin{MExerciseItems}
+\item{$\Mdfrac{2+\frac32}{1-\frac13}$ is equivalent to \MLParsedQuestion{5}{21/4}{5}{TTXT1}.\\\MInputHint{Enter, for example, $\Mdfrac{11}{12}$ as \texttt{11/12}.}}
+\item{$\Mdfrac{4x^2+y^2}{3x-y}-\Mdfrac{5x^2-2y^2}{y-3x}$ is equivalent to \MLSimplifyQuestion{15}{3*x+y}{6}{x,y}{3}{1}{TTXT3}.\\\MInputHint{Do not enter any brackets.}}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Expand the brackets completely and collect like terms together:
+
+$(x-2)(x+1)\cdot x$ = \MLSimplifyQuestion{30}{(x-2)*(x+1)*x}{10}{x}{5}{1}{TTXT4}.
+
+\MInputHint{Enter, for example, $(x+1)(x+2)$ = \texttt{x^2+3*x+2} or also \texttt{x*x+3*x+2}.}
+\end{MExercise}
+
+\begin{MExercise}
+Apply one of the binomial formulas to transform each of the following terms:
+\begin{MExerciseItems}
+\item{$(-x-3)(-x+3)$ = \MLSimplifyQuestion{34}{(-x-3)*(-x+3)}{10}{x}{5}{1}{TTXT5}.}
+\item{$(s+2r+t)^2$ = \MLSimplifyQuestion{34}{(s+2*r+t)^2}{10}{s,r,t}{5}{1}{TTXT6}.\\\begin{MHint}{Hint}First apply the binomial formula to $(s\,+\,(2r+t))^2$.\end{MHint}}
+\end{MExerciseItems}
+\MInputHint{Enter, for example, $(x+1)^2$ = \texttt{x^2+2*x+1} or also \texttt{x*x+2*x+1}, however, your input must not contain any products of bracketed terms.}
+\end{MExercise}
+
+\begin{MExercise}
+Rewrite this power and radical expression as a simple power with a rational number as its exponent, without using the root sign:
+\ \\ \ \\
+\MEquationItem{$\sqrt{\sqrt{x}\cdot x}$}{\MLSimplifyQuestion{20}{x^(3/4)}{1}{x}{10}{576}{TTXT7}}.\\
+\MInputHint{Enter, for example, $\sqrt{x}\cdot x^2$ = \texttt{x^(5/2)} or also \texttt{x^(2.5)},\\remember the brackets around the fraction in the exponent.}
+\end{MExercise}
+
+\begin{MExercise}
+Transform the fractions such that the denominator disappears:
+\begin{MExerciseItems}
+\item{$\frac{2x}{\sqrt{2}-\sqrt{3}}$ = \MLSimplifyQuestion{30}{-2*x*(sqrt(2)+sqrt(3))}{12}{x}{10}{256}{TTXT8}.}
+\item{$\frac{1}{\sqrt{n+1}+\sqrt{n}}$ = \MLSimplifyQuestion{30}{sqrt(n+1)-sqrt(n)}{1}{n}{10}{256}{TTXT9}.}
+\end{MExerciseItems}
+\MInputHint{Your input must not contain any fractions or powers. However, radicals are allowed. For example, enter the square root $\sqrt{x y z}$ 
+as \texttt{sqrt(x*y*z)}.}
+\end{MExercise}
+
+\begin{MExercise}
+Solve the equation $\Mdfrac{t-2}{t+1}=2$ for $t$.\ \\
+Answer: $t$ = \MLSimplifyQuestion{5}{-4}{10}{t}{10}{1}{TTXT10}\: .
+\end{MExercise}
+
+\begin{MExercise}
+Specify the solution sets of the following quadratic equations:
+\begin{MExerciseItems}
+\item{$x^2+3x-10=0$ has the solution set \MLParsedQuestion{20}{2,-5}{10}{AKK1}.}
+\item{$x^2+2x+3=0$ has the solution set \MLParsedQuestion{20}{}{10}{AKK2}.}
+\item{$(x-1)^2-(x+1)^2=0$ has the solution set \MLParsedQuestion{20}{0,0}{10}{AKK3}.}
+\end{MExerciseItems}
+\MInputHint{Enter the solutions as sets. On a German keyboard, the curly brackets are accessed by holding the
+AltGr key and tapping 7 and 0, respectively. Enter the sets in the form \texttt{\{1;2;3\}}. The empty set is 
+entered as \texttt{\{\}}.}
+\end{MExercise}
+
+
+\begin{MExercise}
+Specify the solution sets of the following equations:
+\begin{MExerciseItems}
+\item{$\frac1x+1=x-1$ has the solution set \MLParsedQuestion{30}{1+sqrt(2),1-sqrt(2)}{10}{AKB1}.}
+\item{$\frac1x+\frac2x=\frac4x$ has the solution set \MLParsedQuestion{30}{}{10}{AKB2}.}
+\item{$\sqrt{2x^2+1}=3x$ has the solution set \MLParsedQuestion{30}{1/sqrt(7),1/sqrt(7)}{10}{AKB3}.}
+\end{MExerciseItems}
+\MInputHint{The solution sets are allowed to contain radical terms. However, different choices of sign have to be 
+entered explicitly. For example, enter $\lbrace 1\pm \frac12\sqrt3\rbrace$ as \texttt{\{1+1/2*sqrt(3);1-1/2*sqrt(3)\}}.}
+
+How many solutions does the equation $(b-a)^{100}+(b+a)^{100}=0$ have if $a$ and $b$ are independent variables?\\
+\begin{MQuestionGroup}
+\MLCheckbox{0}{RX1} No solution\ \\
+\MLCheckbox{1}{RX2} Exactly one solution for both $a$ and $b$\ \\
+\MLCheckbox{0}{RX3} One solution for $a$ and an infinite number of solutions for $b$\ \\
+\MLCheckbox{0}{RX4} An infinite number of solutions for both variables
+\end{MQuestionGroup}\ \\
+\MGroupButton{Check input}
+\end{MExercise}
+
+
+\begin{MExercise}
+Rewrite the absolute value expression $|2x-1|-3x$ as a case analysis with two expressions that do not contain 
+any absolute values.\\
+Answer: $|2x-1|-3x$ = \MLSimplifyQuestion{40}{abs(2*x-1)-3*x}{8}{x}{3}{128}{TTXT11}.\\
+\MInputHint{A short version of a case analysis is entered in the form \texttt{if(condition,value1,value2)}.}
+\ \\ \ \\
+\begin{MHint}{What to do here}
+In a mathematical case analysis, absolute values are defined by different cases. For example, the absolute value 
+expression $|x-1|$ can be written as:
+$$
+|x-1| \;=\; \MCases{x-1 & \text{if}\;x\geq 1 \\ -x+1 & \text{if}\; x<1}
+$$
+\MInputHint{For example, this expression can be entered in the input box as \texttt{if(x>=1;x-1;-x+1)}. Please note that there are several correct ways 
+to write these expressions.}
+\end{MHint}
+\end{MExercise}
+
+% Erst in zweitem Paket da Graphen noch nicht da, Bild sollte reskaliert werden so dass xy-Achsen gleiche Massstaebe haben
+% \begin{MExercise}
+% Finden Sie einen m\"oglichst einfachen Ausdruck mit einer Betragsfunktion und zus\"atzlichen Termen, der folgenden Funktionsgraph beschreibt:
+% \MUGraphics{abs3.png}{width=0.5\linewidth}{Funktionsgraph von $g(x)$.}{width:300px}
+% 
+% \begin{MHint}{Tipp}
+% Versuchen Sie eine Darstellung der Form $g(x)=|x+a|+b x+c$. Am Knick im Graph k\"onnen Sie erkennen, wie der Term innerhalb des Betrags aussieht.
+% \end{MHint}\ \\
+% Antwort: $g(x)$ = \MSimplifyQuestion{20}{abs(x-1)+2*x-1}{10}{x}{10}{0}.\ \\
+% \MInputHint{Beträge können in der Form $|x y z|$ = \texttt{$|$x*y*z$|$} oder auch $|-4y^2|$ = \texttt{abs(-4*y^2)} eingegeben werden.}
+% \end{MExercise}
+
+\begin{MExercise}
+Find all solutions of the absolute value equation $|2x-7|=x-2$.
+\ \\ \ \\
+Answer: The solution set is \MEquationItem{$\ML$}{\MLParsedQuestion{30}{5,3}{4}{AKY}}.\\
+\MInputHint{Enter the solutions as sets. On a German keyboard, the curly brackets are accessed by holding the
+AltGr key and tapping 7 and 0, respectively.}
+\end{MExercise}
+
+
+\begin{MExercise}
+Specify the solution set of the inequality $x^2+4x<5$ as an interval.\\ \ \\
+Answer: \MEquationItem{$\ML$}{\MLIntervalQuestion{20}{(-5,1)}{3}{INT10}}.\ \\
+\MInputHint{Typical inputs for intervals are \texttt{(-3;2)}, or \texttt{[5;infty)}, and also \texttt{(-infty;infty)}. Enter $\infty$ as
+\texttt{infinity} or \texttt{infty} for short. Do not use the notation $]a;b[$ to enter open intervals but $(a;b)$.}
+\end{MExercise}
+
+\begin{MExercise}
+Specify the domains and the solution sets of the following inequalities as intervals:
+\begin{MExerciseItems}
+\item{The inequality $\sqrt{x}>x$ has the domain \MLIntervalQuestion{20}{[0,infty)}{3}{DBX1} and the solution set \MLIntervalQuestion{20}{(0,1)}{3}{DBX2}.}
+\item{The inequality $\sqrt{\sqrt{x-1}+2}>\sqrt{x+1}$ has the domain \MLIntervalQuestion{20}{[1,infty)}{3}{DBX3} and the solution set \MLIntervalQuestion{20}{(1,2)}{3}{DBX4}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+
+% Funktioniert noch nicht weil scope in 4: nicht akzeptiert wird und falls geloescht val und sol verschiedene Werte liefern (konstruktschritte verschieden?)
+% \begin{MExercise}
+% Drücken Sie die Fläche, die von der Funktion $y=\sin(x^3)\cdot x$ mit der $x$-Achse auf dem Intervall $[-1;1]$ eingeschlossen wird durch ein Integral aus
+% (dessen Wert sie nicht konkret ausrechnen müssen bzw. können):
+% \ \\ \ \\
+% Antwort: Der Flächeninhalt ist \MLSimplifyQuestion{60}{int_(-1)^1 sin(x^3)*x dx}{10}{}{5}{0}{IGVCONSTRUCT}.\\
+% \ \\
+% \MInputHint{Ein Integral können Sie in der Form \texttt{int\_a\^b (Ausdruck) dx} eingeben, beispielsweise tippen Sie
+% $$
+% \int_{-2}^2 x^2 dx
+% $$
+% ein als \texttt{int\_(-2)\^2 x^2 dx}, vergessen Sie nicht negative Integralgrenzen einzuklammern.}
+% \end{MExercise}
+
+As soon as you are familiar with the use of the input boxes, you can click ``next'' in the upper right corner and take the graded entrance test.
+
+
+\end{MXContent}
+
+\MSubsection{Test 1: Graded Part To Be Submitted}
+
+\begin{MTest}{Graded Test for the Online Course}
+\MLabel{L_TEST02}
+\MDeclareSiteUXID{VBKMT_AbgebeTest}
+
+\begin{MExercise}
+\MSetPoints{1}
+Check whether these mathematical expressions denote equations, inequalities, terms, or numbers (multiple checks are possible):
+\ \\
+\begin{tabular}{|l|c|c|c|c|}% Fast gleich mit Eingangstest M01
+  \hline
+  Mathematical expression   & Equation & Inequality & Term & Number \\ \hline
+  $\sqrt{3+\Mtfrac12}$      & \MLCheckbox{0}{VX11} & \MLCheckbox{0}{VX12} &\MLCheckbox{1}{VX13} &\MLCheckbox{1}{VX14}\\ \hline
+  $5x-1$                    & \MLCheckbox{0}{VX21} & \MLCheckbox{0}{VX22} &\MLCheckbox{1}{VX23} &\MLCheckbox{0}{VX24} \\ \hline
+  $32x^2 = \Mtfrac1y$       & \MLCheckbox{1}{VX31} & \MLCheckbox{0}{VX32} &\MLCheckbox{0}{VX33} &\MLCheckbox{0}{VX34} \\ \hline
+  $32> 2^x$                 & \MLCheckbox{0}{VX41}& \MLCheckbox{1}{VX42} &\MLCheckbox{0}{VX43}  &\MLCheckbox{0}{VX44}\\ \hline
+  $x\in \lbrace1;2;3\rbrace$& \MLCheckbox{0}{VX51} & \MLCheckbox{0}{VX52} &\MLCheckbox{0}{VX53} &\MLCheckbox{0}{VX54} \\ \hline
+  $b^2-4a c\geq 0$          & \MLCheckbox{0}{VX61} & \MLCheckbox{1}{VX62} &\MLCheckbox{0}{VX63} &\MLCheckbox{0}{VX64} \\ \hline
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Simplify these complex fractions as far as possible:
+\begin{MExerciseItems}
+\item{$1-\frac12+\frac13-\frac14$ is equivalent to \MLSimplifyQuestion{20}{7/12}{5}{x}{5}{16}{TTXT13}.}
+\item{$\Mdfrac{x-\Mtfrac1x}{1-\Mtfrac1x}$ is equivalent to \MLSimplifyQuestion{20}{x+1}{5}{x}{5}{1}{TTXT14}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Expand this term completely and collect like terms together:
+\MEquationItem{$(a-b)(2c+d)$}{\MLSimplifyQuestion{30}{(a-b)*(2*c+d)}{5}{a,b,c,d}{5}{1}{TTXT15}}.
+\end{MExercise}
+
+\begin{MExercise}
+Apply one of the binomial formulas to transform the following terms.The results should not contain any brackets or radical terms.
+\begin{MExerciseItems}
+\item{$(2\sqrt3+x\sqrt3)^2$ = \MLSimplifyQuestion{38}{(2*sqrt(3)+x*sqrt(3))^2}{10}{x}{5}{1}{TTXT16}.}
+\item{$(3a-4b)^2$ = \MLSimplifyQuestion{38}{(3*a-4*b)^2}{10}{a,b}{5}{1}{TTXT17}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Rewrite these power and radical expressions as a simple power with a rational number as its exponent, without using the root sign:
+\begin{MExerciseItems}
+\item{$\sqrt{a b}\cdot \frac1{a}\cdot \sqrt{b^{3}}$ = \MLSimplifyQuestion{40}{a^(-1/2)*b^2}{1}{a,b}{10}{64}{TTXT18}.}
+\item{$\sqrt{\sqrt{\sqrt{a}\cdot b}\cdot\frac1c}$ = \MLSimplifyQuestion{40}{a^(1/8)*b^(1/4)*c^(-1/2)}{1}{a,b,c}{10}{64}{TTXT19}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Transform the following fractions such that the denominator disappears. The solution must not contain any fractions or powers.
+\begin{MExerciseItems}
+\item{$\frac{12}{\sqrt{3}}$ = \MLSimplifyQuestion{30}{4*sqrt(3)}{12}{x}{10}{256}{TTXT20}.}
+\item{$\frac{1+x-\sqrt{4x}}{\sqrt{x}-1}$ = \MLSimplifyQuestion{30}{sqrt(x)-1}{1}{x}{10}{256}{TTXT21}.}
+\item{$\frac{u^3}{\sqrt{u^2+1}+1}$ = \MLSimplifyQuestion{30}{u*(sqrt(u*u+1)-1)}{5}{u}{10}{256}{TTXT22}.}
+\end{MExerciseItems}
+\MInputHint{If necessary, enter $u^3$ as \texttt{u*u*u} to avoid the power. Square roots $\sqrt{x}$ can be entered as \texttt{sqrt(x)}.}
+\end{MExercise}
+
+\begin{MExercise}
+The single solution of the equation $\Mdfrac{x-2}{|x+1|}=\frac12$ is $x$ = \MLParsedQuestion{5}{2+2+1}{5}{MINIFUENF}. % =5 vermeiden um Loesungen eindeutig zu machen
+\end{MExercise}
+
+ 
+\begin{MExercise}
+Specify the solution sets of the following equations:
+\begin{MExerciseItems}
+\item{$\frac1x+2x=2-x$ has the solution set \MLParsedQuestion{20}{}{10}{LGSLGS1}.}
+\item{$x^2-1=(x-1)^3$ has the solution set \MLParsedQuestion{20}{0,1,3}{10}{LGSLGS2}.}
+\item{$\sqrt[7]{r}=r^5$ has the solution set \MLParsedQuestion{20}{1,0}{10}{LGSLGS3}.}
+\end{MExerciseItems}
+\end{MExercise}
+ 
+\begin{MExercise}
+Find all solutions of the absolute value equation $|5x-1|=x^2-1$.
+\ \\ \ \\
+The solution set is \MEquationItem{$\ML$}{\MLParsedQuestion{30}{5,-5/2-sqrt(33/4)}{4}{LGSLGS4}}.\\
+\ \\ \ \\
+Do not use a calculator! Your solution may contain radical terms and fractions.
+\end{MExercise}
+
+\begin{MExercise}
+Specify the solution set of the inequality $x^2+6< -5x$ as an interval.\\ \ \\
+The solution interval is \MLIntervalQuestion{20}{(-3,-2)}{3}{SPECIALIN}.
+\end{MExercise}
+
+
+\begin{MExercise}
+Specify the solution sets of the following inequalities as intervals. Be careful with the specification of the endpoints.
+\begin{MExerciseItems}
+\item{$(x-1)^2<x$ has the solution set \MLIntervalQuestion{40}{(3/2-1/2*sqrt(5),3/2+1/2*sqrt(5))}{4}{FINA1}.}
+\item{$\sqrt{x^2-1}<x$ has the solution set \MLIntervalQuestion{40}{[1,infty)}{3}{FINA2}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Find the solution set of the following system of linear equations:
+\begin{eqnarray*}
+- x + 2 y & = & - 5 \\ 3 x + y & = & 1
+\end{eqnarray*}
+The solution set
+\begin{tabular}[t]{ll}
+\MLCheckbox{0}{M04C1} & is empty,\\
+\MLCheckbox{1}{M04C2} & contains exactly one solution: $x =$ \MLParsedQuestion{5}{1}{5}{LGSMU1} , $y =$ \MLParsedQuestion{5}{-2}{5}{LGSMU2} ,\\
+\MLCheckbox{0}{M04C3} & contains an infinite number of solution pairs $(x, y)$.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Find the two-digit number such that its digit sum is 6, and exchanging the digit positions results in 
+a number that is smaller by 18.
+
+Answer: \MLParsedQuestion{5}{42}{5}{ALGS42}
+\end{MExercise}
+
+\begin{MExercise}
+Find the value of the real parameter $\alpha$ for which the following system of linear equations
+\begin{eqnarray*}
+2 x + y & = & 3 \\ 4 x + 2 y & = & \alpha
+\end{eqnarray*}
+has an infinite number of solutions.
+
+Answer: $\alpha = $ \MLParsedQuestion{5}{6}{5}{ALGS0}
+\end{MExercise}
+
+\begin{MExercise}
+Assign to each of the graphs in (a)--(e) the correct mapping rules of the corresponding functions.
+\begin{itemize}
+
+\item[(a)] 
+\begin{center}
+%GRAPH: A
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm,y=0.8cm] 
+%Koordinatensystem
+\node (xMAX) at (3.8,0){};
+\node (yMAX) at (0,2.5){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+%\foreach \x in {1}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\foreach \y in {-1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: 
+\draw[smooth,samples=50,domain=0.15:3,color=red] plot(\x,{1/(2*\x)-1});
+\draw[smooth,samples=50,domain=-3:-0.2,color=red] plot(\x,{1/(2*\x)-1});
+\end{tikzpicture} 
+}%
+\end{center}
+ 
+\item[(b)] 
+\begin{center}
+%GRAPH: A
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm,y=0.8cm] 
+%Koordinatensystem
+\node (xMAX) at (3.8,0){};
+\node (yMAX) at (0,2.5){};
+\draw[->,color=black] (-3.5,0) -- (xMAX);
+%\foreach \x in {1}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.5) -- (yMAX);
+\foreach \y in {-1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: 
+\draw[smooth,samples=50,domain=-3.5:3.5,color=red] plot(\x,{0.5*\x-1});
+\end{tikzpicture} 
+}%
+\end{center}
+ 
+\item[(c)] 
+\begin{center}
+%GRAPH: C
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm,y=0.8cm] 
+%Koordinatensystem
+\node (xMAX) at (1.8,0){};
+\node (yMAX) at (0,3.5){};
+\draw[->,color=black] (-2.1,0) -- (xMAX);
+%\foreach \x in {1,2,3}
+%\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: 
+\draw[smooth,samples=100,domain=-2.1:1.2,color=red] plot(\x,{exp(\x)});
+\end{tikzpicture} 
+}%
+\end{center}
+
+\item[(d)] 
+\begin{center}
+%GRAPH: D
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm,y=0.8cm] 
+%Koordinatensystem
+\node (xMAX) at (4.8,0){};
+\node (yMAX) at (0,2.5){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (yMAX);
+\foreach \y in {1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: 
+\draw[smooth,samples=100,domain=0:4,color=red] plot(\x,{sqrt(\x)});
+\end{tikzpicture} 
+}%
+\end{center}
+
+\item[(e)] 
+\begin{center}
+%GRAPH: E
+\MTikzAuto{%
+\begin{tikzpicture}[x=0.8cm,y=0.8cm] 
+%Koordinatensystem
+\node (xMAX) at (4.8,0){};
+\node (yMAX) at (0,2.5){};
+\draw[->,color=black] (-0.5,0) -- (xMAX);
+\foreach \x in {1}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (yMAX);
+%\foreach \y in {1}
+%\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+%Achsenbeschriftung
+\draw (xMAX) node[anchor=north east] {$x$};
+\draw (yMAX) node[anchor=east] {$f(x)$};
+%Graph: 
+\draw[smooth,samples=100,domain=0.1:4,color=red] plot(\x,{ln(\x)});
+\end{tikzpicture}
+}%
+\end{center}
+
+\end{itemize}
+
+\begin{MExerciseItems}
+ \item{Graph (a) corresponds to the function \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{1/(2*x)-1}{5}{x}{5}{512}{TXF1}}.}
+ \item{Graph (b) corresponds to the function \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{1/2*x-1}{5}{x}{5}{512}{TXF2}}.}
+ \item{Graph (c) corresponds to the function \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{exp(x)}{5}{x}{5}{512}{TXF3}}.}
+ \item{Graph (d) corresponds to the function \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{sqrt(x)}{5}{x}{5}{512}{TXF4}}.}
+ \item{Graph (e) corresponds to the function \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{ln(x)}{5}{x}{5}{512}{TXF5}}.}
+\end{MExerciseItems}
+
+Select your answers from the mapping rules and input terms listed below (not all of them are used).
+\begin{tabular}{ll}
+$f(x)=\sqrt{x}$ &\ \ \MInputHint{\texttt{sqrt(x)}} \\
+$f(x)=\frac12x-1$&\ \ \MInputHint{\texttt{(1/2)*x-1}} \\
+$f(x)=\ln(1-x)$ &\ \ \MInputHint{\texttt{ln(1-x)}} \\
+$f(x)=\ln(x)$ &\ \ \MInputHint{\texttt{ln(x)}} \\
+$f(x)=x^{1,5}$ &\ \ \MInputHint{\texttt{x^(1,5)}} \\
+$f(x)=\exp(x)=e^x$ &\ \ \MInputHint{\texttt{exp(x)}} \\
+$f(x)=(0,5)^x$ &\ \ \MInputHint{\texttt{(0,5)^x}} \\
+$f(x)=\frac1x$ &\ \ \MInputHint{\texttt{1/x}} \\
+$f(x)=\frac1{2x}-1$ &\ \ \MInputHint{\texttt{1/(2*x)-1}} \\
+$f(x)=\frac12-x$ &\ \ \MInputHint{\texttt{1/x-x}} \\
+\end{tabular}
+\ \\
+\MInputHint{You can highlight the input terms and drag them into the input boxes.}
+
+Specify the asymptote of the function with the mapping rule (a).\ \\ \ \\
+It is \MEquationItem{$\displaystyle \lim_{x\rightarrow \infty} f(x)$}{\MLParsedQuestion{10}{-1}{10}{TEP1}}.
+\end{MExercise}
+
+
+\begin{MExercise}
+The figure below shows two lines in two-dimensional space.
+\begin{center}
+\MUGraphicsSolo{LGS_schneidende_Geraden.png}{width=0.5\linewidth}{}
+\end{center}
+Find the two equations describing the lines.
+
+Line 1: $y = $ \MLFunctionQuestion{15}{-1 + x}{2}{x}{5}{ALGSK1A}
+
+Line 2: $y = $ \MLFunctionQuestion{15}{2 - 2*x}{2}{x}{5}{ALGSK2A}
+
+What is the correct number of solutions to the corresponding system of linear equations?
+
+The system of linear equations has
+\begin{tabular}[t]{ll}
+\MLCheckbox{0}{M04C4} & no solution,\\
+\MLCheckbox{1}{M04C5} & exactly one solution, or\\
+\MLCheckbox{0}{M04C6} & an infinite number of solutions.
+\end{tabular}
+\end{MExercise}
+
+\begin{MExercise}
+Find the solution set of the following system of linear equations consisting of three equations in three variables.
+\begin{eqnarray*}
+x + 2 z & = & 3 \\ - x + y + z & = & 1 \\ 2 y + 3 z & = & 5
+\end{eqnarray*}
+The solution set 
+\begin{tabular}[t]{ll}
+\MLCheckbox{0}{M04C7} & is empty,\\
+\MLCheckbox{1}{M04C8} & contains exactly one solution: $x =$ \MLParsedQuestion{5}{1}{5}{ALGS1} , $y =$ \MLParsedQuestion{5}{1}{5}{ALGS2}, $z = $ \MLParsedQuestion{5}{1}{5}{ALGS3} ,\\
+\MLCheckbox{0}{M04C9} & contains an infinite number of solutions $(x, y, z)$.
+\end{tabular}
+\end{MExercise}
+
+
+% ----------------------------------------- Modul 7 ----------------------------------------------------------------------------------------
+
+\begin{MExercise} %"Anderungsraten und Ableitung
+The mileage counter of a van displays $20$~km when the vehicle starts its journey at 6~a.m. Four hours later it arrives at
+its destination. The odometer is now displaying $280$~km. Calculate the average velocity $v$ (the 
+average rate of change of position) between the start point and destination. For this purpose, insert the missing numbers 
+and mathematical symbols ($+$, $-$, $\cdot$, $/$) into the following calculation.
+\ifttm
+\begin{center}
+$v = \bigg(280\,$\MLQuestion{2}{-}{MINUS1}$\,$\MLParsedQuestion{6}{20}{3}{DG1}$\bigg)\;$%
+\MLQuestion{2}{/}{DFA3}$\;\bigg($\MLParsedQuestion{6}{10}{3}{DG4}$\, - \, 6\bigg) %
+ = \,$\MLParsedQuestion{6}{65}{3}{DG2}%%
+\end{center}
+\else
+\[
+v = \left(280 \;\;\; \MLQuestion{3}{-}{DG5} \;\;\; \MLParsedQuestion{5}{20}{3}{DG3}\right) %
+\;\;\; \MLQuestion{3}{/}{DG6} \;\;\; \left(\,\MLParsedQuestion{5}{10}{3}{DG7} - 6\right)%
+ = \,\MLParsedQuestion{5}{65}{3}{DG8}%%
+\]
+\fi
+\end{MExercise}
+
+\begin{MExercise} %"Anderungsraten und Ableitung
+Consider the function $f: [-3; 4] \rightarrow \R$, the graph of which is shown in the figure below.
+
+%Bild:
+\begin{center}
+\MTikzAuto{%
+\begin{small}
+\begin{tikzpicture}[line width=1.5pt,scale=0.6, %
+declare function={
+  fkt(\x) = \x/2 * sqrt((\x + 3)*(4 - \x));
+}
+] %[every node/.style={fill=white}] 
+%Koordinatenachsen:
+\draw[->] (-3.6, 0) -- (5, 0) node[below left]{$x$}; %x-Achse
+\draw[->] (0, -3) -- (0, 4) node[below left]{$y$}; %y-Achse
+%Achsenbeschriftung:
+\foreach \x in {-3, -2, -1} \draw (\x, 0) -- ++(0, 0.1) %
+ node[above] {$\x$}; 
+\foreach \x in {1, 2, 3, 4} \draw (\x, 0) -- ++(0, -0.1) %
+ node[below] {$\x$}; 
+\foreach \y in {-2, -1} \draw (0, \y) -- ++(0.1, 0) %
+ node[right] {$\y$};
+\foreach \y in {1, 2, 3} \draw (0, \y) -- ++(-0.1, 0) %
+ node[left] {$\y$};
+%\node[below left] at (0, 0) {$0$};
+%Funktion:
+\draw[domain=-3:4,samples=120,color=\jccolorfkt] %
+ plot (\x, {fkt(\x)});
+%Punkte
+\filldraw[color=black,fill=black] (0, 0) circle (1pt);
+%\node[below left] at (0, 0) {$x_2 = 0$};
+\filldraw[color=black,fill=black] (4, 0) circle (1pt);
+%\node[left] at (4, -0.1) {$x_1 = 4$};
+\end{tikzpicture}
+\end{small}
+}
+\end{center}
+
+\begin{MExerciseItems}
+\item The derivative at $x_1 = 4$ is
+\MLCheckbox{0}{JC1} equal to $0$,
+\MLCheckbox{1}{JC2} not defined,
+\MLCheckbox{0}{JC2x} infinite.
+\item The derivative at $x_2 = 0$ is
+\MLCheckbox{1}{JC3} positive,
+\MLCheckbox{0}{JC4} equal to  $0$,
+\MLCheckbox{0}{JC5} negative.
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+Calculate the first and the second derivative of the function
+%$f: \R \rightarrow \R, x \mapsto \frac{x+1}{2} \cdot \MEU^{4x + 2}$,
+%$f: \R \rightarrow \R, x \mapsto \frac{3 x + 1}{x^2 + 2}$,
+%$f: \R \rightarrow \R, x \mapsto \frac{6 x + 2}{2 x^2 + 4}$,
+
+%$f: \R \rightarrow \R, x \mapsto \frac{2 x^2 - 6}{x - 1}$,
+$f: \R \rightarrow \R, x \mapsto \frac{5 x}{3 + x^2}$,
+and give your results  with all terms cancelled or collected together as appropriate.
+\begin{MExerciseItems}
+\item First derivative $f'(x) = $%
+\MLSimplifyQuestion{40}{5 * (3 - x^2) / (3 + x^2)^2}{10}{x}{4}{0}{TTXT24}
+\item Second derivative ${f'}'(x) = $%
+\MLSimplifyQuestion{40}{10 * x * (x^2 - 9) / (3 + x^2)^3}{10}{x}{4}{0}{TTXT25}
+\end{MExerciseItems}
+\MInputHint{Enclose the terms in brackets to avoid misinterpretations. Enter, for example, $\frac{x+1}{(x+2)^2}$ as \texttt{(x+1)/((x+2)^2)}.} 
+\end{MExercise}
+
+\begin{MExercise} %Eigenschaften
+Specify the regions on which the function $f$ with $f(x) := \frac{\ln x}{x}$ for 
+$x > 0$ is monotonically increasing and where it is decreasing. 
+Specify the regions as maximum open intervals $(r, s)$.
+\begin{MExerciseItems}
+\item $f$ is monotonically increasing on \MLIntervalQuestion{20}{(0,e)}{4}{DXG14}.
+\item $f$ is monotonically decreasing on \MLIntervalQuestion{20}{(e,infty)}{4}{DXG15}.
+\end{MExerciseItems}
+\MInputHint{Enter an open interval as $(a,b)$ or $(a;b)$. Closed intervals can be entered as $[a,b]$ or $[a;b]$. Here, $a$ and $b$ are allowed to be arbitrary expressions.
+Do not use the notation $]a,b[$ to enter open intervals.}
+
+Which of the points $x_1 = 1$, $x_2 = 2$, or $x_3 = 6$ belongs to an interval on which the function $f$ is convex?
+
+Answer: \MLParsedQuestion{8}{6}{3}{DG9}
+\end{MExercise}
+
+
+% ----------------------------------------- Modul 8 ----------------------------------------------------------------------------------------
+
+\begin{MExercise} %Stammfunktionen:
+Find an antiderivative for each of the following functions.
+\begin{MExerciseItems}
+\item $\displaystyle\int \left(5x^4 + 8 x\right) \jMD x = $%
+\MLSimplifyQuestion{30}{x^5 + 4*x^2}{10}{x}{4}{32}{TTXT26}
+\item $\displaystyle\int 6 \sin(2 x) \jMD x = $%
+\MLSimplifyQuestion{30}{(-3) * cos(2*x)}{10}{x}{4}{32}{TTXT27}
+\end{MExerciseItems}
+\jHTMLHinweisEingabeFunktionen
+\end{MExercise}
+
+\begin{MExercise}
+Calculate the integrals
+%\begin{MExerciseItems}
+%\item 
+\begin{center}
+$\displaystyle\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} %
+ \left(x^3 + \cos(x)\right) \MD x = $\MLParsedQuestion{10}{2}{4}{IG16} and
+%\item 
+$\displaystyle\int_{1}^{4} x \cdot \sqrt{x} \MD x = $%
+\MLParsedQuestion{10}{62/5}{4}{TTXT2}
+\end{center}
+%\end{MExerciseItems}
+\end{MExercise}
+
+
+\begin{MExercise} %Eigenschaften
+We have $\int_{-5}^{5} x \cdot \cos(4 x) \MD x = 0$ since the interval of integration is 
+\MLQuestion{20}{symmetrical}{IG1} with respect to $0$ and the integrand is an  
+\MLQuestion{20}{odd}{IG2} function.
+
+\MInputHint{Enter into the input boxes adjectives describing the functions properties 
+such that the statement becomes true.}
+\end{MExercise}
+
+
+\begin{MExercise} %Anwendung: Fl"achenberechnung
+The graph of the function $f: [-1; 3] \rightarrow \R$ with
+$f(x) := x^3 - 3 x^2 - x + 3$ 
+for $-1 \leq x \leq 3$ and the $x$-axis enclose a region $A$.
+Specify the intersection points of the graph of $f$ with the $x$-axis, and calculate the area $I_A$ of $A$.
+%
+Answer: $I_A = $\MLParsedQuestion{10}{8}{4}{IG20}
+\end{MExercise}
+
+\begin{MExercise}
+\MSetPoints{6}
+Specify the intersection point of the following two lines:
+\begin{itemize}
+\item{the line $y=3x+3$,}
+\item{the line with the general equation $2x-2y=6$.}
+\end{itemize}
+
+The intersection point is \MLFunctionQuestion{15}{(-3,-6)}{5}{x}{5}{TESTGR1}.\\
+\MInputHint{Enter the points in the form \texttt{(a;b)}.}
+\end{MExercise}
+
+
+\begin{MExercise}
+Let
+$$
+(x-1)^2+(y+1)^2 \;=\; d
+$$
+be the general equation of a circle, where $d$ is an unknown positive constant. 
+Specify the properties of this circle.
+\MSetPoints{4}
+\begin{MExerciseItems}
+\item{Its radius is \MEquationItem{$r$}{\MLSimplifyQuestion{15}{sqrt(d)}{4}{d}{4}{512}{VBNT20x}}.}
+\item{Its centre is at \MEquationItem{$P$}{\MLFunctionQuestion{15}{(1,-1)}{5}{x}{5}{VBNT21x}}.}
+\MInputHint{Enter the points in the form \texttt{(a;b)}.}
+\item{The circle intersects the line $\overline{P Q}$ passing trough the points $P=(-3;3)$ and $Q=(3;-3)$\\
+\MSetPoints{1}
+\begin{itemize}
+\item{\MLCheckbox{0}{VBNT22x} at one point,}
+\item{\MLCheckbox{1}{VBNT23x} at two points,}
+\item{\MLCheckbox{0}{VBNT24x} at three points,}
+\item{\MLCheckbox{0}{VBNT25x} not at all,}
+\item{\MLCheckbox{0}{VBNT26x} the answer depends on the value of the constant $d$.}
+\end{itemize}
+}
+\end{MExerciseItems}
+\end{MExercise}
+
+
+\begin{MExercise}
+Take the vectors
+$$
+\MVec{x} \;=\; \MVector{1\\2}\;\; , \;\;
+\MVec{y} \;=\; \MVector{0\\-4}\;\; , \;\;
+\MVec{z} \;=\; \MVector{2\\2}.
+$$
+From these, calculate the following vectors:
+\begin{MExerciseItems}
+\item{\MEquationItem{$\MVec{x}+\MVec{y}-\MVec{z}$}{\MLFunctionQuestion{15}{(-1,-4)}{5}{x}{5}{OR8}}.}
+\item{\MEquationItem{$2\MVec{x}-\frac12\MVec{y}$}{\MLFunctionQuestion{15}{(2,6)}{5}{x}{5}{OR9}}.}
+\item{\MEquationItem{$2(\MVec{x}-\MVec{y})+3\MVec{z}$}{\MLFunctionQuestion{15}{(7,18)}{5}{x}{5}{OR10}}.}
+\end{MExerciseItems}
+\end{MExercise}
+
+
+\end{MTest}
+
+\newpage
+\MPrintIndex
+
+\end{document}
+

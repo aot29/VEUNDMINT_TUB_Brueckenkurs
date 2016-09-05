@@ -18,22 +18,22 @@ On the following pages you can find
 \begin{MXContent}{Chapter overview}{Chapter}{STD}
 \MLabel{L_CHAPTER}
 \MDeclareSiteUXID{VBKM_MISCCHAPTERS}
-\MGlobalChapterTag
-You can navigate to individual learning units and their sections at any time to work on them:
-\begin{itemize}
-\item{Chapter 01: \MSRef{VBKM01}{Elementary arithmetic}}
-\item{Chapter 02: \MSRef{VBKM02}{Equations in a single variable}}
-\item{Chapter 03: \MSRef{VBKM03}{Inequalities in a single variable}}
-\item{Chapter 04: \MSRef{VBKM04}{Systems of linear equations}}
-%\item{Modul 05: \MSRef{VBKM05}{Elementare Geometrie}}
-%\item{Modul 06: \MSRef{VBKM06}{Elementare Funktionen}}
-%\item{Modul 07: \MSRef{VBKM07}{Differentialrechnung}}
-%\item{Modul 08: \MSRef{VBKM08}{Integralrechnung}}
-%\item{Modul 09: \MSRef{VBKM09}{Orientierung im zweidimensionalen Koordinatensystem}}
-%\item{Modul 10: \MSRef{VBKM10}{Grundlagen der anschaulichen Vektorgeometrie}}
-\end{itemize}
-You are also free to work on tests and exercises in arbitrary order and repeatedly.
-Just click the relevant entries in the table of contents in the left border area.
+%\MGlobalChapterTag
+%You can navigate to individual learning units and their sections at any time to work on them:
+%\begin{itemize}
+%\item{Chapter 01: \MSRef{VBKM01}{Elementary Arithmetic}}
+%\item{Chapter 02: \MSRef{VBKM02}{Equations in one Variable}}
+%\item{Chapter 03: \MSRef{VBKM03}{Inequalities in one Variable}}
+%\item{Chapter 04: \MSRef{VBKM04}{System of Linear Equations}}
+%\item{Modul 05: \MSRef{VBKM05}{Geometry}}
+%\item{Modul 06: \MSRef{VBKM06}{Elementary Functions}}
+%\item{Modul 07: \MSRef{VBKM07}{Differential Calculus}}
+%\item{Modul 08: \MSRef{VBKM08}{Integral Calculus}}
+%\item{Modul 09: \MSRef{VBKM09}{Objects in the Two-Dimensional Coordinate System}}
+%\item{Modul 10: \MSRef{VBKM10}{Basic Concepts of Descriptive Vector Geometry}}
+%\end{itemize}
+%You are also free to work on tests and exercises in arbitrary order and repeatedly.
+%Just click the relevant entries in the table of contents in the left border area.
 \end{MXContent}
 
 \MSubsection{My course data}
@@ -43,18 +43,20 @@ Just click the relevant entries in the table of contents in the left border area
 \MGlobalDataTag
 \MDeclareSiteUXID{VBKM_MISCCOURSEDATA}
 
-You can configure your personal data on your \MSRef{L_CONFIG}{Settings} page.
+% see templates_xslt/data.xml
 
-Your progress on course modules is assessed based on completed exercises and the results of the final tests.
-The course is considered completed once you have passed all final tests with at least a 90\% score.
+%You can configure your personal data on your \MSRef{L_CONFIG}{Settings} page.
 
-\begin{html}
-<div>
-<p id="CDATAS">
-Cannot access browser data!
-</p>
-</div>
-\end{html}
+%Your progress on course modules is assessed based on completed exercises and the results of the final tests.
+%The course is considered completed once you have passed all final tests with at least a 90\% score.
+
+%\begin{html}
+%<div>
+%<p id="CDATAS">
+%Cannot access browser data!
+%</p>
+%</div>
+%\end{html}
 
 % \begin{html}
 %  <div class="progress">
@@ -74,105 +76,110 @@ Cannot access browser data!
 \MGlobalConfTag
 \MDeclareSiteUXID{VBKM_MISCSETTINGS}
 
-If you already have an account please go to the \MSRef{L_LOGIN}{login page}.
+% see templates_xslt/signup.xml
 
-\begin{html}
-<div class="show_scorm" style="display:none">
-<b>Please login through the learning platform.</b>
-</div>
-\end{html}
+%If you already have an account please go to the \MSRef{L_LOGIN}{login page}.
 
-\begin{html}
-<div class="show_noscorm" style="display:none">
+%\begin{html}
+%<div class="show_scorm" style="display:none">
+%<b>Please login through the learning platform.</b>
+%</div>
+%\end{html}
 
-<b>Create a new account:</b><br />
-After you have registered successfully, your data will be saved to our servers
-and your course progress information will be available to you on other
-computers or devices:
-<div class="xreply">
-<p id="LOGINFIELD">
-Cannot access browser data!
-</p>
-Optional information: &nbsp;&nbsp;<button type="button" id="updatepdatabutton"
-style="visibility:hidden" class="criticalbutton"
-onclick="userupdate_click();">Update personal dat (optional):</button> 
-<table>
-  <tr><td align=left>First name:</td><td align=left><input id="USER_VNAME" type="text" size="40"></input></td></tr>
-  <tr><td align=left>Last name:</td><td align=left><input id="USER_SNAME" type="text" size="40"></input></td></tr>
-  <tr><td align=left>Email:</td><td align=left><input id="USER_EMAIL" type="text" size="40"></input></td></tr>
-</table>
-<p>
-Data on intended course (optional, if known or planned):
-</p>
-<table>
-  <tr><td align=left>Course:</td><td align=left><input id="USER_SGANG"
-  type="text" size="40"></input></td></tr> <tr><td align=left>University:</td><td align=left><input id="USER_UNI" type="text" size="40"></input></td></tr>
-</table>
+%\begin{html}
+%<div class="show_noscorm" style="display:none">
 
-<div id="USERNAMEFIELD">
-<p>
-Choose a login name for working on the course:
-</p>
-Login name: <input id="USER_UNAME" type="text" size="18" oninput="usercheck();" onkeyup="usercheck();" onpaste="usercheck();" onpropertychange="usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
-<br />
-<div class="usercreatereply"><p id="ulreply_p"> </p></div>
-<br /><br />
-</div>
+%<b>Create a new account:</b><br />
+%After you have registered successfully, your data will be saved to our servers
+%and your course progress information will be available to you on other
+%computers or devices:
+%<div class="xreply">
+%<p id="LOGINFIELD">
+%Cannot access browser data!
+%</p>
+%Optional information: &nbsp;&nbsp;<button type="button" id="updatepdatabutton"
+%style="visibility:hidden" class="criticalbutton"
+%onclick="intersite.userupdate_click();">Update personal dat (optional):</button>
+%<table>
+%  <tr><td align=left>First name:</td><td align=left><input id="USER_VNAME" type="text" size="40"></input></td></tr>
+%  <tr><td align=left>Last name:</td><td align=left><input id="USER_SNAME" type="text" size="40"></input></td></tr>
+%  <tr><td align=left>Email:</td><td align=left><input id="USER_EMAIL" type="text" size="40"></input></td></tr>
+%</table>
+%<p>
+%Data on intended course (optional, if known or planned):
+%</p>
+%<table>
+%  <tr><td align=left>Course:</td><td align=left><input id="USER_SGANG"
+%  type="text" size="40"></input></td></tr> <tr><td align=left>University:</td><td align=left><input id="USER_UNI" type="text" size="40"></input></td></tr>
+%</table>
 
-After you have registered, your data will be stored on our course servers, along
-with your responses and test results. This data will be submitted anonymously
-for statistical analysis in order to increase the quality of the course contents
-and exercises. Please note that a confirmation of participation to the course
-can only be issued if the optional data field s have been submitted.</div>
-</div>
-\end{html}
+%<div id="USERNAMEFIELD">
+%<p>
+%Choose a login name for working on the course:
+%</p>
+%Login name: <input id="USER_UNAME" type="text" size="18" oninput="intersite.usercheck();" onkeyup="intersite.usercheck();" onpaste="intersite.usercheck();" onpropertychange="intersite.usercheck();"></input><img id="checkuserimg" src="images/questionmark.png">
+%<br />
+%<div class="usercreatereply"><p id="ulreply_p"> </p></div>
+%<br /><br />
+%</div>
 
-% <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="usercreatelocal_click(1);">Register above user data in the browser</button><br />
-% <button type="button" id="RESETBUTTON" style="height:60px;width:250px;background:#FFD0C0" onclick="userreset_click();">Delete all user data</button>
+%After you have registered, your data will be stored on our course servers, along
+%with your responses and test results. This data will be submitted anonymously
+%for statistical analysis in order to increase the quality of the course contents
+%and exercises. Please note that a confirmation of participation to the course
+%can only be issued if the optional data field s have been submitted.</div>
+%</div>
+%\end{html}
+
+% <button type="button" id="CREATEBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="intersite.usercreatelocal_click(1);">Register above user data in the browser</button><br />
+% <button type="button" id="RESETBUTTON" style="height:60px;width:250px;background:#FFD0C0" onclick="intersite.userreset_click();">Delete all user data</button>
 
 
-% <button type="button" id="LOGINBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="userlogin_click();">Switch user</button><br />
+% <button type="button" id="LOGINBUTTON" style="height:60px;width:250px;background:#D0E0E0" onclick="intersite.userlogin_click();">Switch user</button><br />
 
 
-\begin{html}
-<div class="show_scorm" style="display:none">
-<b>You can edit your personal data in the learning platform.</b>
-</div>
-<div class="show_noscorm" style="display:none">
-<b>Delete account</b><br />
-Data saved on this browser and on our servers will be deleted. Please note that
-an account name that has been registered will not become available after
-deletion.
+%\begin{html}
+%<div class="show_scorm" style="display:none">
+%<b>You can edit your personal data in the learning platform.</b>
+%</div>
+%<div class="show_noscorm" style="display:none">
+%<b>Delete account</b><br />
+%Data saved on this browser and on our servers will be deleted. Please note that
+%an account name that has been registered will not become available after
+%deletion.
 
-<br /><br />
-<button type="button" class="criticalbutton" id="RESETBUTTON2"
-onclick="userdelete_click();">Delete account</button> </div>
-<br /><br />
-<div class="xreply">
-<p id="CHECKIS">
-Cannot access browser data!
-</p>
-</div>
-\end{html}
+%<br /><br />
+%<button type="button" class="criticalbutton" id="RESETBUTTON2"
+%onclick="intersite.userdelete_click();">Delete account</button> </div>
+%<br /><br />
+%<div class="xreply">
+%<p id="CHECKIS">
+%Cannot access browser data!
+%</p>
+%</div>
+%\end{html}
 \end{MXContent}
 
 \begin{MXContent}{Login}{Login}{STD}
 \MLabel{L_LOGIN}
 \MGlobalLoginTag
 \MDeclareSiteUXID{VBKM_MISCLOGIN}
-\begin{html}
-<div class="show_noscorm" style="display:none">
-<div id="ONLYLOGINFIELD"></div>
-\end{html}
 
-Username and password are required.
+% see templates_xslt/login.xml
 
-\begin{html}
-</div>
-<div class="show_scorm" style="display:none">
-<b>Please login through the learning platform.</b>
-</div>
-\end{html}
+%\begin{html}
+%<div class="show_noscorm" style="display:none">
+%<div id="ONLYLOGINFIELD"></div>
+%\end{html}
+
+%Username and password are required.
+
+%\begin{html}
+%</div>
+%<div class="show_scorm" style="display:none">
+%<b>Please login through the learning platform.</b>
+%</div>
+%\end{html}
 
 \end{MXContent}
 
@@ -183,20 +190,22 @@ Username and password are required.
 \MGlobalLogoutTag
 \MDeclareSiteUXID{VBKM_MISCLOGOUT}
 
-\begin{html}
-<script type="text/javascript">
-requestLogout = 1;
-</script>
-<p id="LOGINFIELD">
-No user data available!
-</p>
-<div class="show_scorm" style="display:none">
-<b>The course is closed, please logout through the learning platform or
-close the browser window.</b> </div>
-<div class="show_noscorm" style="display:none">
-<b>The course is closed, please close the browser window or tab.</b>
-</div>
-\end{html}
+% see templates_xslt/logout.xml
+
+%\begin{html}
+%<script type="text/javascript">
+%requestLogout = 1;
+%</script>
+%<p id="LOGINFIELD">
+%No user data available!
+%</p>
+%<div class="show_scorm" style="display:none">
+%<b>The course is closed, please logout through the learning platform or
+%close the browser window.</b> </div>
+%<div class="show_noscorm" style="display:none">
+%<b>The course is closed, please close the browser window or tab.</b>
+%</div>
+%\end{html}
 
 \end{MXContent}
 
