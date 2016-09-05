@@ -23,17 +23,15 @@ LOCALHOST_URL=http://localhost:3000
 
 
 all: 
-	echo "Running unit tests"
-	$(unittest_cmd)
+	echo "Running unit tests on ${STAGING_URL}"
 	$(eval BASE_URL := ${STAGING_URL})
 	echo "Running system tests run on ${BASE_URL}"
 	$(checkServer_cmd)
-	$(systest_cmd)
+	$(runtest_cmd)
 
 
 localhost: 
-	echo "Running unit tests"
-	$(unittest_cmd)
+	echo "Running unit tests on localhost"
 	$(eval BASE_URL := ${LOCALHOST_URL})
 	echo "Running system tests run on ${BASE_URL}"
 	$(checkServer_cmd)
@@ -49,18 +47,9 @@ endef
 
 
 #
-# Unit tests are regression- and TDD-tests 
-#	
-define unittest_cmd
-	green -vvvr src.test.unittests
-endef
-
-
-#
-# System tests are selenium tests, which hit the UI directly
-# The use a headless browser (PhantomJS) 
+# Run all tests and gather test coverage data
 #	
 define systest_cmd
-	export BASE_URL=${BASE_URL} && cd src && green -vvvr test.systemtests
+	export BASE_URL=${BASE_URL} && cd src && green -vvvr test
 endef
 

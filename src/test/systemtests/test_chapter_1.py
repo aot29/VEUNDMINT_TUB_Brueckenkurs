@@ -48,7 +48,7 @@ class Chapter1Test( SeleniumTest ):
 
 		content = self.getElement( 'pageContents' )
 		sections = content.find_elements_by_tag_name( "li" )
-		self.assertEqual( 10, len( sections ), "Chapter 1 has the wrong number of sections" )
+		self.assertEqual( 11, len( sections ), "Chapter 1 has the wrong number of sections" )
 
 
 	def testChapter1Section2(self):
