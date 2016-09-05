@@ -19,6 +19,7 @@
 '''
 
 import os
+from lxml import etree
 
 # Entity definition for &nbsp; needs to be added before parsing  
 # perhaps load all entities from DTD?
@@ -130,7 +131,15 @@ class AbstractXmlRenderer(object):
 		@return boolean
 		"""
 		return tc.uxid in AbstractXmlRenderer.infoPagesUXID
-	
+
+
+	@staticmethod
+	def toString(xml):
+		"""
+		Return the XML as a string for printing (could be pretier)
+		"""
+		return etree.tostring( xml, pretty_print=True, encoding='utf-8')
+
 
 class AbstractHtmlRenderer(object):
 	'''

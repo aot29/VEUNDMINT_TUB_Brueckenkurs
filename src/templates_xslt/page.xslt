@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xsl:stylesheet [ <!ENTITY nbsp "&#160;"> ]>
 
 <xsl:stylesheet version="1.0"
@@ -10,6 +11,9 @@
 	<xsl:import href="tabs.xslt" />
  	<xsl:import href="content.xslt" />
  	<xsl:import href="pageFooter.xslt" />
+
+	<!-- There is no doctype html5, use legacy-compat instead -->
+	<xsl:output method="html" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes" />
 
 	<xsl:template match="/page">
 

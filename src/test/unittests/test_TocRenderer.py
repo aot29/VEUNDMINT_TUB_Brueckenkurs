@@ -18,6 +18,25 @@ class test_TocRenderer(AbstractRendererTestCase):
 		self.xml = self.tocRenderer.generateXML( self.tc )
 	
 	
+	def  test_makeCaptionWithUmlaut(self):
+		"""
+		Check that umlaute and sz get converted, both UTF-8 and entity encoded
+		"""
+		# Umlaute as UTF-8 in the text
+		self.tc.title = "äüöß"
+		self.tc.caption = "Test"
+		self.tc.level = SUBSECTION_LEVEL
+		expected = "äüöß Test"
+		self.assertEquals( expected, self.tocRenderer._makeCaption( self.tc ), "Wrong caption with umlaut" )
+		
+		# Umlaute as encoded as entities
+		self.tc.title = "&#xE4;&#xFC;&#xF6;&#xDF;"
+		self.tc.caption = "Test"
+		self.tc.level = SUBSECTION_LEVEL
+		expected = "äüöß Test"
+		self.assertEquals( expected, self.tocRenderer._makeCaption( self.tc ), "Wrong caption with umlaut" )
+		
+	
 	def  test_makeCaption(self):
 		"""
 		TOC captions and numbers correspond to their level
