@@ -12,7 +12,10 @@
 		<xsl:variable name="inlineCss"><xsl:if test="$isModuleSelected or @isSpecialPage='True' or @isTestPage='True'">border: 1px solid #ccc; border-radius: 4px;</xsl:if></xsl:variable>
 
 		<div class="row" id="pageContents" style="{$inlineCss}">
-			<xsl:call-template name="zoom" />
+
+			<xsl:if test="@isSpecialPage='False'">
+				<xsl:call-template name="contentButtons" />
+			</xsl:if>
 			
 			<!-- Placeholder. Whatever non-valid HTML comes out of TTM will be pasted here in PageTUB, after the XSLT transformation is done -->
 			<content/>
@@ -28,10 +31,13 @@
 	</xsl:template>
 
 
-	<xsl:template name="zoom">
-		<div class="pull-right">
+	<xsl:template name="contentButtons">
+		<div id="contentButtons" class="pull-right">
+			<!-- 
 			<a data-toggle="tooltip" id="zoomoutbutton" onclick="changeFontSize(-5);" class="btn btn-link glyphicon glyphicon-zoom-out"></a>
 			<a data-toggle="tooltip" id="zoominbutton" onclick="changeFontSize(5);" class="btn btn-link glyphicon glyphicon-zoom-in"></a>
+			 -->
+			<a data-toggle="tooltip" id="printbutton" onclick="window.print();" class="btn btn-link glyphicon glyphicon-file"></a>
 		</div>
 	</xsl:template>
 

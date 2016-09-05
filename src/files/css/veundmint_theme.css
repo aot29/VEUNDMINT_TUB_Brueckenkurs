@@ -27,6 +27,12 @@
   .jumbotron {
   	padding: 48px;
   }
+  
+  /* Workaround for MathJax introducing empty tables with borders*/
+  .aufgabe table {
+  	border-color: white;
+  }
+  
 
   @media screen and (max-width: 991px) {
 
@@ -191,7 +197,7 @@
   		color: #337ab7;
       }
 
-      .panel-body > ul:first-child {
+      #toc .panel-body > ul:first-child {
       	padding-left: 0;
       }
       .module-panel ul > li > ul, #legend > ul {

@@ -1232,6 +1232,7 @@ class Plugin(basePlugin):
 			self.sys.message(self.sys.VERBOSEINFO, "PDF generation not activated in options")
 			return
 
+		self.sys.message(self.sys.VERBOSEINFO, "Generating PDFs, can take a while...")
 		self.sys.pushdir()
 		os.chdir(self.options.sourceTEX)
 		pdfok = True
