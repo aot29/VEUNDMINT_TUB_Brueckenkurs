@@ -105,18 +105,18 @@ Das \MEntry{Runden}{Rundung} von Messergebnissen ist ein alltäglicher Vorgang.
 \begin{MInfo}
 Für Rundungsvorgänge gibt es prinzipiell drei Möglichkeiten:
 \begin{itemize}
-\item{Das (Ab)Runden mit Hilfe der \textsf{floor}-Funktion $\left\lfloor{x}\right\rfloor$,}
-\item{das (Auf)Runden mit Hilfe der \textsf{ceil}-Funktion $\left\lceil{ x}\right\rceil$,}
-\item{das Runden mit Hilfe der \textsf{round}-Funktion, manchmal auch als \textsf{rnd}-Funktion bezeichnet.}
+\item{Das (Ab)Runden mit Hilfe der $\MTextSF{floor}$-Funktion $\left\lfloor{x}\right\rfloor$,}
+\item{das (Auf)Runden mit Hilfe der $\MTextSF{ceil}$-Funktion $\left\lceil{ x}\right\rceil$,}
+\item{das Runden mit Hilfe der $\MTextSF{round}$-Funktion, manchmal auch als $\MTextSF{rnd}$-Funktion bezeichnet.}
 \end{itemize}
 \end{MInfo}
 
-Die \MEntry{\textsf{floor}-Funktion}{floor-Funktion} (engl. floor = Fußboden, Diele) ist definiert durch
+Die \MEntry{$\MTextSF{floor}$-Funktion}{floor-Funktion} (engl. floor = Fußboden, Diele) ist definiert durch
 $$
-\textsf{floor}:\; \R\longrightarrow\R\;\; , \;\;
-x\;\longmapsto\; \textsf{floor}(x)\;=\; \left\lfloor{ x}\right\rfloor\;=\; \max\lbrace k\in\Z\: :\: k\leq x\rbrace\: .
+\MTextSF{floor}:\; \R\longrightarrow\R\;\; , \;\;
+x\;\longmapsto\; \MTextSF{floor}(x)\;=\; \left\lfloor{x}\right\rfloor\;=\; \max\lbrace k\in\Z\: :\: k\leq x\rbrace\: .
 $$
-Ist $x\in\R$ eine reelle Zahl, so ist $\textsf{floor}(x)=\left\lfloor{ x}\right\rfloor$ die größte ganze Zahl, die kleiner oder gleich x ist.
+Ist $x\in\R$ eine reelle Zahl, so ist $\MTextSF{floor}(x)=\left\lfloor{ x}\right\rfloor$ die größte ganze Zahl, die kleiner oder gleich x ist.
 Sie entsteht durch Abrundung von $x$. Schreibt man eine positive reelle Zahl $x$ als Dezimalbruch, so ist $\left\lfloor{ x}\right\rfloor$ die ganze Zahl vor dem
 Dezimalkomma: Die Abrundung schneidet die Nachkommastellen ab. Beispielsweise ist $\left\lfloor{ 3,142}\right\rfloor=3$, aber $\left\lfloor{ -2,124}\right\rfloor=-3$.
 Die Floor-Funktion ist eine Treppenfunktion mit Sprungstellen in allen Punkten $x\in \Z$ der Sprunghöhe $1$.
@@ -124,28 +124,28 @@ Die Funktionswerte in den Sprungstellen liegen immer oben. Dies ist in dem folge
 
 \begin{center}
 \MUGraphicsSolo{floor_400_0.png}{width=0.7\linewidth}{width:650px}\\
-Graph der \textsf{floor}-Funktion.
+Graph der $\MTextSF{floor}$-Funktion.
 \end{center}
 
 Gegeben sei eine reelle Zahl $a\geq 0$, dargestellt als \MSRef{Mathematik_Grundlagen_UDB}{Dezimalbruch}
 $$
 a \;=\; g_n\, g_{n-1}\, \ldots\, g_1\, g_0\: .\: a_1\,a_2\, a_3\, \ldots
 $$
-Will man mit Hilfe der \textsf{floor}-Funktion die Zahl $a$ auf $r$ Stellen ($r\in\N_0$) nach dem Komma runden, so bildet man
+Will man mit Hilfe der $\MTextSF{floor}$-Funktion die Zahl $a$ auf $r$ Stellen ($r\in\N_0$) nach dem Komma runden, so bildet man
 $$
 \tilde a \;=\; \frac1{10^r}\cdot \left\lfloor{ 10^r\cdot a}\right\rfloor\: .
 $$
 Dieser Rundungsvorgang ist die Rundung durch Abschneiden nach der r-ten Nachkommastelle. Beim Rundungsverfahren mit Hilfe der
-\textsf{floor}-Funktion wird also grundsätzlich abgerundet.
+$\MTextSF{floor}$-Funktion wird also grundsätzlich abgerundet.
 
 \begin{MExample}
-$a_1=2,3727$ wird mit Hilfe der \textsf{floor}-Funktion gerundet auf 2 Nachkommastellen zu
+$a_1=2,3727$ wird mit Hilfe der $\MTextSF{floor}$-Funktion gerundet auf 2 Nachkommastellen zu
 $$
 \tilde a_1 \;=\; \frac1{10^2}\cdot \left\lfloor{10^2\cdot2,3727}\right\rfloor\; =\; \frac1{10^2}\cdot \left\lfloor{ 237,27}\right\rfloor \;=\; \frac1{10^2}\cdot 237\;=\; =2,37\: .
 $$
 oder einfach durch Abschneiden aller Nachkommastellen nach der zweiten Stelle (das geht aber nur, wenn die Zahl schon als Dezimalbruch vorliegt, was beispielsweise
 in einem Computerprogramm oft nicht der Fall ist).
-Die Zahl $a_2=\sqrt{2}=1,414213562\ldots$ wird mit Hilfe der \textsf{floor}-Funktion auf 4 Nachkommastellen zu
+Die Zahl $a_2=\sqrt{2}=1,414213562\ldots$ wird mit Hilfe der $\MTextSF{floor}$-Funktion auf 4 Nachkommastellen zu
 $$
 \tilde a_2 \;=\; \frac1{10^4}\cdot \left\lfloor{ 10^4\cdot \sqrt2}\right\rfloor \;=\; \frac1{10^4}\cdot \left\lfloor{ 14142,1\ldots}\right\rfloor\;=\; \frac1{10^4}\cdot 14142 \;=\; 1,4142
 $$
@@ -153,13 +153,13 @@ gerundet. Die Kreiszahl
 $$
 a_3 \;=\; \pi \;=\; 3,141592654\ldots
 $$
-wird mit Hilfe der \textsf{floor}-Funktion gerundet auf 2 Stellen nach dem Komma zu
+wird mit Hilfe der $\MTextSF{floor}$-Funktion gerundet auf 2 Stellen nach dem Komma zu
 $$
 \tilde a_3 \;=\; \frac1{10^2}\cdot \left\lfloor{ 10^2\cdot\pi}\right\rfloor\;=\; \frac1{10^2}\cdot \left\lfloor{ 314,159\ldots}\right\rfloor \;=\; \frac1{10^2}\cdot 314 \;=\; 3,14\: .
 $$
 \end{MExample}
 
-Das Rundungsverfahren mit Hilfe der \textsf{floor}-Funktion findet oft Anwendung bei der Bestimmung von Gesamtnoten in Zeugnissen (\glqq akademische Rundung\grqq).
+Das Rundungsverfahren mit Hilfe der $\MTextSF{floor}$-Funktion findet oft Anwendung bei der Bestimmung von Gesamtnoten in Zeugnissen (\glqq akademische Rundung\grqq).
 Hat ein Studierender im Fach Mathematik z.B. die Einzelnoten
 
 \begin{center}
@@ -176,72 +176,72 @@ so wird das arithmetische Mittel dieser drei Noten
 $$
 \frac{1,3 + 2,3 + 2,0}{3}\; =\; \frac{5,6}{3} \; =\; 1,8\overline{6}\: .
 $$
-gebildet. Die Rundung mit Hilfe der \textsf{floor}-Funktion auf eine Nachkommastelle würde die Gesamtnote Mathematik $\tilde a=1,8$ ergeben.
+gebildet. Die Rundung mit Hilfe der $\MTextSF{floor}$-Funktion auf eine Nachkommastelle würde die Gesamtnote Mathematik $\tilde a=1,8$ ergeben.
 Die zur Bildung von Gesamtnoten verwendeten Rundungsverfahren müssen in den jeweiligen Prüfungsordnungen stets genau beschrieben sein.
-Das Gegenstück zur \textsf{floor}-Funktion ist die \textsf{ceil}-Funktion:
+Das Gegenstück zur $\MTextSF{floor}$-Funktion ist die $\MTextSF{ceil}$-Funktion:
 
 \begin{MInfo}
-Die \MEntry{\textsf{ceil}-Funktion}{ceil-Funktion} (engl. ceil = Zimmerdecke, Decke) ist definiert durch
+Die \MEntry{$\MTextSF{ceil}$-Funktion}{ceil-Funktion} (engl. ceil = Zimmerdecke, Decke) ist definiert durch
 $$
-\textsf{ceil}:\; \R\longrightarrow\R\;\; , \;\;
-x\;\longmapsto\; \textsf{ceil}(x)\;=\; \left\lceil{ x}\right\rceil\;=\; \min\lbrace k\in\Z\: :\: k\geq x\rbrace\: .
+\MTextSF{ceil}:\; \R\longrightarrow\R\;\; , \;\;
+x\;\longmapsto\; \MTextSF{ceil}(x)\;=\; \left\lceil{ x}\right\rceil\;=\; \min\lbrace k\in\Z\: :\: k\geq x\rbrace\: .
 $$
 \end{MInfo}
 
 Ist $x\in \mathbb{R}$ eine reelle Zahl, so ist
-$\textsf{ceil}(x)=\left\lceil{ x }\right\rceil$ die kleinste ganze Zahl, die größer oder gleich $x$ ist.
-Die \textsf{ceil}-Funktion ist eine Treppenfunktion mit Sprungstellen in allen Punkten $x\in\Z$ der Sprunghöhe $1$.
-Die Funktionswerte in den Sprungstellen liegen immer unten. Dies ist in dem folgenden Schaubild des Graphen der \textsf{ceil}-Funktion angedeutet durch eingezeichnete Punkte:
+$\MTextSF{ceil}(x)=\left\lceil{ x }\right\rceil$ die kleinste ganze Zahl, die größer oder gleich $x$ ist.
+Die $\MTextSF{ceil}$-Funktion ist eine Treppenfunktion mit Sprungstellen in allen Punkten $x\in\Z$ der Sprunghöhe $1$.
+Die Funktionswerte in den Sprungstellen liegen immer unten. Dies ist in dem folgenden Schaubild des Graphen der $\MTextSF{ceil}$-Funktion angedeutet durch eingezeichnete Punkte:
 
 \begin{center}
 \MUGraphicsSolo{ceil_400_0.png}{width=0.7\linewidth}{width:650px}\\
-Graph der \textsf{ceil}-Funktion.
+Graph der $\MTextSF{ceil}$-Funktion.
 \end{center}
 
 Gegeben sei eine reelle Zahl $a\geq 0$, dargestellt als \MSRef{Mathematik_Grundlagen_UDB}{Dezimalbruch}
 $$
 a \;=\; g_n\, g_{n-1}\, \ldots\, g_1\, g_0\: .\: a_1\,a_2\, a_3\, \ldots
 $$
-Will man mit Hilfe der \textsf{ceil}-Funktion die Zahl $a$ auf $r$ Stellen ($r\in\N_0$) nach dem Komma runden, so bildet man
+Will man mit Hilfe der $\MTextSF{ceil}$-Funktion die Zahl $a$ auf $r$ Stellen ($r\in\N_0$) nach dem Komma runden, so bildet man
 $$
 \hat{a} \;=\; \frac{1}{10^{r}}\cdot \left\lceil{ 10^{r}\cdot a }\right\rceil \: .
 $$
 Bei diesem Rundungsvorgang wird stets aufgerundet auf die nächsthöhere Dezimalstelle.
 
 \begin{MExample}
-Die Zahl $a_1=2,3727$ wird mit Hilfe der \textsf{ceil}-Funktion gerundet auf $2$ Nachkommastellen zu
+Die Zahl $a_1=2,3727$ wird mit Hilfe der $\MTextSF{ceil}$-Funktion gerundet auf $2$ Nachkommastellen zu
 $$
 \hat{a}_{1}\;=\; \frac{1}{10^{2}}\cdot \left\lceil{ 10^{2}\cdot 2,3727}\right\rceil\; =\; \frac{1}{10^{2}}\cdot \left\lceil{ 237,27}\right\rceil \;=\; \frac{1}{10^{2}}\cdot 238 \;=\; 2,38\: .
 $$
-Analog wird $a_{2}=\sqrt{2}=1,414213562\ldots$ mit Hilfe der \textsf{ceil}-Funktion auf $4$ Nachkommastellen zu
+Analog wird $a_{2}=\sqrt{2}=1,414213562\ldots$ mit Hilfe der $\MTextSF{ceil}$-Funktion auf $4$ Nachkommastellen zu
 $$
 \hat{a}_{2}\; =\; \frac{1}{10^{4}}\cdot \left\lceil{ 10^{4}\cdot \sqrt{2}}\right\rceil\; =\; \frac{1}{10^{4}}\cdot \left\lceil{ 14142,1\ldots}\right\rceil \;=\; \frac{1}{10^{4}}\cdot 14143\; =\; 1,4143
 $$
-gerundet. Die Kreiszahl $a_{3}=\pi=3,141592654\ldots$ wird mit Hilfe der \textsf{ceil}-Funktion gerundet auf $2$ Stellen nach dem Komma zu
+gerundet. Die Kreiszahl $a_{3}=\pi=3,141592654\ldots$ wird mit Hilfe der $\MTextSF{ceil}$-Funktion gerundet auf $2$ Stellen nach dem Komma zu
 $$
 \hat{a}_{3}\; =\; \frac{1}{10^{2}}\cdot \left\lceil{ 10^{2}\cdot \pi }\right\rceil\; =\; \frac{1}{10^{2}}\cdot \left\lceil{ 314,15\ldots }\right\rceil\; =\;\frac{1}{10^{2}}\cdot 315 \;=\; 3,15\: .
 $$
 \end{MExample}
 
-Rundungsverfahren mit Hilfe der \textsf{ceil}-Funktion findet man z.B. häufig bei Handwerkerrechnungen. Ein Handwerker wird meistens nach Arbeitsstunden bezahlt.
-Dauert eine Reparatur 50 Minuten (das sind $0,8\overline{3}$ Stunden im Dezimalsystem), so wird trotzdem aufgerundet und eine volle Arbeitsstunde berechnet.
+Rundungsverfahren mit Hilfe der $\MTextSF{ceil}$-Funktion findet man z.B. häufig bei Handwerkerrechnungen. Ein Handwerker wird meistens nach Arbeitsstunden bezahlt.
+Dauert eine Reparatur 50 Minuten (das sind $\MZahl{0}{8}\overline{3}$ Stunden im Dezimalsystem), so wird trotzdem aufgerundet und eine volle Arbeitsstunde berechnet.
 Spricht man umgangssprachlich von Runden, so ist meist die mathematische Rundung gemeint:
 
 \begin{MInfo}
-Die \MEntry{\textsf{round}-Funktion}{round-Funktion} (oder mathematische Rundung) ist definiert durch
+Die \MEntry{$\MTextSF{round}$-Funktion}{round-Funktion} (oder mathematische Rundung) ist definiert durch
 $$
-\textsf{round}:\; \R\longrightarrow\R\;\; , \;\;
-x\;\longmapsto\; \textsf{round}(x)\;=\; \textsf{floor}\left({x + \frac{1}{2}}\right) \; =\; \left\lfloor{ x + \frac{1}{2} }\right\rfloor\: .
+\MTextSF{round}:\; \R\longrightarrow\R\;\; , \;\;
+x\;\longmapsto\; \MTextSF{round}(x)\;=\; \MTextSF{floor}\left({x + \frac{1}{2}}\right) \; =\; \left\lfloor{ x + \frac{1}{2} }\right\rfloor\: .
 $$
 Im Gegensatz zur Auf- und Abrundung beträgt die durch diese Rundung an der Zahl vorgenommene Veränderung höchstens $0,5$.
 \end{MInfo}
 
-Die \textsf{round}-Funktion ist eine Treppenfunktion mit Sprungstellen in allen Punkten $x+\frac{1}{2},\; x\in \Z$, der Sprunghöhe $1$.
-Die Funktionswerte in den Sprungstellen liegen immer oben. Dies ist in dem folgenden Schaubild des Graphen der \textsf{round}-Funktion angedeutet durch eingezeichnete Punkte:
+Die $\MTextSF{round}$-Funktion ist eine Treppenfunktion mit Sprungstellen in allen Punkten $x+\frac{1}{2},\; x\in \Z$, der Sprunghöhe $1$.
+Die Funktionswerte in den Sprungstellen liegen immer oben. Dies ist in dem folgenden Schaubild des Graphen der $\MTextSF{round}$-Funktion angedeutet durch eingezeichnete Punkte:
 
 \begin{center}
 \MUGraphicsSolo{round_400_0.png}{width=0.7\linewidth}{width:650px}\\
-Graph der \textsf{round}-Funktion.
+Graph der $\MTextSF{round}$-Funktion.
 \end{center}
 
 Gegeben sei eine reelle Zahl $a\geq 0$, dargestellt als \MSRef{Mathematik_Grundlagen_UDB}{Dezimalbruch}
@@ -250,27 +250,27 @@ a \;=\; g_n\, g_{n-1}\, \ldots\, g_1\, g_0\: .\: a_1\,a_2\, a_3\, \ldots
 $$
 Will man mit Hilfe der Round-Funktion die Zahl $a$ auf $r$ ($r\in\N_0$) Stellen nach dem Komma runden, so bildet man
 $$
-\overline{a}\; =\; \frac{1}{10^{r}}\cdot \textsf{round}(10^{r}\cdot a)\; =\; \frac{1}{10^{r}}\cdot \left\lfloor{ 10^{r}\cdot a + \frac{1}{2} }\right\rfloor\: .
+\overline{a}\; =\; \frac{1}{10^{r}}\cdot \MTextSF{round}(10^{r}\cdot a)\; =\; \frac{1}{10^{r}}\cdot \left\lfloor{ 10^{r}\cdot a + \frac{1}{2} }\right\rfloor\: .
 $$
 Dieser Rundungsvorgang entspricht dem üblichen sogenannten mathematischen Runden.
 
 \begin{MExample}
-Die Zahl $a_{1}=1,49$ wird mit Hilfe der \textsf{round}-Funktion auf eine Nachkommestelle gerundet zu
+Die Zahl $a_{1}=1,49$ wird mit Hilfe der $\MTextSF{round}$-Funktion auf eine Nachkommestelle gerundet zu
 \begin{eqnarray*}
 \overline{a}_1 & = & \frac{1}{10}\cdot \mathsf{round}(10 \cdot 1,49) \; =\; \frac{1}{10}\cdot \left\lfloor{10\cdot 1,49 + 0,5}\right\rfloor\\
 &=& \frac{1}{10}\cdot \left\lfloor{14,9+0,5}\right\rfloor \;=\; \frac{1}{10}\cdot \left\lfloor{ 15,4 }\right\rfloor \;=\; \frac{1}{10}\cdot 15 \;=\; 1,5\: .
 \end{eqnarray*}
-Die Zahl $a_{2}=1,52$ wird mit Hilfe der \textsf{round}-Funktion auf eine Nachkommestelle gerundet zu
+Die Zahl $a_{2}=1,52$ wird mit Hilfe der $\MTextSF{round}$-Funktion auf eine Nachkommestelle gerundet zu
 \begin{eqnarray*}
 \overline{a}_{2}& = & \frac{1}{10}\cdot \mathsf{round}(10 \cdot 1,52)\; =\; \frac{1}{10}\cdot \left\lfloor{ 10\cdot 1,52 + 0,5 }\right\rfloor \\
 & = & \frac{1}{10}\cdot \left\lfloor{ 15,2+0,5}\right\rfloor \;=\; \frac{1}{10}\cdot \left\lfloor{ 15,7 }\right\rfloor\; =\; \frac{1}{10}\cdot 15 \;=\; 1,5\: .
 \end{eqnarray*}
-Die Zahl $a_{3}=2,3727$ wird mit Hilfe der \textsf{round}-Funktion gerundet auf $2$ Nachkommastellen zu
+Die Zahl $a_{3}=2,3727$ wird mit Hilfe der $\MTextSF{round}$-Funktion gerundet auf $2$ Nachkommastellen zu
 \begin{eqnarray*}
-\overline{a}_{3} & = & \frac{1}{10^{2}}\cdot \mathsf{round}(10^{2}\cdot 2,3727)\; =\; \frac{1}{100}\cdot \left\lfloor{ 100\cdot 2,3727 + 0,5 }\right\rfloor \\
+\overline{a}_{3} & = & \frac{1}{10^{2}}\cdot \MTextSF{round}(10^{2}\cdot 2,3727)\; =\; \frac{1}{100}\cdot \left\lfloor{ 100\cdot 2,3727 + 0,5 }\right\rfloor \\
 & = & \frac{1}{100}\cdot \left\lfloor{ 237,27+0,5}\right\rfloor\; =\; \frac{1}{100}\cdot \left\lfloor{ 237,77 }\right\rfloor \; =\;  \frac{1}{100}\cdot 237\; =\; 2,37\: .
 \end{eqnarray*}
-Die Zahl  $a_{4}=\sqrt{2}=1,414213562\ldots$ wird mit Hilfe der \textsf{round}-Funktion gerundet auf $7$ Nachkommastellen zu
+Die Zahl  $a_{4}=\sqrt{2}=1,414213562\ldots$ wird mit Hilfe der $\MTextSF{round}$-Funktion gerundet auf $7$ Nachkommastellen zu
 \begin{eqnarray*}
 \overline{a}_{3} & = & \frac{1}{10^{7}}\cdot \mathsf{round}(10^{7}\cdot \sqrt{2})\; =\; \frac{1}{10^{7}}\cdot \left\lfloor{ 10^{7}\cdot 1,414213562\ldots + 0,5 }\right\rfloor \\
 & = & \frac{1}{10^{7}}\cdot \left\lfloor{ 14142135,62\ldots+0,5}\right\rfloor \;=\; \frac{1}{10^{7}}\cdot \left\lfloor{ 14142136,12\ldots }\right\rfloor \\
@@ -279,7 +279,7 @@ Die Zahl  $a_{4}=\sqrt{2}=1,414213562\ldots$ wird mit Hilfe der \textsf{round}-F
 \end{MExample}
 
 \begin{MExercise}
-Berechnen Sie mit Hilfe der \textsf{round}-Funktion die Rundung von $\pi=3,141592654\ldots$ auf $4$ Nachkommastellen:
+Berechnen Sie mit Hilfe der $\MTextSF{round}$-Funktion die Rundung von $\pi=3,141592654\ldots$ auf $4$ Nachkommastellen:
 \MEquationItem{$\overline{\pi}$}{\MLParsedQuestion{20}{3.1416}{7}{STOCHROUND1}}.
 \ \\ \ \\
 \begin{MHint}{Lösung}
@@ -297,11 +297,11 @@ $$
 a\; =\; \frac{47}{17} \;\;\text{und}\;\;  b\; =\; 3,7861\: .
 $$
 \begin{MExerciseItems}
-\item{Runden Sie die Zahlen $a$ und $b$ mit Hilfe der \textsf{floor}-Funktion auf jeweils $2$ Nachkommastellen:\\Die Rundungen ergeben
+\item{Runden Sie die Zahlen $a$ und $b$ mit Hilfe der $\MTextSF{floor}$-Funktion auf jeweils $2$ Nachkommastellen:\\Die Rundungen ergeben
 \MEquationItem{$\tilde a$}{\MLParsedQuestion{10}{2,76}{7}{STOCHROUND2}} sowie \MEquationItem{$\tilde b$}{\MLParsedQuestion{10}{3,78}{7}{STOCHROUND3}}.}
-\item{Runden Sie die Zahlen $a$ und $b$ mit Hilfe der \textsf{ceil}-Funktion auf jeweils $2$ Nachkommastellen:\\Die Rundungen ergeben
+\item{Runden Sie die Zahlen $a$ und $b$ mit Hilfe der $\MTextSF{ceil}$-Funktion auf jeweils $2$ Nachkommastellen:\\Die Rundungen ergeben
 \MEquationItem{$\hat a$}{\MLParsedQuestion{10}{2,77}{7}{STOCHROUND4}} sowie \MEquationItem{$\hat b$}{\MLParsedQuestion{10}{3,79}{7}{STOCHROUND5}}.}
-\item{Runden Sie die Zahlen $a$ und $b$ mit Hilfe der \textsf{round}-Funktion auf jeweils $2$ Nachkommastellen:\\Die Rundungen ergeben
+\item{Runden Sie die Zahlen $a$ und $b$ mit Hilfe der $\MTextSF{round}$-Funktion auf jeweils $2$ Nachkommastellen:\\Die Rundungen ergeben
 \MEquationItem{$\overline{a}$}{\MLParsedQuestion{10}{2,76}{7}{STOCHROUND6}} sowie \MEquationItem{$\overline{b}$}{\MLParsedQuestion{10}{3,79}{7}{STOCHROUND7}}.}
 \end{MExerciseItems}
 \ \\
@@ -315,7 +315,7 @@ $$
 2+\frac{13}{17} \;=\; 2+\frac1{10}\cdot \frac{130}{17} \;=\; 2+\frac1{10}\cdot\left({7+\frac{11}{17}}\right)
 $$
 also erscheint eine $7$ als erste Nachkommastelle. Zerlegt man die Brüche weiter, so erhält man  $a\;=\;  2,764705\ldots$ wobei für die gefragte Rundung nur drei Nachkommastellen benötigt werden.
-Die vollständige Rechnung mit der \textsf{floor}-Funktion ergibt
+Die vollständige Rechnung mit der $\MTextSF{floor}$-Funktion ergibt
 $$
 \tilde a \;=\; \frac1{10^2}\cdot \left\lfloor{ 10^2\cdot 2,764705\ldots}\right\rfloor \;=\; \frac1{10^2}\cdot \left\lfloor{ 276,4705\ldots}\right\rfloor \;=\;  2,76\: .
 $$
@@ -324,11 +324,11 @@ $$
 \tilde a \;=\; 2,76\;\; \text{und}\;\; \tilde b \;=\; 3,78\: .
 $$
 Das ist in dieser Aufgabe aber nur erlaubt, weil $a$ und $b$ nicht negativ sind.
-Durch einfaches Aufrunden nach der $2$ Nachkommastelle oder eine vollständige Rechnung erhalten wir für die \textsf{ceil}-Rundungen
+Durch einfaches Aufrunden nach der $2$ Nachkommastelle oder eine vollständige Rechnung erhalten wir für die $\MTextSF{ceil}$-Rundungen
 $$
 \hat a \;=\; 2,77\;\; \text{und}\;\; \hat b \;=\; 3,79\: .
 $$
-Die \textsf{round}-basierte Rundung erhält man entweder durch die vollständige Rechnung wie in den Beispielen
+Die $\MTextSF{round}$-basierte Rundung erhält man entweder durch die vollständige Rechnung wie in den Beispielen
 oder durch Rundung auf diejenige Zahl mit zwei Stellen hinter dem Dezimalkomma, die den geringsten Abstand zu den ursprünglichen Zahlen besitzt:
 $$
 \overline{a} \; = \; 2,76 \;\; \text{und}\;\; \overline{b} \,=\; 3,79\: .
@@ -348,7 +348,7 @@ M\times M \;\longrightarrow M\;\; , \;\;
 $$
 über die Berechnungsvorschrift
 $$
-a\odot b \; =\; \frac{1}{10^{2}}\cdot \textsf{round}( 10^{2}\cdot a \cdot b)\; =\; \frac{1}{10^{2}}\cdot \left\lfloor{ 10^{2}\cdot a \cdot b + \frac{1}{2} }\right\rfloor
+a\odot b \; =\; \frac{1}{10^{2}}\cdot \MTextSF{round}( 10^{2}\cdot a \cdot b)\; =\; \frac{1}{10^{2}}\cdot \left\lfloor{ 10^{2}\cdot a \cdot b + \frac{1}{2} }\right\rfloor
 $$
 ein. Anschaulich bedeutet dies, dass das Produkt $a\odot b$ berechnet wird, indem zunächst das gewöhnliche Produnkt $a\cdot b$ berechnet wird und
 das Ergebnis dann auf zwei Nachkommastellen mathematisch gerundet wird.
@@ -1149,7 +1149,7 @@ x_{(\; )}\; =\; (x_{(1)},x_{(2)},\ldots ,x_{(n)})
 $$
 die zugehörige geordnete Stichprobe und
 $$
-\alpha \in (0,1) \;\;\text{und} \;\; k = \textsf{floor}(n\cdot \alpha) \;= \;\lfloor n\cdot \alpha \rfloor\: .
+\alpha \in (0,1) \;\;\text{und} \;\; k = \MTextSF{floor}(n\cdot \alpha) \;= \;\lfloor n\cdot \alpha \rfloor\: .
 $$
 Dann heißt
 $$
@@ -1188,7 +1188,7 @@ x_{(\; )}\;=\;(x_{(1)},x_{(2)},\ldots ,x_{(n)})
 $$
 und
 $$
-\alpha \in [0,\;0.5)\;\; \text{und}\;\;k\;=\;\textsf{floor}(n\cdot \alpha) \;= \;\lfloor n\cdot \alpha \rfloor \: .
+\alpha \in [0,\;0.5)\;\; \text{und}\;\;k\;=\;\MTextSF{floor}(n\cdot \alpha) \;= \;\lfloor n\cdot \alpha \rfloor \: .
 $$
 
 \begin{MInfo}
