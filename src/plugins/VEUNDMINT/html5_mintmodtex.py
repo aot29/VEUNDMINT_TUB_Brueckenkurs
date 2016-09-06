@@ -517,23 +517,27 @@ class Plugin(basePlugin):
 			for k in range(len(tc.children)):
 				p = tc.children[k]
 				# descend into the tree until a label is found
-				t = p.caption # caption is taken from the node, contentlabel from the node or the first fitting child
+				#t = p.caption # caption is taken from the node, contentlabel from the node or the first fitting child
 				while ((p.contentlabel == "") and (len(p.children) > 0)):
 					p = p.children[0]
 
 				if p.contentlabel == "":
 					self.sys.message(self.sys.CLIENTERROR, "ModstartBox requested for content element " + tc.title + ", but child " + p.title + " misses contentlabels")
+					continue
+					
 				else:
 					# simulate \MNRref and MSRef from mintmod.tex
-					s += "<li><!-- mmref;;" + p.contentlabel + ";;0; //-->: <!-- msref;;" + p.contentlabel + ";;" + t + "; //-->"
-					if (k < len(tc.children) - 1):
-						s += ","
-					else:
-						s += "."
-					s += "<br clear=\"all\"/><br clear=\"all\"/>"
-					s += "</li>\n"
+					s += "<li><!-- mmref;;%s;;0; //-->: <!-- msref;;%s;;%s; //--></li>\n" % ( p.contentlabel, p.contentlabel, p.caption )
+					
+					#if (k < len(tc.children) - 1):
+					#	s += ","
+					#else:
+					#	s += "."
+					#s += "<br clear=\"all\"/><br clear=\"all\"/>"
+					
+					#s += "</li>\n"
 			s += "</ul>\n"
-			s += "</div\n>"
+			s += "</div>\n"
 			return s # replace the tag in html
 
 		(tc.content, n) = re.subn(r"\<!-- modstartbox //--\>", modsb, tc.content, 0, re.S)
