@@ -17,22 +17,29 @@
   #pageContents .btn {
   	white-space: normal;
   }
-  
+
   /* Special styles for when the user is logged in */
   body.logged_in .logged_out_only {
   	display: none;
   }
 
-  /* on the start page */  
+  .logged_in_only {
+    display: none;
+  }
+  body.logged_in .logged_in_only {
+    display: block;
+  }
+
+  /* on the start page */
   .jumbotron {
   	padding: 48px;
   }
-  
+
   /* Workaround for MathJax introducing empty tables with borders*/
   .aufgabe table {
   	border-color: white;
   }
-  
+
 
   @media screen and (max-width: 991px) {
 
@@ -79,7 +86,7 @@
     #toggle_sidebar {
   		padding-left: 0;
   	}
-  	
+
   	/* hide pills (tabs) on small screens */
   	#subtoc {
   		display: none;
@@ -88,7 +95,7 @@
     #pageContents {
     	border-top: 1px solid #ccc;
 	}
-  	
+
   	/* Make some room in the header bar*/
   	#tools .btn {
   		padding-right: 3px;
@@ -96,10 +103,10 @@
     #toolsRow {
 		margin-right: 0!important;
     }
-    
+
   }
-  
-  @media screen and (max-width: 371px) {    
+
+  @media screen and (max-width: 371px) {
   	/* Make more room in the header bar*/
 	#navbarContainer {
     	padding-right: 0;
@@ -142,7 +149,7 @@
       margin-bottom: 1em;
       padding-left: 5px;
   }
-  
+
   /*input fields in forms*/
   .form-group div {
   	margin-bottom: 1em;
@@ -173,10 +180,10 @@
           margin-bottom: 0px;
           border-radius: 0;
       }
-      
+
       #toolsRow {
 	      margin-left: 0;
-	      margin-top: 10px; 
+	      margin-top: 10px;
 	      margin-right: 1em;
       }
 
@@ -207,7 +214,7 @@
       .selectedEntry {
       	font-weight: bold;
       }
-      
+
 	  /*tabs (pills)*/
       #subtoc {
 		padding: 0;

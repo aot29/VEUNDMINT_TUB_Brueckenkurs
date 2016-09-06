@@ -47,10 +47,10 @@ php-cli
 ```
 
 ## Building
-See our [Wiki](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Code-refactoring) for detailed instuctions
+Recommended: Install node package manager (npm) via the [nvm bash script](https://github.com/creationix/nvm). For alternatives and detailed installation instructions, see our [Wiki](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Code-refactoring)
 ### install dependencies for web version
 ```
-npm install 
+npm install
 bower install
 (or npm run bower_install if using a virtual Python environment)
 
