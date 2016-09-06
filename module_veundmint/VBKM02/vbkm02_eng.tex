@@ -12,16 +12,21 @@
 \begin{MSectionStart}
 \MDeclareSiteUXID{VBKM02_START}
 
-Equations arise by equating two terms in which variables occur. Simple equations can be solved by 
-applying transformations and solution formulas. For more sophisticated equations case analyses are 
-required. This module consists of
+Equations arise when we require the values of two terms to be equal. If variables occur in at least one of them, an equation can be understood as the task to find out for which values
+of the variables the left-hand side term and the right-hand side term have the same value.
+Simple equations can be solved by 
+applying transformations and solution formulas from a formulary. For a more sophisticated equation, a case analysis may be required. 
 
-\begin{itemize}
-\item{Section \MNRef{M02_EinfacheGleichungen}: \MSRef{M02_EinfacheGleichungen}{Simple Equations},}
+%This module consists of
+
+%\begin{itemize}
+%\item{Section \MNRef{M02_EinfacheGleichungen}: \MSRef{M02_EinfacheGleichungen}{Simple Equations},}
 %\item{dem Abschnitt \MNRef{M02_Wurzelgleichungen}, \MSRef{M02_Wurzelgleichungen}{Gleichungen mit Wurzeln},}
-\item{Section \MNRef{M02_Betragsgleichungen}: \MSRef{M02_Betragsgleichungen}{Absolute Value Equations},}
-\item{and Section \MNRef{M02_Abschlusstest}: \MSRef{M02_Abschlusstest}{Final Test}.}
-\end{itemize}
+%\item{Section \MNRef{M02_Betragsgleichungen}: \MSRef{M02_Betragsgleichungen}{Absolute Value Equations},}
+%\item{and Section \MNRef{M02_Abschlusstest}: \MSRef{M02_Abschlusstest}{Final Test}.}
+%\end{itemize}
+
+\MModstartBox
 \end{MSectionStart}
 
 \MSubsection{Simple Equations}
@@ -39,11 +44,10 @@ Depending on the variable values an equation is satisfied if both sides of the e
 satisfied if the sides of the equation evaluate to different values.
 \end{MInfo}
 
-Equations describe relations between expressions or model a problem to be solved. An equation itself cannot
-be true or false but some variables satisfy the equation and others do not. To test whether the equation is 
+Equations describe relations between expressions or model a problem to be solved.
+In general, an equation itself is not true or false. Instead, some variables satisfy the equation and others do not. To test whether the equation is 
 true or false for a single variable value this value has to be inserted into the equation. Then, both sides of the 
-equation are evaluated to certain values. The equation is satisfied by an inserted variable value if the evaluated 
-values coincide:
+equation are evaluated to certain values. The equation is satisfied by an inserted variable value if the evaluated values coincide:
 
 \begin{MExample}
 The equation $2x-1=x^2$ has the right-hand side $x^2$ and the left-hand side $2x-1$. Inserting $x=1$ 
@@ -69,27 +73,27 @@ Typical problems concerning equations are:
 
 
 \begin{MExample}
-  A savings deposit is to be designed such that it gives a fixed return per year. The bank intends to achieve
-  that the saver returns for a five years deposit exactly 600~Euro more than for a deposit of only two years. 
+  We want to design a savings deposit in such a way that there is a fixed annual return.
+  The bank wants to make sure that when investing over a five-year period, a saver
+  receives exactly 600~Euros more than when investing over a two-year period. 
 
-  First, the textual problem is translated into an equation with the variable $r$ denoting the return per year. Then, 
-  the equation is $5\cdot r=2\cdot r+600$. It says that five payments (left-hand side of the equation) equal 
-  two payments plus 600 (the unit Euro is then omitted during calculation).
+  First, the word problem is translated into an equation with the variable $r$ denoting the annual return. The resulting equation is $5\cdot r=2\cdot r+600$. It says that five payments (left-hand side of the equation) equal 
+  two payments plus 600. (For simplicity, we omit the unit Euro during calculation.)
 
-  This equation can be solved for $r$ very easily by subtracting the term $2r$ to both sides of the equation. Then, the 
-  equation reads $3r=600$ and dividing by $3$ results in the solution $r=200$.
+  We can easily solve this equation can be solved for $r$ by subtracting the term $2r$ from both sides of the equation. The resulting
+  equation reads $3r=600$, and dividing by $3$ results in the solution $r=200$.
 
-  Thus, the bank has to offer a return of 200~Euro per year to reach the required savings target. 
+  Thus, the bank has to offer a return of 200~Euros per year to reach the required savings target. 
 \end{MExample}
 
 % \begin{MExercise}
-% Übersetzen Sie die folgenden Aussagen in eine Gleichung (ohne sie zu lösen):
+% Ãœbersetzen Sie die folgenden Aussagen in eine Gleichung (ohne sie zu lÃ¶sen):
 % \begin{MExerciseItems}
 % \item{In elf Jahren ist Max doppelt so alt wie jetzt ($t$ = jetziges Alter in Jahren):  ???}
-% \item{Ein Kunde hat eine Rechnung über 1000 Euro zu bezahlen. Die monatlich zu zahlende Rate bleibt für ihn gleich unabhängig davon ob er
+% \item{Ein Kunde hat eine Rechnung Ã¼ber 1000 Euro zu bezahlen. Die monatlich zu zahlende Rate bleibt fÃ¼r ihn gleich unabhÃ¤ngig davon ob er
 % \begin{itemize}
-%  \item{die Rechnung mit $m$ gleichgroßen Raten abbezahlt,}
-%  \item{vier Raten mehr als $m$ einteilt und zusätzlich 10 Euro Verzugsgebühren pro Monat an die Bank zahlt (die nicht zur Rechnungsbegleichung dienen).}
+%  \item{die Rechnung mit $m$ gleichgroÃŸen Raten abbezahlt,}
+%  \item{vier Raten mehr als $m$ einteilt und zusÃ¤tzlich 10 Euro VerzugsgebÃ¼hren pro Monat an die Bank zahlt (die nicht zur Rechnungsbegleichung dienen).}
 % \end{itemize}
 % Ist $m$ die Anzahl der Monate, so gilt ???
 % }
@@ -107,11 +111,10 @@ the equation but not its solution set. Important equivalent transformations are
  \item{adding/subtracting terms to both sides of the equation,}
  \item{exchanging both sides of the equation,}
  \item{transformation of terms on one side of the equation, and}
- \item{inserting known relations.}
+ \item{substituting a term for another that is known to always have the same value.}
  \end{itemize}
 
-The following transformations are considered as equivalent transformations only if the used term is non-zero 
-(which can depend on the variables):
+The following transformations are equivalent transformations only if the used term is known to be non-zero (which may depend on the possible values of the variables):
 
 \begin{itemize}
  \item{multiplying/dividing by a term (this term has to be non-zero),}
@@ -125,28 +128,28 @@ Here, the following \MEntry{notation}{equivalent transformation (notation)} is u
  \item{equivalent equations are indicated by the symbol $\Leftrightarrow$ (which reads: if and only if, i.e. one
   equation is satisfied if and only if the other equation is satisfied).}
 
-\item{the symbol is underset by the transforming operation (or, for solutions with more than one line, the 
+\item{under this symbol we put a short description of the transforming operation (or, for solutions with more than one line, the 
   transforming operation is written next to the transformation).}
 \end{itemize}
 
-Importantly, the reader should be able to understand which transformation was carried out.
+What matters is that the reader should be able to understand which transformation was carried out.
 
 \begin{MExample}
-This example illustrates two simple single-lined equivalent transformations. Even though the symbol $\Leftrightarrow$ 
+This example illustrates two simple equivalent transformations written in a single line. Even though the symbol $\Leftrightarrow$ 
 is two-sided the notation is interpreted in such a way that the transformation is applied from 
 left to right:
 $$
 3x-x^2 \;=\; 2x-x^2+1\;\;\MUnderset{+x^2}\Leftrightarrow\;\;  3x\;=\; 2x+1 \;\;\MUnderset{-2x}\Leftrightarrow\;\; x \;=\; 1 \MDFPeriod
 $$
-The left equation and the right equation are equivalent. On the left we have the initial equation
-(corresponding to a certain textual problem) and on the right we have an equivalent equation 
+The leftmost equation and the rightmost equation are equivalent. On the left we have the initial equation
+(corresponding to a certain word problem) and on the right we have an equivalent equation 
 showing the solution immediately.
 \end{MExample}
 
 \begin{MExample}
 \MLabel{BSP_Umformungen1}
-For several complicated transformations the transformation steps should be written below each other.
-In this case the respective transformations are separated from the equation by vertical bars. 
+For several complicated transformations, the transformation steps should be written one under another.
+In this case we use vertical bars to separate the respective transformations from the equations. 
 
 \begin{eqnarray*}
 & \text{Start:} & 12+t \;=\;\Mdfrac{2t}{2t^2}+t \ \ \ \ \MSep \ -t\ \\ \ \\
@@ -157,18 +160,15 @@ In this case the respective transformations are separated from the equation by v
 \end{eqnarray*}
 
 Here, after the vertical bar both short symbols as, e.g. $-t$, and textual descriptions are allowed. 
-Importantly, the reader should be able to understand which transformations were carried out and should be able to decide whether 
-they are correct.
+Again, what matters is that the reader can understand which transformations were carried out and so can check that everything was done correctly.
 
 \end{MExample}
 \end{MIntro}
 
 \begin{MXContent}{Conditions in Transformations}{Conditions}{STD}
 \MDeclareSiteUXID{VBKM02_Bedingungen}
-Multiplication, division, and taking reciprocals are only equivalent transformations if the factors or terms are 
-non-zero. In example~\MRef{BSP_Umformungen1}, the reader understands that both sides of the equation are non-zero 
-such that the transformation is allowed. If the variables themselves are used in the transformation it has to be 
-noted that the respective term has to be non-zero. The solution at the end of the transformations is then 
+Multiplication, division, and taking reciprocals are equivalent transformations only if the factors or terms are 
+non-zero. In the last step of example~\MRef{BSP_Umformungen1}, the reader can see that both sides of the equation are always non-zero. Therefore the transformation is allowed. If the variables themselves are used in the transformation, we need to make a note somewhere to remind us that the respective term must be non-zero. The solution at the end of the transformations is then 
 only valid for variable values satisfying the transformation conditions. All other values have to be checked 
 \textit{separately}, typically by inserting the value into the equation:
 
@@ -184,8 +184,8 @@ also satisfied for $x=0$, hence $x=0$ is also a solution of the equation. In set
 solution set is $\ML=\lbrace 0\MElSetSep \Mtfrac19\rbrace$.
 \end{MExample}
 
-Anyway, values violating a condition have to be checked separately, in particular, they can be finally 
-part of the solution.
+In any case, values violating a condition have to be checked separately. It may or may not
+turn out that they are part of the solution.
 
 \begin{MExample}
 \begin{eqnarray*}
@@ -221,34 +221,32 @@ $x=3$ satisfies the initial equation.
 \begin{MXContent}{Proportionality and Rule of Three}{Proportionality}{STD}
 \MLabel{VBKM02_Dreisatz}
 \MDeclareSiteUXID{VBKM02_Dreisatz}
-In practise, a relation between two quantities that occurs frequently is the 
-\MEntry{proportionality}{proportionality} between two quantities, e.g. between 
+A relation between two varying quantities that frequently occurs in practice is the 
+\MEntry{proportionality}{proportionality}. Examples include 
 mass and volume, time and travelled distance or weight (quantity) of a product and its price. 
-The relation can be exemplary for certain fixed quantities. Then, a first aim is to formulate the 
-resulting relation for another application example. 
-The procedure shall be illustrated by an example. 
+Often we are given two example values that stand in relation and need to complete another example for which only one value is given.
+We will illustrate this procedure with an example. 
 
 
 \begin{MExample}
 $5\MEinheit{kg}$ of apples cost $3$ Euro. How much do $11\MEinheit{kg}$
 of apples cost?
 \par
-The initial relation can be formulated as follows:
+In a first step, we convert the information we have about the price of apples in the following traditional notation, which in this example we could read as ``costs'':
 $$
 5\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 3\MBlank \text{Euro}
 \MDFPeriod
 $$
-It is assumed that these quantities are proportional to each other. In the next
-step the relation between the quantities is reduced to a unit of one of the quantities, 
-namely to the unit of the given quantity. Here, both quantities 
-are multiplied by $1/5$ -- i.e. the unit is $1\MEinheit{kg}$ --:
+In this example, the symbol in the middle can be read as ``costs'', but in other examples other readings will be required. The key point is that as the value on one side of the
+symbol varies, the value on the other will have to vary proportionally.
+In the second step, we want to scale this proportional relation so as to express it in terms of a unit amount of the quantity for which another value (here: $11\MEinheit{kg}$) is given. So we multiply both sides by $1/5$ and get:
 $$
 1\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 
 \frac{1}{5}\cdot 3\MBlank \text{Euro} = \MZahl{0}{6}\MBlank \text{Euro}
 \MDFPeriod
 $$
-Finally, both sides of the equation are multiplied by the multiple of the 
-respective unit of the specified quantity, in this case by the factor $11$: 
+In the third and final step, we multiply both sides by the number of units specified
+in the problem, which in our example is $11$: 
 $$
 11\MEinheit{kg} \MDFPSpace \MRelates \MDFPSpace 
 11\cdot\MZahl{0}{6}\MBlank \text{Euro} = \MZahl{6}{6}\MBlank \text{Euro}
@@ -259,14 +257,14 @@ $\MZahl{6}{60}\MBlank \text{Euro}$.
 \end{MExample}
 
 We have derived the required relation by deriving a relation for one unit of a quantity from 
-the initial relation. This procedure demonstrated here as an example is called 
-\MEntry{rule of three}{rule of three}.
+the initial relation. The procedure demonstrated here is called the
+\MEntry{rule of three}{rule of three} and is taught in great detail in the schools of some countries such as Germany and France.
 
-The posed problem can also be solved by introducing a proportionality factor. 
+The same problem can also be solved by introducing a proportionality factor. 
 Again, we consider the example above.
 
 \begin{MExample}
-The price $P$ is proportional to the mass $m$. Hence, it exists a constant 
+The price $P$ is proportional to the mass $m$. Hence, there exists a constant 
 $k$ with
 $$
 P=k m \MDFPeriod
@@ -349,7 +347,7 @@ the equation $x=\text{value}$ which is the solution.}
 \end{itemize}
 
 \begin{MXInfo}{Set notation}
-Using the set notation (with the solution set $\ML$) these cases can be expressed as follows:
+Using set notation (with $\ML$ as the conventional symbol for the solution set) these cases can be expressed as follows:
 \begin{itemize}
  \item{$\ML=\lbrace\rbrace$ or $L=\MEmptyset$ if there is no solution,}
  \item{$\ML=\lbrace \text{value}\rbrace$ if there is a single solution,}
@@ -474,11 +472,12 @@ range of real numbers),}
 Again, the expression $D:=b^2-4 a c$ underneath the square root considered above is called 
 \textbf{discriminant}.
 \end{MInfo}
-Certainly, both formulas result in the same solutions. (For applying the $pq$ formula, the quadratic 
-equation is to be divided by the factor $a$ of the quadratic term.)
+Both formulas result in the same solutions. The $pq$ formula is easier to learn, but is
+only applicable if $a$, the coefficient of the quadratic term, is~$1$. Otherwise we must
+divide both sides of the equation by~$a$.
 \medskip\par
-This three different cases correspond to three different numbers of intersection points between 
-the graph of a parabola opening upwards $f(x)=x^2+p x+ q$ and the $x$ axis (applying the $p q$ formula).
+In terms of the $pq$ formula, the three different cases correspond to three possibilies for the number of intersection points that the graph of a shifted standard parabola
+$f(x)=x^2+p x+ q$ may have with the $x$ axis.
 
 \begin{center}
 %%\MUGraphicsSolo{para1b.png}{width=0.2\linewidth}{width:230px}\ \ 
@@ -506,7 +505,7 @@ the graph of a parabola opening upwards $f(x)=x^2+p x+ q$ and the $x$ axis (appl
 }
 \end{center}
 
-Three cases: no intersection point, one intersection point and two intersection points with the
+Three cases: no intersection point, one intersection point, two intersection points with the
 $x$ axis.
 
 
@@ -523,16 +522,16 @@ x_2 &=& \Mdfrac12-\sqrt{\Mdfrac14+1} \;=\; \Mdfrac12(1-\sqrt5) \MDFPeriod
 \begin{MInfo}
 \MLabel{VBKM02_Scheitelpunktform}
 %%Eine quadratische Gleichung ist in \MEntry{Scheitelpunktform}{Scheitelpunktform}, wenn sie die Form $a\cdot (x-s)^2=d$ besitzt mit $a\not=0$ und $d\geq 0$.
-%%Für den Funktionsausdruck der zugehörigen Parabel liest sich diese Form $f(x)=a\cdot (x-s)^2-d$.
+%%FÃ¼r den Funktionsausdruck der zugehÃ¶rigen Parabel liest sich diese Form $f(x)=a\cdot (x-s)^2-d$.
 %%In dieser Situation ist $(s\,|\,-d)$ der \MEntry{Scheitelpunkt}{Scheitelpunkt (Parabel)} der Parabel.
 %%
-%%Falls $a>0$ ist gibt es zwei Lösungen
+%%Falls $a>0$ ist gibt es zwei LÃ¶sungen
 %%$$
 %%x_1 \;=\; s-\sqrt{\Mdfrac{d}{a}} \MDFPSpace,\MDFPaSpace x_2 \;=\; s+\sqrt{\Mdfrac{d}{a}}
 %%$$
-%%der Gleichung, diese liegen symmetrisch um die $x$-Koordinate des Scheitelpunkts. Für $d=0$ gibt es nur eine Lösung.
+%%der Gleichung, diese liegen symmetrisch um die $x$-Koordinate des Scheitelpunkts. FÃ¼r $d=0$ gibt es nur eine LÃ¶sung.
 %%
-%%Das Vorzeichen von $a$ bestimmt, ob die Gleichung eine nach oben oder unten geöffnete Parabel beschreibt.
+%%Das Vorzeichen von $a$ bestimmt, ob die Gleichung eine nach oben oder unten geÃ¶ffnete Parabel beschreibt.
 The function expression of a parabola has \MEntry{vertex form}{vertex form} if the function
 has the form $f(x)=a\cdot (x-s)^2-d$ with $a\ne 0$. In this case, $\MPointTwo{s}{-d}$
 is the \MEntry{vertex}{vertex (parabola)} of the parabola. The corresponding 
@@ -696,18 +695,18 @@ equation $|2x-4|=6$ by case analysis.
 \ \\
 \MCopyrightNotice{\MCCLicense}{FSZ}{MINT}{Dozentin: Dipl.-ing. Heike Herold}{VBKM06_Video_Beispiel1}
 
-The case analysis presented in the video reads shortly
+The case analysis presented in the video can be written briefly as follows:
 $$
 |2x-4| \;=\; \MCases{2x-4 &\text{for}\;x\geq 2 \\ -2x+4 & \text{for}\;x<2} \;=\;\MCases{2x-4 &\text{for}\;x\geq 2 \\ -2x+4 & \text{otherwise}} \MDFPeriod
 $$
-\MInputHint{In einem Eingabefeld würde man das als \texttt{falls(x>=2;2*x-4;-2*x+4)} eintippen. Auch \texttt{falls(x<2;-2*x+4;2*x-4)} wäre richtig.}
+\MInputHint{In an input field you would type this as \texttt{falls(x>=2;2*x-4;-2*x+4)}. Or alternatively as \texttt{falls(x<2;-2*x+4;2*x-4)}.}
 
 \begin{MExercise}
 Describe the values of the expression $2\cdot |x-4|$ by a case analysis:
 \begin{center}
 $\displaystyle 2\cdot |x-4|$ = \MLSimplifyQuestion{30}{falls(x>=4,2*(x-4),-2*(x-4))}{15}{x}{4}{128}{VBKM02ALTFALL1}.
 \end{center}
-\MInputHint{Enter the case analysis in the form \texttt{falls(BEDINGUNG;W1;W2)}, where \texttt{W1} is the value of the expression if the corresponding condition is satisfied. Do not use the absolute value function.}
+\MInputHint{Enter the case analysis in the form \texttt{falls(CONDITION;W1;W2)}, where \texttt{W1} is the value of the expression if the corresponding condition is satisfied. Do not use the absolute value function.}
 \begin{MHint}{Solution}
 \begin{eqnarray*}
 2\cdot |x-4| \;=\; \MCases{2x-8 &\text{for}\;x\geq 4 \\ -2x+8 & \text{for}\;x<4}
@@ -725,7 +724,7 @@ The case analysis reads shortly $|6+3x|$ = \MLSimplifyQuestion{40}{for(x>=-2,6+3
 |6+3x| \;=\; \MCases{6+3x &\text{for}\;x\geq -2 \\ -6-3x & \text{for}\;x<-2}
 \end{eqnarray*}
 \end{MHint}\\
-\MInputHint{Enter the case analysis in the form \texttt{falls(BEDINGUNG;W1;W2)}, where \texttt{W1} is the value of the expression if the corresponding condition is satisfied.
+\MInputHint{Enter the case analysis in the form \texttt{falls(CONDITION;W1;W2)}, where \texttt{W1} is the value of the expression if the corresponding condition is satisfied.
 You can copy one of the input examples into the input field and adapt it to the new equation.}
 \ \\ \ \\
 Finding the solution for each case and checking the case conditions leads to the solution set
@@ -736,7 +735,7 @@ Finding the solution for each case and checking the case conditions leads to the
 \ML \;=\; \{-6\MElSetSep 2\}
 \end{eqnarray*}
 \end{MHint}\\
-\MInputHint{Mengen können in der Form \texttt{$\lbrace$a;b;c;\ldots$\rbrace$} eingegeben werden.}
+\MInputHint{Mengen kÃ¶nnen in der Form \texttt{$\lbrace$a;b;c;\ldots$\rbrace$} eingegeben werden.}
 \end{MExercise}
 
 You can practise the stepwise solution of absolute value equations within the following exercise. 
@@ -755,7 +754,7 @@ If an equation contains both absolute values and other expressions, the case ana
 has to be done according to the absolute value terms and applied only to these.
 \end{MInfo}
 
-Finally, keep in mind to crosscheck the found solution sets with the case conditions.
+Finally, keep in mind to cross-check the solution sets you found with the case conditions.
 
 \begin{MExample}
 Solve the equation $|x-1|+x^2=1$. Here, the case analysis is as follows:
@@ -827,7 +826,7 @@ The solution set is \MLParsedQuestion{10}{-8/5,2/7}{5}{PARSEDQUEST1}.
 Visualising the different cases for the expressions $|2x+1|$ and $|x-5|$ above each other 
 indicates all cases to be distinguished:
 
-%%\MGraphics{fallunterscheidung3.png}{scale=1}{Graphische Darstellung der drei Fälle.\MCopyrightLabel{VBKM02_Grafik_Fallunterscheidung3}}
+%%\MGraphics{fallunterscheidung3.png}{scale=1}{Graphische Darstellung der drei FÃ¤lle.\MCopyrightLabel{VBKM02_Grafik_Fallunterscheidung3}}
 %%\MCopyrightNotice{\MCCLicense}{NONE}{VEMINT}{Im Rahmen des VE\&MINT-Projekts}{VBKM02_Grafik_Fallunterscheidung3}
 \begin{center}
 \MTikzAuto{%
@@ -908,7 +907,7 @@ Therefore, the solution set is $\lbrace -\Mtfrac85\MElSetSep \Mtfrac27\rbrace$.
 \MDeclareSiteUXID{VBKM02_Abschlusstest}
 
 \begin{MExercise}
-Find an absolute value term describing the following graph of a function as easy as possible:
+Find an absolute value term describing the following graph of a function as simply as possible:
 
 %%\MUGraphics{abs2.png}{width=0.5\linewidth}{Funktionsgraph von $f(x)$.}{width:300px}
 \begin{center}

@@ -306,9 +306,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         // we are on the logout page, we can do synced calls here
         console.log( "Logout requested");
         pushISO(true);
-        //window.close(); NEIN
-        // browsers may refuse javascript close based on security settings,
-        // in that case the module text informs the user to close manually.
+        window.location.href="index.html";
+
     } else {
         console.log( "No logout requested");
     }
@@ -1001,6 +1000,9 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      /**
       * TODO move to ui component
       * does sooooome ui manipulation
+      * 
+      * see mintscripts_bootstrap.displayFeedback
+      * 
       * @param {[type]} ok [description]
       * @param {[type]} m  [description]
       */
@@ -1012,7 +1014,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          if (e == null) return; else {
              if (e.value == "") {
                  e.style.backgroundColor = QCOLOR_NEUTRAL;
-                 s = "../../images/questionmark.png";
+                 s = imagesPath + "/questionmark.png";
              } else {
                  e.style.backgroundColor = QCOLOR_FALSE;
              }
@@ -1023,7 +1025,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          e = document.getElementById("USER_UNAME");
          if (e == null) return; else e.style.backgroundColor = QCOLOR_TRUE;
          e = document.getElementById("checkuserimg");
-         if (e == null) return; else e.src = "../../images/right.png";
+         if (e == null) return; else e.src = imagesPath + "/right.png";
        }
        e = document.getElementById("ulreply_p");
        if (e == null) return; else e.innerHTML = m;

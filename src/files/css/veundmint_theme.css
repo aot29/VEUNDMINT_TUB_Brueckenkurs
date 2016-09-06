@@ -1,27 +1,43 @@
   body {
   	padding-top: 70px;
+  	font-size:medium!important;
   }
 
   /*pageContents*/
   #pageContents {
       padding: 10px 20px;
       border: 1px solid #ccc;
-      border-top: none;
       border-radius: 0 0 4px 4px;
       margin-bottom: 20px;
-      font-size: 16px;
+      /*font-size: 16px; Moved to body, as here it breaks the zoom function. */
       line-height: 1.6em;
   }
+
+  /*Wrap long texts in lauch buttons*/
+  #pageContents .btn {
+  	white-space: normal;
+  }
+  
+  /* Special styles for when the user is logged in */
+  body.logged_in .logged_out_only {
+  	display: none;
+  }
+
+  /* on the start page */  
   .jumbotron {
   	padding: 48px;
   }
+  
+  /* Workaround for MathJax introducing empty tables with borders*/
+  .aufgabe table {
+  	border-color: white;
+  }
+  
 
-  /*
-   * Off Canvas
-   * --------------------------------------------------
-   */
   @media screen and (max-width: 991px) {
-    .row-offcanvas {
+
+	/* Off Canvas */
+	.row-offcanvas {
       position: relative;
       -webkit-transition: all .25s ease-out;
            -o-transition: all .25s ease-out;
@@ -63,6 +79,32 @@
     #toggle_sidebar {
   		padding-left: 0;
   	}
+  	
+  	/* hide pills (tabs) on small screens */
+  	#subtoc {
+  		display: none;
+  	}
+    /*Close the page contents container at the top when no subnav pills are displayed*/
+    #pageContents {
+    	border-top: 1px solid #ccc;
+	}
+  	
+  	/* Make some room in the header bar*/
+  	#tools .btn {
+  		padding-right: 3px;
+  	}
+    #toolsRow {
+		margin-right: 0!important;
+    }
+    
+  }
+  
+  @media screen and (max-width: 371px) {    
+  	/* Make more room in the header bar*/
+	#navbarContainer {
+    	padding-right: 0;
+    	padding-left: 0;
+    }
   }
 
 
@@ -117,19 +159,25 @@
   }
   /* end form styles*/
 
-  /*Extra styles for tooltips*/
+	  /*Extra styles for tooltips*/
       .tooltip.bottom .tooltip-arrow {
           border-bottom-color: #ccc;
       }
       .tooltip-inner {
           background-color: #999;
       }
-  /*end tooltip*/
+  	/*end tooltip*/
 
       /* Tools */
       #navbar {
           margin-bottom: 0px;
           border-radius: 0;
+      }
+      
+      #toolsRow {
+	      margin-left: 0;
+	      margin-top: 10px; 
+	      margin-right: 1em;
       }
 
       #tools .btn-link {
@@ -149,7 +197,7 @@
   		color: #337ab7;
       }
 
-      .panel-body > ul:first-child {
+      #toc .panel-body > ul:first-child {
       	padding-left: 0;
       }
       .module-panel ul > li > ul, #legend > ul {
@@ -159,31 +207,21 @@
       .selectedEntry {
       	font-weight: bold;
       }
+      
+	  /*tabs (pills)*/
       #subtoc {
-        padding: 0;
+		padding: 0;
       }
       #subtoc .nav {
-        border: 1px solid #ccc;
         padding: 6px;
       }
       #subtoc .subtoc-prev, #subtoc .subtoc-next {
         font-size:1.4em;
       }
-  /*
-      #toc li {
-          list-style-type: none;
-          float: left;
-      }
-      #toc li {
-          padding: 2px;
-      }
-      #toc ul.panel > li {
-          width: 100%;
-      }
-      #toc ul.panel li.lastFromPanel {
-          clear: both;
-      }
-  */
+	 .chevron {
+	 	padding-top: 1em;
+	 }
+
       #legende ul.panel li div.glyphicon {
           padding-right: 5px;
       }

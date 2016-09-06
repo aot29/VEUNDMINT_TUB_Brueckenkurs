@@ -98,7 +98,7 @@ class Option(object):
         self.dorelease = 0        # In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
         self.doverbose = 0        # Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
         self.docollections = 0    # Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
-        self.dopdf = 0            # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
+        self.dopdf =  0           # =1 -> PDF wird erstellt und Downloadbuttons erzeugt
         self.dotikz = 0           # =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
         self.dozip = 0            # =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
         self.consolecolors = 1    # =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt

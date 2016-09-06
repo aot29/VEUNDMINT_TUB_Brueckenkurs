@@ -1,0 +1,1473 @@
+\input{mintmod.tex}
+\MPragma{MathSkip}
+\Mtikzexternalize
+
+\begin{document}
+
+\MSection{Language of Descriptive Statistics}
+\MLabel{VBKM_STOCH}
+\MSetSectionID{VBKM_STOCHASTIK} % wird fuer tikz-Dateien verwendet
+
+\begin{MSectionStart}
+\MDeclareSiteUXID{VBKM_STOCHASTIK_START}
+
+In this Module we discuss the most important basics of descriptive statistics. In particular, we will 
+discuss rounding and percentage calculations (which actually are not subjects of descriptive 
+statistics, but will be needed there). The competent handling of percentage calculation
+is essential in economics. Experience tells that these elementary subjects are already taught at secondary school
+but often not thoroughly enuogh. For example, a test has shown that 
+half of first year students are not able to calculate the amount of VAT in a gross invoice. 
+This module consists of the following sections:
+
+
+\begin{itemize}
+\item{\MSRef{VBKM_STOCH_1_1}{Terminology}: we introduce the fundamental concepts of statistics and explain different 
+rounding methods for numbers.}
+\item{\MSRef{VBKM_STOCH_2_1}{Frequency Distributions and Percentage Calculation}: we introduce frequency distributions and explain 
+the percentage calculation involved as well as the visualisation of the results using typical types of diagrams.}
+\item{\MSRef{VBKM_STOCH_3_1}{Statistical Measures}: we explain the fundamental statistical measures of descriptive statistics 
+such as arithmetic mean and sample variance.}
+\item{\MSRef{VBKM_STOCH_Abschlusstest}{Final Test}.}
+\end{itemize}
+
+\end{MSectionStart}
+
+
+\MSubsection{Terminology and Language}
+
+\begin{MIntro}
+\MLabel{VBKM_STOCH_1_1}
+\MDeclareSiteUXID{VBKM_STOCHASTIK_1_1}
+
+For statistical observations (surveys) of appropriately chosen units of observation
+(a.k.a. units of investigation or experimental units), the values or attributes of a property or properties are determined. 
+Here, a property is a characteristic of the observation unit to be investigated. The terminology of descriptive 
+statistics is as follows:
+
+\begin{itemize}
+\item{The \MEntry{unit of investigation}{unit of investigation} (also: \MEntry{unit of observation}{unit of observation}) 
+is the smallest unit on which the observations are made.}
+\item{The \MEntry{characteristic}{characteristics} or \MEntry{property}{property} 
+is the statistical variable of the unit to be investigated. Characteristics are often denoted by upper-case Latin letters 
+($X, Y, Z, \ldots$).}
+\item{\MEntry{Characteristic attributes}{characteristic attributes} or \MEntry{property values}{property values} are values
+that properties can take. They are often denoted by lower-case Latin letters 
+($a, b,\ldots, x, y, z, a_1, a_2,\ldots$).}
+\item{The set of units of observation that is investigated with respect to a property of interest 
+is called \MEntry{universe}{universe} or also \MEntry{population}{population}. It is the set of all possible 
+observation units.}
+\item{A \MEntry{sample}{sample} is a ``random finite subset'' of a certain population of interest. If this 
+set consists of $n$~elements, then this set is called a ``sample of size $n$''.}
+\item{\MEntry{Data}{data} are the observed values (attributes) of one or more characteristics or properties 
+of a sample unit of observation of a certain population.}
+\item{The \MEntry{original list}{original list} is the protocol that lists the sampled data in 
+chronological order. Thus, the original list is a $n$-tuple (or vector, written here mostly in coordinate form):
+$$
+x \;=\; (x_1,\ldots,x_n)\: .
+$$
+This $n$-tuple is often called a ``sample of size $n$''.}
+\end{itemize}
+
+\begin{MExample}
+>From a daily production of components in a factory, $n=20$~samples of $15$~parts each are taken and the number of defective parts in each sample 
+is determined. Here, $x_i$ is the number of defective parts in the $i$th sample, $i=1,\ldots,20$. The original list (sample of 
+size $n=20$) contains the following data:
+$$
+x\; =\; (0,4,2,1,1,0,0,2,3,1,0,5,3,1,1,2,0,0,1,0)\: .
+$$
+In the second sample, $x_2=4$ defective parts were found. The population in this example is the set of all 
+$15$-element subsets of the daily production. The property of interest is in this case
+$$
+X\;=\; \text{Number of defective workpieces in a sample of $15$~elements}\: .
+$$
+\end{MExample}
+
+\begin{MInfo}
+
+The variables in a statistical observation are called \MEntry{characteristics}{characteristics} or \MEntry{properties}{property}.
+Values that the properties can take are called \MEntry{property values}{property values} or 
+\MEntry{characteristic attributes}{characteristic attributes}.
+\end{MInfo}
+
+Properties are roughly classified into qualitative properties (that can be ascertained in a descriptive way) and quantitative properties 
+(that can naturally be ascertained numerically):
+\begin{itemize}
+\item{\MEntry{Qualitative properties}{property (qualitative)}:\begin{itemize}
+  \item{Nominal properties: attributes classified according to purely qualitative aspects. Examples: 
+  skin colour, nationality, blood type.}
+  \item{Ordinal properties: attributes with a natural hierarchy, i.e. they can be ordered or sorted.
+        Examples: grades, ranks, surnames.}
+  \end{itemize}
+  }
+\item{\MEntry{Quantitative properties}{property (quantitative)}:\begin{itemize}
+  \item{Discrete properties: property values are isolated values (e.g. integers).
+        Examples: numbers, years, age in years.}
+  \item{Continuous properties: property values can (at least in principle) take any value. 
+        Examples: body size, weight, length.}
+  \end{itemize}
+}
+\end{itemize}
+
+The transition between continuous and discrete properties is partly fluid, once we consider the possibility of rounding.
+\end{MIntro}
+
+
+\begin{MXContent}{Rounding}{Rounding}{STD}
+\MDeclareSiteUXID{VBKM_STOCHASTIK_1_2}
+The \MEntry{rounding}{rounding} of measurement values is an everyday process.
+
+\begin{MInfo}
+
+In principle, there are three ways of rounding:
+
+\begin{itemize}
+\item{Rounding (off) using the \textsf{floor} function $\left\lfloor{x}\right\rfloor$.}
+\item{Rounding (up) using the \textsf{ceil} function $\left\lceil{ x}\right\rceil$.}
+\item{Rounding using the \textsf{round} function (sometimes also called \textsf{rnd} function).}
+\end{itemize}
+\end{MInfo}
+
+The \MEntry{\textsf{floor} function}{floor function} is defined as
+$$
+\textsf{floor}:\; \R\longrightarrow\R\;\; , \;\;
+x\;\longmapsto\; \textsf{floor}(x)\;=\; \left\lfloor{ x}\right\rfloor\;=\; \max\lbrace k\in\Z\: :\: k\leq x\rbrace\: .
+$$
+If $x\in\R$ is a real number, then $\textsf{floor}(x)=\left\lfloor{ x}\right\rfloor$ is the largest integer 
+that is smaller than or equal to $x$. It results from rounding off the value of $x$. If a positive 
+real number $x$ is written as a decimal, then $\left\lfloor{ x}\right\rfloor$ equals the 
+integer on the left of the decimal point: rounding (off) cuts off the digits on the right of the decimal point. 
+For example $\left\lfloor{ 3.142}\right\rfloor=3$ but $\left\lfloor{ -2.124}\right\rfloor=-3$.
+The \textsf{floor} function is a step function with jumps (in more mathematical terms, jump discontinuities) of height $1$ at all points 
+$x\in \Z$. The function values at the jumps always lie a step up. They are indicated by the small circles in 
+the figure below, which shows the graph of the \textsf{floor} function. 
+
+\begin{center}
+\MUGraphicsSolo{floor_400_0.png}{width=0.7\linewidth}{width:650px}\\
+Graph of the \textsf{floor} function
+\end{center}
+
+Let a real number $a\geq 0$ be given, written as a \MSRef{Mathematik_Grundlagen_UDB}{decimal number}
+$$
+a \;=\; g_n\, g_{n-1}\, \ldots\, g_1\, g_0\: .\: a_1\,a_2\, a_3\, \ldots
+$$
+This number $a$ can be rounded to $r$ fractional digits ($r\in\N_0$) using the \textsf{floor} function by
+$$
+\tilde a \;=\; \frac1{10^r}\cdot \left\lfloor{ 10^r\cdot a}\right\rfloor\: .
+$$
+This process of rounding cuts off the decimal after the $r$th fractional digit. Thus, rounding 
+using the \textsf{floor} function is in general a rounding off.
+
+\begin{MExample}
+Rounding the number $a_1=2.3727$ to 2 fractional digits using the \textsf{floor} function results in
+$$
+\tilde a_1 \;=\; \frac1{10^2}\cdot \left\lfloor{10^2\cdot2.3727}\right\rfloor\; =\; \frac1{10^2}\cdot \left\lfloor{ 237.27}\right\rfloor \;=\; \frac1{10^2}\cdot 237\;=\; =2.37\: .
+$$
+Alternatively, it can be rounded by cutting off the decimal after the second fractional digit 
+(however, this is only possible if the number is given as a decimal which is rarely the case in a computer program).
+
+
+Rounding the number $a_2=\sqrt{2}=1.414213562\ldots$ to 4 fractional digits using the \textsf{floor} function results in
+$$
+\tilde a_2 \;=\; \frac1{10^4}\cdot \left\lfloor{ 10^4\cdot \sqrt2}\right\rfloor \;=\; \frac1{10^4}\cdot \left\lfloor{ 14142.1\ldots}\right\rfloor\;=\; \frac1{10^4}\cdot 14142 \;=\; 1.4142\: .
+$$
+Rounding the number
+$$
+a_3 \;=\; \pi \;=\; 3,141592654\ldots
+$$
+to 2 fractional digits using the \textsf{floor} function results in
+$$
+\tilde a_3 \;=\; \frac1{10^2}\cdot \left\lfloor{ 10^2\cdot\pi}\right\rfloor\;=\; \frac1{10^2}\cdot \left\lfloor{ 314.159\ldots}\right\rfloor \;=\; \frac1{10^2}\cdot 314 \;=\; 3.14\: .
+$$
+\end{MExample}
+
+The rounding method using the \textsf{floor} function is often applied for calculating final grades in certificates 
+(``academic rounding''). If a mathematics student has the individual grades
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Subject & Grade \\ \hline
+Mathematics 1 & $1.3$ \\ 
+Mathematics 2 & $2.3$ \\ 
+Mathematics 3 & $2.0$ \\ \hline
+\end{tabular}
+\end{center}
+then the arithmetic mean of these grades is calculated by 
+$$
+\frac{1.3 + 2.3 + 2.0}{3}\; =\; \frac{5.6}{3} \; =\; 1.8\overline{6}\: .
+$$
+Rounding to the first fractional digit using the \textsf{floor} function would result in the final 
+grade of $\tilde a=1.8$. The rounding methods for calculating final grades always have to be described exactly 
+in the examination regulations.
+
+The counterpart to the \textsf{floor} function is the \textsf{ceil} (a.k.a. ceiling) function:
+
+\begin{MInfo}
+The \MEntry{\textsf{ceil} function}{ceil function} is defined as
+$$
+\textsf{ceil}:\; \R\longrightarrow\R\;\; , \;\;
+x\;\longmapsto\; \textsf{ceil}(x)\;=\; \left\lceil{ x}\right\rceil\;=\; \min\lbrace k\in\Z\: :\: k\geq x\rbrace\: .
+$$
+\end{MInfo}
+
+If $x\in \mathbb{R}$ is a real number, then $\textsf{ceil}(x)=\left\lceil{ x }\right\rceil$ is the smallest integer 
+that is greater than or equal to $x$. The \textsf{ceil} function is a step function with jumps (jump discontinuities) of height $1$ at all points  $x\in\Z$. The function values at the jumps always lie at the bottom. 
+They are indicated by the small circles in the figure below showing the graph of the \textsf{ceil} function. 
+
+\begin{center}
+\MUGraphicsSolo{ceil_400_0.png}{width=0.7\linewidth}{width:650px}\\
+Graph of the \textsf{ceil} function
+\end{center}
+
+Let a real number $a\geq 0$ be given as a \MSRef{Mathematik_Grundlagen_UDB}{decimal number}
+$$
+a \;=\; g_n\, g_{n-1}\, \ldots\, g_1\, g_0\: .\: a_1\,a_2\, a_3\, \ldots
+$$
+This number $a$ can be rounded to $r$ fractional digits ($r\in\N_0$) using the \textsf{ceil} function by
+$$
+\hat{a} \;=\; \frac{1}{10^{r}}\cdot \left\lceil{ 10^{r}\cdot a }\right\rceil \: .
+$$
+Rounding using the \textsf{ceil} function is in general a rounding up to the next decimal digit.
+
+\begin{MExample}
+Rounding the number $a_1=2.3727$ to $2$ fractional digits using the \textsf{ceil} function results in
+$$
+\hat{a}_{1}\;=\; \frac{1}{10^{2}}\cdot \left\lceil{ 10^{2}\cdot 2.3727}\right\rceil\; =\; \frac{1}{10^{2}}\cdot \left\lceil{ 237.27}\right\rceil \;=\; \frac{1}{10^{2}}\cdot 238 \;=\; 2.38\: .
+$$
+Analogously, rounding the number $a_{2}=\sqrt{2}=1.414213562\ldots$ to $4$ fractional digits using the \textsf{ceil} function results in
+$$
+\hat{a}_{2}\; =\; \frac{1}{10^{4}}\cdot \left\lceil{ 10^{4}\cdot \sqrt{2}}\right\rceil\; =\; \frac{1}{10^{4}}\cdot \left\lceil{ 14142.1\ldots}\right\rceil \;=\; \frac{1}{10^{4}}\cdot 14143\; =\; 1.4143\: .
+$$
+Rounding the number $a_{3}=\pi=3.141592654\ldots$ to $2$ fractional digits using the \textsf{ceil} function results in
+$$
+\hat{a}_{3}\; =\; \frac{1}{10^{2}}\cdot \left\lceil{ 10^{2}\cdot \pi }\right\rceil\; =\; \frac{1}{10^{2}}\cdot \left\lceil{ 314.15\ldots }\right\rceil\; =\;\frac{1}{10^{2}}\cdot 315 \;=\; 3.15\: .
+$$
+\end{MExample}
+
+The rounding method using the \textsf{ceil} function is often applied, for example, in craftsmen's invoices. 
+A craftsman is mostly paid by the hour. If a repair takes 50~minutes (i.e. $0.8\overline{3}$ hours as 
+a decimal), then a craftsmen will round up and invoice a full working hour. Colloquially, rounding 
+mostly means mathematical rounding:
+
+\begin{MInfo}
+The \MEntry{\textsf{round} function}{round function} (or mathematical rounding) is defined as
+$$
+\textsf{round}:\; \R\longrightarrow\R\;\; , \;\;
+x\;\longmapsto\; \textsf{round}(x)\;=\; \textsf{floor}\left({x + \frac{1}{2}}\right) \; =\; \left\lfloor{ x + \frac{1}{2} }\right\rfloor\: .
+$$
+In contrast to rounding up or rounding off, the maximum change to the number by this rounding is $0.5$.
+\end{MInfo}
+
+The \textsf{round} function is a step function with jumps (jump discontinuities) of height $1$ at all points $x+\frac{1}{2},\; x\in \Z$. The function values at the jumps always
+lie a step up. They are indicated by the small circles in the figure below showing the graph of the \textsf{round} function.
+
+\begin{center}
+\MUGraphicsSolo{round_400_0.png}{width=0.7\linewidth}{width:650px}\\
+Graph of the \textsf{round} function
+\end{center}
+
+Let a real number $a\geq 0$ be given as a \MSRef{Mathematik_Grundlagen_UDB}{decimal number}
+$$
+a \;=\; g_n\, g_{n-1}\, \ldots\, g_1\, g_0\: .\: a_1\,a_2\, a_3\, \ldots
+$$
+This number $a$ can be rounded to $r$ fractional digits ($r\in\N_0$) using the \textsf{round} function:
+$$
+\overline{a}\; =\; \frac{1}{10^{r}}\cdot \textsf{round}(10^{r}\cdot a)\; =\; \frac{1}{10^{r}}\cdot \left\lfloor{ 10^{r}\cdot a + \frac{1}{2} }\right\rfloor\: .
+$$
+This rounding method is called mathematical rounding and corresponds to the ``normal'' rounding process.
+
+\begin{MExample}
+The number $a_{1}=1.49$ is rounded to one fractional digit using the \textsf{round} function to
+\begin{eqnarray*}
+\overline{a}_1 & = & \frac{1}{10}\cdot \mathsf{round}(10 \cdot 1.49) \; =\; \frac{1}{10}\cdot \left\lfloor{10\cdot 1.49 + 0.5}\right\rfloor\\
+&=& \frac{1}{10}\cdot \left\lfloor{14.9+0.5}\right\rfloor \;=\; \frac{1}{10}\cdot \left\lfloor{ 15.4 }\right\rfloor \;=\; \frac{1}{10}\cdot 15 \;=\; 1.5\: .
+\end{eqnarray*}
+The number $a_{2}=1.52$ is rounded to one fractional digit using the  \textsf{round} function to
+\begin{eqnarray*}
+\overline{a}_{2}& = & \frac{1}{10}\cdot \mathsf{round}(10 \cdot 1.52)\; =\; \frac{1}{10}\cdot \left\lfloor{ 10\cdot 1.52 + 0.5 }\right\rfloor \\
+& = & \frac{1}{10}\cdot \left\lfloor{ 15.2+0.5}\right\rfloor \;=\; \frac{1}{10}\cdot \left\lfloor{ 15.7 }\right\rfloor\; =\; \frac{1}{10}\cdot 15 \;=\; 1.5\: .
+\end{eqnarray*}
+The number $a_{3}=2.3727$ is rounded to two fractional digits using the  \textsf{round} function to
+\begin{eqnarray*}
+\overline{a}_{3} & = & \frac{1}{10^{2}}\cdot \mathsf{round}(10^{2}\cdot 2.3727)\; =\; \frac{1}{100}\cdot \left\lfloor{ 100\cdot 2.3727 + 0.5 }\right\rfloor \\
+& = & \frac{1}{100}\cdot \left\lfloor{ 237.27+0.5}\right\rfloor\; =\; \frac{1}{100}\cdot \left\lfloor{ 237.77 }\right\rfloor \; =\;  \frac{1}{100}\cdot 237\; =\; 2.37\: .
+\end{eqnarray*}
+The number  $a_{4}=\sqrt{2}=1.414213562\ldots$ is rounded to seven fractional digits using the  \textsf{round} function to
+\begin{eqnarray*}
+\overline{a}_{3} & = & \frac{1}{10^{7}}\cdot \mathsf{round}(10^{7}\cdot \sqrt{2})\; =\; \frac{1}{10^{7}}\cdot \left\lfloor{ 10^{7}\cdot 1.414213562\ldots + 0.5 }\right\rfloor \\
+& = & \frac{1}{10^{7}}\cdot \left\lfloor{ 14142135.62\ldots+0.5}\right\rfloor \;=\; \frac{1}{10^{7}}\cdot \left\lfloor{ 14142136.12\ldots }\right\rfloor \\
+& = & \frac{1}{10^{7}}\cdot 14142136\; =\;  1.4142136\: .
+\end{eqnarray*}
+\end{MExample}
+
+\begin{MExercise}
+Using the \textsf{round} function, round the number $\pi=3.141592654\ldots$ to four fractional digits:
+\MEquationItem{$\overline{\pi}$}{\MLParsedQuestion{20}{3.1416}{7}{STOCHROUND1}}.
+\ \\ \ \\
+\begin{MHint}{Solution}
+\begin{eqnarray*}
+\overline{\pi} & = & \frac{1}{10^{4}}\cdot \mathsf{round}(10^{4}\cdot \pi)\; =\; \frac{1}{10^{4}}\cdot \left\lfloor{ 10^{4}\cdot 3.141592654\ldots + 0.5 }\right\rfloor \ \\
+& = & \frac{1}{10^{4}}\cdot \left\lfloor{ 31415.92654\ldots+0.5}\right\rfloor \;=\; \frac{1}{10^{4}}\cdot \left\lfloor{ 31416.42654\ldots }\right\rfloor\ \\
+& = & \frac{1}{10^{4}}\cdot 31416\; =\;  3.1416\: .
+\end{eqnarray*}
+\end{MHint}
+\end{MExercise}
+
+
+\begin{MExercise}
+Let the numbers 
+$$
+a\; =\; \frac{47}{17} \;\;\text{and}\;\;  b\; =\; 3.7861
+$$
+be given.
+\begin{MExerciseItems}
+\item{Round each of the numbers $a$ and $b$ to $2$ fractional digits using the \textsf{floor} function.\\The roundings result in
+\MEquationItem{$\tilde a$}{\MLParsedQuestion{10}{2.76}{7}{STOCHROUND2}} and \MEquationItem{$\tilde b$}{\MLParsedQuestion{10}{3.78}{7}{STOCHROUND3}}.}
+\item{Round each of the numbers $a$ and $b$ to $2$ fractional digits using the \textsf{ceil} function.\\The roundings result in
+\MEquationItem{$\hat a$}{\MLParsedQuestion{10}{2.77}{7}{STOCHROUND4}} and \MEquationItem{$\hat b$}{\MLParsedQuestion{10}{3.79}{7}{STOCHROUND5}}.}
+\item{Round each of the numbers $a$ and $b$ to $2$ fractional digits using the \textsf{round} function.\\The roundings result in
+\MEquationItem{$\overline{a}$}{\MLParsedQuestion{10}{2.76}{7}{STOCHROUND6}} and \MEquationItem{$\overline{b}$}{\MLParsedQuestion{10}{3.79}{7}{STOCHROUND7}}.}
+\end{MExerciseItems}
+\ \\
+\begin{MHint}{Solution}
+First, we transform the fraction into an appropriate decimal fraction by dividing successively with remainder
+and substituting the results of the division as digits into the decimal:
+$$
+\frac{47}{17} \;=\; 2+\frac{13}{17}.
+$$
+The digit left to the decimal point is $2$. We have
+$$
+2+\frac{13}{17} \;=\; 2+\frac1{10}\cdot \frac{130}{17} \;=\; 2+\frac1{10}\cdot\left({7+\frac{11}{17}}\right).
+$$
+The first fractional digit is $7$. Proceeding further this way results in $a\;=\;  2.764705\ldots$, 
+we only need three fractional digits for the required rounding. The complete calculation using the 
+\textsf{floor} function results in
+$$
+\tilde a \;=\; \frac1{10^2}\cdot \left\lfloor{ 10^2\cdot 2.764705\ldots}\right\rfloor \;=\; \frac1{10^2}\cdot \left\lfloor{ 276.4705\ldots}\right\rfloor \;=\;  2.76\: .
+$$
+This result can be obtained more quickly by simply cutting off the decimal after the second decimal digit:
+$$
+\tilde a \;=\; 2.76\;\; \text{and}\;\; \tilde b \;=\; 3.78\: .
+$$
+However, this is only allowed in this exercise since $a$ and $b$ are non-negative. 
+A simple rounding up after the second decimal digit or a complete calculation using the \textsf{ceil} function 
+results in
+$$
+\hat a \;=\; 2.77\;\; \text{and}\;\; \hat b \;=\; 3.79\: .
+$$
+The results for the mathematical rounding are obtained either by a complete calculation as in the examples above, or 
+by rounding to the decimal with two fractional digits with the smallest difference from the original number:
+$$
+\overline{a} \; = \; 2.76 \;\; \text{and}\;\; \overline{b} \,=\; 3.79\: .
+$$
+\end{MHint}
+\end{MExercise}
+
+\end{MXContent}
+
+\begin{MXContent}{Remarks on the Rounding Processes}{Remarks}{STD}
+\MDeclareSiteUXID{VBKM_STOCHASTIK_1_3}
+
+As the following considerations and examples will show, we have to be very careful when calculating with rounded results. 
+Let us consider the set $M=\R_{\geq0}$ of all non-negative real numbers. On this set, let us define the 
+multiplication
+$$
+M\times M \;\longrightarrow M\;\; , \;\;
+(a,b)\;\longmapsto\; a\odot b
+$$
+by the calculation rule
+$$
+a\odot b \; =\; \frac{1}{10^{2}}\cdot \textsf{round}( 10^{2}\cdot a \cdot b)\; =\; \frac{1}{10^{2}}\cdot \left\lfloor{ 10^{2}\cdot a \cdot b + \frac{1}{2} }\right\rfloor\: ,
+$$
+i.e. the product $a\odot b$ is calculated by calculating the usual product $a\cdot b$ first and subsequently rounding the result mathematically 
+to two fractional digits.
+\ \\ \ \\
+The law of associativity no longer applies to the rounded multiplication. For the numbers 
+$a=2.11$, $b=3.35$, and $c=2,61$, we have, for example,
+$$
+a\odot b \;=\; 2.11 \odot 3.35 \; =\; 7.07\;\text{and}\;
+(a\odot b)\odot c \; =\; 7.07 \odot 2.61 \;=\;  18.45\: .
+$$
+Changing the brackets, however, results in
+$$
+b\odot c\;  =\; 3.35 \odot 2.61 \; =\; 8.74\;\;\text{and}\;\;a\odot (b\odot c)\; =\;2.11 \odot 8.74 \;=\; 18.44\: .
+$$
+
+\begin{MInfo}
+Since calculators (and computers) always calculate using rounded results, this means that the 
+law of associativity does not apply unrestrictedly to multiplication on calculators.
+\end{MInfo}
+
+Likewise, false results can be caused by careless rounding. Let us consider the numbers $a=4.98$ and $b=1.001$. Then, we have
+$$
+a\cdot b\; =\; 4.98 \cdot 1.001\; =\; 4.98498\;\text{ , i.e.}\;
+a\odot b \; =\; 4.98 \odot 1.001\; =\; 4.98\; =\; a\: .
+$$
+Furthermore, we have
+$$
+a\cdot b^{1000}\; =\; 4.98 \cdot 1.001^{1000} \;=\; a\cdot \underbrace{b\cdot \ldots \cdot b}_{1000 \text{ factors}} \approx 13.53028118\: .
+$$
+Rounding after each multiplication to $2$ fractional digits results (due to $a\odot b=a$) in the wrong result:
+$$
+(\ldots ((a\odot \underbrace{b) \odot b) \ldots \odot b}_{1000 \text{ factors}}) \;=\;  a\; =\;4.98 \: .
+$$
+
+\begin{MInfo}
+\MLabel{L_STOCH_RP}
+In practice, this means that you must calculate at least with double precision (twice the required digits) and round the result only finally 
+to the required digits.
+\end{MInfo}
+
+\end{MXContent}
+
+\MSubsection{Frequency Distributions and Percentage Calculation}
+\MLabel{VBKM_STOCH_2}
+
+\begin{MIntro}
+\MDeclareSiteUXID{VBKM_STOCHASTIK_2_1}
+\MLabel{VBKM_STOCH_2_1}
+
+Let $X$ be a given property. A sample of size $n$ resulted in the original list (sample)
+$$
+x \;=\; (x_{1},x_{2},\ldots ,x_{n})\: .
+$$
+
+\begin{MInfo}
+\MLabel{L_STOCH_H}
+If $a$ is a possible property value, then 
+$$
+H_{x}(a)\; =\; \text{number of}\;x_{j}\;\text{ within the original list}\;x\;\text{with}\;x_{j}=a
+$$
+is called the \MEntry{absolute frequency}{frequency (absolute)} of the property 
+$a$ in the original list $x=(x_{1},x_{2},\ldots ,x_{n})$.
+\end{MInfo}
+
+If $a_{1}, a_{2},\ldots a_{k}$ are the possible property values in the original list
+$x=(x_{1},x_{2},\ldots ,x_{n})$, then we have
+$$
+H_{x}(a_{1})+H_{x}(a_{2})+\ldots + H_{x}(a_{k})\; =\; n
+$$
+or in words: each of the $n$ values is counted by exactly one of the frequencies.
+
+\begin{MInfo}
+The \MEntry{relative frequency}{frequency (relative)} of the property value $a$ in the original list  
+$x=(x_{1},x_{2},\ldots ,x_{n})$ is defined by
+$$
+h_{x}(a)\; =\;\frac{1}{n}\cdot H_{x}(a)\: .
+$$
+\end{MInfo}
+
+If $a_{1}, a_{2},\ldots a_{k}$ are the possible property values in the original list
+$x=(x_{1},x_{2},\ldots ,x_{n})$, then we have
+$$
+h_{x}(a_{1})+h_{x}(a_{2})+\ldots + h_{x}(a_{k})\; =\;1\: .
+$$
+Relative frequencies always lie in the interval $[0;1]$ and are often specified in percentages,e.g. $h_x(a_1)=34\%$ instead of $h_x(a_1)=0.34$.
+
+\begin{MInfo}
+Collecting the absolute or relative frequencies of all occurring (or possible) property values 
+in the original list (sample) $x=(x_{1},x_{2},\ldots ,x_{n})$ in a table results in the
+\MEntry{empirical frequency distribution}{frequency distribution}.
+\end{MInfo}
+
+\begin{MExample}
+
+In a data centre, the processing time (in seconds, rounded to one fractional digit)
+of $20$~program jobs was determined. This resulted in the following original list of a sample of size $n=20$:
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+$3.9$ & $3.3$ & $4.6$ & $4.0$ & $3.8$ \\ \hline
+$3.8$ & $3.6$ & $4.6$ & $4.0$ & $3.9$ \\ \hline
+$3.9$ & $3.9$ & $4.1$ & $3.7$ & $3.6$ \\ \hline
+$4.6$ & $4.0$ & $4.0$ & $3.8$ & $4.1$ \\ \hline
+\end{tabular}
+\end{center}
+
+The smallest value is $3.3$~s, the largest value is $4.6$~s, the increment is $0.1$~s. Thus, we have the 
+empirical frequency distribution listed (in tabular form) below. To keep the table short all values 
+less than $3.3$ and greater that $4.6$ are not listed.
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Result $a$ & $H_{x}(a)$ & $h_{x}(a)$ & Percentage \\ \hline
+$3.3$ & $1$ & $\frac{1}{20}=0.05$ & $5\%$ \\
+$3.4$ & $0$ & $0$ & $0\%$ \\
+$3.5$ & $0$ & $0$ & $0\%$ \\
+$3.6$ & $2$ & $\frac{2}{20}=0.1$ & $10\%$\\
+$3.7$ & $1$ & $\frac{1}{20}=0.05$ & $5\%$\\
+$3.8$ & $3$ & $\frac{3}{20}=0.15$ & $15\%$\\
+$3.9$ & $4$ & $\frac{4}{20}=0.2$ & $20\%$ \\
+$4.0$ & $4$ & $\frac{4}{20}=0.2$ & $20\%$ \\
+$4.1$ & $2$ & $\frac{2}{20}=0.1$ & $10\%$\\
+$4.2$ & $0$ & $0$ & $0\%$ \\
+$4.3$ & $0$ & $0$ & $0\%$ \\
+$4.4$ & $0$ & $0$ & $0\%$ \\
+$4.5$ & $0$ & $0$ & $0\%$\\
+$4.6$ & $3$ & $\frac{3}{20}=0.15$ & $15\%$\\ \hline
+Sum & $20$ & $1$ & $100\%$\\ \hline
+\end{tabular}
+\end{center}
+\end{MExample}
+
+\end{MIntro}
+
+\begin{MXContent}{Percentage Calculation}{Percentage Calculation}{STD}
+\MDeclareSiteUXID{VBKM_STOCHASTIK_2_2}
+In descriptive statistics, numerical values are often specified in percentages, so we will review the most relevant 
+elements of percentage calculations in this section. Numbers given as percentages (``percent, hundredth'') serve to 
+illustrate ratios and to make them comparable by putting the numbers into relation to a unified  base value (hundred).
+
+\begin{MInfo}
+Let $a\geq 0$ be a real number. Then, we have $a\,\% = \frac{a}{100}$, i.e. the symbol $\%$ can be interpreted as 
+``divided by 100'' (just as the symbol $\circ$ with respect to angles was interpreted in Module~\MNRef{VBKM05} as a multiplication 
+by $\frac{\pi}{180}$).
+\end{MInfo}
+
+
+For example:
+\begin{itemize}
+\item{One percent is one hundredth: $1\,\%=\frac{1}{100}=0.01$}
+\item{Ten percent is one tenth: $10\,\%=\frac{10}{100}=0.1$}
+\item{25 percent is one quarter: $25\,\%=\frac{25}{100}=0.25$}
+\item{One hundred percent is a whole: $100\,\%=\frac{100}{100}=1$}
+\item{150 percent is a factor of 1.5: $150\,\%=\frac{150}{100}=1.5$}
+\end{itemize}
+
+In general, percentages describe ratios and relate to a certain base value. The base value is the initial 
+value the percentage relates to. The percentage is expressed in percent and denotes a ratio with respect to
+the base value. The real value of this quantity is called the percent value. The percent value has the same 
+unit as the base value. 
+
+\begin{MInfo}
+The rule of three applies for the percent value, base value and percentage :
+$$
+\text{percentage}\;\cdot\;\text{base value}\;\; =\;\;\text{percent value}\: .
+$$
+\end{MInfo}
+
+\end{MXContent}
+
+\begin{MXContent}{Calculation of Interest}{Calculation of Interest}{STD}
+\MDeclareSiteUXID{VBKM_STOCH_2_3}
+
+In the calculation of interest, we distinguish between simple interest and
+compound interest. For simple interest, the interest is paid at the end of the 
+interest period. For compound interest, the interest is also paid on the previously accumulated interest.
+
+\begin{MInfo}
+When simple interest is applied, a quantity $K$ that increases by $p\,\%$ every year will increase after $t$ years 
+($t\in \N$) to
+$$
+K_{t}\; =\; K\cdot \left({ 1+ t\cdot \frac{p}{100}}\right).
+$$
+
+\end{MInfo}
+
+Note that $p$ itself can be a decimal, for example, for $p=2.5$, the percent value is $2.5\%=0.025$. 
+
+\begin{MExercise}
+What is the final capital for an initial capital of $K=4{,}000$~EUR after an interest period of 
+$t=10$~years, when simple interest is applied at a rate of $p=2.5\%$ p.\,a.?
+\ \\ \ \\
+Answer: \MEquationItem{$K_{10}$}{\MLParsedQuestion{10}{5000}{4}{STOCHPRO1} EUR}.
+\ \\ \ \\
+\begin{MHint}{Solution}
+Substituting the corresponding values into the interest formula for simple interest results in
+$$
+K_{10}\; =\; K\cdot \left({ 1 + 10\cdot 0.025}\right) =4{,}000\; \text{EUR} \cdot 1.25\; =\; 5{,}000\;\text{EUR}\: .
+$$
+\end{MHint}
+\end{MExercise}
+
+\begin{MExercise}
+What is the initial capital $K$ that had been deposited at the 1$st$ of January, 2000 to get paid 
+an end capital of $K_{12}=10{,}000$ EUR at the 31$st$ of December, 2011 when simple interest is applied
+at a rate of $p=5\%$ p.\,a.?
+\ \\ \ \\
+Answer: \MEquationItem{$K$}{\MLParsedQuestion{10}{6250}{4}{STOCHPRO2} EUR}.
+\ \\ \ \\
+\begin{MHint}{Solution}
+Substituting the corresponding values into the interest formula for simple interest results in
+$$
+K_{12}\; =\; 10{,}000\;\text{EUR}\;  = \; K\cdot \left({1+12\cdot 0.05}\right)\; =\; K\cdot 1.6\: .
+$$
+Solving this equation for $K$ results in
+$$
+K\; =\; \frac{10{,}000\; \text{EUR}}{1.6}\;  =\; \frac{10{,}0000\;\text{EUR}}{16}\;=\;  6{,}250\;\text{EUR after cancelling the fraction}\: .
+$$
+\end{MHint}
+\end{MExercise}
+
+While simple\MEntry{interest}{interest (simple)} is simply paid after an interest period,  
+compound interest carries over into the next interest period, i.e. the interest will be 
+added to the initial capital or will be \MEntry{capitalised}{interest (capitalised)}:
+
+\begin{MExample}
+For a bank account at the end of an interest period, an initial capital of $1{,}000$ EUR is deposited 
+at an interest rate of $8\%$. After one year the deposit (in EUR) in the bank account is 
+\begin{itemize}
+\item{$1{,}000+\frac{1{,}000\cdot 8}{100}=1{,}000\cdot \left(1+\frac{8}{100} \right)=1{,}000\cdot 1.08=1{,}080$.}
+\item{This deposit is invested for an additional year at the same interest rate of $8\%$. Then, the deposit (in EUR) 
+after two years is $1{,}080\cdot 1.08=1{,}000\cdot 1.08^{2}=1{,}000\cdot \left( 1+\frac{8}{100}\right)^{2}$.}
+\item{The deposit increases by a factor of $1.08$ per year. Hence, the deposit (in EUR) after $t$ years ($t\in\N_0$) is
+$$
+1{,}000\cdot 1.08^{t} \; =\; 1{,}000\cdot \left( 1+\frac{8}{100}\right)^{t}.
+$$}
+\end{itemize}
+\end{MExample}
+
+Thus, the compound interest is based on the following formula:
+
+\begin{MInfo}
+A quantity $K$ that increases every year by an amount of $p\,\%$ will have been increased after $t$ years ($t\in \N_0$) to
+$$
+K\cdot \left( 1+ \frac{p}{100}\right)^{t}\: .
+$$
+Here, $1+\frac{p}{100}$ is called the growth factor for a growth of $p\,\%$.
+\end{MInfo}
+
+In an advert offering deposit accounts or loans, the interest is usually given as a rate per year, even if the 
+actual interest period differs. This interest period is the time between two successive dates at which the interest payments 
+are due. On a deposit account the interest period is one year, though it is becoming more common to offer 
+other interest periods. For example, for short-term loans the interest is paid daily or monthly.
+
+If a bank offers a yearly interest rate of $9\,\%$ with monthly interest payments, then 
+at the end of each month $\left(\frac{1}{12} \right)\cdot 9\% =0,75\%$ of the capital 
+will be credited.  
+
+\begin{MInfo}
+The yearly rate is divided by the number of interest periods to obtain the 
+periodic rate (the interest rate per period).
+\end{MInfo}
+
+Suppose an investment of $S_{0}$~EUR yields $p\,\%$ interest per interest period. After 
+$t$~periods ($t\in \N_0$) the investment will have been increased to
+$$
+S_{t} \;=\; S_{0}\cdot (1+r)^{t} \;\;\text{with}\;\; r\;=\;\frac{p}{100}\: .
+$$
+In every period the investment increases by a factor of $1+r$, and we say ``the 
+\MEntry{interest rate}{interest rate} equals $p\,\%$'' or ``the 
+\MEntry{periodic rate}{periodic rate} equals $r$''. Suppose interest is credited  at a rate of 
+$\frac{p}{n}\,\%$ to the capital at $n$ different times, more or less evenly distributed 
+over the year.  Then, the capital is multiplied by a factor of 
+$$
+\left(1+\frac{r}{n}\right)^{n}
+$$
+every year. After $t$~years the capital has increased to
+$$
+S_{0}\cdot \left(1+\frac{r}{n} \right)^{n\cdot t}\: .
+$$
+
+\begin{MExample}
+A capital of $5{,}000$ EUR is deposited for $t=8$~years in a bank account at a yearly interest rate of 
+$9\,\%$, where the interest is paid quarterly. The periodic rate $\frac{r}{n}$ here is 
+$$
+\frac{r}{n} \;=\;\frac{0.09}{4} \; =\; 0.0225 \: ,
+$$
+and for the number of periods $n\cdot t$ we have 
+$n\cdot t = 4\cdot 8=32$. Thus, after $t=8$~years the deposit has increased to
+$$
+5000\cdot (1+0.0225)^{32}\; \approx \;10190.52 \text{ EUR}\: .
+$$
+\end{MExample}
+
+
+\begin{MExercise}
+A capital of $K_0=8{,}750$ EUR is deposited for $t=4$~years at an interest rate of $p=3,5\%$ p.\,a., and
+the interest is capitalised.
+\begin{MExerciseItems}
+\item{After one year the amount of capital is \MEquationItem{$K_1$}{\MLParsedQuestion{10}{9056.25}{7}{STOCHPRO7}}.}
+\item{After two years the amount of capital is \MEquationItem{$K_2$}{\MLParsedQuestion{10}{9373.22}{7}{STOCHPRO8}}.}
+\item{After three years the amount of capital is \MEquationItem{$K_3$}{\MLParsedQuestion{10}{9701.28}{7}{STOCHPRO9}}.}
+\item{The final capital is \MEquationItem{$K_4$}{\MLParsedQuestion{10}{10040.83}{7}{STOCHPRO10}}.}
+\end{MExerciseItems}
+Specify all values rounded mathematically to the second fractional digit. Round only \textit{after}
+carrying out the calculations. For these calculations, you are allowed to use a calculator.
+
+
+\begin{MHint}{Solution}
+Substituting the values into the compound interest formula results in
+\begin{eqnarray*}
+K_1 &=& K_0\cdot \left({1+0.035}\right)^1 \;=\; 9056.25\\
+K_2 &=& K_0\cdot \left({1+0.035}\right)^2 \;=\; 9373.22\;\text{(rounded)}\\
+K_3 &=& K_0\cdot \left({1+0.035}\right)^3 \;=\; 9701.28\;\text{(rounded)}\\
+K_4 &=& K_0\cdot \left({1+0.035}\right)^4 \;=\; 10040.83\;\text{(rounded)}.
+\end{eqnarray*}
+The above mentioned \MSRef{L_STOCH_RP}{error propagation for rounding} requires calculating the power first and then 
+rounding. For example, it is wrong to multiply the rounded value $K_3$ by $1.035$ to obtain $K_4$.
+\end{MHint}
+\end{MExercise}
+
+A consumer who wants to take out a loan always faces several offers from competing banks. Thus, it is extremely useful to 
+compare the different offers.
+
+\begin{MExample}
+Let us consider an offer providing an yearly interest rate of $9\%$, where the interest is charged at
+a monthly ($12$ times per year) rate of $0.75\%$. If no interest is paid off in the meantime, 
+the initial debt will increase to
+$$
+S_{0}\cdot \left({1+\frac{0.09}{12} }\right)^{12}\; \approx \; S_{0}\cdot 1.094
+$$
+after one year. The interest to be paid off is approximately
+$$
+1.094 \cdot S_{0}-S_{0}\; =\; 0.094 \cdot S_{0}\: .
+$$
+\end{MExample}
+
+As long as no interest is paid off, the debt will increase at a constant rate which is approximately 
+$9.4\%$ per year. This is why we may speak of an ``effective'' annual interest rate. In the example above the 
+effective annual interest rate is $9.4\%$.
+
+
+\begin{MInfo}
+If interest is paid $n$ times per year at a periodic rate of $\frac{r}{n}$ per period, then the 
+\MEntry{effective annual interest rate}{interest (effective)} $R$ is defined by 
+$$
+R\; =\;\left({ 1+\frac{r}{n}}\right)^{n}-1\: .
+$$
+\end{MInfo}
+
+\end{MXContent}
+
+\begin{MXContent}{Continuous Compounding Interest}{Continuous Compounding Interest}{STD}
+\MDeclareSiteUXID{VBKM_STOCH_2_4}
+
+The expression $a_{n}=\left({1+\frac{r}{n}}\right)^{n}$ with $r\in\R$ can also be interpreted 
+as a \MSRef{VBKM06_Abbildungen}{map} depending on $n\in\N$
+$$
+a:\; \N\:\longrightarrow\: \R\;\; , \;\;  n\:\longmapsto\: a(n)\; =\; a_{n}\; =\;\left({ 1+\frac{r}{n}}\right)^{n}\: .
+$$
+A map $\N \ni n \mapsto a_{n}\in \R$ is called a real \MEntry{sequence}{sequence}. The pairs $(n,a_{n})$ 
+can be interpreted as points in the Euclidean plane. In this sense, the sequence $a_{n}=\left({1+\frac{0.4}{n}} \right)^{n}$ 
+is shown in the figure below as a sequence of points in the Euclidean plane.
+
+\begin{center}
+\MGraphicsSolo{exp1.png}{scale=1}\MLabel{G_VBKM_STOCH_EXP1}
+\end{center}
+
+Two properties of this sequence can immediately be seen from the figure above:
+\begin{itemize}
+\item{The sequence $a_{n}$, $n\in \N$ is monotonically increasing, i.e. for $i\leq j$ $a_i\leq a_j$, for all $i,j\in \N$.}
+\item{The sequence approaches the value $a\in \R$ as $n\in \N$ increases. This number $a$ is called limit of the sequence 
+$a_{n}$, and is written
+$$
+\lim\limits_{n\rightarrow \infty} a_{n}\; =\;a\: .
+$$}
+\end{itemize}
+In the lecture mathematics 1, the natural \MSRef{M06_e_fkt}{exponential function}
+$$
+\exp:\;\R\:\longrightarrow\: \R\;\; , \;\; x\:\longmapsto\: \exp(x)\,=\; e^x
+$$
+will be studied in detail.
+
+
+\begin{center}
+\MGraphicsSolo{exp2.png}{scale=1}\MLabel{G_VBKM_STOCH_EXP2}\\
+The natural exponential function
+\end{center}
+
+There, the following statement will be shown:
+
+\begin{MInfo}
+For an arbitrary number $x\in \R$, we have
+$$
+\lim\limits_{n\rightarrow \infty}\left({1 + \frac{x}{n}} \right)^{n}\; =\; e^{x}\: .
+$$
+\end{MInfo}
+
+For $x=1$, the limit of this sequence is Euler's number (named after the Swiss mathematician Leonhard Euler, 1707--1783):
+$$
+\lim\limits_{n\rightarrow \infty}\left({1 + \frac{1}{n}} \right)^{n}\; =\; e\;  \approx \; 2.7182\ldots \: .
+$$
+It can be shown (with some difficulty) that Euler's number $e$ is an irrational number, and hence it cannot be written as a fraction.
+
+The \MSRef{VBKM01_Potenzgesetze}{exponent rules} apply to the natural exponential function with arbitrary real 
+numbers as its exponents:
+\begin{itemize}
+\item{$\exp(x+y)=e^{x+y}=e^{x}\cdot e^{y}=\exp (x)\cdot \exp (y)$ for $x,y\in\R$.}
+\item{$\exp (x\cdot y)=e^{x\cdot y}=\left( e^{x} \right)^{y}= \left( e^{y} \right)^{x}$ for $x,y\in\R$.}
+\end{itemize}
+
+Information on the compound interest process can be gained if the number of times $n$ gets very large
+using the exponential function and the relation to the sequence $(1+\frac{x}{n})^n$:
+the capital is multiplied by a factor of $\left(1+\frac{r}{n} \right)^{n}$ every year if the interest at a rate of 
+$\frac{r}{n}$ is credited to the initial capital $S_{0}$ at $n$ different times in the year. After $t$~years, 
+$t\in\N$, the initial capital has increased to
+$$
+S_{0}\cdot \left({1+ \frac{r}{n}}\right)^{n\cdot t}\: .
+$$
+If $n\rightarrow \infty$, the limit of this sequence is
+$$
+\lim\limits_{n\rightarrow \infty} \left({S_{0}\cdot \left({1+\frac{r}{n}} \right)^{n\cdot t}}\right) \; =\; S_{0}\cdot e^{r\cdot t}\: .
+$$
+For increasing $n\in \N$ the interest is paid more and more frequently:
+
+\begin{MInfo}
+The limiting case is called the \MEntry{continuous compounding interest}{interest (continuous)}. 
+For positive real numbers $t$, the formula
+$$
+s(t)\; =\; S_{0}\cdot e^{r\cdot t}
+$$
+specifies to which amount an initial capital $S_{0}$ has increased after $t$~years
+if continuous compounding interest is applied at a rate $r$ per year.
+\end{MInfo}
+
+\begin{MExample}
+An investment of $5{,}000$ EUR is deposited for $t=8$~years in a bank account where continuous compounding interest is applied 
+at a yearly interest rate of $9\,\%$. After $t=8$~years, this results in an investment of
+$$
+5{,}000\cdot e^{0.09\cdot 8}\; =\; 5{,}000\cdot e^{0.72}\; \approx\; 10{,}272.17 \text{ EUR}\: .
+$$
+\end{MExample}
+
+\end{MXContent}
+
+\begin{MXContent}{Types of Diagrams}{Types of Diagrams}{STD}
+\MDeclareSiteUXID{VBKM_STOCHASTIK_Diagrammarten}
+
+Qualitative and quantitative discrete data gained from a sample are often presented graphically by 
+\MEntry{bar charts}{bar chart}.
+
+\begin{MInfo}
+The bar chart shows the absolute or relative frequencies as a function of a finite number of property values 
+in the sample. The bar lengths are proportional to the values they represent.
+\end{MInfo}
+
+This is now illustrated by an example. The species of $10$ trees at the forest's edge was determined. 
+The possible characteristic attributes are:
+\begin{eqnarray*}
+a_{1}& =& \text{Oak} \;\; , \\
+a_{2}& =& \text{Beech}\;\; , \\
+a_{3}& =& \text{Spruce}\;\; , \\
+a_{4}& =& \text{Pine, etc.}\: .
+\end{eqnarray*}
+A sample resulted in the following original list:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$i$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ \\ \hline
+$x_i$ & $a_2$ & $a_1$ & $a_1$ & $a_3$ & $a_1$ & $a_2$ & $a_1$ & $a_1$ & $a_3$ & $a_3$ \\ \hline
+\end{tabular}
+\end{center}
+
+This original list results in the following  empirical frequency table:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Attribute & absolute & relative & in $\%$\\ \hline
+Oak & $5$ & $0.5$ & 50 \\ \hline
+Beech & $2$ & $0.2$ & 20 \\ \hline
+Spruce & $3$ & $0.3$ & 30 \\ \hline
+\end{tabular}
+\end{center}
+
+The bar chart corresponding to this empirical frequency table is shown in the figure below. 
+
+\begin{center}
+\MUGraphicsSolo{Stab_450_0.png}{width=0.4\linewidth}{width:450px}\\
+Bar chart
+\end{center}
+
+Qualitative properties are often represented by \MEntry{pie charts}{pie chart}:
+
+\begin{MInfo}
+A slice is assigned to each characteristic attribute according to its relative frequency, where
+$$
+h_{j} \; =\; \frac{H_{j}}{n}\;=\;  \frac{\alpha_{j}}{360^{\circ}}\: .
+$$
+Here, $\alpha_j$ is the \MSRef{VBKM05_Winkel}{angle} (in degree measure) of the slice (circular sector) that corresponds
+to the attribute $j$ within the original list $x=(x_{1},x_{2},\ldots ,x_{n})$.
+\end{MInfo}
+
+This is again illustrated by an example. 
+
+A number $n=1000$ of households were queried as to how satisfied they were with a new kind of barbecue. The possible answers were:
+very satisfied (1), satisfied (2), less satisfied (3) and not satisfied (4). 
+\ \\ \ \\
+The survey resulted in the following empirical frequency table.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Attribute & Absolute frequencies & Relative frequencies & Percentage \\ \hline
+Very satisfied &  $100$ & $0.1$ & $10\%$ \\ \hline
+Satisfied & $240$ & $0.24$ & $24\%$ \\ \hline
+Less satisfied &$480$ & $0.48$ & $48\%$\\ \hline
+Not satisfied & $180$ & $0.18$ & $18\%$ \\ \hline
+Sum & $1000$ &  $1$ & $100\%$\\ \hline
+\end{tabular}
+\end{center}
+
+The corresponding angles are, according to the Info Box above,
+
+\begin{itemize}
+\item{$\alpha_{1}=360^{\circ}\cdot 0.1=36^{\circ}$,}
+\item{$\alpha_{2}=360^{\circ}\cdot 0.24=86.4^{\circ}$,}
+\item{$\alpha_{3}=360^{\circ}\cdot 0.48=172.8^{\circ}$,}
+\item{$\alpha_{4}=360^{\circ}\cdot 0.18=64.8^{\circ}$.}
+\end{itemize}
+
+This results in the following pie chart:
+
+\begin{center}
+\MUGraphicsSolo{Kreis_1.png}{width=0.3\linewidth}{width:500px}
+\end{center}
+
+It is often pointless to present all possible attributes in a diagram. It is more convenient to
+classify them and draw only the frequencies of the classes into a diagram. This is the only way 
+to visualise the frequencies of continuous characteristics in a bar or pie chart.
+
+Let $X$ be a quantitative (continuous) property, and $x=(x_{1},x_{2},\ldots ,x_{n})$ the original list for a sample 
+of size $n$. An empirical frequency distribution is obtained according to the following approach:
+\begin{itemize}
+\item{Find the minimum and the maximum sample value, i.e. 
+$$
+x_{(1)} \; =\; \min\lbrace x_{1},x_{2},\ldots ,x_{n}\rbrace\;\; \text{and}\;\;
+x_{(n)} \; =\; \max\lbrace x_{1},x_{2},\ldots ,x_{n}\rbrace\: .
+$$}
+\item{List these and all values in between, rounded to the required fractional digit and sorted by size. This converts 
+the (continuous) property $X$ into a discrete property.}
+\item{Prepare a tally sheet and draw the corresponding empirical frequency distribution.}
+\end{itemize}
+
+The empirical frequency distribution of a continuous property can be very broad. In particular
+zeros may appear, caused by measurement values that do not occur in the original list (sample). 
+Due to this, the empirical frequency table gets very confusing and bulky. 
+Hence, a \MEntry{classification}{classification} is carried out to reduce the amount of data (data reduction).
+In fact, this corresponds to a reduction of measurement accuracy (rounding!).
+
+\begin{MInfo}
+\MEntry{Classes}{classes} are half-open intervals of the form
+$$
+(a;b]\; =\; \lbrace x\in\R\:  : \: a<x\leq b\rbrace\;\; \text{with}\;\; a,b\in \R\cup\lbrace\pm \infty\rbrace\: .
+$$
+\end{MInfo}
+
+There is no general rule defining the number $k$ of classes or the size of a class. However, the following 
+guidelines are recommended:
+\begin{itemize}
+\item{Uniform classification: Find $x_{(1)}=\min\lbrace x_{1},x_{2},\ldots ,x_{n}\rbrace$ and
+$x_{(n)}=\max\lbrace x_{1},x_{2},\ldots ,x_{n}\rbrace$. Then divide the interval 
+$(x_{(1)}-\varepsilon;x_{(n)}+\varepsilon]$ with small $\varepsilon >0$ into $k$ uniform, non-overlapping, 
+half-open subintervals.}
+\item{Avoid classes that are too small or too large.}
+\item{If possible, avoid classes with only a few observations.}
+\item{Find approximately $k\approx \sqrt{n}$ equally sized classes, where $n$ is the number of samples.}
+\end{itemize}
+
+\begin{MInfo}
+The \MEntry{histogram}{histogram} is used for the graphical representation of quantitative data (variable). It represents 
+the relative frequencies of the data in the class $(a,b]$ by a rectangle with base $(a,b]$ whose area 
+represents the class.
+\end{MInfo}
+
+A histogram is obtained through the following approach: let 
+$$
+x\;=\; (x_{1},x_{2},\ldots x_{n})
+$$
+be an original list for a sample of size $n$ of a quantitative property $X$.
+\begin{itemize}
+\item{Use a classification into $k$~classes. Let the interval of the $j$th class $j=1,2,\ldots ,k$ be 
+$(t_{j};t_{j+1}]$.}
+\item{Let $H_{j}$ be the number of sample values in the interval $(t_{j};t_{j+1}]$ for $j=1,2,\ldots ,k$.
+The numbers $H_{j}$ are also called absolute class frequencies.}
+\item{For each $j\in \{1,2,\ldots ,k\}$ draw a rectangle over the base $(t_{j};t_{j+1}]$ of height 
+  $d_{j}$ with the area $d_{j}\cdot (t_{j+1}-t_{j})=h_{j}=\frac{H_{j}}{n}$.  The areas $h_{j}$ are 
+  the relative frequencies.}
+\end{itemize}
+
+The total area of these rectangles equals $1$. 
+
+This approach is now illustrated by a detailed example. In a data centre, the processing time (in s, rounded 
+to one fractional digit) of $20$~program jobs was determined. This resulted in the following original 
+list of a sample of size $n=20$:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+3.9 & 3.3 & 4.6 & 4.0 & 3.8\\ \hline
+3.8 & 3.6 & 4.6 & 4.0 & 3.9\\ \hline
+3.9 & 3.9 & 4.1 & 3.7 & 3.6\\ \hline
+4.6 & 4.0 & 4.0 & 3.8 & 4.1\\ \hline
+\end{tabular}
+\end{center}
+
+The smallest value is $3.3$~s, the largest value is $4.6$~s, the increment is $0.1$~s. According to the guidelines above, 
+we should find approximately $k\approx \sqrt{n}$ equally sized classes. Here, we use the following
+classification into $k=4$ classes.
+
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Class & $(t_{j};t_{j+1}],\;j=1,2,3,4$ & Data \\ \hline
+Class 1 & $(3.25;3.65]$ &  ``From $3.3$ to $3.6$'' \\ \hline
+Class 2 & $(3.65;3.95]$ &  ``From $3.7$ to $3.9$'' \\ \hline
+Class 3 & $(3.95;4.25]$ &  ``From $4.0$ to $4.2$'' \\ \hline
+Class 4 & $(4.25;4.65]$ &  ``From $4.3$ to $4.6$'' \\ \hline
+\end{tabular}
+\end{center}
+
+The table of the absolute and relative frequencies has the following form:
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Class & abs. Class frequency $H_{j}$ & rel. Class frequency $h_{j}$ \\ \hline
+Class 1 & $3$ & $0.15$ \\ \hline
+Class 2 & $8$ & $0.4$ \\ \hline
+Class 3 & $6$ & $0.3$ \\ \hline
+Class 4 & $3$ & $0.15$ \\ \hline
+\end{tabular}
+\end{center}
+
+The heights of the $k=4$ rectangles are as follows:
+\begin{itemize}
+\item{Class 1: $d_{1}\cdot(t_{2}-t_{1})=d_{1}\cdot 0.4=h_{1}=0.15$, i.e. $d_{1}=\frac{3}{8}=0.375$.}
+\item{Class 2: $d_{2}\cdot(t_{3}-t_{2})=d_{2}\cdot 0.3=h_{2}=0.4$, i.e. $d_{2}=\frac{4}{3}=1.\overline{3}$.}
+\item{Class 3: $d_{3}\cdot(t_{4}-t_{3})=d_{3}\cdot 0.3=h_{3}=0.3$, i.e. $d_{3}=1$.}
+\item{Class 4: $d_{4}\cdot(t_{5}-t_{4})=d_{4}\cdot 0.4=h_{4}=0.15$, i.e. $d_{4}=\frac{3}{8}=0.375$.}
+\end{itemize}
+
+Thus, we have the following histogram:
+
+\begin{center}
+\MUGraphicsSolo{histogramm_500_0.png}{width=0.3\linewidth}{width:500px}
+\end{center}
+
+\end{MXContent}
+
+\MSubsection{Statistical Measures}
+\MLabel{VBKM_STOCH_3}
+
+\begin{MIntro}
+\MLabel{VBKM_STOCH_3_1}
+\MDeclareSiteUXID{VBKM_STOCH_3_1}
+
+Suppose a sample of size $n$ is given for some quantitative property $X$. Let the original list be given by
+$$
+x\; =\; (x_{1},x_{2},\ldots ,x_{n})\: .
+$$
+
+\begin{MInfo}
+\MLabel{L_Mittelwert}
+The \MEntry{arithmetic mean}{mean (arithmetic)} $\overline{x}$ (also called sample mean) of $x_{1},x_{2},\ldots ,x_{n}$ is defined as
+$$
+\overline{x}\; =\; \frac{1}{n}\cdot \sum\limits_{k=1} ^{n} x_{k}\;=\;\frac{x_{1}+x_{2}+\ldots +x_{n}}{n}\: .
+$$
+\end{MInfo}
+
+In physical terms, $\overline{x}$ describes the centre of mass of a mass distribution given by equal masses 
+at $x_{1},x_{2},\ldots ,x_{n}$ on the massless number line.
+
+
+\begin{MExample}
+We have the following original list for a sample of size $n=20$:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+10 & 11 & 9 & 7 & 9 \\ \hline
+11 & 22 & 12 & 13 & 9 \\ \hline
+11 & 9 & 10 & 12 & 13 \\ \hline
+12 & 11 & 10 & 10 & 12\\ \hline
+\end{tabular}
+\end{center}
+
+The investigated property could be, for example, the length of study (measured in semesters) of $20$~mathematics 
+students at the TU Berlin. Summing up the values results in
+$$
+\sum\limits_{k=1}^{20}x_{k}\; =\;223\: ,
+$$
+so for the arithmetic mean we have
+$$
+\overline{x}\;=\; \frac{1}{20}\cdot \sum\limits_{k=1}^{20}x_{k}\;=\; \frac{223}{20}\; =\; 11.15\: .
+$$
+\end{MExample}
+
+The arithmetic mean is rather sensitive to so called statistical outliers: measurement values that 
+vary strongly form the other data can significantly affect the arithmetic mean.
+
+\begin{MExample}
+Let us again consider the original list for the sample of size $n=20$ above. If we drop the value
+$x_{7}=22$, then for the arithmetic mean of the remaining $19$ data values we have
+$$
+\frac{1}{19}\cdot \sum\limits_{k=1,k\neq 7}^{n}x_{k}\;=\; \frac{201}{19}\; \approx\; 10.58\: .
+$$
+\end{MExample}
+
+If a multiplicative or relative relation exists among the values in an original list (for example, 
+for growth processes or continuous compounding interest), the arithmetic (additive) mean is not an 
+appropriate measure. For such data values, the geometric mean is used:
+
+\begin{MInfo}
+Let data of the form $x_{1}>0,\;x_{2}>0,\;\ldots ,x_{n}>0$ be given. 
+Then, the \MEntry{geometric mean}{mean (geometric)} $\overline{x}_{G}$ of $x_{1},x_{2},\ldots ,x_{n}$ is given by
+$$
+\overline{x}_{G}\; =\; \sqrt[n]{x_{1}\cdot x_{2}\cdot \ldots \cdot x_{n}}\: .
+$$
+\end{MInfo}
+
+\begin{MExample}
+Let us consider a population that consists of $50$~animals at time $t_{0}$. Every two years, the number 
+of animals is counted again.
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Year & & Number of animals & & Growth rate \\ \hline
+$t_{0}$ & & 50 \\ \hline
+$t_{0}+2$ & & 100 & & doubled ($x_{1}=2$)\\ \hline
+$t_{0}+4$ & & 400 & & quadrupled  ($x_{2}=4$)\\ \hline
+$t_{0}+6$ & & 1200 & & tripled ($x_{3}=3$)\\ \hline
+\end{tabular}
+\end{center}
+
+For the (geometric) mean growth rate, we have
+$$
+\overline{x}_G\; =\; \sqrt[3]{2\cdot 4\cdot 3}\; =\; \sqrt[3]{24}\; \approx\; 2.8845\: .
+$$
+\end{MExample}
+
+This example illustrates that applying the arithmetic mean to growth processes gives misleading results. We would get
+$$
+\overline{x}\; =\;\frac{1}{3}\cdot (2+4+3)\; =\; \frac{9}{3}=\; 3\: .
+$$
+However, a theoretical tripling of the population size every two years would imply 
+that the number of animals after six years would be $1{,}350$ which is obviously not the case. 
+>From an average growth rate of $2.8845$, we obtain the correct result: $50\cdot (2.8845)^{3}\approx 1{,}200$.
+
+\begin{MExercise}
+The growth rates per year of an investment are as follows:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Year         & 2011 & 2012 & 2013 & 2014 & 2015 \\ \hline
+Growth rate  & $0.5\%$ & $1.1\%$ & $0.8\%$ & $1.2\%$ &  $0.7\%$ \\ \hline
+\end{tabular}
+\end{center}
+Calculate the mean growth rate over five years in percent:
+\MEquationItem{$\overline{x}_G$}{\MLParsedQuestion{10}{0.82}{7}{STOCHGEOMM}} $\%$, 
+rounded mathematically to two fractional digits.
+\ \\ \ \\
+In this exercise you are allowed to use a calculator.
+\ \\ \ \\
+\begin{MHint}{Solution}
+Taking the geometric mean results in 
+$$
+\overline{x}_G\; =\; \sqrt[5]{0.5\cdot 1.1\cdot 0.8\cdot 1.2\cdot 0.7}\; =\; \sqrt[5]{0.3696}\; =\; 0.819495159191\ldots
+$$
+which is mathematically rounded to $0.82$.
+\end{MHint}
+\end{MExercise}
+
+\end{MIntro}
+
+\begin{MXContent}{Robust Measures}{Robust Measures}{STD}
+\MLabel{VBKM_STOCH_3_2}
+\MDeclareSiteUXID{VBKM_STOCH_3_2}
+
+The measures presented in this section are robust with respect to outliers: large deviations 
+of single data values do not affect this measures (or only affect it slightly).
+
+Consider an original list
+$$
+x\; =\;(x_{1},x_{2},\ldots ,x_{n})
+$$
+for a sample of size $n$. Let the data $x_{i}$ be the property values of a quantitative property $X$. 
+
+\begin{MInfo}
+
+The list $x_{(\; )}=(x_{(1)},x_{(2)},\ldots ,x_{(n)})$ gained by ascending sorting
+$$
+x_{(1)}\;\leq\; x_{(2)}\;\leq \;\ldots\;\leq\; x_{(n)}
+$$
+of the original list is called an ordered list or ordered sample (of the original list $x$). 
+The i$th$ entry $x_{(i)}$ in the ordered list is the $i$th smallest value in the original list.
+\end{MInfo}
+
+\begin{MExample}
+Let us again consider the original list $x=(x_{1},x_{2},\ldots ,x_{20})$ for the sample of size 
+$n=20$ from the examples above. Ascending sorting 
+$x_{(\; )}=(x_{(1)},x_{(2)},\ldots ,x_{(20)})$  results in the following ordered sample:
+$$
+\begin{array}{cccccccccccccccccccc} 7 & 9 & 9 & 9 & 9 & 10 & 10 & 10 & 10 & 11 & 11 & 11 & 11 & 12 & 12 & 12 & 12 & 13 & 13 & 22 \end{array}
+$$
+\end{MExample}
+
+\begin{MInfo}
+\MLabel{L_Median}
+The (empirical) \MEntry{median}{median} $\tilde{x}$ of $x_{1},x_{2},\ldots ,x_{n}$ is defined as
+$$
+\tilde{x}\;=\;\left\lbrace{\begin{array}{lll}x_{\left(\frac{n+1}{2}\right)} & \text{for} & n\;\text{ odd}\\
+\frac{1}{2}\cdot \left( x_{(\frac{n}{2})}+ x_{(\frac{n}{2}+1)} \right) & \text{for} &n\;\text{ even\: .}\end{array}}\right.
+$$
+\end{MInfo}
+
+In contrast to the arithmetic mean, the (empirical) mean is not sensitive to outliers. For example, the largest 
+value in the ordered original list can be arbitrarily enlarged without changing the median. 
+
+\begin{MExample}
+In the example above, the sample size $n=20$ is even. Thus, we have for the median
+$$
+\tilde{x}\; =\; \frac{1}{2}\cdot \left({x_{(10)}+x_{(11)} }\right)\; =\;\frac{1}{2}\cdot (11 + 11)\; =\; 11\: .
+$$
+\end{MExample}
+
+Approximately half of the values in the original list are less than or equal to the median, and half of the 
+values are greater than or equal to the median $\tilde{x}$. This principle can be generalised to define quantiles. 
+For this purpose, take an original list $x=(x_{1},x_{2},\ldots ,x_{n})$ for a sample of size $n$ of a 
+quantitative property $X$.
+
+\begin{MInfo}
+Let
+$$
+x_{(\; )}\; =\; (x_{(1)},x_{(2)},\ldots ,x_{(n)})
+$$
+be the corresponding ordered sample and 
+$$
+\alpha \in (0,1) \;\;\text{and} \;\; k = \textsf{floor}(n\cdot \alpha) \;= \;\lfloor n\cdot \alpha \rfloor\: .
+$$
+Then 
+$$
+\tilde{x}_{\alpha }\; =\; \left\lbrace{\begin{array}{lll}x_{(k+1)} & \text{if} & n\cdot \alpha \notin \N \\ \frac{1}{2} \cdot \left(x_{(k)}+x_{(k+1)}\right) & \text{if} & n\cdot \alpha \in \mathbb{N}\end{array}}\right.
+$$
+is called a sample $\alpha$-quantile or simply $\alpha$-quantile of $x_{1},x_{2}\ldots ,x_{n}$.
+\end{MInfo}
+
+The $0.25$-quantile is also called the lower \MEntry{quartile}{quartile}. It splits off approximately 
+the lowest 25\,\% of data values from the highest 75\,\%. Accordingly, the $0.75$-quantile is called 
+the upper quartile. For $\alpha = 0.5$ we have the median, i.e. $\tilde{x}=\tilde{x}_{0.5}$.
+If $\alpha \in (0,1)$, the ordered list $x_{1},x_{2},\ldots ,x_{n}$ is split so that 
+approximately $\alpha\cdot 100\%$ of the data value are less or equal to $\tilde{x}_{\alpha}$ and 
+approximately  $(1-\alpha)\cdot 100\%$ of the data values are greater or equal to $\tilde{x}_{\alpha}$.
+
+
+\begin{MExample}
+Consider again the original list $x=(x_{1},x_{2},\ldots ,x_{20})$ for the sample of size $n=20$ from the examples 
+above together with the ordered sample $x_{(\; )}=(x_{(1)},x_{(2)},\ldots ,x_{(20)})$
+$$
+\begin{array}{cccccccccccccccccccc} 7 & 9 & 9 & 9 & 9 & 10 & 10 & 10 & 10 & 11 & 11 & 11 & 11 & 12 & 12 & 12 & 12 & 13 & 13 & 22 \end{array}
+$$
+For $\alpha = 0.25$, the $25\%$-quantile is defined by $n\cdot \alpha = \frac{20}{4}=5\in \N$, i.e. for the 
+lower quartile we have
+$$
+\tilde{x}_{0.25}\;=\;  \frac{1}{2}\cdot\left( x_{(5)}+x_{(6)} \right)\; =\;\frac{1}{2}\cdot (9+10)\; =\; \frac{19}{2}\; =\; 9.5\: .
+$$
+For the upper quartile, we set $\alpha = 0.75$ and obtain 
+$n\cdot \alpha = \frac{20\cdot 3}{4}=15\in \N$, hence
+$$
+\tilde{x}_{0,75}\;=\;\frac{1}{2}\cdot\left( x_{(15)}+x_{(16)} \right) \;=\;\frac{1}{2}\cdot (12+12)\;=\;12\: .
+$$
+\end{MExample}
+
+again, let a sample of size $n$ be given to a quantitative property $X$ with the corresponding 
+ordered sample  
+$$
+x_{(\; )}\;=\;(x_{(1)},x_{(2)},\ldots ,x_{(n)})
+$$
+and
+$$
+\alpha \in [0,\;0.5)\;\; \text{and}\;\;k\;=\;\textsf{floor}(n\cdot \alpha) \;= \;\lfloor n\cdot \alpha \rfloor \: .
+$$
+
+\begin{MInfo}
+The $\alpha$-trimmed (or $\alpha$-truncated) sample mean is defined as
+$$
+\overline{x}_{\alpha}\;=\;
+\frac{1}{n-2\cdot k} \cdot \sum\limits_{j=k+1}^{n-k}x_{(j)}\;=\; \frac{1}{n-2\cdot k}\cdot \left(x_{(k+1)}+ \ldots + x_{(n-k)} \right)\: .
+$$
+\end{MInfo}
+
+The $\alpha$-trimmed mean is an arithmetic mean that discards the $\alpha \cdot 100\%$ largest 
+and $\alpha \cdot 100\%$ smallest data points from the calculation. Thus, it is a flexible protection tool 
+against outliers at the boundaries of the data range. However, we mustn't forget that we no longer take all data into account when we use this tool.
+
+\begin{MExample}
+In the already much considered data set, the ordered sample 
+ $x_{()}=(x_{(1)},x_{(2)},\ldots ,x_{(20)})$ is given by 
+$$
+\begin{array}{cccccccccccccccccccc} 7 & 9 & 9 & 9 & 9 & 10 & 10 & 10 & 10 & 11 & 11 & 11 & 11 & 12 & 12 & 12 & 12 & 13 & 13 & 22 \: ,\end{array}
+$$
+and for
+$\alpha = 0.12$ and $k=\lfloor 20\cdot 0.12 \rfloor = \lfloor 2.4 \rfloor =2$ we obtain for the $12\%$-trimmed mean of the sample
+$$
+\overline{x}_{0.12} \;=\; \frac{1}{16}\cdot \sum\limits_{j=3}^{18}x_{(j)}\;=\; \frac{1}{16}\cdot 172\;=\;10.75\: .
+$$
+It is less than the arithmetic mean $\overline{x}=11.15$ since outliers, such as $x_{(20)}=22$, were ignored.
+\end{MExample}
+
+\end{MXContent}
+
+\begin{MXContent}{Measures of Dispersion}{Measures of Dispersion}{STD}
+\MLabel{VBKM_STOCH_3_3}
+\MDeclareSiteUXID{VBKM_STOCH_3_3}
+
+Means and quantiles are measures of position, i.e. they give information on the absolute position of the 
+qualitative values $x_j$. If we add a constant $c$ to every value $x_j$, then the position measures also increase 
+by $c$. In contrast, measures of dispersion are measures that give information on the dispersion or relative 
+distribution of the data values independent of their absolute position. Consider a sample of size $n\geq 2$ 
+of a quantitative property $X$. Let the original list be given by $x=(x_{1},x_{2},\ldots ,x_{n})\in \mathbb{R}^{n}$.
+
+\begin{MInfo}
+\MLabel{L_Varianz}
+The \MEntry{sample variance}{sample variance} of the original list is defined as
+$$
+s_{x}^{2}\;=\; \frac{1}{n-1}\cdot \sum\limits_{k=1}^{n}(x_{k}-\overline{x})^{2}\; =\; \frac{(x_{1}-\overline{x})^{2}+ \ldots +(x_{n}-\overline{x})^{2}}{n-1}\: .
+$$
+The \MEntry{sample standard deviation}{sample standard deviation} is defined by $s_{x}=+\sqrt{s_{x}^{2}}$.
+\end{MInfo}
+
+The sample variance is a measure of dispersion that describes the variability of the observation sample. 
+The smaller the variance the ``closer'' the data values lie to each other. A variance $s_x^2=0$ is only 
+possible if all data values are equal. Typically, it strongly increases with increasing $n$. The  
+standard deviation is a more appropriate measure for the ``broadness'' of the distribution of data values. 
+The two formulas given above have a few pitfalls:
+
+\begin{itemize}
+\item{Before the variance can be calculated the mean $\overline{x}$ must already be known.}
+\item{The fact that in the definition of $s_{x}^{2}$ is divided by $n-1$ and not by $n$ is for 
+deeper mathematical reasons that can only be discussed in a statistics lecture.}
+\item{The notation $s_{x}=+\sqrt{s_{x}^{2}}$ is a little misleading. You must not cancel the square by 
+the square root, since the \textit{sum} $s^2_x$ must be calculated (and this value is not defined as a single square)
+to determine $s_x$.}
+\item{Be careful using a scientific calculator with statistical functions: the sample variance 
+is available via the $s^2$ key. The $\sigma^2$ key, however, provides the sum with denominator 
+$n$ instead of $n-1$. This is not the sample standard deviation.}
+\end{itemize}
+
+\begin{MExample}
+The data sequence $x=(-1,0,1)$ has the mean $\overline{x}=0$ and the sample standard deviation 
+$$
+s^2_x \;=\;\frac{1}{n-1}\cdot \sum\limits_{k=1}^{n}(x_{k}-\overline{x})^{2}\;=\; \frac1{3-1}\cdot \left({(-1-0)^2+(0-0)^2+(1-0)^2}\right)\;=\; 1\: .
+$$
+Adding further zeros to the data sequence does not change the position measure $\overline{x}$, but the 
+measure of deviation $s^2_x$,does change since the data values here are more strongly concentrated at the mean. 
+In contrast, shifting all data values by a constant does not change the variance. For example, the data 
+sequence $(-5,-4,-3)$ has also variance $1$.
+\end{MExample}
+
+\begin{MExercise}
+A data sequence (with an unknown number $n$ of values) has the measures $\overline{x}=4$, $s^2_x=10$, 
+and the median $\tilde x=3$. Suppose the values of a second data sequence satisfy the equation 
+$y_k = (-2)\cdot x_k$ for every $k$. What are its measures?
+\ \\ \ \\
+Answer: the measures are \MEquationItem{$\overline{y}$}{\MLParsedQuestion{7}{-8}{3}{STOCHVAR1}}, \MEquationItem{$s_y^2$}{\MLParsedQuestion{7}{40}{3}{STOCHVAR2}},
+and \MEquationItem{$\tilde y$}{\MLParsedQuestion{7}{-6}{3}{STOCHVAR3}}.
+\ \\ \ \\
+Hint: recall the definitions of the \MSRef{L_Mittelwert}{mean}, the \MSRef{L_Varianz}{sample variance}, and 
+the \MSRef{L_Median}{median} consider how multiplying all $x$-values by a factor of $(-2)$ influences the entire expression.
+\ \\ \ \\
+\begin{MHint}{Solution}
+Substituting the new $x$-values results in
+\begin{eqnarray*}
+\overline{y} &=& \frac1n\sum_{k=1}^n y_k \;=\;\frac1n\sum_{k=1}^n (-2)\cdot x_k \;=\; (-2)\cdot \frac1n\sum_{k=1}^n y_k \;=\; (-2)\cdot \overline{x} \;=\; -8\:,\\
+s^2_y &=& \frac1{n-1}\sum_{k=1}^n \left({y_k-\overline{y}}\right)^2 \;=\;\frac1{n-1}\sum_{k=1}^n \left({(-2)x_k-(-2)\overline{x}}\right)^2\ \\
+&=& \frac{(-2)^2}{n-1}\sum_{k=1}^n \left({x_k-\overline{x}}\right)^2 \;=\; (-2)^2\cdot s_x^2 \;=\;40\: ,\ \\
+\tilde{y} &=& (-2)\tilde{x} \;=\; -6\: .
+\end{eqnarray*}
+The conversion of the median uses the fact that a multiplication by a factor of $(-2)$ reverses the ordering 
+of the ordered original list, but the value at the mid position (for an odd number) or the two values at the mid positions 
+(for an even number) stay at their positions and are multiplied by $(-2)$ each.
+\end{MHint}
+\end{MExercise}
+\end{MXContent}
+
+
+\MSubsection{Final Test}
+
+\begin{MTest}{Final Test Module \arabic{section}}
+\MLabel{VBKM_STOCH_Abschlusstest}
+\MDeclareSiteUXID{VBKM_STOCHASTIK_Abschlusstest}
+
+
+\begin{MExercise}
+For bonds (e.g. government bonds),we distinguish between the nominal value and the issue price (quote).
+Bonds can be issued at nominal value, under nominal value or over nominal value. The issue price is closer to the 
+nominal value the more the bond interest corresponds to the current market rate. A customer buys bonds 
+with a nominal value of $K=10{,}000$ EUR, an issue price of $100\%$, an interest rate of $p=4,5\%$ p.\,a., and 
+a period of $t=10$~years. 
+
+\begin{MExerciseItems}
+\item{How much interest is paid at the end of each interest period for an issue price of $100\%$
+when simple interest is applied. Answer: the annually paid interest is \MLParsedQuestion{10}{450}{5}{STOCHPRO3} EUR.}
+\item{Specify the amount of the totally paid capital at the end of the period if simple interest is applied.
+Answer: the amount of capital paid at the end of the period is \MLParsedQuestion{10}{14500}{5}{STOCHPRO4} EUR.}
+\end{MExerciseItems}
+\end{MExercise}
+
+\begin{MExercise}
+A capital of $K=25{,}000$ EUR will be invested with an annually paid interest rate of  $p=3,5\%$ p.\,a. until the amount of the capital has doubled. How many years does the capital have to be 
+invested, if continuous compounding interest is applied?
+\ \\ \ \\
+Answer: the required investment period is \MEquationItem{$t$}{\MLParsedQuestion{10}{21}{5}{STOCHPRO11}} years.
+\ \\ \ \\
+Round up your result to the text integer.
+\end{MExercise}
+
+% \begin{MExercise}
+% Der Ausgabekurs einer Anleihe betrage $97,5\%$. Es sollen $K=10000$ EUR investiert werden. Der Nominalzins der Anleihe betrage $p=3,5\%$ p.a. .
+% \begin{MExerciseItems}
+% \item{Bestimmen Sie den Kurswert der Anleihe zu Beginn der Laufzeit. Antwort: \MLParsedQuestion{10}{9750}{4}{STOCHPRO5} EUR.}
+% \item{Bestimmen Sie die Höhe des insgesamt ausgezahlten Kapitals bei einer Laufzeit von $t=10$ Jahren. Antwort: \MLParsedQuestion{10}{13500}{4}{STOCHPRO6} EUR.}
+% \item{Bestimmen Sie für diese Anleihe den Effektivzins. Antwort: \MLParsedQuestion{10}{3.85}{6} Prozent.}
+% \end{MExerciseItems}
+% Hinweis: Geben Sie den Effektivzinssatz mathematisch gerundet auf 2 Nachkommastellen an. Runden Sie erst \textit{nachdem} Sie den Effektivzins als Produkt ausgerechnet haben.
+% \end{MExercise}
+
+\begin{MExercise}
+Read off the properties of the described sample from the histogram shown in the figure below.
+
+\begin{center}
+\MUGraphicsSolo{Histo2.png}{width=0.3\linewidth}{width:466px}
+% CC BY-SA 3.0, Quelle: Histo.png aus der Wikipedia (Seite "Histogramm") von Benutzer https://de.wikipedia.org/wiki/Benutzer:Philipendula
+\ \\
+Histogram of the sample $x=(x_1,\ldots,x_n)$.
+\end{center}
+
+Specify the interval boundaries of the five classes and the corresponding relative frequencies. 
+Fill in the frequency table. For this purpose, calculate the ratios of the areas of the single bars in the diagram 
+to the total area.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Class & Interval & rel. Class frequencies $h_{j}$ \\ \hline
+Class 1 & $[0;200)$ & $0,16$ \\ \hline
+Class 2 & \MLIntervalQuestion{12}{[200,300)}{5}{STOCHIT1} & \MLParsedQuestion{8}{0.19}{5}{STOCHIT5} \\ \hline
+Class 3 & \MLIntervalQuestion{12}{[300,400)}{5}{STOCHIT2} & \MLParsedQuestion{8}{0.19}{5}{STOCHIT6} \\ \hline
+Class 4 & \MLIntervalQuestion{12}{[400,500)}{5}{STOCHIT3} & \MLParsedQuestion{8}{0.28}{5}{STOCHIT7} \\ \hline
+Class 5 & \MLIntervalQuestion{12}{[500,700)}{5}{STOCHIT4} & \MLParsedQuestion{8}{0.19}{5}{STOCHIT8} \\ \hline
+\hline
+\end{tabular}
+\end{center}
+
+\end{MExercise}
+
+
+\begin{MExercise}
+The measurement of the weight of $n=11$ watermelons (in kilogram) resulted in the following values:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Number $j$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $11$ \\ \hline
+Weight $x_j$ in kilogram & $6.2$ &  $5.5$ & $7.3$ & $6.8$ & $6.3$ & $5.5$ & $4.5$ & $6.5$ & $7.3$ & $5.7$ & $5.6$\\ \hline
+\end{tabular}
+\end{center}
+
+\begin{MExerciseItems}
+\item{Find the arithmetic mean of the $11$ sample values: \MEquationItem{$\overline{x}$}{\MLParsedQuestion{10}{(6.2+5.5+7.3+6.8+6.3+5.5+4.5+6.5+7.3+5.7+5.6)/11}{6}{STOCHVAR4}}.}
+\item{Find the median of the $11$ sample values: \MEquationItem{$\tilde{x}$}{\MLParsedQuestion{10}{6.2}{6}{STOCHVAR5}}.}
+%\item{Bestimmen Sie die Stichprobenvarianz der $11$ Stichprobenwerte: \MEquationItem{$s^2_x$}{\MLParsedQuestion{10}{???}{6}{STOCHVAR6}}.}
+\end{MExerciseItems}
+
+Enter your result rounded to two fractional digits. Do not use a calculator but try to find the values by hand.
+\end{MExercise}
+
+
+\end{MTest}
+
+\newpage
+\MPrintIndex
+
+\end{document}

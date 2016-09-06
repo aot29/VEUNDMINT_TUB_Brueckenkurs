@@ -22,7 +22,6 @@
 from lxml import etree
 import os
 import re
-from tidylib import tidy_document
 from tex2x.renderers.AbstractRenderer import *
 from plugins.VEUNDMINT.PageXmlRenderer import *
 
@@ -65,7 +64,7 @@ class PageTUB( AbstractHtmlRenderer ):
 		self.addFlags(xml, tc, basePath)
 				
 		# Prepare a non-special page, otherwise skip TOC and FF-RW links
-		if not AbstractXmlRenderer.isSpecialPage( tc ) :
+		if not ( AbstractXmlRenderer.isSpecialPage( tc ) or AbstractXmlRenderer.isTestPage( tc ) )  :
 			# toc
 			xml.append( self.tocRenderer.generateXML( tc ) )
 			
@@ -88,7 +87,7 @@ class PageTUB( AbstractHtmlRenderer ):
 			self.loadSpecialPage( tc )
 			
 		# Prepare content which is stored in tc.content (change paths etc.)
-		self.prepareContent( tc )
+		self.prepareContent( tc, basePath )
 		
 		# Replace the content placeholder added in PageXmlRenderer with the actual (not necessarily XML-valid) HTML content
 		resultString = str( result )
@@ -111,6 +110,7 @@ class PageTUB( AbstractHtmlRenderer ):
 		xml.set( 'isCoursePage', str( AbstractXmlRenderer.isCoursePage(tc) ) )
 		xml.set( 'isSpecialPage', str( AbstractXmlRenderer.isSpecialPage(tc) ) )
 		xml.set( 'isInfoPage', str( AbstractXmlRenderer.isInfoPage(tc) ) )
+		xml.set( 'isTestPage', str( AbstractXmlRenderer.isTestPage(tc) ) )
 		xml.set( 'requestLogout', str( AbstractXmlRenderer.isLogoutPage(tc) ).lower() )
 
 
@@ -124,13 +124,14 @@ class PageTUB( AbstractHtmlRenderer ):
 		tc.content = etree.tostring( tree ).decode("utf-8")
 
 
-	def prepareContent(self, tc):
+	def prepareContent(self, tc, basePath):
 		"""
 		TTM produces non-valid HTML, so it has to be added after XML has been parsed.
 		Don't use tidy on the whole page, as tidy version 1 drops MathML elements (among other)
 		Note: string replace is faster than regex
 		
 		@param tc - TContent object for the page
+		@param basePath - String prefix for all links
 		"""
 		# Reduce the number of breaks and clear=all's, since they mess-up the layout
 		breakStr = '<br style="margin-bottom: 2em" />'
@@ -140,9 +141,15 @@ class PageTUB( AbstractHtmlRenderer ):
 		tc.content = tc.content.replace( '\t', '' )
 		tc.content = tc.content.replace( '\n', '' )
 		
-		# if this is a special page, replace the title
-		if AbstractXmlRenderer.isSpecialPage(tc):
-			tc.content = re.sub( r"<h4>(.+?)</h4><h4>(.+?)</h4>", "<h4 id='pageTitle' data-toggle='i18n' data-i18n='%s' ></h4>" % tc.uxid, tc.content )
+		tc.content = tc.content.replace( '<a class="MINTERLINK" href="', '<a class="MINTERLINK" href="%s/' % basePath )
+				
+		# if this is a special page, replace the title by i18n entry
+		if AbstractXmlRenderer.isSpecialPage(tc) or AbstractXmlRenderer.isTestPage(tc):
+			tc.content = re.sub( r"<h4>(.+?)</h4><h4>(.+?)</h4>", "<h1 id='pageTitle' data-toggle='i18n' data-i18n='%s' ></h1>" % tc.uxid, tc.content )
+		
+		#if this is not a special page, apply some layout
+		if not ( AbstractXmlRenderer.isSpecialPage(tc) or AbstractXmlRenderer.isTestPage(tc) ):
+			tc.content = re.sub( r"<h4>(.+?) - (.+?)</h4><h4>(.+?)</h4>", r"<h4><div class='label label-default'>\1</div></h4><strong>\2</strong><h1>\3</h1>", tc.content )
 
 
 	def getBasePath(self, tc):

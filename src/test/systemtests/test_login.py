@@ -13,6 +13,8 @@ class TestLogin( SeleniumTest ):
 	Tests for the login page
 	'''
 	registrationFieldIds = {'USER_VNAME', 'USER_SNAME', 'USER_EMAIL', 'USER_SGANG', 'USER_UNI', 'USER_UNAME'}
+	myAccountFieldIds = {'USER_VNAME', 'USER_SNAME', 'USER_EMAIL', 'USER_SGANG', 'USER_UNI'}
+	loginFieldIds = {'OUSER_LOGIN', 'OUSER_PW'}
 	'''
 	Testuser name and password
 	'''
@@ -20,24 +22,20 @@ class TestLogin( SeleniumTest ):
 	TestUPassword = 'XL3OAph'
 
 	def setUp(self):
-		#SeleniumTest.setUp(self)
+		SeleniumTest.setUp(self)
 		# navigate to EN login page
 		self._chooseLanguageVersion( 'en' )
 
 
-	def tearDown(self):
-		self._navToSpecialPage( 'VBKM_MISCLOGOUT', '' )
-		SeleniumTest.tearDown(self)
-		
 
 	def testCheckRegistrationForm(self):
 		'''
 		Check that all fields are there, and that they are empty for an unregistered user
 		'''
-		# Actually, this is the register button, but its ID is loginbutton
-		self.getElement( 'loginbutton' ).click()
-		for id in self.registrationFieldIds:
-			self._checkPresentAndEmpty( id )
+		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )
+		
+		for field in self.registrationFieldIds:
+			self._checkPresentAndEmpty( field )
 
 
 	def testName(self):
@@ -45,45 +43,44 @@ class TestLogin( SeleniumTest ):
 		Are constraints on new usernames being checked upon registration?
 		Check if image is right and login button is displayed when necessary.
 		'''
-		# Actually, this is the register button, but its ID is loginbutton
-		self.getElement( 'loginbutton' ).click()
+		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )
 		
 		inputEl = self.driver.find_element_by_id( 'USER_UNAME' )
 		imgEl = self.driver.find_element_by_id( "checkuserimg" ) # the icon next to the input field
 
 		# nothing in field
 		inputEl.clear()
-		self.driver.execute_script( "usercheck()" )
+		self.driver.execute_script( "intersite.usercheck()" )
 		self.assertTrue( "questionmark" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
-		self.assertFalse( self._getRegistrationButton() )
+		self.assertFalse( self._isRegistrationEnabled() )
 
 		# Loginname too short
 		inputEl.clear()
 		inputEl.send_keys( "abcde" )
-		self.driver.execute_script( "usercheck()" ) # Just changing the field doesn't trigger the javascript
+		self.driver.execute_script( "intersite.usercheck()" ) # Just changing the field doesn't trigger the javascript
 		self.assertTrue( "false" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
-		self.assertFalse( self._getRegistrationButton(), "Button displayed when it shouldn't" )
+		self.assertFalse( self._isRegistrationEnabled(), "Button displayed when it shouldn't" )
 
 		# Loginname invalid chars
 		inputEl.clear()
 		inputEl.send_keys( u'abcdeä' )
-		self.driver.execute_script( "usercheck()" )
+		self.driver.execute_script( "intersite.usercheck()" )
 		self.assertTrue( "false" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
-		self.assertFalse( self._getRegistrationButton(), "Button displayed when it shouldn't" )
+		self.assertFalse( self._isRegistrationEnabled(), "Button displayed when it shouldn't" )
 
 		# Loginname too long
 		inputEl.clear()
 		inputEl.send_keys( 'abcdefghijklmnopqrstuvwxyz' )
-		self.driver.execute_script( "usercheck()" )
+		self.driver.execute_script( "intersite.usercheck()" )
 		self.assertTrue( "false" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
-		self.assertFalse( self._getRegistrationButton(), "Button displayed when it shouldn't" )
+		self.assertFalse( self._isRegistrationEnabled(), "Button displayed when it shouldn't" )
 
 		# Loginname OK
 		inputEl.clear()
 		inputEl.send_keys( "ab12_-+" )
-		self.driver.execute_script( "usercheck()" )
+		self.driver.execute_script( "intersite.usercheck()" )
 		self.assertTrue( "right" in imgEl.get_attribute( "src" ), "Answer is displaying the wrong image" )
-		self.assertTrue( self._getRegistrationButton(), "Button not displayed when it should" )
+		self.assertTrue( self._isRegistrationEnabled(), "Button not displayed when it should" )
 
 
 	def _login(self):
@@ -121,35 +118,30 @@ class TestLogin( SeleniumTest ):
 		#login, using the test user "selenium"
 		self._login()
 
-		# load the registration page and check the fields are not empty
+		# load the my account page and check the fields are not empty
 		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )
-		for name in self.registrationFieldIds:
+		for name in self.myAccountFieldIds:
 			inputEl = self.getElement( name )
 			self.assertTrue( inputEl.get_attribute("value"), "Field %s is empty" % name )
 		
-		# check the text on the login button
-		self.assertEquals( self.locale[ 'msg-myaccount' ], self.getElement( 'loginbutton_text' ).text )
-
 		# logout
 		self._logout()		
 		
 		# load the registration page and check the fields are empty after logout
 		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )
-		for name in self.registrationFieldIds:
+		for name in self.myAccountFieldIds:
 			inputEl = self.getElement( name )
 			self.assertFalse( inputEl.get_attribute("value"), "Field %s is not empty when it should" % name )
 
-		# check the text on the login button
-		self.assertEquals( self.locale[ 'ui-loginbutton' ], self.getElement( 'loginbutton_text' ).text )
 
 
-	@unittest.skip("needs more attention")
+	@unittest.skip("Password pop-up is in the way")
 	def testRegister(self):
 		'''
 		Create a test account
 		'''
 		# Actually, this is the register button, but its ID is loginbutton
-		self.getElement( 'loginbutton' ).click()
+		self.getElement( 'loginButton' ).click()
 		
 		# Input phony values for the test user
 		self.driver.find_element_by_id( 'USER_VNAME' ).send_keys( 'VNAME Test' )
@@ -170,7 +162,7 @@ class TestLogin( SeleniumTest ):
 		passPrompt.send_keys( self.TestUPassword )
 
 
-	def _checkPresentAndEmpty(self, inputId):		
+	def _checkPresentAndEmpty(self, inputId):
 		'''
 		Check if an input field is present and is empty
 		@param inputName String the id of an input field
@@ -179,16 +171,15 @@ class TestLogin( SeleniumTest ):
 		self.assertFalse( self.getElement( inputId ).get_attribute("value") )
 
 
-	def _getRegistrationButton(self):
+	def _isRegistrationEnabled(self):
 		'''
-		@return the registration button element if it is present on the page or empty list.
+		Checks that the registration button is enabled
+		
+		@return boolean
 		'''
-		#btnPath = "//div[@class='usercreatereply']//child::button" # path to the create-user button (present when constraints are met)
-		# get a list of elements, otherwise an exception is thrown when no element is found
-		elList = self.driver.find_elements_by_xpath( self.xpath['registrationButton'] )
-		resp = False
-		if len( elList ) != 0 : resp = elList[0]
-		return resp
+		button = self.getElement( 'registrationButton' )
+		#print("Button classes %s" % button.get_attribute( 'class' ))
+		return not 'disabled' in button.get_attribute( 'class' )
 
 
 if __name__ == "__main__":

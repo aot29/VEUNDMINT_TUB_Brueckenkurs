@@ -11,7 +11,7 @@ class Chapter1Test( SeleniumTest ):
 	Test chapter 1
 	'''
 	def setUp( self ):
-		#SeleniumTest.setUp(self)
+		SeleniumTest.setUp(self)
 		self._openStartPage(no_mathjax=True)
 
 
@@ -23,7 +23,6 @@ class Chapter1Test( SeleniumTest ):
 		self.assertIn("/en/", self.driver.current_url)
 
 
-	@unittest.skip("can't find launch button")
 	def testNavToChapter1(self):
 		'''
 		Navigate to Chapter 1
@@ -49,7 +48,7 @@ class Chapter1Test( SeleniumTest ):
 
 		content = self.getElement( 'pageContents' )
 		sections = content.find_elements_by_tag_name( "li" )
-		self.assertEqual( 10, len( sections ), "Chapter 1 has the wrong number of sections" )
+		self.assertEqual( 11, len( sections ), "Chapter 1 has the wrong number of sections" )
 
 
 	def testChapter1Section2(self):

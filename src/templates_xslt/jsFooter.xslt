@@ -14,6 +14,7 @@
 		<!-- i18n -->
 		<xsl:call-template name="i18n">
 			<xsl:with-param name="lang" select="@lang" />
+			<xsl:with-param name="basePath" select="@basePath" />
 		</xsl:call-template>
 		
 		<!-- JS -->	

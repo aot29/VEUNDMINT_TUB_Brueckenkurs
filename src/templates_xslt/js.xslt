@@ -100,33 +100,16 @@
 			}
 
 	        $(document).ready(function() {
-	            // set the tooltip texts
-	            $('[data-toggle="tooltip"]').each( function(i, el) {
-	                var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
-	                $(el).attr( 'title', hint );
-	            })
-	            // toggle tooltips
-	            $('[data-toggle="tooltip"]').tooltip({
-	                placement : 'auto',
-	                html: true
-	            });
-	            $('[data-toggle="tooltip-navbar"]').tooltip({
-	                placement : 'auto',
-	                html: true
-	            });
 	            // Offcanvas
 	            $('[data-toggle="offcanvas"]').click(function() {
 	                $('.row-offcanvas').toggleClass('responsive');
 	                toggleCourseContent();
 	            });
+	            
 	            // Loesungen
 	            $('[data-toggle="show_solution"]').click(function(){
 					        $(this).button('toggle');
 				});
-	            // Localized texts
-	            $('[data-toggle="i18n"]').each(function(i, el) {
-	            	$(el).text( $.i18n( $(el).attr( 'data-i18n' ) ) );
-	            });
 
 	            // footer at bottom of column
 	            // don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
@@ -141,15 +124,6 @@
 	            	localStorage.clear();
 	            }
 	            
-	            // Logged -in or -out?
-	            if( userdata.isLoggedIn() ) {
-	            	$('#logged_out_buttons').hide();
-	            	$('#logged_in_buttons').show();
-	            	
-	            } else {
-	            	$('#logged_in_buttons').hide();
-	            	$('#logged_out_buttons').show();
-	            }
 	        });
 
 	        function positionFooter() {
