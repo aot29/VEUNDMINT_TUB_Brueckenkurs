@@ -134,7 +134,7 @@ try {
 						'status' => true)));
 					break;
 				case 'del_user':
-					deluser($database_handler, filter_var($_POST['username']), $mysql_users_table, $mysql_data_table);
+					deluser($database_handler, filter_var($_POST['username']), filter_var($_POST['password']), $mysql_users_table, $mysql_data_table);
 					break;
 				case 'change_pwd':
 					change_pwd($database_handler, filter_var($_POST['username']), filter_var($_POST['old_password']), filter_var($_POST['password']), $mysql_users_table);

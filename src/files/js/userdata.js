@@ -193,10 +193,35 @@ var userdata = (function (serviceURL) {
     /**
      * Delete a user
      **/
-    exports.delUser = function (async, username, success, error) {
-        sendRequest(async, 'POST', {action: 'del_user', username: username},
+    exports.delUser = function (async, username, password, success, error) {
+        sendRequest(async, 'POST', {action: 'del_user', username: username, password: password},
                 createSuccessCallback(success, error), createErrorCallback(error));
     };
+
+    /**
+     * deletes the user in local storage and on the server
+     * @return {[type]} [description]
+     */
+    exports.deleteAllUserData = function () {
+
+      if (exports.isLoggedIn()) {
+        //first delete the user on the server
+        var intersiteObj = intersite.getObj();
+        var loginData = intersiteObj.login;
+        exports.delUser(true, loginData.username, loginData.password, function (success) {
+          //user deletion success on server, continue locally
+          localStorage.clear();
+          console.log( "Logout requested");
+          //a hack for overwriting intersite obj = logout
+          intersite.init();
+          window.location.href="index.html";
+        }, function(error) {
+          console.log("userdata deletion failed on the server, quitting");
+        });
+      } else {
+        console.log("we can only delete our user if we are logged in");
+      }
+    }
 
     /**
      * Change the password of a user

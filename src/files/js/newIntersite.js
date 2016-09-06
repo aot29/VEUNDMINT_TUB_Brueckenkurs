@@ -1000,9 +1000,9 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      /**
       * TODO move to ui component
       * does sooooome ui manipulation
-      * 
+      *
       * see mintscripts_bootstrap.displayFeedback
-      * 
+      *
       * @param {[type]} ok [description]
       * @param {[type]} m  [description]
       */
@@ -1053,7 +1053,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
              ulreply_set(true, $.i18n('msg-available-username'));//"Dieser Benutzername ist verfügbar."
              $('#newUserButton').removeClass('disabled');
            }
-           
+
          } else {
              console.log( "checkuser success, status=false, data = " + JSON.stringify(data));
              ulreply_set(false, "Kommunikation mit Server (" + feedbackdesc + ") nicht möglich.");
