@@ -1450,7 +1450,8 @@ function finish_button(name) {
       testFinished = true;
 
       if ((intersite.isActive()==true) && (intersite.getObj().configuration.CF_TESTS=="1")) {
-          intersite.pushIso(false);
+    	  // whatever this does, if it's false, the page will reload
+          intersite.pushIso(true);
           var timestamp = +new Date();
           var cm = "TESTFINISH: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", testname:" + name + ", nPoints:" + nPoints + ", maxPoints:" + nMaxPoints + ", ratio:" + (nPoints/nMaxPoints) + ", nMinPoints:" + nMinPoints;
           intersite.sendeFeedback({statistics: cm }, true);
