@@ -62,6 +62,7 @@ make -f tools/makefiles/multilang
 ### run development server
 ```
 gulp watch
+(or npm run gulp watch if using a virtual Python environment)
 ```
 
 

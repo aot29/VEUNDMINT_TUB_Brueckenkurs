@@ -145,7 +145,7 @@ class Option(object):
         # self.signature_main = "OBMLGAMMA9" # "OBMLGAMMA5_SCORM12_UKS_m" # "OBMLGAMMA5" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"         # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
         self.signature_version = "10000"              # Versionsnummer, nicht relevant fuer localstorage-userget!
         self.signature_localization = "DE-MINT"       # Lokalversion des Kurses, hier die bundesweite MINT-Variante
-        self.signature_date = "06/2015"
+        self.signature_date = "09/2016"
 
        # ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------
         self.overrides = list()

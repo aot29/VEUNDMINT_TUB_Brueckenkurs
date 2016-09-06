@@ -138,8 +138,8 @@ class PageTUB( AbstractHtmlRenderer ):
 		tc.content = tc.content.replace( '<br/> <br/>', breakStr )
 		tc.content = tc.content.replace( '<br clear="all"/><br clear="all"/>', breakStr )
 		tc.content = tc.content.replace( '<br clear="all"></br>\n<br clear="all"></br>', breakStr )
-		tc.content = tc.content.replace( '\t', '' )
-		tc.content = tc.content.replace( '\n', '' )
+		tc.content = tc.content.replace( '\t', ' ' )
+		tc.content = tc.content.replace( '\n', ' ' )
 		
 		tc.content = tc.content.replace( '<a class="MINTERLINK" href="', '<a class="MINTERLINK" href="%s/' % basePath )
 				
