@@ -23,7 +23,7 @@ from lxml import etree
 import os
 import re
 from tex2x.renderers.AbstractRenderer import *
-from plugins.VEUNDMINT.PageXmlRenderer import *
+from tex2x.renderers.PageXmlRenderer import *
 
 
 class PageTUB( AbstractHtmlRenderer ):

@@ -37,7 +37,7 @@ from plugins.exceptions import PluginException
 from plugins.basePlugin import Plugin as basePlugin
 
 from plugins.VEUNDMINT.tcontent import TContent
-from plugins.VEUNDMINT.PageFactory import PageFactory
+from tex2x.renderers.PageFactory import PageFactory
 
 class Plugin(basePlugin):
 
