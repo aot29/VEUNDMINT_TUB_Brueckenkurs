@@ -2,7 +2,7 @@ import unittest
 import os
 from settings import BASE_URL, BASE_DIR
 from selenium import webdriver
-import configparser as ConfigParser
+#import configparser as ConfigParser
 import json
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,8 +11,6 @@ from tex2x.Settings import ve_settings as settings
 from tex2x.renderers.AbstractRenderer import AbstractXmlRenderer
 
 class SeleniumTest(unittest.TestCase):
-	configPath = os.path.join(BASE_DIR + "/", "src/test/", "testconfig.ini")
-
 	# Most xpaths assume you are starting from the root element (e.g. using self.driver).
 	# use with self.getElement('key')
 	# To retrieve an element by id, e.g. from the content of the page, 
@@ -48,20 +46,12 @@ class SeleniumTest(unittest.TestCase):
 		#self.driver = webdriver.Firefox()
 		self.driver.set_window_size(1120, 550)
 		self.driver.set_page_load_timeout(30)
-		#self.driver.implicitly_wait(30)
-
-		#Read the configuration file
-		self.config = ConfigParser.ConfigParser()
-		self.config.read( self.configPath )
-		
-		# set global timeout
-		#wait = WebDriverWait(self.driver, 3)
-
 
 		# load locale file
 		localeFile = None
 		try:
-			i18nPath = os.path.expanduser( os.path.join( BASE_DIR, "src/files/i18n/%s.json" % self._getConfigParam( 'lang' ) ) )
+			# load DE locale by default
+			i18nPath = os.path.expanduser( os.path.join( BASE_DIR, "src/files/i18n/%s.json" % 'de' ) )
 			localeFile = open( i18nPath )
 			self.locale = json.load( localeFile )
 
@@ -160,8 +150,8 @@ class SeleniumTest(unittest.TestCase):
 			
 		
 
-	def _getConfigParam(self, key):
-		return self.config.get( 'defaults', key )
+	#def _getConfigParam(self, key):
+	#	return self.config.get( 'defaults', key )
 
 
 	def _chooseLanguageVersion(self, lang):
