@@ -1,261 +1,297 @@
-  body,html,.row-offcanvas {
-    height:100%;
-  }
+body,html,.row-offcanvas {
+  height:100%;
+}
 
-  body {
-  	padding-top: 70px;
-  	font-size:medium!important;
+body {
+	padding-top: 70px;
+	font-size:medium!important;
+}
+
+#main {
+  padding: 0 10px 0 0;
+}
+
+#navbarTop .navbar-collapse.collapse {
+  display: block!important;
+}
+
+#navbarTop .navbar-nav>li, .navbar-nav {
+  float: left !important;
+}
+
+#navbarTop .navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+
+#navbarTop .navbar-right {
+  float: right!important;
+  font-size: 15px;
+}
+
+/*pageContents*/
+#pageContents {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 0 0 4px 4px;
+    margin-bottom: 20px;
+    /*font-size: 16px; Moved to body, as here it breaks the zoom function. */
+    line-height: 1.6em;
+}
+
+/*Wrap long texts in lauch buttons*/
+#pageContents .btn {
+	white-space: normal;
+}
+
+/* Special styles for when the user is logged in */
+body.logged_in .logged_out_only {
+	display: none;
+}
+
+.logged_in_only {
+  display: none;
+}
+body.logged_in .logged_in_only {
+  display: block;
+}
+
+/* on the start page */
+.jumbotron {
+	padding: 48px;
+}
+
+/* Workaround for MathJax introducing empty tables with borders*/
+.aufgabe table {
+	border-color: white;
+}
+
+
+#sidebar {
+  width: inherit;
+  min-width: 320px;
+  max-width: 320px;
+  float: left;
+  position:relative;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+#main {
+  overflow:auto;
+}
+
+@media screen and (max-width: 991px) {
+  #main, #sidebar {
+    height: 100%;
   }
 
   #main {
-    padding: 0 10px 0 0;
+    padding: 0px 10px 0px 10px;
   }
 
-  /*pageContents*/
-  #pageContents {
-      padding: 10px 20px;
-      border: 1px solid #ccc;
-      border-radius: 0 0 4px 4px;
-      margin-bottom: 20px;
-      /*font-size: 16px; Moved to body, as here it breaks the zoom function. */
-      line-height: 1.6em;
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    width:calc(100% + 320px);
   }
 
-  /*Wrap long texts in lauch buttons*/
-  #pageContents .btn {
-  	white-space: normal;
+  .row-offcanvas-left
+  {
+    left: -320px;
   }
 
-  /* Special styles for when the user is logged in */
-  body.logged_in .logged_out_only {
-  	display: none;
+  .row-offcanvas-left.active {
+    left: 0;
   }
 
-  .logged_in_only {
-    display: none;
-  }
-  body.logged_in .logged_in_only {
-    display: block;
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
   }
 
-  /* on the start page */
-  .jumbotron {
-  	padding: 48px;
-  }
-
-  /* Workaround for MathJax introducing empty tables with borders*/
-  .aufgabe table {
-  	border-color: white;
-  }
-
-
-  #sidebar {
-    width: inherit;
-    min-width: 320px;
-    max-width: 320px;
-    float: left;
-    position:relative;
-    overflow-y:auto;
-    overflow-x:hidden;
-  }
-  #main {
-    overflow:auto;
-  }
-
-  @media screen and (max-width: 991px) {
-    #main, #sidebar {
-      height: 100%;
-    }
-
-    #main {
-      padding: 0px 10px 0px 10px;
-    }
-
-    .row-offcanvas {
-      position: relative;
-      -webkit-transition: all 0.25s ease-out;
-      -moz-transition: all 0.25s ease-out;
-      transition: all 0.25s ease-out;
-      width:calc(100% + 320px);
-    }
-
-    .row-offcanvas-left
-    {
-      left: -320px;
-    }
-
-    .row-offcanvas-left.active {
-      left: 0;
-    }
-
-    .sidebar-offcanvas {
-      position: absolute;
-      top: 0;
-    }
-
-    #toggle_sidebar {
-  		padding-left: 0;
-  	}
-
-  	/* hide pills (tabs) on small screens */
-  	#subtoc {
-  		display: none;
-  	}
-    /*Close the page contents container at the top when no subnav pills are displayed*/
-    #pageContents {
-    	border-top: 1px solid #ccc;
+  #toggle_sidebar {
+		padding-left: 0;
 	}
 
-  	/* Make some room in the header bar*/
-  	#tools .btn {
-  		padding-right: 3px;
-  	}
-    #toolsRow {
-		margin-right: 0!important;
-    }
-
+	/* hide pills (tabs) on small screens */
+	#subtoc {
+		display: none;
+	}
+  /*Close the page contents container at the top when no subnav pills are displayed*/
+  #pageContents {
+  	border-top: 1px solid #ccc;
   }
 
-  @media screen and (max-width: 371px) {
-  	/* Make more room in the header bar*/
-	#navbarContainer {
-    	padding-right: 0;
+	#tools .btn {
+		padding-right: 3px;
+	}
+  #toolsRow {
+	   margin-right: 0!important;
+  }
+
+  /**
+   * as the top navbar is set to not collapse we need to edit navbar form styles
+   */
+   #navbarTop .navbar-nav {
+     margin: 4.5px -10px;
+   }
+
+  #navbarTop .navbar-form {
+    margin-top: 8px;
+    margin-right: 0;
+    margin-bottom: 8px;
+    margin-left: 0;
+    border: none;
+    padding: 0 15px;
+  }
+
+  #navbarTop .navbar-nav .open .dropdown-menu {
+    position: absolute;
+    float: left;
+    top: 100%;
+    min-width: 160px;
+    margin: 2px 0 0;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .15);
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    left: auto;
+    right: 0;
+  }
+
+}
+
+/*tables*/
+#pageContents table td {
+	padding: 0.5em;
+}
+
+/*icons*/
+.glyphicon-question-sign {
+	padding: 1em;
+}
+
+/*images*/
+.mintmodimage {
+	width: 50%;
+	max-width: 400px;
+}
+
+/*social media*/
+#social-media-links li {
+	float: left;
+	padding: 0.5em;
+}
+
+/*Boxes*/
+.info, .exmp, .aufgabe {
+	padding-top: 1em;
+}
+
+/* Form styles */
+div.panel-body input {
+    background: white;
+    border: 1px dashed grey;
+    margin-bottom: 1em;
+    padding-left: 5px;
+}
+
+/*input fields in forms*/
+.form-group div {
+	margin-bottom: 1em;
+}
+/*
+Extra bottom margin for toggle buttons,
+but only if not in lists.
+*/
+.btn {
+	margin-bottom: 1em;
+}
+ol .btn {
+	margin-bottom: 0;
+}
+/* end form styles*/
+
+  /*Extra styles for tooltips*/
+    .tooltip.bottom .tooltip-arrow {
+        border-bottom-color: #ccc;
+    }
+    .tooltip-inner {
+        background-color: #999;
+    }
+	/*end tooltip*/
+
+    /* Tools */
+    #navbar {
+        margin-bottom: 0px;
+        border-radius: 0;
+    }
+
+    #toolsRow {
+      margin-left: 0;
+      margin-right: 1em;
+    }
+
+    #tools .btn-link {
+		color: #337ab7;
+    }
+
+	/* TOC */
+    #toc h3 {
+    	margin-top: 0.25em;
+    }
+    #toc ul {
+         list-style-type: none;
+    }
+    #toc .entryText {
+		padding-left: 1em;
+		font-family: Helvetica, sans-serif;
+		color: #337ab7;
+    }
+
+    #toc .panel-body > ul:first-child {
     	padding-left: 0;
     }
-  }
+    .module-panel ul > li > ul, #legend > ul {
+      padding-left: 1em;
+    }
+
+    .selectedEntry {
+    	font-weight: bold;
+    }
+
+  /*tabs (pills)*/
+    #subtoc {
+	padding:  0;
+    }
+    #subtoc .nav {
+      padding: 6px;
+    }
+    #subtoc .subtoc-prev, #subtoc .subtoc-next {
+      font-size:1.4em;
+    }
+ .chevron {
+ 	padding-top: 1em;
+ }
+
+    #legende ul.panel li div.glyphicon {
+        padding-right: 5px;
+    }
+    .status1 {
+	    color: #55aadd;
+    }
+    .status2 {
+	    color: #0055aa;
+    }
+    .status3 {
+	    color: #000055;
+    }
 
 
-  /*tables*/
-  #pageContents table td {
-  	padding: 0.5em;
-  }
+/*MathJax override wrap settings*/
+.mjx-chtml {
+	white-space: normal!important;
+}
 
-  /*icons*/
-  .glyphicon-question-sign {
-  	padding: 1em;
-  }
-
-  /*images*/
-  .mintmodimage {
-  	width: 50%;
-  	max-width: 400px;
-  }
-
-  /*social media*/
-  #social-media-links li {
-  	float: left;
-  	padding: 0.5em;
-  }
-
-  /*Boxes*/
-  .info, .exmp, .aufgabe {
-  	padding-top: 1em;
-  }
-
-  /* Form styles */
-  div.panel-body input {
-      background: white;
-      border: 1px dashed grey;
-      margin-bottom: 1em;
-      padding-left: 5px;
-  }
-
-  /*input fields in forms*/
-  .form-group div {
-  	margin-bottom: 1em;
-  }
-  /*
-  Extra bottom margin for toggle buttons,
-  but only if not in lists.
-  */
-  .btn {
-  	margin-bottom: 1em;
-  }
-  ol .btn {
-  	margin-bottom: 0;
-  }
-  /* end form styles*/
-
-	  /*Extra styles for tooltips*/
-      .tooltip.bottom .tooltip-arrow {
-          border-bottom-color: #ccc;
-      }
-      .tooltip-inner {
-          background-color: #999;
-      }
-  	/*end tooltip*/
-
-      /* Tools */
-      #navbar {
-          margin-bottom: 0px;
-          border-radius: 0;
-      }
-
-      #toolsRow {
-	      margin-left: 0;
-	      margin-top: 10px;
-	      margin-right: 1em;
-      }
-
-      #tools .btn-link {
-  		color: #337ab7;
-      }
-
-  	/* TOC */
-      #toc h3 {
-      	margin-top: 0.25em;
-      }
-      #toc ul {
-           list-style-type: none;
-      }
-      #toc .entryText {
-  		padding-left: 1em;
-  		font-family: Helvetica, sans-serif;
-  		color: #337ab7;
-      }
-
-      #toc .panel-body > ul:first-child {
-      	padding-left: 0;
-      }
-      .module-panel ul > li > ul, #legend > ul {
-        padding-left: 1em;
-      }
-
-      .selectedEntry {
-      	font-weight: bold;
-      }
-
-	  /*tabs (pills)*/
-      #subtoc {
-		padding: 0;
-      }
-      #subtoc .nav {
-        padding: 6px;
-      }
-      #subtoc .subtoc-prev, #subtoc .subtoc-next {
-        font-size:1.4em;
-      }
-	 .chevron {
-	 	padding-top: 1em;
-	 }
-
-      #legende ul.panel li div.glyphicon {
-          padding-right: 5px;
-      }
-      .status1 {
-  	    color: #55aadd;
-      }
-      .status2 {
-  	    color: #0055aa;
-      }
-      .status3 {
-  	    color: #000055;
-      }
-
-
-  /*MathJax override wrap settings*/
-  .mjx-chtml {
-  	white-space: normal!important;
-  }
-
-  /* fix anchor links top margin */
+/* fix anchor links top margin */

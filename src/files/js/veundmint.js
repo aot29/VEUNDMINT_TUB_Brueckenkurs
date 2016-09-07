@@ -179,7 +179,8 @@ $(window).on('beforeunload', function(){
 		// Merge user options with defaults
 		settings = extend( defaults, options || {} );
 
-		// @todo Do something...
+		// set up components
+		veundmint.languageChooser($('#languageChooser'));
 
 	};
 
@@ -303,6 +304,34 @@ $(window).on('beforeunload', function(){
 			}
     });
 	}
+
+  /**
+   * sets up element to be a languageChooser
+   * @param  {[type]} element the jquery element to transform
+   */
+  veundmint.languageChooser = function (element) {
+    var languages = ["de", "en"];
+
+    var url = window.location.href;
+    var ownLanguage = $('html').attr('lang');
+    var otherLanguages = languages.slice(languages.indexOf(ownLanguage),1);
+    var htmlString =  '<form class="navbar-form navbar-right"><select id="selectLanguage" class="form-control">';
+    languages.forEach(function(langString, index) {
+      if (langString === ownLanguage) {
+        htmlString += '<option selected="selected">' + langString + '</option>';
+      } else {
+        htmlString += '<option>' + langString + '</option>';
+      }
+    });
+    htmlString += '</select></form>';
+
+    element.replaceWith(htmlString);
+
+    $('body').on('change', '#selectLanguage', function() {
+      var newUrl = url.replace(ownLanguage, this.value);
+      window.location.href = newUrl;
+    });
+  }
 
 	veundmint.init();
 	return veundmint;
