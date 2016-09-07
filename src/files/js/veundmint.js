@@ -328,7 +328,7 @@ $(window).on('beforeunload', function(){
     element.replaceWith(htmlString);
 
     $('body').on('change', '#selectLanguage', function() {
-      var newUrl = url.replace(ownLanguage, this.value);
+      var newUrl = url.replace('/' + ownLanguage + '/', '/' + this.value + '/');
       window.location.href = newUrl;
     });
   }
