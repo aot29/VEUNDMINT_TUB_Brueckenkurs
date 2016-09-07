@@ -9,7 +9,6 @@
 						<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
 						<li><a href="{@basePath}/{@lang}/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
 						<li><a data-toggle="tooltip" id="listebutton" href="{@basePath}/{@lang}/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
-						<li><a data-toggle="tooltip" id="databutton" href="{@basePath}/{@lang}/data.html"><span class="glyphicon glyphicon-dashboard disabled"></span></a></li>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
@@ -32,13 +31,18 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a>
               <ul class="dropdown-menu">
 								<li>
+									<a href="{@basePath}/{@lang}/data.html">
+										<span class="glyphicon glyphicon-dashboard"></span>&nbsp;<span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span>
+									</a>
+								</li>
+								<li>
 									<a href="{@basePath}/{@lang}/signup.html">
-										<span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span>
+										<span class="glyphicon glyphicon-list-alt"></span>&nbsp;<span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span>
 									</a>
 								</li>
 								<li>
 									<a href="{@basePath}/{@lang}/logout.html">
-										<span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span>
+										<span class="glyphicon glyphicon-off"></span>&nbsp;<span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span>
 									</a>
 								</li>
               </ul>

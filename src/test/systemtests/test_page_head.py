@@ -33,7 +33,6 @@ class PageHeadTest( SeleniumTest ):
 		self.assertTrue( self.getElement( "loginButtonNavBar" ) )
 		self.assertTrue( self.getElement( "listebutton" ) )
 		self.assertTrue( self.getElement( "homebutton" ) )
-		self.assertTrue( self.getElement( "databutton" ) )
 
 	def testChangeLanguageButton(self):
 		'''
