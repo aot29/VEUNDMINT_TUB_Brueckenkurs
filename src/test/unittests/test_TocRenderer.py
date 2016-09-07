@@ -6,7 +6,7 @@ Created on Aug 4, 2016
 import unittest
 from lxml import etree
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
-from plugins.VEUNDMINT.TocRenderer import TocRenderer
+from tex2x.renderers.TocRenderer import TocRenderer
 from tex2x.renderers.AbstractRenderer import *
 
 class test_TocRenderer(AbstractRendererTestCase):

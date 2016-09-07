@@ -6,6 +6,7 @@
 # make -f tools/makefiles/test
 # By default, systemtests will test the version on the staging server
 #
+# You might need add your checkout folder to your PYTHONPATH 
 # To run test on localhost, do:
 # make -f tools/makefiles/test localhost
 #
@@ -21,6 +22,8 @@ LOCALHOST_URL=http://localhost:3000
 # Declare as phony so targets will run even if there's a file by that name
 .PHONY: all localhost
 
+# Add the checkout folder to python path (necessary for green)
+export PYTHONPATH:=$PYTHONPATH:${CURDIR}
 
 all: 
 	echo "Running unit tests on ${STAGING_URL}"

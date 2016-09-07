@@ -20,8 +20,6 @@
 
 from lxml import etree
 import re
-import os
-from tidylib import tidy_document
 from tex2x.renderers.AbstractRenderer import *
 
 class PageXmlRenderer(AbstractXmlRenderer):
@@ -174,36 +172,36 @@ class RouletteDecorator( PageXmlDecorator ):
 		This XML could be used to store the exercises in a JSON file, or perhaps write a JSON file directly?
 		Whatever, exercises should be loaded from the backend dynamically, not stored in a browser-side javascript array, all 300 of them.
 		"""
-		def droulXML_for_refactoring( match ):
-			"""
-			Generates XML and placeholders when a roulette is found in the content
+#		def droulXML_for_refactoring( match ):
+#			"""
+#			Generates XML and placeholders when a roulette is found in the content
+#			
+#			@param match - a match object from re.sub
+#			@returns string containing a placeholder for the first roulette in each group
+#			"""			
+#			# Process the match found in the page
+#			rid = match.group(1) # name of the roulette exercise, e.g. VBKM01_FRACTIONTRAINING
+#			myid = int( match.group(2) ) # Index of the roulette on the roulette group, e.g. 54
+#			exercise = match.group(3) # the content of the exercise
+#			if 'DirectRoulettes' in self.data and rid in self.data[ 'DirectRoulettes' ]:
+#				maxid = self.data[ 'DirectRoulettes' ][rid]
+#			else:
+#				raise Exception( "Roulette not found" )
+#
+#			# create a XML-roulette element			
+#			roulette = etree.Element( 'roulette' )
+#			roulette.set( 'rid', str( rid ) )
+#			roulette.set( 'myid', str( myid ) )
+#			roulette.set( 'maxid', str( maxid ) )
+#			roulette.text = exercise
+#			roulettes.append( roulette )
 			
-			@param match - a match object from re.sub
-			@returns string containing a placeholder for the first roulette in each group
-			"""			
-			# Process the match found in the page
-			rid = match.group(1) # name of the roulette exercise, e.g. VBKM01_FRACTIONTRAINING
-			myid = int( match.group(2) ) # Index of the roulette on the roulette group, e.g. 54
-			exercise = match.group(3) # the content of the exercise
-			if 'DirectRoulettes' in self.data and rid in self.data[ 'DirectRoulettes' ]:
-				maxid = self.data[ 'DirectRoulettes' ][rid]
-			else:
-				raise Exception( "Roulette not found" )
-
-			# create a XML-roulette element			
-			roulette = etree.Element( 'roulette' )
-			roulette.set( 'rid', str( rid ) )
-			roulette.set( 'myid', str( myid ) )
-			roulette.set( 'maxid', str( maxid ) )
-			roulette.text = exercise
-			roulettes.append( roulette )
-			
-			# generate placeholder div
-			response = ''
-			if myid == 0:
-				response = exercise
-				
-			return response
+#			# generate placeholder div
+#			response = ''
+#			if myid == 0:
+#				response = exercise
+#				
+#			return response
 		
 		# find the roulette questions in the content and replace them with placeholders
 		#tc.content = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droulXML, tc.content, 0, re.S)

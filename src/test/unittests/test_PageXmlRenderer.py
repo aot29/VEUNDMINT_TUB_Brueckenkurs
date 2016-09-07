@@ -3,12 +3,12 @@ import os
 from lxml import etree
 
 from plugins.VEUNDMINT.tcontent import TContent
-from plugins.VEUNDMINT.PageXmlRenderer import *
+from tex2x.renderers.PageXmlRenderer import *
 from tex2x.Settings import settings
 
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
 from tex2x.renderers.AbstractRenderer import *
-from src.plugins.VEUNDMINT.PageXmlRenderer import RouletteDecorator
+from tex2x.renderers.PageXmlRenderer import RouletteDecorator
 
 class test_PageXmlRenderer(AbstractRendererTestCase):
     
