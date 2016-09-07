@@ -33,7 +33,6 @@ class TTMParserTest(unittest.TestCase):
 Ich stehe in der mitte
 \end{center}''', '<div style="text-align:center">Ich stehe in der mitte')
 
-	@unittest.skip("Datei oder Verzeichnis nicht gefunden: 'no_existing.file'")
 	def testTTMError(self):
 		"""
 		Test if an error is raised if calling the TTM Process failed (for what reason ever)
@@ -42,7 +41,6 @@ Ich stehe in der mitte
 		with self.assertRaises(BaseException):
 			self.testCenterText()
 
-	@unittest.skip("FATAL ERROR: ttm found 1 unknown commands, refusing to continue on release version")
 	def testTTMProcess(self):
 		"""
 		Test some special cases with the ttm binary
