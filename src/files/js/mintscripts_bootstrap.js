@@ -2001,13 +2001,13 @@ function updateToolButtons() {
 
 /**
  * If on the signup page, display the user data if available
- * 
+ *
  * This only makes sense on the signup/myaccount page.
- * Login Buttons on the signup page are hidden in CSS 
+ * Login Buttons on the signup page are hidden in CSS
  * But the title of the page is toggled here (as it is difficult to test for the absence of a class)
  */
-function updateSignupPage() {	
-	if( SITE_UXID == "VBKM_MISCSETTINGS" ) {		
+function updateSignupPage() {
+	if( SITE_UXID == "VBKM_MISCSETTINGS" ) {
 	    if( userdata.isLoggedIn() ) {
 	    	$( 'body' ).addClass( 'logged_in' )
 	    	$('#pageTitle_logged_out').hide();
@@ -2017,13 +2017,13 @@ function updateSignupPage() {
 			$('#USER_EMAIL').attr( 'readonly', true );
 			$('#USER_SGANG').attr( 'readonly', true );
 			$('#USER_UNI').attr( 'readonly', true );
-	
+
 	    } else {
 	    	$( 'body' ).removeClass( 'logged_in' )
 	    	$('#pageTitle_logged_in').hide();
 	    	$('#pageTitle_logged_out').show();
 	    }
-	
+
 		var login = intersite.getObj().login;
 		$('#USER_VNAME').val( login.vname );
 		$('#USER_SNAME').val( login.sname );

@@ -4,44 +4,55 @@
 		<xsl:comment>top navbar</xsl:comment>
 		<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop">
 			<div class="container-fluid" id="navbarContainer">
-				<div class="row" id="toolsRow">
-					<div class="col-sm-6 navbar-left" id="toggle_sidebar" role="navigation">
-						<div id="tools" class="btn-group pull-left">
-							<button id="menuButton" type="button" data-toggle="offcanvas" class="btn btn-link glyphicon glyphicon-menu-hamburger visible-sm visible-xs">
-							</button>
-							
-							<a data-toggle="tooltip" id="homebutton" href="{@basePath}/{@lang}/index.html" class="btn btn-link glyphicon glyphicon-home"></a>
-							<a data-toggle="tooltip" id="listebutton" href="{@basePath}/{@lang}/search.html" class="btn btn-link glyphicon glyphicon-book"></a>
-							<a data-toggle="tooltip" id="databutton" href="{@basePath}/{@lang}/data.html" class="btn btn-link glyphicon glyphicon-dashboard"></a>
-							<!-- Needs more attention, how does it work? -->
-							<!-- a data-toggle="tooltip" id="favoritesbutton" onclick="starClick();" class="btn btn-link glyphicon glyphicon-star-empty"/ -->
-		
-						</div>
-					</div>
-		
-					<div class="col-sm-6 navbar-right" id="login_col" role="navigation">
-					
+				<div class="row-fluid" id="toolsRow">
+					<ul class="nav navbar-nav">
+						<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+						<li><a href="{@basePath}/{@lang}/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+						<li><a data-toggle="tooltip" id="listebutton" href="{@basePath}/{@lang}/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+
 						<!-- Show these when not logged in -->
-						<div class="btn-group pull-right" id="logged_out_buttons" style="display: none;">
-							<a type="button" href="{@basePath}/{@lang}/signup.html" class="btn btn-default btn-sm">
-								<span class="glyphicon glyphicon-user"></span> <span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span>
-							</a>
-							<a type="button" href="{@basePath}/{@lang}/login.html" class="btn btn-default btn-sm">
-								<span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span>
-							</a>
-						</div>
+						<li class="dropdown" id="logged_out_buttons" style="display: none;">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+								<li><a href="{@basePath}/{@lang}/login.html" id="loginButton">
+										<span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span>
+									</a></li>
+								<li><a href="{@basePath}/{@lang}/signup.html">
+										<span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span>
+									</a></li>
+              </ul>
+            </li>
 
 						<!-- Show these when logged in -->
-						<div class="btn-group pull-right" id="logged_in_buttons" style="display: none;">
-							<a type="button" href="{@basePath}/{@lang}/signup.html" class="btn btn-default btn-sm">
-								<span class="glyphicon glyphicon-user"></span> <span id="account_text" data-toggle="i18n" data-i18n="msg-myaccount"></span>
-							</a>
-							<a type="button" href="{@basePath}/{@lang}/logout.html" class="btn btn-default btn-sm">
-								<span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span>
-							</a>
-						</div>
-						
-					</div>
+						<li class="dropdown" id="logged_in_buttons" style="display: none;">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+								<li>
+									<a href="{@basePath}/{@lang}/data.html">
+										<span class="glyphicon glyphicon-dashboard"></span>&nbsp;<span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span>
+									</a>
+								</li>
+								<li>
+									<a href="{@basePath}/{@lang}/signup.html">
+										<span class="glyphicon glyphicon-list-alt"></span>&nbsp;<span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span>
+									</a>
+								</li>
+								<li>
+									<a href="{@basePath}/{@lang}/logout.html">
+										<span class="glyphicon glyphicon-off"></span>&nbsp;<span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span>
+									</a>
+								</li>
+              </ul>
+            </li>
+
+					</ul>
+
+					<!-- rendered in js (veundmint.js) note: even though its later in dom its rendered first
+							 which occurs when there are two elements with class="navbar-right" -->
+					<div id="languageChooser"></div>
 
 				</div>
 			</div>
