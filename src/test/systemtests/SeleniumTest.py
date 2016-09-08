@@ -33,7 +33,9 @@ class SeleniumTest(unittest.TestCase):
 		'registrationButton' : "//a[@id='newUserButton']",
 		'signupButton' : "//a[@href='../en/signup.html']",
 		'loginButtonNavBar' : "//a[@href='../de/login.html']",
-		'loginButton' : "//button[@onclick='intersite.userlogin_click();']"
+		'loginButton' : "//button[@onclick='intersite.userlogin_click();']",
+		'navPrev' : "//div[@class='col-md-1 chevron pull-left']/a",
+		'navNext' : "//div[@class='col-md-1 chevron pull-right']/a"
 	}
 
 	#
@@ -104,7 +106,7 @@ class SeleniumTest(unittest.TestCase):
 
 	def _openStartPage(self, no_mathjax=False):
 		'''
-		Opens the start page of the online course in the webdriver Used to test navigation elements and toc.
+		Opens the start page of the course (the choose language page) in the webdriver Used to test navigation elements and toc.
 		'''
 		# 		print ('_openStartPage with %s ' % BASE_URL)
 		#
