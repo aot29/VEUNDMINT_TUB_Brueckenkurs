@@ -1,25 +1,10 @@
-# Builds the multi-language version
 #
-# This file is here for 2 reasons:
-# 1. This could be implemented in Python, but in the present stage of development,
-# it would be unwise to add the extra layer of complexity.
-#
-# 2. Some form of automation is necessary to setup the continuous integration server
-#
-# Caveats:
-# * Remember to always use tabs instead of spaces! 
-# Specially when doing copy+paste, tabs will sometimes be replaced by spaces.
-# Make will then throw a "missing separator" error.
-# * This script should work on any Unix system, but the result should be cross-plattform,
-# so specifically don't use softlinks (ln -s is bad).
-#
-# Using GNU Make, invoke as:
-#
-# cd <VEUNDMINT checkout path>
-# make -f tools/makefiles/multilang
+# Quick build for quick testing
+# Don't call directly, use with:
+# make -f tools/makefiles/test quick
 #
 
-.DEFAULT_GOAL := allTUB
+.DEFAULT_GOAL := testonly
 
 # Path to source dir, relative to <VEUNDMINT checkout path>
 BASEDIR = src
@@ -32,22 +17,27 @@ OUTPUT = tu9onlinekurstest
 DEFAULT_LANG = de
 
 # Declare as phony so targets will run even if there's a file by that name
-.PHONY: cleanupBefore convert merge fixlinks fixredirects cleanupAfter all 
+.PHONY: cleanupBefore convert_test merge_test fix_test fixredirects_test fixSpecialPages_test cleanupAfter testonly
 
 
 #
-# Build everything for the bootstrap version
+# Build using the test tree
 #
-allTUB: |cleanupBefore convert merge fixRedirects fix fixSpecialPages startGulp cleanupAfter
-	echo "ready"
+testonly: |cleanupBefore convert_test merge_test fix_test fixSpecialPages_test startGulp cleanupAfter
+	echo "Build using the test tree"
 
+#
+# Convert using the test tree.
+#
+convert_test:
+	# delete older builds
+	-rm -Rf $(OUTPUT)
 
-#
-# Don#t use this target. Checkout the legacy branch instead
-# Build everything for the non-bootstrap version
-#
-#allKIT: |cleanup convert merge fixRedirects fix startGulp
-#	echo "ready"
+	# set CURRENT_LANG at runtime.
+	$(eval CURRENT_LANG := de)
+	$(eval OVERRIDE := testonly=1)
+	$(convert_cmd)
+
 
 #
 # Use the converter to build the version specified by CURRENT_LANG
@@ -73,45 +63,9 @@ endef
 
 
 #
-# Build the English and the German version.
-#
-convert:
-	# delete older builds
-	-rm -Rf $(OUTPUT)
-
-	# set CURRENT_LANG at runtime.
-	$(eval CURRENT_LANG := de)
-	$(convert_cmd)
-	$(eval CURRENT_LANG := en)
-	$(convert_cmd)
-	
-
-#
-# set CURRENT_LANG at runtime.
-# Build DE language version
-#
-de: cleanup
-	$(eval CURRENT_LANG := de)
-	$(convert_cmd)
-	mv $(OUTPUT)_$(CURRENT_LANG) $(OUTPUT)
-	$(deploy_img_cmd)
-
-
-#
-# set CURRENT_LANG at runtime.
-# Build EN language version
-#
-en: cleanup
-	$(eval CURRENT_LANG := en)
-	$(convert_cmd)
-	mv $(OUTPUT)_$(CURRENT_LANG) $(OUTPUT)
-	$(deploy_img_cmd)
-
-
-#
 # Merge the 2 versions together.
 #
-merge:
+merge_test:
 	mv $(OUTPUT)_de $(OUTPUT)
 
 	# move German HTML from /html to /html/de
@@ -119,10 +73,6 @@ merge:
 	mkdir $(OUTPUT)/html
 	mv $(OUTPUT)/de $(OUTPUT)/html
 
-	# move English HTML to /html/en
-	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
-	rm -Rf $(OUTPUT)_en
-	
 	$(deploy_img_cmd)
 
 
@@ -141,18 +91,16 @@ endef
 # Moved to its own target, to make sure it is done 
 # Before serach and replace starts in "fix" target.
 #
-fixRedirects:
+fixRedirects_test:
 	# set CURRENT_LANG to de
 	$(eval CURRENT_LANG := de)
 	$(fixRedirects_cmd)
 
-	# set CURRENT_LANG to en
-	$(eval CURRENT_LANG := en)
-	$(fixRedirects_cmd)
 
-
+#
 # Copy special pages to their definitive location.
 # This should be dealt with in mintmod
+#
 define fixSpecialPages_cmd
 
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/data.html
@@ -189,13 +137,9 @@ endef
 # Move special pages to their definitive location
 # this will overwrite some but not all redirect pages
 #
-fixSpecialPages:
+fixSpecialPages_test:
 	# set CURRENT_LANG to de
 	$(eval CURRENT_LANG := de)
-	$(fixSpecialPages_cmd)
-
-	# set CURRENT_LANG to en
-	$(eval CURRENT_LANG := en)
 	$(fixSpecialPages_cmd)
 
 
@@ -251,7 +195,7 @@ endef
 #
 # Fix the link paths in the HTML files
 #
-fix: fixRedirects
+fix_test: fixRedirects_test
 	# Fix paths to common (*.js, *.css ...) external files
 	# Javascript links seem to be inserted in various places with different syntax
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script src=\"\.\./|<script src=\"\.\./\.\./|g" {} \;
@@ -273,14 +217,6 @@ fix: fixRedirects
 	$(eval CURRENT_LANG := de)
 	$(fixLinks_cmd)
 	$(setLocale_cmd)
-
-	# set CURRENT_LANG to en
-	$(eval CURRENT_LANG := en)
-	$(fixLinks_cmd)
-	$(setLocale_cmd)
-
-	# fix redirect to English "contents of the module" page
-	#cd $(OUTPUT)/html/en && sed -i "s|4\.1\.1/modstart\.html|3\.1\.1/modstart\.html|g" chapter.html;
 
 	# replace index.html with src/templates_xslt/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_xslt/html5_choose_language_simple.html $(OUTPUT)/index.html

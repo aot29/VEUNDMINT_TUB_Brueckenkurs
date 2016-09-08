@@ -149,11 +149,6 @@ class SeleniumTest(unittest.TestCase):
 		self._loadPage( url )
 			
 		
-
-	#def _getConfigParam(self, key):
-	#	return self.config.get( 'defaults', key )
-
-
 	def _chooseLanguageVersion(self, lang):
 		'''
 		Navigate to the specified language version of the website
