@@ -15,21 +15,22 @@
 
 						<!-- Show these when not logged in -->
 						<li class="dropdown" id="logged_out_buttons" style="display: none;">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
-              <ul class="dropdown-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+							<ul class="dropdown-menu">
 								<li><a href="{@basePath}/{@lang}/login.html" id="loginButton">
 										<span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span>
-									</a></li>
+									</a>
+								</li>
 								<li><a href="{@basePath}/{@lang}/signup.html">
-										<span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span>
-									</a></li>
-              </ul>
-            </li>
+									<span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span>
+								</a></li>
+						  </ul>
+						</li>
 
 						<!-- Show these when logged in -->
 						<li class="dropdown" id="logged_in_buttons" style="display: none;">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a>
-              <ul class="dropdown-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a>
+							<ul class="dropdown-menu">
 								<li>
 									<a href="{@basePath}/{@lang}/data.html">
 										<span class="glyphicon glyphicon-dashboard"></span>&nbsp;<span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span>
@@ -45,8 +46,8 @@
 										<span class="glyphicon glyphicon-off"></span>&nbsp;<span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span>
 									</a>
 								</li>
-              </ul>
-            </li>
+							</ul>
+						</li>
 
 					</ul>
 
