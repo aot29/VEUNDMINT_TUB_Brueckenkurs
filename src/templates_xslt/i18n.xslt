@@ -8,26 +8,29 @@
 			$.i18n().locale = '<xsl:value-of select="$lang" />';
 			$.i18n().load( { '<xsl:value-of select="$lang" />' : '<xsl:value-of select="$basePath" />/../i18n/<xsl:value-of select="$lang" />.json' } ).done( function() {
 
-      // set the tooltip texts
-      $('[data-toggle="tooltip"]').each( function(i, el) {
-          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
-          $(el).attr( 'title', hint );
-      })
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
 
-      // toggle tooltips
-      $('[data-toggle="tooltip"]').tooltip({
-          placement : 'auto',
-          html: true
-      });
-      $('[data-toggle="tooltip-navbar"]').tooltip({
-          placement : 'auto',
-          html: true
-      });
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
 
-      // Localized texts
-      $('[data-toggle="i18n"]').each(function(i, el) {
-      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
-      });
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js)
+				intersite.updateSpecials();
 
 			});
 
