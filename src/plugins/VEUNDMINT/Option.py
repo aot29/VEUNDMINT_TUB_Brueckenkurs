@@ -85,7 +85,7 @@ class Option(object):
 		# Don't set this here as it's too error prone, override instead (make -f tools/makefiles/multilang testonly)
 		self.testonly = ( lambda override: 1 if 'testonly=1' in override else 0 ) ( override )
 		if self.testonly: print("Building with test tree")
-		
+
 		self.scormlogin = 0		# =1: No implicit user management, user-loginname is constructed from a SCORM string and immediately pulled from database
 		self.nosols =  0		# =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
 		self.doscorm = 0		# =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden
@@ -93,16 +93,16 @@ class Option(object):
 		self.qautoexport = 0	# =1 Alle MExercise-Umgebungen werden auch als Export verpackt
 		self.diaok = 0			# =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
 		self.cleanup = 0		# =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
-		
+
 		# tex-tree paths (relative to module-folder)
 		if not self.testonly:
 			# Not testing. Tree depends on language requested
 			self.module = ( lambda locale: "tree_tu9onlinekurs_en.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "tree_tu9onlinekurs.tex" ) ( self.locale)
-			
+
 		else:
 			# Testing. Use test tree
 			self.module = "tree_test.tex"
-			
+
 		# macrofile to use. It's probably not a good idea to have 2 separate macro files, as they change often
 		self.macrofilename = ( lambda locale: "mintmod_engl" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "mintmod" ) ( self.locale)
 
@@ -258,8 +258,8 @@ class Option(object):
 
 
 		# VE&MINT course parameters, defining values used by the online course
-		server_protocol = ( lambda scormlogin: 'https' if scormlogin == 1 else 'http' ) ( self.scormlogin )
-		server = server_protocol + "://guest6.mulf.tu-berlin.de/server/dbtest"
+		# on the server, no protocol is specified so it will choose the one where users are coming from
+		server = "//guest6.mulf.tu-berlin.de/server/dbtest"
 		self.do_feedback = "0"						# Feedbackfunktionen aktivieren? DOPPLUNG MIT FLAGS
 		self.do_export = "0"						  # Aufgabenexport aktivieren? DOPPLUNG MIT FLAGS
 		self.reply_mail = "brueckenkurs@innocampus.tu-berlin.de"	  # Wird in mailto vom Admin-Button eingesetzt
