@@ -13,7 +13,7 @@
 			<xsl:if test="$selectedPage/@level = 4">
 
 				<div class="col-md-1 chevron pull-left">
-					<xsl:if test="@isCoursePage = 'True'"><a class="subtoc-prev glyphicon glyphicon-chevron-left pull-left" href="{@href}"></a></xsl:if>
+					<xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navPrev" /></xsl:if>
 				</div>
 				<div class="col-md-10">
 					<ul class="nav nav-pills">
@@ -21,7 +21,7 @@
 					</ul>
 				</div>
 				<div class="col-md-1 chevron pull-right">
-					<xsl:if test="@isCoursePage = 'True'"><a class="subtoc-next glyphicon glyphicon-chevron-right pull-right" href="{@href}"></a></xsl:if>
+					<xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navNext" /></xsl:if>
 				</div>
 
 			</xsl:if>
@@ -39,5 +39,13 @@
 			<a href="{@href}"><xsl:value-of select="caption"/></a>
 		</li>
 	</xsl:template>
-
+	
+	<!-- RW and FF Buttons -->
+	<xsl:template match="navPrev">
+		<a href="{@href}"><div class="glyphicon glyphicon-chevron-left pull-left"></div></a>
+	</xsl:template>
+	
+	<xsl:template match="navNext">
+		<a href="{@href}"><div class="glyphicon glyphicon-chevron-right pull-right"></div></a>
+	</xsl:template>
 </xsl:stylesheet>
