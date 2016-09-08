@@ -46,10 +46,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
    * @return {[type]} [description]
    */
   function init () {
-    obj = createobj();
-    name = "isobj_" + signature_main;
-    pipwerks.SCORM.init();
-    console.log("cmi.core.student_id from scorm:", pipwerks.SCORM.get("cmi.core.student_id"));
+    
   }
 
   function getObj () {
@@ -1513,5 +1510,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      exports.isActive = isActive;
      exports.getNameDescription = getNameDescription;
      exports.isScormEnv = isScormEnv;
+     exports.updateSpecials = UpdateSpecials;
 
 }));
