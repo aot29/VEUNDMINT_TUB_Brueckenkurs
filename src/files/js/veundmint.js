@@ -2,11 +2,6 @@
 it is responsible for the document loaded action that was befor in the body onload and onunload
 onload="loadHandler()" onunload="unloadHandler()" */
 
-$(function() {
-
-
-});
-
 $(window).on('beforeunload', function(){
 	globalunloadHandler();
  });
@@ -145,8 +140,9 @@ $(window).on('beforeunload', function(){
 	};
 
 	/**
-	 * Initialize Plugin
-	 * @public
+	 * Initialize Plugin, called on document redy at startpage
+	 * execution order of several commands is critical (by now) DO NOT CHANGE
+	 * unless you know what you are doing
 	 * @param {Object} options User settings
 	 */
 	veundmint.init = function ( options ) {
@@ -171,6 +167,11 @@ $(window).on('beforeunload', function(){
 
 		// set up components
 		veundmint.languageChooser($('#languageChooser'));
+
+    //remove logout button on scorm
+    if (intersite.isScormEnv()) {
+      $('#li-logout').remove();
+    }
 
 	};
 
