@@ -31,17 +31,17 @@
 						<li class="dropdown" id="logged_in_buttons" style="display: none;">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li>
+								<li id="li-course-data">
 									<a href="{@basePath}/{@lang}/data.html">
 										<span class="glyphicon glyphicon-dashboard"></span>&nbsp;<span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span>
 									</a>
 								</li>
-								<li>
+								<li id="li-profile">
 									<a href="{@basePath}/{@lang}/signup.html">
 										<span class="glyphicon glyphicon-list-alt"></span>&nbsp;<span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span>
 									</a>
 								</li>
-								<li>
+								<li id="li-logout">
 									<a href="{@basePath}/{@lang}/logout.html">
 										<span class="glyphicon glyphicon-off"></span>&nbsp;<span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span>
 									</a>
