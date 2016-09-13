@@ -9,8 +9,8 @@
 	<xsl:import href="navbar.xslt" />
 	<xsl:import href="toc.xslt" />
 	<xsl:import href="tabs.xslt" />
- 	<xsl:import href="content.xslt" />
- 	<xsl:import href="pageFooter.xslt" />
+	<xsl:import href="content.xslt" />
+	<xsl:import href="pageFooter.xslt" />
 
 	<!-- There is no doctype html5, use legacy-compat instead -->
 	<xsl:output method="html" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes" />
@@ -31,25 +31,25 @@
 				<!-- Navigation bar at the top of the page -->
 				<xsl:call-template name="navbar" />
 				<div class="row-offcanvas row-offcanvas-left">
-				  <div id="sidebar" class="sidebar-offcanvas">
-				      <div class="col-md-12">
-								<!-- TOC -->
-								<xsl:apply-templates select="." mode="toc" />
-				      </div>
-				  </div>
-				  <div id="main">
-				      <div class="col-md-12">
-								<!-- Page tabs -->
-								<xsl:apply-templates select="." mode="tabs" />
-								<!-- Page contents-->
-								<xsl:apply-templates select="." mode="content" />
+					<div id="sidebar" class="sidebar-offcanvas">
+						<div class="col-md-12">
+							<!-- TOC -->
+							<xsl:apply-templates select="." mode="toc" />
+						</div>
+					</div>
+					<div id="main">
+						<div class="col-md-12">
+							<!-- Page tabs -->
+							<xsl:apply-templates select="." mode="tabs" />
+							<!-- Page contents-->
+							<xsl:apply-templates select="." mode="content" />
 
-								<!-- Footer -->
-								<xsl:call-template name="pageFooter">
-									<xsl:with-param name="basePath" select="@basePath" />
-								</xsl:call-template>
-				      </div>
-				  </div>
+							<!-- Footer -->
+							<xsl:call-template name="pageFooter">
+								<xsl:with-param name="basePath" select="@basePath" />
+							</xsl:call-template>
+						</div>
+					</div>
 				</div><!--/row-offcanvas -->
 
 

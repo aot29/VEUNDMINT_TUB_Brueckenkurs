@@ -46,10 +46,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
    * @return {[type]} [description]
    */
   function init () {
-    obj = createobj();
-    name = "isobj_" + signature_main;
-    pipwerks.SCORM.init();
-    console.log("cmi.core.student_id from scorm:", pipwerks.SCORM.get("cmi.core.student_id"));
+
   }
 
   function getObj () {
@@ -669,19 +666,18 @@ COLOR_INPUTCHANGED = "#E0C0C0";
                 }
               }
               s += "<strong>Kapitel " + (k+1) + ": " + globalsections[k] + "</strong><br />";
-              s += $.i18n('msg-total-progress', si[k], globalsitepoints[k] ) + "<br />";//"Insgesamt " + si[k] + " von " + globalsitepoints[k] + " Lerneinheiten des Moduls besucht.";
-
 
               var progressWidthGlobal = si[k] / globalsitepoints[k] * 100;
-              s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + si[k] + "' aria-valuemax='" + globalsitepoints[k] + "' style='width: " + progressWidthGlobal + "%'><span class='sr-only'>20% Complete</span></div></div>";
+              s += $.i18n('msg-total-progress', si[k], globalsitepoints[k] ) + "<br />";//"Insgesamt " + si[k] + " von " + globalsitepoints[k] + " Lerneinheiten des Moduls besucht.";
+              s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + si[k] + "' aria-valuemax='" + globalsitepoints[k] + "' style='width: " + progressWidthGlobal + "%'><span class='sr-only'>" + progressWidthGlobal + "% Complete</span></div></div>";
 
               var progressWidthEx = p[k] / globalexpoints[k] * 100;
               s += $.i18n('msg-total-points', p[k], globalexpoints[k]) + "<br />";//"Insgesamt " + p[k] + " von " + globalexpoints[k] + " Punkten der Aufgaben erreicht.<br />";
-              s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + p[k] + "' aria-valuemax='" + globalexpoints[k] + "' style='width: " + progressWidthEx + "%'><span class='sr-only'>20% Complete</span></div></div>";
+              s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + p[k] + "' aria-valuemax='" + globalexpoints[k] + "' style='width: " + progressWidthEx + "%'><span class='sr-only'>" + progressWidthEx + "% Complete</span></div></div>";
 
-              var progressWidthTest
+              var progressWidthTest = t[k] / globaltestpoints[k] * 100;
               s += $.i18n( 'msg-total-test', t[k], globaltestpoints[k] ) + "<br />";//"Insgesamt " + t[k] + " von " + globaltestpoints[k] + " Punkten im Abschlusstest erreicht.<br />";
-              s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + t[k] + "' aria-valuemax='" + globaltestpoints[k] + "' style='width: " + progressWidthTest + "%'><span class='sr-only'>20% Complete</span></div></div>";
+              s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + t[k] + "' aria-valuemax='" + globaltestpoints[k] + "' style='width: " + progressWidthTest + "%'><span class='sr-only'>" + progressWidthTest + "% Complete</span></div></div>";
 
               var ratio = t[k]/globaltestpoints[k];
               if (ratio < 0.9) {
@@ -1513,5 +1509,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      exports.isActive = isActive;
      exports.getNameDescription = getNameDescription;
      exports.isScormEnv = isScormEnv;
+     exports.updateSpecials = UpdateSpecials;
 
 }));

@@ -10,34 +10,34 @@
 		<xsl:comment>
 			endinject
 		</xsl:comment>
-		
+
 		<!-- i18n -->
 		<xsl:call-template name="i18n">
 			<xsl:with-param name="lang" select="@lang" />
 			<xsl:with-param name="basePath" select="@basePath" />
 		</xsl:call-template>
-		
-		<!-- JS -->	
+
+		<!-- JS -->
 		<xsl:apply-templates select="." mode="js" >
 			<xsl:with-param name="basePath" select="@basePath" />
-		</xsl:apply-templates> 			
+		</xsl:apply-templates>
 		<script>
 		<![CDATA[
 
 			viewmodel = {
 			  // <JSCRIPTVIEWMODEL>
-			  
+
 			  ifobs: ko.observable("")
 			}
-			
+
 			ko.bindingHandlers.evalmathjax = {
 			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
 			      var value = valueAccessor(), allBindings = allBindingsAccessor();
 			      var latex = ko.unwrap(value);
-			      
+
 			      var i;
 			      latex = applyMVARLatex(latex);
-			
+
 			      if (element.childNodes[0]) {
 			        // var sy = getScrollY();
 			        var mathelement = MathJax.Hub.getAllJax(element)[0];
@@ -45,7 +45,7 @@
 			        // setScrollY(sy);
 			      } else {
 			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
-			      
+
 			        var s = document.createElement('script');
 			        s.type = "math/tex; mode=display";
 			        try {
@@ -59,14 +59,30 @@
 			      }
 			  }
 			 };
-			
+
 			ko.applyBindings(viewmodel);
-			
-			
+
+
 			$(document).ready(function () {
-			  globalreadyHandler("");   
+			  veundmint.init();
+
+				// footer at bottom of column
+				// don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
+				$(window).resize( positionFooter );
+				positionFooter();
+
+				// on the logout page
+				if( requestLogout ) {
+					localStorage.clear();
+				}
 			});
-			
+
+			function positionFooter() {
+					var docHeight = $(window).height();
+					var offsetHeight = $( "#navbarTop" ).height() + $( "#subtoc" ).height() + $( "#footer" ).height() * 2;
+					$( "#pageContents" ).css( "minHeight", docHeight - offsetHeight + "px" );
+			}
+
 			// <JSCRIPTPOSTMODEL>
 		]]>
 		</script>
