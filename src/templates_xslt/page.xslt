@@ -29,7 +29,9 @@
 
 			<body>
 				<!-- Navigation bar at the top of the page -->
-				<xsl:call-template name="navbar" />
+				<xsl:call-template name="navbar">
+					<xsl:with-param name="disableLogin" select="@disableLogin" />
+				</xsl:call-template>
 				<div class="row-offcanvas row-offcanvas-left">
 					<div id="sidebar" class="sidebar-offcanvas">
 						<div class="col-md-12">

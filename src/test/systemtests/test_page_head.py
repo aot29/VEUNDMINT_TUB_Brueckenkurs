@@ -30,7 +30,8 @@ class PageHeadTest( SeleniumTest ):
 
 		# Test nav buttons
 
-		self.assertTrue( self.getElement( "loginButtonNavBar" ) )
+		if not self._isLoginDisabled():
+			self.assertTrue( self.getElement( "loginButtonNavBar" ) )
 		self.assertTrue( self.getElement( "listebutton" ) )
 		self.assertTrue( self.getElement( "homebutton" ) )
 
