@@ -21,7 +21,7 @@
 \MLabel{VBKM10_PfeilVektor_Intro}
 \MDeclareSiteUXID{VBKM10_PfeilVektor_Intro}
 
-The basic idea underlying the mathematical concept of a vector is rooted in physics. In science there are quantities
+The basic idea underlying the mathematical concept of a vector is physical. In science there are quantities
 that are described by one single number, their magnitude. Such quantities include voltage, work, 
 or power. In mathematical terms, these quantities are simply described by elements of the set of real numbers. 
 There are other quantities which have not only a certain magnitude but also a certain \textit{direction}, 
@@ -49,7 +49,7 @@ units of measure (e.g. forces are measured in Newton). From a purely mathematica
 measure are not relevant, so they are omitted here. The concept of a vector is the main topic of 
 this section and will be discussed in detail in Subsection~\MNRef{VBKM10_Vektoren}. Since vectors are considered not only 
 in two-dimensional space (i.e. in the plane) but also in three-dimensional space (i.e. in the space), the concept 
-of coordinate systems and points introduced in Module~\MNRef{VBKM09} will be extended to three dimensions.
+of coordinate systems and points introduced in Module~\MNRef{VBKM09} is to be extended to three dimensions.
 This is done in Subsection~\MNRef{VBKM10_Raumkoordinaten}. Finally, we see that certain operations can be applied
 to vectors. In Subsection~\MNRef{VBKM10_Vektorrechnung} we will study how these vector operations are carried out. 
 \end{MIntro}
@@ -60,7 +60,7 @@ to vectors. In Subsection~\MNRef{VBKM10_Vektorrechnung} we will study how these 
 
 In Section~\MNRef{M09_1kartesisch} of the previous Module~\MNRef{VBKM09} we introduced Cartesian coordinate systems
 and points in the plane described by coordinates with respect to these coordinate systems. A solid understanding
-of these concepts is now presumed in this Module. To describe a \MEntry{point in three-dimensional space}{point (three-dimensional)},
+of these concepts is now presumed in this Module. To describe a \MEntry{point in three-dimensional space}{point (three-dimensional)}
 three \MEntry{coordinates}{coordinates (in three dimensions)} are required. Thus, a 
 \MEntry{coordinate system}{coordinate system (three-dimensional)} in three-dimensional space needs 
 three \MEntry{axes}{axes (in three-dimensional space)}, the $x$-axis, $y$-axis and $z$-axis 
@@ -75,7 +75,7 @@ or
 \[
  Q=\MPointThree{-2}{2}{3}\MDFPeriod
 \]
-Here, the $x$-coordinate of the point $Q$ is $-2$, its $y$-coordinate is $2$ and its $z$-coordinate is~$3$.
+Here, the $x$-coordinate of the point $Q$ is- $-2$, its $y$-coordinate is $2$ and its $z$-coordinate is~$3$.
 The point with the coordinates $\MPointThree{0}{0}{0}$ is called the \textbf{origin}, and it is denoted by the symbol
 $O$. All these points are drawn in the figure below.
 
@@ -236,7 +236,7 @@ described by a coordinate triple (also known as an ordered triple) consisting of
 \begin{MXContent}{Vectors in the Plane and in the Space}{Vectors}{STD}
 \MLabel{VBKM10_Vektoren}
 \MDeclareSiteUXID{VBKM10_Vektoren}
-Points on the plane or in space that are defined as ordered pairs or triples with respect 
+Points in the plane and space that are defined as ordered pairs or triples with respect 
 to a given coordinate system can be connected by line segments. Assigning a direction to these line segments 
 (one of the end points of the segment is specified as the initial point and 
 the other one is specified as the end point) results in arrows that point from one point to the other 
@@ -314,7 +314,7 @@ point $P$ in the left figure above: to get from $O$ to $P$ move $2$ units in the
 $1$ unit in the $y$-direction. Of course, these values are exactly the coordinates of the point $P$. 
 
 \begin{MExercise}
-For the arrows in the right-hand side figure above (three-dimensional case), specify the (signed) movements 
+For the arrows in the right-hand figure above (three-dimensional case), specify the (signed) movements 
 in the three coordinate directions that are required to get from the initial point to the terminal 
 point of the corresponding arrow. Proceed in the same way as explained above for two dimensions.
 
@@ -411,9 +411,9 @@ This idea works analogously in the three-dimensional case.
 
 Each arrow in the figure above provides the same information, namely a shift by $-3$ in 
 the $x$-direction and $1$ in the $y$-direction. So what could be more natural than regarding each 
-of these arrows only as a representation (a so-called \textbf{representative}) of a more basic object?
+of these arrows only as a representation (a so called \textbf{representative}) of a more basic object?
 This basic mathematical object is called \textbf{vector}, and in this case it has the 
-two \textbf{components}: $-3$ ($x$-component) and $1$ ($y$-component) that are written as a so-called 
+two \textbf{components}: $-3$ ($x$-component) and $1$ ($y$-component) that are written as a so called 
 $2$-\textbf{tuple} one above the other:
 \[
  \textrm{vector represented in the figure above}\MBlank = \MVector{-3\\1}\MDFPeriod
@@ -726,8 +726,8 @@ in space as well, as the (two- and three-dimensional) vectors
 \end{MExercise}
 
 The previous introduction of the concept of a vector reveals the close relationship between vectors and points. Indeed, there 
-is a one-to-one correspondence between points and position vectors: for every point there exists exactly one vector that is the position vector
-of this point. Conversely, for every vector there exists exactly one point that has this vector as its position vector. 
+is a one-to-one correspondence between points and position vectors: for each point there exists exactly one vector that is the position vector
+of this point. Conversely, for each vector there exists exactly one point that has this vector as its position vector. 
 This is true in both the two-dimensional and the three-dimensional cases. This justifies the convention we will follow below: 
 describing points by their position vectors. A point $P=\MPointTwo{2}{1}$, for example, is often described by its corresponding 
 position vector $\MDVec{P}=\MVector{2\\1}$ instead of its coordinates $\MPointTwo{2}{1}$. If geometric objects such as lines 
@@ -744,7 +744,7 @@ two-dimensional or three-dimensional vectors. These abbreviations will also be u
 \MLabel{VBKM10_Vektorrechnung}
 \MDeclareSiteUXID{VBKM10_Vektorrechnung}
 
-In this section we discuss what kinds of vector operations we can carry out on the vectors  
+In this section we discuss what kind of vector operations we can carry out on the vectors  
 introduced in the previous Section~\MNRef{VBKM10_Vektoren}. We can view vector operations in two different ways. First you can carry out the vector operations of addition, subtraction and -- with a certain
 restriction -- multiplication on vectors specified as $2$- or $3$-tuples. On the other hand, these operations can 
 be interpreted graphically with respect to the arrows representing the vectors. That is, the vector operations on vectors
@@ -752,7 +752,7 @@ can be interpreted as geometric operations on their representatives. This geomet
 vector operations leads to a deeper understanding of position vectors and connecting vectors of points.
 
 Vector operations in two and three dimensions are carried out in essentially the same way. For all component-wise 
-vector operations presented below both cases (two-dimensional and three-dimensional) are considered. The 
+vector operations presented below both  (two-dimensional and three-dimensional) cases are considered. The 
 corresponding figures illustrate the geometric interpretation of the operations on the representatives 
 of the vectors and visualise the position and connecting vectors. They will mostly show only arrows and points without 
 a coordinate system. In this way, the figures apply to both the two-dimensional and the three-dimensional case.
@@ -779,7 +779,7 @@ Two vectors $\MVec{a},\MVec{b}\in\R^2\MBlank \textrm{or}\MBlank \R^3$ are \MEntr
 \end{itemize}
 \end{MInfo}
 
-From the statements in the Info Box above we see that two vectors of different dimensions (i.e. $\MVec{a}\in\R^2$ 
+>From the statements in the Info Box above we see that two vectors of different dimensions (i.e. $\MVec{a}\in\R^2$ 
 and $\MVec{b}\in\R^3$) can never be equal. Since these vectors have a different number of components, they are not even 
 comparable. Thus, vector operations are only carried out on vectors with an equal number (two or three) of components 
 , and these operations will always result in a vector with this fixed number of components.
@@ -977,7 +977,7 @@ In the special case of $s=0$, we obviously have \[0\MVec{a}=\MDVec{O}\] for ever
 \[1\cdot\MVec{a}=\MVec{a}\]
  -- which obviously leaves the vector unchanged -- and the multiplication by $s=-1$
 \[-1\cdot\MVec{a}=-\MVec{a}\]
- -- which results in the so-called \MEntry{opposite vector}{opposite vector}. This is a vector of 
+ -- which results in the so called \MEntry{opposite vector}{opposite vector}. This is a vector of 
 equal length and opposite orientation. This is illustrated in the figure below.
 \begin{center}
 \MTikzAuto{%
@@ -1119,7 +1119,7 @@ of the representatives as illustrated in the figure below.
 \end{MInfo}
 
 If we only consider the difference of vectors by means of their components,
-the question arises what the concept of an opposite vector here is required for. 
+the question arises of what the concept of an opposite vector here is required for. 
 Indeed, the difference of vectors in componentwise notation could also be written analogously to the sum 
 without using the concept of an opposite vector. However, if we think of the geometrical interpretation 
 of the difference by means of representatives (see figure in the Info Box above), we see that a geometrical 
@@ -1512,7 +1512,7 @@ $\chi=$\MLFunctionQuestion{15}{5}{5}{x}{5}{ZAHL1}.
 \[
  \Leftrightarrow\MDFPaSpace|3-\chi|=2\MDFPaSpace\Leftrightarrow\MDFPaSpace\chi=1\MDFPSpace\textrm{or}\MDFPSpace\chi=5 \MDFPeriod
 \]
-From $\chi>3$, it follows that $\chi=5$.
+>From $\chi>3$, it follows that $\chi=5$.
 \end{MHint}
 
 \begin{MExercise}
@@ -1546,7 +1546,7 @@ Thus, the triangle is equilateral.
 \MDeclareSiteUXID{VBKM10_GeradenEbenen_Intro}
 
 In this section vectors are used (first of all) to describe lines in the plane. Then we will see that 
-this description of lines can be extended to the three-dimensional case. Besides lines, there are other mathematical objects in space which can easily be 
+this description of lines can be extended to the three-dimensional case. As well as lines, there are other mathematical objects in space which can easily be 
 described by means of vectors, namely planes. Finally, we will discuss the possible relative positions of points, 
 lines, and planes with respect to each other.
  
@@ -1797,7 +1797,7 @@ the vector $\MVector{1\\\frac{1}{2}}$. The figure below illustrates this approac
 \end{center}
 
 The Info Box below outlines the most relevant terms, methods and concepts for this 
-so-called \textbf{vector form} or \textbf{parametric form} of an equation of a line.
+so called \textbf{vector form} or \textbf{parametric form} of an equation of a line.
 
 \begin{MInfo}
 \begin{itemize}
@@ -1896,7 +1896,7 @@ immediately provides the slope of the line via a slope triangle. We have
 } 
 \end{center}
 (Here, $u_x$ must be non-zero, i.e. $u_x\neq 0$. The special case $u_x=0$ is discussed in the example below.)
-From Section~\MNRef{VBKM09_Koordinatengleichungen} we know that we only need another point on the line to 
+>From Section~\MNRef{VBKM09_Koordinatengleichungen} we know that we only need another point on the line to 
 determine the $y$-intercept $b$ and specify the equation of the line in normal form. It is easiest to use the  
 reference point $\MVec{a}$ for this.
 \end{itemize}
@@ -2293,7 +2293,7 @@ $\nu=$\MLFunctionQuestion{15}{-1}{5}{x}{5}{PARA36}
 \begin{MHint}{Solution}
  \begin{MExerciseItems}
 \item{
-From the given points $A$ and $B$, we have for the direction vector
+>From the given points $A$ and $B$, we have for the direction vector
 \[
  \MDVec{A B}=\MDVec{B}-\MDVec{A}=\MVector{-3\\0\\1}-\MVector{-1\\-1\\0}=\MVector{-2\\1\\1} \MDFPeriod
 \]
@@ -2890,7 +2890,7 @@ $c=$\MLFunctionQuestion{10}{1}{5}{x}{5}{PAR3}
 \end{MExercise}
 
 \begin{MHint}{Solution}
-The two lines are parallel if the two direction vectors are collinear. From this condition
+The two lines are parallel if the two direction vectors are collinear. >From this condition
 \[
  \MVector{-\frac{3}{2}\\c\\1}=s\MVector{3\\-2\\-2}  \MDFPaSpace ,
 \]
