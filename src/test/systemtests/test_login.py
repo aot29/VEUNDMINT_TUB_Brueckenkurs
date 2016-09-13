@@ -20,8 +20,13 @@ class TestLogin( SeleniumTest ):
 	'''
 	TestUName = 'selenium'
 	TestUPassword = 'XL3OAph'
+	
+
 
 	def setUp(self):
+		# skip all tests if login is disabled
+		if self._isLoginDisabled():
+			raise unittest.SkipTest( "Test skipped because login is disabled in options" )
 		SeleniumTest.setUp(self)
 		# navigate to EN login page
 		self._chooseLanguageVersion( 'en' )
@@ -31,7 +36,7 @@ class TestLogin( SeleniumTest ):
 	def testCheckRegistrationForm(self):
 		'''
 		Check that all fields are there, and that they are empty for an unregistered user
-		'''
+		'''		
 		# logout just to be sure
 		self._logout()
 		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )

@@ -86,6 +86,8 @@ class Option(object):
 		self.testonly = ( lambda override: 1 if 'testonly=1' in override else 0 ) ( override )
 		if self.testonly: print("Building with test tree")
 
+		self.disableLogin = 1	# =1 login buttons will be disabled
+
 		self.scormlogin = 0		# =1: No implicit user management, user-loginname is constructed from a SCORM string and immediately pulled from database
 		self.nosols =  0		# =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
 		self.doscorm = 0		# =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden
@@ -109,7 +111,7 @@ class Option(object):
 		# Achtung, MathJax hat 33988 Dateien. Wenn die Option lokales MathJax gesetzt ist, kann das zu Problemen mit der Inodes-Quote fuehren!
 		self.localjax = 0		# =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
 
-		self.borkify = 0		  # =1 html und js-Dateien werden borkifiziert
+		self.borkify = 0		# =1 html und js-Dateien werden borkifiziert
 		self.dorelease = 0		# In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
 		self.doverbose = 0		# Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
 		self.docollections = 0	# Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)

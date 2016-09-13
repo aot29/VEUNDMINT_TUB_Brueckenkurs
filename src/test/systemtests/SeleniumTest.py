@@ -159,7 +159,14 @@ class SeleniumTest(unittest.TestCase):
 		url = "%s/html/%s/" % ( self.start_url, lang )
 		self._loadPage( url )
 
-		
+	
+	def _isLoginDisabled(self):
+		"""
+		1 if login has been disabled in Option.py
+		"""
+		return (settings.disableLogin == 1)
+
+	
 	def _loadPage(self, url):
 		"""
 		Try to load a URL without causing errors or timeouts.

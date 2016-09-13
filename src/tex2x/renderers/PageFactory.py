@@ -56,7 +56,7 @@ class PageFactory(object):
 			# get a table of contents renderer			
 			tocRenderer = TocRenderer()
 			# get a page HTML renderer
-			page = PageTUB( self.options.converterTemplates, xmlRenderer, tocRenderer )
+			page = PageTUB( self.options.converterTemplates, xmlRenderer, tocRenderer, self.options.disableLogin )
 			
 		else:
 			raise Exception( 'Only Bootstrap Page renderer is supported in this version' )

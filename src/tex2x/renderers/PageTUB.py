@@ -34,7 +34,7 @@ class PageTUB( AbstractHtmlRenderer ):
 	BASE_TEMPLATE = "page.xslt"
 	""" The template which includes all others """
 	
-	def __init__( self, tplPath, contentRenderer, tocRenderer ):
+	def __init__( self, tplPath, contentRenderer, tocRenderer, disableLogin=0 ):
 		"""
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
 		
@@ -42,11 +42,12 @@ class PageTUB( AbstractHtmlRenderer ):
 		@param lang - String ISO-639-1 language code ("de" or "en")
 		@param contentRenderer - PageXmlRenderer an AbstractXMLRenderer that builds the page contents, including the questions and roulettes added by the decorators
 		@param tocRenderer - TocRenderer an AbstractXMLRenderer that builds the table of contents
-		@param data - a dict
+		@param disableLogin - boolean, whether to disable the login button. false=enabled (default), true = disabled.
 		"""
 		self.tplPath = tplPath
 		self.contentRenderer = contentRenderer
 		self.tocRenderer = tocRenderer
+		self.disableLogin = disableLogin
 
 
 	def generateHTML( self, tc ):
@@ -112,6 +113,8 @@ class PageTUB( AbstractHtmlRenderer ):
 		xml.set( 'isInfoPage', str( AbstractXmlRenderer.isInfoPage(tc) ) )
 		xml.set( 'isTestPage', str( AbstractXmlRenderer.isTestPage(tc) ) )
 		xml.set( 'requestLogout', str( AbstractXmlRenderer.isLogoutPage(tc) ).lower() )
+		# disable the login button?
+		xml.set( 'disableLogin', str( self.disableLogin ) )
 
 
 	def loadSpecialPage(self, tc):
