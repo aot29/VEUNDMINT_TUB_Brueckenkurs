@@ -39,7 +39,7 @@ A problem in which several variables occur at the same time!? And on top of that
 a whole slew of equations is involved!? Problems of this kind do not only occur in science and 
 engineering but also in other academic fields and in every day life! And they all have to be solved!
 
-But calm down now: it won't get difficult! However, it is true that in very different fields  
+But calm down now: it won't get difficult! However, it is true that in very diverse fields  
 you will often encounter situations and problems which can be mathematically modelled by
 several equations in several variables. Here, we consider a simple first example.
 
@@ -76,7 +76,7 @@ Before we can really start, let us clarify the terminology.
 
 \begin{MInfo}
 Several equations relating a specific number of variables \textbf{at the same time} 
-form a so called \MEntry{system of equations}{system of equations}. If the variables 
+form a so-called \MEntry{system of equations}{system of equations}. If the variables 
 in every equation occur only linearly, i.e.\ at most to the power of $1$, and
 are only multiplied by (constant) numbers, the system is called
 a \MEntry{system of linear equations}{system of equations (linear)}, or 
@@ -96,7 +96,7 @@ number of variables; we will return to this later on.
 
 \begin{MInfo}
 If the number of equations in a system equals the number of variables, 
-the system of equations is called \MEntry{quadratic}{system of equations (quadratic)}.
+the system of equations is called a \MEntry{square}{system of equations (square)}.
 \end{MInfo}
 \begin{MExercise}
 Which of the following systems is a system of linear equations?
@@ -111,14 +111,14 @@ Which of the following systems is a system of linear equations?
 \MGroupButton{Eingabe kontrollieren}
 \end{MExercise}
 Systems of linear equations are distinguished from general systems of equations
-by their relative simplicity. Nevertheless, they play an important role in as 
-diverse fields as medical science, e.g.\ in association with computed tomography, engineering, e.g. when it is described how sound propagates in complex 
-designed spaces, or physics, e.g. concerning the question of which wave 
-lengths excited atoms can emit. It is, without doubt, worth dealing with
+by their relative simplicity. Nevertheless, they play an important role in fields as 
+diverse as medical science (e.g.\ for CT scans), engineering (e.g. for describing sound propagation in complex 
+designed spaces), or physics (e.g. concerning the question of which wave 
+lengths excited atoms can emit). It is, without doubt, worth dealing with
 systems of linear equations intensely.
 
 For systems of equations generally, the question focuses on which 
-values the variables have to take such that all equations of the system are
+values the variables must take such that all equations of the system are
 simultaneously satisfied. Such a set of values for the variables is called
 a \MEntry{solution of a system of equations}{solution of a system of equations}.
 
@@ -130,16 +130,16 @@ integers, i.e. elements of $\N_0$. Hence, in this case the number range for the
 solutions has to be restricted to $\N_0$ in advance (namely, for both $x$ and $y$).
 
 \begin{MInfo}
-The possible number range for the solutions of a system of equations is called 
-\MEntry{basic set}{basic set}. The \MEntry{domain}{domain} is the subset of the basic set
+The possible number range for the solutions of a system of equations is called the 
+\MEntry{base set}{base set} of the system. The \MEntry{domain}{domain} is the subset of the base set
 for which all the terms of the equations of the system are \textbf{defined}. For systems
-of linear equations basic set and domain coincide. Finally, the 
+of linear equations, base set and domain coincide. Finally, the 
 \MEntry{solution set}{solution set} is the subset of the domain which merges 
 the \textbf{solutions} of the system. The solution set is denoted by $\ML$.
 
 \end{MInfo}
-If the basic set is not explicitly specified -- and cannot be derived from the problem 
-description -- we will assume implicitly that the basic set is $\R$, the number range 
+If the base set is not explicitly specified -- and cannot be derived from the problem 
+description -- we will assume implicitly that the base set is $\R$, the number range 
 of the real numbers.
 
 \end{MContent}
@@ -162,7 +162,7 @@ in the variables $x$ and $y$ has the following structure:
 	a_{11} \cdot x + a_{12} \cdot y &= b_{1} \MDFPSpace, \\ 
 	a_{21} \cdot x + a_{22} \cdot y &= b_2 \MDFPeriod
 \end{eqnarray*}
-Here, $a_{11}, a_{12}, a_{21}$, and $a_{22}$ are the so called coefficients of the system
+Here, $a_{11}, a_{12}, a_{21}$, and $a_{22}$ are the so-called coefficients of the system
 of linear equations, which are, as $b_1$ and $b_2$ on the right-hand sides of the 
 equations, often real numbers given by the problem description.
 If the right-hand sides $b_1$ and $b_2$ both are equal to $0$ ($b_1 = 0 = b_2$), 
@@ -176,7 +176,7 @@ Because of their linearity, each of the two equations of the system in info box 
 can be interpreted as the equation of a line in the $x$-$y$-plane. If, for example, the first equation
 is solved for $y$,
 $$y = - \Mdfrac{a_{11}}{a_{12}} x + \Mdfrac{b_1}{a_{12}} \MDFPSpace ,$$
-one immediately sees from this explicate form that it describes a line with the slope 
+one immediately sees from this explicit form that it describes a line with the slope 
 $m = - a_{11}/a_{12}$ and the $y$-intercept $y_0=b_1/a_{12}$.
 
 Note that solving the equation for $y$ is only allowed if $a_{12} \neq 0$. For $a_{12} = 0$,
@@ -255,7 +255,7 @@ An \MEntry{inhomogeneous system of linear equations}{system of linear equations 
 has either one unique solution, no solution, or an infinite number of solutions.
 
 An \MEntry{homogeneous system of linear equations}{system of linear equations (homogeneous)}  
-\textbf{has always at last one solution}, namely the so called 
+\textbf{has always at last one solution}, namely the so-called 
 \MEntry{trivial solution}{trivial solution (LS)} $x = 0$, $y = 0$.
 Moreover, such a homogeneous system \textbf{can} also have \textbf{an infinite number of solutions}.
 \end{MInfo}
@@ -264,7 +264,7 @@ This will be illustrated by two further examples starting directly with the
 systems of linear equations:
 \begin{MExample}
 \MLabel{M04_2x2_nicht_eindeutige_lsg}
-In both cases the \textbf{basic set} is the set of the real numbers $\R$.
+In both cases the \textbf{base set} is the set of the real numbers $\R$.
 \begin{center}
 \begin{tabular}{l|l}
 \begin{minipage}{7.5cm}
@@ -350,7 +350,7 @@ the (congruent) lines appropriately. The above description of the solution set $
 simply used the equation of the line itself and the control variable was denoted by 
 $t$ instead of $x$.
 
-And what about the above mentioned restrictions due to the basic set? 
+And what about the above mentioned restrictions due to the base set? 
 Let us look at the following example.
 
 \begin{MExample}
@@ -369,7 +369,7 @@ One realises that the corresponding system of linear equations -- interpreted ge
 results in two congruent lines. At first glance, it thus seems to have an infinite number
 of solutions.
 
-But now the basic set has to be taken into account: since both $x$ and $y$ represent numbers on a die,
+But now the base set has to be taken into account: since both $x$ and $y$ represent numbers on a die,
 the two variables can only take values from the set 
 $\{ 1\MElSetSep 2\MElSetSep 3\MElSetSep 4\MElSetSep 5\MElSetSep 6 \}$. If one looks at 
 the line $y = \Mtfrac13 x + \Mtfrac12$ in the $x$-$y$-plane, one sees that no possible pair
@@ -465,7 +465,7 @@ Substituting the solution for $x$ into equation~$(1')$ results in
 Hence, the mortgage amounts are $10{,}000$ Euro (mortgage with interest of $5\%$ annually) and
 $40{,}000$ Euro (mortgage with interest of $8\%$ annually).
 \end{MExample}
-The previous example illustrates the characteristics of the so called 
+The previous example illustrates the characteristics of the so-called 
 \textbf{substitution method}:
 \begin{MInfo}
 \MLabel{M04_einsetzmethode}
@@ -478,13 +478,13 @@ of one of the variables. As a second step the solution is
 still occurs. Solving the resulting equation for this other variable results in the first
 part of the solution. The second part is obtained, for example, by substituting the solution
 of the first part into the equation from the first step. The solution is unique. (If this
-solution does not belong to the basic set, it has to be excluded.)}
+solution does not belong to the base set, it has to be excluded.)}
 \item[(ii)]{In the resulting equation (after collecting like terms) the other variable
-does not occur any more and the equation is a contraction. Then the system of linear equations
+does not occur any more and the equation is a contradiction. Then the system of linear equations
 has no solution.}
 \item[(iii)]{In the resulting equation (after collecting like terms) the other variable
 does not occur any more and the equation is always true. Then the system of linear 
-equations has an infinite number of solutions (unless the definition of the basic set 
+equations has an infinite number of solutions (unless the definition of the base set 
 results in some restrictions).}
 \end{itemize}
 \end{MInfo}
@@ -499,7 +499,7 @@ shall be illustrated again by means of the systems of linear equations
 in example~\MRef{M04_2x2_nicht_eindeutige_lsg}:
 
 \begin{MExample}
-For both systems of linear equations the basic set is $\R$.
+For both systems of linear equations the base set is $\R$.
 
 \begin{center}
 \begin{tabular}{c|c}
@@ -513,7 +513,7 @@ Substituting this equation into equation $(2)$ results in:
 & \Leftrightarrow & 4 - 2y + 2y = 1 \\
 & \Leftrightarrow & 4 = 1\MDFPeriod 
 \end{eqnarray*}
-This is a contraction. The LS has \textbf{no} solution.
+This is a contradiction. The LS has \textbf{no} solution.
 \end{minipage} &
 \begin{minipage}[t]{7.5cm}
 $$\begin{array}{rcrcl} \mbox{equation}\MBlank (1): & & x + y & = & 2 \\[.5ex]
@@ -602,7 +602,7 @@ Here, we will discuss the general approach. First, let us see an example.
 Find the solution of the system of linear equations
 $$\begin{array}{rcrcl} \mbox{equation}\MBlank (1): & & 2 x + y & = & 9 \MDFPSpace, \\
 \mbox{equation}\MBlank (2): & & 3 x - 11 y & = & 1 \MDFPSpace, \end{array}$$
-where the basic set is the range of the real numbers $\R$.
+where the base set is the range of the real numbers $\R$.
 
 This time, the approach is as follows: The first equation is multiplied by the factor $11$ and this 
 results in the equation (1') that is equivalent to equation~$(1)$: 
@@ -794,9 +794,9 @@ While playing, three children find a wallet with $30$ Euro in it. The first chil
 second child proudly boasts: ``And if I simply pocket the found money, I will have three 
 times as much money as you both!'' The third child can only smile smugly: ``And if I take the 
 money, I will be five times as rich as you two!'' How much money did the children
-own before thet found the wallet?
+own before they found the wallet?
 
-Let the amounts of money (in Euro) the three children owned before the trove denoted by 
+Let the Euro amounts which the three children owned before the find be denoted by 
 $x$, $y$, and $z$, respectively. The statement of the first child can be translated into
 an algebraic equation as follows:
 $$x + 30 = 2 (y + z) \Leftrightarrow x - 2 y - 2 z = - 30 \; : \MBlank\mbox{equation}\MBlank (1) \MDFPeriod$$
@@ -806,7 +806,7 @@ And finally, the statement of the third child is translated into
 $$z + 30 = 5 (x + y) \Leftrightarrow - 5 x - 5 y + z = - 30 \; : \MBlank\mbox{equation}\MBlank (3) \MDFPeriod$$
 So there arises a system of three linear equations in tree variables denoted here by $x$, $y$, and $z$. 
 \end{MExample}
-The reader, who is interested in the solution of this little riddle, will find it below 
+The reader who is interested in the solution of this little puzzle will find it below 
 worked out in detail using both the \textbf{substitution method} 
 (see example~\MRef{M04_einf_Bsp_2_rech}) and the addition method (see example~\MRef{M04_einf_Bsp_2_rech_2}).
 \begin{MInfo}
@@ -861,7 +861,7 @@ Find the solution set of the following system of linear equations
 $$\begin{array}{lcrcl} \mbox{equation}\MBlank (1): & & x + y - z & = & 0 \MDFPSpace, \\
 \mbox{equation}\MBlank (2): & & x + y + z & = & 6 \MDFPSpace, \\
 \mbox{equation}\MBlank (3): & & 2 x - y + z & = & 4\MDFPeriod \end{array} $$
-The basic set is the set of real numbers $\R$.
+The base set is the set of real numbers $\R$.
 
 
 Each of the three equations can be solved for $z$ easily:
@@ -1342,7 +1342,7 @@ $$1 + x - 2 z = 11 - z \Leftrightarrow - x + z = - 10 \MDFPeriod $$
 Next, this equation has to be used together with the first equation of the initial system. 
 Obviously, the left-hand sides of these two equations (the combination $- x + z$ of 
 the variables $x$ and $z$) are identical whereas the right-hand sides 
-(the values $2$ and $-10$) differ. This is a contraction and hence the system
+(the values $2$ and $-10$) differ. This is a contradiction and hence the system
 of linear equations has no solution: ${\ML} = \MEmptyset$.
 
 Other clever approaches exist.
@@ -1360,7 +1360,7 @@ the approach is basically the same.
 \begin{MExample}
 \MLabel{M04_einf_Bsp_2_rech}
 Let us return to the first example~\MRef{M04_einfuehrendes_Bsp_2} of this section. The 
-system of linear equations for the riddle about the three tempted children reads:
+system of linear equations for the puzzle of the three tempted children reads:
 $$\begin{array}{lcrcl} \mbox{equation}\MBlank (1): & & x - 2 y - 2 z & = & - 30 \MDFPSpace, \\
 \mbox{equation}\MBlank (2): & & - 3 x + y - 3 z & = & - 30 \MDFPSpace, \\
 \mbox{equation}\MBlank (3): & & - 5 x - 5 y + z & = & - 30 \MDFPeriod \end{array}$$
@@ -1607,7 +1607,7 @@ and $R_3 = 3\MEinheit{}\MOhm$.
 Find the currents $I_1$, $I_2$, and $I_3$ in the loops.
 
 \textbf{Hints:} The relations between voltages, resistances,
-and currents in such circuits are described by the so called \textbf{Kirchhoff's rules}
+and currents in such circuits are described by the so-called \textbf{Kirchhoff's rules}
 which in this example result in the following three equations:
 \begin{eqnarray*}
 I_1 - I_2 - I_3 & = & 0\quad:\quad\mbox{equation}\MBlank (1) \MDFPSpace, \\ R_1 I_1 + R_2 I_2 & = & U\quad:\quad\mbox{equation}\MBlank (2)\MDFPSpace,  \\ R_2 I_2 - R_3 I_3 & = & 0\quad:\quad\mbox{equation}\MBlank (3) \MDFPeriod
@@ -1686,18 +1686,17 @@ Hence, the solution set is ${\ML} = \{ \MPointThree{x = 1}{y = 0}{z = 2} \}$.
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM04_AllgemeineLGS_Intro}
 
-At the end of this module two further details concerning systems of linear equations
-will be discussed briefly.
+To conclude this module, we will briefly discuss two further details concerning systems of linear equations.
 
 Firstly, in systems of linear equations free parameters can occur. These are variable 
-quantities -- so called tuning parameters -- which possibly affect the behaviour of the systems, in
-particular, the solution sets strongly. Sometimes it is advantageous not to fix all coefficients
+quantities -- so-called tuning parameters -- which may strongly affect the behaviour of the systems,
+and especially the solution sets. Sometimes it is advantageous not to fix all coefficients
 and right-hand sides of the equations, but to keep them variable to investigate what happens for 
 different values. Sometimes not all coefficients and right-hand sides are known from the 
 problem description. 
 
 Secondly, in a system of linear equations either the number of linear equations or the number of 
-variables can dominate.
+variables need not be the same.
 
 \end{MIntro}
 
@@ -1720,7 +1719,7 @@ $$2 \cdot (x - 2 y) + (- 2 x + 4 y) = 2 \cdot 3 + \alpha \Leftrightarrow 2 x - 4
 Now, two cases have to be distinguished:
 
 \textbf{Case A} ($\alpha \neq - 6$): If the given free parameter $\alpha$ is not equal to $- 6$, the 
-last equation is a contraction. In this case the system of linear equations has 
+last equation is a contradiction. In this case the system of linear equations has 
 \textbf{no solution}, i.e.\ ${\ML} = \MEmptyset$.
 
 \textbf{Case B} ($\alpha = - 6$): If the given free parameter $\alpha$ is equal to $- 6$, the last 
@@ -1733,8 +1732,8 @@ is infinite}: ${\ML}
 The example shows that the solution set may strongly depend on the value of the free
 parameter. 
 
-Such a free parameter can occur not only in one of the right-hand sides of the system of
-linear equations, but also in the left-hand sides, multiple times or in a function both on the 
+Such a free parameter can occur not only on one of the right-hand sides of the system of
+linear equations, but also on the left-hand sides, multiple times or in a function both on the 
 left-hand sides and on the right-hand sides. Also several parameters can occur in a 
 system at the same time.
 
@@ -2078,7 +2077,7 @@ Accordingly, for $t=-1$ one obtains $x=-4$ and $y=-3-z$, so the solution set is
 \MSubsection{Final Test}
 \MLabel{M04_Ausgangstest}
 
-\begin{MTest}{Final Test Modul 4}
+\begin{MTest}{Final Test Module 4}
 \MDeclareSiteUXID{VBKM04_Abschlusstest}
 
 \begin{MExercise}

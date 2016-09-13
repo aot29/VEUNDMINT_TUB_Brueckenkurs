@@ -156,8 +156,9 @@ class SeleniumTest(unittest.TestCase):
 		Navigate to the specified language version of the website
 		@param languagecode: (required) a STRING specifying the language code, e.g. "de" or "en"
 		'''
-		url = "%s/html/%s/" % ( self.start_url, lang )
-		self._loadPage( url )
+		url = "%s/html/%s/index.html" % ( self.start_url, lang )
+		# this page is a redirect, so don't use self._loadPage
+		self.driver.get( url )
 
 	
 	def _isLoginDisabled(self):
@@ -170,6 +171,7 @@ class SeleniumTest(unittest.TestCase):
 	def _loadPage(self, url):
 		"""
 		Try to load a URL without causing errors or timeouts.
+		Lookout, doesn't work for redirects!
 		
 		@param url - the url to load
 		"""
