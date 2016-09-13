@@ -173,6 +173,14 @@ $(window).on('beforeunload', function(){
       $('#li-logout').remove();
     }
 
+		//if we came from the same url in another language, return to the scroll position
+		var oldScrollTop = intersite.getScrollTop();
+		if (oldScrollTop !== 0) {
+	  	$(document).scrollTop(oldScrollTop);
+			intersite.setScrollTop(0);
+		}
+
+
 	};
 
 
@@ -319,6 +327,10 @@ $(window).on('beforeunload', function(){
     element.replaceWith(htmlString);
 
     $('body').on('change', '#selectLanguage', function() {
+			//store the scroll Top for next site, will be set in veundmint.init()
+			var oldScrollTop = $(document).scrollTop();
+			intersite.setScrollTop(oldScrollTop);
+
       var newUrl = url.replace('/' + ownLanguage + '/', '/' + this.value + '/');
       window.location.href = newUrl;
     });

@@ -23,6 +23,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
   //what was formerly the obj is now obj
   var obj = {};
 
+  var newIntersiteObj = {};
+
   //attributes
   var name = "";
 
@@ -350,7 +352,10 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       if (isScormEnv() == 1) {
         localStorage.setItem("LOCALSCORM", JSON.stringify(pipwerks.scormdata));
         console.log( "Updating SCORM transfer object");
-        if (expectedScormVersion == "1.2") {
+
+        //commented that out because it would only be set when compiling with doscorm12 parameter
+        //however scorm should not depend on its own building
+        // if (expectedScormVersion == "1.2") {
             nmax = 0;
             ngot = 0;
             for (j = 0; j < obj.scores.length; j++) {
@@ -378,9 +383,9 @@ COLOR_INPUTCHANGED = "#E0C0C0";
             console.log( "SCORM set status to " + s + ": " + psres);
 
 
-        } else {
-            logMessage(CLIENTINFO, "SCORM final reporting above SCORM 1.2 not supported yet");
-        }
+        // } else {
+        //     logMessage(CLIENTINFO, "SCORM final reporting above SCORM 1.2 not supported yet");
+        // }
       }
       localStorage.setItem(name, jso);
       if ((obj.login.type == 2) || (obj.login.type == 3)) {
@@ -1492,6 +1497,14 @@ COLOR_INPUTCHANGED = "#E0C0C0";
           logMessage(CLIENTERROR, "SCORM-Pull-Logout unmoeglich: " + message + ", data = " + JSON.stringify(data));
       }
 
+      function setScrollTop(scrollTop) {
+        obj.scrollTop = scrollTop;
+      }
+
+      function getScrollTop() {
+          return obj.scrollTop;
+      }
+
      // attach properties to the exports object to define
      // the exported module properties.
      //
@@ -1510,5 +1523,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      exports.getNameDescription = getNameDescription;
      exports.isScormEnv = isScormEnv;
      exports.updateSpecials = UpdateSpecials;
+     exports.setScrollTop = setScrollTop;
+     exports.getScrollTop = getScrollTop;
 
 }));
