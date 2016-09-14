@@ -5,9 +5,30 @@ features such as exercises, tests, glossary, etc. It is easily extendable.
 
 ### build status
 * branch: develop_software [![build status](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/badges/develop_software/build.svg)](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/commits/develop_software)
-* branch: develop_gulp [![build status](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/badges/develop_gulp/build.svg)](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/commits/develop_gulp)
 
 ## Installation
+Clone the repository if not already done and checkout the development branch:
+```
+git clone git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git VEUNDMINT_DEV
+cd VEUNDMINT_DEV
+git checkout develop_software
+```
+Go to the checkout path and invoke the installation script. This will install all dependencies.
+```
+make -f tools/makefiles/devinstall
+```
+To start developing, do:
+```
+source venv/bin/activate
+make -f tools/makefiles/multilang
+```
+This build everything is in the folder **public**.
+To run the server at http://localhost:3000 call:
+```
+npm run gulp watch &> gulp_output.log &
+```
+
+## Manual Installation
 
 Following, you will find installation instructions to get you started. This package is build in **Python3**. To get you started, first clone this repository
 ```
