@@ -6,6 +6,14 @@ features such as exercises, tests, glossary, etc. It is easily extendable.
 ### build status
 * branch: develop_software [![build status](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/badges/develop_software/build.svg)](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/commits/develop_software)
 
+## Dependencies
+Install these packages using your package manager:
+
+```
+libxml2, libxml2-dev, libxslt1-dev, lib32z1, tidy,php-cli, nodejs
+```
+If the nodejs version provided for your distributio is < 4.x, then see [here](https://nodejs.org/en/download/package-manager/)
+
 ## Installation
 Clone the repository if not already done and checkout the development branch:
 ```
@@ -62,13 +70,6 @@ deactivate
 In order to use the VEUNDMINT converter, you need to have python3 installed. To automagically install all required python modules, just run (in the root directory)
 ```
 pip install -r requirements.txt
-```
-
-#### linux dependencies
-
-```
-libxml2, libxml2-dev, libslt1-dev, lib32z1, tidy,
-php-cli
 ```
 
 ## Building
