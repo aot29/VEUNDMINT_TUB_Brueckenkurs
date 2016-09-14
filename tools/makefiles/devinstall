@@ -1,0 +1,51 @@
+#
+# Checks out the development branch and
+# installs an environment for development.
+#
+# Clone the repository if not already done and checkout the development branch:
+# git clone git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git VEUNDMINT_DEV
+# cd VEUNDMINT_DEV
+# git checkout develop_software
+#
+# Using GNU Make, cd to the checkout path and invoke as:
+#
+# make -f tools/makefiles/devinstall
+#
+
+.DEFAULT_GOAL := all
+# Declare as phony so targets will run even if there's a file by that name
+.PHONY: all clone venv dependencies
+
+
+all: | venv dependencies
+	@echo Done. Your browser should now open and show the site.
+	@echo To start developing, do:
+	@echo source venv/bin/activate
+	@echo and then build by calling:
+	@echo make -f tools/makefiles/multilang
+	@echo everything is in the folder 'public'
+	@echo to run the server http://localhost:3000 call:
+	@echo "npm run gulp watch &> gulp_output.log &"
+
+
+#
+# Installs a virtual environment for Python
+#
+venv: venv/bin/activate
+venv/bin/activate: requirements.txt
+	test -d venv || virtualenv venv
+
+
+#
+# Installs dependencies in the virtual environment
+#
+dependencies:
+	(\
+		source venv/bin/activate; \
+		echo "venv started, now installing dependencies"; \
+		pip3 install -r requirements.txt; \
+		npm install; \
+		npm run bower_install; \
+		npm install gulp-cli; \
+	)
+
