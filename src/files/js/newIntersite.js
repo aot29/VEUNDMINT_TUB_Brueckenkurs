@@ -19,6 +19,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         factory(root.intersite = {});
     }
 }(this, function (exports) {
+  console.log('newIntersite.js loaded');
 
   //what was formerly the obj is now obj
   var obj = {};
@@ -44,7 +45,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
   var feedbackLog = [];
 
   /**
-   * initialize intersite, will create an object
+   * initialize intersite, will load the scores from localStorage
    * @return {[type]} [description]
    */
   function init () {
@@ -53,6 +54,11 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
   function getObj () {
     return obj;
+  }
+
+  function setObj (newObj) {
+    obj = newObj;
+    console.log('intersite: obj updated to', newObj);
   }
 
   function getName () {
@@ -208,7 +214,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         console.log( "Userreset verlangt");
         }
 
-        if (iso == "") {
+        if (iso == "" || iso === "{}") {
       iso = null; // Falls localStorage von der JavaScript-Konsole aus resettet wurde
       console.log( "iso = \"\" auf null gesetzt");
         }
@@ -289,6 +295,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
           }
        }
     }
+
     UpdateSpecials();
     console.log( "UpdateSpecials done");
     confHandlerISOLoad()
@@ -328,7 +335,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       active: false,
       layout: { fontadd: 0, menuactive: true },
       configuration: { stylecolor: STYLEBLUE },
-      scores: [],
+      scores: {},
       sites: [],
       favorites: [ createHelpFavorite() ],
       history: { globalmillis: 0, commits: [] }, // commits = array aus Arrays [ hexsha+cid, firstlogintimestamp, lastlogintimestamp ]
@@ -356,6 +363,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         //commented that out because it would only be set when compiling with doscorm12 parameter
         //however scorm should not depend on its own building
         // if (expectedScormVersion == "1.2") {
+        // TODO left out for now as testing but must be updated to obj syntax instead of array
             nmax = 0;
             ngot = 0;
             for (j = 0; j < obj.scores.length; j++) {
@@ -1497,12 +1505,50 @@ COLOR_INPUTCHANGED = "#E0C0C0";
           logMessage(CLIENTERROR, "SCORM-Pull-Logout unmoeglich: " + message + ", data = " + JSON.stringify(data));
       }
 
+      /**
+       * Sets the scrolltop position to the intersite obj, which is persisted,
+       * so that it can be recalled on site url change
+       * @param {[type]} scrollTop [description]
+       */
       function setScrollTop(scrollTop) {
         obj.scrollTop = scrollTop;
       }
 
+      /**
+       * gets the scrollTop value from the intersite obj which is needed, when
+       * user changes language and should be redirected to same scrollTop position
+       * @return {[type]} [description]
+       */
       function getScrollTop() {
           return obj.scrollTop;
+      }
+
+      /**
+       * helper function for comparing two objects to create a diff, for debugging
+       * and testing, should be moved to helper class
+       * @param  {[type]} obj1 [description]
+       * @param  {[type]} obj2 [description]
+       * @return {[type]}      [description]
+       */
+      function compareJSON (obj1, obj2) {
+        console.log('comparing', obj1, ' -- to -- ', obj2);
+        var ret = {};
+        for(var i in obj2) {
+          if(!obj1.hasOwnProperty(i) || obj2[i] !== obj1[i]) {
+            ret[i] = obj2[i];
+          }
+        }
+        return ret;
+      };
+
+      /**
+       * determines the local storage name of the intersite object
+       * @return {[type]} [description]
+       */
+      function getObjName() {
+          s = "isobj_" + signature_main;
+          logMessage(DEBUGINFO, "Loading user object with id " + s);
+          return s; // Important: same object even for different versions
       }
 
      // attach properties to the exports object to define
@@ -1518,6 +1564,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      exports.sendeFeedback = sendeFeedback;
      exports.userlogin_click = userlogin_click;
      exports.getObj = getObj;
+     exports.setObj = setObj;
      exports.getName = getName;
      exports.isActive = isActive;
      exports.getNameDescription = getNameDescription;

@@ -1267,19 +1267,26 @@ function GetInteractionID(gid)
 }
 
 // Parameter: Die globale uxid (als string) des Fragefelds
-function GetResult(uxid)
+function GetResult(id)
 {
-  if (intersite.isActive() == true) {
-    if (intersite.getObj().configuration.CF_LOCAL == "1") {
-      var j = 0;
-      for (j = 0; j < intersite.getObj().scores.length; j++) {
-    if (intersite.getObj().scores[j].uxid == uxid) {
-      return intersite.getObj().scores[j].rawinput;
-    }
-      }
-    }
+  console.log('mintscripts_bootstrap: trying to getResult with id', id);
+  result = scores.getSingleScore(id) || null;
+  if (typeof result !== "undefined" && result !== null) {
+    result = result.rawinput
   }
-  return null;
+  console.log('mintscripts_bootstrap: got', result);
+  return result;
+  // if (intersite.isActive() == true) {
+  //   if (intersite.getObj().configuration.CF_LOCAL == "1") {
+  //     var j = 0;
+  //     for (j = 0; j < intersite.getObj().scores.length; j++) {
+  //   if (intersite.getObj().scores[j].uxid == uxid) {
+  //     return intersite.getObj().scores[j].rawinput;
+  //   }
+  //     }
+  //   }
+  // }
+  // return null;
 }
 
 // Fuellt alle vorhandenen Fragefelder der Seite mit den gespeicherten Antworten aus dem LMS,
@@ -1311,7 +1318,7 @@ function InitResults(empty)
     for (i=1; i<FVAR.length; i++) {
       var e = document.getElementById(FVAR[i].id);
       if (FVAR[i].sync == 1) {
-        v = GetResult(FVAR[i].uxid);
+        v = GetResult(FVAR[i].id);
       } else {
     v = null;
       }
@@ -1529,7 +1536,17 @@ function reset_button()
   InitResults(true);
 }
 
+/**
+ * TODO watch out FVAR is a html element with very many fields.... extract the needed ones and
+ * do not set extra variables on it ...
+ * @param  {[type]} i      [description]
+ * @param  {[type]} points [description]
+ * @param  {[type]} state  [description]
+ * @return {[type]}        [description]
+ */
 function notifyPoints(i, points, state) {
+  console.log('notify points called with parameters', i, points, state);
+  console.log('you just changed the answer for', FVAR[i]);
   FVAR[i].points = points;
   if ((isTest == true) && (FVAR[i].sync == 1)) {
     nPoints += points;
@@ -1539,36 +1556,58 @@ function notifyPoints(i, points, state) {
       if ((intersite.getObj().configuration.CF_LOCAL == "1") && (intersite.getObj().configuration.CF_TESTS == "1")) {
           var f = false;
           var j = 0;
-          for (j = 0; j<intersite.getObj().scores.length; j++) {
-              if (intersite.getObj().scores[j].uxid == FVAR[i].uxid) {
-                  f = true;
-                  intersite.getObj().scores[j].maxpoints = FVAR[i].maxpoints;
-                  intersite.getObj().scores[j].points = points;
-                  intersite.getObj().scores[j].siteuxid = SITE_UXID;
-                  intersite.getObj().scores[j].section = FVAR[i].section;
-                  intersite.getObj().scores[j].id = FVAR[i].id;
-                  intersite.getObj().scores[j].uxid = FVAR[i].uxid;
-                  intersite.getObj().scores[j].intest = FVAR[i].intest;
-                  intersite.getObj().scores[j].rawinput = FVAR[i].rawinput;
-                  intersite.getObj().scores[j].value = FVAR[i].value;
-                  intersite.getObj().scores[j].state = state;
-                  logMessage(VERBOSEINFO, "Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
-              }
-          }
-          if (f == false) {
-            var k = intersite.getObj().scores.length;
-            intersite.getObj().scores[k] = { uxid: FVAR[i].uxid };
-            intersite.getObj().scores[k].maxpoints = FVAR[i].maxpoints;
-            intersite.getObj().scores[k].points = points;
-            intersite.getObj().scores[k].siteuxid = SITE_UXID;
-            intersite.getObj().scores[k].section = FVAR[i].section;
-            intersite.getObj().scores[k].id = FVAR[i].id;
-            intersite.getObj().scores[k].intest = FVAR[i].intest;
-            intersite.getObj().scores[k].value = FVAR[i].value;
-            intersite.getObj().scores[k].rawinput = FVAR[i].rawinput;
-            intersite.getObj().scores[k].state = state;
-            logMessage(VERBOSEINFO, "Points for " + FVAR[i].uxid + " ADDED at position " + k);
-          }
+
+          //add missing fields to FVAR[i]
+          var newScoreObj = {};
+          newScoreObj.points = points;
+          newScoreObj.siteuxid = SITE_UXID;
+          newScoreObj.state = state;
+          newScoreObj.maxpoints = FVAR[i].maxpoints;
+          newScoreObj.siteuxid = SITE_UXID;
+          newScoreObj.section = FVAR[i].section;
+          newScoreObj.id = FVAR[i].id;
+          newScoreObj.uxid = FVAR[i].uxid;
+          newScoreObj.intest = FVAR[i].intest;
+          newScoreObj.rawinput = FVAR[i].rawinput;
+          newScoreObj.value = FVAR[i].value;
+
+          scores.setSingleScore(FVAR[i].id, newScoreObj);
+          // also hier wird ein einzelner score geupdated
+          // for (j = 0; j<intersite.getObj().scores.length; j++) {
+          //     if (intersite.getObj().scores[j].uxid == FVAR[i].uxid) {
+          //         f = true;
+          //         intersite.getObj().scores[j].maxpoints = FVAR[i].maxpoints;
+          //         intersite.getObj().scores[j].points = points;
+          //         intersite.getObj().scores[j].siteuxid = SITE_UXID;
+          //         intersite.getObj().scores[j].section = FVAR[i].section;
+          //         intersite.getObj().scores[j].id = FVAR[i].id;
+          //         intersite.getObj().scores[j].uxid = FVAR[i].uxid;
+          //         intersite.getObj().scores[j].intest = FVAR[i].intest;
+          //         intersite.getObj().scores[j].rawinput = FVAR[i].rawinput;
+          //         intersite.getObj().scores[j].value = FVAR[i].value;
+          //         intersite.getObj().scores[j].state = state;
+          //         logMessage(VERBOSEINFO, "Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
+          //     }
+          // }
+          //
+          // und hier hinzugefügt
+          // das f == false kann vermutlich auch weg weil jetzt immer die gleiche funktion updateScore benutzt wird
+          // die einfach setzt
+          // if (f == false) {
+          //   scores.setSingleScore(FVAR[i].id, FVAR[i]);
+            // var k = intersite.getObj().scores.length;
+            // intersite.getObj().scores[k] = { uxid: FVAR[i].uxid };
+            // intersite.getObj().scores[k].maxpoints = FVAR[i].maxpoints;
+            // intersite.getObj().scores[k].points = points;
+            // intersite.getObj().scores[k].siteuxid = SITE_UXID;
+            // intersite.getObj().scores[k].section = FVAR[i].section;
+            // intersite.getObj().scores[k].id = FVAR[i].id;
+            // intersite.getObj().scores[k].intest = FVAR[i].intest;
+            // intersite.getObj().scores[k].value = FVAR[i].value;
+            // intersite.getObj().scores[k].rawinput = FVAR[i].rawinput;
+            // intersite.getObj().scores[k].state = state;
+            // logMessage(VERBOSEINFO, "Points for " + FVAR[i].uxid + " ADDED at position " + k);
+          // }
       }
   }
 
@@ -1615,7 +1654,9 @@ function globalloadHandler(pulluserstr) {
 
     applyLayout(false);
     logMessage(DEBUGINFO, "Layout gesetzt in loadhandler");
+
     InitResults(false);
+
     logMessage(DEBUGINFO, "Results eingetragen");
 
   }
@@ -1642,6 +1683,7 @@ function globalreadyHandler(pulluserstr) {
   }
   // setup intersite objects
   intersite.setup(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von intersite.setup ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
+
   if (intersite.isActive() == true) {
     if (variant != intersite.getObj().login.variant) {
       // abort site setup, switch to needed variant tree
@@ -2324,6 +2366,8 @@ function shareFacebook() {
 }
 
 // changes classes of toc/navi elements to show element state (element behaviour is defined in css)
+// TODO this is currently not working and that is because (one reason) the other data structure of scores.
+// was array now is obj with questionId keys
 function updateLayoutStates() {
   if (intersite.isActive() == true) {
     if (intersite.getObj() != null) {
