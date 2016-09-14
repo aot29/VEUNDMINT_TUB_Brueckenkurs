@@ -13,6 +13,10 @@ git clone git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.g
 cd VEUNDMINT_DEV
 git checkout develop_software
 ```
+This will install the application in a Python virtual environment. Make sure the command virtualenv is installed:
+```
+which virtualenv
+```
 Go to the checkout path and invoke the installation script. This will install all dependencies.
 ```
 make -f tools/makefiles/devinstall
