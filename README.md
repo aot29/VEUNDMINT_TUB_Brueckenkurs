@@ -13,11 +13,11 @@ git clone git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.g
 cd VEUNDMINT_DEV
 git checkout develop_software
 ```
-Go to the checkout path and invoke the installation script:
+Go to the checkout path and invoke the installation script. This will install all dependencies.
 ```
 make -f tools/makefiles/devinstall
 ```
-This will install all dependencies. To start developing, do:
+To start developing, do:
 ```
 source venv/bin/activate
 make -f tools/makefiles/multilang
@@ -25,7 +25,7 @@ make -f tools/makefiles/multilang
 This build everything is in the folder **public**.
 To run the server at http://localhost:3000 call:
 ```
-npm run gulp watch &> gulp_output.log &"
+npm run gulp watch &> gulp_output.log &
 ```
 
 ## Manual Installation
