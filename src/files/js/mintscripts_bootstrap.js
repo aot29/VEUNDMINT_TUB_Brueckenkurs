@@ -954,9 +954,9 @@ function check_group(input_from, input_to) {
                       if (matchUser[4]=="]") btypr = 2;
               
                       if ((typl == btypl) && (typr == btypr)) {
-                          console.log ("Check solution");
-                          console.log (matchSol[2].toString()+ " --- " + matchUser[2].toString());
-                          console.log (matchSol[3].toString()+ " --- " + matchUser[3].toString());
+                          //console.log ("Check solution");
+                          //console.log (matchSol[2].toString()+ " --- " + matchUser[2].toString());
+                          //console.log (matchSol[3].toString()+ " --- " + matchUser[3].toString());
                           
                           if (matchSol[2].trim() != matchUser[2].trim())
                           { var left_user = rawParse(matchUser[2])
