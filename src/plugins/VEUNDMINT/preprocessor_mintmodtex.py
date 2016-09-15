@@ -45,14 +45,26 @@ class Preprocessor(object):
 		# checks if needed data members are present or empty
 		if 'DirectRoulettes' in self.data:
 			sys.message(sys.CLIENTWARN, "Another Preprocessor is using DirectRoulettes")
+
 		else:
 			self.data['DirectRoulettes'] = {}
 
 		if 'macrotex' in self.data:
 			sys.message(sys.CLIENTWARN, "Using macrotex from an another preprocessor, hope it works out")
+			
 		else:
 			# read original code of the macro package
-			self.data['macrotex'] = self.sys.readTextFile(os.path.join(self.options.converterDir, "tex", self.options.macrofile), self.options.stdencoding)
+			macrotex = self.sys.readTextFile(os.path.join(self.options.converterDir, "tex", self.options.macrofile), self.options.stdencoding)
+
+			# read requested i18n file and concatenate macro files if present
+			try:
+				i18ntex = self.sys.readTextFile(os.path.join(self.options.converterDir, "tex", self.options.i18nfile), self.options.stdencoding)
+				self.data['macrotex'] = i18ntex + macrotex
+
+			# if no i18n file was given, then assume all the texts are in the mintmod file 
+			except AttributeError:
+				self.data['macrotex'] = macrotex
+			
 			if re.search(r"\\MPragma{mintmodversion;" + self.version + r"}", self.data['macrotex'], re.S):
 				self.sys.message(self.sys.VERBOSEINFO, "Macro package " + self.options.macrofile + " checked, seems to be ok")
 			else:				
@@ -60,6 +72,7 @@ class Preprocessor(object):
 			
 		if 'modmacrotex' in self.data:
 			sys.message(sys.CLIENTWARN, "Using MODIFIED macrotex from an another preprocessor, hope it works out")
+			
 		else:
 			# use the original code for now
 			self.data['modmacrotex'] = self.data['macrotex']

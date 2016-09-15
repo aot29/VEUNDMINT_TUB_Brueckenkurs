@@ -1,10 +1,49 @@
-\input{macros.tex}
-
 % localized text snippets
-\newcommand{\i18n_coshAdd}{Weiterf\"uhrende Inhalte}
-\newcommand{\i18n_coshWarn}{Diese Inhalte liegen \"uber dem Kursniveau und werden in den Aufgaben und Tests nicht abgefragt.}
-\newcommand{\i18n_exercise}{Aufgabe}
-\newcommand{\i18n_example}{Beispiel}
-\newcommand{\newCommandName}{text to insert}
-\newcommand{\newCommandName}{text to insert}
-\newcommand{\newCommandName}{text to insert}
+% python-like dictionaries or property structures are not supported by the
+% converter.
+% Todo: append these to the json files
+\newcommand{\iCoshAdd}{Weiterf\"uhrende Inhalte}
+\newcommand{\iCoshWarn}{Diese Inhalte liegen \"uber dem Kursniveau und
+werden in den Aufgaben und Tests nicht abgefragt.}
+\newcommand{\iExercise}{Aufgabe}
+\newcommand{\iExercises}{Aufgaben}
+\newcommand{\iExample}{Beispiel}
+\newcommand{\iExperiment}{Versuch}
+\newcommand{\iVideoWarn}{Video nicht darstellbar}
+\newcommand{\iFormZoomHint}{Formel zu klein? Mit einem Doppelklick auf eine
+Formel wird sie vergr"o"sert dargestellt.}
+\newcommand{\iUsageHint}{Mit Hilfe der Symbole am oberen Rand des Fensters
+k"onnen Sie durch die einzelnen Abschnitte navigieren.}
+\newcommand{\iTextInputHint}{Geben Sie jeweils ein Wort oder Zeichen als
+Antwort ein.}
+\newcommand{\iTermInputHint}{Klammern Sie Ihre Terme, um eine eindeutige Eingabe zu erhalten. Beispiel: Der Term $\frac{3x+1}{x-2}$ soll in der Form \texttt{(3*x+1)/((x+2)^2)} eingegeben werden (wobei auch Leerzeichen eingegeben werden k"onnen, damit eine Formel besser lesbar ist).}
+\newcommand{\iIntervalInputHint}{Intervalle werden links mit einer
+ "offnenden Klammer und rechts mit einer schlie"senden Klammer angegeben. Eine runde Klammer wird verwendet, wenn der
+Rand nicht dazu geh"ort, eine eckige, wenn er dazu geh"ort.
+Als Trennzeichen wird ein Komma oder ein Semikolon akzeptiert.
+Beispiele: $(a, b)$ offenes Intervall,
+$[a; b)$ links abgeschlossenes, rechts offenes Intervall von $a$ bis $b$.
+Die Eingabe $]a;b[$ f"ur ein offenes Intervall wird nicht akzeptiert.
+F"ur $\infty$ kann \texttt{infty} oder \texttt{unendlich} geschrieben werden.}
+\newcommand{\iFunctionInputHint}{Schreiben Sie Malpunkte (geschrieben als
+ \texttt{*}) aus und setzen Sie Klammern um Argumente f\"ur Funktionen.
+Beispiele: Polynom: \texttt{3*x + 0.1}, Sinusfunktion: \texttt{sin(x)},
+Verkettung von cos und Wurzel: \texttt{cos(sqrt(3*x))}.}
+\newcommand{\iSincosInputHint}{Die Sinusfunktion $\sin x$ wird in der Form
+ \texttt{sin(x)} angegeben, $\cos\left(\sqrt{3 x}\right)$ durch \texttt{cos(sqrt(3*x))}.}
+\newcommand{\iExpInputHint}{Die Exponentialfunktion $\MEU^{3x^4 + 5}$ wird
+ als \texttt{exp(3 * x^4 + 5)} angegeben,
+$\ln\left(\sqrt{x} + 3.2\right)$ durch \texttt{ln(sqrt(x) + 3.2)}.}
+\newcommand{\iTest}{Dies ist ein einreichbarer Test:
+\begin{itemize}
+\item{Im Gegensatz zu den offenen Aufgaben werden beim Eingeben keine Hinweise
+ zur Formulierung der mathematischen Ausdr\"ucke gegeben.}
+\item{Der Test kann jederzeit neu gestartet oder verlassen werden.}
+\item{Der Test kann durch die Buttons am Ende der Seite beendet und
+ abgeschickt, oder zur\"uckgesetzt werden.}
+\item{Der Test kann mehrfach probiert werden. F\"ur die Statistik z\"ahlt die
+ zuletzt abgeschickte Version.}
+\end{itemize}}
+\newcommand{\iTestSubmit}{Test auswerten}
+\newcommand{\iTestReset}{Test l\"oschen und neu starten}
+\newcommand{\iTestEval}{Hier erscheint die Testauswertung!}

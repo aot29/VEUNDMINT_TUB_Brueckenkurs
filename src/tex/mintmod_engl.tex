@@ -1297,7 +1297,7 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}\begin{html}<div
 class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \newenvironment{MContent}{\begin{MXContent}{Contents}{Contents}{beweis}}{\end{MXContent}}
-\newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{Exercises}{Exercises}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
+\newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{\i18n_exercises{}}{\i18n_exercises{}}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
 
 % #1 = Lesbare Testbezeichnung
 \newenvironment{MTest}[1]{%
@@ -1543,7 +1543,7 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \newcommand{\MVideo}[2]{%
 % Kein Video im PDF darstellbar, trotzdem so tun als ob da eines waere
 \begin{center}
-(Video nicht darstellbar)
+(\i18n_videoWarn{})
 \end{center}
 \addtocounter{MVideoCounter}{1}
 \setcounter{MLastIndex}{\value{MVideoCounter}}
@@ -1836,7 +1836,6 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \newcommand{\modsemph}[1]{#1}
 
 
-
 \ifttm%
 \newcommand{\MModstartBox}{\special{html:<!-- modstartbox //-->}}
 \else%
@@ -1862,43 +1861,28 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \fi%
 
 \def\MFormelZoomHint{\MInputHint{%
-Formula too small? Double click to enlarge.}}
+\i18n_formZoomHint{}}}
 
 \def\jHTMLHinweisBedienung{\MInputHint{%
-The symbols at the upper boundary allow you to navigate through the course.}}
+\i18n_usageHint{}}}
 
 \def\jHTMLHinweisEingabeText{\MInputHint{%
-Enter a word or a symbol.}}
+\i18n_textInputHint{}}}
 
 \def\jHTMLHinweisEingabeTerm{\MInputHint{%
-Use parentheses to get unambiguous expression.
-Example: The Term $\frac{3x+1}{x-2}$ should be entered as
-\texttt{(3*x+1)/(x+2)} (you can add spaces for legibility).}}
+\i18n_termInputHint{}}}
 
 \def\jHTMLHinweisEingabeIntervalle{\MInputHint{%
-Intervals are written like this: $[a,b]$ for a
-closed interval, $(a,b]$ for a left open right closed interval,
-$[a,b)$ for a left closed right open interval and $(a,b)$ for
-an open interval. $a$ and $b$ are infimum and supremum of
-the interval, they can be real numbers or $\pm \infty$.
-Write \texttt{infty} for $\infty$. The two numbers can
-be separated by a comma or by a semicolon, both are valid
-expressions.
-}}
+\i18n_intervalInputHint{}}}
 
 \def\jHTMLHinweisEingabeFunktionen{\MInputHint{%
-Explicitily denote multiplication by \texttt{*} and use parentheses for the arguments of functions.
-Example: Polynomial: \texttt{3*x + 0.1}, sine function: \texttt{sin(x)},
-Composition of cos and the square root function: \texttt{cos(sqrt(3*x))}.}}
+\i18n_functionInputHint{}}}
 
 \def\jHTMLHinweisEingabeFunktionenSinCos{\MInputHint{%
-The Sine function $\sin x$ has to be entered like this \texttt{sin(x)} (with parentheses), %
-$\cos\left(\sqrt{3 x}\right)$ like \texttt{cos(sqrt(3*x))}.}}
+\i18n_sincosInputHint{}}}
 
 \def\jHTMLHinweisEingabeFunktionenExp{\MInputHint{%
-The exponential function $\MEU^{3x^4 + 5}$ has to be entered as
-\texttt{exp(3 * x^4 + 5)}, %
-$\ln\left(\sqrt{x} + 3.2\right)$ as \texttt{ln(sqrt(x) + 3.2)}.}}
+i18n_expInputHint{}}}
 
 % ---------------------------------- Spezialbefehle fuer Fachbereich Physik --------------------------
 
@@ -1959,14 +1943,7 @@ $\ln\left(\sqrt{x} + 3.2\right)$ as \texttt{ln(sqrt(x) + 3.2)}.}}
 
 \ifttm
 \newcommand{\MInTestHeader}{%
-This is a test for submission:
-\begin{itemize}
-\item{Unlike open exercises, no hints for formulating mathematical expressions are provided.}
-\item{The test can be restarted or interrupted at any time.}
-\item{The test can be terminated and submitted using the buttons at the end of the page, or reset.}
-\item{The test can be attempted several times. Only the last version will be included in the statistics.}
-\end{itemize}
-}
+\i18n_test{}}
 \else
 \newcommand{\MInTestHeader}{%
 \relax
@@ -1975,15 +1952,15 @@ This is a test for submission:
 
 \ifttm
 \newcommand{\MInTestFooter}{%
-\special{html:<button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('}\MTestName\special{html:');" class="testsbutton">Submit test</button>}%
+\special{html:<button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('}\MTestName\special{html:');" class="testsbutton">\i18n_testSubmit{}</button>}%
 \begin{html}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();" class="testsbutton">Reset and restart</button>
+<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();" class="testsbutton">\i18n_testReset{}</button>
 <br />
 <br />
 <div class="xreply">
 <p name="Name_TESTEVAL" id="TESTEVAL">
-The test evaluation will be displayed here!
+\i18n_testEval{}
 <br />
 </p>
 </div>
