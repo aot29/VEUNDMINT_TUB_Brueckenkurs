@@ -98,3 +98,10 @@ We use the python module green to run our tests, as it has a nicer user experien
 green -vvv
 ```
 Tests, divide into different sections, where some will use selenium to test the generated websites. Find the `BASE_URL` setting in settings.py, with that you can adjust the url tests, will be run against. You might also set the environment variable `BASE_URL` to your required url - it will override the settings from settings.py.
+
+## Logging
+### Frontend / javascript log
+We use the javascript package [loglevel](https://github.com/pimterry/loglevel) for logging. Default loglevel is set to `error`, which will only display errors in the console. For debugging, do
+```javascript
+log.setLevel('debug')
+```

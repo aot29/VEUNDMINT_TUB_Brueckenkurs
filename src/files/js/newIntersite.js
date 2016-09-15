@@ -19,7 +19,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         factory(root.intersite = {});
     }
 }(this, function (exports) {
-  console.log('newIntersite.js loaded');
+  log.info('newIntersite.js loaded');
 
   //what was formerly the obj is now obj
   var obj = {};
@@ -58,7 +58,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
   function setObj (newObj) {
     obj = newObj;
-    console.log('intersite: obj updated to', newObj);
+    log.debug('intersite: obj updated to', newObj);
   }
 
   function getName () {
@@ -76,8 +76,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
    * @return {[type]}           [description]
    */
   function setup (clearuser, pulledstr) {
-    console.log('setup intersite', pulledstr);
-    console.log( "SetupIntersite START");
+    log.debug('setup intersite', pulledstr);
+    log.info( "SetupIntersite START");
     if (forceOffline == 1) {
         logMessage(CLIENTINFO, "Course is in OFFLINE mode");
     }
@@ -85,8 +85,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
     if (pulledstr != "") {
       obj = JSON.parse(pulledstr);
-      console.log("iso von pull geparsed, logintype = " + obj.login.type + ", username = " + obj.login.username);
-      console.log("Got an intersite object from " + obj.startertitle);
+      log.debug("iso von pull geparsed, logintype = " + obj.login.type + ", username = " + obj.login.username);
+      log.debug("Got an intersite object from " + obj.startertitle);
       active = true;
     } else {
 
@@ -94,7 +94,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
     // Only access LocalStorage if 'loginscrom == 0)
     if (typeof(localStorage) !== "undefined") {
       localStoragePresent = true;
-      console.log( "localStorage found");
+      log.debug( "localStorage found");
       if (isScormEnv() == 1) {
         ls = localStorage.getItem("LOCALSCORM");
       }
@@ -112,29 +112,29 @@ COLOR_INPUTCHANGED = "#E0C0C0";
     if (isScormEnv() == 1) {
       if ((ls == "") || (ls == "CLEARED")) {
         // reinitialize SCORM, ls==CLEARED is not an error but happens when same user on same browser reopens the SCORM course
-        console.log( "pipwerks.SCORM start due to ls = " + ls);
+        log.debug( "pipwerks.SCORM start due to ls = " + ls);
       } else {
         // SCORM is already active, inherit state of the pipwerks object
         var sobj = JSON.parse(ls);
         if (sobj != null) {
           scormcontinuation = true;
           pipwerks.scormdata = sobj;
-          console.log( "pipwerks.SCORM continuation");
+          log.debug( "pipwerks.SCORM continuation");
         } else {
-          console.log( "pipwerks.SCORM transfer object it broken");
+          log.debug( "pipwerks.SCORM transfer object it broken");
         }
       }
     }
 
     if (isScormEnv() == 1) {
       // SCORM-pull: Skip LocalStorage and fetch data directly from the database server if possible, otherwise use new user with SCROM-ID and CID as login
-      console.log( "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + "), SCORM-Version: " + expectedScormVersion);
+      log.debug( "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + "), SCORM-Version: " + expectedScormVersion);
 
       if (scormcontinuation == false) {
           var psres = pipwerks.SCORM.init();
-          console.log( "SCORM init = " + psres + " (duplicate SCORM inits return false but do not hurt on SCORM 2004v4)");
+          log.debug( "SCORM init = " + psres + " (duplicate SCORM inits return false but do not hurt on SCORM 2004v4)");
       } else {
-          console.log( "SCORM init refused (continued)");
+          log.debug( "SCORM init refused (continued)");
       }
 
       var idgetstr = "cmi.core.student_id";
@@ -155,8 +155,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         logMessage(CLIENTERROR,"Intersite setup WITHOUT STORAGE AND WITHOUT SCORM from scratch from " + obj.startertitle);
       } else {
         var s_id = psres;
-        console.log( "SCORM learner id = " + psres);
-        console.log("scorm learner id =", psres);
+        log.debug( "SCORM learner id = " + psres);
 
         var inamestr = "cmi.core.student_name";
         if (expectedScormVersion == "2004") {
@@ -165,7 +164,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
         psres = pipwerks.SCORM.get(inamestr);
         var s_name = psres;
-        console.log( "SCORM learner name = " + psres);
+        log.debug( "SCORM learner name = " + psres);
         psres = pipwerks.SCORM.save();
         logMessage(DEBUGINFO, "SCORM save = " + psres);
 
@@ -176,18 +175,18 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         obj = createIntersiteObjFromSCORM(s_login, s_name, "scpw" + s_id);
         obj.active = true;
         active = true;
-        console.log("Intersite setup from SCORM: " + s_login);
+        log.debug("Intersite setup from SCORM: " + s_login);
 
         var timestamp = +new Date();
         var cm = "SCORMLOGIN_PULL: " + "CID:" + signature_CID + ", user:" + obj.login.username + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
         // sendeFeedback( { statistics: cm },true );
 
-        console.log("Emitting pull request for this user!");
+        log.debug("Emitting pull request for this user!");
         userdata.checkUser(true, obj.login.username, check_user_scorm_success, check_user_scorm_error); // function emits in callbacks!
-        console.log("Pull request send");
+        log.debug("Pull request send");
       }
     } else {
-      console.log('no scorm use localstorage if available');
+      log.debug('no scorm use localstorage if available');
       // No SCORM: Use LocalStorage if available
       if (localStoragePresent == false) {
         obj = createobj();
@@ -199,9 +198,9 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         active = true;
         logMessage(CLIENTERROR,"Intersite setup WITHOUT STORAGE from scratch from " + obj.startertitle);
       } else {
-        console.log('localstorage is available');
+        log.debug('localstorage is available');
         var iso = localStorage.getItem(name);
-        console.log("iso aus localStorage geholt");
+        log.debug("iso aus localStorage geholt");
         if (clearuser == true) {
         if (active == true) {
           if (obj.configuration.CF_USAGE == "1") {
@@ -211,12 +210,12 @@ COLOR_INPUTCHANGED = "#E0C0C0";
           }
         }
         iso = null;
-        console.log( "Userreset verlangt");
+        log.debug( "Userreset verlangt");
         }
 
         if (iso == "" || iso === "{}") {
       iso = null; // Falls localStorage von der JavaScript-Konsole aus resettet wurde
-      console.log( "iso = \"\" auf null gesetzt");
+      log.debug( "iso = \"\" auf null gesetzt");
         }
 
         if (iso == null) {
@@ -227,7 +226,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       obj.configuration.CF_USAGE = "1";
       obj.configuration.CF_TESTS = "1";
           active = true;
-      console.log( "Intersite setup with local storage from scratch from " + obj.startertitle);
+      log.debug( "Intersite setup with local storage from scratch from " + obj.startertitle);
       if ((obj.configuration.CF_USAGE == "1") && (clearuser == false)) {
           var timestamp = +new Date();
           var cm = "INTERSITEFIRST: " + "CID:" + signature_CID + ", user:" + obj.login.username + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
@@ -235,8 +234,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       }
         } else {
       obj = JSON.parse(iso);
-      console.log("iso geparsed, logintype = " + obj.login.type + ", username = " + obj.login.username);
-      console.log("Got an intersite object from " + obj.startertitle);
+      log.debug("iso geparsed, logintype = " + obj.login.type + ", username = " + obj.login.username);
+      log.debug("Got an intersite object from " + obj.startertitle);
       active = true;
         }
       }
@@ -245,7 +244,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
     if (active == true) {
       // If user is online, ask for password, login and fetch data from server
-      if ((obj.login.type == 2) || (obj.login.type == 3)) console.log("Type=2,3, serverget missing");
+      if ((obj.login.type == 2) || (obj.login.type == 3)) log.debug("Type=2,3, serverget missing");
     } else {
       alert( $.i18n( 'msg-failed-userdata' ) ); // "Ihre Benutzerdaten konnten nicht vom Server geladen werden, eine automatische eMail an den Administrator wurde verschickt. Sie können den Kurs trotzdem anonym bearbeiten, eingetragene Lösungen werden jedoch nicht gespeichert!"
       var timestamp = +new Date();
@@ -279,7 +278,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
             obj.sites[j].id = SITE_ID;
             obj.sites[j].intest = isTest;
             obj.sites[j].section = SECTION_ID;
-            console.log("Points for site " + sid + " modernized");
+            log.debug("Points for site " + sid + " modernized");
             }
           }
           if (f == false) {
@@ -291,13 +290,13 @@ COLOR_INPUTCHANGED = "#E0C0C0";
             obj.sites[k].id = SITE_ID;
             obj.sites[k].intest = isTest;
             obj.sites[k].section = SECTION_ID;
-            console.log("Points for site " + sid + " ADDED at position " + k);
+            log.debug("Points for site " + sid + " ADDED at position " + k);
           }
        }
     }
 
     UpdateSpecials();
-    console.log( "UpdateSpecials done");
+    log.info( "UpdateSpecials done");
     confHandlerISOLoad()
     if (active) {
         updateCommits(obj);
@@ -310,12 +309,12 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
     if (requestLogout == 1) {
         // we are on the logout page, we can do synced calls here
-        console.log( "Logout requested");
+        log.debug( "Logout requested");
         pushISO(true);
         window.location.href="index.html";
 
     } else {
-        console.log( "No logout requested");
+        log.debug( "No logout requested");
     }
 
 
@@ -330,7 +329,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
    * @return {[type]} [description]
    */
   function createobj() {
-    console.log( "New obj created");
+    log.debug( "New obj created");
     var obj = {
       active: false,
       layout: { fontadd: 0, menuactive: true },
@@ -352,13 +351,13 @@ COLOR_INPUTCHANGED = "#E0C0C0";
    * @return {[type]}        [description]
    */
   function pushISO(synced) {
-    console.log("pushISO start (synced = " + synced + ")");
+    log.debug("pushISO start (synced = " + synced + ")");
     var psres = "";
     var jso = JSON.stringify(obj);
     if (localStoragePresent == true) {
       if (isScormEnv() == 1) {
         localStorage.setItem("LOCALSCORM", JSON.stringify(pipwerks.scormdata));
-        console.log( "Updating SCORM transfer object");
+        log.debug( "Updating SCORM transfer object");
 
         //commented that out because it would only be set when compiling with doscorm12 parameter
         //however scorm should not depend on its own building
@@ -373,11 +372,11 @@ COLOR_INPUTCHANGED = "#E0C0C0";
                 }
             }
             psres = pipwerks.SCORM.set("cmi.core.score.raw", ngot);
-            console.log( "SCORM set points to " + ngot + ": " + psres);
+            log.debug( "SCORM set points to " + ngot + ": " + psres);
             psres = pipwerks.SCORM.set("cmi.core.score.min", 0);
-            console.log( "SCORM set min points to 0: " + psres);
+            log.debug( "SCORM set min points to 0: " + psres);
             psres = pipwerks.SCORM.set("cmi.core.score.max", nmax);
-            console.log( "SCORM set max points to " + nmax + ": " + psres);
+            log.debug( "SCORM set max points to " + nmax + ": " + psres);
 
             var s = "browsed";
             if (ngot > 0) {
@@ -388,7 +387,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
                 }
             }
             psres = pipwerks.SCORM.set("cmi.core.lesson_status", s);
-            console.log( "SCORM set status to " + s + ": " + psres);
+            log.debug( "SCORM set status to " + s + ": " + psres);
 
 
         // } else {
@@ -398,7 +397,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       localStorage.setItem(name, jso);
       if ((obj.login.type == 2) || (obj.login.type == 3)) {
           // Eintrag in Serverdatenbank aktualisieren
-          console.log("Aktualisiere DB-Server (synced = " + synced + ")");
+          log.debug("Aktualisiere DB-Server (synced = " + synced + ")");
           if (synced) {
             userdata.login(false, obj.login.username, obj.login.password, pushlogin_s_success, pushlogin_error); // sync-version of the success callbacks
           } else {
@@ -407,7 +406,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       }
     }
     updateLoginfield();
-    console.log("pushISO finish");
+    log.debug("pushISO finish");
   }
 
     /////////////////////////////////////////////////
@@ -420,7 +419,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
               logMessage(DEBUGINFO, "setIntersiteType with already existing type " + t + " called, doing nothing");
               return;
           }
-          console.log( "Set type=" + t);
+          log.debug( "Set type=" + t);
           obj.login.type = t;
           if (t == 0) {
               // user becomes anonymous
@@ -475,7 +474,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         pid: "html/sectionx2.1.0.html",
         icon: "test01.png"
       };
-      console.log( "New HelpFavorite created");
+      log.debug( "New HelpFavorite created");
       return fav;
     }
 
@@ -547,12 +546,12 @@ COLOR_INPUTCHANGED = "#E0C0C0";
                     sendCorsRequest( feedback_service, content,
                                     //success callback
                                     function( value ) {
-                                            console.log("SendeFeedback success callback: " + JSON.stringify(value));
+                                            log.debug("SendeFeedback success callback: " + JSON.stringify(value));
                                             feedbackLog.push( { success: true, status: value, feedback: content, timestamp: (new Date).getTime() } );
                                     },
                                     //error callback
                                     function( httpRequest, textStatus, errorThrown ) {
-                                            console.log("SendeFeedback error callback: " + textStatus + ", thrown: " + JSON.stringify(errorThrown));
+                                            log.debug("SendeFeedback error callback: " + textStatus + ", thrown: " + JSON.stringify(errorThrown));
                                             feedbackLog.push( { success: false, status: textStatus, feedback: content, timestamp: (new Date).getTime() });
                                     }
                     ,async);
@@ -573,9 +572,9 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      * */
     // Should be merged with function from userdata.js
     function sendCorsRequest( url, data, success, error,async ) {
-            console.log( "intersite.sendCorsRequest called, type = POST, url = " + url + ", async = " + async + ", data = " + JSON.stringify(data));
+            log.debug( "intersite.sendCorsRequest called, type = POST, url = " + url + ", async = " + async + ", data = " + JSON.stringify(data));
             if (forceOffline == 1) {
-                console.log( "Send request omittet, course is in offline mode")
+                log.debug( "Send request omittet, course is in offline mode")
             }
             $.ajax( url, {
                     type: 'POST',
@@ -815,7 +814,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
        // Build login-only fields if they exist on the page
        e = document.getElementById("ONLYLOGINFIELD");
        if (e != null) {
-           console.log( "Einlogfeld gefunden");
+           log.debug( "Einlogfeld gefunden");
 
            if (active == true) {
 
@@ -937,7 +936,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          e.style.color = "#000000";
          e.innerHTML = s;
 
-         console.log( "Userfield gesetzt");
+         log.debug( "Userfield gesetzt");
        }
      }
 
@@ -1055,7 +1054,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      function check_user_success(data) {
          var e = document.getElementById("USER_UNAME");
          if (e == null) {
-             console.log( "USER_UNAME-Feld nicht gefunden");
+             log.debug( "USER_UNAME-Feld nicht gefunden");
              return;
          }
 
@@ -1071,7 +1070,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
            }
 
          } else {
-             console.log( "checkuser success, status=false, data = " + JSON.stringify(data));
+             log.debug( "checkuser success, status=false, data = " + JSON.stringify(data));
              ulreply_set(false, "Kommunikation mit Server (" + feedbackdesc + ") nicht möglich.");
              $('#newUserButton').addClass('disabled');
          }
@@ -1085,7 +1084,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       * @return {[type]}         [description]
       */
      function check_user_error(message, data) {
-       console.log( "checkuser error:" + message + ", data = " + JSON.stringify(data));
+       log.debug( "checkuser error:" + message + ", data = " + JSON.stringify(data));
        ulreply_set(false, $.i18n( 'msg-failed-server', feedbackdesc ) );//"Kommunikation mit Server (" + feedbackdesc + ") nicht möglich."
      }
 
@@ -1163,7 +1162,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          updateLoginfield();
          applyLayout(false);
 
-         console.log( "Neuen Benutzer " + obj.login.username + " angelegt.");
+         log.debug( "Neuen Benutzer " + obj.login.username + " angelegt.");
 
          if (obj.configuration.CF_USAGE == "1") {
                var timestamp = +new Date();
@@ -1172,7 +1171,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          }
 
          if (type == 2) {
-             console.log( "User elevated to type 2");
+             log.debug( "User elevated to type 2");
              userdata.addUser(true, obj.login.username, obj.login.password, undefined, register_success, register_error);
          }
      }
@@ -1184,7 +1183,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       * @return {[type]}      [description]
       */
      function register_success(data) {
-       console.log( "Register success, data = " + JSON.stringify(data));
+       log.debug( "Register success, data = " + JSON.stringify(data));
        var na;
        na = (isScormEnv() == 1) ? (obj.login.sname) : (obj.login.username);
        if (data.status == true) {
@@ -1218,7 +1217,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       * @return {[type]}         [description]
       */
      function register_error(message, data) {
-       console.log( "Register error: " + message + ", data = " + JSON.stringify(data));
+       log.debug( "Register error: " + message + ", data = " + JSON.stringify(data));
        var na;
        na = (isScormEnv() == 1) ? (obj.login.sname) : (obj.login.username);
        alert( $.i18n( 'msg-failed-createuser', na ));// "Benutzer " + na + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
@@ -1229,9 +1228,9 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
      function pushlogin_s_success(data) {
          // hotfix: parallel code in pushlogin_success !!!
-         console.log( "login success, data = " + JSON.stringify(data));
+         log.debug( "login success, data = " + JSON.stringify(data));
          if (data.status == false) { pushlogin_error("Login gescheitert", null); return; }
-         console.log( "Login ok, role = " + data.role);
+         log.debug( "Login ok, role = " + data.role);
 
 
          // store data
@@ -1240,9 +1239,9 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      }
 
      function pushlogin_success(data) {
-         console.log( "login success, data = " + JSON.stringify(data));
+         log.debug( "login success, data = " + JSON.stringify(data));
          if (data.status == false) { pushlogin_error("Login gescheitert", null); return; }
-         console.log( "Login ok, role = " + data.role);
+         log.debug( "Login ok, role = " + data.role);
 
 
          // store data
@@ -1261,26 +1260,26 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      }
 
      function pushlogout_success(data) {
-       console.log("pushlogout success");
+       log.debug("pushlogout success");
      }
 
      function pushlogout_error(message, data) {
-       console.log("pushlogout error: " + message + ", data = " + JSON.stringify(data));
+       log.debug("pushlogout error: " + message + ", data = " + JSON.stringify(data));
      }
 
      function pushwrite_success(data) {
-       console.log("pushwrite success, data = " + JSON.stringify(data));
+       log.debug("pushwrite success, data = " + JSON.stringify(data));
        setIntersiteType(2); // server is now up to date
        userdata.logout(false, pushlogout_success, pushlogout_error);
      }
 
      function pushwrite_error(message, data) {
-       console.log("pushwrite error: " + message + ", data = " + JSON.stringify(data) + ", versuche logout...");
+       log.debug("pushwrite error: " + message + ", data = " + JSON.stringify(data) + ", versuche logout...");
        userdata.logout(false, pushlogout_success, pushlogout_error);
      }
 
      function userlogin_click() {
-       console.log( "userlogin geklickt");
+       log.debug( "userlogin geklickt");
 
        // handle the user that's already logged in:
        // type = 0: anonymous, discard data
@@ -1300,7 +1299,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
        rt = allowedPassword(user_pw);
        if (rt != "") { alert(rt); return; }
 
-       console.log( "Starte Login " + user_login);
+       log.debug( "Starte Login " + user_login);
 
        // Try loggin in to the server.
        userdata.login(true, user_login, user_pw, userlogin_success, userlogin_error);
@@ -1308,9 +1307,9 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      }
 
      function userlogin_success(data) {
-         console.log( "userlogin success");
+         log.debug( "userlogin success");
          if (data.status == false) { userlogin_error("Login gescheitert", null); return; }
-         console.log( "Login ok, username = " + data.username + ", role = " + data.role);
+         log.debug( "Login ok, username = " + data.username + ", role = " + data.role);
          // need to send username
          userdata.getData(true, data.username, loginread_success, loginread_error); // logout is done by the write callbacks
        // continue with callbacks
@@ -1320,7 +1319,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
        if (typeof(data) == "object") {
            if (data.error == "invalid password") {
              alert( $.i18n('msg-repeat-login') ); // "Benutzername oder Passwort sind nicht korrekt, bitte versuchen Sie es nochmal."
-             console.log( "Login wegen fehlerhaftem Benutzernamen/Passwort nicht akzeptiert");
+             log.debug( "Login wegen fehlerhaftem Benutzernamen/Passwort nicht akzeptiert");
              return;
            }
        }
@@ -1329,14 +1328,14 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
      function loginread_success(data) {
        if (data.status == false) {
-           console.log( "login read successm but status error: " + data.error);
+           log.debug( "login read successm but status error: " + data.error);
            return;
        }
 
-       console.log("loginread success");
+       log.debug("loginread success");
        var iso = JSON.parse(data.data);
 
-       console.log( "iso = " + JSON.stringify(iso));
+       log.debug( "iso = " + JSON.stringify(iso));
 
        obj = iso;
        setIntersiteType(2); // are now synchronous
@@ -1354,7 +1353,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
 
      function userreset_click() {
-       console.log( "userreset_click");
+       log.debug( "userreset_click");
        var s = " ";
        if (active == true) {
            if (obj.config != null) {
@@ -1367,7 +1366,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      }
 
      function userdelete_click() {
-       console.log( "userreset_click");
+       log.debug( "userreset_click");
        var s = "Wirklich alle Benutzer- und Kursdaten ";
        if (active == true) {
            if (obj.config != null) {
@@ -1531,7 +1530,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
        * @return {[type]}      [description]
        */
       function compareJSON (obj1, obj2) {
-        console.log('comparing', obj1, ' -- to -- ', obj2);
+        log.debug('comparing', obj1, ' -- to -- ', obj2);
         var ret = {};
         for(var i in obj2) {
           if(!obj1.hasOwnProperty(i) || obj2[i] !== obj1[i]) {
