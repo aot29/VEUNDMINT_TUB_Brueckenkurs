@@ -914,69 +914,71 @@ function check_group(input_from, input_to) {
 
 
          case 6: {
-                FVAR[i].rawinput = e.value;
+                             FVAR[i].rawinput = e.value;
         var b = notationParser_IN(e.value.trim());
                 b = b.replace(/;/gi,","); // Kommata und Semikolon in Musterloesung und Eingabe zulassen (Semikolon in Musterloesung wird von CreateQuestionObj verarztet)
                 var stellen = FVAR[i].option;
-
-        var typl = 0; // 0 = nicht bekannt, 1 = offen, 2 = abgeschlossen, 3 = minus unendlich
+                
+        var typl = 0; // 0 = nicht bekannt, 1 = offen, 2 = abgeschlossen
         var typr = 0;
-        var btypl = 0;
+        var btypl = 0; 
         var btypr = 0;
-
+        var leftok = true;
+        var rightok = true;
+        
             ok = 0;
-
-        if (FVAR[i].solution.indexOf("(") != -1) typl = 1;
-        if (FVAR[i].solution.indexOf("[") != -1) typl = 2;
-        if (FVAR[i].solution.indexOf("(-infty") != -1) typl = 3;
-        if (FVAR[i].solution.indexOf("(infty") != -1) typl = 0;
-        if (FVAR[i].solution.indexOf(")") != -1) typr = 1;
-        if (FVAR[i].solution.indexOf("]") != -1) typr = 2;
-        if (FVAR[i].solution.indexOf("infty)") != -1) typr = 3;
-        if (FVAR[i].solution.indexOf("-infty)") != -1) typr = 0;
-
-        if ((typr == 0) || (typl == 0)) {
-
-          logMessage(CLIENTERROR, "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft");
-
-        } else {
-
+        var matchSol = FVAR[i].solution.match(/([([\]]{1})([^()[\],]*),([^()[\],]*)([)[\]]{1})/);
+        
+        if (!matchSol)
+          {logMessage(CLIENTERROR, "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft");}
+          
+         else {
+          
                   // Alternativen fuer "infty" erkennen
                   b = b.replace(/infinity/g, 'infty');
                   b = b.replace(/unendlich/g, 'infty');
-
-                  // mit dieser Technik wird noch (-1)*infty als infty interpretiert
-                  if (b.indexOf("(") != -1) btypl = 1;
-          if (b.indexOf("[") != -1) btypl = 2;
-          if (b.indexOf("(-infty") != -1) btypl = 3;
-                  if (b.indexOf("(infty") != -1) btypl = 0;
-          if (b.indexOf(")") != -1) btypr = 1;
-          if (b.indexOf("]") != -1) btypr = 2;
-          if (b.indexOf("infty)") != -1) btypr = 3;
-                  if (b.indexOf("-infty)") != -1) btypr = 0;
-
-          if ((typl == btypl) && (typr == btypr)) {
-            var s = b.split(",");
-            var t = FVAR[i].solution.split(",");
-            if (s.length == 2) {
-              ok = 1;
-              s[0] = s[0].substring(1,s[0].length).trim();
-              s[1] = s[1].substring(0,s[1].length-1).trim();
-              t[0] = t[0].substring(1,t[0].length).trim();
-              t[1] = t[1].substring(0,t[1].length-1).trim();
-              if (typl != 3) {
-            var h = rawParse(s[0]);
-            if ((isNaN(h)) | (Math.abs(extround(h,stellen)-extround(rawParse(t[0]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) ok = 0;
-              }
-              if (typr != 3) {
-            var h = rawParse(s[1]);
-            if ((isNaN(h)) | (Math.abs(extround(h,stellen)-extround(rawParse(t[1]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) ok = 0;
-              }
-            }
-          }
+                  var matchUser = b.match(/([([\]]{1})([^()[\],]*),([^()[\],]*)([)[\]]{1})/);
+                  
+                  if (matchUser) 
+                    { 
+                      if ((matchSol[1]=="(" )|| (matchSol[1]=="]")) typl = 1;
+                      if (matchSol[1]=="[") typl = 2;
+                      
+                      if ((matchUser[1]=="(") || (matchUser[1]=="]")) btypl = 1;
+                      if (matchUser[1]=="[") btypl = 2;
+                      
+                      if ((matchSol[4]==")") || (matchSol[4]=="[")) typr = 1;
+                      if (matchSol[4]=="]") typr = 2;
+                      
+                      if ((matchUser[4]==")") || (matchUser[4]=="[")) btypr = 1;
+                      if (matchUser[4]=="]") btypr = 2;
+              
+                      if ((typl == btypl) && (typr == btypr)) {
+                          //console.log ("Check solution");
+                          //console.log (matchSol[2].toString()+ " --- " + matchUser[2].toString());
+                          //console.log (matchSol[3].toString()+ " --- " + matchUser[3].toString());
+                          
+                          if (matchSol[2].trim() != matchUser[2].trim())
+                          { var left_user = rawParse(matchUser[2])
+                            if ((isNaN(left_user)) || (Math.abs(extround(left_user,stellen)-extround(rawParse(matchSol[2]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) 
+                                leftok = false;
+                           }
+                      
+                           if (matchSol[3].trim() != matchUser[3].trim())
+                          { var right_user = rawParse(matchUser[3])
+                            if ((isNaN(right_user)) || (Math.abs(extround(right_user,stellen)-extround(rawParse(matchSol[3]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) 
+                                rightok = false;
+                           }
+                                     
+                        ok = rightok && leftok;
+                        }
+                      
+            
+           }
         }
-
-
+        
+             
+             
                 if (ok == 1) {
           FVAR[i].message = "Dies ist eine richtige L&#246;sung";
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
@@ -1267,19 +1269,26 @@ function GetInteractionID(gid)
 }
 
 // Parameter: Die globale uxid (als string) des Fragefelds
-function GetResult(uxid)
+function GetResult(id)
 {
-  if (intersite.isActive() == true) {
-    if (intersite.getObj().configuration.CF_LOCAL == "1") {
-      var j = 0;
-      for (j = 0; j < intersite.getObj().scores.length; j++) {
-    if (intersite.getObj().scores[j].uxid == uxid) {
-      return intersite.getObj().scores[j].rawinput;
-    }
-      }
-    }
+  console.log('mintscripts_bootstrap: trying to getResult with id', id);
+  result = scores.getSingleScore(id) || null;
+  if (typeof result !== "undefined" && result !== null) {
+    result = result.rawinput
   }
-  return null;
+  console.log('mintscripts_bootstrap: got', result);
+  return result;
+  // if (intersite.isActive() == true) {
+  //   if (intersite.getObj().configuration.CF_LOCAL == "1") {
+  //     var j = 0;
+  //     for (j = 0; j < intersite.getObj().scores.length; j++) {
+  //   if (intersite.getObj().scores[j].uxid == uxid) {
+  //     return intersite.getObj().scores[j].rawinput;
+  //   }
+  //     }
+  //   }
+  // }
+  // return null;
 }
 
 // Fuellt alle vorhandenen Fragefelder der Seite mit den gespeicherten Antworten aus dem LMS,
@@ -1311,7 +1320,7 @@ function InitResults(empty)
     for (i=1; i<FVAR.length; i++) {
       var e = document.getElementById(FVAR[i].id);
       if (FVAR[i].sync == 1) {
-        v = GetResult(FVAR[i].uxid);
+        v = GetResult(FVAR[i].id);
       } else {
     v = null;
       }
@@ -1529,7 +1538,17 @@ function reset_button()
   InitResults(true);
 }
 
+/**
+ * TODO watch out FVAR is a html element with very many fields.... extract the needed ones and
+ * do not set extra variables on it ...
+ * @param  {[type]} i      [description]
+ * @param  {[type]} points [description]
+ * @param  {[type]} state  [description]
+ * @return {[type]}        [description]
+ */
 function notifyPoints(i, points, state) {
+  console.log('notify points called with parameters', i, points, state);
+  console.log('you just changed the answer for', FVAR[i]);
   FVAR[i].points = points;
   if ((isTest == true) && (FVAR[i].sync == 1)) {
     nPoints += points;
@@ -1539,36 +1558,58 @@ function notifyPoints(i, points, state) {
       if ((intersite.getObj().configuration.CF_LOCAL == "1") && (intersite.getObj().configuration.CF_TESTS == "1")) {
           var f = false;
           var j = 0;
-          for (j = 0; j<intersite.getObj().scores.length; j++) {
-              if (intersite.getObj().scores[j].uxid == FVAR[i].uxid) {
-                  f = true;
-                  intersite.getObj().scores[j].maxpoints = FVAR[i].maxpoints;
-                  intersite.getObj().scores[j].points = points;
-                  intersite.getObj().scores[j].siteuxid = SITE_UXID;
-                  intersite.getObj().scores[j].section = FVAR[i].section;
-                  intersite.getObj().scores[j].id = FVAR[i].id;
-                  intersite.getObj().scores[j].uxid = FVAR[i].uxid;
-                  intersite.getObj().scores[j].intest = FVAR[i].intest;
-                  intersite.getObj().scores[j].rawinput = FVAR[i].rawinput;
-                  intersite.getObj().scores[j].value = FVAR[i].value;
-                  intersite.getObj().scores[j].state = state;
-                  logMessage(VERBOSEINFO, "Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
-              }
-          }
-          if (f == false) {
-            var k = intersite.getObj().scores.length;
-            intersite.getObj().scores[k] = { uxid: FVAR[i].uxid };
-            intersite.getObj().scores[k].maxpoints = FVAR[i].maxpoints;
-            intersite.getObj().scores[k].points = points;
-            intersite.getObj().scores[k].siteuxid = SITE_UXID;
-            intersite.getObj().scores[k].section = FVAR[i].section;
-            intersite.getObj().scores[k].id = FVAR[i].id;
-            intersite.getObj().scores[k].intest = FVAR[i].intest;
-            intersite.getObj().scores[k].value = FVAR[i].value;
-            intersite.getObj().scores[k].rawinput = FVAR[i].rawinput;
-            intersite.getObj().scores[k].state = state;
-            logMessage(VERBOSEINFO, "Points for " + FVAR[i].uxid + " ADDED at position " + k);
-          }
+
+          //add missing fields to FVAR[i]
+          var newScoreObj = {};
+          newScoreObj.points = points;
+          newScoreObj.siteuxid = SITE_UXID;
+          newScoreObj.state = state;
+          newScoreObj.maxpoints = FVAR[i].maxpoints;
+          newScoreObj.siteuxid = SITE_UXID;
+          newScoreObj.section = FVAR[i].section;
+          newScoreObj.id = FVAR[i].id;
+          newScoreObj.uxid = FVAR[i].uxid;
+          newScoreObj.intest = FVAR[i].intest;
+          newScoreObj.rawinput = FVAR[i].rawinput;
+          newScoreObj.value = FVAR[i].value;
+
+          scores.setSingleScore(FVAR[i].id, newScoreObj);
+          // also hier wird ein einzelner score geupdated
+          // for (j = 0; j<intersite.getObj().scores.length; j++) {
+          //     if (intersite.getObj().scores[j].uxid == FVAR[i].uxid) {
+          //         f = true;
+          //         intersite.getObj().scores[j].maxpoints = FVAR[i].maxpoints;
+          //         intersite.getObj().scores[j].points = points;
+          //         intersite.getObj().scores[j].siteuxid = SITE_UXID;
+          //         intersite.getObj().scores[j].section = FVAR[i].section;
+          //         intersite.getObj().scores[j].id = FVAR[i].id;
+          //         intersite.getObj().scores[j].uxid = FVAR[i].uxid;
+          //         intersite.getObj().scores[j].intest = FVAR[i].intest;
+          //         intersite.getObj().scores[j].rawinput = FVAR[i].rawinput;
+          //         intersite.getObj().scores[j].value = FVAR[i].value;
+          //         intersite.getObj().scores[j].state = state;
+          //         logMessage(VERBOSEINFO, "Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
+          //     }
+          // }
+          //
+          // und hier hinzugefügt
+          // das f == false kann vermutlich auch weg weil jetzt immer die gleiche funktion updateScore benutzt wird
+          // die einfach setzt
+          // if (f == false) {
+          //   scores.setSingleScore(FVAR[i].id, FVAR[i]);
+            // var k = intersite.getObj().scores.length;
+            // intersite.getObj().scores[k] = { uxid: FVAR[i].uxid };
+            // intersite.getObj().scores[k].maxpoints = FVAR[i].maxpoints;
+            // intersite.getObj().scores[k].points = points;
+            // intersite.getObj().scores[k].siteuxid = SITE_UXID;
+            // intersite.getObj().scores[k].section = FVAR[i].section;
+            // intersite.getObj().scores[k].id = FVAR[i].id;
+            // intersite.getObj().scores[k].intest = FVAR[i].intest;
+            // intersite.getObj().scores[k].value = FVAR[i].value;
+            // intersite.getObj().scores[k].rawinput = FVAR[i].rawinput;
+            // intersite.getObj().scores[k].state = state;
+            // logMessage(VERBOSEINFO, "Points for " + FVAR[i].uxid + " ADDED at position " + k);
+          // }
       }
   }
 
@@ -1615,7 +1656,9 @@ function globalloadHandler(pulluserstr) {
 
     applyLayout(false);
     logMessage(DEBUGINFO, "Layout gesetzt in loadhandler");
+
     InitResults(false);
+
     logMessage(DEBUGINFO, "Results eingetragen");
 
   }
@@ -1642,6 +1685,7 @@ function globalreadyHandler(pulluserstr) {
   }
   // setup intersite objects
   intersite.setup(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von intersite.setup ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
+
   if (intersite.isActive() == true) {
     if (variant != intersite.getObj().login.variant) {
       // abort site setup, switch to needed variant tree
@@ -2324,6 +2368,8 @@ function shareFacebook() {
 }
 
 // changes classes of toc/navi elements to show element state (element behaviour is defined in css)
+// TODO this is currently not working and that is because (one reason) the other data structure of scores.
+// was array now is obj with questionId keys
 function updateLayoutStates() {
   if (intersite.isActive() == true) {
     if (intersite.getObj() != null) {
