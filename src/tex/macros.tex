@@ -1991,6 +1991,12 @@ iExpInputHint{}}}
 
 % Notationsmakros die nicht von der Kursvariante abhaengig sind
 
+\ifttm%
+\def\MTextSF#1{\textrm{#1}}% im HTML zerreisst ein font-Wechsel auf sans-serif die Zeilenhoehe
+\else%
+\def\MTextSF#1{\textsf{#1}}%
+\fi%
+
 \newcommand{\MZahltrennzeichen}[1]{\renewcommand{\MZXYZhltrennzeichen}{#1}}
 \newcommand{\MGrad}{{}^{\circ}} % Fuer Winkel im Gradmass
 
