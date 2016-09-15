@@ -25,9 +25,9 @@ var userdata = (function (serviceURL) {
     var exports = {};
     var url = serviceURL;
 
-    logMessage(DEBUGINFO, "Benutzer dataserver " + data_server_description + " bei " + url);
+    log.debug("Benutzer dataserver " + data_server_description + " bei " + url);
     if (url == "") {
-      logMessage(CLIENTERROR, "Kein dataserver deklariert!");
+      log.error("Kein dataserver deklariert!");
     }
 
     /**
@@ -48,9 +48,9 @@ var userdata = (function (serviceURL) {
                 data = JSON.parse(data);
             } else {
                 if (typeof(data) == "object") {
-                    logMessage(DEBUGINFO, "createSuccessCallback: data is already an object (NOT OK)");
+                    log.debug("createSuccessCallback: data is already an object (NOT OK)");
                 } else {
-                    logMessage(DEBUGINFO, "createSuccessCallback: data is not a valid type (NOT OK)");
+                    log.debug("createSuccessCallback: data is not a valid type (NOT OK)");
                     data = { status: false, error: "invalid data object" };
                 }
             }

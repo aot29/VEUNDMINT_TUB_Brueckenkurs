@@ -137,7 +137,7 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
       ob.solcodea = mathJS.compile("0");
       ob.solcodeb = mathJS.compile("0");
     } catch(e) {
-      logMessage(CLIENTERROR, "Solution of type " + type + " not compileable: " + solution);
+      log.warn( "Solution of type " + type + " not compileable: " + solution);
       ob.solcodea = mathJS.compile("0");
       ob.solcodeb = mathJS.compile("0");
     }
@@ -152,9 +152,9 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
         ob.solcode = mathJS.compile("0");
         // workaround fuer mehrelementige oder Intervallartige Loesungen bei MParsedQuestion oder MSpecialQuestion sowie Textloesungen fuer MQuestion
     }
-      logMessage(VERBOSEINFO, "Successfully compiled " + solution);
+      log.trace("Successfully compiled " + solution);
     } catch(e) {
-    logMessage(CLIENTERROR, "Solution of type " + type + " not compileable: " + solution + ", exception = " + JSON.stringify(e));
+    log.warn( "Solution of type " + type + " not compileable: " + solution + ", exception = " + JSON.stringify(e));
     ob.solcode = mathJS.compile("0");
     }
   }
@@ -217,13 +217,13 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
 		icon.style.color = color;
 
 	} else {
-		console.log( "Can't display status for image " + this.imgid );
+		log.warn( "Can't display status for image " + this.imgid );
 	}
 	// get the input field and change the background color
 	if ( this.type != 2 ) {
 		var field = document.getElementById( this.id );
 		if ( typeof field != 'undefined' && field !== null ) {
-			console.log("color " + color);
+			log.debug("color " + color);
 			field.style.backgroundColor = color;
 		}
 	}
@@ -318,7 +318,7 @@ function toggle_settings() {
 }
 
 function selectColor(c) {
-  logMessage(DEBUGINFO, "Color select: " + c);
+  log.debug("Color select: " + c);
   if (intersite.isActive() == true) {
     if (intersite.getObj() != null) {
       intersite.getObj().configuration.stylecolor = c;
@@ -501,7 +501,7 @@ function handlerBlur(id) {
 // id = Index in Felderarray
 // nocontentcheck == 1 -> Feld soll jetzt nicht kontrolliert werden (Feld gehoert z.B. zu Aufgabengruppe)
 function handlerChange(id, nocontentcheck) {
-  console.log("handlerChange");
+  log.debug("mintscripts_bootstrap: handlerChange");
   // override: checkboxen mit ausschliessenden Boxen werden immer dargestellt
   if (FVAR[id].type == 2) {
     if (FVAR[id].smc.length > 0) nocontentcheck = 0;
@@ -510,11 +510,11 @@ function handlerChange(id, nocontentcheck) {
   var formula = 0; // Stellt der Feldinhalt eine Formel dar?
   if (FVAR[id].type == 4) formula = 1; // Eingabefeld fuer mathematische Ausdruecke? Rohe Zahlen oder Intervalle werden nicht gehintet
   if (formula == 1) {
-	console.log("formula == 1");
+	log.debug("mintscripts_bootstrap: formula == 1");
     var e = document.getElementById(FVAR[id].id);
     FVAR[id].rawinput = e.value;
     FVAR[id].texinput = "";
-	console.log("rawinput " + e.value);
+	log.debug("mintscripts_bootstrap: rawinput " + e.value);
     if (e.value != "") {
       try {
 	    // Eingabe konnte geparset werden
@@ -531,7 +531,7 @@ function handlerChange(id, nocontentcheck) {
 	    FVAR[id].valcode = mathJS.compile("0");
 	    FVAR[id].valvalid = false;
       }
-      console.log("valid input " + FVAR[id].valvalid);
+      log.debug("mintscripts_bootstrap: valid input " + FVAR[id].valvalid);
 
     } else {
       // Eingabe war leer
@@ -559,15 +559,15 @@ function handlerChange(id, nocontentcheck) {
 
   if (formula == 1) {
     var s = FVAR[id].texinput;
-    console.log( "textinput " + s );
+    log.debug("mintscripts_bootstrap: textinput " + s );
     displayInputContent(id,s);
     var u = document.getElementById("UFIDM" + activefieldid);
-    console.log("u " + u);
+    log.debug("mintscripts_bootstrap: u " + u);
     if (u != null) {
       u.innerHTML = FVAR[id].message;
       u.style.background = e.style.background;
     } else {
-      logMessage(VERBOSEINFO, "UFIDM not available"); // passiert z.B. bei geschlossenen Tests staendig da Messagepart dann nicht angezeigt ist
+      log.trace("UFIDM not available"); // passiert z.B. bei geschlossenen Tests staendig da Messagepart dann nicht angezeigt ist
     }
   } else closeInputContent();
 
@@ -649,7 +649,7 @@ function check_group(input_from, input_to) {
                 var v = e.cval;
 
                 if (v == "") {
-                    logMessage(VERBOSEINFO, "cval \"\" mapped to \"0\"");
+                    log.trace("cval \"\" mapped to \"0\"");
                     v = "0";
                 }
 
@@ -657,7 +657,7 @@ function check_group(input_from, input_to) {
                     // dirty: Eigentlich sollte der neue Wert auch durch checkgroup getestet werden, aber das fuehrt auf eine Rekursion...
                     var j;
                     for (j = 0; j < FVAR[i].smc.length; j++) {
-                        logMessage(VERBOSEINFO, "smc exclude = " + FVAR[i].smc[j]);
+                        log.trace("smc exclude = " + FVAR[i].smc[j]);
                         var k;
                         for (k = 0; k < FVAR.length; k++) {
                           if (FVAR[k].uxid == FVAR[i].smc[j]) {
@@ -729,7 +729,7 @@ function check_group(input_from, input_to) {
                          var st = tr.substr(1,tr.length-2);
                          if (st.trim() == "") {
                              valuta = {};
-                             logMessage(VERBOSEINFO, "Benutzer hat leere Menge eingegeben");
+                             log.trace("Benutzer hat leere Menge eingegeben");
                          } else {
                            valuta = st.split(",");
                if (valuta.length==1) {
@@ -918,67 +918,67 @@ function check_group(input_from, input_to) {
         var b = notationParser_IN(e.value.trim());
                 b = b.replace(/;/gi,","); // Kommata und Semikolon in Musterloesung und Eingabe zulassen (Semikolon in Musterloesung wird von CreateQuestionObj verarztet)
                 var stellen = FVAR[i].option;
-                
+
         var typl = 0; // 0 = nicht bekannt, 1 = offen, 2 = abgeschlossen
         var typr = 0;
-        var btypl = 0; 
+        var btypl = 0;
         var btypr = 0;
         var leftok = true;
         var rightok = true;
-        
+
             ok = 0;
         var matchSol = FVAR[i].solution.match(/([([\]]{1})([^()[\],]*),([^()[\],]*)([)[\]]{1})/);
-        
+
         if (!matchSol)
-          {logMessage(CLIENTERROR, "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft");}
-          
+          {log.warn( "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft");}
+
          else {
-          
+
                   // Alternativen fuer "infty" erkennen
                   b = b.replace(/infinity/g, 'infty');
                   b = b.replace(/unendlich/g, 'infty');
                   var matchUser = b.match(/([([\]]{1})([^()[\],]*),([^()[\],]*)([)[\]]{1})/);
-                  
-                  if (matchUser) 
-                    { 
+
+                  if (matchUser)
+                    {
                       if ((matchSol[1]=="(" )|| (matchSol[1]=="]")) typl = 1;
                       if (matchSol[1]=="[") typl = 2;
-                      
+
                       if ((matchUser[1]=="(") || (matchUser[1]=="]")) btypl = 1;
                       if (matchUser[1]=="[") btypl = 2;
-                      
+
                       if ((matchSol[4]==")") || (matchSol[4]=="[")) typr = 1;
                       if (matchSol[4]=="]") typr = 2;
-                      
+
                       if ((matchUser[4]==")") || (matchUser[4]=="[")) btypr = 1;
                       if (matchUser[4]=="]") btypr = 2;
-              
+
                       if ((typl == btypl) && (typr == btypr)) {
                           //console.log ("Check solution");
                           //console.log (matchSol[2].toString()+ " --- " + matchUser[2].toString());
                           //console.log (matchSol[3].toString()+ " --- " + matchUser[3].toString());
-                          
+
                           if (matchSol[2].trim() != matchUser[2].trim())
                           { var left_user = rawParse(matchUser[2])
-                            if ((isNaN(left_user)) || (Math.abs(extround(left_user,stellen)-extround(rawParse(matchSol[2]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) 
+                            if ((isNaN(left_user)) || (Math.abs(extround(left_user,stellen)-extround(rawParse(matchSol[2]),stellen)) > Math.pow(10,(stellen+2)*(-1))))
                                 leftok = false;
                            }
-                      
+
                            if (matchSol[3].trim() != matchUser[3].trim())
                           { var right_user = rawParse(matchUser[3])
-                            if ((isNaN(right_user)) || (Math.abs(extround(right_user,stellen)-extround(rawParse(matchSol[3]),stellen)) > Math.pow(10,(stellen+2)*(-1)))) 
+                            if ((isNaN(right_user)) || (Math.abs(extround(right_user,stellen)-extround(rawParse(matchSol[3]),stellen)) > Math.pow(10,(stellen+2)*(-1))))
                                 rightok = false;
                            }
-                                     
+
                         ok = rightok && leftok;
                         }
-                      
-            
+
+
            }
         }
-        
-             
-             
+
+
+
                 if (ok == 1) {
           FVAR[i].message = "Dies ist eine richtige L&#246;sung";
                   notifyPoints(i, FVAR[i].maxpoints, SOLUTION_TRUE);
@@ -1051,7 +1051,7 @@ function check_group(input_from, input_to) {
             if (s.indexOf("-infty)") != -1) typr = 0;
 
             if ((typr == 0) || (typl == 0)) {
-              logMessage(CLIENTERROR, "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft (Aufgabe Typ 7)");
+              log.warn( "Loesungsintervall " + FVAR[i].solution + " ist fehlerhaft (Aufgabe Typ 7)");
             } else {
 
                   var t = s.split(",");
@@ -1176,7 +1176,7 @@ function check_group(input_from, input_to) {
               }
 
                   default: {
-            logMessage(CLIENTERROR, "STYP " + styp + " nicht bekannt (MSpecialQuestion)");
+            log.warn( "STYP " + styp + " nicht bekannt (MSpecialQuestion)");
             ok = 0;
             break;
           }
@@ -1271,12 +1271,12 @@ function GetInteractionID(gid)
 // Parameter: Die globale uxid (als string) des Fragefelds
 function GetResult(id)
 {
-  console.log('mintscripts_bootstrap: trying to getResult with id', id);
+  log.debug('mintscripts_bootstrap: trying to getResult with id', id);
   result = scores.getSingleScore(id) || null;
   if (typeof result !== "undefined" && result !== null) {
     result = result.rawinput
   }
-  console.log('mintscripts_bootstrap: got', result);
+  log.debug('mintscripts_bootstrap: got', result);
   return result;
   // if (intersite.isActive() == true) {
   //   if (intersite.getObj().configuration.CF_LOCAL == "1") {
@@ -1295,7 +1295,7 @@ function GetResult(id)
 // falls empty==true wird alles mit Leerstrings gefuellt auch wenn API da ist, falls keine API da ist oder Benutzer nicht will gibt es immer Leerstrings
 function InitResults(empty)
 {
-  logMessage(DEBUGINFO, "InitResults (empty=" + empty + ", isTest=" + isTest + ") start");
+  log.debug("InitResults (empty=" + empty + ", isTest=" + isTest + ") start");
   var f = document.getElementById("TESTEVAL");
   if ((empty==true) & (f != null)) f.innerHTML = "Test ist noch nicht abgeschlossen.";
   if (isTest == true) testFinished = false;
@@ -1314,7 +1314,7 @@ function InitResults(empty)
   }
 
   if ((intersite.isActive() == true) && (empty==false)) {
-    logMessage(VERBOSEINFO, "Performing MQuestion-result reload");
+    log.trace("Performing MQuestion-result reload");
     var gid = "";
     var v = "";
     for (i=1; i<FVAR.length; i++) {
@@ -1338,7 +1338,7 @@ function InitResults(empty)
 
               case 2: {
                 // tristate checkbox: indeterminate, true determinate, false determinate (having intersite values "0", "1", "2")
-                logMessage(VERBOSEINFO, "tristate init v = " + v);
+                log.trace("tristate init v = " + v);
                 if ((v == "0") || (v == "")) {
                     // nothing selected yet
                     e.cval = "0";
@@ -1464,66 +1464,66 @@ function finish_button(name) {
           var timestamp = +new Date();
           var cm = "TESTFINISH: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", testname:" + name + ", nPoints:" + nPoints + ", maxPoints:" + nMaxPoints + ", ratio:" + (nPoints/nMaxPoints) + ", nMinPoints:" + nMinPoints;
           intersite.sendeFeedback({statistics: cm }, true);
-          logMessage(VERBOSEINFO, "Testfinish gesendet");
+          log.trace("Testfinish gesendet");
       }
 
       if ((doScorm == 1) && (SITE_UXID == "VBKMT_AbgebeTest")) {
         // MatheV4: Gesamtpunktzahl ueber alle ABSCHLUSSTESTS mitteln und Prozentwert an SCORM uebertragen
 
-    logMessage(VERBOSEINFO, "ENTRYTEST geht an SCORM");
+    log.trace("ENTRYTEST geht an SCORM");
     var mx = 0;
         var mi = 0;
         var av = 0;
         // iterate through questions with test flag outside preparation test
 
         var psres = pipwerks.SCORM.init();
-        logMessage(VERBOSEINFO, "SCORM init = " + psres);
+        log.trace("SCORM init = " + psres);
         psres = pipwerks.SCORM.get("cmi.learner_id");
-        logMessage(VERBOSEINFO, "SCORM learner id = " + psres);
+        log.trace("SCORM learner id = " + psres);
         psres = pipwerks.SCORM.get("cmi.learner_name");
-        logMessage(VERBOSEINFO, "SCORM learner name = " + psres);
+        log.trace("SCORM learner name = " + psres);
         psres = pipwerks.SCORM.set("cmi.interactions.0.id","TEST");
-        logMessage(VERBOSEINFO, "SCORM set interact_id = " + psres);
+        log.trace("SCORM set interact_id = " + psres);
         psres = pipwerks.SCORM.set("cmi.interactions.0.learner_response",nPoints);
-        logMessage(VERBOSEINFO, "SCORM set interact_lr = " + psres); // false im KIT-ILIAS
+        log.trace("SCORM set interact_lr = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.interactions.0.result",true);
-        logMessage(VERBOSEINFO, "SCORM set interact_res = " + psres); // false im KIT-ILIAS
+        log.trace("SCORM set interact_res = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.score.raw",nPoints);
-        logMessage(VERBOSEINFO, "SCORM set rawpoints = " + psres);
+        log.trace("SCORM set rawpoints = " + psres);
         psres = pipwerks.SCORM.set("cmi.score.min",nMinPoints);
-        logMessage(VERBOSEINFO, "SCORM set minpoints = " + psres);
+        log.trace("SCORM set minpoints = " + psres);
         psres = pipwerks.SCORM.set("cmi.score.max",nMaxPoints);
-        logMessage(VERBOSEINFO, "SCORM set maxpoints = " + psres);
+        log.trace("SCORM set maxpoints = " + psres);
         psres = pipwerks.SCORM.set("cmi.score.scaled",(nPoints/nMaxPoints));
-        logMessage(VERBOSEINFO, "SCORM set scaled points = " + psres);
+        log.trace("SCORM set scaled points = " + psres);
 
         psres = pipwerks.SCORM.set("cmi.objectives.0.id","Abschlusstests");
-        logMessage(VERBOSEINFO, "SCORM set objectives = " + psres);
+        log.trace("SCORM set objectives = " + psres);
         psres = pipwerks.SCORM.set("cmi.objectives.0.raw",nPoints);
-        logMessage(VERBOSEINFO, "SCORM set obrawpoints = " + psres); // false im KIT-ILIAS
+        log.trace("SCORM set obrawpoints = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.objectives.0.min",nMinPoints);
-        logMessage(VERBOSEINFO, "SCORM set obminpoints = " + psres); // false im KIT-ILIAS
+        log.trace("SCORM set obminpoints = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.objectives.0.max",nMaxPoints);
-        logMessage(VERBOSEINFO, "SCORM set obmaxpoints = " + psres); // false im KIT-ILIAS
+        log.trace("SCORM set obmaxpoints = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.objectives.0.scaled",(nPoints/nMaxPoints));
-        logMessage(VERBOSEINFO, "SCORM set obscaled = " + psres); // false im KIT-ILIAS
+        log.trace("SCORM set obscaled = " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.objectives.0.completion_status", (nPoints>=nMinPoints) ? ("completed") : ("incomplete") );
-        logMessage(VERBOSEINFO, "SCORM set obcompletion " + psres);
+        log.trace("SCORM set obcompletion " + psres);
 
         psres = pipwerks.SCORM.set("cmi.scaled_passed_score", nMinPoints/nMaxPoints);
-        logMessage(VERBOSEINFO, "SCORM set obscossc " + psres); // false im KIT-ILIAS
+        log.trace("SCORM set obscossc " + psres); // false im KIT-ILIAS
         psres = pipwerks.SCORM.set("cmi.score", nPoints/nMaxPoints );
-        logMessage(VERBOSEINFO, "SCORM set obscore " + psres); // false im KIT-ILIAS
+        log.trace("SCORM set obscore " + psres); // false im KIT-ILIAS
 
 
         psres = pipwerks.SCORM.set("cmi.progress_measure",(nPoints/nMaxPoints));
-        logMessage(VERBOSEINFO, "SCORM set progress measure = " + psres);
+        log.trace("SCORM set progress measure = " + psres);
         psres = pipwerks.SCORM.set("cmi.success_status", (nPoints>=nMinPoints) ? ("passed") : ("failed") );
-        logMessage(VERBOSEINFO, "SCORM set obcomp = " + psres);
+        log.trace("SCORM set obcomp = " + psres);
         psres = pipwerks.SCORM.set("cmi.completion_status", (nPoints>=nMinPoints) ? ("completed") : ("incomplete") );
-        logMessage(VERBOSEINFO, "SCORM set completion " + psres);
+        log.trace("SCORM set completion " + psres);
         psres = pipwerks.SCORM.save();
-        logMessage(DEBUGINFO, "SCORM save = " + psres);
+        log.debug("SCORM save = " + psres);
         if (psres==true) f.innerHTML += $.i18n("msg-transfered-result")+"\n"; // Die Punktzahl wurde zur statistischen Auswertung übertragen
 
       }
@@ -1534,7 +1534,7 @@ function finish_button(name) {
 
 function reset_button()
 {
-  logMessage(DEBUGINFO, "reset_button start");
+  log.debug("reset_button start");
   InitResults(true);
 }
 
@@ -1547,8 +1547,8 @@ function reset_button()
  * @return {[type]}        [description]
  */
 function notifyPoints(i, points, state) {
-  console.log('notify points called with parameters', i, points, state);
-  console.log('you just changed the answer for', FVAR[i]);
+  log.debug('mintscripts_bootstrap: notify points called with parameters', i, points, state);
+  log.debug('mintscripts_bootstrap: you just changed the answer for', FVAR[i]);
   FVAR[i].points = points;
   if ((isTest == true) && (FVAR[i].sync == 1)) {
     nPoints += points;
@@ -1588,7 +1588,7 @@ function notifyPoints(i, points, state) {
           //         intersite.getObj().scores[j].rawinput = FVAR[i].rawinput;
           //         intersite.getObj().scores[j].value = FVAR[i].value;
           //         intersite.getObj().scores[j].state = state;
-          //         logMessage(VERBOSEINFO, "Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
+          //         log.trace("Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
           //     }
           // }
           //
@@ -1608,7 +1608,7 @@ function notifyPoints(i, points, state) {
             // intersite.getObj().scores[k].value = FVAR[i].value;
             // intersite.getObj().scores[k].rawinput = FVAR[i].rawinput;
             // intersite.getObj().scores[k].state = state;
-            // logMessage(VERBOSEINFO, "Points for " + FVAR[i].uxid + " ADDED at position " + k);
+            // log.trace("Points for " + FVAR[i].uxid + " ADDED at position " + k);
           // }
       }
   }
@@ -1631,21 +1631,21 @@ function globalunloadHandler() {
   // VERALTET
   if (pipwerks.scormdata.connection.isActive == true)
   {
-    logMessage(VERBOSEINFO, "pipwerks.scormdata.connection.isActive == true in globalunloadHandler");
+    log.trace("pipwerks.scormdata.connection.isActive == true in globalunloadHandler");
     pipwerks.SCORM.save();
 
   } else {
-    logMessage(VERBOSEINFO, "pipwerks.scormdata.connection.isActive == false in globalunloadHandler");
+    log.trace("pipwerks.scormdata.connection.isActive == false in globalunloadHandler");
   }
 }
 
 function globalloadHandler(pulluserstr) {
   // Wird aufgerufen, wenn die Seite komplett geladen ist (NACH globalready) ODER durch pull-emit-callback wenn intersite.getObj() aktualisiert werden muss
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
-  logMessage(DEBUGINFO, "globalLoadHandler start, pulluser = " + ((pulluserstr == "") ? ("\"\"") : ("userdata")));
+  log.debug("globalLoadHandler start, pulluser = " + ((pulluserstr == "") ? ("\"\"") : ("userdata")));
   if (pulluserstr != "") {
     intersite.setup(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von intersite.setup ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
-    logMessage(DEBUGINFO, "intersite.setup in loadhandler fertig");
+    log.debug("intersite.setup in loadhandler fertig");
 
     if (intersite.isActive() == true) {
       if (variant != intersite.getObj().login.variant) {
@@ -1655,11 +1655,11 @@ function globalloadHandler(pulluserstr) {
     }
 
     applyLayout(false);
-    logMessage(DEBUGINFO, "Layout gesetzt in loadhandler");
+    log.debug("Layout gesetzt in loadhandler");
 
     InitResults(false);
 
-    logMessage(DEBUGINFO, "Results eingetragen");
+    log.debug("Results eingetragen");
 
   }
 
@@ -1668,19 +1668,19 @@ function globalloadHandler(pulluserstr) {
       timerVar = window.setInterval(globalTimerHandler, timerMillis);
   }
 
-  logMessage(DEBUGINFO, "globalLoadHandler finish");
+  log.debug("globalLoadHandler finish");
 }
 
 function globalreadyHandler(pulluserstr) {
   // Wird aufgerufen, wenn die Seite komplett geladen und alle Bilder/iframes gefuellt sind (VOR globalload, NACH direkt-JS-Befehlen auf html-Seite im body-Bereich oder eingebundenen js-Dateien) ODER durch pull-emit-callback wenn intersite.getObj() aktualisiert werden muss
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
-  logMessage(DEBUGINFO, "globalreadyHandler start");
+  log.debug("globalreadyHandler start");
   // emit JSON companion load request if present, use preset sitejson otherwise
   // this should specify a success handler, or catch failures
   if (sitejson_load) {
       $.getJSON(docName + ".json", function(data) {
           sitejson = data;
-          logMessage(DEBUGINFO, "companion object retrieved");
+          log.debug("companion object retrieved");
         });
   }
   // setup intersite objects
@@ -1694,17 +1694,17 @@ function globalreadyHandler(pulluserstr) {
   }
 
   // setup intersite objects
-  logMessage(DEBUGINFO, "intersite.setup fertig");
+  log.debug("intersite.setup fertig");
   applyLayout(true);
-  logMessage(DEBUGINFO, "Layout gesetzt");
+  log.debug("Layout gesetzt");
   InitResults(false);
-  logMessage(DEBUGINFO, "Results eingetragen");
-  logMessage(DEBUGINFO, "globalreadyHandler finish");
+  log.debug("Results eingetragen");
+  log.debug("globalreadyHandler finish");
 }
 
 // VERALTET
 function fillUserField() {
-  logMessage(DEBUGINFO, "fillUserField start");
+  log.debug("fillUserField start");
   if (isTest == true) {
     var e = document.getElementById("UFID");
     if (e != null) {
@@ -1809,7 +1809,7 @@ function closeInputContent() {
     }
     if (activefieldid != "") {
         if (activetooltip == null) {
-      logMessage(DEBUGINFO, "activefieldid ohne tooltip!");
+      log.debug("activefieldid ohne tooltip!");
     } else {
       var api = activetooltip.qtip("api");
       api.toggle(false);
@@ -1823,21 +1823,21 @@ function closeInputContent() {
 function displayInputContent(id,latex) {
     latex = "\\displaystyle\\large " + latex;
     activefieldid = FVAR[id].id;
-    console.log( "displayInputContent " + latex + " in " + activefieldid);
+    log.debug( "mintscripts_bootstrap: displayInputContent " + latex + " in " + activefieldid);
 
     if (activetooltip != null) {
     	// Tooltip ist schon da
-        console.log("activetooltip != null");
+        log.debug("mintscripts_bootstrap: activetooltip != null");
     } else {
       // Neuer Tooltip wird erzeugt und an das input-Element geklebt, bei Tests keine Kommentare dazu abhaengig vom Status des Tests
       var content = "";
-      console.log("activetooltip == null");
+      log.debug("mintscripts_bootstrap: activetooltip == null");
       if ((isTest == false) | (testFinished == true)) {
 	    content = '<div id="NINPUTFIELD' + activefieldid + '" data-bind="evalmathjax: ifobs"></div><br /><div name="NUSERMESSAGE" id="UFIDM' + activefieldid + '" style="line-height:110%; color:#000000; border: thin solid rgb(0,0,0); padding: 8px; background-color:#CFDFDF; width:250px; font-size:11pt; font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Verdana, Arial, Helvetica , sans-serif;"></div>';
       } else {
 	    content = '<div id="NINPUTFIELD' + activefieldid + '" data-bind="evalmathjax: ifobs"></div><br />' + $.i18n("ui-missing-tooltip");
       }
-      console.log(content);
+      log.debug( "mintscripts_bootstrap: ", content);
       activetooltip = $(" input[id=\"" + activefieldid + "\"] ").qtip({
 	    id: 'activetooltip',
 	    show: {event: 'customShow' },
@@ -1855,7 +1855,7 @@ function displayInputContent(id,latex) {
 	            at: 'bottom left' // at the bottom right of...
 	    	}
       });
-      console.log(activetooltip);
+      log.debug( "mintscripts_bootstrap: ", activetooltip);
 
       var api = activetooltip.qtip("api");
       api.set('content.title',"Formeleingabe");
@@ -1867,9 +1867,9 @@ function displayInputContent(id,latex) {
     }
 
     viewmodel.ifobs(latex);
-    console.log("activefieldid " + activefieldid);
+    log.debug("mintscripts_bootstrap: activefieldid " + activefieldid);
     var element = document.getElementById("NINPUTFIELD" + activefieldid);
-    console.log(element);
+    log.debug("mintscripts_bootstrap:", element);
     if (element.childNodes[0]) {
         // Element ist schon da und wir nur upgedated
         // var sy = getScrollY();
@@ -1879,7 +1879,7 @@ function displayInputContent(id,latex) {
     } else {
         // Element wird im qtip komplett neu angelegt und getypesettet
         // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
-        console.log("create element");
+        log.debug("mintscripts_bootstrap: create element");
 
         var s = document.createElement('script');
         s.type = "math/tex; mode=display";
@@ -1926,7 +1926,7 @@ function debork(str, l) {
 // ----------------------------------------------- Variant management ---------------------------
 
 function selectVariant(v) {
-  logMessage(DEBUGINFO, "Variant selected: " + v);
+  log.debug("Variant selected: " + v);
 
   var ex1 = outputWebdir;
   var raw = outputWebdir;
@@ -1957,13 +1957,13 @@ function selectVariant(v) {
 
 // rid = eindeutige ID des Roulettes, id = Nummer der Einzelaufgabe, maxid = Anzahl Aufgaben (letzte hat id maxid-1)
 function rouletteClick(rid, id, maxid) {
-    logMessage(DEBUGINFO, "rouletteClick: rid=" + rid + ", id=" + id + ", maxid=" + maxid);
+    log.debug("rouletteClick: rid=" + rid + ", id=" + id + ", maxid=" + maxid);
     // select a random div
     var d = Math.floor((Math.random() * maxid));
-    logMessage(VERBOSEINFO, "Selected d=" + d);
+    log.trace("Selected d=" + d);
     // get div for the question as a string from the roulette hash's array
     s = sitejson["_RLV_" + rid][d];
-    logMessage(VERBOSEINFO, "Retrieved divstring");
+    log.trace("Retrieved divstring");
     // set container to hidden, write new HTML inset content, enable container and display it
     $("#" + "ROULETTECONTAINER_" + rid).css("visibility", "hidden").html(s).prop('disabled', false).css("visibility", "visible");
     // call MathJax to typeset new content
@@ -1977,11 +1977,11 @@ function rouletteClick(rid, id, maxid) {
 
 function rid_success(data) {
     var s = JSON.stringify(data);
-    logMessage(VERBOSEINFO,"rid_success: " + s);
+    log.trace("rid_success: " + s);
 }
 
 function rid_error(message, data) {
-    logMessage(VERBOSEINFO,"rid_error: " + message + ", data = " + JSON.stringify(data));
+    log.trace("rid_error: " + message + ", data = " + JSON.stringify(data));
 }
 // Liefert den HTML-Text einer zufaellig ausgewaehlten Aufgabe aus der Collection zur gegebenen id vom exerciseserver
 function rouletteExercise(rid) {
@@ -2007,7 +2007,7 @@ function styleColors(c) {
         }
       }
         } else {
-      logMessage(DEBUGINFO, "No stylecolor found in configuration");
+      log.debug("No stylecolor found in configuration");
         }
       }
     }
