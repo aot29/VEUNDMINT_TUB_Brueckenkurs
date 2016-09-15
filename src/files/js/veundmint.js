@@ -61,7 +61,7 @@ $(window).on('beforeunload', function(){
     apiAuthUrl: 'http://localhost:8000/api-token-auth/',
 		apiProfileUrl: 'http://localhost:8000/whoami/',
 		apiWebsiteActionUrl: 'http://localhost:8000/server-action/',
-		initClass: 'js-myplugin',
+		defaultLogLevel: 'error',
 		callbackBefore: function () {},
 		callbackAfter: function () {}
 	};
@@ -157,6 +157,9 @@ $(window).on('beforeunload', function(){
 		settings = extend( defaults, options || {} );
 
 
+		log.setDefaultLevel(settings.defaultLogLevel);
+
+
     $('[data-toggle="offcanvas"]').click(function () {
       $('.row-offcanvas').toggleClass('active')
     });
@@ -216,14 +219,14 @@ $(window).on('beforeunload', function(){
     // Call it, since we have confirmed it is callable​
         callback(auth_result);
     }
-    console.log('veundmint.authenticate called with:', user_credentials);
+    log.debug('veundmint.authenticate called with:', user_credentials);
 
     return auth_result;
   }
 
 	veundmint.getMyUserProfile = function() {
 		veundmint.authAjaxGET(settings.apiProfileUrl, {}, function (data) {
-			console.log(data);
+			log.debug('veundmint: getMyUserProfile', data);
 		});
 	}
 
@@ -240,7 +243,7 @@ $(window).on('beforeunload', function(){
       callback(logout_result);
     }
 
-    console.log('veundmint.logout called');
+    log.debug('veundmint.logout called');
   }
 
   /**
@@ -250,10 +253,10 @@ $(window).on('beforeunload', function(){
    */
   veundmint.sendWebsiteAction = function (object) {
 
-    console.log('veundmint.sendWebsiteAction called with object', object);
+    log.debug('veundmint.sendWebsiteAction called with object', object);
 
 		if (typeof settings.apiWebsiteActionUrl === "undefined") {
-			console.log('apiWebsiteActionUrl is not set, will not call sendWebsiteAction()');
+			log.debug('apiWebsiteActionUrl is not set, will not call sendWebsiteAction()');
 			return null;
 		}
 
@@ -262,7 +265,7 @@ $(window).on('beforeunload', function(){
 			url: settings.apiWebsiteActionUrl,
 			data: object,
 			success: function (data) {
-				console.log(data);
+				log.debug(data);
 			}
 		});
   }
@@ -281,7 +284,7 @@ $(window).on('beforeunload', function(){
 				return JSON.parse(lsUserCred);
 			}
 		}
-		console.log('can only call getUserCredentials if user is authenticated')
+		log.debug('can only call getUserCredentials if user is authenticated')
 		return null;
 	}
 
@@ -289,7 +292,7 @@ $(window).on('beforeunload', function(){
 		var userCredentials = veundmint.getUserCredentials();
 		if (userCredentials === null || typeof userCredentials === "undefined"
 			|| typeof userCredentials.token === "undefined" ) {
-				console.log('can only make authAjaxGET request if userCredentials are set');
+				log.debug('can only make authAjaxGET request if userCredentials are set');
 				return;
 		}
 		$.ajax({

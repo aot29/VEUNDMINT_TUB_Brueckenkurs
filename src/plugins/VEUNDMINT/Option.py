@@ -105,9 +105,6 @@ class Option(object):
 			# Testing. Use test tree
 			self.module = "tree_test.tex"
 
-		# macrofile to use. It's probably not a good idea to have 2 separate macro files, as they change often
-		self.macrofilename = ( lambda locale: "mintmod_engl" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "mintmod" ) ( self.locale)
-
 		# Achtung, MathJax hat 33988 Dateien. Wenn die Option lokales MathJax gesetzt ist, kann das zu Problemen mit der Inodes-Quote fuehren!
 		self.localjax = 0		# =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
 
@@ -130,8 +127,13 @@ class Option(object):
 		# Build either the DE or the EN version.
 
 		# VE&MINT source/target parameters
-		self.macrofile = self.macrofilename + ".tex"
-		self.stdencoding = "iso-8859-1"						# Presumed encoding of tex files and templates, utf8 well be accepted too but with a warning
+		#self.macrofilename = ( lambda locale: "mintmod_engl" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "mintmod" ) ( self.locale)
+		# localization file to use
+		self.i18nfile = ( lambda locale: "english.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "deutsch.tex" ) ( self.locale)
+		# macrofile to use.
+		self.macrofilename = "macros"
+		self.macrofile = "macros.tex"
+		self.stdencoding = "utf-8"						# Presumed encoding of tex files and templates, utf8 well be accepted too but with a warning
 		self.outputencoding = "utf-8"						# encoding of generated html files
 		self.output = "tu9onlinekurstest"					# Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
 		self.source = "module_veundmint"					# Quellverzeichnis, platziert in Ebene ueber tex2x.py

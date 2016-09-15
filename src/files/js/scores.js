@@ -13,7 +13,7 @@
     }
 }(this, function (exports) {
 
-    console.log('scores.js loaded');
+    log.info('scores.js loaded');
 
     const SCORES_LS_KEY = 'veundmint_scores';
 
@@ -66,7 +66,7 @@
      * @return Either the score object or undefined if the key was not found
      */
     function getSingleScore(questionId) {
-      console.log('scores: getting single score for question id', questionId, ' on scoresObj', scoresObj);
+      log.debug('scores: getting single score for question id', questionId, ' on scoresObj', scoresObj);
       return scoresObj[questionId];
     }
 
@@ -90,7 +90,7 @@
       }
      */
     function setSingleScore(questionId, singleScoreObj) {
-      console.log('updateScore called for question', questionId, 'with Score Obj', singleScoreObj);
+      log.debug('scores: updateScore called for question', questionId, 'with single Score Obj', singleScoreObj);
       scoresObj[questionId] = singleScoreObj;
 
       /**
