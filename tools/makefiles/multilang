@@ -7,7 +7,7 @@
 # 2. Some form of automation is necessary to setup the continuous integration server
 #
 # Caveats:
-# * Remember to always use tabs instead of spaces! 
+# * Remember to always use tabs instead of spaces!
 # Specially when doing copy+paste, tabs will sometimes be replaced by spaces.
 # Make will then throw a "missing separator" error.
 # * This script should work on any Unix system, but the result should be cross-plattform,
@@ -24,7 +24,7 @@
 # Path to source dir, relative to <VEUNDMINT checkout path>
 BASEDIR = src
 
-# Name of the output dir to be created 
+# Name of the output dir to be created
 OUTPUT = tu9onlinekurstest
 
 # Language the index.html will point to by default,
@@ -32,7 +32,7 @@ OUTPUT = tu9onlinekurstest
 DEFAULT_LANG = de
 
 # Declare as phony so targets will run even if there's a file by that name
-.PHONY: cleanupBefore convert merge fixlinks fixredirects cleanupAfter all 
+.PHONY: cleanupBefore convert merge fixlinks fixredirects cleanupAfter all
 
 
 #
@@ -54,7 +54,7 @@ allTUB: |cleanupBefore convert merge fixRedirects fix fixSpecialPages startGulp 
 #
 define convert_cmd
 	# prefixed with "-" to ignore converter errors
-	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=$(CURRENT_LANG) output=$(OUTPUT)_$(CURRENT_LANG) ${OVERRIDE}	
+	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=$(CURRENT_LANG) output=$(OUTPUT)_$(CURRENT_LANG) ${OVERRIDE}
 endef
 
 
@@ -84,7 +84,7 @@ convert:
 	$(convert_cmd)
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
-	
+
 
 #
 # set CURRENT_LANG at runtime.
@@ -122,7 +122,7 @@ merge:
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
 	rm -Rf $(OUTPUT)_en
-	
+
 	$(deploy_img_cmd)
 
 
@@ -138,7 +138,7 @@ endef
 
 #
 # Copy redirect pages to each html/language directory
-# Moved to its own target, to make sure it is done 
+# Moved to its own target, to make sure it is done
 # Before serach and replace starts in "fix" target.
 #
 fixRedirects:
@@ -170,18 +170,18 @@ define fixSpecialPages_cmd
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSEARCH;; //-->' -l | xargs -I '{}' cp '{}' search.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCFAVORITES;; //-->' -l | xargs -I '{}' cp '{}' favorites.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKMT_START;; //-->' -l | xargs -I '{}' cp '{}' test.html
-	
+
 	#now correct the links
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CONFIG|href=\"\.\./$(CURRENT_LANG)/signup.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CDATA|href=\"\.\./$(CURRENT_LANG)/data.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGIN|href=\"\.\./$(CURRENT_LANG)/login.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGOUT|href=\"\.\./$(CURRENT_LANG)/logout.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_SEARCHSITE|href=\"\.\./$(CURRENT_LANG)/search.html|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_FAVORITESSITE|href=\"\.\./$(CURRENT_LANG)/favorites.html|g" {} \;	    
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_TEST01START|href=\"\.\./$(CURRENT_LANG)/test.html|g" {} \;	    
-	
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_FAVORITESSITE|href=\"\.\./$(CURRENT_LANG)/favorites.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_TEST01START|href=\"\.\./$(CURRENT_LANG)/test.html|g" {} \;
+
 	# fix links in search page
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name 'search.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;	    
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name 'search.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
 endef
 
 
@@ -230,7 +230,7 @@ define fixLinks_cmd
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|url=html/|url=|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|window\.location\.href = \"html/|window\.location\.href = \"|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
-		
+
 endef
 
 
@@ -285,6 +285,10 @@ fix: fixRedirects
 	# replace index.html with src/templates_xslt/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_xslt/html5_choose_language_simple.html $(OUTPUT)/index.html
 
+useScormIndex:
+	# replace public/index.html with src/templates_xslt/html5_redirect_moodle
+	cp src/templates_xslt/html5_redirect_moodle.html public/index.html
+
 
 #
 # Cleanup before starting a new build
@@ -308,8 +312,6 @@ cleanupAfter:
 # echo instruction how to proceed otherwise
 #
 startGulp:
-	# Wenn die config.json Datei einen Systaxfehler hat, wird hier die Fehlermeldung unten auch ausgegeben, was in diesem Fall nicht stimmt. 
+	# Wenn die config.json Datei einen Systaxfehler hat, wird hier die Fehlermeldung unten auch ausgegeben, was in diesem Fall nicht stimmt.
 	# Vielleicht ist es möglich, die config.json Datei vorab zu überprüfen?
 	@type npm >/dev/null 2>&1 && npm run gulp ||echo "npm does not exist. You need to install npm (node package manager) first. Then install project dependencies via 'npm install' and build the online version with 'gulp' or run this make script again after you installed npm and dependencies"
-
-
