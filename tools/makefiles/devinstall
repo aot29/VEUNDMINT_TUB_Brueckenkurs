@@ -16,6 +16,16 @@
 # Declare as phony so targets will run even if there's a file by that name
 .PHONY: all clone venv dependencies
 
+# NVM
+# curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | bash
+# export NVM_DIR="bla/.nvm"
+# [ -s "SNVM_DIR/nvm.sh" ] && . "SNVM_DIR/nvm.sh"
+# nvm install 6.3.1
+# nvm use default
+# rm -Rf node_modules
+# npm install
+
+
 
 all: | venv dependencies
 	@echo Done.
