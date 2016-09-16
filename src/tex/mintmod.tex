@@ -1966,19 +1966,18 @@ iExpInputHint{}}}
 
 \ifttm
 \newcommand{\MInTestFooter}{%
-\special{html:<button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('}\MTestName\special{html:');" class="testsbutton">\iTestSubmit{}</button>}%
-\begin{html}
+\special{html:<button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('}\MTestName\special{html:');" class="testsbutton">}\iTestSubmit{}\special{html:</button>}%
+\special{html:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();" class="testsbutton">\iTestReset{}</button>
+<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();" class="testsbutton">}\iTestReset{}\special{html:</button>
 <br />
 <br />
 <div class="xreply">
-<p name="Name_TESTEVAL" id="TESTEVAL">
+<p name="Name_TESTEVAL" id="TESTEVAL">}
 \iTestEval{}
-<br />
+\special{html:<br />
 </p>
-</div>
-\end{html}
+</div>}
 }
 \else
 \newcommand{\MInTestFooter}{%

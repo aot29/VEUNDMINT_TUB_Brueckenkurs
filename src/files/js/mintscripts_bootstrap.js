@@ -603,7 +603,7 @@ function rawParse(eingabe) {
 
 // Uebernimmt die Inhalte der DOM-Elemente von Question-Feldern und faerbt sie entsprechend ein (auch Checkboxen!)
 function check_group(input_from, input_to) {
-
+    log.trace('mintscripts_bootstrap: check_group called', input_from, input_to);
     var d = document;
     var i;
     var s;
@@ -799,6 +799,7 @@ function check_group(input_from, input_to) {
         if (FVAR[i].valvalid == false) {
           ok = false;
           message = $.i18n("msg-unanswered-question"); // "Frage noch nicht beantwortet"
+          log.debug('mintscripts_bootstrap: message set to', message);
         } else {
 
         var c1,c2;
@@ -1269,26 +1270,26 @@ function GetInteractionID(gid)
 }
 
 // Parameter: Die globale uxid (als string) des Fragefelds
-function GetResult(id)
+function GetResult(uxid)
 {
-  log.debug('mintscripts_bootstrap: trying to getResult with id', id);
-  result = scores.getSingleScore(id) || null;
-  if (typeof result !== "undefined" && result !== null) {
-    result = result.rawinput
-  }
-  log.debug('mintscripts_bootstrap: got', result);
-  return result;
-  // if (intersite.isActive() == true) {
-  //   if (intersite.getObj().configuration.CF_LOCAL == "1") {
-  //     var j = 0;
-  //     for (j = 0; j < intersite.getObj().scores.length; j++) {
-  //   if (intersite.getObj().scores[j].uxid == uxid) {
-  //     return intersite.getObj().scores[j].rawinput;
-  //   }
-  //     }
-  //   }
+  // log.debug('mintscripts_bootstrap: trying to getResult with id', id);
+  // result = scores.getSingleScore(id) || null;
+  // if (typeof result !== "undefined" && result !== null) {
+  //   result = result.rawinput
   // }
-  // return null;
+  // log.debug('mintscripts_bootstrap: got', result);
+  // return result;
+  if (intersite.isActive() == true) {
+    if (intersite.getObj().configuration.CF_LOCAL == "1") {
+      var j = 0;
+      for (j = 0; j < intersite.getObj().scores.length; j++) {
+    if (intersite.getObj().scores[j].uxid == uxid) {
+      return intersite.getObj().scores[j].rawinput;
+    }
+      }
+    }
+  }
+  return null;
 }
 
 // Fuellt alle vorhandenen Fragefelder der Seite mit den gespeicherten Antworten aus dem LMS,
@@ -1547,8 +1548,8 @@ function reset_button()
  * @return {[type]}        [description]
  */
 function notifyPoints(i, points, state) {
-  log.debug('mintscripts_bootstrap: notify points called with parameters', i, points, state);
-  log.debug('mintscripts_bootstrap: you just changed the answer for', FVAR[i]);
+  log.trace('mintscripts_bootstrap: notify points called with parameters', i, points, state);
+  log.trace('mintscripts_bootstrap: you just changed the answer for', FVAR[i]);
   FVAR[i].points = points;
   if ((isTest == true) && (FVAR[i].sync == 1)) {
     nPoints += points;
@@ -1560,56 +1561,56 @@ function notifyPoints(i, points, state) {
           var j = 0;
 
           //add missing fields to FVAR[i]
-          var newScoreObj = {};
-          newScoreObj.points = points;
-          newScoreObj.siteuxid = SITE_UXID;
-          newScoreObj.state = state;
-          newScoreObj.maxpoints = FVAR[i].maxpoints;
-          newScoreObj.siteuxid = SITE_UXID;
-          newScoreObj.section = FVAR[i].section;
-          newScoreObj.id = FVAR[i].id;
-          newScoreObj.uxid = FVAR[i].uxid;
-          newScoreObj.intest = FVAR[i].intest;
-          newScoreObj.rawinput = FVAR[i].rawinput;
-          newScoreObj.value = FVAR[i].value;
-
-          scores.setSingleScore(FVAR[i].id, newScoreObj);
-          // also hier wird ein einzelner score geupdated
-          // for (j = 0; j<intersite.getObj().scores.length; j++) {
-          //     if (intersite.getObj().scores[j].uxid == FVAR[i].uxid) {
-          //         f = true;
-          //         intersite.getObj().scores[j].maxpoints = FVAR[i].maxpoints;
-          //         intersite.getObj().scores[j].points = points;
-          //         intersite.getObj().scores[j].siteuxid = SITE_UXID;
-          //         intersite.getObj().scores[j].section = FVAR[i].section;
-          //         intersite.getObj().scores[j].id = FVAR[i].id;
-          //         intersite.getObj().scores[j].uxid = FVAR[i].uxid;
-          //         intersite.getObj().scores[j].intest = FVAR[i].intest;
-          //         intersite.getObj().scores[j].rawinput = FVAR[i].rawinput;
-          //         intersite.getObj().scores[j].value = FVAR[i].value;
-          //         intersite.getObj().scores[j].state = state;
-          //         log.trace("Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
-          //     }
-          // }
+          // var newScoreObj = {};
+          // newScoreObj.points = points;
+          // newScoreObj.siteuxid = SITE_UXID;
+          // newScoreObj.state = state;
+          // newScoreObj.maxpoints = FVAR[i].maxpoints;
+          // newScoreObj.siteuxid = SITE_UXID;
+          // newScoreObj.section = FVAR[i].section;
+          // newScoreObj.id = FVAR[i].id;
+          // newScoreObj.uxid = FVAR[i].uxid;
+          // newScoreObj.intest = FVAR[i].intest;
+          // newScoreObj.rawinput = FVAR[i].rawinput;
+          // newScoreObj.value = FVAR[i].value;
           //
+          // scores.setSingleScore(FVAR[i].id, newScoreObj);
+          //also hier wird ein einzelner score geupdated
+          for (j = 0; j<intersite.getObj().scores.length; j++) {
+              if (intersite.getObj().scores[j].uxid == FVAR[i].uxid) {
+                  f = true;
+                  intersite.getObj().scores[j].maxpoints = FVAR[i].maxpoints;
+                  intersite.getObj().scores[j].points = points;
+                  intersite.getObj().scores[j].siteuxid = SITE_UXID;
+                  intersite.getObj().scores[j].section = FVAR[i].section;
+                  intersite.getObj().scores[j].id = FVAR[i].id;
+                  intersite.getObj().scores[j].uxid = FVAR[i].uxid;
+                  intersite.getObj().scores[j].intest = FVAR[i].intest;
+                  intersite.getObj().scores[j].rawinput = FVAR[i].rawinput;
+                  intersite.getObj().scores[j].value = FVAR[i].value;
+                  intersite.getObj().scores[j].state = state;
+                  log.trace("Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
+              }
+          }
+
           // und hier hinzugefügt
           // das f == false kann vermutlich auch weg weil jetzt immer die gleiche funktion updateScore benutzt wird
           // die einfach setzt
-          // if (f == false) {
-          //   scores.setSingleScore(FVAR[i].id, FVAR[i]);
-            // var k = intersite.getObj().scores.length;
-            // intersite.getObj().scores[k] = { uxid: FVAR[i].uxid };
-            // intersite.getObj().scores[k].maxpoints = FVAR[i].maxpoints;
-            // intersite.getObj().scores[k].points = points;
-            // intersite.getObj().scores[k].siteuxid = SITE_UXID;
-            // intersite.getObj().scores[k].section = FVAR[i].section;
-            // intersite.getObj().scores[k].id = FVAR[i].id;
-            // intersite.getObj().scores[k].intest = FVAR[i].intest;
-            // intersite.getObj().scores[k].value = FVAR[i].value;
-            // intersite.getObj().scores[k].rawinput = FVAR[i].rawinput;
-            // intersite.getObj().scores[k].state = state;
-            // log.trace("Points for " + FVAR[i].uxid + " ADDED at position " + k);
-          // }
+          if (f == false) {
+            //scores.setSingleScore(FVAR[i].id, FVAR[i]);
+            var k = intersite.getObj().scores.length;
+            intersite.getObj().scores[k] = { uxid: FVAR[i].uxid };
+            intersite.getObj().scores[k].maxpoints = FVAR[i].maxpoints;
+            intersite.getObj().scores[k].points = points;
+            intersite.getObj().scores[k].siteuxid = SITE_UXID;
+            intersite.getObj().scores[k].section = FVAR[i].section;
+            intersite.getObj().scores[k].id = FVAR[i].id;
+            intersite.getObj().scores[k].intest = FVAR[i].intest;
+            intersite.getObj().scores[k].value = FVAR[i].value;
+            intersite.getObj().scores[k].rawinput = FVAR[i].rawinput;
+            intersite.getObj().scores[k].state = state;
+            log.trace("Points for " + FVAR[i].uxid + " ADDED at position " + k);
+          }
       }
   }
 
@@ -1843,10 +1844,14 @@ function displayInputContent(id,latex) {
 	    show: {event: 'customShow' },
 	    hide: {event: 'customHide' },
 	        content: '...',
-//	        events: {
-//	          show: function(event, api) { alert("show"); },
-//	          hide: function(event, api) { alert("hide"); }
-//	        },
+	        events: {
+	          show: function(event, api) {
+
+            },
+	          hide: function(event, api) {
+            }
+
+	        },
 	        style: {
 	          classes: 'qtip-shadow'
 	        },
@@ -1860,10 +1865,15 @@ function displayInputContent(id,latex) {
       var api = activetooltip.qtip("api");
       api.set('content.title',"Formeleingabe");
       api.set('content.text',content);
+
+      log.debug('testtest', content);
       // api.set("position.target",$(" input[id=\"" + activefieldid + "\"] "));
       // api.reposition(null,false);
       api.show();
+
+
       // api.reposition(null,false);
+
     }
 
     viewmodel.ifobs(latex);
@@ -2367,14 +2377,18 @@ function shareFacebook() {
     'width=626,height=436');
 }
 
-// changes classes of toc/navi elements to show element state (element behaviour is defined in css)
+// TODO changes classes of toc/navi elements to show element state (element behaviour is defined in css)
 // TODO this is currently not working and that is because (one reason) the other data structure of scores.
 // was array now is obj with questionId keys
+// TODO this function is called too often (> 10 times), should be called once
 function updateLayoutStates() {
+  log.debug('ms_bs: updateLayoutStates called');
+  log.debug(intersite.isActive(), intersite.getObj());
   if (intersite.isActive() == true) {
     if (intersite.getObj() != null) {
         // check sites and select layout state accordingly
         $('.xsymb').each(function(i) {
+          log.debug('ms_bs: updateLayoutStates each .xsymb', $(this));
             el = $(this);
             ux = "SITE_" + el.attr("uxid");
             var j;

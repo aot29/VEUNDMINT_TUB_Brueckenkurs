@@ -334,7 +334,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       active: false,
       layout: { fontadd: 0, menuactive: true },
       configuration: { stylecolor: STYLEBLUE },
-      scores: {},
+      scores: [],
       sites: [],
       favorites: [ createHelpFavorite() ],
       history: { globalmillis: 0, commits: [] }, // commits = array aus Arrays [ hexsha+cid, firstlogintimestamp, lastlogintimestamp ]
@@ -658,6 +658,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
             e.innerHTML = "Datenspeicherung wurde durch Benutzer deaktiviert, es werden keine Kursdaten gespeichert.";
         } else {
           if ((active==true) && (localStoragePresent==true)) {
+            // scores.updateScoreBars()
             var s = "";
             var p = [];
             var t = [];
