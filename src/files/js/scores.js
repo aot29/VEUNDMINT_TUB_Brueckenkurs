@@ -19,7 +19,7 @@
 
     var scoresObj;
 
-    init();
+    //init();
 
     /**
      * will load existing scores from the passed intersiteObj, as we can see this class
@@ -28,6 +28,13 @@
      * @return {[type]} [description]
      */
     function init() {
+
+      //register handlers
+      $(window).on('beforeunload', function(){
+         alert('scores persisted');
+      	 persist();
+      });
+
       if (typeof scoresObj === "undefined") {
         var lsString = getScoresFromLocalStorage();
         scoresObj = JSON.parse(lsString);
