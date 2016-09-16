@@ -112,7 +112,7 @@ class Option(object):
 		self.dorelease = 0		# In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
 		self.doverbose = 0		# Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
 		self.docollections = 0	# Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
-		self.dopdf =  0		   	# =1 -> PDF wird erstellt und Downloadbuttons erzeugt
+		self.dopdf =  1		   	# =1 -> PDF wird erstellt und Downloadbuttons erzeugt
 		self.dotikz = 0		   	# =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
 		self.dozip = 0			# =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
 		self.consolecolors = 1	# =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
@@ -160,13 +160,16 @@ class Option(object):
 		self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } # dict der Form tex-name: Bezeichnung (ohne Endung)
 
 		# course signature, course part
-		self.signature_main = "MFR_TUB" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"		 # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
+		#
+		# Don't use underscores in the course signature, as otherwise pdf2latex will convert this to math.
+		#
+		self.signature_main = "MFR-TUB" #Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
 		# self.signature_main = "OBMLGAMMA9" # "OBMLGAMMA5_SCORM12_UKS_m" # "OBMLGAMMA5" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"		 # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
 		self.signature_version = "10000"			  # Versionsnummer, nicht relevant fuer localstorage-userget!
 		self.signature_localization = "DE-MINT"	   # Lokalversion des Kurses, hier die bundesweite MINT-Variante
 		self.signature_date = "09/2016"
 
-	   # ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------
+		# ---------------------- check for overrides, options declared past this block will not be subject to override command line parameters ------------------------
 		self.overrides = list()
 		for ov in override:
 			m = re.match(r"(.+?)=(.+)", ov)
