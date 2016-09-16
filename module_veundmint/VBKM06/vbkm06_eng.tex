@@ -102,7 +102,7 @@ in \MSRef{VBKM01}{Module 1}). We also need \highlight{functions}
 
 \begin{MInfo}
 \MLabel{VBKM06_Abbildungen}
-\MEntry{Functions}{function} (or \MEntry{maps}{map}) are assignments between elements of two sets.
+\MEntry{Functions}{function} (or \MEntry{maps}{map}) are assignments between elements of two sets such that there is exactly one element in the second set assigned to each element in the first set.%%%
 \end{MInfo}
 \end{MIntro}
 
@@ -1228,7 +1228,7 @@ with an arbitrary slope $m\in\R$:
 }%
 
 Where does the term slope of a linear function come from? If the difference in height by which the graph is rising vertically 
-is divided by the corresponding length in the horizontal direction, then one obtains the slope $m$. 
+is divided by the corresponding length in the horizontal direction, then one obtains the slope $m$. So $m = \frac{f(x_2) - f(x_1)}{x_2 - x_1}$ for $x_1 < x_2$.%%%
 
 
 \begin{MInfo}
@@ -2154,7 +2154,7 @@ in the numerator and the denominator and find their roots.
 
 \begin{MHint}{Solution}
 The function $f$ has the a numerator of degree $0$ and denominator of degree $2$. The numerator does not have a root ($8\neq0$), nor does the denominator ($x^2+1=0$ has no solution).\\
-The function $g$ has the a numerator of degree $1$ and denominator of degree $2$. The root of the numerator is at $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$), and the roots of the denominator at $x_{1,2}=-4,\frac{3}{2}$ are obtained by solving the quadratic equation $2x^2+5x-12=0$, e.g. by means of the quadratic formula.\\
+The function $g$ has the a numerator of degree $1$ and denominator of degree $2$. The root of the numerator is at $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$), and the roots of the denominator at $x_{1}=-4$, $x_{2} = \frac{3}{2}$ are obtained by solving the quadratic equation $2x^2+5x-12=0$, e.g. by means of the quadratic formula.\\
 The function $h$ has a numerator of degree $3$ and denominator of degree $1$. The root of the denominator is simply at 
 $x=-1$ ($x+1=0\Leftrightarrow x=-1$). To find the roots of the numerator, the equation $x^3-x^2+x=0$ has to be solved. 
 By factoring out $x$ one obtains $x(x^2-x+1)=0$, and it can be seen immediately that one root is at $x=0$. Finally, 
@@ -2279,7 +2279,7 @@ behave \modsemph{in the neighbourhood} of gaps in the domain. The roots of the d
 At $x=2$ and $x=-3$ the functions $f_1$ and $f_2$, respectively, have so-called 
 \modsemph{(proper) poles}, and at $x=1$ the function $f_3$ has a so-called \modsemph{removable singularity}.
 Looking at the graphs, the difference between these types of poles becomes clear. For (proper) poles,
-the graph rises or falls unboundedly in the neighbourhood of the pole, and for continuously removable 
+the graph rises or falls unboundedly in the neighbourhood of the pole, and for removable 
 singularities the graph ends left and right in the ``gap''.
 
 In the mapping rules of the three functions, this difference is expressed as follows: the values 
@@ -2419,7 +2419,7 @@ independent variable $x$, the function $g$ \modsemph{approaches} its
 limiting value $1$ indefinitely \modsemph{without} ever reaching it for any real number $x$.
 
 This can be seen from the mapping rule $g(x)=1+\frac{1}{x-1}$ as follows. For ``very large''
-($5$, $10$, $100$, etc.) or ``very small'' ($-5$, $-10$, $-100$, etc.) values of $x$, 
+($50$, $100$, $1000$, etc.) or ``very small'' ($50$, $100$, $1000$, etc.) values of $x$, 
 the rational part $\frac{1}{x-1}$ approaches $0$ since $x$ occurs in the 
 denominator. In general, for these values of $x$, only the polynomial part $1$ 
 of the mapping rule remains. This part can be described by a -- in this case constant --
@@ -2743,12 +2743,12 @@ $13$ minutes duplication time:
  \begin{tabular}{|c|r|r|r|r|r|r|r|r|c|}
  \hline
  Time $t$ in min & 0 & 13 & 26 & 39 & 52 & 65 & 78 & 91 & etc. \\ \hline
- Number of Bacteria & 500 & 1000 & 2000 & 4000 & 8000 & 16000 & 32000 & 64000 & etc. \\ 
+ Number of Bacteria & 500 & 1\,000 & 2\,000 & 4\,000 & 8\,000 & 16\,000 & 32\,000 & 64\,000 & etc. \\ 
  \hline
  \end{tabular}
 \end{center}
-From the table we can estimate that the answer to our question will be between $16000$ and $32000$, probably 
-closer to $32000$. What about a (more) precise answer? For this, we need to know the 
+From the table we can estimate that the answer to our question will be between $16\,000$ and $32\,000$, probably 
+closer to $32\,000$. What about a (more) precise answer? For this, we need to know the 
 \modstextbf{functional relation} between the values of $t$ and the number of bacteria. In the figure below 
 the graph of a function $p$ is shown; so to speak, this graph closes the gaps between the isolated points that 
 correspond to the pairs of values in the table and are plotted as well. The corresponding mapping rule 
@@ -2764,8 +2764,8 @@ for the exact specification we need the mapping rule underlying the graph, which
 $$p: [0\MIntvlSep \infty) \longrightarrow (0\MIntvlSep  \infty) \;\text{with}\; t \longmapsto p(t) = 500 \cdot 2^{(t/13)} \MDFPeriod$$
 (In Exercise~\MRef{M06_bsp_bak_pop_exercise} we will give a reason for this functional relation.)\\
 For $t = 75$ (measured in minutes) we obtain the function value
-$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27270 \MDFPeriod$$
-Hence, after $75$~minutes $27270$~bacteria live in the considered population.
+$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27\,270 \MDFPeriod$$
+Hence, after $75$~minutes approx. $27\,270$~bacteria live in the considered population.
 \end{MExample}
 \end{MIntro}
 
@@ -2778,9 +2778,7 @@ In the previous \MSRef{M06_bsp_bak_pop}{example}, an \modstextbf{exponential fun
 independent variable -- in this example this is the variable $t$ -- occurs in the exponent. We will now specify the general 
 mapping rule for an exponential function with an arbitrary base $a$; however, we here assume $a > 0$:
 $$
-\begin{array}{rrcl}
- f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot a^{\lambda x} \MDFPeriod
-\end{array}
+ \function{f}{\R}{(0;\infty)}{x}{f(x)=f_{0}\cdot a^{\lambda x}}
 $$
 Here, $f_0$ and $\lambda$ denote so-called parameters of the exponential function that will be introduced below. 
 

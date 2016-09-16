@@ -21,7 +21,8 @@
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_Grundlagen_Intro}
-Aus Modul \MNRef{VBKM01} kennen wir bereits die \highlight{reellen Zahlen} als \highlight{Menge} sowie \highlight{Intervalle} als wichtige \highlight{Teilmengen} der reellen Zahlen. 
+Aus Modul \MNRef{VBKM01} kennen wir bereits die \highlight{reellen Zahlen} als \highlight{Menge} sowie \highlight{Intervalle} als wichtige \highlight{Teilmengen} der reellen Zahlen.
+
 
 \begin{MExample}
 Wir möchten die gesamten reellen Zahlen $\R$ außer der Zahl $0\in\R$ in einer Menge zusammenfassen. Wie schreiben wir eine solche Zahlenmenge auf? Hierfür gibt es die Schreibweise
@@ -96,7 +97,7 @@ alle Zahlen aus dem halboffenen Intervall $[1\MIntvlSep 3)$ außer der Zahl $2$:
 Die Betrachtung von Mengen sowie Gleichungen und Ungleichungen für Zahlen aus diesen Mengen, wie in den vorhergehenden Modulen (etwa \MSRef{VBKM01}{Modul 1}) geschehen, reicht nicht aus um Mathematik zu betreiben und anzuwenden. Darüber hinaus brauchen wir sogenannte \highlight{Funktionen} (diese werden oft auch als \modsemph{Abbildungen} bezeichnet). 
 \begin{MInfo}
 \MLabel{VBKM06_Abbildungen}
-\MEntry{Funktionen}{Funktion} (bzw. \MEntry{Abbildungen}{Abbildung}) sind Zuordnungen zwischen den Elementen zweier Mengen.
+\MEntry{Funktionen}{Funktion} (bzw. \MEntry{Abbildungen}{Abbildung}) sind Zuordnungen zwischen den Elementen zweier Mengen, die jedem Element der einen Menge genau ein Element der anderen Menge zuordnet.%%%
 \end{MInfo}
 \end{MIntro}
 
@@ -203,7 +204,7 @@ betrachtete Funktion $f$ nun zusammengefasst folgendermaßen schreiben:
  \function{f}{\N}{\Q}{n}{\frac{n}{2} \MDFPeriod}
 \]
 Man liest dies nun als "`die Funktion $f$ bildet von $\N$ nach $\Q$ ab, jedes $n\in\N$ wird auf $\frac{n}{2}\in\Q$ abgebildet''.
-Diese zusammenfassende Schreibweise werden wir im Rest diese Moduls für Funktionen weiter verwenden.
+Diese zusammenfassende Schreibweise werden wir im Rest dieses Moduls für Funktionen weiter verwenden.
 
 Wir betrachten einige weitere einfache Beispiele für Funktionen:
 
@@ -214,7 +215,7 @@ Wir betrachten einige weitere einfache Beispiele für Funktionen:
   \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
  \]
  Die Abbildungsvorschrift von $g$ lautet damit $g(x)=x^2$. Man kann dann die Zuordnungen für konkrete Zahlen ausrechnen. Zum Beispiel $g(2)=2^2=4$ oder $g(-\pi)=(-\pi)^2=\pi^2$, usw. 
- \item Eine Funktion $\Mvarphi$ soll jeder reellen Zahl $y$ zwischen $0$ und $1$ ihren dreifachen Wert plus $1$ zuordnen. Dies ist ein Beispiel für eine sogenannte linear-affine Funktion (siehe \MNRef{VBKM06_sec:linear-affin}):
+ \item Eine Funktion $\Mvarphi$ soll jeder reellen Zahl $y$ zwischen $0$ und $1$ ihren dreifachen Wert plus $1$ zuordnen. Dies ist ein Beispiel für eine sogenannte affin-lineare Funktion (siehe \MNRef{VBKM06_sec:affin-linear}):
  \[
   \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1 \MDFPeriod}
  \]
@@ -301,7 +302,7 @@ Geben Sie den größtmöglichen Definitionsbereich der Funktion
 \]
 an.
 \begin{MHint}{Lösung}
-Die Wurzel liefert für alle nicht-negativen reellen Zahlen ein sinnvolles reelles Ergebnis. Somit gilt $D_w=[0\MIntvlSep \infty)$.  
+Die Wurzel liefert für alle nicht-negativen reellen Zahlen ein reelles Ergebnis. Somit gilt $D_w=[0\MIntvlSep \infty)$.%%%  
 \end{MHint}
 \end{MExercise}
 
@@ -763,7 +764,7 @@ Wir bezeichnen diese beiden Eigenschaften als \highlight{streng monoton fallend}
 \end{itemize}
 \end{MInfo}
 
-Dies gilt so für alle Funktionen, die wir in diesem Modul betrachten werden. Oft treffen die beschriebenen Monotonieeigenschaften nur in bestimmten Bereichen der Definitionsmenge der Funktion zu, wie oben bei der Standardparabel gesehen. Es gibt jedoch auch Funktionen, die nur eine der Monotonieeigenschaften im gesamten Definitionsbereich besitzen (siehe Beispiel \MNRef{bsp1:monoton} unten). In diesem Fall nennt man dann die gesamte Funktion streng monoton wachsend oder streng monoton fallend. Weiterhin heißt eine Funktion, die entweder streng monoton fallend oder streng monoton wachsend ist, einfach \highlight{streng monoton}.
+Dies gilt so für alle Funktionen, die wir in diesem Modul betrachten werden. Oft treffen die beschriebenen Monotonieeigenschaften nur in bestimmten Bereichen der Definitionsmenge der Funktion zu, wie oben bei der Standardparabel gesehen. Es gibt jedoch auch Funktionen, die nur eine der Monotonieeigenschaften im gesamten Definitionsbereich besitzen (siehe Beispiel \MNRef{bsp1:monoton} unten). In diesem Fall nennt man dann die gesamte Funktion streng monoton wachsend oder streng monoton fallend. Weiterhin heißt eine Funktion, die entweder streng monoton fallend oder streng monoton wachsend ist, \highlight{streng monoton}.
 
 Ein weiteres Beispiel zeigt, wie man strenge Monotonie mit Hilfe des Lösens von \MSRef{M03_Ungleichungen}{Ungleichungen} aus Modul \MRef{VBKM03} bei einer Funktion explizit nachrechnen kann.
 
@@ -778,7 +779,8 @@ Wir beginnen, zwei beliebige Zahlen $x_1,x_2\in D_h=\R$ aufzuschreiben mit der E
 \[
  x_1<x_2
 \]
-gilt. Durch \MSRef{VBKM03_AequivalenzumformungenUngleichungen}{Äquivalenzumformungen} von Ungleichungen können wir $x_1<x_2$ nun entweder zu $h(x_1)<h(x_2)$ oder zu $h(x_1)>h(x_2)$ umformen und damit folgern, dass $h$ streng monoton wachsend oder streng monoton fallend ist. Es gelten die folgenden Äquivalenzumformungen für $x_1<x_2$:
+gilt. Durch 
+\MSRef{VBKM03 AequivalenzumformungenUngleichungen}{{\"A}quivalenzumformungen} von Ungleichungen können wir $x_1<x_2$ nun entweder zu $h(x_1)<h(x_2)$ oder zu $h(x_1)>h(x_2)$ umformen und damit folgern, dass $h$ streng monoton wachsend oder streng monoton fallend ist. Es gelten die folgenden Äquivalenzumformungen für $x_1<x_2$:
 \[
  x_1<x_2\,|\cdot(-\frac{1}{2})\quad\Leftrightarrow\quad -\frac{1}{2}x_1>-\frac{1}{2}x_2 \MDFPeriod
 \]
@@ -841,7 +843,7 @@ womit $\eta$ streng monoton wachsend ist.
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Intro}
-In diesem Abschnitt untersuchen wir folgende Klassen von Funktionen: konstante, lineare, linear-affine Funktionen
+In diesem Abschnitt untersuchen wir folgende Klassen von Funktionen: konstante, lineare, affin-lineare Funktionen
 sowie Monome und Polynome. 
 \end{MIntro}
 
@@ -1123,7 +1125,7 @@ Alle linearen Funktionen (außer der Nullfunktion, s.u.) haben also als Wertebere
 \end{tikzpicture}
 }%
 
-Woher kommt der Begriff Steigung für eine lineare Funktion? Teilt man die Differenz, um welche der Graph in vertikaler Richtung anwächst, durch die entsprechende Längeneinheit in horizontaler Richtung, so erhält man die Steigung $m$. 
+Woher kommt der Begriff Steigung für eine lineare Funktion? Teilt man die Differenz, um welche der Graph in vertikaler Richtung anwächst, durch die entsprechende Längeneinheit in horizontaler Richtung, so erhält man die Steigung $m$. Also $m = \frac{f(x_2) - f(x_1)}{x_2 - x_1}$ f\"ur $x_1 < x_2$.%%%
 
 
 \begin{MInfo}
@@ -1151,10 +1153,10 @@ Es ergibt sich $f(x)=0\cdot x=0$, also genau die konstante Funktion, die konstan
 
 \end{MXContent}
  
-\begin{MXContent}{Linear-affine Funktionen}{Affin}{STD}
-\MLabel{VBKM06_sec:linear-affin}
+\begin{MXContent}{Affin-lineare Funktionen}{Affin}{STD}
+\MLabel{VBKM06_sec:affin-linear}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Affin}
-Kombiniert man lineare Funktionen mit konstanten Funktionen, so erhält man die sogenannten \highlight{linear-affinen Funktionen}. Diese ergeben sich als die Summe einer linearen und einer konstanten Funktion. Im allgemeinen Fall, ohne konkret spezifizierte Steigung ($m\in\R$) und mit einer Konstanten ($c\in\R$) schreibt man das so:
+Kombiniert man lineare Funktionen mit konstanten Funktionen, so erhält man die sogenannten \highlight{affin-lineare Funktionen}. Diese ergeben sich als die Summe einer linearen und einer konstanten Funktion. Im allgemeinen Fall, ohne konkret spezifizierte Steigung ($m\in\R$) und mit einer Konstanten ($c\in\R$) schreibt man das so:
 \[
  \function{f}{\R}{\R}{x}{m x+c \MDFPeriod}
 \]
@@ -1186,7 +1188,7 @@ Kombiniert man lineare Funktionen mit konstanten Funktionen, so erhält man die s
 \end{tikzpicture}	
 }%
 
-Die Graphen linear-affiner Funktionen werden auch als \highlight{Geraden} bezeichnet. Die Konstante $m$ wird für linear-affine Funktionen weiterhin als Steigung bezeichnet, die Konstante $c\in\R$ als \highlight{Achsenabschnitt}. Der Grund für diese Bezeichnung ist folgender: Betrachtet man den Schnittpunkt des Graphen der linear-affinen Funktion mit der vertikalen Achse, so hat dieser vom Ursprung den Abstand $c$ (siehe Abbildung oben). So ergibt sich zum Beispiel für die unten abgebildete linear-affine Funktion
+Die Graphen affin-linearer Funktionen werden auch als \highlight{Geraden} bezeichnet. Die Konstante $m$ wird für affin-lineare Funktionen weiterhin als Steigung bezeichnet, die Konstante $c\in\R$ als \highlight{Achsenabschnitt}. Der Grund für diese Bezeichnung ist folgender: Betrachtet man den Schnittpunkt des Graphen der affin-linearer Funktion mit der vertikalen Achse, so hat dieser vom Ursprung den Abstand $c$ (siehe Abbildung oben). So ergibt sich zum Beispiel für die unten abgebildete affin-linearer Funktion
 \[
  \function{f}{\R}{\R}{x}{-2x-1}
 \]
@@ -1233,7 +1235,7 @@ Steigung: $\pi$ und Achsenabschnitt: $-42$
 
 
 \begin{MExercise}
-Welche Funktionen ergeben sich als linear-affine Funktionen mit Steigung $m=0$ und welche mit Achsenabschnitt $c=0$ ?
+Welche Funktionen ergeben sich als affin-linearer Funktionen mit Steigung $m=0$ und welche mit Achsenabschnitt $c=0$ ?
 \begin{MHint}{Lösung}
 Ist $m=0$, so gilt $f(x)=0\cdot x+c=c$. Damit ergeben sich die konstanten Funktionen als diejenigen mit Steigung $0$. Ein verschwindender Achsenabschnitt $c=0$ impliziert $f(x)=m x+0=m x$. Somit ergeben sich in diesem Fall genau die linearen Funktionen.
 \end{MHint}
@@ -1393,7 +1395,7 @@ Da $|-8x+1|\geq0$ gilt, folgt $|-8x+1|-1\geq -1$ und damit ist $W_\alpha=[-1\MIn
 
 \begin{MXContent}{Monome}{Monome}{STD}\MLabel{sec:monome}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Monome}
-Neben den linear-affinen Funktionen aus dem vorigen Abschnitt kann man sich nun auch Funktionen überlegen, die allen reellen Zahlen natürliche Potenzen ihrer selbst zuordnen. So zum Beispiel
+Neben den affin-linearer Funktionen aus dem vorigen Abschnitt kann man sich nun auch Funktionen überlegen, die allen reellen Zahlen natürliche Potenzen ihrer selbst zuordnen. So zum Beispiel
 \[
  \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
 \]
@@ -1690,7 +1692,7 @@ Diese ergeben sich als Summen von Vielfachen von Monomen. Man spricht dann von s
 \end{tikzpicture}
 }%
 
-Der Grad eines Polynoms richtet sich also nach dem vorkommenden Monom mit dem höchsten Grad. Außerdem erkennen wir, dass die bisher behandelten Funktionstypen der konstanten, linearen und linear-affinen Funktionen -- genauso wie die Monome -- auf natürliche Weise wieder als Spezialfälle der Polynome auftauchen. Die Polynome umfassen also alle bisher betrachteten Funktionstypen. 
+Der Grad eines Polynoms richtet sich also nach dem vorkommenden Monom mit dem höchsten Grad. Außerdem erkennen wir, dass die bisher behandelten Funktionstypen der konstanten, linearen und affin-lineareren Funktionen -- genauso wie die Monome -- auf natürliche Weise wieder als Spezialfälle der Polynome auftauchen. Die Polynome umfassen also alle bisher betrachteten Funktionstypen. 
 
 Möchte man allgemein ein unspezifiziertes Polynom vom Grad $n\in\N$ angeben, so schreibt man dies folgendermaßen:
 \[
@@ -1984,7 +1986,7 @@ Damit ist $D_\psi=\R\setminus\{-\sqrt{\pi},\sqrt{\pi}\}$.
 Bestimmen Sie für die gebrochenrationalen Funktionen im einführenden Beispiel \MNRef{einf_bsp_gebr_rat} jeweils den Zähler- sowie den Nennergrad und berechnen Sie die Nullstellen des Zählers und des Nenners.
 \begin{MHint}{Lösung}
 Die Funktion $f$ hat den Zählergrad $0$ und den Nennergrad $2$. Es gibt keine Zählernullstelle ($8\neq0$) und keine Nennernullstelle ($x^2+1=0$ hat keine reelle Lösung).\\
-Die Funktion $g$ hat den Zählergrad $1$ und den Nennergrad $2$. Die Zählernullstelle liegt bei $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$) und die Nennernullstellen $x_{1,2}=-4,\frac{3}{2}$ erhält man durch Lösen der quadratischen Gleichung $2x^2+5x-12=0$, zum Beispiel mit Hilfe der Mitternachtsformel.\\
+Die Funktion $g$ hat den Zählergrad $1$ und den Nennergrad $2$. Die Zählernullstelle liegt bei $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$) und die Nennernullstellen $x_{1}=-4$, $x_{2} = \frac{3}{2}$ erhält man durch Lösen der quadratischen Gleichung $2x^2+5x-12=0$, zum Beispiel mit Hilfe der Mitternachtsformel.\\
 Die Funktion $h$ hat den Zählergrad $3$ und den Nennergrad $1$. Die Nennernullstelle liegt einfach bei $x=-1$ ($x+1=0\Leftrightarrow x=-1$). Für die Zählernullstellen muss die Gleichung $x^3-x^2+x=0$ gelöst werden. Nach Ausklammern von $x$ erhält man $x(x^2-x+1)=0$ und folgert, dass eine Nullstelle bei $x=0$ liegt. Schließlich muss noch die quadratische Gleichung $x^2-x+1=0$ mit der Mitternachtsformel gelöst werden. Es ergibt sich hier allerdings eine negative Diskriminante von $\Delta=1^2-4\cdot1\cdot1=-
 3$, so dass keine weitere reelle Lösung -- und damit keine weitere Zählernullstelle -- existiert.
 \end{MHint}
@@ -2100,7 +2102,7 @@ Die Nennernullstellen gebrochenrationaler Funktionen, welche aus dem Definitions
 }%
 \end{MExample}
 
-Die Stellen $x=2$ und $x=-3$ sind sogenannte \modsemph{echte Polstellen} der Funktionen $f_1$ und $f_2$, die Stelle $x=1$ ist eine sogenannte \modsemph{hebbare Definitionslücke} der Funktion $f_3$. Anhand der Graphen wird der Unterschied zwischen diesen Typen von Polstellen deutlich. Bei echten Polstellen wächst oder fällt der Graph in der Nähe der Polstelle unbeschränkt, und bei stetig hebbaren Definitionslücken mündet er von links und rechts in das "`Loch'' im Graphen ein. 
+Die Stellen $x=2$ und $x=-3$ sind sogenannte \modsemph{echte Polstellen} der Funktionen $f_1$ und $f_2$, die Stelle $x=1$ ist eine sogenannte \modsemph{hebbare Definitionslücke} der Funktion $f_3$. Anhand der Graphen wird der Unterschied zwischen diesen Typen von Polstellen deutlich. Bei echten Polstellen wächst oder fällt der Graph in der Nähe der Polstelle unbeschränkt, und bei hebbaren Definitionslücken mündet er von links und rechts in das "`Loch'' im Graphen ein. 
 
 Anhand der Abbildungsvorschriften der drei Funktionen kommt dieser Unterschied folgendermaßen zum Ausdruck: Die Werte $x=2$ und $x=-3$ sind \modsemph{Nennernullstellen}, aber keine \modsemph{Zählernullstellen} der Funktionen $f_1$ bzw.~$f_2$. Tatsächlich besitzen $f_1$ und $f_2$ gar keine Zählernullstellen. In einem solchen Fall sind die Nennernullstellen immer echte Polstellen.
 
@@ -2170,7 +2172,7 @@ Wir betrachten die Funktion
 \[
  \function{g}{\R\setminus\{1\}}{\R}{x}{1+\frac{1}{x-1}}
 \]
-und stellen fest, dass deren Abbildungsvorschrift in der Form einer Summe aus einem Polynom (vom Grad $0$) und einem gebrochenrationalen Term vorliegt.
+und stellen fest, dass ihre Abbildungsvorschrift in der Form einer Summe aus einem Polynom (vom Grad $0$) und einem gebrochenrationalen Term vorliegt.
 Durch Bilden des Hauptnenners ist es nun einfach, $g(x)$ auf eine gebrochenrationale Form zu bringen, in der der Zählergrad und der Nennergrad gleich sind:
 \[
  g(x)=1+\frac{1}{x-1}=\frac{x-1}{x-1}+\frac{1}{x-1}=\frac{x-1+1}{x-1}=\frac{x}{x-1} \MDFPeriod
@@ -2218,7 +2220,7 @@ Neben der Polstelle und Definitionslücke bei $x=1$ erkennen wir, dass der Wert $
 
 
 
-Dies erkennt man in der Abbildungsvorschrift $g(x)=1+\frac{1}{x-1}$ folgendermaßen. Für "`sehr große'' ($5$, $10$, $100$, usw.) oder "`sehr kleine'' ($-5$, $-10$, $-100$, usw.) Werte für $x$ nähert sich der gebrochenrationale Anteil $\frac{1}{x-1}$
+Dies erkennt man in der Abbildungsvorschrift $g(x)=1+\frac{1}{x-1}$ folgendermaßen. Für "`sehr große'' ($50$, $100$, $1000$, usw.) oder "`sehr kleine'' ($-50$, $-100$, $-1000$, usw.) Werte für $x$ nähert sich der gebrochenrationale Anteil $\frac{1}{x-1}$
 immer mehr der $0$ an, da $x$ dort im Nenner vorkommt. Tendenziell bleibt also für solche Werte nur noch der polynomielle Anteil $1$ aus der Abbildungsvorschrift übrig. Dieser Anteil kann nun durch eine -- in diesem Fall konstante -- Funktion beschrieben werden, die als \highlight{Asymptote} $g_{As}$ der Funktion $g$ bezeichnet wird:
 \[
  \function{g_{As}}{\R}{\R}{x}{1 \MDFPeriod}
@@ -2255,7 +2257,7 @@ Eine gebrochenrationale Funktion $f$ mit Zählerpolynom $p(x)$ vom Grad $z\geq0$ 
 \[
  \function{f}{\R\setminus\{\text{Nennernullstellen}\}}{\R}{x}{f(x)=\frac{p(x)}{q(x)}}
 \]
-hat als Asymptote eine konstante Funktion (bzw. eine waagrechte Asymptote) falls $z\leq n$ gilt. Iinsbesondere ist die Nullfunktion die Asymptote im Fall $z<n$.  
+hat als Asymptote eine konstante Funktion (bzw. eine waagrechte Asymptote) falls $z\leq n$ gilt. Insbesondere ist die Nullfunktion die Asymptote im Fall $z<n$.  
 \end{MInfo}
 
 \end{MXContent}
@@ -2324,7 +2326,7 @@ Dies legt nahe, dass man den Zusammenhang zwischen $t$ und $s$, mit $s$ als Verä
 \[
  \function{t}{[0\MIntvlSep \infty)}{\R}{s}{\sqrt{\frac{2}{g}}\cdot \sqrt{s}}
 \]
-beschreiben kann, also eine Funktion, in deren Abbildungsvorschrift die Wurzel (genauer gesagt die Quadratwurzel) der Veränderlichen vorkommt. Deren Graph beinhaltet dann die obigen gemessenen Punkte:
+beschreiben kann, also eine Funktion, in deren Abbildungsvorschrift die Wurzel (genauer gesagt die Quadratwurzel) der Veränderlichen vorkommt. Ihr Graph beinhaltet dann die obigen gemessenen Punkte:
 
 % GRAPHEN: wurz1
 \MTikzAuto{%
@@ -2456,7 +2458,7 @@ Damit erhält man folgendes Aussehen für die Graphen der ersten vier Wurzelfunkti
 \end{tikzpicture}
 }%
 
-Aus dem Verlauf der Graphen sieht man, dass alle Wurzelfunktionen \highlight{streng monoton wachsend} sind. 
+Aus dem Verlauf der Graphen erkennt man, dass alle Wurzelfunktionen \highlight{streng monoton wachsend} sind. 
 
 \begin{MExercise}
 Bestimme für die Wurzelfunktionen
@@ -2505,12 +2507,12 @@ nach $t = 13$ min, nach $t = 26$ min usw., also zu Vielfachen der $13$-Minuten-V
  \begin{tabular}{|c|r|r|r|r|r|r|r|r|c|}
  \hline
  Zeit $t$ in min & 0 & 13 & 26 & 39 & 52 & 65 & 78 & 91 & usw. \\ \hline
- Anzahl Bakterien & 500 & 1000 & 2000 & 4000 & 8000 & 16000 & 32000 & 64000 & usw. \\ 
+ Anzahl Bakterien & 500 & 1\,000 & 2\,000 & 4\,000 & 8\,000 & 16\,000 & 32\,000 & 64\,000 & usw. \\ 
  \hline
  \end{tabular}
 \end{center}
 Aus der Tabelle können wir abschätzen, dass die Antwort auf unsere Frage zwischen
-$16000$ und $32000$, wahrscheinlich näher bei $32000$, liegen wird. Doch wie sieht es mit einer präzis(er)en Antwort aus?
+$16\,000$ und $32\,000$, wahrscheinlich näher bei $32\,000$, liegen wird. Doch wie sieht es mit einer präzis(er)en Antwort aus?
 Dazu müssen wir den \modstextbf{funktionalen Zusammenhang} zwischen allgemeinen $t$-Werten und Bakterienanzahl kennen. In der
 unten stehenden Abbildung ist auch der Graph einer Funktion $p$ wiedergegeben; dieser Funktionsgraph füllt sozusagen die
 Lücken zwischen den isolierten Punkten, die den Wertepaaren aus der Tabelle entsprechen und die ebenfalls eingezeichnet
@@ -2525,8 +2527,8 @@ zunächst nur angeben:
 $$p: [0\MIntvlSep \infty) \longrightarrow (0\MIntvlSep  \infty) \;\text{mit}\; t \longmapsto p(t) = 500 \cdot 2^{(t/13)} \MDFPeriod$$
 (In Aufgabe \MRef{M06_bsp_bak_pop_exercise} werden wir diesen funktionalen Zusammenhang begründen.)\\
 Damit erhalten wir für $t = 75$ (gemessen in Minuten) den Funktionswert
-$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27270 \MDFPeriod$$
-Also leben nach $75$ Minuten $27270$ Bakterien in der fraglichen Population.
+$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27\;270 \MDFPeriod$$
+Also leben nach $75$ Minuten ca. $27\,270$ Bakterien in der fraglichen Population.
 \end{MExample}
 \end{MIntro}
 
@@ -2539,10 +2541,9 @@ Im vorangegangen \MSRef{M06_bsp_bak_pop}{Beispiel} tritt eine \modstextbf{Expone
 Beispiel $t$ - erscheint im Exponenten. Wir wollen nun die allgemeine Abbildungvorschrift für Exponentialfunktionen
 zu einer beliebigen Basis $a$ angeben; dabei setzen wir allerdings $a > 0$ voraus:
 $$
-\begin{array}{rrcl}
- f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot a^{\lambda x} \MDFPeriod
-\end{array}
+ \function{f}{\R}{(0;\infty)}{x}{f(x)=f_{0}\cdot a^{\lambda x}}
 $$
+
 Dabei bezeichnen $f_0$ und $\lambda$ sogenannte Parameter der Exponentialfunktion, auf die wir weiter
 unten eingehen werden.
 
@@ -3552,7 +3553,7 @@ Die Funktion
 % Safari kann Checkboxes in lists nicht anzeigen
 \begin{tabular}{lll}
 \MLCheckbox{0}{EF1} & \ \ & ... kann man kürzer auch als $f(x)=2x+1$ schreiben.\\
-\MLCheckbox{1}{EF2} & \ \ & ... ist eine linear-affine Funktion.\\
+\MLCheckbox{1}{EF2} & \ \ & ... ist eine affin-lineare Funktion.\\
 \MLCheckbox{0}{EF3} & \ \ & ... hat die Wertemenge $\R$.\\
 \MLCheckbox{1}{EF4} & \ \ & ... hat die Steigung $2$.\\
 \MLCheckbox{1}{EF5} & \ \ & ... kann nur Werte größer oder gleich $1$ und kleiner $7$ annehmen.\\
