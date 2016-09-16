@@ -131,8 +131,8 @@ class Option(object):
 		# localization file to use
 		self.i18nfile = ( lambda locale: "english.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "deutsch.tex" ) ( self.locale)
 		# macrofile to use.
-		self.macrofilename = "macros"
-		self.macrofile = "macros.tex"
+		self.macrofilename = "mintmod"
+		self.macrofile = "mintmod.tex"
 		self.stdencoding = "utf-8"						# Presumed encoding of tex files and templates, utf8 well be accepted too but with a warning
 		self.outputencoding = "utf-8"						# encoding of generated html files
 		self.output = "tu9onlinekurstest"					# Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
