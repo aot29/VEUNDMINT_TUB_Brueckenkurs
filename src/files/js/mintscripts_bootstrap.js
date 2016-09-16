@@ -1270,7 +1270,7 @@ function GetInteractionID(gid)
 }
 
 // Parameter: Die globale uxid (als string) des Fragefelds
-function GetResult(id)
+function GetResult(uxid)
 {
   // log.debug('mintscripts_bootstrap: trying to getResult with id', id);
   // result = scores.getSingleScore(id) || null;
