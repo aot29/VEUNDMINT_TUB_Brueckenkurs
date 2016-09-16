@@ -10,6 +10,7 @@
 						<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
 						<li><a href="{@basePath}/{@lang}/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
 						<li><a data-toggle="tooltip" id="listebutton" href="{@basePath}/{@lang}/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+						<li><a data-toggle="tooltip" id="databutton" href="{@basePath}/{@lang}/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
@@ -28,7 +29,7 @@
 									</a></li>
 							  </ul>
 							</li>
-	
+
 							<!-- Show these when logged in -->
 							<li class="dropdown" id="logged_in_buttons" style="display: none;">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a>
@@ -50,7 +51,7 @@
 									</li>
 								</ul>
 							</li>
-							
+
 						</xsl:if>
 					</ul>
 
