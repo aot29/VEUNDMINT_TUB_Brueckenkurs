@@ -1,3 +1,4 @@
+
 % ENCODING: ASCII (important as must be compatible both with utf8 and latin1 based authors)
 % MINTMOD Version P0.1.0, needs to be consistent with preprocesser object in tex2x and MPragma-Version at the end of this file
 
@@ -8,7 +9,8 @@
 % Wahl der Notationsvariante ist im PDF immer std, in der HTML-Uebersetzung wird vom Konverter die Auswahl modifiziert
 \newif\ifvariantstd
 \newif\ifvariantunotation
-\variantstdtrue % Diese Zeile wird vom Konverter erkannt und ggf. modifiziert, daher nicht veraendern!
+\variantstdtrue % this string was added by tex2x VEUNDMINT preprocessor
+ % Diese Zeile wird vom Konverter erkannt und ggf. modifiziert, daher nicht veraendern!
 
 
 \def\MOutputDVI{1}
@@ -25,7 +27,7 @@
 \else
 \documentclass[oneside]{scrbook}
 \usepackage{etex}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{textcomp}
 \usepackage[ngerman,english]{babel}
 \usepackage[pdftex]{color}
@@ -108,7 +110,6 @@
 \newcommand{\ML}{L}
 
 \newcommand{\MGGT}{\mathrm{gcd}}
-
 
 \ifttm
 % Verhindert dass die subsection-nummer doppelt in der toccaption auftaucht (sollte ggf. in toccaption gefixt werden so dass diese Ueberschreibung nicht notwendig ist)
@@ -433,7 +434,7 @@
   {}                      %Punctuation after thm head
   {\newline}              %Space after thm head: " " = normal interword
                           %space; \newline = linebreak
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+  {\thmname{#1}\thmnumber{#2}\thmnote{(#3)} }
                           %Thm head spec (can be left empty, meaning
                           %`normal')
                           %
@@ -447,7 +448,7 @@
   {}                      %Punctuation after thm head
   {\newline}              %Space after thm head: " " = normal interword
                           %space; \newline = linebreak
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+  {\thmname{#1}\thmnumber{#2}\thmnote{(#3)}}
                           %Thm head spec (can be left empty, meaning
                           %`normal')
 \fi%
@@ -666,7 +667,9 @@
   \special{html:<!-- mfeedbackbutton;Info;}\arabic{MTestSite}\special{html:;}\MGenerateInfoNumber\special{html:; //-->}
   }
 
-  \newenvironment{MInfo}{\ifnum\value{MInfoNumbers}=0\begin{MChemInfo}\else\begin{MXInfo}{Info}\ \\ \fi}{\ifnum\value{MInfoNumbers}=0\end{MChemInfo}\else\end{MXInfo}\fi}
+  \newenvironment{MInfo}
+  {\ifnum\value{MInfoNumbers}=0\begin{MChemInfo}\else\begin{MXInfo}{Info}\ \\ \fi}
+  {\ifnum\value{MInfoNumbers}=0\end{MChemInfo}\else\end{MXInfo}\fi}
 
 \else%
 
@@ -693,7 +696,7 @@
   \newenvironment{MExercise}{\begin{exrc}\renewcommand{\MStdPoints}{1}\MTB}{\end{exrc}}
   \newenvironment{MHint}[1]{\ \\ \underline{#1:}\\}{}
   \newenvironment{MCOSHZusatz}{\ \\ \underline{\iCoshAdd{}:}\\}{}
-  \newenvironment{MDefinition}{\ifnum\value{MInfoNumbers}=0\begin{defnc}\else\begin{defn}\fi\MTB}{\ifnum\value{MInfoNumbers}=0\end{defnc}\else\end{defn}\fi}
+%  \newenvironment{MDefinition}{\ifnum\value{MInfoNumbers}=0\begin{defnc}\else\begin{defn}\fi\MTB}{\ifnum\value{MInfoNumbers}=0\end{defnc}\else\end{defn}\fi}
 %  \newenvironment{MExample}{\begin{exmp}}{\ \linebreak[1] \ \ \ \ $\phantom{a}$ \ \hfill $\blacklozenge$\end{exmp}}
   \newenvironment{MExample}{
     \ifnum\value{MInfoNumbers}=0\begin{exmpc}\else\begin{exmp}\fi
@@ -705,6 +708,7 @@
     \ifnum\value{MInfoNumbers}=0\end{exmpc}\else\end{exmp}\fi
 }
   \newenvironment{MChemInfo}{\begin{infoshaded}}{\end{infoshaded}}
+%  \newenvironment{MXInfo}{\begin{infoshaded}}{\end{infoshaded}}
 
   \newenvironment{MInfo}{\ifnum\value{MInfoNumbers}=0\begin{MChemInfo}\else\renewcommand{\MInfoText}{Info}\begin{info}\begin{infoshaded}
   \MTB
@@ -990,32 +994,37 @@
 % - #6 Anzahl Punkte
 % - #7 uxid (kann z.B. Loesungsstring sein)
 % ACHTUNG: Die langen Zeilen bitte so lassen, Zeilenumbrueche im tex werden in div's umgesetzt
-\newcommand{\MQuestionID}[7]{
 \ifttm
+\newcommand{\MQuestionID}[7]{
 \special{html:<!-- mdeclareuxid;;}UX#7\special{html:;;}\arabic{section}\special{html:;;}#3\special{html:;; //-->}%
 \special{html:<!-- mdeclarepoints;;}\arabic{section}\special{html:;;}#3\special{html:;;}#6\special{html:;;}\arabic{MTestSite}\special{html:;;}\arabic{chapter}%
 \special{html:;; //--><!-- onloadstart //-->CreateQuestionObj("}#7\special{html:",}\arabic{MFieldCounter}\special{html:,"}#2%
 \special{html:","}#3\special{html:",}#4\special{html:,"}#5\special{html:",}#6\special{html:,}\arabic{MTestSite}\special{html:,}\arabic{section}%
 \special{html:);<!-- onloadstop //-->}%
 \special{html:<input mfieldtype="}#4\special{html:" name="Name_}#3\special{html:" id="}#3\special{html:" type="text" size="}#1\special{html:" maxlength="}#1%
-\special{html:" }\ifnum\value{MGroupActive}=0\special{html:onfocus="handlerFocus(}\arabic{MFieldCounter}%
-\special{html:);" onblur="handlerBlur(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,0);"/>}%
+\special{html:" }
+\ifnum\value{MGroupActive}=0\special{html:onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onblur="handlerBlur(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,0);"/>}%
 \special{html:<span><span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
 \else%
 \special{html:onblur="handlerBlur(}\arabic{MFieldCounter}%
 \special{html:);" onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}%
 \special{html:<span><span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
-%\special{html:<img src="images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="}QM#3\special{html:"/>}\fi%
-\else%
-\ifnum\value{QBoxFlag}=1\fbox{$\phantom{\MForLoop{#1}{b}}$}\else$\phantom{\MForLoop{#1}{b}}$\fi%
+\fi
+}
+\else
+\newcommand{\MQuestionID}[7]{
+\ifnum\value{QBoxFlag}=1\fbox{$\phantom{\MForLoop{#1}{b}}$}
+\else
+$\phantom{\MForLoop{#1}{b}}$
 \fi%
 }
+\fi%
 
 % ACHTUNG: Die langen Zeilen bitte so lassen, Zeilenumbrueche im tex werden in div's umgesetzt
 % QuestionCheckbox macht ausserhalb einer QuestionGroup keinen Sinn!
 % #1 = solution (1 oder 0), ggf. mit ::smc abgetrennt auszuschliessende single-choice-boxen (UXIDs durch , getrennt), #2 = id, #3 = points, #4 = uxid
-\newcommand{\MQuestionCheckbox}[4]{
 \ifttm
+\newcommand{\MQuestionCheckbox}[4]{
 \special{html:<!-- mdeclareuxid;;}UX#4\special{html:;;}\arabic{section}\special{html:;;}#2\special{html:;; //-->}%
 \ifnum\value{MGroupActive}=0\MDebugMessage{ERROR: Checkbox Nr. \arabic{MFieldCounter}\ ist nicht in einer Kontrollgruppe, es wird niemals eine Loesung angezeigt!}\fi
 \special{html: %
@@ -1024,12 +1033,12 @@
 \special{html:",}#3\special{html:,}\arabic{MTestSite}\special{html:,}\arabic{section}\special{html:);<!-- onloadstop //-->}%
 \special{html:<input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_}#2\special{html:" id="}#2\special{html:" onchange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}
 \special{html:<span><span class="glyphicon glyphicon-question-sign" id="}IMG#2\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
-%<img src="images/questionmark.png" name="}Name_IMG#2%
-%\special{html:" width="20" height="20" border="0" align="absmiddle" id="}IMG#2\special{html:"/> }%
-\else%
-\ifnum\value{QBoxFlag}=1\fbox{$\phantom{X}$}\else$\phantom{X}$\fi%
-\fi%
 }
+\else%
+\newcommand{\MQuestionCheckbox}[4]{
+\ifnum\value{QBoxFlag}=1\fbox{$\phantom{X}$}\else$\phantom{X}$\fi%
+}
+\fi%
 
 \def\MGenerateID{QFELD_\arabic{section}.\arabic{subsection}.\arabic{MSiteCounter}.QF\arabic{MFieldCounter}}
 
@@ -1308,8 +1317,13 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 \newenvironment{MSectionStart}{\MSubsectionx{Module Overview}}{\setcounter{MSSEnd}{0}}
 \fi
 
+\ifttm
 \newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}\begin{html}<div
 class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
+\else
+\newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}}{\end{MXContent}}
+\fi
+
 \newenvironment{MContent}{\begin{MXContent}{Contents}{Contents}{beweis}}{\end{MXContent}}
 \newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{\iExercises{}}{\iExercises{}}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
 

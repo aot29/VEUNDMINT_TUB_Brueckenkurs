@@ -21,7 +21,7 @@
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_Grundlagen_Intro}
->From Module~\MNRef{VBKM01} we already know that \highlight{real numbers} are \highlight{sets} and 
+From Module~\MNRef{VBKM01} we already know that \highlight{real numbers} are \highlight{sets} and 
 \highlight{intervals} are \highlight{subsets} of real numbers.
 
 \begin{MExample}
@@ -102,7 +102,7 @@ in \MSRef{VBKM01}{Module 1}). We also need \highlight{functions}
 
 \begin{MInfo}
 \MLabel{VBKM06_Abbildungen}
-\MEntry{Functions}{function} (or \MEntry{maps}{map}) are assignments between elements of two sets.
+\MEntry{Functions}{function} (or \MEntry{maps}{map}) are assignments between elements of two sets such that there is exactly one element in the second set assigned to each element in the first set.%%%
 \end{MInfo}
 \end{MIntro}
 
@@ -152,10 +152,10 @@ $\Q$, and visualise these two sets as two ``containers'' filled with numbers.
 }%
 
 Now, we want to create an assignment between the elements of these two sets as follows. 
-To each number $n\in\N$ half of this number $\frac{n}{2}\in\Q$ is assigned, i.e. 
-to the number $1\in\N$ assign the number $\frac{1}{2}\in\Q$, to the number 
-$2\in\N$ assign the number $1\in\Q$, etc. In the figure below, this 
-fact is illustrated by arrows that indicate which numbers in $\Q$ are assigned to
+To every number $n\in\N$ half of this number $\frac{n}{2}\in\Q$ is assigned, i.e. 
+to the number $1\in\N$ we assign the number $\frac{1}{2}\in\Q$, to the number 
+$2\in\N$ we assign the number $1\in\Q$, etc. In the figure below, this 
+is illustrated by arrows that indicate which numbers in $\Q$ are assigned to
 which numbers in $\N$.
 
 \MTikzAuto{%
@@ -192,7 +192,7 @@ which numbers in $\N$.
 }%
 
 For the \modsemph{assignment of single elements} of the sets, described above in words,
-we use the so called \highlight{assignment arrow}. This is an arrow that has a bar at its tail: $\longmapsto$.
+we use the so-called \highlight{assignment arrow}. This is an arrow that has a bar at its tail: $\longmapsto$.
 It says that to the number on the side with the bar the number on the side with the arrow is assigned:
 \[
 \N\ni1\longmapsto\MZahl{0}{5}\in\Q \MDFPSpace,\MDFPaSpace \N\ni2\longmapsto1\in\Q \MDFPSpace, \MDFPaSpace \text{etc.} 
@@ -201,7 +201,7 @@ With these assignments, we have now constructed a \modsemph{function} from the n
 numbers $\Q$. In mathematics, this assignment is named, i.e. a symbol is allocated (often this is $f$ for \modsemph{f}unction),
 that shall describe exactly this assignment. For this purpose, the sets of numbers \modsemph{from which}
 and \modsemph{to which} the assignment will be done must be noted. In our case, to the elements of the set of natural 
-numbers $\N$ the rational numbers are assigned. Mathematically, this is expressed by a so called 
+numbers $\N$ the rational numbers are assigned. Mathematically, this is expressed by a so-called 
 \highlight{mapping arrow} $\null\lto\null$, i.e. an arrow that has the target set at its head and the set, 
 whose elements are assigned to, at its tail. Thus, in our case we have
 \[
@@ -212,7 +212,7 @@ This reads as ``the function $f$ maps $\N$ to $\Q$''.
 Furthermore, we can now ask whether the assignments of this function,
 $1\longmapsto\frac{1}{2},\ 2\longmapsto1,\ \text{etc.}$, can be described in a more 
 compact way. To do this, we recall the beginning of this example. We decided to assign 
-to each natural number $n$ its half $\frac{n}{2}$. So we can write this arbitrary 
+to every natural number $n$ its half $\frac{n}{2}$. So we can write this arbitrary 
 natural number $n$ and the corresponding rational number $\frac{n}{2}$ left and right to the 
 assignment arrow, respectively:
 \[
@@ -236,16 +236,16 @@ Let us consider a few further simple examples for functions.
 
 \begin{MExample}\MLabel{bsp1:grundlagen}
 \begin{itemize}
- \item A function $g$ assigns to each real number $x$ its square: $x\cdot x=x^2$. 
-This results in the so called standard parabola (see Section~\MNRef{sec:monome}):
+ \item A function $g$ assigns to every real number $x$ its square: $x\cdot x=x^2$. 
+This results in the so-called standard parabola (see Section~\MNRef{sec:monome}):
  \[
   \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
  \]
 Hence, the mapping rule of $g$ is $g(x)=x^2$. Then, assignments can be calculated for specific numbers.
 For example, $g(2)=2^2=4$ or $g(-\pi)=(-\pi)^2=\pi^2$, etc.
 
-\item A function $\Mvarphi$ shall assign to each real number $y$ between $0$ and $1$ three times its value plus 
-$1$. This is an example for a so called linear affine function (see Section~\MNRef{VBKM06_sec:linear-affin}):
+\item A function $\Mvarphi$ shall assign to every real number $y$ between $0$ and $1$ three times its value plus 
+$1$. This is an example for a so-called linear affine function (see Section~\MNRef{VBKM06_sec:linear-affin}):
  \[
   \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1 \MDFPeriod}
  \]
@@ -260,7 +260,7 @@ since $8$ and $1$ do not belong to the set $(0\MIntvlSep 1)$.
 
 \begin{MExercise}\MLabel{ex1:grundlagen}
 \begin{itemize}
- \item[(i)] Specify a function $h$ that assigns to each positive real number $x$ its reciprocal. 
+ \item[(i)] Specify a function $h$ that assigns to every positive real number $x$ its reciprocal. 
   Calculate the values $h(2)$ and $h(1)$. Complete the two assignments
  \[
   3\longmapsto\text{ ?}\quad\text{and}\quad\text{? }\longmapsto2
@@ -284,7 +284,7 @@ since $8$ and $1$ do not belong to the set $(0\MIntvlSep 1)$.
   Section~\MNRef{VBKM06_Potenz}. The mapping rule of $h$ is $h(x)=\frac{1}{x}$, hence $h(2)=\frac{1}{2}$
   and $h(1)=\frac{1}{1}=1$. Moreover, we have $h(3)=\frac{1}{3}$, hence $3\longmapsto\frac{1}{3}$.
   The observation $h(\frac{1}{2})=\frac{1}{\frac{1}{2}}=2$ gives us $\frac{1}{2}\longmapsto2$.
-  \item[(ii)] The function $w$ assigns to each real number $\alpha$ greater or equal to $4$ and less or equal
+  \item[(ii)] The function $w$ assigns to every real number $\alpha$ greater or equal to $4$ and less or equal
   to $9$ its square root $\sqrt{\alpha}$. The mapping rule is $w(\alpha)=\sqrt{\alpha}$, hence 
   $w(9)=\sqrt{9}=3$ and $w(5)=\sqrt{5}$. The value $w(10)$ cannot be calculated since $10\notin[4\MIntvlSep 9]$.
  \end{itemize}
@@ -387,7 +387,7 @@ The range of this function is
 W_{\Mvarphi}=(1\MIntvlSep 4) \MDFPeriod
 \]
 This can be seen by inserting some values from $D_{\Mvarphi}=(0\MIntvlSep 1)$ in the  mapping rule and calculating 
-the results. In this way, a so called \MEntry{table of values}{table of values} is obtained:
+the results. In this way, a so-called \MEntry{table of values}{table of values} is obtained:
 
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
@@ -424,7 +424,7 @@ Hence, we have for the values of the function $\Mvarphi(y)\in(1\MIntvlSep 4)$ an
 \MDeclareSiteUXID{VBKM06_FunktionenAnwendungen}
 Mathematical functions often describe relations between quantities that arise from other sciences or everyday life. 
 For example, the volume $V$ of a cube depends on the side length $a$ of the cube. The volume 
-can be considered as a mathematical function that assigns the corresponding volume $V(a)=a^3$ to each side length $a>0$:
+can be considered as a mathematical function that assigns the corresponding volume $V(a)=a^3$ to every possible side length $a>0$:
 \[
  \function{V}{(0\MIntvlSep \infty)}{\R}{a}{V(a)=a^3 \MDFPeriod}
 \]
@@ -447,7 +447,7 @@ quantities $I$ and $r$.
 \end{MExample}
 
 \begin{MExercise}\MLabel{ex:anwendungen}
->From the construction of wind turbines it is known that the wind turbine power is \highlight{proportional} to the 
+In the construction of wind turbines it is known that the wind turbine power is \highlight{proportional} to the 
 cube of the wind velocity. Under the condition that the proportionality factor satisfies the relation $\rho>0$, 
 which of the following mathematical functions describes this relation of physical quantities correctly?
 
@@ -488,7 +488,7 @@ The visualisation of a function, as for example
 \[
  \function{f}{\R}{\R}{x}{x^2 \MDFPSpace,}
 \]
-in form of a so called Venn diagram (see Section~\MNRef{sec:zuordnungen})
+in form of a so-called Venn diagram (see Section~\MNRef{sec:zuordnungen})
 
 % venn7 Quadratische Zuordnung = venn4
 \MTikzAuto{%
@@ -946,7 +946,7 @@ functions, monomials and polynomials.
 \begin{MXContent}{Constant Functions and the Identity}{Constants and Identity}{STD}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Konstanten}
 
-So called constant functions assign to every number in the domain $\R$ \modsemph{exactly the same} 
+so-called constant functions assign to every number in the domain $\R$ \modsemph{exactly the same} 
 constant number in the target set $\R$, e.g. the constant number $2$, in the following way:
 \[
  \function{f}{\R}{\R}{x}{2 \MDFPeriod}
@@ -1073,7 +1073,7 @@ increasing function.
 \begin{MXContent}{Linear Functions}{Linear}{STD}\MLabel{sec:linear}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Linear}
 
-Starting from the identity function, more complex functions - so called \highlight{linear functions} - can be constructed. So, for example, one can think of a function that assigns to each 
+Starting from the identity function, more complex functions - so-called \highlight{linear functions} - can be constructed. So, for example, one can think of a function that assigns to every 
 real number twice its value or $\pi$ times its value, etc., e.g.
 \[
  \function{f}{\R}{\R}{x}{2x}
@@ -1228,7 +1228,7 @@ with an arbitrary slope $m\in\R$:
 }%
 
 Where does the term slope of a linear function come from? If the difference in height by which the graph is rising vertically 
-is divided by the corresponding length in the horizontal direction, then one obtains the slope $m$. 
+is divided by the corresponding length in the horizontal direction, then one obtains the slope $m$. So $m = \frac{f(x_2) - f(x_1)}{x_2 - x_1}$ for $x_1 < x_2$.%%%
 
 
 \begin{MInfo}
@@ -1258,11 +1258,11 @@ We have $f(x)=0\cdot x=0$, i.e. the constant function that is always $0$.
 
 \end{MXContent}
  
-\begin{MXContent}{Linear Affine Functions}{Affin}{STD}
+\begin{MXContent}{Linear Affine Functions}{Affine}{STD}
 \MLabel{VBKM06_sec:linear-affin}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Affin}
 
-Combining linear functions with constant functions results in so called \highlight{linear affine functions}.
+Combining linear functions with constant functions results in so-called \highlight{linear affine functions}.
 These are the sum of a linear function and a constant function. Generally, without any specification for 
 the slope ($m\in\R$) this is written as follows:
 \[
@@ -1361,7 +1361,7 @@ we obtain exactly the linear functions.
 
 \end{MXContent}
  
-\begin{MXContent}{Absolute Value Functions}{Betrag}{STD}
+\begin{MXContent}{Absolute Value Functions}{Absolute Value}{STD}
 \MLabel{VBKM06_sec:betrag}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Betrag}
 In Module~\MNRef{VBKM02} the \MSRef{VBKM02_Betrag}{absolute value} of a real number $x$ was introduced in the following way:
@@ -1381,7 +1381,7 @@ Since $b(x)=|x|\geq0$ for all numbers $x$ in $D_b=\R$, we have  $W_b=[0\MIntvlSe
 \end{MHint}
 \end{MExercise}
 
-Due to the definition according to cases
+Due to the definition by cases
 \[
  b(x)=|x|=\begin{MCaseEnv} x & \text{for}\;x\geq0 \\ -x & \text{for}\;x<0 \MDFPSpace , \end{MCaseEnv}
 \]
@@ -1530,9 +1530,9 @@ Since $|-8x+1|\geq0$, it follows $|-8x+1|-1\geq -1$ which implies $W_\alpha=[-1\
 
 \begin{MXContent}{Monomials}{Monomials}{STD}\MLabel{sec:monome}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Monome}
-As well as the linear affine functions studied in the previous section one now can 
-also think of functions that assign to all real numbers non-negative integer powers 
-of itself. An example is the function
+In addition to the linear affine functions studied in the previous section, we can also
+think of functions that assign to every real number a non-negative integer power
+of the number. An example is the function
 \[
  \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
 \]
@@ -1662,9 +1662,9 @@ How can our conclusions concerning monomials be seen immediately from the expone
 
 \begin{MHint}{Solution}
 
->From the exponent rules, we know that $1^n=1$ and $0^n=0$ for arbitrary non-negative 
+From the exponent rules, we know that $1^n=1$ and $0^n=0$ for arbitrary non-negative 
 integers $n$. We have $(-1)^n=1$  if $n$ is an even number and $(-1)^n=-1$ if $n$ is an odd number. 
->From this, the described conclusions result for all monomials.
+From this, the described conclusions result for all monomials.
 $x>x^2>x^3>x^4>\dots$ for positive $x$ less than $1$ and $x<x^2<x^3<x^4<\dots$ for $x$ greater than $1$ result from the exponent
 rules since higher powers of positive numbers less than $1$ will always have decreasing values while, in contrast,
 higher powers of positive numbers greater than $1$ will always have increasing values.
@@ -1677,7 +1677,7 @@ higher powers of positive numbers greater than $1$ will always have increasing v
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Polynome}
 
 The monomials considered until now always involved only exactly one power of the 
-independent variable. From these monomials more complex functions one can easily construct more complex functions involving several different powers of the independent variable. These are sums 
+independent variable. From these monomials we can easily construct more complex functions involving several different powers of the independent variable. These are sums 
 of multiples of monomials. They are called \highlight{polynomials}. 
 A few examples and their graphs are given below.  
 
@@ -1876,7 +1876,7 @@ take non-negative values.
 \end{MHint}
 \end{MExercise}
 
-For general polynomials, the roots are of particular relevance. The roots of a polynomial
+For general polynomials, the roots are of particular interest. The roots of a polynomial
 can be found by solving equations of $n$th degree. In the case of degree polynomials 
 of degree $n=2$ (which are also called general parabolas),  this is possible by solving a 
 quadratic equation. In Module~\MNRef{VBKM02} the relevant terms and methods, i.e. 
@@ -2027,7 +2027,7 @@ Exercise~\MNRef{ex:anwendungen} in Section~\MNRef{sec:anwendungen}.
 
 \begin{MXContent}{Rational Functions}{Rational}{STD}\MLabel{sec:gebrochen}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_GebrochenRational}
-General rational functions have mapping rules that consists of a quotient of two polynomials. 
+A general rational function has a mapping rule that is the quotient of two polynomials. 
 Some examples with their graphs are given below. Of course, for these functions numbers for which the denominator in the mapping rule equals zero must also be 
 excluded from the domain.
 
@@ -2154,7 +2154,7 @@ in the numerator and the denominator and find their roots.
 
 \begin{MHint}{Solution}
 The function $f$ has the a numerator of degree $0$ and denominator of degree $2$. The numerator does not have a root ($8\neq0$), nor does the denominator ($x^2+1=0$ has no solution).\\
-The function $g$ has the a numerator of degree $1$ and denominator of degree $2$. The root of the numerator is at $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$), and the roots of the denominator at $x_{1,2}=-4,\frac{3}{2}$ are obtained by solving the quadratic equation $2x^2+5x-12=0$, e.g. by means of the quadratic formula.\\
+The function $g$ has the a numerator of degree $1$ and denominator of degree $2$. The root of the numerator is at $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$), and the roots of the denominator at $x_{1}=-4$, $x_{2} = \frac{3}{2}$ are obtained by solving the quadratic equation $2x^2+5x-12=0$, e.g. by means of the quadratic formula.\\
 The function $h$ has a numerator of degree $3$ and denominator of degree $1$. The root of the denominator is simply at 
 $x=-1$ ($x+1=0\Leftrightarrow x=-1$). To find the roots of the numerator, the equation $x^3-x^2+x=0$ has to be solved. 
 By factoring out $x$ one obtains $x(x^2-x+1)=0$, and it can be seen immediately that one root is at $x=0$. Finally, 
@@ -2276,10 +2276,10 @@ behave \modsemph{in the neighbourhood} of gaps in the domain. The roots of the d
 }%
 \end{MExample}
 
-At $x=2$ and $x=-3$ the functions $f_1$ and $f_2$, respectively, have so called 
-\modsemph{(proper) poles}, and at $x=1$ the function $f_3$ has a so called \modsemph{removable singularity}.
+At $x=2$ and $x=-3$ the functions $f_1$ and $f_2$, respectively, have so-called 
+\modsemph{(proper) poles}, and at $x=1$ the function $f_3$ has a so-called \modsemph{removable singularity}.
 Looking at the graphs, the difference between these types of poles becomes clear. For (proper) poles,
-the graph rises or falls unboundedly in the neighbourhood of the pole, and for continuously removable 
+the graph rises or falls unboundedly in the neighbourhood of the pole, and for removable 
 singularities the graph ends left and right in the ``gap''.
 
 In the mapping rules of the three functions, this difference is expressed as follows: the values 
@@ -2419,7 +2419,7 @@ independent variable $x$, the function $g$ \modsemph{approaches} its
 limiting value $1$ indefinitely \modsemph{without} ever reaching it for any real number $x$.
 
 This can be seen from the mapping rule $g(x)=1+\frac{1}{x-1}$ as follows. For ``very large''
-($5$, $10$, $100$, etc.) or ``very small'' ($-5$, $-10$, $-100$, etc.) values of $x$, 
+($50$, $100$, $1000$, etc.) or ``very small'' ($50$, $100$, $1000$, etc.) values of $x$, 
 the rational part $\frac{1}{x-1}$ approaches $0$ since $x$ occurs in the 
 denominator. In general, for these values of $x$, only the polynomial part $1$ 
 of the mapping rule remains. This part can be described by a -- in this case constant --
@@ -2482,7 +2482,7 @@ hyperbolic type. In summary, these can be described as the following type of fun
 \]
 where $k\in\Z\setminus\{0\}$ and $D_f=\R$ for $k\in\N$ as well as $D_f=\R\setminus\{0\}$ for $k\in\Z$ 
 with $k<0$. In this section, we will allow arbitrary rational for the exponent in the mapping rule.
-This results in so called \modsemph{power functions} that again include monomials and functions of
+This results in so-called \modsemph{power functions} that again include monomials and functions of
 hyperbolic type as special cases. We will collect their fundamental properties and see some applications.
 \end{MIntro}
 
@@ -2691,7 +2691,7 @@ Thus, the graphs of the first four radical functions, $f_2$, $f_3$, $f_4$, $f_5$
 \end{tikzpicture}
 }%
 
->From the graphs, it can be seen that all radical functions 
+From the graphs, it can be seen that all radical functions 
 are \highlight{strictly increasing}.
 
 \begin{MExercise}
@@ -2738,34 +2738,34 @@ bacteria will be in the culture after $1$ hour and $15$ minutes (i.e. after $75$
 
 As a first try we can create a simple table of values that lists the number of bacteria in the population at 
 the beginning ($t=0$ min), after $t = 13$ min, after $t = 26$ min, etc., i.e. at multiples of the 
-$13$ minutes doubling time:
+$13$ minutes duplication time:
 \begin{center}
  \begin{tabular}{|c|r|r|r|r|r|r|r|r|c|}
  \hline
  Time $t$ in min & 0 & 13 & 26 & 39 & 52 & 65 & 78 & 91 & etc. \\ \hline
- Number of Bacteria & 500 & 1000 & 2000 & 4000 & 8000 & 16000 & 32000 & 64000 & etc. \\ 
+ Number of Bacteria & 500 & 1\,000 & 2\,000 & 4\,000 & 8\,000 & 16\,000 & 32\,000 & 64\,000 & etc. \\ 
  \hline
  \end{tabular}
 \end{center}
->From the table we can estimate that the answer to our question will be between $16000$ and $32000$, probably 
-closer to $32000$. What about a (more) precise answer? For this, we need to know the 
+From the table we can estimate that the answer to our question will be between $16\,000$ and $32\,000$, probably 
+closer to $32\,000$. What about a (more) precise answer? For this, we need to know the 
 \modstextbf{functional relation} between the values of $t$ and the number of bacteria. In the figure below 
 the graph of a function $p$ is shown; so to speak, this graph closes the gaps between the isolated points that 
 correspond to the pairs of values in the table and are plotted as well. The corresponding mapping rule 
-assigns to each real valued point in time a number of bacteria. As we will see, the corresponding function 
+assigns to every real valued point in time a number of bacteria. As we will see, the corresponding function 
 is an \modstextbf{exponential function}.
 
 \begin{center}
 \MUGraphicsSolo{bak_pop.png}{scale=1}{width:400px}
 \end{center}
 
->From the graphical representation, the required number of bacteria can be read off a bit more precisely. However, 
+From the graphical representation, the required number of bacteria can be read off a bit more precisely. However, 
 for the exact specification we need the mapping rule underlying the graph, which we will first simply state here:
 $$p: [0\MIntvlSep \infty) \longrightarrow (0\MIntvlSep  \infty) \;\text{with}\; t \longmapsto p(t) = 500 \cdot 2^{(t/13)} \MDFPeriod$$
 (In Exercise~\MRef{M06_bsp_bak_pop_exercise} we will give a reason for this functional relation.)\\
 For $t = 75$ (measured in minutes) we obtain the function value
-$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27270 \MDFPeriod$$
-Hence, after $75$~minutes $27270$~bacteria live in the considered population.
+$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27\,270 \MDFPeriod$$
+Hence, after $75$~minutes approx. $27\,270$~bacteria live in the considered population.
 \end{MExample}
 \end{MIntro}
 
@@ -2778,11 +2778,9 @@ In the previous \MSRef{M06_bsp_bak_pop}{example}, an \modstextbf{exponential fun
 independent variable -- in this example this is the variable $t$ -- occurs in the exponent. We will now specify the general 
 mapping rule for an exponential function with an arbitrary base $a$; however, we here assume $a > 0$:
 $$
-\begin{array}{rrcl}
- f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot a^{\lambda x} \MDFPeriod
-\end{array}
+ \function{f}{\R}{(0;\infty)}{x}{f(x)=f_{0}\cdot a^{\lambda x}}
 $$
-Here, $f_0$ and $\lambda$ denote so called parameters of the exponential function that will be introduced below. 
+Here, $f_0$ and $\lambda$ denote so-called parameters of the exponential function that will be introduced below. 
 
 The domain of all exponential functions is the set of all real numbers, i.e. $D_f = \R$, whereas the range 
 only consists of the positive real numbers, i.e. $W_f = (0\MIntvlSep  \infty)$, since every power of a positive number 
@@ -2835,20 +2833,20 @@ or decreases (for $\lambda < 0$).
 
 \begin{MExercise}
  \MLabel{M06_bsp_bak_pop_exercise}
-  Reason the parameters in the exponential function $f(t) = 500 \cdot 2^{(t/13)}$ that occurs in 
+  Explain the form of the exponential function $f(t) = 500 \cdot 2^{(t/13)}$ that occurs in 
   Example~\MRef{M06_bsp_bak_pop}.
 
   \begin{MHint}{Solution}
-  In every doubling period of $13$ minutes -- as the name suggests -- the population of bacteria doubles.
+  In every duplication period of $13$ minutes -- as the name suggests -- the population of bacteria is doubled.
   Compared to the initial value ($500$ bacteria), the number of bacteria doubles after a period of $13$~minutes, 
   quadruples after two such periods, increases by a factor of eight after $3 \cdot 13$~minutes (always compared
   to the initial value, as already said), etc. From that fact we see that a growth process involves powers 
   of $2$; accordingly, we take as the base of the functional relation $a = 2$. 
 
   This consideration also determines the exponent of the required exponential function: Our measurement 
-  of time has to refer to the doubling period of $13$ minutes, hence, the exponent is $\Mtfrac{t}{13}$. 
+  of time has to refer to the duplication period of $13$ minutes, hence, the exponent is $\Mtfrac{t}{13}$. 
   After $13$~minutes, the exponent has the value $\Mtfrac{13}{13} = 1$. Then, the growth factor is 
-  $2^{(13/13)}=2$. After two doubling periods ($26$~minutes), the exponent has the value $\Mtfrac{26}{13} = 2$, 
+  $2^{(13/13)}=2$. After two duplication periods ($26$~minutes), the exponent has the value $\Mtfrac{26}{13} = 2$, 
   and thus the growth factor is altogether $2^{(26/13)} = 2^2 = 4$, etc. 
 
   Finally, we have to weight our exponential function $2^{(t/13)}$ by the correct initial value 
@@ -3063,7 +3061,7 @@ thus have their own dedicated names:
 \begin{itemize}
 \item{Logarithmic function to the base $10$: denoted by $\log_{10}(x)=\lg(x)$ or sometimes only by $\log(x)$. This 
 logarithmic function is associated to the powers of ten and is used, for example, in chemistry for the calculation of 
-the ph level.}
+the pH level.}
 \item{Logarithmic function to the base $2$: denoted by $\log_2(x)=\ld(x)$. This 
 logarithmic function is relevant in computer science.}
 \item{Logarithmic function to the base $\MEU$: denoted by $\log_\MEU(x)=\ln(\MEU)$. The natural logarithmic function
@@ -3193,7 +3191,7 @@ The figure above shows the graph of the sine function
   Just a quick look at the graph of the simple sine function suggests that we could use this function for the description 
   of wave phenomena. However, to be able to use the full potential of the sine function a few parameters will be 
   introduced. For example, the amplitude of the sine function can be amplified or damped by a 
-  so called \modstextbf{amplitude factor} $A$, the frequency of the oscillation can be affected by a 
+  so-called \modstextbf{amplitude factor} $A$, the frequency of the oscillation can be affected by a 
   \modstextbf{frequency-like} factor $a$, and the entire path of the graph can be shifted to the left or to the right 
   by a \modstextbf{shifting constant} $b$. Thus, the \modstextbf{general sine function} has the following form:
  $$\begin{array}{rrcl}
@@ -3208,7 +3206,7 @@ The figure above shows the graph of the sine function
   \modstextbf{rest position} (the \modstextbf{vertical axis}), the relation between the angle $\Mvarphi$  
   and the independent variable $t$, i.e. the time, is described by a general sine function:
   $$\Mvarphi (t) = A \, \sin(\Mdfrac{2 \pi}{T} t + b) \MDFPeriod$$
-  Here, $T$ denotes the so called \modstextbf{period} of the pendulum, i.e. the period of time, required 
+  Here, $T$ denotes the so-called \modstextbf{period} of the pendulum, i.e. the period of time, required 
   by the pendulum for a full oscillation.
  \end{MExample}
 \end{MXContent}
@@ -3328,7 +3326,7 @@ to different situations (in application examples):
   In addition, the tangent function is periodic, however, the period is $\pi$ or $180^\circ$.
  
  \begin{MExercise}
- The so called cotangent function (abbreviated to $\cot$) is defined by
+ The so-called cotangent function (abbreviated to $\cot$) is defined by
  $\cot (\alpha) = \frac1{\tan(\alpha)}= \Mdfrac{\cos(\alpha)}{\sin(\alpha)}$.
  
   Specify the domain and the range of the cotangent function.
@@ -3655,7 +3653,7 @@ Further examples are:
 \end{MExercise}
 
 Finally, there is another way to combine elementary functions to obtain new functions. This is the 
-so called \highlight{composition} of functions. 
+so-called \highlight{composition} of functions. 
 
 Let us consider a few examples.
 

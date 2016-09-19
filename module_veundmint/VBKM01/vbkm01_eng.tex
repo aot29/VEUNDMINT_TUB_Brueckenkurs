@@ -42,6 +42,7 @@ Before we examine the actual subjects of this section in more detail, we shall r
 notion of a \MEntry{set}{set}. 
 
 \begin{MInfo}
+
 We will often be making statements about a number of structurally similar objects.
 To do so in a compact manner, we can gather such objects into sets that serve as
 containers for the objects. Let the objects be denoted by $a,b,c,\ldots$. 
@@ -60,16 +61,20 @@ x\MBlank\text{satisfies}\MBlank B\}$ or, in short, $T=\{x\in U\MCondSetSep x\MBl
 %%ist $T$ dann in natürlicher Weise eine \textbf{Teilmenge} von $U$,
 %%notiert in Formelnotation als $T\subset U$.
 
+
 Statements like ``$x\in U$'' or ``$x\MBlank\text{satisfies}\MBlank B$'' are statements in a 
 mathematical sense, i.e.\ we can assign them a unique truth value ``true'' or ``false''. 
 Let $A_1$ and $A_2$ be two such statements. In case both $A_1$ \textbf{and} $A_2$ hold, we write $A_1 \wedge A_2$. In case only one of the two 
 statements needs to hold, i.e.\ $A_1$ \textbf{or} $A_2$ \textbf{or} both, we write $A_1\vee A_2$.
 
+
 For two sets $M$ and $N$ we write:
 \begin{itemize}
 \item{%
+
 $M\subseteq N$, i.e.\ $M$ is a (possibly improper) \textbf{subset} of $N$, if every element of $M$ is also an element of 
 $N$. If at least one element of $N$ exists that is not in $M$, we say that $M$ is a proper subset of $N$. In this case we can also write $M\subset N$.
+
 }
 \item{%
 $M\cup N$ for the \textbf{union} of the two sets. The union denotes the set containing all elements that are contained in at least one of the two sets.
@@ -128,10 +133,12 @@ $\displaystyle \R$ & $x^2=2$ &$x^2=-1$ & etc. & \\
 \end{tabular}
 \end{center}
 
+
 \textbf{Natural numbers} occur whenever numbers of objects have to be determined or things have to be labelled (using numbers). They play a great role 
 in combinatorics: the number of possibilities for selecting 6 balls out of 49 is, for example, a natural number.
 Natural numbers are the bases of several number systems important either in daily life or in computer science: the binary system has base 2, the decimal system has base 10, 
 and the hexadecimal system has base 16. Specific natural numbers, the prime numbers, are fundamental for modern encryption methods. 
+
 
 Arithmetic on the set of natural numbers is easy, but limits are reached if, for example, you read a temperature value of 3\,$^\circ$C 
 (does it mean plus or minus degrees?) or if an equation such as $x+5=1$ needs to be solved. Thus we must extend the set of natural numbers
@@ -152,7 +159,8 @@ without any restriction, i.e.\ systems of equations of the form $\displaystyle a
 }
 \end{center}
 
-On the set of integers a comparing symbol $<$ can be uniquely defined, so that the integers can be ordered into a chain:
+
+On the set of integers a comparator $<$ can be uniquely defined, so that the integers can be ordered into a chain:
 $$\dots < -3 < -2 < -1 < 0 < 1 < 2 < 3 < \dots \MDFPeriod$$
 
 \newpage
@@ -164,6 +172,7 @@ $$\Q:=\left\{{\Mdfrac{p}{q}\MCondSetSep p,q\in\Z, q\neq 0 }\right\}.$$
 The elements $\displaystyle \Mtfrac{p}{q}$ of the set $\Q$ are called \MEntry{fractions}{fraction}, where $p$ is the 
 \MEntry{numerator}{numerator} of the fraction and $q$ is the non-zero \MEntry{denominator}{denominator} of the fraction.
 \end{MInfo}
+
 The rationals play a role whenever the numbers have to be ``more precise'', e.g.\ if temperatures 
 have to be given in fractional amounts of $^\circ$C, parts of surfaces have to be coloured, or medications have to be 
 mixed from specific ingredients. 
@@ -177,7 +186,7 @@ all represent the same rational number.
 
 Also, not every number on the number line can be represented as a fraction. Considering, for example, 
 a square with sides of length $1$, the length of the diagonal $d$ can be calculated by means of the 
-Pythagorean theorem:
+Pythagoras' theorem:
 
 \vspace*{5mm}
 
@@ -207,7 +216,7 @@ $$d^2 = 1^2+1^2 = 2, \;\mbox{or\ formally,}\; d=\sqrt{2}.$$
 Another number that cannot be represented as a fraction is obtained by unrolling a wheel of diameter $1$ 
 on the number line. The result is the number $\pi$. It can be proven that these two numbers ($\sqrt{2}$ and $\pi$)
 cannot be represented as fractions. (In the case of $\sqrt{2}$ this proof is relatively simple.) These numbers are two 
-examples of the so called \MEntry{irrational numbers}{irrational numbers}.
+examples of the so-called \MEntry{irrational numbers}{irrational numbers}.
 
 \vspace*{5mm}
 
@@ -224,6 +233,7 @@ examples of the so called \MEntry{irrational numbers}{irrational numbers}.
 \end{tikzpicture}
 }
 \end{center}
+
 
 A number is irrational if it is not rational, i.e. if it cannot be represented as a fraction.
 The irrational numbers close the remaining gaps on the number line, where every point now
@@ -290,6 +300,11 @@ $\R^{+}=\MoIl[\left] 0\MIntvlSep \infty\MoIr[\right]$,
 ${\R_{0}}^{+}= \left[ 0\MIntvlSep \infty\MoIr[\right]$,  
 $\R^{-}=\MoIl[\left] -\infty \MIntvlSep 0\MoIr[\right]$,  
 ${\R_{0}}^{-}=\MoIl[\left] -\infty \MIntvlSep 0\right]$.  
+
+A final remark as to the notation: In the literature you will find two
+different notations for the open end of an interval, either with square 
+brackets pointing outwards or with parentheses, e.g. $[a\MIntvlSep b[=[a\MIntvlSep b)$,
+$]a\MIntvlSep b[=(a \MIntvlSep b)$. Both notations are correct, don't let them confuse you.
 \end{MInfo}
 
 \end{MIntro}
@@ -576,7 +591,7 @@ $$
 Transform into a sum: \MEquationItem{$(x-y)(z-x)+(x-z)(y-z)$}{\MLSimplifyQuestion{20}{(x-y)*(z-x)+(x-z)*(y-z)}{3}{x,y,z}{3}{1}{TC2}}.
 \begin{MHint}{Solution}
 $$
-(x-y)(z-x)+(x-z)(y-z) \;=\; x z - x^2 -y z +y x + x y - x z - z y + z^2 \;=\; -x^2 - 2 y z + 2 x z + z^2
+(x-y)(z-x)+(x-z)(y-z) \;=\; x z - x^2 -y z +y x + x y - x z - z y + z^2 \;=\; -x^2 - 2 y z + 2 x y + z^2
 $$
 \end{MHint}
 \end{MExercise}
@@ -629,7 +644,7 @@ two fractions, to decide how much of the pizza Tim and Tom already ate:
 $$\Mdfrac{1}{4} + \Mdfrac{1}{3} = \Mdfrac{1\cdot 3}{4\cdot 3}+\Mdfrac{1\cdot 4}{3\cdot 4} 
 = \Mdfrac{3}{12} +\Mdfrac{4}{12} = \Mdfrac{7}{12} \MDFPeriod$$
 Here, we can already identify the two most important steps: 
-First we have to expand the two fractions to the so called 
+First we have to expand the two fractions to the so-called 
 \textbf{least common denominator}, or, as one also says, we have to create
 \textbf{like} fractions. Then, if the fractions have the same denominator, 
 we can add them by adding their numerators and maintaining the same denominator. 
@@ -1398,7 +1413,7 @@ a^n & =&  a\cdot a\cdot a\cdot\dots\cdot a\: .\\ && \;\;(n\:\text{factors})
 \else
 $$a^n = \underbrace{a\cdot a\cdot a\cdot\dots\cdot a}_{\mbox{$n$ factors}} \MDFPeriod$$
 \fi
-$a$ is called \MEntry{base}{base} and $n$ is called \MEntry{exponent}{exponent}.\\
+$a$ is called the \MEntry{base}{base} and $n$ is called the \MEntry{exponent}{exponent}.\\
 \end{MInfo}
 
 Here, some special cases exist that you should ideally know by heart:
@@ -1449,7 +1464,7 @@ This leads to one inverse operation of the exponentiation: extracting a root.
 \begin{MInfo}
 The $n$-th \MEntry{root}{root} of a number $a\in\R, a\geq 0,$ is the number whose $n$-th power is $a$:
 $$a^{\Mtfrac{1}{n}} = \sqrt[n]{a} = b \Longrightarrow b^n = a \MDFPeriod$$
-$a$ is called \MEntry{base of the root}{base (root)} or \MEntry{radicand}{radicand}, and $n$ is called 
+$a$ is called the \MEntry{base of the root}{base (root)} or \MEntry{radicand}{radicand}, and $n$ is called the 
 \MEntry{exponent of the root}{exponent (root)} or \MEntry{order of the root}{order (root)}.
 We have $\displaystyle \sqrt[1]{a} = a$, and 
 $\displaystyle \sqrt[2]{a} = \sqrt{a}$ is called the \MEntry{square root}{square root} and 
