@@ -1311,20 +1311,20 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 % GHEADER und GFOOTER werden von split.pm gefunden, aber nur, wenn nicht HELPSITE oder TESTSITE
 \ifttm
-\newenvironment{MSectionStart}{\special{html:<div class="xcontent0">}\MSubsubsectionx{Module Overview}}{\setcounter{MSSEnd}{0}\special{html:</div>}}
+\newenvironment{MSectionStart}{\special{html:<div class="xcontent0">}\MSubsubsectionx{\iModuleOverview{}}}{\setcounter{MSSEnd}{0}\special{html:</div>}}
 % Darf nicht als XContent nummeriert werden, darf nicht als XContent gelabelt werden, wird aber in eine xcontent-div gesetzt fuer Python-parsing
 \else
-\newenvironment{MSectionStart}{\MSubsectionx{Module Overview}}{\setcounter{MSSEnd}{0}}
+\newenvironment{MSectionStart}{\MSubsectionx{\iModuleOverview{}}}{\setcounter{MSSEnd}{0}}
 \fi
 
 \ifttm
-\newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}\begin{html}<div
+\newenvironment{MIntro}{\begin{MXContent}{\iIntroduction{}}{\iIntroduction{}}{genetisch}\begin{html}<div
 class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \else
-\newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}}{\end{MXContent}}
+\newenvironment{MIntro}{\begin{MXContent}{\iIntroduction{}}{\iIntroduction{}}{genetisch}}{\end{MXContent}}
 \fi
 
-\newenvironment{MContent}{\begin{MXContent}{Contents}{Contents}{beweis}}{\end{MXContent}}
+\newenvironment{MContent}{\begin{MXContent}{\iContents{}}{\iContents{}}{beweis}}{\end{MXContent}}
 \newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{\iExercises{}}{\iExercises{}}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
 
 % #1 = Lesbare Testbezeichnung
