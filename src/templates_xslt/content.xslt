@@ -22,7 +22,7 @@
 
 			<!-- Add a module launch button to module overview pages, but not on the first page -->
 			<xsl:if test="$isModuleSelected and @isCoursePage = 'True'">
-				<a type="button" class="btn btn-primary center-block" href="{navNext/@href}" style="margin-top: 2em; width: 33%;">
+				<a type="button" class="btn btn-primary btn-block btn-lg" href="{navNext/@href}" style="margin-top: 2em;">
 					<span data-toggle="i18n" data-i18n="module_starttext"/>: <xsl:value-of select="$selectedModule/caption" />
 				</a>
 			</xsl:if>
