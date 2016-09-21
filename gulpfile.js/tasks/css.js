@@ -7,7 +7,7 @@ var browserSync  = require('browser-sync')
 //var sass         = require('gulp-sass')
 //var sourcemaps   = require('gulp-sourcemaps')
 var handleErrors = require('../lib/handleErrors')
-//var autoprefixer = require('gulp-autoprefixer')
+var autoprefixer = require('gulp-autoprefixer')
 var path         = require('path')
 //var cssnano      = require('gulp-cssnano')
 var concat       = require('gulp-concat')
@@ -25,6 +25,10 @@ var cssTask = function () {
     // .pipe(autoprefixer(config.tasks.css.autoprefixer))
     // .pipe(gulpif(global.production, cssnano({autoprefixer: false})))
     // .pipe(gulpif(!global.production, sourcemaps.write()))
+	.pipe(autoprefixer({
+		browsers: ['> 5%'],
+		cascade: false
+	}))
     .pipe(concat('app.css'))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
