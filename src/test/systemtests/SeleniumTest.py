@@ -43,7 +43,7 @@ class SeleniumTest(unittest.TestCase):
 	# Todo: Some stuff can go in setUpClass (but not the driver)
 	#
 	def setUp(self):
-		self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log')
+		self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log', service_args=['--ignore-ssl-errors=true'])
 		
 		#self.driver = webdriver.Firefox()
 		self.driver.set_window_size(1120, 550)
