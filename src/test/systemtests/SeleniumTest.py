@@ -13,7 +13,7 @@ from tex2x.renderers.AbstractRenderer import AbstractXmlRenderer
 class SeleniumTest(unittest.TestCase):
 	# Most xpaths assume you are starting from the root element (e.g. using self.driver).
 	# use with self.getElement('key')
-	# To retrieve an element by id, e.g. from the content of the page, 
+	# To retrieve an element by id, e.g. from the content of the page,
 	# it's not necessary to add it here to use self.getElement('id')
 	xpath = {
 		'pageContents' : "//div[@id='pageContents']",
@@ -44,7 +44,7 @@ class SeleniumTest(unittest.TestCase):
 	#
 	def setUp(self):
 		self.driver = webdriver.PhantomJS(executable_path=BASE_DIR + '/node_modules/phantomjs/lib/phantom/bin/phantomjs', service_log_path=BASE_DIR + '/ghostdriver.log', service_args=['--ignore-ssl-errors=true'])
-		
+
 		#self.driver = webdriver.Firefox()
 		self.driver.set_window_size(1120, 550)
 		self.driver.set_page_load_timeout(30)
@@ -60,9 +60,9 @@ class SeleniumTest(unittest.TestCase):
 		finally:
 			if localeFile:
 				localeFile.close()
-				
+
 		# set URL's
-		
+
 		#
 		# to change the base URL, do something like
 		# export BASE_URL=http://localhost:3000/
@@ -77,32 +77,32 @@ class SeleniumTest(unittest.TestCase):
 	def getElement( self, key ):
 		"""
 		Method has 2 usages:
-		1. Retrieve a DOM element from the navigation etc. 
+		1. Retrieve a DOM element from the navigation etc.
 		In this case, the DOM element is retrieved by looking up the key up in the array of xpaths.
-		
+
 		2. Retrieve a DOM element from the page content. The element is retrieved by id
-		
+
 		Use this instead of self.driver.find_element_by_xpath('...') or self.driver.find_element_by_id( '...' )
-		
+
 		@param key - String case 1: key in the self.xpath dict or case 2: element id
 		"""
 		if key in self.xpath.keys():
 			#element = self.driver.find_element_by_xpath( self.xpath[ key ] )
 			element = WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self.xpath[ key ])))
-	
+
 		else:
 			#element = self.driver.find_element_by_id( key )
 			element = WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.ID, key)))
-			
+
 		return element
-			
+
 
 	def isBootstrap(self):
 		"""
 		Is the bootstrap version being tested?
 		"""
 		return settings.bootstrap
-	
+
 
 	def _openStartPage(self, no_mathjax=False):
 		'''
@@ -117,7 +117,7 @@ class SeleniumTest(unittest.TestCase):
 		self._loadPage( start_url )
 
 
-		
+
 
 	def _navToChapter(self, chapter, section=None, lang = "de", no_mathjax=False):
 		'''
@@ -133,7 +133,7 @@ class SeleniumTest(unittest.TestCase):
 		if section is None:
 			# Open chapter
 			url = "%s/html/%s/sectionx%s.1.0.html" % ( self.start_url, lang, chapter )
-			
+
 		else:
 			# Open section
 			url = "%s/html/%s/%s.%s/modstart.html" % ( self.start_url, lang, chapter, section )
@@ -149,8 +149,8 @@ class SeleniumTest(unittest.TestCase):
 			print( "Key must be in AbstractXmlRenderer.specialPagesUXID" )
 
 		self._loadPage( url )
-			
-		
+
+
 	def _chooseLanguageVersion(self, lang):
 		'''
 		Navigate to the specified language version of the website
@@ -159,18 +159,18 @@ class SeleniumTest(unittest.TestCase):
 		url = "%s/html/%s/" % ( self.start_url, lang )
 		self._loadPage( url )
 
-	
+
 	def _isLoginDisabled(self):
 		"""
 		1 if login has been disabled in Option.py
 		"""
 		return (settings.disableLogin == 1)
 
-	
+
 	def _loadPage(self, url):
 		"""
 		Try to load a URL without causing errors or timeouts.
-		
+
 		@param url - the url to load
 		"""
 		self.driver.get( url )
