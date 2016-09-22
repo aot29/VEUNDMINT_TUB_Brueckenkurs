@@ -41,6 +41,7 @@
 					</div>
 					<div id="main">
 						<div class="col-md-12">
+
 							<!-- Page tabs -->
 							<xsl:apply-templates select="." mode="tabs" />
 							<!-- Page contents-->

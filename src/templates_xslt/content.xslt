@@ -5,6 +5,7 @@
 		<xsl:variable name="selectedModule" select="toc/entries/entry[@selected='True']" />
 		<!-- The currently selected section -->
 		<xsl:variable name="selectedPage" select="toc/entries/entry[@selected='True']/children/entry/children/entry[@selected='True']" />
+
 		<!-- Is the selected page a module page? -->
 		<xsl:variable name="isModuleSelected" select="not ($selectedPage) and $selectedModule" />
 
