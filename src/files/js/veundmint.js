@@ -185,8 +185,8 @@ $(window).on('beforeunload', function(){
 		
 		// footer at bottom of column
 		// don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
-		$(window).resize( positionFooter );
-		positionFooter();	
+		$(window).resize( veundmint.positionFooter );
+		veundmint.positionFooter();	
 		
 		// on the logout page
 		if( requestLogout ) {
