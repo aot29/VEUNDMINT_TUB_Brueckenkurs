@@ -65,23 +65,7 @@
 
 			$(document).ready(function () {
 			  veundmint.init();
-
-				// footer at bottom of column
-				// don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
-				$(window).resize( positionFooter );
-				positionFooter();
-
-				// on the logout page
-				if( requestLogout ) {
-					localStorage.clear();
-				}
 			});
-
-			function positionFooter() {
-					var docHeight = $(window).height();
-					var offsetHeight = $( "#navbarTop" ).height() + $( "#subtoc" ).height() + $( "#footer" ).height() * 2;
-					$( "#pageContents" ).css( "minHeight", docHeight - offsetHeight + "px" );
-			}
 
 			// <JSCRIPTPOSTMODEL>
 		]]>
