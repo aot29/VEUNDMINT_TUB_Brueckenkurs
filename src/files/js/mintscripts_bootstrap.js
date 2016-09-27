@@ -1321,7 +1321,7 @@ function InitResults(empty)
     for (i=1; i<FVAR.length; i++) {
       var e = document.getElementById(FVAR[i].id);
       if (FVAR[i].sync == 1) {
-        v = GetResult(FVAR[i].id);
+        v = GetResult(FVAR[i].uxid);
       } else {
     v = null;
       }
