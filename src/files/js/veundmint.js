@@ -140,7 +140,7 @@ $(window).on('beforeunload', function(){
 	};
 
 	/**
-	 * Initialize Plugin, called on document redy at startpage
+	 * Initialize Plugin, called on document ready at startpage
 	 * execution order of several commands is critical (by now) DO NOT CHANGE
 	 * unless you know what you are doing
 	 * @param {Object} options User settings
@@ -160,29 +160,38 @@ $(window).on('beforeunload', function(){
 		log.setDefaultLevel(settings.defaultLogLevel);
 
 
-    $('[data-toggle="offcanvas"]').click(function () {
-      $('.row-offcanvas').toggleClass('active')
-    });
+		$('[data-toggle="offcanvas"]').click(function () {
+			$('.row-offcanvas').toggleClass('active')
+		});
 
-  	intersite.init();
-    globalreadyHandler("");
-  	globalloadHandler("");
+		intersite.init();
+		globalreadyHandler("");
+		globalloadHandler("");
 
-		// set up components
-		veundmint.languageChooser($('#languageChooser'));
+			// set up components
+			veundmint.languageChooser($('#languageChooser'));
 
-    //remove logout button on scorm
-    if (intersite.isScormEnv()) {
-      $('#li-logout').remove();
-    }
+		//remove logout button on scorm
+		if (intersite.isScormEnv()) {
+			$('#li-logout').remove();
+		}
 
 		//if we came from the same url in another language, return to the scroll position
 		var oldScrollTop = intersite.getScrollTop();
 		if (oldScrollTop !== 0) {
-	  	$(document).scrollTop(oldScrollTop);
+			$(document).scrollTop(oldScrollTop);
 			intersite.setScrollTop(0);
 		}
-
+		
+		// footer at bottom of column
+		// don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
+		$(window).resize( veundmint.positionFooter );
+		veundmint.positionFooter();	
+		
+		// on the logout page
+		if( requestLogout ) {
+			localStorage.clear();
+		}
 
 	};
 
@@ -338,6 +347,12 @@ $(window).on('beforeunload', function(){
       window.location.href = newUrl;
     });
   }
+  
+	veundmint.positionFooter = function () {
+		var docHeight = $(window).height();
+		var offsetHeight = $( "#navbarTop" ).height() + $( "#subtoc" ).height() + $( "#footer" ).height() * 2;
+		$( "#pageContents" ).css( "minHeight", docHeight - offsetHeight + "px" );
+	}
 
 	return veundmint;
 
