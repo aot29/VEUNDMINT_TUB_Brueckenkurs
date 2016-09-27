@@ -199,7 +199,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         logMessage(CLIENTERROR,"Intersite setup WITHOUT STORAGE from scratch from " + obj.startertitle);
       } else {
         log.debug('localstorage is available');
-        var iso = localStorage.getItem(name);
+        var iso = localStorage.getItem(getObjName());
         log.debug("iso aus localStorage geholt");
         if (clearuser == true) {
         if (active == true) {
@@ -394,7 +394,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         //     logMessage(CLIENTINFO, "SCORM final reporting above SCORM 1.2 not supported yet");
         // }
       }
-      localStorage.setItem(name, jso);
+      localStorage.setItem(getObjName(), jso);
       if ((obj.login.type == 2) || (obj.login.type == 3)) {
           // Eintrag in Serverdatenbank aktualisieren
           log.debug("Aktualisiere DB-Server (synced = " + synced + ")");

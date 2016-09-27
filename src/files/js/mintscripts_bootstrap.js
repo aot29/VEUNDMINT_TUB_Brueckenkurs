@@ -603,7 +603,7 @@ function rawParse(eingabe) {
 
 // Uebernimmt die Inhalte der DOM-Elemente von Question-Feldern und faerbt sie entsprechend ein (auch Checkboxen!)
 function check_group(input_from, input_to) {
-    log.trace('mintscripts_bootstrap: check_group called', input_from, input_to);
+    log.debug('mintscripts_bootstrap: check_group called', input_from, input_to);
     var d = document;
     var i;
     var s;
