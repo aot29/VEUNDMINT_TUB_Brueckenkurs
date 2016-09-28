@@ -4,6 +4,8 @@ var gulp         = require('gulp')
 var scormManifest = require('gulp-scorm-manifest')
 var zip = require('gulp-zip');
 var gulpSequence    = require('gulp-sequence')
+var gutil = require('gulp-util');
+
 
 var scormManifestTask = function () {
     gulp.src('./public/**')
@@ -19,7 +21,16 @@ var scormManifestTask = function () {
 }
 
 var scormArchiveTask = function () {
-  gulp.src('**/*', {cwd: 'public/'})
+  gulp.src(['**/*', '!scormModule.zip', '!js/mathjax/**'], {cwd: 'public/'})
+  .pipe(zip('scormModule.zip'))
+  .pipe(gulp.dest('./public'))
+}
+
+/*
+  Creates a small archive without images
+ */
+var scormSmallArchiveTask = function () {
+  gulp.src(['**', '!scormModule.zip', '!images/**', '!js/mathjax/**'], {cwd: 'public/'})
   .pipe(zip('scormModule.zip'))
   .pipe(gulp.dest('./public'))
 }
@@ -32,4 +43,5 @@ gulp.task('scormManifest', scormManifestTask);
 gulp.task('scormArchive', scormArchiveTask)
 
 gulp.task('scorm', ['scormManifest'], scormArchiveTask);
+gulp.task('scormSmall', ['scormManifest'], scormSmallArchiveTask);
 module.exports = [scormArchiveTask, scormManifestTask];
