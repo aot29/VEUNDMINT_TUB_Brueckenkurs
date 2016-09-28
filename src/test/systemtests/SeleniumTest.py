@@ -33,9 +33,7 @@ class SeleniumTest(unittest.TestCase):
 		'registrationButton' : "//a[@id='newUserButton']",
 		'signupButton' : "//a[@href='../en/signup.html']",
 		'loginButtonNavBar' : "//a[@href='../de/login.html']",
-		'loginButton' : "//button[@onclick='intersite.userlogin_click();']",
-		'navPrev' : "//div[@class='col-md-1 chevron pull-left']/a",
-		'navNext' : "//div[@class='col-md-1 chevron pull-right']/a"
+		'loginButton' : "//button[@onclick='intersite.userlogin_click();']"
 	}
 
 	#
@@ -118,7 +116,7 @@ class SeleniumTest(unittest.TestCase):
 
 
 
-
+	#TODO this does not work as expected _navToChapter("1", "1.1")
 	def _navToChapter(self, chapter, section=None, lang = "de", no_mathjax=False):
 		'''
 		Navigate to chapter specified by name.

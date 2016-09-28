@@ -36,10 +36,10 @@
 
 	<!-- RW and FF Buttons -->
 	<xsl:template match="navPrev">
-		<a href="{@href}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+		<a id="prev-chapter" href="{@href}"><span class="glyphicon glyphicon-chevron-left"></span></a>
 	</xsl:template>
 
 	<xsl:template match="navNext">
-		<a href="{@href}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+		<a id="next-chapter" href="{@href}"><span class="glyphicon glyphicon-chevron-right"></span></a>
 	</xsl:template>
 </xsl:stylesheet>
