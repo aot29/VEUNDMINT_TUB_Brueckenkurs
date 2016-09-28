@@ -1,10 +1,16 @@
 # Change Log
 All notable changes to this project should be documented in this file.
 
-## 28.09.2016
+## 04.09.2016 - <TODAY>
 ### Added
+- this changelog :ok_hand:
 - ssh support
 - moodle build script (`gulp scorm`)
+- math4refugees and matet shows the new version
+- added new test for tab navigation
+- added new tests for intersite obj (are scores saved there)
+- added new test for checking that old userinput is entered in input fields
+- tests now do not show ConnectionRefused Errors anymore, and pipline succeeds on default (changed phantomjs version in package.json)
 
 ### Fixed
 - user input is now reloaded into input fields again #68
