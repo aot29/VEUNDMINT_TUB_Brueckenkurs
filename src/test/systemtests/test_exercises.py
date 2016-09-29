@@ -126,7 +126,7 @@ class ExercisesTest( SeleniumTest ):
         self.assertEquals(questionInput.get_attribute('value'), correct_answer)
 
         #reload the page and check that the value is still in the input
-        self.driver.get(self.driver.current_url)
+        self._navToChapter("1", "1.2")
         questionInput = self.getElement('QFELD_1.2.2.QF601')
         self.assertEquals(questionInput.get_attribute('value'), correct_answer)
 
