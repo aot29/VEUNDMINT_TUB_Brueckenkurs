@@ -5,12 +5,16 @@ All notable changes to this project should be documented in this file.
 ### Added
 - this changelog :ok_hand:
 - ssh support
-- moodle build script (`gulp scorm`)
+- moodle build script (`gulp scorm` , or for version without images `gulp scormSmall`s)
 - math4refugees and matet shows the new version
 - added new test for tab navigation
 - added new tests for intersite obj (are scores saved there)
 - added new test for checking that old userinput is entered in input fields
 - tests now do not show ConnectionRefused Errors anymore, and pipline succeeds on default (changed phantomjs version in package.json)
+- scormBridge.js created
+  - wraps some functions of the pipwerks.API
+  - handles the initialization and connection to the LMS
+  - offers convenient functions to get and save data to SCORM environments
 
 ### Fixed
 - user input is now reloaded into input fields again #68
