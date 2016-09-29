@@ -1630,7 +1630,7 @@ function globalunloadHandler() {
   intersite.pushIso(true); // nur synchrone ajax-calls erlauben, da wir im unload-Handler sind und die callbacks sonst verschwinden bevor Aufruf beantwortet wird
 
   // VERALTET
-  if (pipwerks.scormdata.connection.isActive == true)
+  if (pipwerks.SCORM.connection.isActive == true)
   {
     log.trace("pipwerks.scormdata.connection.isActive == true in globalunloadHandler");
     pipwerks.SCORM.save();
@@ -2137,12 +2137,12 @@ function applyLayout(first) {
   var head = loginbuttonhtml;
 
   if (intersite.isActive()) {
-      if ((intersite.getObj().login.type >= 2) && (intersite.isScormEnv() == 0)) {
+      if ((intersite.getObj().login.type >= 2) && (!scormBridge.isScormEnv())) {
           head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + $.i18n( "msg-myaccount" ) + "</div></a>";
       }
   }
 
-  if (intersite.isScormEnv() == 0) {
+  if (!scormBridge.isScormEnv()) {
       $('.show_scorm').css("display", "none");
       $('.show_noscorm').css("display", "block");
   } else {
@@ -2159,7 +2159,7 @@ function applyLayout(first) {
   head += "<button id=\"starbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"starClick();\"></button>";
   head += "<button id=\"minusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(-5);\"></button>";
   head += "<button id=\"plusbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"changeFontSize(5);\"></button>";
-  if (intersite.isScormEnv() == 0) {
+  if (!scormBridge.isScormEnv()) {
       head += "<button id=\"sharebutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"shareClick();\"></button>";
   }
   head += "<button id=\"settingsbutton\" " + systyle + " class=\"symbolbutton\" type=\"button\" onclick=\"toggle_settings();\"></button>";

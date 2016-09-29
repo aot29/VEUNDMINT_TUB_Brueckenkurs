@@ -30,6 +30,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
   var name = "";
 
   var active = false;
+  
+  var localStoragePresent = typeof(localStorage) !== "undefined";
 
   /**
    * The sent feedback get's documented here (the callbacks write into there)
@@ -90,58 +92,13 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       active = true;
     } else {
 
-    var ls = ""; // local SCORM data if present
-    // Only access LocalStorage if 'loginscrom == 0)
-    if (typeof(localStorage) !== "undefined") {
-      localStoragePresent = true;
-      log.debug( "localStorage found");
-      if (isScormEnv() == 1) {
-        ls = localStorage.getItem("LOCALSCORM");
-      }
-    } else {
-      localStoragePresent = false;
-      logMessage(CLIENTERROR,"localStorage NOT found");
-      var stor = window.localStorage;
-      if (typeof(stor) !== "undefined") {
-        logMessage(CLIENTERROR,"window.localStorage as stor found!");
-      }
-    }
-
     var scormcontinuation = false;
 
-    if (isScormEnv() == 1) {
-      if ((ls == "") || (ls == "CLEARED")) {
-        // reinitialize SCORM, ls==CLEARED is not an error but happens when same user on same browser reopens the SCORM course
-        log.debug( "pipwerks.SCORM start due to ls = " + ls);
-      } else {
-        // SCORM is already active, inherit state of the pipwerks object
-        var sobj = JSON.parse(ls);
-        if (sobj != null) {
-          scormcontinuation = true;
-          pipwerks.scormdata = sobj;
-          log.debug( "pipwerks.SCORM continuation");
-        } else {
-          log.debug( "pipwerks.SCORM transfer object it broken");
-        }
-      }
-    }
-
-    if (isScormEnv() == 1) {
+    if (scormBridge.isScormEnv()) {
       // SCORM-pull: Skip LocalStorage and fetch data directly from the database server if possible, otherwise use new user with SCROM-ID and CID as login
       log.debug( "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + "), SCORM-Version: " + expectedScormVersion);
 
-      if (scormcontinuation == false) {
-          var psres = pipwerks.SCORM.init();
-          log.debug( "SCORM init = " + psres + " (duplicate SCORM inits return false but do not hurt on SCORM 2004v4)");
-      } else {
-          log.debug( "SCORM init refused (continued)");
-      }
-
-      var idgetstr = "cmi.core.student_id";
-      if (expectedScormVersion == "2004") {
-          idgetstr = "cmi.learner_id";
-      }
-      psres = pipwerks.SCORM.get(idgetstr);
+      psres = scormBridge.getStudentId();
       if (psres == "null") {
         // no SCORM present, refuse to set up user
         alert( $.i18n( 'msg-failed-connection' ) ); // "Kommunikation der Lernplattform fehlgeschlagen, Kurs kann nur anonym bearbeitet werden!"
@@ -249,7 +206,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       alert( $.i18n( 'msg-failed-userdata' ) ); // "Ihre Benutzerdaten konnten nicht vom Server geladen werden, eine automatische eMail an den Administrator wurde verschickt. Sie können den Kurs trotzdem anonym bearbeiten, eingetragene Lösungen werden jedoch nicht gespeichert!"
       var timestamp = +new Date();
       var us = "(unknown)";
-      if (isScormEnv() == 1) {
+      if (scormBridge.isScormEnv()) {
           us = s_login;
       }
       var cm = "LOGINERROR: " + "CID:" + signature_CID + ", user:" + us + ", timestamp:" + timestamp + ", browsertype:" + navigator.appName + ", browserid:" + navigator.userAgent;
@@ -355,8 +312,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
     var psres = "";
     var jso = JSON.stringify(obj);
     if (localStoragePresent == true) {
-      if (isScormEnv() == 1) {
-        localStorage.setItem("LOCALSCORM", JSON.stringify(pipwerks.scormdata));
+      if (scormBridge.isScormEnv()) {
+
         log.debug( "Updating SCORM transfer object");
 
         //commented that out because it would only be set when compiling with doscorm12 parameter
@@ -787,7 +744,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
              cl = "#FFFFFF";
              $('#loginbutton').css("background-color",$('#cdatabutton').css("background-color"));
              //$('#loginbutton').css("color","#80FFA0");
-             if (isScormEnv() == 1) {
+             if (scormBridge.isScormEnv()) {
                  // $('#loginbutton').prop("disabled", true);
              }
              break;
@@ -850,7 +807,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
                  var cr = document.getElementById("CREATEBUTTON");
                  var unf = document.getElementById("USERNAMEFIELD");
                  var prefixs;
-                 if (isScormEnv() == 0) {
+                 if (!scormBridge.isScormEnv()) {
                    prefixs = $.i18n( 'msg-long-username', obj.login.username, obj.login.vname, obj.login.sname ); //"Benutzername: " + obj.login.username;
                    if ((obj.login.vname != "") || (obj.login.sname != "")) {
                        prefixs += " (" + obj.login.vname + " " + obj.login.sname + ")";
@@ -1127,7 +1084,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          }
 
          var pws = "";
-         if (isScormEnv() == 1) {
+         if (scormBridge.isScormEnv()) {
              logMessage(CLIENTINFO, "Tried to set username in SCORM mode");
              return;
          } else {
@@ -1186,7 +1143,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      function register_success(data) {
        log.debug( "Register success, data = " + JSON.stringify(data));
        var na;
-       na = (isScormEnv() == 1) ? (obj.login.sname) : (obj.login.username);
+       na = (scormBridge.isScormEnv()) ? (obj.login.sname) : (obj.login.username);
        if (data.status == true) {
            setIntersiteType(3);
            pushISO(false);
@@ -1220,7 +1177,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      function register_error(message, data) {
        log.debug( "Register error: " + message + ", data = " + JSON.stringify(data));
        var na;
-       na = (isScormEnv() == 1) ? (obj.login.sname) : (obj.login.username);
+       na = (scormBridge.isScormEnv()) ? (obj.login.sname) : (obj.login.username);
        alert( $.i18n( 'msg-failed-createuser', na ));// "Benutzer " + na + " konnte nicht angelegt oder der Server nicht erreicht werden, versuchen Sie es zu einem anderen Zeitpunkt nochmal. Der Benutzer wird nur im Browser angelegt.");
        setIntersiteType(0);
      }
@@ -1388,10 +1345,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
     	    if (obj.login.sname != "") return obj.login.sname;
     	    return obj.login.vname;
     	}
-
-      function isScormEnv() {
-        return pipwerks.SCORM.API.find(window) !== null;
-      }
 
       function createIntersiteObjFromSCORM(s_login, s_name, s_pw) {
         logMessage(VERBOSEINFO,"New IntersiteObj for scormlogin created");
@@ -1568,7 +1521,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
      exports.getName = getName;
      exports.isActive = isActive;
      exports.getNameDescription = getNameDescription;
-     exports.isScormEnv = isScormEnv;
      exports.updateSpecials = UpdateSpecials;
      exports.setScrollTop = setScrollTop;
      exports.getScrollTop = getScrollTop;

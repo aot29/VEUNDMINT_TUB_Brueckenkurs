@@ -16,7 +16,7 @@
 }(this, function (exports) {
 
 	/*
-	 * Class scormBridge
+	 * Module scormBridge
 	 *
 	 * Handles Scorm API connection initialization and makes sure that the API is not called when not
 	 * initialized. Offers many helper functions for working with the scorm API.
@@ -27,70 +27,72 @@
 	 *
 	 */
 
-	log.info('scormBridge.js loaded');
-
-  const SCORM_OBJ_KEY = 'scormBridge';
-
-	var apiInitialized = false;
-
-  var scormBridge;
-
+	log.info('scormBridge.js loaded');	
+	
+	//stores if we are in an scorm environment
 	var isScormEnv = false;
+	
 	var scormVersion = null;
 	var scormData = {};
 
-
+	/**
+	 * Initializes the scormBridge only aftwards calling pipwerks API is safe.
+	 * 
+	 * Note: The process of initializing in scorm 1.2 is quite stupidly designed and was not easy to
+	 * get working, as there are no pipwerks API examples and the API is not well designed either.
+	 * We first need to set the handle to the result of pipwerks.SCORM.API.get(), otherwise later things
+	 * will fail, then wee need to call the function LMSInitialize() as it is the only found function
+	 * capable of not failing and destroying the API when called if already initialized before...
+	 * The way it is solved is a hack (altering the pipwerks object all the time), but was still easier than
+	 * writing our own API, which should be done. I hope that this will also work with SCORM 2004, maybe it 
+	 * is just an issue of scorm 1.2 which is outdated anyway and only used by matet.
+	 */
 	function init() {
+		log.setLevel('debug');
+		
+		//search for the API first, here we have to use get because find did not set the API.isFound to true (no comment)
+		pipwerks.SCORM.API.handle = pipwerks.SCORM.API.get();
 
-    scormBridge = localStorage.getItem(SCORM_OBJ_KEY);
-
-		//find out if we are on scorm on initialization
-		isScormEnvActive();
-		getScormVersion();
-
-		log.info('scormBridge.js initialization started');
-
-    if (isScormEnvActive()) {
-      $(window).on('beforeunload', function(event) {
-        localStorage.setItem(SCORM_OBJ_KEY, JSON.stringify(pipwerks.SCORM));
-      });
-    }
-
-		//initialization of pipwerks API
-		pipwerks.SCORM.init(window);
+		
+		if (pipwerks.SCORM.API.isFound) {
+			log.info('scormBridge.js init: SCORM API found');
+			
+			// the function LMSInitialize will return "true" if it was called for the first time, i.e. it was just initialized
+			// afterwards it is always active which pipwerks does not know so we have to tell it manually
+			var initializedAgain;
+			if (pipwerks.SCORM.version == "2004") {
+				initializedAgain = JSON.parse(pipwerks.SCORM.API.handle.Initialize(""));
+			} else if (pipwerks.SCORM.version == '1.2') {
+				initializedAgain = JSON.parse(pipwerks.SCORM.API.handle.LMSInitialize(""));
+			}
+			
+			pipwerks.SCORM.connection.isActive = true;
+			scormVersion = pipwerks.SCORM.version;
+			
+			if (initializedAgain == true) { 
+				log.info('scormBridge.js init: LMS connection was initialized and is now active');
+			} else {
+				log.info('scormBridge.js init: LMS connection was already active');
+			}
+			
+			isScormEnv = true;
+		
+			
+		} else {
+			log.info('scormBridge.js init: SCORM API NOT found');
+			isScormEnv = false;
+		}
 	}
 
 	/**
-	 * Returns true if we are in an actime scorm Environemnt (e.g. moodle)
+	 * Returns true if we are in an active scorm Environemnt (e.g. moodle)
 	 * and also true if we have the fake moodle env running (coming soon :)
 	 */
 	function isScormEnvActive() {
-
-    //if there is an active connection we overwrite the pipwerks.SCORM API object
-    //thet lets us communicate with the LMS
-    if (scormBridge != null) {
-      pipwerks.SCORM = JSON.parse(scormBridge);
-    }
-
-		//this should always be either true or false (see pipwerks)
-		var _isScormEnv = pipwerks.SCORM.API.isFound;
-		isScormEnv = _isScormEnv;
 		return isScormEnv;
 	}
 
 	function getScormVersion() {
-		if (isScormEnv) {
-			_scormVersion = pipwerks.SCORM.version;
-			scormVersion = _scormVersion;
-
-			//this makes sure that pipwerks.SCORM.init is not called twice on 1.2 which results in errors over errors.
-			if (scormVersion == "1.2") {
-				pipwerks.SCORM.version = "1.2"
-			}
-
-		} else {
-			log.warn('scormBridge.js: calling getScormVersion when not in scorm Environment');
-		}
 		return scormVersion;
 	}
 
@@ -106,7 +108,7 @@
 	}
 
 	function getStudentName() {
-		return gracefullyGet('cmi.core.student_name', 'cmi.learner.name', 'name');
+		return gracefullyGet('cmi.core.student_name', 'cmi.learner_name', 'name');
 	}
 
 
@@ -137,23 +139,14 @@
 		return result;
 	}
 
-  /**
-   * Private Functions
-   */
 
-  function initializeConnection() {
-
-  }
-
-
-
-  // attach properties to the exports object to define
-  // the exported module properties.
-  exports.init = init;
+	// attach properties to the exports object to define
+	// the exported module properties.
+	exports.init = init;
 	exports.isScormEnv = isScormEnvActive;
 	exports.getScormData = getScormData;
 	exports.gracefullyGet = gracefullyGet;
 	exports.getScormVersion = getScormVersion;
 	exports.getStudentName = getStudentName;
-	exports.getStudentId = getStudentId
+	exports.getStudentId = getStudentId;
 }));

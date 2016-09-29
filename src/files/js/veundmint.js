@@ -164,6 +164,7 @@ $(window).on('beforeunload', function(){
 			$('.row-offcanvas').toggleClass('active')
 		});
 
+		scormBridge.init();
 		intersite.init();
 		globalreadyHandler("");
 		globalloadHandler("");
@@ -172,7 +173,7 @@ $(window).on('beforeunload', function(){
 			veundmint.languageChooser($('#languageChooser'));
 
 		//remove logout button on scorm
-		if (intersite.isScormEnv()) {
+		if (scormBridge.isScormEnv()) {
 			$('#li-logout').remove();
 		}
 
