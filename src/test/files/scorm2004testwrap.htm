@@ -2516,10 +2516,6 @@ function LoadSCO(url)
     //alert("LocalPath = " + LocalPath() + "\nURL = " + url);
     url = LocalPath() + url;
   }
-  if ((url.indexOf("scorm2004testwrap.htm") != 0) && (url.indexOf("file:////") != 0))
-  {
-    url = "file:///" + url;
-  }
 
   if (!(_gAPI))
   {

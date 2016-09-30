@@ -41,12 +41,18 @@ var scormSmallArchiveTask = function () {
   gutil.log(gutil.colors.green('created archive (without images): public/' + zipFileName))
 }
 
+var scormTestTask = function () {
+  gulp.src(['./src/test/files/scorm2004testwrap.htm'])
+  .pipe(gulp.dest('./public'))
+}
+
 gulp.task('scormManifest', scormManifestTask);
 gulp.task('scormArchive', scormArchiveTask);
 gulp.task('scormSmallArchive', scormSmallArchiveTask);
 
+gulp.task('scormTest', ['scormManifest'], scormTestTask);
 
 //gulp.task('scorm', gulpSequence('scormManifest', 'scormArchive'));
 gulp.task('scorm', ['scormManifest'], scormArchiveTask);
 gulp.task('scormSmall', gulpSequence('scormManifest', 'scormSmallArchive'));
-module.exports = [scormArchiveTask, scormManifestTask];
+module.exports = [scormArchiveTask, scormManifestTask, scormTestTask];

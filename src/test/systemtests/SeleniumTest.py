@@ -116,7 +116,7 @@ class SeleniumTest(unittest.TestCase):
 
 
 
-	#TODO this does not work as expected _navToChapter("1", "1.1")
+	#TODO does this work as expected ? e.g. _navToChapter("1", "1.1")
 	def _navToChapter(self, chapter, section=None, lang = "de", no_mathjax=False):
 		'''
 		Navigate to chapter specified by name.
@@ -137,6 +137,7 @@ class SeleniumTest(unittest.TestCase):
 			url = "%s/html/%s/%s.%s/modstart.html" % ( self.start_url, lang, chapter, section )
 
 		self._loadPage( url )
+		return url
 
 
 	def _navToSpecialPage(self, key, lang="de"):

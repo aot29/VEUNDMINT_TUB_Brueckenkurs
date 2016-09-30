@@ -14,6 +14,14 @@ var browserSyncTask = function() {
     }
   }
 
+
+
+  //set the browsersync middleware to allow CORS requsts
+  config.tasks.browserSync.middleware = function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+  }
+
   var server = config.tasks.browserSync.proxy || config.tasks.browserSync.server;
 
   browserSync.init(config.tasks.browserSync)

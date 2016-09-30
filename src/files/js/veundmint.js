@@ -183,16 +183,18 @@ $(window).on('beforeunload', function(){
 			$(document).scrollTop(oldScrollTop);
 			intersite.setScrollTop(0);
 		}
-		
+
 		// footer at bottom of column
 		// don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
 		$(window).resize( veundmint.positionFooter );
-		veundmint.positionFooter();	
-		
+		veundmint.positionFooter();
+
 		// on the logout page
 		if( requestLogout ) {
 			localStorage.clear();
 		}
+
+		veundmint.addReadyElementToPage();
 
 	};
 
@@ -348,11 +350,20 @@ $(window).on('beforeunload', function(){
       window.location.href = newUrl;
     });
   }
-  
+
 	veundmint.positionFooter = function () {
 		var docHeight = $(window).height();
 		var offsetHeight = $( "#navbarTop" ).height() + $( "#subtoc" ).height() + $( "#footer" ).height() * 2;
 		$( "#pageContents" ).css( "minHeight", docHeight - offsetHeight + "px" );
+	}
+
+	/**
+	 * Adds an element to the body to indicate that veundmint.init() and therefore
+	 * all other init methods are ready. Selenium can then check for that element and
+	 * continue if its available.
+	 */
+	veundmint.addReadyElementToPage = function () {
+		$('body').append('<div id="veundmint_ready" style="display:none;"></div>')
 	}
 
 	return veundmint;

@@ -13,11 +13,15 @@
         "logConnections": true,
         "files": [
           "./public/*.html",
+          "./public/*.htm",
           "./public/html/**/*.html",
           "./public/css/*.css",
           "./public/js/*.js"
         ],
-        "injectChanges": true
+        "injectChanges": true,
+        "snippetOptions": {
+            "ignorePaths": ["**/*.htm*", "index.html"]
+        }
       },
       "css": {
         "src": [
