@@ -32,3 +32,9 @@ sourceTEXStartFile = os.path.join(module_tex, 'tree_tu9onlinekurs.tex')
 
 # the file ttm will write its TeX parsing to (xml)
 ttmFile = os.path.join(sourceTEX, 'ttm_output.xml')
+
+#########################
+#### Testing Options ####
+#########################
+
+scorm2004testurl = BASE_URL + 'scorm2004testwrap.htm'

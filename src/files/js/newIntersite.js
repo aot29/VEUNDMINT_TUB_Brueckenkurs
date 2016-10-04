@@ -312,46 +312,10 @@ COLOR_INPUTCHANGED = "#E0C0C0";
     log.debug("pushISO start (synced = " + synced + ")");
     var psres = "";
     var jso = JSON.stringify(obj);
+
+    scormBridge.updateCourseScore(obj.scores);
+
     if (localStoragePresent == true) {
-      if (scormBridge.isScormEnv()) {
-
-        log.debug( "Updating SCORM transfer object");
-
-        //commented that out because it would only be set when compiling with doscorm12 parameter
-        //however scorm should not depend on its own building
-        // if (expectedScormVersion == "1.2") {
-        // TODO left out for now as testing but must be updated to obj syntax instead of array
-            nmax = 0;
-            ngot = 0;
-            for (j = 0; j < obj.scores.length; j++) {
-                if (obj.scores[j].intest) {
-                    nmax += obj.scores[j].maxpoints;
-                    ngot += obj.scores[j].points;
-                }
-            }
-            psres = pipwerks.SCORM.set("cmi.core.score.raw", ngot);
-            log.debug( "SCORM set points to " + ngot + ": " + psres);
-            psres = pipwerks.SCORM.set("cmi.core.score.min", 0);
-            log.debug( "SCORM set min points to 0: " + psres);
-            psres = pipwerks.SCORM.set("cmi.core.score.max", nmax);
-            log.debug( "SCORM set max points to " + nmax + ": " + psres);
-
-            var s = "browsed";
-            if (ngot > 0) {
-                if (ngot == nmax) {
-                    s = "completed";
-                } else {
-                    s = "incomplete";
-                }
-            }
-            psres = pipwerks.SCORM.set("cmi.core.lesson_status", s);
-            log.debug( "SCORM set status to " + s + ": " + psres);
-
-
-        // } else {
-        //     logMessage(CLIENTINFO, "SCORM final reporting above SCORM 1.2 not supported yet");
-        // }
-      }
       localStorage.setItem(getObjName(), jso);
       if ((obj.login.type == 2) || (obj.login.type == 3)) {
           // Eintrag in Serverdatenbank aktualisieren

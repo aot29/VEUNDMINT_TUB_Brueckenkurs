@@ -1,10 +1,13 @@
 import os
 import unittest
+import urllib
 from test.systemtests.SeleniumTest import SeleniumTest
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from settings import BASE_DIR
+
+#TODO make this not look in filesystem but for url relative to baseurl
 
 @unittest.skipIf(not os.path.isfile(
     os.path.join(BASE_DIR, 'public', 'scorm2004testwrap.htm')),
@@ -67,6 +70,12 @@ class ScormTest( SeleniumTest ):
         getAgain = self.driver.execute_script('return scormBridge.get("cmi.score.max")')
         self.assertEquals(getAgain, '42')
 
+    def testScormBridgeUpdateCourseScores(self):
+        """
+        Test if updateCourseScores method of scorm Bridge is successfully saving
+        data. Called manually and once on page reload.
+        """
+        self._navToChapter("3")
 
     def testGetStudentAttributes(self):
         """

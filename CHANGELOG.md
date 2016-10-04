@@ -18,6 +18,9 @@ All notable changes to this project should be documented in this file.
 - `SeleniumTest._navToChapter` now returns the url
 - created a new gulp task `gulp scormTest` that is also in the default tasks now (run when running `gulp`), it copies a scormwrapper html to the public directory that simulates an active scorm environment - good for manual and automated testing
 - created `src/test/systemtests/test_scorm.py` that tests the scormbridge in particular and scorm communication in general
+- moved lots of functionalities from newIntersite.js to other more fitting modules
+  - pushIso: now uses scormBridge to update points
+  - 
 
 ### Fixed
 - user input is now reloaded into input fields again #68
