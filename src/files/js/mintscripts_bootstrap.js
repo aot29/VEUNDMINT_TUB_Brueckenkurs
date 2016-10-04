@@ -1578,13 +1578,13 @@ function globalunloadHandler() {
   intersite.pushIso(true); // nur synchrone ajax-calls erlauben, da wir im unload-Handler sind und die callbacks sonst verschwinden bevor Aufruf beantwortet wird
 
   // VERALTET
-  if (pipwerks.SCORM.connection.isActive == true)
+  if (scormBridge.isScormEnv())
   {
-    log.trace("pipwerks.scormdata.connection.isActive == true in globalunloadHandler");
-    pipwerks.SCORM.save();
+    log.trace("scormBridge.isScormEnv() == true in globalunloadHandler");
+    scormBridge.save();
 
   } else {
-    log.trace("pipwerks.scormdata.connection.isActive == false in globalunloadHandler");
+    log.trace("scormBridge.isScormEnv() == false in globalunloadHandler");
   }
 }
 

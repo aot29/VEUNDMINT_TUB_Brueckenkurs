@@ -114,15 +114,10 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         var s_id = psres;
         log.debug( "SCORM learner id = " + psres);
 
-        var inamestr = "cmi.core.student_name";
-        if (expectedScormVersion == "2004") {
-            inamestr = "cmi.learner_name";
-        }
-
-        psres = pipwerks.SCORM.get(inamestr);
+        psres = scormBridge.getStudentName();
         var s_name = psres;
         log.debug( "SCORM learner name = " + psres);
-        psres = pipwerks.SCORM.save();
+        psres = scormBridge.save();
         logMessage(DEBUGINFO, "SCORM save = " + psres);
 
 

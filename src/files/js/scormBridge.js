@@ -128,11 +128,11 @@
   * Getter functions
   */
   function getStudentId() {
-    return gracefullyGet('cmi.core.student_id', 'cmi.learner_id', 'id');
+    return gracefullyGet('cmi.core.student_id');
   }
 
   function getStudentName() {
-    return gracefullyGet('cmi.core.student_name', 'cmi.learner_name', 'name');
+    return gracefullyGet('cmi.core.student_name');
   }
 
 
@@ -340,6 +340,7 @@
   exports.gracefullySet = gracefullySet;
   exports.get = pipwerks.SCORM.get;
   exports.set = pipwerks.SCORM.set;
+  exports.save = pipwerks.SCORM.save;
   exports.getScormVersion = getScormVersion;
   exports.getStudentName = getStudentName;
   exports.getStudentId = getStudentId;
