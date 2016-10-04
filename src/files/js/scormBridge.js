@@ -26,6 +26,17 @@
 	 * alive even between page changes (basically a persisted singleton)
 	 *
 	 */
+	
+	var scormActionParameters = {
+		'1.2': [
+			'cmi.core.student_id',
+			'cmi.core.student_name'
+		],
+		'2004': [
+		 'cmi.learner_id',
+		 'cmi.learner_name'	
+		]
+	}
 
 	log.info('scormBridge.js loaded');	
 	
@@ -138,6 +149,34 @@
 		}
 		return result;
 	}
+	
+	function gracefullySet(id, value) {
+		var apiParameter = id;
+		var result;
+		var found = false;
+		if (isScormEnv) {
+			var idxInActiveVersion = scormActionParameters[scormVersion].indexOf(id);
+			if ( idxInActiveVersion === -1 ) {
+				//if not found in active version look if it's in inactiveVersion
+				var otherScormVersion = scormVersion === '2004' ? '1.2' : '2004';
+				var idxInOtherVersion = scormActionParameters[otherScormVersion].indexOf(id);
+				if (idxInOtherVersion !== -1) {
+					//it was found in the other scorm version but uses the wrong api Parameter version, so use the right one
+					apiParameter = scormActionParameters[scormVersion][idxInOtherVersion];
+					log.info('scormBridge.js: gracefullySet changed parameter from:', id, ' to:', apiParameter);
+					found = true;
+				}
+			} else {
+				found = true;
+			}
+			if (found) {
+				result = pipwerks.SCORM.set(apiParameter, value);
+			} else {
+				log.warn('scormBridge.js: gracefullySet called with unknown parameter:', id);
+			}
+		}
+		return result;
+	}
 
 
 	// attach properties to the exports object to define
@@ -145,7 +184,8 @@
 	exports.init = init;
 	exports.isScormEnv = isScormEnvActive;
 	exports.getScormData = getScormData;
-	exports.gracefullyGet = gracefullyGet;
+	exports.get = gracefullyGet;
+	exports.set = gracefullySet;
 	exports.getScormVersion = getScormVersion;
 	exports.getStudentName = getStudentName;
 	exports.getStudentId = getStudentId;
