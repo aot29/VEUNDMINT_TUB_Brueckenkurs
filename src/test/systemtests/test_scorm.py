@@ -28,7 +28,8 @@ class ScormTest( SeleniumTest ):
         @param scormVersion - currently only "2004" is supported but there might be a wrapper for 1.2
         somewhere around TODO
         """
-        url = url.replace(self.start_url,'')
+        url = url.replace(self.start_url + '/','')
+        
         self.driver.get( '%s%s' % (self.scorm_start_url_prefix, url) )
 
         #wait for the iframe
@@ -122,4 +123,4 @@ class ScormTest( SeleniumTest ):
 
 
     def testScormUrlAvailable(self):
-        print (getUrlStatusCode(scorm2004testurl))
+        self.assertEqual(getUrlStatusCode(scorm2004testurl), 200)
