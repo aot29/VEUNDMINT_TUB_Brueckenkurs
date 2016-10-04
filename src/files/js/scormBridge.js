@@ -15,129 +15,158 @@
   }
 }(this, function (exports) {
 
-  /*
-  * Module scormBridge
-  *
-  * Handles Scorm API connection initialization and makes sure that the API is not called when not
-  * initialized. Offers many helper functions for working with the scorm API.
-  *
-  * There was no findable other way than storing the pipwerks object in localstorage to prevent
-  * calling connection.initialize multiple times which would error. We so can keep the connection
-  * alive even between page changes (basically a persisted singleton)
-  *
-  */
+	/*
+	 * Module scormBridge
+	 *
+	 * Handles Scorm API connection initialization and makes sure that the API is not called when not
+	 * initialized. Offers many helper functions for working with the scorm API.
+	 *
+	 * There was no findable other way than storing the pipwerks object in localstorage to prevent
+	 * calling connection.initialize multiple times which would error. We so can keep the connection
+	 * alive even between page changes (basically a persisted singleton)
+	 *
+	 */
 
-  log.info('scormBridge.js loaded');
+  //define relations between scorm 1.2 and 2004 api parameters.
+  //WARNINT: THE SET IS NOT COMPLETE. ONLY
+  //PARAMETERS USED BY VEUNDMINT ARE CURRENTLY LISTED HERE.
+  //ADD NEW PARAMETERS HERE IF YOU
+  //WANT TO USE THE GRACEFULLY FUNCTIONS BELOW.
+	var scormActionParameters = {
+		'1.2': [
+			'cmi.core.student_id',
+			'cmi.core.student_name',
+      'cmi.core.score.raw',
+      'cmi.core.score.min',
+      'cmi.core.score.max',
+      'cmi.core.lesson_status'
+		],
+		'2004': [
+		 'cmi.learner_id',
+		 'cmi.learner_name',
+     'cmi.score.raw',
+     'cmi.score.min',
+     'cmi.score.max',
+     'cmi.completion_status'
+		]
+	}
 
-  //stores if we are in an scorm environment
-  var isScormEnv = false;
+	log.info('scormBridge.js loaded');
 
-  var scormVersion = null;
-  var scormData = {};
+	//stores if we are in an scorm environment
+	var isScormEnv = false;
 
-  /**
-  * Initializes the scormBridge only aftwards calling pipwerks API is safe.
-  *
-  * Note: The process of initializing in scorm 1.2 is quite stupidly designed and was not easy to
-  * get working, as there are no pipwerks API examples and the API is not well designed either.
-  * We first need to set the handle to the result of pipwerks.SCORM.API.get(), otherwise later things
-  * will fail, then wee need to call the function LMSInitialize() as it is the only found function
-  * capable of not failing and destroying the API when called if already initialized before...
-  * The way it is solved is a hack (altering the pipwerks object all the time), but was still easier than
-  * writing our own API, which should be done. I hope that this will also work with SCORM 2004, maybe it
-  * is just an issue of scorm 1.2 which is outdated anyway and only used by matet.
-  */
-  function init() {
-    log.setLevel('debug');
+	var scormVersion = null;
+	var scormData = {};
 
-    //search for the API first, here we have to use get because find did not set the API.isFound to true (no comment)
-    pipwerks.SCORM.API.handle = pipwerks.SCORM.API.get();
+	/**
+	 * Initializes the scormBridge only aftwards calling pipwerks API is safe.
+	 *
+	 * Note: The process of initializing in scorm 1.2 is quite stupidly designed and was not easy to
+	 * get working, as there are no pipwerks API examples and the API is not well designed either.
+	 * We first need to set the handle to the result of pipwerks.SCORM.API.get(), otherwise later things
+	 * will fail, then wee need to call the function LMSInitialize() as it is the only found function
+	 * capable of not failing and destroying the API when called if already initialized before...
+	 * The way it is solved is a hack (altering the pipwerks object all the time), but was still easier than
+	 * writing our own API, which should be done. I hope that this will also work with SCORM 2004, maybe it
+	 * is just an issue of scorm 1.2 which is outdated anyway and only used by matet.
+	 */
+	function init() {
+		log.setLevel('debug');
 
-
-    if (pipwerks.SCORM.API.isFound) {
-      log.info('scormBridge.js init: SCORM API found');
-
-      // the function LMSInitialize will return "true" if it was called for the first time, i.e. it was just initialized
-      // afterwards it is always active which pipwerks does not know so we have to tell it manually
-      var initializedAgain;
-      if (pipwerks.SCORM.version == "2004") {
-        initializedAgain = JSON.parse(pipwerks.SCORM.API.handle.Initialize(""));
-      } else if (pipwerks.SCORM.version == '1.2') {
-        initializedAgain = JSON.parse(pipwerks.SCORM.API.handle.LMSInitialize(""));
-      }
-
-      pipwerks.SCORM.connection.isActive = true;
-      scormVersion = pipwerks.SCORM.version;
-
-      if (initializedAgain == true) {
-        log.info('scormBridge.js init: LMS connection was initialized and is now active');
-      } else {
-        log.info('scormBridge.js init: LMS connection was already active');
-      }
-
-      isScormEnv = true;
-
-
-    } else {
-      log.info('scormBridge.js init: SCORM API NOT found');
-      isScormEnv = false;
-    }
-  }
-
-  /**
-  * Returns true if we are in an active scorm Environemnt (e.g. moodle)
-  * and also true if we have the fake moodle env running (coming soon :)
-  */
-  function isScormEnvActive() {
-    return isScormEnv;
-  }
-
-  function getScormVersion() {
-    return scormVersion;
-  }
-
-  function getScormData() {
-    return scormData;
-  }
-
-  /**
-  * Getter functions
-  */
-  function getStudentId() {
-    return gracefullyGet('cmi.core.student_id', 'cmi.learner_id', 'id');
-  }
-
-  function getStudentName() {
-    return gracefullyGet('cmi.core.student_name', 'cmi.learner_name', 'name');
-  }
+		//search for the API first, here we have to use get because find did not set the API.isFound to true (no comment)
+		pipwerks.SCORM.API.handle = pipwerks.SCORM.API.get();
 
 
-  /**
-  * Helper function to get a scorm value, update the local scorm object and log to the console
-  */
-  function gracefullyGet(scorm12parameter, scorm2004parameter, localObjectId) {
-    var result;
-    var apiParameter = '';
+		if (pipwerks.SCORM.API.isFound) {
+			log.info('scormBridge.js init: SCORM API found');
+
+			// the function LMSInitialize will return "true" if it was called for the first time, i.e. it was just initialized
+			// afterwards it is always active which pipwerks does not know so we have to tell it manually
+			var initializedAgain;
+			if (pipwerks.SCORM.version == "2004") {
+				initializedAgain = JSON.parse(pipwerks.SCORM.API.handle.Initialize(""));
+			} else if (pipwerks.SCORM.version == '1.2') {
+				initializedAgain = JSON.parse(pipwerks.SCORM.API.handle.LMSInitialize(""));
+			}
+
+			pipwerks.SCORM.connection.isActive = true;
+			scormVersion = pipwerks.SCORM.version;
+
+			if (initializedAgain == true) {
+				log.info('scormBridge.js init: LMS connection was initialized and is now active');
+			} else {
+				log.info('scormBridge.js init: LMS connection was already active');
+			}
+
+			isScormEnv = true;
+
+
+		} else {
+			log.info('scormBridge.js init: SCORM API NOT found');
+			isScormEnv = false;
+		}
+	}
+
+	/**
+	 * Returns true if we are in an active scorm Environemnt (e.g. moodle)
+	 * and also true if we have the fake moodle env running (coming soon :)
+	 */
+	function isScormEnvActive() {
+		return isScormEnv;
+	}
+
+	function getScormVersion() {
+		return scormVersion;
+	}
+
+	function getScormData() {
+		return scormData;
+	}
+
+	/**
+	 * Getter functions
+	 */
+	function getStudentId() {
+		return gracefullyGet('cmi.core.student_id', 'cmi.learner_id', 'id');
+	}
+
+	function getStudentName() {
+		return gracefullyGet('cmi.core.student_name', 'cmi.learner_name', 'name');
+	}
+
+
+	/**
+	 * Get the a value from the SCORM LMS with the id: id.
+	 * @param  {String} id The id you want to fetch
+	 * @return {String}    The value the id has
+	 */
+	function gracefullyGet(id) {
+		var result;
+    var versionedParameter = getVersionedParameter(id);
     if (isScormEnv) {
-      if (scormVersion == "2004") {
-        apiParameter = scorm2004parameter;
-      } else if (scormVersion == "1.2") {
-        apiParameter = scorm12parameter;
-      } else {
-        log. warn('scormBridge.js: gracefullyGet called on unknown Scorm version with parameters:', scorm12parameter, ", ", scorm2004parameter);
-      }
-      result = pipwerks.SCORM.get(apiParameter);
-
-      if (typeof localObjectId !== "undefined") {
-        scormData[localObjectId] = result;
-      } else {
-        scormData[apiParameter] = result;
-      }
-    } else {
-      log.warn('scormBridge.js: calling gracefullyGet with parameters:', scorm12parameter, scorm2004parameter, ' when not in scorm Environment');
+      result = pipwerks.SCORM.get(versionedParameter);
     }
     return result;
-  }
+	}
+
+  /**
+   * Set the parameter with id to value. This function is graceful in terms of
+   * automatically selecting the correct SCORM parameter depending on the active
+   * scorm version. If this function is called when not in SCORM environment, it will
+   * return false and log a warning, true otherwise.
+   * @param  {String} id    The scorm api parameter you want to set
+   * @param  {Object} value The value you want to set it to
+   * @return {Boolean}      true if successful, false otherwise
+   */
+	function gracefullySet(id, value) {
+    var result = false;
+    var versionedParameter = getVersionedParameter(id);
+    if (isScormEnv) {
+      result = pipwerks.SCORM.set(versionedParameter, value);
+    }
+		return result;
+	}
 
   /**
   * Send the updated user scores to SCORM, called in intersite.pushIso when site is unloaded.
@@ -165,16 +194,16 @@
       }
 
       //update corresponding course data in SCORM
-      updateSuccessful = set("cmi.core.score.raw", ngot);
+      updateSuccessful = gracefullySet("cmi.core.score.raw", ngot);
       log.debug( "SCORM set points to " + ngot + ": " + updateSuccessful);
 
-      updateSuccessful &= set("cmi.core.score.min", 0);
+      updateSuccessful &= gracefullySet("cmi.core.score.min", 0);
       log.debug( "SCORM set min points to 0: " + updateSuccessful);
 
-      updateSuccessful &= set("cmi.core.score.max", nmax);
+      updateSuccessful &= gracefullySet("cmi.core.score.max", nmax);
       log.debug( "SCORM set max points to " + nmax + ": " + updateSuccessful);
 
-      var s = "browsed";
+      var s = "not attempted";
       if (ngot > 0) {
         if (ngot == nmax) {
           s = "completed";
@@ -182,26 +211,75 @@
           s = "incomplete";
         }
       }
-      psres = set("cmi.core.lesson_status", s);
+      psres = gracefullySet("cmi.core.lesson_status", s);
       log.debug( "SCORM set status to " + s + ": " + psres);
     }
 
-    return updateSuccessful;
+    return Boolean(updateSuccessful);
   }
 
-  // attach properties to the exports object to define
-  // the exported module properties (publicly callable)
-  exports.init = init;
-  exports.isScormEnv = isScormEnvActive;
 
-  exports.getScormData = getScormData;
-  exports.gracefullyGet = gracefullyGet;
-  exports.get = pipwerks.SCORM.get;
-  exports.set = pipwerks.SCORM.set;
-  exports.getScormVersion = getScormVersion;
-  exports.getStudentName = getStudentName;
-  exports.getStudentId = getStudentId;
+  /*************************
+  ******** private functions
+  *************************/
+
+
+  /**
+   * Get the SCORM parameter of the active scorm version automatically. Used
+   * by gracefullyGet and gracefullySet functions.
+   * @param  {String} parameter The unversioned scorm api parameter
+   * @return {String}           The versioned scorm api parameter
+   */
+  function getVersionedParameter (parameter) {
+
+    //return early
+    if (scormVersion === null || ['2004', '1.2'].indexOf(scormVersion) === -1) {
+      log.warn('scormBridge.js getVersionedParameter: called with unsupported or not active scormVersion');
+      return null;
+    }
+
+    var found = false;
+
+    //this will be returned, so if the parameter is not in the scormActionParamters array above
+    //it will still return the supplied parameter
+    var versionedParameter = parameter;
+
+    var idxInActiveVersion = scormActionParameters[scormVersion].indexOf(parameter);
+
+    if ( idxInActiveVersion === -1 ) {
+      //if not found in active version look if it's in inactiveVersion
+      var otherScormVersion = scormVersion === '2004' ? '1.2' : '2004';
+      var idxInOtherVersion = scormActionParameters[otherScormVersion].indexOf(parameter);
+      if (idxInOtherVersion !== -1) {
+        //it was found in the other scorm version but uses the wrong api Parameter version, so use the right one
+        versionedParameter = scormActionParameters[scormVersion][idxInOtherVersion];
+        log.info('scormBridge.js: getVersionedParameter changed parameter from:', parameter, ' to:', versionedParameter);
+        found = true;
+      }
+    } else {
+      found = true;
+    }
+
+    if (!found) {
+      log.warn('scormBridge.js: getVersionedParameter called with unknown parameter:', parameter);
+    }
+    return versionedParameter;
+  }
+
+	// attach properties to the exports object to define
+	// the exported module properties.
+	exports.init = init;
+	exports.isScormEnv = isScormEnvActive;
+	exports.getScormData = getScormData;
+	exports.gracefullyGet = gracefullyGet;
+  exports.gracefullySet = gracefullySet;
+	exports.get = pipwerks.SCORM.get;
+	exports.set = pipwerks.SCORM.set;
+	exports.getScormVersion = getScormVersion;
+	exports.getStudentName = getStudentName;
+	exports.getStudentId = getStudentId;
 
   exports.updateCourseScore = updateCourseScore;
 
+  exports.getVersionedParameter = getVersionedParameter;
 }));

@@ -37,4 +37,4 @@ ttmFile = os.path.join(sourceTEX, 'ttm_output.xml')
 #### Testing Options ####
 #########################
 
-scorm2004testurl = BASE_URL + 'scorm2004testwrap.htm'
+scorm2004testurl = BASE_URL + '/scorm2004testwrap.htm'
