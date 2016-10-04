@@ -29,7 +29,7 @@ class ScormTest( SeleniumTest ):
         somewhere around TODO
         """
         url = url.replace(self.start_url + '/','')
-        
+
         self.driver.get( '%s%s' % (self.scorm_start_url_prefix, url) )
 
         #wait for the iframe
@@ -123,4 +123,7 @@ class ScormTest( SeleniumTest ):
 
 
     def testScormUrlAvailable(self):
+        """
+        Test that the scorm test env url is accessible
+        """
         self.assertEqual(getUrlStatusCode(scorm2004testurl), 200)

@@ -1,5 +1,6 @@
 /*
- *  Copyright (C) 2016 TUB (www.tu-berlin.de), Author: Alvaro Ortiz
+ *  Copyright (C) 2016 TUB (www.tu-berlin.de),
+ *  Authors: Alvaro Ortiz, Niklas Jurij Plessing
  *
  *  This file is part of Math for Refugees
  *  (see www.math4refugees.de).
@@ -189,6 +190,8 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
    * Display a visual cue during exercise input
    * (e.g. question mark, cross, check).
    *
+   * TODO should be moved to logic of question ui element
+   *
    * @param status - one of SOLUTION_NEUTRAL (default), SOLUTION_TRUE or SOLUTION_FALSE
    */
   ob.displayFeedback = function( status ) {
@@ -297,6 +300,7 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
 
 
 // Blendet Einstellungsseite ein und aus
+// TODO move to veundmint
 function toggle_settings() {
   var e = document.getElementById("settings");
   if (e != null) {
@@ -1470,63 +1474,7 @@ function finish_button(name) {
 
       if ((doScorm == 1) && (SITE_UXID == "VBKMT_AbgebeTest")) {
         // MatheV4: Gesamtpunktzahl ueber alle ABSCHLUSSTESTS mitteln und Prozentwert an SCORM uebertragen
-
-    log.trace("ENTRYTEST geht an SCORM");
-    var mx = 0;
-        var mi = 0;
-        var av = 0;
-        // iterate through questions with test flag outside preparation test
-
-        var psres = pipwerks.SCORM.init();
-        log.trace("SCORM init = " + psres);
-        psres = pipwerks.SCORM.get("cmi.learner_id");
-        log.trace("SCORM learner id = " + psres);
-        psres = pipwerks.SCORM.get("cmi.learner_name");
-        log.trace("SCORM learner name = " + psres);
-        psres = pipwerks.SCORM.set("cmi.interactions.0.id","TEST");
-        log.trace("SCORM set interact_id = " + psres);
-        psres = pipwerks.SCORM.set("cmi.interactions.0.learner_response",nPoints);
-        log.trace("SCORM set interact_lr = " + psres); // false im KIT-ILIAS
-        psres = pipwerks.SCORM.set("cmi.interactions.0.result",true);
-        log.trace("SCORM set interact_res = " + psres); // false im KIT-ILIAS
-        psres = pipwerks.SCORM.set("cmi.score.raw",nPoints);
-        log.trace("SCORM set rawpoints = " + psres);
-        psres = pipwerks.SCORM.set("cmi.score.min",nMinPoints);
-        log.trace("SCORM set minpoints = " + psres);
-        psres = pipwerks.SCORM.set("cmi.score.max",nMaxPoints);
-        log.trace("SCORM set maxpoints = " + psres);
-        psres = pipwerks.SCORM.set("cmi.score.scaled",(nPoints/nMaxPoints));
-        log.trace("SCORM set scaled points = " + psres);
-
-        psres = pipwerks.SCORM.set("cmi.objectives.0.id","Abschlusstests");
-        log.trace("SCORM set objectives = " + psres);
-        psres = pipwerks.SCORM.set("cmi.objectives.0.raw",nPoints);
-        log.trace("SCORM set obrawpoints = " + psres); // false im KIT-ILIAS
-        psres = pipwerks.SCORM.set("cmi.objectives.0.min",nMinPoints);
-        log.trace("SCORM set obminpoints = " + psres); // false im KIT-ILIAS
-        psres = pipwerks.SCORM.set("cmi.objectives.0.max",nMaxPoints);
-        log.trace("SCORM set obmaxpoints = " + psres); // false im KIT-ILIAS
-        psres = pipwerks.SCORM.set("cmi.objectives.0.scaled",(nPoints/nMaxPoints));
-        log.trace("SCORM set obscaled = " + psres); // false im KIT-ILIAS
-        psres = pipwerks.SCORM.set("cmi.objectives.0.completion_status", (nPoints>=nMinPoints) ? ("completed") : ("incomplete") );
-        log.trace("SCORM set obcompletion " + psres);
-
-        psres = pipwerks.SCORM.set("cmi.scaled_passed_score", nMinPoints/nMaxPoints);
-        log.trace("SCORM set obscossc " + psres); // false im KIT-ILIAS
-        psres = pipwerks.SCORM.set("cmi.score", nPoints/nMaxPoints );
-        log.trace("SCORM set obscore " + psres); // false im KIT-ILIAS
-
-
-        psres = pipwerks.SCORM.set("cmi.progress_measure",(nPoints/nMaxPoints));
-        log.trace("SCORM set progress measure = " + psres);
-        psres = pipwerks.SCORM.set("cmi.success_status", (nPoints>=nMinPoints) ? ("passed") : ("failed") );
-        log.trace("SCORM set obcomp = " + psres);
-        psres = pipwerks.SCORM.set("cmi.completion_status", (nPoints>=nMinPoints) ? ("completed") : ("incomplete") );
-        log.trace("SCORM set completion " + psres);
-        psres = pipwerks.SCORM.save();
-        log.debug("SCORM save = " + psres);
-        if (psres==true) f.innerHTML += $.i18n("msg-transfered-result")+"\n"; // Die Punktzahl wurde zur statistischen Auswertung übertragen
-
+        f.innerHTML += scormBridge.sendFinalTestResults();
       }
 
 

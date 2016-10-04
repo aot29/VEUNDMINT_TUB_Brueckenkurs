@@ -294,7 +294,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       configuration: { stylecolor: STYLEBLUE },
       scores: [],
       sites: [],
-      favorites: [ createHelpFavorite() ],
+      favorites: [ veHelpers.createHelpFavorite() ],
       history: { globalmillis: 0, commits: [] }, // commits = array aus Arrays [ hexsha+cid, firstlogintimestamp, lastlogintimestamp ]
       login: { type: 0, vname: "", sname: "", username: "", password: "", email: "", variant: "std", sgang: "", uni: "" },
       signature: { main: signature_main, version: signature_version, localization: "DE-MINT" }
@@ -380,73 +380,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
         logMessage(DEBUGINFO, "Commit history:");
         for (j = 0; j < obj.history.commits.length; j++) {
-            logMessage(DEBUGINFO, "  " + obj.history.commits[j][0] + ", " + convertTimestamp(obj.history.commits[j][1]) + ", " + convertTimestamp(obj.history.commits[j][2]));
+            logMessage(DEBUGINFO, "  " + obj.history.commits[j][0] + ", " + veHelpers.convertTimestamp(obj.history.commits[j][1]) + ", " + veHelpers.convertTimestamp(obj.history.commits[j][2]));
         }
-    }
-
-    /**
-     * creates a new favorite at the beginning
-     * @return {[type]} [description]
-     */
-    function createHelpFavorite() {
-      var fav = {
-        type: "Tipp",
-        color: "00FF00",
-        text: "Eingangstest probieren",
-        pid: "html/sectionx2.1.0.html",
-        icon: "test01.png"
-      };
-      log.debug( "New HelpFavorite created");
-      return fav;
-    }
-
-    /**
-     * creates a short list of favorites
-     * @return {[type]} [description]
-     */
-    function generateShortFavoriteList() {
-      if (active == false) {
-        return "Datenspeicherung nicht möglich";
-      }
-
-      if (typeof(obj.favorites) != "object") {
-        obj.favorites = new Array();
-      }
-
-      var i;
-      var s = "";
-      for (i = 0; i < obj.favorites.length; i++) {
-        if (i > 0) {
-          s += "<br />";
-        }
-        s += "<img src=\"" + linkPath + "images/" + obj.favorites[i].icon + "\" style=\"width:20px;height:20px\">&nbsp;&nbsp;";
-        s += "<a class='MINTERLINK' href='" + linkPath + obj.favorites[i].pid + "' >" + obj.favorites[i].text + "</a>";
-      }
-
-      return s;
-    }
-
-    /**
-     * generates a long (large) list of favorites
-     * @return {[type]} [description]
-     */
-    function generateLongFavoriteList() {
-      if (active == false) {
-        return "Datenspeicherung nicht möglich";
-      }
-
-      if (typeof(obj.favorites) != "object") {
-        obj.favorites = new Array();
-      }
-
-      var i;
-      var s = "";
-      for (i = 0; i < obj.favorites.length; i++) {
-        s += "<img src=\"" + linkPath + "images/" + obj.favorites[i].icon + "\" style=\"width:48px;height:48px\">&nbsp;&nbsp;";
-        s += "<a href=\"\" >" + obj.favorites[i].text + "</a><br />";
-      }
-
-      return s;
     }
 
     //TODO: move this to own service class feedback
@@ -465,7 +400,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
     function sendeFeedback( content,async ) {
             //send feedback only if a feedbackserver has been specified
             if( feedback_service != "" ) {
-                    sendCorsRequest( feedback_service, content,
+                    veHelpers.sendCorsRequest( feedback_service, content,
                                     //success callback
                                     function( value ) {
                                             log.debug("SendeFeedback success callback: " + JSON.stringify(value));
@@ -478,39 +413,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
                                     }
                     ,async);
             }
-    }
-
-    //TODO should be moved to helpers service
-    /*
-     * Sends an object to the given URL via CORS request
-     *
-     * url: URL the object is sent to
-     * data: object that should be sent
-     * success: callback that get's called in case of success. Input as follows:
-     *      function( response ) {}
-     * error: Callback, der im Fehlerfall ausgefuehrt wird, eine Funktion der Form:
-     * error: callback that get's called in case of errors. Input as follows:
-     *      function( errorMessage ) {}
-     * */
-    // Should be merged with function from userdata.js
-    function sendCorsRequest( url, data, success, error,async ) {
-            log.debug( "intersite.sendCorsRequest called, type = POST, url = " + url + ", async = " + async + ", data = " + JSON.stringify(data));
-            if (forceOffline == 1) {
-                log.debug( "Send request omittet, course is in offline mode")
-            }
-            $.ajax( url, {
-                    type: 'POST',
-                    async: async,
-                    cache: false,
-                    contentType: 'application/x-www-form-urlencoded',
-                    crossDomain: true,
-                    data: data,
-                    //dataType: 'html', //Data type that's requeset for the response
-                    error: error,
-                    success: success
-                    //statusCode: {}, //list of handlers for various HTTP status codes
-                    //timout: 1000, //Timeout in ms
-            });
     }
 
     /**
@@ -526,7 +428,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         if ((active==true) && (obj.configuration.CF_LOCAL == "0")) {
             e.innerHTML = $.i18n( 'msg-persistence-deactivated' );//"Datenspeicherung wurde durch Benutzer deaktiviert, es werden keine Kursdaten gespeichert.";
         } else {
-          e.innerHTML = ((active==true) && (localStoragePresent==true)) ? generateLongFavoriteList() : $.i18n( 'msg-failed-localpersistence' );//"Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert.";
+          e.innerHTML = ((active==true) && (localStoragePresent==true)) ? veHelpers.generateLongFavoriteList(obj) : $.i18n( 'msg-failed-localpersistence' );//"Der Browser kann keine lokalen Daten speichern, Eingaben in Aufgabenfeldern werden nicht gespeichert.";
         }
       }
 
@@ -649,32 +551,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         }
       }
     }
-
-    /**
-     * converts a timestamp to some other format
-     * e.g. 1472046906162 -> "24.08.2016 - 13:55:02"
-     * @param  {[type]} stamp the result of Date.now() e.g.
-     * @return {[type]}       [description]
-     * TODO should be moved also to some helpers service
-     */
-     function convertTimestamp(stamp) {
-         date = new Date(stamp),
-         d = [
-            date.getUTCFullYear(),
-            date.getUTCMonth()+1,
-            date.getUTCDate(),
-            date.getUTCHours(),
-            date.getUTCMinutes(),
-            date.getUTCSeconds(),
-         ];
-
-         for (j = 0; j < d.length; j++) {
-             d[j] = "" + d[j];
-             if (d[j].length == 1) d[j] = "0" + d[j];
-         }
-
-         return d[2] + "." + d[1] + "." + d[0] + " - " + d[3] + ":" + d[4] + ":" + d[5];
-     }
 
      /**
       * Strangely updates fields concerning login logic (in old header and login.html)
@@ -888,7 +764,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          }
 
          var una = e.value;
-         var rt = allowedUsername(una);
+         var rt = veHelpers.allowedUsername(una);
          logMessage(DEBUGINFO, una +" "+ rt);
          if (rt != "") {
              ulreply_set(false,rt);
@@ -897,42 +773,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          }
          ulreply_set(true,una); // set the input field display to checked
          userdata.checkUser(true, una, check_user_success, check_user_error);
-     }
-
-     /**
-      * TODO move to userdata class
-      * checks if a username is allowed
-      * @param  {[type]} username [description]
-      * @return {[type]}          "" for valid usernames, error string otherwise
-      */
-     function allowedUsername(username) {
-         if ((username.length < 6) || (username.length > 18)) {
-              return $.i18n( 'msg-badlength-username' );//"Der Loginname muss mindestens 6 und höchstens 18 Zeichen enthalten";
-         }
-
-         if (RegExp('[^a-z0-9\\-\\+_]', 'i').test(username)) {
-             return $.i18n( 'msg-badchars-username' ); //"Im Loginnamen sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
-         }
-
-         return "";
-     }
-
-     /**
-      * TODO move to userdata class
-      * Checks if a password is allowed
-      * @param  {[type]} password [description]
-      * @return {[type]}          "" for valid passwords, error string otherwise+
-      */
-     function allowedPassword(password) {
-         if ((password.length < 6) || (password.length > 18)) {
-              return $.i18n( 'msg-badlength-password' );//"Das Passwort muss mindestens 6 und höchstens 18 Zeichen enthalten";
-         }
-
-         if (RegExp('[^a-z0-9\\-\\+_]', 'i').test(password)) {
-               return $.i18n( 'msg-badchars-password' );//"Im Passwort sind nur lateinische Buchstaben und Zahlen sowie die Sonderzeichen _ - + erlaubt.";
-         }
-
-         return "";
      }
 
      /**
@@ -1042,7 +882,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
          var uni = document.getElementById("USER_UNI");
          var una = un.value;
 
-         var rt = allowedUsername(una);
+         var rt = veHelpers.allowedUsername(una);
          if (rt != "") {
              alert(rt);
              return;
@@ -1056,7 +896,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
            // normal version: password requested from user
            pws = prompt( $.i18n('msg-prompt', una) ); //"Geben Sie ein Passwort für den Benutzer " + una + " ein:"
            if (pws == null) return; // user has pressed abort
-           rt = allowedPassword(pws);
+           rt = veHelpers.allowedPassword(pws);
            if (rt != "") {
                alert(rt);
                return;
@@ -1217,9 +1057,9 @@ COLOR_INPUTCHANGED = "#E0C0C0";
        e = document.getElementById("OUSER_PW");
        if (e != null) { user_pw = e.value; } else return;
 
-       var rt = allowedUsername(user_login);
+       var rt = veHelpers.allowedUsername(user_login);
        if (rt != "") { alert(rt); return; }
-       rt = allowedPassword(user_pw);
+       rt = veHelpers.allowedPassword(user_pw);
        if (rt != "") { alert(rt); return; }
 
        log.debug( "Starte Login " + user_login);
@@ -1440,24 +1280,6 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       function getScrollTop() {
           return obj.scrollTop;
       }
-
-      /**
-       * helper function for comparing two objects to create a diff, for debugging
-       * and testing, should be moved to helper class
-       * @param  {[type]} obj1 [description]
-       * @param  {[type]} obj2 [description]
-       * @return {[type]}      [description]
-       */
-      function compareJSON (obj1, obj2) {
-        log.debug('comparing', obj1, ' -- to -- ', obj2);
-        var ret = {};
-        for(var i in obj2) {
-          if(!obj1.hasOwnProperty(i) || obj2[i] !== obj1[i]) {
-            ret[i] = obj2[i];
-          }
-        }
-        return ret;
-      };
 
       /**
        * determines the local storage name of the intersite object
