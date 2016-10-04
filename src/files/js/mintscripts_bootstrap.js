@@ -493,11 +493,13 @@ function isProperNumber(s) {
 
 // Wird von einem input-Element aufgerufen, wenn der Fokus erhalten geht, passiert auch wenn Gruppe aktiv ist, da diese nur content-Checking betrifft
 function handlerFocus(id) {
+  log.debug('mintscripts_bootstrap.js handlerFocus', id);
     if (FVAR[id].id != activefieldid) handlerChange(id,1);
 }
 
 // Wird von einem input-Element aufgerufen, wenn der Fokus verloren geht, passiert auch wenn Gruppe aktiv ist, da diese nur content-Checking betrifft
 function handlerBlur(id) {
+  log.debug('mintscripts_bootstrap.js handlerBlur', id);
     if (FVAR[id].id == activefieldid) closeInputContent();
 }
 
@@ -505,7 +507,7 @@ function handlerBlur(id) {
 // id = Index in Felderarray
 // nocontentcheck == 1 -> Feld soll jetzt nicht kontrolliert werden (Feld gehoert z.B. zu Aufgabengruppe)
 function handlerChange(id, nocontentcheck) {
-  log.debug("mintscripts_bootstrap: handlerChange");
+  log.debug("mintscripts_bootstrap: handlerChange", id, nocontentcheck);
   // override: checkboxen mit ausschliessenden Boxen werden immer dargestellt
   if (FVAR[id].type == 2) {
     if (FVAR[id].smc.length > 0) nocontentcheck = 0;
