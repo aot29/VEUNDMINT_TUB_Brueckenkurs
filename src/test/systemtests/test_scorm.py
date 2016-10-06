@@ -33,7 +33,10 @@ class ScormTest( SeleniumTest ):
         self.driver.get( '%s%s' % (self.scorm_start_url_prefix, url) )
 
         #wait for the iframe
-        WebDriverWait(self.driver, 10).until(EC.frame_to_be_available_and_switch_to_it((By.ID, "wndSCORM2004Stage")))
+        WebDriverWait(self.driver, 10).until(EC.frame_to_be_available_and_switch_to_it("wndSCORM2004Stage"))
+        #this is selenium 2.5 syntax use it later
+        #WebDriverWait(self.driver, 10).until(EC.frame_to_be_available_and_switch_to_it((By.ID, "wndSCORM2004Stage")))
+
         #and wait for all scripts loaded
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "veundmint_ready")))
 
