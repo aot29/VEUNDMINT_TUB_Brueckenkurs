@@ -21,7 +21,8 @@ All notable changes to this project should be documented in this file.
 - moved lots of functionalities from newIntersite.js to other more fitting modules
   - pushIso: now uses scormBridge to update points
   - some helper functions to new js module `veHelpers.js`
-- 
+- moodle now starts the lesson where it stopped 
+  - `scormBridge.returnToOldLessonLocation` , `scormBridge.setLessonLocation` are new
 
 ### Fixed
 - user input is now reloaded into input fields again #68
