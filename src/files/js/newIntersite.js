@@ -309,6 +309,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
     var jso = JSON.stringify(obj);
 
     scormBridge.updateCourseScore(obj.scores);
+	scormBridge.setLessonLocation(window.location.href);
+	
 
     if (localStoragePresent == true) {
       localStorage.setItem(getObjName(), jso);
