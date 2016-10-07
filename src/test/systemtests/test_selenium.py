@@ -27,7 +27,7 @@ class MySeleniumTest(SeleniumTest):
 		self.driver.get( os.getenv('BASE_URL', BASE_URL) )
 		#self.driver.get( 'http://localhost:3000/' )
 		title = self.driver.find_element_by_xpath('//title')
-		self.assertTrue( 'Mathematik' in title.get_attribute('text') )
+		self.assertTrue( 'Mathematik' or '3.1 Willkommen' in title.get_attribute('text') )
 		
 
 	def testChooseLanguageVersion(self):

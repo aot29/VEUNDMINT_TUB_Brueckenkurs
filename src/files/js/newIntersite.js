@@ -134,8 +134,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         // sendeFeedback( { statistics: cm },true );
 
         log.debug("Emitting pull request for this user!");
-        //TODO login this is commented out as long as login is disabled and testing fails
-        //userdata.checkUser(true, obj.login.username, check_user_scorm_success, check_user_scorm_error); // function emits in callbacks!
+        //TODO we need check_user_scorm_succes as it finally calls in scormdbread_success globalloadHandler(data.data);
+        userdata.checkUser(true, obj.login.username, check_user_scorm_success, check_user_scorm_error); // function emits in callbacks!
         log.debug("Pull request send");
       }
     } else {
