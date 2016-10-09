@@ -179,8 +179,8 @@ $(window).on('beforeunload', function(){
 
 		//if we came from the same url in another language, return to the scroll position
 		var oldScrollTop = intersite.getScrollTop();
-		if (oldScrollTop !== 0) {
-			$(document).scrollTop(oldScrollTop);
+		if (oldScrollTop !== 0) {			
+			$('html, body').animate({scrollTop:oldScrollTop}, 1000);
 			intersite.setScrollTop(0);
 		}
 

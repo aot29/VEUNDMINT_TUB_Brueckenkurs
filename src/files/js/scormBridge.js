@@ -39,7 +39,8 @@
       'cmi.core.score.raw',
       'cmi.core.score.min',
       'cmi.core.score.max',
-      'cmi.core.lesson_status'
+      'cmi.core.lesson_status',
+      'cmi.core.lesson_location'
     ],
     '2004': [
       'cmi.learner_id',
@@ -47,7 +48,8 @@
       'cmi.score.raw',
       'cmi.score.min',
       'cmi.score.max',
-      'cmi.completion_status'
+      'cmi.completion_status',
+      'cmi.location'
     ]
   }
 
@@ -89,17 +91,20 @@
       } else if (pipwerks.SCORM.version == '1.2') {
         initializedAgain = JSON.parse(pipwerks.SCORM.API.handle.LMSInitialize(""));
       }
+      
 
       pipwerks.SCORM.connection.isActive = true;
       scormVersion = pipwerks.SCORM.version;
+	  isScormEnv = true;
 
       if (initializedAgain == true) {
         log.info('scormBridge.js init: LMS connection was initialized and is now active');
+		returnToOldLessonLocation();
       } else {
         log.info('scormBridge.js init: LMS connection was already active');
       }
 
-      isScormEnv = true;
+
 
 
     } else {
@@ -177,45 +182,50 @@
   function updateCourseScore(scoreObj) {
     log.debug( "scormBridge.js: updateCourseScore called with scoreObj:", scoreObj);
 
-    updateSuccessful = false;
+	if (isScormEnv) {
+	
+		updateSuccessful = false;
 
-    if (isScormEnv) {
-      log.debug( "Updating SCORM transfer object");
-      nmax = 0;
-      ngot = 0;
+		if (isScormEnv) {
+		log.debug( "Updating SCORM transfer object");
+		nmax = 0;
+		ngot = 0;
 
-      //take all scores from exercices that were defined to
-      //be in tests (intest) and add them together.
-      for (j = 0; j < scoreObj.length; j++) {
-        if (scoreObj[j].intest) {
-          nmax += scoreObj[j].maxpoints;
-          ngot += scoreObj[j].points;
-        }
-      }
+		//take all scores from exercices that were defined to
+		//be in tests (intest) and add them together.
+		for (j = 0; j < scoreObj.length; j++) {
+			if (scoreObj[j].intest) {
+			nmax += scoreObj[j].maxpoints;
+			ngot += scoreObj[j].points;
+			}
+		}
 
-      //update corresponding course data in SCORM
-      updateSuccessful = gracefullySet("cmi.core.score.raw", ngot);
-      log.debug( "SCORM set points to " + ngot + ": " + updateSuccessful);
+		//update corresponding course data in SCORM
+		updateSuccessful = gracefullySet("cmi.core.score.raw", ngot);
+		log.debug( "SCORM set points to " + ngot + ": " + updateSuccessful);
 
-      updateSuccessful &= gracefullySet("cmi.core.score.min", 0);
-      log.debug( "SCORM set min points to 0: " + updateSuccessful);
+		updateSuccessful &= gracefullySet("cmi.core.score.min", 0);
+		log.debug( "SCORM set min points to 0: " + updateSuccessful);
 
-      updateSuccessful &= gracefullySet("cmi.core.score.max", nmax);
-      log.debug( "SCORM set max points to " + nmax + ": " + updateSuccessful);
+		updateSuccessful &= gracefullySet("cmi.core.score.max", nmax);
+		log.debug( "SCORM set max points to " + nmax + ": " + updateSuccessful);
 
-      var s = "not attempted";
-      if (ngot > 0) {
-        if (ngot == nmax) {
-          s = "completed";
-        } else {
-          s = "incomplete";
-        }
-      }
-      psres = gracefullySet("cmi.core.lesson_status", s);
-      log.debug( "SCORM set status to " + s + ": " + psres);
-    }
+		var s = "not attempted";
+		if (ngot > 0) {
+			if (ngot == nmax) {
+			s = "completed";
+			} else {
+			s = "incomplete";
+			}
+		}
+		psres = gracefullySet("cmi.core.lesson_status", s);
+		log.debug( "SCORM set status to " + s + ": " + psres);
+		}
 
-    return Boolean(updateSuccessful);
+		return Boolean(updateSuccessful);
+	} else {
+		log.debug('scormBridge.js updateCourseScore called when not in scorm environment');
+	}
   }
 
   /**
@@ -282,6 +292,20 @@
       return $.i18n("msg-transfered-result")+"\n"; // Die Punktzahl wurde zur statistischen Auswertung übertragen
     }
   }
+  
+  function setLessonLocation(location) {
+	  return gracefullySet('cmi.core.lesson_location', location);
+}
+
+//return to a saved lesson location. Should only be called when scorm is first initialized. Will work because
+//it will set the window location of the iframe.
+function returnToOldLessonLocation() {
+	var oldLessonLocation = gracefullyGet('cmi.core.lesson_location');
+	log.debug('scormBridge.js: returnToOldLessonLocation', oldLessonLocation);
+	if (oldLessonLocation !== "" && oldLessonLocation !== null && typeof oldLessonLocation !== 'undefined') {
+		window.location.href = oldLessonLocation;
+	}
+}
 
 
   /*************************
@@ -344,7 +368,7 @@
   exports.getScormVersion = getScormVersion;
   exports.getStudentName = getStudentName;
   exports.getStudentId = getStudentId;
-
+exports.setLessonLocation = setLessonLocation;
   exports.updateCourseScore = updateCourseScore;
 
   exports.getVersionedParameter = getVersionedParameter;

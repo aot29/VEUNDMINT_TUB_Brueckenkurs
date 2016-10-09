@@ -23,6 +23,8 @@ All notable changes to this project should be documented in this file.
   - some helper functions to new js module `veHelpers.js`
 - fixed a nasty bug where on scorm tests from localhosts failed because of checkuser function wich sends a request to the server
 without cors enabled, that would not setup points. now everything is just using localstorage for now, without the server.
+- moodle now starts the lesson where it stopped
+  - `scormBridge.returnToOldLessonLocation` , `scormBridge.setLessonLocation` are new
 
 ### Fixed
 - user input is now reloaded into input fields again #68
