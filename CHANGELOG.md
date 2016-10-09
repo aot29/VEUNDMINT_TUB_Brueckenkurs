@@ -21,7 +21,8 @@ All notable changes to this project should be documented in this file.
 - moved lots of functionalities from newIntersite.js to other more fitting modules
   - pushIso: now uses scormBridge to update points
   - some helper functions to new js module `veHelpers.js`
-- 
+- fixed a nasty bug where on scorm tests from localhosts failed because of checkuser function wich sends a request to the server
+without cors enabled, that would not setup points. now everything is just using localstorage for now, without the server.
 
 ### Fixed
 - user input is now reloaded into input fields again #68

@@ -94,7 +94,8 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
     var scormcontinuation = false;
 
-    if (scormBridge.isScormEnv()) {
+    //TODO: change but scorm should behave with scores like not scorm form now
+    if (false) {
       // SCORM-pull: Skip LocalStorage and fetch data directly from the database server if possible, otherwise use new user with SCROM-ID and CID as login
       log.debug( "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + "), SCORM-Version: " + expectedScormVersion);
 
@@ -134,7 +135,9 @@ COLOR_INPUTCHANGED = "#E0C0C0";
         // sendeFeedback( { statistics: cm },true );
 
         log.debug("Emitting pull request for this user!");
-        //TODO we need check_user_scorm_succes as it finally calls in scormdbread_success globalloadHandler(data.data);
+        //we need check_user_scorm_succes as it finally calls in scormdbread_success globalloadHandler(data.data);
+        //which updates scores or loads scores
+        //TODO this is a long intransparent dependency chain which should be altered
         userdata.checkUser(true, obj.login.username, check_user_scorm_success, check_user_scorm_error); // function emits in callbacks!
         log.debug("Pull request send");
       }
@@ -1204,14 +1207,18 @@ COLOR_INPUTCHANGED = "#E0C0C0";
       }
 
       function check_user_scorm_error(message, data) {
-        logMessage(CLIENTERROR, "checkuser_scorm error:" + message + ", data = " + JSON.stringify(data) + ", trying backup from LocalStorage...");
+        log.warn("checkuser_scorm error:" + message + ", data = " + JSON.stringify(data) + ", trying backup from LocalStorage...");
 
         // Retrieve old userdata from LocalStorage, if not present continue to use newly created obj from first pull start
-        // ...
+        //this will happen if cross site scripting is denied from server but we want to continue
+        //with the userdata (especially scores from intersite obj)
+        //TODO
+
+
       }
 
       function scormlogin_error(message, data) {
-        logMessage(CLIENTERROR, "Konnte user nicht am Server einloggen: " + message + ", data = " + JSON.stringify(data));
+        log.warn("Konnte user nicht am Server einloggen: " + message + ", data = " + JSON.stringify(data));
         logMessage(CLIENTONLY, "Server nicht erreichbar, speichere Daten im Browser und aktualisiere Server sobald Verbindung wieder hergestellt ist");
         setIntersiteType(1); // Work locally for now so as not to destruct more up to date data in the database
 
@@ -1241,6 +1248,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
 
         // Retrieve old userdata from LocalStorage, if not present continue to use newly created obj from first pull start
         // ...
+        globalloadHandler(JSON.stringify(intersite.getObj()));
       }
 
       function scormdbread_success(data) {
