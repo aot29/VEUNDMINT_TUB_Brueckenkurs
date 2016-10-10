@@ -95,7 +95,7 @@ COLOR_INPUTCHANGED = "#E0C0C0";
     var scormcontinuation = false;
 
     //TODO: change but scorm should behave with scores like not scorm form now
-    if (false) {
+    if (scormBridge.isScormEnv()) {
       // SCORM-pull: Skip LocalStorage and fetch data directly from the database server if possible, otherwise use new user with SCROM-ID and CID as login
       log.debug( "SCORM-pull forciert (SITE_PULL = " + SITE_PULL + "), SCORM-Version: " + expectedScormVersion);
 
