@@ -14,7 +14,7 @@
 .DEFAULT_GOAL := all
 
 # The URL for the test server (will be used by default)
-STAGING_URL=http://guest6.mulf.tu-berlin.de/beta/
+STAGING_URL=https://guest6.mulf.tu-berlin.de/beta/
 
 # When testing the build locally (may be one of localhost or 127.0.0.1)
 LOCALHOST_URL=http://localhost:3000
@@ -34,7 +34,7 @@ all:
 	$(eval BASE_URL := ${STAGING_URL})
 	echo "Running system tests run on ${BASE_URL}"
 	$(checkServer_cmd)
-	$(runtest_cmd)
+	$(systest_cmd)
 
 
 #
