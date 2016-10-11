@@ -1,7 +1,11 @@
 # Change Log
 All notable changes to this project should be documented in this file.
 
-## 04.09.2016 - <TODAY>
+## 11.09.2016 - today
+### Added
+- Next and Previous Chapter buttons at bottom of page
+
+## 04.09.2016 - 10.09.2016
 ### Added
 - this changelog :ok_hand:
 - ssh support

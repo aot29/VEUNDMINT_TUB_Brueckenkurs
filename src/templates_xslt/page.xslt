@@ -46,7 +46,8 @@
 							<xsl:apply-templates select="." mode="tabs" />
 							<!-- Page contents-->
 							<xsl:apply-templates select="." mode="content" />
-
+							<!-- Page tabs -->
+							<xsl:apply-templates select="." mode="tabs-bottom" />
 							<!-- Footer -->
 							<xsl:call-template name="pageFooter">
 								<xsl:with-param name="basePath" select="@basePath" />
