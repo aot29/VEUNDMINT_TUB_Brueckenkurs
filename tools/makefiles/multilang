@@ -91,7 +91,7 @@ endef
 #
 # make PDFs of whole course
 #
-convert:
+pdf:
 	# delete older builds
 	-rm -Rf $(OUTPUT)
 
@@ -102,6 +102,9 @@ convert:
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
 	$(pdf_cmd)
+	
+	# move English PDF 
+	mv $(OUTPUT)_en/pdf/* $(OUTPUT)/pdf
 
 #
 # Build the English and the German version.
@@ -153,9 +156,6 @@ merge:
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
 	
-	# move English PDF 
-	mv $(OUTPUT)_en/pdf/* $(OUTPUT)/pdf
-
 	$(deploy_img_cmd)
 
 
