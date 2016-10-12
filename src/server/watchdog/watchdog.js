@@ -58,7 +58,7 @@ try {
   mailqueue = {};
 }
 
-var run = true; //run the watchdog?
+var run = false; //run the watchdog?
 //if the commandline parameter '--send-mails' is provided, send mails and exit
 process.argv.forEach(function (argument, index) {
   if (argument === '--send-mails') {

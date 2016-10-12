@@ -29,7 +29,7 @@ OUTPUT = tu9onlinekurstest
 
 # Language the index.html will point to by default,
 # possible values: de, en
-DEFAULT_LANG = de
+DEFAULT_LANG = de 
 
 # Declare as phony so targets will run even if there's a file by that name
 .PHONY: cleanupBefore convert merge fixlinks fixredirects cleanupAfter all
@@ -48,6 +48,7 @@ allTUB: |cleanupBefore convert merge fixRedirects fix fixSpecialPages startGulp 
 #
 #allKIT: |cleanup convert merge fixRedirects fix startGulp
 #	echo "ready"
+
 
 #
 # Use the converter to build the version specified by CURRENT_LANG
@@ -73,6 +74,21 @@ endef
 
 
 #
+# Generate PDF of whole course
+# @see: https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/pdf
+#
+define pdf_cmd
+	# generating PDFs
+	cd _tmp/tex && pdflatex -interaction nonstopmode -halt-on-error -file-line-error veundmintkurs.tex >> convert.log
+	cd _tmp/tex && makeindex  -q veundmintkurs
+	cd _tmp/tex && pdflatex -interaction nonstopmode -halt-on-error -file-line-error veundmintkurs.tex >> convert.log
+	-mkdir $(OUTPUT)_$(CURRENT_LANG)/pdf
+	cp _tmp/tex/veundmintkurs.pdf $(OUTPUT)_$(CURRENT_LANG)/pdf/veundmintkurs_$(CURRENT_LANG).pdf
+	rm _tmp/tex/veundmintkurs.pdf
+endef
+
+
+#
 # Build the English and the German version.
 #
 convert:
@@ -82,8 +98,10 @@ convert:
 	# set CURRENT_LANG at runtime.
 	$(eval CURRENT_LANG := de)
 	$(convert_cmd)
+	$(pdf_cmd)
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
+	$(pdf_cmd)
 
 
 #
@@ -121,7 +139,9 @@ merge:
 
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
-	rm -Rf $(OUTPUT)_en
+	
+	# move English PDF 
+	mv $(OUTPUT)_en/pdf/* $(OUTPUT)/pdf
 
 	$(deploy_img_cmd)
 
@@ -285,6 +305,7 @@ fix: fixRedirects
 	# replace index.html with src/templates_xslt/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_xslt/html5_choose_language_simple.html $(OUTPUT)/index.html
 
+
 useScormIndex:
 	# replace public/index.html with src/templates_xslt/html5_redirect_moodle
 	cp src/templates_xslt/html5_redirect_moodle.html public/index.html
@@ -293,7 +314,11 @@ useScormIndex:
 #
 # Cleanup before starting a new build
 #
-cleanupBefore: cleanupAfter
+cleanupBefore:
+	-rm -Rf $(OUTPUT)
+	-rm -Rf $(OUTPUT)_en
+	-rm -Rf $(OUTPUT)_de
+	-rm -Rf _tmp
 	-rm -Rf public
 
 
