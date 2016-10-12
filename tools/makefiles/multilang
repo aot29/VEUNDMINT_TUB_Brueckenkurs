@@ -89,7 +89,7 @@ endef
 
 
 #
-# Build the English and the German version.
+# make PDFs of whole course
 #
 convert:
 	# delete older builds
@@ -102,6 +102,19 @@ convert:
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
 	$(pdf_cmd)
+
+#
+# Build the English and the German version.
+#
+convert:
+	# delete older builds
+	-rm -Rf $(OUTPUT)
+
+	# set CURRENT_LANG at runtime.
+	$(eval CURRENT_LANG := de)
+	$(convert_cmd)
+	$(eval CURRENT_LANG := en)
+	$(convert_cmd)
 
 
 #
