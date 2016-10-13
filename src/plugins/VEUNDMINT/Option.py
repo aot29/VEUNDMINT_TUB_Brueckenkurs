@@ -99,7 +99,7 @@ class Option(object):
 		# tex-tree paths (relative to module-folder)
 		if not self.testonly:
 			# Not testing. Tree depends on language requested
-			self.module = ( lambda locale: "tree_tu9onlinekurs_en.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "tree_tu9onlinekurs.tex" ) ( self.locale)
+			self.module = ( lambda locale: "tree_tu9onlinekurs_en.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "tree_tu9onlinekurs_de.tex" ) ( self.locale)
 
 		else:
 			# Testing. Use test tree
@@ -377,8 +377,9 @@ class Option(object):
 			"HTML5_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "html5_mintmodtex.py")
 		}
 
-		if self.dopdf == 1:
-			self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdfmini.png' border='0' /></a>"
+		# this should be in a template
+		#if self.dopdf == 1:
+		#	self.footer_left += "<a href='veundmintkurs.pdf' target='_new'><img src='images/pdfmini.png' border='0' /></a>"
 
 		if self.symbolexplain == 1:
 			self.tocadd = "<ul class=\"legende\">" \
