@@ -53,6 +53,10 @@
 							</li>
 
 						</xsl:if>
+						<li>
+							<li><a data-toggle="tooltip" id="pdfbutton" href="{@basePath}/../pdf/veundmint_{@lang}.pdf"><span class="glyphicon 
+glyphicon glyphicon-save-file"></span></a></li>
+						</li>
 					</ul>
 
 					<!-- rendered in js (veundmint.js) note: even though its later in dom its rendered first
