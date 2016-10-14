@@ -37,8 +37,9 @@
 			<!--
 			<a data-toggle="tooltip" id="zoomoutbutton" onclick="changeFontSize(-5);" class="btn btn-link glyphicon glyphicon-zoom-out"></a>
 			<a data-toggle="tooltip" id="zoominbutton" onclick="changeFontSize(5);" class="btn btn-link glyphicon glyphicon-zoom-in"></a>
-			 -->
+			 
 			<button id="printbutton" onclick="window.print();" data-toggle="tooltip" type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></button>
+			-->
 		</div>
 	</xsl:template>
 
