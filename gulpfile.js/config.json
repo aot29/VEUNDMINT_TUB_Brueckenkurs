@@ -41,16 +41,18 @@
       "scripts": {
         "src": [
           "./bower_components/jquery/dist/jquery.js",
-  		  "./bower_components/bootstrap/dist/js/bootstrap.js",
+		      "./bower_components/bootstrap/dist/js/bootstrap.js",
           "./bower_components/es5-shim/es5-sham.js",
           "./bower_components/qtip2/jquery.qtip.js",
           "./bower_components/knockout/dist/knockout.js",
           "./bower_components/datatables.net/js/jquery.dataTables.js",
           "./bower_components/loglevel/dist/loglevel.js",
+          "./node_modules/bluebird/js/browser/bluebird.core.js",
           "./tu9onlinekurstest/js/modernizr-custom.js",
           "./tu9onlinekurstest/js/jquery.i18n.js",
           "./tu9onlinekurstest/js/jquery.i18n.messagestore.js",
           "./tu9onlinekurstest/js/veHelpers.js",
+          "./tu9onlinekurstest/js/dataService.js",
           "./tu9onlinekurstest/js/math.js",
           "./tu9onlinekurstest/js/mparser.js",
           "./tu9onlinekurstest/js/dynamiccss.js",
@@ -95,16 +97,11 @@
         ],
         "dest": "images"
       },
-      "pdfs": {
-        "src": [
-          "./tu9onlinekurstest/pdf/*"
-        ],
-        "dest": "pdf"
-      },
       "inject": {
         "src": [
           "./public/js/jquery.js",
           "./public/js/es5-sham.js",
+          "./public/js/bluebird.core.js",
           "./public/js/modernizr-custom.js",
           "./public/js/jquery.qtip.js",
           "./public/js/knockout.js",
@@ -117,6 +114,7 @@
           "./public/js/math.js",
           "./public/js/veHelpers.js",
           "./public/js/dynamiccss.js",
+          "./public/js/dataService.js",
           "./public/js/newserver.js",
           "./public/js/convinfo.js",
           "./public/js/mparser.js",
