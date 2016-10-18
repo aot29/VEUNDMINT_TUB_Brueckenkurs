@@ -13,9 +13,9 @@
 			<xsl:if test="$selectedPage/@level = 4">
 				<div class="col-md-12">
 					<ul class="nav nav-pills">
-						<li class="pill-prev"><xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navPrev" mode="top" /></xsl:if></li>
+						<li class="pill-prev"><xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navPrev" /></xsl:if></li>
 						<xsl:apply-templates select="$selectedPage/../*" mode="tab" />
-						<li class="pill-next pull-right"><xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navNext" mode="top" /></xsl:if></li>
+						<li class="pill-next pull-right"><xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navNext" /></xsl:if></li>
 					</ul>
 				</div>
 			</xsl:if>
@@ -37,8 +37,8 @@
 			<xsl:if test="$selectedPage/@level = 4">
 				<div class="col-md-12">
 					<ul class="nav nav-pills">
-						<li class="pill-prev"><xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navPrev" mode="bottom" /></xsl:if></li>
-						<li class="pill-next pull-right"><xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navNext" mode="bottom" /></xsl:if></li>
+						<li class="pill-prev"><xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navPrev" /></xsl:if></li>
+						<li class="pill-next pull-right"><xsl:if test="@isCoursePage = 'True'"><xsl:apply-templates select="navNext" /></xsl:if></li>
 					</ul>
 				</div>
 			</xsl:if>
@@ -57,21 +57,23 @@
 		</li>
 	</xsl:template>
 	
-	<!-- RW and FF Buttons -->
-	<xsl:template match="navPrev" mode="top">
+	<!-- RW and FF Buttons (old)-->
+	<!--
+	<xsl:template match="navPrev" mode="alt">
 		<a id="prev-chapter" href="{@href}"><span class="glyphicon glyphicon-chevron-left"></span></a>
 	</xsl:template>
 
-	<xsl:template match="navNext" mode="top">
+	<xsl:template match="navNext" mode="alt">
 		<a id="next-chapter" href="{@href}"><span data-toggle="i18n" data-i18n="ui-next-chapter"/></a>
 	</xsl:template>	
+	-->
 
 	<!-- RW and FF Buttons -->
-	<xsl:template match="navPrev" mode="bottom">
+	<xsl:template match="navPrev">
 		<a id="prev-chapter" href="{@href}"><span class="glyphicon glyphicon-chevron-left"></span> <span data-toggle="i18n" data-i18n="ui-previous-chapter"/></a>
 	</xsl:template>
 
-	<xsl:template match="navNext" mode="bottom">
+	<xsl:template match="navNext">
 		<a id="next-chapter" href="{@href}"><span data-toggle="i18n" data-i18n="ui-next-chapter"/> <span class="glyphicon glyphicon-chevron-right"></span></a>
 	</xsl:template>
 </xsl:stylesheet>
