@@ -1,17 +1,17 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['exports'], function (exports) {
-      factory(root.veHelpers = exports);
+    define(['exports', 'loglevel'], function (exports, log) {
+      factory((root.veHelpers = exports), log);
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    factory(exports);
+    factory(exports, require('loglevel'));
   } else {
     // Browser globals
-    factory(root.veHelpers = {});
+    factory((root.veHelpers = {}), root.log);
   }
-}(this, function (exports) {
+}(this, function (exports, log) {
 
   log.info('veHelpers.js loaded');
 

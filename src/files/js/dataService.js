@@ -23,17 +23,17 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['exports', 'helpers'], function (exports, helpers) {
-      factory((root.dataService = exports), helpers);
+    define(['exports', 'veHelpers', 'loglevel'], function (exports, veHelpers, log) {
+      factory((root.dataService = exports), veHelpers, log);
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    factory(exports, require('helpers'));
+    factory(exports, require('veHelpers', 'loglevel'));
   } else {
     // Browser globals
-    factory((root.dataService = {}), root.helpers);
+    factory((root.dataService = {}), root.veHelpers, root.loglevel);
   }
-}(this, function (exports, helpers) {
+}(this, function (exports, veHelpers, log) {
 
   //
   // Variables
@@ -267,7 +267,7 @@
             status.syncDownErrorMessage = 'getAllUserData did not return an array';
             reject(status);
           }
-        }, function(error) {
+        }).catch(function(error) {
           status.syncDownErrorMessage = error;
           reject(status);
         }).finally(function() {
@@ -314,19 +314,18 @@
     //TODO should we consider objCache to also be an implementation of storageService?
     //pro: we would not have to handle the obj cache separately, does same things anyway (except sync)
     //contra: logically not the same as storage service, can we imagine working without objCache?
-    log.debug('dataService: syncDown called');
 
     if (storageServices.length === 0) {
       return Promise.reject(new TypeError('dataService: no registered storageServices to sync from'));
     }
 
     var result = new Promise(function (resolve, reject) {
-        log.debug('dataService: syncDown is calling getAllDataTimestamps');
+        //log.debug('dataService: syncDown is calling getAllDataTimestamps');
         getAllDataTimestamps().then(function (successAllTimestamps) {
           if (Array.isArray(successAllTimestamps) && successAllTimestamps.length > 0) {
             successAllTimestamps.sort(compareTimestampsNew);
-            log.debug('services returned the timestamps:', successAllTimestamps);
-            log.debug('latest data was found at the service:', successAllTimestamps[0]);
+            //log.debug('services returned the timestamps:', successAllTimestamps);
+            //log.debug('latest data was found at the service:', successAllTimestamps[0]);
             var latestTimestampData = successAllTimestamps[0];
             //return the userdata Promise from the service where the latest data was found
             //by comparing the timestamps
@@ -334,8 +333,6 @@
           } else {
             reject(new TypeError('getAllDataTimestamps did not return an Array.'));
           }
-        }, function(errorAllTimestamps) {
-          reject(new TypeError('getAllDataTimestamps errored'));
         }).then(function(latestData) {
           objCache = latestData;
           //if there were localChanges merge them, so they are not lost
@@ -343,8 +340,8 @@
             objCache = mergeRecursive(objCache, changedData);
           }
           return objCache;
-          log.debug('latestData retrieved and objCache set to:', latestData);
-        }, function(error) {
+          //log.debug('latestData retrieved and objCache set to:', latestData);
+        }).catch(function(error) {
           reject(new TypeError('Could not get the latest Data - ' + error.message));
         });
     });
@@ -353,7 +350,6 @@
 
   /**
    * Synchronizes data from objCache to all registered storageServices
-   * TODO only changes and only if older
    * @return {Promise<Object>} A Promise holding the status of the sync process(es)
    */
   function syncUp() {
@@ -374,7 +370,7 @@
         service.saveUserData(changedData).then(function (successData) {
           totalResolved += 1;
           status[service.name] = {status: 'success', data: successData}
-        }, function (errorData) {
+        }).catch(function (errorData) {
           totalRejected += 1;
           status[service.name] = {status: 'error', error: errorData}
         }).finally(function (data) {
@@ -457,7 +453,7 @@ function getAllUserData() {
           data: successData,
           serviceName: service.name
         });
-      }, function (errorData) {
+      }).catch(function (errorData) {
         allUserData.push({
           status: 'error',
           message: errorData,
@@ -493,7 +489,7 @@ function getAllDataTimestamps() {
           timestamp: successData,
           serviceName: service.name
         });
-      }, function (errorData) {
+      }).catch(function (errorData) {
         failCount += 1;
         allTimestamps.push({
           status: 'error',
@@ -570,10 +566,14 @@ function init( options ) {
  */
 function mergeRecursive(obj1, obj2, changedData) {
   if (Object.prototype.toString.call( obj1 ) === '[object Array]') {
-    //update in array
     for (var i = 0; i < obj1.length; i++) {
       if (obj1[i].id == obj2.id) {
-        obj1[i] = obj2;
+        //we update the object
+        for(var key in obj2) {
+          if(obj2.hasOwnProperty(key)) {
+            obj1[i][key] = obj2[key];
+          }
+        }
         return obj1;
       }
     }
@@ -625,5 +625,6 @@ exports.updateUserData = updateUserData;
 exports.updateScores = updateScores;
 exports.getChangedData = getChangedData;
 exports.getObjCache = getObjCache;
+exports.mergeRecursive = mergeRecursive;
 
 }));
