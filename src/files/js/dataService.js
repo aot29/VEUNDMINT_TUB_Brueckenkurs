@@ -1,24 +1,4 @@
 /* from https://github.com/umdjs/umd/blob/master/templates/commonjsStrictGlobal.js */
-//TODO
-//0. alles soll (so weit wie möglich kompatibel sein mit der alten version, aufrufe
-//werden geändert werden müssen)
-//1. struktur aendern von scores
-//2. server sollte scores schreiben und nicht user, das heisst, dass user immer
-//input an server schickt und server das neue scores array zurueckliefert und nicht
-//umgekehrt, sonst kann man einfach cheaten!!!
-//3. wenn ich das richtig sehe, ist der einzige fall der nicht behandelt wird
-//der wenn ein user in einem tab(1) daten aendert WAEHREND ein anderer tab(2) offen ist
-//dann werden die daten falls im anderen offenen tab(2) weitergearbeitet wird die aenderungen
-//ueberschreiben die in tab(1) gemacht wurden. aber es wird ein request gespart sonst muesste
-//vor jedem speichern geschaut werden ob es auf den servern noch eine aktuellere version gibt...
-//koennte auch getan werden mit (getdatatimestamp)
-//
-//performance ueberlegung
-//die operation die am meisten durchgefuehrt wird bei scores ist wahrscheinlich eine insert funktion
-//(zumindest wenn nicht bei jeder tasteneingabe geprueft wird sondern nur bei nach einigen sekunden oder
-//bei verlassen des input elements), bisher ist es wahrscheinlich eher eine update funktion aber
-//wenn wir davon ausgehen, dass nutzer_innen jede aufgabe einpaarmal versuchen ist es wiederrum update
-//update in objects O(1) in arrays O(n), insert in object O(1) in arrays O(n)
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
