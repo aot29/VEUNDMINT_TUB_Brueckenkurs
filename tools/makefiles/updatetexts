@@ -97,6 +97,40 @@ cp2vbkm:
 	-cp ${TMP_DIR}/VBKMTestpaketKIT/vbkmtestpaketkit1.tex module_veundmint/VBKMTestpaketKIT
 	-cp ${TMP_DIR}/VBKMTestpaketKIT/vbkmtestpaketkit1_eng.tex module_veundmint/VBKMTestpaketKIT
 
+
+#
+# Convert texts to utf-8 
+#
+convert2utf8:
+	# convert German texts
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}.tex) $(convert2utf8_cmd) )
+	
+	# convert English texts
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(convert2utf8_cmd) )
+
+	# stochastik	
+	$(eval CURRENT_CHAPTER := module_veundmint/VBKM_Stochastik/vbkm_stochastik.tex)
+	$(convert2utf8_cmd)
+	$(eval CURRENT_CHAPTER := module_veundmint/VBKM_Stochastik/vbkm_stochastik_eng.tex)
+	$(convert2utf8_cmd)
+	
+	# testpaket
+	$(eval CURRENT_CHAPTER := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1.tex)
+	$(convert2utf8_cmd)
+	$(eval CURRENT_CHAPTER := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1_eng.tex)
+	$(convert2utf8_cmd)
+
+
+#
+# first check if text is in iso, then convert to utf-8
+#
+define convert2utf8_cmd
+$(if $(filter $(shell file -i ${CURRENT_CHAPTER} | grep -o 'iso-8859-1'), iso-8859-1),
+iconv -f ISO-8859-15 -t UTF-8 ${CURRENT_CHAPTER} > out.tex && mv out.tex ${CURRENT_CHAPTER} && echo ${CURRENT_CHAPTER} converted to utf-8,
+echo "${CURRENT_CHAPTER} no conversion to utf-8" )
+endef
+
+
 #
 # Delete temporary files
 #
@@ -107,7 +141,7 @@ cleanup:
 #
 # Build and deploy the nightly build
 #
-all: |cleanup getLatestContent cp2tmp getLatestSoftware cp2vbkm cleanup
+all: |cleanup getLatestContent cp2tmp getLatestSoftware cp2vbkm convert2utf8 cleanup
 	echo "Texts updated."
 
 
