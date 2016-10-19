@@ -20,7 +20,7 @@ class TTMParserTest(unittest.TestCase):
 
 	def testTitle(self):
 		"""
-		Test if the LaTeX \\title command is converted correctly to <tilte> in html
+		Test if the LaTeX \\title command is converted correctly to <title> in html
 		"""
 		self.isCorrectConversionTest(r'''\title{I am a pretty good tester}''', '<title> I am a pretty good tester </title>')
 
