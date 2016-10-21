@@ -155,10 +155,17 @@ describe('dataService', function() {
 
         data.should.have.deep.property(fs.name + '.status', 'error');
         data.should.have.deep.property(ls.name + '.status', 'success');
+        //should have the user data we set above
         data.should.have.deep.property(ls.name + '.data.test', 'test');
       });
     });
 
+  });
+
+  describe('#syncDown', function() {
+    it('should do nothing if no storageServices registered', function() {
+      dataService.syncDown().should.become('dataService: synDown called without subscribers, will do nothing.');
+    });
   });
 
 });

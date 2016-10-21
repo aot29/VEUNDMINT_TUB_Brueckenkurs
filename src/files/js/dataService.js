@@ -296,18 +296,15 @@
    * @return {Promise} A promise holding the userData.
    */
   function syncDown() {
-    //TODO should we consider objCache to also be an implementation of storageService?
-    //pro: we would not have to handle the obj cache separately, does same things anyway (except sync)
-    //contra: logically not the same as storage service, can we imagine working without objCache?
 
     if (storageServices.length === 0) {
-      return Promise.reject(new TypeError('dataService: no registered storageServices to sync from'));
+      return Promise.resolve('dataService: synDown called without subscribers, will do nothing.');
     }
 
     // log.debug('dataService: syncDown is calling getAllDataTimestamps');
     var promise = getAllDataTimestamps().then(function (successAllTimestamps) {
       if (Array.isArray(successAllTimestamps) && successAllTimestamps.length > 0) {
-        successAllTimestamps.sort(compareTimestampsNew);
+        successAllTimestamps.sort(compareTimestamps);
         // log.debug('services returned the timestamps:', successAllTimestamps);
         // log.debug('latest data was found at the service:', successAllTimestamps[0]);
         var latestTimestampData = successAllTimestamps[0];
@@ -315,7 +312,7 @@
         //by comparing the timestamps
         return storageServicesMap[latestTimestampData.serviceName].getUserData();
       } else {
-        reject(new TypeError('getAllDataTimestamps did not return an Array.'));
+        return Promise.reject(new TypeError('getAllDataTimestamps did not return an Array.'));
       }
     }).then(function(latestData) {
       objCache = latestData;
@@ -368,26 +365,17 @@
       });
     });
     return result;
-  }
+
 
   /**
   * Compares two data objects by timestamp for sorting, i.e. finding the latest
-  * data. Will sort by obj.data.timestemp descending. So when calling myArray.sort(compareTimestamp)
+  * data. Will sort by data.timestemp descending. So when calling myArray.sort(compareTimestamps)
   * myArray[0] will be the latest data
   * @param  {[type]} storageResult1 [description]
   * @param  {[type]} storageResult2 [description]
   * @return {[type]}       [description]
   */
-  function compareTimestamps(storageResult1, storageResult2) {
-    //enable sorting if there is no timestamp
-    storageResult1.data = storageResult1.data || {timestamp: 0};
-    storageResult2.data = storageResult2.data|| {timestamp: 0};
-    storageResult1.data.timestamp = storageResult1.data.timestamp || 0;
-    storageResult2.data.timestamp = storageResult2.data.timestamp || 0;
-    return storageResult2.data.timestamp - storageResult1.data.timestamp;
-  }
-
-  function compareTimestampsNew(data1, data2) {
+  function compareTimestamps(data1, data2) {
     data1.timestamp = data1.timestamp || 0;
     data2.timestamp = data2.timestamp || 0;
     return data2.timestamp - data1.timestamp;
