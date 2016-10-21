@@ -343,11 +343,8 @@
     }
 
     if (veHelpers.isEmpty(storageServices)) {
-      console.log('eeeeee mmmm pppty');
       return Promise.resolve('dataService: synUp called withot subscribers, will do nothing.');
     }
-
-    console.log('syncUp called with', storageServices);
 
     //if there are localChanges, syncUp copies changed local data -> all storageServices
     var totalResolved = 0;
@@ -660,6 +657,7 @@ exports.syncUp = syncUp;
 exports.updateUserData = updateUserData;
 exports.updateScores = updateScores;
 exports.getChangedData = getChangedData;
+exports.emptyChangedData = function () { changedData = {}; };
 exports.getObjCache = getObjCache;
 exports.mergeRecursive = mergeRecursive;
 exports.mockLocalStorage = mockLocalStorage;

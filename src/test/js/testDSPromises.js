@@ -17,6 +17,7 @@ describe('dataService', function() {
 
     dataService.mockLocalStorage();
     dataService.unsubscribeAll();
+    dataService.emptyChangedData();
 
     FailService = function () {
       return {
@@ -134,6 +135,28 @@ describe('dataService', function() {
         'name': 'test'
       });
       return dataService.syncUp().should.become('dataService: synUp called withot subscribers, will do nothing.');
+    });
+
+    it('should call saveUserData on all registered subscribers and resolve all statuses correctly', function() {
+      dataService.subscribe(fs);
+      dataService.subscribe(ls);
+
+      dataService.updateUserData({
+        test:'test'
+      });
+
+      var spyFsTimestamp = sinon.spy(fs, "saveUserData");
+      var spyLsTimestamp = sinon.spy(ls, "saveUserData");
+
+      return dataService.syncUp().should.be.fulfilled.then(function(data) {
+        //registered services saveUserData was actually called
+        expect(fs.saveUserData.calledOnce).to.be.true;
+        expect(ls.saveUserData.calledOnce).to.be.true;
+
+        data.should.have.deep.property(fs.name + '.status', 'error');
+        data.should.have.deep.property(ls.name + '.status', 'success');
+        data.should.have.deep.property(ls.name + '.data.test', 'test');
+      });
     });
 
   });
