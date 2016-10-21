@@ -110,21 +110,27 @@ cp2vbkm:
 convert2utf8:
 	# convert German texts
 	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}.tex) $(convert2utf8_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}.tex) $(correctUmlauts_cmd) )
 	
 	# convert English texts
 	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(convert2utf8_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(correctUmlauts_cmd) )
 
 	# stochastik	
 	$(eval CURRENT_CHAPTER := module_veundmint/VBKM_Stochastik/vbkm_stochastik.tex)
 	$(convert2utf8_cmd)
+	$(correctUmlauts_cmd)
 	$(eval CURRENT_CHAPTER := module_veundmint/VBKM_Stochastik/vbkm_stochastik_eng.tex)
 	$(convert2utf8_cmd)
+	$(correctUmlauts_cmd)
 	
 	# testpaket
 	$(eval CURRENT_CHAPTER := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1.tex)
 	$(convert2utf8_cmd)
+	$(correctUmlauts_cmd)
 	$(eval CURRENT_CHAPTER := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1_eng.tex)
 	$(convert2utf8_cmd)
+	$(correctUmlauts_cmd)
 
 
 #
@@ -134,6 +140,32 @@ define convert2utf8_cmd
 $(if $(filter $(shell file -i ${CURRENT_CHAPTER} | grep -o 'iso-8859-1'), iso-8859-1),
 iconv -f ISO-8859-15 -t UTF-8 ${CURRENT_CHAPTER} > out.tex && mv out.tex ${CURRENT_CHAPTER} && echo ${CURRENT_CHAPTER} converted to utf-8,
 echo "${CURRENT_CHAPTER} no conversion to utf-8" )
+endef
+
+
+#
+# Correct umlauts
+# example: "u doesn't seem to be correct LaTeX (\"u is correct). Replace by utf-8 characters.
+# Kommentare werden nicht geaendert
+#
+define correctUmlauts_cmd
+	$(shell sed -i "s|\"a|ä|g" ${CURRENT_CHAPTER} )
+	$(shell sed -i "s|\\\ä|ä|g" ${CURRENT_CHAPTER} )
+	$(shell sed -i "s|\"A|Ä|g" ${CURRENT_CHAPTER} )
+	$(shell sed -i "s|\\\Ä|Ä|g" ${CURRENT_CHAPTER} )
+	
+	$(shell sed -i "s|\"o|ö|g" ${CURRENT_CHAPTER} )
+	$(shell sed -i "s|\\\ö|ö|g" ${CURRENT_CHAPTER} )
+	$(shell sed -i "s|\"O|Ö|g" ${CURRENT_CHAPTER} )
+	$(shell sed -i "s|\\\Ö|Ö|g" ${CURRENT_CHAPTER} )
+	
+	$(shell sed -i "s|\"u|ü|g" ${CURRENT_CHAPTER} )
+	$(shell sed -i "s|\\\ü|ü|g" ${CURRENT_CHAPTER} )
+	$(shell sed -i "s|\"U|Ü|g" ${CURRENT_CHAPTER} )
+	$(shell sed -i "s|\\\Ü|Ü|g" ${CURRENT_CHAPTER} )
+	
+	$(shell sed -i "s|\"s|ß|g" ${CURRENT_CHAPTER} )
+	$(shell sed -i "s|\\\ß|ß|g" ${CURRENT_CHAPTER} )
 endef
 
 
