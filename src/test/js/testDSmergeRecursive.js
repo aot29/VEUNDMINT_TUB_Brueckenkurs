@@ -4,45 +4,13 @@ var assert = require('assert');
 var sinon = require('sinon');
 var log = require('loglevel');
 var Promise = require("bluebird");
+var chai = require('chai');
+var expect = chai.expect;
+var chaiAsPromised = require('chai-as-promised');
+chai.use(chaiAsPromised);
 
 describe('dataService', function() {
 
-  describe('#subscribe / #unsubscribe', function() {
-
-    it('should add storageService to strorageServices', function(done) {
-      var FailService = function () {
-        return {
-          saveUserData : function () {
-            return new Promise(function (resolve, reject) {
-              reject(new TypeError('some getUsererror'));
-            });
-          },
-          getUserData : function () {
-            return new Promise(function (resolve, reject) {
-              reject(new TypeError('Failservice rejected: getUserData'));
-            });
-          },
-          name: 'failService',
-          getDataTimestamp: function () {
-            return Promise.reject(new TypeError('Failservice rejected: getDataTimestamp'));
-          }
-        }
-      }
-      fs = new FailService();
-      dataService.subscribe(fs);
-      var sub = dataService.getSubscribers()[0];
-      assert.equal(sub.name, 'failService');
-      var spy = sinon.spy(fs, "getDataTimestamp");
-      dataService.getAllDataTimestamps().then(function(data) {
-
-
-      }).catch(function(error) {
-        assert.equal(error.message, 'Requests to all registered sstorageServices failed in getAllDataTimestamps');
-        done();
-      });
-
-    });
-  });
   describe('#mergeRecursive()', function() {
     beforeEach(function() {
       obj1 = {

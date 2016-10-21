@@ -4,12 +4,12 @@
   "description": "ve und mint package tu berlin",
   "main": "index.js",
   "scripts": {
-    "test": " ./node_modules/mocha/bin/_mocha src/test/js/test.js",
+    "test": " ./node_modules/mocha/bin/_mocha src/test/js/ || true",
     "bower_install": "bower install",
     "gulp": "gulp",
     "postinstall": "bower install",
     "serve": "light-server --config ./gulpfile.js/lightserverConf.json",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha src/test/js/test.js --dir ./coverage-js"
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha src/test/js/ --dir ./coverage-js || true"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,8 @@
   },
   "devDependencies": {
     "browser-sync": "^2.14.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
     "del": "^2.2.1",
     "escape-string-regexp": "^1.0.5",
     "gulp": "^3.9.1",

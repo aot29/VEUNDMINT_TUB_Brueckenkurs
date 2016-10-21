@@ -11,7 +11,7 @@
     factory(exports, require('veHelpers', 'loglevel'));
   } else {
     // Browser globals
-    factory((root.dataService = {}), root.veHelpers, root.loglevel);
+    factory((root.dataService = {}), root.veHelpers, root.log);
   }
 }(this, function (exports, veHelpers, log) {
 
@@ -51,14 +51,15 @@
   * This is the concrete implementation that 'extends', storageService and
   * stores data in localStorage.
   */
-  function localstorageService () {
+  function localStorageService () {
     var storageKey = 'myStorageKey';
     return {
-      name: 'localstorageService',
+      name: 'localStorageService',
       saveUserData : function (data) {
         var result = new Promise(function (resolve, reject) {
-          var oldData = JSON.parse(localStorage.getItem(storageKey));
+          var oldData = JSON.parse(localStorage.getItem(storageKey)) || {};
           newData = mergeRecursive(oldData, data);
+          newData.timestamp = new Date().getTime();
           localStorage.setItem(storageKey, JSON.stringify(newData));
           resolve(newData);
         });
@@ -73,12 +74,16 @@
       },
       getDataTimestamp: function () {
         var data = JSON.parse(localStorage.getItem(storageKey));
-        if (typeof data !== 'undefined') {
-          return Promise.resolve(data.timestamp);
-        } else {
-          //return very old data timestamp
-          return Promise.reject(new TypeError('localstorageService: Can not get data Timestamp from localstorage'));
-        }
+
+        var result = new Promise(function (resolve, reject) {
+          if (typeof data !== 'undefined' && data !== null) {
+            resolve(data.timestamp);
+          } else {
+            //return very old data timestamp
+            reject(new TypeError('localStorageService: Can not get data Timestamp from localstorage'));
+          }
+        });
+        return result;
       }
     }
   }
@@ -132,7 +137,7 @@
     var evenNewerTimeStamp = 15576239654329;
     return {
       saveUserData : function (data) {
-        console.log('latestStorageService saveUserData called');
+        // console.log('latestStorageService saveUserData called');
         var result = new Promise(function (resolve, reject) {
           setTimeout(function() {
             console.log('after 2 secs');
@@ -143,7 +148,7 @@
         return result;
       },
       getUserData : function () {
-        console.log('latestStorageService getUserData called');
+        // console.log('latestStorageService getUserData called');
         var result = new Promise(function (resolve, reject) {
           setTimeout(function() {
             console.log('after 2 secs');
@@ -299,33 +304,30 @@
       return Promise.reject(new TypeError('dataService: no registered storageServices to sync from'));
     }
 
-    var result = new Promise(function (resolve, reject) {
-        //log.debug('dataService: syncDown is calling getAllDataTimestamps');
-        getAllDataTimestamps().then(function (successAllTimestamps) {
-          if (Array.isArray(successAllTimestamps) && successAllTimestamps.length > 0) {
-            successAllTimestamps.sort(compareTimestampsNew);
-            //log.debug('services returned the timestamps:', successAllTimestamps);
-            //log.debug('latest data was found at the service:', successAllTimestamps[0]);
-            var latestTimestampData = successAllTimestamps[0];
-            //return the userdata Promise from the service where the latest data was found
-            //by comparing the timestamps
-            return storageServicesMap[latestTimestampData.serviceName].getUserData();
-          } else {
-            reject(new TypeError('getAllDataTimestamps did not return an Array.'));
-          }
-        }).then(function(latestData) {
-          objCache = latestData;
-          //if there were localChanges merge them, so they are not lost
-          if (!veHelpers.isEmpty(changedData)) {
-            objCache = mergeRecursive(objCache, changedData);
-          }
-          return objCache;
-          //log.debug('latestData retrieved and objCache set to:', latestData);
-        }).catch(function(error) {
-          reject(new TypeError('Could not get the latest Data - ' + error.message));
-        });
+    // log.debug('dataService: syncDown is calling getAllDataTimestamps');
+    var promise = getAllDataTimestamps().then(function (successAllTimestamps) {
+      if (Array.isArray(successAllTimestamps) && successAllTimestamps.length > 0) {
+        successAllTimestamps.sort(compareTimestampsNew);
+        // log.debug('services returned the timestamps:', successAllTimestamps);
+        // log.debug('latest data was found at the service:', successAllTimestamps[0]);
+        var latestTimestampData = successAllTimestamps[0];
+        //return the userdata Promise from the service where the latest data was found
+        //by comparing the timestamps
+        return storageServicesMap[latestTimestampData.serviceName].getUserData();
+      } else {
+        reject(new TypeError('getAllDataTimestamps did not return an Array.'));
+      }
+    }).then(function(latestData) {
+      objCache = latestData;
+      //if there were localChanges merge them, so they are not lost
+      if (!veHelpers.isEmpty(changedData)) {
+        objCache = mergeRecursive(objCache, changedData);
+      }
+      // log.debug('latestData retrieved and objCache set to:', latestData);
+      return objCache;
     });
-    return result;
+
+    return promise;
   }
 
   /**
@@ -333,12 +335,19 @@
    * @return {Promise<Object>} A Promise holding the status of the sync process(es)
    */
   function syncUp() {
-    log.debug('dataService: syncUp called');
+    // log.debug('dataService: syncUp called');
 
     if (veHelpers.isEmpty(changedData)) {
-      log.info('dataService: syncUp called without local changes');
-      return Promise.resolve('dataService: syncUp called without local changes');
+      // log.info('dataService: syncUp called without local changes');
+      return Promise.resolve('dataService: syncUp called without local changes, will do nothing.');
     }
+
+    if (veHelpers.isEmpty(storageServices)) {
+      console.log('eeeeee mmmm pppty');
+      return Promise.resolve('dataService: synUp called withot subscribers, will do nothing.');
+    }
+
+    console.log('syncUp called with', storageServices);
 
     //if there are localChanges, syncUp copies changed local data -> all storageServices
     var totalResolved = 0;
@@ -353,7 +362,7 @@
         }).catch(function (errorData) {
           totalRejected += 1;
           status[service.name] = {status: 'error', error: errorData}
-        }).finally(function (data) {
+        }).then(function (data) {
           if (totalResolved + totalRejected == storageServices.length) {
             changedData = {};
             resolve(status);
@@ -389,7 +398,7 @@
 
   function test() {
     subscribe(new djangoStorageService());
-    subscribe(new localstorageService());
+    subscribe(new localStorageService());
     subscribe(new failService());
     subscribe(new latestStorageService());
     updateUserData(
@@ -407,13 +416,11 @@
   }
 
   function unsubscribe(observable) {
-    stroageServices = storageServices.filter(
-      function(item) {
-        if (item !== observable) {
-          return item;
+    for(var i = storageServices.length - 1; i >= 0; i--) {
+        if(storageServices[i].name === observable.name) {
+           storageServices.splice(i, 1);
         }
-      }
-    )
+    }
     delete storageServicesMap[observable.name];
   }
 
@@ -439,7 +446,7 @@ function getAllUserData() {
           message: errorData,
           serviceName: service.name
         })
-      }).finally(function (data) {
+      }).then(function (data) {
         returnedPromises += 1;
         if (returnedPromises == storageServices.length) {
           resolve(allUserData);
@@ -455,23 +462,40 @@ function getAllUserData() {
 function getAllDataTimestamps() {
   var returnedPromises = 0;
   var failCount = 0;
+  var successCount = 0;
   var allTimestamps = [];
 
+  // var result = new Promise(function (resolve, reject) {
+  //   if (storageServices.length == 0) {
+  //     reject('no storageServices we could get the data from, register them first' 
+  //     + ' by calling dataService.subscribe(yourStorageServiceName)');
+  //   }
+  if (storageServices.length == 0) {
+    return Promise.reject(new TypeError('no storageServices we could get data from' +
+      'register them by calling dataService.subscribe(yourStorageService)'));
+  }
+  // return Promise.all(storageServices.map(function(promise) {
+  //   //will call getDataTimestamp and reflect will make rejected promises not reject but resolve
+  //   //with error status
+  //   return promise.getDataTimestamp().reflect();
+  // }));
   var result = new Promise(function (resolve, reject) {
-    if (storageServices.length == 0) {
-      reject('no storageServices we could get the data from, register them first' 
-      + ' by calling dataService.subscribe(yourStorageServiceName)');
-    }
     storageServices.forEach(function (service) {
+      // console.log('calling getDataTimestamp at', service.name);
       service.getDataTimestamp().then(function (successData) {
-        allTimestamps.push({
+        // console.log('getDataTimestamp success:', service.name);
+        successCount += 1;
+        var status = {
           status: 'success',
           timestamp: successData,
           serviceName: service.name
-        });
-      }).catch(function (errorData) {
+        };
+        allTimestamps.push(status);
+        // console.log('successCount', successCount);
+        return status;
+      }, function (errorData) {
         failCount += 1;
-        allTimestamps.push({
+        var status = {
           status: 'error',
           message: errorData,
           serviceName: service.name,
@@ -479,9 +503,14 @@ function getAllDataTimestamps() {
           //TODO what if all error? then we have no data, anyhow localstorage will
           //not error usually...
           timestamp: 0
-        })
-      }).finally(function (data) {
+        };
+        allTimestamps.push(status);
+        // console.log('errorCount', failCount);
+        return status;
+      }).then(function (data) {
         returnedPromises += 1;
+        // console.log('datadata', data);
+        // console.log('returned promises:', returnedPromises);
         if (returnedPromises == storageServices.length) {
           if (failCount == storageServices.length) {
             //all requests failed
@@ -586,14 +615,41 @@ function getObjCache() {
   return objCache;
 }
 
+function mockLocalStorage() {
+  var mock = (function() {
+    var storage = {};
+    return {
+      setItem: function(key, value) {
+        storage[key] = value || '';
+      },
+      getItem: function(key) {
+        return storage[key] || null;
+      },
+      removeItem: function(key) {
+        delete storage[key];
+      },
+      get length() {
+        return Object.keys(storage).length;
+      },
+      key: function(i) {
+        var keys = Object.keys(storage);
+        return keys[i] || null;
+      }
+    };
+  })();
+
+  localStorage = mock;
+}
+
 // attach properties to the exports object to define
 // the exported module properties.
 exports.init = init;
 exports.test = test;
 exports.djangoStorageService = djangoStorageService;
-exports.localstorageService = localstorageService;
+exports.localStorageService = localStorageService;
 exports.subscribe = subscribe;
 exports.unsubscribe = unsubscribe;
+exports.unsubscribeAll = function () { storageServices = []; storageServicesMap = {}; };
 exports.getSubscribers = function () { return storageServices };
 exports.getAllUserData = getAllUserData;
 exports.getAllDataTimestamps = getAllDataTimestamps;
@@ -606,5 +662,6 @@ exports.updateScores = updateScores;
 exports.getChangedData = getChangedData;
 exports.getObjCache = getObjCache;
 exports.mergeRecursive = mergeRecursive;
+exports.mockLocalStorage = mockLocalStorage;
 
 }));

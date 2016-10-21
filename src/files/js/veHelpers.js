@@ -137,9 +137,9 @@
   }
 
   /**
-   * Create a new favorite
-   * @return {[type]} The new help favorite object
-   */
+  * Create a new favorite
+  * @return {[type]} The new help favorite object
+  */
   function createHelpFavorite() {
     var fav = {
       type: "Tipp",
@@ -153,9 +153,9 @@
   }
 
   /**
-   * creates a short list of favorites
-   * @return {[type]} [description]
-   */
+  * creates a short list of favorites
+  * @return {[type]} [description]
+  */
   function generateShortFavoriteList(obj) {
     if (active == false) {
       return "Datenspeicherung nicht möglich";
@@ -179,9 +179,9 @@
   }
 
   /**
-   * generates a long (large) list of favorites
-   * @return {[type]} [description]
-   */
+  * generates a long (large) list of favorites
+  * @return {[type]} [description]
+  */
   function generateLongFavoriteList(obj) {
     if (active == false) {
       return "Datenspeicherung nicht möglich";
@@ -202,13 +202,13 @@
   }
 
   /**
-   * Return the index of the element in an array. Compared by comparator.
-   * @param  {Array} array      The array where we are looking for the element
-   * @param  {Object} data       The datum to find
-   * @param  {function} comparator A comparator (attribute) to compare against
-   * @return {Integer}            The index of the element in the array or -1
-   * if element was not found.
-   */
+  * Return the index of the element in an array. Compared by comparator.
+  * @param  {Array} array      The array where we are looking for the element
+  * @param  {Object} data       The datum to find
+  * @param  {function} comparator A comparator (attribute) to compare against
+  * @return {Integer}            The index of the element in the array or -1
+  * if element was not found.
+  */
   function findInArray(array, data, comparator){
     var foundIdx = -1;
     $.each(array, function(index, item){
@@ -221,13 +221,13 @@
   }
 
   /**
-   * Update an element in an array. Makes use of the
-   * @param  {[type]} array      [description]
-   * @param  {[type]} data       [description]
-   * @param  {[type]} comparator [description]
-   * @return {Object}            obj.updated is true/false, if updated, obj.data
-   * will contain the updated data.
-   */
+  * Update an element in an array. Makes use of the
+  * @param  {[type]} array      [description]
+  * @param  {[type]} data       [description]
+  * @param  {[type]} comparator [description]
+  * @return {Object}            obj.updated is true/false, if updated, obj.data
+  * will contain the updated data.
+  */
   function updateOrInsertInArray(array, data, comparator) {
     var result = {};
     var indexInArray = findInArray(array, data, comparator);
@@ -244,36 +244,40 @@
   };
 
   /**
-   * Gets the function / classname of an object or function if it can.  Otherwise returns the provided default.
-   *
-   * Getting the name of a function is not a standard feature, so while this will work in many
-   * cases, it should not be relied upon except for informational messages (e.g. logging and Error
-   * messages).
-   */
+  * Gets the function / classname of an object or function if it can.  Otherwise returns the provided default.
+  *
+  * Getting the name of a function is not a standard feature, so while this will work in many
+  * cases, it should not be relied upon except for informational messages (e.g. logging and Error
+  * messages).
+  */
   function getFunctionName(object, defaultName) {
-      var result = "";
-      var nameFromToStringRegex = /^function\s?([^\s(]*)/;
-      defaultName = defaultName || 'notAFunction'
-      if (typeof object === 'function') {
-          result = object.name || object.toString().match(nameFromToStringRegex)[1];
-      } else if (typeof object.constructor === 'function') {
-          result = className(object.constructor, defaultName);
-      }
-      return result || defaultName;
+    var result = "";
+    var nameFromToStringRegex = /^function\s?([^\s(]*)/;
+    defaultName = defaultName || 'notAFunction'
+    if (typeof object === 'function') {
+      result = object.name || object.toString().match(nameFromToStringRegex)[1];
+    } else if (typeof object.constructor === 'function') {
+      result = className(object.constructor, defaultName);
+    }
+    return result || defaultName;
   }
 
   /**
-   * Helper function to test if an object is empty
-   * @param  {Object}  obj Complex javascript object
-   * @return {Boolean}     True if obj === {}, false otherwise;
-   */
+  * Helper function to test if an object or arrayis empty
+  * @param  {Object}  obj Complex javascript object, or array
+  * @return {Boolean}    Obj: True if obj === {}, false otherwise; Array: true if arr === [], false otherwise
+  */
   function isEmpty(obj) {
+    if (Object.prototype.toString.call( obj ) === '[object Object]') {
       for(var prop in obj) {
-          if(obj.hasOwnProperty(prop))
-              return false;
+        if(obj.hasOwnProperty(prop))
+        return false;
       }
-
       return true && JSON.stringify(obj) === JSON.stringify({});
+    }
+    if (Object.prototype.toString.call( obj ) === '[object Array]') {
+      return !Boolean(obj.length);
+    }
   }
 
   exports.convertTimestamp = convertTimestamp;
