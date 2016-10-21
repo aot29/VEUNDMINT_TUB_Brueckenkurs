@@ -132,6 +132,14 @@ convert2utf8:
 	$(convert2utf8_cmd)
 	$(correctUmlauts_cmd)
 
+	# mintmod
+	$(eval CURRENT_CHAPTER := src/tex/deutsch.tex)
+	$(convert2utf8_cmd)
+	$(correctUmlauts_cmd)
+	$(eval CURRENT_CHAPTER := src/tex/english.tex)
+	$(convert2utf8_cmd)
+	$(correctUmlauts_cmd)
+
 
 #
 # first check if text is in iso, then convert to utf-8
