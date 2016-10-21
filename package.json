@@ -4,7 +4,8 @@
   "description": "ve und mint package tu berlin",
   "main": "index.js",
   "scripts": {
-    "test": " ./node_modules/mocha/bin/_mocha src/test/js/ || true",
+    "test": " ./node_modules/mocha/bin/_mocha src/test/js/",
+    "test:nyan": "npm run test -- --reporter nyan",
     "bower_install": "bower install",
     "gulp": "gulp",
     "postinstall": "bower install",
