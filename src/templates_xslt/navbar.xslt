@@ -11,6 +11,7 @@
 						<li><a href="{@basePath}/{@lang}/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
 						<li><a data-toggle="tooltip" id="listebutton" href="{@basePath}/{@lang}/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
 						<li><a data-toggle="tooltip" id="databutton" href="{@basePath}/{@lang}/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+						<li><a data-toggle="tooltip" id="pdfbutton" href="{@basePath}/../pdf/veundmint_{@lang}.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
@@ -53,10 +54,6 @@
 							</li>
 
 						</xsl:if>
-						<li>
-							<li><a data-toggle="tooltip" id="pdfbutton" href="{@basePath}/../pdf/veundmint_{@lang}.pdf"><span class="glyphicon 
-glyphicon glyphicon-save-file"></span></a></li>
-						</li>
 					</ul>
 
 					<!-- rendered in js (veundmint.js) note: even though its later in dom its rendered first
