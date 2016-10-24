@@ -1,4 +1,4 @@
-var dataService = require('dataService.js');
+var dataService = require('../../files/js/dataService.js');
 
 var assert = require('assert');
 var sinon = require('sinon');
