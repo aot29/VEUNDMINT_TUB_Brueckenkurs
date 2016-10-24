@@ -66,7 +66,7 @@ endef
 #
 cp2tmp:
 	# copy chapters
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := ${var}) $(cp2tmp_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := ${var}) $(cp2tmp_cmd) )
 
 	# copy stochastics
 	-cd module_veundmint && cp --parents VBKM_Stochastik/vbkm_stochastik.tex ${TMP_DIR}
@@ -93,7 +93,7 @@ endef
 #
 cp2vbkm:
 	# copy chapters
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := ${var}) $(cp2vbkm_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := ${var}) $(cp2vbkm_cmd) )
 
 	# copy stochastics
 	-cp ${TMP_DIR}/VBKM_Stochastik/vbkm_stochastik.tex module_veundmint/VBKM_Stochastik
@@ -109,33 +109,33 @@ cp2vbkm:
 #
 convert2utf8:
 	# convert German texts
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}.tex) $(convert2utf8_cmd) )
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}.tex) $(correctSmallDefects_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := module_veundmint/VBKM${var}/vbkm${var}.tex) $(convert2utf8_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := module_veundmint/VBKM${var}/vbkm${var}.tex) $(correctSmallDefects_cmd) )
 	
 	# convert English texts
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(convert2utf8_cmd) )
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(correctSmallDefects_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(convert2utf8_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(correctSmallDefects_cmd) )
 
 	# stochastik	
-	$(eval CURRENT_CHAPTER := module_veundmint/VBKM_Stochastik/vbkm_stochastik.tex)
+	$(eval CURRENT_FILE := module_veundmint/VBKM_Stochastik/vbkm_stochastik.tex)
 	$(convert2utf8_cmd)
 	$(correctSmallDefects_cmd)
-	$(eval CURRENT_CHAPTER := module_veundmint/VBKM_Stochastik/vbkm_stochastik_eng.tex)
+	$(eval CURRENT_FILE := module_veundmint/VBKM_Stochastik/vbkm_stochastik_eng.tex)
 	$(convert2utf8_cmd)
 	$(correctSmallDefects_cmd)
 	
 	# testpaket
-	$(eval CURRENT_CHAPTER := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1.tex)
+	$(eval CURRENT_FILE := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1.tex)
 	$(convert2utf8_cmd)
 	$(correctSmallDefects_cmd)
-	$(eval CURRENT_CHAPTER := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1_eng.tex)
+	$(eval CURRENT_FILE := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1_eng.tex)
 	$(convert2utf8_cmd)
 	$(correctSmallDefects_cmd)
 
 	# mintmod
-	$(eval CURRENT_CHAPTER := src/tex/deutsch.tex)
+	$(eval CURRENT_FILE := src/tex/deutsch.tex)
 	$(convert2utf8_cmd)
-	$(eval CURRENT_CHAPTER := src/tex/english.tex)
+	$(eval CURRENT_FILE := src/tex/english.tex)
 	$(convert2utf8_cmd)
 	$(eval CURRENT_FILE := src/tex/mintmod.tex)
 	$(convert2utf8_cmd)
