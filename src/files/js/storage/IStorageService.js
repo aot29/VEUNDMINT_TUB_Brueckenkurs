@@ -19,11 +19,14 @@
   * This is a hack for a super class from
   * http://www.bolinfest.com/javascript/inheritance.php
   * until we move to typescript
-  * @return {Object} An object with interface functions
+  * @return {Object} An object with interface functions that can be extended
+  * by doing myService = function () { var that = IStorageService(); ... }
   */
 
   var IStorageService = function() {
     var that = {};
+
+    that.name = 'I DO NOT HAVE A NAME YET';
 
     that.saveUserData = function() {
       return Promise.reject('NOT YET IMPLEMENTED');
@@ -36,6 +39,7 @@
     that.getDataTimestamp = function() {
       return Promise.reject('NOT YET IMPLEMENTED');
     }
+
     return that;
   }
 

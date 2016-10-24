@@ -13,7 +13,7 @@
   }
 }(this, function (exports, IStorageService, veHelpers) {
 
-  var DjangoStorageService = function () {
+  var DjangoStorageService = function (settings) {
     var that = IStorageService.IStorageService();
     djUserData = {};
     newerTimeStamp = 159292929929290;
