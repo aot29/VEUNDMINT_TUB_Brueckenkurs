@@ -9,8 +9,8 @@
 	<xsl:import href="navbar.xslt" />
 	<xsl:import href="toc.xslt" />
 	<xsl:import href="tabs.xslt" />
- 	<xsl:import href="content.xslt" />
- 	<xsl:import href="pageFooter.xslt" />
+	<xsl:import href="content.xslt" />
+	<xsl:import href="pageFooter.xslt" />
 
 	<!-- There is no doctype html5, use legacy-compat instead -->
 	<xsl:output method="html" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes" />
@@ -29,31 +29,33 @@
 
 			<body>
 				<!-- Navigation bar at the top of the page -->
-				<xsl:call-template name="navbar" />
-
-				<!-- Page contents, tabs, TOC and footer -->
-				<div id="pageContainer" class="container-fluid" >
-					<div class="row-fluid row-offcanvas row-offcanvas-left">
-						<div class="col-xs-6 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
-								<!-- TOC -->
-								<xsl:apply-templates select="." mode="toc" />
+				<xsl:call-template name="navbar">
+					<xsl:with-param name="disableLogin" select="@disableLogin" />
+				</xsl:call-template>
+				<div class="row-offcanvas row-offcanvas-left">
+					<div id="sidebar" class="sidebar-offcanvas">
+						<div class="col-md-12">
+							<!-- TOC -->
+							<xsl:apply-templates select="." mode="toc" />
 						</div>
-						<div class="col-xs-12 col-md-9" id="courseContent">
+					</div>
+					<div id="main">
+						<div class="col-md-12">
 
 							<!-- Page tabs -->
 							<xsl:apply-templates select="." mode="tabs" />
-
 							<!-- Page contents-->
 							<xsl:apply-templates select="." mode="content" />
-
+							<!-- Page tabs -->
+							<xsl:apply-templates select="." mode="tabs-bottom" />
 							<!-- Footer -->
 							<xsl:call-template name="pageFooter">
 								<xsl:with-param name="basePath" select="@basePath" />
 							</xsl:call-template>
-
 						</div>
 					</div>
-				</div>
+				</div><!--/row-offcanvas -->
+
 
 				<!-- JS in footer -->
 				<xsl:call-template name="jsFooter" />

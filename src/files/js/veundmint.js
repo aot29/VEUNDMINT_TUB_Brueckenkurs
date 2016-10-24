@@ -2,30 +2,6 @@
 it is responsible for the document loaded action that was befor in the body onload and onunload
 onload="loadHandler()" onunload="unloadHandler()" */
 
-$(function() {
-
-  $('[data-toggle="offcanvas"]').click(function () {
-    $('.row-offcanvas').toggleClass('active')
-  });
-	//collapse with data attribute does not work for us, so we use js instead
-	//
-	//TODO commented out, when we have content in sidebar we can comment that in again
-	//
-	// $('.module-panel > div.panel-heading').click(function (e) {
-	// 	e.preventDefault();
-	// 	$(this).parent().children('.panel-collapse').collapse('toggle');
-	// });
-  // //this closes all other panels of #toc on click of certain panel
-  // $('#toc .collapse').on('show.bs.collapse', function (e) {
-  //     var actives = $('#toc').find('.in, .collapsing');
-  //     actives.each( function (index, element) {
-  //         $(element).collapse('hide');
-  //     })
-  // })
-	intersite.init();
-	globalloadHandler("");
-});
-
 $(window).on('beforeunload', function(){
 	globalunloadHandler();
  });
@@ -85,7 +61,7 @@ $(window).on('beforeunload', function(){
     apiAuthUrl: 'http://localhost:8000/api-token-auth/',
 		apiProfileUrl: 'http://localhost:8000/whoami/',
 		apiWebsiteActionUrl: 'http://localhost:8000/server-action/',
-		initClass: 'js-myplugin',
+		defaultLogLevel: 'error',
 		callbackBefore: function () {},
 		callbackAfter: function () {}
 	};
@@ -164,8 +140,9 @@ $(window).on('beforeunload', function(){
 	};
 
 	/**
-	 * Initialize Plugin
-	 * @public
+	 * Initialize Plugin, called on document ready at startpage
+	 * execution order of several commands is critical (by now) DO NOT CHANGE
+	 * unless you know what you are doing
 	 * @param {Object} options User settings
 	 */
 	veundmint.init = function ( options ) {
@@ -179,7 +156,45 @@ $(window).on('beforeunload', function(){
 		// Merge user options with defaults
 		settings = extend( defaults, options || {} );
 
-		// @todo Do something...
+
+		log.setDefaultLevel(settings.defaultLogLevel);
+
+
+		$('[data-toggle="offcanvas"]').click(function () {
+			$('.row-offcanvas').toggleClass('active')
+		});
+
+		scormBridge.init();
+		intersite.init();
+		globalreadyHandler("");
+		globalloadHandler("");
+
+			// set up components
+			veundmint.languageChooser($('#languageChooser'));
+
+		//remove logout button on scorm
+		if (scormBridge.isScormEnv()) {
+			$('#li-logout').remove();
+		}
+
+		//if we came from the same url in another language, return to the scroll position
+		var oldScrollTop = intersite.getScrollTop();
+		if (oldScrollTop !== 0) {			
+			$('html, body').animate({scrollTop:oldScrollTop}, 1000);
+			intersite.setScrollTop(0);
+		}
+
+		// footer at bottom of column
+		// don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
+		$(window).resize( veundmint.positionFooter );
+		veundmint.positionFooter();
+
+		// on the logout page
+		if( requestLogout ) {
+			localStorage.clear();
+		}
+
+		veundmint.addReadyElementToPage();
 
 	};
 
@@ -216,14 +231,14 @@ $(window).on('beforeunload', function(){
     // Call it, since we have confirmed it is callable​
         callback(auth_result);
     }
-    console.log('veundmint.authenticate called with:', user_credentials);
+    log.debug('veundmint.authenticate called with:', user_credentials);
 
     return auth_result;
   }
 
 	veundmint.getMyUserProfile = function() {
 		veundmint.authAjaxGET(settings.apiProfileUrl, {}, function (data) {
-			console.log(data);
+			log.debug('veundmint: getMyUserProfile', data);
 		});
 	}
 
@@ -240,7 +255,7 @@ $(window).on('beforeunload', function(){
       callback(logout_result);
     }
 
-    console.log('veundmint.logout called');
+    log.debug('veundmint.logout called');
   }
 
   /**
@@ -250,10 +265,10 @@ $(window).on('beforeunload', function(){
    */
   veundmint.sendWebsiteAction = function (object) {
 
-    console.log('veundmint.sendWebsiteAction called with object', object);
+    log.debug('veundmint.sendWebsiteAction called with object', object);
 
 		if (typeof settings.apiWebsiteActionUrl === "undefined") {
-			console.log('apiWebsiteActionUrl is not set, will not call sendWebsiteAction()');
+			log.debug('apiWebsiteActionUrl is not set, will not call sendWebsiteAction()');
 			return null;
 		}
 
@@ -262,7 +277,7 @@ $(window).on('beforeunload', function(){
 			url: settings.apiWebsiteActionUrl,
 			data: object,
 			success: function (data) {
-				console.log(data);
+				log.debug(data);
 			}
 		});
   }
@@ -281,7 +296,7 @@ $(window).on('beforeunload', function(){
 				return JSON.parse(lsUserCred);
 			}
 		}
-		console.log('can only call getUserCredentials if user is authenticated')
+		log.debug('can only call getUserCredentials if user is authenticated')
 		return null;
 	}
 
@@ -289,7 +304,7 @@ $(window).on('beforeunload', function(){
 		var userCredentials = veundmint.getUserCredentials();
 		if (userCredentials === null || typeof userCredentials === "undefined"
 			|| typeof userCredentials.token === "undefined" ) {
-				console.log('can only make authAjaxGET request if userCredentials are set');
+				log.debug('can only make authAjaxGET request if userCredentials are set');
 				return;
 		}
 		$.ajax({
@@ -304,7 +319,53 @@ $(window).on('beforeunload', function(){
     });
 	}
 
-	veundmint.init();
+  /**
+   * sets up element to be a languageChooser
+   * @param  {[type]} element the jquery element to transform
+   */
+  veundmint.languageChooser = function (element) {
+    var languages = ["de", "en"];
+
+    var url = window.location.href;
+    var ownLanguage = $('html').attr('lang');
+    var otherLanguages = languages.slice(languages.indexOf(ownLanguage),1);
+    var htmlString =  '<form class="navbar-form navbar-right"><select id="selectLanguage" class="form-control">';
+    languages.forEach(function(langString, index) {
+      if (langString === ownLanguage) {
+        htmlString += '<option selected="selected">' + langString + '</option>';
+      } else {
+        htmlString += '<option>' + langString + '</option>';
+      }
+    });
+    htmlString += '</select></form>';
+
+    element.replaceWith(htmlString);
+
+    $('body').on('change', '#selectLanguage', function() {
+			//store the scroll Top for next site, will be set in veundmint.init()
+			var oldScrollTop = $(document).scrollTop();
+			intersite.setScrollTop(oldScrollTop);
+
+      var newUrl = url.replace('/' + ownLanguage + '/', '/' + this.value + '/');
+      window.location.href = newUrl;
+    });
+  }
+
+	veundmint.positionFooter = function () {
+		var docHeight = $(window).height();
+		var offsetHeight = $( "#navbarTop" ).height() + $( "#subtoc" ).height() + $( "#footer" ).height() * 2;
+		$( "#pageContents" ).css( "minHeight", docHeight - offsetHeight + "px" );
+	}
+
+	/**
+	 * Adds an element to the body to indicate that veundmint.init() and therefore
+	 * all other init methods are ready. Selenium can then check for that element and
+	 * continue if its available.
+	 */
+	veundmint.addReadyElementToPage = function () {
+		$('body').append('<div id="veundmint_ready" style="display:none;"></div>')
+	}
+
 	return veundmint;
 
 });

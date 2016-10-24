@@ -9,6 +9,7 @@ Unittest: are navigational elements present?
 '''
 import unittest
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.select import Select
 from test.systemtests.SeleniumTest import SeleniumTest
 
 class PageHeadTest( SeleniumTest ):
@@ -29,11 +30,48 @@ class PageHeadTest( SeleniumTest ):
 
 		# Test nav buttons
 
-		self.assertTrue( self.getElement( "loginButtonNavBar" ) )
+		if not self._isLoginDisabled():
+			self.assertTrue( self.getElement( "loginButtonNavBar" ) )
 		self.assertTrue( self.getElement( "listebutton" ) )
 		self.assertTrue( self.getElement( "homebutton" ) )
-		self.assertTrue( self.getElement( "databutton" ) )
-		
+
+	def testChangeLanguageButton(self):
+		'''
+		Test if ChangeLanguageButton is present and working correctly, i.e.
+		navigate to the same page in other language if language select is changed
+		'''
+
+		# does it show the correct version
+		self._navToChapter("1", section="1.3", lang = "de")
+		selectLanguageButton = self.getElement ( "selectLanguage" )
+		selectLanguageSelect = Select(selectLanguageButton)
+
+		pageDeUrl = self.driver.current_url
+		print(pageDeUrl)
+
+		self.assertTrue( selectLanguageButton, "selectLanguage button is missing" )
+
+		#is the correct language selected?
+		self.assertEqual(selectLanguageSelect.first_selected_option.text, "de")
+
+		#navigate to other language
+		for option in selectLanguageButton.find_elements_by_tag_name('option'):
+			if option.text == 'en':
+				option.click()
+				break
+
+		selectLanguageButton = self.getElement ( "selectLanguage" )
+		selectLanguageSelect = Select(selectLanguageButton)
+
+		#is the correct language selected?
+		self.assertEqual(selectLanguageSelect.first_selected_option.text, "en")
+
+		#did we land on the correct page?
+		self.assertEqual(self.driver.current_url.replace("/en/", "/de/"), pageDeUrl)
+
+if __name__ == "__main__":
+    unittest.main()
+
 
 
 

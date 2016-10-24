@@ -145,11 +145,15 @@ function adduser ($database_handler, $username, $password, $role, $mysql_users_t
 }
 
 //delete a user from the database
-function deluser($database_handler, $username, $mysql_users_table, $mysql_data_table) {
+function deluser($database_handler, $username, $password, $mysql_users_table, $mysql_data_table) {
 	if ($_SESSION['role'] === ROLES['ANONYMOUS']) {
-		exit(json_encode(array('action' => 'del_user',
-			'error' => 'anonymous users aren\'t allowed to delete users',
-			'status' => false)));
+		authenticate($database_handler, $username, $password, $mysql_users_table);
+		// exit if we are still anonymous
+		if ($_SESSION['role'] === ROLES['ANONYMOUS']) {
+			exit(json_encode(array('action' => 'del_user',
+				'error' => 'anonymous users aren\'t allowed to delete users',
+				'status' => false)));
+		}
 	}
 	if (($_SESSION['role'] !== ROLES['ADMIN']) && ($_SESSION['username'] !== $username)) {
 		exit(json_encode(array('action' => 'del_user',
@@ -168,14 +172,16 @@ function deluser($database_handler, $username, $mysql_users_table, $mysql_data_t
 			'status' => false)));
 	}
 
-	$data_statement = $database_handler->prepare("DELETE FROM $mysql_data_table WHERE user_id = :user_id");
-	$data_statement->bindValue(':user_id', $user_column['user_id']);
-	$status = $data_statement->execute();
-	if (!$status) {
-		exit(json_encode(array('action' => 'del_user',
-			'error' => 'couldn\'t delete userdata',
-			'status' => false)));
-	}
+	// we keep the data entries for statistics UNTIL we have a good server version where
+	// passwords are not stored as clear text and so on
+	// $data_statement = $database_handler->prepare("DELETE FROM $mysql_data_table WHERE user_id = :user_id");
+	// $data_statement->bindValue(':user_id', $user_column['user_id']);
+	// $status = $data_statement->execute();
+	// if (!$status) {
+	// 	exit(json_encode(array('action' => 'del_user',
+	// 		'error' => 'couldn\'t delete userdata',
+	// 		'status' => false)));
+	// }
 	exit(json_encode(array('action' => 'del_user',
 		'status' => true)));
 }

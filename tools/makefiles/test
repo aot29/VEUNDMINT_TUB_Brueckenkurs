@@ -6,6 +6,7 @@
 # make -f tools/makefiles/test
 # By default, systemtests will test the version on the staging server
 #
+# You might need add your checkout folder to your PYTHONPATH 
 # To run test on localhost, do:
 # make -f tools/makefiles/test localhost
 #
@@ -13,7 +14,7 @@
 .DEFAULT_GOAL := all
 
 # The URL for the test server (will be used by default)
-STAGING_URL=http://guest6.mulf.tu-berlin.de/gitlab-ci-test/
+STAGING_URL=https://guest6.mulf.tu-berlin.de/beta/
 
 # When testing the build locally (may be one of localhost or 127.0.0.1)
 LOCALHOST_URL=http://localhost:3000
@@ -21,15 +22,25 @@ LOCALHOST_URL=http://localhost:3000
 # Declare as phony so targets will run even if there's a file by that name
 .PHONY: all localhost
 
+# Add the checkout folder to python path (necessary for green)
+export PYTHONPATH:=$PYTHONPATH:${CURDIR}
 
+#
+# Run all the test on the staging server
+# (build and deploy yourself first)
+#
 all: 
 	echo "Running unit tests on ${STAGING_URL}"
 	$(eval BASE_URL := ${STAGING_URL})
 	echo "Running system tests run on ${BASE_URL}"
 	$(checkServer_cmd)
-	$(runtest_cmd)
+	$(systest_cmd)
 
 
+#
+# Run all the test on localhost
+# (build yourself first, using make -f tools/makefiles/multilang)
+#
 localhost: 
 	echo "Running unit tests on localhost"
 	$(eval BASE_URL := ${LOCALHOST_URL})
@@ -37,6 +48,22 @@ localhost:
 	$(checkServer_cmd)
 	$(systest_cmd)
 
+
+#
+# Build using the test tree
+# and run the quick tests
+# (no need to build yourself)
+#
+quick:
+	echo "=== Building using the test tree ==="
+	$(MAKE) -f tools/makefiles/testonly
+	$(eval BASE_URL := ${LOCALHOST_URL})
+	$(checkServer_cmd)
+	$(quicktest_cmd)
+	
+	
+quick_testonly:
+	$(quicktest_cmd)
 
 #
 # Check if the server is running
@@ -47,9 +74,16 @@ endef
 
 
 #
-# Run all tests and gather test coverage data
+# Run all tests (except quicktests) and gather test coverage data
 #	
 define systest_cmd
 	export BASE_URL=${BASE_URL} && cd src && green -vvvr test
 endef
 
+
+#
+# Run QUICK tests
+#	
+define quicktest_cmd
+	export BASE_URL=${BASE_URL} && cd src && green -vvv test --file-pattern quick*.py
+endef

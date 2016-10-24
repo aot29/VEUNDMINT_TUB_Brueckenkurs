@@ -20,14 +20,14 @@
 \begin{MIntro}
 \MLabel{VBKM10_PfeilVektor_Intro}
 \MDeclareSiteUXID{VBKM10_PfeilVektor_Intro}
-Eine grundlegende Idee hinter dem mathematischen Konzept des Vektors ist eine physikalische. Es gibt in der naturwissenschaftlichen Praxis einerseits Größen, die nur durch eine Zahl beschrieben werden, die also einen bestimmten Betrag haben, wie etwa Spannung, Arbeit oder Leistung. Diese Größen werden mathematisch einfach durch Elemente aus der Menge der reellen Zahlen beschrieben. Andererseits existieren auch Größen, die neben einem Betrag auch eine bestimmte \textit{Richtung} besitzen, wie etwa Kraft oder Geschwindigkeit. So kann man sich zum Beispiel eine Kraft, die mit einem bestimmten Betrag an einem Punkt angreift, als Pfeil der entsprechenden Länge, der am Angriffspunkt sitzt, veranschaulichen. Die Richtung des Pfeils entspricht in diesem Fall der Wirkungsrichtung der Kraft:
+Eine grundlegende Idee hinter dem mathematischen Konzept des Vektors ist eine physikalische. Es gibt in der naturwissenschaftlichen Praxis einerseits GrÃ¶ÃŸen, die nur durch eine Zahl beschrieben werden, die also einen bestimmten Betrag haben, wie etwa Spannung, Arbeit oder Leistung. Diese GrÃ¶ÃŸen werden mathematisch einfach durch Elemente aus der Menge der reellen Zahlen beschrieben. Andererseits existieren auch GrÃ¶ÃŸen, die neben einem Betrag auch eine bestimmte \textit{Richtung} besitzen, wie etwa Kraft oder Geschwindigkeit. So kann man sich zum Beispiel eine Kraft, die mit einem bestimmten Betrag an einem Punkt angreift, als Pfeil der entsprechenden LÃ¤nge, der am Angriffspunkt sitzt, veranschaulichen. Die Richtung des Pfeils entspricht in diesem Fall der Wirkungsrichtung der Kraft:
 
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture} 
 %Pfeil
 \draw[color=black,->] (0,0) -- (3,1);
-\draw[color=black] (1.5,0.8) node[anchor=east] {\footnotesize Länge $\hat{=}$ Betrag der Kraft};
+\draw[color=black] (1.5,0.8) node[anchor=east] {\footnotesize LÃ¤nge $\hat{=}$ Betrag der Kraft};
 \draw[color=black] (1.5,0.2) node[anchor=west] {\footnotesize Richtung $\hat{=}$ Wirkungsrichtung der Kraft};
 \draw[color=black] (3,1) node[anchor=west] {\footnotesize Pfeil $\hat{=}$ Kraft};
 %Punkt
@@ -37,13 +37,13 @@ Eine grundlegende Idee hinter dem mathematischen Konzept des Vektors ist eine ph
 }%
 \end{center}
 
-Solche Größen werden mathematisch durch Vektoren beschrieben. In der naturwissenschaftlichen Anwendung müsste man für den Betrag von Vektoren bestimmte Maßeinheiten benutzen (zum Beispiel die Einheit Newton  für Kräfte), diese Einheiten spielen aber für rein mathematische Betrachtungen keine Rolle und werden deshalb im Folgenden stets weggelassen. Das Konzept des Vektors ist der wesentliche Inhalt dieses Abschnitts und wird im zweiten Abschnitt \MNRef{VBKM10_Vektoren} behandelt. Da Vektoren nicht nur in zwei Dimensionen (also in der Ebene), sondern auch in drei Dimensionen (also im Raum) betrachtet werden sollen, muss zunächst das Konzept der Koordinatensysteme und Punkte aus Kapitel \MNRef{VBKM09} auf drei Dimensionen erweitert werden. Dies geschieht im ersten Abschnitt \MNRef{VBKM10_Raumkoordinaten}. Schließlich stellt man fest, dass man mit Vektoren auch bestimmte Rechenoperationen ausführen kann. Das Rechnen mit Vektoren wird dann im dritten Abschnitt \MNRef{VBKM10_Vektorrechnung} untersucht.    
+Solche GrÃ¶ÃŸen werden mathematisch durch Vektoren beschrieben. In der naturwissenschaftlichen Anwendung mÃ¼sste man fÃ¼r den Betrag von Vektoren bestimmte MaÃŸeinheiten benutzen (zum Beispiel die Einheit Newton  fÃ¼r KrÃ¤fte), diese Einheiten spielen aber fÃ¼r rein mathematische Betrachtungen keine Rolle und werden deshalb im Folgenden stets weggelassen. Das Konzept des Vektors ist der wesentliche Inhalt dieses Abschnitts und wird im zweiten Abschnitt \MNRef{VBKM10_Vektoren} behandelt. Da Vektoren nicht nur in zwei Dimensionen (also in der Ebene), sondern auch in drei Dimensionen (also im Raum) betrachtet werden sollen, muss zunÃ¤chst das Konzept der Koordinatensysteme und Punkte aus Kapitel \MNRef{VBKM09} auf drei Dimensionen erweitert werden. Dies geschieht im ersten Abschnitt \MNRef{VBKM10_Raumkoordinaten}. SchlieÃŸlich stellt man fest, dass man mit Vektoren auch bestimmte Rechenoperationen ausfÃ¼hren kann. Das Rechnen mit Vektoren wird dann im dritten Abschnitt \MNRef{VBKM10_Vektorrechnung} untersucht.    
 \end{MIntro}
 
 \begin{MXContent}{Koordinatensysteme im Raum}{Raumkoordinaten}{STD}
 \MLabel{VBKM10_Raumkoordinaten}
 \MDeclareSiteUXID{VBKM10_Raumkoordinaten}
-Im vorhergehenden Kapitel \MNRef{VBKM09} wurden im Abschnitt \MNRef{M09_1kartesisch} kartesische Koordinatensysteme und Punkte in der Ebene mit Koordinaten bezüglich dieser Systeme eingeführt. Ein sicherer Umgang mit diesen Konzepten wird hier nun vorausgesetzt. Zur eindeutigen Beschreibung eines \MEntry{Punktes im Raum}{Punkt (3-D)} braucht man drei -- statt nur zwei -- \MEntry{Koordinaten}{Koordinaten (3-D)}. Damit benötigt ein \MEntry{Koordinatensystem}{Koordinatensystem (3-D)} im Raum ebenfalls drei \MEntry{Achsen}{Achsen (3-D)}, die als $x$-, $y$- und $z$-Achse (oder manchmal auch als $x_1$-, $x_2$- und $x_3$-Achse) bezeichnet werden. Für Punkte werden wieder üblicherweise Großbuchstaben $P,Q,R,\MHDots$ und für ihre Koordinaten Kleinbuchstaben $a,b,c,x,y,z,\MHDots$ als Variablen verwendet. In Erweiterung der Schreibweise aus Kapitel \MNRef{VBKM09} werden die Koordinaten von Punkten zum Beispiel wie folgt notiert:
+Im vorhergehenden Kapitel \MNRef{VBKM09} wurden im Abschnitt \MNRef{M09_1kartesisch} kartesische Koordinatensysteme und Punkte in der Ebene mit Koordinaten bezÃ¼glich dieser Systeme eingefÃ¼hrt. Ein sicherer Umgang mit diesen Konzepten wird hier nun vorausgesetzt. Zur eindeutigen Beschreibung eines \MEntry{Punktes im Raum}{Punkt (3-D)} braucht man drei -- statt nur zwei -- \MEntry{Koordinaten}{Koordinaten (3-D)}. Damit benÃ¶tigt ein \MEntry{Koordinatensystem}{Koordinatensystem (3-D)} im Raum ebenfalls drei \MEntry{Achsen}{Achsen (3-D)}, die als $x$-, $y$- und $z$-Achse (oder manchmal auch als $x_1$-, $x_2$- und $x_3$-Achse) bezeichnet werden. FÃ¼r Punkte werden wieder Ã¼blicherweise GroÃŸbuchstaben $P,Q,R,\MHDots$ und fÃ¼r ihre Koordinaten Kleinbuchstaben $a,b,c,x,y,z,\MHDots$ als Variablen verwendet. In Erweiterung der Schreibweise aus Kapitel \MNRef{VBKM09} werden die Koordinaten von Punkten zum Beispiel wie folgt notiert:
 \[
  P=\MPointThree{1}{3}{0}
 \]
@@ -51,7 +51,7 @@ oder
 \[
  Q=\MPointThree{-2}{2}{3}\MDFPeriod
 \]
-Hier ist $Q$ beispielsweise ein Punkt mit der $x$-Koordinate $-2$, der $y$-Koordinate $2$ und der $z$-Koordinate $3$. Für den Punkt mit den Koordinaten $\MPointThree{0}{0}{0}$ ist die Bezeichnung \textbf{Ursprung} und das Symbol $O$ (vom englischen \textit{origin}) reserviert. Alle diese Punkte sind im folgenden Bild dargestellt:  
+Hier ist $Q$ beispielsweise ein Punkt mit der $x$-Koordinate $-2$, der $y$-Koordinate $2$ und der $z$-Koordinate $3$. FÃ¼r den Punkt mit den Koordinaten $\MPointThree{0}{0}{0}$ ist die Bezeichnung \textbf{Ursprung} und das Symbol $O$ (vom englischen \textit{origin}) reserviert. Alle diese Punkte sind im folgenden Bild dargestellt:  
 
 \begin{center}
 \MTikzAuto{%
@@ -90,19 +90,19 @@ Hier ist $Q$ beispielsweise ein Punkt mit der $x$-Koordinate $-2$, der $y$-Koord
 \end{tikzpicture}
 }
 \end{center}
-Die gestrichelten Hilfslinien in diesem Bild geben einen Hinweis darauf, wie in einer solchen dreidimensionalen Darstellung die Koordinaten von Punkten korrekt eingezeichnet und abgelesen werden können. Man beachte, dass die Hilfslinien alle parallel zu den Koordinatenachsen verlaufen.
+Die gestrichelten Hilfslinien in diesem Bild geben einen Hinweis darauf, wie in einer solchen dreidimensionalen Darstellung die Koordinaten von Punkten korrekt eingezeichnet und abgelesen werden kÃ¶nnen. Man beachte, dass die Hilfslinien alle parallel zu den Koordinatenachsen verlaufen.
 
-Es werden nur Koordinatensysteme im Raum betrachtet, deren Achsen alle senkrecht aufeinander stehen. Diese heißen auch \MEntry{kartesische Koordinatensysteme}{kartesisches Koordinatensystem (3-D)}. Es wird hier außerdem die übliche mathematische Konvention benutzt, dass die Koordinatensysteme im Raum \textbf{rechtshändig} oder sogenannte \textbf{Rechtssysteme} sein sollen. Dies bedeutet, dass die positiven Achsenrichtungen von $x$-, $y$- und $z$-Achse durch die Drei-Finger-Regel der \textit{rechten} Hand bestimmt werden:
+Es werden nur Koordinatensysteme im Raum betrachtet, deren Achsen alle senkrecht aufeinander stehen. Diese heiÃŸen auch \MEntry{kartesische Koordinatensysteme}{kartesisches Koordinatensystem (3-D)}. Es wird hier auÃŸerdem die Ã¼bliche mathematische Konvention benutzt, dass die Koordinatensysteme im Raum \textbf{rechtshÃ¤ndig} oder sogenannte \textbf{Rechtssysteme} sein sollen. Dies bedeutet, dass die positiven Achsenrichtungen von $x$-, $y$- und $z$-Achse durch die Drei-Finger-Regel der \textit{rechten} Hand bestimmt werden:
 
 \begin{center}
 \MUGraphicsSolo{rechtehand.png}{scale=0.4}{width:368px}
 \end{center}
-%Bemerkung: Bild von hier https://de.wikipedia.org/wiki/Rechtssystem_%28Mathematik%29, ist public domain, deshalb keine Lizenz nötig.
+%Bemerkung: Bild von hier https://de.wikipedia.org/wiki/Rechtssystem_%28Mathematik%29, ist public domain, deshalb keine Lizenz nÃ¶tig.
 
-Trotzdem gibt es hier noch unterschiedliche mögliche Darstellungsformen: zum Beispiel ein Verlauf der $x$-Achse nach rechts, der $y$-Achse nach oben und der $z$-Achse nach vorne aus der Zeichenebene heraus -- wie im Koordinatensystem mit den Punkten $P$ und $Q$ oben -- oder ein Verlauf der $x$-Achse nach rechts, der $y$-Achse nach hinten in die Zeichenebene hinein und der $z$-Achse nach oben -- wie im Drei-Finger-Bild oben. Die Rechtshändigkeit ist aber in beiden Fällen gegeben.  
+Trotzdem gibt es hier noch unterschiedliche mÃ¶gliche Darstellungsformen: zum Beispiel ein Verlauf der $x$-Achse nach rechts, der $y$-Achse nach oben und der $z$-Achse nach vorne aus der Zeichenebene heraus -- wie im Koordinatensystem mit den Punkten $P$ und $Q$ oben -- oder ein Verlauf der $x$-Achse nach rechts, der $y$-Achse nach hinten in die Zeichenebene hinein und der $z$-Achse nach oben -- wie im Drei-Finger-Bild oben. Die RechtshÃ¤ndigkeit ist aber in beiden FÃ¤llen gegeben.  
 
 \begin{MExercise}
-Geben Sie die Koordinaten der im folgenden Bild eingezeichneten Punkte an. Überlegen Sie sich außerdem, wie man alle eingezeichneten Punkte zu einem mathematischen Objekt zusammenfassen kann.
+Geben Sie die Koordinaten der im folgenden Bild eingezeichneten Punkte an. Ãœberlegen Sie sich auÃŸerdem, wie man alle eingezeichneten Punkte zu einem mathematischen Objekt zusammenfassen kann.
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[>=stealth]
@@ -155,9 +155,9 @@ Geben Sie die Koordinaten der im folgenden Bild eingezeichneten Punkte an. Überl
 \item{\MEquationItem{$D$}{\MLFunctionQuestion{15}{(2,-2,1)}{5}{x}{5}{Point4}}.}
 \item{\MEquationItem{$P$}{\MLFunctionQuestion{15}{(-2,1,-1)}{5}{x}{5}{Point5}}.}
 \end{MExerciseItems}
-\MInputHint{Geben Sie Punkte in der Form $(x;y;z)$ ein, beispielsweise \texttt{(8;-4;15)} für den Punkt mit der $x$-Koordinate $8$, der $y$-Koordinate $-4$ und der $z$-Koordinate $15$.}
+\MInputHint{Geben Sie Punkte in der Form $(x;y;z)$ ein, beispielsweise \texttt{(8;-4;15)} fÃ¼r den Punkt mit der $x$-Koordinate $8$, der $y$-Koordinate $-4$ und der $z$-Koordinate $15$.}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Die Koordinatentripel der gefragten Punkte lauten:
 \[
  A=\MPointThree{2}{0}{0} \MDFPSpace,
@@ -185,7 +185,7 @@ Die Menge aller im obigen Bild eingezeichneten Punkte ist
 Analog zum zweidimensionalen Fall in Abschnitt \MNRef{VBKM09_Punkte} kann man also auch hier im dreidimensionalen Fall eine beliebige Anzahl von Punkten im Raum wieder zu einer \MEntry{Punktmenge}{Punktmenge (3-D)} zusammenfassen. Insbesondere gibt es auch hier wieder die folgende Bezeichnung:
 
 \begin{MInfo}
-Die Menge aller Punkte im Raum, als Koordinatentripel bezüglich eines gegebenen kartesischen Koordinatensystems, wird mit
+Die Menge aller Punkte im Raum, als Koordinatentripel bezÃ¼glich eines gegebenen kartesischen Koordinatensystems, wird mit
 \[
  \R^3 := \{ \MPointThree{x}{y}{z}\MCondSetSep x\in\R\wedge y\in\R\wedge z\in\R \}
 \]
@@ -198,7 +198,7 @@ bezeichnet. Das Symbol $\R^3$ wird dabei als \glqq$\R$ drei\grqq oder \glqq$\R$ 
 \begin{MXContent}{Vektoren in der Ebene und im Raum}{Vektoren}{STD}
 \MLabel{VBKM10_Vektoren}
 \MDeclareSiteUXID{VBKM10_Vektoren}
-Punkte in der Ebene und im Raum, die als Koordinatenpaare oder -tripel bezüglich eines vorgegebenen Koordinatensystems gegeben sind, können durch Strecken verbunden werden. Gibt man diesen Strecken zusätzlich eine Orientierung (d.h. legt man einen der Punkte als Fußpunkt und einen der Punkte als Spitze fest), so erhält man Pfeile, die von einem Punkt zum anderen zeigen:
+Punkte in der Ebene und im Raum, die als Koordinatenpaare oder -tripel bezÃ¼glich eines vorgegebenen Koordinatensystems gegeben sind, kÃ¶nnen durch Strecken verbunden werden. Gibt man diesen Strecken zusÃ¤tzlich eine Orientierung (d.h. legt man einen der Punkte als FuÃŸpunkt und einen der Punkte als Spitze fest), so erhÃ¤lt man Pfeile, die von einem Punkt zum anderen zeigen:
 
 \begin{center}
 \begin{tabular}{cc}
@@ -263,20 +263,20 @@ Punkte in der Ebene und im Raum, die als Koordinatenpaare oder -tripel bezüglich
 \end{tabular}
 \end{center}
 
-Im Sinne dieser Abbildungen kann man den Informationsgehalt eines Pfeils folgendermaßen charakterisieren: Ein Pfeil gibt an, wie man von einem Punkt (am Fußpunkt des Pfeils) zu einem anderen Punkt (an der Spitze des Pfeils) gelangt. So gibt der Pfeil, welcher im zweidimensionalen Fall $Q$ mit $R$ verbindet, wieder, dass man von $Q$ aus um $3$ Längeneinheiten nach links und um $2$ Längeneinheiten nach oben gehen muss, um $R$ zu erreichen. Oder in einer mathematischeren Sprechweise: Man gehe von $Q$ aus um $-3$ in $x$-Richtung und um $2$ in $y$-Richtung. Für den Pfeil, der im zweidimensionalen Fall den Ursprung mit dem Punkt $P$ verbindet, ist dies sogar noch einfacher, denn um von $O$ nach $P$ zu gelangen, geht man einfach um $2$ in $x$-Richtung und um $1$ in $y$-Richtung. Diese Werte entsprechen natürlich genau den Koordinaten des Punktes $P$.
+Im Sinne dieser Abbildungen kann man den Informationsgehalt eines Pfeils folgendermaÃŸen charakterisieren: Ein Pfeil gibt an, wie man von einem Punkt (am FuÃŸpunkt des Pfeils) zu einem anderen Punkt (an der Spitze des Pfeils) gelangt. So gibt der Pfeil, welcher im zweidimensionalen Fall $Q$ mit $R$ verbindet, wieder, dass man von $Q$ aus um $3$ LÃ¤ngeneinheiten nach links und um $2$ LÃ¤ngeneinheiten nach oben gehen muss, um $R$ zu erreichen. Oder in einer mathematischeren Sprechweise: Man gehe von $Q$ aus um $-3$ in $x$-Richtung und um $2$ in $y$-Richtung. FÃ¼r den Pfeil, der im zweidimensionalen Fall den Ursprung mit dem Punkt $P$ verbindet, ist dies sogar noch einfacher, denn um von $O$ nach $P$ zu gelangen, geht man einfach um $2$ in $x$-Richtung und um $1$ in $y$-Richtung. Diese Werte entsprechen natÃ¼rlich genau den Koordinaten des Punktes $P$.
 
 \begin{MExercise}
-Bestimmen Sie für die Pfeile in der obigen dreidimensionalen Abbildung die (vorzeichenbehafteten) Bewegungen in die drei Koordinatenrichtungen, die nötig sind, um vom Fußpunkt zur Spitze des jeweiligen Pfeils zu gelangen. Gehen Sie analog zu den oben stehenden Erläuterungen im zweidimensionalen Fall vor.
+Bestimmen Sie fÃ¼r die Pfeile in der obigen dreidimensionalen Abbildung die (vorzeichenbehafteten) Bewegungen in die drei Koordinatenrichtungen, die nÃ¶tig sind, um vom FuÃŸpunkt zur Spitze des jeweiligen Pfeils zu gelangen. Gehen Sie analog zu den oben stehenden ErlÃ¤uterungen im zweidimensionalen Fall vor.
 
 \begin{itemize}
- \item[{}] Für den Pfeil von $O$ nach $P$: 
+ \item[{}] FÃ¼r den Pfeil von $O$ nach $P$: 
  
   \begin{MExerciseItems}
   \item{in $x$-Richtung: \MLFunctionQuestion{15}{2}{5}{x}{5}{Pfeil1x},}
   \item{in $y$-Richtung: \MLFunctionQuestion{15}{-1}{5}{x}{5}{Pfeil1y},}
   \item{in $z$-Richtung: \MLFunctionQuestion{15}{2}{5}{x}{5}{Pfeil1z}.}
   \end{MExerciseItems} 
-  \item[{}] Für den Pfeil von $Q$ nach $R$:
+  \item[{}] FÃ¼r den Pfeil von $Q$ nach $R$:
   
   \begin{MExerciseItems}
   \item{in $x$-Richtung: \MLFunctionQuestion{15}{-2}{5}{x}{5}{Pfeil2x},}
@@ -285,17 +285,17 @@ Bestimmen Sie für die Pfeile in der obigen dreidimensionalen Abbildung die (vorz
   \end{MExerciseItems} 
 \end{itemize}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 
 \begin{itemize}
- \item[{}] Für den Pfeil von $O$ nach $P$: 
+ \item[{}] FÃ¼r den Pfeil von $O$ nach $P$: 
  
   \begin{MExerciseItems}
   \item{in $x$-Richtung: $2$,}
   \item{in $y$-Richtung: $-1$,}
   \item{in $z$-Richtung: $2$.}
   \end{MExerciseItems} 
-  \item[{}] Für den Pfeil von $Q$ nach $R$:
+  \item[{}] FÃ¼r den Pfeil von $Q$ nach $R$:
   
   \begin{MExerciseItems}
   \item{in $x$-Richtung: $-2$,}
@@ -307,7 +307,7 @@ Bestimmen Sie für die Pfeile in der obigen dreidimensionalen Abbildung die (vorz
 \end{MHint}
 \end{MExercise}
 
-Nun ist ersichtlich, dass auch im Fall der Pfeile, die jeweils $Q$ mit $R$ verbinden, die Bewegungen in die jeweiligen Koordinatenrichtungen durch die Koordinaten der Punkte an Fußpunkt und Spitze der Pfeile bestimmt werden. Es gilt offenbar im zweidimensionalen Fall:
+Nun ist ersichtlich, dass auch im Fall der Pfeile, die jeweils $Q$ mit $R$ verbinden, die Bewegungen in die jeweiligen Koordinatenrichtungen durch die Koordinaten der Punkte an FuÃŸpunkt und Spitze der Pfeile bestimmt werden. Es gilt offenbar im zweidimensionalen Fall:
 \[
  \left.\begin{array}{r}R=\MPointTwo{1}{3} \\ Q=\MPointTwo{4}{1}\end{array}\right\}\MDFPSpace\Rightarrow\MDFPSpace\left\{\begin{array}{l}\textrm{in}\MBlank x\textrm{-Richtung:}\MDFPSpace-3=1-4 \\ \textrm{in}\MBlank y\textrm{-Richtung:}\MDFPSpace2=3-1\end{array}\right.
 \]
@@ -315,7 +315,7 @@ und im dreidimensionalen Fall:
 \[
  \left.\begin{array}{r}R=\MPointThree{1}{3}{-1} \\ Q=\MPointThree{3}{1}{0}\end{array}\right\}\MDFPSpace\Rightarrow\MDFPSpace\left\{\begin{array}{l}\textrm{in}\MBlank x\textrm{-Richtung:}\MDFPSpace-2=1-3 \\ \textrm{in}\MBlank y\textrm{-Richtung:}\MDFPSpace2=3-1 \\ \textrm{in}\MBlank z\textrm{-Richtung:}\MDFPSpace-1=-1-0\MDFPeriod\end{array}\right.
 \]
-Die Bewegungen in die verschiedenen Koordinatenrichtungen ergeben sich also als die Differenzen der Koordinaten des Punkts an der Spitze des Pfeils und des Punkts am Fußpunkt des Pfeils. Dies bedeutet aber, dass sich alle Pfeile, welche Punktepaare miteinander verbinden, für die sich jeweils gleiche Koordinatendifferenzen ergeben, nur durch eine Parallelverschiebung -- unter Beibehaltung ihrer Orientierung -- unterscheiden. Die Punktepaare $P$ und $Q$, $A$ und $B$ sowie $O$ und $R$ im folgenden zweidimensionalen Bild werden jeweils durch Pfeile verbunden, die durch Parallelverschiebung zur Deckung gebracht werden können:
+Die Bewegungen in die verschiedenen Koordinatenrichtungen ergeben sich also als die Differenzen der Koordinaten des Punkts an der Spitze des Pfeils und des Punkts am FuÃŸpunkt des Pfeils. Dies bedeutet aber, dass sich alle Pfeile, welche Punktepaare miteinander verbinden, fÃ¼r die sich jeweils gleiche Koordinatendifferenzen ergeben, nur durch eine Parallelverschiebung -- unter Beibehaltung ihrer Orientierung -- unterscheiden. Die Punktepaare $P$ und $Q$, $A$ und $B$ sowie $O$ und $R$ im folgenden zweidimensionalen Bild werden jeweils durch Pfeile verbunden, die durch Parallelverschiebung zur Deckung gebracht werden kÃ¶nnen:
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}[>=stealth]
@@ -351,28 +351,28 @@ Die Bewegungen in die verschiedenen Koordinatenrichtungen ergeben sich also als 
 } 
 \end{center}
 
-Man kann hier natürlich noch beliebig viele weitere Punktepaare finden, die durch einen ebensolchen Pfeil verbunden werden, und das Ganze funktioniert selbstverständlich analog auch im dreidimensionalen Fall. 
+Man kann hier natÃ¼rlich noch beliebig viele weitere Punktepaare finden, die durch einen ebensolchen Pfeil verbunden werden, und das Ganze funktioniert selbstverstÃ¤ndlich analog auch im dreidimensionalen Fall. 
 
-Jeder Pfeil in der obigen Abbildung gibt also den gleichen Informationsgehalt, nämlich $-3$ in $x$-Richtung und $1$ in $y$-Richtung, wieder. Was liegt also mathematisch näher, als jeden dieser Pfeile nur als Vertreter (einen sogenannten \textbf{Repräsentanten}) eines viel grundlegenderen Objekts aufzufassen? Dieses grundlegendere mathematische Objekt heißt \textbf{Vektor} und hat in diesem Fall die \textbf{Komponenten} $-3$ ($x$-Komponente) und $1$ ($y$-Komponente), welche als sogenanntes $2$-\textbf{Tupel} übereinander geschrieben werden:
+Jeder Pfeil in der obigen Abbildung gibt also den gleichen Informationsgehalt, nÃ¤mlich $-3$ in $x$-Richtung und $1$ in $y$-Richtung, wieder. Was liegt also mathematisch nÃ¤her, als jeden dieser Pfeile nur als Vertreter (einen sogenannten \textbf{ReprÃ¤sentanten}) eines viel grundlegenderen Objekts aufzufassen? Dieses grundlegendere mathematische Objekt heiÃŸt \textbf{Vektor} und hat in diesem Fall die \textbf{Komponenten} $-3$ ($x$-Komponente) und $1$ ($y$-Komponente), welche als sogenanntes $2$-\textbf{Tupel} Ã¼bereinander geschrieben werden:
 \[
- \textrm{Vektor mit den Repräsentanten aus obiger Abbildung}\MBlank = \MVector{-3\\1}\MDFPeriod
+ \textrm{Vektor mit den ReprÃ¤sentanten aus obiger Abbildung}\MBlank = \MVector{-3\\1}\MDFPeriod
 \]
 Die folgende Infobox fasst diese Erkenntnis und noch einige weitere Schreib- und Sprechweisen zu Vektoren zusammen.
 
 \begin{MInfo}
-Ein zwei- bzw. dreidimensionaler \MEntry{Vektor}{Vektor} ist ein $2$- bzw. $3$-\MEntry{Tupel}{Tupel} mit $2$ bzw. $3$ \MEntry{Komponenten}{Komponenten (von Vektoren)}, die als $x$-, $y$- (und $z$-)Komponenten bezeichnet werden. Als Variablen für Vektoren werden für gewöhnlich Kleinbuchstaben mit Pfeil benutzt. Als Variable für ihre Komponenten wird oft der gleiche Kleinbuchstabe mit der zugehörigen Koordinatenrichtung als Index zur Unterscheidung verwendet: 
+Ein zwei- bzw. dreidimensionaler \MEntry{Vektor}{Vektor} ist ein $2$- bzw. $3$-\MEntry{Tupel}{Tupel} mit $2$ bzw. $3$ \MEntry{Komponenten}{Komponenten (von Vektoren)}, die als $x$-, $y$- (und $z$-)Komponenten bezeichnet werden. Als Variablen fÃ¼r Vektoren werden fÃ¼r gewÃ¶hnlich Kleinbuchstaben mit Pfeil benutzt. Als Variable fÃ¼r ihre Komponenten wird oft der gleiche Kleinbuchstabe mit der zugehÃ¶rigen Koordinatenrichtung als Index zur Unterscheidung verwendet: 
 \[
  \MVec{a}=\MVector{a_x\\a_y},\MDFPaSpace \MVec{b}=\MVector{b_x\\b_y\\b_z}\MDFPeriod
 \]
-Ein Pfeil in der Ebene oder im Raum heißt \MEntry{Repräsentant}{Repräsentant (eines Vektors)} des Vektors, wenn der Pfeil zwei Punkte in der Ebene oder im Raum verbindet, die so liegen, dass die Differenzen der Koordinaten des Punkts an der Spitze des Pfeils und des Punkts am Fußpunkt des Pfeils genau die Komponenten des Vektors ergeben.  
+Ein Pfeil in der Ebene oder im Raum heiÃŸt \MEntry{ReprÃ¤sentant}{ReprÃ¤sentant (eines Vektors)} des Vektors, wenn der Pfeil zwei Punkte in der Ebene oder im Raum verbindet, die so liegen, dass die Differenzen der Koordinaten des Punkts an der Spitze des Pfeils und des Punkts am FuÃŸpunkt des Pfeils genau die Komponenten des Vektors ergeben.  
 \end{MInfo}
 
-Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum bzw. zwei Punkte $Q$ und $R$ in der Ebene oder im Raum gegeben hat, und man möchte nun den Vektor angeben, von welchem der Pfeil vom Ursprung $O$ zu dem gegebenen Punkt $P$ bzw. von welchem der Pfeil, der $Q$ mit $R$ verbindet, jeweils ein Repräsentant ist. Die dafür benutzte Schreib- und Sprechweise sowie die nötige Rechenoperation gibt die folgende Infobox wieder:
+Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum bzw. zwei Punkte $Q$ und $R$ in der Ebene oder im Raum gegeben hat, und man mÃ¶chte nun den Vektor angeben, von welchem der Pfeil vom Ursprung $O$ zu dem gegebenen Punkt $P$ bzw. von welchem der Pfeil, der $Q$ mit $R$ verbindet, jeweils ein ReprÃ¤sentant ist. Die dafÃ¼r benutzte Schreib- und Sprechweise sowie die nÃ¶tige Rechenoperation gibt die folgende Infobox wieder:
 
 \begin{MInfo}\MLabel{VBKM10_Info_OrtsundVerbindungsvektor}
 \begin{itemize}
  \item \textbf{Zweidimensionaler Fall:}\\
- Sind $P=\MPointTwo{p_x}{p_y}$ sowie $Q=\MPointTwo{q_x}{q_y}$ und $R=\MPointTwo{r_x}{r_y}$ Punkte in der Ebene, so heißt der Vektor
+ Sind $P=\MPointTwo{p_x}{p_y}$ sowie $Q=\MPointTwo{q_x}{q_y}$ und $R=\MPointTwo{r_x}{r_y}$ Punkte in der Ebene, so heiÃŸt der Vektor
  \[
   \MDVec{Q R} := \MVector{r_x-q_x \\ r_y-q_y}
  \]
@@ -380,7 +380,7 @@ Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum
  \[
   \MDVec{P} := \MDVec{O P} = \MVector{p_x\\p_y}
  \]
- \MEntry{Ortsvektor des Punkts}{Ortsvektor} $P$. Dies sind genau diejenigen Vektoren, welche als Repräsentanten unter anderem die entsprechenden Verbindungspfeile der Punkte besitzen:
+ \MEntry{Ortsvektor des Punkts}{Ortsvektor} $P$. Dies sind genau diejenigen Vektoren, welche als ReprÃ¤sentanten unter anderem die entsprechenden Verbindungspfeile der Punkte besitzen:
  \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}[>=stealth]
@@ -433,7 +433,7 @@ Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum
 \end{center}
 
  \item \textbf{Dreidimensionaler Fall:}\\
- Sind $P=\MPointThree{p_x}{p_y}{p_z}$ sowie $Q=\MPointThree{q_x}{q_y}{q_z}$ und $R=\MPointThree{r_x}{r_y}{r_z}$ Punkte im Raum, so heißt der Vektor
+ Sind $P=\MPointThree{p_x}{p_y}{p_z}$ sowie $Q=\MPointThree{q_x}{q_y}{q_z}$ und $R=\MPointThree{r_x}{r_y}{r_z}$ Punkte im Raum, so heiÃŸt der Vektor
  \[
   \MDVec{Q R} := \MVector{r_x-q_x \\ r_y-q_y \\ r_z-q_z}
  \]
@@ -441,7 +441,7 @@ Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum
  \[
   \MDVec{P} := \MDVec{O P} = \MVector{p_x\\p_y\\p_z}
  \]
- \MEntry{Ortsvektor des Punkts}{Ortsvektor} $P$. Dies sind genau diejenigen Vektoren, welche als Repräsentanten unter anderem die entsprechenden Verbindungspfeile der Punkte besitzen:
+ \MEntry{Ortsvektor des Punkts}{Ortsvektor} $P$. Dies sind genau diejenigen Vektoren, welche als ReprÃ¤sentanten unter anderem die entsprechenden Verbindungspfeile der Punkte besitzen:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[>=stealth]
@@ -553,18 +553,18 @@ Oft ist man in der Situation, dass man einen Punkt $P$ in der Ebene oder im Raum
  \[
   \MVector{3\\1\\-1}
  \]
- ist natürlich gleichzeitig auch Ortsvektor des Punktes $\MPointThree{3}{1}{-1}$.
+ ist natÃ¼rlich gleichzeitig auch Ortsvektor des Punktes $\MPointThree{3}{1}{-1}$.
 \end{itemize}
  
 \end{MExample}
 
-Das obige Beispiel zeigt bereits folgende interessante Tatsache: Dreht man die Orientierung eines Vektors (und damit die Orientierung aller Pfeile, die ihn repräsentieren) um, so erhält man einen Vektor, in dem die Komponenten das entgegengesetzte Vorzeichen besitzen. Man spricht hier auch vom sogenannten \textbf{Gegenvektor}. Dies ist ein erster Hinweis darauf, dass man mit Vektoren komponentenweise rechnen kann. Dies wird ausführlich im nachfolgenden Abschnitt \MNRef{VBKM10_Vektorrechnung} behandelt.  
+Das obige Beispiel zeigt bereits folgende interessante Tatsache: Dreht man die Orientierung eines Vektors (und damit die Orientierung aller Pfeile, die ihn reprÃ¤sentieren) um, so erhÃ¤lt man einen Vektor, in dem die Komponenten das entgegengesetzte Vorzeichen besitzen. Man spricht hier auch vom sogenannten \textbf{Gegenvektor}. Dies ist ein erster Hinweis darauf, dass man mit Vektoren komponentenweise rechnen kann. Dies wird ausfÃ¼hrlich im nachfolgenden Abschnitt \MNRef{VBKM10_Vektorrechnung} behandelt.  
 
-Außerdem gibt es offenbar im zwei- und im dreidimensionalen Fall jeweils einen Vektor, dessen Komponenten alle gleich $0$ sind:
+AuÃŸerdem gibt es offenbar im zwei- und im dreidimensionalen Fall jeweils einen Vektor, dessen Komponenten alle gleich $0$ sind:
 \[
  \MVector{0\\0}\MDFPaSpace\textrm{bzw.}\MDFPaSpace\MVector{0\\0\\0}\MDFPeriod
 \]
-Dieser Vektor wird jeweils als zwei- bzw. dreidimensionaler \textbf{Nullvektor} bezeichnet. Man kann sich vorstellen, dass seine Repräsentanten \glqq Pfeile der Länge $0$\grqq\ sind, also solche die einen Punkt mit sich selbst verbinden. Oder anders gesagt: Der Nullvektor ist der Ortsvektor des Ursprungs.
+Dieser Vektor wird jeweils als zwei- bzw. dreidimensionaler \textbf{Nullvektor} bezeichnet. Man kann sich vorstellen, dass seine ReprÃ¤sentanten \glqq Pfeile der LÃ¤nge $0$\grqq\ sind, also solche die einen Punkt mit sich selbst verbinden. Oder anders gesagt: Der Nullvektor ist der Ortsvektor des Ursprungs.
 
 \begin{MExercise}
 Gegeben sind die Punkte
@@ -587,20 +587,20 @@ im Raum sowie die zwei- bzw. dreidimensionalen Vektoren
 \item{$\MDVec{P Q}=$\MLFunctionQuestion{15}{(0,-2,2)}{5}{x}{5}{VECI3}} 
 \item{$\MDVec{Q P}=$\MLFunctionQuestion{15}{(0,2,-2)}{5}{x}{5}{VECI4}} 
 \end{MExerciseItems}
-\MInputHint{Vektoren können in der Form \texttt{(a;b)} bzw. \texttt{(a;b;c)} eingegeben werden, zum Beispiel \texttt{(1;0)} für den Vektor $\MVector{1\\0}$. Die Zahl $\pi$ kann als \texttt{pi} eingegeben werden.} 
+\MInputHint{Vektoren kÃ¶nnen in der Form \texttt{(a;b)} bzw. \texttt{(a;b;c)} eingegeben werden, zum Beispiel \texttt{(1;0)} fÃ¼r den Vektor $\MVector{1\\0}$. Die Zahl $\pi$ kann als \texttt{pi} eingegeben werden.} 
 
 \item Bestimmen Sie Punkte $C$ in der Ebene und $R$ im Raum, so dass folgende Aussagen wahr sind:\\
 \begin{MExerciseItems}
 \item{$\MVec{a}=\MDVec{C B}\MDFPSpace\Leftrightarrow\MDFPSpace C=$\MLFunctionQuestion{15}{(0,-1)}{5}{x}{5}{POINTI1}} 
 \item{$\MVec{v}=\MDVec{Q R}\MDFPSpace\Leftrightarrow\MDFPSpace R=$\MLFunctionQuestion{15}{(0.5,2,-2)}{5}{x}{5}{POINTI2}} 
 \end{MExerciseItems}
-\MInputHint{Auch Punkte können in der Form \texttt{(a;b)} bzw. \texttt{(a;b;c)} eingegeben werden.} 
+\MInputHint{Auch Punkte kÃ¶nnen in der Form \texttt{(a;b)} bzw. \texttt{(a;b;c)} eingegeben werden.} 
 
-\item Zeichnen Sie mindestens drei Repräsentanten des Vektors $a$. 
+\item Zeichnen Sie mindestens drei ReprÃ¤sentanten des Vektors $a$. 
 \end{itemize}
 
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \begin{itemize}
  \item Die gesuchten Vektoren sind:\\
  \begin{MExerciseItems}
@@ -614,7 +614,7 @@ im Raum sowie die zwei- bzw. dreidimensionalen Vektoren
 \item{$C=\MPointTwo{0}{-1}$} 
 \item{$R=\MPointThree[\Big]{\frac{1}{2}}{2}{-2}$}
 \end{MExerciseItems}
- \item Das folgende Bild zeigt drei mögliche Repräsentanten von $\MVec{a}=\MVector{\pi\\-1}$:
+ \item Das folgende Bild zeigt drei mÃ¶gliche ReprÃ¤sentanten von $\MVec{a}=\MVector{\pi\\-1}$:
  
 \begin{center}
 \MTikzAuto{
@@ -646,30 +646,30 @@ im Raum sowie die zwei- bzw. dreidimensionalen Vektoren
 
 \end{MExercise}
 
-Die vorhergehende Einführung des Vektorkonzepts zeigt die nahe Verwandtschaft von Vektoren und Punkten. Tatsächlich gibt es
+Die vorhergehende EinfÃ¼hrung des Vektorkonzepts zeigt die nahe Verwandtschaft von Vektoren und Punkten. TatsÃ¤chlich gibt es
 sogar eine Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren: Zu jedem Punkt gibt es genau einen Vektor, der Ortsvektor
-dieses Punktes ist, und umgekehrt gibt es zu jedem Vektor genau einen Punkt, für den dieser Vektor der zugehörige Ortsvektor ist.
+dieses Punktes ist, und umgekehrt gibt es zu jedem Vektor genau einen Punkt, fÃ¼r den dieser Vektor der zugehÃ¶rige Ortsvektor ist.
 Dies gilt im zwei- sowie im dreidimensionalen Fall. Das rechtfertigt nun die -- in den folgenden Abschnitten oft benutzte -- Konvention,
 Punkte durch ihre Ortsvektoren zu beschreiben. So beschreibt man zum Beispiel einen Punkt $P=\MPointTwo{2}{1}$ statt durch seine
-Koordinaten $\MPointTwo{2}{1}$ oft durch seinen zugehörigen Ortsvektor $\MDVec{P}=\MVector{2\\1}$. Dies bringt bei der Untersuchung
+Koordinaten $\MPointTwo{2}{1}$ oft durch seinen zugehÃ¶rigen Ortsvektor $\MDVec{P}=\MVector{2\\1}$. Dies bringt bei der Untersuchung
 geometrischer Objekte wie Geraden oder Ebenen (insbesondere im dreidimensionalen Fall) dann auch gewisse Vorteile in der Beschreibung
 mit sich (vgl. z.B.  Abschnitt \MNRef{VBKM10_GeradenEbene}).   
 
-Weiterhin rechtfertigt die Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren auch, die Abkürzungen $\R^2$ und $\R^3$ nicht nur für die Menge aller Punkte in der Ebene bzw. im Raum zu verwenden, sondern auch für die Menge aller zwei- bzw. dreidimensionaler Vektoren. Davon wird in den nächsten Abschnitten ebenfalls Gebrauch gemacht.
+Weiterhin rechtfertigt die Eins-zu-eins-Korrespondenz zwischen Punkten und Ortsvektoren auch, die AbkÃ¼rzungen $\R^2$ und $\R^3$ nicht nur fÃ¼r die Menge aller Punkte in der Ebene bzw. im Raum zu verwenden, sondern auch fÃ¼r die Menge aller zwei- bzw. dreidimensionaler Vektoren. Davon wird in den nÃ¤chsten Abschnitten ebenfalls Gebrauch gemacht.
 
 \end{MXContent}
 
 \begin{MXContent}{Rechnen mit Vektoren}{Vektorrechnung}{STD}
 \MLabel{VBKM10_Vektorrechnung}
 \MDeclareSiteUXID{VBKM10_Vektorrechnung}
-In diesem Abschnitt wird behandelt, wie man mit den -- im vorigen Abschnitt \MNRef{VBKM10_Vektoren} eingeführten -- Vektoren rechnen kann. Das Rechnen mit Vektoren hat mehrere Aspekte: Zunächst kann man mit Vektoren, die man als 2- oder 3-Tupel angibt, die Rechenoperationen Addition, Subtraktion und -- mit einer gewissen Einschränkung -- auch Multiplikation durchführen, indem man diese Operationen komponentenweise ausführt. Dann haben diese Rechenoperationen aber auch eine geometrische Bedeutung für die Pfeile, welche die Vektoren repräsentieren. Man kann die Rechenoperationen für Vektoren auch als geometrische Operationen mit ihren Repräsentanten interpretieren. Schließlich führt diese geometrische Betrachtung des Rechnens mit Vektoren auch auf ein tieferes Verständnis von Orts- und Verbindungsvektoren von Punkten.
+In diesem Abschnitt wird behandelt, wie man mit den -- im vorigen Abschnitt \MNRef{VBKM10_Vektoren} eingefÃ¼hrten -- Vektoren rechnen kann. Das Rechnen mit Vektoren hat mehrere Aspekte: ZunÃ¤chst kann man mit Vektoren, die man als 2- oder 3-Tupel angibt, die Rechenoperationen Addition, Subtraktion und -- mit einer gewissen EinschrÃ¤nkung -- auch Multiplikation durchfÃ¼hren, indem man diese Operationen komponentenweise ausfÃ¼hrt. Dann haben diese Rechenoperationen aber auch eine geometrische Bedeutung fÃ¼r die Pfeile, welche die Vektoren reprÃ¤sentieren. Man kann die Rechenoperationen fÃ¼r Vektoren auch als geometrische Operationen mit ihren ReprÃ¤sentanten interpretieren. SchlieÃŸlich fÃ¼hrt diese geometrische Betrachtung des Rechnens mit Vektoren auch auf ein tieferes VerstÃ¤ndnis von Orts- und Verbindungsvektoren von Punkten.
 
-Das Rechnen mit zwei- und dreidimensionalen Vektoren funktioniert im Wesentlichen auf die gleiche Art und Weise. Bei den Rechenoperationen in Komponentenschreibweise werden im Folgenden immer beide Fälle (zwei- und dreidimensional) aufgeführt. Bei den zugehörigen Bildern, welche die geometrische Bedeutung der Operationen für die Repräsentanten der Vektoren sowie für Orts- und Verbindungsvektoren veranschaulichen, werden in diesem Abschnitt nur Pfeile und Punkte, keine Koordinatensysteme dargestellt. So sind diese Bilder sowohl für den zwei- als auch für den dreidimensionalen Fall gültig. 
+Das Rechnen mit zwei- und dreidimensionalen Vektoren funktioniert im Wesentlichen auf die gleiche Art und Weise. Bei den Rechenoperationen in Komponentenschreibweise werden im Folgenden immer beide FÃ¤lle (zwei- und dreidimensional) aufgefÃ¼hrt. Bei den zugehÃ¶rigen Bildern, welche die geometrische Bedeutung der Operationen fÃ¼r die ReprÃ¤sentanten der Vektoren sowie fÃ¼r Orts- und Verbindungsvektoren veranschaulichen, werden in diesem Abschnitt nur Pfeile und Punkte, keine Koordinatensysteme dargestellt. So sind diese Bilder sowohl fÃ¼r den zwei- als auch fÃ¼r den dreidimensionalen Fall gÃ¼ltig. 
 
-Da beim Rechnen mit Vektoren im Folgenden Vektoren durch Rechnung und Äquivalenzumformungen auseinander hervorgehen sollen, muss einmal festgehalten werden, unter welchen Umständen zwei Vektoren gleich sein sollen. 
+Da beim Rechnen mit Vektoren im Folgenden Vektoren durch Rechnung und Ã„quivalenzumformungen auseinander hervorgehen sollen, muss einmal festgehalten werden, unter welchen UmstÃ¤nden zwei Vektoren gleich sein sollen. 
 
 \begin{MInfo}
-Zwei Vektoren $\MVec{a},\MVec{b}\in\R^2\MBlank \textrm{oder}\MBlank \R^3$ sind genau dann \MEntry{gleich}{Gleichheit (von Vektoren)} (symbolisch: $\MVec{a}=\MVec{b}$), wenn eine (und damit alle) der folgenden äquivalenten Bedingungen zutrifft (zutreffen):
+Zwei Vektoren $\MVec{a},\MVec{b}\in\R^2\MBlank \textrm{oder}\MBlank \R^3$ sind genau dann \MEntry{gleich}{Gleichheit (von Vektoren)} (symbolisch: $\MVec{a}=\MVec{b}$), wenn eine (und damit alle) der folgenden Ã¤quivalenten Bedingungen zutrifft (zutreffen):
 \begin{itemize}
  \item $\MVec{a}$ und $\MVec{b}$ besitzen die gleichen Komponenten, also 
  \[
@@ -680,13 +680,13 @@ Zwei Vektoren $\MVec{a},\MVec{b}\in\R^2\MBlank \textrm{oder}\MBlank \R^3$ sind g
   \MVec{a}=\MVec{b}\MDFPSpace\Leftrightarrow\MDFPSpace\MVector{a_x\\a_y\\a_z}=\MVector{b_x\\b_y\\b_z}\MDFPSpace\Leftrightarrow\MDFPSpace a_x=b_x\MBlank \textrm{und}\MBlank  a_y=b_y\MBlank \textrm{und}\MBlank  a_z=b_z
  \]
  im dreidimensionalen Fall. Dies ist auch unter der Bezeichnung \textbf{Koordinaten-} oder \textbf{Komponentenvergleich} bekannt.
- \item $\MVec{a}$ und $\MVec{b}$ besitzen einen gleichen Repräsentanten.
+ \item $\MVec{a}$ und $\MVec{b}$ besitzen einen gleichen ReprÃ¤sentanten.
  \item $\MVec{a}$ und $\MVec{b}$ sind beide Ortsvektor des gleichen Punktes.
  \item $\MVec{a}$ und $\MVec{b}$ sind beide Verbindungsvektor der gleichen zwei Punkte.
 \end{itemize}
 \end{MInfo}
 
-Diese Infobox macht auch klar, dass zwei Vektoren unterschiedlicher Dimension (also etwa $\MVec{a}\in\R^2$ und $\MVec{b}\in\R^3$) niemals gleich sein können. Diese Vektoren sind wegen der unterschiedlichen Anzahl an Komponenten sogar nicht einmal miteinander vergleichbar. Rechnungen mit Vektoren finden also immer nur mit einer festen Anzahl an Komponenten statt (hier entweder zwei oder drei), und die Ergebnisse der Rechnungen sind dann immer auch Vektoren mit ebendieser festen Anzahl an Komponenten.
+Diese Infobox macht auch klar, dass zwei Vektoren unterschiedlicher Dimension (also etwa $\MVec{a}\in\R^2$ und $\MVec{b}\in\R^3$) niemals gleich sein kÃ¶nnen. Diese Vektoren sind wegen der unterschiedlichen Anzahl an Komponenten sogar nicht einmal miteinander vergleichbar. Rechnungen mit Vektoren finden also immer nur mit einer festen Anzahl an Komponenten statt (hier entweder zwei oder drei), und die Ergebnisse der Rechnungen sind dann immer auch Vektoren mit ebendieser festen Anzahl an Komponenten.
 
 \begin{MInfo}
 Die \MEntry{Addition zweier Vektoren}{Addition (von Vektoren)} bedeutet die Addition aller ihrer Komponenten. Also
@@ -697,7 +697,7 @@ im zweidimensionalen Fall und
 \[
  \MVec{a}+\MVec{b} = \MVector{a_x\\a_y\\a_z}+\MVector{b_x\\b_y\\b_z} = \MVector{a_x+b_x\\a_y+b_y\\a_z+b_z}
 \]
-im dreidimensionalen Fall. Geometrisch kann die Vektoraddition als \glqq Aneinanderhängen\grqq\ von Pfeilen oder als Ergänzung von zwei Pfeilen zu einem Parallelogramm interpretiert werden, je nachdem welche Repräsentanten der Vektoren man verwendet:
+im dreidimensionalen Fall. Geometrisch kann die Vektoraddition als \glqq AneinanderhÃ¤ngen\grqq\ von Pfeilen oder als ErgÃ¤nzung von zwei Pfeilen zu einem Parallelogramm interpretiert werden, je nachdem welche ReprÃ¤sentanten der Vektoren man verwendet:
 \begin{center}
 \begin{tabular}{lr}
 \MTikzAuto{%
@@ -740,7 +740,7 @@ sowie
 \[
  \MVec{a}+\MVec{b}+\MVec{c} = (\MVec{a}+\MVec{b})+\MVec{c} = \MVec{a}+(\MVec{b}+\MVec{c}) \MDFPeriod
 \]
-Und der \MEntry{Nullvektor}{Nullvektor} $\MDVec{O}=\MVector{0\\0}$ bzw. $\MDVec{O}=\MVector{0\\0\\0}$ erfüllt die analoge Funktion für Vektoren, die die $0$ für reelle Zahlen erfüllt:
+Und der \MEntry{Nullvektor}{Nullvektor} $\MDVec{O}=\MVector{0\\0}$ bzw. $\MDVec{O}=\MVector{0\\0\\0}$ erfÃ¼llt die analoge Funktion fÃ¼r Vektoren, die die $0$ fÃ¼r reelle Zahlen erfÃ¼llt:
 \[
  \MVec{a}+\MDVec{O} = \MDVec{O} + \MVec{a} = \MVec{a}\MDFPeriod
 \]
@@ -815,13 +815,13 @@ gilt:
 } 
 \end{center}
 \end{MExample}
-Das obige Beispiel zeigt, dass man mit Hilfe der Vektorrechnung auch Ausdrücke für Verbindungsvektoren von Punkten vereinfachen kann. Dies wird weiter unten bei der Subtraktion von Vektoren nochmals vertieft. 
+Das obige Beispiel zeigt, dass man mit Hilfe der Vektorrechnung auch AusdrÃ¼cke fÃ¼r Verbindungsvektoren von Punkten vereinfachen kann. Dies wird weiter unten bei der Subtraktion von Vektoren nochmals vertieft. 
 
 \begin{MExercise}
 
 \begin{MExerciseItems}
 \item{Gegeben sind die Vektoren $\MVec{u}=\MVector{1\\0\\-8}$ und $\MVec{v}=\MVector{-3\\-4\\3}$. Berechnen Sie $\MVec{v}+\MVec{u}$.\\$\MVec{v}+\MVec{u}=$\MLFunctionQuestion{15}{(-2,-4,-5)}{5}{x}{5}{VEC21}} 
-\item{Gegeben sind die Punkte $P$, $Q$ und $R$. Welche der folgenden Ausdrücke sind gleich dem Ausdruck $(\MDVec{P}+\MDVec{P Q})+\MDVec{Q R}$ ?\\
+\item{Gegeben sind die Punkte $P$, $Q$ und $R$. Welche der folgenden AusdrÃ¼cke sind gleich dem Ausdruck $(\MDVec{P}+\MDVec{P Q})+\MDVec{Q R}$ ?\\
 \begin{MQuestionGroup}
 \begin{tabular}{lll}
 \MLCheckbox{1}{VEC22} & \MBlank & $\MDVec{P}+(\MDVec{P Q}+\MDVec{Q R})$\\
@@ -836,7 +836,7 @@ Das obige Beispiel zeigt, dass man mit Hilfe der Vektorrechnung auch Ausdrücke f
 }
 \end{MExerciseItems}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \begin{MExerciseItems}
 \item{\[\MVec{v}+\MVec{u}=\MVector{-3\\-4\\3}+\MVector{1\\0\\-8} = \MVector{-3+1\\-4+0\\3-8} =\MVector{-2\\-4\\-5} \MDFPeriod\]} 
 \item{\[ (\MDVec{P}+\MDVec{P Q})+\MDVec{Q R} = \MDVec{P}+(\MDVec{P Q}+\MDVec{Q R})\MBlank \textrm{(Assoziativgesetz)}\] \[= (\MDVec{O P}+\MDVec{P Q})+\MDVec{Q R} = \MDVec{O Q}+\MDVec{Q R} = \MDVec{Q}+\MDVec{Q R} = \MDVec{O R} = \MDVec{R} \MDFPeriod\]}
@@ -844,7 +844,7 @@ Das obige Beispiel zeigt, dass man mit Hilfe der Vektorrechnung auch Ausdrücke f
 \end{MHint}
 \end{MExercise}
 
-Untersucht man mögliche Rechenoperationen für Vektoren nun weiter, so stellt man fest, dass die komponentenweise Multiplikation oder Division von Vektoren keine sinnvolle Operation ist. Dies genauer zu verstehen, würde aber den mathematischen Rahmen dieses Brückenkurses sprengen. So muss man an dieser Stelle einfach akzeptieren, dass man Vektoren nicht so einfach miteinander multiplizieren und schon gar nicht durcheinander dividieren kann. Was allerdings möglich ist, ist die Multiplikation von Vektoren mit reellen Zahlen und -- darauf aufbauend -- auch die Subtraktion von Vektoren. Wichtig ist noch Folgendes: Wird im Nachfolgenden von der Länge eines Vektors gesprochen, so ist damit die geometrische Länge der Pfeile gemeint, die ihn repräsentieren. Das Konzept der Länge oder des Betrags eines Vektors wird weiter unten noch genauer untersucht.
+Untersucht man mÃ¶gliche Rechenoperationen fÃ¼r Vektoren nun weiter, so stellt man fest, dass die komponentenweise Multiplikation oder Division von Vektoren keine sinnvolle Operation ist. Dies genauer zu verstehen, wÃ¼rde aber den mathematischen Rahmen dieses BrÃ¼ckenkurses sprengen. So muss man an dieser Stelle einfach akzeptieren, dass man Vektoren nicht so einfach miteinander multiplizieren und schon gar nicht durcheinander dividieren kann. Was allerdings mÃ¶glich ist, ist die Multiplikation von Vektoren mit reellen Zahlen und -- darauf aufbauend -- auch die Subtraktion von Vektoren. Wichtig ist noch Folgendes: Wird im Nachfolgenden von der LÃ¤nge eines Vektors gesprochen, so ist damit die geometrische LÃ¤nge der Pfeile gemeint, die ihn reprÃ¤sentieren. Das Konzept der LÃ¤nge oder des Betrags eines Vektors wird weiter unten noch genauer untersucht.
 
 \begin{MInfo}
 Die \MEntry{Multiplikation eines Vektors mit einer reellen Zahl}{Multiplikation (Vektor mit Skalar)} bedeutet die Multiplikation in jeder Komponente. Ist also $\MVec{a}$ ein Vektor und $s\in\R$, so gilt
@@ -859,7 +859,7 @@ im dreidimensionalen Fall. Die Division eines Vektors durch eine Zahl $0\neq s\i
 \[
  \frac{\MVec{a}}{s}=\frac{1}{s}\MVec{a}\MDFPeriod 
 \]
-Bei der Multiplikation eines Vektors mit einer reellen Zahl $s\in\R$ erhält man also einen gleich orientierten Vektor $s$-facher Länge, wenn $s>0$ ist. Wenn $s<0$ ist, hat der resultierende Vektor ebenfalls $s$-fache Länge, ist aber entgegengesetzt orientiert. Im Spezialfall $s=0$, gilt offenbar \[0\MVec{a}=\MDVec{O}\] für jeden Vektor $\MVec{a}$. Zwei weitere wichtige Fälle sind die Multiplikation mit $s=1$: \[1\cdot\MVec{a}=\MVec{a}\] -- dies lässt den Vektor offenbar gleich -- und die Multiplikation mit $s=-1$: \[-1\cdot\MVec{a}=-\MVec{a}\] -- dies ergibt den sogenannten \MEntry{Gegenvektor}{Gegenvektor}, ein Vektor gleicher Länge aber entgegengesetzter Orientierung. Bild hierzu:
+Bei der Multiplikation eines Vektors mit einer reellen Zahl $s\in\R$ erhÃ¤lt man also einen gleich orientierten Vektor $s$-facher LÃ¤nge, wenn $s>0$ ist. Wenn $s<0$ ist, hat der resultierende Vektor ebenfalls $s$-fache LÃ¤nge, ist aber entgegengesetzt orientiert. Im Spezialfall $s=0$, gilt offenbar \[0\MVec{a}=\MDVec{O}\] fÃ¼r jeden Vektor $\MVec{a}$. Zwei weitere wichtige FÃ¤lle sind die Multiplikation mit $s=1$: \[1\cdot\MVec{a}=\MVec{a}\] -- dies lÃ¤sst den Vektor offenbar gleich -- und die Multiplikation mit $s=-1$: \[-1\cdot\MVec{a}=-\MVec{a}\] -- dies ergibt den sogenannten \MEntry{Gegenvektor}{Gegenvektor}, ein Vektor gleicher LÃ¤nge aber entgegengesetzter Orientierung. Bild hierzu:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[>=stealth] 
@@ -880,7 +880,7 @@ Bei der Multiplikation eines Vektors mit einer reellen Zahl $s\in\R$ erhält man 
 \end{tikzpicture}       
 }% 
 \end{center}
-Da reelle Zahlen bei Multiplikation die Länge von Vektoren ändern, sie also \textit{skalieren}, nennt man reelle Zahlen in Bezug auf Vektoren oft auch \MEntry{Skalare}{Skalar} und spricht bei der Multiplikation einer reellen Zahl mit einem Vektor von \textbf{Skalarmultiplikation}. 
+Da reelle Zahlen bei Multiplikation die LÃ¤nge von Vektoren Ã¤ndern, sie also \textit{skalieren}, nennt man reelle Zahlen in Bezug auf Vektoren oft auch \MEntry{Skalare}{Skalar} und spricht bei der Multiplikation einer reellen Zahl mit einem Vektor von \textbf{Skalarmultiplikation}. 
 \end{MInfo}
 
 \begin{MExample}
@@ -892,7 +892,7 @@ und
 \[
  -\frac{\MVec{v}}{3}=-\frac{1}{3}\MVec{v}=-\frac{1}{3}\MVector{3\\\frac{3}{2}}=\MVector{-1\\-\frac{1}{2}} \MDFPeriod
 \]
-Außerdem gilt zum Beispiel $\MVec{v}=\MDVec{P Q}$ für $P=\MPointTwo[\Big]{3}{\frac{1}{2}}$ und $Q=\MPointTwo{6}{2}$, da
+AuÃŸerdem gilt zum Beispiel $\MVec{v}=\MDVec{P Q}$ fÃ¼r $P=\MPointTwo[\Big]{3}{\frac{1}{2}}$ und $Q=\MPointTwo{6}{2}$, da
 \[
  \MVec{v}=\MVector{3\\\frac{3}{2}}=\MVector{6-3\\2-\frac{1}{2}} \MDFPeriod
 \]
@@ -941,7 +941,7 @@ gilt. Bild dazu:
 \end{center}
 \end{MExample}
 
-Für das Rechnen mit Vielfachen von Vektoren gilt nun der folgende Satz von Rechengesetzen.
+FÃ¼r das Rechnen mit Vielfachen von Vektoren gilt nun der folgende Satz von Rechengesetzen.
 
 \begin{MInfo}
 Sind $r$ und $s$ reelle Zahlen sowie $\MVec{a}$ und $\MVec{b}$ Vektoren, so gelten die folgenden Rechengesetze:
@@ -953,7 +953,7 @@ Sind $r$ und $s$ reelle Zahlen sowie $\MVec{a}$ und $\MVec{b}$ Vektoren, so gelt
  \item $r(-\MVec{a})=(-r)\MVec{a}=-(r\MVec{a})$
  \item $r\MVec{a}=0\MDFPSpace\Leftrightarrow\MDFPSpace r=0$ oder $\MVec{a}=\MDVec{O}$
 \end{enumerate}
-Die Nummer 1 heißt auch Kommutativgesetz der Skalarmultiplikation, die Nummer 2 Assoziativgesetz der Skalarmultiplikation und die Nummern 3 und 4 Distributivgesetze der Skalarmultiplikation. 
+Die Nummer 1 heiÃŸt auch Kommutativgesetz der Skalarmultiplikation, die Nummer 2 Assoziativgesetz der Skalarmultiplikation und die Nummern 3 und 4 Distributivgesetze der Skalarmultiplikation. 
 \end{MInfo}
 
 
@@ -968,7 +968,7 @@ im zweidimensionalen Fall und
 \[
  \MVec{a}-\MVec{b}=\MVec{a}+(-\MVec{b})=\MVector{a_x\\a_y\\a_z}+\MVector{-b_x\\-b_y\\-b_z}=\MVector{a_x-b_x\\a_y-b_y\\a_z-b_z}
 \]
-im dreidimensionalen Fall. Damit kann die Differenz von Vektoren auch geometrisch mit Hilfe ihrer Repräsentanten interpretiert werden:
+im dreidimensionalen Fall. Damit kann die Differenz von Vektoren auch geometrisch mit Hilfe ihrer ReprÃ¤sentanten interpretiert werden:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[>=stealth] 
@@ -992,15 +992,15 @@ im dreidimensionalen Fall. Damit kann die Differenz von Vektoren auch geometrisc
 \end{center}
 \end{MInfo}
 
-Betrachtet man in dieser Infobox nur die Differenz von Vektoren anhand ihrer Komponenten, so kann man sich fragen, wozu hierfür überhaupt das Konzept des Gegenvektors notwendig ist. Tatsächlich könnte man die Differenz von Vektoren in Komponenten auch ohne die Idee des Gegenvektors in Analogie zur Summe hinschreiben. Überlegt man sich dann aber die geometrische Interpretation der Differenz mit Hilfe von Repräsentanten (vgl. die Abbildung in der Infobox), so sieht man, dass dies nur mit Hilfe des Gegenvektors möglich ist.   
+Betrachtet man in dieser Infobox nur die Differenz von Vektoren anhand ihrer Komponenten, so kann man sich fragen, wozu hierfÃ¼r Ã¼berhaupt das Konzept des Gegenvektors notwendig ist. TatsÃ¤chlich kÃ¶nnte man die Differenz von Vektoren in Komponenten auch ohne die Idee des Gegenvektors in Analogie zur Summe hinschreiben. Ãœberlegt man sich dann aber die geometrische Interpretation der Differenz mit Hilfe von ReprÃ¤sentanten (vgl. die Abbildung in der Infobox), so sieht man, dass dies nur mit Hilfe des Gegenvektors mÃ¶glich ist.   
 
 \begin{MExample}
-Es werden in diesem Beispiel einige typische Aufgabenstellungen betrachtet, welche die bisher behandelten Rechengesetze für Vektoren beinhalten.
+Es werden in diesem Beispiel einige typische Aufgabenstellungen betrachtet, welche die bisher behandelten Rechengesetze fÃ¼r Vektoren beinhalten.
 \begin{enumerate}
- \item Es sind die folgenden Vektorausdrücke zu vereinfachen:
+ \item Es sind die folgenden VektorausdrÃ¼cke zu vereinfachen:
  \begin{itemize}
   \item[(i)] $\MVector{1\\-2\\\MZahl{0}{5}}-\frac{1}{2}\MVector{2\\-3\\1}$,
-  \item[(ii)] $2(\MVec{v}-\MVec{w})+3r\MVec{w}-r\cdot(-2\MVec{v})$ für $r\in\R$.
+  \item[(ii)] $2(\MVec{v}-\MVec{w})+3r\MVec{w}-r\cdot(-2\MVec{v})$ fÃ¼r $r\in\R$.
   \end{itemize}
   Anwenden der Rechengesetze ergibt:
   \begin{itemize}
@@ -1014,24 +1014,24 @@ Es werden in diesem Beispiel einige typische Aufgabenstellungen betrachtet, welc
     2(\MVec{v}-\MVec{w})+3r\MVec{w}-r\cdot(-2\MVec{v})=2\MVec{v}-2\MVec{w}+3r\MVec{w}+2r\MVec{v}=2(r+1)\MVec{v}+(3r-2)\MVec{w} \MDFPeriod
    \]
    \end{itemize}
- \item Für $\MVec{a}=\MVector{1\\2}$ und $\MVec{b}=\MVector{-8\\3}$ ist der unbekannte Vektor $\MVec{x}$ in der Gleichung
+ \item FÃ¼r $\MVec{a}=\MVector{1\\2}$ und $\MVec{b}=\MVector{-8\\3}$ ist der unbekannte Vektor $\MVec{x}$ in der Gleichung
  \[
   \MVec{a}-2\MVec{b}-(3\MVec{a}+\MVec{x})=\MVector{0\\-1}
  \]
  zu bestimmen.
  
- Auflösen nach $\MVec{x}$ sowie Einsetzen von $\MVec{a}$ und $\MVec{b}$ ergibt:
+ AuflÃ¶sen nach $\MVec{x}$ sowie Einsetzen von $\MVec{a}$ und $\MVec{b}$ ergibt:
  \[
   -(3\MVec{a}+\MVec{x})=\MVector{0\\-1}-\MVec{a}+2\MVec{b}\MDFPaSpace\Leftrightarrow\MDFPaSpace-\MVec{x}=\MVector{0\\-1}-\MVec{a}+2\MVec{b}+3\MVec{a}=\MVector{0\\-1}+2(\MVec{a}+\MVec{b})
  \]
  \[
   \Leftrightarrow\MDFPaSpace\MVec{x}=-\MVector{0\\-1}-2\left(\MVector{1\\2}+\MVector{-8\\3}\right)=\MVector{0\\1}-2\MVector{-7\\5}\MDFPaSpace\Leftrightarrow\MDFPaSpace\MVec{x}=\MVector{14\\-9} \MDFPeriod
  \]
- \item Unter Benutzung der Differenz von Vektoren soll der Verbindungsvektor $\MDVec{P Q}$ zweier Punkte $P$ und $Q$ mit Hilfe der Ortsvektoren $\MDVec{P}$ und $\MDVec{Q}$ ausgedrückt werden. Es gilt:
+ \item Unter Benutzung der Differenz von Vektoren soll der Verbindungsvektor $\MDVec{P Q}$ zweier Punkte $P$ und $Q$ mit Hilfe der Ortsvektoren $\MDVec{P}$ und $\MDVec{Q}$ ausgedrÃ¼ckt werden. Es gilt:
  \[
   \MDVec{Q}-\MDVec{P} = \MDVec{O Q} - \MDVec{O P} = -\MDVec{Q O} - \MDVec{O P} = -(\MDVec{Q O} + \MDVec{O P}) = -\MDVec{Q P} = \MDVec{P Q}\MDFPeriod
  \]
- Der Verbindungsvektor $\MDVec{P Q}$ von einem Punkt $P$ zu einem Punkt $Q$ ergibt sich also immer als die Differenz des Ortsvektor $\MDVec{Q}$ (zum Endpunkt des Verbindungsvektors) und des Ortsvektors $\MDVec{P}$ (zum Anfangspunkt des Verbindungsvektors). Dies zeigt auch nochmals das folgende Bild und ein Vergleich mit der Rechenregel für Verbindungsvektoren aus \MNRef{VBKM10_Info_OrtsundVerbindungsvektor}:
+ Der Verbindungsvektor $\MDVec{P Q}$ von einem Punkt $P$ zu einem Punkt $Q$ ergibt sich also immer als die Differenz des Ortsvektor $\MDVec{Q}$ (zum Endpunkt des Verbindungsvektors) und des Ortsvektors $\MDVec{P}$ (zum Anfangspunkt des Verbindungsvektors). Dies zeigt auch nochmals das folgende Bild und ein Vergleich mit der Rechenregel fÃ¼r Verbindungsvektoren aus \MNRef{VBKM10_Info_OrtsundVerbindungsvektor}:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[>=stealth] 
@@ -1054,7 +1054,7 @@ Es werden in diesem Beispiel einige typische Aufgabenstellungen betrachtet, welc
 \end{tikzpicture}       
 }% 
 \end{center}
-\item Die Punkte $A=\MPointTwo{2}{1}$, $B=\MPointTwo{4}{2}$ und $C=\MPointTwo{3}{3}$ bilden die Ecken eines Dreiecks. Der (geometrische) Schwerpunkt $S$ dieses Dreiecks kann mit Hilfe der zugehörigen Ortsvektoren berechnet werden:
+\item Die Punkte $A=\MPointTwo{2}{1}$, $B=\MPointTwo{4}{2}$ und $C=\MPointTwo{3}{3}$ bilden die Ecken eines Dreiecks. Der (geometrische) Schwerpunkt $S$ dieses Dreiecks kann mit Hilfe der zugehÃ¶rigen Ortsvektoren berechnet werden:
 \[
  \MDVec{S}=\frac{1}{3}(\MDVec{A}+\MDVec{B}+\MDVec{C}) = \frac{1}{3}\left(\MVector{2\\1}+\MVector{4\\2}+\MVector{3\\3}\right)=\frac{1}{3}\MVector{9\\6}=\MVector{3\\2}\MDFPeriod
 \]
@@ -1099,13 +1099,13 @@ Somit ist $S=\MPointTwo{3}{2}$. Bild hierzu:
 \[
  \MDVec{P Q}-(\MDVec{P Q}-\MDVec{Q R})+\MDVec{R S}
 \]
-so weit wie möglich.} 
+so weit wie mÃ¶glich.} 
 \item{Zeigen Sie, dass die Punkte $A=\MPointTwo{1}{2}$, $B=\MPointTwo{4}{3}$ und $C=\MPointTwo{3}{1}$ zusammen mit dem Ursprung die Ecken eines Parallelogramms bilden.}
 \end{MExerciseItems}
 
 
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \begin{MExerciseItems}
 \item{
 \[
@@ -1156,15 +1156,15 @@ gilt, bilden die drei Punkte zusammen mit dem Ursprung ein Parallelogramm:
 \end{MExercise}
 
 \begin{MExercise}
-Vereinfachen Sie jeweils so weit wie möglich:
+Vereinfachen Sie jeweils so weit wie mÃ¶glich:
 \begin{MExerciseItems}
 \item{$2\MVector{-1\\4\\2}-3\MVector{1\\6\\-2}=$\MLFunctionQuestion{15}{(-5,-10,10)}{5}{x}{5}{SVEC1}.} 
 \item{$-2\MVector{-t\\3}-\left(\MVector{-1\\0}+\frac{t}{2}\MVector{4\\-42}\right)=$\MLFunctionQuestion{15}{(1,21*t-6)}{5}{t}{5}{SVEC2}.}
 \end{MExerciseItems}
-\MInputHint{Vektoren können in der Form \texttt{(a;b)} bzw. \texttt{(a;b;c)} eingegeben werden.}
+\MInputHint{Vektoren kÃ¶nnen in der Form \texttt{(a;b)} bzw. \texttt{(a;b;c)} eingegeben werden.}
 \end{MExercise}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \begin{MExerciseItems}
 \item{
 \[
@@ -1189,7 +1189,7 @@ Bestimmen Sie den Vektor $\MVec{y}$ in der Gleichung
 $\MVec{y}=$\MLFunctionQuestion{15}{(5/4,-1/4,1/4)}{5}{x}{5}{GVEC1}
 \end{MExercise}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \[
  3\left(\MVector{1\\-1\\1}-\MVec{y}\right)=-8\MVector{\MZahl{0}{25}\\\MZahl{0}{25}\\-\MZahl{0}{25}}+\MVec{y}\MDFPaSpace\Leftrightarrow\MDFPaSpace
  \MVector{3\\-3\\3}+2\MVector{1\\1\\-1}=4\MVec{y}
@@ -1201,10 +1201,10 @@ $\MVec{y}=$\MLFunctionQuestion{15}{(5/4,-1/4,1/4)}{5}{x}{5}{GVEC1}
  
 \end{MHint}
 
-Da Vektoren durch beliebig viele Pfeile repräsentiert werden, die alle durch Parallelverschiebung auseinander hervorgehen, haben alle diese Repräsentanten die gleiche geometrische Länge (nämlich immer den Abstand der beiden Punkte, die sie verbinden). Deshalb ist es auch sinnvoll von der Länge eines Vektors zu sprechen. Die Länge eines Vektors trägt in der Mathematik die Bezeichnung \textbf{Betrag} oder \textbf{Norm}.
+Da Vektoren durch beliebig viele Pfeile reprÃ¤sentiert werden, die alle durch Parallelverschiebung auseinander hervorgehen, haben alle diese ReprÃ¤sentanten die gleiche geometrische LÃ¤nge (nÃ¤mlich immer den Abstand der beiden Punkte, die sie verbinden). Deshalb ist es auch sinnvoll von der LÃ¤nge eines Vektors zu sprechen. Die LÃ¤nge eines Vektors trÃ¤gt in der Mathematik die Bezeichnung \textbf{Betrag} oder \textbf{Norm}.
 
 \begin{MInfo}
-Der \MEntry{Betrag}{Betrag (eines Vektors)} oder die \MEntry{Norm}{Norm} eines Vektors $\MVec{a}$ wird als $|\MVec{a}|$ geschrieben und ist der Abstand desjenigen Punktes $P$ vom Ursprung $O$, zu dem der Vektor $\MVec{a}$ der zugehörige Ortsvektor ist (also $\MDVec{P}=\MVec{a}$). Also gilt
+Der \MEntry{Betrag}{Betrag (eines Vektors)} oder die \MEntry{Norm}{Norm} eines Vektors $\MVec{a}$ wird als $|\MVec{a}|$ geschrieben und ist der Abstand desjenigen Punktes $P$ vom Ursprung $O$, zu dem der Vektor $\MVec{a}$ der zugehÃ¶rige Ortsvektor ist (also $\MDVec{P}=\MVec{a}$). Also gilt
 \[
  |\MVec{a}|=[\overline{O P}]
 \]
@@ -1218,7 +1218,7 @@ sowie im dreidimensionalen Fall
 \]
 Ein Vektor mit Betrag $1$ wird auch \MEntry{Einheitsvektor}{Einheitsvektor} genannt.
 \end{MInfo}
-Durch einen Vergleich mit der Infobox \MNRef{VBKM09_Abstand} zum Abstand zweier Punkte in einem zweidimensionalen Koordinatensystem in Kapitel \MNRef{VBKM09}, ist die Formel für den zweidimensionalen Fall unmittelbar einsichtig:
+Durch einen Vergleich mit der Infobox \MNRef{VBKM09_Abstand} zum Abstand zweier Punkte in einem zweidimensionalen Koordinatensystem in Kapitel \MNRef{VBKM09}, ist die Formel fÃ¼r den zweidimensionalen Fall unmittelbar einsichtig:
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}[>=stealth]
@@ -1299,12 +1299,12 @@ Es handelt sich wieder um eine einfache Anwendung des \MSRef{VBKM05_Pythagoras}{
 \end{tikzpicture}
 }
 \end{center}
-In dieser Abbildung sind zwei rechtwinklige Dreiecke zu sehen. Das rechtwinklige Dreieck in der $xz$-Ebene ergibt eine Länge von $\sqrt{a_x^2+a_z^2}$ für die blaue Linie. Das zweite rechtwinklige Dreieck gibt dann für die Streckenlänge von $O$ nach $P$, also für $|\MVec{a}|$:
+In dieser Abbildung sind zwei rechtwinklige Dreiecke zu sehen. Das rechtwinklige Dreieck in der $xz$-Ebene ergibt eine LÃ¤nge von $\sqrt{a_x^2+a_z^2}$ fÃ¼r die blaue Linie. Das zweite rechtwinklige Dreieck gibt dann fÃ¼r die StreckenlÃ¤nge von $O$ nach $P$, also fÃ¼r $|\MVec{a}|$:
 \[
  \sqrt{a_y^2+\left(\sqrt{a_x^2+a_z^2}\right)^2}=\sqrt{a_x^2+a_y^2+a_z^2}\MDFPeriod
 \]
 
-Für Normen von Vektoren gilt der folgende Satz von Rechenregeln.
+FÃ¼r Normen von Vektoren gilt der folgende Satz von Rechenregeln.
 
 \begin{MInfo}
 Sind $\MVec{a}$ und $\MVec{b}$ Vektoren (beide aus dem $\R^2$ oder beide aus dem $\R^3$) und ist $r\in\R$, so gilt
@@ -1313,7 +1313,7 @@ Sind $\MVec{a}$ und $\MVec{b}$ Vektoren (beide aus dem $\R^2$ oder beide aus dem
  \item $|r\MVec{a}|=|r|\cdot|\MVec{a}|$ und
  \item $|\MVec{a}+\MVec{b}|\leq |\MVec{a}|+|\MVec{b}|$.
 \end{enumerate}
-Nummer 1 stellt fest, dass Normen immer nicht-negativ sind und dass nur der Nullvektor die Norm $0$ hat. Nummer 2 ist besonders hilfreich für das Berechnen von Normen von Vielfachen von Vektoren. Nummer 3 heißt \MEntry{Dreiecksungleichung}{Dreiecksungleichung}.
+Nummer 1 stellt fest, dass Normen immer nicht-negativ sind und dass nur der Nullvektor die Norm $0$ hat. Nummer 2 ist besonders hilfreich fÃ¼r das Berechnen von Normen von Vielfachen von Vektoren. Nummer 3 heiÃŸt \MEntry{Dreiecksungleichung}{Dreiecksungleichung}.
 \end{MInfo}
 
 \begin{MExample}
@@ -1339,7 +1339,7 @@ Nummer 1 stellt fest, dass Normen immer nicht-negativ sind und dass nur der Null
 \begin{MExercise}
 Berechnen Sie\\
 $\left|-\frac{1}{3}\MVector{2\\-14\\5}\right|=$\MLFunctionQuestion{15}{5}{5}{x}{5}{NORM1}.
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \[
  \left|-\frac{1}{3}\MVector{2\\-14\\5}\right|=\left|-\frac{1}{3}\right|\cdot\left|\MVector{2\\-14\\5}\right|=\frac{1}{3}\sqrt{2^2+(-14)^2+5^2}=\frac{1}{3}\sqrt{225}=\frac{15}{3}=5 \MDFPeriod
 \]
@@ -1350,11 +1350,11 @@ $\left|-\frac{1}{3}\MVector{2\\-14\\5}\right|=$\MLFunctionQuestion{15}{5}{5}{x}{
 
 
 \begin{MExercise}
-Finden Sie die Zahl $\chi>3$, für die $\left|\MVector{3\\\chi}-\MVector{\chi\\3}\right|=2\sqrt{2}$ gilt:\\
+Finden Sie die Zahl $\chi>3$, fÃ¼r die $\left|\MVector{3\\\chi}-\MVector{\chi\\3}\right|=2\sqrt{2}$ gilt:\\
 $\chi=$\MLFunctionQuestion{15}{5}{5}{x}{5}{ZAHL1}.
 \end{MExercise}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \[
 \left|\MVector{3\\\chi}-\MVector{\chi\\3}\right| =\left|\MVector{3-\chi\\\chi-3}\right|=\sqrt{(3-\chi)^2+(\chi-3)^2}=2\sqrt{2}\MDFPaSpace\Leftrightarrow\MDFPaSpace\sqrt{2(3-\chi)^2}=2\sqrt{2}
 \]
@@ -1368,7 +1368,7 @@ Da $\chi>3$ vorgegeben ist, folgt $\chi=5$.
 Zeigen Sie, dass die Punkte $A=\MPointThree{4}{2}{7}$, $B=\MPointThree{3}{1}{9}$ und $C=\MPointThree{2}{3}{8}$ die Ecken eines gleichseitigen Dreiecks bilden. 
 \end{MExercise}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Das Dreieck ist gleichseitig, falls
 \[
  |\MDVec{A B}| = |\MDVec{A C}| = |\MDVec{B C}|
@@ -1395,18 +1395,18 @@ Somit ist das Dreieck gleichseitig.
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM10_GeradenEbenen_Intro}
-In diesem Abschnitt werden nun Vektoren genutzt, um (zunächst) Geraden in der Ebene zu beschreiben. Man stellt dann fest, dass sich diese Beschreibung von Geraden unmittelbar auf den dreidimensionalen Fall übertragen lässt, man also damit auch Geraden im Raum beschreiben kann. Im Raum gibt es dann, neben den Geraden, weitere mathematisch interessante und mit Hilfe von Vektoren einfach zu beschreibende Objekte, nämlich Ebenen. Schließlich kann man sich überlegen, wie Punkte, Geraden und Ebenen im Raum relativ zueinander liegen können.
+In diesem Abschnitt werden nun Vektoren genutzt, um (zunÃ¤chst) Geraden in der Ebene zu beschreiben. Man stellt dann fest, dass sich diese Beschreibung von Geraden unmittelbar auf den dreidimensionalen Fall Ã¼bertragen lÃ¤sst, man also damit auch Geraden im Raum beschreiben kann. Im Raum gibt es dann, neben den Geraden, weitere mathematisch interessante und mit Hilfe von Vektoren einfach zu beschreibende Objekte, nÃ¤mlich Ebenen. SchlieÃŸlich kann man sich Ã¼berlegen, wie Punkte, Geraden und Ebenen im Raum relativ zueinander liegen kÃ¶nnen.
 
-Hierfür sind die -- in der folgenden Infobox zusammengefassten -- Konzepte wichtig.
+HierfÃ¼r sind die -- in der folgenden Infobox zusammengefassten -- Konzepte wichtig.
 
 \begin{MInfo}\MLabel{info:kollinearkomplanar}
 \begin{itemize}
- \item Zwei Vektoren $\MVec{a}$ und $\MVec{b}$ aus dem $\R^2$ oder $\R^3$ ($\MVec{a},\MVec{b}\neq\MDVec{O}$) heißen \MEntry{kollinear}{kollinear}, falls es eine Zahl $s\in\R$ gibt, so dass 
+ \item Zwei Vektoren $\MVec{a}$ und $\MVec{b}$ aus dem $\R^2$ oder $\R^3$ ($\MVec{a},\MVec{b}\neq\MDVec{O}$) heiÃŸen \MEntry{kollinear}{kollinear}, falls es eine Zahl $s\in\R$ gibt, so dass 
  \[
   \MVec{a}=s\MVec{b}
  \]
  gilt.
- \item Drei Vektoren $\MVec{a}$, $\MVec{b}$ und $\MVec{c}$ aus dem $\R^3$ ($\MVec{a},\MVec{b},\MVec{c}\neq\MDVec{O}$) heißen \MEntry{komplanar}{komplanar}, falls  es zwei Zahlen $s,t\in\R$ gibt, so dass
+ \item Drei Vektoren $\MVec{a}$, $\MVec{b}$ und $\MVec{c}$ aus dem $\R^3$ ($\MVec{a},\MVec{b},\MVec{c}\neq\MDVec{O}$) heiÃŸen \MEntry{komplanar}{komplanar}, falls  es zwei Zahlen $s,t\in\R$ gibt, so dass
  \[
   \MVec{a}=s\MVec{b}+t\MVec{c}
  \]
@@ -1414,14 +1414,14 @@ Hierfür sind die -- in der folgenden Infobox zusammengefassten -- Konzepte wicht
 \end{itemize}
 \end{MInfo}
 
-\begin{MHint}{Weiterführende Bemerkung}
-Der Nullvektor wird im Rahmen dieses Kurses aus der Definition der Kollinearität und Komplanarität ausgeschlossen, da sich dies in der hier benutzten Verwendung zur Beschreibung von Geraden und Ebenen als ausreichend erweisen wird. Zum Preis von etwas komplizierteren Bedingungen für Kollinearität und Komplanarität kann man den Nullvektor hinzunehmen und wird dann ganz natürlich auf die (wichtigen) Begriffe der \textbf{linearen Unabhängigkeit} und der \textbf{linearen Hülle} geführt, die aber den Rahmen dieses Kurses sprengen.   
+\begin{MHint}{WeiterfÃ¼hrende Bemerkung}
+Der Nullvektor wird im Rahmen dieses Kurses aus der Definition der KollinearitÃ¤t und KomplanaritÃ¤t ausgeschlossen, da sich dies in der hier benutzten Verwendung zur Beschreibung von Geraden und Ebenen als ausreichend erweisen wird. Zum Preis von etwas komplizierteren Bedingungen fÃ¼r KollinearitÃ¤t und KomplanaritÃ¤t kann man den Nullvektor hinzunehmen und wird dann ganz natÃ¼rlich auf die (wichtigen) Begriffe der \textbf{linearen UnabhÃ¤ngigkeit} und der \textbf{linearen HÃ¼lle} gefÃ¼hrt, die aber den Rahmen dieses Kurses sprengen.   
 \end{MHint}
 
 
-Die folgenden Überlegungen und Abbildungen machen klar, warum die Konzepte der Kollinearität und Komplanarität insbesondere für die Betrachtung von Geraden und Ebenen wichtig sind: 
+Die folgenden Ãœberlegungen und Abbildungen machen klar, warum die Konzepte der KollinearitÃ¤t und KomplanaritÃ¤t insbesondere fÃ¼r die Betrachtung von Geraden und Ebenen wichtig sind: 
 
-Kollineare Vektoren sind Vielfache voneinander, das heißt die Repräsentanten kollinearer Vektoren mit gleichem Basispunkt liegen auf einer Geraden. Zum Beispiel sind die Vektoren
+Kollineare Vektoren sind Vielfache voneinander, das heiÃŸt die ReprÃ¤sentanten kollinearer Vektoren mit gleichem Basispunkt liegen auf einer Geraden. Zum Beispiel sind die Vektoren
 \[
  \MVec{x}=\MVector{2\\-1}
 \]
@@ -1437,7 +1437,7 @@ kollinear, da
 \[
  \MVec{x}=\MVector{2\\-1}=s\MVector{1\\1}
 \]
-erfüllt. Repräsentanten kollinearer Vektoren mit gleichem Basispunkt, etwa die Pfeile der zugehörigen Ortsvektoren (siehe unten), liegen alle auf einer Geraden:
+erfÃ¼llt. ReprÃ¤sentanten kollinearer Vektoren mit gleichem Basispunkt, etwa die Pfeile der zugehÃ¶rigen Ortsvektoren (siehe unten), liegen alle auf einer Geraden:
 \begin{center}
 \MTikzAuto{
 \begin{tikzpicture}
@@ -1468,7 +1468,7 @@ erfüllt. Repräsentanten kollinearer Vektoren mit gleichem Basispunkt, etwa die P
 \end{tikzpicture}
 } 
 \end{center}
-Komplanare Vektoren im Raum sind derart, dass ihre Repräsentanten in der gleichen Ebene liegen, falls diese den gleichen Basispunkt haben. So sind beispielsweise die Vektoren 
+Komplanare Vektoren im Raum sind derart, dass ihre ReprÃ¤sentanten in der gleichen Ebene liegen, falls diese den gleichen Basispunkt haben. So sind beispielsweise die Vektoren 
 \[
  \MVec{e}_1=\MVector{1\\0\\0}\MDFPSpace,\MDFPaSpace\MVec{e}_2=\MVector{0\\1\\0}\MDFPSpace\textrm{und}\MDFPSpace\MVector{2\\3\\0}
 \]
@@ -1476,15 +1476,15 @@ komplanar, da
 \[
  \MVector{2\\3\\0}=2\MVec{e}_1 + 3\MVec{e}_2=2\MVector{1\\0\\0}+3\MVector{0\\1\\0}
 \]
-gilt. Die Pfeile ihrer zugehörigen Ortsvektoren als Repräsentanten liegen alle in der $x y$-Ebene eines Koordinatensystems im Raum. Dahingegen sind beispielsweise die Vektoren 
+gilt. Die Pfeile ihrer zugehÃ¶rigen Ortsvektoren als ReprÃ¤sentanten liegen alle in der $x y$-Ebene eines Koordinatensystems im Raum. Dahingegen sind beispielsweise die Vektoren 
 \[
  \MVec{e}_1=\MVector{1\\0\\0},\MDFPSpace\MVec{e}_2=\MVector{0\\1\\0}\MDFPSpace\textrm{und}\MDFPSpace\MVector{2\\3\\2}
 \]
-\textit{nicht} komplanar, da $\MVector{2\\3\\2}$ eine von Null verschiedene $z$-Komponente aufweist, seine Repräsentanten also immer aus der $x y$-Ebene herauszeigen. Man sieht leicht ein, dass es keine Zahlen $s,t\in\R$ geben kann, so dass die Gleichung
+\textit{nicht} komplanar, da $\MVector{2\\3\\2}$ eine von Null verschiedene $z$-Komponente aufweist, seine ReprÃ¤sentanten also immer aus der $x y$-Ebene herauszeigen. Man sieht leicht ein, dass es keine Zahlen $s,t\in\R$ geben kann, so dass die Gleichung
 \[
  \MVector{2\\3\\2}=s\MVector{1\\0\\0}+t\MVector{0\\1\\0}
 \]
-erfüllt ist. Bild dazu:
+erfÃ¼llt ist. Bild dazu:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[>=stealth]
@@ -1526,11 +1526,11 @@ erfüllt ist. Bild dazu:
 \begin{MXContent}{Geraden in der Ebene und im Raum}{Geraden Ebene Raum}{STD}
 \MLabel{VBKM10_GeradenEbene}
 \MDeclareSiteUXID{VBKM10_GeradenEbene}
-In Kapitel \MNRef{VBKM09} wurden Geraden in der Ebene mittels Koordinatengleichungen für die Punkte auf den Geraden bezüglich eines festen Koordinatensystems beschrieben. Zum Beispiel ist in dieser Beschreibung eine Gerade $g$ mit Steigung $\frac{1}{2}$ und Achsenabschnitt $1$ gegeben als Punktmenge
+In Kapitel \MNRef{VBKM09} wurden Geraden in der Ebene mittels Koordinatengleichungen fÃ¼r die Punkte auf den Geraden bezÃ¼glich eines festen Koordinatensystems beschrieben. Zum Beispiel ist in dieser Beschreibung eine Gerade $g$ mit Steigung $\frac{1}{2}$ und Achsenabschnitt $1$ gegeben als Punktmenge
 \[
  g=\{\MPointTwo{x}{y}\in\R^2\MCondSetSep y=\frac{1}{2}x+1\} \MDFPSpace,
 \]
-wofür man oft kurz auch nur die Koordinatengleichung (hier in \MSRef{VBKM09_Info_Normalform}{Normalform}) angibt:
+wofÃ¼r man oft kurz auch nur die Koordinatengleichung (hier in \MSRef{VBKM09_Info_Normalform}{Normalform}) angibt:
 \[
  g\colon y=\frac{1}{2}x+1\MDFPeriod
 \]
@@ -1556,19 +1556,19 @@ Das folgende Bild zeigt die Gerade:
 } 
 \end{center}
 
-Im Folgenden sollen die Punkte auf der Geraden nun durch ihre zugehörigen Ortsvektoren beschrieben werden. Die nachstehende Überlegung führt auf diese Beschreibung: Die Punkte $\MPointTwo{x}{y}$ auf der obigen Geraden $g$ erfüllen die Gleichung
+Im Folgenden sollen die Punkte auf der Geraden nun durch ihre zugehÃ¶rigen Ortsvektoren beschrieben werden. Die nachstehende Ãœberlegung fÃ¼hrt auf diese Beschreibung: Die Punkte $\MPointTwo{x}{y}$ auf der obigen Geraden $g$ erfÃ¼llen die Gleichung
 \[
  y=\frac{1}{2}x+1
 \]
-für ihre Koordinaten. Man kann diese Gleichung für die $y$-Koordinaten in die Punkte einsetzen und erhält, dass die Gerade $g$ durch Punkte der Form $\MPointTwo[\Big]{x}{\frac{1}{2}x+1}$ mit $x\in\R$ gebildet wird. Die zu diesen Punkten gehörenden Ortsvektoren sollen mit $\MVec{r}$ bezeichnet sein. Dann gilt
+fÃ¼r ihre Koordinaten. Man kann diese Gleichung fÃ¼r die $y$-Koordinaten in die Punkte einsetzen und erhÃ¤lt, dass die Gerade $g$ durch Punkte der Form $\MPointTwo[\Big]{x}{\frac{1}{2}x+1}$ mit $x\in\R$ gebildet wird. Die zu diesen Punkten gehÃ¶renden Ortsvektoren sollen mit $\MVec{r}$ bezeichnet sein. Dann gilt
 \[
  \MVec{r}=\MVector{x\\\frac{1}{2}x+1}=x\MVector{1\\\frac{1}{2}}+\MVector{0\\1}
 \]
-mit $x\in\R$. Das heißt die Gerade $g$ kann unter Benutzung von Ortsvektoren auch beschrieben werden mittels
+mit $x\in\R$. Das heiÃŸt die Gerade $g$ kann unter Benutzung von Ortsvektoren auch beschrieben werden mittels
 \[
  g\colon \MVec{r}=x\MVector{1\\\frac{1}{2}}+\MVector{0\\1} \MDFPSpace,\MDFPaSpace x\in\R \MDFPeriod
 \]
-Mit anderen Worten, die Punkte auf $g$ werden gebildet durch die Summe des Vektors $\MVec{a}=\MVector{0\\1}$ und allen möglichen Vielfachen des Vektors $\MVec{u}=\MVector{1\\\frac{1}{2}}$, also allen zu  $\MVector{1\\\frac{1}{2}}$ kollinearen Vektoren. Das folgende Bild stellt diese Sichtweise auf Geraden dar:
+Mit anderen Worten, die Punkte auf $g$ werden gebildet durch die Summe des Vektors $\MVec{a}=\MVector{0\\1}$ und allen mÃ¶glichen Vielfachen des Vektors $\MVec{u}=\MVector{1\\\frac{1}{2}}$, also allen zu  $\MVector{1\\\frac{1}{2}}$ kollinearen Vektoren. Das folgende Bild stellt diese Sichtweise auf Geraden dar:
 
 \begin{center}
 \MTikzAuto{
@@ -1621,7 +1621,7 @@ Mit anderen Worten, die Punkte auf $g$ werden gebildet durch die Summe des Vekto
 } 
 \end{center}
 
-Die nächste Infobox stellt die wichtigsten Begriffe, Methoden und Konzepte zu dieser als \textbf{Punkt-Richtungsform} oder \textbf{Parameterform} bezeichneten Darstellungsweise von Geraden zusammen.
+Die nÃ¤chste Infobox stellt die wichtigsten Begriffe, Methoden und Konzepte zu dieser als \textbf{Punkt-Richtungsform} oder \textbf{Parameterform} bezeichneten Darstellungsweise von Geraden zusammen.
 
 \begin{MInfo}
 \begin{itemize}
@@ -1662,7 +1662,7 @@ Hierbei wird $\lambda$ als \textbf{Parameter}, $\MVec{a}$ als \MEntry{Aufpunktve
 \end{tikzpicture}
 } 
 \end{center}
-\item Für eine Gerade $g$, die durch Angabe einer Geradengleichung in Normalform
+\item FÃ¼r eine Gerade $g$, die durch Angabe einer Geradengleichung in Normalform
 \[
  g\colon y=m x+b
 \]
@@ -1671,11 +1671,11 @@ vorliegt, kann eine Punkt-Richtungsform angegeben werden, indem die Ortsvektoren
  g\colon \MVec{r}=x\MVector{1\\m}+\MVector{0\\b}\MDFPSpace,\MDFPaSpace x\in\R
 \]
 mit dem Richtungsvektor $\MVec{u}=\MVector{1\\m}$ und dem Aufpunktvektor $\MVec{a}=\MVector{0\\b}$.
-\item Für eine Gerade $g$, die in Parameterform
+\item FÃ¼r eine Gerade $g$, die in Parameterform
 \[
  g\colon \MVec{r}=\lambda\MVec{u}+\MVec{a}\MDFPSpace,\MDFPaSpace\lambda\in\R
 \]
-vorliegt, kann eine zugehörige Geradengleichung folgendermaßen ermittelt werden: Der Richtungsvektor $\MVec{u}=\MVector{u_x\\u_y}$ liefert durch Anlegen eines Steigungsdreiecks sofort die Steigung der Geraden. Es gilt
+vorliegt, kann eine zugehÃ¶rige Geradengleichung folgendermaÃŸen ermittelt werden: Der Richtungsvektor $\MVec{u}=\MVector{u_x\\u_y}$ liefert durch Anlegen eines Steigungsdreiecks sofort die Steigung der Geraden. Es gilt
 \[
  m=\frac{u_y}{u_x} \MDFPeriod
 \]
@@ -1712,7 +1712,7 @@ vorliegt, kann eine zugehörige Geradengleichung folgendermaßen ermittelt werden:
 \end{tikzpicture}
 } 
 \end{center}
-(Hierfür muss $u_x\neq0$ sein. Der Spezialfall $u_x=0$ wird im Beispiel unten behandelt.) Nach den Methoden aus Abschnitt \MNRef{VBKM09_Koordinatengleichungen} benötigt man zur Angabe der Geradengleichung in Normalform nun nur noch einen Punkt auf der Geraden, aus dem man den Achsenabschnitt $b$ bestimmt. Hierfür benutzt man am einfachsten den Aufpunktvektor $\MVec{a}$.
+(HierfÃ¼r muss $u_x\neq0$ sein. Der Spezialfall $u_x=0$ wird im Beispiel unten behandelt.) Nach den Methoden aus Abschnitt \MNRef{VBKM09_Koordinatengleichungen} benÃ¶tigt man zur Angabe der Geradengleichung in Normalform nun nur noch einen Punkt auf der Geraden, aus dem man den Achsenabschnitt $b$ bestimmt. HierfÃ¼r benutzt man am einfachsten den Aufpunktvektor $\MVec{a}$.
 \end{itemize}
 
 
@@ -1723,7 +1723,7 @@ kollineare Vektoren zur Auswahl. So wird zum Beispiel die Gerade $g$ mit der Koo
 \[
  g\colon\frac{1}{2}x+1 
 \]
-aus dem einführenden Beispiel nicht nur durch 
+aus dem einfÃ¼hrenden Beispiel nicht nur durch 
 \[
  g\colon \MVec{r}=x\MVector{1\\\frac{1}{2}}+\MVector{0\\1}\MDFPSpace,\MDFPaSpace x\in\R
 \]
@@ -1735,11 +1735,11 @@ oder
 \[
  g\colon \MVec{r}=\nu\MVector{-2\\-1}+\MVector{-2\\0}\MDFPSpace,\MDFPaSpace \nu\in\R \MDFPeriod
 \]
-Oft benutzt man Darstellungen mit einem möglichst einfachen Richtungsvektor. Es sollte nur darauf geachtet werden, dass bei Darstellungen der gleichen Geraden mittels unterschiedlicher Richtungs- oder Aufpunktvektoren jeweils andere Variablen für den Parameter verwendet werden, da gleiche Parameterwerte in unterschiedlichen Darstellungen zu unterschiedlichen Punkten auf der Geraden führen. So ergibt beispielsweise der Parameterwert $\lambda=1$ in der entsprechenden obigen Parameterform für $g$ den Punkt
+Oft benutzt man Darstellungen mit einem mÃ¶glichst einfachen Richtungsvektor. Es sollte nur darauf geachtet werden, dass bei Darstellungen der gleichen Geraden mittels unterschiedlicher Richtungs- oder Aufpunktvektoren jeweils andere Variablen fÃ¼r den Parameter verwendet werden, da gleiche Parameterwerte in unterschiedlichen Darstellungen zu unterschiedlichen Punkten auf der Geraden fÃ¼hren. So ergibt beispielsweise der Parameterwert $\lambda=1$ in der entsprechenden obigen Parameterform fÃ¼r $g$ den Punkt
 \[
  1\cdot\MVector{2\\1}+\MVector{2\\2}=\MVector{4\\3}
 \]
-auf $g$, der Parameterwert $\nu=1$ der entsprechenden obigen Parameterform für $g$ den Punkt
+auf $g$, der Parameterwert $\nu=1$ der entsprechenden obigen Parameterform fÃ¼r $g$ den Punkt
 \[
  1\cdot\MVector{-2\\-1}+\MVector{-2\\0}=\MVector{-4\\-1}
 \]
@@ -1749,41 +1749,41 @@ Das folgende Beispiel zeigt einige Anwendungen der Punkt-Richtungsform.
 
 \begin{MExample}
 \begin{itemize}
- \item Für die Gerade $g$ in der Ebene, welche durch die Geradengleichung 
+ \item FÃ¼r die Gerade $g$ in der Ebene, welche durch die Geradengleichung 
  \[
   g\colon 2y-3x=6
  \]
  gegeben ist, sollen zwei verschiedene Parameterformen ermittelt werden.
  
- Zunächst wird die Geradengleichung auf Normalform gebracht:
+ ZunÃ¤chst wird die Geradengleichung auf Normalform gebracht:
  \[
   2y-3x=6\MDFPaSpace\Leftrightarrow\MDFPaSpace y=\frac{3}{2}x+3 \MDFPeriod
  \]
- Punkte auf $g$ haben also die Form $\MPointTwo[\Big]{x}{\frac{3}{2}x+3}$ mit $x\in\R$, welche durch Ortsvektoren $\MVector{x\\\frac{3}{2}x+3}$ mit $x\in\R$ beschrieben werden. Folglich ist eine mögliche Parameterform durch
+ Punkte auf $g$ haben also die Form $\MPointTwo[\Big]{x}{\frac{3}{2}x+3}$ mit $x\in\R$, welche durch Ortsvektoren $\MVector{x\\\frac{3}{2}x+3}$ mit $x\in\R$ beschrieben werden. Folglich ist eine mÃ¶gliche Parameterform durch
  \[
   g\colon \MVec{r}=x\MVector{1\\\frac{3}{2}}+\MVector{0\\3}\MDFPSpace,\MDFPaSpace x\in\R
  \]
- gegeben. Für eine andere Parameterform können ein beliebiger anderer Richtungsvektor, der kollinear zu $\MVector{1\\\frac{3}{2}}$ ist, und ein beliebiger anderer Aufpunkt auf $g$ gewählt werden. Zum Beispiel ist $\MVector{2\\3}$ kollinear zu $\MVector{1\\\frac{3}{2}}$, da $\MVector{2\\3}=2\MVector{1\\\frac{3}{2}}$ gilt. Und $\MVector{2\\6}$ ist ein anderer passender Aufpunktvektor, da der Punkt $\MPointTwo{2}{6}$ offenbar die Geradengleichung erfüllt. Folglich ist 
+ gegeben. FÃ¼r eine andere Parameterform kÃ¶nnen ein beliebiger anderer Richtungsvektor, der kollinear zu $\MVector{1\\\frac{3}{2}}$ ist, und ein beliebiger anderer Aufpunkt auf $g$ gewÃ¤hlt werden. Zum Beispiel ist $\MVector{2\\3}$ kollinear zu $\MVector{1\\\frac{3}{2}}$, da $\MVector{2\\3}=2\MVector{1\\\frac{3}{2}}$ gilt. Und $\MVector{2\\6}$ ist ein anderer passender Aufpunktvektor, da der Punkt $\MPointTwo{2}{6}$ offenbar die Geradengleichung erfÃ¼llt. Folglich ist 
  \[
   g\colon \MVec{r}=\sigma\MVector{2\\3}+\MVector{2\\6}\MDFPSpace,\MDFPaSpace \sigma\in\R
  \]
- eine weitere mögliche Parameterform der Geraden $g$.
- \item Auch für eine Gerade, deren Koordinatengleichung nicht auf Normalform gebracht werden kann, wie etwa
+ eine weitere mÃ¶gliche Parameterform der Geraden $g$.
+ \item Auch fÃ¼r eine Gerade, deren Koordinatengleichung nicht auf Normalform gebracht werden kann, wie etwa
  \[
   h\colon x=2 \MDFPSpace,
  \]
  kann eine Punkt-Richtungsform angegeben werden.
  
- Punkte auf der Geraden $h$ haben alle die Form $\MPointTwo{2}{y}$ für $y\in\R$ mit zugehörigen Ortsvektoren $\MVector{2\\y}$ für $y\in\R$. Da $\MVector{2\\y}=y\MVector{0\\1}+\MVector{2\\0}$ gilt, ist eine mögliche Punkt-Richtungsform für $h$ durch
+ Punkte auf der Geraden $h$ haben alle die Form $\MPointTwo{2}{y}$ fÃ¼r $y\in\R$ mit zugehÃ¶rigen Ortsvektoren $\MVector{2\\y}$ fÃ¼r $y\in\R$. Da $\MVector{2\\y}=y\MVector{0\\1}+\MVector{2\\0}$ gilt, ist eine mÃ¶gliche Punkt-Richtungsform fÃ¼r $h$ durch
  \[
   h\colon \MVec{r}=y\MVector{0\\1}+\MVector{2\\0}\MDFPSpace,\MDFPaSpace y\in\R
  \]
  gegeben.
- \item Für die Gerade $\alpha$ in Parameterform mit
+ \item FÃ¼r die Gerade $\alpha$ in Parameterform mit
  \[
   \alpha\colon \MVec{r}=\mu\MVector{-3\\2} + \MVector{1\\1}\MDFPSpace,\MDFPaSpace \mu\in\R
  \]
- soll die zugehörige Geradengleichung in Normalform ermittelt werden.
+ soll die zugehÃ¶rige Geradengleichung in Normalform ermittelt werden.
  
  Der Richtungsvektor $\MVector{-3\\2}$ liefert die Steigung $m=\frac{2}{-3}=-\frac{2}{3}$. Somit hat die Geradengleichung in Normalform die Form
  \[
@@ -1797,17 +1797,17 @@ Das folgende Beispiel zeigt einige Anwendungen der Punkt-Richtungsform.
  \[
   \alpha\colon y=-\frac{2}{3}x+\frac{5}{3} \MDFPeriod
  \]
- \item Auch für eine Gerade in Parameterform wie etwa
+ \item Auch fÃ¼r eine Gerade in Parameterform wie etwa
  \[
   \beta\colon \MVec{r}=\lambda\MVector{0\\-2} + \MVector{-1\\1}\MDFPSpace,\MDFPaSpace \lambda\in\R \MDFPSpace ,
  \]
- für welche die $x$-Komponente des Richtungsvektors $0$ ist, kann eine zugehörige Geradengleichung ermittelt werden.
+ fÃ¼r welche die $x$-Komponente des Richtungsvektors $0$ ist, kann eine zugehÃ¶rige Geradengleichung ermittelt werden.
  
- Der Richtungsvektor mit $x$-Komponente gleich $0$ impliziert, dass die Gerade parallel zur $y$-Achse verläuft. Folglich hat die Geradengleichung die Form
+ Der Richtungsvektor mit $x$-Komponente gleich $0$ impliziert, dass die Gerade parallel zur $y$-Achse verlÃ¤uft. Folglich hat die Geradengleichung die Form
  \[
   \beta\colon x=c \MDFPeriod
  \]
- Die Konstante $c$ kann wieder durch Einsetzen des Aufpunkts $\MPointTwo{-1}{1}$ bestimmt werden. Man erhält $-1=c$, und folglich gilt
+ Die Konstante $c$ kann wieder durch Einsetzen des Aufpunkts $\MPointTwo{-1}{1}$ bestimmt werden. Man erhÃ¤lt $-1=c$, und folglich gilt
  \[
   \beta\colon x=-1 \MDFPeriod
  \]
@@ -1902,7 +1902,7 @@ Gegeben sind die beiden Punkte $A=\MPointTwo{-2}{-1}$ und $B=\MPointTwo{3}{-\fra
 \MGroupButton{Antworten kontrollieren}
 }
 \item{
-Für welchen Wert von $\psi$ liegt der Punkt $P$ mit dem Ortsvektor
+FÃ¼r welchen Wert von $\psi$ liegt der Punkt $P$ mit dem Ortsvektor
 \[
  \MDVec{P}=\MVector{-2\\\psi}
 \]
@@ -1910,13 +1910,13 @@ auf der Geraden
 \[
  i\colon \MVec{r}=\tau\MVector{1\\-3}+\MVector{-1\\2}\MDFPSpace,\MDFPaSpace\tau\in\R \MDFPSpace ,
 \]
-und für welchen Parameterwert $\tau$ gilt dann $\MVec{r}=\MDVec{P}$?\\
+und fÃ¼r welchen Parameterwert $\tau$ gilt dann $\MVec{r}=\MDVec{P}$?\\
 $\psi=$\MLFunctionQuestion{15}{5}{5}{x}{5}{PARA10}\\
 $\tau=$\MLFunctionQuestion{15}{-1}{5}{x}{5}{PARA11}
 }
 \end{MExerciseItems}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{MExerciseItems}
 \item{
 Die Steigung der Geraden wird aus dem Richtungsvektor $\MVector{-1\\5}$ ermittelt: $m=\frac{5}{-1}=-5$. Damit gilt
@@ -1933,11 +1933,11 @@ Somit:
 \]
 }
 \item{
-Überführen der Geradengleichung in Normalform ergibt
+ÃœberfÃ¼hren der Geradengleichung in Normalform ergibt
 \[
  \frac{1}{2}y+x+2=0\MDFPSpace\Leftrightarrow\MDFPSpace y=-2x-4 \MDFPeriod
 \]
-Der zum Aufpunktvektor $\MVector{b\\-5}$ gehörende Aufpunkt $\MPointTwo{b}{-5}$ muss auf der Geraden liegen, also die Geradengleichung erfüllen. Damit ergibt sich
+Der zum Aufpunktvektor $\MVector{b\\-5}$ gehÃ¶rende Aufpunkt $\MPointTwo{b}{-5}$ muss auf der Geraden liegen, also die Geradengleichung erfÃ¼llen. Damit ergibt sich
 \[
  -5 = -2b-4\MDFPSpace\Leftrightarrow\MDFPSpace b=\frac{1}{2} \MDFPeriod
 \]
@@ -1952,7 +1952,7 @@ Aus den gegebenen Punkten $A$ und $B$ folgt der Richtungsvektor
 \[
  \MDVec{A B}=\MDVec{B}-\MDVec{A}=\MVector{3\\-\frac{3}{2}}-\MVector{-2\\-1}=\MVector{5\\-\frac{1}{2}} \MDFPeriod
 \]
-Die Richtungsvektoren in den Fällen (ii) und (v) sind nicht zu diesem Vektor kollinear. Damit sind (ii) und (v) sicher keine korrekten Darstellungen der Geraden $A B$. Aus dem Richtungsvektor $\MDVec{A B}=\MVector{5\\-\frac{1}{2}}$ folgt die Steigung $m=\frac{-\frac{1}{2}}{5}=-\frac{1}{10}$ der Geraden $A B$. Damit lautet die Geradengleichung
+Die Richtungsvektoren in den FÃ¤llen (ii) und (v) sind nicht zu diesem Vektor kollinear. Damit sind (ii) und (v) sicher keine korrekten Darstellungen der Geraden $A B$. Aus dem Richtungsvektor $\MDVec{A B}=\MVector{5\\-\frac{1}{2}}$ folgt die Steigung $m=\frac{-\frac{1}{2}}{5}=-\frac{1}{10}$ der Geraden $A B$. Damit lautet die Geradengleichung
 \[
  A B\colon y=-\frac{1}{10}x+b \MDFPSpace ,
 \]
@@ -1964,25 +1964,25 @@ Es gilt also
 \[
  A B\colon y=-\frac{1}{10}x-\frac{6}{5} \MDFPeriod
 \]
-Diese Geradengleichung wird von den Aufpunkten in den Fällen (i) bis (v) erfüllt, im Fall (vi) aber nicht. Damit sind insgesamt die Fälle (i), (iii) und (iv) korrekte Darstellungen der Geraden, die Fälle (ii), (v) und (vi) aber nicht. 
+Diese Geradengleichung wird von den Aufpunkten in den FÃ¤llen (i) bis (v) erfÃ¼llt, im Fall (vi) aber nicht. Damit sind insgesamt die FÃ¤lle (i), (iii) und (iv) korrekte Darstellungen der Geraden, die FÃ¤lle (ii), (v) und (vi) aber nicht. 
 }
 \item{
 Die Bedingung 
 \[
  \MVector{-2\\\psi} = \tau\MVector{1\\-3}+\MVector{-1\\2}
 \]
-führt auf die beiden Gleichungen
+fÃ¼hrt auf die beiden Gleichungen
 \[
  -2=\tau-1\MDFPSpace\textrm{ und }\MDFPSpace\psi=-3\tau+2 \MDFPeriod
 \]
-Damit ergibt sich zunächst $\tau=-1$ und somit $\psi=-3\cdot(-1)+2=5$.
+Damit ergibt sich zunÃ¤chst $\tau=-1$ und somit $\psi=-3\cdot(-1)+2=5$.
 }
 \end{MExerciseItems}
 \end{MHint}
 
 \end{MExercise}
 
-Geraden im Raum lassen sich im Gegensatz zu Geraden in der Ebene \textit{nicht} mit Hilfe einer Koordinatengleichung darstellen. Hier hilft aber die Punkt-Richtungsform, die sich problemlos vom zwei- auf den dreidimensionalen Fall überträgt:
+Geraden im Raum lassen sich im Gegensatz zu Geraden in der Ebene \textit{nicht} mit Hilfe einer Koordinatengleichung darstellen. Hier hilft aber die Punkt-Richtungsform, die sich problemlos vom zwei- auf den dreidimensionalen Fall Ã¼bertrÃ¤gt:
 
 \begin{MInfo}
 Eine Gerade $g$ im Raum ist in \MEntry{Punkt-Richtungsform}{Punkt-Richtungsform} oder \MEntry{Parameterform}{Parameterform} gegeben als Menge von Ortsvektoren
@@ -1993,7 +1993,7 @@ oft kurz geschrieben als
 \[
  g\colon \MVec{r}=\lambda\MVec{u}+\MVec{a}\MDFPSpace,\MDFPaSpace\lambda\in\R\MDFPeriod
 \]
-Hier gelten die gleichen Bezeichnungen wie im zweidimensionalen Fall: $\lambda$ heißt \textbf{Parameter}, $\MVec{a}$ heißt \MEntry{Aufpunktvektor}{Aufpunktvektor} und $\MVec{u}\neq\MDVec{O}$ heißt \MEntry{Richtungsvektor}{Richtungsvektor} der Geraden:
+Hier gelten die gleichen Bezeichnungen wie im zweidimensionalen Fall: $\lambda$ heiÃŸt \textbf{Parameter}, $\MVec{a}$ heiÃŸt \MEntry{Aufpunktvektor}{Aufpunktvektor} und $\MVec{u}\neq\MDVec{O}$ heiÃŸt \MEntry{Richtungsvektor}{Richtungsvektor} der Geraden:
 \begin{center}
 \MTikzAuto{%
 \begin{tikzpicture}[>=stealth]
@@ -2035,21 +2035,21 @@ Der Punkt $Q$ kann als Aufpunkt benutzt werden. Damit ergibt sich die Parameterf
 \[
  P Q\colon \MVec{r}=t\MVector{3\\2\\\frac{15}{2}}+\MVector{2\\0\\8}\MDFPSpace,\MDFPaSpace t\in\R\MDFPeriod
 \]
-Weitere zulässige Richtungsvektoren müssen kollinear zu $\MDVec{P Q}$ sein. Zum Beispiel:
+Weitere zulÃ¤ssige Richtungsvektoren mÃ¼ssen kollinear zu $\MDVec{P Q}$ sein. Zum Beispiel:
 \[
  \MVector{-6\\-4\\-15}=-2\MVector{3\\2\\\frac{15}{2}}\MDFPeriod
 \]
-Dann kann zum Beispiel auch der Punkt $P$ als Aufpunkt benutzt werden, und man erhält
+Dann kann zum Beispiel auch der Punkt $P$ als Aufpunkt benutzt werden, und man erhÃ¤lt
 \[
  P Q\colon \MVec{r}=s\MVector{-6\\-4\\-15}+\MVector{-1\\-2\\\frac{1}{2}}\MDFPSpace,\MDFPaSpace s\in\R
 \]
-als weitere korrekte Punkt-Richtungsform für die Gerade $P Q$.
+als weitere korrekte Punkt-Richtungsform fÃ¼r die Gerade $P Q$.
 \end{MExample}
 
 \begin{MExercise}
 \begin{MExerciseItems}
 \item{
-Die Gerade $h=A B$, welche durch die gegebenen Punkte $A=\MPointThree{-1}{-1}{0}$ und $B=\MPointThree{-3}{0}{1}$ verläuft,
+Die Gerade $h=A B$, welche durch die gegebenen Punkte $A=\MPointThree{-1}{-1}{0}$ und $B=\MPointThree{-3}{0}{1}$ verlÃ¤uft,
 hat die Parameterform
 \[
  h\colon \MVec{r}=\lambda\MVector{4\\a\\b}+\MVector{c\\d\\-4}\MDFPSpace,\MDFPaSpace\lambda\in\R \MDFPeriod
@@ -2061,7 +2061,7 @@ $c=$\MLFunctionQuestion{15}{7}{5}{x}{5}{PARA33}\\
 $d=$\MLFunctionQuestion{15}{-5}{5}{x}{5}{PARA34}\\
 }
 \item{
-Für welchen Wert von $\chi$ liegt der Punkt $P$ mit dem Ortsvektor
+FÃ¼r welchen Wert von $\chi$ liegt der Punkt $P$ mit dem Ortsvektor
 \[
  \MDVec{P}=\MVector{-2\\\chi\\-8}
 \]
@@ -2069,28 +2069,28 @@ auf der Geraden
 \[
  g\colon \MVec{r}=\nu\MVector{1\\-3\\8}+\MVector{-1\\2\\0}\MDFPSpace,\MDFPaSpace\nu\in\R \MDFPSpace ,
 \]
-und für welchen Parameterwert $\nu$ gilt dann $\MVec{r}=\MDVec{P}$?\\
+und fÃ¼r welchen Parameterwert $\nu$ gilt dann $\MVec{r}=\MDVec{P}$?\\
 $\chi=$\MLFunctionQuestion{15}{5}{5}{x}{5}{PARA35}\\
 $\nu=$\MLFunctionQuestion{15}{-1}{5}{x}{5}{PARA36}
 }
 \end{MExerciseItems}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{MExerciseItems}
 \item{
 Aus den gegebenen Punkten $A$ und $B$ folgt der Richtungsvektor
 \[
  \MDVec{A B}=\MDVec{B}-\MDVec{A}=\MVector{-3\\0\\1}-\MVector{-1\\-1\\0}=\MVector{-2\\1\\1} \MDFPeriod
 \]
-Somit ist $\MVector{4\\a\\b}$ kollinear zu $\MVector{-2\\1\\1}$ und damit ebenfalls ein zulässiger Richtungsvektor für $h$, falls $a=b=-2$ gilt, denn dann hat man
+Somit ist $\MVector{4\\a\\b}$ kollinear zu $\MVector{-2\\1\\1}$ und damit ebenfalls ein zulÃ¤ssiger Richtungsvektor fÃ¼r $h$, falls $a=b=-2$ gilt, denn dann hat man
 \[
  \MVector{4\\-2\\-2} = -2\cdot\MVector{-2\\1\\1} \MDFPeriod
 \]
-Der Aufpunktvektor $\MVector{c\\d\\-4}$ muss zu einem Punkt auf $h$ gehören. Eine mögliche Parameterform der Geraden $h$ ergibt sich unter Benutzung von $\MDVec{A B}$ als Richtungsvektor und $\MDVec{A}$ als Aufpunktvektor:
+Der Aufpunktvektor $\MVector{c\\d\\-4}$ muss zu einem Punkt auf $h$ gehÃ¶ren. Eine mÃ¶gliche Parameterform der Geraden $h$ ergibt sich unter Benutzung von $\MDVec{A B}$ als Richtungsvektor und $\MDVec{A}$ als Aufpunktvektor:
 \[
  h\colon\MVec{r}=t\MVector{-2\\1\\1}+\MVector{-1\\-1\\0}\MDFPSpace,\MDFPaSpace t\in\R \MDFPeriod
 \]
-Dies führt auf die Gleichung
+Dies fÃ¼hrt auf die Gleichung
 \[
  \MVector{c\\d\\-4}=t\MVector{-2\\1\\1}+\MVector{-1\\-1\\0}=\MVector{-2t-1\\t-1\\t} \MDFPSpace ,
 \]
@@ -2105,7 +2105,7 @@ Die Bedingung
 \[
  \MVector{-2\\\chi\\-8} = \nu\MVector{1\\-3\\8}+\MVector{-1\\2\\0} = \MVector{\nu-1\\-3\nu+2\\8\nu}
 \]
-führt in der ersten und dritten Komponente auf $\nu=-1$, womit in der zweiten Komponente $\chi=-3\cdot(-1)+2=5$ gilt.
+fÃ¼hrt in der ersten und dritten Komponente auf $\nu=-1$, womit in der zweiten Komponente $\chi=-3\cdot(-1)+2=5$ gilt.
 }
 \end{MExerciseItems}
 \end{MHint}
@@ -2119,11 +2119,11 @@ führt in der ersten und dritten Komponente auf $\nu=-1$, womit in der zweiten Ko
 \MLabel{VBKM10_EbenenRaum}
 \MDeclareSiteUXID{VBKM10_EbenenRaum}
 
-Startet man mit einem Vektor $\MVec{u}$ im Raum und betrachtet alle Vielfachen $\lambda\MVec{u}$, $\lambda\in\R$ dieses Vektors, so erhält man alle Vektoren, die kollinear zu $\MVec{u}$ sind (vgl. Infobox \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor -- und interpretiert als Ortsvektoren -- bilden alle diese Vektoren dann die Parameterform einer Geraden, wie sie im vorigen Abschnitt \MNRef{VBKM10_GeradenEbene} untersucht wurde. Aufbauend darauf ist es nun natürlich zu fragen, was man erhält, wenn man mit zwei festen (aber \textit{nicht} kollinearen) Vektoren $\MVec{u}$ und $\MVec{v}$ startet und dann alle möglichen Vektoren betrachtet, die zu diesen komplanar sind, also alle Vektoren, die man durch $\lambda\MVec{u}+\mu\MVec{v}$; $\lambda,\mu\in\R$ erhält (vgl. wieder Infobox \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor ergibt dies eine Verallgemeinerung des Konzepts der Parameterform einer Gerade, nämlich die Parameterform einer Ebene im Raum, welche in der unten 
+Startet man mit einem Vektor $\MVec{u}$ im Raum und betrachtet alle Vielfachen $\lambda\MVec{u}$, $\lambda\in\R$ dieses Vektors, so erhÃ¤lt man alle Vektoren, die kollinear zu $\MVec{u}$ sind (vgl. Infobox \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor -- und interpretiert als Ortsvektoren -- bilden alle diese Vektoren dann die Parameterform einer Geraden, wie sie im vorigen Abschnitt \MNRef{VBKM10_GeradenEbene} untersucht wurde. Aufbauend darauf ist es nun natÃ¼rlich zu fragen, was man erhÃ¤lt, wenn man mit zwei festen (aber \textit{nicht} kollinearen) Vektoren $\MVec{u}$ und $\MVec{v}$ startet und dann alle mÃ¶glichen Vektoren betrachtet, die zu diesen komplanar sind, also alle Vektoren, die man durch $\lambda\MVec{u}+\mu\MVec{v}$; $\lambda,\mu\in\R$ erhÃ¤lt (vgl. wieder Infobox \MNRef{info:kollinearkomplanar}). Zusammen mit einem Aufpunktvektor ergibt dies eine Verallgemeinerung des Konzepts der Parameterform einer Gerade, nÃ¤mlich die Parameterform einer Ebene im Raum, welche in der unten 
 stehenden Infobox 
 beschrieben wird.  
 
-Für Ebenen werden für gewöhnlich Großbuchstaben ($E$, $F$, $G$, $\MHDots$) als Variablen verwendet. Natürlich ist das Konzept einer Ebene nur im $\R^3$ sinnvoll.
+FÃ¼r Ebenen werden fÃ¼r gewÃ¶hnlich GroÃŸbuchstaben ($E$, $F$, $G$, $\MHDots$) als Variablen verwendet. NatÃ¼rlich ist das Konzept einer Ebene nur im $\R^3$ sinnvoll.
 
 \begin{MInfo}
 Eine Ebene $E$ im Raum ist in \MEntry{Punkt-Richtungsform}{Punkt-Richtungsform (einer Ebene)} oder \MEntry{Parameterform}{Parameterform (einer Ebene)} gegeben als Menge von Ortsvektoren
@@ -2162,11 +2162,11 @@ Hierbei werden $\lambda$ und $\mu$ als \textbf{Parameter}, $\MVec{a}$ als \MEntr
 % }
 % \end{center}
 
-(Diese Abbildung erscheint in Kürze.)
+(Diese Abbildung erscheint in KÃ¼rze.)
 
 \end{MInfo}
 
-Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Abschnitt \MNRef{VBKM10_GeradenEbene}), so legen drei gegebene Punkte im Raum eine Ebene eindeutig fest. Aus drei gegebenen Punkten kann relativ einfach die Parameterform der zugehörigen Ebene bestimmt werden. Die Punkt-Richtungsform einer Ebene ist -- wie auch diejenige einer Geraden -- für eine gegebene Ebene nicht eindeutig. Es gibt immer viele gleichwertige Punkt-Richtungsformen, um eine Ebene darzustellen. Das folgende Beispiel zeigt einige typische Anwendungen.
+WÃ¤hrend zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Abschnitt \MNRef{VBKM10_GeradenEbene}), so legen drei gegebene Punkte im Raum eine Ebene eindeutig fest. Aus drei gegebenen Punkten kann relativ einfach die Parameterform der zugehÃ¶rigen Ebene bestimmt werden. Die Punkt-Richtungsform einer Ebene ist -- wie auch diejenige einer Geraden -- fÃ¼r eine gegebene Ebene nicht eindeutig. Es gibt immer viele gleichwertige Punkt-Richtungsformen, um eine Ebene darzustellen. Das folgende Beispiel zeigt einige typische Anwendungen.
 
 \begin{MExample}
 \begin{itemize}
@@ -2174,19 +2174,19 @@ Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Absc
  \[
   E\colon \MVec{r}=\MVec{a}+\lambda\MVec{u}+\mu\MVec{v}=\MVector{0\\1\\0}+\lambda\MVector{1\\0\\0}+\mu\MVector{0\\0\\1}\MDFPSpace;\MDFPaSpace\lambda,\mu\in\R
  \]
- in Parameterform, die in der Höhe $1$ parallel zur $x z$-Ebene im Koordinatensystem liegt:
+ in Parameterform, die in der HÃ¶he $1$ parallel zur $x z$-Ebene im Koordinatensystem liegt:
  
- (Diese Abbildung erscheint in Kürze.)
+ (Diese Abbildung erscheint in KÃ¼rze.)
  
- Die oben angegebene Parameterform für $E$ ist nicht die einzig mögliche. Jeder andere Punkt in $E$ ist ebenfalls als Aufpunkt möglich. Zum Beispiel liegt der Punkt, welcher durch den Ortsvektor $\MVec{a}^\prime=\MVector{1\\1\\1}$ gegeben ist, in $E$, denn es gilt für $\lambda=\mu=1$:
+ Die oben angegebene Parameterform fÃ¼r $E$ ist nicht die einzig mÃ¶gliche. Jeder andere Punkt in $E$ ist ebenfalls als Aufpunkt mÃ¶glich. Zum Beispiel liegt der Punkt, welcher durch den Ortsvektor $\MVec{a}^\prime=\MVector{1\\1\\1}$ gegeben ist, in $E$, denn es gilt fÃ¼r $\lambda=\mu=1$:
  \[
   \MVector{1\\1\\1}=\MVector{0\\1\\0}+1\cdot\MVector{1\\0\\0}+1\cdot\MVector{0\\0\\1}\MDFPeriod
  \]
- Dieser kann als Aufpunktvektor verwendet werden. Als andere Richtungsvektoren können alle Vektoren verwendet werden, die zu $\MVec{u}$ und $\MVec{v}$ komplanar, zueinander aber nicht kollinear sind, zum Beispiel $\MVec{u}^\prime=\MVector{1\\0\\1}=1\cdot\MVector{1\\0\\0}+1\cdot\MVector{0\\0\\1}$ und $\MVec{v}^\prime=\MVector{1\\0\\-1}=1\cdot\MVector{1\\0\\0}-1\cdot\MVector{0\\0\\1}$. Dann ist eine weitere Darstellung von $E$ in Parameterform durch
+ Dieser kann als Aufpunktvektor verwendet werden. Als andere Richtungsvektoren kÃ¶nnen alle Vektoren verwendet werden, die zu $\MVec{u}$ und $\MVec{v}$ komplanar, zueinander aber nicht kollinear sind, zum Beispiel $\MVec{u}^\prime=\MVector{1\\0\\1}=1\cdot\MVector{1\\0\\0}+1\cdot\MVector{0\\0\\1}$ und $\MVec{v}^\prime=\MVector{1\\0\\-1}=1\cdot\MVector{1\\0\\0}-1\cdot\MVector{0\\0\\1}$. Dann ist eine weitere Darstellung von $E$ in Parameterform durch
  \[
   E\colon \MVec{r}=\MVec{a}^\prime+s\MVec{u}^\prime+t\MVec{v}^\prime=\MVector{1\\1\\1}+s\MVector{1\\0\\1}+t\MVector{1\\0\\-1}\MDFPSpace;\MDFPaSpace s,t\in\R
  \]
- möglich.
+ mÃ¶glich.
  \item Gegeben sind die drei Punkte $A=\MPointThree{1}{0}{-2}$, $B=\MPointThree{4}{1}{2}$ und $C=\MPointThree{0}{2}{1}$. Es ist eine Parameterform der Ebene $F$ anzugeben, die durch diese drei Punkte festgelegt wird.
  
  Einer der drei Punkte, zum Beispiel $A$, wird als Aufpunkt benutzt. Dann ist $\MDVec{A}=\MVector{1\\0\\-2}$ der Aufpunktvektor. Als Richtungsvektoren dienen dann die Verbindungsvektoren vom Aufpunkt zu den anderen beiden Punkten:
@@ -2202,19 +2202,19 @@ Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Absc
  \]
  eine korrekte Darstellung von $F$ in Parameterform.
   
- (Diese Abbildung erscheint in Kürze.)
+ (Diese Abbildung erscheint in KÃ¼rze.)
  
- \item Von zwei Punkten $P=\MPointThree{1}{2}{3}$ und $Q=\MPointThree{2}{6}{6}$ ist zu überprüfen, ob sie in der Ebene $G$, die in Parameterform durch
+ \item Von zwei Punkten $P=\MPointThree{1}{2}{3}$ und $Q=\MPointThree{2}{6}{6}$ ist zu Ã¼berprÃ¼fen, ob sie in der Ebene $G$, die in Parameterform durch
  \[
   G\colon\MVec{r}=\MVector{0\\3\\2}+\mu\MVector{1\\2\\3}+\nu\MVector{0\\1\\2}\MDFPSpace;\MDFPaSpace\mu,\nu\in\R
  \]
  gegeben ist, liegen.
  
- Damit $P$ bzw. $Q$ in $G$ liegen, müssen sich ihre Ortsvektoren jeweils für bestimmte Parameterwerte $\mu$ und $\nu$ als Ortsvektoren ergeben, es müsste also $\MDVec{P}=\MVec{r}$ bzw. $\MDVec{Q}=\MVec{r}$ für jeweils geeignete $\mu$ und $\nu$ gelten. Es ergibt sich für $P$:
+ Damit $P$ bzw. $Q$ in $G$ liegen, mÃ¼ssen sich ihre Ortsvektoren jeweils fÃ¼r bestimmte Parameterwerte $\mu$ und $\nu$ als Ortsvektoren ergeben, es mÃ¼sste also $\MDVec{P}=\MVec{r}$ bzw. $\MDVec{Q}=\MVec{r}$ fÃ¼r jeweils geeignete $\mu$ und $\nu$ gelten. Es ergibt sich fÃ¼r $P$:
  \[
   \MDVec{P}=\MVector{1\\2\\3}=\MVector{0\\3\\2}+\mu\MVector{1\\2\\3}+\nu\MVector{0\\1\\2}=\MVector{\mu\\3+2\mu+\nu\\2+3\mu+2\nu}\MDFPeriod
  \]
- Die erste Komponente dieser Vektorgleichung liefert offenbar $\mu=1$. Dies in die zweite und dritte Komponente eingesetzt liefert zwei Gleichungen für $\nu$, die sich gegenseitig widersprechen:
+ Die erste Komponente dieser Vektorgleichung liefert offenbar $\mu=1$. Dies in die zweite und dritte Komponente eingesetzt liefert zwei Gleichungen fÃ¼r $\nu$, die sich gegenseitig widersprechen:
  \[
   2=3+2\cdot 1+\nu\MDFPSpace\Leftrightarrow\MDFPSpace\nu=-3
  \]
@@ -2222,7 +2222,7 @@ Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Absc
  \[
   3=2+3\cdot 1+2\nu\MDFPSpace\Leftrightarrow\MDFPSpace\nu=-1\MDFPeriod 
  \]
- Somit kann es keine Parameterwerte $\mu$ und $\nu$ geben, die in der Parameterform der Ebene $G$ den Ortsvektor $\MDVec{P}$ liefern. Folglich liegt $P$ nicht in $G$. Für $Q$ hingegen berechnet man:
+ Somit kann es keine Parameterwerte $\mu$ und $\nu$ geben, die in der Parameterform der Ebene $G$ den Ortsvektor $\MDVec{P}$ liefern. Folglich liegt $P$ nicht in $G$. FÃ¼r $Q$ hingegen berechnet man:
  \[
   \MDVec{Q}=\MVector{2\\6\\6}=\MVector{0\\3\\2}+\mu\MVector{1\\2\\3}+\nu\MVector{0\\1\\2}=\MVector{\mu\\3+2\mu+\nu\\2+3\mu+2\nu}\MDFPeriod
  \]
@@ -2234,14 +2234,14 @@ Während zwei gegebene Punkte im Raum eine Gerade eindeutig festlegen (siehe Absc
  \[
   6=2+3\cdot 2+2\nu\MDFPSpace\Leftrightarrow\MDFPSpace\nu=-1
  \]
- führt. Hier ergibt sich also kein Widerspruch, sondern es stellt sich heraus, dass genau die Parameterwerte $\mu=2$ und $\nu=-1$ den Ortsvektor $\MDVec{Q}$ liefern. Somit liegt $Q$ in $G$.
+ fÃ¼hrt. Hier ergibt sich also kein Widerspruch, sondern es stellt sich heraus, dass genau die Parameterwerte $\mu=2$ und $\nu=-1$ den Ortsvektor $\MDVec{Q}$ liefern. Somit liegt $Q$ in $G$.
  
- (Diese Abbildung erscheint in Kürze.)
+ (Diese Abbildung erscheint in KÃ¼rze.)
  
 \end{itemize}
 \end{MExample}
 
-Neben der Möglichkeit mittels dreier fester Punkte kann eine Ebene im Raum auch durch eine Gerade und einen Punkt, der nicht auf der Gerade liegt, festgelegt werden. Das folgende Beispiel zeigt, wie dies auf den Fall von drei gegebenen Punkten zurückgeführt werden kann.  
+Neben der MÃ¶glichkeit mittels dreier fester Punkte kann eine Ebene im Raum auch durch eine Gerade und einen Punkt, der nicht auf der Gerade liegt, festgelegt werden. Das folgende Beispiel zeigt, wie dies auf den Fall von drei gegebenen Punkten zurÃ¼ckgefÃ¼hrt werden kann.  
 
 \begin{MExample}
 Gegeben ist der Punkt $P=\MPointThree{2}{1}{-3}$ und die Gerade $g$ in Parameterform durch
@@ -2252,15 +2252,15 @@ Der Punkt $P$ befindet sich nicht auf $g$, da es keinen Parameter $t\in\R$ gibt,
 \[
  \MDVec{P}=\MVector{2\\1\\-3}=\MVector{0\\-1\\0}+t\MVector{2\\0\\-1}=\MVector{2t\\-1\\-t}
 \]
-gilt, denn schon die zweite Komponente dieser Vektorgleichung enthält den Widerspruch $1=-1$. So legen der Punkt $P$ und die Gerade $g$ eine Ebene $E$ eindeutig fest, die sowohl $P$ als auch $g$ enthält. Eine Parameterform dieser Ebene erhält man, indem man sich zum Punkt $P$, der als Aufpunkt benutzt werden kann, noch zwei weitere Punkte auf $g$ wählt und dann genauso wie im obigen Beispiel bei gegebenen drei Punkten vorgeht. Folglich ist hier der Aufpunktvektor
+gilt, denn schon die zweite Komponente dieser Vektorgleichung enthÃ¤lt den Widerspruch $1=-1$. So legen der Punkt $P$ und die Gerade $g$ eine Ebene $E$ eindeutig fest, die sowohl $P$ als auch $g$ enthÃ¤lt. Eine Parameterform dieser Ebene erhÃ¤lt man, indem man sich zum Punkt $P$, der als Aufpunkt benutzt werden kann, noch zwei weitere Punkte auf $g$ wÃ¤hlt und dann genauso wie im obigen Beispiel bei gegebenen drei Punkten vorgeht. Folglich ist hier der Aufpunktvektor
 \[
  \MDVec{P}=\MVector{2\\1\\-3} \MDFPSpace,
 \]
-und zwei weitere Punkte $Q_1$ und $Q_2$ auf $g$ ergeben sich für zwei verschiedene Werte des Parameters $t$, zum Beispiel $t=0$ und $t=1$. Die Wahl $t=0$ ergibt den Aufpunkt der Geraden. Als Ortsvektor:
+und zwei weitere Punkte $Q_1$ und $Q_2$ auf $g$ ergeben sich fÃ¼r zwei verschiedene Werte des Parameters $t$, zum Beispiel $t=0$ und $t=1$. Die Wahl $t=0$ ergibt den Aufpunkt der Geraden. Als Ortsvektor:
 \[
  \MDVec{Q}_1=\MVector{0\\-1\\0}+0\cdot\MVector{2\\0\\-1}=\MVector{0\\-1\\0} \MDFPeriod
 \]
-Die Wahl $t=1$ führt auf
+Die Wahl $t=1$ fÃ¼hrt auf
 \[
  \MDVec{Q}_2=\MVector{0\\-1\\0}+1\cdot\MVector{2\\0\\-1}=\MVector{2\\-1\\-1} \MDFPeriod
 \]
@@ -2277,7 +2277,7 @@ Somit lautet eine Punkt-Richtungsform der Ebene $E$:
  E\colon\MVec{r}=\MVector{2\\1\\-3}+v\MVector{-2\\-2\\3}+w\MVector{0\\-2\\2}\MDFPSpace;\MDFPaSpace v,w\in\R \MDFPeriod
 \]
 
-(Diese Abbildung erscheint in Kürze.)
+(Diese Abbildung erscheint in KÃ¼rze.)
 \end{MExample}
 
 Weitere Lagebeziehungen von Ebenen und Geraden -- sowie daraus abgeleitet weitere Daten, mit Hilfe derer eine Ebene eindeutig festgelegt werden kann -- werden im folgenden Abschnitt \MNRef{VBKM10_Lagebeziehung} untersucht.
@@ -2292,7 +2292,7 @@ $x=$\MLFunctionQuestion{15}{13}{5}{x}{5}{PLANE4}\\
 $y=$\MLFunctionQuestion{15}{4}{5}{x}{5}{PLANE5}\\
 $z=$\MLFunctionQuestion{15}{3}{5}{x}{5}{PLANE6}\\
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Der Aufpunktvektor $\MDVec{A}=\MVector{0\\0\\8}$ und die Richtungsvektoren
 \[
  \MDVec{A B}=\MDVec{B}-\MDVec{A}=\MVector{3\\-1\\10}-\MVector{0\\0\\8}=\MVector{3\\-1\\2} \MDFPSpace,
@@ -2300,15 +2300,15 @@ Der Aufpunktvektor $\MDVec{A}=\MVector{0\\0\\8}$ und die Richtungsvektoren
 \[
  \MDVec{A C}=\MDVec{C}-\MDVec{A}=\MVector{-1\\-2\\11}-\MVector{0\\0\\8}=\MVector{-1\\-2\\3}
 \]
-ergeben zunächst die folgende Parameterform:
+ergeben zunÃ¤chst die folgende Parameterform:
 \[
  E\colon\MVec{r}=\MVector{0\\0\\8}+\mu\MVector{3\\-1\\2}+\nu\MVector{-1\\-2\\3}\MDFPSpace;\MDFPaSpace \mu,\nu\in\R\MDFPeriod
 \]
-Damit auch der Aufpunktvektor $\MVector{2\\-3\\x}$ zu einem Punkt in $E$ gehört, muss gelten:
+Damit auch der Aufpunktvektor $\MVector{2\\-3\\x}$ zu einem Punkt in $E$ gehÃ¶rt, muss gelten:
 \[
  \MVector{2\\-3\\x}=\MVector{0\\0\\8}+\mu\MVector{3\\-1\\2}+\nu\MVector{-1\\-2\\3}=\MVector{3\mu-\nu\\-\mu-2\nu\\8+2\mu+3\nu}\MDFPeriod
 \]
-Dies ist ein lineares Gleichungssystem mit den drei Unbekannten $\mu$, $\nu$ und $x$, das mit den Methoden aus Abschnitt \MNRef{M04_3_Unbekannte} gelöst werden kann. Hier führt die Betrachtung der ersten und zweiten Komponente auf die beiden Gleichungen
+Dies ist ein lineares Gleichungssystem mit den drei Unbekannten $\mu$, $\nu$ und $x$, das mit den Methoden aus Abschnitt \MNRef{M04_3_Unbekannte} gelÃ¶st werden kann. Hier fÃ¼hrt die Betrachtung der ersten und zweiten Komponente auf die beiden Gleichungen
 \[
  2=3\mu-\nu\MDFPaSpace\textrm{und}\MDFPaSpace -3=-\mu-2\nu \MDFPSpace,
 \]
@@ -2316,7 +2316,7 @@ woraus man $\mu=\nu=1$ berechnet. Dies eingesetzt in die dritte Komponente liefe
 \[
  x=8+2+3=13 \MDFPeriod
 \]
-Damit auch $\MVector{y\\1\\-1}$ und $\MVector{5\\z\\-4}$ Richtungsvektoren der Ebene $E$ sind, müssen diese jeweils zu $\MDVec{A B}$ und $\MDVec{A C}$ komplanar sein. Für den ersten Vektor erhält man
+Damit auch $\MVector{y\\1\\-1}$ und $\MVector{5\\z\\-4}$ Richtungsvektoren der Ebene $E$ sind, mÃ¼ssen diese jeweils zu $\MDVec{A B}$ und $\MDVec{A C}$ komplanar sein. FÃ¼r den ersten Vektor erhÃ¤lt man
 \[
  \MVector{y\\1\\-1}=a\MVector{3\\-1\\2}+b\MVector{-1\\-2\\3}=\MVector{3a-b\\-a-2b\\2a+3b} \MDFPSpace,
 \]
@@ -2324,11 +2324,11 @@ also wiederum ein lineares Gleichungssystem mit drei Unbekannten. In diesem Fall
 \[
  1=-a-2b\MDFPaSpace\textrm{und}\MDFPaSpace -1=2a+3b \MDFPSpace,
 \]
-woraus man $a=1$ und $b=-1$ berechnet. Dies führt auf
+woraus man $a=1$ und $b=-1$ berechnet. Dies fÃ¼hrt auf
 \[
  y= 3+ (-1)\cdot(-1)=4 \MDFPeriod
 \]
-Völlig analog für gilt den zweiten Vektor:
+VÃ¶llig analog fÃ¼r gilt den zweiten Vektor:
 \[
  \MVector{5\\z\\-4}=a\MVector{3\\-1\\2}+b\MVector{-1\\-2\\3}=\MVector{3a-b\\-a-2b\\2a+3b}\MDFPeriod
 \]
@@ -2340,7 +2340,7 @@ und berechnet $a=1$ sowie $b=-2$, was auf
 \[
  z=-1-2\cdot(-2)=3
 \]
-führt.
+fÃ¼hrt.
 \end{MHint}
 
 \end{MExercise}
@@ -2356,8 +2356,8 @@ $h=$\MLFunctionQuestion{15}{5}{5}{x}{5}{PLANE1}\\
 $i=$\MLFunctionQuestion{15}{-2}{5}{x}{5}{PLANE2}\\
 $j=$\MLFunctionQuestion{15}{-74}{5}{x}{5}{PLANE3}\\
 
-\begin{MHint}{Lösung}
-Für die Ebene $E$ gilt
+\begin{MHint}{\iSolution}
+FÃ¼r die Ebene $E$ gilt
 \[
  \MVec{r}=\MVector{3\\0\\2}+s\MVector{2\\1\\7}+t\MVector{3\\2\\5}=\MVector{3+2s+3t\\s+2t\\2+7s+5t} \MDFPeriod
 \]
@@ -2372,29 +2372,29 @@ und
 \[
  \MDVec{R}=\MVec{r}\MDFPSpace\Leftrightarrow\MDFPSpace\MVector{-3\\2\\j}=\MVector{3+2s+3t\\s+2t\\2+7s+5t}
 \]
-führen jeweils auf ein lineares Gleichungssystem in den Parametern $s$, $t$ und $h$ bzw. $i$ bzw. $j$, das jeweils mit den Methoden aus Abschnitt \MNRef{M04_3_Unbekannte} gelöst werden kann.
+fÃ¼hren jeweils auf ein lineares Gleichungssystem in den Parametern $s$, $t$ und $h$ bzw. $i$ bzw. $j$, das jeweils mit den Methoden aus Abschnitt \MNRef{M04_3_Unbekannte} gelÃ¶st werden kann.
 
-Für $P$ ergibt sich: Die zweite und dritte Komponente bilden zwei lineare Gleichungen mit den zwei Unbekannten $s$ und $t$ der Form
+FÃ¼r $P$ ergibt sich: Die zweite und dritte Komponente bilden zwei lineare Gleichungen mit den zwei Unbekannten $s$ und $t$ der Form
 \[
  2=s+2t\MDFPaSpace\textrm{und}\MDFPaSpace -4=7s+5t \MDFPSpace,
 \]
-woraus man die Lösung $s=-2$ und $t=2$ berechnet. Einsetzen in die erste Komponente führt auf
+woraus man die LÃ¶sung $s=-2$ und $t=2$ berechnet. Einsetzen in die erste Komponente fÃ¼hrt auf
 \[
  h=3+2\cdot(-2)+3\cdot 2=5 \MDFPeriod
 \]
-Für $Q$ ergibt sich: Die erste und dritte Komponente bilden zwei lineare Gleichungen mit den zwei Unbekannten $s$ und $t$ der Form
+FÃ¼r $Q$ ergibt sich: Die erste und dritte Komponente bilden zwei lineare Gleichungen mit den zwei Unbekannten $s$ und $t$ der Form
 \[
  -2=2s+3t\MDFPaSpace\textrm{und}\MDFPaSpace 4=7s+5t \MDFPSpace,
 \]
-woraus man die Lösung $s=2$ und $t=-2$ berechnet. Einsetzen in die zweite Komponente führt auf
+woraus man die LÃ¶sung $s=2$ und $t=-2$ berechnet. Einsetzen in die zweite Komponente fÃ¼hrt auf
 \[
  i=2+2\cdot(-2)=-2 \MDFPeriod
 \]
-Für $R$ ergibt sich: Die erste und zweite Komponente bilden zwei lineare Gleichungen mit den zwei Unbekannten $s$ und $t$ der Form
+FÃ¼r $R$ ergibt sich: Die erste und zweite Komponente bilden zwei lineare Gleichungen mit den zwei Unbekannten $s$ und $t$ der Form
 \[
  -6=2s+3t\MDFPaSpace\textrm{und}\MDFPaSpace 2=s+2t \MDFPSpace,
 \]
-woraus man die Lösung $s=-18$ und $t=10$ berechnet. Einsetzen in die dritte Komponente führt auf
+woraus man die LÃ¶sung $s=-18$ und $t=10$ berechnet. Einsetzen in die dritte Komponente fÃ¼hrt auf
 \[
  j=2+7\cdot(-18)+5\cdot10=-74 \MDFPeriod
 \]
@@ -2407,7 +2407,7 @@ woraus man die Lösung $s=-18$ und $t=10$ berechnet. Einsetzen in die dritte Komp
 \begin{MXContent}{Lagebeziehung von Geraden und Ebenen im Raum}{Lagebeziehung}{STD}
 \MLabel{VBKM10_Lagebeziehung}
 \MDeclareSiteUXID{VBKM10_Lagebeziehung}
-Während es für die Lagebeziehung zweier Geraden in der Ebene nur drei Möglichkeiten gibt (die Geraden sind parallel, identisch oder sie schneiden sich, vgl. Abschnitt \MNRef{VBKM09_Lagebeziehungen}), existieren für zwei Geraden im Raum vier Möglichkeiten. Diese werden in der folgenden Infobox zusammengefasst. 
+WÃ¤hrend es fÃ¼r die Lagebeziehung zweier Geraden in der Ebene nur drei MÃ¶glichkeiten gibt (die Geraden sind parallel, identisch oder sie schneiden sich, vgl. Abschnitt \MNRef{VBKM09_Lagebeziehungen}), existieren fÃ¼r zwei Geraden im Raum vier MÃ¶glichkeiten. Diese werden in der folgenden Infobox zusammengefasst. 
 
 \begin{MInfo}\MLabel{info:schnitti}
 Gegeben sind zwei Geraden im Raum in Punkt-Richtungsform, $g$ mit Aufpunktvektor $\MVec{a}$ und Richtungsvektor $\MVec{u}$ sowie $h$ mit Aufpunktvektor $\MVec{b}$ und Richtungsvektor $\MVec{v}$:
@@ -2417,19 +2417,19 @@ Gegeben sind zwei Geraden im Raum in Punkt-Richtungsform, $g$ mit Aufpunktvektor
 \[
  h\colon\MVec{r}=\MVec{b}+t\MVec{v}\MDFPSpace;\MDFPaSpace t\in\R\MDFPeriod
 \]
-Für die relative Lage von $g$ und $h$ gibt es genau vier Möglichkeiten:
+FÃ¼r die relative Lage von $g$ und $h$ gibt es genau vier MÃ¶glichkeiten:
 \begin{enumerate}
  \item Die Geraden sind \textbf{identisch}. In diesem Fall haben $g$ und $h$ alle Punkte gemeinsam, fallen also zusammen. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ kollinear sind und es einen gemeinsamen Punkt gibt.
- \item Die Geraden sind \MEntry{parallel}{Parallelität (zweier Geraden im Raum)}. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ kollinear sind und es \textit{keinen} gemeinsamen Punkt gibt.
+ \item Die Geraden sind \MEntry{parallel}{ParallelitÃ¤t (zweier Geraden im Raum)}. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ kollinear sind und es \textit{keinen} gemeinsamen Punkt gibt.
  \item Die Geraden schneiden sich. In diesem Fall haben $g$ und $h$ genau einen gemeinsamen Punkt, der \MEntry{Schnittpunkt}{Schnittpunkt (zweier Geraden im Raum)} genannt wird. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ \textit{nicht} kollinear sind und es einen gemeinsamen Punkt gibt.
- \item Geraden, die weder identisch noch parallel sind und sich auch nicht schneiden, heißen \MEntry{windschief}{windschief}. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ \textit{nicht} kollinear sind und es \textit{keinen} gemeinsamen Punkt gibt.
+ \item Geraden, die weder identisch noch parallel sind und sich auch nicht schneiden, heiÃŸen \MEntry{windschief}{windschief}. Dies ist genau dann der Fall, wenn die beiden Richtungsvektoren $\MVec{u}$ und $\MVec{v}$ \textit{nicht} kollinear sind und es \textit{keinen} gemeinsamen Punkt gibt.
 \end{enumerate}
 
-(Diese Abbildung erscheint in Kürze.)
+(Diese Abbildung erscheint in KÃ¼rze.)
 
 \end{MInfo}
 
-Nach den Kriterien, die in obiger Infobox für die vier Möglichkeiten der relativen Lage zweier Geraden aufgeführt sind, geht man in der Praxis so vor, dass man zunächst die beiden Richtungsvektoren auf Kollinearität prüft und dann nach möglichen gemeinsamen Punkten der beiden Geraden sucht. Dies legt schließlich einen der vier Fälle eindeutig fest. Das folgende Beispiel zeigt Anwendungen dieses Vorgehens für alle vier Fälle.
+Nach den Kriterien, die in obiger Infobox fÃ¼r die vier MÃ¶glichkeiten der relativen Lage zweier Geraden aufgefÃ¼hrt sind, geht man in der Praxis so vor, dass man zunÃ¤chst die beiden Richtungsvektoren auf KollinearitÃ¤t prÃ¼ft und dann nach mÃ¶glichen gemeinsamen Punkten der beiden Geraden sucht. Dies legt schlieÃŸlich einen der vier FÃ¤lle eindeutig fest. Das folgende Beispiel zeigt Anwendungen dieses Vorgehens fÃ¼r alle vier FÃ¤lle.
 
 \begin{MExample}
 Gegeben sind die vier Geraden $g$, $h$, $i$ und $j$ in Parameterform:
@@ -2451,45 +2451,45 @@ und
 \[
   \MVector{-2\\2\\-4}= -2\cdot\MVector{1\\-1\\2} \MDFPeriod
 \]
-Außerdem ist der Punkt, welcher durch den Ortvektor $\MVector{1\\-2\\7}$ beschrieben wird, in $h$ (als Aufpunkt) und $g$ enthalten, denn für $g$ gilt:
+AuÃŸerdem ist der Punkt, welcher durch den Ortvektor $\MVector{1\\-2\\7}$ beschrieben wird, in $h$ (als Aufpunkt) und $g$ enthalten, denn fÃ¼r $g$ gilt:
 \[
  \MVector{1\\-2\\7}=\MVector{-1\\0\\3}+s\MVector{-2\\2\\-4}=\MVector{-1-2s\\2s\\3-4s}\MDFPSpace\Leftrightarrow\MDFPSpace s=-1\MDFPeriod
 \]
-Also ergibt sich $\MVector{1\\-2\\7}$ in $g$ für den Parameterwert $s=-1$.
+Also ergibt sich $\MVector{1\\-2\\7}$ in $g$ fÃ¼r den Parameterwert $s=-1$.
 
-\item Die Geraden $h$ und $i$ (und damit natürlich auch $g$ und $i$) sind parallel. Die beiden Richtungsvektoren $\MVector{1\\-1\\2}$ von $h$ und $\MVector{-3\\3\\-6}$ von $i$ sind kollinear. Es gilt
+\item Die Geraden $h$ und $i$ (und damit natÃ¼rlich auch $g$ und $i$) sind parallel. Die beiden Richtungsvektoren $\MVector{1\\-1\\2}$ von $h$ und $\MVector{-3\\3\\-6}$ von $i$ sind kollinear. Es gilt
 \[
   \MVector{-3\\3\\-6}= -3\cdot\MVector{1\\-1\\2} \MDFPeriod
 \]
-Allerdings haben $h$ und $i$ keine Punkte gemeinsam. Dies sieht man in diesem Fall folgendermaßen: Der Aufpunkt einer der beiden Geraden ist kein Punkt auf der anderen Geraden. Dann haben die beiden Geraden gar keine gemeinsamen Punkte. Hier kann man zum Beispiel testen, ob sich der Aufpunktvektor $\MVector{4\\0\\8}$ der Gerade $i$ als Ortsvektor der Gerade $h$ ergeben kann:
+Allerdings haben $h$ und $i$ keine Punkte gemeinsam. Dies sieht man in diesem Fall folgendermaÃŸen: Der Aufpunkt einer der beiden Geraden ist kein Punkt auf der anderen Geraden. Dann haben die beiden Geraden gar keine gemeinsamen Punkte. Hier kann man zum Beispiel testen, ob sich der Aufpunktvektor $\MVector{4\\0\\8}$ der Gerade $i$ als Ortsvektor der Gerade $h$ ergeben kann:
 \[
  \MVector{4\\0\\8}=\MVector{1\\-2\\7}+t\MVector{1\\-1\\2}=\MVector{1+t\\-2-t\\7+2t}\MDFPeriod
 \]
-In dieser Vektorgleichung ergäbe sich in der ersten Komponente $t=3$ und in der zweiten Komponente $t=-2$, was bereits ein Widerspruch ist. Folglich haben die beiden Geraden keine gemeinsamen Punkte.
+In dieser Vektorgleichung ergÃ¤be sich in der ersten Komponente $t=3$ und in der zweiten Komponente $t=-2$, was bereits ein Widerspruch ist. Folglich haben die beiden Geraden keine gemeinsamen Punkte.
 
-\item Die Geraden $i$ und $j$ schneiden sich. Zunächst sind für diese beiden Geraden die Richtungsvektoren $\MVector{-3\\3\\-6}$ und $\MVector{1\\3\\-3}$ nicht kollinear. Es gibt keine Zahl $a\in\R$, so dass
+\item Die Geraden $i$ und $j$ schneiden sich. ZunÃ¤chst sind fÃ¼r diese beiden Geraden die Richtungsvektoren $\MVector{-3\\3\\-6}$ und $\MVector{1\\3\\-3}$ nicht kollinear. Es gibt keine Zahl $a\in\R$, so dass
 \[
  \MVector{-3\\3\\-6}=a\MVector{1\\3\\-3}
 \]
-gilt, denn für die erste Komponente müsste $a=-3$ und für die zweite Komponente $a=1$ gelten, was bereits ein Widerspruch ist. Allerdings haben die beiden Geraden einen gemeinsamen Punkt, den man durch Gleichsetzen der Ortsvektoren für $i$ und $j$ findet:
+gilt, denn fÃ¼r die erste Komponente mÃ¼sste $a=-3$ und fÃ¼r die zweite Komponente $a=1$ gelten, was bereits ein Widerspruch ist. Allerdings haben die beiden Geraden einen gemeinsamen Punkt, den man durch Gleichsetzen der Ortsvektoren fÃ¼r $i$ und $j$ findet:
 \[
  \MVector{4\\0\\8}+u\MVector{-3\\3\\-6}=\MVector{4-3u\\3u\\8-6u}=\MVector{1+v\\3+3v\\2-3v}=\MVector{1\\3\\2}+v\MVector{1\\3\\-3}\MDFPeriod
 \]
-Hier führen die ersten beiden Komponenten zu den Gleichungen
+Hier fÃ¼hren die ersten beiden Komponenten zu den Gleichungen
 \[
  3-3u=v\MDFPaSpace\textrm{und}\MDFPaSpace u=1+v
 \]
-für $u$ und $v$, woraus man $v=0$ und $u=1$ berechnet. Dies eingesetzt in die dritte Komponente ergibt
+fÃ¼r $u$ und $v$, woraus man $v=0$ und $u=1$ berechnet. Dies eingesetzt in die dritte Komponente ergibt
 \[
  8-6\cdot 1=2-3\cdot 0\MDFPSpace\Leftrightarrow\MDFPSpace 2=2 \MDFPeriod
 \]
-Die Vektorgleichung für die Ortsvektoren ist also für die Parameterwerte $u=1$ und $v=0$ erfüllt. Folglich ergibt sich der Ortsvektor des Schnittpunkts für den Parameterwert $u=1$ in der Gerade $i$ oder auch für den Parameterwert $v=0$ in der Gerade $j$. Man erhält als  Schnittpunkt den Punkt $\MPointThree{1}{3}{2}$.
+Die Vektorgleichung fÃ¼r die Ortsvektoren ist also fÃ¼r die Parameterwerte $u=1$ und $v=0$ erfÃ¼llt. Folglich ergibt sich der Ortsvektor des Schnittpunkts fÃ¼r den Parameterwert $u=1$ in der Gerade $i$ oder auch fÃ¼r den Parameterwert $v=0$ in der Gerade $j$. Man erhÃ¤lt als  Schnittpunkt den Punkt $\MPointThree{1}{3}{2}$.
 
-\item Die Geraden $g$ und $j$ (und damit natürlich auch $h$ und $j$) sind windschief. Auch in diesem Fall erhält man analog zum Fall mit Schnittpunkt oben recht schnell, dass die beiden Richtungsvektoren $\MVector{-2\\2\\-4}$ von $g$ und $\MVector{1\\3\\-3}$ von $j$ nicht kollinear sind. Nun haben die beiden Geraden aber keinen gemeinsamen Punkt, was man wieder durch Gleichsetzen der Ortsvektoren findet:
+\item Die Geraden $g$ und $j$ (und damit natÃ¼rlich auch $h$ und $j$) sind windschief. Auch in diesem Fall erhÃ¤lt man analog zum Fall mit Schnittpunkt oben recht schnell, dass die beiden Richtungsvektoren $\MVector{-2\\2\\-4}$ von $g$ und $\MVector{1\\3\\-3}$ von $j$ nicht kollinear sind. Nun haben die beiden Geraden aber keinen gemeinsamen Punkt, was man wieder durch Gleichsetzen der Ortsvektoren findet:
 \[
  \MVector{-1\\0\\3}+s\MVector{-2\\2\\-4}=\MVector{-1-2s\\2s\\3-4s}=\MVector{1+v\\3+3v\\2-3v}=\MVector{1\\3\\2}+v\MVector{1\\3\\-3}\MDFPeriod
 \]
-Diese Vektorgleichung ist widersprüchlich, das heißt man findet keine Parameterwerte $s$ und $v$, die sie erfüllen, und folglich haben $g$ und $j$ keine gemeinsamen Punkte. Die erste und die zweite Komponente führen auf die beiden Gleichungen
+Diese Vektorgleichung ist widersprÃ¼chlich, das heiÃŸt man findet keine Parameterwerte $s$ und $v$, die sie erfÃ¼llen, und folglich haben $g$ und $j$ keine gemeinsamen Punkte. Die erste und die zweite Komponente fÃ¼hren auf die beiden Gleichungen
 \[
  -2s=2+v\MDFPaSpace\textrm{und}\MDFPaSpace 2s=3+3v \MDFPSpace,
 \]
@@ -2528,16 +2528,16 @@ schneiden sich, da
 Berechnen Sie den Schnittpunkt $S$ der beiden Geraden $g$ und $h$.\\
 $S=$\MLFunctionQuestion{15}{(1,2,4)}{5}{x}{5}{INTER0}
 
-Der Ortsvektor des Schnittpunkts $\MDVec{S}$ ergibt sich in den Geraden $g$ und $h$ jeweils für die Parameterwerte\\
+Der Ortsvektor des Schnittpunkts $\MDVec{S}$ ergibt sich in den Geraden $g$ und $h$ jeweils fÃ¼r die Parameterwerte\\
 $x=$\MLFunctionQuestion{10}{0}{5}{x}{5}{INTER0a} und\\
 $y=$\MLFunctionQuestion{10}{-1}{5}{x}{5}{INTER0b}.
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Die beiden Richtungsvektoren $\MVector{-5\\10\\-15}$ und $\MVector{3\\-2\\3}$ sind nicht kollinear, da es keine Zahl $a\in\R$ gibt, so dass
 \[
  \MVector{-5\\10\\-15}=a\MVector{3\\-2\\3}
 \]
-erfüllt ist. Denn betrachtet man die zweite Komponente dieser Vektorgleichung, so müsste $a=-5$ gelten, aus der ersten Komponente müsste allerdings $a=-\frac{5}{3}$ folgen; ein Widerspruch. Weiterhin besitzen die Geraden einen gemeinsamen Punkt, den Schnittpunkt $S$, der unten berechnet wird. Diese beiden Tatsachen, und nur diese, sind nach Infobox \MNRef{info:schnitti} hinreichend dafür, dass die beiden Geraden sich schneiden. 
+erfÃ¼llt ist. Denn betrachtet man die zweite Komponente dieser Vektorgleichung, so mÃ¼sste $a=-5$ gelten, aus der ersten Komponente mÃ¼sste allerdings $a=-\frac{5}{3}$ folgen; ein Widerspruch. Weiterhin besitzen die Geraden einen gemeinsamen Punkt, den Schnittpunkt $S$, der unten berechnet wird. Diese beiden Tatsachen, und nur diese, sind nach Infobox \MNRef{info:schnitti} hinreichend dafÃ¼r, dass die beiden Geraden sich schneiden. 
 
 Der Schnittpunkt ergibt sich durch Gleichsetzen der beiden Ortsvektoren:
 \[
@@ -2551,7 +2551,7 @@ woraus man $x=0$ und $y=-1$ berechnet. Setzt man diese Werte in die dritte Kompo
 \[
  4-15\cdot 0=7+3\cdot(-1)\MDFPSpace\Leftrightarrow\MDFPSpace 4=4 \MDFPeriod
 \]
-Somit ist die Vektorgleichung für diese Parameterwerte erfüllt, und es existiert ein gemeinsamer Punkt der beiden Geraden $g$ und $h$. Dessen Ortsvektor ergibt sich zum Beispiel durch Einsetzen des Parameterwerts $x=0$ in $g$:
+Somit ist die Vektorgleichung fÃ¼r diese Parameterwerte erfÃ¼llt, und es existiert ein gemeinsamer Punkt der beiden Geraden $g$ und $h$. Dessen Ortsvektor ergibt sich zum Beispiel durch Einsetzen des Parameterwerts $x=0$ in $g$:
 \[
  \MDVec{S}=\MVector{1\\2\\4}+0\cdot\MVector{-5\\10\\-15}=\MVector{1\\2\\4}\MDFPeriod
 \]
@@ -2568,28 +2568,28 @@ und
 \[
  \kappa\colon\MVec{r}=\MVector{a\\b\\4}+t\MVector{-\frac{3}{2}\\c\\1}\MDFPSpace;\MDFPaSpace t\in\R 
 \]
-sind parallel. Bestimmen Sie den fehlenden Eintrag $c$ und geben Sie an, welche Werte $a$ und $b$ für die Parallelität \textbf{nicht} gleichzeitig annehmen dürfen. 
+sind parallel. Bestimmen Sie den fehlenden Eintrag $c$ und geben Sie an, welche Werte $a$ und $b$ fÃ¼r die ParallelitÃ¤t \textbf{nicht} gleichzeitig annehmen dÃ¼rfen. 
 
 $a\neq$\MLFunctionQuestion{10}{-10}{5}{x}{5}{PAR1}\\
 $b\neq$\MLFunctionQuestion{10}{10}{5}{x}{5}{PAR2}\\
 $c=$\MLFunctionQuestion{10}{1}{5}{x}{5}{PAR3}
 \end{MExercise}
 
-\begin{MHint}{Lösung}
-Für Parallelität müssen die beiden Richtungsvektoren kollinear sein. Man findet aus der Bedingung
+\begin{MHint}{\iSolution}
+FÃ¼r ParallelitÃ¤t mÃ¼ssen die beiden Richtungsvektoren kollinear sein. Man findet aus der Bedingung
 \[
  \MVector{-\frac{3}{2}\\c\\1}=s\MVector{3\\-2\\-2} \MDFPSpace,
 \]
-den Wert $s=-\frac{1}{2}$ und damit $c=1$. Damit die Geraden wirklich parallel und nicht identisch sind, darf der Aufpunkt von $\kappa$ nicht auf $\gamma$ liegen, die Werte für $a$ und $b$ müssen also so sein, dass die Vektorgleichung
+den Wert $s=-\frac{1}{2}$ und damit $c=1$. Damit die Geraden wirklich parallel und nicht identisch sind, darf der Aufpunkt von $\kappa$ nicht auf $\gamma$ liegen, die Werte fÃ¼r $a$ und $b$ mÃ¼ssen also so sein, dass die Vektorgleichung
 \[
  \MVector{a\\b\\4}=\MVector{-4\\6\\0}+s\MVector{3\\-2\\-2}=\MVector{-4+3s\\6-2s\\-2s}
 \]
-für keinen Parameterwert $s$ erfüllbar ist. Die dritte Komponente liefert sofort $s=-2$ für die Erfüllbarkeit der Gleichung. Dies eingesetzt in die erste und zweite Komponente ergibt $a=-10$ und $b=10$. Folglich muss für echte Parallelität $a\neq-10$ oder $b\neq10$ gelten.
+fÃ¼r keinen Parameterwert $s$ erfÃ¼llbar ist. Die dritte Komponente liefert sofort $s=-2$ fÃ¼r die ErfÃ¼llbarkeit der Gleichung. Dies eingesetzt in die erste und zweite Komponente ergibt $a=-10$ und $b=10$. Folglich muss fÃ¼r echte ParallelitÃ¤t $a\neq-10$ oder $b\neq10$ gelten.
 \end{MHint}
 
 Hat man zwei Geraden im Raum gegeben, die echt parallel sind oder sich schneiden, so stellt man fest, dass auch diese jeweils eine Ebene eindeutig festlegen:
 
-(Diese Abbildung erscheint in Kürze.)
+(Diese Abbildung erscheint in KÃ¼rze.)
 
 Es handelt sich dabei jeweils um diejenige Ebene, die beide Geraden beinhaltet.
 
@@ -2605,7 +2605,7 @@ und
 \[
  h\colon\MVec{r}=\MVector{4\\0\\7}+t\MVector{3\\-2\\3}\MDFPSpace;\MDFPaSpace t\in\R
 \]
-schneiden sich im Punkt $S=\MPointThree{1}{2}{4}$ (vgl. Aufgabe \MNRef{ex:twolines}). Dadurch wird eine Ebene $E$ eindeutig festgelegt, die sowohl $g$ als auch $h$ beinhaltet. Für eine Parameterform von $E$ benutzt man die Ortsvektoren von drei geeigneten Punkten, die man aus den Geraden $g$ und $h$ berechnet. Der Schnittpunkt eignet sich als Aufpunkt von $E$ mit dem Aufpunktvektor
+schneiden sich im Punkt $S=\MPointThree{1}{2}{4}$ (vgl. Aufgabe \MNRef{ex:twolines}). Dadurch wird eine Ebene $E$ eindeutig festgelegt, die sowohl $g$ als auch $h$ beinhaltet. FÃ¼r eine Parameterform von $E$ benutzt man die Ortsvektoren von drei geeigneten Punkten, die man aus den Geraden $g$ und $h$ berechnet. Der Schnittpunkt eignet sich als Aufpunkt von $E$ mit dem Aufpunktvektor
 \[
  \MDVec{S}=\MVector{1\\2\\4}.
 \]
@@ -2624,7 +2624,7 @@ und
 \[
  \MDVec{S Q}=\MDVec{Q}-\MDVec{S}= \MVector{7\\-2\\10}-\MVector{1\\2\\4}=\MVector{6\\-4\\11} \MDFPeriod
 \]
-Somit ist eine mögliche Parameterform von $E$ durch
+Somit ist eine mÃ¶gliche Parameterform von $E$ durch
 \[
  E\colon \MVec{r}=\MVector{1\\2\\4}+\mu\MVector{-5\\10\\-15}+\nu\MVector{6\\-4\\11}\MDFPSpace;\MDFPaSpace \mu,\nu\in\R
 \]
@@ -2638,15 +2638,15 @@ und
 \[
  h\colon\MVec{r}=\MVector{1\\1\\4}+t\MVector{-\frac{3}{2}\\1\\1}\MDFPSpace;\MDFPaSpace t\in\R 
 \]
-sind parallel (vgl. Aufgabe \MNRef{ex:twolines2}). Dadurch wird eine Ebene $F$ eindeutig festgelegt, die sowohl $g$ als auch $h$ beinhaltet. Für eine Parameterform von $F$ benutzt man die Ortsvektoren von drei geeigneten Punkten, die man aus den Geraden $g$ und $h$ berechnet. Es eignen sich die Ortsvektoren von Punkten auf $g$ bzw. $h$, die sich für drei Parameterwerte ergeben, zum Beispiel $s=0$, $s=1$ und $t=0$:
+sind parallel (vgl. Aufgabe \MNRef{ex:twolines2}). Dadurch wird eine Ebene $F$ eindeutig festgelegt, die sowohl $g$ als auch $h$ beinhaltet. FÃ¼r eine Parameterform von $F$ benutzt man die Ortsvektoren von drei geeigneten Punkten, die man aus den Geraden $g$ und $h$ berechnet. Es eignen sich die Ortsvektoren von Punkten auf $g$ bzw. $h$, die sich fÃ¼r drei Parameterwerte ergeben, zum Beispiel $s=0$, $s=1$ und $t=0$:
 \[
  \MVec{A}=\MVector{-4\\6\\0}+0\cdot\MVector{3\\-2\\-2}=\MVector{-4\\6\\0} \MDFPSpace,
 \]
-dient als Aufpunktvektor. Dann erhält man sofort unter Benutzung von 
+dient als Aufpunktvektor. Dann erhÃ¤lt man sofort unter Benutzung von 
 \[
  \MVec{B}=\MVector{-4\\6\\0}+1\cdot\MVector{3\\-2\\-2}=\MVector{-1\\4\\-2} \MDFPSpace,
 \]
-dass für den ersten Richtungsvektor $\MDVec{A B}$ der Ebene $F$ genau der Richtungsvektor $\MVector{3\\-2\\-2}$ von $g$ benutzt werden kann. Der zweite Richtungsvektor der Ebene ergibt sich aus dem Ortsvektor eines Punktes $B$ auf $h$ für den Parameterwert $t=0$, also den Aufpunkt von $h$:
+dass fÃ¼r den ersten Richtungsvektor $\MDVec{A B}$ der Ebene $F$ genau der Richtungsvektor $\MVector{3\\-2\\-2}$ von $g$ benutzt werden kann. Der zweite Richtungsvektor der Ebene ergibt sich aus dem Ortsvektor eines Punktes $B$ auf $h$ fÃ¼r den Parameterwert $t=0$, also den Aufpunkt von $h$:
 \[
  \MDVec{B}=\MVector{1\\1\\4} \MDFPeriod
 \]
@@ -2663,7 +2663,7 @@ der zweite Richtungsvektor von $F$. Eine Parameterform von $F$ ist also gegeben 
  
 \end{MExample}
 
-Für die Lagebeziehung einer Geraden und einer Ebene im Raum gibt es wieder nur drei Möglichkeiten. Diese sind in der folgenden Infobox zusammengefasst.
+FÃ¼r die Lagebeziehung einer Geraden und einer Ebene im Raum gibt es wieder nur drei MÃ¶glichkeiten. Diese sind in der folgenden Infobox zusammengefasst.
 
 \begin{MInfo}\MLabel{info:plane_line}
 Sind eine Gerade $g$ mit Aufpunktvektor $\MVec{a}$ und Richtungsvektor $\MVec{u}$ sowie eine Ebene $E$ mit Aufpunktvektor $\MVec{b}$ und Richtungsvektoren $\MVec{v}$ und $\MVec{w}$ im Raum in Parameterform gegeben durch
@@ -2674,18 +2674,18 @@ und
 \[
  E\colon\MVec{r}=\MVec{b}+\mu\MVec{v}+\nu\MVec{w}\MDFPSpace;\MDFPaSpace\mu,\nu\in\R\MDFPSpace,
 \]
-so gibt es für die relative Lage von $g$ und $E$ genau drei Möglichkeiten:
+so gibt es fÃ¼r die relative Lage von $g$ und $E$ genau drei MÃ¶glichkeiten:
 \begin{enumerate}
  \item Die Gerade $g$ liegt in der Ebene $E$. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren $\MVec{u}$, $\MVec{v}$ und $\MVec{w}$ komplanar sind und der Aufpunkt der Geraden in der Ebene liegt.
  \item Die Gerade $g$ liegt parallel zur Ebene $E$. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren $\MVec{u}$, $\MVec{v}$ und $\MVec{w}$ komplanar sind und der Aufpunkt der Geraden \textit{nicht} in der Ebene liegt.
  \item Die Gerade $g$ und die Ebene $E$ schneiden sich. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren $\MVec{u}$, $\MVec{v}$ und $\MVec{w}$ nicht komplanar sind.
 \end{enumerate}
 
-(Diese Abbildung erscheint in Kürze.)
+(Diese Abbildung erscheint in KÃ¼rze.)
 
 \end{MInfo}
 
-Hat man eine Gerade und eine Ebene gegeben und möchte man deren Lagebeziehung bestimmen, so überprüft man zunächst die drei Richtungsvektoren auf Komplanarität. Ist diese gegeben, so untersucht man den Aufpunkt der Geraden darauf hin, ob er in der Ebene enthalten ist. Dies legt letztlich einen der drei möglichen Fälle eindeutig fest. Falls sich Gerade und Ebene schneiden, kann man dann noch den Schnittpunkt berechnen. Das folgende Beispiel zeigt einige dafür benutzte Vorgehensweisen.
+Hat man eine Gerade und eine Ebene gegeben und mÃ¶chte man deren Lagebeziehung bestimmen, so Ã¼berprÃ¼ft man zunÃ¤chst die drei Richtungsvektoren auf KomplanaritÃ¤t. Ist diese gegeben, so untersucht man den Aufpunkt der Geraden darauf hin, ob er in der Ebene enthalten ist. Dies legt letztlich einen der drei mÃ¶glichen FÃ¤lle eindeutig fest. Falls sich Gerade und Ebene schneiden, kann man dann noch den Schnittpunkt berechnen. Das folgende Beispiel zeigt einige dafÃ¼r benutzte Vorgehensweisen.
 
 \begin{MExample}
 Gegeben ist eine Ebene $E$ in Parameterform durch
@@ -2705,15 +2705,15 @@ Gegeben ist eine Ebene $E$ in Parameterform durch
  \[
   \MVector{-1\\3\\0}=\MVector{2\\2\\2}+s\MVector{3\\-1\\0}+t\MVector{0\\0\\2}=\MVector{2+3s\\2-s\\2+2t}\MDFPSpace\Leftrightarrow\MDFPSpace s=t=-1\MDFPeriod
  \]
- Der Ortsvektor $\MVector{-1\\3\\0}$ der Geraden ergibt sich also für die Parameterwerte $s=t=-1$ in der Ebene. Demhingegen ist die Gerade
+ Der Ortsvektor $\MVector{-1\\3\\0}$ der Geraden ergibt sich also fÃ¼r die Parameterwerte $s=t=-1$ in der Ebene. Demhingegen ist die Gerade
  \[
   h\colon\MVec{r}=y\MVector{3\\-1\\-4}\MDFPSpace;\MDFPaSpace y\in\R
  \]
- parallel zu Ebene $E$, denn $h$ weist als Aufpunkt den Ursprung $\MPointThree{0}{0}{0}$ auf. Der Ursprung liegt aber nicht in $E$, denn für die Vektorgleichung
+ parallel zu Ebene $E$, denn $h$ weist als Aufpunkt den Ursprung $\MPointThree{0}{0}{0}$ auf. Der Ursprung liegt aber nicht in $E$, denn fÃ¼r die Vektorgleichung
  \[
   \MVector{0\\0\\0}=\MVector{2\\2\\2}+s\MVector{3\\-1\\0}+t\MVector{0\\0\\2}=\MVector{2+3s\\2-s\\2+2t}
  \]
- gibt es keine Parameterwerte $s$ und $t$, die diese erfüllen. Die erste Komponente würde $s=-\frac{2}{3}$ implizieren und die zweite Komponente $s=2$; ein Widerspruch.
+ gibt es keine Parameterwerte $s$ und $t$, die diese erfÃ¼llen. Die erste Komponente wÃ¼rde $s=-\frac{2}{3}$ implizieren und die zweite Komponente $s=2$; ein Widerspruch.
  
  \item Jede Gerade mit einem Richtungsvektor, der nicht komplanar zu den beiden Richtungsvektoren $\MVector{3\\-1\\0}$ und $\MVector{0\\0\\2}$ von $E$ ist, schneidet die Ebene $E$ in genau einem Punkt. Ein Beispiel einer solchen Geraden ist
  \[
@@ -2723,15 +2723,15 @@ Gegeben ist eine Ebene $E$ in Parameterform durch
  \[
   \MVector{1\\1\\1}= a\MVector{3\\-1\\0}+b\MVector{0\\0\\2}=\MVector{3a\\-a\\2b}
  \]
- ist durch keine Zahlen $a,b\in\R$ erfüllbar. Die erste Komponente würde $a=\frac{1}{3}$ und die zweite $a=-1$ implizieren; ein Widerspruch. Nun kann durch Gleichsetzen der Ortsvektoren der Geraden $k$ und der Ebene $E$ der Schnittpunkt der beiden berechnet werden:
+ ist durch keine Zahlen $a,b\in\R$ erfÃ¼llbar. Die erste Komponente wÃ¼rde $a=\frac{1}{3}$ und die zweite $a=-1$ implizieren; ein Widerspruch. Nun kann durch Gleichsetzen der Ortsvektoren der Geraden $k$ und der Ebene $E$ der Schnittpunkt der beiden berechnet werden:
  \[
   \MVector{-3\\1\\0}+\mu\MVector{1\\1\\1}=\MVector{-3+\mu\\1+\mu\\\mu}=\MVector{2+3s\\2-s\\2+2t}=\MVector{2\\2\\2}+s\MVector{3\\-1\\0}+t\MVector{0\\0\\2}\MDFPeriod
  \]
- Interessiert man sich nur für den Schnittpunkt, so genügt es den Parameterwert der Geraden zu bestimmen, für den diese Vektorgleichung erfüllt ist. Der Ortsvektor des Schnittpunkts ergibt sich dann durch Einsetzen des bestimmten Parameterwerts in die Gerade. Die ersten beiden Komponenten dieser Vektorgleichung liefern zwei Gleichungen für die Unbekannten $\mu$ und $s$:
+ Interessiert man sich nur fÃ¼r den Schnittpunkt, so genÃ¼gt es den Parameterwert der Geraden zu bestimmen, fÃ¼r den diese Vektorgleichung erfÃ¼llt ist. Der Ortsvektor des Schnittpunkts ergibt sich dann durch Einsetzen des bestimmten Parameterwerts in die Gerade. Die ersten beiden Komponenten dieser Vektorgleichung liefern zwei Gleichungen fÃ¼r die Unbekannten $\mu$ und $s$:
  \[
   \mu=5+3s\MDFPaSpace\textrm{und}\MDFPaSpace \mu=1-s \MDFPSpace,
  \]
- woraus man $\mu=2$ erhält. Damit hat der Schnittpunkt den Ortsvektor
+ woraus man $\mu=2$ erhÃ¤lt. Damit hat der Schnittpunkt den Ortsvektor
  \[
   \MVector{-3\\1\\0}+2\MVector{1\\1\\1}=\MVector{-1\\3\\2} \MDFPeriod
  \]
@@ -2752,29 +2752,29 @@ deren Aufpunkt nicht in $E$ liegt.
 Bestimmen Sie den fehlenden Eintrag $c$, so dass $g$ parallel zu $E$ ist.\\
 $c=$\MLFunctionQuestion{10}{1}{5}{x}{5}{BLUBB1}
 
-Berechnen Sie für alle anderen Werte von $c$ den Schnittpunkt $S=\MPointThree{x}{y}{z}$ in Abhängigkeit von $c$. Geben Sie die drei Komponenten von $S$ getrennt an.\\
+Berechnen Sie fÃ¼r alle anderen Werte von $c$ den Schnittpunkt $S=\MPointThree{x}{y}{z}$ in AbhÃ¤ngigkeit von $c$. Geben Sie die drei Komponenten von $S$ getrennt an.\\
 $x=$\MLFunctionQuestion{20}{0}{5}{c}{5}{BLUBB2x}\\
 $y=$\MLFunctionQuestion{20}{2+40/(1-c)}{5}{c}{5}{BLUBB2y}\\
 $z=$\MLFunctionQuestion{20}{1+10*c/(1-c)}{5}{c}{5}{BLUBB2z}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Damit $g$ und $E$ parallel sind, muss der Richtungsvektor $\MVector{0\\4\\c}$ von $g$ zu den beiden Richtungsvektoren $\MVector{1\\3\\2}$ und $\MVector{-1\\1\\-1}$ von $E$ komplanar sein. Die Bedingung
 \[
  \MVector{0\\4\\c}=s\MVector{1\\3\\2}+t\MVector{-1\\1\\-1}
 \]
-ist nur für $c=1$ erfüllbar, denn die erste und zweite Komponente liefern das lineare Gleichungssystem 
+ist nur fÃ¼r $c=1$ erfÃ¼llbar, denn die erste und zweite Komponente liefern das lineare Gleichungssystem 
 \[
  s-t=0\MDFPSpace,\MDFPaSpace 3s+t=4
 \]
-für die Unbekannten $s$ und $t$, das die Lösung $s=t=1$ besitzt. Dies erzwingt in der dritten Komponente
+fÃ¼r die Unbekannten $s$ und $t$, das die LÃ¶sung $s=t=1$ besitzt. Dies erzwingt in der dritten Komponente
 \[
  c=2\cdot1-1=1 \MDFPeriod
 \]
-Für den Schnittpunkt werden die Ortsvektoren von Gerade und Ebene gleichgesetzt:
+FÃ¼r den Schnittpunkt werden die Ortsvektoren von Gerade und Ebene gleichgesetzt:
 \[
  \MVector{0\\2\\1}+u\MVector{0\\4\\c}=\MVector{0\\2+4u\\1+c u}=\MVector{8+s-t\\-2+3s+t\\2s-t}=\MVector{8\\-2\\0}+s\MVector{1\\3\\2}+t\MVector{-1\\1\\-1}\MDFPeriod
 \]
-Diese Vektorgleichung entspricht einem linearen Gleichungssystem in den Variablen $s$, $t$ und $u$ mit dem Parameter $c$, das mit den Methoden aus Abschnitt \MNRef{M04_freier_Parameter} gelöst werden kann. Man erhält für die Unbekannte $u$:
+Diese Vektorgleichung entspricht einem linearen Gleichungssystem in den Variablen $s$, $t$ und $u$ mit dem Parameter $c$, das mit den Methoden aus Abschnitt \MNRef{M04_freier_Parameter} gelÃ¶st werden kann. Man erhÃ¤lt fÃ¼r die Unbekannte $u$:
 \[
  u=\frac{10}{1-c}\MDFPeriod
 \]
@@ -2795,12 +2795,12 @@ Gegeben ist die Gerade
 \]
 Bestimmen Sie folgende Werte des Parameters $\rho$:
 \begin{MExerciseItems}
-\item{Wert des Parameters $\rho$ für den $h$ die $x y$-Ebene schneidet:\ $\rho=$\MLFunctionQuestion{10}{-1}{5}{x}{5}{BLAA1}}
-\item{Wert des Parameters $\rho$ für den $h$ die $y z$-Ebene schneidet:\ $\rho=$\MLFunctionQuestion{10}{3/8}{5}{x}{5}{BLAA2}}
-\item{Wert des Parameters $\rho$ für den $h$ die $x z$-Ebene schneidet:\ $\rho=$\MLFunctionQuestion{10}{-2/9}{5}{x}{5}{BLAA3}}
+\item{Wert des Parameters $\rho$ fÃ¼r den $h$ die $x y$-Ebene schneidet:\ $\rho=$\MLFunctionQuestion{10}{-1}{5}{x}{5}{BLAA1}}
+\item{Wert des Parameters $\rho$ fÃ¼r den $h$ die $y z$-Ebene schneidet:\ $\rho=$\MLFunctionQuestion{10}{3/8}{5}{x}{5}{BLAA2}}
+\item{Wert des Parameters $\rho$ fÃ¼r den $h$ die $x z$-Ebene schneidet:\ $\rho=$\MLFunctionQuestion{10}{-2/9}{5}{x}{5}{BLAA3}}
 \end{MExerciseItems}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \begin{MExerciseItems}
 \item{In der $x y$-Ebene ist $z=0$, also muss die dritte Komponente des Ortsvektors von $h$ gleich Null sein:
 \[
@@ -2823,7 +2823,7 @@ Bestimmen Sie folgende Werte des Parameters $\rho$:
 
 \end{MExercise}
 
-Betrachtet man zwei Ebenen im Raum, so gibt es für ihre Lagebeziehung drei Fälle, die sich analog zu den drei möglichen relativen Lagen zweier Geraden in der Ebene aus Abschnitt \MNRef{VBKM09_Lagebeziehungen} verhalten. Die folgende Infobox stellt diese Fälle zusammen.
+Betrachtet man zwei Ebenen im Raum, so gibt es fÃ¼r ihre Lagebeziehung drei FÃ¤lle, die sich analog zu den drei mÃ¶glichen relativen Lagen zweier Geraden in der Ebene aus Abschnitt \MNRef{VBKM09_Lagebeziehungen} verhalten. Die folgende Infobox stellt diese FÃ¤lle zusammen.
 
 \begin{MInfo}
 Gegeben sind zwei Ebenen $E_1$ mit dem Aufpunktvektor $\MVec{a}_1$ und den beiden Richtungsvektoren $\MVec{u}_1$ und $\MVec{v}_1$ sowie $E_2$ mit dem Aufpunktvektor $\MVec{a}_2$ und den beiden Richtungsvektoren $\MVec{u}_2$ und $\MVec{v}_2$ durch
@@ -2834,18 +2834,18 @@ und
 \[
  E_2\colon \MVec{r}=\MVec{a}_2+\rho\MVec{u}_2+\sigma\MVec{v}_2\MDFPSpace;\MDFPaSpace\rho,\sigma\in\R\MDFPeriod
 \]
-Für die relative Lage von $E_1$ und $E_2$ gibt es genau drei Möglichkeiten:
+FÃ¼r die relative Lage von $E_1$ und $E_2$ gibt es genau drei MÃ¶glichkeiten:
 \begin{enumerate}
  \item Die Ebenen $E_1$ und $E_2$ sind identisch, falls sie alle Punkte gemeinsam haben. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{u}_2$ sowie die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{v}_2$ komplanar sind und der Aufpunkt von $E_1$ in $E_2$ enthalten ist.  
  \item Die Ebenen $E_1$ und $E_2$ sind parallel, falls sie keine Punkte gemeinsam haben. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{u}_2$ sowie die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{v}_2$ komplanar sind und der Aufpunkt von $E_1$ \textit{nicht} in $E_2$ enthalten ist. 
  \item Die Ebenen $E_1$ und $E_2$ schneiden sich, falls ihre gemeinsamen Punkte eine Gerade bilden. Dies ist genau dann der Fall, wenn die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{u}_2$ \textit{oder} die drei Richtungsvektoren $\MVec{u}_1$, $\MVec{v}_1$, $\MVec{v}_2$ \textit{nicht} komplanar sind. 
 \end{enumerate}
 
-(Diese Abbildung erscheint in Kürze.)
+(Diese Abbildung erscheint in KÃ¼rze.)
 
 \end{MInfo}
 
-Natürlich sind in den Bedingungen für die drei Fälle, die in obiger Infobox angegeben sind, die Rollen der beiden Ebenen auch vertauschbar; man kann also beispielsweise auch überprüfen, ob der Aufpunkt von $E_2$ in $E_1$ enthalten ist; dies macht keinen Unterschied. Falls die Ebenen sich schneiden, kann die Schnittgerade berechnet werden. Schnittmengen von Ebenen wurden bereits in Abschnitt \MNRef{M04_3_Unbekannte} im Rahmen der geometrischen Interpretation der Lösbarkeit linearer Gleichungssysteme mit drei Unbekannten behandelt. Die Vertrautheit mit diesem Abschnitt wird im Folgenden vorausgesetzt und dessen kurze Wiederholung wird wärmstens empfohlen. Das folgende Beispiel zeigt die Vorgehensweise bei der Untersuchung der relativen Lage zweier Ebenen.
+NatÃ¼rlich sind in den Bedingungen fÃ¼r die drei FÃ¤lle, die in obiger Infobox angegeben sind, die Rollen der beiden Ebenen auch vertauschbar; man kann also beispielsweise auch Ã¼berprÃ¼fen, ob der Aufpunkt von $E_2$ in $E_1$ enthalten ist; dies macht keinen Unterschied. Falls die Ebenen sich schneiden, kann die Schnittgerade berechnet werden. Schnittmengen von Ebenen wurden bereits in Abschnitt \MNRef{M04_3_Unbekannte} im Rahmen der geometrischen Interpretation der LÃ¶sbarkeit linearer Gleichungssysteme mit drei Unbekannten behandelt. Die Vertrautheit mit diesem Abschnitt wird im Folgenden vorausgesetzt und dessen kurze Wiederholung wird wÃ¤rmstens empfohlen. Das folgende Beispiel zeigt die Vorgehensweise bei der Untersuchung der relativen Lage zweier Ebenen.
 
 \begin{MExample}
 Gegeben sind die drei Ebenen
@@ -2864,29 +2864,29 @@ und
  \[
   a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2}=\MVector{5\\-2\\-1}
  \]
- ist durch die Zahlen $a=b=1$ erfüllt. Genauso sind die Richtungsvektoren $\MVector{1\\-2\\1}$ und $\MVector{4\\0\\-2}$ von $E$ und der zweite Richtungsvektor $\MVector{-3\\-2\\3}$ von $F$ sind komplanar, denn die Bedingung
+ ist durch die Zahlen $a=b=1$ erfÃ¼llt. Genauso sind die Richtungsvektoren $\MVector{1\\-2\\1}$ und $\MVector{4\\0\\-2}$ von $E$ und der zweite Richtungsvektor $\MVector{-3\\-2\\3}$ von $F$ sind komplanar, denn die Bedingung
  \[
   a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2}=\MVector{-3\\-2\\3}
  \]
- ist durch die Zahlen $a=1$ und $b=-1$ erfüllt. Weiterhin ist der Aufpunkt von $F$ nicht in $E$ enthalten, denn die Bedingung
+ ist durch die Zahlen $a=1$ und $b=-1$ erfÃ¼llt. Weiterhin ist der Aufpunkt von $F$ nicht in $E$ enthalten, denn die Bedingung
  \[
   \MVector{5\\1\\0}=\MVector{0\\2\\-2}+a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2}=\MVector{a+4b\\2-2a\\-2+a-2b}
  \]
- ist für keine Parameterwerte $a$ und $b$ erfüllbar. Aus der zweiten Komponente würde $a=\frac{1}{2}$ folgen, was eingesetzt in die erste Komponente auf $b=\frac{9}{8}$ führt. Dies ergibt aber in der dritten Komponente den Widerspruch $0=-2+\frac{1}{2}-\frac{9}{4}$. Würde man allerdings in $F$ einen anderen Aufpunkt wählen, der in $E$ enthalten ist, zum Beispiel den gleichen Aufpunkt wie in $E$, so würde man eine zu $E$ identische Ebene erhalten, also eine andere Parameterdarstellung der gleichen Ebene. Zum Beispiel ist
+ ist fÃ¼r keine Parameterwerte $a$ und $b$ erfÃ¼llbar. Aus der zweiten Komponente wÃ¼rde $a=\frac{1}{2}$ folgen, was eingesetzt in die erste Komponente auf $b=\frac{9}{8}$ fÃ¼hrt. Dies ergibt aber in der dritten Komponente den Widerspruch $0=-2+\frac{1}{2}-\frac{9}{4}$. WÃ¼rde man allerdings in $F$ einen anderen Aufpunkt wÃ¤hlen, der in $E$ enthalten ist, zum Beispiel den gleichen Aufpunkt wie in $E$, so wÃ¼rde man eine zu $E$ identische Ebene erhalten, also eine andere Parameterdarstellung der gleichen Ebene. Zum Beispiel ist
  \[
   F^{\prime}\colon\MVec{r}=\MVector{0\\2\\-2}+\alpha\MVector{5\\-2\\-1}+\beta\MVector{-3\\-2\\3}\MDFPSpace;\MDFPaSpace \alpha,\beta\in\R
  \]
  eine solche Ebene.
  
- \item Die Ebenen $E$ und $G$ schneiden sich. Beide Richtungsvektoren $\MVector{1\\-2\\0}$ und $\MVector{0\\0\\3}$ von $G$ sind nicht komplanar zu den beiden Richtungsvektoren $\MVector{1\\-2\\1}$ und $\MVector{4\\0\\-2}$ von $E$. Zum Beispiel gilt für den zweiten Richtungsvektor von $G$, dass die Bedingung
+ \item Die Ebenen $E$ und $G$ schneiden sich. Beide Richtungsvektoren $\MVector{1\\-2\\0}$ und $\MVector{0\\0\\3}$ von $G$ sind nicht komplanar zu den beiden Richtungsvektoren $\MVector{1\\-2\\1}$ und $\MVector{4\\0\\-2}$ von $E$. Zum Beispiel gilt fÃ¼r den zweiten Richtungsvektor von $G$, dass die Bedingung
  \[
   \MVector{0\\0\\3}=a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2}
  \]
- durch keine Zahlen $a$ und $b$ erfüllbar ist. Die ersten beiden Komponenten würden $a=b=0$ erzwingen, was der dritten Komponente widerspricht. Die Schnittgerade der beiden Ebenen berechnet man durch Gleichsetzen der Ortsvektoren. Man erhält hier:
+ durch keine Zahlen $a$ und $b$ erfÃ¼llbar ist. Die ersten beiden Komponenten wÃ¼rden $a=b=0$ erzwingen, was der dritten Komponente widerspricht. Die Schnittgerade der beiden Ebenen berechnet man durch Gleichsetzen der Ortsvektoren. Man erhÃ¤lt hier:
  \[
   \MVector{0\\2\\-2}+a\MVector{1\\-2\\1}+b\MVector{4\\0\\-2}=\MVector{a+4b\\2-2a\\-2+a-2b}=\MVector{5+x\\-2x\\1+3y}=\MVector{5\\0\\1}+x\MVector{1\\-2\\0}+y\MVector{0\\0\\3}\MDFPeriod
  \]
- Diese Vektorgleichung entspricht einem System von drei linearen Gleichungen mit den vier Unbekannten $x$, $y$, $a$ und $b$. Dies wird nun mit den Methoden aus Abschnitt \MNRef{M04_freier_Parameter} gelöst, indem man eine der Unbekannten als Parameter auffasst und die anderen Unbekannten in Abhängigkeit von diesem berechnet. Dieser übrige Parameter wird am Ende der Parameter in der Punkt-Richtungsform der zu bestimmenden Schnittgeraden werden. Welche der Unbekannten man als Parameter auffasst, ist egal. Hier wird nun $x$ als Parameter benutzt. Dann führen die ersten beiden Komponenten der Vektorgleichung auf die beiden Gleichungen
+ Diese Vektorgleichung entspricht einem System von drei linearen Gleichungen mit den vier Unbekannten $x$, $y$, $a$ und $b$. Dies wird nun mit den Methoden aus Abschnitt \MNRef{M04_freier_Parameter} gelÃ¶st, indem man eine der Unbekannten als Parameter auffasst und die anderen Unbekannten in AbhÃ¤ngigkeit von diesem berechnet. Dieser Ã¼brige Parameter wird am Ende der Parameter in der Punkt-Richtungsform der zu bestimmenden Schnittgeraden werden. Welche der Unbekannten man als Parameter auffasst, ist egal. Hier wird nun $x$ als Parameter benutzt. Dann fÃ¼hren die ersten beiden Komponenten der Vektorgleichung auf die beiden Gleichungen
  \[
   a+4b=5+x\MDFPaSpace\textrm{und}\MDFPaSpace 2-2a=-2x \MDFPSpace,
  \]
@@ -2894,7 +2894,7 @@ und
  \[
   -2 + (1+x) - 2\cdot 1=1+3y\MDFPSpace\Leftrightarrow\MDFPSpace y=\frac{1}{3} x-\frac{4}{3} \MDFPeriod
  \]
- Nun kann $y=\frac{1}{3}x-\frac{4}{3}$ oder $a=1+x$ und $b=1$ in die Ebene $G$ oder $E$ eingesetzt werden; dies führt -- bei gleicher Parameterwahl -- auf dieselbe Parameterdarstellung der Geraden $h$, nämlich der Schnittgeraden der beiden Ebenen. Für das Einsetzen in $G$ ergibt sich:
+ Nun kann $y=\frac{1}{3}x-\frac{4}{3}$ oder $a=1+x$ und $b=1$ in die Ebene $G$ oder $E$ eingesetzt werden; dies fÃ¼hrt -- bei gleicher Parameterwahl -- auf dieselbe Parameterdarstellung der Geraden $h$, nÃ¤mlich der Schnittgeraden der beiden Ebenen. FÃ¼r das Einsetzen in $G$ ergibt sich:
  \[
   h\colon\MVec{r}=\MVector{5\\0\\1}+x\MVector{1\\-2\\0}+(\Mtfrac{1}{3}x-\Mtfrac{4}{3})\MVector{0\\0\\3}=\MVector{5\\0\\-3}+x\MVector{1\\-2\\1}\MDFPSpace;\MDFPaSpace x\in\R\MDFPeriod
  \]
@@ -2918,8 +2918,8 @@ Bestimmen Sie die fehlenden Komponenten $x$ und $y$ von $F$, so dass $F$ und $E$
 $x=$\MLFunctionQuestion{10}{0}{5}{x}{5}{GNATZ1}\\
 $y=$\MLFunctionQuestion{10}{-6}{5}{x}{5}{GNATZ2}
 
-\begin{MHint}{Lösung}
-Für Parallelität ist erforderlich, dass beiden Richtungsvektoren von $F$ jeweils zu den beiden Richtungsvektoren von $E$ komplanar sind. Für den ersten Richtungsvektor von $F$ liefert dies die Bedingung
+\begin{MHint}{\iSolution}
+FÃ¼r ParallelitÃ¤t ist erforderlich, dass beiden Richtungsvektoren von $F$ jeweils zu den beiden Richtungsvektoren von $E$ komplanar sind. FÃ¼r den ersten Richtungsvektor von $F$ liefert dies die Bedingung
 \[
  \MVector{-2\\3\\x}=a\MVector{2\\-5\\8}+b\MVector{0\\-1\\4} \MDFPeriod
 \]
@@ -2927,7 +2927,7 @@ Hier berechnet man aus der ersten und zweiten Komponente die Werte $a=-1$ und $b
 \[
  x=-8+2\cdot 4=0
 \]
-erzwingt. Für den zweiten Richtungsvektor von $F$ liefert dies die Bedingung
+erzwingt. FÃ¼r den zweiten Richtungsvektor von $F$ liefert dies die Bedingung
 \[
  \MVector{2\\y\\12}=a\MVector{2\\-5\\8}+b\MVector{0\\-1\\4} \MDFPeriod
 \]
@@ -2960,16 +2960,16 @@ Bestimmen Sie die fehlenden Komponenten $x$ und $y$ des Richtungsvektors der Sch
 $x=$\MLFunctionQuestion{10}{-5}{5}{x}{5}{GNATZ3}\\
 $y=$\MLFunctionQuestion{10}{-4}{5}{x}{5}{GNATZ4}
 
-\begin{MHint}{Lösung}
-Gleichsetzen der Ortsvektoren der beiden Ebenen führt auf
+\begin{MHint}{\iSolution}
+Gleichsetzen der Ortsvektoren der beiden Ebenen fÃ¼hrt auf
 \[
  a\MVector{2\\-5\\8}+b\MVector{0\\-1\\4}=\MVector{2a\\-5a-b\\8a+4b}=\MVector{2d\\3c-d\\4c}=c\MVector{0\\3\\4}+d\MVector{2\\-1\\0} \MDFPeriod
 \]
-Lösen des zugehörigen Gleichungssystems mit $d$ als Parameter führt auf $a=d$, $b=-\frac{5}{2}d$ und $c=-\frac{1}{2}d$. Die Bedingung $c=-\frac{1}{2}d$ in die Ebene $F$ eingesetzt führt auf
+LÃ¶sen des zugehÃ¶rigen Gleichungssystems mit $d$ als Parameter fÃ¼hrt auf $a=d$, $b=-\frac{5}{2}d$ und $c=-\frac{1}{2}d$. Die Bedingung $c=-\frac{1}{2}d$ in die Ebene $F$ eingesetzt fÃ¼hrt auf
 \[
  -\Mtfrac{1}{2}d\MVector{0\\3\\4}+d\MVector{2\\-1\\0}=d\MVector{2\\-\Mtfrac{5}{2}\\-2} \MDFPeriod
 \]
-Ein geeigneter Richtungsvektor für die Schnittgerade ist also $\MVector{2\\-\Mtfrac{5}{2}\\-2}$. Der Richtungsvektor in der angegebenen Parameterform von $g$ hat als erste Komponente allerdings eine $4$ und ist zu diesem Vektor also kollinear; dies führt auf den Vektor $\MVector{4\\-5\\-4}$ als Richtungsvektor, also $x=-5$ und $y=-4$. 
+Ein geeigneter Richtungsvektor fÃ¼r die Schnittgerade ist also $\MVector{2\\-\Mtfrac{5}{2}\\-2}$. Der Richtungsvektor in der angegebenen Parameterform von $g$ hat als erste Komponente allerdings eine $4$ und ist zu diesem Vektor also kollinear; dies fÃ¼hrt auf den Vektor $\MVector{4\\-5\\-4}$ als Richtungsvektor, also $x=-5$ und $y=-4$. 
 \end{MHint}
 
 
@@ -3023,27 +3023,27 @@ Geben Sie die im Diagramm dargestellten Pfeilklassen als Vektoren an:
 
 %\MUGraphics{vektoren1.png}{width=0.5\linewidth}{Pfeile in der Ebene}{width:400px}
 
-% Beachten Sie die Beschriftung der Achsen (vertikale Achse gehört
+% Beachten Sie die Beschriftung der Achsen (vertikale Achse gehÃ¶rt
 % zur ersten Komponente der Vektoren), 
-% beispielsweise gehört zum roten Pfeil der Vektor $\MVector{1\\2}$.
+% beispielsweise gehÃ¶rt zum roten Pfeil der Vektor $\MVector{1\\2}$.
 
 \begin{MExerciseItems}
 \item{Roter Vektor: \MLFunctionQuestion{15}{(1,2)}{5}{x}{5}{OR20}.} 
 \item{Violetter Vektor: \MLFunctionQuestion{15}{(-1,2)}{5}{x}{5}{OR20b}.} 
 \item{Blauer Vektor: \MLFunctionQuestion{15}{(2,2)}{5}{x}{5}{OR21}.} 
-\item{Grüner Vektor: \MLFunctionQuestion{15}{(1,1)}{5}{x}{5}{OR22}.} 
+\item{GrÃ¼ner Vektor: \MLFunctionQuestion{15}{(1,1)}{5}{x}{5}{OR22}.} 
 \item{Schwarzer Vektor: \MLFunctionQuestion{15}{(1,1)}{5}{x}{5}{OR23}.}
 \end{MExerciseItems}
-\MInputHint{Vektoren können in der Form \texttt{(a;b)} eingegeben werden, zum Beispiel \texttt{(8;-9)} für den Vektor $\MVector{8\\-9}$.} 
+\MInputHint{Vektoren kÃ¶nnen in der Form \texttt{(a;b)} eingegeben werden, zum Beispiel \texttt{(8;-9)} fÃ¼r den Vektor $\MVector{8\\-9}$.} 
 
-% \begin{MHint}{Lösung}
+% \begin{MHint}{\iSolution}
 % Der rote Pfeil bewegt um eine Einheit nach rechts und um zwei Einheiten nach oben, er wird also durch $\MVector{1\\2}$ beschrieben.
 % Alternativ kann man auch Startpunkte der Pfeile von den Endpunkten abziehen, um den Vektor zu bestimmen. Dabei ist dann die Beschriftung
 % der Achsen zu beachten:
 % $$
 % \MVector{-2\\1}-\MVector{-3\\-1} \;=\; \MVector{-2-(-3)\\1-(-1)} \;=\; \MVector{1\\2}\: .
 % $$
-% Ebenso erhält man $\MVector{-1\\2}$ für den gelben Vektor, $\MVector{2\\2}$ für den blauen und $\MVector{1\\1}$ für den grünen sowie den schwarzen Vektor.
+% Ebenso erhÃ¤lt man $\MVector{-1\\2}$ fÃ¼r den gelben Vektor, $\MVector{2\\2}$ fÃ¼r den blauen und $\MVector{1\\1}$ fÃ¼r den grÃ¼nen sowie den schwarzen Vektor.
 % Dass die Pfeile im Diagramm verschiedene Start- und Endpunkte haben spielt keine Rolle, als Vektoren (Pfeilklassen) sind beide gleich.
 % \end{MHint}
 
@@ -3051,28 +3051,28 @@ Geben Sie die im Diagramm dargestellten Pfeilklassen als Vektoren an:
 
 \begin{MExercise}
 % Modifizierte  COSH-Frage
-Ein Sportflugzeug würde bei Windstille mit einer Geschwindigkeit von
-150 Kilometer pro Stunde genau nach Süden fliegen. Es wird jedoch von einem Wind,
+Ein Sportflugzeug wÃ¼rde bei Windstille mit einer Geschwindigkeit von
+150 Kilometer pro Stunde genau nach SÃ¼den fliegen. Es wird jedoch von einem Wind,
 der mit der Geschwindigkeit 30 Kilometer pro Stunde aus Richtung Westen weht,
 abgetrieben. Stellen Sie die Geschwindigkeit des Flugzeugs als Summe von zwei Vektoren in der Ebene dar, wobei
-die zweite Komponente zur Nord-Süd-Achse (positive Werte für Norden) und die erste Komponente
-zur Ost-West-Achse gehört (positive Werte für Osten). Lassen Sie die Einheit (Kilometer pro Stunde)
+die zweite Komponente zur Nord-SÃ¼d-Achse (positive Werte fÃ¼r Norden) und die erste Komponente
+zur Ost-West-Achse gehÃ¶rt (positive Werte fÃ¼r Osten). Lassen Sie die Einheit (Kilometer pro Stunde)
 in der Rechnung weg:
 \begin{MExerciseItems}
 \item{Bei Windstille ist die Geschwindigkeit \MLFunctionQuestion{15}{(0,-150)}{5}{x}{5}{OR0}.}
-\item{Der Wind verursacht eine zusätzliche Geschwindigkeit von \MLFunctionQuestion{15}{(30,0)}{5}{x}{5}{OR3}.}
+\item{Der Wind verursacht eine zusÃ¤tzliche Geschwindigkeit von \MLFunctionQuestion{15}{(30,0)}{5}{x}{5}{OR3}.}
 \item{Das abgetriebene Flugzeug hat insgesamt den Geschwindigkeitsvektor \MLFunctionQuestion{15}{(30,-150)}{5}{x}{5}{OR1}.}
-\item{Die Länge dieses Vektors (der Betrag der Geschwindigkeit) ist \MLParsedQuestion{15}{sqrt(30*30+150*150)}{5}{OR2}.\\
-\MInputHint{Wurzelausdrücke müssen Sie nicht auswerten.}}
+\item{Die LÃ¤nge dieses Vektors (der Betrag der Geschwindigkeit) ist \MLParsedQuestion{15}{sqrt(30*30+150*150)}{5}{OR2}.\\
+\MInputHint{WurzelausdrÃ¼cke mÃ¼ssen Sie nicht auswerten.}}
 \end{MExerciseItems}
-\MInputHint{Vektoren können in der Form \texttt{(a;b)} eingegeben werden, zum Beispiel \texttt{(8;-9)} für den Vektor $\MVector{8\\-9}$.} 
-% \begin{MHint}{Lösung}
-% Der Wind verursacht eine zusätzliche Geschwindigkeit von $\MVector{30\\0}$, damit ergibt sich die Geschwindigkeitsvektor
+\MInputHint{Vektoren kÃ¶nnen in der Form \texttt{(a;b)} eingegeben werden, zum Beispiel \texttt{(8;-9)} fÃ¼r den Vektor $\MVector{8\\-9}$.} 
+% \begin{MHint}{\iSolution}
+% Der Wind verursacht eine zusÃ¤tzliche Geschwindigkeit von $\MVector{30\\0}$, damit ergibt sich die Geschwindigkeitsvektor
 % $$
 % \MVector{0\\-150}+\MVector{30\\0} \;=\; \MVector{30\\-150}
 % $$
 % durch komponentenweises Addieren der Vektoren.
-% Die Länge dieses Vektors ist
+% Die LÃ¤nge dieses Vektors ist
 % $$
 % \sqrt{30^2+(-150)^2} \;=\; \sqrt{23400}\: .
 % $$
@@ -3089,7 +3089,7 @@ Gegeben sind die Punkte $P=\MPointTwo{3}{4}$, $Q=\MPointTwo{1}{0}$ und $R=\MPoin
 \item{\MEquationItem{$\MDVec{Q P}$}{\MLFunctionQuestion{15}{(2,4)}{5}{x}{5}{OR4c}}.}
 \item{\MEquationItem{$\MDVec{R P}$}{\MLFunctionQuestion{15}{(5,3)}{5}{x}{5}{OR4d}}.}
 \end{MExerciseItems}
-% \begin{MHint}{Lösung}
+% \begin{MHint}{\iSolution}
 % Die Richtungsvektoren ergeben sich aus der Differenz zwischen End- und Startkoordinaten der Punkte:
 % \begin{eqnarray*}
 % \MDVec{P Q} &=& \MVector{1\\0}-\MVector{3\\4} \;=\; \MVector{-2\\-4}\: ,\ \\
@@ -3117,8 +3117,8 @@ $$
 $$
 \begin{MExerciseItems}
 \item{Der Ortsvektor des Schnittpunkts ist $\MDVec{S}=$\MLFunctionQuestion{15}{(-1,-1,0)}{5}{x}{5}{FKT4}.}
-\item{Man erh\"alt ihn als Punkt der ersten Geraden f\"ur den Parameter \MEquationItem{$\alpha$}{\MLParsedQuestion{7}{-2}{3}{PARSEDQUEST10}}.}
-\item{Man erh\"alt ihn als Punkt der zweiten Geraden f\"ur den Parameter \MEquationItem{$\beta$}{\MLParsedQuestion{7}{1/2}{3}{PARSEDQUEST11}}.}
+\item{Man erhÃ¤lt ihn als Punkt der ersten Geraden fÃ¼r den Parameter \MEquationItem{$\alpha$}{\MLParsedQuestion{7}{-2}{3}{PARSEDQUEST10}}.}
+\item{Man erhÃ¤lt ihn als Punkt der zweiten Geraden fÃ¼r den Parameter \MEquationItem{$\beta$}{\MLParsedQuestion{7}{1/2}{3}{PARSEDQUEST11}}.}
 \end{MExerciseItems}
 \end{MExercise}
 

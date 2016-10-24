@@ -13,11 +13,15 @@
         "logConnections": true,
         "files": [
           "./public/*.html",
+          "./public/*.htm",
           "./public/html/**/*.html",
           "./public/css/*.css",
           "./public/js/*.js"
         ],
-        "injectChanges": true
+        "injectChanges": true,
+        "snippetOptions": {
+            "ignorePaths": ["**/*.htm*", "index.html"]
+        }
       },
       "css": {
         "src": [
@@ -42,20 +46,26 @@
           "./bower_components/qtip2/jquery.qtip.js",
           "./bower_components/knockout/dist/knockout.js",
           "./bower_components/datatables.net/js/jquery.dataTables.js",
+          "./bower_components/loglevel/dist/loglevel.js",
+          "./tu9onlinekurstest/js/modernizr-custom.js",
           "./tu9onlinekurstest/js/jquery.i18n.js",
           "./tu9onlinekurstest/js/jquery.i18n.messagestore.js",
+          "./tu9onlinekurstest/js/veHelpers.js",
           "./tu9onlinekurstest/js/math.js",
           "./tu9onlinekurstest/js/mparser.js",
           "./tu9onlinekurstest/js/dynamiccss.js",
+          "./tu9onlinekurstest/js/newserver.js",
           "./tu9onlinekurstest/js/exercises.js",
           "./tu9onlinekurstest/js/dlog.js",
           "./tu9onlinekurstest/js/userdata.js",
-          "./tu9onlinekurstest/js/scormwrapper.js",
+          "./tu9onlinekurstest/js/SCORM_API_wrapper.js",
           "./tu9onlinekurstest/js/convinfo.js",
           "./tu9onlinekurstest/js/CLDRPluralRuleParser.js",
+          "./tu9onlinekurstest/js/scormBridge.js",
           "./tu9onlinekurstest/js/mintscripts_bootstrap.js",
           "./tu9onlinekurstest/js/servicescripts.js",
           "./tu9onlinekurstest/js/newIntersite.js",
+          "./tu9onlinekurstest/js/scores.js",
           "./tu9onlinekurstest/js/veundmint.js"
         ],
         "dest": "js"
@@ -85,23 +95,36 @@
         ],
         "dest": "images"
       },
+      "pdfs": {
+        "src": [
+          "./tu9onlinekurstest/pdf/*"
+        ],
+        "dest": "pdf"
+      },
       "inject": {
         "src": [
           "./public/js/jquery.js",
           "./public/js/es5-sham.js",
+          "./public/js/modernizr-custom.js",
           "./public/js/jquery.qtip.js",
           "./public/js/knockout.js",
           "./public/js/jquery.dataTables.js",
           "./public/js/jquery.i18n.js",
           "./public/js/jquery.i18n.messagestore.js",
           "./public/js/bootstrap.js",
+          "./public/js/loglevel.js",
+          "./public/js/helpers.js",
           "./public/js/math.js",
+          "./public/js/veHelpers.js",
           "./public/js/dynamiccss.js",
+          "./public/js/newserver.js",
           "./public/js/convinfo.js",
           "./public/js/mparser.js",
-          "./public/js/scormwrapper.js",
+          "./public/js/SCORM_API_wrapper.js",
+          "./public/js/scormBridge.js",
           "./public/js/dlog.js",
           "./public/js/userdata.js",
+          "./public/js/scores.js",
           "./public/js/newIntersite.js",
           "./public/js/exercises.js",
           "./public/js/mintscripts_bootstrap.js",

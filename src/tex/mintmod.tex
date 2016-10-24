@@ -1,3 +1,4 @@
+
 % ENCODING: ASCII (important as must be compatible both with utf8 and latin1 based authors)
 % MINTMOD Version P0.1.0, needs to be consistent with preprocesser object in tex2x and MPragma-Version at the end of this file
 
@@ -8,7 +9,8 @@
 % Wahl der Notationsvariante ist im PDF immer std, in der HTML-Uebersetzung wird vom Konverter die Auswahl modifiziert
 \newif\ifvariantstd
 \newif\ifvariantunotation
-\variantstdtrue % Diese Zeile wird vom Konverter erkannt und ggf. modifiziert, daher nicht veraendern!
+\variantstdtrue % this string was added by tex2x VEUNDMINT preprocessor
+ % Diese Zeile wird vom Konverter erkannt und ggf. modifiziert, daher nicht veraendern!
 
 
 \def\MOutputDVI{1}
@@ -25,7 +27,7 @@
 \else
 \documentclass[oneside]{scrbook}
 \usepackage{etex}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{textcomp}
 \usepackage[ngerman,english]{babel}
 \usepackage[pdftex]{color}
@@ -108,7 +110,6 @@
 \newcommand{\ML}{L}
 
 \newcommand{\MGGT}{\mathrm{gcd}}
-
 
 \ifttm
 % Verhindert dass die subsection-nummer doppelt in der toccaption auftaucht (sollte ggf. in toccaption gefixt werden so dass diese Ueberschreibung nicht notwendig ist)
@@ -302,7 +303,7 @@
 \newcommand{\MWatermarkSettings}{\relax}
 \else
 \newcommand{\MWatermarkSettings}{%
-% \SetWatermarkText{(c) MINT-Kolleg Baden-W\"urttemberg 2014}
+% \SetWatermarkText{(c) MINT-Kolleg Baden-Württemberg 2014}
 % \SetWatermarkLightness{0.85}
 % \SetWatermarkScale{1.5}
 }
@@ -433,7 +434,7 @@
   {}                      %Punctuation after thm head
   {\newline}              %Space after thm head: " " = normal interword
                           %space; \newline = linebreak
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+  {\thmname{#1}\thmnumber{#2}\thmnote{(#3)} }
                           %Thm head spec (can be left empty, meaning
                           %`normal')
                           %
@@ -447,7 +448,7 @@
   {}                      %Punctuation after thm head
   {\newline}              %Space after thm head: " " = normal interword
                           %space; \newline = linebreak
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+  {\thmname{#1}\thmnumber{#2}\thmnote{(#3)}}
                           %Thm head spec (can be left empty, meaning
                           %`normal')
 \fi%
@@ -557,9 +558,9 @@
   \special{html:<div class="hint well" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:"> }}{\begin{html}</div>\end{html}\addtocounter{MHintCounter}{1}}
 
   \newenvironment{MCOSHZusatz}{  \special{html:<button name="Name_MHint}\arabic{MHintCounter}\special{html:" class="chintbutton_closed" id="MHint}\arabic{MHintCounter}\special{html:_button" %
-  type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}Weiterf\"uhrende Inhalte\special{html:</button>}
+  type="button" onclick="toggle_hint('MHint}\arabic{MHintCounter}\special{html:');">}\iCoshAdd{}\special{html:</button>}
   \special{html:<div class="hintc" style="display:none" id="MHint}\arabic{MHintCounter}\special{html:">
-  <div class="coshwarn">}Diese Inhalte liegen \"uber dem Kursniveau und werden in den Aufgaben und Tests nicht abgefragt.\special{html:</div><br />}
+  <div class="coshwarn">}\iCoshWarn{}\special{html:</div><br />}
   \addtocounter{MHintCounter}{1}}{\begin{html}</div>\end{html}}
 
 
@@ -576,7 +577,7 @@
   \special{html:<div class="aufgabe"
   id="ADIV_}\MGenerateExNumber\special{html:"><div class="panel
   panel-warning"><div class="panel-heading"><h5 class="title">}%
-  \textbf{Aufgabe \MGenerateExNumber
+  \textbf{\iExercise{} \MGenerateExNumber
   } \begin{html}</h5></div><div class="panel-body">\end{html}}{\special{html:</div></div></div><!--
   mfeedbackbutton;Exercise;}\arabic{MTestSite}\special{html:;}\MGenerateExNumber\special{html:; //-->} \ifnum\value{MExerciseCollectionCounter}=0\else\special{html:<!-- mexercisetextstop //-->}\fi
   }
@@ -589,7 +590,7 @@
   \setcounter{MLastType}{5}
 
   \special{html:<div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
-  \textbf{Exercise \MGenerateExNumber
+  \textbf{\iExercise{} \MGenerateExNumber
   } \ \\%
   \special{html:</div><div class="exfetch_text" id="ADIVTEXT_}\MGenerateExNumber\special{html:">}%
   \special{html:</div><div class="exfetch_sol" id="ADIVSOL_}\MGenerateExNumber\special{html:">}%
@@ -606,7 +607,7 @@
   <div class="exmp">
   <div class="exmprahmen panel panel-default">
   <div class="panel-heading"><h5 class="panel-title">
-  \end{html}\textbf{Beispiel
+  \end{html}\textbf{\iExample{}
   \ifnum\value{MSepNumbers}=0
   \arabic{section}.\arabic{subsection}.\arabic{MObjectCounter}\setcounter{MLastIndex}{\value{MObjectCounter}}
   \else
@@ -624,7 +625,7 @@
   \begin{html}
   <div class="expe">
   <div class="experahmen">
-  \end{html}\textbf{Versuch
+  \end{html}\textbf{\iExperiment{}
   \ifnum\value{MSepNumbers}=0
   \arabic{section}.\arabic{subsection}.\arabic{MObjectCounter}\setcounter{MLastIndex}{\value{MObjectCounter}}
   \else
@@ -666,7 +667,9 @@
   \special{html:<!-- mfeedbackbutton;Info;}\arabic{MTestSite}\special{html:;}\MGenerateInfoNumber\special{html:; //-->}
   }
 
-  \newenvironment{MInfo}{\ifnum\value{MInfoNumbers}=0\begin{MChemInfo}\else\begin{MXInfo}{Info}\ \\ \fi}{\ifnum\value{MInfoNumbers}=0\end{MChemInfo}\else\end{MXInfo}\fi}
+  \newenvironment{MInfo}
+  {\ifnum\value{MInfoNumbers}=0\begin{MChemInfo}\else\begin{MXInfo}{Info}\ \\ \fi}
+  {\ifnum\value{MInfoNumbers}=0\end{MChemInfo}\else\end{MXInfo}\fi}
 
 \else%
 
@@ -675,25 +678,25 @@
   \newtheorem{thmc}{Satz}
   \theoremstyle{MDefStyle}
   \newtheorem{defn}[thm]{Definition}
-  \newtheorem{exmp}[thm]{Example}
+  \newtheorem{exmp}[thm]{\iExample{} }
   \newtheorem{info}[thm]{\MInfoText}
   \theoremstyle{MDefStyle}
   \newtheorem{defnc}{Definition}
   \theoremstyle{MDefStyle}
-  \newtheorem{exmpc}{Example}[section]
+  \newtheorem{exmpc}{\iExample{} } [section]
   \theoremstyle{MDefStyle}
   \newtheorem{infoc}{\MInfoText}
   \theoremstyle{MDefStyle}
-  \newtheorem{exrc}{Exercise}[section]
+  \newtheorem{exrc}{\iExercise{} } [section]
   \theoremstyle{MDefStyle}
-  \newtheorem{verc}{Versuch}[section]
+  \newtheorem{verc}{Versuch} [section]
 
   \newenvironment{MFetchExercise}{}{} % kann im PDF nicht dargestellt werden
 
   \newenvironment{MExercise}{\begin{exrc}\renewcommand{\MStdPoints}{1}\MTB}{\end{exrc}}
   \newenvironment{MHint}[1]{\ \\ \underline{#1:}\\}{}
-  \newenvironment{MCOSHZusatz}{\ \\ \underline{Weiterf\"uhrende Inhalte:}\\}{}
-  \newenvironment{MDefinition}{\ifnum\value{MInfoNumbers}=0\begin{defnc}\else\begin{defn}\fi\MTB}{\ifnum\value{MInfoNumbers}=0\end{defnc}\else\end{defn}\fi}
+  \newenvironment{MCOSHZusatz}{\ \\ \underline{\iCoshAdd{}:}\\}{}
+%  \newenvironment{MDefinition}{\ifnum\value{MInfoNumbers}=0\begin{defnc}\else\begin{defn}\fi\MTB}{\ifnum\value{MInfoNumbers}=0\end{defnc}\else\end{defn}\fi}
 %  \newenvironment{MExample}{\begin{exmp}}{\ \linebreak[1] \ \ \ \ $\phantom{a}$ \ \hfill $\blacklozenge$\end{exmp}}
   \newenvironment{MExample}{
     \ifnum\value{MInfoNumbers}=0\begin{exmpc}\else\begin{exmp}\fi
@@ -705,6 +708,7 @@
     \ifnum\value{MInfoNumbers}=0\end{exmpc}\else\end{exmp}\fi
 }
   \newenvironment{MChemInfo}{\begin{infoshaded}}{\end{infoshaded}}
+%  \newenvironment{MXInfo}{\begin{infoshaded}}{\end{infoshaded}}
 
   \newenvironment{MInfo}{\ifnum\value{MInfoNumbers}=0\begin{MChemInfo}\else\renewcommand{\MInfoText}{Info}\begin{info}\begin{infoshaded}
   \MTB
@@ -721,7 +725,7 @@
   }{\end{infoshaded}\ifnum\value{MInfoNumbers}=0\end{infoc}\else\end{info}\fi}
 
   \newenvironment{MExperiment}{
-    \renewcommand{\MInfoText}{Versuch}
+    \renewcommand{\MInfoText}{\iExperiment{}}
     \ifnum\value{MInfoNumbers}=0\begin{verc}\else\begin{info}\fi
     \MTB
     \begin{expeshaded}
@@ -990,32 +994,37 @@
 % - #6 Anzahl Punkte
 % - #7 uxid (kann z.B. Loesungsstring sein)
 % ACHTUNG: Die langen Zeilen bitte so lassen, Zeilenumbrueche im tex werden in div's umgesetzt
-\newcommand{\MQuestionID}[7]{
 \ifttm
+\newcommand{\MQuestionID}[7]{
 \special{html:<!-- mdeclareuxid;;}UX#7\special{html:;;}\arabic{section}\special{html:;;}#3\special{html:;; //-->}%
 \special{html:<!-- mdeclarepoints;;}\arabic{section}\special{html:;;}#3\special{html:;;}#6\special{html:;;}\arabic{MTestSite}\special{html:;;}\arabic{chapter}%
 \special{html:;; //--><!-- onloadstart //-->CreateQuestionObj("}#7\special{html:",}\arabic{MFieldCounter}\special{html:,"}#2%
 \special{html:","}#3\special{html:",}#4\special{html:,"}#5\special{html:",}#6\special{html:,}\arabic{MTestSite}\special{html:,}\arabic{section}%
 \special{html:);<!-- onloadstop //-->}%
 \special{html:<input mfieldtype="}#4\special{html:" name="Name_}#3\special{html:" id="}#3\special{html:" type="text" size="}#1\special{html:" maxlength="}#1%
-\special{html:" }\ifnum\value{MGroupActive}=0\special{html:onfocus="handlerFocus(}\arabic{MFieldCounter}%
-\special{html:);" onblur="handlerBlur(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,0);"/>}%
+\special{html:" }
+\ifnum\value{MGroupActive}=0\special{html:onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onblur="handlerBlur(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,0);"/>}%
 \special{html:<span><span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
 \else%
 \special{html:onblur="handlerBlur(}\arabic{MFieldCounter}%
 \special{html:);" onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}%
 \special{html:<span><span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
-%\special{html:<img src="images/questionmark.png" width="20" height="20" border="0" align="absmiddle" id="}QM#3\special{html:"/>}\fi%
-\else%
-\ifnum\value{QBoxFlag}=1\fbox{$\phantom{\MForLoop{#1}{b}}$}\else$\phantom{\MForLoop{#1}{b}}$\fi%
+\fi
+}
+\else
+\newcommand{\MQuestionID}[7]{
+\ifnum\value{QBoxFlag}=1\fbox{$\phantom{\MForLoop{#1}{b}}$}
+\else
+$\phantom{\MForLoop{#1}{b}}$
 \fi%
 }
+\fi%
 
 % ACHTUNG: Die langen Zeilen bitte so lassen, Zeilenumbrueche im tex werden in div's umgesetzt
 % QuestionCheckbox macht ausserhalb einer QuestionGroup keinen Sinn!
 % #1 = solution (1 oder 0), ggf. mit ::smc abgetrennt auszuschliessende single-choice-boxen (UXIDs durch , getrennt), #2 = id, #3 = points, #4 = uxid
-\newcommand{\MQuestionCheckbox}[4]{
 \ifttm
+\newcommand{\MQuestionCheckbox}[4]{
 \special{html:<!-- mdeclareuxid;;}UX#4\special{html:;;}\arabic{section}\special{html:;;}#2\special{html:;; //-->}%
 \ifnum\value{MGroupActive}=0\MDebugMessage{ERROR: Checkbox Nr. \arabic{MFieldCounter}\ ist nicht in einer Kontrollgruppe, es wird niemals eine Loesung angezeigt!}\fi
 \special{html: %
@@ -1024,12 +1033,12 @@
 \special{html:",}#3\special{html:,}\arabic{MTestSite}\special{html:,}\arabic{section}\special{html:);<!-- onloadstop //-->}%
 \special{html:<input mtristate="1" cval="0" mfieldtype="2" type="checkbox" name="Name_}#2\special{html:" id="}#2\special{html:" onchange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}
 \special{html:<span><span class="glyphicon glyphicon-question-sign" id="}IMG#2\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
-%<img src="images/questionmark.png" name="}Name_IMG#2%
-%\special{html:" width="20" height="20" border="0" align="absmiddle" id="}IMG#2\special{html:"/> }%
-\else%
-\ifnum\value{QBoxFlag}=1\fbox{$\phantom{X}$}\else$\phantom{X}$\fi%
-\fi%
 }
+\else%
+\newcommand{\MQuestionCheckbox}[4]{
+\ifnum\value{QBoxFlag}=1\fbox{$\phantom{X}$}\else$\phantom{X}$\fi%
+}
+\fi%
 
 \def\MGenerateID{QFELD_\arabic{section}.\arabic{subsection}.\arabic{MSiteCounter}.QF\arabic{MFieldCounter}}
 
@@ -1302,16 +1311,21 @@ type="button" onclick="group_button(}\arabic{MGroupStart}\special{html:,}\arabic
 
 % GHEADER und GFOOTER werden von split.pm gefunden, aber nur, wenn nicht HELPSITE oder TESTSITE
 \ifttm
-\newenvironment{MSectionStart}{\special{html:<div class="xcontent0">}\MSubsubsectionx{Module Overview}}{\setcounter{MSSEnd}{0}\special{html:</div>}}
+\newenvironment{MSectionStart}{\special{html:<div class="xcontent0">}\MSubsubsectionx{\iModuleOverview{}}}{\setcounter{MSSEnd}{0}\special{html:</div>}}
 % Darf nicht als XContent nummeriert werden, darf nicht als XContent gelabelt werden, wird aber in eine xcontent-div gesetzt fuer Python-parsing
 \else
-\newenvironment{MSectionStart}{\MSubsectionx{Module Overview}}{\setcounter{MSSEnd}{0}}
+\newenvironment{MSectionStart}{\MSubsectionx{\iModuleOverview{}}}{\setcounter{MSSEnd}{0}}
 \fi
 
-\newenvironment{MIntro}{\begin{MXContent}{Introduction}{Introduction}{genetisch}\begin{html}<div
+\ifttm
+\newenvironment{MIntro}{\begin{MXContent}{\iIntroduction{}}{\iIntroduction{}}{genetisch}\begin{html}<div
 class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
-\newenvironment{MContent}{\begin{MXContent}{Contents}{Contents}{beweis}}{\end{MXContent}}
-\newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{Aufgaben}{Aufgaben}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
+\else
+\newenvironment{MIntro}{\begin{MXContent}{\iIntroduction{}}{\iIntroduction{}}{genetisch}}{\end{MXContent}}
+\fi
+
+\newenvironment{MContent}{\begin{MXContent}{\iContents{}}{\iContents{}}{beweis}}{\end{MXContent}}
+\newenvironment{MExercises}{\ifttm\else\clearpage\fi\begin{MXContent}{\iExercises{}}{\iExercises{}}{aufgb}\special{html:<!-- declareexcsymb //-->}}{\end{MXContent}}
 
 % #1 = Lesbare Testbezeichnung
 \newenvironment{MTest}[1]{%
@@ -1330,7 +1344,7 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \end{MXContent}\addtocounter{MTestSite}{-1}%
 }
 
-\newenvironment{MExtra}{\ifttm\else\clearpage\fi\begin{MXContent}{Zus\"atzliche Inhalte}{Zusatz}{weiterfhrg}}{\end{MXContent}}
+\newenvironment{MExtra}{\ifttm\else\clearpage\fi\begin{MXContent}{Zusätzliche Inhalte}{Zusatz}{weiterfhrg}}{\end{MXContent}}
 
 \makeindex
 
@@ -1557,7 +1571,7 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \newcommand{\MVideo}[2]{%
 % Kein Video im PDF darstellbar, trotzdem so tun als ob da eines waere
 \begin{center}
-(Video cannot be played)
+(\iVideoWarn{})
 \end{center}
 \addtocounter{MVideoCounter}{1}
 \setcounter{MLastIndex}{\value{MVideoCounter}}
@@ -1862,8 +1876,8 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 
 
 \def\jccolorfkt{green!50!black} %Farbe des Funktionsgraphen
-\def\jccolorfktarea{green!25!white} %Farbe der Fl"ache unter dem Graphen
-\def\jccolorfktareahell{green!12!white} %helle Einf"arbung der Fl"ache unter dem Graphen
+\def\jccolorfktarea{green!25!white} %Farbe der Fläche unter dem Graphen
+\def\jccolorfktareahell{green!12!white} %helle Einfärbung der Fläche unter dem Graphen
 \def\jccolorfktwert{green!50!black} %Farbe einzelner Punkte des Graphen
 
 \newcommand{\MPfadBilder}{Bilder}
@@ -1875,44 +1889,28 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \fi%
 
 \def\MFormelZoomHint{\MInputHint{%
-Formel zu klein? Mit einem Doppelklick auf eine Formel wird sie vergr"o"sert dargestellt.}}
+\iFormZoomHint{}}}
 
 \def\jHTMLHinweisBedienung{\MInputHint{%
-Mit Hilfe der Symbole am oberen Rand des Fensters
-k"onnen Sie durch die einzelnen Abschnitte navigieren.}}
+\iUsageHint{}}}
 
 \def\jHTMLHinweisEingabeText{\MInputHint{%
-Geben Sie jeweils ein Wort oder Zeichen als Antwort ein.}}
+\iTextInputHint{}}}
 
 \def\jHTMLHinweisEingabeTerm{\MInputHint{%
-Klammern Sie Ihre Terme, um eine eindeutige Eingabe zu erhalten.
-Beispiel: Der Term $\frac{3x+1}{x-2}$ soll in der Form
-\texttt{(3*x+1)/((x+2)^2}$ eingegeben werden (wobei auch Leerzeichen
-eingegeben werden k"onnen, damit eine Formel besser lesbar ist).}}
+\iTermInputHint{}}}
 
 \def\jHTMLHinweisEingabeIntervalle{\MInputHint{%
-Intervalle werden links mit einer "offnenden Klammer und rechts mit einer
-schlie"senden Klammer angegeben. Eine runde Klammer wird verwendet, wenn der
-Rand nicht dazu geh"ort, eine eckige, wenn er dazu geh"ort.
-Als Trennzeichen wird ein Komma oder ein Semikolon akzeptiert.
-Beispiele: $(a, b)$ offenes Intervall,
-$[a; b)$ links abgeschlossenes, rechts offenes Intervall von $a$ bis $b$.
-Die Eingabe $]a;b[$ f"ur ein offenes Intervall wird nicht akzeptiert.
-F"ur $\infty$ kann \texttt{infty} oder \texttt{unendlich} geschrieben werden.}}
+\iIntervalInputHint{}}}
 
 \def\jHTMLHinweisEingabeFunktionen{\MInputHint{%
-Schreiben Sie Malpunkte (geschrieben als \texttt{*}) aus und setzen Sie Klammern um Argumente f\"ur Funktionen.
-Beispiele: Polynom: \texttt{3*x + 0.1}, Sinusfunktion: \texttt{sin(x)},
-Verkettung von cos und Wurzel: \texttt{cos(sqrt(3*x))}.}}
+\iFunctionInputHint{}}}
 
 \def\jHTMLHinweisEingabeFunktionenSinCos{\MInputHint{%
-Die Sinusfunktion $\sin x$ wird in der Form \texttt{sin(x)} angegeben, %
-$\cos\left(\sqrt{3 x}\right)$ durch \texttt{cos(sqrt(3*x))}.}}
+\iSincosInputHint{}}}
 
 \def\jHTMLHinweisEingabeFunktionenExp{\MInputHint{%
-Die Exponentialfunktion $\MEU^{3x^4 + 5}$ wird als
-\texttt{exp(3 * x^4 + 5)} angegeben, %
-$\ln\left(\sqrt{x} + 3.2\right)$ durch \texttt{ln(sqrt(x) + 3.2)}.}}
+iExpInputHint{}}}
 
 % ---------------------------------- Spezialbefehle fuer Fachbereich Physik --------------------------
 
@@ -1973,14 +1971,7 @@ $\ln\left(\sqrt{x} + 3.2\right)$ durch \texttt{ln(sqrt(x) + 3.2)}.}}
 
 \ifttm
 \newcommand{\MInTestHeader}{%
-Dies ist ein einreichbarer Test:
-\begin{itemize}
-\item{Im Gegensatz zu den offenen Aufgaben werden beim Eingeben keine Hinweise zur Formulierung der mathematischen Ausdr\"ucke gegeben.}
-\item{Der Test kann jederzeit neu gestartet oder verlassen werden.}
-\item{Der Test kann durch die Buttons am Ende der Seite beendet und abgeschickt, oder zur\"uckgesetzt werden.}
-\item{Der Test kann mehrfach probiert werden. F\"ur die Statistik z\"ahlt die zuletzt abgeschickte Version.}
-\end{itemize}
-}
+\iTest{}}
 \else
 \newcommand{\MInTestHeader}{%
 \relax
@@ -1989,19 +1980,18 @@ Dies ist ein einreichbarer Test:
 
 \ifttm
 \newcommand{\MInTestFooter}{%
-\special{html:<button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('}\MTestName\special{html:');" class="testsbutton">Test auswerten</button>}%
-\begin{html}
+\special{html:<button name="Name_TESTFINISH" id="TESTFINISH" type="button" onclick="finish_button('}\MTestName\special{html:');" class="testsbutton">}\iTestSubmit{}\special{html:</button>}%
+\special{html:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();" class="testsbutton">Test l&\#246;schen und neu starten</button>
+<button name="Name_TESTRESET" id="TESTRESET" type="button" onclick="reset_button();" class="testsbutton">}\iTestReset{}\special{html:</button>
 <br />
 <br />
 <div class="xreply">
-<p name="Name_TESTEVAL" id="TESTEVAL">
-Hier erscheint die Testauswertung!
-<br />
+<p name="Name_TESTEVAL" id="TESTEVAL">}
+\iTestEval{}
+\special{html:<br />
 </p>
-</div>
-\end{html}
+</div>}
 }
 \else
 \newcommand{\MInTestFooter}{%
@@ -2013,6 +2003,12 @@ Hier erscheint die Testauswertung!
 % ---------------------------------- Notationsmakros -------------------------------------------------------------
 
 % Notationsmakros die nicht von der Kursvariante abhaengig sind
+
+\ifttm%
+\def\MTextSF#1{\textrm{#1}}% im HTML zerreisst ein font-Wechsel auf sans-serif die Zeilenhoehe
+\else%
+\def\MTextSF#1{\textsf{#1}}%
+\fi%
 
 \newcommand{\MZahltrennzeichen}[1]{\renewcommand{\MZXYZhltrennzeichen}{#1}}
 \newcommand{\MGrad}{{}^{\circ}} % Fuer Winkel im Gradmass

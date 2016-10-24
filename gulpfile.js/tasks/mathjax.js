@@ -16,7 +16,7 @@ var paths = {
 
 var mathjaxTask = function () {
   return gulp.src(paths.src, {base: "./bower_components/MathJax/"})
-    .pipe(using({prefix:'Using mathjax scripts', path:'relative', color:'yellow', filesize:true}))
+    //.pipe(using({prefix:'Using mathjax scripts', path:'relative', color:'yellow', filesize:true}))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
 }

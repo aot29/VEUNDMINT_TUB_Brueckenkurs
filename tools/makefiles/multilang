@@ -7,7 +7,7 @@
 # 2. Some form of automation is necessary to setup the continuous integration server
 #
 # Caveats:
-# * Remember to always use tabs instead of spaces! 
+# * Remember to always use tabs instead of spaces!
 # Specially when doing copy+paste, tabs will sometimes be replaced by spaces.
 # Make will then throw a "missing separator" error.
 # * This script should work on any Unix system, but the result should be cross-plattform,
@@ -24,22 +24,32 @@
 # Path to source dir, relative to <VEUNDMINT checkout path>
 BASEDIR = src
 
-# Name of the output dir to be created 
+# Name of the output dir to be created
 OUTPUT = tu9onlinekurstest
 
 # Language the index.html will point to by default,
 # possible values: de, en
-DEFAULT_LANG = de
+DEFAULT_LANG = de 
 
 # Declare as phony so targets will run even if there's a file by that name
-.PHONY: cleanupBefore convert merge fixlinks fixredirects cleanupAfter all 
+.PHONY: cleanupBefore convert_with_pdf convert_without_pdf merge fixlinks fixredirects cleanupAfter all movePDF
 
 
 #
 # Build everything for the bootstrap version
+# Including PDFs
 #
-allTUB: |cleanupBefore convert merge fixRedirects fix fixSpecialPages startGulp cleanupAfter
+allTUB: |cleanupBefore convert_with_pdf merge fixRedirects fix fixSpecialPages startGulp movePDF cleanupAfter
 	echo "ready"
+
+
+#
+# Build everything for the bootstrap version
+# WITHOUT PDFs
+#
+nopdf: |cleanupBefore convert_without_pdf merge fixRedirects fix fixSpecialPages startGulp cleanupAfter
+	echo "ready"
+
 
 #
 # Don#t use this target. Checkout the legacy branch instead
@@ -48,12 +58,13 @@ allTUB: |cleanupBefore convert merge fixRedirects fix fixSpecialPages startGulp 
 #allKIT: |cleanup convert merge fixRedirects fix startGulp
 #	echo "ready"
 
+
 #
 # Use the converter to build the version specified by CURRENT_LANG
 #
 define convert_cmd
 	# prefixed with "-" to ignore converter errors
-	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=$(CURRENT_LANG) output=$(OUTPUT)_$(CURRENT_LANG)
+	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=$(CURRENT_LANG) output=$(OUTPUT)_$(CURRENT_LANG) ${OVERRIDE}
 endef
 
 
@@ -72,18 +83,42 @@ endef
 
 
 #
+# Generate PDF of whole course
+# @see: https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/pdf
+#
+define pdf_cmd
+	cd _tmp/tex && pdflatex -interaction nonstopmode -halt-on-error -file-line-error veundmint_$(CURRENT_LANG).tex >> convert.log
+	cd _tmp/tex && makeindex  -q veundmint_$(CURRENT_LANG)
+	cd _tmp/tex && pdflatex -interaction nonstopmode -halt-on-error -file-line-error veundmint_$(CURRENT_LANG).tex >> convert.log
+	-mkdir $(OUTPUT)_$(CURRENT_LANG)/pdf
+	cp _tmp/tex/veundmint_$(CURRENT_LANG).pdf $(OUTPUT)_$(CURRENT_LANG)/pdf/
+endef
+
+
+#
+# Build the English and the German version.
+# including PDFs of whole course
+#
+convert_with_pdf:
+	# set CURRENT_LANG at runtime.
+	$(eval CURRENT_LANG := de)
+	$(convert_cmd)
+	$(pdf_cmd)
+	$(eval CURRENT_LANG := en)
+	$(convert_cmd)
+	$(pdf_cmd)
+	
+
+#
 # Build the English and the German version.
 #
-convert:
-	# delete older builds
-	-rm -Rf $(OUTPUT)
-
+convert_without_pdf:
 	# set CURRENT_LANG at runtime.
 	$(eval CURRENT_LANG := de)
 	$(convert_cmd)
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
-	
+
 
 #
 # set CURRENT_LANG at runtime.
@@ -120,8 +155,10 @@ merge:
 
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
-	rm -Rf $(OUTPUT)_en
-	
+
+        # move English PDF
+	-mv $(OUTPUT)_en/pdf/* $(OUTPUT)/pdf/
+
 	$(deploy_img_cmd)
 
 
@@ -137,7 +174,7 @@ endef
 
 #
 # Copy redirect pages to each html/language directory
-# Moved to its own target, to make sure it is done 
+# Moved to its own target, to make sure it is done
 # Before serach and replace starts in "fix" target.
 #
 fixRedirects:
@@ -169,18 +206,18 @@ define fixSpecialPages_cmd
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSEARCH;; //-->' -l | xargs -I '{}' cp '{}' search.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCFAVORITES;; //-->' -l | xargs -I '{}' cp '{}' favorites.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKMT_START;; //-->' -l | xargs -I '{}' cp '{}' test.html
-	
+
 	#now correct the links
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CONFIG|href=\"\.\./$(CURRENT_LANG)/signup.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_CDATA|href=\"\.\./$(CURRENT_LANG)/data.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGIN|href=\"\.\./$(CURRENT_LANG)/login.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_LOGOUT|href=\"\.\./$(CURRENT_LANG)/logout.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_SEARCHSITE|href=\"\.\./$(CURRENT_LANG)/search.html|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_FAVORITESSITE|href=\"\.\./$(CURRENT_LANG)/favorites.html|g" {} \;	    
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_TEST01START|href=\"\.\./$(CURRENT_LANG)/test.html|g" {} \;	    
-	
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_FAVORITESSITE|href=\"\.\./$(CURRENT_LANG)/favorites.html|g" {} \;
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\".*#L_TEST01START|href=\"\.\./$(CURRENT_LANG)/test.html|g" {} \;
+
 	# fix links in search page
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name 'search.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;	    
+	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name 'search.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
 endef
 
 
@@ -229,7 +266,7 @@ define fixLinks_cmd
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|url=html/|url=|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|window\.location\.href = \"html/|window\.location\.href = \"|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|href=\"html/|href=\"|g" {} \;
-		
+
 endef
 
 
@@ -285,10 +322,19 @@ fix: fixRedirects
 	cp src/templates_xslt/html5_choose_language_simple.html $(OUTPUT)/index.html
 
 
+useScormIndex:
+	# replace public/index.html with src/templates_xslt/html5_redirect_moodle
+	cp src/templates_xslt/html5_redirect_moodle.html public/index.html
+
+
 #
 # Cleanup before starting a new build
 #
-cleanupBefore: cleanupAfter
+cleanupBefore:
+	-rm -Rf $(OUTPUT)
+	-rm -Rf $(OUTPUT)_en
+	-rm -Rf $(OUTPUT)_de
+	-rm -Rf _tmp
 	-rm -Rf public
 
 
@@ -299,7 +345,7 @@ cleanupAfter:
 	-rm -Rf $(OUTPUT)
 	-rm -Rf $(OUTPUT)_en
 	-rm -Rf $(OUTPUT)_de
-	-rm -Rf _tmp
+#	-rm -Rf _tmp
 
 
 #
@@ -307,8 +353,12 @@ cleanupAfter:
 # echo instruction how to proceed otherwise
 #
 startGulp:
-	# Wenn die config.json Datei einen Systaxfehler hat, wird hier die Fehlermeldung unten auch ausgegeben, was in diesem Fall nicht stimmt. 
+	# Wenn die config.json Datei einen Systaxfehler hat, wird hier die Fehlermeldung unten auch ausgegeben, was in diesem Fall nicht stimmt.
 	# Vielleicht ist es möglich, die config.json Datei vorab zu überprüfen?
 	@type npm >/dev/null 2>&1 && npm run gulp ||echo "npm does not exist. You need to install npm (node package manager) first. Then install project dependencies via 'npm install' and build the online version with 'gulp' or run this make script again after you installed npm and dependencies"
 
-
+#
+# Copy PDFs to public (move this and possibly other targets to gulp)
+#
+movePDF:
+	-cp -R $(OUTPUT)/pdf public/

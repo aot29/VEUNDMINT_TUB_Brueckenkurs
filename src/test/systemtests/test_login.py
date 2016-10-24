@@ -20,8 +20,13 @@ class TestLogin( SeleniumTest ):
 	'''
 	TestUName = 'selenium'
 	TestUPassword = 'XL3OAph'
+	
+
 
 	def setUp(self):
+		# skip all tests if login is disabled
+		if self._isLoginDisabled():
+			raise unittest.SkipTest( "Test skipped because login is disabled in options" )
 		SeleniumTest.setUp(self)
 		# navigate to EN login page
 		self._chooseLanguageVersion( 'en' )
@@ -31,11 +36,16 @@ class TestLogin( SeleniumTest ):
 	def testCheckRegistrationForm(self):
 		'''
 		Check that all fields are there, and that they are empty for an unregistered user
-		'''
+		'''		
+		# logout just to be sure
+		self._logout()
 		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )
 		
 		for field in self.registrationFieldIds:
-			self._checkPresentAndEmpty( field )
+			#self._checkPresentAndEmpty( field )
+			self.assertTrue( self.getElement( field ) )
+			self.assertFalse( self.getElement( field ).get_attribute("value"), "Field %s is not empty when it should" % field )
+
 
 
 	def testName(self):
@@ -45,8 +55,8 @@ class TestLogin( SeleniumTest ):
 		'''
 		self._navToSpecialPage( 'VBKM_MISCSETTINGS' )
 		
-		inputEl = self.driver.find_element_by_id( 'USER_UNAME' )
-		imgEl = self.driver.find_element_by_id( "checkuserimg" ) # the icon next to the input field
+		inputEl = self.getElement( 'USER_UNAME' )
+		imgEl = self.getElement( "checkuserimg" ) # the icon next to the input field
 
 		# nothing in field
 		inputEl.clear()
@@ -110,7 +120,7 @@ class TestLogin( SeleniumTest ):
 		'''
 		Test if the test user can login.
 		The test user needs to be registered manually for the test to succeed.
-		User data is in this class
+		User data is in the source code of this class.
 		'''
 		# logout just to be sure
 		self._logout()

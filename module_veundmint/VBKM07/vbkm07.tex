@@ -26,34 +26,34 @@
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Ableitung_Intro}
-Eine Familie ist mit dem Auto unterwegs in den Urlaub. Der Wagen fährt mit einer Geschwindigkeit von $60\MEinheit{km}/\MEinheit[]{h}$ durch eine Baustelle.
+Eine Familie ist mit dem Auto unterwegs in den Urlaub. Der Wagen fÃ¤hrt mit einer Geschwindigkeit von $60\MEinheit{km}/\MEinheit[]{h}$ durch eine Baustelle.
 Am Ende der Baustelle steht ein Schild, das ab sofort wieder eine Geschwindigkeit von $120\MEinheit{km}/\MEinheit[]{h}$ erlaubt.
-Auch wenn die Fahrerin oder der Fahrer so kräftig wie nur irgend möglich auf das Gaspedal tritt, die Geschwindigkeit des Wagens wird sich nicht sprunghaft ändern,
-sondern in Abhängigkeit von der Zeit steigen. Wird die Geschwindigkeit innerhalb von 5 Sekunden von $60\MEinheit{km}/\MEinheit[]{h}$ auf $120\MEinheit{km}/\MEinheit[]{h}$
-mit einer konstanten Änderungsrate erhöht, dann ist die \emph{Beschleunigung} (= Geschwindigkeitsänderung pro Zeit) im vorliegenden Fall diese konstante Änderungsrate der Geschwindigkeit:
-Die Beschleunigung ergibt sich als Quotient aus der Geschwindigkeitsänderung und der dafür benötigten Zeit. Ihr Wert ist hier also $12$ Kilometer pro Stunde pro Sekunde.
-In der Realität wird die Geschwindigkeit des Autos jedoch nicht mit einer konstanten Änderungsrate erhöht werden können, sondern mit einer 
-\emph{zeitabhängigen} Änderungsrate. Beschreibt man die Geschwindigkeit als Funktion $v$ der Zeit $t$, erhält man die Beschleunigung als Steigung dieser Funktion,
-unabhängig davon, ob diese Steigung (zeitlich) konstant ist oder nicht. Mit anderen Worten: Die Beschleunigung ist die \emph{Ableitung} der Geschwindigkeits\emph{funktion} $v$
+Auch wenn die Fahrerin oder der Fahrer so krÃ¤ftig wie nur irgend mÃ¶glich auf das Gaspedal tritt, die Geschwindigkeit des Wagens wird sich nicht sprunghaft Ã¤ndern,
+sondern in AbhÃ¤ngigkeit von der Zeit steigen. Wird die Geschwindigkeit innerhalb von 5 Sekunden von $60\MEinheit{km}/\MEinheit[]{h}$ auf $120\MEinheit{km}/\MEinheit[]{h}$
+mit einer konstanten Ã„nderungsrate erhÃ¶ht, dann ist die \emph{Beschleunigung} (= GeschwindigkeitsÃ¤nderung pro Zeit) im vorliegenden Fall diese konstante Ã„nderungsrate der Geschwindigkeit:
+Die Beschleunigung ergibt sich als Quotient aus der GeschwindigkeitsÃ¤nderung und der dafÃ¼r benÃ¶tigten Zeit. Ihr Wert ist hier also $12$ Kilometer pro Stunde pro Sekunde.
+In der RealitÃ¤t wird die Geschwindigkeit des Autos jedoch nicht mit einer konstanten Ã„nderungsrate erhÃ¶ht werden kÃ¶nnen, sondern mit einer 
+\emph{zeitabhÃ¤ngigen} Ã„nderungsrate. Beschreibt man die Geschwindigkeit als Funktion $v$ der Zeit $t$, erhÃ¤lt man die Beschleunigung als Steigung dieser Funktion,
+unabhÃ¤ngig davon, ob diese Steigung (zeitlich) konstant ist oder nicht. Mit anderen Worten: Die Beschleunigung ist die \emph{Ableitung} der Geschwindigkeits\emph{funktion} $v$
 nach der Zeit $t$.
 
-Ähnliche Zusammenhänge finden sich auch in anderen technischen Bereichen, z.B. bei der Berechnung von inneren Kräften, die in Stahlgerüsten von Bauwerken wirken,
-der Vorhersage von Atmosphären- oder Meeresströmungen oder auch bei der heute so wichtigen Modellierung der Finanzmärkte.
+Ã„hnliche ZusammenhÃ¤nge finden sich auch in anderen technischen Bereichen, z.B. bei der Berechnung von inneren KrÃ¤ften, die in StahlgerÃ¼sten von Bauwerken wirken,
+der Vorhersage von AtmosphÃ¤ren- oder MeeresstrÃ¶mungen oder auch bei der heute so wichtigen Modellierung der FinanzmÃ¤rkte.
 
 Dieses Kapitel wiederholt die grundlegenden Ideen, die hinter diesen Berechnungen stecken, Gegenstand ist also die \textbf{Differentialrechnung}.
-Mit anderen Worten: Es werden Ableitungen von Funktionen gebildet und so deren Steigungen bzw. Änderungsraten bestimmt.
-Auch wenn hier diese Berechnungen streng mathematisch durchgeführt werden, ist die Motivation dafür nicht rein mathematischer Natur.
-Ableitungen nehmen in vielen wissenschaftlichen Bereichen in der Interpretation als Änderungsraten verschiedener
-Funktionen eine wichtige Rolle ein und werden oft als herausragende Größen untersucht.
+Mit anderen Worten: Es werden Ableitungen von Funktionen gebildet und so deren Steigungen bzw. Ã„nderungsraten bestimmt.
+Auch wenn hier diese Berechnungen streng mathematisch durchgefÃ¼hrt werden, ist die Motivation dafÃ¼r nicht rein mathematischer Natur.
+Ableitungen nehmen in vielen wissenschaftlichen Bereichen in der Interpretation als Ã„nderungsraten verschiedener
+Funktionen eine wichtige Rolle ein und werden oft als herausragende GrÃ¶ÃŸen untersucht.
 
 \end{MIntro}
 
-\begin{MXContent}{Relative Änderungsrate einer Funktion}{Relative Änderungsrate}{STD}
+\begin{MXContent}{Relative Ã„nderungsrate einer Funktion}{Relative Ã„nderungsrate}{STD}
 \MDeclareSiteUXID{VBKM07_Ableitung_Aenderungsrate}
 
 Es sollen eine Funktion $f: [a\MIntvlSep  b] \rightarrow \R$, $x \mapsto f(x)$ sowie eine Skizze des Graphen von $f$ (siehe unten) betrachtet werden.
-Das Ziel ist die Beschreibung der Änderungsrate dieser Funktion an einer beliebigen Stelle $x_0$ zwischen $a$ und $b$.
-Dies wird auf den Begriff der Ableitung einer Funktion führen. Generell sollen möglichst einfache Rechenregeln Anwendung finden.
+Das Ziel ist die Beschreibung der Ã„nderungsrate dieser Funktion an einer beliebigen Stelle $x_0$ zwischen $a$ und $b$.
+Dies wird auf den Begriff der Ableitung einer Funktion fÃ¼hren. Generell sollen mÃ¶glichst einfache Rechenregeln Anwendung finden.
 
 \begin{center}
 \MTikzAuto{%
@@ -112,30 +112,30 @@ declare function={
 %----------------------------------------------------------------------------------------
 
 Werden $x_0$ und der entsprechende Funktionswert $f\left(x_0\right)$ festgehalten und eine weitere beliebige, aber variable Stelle $x$ zwischen $a$ und $b$ sowie ihr
-Funktionswert $f\left(x\right)$ ausgewählt, so lässt sich 
+Funktionswert $f\left(x\right)$ ausgewÃ¤hlt, so lÃ¤sst sich 
 durch diese beiden Punkte, also durch $\MPointTwoAS{x_0}{f(x_0)}$ und $\MPointTwoAS{x}{f(x)}$,
 eine Gerade legen, die durch ihre Steigung und ihren $y$-Achsenabschnitt charakterisiert wird.
-Als Steigung dieser Geraden erhält man den sogenannten \textbf{Differenzenquotienten}
+Als Steigung dieser Geraden erhÃ¤lt man den sogenannten \textbf{Differenzenquotienten}
 
 \[
 \frac{\Delta(f)}{\Delta(x)} = \frac{f(x) - f(x_0)}{x - x_0}\MDFPSpace,
 \]
 
-der beschreibt, wie sich die Funktionswerte von $f$\ \textbf{im Mittel} zwischen $x_0$ und $x$ ändern. %###
-Damit ist eine mittlere Änderungsrate der Funktion $f$ im Intervall $[x_0\MIntvlSep  x]$ gefunden. Dieser Quotient wird auch als \textbf{relative Änderung} bezeichnet.
+der beschreibt, wie sich die Funktionswerte von $f$\ \textbf{im Mittel} zwischen $x_0$ und $x$ Ã¤ndern. %###
+Damit ist eine mittlere Ã„nderungsrate der Funktion $f$ im Intervall $[x_0\MIntvlSep  x]$ gefunden. Dieser Quotient wird auch als \textbf{relative Ã„nderung} bezeichnet.
 
 Strebt nun die variable Stelle $x$ gegen die Stelle $x_0$, so stellt man fest, dass die Gerade, die den Graphen der Funktion
 in den Punkten $\MPointTwoAS{x_0}{f\left(x_0\right)}$ und $\MPointTwoAS{x}{f\left(x\right)}$ schneidet, immer mehr zu einer Tangente
-an den Graphen im Punkt $\MPointTwoAS{x_0}{f\left(x_0\right)}$ wird. Auf diese Weise kann die Änderungsrate
+an den Graphen im Punkt $\MPointTwoAS{x_0}{f\left(x_0\right)}$ wird. Auf diese Weise kann die Ã„nderungsrate
 der Funktion $f$ - oder die \textbf{Steigung} des Graphen von $f$ - an der Stelle $x_0$\ \textbf{selbst} bestimmt werden. %###
-Führt der geschilderte Prozess der Annäherung von $x$ an $x_0$ bildlich gesprochen
+FÃ¼hrt der geschilderte Prozess der AnnÃ¤herung von $x$ an $x_0$ bildlich gesprochen
 auf eine eindeutige Tangente (mit einer eindeutigen Steigung, die insbesondere nicht unendlich sein darf), so spricht man in der Mathematik davon,
 dass der \MEntry{Grenzwert}{Grenzwert} des Differenzenquotienten \textbf{existiert}. Beschrieben wird dieser Grenzwertprozess, dass $x$ gegen $x_0$ strebt,
 hier und im Folgenden mit dem Symbol
 \[
 \lim_{x \rightarrow x_0} \MDFPSpace,
 \]
-wobei $\lim$ abkürzend für \emph{Limes}, das lateinische Wort für Grenze, steht.
+wobei $\lim$ abkÃ¼rzend fÃ¼r \emph{Limes}, das lateinische Wort fÃ¼r Grenze, steht.
 Existiert der Grenzwert des Differenzenquotienten, so bezeichnet
 
 \[
@@ -146,7 +146,7 @@ f'(x_0) = \lim_{x \rightarrow x_0} \frac{\Delta(f)}{\Delta(x)}
 den Wert der \MEntry{Ableitung}{Ableitung} von $f$ in $x_0$. Die Funktion $f$ ist dann an der Stelle $x_0$\ \textbf{ableitbar} bzw. \textbf{differenzierbar}. %###
 
 \begin{MExample}
-  Für $f(x)=\sqrt{x}$ ist die relative Änderung an der Stelle $x_0=1$ gegeben durch
+  FÃ¼r $f(x)=\sqrt{x}$ ist die relative Ã„nderung an der Stelle $x_0=1$ gegeben durch
   \[
     \frac{f(x) - f(x_0)}{x - x_0} \;=\;
     \frac{\sqrt{x}-\sqrt{1}}{x-1} \;=\; \frac{\sqrt{x}-1}{(\sqrt{x}-1)(\sqrt{x}+1)} \;=\; \frac1{\sqrt{x}+1} \MDFPeriod
@@ -155,35 +155,35 @@ den Wert der \MEntry{Ableitung}{Ableitung} von $f$ in $x_0$. Die Funktion $f$ is
   $$
   \lim_{x \rightarrow x_0} \frac{\Delta(f)}{\Delta(x)} \;=\; \frac12 \MDFPeriod
   $$
-  Für den Wert der Ableitung von $f$ an der Stelle $x_0=1$ schreibt man $f'(1)=\frac12$.
+  FÃ¼r den Wert der Ableitung von $f$ an der Stelle $x_0=1$ schreibt man $f'(1)=\frac12$.
 \end{MExample}
 
 \begin{MExercise}
-  Es sei $f: \R \rightarrow \R$ mit $x \mapsto f(x)=x^2$ und $x_0=1$. In diesem Punkt beträgt die relative Änderung für ein reelles $x$
+  Es sei $f: \R \rightarrow \R$ mit $x \mapsto f(x)=x^2$ und $x_0=1$. In diesem Punkt betrÃ¤gt die relative Ã„nderung fÃ¼r ein reelles $x$
   
   \MEquationItem{$\displaystyle \frac{f(x) - f(1)}{x - 1}$}{\MLFunctionQuestion{8}{x+1}{4}{x}{4}{OR30}}.\\
   \MInputHint{Rechnen Sie den Quotienten direkt aus, ohne bekannte Ableitungswerte und Regeln aus der Schule einzusetzen.}
  
-  Bewegt sich $x$ auf $x_0=1$ zu, so erhält man die Steigung \MLParsedQuestion{5}{2}{5}{DG10} des Graphen von $f$ an der Stelle $x_0=1$.
+  Bewegt sich $x$ auf $x_0=1$ zu, so erhÃ¤lt man die Steigung \MLParsedQuestion{5}{2}{5}{DG10} des Graphen von $f$ an der Stelle $x_0=1$.
 
-  \begin{MHint}{Lösung}
-  Für $f(x)=x^2$ ist die relative Änderung an der Stelle $x_0=1$ gegeben durch
+  \begin{MHint}{\iSolution}
+  FÃ¼r $f(x)=x^2$ ist die relative Ã„nderung an der Stelle $x_0=1$ gegeben durch
   \[
     \frac{f(x) - f(1)}{x - 1} \;=\;
     \frac{x^2-1}{x-1} \;=\; \frac{(x-1)(x+1)}{x-1} \;=\; x+1 \MDFPeriod
   \]
-  Bewegt sich nun $x$ auf $x_0$ zu, so führt dies auf den Grenzwert
+  Bewegt sich nun $x$ auf $x_0$ zu, so fÃ¼hrt dies auf den Grenzwert
   $$
   \lim_{x \rightarrow 1} \frac{\Delta(f)}{\Delta(x)} \;=\; 2 \MDFPeriod
   $$
   Das ist die Steigung der Tangente an den Graphen von $f$ im Punkt $\MPointTwo{x_0}{f(x_0)} = \MPointTwo{1}{1}$.
-  Für den Wert der Ableitung von $f$ an der Stelle $x_0=1$ schreibt man $f'(1)=2$.
+  FÃ¼r den Wert der Ableitung von $f$ an der Stelle $x_0=1$ schreibt man $f'(1)=2$.
   \end{MHint}  
 \end{MExercise}
 
-Über die Formel für die relative Änderungsrate kann man die Ableitung nur sehr mühsam und
-auch nur für sehr einfache Funktionen ausrechnen. Typischerweise bestimmt man die Ableitung
-durch Anwenden von Rechenregeln und durch Einsetzen bekannter Ableitungswerte für die einzelnen
+Ãœber die Formel fÃ¼r die relative Ã„nderungsrate kann man die Ableitung nur sehr mÃ¼hsam und
+auch nur fÃ¼r sehr einfache Funktionen ausrechnen. Typischerweise bestimmt man die Ableitung
+durch Anwenden von Rechenregeln und durch Einsetzen bekannter Ableitungswerte fÃ¼r die einzelnen
 Bausteine.
 
 \end{MXContent}
@@ -194,7 +194,7 @@ Bausteine.
 \MDeclareSiteUXID{VBKM07_Ableitung_Ableitung}
 
 \begin{MXInfo}{Schreibweisen der Ableitung}
-In der Mathematik sowie auch in den Natur- und Ingenieurwissenschaften werden verschiedene Schreibweisen der Ableitung äquivalent verwendet:
+In der Mathematik sowie auch in den Natur- und Ingenieurwissenschaften werden verschiedene Schreibweisen der Ableitung Ã¤quivalent verwendet:
 \[
 f'(x_0) = \frac{\MD f}{\MD x}(x_0) = \frac{\MD}{\MD x}f(x_0) \MDFPeriod %%
 \]
@@ -243,29 +243,29 @@ kann der Differenzenquotient mit $x = x_0 + h$ umgeschrieben werden zu
 \[
 \frac{f(x) - f(x_0)}{x - x_0} = \frac{f(x_0 + h) - f(x_0)}{h} \MDFPeriod
 \]
-Es wurde keine Voraussetzung darüber getroffen, ob $x$ größer oder kleiner als $x_0$ ist.
-Die Größe $h$ kann daher positive oder negative Werte annehmen. Um die Ableitung der Funktion $f$ zu bestimmen, muss nun der Grenzwert für $h \rightarrow 0$ berechnet werden: 
+Es wurde keine Voraussetzung darÃ¼ber getroffen, ob $x$ grÃ¶ÃŸer oder kleiner als $x_0$ ist.
+Die GrÃ¶ÃŸe $h$ kann daher positive oder negative Werte annehmen. Um die Ableitung der Funktion $f$ zu bestimmen, muss nun der Grenzwert fÃ¼r $h \rightarrow 0$ berechnet werden: 
 \[
 f'(x_0) = \lim_{x \rightarrow x_0} \frac{f(x) - f(x_0)}{x - x_0} %
  = \lim_{h \rightarrow 0} \frac{f(x_0 + h) - f(x_0)}{h} \MDFPeriod
 \]
-Wenn dieser Grenzwert \textbf{für alle} Stellen $x_0$ aus dem Definitionsbereich einer Funktion existiert, so nennt man diese Funktion (insgesamt)
-\textbf{differenzierbar}. Viele der häufig benutzten Funktionen sind differenzierbar.
-Ein einfaches Beispiel dafür, dass eine Funktion nicht unbedingt differenzierbar ist,
+Wenn dieser Grenzwert \textbf{fÃ¼r alle} Stellen $x_0$ aus dem Definitionsbereich einer Funktion existiert, so nennt man diese Funktion (insgesamt)
+\textbf{differenzierbar}. Viele der hÃ¤ufig benutzten Funktionen sind differenzierbar.
+Ein einfaches Beispiel dafÃ¼r, dass eine Funktion nicht unbedingt differenzierbar ist,
 ist die Betragsfunktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) := |x|$.
 
 \begin{MExample}
 Die Betragsfunktion (siehe Modul \MRef{VBKM06}, Abschnitt \MRef{VBKM06_sec:betrag}) ist an der Stelle $x_0 = 0$ nicht differenzierbar.
-Der Differenzenquotient für $f$ an der Stelle $x_0 = 0$ lautet:
+Der Differenzenquotient fÃ¼r $f$ an der Stelle $x_0 = 0$ lautet:
 \[
 \frac{f(0+h) - f(0)}{h} = \frac{|h| - |0|}{h} = \frac{|h|}{h} \MDFPeriod
 \]
-Da $h$ größer oder kleiner als $0$ sein kann, sind zwei Fälle zu unterscheiden:
-Im Fall $h > 0$ ist $\frac{|h|}{h} = \frac{h}{h} = 1$, im Fall $h < 0$ erhält man $\frac{|h|}{h} = \frac{-h}{h} = -1$.
-Der Grenzwertprozess, dass $h$ sich $0$ nähert, führt in den beiden Fällen also auf zwei verschiedene Ergebnisse ($1$ und $-1$).
+Da $h$ grÃ¶ÃŸer oder kleiner als $0$ sein kann, sind zwei FÃ¤lle zu unterscheiden:
+Im Fall $h > 0$ ist $\frac{|h|}{h} = \frac{h}{h} = 1$, im Fall $h < 0$ erhÃ¤lt man $\frac{|h|}{h} = \frac{-h}{h} = -1$.
+Der Grenzwertprozess, dass $h$ sich $0$ nÃ¤hert, fÃ¼hrt in den beiden FÃ¤llen also auf zwei verschiedene Ergebnisse ($1$ und $-1$).
 Daher existiert \textbf{der} Grenzwert des Differenzenquotienten an der Stelle $x_0 = 0$ nicht. Als Folge davon ist die Betragsfunktion an der Stelle $x_0 = 0$ nicht differenzierbar.
 
-Der Verlauf des Graphen "andert seine Richtung im Punkt $\MPointTwo{0}{0}$ sprunghaft: Salopp ausgedr"uckt, weist der Funktionsgraph im Punkt $\MPointTwo{0}{0}$ einen Knick auf.
+Der Verlauf des Graphen Ã¤ndert seine Richtung im Punkt $\MPointTwo{0}{0}$ sprunghaft: Salopp ausgedrÃ¼ckt, weist der Funktionsgraph im Punkt $\MPointTwo{0}{0}$ einen Knick auf.
 %Bild:
 \begin{center}
 \MTikzAuto{%
@@ -280,7 +280,7 @@ Der Verlauf des Graphen "andert seine Richtung im Punkt $\MPointTwo{0}{0}$ sprun
 %Funktion:
 \draw[domain=-3.2:3.2,samples=120,color=\jccolorfkt] %
  plot (\x, {abs(\x)});
-%Tangenten im Nullpunkt, wenn $f$ f"ur $x \leq 0$ bzw. $x \geq 0$ betrachtet 
+%Tangenten im Nullpunkt, wenn $f$ fÃ¼r $x \leq 0$ bzw. $x \geq 0$ betrachtet 
 %wird:
 \draw[samples=120,color=blue!50!black] %
  (-0.5, 0.5) -- (0.5, -0.5);
@@ -303,7 +303,7 @@ Auch wenn eine Funktion eine Sprungstelle hat, gibt es keine eindeutige Tangente
 
 \begin{MExercise}
 Berechnen Sie mittels Differenzenquotient die Ableitung von 
-%$f(x) := |3 x|$ f"ur $x_1 := 5$ und f"ur $x_2 := -4$.
+%$f(x) := |3 x|$ fÃ¼r $x_1 := 5$ und fÃ¼r $x_2 := -4$.
 $f: \R \rightarrow \R$, $x \mapsto f(x) := 4 - x^2$ an den Stellen $x_1 = -2$ und $x_2 = 1$.
 
 Antwort: 
@@ -311,35 +311,35 @@ Antwort:
 \item Der Differenzenquotient von $f$ %zu $x$
 an der Stelle $x_1 = -2$ ist
 \MLSimplifyQuestion{30}{2 - x}{10}{x}{4}{0}{SIMPLE4}
-und hat f"ur $x \rightarrow -2$ den Grenzwert
+und hat fÃ¼r $x \rightarrow -2$ den Grenzwert
  $f'(-2) = $\MLParsedQuestion{8}{4}{3}{DG11}.
 \item Der Differenzenquotient von $f$ %zu $x$
 an der Stelle $x_2 = 1$ ist
 \MLFunctionQuestion{30}{-1 - x}{10}{x}{4}{DG13X}
-und hat f"ur $x \rightarrow 1$ den Grenzwert
+und hat fÃ¼r $x \rightarrow 1$ den Grenzwert
  $f'(1) = $\MLParsedQuestion{8}{-2}{3}{DG12}.
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{MExerciseItems}
-  \item An der Stelle $x_1 = -2$ gilt für den Differenzenquotienten
+  \item An der Stelle $x_1 = -2$ gilt fÃ¼r den Differenzenquotienten
   \[
   \frac{\Delta (f)}{\Delta (x)} = \frac{f(x) - f(x_1)}{x - x_1} = \frac{f(x) - f(-2)}{x - (-2)} =
   \frac{4 - x^2 - 0}{x + 2} = \frac{(2-x)(2+x)}{2+x} = 2-x \MDFPeriod
   \]
-  Für $x \rightarrow x_1$, also $x \rightarrow -2$, strebt dieser Differenzenquotient gegen $2 - (-2) = 4$; daher $f'(-2) = 4$.
-  \item An der Stelle $x_2 = 1$ gilt für den Differenzenquotienten
+  FÃ¼r $x \rightarrow x_1$, also $x \rightarrow -2$, strebt dieser Differenzenquotient gegen $2 - (-2) = 4$; daher $f'(-2) = 4$.
+  \item An der Stelle $x_2 = 1$ gilt fÃ¼r den Differenzenquotienten
   \[
   \frac{\Delta (f)}{\Delta (x)} = \frac{f(x) - f(x_2)}{x - x_2} = \frac{f(x) - f(1)}{x - 1} =
   \frac{4 - x^2 - 3}{x - 1} = \frac{1 - x^2}{x - 1} = - \frac{(x-1)(x+1)}{x-1} = - x - 1 \MDFPeriod
   \]
-  Für $x \rightarrow x_2$, also $x \rightarrow 1$, besitzt dieser Differenzenquotient den Grenzwert $- 1 - 1 = -2$; daher $f'(1) = - 2$.
+  FÃ¼r $x \rightarrow x_2$, also $x \rightarrow 1$, besitzt dieser Differenzenquotient den Grenzwert $- 1 - 1 = -2$; daher $f'(1) = - 2$.
  \end{MExerciseItems}
 \end{MHint}
 \end{MExercise}
 
 
 \begin{MExercise}
-Erl"autern Sie, warum
+ErlÃ¤utern Sie, warum
 \begin{MExerciseItems}
 \item $f: [-3 \MIntvlSep \infty \MoIr \rightarrow \R$ mit $f(x) := \sqrt{x+3}$ in $x_0 = -3$ und
 \item $g: \R \rightarrow \R$ mit $g(x) := 6 \cdot |2 x - 10|$ in $x_0 = 5$
@@ -352,30 +352,30 @@ Antwort:
 \item Die Ableitung von $f$ existiert an der Stelle $x_0 = -3$ nicht, 
 da der Differenzenquotient 
 \MLFunctionQuestion{30}{1/sqrt(h)}{1}{h}{20}{DG13}
-f"ur $h \rightarrow 0$ nicht konvergiert.
-% in $x_0 = -3$ verl"auft parallel zur $y$-Achse,
+fÃ¼r $h \rightarrow 0$ nicht konvergiert.
+% in $x_0 = -3$ verlÃ¤uft parallel zur $y$-Achse,
 \item Die Ableitung von $g$ existiert an der Stelle $x_0 = 5$ nicht, da der 
-Differenzenquotient f"ur $h < 0$ den Wert 
-\MLParsedQuestion{8}{-12}{3}{DG14} und f"ur $h > 0$ den 
-Wert {\MLParsedQuestion{8}{12}{3}{DG15}} hat. Somit existiert der Grenzwert f"ur 
+Differenzenquotient fÃ¼r $h < 0$ den Wert 
+\MLParsedQuestion{8}{-12}{3}{DG14} und fÃ¼r $h > 0$ den 
+Wert {\MLParsedQuestion{8}{12}{3}{DG15}} hat. Somit existiert der Grenzwert fÃ¼r 
 $h \rightarrow 0$ nicht.
-%F"ur $x < 5$ haben alle Tangenten die Steigung $-12$, 
-%und f"ur $x > 5$ die Steigung $21$.
+%FÃ¼r $x < 5$ haben alle Tangenten die Steigung $-12$, 
+%und fÃ¼r $x > 5$ die Steigung $21$.
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{MExerciseItems}
   \item Der Differenzenquotient von $f$ an der Stelle $x_0 = - 3$ ist
   \[
   \frac{\Delta (f)}{\Delta (x)} = \frac{f(x_0 + h) - f(x_0)}{h} = \frac{\sqrt{-3 + h + 3} - \sqrt{-3 + 3}}{h}
   = \frac{\sqrt{h} - 0}{h} = \frac{1}{\sqrt{h}} \MDFPeriod
   \]
-  Für $h \rightarrow 0$ ($h > 0$) wächst dieser Differenzenquotient über alle Ma{\ss}en, d.h. der Grenzwert des Differenzenquotienten existiert nicht.
+  FÃ¼r $h \rightarrow 0$ ($h > 0$) wÃ¤chst dieser Differenzenquotient Ã¼ber alle Ma{\ss}en, d.h. der Grenzwert des Differenzenquotienten existiert nicht.
   \item Der Differenzenquotient von $g$ an der Stelle $x_0 = 5$ ist
   \[
   \frac{\Delta (g)}{\Delta (x)} = \frac{g(x_0 + h) - g(x_0)}{h} = \frac{6 \cdot |2 (5+h) - 10| - 6 \cdot |2 \cdot 5 - 10|}{h}
   = \frac{12 |h| - 0}{h} = \frac{12 |h|}{h} \MDFPeriod
   \]
-  Für $h<0$ hat der Differenzenquotient wegen $|h| = -h$ also den Wert $-12$, für $h>0$ dagegen wegen $|h|=h$ den Wert $12$. Somit existiert kein Grenzwert
+  FÃ¼r $h<0$ hat der Differenzenquotient wegen $|h| = -h$ also den Wert $-12$, fÃ¼r $h>0$ dagegen wegen $|h|=h$ den Wert $12$. Somit existiert kein Grenzwert
   des Differenzenquotienten. (Ein Grenzwert ist immer eindeutig.)
  \end{MExerciseItems}
 \end{MHint}
@@ -397,24 +397,24 @@ $h \rightarrow 0$ nicht.
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_StdAbleitungen_Intro}
 Die meisten bekannten Funktionen, wie z.B. Polynome, trigonometrische Funktionen und Exponentialfunktionen (siehe Modul \MRef{VBKM06}),
-sind differenzierbar. Im Folgenden werden die Ableitungsregeln für diese Funktionen wiederholt.
+sind differenzierbar. Im Folgenden werden die Ableitungsregeln fÃ¼r diese Funktionen wiederholt.
 \end{MIntro}
 
 
 \begin{MXContent}{Ableitung von Potenzfunktionen}{Ableitung von Potenzfunktionen}{STD}
 \MDeclareSiteUXID{VBKM07_StdAbleitungen_Polynome}
  
-Aus der Einf"uhrung der Ableitung als Grenzwert des Differenzenquotienten ergibt sich f"ur eine affin lineare Funktion
+Aus der EinfÃ¼hrung der Ableitung als Grenzwert des Differenzenquotienten ergibt sich fÃ¼r eine affin lineare Funktion
 (siehe Modul \MRef{VBKM06}, Abschnitt \MRef{VBKM06_sec:linear-affin})
 $f: \R \rightarrow \R$, $x \mapsto f\left(x\right) = m x + b$, wobei $m$ und $b$ gegebene Zahlen sind, dass der Wert der Ableitung von $f$
-an der Stelle $x_0$ gleich $f'(x_0) = m$ ist. (Die geneigte Leserin, der geneigte Leser möge dies gerne selbst überprüfen!)
+an der Stelle $x_0$ gleich $f'(x_0) = m$ ist. (Die geneigte Leserin, der geneigte Leser mÃ¶ge dies gerne selbst Ã¼berprÃ¼fen!)
 
-F"ur Monome $x^n$ mit $n \geq 1$ ist es am einfachsten,
-die Ableitung "uber den Differenzenquotienten zu bestimmen. Ohne hier eine detaillierte Rechnung oder einen Beweis anzugeben,
-erhält man die folgenden Aussagen:
+FÃ¼r Monome $x^n$ mit $n \geq 1$ ist es am einfachsten,
+die Ableitung Ã¼ber den Differenzenquotienten zu bestimmen. Ohne hier eine detaillierte Rechnung oder einen Beweis anzugeben,
+erhÃ¤lt man die folgenden Aussagen:
 
 \begin{MXInfo}{Ableitung von $x^n$}
-Gegeben sind eine nat"urliche Zahl $n$ und eine reelle Zahl $r$.
+Gegeben sind eine natÃ¼rliche Zahl $n$ und eine reelle Zahl $r$.
 
 Die konstante Funktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) := r = r \cdot x^0$ besitzt die Ableitung
 \[
@@ -424,14 +424,14 @@ Die Funktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) := r \cdot x^n$ besitzt 
 \[
 f': \R \rightarrow \R \MDFPSpace \mbox{ mit } \MDFPSpace x \mapsto f'(x) = r \cdot n \cdot x^{n-1} \MDFPeriod %%
 \]
-Diese Ableitungsregel gilt im Übrigen auch für $n\in\mathbb{R}\setminus\{0\}$.
+Diese Ableitungsregel gilt im Ãœbrigen auch fÃ¼r $n\in\mathbb{R}\setminus\{0\}$.
 \end{MXInfo}
 
-Auch die Überprüfung dieser Aussagen sei dem Selbststudium überlassen!
+Auch die ÃœberprÃ¼fung dieser Aussagen sei dem Selbststudium Ã¼berlassen!
 
 \begin{MExample}
 Die folgende Untersuchung gilt der Funktion $f: \R \rightarrow \R$ mit $x \mapsto f(x) = 5 x^3$.
-Der Vergleich der gegebenen Funktion mit den oben verwendeten Bezeichnungen ergibt $r = 5$ und $n = 3$. Damit erh"alt man für den Wert der 
+Der Vergleich der gegebenen Funktion mit den oben verwendeten Bezeichnungen ergibt $r = 5$ und $n = 3$. Damit erhÃ¤lt man fÃ¼r den Wert der 
 Ableitung an der Stelle $x$
 \[
 f'(x) = 5 \cdot 3 x^{3 - 1} = 15 x^2 \MDFPeriod %%
@@ -439,29 +439,29 @@ f'(x) = 5 \cdot 3 x^{3 - 1} = 15 x^2 \MDFPeriod %%
 \end{MExample}
 
 
-F"ur Wurzelfunktionen ergibt sich eine entsprechende Aussage. Allerdings 
-ist zu beachten, dass Wurzelfunktionen nur f"ur $x > 0$ differenzierbar sind.
-Denn die Tangente an den Funktionsgraphen durch den Punkt $\MPointTwo{0}{0}$ verl"auft 
+FÃ¼r Wurzelfunktionen ergibt sich eine entsprechende Aussage. Allerdings 
+ist zu beachten, dass Wurzelfunktionen nur fÃ¼r $x > 0$ differenzierbar sind.
+Denn die Tangente an den Funktionsgraphen durch den Punkt $\MPointTwo{0}{0}$ verlÃ¤uft 
 parallel zur $y$-Achse und ist somit kein Schaubild einer Funktion. 
 
 \begin{MXInfo}{Ableitung von $x^{\frac{1}{n}}$}
-F"ur $n \in \Z$ mit $n \neq 0$ ist die Funktion
-$f: [0 \MIntvlSep \infty \MoIr \rightarrow \R$, $x \mapsto f(x) := x^{\frac{1}{n}}$ für $x>0$ differenzierbar, und es gilt
+FÃ¼r $n \in \Z$ mit $n \neq 0$ ist die Funktion
+$f: [0 \MIntvlSep \infty \MoIr \rightarrow \R$, $x \mapsto f(x) := x^{\frac{1}{n}}$ fÃ¼r $x>0$ differenzierbar, und es gilt
 \[
 f': \MoIl 0 \MIntvlSep \infty \MoIr \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto f'(x) = \frac{1}{n} \cdot x^{\frac{1}{n}-1} \MDFPeriod
 \]
 \end{MXInfo}
 
-F"ur $n\in\mathbb{N}$ werden durch $f(x) = x^{\frac{1}{n}}$ Wurzelfunktionen beschrieben. Die hier wiedergegebene Ableitungsregel gilt natürlich auch für $n = 1$ oder $n = -1$, da sie f\"ur ganze Zahlen g\"ultig ist. %###
+FÃ¼r $n\in\mathbb{N}$ werden durch $f(x) = x^{\frac{1}{n}}$ Wurzelfunktionen beschrieben. Die hier wiedergegebene Ableitungsregel gilt natÃ¼rlich auch fÃ¼r $n = 1$ oder $n = -1$, da sie fÃ¼r ganze Zahlen gÃ¼ltig ist. %###
 \begin{MExample}
 Die Wurzelfunktion $f: [0\MIntvlSep \infty\MoIr \rightarrow \R$ mit
 $x \mapsto f(x) := \sqrt{x} = x^{\frac{1}{2}}$
-ist f"ur $x > 0$ differenzierbar. Der Wert der Ableitung an einer beliebigen Stelle $x>0$ ist durch
+ist fÃ¼r $x > 0$ differenzierbar. Der Wert der Ableitung an einer beliebigen Stelle $x>0$ ist durch
 \[
 f'(x) = \frac{1}{2} \cdot x^{\frac{1}{2}-1} %
 = \frac{1}{2} \cdot x^{-\frac{1}{2}} = \frac{1}{2 \cdot \sqrt{x}} %%
 \] 
-gegeben. Die Ableitung in $x_0 = 0$ existiert nicht, da die Tangente an den Graphen von $f$ dort eine unendliche Steigung hätte.
+gegeben. Die Ableitung in $x_0 = 0$ existiert nicht, da die Tangente an den Graphen von $f$ dort eine unendliche Steigung hÃ¤tte.
 
 \begin{center}
 \MTikzAuto{%
@@ -495,9 +495,9 @@ Die Tangente im Punkt $\MPointTwo{1}{1}$ an den Graphen der vorliegenden Wurzelf
 die Steigung $\frac{1}{2 \sqrt{1}} = \frac{1}{2}$ auf.
 \end{MExample}
 
-Die bisherigen Aussagen können f"ur $x>0$ auf Exponenten $p \in \R$ mit 
+Die bisherigen Aussagen kÃ¶nnen fÃ¼r $x>0$ auf Exponenten $p \in \R$ mit 
 $p \neq 0$ ausgedehnt werden:
-Der Wert $f'(x)$ der Ableitung einer Funktion $f$ mit Funktionsterm $f(x) = x^p$ f"ur $x > 0$ ist
+Der Wert $f'(x)$ der Ableitung einer Funktion $f$ mit Funktionsterm $f(x) = x^p$ fÃ¼r $x > 0$ ist
 \[
 f'(x) = p \cdot x^{p-1} \MDFPeriod %%
 \]
@@ -508,9 +508,9 @@ f'(x) = p \cdot x^{p-1} \MDFPeriod %%
 
 \MSubsubsectionx{Ableitung trigonometrischer Funktionen}
 
-Die Sinusfunktion $f: \R \rightarrow \R$, $x \mapsto f(x) = \sin(x)$ ist periodisch mit Periode $2 \pi$. Somit gen"ugt es, die
-Funktion auf einem Intervall der L"ange $2 \pi$ zu betrachten. Einen Ausschnitt 
-des Graphen f"ur $-\pi \leq x \leq \pi$ zeigt die folgende Abbildung:
+Die Sinusfunktion $f: \R \rightarrow \R$, $x \mapsto f(x) = \sin(x)$ ist periodisch mit Periode $2 \pi$. Somit genÃ¼gt es, die
+Funktion auf einem Intervall der LÃ¤nge $2 \pi$ zu betrachten. Einen Ausschnitt 
+des Graphen fÃ¼r $-\pi \leq x \leq \pi$ zeigt die folgende Abbildung:
 
 \begin{center}
 \MTikzAuto{%
@@ -585,28 +585,28 @@ declare function={
 \end{center}
 
 Wie in der Abbildung zu sehen, ist die Steigung des Sinus bei $x_0 = \pm\frac{\pi}{2}$ gerade $f'(\pm\frac{\pi}{2}) = 0$.
-Legt man eine Tangente an der Stelle $x_0 = 0$ an den Graphen der Sinusfunktion, erhält man als deren Steigung $f'(0) = 1$.
+Legt man eine Tangente an der Stelle $x_0 = 0$ an den Graphen der Sinusfunktion, erhÃ¤lt man als deren Steigung $f'(0) = 1$.
 Untersucht man die Stellen $x_0 = \pm\pi$, so findet man, dass dort die gleiche Steigung wie bei $x_0 = 0$, aber mit umgedrehtem Vorzeichen, vorliegt.
-Die Steigung ist dort also $f'(\pm\pi) = -1$. Die Ableitung des Sinus ist also eine Funktion, die genau diese Eigenschaften erfüllt.
+Die Steigung ist dort also $f'(\pm\pi) = -1$. Die Ableitung des Sinus ist also eine Funktion, die genau diese Eigenschaften erfÃ¼llt.
 Eine genaue Untersuchung der Bereiche zwischen diesen speziell ausgesuchten Stellen ergibt, dass der Kosinus die Ableitung des Sinus darstellt:
 
 \begin{MXInfo}{Ableitung trigonometrischer Funktionen}
-F"ur die Sinusfunktion $f: \R \rightarrow \R$, $x \mapsto f(x) := \sin(x)$ gilt 
+FÃ¼r die Sinusfunktion $f: \R \rightarrow \R$, $x \mapsto f(x) := \sin(x)$ gilt 
 \[
 f': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto f'(x) = \cos(x) \MDFPeriod %%
 \]
-F"ur die Kosinusfunktion $g: \R \rightarrow \R$, $x  \mapsto g(x) := \cos(x)$ gilt 
+FÃ¼r die Kosinusfunktion $g: \R \rightarrow \R$, $x  \mapsto g(x) := \cos(x)$ gilt 
 \[
 g': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto g'(x) = -\sin(x) \MDFPeriod %%
 \]
-F"ur die Tangensfunktion $h: \R \setminus \{ \frac{\pi}{2} + k \pi \MCondSetSep k \in \Z \} \rightarrow \R$,
+FÃ¼r die Tangensfunktion $h: \R \setminus \{ \frac{\pi}{2} + k \pi \MCondSetSep k \in \Z \} \rightarrow \R$,
 $x \mapsto h(x) := \tan(x)$ gilt
 \[
 h': \R \setminus \{ \frac{\pi}{2} + k \pi \MCondSetSep k \in \Z \} \rightarrow \R \MDFPSpace , \MDFPaSpace
 x \mapsto h'(x) = 1 + (\tan(x))^2 = \frac{1}{\cos^2(x)} \MDFPeriod %%
 \]
 \end{MXInfo}
-Letzteres ergibt sich auch aus den nachfolgend erl"auterten Rechenregeln und der 
+Letzteres ergibt sich auch aus den nachfolgend erlÃ¤uterten Rechenregeln und der 
 Definition des Tangens als Quotient von Sinus und Kosinus.
 
 \MSubsubsectionx{Ableitung der Exponentialfunktion}
@@ -618,19 +618,19 @@ dass ihre Ableitung $f'$ wiederum die Exponentialfunktion ist, also $f'(x) = \ME
 
 \MSubsubsectionx{Ableitung der Logarithmusfunktion}
 
-%Die Logarithmusfunktion $f(y) := \ln(y)$ f"ur $y > 0$ ist die Umkehrfunktion
+%Die Logarithmusfunktion $f(y) := \ln(y)$ fÃ¼r $y > 0$ ist die Umkehrfunktion
 %der Exponentialfunktion $y = \MEU^x$. Die Ableitung und damit die Steigung $m$ einer Tangente an den 
 %Graphen der Exponentialfunktion ist $m = \MEU^x$. 
 %In der folgenden Abbildung ist die Tangente an den Graphen der Exponentialfunktion im
-%Punkt $(x_0, \MEU^{x_0})$ f"ur $x_0 = \ln(2)$ angedeutet, sodass die 
+%Punkt $(x_0, \MEU^{x_0})$ fÃ¼r $x_0 = \ln(2)$ angedeutet, sodass die 
 %Tangentensteigung $m = 2$ ist. Die Umkehrabbildung der Tangente hat dann 
 %die Steigung $\frac{1}{m} = \frac{1}{2}$. 
 %Geometrisch ist es die Steigung der gespiegelten Tangente, also die Tangente
 %an die Umkehrfunktion $\ln$.
-%Verwenden wir wieder die gewohnten Bezeichnungen für die unabhängige Variable, können wir ohne Beweis die Ableitung der Logarithmusfunktion angeben. Es gilt: $f'(x) = \frac{1}{x}$ ist die Ableitung der 
+%Verwenden wir wieder die gewohnten Bezeichnungen fÃ¼r die unabhÃ¤ngige Variable, kÃ¶nnen wir ohne Beweis die Ableitung der Logarithmusfunktion angeben. Es gilt: $f'(x) = \frac{1}{x}$ ist die Ableitung der 
 %Logarithmusfunktion $f(x) = \ln(x)$.
-Die Ableitung der Logarithmusfunktion wird hier ohne Beweis angegeben. Für $f: \MoIl 0 \MIntvlSep \infty\MoIr  \rightarrow \R$ mit $x \mapsto f(x) = \ln(x)$
-erhält man $f': \MoIl 0 \MIntvlSep \infty\MoIr \rightarrow \R$, $x \mapsto f'(x) = \frac1x$.
+Die Ableitung der Logarithmusfunktion wird hier ohne Beweis angegeben. FÃ¼r $f: \MoIl 0 \MIntvlSep \infty\MoIr  \rightarrow \R$ mit $x \mapsto f(x) = \ln(x)$
+erhÃ¤lt man $f': \MoIl 0 \MIntvlSep \infty\MoIr \rightarrow \R$, $x \mapsto f'(x) = \frac1x$.
 %\begin{center}
 %\MTikzAuto{%
 %%%{Tangenten an $\exp$ und an die Umkehrfunktion $\ln$}{}
@@ -702,7 +702,7 @@ erhält man $f': \MoIl 0 \MIntvlSep \infty\MoIr \rightarrow \R$, $x \mapsto f'(x)
 
 \begin{MExercise}
 Bestimmen Sie die Ableitung, indem Sie die Funktionsterme vereinfachen und 
-dann Ihre Kenntnisse "uber die Ableitung bekannter Funktionen anwenden
+dann Ihre Kenntnisse Ã¼ber die Ableitung bekannter Funktionen anwenden
 ($x > 0$):
 \begin{MExerciseItems}
 \item $f(x) := x^6 \cdot x^{\frac{7}{2}} = $
@@ -715,7 +715,7 @@ Damit ist:
 \item $f'(x) = $ \MLSimplifyQuestion{40}{19/2*x^(17/2)}{4}{x}{4}{512}{SIMPLE7}.
 \item $g'(x) = $ \MLSimplifyQuestion{40}{-2/x^3}{4}{x}{4}{512}{SIMPLE8}.
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{MExerciseItems}
   \item Es ist $f(x) = x^6 \cdot x^\frac72 = x^{6 + \frac72} = x^\frac{19}{2}$.
   Damit gilt $f'(x) = \frac{19}{2} x^{\frac{19}{2} - 1} = \frac{19}{2} x^\frac{17}{2}$.
@@ -739,7 +739,7 @@ Damit ist:
 \item $f'(x) = $ \MLFunctionQuestion{40}{cos(x)}{10}{x}{4}{DG17}.
 \item $g'(x) = $ \MLParsedQuestion{40}{0}{3}{DG18}.
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{MExerciseItems}
   \item Es ist allgemein
   \[
@@ -753,7 +753,7 @@ Damit ist:
 
 \begin{MExercise}
 Vereinfachen Sie die Funktionsterme, um dann die Ableitung zu bestimmen
-(f"ur $x > 0$ in der ersten Teilaufgabe):
+(fÃ¼r $x > 0$ in der ersten Teilaufgabe):
 \begin{MExerciseItems}
 \item $f(x) := 3 \ln(x) + \ln\left(\frac{1}{x}\right) = $
 \MLSimplifyQuestion{40}{2*ln(x)}{10}{x}{4}{512}{SIMPLE9}.
@@ -768,15 +768,15 @@ Damit ist:
 \end{MExerciseItems}
 \MInputHint{Schreiben Sie Exponentialfunktionen mit \texttt{exp}, beispielsweise schreiben Sie $\MEU^{4x^2}$ als \texttt{exp(4*x^2)}.}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{MExerciseItems}
   \item Es ist
   \[
    f(x) = 3 \ln (x) + \ln \left( \frac1x \right) = \ln (x^3) + \ln \left( \frac1x \right) = \ln \left( x^3 \cdot \frac1x \right)
    = \ln \left( x^2 \right) \MDFPeriod
   \]
-  Für den Wert der Ableitung von $f$ an der Stelle $x$ ($x>0$) folgt daher mit Hilfe der Kettenregel
-  $f'(x) = \frac{1}{x^2} \cdot 2 x = \frac{2}{x}$. (Die Kettenregel wird im Abschnitt \MRef{Kettenregel} ausführlich erläutert.)
+  FÃ¼r den Wert der Ableitung von $f$ an der Stelle $x$ ($x>0$) folgt daher mit Hilfe der Kettenregel
+  $f'(x) = \frac{1}{x^2} \cdot 2 x = \frac{2}{x}$. (Die Kettenregel wird im Abschnitt \MRef{Kettenregel} ausfÃ¼hrlich erlÃ¤utert.)
   \item Es ist
   \[
   g(x) = \left( \MEU^x \right)^2 \cdot \MEU^{-x} = \MEU^x \cdot \MEU^x \cdot \MEU^{-x} = \MEU^{x+x-x} = \MEU^x \MDFPeriod
@@ -796,7 +796,7 @@ Damit ist:
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Rechenregeln_Intro}
 Zusammen mit einigen wenigen Rechenregeln und den im letzten Abschnitt 
-vorgestellten Ableitungen lässt sich eine Vielzahl an Funktionen 
+vorgestellten Ableitungen lÃ¤sst sich eine Vielzahl an Funktionen 
 differenzieren.
 \end{MIntro}
 
@@ -821,11 +821,11 @@ f'(x) = r \cdot u'(x) \MDFPeriod%%
 $$
 \end{MXInfo}
 
-Mit diesen beiden Rechenregeln und der Ableitungsregel für Monome $x^n$ lässt sich z.B. jedes beliebige Polynom ableiten.
+Mit diesen beiden Rechenregeln und der Ableitungsregel fÃ¼r Monome $x^n$ lÃ¤sst sich z.B. jedes beliebige Polynom ableiten.
 Es folgen einige Beispiele:
 
 \begin{MExample}
-Das Polynom $f$ mit dem Funktionsterm $f(x) = \frac{1}{4} x^3 - 2 x^{2} +5 $ ist differenzierbar, und man erhält
+Das Polynom $f$ mit dem Funktionsterm $f(x) = \frac{1}{4} x^3 - 2 x^{2} +5 $ ist differenzierbar, und man erhÃ¤lt
 \[
 f'(x) = \frac{3}{4} x^2 - 4 x \MDFPeriod%%
 \]
@@ -834,13 +834,13 @@ Die Ableitung der Funktion $g: \MoIl 0 \MIntvlSep \infty\MoIr \rightarrow \R$ mi
 g': \MoIl 0 \MIntvlSep \infty \MoIr \rightarrow \R \MDFPSpace \text{ mit } \MDFPSpace g'(x) = 3 x^2 + \frac{1}{x} = \frac{3 x^3 + 1}{x} \MDFPeriod%%
 \]
 %Mit $\ln(x^3) = 3 \ln(x)$ ergibt sich die Ableitung von 
-%$g(x) = \ln(x^3) = 3 \ln(x)$ f"ur $x > 0$ zu
+%$g(x) = \ln(x^3) = 3 \ln(x)$ fÃ¼r $x > 0$ zu
 %\[
 %g'(x) = \frac{3}{x} %%
 %\]
 Ableiten der Funktion
 $h: [0 \MIntvlSep \infty\MoIr \rightarrow \R$ mit $h(x) = 4^{-1} \cdot x^2 - \sqrt{x} %
- = \frac{1}{4} x^2 + (-1) \cdot x^{\frac{1}{2}}$ führt für $x>0$ auf
+ = \frac{1}{4} x^2 + (-1) \cdot x^{\frac{1}{2}}$ fÃ¼hrt fÃ¼r $x>0$ auf
 \[
 h'(x) = \frac{1}{2} x - \frac{1}{2} x^{-\frac{1}{2}} %
  = \frac{x^{\frac{3}{2}} - 1}{2 \sqrt{x}} \MDFPeriod%%
@@ -860,7 +860,7 @@ f'(x) = u'(x) \cdot v(x) +  u(x) \cdot v'(x) \MDFPeriod%%
 $$
 
 Der Quotient von Funktionen, $f := \frac{u}{v}$ mit $f(x) = \left( \frac{u}{v} \right) (x) := \frac{u(x)}{v(x)}$,
-ist f"ur alle $x$ mit $v(x) \neq 0$ definiert und differenzierbar, und es gilt die \textbf{Quotientenregel}
+ist fÃ¼r alle $x$ mit $v(x) \neq 0$ definiert und differenzierbar, und es gilt die \textbf{Quotientenregel}
 \ifttm
 $$
 f'(x) = \frac{u'(x) \cdot v(x) - u(x) \cdot v'(x)}{\left( v(x) \right)^2} \MDFPeriod%%
@@ -878,24 +878,24 @@ Auch diese Rechenregeln sollen anhand einiger Beispiele veranschaulicht werden:
 
 \begin{MExample}
 Gesucht ist die Ableitung von $f: \R \rightarrow \R$ mit $f(x) = x^2 \cdot \MEU^x$.
-Anwenden der Produktregel mit (z.B.) $u(x) = x^2$ und $v(x) = \MEU^x$ führt auf
+Anwenden der Produktregel mit (z.B.) $u(x) = x^2$ und $v(x) = \MEU^x$ fÃ¼hrt auf
 $u'(x) = 2x$ und $v'(x) = \MEU^x$. Werden diese Teilergebnisse mit der Produktregel zusammengesetzt, dann resultiert die Ableitung der Funktion $f$:
 \[
 f': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto f'(x) = 2 x \MEU^x + x^2 \MEU^x = (x^2 + 2x) \MEU^x \MDFPeriod%%
 \]
-Als Nächstes soll die Tangensfunktion $g$ mit $g(x) = \tan(x) = \frac{\sin(x)}{\cos(x)}$ ($\cos(x) \neq 0$) untersucht werden.
+Als NÃ¤chstes soll die Tangensfunktion $g$ mit $g(x) = \tan(x) = \frac{\sin(x)}{\cos(x)}$ ($\cos(x) \neq 0$) untersucht werden.
 Durch Vergleich mit der Quotientenregel liest man $u(x) = \sin(x)$ und $v(x) = \cos(x)$ ab. Mit $u'(x) = \cos(x)$ und $v'(x) = -\sin(x)$
-können die Teilergebnisse mit Hilfe der Quotientenregel zur Ableitung der Funktion $g$ zusammengefügt werden; es folgt:
+kÃ¶nnen die Teilergebnisse mit Hilfe der Quotientenregel zur Ableitung der Funktion $g$ zusammengefÃ¼gt werden; es folgt:
 \[
 g'(x) = \frac{\cos(x) \cdot \cos(x) - \sin(x) \cdot (-\sin(x))}{\cos^2(x)} \MDFPeriod%
 \]
-Dieses Ergebnis lässt sich zu einem der folgenden Ausdrücke zusammenfassen:
+Dieses Ergebnis lÃ¤sst sich zu einem der folgenden AusdrÃ¼cke zusammenfassen:
 \[
 g'(x) = 1 + \left(\frac{\sin(x)}{\cos(x)}\right)^2 %
  = 1 + \tan^2(x) %
  = \frac{1}{\cos^2(x)} \MDFPeriod%%
 \]
-Für das letzte Gleichheitszeichen wurde der in Modul \MNRef{VBKM05} (Abschnitt \MRef{Abschnitt:TrigonometrieAmDreieck}) besprochene Zusammenhang
+FÃ¼r das letzte Gleichheitszeichen wurde der in Modul \MNRef{VBKM05} (Abschnitt \MRef{Abschnitt:TrigonometrieAmDreieck}) besprochene Zusammenhang
 $\sin^2(x) + \cos^2(x) = 1$ verwendet.
 \end{MExample}
 
@@ -903,11 +903,11 @@ $\sin^2(x) + \cos^2(x) = 1$ verwendet.
 Berechnen Sie die Ableitung von $f: \R \rightarrow \R$ mit $f(x)=\sin(x)\cdot x^3$, indem Sie dieses Produkt in zwei Faktoren zerlegen,
 die Ableitungen bilden und diese mit Hilfe der Produktregel zusammensetzen:
 \begin{MExerciseItems}
-\item{Der linke Faktor \MEquationItem{$u(x)$}{\MLFunctionQuestion{10}{sin(x)}{5}{x}{5}{DS2}} führt auf \MEquationItem{$u'(x)$}{\MLFunctionQuestion{10}{cos(x)}{5}{x}{5}{DS5}}.}
-\item{Der rechte Faktor \MEquationItem{$v(x)$}{\MLFunctionQuestion{10}{x^3}{5}{x}{5}{DS3}} führt auf \MEquationItem{$v'(x)$}{\MLFunctionQuestion{10}{3*x^2}{5}{x}{5}{DS4}}.}
-\item{Für das Produkt $f$ gilt daher \MEquationItem{$f'(x)$}{\MLFunctionQuestion{30}{(cos(x)*x^3)+(sin(x)*3*x^2)}{5}{x}{5}{DS6}}.}
+\item{Der linke Faktor \MEquationItem{$u(x)$}{\MLFunctionQuestion{10}{sin(x)}{5}{x}{5}{DS2}} fÃ¼hrt auf \MEquationItem{$u'(x)$}{\MLFunctionQuestion{10}{cos(x)}{5}{x}{5}{DS5}}.}
+\item{Der rechte Faktor \MEquationItem{$v(x)$}{\MLFunctionQuestion{10}{x^3}{5}{x}{5}{DS3}} fÃ¼hrt auf \MEquationItem{$v'(x)$}{\MLFunctionQuestion{10}{3*x^2}{5}{x}{5}{DS4}}.}
+\item{FÃ¼r das Produkt $f$ gilt daher \MEquationItem{$f'(x)$}{\MLFunctionQuestion{30}{(cos(x)*x^3)+(sin(x)*3*x^2)}{5}{x}{5}{DS6}}.}
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Die vier Bausteine sind
 $$
 u(x) \;=\; \sin(x) \MDFPSpace , \MDFPaSpace
@@ -924,14 +924,14 @@ $$
 
 \begin{MExercise}
 Berechnen Sie die Ableitung von $f: \MoIl 0 \MIntvlSep \infty\MoIr \rightarrow \R$ mit $f(x)=\frac{\ln(x)}{x^2}$, indem Sie
-diesen Quotienten in Zähler und Nenner zerlegen, die Ableitungen bilden
+diesen Quotienten in ZÃ¤hler und Nenner zerlegen, die Ableitungen bilden
 und diese mit Hilfe der Quotientenregel zusammensetzen:
 \begin{MExerciseItems}
-\item{Der Zähler \MEquationItem{$u(x)$}{\MLSimplifyQuestion{10}{ln(x)}{5}{x}{5}{512}{DS7}} führt auf \MEquationItem{$u'(x)$}{\MLSimplifyQuestion{10}{1/x}{5}{x}{5}{512}{DS8}}.}
-\item{Der Nenner \MEquationItem{$v(x)$}{\MLFunctionQuestion{10}{x^2}{5}{x}{5}{DZ2}} führt auf \MEquationItem{$v'(x)$}{\MLFunctionQuestion{10}{2*x}{5}{x}{5}{DZ1}}.}
-\item{Für den Quotienten $f$ gilt \MEquationItem{$f'(x)$}{\MLSimplifyQuestion{30}{(1/x*x^2-ln(x)*2*x)/(x^4)}{5}{x}{5}{512}{DS9}}.}
+\item{Der ZÃ¤hler \MEquationItem{$u(x)$}{\MLSimplifyQuestion{10}{ln(x)}{5}{x}{5}{512}{DS7}} fÃ¼hrt auf \MEquationItem{$u'(x)$}{\MLSimplifyQuestion{10}{1/x}{5}{x}{5}{512}{DS8}}.}
+\item{Der Nenner \MEquationItem{$v(x)$}{\MLFunctionQuestion{10}{x^2}{5}{x}{5}{DZ2}} fÃ¼hrt auf \MEquationItem{$v'(x)$}{\MLFunctionQuestion{10}{2*x}{5}{x}{5}{DZ1}}.}
+\item{FÃ¼r den Quotienten $f$ gilt \MEquationItem{$f'(x)$}{\MLSimplifyQuestion{30}{(1/x*x^2-ln(x)*2*x)/(x^4)}{5}{x}{5}{512}{DS9}}.}
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Die vier Bausteine sind
 $$
 u(x) \;=\; \ln(x) \MDFPSpace , \MDFPaSpace
@@ -943,7 +943,7 @@ und Zusammensetzen mit der Quotientenregel ergibt
 $$
 f'(x) \;=\; \frac{\frac1x\cdot x^2-\ln(x)\cdot 2x}{x^4} \; =\; \frac{1-2\ln(x)}{x^3} \MDFPSpace,
 $$
-wobei der letzte Umformungsschritt (Kürzen um $x$) nur der Vereinfachung dient.
+wobei der letzte Umformungsschritt (KÃ¼rzen um $x$) nur der Vereinfachung dient.
 \end{MHint}
 \end{MExercise}
 \end{MXContent}
@@ -954,39 +954,39 @@ wobei der letzte Umformungsschritt (Kürzen um $x$) nur der Vereinfachung dient.
 
 Zum Abschluss wird die Verkettung (Modul \MRef{VBKM06}, Abschnitt \MRef{Verkettung}) von Funktionen untersucht:
 Was passiert, wenn eine Funktion $u$ (die innere Funktion) in eine andere Funktion $v$
-(die äußere Funktion) sozusagen eingesetzt wird? Eine solche Verkettung wird in der Mathematik durch die Schreibweise $f := v \circ u$ mit
-$f(x) = (v \circ u)(x) := v(u(x))$ dargestellt. Dies bedeutet, dass zunächst der Wert einer Funktion $u$ in Abhängigkeit von der Variable $x$ bestimmt wird.
-Dieser so berechnete Wert $u(x)$  wird dann als Argument der Funktion $v$ verwendet. Auf diese Weise entsteht der endgültige Funktionswert $v(u(x))$.
+(die Ã¤uÃŸere Funktion) sozusagen eingesetzt wird? Eine solche Verkettung wird in der Mathematik durch die Schreibweise $f := v \circ u$ mit
+$f(x) = (v \circ u)(x) := v(u(x))$ dargestellt. Dies bedeutet, dass zunÃ¤chst der Wert einer Funktion $u$ in AbhÃ¤ngigkeit von der Variable $x$ bestimmt wird.
+Dieser so berechnete Wert $u(x)$  wird dann als Argument der Funktion $v$ verwendet. Auf diese Weise entsteht der endgÃ¼ltige Funktionswert $v(u(x))$.
 
 \begin{MXInfo}{Kettenregel}
 Die Ableitung der Funktion $f := v \circ u$ mit $f(x) = (v \circ u)(x) := v(u(x))$ kann mit der \textbf{Kettenregel} bestimmt werden; es gilt:
 $$
 f'(x) = v'(u(x)) \cdot u'(x) \MDFPeriod%%
 $$
-Hierbei ist $v'(u(x))$ so zu verstehen, dass man $v$ als Funktion von $u$ auffasst und dementsprechend nach $u$ differenziert; anschließend wertet man
-$v'(u)$ für $u = u(x)$ aus.\\
-Hilfreich ist der Merksatz: Ableitung der Verkettung ist äußere Ableitung mal innere Ableitung.
+Hierbei ist $v'(u(x))$ so zu verstehen, dass man $v$ als Funktion von $u$ auffasst und dementsprechend nach $u$ differenziert; anschlieÃŸend wertet man
+$v'(u)$ fÃ¼r $u = u(x)$ aus.\\
+Hilfreich ist der Merksatz: Ableitung der Verkettung ist Ã¤uÃŸere Ableitung mal innere Ableitung.
 \end{MXInfo}
 
 Diese Ableitungsregel soll anhand einiger Beispiele verdeutlicht werden:
 
 \begin{MExample}
 Gesucht wird die Ableitung der Funktion $f: \R \rightarrow \R$ mit $f(x) = (3 - 2 x)^5$.
-Soll die Kettenregel angewendet werden, sind eine innere und eine äußere Funktion zu identifizieren.
-Setzt man für die innere Funktion $u$ den Funktionsterm $u(x) = 3 - 2x$, dann ist die äußere Funktion $v$ durch $v(u) = u^5$ gegeben.
+Soll die Kettenregel angewendet werden, sind eine innere und eine Ã¤uÃŸere Funktion zu identifizieren.
+Setzt man fÃ¼r die innere Funktion $u$ den Funktionsterm $u(x) = 3 - 2x$, dann ist die Ã¤uÃŸere Funktion $v$ durch $v(u) = u^5$ gegeben.
 Damit gilt wie verlangt $v(u(x)) = f(x)$.
 
 Ableiten der inneren Funktion $u$ nach $x$ liefert $u'(x) = -2$.
-Für die äußere Ableitung differenziert man $v$ nach $u$ und findet $v'(u) = 5 u^4$.
-Einsetzen dieser Zwischenergebnisse in die Kettenregel führt auf die Ableitung $f'$ der Funktion $f$ mit:
+FÃ¼r die Ã¤uÃŸere Ableitung differenziert man $v$ nach $u$ und findet $v'(u) = 5 u^4$.
+Einsetzen dieser Zwischenergebnisse in die Kettenregel fÃ¼hrt auf die Ableitung $f'$ der Funktion $f$ mit:
 \[
 f'(x) = 5 (u(x))^4 \cdot (-2) = 5 (3 - 2 x)^4 \cdot (-2) = -10 (3 - 2 x)^4 \MDFPeriod %%
 \]
 
 Als zweites Beispiel soll die Ableitung von $g: \R \rightarrow \R$ mit $g(x) = \MEU^{x^3}$ berechnet werden.
-Dazu bieten sich die Zuordnungen $x \mapsto u(x) = x^3$ für die innere Funktion $u$ und $u \mapsto v(u) = \MEU^u$ für die äußere Funktion $v$ an.
-Die Bestimmung der inneren und der äußeren Ableitung führt auf $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$.
-Setzt man beides in die Kettenregel ein, erhält man die Ableitung der Funktion $g$:
+Dazu bieten sich die Zuordnungen $x \mapsto u(x) = x^3$ fÃ¼r die innere Funktion $u$ und $u \mapsto v(u) = \MEU^u$ fÃ¼r die Ã¤uÃŸere Funktion $v$ an.
+Die Bestimmung der inneren und der Ã¤uÃŸeren Ableitung fÃ¼hrt auf $u'(x) = 3 x^2$ und $v'(u) = \MEU^u$.
+Setzt man beides in die Kettenregel ein, erhÃ¤lt man die Ableitung der Funktion $g$:
 \[
 g': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto g'(x) = \MEU^{u(x)} \cdot 3 x^2 = \MEU^{x^3} \cdot 3 x^2 = 3 x^2 \MEU^{x^3} \MDFPeriod %%
 \]
@@ -1003,15 +1003,15 @@ g': \R \rightarrow \R \MDFPSpace , \MDFPaSpace x \mapsto g'(x) = \MEU^{u(x)} \cd
 Berechnen Sie die Ableitungen der Funktionen $f,g$ und $h$ mit den gegebenen Funktionstermen:
 \begin{MExerciseItems}
 \item $f(x) := 3 + 5 x$
-führt auf $f'(x) = $\MLParsedQuestion{30}{5}{4}{DG19}.
+fÃ¼hrt auf $f'(x) = $\MLParsedQuestion{30}{5}{4}{DG19}.
 %
 \item $g(x) := \frac{1}{4 x} - x^3$
-führt auf $g'(x) = $\MLSimplifyQuestion{30}{-1/(4*x^2) - 3*x^2}{1}{x}{20}{512}{SIMPLE10}.
+fÃ¼hrt auf $g'(x) = $\MLSimplifyQuestion{30}{-1/(4*x^2) - 3*x^2}{1}{x}{20}{512}{SIMPLE10}.
 %
 \item $h(x) := 2 \sqrt{x} + 4 x^{-3}$
-führt auf $h'(x) = $\MLSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}{SIMPLE11}.
+fÃ¼hrt auf $h'(x) = $\MLSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}{SIMPLE11}.
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{MExerciseItems}
   \item Es ist $f'(x) = 0 + 5 \cdot 1 \cdot x^0 = 0 + 5 = 5$.
   \item Wegen $g(x) = \frac{1}{4x} - x^3 = \frac14 x^{-1} - x^3$ folgt
@@ -1026,15 +1026,15 @@ führt auf $h'(x) = $\MLSimplifyQuestion{30}{1/sqrt(x) - 12/(x^4)}{1}{x}{20}{512}
 Berechnen und vereinfachen Sie die Ableitungen der Funktionen $f,g$ und $h$ mit den gegebenen Funktionstermen:
 \begin{MExerciseItems}
 \item $f(x) := \cot x = \frac{\cos x}{\sin x}$
-führt auf $f'(x) = $\MLSimplifyQuestion{30}{-1/(sin(x) * sin(x))}{10}{x}{4}{512}{DG20}.
+fÃ¼hrt auf $f'(x) = $\MLSimplifyQuestion{30}{-1/(sin(x) * sin(x))}{10}{x}{4}{512}{DG20}.
 %
 \item $g(x) := \sin(3 x) \cdot \cos(3 x)$
-führt auf $g'(x) = $\MLFunctionQuestion{30}{3*cos(6*x)}{10}{x}{4}{DG21}.
+fÃ¼hrt auf $g'(x) = $\MLFunctionQuestion{30}{3*cos(6*x)}{10}{x}{4}{DG21}.
 %
 \item $h(x) := \frac{\sin(3 x)}{\sin(6 x)}$
-führt auf $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{512}{SIMPLE12}.
+fÃ¼hrt auf $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{512}{SIMPLE12}.
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{MExerciseItems}
   \item Es ist mit Hilfe der Quotientenregel
   \[
@@ -1052,7 +1052,7 @@ führt auf $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{5
   h(x) = \frac{\sin (3x)}{\sin (6x)} = \frac{\sin (3x)}{2 \sin (3x) \cos (3x)} = \frac{1}{2 \cos (3x)}
   = \frac12 \cdot \left( \cos (3x) \right)^{-1} \MDFPeriod
   \]
-  Mehrmaliges Anwenden der Kettenregel führt dann auf
+  Mehrmaliges Anwenden der Kettenregel fÃ¼hrt dann auf
   \[
   h'(x) = \frac12 \cdot (-1) \cdot \left( \cos (3x) \right)^{-2} \cdot \left( - \sin (3x) \right) \cdot 3
   = \frac{3 \sin (3x)}{2 \cos^2 (3x)} = \frac{3 \tan (3x)}{2 \cos (3x)} \MDFPeriod
@@ -1062,22 +1062,22 @@ führt auf $h'(x) = $\MLSimplifyQuestion{30}{3/2 * tan(3*x)/cos(3*x)}{10}{x}{4}{5
 \end{MExercise}
 
 \begin{MExercise}
-Berechnen Sie die Ableitungen der Funktionen $f,g$ und $h$ mit den gegebenen Funktionstermen und fassen Sie soweit wie m\"oglich zusammen: %###
+Berechnen Sie die Ableitungen der Funktionen $f,g$ und $h$ mit den gegebenen Funktionstermen und fassen Sie soweit wie mÃ¶glich zusammen: %###
 \begin{MExerciseItems}
 \item $f(x) := \MEU^{5 x}$
-führt auf $f'(x) = $\MLFunctionQuestion{30}{5*exp(5*x)}{10}{x}{4}{DG22}.
+fÃ¼hrt auf $f'(x) = $\MLFunctionQuestion{30}{5*exp(5*x)}{10}{x}{4}{DG22}.
 %
 \item $g(x) := x \cdot \MEU^{6 x}$
-führt auf $g'(x) = $\MLFunctionQuestion{30}{(6*x+1)*exp(6*x)}{10}{x}{4}{DG23}.
+fÃ¼hrt auf $g'(x) = $\MLFunctionQuestion{30}{(6*x+1)*exp(6*x)}{10}{x}{4}{DG23}.
 %
 \item $h(x) := (x^2 - x) \cdot \MEU^{-2 x}$
-führt auf $h'(x) = $\MLFunctionQuestion{30}{-(2*x^2 - 4*x + 1) * exp(-2*x)}{10}{x}{4}{DG24}.
+fÃ¼hrt auf $h'(x) = $\MLFunctionQuestion{30}{-(2*x^2 - 4*x + 1) * exp(-2*x)}{10}{x}{4}{DG24}.
 \end{MExerciseItems}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{MExerciseItems}
   \item Die Kettenregel liefert sofort $f'(x) = 5 \MEU^{5x}$.
-  \item Produkt- und Kettenregel führen auf $g'(x) = 1 \cdot \MEU^{6x} + x \cdot \MEU^{6x} \cdot 6 = \MEU^{6x} (1 + 6x)$.
-  \item Produkt- und Kettenregel führen auf $h'(x) = (2x - 1) \cdot \MEU^{-2x} + (x^2 - x) \cdot \MEU^{-2x} \cdot (-2)
+  \item Produkt- und Kettenregel fÃ¼hren auf $g'(x) = 1 \cdot \MEU^{6x} + x \cdot \MEU^{6x} \cdot 6 = \MEU^{6x} (1 + 6x)$.
+  \item Produkt- und Kettenregel fÃ¼hren auf $h'(x) = (2x - 1) \cdot \MEU^{-2x} + (x^2 - x) \cdot \MEU^{-2x} \cdot (-2)
   = - (2x^2 - 4x + 1) \MEU^{-2x}$.
  \end{MExerciseItems}
 \end{MHint}
@@ -1100,7 +1100,7 @@ Damit:
 \item
  $f^{(4)}(x) = $\MLFunctionQuestion{30}{16 * sin(1 - 2*x)}{10}{x}{4}{DG28}.
 \end{itemize}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  Mit Hilfe der Kettenregel bestimmt man sukzessive:
  \begin{eqnarray*}
   f^{(1)} (x) & = & \cos(1 - 2x) \cdot (-2) = -2 \cos(1 - 2x) \MDFPSpace , \\
@@ -1120,16 +1120,16 @@ Damit:
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Eigenschaften_Intro}
-Die Ableitung wurde weiter oben mittels einer Tangente an den Graphen einer Funktion eingef"uhrt. Diese Tangente beschreibt die gegebene Funktion
-in einem gewissen Bereich {\glqq}n"aherungsweise{\grqq}. Aus den Eigenschaften dieser Geraden kann auch auf Eigenschaften der
-angenäherten Funktion geschlossen werden.
+Die Ableitung wurde weiter oben mittels einer Tangente an den Graphen einer Funktion eingefÃ¼hrt. Diese Tangente beschreibt die gegebene Funktion
+in einem gewissen Bereich {\glqq}nÃ¤herungsweise{\grqq}. Aus den Eigenschaften dieser Geraden kann auch auf Eigenschaften der
+angenÃ¤herten Funktion geschlossen werden.
 \end{MIntro}
 
 \begin{MXContent}{Monotonie}{Monotonie}{STD}
 \MDeclareSiteUXID{VBKM07_Monotonie}
 
 Mit der Ableitung kann das lokale Wachstumsverhalten untersucht werden, das 
-hei"st, ob f"ur steigende Argumente die zugehörigen Funktionswerte gr"o"ser oder 
+heiÃŸt, ob fÃ¼r steigende Argumente die zugehÃ¶rigen Funktionswerte grÃ¶ÃŸer oder 
 kleiner werden.
 Dazu wird eine Funktion $f: D \rightarrow \R$ betrachtet, die auf $\MoIl a\MIntvlSep b\MoIr \subseteq D$ 
 differenzierbar ist:
@@ -1169,11 +1169,11 @@ declare function={
 %Tangenten:
 \draw[domain={x1-1.2}:{x1+0.8},samples=120,color=blue!50!black] %
  plot (\x, {TangenteAblminus(\x)});
-\filldraw[color=blue!50!black] (x0, {fkt(x0)}) circle (1pt); % Ber"uhrpunkt.
+\filldraw[color=blue!50!black] (x0, {fkt(x0)}) circle (1pt); % BerÃ¼hrpunkt.
 %
 \draw[domain={x0-0.8}:{x0+1.2},samples=120,color=blue!50!black] %
  plot (\x, {TangenteAblplus(\x)});
-\filldraw[color=blue!50!black] (x1, {fkt(x1)}) circle (1pt); % Ber"uhrpunkt.
+\filldraw[color=blue!50!black] (x1, {fkt(x1)}) circle (1pt); % BerÃ¼hrpunkt.
 %Beschriftung:
 \node[right] at (5.1, 1.25) {$f'(x_0) = m_0 > 0$};
 \node[style={fill=white},left] at (0.9, 1.25) {$f'(x_1) = m_1 < 0$};
@@ -1185,23 +1185,23 @@ declare function={
 \end{center}
 
 %\begin{MXInfo}{Monotonie}
-Wenn $f'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$ gilt, dann ist $f$ 
+Wenn $f'(x) \leq 0$ fÃ¼r alle $x$ zwischen $a$ und $b$ gilt, dann ist $f$ 
 auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ monoton fallend.
 
-Wenn $f'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$ gilt, dann ist $f$ 
+Wenn $f'(x) \geq 0$ fÃ¼r alle $x$ zwischen $a$ und $b$ gilt, dann ist $f$ 
 auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ monoton wachsend.
 %\end{MXInfo}
 
-Somit gen"ugt es, das Vorzeichen der Ableitung $f'$ zu bestimmen, um zu 
-erkennen, ob eine Funktion auf dem Intervall $\MoIl a \MIntvlSep b\MoIr$ monoton wachsend oder monoton fallend ist. Beachten muss man lediglich, dass sich die Monotonie der Funktion $f$ an den Nullstellen der Ableitung $f'$ \"andern kann. %###
+Somit genÃ¼gt es, das Vorzeichen der Ableitung $f'$ zu bestimmen, um zu 
+erkennen, ob eine Funktion auf dem Intervall $\MoIl a \MIntvlSep b\MoIr$ monoton wachsend oder monoton fallend ist. Beachten muss man lediglich, dass sich die Monotonie der Funktion $f$ an den Nullstellen der Ableitung $f'$ Ã¤ndern kann. %###
 %\end{MXContent}
 
 \begin{MExample}
 Die Funktion $f: \R \rightarrow \R, x \mapsto x^3$ ist differenzierbar mit 
-$f'(x) = 3 x^2$. Da $x^2 \geq 0$ f"ur alle $x \in \R$ gilt, ist 
+$f'(x) = 3 x^2$. Da $x^2 \geq 0$ fÃ¼r alle $x \in \R$ gilt, ist 
 $f'(x) \geq 0$ und damit $f$ monoton wachsend.
 
-F"ur $g: \R \rightarrow \R$ mit $g(x) = 2 x^3 + 6 x^2 - 18 x + 10$ besitzt
+FÃ¼r $g: \R \rightarrow \R$ mit $g(x) = 2 x^3 + 6 x^2 - 18 x + 10$ besitzt
 $g'(x) = 6 x^2 + 12 x - 18 = 6 (x + 3) (x - 1)$ die Nullstellen $x_1 = -3$ 
 und $x_2 = 1$. Zur Untersuchung des Monotonieverhaltens werden also drei Bereiche unterschieden, in denen
 die Ableitung $g'$ jeweils ein anderes Vorzeichen hat.
@@ -1224,20 +1224,20 @@ Die Funktion $g$ ist im Intervall $\MoIl -\infty \MIntvlSep -3\MoIr$ monoton wac
 \end{MExample}%###
 %###
 \begin{MExample}%###
-Für die Funktion $h: \R \setminus \{ 0 \} \rightarrow \R$ mit $h(x) = \frac{1}{x}$
+FÃ¼r die Funktion $h: \R \setminus \{ 0 \} \rightarrow \R$ mit $h(x) = \frac{1}{x}$
 gilt $h'(x) = - \frac{1}{x^2}$. Hier ist 
-$h'(x) < 0$ f"ur alle $x \neq 0$.
+$h'(x) < 0$ fÃ¼r alle $x \neq 0$.
 
-Auch wenn für die beiden Teilbereiche $x<0$ und $x>0$ dasselbe Monotonieverhalten auftritt,
-ist $h$ nicht über den gesamten Definitionsbereich monoton fallend. Als Gegenbeispiel kann
-$h(-2) = -\frac{1}{2}$ und $h(1) = 1$ angeführt werden. Hier gilt $-2 < 1$, aber auch $h(-2) < h(1)$. Dies
-entspricht einem wachsenden Verhalten beim Übergang vom einen zum anderen Teilbereich. Deshalb ist es wichtig deutlich zu unterscheiden, dass die Funktion $h$ 
+Auch wenn fÃ¼r die beiden Teilbereiche $x<0$ und $x>0$ dasselbe Monotonieverhalten auftritt,
+ist $h$ nicht Ã¼ber den gesamten Definitionsbereich monoton fallend. Als Gegenbeispiel kann
+$h(-2) = -\frac{1}{2}$ und $h(1) = 1$ angefÃ¼hrt werden. Hier gilt $-2 < 1$, aber auch $h(-2) < h(1)$. Dies
+entspricht einem wachsenden Verhalten beim Ãœbergang vom einen zum anderen Teilbereich. Deshalb ist es wichtig deutlich zu unterscheiden, dass die Funktion $h$ 
 auf dem Intervall $\MoIl -\infty\MIntvlSep 0\MoIr$ und ebenfalls auf dem Intervall $\MoIl 0\MIntvlSep \infty\MoIr$ monoton fallend ist. %###
 \end{MExample}
 \end{MXContent}
 
-%\MSubsubsection{Zweite Ableitung und Kr"ummungseigenschaften}
-\begin{MXContent}{Zweite Ableitung und Kr"ummungseigenschaften}{Zweite Ableitung und Krümmungseigenschaften}{STD}
+%\MSubsubsection{Zweite Ableitung und KrÃ¼mmungseigenschaften}
+\begin{MXContent}{Zweite Ableitung und KrÃ¼mmungseigenschaften}{Zweite Ableitung und KrÃ¼mmungseigenschaften}{STD}
 \MDeclareSiteUXID{VBKM07_Kruemmungseigenschaften}
 
 %Seien $a,b \in D$ mit $a<b$.
@@ -1245,26 +1245,26 @@ Gegenstand der Untersuchung ist eine Funktion $f: D \rightarrow \R$, die auf dem
 differenzierbar ist. Ist deren Ableitung $f'$ ebenfalls auf dem Intervall $\MoIl a\MIntvlSep b\MoIr \subseteq D$ differenzierbar, so hei{\ss}t $f$ \textbf{zweimal differenzierbar}.
 Bildet man die Ableitung der ersten Ableitung von $f$, dann nennt man $(f')' = {f'}'$ die \textbf{zweite Ableitung} der Funktion $f$.
 
-Die zweite Ableitung der Funktion $f$ kann verwendet werden, um das Krümmungsverhalten der Funktion zu untersuchen:
+Die zweite Ableitung der Funktion $f$ kann verwendet werden, um das KrÃ¼mmungsverhalten der Funktion zu untersuchen:
 
-\begin{MXInfo}{Kr"ummungseigenschaften}
- Ist ${f'}'(x) \geq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ \textbf{konvex}
- (\textbf{linksgekrümmt}).
+\begin{MXInfo}{KrÃ¼mmungseigenschaften}
+ Ist ${f'}'(x) \geq 0$ fÃ¼r alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ \textbf{konvex}
+ (\textbf{linksgekrÃ¼mmt}).
 
- Ist ${f'}'(x) \leq 0$ f"ur alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ \textbf{konkav}
- (\textbf{rechtsgekrümmt}).
+ Ist ${f'}'(x) \leq 0$ fÃ¼r alle $x$ zwischen $a$ und $b$, dann hei{\ss}t $f$ auf dem Intervall $\MoIl a\MIntvlSep b\MoIr$ \textbf{konkav}
+ (\textbf{rechtsgekrÃ¼mmt}).
 \end{MXInfo}
 
-Somit gen"ugt es, das Vorzeichen der zweiten Ableitung ${f'}'$ zu bestimmen, 
-um zu erkennen, ob eine Funktion konvex (linksgekr"ummt) oder konkav 
-(rechtsgekr"ummt) ist.
+Somit genÃ¼gt es, das Vorzeichen der zweiten Ableitung ${f'}'$ zu bestimmen, 
+um zu erkennen, ob eine Funktion konvex (linksgekrÃ¼mmt) oder konkav 
+(rechtsgekrÃ¼mmt) ist.
 %\end{MXContent}
 
 \begin{MXInfo}{Anmerkung zur Notation}
-Die zweite Ableitung und weitere {\glqq}h"ohere{\grqq} Ableitungen werden oft mit hochgestellten nat"urlichen 
+Die zweite Ableitung und weitere {\glqq}hÃ¶here{\grqq} Ableitungen werden oft mit hochgestellten natÃ¼rlichen 
 Zahlen in runden Klammern notiert: $f^{(k)}$ bezeichnet dann die $k$-te Ableitung von $f$.
-Diese Notation wird besonders in allgemein gehaltenen Formeln auch f"ur 
-die (erste) Ableitung ($k=1$) und f"ur die Funktion $f$ selbst ($k=0$) verwendet.
+Diese Notation wird besonders in allgemein gehaltenen Formeln auch fÃ¼r 
+die (erste) Ableitung ($k=1$) und fÃ¼r die Funktion $f$ selbst ($k=0$) verwendet.
 
 Damit bezeichnet 
 \begin{itemize}
@@ -1274,7 +1274,7 @@ Damit bezeichnet
 \item $f^{(3)}$ die dritte Ableitung,
 \item $f^{(4)}$ die vierte Ableitung von $f$.
 \end{itemize}
-Diese Liste kann selbstverständlich beliebig lange fortgeführt werden, solange die Ableitungen von $f$ existieren.
+Diese Liste kann selbstverstÃ¤ndlich beliebig lange fortgefÃ¼hrt werden, solange die Ableitungen von $f$ existieren.
 \end{MXInfo} 
 
 Das folgende Beispiel zeigt, dass eine monoton wachsende Funktion in einem 
@@ -1282,11 +1282,11 @@ Bereich konvex und in einem anderen konkav sein kann.
 
 \begin{MExample}
 Die Funktion $f: \R \rightarrow \R, x \mapsto x^3$ ist sicherlich mindestens zweimal differenzierbar. Wegen
-$f'(x) = 3 x^2 \geq 0$ für alle $x \in \R$ ist $f$ auf dem gesamten Definitionsbereich monoton wachsend.
+$f'(x) = 3 x^2 \geq 0$ fÃ¼r alle $x \in \R$ ist $f$ auf dem gesamten Definitionsbereich monoton wachsend.
 
-Weiter ist ${f'}'(x) = 6 x$. Somit ist f"ur $x < 0$ auch ${f'}'(x) < 0$
-und damit $f$ hier konkav (nach rechts gekr"ummt). F"ur $x > 0$ ist
-${f'}'(x) > 0$, sodass $f$ f"ur $x > 0$ konvex (nach links gekr"ummt) ist.
+Weiter ist ${f'}'(x) = 6 x$. Somit ist fÃ¼r $x < 0$ auch ${f'}'(x) < 0$
+und damit $f$ hier konkav (nach rechts gekrÃ¼mmt). FÃ¼r $x > 0$ ist
+${f'}'(x) > 0$, sodass $f$ fÃ¼r $x > 0$ konvex (nach links gekrÃ¼mmt) ist.
 \end{MExample}
 %\end{MContent}
 \end{MXContent}
@@ -1297,10 +1297,10 @@ ${f'}'(x) > 0$, sodass $f$ f"ur $x > 0$ konvex (nach links gekr"ummt) ist.
 \MDeclareSiteUXID{VBKM07_Verhalten_Exercises}
 
 \begin{MExercise}
-In welchen m"oglichst gro"sen offenen Intervallen ist die Funktion $f$ mit
+In welchen mÃ¶glichst groÃŸen offenen Intervallen ist die Funktion $f$ mit
 $f(x) := \frac{x^2 - 1}{x^2 + 1}$
 monoton wachsend beziehungsweise monoton fallend?
-%In welchen m"oglichst gro"sen offenen Intervallen sind die Funktionen
+%In welchen mÃ¶glichst groÃŸen offenen Intervallen sind die Funktionen
 %\begin{MExerciseItems}
 %\item $f(x) := x^2 - 12\right) \cdot (x^2 + 5)$
 %\item $g(x) := \frac{x^2 + 1}{x^2 - 1}$
@@ -1319,23 +1319,23 @@ Antwort:
 %\item $f$ auf \MIntervalQuestion{20}{(0,infty)}{4} monoton wachsend.
 %\item $f$ auf $($\MIntervalQuestion{8}{0}{4}$, infty)$ monoton wachsend.
 \end{itemize}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  Die Ableitung $f'$ der Funktion $f$ besitzt den Funktionsterm
  \[
  f'(x) = \frac{2x \cdot (x^2 + 1) - (x^2 - 1) \cdot 2x}{(x^2 + 1)^2}
  = \frac{2x \left( x^2 + 1 - x^2 + 1 \right)}{(x^2 + 1)^2} = \frac{4x}{(x^2 + 1)^2} \MDFPeriod
  \]
- Da der Nenner von $f'(x)$ immer positiv ist, bestimmt ausschließlich der Zähler das Vorzeichen von $f'(x)$: Für alle negativen $x \in \R$ ist
- $f'(x) < 0$ und $f$ daher dort monoton fallend; für alle positiven $x \in \R$ dagegen ist $f'(x) > 0$ und $f$ daher dort monoton wachsend.
+ Da der Nenner von $f'(x)$ immer positiv ist, bestimmt ausschlieÃŸlich der ZÃ¤hler das Vorzeichen von $f'(x)$: FÃ¼r alle negativen $x \in \R$ ist
+ $f'(x) < 0$ und $f$ daher dort monoton fallend; fÃ¼r alle positiven $x \in \R$ dagegen ist $f'(x) > 0$ und $f$ daher dort monoton wachsend.
 \end{MHint}
 \end{MExercise}
 
 
 \begin{MExercise}
-In welchen m"oglichst gro"sen offenen Intervallen $\MoIl c\MIntvlSep d\MoIr$ ist die Funktion $f$ mit
-$f(x) := \frac{x^2 - 1}{x^2 + 1}$ f"ur $x > 0$
+In welchen mÃ¶glichst groÃŸen offenen Intervallen $\MoIl c\MIntvlSep d\MoIr$ ist die Funktion $f$ mit
+$f(x) := \frac{x^2 - 1}{x^2 + 1}$ fÃ¼r $x > 0$
 konvex beziehungsweise konkav?
-%In welchen m"oglichst gro"sen offenen Intervallen sind die Funktionen
+%In welchen mÃ¶glichst groÃŸen offenen Intervallen sind die Funktionen
 %konvex beziehungsweise konkav?
 %\begin{MExerciseItems}
 %\item $f(x) := \frac{6 x}{x^2 + 4}$
@@ -1347,22 +1347,22 @@ Antwort:
 %
 \item $f$ ist auf \MLIntervalQuestion{35}{(1/sqrt(3),infty)}{4}{DEG2} konkav.
 \end{itemize}
-\MInputHint{Offene Intervalle können in der Form $(a;b)$ eingetippt werden, geschlossene Intervalle als $[a;b]$, $a$ und $b$ dürfen
-beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notation $]a;b[$ für offene Intervalle. Schreiben Sie \texttt{infty} oder
-\texttt{unendlich} f"ur $\infty$ in Ihrer Antwort.}
+\MInputHint{Offene Intervalle kÃ¶nnen in der Form $(a;b)$ eingetippt werden, geschlossene Intervalle als $[a;b]$, $a$ und $b$ dÃ¼rfen
+beliebige AusdrÃ¼cke sein. Verwenden Sie bei der Intervalleingabe nicht die Notation $]a;b[$ fÃ¼r offene Intervalle. Schreiben Sie \texttt{infty} oder
+\texttt{unendlich} fÃ¼r $\infty$ in Ihrer Antwort.}
 
-\begin{MHint}{Lösung}
- Man berechnet für die erste und die zweite Ableitung von $f$ mit Hilfe der Quotientenregel
+\begin{MHint}{\iSolution}
+ Man berechnet fÃ¼r die erste und die zweite Ableitung von $f$ mit Hilfe der Quotientenregel
  \begin{eqnarray*}
   f'(x) & = & \frac{4x}{(x^2 + 1)^2} \MDFPSpace , \\
   {f'}'(x) & = & \frac{4 \cdot (x^2 + 1)^2 - 4x \cdot 2 (x^2 + 1) \cdot 2x}{(x^2 + 1)^4}
   = \frac{4x^2 + 4 - 16x^2}{(x^2 + 1)^3} = \frac{4 (1-3x^2)}{(x^2 + 1)^3} \MDFPeriod
  \end{eqnarray*}
  Da $4/(x^2 + 1)^3$ stets positiv ist, wird das Vorzeichen von ${f'}'(x)$ einzig durch den Faktor $(1 - 3x^2)$ bestimmt. Die einfachen
- Nullstellen von ${f'}'(x)$ liegen bei $x_0 = \pm \frac{1}{\sqrt{3}}$. Daher ist für $x>0$ die zweite Ableitung ${f'}'(x)$ auf dem %###
+ Nullstellen von ${f'}'(x)$ liegen bei $x_0 = \pm \frac{1}{\sqrt{3}}$. Daher ist fÃ¼r $x>0$ die zweite Ableitung ${f'}'(x)$ auf dem %###
  offenen Intervall $\MoIl[\left] 0 \MIntvlSep \frac{1}{\sqrt{3}} \MoIr[\right] $
- echt größer $0$ und $f$ in diesem Intervall linksgekrümmt (konvex). Auf $\MoIl[\left] \frac{1}{\sqrt{3}} \MIntvlSep \infty \MoIr[\right]$ gilt ${f'}'(x) < 0$; somit ist $f$ dort %###
- rechtsgekrümmt (konkav).
+ echt grÃ¶ÃŸer $0$ und $f$ in diesem Intervall linksgekrÃ¼mmt (konvex). Auf $\MoIl[\left] \frac{1}{\sqrt{3}} \MIntvlSep \infty \MoIr[\right]$ gilt ${f'}'(x) < 0$; somit ist $f$ dort %###
+ rechtsgekrÃ¼mmt (konkav).
  \end{MHint}
 \end{MExercise}
 
@@ -1403,12 +1403,12 @@ declare function={
 
 \begin{MExerciseItems}
 \item Wo ist $f$ monoton wachsend, wo monoton fallend? 
-Gesucht sind jeweils m"oglichst gro"se offene Intervalle $\MoIl c\MIntvlSep d\MoIr$, auf 
+Gesucht sind jeweils mÃ¶glichst groÃŸe offene Intervalle $\MoIl c\MIntvlSep d\MoIr$, auf 
 denen $f$ diese Eigenschaft hat.
 %
 \item Welche Aussagen erhalten 
-Sie "uber die Maximal- beziehungsweise Minimalstellen der Funktion $f$?
-% f"ur $f$ zu deren Maximal- beziehungsweise Minimalstellen?
+Sie Ã¼ber die Maximal- beziehungsweise Minimalstellen der Funktion $f$?
+% fÃ¼r $f$ zu deren Maximal- beziehungsweise Minimalstellen?
 \end{MExerciseItems}
 
 Antwort:
@@ -1426,16 +1426,16 @@ Antwort:
 Die Maximalstelle von $f$ ist bei \MLParsedQuestion{8}{-4}{4}{DEG7}.
 Die Minimalstelle von $f$ ist bei \MLParsedQuestion{8}{0}{4}{DEG8}.
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  Das Monotonieverhalten wird durch die Ableitung $f'$ der Funktion $f$ bestimmt. Da der Graph der Ableitung $f'$ in der Aufgabenstellung
- als Schaubild gegeben ist, muss man nur ablesen, in welchen Intervallen der Graph oberhalb (bzw. unterhalb) der $x$-Achse verläuft:
+ als Schaubild gegeben ist, muss man nur ablesen, in welchen Intervallen der Graph oberhalb (bzw. unterhalb) der $x$-Achse verlÃ¤uft:
  Auf den Intervallen $\MoIr -\MZahl{4}{5} \MIntvlSep -4\MoIr$, $\MoIl 0 \MIntvlSep 3\MoIr$ und $\MoIl 3 \MIntvlSep 4\MoIr$ ist $f'(x) > 0$ und $f$ daher dort monoton wachsend;
  auf dem Intervall $\MoIl -4 \MIntvlSep 0\MoIr$ dagegen ist $f'(x) < 0$ und $f$ daher dort monoton fallend.\newline
  An einer Extremstelle $x_e$ (Maximal- oder Minimalstelle) einer Funktion $f$ (die nicht auf dem Rand des Definitionsbereichs liegt)
  verschwindet die erste Ableitung: $f'(x_e) = 0$. Anschaulich bedeutet dies, dass an einer solchen Stelle die Tangente an den Graphen
- von $f$ waagrecht verläuft. Die Nullstellen von $f'(x)$ liegen laut Aufgabenstellung bei $x_ 1 = -4$, $x_2 = 0$ und $x_3 = 3$. Da $f$ auf
- $\MoIl -\MZahl{4}{5} \MIntvlSep -4\MoIr$ monoton wächst und auf $\MoIl -4 \MIntvlSep 0\MoIr$ monoton fällt, ist $x_1 = - 4$ eine Maximalstelle.
- Analog begründet man, dass bei $x_2 = 0$ eine Minimalstelle vorliegt. (Bei $x_3 = 3$ handelt es sich um eine Sattelstelle.)
+ von $f$ waagrecht verlÃ¤uft. Die Nullstellen von $f'(x)$ liegen laut Aufgabenstellung bei $x_ 1 = -4$, $x_2 = 0$ und $x_3 = 3$. Da $f$ auf
+ $\MoIl -\MZahl{4}{5} \MIntvlSep -4\MoIr$ monoton wÃ¤chst und auf $\MoIl -4 \MIntvlSep 0\MoIr$ monoton fÃ¤llt, ist $x_1 = - 4$ eine Maximalstelle.
+ Analog begrÃ¼ndet man, dass bei $x_2 = 0$ eine Minimalstelle vorliegt. (Bei $x_3 = 3$ handelt es sich um eine Sattelstelle.)
 \end{MHint}
 \end{MExercise}
 \end{MExercises}
@@ -1450,8 +1450,8 @@ Die Minimalstelle von $f$ ist bei \MLParsedQuestion{8}{0}{4}{DEG8}.
 
 
 Gegeben ist eine differenzierbare Funktion $f: \MoIl a\MIntvlSep b\MoIr \rightarrow \R$ 
-mit Abbildungsvorschrift $x \mapsto y = f(x)$ f"ur $x \in \MoIl a\MIntvlSep b\MoIr$.
-Eine vollständige Kurvendiskussion für $f$ besteht in diesem Kurs aus folgenden Angaben:
+mit Abbildungsvorschrift $x \mapsto y = f(x)$ fÃ¼r $x \in \MoIl a\MIntvlSep b\MoIr$.
+Eine vollstÃ¤ndige Kurvendiskussion fÃ¼r $f$ besteht in diesem Kurs aus folgenden Angaben:
 
 \begin{itemize}
 \item Maximaler Definitionsbereich
@@ -1462,7 +1462,7 @@ Eine vollständige Kurvendiskussion für $f$ besteht in diesem Kurs aus folgenden 
 \item Extremwerte
 \item Monotonieverhalten
 \item Wendestellen
-\item Krümmungsverhalten
+\item KrÃ¼mmungsverhalten
 \item Skizze des Graphen
 \end{itemize}
 
@@ -1475,7 +1475,7 @@ Der erste Teil der Kurvendiskussion besteht aus algebraischen und geometrischen 
 
 \begin{description}
 \item[Maximaler Definitionsbereich]
-Es werden alle reellen Zahlen $x$ bestimmt, f"ur die $f(x)$ existiert. Die 
+Es werden alle reellen Zahlen $x$ bestimmt, fÃ¼r die $f(x)$ existiert. Die 
 Menge $D$ all dieser Zahlen wird maximaler Definitionsbereich genannt.
 
 \item[Schnittpunkte mit den Achsen] ~\relax 
@@ -1485,18 +1485,18 @@ Menge $D$ all dieser Zahlen wird maximaler Definitionsbereich genannt.
 \end{itemize}
 
 \item[Symmetrie des Graphen]
-Der Graph der Funktion ist symmetrisch zur $y$-Achse, wenn $f(-x) = f(x)$ f"ur
-alle $x \in D$ ist. Dann heißt die Funktion $f$ auch \textbf{gerade}.\\%###
-Ist $f(-x) = -f(x)$ f"ur alle $x \in D$, so ist der Graph
+Der Graph der Funktion ist symmetrisch zur $y$-Achse, wenn $f(-x) = f(x)$ fÃ¼r
+alle $x \in D$ ist. Dann heiÃŸt die Funktion $f$ auch \textbf{gerade}.\\%###
+Ist $f(-x) = -f(x)$ fÃ¼r alle $x \in D$, so ist der Graph
 zum Ursprung $\MPointTwo{0}{0}$ des Koordinatensystems punktsymmetrisch.
 In diesem Falle nennt man die Funktion $f$ auch \textbf{ungerade}.
 
-\item[Asymptotisches Verhalten an den R"andern des Definitionsbereichs]
+\item[Asymptotisches Verhalten an den RÃ¤ndern des Definitionsbereichs]
 Die Grenzwerte der Funktion $f$ an den Grenzen ihres Definitionsbereichs werden untersucht.
 \end{description} 
 
 Im zweiten Teil wird die Funktion mittels Folgerungen aus der Ableitung 
-analytisch untersucht. Dazu müssen natürlich zunächst die erste und die zweite Ableitung 
+analytisch untersucht. Dazu mÃ¼ssen natÃ¼rlich zunÃ¤chst die erste und die zweite Ableitung 
 berechnet werden, sofern diese existieren.
 
 \begin{description}
@@ -1504,7 +1504,7 @@ berechnet werden, sofern diese existieren.
 Berechnung der ersten und zweiten Ableitung (soweit vorhanden).
 
 \item[Extremwerte und Monotonie]
-Notwendige Bedingung f"ur Extremstellen $x$ (sofern $x \in D$ kein Randpunkt von $D$ ist): $f'(x) = 0$\newline
+Notwendige Bedingung fÃ¼r Extremstellen $x$ (sofern $x \in D$ kein Randpunkt von $D$ ist): $f'(x) = 0$\newline
 Wir berechnen also diejenigen Stellen $x_0$, an denen die Ableitung $f'$ den Wert Null annimmt. Wenn an diesen Stellen auch die zweite
 Ableitung ${f'}'$ existiert, gilt:
 \begin{itemize}
@@ -1515,18 +1515,18 @@ Die Funktion $f$ ist auf denjenigen Intervallen des Definitionsbereichs monoton
 wachsend, auf denen $f'(x) \geq 0$ gilt. Sie ist dort monoton fallend, wo $f'(x) \leq 0$ 
 ist.
 
-\item[Wendestellen und Kr"ummungseigenschaften]
-Notwendige Bedingung f"ur Wendestellen (sofern die zweite Ableitung ${f'}'$ existiert): ${f'}'(x) = 0$\newline
-Wenn ${f'}'(w_0) = 0$ und $f^{(3)}(w_0) \neq 0$ ist, dann ist $w_0$ eine Wendestelle, d.h. $f$ ändert an dieser Stelle das Krümmungsverhalten.\newline
+\item[Wendestellen und KrÃ¼mmungseigenschaften]
+Notwendige Bedingung fÃ¼r Wendestellen (sofern die zweite Ableitung ${f'}'$ existiert): ${f'}'(x) = 0$\newline
+Wenn ${f'}'(w_0) = 0$ und $f^{(3)}(w_0) \neq 0$ ist, dann ist $w_0$ eine Wendestelle, d.h. $f$ Ã¤ndert an dieser Stelle das KrÃ¼mmungsverhalten.\newline
 Die Funktion $f$ ist auf denjenigen Intervallen des Definitionsbereichs konvex
-(linksgekr"ummt), auf denen $f^{(2)}(x) \geq 0$ gilt. Sie ist konkav (rechtsgekr"ummt) dort, 
+(linksgekrÃ¼mmt), auf denen $f^{(2)}(x) \geq 0$ gilt. Sie ist konkav (rechtsgekrÃ¼mmt) dort, 
 wo $f^{(2)}(x) \leq 0$ ist.
 
 \item[Skizze des Graphen] Eine Skizze des Graphen in einem geeigneten Koordinatensystem wird angefertigt, und zwar unter
-Berücksichtigung der während der Kurvendiskussion gewonnenen Daten.
+BerÃ¼cksichtigung der wÃ¤hrend der Kurvendiskussion gewonnenen Daten.
 \end{description}
 
-\MSubsubsection{Ausführliches Beispiel}
+\MSubsubsection{AusfÃ¼hrliches Beispiel}
 Es soll eine Funktion $f$ mit dem Funktionsterm
 $$
 f(x) \;=\; \frac{4x}{x^2+2}
@@ -1535,22 +1535,22 @@ untersucht werden.
 
 \textbf{Maximaler Definitionsbereich}\\
 Der maximale Definitionsbereich dieser Funktion ist $D_f=\R$, da der Nenner der Funktion $x^2+2\geq 2$ ist, also niemals Null wird,
-und daher keine Stellen ausgeschlossen werden müssen.
+und daher keine Stellen ausgeschlossen werden mÃ¼ssen.
 \ \\ \ \\
 \textbf{Achsenschnittpunkte}\\
-Die Nullstellen der Funktion entsprechen den Nullstellen des Zählers. Daher schneidet der Graph von $f$ die $x$-Achse nur
-im Nullpunkt $\MPointTwo{0}{0}$, denn der Zähler wird nur für $x=0$ zu Null. Dies ist auch der einzige Schnittpunkt mit der $y$-Achse, da $f(0)=0$ ist.
+Die Nullstellen der Funktion entsprechen den Nullstellen des ZÃ¤hlers. Daher schneidet der Graph von $f$ die $x$-Achse nur
+im Nullpunkt $\MPointTwo{0}{0}$, denn der ZÃ¤hler wird nur fÃ¼r $x=0$ zu Null. Dies ist auch der einzige Schnittpunkt mit der $y$-Achse, da $f(0)=0$ ist.
 \ \\ \ \\
 \textbf{Symmetrie}\\
 Um das Symmetrieverhalten zu untersuchen, wird das Argument $x$ durch $(-x)$ ersetzt. Es gilt
 $$
 f(-x) \;=\;\frac{4\cdot (-x)}{(-x)^2+2} \;=\; -\frac{4x}{x^2+2} \;=\; -f(x)
 $$
-für alle $x\in\R$. Der Graph von $f$ ist folglich punktsymmetrisch zum Ursprung.
+fÃ¼r alle $x\in\R$. Der Graph von $f$ ist folglich punktsymmetrisch zum Ursprung.
 \ \\ \ \\
 \textbf{Grenzverhalten}\\
-Die Funktion ist auf ganz $\R$ definiert, daher ist nur das Grenzverhalten für $x\rightarrow \infty$ und $x\rightarrow -\infty$ zu untersuchen.
-Da $f(x)$ ein Bruch aus zwei Polynomen ist und der Nenner die höhere Potenz besitzt, ist die $x$-Achse die waagerechte Asymptote in beide Richtungen:
+Die Funktion ist auf ganz $\R$ definiert, daher ist nur das Grenzverhalten fÃ¼r $x\rightarrow \infty$ und $x\rightarrow -\infty$ zu untersuchen.
+Da $f(x)$ ein Bruch aus zwei Polynomen ist und der Nenner die hÃ¶here Potenz besitzt, ist die $x$-Achse die waagerechte Asymptote in beide Richtungen:
 \[
 \lim_{x \rightarrow \pm \infty} f(x) = 0 \MDFPeriod
 \]
@@ -1571,8 +1571,8 @@ Erneutes Ableiten und Vereinfachen ergibt
 \end{eqnarray*}
 \ \\
 \textbf{Extremwerte}\\
-Die notwendige Bedingung für eine Extremstelle, $f'(x)=0$, ist hier gleichbedeutend mit $-x^2+2=0$.
-Man erhält also $x_1=\sqrt2$ und $x_2=-\sqrt2$. Es muss noch das Verhalten der zweiten Ableitung an diesen Stellen untersucht werden:
+Die notwendige Bedingung fÃ¼r eine Extremstelle, $f'(x)=0$, ist hier gleichbedeutend mit $-x^2+2=0$.
+Man erhÃ¤lt also $x_1=\sqrt2$ und $x_2=-\sqrt2$. Es muss noch das Verhalten der zweiten Ableitung an diesen Stellen untersucht werden:
 $$
 {f'}'(x_1) \;=\; 8\frac{\sqrt2\cdot(2-6)}{(2+2)^3}<0 \MDFPSpace , \MDFPaSpace
 {f'}'(x_2) \;=\; 8\frac{(-\sqrt2)\cdot(2-6)}{(2+2)^3}>0 \MDFPeriod
@@ -1587,18 +1587,18 @@ $\MoIl[\left]-\infty\MIntvlSep -\sqrt2\MoIr[\right]$, monoton wachsend auf $\MoI
 und monoton fallend auf $\MoIl[\left]\sqrt2\MIntvlSep \infty\MoIr[\right]$. Monotonieintervalle werden stets in offener Form angegeben.
 \ \\ \ \\
 \textbf{Wendestellen}\\
-Aus der notwendigen Bedingung für Wendestellen ${f'}'(x)=0$ erhält man die Gleichung $8x(x^2-6)=0$.
-Somit sind $w_0=0$, $w_1=\sqrt6$ und $w_2=-\sqrt6$ die einzigen Lösungen.
-Das Polynom im Nenner von ${f'}'$ ist stets größer als Null. Da das Zählerpolynom nur einfache Nullstellen besitzt, ändert ${f'}'(x)$
+Aus der notwendigen Bedingung fÃ¼r Wendestellen ${f'}'(x)=0$ erhÃ¤lt man die Gleichung $8x(x^2-6)=0$.
+Somit sind $w_0=0$, $w_1=\sqrt6$ und $w_2=-\sqrt6$ die einzigen LÃ¶sungen.
+Das Polynom im Nenner von ${f'}'$ ist stets grÃ¶ÃŸer als Null. Da das ZÃ¤hlerpolynom nur einfache Nullstellen besitzt, Ã¤ndert ${f'}'(x)$
 in allen diesen Stellen das Vorzeichen. Es handelt sich
 daher um Wendestellen von $f$. Die Wendepunkte $\MPointTwo{0}{0}$, $\MPointTwoAS{\sqrt6}{\frac12\sqrt6}$, $\MPointTwoAS{-\sqrt6}{-\frac12\sqrt6}$ ergeben sich durch
 Einsetzen der Wendestellen in $f$.
 \ \\ \ \\
-\textbf{Kr\"ummungsverhalten}\\
-Die zweimal differenzierbare Funktion $f$ ist konvex, wenn die zweite Ableitung größer oder gleich Null ist. Sie ist konkav,
+\textbf{KrÃ¼mmungsverhalten}\\
+Die zweimal differenzierbare Funktion $f$ ist konvex, wenn die zweite Ableitung grÃ¶ÃŸer oder gleich Null ist. Sie ist konkav,
 wenn die zweite Ableitung kleiner oder gleich Null ist.
-Da das Polynom im Nenner von ${f'}'(x)$ stets positiv ist, genügt es, das Vorzeichen des Polynoms $p(x)=8x(x-\sqrt6)(x+\sqrt6)$ im Zähler
-zu untersuchen. Für $0<x<\sqrt6$ ist es negativ (dort ist $f$ konkav). Für $x>\sqrt6$ ist es positiv (dort ist $f$ konvex).
+Da das Polynom im Nenner von ${f'}'(x)$ stets positiv ist, genÃ¼gt es, das Vorzeichen des Polynoms $p(x)=8x(x-\sqrt6)(x+\sqrt6)$ im ZÃ¤hler
+zu untersuchen. FÃ¼r $0<x<\sqrt6$ ist es negativ (dort ist $f$ konkav). FÃ¼r $x>\sqrt6$ ist es positiv (dort ist $f$ konvex).
 Da $f$ punktsymmetrisch ist, folgt, dass $f$ auf den Intervallen $\MoIl[\left]-\sqrt 6\MIntvlSep 0\MoIr[\right]$ und $\MoIl[\left]\sqrt6\MIntvlSep \infty\MoIr[\right]$ konvex
 sowie auf $\MoIl[\left]-\infty\MIntvlSep -\sqrt6\MoIr[\right]$ und $\MoIl[\left]0\MIntvlSep \sqrt6\MoIr[\right]$ konkav ist.
 \ \\ \ \\
@@ -1612,14 +1612,14 @@ sowie auf $\MoIl[\left]-\infty\MIntvlSep -\sqrt6\MoIr[\right]$ und $\MoIl[\left]
 \begin{MExercises}
 \MDeclareSiteUXID{VBKM07_Kurvendiskussion_Exercises}
 
-Mit dieser Trainingsaufgabe können die Bestandteile der Kurvendiskussion geübt werden:
+Mit dieser Trainingsaufgabe kÃ¶nnen die Bestandteile der Kurvendiskussion geÃ¼bt werden:
 
 \MDirectRouletteExercises{curves_polynomials.rtex}{VBKM07_CURVES_POLYNOMIALS}
 
 
 \begin{MExercise}
-Führen Sie eine vollständige Kurvendiskussion für eine Funktion $f$ mit $f(x) = (2 x - x^2) \MEU^x$ durch und
-füllen Sie die Eingabefelder mit Ihren Ergebnissen aus:
+FÃ¼hren Sie eine vollstÃ¤ndige Kurvendiskussion fÃ¼r eine Funktion $f$ mit $f(x) = (2 x - x^2) \MEU^x$ durch und
+fÃ¼llen Sie die Eingabefelder mit Ihren Ergebnissen aus:
 \ \\ \ \\
 Maximaler Definitionsbereich: \MLIntervalQuestion{25}{(-infty,infty)}{5}{DXG18} \MInputHint{(in Intervallschreibweise \texttt{(a;b)})}.\\
 \ \\
@@ -1634,10 +1634,10 @@ Symmetrie: Die Funktion ist\\
 \MLCheckbox{0}{JCA2} & \ \ & punktsymmetrisch zum Ursprung.
 \end{tabular}
 \end{MQuestionGroup}
-\MGroupButton{Auswahl überprüfen}
+\MGroupButton{Auswahl Ã¼berprÃ¼fen}
 \ \\ \ \\
-Grenzverhalten: Für $x\rightarrow \infty$ streben die Funktionswerte $f(x)$ gegen \MLFunctionQuestion{20}{-infty}{4}{infty}{4}{DXG3}
-und für $x\rightarrow-\infty$ gegen \MLParsedQuestion{15}{0}{3}{DXG5}.\\
+Grenzverhalten: FÃ¼r $x\rightarrow \infty$ streben die Funktionswerte $f(x)$ gegen \MLFunctionQuestion{20}{-infty}{4}{infty}{4}{DXG3}
+und fÃ¼r $x\rightarrow-\infty$ gegen \MLParsedQuestion{15}{0}{3}{DXG5}.\\
 \ \\
 Ableitungen: Es ist $f'(x)$ = \MLFunctionQuestion{20}{-(x^2-2)*exp(x)}{4}{x}{4}{DXG6} sowie
 ${f'}'(x)$ = \MLFunctionQuestion{30}{-(x^2+2*x-2)*exp(x)}{5}{x}{5}{DXG7} .\\
@@ -1648,19 +1648,19 @@ Extremwerte: Die Stelle $x_1$ = \MLParsedQuestion{13}{-sqrt(2)}{3}{DXG9} ist ein
 $x_2$ = \MLParsedQuestion{13}{sqrt(2)}{3}{DXG10} ist eine Maximalstelle.\\
 \ \\
 Wendepunkte: Die Menge der Wendestellen ist
-\MLParsedQuestion{30}{-1-sqrt(3),-1+sqrt(3)}{3}{DXG11}\\\MInputHint{(in Mengenschreibweise, Wurzeln dürfen stehenbleiben)}.\\
+\MLParsedQuestion{30}{-1-sqrt(3),-1+sqrt(3)}{3}{DXG11}\\\MInputHint{(in Mengenschreibweise, Wurzeln dÃ¼rfen stehenbleiben)}.\\
 \ \\
 Kr\"mmungsverhalten: Die Funktion ist auf dem Intervall \MLIntervalQuestion{26}{(-1-sqrt(3),-1+sqrt(3))}{4}{DXG8} konvex und ansonsten konkav.\\%###
 \ \\%###
-Skizzieren Sie den Graphen und vergleichen Sie ihn anschließend mit der Musterlösung.
+Skizzieren Sie den Graphen und vergleichen Sie ihn anschlieÃŸend mit der MusterlÃ¶sung.
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \textbf{Maximaler Definitionsbereich}\\
-Es gilt $f(x) = - x (x - 2) \MEU^x$ und $\MEU^x > 0$ f"ur alle  $x \in \R$; damit ist $D_f = \R = \MoIl -\infty \MIntvlSep \infty\MoIr$
+Es gilt $f(x) = - x (x - 2) \MEU^x$ und $\MEU^x > 0$ fÃ¼r alle  $x \in \R$; damit ist $D_f = \R = \MoIl -\infty \MIntvlSep \infty\MoIr$
 der maximale Definitionsbereich.
 \ \\ \ \\
 \textbf{Achsenschnittpunkte}\\
-Schnittpunkte mit der $x$-Achse (Nullstellen der Funktion) liegen bei $x_1=0$ und $x_2=2$, was auf die Punkte $\MPointTwo{0}{0}$ und $\MPointTwo{2}{0}$ führt.
+Schnittpunkte mit der $x$-Achse (Nullstellen der Funktion) liegen bei $x_1=0$ und $x_2=2$, was auf die Punkte $\MPointTwo{0}{0}$ und $\MPointTwo{2}{0}$ fÃ¼hrt.
 Der Schnittpunkt mit der $y$-Achse ist $\MPointTwo{0}{0}$.
 \ \\ \ \\
 \textbf{Symmetrie}\\
@@ -1668,15 +1668,15 @@ Die Funktion $f$ ist weder gerade noch ungerade, und damit ist der Graph von $f$
 punktsymmetrisch bzgl. des Ursprungs.
 \ \\ \ \\
 \textbf{Grenzverhalten}\\
-Da die Funktion für alle reellen Zahlen definiert ist, müssen nur die Asymptoten bei $\pm \infty$ untersucht werden:
+Da die Funktion fÃ¼r alle reellen Zahlen definiert ist, mÃ¼ssen nur die Asymptoten bei $\pm \infty$ untersucht werden:
 $$
 \lim_{x \rightarrow \infty} - x (x - 2) \MEU^x \; =\; - \infty \;\text{und}\;
 \lim_{x \rightarrow -\infty} - x (x - 2) \MEU^x \;=\;  0 \MDFPeriod
 $$
-Somit ist $y = 0$ f"ur $x \rightarrow -\infty$ eine Asymptote.
+Somit ist $y = 0$ fÃ¼r $x \rightarrow -\infty$ eine Asymptote.
 \ \\ \ \\
 \textbf{Ableitungen}\\
-Die ersten beiden Ableitungen von $f$ führen auf
+Die ersten beiden Ableitungen von $f$ fÃ¼hren auf
 \begin{eqnarray*}
 f'(x) & = & (2 - 2 x) \MEU^x + (2 x - x^2) \MEU^x %
  = (2 - x^2) \MEU^x = - (x^2 - 2) \MEU^x \MDFPSpace ,\\
@@ -1685,7 +1685,7 @@ f'(x) & = & (2 - 2 x) \MEU^x + (2 x - x^2) \MEU^x %
 \end{eqnarray*}
 \ \\
 \textbf{Monotonieverhalten und Extremwerte}\\
-L"osungen von $f'(x) = 0$ sind $x_1 = -\sqrt{2}$ und $x_2 = \sqrt{2}$. 
+LÃ¶sungen von $f'(x) = 0$ sind $x_1 = -\sqrt{2}$ und $x_2 = \sqrt{2}$. 
 Weiter ist $x_1 < x_2$ und 
 $$
 f'(x)\; =\; - (x + \sqrt{2}) (x - \sqrt{2}) \MEU^x \MDFPeriod
@@ -1696,12 +1696,12 @@ Auf $\MoIl[\left]\sqrt{2}\MIntvlSep  \infty\MoIr[\right]$ ist $f'$ negativ und d
 Somit ist $x_1 = -\sqrt{2}$ Minimalstelle und $x_2 = \sqrt{2}$ Maximalstelle.
 \ \\ \ \\
 \textbf{Wendepunkte}\\
-Die notwendige Bedingung f"ur Wendestellen ${f'}'(x) = 0$ f"uhrt auf die quadratische Gleichung
-$x^2 + 2 x - 2 = 0$. Die L"osungen sind $w_1 = \frac{-2 - \sqrt{4 + 8}}{2} = -1 - \sqrt{3}$
+Die notwendige Bedingung fÃ¼r Wendestellen ${f'}'(x) = 0$ fÃ¼hrt auf die quadratische Gleichung
+$x^2 + 2 x - 2 = 0$. Die LÃ¶sungen sind $w_1 = \frac{-2 - \sqrt{4 + 8}}{2} = -1 - \sqrt{3}$
 und $w_2 = \frac{-2 + \sqrt{4 + 8}}{2} = -1 + \sqrt{3}$.
 \ \\ \ \\
 \textbf{Kr\"mmungsverhalten}\\%###
-Da die Wendepunkte bekannt sind, muss nur noch bestimmt werden, wann ${f'}'(x)$ gr\"o\ss er oder kleiner Null ist. Die Ableitungen der Exponentialfunktion sind immer gr\"o\ss er Null, von daher bestimmt der quadratische Term das Vorzeichen.\\%###
+Da die Wendepunkte bekannt sind, muss nur noch bestimmt werden, wann ${f'}'(x)$ grÃ¶\ss er oder kleiner Null ist. Die Ableitungen der Exponentialfunktion sind immer grÃ¶\ss er Null, von daher bestimmt der quadratische Term das Vorzeichen.\\%###
 Auf $\MoIl[\left]-\infty\MIntvlSep  -1 - \sqrt{3}\MoIr[\right]$ ist ${f'}'(x)$ negativ und damit $f$ konkav.\\%###
 Auf $\MoIl[\left]-1 - \sqrt{3}\MIntvlSep  -1 + \sqrt{3}\MoIr[\right]$ ist ${f'}'(x)$ positiv und damit $f$ konvex.\\%###
 Auf $\MoIl[\left]-1 + \sqrt{3}\MIntvlSep  \infty\MoIr[\right]$ ist ${f'}'(x)$ negativ und damit $f$ konkav.%###
@@ -1721,33 +1721,33 @@ skizziert auf dem Intervall $\MoIl -\MZahl{6}{2}\MIntvlSep 3\MoIr$.}{width:400px
 \begin{MXContent}{Optimierungsaufgaben}{Optimierungsaufgaben}{STD}
 \MDeclareSiteUXID{VBKM07_Optimierungsaufgaben}
 
-In vielen Anwendungen der Technik oder Wirtschaft findet man Problemlösungen, die nicht eindeutig sind. Häufig hängen sie von variablen Bedingungen ab. Um eine ideale Lösung zu finden, werden zusätzliche Eigenschaften (Nebenbedingungen) definiert, die von der Lösung erfüllt werden müssen. Dies führt sehr oft zu sogenannten \textbf{Optimierungsaufgaben}, bei denen aus einer Schar von Lösungen diejenige gesucht werden muss, die eine vorab festgelegte Eigenschaft am besten erf"ullt.
+In vielen Anwendungen der Technik oder Wirtschaft findet man ProblemlÃ¶sungen, die nicht eindeutig sind. HÃ¤ufig hÃ¤ngen sie von variablen Bedingungen ab. Um eine ideale LÃ¶sung zu finden, werden zusÃ¤tzliche Eigenschaften (Nebenbedingungen) definiert, die von der LÃ¶sung erfÃ¼llt werden mÃ¼ssen. Dies fÃ¼hrt sehr oft zu sogenannten \textbf{Optimierungsaufgaben}, bei denen aus einer Schar von LÃ¶sungen diejenige gesucht werden muss, die eine vorab festgelegte Eigenschaft am besten erfÃ¼llt.
 
-Als Beispiel werde die Aufgabe betrachtet, eine zylinderf"ormige Dose zu konstruieren. Die Dose soll zus"atzlich die Bedingung erf"ullen, ein 
-Fassungsverm"ogen (Volumen) $V$ von einem Liter, also einem Kubikdezimeter ($1 \MEinheit{dm}^3$), zu haben. Wählt man für $V$ die
+Als Beispiel werde die Aufgabe betrachtet, eine zylinderfÃ¶rmige Dose zu konstruieren. Die Dose soll zusÃ¤tzlich die Bedingung erfÃ¼llen, ein 
+FassungsvermÃ¶gen (Volumen) $V$ von einem Liter, also einem Kubikdezimeter ($1 \MEinheit{dm}^3$), zu haben. WÃ¤hlt man fÃ¼r $V$ die
 Einheit $\MEinheit[]{dm}^3$ und
-sind $r$ der Radius und $h$ die H"ohe der Dose, jeweils gemessen in Dezimetern ($\MEinheit[]{dm}$), so soll also $V = \pi r^2 \cdot h = 1$ sein.
-%(Auf die physikalischen Einheiten wurde der mathematischen Einfachheit halber verzichtet -- in der Praxis ist es allerdings unumgänglich, mit
+sind $r$ der Radius und $h$ die HÃ¶he der Dose, jeweils gemessen in Dezimetern ($\MEinheit[]{dm}$), so soll also $V = \pi r^2 \cdot h = 1$ sein.
+%(Auf die physikalischen Einheiten wurde der mathematischen Einfachheit halber verzichtet -- in der Praxis ist es allerdings unumgÃ¤nglich, mit
 %Einheiten zu rechnen.)
-Um Arbeitsmaterial zu sparen, wird nach derjenigen Dose gesucht, die eine m"oglichst kleine Oberfl"ache
-$O = 2 \cdot \pi r^2 + 2 \pi r h$ hat. Hier ist die Oberfläche $O$ in Quadratdezimetern ($\MEinheit[]{dm}^2$)
-eine Funktion in Abhängigkeit vom Radius $r$ und von der Höhe $h$ der Dose.
+Um Arbeitsmaterial zu sparen, wird nach derjenigen Dose gesucht, die eine mÃ¶glichst kleine OberflÃ¤che
+$O = 2 \cdot \pi r^2 + 2 \pi r h$ hat. Hier ist die OberflÃ¤che $O$ in Quadratdezimetern ($\MEinheit[]{dm}^2$)
+eine Funktion in AbhÃ¤ngigkeit vom Radius $r$ und von der HÃ¶he $h$ der Dose.
 
-Mathematisch formuliert, f"uhrt die Aufgabe auf die Suche nach einem Minimum f"ur die Funktion $O$ der Oberfl"ache, wobei für die Berechnung des Minimums nur 
-Werte f"ur $r$ und $h$ zugelassen werden, f"ur die auch die Bedingung "uber das Volumen $V = \pi r^2 \cdot h = 1$ erf"ullt ist. Eine solche zus"atzliche
+Mathematisch formuliert, fÃ¼hrt die Aufgabe auf die Suche nach einem Minimum fÃ¼r die Funktion $O$ der OberflÃ¤che, wobei fÃ¼r die Berechnung des Minimums nur 
+Werte fÃ¼r $r$ und $h$ zugelassen werden, fÃ¼r die auch die Bedingung Ã¼ber das Volumen $V = \pi r^2 \cdot h = 1$ erfÃ¼llt ist. Eine solche zusÃ¤tzliche
 Bedingung bei der Suche nach Extremstellen wird auch \textbf{Nebenbedingung} genannt.
 
 \begin{MXInfo}{Optimierungsaufgabe}
 In einer \MEntry{Optimierungsaufgabe}{Optimierungsaufgabe} wird eine
 Extremstelle $x_{\text{ext}}$ einer Funktion $f$ gesucht, die eine 
-gegebene Gleichung $g(x_{\text{ext}}) = b$ erf"ullt.
+gegebene Gleichung $g(x_{\text{ext}}) = b$ erfÃ¼llt.
 
 Wird ein Minimum gesucht, spricht man auch von einer 
 \MEntry{Minimierungsaufgabe}{Minimierungsaufgabe}. Wenn ein Maximum gesucht
-wird, hei"st die Optimierungsaufgabe eine 
+wird, heiÃŸt die Optimierungsaufgabe eine 
 \MEntry{Maximierungsaufgabe}{Maximierungsaufgabe}.
 
-Die Funktion $f$ hei"st \MEntry{Zielfunktion}{Zielfunktion}, und die 
+Die Funktion $f$ heiÃŸt \MEntry{Zielfunktion}{Zielfunktion}, und die 
 Gleichung $g(x) = b$ wird \MEntry{Nebenbedingung}{Nebenbedingung} der 
 Optimierungsaufgabe genannt.
 \end{MXInfo}
@@ -1758,38 +1758,38 @@ Optimierungsaufgabe genannt.
 \begin{MXContent}{Beispiel}{Beispiel}{STD}
 \MDeclareSiteUXID{VBKM07_WeitereBeispiele}
 
-Dazu soll ein Beispiel etwas genauer betrachtet werden: Es geht also um die Minimierung der Oberfläche einer zylinderförmigen Dose bei einem vorgegebenen Volumen %###
-(Grundfläche mal Höhe)
+Dazu soll ein Beispiel etwas genauer betrachtet werden: Es geht also um die Minimierung der OberflÃ¤che einer zylinderfÃ¶rmigen Dose bei einem vorgegebenen Volumen %###
+(GrundflÃ¤che mal HÃ¶he)
 %
 \begin{eqnarray*}
 V = \pi r^2 h = 1 \MDFPSpace,
 \end{eqnarray*}
 %
-wobei $r$ der Radius der Grundfläche und $h$ die Höhe der Dose sind. Die Oberfläche setzt sich aus dem Deckel und dem Boden
-(jeweils mit einer Fläche der Größe $\pi r^2$) und der Mantelfläche (der Größe $2 \pi r h$) zusammen,
-und man erhält $O = 2 \pi r^2 + 2 \pi r h$. Die Oberfläche der Dose ist eine Funktion vom Radius $r$ und von der Höhe $h$.
+wobei $r$ der Radius der GrundflÃ¤che und $h$ die HÃ¶he der Dose sind. Die OberflÃ¤che setzt sich aus dem Deckel und dem Boden
+(jeweils mit einer FlÃ¤che der GrÃ¶ÃŸe $\pi r^2$) und der MantelflÃ¤che (der GrÃ¶ÃŸe $2 \pi r h$) zusammen,
+und man erhÃ¤lt $O = 2 \pi r^2 + 2 \pi r h$. Die OberflÃ¤che der Dose ist eine Funktion vom Radius $r$ und von der HÃ¶he $h$.
 Im Gegensatz dazu wird dem Volumen ein fester Wert zugeordnet (Nebenbedingung). Es kann also geschrieben werden:
 %
 \begin{eqnarray*}
 O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h \MDFPeriod
 \end{eqnarray*}
 %
-Wegen der Nebenbedingung, dass $V = \pi r^2 h = 1$ sein soll, kann man dieses Problem in ursprünglich zwei Variablen ($r$ und $h$)
-auf ein Problem mit nur noch einer Variablen reduzieren. Umformen des Volumens nach der Höhe der Dose führt auf:
+Wegen der Nebenbedingung, dass $V = \pi r^2 h = 1$ sein soll, kann man dieses Problem in ursprÃ¼nglich zwei Variablen ($r$ und $h$)
+auf ein Problem mit nur noch einer Variablen reduzieren. Umformen des Volumens nach der HÃ¶he der Dose fÃ¼hrt auf:
 %
 \begin{eqnarray*}
 \pi r^2 h &=& 1\\
 \Leftrightarrow\quad h &=& \frac{1}{\pi r^2} \MDFPeriod
 \end{eqnarray*}
 %
-Nach dem Einsetzen dieser Formel in die Funktion $O(r,h)$ resultiert eine Funktion, die nur noch von einer Variablen abhängt und die \textbf{der
+Nach dem Einsetzen dieser Formel in die Funktion $O(r,h)$ resultiert eine Funktion, die nur noch von einer Variablen abhÃ¤ngt und die \textbf{der
  Einfachheit halber} ebenfalls $O$ genannt werde:
 %
 \begin{eqnarray*}
 O\left(r, h\right) = 2 \pi r^2 + 2 \pi r h = 2 \pi r^2 + 2 \pi r \frac{1}{\pi r^2} = 2 \left(\pi r^2 + \frac{1}{r}\right) = O\left(r\right) \MDFPeriod
 \end{eqnarray*}
 %
-Nach dieser Manipulation kann die Frage nach der minimalen Oberfläche der Dose ganz analog zu den Extremwertaufgaben von Funktionen bearbeitet werden.
+Nach dieser Manipulation kann die Frage nach der minimalen OberflÃ¤che der Dose ganz analog zu den Extremwertaufgaben von Funktionen bearbeitet werden.
 Es wird also die erste Ableitung der Funktion $O$ nach der Variablen $r$ gebildet und diese gleich Null gesetzt:
 %
 \begin{eqnarray*}
@@ -1800,16 +1800,16 @@ O'\left(r\right) = 2 \left(2\pi r - \frac{1}{r^2}\right) &=& 0\\
 \Leftrightarrow\quad r &=& \sqrt[3]{\frac{1}{2\pi}} \MDFPeriod
 \end{eqnarray*}
 %
-Für die letzte Äquivalenzumformung wurde verwendet, dass der Radius $r$ keine negativen Werte annehmen kann.
-Einsetzen dieses Ergebnisses in die zweite Ableitung von $O$  dient der Überprüfung, ob wirklich ein Minimum gefunden wurde
+FÃ¼r die letzte Ã„quivalenzumformung wurde verwendet, dass der Radius $r$ keine negativen Werte annehmen kann.
+Einsetzen dieses Ergebnisses in die zweite Ableitung von $O$  dient der ÃœberprÃ¼fung, ob wirklich ein Minimum gefunden wurde
 (${O'}'(r) = 4\pi + 4/r^3$):
 \begin{eqnarray*}
 {O'}'\left(\sqrt[3]{\frac{1}{2\pi}}\right) = 4\pi + \frac{4}{\left(\sqrt[3]{\frac{1}{2\pi}}\right)^3} = 12\pi > 0 \MDFPeriod
 \end{eqnarray*}
 %
-Für den Radius $r = \sqrt[3]{\frac{1}{2\pi}}$ wird die Oberfläche der zylindrischen Dose mit dem gegebenen Volumen $V = 1$ minimal.
-Die Höhe erhält man in diesem Fall zu $h = \frac{1}{\pi \left(\sqrt[3]{\frac{1}{2\pi}}\right)^2} = \sqrt[3]{\frac{4}{\pi}}$.
-Wird eine Dose mit diesen Maßen hergestellt, wird für das im Beispiel vorgegebene Volumen der Materialverbrauch minimiert.
+FÃ¼r den Radius $r = \sqrt[3]{\frac{1}{2\pi}}$ wird die OberflÃ¤che der zylindrischen Dose mit dem gegebenen Volumen $V = 1$ minimal.
+Die HÃ¶he erhÃ¤lt man in diesem Fall zu $h = \frac{1}{\pi \left(\sqrt[3]{\frac{1}{2\pi}}\right)^2} = \sqrt[3]{\frac{4}{\pi}}$.
+Wird eine Dose mit diesen MaÃŸen hergestellt, wird fÃ¼r das im Beispiel vorgegebene Volumen der Materialverbrauch minimiert.
 
 \end{MXContent}
 
@@ -1819,28 +1819,28 @@ Wird eine Dose mit diesen Maßen hergestellt, wird für das im Beispiel vorgegeben
 \begin{MTest}{Abschlusstest Kapitel \arabic{section}}
 \MDeclareSiteUXID{VBKM07_Abschlusstest}
 \begin{MExercise}
-In einem Beh"alter wird um $9$ Uhr eine Temperatur von $-10^{\circ}{\MEinheit[]{C}}$ 
-gemessen. Um $15$ Uhr betr"agt die Temperatur $-58^{\circ}{\MEinheit[]{C}}$.
+In einem BehÃ¤lter wird um $9$ Uhr eine Temperatur von $-10^{\circ}{\MEinheit[]{C}}$ 
+gemessen. Um $15$ Uhr betrÃ¤gt die Temperatur $-58^{\circ}{\MEinheit[]{C}}$.
 Nach weiteren vierzehn Stunden ist die Temperatur auf 
 $-140^{\circ}{\MEinheit[]{C}}$ gefallen. 
 \begin{MExerciseItems}
-\item Wie gro"s ist die mittlere "Anderungsrate pro Stunde der Temperatur aufgrund der %###
+\item Wie groÃŸ ist die mittlere Ã„nderungsrate pro Stunde der Temperatur aufgrund der %###
 ersten und zweiten Messung?
 
 Antwort: \MLParsedQuestion{5}{-8}{3}{DYG12}
 %Ergebnis: $(-58 - (-10)) / (15 - 9) = -48 / 6 = -8$.
 %
-%\item Wodurch dr"uckt sich in der (mittleren) "Anderungsrate aus, dass die 
-%Temperatur f"allt?
+%\item Wodurch drÃ¼ckt sich in der (mittleren) Ã„nderungsrate aus, dass die 
+%Temperatur fÃ¤llt?
 %
-\item In der (mittleren) "Anderungsrate dr"uckt sich die Eigenschaft der fallenden Temperatur dadurch aus, dass die "Anderungsrate
+\item In der (mittleren) Ã„nderungsrate drÃ¼ckt sich die Eigenschaft der fallenden Temperatur dadurch aus, dass die Ã„nderungsrate
 {\MLQuestion{20}{negativ}{DFA10}} ist.
 \begin{MHint}{Hinweis}
 Geben Sie ein Adjektiv an.
 \end{MHint}
 %{\MQuestion{20}{kleiner null bzw. negativ}} ist.
 %
-\item Berechnen Sie die mittlere "Anderungsrate der Temperatur über die gesamte
+\item Berechnen Sie die mittlere Ã„nderungsrate der Temperatur Ã¼ber die gesamte
 Messdauer.
 
 Antwort: \MLParsedQuestion{5}{-6.5}{3}{DXG12}
@@ -1849,7 +1849,7 @@ Antwort: \MLParsedQuestion{5}{-6.5}{3}{DXG12}
 \end{MExercise}
 
 \begin{MExercise}
-Zu einer Funktion $f: [-3\MIntvlSep 2] \rightarrow \R$, $x \mapsto f(x)$ geh"ort die Ableitung $f'$, deren 
+Zu einer Funktion $f: [-3\MIntvlSep 2] \rightarrow \R$, $x \mapsto f(x)$ gehÃ¶rt die Ableitung $f'$, deren 
 Graph hier gezeichnet ist:
 
 \begin{center}
@@ -1894,34 +1894,34 @@ Die Funktion $f$ besitzt an der Stelle $0$\\
 \end{MExercise}
 
 \begin{MExercise} %Rechenregeln
-Berechnen Sie f"ur
+Berechnen Sie fÃ¼r
 \begin{MExerciseItems}
  \item $f: \{ x \in \R \MCondSetSep x > 0 \} \rightarrow \R$ mit $f(x) := \ln\left(x^3 + x^2\right)$ den Wert der Ableitung $f'$ an der Stelle $x$:\newline
 $f'(x) = $\MLSimplifyQuestion{30}{(3 x + 2)/(x^2 + x)}{1}{x}{20}{0}{SIMPLE13} \MDFPeriod
 \item $g: \R \rightarrow \R$ mit $g(x) := x \cdot \MEU^{-x}$ den Wert der zweiten Ableitung ${g'}'$ an der Stelle $x$:\newline
 ${g'}'(x) = $\MLSimplifyQuestion{30}{(x - 2) * exp(-x)}{10}{x}{4}{0}{SIMPLE14} \MDFPeriod
 \end{MExerciseItems}
-\MInputHint{Klammern Sie die Terme, um Missverständnisse zu vermeiden, z.B. schreiben Sie $\frac{x+1}{(x+2)^2}$ als \texttt{(x+1)/((x+2)^2)}. Geben Sie $\MEU^{-x}$ als \texttt{exp(-x)} ein.} %###
+\MInputHint{Klammern Sie die Terme, um MissverstÃ¤ndnisse zu vermeiden, z.B. schreiben Sie $\frac{x+1}{(x+2)^2}$ als \texttt{(x+1)/((x+2)^2)}. Geben Sie $\MEU^{-x}$ als \texttt{exp(-x)} ein.} %###
 \end{MExercise}
 
 \begin{MExercise} %Eigenschaften
 Betrachten Sie die Funktion $f: \MoIl 0\MIntvlSep  \infty\MoIr \rightarrow \R$, $x \mapsto f(x)$ mit $f'(x) = x \cdot \ln x$.
 In welchen Bereichen ist $f$ monoton fallend, in welchen Bereichen ist $f$ konkav?
 %
-Geben Sie als Bereiche m"oglichst gro"se offene Intervalle $\MoIl c\MIntvlSep  d\MoIr$ an:
+Geben Sie als Bereiche mÃ¶glichst groÃŸe offene Intervalle $\MoIl c\MIntvlSep  d\MoIr$ an:
 \begin{MExerciseItems}
 \item $f$ ist auf \MLIntervalQuestion{12}{(0, 1)}{4}{INT2} monoton fallend.
 \item $f$ ist auf \MLIntervalQuestion{12}{(0, 1/e)}{4}{INT3} konkav.
 \end{MExerciseItems}
-\MInputHint{Offene Intervalle können in der Form $(a;b)$ eingetippt werden, geschlossene Intervalle als $[a;b]$, $a$ und $b$ dürfen
-beliebige Ausdrücke sein. Verwenden Sie bei der Intervalleingabe nicht die Notation $]a;b[$ für offene Intervalle. Schreiben Sie \texttt{infty} oder
-\texttt{unendlich} f"ur $\infty$ in Ihrer Antwort.}
+\MInputHint{Offene Intervalle kÃ¶nnen in der Form $(a;b)$ eingetippt werden, geschlossene Intervalle als $[a;b]$, $a$ und $b$ dÃ¼rfen
+beliebige AusdrÃ¼cke sein. Verwenden Sie bei der Intervalleingabe nicht die Notation $]a;b[$ fÃ¼r offene Intervalle. Schreiben Sie \texttt{infty} oder
+\texttt{unendlich} fÃ¼r $\infty$ in Ihrer Antwort.}
 \end{MExercise}
 
 %TODO Eingabe und Loesung fehlt
 %\begin{MExercise} %Anwendungen
 %Berechnen Sie alle lokalen und globalen Extremstellen und Wendestellen der 
-%Funktion $f: \R \rightarrow \R$ mit $f(x) := (x^2 - 3 x) \cdot \MEU^{2 x}$ f"ur 
+%Funktion $f: \R \rightarrow \R$ mit $f(x) := (x^2 - 3 x) \cdot \MEU^{2 x}$ fÃ¼r 
 %$x \in \R$.
 %\end{MExercise}
 

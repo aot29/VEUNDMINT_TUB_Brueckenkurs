@@ -33,6 +33,9 @@ import platform
 
 class System(object):
 
+    #TODO check if these are still needed, we are now using a frontend log library https://github.com/pimterry/loglevel
+    #log levels can now be set in the browsers js console via log.setLevel(<1-5>)
+
     # message type constants (strings!) which should be consistent with constants in the JS framework in dlog.js
     CLIENTINFO = "1"    # JS-Client: Sent as feedback to the server as an information, Converter: Displayed both on console and in logfile
     CLIENTERROR = "2"   # JS-Client: Sent as feedback tot the server as an error message, will be sent also if user has disabled USAGE, Converter: Colored error message on the console and in logfile

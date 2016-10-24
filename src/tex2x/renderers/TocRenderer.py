@@ -20,10 +20,8 @@
 
 
 from lxml import etree
-import os
 import re
 import html
-from tidylib import tidy_document
 from tex2x.renderers.AbstractRenderer import *
 
 class TocRenderer( AbstractXmlRenderer ):

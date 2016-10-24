@@ -69,7 +69,7 @@ This $n$-tuple is often called a ``sample of size $n$''.}
 \end{itemize}
 
 \begin{MExample}
->From a daily production of components in a factory, $n=20$~samples of $15$~parts each are taken and the number of defective parts in each sample 
+From a daily production of components in a factory, $n=20$~samples of $15$~parts each are taken and the number of defective parts in each sample 
 is determined. Here, $x_i$ is the number of defective parts in the $i$th sample, $i=1,\ldots,20$. The original list (sample of 
 size $n=20$) contains the following data:
 $$
@@ -78,7 +78,7 @@ $$
 In the second sample, $x_2=4$ defective parts were found. The population in this example is the set of all 
 $15$-element subsets of the daily production. The property of interest is in this case
 $$
-X\;=\; \text{Number of defective workpieces in a sample of $15$~elements}\: .
+X\;=\; \text{Number of defective workpieces in a sample of 15~elements}\: .
 $$
 \end{MExample}
 
@@ -121,44 +121,44 @@ The \MEntry{rounding}{rounding} of measurement values is an everyday process.
 In principle, there are three ways of rounding:
 
 \begin{itemize}
-\item{Rounding (off) using the \textsf{floor} function $\left\lfloor{x}\right\rfloor$.}
-\item{Rounding (up) using the \textsf{ceil} function $\left\lceil{ x}\right\rceil$.}
-\item{Rounding using the \textsf{round} function (sometimes also called \textsf{rnd} function).}
+\item{Rounding (off) using the $\MTextSF{floor}$ function $\left\lfloor{x}\right\rfloor$.}
+\item{Rounding (up) using the $\MTextSF{ceil}$ function $\left\lceil{ x}\right\rceil$.}
+\item{Rounding using the $\MTextSF{round}$ function (sometimes also called $\MTextSF{rnd}$ function).}
 \end{itemize}
 \end{MInfo}
 
-The \MEntry{\textsf{floor} function}{floor function} is defined as
+The \MEntry{$\MTextSF{floor}$ function}{floor function} is defined as
 $$
-\textsf{floor}:\; \R\longrightarrow\R\;\; , \;\;
-x\;\longmapsto\; \textsf{floor}(x)\;=\; \left\lfloor{ x}\right\rfloor\;=\; \max\lbrace k\in\Z\: :\: k\leq x\rbrace\: .
+\MTextSF{floor}:\; \R\longrightarrow\R\;\; , \;\;
+x\;\longmapsto\; \MTextSF{floor}(x)\;=\; \left\lfloor{ x}\right\rfloor\;=\; \max\lbrace k\in\Z\: :\: k\leq x\rbrace\: .
 $$
-If $x\in\R$ is a real number, then $\textsf{floor}(x)=\left\lfloor{ x}\right\rfloor$ is the largest integer 
+If $x\in\R$ is a real number, then $\MTextSF{floor}(x)=\left\lfloor{ x}\right\rfloor$ is the largest integer 
 that is smaller than or equal to $x$. It results from rounding off the value of $x$. If a positive 
 real number $x$ is written as a decimal, then $\left\lfloor{ x}\right\rfloor$ equals the 
 integer on the left of the decimal point: rounding (off) cuts off the digits on the right of the decimal point. 
 For example $\left\lfloor{ 3.142}\right\rfloor=3$ but $\left\lfloor{ -2.124}\right\rfloor=-3$.
-The \textsf{floor} function is a step function with jumps (in more mathematical terms, jump discontinuities) of height $1$ at all points 
+The $\MTextSF{floor}$ function is a step function with jumps (in more mathematical terms, jump discontinuities) of height $1$ at all points 
 $x\in \Z$. The function values at the jumps always lie a step up. They are indicated by the small circles in 
-the figure below, which shows the graph of the \textsf{floor} function. 
+the figure below, which shows the graph of the $\MTextSF{floor}$ function. 
 
 \begin{center}
 \MUGraphicsSolo{floor_400_0.png}{width=0.7\linewidth}{width:650px}\\
-Graph of the \textsf{floor} function
+Graph of the $\MTextSF{floor}$ function
 \end{center}
 
 Let a real number $a\geq 0$ be given, written as a \MSRef{Mathematik_Grundlagen_UDB}{decimal number}
 $$
 a \;=\; g_n\, g_{n-1}\, \ldots\, g_1\, g_0\: .\: a_1\,a_2\, a_3\, \ldots
 $$
-This number $a$ can be rounded to $r$ fractional digits ($r\in\N_0$) using the \textsf{floor} function by
+This number $a$ can be rounded to $r$ fractional digits ($r\in\N_0$) using the $\MTextSF{floor}$ function by
 $$
 \tilde a \;=\; \frac1{10^r}\cdot \left\lfloor{ 10^r\cdot a}\right\rfloor\: .
 $$
 This process of rounding cuts off the decimal after the $r$th fractional digit. Thus, rounding 
-using the \textsf{floor} function is in general a rounding off.
+using the $\MTextSF{floor}$ function is in general a rounding off.
 
 \begin{MExample}
-Rounding the number $a_1=2.3727$ to 2 fractional digits using the \textsf{floor} function results in
+Rounding the number $a_1=2.3727$ to 2 fractional digits using the $\MTextSF{floor}$ function results in
 $$
 \tilde a_1 \;=\; \frac1{10^2}\cdot \left\lfloor{10^2\cdot2.3727}\right\rfloor\; =\; \frac1{10^2}\cdot \left\lfloor{ 237.27}\right\rfloor \;=\; \frac1{10^2}\cdot 237\;=\; =2.37\: .
 $$
@@ -166,7 +166,7 @@ Alternatively, it can be rounded by cutting off the decimal after the second fra
 (however, this is only possible if the number is given as a decimal which is rarely the case in a computer program).
 
 
-Rounding the number $a_2=\sqrt{2}=1.414213562\ldots$ to 4 fractional digits using the \textsf{floor} function results in
+Rounding the number $a_2=\sqrt{2}=1.414213562\ldots$ to 4 fractional digits using the $\MTextSF{floor}$ function results in
 $$
 \tilde a_2 \;=\; \frac1{10^4}\cdot \left\lfloor{ 10^4\cdot \sqrt2}\right\rfloor \;=\; \frac1{10^4}\cdot \left\lfloor{ 14142.1\ldots}\right\rfloor\;=\; \frac1{10^4}\cdot 14142 \;=\; 1.4142\: .
 $$
@@ -174,13 +174,13 @@ Rounding the number
 $$
 a_3 \;=\; \pi \;=\; 3,141592654\ldots
 $$
-to 2 fractional digits using the \textsf{floor} function results in
+to 2 fractional digits using the $\MTextSF{floor}$ function results in
 $$
 \tilde a_3 \;=\; \frac1{10^2}\cdot \left\lfloor{ 10^2\cdot\pi}\right\rfloor\;=\; \frac1{10^2}\cdot \left\lfloor{ 314.159\ldots}\right\rfloor \;=\; \frac1{10^2}\cdot 314 \;=\; 3.14\: .
 $$
 \end{MExample}
 
-The rounding method using the \textsf{floor} function is often applied for calculating final grades in certificates 
+The rounding method using the $\MTextSF{floor}$ function is often applied for calculating final grades in certificates 
 (``academic rounding''). If a mathematics student has the individual grades
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -195,103 +195,103 @@ then the arithmetic mean of these grades is calculated by
 $$
 \frac{1.3 + 2.3 + 2.0}{3}\; =\; \frac{5.6}{3} \; =\; 1.8\overline{6}\: .
 $$
-Rounding to the first fractional digit using the \textsf{floor} function would result in the final 
+Rounding to the first fractional digit using the $\MTextSF{floor}$ function would result in the final 
 grade of $\tilde a=1.8$. The rounding methods for calculating final grades always have to be described exactly 
 in the examination regulations.
 
-The counterpart to the \textsf{floor} function is the \textsf{ceil} (a.k.a. ceiling) function:
+The counterpart to the $\MTextSF{floor}$ function is the $\MTextSF{ceil}$ (a.k.a. ceiling) function:
 
 \begin{MInfo}
-The \MEntry{\textsf{ceil} function}{ceil function} is defined as
+The \MEntry{$\MTextSF{ceil}$ function}{ceil function} is defined as
 $$
-\textsf{ceil}:\; \R\longrightarrow\R\;\; , \;\;
-x\;\longmapsto\; \textsf{ceil}(x)\;=\; \left\lceil{ x}\right\rceil\;=\; \min\lbrace k\in\Z\: :\: k\geq x\rbrace\: .
+\MTextSF{ceil}:\; \R\longrightarrow\R\;\; , \;\;
+x\;\longmapsto\; \MTextSF{ceil}(x)\;=\; \left\lceil{ x}\right\rceil\;=\; \min\lbrace k\in\Z\: :\: k\geq x\rbrace\: .
 $$
 \end{MInfo}
 
-If $x\in \mathbb{R}$ is a real number, then $\textsf{ceil}(x)=\left\lceil{ x }\right\rceil$ is the smallest integer 
-that is greater than or equal to $x$. The \textsf{ceil} function is a step function with jumps (jump discontinuities) of height $1$ at all points  $x\in\Z$. The function values at the jumps always lie at the bottom. 
-They are indicated by the small circles in the figure below showing the graph of the \textsf{ceil} function. 
+If $x\in \mathbb{R}$ is a real number, then $\MTextSF{ceil}(x)=\left\lceil{ x }\right\rceil$ is the smallest integer 
+that is greater than or equal to $x$. The $\MTextSF{ceil}$ function is a step function with jumps (jump discontinuities) of height $1$ at all points  $x\in\Z$. The function values at the jumps always lie at the bottom. 
+They are indicated by the small circles in the figure below showing the graph of the $\MTextSF{ceil}$ function. 
 
 \begin{center}
 \MUGraphicsSolo{ceil_400_0.png}{width=0.7\linewidth}{width:650px}\\
-Graph of the \textsf{ceil} function
+Graph of the $\MTextSF{ceil}$ function
 \end{center}
 
 Let a real number $a\geq 0$ be given as a \MSRef{Mathematik_Grundlagen_UDB}{decimal number}
 $$
 a \;=\; g_n\, g_{n-1}\, \ldots\, g_1\, g_0\: .\: a_1\,a_2\, a_3\, \ldots
 $$
-This number $a$ can be rounded to $r$ fractional digits ($r\in\N_0$) using the \textsf{ceil} function by
+This number $a$ can be rounded to $r$ fractional digits ($r\in\N_0$) using the $\MTextSF{ceil}$ function by
 $$
 \hat{a} \;=\; \frac{1}{10^{r}}\cdot \left\lceil{ 10^{r}\cdot a }\right\rceil \: .
 $$
-Rounding using the \textsf{ceil} function is in general a rounding up to the next decimal digit.
+Rounding using the $\MTextSF{ceil}$ function is in general a rounding up to the next decimal digit.
 
 \begin{MExample}
-Rounding the number $a_1=2.3727$ to $2$ fractional digits using the \textsf{ceil} function results in
+Rounding the number $a_1=2.3727$ to $2$ fractional digits using the $\MTextSF{ceil}$ function results in
 $$
 \hat{a}_{1}\;=\; \frac{1}{10^{2}}\cdot \left\lceil{ 10^{2}\cdot 2.3727}\right\rceil\; =\; \frac{1}{10^{2}}\cdot \left\lceil{ 237.27}\right\rceil \;=\; \frac{1}{10^{2}}\cdot 238 \;=\; 2.38\: .
 $$
-Analogously, rounding the number $a_{2}=\sqrt{2}=1.414213562\ldots$ to $4$ fractional digits using the \textsf{ceil} function results in
+Analogously, rounding the number $a_{2}=\sqrt{2}=1.414213562\ldots$ to $4$ fractional digits using the $\MTextSF{ceil}$ function results in
 $$
 \hat{a}_{2}\; =\; \frac{1}{10^{4}}\cdot \left\lceil{ 10^{4}\cdot \sqrt{2}}\right\rceil\; =\; \frac{1}{10^{4}}\cdot \left\lceil{ 14142.1\ldots}\right\rceil \;=\; \frac{1}{10^{4}}\cdot 14143\; =\; 1.4143\: .
 $$
-Rounding the number $a_{3}=\pi=3.141592654\ldots$ to $2$ fractional digits using the \textsf{ceil} function results in
+Rounding the number $a_{3}=\pi=3.141592654\ldots$ to $2$ fractional digits using the $\MTextSF{ceil}$ function results in
 $$
 \hat{a}_{3}\; =\; \frac{1}{10^{2}}\cdot \left\lceil{ 10^{2}\cdot \pi }\right\rceil\; =\; \frac{1}{10^{2}}\cdot \left\lceil{ 314.15\ldots }\right\rceil\; =\;\frac{1}{10^{2}}\cdot 315 \;=\; 3.15\: .
 $$
 \end{MExample}
 
-The rounding method using the \textsf{ceil} function is often applied, for example, in craftsmen's invoices. 
+The rounding method using the $\MTextSF{ceil}$ function is often applied, for example, in craftsmen's invoices. 
 A craftsman is mostly paid by the hour. If a repair takes 50~minutes (i.e. $0.8\overline{3}$ hours as 
 a decimal), then a craftsmen will round up and invoice a full working hour. Colloquially, rounding 
 mostly means mathematical rounding:
 
 \begin{MInfo}
-The \MEntry{\textsf{round} function}{round function} (or mathematical rounding) is defined as
+The \MEntry{$\MTextSF{round}$ function}{round function} (or mathematical rounding) is defined as
 $$
-\textsf{round}:\; \R\longrightarrow\R\;\; , \;\;
-x\;\longmapsto\; \textsf{round}(x)\;=\; \textsf{floor}\left({x + \frac{1}{2}}\right) \; =\; \left\lfloor{ x + \frac{1}{2} }\right\rfloor\: .
+\MTextSF{round}:\; \R\longrightarrow\R\;\; , \;\;
+x\;\longmapsto\; \MTextSF{round}(x)\;=\; \MTextSF{floor}\left({x + \frac{1}{2}}\right) \; =\; \left\lfloor{ x + \frac{1}{2} }\right\rfloor\: .
 $$
 In contrast to rounding up or rounding off, the maximum change to the number by this rounding is $0.5$.
 \end{MInfo}
 
-The \textsf{round} function is a step function with jumps (jump discontinuities) of height $1$ at all points $x+\frac{1}{2},\; x\in \Z$. The function values at the jumps always
-lie a step up. They are indicated by the small circles in the figure below showing the graph of the \textsf{round} function.
+The $\MTextSF{round}$ function is a step function with jumps (jump discontinuities) of height $1$ at all points $x+\frac{1}{2},\; x\in \Z$. The function values at the jumps always
+lie a step up. They are indicated by the small circles in the figure below showing the graph of the $\MTextSF{round}$ function.
 
 \begin{center}
 \MUGraphicsSolo{round_400_0.png}{width=0.7\linewidth}{width:650px}\\
-Graph of the \textsf{round} function
+Graph of the $\MTextSF{round}$ function
 \end{center}
 
 Let a real number $a\geq 0$ be given as a \MSRef{Mathematik_Grundlagen_UDB}{decimal number}
 $$
 a \;=\; g_n\, g_{n-1}\, \ldots\, g_1\, g_0\: .\: a_1\,a_2\, a_3\, \ldots
 $$
-This number $a$ can be rounded to $r$ fractional digits ($r\in\N_0$) using the \textsf{round} function:
+This number $a$ can be rounded to $r$ fractional digits ($r\in\N_0$) using the $\MTextSF{round}$ function:
 $$
-\overline{a}\; =\; \frac{1}{10^{r}}\cdot \textsf{round}(10^{r}\cdot a)\; =\; \frac{1}{10^{r}}\cdot \left\lfloor{ 10^{r}\cdot a + \frac{1}{2} }\right\rfloor\: .
+\overline{a}\; =\; \frac{1}{10^{r}}\cdot \MTextSF{round}(10^{r}\cdot a)\; =\; \frac{1}{10^{r}}\cdot \left\lfloor{ 10^{r}\cdot a + \frac{1}{2} }\right\rfloor\: .
 $$
 This rounding method is called mathematical rounding and corresponds to the ``normal'' rounding process.
 
 \begin{MExample}
-The number $a_{1}=1.49$ is rounded to one fractional digit using the \textsf{round} function to
+The number $a_{1}=1.49$ is rounded to one fractional digit using the $\MTextSF{round}$ function to
 \begin{eqnarray*}
 \overline{a}_1 & = & \frac{1}{10}\cdot \mathsf{round}(10 \cdot 1.49) \; =\; \frac{1}{10}\cdot \left\lfloor{10\cdot 1.49 + 0.5}\right\rfloor\\
 &=& \frac{1}{10}\cdot \left\lfloor{14.9+0.5}\right\rfloor \;=\; \frac{1}{10}\cdot \left\lfloor{ 15.4 }\right\rfloor \;=\; \frac{1}{10}\cdot 15 \;=\; 1.5\: .
 \end{eqnarray*}
-The number $a_{2}=1.52$ is rounded to one fractional digit using the  \textsf{round} function to
+The number $a_{2}=1.52$ is rounded to one fractional digit using the  $\MTextSF{round}$ function to
 \begin{eqnarray*}
 \overline{a}_{2}& = & \frac{1}{10}\cdot \mathsf{round}(10 \cdot 1.52)\; =\; \frac{1}{10}\cdot \left\lfloor{ 10\cdot 1.52 + 0.5 }\right\rfloor \\
 & = & \frac{1}{10}\cdot \left\lfloor{ 15.2+0.5}\right\rfloor \;=\; \frac{1}{10}\cdot \left\lfloor{ 15.7 }\right\rfloor\; =\; \frac{1}{10}\cdot 15 \;=\; 1.5\: .
 \end{eqnarray*}
-The number $a_{3}=2.3727$ is rounded to two fractional digits using the  \textsf{round} function to
+The number $a_{3}=2.3727$ is rounded to two fractional digits using the  $\MTextSF{round}$ function to
 \begin{eqnarray*}
 \overline{a}_{3} & = & \frac{1}{10^{2}}\cdot \mathsf{round}(10^{2}\cdot 2.3727)\; =\; \frac{1}{100}\cdot \left\lfloor{ 100\cdot 2.3727 + 0.5 }\right\rfloor \\
 & = & \frac{1}{100}\cdot \left\lfloor{ 237.27+0.5}\right\rfloor\; =\; \frac{1}{100}\cdot \left\lfloor{ 237.77 }\right\rfloor \; =\;  \frac{1}{100}\cdot 237\; =\; 2.37\: .
 \end{eqnarray*}
-The number  $a_{4}=\sqrt{2}=1.414213562\ldots$ is rounded to seven fractional digits using the  \textsf{round} function to
+The number  $a_{4}=\sqrt{2}=1.414213562\ldots$ is rounded to seven fractional digits using the  $\MTextSF{round}$ function to
 \begin{eqnarray*}
 \overline{a}_{3} & = & \frac{1}{10^{7}}\cdot \mathsf{round}(10^{7}\cdot \sqrt{2})\; =\; \frac{1}{10^{7}}\cdot \left\lfloor{ 10^{7}\cdot 1.414213562\ldots + 0.5 }\right\rfloor \\
 & = & \frac{1}{10^{7}}\cdot \left\lfloor{ 14142135.62\ldots+0.5}\right\rfloor \;=\; \frac{1}{10^{7}}\cdot \left\lfloor{ 14142136.12\ldots }\right\rfloor \\
@@ -300,7 +300,7 @@ The number  $a_{4}=\sqrt{2}=1.414213562\ldots$ is rounded to seven fractional di
 \end{MExample}
 
 \begin{MExercise}
-Using the \textsf{round} function, round the number $\pi=3.141592654\ldots$ to four fractional digits:
+Using the $\MTextSF{round}$ function, round the number $\pi=3.141592654\ldots$ to four fractional digits:
 \MEquationItem{$\overline{\pi}$}{\MLParsedQuestion{20}{3.1416}{7}{STOCHROUND1}}.
 \ \\ \ \\
 \begin{MHint}{Solution}
@@ -320,11 +320,11 @@ a\; =\; \frac{47}{17} \;\;\text{and}\;\;  b\; =\; 3.7861
 $$
 be given.
 \begin{MExerciseItems}
-\item{Round each of the numbers $a$ and $b$ to $2$ fractional digits using the \textsf{floor} function.\\The roundings result in
+\item{Round each of the numbers $a$ and $b$ to $2$ fractional digits using the $\MTextSF{floor}$ function.\\The roundings result in
 \MEquationItem{$\tilde a$}{\MLParsedQuestion{10}{2.76}{7}{STOCHROUND2}} and \MEquationItem{$\tilde b$}{\MLParsedQuestion{10}{3.78}{7}{STOCHROUND3}}.}
-\item{Round each of the numbers $a$ and $b$ to $2$ fractional digits using the \textsf{ceil} function.\\The roundings result in
+\item{Round each of the numbers $a$ and $b$ to $2$ fractional digits using the $\MTextSF{ceil}$ function.\\The roundings result in
 \MEquationItem{$\hat a$}{\MLParsedQuestion{10}{2.77}{7}{STOCHROUND4}} and \MEquationItem{$\hat b$}{\MLParsedQuestion{10}{3.79}{7}{STOCHROUND5}}.}
-\item{Round each of the numbers $a$ and $b$ to $2$ fractional digits using the \textsf{round} function.\\The roundings result in
+\item{Round each of the numbers $a$ and $b$ to $2$ fractional digits using the $\MTextSF{round}$ function.\\The roundings result in
 \MEquationItem{$\overline{a}$}{\MLParsedQuestion{10}{2.76}{7}{STOCHROUND6}} and \MEquationItem{$\overline{b}$}{\MLParsedQuestion{10}{3.79}{7}{STOCHROUND7}}.}
 \end{MExerciseItems}
 \ \\
@@ -340,7 +340,7 @@ $$
 $$
 The first fractional digit is $7$. Proceeding further this way results in $a\;=\;  2.764705\ldots$, 
 we only need three fractional digits for the required rounding. The complete calculation using the 
-\textsf{floor} function results in
+$\MTextSF{floor}$ function results in
 $$
 \tilde a \;=\; \frac1{10^2}\cdot \left\lfloor{ 10^2\cdot 2.764705\ldots}\right\rfloor \;=\; \frac1{10^2}\cdot \left\lfloor{ 276.4705\ldots}\right\rfloor \;=\;  2.76\: .
 $$
@@ -349,7 +349,7 @@ $$
 \tilde a \;=\; 2.76\;\; \text{and}\;\; \tilde b \;=\; 3.78\: .
 $$
 However, this is only allowed in this exercise since $a$ and $b$ are non-negative. 
-A simple rounding up after the second decimal digit or a complete calculation using the \textsf{ceil} function 
+A simple rounding up after the second decimal digit or a complete calculation using the $\MTextSF{ceil}$ function 
 results in
 $$
 \hat a \;=\; 2.77\;\; \text{and}\;\; \hat b \;=\; 3.79\: .
@@ -376,7 +376,7 @@ M\times M \;\longrightarrow M\;\; , \;\;
 $$
 by the calculation rule
 $$
-a\odot b \; =\; \frac{1}{10^{2}}\cdot \textsf{round}( 10^{2}\cdot a \cdot b)\; =\; \frac{1}{10^{2}}\cdot \left\lfloor{ 10^{2}\cdot a \cdot b + \frac{1}{2} }\right\rfloor\: ,
+a\odot b \; =\; \frac{1}{10^{2}}\cdot \MTextSF{round}( 10^{2}\cdot a \cdot b)\; =\; \frac{1}{10^{2}}\cdot \left\lfloor{ 10^{2}\cdot a \cdot b + \frac{1}{2} }\right\rfloor\: ,
 $$
 i.e. the product $a\odot b$ is calculated by calculating the usual product $a\cdot b$ first and subsequently rounding the result mathematically 
 to two fractional digits.
@@ -1085,7 +1085,7 @@ $$
 $$
 \end{MExample}
 
-The arithmetic mean is rather sensitive to so called statistical outliers: measurement values that 
+The arithmetic mean is rather sensitive to so-called statistical outliers: measurement values that 
 vary strongly form the other data can significantly affect the arithmetic mean.
 
 \begin{MExample}
@@ -1135,7 +1135,7 @@ $$
 $$
 However, a theoretical tripling of the population size every two years would imply 
 that the number of animals after six years would be $1{,}350$ which is obviously not the case. 
->From an average growth rate of $2.8845$, we obtain the correct result: $50\cdot (2.8845)^{3}\approx 1{,}200$.
+From an average growth rate of $2.8845$, we obtain the correct result: $50\cdot (2.8845)^{3}\approx 1{,}200$.
 
 \begin{MExercise}
 The growth rates per year of an investment are as follows:
@@ -1226,7 +1226,7 @@ x_{(\; )}\; =\; (x_{(1)},x_{(2)},\ldots ,x_{(n)})
 $$
 be the corresponding ordered sample and 
 $$
-\alpha \in (0,1) \;\;\text{and} \;\; k = \textsf{floor}(n\cdot \alpha) \;= \;\lfloor n\cdot \alpha \rfloor\: .
+\alpha \in (0,1) \;\;\text{and} \;\; k = \MTextSF{floor}(n\cdot \alpha) \;= \;\lfloor n\cdot \alpha \rfloor\: .
 $$
 Then 
 $$
@@ -1268,7 +1268,7 @@ x_{(\; )}\;=\;(x_{(1)},x_{(2)},\ldots ,x_{(n)})
 $$
 and
 $$
-\alpha \in [0,\;0.5)\;\; \text{and}\;\;k\;=\;\textsf{floor}(n\cdot \alpha) \;= \;\lfloor n\cdot \alpha \rfloor \: .
+\alpha \in [0,\;0.5)\;\; \text{and}\;\;k\;=\;\MTextSF{floor}(n\cdot \alpha) \;= \;\lfloor n\cdot \alpha \rfloor \: .
 $$
 
 \begin{MInfo}
@@ -1409,8 +1409,8 @@ Round up your result to the text integer.
 % Der Ausgabekurs einer Anleihe betrage $97,5\%$. Es sollen $K=10000$ EUR investiert werden. Der Nominalzins der Anleihe betrage $p=3,5\%$ p.a. .
 % \begin{MExerciseItems}
 % \item{Bestimmen Sie den Kurswert der Anleihe zu Beginn der Laufzeit. Antwort: \MLParsedQuestion{10}{9750}{4}{STOCHPRO5} EUR.}
-% \item{Bestimmen Sie die Höhe des insgesamt ausgezahlten Kapitals bei einer Laufzeit von $t=10$ Jahren. Antwort: \MLParsedQuestion{10}{13500}{4}{STOCHPRO6} EUR.}
-% \item{Bestimmen Sie für diese Anleihe den Effektivzins. Antwort: \MLParsedQuestion{10}{3.85}{6} Prozent.}
+% \item{Bestimmen Sie die HÃ¶he des insgesamt ausgezahlten Kapitals bei einer Laufzeit von $t=10$ Jahren. Antwort: \MLParsedQuestion{10}{13500}{4}{STOCHPRO6} EUR.}
+% \item{Bestimmen Sie fÃ¼r diese Anleihe den Effektivzins. Antwort: \MLParsedQuestion{10}{3.85}{6} Prozent.}
 % \end{MExerciseItems}
 % Hinweis: Geben Sie den Effektivzinssatz mathematisch gerundet auf 2 Nachkommastellen an. Runden Sie erst \textit{nachdem} Sie den Effektivzins als Produkt ausgerechnet haben.
 % \end{MExercise}

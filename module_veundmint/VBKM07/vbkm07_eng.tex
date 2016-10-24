@@ -27,12 +27,12 @@
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM07_Ableitung_Intro}
 
-A family is travelling on holiday by car. The car is moving through roadworks with a velocity of 
-$60\MEinheit{km}/\MEinheit[]{h}$. The sign
+A family is going on holiday by car. The car is moving through roadworks with a velocity of 
+$60\MEinheit{km}[]/\MEinheit[]{h}$. The sign
 at the end of the roadworks says that the speed limit is, as of now,  
-$120\MEinheit{km}/\MEinheit[]{h}$. Even though the car driver puts the pedal to the metal,
+$120\MEinheit{km}[]/\MEinheit[]{h}$. Even though the car driver puts the pedal to the metal,
 the velocity of the car will not jump up immediately but increase as a function of time.
-If the velocity increases from $60\MEinheit{km}/\MEinheit[]{h}$ to $120\MEinheit{km}/\MEinheit[]{h}$ 
+If the velocity increases from $60\MEinheit{km}[]/\MEinheit[]{h}$ to $120\MEinheit{km}[]/\MEinheit[]{h}$ 
  in 5~seconds at a constant rate of change, then
 the \emph{acceleration} (= change of velocity per time) equals 
 this constant (in this case) rate of velocity change: the acceleration is the quotient of 
@@ -130,7 +130,7 @@ another arbitrary, but variable point $x$ between $a$ and $b$ as well as the
 corresponding function value $f\left(x\right)$ are chosen, then through these 
 two points, i.e. the points $\MPointTwoAS{x_0}{f(x_0)}$ and $\MPointTwoAS{x}{f(x)}$, 
 a line can be drawn that is characterised by its slope and its $y$-intercept. For the 
-slope of this line one obtains the so called \textbf{difference quotient}
+slope of this line one obtains the so-called \textbf{difference quotient}
 \[
 \frac{\Delta(f)}{\Delta(x)} = \frac{f(x) - f(x_0)}{x - x_0}
 \]
@@ -309,7 +309,7 @@ Casually speaking, one says that the graph of the function has a kink at the poi
 %Funktion:
 \draw[domain=-3.2:3.2,samples=120,color=\jccolorfkt] %
  plot (\x, {abs(\x)});
-%Tangenten im Nullpunkt, wenn $f$ f"ur $x \leq 0$ bzw. $x \geq 0$ betrachtet 
+%Tangenten im Nullpunkt, wenn $f$ für $x \leq 0$ bzw. $x \geq 0$ betrachtet 
 %wird:
 \draw[samples=120,color=blue!50!black] %
  (-0.5, 0.5) -- (0.5, -0.5);
@@ -333,7 +333,7 @@ this point does not exist and thus, the function has no derivative at this point
 
 \begin{MExercise}
 Using the difference quotient, calculate the derivative of 
-%$f(x) := |3 x|$ f"ur $x_1 := 5$ und f"ur $x_2 := -4$.
+%$f(x) := |3 x|$ für $x_1 := 5$ und für $x_2 := -4$.
 $f: \R \rightarrow \R$, $x \mapsto f(x) := 4 - x^2$ at the points $x_1 = -2$ and $x_2 = 1$.
 
 Answer: 
@@ -385,14 +385,14 @@ Answer:
 the difference quotient
 \MLFunctionQuestion{30}{1/sqrt(h)}{1}{h}{20}{DG13}
 does not converge for $h \rightarrow 0$.
-% in $x_0 = -3$ verl"auft parallel zur $y$-Achse,
+% in $x_0 = -3$ verläuft parallel zur $y$-Achse,
 \item The derivative of the function $g$ at the point $x_0 = 5$ does not exist since
 the difference quotient for $h < 0$ has the value
 \MLParsedQuestion{8}{-12}{3}{DG14} and for $h > 0$ has
 the value {\MLParsedQuestion{8}{12}{3}{DG15}}. Thus, the limit for $h \rightarrow 0$
 does not exist.
-%F"ur $x < 5$ haben alle Tangenten die Steigung $-12$, 
-%und f"ur $x > 5$ die Steigung $21$.
+%Für $x < 5$ haben alle Tangenten die Steigung $-12$, 
+%und für $x > 5$ die Steigung $21$.
 \end{MExerciseItems}
 \begin{MHint}{Solution}
  \begin{MExerciseItems}
@@ -663,11 +663,11 @@ $f'(x) = \MEU^{x} = \exp(x)$.
 
 \MSubsubsectionx{Derivative of the Logarithmic Function}
 
-%Die Logarithmusfunktion $f(y) := \ln(y)$ f"ur $y > 0$ ist die Umkehrfunktion
+%Die Logarithmusfunktion $f(y) := \ln(y)$ für $y > 0$ ist die Umkehrfunktion
 %der Exponentialfunktion $y = \MEU^x$. Die Ableitung und damit die Steigung $m$ einer Tangente an den 
 %Graphen der Exponentialfunktion ist $m = \MEU^x$. 
 %In der folgenden Abbildung ist die Tangente an den Graphen der Exponentialfunktion im
-%Punkt $(x_0, \MEU^{x_0})$ f"ur $x_0 = \ln(2)$ angedeutet, sodass die 
+%Punkt $(x_0, \MEU^{x_0})$ für $x_0 = \ln(2)$ angedeutet, sodass die 
 %Tangentensteigung $m = 2$ ist. Die Umkehrabbildung der Tangente hat dann 
 %die Steigung $\frac{1}{m} = \frac{1}{2}$. 
 %Geometrisch ist es die Steigung der gespiegelten Tangente, also die Tangente
@@ -883,7 +883,7 @@ with $g(x) = x^3 + \ln(x)$ is
 g': \MoIl 0 \MIntvlSep \infty \MoIr \rightarrow \R \MDFPSpace \text{ with } \MDFPSpace g'(x) = 3 x^2 + \frac{1}{x} = \frac{3 x^3 + 1}{x} \MDFPeriod%%
 \]
 %Mit $\ln(x^3) = 3 \ln(x)$ ergibt sich die Ableitung von 
-%$g(x) = \ln(x^3) = 3 \ln(x)$ f"ur $x > 0$ zu
+%$g(x) = \ln(x^3) = 3 \ln(x)$ für $x > 0$ zu
 %\[
 %g'(x) = \frac{3}{x} %%
 %\]
@@ -1011,7 +1011,7 @@ where the last transformation step (cancelling $x$) is just to simplify the expr
 \MDeclareSiteUXID{VBKM07_Verkettung}
 \MLabel{Kettenregel}
 
-Last, we investigate the composition (see Module~\MNRef{VBKM06}, Section~\MRef{Verkettung}) of functions:
+Finally, we investigate composition of functions (see Module~\MNRef{VBKM06}, Section~\MRef{Verkettung}):
 what happens if a function $u$ (the inner function) is substituted into another function $v$ (the outer function)?
 In mathematics, such a composition is denoted by $f := v \circ u$ with $f(x) = (v \circ u)(x) := v(u(x))$.
 That is, first the value of a function $u$ is determined depending on the variable $x$. The value $u(x)$ calculated 
@@ -1235,11 +1235,11 @@ declare function={
 %Tangenten:
 \draw[domain={x1-1.2}:{x1+0.8},samples=120,color=blue!50!black] %
  plot (\x, {TangenteAblminus(\x)});
-\filldraw[color=blue!50!black] (x0, {fkt(x0)}) circle (1pt); % Ber"uhrpunkt.
+\filldraw[color=blue!50!black] (x0, {fkt(x0)}) circle (1pt); % Berührpunkt.
 %
 \draw[domain={x0-0.8}:{x0+1.2},samples=120,color=blue!50!black] %
  plot (\x, {TangenteAblplus(\x)});
-\filldraw[color=blue!50!black] (x1, {fkt(x1)}) circle (1pt); % Ber"uhrpunkt.
+\filldraw[color=blue!50!black] (x1, {fkt(x1)}) circle (1pt); % Berührpunkt.
 %Beschriftung:
 \node[right] at (5.1, 1.25) {$f'(x_0) = m_0 > 0$};
 \node[style={fill=white},left] at (0.9, 1.25) {$f'(x_1) = m_1 < 0$};
@@ -1302,7 +1302,7 @@ is monotonically decreasing. Moreover, the function $h$ is also monotonically de
 \end{MXContent}
 
 
-%\MSubsubsection{Zweite Ableitung und Kr"ummungseigenschaften}
+%\MSubsubsection{Zweite Ableitung und Krümmungseigenschaften}
 \begin{MXContent}{Second Derivative and Bending Properties (Curvature)}{Second Derivative and Bending Properties (Curvature)}{STD}
 \MDeclareSiteUXID{VBKM07_Kruemmungseigenschaften}
 
@@ -1363,7 +1363,7 @@ we have ${f'}'(x) > 0$. Hence, for $x > 0$, the function $f$ is convex (left cur
 \begin{MExercise}
 Specify the (maximum) open intervals on which the function $f$ with $f(x) := \frac{x^2 - 1}{x^2 + 1}$
 is monotonically increasing or decreasing.
-%In welchen m"oglichst gro"sen offenen Intervallen sind die Funktionen
+%In welchen möglichst großen offenen Intervallen sind die Funktionen
 %\begin{MExerciseItems}
 %\item $f(x) := x^2 - 12\right) \cdot (x^2 + 5)$
 %\item $g(x) := \frac{x^2 + 1}{x^2 - 1}$
@@ -1399,7 +1399,7 @@ monotonically increasing on this region.
 \begin{MExercise}
 Specify the (maximum) open intervals $\MoIl c\MIntvlSep d\MoIr$ on which the function $f$ with $f(x) := \frac{x^2 - 1}{x^2 + 1}$
 for $x > 0$ is convex or concave.
-%In welchen m"oglichst gro"sen offenen Intervallen sind die Funktionen
+%In welchen möglichst großen offenen Intervallen sind die Funktionen
 %konvex beziehungsweise konkav?
 %\begin{MExerciseItems}
 %\item $f(x) := \frac{6 x}{x^2 + 4}$
@@ -1471,7 +1471,7 @@ declare function={
 Find the maximum open intervals $\MoIl c\MIntvlSep d\MoIr$ on which $f$ has this property.
 %
 \item What can you say about the maximum and minimum points of the function $f$?
-% f"ur $f$ zu deren Maximal- beziehungsweise Minimalstellen?
+% für $f$ zu deren Maximal- beziehungsweise Minimalstellen?
 \end{MExerciseItems}
 
 Answer:
@@ -1512,13 +1512,17 @@ The minimum point of $f$ is at \MLParsedQuestion{8}{0}{4}{DEG8}.
 \MLabel{M07_Anwendungen}
 
 
-\begin{MXContent}{Curve Sketching}{Curve Sketching}{STD}
+\begin{MXContent}{Curve Analysis}{Curve Analysis}{STD}
 \MLabel{VBKM07_Kurvendiskussion}
 \MDeclareSiteUXID{VBKM07_Kurvendiskussion}
 
+Curve analysis is an established part of the German mathematics syllabus that consists of
+curve sketching for a function together with the gathering of certain standardized qualitative
+and quantitative information about the function graph.
+
 Let a differentiable function $f: \MoIl a\MIntvlSep b\MoIr \rightarrow \R$ with the mapping rule
 $x \mapsto y = f(x)$ for $x \in \MoIl a\MIntvlSep b\MoIr$ be given. In this course, a complete 
-curve sketching of $f$ includes the following information:
+curve analysis of $f$ includes the following information:
 
 \begin{itemize}
 \item maximum domain
@@ -1535,9 +1539,9 @@ curve sketching of $f$ includes the following information:
 
 Many of these points were already discussed in Module~\MRef{VBKM06}. Therefore,
 in this section we shall only briefly repeat what is meant by the different steps 
-of curve sketching. Subsequently, we will discuss one example of a curve sketching in detail.
+of curve analysis. Subsequently, we will discuss one example of a curve analysis in detail.
 
-The first part of the curve sketching involves the algebraic and geometric aspects of $f$:
+The first part of the curve analysis involves the algebraic and geometric aspects of $f$:
 
 \begin{description}
 \item[Maximum Domain]
@@ -1661,7 +1665,7 @@ on $\MoIl[\left]-\sqrt2\MIntvlSep \sqrt2\MoIr[\right]$, and monotonically decrea
 $\MoIl[\left]\sqrt2\MIntvlSep \infty\MoIr[\right]$. Monotony intervals are always given as open intervals.
 \ \\ \ \\
 \textbf{Inflexion Points}\\
->From the necessary condition ${f'}'(x)=0$ for $x$ to be an inflexion point, we have the equation
+From the necessary condition ${f'}'(x)=0$ for $x$ to be an inflexion point, we have the equation
 $8x(x^2-6)=0$. Thus, $w_0=0$, $w_1=\sqrt6$, and $w_2=-\sqrt6$ are the only solutions. The polynomial
 in the denominator of ${f'}'$ is always greater than zero. Since the polynomial in the numerator has only
 single roots, the second derivative ${f'}'(x)$ changes its sign at all these points. Hence, these points are 
@@ -1689,13 +1693,13 @@ the interval $[-8\MIntvlSep 8]$.}{width:600px}
 \begin{MExercises}
 \MDeclareSiteUXID{VBKM07_Kurvendiskussion_Exercises}
 
-With the following exercise the elements of the curve sketching method can be trained:
+With the following exercise the elements of the curve analysis method can be trained:
 
 \MDirectRouletteExercises{curves_polynomials.rtex}{VBKM07_CURVES_POLYNOMIALS}
 
 
 \begin{MExercise}
-Carry out a complete curve sketching for the function $f$ with $f(x) = (2 x - x^2) \MEU^x$ and enter 
+Carry out a complete curve analysis for the function $f$ with $f(x) = (2 x - x^2) \MEU^x$ and enter 
 your results into the input fields.
 \ \\ \ \\
 Maximum domain: \MLIntervalQuestion{25}{(-infty,infty)}{5}{DXG18} \MInputHint{(as an interval \texttt{(a;b)})}.\\
@@ -1798,7 +1802,7 @@ sketched on the interval $\MoIl -\MZahl{6}{2}\MIntvlSep 3\MoIr$.}{width:400px}
 
 In many applications in engineering and business, solutions to problems can be found which are not unique. 
 They often depend on variable conditions. To find an ideal solution, additional properties (constraints)
-are defined that are to be satisfied by the solution. This very often results in so called 
+are defined that are to be satisfied by the solution. This very often results in so-called 
 \textbf{optimisation problems}, in which one solution has to be selected from a family of solutions such that it 
 best satisfies a previously specified property.
 
@@ -1906,8 +1910,8 @@ has fallen to $-140^{\circ}{\MEinheit[]{C}}$.
 Answer: \MLParsedQuestion{5}{-8}{3}{DYG12}
 %Ergebnis: $(-58 - (-10)) / (15 - 9) = -48 / 6 = -8$.
 %
-%\item Wodurch dr"uckt sich in der (mittleren) "Anderungsrate aus, dass die 
-%Temperatur f"allt?
+%\item Wodurch drückt sich in der (mittleren) Änderungsrate aus, dass die 
+%Temperatur fällt?
 %
 \item The `falling' property of the temperature shows in the fact
 that the rate of change is {\MLQuestion{20}{negative}{DFA10}}.
@@ -1992,14 +1996,13 @@ Specify the regions as open intervals $\MoIl c\MIntvlSep  d\MoIr$ that are as la
 \end{MExerciseItems}
 \MInputHint{Open intervals can be entered in the form $(a;b)$, closed intervals are entered as $[a;b]$, $a$ and $b$ can
 be arbitrary expressions. Do not use the notation  $]a;b[$ to enter open intervals. Enter \texttt{infty}
-Verwenden Sie bei der Intervalleingabe nicht die Notation $]a;b[$ für offene Intervalle. Schreiben Sie \texttt{infty} oder
 for $\infty$ in your answer.}
 \end{MExercise}
 
 %TODO Eingabe und Loesung fehlt
 %\begin{MExercise} %Anwendungen
 %Berechnen Sie alle lokalen und globalen Extremstellen und Wendestellen der 
-%Funktion $f: \R \rightarrow \R$ mit $f(x) := (x^2 - 3 x) \cdot \MEU^{2 x}$ f"ur 
+%Funktion $f: \R \rightarrow \R$ mit $f(x) := (x^2 - 3 x) \cdot \MEU^{2 x}$ für 
 %$x \in \R$.
 %\end{MExercise}
 

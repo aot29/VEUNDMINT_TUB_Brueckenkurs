@@ -5,9 +5,42 @@ features such as exercises, tests, glossary, etc. It is easily extendable.
 
 ### build status
 * branch: develop_software [![build status](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/badges/develop_software/build.svg)](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/commits/develop_software)
-* branch: develop_gulp [![build status](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/badges/develop_gulp/build.svg)](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/commits/develop_gulp)
+
+## Dependencies
+Install these packages using your package manager:
+
+```
+libxml2, libxml2-dev, libxslt1-dev, lib32z1, tidy,php-cli, nodejs
+```
+If the nodejs version provided for your distributio is < 4.x, then see [here](https://nodejs.org/en/download/package-manager/)
 
 ## Installation
+Clone the repository if not already done and checkout the development branch:
+```
+git clone git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git VEUNDMINT_DEV
+cd VEUNDMINT_DEV
+git checkout develop_software
+```
+The following will install the application in a Python virtual environment. Make sure the command virtualenv is installed:
+```
+which virtualenv
+```
+Go to the checkout path and invoke the installation script. This will install all dependencies.
+```
+make -f tools/makefiles/devinstall
+```
+To start developing, do:
+```
+source venv/bin/activate
+make -f tools/makefiles/multilang
+```
+This build everything is in the folder **public**.
+To run the server at http://localhost:3000 call:
+```
+npm run gulp watch &> gulp_output.log &
+```
+
+## Manual Installation
 
 Following, you will find installation instructions to get you started. This package is build in **Python3**. To get you started, first clone this repository
 ```
@@ -39,18 +72,11 @@ In order to use the VEUNDMINT converter, you need to have python3 installed. To 
 pip install -r requirements.txt
 ```
 
-#### linux dependencies
-
-```
-libxml2, libxml2-dev, libslt1-dev, lib32z1, tidy,
-php-cli
-```
-
 ## Building
-See our [Wiki](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Code-refactoring) for detailed instuctions
+Recommended: Install node package manager (npm) via the [nvm bash script](https://github.com/creationix/nvm). For alternatives and detailed installation instructions, see our [Wiki](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Code-refactoring)
 ### install dependencies for web version
 ```
-npm install 
+npm install
 bower install
 (or npm run bower_install if using a virtual Python environment)
 
@@ -62,6 +88,7 @@ make -f tools/makefiles/multilang
 ### run development server
 ```
 gulp watch
+(or npm run gulp watch if using a virtual Python environment)
 ```
 
 
@@ -71,3 +98,10 @@ We use the python module green to run our tests, as it has a nicer user experien
 green -vvv
 ```
 Tests, divide into different sections, where some will use selenium to test the generated websites. Find the `BASE_URL` setting in settings.py, with that you can adjust the url tests, will be run against. You might also set the environment variable `BASE_URL` to your required url - it will override the settings from settings.py.
+
+## Logging
+### Frontend / javascript log
+We use the javascript package [loglevel](https://github.com/pimterry/loglevel) for logging. Default loglevel is set to `error`, which will only display errors in the console. For debugging, do
+```javascript
+log.setLevel('debug')
+```

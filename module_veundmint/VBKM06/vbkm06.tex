@@ -21,14 +21,15 @@
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_Grundlagen_Intro}
-Aus Modul \MNRef{VBKM01} kennen wir bereits die \highlight{reellen Zahlen} als \highlight{Menge} sowie \highlight{Intervalle} als wichtige \highlight{Teilmengen} der reellen Zahlen. 
+Aus Modul \MNRef{VBKM01} kennen wir bereits die \highlight{reellen Zahlen} als \highlight{Menge} sowie \highlight{Intervalle} als wichtige \highlight{Teilmengen} der reellen Zahlen.
+
 
 \begin{MExample}
-Wir möchten die gesamten reellen Zahlen $\R$ außer der Zahl $0\in\R$ in einer Menge zusammenfassen. Wie schreiben wir eine solche Zahlenmenge auf? Hierfür gibt es die Schreibweise
+Wir mÃ¶chten die gesamten reellen Zahlen $\R$ auÃŸer der Zahl $0\in\R$ in einer Menge zusammenfassen. Wie schreiben wir eine solche Zahlenmenge auf? HierfÃ¼r gibt es die Schreibweise
 \[
  \R\setminus\{0\} \MDFPeriod
 \]
-Diese wird gelesen als ``$\R$ ohne $0$''. Eine weitere Schreibweise für diese Menge ist die Vereinigung zweier offener Intervalle:
+Diese wird gelesen als ``$\R$ ohne $0$''. Eine weitere Schreibweise fÃ¼r diese Menge ist die Vereinigung zweier offener Intervalle:
 \[
  \R\setminus\{0\}=(-\infty\MIntvlSep 0)\cup(0\MIntvlSep \infty) \MDFPeriod
 \]
@@ -36,7 +37,7 @@ Genauso kann man aus beliebigen anderen Mengen einzelne Zahlen entfernen. So bei
 \[
  [1\MIntvlSep 3)\setminus\{2\} \MDFPSpace,
 \]
-alle Zahlen aus dem halboffenen Intervall $[1\MIntvlSep 3)$ außer der Zahl $2$:
+alle Zahlen aus dem halboffenen Intervall $[1\MIntvlSep 3)$ auÃŸer der Zahl $2$:
 
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -60,7 +61,7 @@ alle Zahlen aus dem halboffenen Intervall $[1\MIntvlSep 3)$ außer der Zahl $2$:
 
 \begin{MExercise}
 	Wie sehen die Intervalle $(-\infty\MIntvlSep \pi)$ und $(8\MIntvlSep \MZahl{8}{5}]$ auf der Zahlengeraden aus?
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \MTikzAuto{%
 \begin{tikzpicture}
 % reelle Achse
@@ -93,26 +94,26 @@ alle Zahlen aus dem halboffenen Intervall $[1\MIntvlSep 3)$ außer der Zahl $2$:
 
 
 
-Die Betrachtung von Mengen sowie Gleichungen und Ungleichungen für Zahlen aus diesen Mengen, wie in den vorhergehenden Modulen (etwa \MSRef{VBKM01}{Modul 1}) geschehen, reicht nicht aus um Mathematik zu betreiben und anzuwenden. Darüber hinaus brauchen wir sogenannte \highlight{Funktionen} (diese werden oft auch als \modsemph{Abbildungen} bezeichnet). 
+Die Betrachtung von Mengen sowie Gleichungen und Ungleichungen fÃ¼r Zahlen aus diesen Mengen, wie in den vorhergehenden Modulen (etwa \MSRef{VBKM01}{Modul 1}) geschehen, reicht nicht aus um Mathematik zu betreiben und anzuwenden. DarÃ¼ber hinaus brauchen wir sogenannte \highlight{Funktionen} (diese werden oft auch als \modsemph{Abbildungen} bezeichnet). 
 \begin{MInfo}
 \MLabel{VBKM06_Abbildungen}
-\MEntry{Funktionen}{Funktion} (bzw. \MEntry{Abbildungen}{Abbildung}) sind Zuordnungen zwischen den Elementen zweier Mengen.
+\MEntry{Funktionen}{Funktion} (bzw. \MEntry{Abbildungen}{Abbildung}) sind Zuordnungen zwischen den Elementen zweier Mengen, die jedem Element der einen Menge genau ein Element der anderen Menge zuordnet.%%%
 \end{MInfo}
 \end{MIntro}
 
-Diesem grundlegenden mathematischen Begriff der Zuordnung zwischen Mengen werden wir uns im ersten Abschnitt \MNRef{sec:zuordnungen} widmen. Im Abschnitt \MNRef{sec:anwendungen} stellen wir Bezüge zu Anwendungen der Mathematik in anderen Wissenschaften her und machen uns die Nützlichkeit des mathematischen Funktionsbegriffs, als Formalisierung von abhängigen Größen, bewusst. Schließlich untersuchen wir in Abschnitt \MNRef{sec:graphen} die bildliche Darstellung von Funktionen mittels Graphen. Im weiteren Verlauf dieses Moduls werden wir dann die wichtigsten elementaren Funktionen zusammen mit ihren Graphen betrachten. Es ist fundamental, den Verlauf der Graphen der elementaren Funktionen zu kennen. 
+Diesem grundlegenden mathematischen Begriff der Zuordnung zwischen Mengen werden wir uns im ersten Abschnitt \MNRef{sec:zuordnungen} widmen. Im Abschnitt \MNRef{sec:anwendungen} stellen wir BezÃ¼ge zu Anwendungen der Mathematik in anderen Wissenschaften her und machen uns die NÃ¼tzlichkeit des mathematischen Funktionsbegriffs, als Formalisierung von abhÃ¤ngigen GrÃ¶ÃŸen, bewusst. SchlieÃŸlich untersuchen wir in Abschnitt \MNRef{sec:graphen} die bildliche Darstellung von Funktionen mittels Graphen. Im weiteren Verlauf dieses Moduls werden wir dann die wichtigsten elementaren Funktionen zusammen mit ihren Graphen betrachten. Es ist fundamental, den Verlauf der Graphen der elementaren Funktionen zu kennen. 
 
 
 \begin{MXContent}{Zuordnungen zwischen Mengen}{Zuordnungen}{STD}\MLabel{sec:zuordnungen}
 \MDeclareSiteUXID{VBKM06_Zuordnungen}
 
 Wir beginnen mit einem ersten Beispiel einer Funktion als Zuordnung zwischen zwei Mengen.
-Dazu betrachten wir die Menge der natürlichen Zahlen $\N$ sowie die Menge der rationalen Zahlen $\Q$
+Dazu betrachten wir die Menge der natÃ¼rlichen Zahlen $\N$ sowie die Menge der rationalen Zahlen $\Q$
 und veranschaulichen uns diese als zwei "`Container'' mit Zahlen.
 
 \MTikzAuto{%
 \begin{tikzpicture}
-% natürliche Zahlen:
+% natÃ¼rliche Zahlen:
 \draw  (3.5,10.3) node[anchor=north west] {$\mathbb{N}$};
 \draw [] (2.7,7.6) ellipse (1.7cm and 2.4cm);
 \draw (2,6.3)  node[anchor=north west](eins) {1};
@@ -138,11 +139,11 @@ und veranschaulichen uns diese als zwei "`Container'' mit Zahlen.
 \end{tikzpicture} 
 }%
 
-Nun wollen wir eine Zuordnung zwischen den Elementen dieser beiden Mengen auf folgende Art durchführen. Jeder beliebigen Zahl $n\in\N$ wird die Hälfte dieser Zahl $\frac{n}{2}\in\Q$ zugeordnet, also der Zahl $1\in\N$ die Zahl $\frac{1}{2}\in\Q$, der Zahl $2\in\N$ die Zahl $1\in\Q$ und immer so weiter. Dies können wir im Bild durch Pfeile veranschaulichen, die andeuten, welche Zahlen in $\N$ welchen Zahlen in $\Q$ zugeordnet werden.
+Nun wollen wir eine Zuordnung zwischen den Elementen dieser beiden Mengen auf folgende Art durchfÃ¼hren. Jeder beliebigen Zahl $n\in\N$ wird die HÃ¤lfte dieser Zahl $\frac{n}{2}\in\Q$ zugeordnet, also der Zahl $1\in\N$ die Zahl $\frac{1}{2}\in\Q$, der Zahl $2\in\N$ die Zahl $1\in\Q$ und immer so weiter. Dies kÃ¶nnen wir im Bild durch Pfeile veranschaulichen, die andeuten, welche Zahlen in $\N$ welchen Zahlen in $\Q$ zugeordnet werden.
 
 \MTikzAuto{%
 \begin{tikzpicture}
-% natürliche Zahlen:
+% natÃ¼rliche Zahlen:
 \draw  (3.5,10.3) node[anchor=north west] {$\mathbb{N}$};
 \draw [] (2.7,7.6) ellipse (1.7cm and 2.4cm);
 \draw [color = blue](2,6.3)  node[anchor=north west](eins) {1};
@@ -173,11 +174,11 @@ Nun wollen wir eine Zuordnung zwischen den Elementen dieser beiden Mengen auf fo
 \end{tikzpicture}
 }%
 
-Wir benutzen für die \modsemph{Zuordnung der einzelnen Elemente} der Mengen, die wir oben in Worten beschrieben haben, den sogenannten \highlight{Zuordnungspfeil}. Dies ist ein Pfeil, der auf einer Seite einen senkrechten Strich als Abschluss hat: $\longmapsto$. Er bedeutet, dass der Zahl auf der Seite mit dem senkrechten Strich die Zahl auf der Seite der Pfeilspitze zugeordnet wird: 
+Wir benutzen fÃ¼r die \modsemph{Zuordnung der einzelnen Elemente} der Mengen, die wir oben in Worten beschrieben haben, den sogenannten \highlight{Zuordnungspfeil}. Dies ist ein Pfeil, der auf einer Seite einen senkrechten Strich als Abschluss hat: $\longmapsto$. Er bedeutet, dass der Zahl auf der Seite mit dem senkrechten Strich die Zahl auf der Seite der Pfeilspitze zugeordnet wird: 
 \[
 \N\ni1\longmapsto\MZahl{0}{5}\in\Q \MDFPSpace,\MDFPaSpace \N\ni2\longmapsto1\in\Q \MDFPSpace, \MDFPaSpace \text{usw.} 
 \]
-Mit diesen Zuordnungen haben wir nun eine \modsemph{Funktion} von den natürlichen Zahlen $\N$ in die rationalen Zahlen $\Q$ konstruiert. In der Mathematik gibt man dieser Zuordnung nun einen Namen, d.h.~man reserviert ein Symbol (oft $f$ für \modsemph{F}unktion), das genau diese Zuordnung beschreiben soll. Dazu muss man die Zahlenmengen notieren, \modsemph{aus denen} und \modsemph{in die} zugeordnet werden soll. In diesem Fall werden den Elementen der natürlichen Zahlen $\N$ rationale Zahlen zugeordnet. Dies schreibt man mathematisch mit einem sogenannten \highlight{Abbildungspfeil} $\null\lto\null$, an dessen Spitze die Menge auftaucht, die das Ziel der Zuordnung ist und an dessen Basis die Menge steht, deren Elemente zugeordnet werden. In diesem Fall also
+Mit diesen Zuordnungen haben wir nun eine \modsemph{Funktion} von den natÃ¼rlichen Zahlen $\N$ in die rationalen Zahlen $\Q$ konstruiert. In der Mathematik gibt man dieser Zuordnung nun einen Namen, d.h.~man reserviert ein Symbol (oft $f$ fÃ¼r \modsemph{F}unktion), das genau diese Zuordnung beschreiben soll. Dazu muss man die Zahlenmengen notieren, \modsemph{aus denen} und \modsemph{in die} zugeordnet werden soll. In diesem Fall werden den Elementen der natÃ¼rlichen Zahlen $\N$ rationale Zahlen zugeordnet. Dies schreibt man mathematisch mit einem sogenannten \highlight{Abbildungspfeil} $\null\lto\null$, an dessen Spitze die Menge auftaucht, die das Ziel der Zuordnung ist und an dessen Basis die Menge steht, deren Elemente zugeordnet werden. In diesem Fall also
 \[
  f\colon \N\lto\Q \MDFPeriod
 \]
@@ -185,27 +186,27 @@ Man liest dies als "`die Funktion $f$ bildet von $\N$ nach $\Q$ ab''.
 
 
 
-Weiterhin können wir uns nun die Frage stellen, ob wir die Zuordnungen dieser Funktion $1\longmapsto\frac{1}{2},\ 2\longmapsto1,\ \text{usw.}$ kürzer
-aufschreiben können. Dazu erinnern wir uns an den Beginn dieses Beispiels. Wir haben uns überlegt, jeder natürlichen Zahl $n$ ihre Hälfte $\frac{n}{2}$ zuzuordnen.
-Damit können wir links und rechts des Zuordnungspfeils nun einfach diese beliebige natürliche Zahl $n$ bzw.~die sich daraus ergebende rationale Zahl $\frac{n}{2}$
+Weiterhin kÃ¶nnen wir uns nun die Frage stellen, ob wir die Zuordnungen dieser Funktion $1\longmapsto\frac{1}{2},\ 2\longmapsto1,\ \text{usw.}$ kÃ¼rzer
+aufschreiben kÃ¶nnen. Dazu erinnern wir uns an den Beginn dieses Beispiels. Wir haben uns Ã¼berlegt, jeder natÃ¼rlichen Zahl $n$ ihre HÃ¤lfte $\frac{n}{2}$ zuzuordnen.
+Damit kÃ¶nnen wir links und rechts des Zuordnungspfeils nun einfach diese beliebige natÃ¼rliche Zahl $n$ bzw.~die sich daraus ergebende rationale Zahl $\frac{n}{2}$
 hinschreiben:
 \[
  n\longmapsto\frac{n}{2} \MDFPeriod
 \]
 Man liest dies als "`$n$ wird auf $\frac{n}{2}$ abgebildet''. Diese Schreibweise bezeichnet man auch als \highlight{Abbildungsvorschrift} der Funktion.
-Eine weitere Schreibweise für die Abbildungsvorschrift benutzt den Namen der Funktion:
+Eine weitere Schreibweise fÃ¼r die Abbildungsvorschrift benutzt den Namen der Funktion:
 \[
  f(n) = \frac{n}{2} \MDFPeriod
 \]
-Man liest dies als "`$f$ von $n$ ist gleich $\frac{n}{2}$''.  Wir können also die hier
-betrachtete Funktion $f$ nun zusammengefasst folgendermaßen schreiben:
+Man liest dies als "`$f$ von $n$ ist gleich $\frac{n}{2}$''.  Wir kÃ¶nnen also die hier
+betrachtete Funktion $f$ nun zusammengefasst folgendermaÃŸen schreiben:
 \[
  \function{f}{\N}{\Q}{n}{\frac{n}{2} \MDFPeriod}
 \]
 Man liest dies nun als "`die Funktion $f$ bildet von $\N$ nach $\Q$ ab, jedes $n\in\N$ wird auf $\frac{n}{2}\in\Q$ abgebildet''.
-Diese zusammenfassende Schreibweise werden wir im Rest diese Moduls für Funktionen weiter verwenden.
+Diese zusammenfassende Schreibweise werden wir im Rest dieses Moduls fÃ¼r Funktionen weiter verwenden.
 
-Wir betrachten einige weitere einfache Beispiele für Funktionen:
+Wir betrachten einige weitere einfache Beispiele fÃ¼r Funktionen:
 
 \begin{MExample}\MLabel{bsp1:grundlagen}
 \begin{itemize}
@@ -213,59 +214,59 @@ Wir betrachten einige weitere einfache Beispiele für Funktionen:
  \[
   \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
  \]
- Die Abbildungsvorschrift von $g$ lautet damit $g(x)=x^2$. Man kann dann die Zuordnungen für konkrete Zahlen ausrechnen. Zum Beispiel $g(2)=2^2=4$ oder $g(-\pi)=(-\pi)^2=\pi^2$, usw. 
- \item Eine Funktion $\Mvarphi$ soll jeder reellen Zahl $y$ zwischen $0$ und $1$ ihren dreifachen Wert plus $1$ zuordnen. Dies ist ein Beispiel für eine sogenannte linear-affine Funktion (siehe \MNRef{VBKM06_sec:linear-affin}):
+ Die Abbildungsvorschrift von $g$ lautet damit $g(x)=x^2$. Man kann dann die Zuordnungen fÃ¼r konkrete Zahlen ausrechnen. Zum Beispiel $g(2)=2^2=4$ oder $g(-\pi)=(-\pi)^2=\pi^2$, usw. 
+ \item Eine Funktion $\Mvarphi$ soll jeder reellen Zahl $y$ zwischen $0$ und $1$ ihren dreifachen Wert plus $1$ zuordnen. Dies ist ein Beispiel fÃ¼r eine sogenannte affin-lineare Funktion (siehe \MNRef{VBKM06_sec:affin-linear}):
  \[
   \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1 \MDFPeriod}
  \]
- Die Abbildungsvorschrift von $\Mvarphi$ lautet damit $\Mvarphi(y)=3y+1$. Somit errechnet man beispielsweise $\Mvarphi(\frac{1}{3})=3\cdot\frac{1}{3}+1=2$, usw. Allerdings kann man in diesem Fall $\Mvarphi(8)$ oder auch $\Mvarphi(1)$ \modsemph{nicht angeben}, da $8$ und $1$ keine Elemente der Menge $(0\MIntvlSep 1)$ sind.  %Dies wird unten im Rest dieses Abschnitts nochmal genauer erörtert werden. 
+ Die Abbildungsvorschrift von $\Mvarphi$ lautet damit $\Mvarphi(y)=3y+1$. Somit errechnet man beispielsweise $\Mvarphi(\frac{1}{3})=3\cdot\frac{1}{3}+1=2$, usw. Allerdings kann man in diesem Fall $\Mvarphi(8)$ oder auch $\Mvarphi(1)$ \modsemph{nicht angeben}, da $8$ und $1$ keine Elemente der Menge $(0\MIntvlSep 1)$ sind.  %Dies wird unten im Rest dieses Abschnitts nochmal genauer erÃ¶rtert werden. 
 \end{itemize}
 
 \end{MExample}
 
 \begin{MExercise}\MLabel{ex1:grundlagen}
 \begin{itemize}
- \item[(i)] Geben Sie eine Funktion $h$ an, die jeder positiven reellen Zahl $x$ ihren Kehrwert zuordnet. Berechnen Sie $h(2)$ und $h(1)$. Vervollständigen Sie die beiden Zuordnungen
+ \item[(i)] Geben Sie eine Funktion $h$ an, die jeder positiven reellen Zahl $x$ ihren Kehrwert zuordnet. Berechnen Sie $h(2)$ und $h(1)$. VervollstÃ¤ndigen Sie die beiden Zuordnungen
  \[
   3\longmapsto\text{ ?}\quad\text{und}\quad\text{? }\longmapsto2
  \]
  von $h$.
- \item[(ii)] Beschreiben Sie in Worten die Zuordnung, die von folgender Funktion ausgeführt wird:
+ \item[(ii)] Beschreiben Sie in Worten die Zuordnung, die von folgender Funktion ausgefÃ¼hrt wird:
  \[
   \function{w}{[4\MIntvlSep 9]}{\R}{\alpha}{\sqrt{\alpha} \MDFPeriod}
  \]
  Berechnen Sie $w(9)$ und $w(5)$. Kann man auch $w(10)$ angeben?
 \end{itemize}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
  \begin{itemize}
   \item[(i)] Der Kehrwert von $x$ ist $\frac{1}{x}$. Die positiven reellen Zahlen sind die Menge $(0\MIntvlSep \infty)$. Damit kann man die Funktion $h$ schreiben als
   \[
    \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\frac{1}{x} \MDFPeriod}
   \]
-  Dies ist ein Beispiel für eine Funktion vom hyperbolischen Typ und wird in Abschnitt \MNRef{VBKM06_Potenz} genauer behandelt. Die Abbildungsvorschrift von $h$ ist $h(x)=\frac{1}{x}$, womit gilt $h(2)=\frac{1}{2}$ und $h(1)=\frac{1}{1}=1$. Außerdem berechnet man $h(3)=\frac{1}{3}$, womit $3\longmapsto\frac{1}{3}$ gilt. Weiterhin führt die Überlegung $h(\frac{1}{2})=\frac{1}{\frac{1}{2}}=2$ auf $\frac{1}{2}\longmapsto2$.
-  \item[(ii)] Die Funktion $w$ ordnet jeder reellen Zahl $\alpha$, die größer oder gleich $4$ und kleiner oder gleich $9$ ist, ihre Quadratwurzel $\sqrt{\alpha}$ zu. Die Abbildungsvorschrift lautet $w(\alpha)=\sqrt{\alpha}$, womit $w(9)=\sqrt{9}=3$ sowie $w(5)=\sqrt{5}$ gilt. $w(10)$ kann nicht angegeben werden, da $10\notin[4\MIntvlSep 9]$.
+  Dies ist ein Beispiel fÃ¼r eine Funktion vom hyperbolischen Typ und wird in Abschnitt \MNRef{VBKM06_Potenz} genauer behandelt. Die Abbildungsvorschrift von $h$ ist $h(x)=\frac{1}{x}$, womit gilt $h(2)=\frac{1}{2}$ und $h(1)=\frac{1}{1}=1$. AuÃŸerdem berechnet man $h(3)=\frac{1}{3}$, womit $3\longmapsto\frac{1}{3}$ gilt. Weiterhin fÃ¼hrt die Ãœberlegung $h(\frac{1}{2})=\frac{1}{\frac{1}{2}}=2$ auf $\frac{1}{2}\longmapsto2$.
+  \item[(ii)] Die Funktion $w$ ordnet jeder reellen Zahl $\alpha$, die grÃ¶ÃŸer oder gleich $4$ und kleiner oder gleich $9$ ist, ihre Quadratwurzel $\sqrt{\alpha}$ zu. Die Abbildungsvorschrift lautet $w(\alpha)=\sqrt{\alpha}$, womit $w(9)=\sqrt{9}=3$ sowie $w(5)=\sqrt{5}$ gilt. $w(10)$ kann nicht angegeben werden, da $10\notin[4\MIntvlSep 9]$.
  \end{itemize}
 
 \end{MHint}
 \end{MExercise}
 
-Die obigen Beispiele zeigen einige Grundeigenschaften von Funktionen, für die wir nun spezielle Begriffe einführen wollen: 
+Die obigen Beispiele zeigen einige Grundeigenschaften von Funktionen, fÃ¼r die wir nun spezielle Begriffe einfÃ¼hren wollen: 
 \begin{MInfo}
 Beim Aufschreiben einer Funktion gibt man eine Menge von Zahlen an, deren Elemente von der Funktion anderen Zahlen zugeordnet werden sollen.
-Diese Menge heißt \MEntry{Definitionsbereich}{Definitionsbereich} oder Definitionsmenge der Funktion.
+Diese Menge heiÃŸt \MEntry{Definitionsbereich}{Definitionsbereich} oder Definitionsmenge der Funktion.
 Hat die Funktion einen Namen, etwa $f$, so wird der Definitionsbereich mit dem Symbol $D_f$ bezeichnet. So ist zum Beispiel die Definitionsmenge der Funktion
 \[
    \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\frac{1}{x}}
 \]
-aus Aufgabe \MNRef{ex1:grundlagen} die Menge $D_h=(0\MIntvlSep \infty)$. Auch für die Elemente des Definitionsbereichs gibt es eine spezielle Bezeichnung.
+aus Aufgabe \MNRef{ex1:grundlagen} die Menge $D_h=(0\MIntvlSep \infty)$. Auch fÃ¼r die Elemente des Definitionsbereichs gibt es eine spezielle Bezeichnung.
 In diesem Fall werden die Zahlen $x\in D_h$ mittels der Abbildungsvorschrift $h(x)=\frac{1}{x}$ zugeordnet.
-Hierbei wird die Variable $x$ als die \MEntry{Veränderliche}{Veränderliche} der Funktion $h$ bezeichnet. 
+Hierbei wird die Variable $x$ als die \MEntry{VerÃ¤nderliche}{VerÃ¤nderliche} der Funktion $h$ bezeichnet. 
 \end{MInfo}
 
 \begin{MExercise}
 Geben Sie die Definitionsbereiche der Funktionen $w$ aus Aufgabe \MNRef{ex1:grundlagen} und $g$ aus Beispiel \MNRef{bsp1:grundlagen} an.
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Es gilt
 \[
   \function{w}{[4\MIntvlSep 9]}{\R}{\alpha}{\sqrt{\alpha}}
@@ -274,20 +275,20 @@ und
 \[
   \function{g}{\R}{\R}{x}{x^2 \MDFPSpace,}
 \]
-womit man $D_w=[4\MIntvlSep 9]$ und $D_g=\R$ erhält.
+womit man $D_w=[4\MIntvlSep 9]$ und $D_g=\R$ erhÃ¤lt.
 \end{MHint}
 \end{MExercise}
 
 Betrachten wir die Abbildungsvorschrift $h(x)=\frac{1}{x}$ der Funktion $h$, so sehen wir, dass eigentlich nichts dagegen spricht,
-jede beliebige reelle Zahl für $x$ in $\frac{1}{x}$ einzusetzen \modsemph{außer} der
+jede beliebige reelle Zahl fÃ¼r $x$ in $\frac{1}{x}$ einzusetzen \modsemph{auÃŸer} der
 Zahl $x=0$, da die Rechenoperation "`$\frac{1}{0}$'' kein Ergebnis liefert. Man kann bei der Angabe einer
-Definitionsmenge also unterscheiden zwischen Zahlen, die ausgeschlossen sind, da man sie \modsemph{überhaupt nicht in die Abbildungsvorschrift einsetzen darf}, und
-solchen, die ausgeschlossen sind, weil \modsemph{die Funktion eben so definiert ist.} Dies führt nun auf den Begriff des \highlight{größtmöglichen Definitionsbereichs}
-einer Funktion, der größtmöglichen Teilmenge der reellen Zahlen $\R$, die man als Definitionsmenge einer Funktion mit bekannter Abbildungsvorschrift benutzen
+Definitionsmenge also unterscheiden zwischen Zahlen, die ausgeschlossen sind, da man sie \modsemph{Ã¼berhaupt nicht in die Abbildungsvorschrift einsetzen darf}, und
+solchen, die ausgeschlossen sind, weil \modsemph{die Funktion eben so definiert ist.} Dies fÃ¼hrt nun auf den Begriff des \highlight{grÃ¶ÃŸtmÃ¶glichen Definitionsbereichs}
+einer Funktion, der grÃ¶ÃŸtmÃ¶glichen Teilmenge der reellen Zahlen $\R$, die man als Definitionsmenge einer Funktion mit bekannter Abbildungsvorschrift benutzen
 kann.     
 
 \begin{MExample}
-Der größtmögliche Definitionsbereich $D_h\subset\R$ der Funktion
+Der grÃ¶ÃŸtmÃ¶gliche Definitionsbereich $D_h\subset\R$ der Funktion
 \[
  \function{h}{D_h}{\R}{x}{\frac{1}{x} \MDFPSpace,}
 \]
@@ -295,18 +296,18 @@ ist $D_h=\R\setminus\{0\}$.
 \end{MExample}
 
 \begin{MExercise}
-Geben Sie den größtmöglichen Definitionsbereich der Funktion
+Geben Sie den grÃ¶ÃŸtmÃ¶glichen Definitionsbereich der Funktion
 \[
   \function{w}{D_w}{\R}{\alpha}{\sqrt{\alpha}}
 \]
 an.
-\begin{MHint}{Lösung}
-Die Wurzel liefert für alle nicht-negativen reellen Zahlen ein sinnvolles reelles Ergebnis. Somit gilt $D_w=[0\MIntvlSep \infty)$.  
+\begin{MHint}{\iSolution}
+Die Wurzel liefert fÃ¼r alle nicht-negativen reellen Zahlen ein reelles Ergebnis. Somit gilt $D_w=[0\MIntvlSep \infty)$.%%%  
 \end{MHint}
 \end{MExercise}
 
 
-Beim Aufschreiben von Funktionen ist neben dem Definitionsbereich noch eine zweite Menge notwendig, nämlich diejenige Menge, die das Ziel der durch die Funktion
+Beim Aufschreiben von Funktionen ist neben dem Definitionsbereich noch eine zweite Menge notwendig, nÃ¤mlich diejenige Menge, die das Ziel der durch die Funktion
 beschriebenen Zuordnung ist. Diese wird als \highlight{Zielmenge} oder \highlight{Zielbereich}
 bezeichnet. Betrachten wir nochmal die Funktion 
 \[
@@ -316,16 +317,16 @@ aus Beispiel \MNRef{bsp1:grundlagen}. Deren Zielmenge sind die reellen Zahlen $\
 \[
  \function{f}{\N}{\Q}{n}{\frac{n}{2}}
 \]
-aus dem einführenden Beispiel dieses Abschnitts sind die rationalen Zahlen $\Q$. Wir erkennen hier einen wichtigen Unterschied zwischen der Definitionsmenge
-und der Zielmenge einer Funktion. Die Definitionsmenge enthält alle Zahlen, und nur diese, die man in die Abbildungsvorschrift der Funktion einsetzen darf
-und möchte. Wohingegen die Zielmenge alle Zahlen enthalten kann, die potentiell als Ergebnis der Abbildungsvorschrift auftauchen können. 
+aus dem einfÃ¼hrenden Beispiel dieses Abschnitts sind die rationalen Zahlen $\Q$. Wir erkennen hier einen wichtigen Unterschied zwischen der Definitionsmenge
+und der Zielmenge einer Funktion. Die Definitionsmenge enthÃ¤lt alle Zahlen, und nur diese, die man in die Abbildungsvorschrift der Funktion einsetzen darf
+und mÃ¶chte. Wohingegen die Zielmenge alle Zahlen enthalten kann, die potentiell als Ergebnis der Abbildungsvorschrift auftauchen kÃ¶nnen. 
 
-In diesem Zusammenhang stellen wir uns die Frage, was denn der kleinstmögliche Zielbereich ist, den man für eine Funktion mit gegebenem
-Definitionsbereich und bekannter Abbildungsvorschrift benutzen kann. Unter dem kleinstmöglichen Zielbereich verstehen wir all diejenigen Zahlen,
-die -- bei gegebener Definitionsmenge und Abbildungsvorschrift -- tatsächlich als Ziele der Zuordnung auftauchen. Diese Menge bezeichnet man
-als \MEntry{Wertebereich}{Wertebereich} oder Wertemenge und dessen Elemente als Werte der Funktion. Für eine Funktion $f$ benutzt man
-das Symbol $W_f$ für die Wertemenge. Für die Werte einer Funktion $f$ mit Veränderlicher $x$
-schreibt man allgemein meist $f(x)\in W_f$, wie in der Abbildungsvorschrift, oder führt eine weitere Variable ein, zum Beispiel $y=f(x)\in 
+In diesem Zusammenhang stellen wir uns die Frage, was denn der kleinstmÃ¶gliche Zielbereich ist, den man fÃ¼r eine Funktion mit gegebenem
+Definitionsbereich und bekannter Abbildungsvorschrift benutzen kann. Unter dem kleinstmÃ¶glichen Zielbereich verstehen wir all diejenigen Zahlen,
+die -- bei gegebener Definitionsmenge und Abbildungsvorschrift -- tatsÃ¤chlich als Ziele der Zuordnung auftauchen. Diese Menge bezeichnet man
+als \MEntry{Wertebereich}{Wertebereich} oder Wertemenge und dessen Elemente als Werte der Funktion. FÃ¼r eine Funktion $f$ benutzt man
+das Symbol $W_f$ fÃ¼r die Wertemenge. FÃ¼r die Werte einer Funktion $f$ mit VerÃ¤nderlicher $x$
+schreibt man allgemein meist $f(x)\in W_f$, wie in der Abbildungsvorschrift, oder fÃ¼hrt eine weitere Variable ein, zum Beispiel $y=f(x)\in 
 W_f$. 
 
 \begin{MExample}Betrachten wir hierzu nochmal das Beispiel 
@@ -337,7 +338,7 @@ Der Wertebereich dieser Funktion ist
 W_{\Mvarphi}=(1\MIntvlSep 4) \MDFPeriod
 \]
 Dies sieht man ein, indem man einige Werte aus $D_{\Mvarphi}=(0\MIntvlSep 1)$ in die Abbildungsvorschrift einsetzt und die Ergebnisse berechnet.
-Dies führt auf eine sogenannte \MEntry{Wertetabelle}{Wertetabelle}:
+Dies fÃ¼hrt auf eine sogenannte \MEntry{Wertetabelle}{Wertetabelle}:
 
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
@@ -348,47 +349,47 @@ $\Mvarphi(y)$ & $\MZahl{1}{3}$ & $\MZahl{1}{9}$ & $\MZahl{2}{5}$ & $\MZahl{3}{1}
 \end{center}
 \end{MExample}
 
-Solche Wertetabellen sind sinnvoll, um sich einen Überblick über die Werte einer Funktion zu verschaffen. Sie reichen aber nicht aus, um mathematisch \modsemph{ganz sicher} zu sein, was der tatsächliche Wertebereich einer Funktion ist. Eine Methode, den Wertebereich einer Funktion zu bestimmen, benutzt das Lösen von Ungleichungen:
+Solche Wertetabellen sind sinnvoll, um sich einen Ãœberblick Ã¼ber die Werte einer Funktion zu verschaffen. Sie reichen aber nicht aus, um mathematisch \modsemph{ganz sicher} zu sein, was der tatsÃ¤chliche Wertebereich einer Funktion ist. Eine Methode, den Wertebereich einer Funktion zu bestimmen, benutzt das LÃ¶sen von Ungleichungen:
 
 \begin{MExample}
 In der Funktion 
 \[
   \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1}
 \]
-gilt aufgrund des Definitionsbereichs $D_{\Mvarphi}=(0\MIntvlSep 1)$ für die Veränderliche:
+gilt aufgrund des Definitionsbereichs $D_{\Mvarphi}=(0\MIntvlSep 1)$ fÃ¼r die VerÃ¤nderliche:
 \[
  0<y<1 \MDFPeriod
 \]
-Nun benutzen wir Äquivalenzumformungen, um in diesen Ungleichungen die Abbildungsvorschrift $\Mvarphi(y)=3y+1$ zu erzeugen:
+Nun benutzen wir Ã„quivalenzumformungen, um in diesen Ungleichungen die Abbildungsvorschrift $\Mvarphi(y)=3y+1$ zu erzeugen:
 \[
  0<y<1\,|\cdot 3\quad\Leftrightarrow\quad 0<3y<3\,|+1\quad\Leftrightarrow\quad 1<3y+1<4\quad\Leftrightarrow\quad 1<\Mvarphi(y)<4 \MDFPeriod
 \]
-Somit gilt für die Werte der Funktion $\Mvarphi(y)\in(1\MIntvlSep 4)$ und deshalb $W_{\Mvarphi}=(1\MIntvlSep 4)$.
+Somit gilt fÃ¼r die Werte der Funktion $\Mvarphi(y)\in(1\MIntvlSep 4)$ und deshalb $W_{\Mvarphi}=(1\MIntvlSep 4)$.
 \end{MExample}
 
 \end{MXContent}
 
 \begin{MXContent}{Funktionen in Mathematik und Anwendungen}{Mathe und Anwendungen}{STD}\MLabel{sec:anwendungen}
 \MDeclareSiteUXID{VBKM06_FunktionenAnwendungen}
-Mathematische Funktionen beschreiben oft Zusammenhänge zwischen Größen, die aus anderen Wissenschaften oder dem Alltagsbereich stammen. So ist etwa das Volumen $V$ eines Würfels abhängig von der Kantenlänge $a$ des Würfels. Damit kann das Volumen als mathematische Funktion aufgefasst werden, in der jeder Kantenlänge $a>0$ das entsprechende Volumen $V(a)=a^3$ zugeordnet wird:
+Mathematische Funktionen beschreiben oft ZusammenhÃ¤nge zwischen GrÃ¶ÃŸen, die aus anderen Wissenschaften oder dem Alltagsbereich stammen. So ist etwa das Volumen $V$ eines WÃ¼rfels abhÃ¤ngig von der KantenlÃ¤nge $a$ des WÃ¼rfels. Damit kann das Volumen als mathematische Funktion aufgefasst werden, in der jeder KantenlÃ¤nge $a>0$ das entsprechende Volumen $V(a)=a^3$ zugeordnet wird:
 \[
  \function{V}{(0\MIntvlSep \infty)}{\R}{a}{V(a)=a^3 \MDFPeriod}
 \]
-Es ergibt sich die kubische Standardparabel (siehe Abschnitt \MNRef{sec:monome}) als Zusammenhang zwischen Kantenlänge und Volumen. Auf diese Art lassen sich noch viele weitere Beispiele aus Naturwissenschaften und aus dem Alltagsbereich finden: Ort in Abhängigkeit von der Zeit in der Physik, Reaktionsgeschwindigkeit in Ab\-häng\-ig\-keit von der Konzentration in der Chemie, Mehlmenge in Abhängigkeit von der gewünschten Teigmenge in einem Rezept, usw. 
+Es ergibt sich die kubische Standardparabel (siehe Abschnitt \MNRef{sec:monome}) als Zusammenhang zwischen KantenlÃ¤nge und Volumen. Auf diese Art lassen sich noch viele weitere Beispiele aus Naturwissenschaften und aus dem Alltagsbereich finden: Ort in AbhÃ¤ngigkeit von der Zeit in der Physik, Reaktionsgeschwindigkeit in Ab\-hÃ¤ng\-ig\-keit von der Konzentration in der Chemie, Mehlmenge in AbhÃ¤ngigkeit von der gewÃ¼nschten Teigmenge in einem Rezept, usw. 
 
 
 
 Wir betrachten dazu ein Beispiel. 
 \begin{MExample}\MLabel{bsp:anwendungen}
-Die Intensität radioaktiver Strahlung ist \highlight{umgekehrt proportional} zum Quadrat des Abstands von der Quelle. Dies wird auch als \modsemph{Abstandsgesetz} bezeichnet. Unter Benutzung einer physikalischen \highlight{Proportionalitätskonstanten} $c>0$ kann man den Zusammenhang zwischen Intensität $I$ der Strahlung und Abstand $r>0$ von der Quelle folgendermaßen als mathematische Funktion formulieren:
+Die IntensitÃ¤t radioaktiver Strahlung ist \highlight{umgekehrt proportional} zum Quadrat des Abstands von der Quelle. Dies wird auch als \modsemph{Abstandsgesetz} bezeichnet. Unter Benutzung einer physikalischen \highlight{ProportionalitÃ¤tskonstanten} $c>0$ kann man den Zusammenhang zwischen IntensitÃ¤t $I$ der Strahlung und Abstand $r>0$ von der Quelle folgendermaÃŸen als mathematische Funktion formulieren:
 \[
  \function{I}{(0\MIntvlSep \infty)}{\R}{r}{\frac{c}{r^2} \MDFPeriod}
 \]
-Für die Intensität gilt also die Abbildungsvorschrift $I(r)=\frac{c}{r^2}$, die somit die Abhängigkeit der Größen $I$ und $r$ voneinander beschreibt. 
+FÃ¼r die IntensitÃ¤t gilt also die Abbildungsvorschrift $I(r)=\frac{c}{r^2}$, die somit die AbhÃ¤ngigkeit der GrÃ¶ÃŸen $I$ und $r$ voneinander beschreibt. 
 \end{MExample}
 
 \begin{MExercise}\MLabel{ex:anwendungen}
-Beim Bau von Windkraftanlagen gilt in guter Näherung, dass die Leistung \highlight{proportional} zur dritten Potenz der Windgeschwindigkeit ist. Unter Benutzung einer Proportionalitätskonstanten $\rho>0$, welche der folgenden mathematischen Funktionen gibt diese Abhängigkeit physikalischer Größen korrekt wieder?
+Beim Bau von Windkraftanlagen gilt in guter NÃ¤herung, dass die Leistung \highlight{proportional} zur dritten Potenz der Windgeschwindigkeit ist. Unter Benutzung einer ProportionalitÃ¤tskonstanten $\rho>0$, welche der folgenden mathematischen Funktionen gibt diese AbhÃ¤ngigkeit physikalischer GrÃ¶ÃŸen korrekt wieder?
 
 a)
 \[
@@ -406,8 +407,8 @@ d)
 \[
  \function{x}{[0\MIntvlSep \infty)}{\R}{f}{x(f)=\rho f^3}
 \]
-\begin{MHint}{Lösung}
-c) und d). a) ist falsch, da es sich um eine umgekehrte Proportionalität handelt. b) ist nicht der Problemstellung angepasst. Negative Windgeschwindigkeiten ergeben in diesem Zusammenhang keinen Sinn und sollten aus dem Definitionsbereich ausgeschlossen werden. c) ist korrekt; in diesem Fall ergibt sich die Abhängigkeit $P(v)=\rho v^3$ für die Leistung $P$ und die Windgeschwindigkeit $v$. Wir bemerken, dass d) genauso richtig ist. In diesem Fall haben wir eine Funktion, die völlig identisch zu Fall c) ist, nur die Leistung wird in diesem Fall mit $x$ und die Windgeschwindigkeit mit $f$ bezeichnet. Dies verdeutlicht nochmals, dass die Variablen, die für die Bezeichnung der Funktion und für die Veränderliche benutzt werden, mathematisch völlig willkürlich sind. Allerdings gibt es in den Naturwissenschaften Konventionen, welche Variablen \modsemph{üblicherweise} für bestimmte Größen verwendet werden. So ist es hier doch üblicher, die Geschwindigkeit mit $v$ (vom englischen \modsemph{velocity}) und die Leistung 
+\begin{MHint}{\iSolution}
+c) und d). a) ist falsch, da es sich um eine umgekehrte ProportionalitÃ¤t handelt. b) ist nicht der Problemstellung angepasst. Negative Windgeschwindigkeiten ergeben in diesem Zusammenhang keinen Sinn und sollten aus dem Definitionsbereich ausgeschlossen werden. c) ist korrekt; in diesem Fall ergibt sich die AbhÃ¤ngigkeit $P(v)=\rho v^3$ fÃ¼r die Leistung $P$ und die Windgeschwindigkeit $v$. Wir bemerken, dass d) genauso richtig ist. In diesem Fall haben wir eine Funktion, die vÃ¶llig identisch zu Fall c) ist, nur die Leistung wird in diesem Fall mit $x$ und die Windgeschwindigkeit mit $f$ bezeichnet. Dies verdeutlicht nochmals, dass die Variablen, die fÃ¼r die Bezeichnung der Funktion und fÃ¼r die VerÃ¤nderliche benutzt werden, mathematisch vÃ¶llig willkÃ¼rlich sind. Allerdings gibt es in den Naturwissenschaften Konventionen, welche Variablen \modsemph{Ã¼blicherweise} fÃ¼r bestimmte GrÃ¶ÃŸen verwendet werden. So ist es hier doch Ã¼blicher, die Geschwindigkeit mit $v$ (vom englischen \modsemph{velocity}) und die Leistung 
 mit $P$ (
 vom englischen \modsemph{power}) zu bezeichnen.
 \end{MHint}
@@ -453,7 +454,7 @@ als sogenanntes Venn-Diagramm (vgl.~Abschnitt \MNRef{sec:zuordnungen})
 \end{tikzpicture}
 }%
 
-ist zwar nützlich, um den Funktionsbegriff zu verstehen, sagt aber nicht viel über die besonderen Eigenschaften der Funktion aus. Hierfür gibt es eine andere Möglichkeit der grafischen Darstellung, nämlich die des \highlight{Graphen} der Funktion. Dazu fertigen wir ein zweidimensionales Koordinatensystem (vgl.~Modul \MNRef{VBKM09}) an, in dem die Zahlen aus dem Definitionsbereich der Funktion auf der Querachse und die Zahlen aus dem Zielbereich auf der Hochachse eingetragen werden.
+ist zwar nÃ¼tzlich, um den Funktionsbegriff zu verstehen, sagt aber nicht viel Ã¼ber die besonderen Eigenschaften der Funktion aus. HierfÃ¼r gibt es eine andere MÃ¶glichkeit der grafischen Darstellung, nÃ¤mlich die des \highlight{Graphen} der Funktion. Dazu fertigen wir ein zweidimensionales Koordinatensystem (vgl.~Modul \MNRef{VBKM09}) an, in dem die Zahlen aus dem Definitionsbereich der Funktion auf der Querachse und die Zahlen aus dem Zielbereich auf der Hochachse eingetragen werden.
 In einem solchen Koordinatensystem markieren wir alle Punkte $(x|f(x))$, die durch die Zuordnung der Funktion $x\longmapsto f(x)$ entstehen, in diesem Fall also alle Punkte $(x|x^2)$, d.h.~$(1|1)$, $(-1|1)$, $(-\frac{\pi}{2}|\frac{\pi^2}{4})$, usw. Dadurch entsteht eine Kurve, die \highlight{Graph von $f$} genannt und mit dem Symbol $G_f$ bezeichnet wird:
 
 % grund1
@@ -472,7 +473,7 @@ In einem solchen Koordinatensystem markieren wir alle Punkte $(x|f(x))$, die dur
 \draw (-1,5.2) node[anchor=north west] {$f(x)$};
 % Graph (x,x^2)
 \draw[smooth,samples=50,domain=-2.1:2.1, line width=2pt,color=green] plot(\x,{(\x)^(2.0)});
-%Ausgewählte Elemente des Definitionsbereiches:
+%AusgewÃ¤hlte Elemente des Definitionsbereiches:
 \foreach \x in {-1.57, -1, 1, 2}{
 	\fill [color = cyan](\x,0.0) circle (1.5pt);
 	% f(x):
@@ -514,7 +515,7 @@ aus Abschnitt \MNRef{sec:zuordnungen} und deren Graphen
 %Achsenbeschriftung
 \draw (4,0) node[anchor=north west] {$n$};
 \draw (-1,2) node[anchor=north west] {$f(n)$};
-%"alle" Elemente des Definitionsbereiches:
+%Ã¤lle" Elemente des Definitionsbereiches:
 \foreach \n in {-3,-2,-1, 0, 1,2,3}{
 	\fill [color = cyan](\n,0.0) circle (1.5pt);
 	% f(x):
@@ -529,13 +530,13 @@ aus Abschnitt \MNRef{sec:zuordnungen} und deren Graphen
 \end{tikzpicture}
 }%
 
-so stellen wir fest, dass Graphen nicht immer durchgehende Kurven sein müssen, sondern wie in diesem Fall auch nur aus einzelnen Punkten bestehen können. 
+so stellen wir fest, dass Graphen nicht immer durchgehende Kurven sein mÃ¼ssen, sondern wie in diesem Fall auch nur aus einzelnen Punkten bestehen kÃ¶nnen. 
 
 Anhand des Graphen sind nun viele Grundeigenschaften einer Funktion erkennbar. Rufen wir uns die Funktion 
 \[
   \function{\Mvarphi}{(0\MIntvlSep 1)}{\R}{y}{3y+1}
 \]
-mit dem Definitionsbereich $D_{\Mvarphi}=(0\MIntvlSep 1)$ und dem Wertebereich $W_{\Mvarphi}=(1\MIntvlSep 4)$ aus Abschnitt \MNRef{sec:zuordnungen} ins Gedächtnis. Wenn wir ihren Graphen zeichnen, so erkennen wir, dass der Definitionsbereich und der Wertebereich auf der Quer- bzw.~Hochachse auftauchen:
+mit dem Definitionsbereich $D_{\Mvarphi}=(0\MIntvlSep 1)$ und dem Wertebereich $W_{\Mvarphi}=(1\MIntvlSep 4)$ aus Abschnitt \MNRef{sec:zuordnungen} ins GedÃ¤chtnis. Wenn wir ihren Graphen zeichnen, so erkennen wir, dass der Definitionsbereich und der Wertebereich auf der Quer- bzw.~Hochachse auftauchen:
 
 % grund3 f: (0,1) --> \R, y \mapsto 3y+1
 \MTikzAuto{%
@@ -574,7 +575,7 @@ Betrachten Sie nochmal den Graphen der Funktion
  \function{f}{\R}{\R}{x}{x^2} \MDFPSpace,
 \]
 markieren Sie Definitions- und Wertebereiche auf Quer- und Hochachse und geben Sie diese an.
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 % grund4
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -645,7 +646,7 @@ Weiterhin ist die Eigenschaft der Eindeutigkeit von Funktionen am Graphen zu erk
 \end{tikzpicture}
 }%
 
-niemals als Graph einer Funktion auftauchen kann. Zu einem $x$-Wert aus dem Definitionsbereich müsste es hier mehrere Werte $y_1,y_2,y_3$ aus dem Wertebereich geben. Graphen von Funktionen geben die Eindeutigkeit also immer dadurch wieder, dass sie "`nicht in horizontaler Richtung zurücklaufen können''. 
+niemals als Graph einer Funktion auftauchen kann. Zu einem $x$-Wert aus dem Definitionsbereich mÃ¼sste es hier mehrere Werte $y_1,y_2,y_3$ aus dem Wertebereich geben. Graphen von Funktionen geben die Eindeutigkeit also immer dadurch wieder, dass sie "`nicht in horizontaler Richtung zurÃ¼cklaufen kÃ¶nnen''. 
 
 
 Eine weitere wichtige Eigenschaft eines Graphen ist sein \modsemph{Wachstumsverhalten}.
@@ -680,19 +681,19 @@ und ihren Graphen.
 \draw (2.1,4) node[right] {$G_f$};
 \draw[color = black, fill = black]  (0,0) circle (1.5pt);
 \draw[->,color=green] (1.5,1) -- (2.5,3);
-\draw[color=green] (2,2) node[right] {wächst};
+\draw[color=green] (2,2) node[right] {wÃ¤chst};
 \draw[->,color=red] (-2.5,3) -- (-1.5,1);
-\draw[color=red] (-2,2) node[left] {fällt};
+\draw[color=red] (-2,2) node[left] {fÃ¤llt};
 \end{tikzpicture}
 }%
 
-Auf der Querachse in diesem Graphen erkennen wir zwei Bereiche, in denen der Graph unterschiedliches \modsemph{Wachstumsverhalten} zeigt. Im Bereich von $x$-Werten mit $x\in(-\infty\MIntvlSep 0)$ \modsemph{fällt} der Graph. Das heißt, werden die $x$-Werte größer, so werden die zugehörigen Funktionswerte auf der Hochachse kleiner. Im Bereich von $x$-Werten mit $x\in(0\MIntvlSep \infty)$ stellen wir das gegenteilige Verhalten fest. Bei größer werdenden $x$-Werten werden auch die zugehörigen Funktionswerte größer. Der Graph \modsemph{wächst}. Beim Wert $0\in\R$ geht der fallende Bereich in den wachsenden Bereich über. Solche Werte werden bei der Untersuchung von Scheitelpunkten in Abschnitt \MNRef{sec:polynome} und beim Bestimmen von \MSRef{VBKM07_Kurvendiskussion}{Extremwerten} in Modul \MNRef{VBKM07} besonders wichtig werden.
+Auf der Querachse in diesem Graphen erkennen wir zwei Bereiche, in denen der Graph unterschiedliches \modsemph{Wachstumsverhalten} zeigt. Im Bereich von $x$-Werten mit $x\in(-\infty\MIntvlSep 0)$ \modsemph{fÃ¤llt} der Graph. Das heiÃŸt, werden die $x$-Werte grÃ¶ÃŸer, so werden die zugehÃ¶rigen Funktionswerte auf der Hochachse kleiner. Im Bereich von $x$-Werten mit $x\in(0\MIntvlSep \infty)$ stellen wir das gegenteilige Verhalten fest. Bei grÃ¶ÃŸer werdenden $x$-Werten werden auch die zugehÃ¶rigen Funktionswerte grÃ¶ÃŸer. Der Graph \modsemph{wÃ¤chst}. Beim Wert $0\in\R$ geht der fallende Bereich in den wachsenden Bereich Ã¼ber. Solche Werte werden bei der Untersuchung von Scheitelpunkten in Abschnitt \MNRef{sec:polynome} und beim Bestimmen von \MSRef{VBKM07_Kurvendiskussion}{Extremwerten} in Modul \MNRef{VBKM07} besonders wichtig werden.
 
-Wir bezeichnen diese beiden Eigenschaften als \highlight{streng monoton fallend} bzw.~\highlight{streng monoton wachsend} und schreiben sie mathematisch folgendermaßen auf:
+Wir bezeichnen diese beiden Eigenschaften als \highlight{streng monoton fallend} bzw.~\highlight{streng monoton wachsend} und schreiben sie mathematisch folgendermaÃŸen auf:
 
 \begin{MInfo}
 \begin{itemize}
- \item Für $x_1<x_2$ aus einer Teilmenge des Definitionsbereichs einer Funktion $f$ gilt $f(x_1)>f(x_2)$. Dann heißt $f$ in dieser Teilmenge streng monoton fallend.
+ \item FÃ¼r $x_1<x_2$ aus einer Teilmenge des Definitionsbereichs einer Funktion $f$ gilt $f(x_1)>f(x_2)$. Dann heiÃŸt $f$ in dieser Teilmenge streng monoton fallend.
 
 %GRAPH: mon2a:
 \MTikzAuto{%
@@ -726,7 +727,7 @@ Wir bezeichnen diese beiden Eigenschaften als \highlight{streng monoton fallend}
 \end{tikzpicture}  
 }%
 
- \item Für $x_1<x_2$ aus einer Teilmenge des Definitionsbereichs einer Funktion $f$ gilt $f(x_1)<f(x_2)$. Dann heißt $f$ in dieser Teilmenge streng monoton wachsend.
+ \item FÃ¼r $x_1<x_2$ aus einer Teilmenge des Definitionsbereichs einer Funktion $f$ gilt $f(x_1)<f(x_2)$. Dann heiÃŸt $f$ in dieser Teilmenge streng monoton wachsend.
 
 %GRAPH: mon2b:
 \MTikzAuto{%
@@ -763,9 +764,9 @@ Wir bezeichnen diese beiden Eigenschaften als \highlight{streng monoton fallend}
 \end{itemize}
 \end{MInfo}
 
-Dies gilt so für alle Funktionen, die wir in diesem Modul betrachten werden. Oft treffen die beschriebenen Monotonieeigenschaften nur in bestimmten Bereichen der Definitionsmenge der Funktion zu, wie oben bei der Standardparabel gesehen. Es gibt jedoch auch Funktionen, die nur eine der Monotonieeigenschaften im gesamten Definitionsbereich besitzen (siehe Beispiel \MNRef{bsp1:monoton} unten). In diesem Fall nennt man dann die gesamte Funktion streng monoton wachsend oder streng monoton fallend. Weiterhin heißt eine Funktion, die entweder streng monoton fallend oder streng monoton wachsend ist, einfach \highlight{streng monoton}.
+Dies gilt so fÃ¼r alle Funktionen, die wir in diesem Modul betrachten werden. Oft treffen die beschriebenen Monotonieeigenschaften nur in bestimmten Bereichen der Definitionsmenge der Funktion zu, wie oben bei der Standardparabel gesehen. Es gibt jedoch auch Funktionen, die nur eine der Monotonieeigenschaften im gesamten Definitionsbereich besitzen (siehe Beispiel \MNRef{bsp1:monoton} unten). In diesem Fall nennt man dann die gesamte Funktion streng monoton wachsend oder streng monoton fallend. Weiterhin heiÃŸt eine Funktion, die entweder streng monoton fallend oder streng monoton wachsend ist, \highlight{streng monoton}.
 
-Ein weiteres Beispiel zeigt, wie man strenge Monotonie mit Hilfe des Lösens von \MSRef{M03_Ungleichungen}{Ungleichungen} aus Modul \MRef{VBKM03} bei einer Funktion explizit nachrechnen kann.
+Ein weiteres Beispiel zeigt, wie man strenge Monotonie mit Hilfe des LÃ¶sens von \MSRef{M03_Ungleichungen}{Ungleichungen} aus Modul \MRef{VBKM03} bei einer Funktion explizit nachrechnen kann.
 
 \begin{MExample}\MLabel{bsp1:monoton}%
 Gegeben sei die Funktion
@@ -778,7 +779,8 @@ Wir beginnen, zwei beliebige Zahlen $x_1,x_2\in D_h=\R$ aufzuschreiben mit der E
 \[
  x_1<x_2
 \]
-gilt. Durch \MSRef{VBKM03_AequivalenzumformungenUngleichungen}{Äquivalenzumformungen} von Ungleichungen können wir $x_1<x_2$ nun entweder zu $h(x_1)<h(x_2)$ oder zu $h(x_1)>h(x_2)$ umformen und damit folgern, dass $h$ streng monoton wachsend oder streng monoton fallend ist. Es gelten die folgenden Äquivalenzumformungen für $x_1<x_2$:
+gilt. Durch 
+\MSRef{VBKM03 AequivalenzumformungenUngleichungen}{{Ã„}quivalenzumformungen} von Ungleichungen kÃ¶nnen wir $x_1<x_2$ nun entweder zu $h(x_1)<h(x_2)$ oder zu $h(x_1)>h(x_2)$ umformen und damit folgern, dass $h$ streng monoton wachsend oder streng monoton fallend ist. Es gelten die folgenden Ã„quivalenzumformungen fÃ¼r $x_1<x_2$:
 \[
  x_1<x_2\,|\cdot(-\frac{1}{2})\quad\Leftrightarrow\quad -\frac{1}{2}x_1>-\frac{1}{2}x_2 \MDFPeriod
 \]
@@ -786,7 +788,7 @@ Weiterhin wird in der Abbildungsvorschrift $+1$ addiert. Wir erhalten also
 \[
  -\frac{1}{2}x_1>-\frac{1}{2}x_2\,|+1\quad\Leftrightarrow\quad -\frac{1}{2}x_1+1>-\frac{1}{2}x_2+1\quad\Leftrightarrow\quad h(x_1)>h(x_2) \MDFPeriod
 \]
-Da nun $h(x_1)>h(x_2)$ gilt, ist $h$ streng monoton fallend. Dies können wir auch am Graphen von $h$ erkennen:
+Da nun $h(x_1)>h(x_2)$ gilt, ist $h$ streng monoton fallend. Dies kÃ¶nnen wir auch am Graphen von $h$ erkennen:
 
 %GRAPH: mon3:
 \MTikzAuto{%
@@ -810,19 +812,19 @@ Da nun $h(x_1)>h(x_2)$ gilt, ist $h$ streng monoton fallend. Dies können wir auc
 \draw (-1,1.5) node[anchor=east] {$G_h$};
 %Markierung
 \draw[->,color=red] (1,1.2) -- (3,0.2);
-\draw[color=red] (2,1) node[anchor=west] {fällt};
+\draw[color=red] (2,1) node[anchor=west] {fÃ¤llt};
 \end{tikzpicture}
 }%
 
 \end{MExample}
 
 \begin{MExercise}\MLabel{ex1:monoton}
-Rechnen Sie durch Äquivalenzumformungen von Ungleichungen explizit nach, dass
+Rechnen Sie durch Ã„quivalenzumformungen von Ungleichungen explizit nach, dass
 \[
  \function{\eta}{\R}{\R}{x}{2x+2}
 \]
 streng monoton wachsend ist.
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Es gilt
 \[
  x_1<x_2\,|\cdot2\quad\Leftrightarrow\quad2x_1<2x_2\,|+2\quad\Leftrightarrow\quad2x_1+2<2x_2+2\quad\Leftrightarrow\quad\eta(x_1)<\eta(x_2) \MDFPSpace,
@@ -841,12 +843,12 @@ womit $\eta$ streng monoton wachsend ist.
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Intro}
-In diesem Abschnitt untersuchen wir folgende Klassen von Funktionen: konstante, lineare, linear-affine Funktionen
+In diesem Abschnitt untersuchen wir folgende Klassen von Funktionen: konstante, lineare, affin-lineare Funktionen
 sowie Monome und Polynome. 
 \end{MIntro}
 
 
-\begin{MXContent}{Konstante Funktionen und die Identität}{Konstanten und Identität}{STD}
+\begin{MXContent}{Konstante Funktionen und die IdentitÃ¤t}{Konstanten und IdentitÃ¤t}{STD}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Konstanten}
 
 Die sogenannten konstanten Funktionen ordnen jeder Zahl aus dem Definitionsbereich $\R$ \modsemph{eine} konstante Zahl aus dem Zielbereich $\R$ zu. Zum Beispiel die konstante Zahl $2$ auf folgende Art:
@@ -906,9 +908,9 @@ Die sogenannten konstanten Funktionen ordnen jeder Zahl aus dem Definitionsberei
 \end{tikzpicture}
 }%
 
-Es gilt hier also $f(x)=2$ für alle $x\in\R$, womit die Wertemenge dieser Funktion $f$ nur aus der Menge $W_f=\{2\}\subset\R$ besteht. 
+Es gilt hier also $f(x)=2$ fÃ¼r alle $x\in\R$, womit die Wertemenge dieser Funktion $f$ nur aus der Menge $W_f=\{2\}\subset\R$ besteht. 
 
-Die Identität auf $\R$ ist die Funktion, welche jeder reellen Zahl wieder genau die identische reelle Zahl zuordnet. Man schreibt das so:
+Die IdentitÃ¤t auf $\R$ ist die Funktion, welche jeder reellen Zahl wieder genau die identische reelle Zahl zuordnet. Man schreibt das so:
 \[
  \function{\Id}{\R}{\R}{x}{x \MDFPeriod}
 \]
@@ -965,7 +967,7 @@ Die Identität auf $\R$ ist die Funktion, welche jeder reellen Zahl wieder genau 
 \end{tikzpicture}
 }%
 
-Es gilt hier also $\Id(x)=x$ für alle $x\in\R$, womit der Wertebereich von $\Id$ die gesamten reellen Zahlen sind ($W_{\Id}=\R$). Weiterhin ist die Identität offenbar eine streng monoton wachsende Funktion. 
+Es gilt hier also $\Id(x)=x$ fÃ¼r alle $x\in\R$, womit der Wertebereich von $\Id$ die gesamten reellen Zahlen sind ($W_{\Id}=\R$). Weiterhin ist die IdentitÃ¤t offenbar eine streng monoton wachsende Funktion. 
 
 
 
@@ -974,7 +976,7 @@ Es gilt hier also $\Id(x)=x$ für alle $x\in\R$, womit der Wertebereich von $\Id$
 
 \begin{MXContent}{Lineare Funktionen}{Linear}{STD}\MLabel{sec:linear}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Linear}
-Ausgehend von der Identität, kann man sich nun komplexere Funktionen, die sogenannten \highlight{linearen Funktionen}, konstruieren. So kann man sich zum Beispiel überlegen, dass jede reelle Zahl ihrem doppelten Wert, oder ihrem $\pi$-fachen Wert, usw.~zugeordnet werden kann. Etwa
+Ausgehend von der IdentitÃ¤t, kann man sich nun komplexere Funktionen, die sogenannten \highlight{linearen Funktionen}, konstruieren. So kann man sich zum Beispiel Ã¼berlegen, dass jede reelle Zahl ihrem doppelten Wert, oder ihrem $\pi$-fachen Wert, usw.~zugeordnet werden kann. Etwa
 \[
  \function{f}{\R}{\R}{x}{2x}
 \]
@@ -1092,7 +1094,7 @@ oder
 \end{tikzpicture}
 }%
 
-Alle linearen Funktionen (außer der Nullfunktion, s.u.) haben also als Wertebereich ebenfalls die gesamten reellen Zahlen ($W_f,W_g=\R$). Der Faktor, mit dem jede reelle Zahl in einer solchen linearen Funktion multipliziert wird, heißt \highlight{Steigung} der linearen Funktion. Oft möchte man auch bei linearen Funktionen nicht eine bestimmte Funktion mit spezifischer Steigung angeben, sondern irgendeine mit beliebiger Steigung $m\in\R$:
+Alle linearen Funktionen (auÃŸer der Nullfunktion, s.u.) haben also als Wertebereich ebenfalls die gesamten reellen Zahlen ($W_f,W_g=\R$). Der Faktor, mit dem jede reelle Zahl in einer solchen linearen Funktion multipliziert wird, heiÃŸt \highlight{Steigung} der linearen Funktion. Oft mÃ¶chte man auch bei linearen Funktionen nicht eine bestimmte Funktion mit spezifischer Steigung angeben, sondern irgendeine mit beliebiger Steigung $m\in\R$:
 \[
  \function{f}{\R}{\R}{x}{m x \MDFPeriod}
 \]
@@ -1123,7 +1125,7 @@ Alle linearen Funktionen (außer der Nullfunktion, s.u.) haben also als Wertebere
 \end{tikzpicture}
 }%
 
-Woher kommt der Begriff Steigung für eine lineare Funktion? Teilt man die Differenz, um welche der Graph in vertikaler Richtung anwächst, durch die entsprechende Längeneinheit in horizontaler Richtung, so erhält man die Steigung $m$. 
+Woher kommt der Begriff Steigung fÃ¼r eine lineare Funktion? Teilt man die Differenz, um welche der Graph in vertikaler Richtung anwÃ¤chst, durch die entsprechende LÃ¤ngeneinheit in horizontaler Richtung, so erhÃ¤lt man die Steigung $m$. Also $m = \frac{f(x_2) - f(x_1)}{x_2 - x_1}$ fÃ¼r $x_1 < x_2$.%%%
 
 
 \begin{MInfo}
@@ -1136,25 +1138,25 @@ ist genau dann streng monoton wachsend, wenn ihre Steigung positiv ist, also $m>
 
 
 \begin{MExercise}
-Welche lineare Funktion ergibt sich für die Steigung $m=1$?
-\begin{MHint}{Lösung}
-Es ergibt sich $f(x)=1\cdot x=x=\Id(x)$, also genau die Identität.
+Welche lineare Funktion ergibt sich fÃ¼r die Steigung $m=1$?
+\begin{MHint}{\iSolution}
+Es ergibt sich $f(x)=1\cdot x=x=\Id(x)$, also genau die IdentitÃ¤t.
 \end{MHint}
 \end{MExercise}
 
 \begin{MExercise}
-Welche Funktion ergibt sich für die Steigung $m=0$?
-\begin{MHint}{Lösung}
+Welche Funktion ergibt sich fÃ¼r die Steigung $m=0$?
+\begin{MHint}{\iSolution}
 Es ergibt sich $f(x)=0\cdot x=0$, also genau die konstante Funktion, die konstant $0$ ist.
 \end{MHint}
 \end{MExercise}
 
 \end{MXContent}
  
-\begin{MXContent}{Linear-affine Funktionen}{Affin}{STD}
-\MLabel{VBKM06_sec:linear-affin}
+\begin{MXContent}{Affin-lineare Funktionen}{Affin}{STD}
+\MLabel{VBKM06_sec:affin-linear}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Affin}
-Kombiniert man lineare Funktionen mit konstanten Funktionen, so erhält man die sogenannten \highlight{linear-affinen Funktionen}. Diese ergeben sich als die Summe einer linearen und einer konstanten Funktion. Im allgemeinen Fall, ohne konkret spezifizierte Steigung ($m\in\R$) und mit einer Konstanten ($c\in\R$) schreibt man das so:
+Kombiniert man lineare Funktionen mit konstanten Funktionen, so erhÃ¤lt man die sogenannten \highlight{affin-lineare Funktionen}. Diese ergeben sich als die Summe einer linearen und einer konstanten Funktion. Im allgemeinen Fall, ohne konkret spezifizierte Steigung ($m\in\R$) und mit einer Konstanten ($c\in\R$) schreibt man das so:
 \[
  \function{f}{\R}{\R}{x}{m x+c \MDFPeriod}
 \]
@@ -1186,7 +1188,7 @@ Kombiniert man lineare Funktionen mit konstanten Funktionen, so erhält man die s
 \end{tikzpicture}	
 }%
 
-Die Graphen linear-affiner Funktionen werden auch als \highlight{Geraden} bezeichnet. Die Konstante $m$ wird für linear-affine Funktionen weiterhin als Steigung bezeichnet, die Konstante $c\in\R$ als \highlight{Achsenabschnitt}. Der Grund für diese Bezeichnung ist folgender: Betrachtet man den Schnittpunkt des Graphen der linear-affinen Funktion mit der vertikalen Achse, so hat dieser vom Ursprung den Abstand $c$ (siehe Abbildung oben). So ergibt sich zum Beispiel für die unten abgebildete linear-affine Funktion
+Die Graphen affin-linearer Funktionen werden auch als \highlight{Geraden} bezeichnet. Die Konstante $m$ wird fÃ¼r affin-lineare Funktionen weiterhin als Steigung bezeichnet, die Konstante $c\in\R$ als \highlight{Achsenabschnitt}. Der Grund fÃ¼r diese Bezeichnung ist folgender: Betrachtet man den Schnittpunkt des Graphen der affin-linearer Funktion mit der vertikalen Achse, so hat dieser vom Ursprung den Abstand $c$ (siehe Abbildung oben). So ergibt sich zum Beispiel fÃ¼r die unten abgebildete affin-linearer Funktion
 \[
  \function{f}{\R}{\R}{x}{-2x-1}
 \]
@@ -1226,15 +1228,15 @@ Was sind die Steigung und der Achsenabschnitt von
 \[
  \function{f}{\R}{\R}{x}{\pi x-42 \MDFPSpace?}
 \]
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Steigung: $\pi$ und Achsenabschnitt: $-42$
 \end{MHint}
 \end{MExercise}
 
 
 \begin{MExercise}
-Welche Funktionen ergeben sich als linear-affine Funktionen mit Steigung $m=0$ und welche mit Achsenabschnitt $c=0$ ?
-\begin{MHint}{Lösung}
+Welche Funktionen ergeben sich als affin-linearer Funktionen mit Steigung $m=0$ und welche mit Achsenabschnitt $c=0$ ?
+\begin{MHint}{\iSolution}
 Ist $m=0$, so gilt $f(x)=0\cdot x+c=c$. Damit ergeben sich die konstanten Funktionen als diejenigen mit Steigung $0$. Ein verschwindender Achsenabschnitt $c=0$ impliziert $f(x)=m x+0=m x$. Somit ergeben sich in diesem Fall genau die linearen Funktionen.
 \end{MHint}
 \end{MExercise}
@@ -1245,19 +1247,19 @@ Ist $m=0$, so gilt $f(x)=0\cdot x+c=c$. Damit ergeben sich die konstanten Funkti
 \begin{MXContent}{Betragsfunktionen}{Betrag}{STD}
 \MLabel{VBKM06_sec:betrag}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Betrag}
-In Modul \MNRef{VBKM02} wurde der \MSRef{VBKM02_Betrag}{Betrag} einer reellen Zahl $x$ auf folgende Art eingeführt:
+In Modul \MNRef{VBKM02} wurde der \MSRef{VBKM02_Betrag}{Betrag} einer reellen Zahl $x$ auf folgende Art eingefÃ¼hrt:
 \[
  |x| = \begin{MCaseEnv} x & \text{falls}\;x\geq 0 \\ -x & \text{falls}\;x<0 \MDFPeriod \end{MCaseEnv}
 \]
-Im Kontext dieses Moduls kann der Betrag nun als Funktion aufgefasst werden. Man erh\"alt die \MEntry{Betragsfunktion}{Betragsfunktion}
+Im Kontext dieses Moduls kann der Betrag nun als Funktion aufgefasst werden. Man erhÃ¤lt die \MEntry{Betragsfunktion}{Betragsfunktion}
 \[
  \function{b}{\R}{\R}{x}{|x| \MDFPeriod}
 \]
 
 \begin{MExercise}
 Was ist die Wertemenge $W_b$ der Betragsfunktion $b$?
-\begin{MHint}{Lösung}
-Da für alle Zahlen $x$ aus $D_b=\R$ gilt $b(x)=|x|\geq0$, ergibt sich $W_b=[0\MIntvlSep \infty)$. 
+\begin{MHint}{\iSolution}
+Da fÃ¼r alle Zahlen $x$ aus $D_b=\R$ gilt $b(x)=|x|\geq0$, ergibt sich $W_b=[0\MIntvlSep \infty)$. 
 \end{MHint}
 \end{MExercise}
 
@@ -1265,7 +1267,7 @@ Durch die Fallunterscheidung
 \[
  b(x)=|x|=\begin{MCaseEnv} x & \text{falls}\;x\geq0 \\ -x & \text{falls}\;x<0 \end{MCaseEnv}
 \]
-ist die Betragsfunktion ein Beispiel für eine \modsemph{abschnittsweise definierte} Funktion. Schreibt man Beträge mit Hilfe dieser Fallunterscheidung um, so spricht man auch vom \highlight{Auflösen} des Betrags. Der Graph der Betragsfunktion $b$ sieht dann so aus:
+ist die Betragsfunktion ein Beispiel fÃ¼r eine \modsemph{abschnittsweise definierte} Funktion. Schreibt man BetrÃ¤ge mit Hilfe dieser Fallunterscheidung um, so spricht man auch vom \highlight{AuflÃ¶sen} des Betrags. Der Graph der Betragsfunktion $b$ sieht dann so aus:
 
 %GRAPH: abs1
 \MTikzAuto{%
@@ -1292,13 +1294,13 @@ ist die Betragsfunktion ein Beispiel für eine \modsemph{abschnittsweise definier
 }%
 
 Eine Eigenschaft des Graphen der Betragsfunktion, die auch bei den meisten allgemeineren Funktionen auftritt, in denen ein Betrag vorkommt, ist der "`Knick'' an der Stelle $x=0$. 
-Die oben definierte Betragsfunktion $b$ ist nur der einfachste Fall einer Funktion, in der der Betrag vorkommt. Man kann sich kompliziertere Beispiele von Funktionen überlegen, in denen ein Betrag oder mehrere Beträge vorkommen, so etwa
+Die oben definierte Betragsfunktion $b$ ist nur der einfachste Fall einer Funktion, in der der Betrag vorkommt. Man kann sich kompliziertere Beispiele von Funktionen Ã¼berlegen, in denen ein Betrag oder mehrere BetrÃ¤ge vorkommen, so etwa
 \[
  \function{f}{\R}{\R}{x}{|2x-1| \MDFPeriod}
 \]
 
 
-Eine wichtige Aufgabe bei solchen gegebenen Funktionen ist, eine Vorstellung von deren Graphen zu bekommen. Dabei benutzt man die abschnittsweise Definition des Betrags und geht ähnlich vor wie beim Lösen von \MSRef{VBKM02_FallBetrag}{Betragsgleichungen} und -ungleichungen. Wir zeigen dies hier am Beispiel obiger Funktion $f$:
+Eine wichtige Aufgabe bei solchen gegebenen Funktionen ist, eine Vorstellung von deren Graphen zu bekommen. Dabei benutzt man die abschnittsweise Definition des Betrags und geht Ã¤hnlich vor wie beim LÃ¶sen von \MSRef{VBKM02_FallBetrag}{Betragsgleichungen} und -ungleichungen. Wir zeigen dies hier am Beispiel obiger Funktion $f$:
 
 \begin{MExample}
 Die Funktion
@@ -1309,7 +1311,7 @@ Wir berechnen:
 \[
  f(x)=|2x-1|=\begin{MCaseEnv} 2x-1 & \text{falls}\ 2x-1\geq0 \\ -(2x-1) & \text{falls}\ 2x-1<0\end{MCaseEnv}=\begin{MCaseEnv} 2x-1 & \text{falls}\ x\geq\frac{1}{2} \\ -2x+1 & \text{falls}\ x<\frac{1}{2} \MDFPeriod\end{MCaseEnv}
 \]
-Somit erhalten wir eine abschnittsweise definierte Funktion, deren Graph eine steigende Gerade mit Steigung $2$ und Achsenabschnitt $-1$ im Bereich $x\geq\frac{1}{2}$ und eine fallende Gerade mit Steigung $-2$ und Achsenabschnitt $1$ im Bereich $x<\frac{1}{2}$ ist. Mit diesen Informationen können wir den Graphen von $f$ zeichnen:
+Somit erhalten wir eine abschnittsweise definierte Funktion, deren Graph eine steigende Gerade mit Steigung $2$ und Achsenabschnitt $-1$ im Bereich $x\geq\frac{1}{2}$ und eine fallende Gerade mit Steigung $-2$ und Achsenabschnitt $1$ im Bereich $x<\frac{1}{2}$ ist. Mit diesen Informationen kÃ¶nnen wir den Graphen von $f$ zeichnen:
 
 %GRAPH: abs2
 \MTikzAuto{%
@@ -1337,10 +1339,10 @@ Somit erhalten wir eine abschnittsweise definierte Funktion, deren Graph eine st
 \end{MExample}
 
 \begin{MInfo}
-\textcolor{red}{WICHTIG!} Beim Auflösen von Beträgen wie in der Rechnung in obigem Beispiel sind folgende zwei wichtige Rechengesetze zu beachten:
+\textcolor{red}{WICHTIG!} Beim AuflÃ¶sen von BetrÃ¤gen wie in der Rechnung in obigem Beispiel sind folgende zwei wichtige Rechengesetze zu beachten:
 \begin{enumerate}
- \item Die \modsemph{Bereiche} der Fallunterscheidung des Betrags ergeben sich als Ungleichungen für den \modsemph{gesamten} Ausdruck im Betrag, hier also $2x-1\geq 0$ und $2x-1<0$ und \modsemph{nicht} etwa nur $x\geq 0$ und $x<0$. Dies funktioniert beim Auflösen von Beträgen immer so. 
- \item Im Fall $<0$ erhält der \modsemph{gesamte} Ausdruck im Betrag ein Minuszeichen. Hier muss also auf das Setzen einer Klammer geachtet werden. Im obigen Beispiel ergibt sich deshalb $-(2x-1)=-2x+1$ und \modsemph{nicht} etwa $-2x-1$. Auch dies funktioniert beim Auflösen von Beträgen immer so. 
+ \item Die \modsemph{Bereiche} der Fallunterscheidung des Betrags ergeben sich als Ungleichungen fÃ¼r den \modsemph{gesamten} Ausdruck im Betrag, hier also $2x-1\geq 0$ und $2x-1<0$ und \modsemph{nicht} etwa nur $x\geq 0$ und $x<0$. Dies funktioniert beim AuflÃ¶sen von BetrÃ¤gen immer so. 
+ \item Im Fall $<0$ erhÃ¤lt der \modsemph{gesamte} Ausdruck im Betrag ein Minuszeichen. Hier muss also auf das Setzen einer Klammer geachtet werden. Im obigen Beispiel ergibt sich deshalb $-(2x-1)=-2x+1$ und \modsemph{nicht} etwa $-2x-1$. Auch dies funktioniert beim AuflÃ¶sen von BetrÃ¤gen immer so. 
 \end{enumerate}
 
 \end{MInfo}
@@ -1350,8 +1352,8 @@ Wie sieht der Graph der Funktion
 \[
  \function{\alpha}{\R}{\R}{x}{|-8x+1|-1}
 \]
-aus? Geben Sie außerdem $W_\alpha$ an.
-\begin{MHint}{Lösung}
+aus? Geben Sie auÃŸerdem $W_\alpha$ an.
+\begin{MHint}{\iSolution}
 Es gilt
 \[
  \alpha(x)=|-8x+1|-1=\begin{MCaseEnv} -8x+1-1 & \text{falls}\ -8x+1\geq0 \\ -(-8x+1)-1 & \text{falls}\ -8x+1<0 \end{MCaseEnv}=\begin{MCaseEnv} -8x & \text{falls}\ x\leq\frac{1}{8} \\ 8x-2 & \text{falls}\ x>\frac{1}{8} \MDFPSpace,\end{MCaseEnv}
@@ -1393,7 +1395,7 @@ Da $|-8x+1|\geq0$ gilt, folgt $|-8x+1|-1\geq -1$ und damit ist $W_\alpha=[-1\MIn
 
 \begin{MXContent}{Monome}{Monome}{STD}\MLabel{sec:monome}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Monome}
-Neben den linear-affinen Funktionen aus dem vorigen Abschnitt kann man sich nun auch Funktionen überlegen, die allen reellen Zahlen natürliche Potenzen ihrer selbst zuordnen. So zum Beispiel
+Neben den affin-linearer Funktionen aus dem vorigen Abschnitt kann man sich nun auch Funktionen Ã¼berlegen, die allen reellen Zahlen natÃ¼rliche Potenzen ihrer selbst zuordnen. So zum Beispiel
 \[
  \function{g}{\R}{\R}{x}{x^2 \MDFPeriod}
 \]
@@ -1448,7 +1450,7 @@ Neben den linear-affinen Funktionen aus dem vorigen Abschnitt kann man sich nun 
 \end{tikzpicture}
 }%
 
-Dies funktioniert für jeden natürlichen Exponenten und man schreibt dann allgemein
+Dies funktioniert fÃ¼r jeden natÃ¼rlichen Exponenten und man schreibt dann allgemein
 \[
  \function{f}{\R}{\R}{x}{x^n}
 \]
@@ -1456,8 +1458,8 @@ mit $n\in\N_0$ und bezeichnet diese Funktionen als \highlight{Monome}. Der Expon
 
 \begin{MExercise}
 Welche Funktion ergibt sich als Monom vom Grad $1$ bzw.~vom Grad $0$ ?
-\begin{MHint}{Lösung}
-Da $x^1=x$ für alle $x\in\R$ gilt, ergibt sich die Identität $\Id$ als Monom vom Grad $1$. Genauso gilt $x^0=1$ für alle $x\in\R$ und damit ist die konstante Funktion $f\colon\R\lto\R$, $f(x)=1$ das Monom vom Grad $0$.
+\begin{MHint}{\iSolution}
+Da $x^1=x$ fÃ¼r alle $x\in\R$ gilt, ergibt sich die IdentitÃ¤t $\Id$ als Monom vom Grad $1$. Genauso gilt $x^0=1$ fÃ¼r alle $x\in\R$ und damit ist die konstante Funktion $f\colon\R\lto\R$, $f(x)=1$ das Monom vom Grad $0$.
 \end{MHint}
 \end{MExercise}
 
@@ -1495,7 +1497,7 @@ Man bezeichnet das Monom vom Grad $2$ auch als die \highlight{Standardparabel}. 
 \end{tikzpicture}
 }%
 
-Auf Basis dieser Graphen fassen wir nun einige Erkenntisse über Monome zusammen: Es gibt einen grundlegenden Unterschied zwischen Monomen (mit Abbildungsvorschrift $f(x)=x^n$, $n\in\N$) von geradem und von ungeradem Grad. Die Monome von geradem Grad größer Null haben als Wertebereich immer die Menge $[0\MIntvlSep \infty)$, während die Monome von ungeradem Grad ganz $\R$ als Wertebereich besitzen. Weiterhin gilt stets
+Auf Basis dieser Graphen fassen wir nun einige Erkenntisse Ã¼ber Monome zusammen: Es gibt einen grundlegenden Unterschied zwischen Monomen (mit Abbildungsvorschrift $f(x)=x^n$, $n\in\N$) von geradem und von ungeradem Grad. Die Monome von geradem Grad grÃ¶ÃŸer Null haben als Wertebereich immer die Menge $[0\MIntvlSep \infty)$, wÃ¤hrend die Monome von ungeradem Grad ganz $\R$ als Wertebereich besitzen. Weiterhin gilt stets
 \[
  f(1)=1^n=1 \MDFPSpace,
 \]
@@ -1508,13 +1510,13 @@ und
 \]
 Ferner gilt
 \[
- \MCases{x>x^2>x^3>x^4>\dots & \text{für}\ x\in(0\MIntvlSep 1) \\ x<x^2<x^3<x^4<\dots & \text{für}\ x\in(1\MIntvlSep \infty) \MDFPeriod}
+ \MCases{x>x^2>x^3>x^4>\dots & \text{fÃ¼r}\ x\in(0\MIntvlSep 1) \\ x<x^2<x^3<x^4<\dots & \text{fÃ¼r}\ x\in(1\MIntvlSep \infty) \MDFPeriod}
 \]
 
 \begin{MExercise}
-Wie ergeben sich diese Erkenntnisse über Monome unmittelbar aus den Potenzrechengesetzen?
-\begin{MHint}{Lösung}
-Nach den Potenzrechengesetzen gilt stets $1^n=1$ und $0^n=0$ für beliebige natürliche Zahlen $n$ und $(-1)^n=1$ für gerade $n$ sowie $(-1)^n=-1$ für ungerade $n$. Dadurch ergeben sich die beschriebenen Punkte, die alle Graphen der Monome gemeinsam haben. Auch die Ungleichungen $x>x^2>x^3>x^4>\dots$ für positive $x$ kleiner $1$ und $x<x^2<x^3<x^4<\dots$ für $x$ größer $1$ folgen aus den Potenzrechengesetzen, da höher werdende Potenzen für positive Zahlen kleiner $1$ stets kleiner werdende Ergebnisse liefern und für Zahlen größer $1$ umgekehrt stets größer werdende Ergebnisse.
+Wie ergeben sich diese Erkenntnisse Ã¼ber Monome unmittelbar aus den Potenzrechengesetzen?
+\begin{MHint}{\iSolution}
+Nach den Potenzrechengesetzen gilt stets $1^n=1$ und $0^n=0$ fÃ¼r beliebige natÃ¼rliche Zahlen $n$ und $(-1)^n=1$ fÃ¼r gerade $n$ sowie $(-1)^n=-1$ fÃ¼r ungerade $n$. Dadurch ergeben sich die beschriebenen Punkte, die alle Graphen der Monome gemeinsam haben. Auch die Ungleichungen $x>x^2>x^3>x^4>\dots$ fÃ¼r positive $x$ kleiner $1$ und $x<x^2<x^3<x^4<\dots$ fÃ¼r $x$ grÃ¶ÃŸer $1$ folgen aus den Potenzrechengesetzen, da hÃ¶her werdende Potenzen fÃ¼r positive Zahlen kleiner $1$ stets kleiner werdende Ergebnisse liefern und fÃ¼r Zahlen grÃ¶ÃŸer $1$ umgekehrt stets grÃ¶ÃŸer werdende Ergebnisse.
 \end{MHint}
 \end{MExercise}
 
@@ -1522,8 +1524,8 @@ Nach den Potenzrechengesetzen gilt stets $1^n=1$ und $0^n=0$ für beliebige natür
 
 \begin{MXContent}{Polynome und ihre Nullstellen}{Nullstellen}{STD}\MLabel{sec:polynome}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Polynome}
-Während in den bis jetzt betrachteten Monomen immer nur genau eine Potenz der Veränderlichen in der Abbildungsvorschrift vorkommt,
-lassen sich aus diesen Monomen problemlos komplexere Funktionen konstruieren in denen mehrere verschiedene Potenzen der Veränderlichen vorkommen.
+WÃ¤hrend in den bis jetzt betrachteten Monomen immer nur genau eine Potenz der VerÃ¤nderlichen in der Abbildungsvorschrift vorkommt,
+lassen sich aus diesen Monomen problemlos komplexere Funktionen konstruieren in denen mehrere verschiedene Potenzen der VerÃ¤nderlichen vorkommen.
 Diese ergeben sich als Summen von Vielfachen von Monomen. Man spricht dann von sogenannten \highlight{Polynomen}; hier einige Beispiele und deren Graphen:
 \[
  \begin{array}{ll}
@@ -1690,9 +1692,9 @@ Diese ergeben sich als Summen von Vielfachen von Monomen. Man spricht dann von s
 \end{tikzpicture}
 }%
 
-Der Grad eines Polynoms richtet sich also nach dem vorkommenden Monom mit dem höchsten Grad. Außerdem erkennen wir, dass die bisher behandelten Funktionstypen der konstanten, linearen und linear-affinen Funktionen -- genauso wie die Monome -- auf natürliche Weise wieder als Spezialfälle der Polynome auftauchen. Die Polynome umfassen also alle bisher betrachteten Funktionstypen. 
+Der Grad eines Polynoms richtet sich also nach dem vorkommenden Monom mit dem hÃ¶chsten Grad. AuÃŸerdem erkennen wir, dass die bisher behandelten Funktionstypen der konstanten, linearen und affin-lineareren Funktionen -- genauso wie die Monome -- auf natÃ¼rliche Weise wieder als SpezialfÃ¤lle der Polynome auftauchen. Die Polynome umfassen also alle bisher betrachteten Funktionstypen. 
 
-Möchte man allgemein ein unspezifiziertes Polynom vom Grad $n\in\N$ angeben, so schreibt man dies folgendermaßen:
+MÃ¶chte man allgemein ein unspezifiziertes Polynom vom Grad $n\in\N$ angeben, so schreibt man dies folgendermaÃŸen:
 \[
  \function{f}{\R}{\R}{x}{a_nx^n+a_{n-1}x^{n-1}+a_{n-2}x^{n-2}\dots +a_{2}x^{2}+a_1x+a_0 \MDFPeriod}
 \]
@@ -1705,20 +1707,20 @@ Das Polynom lautet \MEquationItem{$f(x)$}{\MLFunctionQuestion{25}{9*x^4+pi*x^2-4
 sein Wertebereich ist \MEquationItem{$W_f$}{\MLIntervalQuestion{15}{[-4,infty)}{4}{ELFP1b}}.\\
 \MInputHint{Die Kreiszahl $\pi$ kann als \texttt{pi} und der Wertebereich als Intervall eingegeben werden.}
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Das Polynom lautet
 \[
  \function{f}{\R}{\R}{x}{9x^4+\pi x^2-4}
 \]
-und besitzt den Wertebereich $W_f=[-4\MIntvlSep \infty)$, da die geraden Potenzen von $x$ nur nichtnegative Werte annehmen können.
+und besitzt den Wertebereich $W_f=[-4\MIntvlSep \infty)$, da die geraden Potenzen von $x$ nur nichtnegative Werte annehmen kÃ¶nnen.
 \end{MHint}
 \end{MExercise}
 
-Bei allgemeinen Polynomen sind insbesondere die Nullstellen von Interesse. Diese findet man durch das Lösen
-von Gleichungen $n$-ten Grades. Für den Grad $n=2$, also für Polynome vom Grad $2$ (diese werden auch als allgemeine Parabeln bezeichnet),
-ist dies durch das Lösen einer quadratischen Gleichung möglich. In Modul \MNRef{VBKM02} werden die relevanten Techniken
-der \MSRef{VBKM02_QuadratischErgaenzung}{quadratischen Ergänzung}, der \MSRef{VBKM02_pqFormel}{$pq$-Formel} und der \MSRef{VBKM02_Scheitelpunktform}{Scheitelpunktsform}
-quadratischer Ausdrücke genauer erklärt. 
+Bei allgemeinen Polynomen sind insbesondere die Nullstellen von Interesse. Diese findet man durch das LÃ¶sen
+von Gleichungen $n$-ten Grades. FÃ¼r den Grad $n=2$, also fÃ¼r Polynome vom Grad $2$ (diese werden auch als allgemeine Parabeln bezeichnet),
+ist dies durch das LÃ¶sen einer quadratischen Gleichung mÃ¶glich. In Modul \MNRef{VBKM02} werden die relevanten Techniken
+der \MSRef{VBKM02_QuadratischErgaenzung}{quadratischen ErgÃ¤nzung}, der \MSRef{VBKM02_pqFormel}{$pq$-Formel} und der \MSRef{VBKM02_Scheitelpunktform}{Scheitelpunktsform}
+quadratischer AusdrÃ¼cke genauer erklÃ¤rt. 
 
 \begin{MExample}
 Gegeben ist die Parabel
@@ -1727,19 +1729,19 @@ Gegeben ist die Parabel
 \]
 Wir bestimmen Nullstellen und Scheitelpunkt und zeichnen den Graphen.
 
-Wir führen an der Abbildungsvorschrift $\zeta(y)=2(y^2-4y+3)$ eine quadratische Ergänzung durch:
+Wir fÃ¼hren an der Abbildungsvorschrift $\zeta(y)=2(y^2-4y+3)$ eine quadratische ErgÃ¤nzung durch:
 \[
  y^2-4y+3=y^2-4y+4-1=(y-2)^2-1 \MDFPeriod
 \]
-Folglich lässt sich die Abbildungsvorschrift als
+Folglich lÃ¤sst sich die Abbildungsvorschrift als
 \[
  \zeta(y)=2(y-2)^2-2
 \]
-schreiben. Wir erkennen, dass die Parabel gegenüber der Standardparabel um $2$ Längeneinheiten nach rechts und nach unten verschoben ist.  Der Scheitelpunkt lässt sich bei $(2|-2)$ ablesen. Die Nullstellen lassen sich berechnen:
+schreiben. Wir erkennen, dass die Parabel gegenÃ¼ber der Standardparabel um $2$ LÃ¤ngeneinheiten nach rechts und nach unten verschoben ist.  Der Scheitelpunkt lÃ¤sst sich bei $(2|-2)$ ablesen. Die Nullstellen lassen sich berechnen:
 \[
 	\zeta(y)=2((y-2)^2-1)=0\quad\Leftrightarrow\quad (y-2)^2=1\quad\Leftrightarrow\quad y_{1,2}-2=\MCases{1\\-1}\quad\Leftrightarrow\quad y_{1,2}=\MCases{3\\1}\MDFPeriod
 \]
-Der Graph ergibt sich schließlich zu:
+Der Graph ergibt sich schlieÃŸlich zu:
 
 %GRAPH: bsp-para
 \MTikzAuto{%
@@ -1779,7 +1781,7 @@ Der Graph ergibt sich schließlich zu:
 \begin{MXContent}{Hyperbeln}{Hyperbeln}{STD}\MLabel{sec:hyperbel}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Hyperbeln}
 
-Wir betrachten Funktionen, die als Abbildungsvorschrift einen \highlight{reziproken Zusammenhang} besitzen. Darunter versteht man das Vorkommen von \highlight{Kehrwerten} in der Abbildungsvorschrift. Zu beachten ist bei der Bestimmung des \modsemph{größtmöglichen Definitionsbereichs} solcher Funktionen, dass der Nenner nicht $0$ werden darf.  
+Wir betrachten Funktionen, die als Abbildungsvorschrift einen \highlight{reziproken Zusammenhang} besitzen. Darunter versteht man das Vorkommen von \highlight{Kehrwerten} in der Abbildungsvorschrift. Zu beachten ist bei der Bestimmung des \modsemph{grÃ¶ÃŸtmÃ¶glichen Definitionsbereichs} solcher Funktionen, dass der Nenner nicht $0$ werden darf.  
 
 Beispiele reziproker Funktionen sind im Folgenden zusammengestellt; diese ergeben sich als Kehrwerte der Monome und werden auch als Funktionen vom \highlight{hyperbolischen Typ} bezeichnet:
 \[
@@ -1834,15 +1836,15 @@ Insbesondere der Graph der Funktion
 \]
 wird als \highlight{Hyperbel} bezeichnet.
 
-Allgemein kann man für den Kehrwert eines beliebigen Monoms vom Grad $n\in\N$ also eine entsprechende Funktion hyperbolischen Typs angeben:
+Allgemein kann man fÃ¼r den Kehrwert eines beliebigen Monoms vom Grad $n\in\N$ also eine entsprechende Funktion hyperbolischen Typs angeben:
 
 \[
  \function{f_n}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x^n} \MDFPeriod}
 \]
 \begin{MExercise}
-Wie lautet die Wertemenge $W_{f_n}$ der Funktion $f_n$ für gerade $n\in\N$ bzw.~für ungerade $n\in\N$ ?
-\begin{MHint}{Lösung}
-Stets gilt $\frac{1}{x^n}\neq0$, da ein Quotient nur Null werden kann, wenn der Zähler Null wird. Folglich kommt $0\in\R$ nie in der Wertemenge vor. Da stets $x^n\geq0$ für gerade $n\in\N$ gilt, folgt $\frac{1}{x^n}>0$ für gerade $n\in\N$. Für ungerade $n\in\N$ kann allerdings auch $\frac{1}{x^n}<0$ sein. Es ergibt sich
+Wie lautet die Wertemenge $W_{f_n}$ der Funktion $f_n$ fÃ¼r gerade $n\in\N$ bzw.~fÃ¼r ungerade $n\in\N$ ?
+\begin{MHint}{\iSolution}
+Stets gilt $\frac{1}{x^n}\neq0$, da ein Quotient nur Null werden kann, wenn der ZÃ¤hler Null wird. Folglich kommt $0\in\R$ nie in der Wertemenge vor. Da stets $x^n\geq0$ fÃ¼r gerade $n\in\N$ gilt, folgt $\frac{1}{x^n}>0$ fÃ¼r gerade $n\in\N$. FÃ¼r ungerade $n\in\N$ kann allerdings auch $\frac{1}{x^n}<0$ sein. Es ergibt sich
 \[
  W_{f_n}=\MCases{\R\setminus\{0\} & \text{falls}\ n\ \text{ungerade} \\ (0\MIntvlSep \infty) & \text{falls}\ n\ \text{gerade} \MDFPeriod}
 \]
@@ -1852,14 +1854,14 @@ Dies ist auch aus den Graphen der Funktionen vom hyperbolischen Typ ersichtlich.
 
 
 
-Weitere Beispiele für Funktionen vom hyperbolischen Typ haben wir bereits in Beispiel \MNRef{bsp:anwendungen} und Aufgabe \MNRef{ex:anwendungen} in Abschnitt \MNRef{sec:anwendungen} betrachtet. 
+Weitere Beispiele fÃ¼r Funktionen vom hyperbolischen Typ haben wir bereits in Beispiel \MNRef{bsp:anwendungen} und Aufgabe \MNRef{ex:anwendungen} in Abschnitt \MNRef{sec:anwendungen} betrachtet. 
 
 
 \end{MXContent}
 
 \begin{MXContent}{Gebrochenrationale Funktionen}{Gebrochenrational}{STD}\MLabel{sec:gebrochen}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_GebrochenRational}
-Allgemeine gebrochenrationale Funktionen besitzen Abbildungsvorschriften, die aus dem Quotienten zweier Polynome bestehen. Hier einige Beispiele mit ihren Graphen. Natürlich müssen auch bei diesen Funktionen diejenigen Zahlen aus dem Definitionsbereich ausgeschlossen werden, für die der Nenner in der Abbildungsvorschrift gleich Null wird.
+Allgemeine gebrochenrationale Funktionen besitzen Abbildungsvorschriften, die aus dem Quotienten zweier Polynome bestehen. Hier einige Beispiele mit ihren Graphen. NatÃ¼rlich mÃ¼ssen auch bei diesen Funktionen diejenigen Zahlen aus dem Definitionsbereich ausgeschlossen werden, fÃ¼r die der Nenner in der Abbildungsvorschrift gleich Null wird.
 
 \begin{MExample}\MLabel{einf_bsp_gebr_rat}
 \[
@@ -1923,7 +1925,7 @@ Allgemeine gebrochenrationale Funktionen besitzen Abbildungsvorschriften, die au
 \draw[color=red,smooth,samples=100,domain=1.8:9.5]
 		plot(\x,{(-18*(\x)+3)/(2*(\x)^2+5*(\x)-12)});
 \draw[color=red] (1.1,6) node[right] {$G_g$};
-%Definitionslücken:		
+%DefinitionslÃ¼cken:		
 \draw[color = blue, fill = white](-4,0) circle(3pt);		
 \draw[color = blue, fill = white](1.5,0) circle(3pt);
 \end{tikzpicture}
@@ -1954,7 +1956,7 @@ Allgemeine gebrochenrationale Funktionen besitzen Abbildungsvorschriften, die au
 \draw[color=red,smooth,samples=100,domain=-0.8:5.3]
 		plot(\x,{((\x)^3-(\x)^2+(\x))/((\x)+1)});
 \draw[color=red] (4.5,15) node[left] {$G_h$};
-%Definitionslücken:		
+%DefinitionslÃ¼cken:		
 \draw[color = blue, fill = white](-1,0) circle(1.5pt);		
 \end{tikzpicture}
 }%
@@ -1967,8 +1969,8 @@ Gegeben ist die Funktion
 \[
  \function{\psi}{D_\psi}{\R}{x}{\frac{-42x}{x^2-\pi} \MDFPeriod}
 \]
-Bestimmen Sie den größtmöglichen Definitionsbereich $D_\psi\subset\R$ für $\psi$.
-\begin{MHint}{Lösung}
+Bestimmen Sie den grÃ¶ÃŸtmÃ¶glichen Definitionsbereich $D_\psi\subset\R$ fÃ¼r $\psi$.
+\begin{MHint}{\iSolution}
 Die Nullstellen des Nenners ergeben sich durch
 \[
  x^2-\pi=0\quad\Leftrightarrow\quad x^2=\pi\quad\Leftrightarrow\quad x=\pm\sqrt{\pi} \MDFPeriod
@@ -1981,21 +1983,21 @@ Damit ist $D_\psi=\R\setminus\{-\sqrt{\pi},\sqrt{\pi}\}$.
 
 
 \begin{MExercise}
-Bestimmen Sie für die gebrochenrationalen Funktionen im einführenden Beispiel \MNRef{einf_bsp_gebr_rat} jeweils den Zähler- sowie den Nennergrad und berechnen Sie die Nullstellen des Zählers und des Nenners.
-\begin{MHint}{Lösung}
-Die Funktion $f$ hat den Zählergrad $0$ und den Nennergrad $2$. Es gibt keine Zählernullstelle ($8\neq0$) und keine Nennernullstelle ($x^2+1=0$ hat keine reelle Lösung).\\
-Die Funktion $g$ hat den Zählergrad $1$ und den Nennergrad $2$. Die Zählernullstelle liegt bei $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$) und die Nennernullstellen $x_{1,2}=-4,\frac{3}{2}$ erhält man durch Lösen der quadratischen Gleichung $2x^2+5x-12=0$, zum Beispiel mit Hilfe der Mitternachtsformel.\\
-Die Funktion $h$ hat den Zählergrad $3$ und den Nennergrad $1$. Die Nennernullstelle liegt einfach bei $x=-1$ ($x+1=0\Leftrightarrow x=-1$). Für die Zählernullstellen muss die Gleichung $x^3-x^2+x=0$ gelöst werden. Nach Ausklammern von $x$ erhält man $x(x^2-x+1)=0$ und folgert, dass eine Nullstelle bei $x=0$ liegt. Schließlich muss noch die quadratische Gleichung $x^2-x+1=0$ mit der Mitternachtsformel gelöst werden. Es ergibt sich hier allerdings eine negative Diskriminante von $\Delta=1^2-4\cdot1\cdot1=-
-3$, so dass keine weitere reelle Lösung -- und damit keine weitere Zählernullstelle -- existiert.
+Bestimmen Sie fÃ¼r die gebrochenrationalen Funktionen im einfÃ¼hrenden Beispiel \MNRef{einf_bsp_gebr_rat} jeweils den ZÃ¤hler- sowie den Nennergrad und berechnen Sie die Nullstellen des ZÃ¤hlers und des Nenners.
+\begin{MHint}{\iSolution}
+Die Funktion $f$ hat den ZÃ¤hlergrad $0$ und den Nennergrad $2$. Es gibt keine ZÃ¤hlernullstelle ($8\neq0$) und keine Nennernullstelle ($x^2+1=0$ hat keine reelle LÃ¶sung).\\
+Die Funktion $g$ hat den ZÃ¤hlergrad $1$ und den Nennergrad $2$. Die ZÃ¤hlernullstelle liegt bei $x=\frac{1}{6}$ ($-18x+3=0\Leftrightarrow x=\frac{3}{18}$) und die Nennernullstellen $x_{1}=-4$, $x_{2} = \frac{3}{2}$ erhÃ¤lt man durch LÃ¶sen der quadratischen Gleichung $2x^2+5x-12=0$, zum Beispiel mit Hilfe der Mitternachtsformel.\\
+Die Funktion $h$ hat den ZÃ¤hlergrad $3$ und den Nennergrad $1$. Die Nennernullstelle liegt einfach bei $x=-1$ ($x+1=0\Leftrightarrow x=-1$). FÃ¼r die ZÃ¤hlernullstellen muss die Gleichung $x^3-x^2+x=0$ gelÃ¶st werden. Nach Ausklammern von $x$ erhÃ¤lt man $x(x^2-x+1)=0$ und folgert, dass eine Nullstelle bei $x=0$ liegt. SchlieÃŸlich muss noch die quadratische Gleichung $x^2-x+1=0$ mit der Mitternachtsformel gelÃ¶st werden. Es ergibt sich hier allerdings eine negative Diskriminante von $\Delta=1^2-4\cdot1\cdot1=-
+3$, so dass keine weitere reelle LÃ¶sung -- und damit keine weitere ZÃ¤hlernullstelle -- existiert.
 \end{MHint}
 \end{MExercise}
 
-Die \highlight{Nullstellen} einer gebrochenrationalen Funktion ergeben sich als die Zählernullstellen. So hat zum Beispiel die Funktion
+Die \highlight{Nullstellen} einer gebrochenrationalen Funktion ergeben sich als die ZÃ¤hlernullstellen. So hat zum Beispiel die Funktion
 \[
  \function{j}{\R\setminus\{-1\MElSetSep 3\}}{\R}{x}{\frac{x-1}{x^2-2x-3}}
 \]
 die einzige Nullstelle bei $x=1$.
-Die Nennernullstellen gebrochenrationaler Funktionen, welche aus dem Definitionsbereich ausgeschlossen werden, müssen oft noch genauer untersucht werden. Vor allem ist von Interesse, wie die Graphen der Funktionen \modsemph{in der Nähe} der Definitionslücken verlaufen. Die Nennernullstellen gebrochenrationaler Funktionen bezeichnet man auch als \highlight{Polstellen}. Die folgenden Beispiele zeigen, dass es verschiedene Typen von Polstellen gibt.
+Die Nennernullstellen gebrochenrationaler Funktionen, welche aus dem Definitionsbereich ausgeschlossen werden, mÃ¼ssen oft noch genauer untersucht werden. Vor allem ist von Interesse, wie die Graphen der Funktionen \modsemph{in der NÃ¤he} der DefinitionslÃ¼cken verlaufen. Die Nennernullstellen gebrochenrationaler Funktionen bezeichnet man auch als \highlight{Polstellen}. Die folgenden Beispiele zeigen, dass es verschiedene Typen von Polstellen gibt.
 
 \begin{MExample}
 \[
@@ -2033,7 +2035,7 @@ Die Nennernullstellen gebrochenrationaler Funktionen, welche aus dem Definitions
 \draw[color=red,samples=100,domain=2.4:6]
 		plot(\x,{3/((\x)-2)}) ;		
 \draw[color=red] (2.7,5) node[right] {$G_{f_1}$};
-%Definitionslücken:		
+%DefinitionslÃ¼cken:		
 \draw[color = blue, fill = white](2,0) circle(1.5pt);
 \draw[color = blue, dotted](2,-4)--(2,5.5);
 \end{tikzpicture}
@@ -2064,7 +2066,7 @@ Die Nennernullstellen gebrochenrationaler Funktionen, welche aus dem Definitions
 \draw[color=red,smooth,samples=100,domain=-2.5:1.5]
 		plot(\x,{2/(((\x)+3)^2)});
 \draw[color=red] (1,0.2) node[above] {$G_{f_2}$};
-%Definitionslücken:		
+%DefinitionslÃ¼cken:		
 \draw[color = blue, fill = white](-3,0) circle(1.5pt);
 \draw[color = blue, dotted](-3,-1)--(-3,5.5);
 \end{tikzpicture}
@@ -2092,7 +2094,7 @@ Die Nennernullstellen gebrochenrationaler Funktionen, welche aus dem Definitions
 \clip(-3,-2) rectangle (3.5,5.5);
 \draw[color=red, smooth,samples=100,domain=-3:3.5]
 		plot(\x,{(\x)+1}) node[above, left=2pt] {$G_{f_3}$};		
-%hebbare Definitionslücke:		
+%hebbare DefinitionslÃ¼cke:		
 \draw[color = blue, fill = white](1,0) circle(1.5pt);
 \draw[color = blue, dotted](1,-1)--(1,5);
 \draw[color = black, fill = white](1,2) circle(1pt);
@@ -2100,9 +2102,9 @@ Die Nennernullstellen gebrochenrationaler Funktionen, welche aus dem Definitions
 }%
 \end{MExample}
 
-Die Stellen $x=2$ und $x=-3$ sind sogenannte \modsemph{echte Polstellen} der Funktionen $f_1$ und $f_2$, die Stelle $x=1$ ist eine sogenannte \modsemph{hebbare Definitionslücke} der Funktion $f_3$. Anhand der Graphen wird der Unterschied zwischen diesen Typen von Polstellen deutlich. Bei echten Polstellen wächst oder fällt der Graph in der Nähe der Polstelle unbeschränkt, und bei stetig hebbaren Definitionslücken mündet er von links und rechts in das "`Loch'' im Graphen ein. 
+Die Stellen $x=2$ und $x=-3$ sind sogenannte \modsemph{echte Polstellen} der Funktionen $f_1$ und $f_2$, die Stelle $x=1$ ist eine sogenannte \modsemph{hebbare DefinitionslÃ¼cke} der Funktion $f_3$. Anhand der Graphen wird der Unterschied zwischen diesen Typen von Polstellen deutlich. Bei echten Polstellen wÃ¤chst oder fÃ¤llt der Graph in der NÃ¤he der Polstelle unbeschrÃ¤nkt, und bei hebbaren DefinitionslÃ¼cken mÃ¼ndet er von links und rechts in das "`Loch'' im Graphen ein. 
 
-Anhand der Abbildungsvorschriften der drei Funktionen kommt dieser Unterschied folgendermaßen zum Ausdruck: Die Werte $x=2$ und $x=-3$ sind \modsemph{Nennernullstellen}, aber keine \modsemph{Zählernullstellen} der Funktionen $f_1$ bzw.~$f_2$. Tatsächlich besitzen $f_1$ und $f_2$ gar keine Zählernullstellen. In einem solchen Fall sind die Nennernullstellen immer echte Polstellen.
+Anhand der Abbildungsvorschriften der drei Funktionen kommt dieser Unterschied folgendermaÃŸen zum Ausdruck: Die Werte $x=2$ und $x=-3$ sind \modsemph{Nennernullstellen}, aber keine \modsemph{ZÃ¤hlernullstellen} der Funktionen $f_1$ bzw.~$f_2$. TatsÃ¤chlich besitzen $f_1$ und $f_2$ gar keine ZÃ¤hlernullstellen. In einem solchen Fall sind die Nennernullstellen immer echte Polstellen.
 
 \begin{MExercise}
 Ist die Nennernullstelle der Funktion
@@ -2110,77 +2112,77 @@ Ist die Nennernullstelle der Funktion
  \function{q}{\R\setminus\{\frac{1}{2}\}}{\R}{x}{\frac{x^4-1}{2x-1}}
 \]
 eine echte Polstelle? Wenn ja, warum?
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Die Stelle $x=\frac{1}{2}$ ist eine Nullstelle des Nenners:
 \[
  2x-1=0\quad\Leftrightarrow\quad 2x=1\quad\Leftrightarrow\quad x=\frac{1}{2} \MDFPeriod
 \]
-Aber für den Zähler gilt:
+Aber fÃ¼r den ZÃ¤hler gilt:
 \[
  x^4-1=0\quad\Leftrightarrow\quad x^4=1\quad\Leftrightarrow\quad x=\pm 1 \MDFPSpace,
 \]
-womit die Zählernullstellen bei $x=-1$ und $x=1$ liegen und $x=\frac{1}{2}$ keine Zählernullstelle ist. Damit ist $x=\frac{1}{2}$ eine echte Polstelle.
+womit die ZÃ¤hlernullstellen bei $x=-1$ und $x=1$ liegen und $x=\frac{1}{2}$ keine ZÃ¤hlernullstelle ist. Damit ist $x=\frac{1}{2}$ eine echte Polstelle.
 \end{MHint}
 \end{MExercise}
 
-Ein weiterer Unterschied wird zwischen den beiden Polstellen von $f_1$ und $f_2$ deutlich. Bei der Polstelle $x=2$ von $f_1$ findet ein \modsemph{Vorzeichenwechsel} der Funktion statt. Der Graph von $f_1$ fällt links der Polstelle unbeschränkt ins Negative und wächst rechts der Polstelle (von rechts kommend) unbeschränkt ins Positive.\\
-Der Graph von $f_2$ wächst auf beiden Seiten der Polstelle $x=-3$ (bei Annäherung an diese) ins Positive, es findet also \modsemph{kein Vorzeichenwechsel} statt. 
+Ein weiterer Unterschied wird zwischen den beiden Polstellen von $f_1$ und $f_2$ deutlich. Bei der Polstelle $x=2$ von $f_1$ findet ein \modsemph{Vorzeichenwechsel} der Funktion statt. Der Graph von $f_1$ fÃ¤llt links der Polstelle unbeschrÃ¤nkt ins Negative und wÃ¤chst rechts der Polstelle (von rechts kommend) unbeschrÃ¤nkt ins Positive.\\
+Der Graph von $f_2$ wÃ¤chst auf beiden Seiten der Polstelle $x=-3$ (bei AnnÃ¤herung an diese) ins Positive, es findet also \modsemph{kein Vorzeichenwechsel} statt. 
 
-In der Abbildungsvorschrift von $f_3$ hingegen kann man den Term, der dafür verantwortlich ist, dass man die Polstelle $x=1$ nicht einsetzen darf, herauskürzen. Dies ist bei gebrochenrationalen Funktionen, die eine hebbare Definitionslücke als Polstelle aufweisen, immer so.  
+In der Abbildungsvorschrift von $f_3$ hingegen kann man den Term, der dafÃ¼r verantwortlich ist, dass man die Polstelle $x=1$ nicht einsetzen darf, herauskÃ¼rzen. Dies ist bei gebrochenrationalen Funktionen, die eine hebbare DefinitionslÃ¼cke als Polstelle aufweisen, immer so.  
 
 \begin{MExercise}
-Bestimmen Sie alle Polstellen/Definitionslücken von
+Bestimmen Sie alle Polstellen/DefinitionslÃ¼cken von
 \[
  \function{\gamma}{D_\gamma}{\R}{x}{\frac{3x+6}{x^2-x-6}}
 \]
-sowie deren Typ. Geben Sie den größtmöglichen Definitionsbereich $D_\gamma\subset\R$ an.
-\begin{MHint}{Lösung}
-Die Nennernullstellen sind die Lösungen der quadratischen Gleichung $x^2-x-6=0$, also
+sowie deren Typ. Geben Sie den grÃ¶ÃŸtmÃ¶glichen Definitionsbereich $D_\gamma\subset\R$ an.
+\begin{MHint}{\iSolution}
+Die Nennernullstellen sind die LÃ¶sungen der quadratischen Gleichung $x^2-x-6=0$, also
 \[
  x_{1,2}=\frac{-(-1)\pm\sqrt{(-1)^2-4\cdot(-6)\cdot1}}{2}=\frac{1\pm 5}{2}=\MCases{3\\-2} \MDFPeriod
 \]
-Folglich ist der größtmögliche Definitionsbereich
+Folglich ist der grÃ¶ÃŸtmÃ¶gliche Definitionsbereich
 \[
  D_\gamma=\R\setminus\{-2\MElSetSep 3\} \MDFPeriod
 \]
-Die Zählernullstelle ergibt sich durch $3x+6=0$, liegt also ebenfalls bei $x=-2$. Wir können damit die Abbildungsvorschrift von $\gamma$ also für $x\in D_\gamma$ folgendermaßen umformen:
+Die ZÃ¤hlernullstelle ergibt sich durch $3x+6=0$, liegt also ebenfalls bei $x=-2$. Wir kÃ¶nnen damit die Abbildungsvorschrift von $\gamma$ also fÃ¼r $x\in D_\gamma$ folgendermaÃŸen umformen:
 \[
  \gamma(x)=\frac{3x+6}{x^2-x-6}=\frac{3(x+2)}{(x-3)(x+2)}=\frac{3}{x-3} \MDFPeriod
 \]
-Damit lässt sich die Funktion auch als
+Damit lÃ¤sst sich die Funktion auch als
 \[
  \function{\gamma}{\R\setminus\{-2\MElSetSep 3\}}{\R}{x}{\frac{3}{x-3}}
 \]
-schreiben und es liegt bei $x=-2$ eine stetig hebbare Definitionslücke und bei $x=3$ eine echte Polstelle mit Vorzeichenwechsel vor.
+schreiben und es liegt bei $x=-2$ eine stetig hebbare DefinitionslÃ¼cke und bei $x=3$ eine echte Polstelle mit Vorzeichenwechsel vor.
 \end{MHint}
 \end{MExercise}
 \end{MXContent}
 
 \begin{MXContent}{Asymptoten}{Asymptoten}{STD}\MLabel{sec:asymptoten}
 \MDeclareSiteUXID{VBKM06_EinfacheFunktionen_Asymptoten}
-Wir wollen in diesem Abschnitt untersuchen, wie sich gebrochenrationale Funktionen im Unendlichen verhalten, falls der \modsemph{Zählergrad kleiner oder gleich dem Nennergrad} ist. Ein Beispiel ist die Funktion
+Wir wollen in diesem Abschnitt untersuchen, wie sich gebrochenrationale Funktionen im Unendlichen verhalten, falls der \modsemph{ZÃ¤hlergrad kleiner oder gleich dem Nennergrad} ist. Ein Beispiel ist die Funktion
 \[
  \function{f}{\R\setminus\{-\pi\}}{\R}{x}{\frac{x}{x+\pi} \MDFPeriod}
 \]
-In $f$ ist der Zählergrad $1$ und der Nennergrad $1$.
-Beispiele hierfür haben wir im vorhergehenden Abschnitt \MNRef{sec:gebrochen} betrachtet. 
+In $f$ ist der ZÃ¤hlergrad $1$ und der Nennergrad $1$.
+Beispiele hierfÃ¼r haben wir im vorhergehenden Abschnitt \MNRef{sec:gebrochen} betrachtet. 
 
 \begin{MExample}\MLabel{ex1:polydiv}
 Wir betrachten die Funktion 
 \[
  \function{g}{\R\setminus\{1\}}{\R}{x}{1+\frac{1}{x-1}}
 \]
-und stellen fest, dass deren Abbildungsvorschrift in der Form einer Summe aus einem Polynom (vom Grad $0$) und einem gebrochenrationalen Term vorliegt.
-Durch Bilden des Hauptnenners ist es nun einfach, $g(x)$ auf eine gebrochenrationale Form zu bringen, in der der Zählergrad und der Nennergrad gleich sind:
+und stellen fest, dass ihre Abbildungsvorschrift in der Form einer Summe aus einem Polynom (vom Grad $0$) und einem gebrochenrationalen Term vorliegt.
+Durch Bilden des Hauptnenners ist es nun einfach, $g(x)$ auf eine gebrochenrationale Form zu bringen, in der der ZÃ¤hlergrad und der Nennergrad gleich sind:
 \[
  g(x)=1+\frac{1}{x-1}=\frac{x-1}{x-1}+\frac{1}{x-1}=\frac{x-1+1}{x-1}=\frac{x}{x-1} \MDFPeriod
 \]
-Wir können $g$ also auch schreiben als
+Wir kÃ¶nnen $g$ also auch schreiben als
 \[
  \function{g}{\R\setminus\{1\}}{\R}{x}{\frac{x}{x-1}}
 \]
 
-und betrachten den zugehörigen Graphen:
+und betrachten den zugehÃ¶rigen Graphen:
 
 % GRAPHEN: rat7
 \MTikzAuto{%
@@ -2207,19 +2209,19 @@ und betrachten den zugehörigen Graphen:
 \draw[color=red,smooth,samples=100,domain=1.1:7]
 		plot(\x,{\x/(\x-1)});
 \draw[color=red] (5,1.5) node[above] {$G_{g}$};
-%Definitionslücke:		
+%DefinitionslÃ¼cke:		
 \draw[color = blue, fill = white](1,0) circle(1.5pt);
 %Asymptote:
 \draw[color=blue, dotted] (-5.5,1) -- (7.5,1);
 \end{tikzpicture}
 }%
 
-Neben der Polstelle und Definitionslücke bei $x=1$ erkennen wir, dass der Wert $y=1$ eine besondere Rolle spielt. Dieser wird offenbar von der Funktion $g$ nie angenommen. Für die Wertemenge von $g$ gilt $W_g=\R\setminus\{1\}$. Stattdessen \modsemph{nähert} sich $g$ für "`sehr große'' und "`sehr kleine'' Werte der Veränderlichen $x$ immer stärker dem Wert $1$ an, \modsemph{ohne} diesen jemals für eine reelle Zahl $x$ zu erreichen.
+Neben der Polstelle und DefinitionslÃ¼cke bei $x=1$ erkennen wir, dass der Wert $y=1$ eine besondere Rolle spielt. Dieser wird offenbar von der Funktion $g$ nie angenommen. FÃ¼r die Wertemenge von $g$ gilt $W_g=\R\setminus\{1\}$. Stattdessen \modsemph{nÃ¤hert} sich $g$ fÃ¼r "`sehr groÃŸe'' und "`sehr kleine'' Werte der VerÃ¤nderlichen $x$ immer stÃ¤rker dem Wert $1$ an, \modsemph{ohne} diesen jemals fÃ¼r eine reelle Zahl $x$ zu erreichen.
 
 
 
-Dies erkennt man in der Abbildungsvorschrift $g(x)=1+\frac{1}{x-1}$ folgendermaßen. Für "`sehr große'' ($5$, $10$, $100$, usw.) oder "`sehr kleine'' ($-5$, $-10$, $-100$, usw.) Werte für $x$ nähert sich der gebrochenrationale Anteil $\frac{1}{x-1}$
-immer mehr der $0$ an, da $x$ dort im Nenner vorkommt. Tendenziell bleibt also für solche Werte nur noch der polynomielle Anteil $1$ aus der Abbildungsvorschrift übrig. Dieser Anteil kann nun durch eine -- in diesem Fall konstante -- Funktion beschrieben werden, die als \highlight{Asymptote} $g_{As}$ der Funktion $g$ bezeichnet wird:
+Dies erkennt man in der Abbildungsvorschrift $g(x)=1+\frac{1}{x-1}$ folgendermaÃŸen. FÃ¼r "`sehr groÃŸe'' ($50$, $100$, $1000$, usw.) oder "`sehr kleine'' ($-50$, $-100$, $-1000$, usw.) Werte fÃ¼r $x$ nÃ¤hert sich der gebrochenrationale Anteil $\frac{1}{x-1}$
+immer mehr der $0$ an, da $x$ dort im Nenner vorkommt. Tendenziell bleibt also fÃ¼r solche Werte nur noch der polynomielle Anteil $1$ aus der Abbildungsvorschrift Ã¼brig. Dieser Anteil kann nun durch eine -- in diesem Fall konstante -- Funktion beschrieben werden, die als \highlight{Asymptote} $g_{As}$ der Funktion $g$ bezeichnet wird:
 \[
  \function{g_{As}}{\R}{\R}{x}{1 \MDFPeriod}
 \]
@@ -2231,7 +2233,7 @@ Bestimmen Sie die Asymptote der Funktion
  \function{i}{\R\setminus\{-2\}}{\R}{x}{3-\frac{6}{x+2}}
 \]
 sowie die Asymptote der Hyperbel aus Abschnitt \MNRef{sec:hyperbel}. 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Es gilt 
 \[
  i(x)=3-\frac{6}{x+2}
@@ -2240,22 +2242,22 @@ mit gebrochenrationalem Anteil $\frac{6}{x+2}$. Folglich hat die waagrechte Asym
 \[
  \function{f}{\R\setminus\{0\}}{\R}{x}{\frac{1}{x}}
 \]
-besitzt auch eine Asymptote. Wir können die Abbildungsvorschrift schreiben als
+besitzt auch eine Asymptote. Wir kÃ¶nnen die Abbildungsvorschrift schreiben als
 \[
  f(x)=0+\frac{1}{x} \MDFPSpace,
 \]
-womit für die Asymptote gilt $f_{As}(x)=0$. Hier ist die Asymptote also diejenige Funktion, die konstant $0$ ist: die Nullfunktion bzw. die Querachse des Koordinatensystems. 
+womit fÃ¼r die Asymptote gilt $f_{As}(x)=0$. Hier ist die Asymptote also diejenige Funktion, die konstant $0$ ist: die Nullfunktion bzw. die Querachse des Koordinatensystems. 
 \end{MHint}
 \end{MExercise}
 
 
 
 \begin{MInfo}
-Eine gebrochenrationale Funktion $f$ mit Zählerpolynom $p(x)$ vom Grad $z\geq0$ und Nennerpolynom $q(x)$ vom Grad $n\geq0$ der Form
+Eine gebrochenrationale Funktion $f$ mit ZÃ¤hlerpolynom $p(x)$ vom Grad $z\geq0$ und Nennerpolynom $q(x)$ vom Grad $n\geq0$ der Form
 \[
  \function{f}{\R\setminus\{\text{Nennernullstellen}\}}{\R}{x}{f(x)=\frac{p(x)}{q(x)}}
 \]
-hat als Asymptote eine konstante Funktion (bzw. eine waagrechte Asymptote) falls $z\leq n$ gilt. Iinsbesondere ist die Nullfunktion die Asymptote im Fall $z<n$.  
+hat als Asymptote eine konstante Funktion (bzw. eine waagrechte Asymptote) falls $z\leq n$ gilt. Insbesondere ist die Nullfunktion die Asymptote im Fall $z<n$.  
 \end{MInfo}
 
 \end{MXContent}
@@ -2270,7 +2272,7 @@ In den Abschnitten \MNRef{sec:monome} und \MNRef{sec:hyperbel} haben wir Monome 
 \[
  \function{f}{D_f}{\R}{x}{x^k} \MDFPSpace,
 \]
-wobei $k\in\Z\setminus\{0\}$ und $D_f=\R$ falls $k\in\N$ sowie $D_f=\R\setminus\{0\}$ falls $k\in\Z$ mit $k<0$. In diesem Abschnitt wollen wir beliebige rationale Werte im Exponenten der Abbildungsvorschrift zulassen. Man erhält dann die sogenannten \modsemph{Potenzfunktionen}, die wiederum die Monome und Funktionen vom hyperbolischen Typ als Spezialfälle enthalten. Wir stellen auch deren fundamentale Eigenschaften und einige Anwendungen zusammen.  
+wobei $k\in\Z\setminus\{0\}$ und $D_f=\R$ falls $k\in\N$ sowie $D_f=\R\setminus\{0\}$ falls $k\in\Z$ mit $k<0$. In diesem Abschnitt wollen wir beliebige rationale Werte im Exponenten der Abbildungsvorschrift zulassen. Man erhÃ¤lt dann die sogenannten \modsemph{Potenzfunktionen}, die wiederum die Monome und Funktionen vom hyperbolischen Typ als SpezialfÃ¤lle enthalten. Wir stellen auch deren fundamentale Eigenschaften und einige Anwendungen zusammen.  
 \end{MIntro}
 
 
@@ -2278,15 +2280,15 @@ wobei $k\in\Z\setminus\{0\}$ und $D_f=\R$ falls $k\in\N$ sowie $D_f=\R\setminus\
 \begin{MXContent}{Wurzelfunktionen}{Wurzelfunktionen}{STD}\MLabel{sec:wurzel}
 \MDeclareSiteUXID{VBKM06_Potenzfunktionen_Wurzel}
 \begin{MExample}\MLabel{bsp1:wurzel}
-Untersucht man einen Körper, der sich im freien Fall im homogenen Gravitationsfeld der Erde befindet, so kann man folgenden Zusammenhang zwischen seiner Fallzeit und seinem zurückgelegten Weg feststellen:
+Untersucht man einen KÃ¶rper, der sich im freien Fall im homogenen Gravitationsfeld der Erde befindet, so kann man folgenden Zusammenhang zwischen seiner Fallzeit und seinem zurÃ¼ckgelegten Weg feststellen:
 
 \renewcommand{\arraystretch}{1.5}
 \begin{tabular}{c|c|c|c|c|c}
 Fallzeit $t$ in Sekunden & $0$ & $\sqrt{\frac{2}{g}}$ & $\sqrt{\frac{2}{g}}\cdot \MZahl{1}{5}$ & $\sqrt{\frac{2}{g}}\cdot 2$ & $\sqrt{\frac{2}{g}}\cdot 3$ \\\hline
-zurückgelegter Weg $s$ in Metern & $0$ & $1$ & $\MZahl{2}{25}$ & $4$ & $9$
+zurÃ¼ckgelegter Weg $s$ in Metern & $0$ & $1$ & $\MZahl{2}{25}$ & $4$ & $9$
 \end{tabular}
 
-Dabei ist $g\approx \MZahl{9}{81}\frac{\MEinheit[]{m}}{\MEinheit[]{s}^2}$ die physikalische Konstante der Fallbeschleunigung. Trägt man nun diese Werte in einem Diagramm mit $t$ auf der Hochachse und $s$ auf der Querachse auf, erhält man:
+Dabei ist $g\approx \MZahl{9}{81}\frac{\MEinheit[]{m}}{\MEinheit[]{s}^2}$ die physikalische Konstante der Fallbeschleunigung. TrÃ¤gt man nun diese Werte in einem Diagramm mit $t$ auf der Hochachse und $s$ auf der Querachse auf, erhÃ¤lt man:
 
 % GRAPHEN: wurz-mess
 \MTikzAuto{%
@@ -2320,11 +2322,11 @@ Dabei ist $g\approx \MZahl{9}{81}\frac{\MEinheit[]{m}}{\MEinheit[]{s}^2}$ die ph
 \end{tikzpicture}
 }%
 
-Dies legt nahe, dass man den Zusammenhang zwischen $t$ und $s$, mit $s$ als Veränderlicher, mathematisch durch die Funktion
+Dies legt nahe, dass man den Zusammenhang zwischen $t$ und $s$, mit $s$ als VerÃ¤nderlicher, mathematisch durch die Funktion
 \[
  \function{t}{[0\MIntvlSep \infty)}{\R}{s}{\sqrt{\frac{2}{g}}\cdot \sqrt{s}}
 \]
-beschreiben kann, also eine Funktion, in deren Abbildungsvorschrift die Wurzel (genauer gesagt die Quadratwurzel) der Veränderlichen vorkommt. Deren Graph beinhaltet dann die obigen gemessenen Punkte:
+beschreiben kann, also eine Funktion, in deren Abbildungsvorschrift die Wurzel (genauer gesagt die Quadratwurzel) der VerÃ¤nderlichen vorkommt. Ihr Graph beinhaltet dann die obigen gemessenen Punkte:
 
 % GRAPHEN: wurz1
 \MTikzAuto{%
@@ -2359,9 +2361,9 @@ beschreiben kann, also eine Funktion, in deren Abbildungsvorschrift die Wurzel (
 }%
 \end{MExample}
 
-Dieses Beispiel zeigt, dass Funktionen mit Abbildungsvorschriften, die Wurzeln der Veränderlichen enthalten, natürlicherweise in Anwendungen der Mathematik auftauchen. 
+Dieses Beispiel zeigt, dass Funktionen mit Abbildungsvorschriften, die Wurzeln der VerÃ¤nderlichen enthalten, natÃ¼rlicherweise in Anwendungen der Mathematik auftauchen. 
 
-Für natürliche Zahlen $n\in\N$, $n>1$ bezeichnet man die Funktionen
+FÃ¼r natÃ¼rliche Zahlen $n\in\N$, $n>1$ bezeichnet man die Funktionen
 \[
  \function{f_n}{D_{f_n}}{\R}{x}{\sqrt[n]{x}=x^{\frac{1}{n}}}
 \]
@@ -2369,12 +2371,12 @@ als die Klasse der \highlight{Wurzelfunktionen}. Diese beinhalten offenbar die Q
 
 \begin{MExercise}
 Benutzen Sie die Potenzrechengesetze, um die Abbildungsvorschrift der Wurzelfunktionen ohne Wurzelzeichen und stattdessen mit Hilfe von Exponenten aufzuschreiben.
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Nach den Potenzrechengesetzen gilt
 \[
  f_n(x)=\sqrt[n]{x}=x^{\frac{1}{n}}
 \]
-für alle natürlichen Zahlen $n$. Also zum Beispiel
+fÃ¼r alle natÃ¼rlichen Zahlen $n$. Also zum Beispiel
 \[
  f_2(x)=\sqrt{x}=x^{\frac{1}{2}}\MDFPSpace, \MDFPaSpace f_3(x)=\sqrt[3]{x}=x^{\frac{1}{3}}\MDFPSpace, \MDFPaSpace f_4(x)=\sqrt[4]{x}=x^{\frac{1}{4}}\MDFPSpace, \MDFPaSpace \dots
 \]
@@ -2382,27 +2384,27 @@ für alle natürlichen Zahlen $n$. Also zum Beispiel
 \end{MExercise}
 
 \begin{MExercise}
-Welche Funktion $f_n$ ergäbe sich für $n=1$?
-\begin{MHint}{Lösung}
-Für $n=1$ gilt nach den Potenzrechengesetzen
+Welche Funktion $f_n$ ergÃ¤be sich fÃ¼r $n=1$?
+\begin{MHint}{\iSolution}
+FÃ¼r $n=1$ gilt nach den Potenzrechengesetzen
 \[
  f_1(x)=\sqrt[1]{x}=x^{\frac{1}{1}}=x=\Id(x) \MDFPeriod
 \]
-Es ergibt sich also die Identität. Diese schließt man für gewöhnlich aus der Klasse der Wurzelfunktionen aus. 
+Es ergibt sich also die IdentitÃ¤t. Diese schlieÃŸt man fÃ¼r gewÃ¶hnlich aus der Klasse der Wurzelfunktionen aus. 
 \end{MHint}
 \end{MExercise}
 
-Von großem Interesse ist nun der größtmögliche Definitionsbereich $D_{f_n}$, der für diese Wurzelfunktionen möglich ist. Denn offenbar kommt es auf den Wurzelexponenten $n$ an, welche Werte man für $x$ in die Abbildungsvorschriften einsetzen darf, um reelle Werte als Ergebnisse zu erhalten. So erkennen wir, dass bei der Quadratwurzel $\sqrt{\ }$ nur nicht-negative Werte ein reelles Ergebnis liefern. Betrachten wir allerdings die Kubikwurzel $\sqrt[3]{\ }$, so erhalten wir in diesem Fall, dass alle reellen Zahlen eingesetzt wieder reelle Zahlen als Ergebnis liefern, so etwa $\sqrt[3]{-27}=-3$. Allgemein gilt:
+Von groÃŸem Interesse ist nun der grÃ¶ÃŸtmÃ¶gliche Definitionsbereich $D_{f_n}$, der fÃ¼r diese Wurzelfunktionen mÃ¶glich ist. Denn offenbar kommt es auf den Wurzelexponenten $n$ an, welche Werte man fÃ¼r $x$ in die Abbildungsvorschriften einsetzen darf, um reelle Werte als Ergebnisse zu erhalten. So erkennen wir, dass bei der Quadratwurzel $\sqrt{\ }$ nur nicht-negative Werte ein reelles Ergebnis liefern. Betrachten wir allerdings die Kubikwurzel $\sqrt[3]{\ }$, so erhalten wir in diesem Fall, dass alle reellen Zahlen eingesetzt wieder reelle Zahlen als Ergebnis liefern, so etwa $\sqrt[3]{-27}=-3$. Allgemein gilt:
 
 \begin{MInfo}
 Die Wurzelfunktionen  
 \[
  \function{f_n}{D_{f_n}}{\R}{x}{\sqrt[n]{x}}
 \]
-mit $n\in\N$ und $n>1$ besitzen den größtmöglichen Definitionsbereich $D_{f_n}=[0\MIntvlSep \infty)$ falls $n$ gerade ist und $D_{f_n}=\R$ falls $n$ ungerade ist.
+mit $n\in\N$ und $n>1$ besitzen den grÃ¶ÃŸtmÃ¶glichen Definitionsbereich $D_{f_n}=[0\MIntvlSep \infty)$ falls $n$ gerade ist und $D_{f_n}=\R$ falls $n$ ungerade ist.
 \end{MInfo}
 
-Damit erhält man folgendes Aussehen für die Graphen der ersten vier Wurzelfunktionen $f_2, f_3, f_4, f_5$:
+Damit erhÃ¤lt man folgendes Aussehen fÃ¼r die Graphen der ersten vier Wurzelfunktionen $f_2, f_3, f_4, f_5$:
 
 % GRAPHEN: wurz2
 \MTikzAuto{%
@@ -2456,20 +2458,20 @@ Damit erhält man folgendes Aussehen für die Graphen der ersten vier Wurzelfunkti
 \end{tikzpicture}
 }%
 
-Aus dem Verlauf der Graphen sieht man, dass alle Wurzelfunktionen \highlight{streng monoton wachsend} sind. 
+Aus dem Verlauf der Graphen erkennt man, dass alle Wurzelfunktionen \highlight{streng monoton wachsend} sind. 
 
 \begin{MExercise}
-Bestimme für die Wurzelfunktionen
+Bestimme fÃ¼r die Wurzelfunktionen
 \[
  \function{f_n}{D_{f_n}}{\R}{x}{\sqrt[n]{x}}
 \]
-mit $n\in\N$, $n>1$, den Wertebereich $W_{f_n}$, in Abhängigkeit davon ob $n$ gerade oder ungerade ist.
-\begin{MHint}{Lösung}
-Für die geradzahligen Wurzelfunktionen ergeben sich offenbar als Werte nur nicht-negative reelle Zahlen,
-denn nach den Potenzrechengesetzen kann $\sqrt{x}$, $\sqrt[4]{x}$, $\sqrt[6]{x}$, usw.~für $x\geq 0$ nie negativ werden.
-Die ungeradzahligen Wurzelfunktionen können auch alle negativen reellen Zahlen als Werte liefern. Tatsächlich gilt
+mit $n\in\N$, $n>1$, den Wertebereich $W_{f_n}$, in AbhÃ¤ngigkeit davon ob $n$ gerade oder ungerade ist.
+\begin{MHint}{\iSolution}
+FÃ¼r die geradzahligen Wurzelfunktionen ergeben sich offenbar als Werte nur nicht-negative reelle Zahlen,
+denn nach den Potenzrechengesetzen kann $\sqrt{x}$, $\sqrt[4]{x}$, $\sqrt[6]{x}$, usw.~fÃ¼r $x\geq 0$ nie negativ werden.
+Die ungeradzahligen Wurzelfunktionen kÃ¶nnen auch alle negativen reellen Zahlen als Werte liefern. TatsÃ¤chlich gilt
 $\sqrt[3]{x}<0$, $\sqrt[5]{x}<0$, usw.~genau dann wenn $x<0$ ist. Zusammenfassend gilt dann also
-unter Berücksichtigung der strengen Monotonie der Wurzelfunktionen $W_{f_n}=\R$ falls $n$ ungerade sowie $W_{f_n}=[0\MIntvlSep \infty)$ falls $n$ gerade ist.
+unter BerÃ¼cksichtigung der strengen Monotonie der Wurzelfunktionen $W_{f_n}=\R$ falls $n$ ungerade sowie $W_{f_n}=[0\MIntvlSep \infty)$ falls $n$ gerade ist.
 \end{MHint}
 
 
@@ -2486,47 +2488,47 @@ unter Berücksichtigung der strengen Monotonie der Wurzelfunktionen $W_{f_n}=\R$ 
 \MDeclareSiteUXID{VBKM06_Exponentialfunktionen_Intro}
 
 
-Bei \MEntry{Exponentialfunktionen}{Exponentialfunktion} stellt die Veränderliche im Gegensatz zu den Potenzfunktionen
+Bei \MEntry{Exponentialfunktionen}{Exponentialfunktion} stellt die VerÃ¤nderliche im Gegensatz zu den Potenzfunktionen
 nicht die \modstextbf{Basis} des Exponentialausdrucks dar, sondern sie bildet den \modstextbf{Exponenten}. Dementsprechend werden wir Zuordnungsvorschriften betrachten wie z.B.:
 $$x \longmapsto 2^x\; \text{oder}\; x \longmapsto 10^x \MDFPeriod$$
 
 \ \\ \ \\
 Exponentialfunktionen spielen in vielen unterschiedlichen Bereichen eine wichtige Rolle, so etwa bei der Beschreibung biologischer
-Wachstumsprozesse - diverse Modelle zur Bevölkerungsentwicklung eingeschlossen -, bei Prozessen des radioaktiven Zerfalls
+Wachstumsprozesse - diverse Modelle zur BevÃ¶lkerungsentwicklung eingeschlossen -, bei Prozessen des radioaktiven Zerfalls
 oder bei einer bestimmten Form der Zinseszinsberechnung. Betrachten wir ein Beispiel:
 \begin{MExample}
 \MLabel{M06_bsp_bak_pop}
-Eine Bakterienkultur enthält zu Versuchsbeginn $500$ Bakterien und verdoppelt ihre Population alle $13$ Minuten. Wir möchten gerne
+Eine Bakterienkultur enthÃ¤lt zu Versuchsbeginn $500$ Bakterien und verdoppelt ihre Population alle $13$ Minuten. Wir mÃ¶chten gerne
 wissen, wieviele Bakterien nach $1$ Stunde und $15$ Minuten (also nach $75$ Minuten) in der Kultur vorhanden sind?
 
-In einem ersten Anlauf können wir eine einfache Wertetabelle erstellen, die uns die Bakterienpopulation zu Beginn ($t = 0$ min),
+In einem ersten Anlauf kÃ¶nnen wir eine einfache Wertetabelle erstellen, die uns die Bakterienpopulation zu Beginn ($t = 0$ min),
 nach $t = 13$ min, nach $t = 26$ min usw., also zu Vielfachen der $13$-Minuten-Verdopplungszeitspanne, angibt:
 \begin{center}
  \begin{tabular}{|c|r|r|r|r|r|r|r|r|c|}
  \hline
  Zeit $t$ in min & 0 & 13 & 26 & 39 & 52 & 65 & 78 & 91 & usw. \\ \hline
- Anzahl Bakterien & 500 & 1000 & 2000 & 4000 & 8000 & 16000 & 32000 & 64000 & usw. \\ 
+ Anzahl Bakterien & 500 & 1\,000 & 2\,000 & 4\,000 & 8\,000 & 16\,000 & 32\,000 & 64\,000 & usw. \\ 
  \hline
  \end{tabular}
 \end{center}
-Aus der Tabelle können wir abschätzen, dass die Antwort auf unsere Frage zwischen
-$16000$ und $32000$, wahrscheinlich näher bei $32000$, liegen wird. Doch wie sieht es mit einer präzis(er)en Antwort aus?
-Dazu müssen wir den \modstextbf{funktionalen Zusammenhang} zwischen allgemeinen $t$-Werten und Bakterienanzahl kennen. In der
-unten stehenden Abbildung ist auch der Graph einer Funktion $p$ wiedergegeben; dieser Funktionsgraph füllt sozusagen die
-Lücken zwischen den isolierten Punkten, die den Wertepaaren aus der Tabelle entsprechen und die ebenfalls eingezeichnet
-sind. Die zugehörige Abbildungsvorschrift ordnet jedem reellen Zeitpunkt eine Populationsgröße zu. Wie wir sehen werden,
+Aus der Tabelle kÃ¶nnen wir abschÃ¤tzen, dass die Antwort auf unsere Frage zwischen
+$16\,000$ und $32\,000$, wahrscheinlich nÃ¤her bei $32\,000$, liegen wird. Doch wie sieht es mit einer prÃ¤zis(er)en Antwort aus?
+Dazu mÃ¼ssen wir den \modstextbf{funktionalen Zusammenhang} zwischen allgemeinen $t$-Werten und Bakterienanzahl kennen. In der
+unten stehenden Abbildung ist auch der Graph einer Funktion $p$ wiedergegeben; dieser Funktionsgraph fÃ¼llt sozusagen die
+LÃ¼cken zwischen den isolierten Punkten, die den Wertepaaren aus der Tabelle entsprechen und die ebenfalls eingezeichnet
+sind. Die zugehÃ¶rige Abbildungsvorschrift ordnet jedem reellen Zeitpunkt eine PopulationsgrÃ¶ÃŸe zu. Wie wir sehen werden,
 handelt es sich bei der Funktion um eine \modstextbf{Exponentialfunktion}.
 \begin{center}
 \MUGraphicsSolo{bak_pop.png}{scale=1}{width:400px}
 \end{center}
-Aus der graphischen Darstellung können wir die gesuchte Anzahl an Bakterien schon etwas genauer ablesen. Aber für die
-exakte Angabe benötigen wir die Abbildungsvorschrift, die hinter dem Graphen aus der Abbildung steht und die wir hier
-zunächst nur angeben:
+Aus der graphischen Darstellung kÃ¶nnen wir die gesuchte Anzahl an Bakterien schon etwas genauer ablesen. Aber fÃ¼r die
+exakte Angabe benÃ¶tigen wir die Abbildungsvorschrift, die hinter dem Graphen aus der Abbildung steht und die wir hier
+zunÃ¤chst nur angeben:
 $$p: [0\MIntvlSep \infty) \longrightarrow (0\MIntvlSep  \infty) \;\text{mit}\; t \longmapsto p(t) = 500 \cdot 2^{(t/13)} \MDFPeriod$$
-(In Aufgabe \MRef{M06_bsp_bak_pop_exercise} werden wir diesen funktionalen Zusammenhang begründen.)\\
-Damit erhalten wir für $t = 75$ (gemessen in Minuten) den Funktionswert
-$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27270 \MDFPeriod$$
-Also leben nach $75$ Minuten $27270$ Bakterien in der fraglichen Population.
+(In Aufgabe \MRef{M06_bsp_bak_pop_exercise} werden wir diesen funktionalen Zusammenhang begrÃ¼nden.)\\
+Damit erhalten wir fÃ¼r $t = 75$ (gemessen in Minuten) den Funktionswert
+$$p(75) = 500 \cdot 2^{(75/13)} \approx 500 \cdot \MZahl{54}{539545} \approx 27\;270 \MDFPeriod$$
+Also leben nach $75$ Minuten ca. $27\,270$ Bakterien in der fraglichen Population.
 \end{MExample}
 \end{MIntro}
 
@@ -2535,14 +2537,13 @@ Also leben nach $75$ Minuten $27270$ Bakterien in der fraglichen Population.
 \MLabel{M06_allgem_exp_fkt}
 \MDeclareSiteUXID{VBKM06_Exponentialfunktionen_Allgemein}
 
-Im vorangegangen \MSRef{M06_bsp_bak_pop}{Beispiel} tritt eine \modstextbf{Exponentialfunktion} zur Basis $a = 2$ auf, die Veränderliche - im
-Beispiel $t$ - erscheint im Exponenten. Wir wollen nun die allgemeine Abbildungvorschrift für Exponentialfunktionen
+Im vorangegangen \MSRef{M06_bsp_bak_pop}{Beispiel} tritt eine \modstextbf{Exponentialfunktion} zur Basis $a = 2$ auf, die VerÃ¤nderliche - im
+Beispiel $t$ - erscheint im Exponenten. Wir wollen nun die allgemeine Abbildungvorschrift fÃ¼r Exponentialfunktionen
 zu einer beliebigen Basis $a$ angeben; dabei setzen wir allerdings $a > 0$ voraus:
 $$
-\begin{array}{rrcl}
- f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot a^{\lambda x} \MDFPeriod
-\end{array}
+ \function{f}{\R}{(0;\infty)}{x}{f(x)=f_{0}\cdot a^{\lambda x}}
 $$
+
 Dabei bezeichnen $f_0$ und $\lambda$ sogenannte Parameter der Exponentialfunktion, auf die wir weiter
 unten eingehen werden.
 
@@ -2551,60 +2552,60 @@ der Wertebereich nur aus den positiven reellen Zahlen besteht ($W_f = (0\MIntvlS
 postiven Zahl nur positiv sein kann.
 
 \begin{MExercise}
- Warum setzt man bei den Exponentialfunktionen voraus, dass die Basis $a$ größer Null sein soll? \begin{MHint}{Lösung}
-  Eine Exponentialfunktion soll nicht nur für ausgewählte, spezielle oder isolierte Werte der Veränderlichen $x$
-  definiert sein, sondern, wenn möglich, für alle reellen Zahlen. Würde man negative Basiswerte $a < 0$ zulassen, so
-  würden sofort Probleme beim Wurzelziehen - siehe $a^{(1/2)} = \sqrt{a}, a^{1/4}, a^{1/12}$ etc. - auftreten.
+ Warum setzt man bei den Exponentialfunktionen voraus, dass die Basis $a$ grÃ¶ÃŸer Null sein soll? \begin{MHint}{\iSolution}
+  Eine Exponentialfunktion soll nicht nur fÃ¼r ausgewÃ¤hlte, spezielle oder isolierte Werte der VerÃ¤nderlichen $x$
+  definiert sein, sondern, wenn mÃ¶glich, fÃ¼r alle reellen Zahlen. WÃ¼rde man negative Basiswerte $a < 0$ zulassen, so
+  wÃ¼rden sofort Probleme beim Wurzelziehen - siehe $a^{(1/2)} = \sqrt{a}, a^{1/4}, a^{1/12}$ etc. - auftreten.
   Zum Beispiel sind Quadratwurzeln aus negativen Zahlen nicht definiert, vergleiche auch Abschnitt \MRef{VBKM06_Potenz}.
  \end{MHint}
 \end{MExercise}
 
-Einige generelle Eigenschaften von Exponentialfunktionen können wir im folgenden Bild erkennen, in dem
-Exponentialfunktionen $g: \R \rightarrow (0\MIntvlSep  \infty)$, $x \longmapsto g(x) = a^x$ für verschiedene Werte von $a$ gegenübergestellt
+Einige generelle Eigenschaften von Exponentialfunktionen kÃ¶nnen wir im folgenden Bild erkennen, in dem
+Exponentialfunktionen $g: \R \rightarrow (0\MIntvlSep  \infty)$, $x \longmapsto g(x) = a^x$ fÃ¼r verschiedene Werte von $a$ gegenÃ¼bergestellt
 sind:
 \begin{center}
 \MUGraphicsSolo{expo_vgl.png}{scale=1}{width:400px}
 \end{center}
 \begin{itemize}
  \item Alle diese Exponentialfunktionen gehen durch den Punkt $(x = 0, y = 1)$: Dies gilt,
- da $g(x = 0) = a^0$ und $a^0 = 1$ für jede Zahl $a$.
- \item Ist $a > 1$, so steigt der Graph von $g$ von links nach rechts (also für wachsende $x$-Werte) an;
- man sagt auch, dass die Funktion $g$ \modstextbf{streng monoton wachsend} ist. Je größer der Wert für $a$ ist, desto
- schneller wächst $g$ für \modstextbf{positive} $x$-Werte. Geht
- man von rechts nach links (also zu immer größeren negativen $x$-Werten), so bildet die negative $x$-Achse eine Asymptote des Graphen.
- \item Ist $a < 1$, so fällt der Graph von $g$ von links nach rechts (also für wachsende $x$-Werte) ab;
- man sagt auch, dass die Funktion $g$ \modstextbf{streng monoton fallend} ist. Je größer der Wert für $a$ ist, desto
- langsamer fällt $g$ für \modstextbf{negative} $x$-Werte. Geht
- man von links nach rechts (also zu immer größeren positiven $x$-Werten), so bildet die positive $x$-Achse eine Asymptote.
+ da $g(x = 0) = a^0$ und $a^0 = 1$ fÃ¼r jede Zahl $a$.
+ \item Ist $a > 1$, so steigt der Graph von $g$ von links nach rechts (also fÃ¼r wachsende $x$-Werte) an;
+ man sagt auch, dass die Funktion $g$ \modstextbf{streng monoton wachsend} ist. Je grÃ¶ÃŸer der Wert fÃ¼r $a$ ist, desto
+ schneller wÃ¤chst $g$ fÃ¼r \modstextbf{positive} $x$-Werte. Geht
+ man von rechts nach links (also zu immer grÃ¶ÃŸeren negativen $x$-Werten), so bildet die negative $x$-Achse eine Asymptote des Graphen.
+ \item Ist $a < 1$, so fÃ¤llt der Graph von $g$ von links nach rechts (also fÃ¼r wachsende $x$-Werte) ab;
+ man sagt auch, dass die Funktion $g$ \modstextbf{streng monoton fallend} ist. Je grÃ¶ÃŸer der Wert fÃ¼r $a$ ist, desto
+ langsamer fÃ¤llt $g$ fÃ¼r \modstextbf{negative} $x$-Werte. Geht
+ man von links nach rechts (also zu immer grÃ¶ÃŸeren positiven $x$-Werten), so bildet die positive $x$-Achse eine Asymptote.
 \end{itemize}
 Und was hat es nun noch mit den Parametern $f_0$ und $\lambda$ auf sich? Der Parameter $f_0$ ist schnell
-erklärt: Setzt man den Wert $x = 0$ für die Veränderliche in die allgemeinen Exponentialfunktionen $f$ ein,
+erklÃ¤rt: Setzt man den Wert $x = 0$ fÃ¼r die VerÃ¤nderliche in die allgemeinen Exponentialfunktionen $f$ ein,
 $$f(x = 0) = f_0 \cdot a^{\lambda \cdot 0} = f_0 \cdot a^0 = f_0 \cdot 1 = f_0 \MDFPSpace,$$
 so erkennt man, dass $f_0$ eine Art \modstextbf{Start- oder Anfangswert} darstellt
-(zumindest falls man die Veränderliche $x$ zeitlich interpretiert); der exponentielle Verlauf $a^{\lambda x}$
-wird generell mit dem Faktor $f_0$ multipliziert und dementsprechend gewichtet, d.h. gestreckt (für $|f_0| > 1$)
-bzw. gestaucht (für $|f_0| < 1$).
+(zumindest falls man die VerÃ¤nderliche $x$ zeitlich interpretiert); der exponentielle Verlauf $a^{\lambda x}$
+wird generell mit dem Faktor $f_0$ multipliziert und dementsprechend gewichtet, d.h. gestreckt (fÃ¼r $|f_0| > 1$)
+bzw. gestaucht (fÃ¼r $|f_0| < 1$).
 
-Der Parameter $\lambda$ im Exponenten heißt \MEntry{Wachstumsrate}{Wachstumsrate}; er bestimmt, wie stark
-die Exponentialfunktion - bei gleichbleibender Basis - wächst (für $\lambda > 0$) oder fällt (für
+Der Parameter $\lambda$ im Exponenten heiÃŸt \MEntry{Wachstumsrate}{Wachstumsrate}; er bestimmt, wie stark
+die Exponentialfunktion - bei gleichbleibender Basis - wÃ¤chst (fÃ¼r $\lambda > 0$) oder fÃ¤llt (fÃ¼r
 $\lambda < 0$). 
 
 \begin{MExercise}
  \MLabel{M06_bsp_bak_pop_exercise}
- Begründen Sie die Form der Exponentialfunktion $f(t) = 500 \cdot 2^{(t/13)}$, die im Beispiel
- \MRef{M06_bsp_bak_pop} auftritt! \begin{MHint}{Lösung}
+ BegrÃ¼nden Sie die Form der Exponentialfunktion $f(t) = 500 \cdot 2^{(t/13)}$, die im Beispiel
+ \MRef{M06_bsp_bak_pop} auftritt! \begin{MHint}{\iSolution}
   In jeder Verdopplungszeitspanne von $13$ Minuten verdoppelt sich - wie der Name schon sagt - die Bakterienpopulation.
   Jeweils bezogen auf den Ausgangswert ($500$ Bakterien) hat sich also die Anzahl an Bakterien nach einer Zeitspanne von $13$
-  Minuten verdoppelt, nach zwei solchen Zeitspannen vervierfacht, nach $3 \cdot 13$ Minuten verachtfacht (immer - wie erwähnt -
+  Minuten verdoppelt, nach zwei solchen Zeitspannen vervierfacht, nach $3 \cdot 13$ Minuten verachtfacht (immer - wie erwÃ¤hnt -
   im Vergleich zum Anfangswert) usw. Daran erkennen wir, dass bei dem Wachstumsprozess $2$er-Potenzen involviert sind;
-  dementsprechend wählen wir als Basis für den funktionalen Zusammenhang $a = 2$.
+  dementsprechend wÃ¤hlen wir als Basis fÃ¼r den funktionalen Zusammenhang $a = 2$.
   
-  Diese Überlegung legt auch den Exponenten der gesuchten Exponentialfunktion fest: Unsere Zeitmessung muss sich auf die
-  $13$-Minuten-Zeitspanne beziehen, der Exponent ist daher $\Mtfrac{t}{13}$. Nach $13$ Minuten ergibt sich somit für den 
+  Diese Ãœberlegung legt auch den Exponenten der gesuchten Exponentialfunktion fest: Unsere Zeitmessung muss sich auf die
+  $13$-Minuten-Zeitspanne beziehen, der Exponent ist daher $\Mtfrac{t}{13}$. Nach $13$ Minuten ergibt sich somit fÃ¼r den 
   Exponenten $\Mtfrac{13}{13} = 1$. Der Wachstumsfaktor ergibt sich zu $2^{(13/13)}=2$. Nach zwei Zeitspannen (gleich $26$ Minuten) ist der Exponent $\Mtfrac{26}{13} = 2$ 
   und damit der Wachstumsfaktor insgesamt $2^{(26/13)} = 2^2 = 4$ usw.
   
-  Schließlich müssen wir $2^{(t/13)}$ noch mit dem richtigen Anfangswert ($500$ Bakterien) gewichten;
+  SchlieÃŸlich mÃ¼ssen wir $2^{(t/13)}$ noch mit dem richtigen Anfangswert ($500$ Bakterien) gewichten;
   dies geschieht mit Hilfe des Faktors $500$.
  \end{MHint}
 \end{MExercise}
@@ -2614,38 +2615,38 @@ $\lambda < 0$).
 \MLabel{M06_e_fkt}
 \MDeclareSiteUXID{VBKM06_Exponentialfunktionen_efkt}
  Es gibt eine ganz besondere Exponentialfunktion, manchmal auch als \textit{die} Exponentialfunktion bezeichnet, um die
- wir uns jetzt kümmern wollen. In der Tat lassen sich, wie wir sehen werden, alle anderen Exponentialfunktionen auf diese
- besondere Exponentialfunktion zurückführen. Sie besitzt als Basis die \MEntry{eulersche Zahl}{Eulersche Zahl} $e$. Ihr (ungefährer) Wert beträgt
+ wir uns jetzt kÃ¼mmern wollen. In der Tat lassen sich, wie wir sehen werden, alle anderen Exponentialfunktionen auf diese
+ besondere Exponentialfunktion zurÃ¼ckfÃ¼hren. Sie besitzt als Basis die \MEntry{eulersche Zahl}{Eulersche Zahl} $e$. Ihr (ungefÃ¤hrer) Wert betrÃ¤gt
  $$\MEU = \MZahl{2}{718281828459045235} \dots \MDFPeriod$$
  
  
- Betrachten wir also - zunächst ohne irgendwelche zusätzlichen Parameter - den Graphen \modstextbf{der} Exponentialfunktion,
+ Betrachten wir also - zunÃ¤chst ohne irgendwelche zusÃ¤tzlichen Parameter - den Graphen \modstextbf{der} Exponentialfunktion,
  $$
  \begin{array}{rrcl}
  g: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & g(x) = \MEU^x \MDFPSpace,
  \end{array}
  $$
- wegen der Basis $\MEU$ auch \MEntry{$\MEU$-Funktion}{e-Funktion} oder \MEntry{natürliche Exponentialfunktion}{Exponentialfunktion (natürlich)} genannt:
+ wegen der Basis $\MEU$ auch \MEntry{$\MEU$-Funktion}{e-Funktion} oder \MEntry{natÃ¼rliche Exponentialfunktion}{Exponentialfunktion (natÃ¼rlich)} genannt:
  \begin{center}
  \MUGraphicsSolo{e_fkt.png}{scale=1}{width:400px}
  \end{center}
- Wenig überraschend zeigt auch die $\MEU$-Funktion das bereits in \MRef{M06_allgem_exp_fkt}
+ Wenig Ã¼berraschend zeigt auch die $\MEU$-Funktion das bereits in \MRef{M06_allgem_exp_fkt}
  diskutierte Verhalten der Exponentialfunktionen $x \Mmapsto a^x$ $(a > 1)$;
- schließlich haben wir für die Basis ja auch nur einen speziellen Wert, nämlich $a = \MEU$, gewählt.
- Insbesondere halten wir nochmals fest, dass die $\MEU$-Funktion \modstextbf{streng monoton wachsend} ist, sich für große
- negative $x$-Werte an die negative $x$-Achse anschmiegt und für $x = 0$ den Wert $1$ annimmt.
+ schlieÃŸlich haben wir fÃ¼r die Basis ja auch nur einen speziellen Wert, nÃ¤mlich $a = \MEU$, gewÃ¤hlt.
+ Insbesondere halten wir nochmals fest, dass die $\MEU$-Funktion \modstextbf{streng monoton wachsend} ist, sich fÃ¼r groÃŸe
+ negative $x$-Werte an die negative $x$-Achse anschmiegt und fÃ¼r $x = 0$ den Wert $1$ annimmt.
  \begin{MExercise}
   \MLabel{M06_aufg_e_fkt_2}
   Wie sieht der Graph der Funktion $h: \R \rightarrow (0\MIntvlSep  \infty)$, $x \Mmapsto h(x) = \MEU^{- x}$ aus, und welche generellen
   Eigenschaften besitzt diese Funktion?
-  \begin{MHint}{Lösung}
+  \begin{MHint}{\iSolution}
    \begin{center}
     \begin{tabular}{ccc}
      \MUGraphicsSolo{e_fkt_2.png}{scale=1}{width:300px} &
      \hspace*{1.5cm} &
      \begin{minipage}[b]{6cm}
-      Die Funktion $h$ ist streng monoton fallend, für große positive $x$-Werte schmiegt sich der Graph von $h$ an die
-      positive $x$-Achse an und für $x = 0$ nimmt $h$ den Wert $h(x = 0) = 1$ an.
+      Die Funktion $h$ ist streng monoton fallend, fÃ¼r groÃŸe positive $x$-Werte schmiegt sich der Graph von $h$ an die
+      positive $x$-Achse an und fÃ¼r $x = 0$ nimmt $h$ den Wert $h(x = 0) = 1$ an.
      \end{minipage}
     \end{tabular}
    \end{center}
@@ -2655,30 +2656,30 @@ $\lambda < 0$).
 
 
  Eingangs dieses Unterabschnitts haben wir behauptet, dass sich die weiter oben besprochenen Exponentialfunktionen
- auf die $\MEU$-Funktion zurückführen lassen. Dies gelingt mit Hilfe der Identität
+ auf die $\MEU$-Funktion zurÃ¼ckfÃ¼hren lassen. Dies gelingt mit Hilfe der IdentitÃ¤t
  $$a^x = \MEU^{x \cdot\ln(a)} \MDFPSpace,$$
- die für beliebige reelle $a > 0$ und beliebige reelle $x$ gilt. Dabei bezeichnet $\ln$ den
- \MSRef{VBKM06_LNDEF}{natürlichen Logarithmus}, dessen Funktionsgestalt uns im folgenden Abschnitt
- \MRef{M06_Logarithmus} noch ausgiebig beschäftigen wird. 
+ die fÃ¼r beliebige reelle $a > 0$ und beliebige reelle $x$ gilt. Dabei bezeichnet $\ln$ den
+ \MSRef{VBKM06_LNDEF}{natÃ¼rlichen Logarithmus}, dessen Funktionsgestalt uns im folgenden Abschnitt
+ \MRef{M06_Logarithmus} noch ausgiebig beschÃ¤ftigen wird. 
  \begin{MExercise}
-  Begründen Sie die Identität $a^x = \MEU^{x \cdot \ln(a)}$. \begin{MHint}{Lösung}
-   Nach dem Potenzgesetz $(b^r)^s = b^{r \cdot s}$ kann die rechte Seite der in Frage stehenden Identität als
+  BegrÃ¼nden Sie die IdentitÃ¤t $a^x = \MEU^{x \cdot \ln(a)}$. \begin{MHint}{\iSolution}
+   Nach dem Potenzgesetz $(b^r)^s = b^{r \cdot s}$ kann die rechte Seite der in Frage stehenden IdentitÃ¤t als
    $\MEU^{x \cdot\ln(a)} = (\MEU^{\ln(a)})^x$ umgeschrieben werden. Da $\ln$ die Umkehrung zu \textit{$\MEU$ hoch}
-   ist, folgt $\MEU^{\ln(a)} = a$. Damit folgt $(\MEU^{\ln(a)})^x = a^x$, was in der Tat die linke Seite der Identität darstellt.
+   ist, folgt $\MEU^{\ln(a)} = a$. Damit folgt $(\MEU^{\ln(a)})^x = a^x$, was in der Tat die linke Seite der IdentitÃ¤t darstellt.
   \end{MHint}
  \end{MExercise}
  
  
- \modstextbf{Allgemeine $\MEU$-Funktionen} enthalten die bereits in Unterabschnitt \MRef{M06_allgem_exp_fkt} eingeführten
- Parameter $f_0$ und $\lambda$; ihre funktionale Gestalt sieht also folgendermaßen aus:
+ \modstextbf{Allgemeine $\MEU$-Funktionen} enthalten die bereits in Unterabschnitt \MRef{M06_allgem_exp_fkt} eingefÃ¼hrten
+ Parameter $f_0$ und $\lambda$; ihre funktionale Gestalt sieht also folgendermaÃŸen aus:
  $$
  \begin{array}{rrcl}
   f: & \R & \longrightarrow & (0\MIntvlSep  \infty) \\ & x & \longmapsto & f(x) = f_0 \cdot \MEU^{\lambda x} \MDFPeriod
  \end{array}
  $$
- Wiederum repräsentiert $f_0$ die Möglichkeit von $1$ verschiedener Start- oder Anfangswerte, und der Faktor
+ Wiederum reprÃ¤sentiert $f_0$ die MÃ¶glichkeit von $1$ verschiedener Start- oder Anfangswerte, und der Faktor
  $\lambda$ im Exponenten gestattet unterschiedlich starke (positive oder negative) Wachstumsraten. Wir wollen
- dies abschließend an einem Beispiel verdeutlichen:
+ dies abschlieÃŸend an einem Beispiel verdeutlichen:
  \begin{MExample}
  Bei einer Versuchsreihe mit radioaktiven Jodatomen ($^{131}\mathrm{I}$) ergeben sich im Mittel folgende Daten:
   \begin{center}
@@ -2689,34 +2690,34 @@ $\lambda < 0$).
    \end{tabular}
   \end{center}
   Mit anderen Worten: Alle $\MZahl{8}{04}$ Tage halbiert sich die Anzahl der Jodatome aufgrund radioaktiven Zerfalls; man
-  spricht daher in diesem Zusammenhang davon, dass die \modstextbf{Halbwertszeit} $h$ von Jod-$131$ $h = \MZahl{8}{04}$ Tage beträgt.
+  spricht daher in diesem Zusammenhang davon, dass die \modstextbf{Halbwertszeit} $h$ von Jod-$131$ $h = \MZahl{8}{04}$ Tage betrÃ¤gt.
   
   Der radioaktive Zerfall folgt einem \modstextbf{Exponentialgesetz}:
   $$N(t) = N_0 \cdot \MEU^{\lambda t} \MDFPeriod$$
-  Unsere \modstextbf{Exponentialfunktion} heißt hier $N$; sie gibt die Anzahl der noch vorhandenen Jodatome an. $N_0$
-  steht dementsprechend für die Anzahl der Jodatome zu Beginn, also $N_0 = 10000$. Die Veränderliche im vorliegenden
+  Unsere \modstextbf{Exponentialfunktion} heiÃŸt hier $N$; sie gibt die Anzahl der noch vorhandenen Jodatome an. $N_0$
+  steht dementsprechend fÃ¼r die Anzahl der Jodatome zu Beginn, also $N_0 = 10000$. Die VerÃ¤nderliche im vorliegenden
   Beispiel ist die Zeit $t$ (gemessen in Tagen). Von dem Parameter $\lambda$ erwarten wir, dass er negativ ist,
   da es um die Beschreibung eines Zerfallsprozesses, also eines Prozesses mit negativem Wachstum, geht. Wir wollen
   $\lambda$ in der Folge aus den Messdaten bestimmen:
   
   Nach $h = \MZahl{8}{04}$ Tagen sind nur noch $5000$ Jodatome vorhanden, d.h. $N(t = \MZahl{8}{04}) = 5000 = \Mtfrac{N_0}{2}$.
-  Verwenden wir das Exponentialgesetz für den radioaktiven Zerfall, so erhalten wir:
+  Verwenden wir das Exponentialgesetz fÃ¼r den radioaktiven Zerfall, so erhalten wir:
   $$\Mdfrac{N_0}{2} = N_0 \cdot \MEU^{\lambda \cdot h}  \MDFPeriod$$
-  Wir können $N_0$ auf beiden Seiten der Gleichung kürzen und anschließend logarithmieren (siehe Abschnitt
+  Wir kÃ¶nnen $N_0$ auf beiden Seiten der Gleichung kÃ¼rzen und anschlieÃŸend logarithmieren (siehe Abschnitt
   \MRef{M06_Logarithmus}):
   $$\ln \left( \Mdfrac12 \right ) = \ln(\MEU^{\lambda \cdot h})  \MDFPeriod$$
-  Die linke Seite formen wir gemäß den Rechenregeln für den Logarithmus um (siehe Abschnitt \MRef{M06_Logarithmus}),
-  $\ln(1/2) = \ln(1) - \ln(2) = 0 - \ln(2) = - \ln(2)$. Für die rechte Seite beachten
+  Die linke Seite formen wir gemÃ¤ÃŸ den Rechenregeln fÃ¼r den Logarithmus um (siehe Abschnitt \MRef{M06_Logarithmus}),
+  $\ln(1/2) = \ln(1) - \ln(2) = 0 - \ln(2) = - \ln(2)$. FÃ¼r die rechte Seite beachten
   wir, dass Logarithmieren die Umkehrung zum Exponentieren darstellt, $\ln(\MEU^{\lambda \cdot h}) = \lambda \cdot h$;
   damit folgt:
   $$\begin{array}{crcl} & - \ln(2) & = & \lambda \cdot h \\[.5ex]
   \Leftrightarrow & \lambda & = & - \Mdfrac{\ln(2)}{h}  \MDFPeriod \end{array}$$
-  Mit $h = \MZahl{8}{04}$ Tage für Jod-$131$ folgt für den Parameter $\lambda$ im vorliegenden Fall
+  Mit $h = \MZahl{8}{04}$ Tage fÃ¼r Jod-$131$ folgt fÃ¼r den Parameter $\lambda$ im vorliegenden Fall
   $$\lambda \approx - \MZahl{0}{0862} \; \Mdfrac{1}{\text{Tage}}  \MDFPeriod$$
   
   Andere radioaktive Substanzen besitzen andere Halbwertszeiten - Plutonium-239 z.B. weist eine Halbwertszeit
-  von ungefähr $24000$ Jahren auf - und führen folglich auf andere Werte für den Parameter $\lambda$ im
-  Exponentialgesetz für den radioaktiven Zerfall.
+  von ungefÃ¤hr $24000$ Jahren auf - und fÃ¼hren folglich auf andere Werte fÃ¼r den Parameter $\lambda$ im
+  Exponentialgesetz fÃ¼r den radioaktiven Zerfall.
  \end{MExample}
 \end{MXContent}
 
@@ -2732,17 +2733,17 @@ In Abschnitt \MRef{M06_e_fkt} haben wir beim Studium der $\MEU$-Funktion,
  & x & \longmapsto & g(x) = \MEU^x  \MDFPSpace,
  \end{array}
  $$
- insbesondere auf eine sehr wichtige Eigenschaft der natürlichen Exponentialfunktion hingewiesen, nämlich dass diese
+ insbesondere auf eine sehr wichtige Eigenschaft der natÃ¼rlichen Exponentialfunktion hingewiesen, nÃ¤mlich dass diese
  Funktion streng monoton wachsend ist. Spiegelt man den Graph der Funktion an der Winkelhalbierenden zwischen dem ersten und dritten Quadranten,
- so erhält man den Graphen der natürlichen Logarithmusfunktion - und versieht sie mit einem eigenen Symbol, nämlich $\ln$:
+ so erhÃ¤lt man den Graphen der natÃ¼rlichen Logarithmusfunktion - und versieht sie mit einem eigenen Symbol, nÃ¤mlich $\ln$:
  
 \begin{MInfo}
 \MLabel{VBKM06_LNDEF}
-Die über die Gleichung $\MEU^{\ln(x)}=x$ erklärte Funktion
+Die Ã¼ber die Gleichung $\MEU^{\ln(x)}=x$ erklÃ¤rte Funktion
 $$
 \function{\ln}{(0\MIntvlSep \infty)}{\R}{x}{\ln(x)}
 $$
-heißt die \MEntry{natürliche Logarithmusfunktion}{Logarithmusfunktion (natürlich)}.
+heiÃŸt die \MEntry{natÃ¼rliche Logarithmusfunktion}{Logarithmusfunktion (natÃ¼rlich)}.
 \end{MInfo}
 
 Die Gleichung ist dabei so zu lesen, dass $\ln(x)=a$ derjenige Wert $a$ ist mit $\MEU^a=x$.
@@ -2751,18 +2752,18 @@ Diese Konstruktion wird im folgenden Bild dargestellt:
  \MUGraphicsSolo{ln_fkt.png}{scale=1}{}
  \end{center}
 
-Folgende Eigenschaften der natürlichen Logarithmusfunktion können wir dem Graphen entnehmen:
+Folgende Eigenschaften der natÃ¼rlichen Logarithmusfunktion kÃ¶nnen wir dem Graphen entnehmen:
  \begin{itemize}
   \item Die Funktion $\ln$ ist streng monoton wachsend.
-  \item Nähert man sich von rechts auf der $x$-Achse dem Nullpunkt, so nimmt $\ln(x)$ immer größere negative
+  \item NÃ¤hert man sich von rechts auf der $x$-Achse dem Nullpunkt, so nimmt $\ln(x)$ immer grÃ¶ÃŸere negative
   Werte an: Wir halten fest, dass sich der Graph von $\ln$ an die negative Hochachse ($y$-Achse) anschmiegt.
-  \item An der Stelle $x = 1$ besitzt die natürliche Logarithmusfunktion den Wert $0$, $\ln(1) = 0$.
+  \item An der Stelle $x = 1$ besitzt die natÃ¼rliche Logarithmusfunktion den Wert $0$, $\ln(1) = 0$.
  \end{itemize}
  
-Neben der natürlichen Logarithmusfunktion gibt es noch andere Logarithmusfunktionen, die jeweils zu einem bestimmten Exponenten gehören:
+Neben der natÃ¼rlichen Logarithmusfunktion gibt es noch andere Logarithmusfunktionen, die jeweils zu einem bestimmten Exponenten gehÃ¶ren:
 
 \begin{MInfo}
-Ist $b>0$ ein beliebiger Exponent, so nennt man die über die Gleichung $b^{\log_b(x)}=x$ (sprich: $\log_b(x)=a$ ist derjenige Exponent $a$ mit $b^a=x$) erklärte Funktion
+Ist $b>0$ ein beliebiger Exponent, so nennt man die Ã¼ber die Gleichung $b^{\log_b(x)}=x$ (sprich: $\log_b(x)=a$ ist derjenige Exponent $a$ mit $b^a=x$) erklÃ¤rte Funktion
 $$
 \function{\log_b}{(0\MIntvlSep \infty)}{\R}{x}{\log_b(x)}
 $$
@@ -2773,11 +2774,11 @@ Die Logarithmusfunktion kann man in der Regel nicht direkt ausrechnen. Da sie al
 und den Exponenten abzulesen.
 
 \begin{MExample}
-Typische Berechnungen für den natürlichen Logarithmus sind
+Typische Berechnungen fÃ¼r den natÃ¼rlichen Logarithmus sind
 $$
 \ln(\MEU^5) \;=\; 5\MDFPSpace, \MDFPaSpace \ln(\sqrt{\MEU}) \;=\; \ln(\MEU^{\frac12}) \;=\; \frac12
 $$
-sowie für den allgemeinen Logarithmus
+sowie fÃ¼r den allgemeinen Logarithmus
 $$
 \log_5(25) \;=\; \log_5(5^2) \;=\; 2 \MDFPSpace, \MDFPaSpace \log_3(81) \;=\; \log_3(3^4) \;=\; 4 \MDFPeriod
 $$
@@ -2792,22 +2793,22 @@ $$
 \begin{MExercise}
 Berechnen Sie diese Logarithmen:
 \begin{MExerciseItems}
-\item{\MEquationItem{$\displaystyle\ln(\sqrt[3]{\MEU})$}{\MLSimplifyQuestion{10}{1/3}{5}{}{5}{1}{LNA1}}. \begin{MHint}{Lösung}Es ist $\ln(\sqrt[3]{\MEU})=\ln(\MEU^{\frac13})=\frac13$.\end{MHint}}
-\item{\MEquationItem{$\displaystyle\log_2(256)$}{\MLSimplifyQuestion{10}{8}{5}{}{5}{1}{LNA2}}. \begin{MHint}{Lösung}Es ist $\log_2(256)=\log_2(2^8)=8$.\end{MHint}}
-\item{\MEquationItem{$\displaystyle\log_9(3)$}{\MLSimplifyQuestion{10}{1/2}{5}{}{5}{1}{LNA3}}. \begin{MHint}{Lösung}Es ist $\log_9(3)=\log_9(9^{\frac12})=\frac12$.\end{MHint}}
+\item{\MEquationItem{$\displaystyle\ln(\sqrt[3]{\MEU})$}{\MLSimplifyQuestion{10}{1/3}{5}{}{5}{1}{LNA1}}. \begin{MHint}{\iSolution}Es ist $\ln(\sqrt[3]{\MEU})=\ln(\MEU^{\frac13})=\frac13$.\end{MHint}}
+\item{\MEquationItem{$\displaystyle\log_2(256)$}{\MLSimplifyQuestion{10}{8}{5}{}{5}{1}{LNA2}}. \begin{MHint}{\iSolution}Es ist $\log_2(256)=\log_2(2^8)=8$.\end{MHint}}
+\item{\MEquationItem{$\displaystyle\log_9(3)$}{\MLSimplifyQuestion{10}{1/2}{5}{}{5}{1}{LNA3}}. \begin{MHint}{\iSolution}Es ist $\log_9(3)=\log_9(9^{\frac12})=\frac12$.\end{MHint}}
 \end{MExerciseItems}
 \end{MExercise}
 
-In der Mathematik und den Naturwissenschaften werden folgende Logarithmen häufig eingesetzt und erhalten deshalb besondere Symbole:
+In der Mathematik und den Naturwissenschaften werden folgende Logarithmen hÃ¤ufig eingesetzt und erhalten deshalb besondere Symbole:
 \begin{itemize}
-\item{Logarithmus zur Basis $10$: $\log_{10}(x)=\lg(x)$ oder manchmal auch nur $\log(x)$, dieser Logarithmus gehört zu den Zehnerpotenzen und wird beispielsweise zur Berechnung von pH-Werten in der Chemie eingesetzt.}
+\item{Logarithmus zur Basis $10$: $\log_{10}(x)=\lg(x)$ oder manchmal auch nur $\log(x)$, dieser Logarithmus gehÃ¶rt zu den Zehnerpotenzen und wird beispielsweise zur Berechnung von pH-Werten in der Chemie eingesetzt.}
 \item{Logarithmus zur Basis $2$: $\log_2(x)=\ld(x)$, dieser Logarithmus ist in der Informatik wichtig.}
-\item{Logarithmus zur Basis $\MEU$: $\log_\MEU(x)=\ln(\MEU)$, der natürliche Logarithmus ist für praktische Rechnungen meist ungeeignet (es sei denn,
-der Ausdruck ist eine $\MEU$-Potenz). Er wird als natürlich bezeichnet, weil die Exponentialfunktion zur Basis $\MEU$ aus mathematischer Sicht einfacher ist
+\item{Logarithmus zur Basis $\MEU$: $\log_\MEU(x)=\ln(\MEU)$, der natÃ¼rliche Logarithmus ist fÃ¼r praktische Rechnungen meist ungeeignet (es sei denn,
+der Ausdruck ist eine $\MEU$-Potenz). Er wird als natÃ¼rlich bezeichnet, weil die Exponentialfunktion zur Basis $\MEU$ aus mathematischer Sicht einfacher ist
 als die allgemeinen Exponentialfunktionen (z.B. weil $\MEU^x$ seine eigene Ableitung ist, $b^x$ aber nicht $b\not=\MEU$).}
 \end{itemize}
 
-Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Abschnitt erklärt werden.
+FÃ¼r die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Abschnitt erklÃ¤rt werden.
 
 \end{MXContent}
 
@@ -2815,7 +2816,7 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
 
 \begin{MXContent}{Logarithmengesetze}{Logarithmengesetze}{STD}
 \MDeclareSiteUXID{VBKM06_Logarithmusgesetze}
- Für das Rechnen mit Logarithmen gelten gewisse Gesetze, die sich aus den \MSRef{VBKM01_Potenzgesetze}{Potenzgesetzen} herleiten lassen:
+ FÃ¼r das Rechnen mit Logarithmen gelten gewisse Gesetze, die sich aus den \MSRef{VBKM01_Potenzgesetze}{Potenzgesetzen} herleiten lassen:
  
  
  \begin{MInfo}
@@ -2828,7 +2829,7 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
   \end{array}$$
  \end{MInfo}
  
- Diese Gesetze sind neben dem natürlichen auch für alle anderen Logarithmen richtig und eignen sich dazu, einen gegebenen Term so umzuformen,
+ Diese Gesetze sind neben dem natÃ¼rlichen auch fÃ¼r alle anderen Logarithmen richtig und eignen sich dazu, einen gegebenen Term so umzuformen,
  dass Potenzen alleine in den Logarithmen stehen:
  
  \begin{MExample}
@@ -2836,7 +2837,7 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
  $$
  \ld(8^5) \;=\; \log_2(8^5) \;=\;5\cdot \log_2(8) \;=\; 5\cdot \log_2(2^3) \;=\; 5\cdot 3 \;=\; 15 \MDFPeriod
  $$
- Produkte in Logarithmen kann man in Summen außerhalb der Logarithmen zerlegen:
+ Produkte in Logarithmen kann man in Summen auÃŸerhalb der Logarithmen zerlegen:
  $$
  \lg\left({100\cdot \sqrt{10}\cdot \frac1{10}}\right) \;=\; \lg(100)+\lg(\sqrt{10})-\lg(10) \;=\; 2+\frac12-1 \;=\; \frac32 \MDFPeriod
  $$
@@ -2845,7 +2846,7 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
  
  
  
- Wichtig bei der Zerlegungsregel $\log(u\cdot v)=\log(u)+\log(v)$ ist, dass sie Produkte in Summen umwandelt. Der umgekehrte Weg ist beim Logarithmus nicht möglich, den Logarithmus einer Summe
+ Wichtig bei der Zerlegungsregel $\log(u\cdot v)=\log(u)+\log(v)$ ist, dass sie Produkte in Summen umwandelt. Der umgekehrte Weg ist beim Logarithmus nicht mÃ¶glich, den Logarithmus einer Summe
  kann man nicht weiter umformen.
  
 \end{MXContent}
@@ -2857,13 +2858,13 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_TrigonometrischeFunktionen_Intro}
- Die \MEntry{Trigonometrie}{Trigonometrie} ist der griechischen Wortherkunft nach die \modstextbf{Maßlehre der Dreiecke}.
+ Die \MEntry{Trigonometrie}{Trigonometrie} ist der griechischen Wortherkunft nach die \modstextbf{MaÃŸlehre der Dreiecke}.
  Eine zentrale Rolle nehmen dabei die sogenannten \MEntry{trigonometrischen Funktionen}{Trigonometrische Funktionen}, wie \modstextbf{Sinus-}, \modstextbf{Kosinus-} und \modstextbf{Tangensfunktion}, ein.
  
  Das Anwendungsfeld von Sinus, Kosinus, Tangens \& Co. ist jedoch nicht auf
- \glqq simple{\grqq} Dreiecksberechnungen beschränkt. Vielmehr entfalten die trigonometrischen Funktionen
+ \glqq simple{\grqq} Dreiecksberechnungen beschrÃ¤nkt. Vielmehr entfalten die trigonometrischen Funktionen
  ihr eigentliches Potenzial erst in den mannigfachen Anwendungsbereichen, deren wichtigste vielleicht
- in der Beschreibung von Schwingungs-- und Wellenvorgängen durch trigonometrische Funktionen in Physik und Technik liegen. Aber auch in vielen anderen
+ in der Beschreibung von Schwingungs-- und WellenvorgÃ¤ngen durch trigonometrische Funktionen in Physik und Technik liegen. Aber auch in vielen anderen
  Gebieten, der Landvermessung etwa oder der Astronomie, kommen sie zum Tragen.
  
 \end{MIntro}
@@ -2871,15 +2872,15 @@ Für die Logarithmusfunktion gibt es zahlreiche Rechenregeln, die im folgenden Ab
 \begin{MXContent}{Die Sinusfunktion}{Die Sinusfunktion}{STD}
 \MLabel{M06_Sinusfkt}
 \MDeclareSiteUXID{VBKM06_TrigonometrischeFunktionen_Sinus}
- In Modul \MRef{VBKM05} wurden die trigonometrischen Funktionen elementar im \MRef{M05_Trigonometrie} über rechtwinklige Dreiecke 
+ In Modul \MRef{VBKM05} wurden die trigonometrischen Funktionen elementar im \MRef{M05_Trigonometrie} Ã¼ber rechtwinklige Dreiecke 
  durch
 $$\begin{array}{rcccccl}
   \sin(\alpha) & = & \Mdfrac{\text{Gegenkathete}}{\text{Hypotenuse}} \MDFPeriod & & \\[2ex]
  \end{array}$$
  
- sowie am \MSRef{VBKM05_Trigonometrie_Einheitskreis}{Einheitskreis} erklärt.
+ sowie am \MSRef{VBKM05_Trigonometrie_Einheitskreis}{Einheitskreis} erklÃ¤rt.
  Ausgehend von dieser Definition von $\sin(\alpha)$ gelangt man zur \MEntry{Sinusfunktion}{Sinusfunktion}, indem man den
- Winkel $\alpha$ zur Veränderlichen einer Funktion mit Namen $\sin$ macht. Man kann sich dies an Hand einer Familie von
+ Winkel $\alpha$ zur VerÃ¤nderlichen einer Funktion mit Namen $\sin$ macht. Man kann sich dies an Hand einer Familie von
  rechtwinkligen Dreiecken $A B C$ verdeutlichen, die dem \MEntry{Einheitskreis}{Einheitskreis}, das ist ein
  Kreis mit Radius $r = 1$, auf bestimmte Art und Weise einbeschrieben sind:
  \begin{center}
@@ -2887,15 +2888,15 @@ $$\begin{array}{rcccccl}
  \end{center}
 
  
- Beginnen wir mit dem Winkel $\alpha = 0^\circ$, also einem zur Strecke entarteten Dreieck, so ist die Länge der
+ Beginnen wir mit dem Winkel $\alpha = 0^\circ$, also einem zur Strecke entarteten Dreieck, so ist die LÃ¤nge der
  Strecke $\overline{B C}$ gleich $0$. Lassen wir nun den Punkt $B$ \modstextbf{entgegen
- dem Uhrzeigersinn} um den Kreis wandern, so wächst $\alpha$ - und auch $\sin(\alpha)$ - zunächst an, bis
- für $\alpha = 90^\circ$ ein \modstextbf{maximaler Wert} ($\sin(90^\circ) = 1$) erreicht wird, bevor $\alpha$ weiter zu-,
- aber $\sin(\alpha)$ wieder abnimmt. Für $\alpha = 180^\circ$ ist das Dreieck $A B C$ wieder zur Strecke
+ dem Uhrzeigersinn} um den Kreis wandern, so wÃ¤chst $\alpha$ - und auch $\sin(\alpha)$ - zunÃ¤chst an, bis
+ fÃ¼r $\alpha = 90^\circ$ ein \modstextbf{maximaler Wert} ($\sin(90^\circ) = 1$) erreicht wird, bevor $\alpha$ weiter zu-,
+ aber $\sin(\alpha)$ wieder abnimmt. FÃ¼r $\alpha = 180^\circ$ ist das Dreieck $A B C$ wieder zur Strecke
  degeneriert, und $\sin(180^\circ) = 0$. Wird $\alpha$
- noch größer, \glqq klappt{\grqq} das Dreieck \glqq nach unten{\grqq}, die Stecke $\overline{B C}$ ist parallel zur
- negativen Hochachse ($y$-Achse) ausgerichtet, ihre Länge daher \modstextbf{negativ}. Für $\alpha = 270^\circ$ tritt der
- \modstextbf{maximal negative Wert} auf, bevor er sich wieder $0$ nähert. Bei $\alpha = 360^\circ$ beginnt das Spiel von Neuem.
+ noch grÃ¶ÃŸer, \glqq klappt{\grqq} das Dreieck \glqq nach unten{\grqq}, die Stecke $\overline{B C}$ ist parallel zur
+ negativen Hochachse ($y$-Achse) ausgerichtet, ihre LÃ¤nge daher \modstextbf{negativ}. FÃ¼r $\alpha = 270^\circ$ tritt der
+ \modstextbf{maximal negative Wert} auf, bevor er sich wieder $0$ nÃ¤hert. Bei $\alpha = 360^\circ$ beginnt das Spiel von Neuem.
  \begin{center}
   \MUGraphicsSolo{sin_fkt.png}{scale=1}{width:400px}
  \end{center}
@@ -2906,40 +2907,40 @@ $$\begin{array}{rcccccl}
  \end{array}
  $$
  wieder. Allerdings haben wir auf der Querachse ($\alpha$-Achse) den Winkel $\alpha$ nicht - wie in der bisherigen
- Diskussion - im Gradmaß aufgetragen, sondern wir haben das in diesem Zusammenhang üblichere
- \MSRef{VBKM05_Def_Bogenmass}{Bogenmaß} verwendet.
+ Diskussion - im GradmaÃŸ aufgetragen, sondern wir haben das in diesem Zusammenhang Ã¼blichere
+ \MSRef{VBKM05_Def_Bogenmass}{BogenmaÃŸ} verwendet.
  
  Halten wir einige der wichtigsten Eigenschaften der Sinusfunktion fest:
  \begin{itemize}
   \item{Die Sinusfunktion ist auf ganz $\R$ definiert, $D_{\sin} = \R$; der Wertebereich besteht dagegen nur aus dem
    Intervall von $- 1$ bis $+ 1$, diese beiden Endpunkte eingeschlossen: $W_{\sin} = [- 1\MIntvlSep  + 1]$}
-  \item{Nach gewissen Abständen wiederholt der Graph der Sinusfunktion exakt sein Aussehen; man spricht in diesem Zusammenhang
-   von der Periodizität der Sinusfunktion. Die \MEntry{Periode}{Periode (Sinus)} beträgt $360^\circ$ bzw. $2 \pi$.
-   Formelmäßig kann man diesen Sachverhalt als
+  \item{Nach gewissen AbstÃ¤nden wiederholt der Graph der Sinusfunktion exakt sein Aussehen; man spricht in diesem Zusammenhang
+   von der PeriodizitÃ¤t der Sinusfunktion. Die \MEntry{Periode}{Periode (Sinus)} betrÃ¤gt $360^\circ$ bzw. $2 \pi$.
+   FormelmÃ¤ÃŸig kann man diesen Sachverhalt als
    $$\sin(\alpha) = \sin(\alpha + 2 \pi)$$
-   ausdrücken.}
+   ausdrÃ¼cken.}
  \end{itemize}
  
- Schon die Betrachtung des Graphen der einfachen Sinusfunktion legt die Verwendung dieser Funktion für die Beschreibung von
- Wellenvorgängen nahe. Um jedoch die gesamte Leistungsfähigkeit der Sinusfunktion ausschöpfen zu
- können, werden zuvor noch einige zusätzliche Parameter eingeführt.
- So können die \glqq Ausschläge{\grqq} der Sinusfunktion mit einem sogenannten \modstextbf{Amplitudenfaktor} $A$ verstärkt
+ Schon die Betrachtung des Graphen der einfachen Sinusfunktion legt die Verwendung dieser Funktion fÃ¼r die Beschreibung von
+ WellenvorgÃ¤ngen nahe. Um jedoch die gesamte LeistungsfÃ¤higkeit der Sinusfunktion ausschÃ¶pfen zu
+ kÃ¶nnen, werden zuvor noch einige zusÃ¤tzliche Parameter eingefÃ¼hrt.
+ So kÃ¶nnen die \glqq AusschlÃ¤ge{\grqq} der Sinusfunktion mit einem sogenannten \modstextbf{Amplitudenfaktor} $A$ verstÃ¤rkt
  oder abgemildert, die \glqq Schnelligkeit{\grqq} oder \glqq Dichte{\grqq} der Auf- und Abbewegungen durch einen
  \modstextbf{frequenzartigen} Faktor $a$ beeinflusst und der gesamte Verlauf des Graphen kann mit einer \modstextbf{Verschiebekonstanten}
- $b$ nach rechts oder links verrückt werden. Die \modstextbf{allgemeine Sinusfunktion} besitzt daher folgende Gestalt:
+ $b$ nach rechts oder links verrÃ¼ckt werden. Die \modstextbf{allgemeine Sinusfunktion} besitzt daher folgende Gestalt:
  $$\begin{array}{rrcl}
   f : & \R & \longrightarrow & [- A\MIntvlSep  + A] \\
   & x & \longmapsto & f(x) = A \, \sin (a x + b) \MDFPeriod 
  \end{array}$$
  \begin{MExample}
   \MLabel{M06_Fadenpendel}
-  Beim Fadenpendel schwingt eine kleine schwere Masse im Gravitationsfeld der Erde an einem langen dünnen Faden, der z.B. fest
-  an der Decke eines (hohen) Raumes verankert ist. Unter gewissen idealisierenden Annahmen und für kleine Werte des Auslenkwinkels
-  $\Mvarphi$ aus der \modstextbf{Ruhelage} (der \modstextbf{Lotrechten}) hängt $\Mvarphi$ von der Veränderlichen $t$, der Zeit, über
+  Beim Fadenpendel schwingt eine kleine schwere Masse im Gravitationsfeld der Erde an einem langen dÃ¼nnen Faden, der z.B. fest
+  an der Decke eines (hohen) Raumes verankert ist. Unter gewissen idealisierenden Annahmen und fÃ¼r kleine Werte des Auslenkwinkels
+  $\Mvarphi$ aus der \modstextbf{Ruhelage} (der \modstextbf{Lotrechten}) hÃ¤ngt $\Mvarphi$ von der VerÃ¤nderlichen $t$, der Zeit, Ã¼ber
   eine allgemeine Sinusfunktion ab:
   $$\Mvarphi (t) = A \, \sin(\Mdfrac{2 \pi}{T} t + b) \MDFPeriod$$
-  Dabei bezeichnet $T$ die sogenannte \modstextbf{Schwingungsdauer} des Pendels, also diejenige Zeitspanne, die für eine
-  vollständige Schwingung vom Pendel benötigt wird.
+  Dabei bezeichnet $T$ die sogenannte \modstextbf{Schwingungsdauer} des Pendels, also diejenige Zeitspanne, die fÃ¼r eine
+  vollstÃ¤ndige Schwingung vom Pendel benÃ¶tigt wird.
   
   
  \end{MExample}
@@ -2947,16 +2948,16 @@ $$\begin{array}{rcccccl}
 
 \begin{MXContent}{Kosinus und Tangens}{Kosinus, Tangens und Kotangens}{STD}\MLabel{sec:cos}
 \MDeclareSiteUXID{VBKM06_TrigonometrischeFunktionen_CosTan}
- Im Grunde genommen müssen wir für Kosinus- und Tangensfunktion die zur Sinusfunktion analogen Überlegungen
- angehen, die wir aus dem vorigen Unterabschnitt \MRef{M06_Sinusfkt} kennen. Da wir schon etwas Übung besitzen, können wir die
+ Im Grunde genommen mÃ¼ssen wir fÃ¼r Kosinus- und Tangensfunktion die zur Sinusfunktion analogen Ãœberlegungen
+ angehen, die wir aus dem vorigen Unterabschnitt \MRef{M06_Sinusfkt} kennen. Da wir schon etwas Ãœbung besitzen, kÃ¶nnen wir die
  Diskussion etwas straffen. Beginnen wir mit der \MEntry{Kosinusfunktion}{Kosinusfunktion} und betrachten erneut unsere dem Einheitskreis
  einbeschriebenen Dreiecke:
  \begin{center}
   \MUGraphicsSolo{cos_fkt_im_kreis.png}{scale=1}{width:400px}
  \end{center}
- Wiederum besitzen alle Hypotenusen dieser so konstruierten rechtwinkligen Dreiecke die Länge $1$, sodass die Kosinus
- der Winkel $\alpha$ im Bild als Längen der Strecken $\overline{A C}$ auftreten. Bewegen wir wie zuvor den Punkt $B$ 
- \modstextbf{im Gegenuhrzeigersinn} gleichmäßig um den Kreis und variieren so den Winkel $\alpha$, erhalten wir letztlich die
+ Wiederum besitzen alle Hypotenusen dieser so konstruierten rechtwinkligen Dreiecke die LÃ¤nge $1$, sodass die Kosinus
+ der Winkel $\alpha$ im Bild als LÃ¤ngen der Strecken $\overline{A C}$ auftreten. Bewegen wir wie zuvor den Punkt $B$ 
+ \modstextbf{im Gegenuhrzeigersinn} gleichmÃ¤ÃŸig um den Kreis und variieren so den Winkel $\alpha$, erhalten wir letztlich die
  \modstextbf{Kosinusfunktion}:
  $$
  \begin{array}{rrcl}
@@ -2976,29 +2977,29 @@ $$\begin{array}{rcccccl}
   $+ 1$, die Endpunkte inbegriffen, $W_{\cos} = [- 1\MIntvlSep  + 1]$.
   \item Aus dem obigen Bild der Graphen von $\cos(\alpha)$ und $\sin(\alpha)$ ergibt sich unmittelbar, dass
   $$\cos(\alpha) = \sin \left( \alpha + \Mdfrac{\pi}{2} \right)$$
-  für alle reellen Werte von $\alpha$ gilt. Ebenso richtig, aber etwas schwieriger einzusehen, ist
+  fÃ¼r alle reellen Werte von $\alpha$ gilt. Ebenso richtig, aber etwas schwieriger einzusehen, ist
   $$\cos(\alpha) = - \sin \left( \alpha - \Mdfrac{\pi}{2} \right) \MDFPeriod$$
  \end{itemize}
  \begin{MExercise}
   \MLabel{M06_cos_diskussion}
   An welchen Stellen nimmt die Kosinusfunktion ihren maximalen Wert $1$ an, wo ihren maximal negativen Wert $- 1$? An welchen
   Punkten besitzt sie Nullstellen (d.h. wo ist der Funktionswert gleich $0$)?
-  \begin{MHint}{Lösung}
-   Es gilt $\cos(0) = 1$; aufgrund der Periodizität mit Periode $2 \pi$ trifft dies auch für $\pm 2 \pi, \pm 2 \cdot 2 \pi,
-   \pm 3 \cdot 2 \pi, \dots$ zu. Also nimmt die Kosinusfunktion den maximalen Wert $1$ für alle ganzzahligen Vielfachen von $2 \pi$
-   (bzw. für alle geradzahligen Vielfachen von $\pi$) an; man kann dies auch so schreiben:
+  \begin{MHint}{\iSolution}
+   Es gilt $\cos(0) = 1$; aufgrund der PeriodizitÃ¤t mit Periode $2 \pi$ trifft dies auch fÃ¼r $\pm 2 \pi, \pm 2 \cdot 2 \pi,
+   \pm 3 \cdot 2 \pi, \dots$ zu. Also nimmt die Kosinusfunktion den maximalen Wert $1$ fÃ¼r alle ganzzahligen Vielfachen von $2 \pi$
+   (bzw. fÃ¼r alle geradzahligen Vielfachen von $\pi$) an; man kann dies auch so schreiben:
    $$\cos(\alpha) = 1 \Leftrightarrow \alpha \in \{ 2 k \cdot \pi\MCondSetSep k \in \Z \} \MDFPeriod $$
-   Den Wert $- 1$ erreicht die Kosinusfunktion an den Stellen $\dots, - 3 \pi, - \pi, \pi, 3 \pi, 5 \pi, \dots$, also für
+   Den Wert $- 1$ erreicht die Kosinusfunktion an den Stellen $\dots, - 3 \pi, - \pi, \pi, 3 \pi, 5 \pi, \dots$, also fÃ¼r
    ungeradzahlige Vielfache von $\pi$:
    $$\cos(\alpha) = - 1 \Leftrightarrow \alpha \in \{ (2 k + 1) \cdot \pi\MCondSetSep k \in \Z \} \MDFPeriod $$
-   Nullstellen treten für $\dots, - \Mtfrac{3}{2} \pi, - \Mtfrac{1}{2} \pi, \Mtfrac{1}{2} \pi, \Mtfrac32 \pi, \dots$, d.h. für
+   Nullstellen treten fÃ¼r $\dots, - \Mtfrac{3}{2} \pi, - \Mtfrac{1}{2} \pi, \Mtfrac{1}{2} \pi, \Mtfrac32 \pi, \dots$, d.h. fÃ¼r
    halbganzzahlige Vielfache von $\pi$ auf:
    $$\cos(\alpha) = 0 \Leftrightarrow \alpha \in \{ \Mtfrac{2k+1}{2} \cdot \pi; k \in \Z \} \MDFPeriod$$
   \end{MHint}
  \end{MExercise}
- Wie im Falle des Sinus gibt es auch für den Kosinus eine \modstextbf{allgemeine Kosinusfunktion}, in deren Definition
- zusätzliche Freiheiten in Form von Parametern auftauchen (\modstextbf{Amplitudenfaktor} $B$, \modstextbf{Frequenzfaktor} $c$ sowie
- \modstextbf{Verschiebekonstante} $d$); auf diese Art und Weise eröffnet sich wiederum die Möglichkeit, den Funktionsverlauf an
+ Wie im Falle des Sinus gibt es auch fÃ¼r den Kosinus eine \modstextbf{allgemeine Kosinusfunktion}, in deren Definition
+ zusÃ¤tzliche Freiheiten in Form von Parametern auftauchen (\modstextbf{Amplitudenfaktor} $B$, \modstextbf{Frequenzfaktor} $c$ sowie
+ \modstextbf{Verschiebekonstante} $d$); auf diese Art und Weise erÃ¶ffnet sich wiederum die MÃ¶glichkeit, den Funktionsverlauf an
  unterschiedliche Situationen (in Anwendungsbeispielen) anzupassen:
  $$
  \begin{array}{rrcl}
@@ -3008,15 +3009,15 @@ $$\begin{array}{rcccccl}
  $$
  \begin{MExercise}
   In Beispiel \MRef{M06_Fadenpendel} haben wir das Fadenpendel andiskutiert. Insbesondere kann man den zeitlichen Verlauf
-  der Pendelauslenkung $\Mvarphi$ unter den Voraussetzungen bestimmen, dass die Schwingungsdauer $T$ gerade $\pi$ Sekunden beträgt,
+  der Pendelauslenkung $\Mvarphi$ unter den Voraussetzungen bestimmen, dass die Schwingungsdauer $T$ gerade $\pi$ Sekunden betrÃ¤gt,
   und dass zum Zeitpunkt $t = 0$ das Pendel bei einer Auslenkung von $30^\circ$ losgelassen wird:
   $$\Mvarphi (t) = \Mdfrac{\pi}{6} \cdot\sin \left(2 t + \Mdfrac{\pi}{2}\right) \MDFPeriod$$
   Kann man diese Situation auch mit Hilfe der (allgemeinen) Kosinusfunktion (anstelle der Sinusfunktion) beschreiben,
-  und wenn ja, wie sieht dann $\Mvarphi (t)$ aus?  \begin{MHint}{Lösung}
-   Die Antwort auf die erste Frage lautet: Ja, es ist möglich, die Kosinusfunktion zur Beschreibung des vorliegenden Sachverhaltes
+  und wenn ja, wie sieht dann $\Mvarphi (t)$ aus?  \begin{MHint}{\iSolution}
+   Die Antwort auf die erste Frage lautet: Ja, es ist mÃ¶glich, die Kosinusfunktion zur Beschreibung des vorliegenden Sachverhaltes
    heranzuziehen (wie wir sogleich sehen werden).
    
-   Im Prinzip könnten wir mit der oben wiedergegebenen allgemeinen Kosinusfunktion $g$ starten und mit Überlegungen, die analog
+   Im Prinzip kÃ¶nnten wir mit der oben wiedergegebenen allgemeinen Kosinusfunktion $g$ starten und mit Ãœberlegungen, die analog
    zu denjenigen in Beispiel \MRef{M06_Fadenpendel} verlaufen, die Parameter $B$, $c$ und $d$ im vorliegenden Fall bestimmen.
    Einfacher ist es jedoch, sich auf den Zusammenhang $\cos(\alpha) = \sin(\alpha + \Mdfrac{\pi}{2})$
    zwischen Kosinus- und Sinusfunktion zu besinnen. Denn dann folgt sofort
@@ -3027,8 +3028,8 @@ $$\begin{array}{rcccccl}
   \end{MHint}
  \end{MExercise}
  
- Der Tangens ist gegeben als das Verhältnis von Sinus zu Kosinus. Damit ist sofort klar, dass die \MEntry{Tangensfunktion}{Tangensfunktion}
- nicht auf allen reellen Zahlen definiert sein kann, denn schließlich besitzt die Kosinusfunktion unendliche viele
+ Der Tangens ist gegeben als das VerhÃ¤ltnis von Sinus zu Kosinus. Damit ist sofort klar, dass die \MEntry{Tangensfunktion}{Tangensfunktion}
+ nicht auf allen reellen Zahlen definiert sein kann, denn schlieÃŸlich besitzt die Kosinusfunktion unendliche viele
  Nullstellen, wie man z.B. in Aufgabe \MRef{M06_cos_diskussion} sehen kann.
  In Aufgabe \MRef{M06_cos_diskussion} wird auch die Lage der Nullstellen von $\cos$ bestimmt ($\cos(\alpha) = 0
  \Leftrightarrow \alpha \in \{ \Mtfrac{2k+1}{2} \cdot \pi; k \in \Z \}$); demzufolge ist der Definitionsbereich der
@@ -3038,7 +3039,7 @@ $$\begin{array}{rcccccl}
  $\cos$-Nullstellen wird die Tangensfunktion gegen positiv bzw.
  negativ unendliche Werte streben und Polstellen haben und bei den $\sin$-Nullstellen wird
  $\sin/\cos$ Null. 
- Dazwischen sind alle reellen Werte möglich, daher ist $W_{\tan} = \R$. Insgesamt ergibt sich für den Graphen
+ Dazwischen sind alle reellen Werte mÃ¶glich, daher ist $W_{\tan} = \R$. Insgesamt ergibt sich fÃ¼r den Graphen
  der Tangensfunktion
  $$
  \begin{array}{rrcl}
@@ -3050,18 +3051,18 @@ $$\begin{array}{rcccccl}
  \begin{center}
   \MUGraphicsSolo{tan_fkt.png}{scale=1}{width:400px}
  \end{center}
- Die Tangensfunktion verläuft zudem periodisch, allerdings mit der Periode $\pi$ bzw. $180^\circ$.
+ Die Tangensfunktion verlÃ¤uft zudem periodisch, allerdings mit der Periode $\pi$ bzw. $180^\circ$.
  
  \begin{MExercise}
- Der sogenannte Kotangens (Abkürzung $\cot$) ist definiert durch
+ Der sogenannte Kotangens (AbkÃ¼rzung $\cot$) ist definiert durch
  $\cot (\alpha) = \frac1{\tan(\alpha)}= \Mdfrac{\cos(\alpha)}{\sin(\alpha)}$.
  
   Geben Sie Definitions- und Wertebereich der Kotangensfunktion an!
-  \begin{MHint}{Lösung}
+  \begin{MHint}{\iSolution}
    Die Polstellen des Kotangens liegen dort, wo der Sinus $0$ wird, und das ist genau dann der Fall, wenn $\alpha$ ein ganzzahliges Vielfaches
-   von $\pi$ ist. Daher müssen wir bei der Definition der Kotangensfunktion genau diese Punkte ausschließen:
+   von $\pi$ ist. Daher mÃ¼ssen wir bei der Definition der Kotangensfunktion genau diese Punkte ausschlieÃŸen:
    $$D_{\cot} = \R \setminus \{ k \cdot \pi \MCondSetSep k \in \Z \} \MDFPeriod$$
-   Zur Bestimmung des Wertebereichs können Betrachtungen durchgeführt werden, die denjenigen beim Tangens stark ähneln; man findet
+   Zur Bestimmung des Wertebereichs kÃ¶nnen Betrachtungen durchgefÃ¼hrt werden, die denjenigen beim Tangens stark Ã¤hneln; man findet
    $W_{\cot} = \R$.
    \begin{center}
     \MUGraphicsSolo{cot_fkt.png}{scale=1}{width:400px}
@@ -3077,7 +3078,7 @@ $$\begin{array}{rcccccl}
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM06_Eigenschaften_Intro}
 In diesem Abschnitt werden wir eine weitere Eigenschaft elementarer Funktionen betrachten, die in den vorhergehenden Abschnitten noch nicht behandelt wurde.
-Dies ist die Symmetrie von Funktionen. Weiterhin werden Möglichkeiten untersucht, wie aus den nun bekannten elementaren Funktionen neue konstruiert werden können. Dazu führt man unter anderem Summen, Produkte und Verkettungen von Funktionen ein. 
+Dies ist die Symmetrie von Funktionen. Weiterhin werden MÃ¶glichkeiten untersucht, wie aus den nun bekannten elementaren Funktionen neue konstruiert werden kÃ¶nnen. Dazu fÃ¼hrt man unter anderem Summen, Produkte und Verkettungen von Funktionen ein. 
 \end{MIntro}
 
 
@@ -3085,18 +3086,18 @@ Dies ist die Symmetrie von Funktionen. Weiterhin werden Möglichkeiten untersucht
 \MDeclareSiteUXID{VBKM06_Eigenschaften_Symmetrie}
 
 \begin{MInfo}
-Eine Funktion $f\colon \R\lto\R$ heißt \highlight{gerade} oder \highlight{achsensymmetrisch}, falls für alle $x\in\R$
+Eine Funktion $f\colon \R\lto\R$ heiÃŸt \highlight{gerade} oder \highlight{achsensymmetrisch}, falls fÃ¼r alle $x\in\R$
 \[
  f(x)=f(-x)
 \]
-gilt. Analog heißt die Funktion \highlight{ungerade} oder \highlight{punktsymmetrisch}, falls für alle $x\in\R$
+gilt. Analog heiÃŸt die Funktion \highlight{ungerade} oder \highlight{punktsymmetrisch}, falls fÃ¼r alle $x\in\R$
 \[
  f(x)=-f(-x)
 \]
 gilt.
 \end{MInfo}
 
-Diese beiden Symmetriebedingungen für Funktionen sagen also etwas über das Aussehen ihrer Graphen aus. Bei geraden Funktionen ändert sich der Graph bei Spiegelung an der Hochachse nicht, und bei ungeraden Funktionen ändert sich der Graph bei Spiegelung am Ursprung nicht. Wir listen einige Beispiele auf.
+Diese beiden Symmetriebedingungen fÃ¼r Funktionen sagen also etwas Ã¼ber das Aussehen ihrer Graphen aus. Bei geraden Funktionen Ã¤ndert sich der Graph bei Spiegelung an der Hochachse nicht, und bei ungeraden Funktionen Ã¤ndert sich der Graph bei Spiegelung am Ursprung nicht. Wir listen einige Beispiele auf.
 
 \begin{MExample}
 \begin{itemize}
@@ -3108,7 +3109,7 @@ Diese beiden Symmetriebedingungen für Funktionen sagen also etwas über das Ausse
  \[
   \function{f_2}{\R}{\R}{x}{|x|\MDFPSpace,}
  \]
- also die Standardparabel (vgl.~Abschnitt \MNRef{sec:monome}) und die Betragsfunktion (vgl.~Abschnitt \MNRef{VBKM06_sec:betrag}), sind Beispiele für gerade Funktionen. Es gilt $f_1(-x)=(-x)^2=x^2=f_1(x)$ und $f_2(-x)=|-x|=|x|=f_2(x)$ für alle $x\in\R$. Die Graphen weisen die Spiegelsymmetrie an der Hochachse auf:
+ also die Standardparabel (vgl.~Abschnitt \MNRef{sec:monome}) und die Betragsfunktion (vgl.~Abschnitt \MNRef{VBKM06_sec:betrag}), sind Beispiele fÃ¼r gerade Funktionen. Es gilt $f_1(-x)=(-x)^2=x^2=f_1(x)$ und $f_2(-x)=|-x|=|x|=f_2(x)$ fÃ¼r alle $x\in\R$. Die Graphen weisen die Spiegelsymmetrie an der Hochachse auf:
  
 %GRAPH: sym1
 \MTikzAuto{%
@@ -3140,7 +3141,7 @@ Diese beiden Symmetriebedingungen für Funktionen sagen also etwas über das Ausse
   \function{g}{\R}{\R}{x}{x^3 \MDFPSpace,}
  \]
 
- also die kubische Parabel (vgl.~Abschnitt \MNRef{sec:monome}), ist ein Beispiel für eine ungerade Funktion. Es gilt $g(-x)=(-x)^3=-x^3=-g(x)$ für alle $x\in\R$. Der Graph ist punktsymmetrisch bezüglich des Ursprungs:
+ also die kubische Parabel (vgl.~Abschnitt \MNRef{sec:monome}), ist ein Beispiel fÃ¼r eine ungerade Funktion. Es gilt $g(-x)=(-x)^3=-x^3=-g(x)$ fÃ¼r alle $x\in\R$. Der Graph ist punktsymmetrisch bezÃ¼glich des Ursprungs:
 
 %GRAPH: sym2
 \MTikzAuto{%
@@ -3175,7 +3176,7 @@ Diese beiden Symmetriebedingungen für Funktionen sagen also etwas über das Ausse
 \end{itemize}
 \end{MExample}
 
-Natürlich sind die Symmetrieeigenschaften von Funktionen auch benutzbar, wenn der Definitionsbereich der Funktion nicht die gesamten reellen Zahlen umfasst. Es muss dann aber eine Definitionsmenge vorliegen, die die $0$ \modsemph{in der Mitte des Intervalls} enthält. Ein Beispiel dafür ist die Tangens-Funktion in der Aufgabe unten. 
+NatÃ¼rlich sind die Symmetrieeigenschaften von Funktionen auch benutzbar, wenn der Definitionsbereich der Funktion nicht die gesamten reellen Zahlen umfasst. Es muss dann aber eine Definitionsmenge vorliegen, die die $0$ \modsemph{in der Mitte des Intervalls} enthÃ¤lt. Ein Beispiel dafÃ¼r ist die Tangens-Funktion in der Aufgabe unten. 
 
 \begin{MExercise}
 Geben Sie von den folgenden Funktionen jeweils an, ob diese gerade, ungerade oder nicht-symmetrisch sind.
@@ -3186,7 +3187,7 @@ Geben Sie von den folgenden Funktionen jeweils an, ob diese gerade, ungerade ode
  \item[d)] \[\function{i}{\R}{\R}{u}{\cos(u)}\]
  \item[e)] \[\function{j}{\R}{\R}{x}{42}\]
 \end{itemize}
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 a) nicht-symmetrisch, b) ungerade, c) ungerade, d) gerade, e) gerade 
 \end{MHint}
 
@@ -3198,7 +3199,7 @@ a) nicht-symmetrisch, b) ungerade, c) ungerade, d) gerade, e) gerade
 
 \begin{MXContent}{Summen, Produkte, Verkettungen}{Summen, Produkte, Verkettungen}{STD}\MLabel{Verkettung}
 \MDeclareSiteUXID{VBKM06_SummeProduktVerkettung}
-In diesem Abschnitt wollen wir nun das große Sortiment an elementaren Funktionen, die wir uns in diesem Modul erarbeitet haben, nutzen, um neue komplexere Funktionen aus den elementaren zu konsturieren. An verschiedenen Stellen im Verlauf dieses Moduls haben wir bereits Funktionen untersucht, deren Abbildungsvorschriften durch Summen- oder Produktbildung aus einfacheren Abbildungsvorschriften zusammengesetzt sind. Man kann natürlich auch Differenzen und unter bestimmten Umständen Quotienten von Abbildungsvorschriften bilden. Das folgende Beispiel stellt nochmal einige solche zusammengesetzte Funktionen zusammen.
+In diesem Abschnitt wollen wir nun das groÃŸe Sortiment an elementaren Funktionen, die wir uns in diesem Modul erarbeitet haben, nutzen, um neue komplexere Funktionen aus den elementaren zu konsturieren. An verschiedenen Stellen im Verlauf dieses Moduls haben wir bereits Funktionen untersucht, deren Abbildungsvorschriften durch Summen- oder Produktbildung aus einfacheren Abbildungsvorschriften zusammengesetzt sind. Man kann natÃ¼rlich auch Differenzen und unter bestimmten UmstÃ¤nden Quotienten von Abbildungsvorschriften bilden. Das folgende Beispiel stellt nochmal einige solche zusammengesetzte Funktionen zusammen.
 
 \begin{MExample}
 \begin{itemize}
@@ -3206,7 +3207,7 @@ In diesem Abschnitt wollen wir nun das große Sortiment an elementaren Funktionen
  \[
   \function{f}{\R}{\R}{x}{x+\sin(x)}
  \]
- ist die \modsemph{Summe} aus der Identität (vgl.~Abschnitt \MNRef{sec:linear}) und der Sinusfunktion (vgl.~Abschnitt \MNRef{VBKM06_trigonometrisch}). Sie besitzt den folgenden Graphen:
+ ist die \modsemph{Summe} aus der IdentitÃ¤t (vgl.~Abschnitt \MNRef{sec:linear}) und der Sinusfunktion (vgl.~Abschnitt \MNRef{VBKM06_trigonometrisch}). Sie besitzt den folgenden Graphen:
 
 
 
@@ -3238,7 +3239,7 @@ In diesem Abschnitt wollen wir nun das große Sortiment an elementaren Funktionen
  \[
   \function{g}{[1\MIntvlSep 2]}{\R}{y}{y^2-\ln(y)}
  \]
- ist die \modsemph{Differenz} aus der Standardparabel (vgl.~Abschnitt \MNRef{sec:monome}) und der natürlichen Logarithmusfunktion (vgl.~Abschnitt \MNRef{M06_Logarithmus}). Sie besitzt den folgenden Graphen:
+ ist die \modsemph{Differenz} aus der Standardparabel (vgl.~Abschnitt \MNRef{sec:monome}) und der natÃ¼rlichen Logarithmusfunktion (vgl.~Abschnitt \MNRef{M06_Logarithmus}). Sie besitzt den folgenden Graphen:
   %GRAPH: summ2
 \MTikzAuto{%
 \begin{tikzpicture}
@@ -3269,7 +3270,7 @@ In diesem Abschnitt wollen wir nun das große Sortiment an elementaren Funktionen
  \[
   \function{h}{(0\MIntvlSep \infty)}{\R}{x}{\MEU^x\frac{1}{x}}
  \]
- ist das \modsemph{Produkt} aus der natürlichen Exponentialfunktion mit Abbildungsvorschrift $\MEU^x$ (vgl.~Abschnitt \MNRef{M06_e_fkt}) und der Hyperbel mit Abbildungvorschrift $\frac{1}{x}$ (vgl.~Abschnitt \MNRef{sec:hyperbel}). Sie besitzt folgenden Graphen:
+ ist das \modsemph{Produkt} aus der natÃ¼rlichen Exponentialfunktion mit Abbildungsvorschrift $\MEU^x$ (vgl.~Abschnitt \MNRef{M06_e_fkt}) und der Hyperbel mit Abbildungvorschrift $\frac{1}{x}$ (vgl.~Abschnitt \MNRef{sec:hyperbel}). Sie besitzt folgenden Graphen:
  
    %GRAPH: summ3
 \MTikzAuto{%
@@ -3330,14 +3331,14 @@ In diesem Abschnitt wollen wir nun das große Sortiment an elementaren Funktionen
 
 
 \begin{MExercise}
-Finden Sie weitere Beispiele in diesem Modul für bereits behandelte elementare Funktionen, die mittels Summen-, Differenz-, Produkt- oder Quotientenbildung aus einfacheren elementaren Funktionen hervorgehen. 
+Finden Sie weitere Beispiele in diesem Modul fÃ¼r bereits behandelte elementare Funktionen, die mittels Summen-, Differenz-, Produkt- oder Quotientenbildung aus einfacheren elementaren Funktionen hervorgehen. 
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 Zum Beispiel:
 \begin{itemize}
  \item Die Funktionen vom hyperbolischen Typ (vgl.~Abschnitt \MNRef{sec:hyperbel}) sind alle Quotienten aus der konstanten Funktion $1$ und einem Monom.
- \item Die Monome (vgl.~Abschnitt \MNRef{sec:monome}) sind alle mehrfache Produkte aus der Identität $\Id(x)=x$.
- \item Die linearen Funktionen (vgl.~Abschnitt \MNRef{sec:linear}) sind Produkte aus konstanten Funktionen, die die Steigung beschreiben, und der Identität.
+ \item Die Monome (vgl.~Abschnitt \MNRef{sec:monome}) sind alle mehrfache Produkte aus der IdentitÃ¤t $\Id(x)=x$.
+ \item Die linearen Funktionen (vgl.~Abschnitt \MNRef{sec:linear}) sind Produkte aus konstanten Funktionen, die die Steigung beschreiben, und der IdentitÃ¤t.
  \item Alle Polynome (vgl.~Abschnitt \MNRef{sec:polynome}) sind Summen und Differenzen von Funktionen, die ihrerseits Produkte aus konstanten Funktionen und Monomen sind.
 \end{itemize}
  
@@ -3346,7 +3347,7 @@ Zum Beispiel:
 \end{MExercise}
 
 
-Zuletzt gibt es noch eine weitere Art, elementare Funktionen zu verknüpfen um neue Funktionen zu erhalten. Dies ist die sogenannte \highlight{Verkettung} oder \highlight{Komposition} von Funktionen. 
+Zuletzt gibt es noch eine weitere Art, elementare Funktionen zu verknÃ¼pfen um neue Funktionen zu erhalten. Dies ist die sogenannte \highlight{Verkettung} oder \highlight{Komposition} von Funktionen. 
 
 Wir betrachten dazu einige Beispiele.
 
@@ -3360,7 +3361,7 @@ Wir betrachten dazu einige Beispiele.
  \[
   \function{g}{\R}{\R}{x}{g(x)=\MEU^x}
  \]
- lassen sich auf zweierlei Art verketten. Wir können die Funktion $f\circ g\colon\R\lto\R$ oder die Funktion $g\circ f\colon \R\lto\R$ bilden. Wir erhalten 
+ lassen sich auf zweierlei Art verketten. Wir kÃ¶nnen die Funktion $f\circ g\colon\R\lto\R$ oder die Funktion $g\circ f\colon \R\lto\R$ bilden. Wir erhalten 
  \[
   (f\circ g)(x)=f(g(x))=f(\MEU^x)=(\MEU^x)^2+1=\MEU^{2x}+1 \MDFPSpace,
  \]
@@ -3376,7 +3377,7 @@ Wir betrachten dazu einige Beispiele.
  \[
   \function{g\circ f}{\R}{\R}{x}{\MEU^{x^2+1} \MDFPeriod}
  \]
- Anhand der Graphen sehen wir, dass dies zwei völlig unterschiedliche Funktionen sind. Es kommt also auf die Reihenfolge der Verkettung an.
+ Anhand der Graphen sehen wir, dass dies zwei vÃ¶llig unterschiedliche Funktionen sind. Es kommt also auf die Reihenfolge der Verkettung an.
  
    %GRAPH: kett1
 \MTikzAuto{%
@@ -3416,7 +3417,7 @@ Wir betrachten dazu einige Beispiele.
  \[
   (w\circ h)(x)=w(h(x))=w(\sin(x))=\sqrt{\sin(x)} \MDFPeriod
  \]
- Da die Funktionswerte des Sinus aber auch negativ werden können, man aber in die Quadratwurzelfunktion nur nicht-negative Werte einsetzen darf, muss also der Definitionsbereich der Sinusfunktion entsprechend eingeschränkt werden, so dass sich nicht-negative Werte ergeben, zum Beispiel mittels $x\in[0\MIntvlSep \pi]=D_{w\circ h}$. Wir erhalten also
+ Da die Funktionswerte des Sinus aber auch negativ werden kÃ¶nnen, man aber in die Quadratwurzelfunktion nur nicht-negative Werte einsetzen darf, muss also der Definitionsbereich der Sinusfunktion entsprechend eingeschrÃ¤nkt werden, so dass sich nicht-negative Werte ergeben, zum Beispiel mittels $x\in[0\MIntvlSep \pi]=D_{w\circ h}$. Wir erhalten also
  \[
   \function{w\circ h}{[0\MIntvlSep \pi]}{\R}{x}{\sqrt{\sin(x)} \MDFPeriod}
  \]
@@ -3437,9 +3438,9 @@ und
 \[
  \function{h}{\R}{\R}{x}{\sin(x) \MDFPeriod}
 \]
-Bestimmen Sie die Verkettungen $f\circ g$, $g\circ f$, $h\circ f$, $h\circ g$, $f\circ f$ und $g\circ g$. Schränken Sie dazu eventuell die Definitionsbereiche so ein, dass die Verkettung zulässig ist. Benutzen Sie jedoch für die verketteten Funktion stets die größtmöglichen Definitionsbereiche.
+Bestimmen Sie die Verkettungen $f\circ g$, $g\circ f$, $h\circ f$, $h\circ g$, $f\circ f$ und $g\circ g$. SchrÃ¤nken Sie dazu eventuell die Definitionsbereiche so ein, dass die Verkettung zulÃ¤ssig ist. Benutzen Sie jedoch fÃ¼r die verketteten Funktion stets die grÃ¶ÃŸtmÃ¶glichen Definitionsbereiche.
 
-\begin{MHint}{Lösung}
+\begin{MHint}{\iSolution}
 \[
  \function{f\circ g}{\R\setminus\{0\}}{\R}{x}{\frac{2}{x}-3}
 \]
@@ -3473,7 +3474,7 @@ Bestimmen Sie die Verkettungen $f\circ g$, $g\circ f$, $h\circ f$, $h\circ g$, $
 \MDeclareSiteUXID{VBKM06_Abschlusstest}
 
 \begin{MExercise}
-Bestimmen Sie für die beiden Funktionen
+Bestimmen Sie fÃ¼r die beiden Funktionen
 \[
  \function{f}{D_f}{\R}{x}{\frac{9x^2-\sin(x)+42}{x^2-2}}
 \]
@@ -3481,12 +3482,12 @@ und
 \[
  \function{g}{D_g}{\R}{y}{\frac{\ln(y)}{y^2+1}}
 \]
-jeweils den größtmöglichen Definitionsbereich $D_f$ bzw.~$D_g$.
+jeweils den grÃ¶ÃŸtmÃ¶glichen Definitionsbereich $D_f$ bzw.~$D_g$.
 % Intervallquestion
 \end{MExercise}
 
 \begin{MExercise}
-Bestimmen Sie für die Funktion
+Bestimmen Sie fÃ¼r die Funktion
 \[
  \function{i}{\R}{\R}{x}{x^2-4x+4+\pi}
 \]
@@ -3502,11 +3503,11 @@ die Parameter $A,\lambda\in\R$, so dass $c(0)=1$ und $c(4)=0$ gilt.
 \ \\ \ \\
 Antwort: \MEquationItem{$A$}{\MLParsedQuestion{10}{2}{3}{EL1}}, \MEquationItem{$\lambda$}{\MLParsedQuestion{15}{-ln(2)/4}{3}{EL2}}.
 \ \\
-\MInputHint{Einfache Logarithmen können Sie stehen lassen, z.B. kann $\ln(100)$ als \texttt{ln(100)} eingegeben werden auch wenn der exakte Wert von $ln(100)$ nicht bekannt ist.}
+\MInputHint{Einfache Logarithmen kÃ¶nnen Sie stehen lassen, z.B. kann $\ln(100)$ als \texttt{ln(100)} eingegeben werden auch wenn der exakte Wert von $ln(100)$ nicht bekannt ist.}
 \end{MExercise}
 
 \begin{MExercise}
-Bestimmen Sie die Verkettung $h=f\circ g\colon\R\to\R$ (Erläuterung: $h(x)=(f\circ g)(x)=f(g(x))$) der Funktionen
+Bestimmen Sie die Verkettung $h=f\circ g\colon\R\to\R$ (ErlÃ¤uterung: $h(x)=(f\circ g)(x)=f(g(x))$) der Funktionen
 \[
  \function{f}{\R}{\R}{x}{C\cdot\sin(x)}
 \]
@@ -3537,7 +3538,7 @@ Die Funktion $f=u^{-1}$ besitzt:
 \item{Den Wertebereich \MEquationItem{$W_f$}{\MLIntervalQuestion{20}{(0,infty)}{3}{TEID2}}.}
 \item{Die Funktionsvorschrift \MEquationItem{$f(y)=u^{-1}(y)$}{\MLSimplifyQuestion{13}{2^(-y)}{5}{y}{5}{512}{TEID3}}.}
 \end{MExerciseItems}
-\MInputHint{Geben Sie die Bereiche als Intervalle in der Form \texttt{(a;b)} an, auch \texttt{unendlich} ist als Grenze möglich.}
+\MInputHint{Geben Sie die Bereiche als Intervalle in der Form \texttt{(a;b)} an, auch \texttt{unendlich} ist als Grenze mÃ¶glich.}
 \end{MExercise}
 
 \begin{MExercise}
@@ -3551,12 +3552,12 @@ Die Funktion
 
 % Safari kann Checkboxes in lists nicht anzeigen
 \begin{tabular}{lll}
-\MLCheckbox{0}{EF1} & \ \ & ... kann man kürzer auch als $f(x)=2x+1$ schreiben.\\
-\MLCheckbox{1}{EF2} & \ \ & ... ist eine linear-affine Funktion.\\
+\MLCheckbox{0}{EF1} & \ \ & ... kann man kÃ¼rzer auch als $f(x)=2x+1$ schreiben.\\
+\MLCheckbox{1}{EF2} & \ \ & ... ist eine affin-lineare Funktion.\\
 \MLCheckbox{0}{EF3} & \ \ & ... hat die Wertemenge $\R$.\\
 \MLCheckbox{1}{EF4} & \ \ & ... hat die Steigung $2$.\\
-\MLCheckbox{1}{EF5} & \ \ & ... kann nur Werte größer oder gleich $1$ und kleiner $7$ annehmen.\\
-\MLCheckbox{1}{EF6} & \ \ & ... hat als Graph ein Stück einer Gerade.\\
+\MLCheckbox{1}{EF5} & \ \ & ... kann nur Werte grÃ¶ÃŸer oder gleich $1$ und kleiner $7$ annehmen.\\
+\MLCheckbox{1}{EF6} & \ \ & ... hat als Graph ein StÃ¼ck einer Gerade.\\
 \MLCheckbox{1}{EF7} & \ \ & ... hat bei $x=0$ den Wert $1$.\\
 \MLCheckbox{0}{EF8} & \ \ & ... hat die Definitionsmenge $\R$.
 \end{tabular}

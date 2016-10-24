@@ -5,7 +5,6 @@ import sys
 import logging
 import traceback
 from tex2xStruct.structure import Structure
-from test.test_tools import getBaseDirectory
 
 logging.basicConfig(level=logging.DEBUG)
 

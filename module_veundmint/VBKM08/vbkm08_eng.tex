@@ -22,7 +22,7 @@
 In the previous module we studied derivatives of functions. 
 As for every other arithmetic operation,the question of finding an inverse operation arises. For example, subtraction is the inverse operation of addition, and division is the inverse operation of 
 multiplication. The question of the inverse operation of differentiation leads
-to the introduction of integral calculus the definition of an
+to the introduction of integral calculus and the definition of an
 antiderivative. The relation between derivative and antiderivative can be explained 
 very easily. If a derivative $f'$ can be assigned to a function $f$, and the derivative 
 $f'$ is also considered as a function, then the function $f$ could be assigned to this function 
@@ -38,7 +38,7 @@ $a = \frac{\MD v}{\MD t}$, then the velocity can be determined subsequently from
 of the derivative -- from integral calculus. Similar relations can be found 
 in many fields of science and engineering, and also in economics. Integral 
 calculus is used for the calculation of areas, centres of mass, bending
-properties of beams or the solutions of so called differential equations,
+properties of beams or the solutions of so-called differential equations,
 which are used so frequently in science and engineering.
 \end{MIntro}
 
@@ -46,7 +46,7 @@ which are used so frequently in science and engineering.
 \MDeclareSiteUXID{VBKM08_Stammfunktionen_Content}
 
 In the context of this course we will discuss integral calculus for functions on 
-``connected domains'' as it is of particular significance for many practical applications. 
+``connected domains'', which are of particular significance for many practical applications. 
 In mathematical terms, the domains of the functions will be intervals. As the inverses of derivatives, antiderivatives will be also defined on intervals.
 
 \begin{MXInfo}{Antiderivative} 
@@ -131,7 +131,7 @@ This is also written as
 to express how all antiderivatives of $f$ look.
 \end{MXInfo}
 
-The set of all antiderivatives is also called 
+The set of all antiderivatives is also called the 
 \MEntry{indefinite integral}{integral (indefinite)} and is written 
 according to the statement above as
 \[
@@ -213,7 +213,7 @@ The next example shows how the table is used.
 \begin{MExample}
 Find the indefinite integral of the function $f$ with $f(x) = 10 x^2 - 6 = 10 x^2 - 6 x^0$.
 
->From the table above we read off the antiderivatives of $g$ with $g(x) = x$ and $h$ with 
+From the table above we read off the antiderivatives of $g$ with $g(x) = x$ and $h$ with 
 $h(x) = x^0 = 1$: The function $G$ with $G(x) = \frac{1}{1+1} \cdot x^{1+1} = \frac{1}{2} \cdot x^2$
 is an antiderivative of $g$, and the function $H$ with $H(x) = \frac{1}{0+1} \cdot x^{0+1} = x$ is an antiderivative
 of $h$. Thus, the function $F: \R \to \R$ with 
@@ -252,7 +252,7 @@ of the antiderivative.
 %\end{MXContent}
 
 %Die Bestimmung einer Stammfunktion ist nicht immer einfach, mitunter eine 
-%Kunst. Eine Kontrolle lohnt sich also und ergibt sich definitionsgem"a"s 
+%Kunst. Eine Kontrolle lohnt sich also und ergibt sich definitionsgemäß 
 %einfach dadurch, dass die Ableitung berechnet und mit der gegebenen Funktion
 %verglichen wird, in der Praxis meistens eine Anwendung der Rechentechnik der 
 %Ableitungsregeln.
@@ -299,7 +299,7 @@ We have
 }\end{MHint}}
 %Teilaufgabe ersetzt, da arctan nicht (mehr) in der Liste von Stammfunktionen
 %vermerkt werden soll (jgl):
-%\item{\MEquationItem{$\displaystyle\int \frac{1}{x^2 + 1} \MDwSp x$}{\MLSimplifyQuestion{30}{arctan(x)}{10}{x}{4}{32}{LSTFX3}}. \begin{MHint}{L�sung}{%
+%\item{\MEquationItem{$\displaystyle\int \frac{1}{x^2 + 1} \MDwSp x$}{\MLSimplifyQuestion{30}{arctan(x)}{10}{x}{4}{32}{LSTFX3}}. \begin{MHint}{\iSolution}{%
 %% Die Stammfunktion kann aus der obigen Tabelle entnommen werden.
 %}\end{MHint}}
 \item{\MEquationItem{$\displaystyle\int \frac{1}{6 \sqrt{x}} \MDwSp x$}
@@ -359,8 +359,8 @@ $\displaystyle \int 3 x \cdot \sqrt[4]{x} \MDwSp x = %
 %\ifttm
 %\ \\ \ \\
 %\else\relax\fi
-%\MInputHint{Die Stammfunktion kann entweder �ber eine Fallunterscheidung, oder wieder mit Hilfe der Betragsfunktion notiert werden.
-%Fallunterscheidungen mit zwei F�llen k�nnen mit dem Textst�ck \texttt{falls(bedingung,fall1,fall2)} eingegeben werden, beispielsweise tippt man
+%\MInputHint{Die Stammfunktion kann entweder über eine Fallunterscheidung, oder wieder mit Hilfe der Betragsfunktion notiert werden.
+%Fallunterscheidungen mit zwei Fällen können mit dem Textstück \texttt{falls(bedingung,fall1,fall2)} eingegeben werden, beispielsweise tippt man
 %eine Fallunterscheidung der Form
 %$$
 %|x| \;=\; \left\lbrace{\begin{array}{ll} \phantom{-}x & \text{falls$\;x>0$} \\ -x & \text{falls$\;x\leq 0$}\end{array}}\right.
@@ -371,7 +371,7 @@ $\displaystyle \int 3 x \cdot \sqrt[4]{x} \MDwSp x = %
 
 %Neue Aufgabe (jgl) als Vorbereitung auf den Abschlusstest:
 \begin{MExercise} %Stammfunktionen:
-Decide whether the following statements are true for real-valued functions.
+Decide whether the following statements about real-valued functions are true.
 %Hierbei sind in der letzten Teilaufgabe irgendwelche Funktionen $f$ und $g$ 
 %gegeben, die jeweils Stammfunktionen besitzen, und es ist $F$ eine 
 %Stammfunktion von $f$ und $G$ eine Stammfunktion von $g$.
@@ -468,33 +468,33 @@ $F + G$ is an antiderivative of $f + g$. %%
 %
 %\begin{MExerciseItems}
 %\item{Mit der Vereinfachung \MEquationItem{$f(x)$}{\MLSimplifyQuestion{30}{1/x+1+x+1/sqrt(x)}{10}{x}{4}{512}{ISF1}}\\ 
-%ergibt sich \MEquationItem{$F(x)$}{\MLSimplifyQuestion{30}{ln(x)+x+1/2*x^2+2*sqrt(x)}{10}{x}{4}{544}{ISF1b}} f�r $x>0$.\\
-%\begin{MHint}{L�sung}
-%Die Funktion l�sst sich zu $f(x)=\frac1x+1+x+x^{-\frac12}$ vereinfachen, was auf 
+%ergibt sich \MEquationItem{$F(x)$}{\MLSimplifyQuestion{30}{ln(x)+x+1/2*x^2+2*sqrt(x)}{10}{x}{4}{544}{ISF1b}} für $x>0$.\\
+%\begin{MHint}{\iSolution}
+%Die Funktion lässt sich zu $f(x)=\frac1x+1+x+x^{-\frac12}$ vereinfachen, was auf 
 %$$
 %F(x) \;=\; \ln(x)+x+\frac12x^2+2x^{\frac12} \;=\;\ln(x)+x+\frac12x^2+2\sqrt{x}
 %$$
-%f�hrt (bis auf eine Konstante).
+%führt (bis auf eine Konstante).
 %\end{MHint}
 %}
 %\item{Mit der Vereinfachung \MEquationItem{$g(x)$}{\MLSimplifyQuestion{30}{4 + (tan(x))^2}{10}{x}{4}{512}{ISF2}}\\
 %ergibt sich \MEquationItem{$G(x)$}{\MLSimplifyQuestion{30}{3*x + tan(x)}{10}{x}{4}{544}{ISF2b}}.\\
-%\begin{MHint}{L�sung}
-%Die Funktion l�sst sich zu $g(x)=4+\tan(x)^2$ vereinfachen, was auf 
+%\begin{MHint}{\iSolution}
+%Die Funktion lässt sich zu $g(x)=4+\tan(x)^2$ vereinfachen, was auf 
 %$$
 %G(x) \;=\; 3x+\tan(x)
 %$$
-%f�hrt (bis auf eine Konstante).
+%führt (bis auf eine Konstante).
 %\end{MHint}
 %}
 %\item{Mit der Vereinfachung \MEquationItem{$h(x)$}{\MLSimplifyQuestion{30}{1/2*1/(1 + x^2)}{10}{x}{4}{0}{ISF3}}\\
 %ergibt sich \MEquationItem{$H(x)$}{\MLSimplifyQuestion{30}{1/2*arctan(x)}{10}{x}{4}{32}{ISF3b}}.\\
-%\begin{MHint}{L�sung}
-%Die Funktion l�sst sich zu $h(x)=\frac12\cdot \frac1{1+x^2}$ vereinfachen, was auf 
+%\begin{MHint}{\iSolution}
+%Die Funktion lässt sich zu $h(x)=\frac12\cdot \frac1{1+x^2}$ vereinfachen, was auf 
 %$$
 %H(x) \;=\; \frac12\cdot \arctan(x)
 %$$
-%f�hrt (bis auf eine Konstante).
+%führt (bis auf eine Konstante).
 %\end{MHint}
 %}
 %\end{MExerciseItems}
@@ -560,25 +560,25 @@ for $x > 0$ (up to a constant).
 %\begin{MExercise}
 %Finden Sie zwei Polynome $p(x)$ und $q(x)$, sodass $F$ und $G$ mit 
 %$F(x) = p(x) + x \cdot \ln(x)$ bzw. $G(x) = q(x) + x \cdot \ln(x)$
-%Stammfunktionen von $f(x) = \ln(x)$ f"ur $x > 0$ sind.
+%Stammfunktionen von $f(x) = \ln(x)$ für $x > 0$ sind.
 %Dann ist $F(x) - G(x)$ ein Polynom vom Grad \MLParsedQuestion{4}{0}{4}{IG21}, 
 %und es gilt $F'(x) = $\MLSimplifyQuestion{10}{ln(x)}{1}{x}{20}{0}{IGYY1}.
 %%Loesungshinweis erstellt (jgl):
-%\begin{MHint}{L"osung}
+%\begin{MHint}{Lösung}
 %Es ist $H$ mit $H(x) = r(x) + x \cdot \ln(x)$ eine Stammfunktion von 
-%$f$ mit $f(x) = \ln(x)$, wenn $H'(x) = f(x)$ f"ur alle $x > 0$ und damit
+%$f$ mit $f(x) = \ln(x)$, wenn $H'(x) = f(x)$ für alle $x > 0$ und damit
 %\[
 %\ln(x) = f(x) = F'(x) = r'(x) + \ln(x) + x \cdot \frac{1}{x} %
 % = r'(x) + 1 + \ln(x) %%
 %\]
 %gilt, woraus
-%$0 = r'(x) + 1$ und damit $r'(x) = -1$ folgt. Somit ist $r(x) = -x + C$ f"ur 
+%$0 = r'(x) + 1$ und damit $r'(x) = -1$ folgt. Somit ist $r(x) = -x + C$ für 
 %eine Zahl $C$. Beispielsweise sind $F$ und $G$ mit
 %$F(x) = -x + 0 + x \cdot \ln(x)$ sowie
 %$G(x) = -x + -14 + x \cdot \ln(x)$ Stammfunktionen von $f$.
 %
 %Es ist $F(x) - G(x) = 0 - (-14) = 14$, sodass $F - G$ ein Polynom vom Grad $0$
-%ist. Weiter ist $F'(x) = -1 + \ln(x) + 1 = \ln(x)$ f"ur alle $x > 0$.
+%ist. Weiter ist $F'(x) = -1 + \ln(x) + 1 = \ln(x)$ für alle $x > 0$.
 %\end{MHint}
 %\end{MExercise}
 
@@ -655,7 +655,7 @@ the required value $F(3) = \frac{1}{3} \cdot 3^3 + 3 + 1 = 13$.
 \MDeclareSiteUXID{VBKM08_Integral_Intro}
 
 The derivative $f'(x_0)$ of a differentiable function $f$ describes 
-how the function values change ''in the vicinity of'' a point $x_0$. 
+how the function values change ``in the vicinity of'' a point $x_0$. 
 If, for example, the derivative is positive, then the function $f$ is 
 monotonically increasing. Geometrically, this means that the slope of a tangent 
 line to the graph at the point $x_0$ is positive. The derivative provides 
@@ -667,23 +667,23 @@ of the function is generated by summing up the weighted function values. In math
 this sum is called the integral or integral value of the function. Geometrically, 
 this concept provides a way to calculate the area under the graph of a function. 
 It was Bernhard Riemann who specified this approach and who gave his name to the 
-so called \MEntry{Riemann integral}{integral (Riemann)}.
+so-called \MEntry{Riemann integral}{integral (Riemann)}.
 \end{MIntro}
 
 
 \begin{MXContent}{Integral}{Integral}{STD}
 \MDeclareSiteUXID{VBKM08_Integral_Content}
 
-%Hier wird die Idee zu einer {\glqq}globalen Kenngr"o"se{\grqq} in der 
+%Hier wird die Idee zu einer {\glqq}globalen Kenngröße{\grqq} in der 
 %Form des nach Riemann benannten Integrals vorgestellt.
 
 %Das nach Riemann benannte Integral ordnet einer Funktion eine Zahl zu, die 
 %Das Integral einer Funktion ist eine Zahl, die sich aus einer Summenbildung
 %von gewichteten Funktionswerten ergibt. 
-%F"ur das nach Riemann benannte Integral wird die Gewichtung "uber die 
-%L"ange des Definitionsbereichs vorgenommen. 
+%Für das nach Riemann benannte Integral wird die Gewichtung über die 
+%Länge des Definitionsbereichs vorgenommen. 
 The integral of a function $f$ with $f(x) \geq 0$ can be interpreted 
-as the ``area under the graph'' of the function. In the so called
+as the ``area under the graph'' of the function. In the so-called
 Riemann integral, the graph of the function is approximated by a step function,
 and the values of this step function are summed up, weighted by the corresponding
 interval length, i.e. the ``width of a step''. This approach is illustrated in the 
@@ -737,7 +737,7 @@ declare function={
 \draw[domain=1.0:8.0,samples=120,color=\jccolorfkt] %
  plot (\x, {fkt(\x)});
 %Beschriftung extern:
-%\node at (-3,-1.5) {Zur Definition des Integrals: Funktion angen�hert durch %
+%\node at (-3,-1.5) {Zur Definition des Integrals: Funktion angenähert durch %
 % eine Treppenfunktion,};
 %\node at (-3,-2) {unterteilt in vier Teilintervalle.};
 \end{tikzpicture}
@@ -798,7 +798,7 @@ approaches $0$, then
 is called the \MEntry{definite integral}{integral (definite)} of $f$ with the 
 lower limit of integration $a$ and the upper limit of integration $b$ (if the limit
 exists and does not depend on the respective partition). The function $f$ is then 
-called \MEntry{integrable}{integrable}. In this context the function $f$ is also 
+referred to as \MEntry{integrable}{integrable}. In this context the function $f$ is also 
 called the \MEntry{integrand}{integrand}.
 \end{MXInfo}
 %
@@ -811,18 +811,18 @@ called the \MEntry{integrand}{integrand}.
 %S_n := \sum_{k=0}^{n-1} f(x_k) \cdot \Delta(x_k) \qquad \text{mit } \Delta(x_k) := x_{k+1} - x_{k} %%
 %\end{equation}
 %
-%f"ur $n$ gegen unendlich, wenn $\max_{1 \leq k \leq n} \Delta(x_k)$ gegen null 
+%für $n$ gegen unendlich, wenn $\max_{1 \leq k \leq n} \Delta(x_k)$ gegen null 
 %strebt.
 %Dabei ist $a = x_0 < x_1 < x_2 < \ldots < x_n = b$ und $z_k$ eine Zahl 
-%zwischen $x_{k-1}$ und $x_k$ f"ur $k \in \N$ mit $1 \leq k \leq n$. 
+%zwischen $x_{k-1}$ und $x_k$ für $k \in \N$ mit $1 \leq k \leq n$. 
 %Die Summen $S_n$ werden auch Riemannsummen zur Zerlegung $(x_0, \ldots, x_n)$ 
 %und den Zwischenstellen $z_k$ genannt.
 
-%Wenn dieser Grenzwert, das Integral, existiert, wird daf"ur
+%Wenn dieser Grenzwert, das Integral, existiert, wird dafür
 %\begin{equation}
 %\int_a^b f(x) \MDwSp x = \lim_{n \rightarrow \infty} S_n %%
 %\end{equation}
-%geschrieben. Es hei"st $a$ Untergrenze, $b$ Obergrenze des Integrals "uber dem
+%geschrieben. Es heißt $a$ Untergrenze, $b$ Obergrenze des Integrals über dem
 %Integranden $f(x)$ mit der Integrationsvariablen $x$.
 %\end{MXInfo}
 
@@ -851,8 +851,8 @@ $f(z_k) = f(x_k) = x_k = \frac{k}{n}$.
 Substituting these terms into the formula 
 (\ref{eq:integral}) gives the equation
 \begin{eqnarray*}
-S_n &=& \sum_{k=0}^{n-1} f(x_k)\cdot\Delta(x_k) = \sum_{k=0}^{n-1} x_k \cdot \frac{1}{n} = \sum_{k=0}^{n-1} \frac{k}{n} \cdot \frac{1}{n} = \frac{1}{n^2} \cdot \sum_{k=0}^{n-1} k = \frac{1}{n^2} \cdot \sum_{k=1}^{n-1} k\\
- &=& \frac{1}{n^2} \frac{n (n-1)}{2} = \frac{1}{2} \cdot \frac{n-1}{n} = \frac{1}{2} \cdot \left(1 - \frac{1}{n}\right) \MDFPSpace , %
+S_n &= \sum_{k=0}^{n-1} f(x_k)\cdot\Delta(x_k) = \sum_{k=0}^{n-1} x_k \cdot \frac{1}{n} = \sum_{k=0}^{n-1} \frac{k}{n} \cdot \frac{1}{n} = \frac{1}{n^2} \cdot \sum_{k=0}^{n-1} k = \frac{1}{n^2} \cdot \sum_{k=1}^{n-1} k\\
+ &= \frac{1}{n^2} \frac{n (n-1)}{2} = \frac{1}{2} \cdot \frac{n-1}{n} = \frac{1}{2} \cdot \left(1 - \frac{1}{n}\right) \MDFPSpace , %
 \end{eqnarray*}
 where we used the formula $\sum_{k=1}^{n-1} k = \frac{1}{2}\,n(n-1)$ of C.\,F.~Gauss. 
 And with $\displaystyle\lim_{n \rightarrow \infty} \frac{1}{n} = 0$, we find for the integral
@@ -869,7 +869,7 @@ compositions.
 % Anfang Hauptsatz
 
 To simplify the calculations, rules for integrating functions are required that are as easy as 
-possible. An important result is provided by the so called 
+possible. An important result is provided by the so-called 
 \MEntry{fundamental theorem of calculus}{fundamental theorem (integral)}. It describes 
 the relation between the antiderivative of a continuous function and its integral. 
 
@@ -902,7 +902,7 @@ lower and upper limits of integration such that, in practice, it can already be
 ``suppressed'' in taking the antiderivative for the definite integral, so 
 for the calculation of the definite integral one can choose $C = 0$.
 %
-%Beispielsweise ist f"ur $n = 1$, also $f(x) = x$ dann
+%Beispielsweise ist für $n = 1$, also $f(x) = x$ dann
 %$F$ mit $F(x) = \frac{1}{2} x^2$ eine Stammfunktion, sodass
 %\[
 %\int_a^b x \MDwSp x = \left[\frac{1}{2} x^2\right]_a^b %
@@ -923,47 +923,47 @@ One also says that the antiderivative $F$ is reconstructed from the derivative $
 Application examples for the reconstruction of a function $F$ from its derivative 
 $F' = f$ are discussed at the end of Section~\MRef{M08A_Anwendung}.
 
-%In der Situation des Hauptsatzes ist f"ur jede Zahl $z$ zwischen $a$ und $b$ dann
+%In der Situation des Hauptsatzes ist für jede Zahl $z$ zwischen $a$ und $b$ dann
 %\[
 %\int_{a}^{z} f(x) \MDwSp x = F(z) - F(a). %% 
 %\]
-%Folglich ergibt sich $F(z)$ gem"a"s
+%Folglich ergibt sich $F(z)$ gemäß
 %\begin{equation}
 %F(z) = F(a) + \int_{a}^{z} f(x) \MDwSp x = F(a) + \int_{a}^{z} F'(x) \MDwSp x. %% 
 %\end{equation}
-%aus dem Funktionswert und dem Integral "uber die Ableitung. Das hei"st, dass 
-%die Funktion aus der Integration "uber die Ableitung, also die "Anderungsrate
+%aus dem Funktionswert und dem Integral über die Ableitung. Das heißt, dass 
+%die Funktion aus der Integration über die Ableitung, also die Änderungsrate
 %wiedergewonnen werden kann.
 
-%Dies ist f"ur viele Anwendungen ein bemerkenswertes Hilfsmittel aus der 
+%Dies ist für viele Anwendungen ein bemerkenswertes Hilfsmittel aus der 
 %Mathematik. Beispielsweise werden in naturwissenschaftlichen oder technischen 
-%Vorg"angen oft Ver"anderungen wie die Geschwindigkeit gemessen. Die Bewegung 
+%Vorgängen oft Veränderungen wie die Geschwindigkeit gemessen. Die Bewegung 
 %kann dann daraus mittels Integration rekonstruiert werden.
 
 % Ende Hauptsatz
 %==========================
 
-%Eine Absch"atzung des Integrals ergibt sich, wenn man einerseits Riemannsummen 
-%$U_n$ mit {\glqq}Zwischenstellen{\grqq} $z_k$ berechnet, f"ur die $f(z_k)$ ein
+%Eine Abschätzung des Integrals ergibt sich, wenn man einerseits Riemannsummen 
+%$U_n$ mit {\glqq}Zwischenstellen{\grqq} $z_k$ berechnet, für die $f(z_k)$ ein
 %minimaler Wert der Funktion $f$ auf $[x_{k-1}, x_k]$ ist, und andererseits 
-%solche Riemannsummen $O_n$ betrachtet, f"ur die $f(z_k)$ einen maximalen Wert 
+%solche Riemannsummen $O_n$ betrachtet, für die $f(z_k)$ einen maximalen Wert 
 %hat. (Sofern das Minimum bzw. Maximum nicht existiert, betrachtet man das 
 %Infimum bzw. das Supremum.)
 
 %Aufgrund dieser Konstruktion ist $U_n \leq O_n$. 
-%Dementsprechend hei"sen die Riemannsummen $U_n$ Untersummen und $O_n$ Obersummen. 
-%Wenn die Grenzwerte f"ur aller Unterteilungen 
+%Dementsprechend heißen die Riemannsummen $U_n$ Untersummen und $O_n$ Obersummen. 
+%Wenn die Grenzwerte für aller Unterteilungen 
 %existieren und gleich sind, wenn also das Integral existiert, dann gilt die 
 %Ungleichung
 %\begin{equation}
 %U_n \leq \int_a^b f(x) \MDwSp x \leq O_n
 %\end{equation}
-%Eine solche Ungleichung wird auch Absch"atzung genannt, da ein gesuchter Wert 
-%mit einem anderen, m"oglichst einfach zu berechnenden Wert verglichen wird, 
-%der zudem m"oglichst {\glqq}nahe{\grqq} am gesuchten Wert liegt.
+%Eine solche Ungleichung wird auch Abschätzung genannt, da ein gesuchter Wert 
+%mit einem anderen, möglichst einfach zu berechnenden Wert verglichen wird, 
+%der zudem möglichst {\glqq}nahe{\grqq} am gesuchten Wert liegt.
 
 %\begin{MExample}
-%Im vorherigen Beispiel wurde zu $f(x) = x$ f"ur jedes $n \in \N$ und 
+%Im vorherigen Beispiel wurde zu $f(x) = x$ für jedes $n \in \N$ und 
 %$x_k = \frac{b \cdot k}{n}$, also 
 %$\Delta(x_k) = x_k - x_{k-1} = \frac{b}{n}$ 
 %eine Obersumme
@@ -973,7 +973,7 @@ $F' = f$ are discussed at the end of Section~\MRef{M08A_Anwendung}.
 %\]
 %konstruiert.
 
-%Eine Untersumme $U_n$ ist f"ur diese Einteilung durch
+%Eine Untersumme $U_n$ ist für diese Einteilung durch
 %\[
 %U_n = \sum_{k=1}^n \inf_{[x_{k-1}, x_k]} f(x) \cdot \Delta(x_k) %
 % = \sum_{k=1}^n \frac{b \cdot (k-1)}{n} \cdot \Delta(x_k) %%
@@ -983,7 +983,7 @@ $F' = f$ are discussed at the end of Section~\MRef{M08A_Anwendung}.
 
 \end{MXContent}
 
-%\begin{MXContent}{Rechenregeln f"ur Integrale}{Rechenregeln f"ur Integrale}{STD}
+%\begin{MXContent}{Rechenregeln für Integrale}{Rechenregeln für Integrale}{STD}
 \begin{MXContent}{Calculation Rules}{Calculation Rules}{STD}
 \MDeclareSiteUXID{VBKM08_Rechenregeln}
 
@@ -1165,7 +1165,7 @@ where $\ln(8) = \ln(2^3) = 3 \cdot \ln(2)$ and $\ln(1) = 0$ was used.
 \MDeclareSiteUXID{VBKM08_Eigenschaften_Integral}
 
 For odd functions $f: [-c\MIntvlSep c] \rightarrow \R$, the integral is zero. 
-This shall be explained by means of the example of the function $f$ on $[-2\MIntvlSep 2]$
+For example, consider the function $f$ on $[-2\MIntvlSep 2]$
 with $f(x) = x^3$ shown in the figure below. 
 %\ifttm
 %\MUGraphics{BildFlaechePolynomxdrei.png}{scale=0.4}{Ungerade Funktion $f(x) = x^3$ auf einem Intervall $[-2\MIntvlSep 2]$.}{}
@@ -1280,8 +1280,8 @@ Now the integral can be calculated more easily:
 \end{eqnarray*}
 \end{MExample}
 
-%Im n"achsten Beispiel wird die Umformung eines Integranden mit trigonometrischen 
-%Funktionen durchgef�hrt.
+%Im nächsten Beispiel wird die Umformung eines Integranden mit trigonometrischen 
+%Funktionen durchgeführt.
 
 The next example demonstrates a transformation of an integrand involving exponential functions.
 
@@ -1413,7 +1413,7 @@ declare function={
 \ifttm\else\end{small}\fi
 }
 \end{center}
-Tthe value of the integral is the sum of the areas of regions lying above the 
+The value of the integral is the sum of the areas of regions lying above the 
 $x$-axis minus the sum of the areas of regions lying below the $x$-axis. In this sense, 
 the value of the integral can be considered as the sum of signed areas.
 
@@ -1503,7 +1503,7 @@ Calculate the following integrals:
 \end{MExerciseItems}
 %Loesungshinweise erstellt (jgl):
 \begin{MHint}{Solution}
->Using the fundamental theorem of calculus, we obtain
+Using the fundamental theorem of calculus, we obtain
 \begin{enumerate}
 \item $\displaystyle \int_{0}^{5} 3 \MDwSp x %
 = \left[ 3 x \right]_0^5 = 15\MDFPSpace$
@@ -1528,7 +1528,7 @@ $\displaystyle \int_{-\pi}^{\pi} \left(5 x^3 - 4 \sin(x)\right) \MD x$
 is \MLParsedQuestion{10}{0}{4}{IG28}.
 %Loesungshinweise erstellt (jgl):
 \begin{MHint}{Solution}
->From the fact that the integrand is odd and the interval of integration is 
+From the fact that the integrand is odd and the interval of integration is 
 symmetric with respect to the origin $(0,0)$, we can deduce that the value of the 
 integral is $0$. Alternatively, we can calculate the integral using the fundamental theorem 
 of calculus:
@@ -1598,7 +1598,7 @@ is \MLParsedQuestion{10}{-ln(2)}{4}{ILN1}.
 \begin{MHint}{Solution}
 The integrand $f$ with $f(x) = \frac{1}{2 x} = \frac{1}{2} \cdot \frac{1}{x}$ 
 for $x < 0$ has an antiderivative $F$ with $F(x) = \frac{1}{2} \ln|x|$.
->From the fundamental theorem, we have
+From the fundamental theorem, we have
 \[
  \int_{-24}^{-6} \frac{1}{2 x} \MDwSp x %
  = \left[ \frac{1}{2} \ln|x| \right]_{-24}^{-6} %
@@ -1669,7 +1669,7 @@ the value of the integral over a period can differ from zero.
 
 \begin{MIntro}
 \MDeclareSiteUXID{VBKM08_Anwendungen_Intro}
-The integral calculus has many varied applications, in particular in science 
+Integral calculus has many varied applications, in particular in science 
 and engineering. Here, the calculation of areas of regions with boundaries described by 
 mathematical functions shall be studied first. This 
 application is not purely mathematical, but is used 
@@ -1796,9 +1796,9 @@ the figure and the area in the middle.
 
 \begin{center}
 \MTikzAuto{%
-%{Beispiel einer Fl"ache zwischen dem gr"un gezeichneten Graphen 
+%{Beispiel einer Fläche zwischen dem grün gezeichneten Graphen 
 %von $f$ und dem rot gezeichneten Graphen von $g$: Zur Berechnung des 
-%Fl"acheninhalts wird die Differenz der Funktionen $f - g$ betrachtet.}{0.5}
+%Flächeninhalts wird die Differenz der Funktionen $f - g$ betrachtet.}{0.5}
 \ifttm\else\begin{small}\fi
 \begin{tikzpicture}[scale=0.6,line width=1.5pt,
  declare function={
@@ -1817,10 +1817,10 @@ the figure and the area in the middle.
  node[below] {$\x$}; 
 \foreach \y in {1, 2, 3, 4} \draw (0, \y) -- ++(-0.1, 0) node[left] {$\y$};
 \node[below left] at (0, 0) {$0$};
-%Fl"ache unter $f$:
+%Fläche unter $f$:
 \draw[domain=2:5,samples=200,color=\jccolorfkt,fill=\jccolorfktarea] %
  plot (\x, {Fktf(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
-%Fl"ache unter $g$:
+%Fläche unter $g$:
 %\draw[domain=2:5,samples=2,color=red!50!black,fill=red!50!white] %
 % plot (\x, {Fktg(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
 %Funktionsgraphen:
@@ -1843,10 +1843,10 @@ the figure and the area in the middle.
  node[below] {$\x$}; 
 \foreach \y in {1, 2, 3, 4} \draw (0, \y) -- ++(-0.1, 0) node[left] {$\y$};
 \node[below left] at (0, 0) {$0$};
-%Fl"ache unter $f$:
+%Fläche unter $f$:
 %\draw[domain=2:5,samples=200,color=green!50!black,fill=green!50!white] %
 % plot (\x, {Fktf(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
-%Fl"ache unter $g$:
+%Fläche unter $g$:
 \draw[domain=2:5,samples=2,color=red!50!black,fill=red!50!white] %
  plot (\x, {Fktg(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
 %Funktionsgraphen:
@@ -1869,10 +1869,10 @@ the figure and the area in the middle.
  node[below] {$\x$}; 
 \foreach \y in {1, 2, 3, 4} \draw (0, \y) -- ++(-0.1, 0) node[left] {$\y$};
 \node[below left] at (0, 0) {$0$};
-%Fl"ache zwischen $f$ und $g$:
+%Fläche zwischen $f$ und $g$:
 \draw[domain=2:5,samples=200,color=\jccolorfkt,fill=\jccolorfktarea] %
  plot (\x, {Fktf(\x)}) -- (5, {Fktg(5)}) -- (2, {Fktg(2)}); 
-%Fl"ache unter $g$:
+%Fläche unter $g$:
 %\draw[domain=2:5,samples=2,color=red!50!black,fill=green!25!white]%
 % plot (\x, {Fktg(\x)}) -- (5,0) -- (2,0) -- (2, {Fktf(2)}); 
 \draw[domain=2:5,samples=2,color=red!50!black,dashed,% dotted,%
@@ -1965,7 +1965,7 @@ I_A &=& \int_{-2}^{2} \left|f(x) - g(x)\right| \MD x \\
 \begin{MXContent}{Applications in the Sciences}{Applications in the Sciences}{STD}
 \MDeclareSiteUXID{VBKM08_Anwendungen_Naturwissenschaften}
 
-The velocity $v$ describes the instantaneous rate of change of position at the time $t$. 
+The velocity $v$ of an object describes the instantaneous rate of change of position at the time $t$. 
 Thus, we have $v = \frac{\MD s}{\MD t}$ if $v = v(t)$ and $s = s(t)$ are considered as functions 
 of $t$. The current position $s(T)$ results from the inversion of the derivative, i.e. by 
 integration of the velocity over the time $t$. With the initial value  $s(t = 0) = s_0$
@@ -1984,7 +1984,7 @@ by calculated by means of the integral. In this context one says that the functi
 reconstructed from the derivative.
 
 If, for example, a population of bacteria increases approximately according to 
-%gem"a"s $B'$ mit $B'(t) = \MEU^{\MZahl{0}{6} t}$ f"ur $t \geq 0$ vermehrt 
+%gemäß $B'$ mit $B'(t) = \MEU^{\MZahl{0}{6} t}$ für $t \geq 0$ vermehrt 
 $B'$ with $B'(t) = \MZahl{0}{6} t$ for $t \geq 0$ and initially the population consists of
 $B(0) = 100$ bacteria, then the number $B$ of bacteria in the population at time  
 $T$ is described by 
@@ -2105,7 +2105,7 @@ declare function={
 \ifttm\else\end{small}\fi
 }
 \end{center}
->From the drawing of the graphs of the functions we see that the difference 
+From the drawing of the graphs of the functions we see that the difference 
 $f(x) - g(x)$ is greater or equal to zero for $x \in [1\MIntvlSep  3]$. This can also be seen 
 by calculation: According to the assumption, we have $1 \leq x \leq 3$ and thus $-1 \leq x - 2 \leq 1$. 
 Hence, $(x - 2)^2 \leq 1$ and thus $-(x - 2)^2 \geq -1$ such that 
@@ -2141,20 +2141,20 @@ I_A & = & \left|\int_1^3 \left(3 - (x - 2)^2 - 2 \cdot (x - 2)^4\right) \MD x \r
 \end{MExercise}
 
 %\begin{MExercise}
-%Berechnen Sie den Inhalt $I_A$ der Fl"ache $A$, die durch die Graphen der 
+%Berechnen Sie den Inhalt $I_A$ der Fläche $A$, die durch die Graphen der 
 %Funktionen
 %$f: [0\MIntvlSep  1] \rightarrow \R, x \Mmapsto \sin\left(\pi x\right)$ und 
 %$g: [0\MIntvlSep  1] \rightarrow \R, x \Mmapsto 12 x^2 - 12 x$ 
 %eingeschlossen wird.
-%Zeichnen Sie zun"achst die Graphen der Funktionen, bevor Sie den 
-%Fl"acheninhalt berechnen.
+%Zeichnen Sie zunächst die Graphen der Funktionen, bevor Sie den 
+%Flächeninhalt berechnen.
 %
 %Antwort: \MEquationItem{$I_A$}{\MLParsedQuestion{30}{30}{2-2/pi}{IG36}}.
 %
-%\begin{MHint}{L�sung}
+%\begin{MHint}{\iSolution}
 %Man betrachtet $f(x) - g(x) = 12 x - 12 x^2 + \sin\left(\pi x\right)$ auf 
 %dem Intervall
-%$[0\MIntvlSep  1]$. Die Funktion $f - g$ wird nur an den R"andern des 
+%$[0\MIntvlSep  1]$. Die Funktion $f - g$ wird nur an den Rändern des 
 %Intervalls $[0\MIntvlSep  1]$ gleich Null. Dies kann man anhand einer 
 %Zeichnung der Funktionsgraphen sehen.
 %\begin{center}
@@ -2194,10 +2194,10 @@ I_A & = & \left|\int_1^3 \left(3 - (x - 2)^2 - 2 \cdot (x - 2)^4\right) \MD x \r
 %
 %Berechnet man also $f - g$, dann zieht man auf dem gesamten offenen Intervall 
 %$\MoIl 0\MIntvlSep  1\MoIr$ eine negative Zahl von einer positiven Zahl ab, 
-%erh�lt also durchgehend positive Werte f�r $f - g$. Nur an den R�ndern rechnet 
-%man $0 - 0$ und erh�lt dort auch f�r die Differenz der Funktionen den Wert Null.
+%erhält also durchgehend positive Werte für $f - g$. Nur an den Rändern rechnet 
+%man $0 - 0$ und erhält dort auch für die Differenz der Funktionen den Wert Null.
 %
-%Damit ergibt sich f"ur den Fl"acheninhalt $I_A$ zwischen den Kurven
+%Damit ergibt sich für den Flächeninhalt $I_A$ zwischen den Kurven
 %\begin{eqnarray*}
 %I_A & = & \left|\int_0^1 \left(12 x^2 - 12 x + \sin\left(\pi x\right)\right) \MD x \right| \\
 % & = & \left|\left[ 4 x^3 - 6 x^2 - \frac{1}{\pi} \cos\left(\pi x\right) \right]_{0}^{1} \right| \\
@@ -2205,8 +2205,8 @@ I_A & = & \left|\int_1^3 \left(3 - (x - 2)^2 - 2 \cdot (x - 2)^4\right) \MD x \r
 % & = & \left|-2 + \frac{2}{\pi} \right| = 2 - \frac{2}{\pi} \MDFPeriod %%
 %\end{eqnarray*}
 %Anmerkung:
-%Dass die Funktionen $f$ und $g$ nur an den R"andern gemeinsame Funktionswerte 
-%haben, kann man auch rechnerisch mit einer einfachen �berlegung verstehen:
+%Dass die Funktionen $f$ und $g$ nur an den Rändern gemeinsame Funktionswerte 
+%haben, kann man auch rechnerisch mit einer einfachen Überlegung verstehen:
 %
 %Auf dem Intervall $\MoIl 0\MIntvlSep  1\MoIr$ ist die Funktion $g$ mit
 %$g\left(x\right) = 12x^2 - 12x = 12x\left(x-1\right)$
@@ -2217,7 +2217,7 @@ I_A & = & \left|\int_1^3 \left(3 - (x - 2)^2 - 2 \cdot (x - 2)^4\right) \MD x \r
 %Untersucht man hingegen die Funktion $f$ mit 
 %$f\left(x\right) = \sin\left(\pi x\right)$ 
 %auf demselben Intervall, dann findet man, dass diese Funktion dort immer 
-%positiv ist und ebenfalls an den R�ndern ihre Nullstellen besitzt.
+%positiv ist und ebenfalls an den Rändern ihre Nullstellen besitzt.
 %\end{MHint}
 %\end{MExercise}
 
@@ -2267,7 +2267,7 @@ W = \int_1^4 F_s(r) \MDwSp r %
 \MLabel{VBKM08_Abschlusstest}
 
 
-\begin{MTest}{Final Test Module \arabic{section}}
+\begin{MTest}{Final Test Module~\ref{VBKM08}}
 \MDeclareSiteUXID{VBKM08_Abschlusstest}
 \begin{MExercise} %Stammfunktionen:
 Find an antiderivative for each of the following functions:
@@ -2286,7 +2286,7 @@ Find an antiderivative for each of the following functions:
 %orientieren. Deshalb wurde die Aufgabe durch die nachfolgende neue Aufgabe
 %ersetzt:
 %\begin{MExercise} %Integralbegriff und Eigenschaften
-%Die Funktion $f(x) := \frac{1}{x+1}$ ist f"ur $x \geq 0$ 
+%Die Funktion $f(x) := \frac{1}{x+1}$ ist für $x \geq 0$ 
 %streng monoton \MLQuestion{20}{fallend}{IG3}. Somit gilt
 %\ifttm
 %
@@ -2302,7 +2302,7 @@ Find an antiderivative for each of the following functions:
 %\int_0^8 \frac{1}{x+1} \MDwSp x. %%
 %\]
 %\fi
-%\MInputHint{Erg"anzen Sie den Text zu einer richtigen Aussage. Vergleiche 
+%\MInputHint{Ergänzen Sie den Text zu einer richtigen Aussage. Vergleiche 
 %werden mit \texttt{=}, \texttt{<=} oder \texttt{>=} geschrieben.}
 %\end{MExercise}
 
@@ -2373,12 +2373,12 @@ for $a = $\MLParsedQuestion{5}{0}{4}{IG10}.
 \left| \int_{-4}^{4} x^3 \MDwSp x \right| %%
 \]
 \fi
-\MInputHint{Fill in the boxes such that the statement is correct. Enter comparing symbols as 
+\MInputHint{Fill in the boxes such that the statement is correct. Enter comparators as 
 \texttt{=}, \texttt{<=} or \texttt{>=}.}
 \end{MExercise}
 
 
-\begin{MExercise} %Anwendung: Fl"achenberechung
+\begin{MExercise} %Anwendung: Flächenberechung
 Calculate the area $I_A$ of the region $A$ that is bounded by the graphs of the two functions
 %$f: [-3; 2] \rightarrow \R, x \Mmapsto x^2$ und 
 %$g: [-3; 2] \rightarrow \R, x \Mmapsto 6 - x$ eingeschlossen wird.

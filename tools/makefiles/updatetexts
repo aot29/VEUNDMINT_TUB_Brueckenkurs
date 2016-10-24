@@ -19,7 +19,13 @@ TMP_DIR = /tmp
 CHAPTERS = 01 02 03 04 05 06 07 08 09 10
 
 # Declare as phony so targets will run even if there's a file by that name
-.PHONY: cleanup getLatestContent cp2tmp getLatestSoftware cp2vbkm all
+.PHONY: cleanup getLatestContent cp2tmp getLatestSoftware cp2vbkm convert2utf8 all
+
+#
+# Get latest texts from develop_content and insert them in develop_software
+#
+all: |cleanup getLatestContent cp2tmp getLatestSoftware cp2vbkm convert2utf8 cleanup
+	echo "Texts updated."
 
 
 #
@@ -49,9 +55,9 @@ getLatestSoftware:
 # Note: this works with GNU cp, but not with OSX cp because of --parents
 #
 define cp2tmp_cmd
-	# cp chapter ${CURRENT_CHAPTER}
-	-cd module_veundmint && cp --parents VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}.tex ${TMP_DIR}
-	-cd module_veundmint && cp --parents VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}_eng.tex ${TMP_DIR}
+	# cp chapter ${CURRENT_FILE}
+	-cd module_veundmint && cp --parents VBKM${CURRENT_FILE}/vbkm${CURRENT_FILE}.tex ${TMP_DIR}
+	-cd module_veundmint && cp --parents VBKM${CURRENT_FILE}/vbkm${CURRENT_FILE}_eng.tex ${TMP_DIR}
 endef
 
 
@@ -60,7 +66,7 @@ endef
 #
 cp2tmp:
 	# copy chapters
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := ${var}) $(cp2tmp_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := ${var}) $(cp2tmp_cmd) )
 
 	# copy stochastics
 	-cd module_veundmint && cp --parents VBKM_Stochastik/vbkm_stochastik.tex ${TMP_DIR}
@@ -75,9 +81,9 @@ cp2tmp:
 # Copy all language versions of a chapter from the temp folder to module_veundmint
 #
 define cp2vbkm_cmd
-	# cp chapter ${CURRENT_CHAPTER}
-	-cp ${TMP_DIR}/VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}.tex module_veundmint/VBKM${CURRENT_CHAPTER}
-	-cp ${TMP_DIR}/VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}_eng.tex module_veundmint/VBKM${CURRENT_CHAPTER}
+	# cp chapter ${CURRENT_FILE}
+	-cp ${TMP_DIR}/VBKM${CURRENT_FILE}/vbkm${CURRENT_FILE}.tex module_veundmint/VBKM${CURRENT_FILE}
+	-cp ${TMP_DIR}/VBKM${CURRENT_FILE}/vbkm${CURRENT_FILE}_eng.tex module_veundmint/VBKM${CURRENT_FILE}
 	
 endef
 
@@ -87,7 +93,7 @@ endef
 #
 cp2vbkm:
 	# copy chapters
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := ${var}) $(cp2vbkm_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := ${var}) $(cp2vbkm_cmd) )
 
 	# copy stochastics
 	-cp ${TMP_DIR}/VBKM_Stochastik/vbkm_stochastik.tex module_veundmint/VBKM_Stochastik
@@ -97,6 +103,81 @@ cp2vbkm:
 	-cp ${TMP_DIR}/VBKMTestpaketKIT/vbkmtestpaketkit1.tex module_veundmint/VBKMTestpaketKIT
 	-cp ${TMP_DIR}/VBKMTestpaketKIT/vbkmtestpaketkit1_eng.tex module_veundmint/VBKMTestpaketKIT
 
+
+#
+# Convert texts to utf-8 
+#
+convert2utf8:
+	# convert German texts
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := module_veundmint/VBKM${var}/vbkm${var}.tex) $(convert2utf8_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := module_veundmint/VBKM${var}/vbkm${var}.tex) $(correctSmallDefects_cmd) )
+	
+	# convert English texts
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(convert2utf8_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_FILE := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(correctSmallDefects_cmd) )
+
+	# stochastik	
+	$(eval CURRENT_FILE := module_veundmint/VBKM_Stochastik/vbkm_stochastik.tex)
+	$(convert2utf8_cmd)
+	$(correctSmallDefects_cmd)
+	$(eval CURRENT_FILE := module_veundmint/VBKM_Stochastik/vbkm_stochastik_eng.tex)
+	$(convert2utf8_cmd)
+	$(correctSmallDefects_cmd)
+	
+	# testpaket
+	$(eval CURRENT_FILE := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1.tex)
+	$(convert2utf8_cmd)
+	$(correctSmallDefects_cmd)
+	$(eval CURRENT_FILE := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1_eng.tex)
+	$(convert2utf8_cmd)
+	$(correctSmallDefects_cmd)
+
+	# mintmod
+	$(eval CURRENT_FILE := src/tex/deutsch.tex)
+	$(convert2utf8_cmd)
+	$(eval CURRENT_FILE := src/tex/english.tex)
+	$(convert2utf8_cmd)
+	$(eval CURRENT_FILE := src/tex/mintmod.tex)
+	$(convert2utf8_cmd)
+
+
+#
+# first check if text is in iso, then convert to utf-8
+#
+define convert2utf8_cmd
+$(if $(filter $(shell file -i ${CURRENT_FILE} | grep -o 'iso-8859-1'), iso-8859-1),
+iconv -f ISO-8859-15 -t UTF-8 ${CURRENT_FILE} > out.tex && mv out.tex ${CURRENT_FILE} && echo ${CURRENT_FILE} converted to utf-8,
+echo "${CURRENT_FILE} no conversion to utf-8" )
+endef
+
+
+#
+# Correct umlauts
+# example: "u doesn't seem to be correct LaTeX (\"u is correct). Replace by utf-8 characters.
+# Kommentare werden nicht geaendert
+#
+define correctSmallDefects_cmd
+	$(shell sed -i "s|{Lösung}|{\\\iSolution}|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\"a|ä|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\ä|ä|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\"A|Ä|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\Ä|Ä|g" ${CURRENT_FILE} )
+	
+#	$(shell sed -i "s|\"o|ö|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\ö|ö|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\"O|Ö|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\Ö|Ö|g" ${CURRENT_FILE} )
+	
+#	$(shell sed -i "s|\"u|ü|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\ü|ü|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\"U|Ü|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\Ü|Ü|g" ${CURRENT_FILE} )
+	
+#	$(shell sed -i "s|\"s|ß|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\ß|ß|g" ${CURRENT_FILE} )
+endef
+
+
 #
 # Delete temporary files
 #
@@ -104,10 +185,5 @@ cleanup:
 	-rm -Rf ${TMP_DIR}/VBKM*
 
 
-#
-# Build and deploy the nightly build
-#
-all: |cleanup getLatestContent cp2tmp getLatestSoftware cp2vbkm cleanup
-	echo "Texts updated."
 
 

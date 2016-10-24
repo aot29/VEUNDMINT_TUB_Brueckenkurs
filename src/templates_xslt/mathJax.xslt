@@ -34,8 +34,8 @@
 			]]>
 		</script>
 		<!-- script type="text/javascript" src="{$basePath}/MathJax/MathJax.js" -->
-		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?locale="></script>
-		
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script>
+
 	</xsl:template>
 
 </xsl:stylesheet>

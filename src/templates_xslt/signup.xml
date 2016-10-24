@@ -2,11 +2,11 @@
 	<div>
 		<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->
 		<i><span data-toggle="i18n" data-i18n="signup_text01" /></i>
-	
+
 		<div class="show_scorm" style="display:none">
 			<b><span data-toggle="i18n" data-i18n="signup_text02" /></b>
 		</div>
-		
+
 		<div class="show_noscorm" style="display:none">
 			<!-- REGISTER NEW ACCOUNT -->
 			<div class="register_new">
@@ -19,66 +19,70 @@
 
 					<div class="form-group ">
 						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text06" /></p>
-						
+
 						<label for="USER_VNAME" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text07" /></label>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" id="USER_VNAME"/>
 						</div>
-													
+
 						<label for="USER_SNAME" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text08" /></label>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" id="USER_SNAME"/>
 						</div>
-						
+
 						<label for="USER_EMAIL" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text09" /></label>
 						<div class="col-xs-6">
 							<input type="email" class="form-control" id="USER_EMAIL"/>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text10" /></p>
-						
+
 						<label for="USER_SGANG" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text11" /></label>
 						<div class="col-xs-6"><input type="text" class="form-control" id="USER_SGANG"/></div>
-						
+
 						<label for="USER_SGANG" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text12" /></label>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" id="USER_UNI"/>
 						</div>
 					</div>
-					
-					
+
+
 					<div class="form-group logged_out_only">
 						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text13" /></p>
-						
+
 						<label for="USER_UNAME" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text14" /></label>
 						<div class="col-xs-5">
 							<input type="text" class="form-control" id="USER_UNAME" oninput="intersite.usercheck();" onkeyup="intersite.usercheck();" onpaste="intersite.usercheck();" onpropertychange="intersite.usercheck();" />
-						</div>		
+						</div>
 						<div class="col-xs-1">
 							<span class="glyphicon glyphicon-question-sign" style="padding: 0;" id="checkuserimg" />
-						</div>							
+						</div>
 					</div>
-					
-			        
+
+
 					<div id="ulreply_p" class="control-label col-xs-6"><span></span></div>
 					<div class="col-xs-6 logged_out_only">
 						<a id="newUserButton" class="std-button btn btn-primary btn-lg pull-right disabled" type="button" onclick="intersite.usercreatelocal_click(2);"><span data-toggle="i18n" data-i18n="signup_text15" /></a>
 					</div>
-						
+					<div class="col-xs-6 logged_in_only">
+						<a id="deleteAccountBtn" class="std-button btn btn-danger btn-lg pull-right" type="button" onclick="userdata.deleteAllUserData();"><span data-toggle="i18n" data-i18n="signup_delete_account" /></a>
+					</div>
+
 				</form>
 
 				<div class="panel panel-default logged_out_only" style="clear:both">
 					<div class="panel-body"><span data-toggle="i18n" data-i18n="signup_text16" /></div>
 				</div>
+
 			</div>
 		</div>
-		
+
 		<div class="show_scorm" style="display:none">
 			<b><span data-toggle="i18n" data-i18n="signup_text17" /></b>
 		</div>
-		
+
 		<div class="show_noscorm" style="display:none">
 			<div class="xreply">
 				<p id="CHECKIS"><span data-toggle="i18n" data-i18n="signup_text18" /></p>

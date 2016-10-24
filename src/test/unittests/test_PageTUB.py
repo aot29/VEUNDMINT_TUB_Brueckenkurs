@@ -5,9 +5,9 @@ import os
 from lxml import etree
 
 from plugins.VEUNDMINT.tcontent import TContent
-from plugins.VEUNDMINT.PageXmlRenderer import *
-from plugins.VEUNDMINT.TocRenderer import TocRenderer
-from plugins.VEUNDMINT.PageTUB import PageTUB
+from tex2x.renderers.PageXmlRenderer import *
+from tex2x.renderers.TocRenderer import TocRenderer
+from tex2x.renderers.PageTUB import PageTUB
 from tex2x.Settings import settings
 
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase

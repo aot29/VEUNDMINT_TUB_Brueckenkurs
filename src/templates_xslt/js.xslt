@@ -76,62 +76,6 @@
 			var sitejson = {};
 			<!-- xsl:apply-templates select="roulettes/roulette" / -->
 
-			<!-- Event handlers -->
-	    	<![CDATA[
-		    $( window ).resize(function() {
-		    	// necessary in case the window is resized while the collapsible sidebar is on.
-		       	document.body.style.overflowX = "auto";
-		       	document.getElementById("courseContent").style.opacity = "1";
-		       	if ( $( window ).width() < 970 ) {
-			       	toggleCourseContent();
-		       	}
-			    });
-
-			    function toggleCourseContent() {
-		        // When menu toggled, "hide" the rest of the page
-		        if ( document.getElementById('pageContainer').getElementsByClassName( 'responsive' ).length > 0 ) {
-		        	document.body.style.overflowX = "hidden";
-		        	document.getElementById("courseContent").style.opacity = "0.33";
-
-		        } else {
-		        	document.body.style.overflowX = "auto";
-		        	document.getElementById("courseContent").style.opacity = "1";
-		        }
-			}
-
-	        $(document).ready(function() {
-	            // Offcanvas
-	            $('[data-toggle="offcanvas"]').click(function() {
-	                $('.row-offcanvas').toggleClass('responsive');
-	                toggleCourseContent();
-	            });
-	            
-	            // Loesungen
-	            $('[data-toggle="show_solution"]').click(function(){
-					        $(this).button('toggle');
-				});
-
-	            // footer at bottom of column
-	            // don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
-	            $(window).resize( positionFooter );
-	            positionFooter();
-
-	            // body onload
-	            globalloadHandler("");
-	            
-	            // on the logout page
-	            if( requestLogout ) {
-	            	localStorage.clear();
-	            }
-	            
-	        });
-
-	        function positionFooter() {
-	            var docHeight = $(window).height();
-	            var offsetHeight = $( "#navbarTop" ).height() + $( "#subtoc" ).height() + $( "#footer" ).height() * 2;
-	            $( "#pageContents" ).css( "minHeight", docHeight - offsetHeight + "px" );
-	        }
-			]]>
 	    </script>
 	</xsl:template>
 
