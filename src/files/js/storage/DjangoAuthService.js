@@ -110,7 +110,7 @@
 
     return rp.post({
       url: url,
-      body: JSON.stringify(data),
+      body: data,
       headers: {
         'Authorization': 'JWT ' + userCredentials.token
       },

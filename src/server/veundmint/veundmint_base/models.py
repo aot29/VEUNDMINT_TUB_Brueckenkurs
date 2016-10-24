@@ -41,7 +41,7 @@ class Score(DateSensitiveModel):
     intest = models.BooleanField(default=False)
     ### end
 
-    points = models.PositiveSmallIntegerField(null=True)
+    points = models.PositiveSmallIntegerField(null=True, default=0)
     value = models.PositiveSmallIntegerField(blank=True, null=True)
 
     rawinput = models.CharField(max_length=1000, blank=True)
@@ -55,7 +55,7 @@ class Score(DateSensitiveModel):
 class Foo(models.Model):
     siteuxid = models.CharField(max_length=200, default='')
     intest = models.BooleanField(default=False)
-    
+
 def get_test_user():
 	user, created = get_user_model.objects.get_or_create(username=TESTUSER_USERNAME)
 	user.set_password(TESTUSER_PASSWORD)

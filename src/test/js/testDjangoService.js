@@ -54,7 +54,26 @@ describe('DjangoStorageService', function() {
       return ds.saveUserData().should.be.rejectedWith('not authenticated');
     });
 
+    it('should send a request and store if authenticated', function() {
+      return auth().should.be.fulfilled.then(function(data) {
+        return ds.saveUserData({scores:[{id:'12', uxid:'21', rawinput:'testing'}]}).should.be.fulfilled;
+      }).then(function(userData) {
+        expect(userData).to.have.deep.property('scores[0].id', '12');
+        expect(userData).to.have.deep.property('scores[0].rawinput', 'testing');
+      });
+    });
+
   });
+
+  describe('#getDataTimeStamp', function() {
+    it('should get the timestamp of the data', function() {
+      return auth().should.be.fulfilled.then(function(data) {
+        return ds.getDataTimestamp().should.be.fulfilled;
+      }).then(function(timestamp) {
+        console.log(timestamp);
+      });
+    });
+  })
 
   describe('#getUserData', function() {
 
