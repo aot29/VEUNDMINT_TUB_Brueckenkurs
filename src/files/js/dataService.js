@@ -8,7 +8,7 @@
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    factory(exports, require('veHelpers', 'loglevel'));
+    factory(exports, require('./veHelpers.js'), require('loglevel'));
   } else {
     // Browser globals
     factory((root.dataService = {}), root.veHelpers, root.log);

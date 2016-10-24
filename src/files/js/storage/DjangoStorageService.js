@@ -22,10 +22,7 @@
     that.name = 'DjangoStorageService';
 
     that.saveUserData = function (data) {
-      var result = new Promise(resolve, reject) {
 
-      }
-      return result;
     }
 
     that.getUserData = function () {
