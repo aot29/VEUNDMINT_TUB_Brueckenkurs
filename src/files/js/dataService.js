@@ -46,48 +46,6 @@
   //sync operation
   var changedData = {};
 
-
-  /**
-  * This is the concrete implementation that 'extends', storageService and
-  * stores data in localStorage.
-  */
-  function localStorageService () {
-    var storageKey = 'myStorageKey';
-    return {
-      name: 'localStorageService',
-      saveUserData : function (data) {
-        var result = new Promise(function (resolve, reject) {
-          var oldData = JSON.parse(localStorage.getItem(storageKey)) || {};
-          newData = mergeRecursive(oldData, data);
-          newData.timestamp = new Date().getTime();
-          localStorage.setItem(storageKey, JSON.stringify(newData));
-          resolve(newData);
-        });
-        return result;
-      },
-      getUserData : function () {
-        var result = new Promise(function (resolve, reject) {
-          var data = JSON.parse(localStorage.getItem(storageKey));
-          resolve(data);
-        });
-        return result;
-      },
-      getDataTimestamp: function () {
-        var data = JSON.parse(localStorage.getItem(storageKey));
-
-        var result = new Promise(function (resolve, reject) {
-          if (typeof data !== 'undefined' && data !== null) {
-            resolve(data.timestamp);
-          } else {
-            //return very old data timestamp
-            reject(new TypeError('localStorageService: Can not get data Timestamp from localstorage'));
-          }
-        });
-        return result;
-      }
-    }
-  }
-
   /**
    * Will locally update userData and also the changedData object used for synchronizing
    * data.
@@ -111,25 +69,6 @@
       return null;
     }
     return updateUserData({scores: updatedScores});
-  }
-
-  function failService () {
-    return {
-      saveUserData : function () {
-        return new Promise(function (resolve, reject) {
-          reject(new TypeError('some getUsererror'));
-        });
-      },
-      getUserData : function () {
-        return new Promise(function (resolve, reject) {
-          reject(new TypeError('some setUsererror'));
-        });
-      },
-      name: 'failService',
-      getDataTimestamp: function () {
-        return Promise.reject(new TypeError('some get timestamp error'));
-      }
-    }
   }
 
   function latestStorageService () {
@@ -174,39 +113,6 @@
    */
   function scormStorageService () {
 
-  }
-
-  function djangoStorageService () {
-    var djUserData = {}
-    var newerTimeStamp = 15576239654328;
-    return {
-      saveUserData : function (data) {
-        console.log('djangoStorageService saveUserData called');
-        var result = new Promise(function (resolve, reject) {
-          setTimeout(function() {
-            console.log('after 2 secs');
-            djUserData = data;
-            resolve(djUserData);
-          }, 2000);
-        });
-        return result;
-      },
-      getUserData : function () {
-        console.log('djangoStorageService getUserData called');
-        var result = new Promise(function (resolve, reject) {
-          setTimeout(function() {
-            console.log('after 2 secs');
-            djUserData.timestamp = newerTimeStamp;
-            resolve(djUserData);
-          }, 2000);
-        });
-        return result;
-      },
-      getDataTimestamp: function () {
-        return Promise.resolve(newerTimeStamp);
-      },
-      name: 'djangoStorageService'
-    }
   }
 
   //sync on startup
@@ -303,8 +209,10 @@
 
     // log.debug('dataService: syncDown is calling getAllDataTimestamps');
     var promise = getAllDataTimestamps().then(function (successAllTimestamps) {
+
       if (Array.isArray(successAllTimestamps) && successAllTimestamps.length > 0) {
         successAllTimestamps.sort(compareTimestamps);
+
         // log.debug('services returned the timestamps:', successAllTimestamps);
         // log.debug('latest data was found at the service:', successAllTimestamps[0]);
         var latestTimestampData = successAllTimestamps[0];
@@ -365,6 +273,7 @@
       });
     });
     return result;
+  }
 
 
   /**
@@ -379,25 +288,6 @@
     data1.timestamp = data1.timestamp || 0;
     data2.timestamp = data2.timestamp || 0;
     return data2.timestamp - data1.timestamp;
-  }
-
-  function test() {
-    subscribe(new djangoStorageService());
-    subscribe(new localStorageService());
-    subscribe(new failService());
-    subscribe(new latestStorageService());
-    updateUserData(
-      {
-        test: 'somedata',
-        timestamp: Date.now(),
-        scores: [
-          {"points":99,"siteuxid":"VBKM01_VariablenTerme","state":1,"maxpoints":4,"section":1,"id":"lol2","uxid":"ERX12","intest":false,"rawinput":"1/4*pi*x*x*x","value":0},
-          {"points":999,"siteuxid":"VBKM01_VariablenTerme","state":1,"maxpoints":4,"section":1,"id":"lol1","uxid":"ERX12","intest":false,"rawinput":"1/4*pi*x*x*x","value":0}
-        ]
-      });
-    return getAllUserData().then(function(allUserData) {
-      return sync();
-    });
   }
 
   function unsubscribe(observable) {
@@ -629,9 +519,6 @@ function mockLocalStorage() {
 // attach properties to the exports object to define
 // the exported module properties.
 exports.init = init;
-exports.test = test;
-exports.djangoStorageService = djangoStorageService;
-exports.localStorageService = localStorageService;
 exports.subscribe = subscribe;
 exports.unsubscribe = unsubscribe;
 exports.unsubscribeAll = function () { storageServices = []; storageServicesMap = {}; };

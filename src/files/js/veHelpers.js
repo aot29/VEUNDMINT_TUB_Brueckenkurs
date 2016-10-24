@@ -280,6 +280,58 @@
     }
   }
 
+  /**
+   * Recursively merges two objects (in place). Will insert respective objects from obj2 into
+   * obj1 if the specified id is not present in obj1. Will update objects in obj1
+   * if id is already present. Contains a switch for matching 'id' (on
+   * scores) and 'uxid' (on sites).
+   *
+   * The heart of objCache storage.
+   *
+   * TODO: data model should be changed from js Array to js Object (better performance)
+   * TODO: should this return the diff of the two objects? Would save one call to mergeRecursive
+   * that is made again with localChanges
+   *
+   * @param  {Object} obj1 Complex Javascript object to be merged into.
+   * @param  {Object} obj2 Complex Javascript object to be merged
+   * @return {Object}      The merge result of obj1 and obj2, with updated/inserted
+   * values
+   */
+  function mergeRecursive(obj1, obj2, changedData) {
+    if (Object.prototype.toString.call( obj1 ) === '[object Array]') {
+      for (var i = 0; i < obj1.length; i++) {
+        if (obj1[i].id == obj2.id) {
+          //we update the object
+          for(var key in obj2) {
+            if(obj2.hasOwnProperty(key)) {
+              obj1[i][key] = obj2[key];
+            }
+          }
+          return obj1;
+        }
+      }
+      //insert in array
+      obj1.push(obj2);
+      return obj1;
+    }
+    for (var p in obj2) {
+      //merging array
+      if (Object.prototype.toString.call( obj2[p] ) === '[object Array]') {
+        obj1[p] = typeof obj1[p] === 'undefined' ? [] : obj1[p];
+        obj2[p].forEach(function(arrayElement) {
+          obj1[p] = mergeRecursive(obj1[p], arrayElement);
+        });
+      //merging object
+      } else if (Object.prototype.toString.call ( obj2[p] ) === '[object Object]') {
+        obj1[p] = typeof obj1[p] === 'undefined' ? {} : obj1[p];
+        obj1[p] = mergeRecursive(obj1[p], obj2[p]);
+      } else {
+        obj1[p] = obj2[p];
+      }
+    }
+    return obj1;
+  }
+
   exports.convertTimestamp = convertTimestamp;
   exports.compareJSON = compareJSON;
   exports.allowedUsername = allowedUsername;
@@ -292,5 +344,6 @@
   exports.getFunctionName = getFunctionName;
   exports.updateOrInsertInArray = updateOrInsertInArray;
   exports.isEmpty = isEmpty;
+  exports.mergeRecursive = mergeRecursive;
 
 }));

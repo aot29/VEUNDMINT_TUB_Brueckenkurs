@@ -1,4 +1,5 @@
 var dataService = require('../../files/js/dataService.js');
+var LocalStorageService = require('../../files/js/storage/LocalStorageService.js').LocalStorageService;
 
 var assert = require('assert');
 var sinon = require('sinon');
@@ -15,10 +16,14 @@ describe('dataService', function() {
   var FailService, ls, fs, localStorage;
   beforeEach(function() {
 
+    //in the test environment there is no localstorage, we have to mock it
     dataService.mockLocalStorage();
+
+    //reset to init status before each test
     dataService.unsubscribeAll();
     dataService.emptyChangedData();
 
+    //a service that will reject all requests
     FailService = function () {
       return {
         saveUserData : function () {
@@ -38,11 +43,11 @@ describe('dataService', function() {
       }
     }
     fs = new FailService();
-    ls = new dataService.localStorageService();
+    ls = LocalStorageService();
   });
 
   describe('#subscribe / #unsubscribe', function() {
-    it('should add/remove when subscribe/unsubscribe service', function() {
+    it('should add/remove when subscribing/unsubscribing a storage service', function() {
       dataService.subscribe(fs);
 
       var subs = dataService.getSubscribers();
@@ -52,13 +57,13 @@ describe('dataService', function() {
       dataService.subscribe(ls);
       subs = dataService.getSubscribers();
       assert.equal(subs.length, 2);
-      assert.equal(subs[1].name, 'localStorageService');;
+      assert.equal(subs[1].name, 'LocalStorageService');;
 
       dataService.unsubscribe(fs);
 
       subs = dataService.getSubscribers();
       assert.equal(subs.length, 1);
-      assert.equal(subs[0].name, 'localStorageService');;
+      assert.equal(subs[0].name, 'LocalStorageService');;
 
       dataService.unsubscribe(ls);
       subs = dataService.getSubscribers();
@@ -112,7 +117,7 @@ describe('dataService', function() {
       return dataService.syncUp().then(function(data) {
         return dataService.getAllDataTimestamps();
       }).then(function(data) {
-        expect(data).to.have.deep.property('[0].serviceName', 'localStorageService');
+        expect(data).to.have.deep.property('[0].serviceName', 'LocalStorageService');
         expect(data).to.have.deep.property('[0].status', 'success');
         expect(data).to.have.deep.property('[0].timestamp').to.be.below(new Date().getTime());
         expect(data).to.have.deep.property('[1].serviceName', 'failService');
@@ -165,6 +170,43 @@ describe('dataService', function() {
   describe('#syncDown', function() {
     it('should do nothing if no storageServices registered', function() {
       dataService.syncDown().should.become('dataService: synDown called without subscribers, will do nothing.');
+    });
+    it('should set objCache with most recent data from all registered services', function() {
+      dataService.subscribe(fs);
+      dataService.subscribe(ls);
+
+      //construct a service that will hold the latest timestamp (until year 2270)
+      function LsServiceClone() {};
+      LsServiceClone.prototype = ls;
+
+      var lsLater = new LsServiceClone();
+
+      lsLater.getDataTimestamp = function () {return Promise.resolve(9477301997261)};
+      lsLater.name = 'latestStorageService';
+
+      dataService.subscribe(lsLater);
+
+      //put some data into localstorage to get a timestamp
+      return ls.saveUserData({test:'test'}).then(function(data) {
+        return lsLater.saveUserData({test:'later'});
+      }).then(function(data) {
+        return dataService.syncDown();
+      }).then(function(data) {
+        //syncDown should return the data from lsLater
+        data.should.have.property('test', 'later');
+        //and objCache should be set to it
+        dataService.getObjCache().should.have.property('test', 'later');
+      });
+
+    });
+  });
+
+  describe('chain promises', function() {
+    it('should add requests to a "queue", when other request is pending', function() {
+      //the nicest behaviour would be to alter changedData always even if objCache is not yet
+      //resolved. then after resolving merging changed data in.
+
+      //and syncup should not be called with empty obj cache
     });
   });
 

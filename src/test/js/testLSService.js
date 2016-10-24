@@ -1,4 +1,5 @@
 var dataService = require('../../files/js/dataService.js');
+var LocalStorageService = require('../../files/js/storage/LocalStorageService.js').LocalStorageService;
 
 var assert = require('assert');
 var sinon = require('sinon');
@@ -14,7 +15,7 @@ describe('localStorageService', function() {
 
   var ls;
   beforeEach(function() {
-    ls = new dataService.localStorageService();
+    ls = LocalStorageService();
     dataService.mockLocalStorage();
   });
 
