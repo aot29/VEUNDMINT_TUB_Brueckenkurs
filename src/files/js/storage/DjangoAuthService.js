@@ -47,6 +47,15 @@
   }
 
   /**
+   * Logs the user out, by deleting their token and user credentials
+   * @return {Boolean} true if successful logout, false otherwise
+   */
+  function logout() {
+    userCredentials = {};
+    isAuthenticated = false;
+  }
+
+  /**
   * Get the user credentials from local variable. If not set, get it from local
   * Storage and set it and return it
   * @return {object or null} the user credentials object or null
@@ -72,7 +81,7 @@
     if (userCredentials === null || typeof userCredentials === "undefined"
     || typeof userCredentials.token === "undefined" ) {
       //console.log('can only make authAjaxGET request if userCredentials are set');
-      return;
+      return Promise.reject('notAuthenticated');
     }
     return rp.get({
       uri: url,
@@ -82,9 +91,38 @@
       json: true
     });
   }
+
+  /**
+  * Make authenticated POST request to url with data
+  * @param  {String} url  The url to send the request to
+  * @param  {Object} data The data you want to send with the request
+  * @return {Object}      The returned (json) data
+  */
+  function authAjaxPOST (url, data) {
+    //console.log('calling authajax get with url', url);
+    var userCredentials = getUserCredentials();
+    //console.log('and user credentials is', userCredentials);
+    if (userCredentials === null || typeof userCredentials === "undefined"
+    || typeof userCredentials.token === "undefined" ) {
+      //console.log('can only make authAjaxGET request if userCredentials are set');
+      return Promise.reject('notAuthenticated');
+    }
+
+    return rp.post({
+      url: url,
+      body: JSON.stringify(data),
+      headers: {
+        'Authorization': 'JWT ' + userCredentials.token
+      },
+      json: true
+    });
+  }
+
   exports.authenticate = authenticate;
+  exports.logout = logout;
   exports.getUserCredentials = getUserCredentials;
   exports.authAjaxGet = authAjaxGET;
+  exports.authAjaxPost = authAjaxPOST;
   exports.isAuthenticated = function(){return isAuthenticated};
   exports.getToken = function() {return userCredentials.token || null};
 

@@ -44,14 +44,39 @@ describe('DjangoStorageService', function() {
   beforeEach(function() {
 
     ds = DjangoStorageService();
+    DjangoAuthService.logout();
+
   });
 
-  it('should get user data', function() {
-    ds.getUserData().then(function(userData) {
-      console.log(userData);
-    }, function(error) {
-      console.log(error);
+  describe('#saveUserData', function() {
+
+    it('should reject if not authenticated', function() {
+      return ds.saveUserData().should.be.rejectedWith('not authenticated');
     });
+
   });
+
+  describe('#getUserData', function() {
+
+    it('should reject if not authenticated', function() {
+      return ds.getUserData().should.be.rejectedWith('not authenticated');
+    });
+
+    it('should get user data if authenticated', function() {
+      return auth().should.be.fulfilled.then(function(data) {
+        return ds.getUserData().should.be.fulfilled;
+      }).then(function(userData) {
+        expect(userData).to.have.property('scores');
+      });
+    });
+
+  })
 
 });
+
+function auth() {
+  return DjangoAuthService.authenticate({
+    username: 'testrunner',
+    password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+  });
+}
