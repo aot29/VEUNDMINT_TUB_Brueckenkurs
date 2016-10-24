@@ -55,9 +55,9 @@ getLatestSoftware:
 # Note: this works with GNU cp, but not with OSX cp because of --parents
 #
 define cp2tmp_cmd
-	# cp chapter ${CURRENT_CHAPTER}
-	-cd module_veundmint && cp --parents VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}.tex ${TMP_DIR}
-	-cd module_veundmint && cp --parents VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}_eng.tex ${TMP_DIR}
+	# cp chapter ${CURRENT_FILE}
+	-cd module_veundmint && cp --parents VBKM${CURRENT_FILE}/vbkm${CURRENT_FILE}.tex ${TMP_DIR}
+	-cd module_veundmint && cp --parents VBKM${CURRENT_FILE}/vbkm${CURRENT_FILE}_eng.tex ${TMP_DIR}
 endef
 
 
@@ -81,9 +81,9 @@ cp2tmp:
 # Copy all language versions of a chapter from the temp folder to module_veundmint
 #
 define cp2vbkm_cmd
-	# cp chapter ${CURRENT_CHAPTER}
-	-cp ${TMP_DIR}/VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}.tex module_veundmint/VBKM${CURRENT_CHAPTER}
-	-cp ${TMP_DIR}/VBKM${CURRENT_CHAPTER}/vbkm${CURRENT_CHAPTER}_eng.tex module_veundmint/VBKM${CURRENT_CHAPTER}
+	# cp chapter ${CURRENT_FILE}
+	-cp ${TMP_DIR}/VBKM${CURRENT_FILE}/vbkm${CURRENT_FILE}.tex module_veundmint/VBKM${CURRENT_FILE}
+	-cp ${TMP_DIR}/VBKM${CURRENT_FILE}/vbkm${CURRENT_FILE}_eng.tex module_veundmint/VBKM${CURRENT_FILE}
 	
 endef
 
@@ -110,44 +110,44 @@ cp2vbkm:
 convert2utf8:
 	# convert German texts
 	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}.tex) $(convert2utf8_cmd) )
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}.tex) $(correctUmlauts_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}.tex) $(correctSmallDefects_cmd) )
 	
 	# convert English texts
 	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(convert2utf8_cmd) )
-	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(correctUmlauts_cmd) )
+	$(foreach var, ${CHAPTERS}, $(eval CURRENT_CHAPTER := module_veundmint/VBKM${var}/vbkm${var}_eng.tex) $(correctSmallDefects_cmd) )
 
 	# stochastik	
 	$(eval CURRENT_CHAPTER := module_veundmint/VBKM_Stochastik/vbkm_stochastik.tex)
 	$(convert2utf8_cmd)
-	$(correctUmlauts_cmd)
+	$(correctSmallDefects_cmd)
 	$(eval CURRENT_CHAPTER := module_veundmint/VBKM_Stochastik/vbkm_stochastik_eng.tex)
 	$(convert2utf8_cmd)
-	$(correctUmlauts_cmd)
+	$(correctSmallDefects_cmd)
 	
 	# testpaket
 	$(eval CURRENT_CHAPTER := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1.tex)
 	$(convert2utf8_cmd)
-	$(correctUmlauts_cmd)
+	$(correctSmallDefects_cmd)
 	$(eval CURRENT_CHAPTER := module_veundmint/VBKMTestpaketKIT/vbkmtestpaketkit1_eng.tex)
 	$(convert2utf8_cmd)
-	$(correctUmlauts_cmd)
+	$(correctSmallDefects_cmd)
 
 	# mintmod
 	$(eval CURRENT_CHAPTER := src/tex/deutsch.tex)
 	$(convert2utf8_cmd)
-	$(correctUmlauts_cmd)
 	$(eval CURRENT_CHAPTER := src/tex/english.tex)
 	$(convert2utf8_cmd)
-	$(correctUmlauts_cmd)
+	$(eval CURRENT_FILE := src/tex/mintmod.tex)
+	$(convert2utf8_cmd)
 
 
 #
 # first check if text is in iso, then convert to utf-8
 #
 define convert2utf8_cmd
-$(if $(filter $(shell file -i ${CURRENT_CHAPTER} | grep -o 'iso-8859-1'), iso-8859-1),
-iconv -f ISO-8859-15 -t UTF-8 ${CURRENT_CHAPTER} > out.tex && mv out.tex ${CURRENT_CHAPTER} && echo ${CURRENT_CHAPTER} converted to utf-8,
-echo "${CURRENT_CHAPTER} no conversion to utf-8" )
+$(if $(filter $(shell file -i ${CURRENT_FILE} | grep -o 'iso-8859-1'), iso-8859-1),
+iconv -f ISO-8859-15 -t UTF-8 ${CURRENT_FILE} > out.tex && mv out.tex ${CURRENT_FILE} && echo ${CURRENT_FILE} converted to utf-8,
+echo "${CURRENT_FILE} no conversion to utf-8" )
 endef
 
 
@@ -156,24 +156,25 @@ endef
 # example: "u doesn't seem to be correct LaTeX (\"u is correct). Replace by utf-8 characters.
 # Kommentare werden nicht geaendert
 #
-define correctUmlauts_cmd
-	$(shell sed -i "s|\"a|ä|g" ${CURRENT_CHAPTER} )
-	$(shell sed -i "s|\\\ä|ä|g" ${CURRENT_CHAPTER} )
-	$(shell sed -i "s|\"A|Ä|g" ${CURRENT_CHAPTER} )
-	$(shell sed -i "s|\\\Ä|Ä|g" ${CURRENT_CHAPTER} )
+define correctSmallDefects_cmd
+	$(shell sed -i "s|{Lösung}|{iSolution}|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\"a|ä|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\ä|ä|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\"A|Ä|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\Ä|Ä|g" ${CURRENT_FILE} )
 	
-	$(shell sed -i "s|\"o|ö|g" ${CURRENT_CHAPTER} )
-	$(shell sed -i "s|\\\ö|ö|g" ${CURRENT_CHAPTER} )
-	$(shell sed -i "s|\"O|Ö|g" ${CURRENT_CHAPTER} )
-	$(shell sed -i "s|\\\Ö|Ö|g" ${CURRENT_CHAPTER} )
+#	$(shell sed -i "s|\"o|ö|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\ö|ö|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\"O|Ö|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\Ö|Ö|g" ${CURRENT_FILE} )
 	
-	$(shell sed -i "s|\"u|ü|g" ${CURRENT_CHAPTER} )
-	$(shell sed -i "s|\\\ü|ü|g" ${CURRENT_CHAPTER} )
-	$(shell sed -i "s|\"U|Ü|g" ${CURRENT_CHAPTER} )
-	$(shell sed -i "s|\\\Ü|Ü|g" ${CURRENT_CHAPTER} )
+#	$(shell sed -i "s|\"u|ü|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\ü|ü|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\"U|Ü|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\Ü|Ü|g" ${CURRENT_FILE} )
 	
-	$(shell sed -i "s|\"s|ß|g" ${CURRENT_CHAPTER} )
-	$(shell sed -i "s|\\\ß|ß|g" ${CURRENT_CHAPTER} )
+#	$(shell sed -i "s|\"s|ß|g" ${CURRENT_FILE} )
+#	$(shell sed -i "s|\\\ß|ß|g" ${CURRENT_FILE} )
 endef
 
 

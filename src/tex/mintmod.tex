@@ -303,7 +303,7 @@
 \newcommand{\MWatermarkSettings}{\relax}
 \else
 \newcommand{\MWatermarkSettings}{%
-% \SetWatermarkText{(c) MINT-Kolleg Baden-W\"urttemberg 2014}
+% \SetWatermarkText{(c) MINT-Kolleg Baden-Württemberg 2014}
 % \SetWatermarkLightness{0.85}
 % \SetWatermarkScale{1.5}
 }
@@ -574,8 +574,8 @@
   \setcounter{MLastType}{5}
 
 \ifnum\value{MExerciseCollectionCounter}=0\else\addtocounter{MExerciseCollectionTextCounter}{1}\special{html:<!-- mexercisetextstart;;}\arabic{MExerciseCollectionTextCounter}\special{html:;; //-->}\fi
-  \special{html:<div class="aufgabe"
-  id="ADIV_}\MGenerateExNumber\special{html:"><div class="panel
+  \special{html:<div class=äufgabe"
+  id=ÄDIV_}\MGenerateExNumber\special{html:"><div class="panel
   panel-warning"><div class="panel-heading"><h5 class="title">}%
   \textbf{\iExercise{} \MGenerateExNumber
   } \begin{html}</h5></div><div class="panel-body">\end{html}}{\special{html:</div></div></div><!--
@@ -589,12 +589,12 @@
   \addtocounter{MObjectCounter}{1}
   \setcounter{MLastType}{5}
 
-  \special{html:<div class="aufgabe" id="ADIV_}\MGenerateExNumber\special{html:">}%
+  \special{html:<div class=äufgabe" id=ÄDIV_}\MGenerateExNumber\special{html:">}%
   \textbf{\iExercise{} \MGenerateExNumber
   } \ \\%
-  \special{html:</div><div class="exfetch_text" id="ADIVTEXT_}\MGenerateExNumber\special{html:">}%
-  \special{html:</div><div class="exfetch_sol" id="ADIVSOL_}\MGenerateExNumber\special{html:">}%
-  \special{html:</div><div class="exfetch_input" id="ADIVINPUT_}\MGenerateExNumber\special{html:">}%
+  \special{html:</div><div class="exfetch_text" id=ÄDIVTEXT_}\MGenerateExNumber\special{html:">}%
+  \special{html:</div><div class="exfetch_sol" id=ÄDIVSOL_}\MGenerateExNumber\special{html:">}%
+  \special{html:</div><div class="exfetch_input" id=ÄDIVINPUT_}\MGenerateExNumber\special{html:">}%
   }{
   \special{html:</div>}
   }
@@ -678,18 +678,18 @@
   \newtheorem{thmc}{Satz}
   \theoremstyle{MDefStyle}
   \newtheorem{defn}[thm]{Definition}
-  \newtheorem{exmp}[thm]{Example}
+  \newtheorem{exmp}[thm]{\iExample{} }
   \newtheorem{info}[thm]{\MInfoText}
   \theoremstyle{MDefStyle}
   \newtheorem{defnc}{Definition}
   \theoremstyle{MDefStyle}
-  \newtheorem{exmpc}{Example}[section]
+  \newtheorem{exmpc}{\iExample{} } [section]
   \theoremstyle{MDefStyle}
   \newtheorem{infoc}{\MInfoText}
   \theoremstyle{MDefStyle}
-  \newtheorem{exrc}{Exercise}[section]
+  \newtheorem{exrc}{\iExercise{} } [section]
   \theoremstyle{MDefStyle}
-  \newtheorem{verc}{Versuch}[section]
+  \newtheorem{verc}{Versuch} [section]
 
   \newenvironment{MFetchExercise}{}{} % kann im PDF nicht dargestellt werden
 
@@ -1344,7 +1344,7 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \end{MXContent}\addtocounter{MTestSite}{-1}%
 }
 
-\newenvironment{MExtra}{\ifttm\else\clearpage\fi\begin{MXContent}{Zus\"atzliche Inhalte}{Zusatz}{weiterfhrg}}{\end{MXContent}}
+\newenvironment{MExtra}{\ifttm\else\clearpage\fi\begin{MXContent}{Zusätzliche Inhalte}{Zusatz}{weiterfhrg}}{\end{MXContent}}
 
 \makeindex
 
@@ -1876,8 +1876,8 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 
 
 \def\jccolorfkt{green!50!black} %Farbe des Funktionsgraphen
-\def\jccolorfktarea{green!25!white} %Farbe der Fl"ache unter dem Graphen
-\def\jccolorfktareahell{green!12!white} %helle Einf"arbung der Fl"ache unter dem Graphen
+\def\jccolorfktarea{green!25!white} %Farbe der Fläche unter dem Graphen
+\def\jccolorfktareahell{green!12!white} %helle Einfärbung der Fläche unter dem Graphen
 \def\jccolorfktwert{green!50!black} %Farbe einzelner Punkte des Graphen
 
 \newcommand{\MPfadBilder}{Bilder}
