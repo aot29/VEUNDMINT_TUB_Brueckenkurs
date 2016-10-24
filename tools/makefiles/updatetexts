@@ -157,7 +157,7 @@ endef
 # Kommentare werden nicht geaendert
 #
 define correctSmallDefects_cmd
-	$(shell sed -i "s|{Lösung}|{iSolution}|g" ${CURRENT_FILE} )
+	$(shell sed -i "s|{Lösung}|{\iSolution}|g" ${CURRENT_FILE} )
 #	$(shell sed -i "s|\"a|ä|g" ${CURRENT_FILE} )
 #	$(shell sed -i "s|\\\ä|ä|g" ${CURRENT_FILE} )
 #	$(shell sed -i "s|\"A|Ä|g" ${CURRENT_FILE} )
