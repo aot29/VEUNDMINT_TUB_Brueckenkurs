@@ -1,4 +1,5 @@
 (function (root, factory) {
+  /* istanbul ignore next */
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define(['exports', 'IStorageService', 'veHelpers'], function (exports, IStorageService, veHelpers) {

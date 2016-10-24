@@ -1,17 +1,17 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['exports', 'loglevel'], function (exports, log) {
+    define(['exports', 'loglevel', 'XMLHttpRequest'], function (exports, log, XMLHttpRequest) {
       factory((root.veHelpers = exports), log);
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    factory(exports, require('loglevel'));
+    factory(exports, require('loglevel'), require("xmlhttprequest").XMLHttpRequest);
   } else {
     // Browser globals
-    factory((root.veHelpers = {}), root.log);
+    factory((root.veHelpers = {}), root.log, root.XMLHttpRequest);
   }
-}(this, function (exports, log) {
+}(this, function (exports, log, XMLHttpRequest) {
 
   log.info('veHelpers.js loaded');
 
@@ -332,6 +332,64 @@
     return obj1;
   }
 
+  var ajax = {};
+ajax.x = function () {
+    if (typeof XMLHttpRequest !== 'undefined') {
+        return new XMLHttpRequest();
+    }
+    var versions = [
+        "MSXML2.XmlHttp.6.0",
+        "MSXML2.XmlHttp.5.0",
+        "MSXML2.XmlHttp.4.0",
+        "MSXML2.XmlHttp.3.0",
+        "MSXML2.XmlHttp.2.0",
+        "Microsoft.XmlHttp"
+    ];
+
+    var xhr;
+    for (var i = 0; i < versions.length; i++) {
+        try {
+            xhr = new ActiveXObject(versions[i]);
+            break;
+        } catch (e) {
+        }
+    }
+    return xhr;
+};
+
+ajax.send = function (url, callback, method, data, async) {
+    if (async === undefined) {
+        async = true;
+    }
+    var x = ajax.x();
+    x.open(method, url, async);
+    x.onreadystatechange = function () {
+        if (x.readyState == 4) {
+            callback(x.responseText)
+        }
+    };
+    if (method == 'POST') {
+        x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    }
+    x.send(data)
+};
+
+ajax.get = function (url, data, callback, async) {
+    var query = [];
+    for (var key in data) {
+        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+    }
+    ajax.send(url + (query.length ? '?' + query.join('&') : ''), callback, 'GET', null, async)
+};
+
+ajax.post = function (url, data, callback, async) {
+    var query = [];
+    for (var key in data) {
+        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+    }
+    ajax.send(url, callback, 'POST', query.join('&'), async)
+};
+
   exports.convertTimestamp = convertTimestamp;
   exports.compareJSON = compareJSON;
   exports.allowedUsername = allowedUsername;
@@ -345,5 +403,6 @@
   exports.updateOrInsertInArray = updateOrInsertInArray;
   exports.isEmpty = isEmpty;
   exports.mergeRecursive = mergeRecursive;
+  exports.ajax = ajax;
 
 }));

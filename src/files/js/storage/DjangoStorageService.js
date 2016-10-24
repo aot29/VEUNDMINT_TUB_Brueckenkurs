@@ -1,17 +1,18 @@
 (function (root, factory) {
+  /* istanbul ignore next */
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['exports', 'IStorageService', 'veHelpers'], function (exports, IStorageService, veHelpers) {
-      factory((root.DjangoStorageService = exports), IStorageService, veHelpers);
+    define(['exports', 'IStorageService', 'DjangoAuthService', 'veHelpers', 'request', 'request-promise'], function (exports, IStorageService, DjangoAuthService, veHelpers, request, rp) {
+      factory((root.DjangoStorageService = exports), IStorageService, DjangoAuthService, veHelpers, request, rp);
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    factory(exports, require('./IStorageService.js'), require('../veHelpers.js'));
+    factory(exports, require('./IStorageService.js'), require('./DjangoAuthService.js'), require('../veHelpers.js'), require('request'), require('request-promise'));
   } else {
     // Browser globals
-    factory((root.DjangoStorageService = {}), root.IStorageService, root.veHelpers);
+    factory((root.DjangoStorageService = {}), root.IStorageService, root.DjangoAuthService, root.veHelpers, root.request, root.rp);
   }
-}(this, function (exports, IStorageService, veHelpers) {
+}(this, function (exports, IStorageService, DjangoAuthService, veHelpers, request, rp) {
 
   var DjangoStorageService = function (settings) {
     var that = IStorageService.IStorageService();
@@ -21,27 +22,14 @@
     that.name = 'DjangoStorageService';
 
     that.saveUserData = function (data) {
-      console.log('djangoStorageService saveUserData called');
-      var result = new Promise(function (resolve, reject) {
-        setTimeout(function() {
-          console.log('after 2 secs');
-          djUserData = data;
-          resolve(djUserData);
-        }, 2000);
-      });
+      var result = new Promise(resolve, reject) {
+
+      }
       return result;
     }
 
     that.getUserData = function () {
       console.log('djangoStorageService getUserData called');
-      var result = new Promise(function (resolve, reject) {
-        setTimeout(function() {
-          console.log('after 2 secs');
-          djUserData.timestamp = newerTimeStamp;
-          resolve(djUserData);
-        }, 2000);
-      });
-      return result;
     }
 
     that.getDataTimestamp = function () {
