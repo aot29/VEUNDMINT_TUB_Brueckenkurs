@@ -3,14 +3,14 @@
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define(['exports', 'IStorageService', 'veHelpers', 'jQuery'], function (exports, IStorageService, veHelpers, $) {
-      factory((root.DjangoStorageService = exports), IStorageService, veHelpers, jQuery);
+      factory((root.DjangoAuthService = exports), IStorageService, veHelpers, jQuery);
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
     factory(exports, require('./IStorageService.js'), require('../veHelpers.js'), require('jQuery'));
   } else {
     // Browser globals
-    factory((root.DjangoStorageService = {}), root.IStorageService, root.veHelpers, root.$);
+    factory((root.DjangoAuthService = {}), root.IStorageService, root.veHelpers, root.$);
   }
 }(this, function (exports, IStorageService, veHelpers, $) {
 
@@ -34,10 +34,10 @@
       method: 'POST',
       data: user_credentials,
       dataType: 'json',
-      timeout: 3000,
       headers: {
         'Authorization': 'JWT ' + userCredentials.token
-      }
+      },
+      timeout: 3000,
     }).then(function(data) {
       if (typeof data.token !== undefined) {
         isAuthenticated = true;
@@ -48,7 +48,7 @@
       }
       return data;
     }, function(error) {
-      reject(new TypeError(error));
+      return 'there was an error authenticating at django';
     });
   }
 
@@ -92,7 +92,7 @@
 
     return $.ajax({
       url: url,
-      method: 'GET'
+      method: 'GET',
       dataType: 'json',
       headers: {
         'Authorization': 'JWT ' + userCredentials.token
@@ -127,9 +127,10 @@
 
     return $.ajax({
       url: url,
-      method: 'POST'
-      dataType: 'json',
+      method: 'POST',
       data: JSON.stringify(data),
+      datatype: 'json',
+      contentType: 'application/json; charset=utf-8',
       headers: {
         'Authorization': 'JWT ' + userCredentials.token
       }
@@ -152,5 +153,6 @@
   exports.authAjaxPost = authAjaxPOST;
   exports.isAuthenticated = function(){return isAuthenticated};
   exports.getToken = function() {return userCredentials.token || null};
+
 
 }));
