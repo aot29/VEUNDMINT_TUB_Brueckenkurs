@@ -7,11 +7,26 @@ var assert = require('assert');
 var sinon = require('sinon');
 var log = require('loglevel');
 
+var Promise = require('bluebird');
+
 var chai = require('chai');
 var expect = chai.expect;
 var should = chai.should();
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
+chai.use(require('chai-things'));
+
+describe('DjangoServices', function() {
+
+
+	var $ = {};
+	
+	//we fake jquery ajax here, it will use node methods for requests
+	before(function () {
+		$.ajax = require('najax');
+		DjangoAuthService.initJquery($);
+	});
+
 
 describe('DjangoAuthService', function() {
 
@@ -25,6 +40,7 @@ describe('DjangoAuthService', function() {
     });
   });
 
+  
   it('#authAjaxGet - should add auth header and make successful request', function() {
     return DjangoAuthService.authenticate({
       username: 'testrunner',
@@ -58,19 +74,16 @@ describe('DjangoStorageService', function() {
       return auth().should.be.fulfilled.then(function(data) {
         return ds.saveUserData({scores:[{id:'12', uxid:'21', rawinput:'testing'}]}).should.be.fulfilled;
       }).then(function(userData) {
-        expect(userData).to.have.deep.property('scores[0].id', '12');
-        expect(userData).to.have.deep.property('scores[0].rawinput', 'testing');
+		  userData.scores.should.contain.an.item.with.property('id', '12');
+		  userData.scores.should.contain.an.item.with.property('rawinput', 'testing');
       });
     });
-
   });
 
   describe('#getDataTimeStamp', function() {
     it('should get the timestamp of the data', function() {
       return auth().should.be.fulfilled.then(function(data) {
         return ds.getDataTimestamp().should.be.fulfilled;
-      }).then(function(timestamp) {
-        console.log(timestamp);
       });
     });
   })
@@ -90,6 +103,8 @@ describe('DjangoStorageService', function() {
     });
 
   })
+
+});
 
 });
 
