@@ -2,17 +2,17 @@
   /* istanbul ignore next */
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['exports', 'IStorageService', 'veHelpers', 'request', 'request-promise'], function (exports, IStorageService, veHelpers, request, rp) {
-      factory((root.DjangoStorageService = exports), IStorageService, veHelpers, request, rp);
+    define(['exports', 'IStorageService', 'veHelpers', 'jQuery'], function (exports, IStorageService, veHelpers, $) {
+      factory((root.DjangoStorageService = exports), IStorageService, veHelpers, jQuery);
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    factory(exports, require('./IStorageService.js'), require('../veHelpers.js'), require('request'), require('request-promise'));
+    factory(exports, require('./IStorageService.js'), require('../veHelpers.js'), require('jQuery'));
   } else {
     // Browser globals
-    factory((root.DjangoStorageService = {}), root.IStorageService, root.veHelpers, root.request, root.rp);
+    factory((root.DjangoStorageService = {}), root.IStorageService, root.veHelpers, root.$);
   }
-}(this, function (exports, IStorageService, veHelpers, request, rp) {
+}(this, function (exports, IStorageService, veHelpers, $) {
 
   var USER_CREDENTIALS_KEY = 've_user_credentials';
   var userCredentials = {};
@@ -29,12 +29,16 @@
   */
   function authenticate (user_credentials) {
     //console.log('DjangoAuthService.authenticate called with:', user_credentials);
-    return rp.post({
+   return $.ajax({
       url: 'http://localhost:8000/api-token-auth/',
-      body: user_credentials,
-      json: true
+      method: 'POST',
+      data: user_credentials,
+      dataType: 'json',
+      timeout: 3000,
+      headers: {
+        'Authorization': 'JWT ' + userCredentials.token
+      }
     }).then(function(data) {
-
       if (typeof data.token !== undefined) {
         isAuthenticated = true;
         delete(user_credentials.password);
@@ -43,6 +47,8 @@
         //console.log('isAuthenticated set to true');
       }
       return data;
+    }, function(error) {
+      reject(new TypeError(error));
     });
   }
 
@@ -83,13 +89,24 @@
       //console.log('can only make authAjaxGET request if userCredentials are set');
       return Promise.reject('notAuthenticated');
     }
-    return rp.get({
-      uri: url,
+
+    return $.ajax({
+      url: url,
+      method: 'GET'
+      dataType: 'json',
       headers: {
         'Authorization': 'JWT ' + userCredentials.token
-      },
-      json: true
+      }
     });
+
+    //we use jquery instead now
+    // return rp.get({
+    //   uri: url,
+    //   headers: {
+    //     'Authorization': 'JWT ' + userCredentials.token
+    //   },
+    //   json: true
+    // });
   }
 
   /**
@@ -108,14 +125,24 @@
       return Promise.reject('notAuthenticated');
     }
 
-    return rp.post({
+    return $.ajax({
       url: url,
-      body: data,
+      method: 'POST'
+      dataType: 'json',
+      data: JSON.stringify(data),
       headers: {
         'Authorization': 'JWT ' + userCredentials.token
-      },
-      json: true
+      }
     });
+
+    // return rp.post({
+    //   url: url,
+    //   body: data,
+    //   headers: {
+    //     'Authorization': 'JWT ' + userCredentials.token
+    //   },
+    //   json: true
+    // });
   }
 
   exports.authenticate = authenticate;
