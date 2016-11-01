@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -132,6 +133,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
+}
+
+#A token can be refreshed when reusing the app in 21 days. Even if the application
+#is constantly used, users have to relogin after 100 days
+JWT_AUTH = {
+	'JWT_ALLOW_REFRESH': True,
+	'JWT_EXPIRATION_DELTA': datetime.timedelta(days=21),
+	'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=100)
 }
 
 CORS_ORIGIN_ALLOW_ALL = True

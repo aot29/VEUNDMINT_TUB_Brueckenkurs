@@ -48,7 +48,7 @@
 
   log.info('newserver.js loaded');
 
-  init();
+  //init();
 
   /**
   * will load existing scores from the passed intersiteObj, as we can see this class

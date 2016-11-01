@@ -22,25 +22,11 @@
     that.name = 'DjangoStorageService';
 
     that.saveUserData = function (data) {
-      var result = new Promise(function(resolve, reject) {
-        if (!DjangoAuthService.isAuthenticated()) {
-          reject(new TypeError('not authenticated'));
-        } else {
-          resolve(DjangoAuthService.authAjaxPost('http://localhost:8000/user-data/', data));
-        }
-      });
-      return result;
+      return DjangoAuthService.authAjaxPost('http://localhost:8000/user-data/', data);
     }
 
     that.getUserData = function () {
-      var result = new Promise(function(resolve, reject) {
-        if (!DjangoAuthService.isAuthenticated()) {
-          reject(new TypeError('not authenticated'));
-        } else {
-          resolve(DjangoAuthService.authAjaxGet('http://localhost:8000/user-data/'));
-        }
-      });
-      return result;
+      return DjangoAuthService.authAjaxGet('http://localhost:8000/user-data/');
     }
 
     that.getDataTimestamp = function () {

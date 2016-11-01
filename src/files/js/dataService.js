@@ -45,6 +45,24 @@
   //this variable stores recent, unsynced changes and will be reset on successful
   //sync operation
   var changedData = {};
+  
+	init();
+
+	/**
+	* will load existing scores from the passed intersiteObj, as we can see this class
+	* depends on intersite (by now), this dependency is only because of persistence reasons now
+	* and shall be removed in further iterations
+	* @return {[type]} [description]
+	*/
+	function init( options ) {
+		subscribe(LocalStorageService.LocalStorageService());
+		subscribe(DjangoStorageService.DjangoStorageService());
+		
+		DjangoAuthService.authenticate({
+			username: 'testrunner',
+			password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+		});
+	}
 
   /**
    * Will locally update userData and also the changedData object used for synchronizing
@@ -413,22 +431,6 @@ function getUserData() {
       return data;
     });
   }
-}
-
-var USER_CREDENTIALS_KEY = 've_user_credentials';
-var SCORES_KEY = 've_scores'
-
-init();
-
-/**
-* will load existing scores from the passed intersiteObj, as we can see this class
-* depends on intersite (by now), this dependency is only because of persistence reasons now
-* and shall be removed in further iterations
-* @return {[type]} [description]
-*/
-function init( options ) {
-  // Merge user options with defaults
-  //settings = $.extend( defaults, options || {} );
 }
 
 /**

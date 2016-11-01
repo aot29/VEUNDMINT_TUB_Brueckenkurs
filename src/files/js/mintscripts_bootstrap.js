@@ -512,6 +512,8 @@ function handlerChange(id, nocontentcheck) {
   if (FVAR[id].type == 2) {
     if (FVAR[id].smc.length > 0) nocontentcheck = 0;
   }
+  
+  dataService.updateUserData({scores:[{id:FVAR[id].id, points: FVAR[id].points, uxid:FVAR[id].uxid, rawinput:FVAR[id].rawinput}]});
 
   var formula = 0; // Stellt der Feldinhalt eine Formel dar?
   if (FVAR[id].type == 4) formula = 1; // Eingabefeld fuer mathematische Ausdruecke? Rohe Zahlen oder Intervalle werden nicht gehintet
@@ -1498,6 +1500,7 @@ function reset_button()
  * @return {[type]}        [description]
  */
 function notifyPoints(i, points, state) {
+	dataService.updateUserData({scores:intersite.getObj().scores});
   log.trace('mintscripts_bootstrap: notify points called with parameters', i, points, state);
   log.trace('mintscripts_bootstrap: you just changed the answer for', FVAR[i]);
   FVAR[i].points = points;

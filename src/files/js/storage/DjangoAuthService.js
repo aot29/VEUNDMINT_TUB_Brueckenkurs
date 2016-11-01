@@ -7,21 +7,39 @@
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    factory(exports, require('./IStorageService.js'), require('../veHelpers.js'), require('bluebird'), require('jquery'));
+    factory(exports, require('./IStorageService.js'), require('../veHelpers.js'), require('jquery'));
   } else {
     // Browser globals
-    factory((root.DjangoAuthService = {}), root.IStorageService, root.veHelpers, root.Promise, root.$);
+    factory((root.DjangoAuthService = {}), root.IStorageService, root.veHelpers, root.$);
   }
-}(this, function (exports, IStorageService, veHelpers, Promise, $) {
+}(this, function (exports, IStorageService, veHelpers, $) {
 
   var USER_CREDENTIALS_KEY = 've_user_credentials';
   var userCredentials = {};
   var isAuthenticated = false;
   
-  function initJquery(jqueryRef, promiseRef) {
+  function initJquery(jqueryRef) {
 	  $ = jqueryRef;
   }
 
+  /**
+  * Get the user credentials from local variable. If not set, get it from local
+  * Storage and set it and return it
+  * @return {object or null} the user credentials object or null
+  */
+  function getUserCredentials () {
+    if (typeof userCredentials !== "undefined" && userCredentials !== null && !veHelpers.isEmpty(userCredentials)) {
+      return userCredentials;
+    } else {
+      var lsUserCred = localStorage.getItem(USER_CREDENTIALS_KEY);
+      if (lsUserCred !== null) {
+        return JSON.parse(lsUserCred);
+      }
+    }
+    log.debug('can only call getUserCredentials if user is authenticated')
+    return null;
+  }
+  
   /**
   * Authenticates at the server (settings.apiAuthUrl) with the given user credentials object
   * that should contain a 'username' and a 'password'
@@ -32,22 +50,23 @@
   * @return {Promise}           Returns a promise with the data object
   */
   function authenticate (user_credentials) {
-// 	 console.log('calling authenticate with', user_credentials);
-   return new Promise(function(resolve, reject) {
-	   $.ajax({
+	 console.log('calling authenticate with', user_credentials);
+   return $.ajax({
       url: 'http://localhost:8000/api-token-auth/',
       method: 'POST',
       data: JSON.stringify(user_credentials),
       dataType: 'json',
 	  contentType: 'application/json; charset=utf-8',
       timeout: 3000,
-    }).done(resolve).fail(reject)}).then(function(data) {
+    }).then(function(data) {
       if (typeof data.token !== undefined) {
-
         isAuthenticated = true;
         delete(user_credentials.password);
         userCredentials = user_credentials;
         userCredentials.token = data.token;
+		
+		localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(userCredentials));
+        //console.log('isAuthenticated set to true');
       }
       return data;
     }, function(error) {
@@ -65,26 +84,13 @@
   }
 
   /**
-  * Get the user credentials from local variable. If not set, get it from local
-  * Storage and set it and return it
-  * @return {object or null} the user credentials object or null
-  */
-  function getUserCredentials () {
-    if (typeof userCredentials !== "undefined" && userCredentials !== null) {
-      return userCredentials;
-    }
-    //console.log('can only call getUserCredentials if user is authenticated')
-    return null;
-  }
-
-  /**
   * Make authenticated GET request to url with data
   * @param  {String} url  The url to send the request to
   * @param  {Object} data The data you want to send with the request
   * @return {Object}      The returned (json) data
   */
-  function authAjaxGET (url) {
-//     console.log('calling authajax get with url', url);
+  function authAjaxGET (url, data) {
+    //console.log('calling authajax get with url', url);
     var userCredentials = getUserCredentials();
     //console.log('and user credentials is', userCredentials);
     if (userCredentials === null || typeof userCredentials === "undefined"
@@ -92,20 +98,16 @@
       //console.log('can only make authAjaxGET request if userCredentials are set');
       return Promise.reject('notAuthenticated');
     }
-    
-    return new Promise(function(resolve, reject) {
-		$.ajax({
-			url: url,
-			method: 'GET',
-			dataType: 'json',
-			headers: {
-				'Authorization': 'JWT ' + userCredentials.token
-			},
-			timeout: 3000
-		}).done(resolve).fail(reject);
-	}).then(function(data) {
-		return data;
-	})
+
+    return $.ajax({
+      url: url,
+      method: 'GET',
+      dataType: 'json',
+	  contentType: 'application/json; charset=utf-8',
+      headers: {
+        'Authorization': 'JWT ' + userCredentials.token
+      }
+    });
 
     //we use jquery instead now
     // return rp.get({
@@ -124,7 +126,7 @@
   * @return {Object}      The returned (json) data
   */
   function authAjaxPOST (url, data) {
-//     console.log('calling authajax get with url', url, 'data', data);
+    console.log('calling authajax get with url', url, 'data', data);
     var userCredentials = getUserCredentials();
     //console.log('and user credentials is', userCredentials);
     if (userCredentials === null || typeof userCredentials === "undefined"
@@ -160,7 +162,7 @@
   exports.getUserCredentials = getUserCredentials;
   exports.authAjaxGet = authAjaxGET;
   exports.authAjaxPost = authAjaxPOST;
-  exports.isAuthenticated = function(){return isAuthenticated};
+  exports.isAuthenticated = isAuthenticated;
   exports.getToken = function() {return userCredentials.token || null};
 
 
