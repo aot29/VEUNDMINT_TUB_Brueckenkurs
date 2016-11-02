@@ -69,7 +69,7 @@ endef
 
 
 #
-# Deploy all images to the images directory
+# Deploy all images and videos to the images directory
 #
 define deploy_img_cmd
 	# copy all math images
@@ -79,6 +79,8 @@ define deploy_img_cmd
 	# copy additional images
 	cp src/files/images/cclbysa.png $(OUTPUT)/images
 	cp src/files/images/tbeispiel.png $(OUTPUT)/images
+	# copy all videos
+	cd module_veundmint && find . -iname \*.mp4 -print0 | xargs -I{} -0 cp {} ../$(OUTPUT)/images
 endef
 
 
@@ -301,7 +303,10 @@ fix: fixRedirects
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src='\.\./\.\./images/|src='\.\./\.\./\.\./images/|g" {} \;
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src=\"\.\./images/|src=\"\.\./\.\./images/|g" {} \;
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src='\.\./images/|src=\'\.\./\.\./images/|g" {} \;
-
+	
+	# fix links to videos
+	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|:localmaterial:|\.\./\.\./\.\./images|g" {} \;
+	
 	# Point the home button to the site index
 	# TODO, set extra Javascript path
 
