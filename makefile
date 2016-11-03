@@ -5,7 +5,7 @@ SUBMODULE_DIR = content_submodule
 #
 # Use this target after checking out the content branch first time around.
 # 
-install:
+install: clean
 	# add the software as a submodule
 	git submodule add -b ${SOFTWARE_BRANCH} ${SOFTWARE_REPOSITORY} ${SUBMODULE_DIR}
 	
@@ -16,7 +16,7 @@ install:
 	# install a Python virtual environment and all dependencies	
 	$(MAKE) -f tools/makefiles/devinstall
 
-	-ln -s ${SUBMODULE_DIR}/module_veundmint .
+	ln -sf ${SUBMODULE_DIR}/module_veundmint .
 
 
 #
