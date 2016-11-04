@@ -2,22 +2,22 @@
   /* istanbul ignore next */
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['exports', 'IStorageService', 'veHelpers', 'jquery'], function (exports, IStorageService, veHelpers, $) {
-      factory((root.DjangoAuthService = exports), IStorageService, veHelpers, jQuery);
+    define(['exports', 'IStorageService', 'veHelpers', 'jquery', 'bluebird'], function (exports, IStorageService, veHelpers, $, bluebird) {
+      factory((root.DjangoAuthService = exports), IStorageService, veHelpers, jQuery, bluebird);
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    factory(exports, require('./IStorageService.js'), require('../veHelpers.js'), require('jquery'));
+    factory(exports, require('./IStorageService.js'), require('../veHelpers.js'), require('jquery'), require('bluebird'));
   } else {
     // Browser globals
-    factory((root.DjangoAuthService = {}), root.IStorageService, root.veHelpers, root.$);
+    factory((root.DjangoAuthService = {}), root.IStorageService, root.veHelpers, root.$, root.Promise);
   }
-}(this, function (exports, IStorageService, veHelpers, $) {
+}(this, function (exports, IStorageService, veHelpers, $, Promise) {
 
   var USER_CREDENTIALS_KEY = 've_user_credentials';
   var userCredentials = {};
   var isAuthenticated = false;
-  
+
   function initJquery(jqueryRef) {
 	  $ = jqueryRef;
   }
@@ -38,10 +38,10 @@
         return JSON.parse(lsUserCred);
       }
     }
-    log.debug('can only call getUserCredentials if user is authenticated')
+    //log.debug('can only call getUserCredentials if user is authenticated')
     return null;
   }
-  
+
 	/**
 	 * Check if user is authenticated. If yes, userCredentials will also be available
 	 * @return {Boolean} true if yes, false if not.
@@ -50,10 +50,10 @@
 		var userCredentials = getUserCredentials();
 		if (userCredentials !== null) {
 			isAuthenticated = true;
-		} 
+		}
 		return isAuthenticated;
-	} 
-  
+	}
+
   /**
   * Authenticates at the server (settings.apiAuthUrl) with the given user credentials object
   * that should contain a 'username' and a 'password'
@@ -64,21 +64,23 @@
   * @return {Promise}           Returns a promise with the data object
   */
   function authenticate (user_credentials) {
-	 console.log('calling authenticate with', user_credentials);
-   return $.ajax({
-      url: 'http://localhost:8000/api-token-auth/',
-      method: 'POST',
-      data: JSON.stringify(user_credentials),
-      dataType: 'json',
-	  contentType: 'application/json; charset=utf-8',
-      timeout: 3000,
-    }).then(function(data) {
+	 //console.log('calling authenticate with', user_credentials);
+   return new Promise(function(resolve, reject) {
+     return $.ajax({
+        url: 'http://localhost:8000/api-token-auth/',
+        method: 'POST',
+        data: JSON.stringify(user_credentials),
+        dataType: 'json',
+      contentType: 'application/json; charset=utf-8',
+        timeout: 3000,
+      }).done(resolve).fail(reject);
+   }).then(function(data) {
       if (typeof data.token !== undefined) {
         isAuthenticated = true;
         delete(user_credentials.password);
         userCredentials = user_credentials;
         userCredentials.token = data.token;
-		
+
 		localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(userCredentials));
         //console.log('isAuthenticated set to true');
       }
@@ -94,6 +96,7 @@
    */
   function logout() {
     userCredentials = {};
+    localStorage.removeItem(USER_CREDENTIALS_KEY);
     isAuthenticated = false;
   }
 
@@ -110,18 +113,20 @@
     if (userCredentials === null || typeof userCredentials === "undefined"
     || typeof userCredentials.token === "undefined" ) {
       //console.log('can only make authAjaxGET request if userCredentials are set');
-      return Promise.reject('notAuthenticated');
+      return Promise.reject('not authenticated');
     }
-
-    return $.ajax({
-      url: url,
-      method: 'GET',
-      dataType: 'json',
-	  contentType: 'application/json; charset=utf-8',
-      headers: {
-        'Authorization': 'JWT ' + userCredentials.token
-      }
+    return new Promise(function (resolve, reject) {
+      return $.ajax({
+        url: url,
+        method: 'GET',
+        dataType: 'json',
+  	  contentType: 'application/json; charset=utf-8',
+        headers: {
+          'Authorization': 'JWT ' + userCredentials.token
+        }
+      }).done(resolve).fail(reject);
     });
+
 
     //we use jquery instead now
     // return rp.get({
@@ -146,19 +151,21 @@
     if (userCredentials === null || typeof userCredentials === "undefined"
     || typeof userCredentials.token === "undefined" ) {
       //console.log('can only make authAjaxGET request if userCredentials are set');
-      return Promise.reject('notAuthenticated');
+      return Promise.reject('not authenticated');
     }
-
-    return $.ajax({
-      url: url,
-      method: 'POST',
-      data: JSON.stringify(data),
-      dataType: 'json',
-      contentType: 'application/json; charset=utf-8',
-      headers: {
-        'Authorization': 'JWT ' + userCredentials.token
-      }
+    return new Promise(function (resolve, reject) {
+      return $.ajax({
+        url: url,
+        method: 'POST',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          'Authorization': 'JWT ' + userCredentials.token
+        }
+      }).done(resolve).fail(reject);
     });
+
 
     // return rp.post({
     //   url: url,
@@ -169,7 +176,7 @@
     //   json: true
     // });
   }
- 
+
 
   exports.initJquery = initJquery;
   exports.authenticate = authenticate;

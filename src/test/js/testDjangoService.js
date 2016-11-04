@@ -20,7 +20,7 @@ describe('DjangoServices', function() {
 
 
 	var $ = {};
-	
+
 	//we fake jquery ajax here, it will use node methods for requests
 	before(function () {
 		$.ajax = require('najax');
@@ -31,7 +31,6 @@ describe('DjangoServices', function() {
 describe('DjangoAuthService', function() {
 
   it('#authenticate - should authenticate users and store token', function() {
-	  console.log(DjangoAuthService);
     return DjangoAuthService.authenticate({
       username: 'testrunner',
       password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
@@ -41,7 +40,7 @@ describe('DjangoAuthService', function() {
     });
   });
 
-  
+
   it('#authAjaxGet - should add auth header and make successful request', function() {
     return DjangoAuthService.authenticate({
       username: 'testrunner',
@@ -68,6 +67,7 @@ describe('DjangoStorageService', function() {
   describe('#saveUserData', function() {
 
     it('should reject if not authenticated', function() {
+			console.log(DjangoAuthService.getUserCredentials());
       return ds.saveUserData().should.be.rejectedWith('not authenticated');
     });
 
