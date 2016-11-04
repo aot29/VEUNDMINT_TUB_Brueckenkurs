@@ -55,13 +55,13 @@
 	* @return {[type]} [description]
 	*/
 	function init( options ) {
-		subscribe(LocalStorageService.LocalStorageService());
-		subscribe(DjangoStorageService.DjangoStorageService());
+// 		subscribe(LocalStorageService.LocalStorageService());
+// 		subscribe(DjangoStorageService.DjangoStorageService());
 		
-		DjangoAuthService.authenticate({
-			username: 'testrunner',
-			password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
-		});
+// 		DjangoAuthService.authenticate({
+// 			username: 'testrunner',
+// 			password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+// 		});
 	}
 
   /**

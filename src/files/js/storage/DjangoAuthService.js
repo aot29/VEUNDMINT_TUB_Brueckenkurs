@@ -29,16 +29,30 @@
   */
   function getUserCredentials () {
     if (typeof userCredentials !== "undefined" && userCredentials !== null && !veHelpers.isEmpty(userCredentials)) {
+		isAuthenticated = true;
       return userCredentials;
     } else {
       var lsUserCred = localStorage.getItem(USER_CREDENTIALS_KEY);
       if (lsUserCred !== null) {
+		isAuthenticated = true;
         return JSON.parse(lsUserCred);
       }
     }
     log.debug('can only call getUserCredentials if user is authenticated')
     return null;
   }
+  
+	/**
+	 * Check if user is authenticated. If yes, userCredentials will also be available
+	 * @return {Boolean} true if yes, false if not.
+	 */
+	function isUserAuthenticated() {
+		var userCredentials = getUserCredentials();
+		if (userCredentials !== null) {
+			isAuthenticated = true;
+		} 
+		return isAuthenticated;
+	} 
   
   /**
   * Authenticates at the server (settings.apiAuthUrl) with the given user credentials object
@@ -155,6 +169,7 @@
     //   json: true
     // });
   }
+ 
 
   exports.initJquery = initJquery;
   exports.authenticate = authenticate;
@@ -162,7 +177,7 @@
   exports.getUserCredentials = getUserCredentials;
   exports.authAjaxGet = authAjaxGET;
   exports.authAjaxPost = authAjaxPOST;
-  exports.isAuthenticated = isAuthenticated;
+  exports.isAuthenticated = isUserAuthenticated;
   exports.getToken = function() {return userCredentials.token || null};
 
 

@@ -31,6 +31,7 @@ describe('DjangoServices', function() {
 describe('DjangoAuthService', function() {
 
   it('#authenticate - should authenticate users and store token', function() {
+	  console.log(DjangoAuthService);
     return DjangoAuthService.authenticate({
       username: 'testrunner',
       password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
