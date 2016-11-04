@@ -42,4 +42,10 @@ clean:
 	-git submodule deinit -f ${SUBMODULE_DIR}
 	-git rm -rf ${SUBMODULE_DIR}
 	-rm -rf .git/modules/${SUBMODULE_DIR}
+
 	
+#
+# Run the test suite on localhost
+#
+test:
+	$(MAKE) -f tools/makefiles/test localhost
