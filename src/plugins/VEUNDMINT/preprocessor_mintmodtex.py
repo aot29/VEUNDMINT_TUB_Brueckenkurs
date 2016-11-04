@@ -26,7 +26,8 @@
 import re
 import os.path
 import subprocess
-
+import fileinput
+import sys
 
 class Preprocessor(object):
 	
@@ -60,6 +61,7 @@ class Preprocessor(object):
 			try:
 				i18ntex = self.sys.readTextFile(os.path.join(self.options.converterDir, "tex", self.options.i18nfile), self.options.stdencoding)
 				self.data['macrotex'] = i18ntex + macrotex
+				#self.data['macrotex'] = macrotex
 
 			# if no i18n file was given, then assume all the texts are in the mintmod file 
 			except AttributeError:
@@ -178,6 +180,28 @@ class Preprocessor(object):
 			
 				tex = self.preprocess_texfile(texfile[0], tex)
 				self.sys.writeTextFile(texfile[0], tex, self.options.stdencoding)
+
+
+		# Remove the i18n localization \input commands from LaTeX, as the converter inserts them into the source code, 
+		# and the presence of both confuses pdflatex
+		pattern = re.compile(r"\\\input{.*}")
+		for texfile in fileArray:
+			#if re.match(".*" + self.options.macrofilename  + "\\.tex", texfile[0]): continue
+			#if re.match(".*/veundmint_de.tex", texfile[0]): continue
+			#if re.match(".*/veundmint_en.tex", texfile[0]): continue
+			if re.match(".*/vbkm.*", texfile[0]):	
+				file_handle = open(texfile[0], 'r')
+				file_string = file_handle.read()
+				file_handle.close()
+				
+				# Use RE package to allow for replacement (also allowing for (multiline) REGEX)
+				file_string = (re.sub(pattern, "", file_string))
+				
+				# Write contents to file.
+				# Using mode 'w' truncates the file.
+				file_handle = open(texfile[0], 'w')
+				file_handle.write(file_string)
+				file_handle.close()
 		
 		self.sys.message(self.sys.CLIENTINFO, "Preparsing of " + str(len(fileArray)) + " texfiles finished")
 		self.sys.message(self.sys.CLIENTINFO, str(nonpass) + " files did not pass the release test, see logfile for details")

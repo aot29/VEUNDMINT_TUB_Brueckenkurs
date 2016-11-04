@@ -23,7 +23,7 @@ install: clean
 # Build the course with all languages available.
 #
 all:
-	$(MAKE) -f tools/makefiles/multilang nopdf
+	$(MAKE) -f tools/makefiles/multilang
 	
 
 #

@@ -111,7 +111,7 @@ convert_with_pdf:
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
 	$(pdf_cmd)
-	
+
 
 #
 # Build the English and the German version.
@@ -160,7 +160,7 @@ merge:
 	# move English HTML to /html/en
 	mv $(OUTPUT)_en/html $(OUTPUT)/html/en
 
-        # move English PDF
+	# move English PDF
 	-mv $(OUTPUT)_en/pdf/* $(OUTPUT)/pdf/
 
 	$(deploy_img_cmd)
