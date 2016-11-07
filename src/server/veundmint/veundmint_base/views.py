@@ -1,12 +1,14 @@
 from django.utils import timezone
-import calendar
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
+
 from rest_framework import viewsets, permissions, authentication, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
 from veundmint_base.serializers import UserDataSerializer, WebsiteActionSerializer, \
 ScoreSerializer
 from veundmint_base.models import WebsiteAction, Score
@@ -95,7 +97,10 @@ class DataTimestampView(APIView):
         Return the timestamp of the latest data as a number
         """
         user = self.request.user
-        latestUserScore = Score.objects.filter(user=user).latest('updated_at')
-
-        #we return a slightly throttled timestamp (2 sec) in order to to privilege localstorage
-        return Response(int(timezone.make_naive(latestUserScore.updated_at).timestamp() * 1000 - 2000))
+        try:
+            latestUserScore = Score.objects.filter(user=user).latest('updated_at').updated_at
+            latestUserScoreTimestamp = timezone.make_naive(latestUserScore).timestamp() * 1000 - 2000
+            #we return a slightly throttled timestamp (2 sec) in order to to privilege localstorage
+        except ObjectDoesNotExist:
+            latestUserScoreTimestamp = -1
+        return Response(int(latestUserScoreTimestamp));
